@@ -28,7 +28,7 @@ local tempObtainableFutureSaturationStyle = saturationStyle:New(
 	function() return ACHIEVEMENT_RED_BORDER_COLOR; end
 );
 local accountSaturationStyle = saturationStyle:New(
-	function(_, isAccountWide) return isAccountWide; end,
+	function(_, isAccountWide) return addon.Options.db.profile.Achievements.WarbandHeaderColor and isAccountWide; end,
 	"account",
 	nil,
 	"Interface/AchievementFrame/AccountLevel-AchievementHeader",
@@ -306,10 +306,7 @@ function KrowiAF_AchievementButtonMixin:DisplayObjectives(forced)
 end
 
 local function GetSaturatedStyle(self, achievement, flags)
-	local state;
-	if achievement.TemporaryObtainable then
-		state = achievement.TemporaryObtainable.Obtainable();
-	end
+	local state = achievement:GetObtainableState();
 
 	self.accountWide = nil;
 	if flags.IsAccountWide then
@@ -360,10 +357,7 @@ local function SetTsunamis(self)
 		return;
 	end
 	local achievement = self.Achievement;
-	local state;
-	if achievement.TemporaryObtainable then
-		state = achievement.TemporaryObtainable.Obtainable();
-	end
+	local state = achievement:GetObtainableState();
 
 	local _saturationStyle = GetSaturationStyle(state);
 	local texture = _saturationStyle.BordersTexture;
@@ -378,10 +372,7 @@ end
 
 local function Saturate(self)
 	local achievement = self.Achievement;
-	local state;
-	if achievement.TemporaryObtainable then
-		state = achievement.TemporaryObtainable.Obtainable();
-	end
+	local state = achievement:GetObtainableState();
 	local _saturationStyle = GetSaturationStyle(state, self.accountWide);
 	self.saturatedStyle = _saturationStyle.Style;
 	self.HeaderBackground:SetTexture(_saturationStyle.HeaderBackgroundTexture);
@@ -404,10 +395,7 @@ end
 
 local function Desaturate(self)
 	local achievement = self.Achievement;
-	local state;
-	if achievement.TemporaryObtainable then
-		state = achievement.TemporaryObtainable.Obtainable();
-	end
+	local state = achievement:GetObtainableState();
 	local _saturationStyle = GetSaturationStyle(state, self.accountWide);
 	self.saturatedStyle = nil;
 	self.HeaderBackground:SetTexture(_saturationStyle.HeaderBackgroundTexture);
@@ -440,6 +428,17 @@ local function SaturatePartial(self)
 end
 
 local function SetCompletionState(self, achievement, completed, month, day, year, wasEarnedByMe, saturatedStyle)
+	-- if addon.Options.db.profile.Achievements.ShowOtherFactionWarbandAsCompleted then
+	-- 	if achievement.IsAccountWide and KrowiAF_Achievements.Completed[achievement.Id] and KrowiAF_Achievements.Completed[achievement.Id].FirstCompletedOn then
+	-- 		local date = date("*t", KrowiAF_Achievements.Completed[achievement.Id].FirstCompletedOn);
+	-- 		completed = true;
+	-- 		month = date.month;
+	-- 		day = date.day;
+	-- 		year = date.year;
+	-- 		wasEarnedByMe = true;
+	-- 	end
+	-- end
+
 	local earnedByFilter = addon.Filters.db.profile.EarnedBy;
 	if (earnedByFilter == addon.Filters.Account and completed or wasEarnedByMe) or (earnedByFilter == addon.Filters.CharacterAccount and completed and wasEarnedByMe) then
 		self.Completed = true;
@@ -494,20 +493,22 @@ local function SetRewardText(self, rewardText)
 end
 
 local function SetFaction(self, achievement)
-	if not self.Faction then
+	if not achievement.Faction then
+		self.FactionIcon:Hide();
 		return;
 	end
-	if achievement.Faction == addon.Objects.Faction.Alliance and addon.Options.db.profile.Achievements.ShowAllianceFactionIcon then
-		self.Faction.Icon:SetAtlas("MountJournalIcons-Alliance");
-		self.Faction:Show();
+	self.FactionIcon:SetAlpha(addon.Options.db.profile.Achievements.FactionIconAlpha);
+	if achievement.Faction == KrowiAF.Enum.Faction.Alliance and addon.Options.db.profile.Achievements.ShowAllianceFactionIcon then
+		self.FactionIcon:SetTexCoord(0.65966796875, 0.74951171875, 0.150879, self.Compact and 0.19961 or 0.22412109375);
+		self.FactionIcon:Show();
 		return;
 	end
-	if achievement.Faction == addon.Objects.Faction.Horde and addon.Options.db.profile.Achievements.ShowHordeFactionIcon then
-		self.Faction.Icon:SetAtlas("MountJournalIcons-Horde");
-		self.Faction:Show();
+	if achievement.Faction == KrowiAF.Enum.Faction.Horde and addon.Options.db.profile.Achievements.ShowHordeFactionIcon then
+		self.FactionIcon:SetTexCoord(0.75048828125, 0.84033203125, 0.150879, self.Compact and 0.19961 or 0.22412109375);
+		self.FactionIcon:Show();
 		return;
 	end
-	self.Faction:Hide();
+	self.FactionIcon:Hide();
 end
 
 function KrowiAF_AchievementButtonMixin:SetAchievementData(achievement, id, name, points, completed, month, day, year, description, flags, icon, rewardText, wasEarnedByMe)

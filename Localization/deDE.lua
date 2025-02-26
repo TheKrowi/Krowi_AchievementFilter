@@ -3,12 +3,12 @@ local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "deDE");
 if not L then return end
 addon.L = L;
 
-addon.Plugins:LoadLocalization(L);
+KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-10-24 18-52-21 ]] --
+-- [[ Exported at 2025-02-26 17-20-18 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -47,6 +47,8 @@ Dieser Wert kann geändert werden, während das Erfolg-Fenster geöffnet ist und
 
 (1) FPS-Einbrüche und Stottern während der Anpassung des Wertes, NICHT während der normalen Addon-Nutzung.]=]
 L["Active"] = "Aktiv"
+L["Active Event Login Delay"] = "Aktive Ereignisse Login-Verzögerung"
+L["Active Events"] = "Aktive Ereignisse"
 L["Active events"] = "Aktive Ereignisse"
 L["Add addon name to world map icon"] = "Addon-Namen zum Weltkarten-Icon hinzufügen"
 L["Add addon name to world map icon Desc"] = "Fügt '{addonName}' am Ende des Tooltips hinzu, wenn man mit der Maus über das Icon fährt."
@@ -57,6 +59,7 @@ L["Add to Watch List"] = "Zu {watchList} hinzufügen"
 L["Added in version"] = "Hinzugefügt mit Version"
 L["Adjustable Categories"] = "Anpassbare Kategorien"
 L["Aki the Chosen"] = "Aki die Auserwählte"
+L["Allied Race"] = "Verbündetes Volk"
 L["Alt"] = true
 L["Always Show Completed"] = "Erreichte Erfolge immer anzeigen"
 L["Always show realm"] = "Immer Realm anzeigen"
@@ -119,7 +122,7 @@ Optionen (1)
 |T:1:8|t- Der erste Tag der Woche kann geändert werden und ist derzeit auf {firstWeekDay} eingestellt.
 
 (1) Die Optionen befinden sich unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {calendar}.]=]
-L["Calendar Events"] = "Kalender Events"
+L["Calendar Events"] = "Kalender Ereignisse"
 L["Call of the Crusade"] = "Der Ruf des Kreuzzugs"
 L["Cataclysm (pre-patch)"] = true
 L["Categories"] = "Kategorien"
@@ -142,6 +145,8 @@ L["Central Circuit"] = "Zentralrundstrecke"
 L["Chains of Domination"] = "Ketten der Herrschaft"
 L["Character / Account wide"] = "Charakter & Account"
 L["Character only"] = "Nur Charakter-Erfolge"
+L["Character Specific"] = "Charakter-spezifisch"
+L["Character Specific Desc"] = "Die {watchList} umfasst immer einen accountweiten Datensatz, der alle beobachteten Erfolge für alle Charaktere aufzeichnet. Wenn sie deaktiviert wird, wird dieser kontoübergreifende Datensatz verwendet. Wenn sie für die charakterspezifische Verwendung aktiviert wird, wechseln alle Charaktere, die das gleiche Profil verwenden, in diesen Modus. Bei der Deaktivierung wird die accountweite {watchList} wieder verwendet und die charakterspezifische {watchList} wird entfernt."
 L["Characters"] = "Charaktere"
 L["Chat messages"] = "Chat-Mitteilungen"
 L["Checked"] = "Aktivert"
@@ -180,6 +185,8 @@ L["Compact Desc"] = [=[Verwende eine kompaktere Version mit nur einer Zeile der 
 
 {reloadRequired} ]=]
 L["Completion"] = "Komplettierung"
+L["Copy Account Wide to Character"] = "Account-übergreifend auf Beobachtungsliste pro Charakter umstellen"
+L["Copy Account Wide to Character Desc"] = "Kopiere die accountweite {watchList} (alle von allen Charakteren beobachteten Erfolge) in die aktuelle charakterspezifische {watchList}. Von nun an wird dieser Charakter seine eigene {watchList} haben."
 L["Covenant"] = "Pakt"
 L["Covenant Assaults"] = "Paktangriffe"
 L["Covenant assaults"] = "Paktangriffe"
@@ -195,7 +202,6 @@ L["Criteria is Completed"] = "Kriterien erfüllt sind"
 L["Criteria is Completed Desc"] = "Erfolgs-Kriterien anzeigen, auch wenn die Erfolgs-Kriterien bereits erfüllt sind."
 L["Criteria of"] = "Kriterien"
 L["Cross-Expansion"] = "Addon-Übergreifend"
-L["Cross-Expansion - Delves"] = "Addon-Übergreifend - Tiefen"
 L["Ctrl"] = true
 L["Current Obtainable"] = "Aktuell Erreichbar"
 L["Current Zone"] = "Aktuelle Zone"
@@ -288,8 +294,12 @@ L["Enable"] = "Aktivieren"
 L["Enable debug info"] = "Debug-Informationen einschalten"
 L["Enable debug info Desc"] = "Debug-Informationen einschalten/ausschalten"
 L["Enable Desc"] = "Aktivieren / Deaktivieren Sie das Plugin. Wenn das Plugin hier deaktiviert ist ABER das Addon aktiv ist, können unvorhersehbare Dinge passieren."
+L["Enable Tab Priority"] = "Tab-Priorität aktivieren"
+L["Enable Tab Priority Desc"] = "Aktiviere die Tab-Prioritäts-Option"
 L["Enable trace info"] = "Trace-Informationen einschalten"
 L["Enable trace info Desc"] = "Trace-Informationen einschalten/ausschalten"
+L["Enable Upcoming Calendar Events"] = "Aktiviere Anstehende Kalender-Ereignisse"
+L["Enable Upcoming Calendar Events Desc"] = "Wenn deaktiviert, wird das {upcomingCalendarEvents} Modul deaktviert."
 L["End Time"] = "Ende (Zeit)"
 L["Enhanced filtering and sorting"] = "Erweitertes Filtern und Sortieren"
 L["Enhanced filtering and sorting Desc"] = [=[Das Filtern und Sortieren von Erfolgen wurde um folgende Funktionen erweitert.
@@ -400,7 +410,8 @@ Ereignistypen:
 
 (1) Die Optionen findest Du unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {eventReminders}.]=]
 L["Event Reminders"] = "Event Erinnerung"
-L["Events"] = true
+L["Event Reminders Enable Desc"] = "Wenn deaktiviert, wird das gesamte {eventReminders} Modul ausgeschaltet."
+L["Events"] = "Ereignisse"
 L["Exclude"] = "Ausblenden"
 L["Exclude Excluded achievements"] = "Ausgeschlossene Erfolge Suchen"
 L["Exclude Excluded achievements Desc"] = "Ausgeschlossene Erfolge von den Suchergebnissen ausschließen bzw. in die Suchergebnisse aufnehmen."
@@ -431,7 +442,13 @@ Spezielle Kategorien:
 L["Export"] = true
 L["Export Criteria"] = "Erfolgs-Kriterien Export"
 L["Export Criteria Desc"] = "Exportiert Erfolgs-Kriterien in die Gespeicherten Variablen. Dies wird verwendet, um neue Inhalte hinzuzufügen."
+L["Export Missing Achievements"] = "Fehlende Erfolge exportieren"
+L["Export Missing Achievements Desc"] = "Exportiere die fehlenden Erfolge. Dies ist eine Debug-Funktion und sollte nicht verwendet werden."
+L["Export Removed Achievements"] = "Entfernte Erfolge exportieren"
+L["Export Removed Achievements Desc"] = "Exportiere die entfernten Erfolge. Dies ist eine Debug-Funktion und sollte nicht verwendet werden."
 L["Faction Assaults"] = "Fraktionsübergriffe"
+L["Faction Icon Transparency"] = "Fraktions Symbol Transparenz"
+L["Faction Icon Transparency Desc"] = "Die Transparenz des Fraktionssymbols, wobei 0 für völlig transparent und 1 für völlig undurchsichtig steht."
 L["Fade delay"] = "Ausblendeverzögerung"
 L["Fade delay Desc"] = "Zeit in Sekunden, die das Ereignis Popup-Fenster braucht, um zu verschwinden, wenn es ignoriert wird. Mit einem Rechtsklick kann es sofort geschlossen werden."
 L["Fall of the Lich King"] = "Der Untergang des Lichkönigs"
@@ -501,6 +518,7 @@ L["Grow direction Desc"] = "Die Richtung, in der neue Benachrichtigungs-Fenster 
 L["Guardians of the Dream"] = "Wächter des Traums"
 L["Guides"] = "Hilfe-Leitfaden"
 L["Hallow's End"] = "Schlotternächte"
+L["Has Reward"] = "Belohnung verfügbar"
 L["Header"] = true
 L["Header tooltip"] = "Überschrift Tooltip"
 L["Hearthstone"] = true
@@ -522,6 +540,7 @@ L["Ignore Filters"] = "Filter Ingorieren"
 L["Ignore Filters Desc"] = "Ignoriere jegliche Filter und zeige alle Erfolge in dieser {category}."
 L["Imbu"] = true
 L["Import"] = true
+L["In"] = "in"
 L["in"] = true
 L["In instances"] = "In einer Instanz"
 L["Include"] = "Hinzufügen"
@@ -562,11 +581,9 @@ L["Lock month"] = "Gewählten Monat immer behalten."
 L["Lock month Desc"] = "Behalte den zuletzt angezeigten immer Monat bei, wenn du den Kalender wieder öffnest, nachdem er geschlossen wurde."
 L["Lock month when closed by achievement"] = "Gewählten Monat behalten beim Anklicken eines Erfolgs."
 L["Lock month when closed by achievement Desc"] = "Behalte den zuletzt angezeigten Monat bei, wenn du den Kalender wieder öffnest, nachdem er durch Anklicken eines Erfolgs geschlossen wurde."
-L["Login Delay"] = "Login Verzögerung"
 L["Love is in the Air"] = "Liebe liegt in der Luft"
 L["Lucky Yi"] = "Glückspilz Yi"
 L["Lunar Festival"] = "Mondfest"
-L["M+ Season"] = "Mythic+ Saison"
 L["Make windows movable"] = "Fenster verschiebbar machen"
 L["Make windows movable Desc"] = [=[Macht das Erfolgsfenster, die Kalenderansicht und die Charakterübersicht beweglich/nicht beweglich.
 
@@ -641,6 +658,7 @@ L["NONC"] = true
 L["None"] = "Keine"
 L["No-No"] = true
 L["Northrend Cup"] = "Northrend Pokal"
+L["Not Categorized"] = "Nicht kategorisiert"
 L["Not Earned By"] = "Nicht erzielt durch"
 L["Not earned by:"] = "Nicht erzielt durch:"
 L["Not loaded"] = "Nicht Geladen"
@@ -650,6 +668,7 @@ L["Number of Earned By characters"] = "Anzahl der {earnedBy} Charaktere"
 L["Number of Earned By characters Desc"] = [=[Die Anzahl der Charaktere, die angezeigt werden, die den Erfolg erlangt haben.
 
  Wenn Du hier 0 einstellst, wird diese Funktion deaktiviert. ]=]
+L["Number of lines"] = "Zeilen-Anzahl "
 L["Number of Most progress characters"] = "Anzahl der Charaktere mit den größten Erfolgs-Fortschritten"
 L["Number of Most progress characters Desc"] = [=[Die Anzahl der Charaktere, die angezeigt werden, die schon einen Erfolgs-Fortschritt gemacht haben.
 
@@ -662,6 +681,7 @@ L["Number of search previews"] = "Anzahl der Such-Vorschauen"
 L["Number of search previews Desc"] = "Die Anzahl der Erfolge, die als Vorschau in der gesamten Liste der gefundenen Erfolge angezeigt werden."
 L["Number of summary achievements"] = "Anzahl aller Erfolge"
 L["Number of summary achievements Desc"] = "Die Anzahl der Erfolge, die in der Zusammenfassung der einzelnen Registerkarten angezeigt werden."
+L["Number of Temporarily obtainable lines Desc"] = "Die Anzahl der Zeilen, die für {temporarilyObtainable} Erfolge angezeigt werden, wenn mehr als ein Zeitraum zum Erreichen des Erfolgs möglich war."
 L["N'Zoth (Uldum)"] = true
 L["N'Zoth (Vale of Eternal Blossoms)"] = "N'Zoth (Das Tal der ewigen Blüten)"
 L["N'Zoth Assaults"] = "Angriffe von N'Zoth"
@@ -711,6 +731,7 @@ L["Print map info"] = "Karten-ID einfügen"
 L["Print map info Desc"] = "Füge die Karten-ID im Chat ein"
 L["Print map info w/o reload"] = "Karten-ID ohne neu laden einfügen"
 L["Print map info w/o reload Desc"] = "Füge die Karten-ID ohne neu laden ein"
+L["PvE Season"] = "PvE Saison"
 L["PvP"] = true
 L["PvP Season"] = "PvP Saison"
 L["Quick Search"] = "Schnell-Suche"
@@ -738,13 +759,14 @@ L["Rebind Micro Button"] = "Micro-Button ändern"
 L["Rebind Micro Button Desc"] = "Binde den Micro-Button \"Erfolge\" neu, um einen anderen Tab als den Standard-Tab zu öffnen."
 L["Recruit-a-Friend"] = "Werbt einen Freund"
 L["Red"] = "Rot"
-L["Refresh Events"] = "Events aktualisieren"
+L["Refresh Events"] = "Ereignisse aktualisieren"
 L["Refresh interval"] = "Aktualisierungsintervall"
 L["Refresh interval Desc"] = "Die Zeit in Sekunden zwischen den Aktualisierungen der Ereignis-Daten. Eine längere Zeitspanne kann die Erstellung neuer Popup-Fenster bzw. das Bereinigen vorhandener Popup-Fenster verzögern."
 L["Related Tab"] = "Zugehöriger Tab"
 L["Related Tab Desc"] = "Fügt dem {wowheadLink} ein zusätzliches Bit hinzu, damit ein anderer Tab als der Standard-Tab ausgewählt werden kann."
 L["Remember frame position"] = "{frame} Position merken"
 L["Remember frame position Desc"] = "Die Position des {frame} wird gespeichert. Dadurch bleibt der {frame} bei der nächsten Anmeldung an seiner letzten bekannten Position."
+L["Remix Pandaria Bronze"] = true
 L["Remove from Watch List"] = "Von {watchList} löschen"
 L["Required for"] = "Wird benötigt für..."
 L["Requires"] = "Voraussetzung"
@@ -869,6 +891,8 @@ L["Show Other faction"] = "Zeige weitere Fraktionen"
 L["Show Other faction Desc"] = [=[Zeige / verstecke {otherFaction}.
 
 Wenn diese Option aktiviert ist, wird der Erfolg der anderen Fraktion im Tooltip angezeigt, sofern verfügbar. Dadurch wird es vielleicht klarer, warum euer neuer Horde-Charakter bestimmte Errungenschaften hat, wenn ihr vorher nur Allianz gespielt habt. ]=]
+L["Show Other Faction Warband as Completed"] = "Andere Fraktions-Kriegsmeute als abgeschlossen anzeigen"
+L["Show Other Faction Warband as Completed Desc"] = "Einige Erfolge sind fraktionsspezifisch und gleichzeitig kriegsmeuten gebunden. Diese Erfolge können auf einem Charakter einer Fraktion als abgeschlossen erscheinen, aber nicht auf einem Charakter der anderen Fraktion. Wenn diese Option aktiviert ist, erscheinen die kriegsgebundenen Erfolge auf dem Charakter der anderen Fraktion als abgeschlossen, wenn der Charakter die Errungenschaft auf der anderen Fraktion abgeschlossen hat. Ein Beispiel dafür ist, dass {hordeIntro} und {allianceIntro} für {warStories} benötigt werden, wobei {hordeIntro} nur für Charaktere der Horde und {allianceIntro} für Charaktere der Allianz als abgeschlossen erscheint."
 L["Show Part of a chain"] = "Zeige {partOfAChain}"
 L["Show Part of a chain Desc"] = "{partOfAChain} aktivieren / deaktivieren. Wenn diese Option aktiviert ist, wird im Tooltip die Verkettung angezeigt, zu der der Erfolg gehört."
 L["Show placeholders"] = "Zeige Platzhalter"
@@ -900,6 +924,8 @@ L["Show Temporarily obtainable"] = "Zeige {temporarilyObtainable}e Erfolge"
 L["Show Temporarily obtainable Desc"] = "{TemporarilyObtainable} anzeigen/ausblenden. Wenn diese Option aktiviert ist und die Erfolge {temporarilyObtainable} sind, wird diese Information im Tooltip angezeigt."
 L["Show Temporarily obtainable Icon"] = "Zeige {tempObt} Symbol"
 L["Show Temporarily obtainable Icon Desc"] = "Zeigt / versteckt ein zusätzliches Symbol auf dem Erfolg, wenn es nur {tempObt} ist."
+L["Show Warband Icon"] = "Zeige {warband} Icon"
+L["Show Warband Icon Desc"] = "Zeigt / versteckt ein zusätzliches Symbol in der Kopfzeile eines Erfolgs, wenn es ein {Warband} Erfolg ist."
 L["Show world map icon"] = "Zeige Welt-Map Icon"
 L["Show world map icon Desc"] = "Zeige / Verstecke das Welt-Map Icon."
 L["Side Button Anchor"] = "Seitlicher Button-Anker"
@@ -909,6 +935,7 @@ L["Siege of Orgrimmar"] = "Schlacht um Orgrimmar"
 L["Siege on Dragonbane Keep"] = "Belagerung der Drachenfluchfestung"
 L["Siege on Dragonbane Keep: Active"] = "Belagerung der Drachenfluchfestung: Aktiv"
 L["Siege on Dragonbane Keep: Gathering"] = "Belagerung der Drachenfluchfestung: Sammeln"
+L["Siren Isle"] = "Sireneninsel"
 L["Skitterer Xi'a"] = "Huscher Xi'a"
 L["Skoldus Hall"] = "Skoldushalle"
 L["Skyriding Races"] = "Himmelsreiten"
@@ -946,8 +973,11 @@ L["Superbloom: Active"] = "Superblüte: Aktiv"
 L["Superbloom: Next"] = "Superblüte: Nächstes Event"
 L["Tab"] = true
 L["tab"] = "Tab"
+L["Tab Priority"] = "Tab-Priorität"
+L["Tab Priority Desc"] = "Wenn diese Option aktiviert ist, wird beim Klicken auf einen Erfolg (um zu diesem Erfolg zu gelangen) der priorisierte Tab zuerst verwendet, um nach dem Erfolg zu suchen und das Fenster zu diesem Tab zu öffnen. Wenn der Erfolg nicht in diesem Tab vorhanden ist, gelten die Standardregeln."
 L["Tabs"] = true
 L["Ta's Pet Collection"] = "Ta's Haustier Sammlung"
+L["Teleport"] = true
 L["Temporarily obtainable"] = "Befristet erreichbar"
 L["temporarily obtainable"] = "befristet erreichbar"
 L["Temporarily obtainable Header Colors"] = "{tempObt} Kopfzeilen-Farbe"
@@ -1008,6 +1038,7 @@ L["Track achievement browsing history"] = "Verfolgung des Erfolgs-Browsing-Verla
 L["Track achievement browsing history Desc"] = "Wenn diese Option aktiviert ist, wird in der Fensterüberschrift eine Schaltfläche zum Zurück- und Vorwärtsblättern angezeigt. Dies ermöglicht die Navigation durch den Browserverlauf ausgewählter Errungenschaften, so wie es Ihr Internetbrowser für besuchte Websites tut."
 L["Tracking"] = "Tracking-Erfolge"
 L["Tracking Achievements"] = "Tracking-Erfolge"
+L["Trader's Tender"] = "Händlerdevisen"
 L["Trading Post"] = "Handelsposten"
 L["Transmog Sets"] = "Transmog-Sets"
 L["Truncate"] = "Abschneiden"
@@ -1018,9 +1049,15 @@ L["Tyrhold"] = true
 L["Uktulut Coaster"] = "Uktuluter Küstenachter"
 L["Uncategorized"] = "Nicht kategorisiert"
 L["Unchecked"] = "Nicht aktiviert"
+L["Undermine(d)"] = true
 L["until the end of"] = "bis zum Ende von"
 L["Up"] = "Hoch"
 L["up until the start of"] = "bis zum Ende von"
+L["Upcoming"] = "Anstehend"
+L["Upcoming Calendar Event Days"] = "Anstehende Kalender-Ereignisse Tage"
+L["Upcoming Calendar Event Days Desc"] = "Die Anzahl der Tage im Voraus, die anstehende Kalender-Ereignisse angezeigt werden sollen."
+L["Upcoming Calendar Event Login Delay"] = "Anstehende Kalender-Ereignisse Login-Verzögerung"
+L["Upcoming Calendar Events"] = "Anstehende Kalender-Ereignisse"
 L["Upper Reaches"] = "Die Oberen Ebenen"
 L["Val'sharah"] = true
 L["Vendor"] = "Verkäufer"
@@ -1033,6 +1070,10 @@ L["Wago"] = true
 L["Wago Desc"] = "Öffnet ein Popup-Fenster mit einem Link zur Seite {addonName} {wago}."
 L["Waking Shores"] = "Küste des Erwachens"
 L["Waking Shores: Next"] = "Küste des Erwachens: Nächstes Event"
+L["Warband Achievement"] = "Kriegsmeuten-Erfolg"
+L["Warband Campsite"] = "Kriegsmeute Lagerplatz"
+L["Warband Header Color"] = "{warband} Kopfzeilen Farbe"
+L["Warband Header Color Desc"] = "Wenn diese Option deaktiviert ist, wird die standardmäßige blaue Farbe der Kopfzeile durch eine orange Farbe ersetzt. In diesem Fall wird empfohlen das {warbandIcon} zu aktivieren."
 L["Warcraft III: Reforged"] = true
 L["Warcraft Rumble"] = true
 L["was"] = "war"
@@ -1042,13 +1083,13 @@ L["When achievement completed Desc"] = [=[Zeigt / verbirgt {objectivesProgress},
 
 Wenn diese Option aktiviert ist, werden die {objectivesProgress} der Erfolge im Tooltip angezeigt, unabhängig davon, ob der Erfolg abgeschlossen ist oder nicht. ]=]
 L["Whispering Pandaren Spirit"] = "Flüsternder Pandarengeist"
-L["Widget Events"] = true
+L["Widget Events"] = "Widget Ereignisse"
 L["Wild Preserve Circuit"] = "Wildreservat-Parcours"
 L["Wild Preserve Slalom"] = "Wildreservat-Slalom"
 L["will be"] = "wird"
 L["Window"] = "Fenster"
 L["Wingrest Roundabout"] = "Schwingenrastkreisel"
-L["World Events"] = "Welt Events"
+L["World Events"] = "Welt Ereignisse"
 L["World Map"] = "Welt Karte"
 L["World Map Button"] = true
 L["World Map Button Desc"] = [=[Hover:

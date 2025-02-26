@@ -146,6 +146,46 @@ local function ExportCriteria()
     DebugTable = criteriaCache;
 end
 
+local function ExportMissingAchievements()
+    local frame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template");
+	frame:Init(addon.L["Export Missing Achievements"]);
+    local numMissingAchievements = 0;
+    local exportString = "\r\n";
+    for _, achievementId in next, addon.Data.AchievementIds do
+        if addon.Data.Achievements[achievementId].Uncategorized then
+            local achievementInfo = addon.GetAchievementInfoTable(achievementId);
+            numMissingAchievements = numMissingAchievements + 1;
+            -- exportString = exportString .. "    { -- " .. achievementInfo.Name .. "\r\n";
+            -- exportString = exportString .. "        " .. achievementInfo.Id .. "," .. "\r\n";
+            exportString = exportString .. "    {" .. achievementInfo.Id .. ", " .. achievementInfo.RewardText .. "}, -- " .. achievementInfo.Name .. "\r\n";
+        end
+    end
+
+    print("Missing achievements found:", numMissingAchievements);
+    frame.Input:SetText(exportString);
+    frame:Show();
+end
+
+local function ExportRemovedAchievements()
+    local frame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template");
+	frame:Init(addon.L["Export Removed Achievements"]);
+    local numRemovedAchievements = 0;
+    local exportString = "\r\n";
+    for _, achievementId in next, addon.Data.AchievementIds do
+        local achievementInfo = addon.GetAchievementInfoTable(achievementId);
+        if not achievementInfo.Exists then
+            numRemovedAchievements = numRemovedAchievements + 1;
+            exportString = exportString .. "    { -- " .. (addon.Data.Achievements[achievementId].Category and addon.Data.Achievements[achievementId].Category:GetPath() or "") .. "\r\n";
+            exportString = exportString .. "        " .. achievementInfo.Id .. "," .. "\r\n";
+            exportString = exportString .. "    }," .. "\r\n";
+        end
+    end
+
+    print("Missing achievements found:", numRemovedAchievements);
+    frame.Input:SetText(exportString);
+    frame:Show();
+end
+
 local function PrintMapInfoWithoutReload()
     if addon.Diagnostics.DebugEnabled() then
         return;
@@ -159,326 +199,349 @@ local function PrintMapInfoWithoutReload()
     addon.Options.db.profile.PrintMapInfo = true;
 end
 
-options.OptionsTable.args["General"] = {
-    type = "group", childGroups = "tab",
-    name = addon.L["General"],
+local infoOptions = {
+    order = OrderPP(), type = "group",
+    name = addon.L["Info"],
     args = {
-        Info = {
-            order = OrderPP(), type = "group",
-            name = addon.L["Info"],
+        General = {
+            order = OrderPP(), type = "group", inline = true,
+            name = addon.L["General"],
             args = {
-                General = {
+                Version = {
+                    order = OrderPP(), type = "description", width = AdjustedWidth(), fontSize = "medium",
+                    name = (addon.L["Version"] .. ": "):SetColorYellow() .. addon.Metadata.Version,
+                },
+                Build = {
+                    order = OrderPP(), type = "description", width = AdjustedWidth(), fontSize = "medium",
+                    name = (addon.L["Build"] .. ": "):SetColorYellow() .. addon.Metadata.Build,
+                },
+                Tutorial = {
+                    order = OrderPP(), type = "execute", width = AdjustedWidth(),
+                    name = function() return (addon.Tutorials.FeaturesTutorial:HasUnviewedPages() and "|T132049:0|t" or "") .. addon.L["Tutorial"]; end,
+                    desc = addon.L["Tutorial Desc"],
+                    func = GeneralTutorialFunc
+                },
+                Author = {
+                    order = OrderPP(), type = "description", width = AdjustedWidth(2), fontSize = "medium",
+                    name = (addon.L["Author"] .. ": "):SetColorYellow() .. addon.Metadata.Author,
+                },
+                Discord = {
+                    order = OrderPP(), type = "execute", width = AdjustedWidth(),
+                    name = addon.L["Discord"],
+                    desc = addon.L["Discord Desc"]:K_ReplaceVars(addon.Metadata.DiscordServerName),
+                    func = function() LibStub("Krowi_PopopDialog-1.0").ShowExternalLink(addon.Metadata.DiscordInviteLink); end
+                }
+            }
+        },
+        Sources = {
+            order = OrderPP(), type = "group", inline = true,
+            name = addon.L["Sources"],
+            args = {
+                CurseForge = {
+                    order = OrderPP(), type = "execute", width = AdjustedWidth(),
+                    name = addon.L["CurseForge"],
+                    desc = addon.L["CurseForge Desc"]:KAF_InjectAddonName():K_ReplaceVars(addon.L["CurseForge"]),
+                    func = function() LibStub("Krowi_PopopDialog-1.0").ShowExternalLink(addon.Metadata.CurseForge); end
+                },
+                Wago = {
+                    order = OrderPP(), type = "execute", width = AdjustedWidth(),
+                    name = addon.L["Wago"],
+                    desc = addon.L["Wago Desc"]:KAF_InjectAddonName():K_ReplaceVars(addon.L["Wago"]),
+                    func = function() LibStub("Krowi_PopopDialog-1.0").ShowExternalLink(addon.Metadata.Wago); end
+                },
+                WoWInterface = {
+                    order = OrderPP(), type = "execute", width = AdjustedWidth(),
+                    name = addon.L["WoWInterface"],
+                    desc = addon.L["WoWInterface Desc"]:KAF_InjectAddonName():K_ReplaceVars(addon.L["WoWInterface"]),
+                    func = function() LibStub("Krowi_PopopDialog-1.0").ShowExternalLink(addon.Metadata.WoWInterface); end
+                }
+            }
+        }
+    }
+};
+
+local iconOptions = {
+    order = OrderPP(), type = "group",
+    name = addon.L["Icon"],
+    args = {
+        Minimap = {
+            order = OrderPP(), type = "group", inline = true,
+            name = addon.L["Minimap"],
+            args = {
+                ShowMinimapIcon = {
+                    order = OrderPP(), type = "toggle", width = AdjustedWidth(),
+                    name = addon.L["Show minimap icon"],
+                    desc = addon.L["Show minimap icon Desc"]:KAF_AddDefaultValueText("ShowMinimapIcon"),
+                    get = function() return addon.Options.db.profile.ShowMinimapIcon; end,
+                    set = MinimapShowMinimapIconSet
+                }
+            }
+        },
+        WorldMap = {
+            order = OrderPP(), type = "group", inline = true,
+            name = addon.L["World Map"],
+            args = {
+                ShowWorldMapIcon = {
+                    order = OrderPP(), type = "toggle", width = AdjustedWidth(),
+                    name = addon.L["Show world map icon"],
+                    desc = addon.L["Show world map icon Desc"]:KAF_AddDefaultValueText("ShowWorldmapIcon"),
+                    get = function() return addon.Options.db.profile.ShowWorldmapIcon; end,
+                    set = WorldMapShowWorldMapIconSet
+                },
+                -- Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.5), name = ""},
+                AddAddonNameToWorldMapIcon = {
+                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                    name = addon.L["Add addon name to world map icon"],
+                    desc = addon.L["Add addon name to world map icon Desc"]:KAF_InjectAddonName():KAF_AddDefaultValueText("AddAddonNameToWorldMapIcon"),
+                    get = function() return addon.Options.db.profile.AddAddonNameToWorldMapIcon; end,
+                    set = function(_, value) addon.Options.db.profile.AddAddonNameToWorldMapIcon = value; end
+                }
+            }
+        }
+    }
+};
+
+local keyBindingOptions = {
+    order = OrderPP(), type = "group", childGroups = "tab",
+    name = addon.L["Key Binding"],
+    args = {
+        General = {
+            order = OrderPP(), type = "group",
+            name = addon.L["General"],
+            args = {
+                ResetView = {
                     order = OrderPP(), type = "group", inline = true,
-                    name = addon.L["General"],
+                    name = addon.L["Reset view"],
                     args = {
-                        Version = {
-                            order = OrderPP(), type = "description", width = AdjustedWidth(), fontSize = "medium",
-                            name = (addon.L["Version"] .. ": "):SetColorYellow() .. addon.Metadata.Version,
+                        ResetViewOnOpen = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
+                            name = addon.L["Reset view on open"],
+                            desc = addon.L["Reset view on open Desc"]:KAF_AddDefaultValueText("ResetViewOnOpen"),
+                            get = function() return addon.Options.db.profile.ResetViewOnOpen; end,
+                            set = function(_, value) addon.Options.db.profile.ResetViewOnOpen = value; end
                         },
-                        Build = {
-                            order = OrderPP(), type = "description", width = AdjustedWidth(), fontSize = "medium",
-                            name = (addon.L["Build"] .. ": "):SetColorYellow() .. addon.Metadata.Build,
-                        },
-                        Tutorial = {
-                            order = OrderPP(), type = "execute", width = AdjustedWidth(),
-                            name = function() return (addon.Tutorials.FeaturesTutorial:HasUnviewedPages() and "|T132049:0|t" or "") .. addon.L["Tutorial"]; end,
-                            desc = addon.L["Tutorial Desc"],
-                            func = GeneralTutorialFunc
-                        },
-                        Author = {
-                            order = OrderPP(), type = "description", width = AdjustedWidth(2), fontSize = "medium",
-                            name = (addon.L["Author"] .. ": "):SetColorYellow() .. addon.Metadata.Author,
-                        },
-                        Discord = {
-                            order = OrderPP(), type = "execute", width = AdjustedWidth(),
-                            name = addon.L["Discord"],
-                            desc = addon.L["Discord Desc"]:K_ReplaceVars(addon.Metadata.DiscordServerName),
-                            func = function() LibStub("Krowi_PopopDialog-1.0").ShowExternalLink(addon.Metadata.DiscordInviteLink); end
+                        ToggleWindow = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
+                            name = addon.L["Toggle window once opened"],
+                            desc = addon.L["Toggle window once opened Desc"]:KAF_AddDefaultValueText("ToggleWindow"),
+                            get = function() return addon.Options.db.profile.ToggleWindow; end,
+                            set = function(_, value) addon.Options.db.profile.ToggleWindow = value; end,
+                            disabled = function() return addon.Options.db.profile.ResetViewOnOpen; end
                         }
                     }
                 },
-                Sources = {
+                MicroButton = {
                     order = OrderPP(), type = "group", inline = true,
-                    name = addon.L["Sources"],
+                    name = addon.L["Micro Button"],
                     args = {
-                        CurseForge = {
-                            order = OrderPP(), type = "execute", width = AdjustedWidth(),
-                            name = addon.L["CurseForge"],
-                            desc = addon.L["CurseForge Desc"]:KAF_InjectAddonName():K_ReplaceVars(addon.L["CurseForge"]),
-                            func = function() LibStub("Krowi_PopopDialog-1.0").ShowExternalLink(addon.Metadata.CurseForge); end
+                        Rebind = {
+                            order = OrderPP(), type = "select", width = AdjustedWidth(1.9),
+                            name = addon.L["Rebind Micro Button"],
+                            desc = addon.L["Rebind Micro Button Desc"], -- KAF_AddDefaultValueTextFromValues via PostLoad
+                            values = function() return addon.Gui:TabsOrderGetActiveKeys(); end,
+                            get = function() return addon.Options.db.profile.MicroButtonTab; end,
+                            set = function(_, value)
+                                addon.Options.db.profile.MicroButtonTab = value;
+                                addon.ChangeAchievementMicroButtonOnClick();
+                            end
                         },
-                        Wago = {
-                            order = OrderPP(), type = "execute", width = AdjustedWidth(),
-                            name = addon.L["Wago"],
-                            desc = addon.L["Wago Desc"]:KAF_InjectAddonName():K_ReplaceVars(addon.L["Wago"]),
-                            func = function() LibStub("Krowi_PopopDialog-1.0").ShowExternalLink(addon.Metadata.Wago); end
-                        },
-                        WoWInterface = {
-                            order = OrderPP(), type = "execute", width = AdjustedWidth(),
-                            name = addon.L["WoWInterface"],
-                            desc = addon.L["WoWInterface Desc"]:KAF_InjectAddonName():K_ReplaceVars(addon.L["WoWInterface"]),
-                            func = function() LibStub("Krowi_PopopDialog-1.0").ShowExternalLink(addon.Metadata.WoWInterface); end
-                        }
-                    }
-                }
-            }
-        },
-        Icon = {
-            order = OrderPP(), type = "group",
-            name = addon.L["Icon"],
-            args = {
-                Minimap = {
-                    order = OrderPP(), type = "group", inline = true,
-                    name = addon.L["Minimap"],
-                    args = {
-                        ShowMinimapIcon = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(),
-                            name = addon.L["Show minimap icon"],
-                            desc = addon.L["Show minimap icon Desc"]:KAF_AddDefaultValueText("ShowMinimapIcon"),
-                            get = function() return addon.Options.db.profile.ShowMinimapIcon; end,
-                            set = MinimapShowMinimapIconSet
+                        SetKeybind = {
+                            order = OrderPP(), type = "execute", width = AdjustedWidth(0.9),
+                            name = addon.L["Set Keybind"],
+                            desc = addon.L["Set Keybind Desc"]:K_ReplaceVars(addon.L["Key Bindings"]),
+                            func = MicroButtonSetKeybindFunc
                         }
                     }
                 },
-                WorldMap = {
+                Modifiers = {
                     order = OrderPP(), type = "group", inline = true,
-                    name = addon.L["World Map"],
+                    name = addon.L["Modifiers"],
                     args = {
-                        ShowWorldMapIcon = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(),
-                            name = addon.L["Show world map icon"],
-                            desc = addon.L["Show world map icon Desc"]:KAF_AddDefaultValueText("ShowWorldmapIcon"),
-                            get = function() return addon.Options.db.profile.ShowWorldmapIcon; end,
-                            set = WorldMapShowWorldMapIconSet
+                        PasteToChat = {
+                            order = OrderPP(), type = "select", width = AdjustedWidth(0.93),
+                            name = addon.L["Paste to Chat"],
+                            desc = addon.L["Paste to Chat"]:KAF_AddDefaultValueText("Achievements.Modifiers.PasteToChat", addon.Modifiers),
+                            values = addon.Modifiers,
+                            get = function() return addon.Options.db.profile.Achievements.Modifiers.PasteToChat; end,
+                            set = function(_, value) addon.Options.db.profile.Achievements.Modifiers.PasteToChat = value; end
                         },
-                        -- Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.5), name = ""},
-                        AddAddonNameToWorldMapIcon = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
-                            name = addon.L["Add addon name to world map icon"],
-                            desc = addon.L["Add addon name to world map icon Desc"]:KAF_InjectAddonName():KAF_AddDefaultValueText("AddAddonNameToWorldMapIcon"),
-                            get = function() return addon.Options.db.profile.AddAddonNameToWorldMapIcon; end,
-                            set = function(_, value) addon.Options.db.profile.AddAddonNameToWorldMapIcon = value; end
+                        ToggleTracking = {
+                            order = OrderPP(), type = "select", width = AdjustedWidth(0.93),
+                            name = addon.L["Toggle Tracking"],
+                            desc = addon.L["Toggle Tracking"]:KAF_AddDefaultValueText("Achievements.Modifiers.ToggleTracking", addon.Modifiers),
+                            values = addon.Modifiers,
+                            get = function() return addon.Options.db.profile.Achievements.Modifiers.ToggleTracking; end,
+                            set = function(_, value) addon.Options.db.profile.Achievements.Modifiers.ToggleTracking = value; end
+                        },
+                        ToggleWatchList = {
+                            order = OrderPP(), type = "select", width = AdjustedWidth(0.93),
+                            name = addon.L["Add to / Remove from Watch List"]:K_ReplaceVars(addon.L["Watch List"]),
+                            desc = addon.L["Add to / Remove from Watch List"]:K_ReplaceVars(addon.L["Watch List"]):KAF_AddDefaultValueText("Achievements.Modifiers.ToggleWatchList", addon.Modifiers),
+                            values = addon.Modifiers,
+                            get = function() return addon.Options.db.profile.Achievements.Modifiers.ToggleWatchList; end,
+                            set = function(_, value) addon.Options.db.profile.Achievements.Modifiers.ToggleWatchList = value; end
+                        },
+                        ToggleExcluded = {
+                            order = OrderPP(), type = "select", width = AdjustedWidth(0.93),
+                            name = addon.L["Include"] .. " / " .. addon.L["Exclude"],
+                            desc = addon.L["Include"] .. " / " .. addon.L["Exclude"]:KAF_AddDefaultValueText("Achievements.Modifiers.ToggleExcluded", addon.Modifiers),
+                            values = addon.Modifiers,
+                            get = function() return addon.Options.db.profile.Achievements.Modifiers.ToggleExcluded; end,
+                            set = function(_, value) addon.Options.db.profile.Achievements.Modifiers.ToggleExcluded = value; end
                         }
                     }
                 }
             }
         },
-        KeyBinding = {
-            order = OrderPP(), type = "group", childGroups = "tab",
-            name = addon.L["Key Binding"],
+        Keybindings = {
+            order = OrderPP(), type = "group",
+            name = addon.L["Keybindings"],
             args = {
-                General = {
-                    order = OrderPP(), type = "group",
-                    name = addon.L["General"],
-                    args = {
-                        ResetView = {
-                            order = OrderPP(), type = "group", inline = true,
-                            name = addon.L["Reset view"],
-                            args = {
-                                ResetViewOnOpen = {
-                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
-                                    name = addon.L["Reset view on open"],
-                                    desc = addon.L["Reset view on open Desc"]:KAF_AddDefaultValueText("ResetViewOnOpen"),
-                                    get = function() return addon.Options.db.profile.ResetViewOnOpen; end,
-                                    set = function(_, value) addon.Options.db.profile.ResetViewOnOpen = value; end
-                                },
-                                ToggleWindow = {
-                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
-                                    name = addon.L["Toggle window once opened"],
-                                    desc = addon.L["Toggle window once opened Desc"]:KAF_AddDefaultValueText("ToggleWindow"),
-                                    get = function() return addon.Options.db.profile.ToggleWindow; end,
-                                    set = function(_, value) addon.Options.db.profile.ToggleWindow = value; end,
-                                    disabled = function() return addon.Options.db.profile.ResetViewOnOpen; end
-                                }
-                            }
-                        },
-                        MicroButton = {
-                            order = OrderPP(), type = "group", inline = true,
-                            name = addon.L["Micro Button"],
-                            args = {
-                                Rebind = {
-                                    order = OrderPP(), type = "select", width = AdjustedWidth(1.9),
-                                    name = addon.L["Rebind Micro Button"],
-                                    desc = addon.L["Rebind Micro Button Desc"], -- KAF_AddDefaultValueTextFromValues via PostLoad
-                                    values = function() return addon.Gui:TabsOrderGetActiveKeys(); end,
-                                    get = function() return addon.Options.db.profile.MicroButtonTab; end,
-                                    set = function(_, value)
-                                        addon.Options.db.profile.MicroButtonTab = value;
-                                        addon.ChangeAchievementMicroButtonOnClick();
-                                    end
-                                },
-                                SetKeybind = {
-                                    order = OrderPP(), type = "execute", width = AdjustedWidth(0.9),
-                                    name = addon.L["Set Keybind"],
-                                    desc = addon.L["Set Keybind Desc"]:K_ReplaceVars(addon.L["Key Bindings"]),
-                                    func = MicroButtonSetKeybindFunc
-                                }
-                            }
-                        },
-                        Modifiers = {
-                            order = OrderPP(), type = "group", inline = true,
-                            name = addon.L["Modifiers"],
-                            args = {
-                                PasteToChat = {
-                                    order = OrderPP(), type = "select", width = AdjustedWidth(0.93),
-                                    name = addon.L["Paste to Chat"],
-                                    desc = addon.L["Paste to Chat"]:KAF_AddDefaultValueText("Achievements.Modifiers.PasteToChat", addon.Modifiers),
-                                    values = addon.Modifiers,
-                                    get = function() return addon.Options.db.profile.Achievements.Modifiers.PasteToChat; end,
-                                    set = function(_, value) addon.Options.db.profile.Achievements.Modifiers.PasteToChat = value; end
-                                },
-                                ToggleTracking = {
-                                    order = OrderPP(), type = "select", width = AdjustedWidth(0.93),
-                                    name = addon.L["Toggle Tracking"],
-                                    desc = addon.L["Toggle Tracking"]:KAF_AddDefaultValueText("Achievements.Modifiers.ToggleTracking", addon.Modifiers),
-                                    values = addon.Modifiers,
-                                    get = function() return addon.Options.db.profile.Achievements.Modifiers.ToggleTracking; end,
-                                    set = function(_, value) addon.Options.db.profile.Achievements.Modifiers.ToggleTracking = value; end
-                                },
-                                ToggleWatchList = {
-                                    order = OrderPP(), type = "select", width = AdjustedWidth(0.93),
-                                    name = addon.L["Add to / Remove from Watch List"]:K_ReplaceVars(addon.L["Watch List"]),
-                                    desc = addon.L["Add to / Remove from Watch List"]:K_ReplaceVars(addon.L["Watch List"]):KAF_AddDefaultValueText("Achievements.Modifiers.ToggleWatchList", addon.Modifiers),
-                                    values = addon.Modifiers,
-                                    get = function() return addon.Options.db.profile.Achievements.Modifiers.ToggleWatchList; end,
-                                    set = function(_, value) addon.Options.db.profile.Achievements.Modifiers.ToggleWatchList = value; end
-                                },
-                                ToggleExcluded = {
-                                    order = OrderPP(), type = "select", width = AdjustedWidth(0.93),
-                                    name = addon.L["Include"] .. " / " .. addon.L["Exclude"],
-                                    desc = addon.L["Include"] .. " / " .. addon.L["Exclude"]:KAF_AddDefaultValueText("Achievements.Modifiers.ToggleExcluded", addon.Modifiers),
-                                    values = addon.Modifiers,
-                                    get = function() return addon.Options.db.profile.Achievements.Modifiers.ToggleExcluded; end,
-                                    set = function(_, value) addon.Options.db.profile.Achievements.Modifiers.ToggleExcluded = value; end
-                                }
-                            }
-                        }
-                    }
+                Tabs = {
+                    order = OrderPP(), type = "group", inline = true,
+                    name = addon.L["Tabs"],
+                    args = { --[[ Dynamically build via KrowiAF_RegisterTabOptions ]] }
                 },
-                Keybindings = {
-                    order = OrderPP(), type = "group",
-                    name = addon.L["Keybindings"],
-                    args = {
-                        Tabs = {
-                            order = OrderPP(), type = "group", inline = true,
-                            name = addon.L["Tabs"],
-                            args = { --[[ Dynamically build via KrowiAF_RegisterTabOptions ]] }
-                        },
-                        Custom = {
-                            order = OrderPP(), type = "group", inline = true,
-                            name = addon.L["Custom"],
-                            args = {
-                                OpenCurrentZoneCategoryName = {
-                                    order = OrderPP(), type = "description", width = AdjustedWidth(0.93),
-                                    name = function() return openCurrentZoneCategoryName; end
-                                },
-                                OpenCurrentZoneCategoryKey1 = {
-                                    order = OrderPP(), type = "keybinding", width = AdjustedWidth(0.93),
-                                    name = "", desc = "",
-                                    get = function() return GetBindingKey("KrowiAF_OPEN_CAT_Current_Zone"); end,
-                                    set = function(_, value) SetBindingKeybind(value, "KrowiAF_OPEN_CAT_Current_Zone", 1); end
-                                },
-                                OpenCurrentZoneCategoryKey2 = {
-                                    order = OrderPP(), type = "keybinding", width = AdjustedWidth(0.93),
-                                    name = "", desc = "",
-                                    get = function() return select(2, GetBindingKey("KrowiAF_OPEN_CAT_Current_Zone")); end,
-                                    set = function(_, value) SetBindingKeybind(value, "KrowiAF_OPEN_CAT_Current_Zone", 2); end
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        Filters = {
-            order = OrderPP(), type = "group",
-            name = addon.L["Filters"],
-            args = {
-                ResetFilters = {
+                Custom = {
                     order = OrderPP(), type = "group", inline = true,
-                    name = addon.L["Reset filters"],
+                    name = addon.L["Custom"],
                     args = {
-                        ResetFactionFilter = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(),
-                            name = addon.L["Reset Faction Filters"],
-                            desc = addon.L["Reset Faction Filters Desc"]:K_ReplaceVars{
-                                neutral = addon.L["Neutral"],
-                                alliance = addon.L["Alliance"],
-                                horde = addon.L["Horde"]
-                            }:KAF_AddDefaultValueText("Filters.ResetFactionFilters"),
-                            get = function() return addon.Options.db.profile.Filters.ResetFactionFilters; end,
-                            set = function(_, value) addon.Options.db.profile.Filters.ResetFactionFilters = value; end
-                        }
-                    }
-                }
-            }
-        },
-        Debug = {
-            order = OrderPP(), type = "group",
-            name = addon.L["Debug"],
-            args = {
-                Debug = {
-                    order = OrderPP(), type = "group", inline = true,
-                    name = addon.L["Debug"],
-                    args = {
-                        Description = {
-                            order = OrderPP(), type = "description", width = "full", fontSize = "medium",
-                            name = addon.L["Debug Desc"],
+                        OpenCurrentZoneCategoryName = {
+                            order = OrderPP(), type = "description", width = AdjustedWidth(0.93),
+                            name = function() return openCurrentZoneCategoryName; end
                         },
-                        EnableDebugInfo = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(),
-                            name = addon.L["Enable debug info"],
-                            desc = addon.L["Enable debug info Desc"]:KAF_AddDefaultValueText("EnableDebugInfo"),
-                            get = function() return addon.Options.db.profile.EnableDebugInfo; end,
-                            set = function(_, value) addon.Options.db.profile.EnableDebugInfo = value; end
+                        OpenCurrentZoneCategoryKey1 = {
+                            order = OrderPP(), type = "keybinding", width = AdjustedWidth(0.93),
+                            name = "", desc = "",
+                            get = function() return GetBindingKey("KrowiAF_OPEN_CAT_Current_Zone"); end,
+                            set = function(_, value) SetBindingKeybind(value, "KrowiAF_OPEN_CAT_Current_Zone", 1); end
                         },
-                        Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""},
-                        ScreenshotMode = {
-                            order = OrderPP(), type = "execute",
-                            name = addon.L["Screenshot Mode"],
-                            desc = addon.L["Screenshot Mode Desc"],
-                            func = HandleScreenshotMode
-                        },
-                        EnableTraceInfo = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(),
-                            name = addon.L["Enable trace info"],
-                            desc = addon.L["Enable trace info Desc"]:KAF_AddDefaultValueText("EnableTraceInfo"),
-                            get = function() return addon.Options.db.profile.EnableTraceInfo; end,
-                            set = function(_, value) addon.Options.db.profile.EnableTraceInfo = value; end
-                        },
-                        Blank2 = {order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""},
-                        ExportCriteria = {
-                            order = OrderPP(), type = "execute",
-                            name = addon.L["Export Criteria"],
-                            desc = addon.L["Export Criteria Desc"],
-                            func = ExportCriteria
-                        },
-                        ShowPlaceholdersFilter = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(),
-                            name = addon.L["Show placeholders filter"],
-                            desc = addon.L["Show placeholders filter Desc"]:KAF_AddDefaultValueText("ShowPlaceholdersFilter"),
-                            get = function() return addon.Options.db.profile.ShowPlaceholdersFilter; end,
-                            set = function(_, value) addon.Options.db.profile.ShowPlaceholdersFilter = value; end
-                        },
-                        Blank3 = {order = OrderPP(), type = "description", width = AdjustedWidth(2), name = ""},
-                        PrintMapInfo = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(),
-                            name = addon.L["Print map info"],
-                            desc = addon.L["Print map info Desc"]:KAF_AddDefaultValueText("PrintMapInfo"),
-                            get = function() return addon.Options.db.profile.PrintMapInfo; end,
-                            set = function(_, value) addon.Options.db.profile.PrintMapInfo = value; end
-                        },
-                        Blank4 = {order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""},
-                        PrintMapInfoWithoutReload = {
-                            order = OrderPP(), type = "execute",
-                            name = addon.L["Print map info w/o reload"],
-                            desc = addon.L["Print map info w/o reload Desc"],
-                            func = PrintMapInfoWithoutReload
+                        OpenCurrentZoneCategoryKey2 = {
+                            order = OrderPP(), type = "keybinding", width = AdjustedWidth(0.93),
+                            name = "", desc = "",
+                            get = function() return select(2, GetBindingKey("KrowiAF_OPEN_CAT_Current_Zone")); end,
+                            set = function(_, value) SetBindingKeybind(value, "KrowiAF_OPEN_CAT_Current_Zone", 2); end
                         }
                     }
                 }
             }
         }
+    }
+};
+
+local filtersOptions = {
+    order = OrderPP(), type = "group",
+    name = addon.L["Filters"],
+    args = {
+        ResetFilters = {
+            order = OrderPP(), type = "group", inline = true,
+            name = addon.L["Reset filters"],
+            args = {
+                ResetFactionFilter = {
+                    order = OrderPP(), type = "toggle", width = AdjustedWidth(),
+                    name = addon.L["Reset Faction Filters"],
+                    desc = addon.L["Reset Faction Filters Desc"]:K_ReplaceVars{
+                        neutral = addon.L["Neutral"],
+                        alliance = addon.L["Alliance"],
+                        horde = addon.L["Horde"]
+                    }:KAF_AddDefaultValueText("Filters.ResetFactionFilters"),
+                    get = function() return addon.Options.db.profile.Filters.ResetFactionFilters; end,
+                    set = function(_, value) addon.Options.db.profile.Filters.ResetFactionFilters = value; end
+                }
+            }
+        }
+    }
+};
+
+local debugOptions = {
+    order = OrderPP(), type = "group",
+    name = addon.L["Debug"],
+    args = {
+        Debug = {
+            order = OrderPP(), type = "group", inline = true,
+            name = addon.L["Debug"],
+            args = {
+                Description = {
+                    order = OrderPP(), type = "description", width = "full", fontSize = "medium",
+                    name = addon.L["Debug Desc"],
+                },
+                EnableDebugInfo = {
+                    order = OrderPP(), type = "toggle", width = AdjustedWidth(),
+                    name = addon.L["Enable debug info"],
+                    desc = addon.L["Enable debug info Desc"]:KAF_AddDefaultValueText("EnableDebugInfo"),
+                    get = function() return addon.Options.db.profile.EnableDebugInfo; end,
+                    set = function(_, value) addon.Options.db.profile.EnableDebugInfo = value; end
+                },
+                Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""},
+                ScreenshotMode = {
+                    order = OrderPP(), type = "execute",
+                    name = addon.L["Screenshot Mode"],
+                    desc = addon.L["Screenshot Mode Desc"],
+                    func = HandleScreenshotMode
+                },
+                EnableTraceInfo = {
+                    order = OrderPP(), type = "toggle", width = AdjustedWidth(),
+                    name = addon.L["Enable trace info"],
+                    desc = addon.L["Enable trace info Desc"]:KAF_AddDefaultValueText("EnableTraceInfo"),
+                    get = function() return addon.Options.db.profile.EnableTraceInfo; end,
+                    set = function(_, value) addon.Options.db.profile.EnableTraceInfo = value; end
+                },
+                Blank2 = {order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""},
+                ExportCriteria = {
+                    order = OrderPP(), type = "execute",
+                    name = addon.L["Export Criteria"],
+                    desc = addon.L["Export Criteria Desc"],
+                    func = ExportCriteria
+                },
+                ShowPlaceholdersFilter = {
+                    order = OrderPP(), type = "toggle", width = AdjustedWidth(),
+                    name = addon.L["Show placeholders filter"],
+                    desc = addon.L["Show placeholders filter Desc"]:KAF_AddDefaultValueText("ShowPlaceholdersFilter"),
+                    get = function() return addon.Options.db.profile.ShowPlaceholdersFilter; end,
+                    set = function(_, value) addon.Options.db.profile.ShowPlaceholdersFilter = value; end
+                },
+                Blank3 = {order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""},
+                ExportMissingAchievements = {
+                    order = OrderPP(), type = "execute",
+                    name = addon.L["Export Missing Achievements"],
+                    desc = addon.L["Export Missing Achievements Desc"],
+                    func = ExportMissingAchievements
+                },
+                PrintMapInfo = {
+                    order = OrderPP(), type = "toggle", width = AdjustedWidth(),
+                    name = addon.L["Print map info"],
+                    desc = addon.L["Print map info Desc"]:KAF_AddDefaultValueText("PrintMapInfo"),
+                    get = function() return addon.Options.db.profile.PrintMapInfo; end,
+                    set = function(_, value) addon.Options.db.profile.PrintMapInfo = value; end
+                },
+                Blank4 = {order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""},
+                ExportRemovedAchievements = {
+                    order = OrderPP(), type = "execute",
+                    name = addon.L["Export Removed Achievements"],
+                    desc = addon.L["Export Removed Achievements Desc"],
+                    func = ExportRemovedAchievements
+                },
+                Blank5 = {order = OrderPP(), type = "description", width = AdjustedWidth(2), name = ""},
+                PrintMapInfoWithoutReload = {
+                    order = OrderPP(), type = "execute",
+                    name = addon.L["Print map info w/o reload"],
+                    desc = addon.L["Print map info w/o reload Desc"],
+                    func = PrintMapInfoWithoutReload
+                }
+            }
+        }
+    }
+};
+
+options.OptionsTable.args["General"] = {
+    type = "group", childGroups = "tab",
+    name = addon.L["General"],
+    args = {
+        Info = infoOptions,
+        Icon = iconOptions,
+        KeyBinding = keyBindingOptions,
+        Filters = filtersOptions,
+        Debug = debugOptions
     }
 };
 

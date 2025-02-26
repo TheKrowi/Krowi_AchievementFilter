@@ -94,6 +94,16 @@ do -- BuildVersionFilter
     end
 end
 
+function KrowiAF_AchievementFrameFilterButtonModernMixin:CreateSelectDeselectAllRewards(menu, text, filters, value)
+    local selectAll = menu:CreateButton(
+        text,
+        function()
+            self:SetRewardsFilters(filters, value);
+        end
+    );
+    selectAll:SetResponse(MenuResponse.Refresh);
+end
+
 function KrowiAF_AchievementFrameFilterButtonModernMixin:CreateSelectDeselectAllFactions(menu, text, filters, value)
     local selectAll = menu:CreateButton(
         text,

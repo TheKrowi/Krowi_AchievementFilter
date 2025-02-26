@@ -26,7 +26,7 @@ function KrowiAF_GetUtcOffsetSeconds()
 end
 
 local function ProcessDayEvent(dayEvent)
-    local calendarEvent = data.Events[addon.Objects.EventType.Calendar][dayEvent.eventID];
+    local calendarEvent = data.Events[KrowiAF.Enum.EventType.Calendar][dayEvent.eventID];
     local startTime = addon.GetSecondsSince(dayEvent.startTime) - GetUtcOffsetSeconds();
     local endTime = addon.GetSecondsSince(dayEvent.endTime) - GetUtcOffsetSeconds();
     local eventHasStarted = startTime <= time();
@@ -49,7 +49,7 @@ local function GetActiveCalendarEvents()
     local currentDate = C_DateAndTime.GetCurrentCalendarTime();
     C_Calendar.SetAbsMonth(currentDate.month, currentDate.year);
     local numDayEvents = C_Calendar.GetNumDayEvents(0, currentDate.monthDay);
-    local calendarEvents = data.Events[addon.Objects.EventType.Calendar];
+    local calendarEvents = data.Events[KrowiAF.Enum.EventType.Calendar];
 
     for k = 1, numDayEvents, 1 do
         local dayEvent = C_Calendar.GetDayEvent(0, currentDate.monthDay, k);
@@ -69,7 +69,7 @@ function eventData.LoadBlizzard_Calendar()
 end
 
 local function GetActiveWidgetEvents()
-    for _, event in next, data.Events[addon.Objects.EventType.Widget] do
+    for _, event in next, data.Events[KrowiAF.Enum.EventType.Widget] do
         event.EventDetails = eventData.GetWidgetEventDetails(event);
         if event.EventDetails then
             tinsert(activeEvents, event);
@@ -97,7 +97,7 @@ function eventData.GetWidgetEventDetails(event)
 end
 
 local function GetActiveWorldEvents()
-    for _, event in next, data.Events[addon.Objects.EventType.World] do
+    for _, event in next, data.Events[KrowiAF.Enum.EventType.World] do
         event.EventDetails = eventData.GetWorldEventDetails(event);
         if event.EventDetails then
             tinsert(activeEvents, event);
@@ -125,6 +125,10 @@ function eventData.GetWorldEventDetails(event)
 end
 
 function eventData.GetActiveEvents(refresh)
+    if stopCalendarEventsRefresh then
+        return activeEvents or {};
+    end
+
     if activeEvents ~= nil and not refresh then
         return activeEvents;
     end
@@ -135,6 +139,59 @@ function eventData.GetActiveEvents(refresh)
     GetActiveWorldEvents();
 
     return activeEvents;
+end
+
+local upcomingCalendarEvents;
+local function ProcessUpcomingDayEvent(dayEvent)
+    local calendarEvent = data.Events[KrowiAF.Enum.EventType.Calendar][dayEvent.eventID];
+    local startTime = addon.GetSecondsSince(dayEvent.startTime) - GetUtcOffsetSeconds();
+    local endTime = addon.GetSecondsSince(dayEvent.endTime) - GetUtcOffsetSeconds();
+    local currentTime = time();
+    local nDaysFromNow = currentTime + (addon.Options.db.profile.EventReminders.UpcomingCalendarEvents.Days * 24 * 60 * 60);
+    if startTime > currentTime and startTime <= nDaysFromNow then
+        calendarEvent.UpcomingEventDetails = {
+            StartTime = startTime,
+            EndTime = endTime,
+            Name = dayEvent.title
+        };
+    end
+end
+
+function eventData.GetUpcomingCalendarEvents(refresh)
+    if stopCalendarEventsRefresh then
+        return upcomingCalendarEvents or {};
+    end
+
+    if upcomingCalendarEvents ~= nil and not refresh then
+        return upcomingCalendarEvents;
+    end
+
+    upcomingCalendarEvents = {};
+
+    local currentDate = C_DateAndTime.GetCurrentCalendarTime();
+    local secondsSince = addon.GetSecondsSince(currentDate);
+    local calendarEvents = data.Events[KrowiAF.Enum.EventType.Calendar];
+    for i = 1, addon.Options.db.profile.EventReminders.UpcomingCalendarEvents.Days do
+        secondsSince = secondsSince + 24 * 60 * 60;
+        currentDate = date("*t", secondsSince);
+        C_Calendar.SetAbsMonth(currentDate.month, currentDate.year);
+        local numDayEvents = C_Calendar.GetNumDayEvents(0, currentDate.day);
+
+        for k = 1, numDayEvents, 1 do
+            local dayEvent = C_Calendar.GetDayEvent(0, currentDate.day, k);
+            if calendarEvents[dayEvent.eventID] and addon.Options.db.profile.EventReminders.CalendarEvents[dayEvent.eventID] then
+                ProcessUpcomingDayEvent(dayEvent);
+            end
+        end
+    end
+
+    for _, event in next, calendarEvents do
+        if event.UpcomingEventDetails then
+            tinsert(upcomingCalendarEvents, event);
+        end
+    end
+
+    return upcomingCalendarEvents;
 end
 
 local function GetCalendarDayEvents(monthDay, index)

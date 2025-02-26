@@ -72,12 +72,18 @@ function eventReminderSideButtonSystem:Refresh()
     for index, activeEvent in next, activeEvents do
         AddEvent(index, activeEvent);
     end
+    if addon.Options.db.profile.EventReminders.UpcomingCalendarEvents.Enabled then
+        local upcomingCalendarEvents = addon.EventData.GetUpcomingCalendarEvents(); -- Alert system does the refreshing
+        for index, upcomgingCalendarEvent in next, upcomingCalendarEvents do
+            AddEvent(#activeEvents + index, upcomgingCalendarEvent);
+        end
+    end
     HideButtonsWithoutEvent();
     SetPoints(self);
 end
 
 function eventReminderSideButtonSystem:Load()
-    if not self:GetAnchor() then
+    if not addon.Options.db.profile.EventReminders.Enabled or not self:GetAnchor() then
         return false; -- Anchoring failed because frame does not exist yet, try again later
     end
     hooksecurefunc(self:GetAnchor(), "Show", function()

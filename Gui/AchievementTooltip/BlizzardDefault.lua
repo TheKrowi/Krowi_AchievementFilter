@@ -12,7 +12,7 @@ local function AddName(achievement, thisRealm, numEarnedBy, earnedBy, numNotEarn
 	end
 	local _, _, _, argbHex = GetClassColor(character.Class);
 	local name = "|c" .. argbHex .. character.Name;
-	if achievement.OtherFactionAchievementId and character.Faction and character.Faction ~= addon.Objects.Faction[achievement.Faction] then
+	if achievement.OtherFactionAchievementId and character.Faction and character.Faction ~= achievement.Faction then
 		name = name .. " (" .. addon.L[character.Faction] .. ")";
 	end
 	if addon.Options.db.profile.Tooltip.Achievements.EarnedBy.AlwaysShowRealm or character.Realm ~= thisRealm then
@@ -24,7 +24,7 @@ local function AddName(achievement, thisRealm, numEarnedBy, earnedBy, numNotEarn
 			earnedBy = earnedBy == "" and name or earnedBy .. ", " .. name;
 			numEarnedBy = numEarnedBy + 1;
 		end
-	elseif addon.Objects.Faction[achievement.Faction] == character.Faction or achievement.Faction == nil or achievement.OtherFactionAchievementId ~= nil then
+	elseif achievement.Faction == character.Faction or achievement.Faction == nil or achievement.OtherFactionAchievementId ~= nil then
 		if numNotEarnedBy < addon.Options.db.profile.Tooltip.Achievements.EarnedBy.NotCharacters then
 			notEarnedBy = notEarnedBy == "" and name or notEarnedBy .. ", " .. name;
 			numNotEarnedBy = numNotEarnedBy + 1;

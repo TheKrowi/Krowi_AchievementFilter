@@ -7,7 +7,7 @@ function section:CheckAdd()
 end
 
 local function GetTypeAsString(type)
-    local eventType = addon.Objects.EventType;
+    local eventType = KrowiAF.Enum.EventType;
     for typeAsString, typeAsValue in next, eventType do
         if type == typeAsValue then
             return typeAsString;

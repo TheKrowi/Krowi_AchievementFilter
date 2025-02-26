@@ -3,12 +3,12 @@ local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "frFR");
 if not L then return end
 addon.L = L;
 
-addon.Plugins:LoadLocalization(L);
+KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-10-24 18-58-05 ]] --
+-- [[ Exported at 2025-02-26 17-20-36 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -196,7 +196,6 @@ L["Criteria is Completed"] = "Le critère est terminé"
 L["Criteria is Completed Desc"] = "Afficher les critères du Haut-fait même s'il est déjà terminé."
 L["Criteria of"] = "Critère de"
 L["Cross-Expansion"] = "Contenus transversaux"
-L["Cross-Expansion - Delves"] = "Contenus transversaux - Gouffres"
 L["Ctrl"] = true
 L["Current Obtainable"] = "Actuellement disponible"
 L["Current Zone"] = "Zone actuelle"
@@ -405,7 +404,7 @@ Types d'événements :
 (1) Voir {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {eventReminders} pour les options.]=]
 L["Event Reminders"] = "Rappels d'événements"
 L["Events"] = "Évènements"
-L["Exclude"] = "Exclure"
+L["Exclude"] = "Masquer"
 L["Exclude Excluded achievements"] = "Exclure les Hauts faits masqué"
 L["Exclude Excluded achievements Desc"] = "Exclue ou Inclue les Hauts faits masqué des résultats de la recherche."
 L["Excluded"] = "Masqué"
@@ -543,7 +542,7 @@ L["Keep current character Desc"] = "Garder le personnage actuel dans la liste de
 L["Keybindings Desc"] = "Pour modifier les raccourcis clavier pour {addonName}, sélectionnez l'onglet Jeu en haut à gauche de cette fenêtre. Ensuite, sélectionnez la catégorie {keybindings} dans le volet de gauche. Enfin, sélectionnez AddOns dans la vue de droite."
 L["Kyrian Assault"] = "L'assaut des Kyrians"
 L["Landfall"] = "Le débarquement"
-L["Layout"] = "Calque"
+L["Layout"] = "Fenêtre"
 L["Left"] = "Gauche"
 L["Left Alt"] = "Alt gauche"
 L["Left click"] = "Clic gauche"
@@ -566,11 +565,9 @@ L["Lock month"] = "Verrouiller le mois"
 L["Lock month Desc"] = "Garder le dernier mois affiché comme mois à afficher lorsque le calendrier est rouvert après avoir été fermé."
 L["Lock month when closed by achievement"] = "Verrouiller le mois lorsqu'il est fermé par un Haut fait"
 L["Lock month when closed by achievement Desc"] = "Garder le dernier mois affiché comme mois à afficher lorsque le calendrier est rouvert après avoir été fermé en cliquant sur une réalisation sur le côté."
-L["Login Delay"] = "Délais"
 L["Love is in the Air"] = "De l'amour dans l'air"
 L["Lucky Yi"] = "Yi la Chance"
 L["Lunar Festival"] = "Fête lunaire"
-L["M+ Season"] = "Saison des donjons mythiques+ (M+)"
 L["Make windows movable"] = "Rendre la fenêtre déplaçable"
 L["Make windows movable Desc"] = [=[Rend la fenêtre des Hauts-faits, la vue du calendrier et la fiche personnages mobiles ou immobiles.
 Si cette option est activée, la fenêtre correspondante sera déplacée lorsque le bouton gauche de la souris sera enfoncé. Ceci s'applique à l'en-tête et aux marges.]=]

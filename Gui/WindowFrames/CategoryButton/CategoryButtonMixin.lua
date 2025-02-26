@@ -4,7 +4,15 @@ KrowiAF_CategoryButtonMixin = {};
 
 function KrowiAF_CategoryButtonMixin:OnEnter()
 	if self.showTooltipFunc then
-		self.showTooltipFunc(self);
+		local extraText = self.Category.Tooltip;
+		if addon.Diagnostics.DebugEnabled() then
+			if extraText then
+				extraText = extraText .. "\r\n\r\n" ..  self.Category.Id;
+			else
+				extraText = self.Category.Id;
+			end
+		end
+		self.showTooltipFunc(self, nil, extraText);
 	end
 end
 

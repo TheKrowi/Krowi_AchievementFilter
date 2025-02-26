@@ -2,12 +2,12 @@ local _, addon = ...;
 local L = addon.Localization.GetDefaultLocale();
 addon.L = L;
 
-addon.Plugins:LoadLocalization(L);
+KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-10-24 17-34-18 ]] --
+-- [[ Exported at 2025-02-26 17-20-05 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -46,6 +46,8 @@ This value can be changed while the achievement window is open and having one of
 
 (1) FPS drops and stuttering while adjusting the value, NOT during normal addon use]=]
 L["Active"] = true
+L["Active Event Login Delay"] = true
+L["Active Events"] = true
 L["Active events"] = true
 L["Add addon name to world map icon"] = true
 L["Add addon name to world map icon Desc"] = "Add '{addonName}' to the bottom of the tooltip when mousing over the icon."
@@ -56,6 +58,7 @@ L["Add to Watch List"] = "Add to {watchList}"
 L["Added in version"] = true
 L["Adjustable Categories"] = true
 L["Aki the Chosen"] = true
+L["Allied Race"] = true
 L["Alt"] = true
 L["Always Show Completed"] = true
 L["Always show realm"] = true
@@ -95,6 +98,7 @@ L["Blizzard"] = true
 L["BlizzCon"] = true
 L["Brackenhide Hollow"] = true
 L["Brawler's Guild"] = true
+L["Breaknecking Races"] = true
 L["Brewfest"] = true
 L["Broken Isles Cup"] = true
 L["Build"] = true
@@ -142,6 +146,12 @@ L["Central Circuit"] = true
 L["Chains of Domination"] = true
 L["Character / Account wide"] = true
 L["Character only"] = true
+L["Character Specific"] = true
+L["Character Specific Desc"] = [=[The {watchList} always has an account wide record tracking all watched achievements on all characters. When disabled, this account wide record is used.
+
+When enabling it for character specific use, all characters using the same profile will switch to this mode.
+
+When disabling it, the account wide {watchList} will be used again and the character specific {watchList} will be removed.]=]
 L["Characters"] = true
 L["Chat messages"] = true
 L["Checked"] = true
@@ -180,6 +190,8 @@ L["Compact Desc"] = [=[Use a more compact version with only a single line of tim
 
 {reloadRequired}]=]
 L["Completion"] = true
+L["Copy Account Wide to Character"] = true
+L["Copy Account Wide to Character Desc"] = "Copy the account wide {watchList} (any achievement watched by any character) to the current character specific {watchList}. From now on this character will have it's own {watchList}."
 L["Covenant"] = true
 L["Covenant Assaults"] = true
 L["Covenant assaults"] = true
@@ -195,7 +207,6 @@ L["Criteria is Completed"] = true
 L["Criteria is Completed Desc"] = "Show Achievement Criteria even if the Achievement Criteria is already completed."
 L["Criteria of"] = true
 L["Cross-Expansion"] = true
-L["Cross-Expansion - Delves"] = true
 L["Ctrl"] = true
 L["Current Obtainable"] = true
 L["Current Zone"] = true
@@ -291,8 +302,12 @@ L["Enable"] = true
 L["Enable debug info"] = true
 L["Enable debug info Desc"] = "Enable / disable debug info."
 L["Enable Desc"] = "Enable / Disable the plugin. Having the plugin disabled if the addon is active, unpredictable things might happen."
+L["Enable Tab Priority"] = true
+L["Enable Tab Priority Desc"] = "Enable the tab priority feature."
 L["Enable trace info"] = true
 L["Enable trace info Desc"] = "Enable / disable trace info."
+L["Enable Upcoming Calendar Events"] = true
+L["Enable Upcoming Calendar Events Desc"] = "When disabled, the {upcomingCalendarEvents} Module if turned off."
 L["End Time"] = true
 L["Enhanced filtering and sorting"] = true
 L["Enhanced filtering and sorting Desc"] = [=[Filtering and sorting of achievements is enhanced with following features.
@@ -404,6 +419,7 @@ Event types:
 
 (1) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {eventReminders}]=]
 L["Event Reminders"] = true
+L["Event Reminders Enable Desc"] = "When disabled, the full {eventReminders} Module if turned off."
 L["Events"] = true
 L["Exclude"] = true
 L["Exclude Excluded achievements"] = true
@@ -435,7 +451,13 @@ Special categories:
 L["Export"] = true
 L["Export Criteria"] = true
 L["Export Criteria Desc"] = "Exports Achievement Criteria to the Saved Variables. This is used to add new content."
+L["Export Missing Achievements"] = true
+L["Export Missing Achievements Desc"] = "Export the missing achievements. This is a debug feature and should not be used."
+L["Export Removed Achievements"] = true
+L["Export Removed Achievements Desc"] = "Export the removed achievements. This is a debug feature and should not be used."
 L["Faction Assaults"] = true
+L["Faction Icon Transparency"] = true
+L["Faction Icon Transparency Desc"] = "The transparency of the faction icon with 0 being fully transparent and 1 being fully opaque."
 L["Fade delay"] = true
 L["Fade delay Desc"] = "The time in seconds it takes for the alert to fade when it's ignored. Right clicking will close it immidiatly."
 L["Fall of the Lich King"] = true
@@ -505,6 +527,7 @@ L["Grow direction Desc"] = "The direction in which new reminders will be added."
 L["Guardians of the Dream"] = true
 L["Guides"] = true
 L["Hallow's End"] = true
+L["Has Reward"] = true
 L["Header"] = true
 L["Header tooltip"] = true
 L["Hearthstone"] = true
@@ -526,6 +549,7 @@ L["Ignore Filters"] = true
 L["Ignore Filters Desc"] = "Ignore any filters and show all the achievements in the {category}."
 L["Imbu"] = true
 L["Import"] = true
+L["In"] = true
 L["in"] = true
 L["In instances"] = true
 L["Include"] = true
@@ -566,11 +590,9 @@ L["Lock month"] = true
 L["Lock month Desc"] = "Keep the last shown month as the month to show when opening the calendar again after it was closed."
 L["Lock month when closed by achievement"] = true
 L["Lock month when closed by achievement Desc"] = "Keep the last shown month as the month to show when opening the calendar again after it was closed by clicking an achievement on the side."
-L["Login Delay"] = true
 L["Love is in the Air"] = true
 L["Lucky Yi"] = true
 L["Lunar Festival"] = true
-L["M+ Season"] = true
 L["Make windows movable"] = true
 L["Make windows movable Desc"] = [=[Makes the Achievement window Calendar view and Data manager movable/not movable.
 
@@ -646,6 +668,7 @@ L["NONC"] = true
 L["None"] = true
 L["No-No"] = true
 L["Northrend Cup"] = true
+L["Not Categorized"] = true
 L["Not Earned By"] = true
 L["Not earned by:"] = true
 L["Not loaded"] = true
@@ -655,6 +678,7 @@ L["Number of Earned By characters"] = "Number of {earnedBy} characters"
 L["Number of Earned By characters Desc"] = [=[The number of characters that will be displayed that have earned the achievement.
 
 Setting it to 0 will disable this feature.]=]
+L["Number of lines"] = true
 L["Number of Most progress characters"] = true
 L["Number of Most progress characters Desc"] = [=[The number of characters that will be displayed that have progress towards the achievement.
 
@@ -667,6 +691,7 @@ L["Number of search previews"] = true
 L["Number of search previews Desc"] = "The numbers of achievements shown as a preview of the full list of found achievements."
 L["Number of summary achievements"] = true
 L["Number of summary achievements Desc"] = "The number of achievements that will be shown in the summary view of each tab."
+L["Number of Temporarily obtainable lines Desc"] = "The number of lines that will be shown for {temporarilyObtainable} achievements if more than one momment was available to earn the achievement."
 L["N'Zoth (Uldum)"] = true
 L["N'Zoth (Vale of Eternal Blossoms)"] = true
 L["N'Zoth Assaults"] = true
@@ -716,6 +741,7 @@ L["Print map info"] = true
 L["Print map info Desc"] = "Print the map id to chat"
 L["Print map info w/o reload"] = true
 L["Print map info w/o reload Desc"] = "Print it directly without having to reload"
+L["PvE Season"] = true
 L["PvP"] = "Player vs. Player"
 L["PvP Season"] = true
 L["Quick Search"] = true
@@ -750,6 +776,7 @@ L["Related Tab"] = true
 L["Related Tab Desc"] = "Adds an extra bit to the {wowheadLink} so another tab different than the default one will be selected."
 L["Remember frame position"] = "Remember {frame} position"
 L["Remember frame position Desc"] = "Remember the {frame} position. This will keep the {frame} in it's last known position the next time you log in."
+L["Remix Pandaria Bronze"] = true
 L["Remove from Watch List"] = "Remove from {watchList}"
 L["Required for"] = true
 L["Requires"] = true
@@ -882,6 +909,12 @@ L["Show Other faction"] = true
 L["Show Other faction Desc"] = [=[Show / hide {otherFaction}.
 
 When checked and if available, the other faction's achievement will be visible in the tooltip. This might make it more clear why your fresh Horde character has certain achievements if you only played Alliance before.]=]
+L["Show Other Faction Warband as Completed"] = true
+L["Show Other Faction Warband as Completed Desc"] = [=[Some achievements are faction specific and Warbound. These achievements can appear as completed on a character of one faction but not completed on a character from the other faction.
+
+When checked, the Warbound achievements will appear as completed on the other faction's character if the character has completed the achievement on the other faction.
+
+An example is needing {hordeIntro} and {allianceIntro} for {warStories} where {hordeIntro} only appears completed on Horde characters and {allianceIntro} on Alliance characters.]=]
 L["Show Part of a chain"] = "Show {partOfAChain}"
 L["Show Part of a chain Desc"] = [=[Show / hide {partOfAChain}.
 
@@ -921,6 +954,8 @@ L["Show Temporarily obtainable Desc"] = [=[Show / hide {temporarilyObtainable}.
 When checked and the achievement is {temporarilyObtainable}, this information will be visible in the tooltip.]=]
 L["Show Temporarily obtainable Icon"] = "Show {tempObt} Icon"
 L["Show Temporarily obtainable Icon Desc"] = "Show / hide an extra icon on the achievement when it's only {tempObt}."
+L["Show Warband Icon"] = "Show {warband} Icon"
+L["Show Warband Icon Desc"] = "Show / hide an extra icon on the achievement when it's a {warband} achievement."
 L["Show world map icon"] = true
 L["Show world map icon Desc"] = "Show / hide the world map icon."
 L["Side Button Anchor"] = true
@@ -930,9 +965,11 @@ L["Siege of Orgrimmar"] = true
 L["Siege on Dragonbane Keep"] = true
 L["Siege on Dragonbane Keep: Active"] = true
 L["Siege on Dragonbane Keep: Gathering"] = true
+L["Siren Isle"] = true
 L["Skitterer Xi'a"] = true
 L["Skoldus Hall"] = true
 L["Skyriding Races"] = true
+L["Skyrocketing Races"] = true
 L["Slagmire"] = true
 L["Snowstorms"] = true
 L["Soon"] = true
@@ -967,8 +1004,11 @@ L["Superbloom: Active"] = true
 L["Superbloom: Next"] = true
 L["Tab"] = true
 L["tab"] = true
+L["Tab Priority"] = true
+L["Tab Priority Desc"] = "When enabled, when clicking on an achievement from anywhere to go to the achievement, the prioritized tab will be used first to search for the achievement and open the window to that tab. If the achievement is not present in that tab, default rules will apply."
 L["Tabs"] = true
 L["Ta's Pet Collection"] = true
+L["Teleport"] = true
 L["Temporarily obtainable"] = true
 L["temporarily obtainable"] = true
 L["Temporarily obtainable Header Colors"] = "{tempObt} Header Colors"
@@ -1031,6 +1071,7 @@ L["Track achievement browsing history Desc"] = [=[When enabled, show a back and 
 This allows for the navigation of your browsing history of selected achievements just like your internet browser does for visited websites.]=]
 L["Tracking"] = true
 L["Tracking Achievements"] = true
+L["Trader's Tender"] = true
 L["Trading Post"] = true
 L["Transmog Sets"] = true
 L["Truncate"] = true
@@ -1041,9 +1082,15 @@ L["Tyrhold"] = true
 L["Uktulut Coaster"] = true
 L["Uncategorized"] = true
 L["Unchecked"] = true
+L["Undermine(d)"] = true
 L["until the end of"] = true
 L["Up"] = true
 L["up until the start of"] = true
+L["Upcoming"] = true
+L["Upcoming Calendar Event Days"] = true
+L["Upcoming Calendar Event Days Desc"] = "The number of days in advance to show upcoming calendar events."
+L["Upcoming Calendar Event Login Delay"] = true
+L["Upcoming Calendar Events"] = true
 L["Upper Reaches"] = true
 L["Val'sharah"] = true
 L["Vendor"] = true
@@ -1056,6 +1103,12 @@ L["Wago"] = true
 L["Wago Desc"] = "Open a popup dialog with a link to the {addonName} {wago} page."
 L["Waking Shores"] = true
 L["Waking Shores: Next"] = true
+L["Warband Achievement"] = true
+L["Warband Campsite"] = true
+L["Warband Header Color"] = "{warband} Header Colors"
+L["Warband Header Color Desc"] = [=[When disabled, the default blue header color will be replaced by the default orange color.
+Recommended to enable {warbandIcon}.
+]=]
 L["Warcraft III: Reforged"] = true
 L["Warcraft Rumble"] = true
 L["was"] = true

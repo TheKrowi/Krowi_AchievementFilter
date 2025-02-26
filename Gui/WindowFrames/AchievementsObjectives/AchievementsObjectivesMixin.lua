@@ -6,6 +6,12 @@ function KrowiAF_AchievementsObjectivesOtherAchievementMixin:OnEnter()
 	GameTooltip:SetOwner(self, "ANCHOR_NONE");
 	GameTooltip:SetPoint("TOPLEFT", self, "BOTTOMLEFT");
 	local link = GetAchievementLink(self.Id);
+	-- if addon.Options.db.profile.Achievements.ShowOtherFactionWarbandAsCompleted then
+	-- 	if self.Completed and not addon.GetAchievementInfoTable(self.Id).IsCompleted and KrowiAF_Achievements.Completed[self.Id] then
+	-- 		local date = date("*t", KrowiAF_Achievements.Completed[self.Id].FirstCompletedOn);
+	-- 		link = link:gsub(":0:0:0:%-1", ":1:" .. date.month .. ":" .. date.day .. ":" .. tostring(date.year - 2000));
+	-- 	end
+	-- end
 	GameTooltip:SetHyperlink(link);
 	GameTooltip:Show();
 	if GameTooltip:GetTop() > self:GetBottom() then
@@ -199,6 +205,7 @@ local function AddMeta(self, index, completed, assetId)
 	metaCriteria.Id = id;
 	metaCriteria.Label:SetText(name);
 	metaCriteria.Icon:SetTexture(icon);
+	metaCriteria.Completed = completed;
 	-- Have to check if criteria is completed here, can't just check if achievement is completed.
 	-- This is because the criteria could have modifiers on it that prevent completion even though the achievement is earned.
 	if self.Completed and completed then

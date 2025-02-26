@@ -3,11 +3,18 @@ local savedData = addon.Data.SavedData;
 savedData.AchievementData = {};
 local achievementData = savedData.AchievementData;
 
+local ignoreAchievementIds = {};
+ignoreAchievementIds[7268] = true;
+ignoreAchievementIds[7269] = true;
+ignoreAchievementIds[7270] = true;
+ignoreAchievementIds[40910] = true;
+
 function achievementData.Load()
     KrowiAF_Achievements = KrowiAF_Achievements or {};
     KrowiAF_Achievements.Completed = KrowiAF_Achievements.Completed or {};
     KrowiAF_Achievements.NotCompleted = KrowiAF_Achievements.NotCompleted or {};
     KrowiAF_Achievements.LastCompleted = KrowiAF_Achievements.LastCompleted or {};
+    KrowiAF_Achievements.Watched = KrowiAF_Achievements.Watched or {};
 end
 
 local function DateTimeToEpoch(year, month, day)
@@ -72,7 +79,7 @@ function achievementData.SetCriteriaProgress(characterGuid, achievementInfo, cri
 end
 
 function achievementData.IgnoreAchievement(achievementInfo)
-    return achievementInfo.Points < 0 or achievementInfo.IsStatistic or achievementInfo.IsGuild;
+    return achievementInfo.Points < 0 or achievementInfo.IsStatistic or achievementInfo.IsGuild or ignoreAchievementIds[achievementInfo.Id];
 end
 
 function achievementData.IsEarnedByCharacter(characterGuid, achievement)
@@ -183,4 +190,109 @@ end
 
 function achievementData.RegisterNewAchievementEarned(achievementId)
     tinsert(newAchievementsEarned, 1, achievementId);
+end
+
+-- function achievementData.SetCharacterSpecific()
+--     if addon.Options.db.profile.Categories.WatchList.CharacterSpecific then
+--         local characterGuid = UnitGUID("player");
+--         for id, _ in next, KrowiAF_Achievements.Watched do
+--             KrowiAF_Achievements.Watched[id] = KrowiAF_Achievements.Watched[id] or {};
+--             KrowiAF_Achievements.Watched[id][characterGuid] = true;
+--         end
+--         return;
+--     end
+
+--     for id, _ in next, KrowiAF_Achievements.Watched do
+--         KrowiAF_Achievements.Watched[id] = true;
+--     end
+-- end
+
+function achievementData.CopyAccountWideToCharacter()
+    local characterGuid = UnitGUID("player");
+    for achievementId, _ in next, KrowiAF_Achievements.Watched do
+        KrowiAF_Achievements.Watched[achievementId][characterGuid] = true;
+    end
+    achievementData.ReloadWatchedAchievements();
+end
+
+function achievementData.SetWatched(achievement, isWatched)
+    if not achievement then
+        return;
+    end
+
+    if isWatched or isWatched == nil then
+        achievement.IsWatched = true;
+        KrowiAF_Achievements.Watched[achievement.Id] = KrowiAF_Achievements.Watched[achievement.Id] or {};
+        if addon.Options.db.profile.Categories.WatchList.CharacterSpecific then
+            KrowiAF_Achievements.Watched[achievement.Id][UnitGUID("player")] = true;
+        else
+            KrowiAF_Achievements.Watched[achievement.Id].AccountWide = true;
+        end
+        return;
+    end
+
+    achievement.IsWatched = nil;
+
+    if addon.Options.db.profile.Categories.WatchList.CharacterSpecific then
+        KrowiAF_Achievements.Watched[achievement.Id][UnitGUID("player")] = nil;
+    else
+        KrowiAF_Achievements.Watched[achievement.Id].AccountWide = nil;
+    end
+
+    for _, _ in next, KrowiAF_Achievements.Watched[achievement.Id] do
+        return;
+    end
+    KrowiAF_Achievements.Watched[achievement.Id] = nil;
+end
+
+function achievementData:ClearWatchedAchievements()
+    for achievementId, _ in next, KrowiAF_Achievements.Watched do
+        self.SetWatched(addon.Data.Achievements[achievementId], false);
+    end
+end
+
+local function LoadAchievements(sourceTable, func)
+    if sourceTable == nil or type(sourceTable) ~= "table" then
+        return;
+    end
+
+    for achievementId, _ in next, sourceTable do
+        if addon.Data.Achievements[achievementId] then
+            if addon.Options.db.profile.Categories.WatchList.CharacterSpecific then
+                if sourceTable[achievementId][UnitGUID("player")] then
+                    func(addon.Data.Achievements[achievementId], false);
+                end
+            else
+                if sourceTable[achievementId].AccountWide then
+                    func(addon.Data.Achievements[achievementId], false);
+                end
+            end
+        else -- This is to clean up achievements that are no longer in the dataset
+            sourceTable[achievementId] = nil;
+        end
+    end
+end
+
+function achievementData.LoadWatchedAchievements()
+    LoadAchievements(KrowiAF_Achievements.Watched, addon.WatchAchievement);
+end
+
+function achievementData.ReloadWatchedAchievements()
+    if not addon.SpecialCategories.WatchList then
+        C_AddOns.LoadAddOn("Blizzard_AchievementUI");
+    end
+    for i = 1, #addon.SpecialCategories.WatchList do
+        addon.SpecialCategories.WatchList[i].Achievements = nil;
+        addon.SpecialCategories.WatchList[i].Children = nil;
+    end
+    if addon.Gui.SelectedTab ~= nil then -- If nil, not yet loaded
+        KrowiAF_CategoriesFrame:Update(true);
+        KrowiAF_AchievementsFrame:ForceUpdate();
+    end
+
+    LoadAchievements(KrowiAF_Achievements.Watched, addon.WatchAchievement);
+
+    if AchievementFrame and AchievementFrame:IsShown() then
+        addon.Gui:RefreshViewAfterPlayerLogin();
+    end
 end

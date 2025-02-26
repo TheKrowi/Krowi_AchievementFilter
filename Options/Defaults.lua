@@ -46,7 +46,8 @@ addon.Options.Defaults = {
         Categories = {
             WatchList = {
                 ShowSubCategories = false,
-                IgnoreFilters = true
+                IgnoreFilters = true,
+                CharacterSpecific = false
             },
             TrackingAchievements = {
                 DoLoad = false,
@@ -54,7 +55,8 @@ addon.Options.Defaults = {
             },
             Excluded = {
                 Show = true,
-                ShowSubCategories = false
+                ShowSubCategories = false,
+                CharacterSpecific = false
             },
             Indentation = 10,
             MouseWheelPanScalar = 1
@@ -71,6 +73,7 @@ addon.Options.Defaults = {
             HideDateCompleted = false,
             ShowAllianceFactionIcon = false,
             ShowHordeFactionIcon = false,
+            FactionIconAlpha = 0.2,
             Objectives = {
                 ForceTwoColumns = true,
                 ForceTwoColumnsThreshold = 20,
@@ -84,7 +87,12 @@ addon.Options.Defaults = {
             },
             MouseWheelPanScalar = 1,
             ShowTemporarilyObtainableIcon = true,
-            TemporarilyObtainableHeaderColors = true
+            TemporarilyObtainableHeaderColors = true,
+            EnableTabPriority = false,
+            TabPriority = 5,
+            ShowWarbandIcon = true,
+            WarbandHeaderColor = true,
+            -- ShowOtherFactionWarbandAsCompleted = true
         },
         RightClickMenu = {
             ShowButtonOnAchievement = false,
@@ -124,7 +132,8 @@ addon.Options.Defaults = {
                     ShowDateTime = true,
                     DateTimeFormat = {
                         StartTimeAndEndTime = "%d/%m/%Y %R"
-                    }
+                    },
+                    NumberOfLines = 5
                 }
             },
             Criteria = {
@@ -149,6 +158,7 @@ addon.Options.Defaults = {
             MouseWheelPanScalar = 5
         },
         EventReminders = {
+            Enabled = true,
             PopUps = {
                 FadeDelay = 10,
                 MaxAlerts = 5,
@@ -171,6 +181,18 @@ addon.Options.Defaults = {
                     ShowInInstances = false,
                     ShowOnlyWhenTimeDataIsAvailable = true
                 },
+                OnLoginUpcoming = {
+                    Show = true,
+                    ShowInInstances = false
+                },
+                OnReloadUpcoming = {
+                    Show = true,
+                    ShowInInstances = false
+                },
+                OnEventStartUpcoming = {
+                    Show = true,
+                    ShowInInstances = false
+                },
             },
             ChatMessages = {
                 OnLogin = {
@@ -188,6 +210,18 @@ addon.Options.Defaults = {
                     ShowInInstances = false,
                     ShowOnlyWhenTimeDataIsAvailable = true
                 },
+                OnLoginUpcoming = {
+                    Show = true,
+                    ShowInInstances = false
+                },
+                OnReloadUpcoming = {
+                    Show = true,
+                    ShowInInstances = false
+                },
+                OnEventStartUpcoming = {
+                    Show = true,
+                    ShowInInstances = false
+                },
             },
             DateTimeFormat = {
                 StartTimeAndEndTime = "%d/%m/%Y %R"
@@ -199,7 +233,12 @@ addon.Options.Defaults = {
             Compact = false,
             RefreshInterval = 60,
             OnLoginDelay = 5,
-            SideButtonsAnchor = 1
+            OnLoginUpcomingDelay = 6,
+            SideButtonsAnchor = 1,
+            UpcomingCalendarEvents = {
+                Enabled = true,
+                Days = 14
+            }
         },
         Filters = {
             ResetFactionFilters = true

@@ -26,7 +26,7 @@ local sortFuncs = {
     addon.Objects.CompareFunc:New("number", "Points");
     addon.Objects.CompareFunc:New("string", "Name");
     addon.Objects.CompareFunc:New("string", "Realm");
-    addon.Objects.CompareFunc:New("string", "Faction");
+    addon.Objects.CompareFunc:New("number", "Faction");
     addon.Objects.CompareFunc:New("string", "Class");
 };
 
@@ -94,9 +94,9 @@ end
 local function AddFactionIcon(name, faction)
     if addon.Options.db.profile.AchievementPoints.Tooltip.ShowFaction then
         local icon;
-        if faction == addon.Objects.Faction[addon.Objects.Faction.Alliance] then
+        if faction == KrowiAF.Enum.Faction.Alliance then
             icon = "|A:worldquest-icon-alliance:15:16|a";
-        elseif faction == addon.Objects.Faction[addon.Objects.Faction.Horde] then
+        elseif faction == KrowiAF.Enum.Faction.Horde then
             icon = "|A:worldquest-icon-horde:15:16|a";
         else -- Neutral
             icon = "|A:worldquest-questmarker-questionmark:15:16|a";

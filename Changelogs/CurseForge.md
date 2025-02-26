@@ -1,17 +1,19 @@
 <p><h3>Added</h3></p>
 <ul>
-<li>Storm Rider races tooltip data</li>
-<li>WoW's 20th Anniversary achievements </li>
+<li>11.1 achievement (159)</li>
+<li>New Warband Campsite achievement reward filter</li>
 </ul>
-<p><h3>Changed</h3></p>
+<p><h3>Fixed</h3></p>
 <ul>
-<li>Event Data rework</li>
+<li>Master of the Turbulent Timeways is no longer obtainable even when the Turbulent Timeways event is active</li>
+<li>Delve category names should no longer have the tier in the name</li>
+<li>Uncategorized category should be working again</li>
 </ul>
-<p><h3>Cata Classic</h3></p>
+<p><h3>Changed (82.1)</h3></p>
 <ul>
-<li>Added Protocol Inferno achievements</li>
+<li>Upgraded the world map button library to reflect the now vertical layout</li>
 </ul>
-<p><h3>Fixed (76.1)</h3></p>
+<p><h3>Fixed (82.1)</h3></p>
 <ul>
-<li>Loading of KAF should once again load everything</li>
+<li>Potential memory leak addressed</li>
 </ul>

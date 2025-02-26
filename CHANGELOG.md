@@ -1,6 +1,113 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 82.1 - 2025-02-26
+### Changed
+- Upgraded the world map button library to reflect the now vertical layout
+
+### Fixed
+- Potential memory leak addressed
+
+## 82.0 - 2025-02-10
+### Added
+- 11.1 achievement (159)
+- New Warband Campsite achievement reward filter
+
+### Fixed
+- Master of the Turbulent Timeways is no longer obtainable even when the Turbulent Timeways event is active
+- Delve category names should no longer have the tier in the name
+- Uncategorized category should be working again
+
+## 81.4 - 2025-01-21
+### Fixed
+- Achievement points should once again be counted "correctly" (dev note: a feature to show other faction achievements as completed for meta achievements resulted in also counting those as completed resulting in high numbers; this feature is removed for the time being until a proper fix can be developed)
+
+## 81.3 - 2025-01-16
+### Fixed
+- Resolved an error when both the Achievement Window and the Calendar are open
+
+### Removed
+- Plunderstorm event
+
+## 81.2 - 2025-01-11
+### Added
+- Option to change the transparency of the faction icon
+
+### Fixed
+- Plugin options should no longer cause errors for ElvUI and GW2_UI
+
+## 81.1 - 2025-01-10
+### Fixed
+- Resolved some loading order issues related to ElvUI and event reminders
+
+## 81.0 - 2025-01-09
+### Added
+- The watch list can now be a mix of account wide achievements for one character, character specific achievements for another character or all account wide or character specific
+- Shadowlands Mythic+ season categories in the Specials tab
+- Achievements can now have multiple moments when they were available to earn
+- Cross-Expansion - Delves category is now moved from The War Within to Cross-Expansion
+- Has Reward filter with additional reward type filters
+- Show Other Faction Warband as Completed option (dev note: see loc for details)
+- Plunderstorm and Turbulent Timeways events
+- Upcoming Calendar Event Reminders with a lot of options
+
+### Changed
+- Factions and EventType are now accessible trough the API system
+
+### Fixed
+- When marking an achievement as watched, the view should no longer completely reset
+- Side buttons are once again skinned when using GW2 UI
+
+## 80.2 - 2024-12-18
+### Added
+- Lingering Shadows achievement
+
+## 80.1 - 2024-12-18
+### Added
+- Patch 11.0.7 to the filters
+
+## 80.0 - 2024-12-17
+### Added
+- Achievements added in 11.0.7
+- Feature to prioritize which tab is used when getting redirected to an achievement
+- Has Reward filter (dev note: reward type filters will come in a later version)
+- Option to show a Warband icon on Warband achievements
+- Option to hide the blue Warband achievement color
+- Option to completely turn off the Event Reminders Module with 1 option
+
+## 79.0 - 2024-11-15
+### Added
+- Guild achievements tab keybind
+- WoW's 20th Anniversary achievement
+
+### Changed
+- Achievements and Categories are now moved to the new API system
+- Data loading time is reduced by 50%
+
+### Cata Classic
+- Additional (promotional) achievements marked as unobtainable
+
+## 78.0 - 2024-11-01
+### Added
+- Transmog sets for The War Within raid and season 1
+
+### Changed
+- Transmog sets are now moved to the new API system
+
+### Removed
+- Khaz Algar Lore Hunter achievement
+
+## 77.0 - 2024-10-31
+### Changed
+- Backend data is now prepared to be more API friendly (in case KAF support ever stops)
+
+### Cata Classic
+- Opening a category from the event reminders or going to an achievement from a link, tracker, ... should once again work without errors
+
+## 76.2 - 2024-10-27
+### Fixed
+- Compatibility with GW2_UI and BetterWardrobe addons
+
 ## 76.1 - 2024-10-24
 ### Fixed
 - Loading of KAF should once again load everything

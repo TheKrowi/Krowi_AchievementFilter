@@ -521,7 +521,17 @@
         "EXPANSION_NAME10",
         "WowStyle1FilterDropdownMixin",
         "MenuResponse",
-        "MenuUtil"
+        "MenuUtil",
+        "GameTooltip_AddColoredLine",
+        "REPUTATION_SORT_TYPE_ACCOUNT",
+        "EnumUtil",
+        "MOUNT",
+        "PET",
+        "TABARDSLOT",
+        "LFG_LIST_TITLE",
+        "TOY",
+        "PERKS_VENDOR_CATEGORY_TRANSMOG",
+        "TooltipBackdropTemplateMixin"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
@@ -545,20 +555,20 @@
             "exclude":"**/{.git,.vscode,Changelogs,Descriptions}/**",
             "deleteTargetOnDeploy": true
         },
-        // {
-        //     "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
-        //     "target":"F:\\World of Warcraft\\_classic_\\Interface\\AddOns\\Krowi_AchievementFilter",
-        //     "include":"**/*.{lua,toc,blp,tga,xml,md}",
-        //     "exclude":"**/{.git,.vscode,Changelogs,Descriptions}/**",
-        //     "deleteTargetOnDeploy": true
-        // },
-        // {
-        //     "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
-        //     "target":"F:\\World of Warcraft\\_xptr_\\Interface\\AddOns\\Krowi_AchievementFilter",
-        //     "include":"**/*.{lua,toc,blp,tga,xml,md}",
-        //     "exclude":"**/{.git,.github,.vscode,Changelogs,Descriptions}/**",
-        //     "deleteTargetOnDeploy": true
-        // },
+        {
+            "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
+            "target":"F:\\World of Warcraft\\_classic_\\Interface\\AddOns\\Krowi_AchievementFilter",
+            "include":"**/*.{lua,toc,blp,tga,xml,md}",
+            "exclude":"**/{.git,.vscode,Changelogs,Descriptions}/**",
+            "deleteTargetOnDeploy": true
+        },
+        {
+            "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
+            "target":"F:\\World of Warcraft\\_xptr_\\Interface\\AddOns\\Krowi_AchievementFilter",
+            "include":"**/*.{lua,toc,blp,tga,xml,md}",
+            "exclude":"**/{.git,.github,.vscode,Changelogs,Descriptions}/**",
+            "deleteTargetOnDeploy": true
+        },
         // {
         //     "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
         //     "target":"F:\\World of Warcraft\\_xptr_\\Interface\\AddOns\\Krowi_AchievementFilter",

@@ -23,7 +23,7 @@ local function AddPartOfAChainAchievement(currentAchievement, id, nameSuffix)
 		if achievement.NumNextAchievements > 1 then
 			if addon.Data.Achievements[nextId].Faction then
 				nameSuffix = " (";
-				nameSuffix = nameSuffix .. addon.L[addon.Objects.Faction[addon.Data.Achievements[nextId].Faction]];
+				nameSuffix = nameSuffix .. addon.L[EnumUtil.GenerateNameTranslation(KrowiAF.Enum.Faction)(addon.Data.Achievements[nextId].Faction)];
 				nameSuffix = nameSuffix .. ")";
 			end
 		end

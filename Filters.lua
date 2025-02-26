@@ -19,6 +19,11 @@ local defaultAchievements = {
         Alliance = false,
         Horde = false
     },
+    HasReward = {
+        Yes = true,
+        No = true
+    },
+    RewardType = { --[[ Dynamically build via InjectDynamicRewardTypeFilters ]] },
     Special = {
         RealmFirst = false,
         FeatsOfStrength = true,
@@ -31,7 +36,7 @@ local defaultAchievements = {
         Criteria = addon.L["Default"],
         ReverseSort = false
     },
-    BuildVersion = { --[[ Dynamically build via addon.Data.ExportedBuildVersions.InjectDynamicFilters ]] }
+    BuildVersion = { --[[ Dynamically build via KrowiAF.InjectDynamicBuildVersionFilters ]] }
 };
 
 local defaults = {
@@ -43,6 +48,12 @@ local defaults = {
 };
 
 -- [[ Inject Defaults ]] --
+local function InjectDynamicRewardTypeFilters()
+    for _, rewardType in next, KrowiAF.Enum.RewardType do
+        defaultAchievements.RewardType[rewardType] = true;
+    end
+end
+
 local function InjectAchievementDefaults()
     addon.Util.DeepCopyTable(defaultAchievements, defaults.profile);
 end
@@ -68,7 +79,9 @@ local function InjectTabDefaults()
 end
 
 function filters:InjectDefaults()
-    addon.Data.BuildVersionsGrouped = addon.Data.ExportedBuildVersions:InjectDynamicFilters(defaultAchievements.BuildVersion);
+    KrowiAF.GroupBuildVersions();
+    KrowiAF.InjectDynamicBuildVersionFilters(defaultAchievements.BuildVersion);
+    InjectDynamicRewardTypeFilters();
     InjectAchievementDefaults();
     InjectCategoryDefaults();
     InjectTabDefaults();
@@ -114,60 +127,104 @@ function filters:Load()
 end
 
 -- [[ Validation ]] --
-local completedCache, ignoreCollapseSeriesCache, pointsCache;
+local achievementInfoCache;
 local validations = {
     {   -- 1
-        Validate = function(_filters, achievement) return not _filters.Completion.Completed and completedCache; end
+        Validate = function(_filters, achievement, ignoreFilters) return not _filters.Completion.Completed and achievementInfoCache.IsCompleted; end
     },
     {   -- 2
-        Validate = function(_filters, achievement) return not _filters.Completion.NotCompleted and not completedCache; end
+        Validate = function(_filters, achievement, ignoreFilters) return not _filters.Completion.NotCompleted and not achievementInfoCache.IsCompleted; end
     },
     {   -- 3
-        Validate = function(_filters, achievement)
+        Validate = function(_filters, achievement, ignoreFilters)
             if _filters.Obtainability.CurrentObtainable then
                 return;
             end
-            if achievement.TemporaryObtainable then
-                local state = achievement.TemporaryObtainable.Obtainable();
+            local state = achievement:GetObtainableState();
+            if state then
                 return state == true or state == "Current";
             end
             return true;
         end
     },
     {   -- 4
-        Validate = function(_filters, achievement)
+        Validate = function(_filters, achievement, ignoreFilters)
             if _filters.Obtainability.PastObtainable then
                 return;
             end
-            if achievement.TemporaryObtainable then
-                local state = achievement.TemporaryObtainable.Obtainable();
+            local state = achievement:GetObtainableState();
+            if state then
                 return state == true or state == "Past";
             end
         end
     },
     {   -- 5
-        Validate = function(_filters, achievement)
+        Validate = function(_filters, achievement, ignoreFilters)
             if _filters.Obtainability.FutureObtainable then
                 return;
             end
-            if achievement.TemporaryObtainable then
-                local state = achievement.TemporaryObtainable.Obtainable();
+            local state = achievement:GetObtainableState();
+            if state then
                 return state == true or state == "Future";
             end
         end
     },
     {   -- 6
-        Validate = function(_filters, achievement) return not _filters.Faction.Neutral and achievement.Faction == nil; end
+        Validate = function(_filters, achievement, ignoreFilters)
+            if not achievementInfoCache.HasReward then
+                return;
+            end
+
+            if not _filters.HasReward.Yes then
+                return true;
+            end
+
+            local rewardType = achievement.RewardType;
+            if rewardType then
+                if not addon.Util.IsTable(rewardType) then
+                    rewardType = {rewardType};
+                end
+                for _, rType in next, rewardType do
+                    if _filters.RewardType[rType] then
+                        return false;
+                    end
+                end
+                return true;
+            end
+
+            return not _filters.RewardType[KrowiAF.Enum.RewardType.NotCategorized];
+        end
     },
     {   -- 7
-        Validate = function(_filters, achievement) return not _filters.Faction.Alliance and achievement.Faction == addon.Objects.Faction.Alliance; end
+        Validate = function(_filters, achievement, ignoreFilters) return not _filters.HasReward.No and not achievementInfoCache.HasReward; end
     },
     {   -- 8
-        Validate = function(_filters, achievement) return not _filters.Faction.Horde and achievement.Faction == addon.Objects.Faction.Horde; end
+        Validate = function(_filters, achievement, ignoreFilters)
+            if ignoreFilters.FactionFilter then
+                return false;
+            end
+            return not _filters.Faction.Neutral and achievement.Faction == nil;
+        end
     },
     {   -- 9
-        Validate = function(_filters, achievement)
-            if _filters.CollapseSeries and ignoreCollapseSeriesCache ~= true then
+        Validate = function(_filters, achievement, ignoreFilters)
+            if ignoreFilters.FactionFilter then
+                return false;
+            end
+            return not _filters.Faction.Alliance and achievement.Faction == KrowiAF.Enum.Faction.Alliance;
+        end
+    },
+    {   -- 10
+        Validate = function(_filters, achievement, ignoreFilters)
+            if ignoreFilters.FactionFilter then
+                return false;
+            end
+            return not _filters.Faction.Horde and achievement.Faction == KrowiAF.Enum.Faction.Horde;
+        end
+    },
+    {   -- 11
+        Validate = function(_filters, achievement, ignoreFilters)
+            if _filters.CollapseSeries and ignoreFilters.CollapsedChainFilter ~= true then
                 local _, nextCompleted = addon.GetNextAchievement(achievement);
                 if nextCompleted then
                     return true;
@@ -183,67 +240,65 @@ local validations = {
             return false;
         end
     },
-    {   -- 10
-        Validate = function(_filters, achievement) return not _filters.Excluded and achievement.IsExcluded end
+    {   -- 12
+        Validate = function(_filters, achievement, ignoreFilters) return not _filters.Excluded and achievement.IsExcluded end
     },
-    {   -- 11
-        Validate = function(_filters, achievement)
+    {   -- 13
+        Validate = function(_filters, achievement, ignoreFilters)
             if not addon.Options.db.profile.ShowPlaceholdersFilter and achievement.DoesNotExist then
                 return true;
             end
             return not filters.db.profile.ShowPlaceholders and achievement.DoesNotExist;
         end
     },
-    {   -- 12
-        Validate = function(_filters, achievement) return not _filters.Special.RealmFirst and achievement.IsRealmFirst; end
-    },
-    {   -- 13
-        Validate = function(_filters, achievement) return not _filters.Special.FeatsOfStrength and pointsCache == 0 and not achievement.IsRealmFirst and not achievement.IsTracking; end
-    },
     {   -- 14
-        Validate = function(_filters, achievement) return not _filters.Tracking and achievement.IsTracking; end
+        Validate = function(_filters, achievement, ignoreFilters) return not _filters.Special.RealmFirst and achievement.IsRealmFirst; end
     },
     {   -- 15
-        Validate = function(_filters, achievement) return not _filters.Special.PvP and achievement.IsPvP; end
+        Validate = function(_filters, achievement, ignoreFilters) return not _filters.Special.FeatsOfStrength and achievementInfoCache.Points == 0 and not achievement.IsRealmFirst and not achievement.IsTracking; end
     },
     {   -- 16
-    Validate = function(_filters, achievement)
-        if not achievement.BuildVersion then
-            return false;
+        Validate = function(_filters, achievement, ignoreFilters) return not _filters.Tracking and achievement.IsTracking; end
+    },
+    {   -- 17
+        Validate = function(_filters, achievement, ignoreFilters) return not _filters.Special.PvP and achievement.IsPvP; end
+    },
+    {   -- 18
+        Validate = function(_filters, achievement, ignoreFilters)
+            if not achievement.BuildVersion then
+                return false;
+            end
+            return not _filters.BuildVersion[achievement.BuildVersion.Id];
         end
-        return not _filters.BuildVersion[achievement.BuildVersion.Id];
-    end
     },
 };
 
-function filters.Validate(_filters, achievement, ignoreCollapseSeries)
+function filters.Validate(_filters, achievement, ignoreFilters, ignoreCollapseSeries)
     if _filters.Ignore then
         return 3;
     end
     if achievement.AlwaysVisible then
         return 2;
     end
-    local _, _, points, completed, _, _, _, _, _, _, _, _, wasEarnedByMe = addon.GetAchievementInfo(achievement.Id);
-    pointsCache = points;
+    achievementInfoCache = addon.GetAchievementInfoTable(achievement.Id);
     if addon.Filters.db.profile.EarnedBy == addon.Filters.CharacterOnly then
-        completedCache = wasEarnedByMe;
-    else
-        completedCache = completed;
+        achievementInfoCache.IsCompleted = achievementInfoCache.WasEarnedByMe;
     end
-    ignoreCollapseSeriesCache = ignoreCollapseSeries;
-    if _filters.Completion.AlwaysShowCompleted and completedCache then
+    ignoreFilters = ignoreFilters or {};
+    ignoreFilters.CollapsedChainFilter = ignoreFilters.CollapsedChainFilter or ignoreCollapseSeries;
+    if _filters.Completion.AlwaysShowCompleted and achievementInfoCache.IsCompleted then
         return 4; -- Special filter that overwrites the rest
     end
     for i, validation in next, validations do
-        if validation.Validate(_filters, achievement) then -- If true, DO NOT show achievement
+        if validation.Validate(_filters, achievement, ignoreFilters) then -- If true, DO NOT show achievement
             return -i;
         end
     end
     return 1;
 end
 
-function filters:AutoValidate(achievement, ignoreCollapseSeries)
-    return self.Validate(self:GetFilters(), achievement, ignoreCollapseSeries);
+function filters:AutoValidate(achievement, ignoreFilters, ignoreCollapseSeries)
+    return self.Validate(self:GetFilters(), achievement, ignoreFilters, ignoreCollapseSeries);
 end
 
 function filters:GetFilters(category)
@@ -310,10 +365,10 @@ end
 local function CompareName(a, b, reverse, default)
     local nameA, nameB = "", "";
     if a then
-        nameA = select(2, addon.GetAchievementInfo(a.Id));
+        nameA = addon.GetAchievmentName(a.Id);
     end
     if b then
-        nameB = select(2, addon.GetAchievementInfo(b.Id));
+        nameB = addon.GetAchievmentName(b.Id);
     end
 
     if nameA == nil then

@@ -1,7 +1,21 @@
 local _, addon = ...;
 local data = addon.Data;
-data.SpecialCategories = {};
-local specialCategories = data.SpecialCategories;
+addon.SpecialCategories = {};
+local specialCategories = addon.SpecialCategories;
+
+local function LoadAchievements(sourceTable, func)
+    if sourceTable == nil or type(sourceTable) ~= "table" then
+        return;
+    end
+
+    for achievementId, _ in next, sourceTable do
+        if data.Achievements[achievementId] then
+            func(data.Achievements[achievementId], false);
+        else -- This is to clean up achievements that are no longer in the dataset
+            sourceTable[achievementId] = nil;
+        end
+    end
+end
 
 local specialCategoriesMatrix = { -- Order of this list is important
     {
@@ -22,6 +36,10 @@ local specialCategoriesMatrix = { -- Order of this list is important
         PostLoad = function(category)
             category:SetFlexibleData(true);
             category.IsWatchList = true;
+        end,
+        LoadData = function()
+            addon.Data.SavedData.AchievementData.LoadWatchedAchievements();
+            addon.Diagnostics.Trace("Watched achievements loaded");
         end
     },
     {
@@ -57,6 +75,10 @@ local specialCategoriesMatrix = { -- Order of this list is important
         PostLoad = function(category)
             category:SetFlexibleData(true);
             category.IsTracking = true;
+        end,
+        LoadData = function()
+            LoadAchievements(addon.TrackingAchievements, addon.AddToTrackingAchievementsCategories);
+            addon.Diagnostics.Trace("Tracking achievements loaded");
         end
     },
     {
@@ -65,6 +87,10 @@ local specialCategoriesMatrix = { -- Order of this list is important
         Side = "BOTTOM",
         PostLoad = function(category)
             category:SetFlexibleData(true);
+        end,
+        LoadData = function()
+            LoadAchievements(KrowiAF_SavedData.ExcludedAchievements, addon.ExcludeAchievement);
+            addon.Diagnostics.Trace("Excluded achievements loaded");
         end
     },
     {
@@ -73,30 +99,35 @@ local specialCategoriesMatrix = { -- Order of this list is important
         Side = "BOTTOM",
         PostLoad = function(category)
             category:SetFlexibleData(true);
+        end,
+        LoadData = function()
+            LoadAchievements(addon.UncategorizedAchievements, addon.AddToUncategorizedAchievementsCategories);
+            addon.Diagnostics.Trace("Uncategorized achievements loaded");
         end
     },
 };
 
-local function AddCategory(id, specialCategory, tab, categoryOrder)
+local function AddCategory(id, specialCategory, categoryTypeTable, tab, categoryOrder)
     data.Categories[id] = addon.Objects.Category:New(id, specialCategory.Text);
     if specialCategory.Side == "TOP" then
         data.Categories[tab.Category.Id]:InsertCategory(data.Categories[id], categoryOrder);
     else
         data.Categories[tab.Category.Id]:AddCategory(data.Categories[id]);
     end
-    tinsert(data[specialCategory.CategoryType .. "Categories"], data.Categories[id]);
+    tinsert(categoryTypeTable, data.Categories[id]);
     if specialCategory.PostLoad then
-        specialCategory.PostLoad(data.Categories[id], #data[specialCategory.CategoryType .. "Categories"]);
+        specialCategory.PostLoad(data.Categories[id], #categoryTypeTable);
     end
 end
 
 function specialCategories:Load()
     local categoryOrder = 0;
     for _, specialCategory in next, specialCategoriesMatrix do
-        wipe(data[specialCategory.CategoryType .. "Categories"]);
+        specialCategories[specialCategory.CategoryType] = specialCategories[specialCategory.CategoryType] or {};
+        wipe(specialCategories[specialCategory.CategoryType]);
         categoryOrder = categoryOrder + 1;
         for _, tabName in next, addon.TabsOrder do
-            AddCategory(data.GetNextFreeCategoryId(), specialCategory, addon.Tabs[tabName], categoryOrder);
+            AddCategory(data.GetNextFreeCategoryId(), specialCategory, specialCategories[specialCategory.CategoryType], addon.Tabs[tabName], categoryOrder);
         end
     end
 end
@@ -112,6 +143,14 @@ function specialCategories.InjectDynamicOptions()
                 addon.Tabs[tabName].Text,
                 specialCategory.ShowByDefault or tabName == "Specials"
             );
+        end
+    end
+end
+
+function specialCategories.LoadData()
+    for _, specialCategory in next, specialCategoriesMatrix do
+        if specialCategory.LoadData then
+            specialCategory.LoadData();
         end
     end
 end

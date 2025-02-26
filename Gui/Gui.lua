@@ -156,16 +156,6 @@ function gui:ResetAchievementFrameHeight()
     AchievementFrameMetalBorderRight:SetHeight(defaultAchievementFrameMetalBorderHeight);
 end
 
-function gui:PrepareTabsOrder()
-    KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Achievements", addon.L["Blizzard"], addon.L["Achievements"], "TOGGLEACHIEVEMENT", false);
-    if not addon.Util.IsWrathClassic then
-        KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Guild", addon.L["Blizzard"], addon.L["Guild"], nil, true);
-    else
-        addon.Options.Defaults.profile.Tabs.Blizzard_AchievementUI.Guild = nil;
-    end
-    KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Statistics", addon.L["Blizzard"], addon.L["Statistics"], "TOGGLESTATISTICS", true);
-end
-
 local function SelectTab(self, _addonName, tabName)
     local button = self.Tabs[_addonName][tabName];
     if button then
@@ -280,7 +270,7 @@ function gui:ShowHideTabs(_addonName, tabName)
     self:UpdateTabsLayout(tabsOrder);
 end
 
-function gui.ShowStatusBarTooltip(frame, anchor, extraText) -- . instead of : because it needs to work for the frame
+function gui.ShowStatusBarTooltip(frame, anchor, extraText, color) -- . instead of : because it needs to work for the frame
 	GameTooltip:SetOwner(frame, anchor or "ANCHOR_NONE");
     if anchor == nil then
 	    GameTooltip:SetPoint("TOPLEFT", frame, "TOPRIGHT", -3, -3);
@@ -301,7 +291,7 @@ function gui.ShowStatusBarTooltip(frame, anchor, extraText) -- . instead of : be
 
     if extraText then
         GameTooltip_AddBlankLineToTooltip(GameTooltip);
-        GameTooltip_AddNormalLine(GameTooltip, extraText);
+        GameTooltip_AddColoredLine(GameTooltip, extraText, color or NORMAL_FONT_COLOR);
     end
 
 	GameTooltip:SetMinimumWidth(140);

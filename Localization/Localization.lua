@@ -2,6 +2,8 @@ local addonName, addon = ...;
 addon.Localization = {};
 local localization = addon.Localization;
 
+-- GAME_LOCALE = "zhCN";
+
 function localization.SetColors(L)
     L["Not earned by:"] = L["Not earned by:"]:SetColorRed() .. " %s";
 end

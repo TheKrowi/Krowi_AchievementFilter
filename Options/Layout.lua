@@ -56,23 +56,18 @@ local function DrawSubCategories(categories)
 end
 
 local function WatchListClearAllFunc()
-    if not addon.Data.WatchListCategories then
+    if not addon.SpecialCategories.WatchList then
         C_AddOns.LoadAddOn("Blizzard_AchievementUI");
     end
-    for i = 1, #addon.Data.WatchListCategories do
-        addon.Data.WatchListCategories[i].Achievements = nil;
-        addon.Data.WatchListCategories[i].Children = nil;
+    for i = 1, #addon.SpecialCategories.WatchList do
+        addon.SpecialCategories.WatchList[i].Achievements = nil;
+        addon.SpecialCategories.WatchList[i].Children = nil;
     end
     if addon.Gui.SelectedTab ~= nil then -- If nil, not yet loaded
-        if KrowiAF_SavedData.WatchedAchievements then
-            for id, _ in next, KrowiAF_SavedData.WatchedAchievements do
-                addon.Data.Achievements[id]:ClearWatch();
-            end
-        end
         KrowiAF_CategoriesFrame:Update(true);
         KrowiAF_AchievementsFrame:ForceUpdate();
     end
-    KrowiAF_SavedData.WatchedAchievements = nil;
+    addon.Data.SavedData.AchievementData:ClearWatchedAchievements();
 end
 
 local function InjectDynamicFixedWatchListOptions()
@@ -87,7 +82,7 @@ local function InjectDynamicFixedWatchListOptions()
         get = function() return addon.Options.db.profile.Categories.WatchList.ShowSubCategories; end,
         set = function(_, value)
             addon.Options.db.profile.Categories.WatchList.ShowSubCategories = value;
-            DrawSubCategories(addon.Data.WatchListCategories);
+            DrawSubCategories(addon.SpecialCategories.WatchList);
         end
     });
     addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "Blank1", {
@@ -106,8 +101,31 @@ local function InjectDynamicFixedWatchListOptions()
         get = function() return addon.Options.db.profile.Categories.WatchList.IgnoreFilters; end,
         set = function(_, value)
             addon.Options.db.profile.Categories.WatchList.IgnoreFilters = value;
-            DrawSubCategories(addon.Data.WatchListCategories);
+            DrawSubCategories(addon.SpecialCategories.WatchList);
         end
+    });
+    addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "Blank2", {
+        order = OrderPP(), type = "description", width = AdjustedWidth(2), name = ""
+    });
+    addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "CharacterSpecific", {
+        order = OrderPP(), type = "toggle", width = AdjustedWidth(),
+        name = addon.L["Character Specific"],
+        desc = addon.L["Character Specific Desc"]:K_ReplaceVars(addon.L["Watch List"]):KAF_AddDefaultValueText("Categories.WatchList.CharacterSpecific"),
+        get = function() return addon.Options.db.profile.Categories.WatchList.CharacterSpecific; end,
+        set = function (_, value)
+            addon.Options.db.profile.Categories.WatchList.CharacterSpecific = value;
+            addon.Data.SavedData.AchievementData.ReloadWatchedAchievements();
+        end
+    });
+    addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "Blank3", {
+        order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""
+    });
+    addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "CopyAccountWideToCharacter", {
+        order = OrderPP(), type = "execute", width = AdjustedWidth(),
+        name = addon.L["Copy Account Wide to Character"],
+        desc = addon.L["Copy Account Wide to Character Desc"]:K_ReplaceVars(addon.L["Watch List"]),
+        func = addon.Data.SavedData.AchievementData.CopyAccountWideToCharacter,
+        disabled = function() return not addon.Options.db.profile.Categories.WatchList.CharacterSpecific; end
     });
 end
 
@@ -132,7 +150,7 @@ local function InjectMoreDynamicTrackingAchievementsOptions()
         get = function() return addon.Options.db.profile.Categories.TrackingAchievements.ShowSubCategories; end,
         set = function(_, value)
             addon.Options.db.profile.Categories.TrackingAchievements.ShowSubCategories = value;
-            DrawSubCategories(addon.Data.TrackingAchievementsCategories);
+            DrawSubCategories(addon.SpecialCategories.TrackingAchievements);
         end
     });
 end
@@ -145,9 +163,9 @@ local function ShowExcludedCategory()
     if addon.Options.db.profile.Categories.Excluded.Show then
         addon.Data.LoadExcludedAchievements();
     else
-        for i = 1, #addon.Data.ExcludedCategories do
-            addon.Data.ExcludedCategories[i].Achievements = nil;
-            addon.Data.ExcludedCategories[i].Children = nil;
+        for i = 1, #addon.SpecialCategories.Excluded do
+            addon.SpecialCategories.Excluded[i].Achievements = nil;
+            addon.SpecialCategories.Excluded[i].Children = nil;
         end
         KrowiAF_CategoriesFrame:Update(true);
         KrowiAF_AchievementsFrame:ForceUpdate();
@@ -155,13 +173,13 @@ local function ShowExcludedCategory()
 end
 
 local function ExcludedIncludeAllFunc()
-    if not addon.Data.ExcludedCategories then
+    if not addon.SpecialCategories.Excluded then
         C_AddOns.LoadAddOn("Blizzard_AchievementUI");
     end
 
-    for i = 1, #addon.Data.ExcludedCategories do
-        addon.Data.ExcludedCategories[i].Achievements = nil;
-        addon.Data.ExcludedCategories[i].Children = nil;
+    for i = 1, #addon.SpecialCategories.Excluded do
+        addon.SpecialCategories.Excluded[i].Achievements = nil;
+        addon.SpecialCategories.Excluded[i].Children = nil;
     end
     if addon.Gui.SelectedTab == nil then -- If nil, not yet loaded
         KrowiAF_SavedData.ExcludedAchievements = nil;
@@ -205,12 +223,12 @@ local function InjectMoreDynamicExcludedOptions()
         order = OrderPP(), type = "toggle", width = AdjustedWidth(),
         name = addon.L["Show Sub Categories"],
         desc = addon.L["Show Sub Categories Desc"]:K_ReplaceVars(addon.L["Excluded"]):KAF_AddDefaultValueText("Categories.Excluded.ShowSubCategories"),
-        disabled = function() return not addon.Options.db.profile.Categories.Excluded.Show; end,
         get = function() return addon.Options.db.profile.Categories.Excluded.ShowSubCategories; end,
         set = function()
             addon.Options.db.profile.Categories.Excluded.ShowSubCategories = not addon.Options.db.profile.Categories.Excluded.ShowSubCategories;
-            DrawSubCategories(addon.Data.ExcludedCategories);
-        end
+            DrawSubCategories(addon.SpecialCategories.Excluded);
+        end,
+        disabled = function() return not addon.Options.db.profile.Categories.Excluded.Show; end
     });
 end
 
@@ -444,12 +462,39 @@ local function MergeMergeSmallCategoriesThresholdSet(_, value)
     KrowiAF_CategoriesFrame:Update(true);
 end
 
+local function ShowAllianceFactionIconSet(_, value)
+    addon.Options.db.profile.Achievements.ShowAllianceFactionIcon = value;
+    if not KrowiAF_AchievementsFrame then
+        return;
+    end
+    KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow();
+    KrowiAF_AchievementsFrame:ForceUpdate();
+end
+
+local function ShowHordeFactionIconSet(_, value)
+    addon.Options.db.profile.Achievements.ShowHordeFactionIcon = value;
+    if not KrowiAF_AchievementsFrame then
+        return;
+    end
+    KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow();
+    KrowiAF_AchievementsFrame:ForceUpdate();
+end
+
+local function FactionIconAlphaSet(_, value)
+    addon.Options.db.profile.Achievements.FactionIconAlpha = value;
+    if not KrowiAF_AchievementsFrame then
+        return;
+    end
+    KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow();
+    KrowiAF_AchievementsFrame:ForceUpdate();
+end
+
 local function ShowTemporarilyObtainableIconSet(_, value)
     addon.Options.db.profile.Achievements.ShowTemporarilyObtainableIcon = value;
     if not KrowiAF_AchievementsFrame then
         return;
     end
-    KrowiAF_SummaryFrame:Update();
+    KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow();
     KrowiAF_AchievementsFrame:ForceUpdate();
 end
 
@@ -458,7 +503,25 @@ local function TemporarilyObtainableHeaderColorsSet(_, value)
     if not KrowiAF_AchievementsFrame then
         return;
     end
-    KrowiAF_SummaryFrame:Update();
+    KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow();
+    KrowiAF_AchievementsFrame:ForceUpdate();
+end
+
+local function ShowWarbandIconSet(_, value)
+    addon.Options.db.profile.Achievements.ShowWarbandIcon = value;
+    if not KrowiAF_AchievementsFrame then
+        return;
+    end
+    KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow();
+    KrowiAF_AchievementsFrame:ForceUpdate();
+end
+
+local function WarbandHeaderColorSet(_, value)
+    addon.Options.db.profile.Achievements.WarbandHeaderColor = value;
+    if not KrowiAF_AchievementsFrame then
+        return;
+    end
+    KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow();
     KrowiAF_AchievementsFrame:ForceUpdate();
 end
 
@@ -1022,21 +1085,43 @@ local achievementsOptions = {
                             get = function() return addon.Options.db.profile.Achievements.HideDateCompleted; end,
                             set = function(_, value) addon.Options.db.profile.Achievements.HideDateCompleted = value; end,
                         },
-                        Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.35), name = ""},
+                        -- ShowOtherFactionWarbandAsCompleted = {
+                        --     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
+                        --     name = addon.L["Show Other Faction Warband as Completed"],
+                        --     desc = function() return addon.L["Show Other Faction Warband as Completed Desc"]:K_ReplaceVars{
+                        --             hordeIntro = addon.GetAchievmentName(12555),
+                        --             allianceIntro = addon.GetAchievmentName(12582),
+                        --             warStories = addon.GetAchievmentName(40955),
+                        --         }:KAF_AddDefaultValueText("Achievements.ShowOtherFactionWarbandAsCompleted")
+                        --     end,
+                        --     get = function() return addon.Options.db.profile.Achievements.ShowOtherFactionWarbandAsCompleted; end,
+                        --     set = function(_, value) addon.Options.db.profile.Achievements.ShowOtherFactionWarbandAsCompleted = value; end,
+                        -- },
+                        Blank0 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.35), name = ""},
                         ShowAllianceFactionIcon = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Faction Faction Icon"]:K_ReplaceVars(addon.L["Alliance"]),
-                            desc = addon.L["Show Faction Faction Icon Desc"]:K_ReplaceVars(addon.L["Alliance"]):KAF_AddDefaultValueText("Achievements.ShowAllianceFactionIcon"):K_AddReloadRequired(),
+                            desc = addon.L["Show Faction Faction Icon Desc"]:K_ReplaceVars(addon.L["Alliance"]):KAF_AddDefaultValueText("Achievements.ShowAllianceFactionIcon"),
                             get = function() return addon.Options.db.profile.Achievements.ShowAllianceFactionIcon; end,
-                            set = function(_, value) addon.Options.db.profile.Achievements.ShowAllianceFactionIcon = value; end,
+                            set = ShowAllianceFactionIconSet,
                         },
                         ShowHordeFactionIcon = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Faction Faction Icon"]:K_ReplaceVars(addon.L["Horde"]),
-                            desc = addon.L["Show Faction Faction Icon Desc"]:K_ReplaceVars(addon.L["Horde"]):KAF_AddDefaultValueText("Achievements.ShowHordeFactionIcon"):K_AddReloadRequired(),
+                            desc = addon.L["Show Faction Faction Icon Desc"]:K_ReplaceVars(addon.L["Horde"]):KAF_AddDefaultValueText("Achievements.ShowHordeFactionIcon"),
                             get = function() return addon.Options.db.profile.Achievements.ShowHordeFactionIcon; end,
-                            set = function(_, value) addon.Options.db.profile.Achievements.ShowHordeFactionIcon = value; end,
+                            set = ShowHordeFactionIconSet,
                         },
+                        FactionIconAlpha = {
+                            order = OrderPP(), type = "range", width = AdjustedWidth(1.35),
+                            name = addon.L["Faction Icon Transparency"],
+                            desc = addon.L["Faction Icon Transparency Desc"]:KAF_AddDefaultValueText("Achievements.FactionIconAlpha"),
+                            min = 0, max = 1, step = 0.01,
+                            get = function() return addon.Options.db.profile.Achievements.FactionIconAlpha; end,
+                            set = FactionIconAlphaSet,
+                            disabled = function() return not addon.Options.db.profile.Achievements.ShowAllianceFactionIcon and not addon.Options.db.profile.Achievements.ShowHordeFactionIcon; end
+                        },
+                        Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.35), name = ""},
                         ShowTemporarilyObtainableIcon = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Temporarily obtainable Icon"]:K_ReplaceVars(addon.L["Temporarily obtainable"]),
@@ -1047,9 +1132,23 @@ local achievementsOptions = {
                         TemporarilyObtainableHeaderColors = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Temporarily obtainable Header Colors"]:K_ReplaceVars(addon.L["Temporarily obtainable"]),
-                            desc = addon.L["Temporarily obtainable Header Colors Desc"]:K_ReplaceVars(addon.L["Temporarily obtainable"]):KAF_AddDefaultValueText("Achievements.TemporarilyObtainableHeaderColors"),
+                            desc = addon.L["Temporarily obtainable Header Colors Desc"]:KAF_AddDefaultValueText("Achievements.TemporarilyObtainableHeaderColors"),
                             get = function() return addon.Options.db.profile.Achievements.TemporarilyObtainableHeaderColors; end,
                             set = TemporarilyObtainableHeaderColorsSet,
+                        },
+                        ShowWarbandIcon = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
+                            name = addon.L["Show Warband Icon"]:K_ReplaceVars(addon.L["Warband"]),
+                            desc = addon.L["Show Warband Icon Desc"]:K_ReplaceVars(addon.L["Warband"]):KAF_AddDefaultValueText("Achievements.ShowWarbandIcon"),
+                            get = function() return addon.Options.db.profile.Achievements.ShowWarbandIcon; end,
+                            set = ShowWarbandIconSet,
+                        },
+                        WarbandHeaderColor = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
+                            name = addon.L["Warband Header Color"]:K_ReplaceVars(addon.L["Warband"]),
+                            desc = addon.L["Warband Header Color Desc"]:K_ReplaceVars(addon.L["Show Warband Icon"]:K_ReplaceVars(addon.L["Warband"])):KAF_AddDefaultValueText("Achievements.WarbandHeaderColor"),
+                            get = function() return addon.Options.db.profile.Achievements.WarbandHeaderColor; end,
+                            set = WarbandHeaderColorSet,
                         },
                         Objectives = {
                             order = OrderPP(), type = "header",
@@ -1096,6 +1195,27 @@ local achievementsOptions = {
                             min = 1, max = 50, step = 1,
                             get = function() return addon.Options.db.profile.Achievements.MouseWheelPanScalar; end,
                             set = SetAchievementsMouseWheelPanScalar
+                        }
+                    }
+                },
+                TabPriority = {
+                    order = OrderPP(), type = "group", inline = true,
+                    name = addon.L["Tab Priority"],
+                    args = {
+                        EnableTabPriority = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
+                            name = addon.L["Enable Tab Priority"],
+                            desc = addon.L["Enable Tab Priority Desc"]:KAF_AddDefaultValueText("Achievements.EnableTabPriority"),
+                            get = function() return addon.Options.db.profile.Achievements.EnableTabPriority; end,
+                            set = function(_, value) addon.Options.db.profile.Achievements.EnableTabPriority = value; end
+                        },
+                        TabPriority = {
+                            order = OrderPP(), type = "select", width = AdjustedWidth(1.5),
+                            name = addon.L["Tab Priority"],
+                            desc = function() return addon.L["Tab Priority Desc"]:K_ReplaceVars(addon.L["Achievements"]):KAF_AddDefaultValueText("Achievements.TabPriority", KrowiAF_SavedData.TabKeys) end,
+                            values = function() return KrowiAF_SavedData.TabKeys; end,
+                            get = function() return addon.Options.db.profile.Achievements.TabPriority; end,
+                            set = function (_, value) addon.Options.db.profile.Achievements.TabPriority = value; end
                         }
                     }
                 }
@@ -1293,7 +1413,15 @@ local achievementsOptions = {
                             get = function() return addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.ShowDateTime; end,
                             set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.ShowDateTime = value; end,
                             disabled = function() return not addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.Show end
-                        }
+                        },
+                        EarnedByCharacters = {
+                            order = OrderPP(), type = "range", width = AdjustedWidth(1.35),
+                            name = addon.L["Number of lines"],
+                            desc = addon.L["Number of Temporarily obtainable lines Desc"]:K_ReplaceVars(addon.L["Temporarily obtainable"]):KAF_AddDefaultValueText("Tooltip.Achievements.TemporarilyObtainable.NumberOfLines"),
+                            min = 1, max = 10, step = 1,
+                            get = function() return addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.NumberOfLines; end,
+                            set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.NumberOfLines = value; end
+                        },
                     }
                 },
                 StartTimeAndEndTime = {
@@ -1481,7 +1609,7 @@ local criteriaOptions = {
                     name = addon.L["Show Criteria"],
                     desc = function() return addon.L["Show Criteria Desc"]:K_ReplaceVars{
                         criteria = (addon.GetAchievementCriteriaInfo(1206, 1)),
-                        achievement = (select(2, addon.GetAchievementInfo(1206)))
+                        achievement = addon.GetAchievmentName(1206)
                     }:KAF_AddDefaultValueText("Tooltip.Criteria.Show"); end,
                     get = function() return addon.Options.db.profile.Tooltip.Criteria.Show; end,
                     set = function(_, value) addon.Options.db.profile.Tooltip.Criteria.Show = value; end
@@ -1576,10 +1704,10 @@ function RefreshOptions()
     SetCategoryIndentation(_, profile.Categories.Indentation);
     SetCategoriesMouseWheelPanScalar(_, profile.Categories.MouseWheelPanScalar);
     MergeMergeSmallCategoriesThresholdSet(_, profile.Window.MergeSmallCategoriesThreshold);
-    DrawSubCategories(addon.Data.WatchListCategories);
-    DrawSubCategories(addon.Data.TrackingAchievementsCategories);
+    DrawSubCategories(addon.SpecialCategories.WatchList);
+    DrawSubCategories(addon.SpecialCategories.TrackingAchievements);
     ShowExcludedCategory();
-    DrawSubCategories(addon.Data.ExcludedCategories);
+    DrawSubCategories(addon.SpecialCategories.Excluded);
     SetAchievementsMouseWheelPanScalar(_, profile.Achievements.MouseWheelPanScalar);
     StartTimeAndEndTimeCustomSet(_, profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime);
     SetCalendarMouseWheelPanScalar(_, profile.Calendar.MouseWheelPanScalar);

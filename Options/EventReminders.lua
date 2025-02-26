@@ -115,7 +115,7 @@ local function PopUpsOffsetYSet(_, value)
 end
 
 local function PopUpsShowPlaceholderFunc()
-    local calendarEvents = addon.Data.Events[addon.Objects.EventType.Calendar];
+    local calendarEvents = addon.Data.Events[KrowiAF.Enum.EventType.Calendar];
     local showPopUpsWithTimeDataOnly = addon.Options.db.profile.EventReminders.PopUps.OnLogin.ShowOnlyWhenTimeDataIsAvailable or addon.Options.db.profile.EventReminders.PopUps.OnReload.ShowOnlyWhenTimeDataIsAvailable or addon.Options.db.profile.EventReminders.PopUps.OnEventStart.ShowOnlyWhenTimeDataIsAvailable;
     for i, event in next, calendarEvents do
         if i == 141 then -- Fake not active event
@@ -149,100 +149,136 @@ local function StartTimeAndEndTimeCustomSet(_, value)
     addon.Gui.EventReminderSideButtonSystem:Refresh();
 end
 
-options.OptionsTable.args["EventReminders"] = {
-    type = "group", childGroups = "tab",
-    name = addon.L["Event Reminders"],
+local generalOptions = {
+    order = OrderPP(), type = "group",
+    name = addon.L["General"],
     args = {
-        General = {
-            order = OrderPP(), type = "group",
-            name = addon.L["General"],
+        Style = {
+            order = OrderPP(), type = "group", inline = true,
+            name = addon.L["Style"],
             args = {
-                Style = {
-                    order = OrderPP(), type = "group", inline = true,
-                    name = addon.L["Style"],
-                    args = {
-                        Compact = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(),
-                            name = addon.L["Compact"],
-                            desc = addon.L["Compact Desc"]:KAF_AddDefaultValueText("EventReminders.Compact"):K_AddReloadRequired(),
-                            get = function() return addon.Options.db.profile.EventReminders.Compact; end,
-                            set = function(_, value) addon.Options.db.profile.EventReminders.Compact = value; end
-                        }
-                    }
+                Enable = {
+                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
+                    name = addon.L["Enable"],
+                    desc = addon.L["Event Reminders Enable Desc"]:K_ReplaceVars(addon.L["Event Reminders"]):KAF_AddDefaultValueText("EventReminders.Enabled"):K_AddReloadRequired(),
+                    get = function() return addon.Options.db.profile.EventReminders.Enabled; end,
+                    set = function(_, value) addon.Options.db.profile.EventReminders.Enabled = value; end
                 },
-                TimeDisplay = {
-                    order = OrderPP(), type = "group",
-                    name = addon.L["Time display"],
-                    inline = true,
-                    args = {
-                        Line1 = {
-                            order = OrderPP(), type = "select", width = AdjustedWidth(1.45),
-                            name = addon.L["Line"] .. " 1",
-                            desc = (""):KAF_AddDefaultValueText("EventReminders.TimeDisplay.Line1", timeDisplaysLine1),
-                            values = timeDisplaysLine1,
-                            get = function() return addon.Options.db.profile.EventReminders.TimeDisplay.Line1; end,
-                            set = TimeDisplayLine1Set
-                        },
-                        Line2 = {
-                            order = OrderPP(), type = "select", width = AdjustedWidth(1.45),
-                            name = addon.L["Line"] .. " 2",
-                            desc = (""):KAF_AddDefaultValueText("EventReminders.TimeDisplay.Line2", timeDisplaysLine2),
-                            values = timeDisplaysLine2,
-                            get = function() return addon.Options.db.profile.EventReminders.TimeDisplay.Line2; end,
-                            set = TimeDisplayLine2Set,
-                            disabled = function() return addon.Options.db.profile.EventReminders.Compact; end
-                        }
-                    }
+                EnableUpcomingCalendarEvents = {
+                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
+                    name = addon.L["Enable Upcoming Calendar Events"],
+                    desc = addon.L["Enable Upcoming Calendar Events Desc"]:K_ReplaceVars(addon.L["Enable Upcoming Calendar Events"]):KAF_AddDefaultValueText("EventReminders.UpcomingCalendarEvents.Enabled"):K_AddReloadRequired(),
+                    get = function() return addon.Options.db.profile.EventReminders.UpcomingCalendarEvents.Enabled; end,
+                    set = function(_, value) addon.Options.db.profile.EventReminders.UpcomingCalendarEvents.Enabled = value; end,
+                    disabled = function() return not addon.Options.db.profile.EventReminders.Enabled; end
                 },
-                Other = {
-                    order = OrderPP(), type = "group", inline = true,
-                    name = addon.L["Other"],
-                    args = {
-                        RefreshInterval = {
-                            order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
-                            name = addon.L["Refresh interval"],
-                            desc = addon.L["Refresh interval Desc"]:KAF_AddDefaultValueText("EventReminders.RefreshInterval"),
-                            min = 1, max = 3600, step = 1,
-                            get = function() return addon.Options.db.profile.EventReminders.RefreshInterval; end,
-                            set = function(_, value) addon.Options.db.profile.EventReminders.RefreshInterval = value; end
-                        },
-                        ShowPopUpsOnLoginDelay = {
-                            order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
-                            name = addon.L["Login Delay"],
-                            desc = addon.L["Show pop ups on login delay Desc"]:KAF_AddDefaultValueText("EventReminders.OnLoginDelay"),
-                            min = 1, max = 600, step = 1,
-                            get = function() return addon.Options.db.profile.EventReminders.OnLoginDelay; end,
-                            set = function(_, value) addon.Options.db.profile.EventReminders.OnLoginDelay = value; end
-                        },
-                        SideButtonsAnchor = {
-                            order = OrderPP(), type = "select", width = AdjustedWidth(1.45),
-                            name = addon.L["Side Button Anchor"],
-                            desc = addon.L["Side Button Anchor Desc"]:KAF_AddDefaultValueText("EventReminders.SideButtonsAnchor", sideButtonsAnchor),
-                            values = sideButtonsAnchor,
-                            get = function() return addon.Options.db.profile.EventReminders.SideButtonsAnchor; end,
-                            set = SideButtonsAnchorSet,
-                        }
-                    }
+                Compact = {
+                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
+                    name = addon.L["Compact"],
+                    desc = addon.L["Compact Desc"]:KAF_AddDefaultValueText("EventReminders.Compact"):K_AddReloadRequired(),
+                    get = function() return addon.Options.db.profile.EventReminders.Compact; end,
+                    set = function(_, value) addon.Options.db.profile.EventReminders.Compact = value; end,
+                    disabled = function() return not addon.Options.db.profile.EventReminders.Enabled; end
                 }
             }
         },
-        PopUps = {
+        TimeDisplay = {
             order = OrderPP(), type = "group",
-            name = addon.L["Pop ups"],
+            name = addon.L["Time display"],
+            disabled = function() return not addon.Options.db.profile.EventReminders.Enabled; end,
+            inline = true,
+            args = {
+                Line1 = {
+                    order = OrderPP(), type = "select", width = AdjustedWidth(1.45),
+                    name = addon.L["Line"] .. " 1",
+                    desc = (""):KAF_AddDefaultValueText("EventReminders.TimeDisplay.Line1", timeDisplaysLine1),
+                    values = timeDisplaysLine1,
+                    get = function() return addon.Options.db.profile.EventReminders.TimeDisplay.Line1; end,
+                    set = TimeDisplayLine1Set
+                },
+                Line2 = {
+                    order = OrderPP(), type = "select", width = AdjustedWidth(1.45),
+                    name = addon.L["Line"] .. " 2",
+                    desc = (""):KAF_AddDefaultValueText("EventReminders.TimeDisplay.Line2", timeDisplaysLine2),
+                    values = timeDisplaysLine2,
+                    get = function() return addon.Options.db.profile.EventReminders.TimeDisplay.Line2; end,
+                    set = TimeDisplayLine2Set,
+                    disabled = function() return addon.Options.db.profile.EventReminders.Compact; end
+                }
+            }
+        },
+        Other = {
+            order = OrderPP(), type = "group", inline = true,
+            name = addon.L["Other"],
+            disabled = function() return not addon.Options.db.profile.EventReminders.Enabled; end,
+            args = {
+                ShowPopUpsOnLoginDelay = {
+                    order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
+                    name = addon.L["Active Event Login Delay"],
+                    desc = addon.L["Show pop ups on login delay Desc"]:KAF_AddDefaultValueText("EventReminders.OnLoginDelay"),
+                    min = 1, max = 600, step = 1,
+                    get = function() return addon.Options.db.profile.EventReminders.OnLoginDelay; end,
+                    set = function(_, value) addon.Options.db.profile.EventReminders.OnLoginDelay = value; end
+                },
+                ShowPopUpsOnLoginUpcomingDelay = {
+                    order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
+                    name = addon.L["Upcoming Calendar Event Login Delay"],
+                    desc = addon.L["Show pop ups on login delay Desc"]:KAF_AddDefaultValueText("EventReminders.OnLoginUpcomingDelay"),
+                    min = 1, max = 600, step = 1,
+                    get = function() return addon.Options.db.profile.EventReminders.OnLoginUpcomingDelay; end,
+                    set = function(_, value) addon.Options.db.profile.EventReminders.OnLoginUpcomingDelay = value; end
+                },
+                RefreshInterval = {
+                    order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
+                    name = addon.L["Refresh interval"],
+                    desc = addon.L["Refresh interval Desc"]:KAF_AddDefaultValueText("EventReminders.RefreshInterval"),
+                    min = 1, max = 3600, step = 1,
+                    get = function() return addon.Options.db.profile.EventReminders.RefreshInterval; end,
+                    set = function(_, value) addon.Options.db.profile.EventReminders.RefreshInterval = value; end
+                },
+                SideButtonsAnchor = {
+                    order = OrderPP(), type = "select", width = AdjustedWidth(1.45),
+                    name = addon.L["Side Button Anchor"],
+                    desc = addon.L["Side Button Anchor Desc"]:KAF_AddDefaultValueText("EventReminders.SideButtonsAnchor", sideButtonsAnchor),
+                    values = sideButtonsAnchor,
+                    get = function() return addon.Options.db.profile.EventReminders.SideButtonsAnchor; end,
+                    set = SideButtonsAnchorSet,
+                },
+                UpcomingCalendarEventsDays = {
+                    order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
+                    name = addon.L["Upcoming Calendar Event Days"],
+                    desc = addon.L["Upcoming Calendar Event Days Desc"]:KAF_AddDefaultValueText("EventReminders.UpcomingCalendarEvents.Days"):K_AddReloadRequired(),
+                    min = 1, max = 60, step = 1,
+                    get = function() return addon.Options.db.profile.EventReminders.UpcomingCalendarEvents.Days; end,
+                    set = function(_, value) addon.Options.db.profile.EventReminders.UpcomingCalendarEvents.Days = value; end
+                },
+            }
+        }
+    }
+};
+
+local popUpsOptions = {
+    order = OrderPP(), type = "group",
+    name = addon.L["Pop ups"],
+    disabled = function() return not addon.Options.db.profile.EventReminders.Enabled; end,
+    args = {
+        ActiveEvents = {
+            order = OrderPP(), type = "group", inline = true,
+            name = addon.L["Active Events"],
             args = {
                 OnLogin = {
                     order = OrderPP(), type = "group", inline = true,
                     name = addon.L["On Login"],
                     args = {
                         Show = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.65),
                             name = addon.L["Show"],
                             desc = addon.L["Show alertSystem on login Desc"]:K_ReplaceVars(addon.L["Pop ups"]):KAF_AddDefaultValueText("EventReminders.PopUps.OnLogin.Show"),
                             get = function() return addon.Options.db.profile.EventReminders.PopUps.OnLogin.Show; end,
                             set = function(_, value) addon.Options.db.profile.EventReminders.PopUps.OnLogin.Show = value; end
                         },
                         ShowInInstances = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.75),
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
                             name = addon.L["In instances"],
                             desc = addon.L["Show alertSystem on login in instances Desc"]:K_ReplaceVars(addon.L["Pop ups"]):KAF_AddDefaultValueText("EventReminders.PopUps.OnLogin.ShowInInstances"),
                             get = function() return addon.Options.db.profile.EventReminders.PopUps.OnLogin.ShowInInstances; end,
@@ -250,7 +286,7 @@ options.OptionsTable.args["EventReminders"] = {
                             disabled = function() return not addon.Options.db.profile.EventReminders.PopUps.OnLogin.Show end
                         },
                         ShowOnlyWhenTimeDataIsAvailable = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
                             name = addon.L["Only when time data is available"],
                             desc = addon.L["Show alertSystem on login only when time data is available Desc"]:K_ReplaceVars(addon.L["Pop ups"]):KAF_AddDefaultValueText("EventReminders.PopUps.OnLogin.ShowOnlyWhenTimeDataIsAvailable"),
                             get = function() return addon.Options.db.profile.EventReminders.PopUps.OnLogin.ShowOnlyWhenTimeDataIsAvailable; end,
@@ -264,14 +300,14 @@ options.OptionsTable.args["EventReminders"] = {
                     name = addon.L["On Reload"],
                     args = {
                         Show = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.65),
                             name = addon.L["Show"],
                             desc = addon.L["Show alertSystem on reload Desc"]:K_ReplaceVars(addon.L["Pop ups"]):KAF_AddDefaultValueText("EventReminders.PopUps.OnReload.Show"),
                             get = function() return addon.Options.db.profile.EventReminders.PopUps.OnReload.Show; end,
                             set = function(_, value) addon.Options.db.profile.EventReminders.PopUps.OnReload.Show = value; end
                         },
                         ShowInInstances = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.75),
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
                             name = addon.L["In instances"],
                             desc = addon.L["Show alertSystem on reload in instances Desc"]:K_ReplaceVars(addon.L["Pop ups"]):KAF_AddDefaultValueText("EventReminders.PopUps.OnReload.ShowInInstances"),
                             get = function() return addon.Options.db.profile.EventReminders.PopUps.OnReload.ShowInInstances; end,
@@ -279,7 +315,7 @@ options.OptionsTable.args["EventReminders"] = {
                             disabled = function() return not addon.Options.db.profile.EventReminders.PopUps.OnReload.Show end
                         },
                         ShowOnlyWhenTimeDataIsAvailable = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
                             name = addon.L["Only when time data is available"],
                             desc = addon.L["Show alertSystem on reload only when time data is available Desc"]:K_ReplaceVars(addon.L["Pop ups"]):KAF_AddDefaultValueText("EventReminders.PopUps.OnReload.ShowOnlyWhenTimeDataIsAvailable"),
                             get = function() return addon.Options.db.profile.EventReminders.PopUps.OnReload.ShowOnlyWhenTimeDataIsAvailable; end,
@@ -293,14 +329,14 @@ options.OptionsTable.args["EventReminders"] = {
                     name = addon.L["On Event Start"],
                     args = {
                         Show = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.65),
                             name = addon.L["Show"],
                             desc = addon.L["Show alertSystem on event start Desc"]:K_ReplaceVars(addon.L["Pop ups"]):KAF_AddDefaultValueText("EventReminders.PopUps.OnEventStart.Show"),
                             get = function() return addon.Options.db.profile.EventReminders.PopUps.OnEventStart.Show; end,
                             set = function(_, value) addon.Options.db.profile.EventReminders.PopUps.OnEventStart.Show = value; end
                         },
                         ShowInInstances = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.75),
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
                             name = addon.L["In instances"],
                             desc = addon.L["Show alertSystem on event start in instances Desc"]:K_ReplaceVars(addon.L["Pop ups"]):KAF_AddDefaultValueText("EventReminders.PopUps.OnEventStart.ShowInInstances"),
                             get = function() return addon.Options.db.profile.EventReminders.PopUps.OnEventStart.ShowInInstances; end,
@@ -308,7 +344,7 @@ options.OptionsTable.args["EventReminders"] = {
                             disabled = function() return not addon.Options.db.profile.EventReminders.PopUps.OnEventStart.Show end
                         },
                         ShowOnlyWhenTimeDataIsAvailable = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
                             name = addon.L["Only when time data is available"],
                             desc = addon.L["Show alertSystem on event start only when time data is available Desc"]:K_ReplaceVars(addon.L["Pop ups"]):KAF_AddDefaultValueText("EventReminders.PopUps.OnEventStart.ShowOnlyWhenTimeDataIsAvailable"),
                             get = function() return addon.Options.db.profile.EventReminders.PopUps.OnEventStart.ShowOnlyWhenTimeDataIsAvailable; end,
@@ -317,91 +353,168 @@ options.OptionsTable.args["EventReminders"] = {
                         }
                     }
                 },
-                Location = {
-                    order = OrderPP(), type = "group", inline = true,
-                    name = addon.L["Location"],
-                    args = {
-                        GrowDirection = {
-                            order = OrderPP(), type = "select", width = AdjustedWidth(1.45),
-                            name = addon.L["Grow direction"],
-                            desc = addon.L["Grow direction Desc"]:KAF_AddDefaultValueText("EventReminders.PopUps.GrowDirection", growDirection),
-                            values = growDirection,
-                            get = function() return addon.Options.db.profile.EventReminders.PopUps.GrowDirection; end,
-                            set = PopUpsGrowDirectionSet
-                        },
-                        Spacing = {
-                            order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
-                            name = addon.L["Spacing"],
-                            desc = addon.L["Spacing Desc"]:KAF_AddDefaultValueText("EventReminders.PopUps.Spacing"),
-                            min = 0, max = 100, step = 1,
-                            get = function() return addon.Options.db.profile.EventReminders.PopUps.Spacing; end,
-                            set = PopUpsSpacingSet
-                        },
-                        OffsetX = {
-                            order = OrderPP(), type = "range", width = "full",
-                            name = addon.L["XYZ offset"]:K_ReplaceVars("X"),
-                            desc = addon.L["X offset Desc"]:KAF_AddDefaultValueText("EventReminders.PopUps.OffsetX"),
-                            min = -2000, max = 2000, step = 1,
-                            get = function() return addon.Options.db.profile.EventReminders.PopUps.OffsetX; end,
-                            set = PopUpsOffsetXSet
-                        },
-                        OffsetY = {
-                            order = OrderPP(), type = "range", width = "full",
-                            name = addon.L["XYZ offset"]:K_ReplaceVars("Y"),
-                            desc = addon.L["Y offset Desc"]:KAF_AddDefaultValueText("EventReminders.PopUps.OffsetY"),
-                            min = 0, max = 2000, step = 1,
-                            get = function() return addon.Options.db.profile.EventReminders.PopUps.OffsetY; end,
-                            set = PopUpsOffsetYSet
-                        },
-                        ShowPlaceholder = {
-                            order = OrderPP(), type = "execute", width = AdjustedWidth(),
-                            name = addon.L["Show placeholders"],
-                            desc = addon.L["Show placeholders Desc"],
-                            func = PopUpsShowPlaceholderFunc
-                        }
-                    }
-                },
-                Other = {
-                    order = OrderPP(), type = "group", inline = true,
-                    name = addon.L["Other"],
-                    args = {
-                        MaxAlerts = {
-                            order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
-                            name = addon.L["Max number of alerts"],
-                            desc = addon.L["Max number of alerts Desc"]:KAF_AddDefaultValueText("EventReminders.PopUps.MaxAlerts"),
-                            min = 1, max = 100, step = 1,
-                            get = function() return addon.Options.db.profile.EventReminders.PopUps.MaxAlerts; end,
-                            set = function(_, value) addon.Options.db.profile.EventReminders.PopUps.MaxAlerts = value; end
-                        },
-                        FadeDelay = {
-                            order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
-                            name = addon.L["Fade delay"],
-                            desc = addon.L["Fade delay Desc"]:KAF_AddDefaultValueText("EventReminders.PopUps.FadeDelay"),
-                            min = 1, max = 120, step = 1,
-                            get = function() return addon.Options.db.profile.EventReminders.PopUps.FadeDelay; end,
-                            set = function(_, value) addon.Options.db.profile.EventReminders.PopUps.FadeDelay = value; end
-                        }
-                    }
-                }
             }
         },
-        ChatMessages = {
-            order = OrderPP(), type = "group",
-            name = addon.L["Chat messages"],
+        UpcomingCalendarEvents = {
+            order = OrderPP(), type = "group", inline = true,
+            name = addon.L["Upcoming Calendar Events"],
             args = {
                 OnLogin = {
                     order = OrderPP(), type = "group", inline = true,
                     name = addon.L["On Login"],
                     args = {
                         Show = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.65),
+                            name = addon.L["Show"],
+                            desc = addon.L["Show alertSystem on login Desc"]:K_ReplaceVars(addon.L["Pop ups"]):KAF_AddDefaultValueText("EventReminders.PopUps.OnLoginUpcoming.Show"),
+                            get = function() return addon.Options.db.profile.EventReminders.PopUps.OnLoginUpcoming.Show; end,
+                            set = function(_, value) addon.Options.db.profile.EventReminders.PopUps.OnLoginUpcoming.Show = value; end
+                        },
+                        ShowInInstances = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
+                            name = addon.L["In instances"],
+                            desc = addon.L["Show alertSystem on login in instances Desc"]:K_ReplaceVars(addon.L["Pop ups"]):KAF_AddDefaultValueText("EventReminders.PopUps.OnLoginUpcoming.ShowInInstances"),
+                            get = function() return addon.Options.db.profile.EventReminders.PopUps.OnLoginUpcoming.ShowInInstances; end,
+                            set = function(_, value) addon.Options.db.profile.EventReminders.PopUps.OnLoginUpcoming.ShowInInstances = value; end,
+                            disabled = function() return not addon.Options.db.profile.EventReminders.PopUps.OnLoginUpcoming.Show end
+                        }
+                    }
+                },
+                OnReload = {
+                    order = OrderPP(), type = "group", inline = true,
+                    name = addon.L["On Reload"],
+                    args = {
+                        Show = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.65),
+                            name = addon.L["Show"],
+                            desc = addon.L["Show alertSystem on reload Desc"]:K_ReplaceVars(addon.L["Pop ups"]):KAF_AddDefaultValueText("EventReminders.PopUps.OnReloadUpcoming.Show"),
+                            get = function() return addon.Options.db.profile.EventReminders.PopUps.OnReloadUpcoming.Show; end,
+                            set = function(_, value) addon.Options.db.profile.EventReminders.PopUps.OnReloadUpcoming.Show = value; end
+                        },
+                        ShowInInstances = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
+                            name = addon.L["In instances"],
+                            desc = addon.L["Show alertSystem on reload in instances Desc"]:K_ReplaceVars(addon.L["Pop ups"]):KAF_AddDefaultValueText("EventReminders.PopUps.OnReloadUpcoming.ShowInInstances"),
+                            get = function() return addon.Options.db.profile.EventReminders.PopUps.OnReloadUpcoming.ShowInInstances; end,
+                            set = function(_, value) addon.Options.db.profile.EventReminders.PopUps.OnReloadUpcoming.ShowInInstances = value; end,
+                            disabled = function() return not addon.Options.db.profile.EventReminders.PopUps.OnReloadUpcoming.Show end
+                        }
+                    }
+                },
+                OnEventStart = {
+                    order = OrderPP(), type = "group", inline = true,
+                    name = addon.L["On Event Start"],
+                    args = {
+                        Show = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.65),
+                            name = addon.L["Show"],
+                            desc = addon.L["Show alertSystem on event start Desc"]:K_ReplaceVars(addon.L["Pop ups"]):KAF_AddDefaultValueText("EventReminders.PopUps.OnEventStartUpcoming.Show"),
+                            get = function() return addon.Options.db.profile.EventReminders.PopUps.OnEventStartUpcoming.Show; end,
+                            set = function(_, value) addon.Options.db.profile.EventReminders.PopUps.OnEventStartUpcoming.Show = value; end
+                        },
+                        ShowInInstances = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
+                            name = addon.L["In instances"],
+                            desc = addon.L["Show alertSystem on event start in instances Desc"]:K_ReplaceVars(addon.L["Pop ups"]):KAF_AddDefaultValueText("EventReminders.PopUps.OnEventStartUpcoming.ShowInInstances"),
+                            get = function() return addon.Options.db.profile.EventReminders.PopUps.OnEventStartUpcoming.ShowInInstances; end,
+                            set = function(_, value) addon.Options.db.profile.EventReminders.PopUps.OnEventStartUpcoming.ShowInInstances = value; end,
+                            disabled = function() return not addon.Options.db.profile.EventReminders.PopUps.OnEventStartUpcoming.Show end
+                        }
+                    }
+                },
+            }
+        },
+        Location = {
+            order = OrderPP(), type = "group", inline = true,
+            name = addon.L["Location"],
+            args = {
+                GrowDirection = {
+                    order = OrderPP(), type = "select", width = AdjustedWidth(1.45),
+                    name = addon.L["Grow direction"],
+                    desc = addon.L["Grow direction Desc"]:KAF_AddDefaultValueText("EventReminders.PopUps.GrowDirection", growDirection),
+                    values = growDirection,
+                    get = function() return addon.Options.db.profile.EventReminders.PopUps.GrowDirection; end,
+                    set = PopUpsGrowDirectionSet
+                },
+                Spacing = {
+                    order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
+                    name = addon.L["Spacing"],
+                    desc = addon.L["Spacing Desc"]:KAF_AddDefaultValueText("EventReminders.PopUps.Spacing"),
+                    min = 0, max = 100, step = 1,
+                    get = function() return addon.Options.db.profile.EventReminders.PopUps.Spacing; end,
+                    set = PopUpsSpacingSet
+                },
+                OffsetX = {
+                    order = OrderPP(), type = "range", width = "full",
+                    name = addon.L["XYZ offset"]:K_ReplaceVars("X"),
+                    desc = addon.L["X offset Desc"]:KAF_AddDefaultValueText("EventReminders.PopUps.OffsetX"),
+                    min = -2000, max = 2000, step = 1,
+                    get = function() return addon.Options.db.profile.EventReminders.PopUps.OffsetX; end,
+                    set = PopUpsOffsetXSet
+                },
+                OffsetY = {
+                    order = OrderPP(), type = "range", width = "full",
+                    name = addon.L["XYZ offset"]:K_ReplaceVars("Y"),
+                    desc = addon.L["Y offset Desc"]:KAF_AddDefaultValueText("EventReminders.PopUps.OffsetY"),
+                    min = 0, max = 2000, step = 1,
+                    get = function() return addon.Options.db.profile.EventReminders.PopUps.OffsetY; end,
+                    set = PopUpsOffsetYSet
+                },
+                ShowPlaceholder = {
+                    order = OrderPP(), type = "execute", width = AdjustedWidth(),
+                    name = addon.L["Show placeholders"],
+                    desc = addon.L["Show placeholders Desc"],
+                    func = PopUpsShowPlaceholderFunc
+                }
+            }
+        },
+        Other = {
+            order = OrderPP(), type = "group", inline = true,
+            name = addon.L["Other"],
+            args = {
+                MaxAlerts = {
+                    order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
+                    name = addon.L["Max number of alerts"],
+                    desc = addon.L["Max number of alerts Desc"]:KAF_AddDefaultValueText("EventReminders.PopUps.MaxAlerts"),
+                    min = 1, max = 100, step = 1,
+                    get = function() return addon.Options.db.profile.EventReminders.PopUps.MaxAlerts; end,
+                    set = function(_, value) addon.Options.db.profile.EventReminders.PopUps.MaxAlerts = value; end
+                },
+                FadeDelay = {
+                    order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
+                    name = addon.L["Fade delay"],
+                    desc = addon.L["Fade delay Desc"]:KAF_AddDefaultValueText("EventReminders.PopUps.FadeDelay"),
+                    min = 1, max = 120, step = 1,
+                    get = function() return addon.Options.db.profile.EventReminders.PopUps.FadeDelay; end,
+                    set = function(_, value) addon.Options.db.profile.EventReminders.PopUps.FadeDelay = value; end
+                }
+            }
+        }
+    }
+};
+
+local chatMessagesOptions = {
+    order = OrderPP(), type = "group",
+    name = addon.L["Chat messages"],
+    disabled = function() return not addon.Options.db.profile.EventReminders.Enabled; end,
+    args = {
+        ActiveEvents = {
+            order = OrderPP(), type = "group", inline = true,
+            name = addon.L["Active Events"],
+            args = {
+                OnLogin = {
+                    order = OrderPP(), type = "group", inline = true,
+                    name = addon.L["On Login"],
+                    args = {
+                        Show = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.65),
                             name = addon.L["Show"],
                             desc = addon.L["Show alertSystem on login Desc"]:K_ReplaceVars(addon.L["Chat messages"]):KAF_AddDefaultValueText("EventReminders.ChatMessages.OnLogin.Show"),
                             get = function() return addon.Options.db.profile.EventReminders.ChatMessages.OnLogin.Show; end,
                             set = function(_, value) addon.Options.db.profile.EventReminders.ChatMessages.OnLogin.Show = value; end
                         },
                         ShowInInstances = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.75),
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
                             name = addon.L["In instances"],
                             desc = addon.L["Show alertSystem on login in instances Desc"]:K_ReplaceVars(addon.L["Chat messages"]):KAF_AddDefaultValueText("EventReminders.ChatMessages.OnLogin.ShowInInstances"),
                             get = function() return addon.Options.db.profile.EventReminders.ChatMessages.OnLogin.ShowInInstances; end,
@@ -409,7 +522,7 @@ options.OptionsTable.args["EventReminders"] = {
                             disabled = function() return not addon.Options.db.profile.EventReminders.ChatMessages.OnLogin.Show end
                         },
                         ShowOnlyWhenTimeDataIsAvailable = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
                             name = addon.L["Only when time data is available"],
                             desc = addon.L["Show alertSystem on login only when time data is available Desc"]:K_ReplaceVars(addon.L["Chat messages"]):KAF_AddDefaultValueText("EventReminders.ChatMessages.OnLogin.ShowOnlyWhenTimeDataIsAvailable"),
                             get = function() return addon.Options.db.profile.EventReminders.ChatMessages.OnLogin.ShowOnlyWhenTimeDataIsAvailable; end,
@@ -423,14 +536,14 @@ options.OptionsTable.args["EventReminders"] = {
                     name = addon.L["On Reload"],
                     args = {
                         Show = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.65),
                             name = addon.L["Show"],
                             desc = addon.L["Show alertSystem on reload Desc"]:K_ReplaceVars(addon.L["Chat messages"]):KAF_AddDefaultValueText("EventReminders.ChatMessages.OnReload.Show"),
                             get = function() return addon.Options.db.profile.EventReminders.ChatMessages.OnReload.Show; end,
                             set = function(_, value) addon.Options.db.profile.EventReminders.ChatMessages.OnReload.Show = value; end
                         },
                         ShowInInstances = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.75),
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
                             name = addon.L["In instances"],
                             desc = addon.L["Show alertSystem on reload in instances Desc"]:K_ReplaceVars(addon.L["Chat messages"]):KAF_AddDefaultValueText("EventReminders.ChatMessages.OnReload.ShowInInstances"),
                             get = function() return addon.Options.db.profile.EventReminders.ChatMessages.OnReload.ShowInInstances; end,
@@ -438,7 +551,7 @@ options.OptionsTable.args["EventReminders"] = {
                             disabled = function() return not addon.Options.db.profile.EventReminders.ChatMessages.OnReload.Show end
                         },
                         ShowOnlyWhenTimeDataIsAvailable = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
                             name = addon.L["Only when time data is available"],
                             desc = addon.L["Show alertSystem on reload only when time data is available Desc"]:K_ReplaceVars(addon.L["Chat messages"]):KAF_AddDefaultValueText("EventReminders.ChatMessages.OnReload.ShowOnlyWhenTimeDataIsAvailable"),
                             get = function() return addon.Options.db.profile.EventReminders.ChatMessages.OnReload.ShowOnlyWhenTimeDataIsAvailable; end,
@@ -452,14 +565,14 @@ options.OptionsTable.args["EventReminders"] = {
                     name = addon.L["On Event Start"],
                     args = {
                         Show = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.65),
                             name = addon.L["Show"],
                             desc = addon.L["Show alertSystem on event start Desc"]:K_ReplaceVars(addon.L["Chat messages"]):KAF_AddDefaultValueText("EventReminders.ChatMessages.OnEventStart.Show"),
                             get = function() return addon.Options.db.profile.EventReminders.ChatMessages.OnEventStart.Show; end,
                             set = function(_, value) addon.Options.db.profile.EventReminders.ChatMessages.OnEventStart.Show = value; end
                         },
                         ShowInInstances = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.75),
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
                             name = addon.L["In instances"],
                             desc = addon.L["Show alertSystem on event start in instances Desc"]:K_ReplaceVars(addon.L["Chat messages"]):KAF_AddDefaultValueText("EventReminders.ChatMessages.OnEventStart.ShowInInstances"),
                             get = function() return addon.Options.db.profile.EventReminders.ChatMessages.OnEventStart.ShowInInstances; end,
@@ -467,7 +580,7 @@ options.OptionsTable.args["EventReminders"] = {
                             disabled = function() return not addon.Options.db.profile.EventReminders.ChatMessages.OnEventStart.Show end
                         },
                         ShowOnlyWhenTimeDataIsAvailable = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
                             name = addon.L["Only when time data is available"],
                             desc = addon.L["Show alertSystem on event start only when time data is available Desc"]:K_ReplaceVars(addon.L["Chat messages"]):KAF_AddDefaultValueText("EventReminders.ChatMessages.OnEventStart.ShowOnlyWhenTimeDataIsAvailable"),
                             get = function() return addon.Options.db.profile.EventReminders.ChatMessages.OnEventStart.ShowOnlyWhenTimeDataIsAvailable; end,
@@ -475,90 +588,178 @@ options.OptionsTable.args["EventReminders"] = {
                             disabled = function() return not addon.Options.db.profile.EventReminders.ChatMessages.OnEventStart.Show end
                         }
                     }
-                }
+                },
             }
         },
-        CalendarEvents = {
-            order = OrderPP(), type = "group", childGroups = "tab",
-            name = addon.L["Calendar Events"],
-            args = { --[[ Automatically generated ]] }
-        },
-        WorldEvents = {
-            order = OrderPP(), type = "group", childGroups = "tab",
-            name = addon.L["World Events"],
-            args = { --[[ Automatically generated ]] }
-        },
-        DateTimeFormat = {
-            order = OrderPP(), type = "group",
-            name = addon.L["Date and Time format"],
+        UpcomingCalendarEvents = {
+            order = OrderPP(), type = "group", inline = true,
+            name = addon.L["Upcoming Calendar Events"],
             args = {
-                StartTimeAndEndTime = {
+                OnLogin = {
                     order = OrderPP(), type = "group", inline = true,
-                    name = addon.L["Start Time"] .. " & " .. addon.L["End Time"],
+                    name = addon.L["On Login"],
                     args = {
-                        Presets = {
-                            order = OrderPP(), type = "select", width = AdjustedWidth(1.5),
-                            name = addon.L["Presets"],
-                            values = startTimeAndEndTimeDateTimeValues,
-                            get = StartTimeAndEndTimePresetsGet,
-                            set = function(_, value)
-                                local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Prefix .. "_EventReminders", "cmd", "KROWIAF-0.0").args.DateTimeFormat.args.StartTimeAndEndTime.args.Custom;
-                                custom.set(nil, startTimeAndEndTimeDateTimeFormats[value]);
-                            end
+                        Show = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.65),
+                            name = addon.L["Show"],
+                            desc = addon.L["Show alertSystem on login Desc"]:K_ReplaceVars(addon.L["Chat messages"]):KAF_AddDefaultValueText("EventReminders.ChatMessages.OnLoginUpcoming.Show"),
+                            get = function() return addon.Options.db.profile.EventReminders.ChatMessages.OnLoginUpcoming.Show; end,
+                            set = function(_, value) addon.Options.db.profile.EventReminders.ChatMessages.OnLoginUpcoming.Show = value; end
                         },
-                        Custom = {
-                            order = OrderPP(), type = "input", width = AdjustedWidth(1.5),
-                            name = addon.L["Custom"],
-                            get = function() return addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime; end,
-                            set = StartTimeAndEndTimeCustomSet
+                        ShowInInstances = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
+                            name = addon.L["In instances"],
+                            desc = addon.L["Show alertSystem on login in instances Desc"]:K_ReplaceVars(addon.L["Chat messages"]):KAF_AddDefaultValueText("EventReminders.ChatMessages.OnLoginUpcoming.ShowInInstances"),
+                            get = function() return addon.Options.db.profile.EventReminders.ChatMessages.OnLoginUpcoming.ShowInInstances; end,
+                            set = function(_, value) addon.Options.db.profile.EventReminders.ChatMessages.OnLoginUpcoming.ShowInInstances = value; end,
+                            disabled = function() return not addon.Options.db.profile.EventReminders.ChatMessages.OnLoginUpcoming.Show end
                         }
                     }
                 },
-                DateTimeFormattingGuideLine = {
+                OnReload = {
                     order = OrderPP(), type = "group", inline = true,
-                    name = addon.L["Date and Time formatting guide"],
+                    name = addon.L["On Reload"],
                     args = {
-                        DateTimeFormattingGuide = {
-                            order = OrderPP(), type = "description",
-                            name = addon.L["Date and Time formatting guide Desc"]:K_ReplaceVars {
-                                addon.L["Date and Time formatting guide Desc"],
-                                a = string.format(addon.Util.Colors.Yellow, "%a"),
-                                A = string.format(addon.Util.Colors.Yellow, "%A"),
-                                b = string.format(addon.Util.Colors.Yellow, "%b"),
-                                B = string.format(addon.Util.Colors.Yellow, "%B"),
-                                c = string.format(addon.Util.Colors.Yellow, "%c"),
-                                C = string.format(addon.Util.Colors.Yellow, "%C"),
-                                d = string.format(addon.Util.Colors.Yellow, "%d"),
-                                D = string.format(addon.Util.Colors.Yellow, "%D"),
-                                e = string.format(addon.Util.Colors.Yellow, "%e"),
-                                H = string.format(addon.Util.Colors.Yellow, "%H"),
-                                I = string.format(addon.Util.Colors.Yellow, "%I"),
-                                j = string.format(addon.Util.Colors.Yellow, "%j"),
-                                k = string.format(addon.Util.Colors.Yellow, "%k"),
-                                l = string.format(addon.Util.Colors.Yellow, "%l"),
-                                m = string.format(addon.Util.Colors.Yellow, "%m"),
-                                M = string.format(addon.Util.Colors.Yellow, "%M"),
-                                p = string.format(addon.Util.Colors.Yellow, "%p"),
-                                P = string.format(addon.Util.Colors.Yellow, "%P"),
-                                R = string.format(addon.Util.Colors.Yellow, "%R"),
-                                s = string.format(addon.Util.Colors.Yellow, "%s"),
-                                S = string.format(addon.Util.Colors.Yellow, "%S"),
-                                u = string.format(addon.Util.Colors.Yellow, "%u"),
-                                U = string.format(addon.Util.Colors.Yellow, "%U"),
-                                w = string.format(addon.Util.Colors.Yellow, "%w"),
-                                W = string.format(addon.Util.Colors.Yellow, "%W"),
-                                x = string.format(addon.Util.Colors.Yellow, "%x"),
-                                X = string.format(addon.Util.Colors.Yellow, "%X"),
-                                y = string.format(addon.Util.Colors.Yellow, "%y"),
-                                Y = string.format(addon.Util.Colors.Yellow, "%Y"),
-                                z = string.format(addon.Util.Colors.Yellow, "%z"),
-                                Z = string.format(addon.Util.Colors.Yellow, "%Z")
-                            }
+                        Show = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.65),
+                            name = addon.L["Show"],
+                            desc = addon.L["Show alertSystem on reload Desc"]:K_ReplaceVars(addon.L["Chat messages"]):KAF_AddDefaultValueText("EventReminders.ChatMessages.OnReloadUpcoming.Show"),
+                            get = function() return addon.Options.db.profile.EventReminders.ChatMessages.OnReloadUpcoming.Show; end,
+                            set = function(_, value) addon.Options.db.profile.EventReminders.ChatMessages.OnReloadUpcoming.Show = value; end
+                        },
+                        ShowInInstances = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
+                            name = addon.L["In instances"],
+                            desc = addon.L["Show alertSystem on reload in instances Desc"]:K_ReplaceVars(addon.L["Chat messages"]):KAF_AddDefaultValueText("EventReminders.ChatMessages.OnReloadUpcoming.ShowInInstances"),
+                            get = function() return addon.Options.db.profile.EventReminders.ChatMessages.OnReloadUpcoming.ShowInInstances; end,
+                            set = function(_, value) addon.Options.db.profile.EventReminders.ChatMessages.OnReloadUpcoming.ShowInInstances = value; end,
+                            disabled = function() return not addon.Options.db.profile.EventReminders.ChatMessages.OnReloadUpcoming.Show end
                         }
+                    }
+                },
+                OnEventStart = {
+                    order = OrderPP(), type = "group", inline = true,
+                    name = addon.L["On Event Start"],
+                    args = {
+                        Show = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.65),
+                            name = addon.L["Show"],
+                            desc = addon.L["Show alertSystem on event start Desc"]:K_ReplaceVars(addon.L["Chat messages"]):KAF_AddDefaultValueText("EventReminders.ChatMessages.OnEventStartUpcoming.Show"),
+                            get = function() return addon.Options.db.profile.EventReminders.ChatMessages.OnEventStartUpcoming.Show; end,
+                            set = function(_, value) addon.Options.db.profile.EventReminders.ChatMessages.OnEventStartUpcoming.Show = value; end
+                        },
+                        ShowInInstances = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
+                            name = addon.L["In instances"],
+                            desc = addon.L["Show alertSystem on event start in instances Desc"]:K_ReplaceVars(addon.L["Chat messages"]):KAF_AddDefaultValueText("EventReminders.ChatMessages.OnEventStartUpcoming.ShowInInstances"),
+                            get = function() return addon.Options.db.profile.EventReminders.ChatMessages.OnEventStartUpcoming.ShowInInstances; end,
+                            set = function(_, value) addon.Options.db.profile.EventReminders.ChatMessages.OnEventStartUpcoming.ShowInInstances = value; end,
+                            disabled = function() return not addon.Options.db.profile.EventReminders.ChatMessages.OnEventStartUpcoming.Show end
+                        }
+                    }
+                },
+            }
+        },
+    }
+};
+
+local calendarEventsOptions = {
+    order = OrderPP(), type = "group", childGroups = "tab",
+    name = addon.L["Calendar Events"],
+    disabled = function() return not addon.Options.db.profile.EventReminders.Enabled; end,
+    args = { --[[ Automatically generated ]] }
+};
+
+local worldOptions = {
+    order = OrderPP(), type = "group", childGroups = "tab",
+    name = addon.L["World Events"],
+    disabled = function() return not addon.Options.db.profile.EventReminders.Enabled; end,
+    args = { --[[ Automatically generated ]] }
+};
+
+local dateTimeFormatOptions = {
+    order = OrderPP(), type = "group",
+    name = addon.L["Date and Time format"],
+    disabled = function() return not addon.Options.db.profile.EventReminders.Enabled; end,
+    args = {
+        StartTimeAndEndTime = {
+            order = OrderPP(), type = "group", inline = true,
+            name = addon.L["Start Time"] .. " & " .. addon.L["End Time"],
+            args = {
+                Presets = {
+                    order = OrderPP(), type = "select", width = AdjustedWidth(1.5),
+                    name = addon.L["Presets"],
+                    values = startTimeAndEndTimeDateTimeValues,
+                    get = StartTimeAndEndTimePresetsGet,
+                    set = function(_, value)
+                        local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Prefix .. "_EventReminders", "cmd", "KROWIAF-0.0").args.DateTimeFormat.args.StartTimeAndEndTime.args.Custom;
+                        custom.set(nil, startTimeAndEndTimeDateTimeFormats[value]);
+                    end
+                },
+                Custom = {
+                    order = OrderPP(), type = "input", width = AdjustedWidth(1.5),
+                    name = addon.L["Custom"],
+                    get = function() return addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime; end,
+                    set = StartTimeAndEndTimeCustomSet
+                }
+            }
+        },
+        DateTimeFormattingGuideLine = {
+            order = OrderPP(), type = "group", inline = true,
+            name = addon.L["Date and Time formatting guide"],
+            args = {
+                DateTimeFormattingGuide = {
+                    order = OrderPP(), type = "description",
+                    name = addon.L["Date and Time formatting guide Desc"]:K_ReplaceVars {
+                        addon.L["Date and Time formatting guide Desc"],
+                        a = string.format(addon.Util.Colors.Yellow, "%a"),
+                        A = string.format(addon.Util.Colors.Yellow, "%A"),
+                        b = string.format(addon.Util.Colors.Yellow, "%b"),
+                        B = string.format(addon.Util.Colors.Yellow, "%B"),
+                        c = string.format(addon.Util.Colors.Yellow, "%c"),
+                        C = string.format(addon.Util.Colors.Yellow, "%C"),
+                        d = string.format(addon.Util.Colors.Yellow, "%d"),
+                        D = string.format(addon.Util.Colors.Yellow, "%D"),
+                        e = string.format(addon.Util.Colors.Yellow, "%e"),
+                        H = string.format(addon.Util.Colors.Yellow, "%H"),
+                        I = string.format(addon.Util.Colors.Yellow, "%I"),
+                        j = string.format(addon.Util.Colors.Yellow, "%j"),
+                        k = string.format(addon.Util.Colors.Yellow, "%k"),
+                        l = string.format(addon.Util.Colors.Yellow, "%l"),
+                        m = string.format(addon.Util.Colors.Yellow, "%m"),
+                        M = string.format(addon.Util.Colors.Yellow, "%M"),
+                        p = string.format(addon.Util.Colors.Yellow, "%p"),
+                        P = string.format(addon.Util.Colors.Yellow, "%P"),
+                        R = string.format(addon.Util.Colors.Yellow, "%R"),
+                        s = string.format(addon.Util.Colors.Yellow, "%s"),
+                        S = string.format(addon.Util.Colors.Yellow, "%S"),
+                        u = string.format(addon.Util.Colors.Yellow, "%u"),
+                        U = string.format(addon.Util.Colors.Yellow, "%U"),
+                        w = string.format(addon.Util.Colors.Yellow, "%w"),
+                        W = string.format(addon.Util.Colors.Yellow, "%W"),
+                        x = string.format(addon.Util.Colors.Yellow, "%x"),
+                        X = string.format(addon.Util.Colors.Yellow, "%X"),
+                        y = string.format(addon.Util.Colors.Yellow, "%y"),
+                        Y = string.format(addon.Util.Colors.Yellow, "%Y"),
+                        z = string.format(addon.Util.Colors.Yellow, "%z"),
+                        Z = string.format(addon.Util.Colors.Yellow, "%Z")
                     }
                 }
             }
         }
+    }
+};
+
+options.OptionsTable.args["EventReminders"] = {
+    type = "group", childGroups = "tab",
+    name = addon.L["Event Reminders"],
+    args = {
+        General = generalOptions,
+        PopUps = popUpsOptions,
+        ChatMessages = chatMessagesOptions,
+        CalendarEvents = calendarEventsOptions,
+        WorldEvents = worldOptions,
+        DateTimeFormat = dateTimeFormatOptions
     }
 };
 

@@ -106,6 +106,17 @@ do -- BuildVersionFilter
     end
 end
 
+function KrowiAF_AchievementFrameFilterButtonClassicMixin:CreateSelectDeselectAllRewards(menu, text, filters, value)
+    menu:AddFull({
+        Text = text,
+        Func = function()
+            self:SetRewardsFilters(filters, value);
+            UIDropDownMenu_RefreshAll(UIDROPDOWNMENU_OPEN_MENU);
+        end,
+        KeepShownOnClick = true
+    });
+end
+
 function KrowiAF_AchievementFrameFilterButtonClassicMixin:CreateSelectDeselectAllFactions(menu, text, filters, value)
     menu:AddFull({
         Text = text,

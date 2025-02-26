@@ -9,18 +9,6 @@
 		<Color r="1.0" g="1.0" b="1.0"/>
 	</Font>
 
-	<Frame name="KrowiAF_AchievementButtonFaction_Template" enableMouse="false" virtual="true">
-		<Size x="42" y="40"/>
-		<Anchors>
-			<Anchor point="TOPRIGHT" relativeKey="$parent.Shield" relativePoint="TOPLEFT"/>
-		</Anchors>
-		<Layers>
-			<Layer level="BACKGROUND">
-				<Texture name="$parentIcon" parentKey="Icon" atlas="MountJournalIcons-Alliance" setAllPoints="true"/>
-			</Layer>
-		</Layers>
-	</Frame>
-
 	<EventButton name="KrowiAF_AchievementButton_Template" mixin="KrowiAF_AchievementButtonMixin" inherits="TooltipBorderBackdropTemplate" registerForClicks="LeftButtonUp, RightButtonUp" virtual="true">
 		<Layers>
 			<Layer level="BACKGROUND">
@@ -125,6 +113,12 @@
 						<Anchor point="TOP" relativeKey="$parent.RewardBackground" relativePoint="TOP" x="0" y="1"/>
 					</Anchors>
 				</FontString>
+				<Texture name="$parentFactionIcon" parentKey="FactionIcon" file="interface/glues/charactercreate/charactercreate" alpha="0.2" hidden="true">
+					<Size x="80" y="60"/>
+					<Anchors>
+            			<Anchor point="TOPRIGHT" x="-55" y="-4"/>
+					</Anchors>
+				</Texture>
 				<FontString name="$parentDateCompleted" parentKey="DateCompleted" inherits="AchievementDateFont" text="5/16/08" justifyH="CENTER" hidden="true">
 					<Size x="64" y="14"/>
 					<Anchors>
@@ -162,7 +156,7 @@
 			</Layer>
 		</Layers>
 		<Scripts>
-			<OnLoad inherit="prepend" function="KrowiAF_AchievementButton_OnLoad"/>
+			<OnLoad function="KrowiAF_AchievementButton_OnLoad"/>
 			<OnEvent method="OnEvent"/>
 			<OnShow method="OnShow"/>
 			<OnHide method="OnHide"/>
@@ -317,20 +311,20 @@
 	<EventButton name="KrowiAF_AchievementButton_Small_Template" inherits="KrowiAF_AchievementButton_Template" virtual="true">
     	<Size x="434" y="42"/>
 		<Scripts>
-			<OnLoad inherit="append" function="KrowiAF_AchievementButton_Small_OnLoad"/>
+			<OnLoad function="KrowiAF_AchievementButton_Small_OnLoad"/>
 		</Scripts>
   	</EventButton>
 
 	<EventButton name="KrowiAF_AchievementButton_Normal_Template" inherits="KrowiAF_AchievementButton_Template" virtual="true">
 		<Size x="434" y="142"/>
 		<Scripts>
-			<OnLoad inherit="append" function="KrowiAF_AchievementButton_Normal_OnLoad"/>
+			<OnLoad function="KrowiAF_AchievementButton_Normal_OnLoad"/>
 		</Scripts>
 	</EventButton>
 
 	<EventButton name="KrowiAF_AchievementButton_Light_Template" mixin="KrowiAF_AchievementButtonLightMixin" inherits="KrowiAF_AchievementButton_Small_Template" virtual="true">
 		<Scripts>
-			<OnLoad inherit="append" function="KrowiAF_AchievementButton_Light_OnLoad"/>
+			<OnLoad function="KrowiAF_AchievementButton_Light_OnLoad"/>
 			<OnEnter method="OnEnter"/>
 			<OnLeave method="OnLeave"/>
 			<OnClick method="OnClick"/>

@@ -1,26 +1,43 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
-local plugins = addon.Plugins;
-plugins.BetterWardrobe = {};
-local betterWardrobe = plugins.BetterWardrobe;
-tinsert(plugins.Plugins, betterWardrobe);
+local bwr = {};
+KrowiAF.PluginsApi:RegisterPlugin("BetterWardrobe", bwr);
+KrowiAF.PluginsApi:RegisterEvent("ADDON_LOADED");
 
-plugins.LoadHelper:RegisterEvent("ADDON_LOADED");
-function betterWardrobe:OnEvent(event, arg1, arg2)
-    if event == "ADDON_LOADED" then
-        if arg1 == "Blizzard_Collections" then
-            if not C_AddOns.IsAddOnLoaded("BetterWardrobe") then
-                return;
-            end
-            hooksecurefunc(WardrobeCollectionFrame, "GoToSet", function(self, setId)
-                BetterWardrobeCollectionFrame:GoToSet(setId);
-            end);
-        end
+local function IsLoaded()
+    return C_AddOns.IsAddOnLoaded("BetterWardrobe");
+end
+
+local function ReplaceOpenTransmogLink()
+    WardrobeCollectionFrame.OpenTransmogLink = function(_, link)
+        BetterWardrobeCollectionFrame:OpenTransmogLink(link);
+        BetterWardrobeCollectionFrame:OpenTransmogLink(link);
     end
 end
 
-function betterWardrobe.InjectOptions()
-    addon.InjectOptions:AddPluginTable("BetterWardrobe", addon.L["Better Wardrobe"], addon.L["Better Wardrobe Desc"]:K_ReplaceVars(addon.L["Better Wardrobe"]), function()
-        return C_AddOns.IsAddOnLoaded("BetterWardrobe");
-    end);
+function bwr:OnEvent(event, arg1, arg2)
+    if not IsLoaded() or event ~= "ADDON_LOADED" or arg1 ~= "Blizzard_Collections" then
+        return;
+    end
+
+    ReplaceOpenTransmogLink()
+end
+
+function bwr:InjectOptions()
+    KrowiAF.UtilApi.InjectOptions:AddPluginTable(
+        "BetterWardrobe",
+        addon.L["Better Wardrobe"],
+        addon.L["Better Wardrobe Desc"]:K_ReplaceVars(addon.L["Better Wardrobe"]),
+        function()
+            return IsLoaded();
+        end
+    );
+end
+
+function bwr:Load()
+    if not IsLoaded() then
+        return;
+    end
+    if WardrobeCollectionFrame then
+        ReplaceOpenTransmogLink();
+    end
 end

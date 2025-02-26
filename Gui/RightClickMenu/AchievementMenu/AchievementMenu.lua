@@ -11,7 +11,7 @@ end
 
 function achievementMenu:AddGoToAchievementLine(menu, id, nameSuffix)
 	nameSuffix = nameSuffix or "";
-	local _, name = addon.GetAchievementInfo(id);
+	local name = addon.GetAchievmentName(id);
 	local disabled;
 	if not addon.Data.Achievements[id] then -- Catch missing achievements from the addon to prevent errors
 		name = name .. " (" .. addon.L["Missing"] .. ")";
@@ -40,8 +40,7 @@ function achievementMenu:AddGoToAchievementWithCategoryLine(menu, achievement, c
 end
 
 local function CreateMenu(self, menu, achievement)
-	local _, name = addon.GetAchievementInfo(achievement.Id);
-	addon.MenuUtil:CreateTitle(menu, name);
+	addon.MenuUtil:CreateTitle(menu, addon.GetAchievmentName(achievement.Id));
 
 	for _, section in next, self.Sections do
 		if section:CheckAdd(achievement) then
@@ -49,7 +48,7 @@ local function CreateMenu(self, menu, achievement)
 		end
 	end
 
-	addon.Plugins:AddRightClickMenuItems(menu, achievement);
+	KrowiAF.PluginsApi:AddAchievementRightClickMenuItems(menu, achievement);
 end
 
 if addon.Util.IsTheWarWithin then

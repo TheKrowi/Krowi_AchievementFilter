@@ -56,24 +56,32 @@ do -- GetData
 end
 
 function temporaryObtainable:GetObtainableState(achievement)
-    if achievement.TemporaryObtainable.Start == nil and achievement.TemporaryObtainable.End == nil then
+    if not achievement.TemporaryObtainable then
+        return;
+    end
+
+    local record = achievement.TemporaryObtainable[#achievement.TemporaryObtainable];
+
+    if not record or (record.Start == nil and record.End == nil) or record.IsNotObtainable then
         return "Past";
     end
 
     local start, _end;
-    local startFunction = achievement.TemporaryObtainable.Start.Function;
-    if startFunction == "Mythic+ Season" or startFunction == "Season" then
-        start = self:GetMplusSeasonStartState(achievement);
+    local startFunction = record.Start.Function;
+    if startFunction == "PvE Season" or startFunction == "Season" then
+        start = self:GetMplusSeasonStartState(record);
     elseif startFunction == "PvP Season" then
-        start = self:GetPvpSeasonStartState(achievement);
+        start = self:GetPvpSeasonStartState(record);
     elseif startFunction == "Version" then
-        start = self:GetVersionStartState(achievement);
+        start = self:GetVersionStartState(record);
     elseif startFunction == "Never" then
         return "Past";
     elseif startFunction == "Once" then
         return "Past";
     elseif startFunction == "Event" then
-        start = self:GetEventStartState(achievement);
+        start = self:GetEventStartState(record);
+    elseif startFunction == "Date" then
+        start = self:GetDateStartState(record);
     end
 
     -- print(achievement.Id, startFunction, start)
@@ -84,15 +92,17 @@ function temporaryObtainable:GetObtainableState(achievement)
         return "Future";
     end
 
-    local endFunction = achievement.TemporaryObtainable.End.Function;
-    if endFunction == "Mythic+ Season" or startFunction == "Season" then
-        _end = self:GetMplusSeasonEndState(achievement);
+    local endFunction = record.End.Function;
+    if endFunction == "PvE Season" or startFunction == "Season" then
+        _end = self:GetMplusSeasonEndState(record);
     elseif endFunction == "PvP Season" then
-        _end = self:GetPvpSeasonEndState(achievement);
+        _end = self:GetPvpSeasonEndState(record);
     elseif endFunction == "Version" then
-        _end = self:GetVersionEndState(achievement);
+        _end = self:GetVersionEndState(record);
     elseif startFunction == "Event" then
-        _end = self:GetEventEndState(achievement);
+        _end = self:GetEventEndState(record);
+    elseif startFunction == "Date" then
+        _end = self:GetDateEndState(record);
     end
 
     -- local endState = _end;
@@ -109,43 +119,51 @@ local function FindCachedCalendarEvent(eventId)
     eventId = tonumber(eventId);
     local event = KrowiAF_SavedData.CalendarEventsCache[eventId];
     if event then
-        return event, data.Events[addon.Objects.EventType.Calendar][eventId];
+        return event, data.Events[KrowiAF.Enum.EventType.Calendar][eventId];
     end
-    if data.Events[addon.Objects.EventType.Calendar][eventId] and data.Events[addon.Objects.EventType.Calendar][eventId].LinkedEventIds then
-        for _, linkedEventId in next, data.Events[addon.Objects.EventType.Calendar][eventId].LinkedEventIds do
+    if data.Events[KrowiAF.Enum.EventType.Calendar][eventId] and data.Events[KrowiAF.Enum.EventType.Calendar][eventId].LinkedEventIds then
+        for _, linkedEventId in next, data.Events[KrowiAF.Enum.EventType.Calendar][eventId].LinkedEventIds do
             event = KrowiAF_SavedData.CalendarEventsCache[linkedEventId];
             if event then
-                return event, data.Events[addon.Objects.EventType.Calendar][eventId];
+                return event, data.Events[KrowiAF.Enum.EventType.Calendar][eventId];
             end
         end
     end
-    return nil, data.Events[addon.Objects.EventType.Calendar][eventId];
+    return nil, data.Events[KrowiAF.Enum.EventType.Calendar][eventId];
 end
 
 do -- Tooltip, maybe move to not obtainable tooltip lua
-    function temporaryObtainable:GetWasIsWillBe(achievement)
+    function temporaryObtainable:GetWasIsWillBe(record)
         local start, _end; -- Past, Future
 
-        local startFunction = achievement.TemporaryObtainable.Start.Function;
-        if startFunction == "Mythic+ Season" or startFunction == "Season" then
-            start = self:GetMplusSeasonStartState(achievement);
+        local startFunction = record.Start and record.Start.Function;
+        if startFunction == "PvE Season" or startFunction == "Season" then
+            start = self:GetMplusSeasonStartState(record);
         elseif startFunction == "PvP Season" then
-            start = self:GetPvpSeasonStartState(achievement);
+            start = self:GetPvpSeasonStartState(record);
         elseif startFunction == "Version" then
-            start = self:GetVersionStartState(achievement);
+            start = self:GetVersionStartState(record);
         elseif startFunction == "Event" then
-            start = self:GetEventStartState(achievement);
+            start = self:GetEventStartState(record);
+        elseif startFunction == "Date" then
+            start = self:GetDateStartState(record);
         end
 
-        local endFunction = achievement.TemporaryObtainable.End.Function;
-        if endFunction == "Mythic+ Season" or startFunction == "Season" then
-            _end = self:GetMplusSeasonEndState(achievement);
+        local endFunction = record.End and record.End.Function;
+        if endFunction == "PvE Season" or startFunction == "Season" then
+            _end = self:GetMplusSeasonEndState(record);
         elseif endFunction == "PvP Season" then
-            _end = self:GetPvpSeasonEndState(achievement);
+            _end = self:GetPvpSeasonEndState(record);
         elseif endFunction == "Version" then
-            _end = self:GetVersionEndState(achievement);
+            _end = self:GetVersionEndState(record);
         elseif startFunction == "Event" then
-            _end = self:GetEventEndState(achievement);
+            _end = self:GetEventEndState(record);
+        elseif startFunction == "Date" then
+            _end = self:GetDateEndState(record);
+        end
+
+        if record.IsNotObtainable then
+            start, _end = "Past", "Past";
         end
 
         -- print(startFunction, start, endFunction, _end)
@@ -167,21 +185,21 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
         return isWillBeWas, color;
     end
 
-    local function GetStart(achievement)
-        if achievement.TemporaryObtainable.Start.Function == achievement.TemporaryObtainable.End.Function
-        and achievement.TemporaryObtainable.Start.Value == achievement.TemporaryObtainable.End.Value then
+    local function GetStart(record)
+        if record.Start.Function == record.End.Function
+        and record.Start.Value == record.End.Value then
             return addon.L["during"];
-        elseif achievement.TemporaryObtainable.Start.Inclusion == "From" then
+        elseif record.Start.Inclusion == "From" then
             return addon.L["from the start of"];
-        elseif achievement.TemporaryObtainable.Start.Inclusion == "After" then
+        elseif record.Start.Inclusion == "After" then
             return addon.L["after the end of"];
         end
     end
 
-    local function GetEnd(achievement)
-        if achievement.TemporaryObtainable.End.Inclusion == "Until" then
+    local function GetEnd(record)
+        if record.End.Inclusion == "Until" then
             return addon.L["until the end of"];
-        elseif achievement.TemporaryObtainable.End.Inclusion == "Before" then
+        elseif record.End.Inclusion == "Before" then
             return addon.L["up until the start of"];
         end
     end
@@ -209,43 +227,56 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
         return text .. ".";
     end
 
-    function temporaryObtainable:GetNotObtainableText(achievement)
-        if achievement.TemporaryObtainable.Start == nil and achievement.TemporaryObtainable.End == nil then
+    function temporaryObtainable:GetNotObtainableText(record)
+        if record.Start == nil and record.End == nil then
             return addon.L["This achievement is no longer obtainable"], addon.Util.Colors.RedRGB;
         end
 
         isWillBeWas, neverOnceTempObt, startText, startDetail, endText, endDetail = nil, nil, nil, nil, nil, nil;
 
         local color = nil;
-        isWillBeWas, color = self:GetWasIsWillBe(achievement);
+        isWillBeWas, color = self:GetWasIsWillBe(record);
 
-        if achievement.TemporaryObtainable.Start.Function == "Never" then
+        if record.Start.Function == "Never" then
             neverOnceTempObt = addon.L["never obtainable"];
             return FillText(), color;
-        elseif achievement.TemporaryObtainable.Start.Function == "Once" then
+        elseif record.Start.Function == "Once" then
             neverOnceTempObt = addon.L["only obtainable by one player"];
             return FillText(), color;
         end
         neverOnceTempObt = addon.L["temporarily obtainable"];
 
-        startText = GetStart(achievement);
-        if achievement.TemporaryObtainable.Start.Function == "Mythic+ Season" then
-            startDetail = addon.L["M+ Season"];
-        elseif achievement.TemporaryObtainable.Start.Function == "PvP Season" then
+        startText = GetStart(record);
+        if record.Start.Function == "PvE Season" then
+            startDetail = addon.L["PvE Season"];
+        elseif record.Start.Function == "PvP Season" then
             startDetail = addon.L["PvP Season"];
-        elseif achievement.TemporaryObtainable.Start.Function == "Patch" then
+        elseif record.Start.Function == "Patch" then
             startDetail = addon.L["Patch"];
-        elseif achievement.TemporaryObtainable.Start.Function == "Version" then
+        elseif record.Start.Function == "Version" then
             startDetail = addon.L["Version"];
-        elseif achievement.TemporaryObtainable.Start.Function == "Season" then
+        elseif record.Start.Function == "Season" then
             startDetail = addon.L["Season"];
         else
-            startDetail = achievement.TemporaryObtainable.Start.Function;
+            startDetail = record.Start.Function;
         end
-        startDetail = startDetail .. " " .. achievement.TemporaryObtainable.Start.Value;
+        startDetail = startDetail .. " " .. tostring(record.Start.Value);
 
-        if achievement.TemporaryObtainable.Start.Function == "Event" then
-            local eventId = achievement.TemporaryObtainable.Start.Value;
+        if record.Start.Function == "Version" then
+            local buildVersion = addon.Data.BuildVersions[record.Start.Value];
+            if buildVersion then
+                startDetail = buildVersion.Description .. " (" .. buildVersion.Name .. ")";
+            end
+        end
+
+        if record.Start.Function == "Date" then
+            local year, month, day = unpack(record.Start.Value);
+            local startTime = time{year = year, month = month, day = day, hour = 0, min = 0, sec = 0} - KrowiAF_GetUtcOffsetSeconds();
+            startDetail = date(addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime, startTime);
+        end
+
+        if record.Start.Function == "Event" then
+            local eventId = record.Start.Value;
             local event, calendarEvent = FindCachedCalendarEvent(eventId);
             local startDate, endDate;
             if event then
@@ -262,6 +293,9 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
                     endDate = tostring(date(addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime, endDate))
                 };
             end
+            if record.IsNotObtainable then
+                occurrence = addon.L["This achievement is no longer obtainable"];
+            end
             return startDetail, color, occurrence;
         end
 
@@ -269,24 +303,37 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
             return FillText(), color;
         end
 
-        endText = GetEnd(achievement);
-        if achievement.TemporaryObtainable.End.Function == "Mythic+ Season" then
-            endDetail = addon.L["M+ Season"];
-        elseif achievement.TemporaryObtainable.End.Function == "PvP Season" then
+        endText = GetEnd(record);
+        if record.End.Function == "PvE Season" then
+            endDetail = addon.L["PvE Season"];
+        elseif record.End.Function == "PvP Season" then
             endDetail = addon.L["PvP Season"];
-        elseif achievement.TemporaryObtainable.End.Function == "Patch" then
+        elseif record.End.Function == "Patch" then
             endDetail = addon.L["Patch"];
-        elseif achievement.TemporaryObtainable.End.Function == "Version" then
+        elseif record.End.Function == "Version" then
             endDetail = addon.L["Version"];
-        elseif achievement.TemporaryObtainable.End.Function == "Season" then
+        elseif record.End.Function == "Season" then
             endDetail = addon.L["Season"];
         else
-            endDetail = achievement.TemporaryObtainable.End.Function;
+            endDetail = record.End.Function;
         end
-        endDetail = endDetail .. " " .. achievement.TemporaryObtainable.End.Value;
+        endDetail = endDetail .. " " .. tostring(record.End.Value);
 
-        if achievement.TemporaryObtainable.End.Function == "Event" then
-            local eventId = achievement.TemporaryObtainable.End.Value;
+        if record.End.Function == "Version" then
+            local buildVersion = addon.Data.BuildVersions[record.End.Value];
+            if buildVersion then
+                endDetail = buildVersion.Description .. " (" .. buildVersion.Name .. ")";
+            end
+        end
+
+        if record.End.Function == "Date" then
+            local year, month, day = unpack(record.End.Value);
+            local endTime = time{year = year, month = month, day = day, hour = 0, min = 0, sec = 0} - KrowiAF_GetUtcOffsetSeconds();
+            endDetail = date(addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime, endTime);
+        end
+
+        if record.End.Function == "Event" then
+            local eventId = record.End.Value;
             local _, calendarEvent = FindCachedCalendarEvent(eventId);
             if calendarEvent then
                 endDetail = calendarEvent.Name;
@@ -295,106 +342,149 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
 
         return FillText(), color;
     end
+
+    function temporaryObtainable:GetNotObtainableTexts(achievement)
+        if not achievement.TemporaryObtainable then
+            return;
+        end
+
+        local records = {};
+
+        for _, record in next, achievement.TemporaryObtainable do
+            local text, color, occurrence = self:GetNotObtainableText(record);
+            tinsert(records, {
+                Text = text,
+                Color = color,
+                Occurrence = occurrence
+            });
+        end
+
+        return records;
+    end
 end
 
 do -- Get Start Sate
-    function temporaryObtainable:GetMplusSeasonStartState(achievement)
-        if achievement.TemporaryObtainable.Start.Inclusion == "From" then
+    function temporaryObtainable:GetMplusSeasonStartState(record)
+        if record.Start.Inclusion == "From" then
             if self:GetCurrentMplusSeason() == 0 then
-                return self:GetPreviousMplusSeason() >= achievement.TemporaryObtainable.Start.Value and "Past" or "Future";
+                return self:GetPreviousMplusSeason() >= record.Start.Value and "Past" or "Future";
             end
-            return self:GetCurrentMplusSeason() >= achievement.TemporaryObtainable.Start.Value and "Past" or "Future";
-        elseif achievement.TemporaryObtainable.Start.Inclusion == "After" then
+            return self:GetCurrentMplusSeason() >= record.Start.Value and "Past" or "Future";
+        elseif record.Start.Inclusion == "After" then
             if self:GetCurrentMplusSeason() == 0 then
-                return self:GetPreviousMplusSeason() >= achievement.TemporaryObtainable.Start.Value and "Past" or "Future";
+                return self:GetPreviousMplusSeason() >= record.Start.Value and "Past" or "Future";
             end
-            return self:GetCurrentMplusSeason() > achievement.TemporaryObtainable.Start.Value and "Past" or "Future";
+            return self:GetCurrentMplusSeason() > record.Start.Value and "Past" or "Future";
         end
     end
 
-    function temporaryObtainable:GetPvpSeasonStartState(achievement)
-        if achievement.TemporaryObtainable.Start.Inclusion == "From" then
+    function temporaryObtainable:GetPvpSeasonStartState(record)
+        if record.Start.Inclusion == "From" then
             if self:GetCurrentPvpSeason() == 0 then
-                return self:GetPreviousPvpSeason() >= achievement.TemporaryObtainable.Start.Value and "Past" or "Future";
+                return self:GetPreviousPvpSeason() >= record.Start.Value and "Past" or "Future";
             end
-            return self:GetCurrentPvpSeason() >= achievement.TemporaryObtainable.Start.Value and "Past" or "Future";
-        elseif achievement.TemporaryObtainable.Start.Inclusion == "After" then
+            return self:GetCurrentPvpSeason() >= record.Start.Value and "Past" or "Future";
+        elseif record.Start.Inclusion == "After" then
             if self:GetCurrentPvpSeason() == 0 then
-                return self:GetPreviousPvpSeason() >= achievement.TemporaryObtainable.Start.Value and "Past" or "Future";
+                return self:GetPreviousPvpSeason() >= record.Start.Value and "Past" or "Future";
             end
-            return self:GetCurrentPvpSeason() > achievement.TemporaryObtainable.Start.Value and "Past" or "Future";
+            return self:GetCurrentPvpSeason() > record.Start.Value and "Past" or "Future";
         end
     end
 
-    function temporaryObtainable:GetVersionStartState(achievement)
-        if achievement.TemporaryObtainable.Start.Inclusion == "From" then
-            return self:GetCurrentVersionString() >= achievement.TemporaryObtainable.Start.Value and "Past" or "Future";
-        elseif achievement.TemporaryObtainable.Start.Inclusion == "After" then
-            return self:GetCurrentVersionString() > achievement.TemporaryObtainable.Start.Value and "Past" or "Future";
+    function temporaryObtainable:GetVersionStartState(record)
+        if record.Start.Inclusion == "From" then
+            return self:GetCurrentVersionString() >= record.Start.Value and "Past" or "Future";
+        elseif record.Start.Inclusion == "After" then
+            return self:GetCurrentVersionString() > record.Start.Value and "Past" or "Future";
         end
     end
 
-    function temporaryObtainable:GetEventStartState(achievement)
-        if achievement.TemporaryObtainable.Start.Inclusion == "From" then
-            local eventId = achievement.TemporaryObtainable.Start.Value;
+    function temporaryObtainable:GetEventStartState(record)
+        if record.Start.Inclusion == "From" then
+            local eventId = record.Start.Value;
             local event = FindCachedCalendarEvent(eventId);
             if not event or not event.StartTime then
                 return "Past"; -- If an event has no record it's either not available yet or has already happened
             end
             return time() >= event.StartTime and "Past" or "Future";
-        elseif achievement.TemporaryObtainable.Start.Inclusion == "After" then -- Should not be used
+        elseif record.Start.Inclusion == "After" then -- Should not be used
             return "Past";
+        end
+    end
+
+    function temporaryObtainable:GetDateStartState(record)
+        if record.Start.Inclusion == "From" then
+            local year, month, day = unpack(record.Start.Value);
+            local startTime = time{year = year, month = month, day = day, hour = 0, min = 0, sec = 0} - KrowiAF_GetUtcOffsetSeconds();
+            return startTime <= time() and "Past" or "Future";
+        elseif record.Start.Inclusion == "After" then
+            local year, month, day = unpack(record.Start.Value);
+            local startTime = time{year = year, month = month, day = day, hour = 23, min = 59, sec = 59} - KrowiAF_GetUtcOffsetSeconds();
+            return startTime <= time() and "Past" or "Future";
         end
     end
 end
 
 do -- Get End State
-    function temporaryObtainable:GetMplusSeasonEndState(achievement)
-        if achievement.TemporaryObtainable.End.Inclusion == "Until" then
+    function temporaryObtainable:GetMplusSeasonEndState(record)
+        if record.End.Inclusion == "Until" then
             if self:GetCurrentMplusSeason() == 0 then
-                return self:GetPreviousMplusSeason() >= achievement.TemporaryObtainable.End.Value and "Past" or "Future";
+                return self:GetPreviousMplusSeason() >= record.End.Value and "Past" or "Future";
             end
-            return self:GetCurrentMplusSeason() > achievement.TemporaryObtainable.End.Value and "Past" or "Future";
-        elseif achievement.TemporaryObtainable.End.Inclusion == "Before" then
+            return self:GetCurrentMplusSeason() > record.End.Value and "Past" or "Future";
+        elseif record.End.Inclusion == "Before" then
             if self:GetCurrentMplusSeason() == 0 then
-                return self:GetPreviousMplusSeason() >= achievement.TemporaryObtainable.End.Value and "Past" or "Future";
+                return self:GetPreviousMplusSeason() >= record.End.Value and "Past" or "Future";
             end
-            return self:GetCurrentMplusSeason() >= achievement.TemporaryObtainable.End.Value and "Past" or "Future";
+            return self:GetCurrentMplusSeason() >= record.End.Value and "Past" or "Future";
         end
     end
 
-    function temporaryObtainable:GetPvpSeasonEndState(achievement)
-        if achievement.TemporaryObtainable.End.Inclusion == "Until" then
+    function temporaryObtainable:GetPvpSeasonEndState(record)
+        if record.End.Inclusion == "Until" then
             if self:GetCurrentPvpSeason() == 0 then
-                return self:GetPreviousPvpSeason() >= achievement.TemporaryObtainable.End.Value and "Past" or "Future";
+                return self:GetPreviousPvpSeason() >= record.End.Value and "Past" or "Future";
             end
-            return self:GetCurrentPvpSeason() > achievement.TemporaryObtainable.End.Value and "Past" or "Future";
-        elseif achievement.TemporaryObtainable.End.Inclusion == "Before" then
+            return self:GetCurrentPvpSeason() > record.End.Value and "Past" or "Future";
+        elseif record.End.Inclusion == "Before" then
             if self:GetCurrentPvpSeason() == 0 then
-                return self:GetPreviousPvpSeason() >= achievement.TemporaryObtainable.End.Value and "Past" or "Future";
+                return self:GetPreviousPvpSeason() >= record.End.Value and "Past" or "Future";
             end
-            return self:GetCurrentPvpSeason() >= achievement.TemporaryObtainable.End.Value and "Past" or "Future";
+            return self:GetCurrentPvpSeason() >= record.End.Value and "Past" or "Future";
         end
     end
 
-    function temporaryObtainable:GetVersionEndState(achievement) -- ok
-        if achievement.TemporaryObtainable.End.Inclusion == "Until" then
-            return self:GetCurrentVersionString() > achievement.TemporaryObtainable.End.Value and "Past" or "Future";
-        elseif achievement.TemporaryObtainable.End.Inclusion == "Before" then
-            return self:GetCurrentVersionString() >= achievement.TemporaryObtainable.End.Value and "Past" or "Future";
+    function temporaryObtainable:GetVersionEndState(record) -- ok
+        if record.End.Inclusion == "Until" then
+            return self:GetCurrentVersionString() > record.End.Value and "Past" or "Future";
+        elseif record.End.Inclusion == "Before" then
+            return self:GetCurrentVersionString() >= record.End.Value and "Past" or "Future";
         end
     end
 
-    function temporaryObtainable:GetEventEndState(achievement)
-        if achievement.TemporaryObtainable.End.Inclusion == "Until" then
-            local eventId = achievement.TemporaryObtainable.End.Value;
+    function temporaryObtainable:GetEventEndState(record)
+        if record.End.Inclusion == "Until" then
+            local eventId = record.End.Value;
             local event = FindCachedCalendarEvent(eventId);
             if not event or not event.EndTime then
                 return "Past"; -- If an event has no record it's either not available yet or has already happened
             end
-                    return time() > event.EndTime and "Past" or "Future";
-        elseif achievement.TemporaryObtainable.End.Inclusion == "Before" then -- Should not be used
+                return time() > event.EndTime and "Past" or "Future";
+        elseif record.End.Inclusion == "Before" then -- Should not be used
             return "Past";
+        end
+    end
+
+    function temporaryObtainable:GetDateEndState(record)
+        if record.End.Inclusion == "Until" then
+            local year, month, day = unpack(record.End.Value);
+            local endTime = time{year = year, month = month, day = day, hour = 23, min = 59, sec = 59} - KrowiAF_GetUtcOffsetSeconds();
+            return endTime <= time() and "Past" or "Future";
+        elseif record.End.Inclusion == "Before" then
+            local year, month, day = unpack(record.End.Value);
+            local endTime = time{year = year, month = month, day = day, hour = 0, min = 0, sec = 0} - KrowiAF_GetUtcOffsetSeconds();
+            return endTime <= time() and "Past" or "Future";
         end
     end
 end

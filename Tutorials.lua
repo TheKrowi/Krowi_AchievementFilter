@@ -198,7 +198,7 @@ function tutorials.Load()
             {
                 earnedByNumber = tostring(addon.Options.db.profile.Tooltip.Achievements.EarnedBy.Characters):SetColorYellow(),
                 notEarnedByNumber = tostring(addon.Options.db.profile.Tooltip.Achievements.EarnedBy.NotCharacters):SetColorYellow(),
-                achievementPointsEarnedByFormat = string.format(addon.Util.Colors.Yellow, LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Prefix .. "_Layout", "cmd", "KROWIAF-0.0").args.Header.args.AchievementPoints.args.Format.values[addon.Options.db.profile.AchievementPoints.Format])
+                achievementPointsEarnedByFormat = string.format(addon.Util.Colors.Yellow, LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Prefix .. "_Layout", "cmd", "KROWIAF-0.0").args.Header.args.General.args.AchievementPointsFormat.values[addon.Options.db.profile.AchievementPoints.Format])
             };
         end
     });
