@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 82.3 - 2025-03-01
+### Added
+- Addon category
+
 ## 82.2 - 2025-02-26
 ### Fixed
 - Another potential memory leak addressed
