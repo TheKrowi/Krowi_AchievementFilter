@@ -15,3 +15,6 @@
 
 ### Fixed (82.2)
 - Another potential memory leak addressed
+
+### Added (82.3)
+- Addon category

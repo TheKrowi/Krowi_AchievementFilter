@@ -25,3 +25,8 @@
 [LIST]
 [*]Another potential memory leak addressed
 [/LIST]
+
+[B]Added (82.3)[/B]
+[LIST]
+[*]Addon category
+[/LIST]
