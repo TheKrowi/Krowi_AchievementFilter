@@ -928,10 +928,10 @@ function addon.StartTasksGroups(tasksGroups, onFinish, onDelay)
         local task = tasks[taskIndex];
         while task do
             RunTask(task);
-            if task ~= KrowiAF.CreateCategories and Delay(continue, startTime, maxDuration, onDelay, tasksGroups, tasks) then -- Really need to solve this in a different way!!!
+            tasks, task = GetNextTask(tasks, tasksGroups); -- Get the new task first so in case the task takes longer than a frame duration, the current tasks keeps looping
+            if Delay(continue, startTime, maxDuration, onDelay, tasksGroups, tasks) then -- Really need to solve this in a different way!!!
                 return false;
             end
-            tasks, task = GetNextTask(tasks, tasksGroups);
         end
         if onFinish then
             onFinish();

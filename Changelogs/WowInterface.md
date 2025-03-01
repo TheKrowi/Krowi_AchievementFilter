@@ -20,3 +20,13 @@
 [LIST]
 [*]Potential memory leak addressed
 [/LIST]
+
+[B]Fixed (82.2)[/B]
+[LIST]
+[*]Another potential memory leak addressed
+[/LIST]
+
+[B]Added (82.3)[/B]
+[LIST]
+[*]Addon category
+[/LIST]

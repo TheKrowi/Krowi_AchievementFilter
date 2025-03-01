@@ -17,3 +17,11 @@
 <ul>
 <li>Potential memory leak addressed</li>
 </ul>
+<p><h3>Fixed (82.2)</h3></p>
+<ul>
+<li>Another potential memory leak addressed</li>
+</ul>
+<p><h3>Added (82.3)</h3></p>
+<ul>
+<li>Addon category</li>
+</ul>
