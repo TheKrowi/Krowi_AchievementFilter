@@ -199,6 +199,23 @@ local function PrintMapInfoWithoutReload()
     addon.Options.db.profile.PrintMapInfo = true;
 end
 
+local function ExportExperimental()
+    local frame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template");
+	frame:Init(addon.L["Experimental"]);
+    local exportString = "Id;Name;Description;Obtainable;Completed;Points;Rewards\r\n";
+    local data = addon.Data;
+    local temp = addon.Data.TemporaryObtainable;
+    for _, achievementId in next, data.AchievementIds do
+        local achievementInfo = addon.GetAchievementInfoTable(achievementId);
+        if achievementInfo.Exists and not achievementInfo.IsGuild and not achievementInfo.IsStatistic then
+            exportString = exportString .. achievementInfo.Id .. ";" .. achievementInfo.Name .. ";" .. achievementInfo.Description .. ";" .. temp:GetObtainableState(data.Achievements[achievementId]) .. ";" .. tostring(achievementInfo.IsCompleted) .. ";" .. achievementInfo.Points .. ";" .. achievementInfo.RewardText .. "\r\n";
+        end
+    end
+
+    frame.Input:SetText(exportString);
+    frame:Show();
+end
+
 local infoOptions = {
     order = OrderPP(), type = "group",
     name = addon.L["Info"],
@@ -527,6 +544,13 @@ local debugOptions = {
                     name = addon.L["Print map info w/o reload"],
                     desc = addon.L["Print map info w/o reload Desc"],
                     func = PrintMapInfoWithoutReload
+                },
+                Blank6 = {order = OrderPP(), type = "description", width = AdjustedWidth(2), name = ""},
+                Experimental = {
+                    order = OrderPP(), type = "execute",
+                    name = addon.L["Experimental"],
+                    desc = addon.L["Experimental Desc"],
+                    func = ExportExperimental
                 }
             }
         }
