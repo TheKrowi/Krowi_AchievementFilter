@@ -18,3 +18,7 @@
 
 ### Added (82.3)
 - Addon category
+
+### Fixed (82.4)
+- The default Blizzard Achievements tab should once again know all its categories
+- Tasks should no longer be empty (dev note: this is a "temporary" fix until I have more time to find the source of the issue)

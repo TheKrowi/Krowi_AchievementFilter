@@ -925,7 +925,7 @@ function addon.StartTasksGroups(tasksGroups, onFinish, onDelay)
     local tasks = tremove(tasksGroups);
     local function continue()
         local startTime = debugprofilestop();
-        local task = tasks[taskIndex];
+        local task = tasks and tasks[taskIndex];
         while task do
             RunTask(task);
             tasks, task = GetNextTask(tasks, tasksGroups); -- Get the new task first so in case the task takes longer than a frame duration, the current tasks keeps looping
