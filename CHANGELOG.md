@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+
+## 82.0 - 2025-02-15
+### Added
+- Nightfall event achievements (4)
+- Dastardly Duos event achievements (19)
+- Horrific Visions Revisited achievements (29)
+
 ## 82.4 - 2025-04-14
 ### Fixed
 - The default Blizzard Achievements tab should once again know all its categories

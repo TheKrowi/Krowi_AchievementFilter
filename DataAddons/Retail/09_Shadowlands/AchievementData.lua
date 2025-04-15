@@ -784,6 +784,7 @@ KrowiAF.AchievementData["09_01_00"] = {
             RewardType = rewardType.Teleport,
             {"PvE Season", 6},
             {"PvE Season", 7},
+            {"PvE Season", 14},
         },
     },
     { -- Keystone Hero: De Other Side

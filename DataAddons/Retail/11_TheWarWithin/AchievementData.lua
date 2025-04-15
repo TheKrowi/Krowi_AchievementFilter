@@ -1967,3 +1967,122 @@ KrowiAF.AchievementData["11_01_00"] = {
     {41714}, -- From Trash to Treasure
     {41723}, -- Buddy System VIII
 };
+
+KrowiAF.AchievementData["11_01_05"] = {
+    {KrowiAF.SetAchievementPatch, 11, 1, 5},
+    { -- Flame Warden of Khaz Algar
+        41631,
+        faction.Alliance,
+    },
+    { -- Flame Keeper of Khaz Algar
+        41632,
+        faction.Horde,
+    },
+    {41706}, -- Dastardly Duos Weekly High Score
+    {41707}, -- Dastardly Devices
+    { -- Fiendishly Famous
+        41715,
+        {
+            RewardType = rewardType.Other,
+        },
+    },
+    { -- Duo Darling
+        41716,
+        {
+            RewardType = rewardType.Other,
+        },
+    },
+    {41717}, -- Duos Underdog
+    { -- Inside Connections
+        41722,
+        {
+            RewardType = rewardType.Other,
+        },
+    },
+    {41725}, -- We Have the Memories
+    {41810}, -- Winner's Podium
+    {41853}, -- Horrific Vision of Stormwind
+    {41854}, -- The Even More Horrific Vision of Stormwind
+    {41855}, -- The Most Horrific Vision of Stormwind
+    { -- Masked Soliloquy
+        41857,
+        {
+            RewardType = rewardType.Other,
+        },
+    },
+    {41858}, -- Masked Sextet
+    {41859}, -- Thanks For The Mementos
+    { -- Incremental Progress
+        41873,
+		{
+			RewardType = rewardType.Transmog,
+		},
+    },
+    { -- Symphony of Masks
+        41874,
+		{
+			RewardType = rewardType.Transmog,
+		},
+    },
+    {41875}, -- Horrific Vision of Orgrimmar
+    {41876}, -- The Even More Horrific Vision of Orgrimmar
+    {41879}, -- The Most Horrific Vision of Orgrimmar
+    {41889}, -- Horrific Masquerade
+    {41890}, -- Masked Duet
+    {41891}, -- Masked Trio
+    {41893}, -- Masked Quartet
+    {41894}, -- Masked Septet
+    {41895}, -- Orchestra of Masks
+    {41896}, -- Memento Mori
+    {41897}, -- A Monumental Amount of Mementos
+    {41898}, -- A Mountain of Mementos
+    {41905}, -- Center of Attention
+    {41916}, -- My Way, The Highway
+    {41922}, -- Undefeatable
+    { -- Reeking of Visions
+        41928,
+        {
+            RewardType = rewardType.Pet,
+        },
+    },
+    { -- Through the Depths of Visions
+        41929,
+        {
+            RewardType = rewardType.Mount,
+        },
+    },
+    {41948}, -- Defeat the Dastardlies
+    {41949}, -- Defeat the Dastardlies
+    {41950}, -- Defeat the Dastardlies
+    {41951}, -- Defeat the Dastardlies
+    {41952}, -- Defeat the Dastardlies
+    { -- Mad World
+        41953,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
+    {41964}, -- Beyond the Most Horrific Vision of Stormwind
+    {41965}, -- Beyond the Most Horrific Vision of Orgrimmar
+    { -- Mastering the Visions
+        41966,
+        {
+            RewardType = rewardType.Mount,
+        },
+    },
+    { -- Through the Looking Glass
+        41971,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
+    {41983}, -- Memento Mania
+    {41995}, -- Boot Hill
+    {41996}, -- I'm Doing My Part
+    {41997}, -- Owner of a Radiant Heart
+    {41998}, -- Turning the Venom Tide
+    {41999}, -- Fighter of the Nightman
+    {42002}, -- Bullhorn of Plenty
+    {42003}, -- Bullhorn of More Plenty
+    {42004}, -- Bullhorn of Most Plenty
+};
