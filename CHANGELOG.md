@@ -1,8 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-
-## 82.0 - 2025-02-15
+## 83.0 - 2025-02-15
 ### Added
 - Nightfall event achievements (4)
 - Dastardly Duos event achievements (19)
