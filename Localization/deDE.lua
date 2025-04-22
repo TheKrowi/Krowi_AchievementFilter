@@ -8,7 +8,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-02-26 17-20-18 ]] --
+-- [[ Exported at 2025-04-22 19-57-11 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -99,6 +99,7 @@ L["Blizzard"] = true
 L["BlizzCon"] = true
 L["Brackenhide Hollow"] = "Brackenfellhöhle"
 L["Brawler's Guild"] = "Kampfgilde"
+L["Breaknecking Races"] = "Halsbrecherrennen"
 L["Brewfest"] = "Braufest"
 L["Broken Isles Cup"] = "Verheerte Inseln Pokal"
 L["Build"] = "Version"
@@ -939,6 +940,7 @@ L["Siren Isle"] = "Sireneninsel"
 L["Skitterer Xi'a"] = "Huscher Xi'a"
 L["Skoldus Hall"] = "Skoldushalle"
 L["Skyriding Races"] = "Himmelsreiten"
+L["Skyrocketing Races"] = "Raketenrennen"
 L["Slagmire"] = "Schlackensumpf"
 L["Snowstorms"] = "Schneestürme"
 L["Soon"] = "Bald"

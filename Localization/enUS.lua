@@ -7,7 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-02-26 17-20-05 ]] --
+-- [[ Exported at 2025-04-22 19-56-52 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -215,6 +215,7 @@ L["CurseForge Desc"] = "Open a popup dialog with a link to the {addonName} {curs
 L["Custom"] = true
 L["Dark Heart"] = true
 L["Darkmoon Faire"] = true
+L["Dastardly Duos"] = true
 L["Data Manager"] = true
 L["Date and Time format"] = true
 L["Date and Time formatting guide"] = "Date and Time Formatting Guide"
@@ -540,6 +541,7 @@ L["Hide Not Earned By if current character earned the achievement Desc"] = "Hide
 L["Highmountain"] = true
 L["Holidays"] = true
 L["Horizontal position"] = true
+L["Horrific Visions Revisited"] = true
 L["Hour of Twilight"] = true
 L["Icon Left click"] = "to open the Achievement window."
 L["Icon Right click"] = "for Options."
@@ -656,6 +658,7 @@ L["Next"] = true
 L["Next from startDate until endDate"] = "Next from {startDate} until {endDate}"
 L["Next occurrence unknown"] = true
 L["Night Fae Assault"] = true
+L["Nightfall"] = true
 L["Nitun"] = true
 L["No achievements are available with the current set of filters"] = true
 L["No category selected"] = true
