@@ -853,6 +853,31 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
             20509, -- Plunderkind
         }
     },
+    { -- Dastardly Duos
+        1681,
+        addon.L["Dastardly Duos"],
+        {
+            41706, -- Dastardly Duos Weekly High Score
+            41707, -- Dastardly Devices
+            41715, -- Fiendishly Famous
+            41716, -- Duo Darling
+            41717, -- Duos Underdog
+            41722, -- Inside Connections
+            41905, -- Center of Attention
+            41916, -- My Way, The Highway
+            41922, -- Undefeatable
+            41995, -- Boot Hill
+            42002, -- Bullhorn of Plenty
+            42003, -- Bullhorn of More Plenty
+            42004, -- Bullhorn of Most Plenty
+            41810, -- Winner's Podium
+            41948, -- Defeat the Dastardlies
+            41949, -- Defeat the Dastardlies
+            41950, -- Defeat the Dastardlies
+            41951, -- Defeat the Dastardlies
+            41952, -- Defeat the Dastardlies
+        }
+    },
     { -- Timewalking
         951,
         addon.GetCategoryInfoTitle(15454),
@@ -1266,6 +1291,16 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
             {
                 40859, -- We're Here All Night
                 40860, -- A Star of Dorn
+            },
+        },
+        { -- Nightfall
+            1682,
+            addon.L["Nightfall"],
+            {
+                41996, -- I'm Doing My Part
+                41997, -- Owner of a Radiant Heart
+                41998, -- Turning the Venom Tide
+                41999, -- Fighter of the Nightman
             },
         },
     },

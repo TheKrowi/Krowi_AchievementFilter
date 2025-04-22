@@ -1,8 +1,8 @@
-## Interface: 110100
+## Interface: 110105
 ## Title: Krowi's |cFF1D92C2Achievement Filter|r
 ## X-Prefix: KrowiAF
 ## X-Acronym: KAF
-## Version: 82.4
+## Version: 83.0
 ## Author: Krowi-Frostmane EU
 ## SavedVariables: KrowiAF_DebugTable, KrowiAF_Options, KrowiAF_SavedData, KrowiAF_Filters, KrowiAF_SearchOptions, KrowiAF_Achievements
 ## OptionalDeps: BetterWardrobe, ElvUI, GW2_UI, InstanceAchievementTracker
@@ -27,7 +27,7 @@
 ## X-CurseForge: https://www.curseforge.com/wow/addons/krowi-achievement-filter
 ## X-Curse-Project-ID: 413582
 ## X-Wago: https://addons.wago.io/addons/krowi-achievement-filter
-## X-Wago-Project-ID: XrNkx46a
+## X-Wago-ID: XrNkx46a
 ## X-WoWInterface: https://www.wowinterface.com/downloads/info26229-KrowisAchievementFilter
 ## X-WoWInterface-Project-ID: 26229
 

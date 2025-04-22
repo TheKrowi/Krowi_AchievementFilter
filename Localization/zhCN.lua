@@ -8,7 +8,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-02-26 17-20-43 ]] --
+-- [[ Exported at 2025-04-22 19-57-46 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -99,6 +99,7 @@ L["Blizzard"] = "暴雪"
 L["BlizzCon"] = "暴雪嘉年华"
 L["Brackenhide Hollow"] = "蕨皮山谷"
 L["Brawler's Guild"] = "搏击俱乐部"
+L["Breaknecking Races"] = "疾飙竞速"
 L["Brewfest"] = "美酒节"
 L["Broken Isles Cup"] = "破碎群岛杯"
 L["Build"] = "客户端版本"
@@ -456,6 +457,8 @@ L["Export Missing Achievements Desc"] = "导出缺失成就。仅用作调试，
 L["Export Removed Achievements"] = "导出移除成就"
 L["Export Removed Achievements Desc"] = "导出移除成就。仅用作调试，无法使用该功能"
 L["Faction Assaults"] = "阵营突袭"
+L["Faction Icon Transparency"] = "阵营图标透明度"
+L["Faction Icon Transparency Desc"] = "阵营图标透明度设置为0完全透明，设置为1完全不透明"
 L["Fade delay"] = "淡出延迟"
 L["Fade delay Desc"] = "忽略提醒时淡出所用的时间，右键点击将直接关闭"
 L["Fall of the Lich King"] = "巫妖王的陨落"
@@ -967,6 +970,7 @@ L["Siren Isle"] = "海妖岛"
 L["Skitterer Xi'a"] = "飞掠者溪雅"
 L["Skoldus Hall"] = "斯科杜斯之厅"
 L["Skyriding Races"] = "驭空术比赛"
+L["Skyrocketing Races"] = "冲天火箭竞速"
 L["Slagmire"] = "熔渣沼泽"
 L["Snowstorms"] = "雪暴"
 L["Soon"] = "即将"
@@ -1079,6 +1083,7 @@ L["Tyrhold"] = "提尔要塞"
 L["Uktulut Coaster"] = "乌克图鲁特急流"
 L["Uncategorized"] = "未分类"
 L["Unchecked"] = "关闭"
+L["Undermine(d)"] = "安德麦风云"
 L["until the end of"] = "至结束"
 L["Up"] = "上"
 L["up until the start of"] = "至更新"
@@ -1100,6 +1105,7 @@ L["Wago Desc"] = "提供{addonName}的{wago}页面链接"
 L["Waking Shores"] = "觉醒海岸"
 L["Waking Shores: Next"] = "觉醒海岸: 下次"
 L["Warband Achievement"] = "战团成就"
+L["Warband Campsite"] = "战团营区"
 L["Warband Header Color"] = "{warband}页眉颜色"
 L["Warband Header Color Desc"] = [=[禁用后默认页眉背景从蓝色替换为橙色
 推荐启用{warbandIcon}.

@@ -8,7 +8,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-02-26 17-20-40 ]] --
+-- [[ Exported at 2025-04-22 19-57-42 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -95,6 +95,7 @@ L["Blizzard"] = true
 L["BlizzCon"] = true
 L["Brackenhide Hollow"] = "Лощина Бурошкуров"
 L["Brawler's Guild"] = "Бойцовская гильдия"
+L["Breaknecking Races"] = "Скоростные гонки"
 L["Brewfest"] = "Хмельной фестиваль"
 L["Broken Isles Cup"] = "Кубок Расколотых островов"
 L["Build"] = "Сборка"
@@ -257,6 +258,8 @@ L["Export Missing Achievements Desc"] = "Добавить недостающие
 L["Export Removed Achievements"] = "Добавить удаленные достижения"
 L["Export Removed Achievements Desc"] = "Добавить удаленные достижения. Это отладочная функция и лучше её не трогать."
 L["Faction Assaults"] = "Нападения Фракций"
+L["Faction Icon Transparency"] = "Прозрачность значка фракции"
+L["Faction Icon Transparency Desc"] = "Настраивает прозрачность значка фракции, где 0 полностью прозрачна и 1 - не прозрачна"
 L["Fade delay"] = "Задержка затухания"
 L["Fade delay Desc"] = "Время в секундах требующееся для затухания предупреждения при его игнорировании. Правый щелчок закроет его мгновенно."
 L["Fall of the Lich King"] = "Падение Короля Лича"
@@ -666,6 +669,7 @@ L["Siren Isle"] = "Остров Сирен"
 L["Skitterer Xi'a"] = "Быстролапый Кся"
 L["Skoldus Hall"] = "Чертоги Скольда"
 L["Skyriding Races"] = "Гонки на Драконах"
+L["Skyrocketing Races"] = "Турбоскоростные гонки"
 L["Slagmire"] = "Шлаковая топь"
 L["Snowstorms"] = "Снежные бури"
 L["Soon"] = "Скоро"
@@ -770,6 +774,7 @@ L["Tyrhold"] = "Тирхолд"
 L["Uktulut Coaster"] = "Горки Уктулут"
 L["Uncategorized"] = "Безкатегорийный"
 L["Unchecked"] = "Не выбрано"
+L["Undermine(d)"] = "Разгром в Нижней Шахте"
 L["until the end of"] = "до конца"
 L["Up"] = "Вверх"
 L["up until the start of"] = "новее до старта"
@@ -791,6 +796,7 @@ L["Wago Desc"] = "Открыть всплывающее окно с ссылко
 L["Waking Shores"] = "Берега Пробуждения"
 L["Waking Shores: Next"] = "Берега Пробуждения: Следущее"
 L["Warband Achievement"] = "Достижение Отряда"
+L["Warband Campsite"] = "Лагерь отряда"
 L["Warband Header Color"] = "{warband} цвет заголовка"
 L["Warband Header Color Desc"] = "Когда включено, по умолчанию цвет заголовка будет заменен на стандартный оранжевый цвет. Рекомндуем включить {warbandIcon}."
 L["Warcraft III: Reforged"] = true
