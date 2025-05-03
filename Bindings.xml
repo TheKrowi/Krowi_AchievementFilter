@@ -26,4 +26,7 @@
     <Binding name="KrowiAF_BROWSER_HISTORY_NEXT" category="BINDING_HEADER_KrowiAF">
         KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton:Click();
     </Binding>
+    <Binding name="KrowiAF_OPEN_TAB_Collections_Achievements" category="BINDING_HEADER_KrowiAF">
+        ToggleCollectionsJournal(7);
+    </Binding>
 </Bindings>

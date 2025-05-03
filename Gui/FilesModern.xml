@@ -6,6 +6,7 @@
     <Include file="EventReminder\Files.xml"/>
     <Include file="AchievementTooltip\Files.xml"/>
     <Include file="WindowFrames\FilesModern.xml"/>
+    <Include file="Collections\Files.xml"/>
     <Include file="RightClickMenu\Files.xml"/>
     <Include file="AchievementCalendar\Files.xml"/>
     <Include file="DataManager\Files.xml"/>

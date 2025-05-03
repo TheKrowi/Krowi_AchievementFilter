@@ -453,6 +453,26 @@ local filtersOptions = {
     }
 };
 
+local experimentalOptions = {
+    order = OrderPP(), type = "group",
+    name = addon.L["Experimental"],
+    args = {
+        Experimental = {
+            order = OrderPP(), type = "group", inline = true,
+            name = addon.L["Experimental"],
+            args = {
+                CollectionsAchievementWindow = {
+                    order = OrderPP(), type = "toggle", width = AdjustedWidth(2),
+                    name = addon.L["Collections Achievement Window"],
+                    desc = addon.L["Collections Achievement Window Desc"]:KAF_AddDefaultValueText("Experimental.CollectionsAchievementWindow"):K_AddReloadRequired(),
+                    get = function() return addon.Options.db.profile.Experimental.CollectionsAchievementWindow; end,
+                    set = function(_, value) addon.Options.db.profile.Experimental.CollectionsAchievementWindow = value; end
+                }
+            }
+        }
+    }
+};
+
 local debugOptions = {
     order = OrderPP(), type = "group",
     name = addon.L["Debug"],
@@ -541,6 +561,7 @@ options.OptionsTable.args["General"] = {
         Icon = iconOptions,
         KeyBinding = keyBindingOptions,
         Filters = filtersOptions,
+        Experimental = experimentalOptions,
         Debug = debugOptions
     }
 };

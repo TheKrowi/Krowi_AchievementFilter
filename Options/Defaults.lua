@@ -254,6 +254,9 @@ addon.Options.Defaults = {
         DataManager = {
             MouseWheelPanScalar = 1
         },
+        Experimental = {
+            CollectionsAchievementWindow = false,
+        },
         Plugins = {}
     }
 };
