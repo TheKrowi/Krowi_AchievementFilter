@@ -7,7 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-04-22 19-56-52 ]] --
+-- [[ Exported at 2025-05-17 22-03-14 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -47,8 +47,8 @@ This value can be changed while the achievement window is open and having one of
 (1) FPS drops and stuttering while adjusting the value, NOT during normal addon use]=]
 L["Active"] = true
 L["Active Event Login Delay"] = true
-L["Active Events"] = true
 L["Active events"] = true
+L["Active Events"] = true
 L["Add addon name to world map icon"] = true
 L["Add addon name to world map icon Desc"] = "Add '{addonName}' to the bottom of the tooltip when mousing over the icon."
 L["Add Locale"] = true
@@ -140,8 +140,8 @@ L["Category shown temporarily"] = "This category was selected by clicking on the
 L["Caverns Criss-Cross"] = true
 L["Center Header"] = true
 L["Center header"] = true
-L["Center header Desc"] = "Keep the header centered on the achievements window."
 L["Center Header Desc"] = "Center the achievement's name on the achievement button."
+L["Center header Desc"] = "Keep the header centered on the achievements window."
 L["Central Circuit"] = true
 L["Chains of Domination"] = true
 L["Character / Account wide"] = true
@@ -193,8 +193,8 @@ L["Completion"] = true
 L["Copy Account Wide to Character"] = true
 L["Copy Account Wide to Character Desc"] = "Copy the account wide {watchList} (any achievement watched by any character) to the current character specific {watchList}. From now on this character will have it's own {watchList}."
 L["Covenant"] = true
-L["Covenant Assaults"] = true
 L["Covenant assaults"] = true
+L["Covenant Assaults"] = true
 L["Credits"] = true
 L["Criteria"] = true
 L["Criteria Behaviour"] = true

@@ -9,6 +9,9 @@
     <Script file="frFR.lua" />
     <Script file="frFR.WrathClassic.lua" />
     <Script file="frFR.Plugins.lua" />
+    <Script file="ptBR.lua" />
+    <Script file="ptBR.WrathClassic.lua" />
+    <Script file="ptBR.Plugins.lua" />
     <Script file="ruRU.lua" />
     <Script file="ruRU.WrathClassic.lua" />
     <Script file="ruRU.Plugins.lua" />

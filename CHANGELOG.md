@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 83.1 - 2025-05-17
+### Added
+- Portuguese (Brazilian) translations
+
+### Fixed
+- Version 11.1.5 should now also be available for filtering
+
 ## 83.0 - 2025-04-22
 ### Added
 - Nightfall event achievements (4)

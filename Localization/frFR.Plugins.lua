@@ -5,7 +5,7 @@ if not L then return end
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-05-05 17-34-25 ]] --
+-- [[ Exported at 2025-05-17 22-06-27 ]] --
 L["AchievementsTabFixes"] = "Corrections de l'onglet des Hauts faits"
 L["AchievementsTabFixes Desc"] = "Ce plugin offre quelques corrections pour l'onglet des Hauts faits, que vous pouvez activer ou désactiver ci-dessous."
 L["Add To Right Click Menu"] = "Ajouter au menu clic droit"
@@ -14,6 +14,7 @@ L["Alert System Overwrite Desc"] = "Les paramètres de localisation ne sont pas 
 L["At least version is required"] = "La version minimum '{version}' est requise."
 L["Better Wardrobe"] = true
 L["Better Wardrobe Desc"] = "Ce plugin corrige le lien vers la garde-robe qui est rompu par {betterWardrobe}. Il n'y a pas d'options."
+L["Calendar Button Position Overwrite Desc"] = "La configuration de la position n'est pas active lorsque {addon} est activé."
 L["ElvUI"] = true
 L["ElvUI Desc"] = "Chacune des options ci-dessous est contrôlée par ElvUI et est purement informative. Pour modifier ces options, allez dans Menu du jeu -> ElvUI -> Skins et cochez les options souhaitées. Voir chaque option ci-dessous pour savoir quoi cocher."
 L["ElvUI Fix World Map Button"] = "Réparer le bouton de la carte du monde"
@@ -22,8 +23,8 @@ L["ElvUI Remove Parchment"] = "Supprimer le parchemin"
 L["ElvUI Remove Parchment Desc"] = "Supprime le fond texturé parchemin du calendrier."
 L["ElvUI Skin Ace3"] = "Apparence Ace3"
 L["ElvUI Skin Ace3 Desc"] = "Applique le skin ElvUI aux options."
-L["ElvUI Skin Achievements"] = "Apparence des Haut-fait"
-L["ElvUI Skin Achievements Desc"] = "Applique l'apparence d'ElvUI à la fenêtre des Hauts-faits."
+L["ElvUI Skin Achievements"] = "Apparence des Hauts faits"
+L["ElvUI Skin Achievements Desc"] = "Applique l'apparence d'ElvUI à la fenêtre des Hauts faits."
 L["ElvUI Skin Alert Frames"] = "Apparence des cadres d'alerte"
 L["ElvUI Skin Alert Frames Desc"] = "Applique l'apparence d'ElvUI aux cadres d'alerte."
 L["ElvUI Skin Calendar"] = "Apparence du Calendrier"
@@ -38,8 +39,8 @@ L["ElvUI Skin Tutorials"] = "Apparence du tutoriel"
 L["ElvUI Skin Tutorials Desc"] = "Applique l'apparence d'ElvUI aux fenêtre de tutoriels."
 L["GW2_UI"] = "GW 2 UI"
 L["GW2_UI Modules Desc"] = "Pour modifier ces options, allez dans \"Menu du jeu\" -> \"GW 2 UI\" -> \"Général\" -> \"Modules\" et cochez les options souhaitées. Voir chaque option ci-dessous pour savoir quoi cocher."
-L["GW2_UI Skin Achievements"] = "Apparence des Haut-fait"
-L["GW2_UI Skin Achievements Desc"] = "Applique l'apparence de GW 2 UI à la fenêtre des Hauts-faits."
+L["GW2_UI Skin Achievements"] = "Apparence des Hauts faits"
+L["GW2_UI Skin Achievements Desc"] = "Applique l'apparence de GW 2 UI à la fenêtre des Hauts faits."
 L["GW2_UI Skin Alert Frames"] = "Apparence des cadres d'alerte"
 L["GW2_UI Skin Alert Frames Desc"] = "Applique l'apparence de GW 2 UI aux cadres d'alerte."
 L["GW2_UI Skin DropDown"] = "Apparence du menu déroulant"
@@ -52,7 +53,7 @@ L["GW2_UI Skins Desc"] = "Chacune des options ci-dessous est contrôlée par GW 
 L["IAT Tactics"] = true
 L["Instance Achievement Tracker"] = true
 L["Instance Achievement Tracker Desc"] = "Ce plugin permet l'ajout d'un élément supplémentaire au menu clic droit pour {iat}."
-L["Instance Achievement Tracker PluginText"] = "|T:1:8|t- Raccourci vers {plugin_iat} si des tactiques pour la réalisation des Hauts-faits sont disponibles ({plugin_iat} est {plugin_enabled})."
+L["Instance Achievement Tracker PluginText"] = "|T:1:8|t- Utilise le raccourci vers {plugin_iat} si des tactiques pour la réalisation des Hauts faits sont disponibles ({plugin_iat} est {plugin_enabled})."
 L["RenameExplorationDragonIslesCategory"] = "Renommez Exploration -> Catégorie Îles aux Dragons en Dragonflight"
 L["RenameExplorationDragonIslesCategory Desc"] = "Renomme la catégorie Exploration -> Îles aux Dragons en Dragonflight."
 L["Unsupported GW2_UI Desc"] = "La version actuelle \"{version}\" de GW 2 UI n'est pas prise en charge."

@@ -8,7 +8,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-04-22 19-57-11 ]] --
+-- [[ Exported at 2025-05-17 22-03-48 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -48,8 +48,8 @@ Dieser Wert kann geändert werden, während das Erfolg-Fenster geöffnet ist und
 (1) FPS-Einbrüche und Stottern während der Anpassung des Wertes, NICHT während der normalen Addon-Nutzung.]=]
 L["Active"] = "Aktiv"
 L["Active Event Login Delay"] = "Aktive Ereignisse Login-Verzögerung"
-L["Active Events"] = "Aktive Ereignisse"
 L["Active events"] = "Aktive Ereignisse"
+L["Active Events"] = "Aktive Ereignisse"
 L["Add addon name to world map icon"] = "Addon-Namen zum Weltkarten-Icon hinzufügen"
 L["Add addon name to world map icon Desc"] = "Fügt '{addonName}' am Ende des Tooltips hinzu, wenn man mit der Maus über das Icon fährt."
 L["Add Locale"] = "Installationspfad hinzufügen"
@@ -140,8 +140,8 @@ L["Category shown temporarily"] = "Diese Kategorie wurde durch Klicken auf die {
 L["Caverns Criss-Cross"] = "Kreuz und quer durch die Höhlen"
 L["Center Header"] = "Erfolgs-Überschrift zentrieren"
 L["Center header"] = "Kopfzeile zentrieren"
-L["Center header Desc"] = "Zentriere die Kopfzeile im Erfolgsfenster."
 L["Center Header Desc"] = "Zentriere die Erfolgs-Überschrift"
+L["Center header Desc"] = "Zentriere die Kopfzeile im Erfolgsfenster."
 L["Central Circuit"] = "Zentralrundstrecke"
 L["Chains of Domination"] = "Ketten der Herrschaft"
 L["Character / Account wide"] = "Charakter & Account"
@@ -189,8 +189,8 @@ L["Completion"] = "Komplettierung"
 L["Copy Account Wide to Character"] = "Account-übergreifend auf Beobachtungsliste pro Charakter umstellen"
 L["Copy Account Wide to Character Desc"] = "Kopiere die accountweite {watchList} (alle von allen Charakteren beobachteten Erfolge) in die aktuelle charakterspezifische {watchList}. Von nun an wird dieser Charakter seine eigene {watchList} haben."
 L["Covenant"] = "Pakt"
-L["Covenant Assaults"] = "Paktangriffe"
 L["Covenant assaults"] = "Paktangriffe"
+L["Covenant Assaults"] = "Paktangriffe"
 L["Credits"] = true
 L["Criteria"] = "Kriterien"
 L["Criteria Behaviour"] = "Erfolgs-Kriterien Darstellung"
@@ -211,6 +211,7 @@ L["CurseForge Desc"] = "Öffnet ein Popup-Fenster mit einem Link zur Seite {addo
 L["Custom"] = "Benutzerdefiniert"
 L["Dark Heart"] = "Das Dunkle Herz"
 L["Darkmoon Faire"] = "Dunkelmond-Jahrmarkt"
+L["Dastardly Duos"] = "Durchtriebene Duos"
 L["Data Manager"] = "Charakterübersicht"
 L["Date and Time format"] = "Datum und Zeit (Format)"
 L["Date and Time formatting guide"] = "Formatierungsanleitung für Datum und Uhrzeit"
@@ -532,6 +533,7 @@ L["Hide Not Earned By if current character earned the achievement Desc"] = "Blen
 L["Highmountain"] = "Der Hochberg"
 L["Holidays"] = "Feiertage"
 L["Horizontal position"] = "Horizontale Position"
+L["Horrific Visions Revisited"] = "Überarbeitete Verstörende Visionen"
 L["Hour of Twilight"] = "Die Stunde des Zwielichts"
 L["Icon Left click"] = "um das \"Erfolge\" Fenster zu öffnen."
 L["Icon Right click"] = "für die Optionen."
@@ -541,8 +543,8 @@ L["Ignore Filters"] = "Filter Ingorieren"
 L["Ignore Filters Desc"] = "Ignoriere jegliche Filter und zeige alle Erfolge in dieser {category}."
 L["Imbu"] = true
 L["Import"] = true
-L["In"] = "in"
 L["in"] = true
+L["In"] = "in"
 L["In instances"] = "In einer Instanz"
 L["Include"] = "Hinzufügen"
 L["Include all"] = "\"Filter: Erfolge ausgeblendet\" einbeziehen"
@@ -647,6 +649,7 @@ L["Next"] = "Weiter"
 L["Next from startDate until endDate"] = "Demächst ab {startDate} bis {endDate}"
 L["Next occurrence unknown"] = "Nächstes Erscheinungsdatum unbekannt"
 L["Night Fae Assault"] = "Night Fae Paktangriff"
+L["Nightfall"] = "Nachtsturz"
 L["Nitun"] = true
 L["No achievements are available with the current set of filters"] = "Es können keine Erfolge mit den von dir gesetzten Filtern angezeigt werden."
 L["No category selected"] = "Keine Kategorie ausgewählt"

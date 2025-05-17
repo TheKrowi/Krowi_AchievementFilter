@@ -4,3 +4,7 @@
 <li>Dastardly Duos event achievements (19)</li>
 <li>Horrific Visions Revisited achievements (29)</li>
 </ul>
+<p><h3>Fixed (83.1)</h3></p>
+<ul>
+<li>Version 11.1.5 should now also be available for filtering</li>
+</ul>
