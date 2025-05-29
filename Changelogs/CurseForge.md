@@ -12,7 +12,7 @@
 <ul>
 <li>Version 11.1.5 should now also be available for filtering</li>
 </ul>
-<p><h3>Added (83.1)</h3></p>
+<p><h3>Added (83.2)</h3></p>
 <ul>
 <li>Dastardly Duos event reminder</li>
 </ul>

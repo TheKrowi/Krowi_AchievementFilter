@@ -15,7 +15,7 @@
 [*]Version 11.1.5 should now also be available for filtering
 [/LIST]
 
-[B]Added (83.1)[/B]
+[B]Added (83.2)[/B]
 [LIST]
 [*]Dastardly Duos event reminder
 [/LIST]
