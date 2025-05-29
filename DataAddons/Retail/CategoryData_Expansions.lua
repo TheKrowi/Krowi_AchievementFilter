@@ -13021,11 +13021,11 @@ local theWarWithin = { -- The War Within
             41897, -- A Monumental Amount of Mementos
             41898, -- A Mountain of Mementos
             41873, -- Incremental Progress
-            41874, -- Symphony of Masks
             41889, -- Horrific Masquerade
             41890, -- Masked Duet
             41891, -- Masked Trio
             41893, -- Masked Quartet
+            41874, -- Symphony of Masks
             41894, -- Masked Septet
             41895, -- Orchestra of Masks
             41953, -- Mad World

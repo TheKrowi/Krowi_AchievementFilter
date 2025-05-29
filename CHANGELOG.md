@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 83.1 - 2025-05-29
+### Added
+- Dastardly Duos event reminder
+
 ## 83.1 - 2025-05-17
 ### Added
 - Portuguese (Brazilian) translations

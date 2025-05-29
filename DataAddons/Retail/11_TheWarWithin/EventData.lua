@@ -11,14 +11,14 @@ KrowiAF.EventData.TheWarWithin = {
         addon.L["Other"],
         2
     },
-    -- { -- Timewalking Dungeon Event
-    --     {1508, 1583, 1584, 1585}, type.Calendar,
-    --     1678,
-    --     6036545,
-	-- 	addon.L["Timewalking Dungeon Event"],
-    --     addon.L["Other"],
-    --     2
-    -- },
+    { -- Dastardly Duos
+        1599, type.Calendar,
+        1681,
+        6740278,
+		addon.L["Dastardly Duos"],
+        addon.L["Other"],
+        2
+    },
 	-- { -- Plunderstorm
 	-- 	{1601, 1633, 1634, 1635}, type.Calendar,
 	-- 	1680,
