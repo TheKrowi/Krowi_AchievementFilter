@@ -57,7 +57,7 @@ end
 
 function temporaryObtainable:GetObtainableState(achievement)
     if not achievement.TemporaryObtainable then
-        return;
+        return "Current";
     end
 
     local record = achievement.TemporaryObtainable[#achievement.TemporaryObtainable];
