@@ -29,11 +29,11 @@ local function LoadCollections()
     hooksecurefunc("CollectionsJournal_UpdateSelectedTab", function(self)
         local selected = CollectionsJournal_GetTab(self);
 
-        KrowiAF_Collections_AchievementFrame:SetShown(selected == id);
-
         if selected ~= id then
             return;
         end
+
+        KrowiAF_Collections_AchievementFrame:SetShown(selected == id);
 
         CollectionsJournal:SetTitle(addon.L["Achievements"]);
 
