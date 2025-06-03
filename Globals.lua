@@ -74,7 +74,7 @@ function addon.GetAchievementNumbers(_filters, achievement, numOfAch, numOfCompA
 			numOfCompAch = numOfCompAch + 1;
 		-- else
 		-- 	numOfIncompAch = numOfIncompAch + 1;
-        elseif state and (state == false or state == "Past" or state == "Future") then
+        elseif state == "Past" or state == "Future" then
 			numOfNotObtAch = numOfNotObtAch + 1;
 		end
 	end

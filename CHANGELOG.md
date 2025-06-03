@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 
 ## 83.3 - 2025-06-03
+### Added
+- Flame Warden of Khaz Algar to the Midsummer category
+- Flame Warden of Khaz Algar is now temporarily obtainable
+- Dastardly Duos achievements are now temporarily obtainable
+- Export to CSV (dev note: this is an experimental feature available in the options under General -> Debug -> Export to CSV)
+- Isle of Dorn Skyriding Races tooltip data
+
 ### Fixed
 - Dastardly Duos event reminder (EU)
 

@@ -153,6 +153,8 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                 1039, -- The Flame Keeper
                 17737, -- Flame Warden of the Dragon Isles
                 17738, -- Flame Keeper of the Dragon Isles
+                41631, -- Flame Warden of Khaz Algar
+                41632, -- Flame Keeper of Khaz Algar
             },
         },
         { -- Pirates' Day

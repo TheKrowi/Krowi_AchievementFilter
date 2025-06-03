@@ -4,7 +4,7 @@ local saturationStyle = addon.Objects.SaturationStyle;
 
 local media = "Interface/AddOns/Krowi_AchievementFilter/Media/";
 local notObtainableSaturationStyle = saturationStyle:New(
-	function(state) return state and (state == false or state == "Past"); end,
+	function(state) return state == "Past"; end,
 	"NotObtainable",
 	media .. "NotObtainableAchievementBorders",
 	nil,
@@ -12,7 +12,7 @@ local notObtainableSaturationStyle = saturationStyle:New(
 	function() return ACHIEVEMENT_RED_BORDER_COLOR; end
 );
 local tempObtainableSaturationStyle = saturationStyle:New(
-	function(state) return state and state == "Current"; end,
+	function(state) return state == "Current"; end,
 	"TempObtainable",
 	media .. "TempObtainableAchievementBorders",
 	nil,
@@ -20,7 +20,7 @@ local tempObtainableSaturationStyle = saturationStyle:New(
 	function() return CreateColor(0, 0.67, 0); end -- Green
 );
 local tempObtainableFutureSaturationStyle = saturationStyle:New(
-	function(state) return state and state == "Future"; end,
+	function(state) return state == "Future"; end,
 	"TempObtainableFuture",
 	media .. "TempObtainableFutureAchievementBorders",
 	nil,

@@ -1973,34 +1973,63 @@ KrowiAF.AchievementData["11_01_05"] = {
     { -- Flame Warden of Khaz Algar
         41631,
         faction.Alliance,
+        {
+            {"Event", 341},
+        },
     },
     { -- Flame Keeper of Khaz Algar
         41632,
         faction.Horde,
+        {
+            {"Event", 341},
+        },
     },
-    {41706}, -- Dastardly Duos Weekly High Score
-    {41707}, -- Dastardly Devices
+    { -- Dastardly Duos Weekly High Score
+        41706,
+        {
+            {"Event", 1599},
+        },
+    },
+    { -- Dastardly Devices
+        41707,
+        {
+            {"Event", 1599},
+        },
+    },
     { -- Fiendishly Famous
         41715,
         {
             RewardType = rewardType.Other,
+            {"Event", 1599},
         },
     },
     { -- Duo Darling
         41716,
         {
             RewardType = rewardType.Other,
+            {"Event", 1599},
         },
     },
-    {41717}, -- Duos Underdog
+    { -- Duos Underdog
+        41717,
+        {
+            {"Event", 1599},
+        },
+    },
     { -- Inside Connections
         41722,
         {
             RewardType = rewardType.Other,
+            {"Event", 1599},
         },
     },
     {41725}, -- We Have the Memories
-    {41810}, -- Winner's Podium
+    { -- Winner's Podium
+        41810,
+        {
+            {"Event", 1599},
+        },
+    },
     {41853}, -- Horrific Vision of Stormwind
     {41854}, -- The Even More Horrific Vision of Stormwind
     {41855}, -- The Most Horrific Vision of Stormwind
@@ -2036,9 +2065,24 @@ KrowiAF.AchievementData["11_01_05"] = {
     {41896}, -- Memento Mori
     {41897}, -- A Monumental Amount of Mementos
     {41898}, -- A Mountain of Mementos
-    {41905}, -- Center of Attention
-    {41916}, -- My Way, The Highway
-    {41922}, -- Undefeatable
+    { -- Center of Attention
+        41905,
+        {
+            {"Event", 1599},
+        },
+    },
+    { -- My Way, The Highway
+        41916,
+        {
+            {"Event", 1599},
+        },
+    },
+    { -- Undefeatable
+        41922,
+        {
+            {"Event", 1599},
+        },
+    },
     { -- Reeking of Visions
         41928,
         {
@@ -2051,11 +2095,36 @@ KrowiAF.AchievementData["11_01_05"] = {
             RewardType = rewardType.Mount,
         },
     },
-    {41948}, -- Defeat the Dastardlies
-    {41949}, -- Defeat the Dastardlies
-    {41950}, -- Defeat the Dastardlies
-    {41951}, -- Defeat the Dastardlies
-    {41952}, -- Defeat the Dastardlies
+    { -- Defeat the Dastardlies
+        41948,
+        {
+            {"Event", 1599},
+        },
+    },
+    { -- Defeat the Dastardlies
+        41949,
+        {
+            {"Event", 1599},
+        },
+    },
+    { -- Defeat the Dastardlies
+        41950,
+        {
+            {"Event", 1599},
+        },
+    },
+    { -- Defeat the Dastardlies
+        41951,
+        {
+            {"Event", 1599},
+        },
+    },
+    { -- Defeat the Dastardlies
+        41952,
+        {
+            {"Event", 1599},
+        },
+    },
     { -- Mad World
         41953,
         {
@@ -2077,12 +2146,32 @@ KrowiAF.AchievementData["11_01_05"] = {
         },
     },
     {41983}, -- Memento Mania
-    {41995}, -- Boot Hill
+    { -- Boot Hill
+        41995,
+        {
+            {"Event", 1599},
+        },
+    },
     {41996}, -- I'm Doing My Part
     {41997}, -- Owner of a Radiant Heart
     {41998}, -- Turning the Venom Tide
     {41999}, -- Fighter of the Nightman
-    {42002}, -- Bullhorn of Plenty
-    {42003}, -- Bullhorn of More Plenty
-    {42004}, -- Bullhorn of Most Plenty
+    { -- Bullhorn of Plenty
+        42002,
+        {
+            {"Event", 1599},
+        },
+    },
+    { -- Bullhorn of More Plenty
+        42003,
+        {
+            {"Event", 1599},
+        },
+    },
+    { -- Bullhorn of Most Plenty
+        42004,
+        {
+            {"Event", 1599},
+        },
+    },
 };

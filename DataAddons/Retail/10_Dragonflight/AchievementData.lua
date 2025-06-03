@@ -1147,7 +1147,6 @@ KrowiAF.AchievementData["10_01_00"] = {
     { -- Flame Keeper of the Dragon Isles
         17738,
         faction.Horde,
-        faction.Alliance,
         {
             {"Event", 341},
         },

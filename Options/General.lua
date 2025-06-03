@@ -199,9 +199,9 @@ local function PrintMapInfoWithoutReload()
     addon.Options.db.profile.PrintMapInfo = true;
 end
 
-local function ExportExperimental()
+local function ExportToCsv()
     local frame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template");
-	frame:Init(addon.L["Experimental"]);
+	frame:Init(addon.L["Export to CSV"]);
     local exportString = "Id;Name;Description;Obtainable;Completed;Points;Rewards\r\n";
     local data = addon.Data;
     local temp = addon.Data.TemporaryObtainable;
@@ -570,7 +570,7 @@ local debugOptions = {
                     order = OrderPP(), type = "execute",
                     name = addon.L["Experimental"],
                     desc = addon.L["Experimental Desc"],
-                    func = ExportExperimental
+                    func = ExportToCsv
                 }
             }
         }
