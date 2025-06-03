@@ -2,7 +2,7 @@
 ## Title: Krowi's |cFF1D92C2Achievement Filter|r
 ## X-Prefix: KrowiAF
 ## X-Acronym: KAF
-## Version: 83.2
+## Version: 83.3
 ## Author: Krowi-Frostmane EU
 ## SavedVariables: KrowiAF_DebugTable, KrowiAF_Options, KrowiAF_SavedData, KrowiAF_Filters, KrowiAF_SearchOptions, KrowiAF_Achievements
 ## OptionalDeps: BetterWardrobe, ElvUI, GW2_UI, InstanceAchievementTracker

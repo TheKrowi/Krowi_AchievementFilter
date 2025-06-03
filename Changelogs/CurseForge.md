@@ -16,3 +16,7 @@
 <ul>
 <li>Dastardly Duos event reminder</li>
 </ul>
+<p><h3>Fixed (83.3)</h3></p>
+<ul>
+<li>Dastardly Duos event reminder (EU)</li>
+</ul>

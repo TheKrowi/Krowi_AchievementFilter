@@ -11,3 +11,6 @@
 
 ### Added (83.2)
 - Dastardly Duos event reminder
+
+### Fixed (83.3)
+- Dastardly Duos event reminder (EU)

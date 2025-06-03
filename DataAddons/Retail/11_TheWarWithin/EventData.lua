@@ -12,7 +12,7 @@ KrowiAF.EventData.TheWarWithin = {
         2
     },
     { -- Dastardly Duos
-        1599, type.Calendar,
+        {1599, 1689}, type.Calendar,
         1681,
         6740278,
 		addon.L["Dastardly Duos"],

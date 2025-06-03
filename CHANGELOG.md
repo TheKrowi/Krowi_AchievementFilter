@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 83.3 - 2025-06-03
+### Fixed
+- Dastardly Duos event reminder (EU)
+
 ## 83.2 - 2025-05-29
 ### Added
 - Dastardly Duos event reminder
