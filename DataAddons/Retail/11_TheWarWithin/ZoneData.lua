@@ -634,4 +634,28 @@ KrowiAF.ZoneData.TheWarWithin = {
             41531, -- The Hataclysm
         }
     },
+    { -- Dastardly Dome
+        2447,
+        {
+            41706, -- Dastardly Duos Weekly High Score
+            41707, -- Dastardly Devices
+            41715, -- Fiendishly Famous
+            41716, -- Duo Darling
+            41717, -- Duos Underdog
+            41722, -- Inside Connections
+            41905, -- Center of Attention
+            41916, -- My Way, The Highway
+            41922, -- Undefeatable
+            41995, -- Boot Hill
+            42002, -- Bullhorn of Plenty
+            42003, -- Bullhorn of More Plenty
+            42004, -- Bullhorn of Most Plenty
+            41810, -- Winner's Podium
+            41948, -- Defeat the Dastardlies
+            41949, -- Defeat the Dastardlies
+            41950, -- Defeat the Dastardlies
+            41951, -- Defeat the Dastardlies
+            41952, -- Defeat the Dastardlies
+        }
+    },
 };

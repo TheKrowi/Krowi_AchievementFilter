@@ -208,7 +208,7 @@ local function ExportToCsv()
     for _, achievementId in next, data.AchievementIds do
         local achievementInfo = addon.GetAchievementInfoTable(achievementId);
         if achievementInfo.Exists and not achievementInfo.IsGuild and not achievementInfo.IsStatistic then
-            exportString = exportString .. achievementInfo.Id .. ";" .. achievementInfo.Name .. ";" .. achievementInfo.Description .. ";" .. temp:GetObtainableState(data.Achievements[achievementId]) .. ";" .. tostring(achievementInfo.IsCompleted) .. ";" .. achievementInfo.Points .. ";" .. achievementInfo.RewardText .. "\r\n";
+            exportString = exportString .. achievementInfo.Id .. ";" .. achievementInfo.Name .. ";" .. achievementInfo.Description .. ";" .. (temp:GetObtainableState(data.Achievements[achievementId]) or "") .. ";" .. tostring(achievementInfo.IsCompleted) .. ";" .. achievementInfo.Points .. ";" .. achievementInfo.RewardText .. "\r\n";
         end
     end
 
@@ -568,8 +568,8 @@ local debugOptions = {
                 Blank6 = {order = OrderPP(), type = "description", width = AdjustedWidth(2), name = ""},
                 Experimental = {
                     order = OrderPP(), type = "execute",
-                    name = addon.L["Experimental"],
-                    desc = addon.L["Experimental Desc"],
+                    name = addon.L["Export to CSV"],
+                    desc = addon.L["Export to CSV Desc"],
                     func = ExportToCsv
                 }
             }
