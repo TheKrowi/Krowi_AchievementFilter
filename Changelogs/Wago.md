@@ -21,3 +21,11 @@
 
 ### Fixed (83.3)
 - Dastardly Duos event reminder (EU)
+
+### Added (83.4)
+- Dastardly Duos zone data
+- A lot of Pet Battle tooltip data provided by Silden
+- Credits for Malivil and Silden for contributing to the addon
+
+### Fixed (83.4)
+- Only temporarily obtainable achievements that are currently obtainable should have a green header color

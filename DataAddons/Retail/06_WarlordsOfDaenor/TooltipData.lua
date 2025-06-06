@@ -97,4 +97,63 @@ KrowiAF.TooltipData.WarlordsOfDaenor = {
             {20, 160984, type.Spell}, -- Talador Surf and Turf
         }
     },
+    { -- Draenor Safari
+        9685, type.Unit,
+        {
+            {1, 85257}, -- Amberbarb Wasp
+            {2, 85389}, -- Axebeak Hatchling
+            {3, 85255}, -- Bloodsting Wasp
+            {4, 88385}, -- Brilliant Bloodfeather
+            {5, 88572}, -- Flat Tooth Calf
+            {6, 82715}, -- Frostfur Rat
+            {7, 88480}, -- Frostshell Pincher
+            {8, 85798}, -- Golden Dawnfeather
+            {9, 85003}, -- Icespine Hatchling
+            {10, 88474}, -- Ironclaw Scuttler
+            {11, 85192}, -- Junglebeak
+            {12, 88465}, -- Kelp Scuttler
+            {13, 89198}, -- Leatherhide Runt
+            {14, 82045}, -- Moonshell Crab
+            {15, 85005}, -- Mossbite Skitterer
+            {16, 83642}, -- Mud Jumper
+            {17, 88571}, -- Mudback Calf
+            {18, 88417}, -- Royal Moth
+            {19, 88576}, -- Shadow Sporebat
+            {20, 88359}, -- Swamplighter Firefly
+            {21, 85007}, -- Thicket Skitterer
+            {22, 85253}, -- Twilight Wasp
+            {23, 88355}, -- Waterfly
+            {24, 85254}, -- Wood Wasp
+            {25, 88466}, -- Zangar Crawler
+        }
+    },
+    { -- Raiding with Leashes III: Drinkin' From the Sunwell
+        9824,
+        {
+            {1, 17842, type.Unit}, -- Azgalor
+            {1, 90200, type.Item}, -- Grotesque
+            {2, 22887, type.Unit}, -- High Warlord Najentus
+            {2, 90201, type.Item}, -- Leviathan Hatchling
+            {3, 22898, type.Unit}, -- Supremus
+            {3, 90202, type.Item}, -- Abyssius
+            {4, 22856, type.Unit}, -- Reliquary Of The Lost
+            {4, 90203, type.Item}, -- Fragment Of Anger
+            {5, 22856, type.Unit}, -- Reliquary Of The Lost
+            {5, 90204, type.Item}, -- Fragment Of Suffering
+            {6, 22856, type.Unit}, -- Reliquary Of The Lost
+            {6, 90205, type.Item}, -- Fragment Of Desire
+            {7, 22947, type.Unit}, -- Mother Shahraz
+            {7, 90206, type.Item}, -- Sister Of Temptation
+            {8, 17808, type.Unit}, -- Anetheron
+            {8, 90207, type.Item}, -- Stinkrot
+            {9, 17968, type.Unit}, -- Archimonde
+            {9, 90208, type.Item}, -- Hyjal Wisp
+            {10, 24882, type.Unit}, -- Brutallus
+            {10, 90212, type.Item}, -- Sunblade Micro Defender
+            {11, 25166, type.Unit}, -- Grand Warlock Alythess
+            {11, 90213, type.Item}, -- Chaos Pup
+            {12, 25741, type.Unit}, -- Muru
+            {12, 90214, type.Item}, -- Wretched Servant
+        }
+    },
 };

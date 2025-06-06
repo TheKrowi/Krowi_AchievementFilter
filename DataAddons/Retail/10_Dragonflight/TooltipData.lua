@@ -111,6 +111,35 @@ KrowiAF.TooltipData.Dragonflight = {
             {8, 189376}, -- Swog
         }
     },
+    { -- Dragon Isles Safari
+        16519, type.Unit,
+        {
+            {1, 192265}, -- Azure Crystalspine
+            {2, 197629}, -- Blue Dasher
+            {3, 192268}, -- Crimsonspine
+            {4, 193024}, -- Emberling
+            {5, 189153}, -- Grassland Stomper
+            {6, 194720}, -- Grizzlefur Cub
+            {7, 189121}, -- Igneoid
+            {8, 189131}, -- Ironbeak Duck
+            {9, 193000}, -- Kindlet
+            {10, 189094}, -- Magma Slug
+            {11, 189122}, -- Palamanther
+            {12, 197637}, -- Polliswog
+            {13, 189093}, -- Pricklefury Hare
+            {14, 189103}, -- Scruffy Ottuk
+            {15, 189102}, -- Shyfly
+            {16, 189107}, -- Snowlemental
+            {17, 192254}, -- Stoneshell
+            {18, 189104}, -- Swoglet
+            {19, 189658}, -- Tiny Timbertooth
+            {20, 189097}, -- Treeflitter
+            {21, 189110}, -- Trunkalumpf
+            {22, 191323}, -- Vorquin Runt
+            {23, 189136}, -- Wild Duckling
+            {24, 189157}, -- Woodbiter Piculet
+        }
+    },
     { -- Great Gourmand of The Ruby Feast
         16556, type.Item,
         {
@@ -195,6 +224,20 @@ KrowiAF.TooltipData.Dragonflight = {
             {2, 200692}, -- Tremblor
             {3, 200686}, -- Wildfire
             {4, 200696}, -- Flow
+        }
+    },
+    { -- Zaralek Cavern Safari
+        17879, type.Unit,
+        {
+            {1, 203287}, -- Puddlehopper
+            {2, 203288}, -- Rock Martin
+            {3, 203289}, -- Yellabon
+            {4, 203292}, -- Endmite
+            {5, 203308}, -- Stonewhisker
+            {6, 203310}, -- Cobbleshell
+            {7, 203311}, -- Boulderfang
+            {8, 203312}, -- Slabwing
+            {9, 203313}, -- Hollow Moth
         }
     },
     { -- Battle in Zaralek Cavern
@@ -351,6 +394,20 @@ KrowiAF.TooltipData.Dragonflight = {
             {4, 193651}, -- Tyrhold Trial
             {5, 200183}, -- Stormsunder Crater Circuit
             {6, 202524}, -- Crystal Circuit
+        }
+    },
+    { -- Emerald Dream Safari
+        19401, type.Unit,
+        {
+            {1, 212557}, -- Dream Badger
+            {2, 211110}, -- Flooftalon
+            {3, 211177}, -- Folya Pup
+            {4, 211288}, -- Leyhart
+            {5, 212437}, -- Pale Slumbertooth
+            {6, 211302}, -- Pewling
+            {7, 211182}, -- Sapnibbler
+            {8, 211295}, -- Slumbertooth
+            {9, 212459}, -- Snaggletoof
         }
     },
     { -- Northrend Basic / Advanced / Reverse

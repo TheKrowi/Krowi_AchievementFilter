@@ -75,4 +75,34 @@ KrowiAF.TooltipData.Shadowlands = {
             {12, 174641} -- Creeper
         }
     },
+    { -- Shadowlands Safari
+        14867, type.Unit,
+        {
+            {1, 175023}, -- Animated Cruor
+            {2, 175022}, -- Bleak Skitterer
+            {3, 172130}, -- Clutch
+            {4, 171702}, -- Copperfur Kit
+            {5, 173590}, -- Deepwood Leaper
+            {6, 171149}, -- Dusky Dredwing Pup
+            {7, 171567}, -- Fledgling Teroclaw
+            {8, 171664}, -- Fluttering Glimmerfly
+            {9, 171670}, -- Glimmerpool Hatchling
+            {10, 171229}, -- Gorm Rootstinger
+            {11, 171123}, -- Lost Soul
+            {12, 173555}, -- Mire Creeper
+            {13, 175024}, -- Necroray Spawnling
+            {14, 175021}, -- Pulsating Maggot
+            {15, 173506}, -- Rosetipped Spiderling
+            {16, 171703}, -- Rustfur Kit
+            {17, 171228}, -- Tranquil Wader
+            {18, 171668}, -- Vibrant Glimmerfly
+            {19, 171712}, -- Wader Chick
+            {20, 171666}, -- Wild Etherwyrm
+            {21, 173556}, -- Withering Creeper
+            {22, 176019}, -- Verdant Kit
+            {23, 176020}, -- Decay Grub
+            {24, 176021}, -- Starmoth
+            {25, 176024}, -- Crawbat
+        }
+    },
 };

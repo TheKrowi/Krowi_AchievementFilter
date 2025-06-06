@@ -1,9 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 83.4 - 2025-06-05
+## 83.4 - 2025-06-06
 ### Added
 - Dastardly Duos zone data
+- A lot of Pet Battle tooltip data provided by Silden
+- Credits for Malivil and Silden for contributing to the addon
 
 ### Fixed
 - Only temporarily obtainable achievements that are currently obtainable should have a green header color

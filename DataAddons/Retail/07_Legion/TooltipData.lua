@@ -50,4 +50,85 @@ KrowiAF.TooltipData.Legion = {
             {21, {201683, 201684, 201685}, type.Spell}, -- Crispy Bacon
         }
     },
+    { -- Broken Isles Safari
+        11233, type.Unit,
+        {
+            {1, 97018}, -- Albatross Chick
+            {2, 97076}, -- Fledgling Kingfeather
+            {3, 97078}, -- Fledgling Oliveback
+            {4, 97080}, -- Golden Eaglet
+            {5, 97118}, -- Long Eared Owl
+            {6, 97126}, -- Northern Hawk Owl
+            {7, 97236}, -- Burrow Spiderling
+            {8, 97283}, -- Juvenile Scuttleback
+            {9, 97294}, -- Olivetail Hare
+            {10, 97323}, -- Felspider
+            {11, 97511}, -- Shimmering Aquafly
+            {12, 97531}, -- Terror Larva
+            {13, 97542}, -- Slithering Brownscale
+            {14, 97547}, -- Vale Flitter
+            {15, 97555}, -- Auburn Ringtail
+            {16, 97559}, -- Spring Strider
+            {17, 97741}, -- Black Footed Fox Kit
+            {18, 97743}, -- Mist Fox Kit
+            {19, 97840}, -- Rose Taipan
+            {20, 97952}, -- Tiny Apparition
+            {21, 88542}, -- Echo Batling
+            {22, 98192}, -- Hog Nosed Bat
+            {23, 98211}, -- Spiketail Beaver
+            {24, 98385}, -- Erudite Manafiend
+            {25, 98386}, -- Eldritch Manafiend
+            {26, 98428}, -- Coralback Fiddler
+            {27, 98446}, -- Mudshell Conch
+            {28, 98506}, -- Dust Bunny
+            {29, 99513}, -- Vicious Broodling
+            {30, 99527}, -- Crystalline Broodling
+            {31, 99528}, -- Thornclaw Broodling
+            {32, 110741}, -- Gleamhoof Fawn
+            {33, 110826}, -- Coastal Sandpiper
+            {34, 111158}, -- Blind Rat
+            {35, 111172}, -- Stormstruck Beaver
+        }
+    },
+    { -- Raiding with Leashes IV: Wrath of the Lick King
+        11320,
+        {
+            {1, 34797, type.Unit}, -- Icehowl
+            {1, 115135, type.Item}, -- Dreadmaw
+            {2, 34564, type.Unit}, -- Anubarak
+            {2, 115137, type.Item}, -- Nerubian Swarmer
+            {3, 33118, type.Unit}, -- Ignis The Furnace Master
+            {3, 115138, type.Item}, -- Magma Rageling
+            {4, 33186, type.Unit}, -- Razorscale
+            {4, 115139, type.Item}, -- Ironbound Proto Whelp
+            {5, 32857, type.Unit}, -- Stormcaller Brundir
+            {5, 115140, type.Item}, -- Runeforged Servitor
+            {6, 33515, type.Unit}, -- Auriaya
+            {6, 115141, type.Item}, -- Sanctum Cub
+            {7, 32845, type.Unit}, -- Hodir
+            {7, 115142, type.Item}, -- Winter Rageling
+            {8, 32906, type.Unit}, -- Freya
+            {8, 115143, type.Item}, -- Snaplasher
+            {9, 33350, type.Unit}, -- Mimiron
+            {9, 115144, type.Item}, -- G0 R41 0N Ultratonk
+            {10, 33288, type.Unit}, -- Yogg Saron
+            {10, 115145, type.Item}, -- Creeping Tentacle
+            {11, 36612, type.Unit}, -- Lord Marrowgar
+            {11, 115146, type.Item}, -- Boneshard
+            {12, 37813, type.Unit}, -- Deathbringer Saurfang
+            {12, 115147, type.Item}, -- Blood Boil
+            {13, 36678, type.Unit}, -- Professor Putricide
+            {13, 115148, type.Item}, -- Blightbreath
+            {14, 36853, type.Unit}, -- Sindragosa
+            {14, 115149, type.Item}, -- Soulbroken Whelpling
+
+	    -- Only the Normal Mode has this pet
+            {15, 36597, type.Unit}, -- The Lich King (Normal Mode)
+            {15, 115150, type.Item}, -- Drudge Ghoul
+
+	    -- Only the Heroic Mode has this pet
+            {16, 36597, type.Unit}, -- The Lich King (Heroic Mode)
+            {16, 115152, type.Item}, -- Wicked Soul
+        }
+    },
 };

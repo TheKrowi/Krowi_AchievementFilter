@@ -5,6 +5,8 @@ local credits = addon.Credits;
 
 local specialThanks = {
     {Name = "Bur", Realm = "Frostmane EU", Class = "DRUID", Text = "Continuous support and helpful input and answers on questions that make this addon better; It wouldn't be as good without you :)"},
+    {Name = "Malivil", Class = "", Text = "Active community member who has been very helpful with answers to questions of other users"},
+    {Name = "Silden", Class = "", Text = "Contributed a lot of tooltip data, especially related to pet battles"},
 }
 
 function credits.GetSpecialThanksAsTable()

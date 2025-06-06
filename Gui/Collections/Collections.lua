@@ -3,6 +3,22 @@ local _, addon = ...;
 local loadHelper = CreateFrame("Frame");
 loadHelper:RegisterEvent("ADDON_LOADED");
 
+local function SelectTab()
+    -- hooksecurefunc("CollectionsJournal_UpdateSelectedTab", function(self)
+    --     local selected = CollectionsJournal_GetTab(self);
+
+    --     if selected ~= id then
+    --         return;
+    --     end
+
+    --     KrowiAF_Collections_AchievementFrame:SetShown(selected == id);
+
+    --     CollectionsJournal:SetTitle(addon.L["Achievements"]);
+
+    --     EventRegistry:TriggerEvent("CollectionsJournal.TabSet", CollectionsJournal, selected);
+    -- end);
+end
+
 local id;
 local function CreateAchievementsTabButton()
     local numTabs = CollectionsJournal.numTabs;
@@ -11,6 +27,7 @@ local function CreateAchievementsTabButton()
     PanelTemplates_SetNumTabs(CollectionsJournal, id);
     PanelTemplates_SetTab(CollectionsJournal, tonumber(GetCVar("petJournalTab")) or 1);
 
+    -- button:SetScript('OnClick', SelectTab);
     button:SetPoint("LEFT", _G[(CollectionsJournal:GetName() .. "Tab" .. numTabs)], "RIGHT", -16, 0);
     button:SetText(addon.L["Achievements"]);
 end
@@ -26,19 +43,19 @@ local function LoadCollections()
 
     CreateAchievementsTabButton();
 
-    hooksecurefunc("CollectionsJournal_UpdateSelectedTab", function(self)
-        local selected = CollectionsJournal_GetTab(self);
+    -- hooksecurefunc("CollectionsJournal_UpdateSelectedTab", function(self)
+    --     local selected = CollectionsJournal_GetTab(self);
 
-        if selected ~= id then
-            return;
-        end
+    --     if selected ~= id then
+    --         return;
+    --     end
 
-        KrowiAF_Collections_AchievementFrame:SetShown(selected == id);
+    --     KrowiAF_Collections_AchievementFrame:SetShown(selected == id);
 
-        CollectionsJournal:SetTitle(addon.L["Achievements"]);
+    --     CollectionsJournal:SetTitle(addon.L["Achievements"]);
 
-        EventRegistry:TriggerEvent("CollectionsJournal.TabSet", CollectionsJournal, selected);
-    end);
+    --     EventRegistry:TriggerEvent("CollectionsJournal.TabSet", CollectionsJournal, selected);
+    -- end);
 
     CreateAchievementFrame();
 end
