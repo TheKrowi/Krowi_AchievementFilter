@@ -8,26 +8,9 @@ if not L then return end
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-05-05 17-34-26 ]] --
+-- [[ Exported at 2025-05-17 22-06-28 ]] --
 L["Completed"] = "Complété"
--- L["EJ_GetInstanceInfo1190"] = "Château Nathria"
--- L["EJ_GetInstanceInfo1193"] = "Sanctum de Somination"
--- L["EJ_GetInstanceInfo1195"] = "Sépulcre des Fondateurs"
--- L["EJ_GetInstanceInfo226"] = "Gouffre de Ragefeu"
--- L["EJ_GetInstanceInfo227"] = "Profondeurs de Brassenoire"
--- L["EJ_GetInstanceInfo228"] = "Profondeurs de Rochenoire"
--- L["EJ_GetInstanceInfo229"] = "Bas du pic Rochenoire"
 L["EJ_GetInstanceInfo230"] = "Haches-Tripes"
--- L["EJ_GetInstanceInfo231"] = "Gnomeregan"
--- L["EJ_GetInstanceInfo232"] = "Maraudon"
--- L["EJ_GetInstanceInfo233"] = "Souilles de Tranchebauge"
--- L["EJ_GetInstanceInfo234"] = "Kraal de Tranchebauge"
--- L["EJ_GetInstanceInfo236"] = "Stratholme"
--- L["EJ_GetInstanceInfo237"] = "Le temple d'Atal'Hakkar"
--- L["EJ_GetInstanceInfo238"] = "La Prison"
--- L["EJ_GetInstanceInfo239"] = "Uldaman"
--- L["EJ_GetInstanceInfo240"] = "Cavernes des lamentations"
--- L["EJ_GetInstanceInfo241"] = "Zul'Farrak"
 L["EJ_GetInstanceInfo246"] = "Scholomance"
 L["EJ_GetInstanceInfo247"] = "Cryptes Auchenaï"
 L["EJ_GetInstanceInfo248"] = "Remparts des Flammes infernales"

@@ -2,7 +2,7 @@
 
 Achievement Filter completely replaces the default Achievements tab and adds several new tabs that order the achievements by expansion, pvp, events or other curated lists. Over 6400 achievements are added so far spread over 1200+ categories, linked to 1800+ zones and 120+ events.
 
-### Now also mostly available in German, French, Russian and Chinese (Simplified)!
+### Now also mostly available in German, French, Portuguese (Brazilian), Russian and Chinese (Simplified)!
 
 ### Tabs
 - **Achievements**: A copy of the default Achievements tab but with all the additional features.

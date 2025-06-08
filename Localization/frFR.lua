@@ -8,7 +8,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-04-22 19-57-31 ]] --
+-- [[ Exported at 2025-05-17 22-04-09 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -138,8 +138,8 @@ L["Category shown temporarily"] = "Cette catégorie a été sélectionnée en cl
 L["Caverns Criss-Cross"] = "Réseau des grottes"
 L["Center Header"] = "En-tête centré"
 L["Center header"] = "En-tête centré"
-L["Center header Desc"] = "Gardez l'en-tête centré sur la fenêtre des Hauts-faits."
 L["Center Header Desc"] = "Centre le nom du Haut-fait sur le bouton du Haut-fait."
+L["Center header Desc"] = "Gardez l'en-tête centré sur la fenêtre des Hauts-faits."
 L["Central Circuit"] = "Circuit Central"
 L["Chains of Domination"] = "Chaînes de domination"
 L["Character / Account wide"] = "Personnage et compte"
@@ -182,8 +182,8 @@ L["Compact Desc"] = [=[Utiliser une version plus compacte avec une seule ligne d
 {reloadRequired}]=]
 L["Completion"] = "Terminé"
 L["Covenant"] = "Congrégation"
-L["Covenant Assaults"] = "Assauts de congrégations"
 L["Covenant assaults"] = "Assauts des congregations"
+L["Covenant Assaults"] = "Assauts de congrégations"
 L["Credits"] = "Crédits"
 L["Criteria"] = "Critères"
 L["Criteria Behaviour"] = "Comportement des critères."

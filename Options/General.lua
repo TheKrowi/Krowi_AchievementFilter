@@ -199,6 +199,23 @@ local function PrintMapInfoWithoutReload()
     addon.Options.db.profile.PrintMapInfo = true;
 end
 
+local function ExportToCsv()
+    local frame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template");
+	frame:Init(addon.L["Export to CSV"]);
+    local exportString = "Id;Name;Description;Obtainable;Completed;Points;Rewards\r\n";
+    local data = addon.Data;
+    local temp = addon.Data.TemporaryObtainable;
+    for _, achievementId in next, data.AchievementIds do
+        local achievementInfo = addon.GetAchievementInfoTable(achievementId);
+        if achievementInfo.Exists and not achievementInfo.IsGuild and not achievementInfo.IsStatistic then
+            exportString = exportString .. achievementInfo.Id .. ";" .. achievementInfo.Name .. ";" .. achievementInfo.Description .. ";" .. (temp:GetObtainableState(data.Achievements[achievementId]) or "") .. ";" .. tostring(achievementInfo.IsCompleted) .. ";" .. achievementInfo.Points .. ";" .. achievementInfo.RewardText .. "\r\n";
+        end
+    end
+
+    frame.Input:SetText(exportString);
+    frame:Show();
+end
+
 local infoOptions = {
     order = OrderPP(), type = "group",
     name = addon.L["Info"],
@@ -453,6 +470,26 @@ local filtersOptions = {
     }
 };
 
+local experimentalOptions = {
+    order = OrderPP(), type = "group",
+    name = addon.L["Experimental"],
+    args = {
+        Experimental = {
+            order = OrderPP(), type = "group", inline = true,
+            name = addon.L["Experimental"],
+            args = {
+                CollectionsAchievementWindow = {
+                    order = OrderPP(), type = "toggle", width = AdjustedWidth(2),
+                    name = addon.L["Collections Achievement Window"],
+                    desc = addon.L["Collections Achievement Window Desc"]:KAF_AddDefaultValueText("Experimental.CollectionsAchievementWindow"):K_AddReloadRequired(),
+                    get = function() return addon.Options.db.profile.Experimental.CollectionsAchievementWindow; end,
+                    set = function(_, value) addon.Options.db.profile.Experimental.CollectionsAchievementWindow = value; end
+                }
+            }
+        }
+    }
+};
+
 local debugOptions = {
     order = OrderPP(), type = "group",
     name = addon.L["Debug"],
@@ -527,6 +564,13 @@ local debugOptions = {
                     name = addon.L["Print map info w/o reload"],
                     desc = addon.L["Print map info w/o reload Desc"],
                     func = PrintMapInfoWithoutReload
+                },
+                Blank6 = {order = OrderPP(), type = "description", width = AdjustedWidth(2), name = ""},
+                Experimental = {
+                    order = OrderPP(), type = "execute",
+                    name = addon.L["Export to CSV"],
+                    desc = addon.L["Export to CSV Desc"],
+                    func = ExportToCsv
                 }
             }
         }
@@ -541,6 +585,7 @@ options.OptionsTable.args["General"] = {
         Icon = iconOptions,
         KeyBinding = keyBindingOptions,
         Filters = filtersOptions,
+        Experimental = experimentalOptions,
         Debug = debugOptions
     }
 };

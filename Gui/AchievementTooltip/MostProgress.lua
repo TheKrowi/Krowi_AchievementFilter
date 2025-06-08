@@ -8,8 +8,7 @@ function section:CheckAdd(achievement)
 		return;
 	end
 	local state = achievement:GetObtainableState();
-	local pastObtainable = state and (not state or state == "Past");
-	if not addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.Show or pastObtainable then
+	if not addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.Show or state == "Past" then
 		return;
 	end
 	numCriteria = addon.GetAchievementNumCriteria(achievement.Id);

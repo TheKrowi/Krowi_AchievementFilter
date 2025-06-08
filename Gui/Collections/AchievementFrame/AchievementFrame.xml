@@ -1,0 +1,279 @@
+<Ui>
+    <Script file="AchievementFrame.lua"/>
+    <Script file="AchievementFrameMixin.lua"/>
+	
+	<Frame name="KrowiAF_Collections_AchievementFrame_Template" mixin="KrowiAF_Collections_AchievementFrameMixin" setAllPoints="true" hidden="true" virtual="true">
+		<Frames>
+			<!-- <EditBox name="$parentSearchBox" parentKey="SearchBox" mixin="WardrobeCollectionFrameSearchBoxMixin" inherits="SearchBoxTemplate" letters="40">
+				<Size x="115" y="20"/>
+				<Anchors>
+					<Anchor point="TOPRIGHT" x="-107" y="-35"/>
+				</Anchors>
+				<Scripts>
+					<OnLoad method="OnLoad"/>
+					<OnUpdate method="OnUpdate"/>
+					<OnHide method="OnHide"/>
+					<OnKeyDown method="OnKeyDown"/>
+					<OnTextChanged method="OnTextChanged"/>
+					<OnEnter method="OnEnter"/>
+					<OnLeave function="GameTooltip_Hide"/>
+				</Scripts>
+				<Frames>
+					<Frame parentKey="ProgressFrame" mixin="WardrobeCollectionFrameSearchBoxProgressMixin" hidden="true">
+						<Size x="0" y="24"/>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" x="-7"/>
+							<Anchor point="TOPRIGHT" relativePoint="BOTTOMRIGHT" x="3"/>
+						</Anchors>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture parentKey="background" atlas="_search-rowbg">
+									<Anchors>
+										<Anchor point="TOPLEFT"/>
+										<Anchor point="BOTTOMRIGHT"/>
+									</Anchors>
+								</Texture>
+							</Layer>
+							<Layer level="ARTWORK">
+								<Texture parentKey="botLeftCorner" inherits="UI-Frame-BotCornerLeft">
+									<Anchors>
+										<Anchor point="LEFT" x="-7" y="0"/>
+										<Anchor point="BOTTOM" x="0" y="-5"/>
+									</Anchors>
+								</Texture>
+								<Texture parentKey="botRightCorner" inherits="UI-Frame-BotCornerRight">
+									<Anchors>
+										<Anchor point="BOTTOM" x="0" y="-5"/>
+										<Anchor point="RIGHT" x="4" y="0"/>
+									</Anchors>
+								</Texture>
+								<Texture parentKey="bottomBorder" inherits="_UI-Frame-Bot">
+									<Anchors>
+										<Anchor point="BOTTOMLEFT" relativeKey="$parent.botLeftCorner" relativePoint="BOTTOMRIGHT" y="0"/>
+										<Anchor point="BOTTOMRIGHT" relativeKey="$parent.botRightCorner" relativePoint="BOTTOMLEFT" y="0"/>
+									</Anchors>
+								</Texture>
+								<Texture parentKey="leftBorder" inherits="!UI-Frame-LeftTile">
+									<Anchors>
+										<Anchor point="TOP" x="0" y="1" />
+										<Anchor point="BOTTOMLEFT" relativeKey="$parent.botLeftCorner" relativePoint="TOPLEFT"/>
+									</Anchors>
+								</Texture>
+								<Texture parentKey="rightBorder" inherits="!UI-Frame-RightTile">
+									<Anchors>
+										<Anchor point="TOP" x="0" y="1" />
+										<Anchor point="BOTTOMRIGHT" relativeKey="$parent.botRightCorner" relativePoint="TOPRIGHT" x="1" y="0"/>
+									</Anchors>
+								</Texture>
+								<Texture parentKey="topBorder" inherits="_UI-Frame-Bot">
+									<Anchors>
+										<Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="-2" y="3"/>
+										<Anchor point="BOTTOMRIGHT" relativePoint="TOPRIGHT" x="2" y="-3"/>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Frames>
+							<Frame parentKey="LoadingFrame">
+								<Anchors>
+									<Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+									<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
+								</Anchors>
+								<Layers>
+									<Layer level="OVERLAY">
+										<FontString name="$parentText" inherits="GameFontHighlight" justifyH="CENTER" parentKey="Text" text="SEARCH_LOADING_TEXT" hidden="false">
+										<Size x="0" y="0"/>
+										<Anchors>
+											<Anchor point="CENTER" x="14" y="1"/>
+										</Anchors>
+										</FontString>
+									</Layer>
+								</Layers>
+								<Frames>
+									<Frame parentKey="Spinner" inherits="SpinnerTemplate" hidden="false">
+										<Size x="20" y="20"/>
+										<Anchors>
+											<Anchor point="RIGHT" relativeKey="$parent.Text" relativePoint="LEFT" x="-5"/>
+										</Anchors>
+									</Frame>
+								</Frames>
+							</Frame>
+							<StatusBar parentKey="ProgressBar" hidden="false">
+								<Anchors>
+									<Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="4" y="-4"/>
+									<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" x="-4" y="6"/>
+								</Anchors>
+								<Layers>
+									<Layer level="BACKGROUND">
+										<Texture parentKey="barBackground">
+											<Anchors>
+												<Anchor point="TOPLEFT"/>
+												<Anchor point="BOTTOMRIGHT"/>
+											</Anchors>
+											<Color r="0" g="0" b="0" a=".4"/>
+										</Texture>
+									</Layer>
+									<Layer level="OVERLAY">
+										<FontString parentKey="text" inherits="GameFontHighlightSmall" text="SEARCH_PROGRESS_BAR_TEXT" justifyV="TOP">
+											<Size x="0" y="0"/>
+											<Anchors>
+												<Anchor point="CENTER" x="0" y="0"/>
+											</Anchors>
+										</FontString>
+									</Layer>
+									<Layer level="ARTWORK">
+										<Texture parentKey="barBorderLeft" file="Interface\AchievementFrame\UI-Achievement-ProgressBar-Border">
+											<Size x="16" y="0"/>
+											<Anchors>
+												<Anchor point="TOPLEFT" x="-6" y="5"/>
+												<Anchor point="BOTTOMLEFT" x="-6" y="-5"/>
+											</Anchors>
+											<TexCoords left="0" right="0.0625" top="0" bottom="0.75"/>
+										</Texture>
+										<Texture parentKey="barBorderRight" file="Interface\AchievementFrame\UI-Achievement-ProgressBar-Border">
+											<Size x="16" y="0"/>
+											<Anchors>
+												<Anchor point="TOPRIGHT" x="6" y="5"/>
+												<Anchor point="BOTTOMRIGHT" x="6" y="-5"/>
+											</Anchors>
+											<TexCoords left="0.812" right="0.8745" top="0" bottom="0.75"/>
+										</Texture>
+										<Texture parentKey="barBorderCenter" file="Interface\AchievementFrame\UI-Achievement-ProgressBar-Border">
+											<Size x="16"/>
+											<Anchors>
+												<Anchor point="TOPLEFT" relativeKey="$parent.barBorderLeft" relativePoint="TOPRIGHT"/>
+												<Anchor point="BOTTOMRIGHT" relativeKey="$parent.barBorderRight" relativePoint="BOTTOMLEFT"/>
+											</Anchors>
+											<TexCoords left="0.0625" right="0.812" top="0" bottom="0.75"/>
+										</Texture>
+									</Layer>
+								</Layers>
+								<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+							</StatusBar>
+						</Frames>
+						<Scripts>
+							<OnLoad method="OnLoad"/>
+							<OnUpdate method="OnUpdate"/>
+							<OnHide method="OnHide"/>
+						</Scripts>
+					</Frame>
+				</Frames>
+			</EditBox> -->
+			<!-- <StatusBar parentKey="ProgressBar" inherits="CollectionsProgressBarTemplate">
+				<Anchors>
+					<Anchor point="TOP" y="-40"/>
+				</Anchors>
+			</StatusBar> -->
+			<!-- <DropdownButton parentKey="FilterButton" inherits="WowStyle1FilterDropdownTemplate">
+				<KeyValues>
+					<KeyValue key="resizeToText" type="boolean" value="false"/>
+				</KeyValues>
+				<Anchors>
+					<Anchor point="LEFT" relativeKey="$parent.SearchBox" relativePoint="RIGHT" x="5" y="0"/>
+				</Anchors>
+			</DropdownButton> -->
+			<Frame parentKey="Inset" useParentLevel="true" inherits="InsetFrameTemplate"> <!-- inherits="InsetFrameTemplate" -->
+				<Anchors>
+					<Anchor point="TOPLEFT" x="4" y="-60" />
+					<Anchor point="BOTTOMRIGHT" x="-5" y="5" />
+				</Anchors>
+				<Frames>
+					<Frame parentKey="CategoriesScrollBox" inherits="WowScrollBoxList" frameStrata="HIGH">
+						<Size x="250"/>
+						<Anchors>
+							<Anchor point="TOPLEFT" x="3" y="-55"/>
+							<Anchor point="BOTTOMLEFT" x="3" y="2"/>
+						</Anchors>
+					</Frame>
+					<EventFrame parentKey="CategoriesScrollBar" inherits="MinimalScrollBar" frameStrata="HIGH">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeKey="$parent.CategoriesScrollBox" relativePoint="TOPRIGHT" x="8" y="-4"/>
+							<Anchor point="BOTTOMLEFT" relativeKey="$parent.CategoriesScrollBox" relativePoint="BOTTOMRIGHT" x="8" y="3"/>
+						</Anchors>
+					</EventFrame>
+					<Frame parentKey="AchievementsScrollBox" inherits="WowScrollBoxList" frameStrata="HIGH">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeKey="$parent.CategoriesScrollBox" relativePoint="TOPRIGHT" x="26"/>
+							<Anchor point="BOTTOM" relativeKey="$parent.CategoriesScrollBox"/>
+							<Anchor point="RIGHT" x="-29"/>
+						</Anchors>
+					</Frame>
+					<EventFrame parentKey="AchievementsScrollBar" inherits="MinimalScrollBar" frameStrata="HIGH">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeKey="$parent.AchievementsScrollBox" relativePoint="TOPRIGHT" x="8" y="-4"/>
+							<Anchor point="BOTTOMLEFT" relativeKey="$parent.AchievementsScrollBox" relativePoint="BOTTOMRIGHT" x="8" y="3"/>
+						</Anchors>
+					</EventFrame>
+				</Frames>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture parentKey="Bg" file="interface/store/perksactivities" setAllPoints="true">
+						    <Size y="55"/>
+						    <Anchors>
+								<Anchor point="TOPLEFT"/>
+								<Anchor point="TOPRIGHT"/>
+							</Anchors>
+							<TexCoords left="0.000488281" right="0.384277" top="0.000976562" bottom="0.054"/>
+						</Texture>
+						<Texture parentKey="DividerVertical" atlas="activities-divider-vertical" useAtlasSize="true">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeKey="$parent.CategoriesScrollBar" x="9" y="4"/>
+								<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" relativeKey="$parent.CategoriesScrollBar" x="9" y="-4"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Frame>
+			<!-- <Frame parentKey="CategoriesInset" useParentLevel="true" inherits="InsetFrameTemplate">
+     			<Size x="260" y="496"/>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.HeaderInset" relativePoint="BOTTOMLEFT" x="0" y="-4" />
+					<Anchor point="BOTTOMLEFT" x="4" y="5" />
+				</Anchors>
+			</Frame>
+			<EditBox parentKey="SearchBox" inherits="SearchBoxTemplate" letters="40" mixin="KrowiAF_Collections_AchievementFrame_SearchBoxMixin">
+				<Size x="145" y="20"/>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.CategoriesInset" x="15" y="-9"/>
+				</Anchors>
+				<Scripts>
+					<OnTextChanged method="OnTextChanged"/>
+					<OnHide method="OnHide"/>
+				</Scripts>
+			</EditBox>
+			<DropdownButton parentKey="FilterDropdown" inherits="WowStyle1FilterDropdownTemplate">
+				<Size x="90" y="18"/>
+				<KeyValues>
+					<KeyValue key="resizeToText" type="boolean" value="false"/>
+				</KeyValues>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeKey="$parent.CategoriesInset" x="-5" y="-10"/>
+				</Anchors>
+			</DropdownButton> -->
+			 <!-- <Frame parentKey="AchievementsInset" useParentLevel="true" inherits="InsetFrameTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.CategoriesInset" relativePoint="TOPRIGHT" x="21" y="0" />
+					<Anchor point="BOTTOMRIGHT" x="-24" y="5"/>
+				</Anchors>
+			</Frame>
+			<Frame parentKey="AchievementsScrollBox" inherits="WowScrollBoxList" frameStrata="HIGH">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.AchievementsInset" x="3" y="-36"/>
+					<Anchor point="BOTTOMRIGHT" relativeKey="$parent.AchievementsInset" x="-2" y="3"/>
+				</Anchors>
+			</Frame>
+			<EventFrame parentKey="AchievementsScrollBar" inherits="MinimalScrollBar" frameStrata="HIGH">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.AchievementsScrollBox" relativePoint="TOPRIGHT" x="8" y="31"/>
+					<Anchor point="BOTTOMLEFT" relativeKey="$parent.AchievementsScrollBox" relativePoint="BOTTOMRIGHT" x="8" y="-1"/>
+				</Anchors>
+			</EventFrame> -->
+		</Frames>
+		<Scripts>
+			<OnLoad method="OnLoad"/>
+			<OnEvent method="OnEvent"/>
+			<OnShow method="OnShow"/>
+			<OnHide method="OnHide"/>
+		</Scripts>
+	</Frame>
+</Ui>

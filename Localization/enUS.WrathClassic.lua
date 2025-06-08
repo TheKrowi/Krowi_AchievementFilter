@@ -7,26 +7,9 @@ local L = addon.Localization.GetDefaultLocale();
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-05-05 17-32-14 ]] --
+-- [[ Exported at 2025-05-17 22-05-27 ]] --
 L["Completed"] = true
--- L["EJ_GetInstanceInfo1190"] = "Castle Nathria"
--- L["EJ_GetInstanceInfo1193"] = "Sanctum of Domination"
--- L["EJ_GetInstanceInfo1195"] = "Sepulcher of the First Ones"
--- L["EJ_GetInstanceInfo226"] = "Ragefire Chasm"
--- L["EJ_GetInstanceInfo227"] = "Blackfathom Deeps"
--- L["EJ_GetInstanceInfo228"] = "Blackrock Depths"
--- L["EJ_GetInstanceInfo229"] = "Lower Blackrock Spire"
 L["EJ_GetInstanceInfo230"] = "Dire Maul"
--- L["EJ_GetInstanceInfo231"] = "Gnomeregan"
--- L["EJ_GetInstanceInfo232"] = "Maraudon"
--- L["EJ_GetInstanceInfo233"] = "Razorfen Downs"
--- L["EJ_GetInstanceInfo234"] = "Razorfen Kraul"
--- L["EJ_GetInstanceInfo236"] = "Stratholme"
--- L["EJ_GetInstanceInfo237"] = "The Temple of Atal'hakkar"
--- L["EJ_GetInstanceInfo238"] = "The Stockade"
--- L["EJ_GetInstanceInfo239"] = "Uldaman"
--- L["EJ_GetInstanceInfo240"] = "Wailing Caverns"
--- L["EJ_GetInstanceInfo241"] = "Zul'Farrak"
 L["EJ_GetInstanceInfo246"] = "Scholomance"
 L["EJ_GetInstanceInfo247"] = "Auchenai Crypts"
 L["EJ_GetInstanceInfo248"] = "Hellfire Ramparts"

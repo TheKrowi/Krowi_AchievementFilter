@@ -100,11 +100,11 @@ local function SetAchievementButtonColor(button)
     local achievement = button.Achievement;
     local state = achievement:GetObtainableState();
     local backdropColorFunc;
-    if state and (state == false or state == "Past") then
+    if state == "Past" then
         backdropColorFunc = RedBackdrop;
-    elseif state and state == "Current" then
+    elseif state == "Current" then
         backdropColorFunc = GreenBackdrop;
-    elseif state and state == "Future" then
+    elseif state == "Future" then
         backdropColorFunc = YellowBackdrop;
     else
         if button.accountWide then

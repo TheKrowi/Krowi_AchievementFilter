@@ -102,6 +102,38 @@ local delvesTheWarWithinS2 = {
     delvesTheWarWithinS2Progress
 };
 
+local horrificVisionsRevisited = {
+    41853, -- Horrific Vision of Stormwind
+    41854, -- The Even More Horrific Vision of Stormwind
+    41855, -- The Most Horrific Vision of Stormwind
+    41964, -- Beyond the Most Horrific Vision of Stormwind
+    41875, -- Horrific Vision of Orgrimmar
+    41876, -- The Even More Horrific Vision of Orgrimmar
+    41879, -- The Most Horrific Vision of Orgrimmar
+    41965, -- Beyond the Most Horrific Vision of Orgrimmar
+    41725, -- We Have the Memories
+    41928, -- Reeking of Visions
+    41929, -- Through the Depths of Visions
+    41966, -- Mastering the Visions
+    41857, -- Masked Soliloquy
+    41858, -- Masked Sextet
+    41859, -- Thanks For The Mementos
+    41896, -- Memento Mori
+    41983, -- Memento Mania
+    41897, -- A Monumental Amount of Mementos
+    41898, -- A Mountain of Mementos
+    41873, -- Incremental Progress
+    41874, -- Symphony of Masks
+    41889, -- Horrific Masquerade
+    41890, -- Masked Duet
+    41891, -- Masked Trio
+    41893, -- Masked Quartet
+    41894, -- Masked Septet
+    41895, -- Orchestra of Masks
+    41953, -- Mad World
+    41971, -- Through the Looking Glass
+};
+
 KrowiAF.ZoneData.TheWarWithin = {
     { -- Azj-Kahet (zone)
         {2213, 2216, 2255, 2256},
@@ -539,6 +571,10 @@ KrowiAF.ZoneData.TheWarWithin = {
             41100, -- Excavation Site 9 Discoveries
         }
     },
+    { -- Vision of Stormwind
+        2404,
+        horrificVisionsRevisited
+    },
     { -- Liberation of Undermine (raid)
         {2406, 2407, 2408, 2409, 2411, 2428},
         {
@@ -596,6 +632,30 @@ KrowiAF.ZoneData.TheWarWithin = {
             41529, -- Breaking the Bank
             41210, -- Let Me Solo Him: The Underpin
             41531, -- The Hataclysm
+        }
+    },
+    { -- Dastardly Dome
+        2447,
+        {
+            41706, -- Dastardly Duos Weekly High Score
+            41707, -- Dastardly Devices
+            41715, -- Fiendishly Famous
+            41716, -- Duo Darling
+            41717, -- Duos Underdog
+            41722, -- Inside Connections
+            41905, -- Center of Attention
+            41916, -- My Way, The Highway
+            41922, -- Undefeatable
+            41995, -- Boot Hill
+            42002, -- Bullhorn of Plenty
+            42003, -- Bullhorn of More Plenty
+            42004, -- Bullhorn of Most Plenty
+            41810, -- Winner's Podium
+            41948, -- Defeat the Dastardlies
+            41949, -- Defeat the Dastardlies
+            41950, -- Defeat the Dastardlies
+            41951, -- Defeat the Dastardlies
+            41952, -- Defeat the Dastardlies
         }
     },
 };

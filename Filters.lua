@@ -141,10 +141,7 @@ local validations = {
                 return;
             end
             local state = achievement:GetObtainableState();
-            if state then
-                return state == true or state == "Current";
-            end
-            return true;
+            return state == "Current";
         end
     },
     {   -- 4
@@ -153,9 +150,7 @@ local validations = {
                 return;
             end
             local state = achievement:GetObtainableState();
-            if state then
-                return state == true or state == "Past";
-            end
+            return state == "Past";
         end
     },
     {   -- 5
@@ -164,9 +159,7 @@ local validations = {
                 return;
             end
             local state = achievement:GetObtainableState();
-            if state then
-                return state == true or state == "Future";
-            end
+            return state == "Future";
         end
     },
     {   -- 6

@@ -1,6 +1,37 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 83.4 - 2025-06-06
+### Added
+- Dastardly Duos zone data
+- A lot of Pet Battle tooltip data provided by Silden
+- Credits for Malivil and Silden for contributing to the addon
+
+### Fixed
+- Only temporarily obtainable achievements that are currently obtainable should have a green header color
+
+## 83.3 - 2025-06-03
+### Added
+- Flame Warden of Khaz Algar to the Midsummer category
+- Flame Warden of Khaz Algar is now temporarily obtainable
+- Dastardly Duos achievements are now temporarily obtainable
+- Export to CSV (dev note: this is an experimental feature available in the options under General -> Debug -> Export to CSV)
+- Isle of Dorn Skyriding Races tooltip data
+
+### Fixed
+- Dastardly Duos event reminder (EU)
+
+## 83.2 - 2025-05-29
+### Added
+- Dastardly Duos event reminder
+
+## 83.1 - 2025-05-17
+### Added
+- Portuguese (Brazilian) translations
+
+### Fixed
+- Version 11.1.5 should now also be available for filtering
+
 ## 83.0 - 2025-04-22
 ### Added
 - Nightfall event achievements (4)

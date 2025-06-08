@@ -8,7 +8,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-04-22 19-57-42 ]] --
+-- [[ Exported at 2025-05-17 22-04-24 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -44,8 +44,8 @@ L["Achievements width offset Desc"] = [=[Ширина, которая будет
 (1) Падения FPS и подвисания во время изменения значений, НЕ ИСПОЛЬЗЕЙТЕ для обычного использования аддона.]=]
 L["Active"] = "Активно"
 L["Active Event Login Delay"] = "Задержка входа при активном событии"
-L["Active Events"] = "Активные события"
 L["Active events"] = "Активные события"
+L["Active Events"] = "Активные события"
 L["Add addon name to world map icon"] = "Добавить название аддона к значку карты мира"
 L["Add addon name to world map icon Desc"] = "Добавить '{addonName}' в конец всплывающей подсказки при наведении курсора мыши."
 L["Add Locale"] = "Добавить перевод"
@@ -119,8 +119,8 @@ L["Category shown temporarily"] = "Эта категория была выбра
 L["Caverns Criss-Cross"] = "Перекрестье пещер"
 L["Center Header"] = "Центровка Заголовка"
 L["Center header"] = "Центр заголовка"
-L["Center header Desc"] = "Оставить заголовок центрированным по окну достижений"
 L["Center Header Desc"] = "Центр названия достижений на кнопке достижений"
+L["Center header Desc"] = "Оставить заголовок центрированным по окну достижений"
 L["Central Circuit"] = "Центр контура"
 L["Chains of Domination"] = "Цепи Господства"
 L["Character / Account wide"] = "На весь Персонаж / Аккаунт "
@@ -161,8 +161,8 @@ L["Completion"] = "Окончание"
 L["Copy Account Wide to Character"] = "Скопировать с аккаунта на персонажа"
 L["Copy Account Wide to Character Desc"] = "Скопировать данные {watchList} аккаунта (это отслеживаемые на любом персонаже) на текущего персонажа {watchList}. Теперь данный персонаж будут исметь свой личный список {watchList} ."
 L["Covenant"] = "Ковенант"
-L["Covenant Assaults"] = "Штурмы Ковенанта"
 L["Covenant assaults"] = "Штурм Утробы силами ковенантов"
+L["Covenant Assaults"] = "Штурмы Ковенанта"
 L["Credits"] = "Титры"
 L["Criteria"] = "Критерия"
 L["Criteria Behaviour"] = "Поведения Кретерии"
@@ -179,6 +179,7 @@ L["CurseForge Desc"] = "Открывает всплывающее диалого
 L["Custom"] = "Настроить"
 L["Dark Heart"] = "Тёмное Сердце"
 L["Darkmoon Faire"] = "Ярмарка Новолуния"
+L["Dastardly Duos"] = "Коварные Дуо"
 L["Data Manager"] = "Менеджер данных"
 L["Date and Time format"] = "Формат Даты и Времени"
 L["Date and Time formatting guide"] = "Гайд по настройке Даты и Времени"
@@ -341,6 +342,7 @@ L["Hide Not Earned By if current character earned the achievement Desc"] = "Сп
 L["Highmountain"] = "Крутогорье"
 L["Holidays"] = "Праздники"
 L["Horizontal position"] = "Позиция по горизонтали"
+L["Horrific Visions Revisited"] = "Возвращение в жуткие видения"
 L["Hour of Twilight"] = "Время Сумерек"
 L["Icon Left click"] = "для открытия окна Достижения"
 L["Icon Right click"] = "для Настроек."
@@ -434,6 +436,7 @@ L["Next"] = "Далее"
 L["Next from startDate until endDate"] = "Следущая с {startDate} до {endDate}"
 L["Next occurrence unknown"] = "Следущее неизвестно"
 L["Night Fae Assault"] = "Атака ночного народца"
+L["Nightfall"] = "Сумерки"
 L["Nitun"] = "Нитун"
 L["No achievements are available with the current set of filters"] = "Нет достижений удовлетворяющих данным фильтрам"
 L["No category selected"] = "Не выделена категория"
