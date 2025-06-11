@@ -342,17 +342,83 @@ KrowiAF.TooltipData.MistsOfPandaria = {
             {55, 63555}, -- Zooey Snake
         }
     },
+    { -- Taming Kalimdor
+        6602, type.Unit,
+        {
+            {1, 66126}, -- Zunta
+            {2, 66135}, -- Dagra The Fierce
+            {3, 66136}, -- Analynn
+            {4, 66137}, -- Zonya The Sadist
+            {5, 66372}, -- Merda Stronghoof
+            {6, 66352}, -- Traitor Gluk
+            {7, 66412}, -- Elena Flutterfly
+            {8, 66422}, -- Cassandra Kaboom
+            {9, 66436}, -- Grazzle The Great
+            {10, 66442}, -- Zoltan
+            {11, 66452}, -- Kela Grimtotem
+            {12, 66466}, -- Stone Cold Trixxy
+        }
+    },
+    { -- Taming Eastern Kingdoms
+        6603, type.Unit,
+        {
+            {1, 64330}, -- Julia Stevens
+            {2, 65648}, -- Old Macdonald
+            {3, 65651}, -- Lindsay
+            {4, 65655}, -- Eric Davidson
+            {5, 63194}, -- Steven Lisbane
+            {6, 65656}, -- Bill Buckler
+            {7, 66478}, -- David Kosse
+            {8, 66512}, -- Deiza Plaguehorn
+            {9, 66515}, -- Kortas Darkhammer
+            {10, 66520}, -- Durin Darkhammer
+            {11, 66518}, -- Everessa
+            {12, 66522}, -- Lydia Accoste
+        }
+    },
+    { -- Taming Outland
+        6604, type.Unit,
+        {
+            {1, 66550}, -- Nicki Tinytech
+            {2, 66551}, -- Rasan
+            {3, 66552}, -- Narrok
+            {4, 66553}, -- Morulu The Elder
+            {5, 66557}, -- Bloodknight Antari
+        }
+    },
+    { -- Taming Northrend
+        6605, type.Unit,
+        {
+            {1, 66635}, -- Beegle Blastfuse
+            {2, 66636}, -- Nearly Headless Jacob
+            {3, 66638}, -- Okrut Dragonwaste
+            {4, 66639}, -- Gutretch
+            {5, 66675}, -- Major Payne
+        }
+    },
+    { -- Taming Pandaria
+        6606, type.Unit,
+        {
+            {1, 66730}, -- Hyuna Of The Shrines
+            {2, 66734}, -- Farmer Nishi
+            {3, 66733}, -- Moruk
+            {4, 66738}, -- Courageous Yon
+            {5, 66918}, -- Seeker Zusshi
+            {6, 66739}, -- Wastewalker Shu
+            {7, 66741}, -- Aki The Chosen
+        }
+    },
     { -- The Pandaren Gourmet (15, 30)
         {7326, 7327},
         {
-			{1, 86057, type.Item}, -- Sliced Peaches
-			{1, 125117, type.Spell}, -- Sliced Peaches
-			{2, {85504, 85505}, type.Item}, -- Krasarang Fritters
-			{2, 124032, type.Spell}, -- Krasarang Fritters
-			{3, {85501, 85502}, type.Item}, -- Viseclaw Soup
-			{3, 124029, type.Spell}, -- Viseclaw Soup
-			{4, 86026, type.Item}, -- Perfectly Cooked Instant Noodles
-			{4, 125067, type.Spell}, -- Perfectly Cooked Instant Noodles
+            {1, 86057, type.Item}, -- Sliced Peaches
+            {1, 125117, type.Spell}, -- Sliced Peaches
+            {2, {85504, 85505}, type.Item}, -- Krasarang Fritters
+            {2, 124032, type.Spell}, -- Krasarang Fritters
+            {3, {85501, 85502}, type.Item}, -- Viseclaw Soup
+            {3, 124029, type.Spell}, -- Viseclaw Soup
+            {4, 86026, type.Item}, -- Perfectly Cooked Instant Noodles
+            {4, 125067, type.Spell}, -- Perfectly Cooked Instant Noodles
             {5, 81402, type.Item}, -- Toasted Fish Jerky
             {5, 124225, type.Spell}, -- Toasted Fish Jerky
             {6, 81404, type.Item}, -- Dried Needle Mushrooms
@@ -434,10 +500,10 @@ KrowiAF.TooltipData.MistsOfPandaria = {
     { -- Pandaren Cuisine
         7329,
         {
-			{1, 86057, type.Item}, -- Sliced Peaches
-			{1, 125117, type.Spell}, -- Sliced Peaches
-			{2, 86026, type.Item}, -- Perfectly Cooked Instant Noodles
-			{2, 125067, type.Spell}, -- Perfectly Cooked Instant Noodles
+            {1, 86057, type.Item}, -- Sliced Peaches
+            {1, 125117, type.Spell}, -- Sliced Peaches
+            {2, 86026, type.Item}, -- Perfectly Cooked Instant Noodles
+            {2, 125067, type.Spell}, -- Perfectly Cooked Instant Noodles
             {3, 81402, type.Item}, -- Toasted Fish Jerky
             {3, 124225, type.Spell}, -- Toasted Fish Jerky
             {4, 81404, type.Item}, -- Dried Needle Mushrooms
@@ -521,6 +587,15 @@ KrowiAF.TooltipData.MistsOfPandaria = {
             {24, 104300, type.Spell}, -- Black Pepper Ribs and Shrimp
         }
     },
+    { -- Taming Cataclysm
+        7525, type.Unit,
+        {
+            {1, 66819}, -- Brok
+            {2, 66815}, -- Bordin Steadyfist
+            {3, 66822}, -- Goz Banefury
+            {4, 66824}, -- Obalis
+        }
+    },
     { -- Raiding with Leashes
         7934,
         {
@@ -562,13 +637,30 @@ KrowiAF.TooltipData.MistsOfPandaria = {
             {4, 69339}, -- Electromancer Jule
             {4, 69770}, -- Lightning Ritual Stone for Electromancer Jule
             {5, 69749}, -- Qinor
+            {5, 70196}, -- Lightning Ritual Stone for Qinor
             {6, 69767}, -- Ancient Mogu Guardian
             {6, 70197}, -- Lightning Ritual Stone for Ancient Mogu Guardian
             {7, 70080}, -- Windweaver Akilamon
             {7, 70198}, -- Primal Ritual Stone for Windweaver Akilamon
             {8, 69396}, -- Cera
-            {8, 70196}, -- Lightning Ritual Stone for Cera
+            {8, 70199}, -- Primal Ritual Stone for Cera
             {9, 69347}, -- Incomplete Drakkari Colossus
+            {9, 70200}, -- Primal Ritual Stone for Incomplete Drakkari Colossus
+        }
+    },
+    { -- Champions of Lei Shen
+        8103, type.Unit,
+        {
+            {1, 50358}, -- Haywire Sunreaver Construct
+            {2, 69664}, -- Mumta
+            {3, 69996}, -- Kulai The Skyclaw
+            {4, 69997}, -- Progenitus
+            {5, 69998}, -- Goda
+            {6, 69999}, -- God Hulk Ramuk
+            {7, 70000}, -- Altabim The All Seeing
+            {8, 70001}, -- Backbreaker Uru
+            {9, 70002}, -- Lu Ban
+            {10, 70003}, -- Molthor
         }
     },
     { -- Raiding with Leashes II: Attunement Edition
@@ -594,15 +686,6 @@ KrowiAF.TooltipData.MistsOfPandaria = {
             {9, 71021, type.Item}, -- Lesser Voidcaller
             {10, 19514, type.Unit}, -- Alar
             {10, 71022, type.Item}, -- Phoenix Hawk Hatchling
-        }
-    },
-    { -- Celestial Family
-        8519, type.Unit,
-        {
-            {1, 71942}, -- Xu Fu Cub Of Xuen
-            {2, 72462}, -- Chi Chi Hatchling Of Chi Ji
-            {3, 72463}, -- Yula Broodling Of Yulon
-            {4, 72464}, -- Zao Calfling Of Niuzao
         }
     },
     { -- Crazy for Cats
@@ -647,6 +730,33 @@ KrowiAF.TooltipData.MistsOfPandaria = {
             {25, 52831, type.Item}, -- Winterspring Cub
             {26, 73082, type.Unit}, -- Master Li
             {26, 71942, type.Item}, -- Xu Fu Cub Of Xuen
+        }
+    },
+    { -- Master of the Masters
+        8518, type.Unit,
+        {
+            {1, 71933}, -- Blingtron 4000
+            {2, 71924}, -- Wrathion
+            {3, 71926}, -- Lorewalker Cho
+            {4, 71927}, -- Chen Stormstout
+            {5, 71932}, -- Wise Mari
+            {6, 71930}, -- Shademaster Kiryn
+            {7, 71929}, -- Sully The Pickle Mcleary
+            {8, 71931}, -- Taran Zhu
+            {9, 71934}, -- Dr Ion Goldbloom
+            {10, 72009}, -- Xu Fu Cub Of Xuen
+            {11, 72285}, -- Chi Chi Hatchling Of Chi Ji
+            {12, 72290}, -- Zao Calfling Of Niuzao
+            {13, 72291}, -- Yula Broodling Of Yulon
+        }
+    },
+    { -- Celestial Family
+        8519, type.Unit,
+        {
+            {1, 71942}, -- Xu Fu Cub Of Xuen
+            {2, 72462}, -- Chi Chi Hatchling Of Chi Ji
+            {3, 72463}, -- Yula Broodling Of Yulon
+            {4, 72464}, -- Zao Calfling Of Niuzao
         }
     },
 };
