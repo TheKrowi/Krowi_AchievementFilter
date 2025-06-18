@@ -7619,6 +7619,7 @@ local legion = { -- Legion
                 10818, -- Darkbough
                 10819, -- Tormented Guardians
                 10820, -- Rift of Aln
+                42029, -- The Emerald Nightmare
                 11194, -- Ahead of the Curve: Xavius
                 11191, -- Cutting Edge: Xavius
             },
@@ -7663,6 +7664,7 @@ local legion = { -- Legion
                 10837, -- Royal Athenaeum
                 10838, -- Nightspire
                 10839, -- Betrayer's Rise
+                42030, -- The Nighthold
                 11195, -- Ahead of the Curve: Gul'dan
                 11192, -- Cutting Edge: Gul'dan
                 11628, -- That's So Last Millennium
@@ -7724,6 +7726,7 @@ local legion = { -- Legion
                 11788, -- Wailing Halls
                 11789, -- Chamber of the Avatar
                 11790, -- Deceiver's Fall
+                42031, -- Tomb of Sargeras
                 11874, -- Ahead of the Curve: Kil'jaeden
                 11875, -- Cutting Edge: Kil'jaeden
                 11760, -- Retro Trend
@@ -7771,6 +7774,7 @@ local legion = { -- Legion
                 11990, -- Hope's End
                 11989, -- Forbidden Descent
                 11991, -- Seat of the Pantheon
+                42032, -- Antorus, the Burning Throne
                 12110, -- Ahead of the Curve: Argus the Unmaker
                 12111, -- Cutting Edge: Argus the Unmaker
                 12020, -- Argussy Up
@@ -11968,6 +11972,8 @@ local theWarWithin = { -- The War Within
                     20597, -- The War Within
                     41052, -- Lingering Shadows
                     40791, -- Fate of the Kirin Tor
+                    41818, -- Rise of the Red Dawn
+                    41820, -- Rise of the Red Dawn
                 },
             },
             { -- Exploration
@@ -12602,6 +12608,8 @@ local theWarWithin = { -- The War Within
             41115, -- Algari Delver
             41116, -- Algari Delver II
             41709, -- Journey's End (Season 2)
+            42212, -- Titan Console Overcharged
+            42241, -- Overcharged Delver
         },
     },
     { -- Dungeons
@@ -12708,6 +12716,10 @@ local theWarWithin = { -- The War Within
             20589, -- Tempered Hero: The War Within Season 1
             40660, -- The War Within Season 1: Spelunker Supreme
             40723, -- Web-Wrapped in the Finest Silks
+            42139, -- The Enterprising Tank
+            42141, -- The Enterprising Healer
+            42144, -- The Enterprising Damage Dealer
+            42148, -- The Enterprising Dungeon Master
             40949, -- The War Within Keystone Explorer: Season Two
             40950, -- The War Within Keystone Conqueror: Season Two
             41533, -- The War Within Keystone Master: Season Two
@@ -13030,6 +13042,14 @@ local theWarWithin = { -- The War Within
             41895, -- Orchestra of Masks
             41953, -- Mad World
             41971, -- Through the Looking Glass
+        },
+    },
+    { -- Lorewalking
+        addon.L["Lorewalking"],
+        {
+            42187, -- Lorewalking: Ethereal Wisdom
+            42188, -- Lorewalking: Blade's Bane
+            42189, -- Lorewalking: The Lich Kingdoms
         },
     },
     {

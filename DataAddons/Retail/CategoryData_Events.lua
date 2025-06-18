@@ -898,6 +898,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
             {
                 19079, -- Master of the Turbulent Timeways
                 41056, -- Master of the Turbulent Timeways II
+                41779, -- Master of the Turbulent Timeways III
             },
         },
         {

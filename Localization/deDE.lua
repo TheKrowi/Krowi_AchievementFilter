@@ -8,7 +8,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-05-17 22-03-48 ]] --
+-- [[ Exported at 2025-06-18 15-02-41 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -138,10 +138,10 @@ Dieser Wert kann geändert werden, während das Erfolgsfenster geöffnet ist und
 {reloadRequired}]=]
 L["Category shown temporarily"] = "Diese Kategorie wurde durch Klicken auf die {eventName} Event Erinnerung ausgewählt und wird nur vorübergehend angezeigt, da sie keine Erfolge enthält, die den eingestellten Filtern entsprechen."
 L["Caverns Criss-Cross"] = "Kreuz und quer durch die Höhlen"
-L["Center Header"] = "Erfolgs-Überschrift zentrieren"
 L["Center header"] = "Kopfzeile zentrieren"
-L["Center Header Desc"] = "Zentriere die Erfolgs-Überschrift"
+L["Center Header"] = "Erfolgs-Überschrift zentrieren"
 L["Center header Desc"] = "Zentriere die Kopfzeile im Erfolgsfenster."
+L["Center Header Desc"] = "Zentriere die Erfolgs-Überschrift"
 L["Central Circuit"] = "Zentralrundstrecke"
 L["Chains of Domination"] = "Ketten der Herrschaft"
 L["Character / Account wide"] = "Charakter & Account"
@@ -543,8 +543,8 @@ L["Ignore Filters"] = "Filter Ingorieren"
 L["Ignore Filters Desc"] = "Ignoriere jegliche Filter und zeige alle Erfolge in dieser {category}."
 L["Imbu"] = true
 L["Import"] = true
-L["in"] = true
 L["In"] = "in"
+L["in"] = true
 L["In instances"] = "In einer Instanz"
 L["Include"] = "Hinzufügen"
 L["Include all"] = "\"Filter: Erfolge ausgeblendet\" einbeziehen"
