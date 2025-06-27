@@ -8,7 +8,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-05-17 22-04-36 ]] --
+-- [[ Exported at 2025-06-18 15-02-57 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -139,10 +139,10 @@ L["Categories width offset Desc"] = [=[在默认基础上增加或减少类别�
 (1)仅在调整数值时可能出现掉帧和卡顿，不影响正常游戏]=]
 L["Category shown temporarily"] = "该类别由点击{eventName}事件提醒时选中。当前过滤器设置下无可用成就，仅为临时显示"
 L["Caverns Criss-Cross"] = "交错洞窟"
-L["Center Header"] = "页眉居中"
 L["Center header"] = "页眉居中"
-L["Center Header Desc"] = "居中成就按钮的成就名称"
+L["Center Header"] = "页眉居中"
 L["Center header Desc"] = "成就界面的页眉保持居中"
+L["Center Header Desc"] = "居中成就按钮的成就名称"
 L["Central Circuit"] = "中央赛道"
 L["Chains of Domination"] = "统御之链"
 L["Character / Account wide"] = "角色 / 账号"

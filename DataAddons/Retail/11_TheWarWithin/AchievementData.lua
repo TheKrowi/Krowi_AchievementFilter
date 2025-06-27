@@ -1287,7 +1287,7 @@ KrowiAF.AchievementData["11_00_07"] = {
         41056,
         {
             RewardType = rewardType.Mount,
-            {"Event", 1425},
+            {"Event", 1425, false},
         },
     },
     { -- Elders of Khaz Algar
@@ -2172,6 +2172,77 @@ KrowiAF.AchievementData["11_01_05"] = {
         42004,
         {
             {"Event", 1599},
+        },
+    },
+    { -- The Enterprising Tank
+        42139,
+        {
+            {"PvE Season", 14},
+        },
+    },
+    { -- The Enterprising Healer
+        42141,
+        {
+            {"PvE Season", 14},
+        },
+    },
+    { -- The Enterprising Damage Dealer
+        42144,
+        {
+            {"PvE Season", 14},
+        },
+    },
+    { -- The Enterprising Dungeon Master
+        42148,
+        {
+            RewardType = rewardType.Title,
+            {"PvE Season", 14},
+        },
+    },
+};
+
+KrowiAF.AchievementData["11_01_07"] = {
+    {KrowiAF.SetAchievementPatch, 11, 1, 7},
+    { -- Master of the Turbulent Timeways III
+        41779,
+        {
+            RewardType = rewardType.Mount,
+            {"Event", 1425},
+        },
+    },
+    { -- Rise of the Red Dawn
+        41818,
+        faction.Alliance,
+        41820,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
+    { -- Rise of the Red Dawn
+        41820,
+        faction.Horde,
+        41818,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
+    {42029}, -- The Emerald Nightmare
+    {42030}, -- The Nighthold
+    {42031}, -- Tomb of Sargeras
+    {42032}, -- Antorus, the Burning Throne
+    {42187}, -- Lorewalking: Ethereal Wisdom
+    {42188}, -- Lorewalking: Blade's Bane
+    {42189}, -- Lorewalking: The Lich King
+    { -- Titan Console Overcharged
+        42212,
+        {
+            RewardType = rewardType.Mount,
+        },
+    },
+    { -- Overcharged Delver
+        42241,
+        {
+            RewardType = rewardType.Toy,
         },
     },
 };

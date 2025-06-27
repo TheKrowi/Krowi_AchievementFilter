@@ -59,7 +59,6 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                 9392, -- Love Magnet
                 9393, -- Beacon of Love
                 9394, -- They Really Love Me!
-                1707, -- Fool For Love
                 1693, -- Fool For Love
                 19400, -- Support Your Local Artisans
                 19508, -- Love Language Expert
@@ -82,7 +81,6 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                 2422, -- Shake Your Bunny-Maker
                 2436, -- Desert Rose
                 2576, -- Blushing Bride
-                2797, -- Noble Gardener
                 2798, -- Noble Gardener
                 20209, -- Quacked Killer
             },
@@ -178,7 +176,6 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                 295, -- Direbrewfest
                 293, -- Disturbing the Peace
                 303, -- Have Keg, Will Travel
-                1684, -- Brewmaster
                 1683, -- Brewmaster
                 1292, -- Yellow Brewfest Stein
                 1293, -- Blue Brewfest Stein
@@ -213,7 +210,6 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                 965, -- Tricks and Treats of Kalimdor
                 969, -- Tricks and Treats of Outland
                 968, -- Tricks and Treats of Outland
-                970, -- Tricks and Treats of Azeroth
                 971, -- Tricks and Treats of Azeroth
                 5836, -- Tricks and Treats of Northrend
                 5835, -- Tricks and Treats of Northrend
@@ -225,7 +221,6 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                 40862, -- Tricks and Treats of Khaz Algar
                 10365, -- A Frightening Friend
                 1656, -- Hallowed Be Thy Name
-                1657, -- Hallowed Be Thy Name
                 980, -- The Horseman's Reins
                 17547, -- The Lick King
             },
@@ -258,7 +253,6 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                 3578, -- The Turkinator
                 3559, -- Turkey Lurkey
                 3478, -- Pilgrim
-                3656, -- Pilgrim
             },
         },
         { -- Winter Veil
@@ -314,13 +308,11 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                 8699, -- The Danger Zone
                 15181, -- Rock n' Roll
                 10353, -- Iron Armada
-                1692, -- Merrymaker
                 1691, -- Merrymaker
             },
         },
         {
             2144, -- What a Long, Strange Trip It's Been
-            2145, -- What A Long, Strange Trip It's Been
         },
     },
     { -- WoW's Anniversary
@@ -898,6 +890,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
             {
                 19079, -- Master of the Turbulent Timeways
                 41056, -- Master of the Turbulent Timeways II
+                41779, -- Master of the Turbulent Timeways III
             },
         },
         {

@@ -65,6 +65,8 @@ local delvesTheWarWithin = {
     41115, -- Algari Delver
     41116, -- Algari Delver II
     41709, -- Journey's End (Season 2)
+    42212, -- Titan Console Overcharged
+    42241, -- Overcharged Delver
 };
 
 local delvesTheWarWithinS1Progress = {
@@ -100,38 +102,6 @@ local delvesTheWarWithinS2Progress = {
 local delvesTheWarWithinS2 = {
     delvesTheWarWithin,
     delvesTheWarWithinS2Progress
-};
-
-local horrificVisionsRevisited = {
-    41853, -- Horrific Vision of Stormwind
-    41854, -- The Even More Horrific Vision of Stormwind
-    41855, -- The Most Horrific Vision of Stormwind
-    41964, -- Beyond the Most Horrific Vision of Stormwind
-    41875, -- Horrific Vision of Orgrimmar
-    41876, -- The Even More Horrific Vision of Orgrimmar
-    41879, -- The Most Horrific Vision of Orgrimmar
-    41965, -- Beyond the Most Horrific Vision of Orgrimmar
-    41725, -- We Have the Memories
-    41928, -- Reeking of Visions
-    41929, -- Through the Depths of Visions
-    41966, -- Mastering the Visions
-    41857, -- Masked Soliloquy
-    41858, -- Masked Sextet
-    41859, -- Thanks For The Mementos
-    41896, -- Memento Mori
-    41983, -- Memento Mania
-    41897, -- A Monumental Amount of Mementos
-    41898, -- A Mountain of Mementos
-    41873, -- Incremental Progress
-    41874, -- Symphony of Masks
-    41889, -- Horrific Masquerade
-    41890, -- Masked Duet
-    41891, -- Masked Trio
-    41893, -- Masked Quartet
-    41894, -- Masked Septet
-    41895, -- Orchestra of Masks
-    41953, -- Mad World
-    41971, -- Through the Looking Glass
 };
 
 KrowiAF.ZoneData.TheWarWithin = {
@@ -571,9 +541,39 @@ KrowiAF.ZoneData.TheWarWithin = {
             41100, -- Excavation Site 9 Discoveries
         }
     },
-    { -- Vision of Stormwind
-        2404,
-        horrificVisionsRevisited
+    { -- Vision of Orgrimmar / Vision of Stormwind
+        {2403, 2404},
+        {
+            41853, -- Horrific Vision of Stormwind
+            41854, -- The Even More Horrific Vision of Stormwind
+            41855, -- The Most Horrific Vision of Stormwind
+            41964, -- Beyond the Most Horrific Vision of Stormwind
+            41875, -- Horrific Vision of Orgrimmar
+            41876, -- The Even More Horrific Vision of Orgrimmar
+            41879, -- The Most Horrific Vision of Orgrimmar
+            41965, -- Beyond the Most Horrific Vision of Orgrimmar
+            41725, -- We Have the Memories
+            41928, -- Reeking of Visions
+            41929, -- Through the Depths of Visions
+            41966, -- Mastering the Visions
+            41857, -- Masked Soliloquy
+            41858, -- Masked Sextet
+            41859, -- Thanks For The Mementos
+            41896, -- Memento Mori
+            41983, -- Memento Mania
+            41897, -- A Monumental Amount of Mementos
+            41898, -- A Mountain of Mementos
+            41873, -- Incremental Progress
+            41874, -- Symphony of Masks
+            41889, -- Horrific Masquerade
+            41890, -- Masked Duet
+            41891, -- Masked Trio
+            41893, -- Masked Quartet
+            41894, -- Masked Septet
+            41895, -- Orchestra of Masks
+            41953, -- Mad World
+            41971, -- Through the Looking Glass
+        }
     },
     { -- Liberation of Undermine (raid)
         {2406, 2407, 2408, 2409, 2411, 2428},

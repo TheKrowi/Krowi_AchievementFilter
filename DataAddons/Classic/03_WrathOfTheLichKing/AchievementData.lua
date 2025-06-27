@@ -66,11 +66,7 @@ KrowiAF.AchievementData["03_00_02"] = {
     {38}, -- The Summit of Storm Peaks
     {39}, -- Into the Basin
     {40}, -- Icecrown: The Final Goal
-    { -- Loremaster of Northrend
-        41,
-        faction.Alliance,
-        1360,
-    },
+    {41}, -- Loremaster of Northrend
     {42}, -- Explore Eastern Kingdoms
     {43}, -- Explore Kalimdor
     {44}, -- Explore Outland
@@ -1938,17 +1934,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         },
     },
     { -- Tricks and Treats of Azeroth
-        970,
-        faction.Alliance,
         971,
-        {
-            {"Event", 324},
-        },
-    },
-    { -- Tricks and Treats of Azeroth
-        971,
-        faction.Horde,
-        970,
         {
             {"Event", 324},
         },
@@ -2255,27 +2241,15 @@ KrowiAF.AchievementData["03_00_02"] = {
     },
     { -- Master of Alterac Valley
         1167,
-        faction.Alliance,
-        1168,
-        true,
-    },
-    { -- Master of Alterac Valley
-        1168,
-        faction.Horde,
-        1167,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Master of Arathi Basin
         1169,
-        faction.Alliance,
-        1170,
-        true,
-    },
-    { -- Master of Arathi Basin
-        1170,
-        faction.Horde,
-        1169,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Master of Eye of the Storm
         1171,
@@ -2285,15 +2259,9 @@ KrowiAF.AchievementData["03_00_02"] = {
     },
     { -- Master of Warsong Gulch
         1172,
-        faction.Alliance,
-        1173,
-        true,
-    },
-    { -- Master of Warsong Gulch
-        1173,
-        faction.Horde,
-        1172,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- The Arena Master
         1174,
@@ -2435,11 +2403,7 @@ KrowiAF.AchievementData["03_00_02"] = {
             {"Event", 324},
         },
     },
-    { -- Loremaster of Outland
-        1262,
-        faction.Alliance,
-        1274,
-    },
+    {1262}, -- Loremaster of Outland
     {1263}, -- Explore Howling Fjord
     {1264}, -- Explore Borean Tundra
     {1265}, -- Explore Dragonblight
@@ -2462,11 +2426,6 @@ KrowiAF.AchievementData["03_00_02"] = {
         1273,
         faction.Horde,
         1192,
-    },
-    { -- Loremaster of Outland
-        1274,
-        faction.Horde,
-        1262,
     },
     {1275}, -- Bombs Away
     {1276}, -- Blade's Edge Bomberman
@@ -2580,11 +2539,6 @@ KrowiAF.AchievementData["03_00_02"] = {
         1359,
         faction.Horde,
         35,
-    },
-    { -- Loremaster of Northrend
-        1360,
-        faction.Horde,
-        41,
     },
     { -- Elders of Northrend
         1396,
@@ -2818,8 +2772,6 @@ KrowiAF.AchievementData["03_00_02"] = {
     {1561}, -- 1000 Fish
     { -- Hail to the Chef
         1563,
-        faction.Alliance,
-        1784,
         {
             RewardType = rewardType.Title,
         },
@@ -2841,17 +2793,6 @@ KrowiAF.AchievementData["03_00_02"] = {
     {1638}, -- Skyshattered
     { -- Hallowed Be Thy Name
         1656,
-        faction.Alliance,
-        1657,
-        {
-            RewardType = rewardType.Title,
-            {"Event", 324},
-        },
-    },
-    { -- Hallowed Be Thy Name
-        1657,
-        faction.Horde,
-        1656,
         {
             RewardType = rewardType.Title,
             {"Event", 324},
@@ -2863,54 +2804,9 @@ KrowiAF.AchievementData["03_00_02"] = {
             RewardType = rewardType.Title,
         },
     },
-    { -- Loremaster of Eastern Kingdoms
-        1676,
-        faction.Alliance,
-        1677,
-    },
-    { -- Loremaster of Eastern Kingdoms
-        1677,
-        faction.Horde,
-        1676,
-    },
-    { -- Loremaster of Kalimdor
-        1678,
-        faction.Alliance,
-        1680,
-    },
-    { -- Loremaster of Kalimdor
-        1680,
-        faction.Horde,
-        1678,
-    },
-    { -- The Loremaster
-        1681,
-        faction.Alliance,
-        1682,
-        {
-            RewardType = rewardType.Title,
-        },
-    },
-    { -- The Loremaster
-        1682,
-        faction.Horde,
-        1681,
-        {
-            RewardType = rewardType.Title,
-        },
-    },
+    {1676}, -- Loremaster of Eastern Kingdoms
+    {1678}, -- Loremaster of Kalimdor
     { -- Brewmaster
-        1683,
-        faction.Horde,
-        1684,
-        {
-            RewardType = rewardType.Title,
-            {"Event", 372},
-        },
-    },
-    { -- Brewmaster
-        1684,
-        faction.Alliance,
         1683,
         {
             RewardType = rewardType.Title,
@@ -2959,17 +2855,6 @@ KrowiAF.AchievementData["03_00_02"] = {
     },
     { -- Merrymaker
         1691,
-        faction.Horde,
-        1692,
-        {
-            RewardType = rewardType.Title,
-            {"Event", 141},
-        },
-    },
-    { -- Merrymaker
-        1692,
-        faction.Alliance,
-        1691,
         {
             RewardType = rewardType.Title,
             {"Event", 141},
@@ -2977,8 +2862,6 @@ KrowiAF.AchievementData["03_00_02"] = {
     },
     { -- Fool For Love
         1693,
-        faction.Horde,
-        1707,
         {
             RewardType = rewardType.Title,
             {"Event", 423},
@@ -3056,15 +2939,6 @@ KrowiAF.AchievementData["03_00_02"] = {
     },
     {1705}, -- Clockwork Rocket Bot
     {1706}, -- Crashin' Thrashin' Racer
-    { -- Fool For Love
-        1707,
-        faction.Alliance,
-        1693,
-        {
-            RewardType = rewardType.Title,
-            {"Event", 423},
-        },
-    },
     { -- Wintergrasp Victory
         1717,
         {
@@ -3105,9 +2979,9 @@ KrowiAF.AchievementData["03_00_02"] = {
     },
     { -- Master of Wintergrasp
         1752,
-        faction.Alliance,
-        2776,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Within Our Grasp
         1755,
@@ -3182,14 +3056,6 @@ KrowiAF.AchievementData["03_00_02"] = {
         1783,
         faction.Horde,
         1782,
-    },
-    { -- Hail to the Chef
-        1784,
-        faction.Horde,
-        1563,
-        {
-            RewardType = rewardType.Title,
-        },
     },
     {1785}, -- Dinner Impossible
     { -- School of Hard Knocks
@@ -3459,22 +3325,12 @@ KrowiAF.AchievementData["03_00_02"] = {
 			RewardType = rewardType.Mount,
 		},
 	},
-    { -- What A Long, Strange Trip It's Been
-        2144,
-        faction.Alliance,
-        2145,
+	{ -- What a Long, Strange Trip It's Been
+		2144,
 		{
 			RewardType = rewardType.Mount,
 		},
-    },
-    { -- What A Long, Strange Trip It's Been
-        2145,
-        faction.Horde,
-        2144,
-		{
-			RewardType = rewardType.Mount,
-		},
-    },
+	},
     {2146}, -- The Hundred Club (10 player)
     {2147}, -- The Hundred Club (25 player)
     {2148}, -- Denyin' the Scion (10 player)
@@ -3556,17 +3412,6 @@ KrowiAF.AchievementData["03_00_02"] = {
         },
     },
     { -- Master of Strand of the Ancients
-        2194,
-        faction.Alliance,
-        2195,
-        {
-            IsPvP = true,
-            {"Before", "Version", {8, 0, 1}},
-        },
-    },
-    { -- Master of Strand of the Ancients
-        2195,
-        faction.Horde,
         2194,
         {
             IsPvP = true,
@@ -3683,12 +3528,6 @@ KrowiAF.AchievementData["03_00_02"] = {
         {
             {"Before", "Version", {7, 0, 3}},
         },
-    },
-    { -- Master of Wintergrasp
-        2776,
-        faction.Horde,
-        1752,
-        true,
     },
     { -- Brew of the Month
         2796,
@@ -3922,18 +3761,7 @@ KrowiAF.AchievementData["03_01_00"] = {
         2782,
     },
     { -- Noble Gardener
-        2797,
-        faction.Alliance,
         2798,
-        {
-            RewardType = rewardType.Title,
-            {"Event", 181},
-        },
-    },
-    { -- Noble Gardener
-        2798,
-        faction.Horde,
-        2797,
         {
             RewardType = rewardType.Title,
             {"Event", 181},
@@ -4917,8 +4745,6 @@ KrowiAF.AchievementData["03_02_00"] = {
     },
     { -- Pilgrim
         3478,
-        faction.Alliance,
-        3656,
         {
             RewardType = rewardType.Title,
             {"Event", 404},
@@ -5035,15 +4861,6 @@ KrowiAF.AchievementData["03_02_00"] = {
         3636,
         {
             {"Never"},
-        },
-    },
-    { -- Pilgrim
-        3656,
-        faction.Horde,
-        3478,
-        {
-            RewardType = rewardType.Title,
-            {"Event", 404},
         },
     },
     { -- Relentless Gladiator's Frost Wyrm

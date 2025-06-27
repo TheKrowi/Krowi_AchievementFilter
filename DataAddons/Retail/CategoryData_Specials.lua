@@ -66,7 +66,6 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 3496, -- A Brew-FAST Mount
                 4627, -- X-45 Heartbreaker
                 2144, -- What a Long, Strange Trip It's Been
-                2145, -- What A Long, Strange Trip It's Been
                 9496, -- Warlord's Deathwheel
                 9550, -- Boldly, You Sought the Power of Ragnaros
                 13931, -- Memories of Fel, Frost and Fire
@@ -201,7 +200,6 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                     3757, -- Relentless Gladiator's Frost Wyrm
                     4600, -- Wrathful Gladiator's Frost Wyrm
                     6003, -- Vicious Gladiator's Twilight Drake
-                    6321, -- Ruthless Gladiator's Twilight Drake
                     6322, -- Ruthless Gladiator's Twilight Drake
                     6741, -- Cataclysmic Gladiator's Twilight Drake
                     8216, -- Malevolent Gladiator's Cloud Serpent
@@ -656,8 +654,6 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 true,
                 {
                     978, -- 3000 Quests Completed
-                    1681, -- The Loremaster
-                    1682, -- The Loremaster
                     7520, -- The Loremaster
                 },
             },
@@ -733,7 +729,6 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                     4855, -- What was Briefly Yours is Now Mine
                     4856, -- It Belongs in a Museum!
                     1563, -- Hail to the Chef
-                    1784, -- Hail to the Chef
                 },
             },
             { -- Events
@@ -742,20 +737,14 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 true,
                 {
                     913, -- To Honor One's Elders
-                    1707, -- Fool For Love
                     1693, -- Fool For Love
-                    2797, -- Noble Gardener
                     2798, -- Noble Gardener
                     1793, -- For the Children
                     1038, -- The Flame Warden
                     1039, -- The Flame Keeper
-                    1684, -- Brewmaster
                     1683, -- Brewmaster
                     1656, -- Hallowed Be Thy Name
-                    1657, -- Hallowed Be Thy Name
                     3478, -- Pilgrim
-                    3656, -- Pilgrim
-                    1692, -- Merrymaker
                     1691, -- Merrymaker
                 },
             },
