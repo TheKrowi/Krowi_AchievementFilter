@@ -1,8 +1,8 @@
-## Interface: 40402
+## Interface: 50500
 ## Title: Krowi's |cFF1D92C2Achievement Filter|r
 ## X-Prefix: KrowiAF
 ## X-Acronym: KAF
-## Version: 84.0
+## Version: 85.0
 ## Author: Krowi-Frostmane EU
 ## SavedVariables: KrowiAF_DebugTable, KrowiAF_Options, KrowiAF_SavedData, KrowiAF_Filters, KrowiAF_SearchOptions, KrowiAF_Achievements
 ## Notes: Filters your achievements.
@@ -43,7 +43,7 @@ SearchOptions.lua
 Gui\FilesClassic.xml
 
 Data\Files.xml
-Data\CataClassic\Files.xml
+Data\Classic\Files.xml
 DataAddons\Shared\Files.xml
-DataAddons\CataClassic\Files.xml
+DataAddons\Classic\Files.xml
 DataAddons\Loaders\Files.xml

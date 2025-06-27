@@ -1,6 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 85.0 - 2025-06-27
+### Added
+- More tooltip data for Mists of Pandaria content
+
+### Changed
+- General achievements cleanup
+
+### Mists Classic
+- Added support
+
+### Cata Classic
+- Removed support
+
 ## 84.0 - 2025-06-18
 ### Added
 - Missing 11.1.5 The Enterprising Dungeon Master achievements

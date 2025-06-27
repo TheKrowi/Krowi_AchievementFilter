@@ -67,11 +67,6 @@ KrowiAF.BuildVersionData.Cataclysm = { -- 4
         { -- 4.4
             Minor = 4,
             Patches = {
-                { -- 4.4.0
-                    Patch = 0,
-                    BuildVersionId = "040400",
-                    Name = addon.L["Cataclysm"]
-                },
                 { -- 4.4.1
                     Patch = 1,
                     BuildVersionId = "040401",

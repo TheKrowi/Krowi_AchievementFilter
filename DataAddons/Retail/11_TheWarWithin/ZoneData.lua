@@ -65,6 +65,8 @@ local delvesTheWarWithin = {
     41115, -- Algari Delver
     41116, -- Algari Delver II
     41709, -- Journey's End (Season 2)
+    42212, -- Titan Console Overcharged
+    42241, -- Overcharged Delver
 };
 
 local delvesTheWarWithinS1Progress = {

@@ -229,7 +229,6 @@ local crossExpansion = { -- Cross-Expansion
                 18817, -- Showoff Chef
                 3296, -- Cooking with Style
                 1563, -- Hail to the Chef
-                1784, -- Hail to the Chef
                 17736, -- The Gift of Cheese
             },
         },
@@ -784,7 +783,6 @@ local classic = { -- Classic
                         addon.GetCategoryInfoTitle(96),
                 true,
                     {
-                        4907, -- Duskwood Quests
                         12430, -- Duskwood Quests
                         12455, -- Westfall & Duskwood Quests
                     },
@@ -815,7 +813,6 @@ local classic = { -- Classic
                         addon.GetCategoryInfoTitle(96),
                 true,
                     {
-                        4898, -- Wetlands Quests
                         12429, -- Wetlands Quests
                         12456, -- Loch Modan & Wetlands Quests
                     },
@@ -1213,10 +1210,7 @@ local classic = { -- Classic
             },
             {
                 1676, -- Loremaster of Eastern Kingdoms
-                1677, -- Loremaster of Eastern Kingdoms
                 42, -- Eastern Kingdoms Explorer
-                1681, -- The Loremaster
-                1682, -- The Loremaster
                 7520, -- The Loremaster
                 19719, -- Reclamation of Gilneas
             },
@@ -1807,10 +1801,7 @@ local classic = { -- Classic
             },
             {
                 1678, -- Loremaster of Kalimdor
-                1680, -- Loremaster of Kalimdor
                 43, -- Kalimdor Explorer
-                1681, -- The Loremaster
-                1682, -- The Loremaster
                 7520, -- The Loremaster
             },
         },
@@ -2110,7 +2101,6 @@ local classic = { -- Classic
                 5843, -- Let's Do Lunch: Thunder Bluff
                 5844, -- Let's Do Lunch: Undercity
                 5845, -- A Bunch of Lunch
-                5846, -- A Bunch of Lunch
                 5779, -- You'll Feel Right as Rain
             },
         },
@@ -2134,7 +2124,6 @@ local classic = { -- Classic
                 5849, -- Fish or Cut Bait: Thunder Bluff
                 5850, -- Fish or Cut Bait: Undercity
                 5851, -- Gone Fishin'
-                5852, -- Gone Fishin'
                 17367, -- Deadliest Cache
             },
         },
@@ -2594,7 +2583,6 @@ local theBurningCrusade = { -- The Burning Crusade
         },
         {
             1262, -- Loremaster of Outland
-            1274, -- Loremaster of Outland
             1311, -- Medium Rare
             1312, -- Bloody Rare
             44, -- Outland Explorer
@@ -2603,8 +2591,6 @@ local theBurningCrusade = { -- The Burning Crusade
             894, -- Flying High Over Skettis
             897, -- You're So Offensive
             902, -- Chief Exalted Officer
-            1681, -- The Loremaster
-            1682, -- The Loremaster
             7520, -- The Loremaster
         },
     },
@@ -3236,7 +3222,6 @@ local wrathOfTheLichKing = { -- Wrath of the Lich King
         },
         {
             41, -- Loremaster of Northrend
-            1360, -- Loremaster of Northrend
             2256, -- Northern Exposure
             2257, -- Frostbitten
             2557, -- To All The Squirrels Who Shared My Life
@@ -3247,8 +3232,6 @@ local wrathOfTheLichKing = { -- Wrath of the Lich King
             1011, -- The Winds of the North
             1012, -- The Winds of the North
             2556, -- Pest Control
-            1681, -- The Loremaster
-            1682, -- The Loremaster
             7520, -- The Loremaster
         },
     },
@@ -4431,7 +4414,6 @@ local cataclysm = { -- Cataclysm
         },
         {
             4875, -- Loremaster of Cataclysm
-            4983, -- Loremaster of Cataclysm
             4827, -- Surveying the Damage
             5548, -- To All the Squirrels Who Cared for Me
             5754, -- Drown Your Sorrows

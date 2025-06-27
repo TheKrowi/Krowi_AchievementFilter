@@ -66,7 +66,6 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
                 706, -- Frostwolf Howler
                 1166, -- To the Looter Go the Spoils
                 1167, -- Master of Alterac Valley
-                1168, -- Master of Alterac Valley
                 226, -- The Alterac Blitz
                 709, -- Hero of the Stormpike Guard
                 708, -- Hero of the Frostwolf Clan
@@ -90,7 +89,6 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
                 583, -- Arathi Basin All-Star
                 584, -- Arathi Basin Assassin
                 1169, -- Master of Arathi Basin
-                1170, -- Master of Arathi Basin
                 711, -- Knight of Arathor
                 710, -- The Defiler
             },
@@ -181,7 +179,6 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
                 1757, -- Defense of the Ancients
                 2200, -- Defense of the Ancients
                 2194, -- Master of Strand of the Ancients
-                2195, -- Master of Strand of the Ancients
             },
         },
         { -- Twin Peaks
@@ -208,7 +205,6 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
                 5231, -- Double Jeopardy
                 5552, -- Double Jeopardy
                 5223, -- Master of Twin Peaks
-                5259, -- Master of Twin Peaks
             },
         },
         { -- Warsong Gulch
@@ -231,7 +227,6 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
                 1252, -- Supreme Defender
                 207, -- Save the Day
                 1172, -- Master of Warsong Gulch
-                1173, -- Master of Warsong Gulch
                 1259, -- Not So Fast
                 713, -- Silverwing Sentinel
                 712, -- Warsong Outrider
@@ -252,7 +247,6 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
                 1727, -- Leaning Tower
                 1751, -- Didn't Stand a Chance
                 1752, -- Master of Wintergrasp
-                2776, -- Master of Wintergrasp
             },
         },
         {

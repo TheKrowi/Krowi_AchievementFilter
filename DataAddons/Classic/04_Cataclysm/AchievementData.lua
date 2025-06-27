@@ -136,11 +136,7 @@ KrowiAF.AchievementData["04_00_03"] = {
         5501,
     },
     {4874}, -- Breaking Out of Tol Barad
-    { -- Loremaster of Cataclysm
-        4875,
-        faction.Alliance,
-        4983,
-    },
+    {4875}, -- Loremaster of Cataclysm
     {4881}, -- The Earthen Ring
     {4882}, -- The Guardians of Hyjal
     {4883}, -- Therazane
@@ -161,7 +157,7 @@ KrowiAF.AchievementData["04_00_03"] = {
     { -- Silverpine Forest Quests
         4894,
         faction.Horde,
-        4907,
+        12455,
     },
     { -- Hillsbrad Foothills Quests
         4895,
@@ -170,11 +166,7 @@ KrowiAF.AchievementData["04_00_03"] = {
     },
     {4896}, -- Arathi Highlands Quests
     {4897}, -- Hinterlands Quests
-    { -- Wetlands Quests
-        4898,
-        faction.Alliance,
-        4908,
-    },
+
     { -- Loch Modan Quests
         4899,
         faction.Alliance,
@@ -193,15 +185,10 @@ KrowiAF.AchievementData["04_00_03"] = {
     {4904}, -- Swamp of Sorrows Quests
     {4905}, -- Cape of Stranglethorn Quests
     {4906}, -- Northern Stranglethorn Quests
-    { -- Duskwood Quests
-        4907,
-        faction.Alliance,
-        4894,
-    },
     { -- Ghostlands Quests
         4908,
         faction.Horde,
-        4898,
+        12456,
     },
     {4909}, -- Blasted Lands Quests
     {4910}, -- Searing Gorge Quests
@@ -314,11 +301,6 @@ KrowiAF.AchievementData["04_00_03"] = {
         4982,
         faction.Horde,
         4869,
-    },
-    { -- Loremaster of Cataclysm
-        4983,
-        faction.Horde,
-        4875,
     },
     {4995}, -- Explore the Cape of Stranglethorn
     {4996}, -- Explore Southern Barrens
@@ -514,9 +496,9 @@ KrowiAF.AchievementData["04_00_03"] = {
     },
     { -- Master of Twin Peaks
         5223,
-        faction.Alliance,
-        5259,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Cloud Nine
         5226,
@@ -637,12 +619,6 @@ KrowiAF.AchievementData["04_00_03"] = {
         {
             IsPvP = true,
         },
-    },
-    { -- Master of Twin Peaks
-        5259,
-        faction.Horde,
-        5223,
-        true,
     },
     { -- Double Rainbow
         5262,
@@ -1557,16 +1533,7 @@ KrowiAF.AchievementData["04_02_00"] = {
         faction.Horde,
         5842,
     },
-    { -- A Bunch of Lunch
-        5845,
-        faction.Alliance,
-        5846,
-    },
-    { -- A Bunch of Lunch
-        5846,
-        faction.Horde,
-        5845,
-    },
+    {5845}, -- A Bunch of Lunch
     { -- Fish or Cut Bait: Ironforge
         5847,
         faction.Alliance,
@@ -1587,16 +1554,7 @@ KrowiAF.AchievementData["04_02_00"] = {
         faction.Horde,
         5848,
     },
-    { -- Gone Fishin'
-        5851,
-        faction.Alliance,
-        5852,
-    },
-    { -- Gone Fishin'
-        5852,
-        faction.Horde,
-        5851,
-    },
+    {5851}, -- Gone Fishin'
     {5855}, -- Ragnar-O's
     {5858}, -- Bear-ly Made It
     { -- Legacy of Leyara
@@ -1949,17 +1907,6 @@ KrowiAF.AchievementData["04_03_02"] = {
     },
     { -- Ruthless Gladiator's Twilight Drake
         6322,
-        {
-            IsPvP = true,
-            {"PvP Season", 10},
-        },
-    },
-};
-
-KrowiAF.AchievementData["04_04_00"] = {
-    {KrowiAF.SetAchievementPatch, 4, 4, 0},
-    { -- Ruthless Gladiator's Twilight Drake
-        6321,
         {
             IsPvP = true,
             {"PvP Season", 10},
