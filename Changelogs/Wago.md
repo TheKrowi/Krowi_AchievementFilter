@@ -10,5 +10,5 @@
 ### Cata Classic
 - Removed support
 
-### Mists Classic (85.0)
+### Mists Classic (85.1)
 - Version 5.5.0 filtering

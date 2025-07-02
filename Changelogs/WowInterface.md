@@ -18,7 +18,7 @@
 [*]Removed support
 [/LIST]
 
-[B]Mists Classic (85.0)[/B]
+[B]Mists Classic (85.1)[/B]
 [LIST]
 [*]Version 5.5.0 filtering
 [/LIST]

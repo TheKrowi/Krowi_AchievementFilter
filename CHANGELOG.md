@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 85.0 - 2025-07-02
+## 85.1 - 2025-07-02
 ### Mists Classic
 - Version 5.5.0 filtering
 
