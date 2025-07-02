@@ -14,3 +14,7 @@
 <ul>
 <li>Removed support</li>
 </ul>
+<p><h3>Mists Classic (85.0)</h3></p>
+<ul>
+<li>Version 5.5.0 filtering</li>
+</ul>

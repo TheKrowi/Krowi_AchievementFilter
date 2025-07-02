@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 85.0 - 2025-07-02
+### Mists Classic
+- Version 5.5.0 filtering
+
 ## 85.0 - 2025-06-27
 ### Added
 - More tooltip data for Mists of Pandaria content
