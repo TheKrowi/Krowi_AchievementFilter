@@ -14,3 +14,11 @@
 <ul>
 <li>Removed support</li>
 </ul>
+<p><h3>Mists Classic (85.1)</h3></p>
+<ul>
+<li>Version 5.5.0 filtering</li>
+</ul>
+<p><h3>Fixed (85.2)</h3></p>
+<ul>
+<li>GW2_UI compatibility issue when disabling Event Reminders</li>
+</ul>

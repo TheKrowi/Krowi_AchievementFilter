@@ -1030,6 +1030,14 @@ local function SkinSideButtons()
 end
 
 local function SkinAlertFrames()
+    if not addon.Gui.EventReminderAlertSystem.SubSystem then
+        hooksecurefunc(addon.Gui.EventReminderAlertSystem, "Load", function(system)
+            hooksecurefunc(addon.Gui.EventReminderAlertSystem.SubSystem, "setUpFunction", function(frame)
+                SkinAlertFrameTemplate(frame);
+            end);
+        end);
+        return;
+    end
     hooksecurefunc(addon.Gui.EventReminderAlertSystem.SubSystem, "setUpFunction", function(frame)
         SkinAlertFrameTemplate(frame);
     end);
