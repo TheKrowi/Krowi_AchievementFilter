@@ -22,3 +22,8 @@
 [LIST]
 [*]Version 5.5.0 filtering
 [/LIST]
+
+[B]Fixed (85.1)[/B]
+[LIST]
+[*]GW2_UI compatibility issue when disabling Event Reminders
+[/LIST]
