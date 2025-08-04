@@ -42,6 +42,7 @@ local crossExpansion = { -- Cross-Expansion
             7380, -- Double Agent
             19489, -- Class Connoisseur
             546, -- Safe Deposit
+            42191, -- Safer Deposit
             40142, -- Learning to Share
             40145, -- So Much Sharing
             1176, -- Got My Mind On My Money
@@ -9841,6 +9842,8 @@ local shadowlands = { -- Shadowlands
                 15177, -- Tazavesh, the Veiled Market
                 15650, -- Mythic: Streets of Wonder
                 15652, -- Mythic: So'leah's Gambit
+                61092, -- Hard Mode: Tazavesh, the Veiled Market
+                61093, -- Flawless Transaction
                 15500, -- Keystone Hero: Tazavesh, the Veiled Market
             },
         },
@@ -11937,6 +11940,10 @@ local theWarWithin = { -- The War Within
             40943, -- Carved of the Undermine
             40944, -- Runed of the Undermine
             40945, -- Gilded of the Undermined
+            41886, -- Weathered of the Ethereal
+            41887, -- Carved of the Ethereal
+            41888, -- Runed of the Ethereal
+            41892, -- Gilded of the Ethereal
         },
     },
     { -- Zones
@@ -12386,6 +12393,76 @@ local theWarWithin = { -- The War Within
                 41586, -- Going Goblin Mode
             }
         },
+        { -- K'aresh
+            addon.GetMapName(2371),
+            { -- Quests
+                addon.GetCategoryInfoTitle(96),
+                true,
+                {
+                    -- 19559, -- Azj-Kahet
+                    42739, -- Sojourner of K'aresh
+                    -- 40832, -- Leave it to Weaver
+                    -- 40833, -- The General's Salute
+                    -- 40835, -- Vizier than Ever
+                    -- 40620, -- Back to the Wall
+                    -- 40869, -- Worm Theory
+                },
+            },
+            { -- Exploration
+                addon.GetCategoryInfoTitle(97),
+                true,
+                {
+                    42740, -- Explore K'aresh
+                    42741, -- Treasures of K'aresh
+                    -- 40840, -- Adventurer of Azj-Kahet
+                    42727, -- K'aresh Glyph Hunter
+                    -- 40542, -- Smelling History
+                    -- 40634, -- You Can't Hang With Us
+                    -- 40624, -- Itsy Bitsy Spider
+                    -- 40632, -- No Harm Ever Came From Reading A Book
+                    -- 40843, -- Mine Poppin'
+                    -- 40629, -- Bookworm
+                    -- 40727, -- Skittershaw Spin
+                    -- 40633, -- The Unseeming
+                },
+            },
+            { -- Player vs. Player
+                addon.GetCategoryInfoTitle(95),
+                true,
+                {
+                    42131, -- Tour of Duty: K'aresh
+                },
+            },
+            { -- Reputation
+                addon.GetCategoryInfoTitle(201),
+                true,
+                {
+                    -- 41149, -- The Severed Threads
+                    -- 41164, -- We Rise Anew
+                    -- 40874, -- The Grand Tapestry
+                    -- 40875, -- True Strength
+                    -- 40876, -- Vox Arachni
+                },
+            },
+            { -- Skyriding Races
+                addon.L["Skyriding Races"],
+                true,
+                {
+                    -- 40343, -- Azj-Kahet: Bronze
+                    -- 40344, -- Azj-Kahet: Silver
+                    -- 40345, -- Azj-Kahet: Gold
+                    -- 40346, -- Azj-Kahet Advanced: Bronze
+                    -- 40347, -- Azj-Kahet Advanced: Silver
+                    -- 40348, -- Azj-Kahet Advanced: Gold
+                    -- 40349, -- Azj-Kahet Reverse: Bronze
+                    -- 40350, -- Azj-Kahet Reverse: Silver
+                    -- 40351, -- Azj-Kahet Reverse: Gold
+                },
+            },
+            {
+                -- 41189, -- Azj the World Turns
+            },
+        },
         {
             41201, -- You Xal Not Pass
         }
@@ -12523,6 +12600,23 @@ local theWarWithin = { -- The War Within
                 41531, -- The Hataclysm
             },
         },
+        { -- Archival Assault
+            addon.GetMapName(2452),
+            {
+                42771, -- Archival Assault Stories
+                42679, -- Archival Assault Discoveries
+            },
+        },
+        { -- Voidrazor Sanctuary
+            addon.GetMapName(2484),
+            {
+                40732, -- Heavy-Handed
+                42799, -- Let Her Solo Me
+                42193, -- My Stab-Happy Nemesis
+                42194, -- Pruning the Princess
+                42190, -- Let Me Solo Her: Nexus-Princess Ky'veza
+            },
+        },
         {
             40631, -- War Within Delves: Tier 1
             40512, -- War Within Delves: Tier 2
@@ -12544,6 +12638,14 @@ local theWarWithin = { -- The War Within
             41195, -- War Within Delves: Tier 9 (Season 2)
             41196, -- War Within Delves: Tier 10 (Season 2)
             41197, -- War Within Delves: Tier 11 (Season 2)
+            42196, -- War Within Delves: Tier 4 (Season 3)
+            42197, -- War Within Delves: Tier 5 (Season 3)
+            42198, -- War Within Delves: Tier 6 (Season 3)
+            42199, -- War Within Delves: Tier 7 (Season 3)
+            42200, -- War Within Delves: Tier 8 (Season 3)
+            42201, -- War Within Delves: Tier 9 (Season 3)
+            42202, -- War Within Delves: Tier 10 (Season 3)
+            42203, -- War Within Delves: Tier 11 (Season 3)
             40537, -- Delve Loremaster: War Within
             40506, -- Leave No Treasure Unfound
             40445, -- Sporesweeper
@@ -12564,6 +12666,7 @@ local theWarWithin = { -- The War Within
             40461, -- Buddy System VI
             41537, -- Buddy System VII
             41723, -- Buddy System VIII
+            42676, -- Buddy System IX
             40100, -- Undying Caver
             40098, -- Immortal Spelunker
             40459, -- I've Got a Flying Machine!
@@ -12592,6 +12695,9 @@ local theWarWithin = { -- The War Within
             41709, -- Journey's End (Season 2)
             42212, -- Titan Console Overcharged
             42241, -- Overcharged Delver
+            42801, -- Journey's End (Season 3)
+            60934, -- With Flying Colors
+            60933, -- With Flying Colors
         },
     },
     { -- Dungeons
@@ -12686,6 +12792,15 @@ local theWarWithin = { -- The War Within
                 41348, -- Keystone Hero: Operation: Floodgate
             },
         },
+        { -- Eco-Dome Al'dani
+            addon.GetInstanceInfoName(1303),
+            {
+                42780, -- Eco-Dome Al'dani
+                42781, -- Heroic: Eco-Dome Al'dani
+                42782, -- Mythic: Eco-Dome Al'dani
+                42173, -- Keystone Hero: Eco-Dome Al'dani
+            },
+        },
         {
             40141, -- Algari Dungeon Tank
             40140, -- Algari Dungeon Healer
@@ -12710,6 +12825,12 @@ local theWarWithin = { -- The War Within
             40954, -- Enterprising Hero: The War Within Season Two
             40911, -- The War Within Season 2: Master Blaster
             41665, -- Dressed to the Mines
+            42169, -- The War Within Keystone Explorer: Season Three
+            42170, -- The War Within Keystone Conqueror: Season Three
+            41973, -- The War Within Keystone Master: Season Three
+            42171, -- The War Within Keystone Hero: Season Three
+            42172, -- The War Within Keystone Legend: Season Three
+            42174, -- Unbound Hero: The War Within Season Three
         },
     },
     { -- Raids
@@ -12804,14 +12925,61 @@ local theWarWithin = { -- The War Within
                 41694, -- Flarendo's Biggest Fan
                 41695, -- Torq's Biggest Fan
                 41211, -- A Good Day to Dye Hard
+                60939, -- Bringing Down the House
                 41525, -- Can You Please Spell "Gobanna?"
                 40911, -- The War Within Season 2: Master Blaster
                 41665, -- Dressed to the Mines
             },
         },
+        { -- Manaforge Omega
+            addon.GetInstanceInfoName(1302),
+            { -- Glory
+                addon.L["Glory"],
+                {
+                    42118, -- Of Mice and Manaforges
+                    41613, -- Time to Vote! Cute or Scary?
+                    41614, -- Mother of All Tantrums
+                    41615, -- Cheat Meal
+                    41616, -- I See... Absolutely Nothing
+                    41617, -- Breaking the Fourth Wall
+                    41618, -- King's Ransom
+                    41619, -- Defying Gravity
+                },
+            },
+            { -- Mythic
+                addon.L["Mythic"],
+                {
+                    41604, -- Mythic: Plexus Sentinel
+                    41605, -- Mythic: Loom'ithar
+                    41606, -- Mythic: Soulbinder Naazindhri
+                    41607, -- Mythic: Forgeweaver Araz
+                    41608, -- Mythic: The Soul Hunters
+                    41609, -- Mythic: Fractillus
+                    41610, -- Mythic: Nexus-King Salhadaar
+                    41611, -- Mythic: Dimensius, the All-Devouring
+                },
+            },
+            {
+                41601, -- Might of the Shadowguard
+                41602, -- Monsters of the Sands
+                41603, -- Heart of Darkness
+                41598, -- Manaforge Omega
+                41599, -- Heroic: Manaforge Omega
+                41600, -- Mythic: Manaforge Omega
+                41624, -- Ahead of the Curve: Dimensius, the All-Devouring
+                41625, -- Cutting Edge: Dimensius, the All-Devouring
+                -- 41694, -- Flarendo's Biggest Fan
+                -- 41695, -- Torq's Biggest Fan
+                -- 41211, -- A Good Day to Dye Hard
+                42316, -- Fractals? For Spring? Groundbreaking.
+                -- 40911, -- The War Within Season 2: Master Blaster
+                -- 41665, -- Dressed to the Mines
+            },
+        },
         {
             40232, -- Glory of the Nerub-ar Raider
             41286, -- Glory of the Liberation of Undermine Raider
+            41597, -- Glory of the Omega Raider
         },
     },
     { -- Professions

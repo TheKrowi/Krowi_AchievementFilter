@@ -1136,7 +1136,12 @@ KrowiAF.AchievementData["03_00_02"] = {
     {523}, -- 5 Exalted Reputations
     {524}, -- 10 Exalted Reputations
     {545}, -- Shave and a Haircut
-    {546}, -- Safe Deposit
+    { -- Safe Deposit
+        546,
+        {
+            {"Before", "Version", {11, 2, 0}},
+        },
+    },
     {547}, -- Veteran of the Wrathgate
     { -- Epic
         556,

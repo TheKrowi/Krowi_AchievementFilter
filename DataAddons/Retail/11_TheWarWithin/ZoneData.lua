@@ -104,6 +104,22 @@ local delvesTheWarWithinS2 = {
     delvesTheWarWithinS2Progress
 };
 
+local delvesTheWarWithinS3Progress = {
+    42196, -- War Within Delves: Tier 4 (Season 3)
+    42197, -- War Within Delves: Tier 5 (Season 3)
+    42198, -- War Within Delves: Tier 6 (Season 3)
+    42199, -- War Within Delves: Tier 7 (Season 3)
+    42200, -- War Within Delves: Tier 8 (Season 3)
+    42201, -- War Within Delves: Tier 9 (Season 3)
+    42202, -- War Within Delves: Tier 10 (Season 3)
+    42203, -- War Within Delves: Tier 11 (Season 3)
+};
+
+local delvesTheWarWithinS3 = {
+    delvesTheWarWithin,
+    delvesTheWarWithinS3Progress
+};
+
 KrowiAF.ZoneData.TheWarWithin = {
     { -- Azj-Kahet (zone)
         {2213, 2216, 2255, 2256},
@@ -656,6 +672,25 @@ KrowiAF.ZoneData.TheWarWithin = {
             41950, -- Defeat the Dastardlies
             41951, -- Defeat the Dastardlies
             41952, -- Defeat the Dastardlies
+        }
+    },
+    { -- Archival Assault (delve)
+        {2452, 2453, 2454, 2455, 2476},
+        {
+            delvesTheWarWithinS3,
+            42771, -- Archival Assault Stories
+            42679, -- Archival Assault Discoveries
+        }
+    },
+    { -- Voidrazor Sanctuary (delve)
+        2484,
+        {
+            delvesTheWarWithinS3,
+            40732, -- Heavy-Handed
+            42799, -- Let Her Solo Me
+            42193, -- My Stab-Happy Nemesis
+            42194, -- Pruning the Princess
+            42190, -- Let Me Solo Her: Nexus-Princess Ky'veza
         }
     },
 };
