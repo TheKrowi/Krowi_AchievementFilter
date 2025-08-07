@@ -1171,8 +1171,8 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
                 42035, -- Astral Marshal: The War Within Season 3
                 42034, -- Astral Warlord: The War Within Season 3
                 41048, -- Astral Weapons of Conquest
-                -- 40911, -- The War Within Season 2: Master Blaster
-                -- 41665, -- Dressed to the Mines
+                41937, -- The War Within Season 3: Voidborne Victor
+                42325, -- Void Wear Prohibited
             },
         },
     },

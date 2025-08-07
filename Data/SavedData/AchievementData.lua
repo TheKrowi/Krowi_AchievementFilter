@@ -8,6 +8,7 @@ ignoreAchievementIds[7268] = true;
 ignoreAchievementIds[7269] = true;
 ignoreAchievementIds[7270] = true;
 ignoreAchievementIds[40910] = true;
+ignoreAchievementIds[42114] = true;
 
 function achievementData.Load()
     KrowiAF_Achievements = KrowiAF_Achievements or {};

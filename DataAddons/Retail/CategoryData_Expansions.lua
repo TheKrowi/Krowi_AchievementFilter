@@ -12399,13 +12399,18 @@ local theWarWithin = { -- The War Within
                 addon.GetCategoryInfoTitle(96),
                 true,
                 {
-                    -- 19559, -- Azj-Kahet
+                    41970, -- The Knife's Edge
                     42739, -- Sojourner of K'aresh
-                    -- 40832, -- Leave it to Weaver
-                    -- 40833, -- The General's Salute
-                    -- 40835, -- Vizier than Ever
-                    -- 40620, -- Back to the Wall
-                    -- 40869, -- Worm Theory
+                    41808, -- Otherworldly Ecologist
+                    41809, -- Ecological Variety
+                    41811, -- Ecological Stability
+                    41812, -- Expertly Done
+                    41815, -- Ecological Succession
+                    41978, -- Moonlighter
+                    41979, -- Bounty Seeker
+                    41980, -- Vigilante
+                    42731, -- Become a Hero. Become a Phasediver!
+                    42737, -- Capstoned
                 },
             },
             { -- Exploration
@@ -12414,16 +12419,15 @@ local theWarWithin = { -- The War Within
                 {
                     42740, -- Explore K'aresh
                     42741, -- Treasures of K'aresh
-                    -- 40840, -- Adventurer of Azj-Kahet
+                    42761, -- Remnants of a Shattered World
                     42727, -- K'aresh Glyph Hunter
-                    -- 40542, -- Smelling History
-                    -- 40634, -- You Can't Hang With Us
-                    -- 40624, -- Itsy Bitsy Spider
-                    -- 40632, -- No Harm Ever Came From Reading A Book
-                    -- 40843, -- Mine Poppin'
-                    -- 40629, -- Bookworm
-                    -- 40727, -- Skittershaw Spin
-                    -- 40633, -- The Unseeming
+                    42729, -- Dangerous Prowlers of K'aresh
+                    42730, -- Jump, Jump, and Away!
+                    42736, -- Ixthar's Legacy
+                    42738, -- We've All Got Swords!
+                    42742, -- Power of the Reshii
+                    60890, -- Secrets of the K'areshi
+                    61017, -- Phase-Lost-and-Found
                 },
             },
             { -- Player vs. Player
@@ -12437,30 +12441,18 @@ local theWarWithin = { -- The War Within
                 addon.GetCategoryInfoTitle(201),
                 true,
                 {
-                    -- 41149, -- The Severed Threads
-                    -- 41164, -- We Rise Anew
-                    -- 40874, -- The Grand Tapestry
-                    -- 40875, -- True Strength
-                    -- 40876, -- Vox Arachni
+                    42022, -- A Trusted Partner
                 },
             },
             { -- Skyriding Races
                 addon.L["Skyriding Races"],
                 true,
                 {
-                    -- 40343, -- Azj-Kahet: Bronze
-                    -- 40344, -- Azj-Kahet: Silver
-                    -- 40345, -- Azj-Kahet: Gold
-                    -- 40346, -- Azj-Kahet Advanced: Bronze
-                    -- 40347, -- Azj-Kahet Advanced: Silver
-                    -- 40348, -- Azj-Kahet Advanced: Gold
-                    -- 40349, -- Azj-Kahet Reverse: Bronze
-                    -- 40350, -- Azj-Kahet Reverse: Silver
-                    -- 40351, -- Azj-Kahet Reverse: Gold
+                    41778, -- Brokers Don't Care How You Win
                 },
             },
             {
-                -- 41189, -- Azj the World Turns
+                60889, -- Unraveled and Persevering
             },
         },
         {
@@ -12673,6 +12665,8 @@ local theWarWithin = { -- The War Within
             40789, -- Flying in Style
             41532, -- I've Got a Flying Machine?
             41714, -- From Trash to Treasure
+            42677, -- This Machine Flies?! Don't Care I Got It!
+            42678, -- So That's Where My Manaflux Capacitor Was!
             40524, -- Good Deed Delver
             40763, -- I'm not a Thief, I'm a Treasure Hunter
             41097, -- Curiosity Never Killed the Looter
@@ -12698,6 +12692,8 @@ local theWarWithin = { -- The War Within
             42801, -- Journey's End (Season 3)
             60934, -- With Flying Colors
             60933, -- With Flying Colors
+            42778, -- A Flicker in the Dark
+            42779, -- A Flash in the Void
         },
     },
     { -- Dungeons
@@ -12831,6 +12827,8 @@ local theWarWithin = { -- The War Within
             42171, -- The War Within Keystone Hero: Season Three
             42172, -- The War Within Keystone Legend: Season Three
             42174, -- Unbound Hero: The War Within Season Three
+            41937, -- The War Within Season 3: Voidborne Victor
+            42325, -- Void Wear Prohibited
         },
     },
     { -- Raids
@@ -12912,6 +12910,13 @@ local theWarWithin = { -- The War Within
                     41236, -- Mythic: Chrome King Gallywix
                 },
             },
+            { -- Reputation
+                addon.GetCategoryInfoTitle(201),
+                true,
+                {
+                    60939, -- Bringing Down the House
+                },
+            },
             {
                 41225, -- Shock and Awesome
                 41226, -- Maniacal Machinist
@@ -12925,7 +12930,6 @@ local theWarWithin = { -- The War Within
                 41694, -- Flarendo's Biggest Fan
                 41695, -- Torq's Biggest Fan
                 41211, -- A Good Day to Dye Hard
-                60939, -- Bringing Down the House
                 41525, -- Can You Please Spell "Gobanna?"
                 40911, -- The War Within Season 2: Master Blaster
                 41665, -- Dressed to the Mines
@@ -12959,6 +12963,13 @@ local theWarWithin = { -- The War Within
                     41611, -- Mythic: Dimensius, the All-Devouring
                 },
             },
+            { -- Reputation
+                addon.GetCategoryInfoTitle(201),
+                true,
+                {
+                    60940, -- Vandals! In! Space!
+                },
+            },
             {
                 41601, -- Might of the Shadowguard
                 41602, -- Monsters of the Sands
@@ -12968,12 +12979,9 @@ local theWarWithin = { -- The War Within
                 41600, -- Mythic: Manaforge Omega
                 41624, -- Ahead of the Curve: Dimensius, the All-Devouring
                 41625, -- Cutting Edge: Dimensius, the All-Devouring
-                -- 41694, -- Flarendo's Biggest Fan
-                -- 41695, -- Torq's Biggest Fan
-                -- 41211, -- A Good Day to Dye Hard
                 42316, -- Fractals? For Spring? Groundbreaking.
-                -- 40911, -- The War Within Season 2: Master Blaster
-                -- 41665, -- Dressed to the Mines
+                41937, -- The War Within Season 3: Voidborne Victor
+                42325, -- Void Wear Prohibited
             },
         },
         {

@@ -947,6 +947,7 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 19276, -- Verdant Vogue
                 40728, -- Forged Finery
                 41595, -- Prized Guise
+                42800, -- Astral Attire
             },
         },
         {

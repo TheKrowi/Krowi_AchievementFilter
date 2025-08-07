@@ -182,6 +182,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                 4782, -- Green Brewfest Stein
                 1186, -- Down With The Dark Iron
                 18579, -- A Round on the House
+                41212, -- A Round on the House in Khaz Algar
             },
         },
         { -- Hallow's End

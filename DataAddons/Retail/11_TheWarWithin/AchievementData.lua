@@ -2335,7 +2335,12 @@ KrowiAF.AchievementData["11_02_00"] = {
             {"PvP Season", 40},
         },
     },
-    -- {41212, }, -- A Round on the House in Khaz Algar
+    { -- A Round on the House in Khaz Algar
+        41212,
+        {
+            {"Event", 372},
+        },
+    },
     { -- Glory of the Omega Raider
         41597,
         {
@@ -2370,12 +2375,12 @@ KrowiAF.AchievementData["11_02_00"] = {
     {41619}, -- Defying Gravity
     {41624}, -- Ahead of the Curve: Dimensius, the All-Devouring
     {41625}, -- Cutting Edge: Dimensius, the All-Devouring
-    -- {41778, }, -- Brokers Don't Care How You Win
-    -- {41808, }, -- Otherworldly Ecologist
-    -- {41809, }, -- Ecological Variety
-    -- {41811, }, -- Ecological Stability
-    -- {41812, }, -- Expertly Done
-    -- {41815, }, -- Ecological Succession
+    {41778}, -- Brokers Don't Care How You Win
+    {41808}, -- Otherworldly Ecologist
+    {41809}, -- Ecological Variety
+    {41811}, -- Ecological Stability
+    {41812}, -- Expertly Done
+    {41815}, -- Ecological Succession
     { -- Weathered of the Ethereal
         41886,
         {
@@ -2398,8 +2403,18 @@ KrowiAF.AchievementData["11_02_00"] = {
         },
     },
     {41892}, -- Gilded of the Ethereal
-    -- {41937, Item Reward: Crystallized Ethereal Voidsplinter}, -- The War Within Season 3: Voidborne Victor
-    -- {41970, Warband Campsite: The Fate of the Devoured}, -- The Knife's Edge
+    { -- The War Within Season 3: Voidborne Victor
+        41937,
+		{
+			RewardType = rewardType.Transmog,
+		},
+    },
+    { -- The Knife's Edge
+        41970,
+        {
+            RewardType = rewardType.WarbandCampsite,
+        },
+    },
     { -- The War Within Keystone Master: Season Three
         41973,
         {
@@ -2407,10 +2422,25 @@ KrowiAF.AchievementData["11_02_00"] = {
             {"PvE Season", 15},
         },
     },
-    -- {41978, Ethereal Sash Cache}, -- Moonlighter
-    -- {41979, Pet: Starlight}, -- Bounty Seeker
-    -- {41980, Mount: Terror of the Night}, -- Vigilante
-    -- {42022, }, -- A Trusted Partner
+    { -- Moonlighter
+        41978,
+        {
+            RewardType = rewardType.Transmog,
+        },
+    },
+    { -- Bounty Seeker
+        41979,
+        {
+            RewardType = rewardType.Pet,
+        },
+    },
+    { -- Vigilante
+        41980,
+        {
+            RewardType = rewardType.Mount,
+        },
+    },
+    {42022}, -- A Trusted Partner
     { -- Legend: The War Within Season 3
         42023,
         {
@@ -2496,7 +2526,7 @@ KrowiAF.AchievementData["11_02_00"] = {
             {"PvP Season", 40},
         },
     },
-    -- {42114, }, -- Broken Memories
+    -- {42114}, -- Broken Memories
     {42118}, -- Of Mice and Manaforges
     {42131}, -- Tour of Duty: K'aresh
     {42149--[[ , Keystones will no longer deplete below level 12 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 12
@@ -2632,39 +2662,55 @@ KrowiAF.AchievementData["11_02_00"] = {
         },
     },
     {42316}, -- Fractals? For Spring? Groundbreaking.
-    -- {42325, Reward: K'areshi Voidstone}, -- Void Wear Prohibited
+    { -- Void Wear Prohibited
+        42325,
+        {
+            RewardType = rewardType.Transmog,
+        },
+    },
     {42676}, -- Buddy System IX
-    -- {42677, }, -- This Machine Flies?! Don't Care I Got It!
-    -- {42678, }, -- So That's Where My Manaflux Capacitor Was!
+    {42677}, -- This Machine Flies?! Don't Care I Got It!
+    {42678}, -- So That's Where My Manaflux Capacitor Was!
     {42679}, -- Archival Assault Discoveries
     {42727}, -- K'aresh Glyph Hunter
-    -- {42729, }, -- Dangerous Prowlers of K'aresh
-    -- {42730, }, -- Jump, Jump, and Away!
-    -- {42731, }, -- Become a Hero. Become a Phasediver!
-    -- {42736, }, -- Ixthar's Legacy
-    -- {42737, }, -- Capstoned
-    -- {42738, }, -- We've All Got Swords!
+    {42729}, -- Dangerous Prowlers of K'aresh
+    {42730}, -- Jump, Jump, and Away!
+    {42731}, -- Become a Hero. Become a Phasediver!
+    {42736}, -- Ixthar's Legacy
+    {42737}, -- Capstoned
+    {42738}, -- We've All Got Swords!
     {42739}, -- Sojourner of K'aresh
     {42740}, -- Explore K'aresh
     {42741}, -- Treasures of K'aresh
-    -- {42742, }, -- Power of the Reshii
-    -- {42761, }, -- Remnants of a Shattered World
+    {42742}, -- Power of the Reshii
+    {42761}, -- Remnants of a Shattered World
     {42771}, -- Archival Assault Stories
-    -- {42778, }, -- A Flicker in the Dark
-    -- {42779, Title: Flickering}, -- A Flash in the Void
+    { -- A Flicker in the Dark
+        42778,
+        {
+            {"PvE Season", 15},
+        },
+    },
+    { -- A Flash in the Void
+        42779,
+        {
+            RewardType = rewardType.Title,
+            {"PvE Season", 15},
+        },
+    },
     {42780}, -- Eco-Dome Al'dani
     {42781}, -- Heroic: Eco-Dome Al'dani
     {42782}, -- Mythic: Eco-Dome Al'dani
     {42799}, -- Let Her Solo Me
-    -- {42800, }, -- Astral Attire
+    {42800}, -- Astral Attire
     {42801}, -- Journey's End (Season 3)
     {42802--[[ , Keystones will no longer deplete below level 26 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 26
     {42803--[[ , Keystones will no longer deplete below level 27 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 27
     {42804--[[ , Keystones will no longer deplete below level 28 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 28
     {42805--[[ , Keystones will no longer deplete below level 29 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 29
     {42806--[[ , Keystones will no longer deplete below level 30 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 30
-    -- {60889, }, -- Unraveled and Persevering
-    -- {60890, }, -- Secrets of the K'areshi
+    {60889}, -- Unraveled and Persevering
+    {60890}, -- Secrets of the K'areshi
     { -- With Flying Colors
         60933,
         {
@@ -2678,8 +2724,13 @@ KrowiAF.AchievementData["11_02_00"] = {
         },
     },
     {60939}, -- Bringing Down the House
-    -- {60940, }, -- Vandals! In! Space!
-    -- {61017, Mount: Phase-Lost Slateback}, -- Phase-Lost-and-Found
+    {60940}, -- Vandals! In! Space!
+    { -- Phase-Lost-and-Found
+        61017,
+        {
+            RewardType = rewardType.Mount,
+        },
+    },
     { -- Hard Mode: Tazavesh, the Veiled Market
         61092,
         {
