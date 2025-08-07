@@ -672,9 +672,9 @@ function addon.GetAchievementInfo(achievementId) -- Returns an additional bool i
         " * This is the placeholder for " .. achievementId .. " until it's available next patch.", flags, 134400, "", false, false, "", false, false;
     end
     flags = addon.Objects.Flags:New(flags);
-    if id == 18849 or id == 18850 then
-        flags.IsTracking = true;
-    end
+    -- if id == 18849 or id == 18850 then
+    --     flags.IsTracking = true;
+    -- end
     -- if addon.Options.db.profile.Achievements.ShowOtherFactionWarbandAsCompleted then
 	-- 	if flags.IsAccountWide and KrowiAF_Achievements.Completed[achievementId] and KrowiAF_Achievements.Completed[achievementId].FirstCompletedOn then
 	-- 		local date = date("*t", KrowiAF_Achievements.Completed[achievementId].FirstCompletedOn);
@@ -711,6 +711,30 @@ function addon.GetAchievementInfoTable(achievementId) -- Returns an additional b
         IsStatistic = isStatistic,
         Exists = exists
     };
+end
+
+SLASH_KAFAIT1 = "/kafait"
+SlashCmdList["KAFAIT"] = function(msg)
+    local achievementId = tonumber(msg)
+    if not achievementId then
+        print("Usage: /kafait <achievementId>")
+        return
+    end
+    local info = addon.GetAchievementInfoTable(achievementId)
+    if info then
+        for k, v in pairs(info) do
+            if type(v) == "table" then
+                print(k .. ":", "{table}")
+                for tk, tv in pairs(v) do
+                    print("  " .. tk .. ":", tv)
+                end
+            else
+                print(k .. ":", tostring(v))
+            end
+        end
+    else
+        print("No info found for achievementId:", achievementId)
+    end
 end
 
 function addon.GetNextAchievement(achievement)

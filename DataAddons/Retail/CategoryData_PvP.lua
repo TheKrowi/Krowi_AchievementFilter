@@ -1149,5 +1149,31 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
                 41665, -- Dressed to the Mines
             },
         },
+        { -- Season 3
+            addon.L["Season"] .. " " .. 3,
+            {
+                41028, -- Combatant I: The War Within Season 3
+                41029, -- Combatant II: The War Within Season 3
+                41030, -- Challenger I: The War Within Season 3
+                41031, -- Challenger II: The War Within Season 3
+                41024, -- Rival I: The War Within Season 3
+                41025, -- Rival II: The War Within Season 3
+                41026, -- Duelist: The War Within Season 3
+                41027, -- Elite: The War Within Season 3
+                42036, -- Astral Gladiator: The War Within Season 3
+                42038, -- Hero of the Alliance: Astral
+                42037, -- Hero of the Horde: Astral
+                42023, -- Legend: The War Within Season 3
+                42033, -- Astral Legend: The War Within Season 3
+                42044, -- Battle Mender: The War Within Season 3
+                -- -- 40792, -- Solo Shuffle Medic: The War Within
+                42024, -- Strategist: The War Within Season 3
+                42035, -- Astral Marshal: The War Within Season 3
+                42034, -- Astral Warlord: The War Within Season 3
+                41048, -- Astral Weapons of Conquest
+                41937, -- The War Within Season 3: Voidborne Victor
+                42325, -- Void Wear Prohibited
+            },
+        },
     },
 };

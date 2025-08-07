@@ -244,6 +244,8 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                     40398, -- Forged Gladiator's Fel Bat
                     41032, -- Gladiator: The War Within Season 2
                     41362, -- Prized Gladiator's Fel Bat
+                    41049, -- Gladiator: The War Within Season 3
+                    42039, -- Astral Gladiator's Fel Bat
                 },
             },
             {
@@ -945,6 +947,7 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 19276, -- Verdant Vogue
                 40728, -- Forged Finery
                 41595, -- Prized Guise
+                42800, -- Astral Attire
             },
         },
         {
@@ -1499,6 +1502,40 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                     15050, -- Keystone Hero: Theater of Pain
                     40966, -- Keystone Hero: Operation: Mechagon - Workshop
                     40965, -- Keystone Hero: The MOTHERLODE!!
+                    42139, -- The Enterprising Tank
+                    42141, -- The Enterprising Healer
+                    42144, -- The Enterprising Damage Dealer
+                    42148, -- The Enterprising Dungeon Master
+                    40949, -- The War Within Keystone Explorer: Season Two
+                    40950, -- The War Within Keystone Conqueror: Season Two
+                    41533, -- The War Within Keystone Master: Season Two
+                    40952, -- The War Within Keystone Hero: Season Two
+                    40951, -- The War Within Keystone Legend: Season Two
+                    40954, -- Enterprising Hero: The War Within Season Two
+                },
+            },
+            { -- Season 3
+                addon.L["Season"] .. " " .. 3,
+                true,
+                {
+                    -- 41348, -- Keystone Hero: Operation: Floodgate
+                    -- 20583, -- Keystone Hero: Cinderbrew Meadery
+                    -- 20584, -- Keystone Hero: Darkflame Cleft
+                    -- 20579, -- Keystone Hero: The Rookery
+                    -- 20581, -- Keystone Hero: Priory of the Sacred Flame
+                    -- 15050, -- Keystone Hero: Theater of Pain
+                    -- 40966, -- Keystone Hero: Operation: Mechagon - Workshop
+                    -- 40965, -- Keystone Hero: The MOTHERLODE!!
+                    -- 42139, -- The Enterprising Tank
+                    -- 42141, -- The Enterprising Healer
+                    -- 42144, -- The Enterprising Damage Dealer
+                    -- 42148, -- The Enterprising Dungeon Master
+                    42169, -- The War Within Keystone Explorer: Season Three
+                    42170, -- The War Within Keystone Conqueror: Season Three
+                    41973, -- The War Within Keystone Master: Season Three
+                    42171, -- The War Within Keystone Hero: Season Three
+                    42172, -- The War Within Keystone Legend: Season Three
+                    42174, -- Unbound Hero: The War Within Season Three
                 },
             },
         },

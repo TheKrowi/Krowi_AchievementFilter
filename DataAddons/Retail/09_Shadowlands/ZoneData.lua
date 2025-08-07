@@ -302,6 +302,22 @@ KrowiAF.ZoneData.Shadowlands = {
             15220, -- The Enlightened
         }
     },
+    { -- Tazavesh, the Veiled Market (dungeon)
+        {1989, 1990, 1991, 1992, 1993, 1995, 1996, 1997},
+        {
+            15106, -- Quality Control
+            15109, -- Will it Blend?
+            15177, -- Tazavesh, the Veiled Market
+            15178, -- Fake It 'Til You Make It
+            15179, -- This is Fine
+            15190, -- Mischief!
+            15500, -- Keystone Hero: Tazavesh, the Veiled Market
+            15650, -- Mythic: Streets of Wonder
+            15652, -- Mythic: So'leah's Gambit
+            61092, -- Hard Mode: Tazavesh, the Veiled Market
+            61093, -- Flawless Transaction
+        }
+    },
     { -- Sepulcher of the First Ones (raid)
         {2047, 2048, 2049, 2050, 2051, 2052},
         {

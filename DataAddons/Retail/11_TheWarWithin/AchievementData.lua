@@ -206,6 +206,7 @@ KrowiAF.AchievementData["11_00_00"] = {
     { -- My First Nemesis
         40103,
         {
+            RewardType = rewardType.Transmog,
             {"PvE Season", 13},
         },
     },
@@ -1795,6 +1796,8 @@ KrowiAF.AchievementData["11_01_00"] = {
     },
     { -- Prized Warlord: The War Within Season 2
         41356,
+        faction.Horde,
+        41357,
         {
             RewardType = rewardType.Title,
             IsPvP = true,
@@ -1803,6 +1806,8 @@ KrowiAF.AchievementData["11_01_00"] = {
     },
     { -- Prized Marshal: The War Within Season 2
         41357,
+        faction.Alliance,
+        41356,
         {
             RewardType = rewardType.Title,
             IsPvP = true,
@@ -1827,6 +1832,8 @@ KrowiAF.AchievementData["11_01_00"] = {
     },
     { -- Hero of the Horde: Prized
         41360,
+        faction.Horde,
+        41361,
         {
             IsPvP = true,
             {"PvP Season", 39},
@@ -1834,6 +1841,8 @@ KrowiAF.AchievementData["11_01_00"] = {
     },
     { -- Hero of the Alliance: Prized
         41361,
+        faction.Alliance,
+        41360,
         {
             IsPvP = true,
             {"PvP Season", 39},
@@ -2243,6 +2252,495 @@ KrowiAF.AchievementData["11_01_07"] = {
         42241,
         {
             RewardType = rewardType.Toy,
+        },
+    },
+};
+
+KrowiAF.AchievementData["11_02_00"] = {
+    {KrowiAF.SetAchievementPatch, 11, 2, 0},
+    { -- Rival I: The War Within Season 3
+        41024,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 40},
+        },
+    },
+    { -- Rival II: The War Within Season 3
+        41025,
+        {
+            IsPvP = true,
+            {"PvP Season", 40},
+        },
+    },
+    { -- Duelist: The War Within Season 3
+        41026,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 40},
+        },
+    },
+    { -- Elite: The War Within Season 3
+        41027,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 40},
+        },
+    },
+    { -- Combatant I: The War Within Season 3
+        41028,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 40},
+        },
+    },
+    { -- Combatant II: The War Within Season 3
+        41029,
+        {
+            IsPvP = true,
+            {"PvP Season", 40},
+        },
+    },
+    { -- Challenger I: The War Within Season 3
+        41030,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 40},
+        },
+    },
+    { -- Challenger II: The War Within Season 3
+        41031,
+        {
+            IsPvP = true,
+            {"PvP Season", 40},
+        },
+    },
+    { -- Astral Weapons of Conquest
+        41048,
+        {
+            RewardType = rewardType.Transmog,
+            IsPvP = true,
+            {"PvP Season", 40},
+        },
+    },
+    { -- Gladiator: The War Within Season 3
+        41049,
+        {
+            RewardType = {rewardType.Title, rewardType.Mount, rewardType.Transmog},
+            IsPvP = true,
+            {"PvP Season", 40},
+        },
+    },
+    { -- A Round on the House in Khaz Algar
+        41212,
+        {
+            {"Event", 372},
+        },
+    },
+    { -- Glory of the Omega Raider
+        41597,
+        {
+            RewardType = rewardType.Mount,
+        },
+    },
+    {41598}, -- Manaforge Omega
+    {41599}, -- Heroic: Manaforge Omega
+    {41600}, -- Mythic: Manaforge Omega
+    {41601}, -- Might of the Shadowguard
+    {41602}, -- Monsters of the Sands
+    {41603}, -- Heart of Darkness
+    {41604}, -- Mythic: Plexus Sentinel
+    {41605}, -- Mythic: Loom'ithar
+    {41606}, -- Mythic: Soulbinder Naazindhri
+    {41607}, -- Mythic: Forgeweaver Araz
+    {41608}, -- Mythic: The Soul Hunters
+    {41609}, -- Mythic: Fractillus
+    {41610}, -- Mythic: Nexus-King Salhadaar
+    { -- Mythic: Dimensius, the All-Devouring
+        41611,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
+    {41613}, -- Time to Vote! Cute or Scary?
+    {41614}, -- Mother of All Tantrums
+    {41615}, -- Cheat Meal
+    {41616}, -- I See... Absolutely Nothing
+    {41617}, -- Breaking the Fourth Wall
+    {41618}, -- King's Ransom
+    {41619}, -- Defying Gravity
+    {41624}, -- Ahead of the Curve: Dimensius, the All-Devouring
+    {41625}, -- Cutting Edge: Dimensius, the All-Devouring
+    {41778}, -- Brokers Don't Care How You Win
+    {41808}, -- Otherworldly Ecologist
+    {41809}, -- Ecological Variety
+    {41811}, -- Ecological Stability
+    {41812}, -- Expertly Done
+    {41815}, -- Ecological Succession
+    { -- Weathered of the Ethereal
+        41886,
+        {
+            RewardType = rewardType.Other,
+            {"PvE Season", 15},
+        },
+    },
+    { -- Carved of the Ethereal
+        41887,
+        {
+            RewardType = rewardType.Other,
+            {"PvE Season", 15},
+        },
+    },
+    { -- Runed of the Ethereal
+        41888,
+        {
+            RewardType = rewardType.Other,
+            {"PvE Season", 15},
+        },
+    },
+    {41892}, -- Gilded of the Ethereal
+    { -- The War Within Season 3: Voidborne Victor
+        41937,
+		{
+			RewardType = rewardType.Transmog,
+		},
+    },
+    { -- The Knife's Edge
+        41970,
+        {
+            RewardType = rewardType.WarbandCampsite,
+        },
+    },
+    { -- The War Within Keystone Master: Season Three
+        41973,
+        {
+            RewardType = rewardType.Mount,
+            {"PvE Season", 15},
+        },
+    },
+    { -- Moonlighter
+        41978,
+        {
+            RewardType = rewardType.Transmog,
+        },
+    },
+    { -- Bounty Seeker
+        41979,
+        {
+            RewardType = rewardType.Pet,
+        },
+    },
+    { -- Vigilante
+        41980,
+        {
+            RewardType = rewardType.Mount,
+        },
+    },
+    {42022}, -- A Trusted Partner
+    { -- Legend: The War Within Season 3
+        42023,
+        {
+            RewardType = {rewardType.Title, rewardType.Toy},
+            IsPvP = true,
+            {"PvP Season", 40},
+        },
+    },
+    { -- Strategist: The War Within Season 3
+        42024,
+        {
+            RewardType = {rewardType.Title, rewardType.Toy},
+            IsPvP = true,
+            {"PvP Season", 40},
+        },
+    },
+    { -- Astral Legend: The War Within Season 3
+        42033,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 40},
+        },
+    },
+    { -- Astral Warlord: The War Within Season 3
+        42034,
+        faction.Horde,
+        42035,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 40},
+        },
+    },
+    { -- Astral Marshal: The War Within Season 3
+        42035,
+        faction.Alliance,
+        42034,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 40},
+        },
+    },
+    { -- Astral Gladiator: The War Within Season 3
+        42036,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 40},
+        },
+    },
+    { -- Hero of the Horde: Astral
+        42037,
+        faction.Horde,
+        42038,
+        {
+            IsPvP = true,
+            {"PvP Season", 40},
+        },
+    },
+    { -- Hero of the Alliance: Astral
+        42038,
+        faction.Alliance,
+        42037,
+        {
+            IsPvP = true,
+            {"PvP Season", 40},
+        },
+    },
+    { -- Astral Gladiator's Fel Bat
+        42039,
+        {
+            IsPvP = true,
+            {"PvP Season", 40},
+        },
+    },
+    { -- Battle Mender: The War Within Season 3
+        42044,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 40},
+        },
+    },
+    -- {42114}, -- Broken Memories
+    {42118}, -- Of Mice and Manaforges
+    {42131}, -- Tour of Duty: K'aresh
+    {42149--[[ , Keystones will no longer deplete below level 12 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 12
+    {42150--[[ , Keystones will no longer deplete below level 13 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 13
+    {42151--[[ , Keystones will no longer deplete below level 14 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 14
+    {42152--[[ , Keystones will no longer deplete below level 15 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 15
+    {42153--[[ , Keystones will no longer deplete below level 16 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 16
+    {42154--[[ , Keystones will no longer deplete below level 17 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 17
+    {42155--[[ , Keystones will no longer deplete below level 18 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 18
+    {42156--[[ , Keystones will no longer deplete below level 19 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 19
+    {42157--[[ , Keystones will no longer deplete below level 20 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 20
+    {42158--[[ , Keystones will no longer deplete below level 21 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 21
+    {42159--[[ , Keystones will no longer deplete below level 22 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 22
+    {42160--[[ , Keystones will no longer deplete below level 23 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 23
+    {42161--[[ , Keystones will no longer deplete below level 24 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 24
+    {42162--[[ , Keystones will no longer deplete below level 25 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 25
+    { -- The War Within Keystone Explorer: Season Three
+        42169,
+        {
+            {"PvE Season", 15},
+        },
+    },
+    { -- The War Within Keystone Conqueror: Season Three
+        42170,
+        {
+            RewardType = rewardType.Title,
+            {"PvE Season", 15},
+        },
+    },
+    { -- The War Within Keystone Hero: Season Three
+        42171,
+        {
+            {"PvE Season", 15},
+        },
+    },
+    { -- The War Within Keystone Legend: Season Three
+        42172,
+        {
+            RewardType = rewardType.Mount,
+            {"PvE Season", 15},
+        },
+    },
+    { -- Keystone Hero: Eco-Dome Al'dani
+        42173,
+        {
+            RewardType = rewardType.Teleport,
+            {"PvE Season", 15},
+        },
+    },
+    { -- Unbound Hero: The War Within Season Three
+        42174,
+        {
+            RewardType = rewardType.Title,
+            {"PvE Season", 15},
+        },
+    },
+    { -- Let Me Solo Her: Nexus-Princess Ky'veza
+        42190,
+        {
+            RewardType = rewardType.Mount,
+            {"PvE Season", 15},
+        },
+    },
+    {42191}, -- Safer Deposit
+    { -- My Stab-Happy Nemesis
+        42193,
+        {
+            RewardType = rewardType.Transmog,
+            {"PvE Season", 15},
+        },
+    },
+    { -- Pruning the Princess
+        42194,
+        {
+            RewardType = rewardType.Title,
+            {"PvE Season", 15},
+        },
+    },
+    { -- War Within Delves: Tier 4 (Season 3)
+        42196,
+        {
+            RewardType = rewardType.Other,
+            {"PvE Season", 15},
+        },
+    },
+    { -- War Within Delves: Tier 5 (Season 3)
+        42197,
+        {
+            RewardType = rewardType.Other,
+            {"PvE Season", 15},
+        },
+    },
+    { -- War Within Delves: Tier 6 (Season 3)
+        42198,
+        {
+            RewardType = rewardType.Other,
+            {"PvE Season", 15},
+        },
+    },
+    { -- War Within Delves: Tier 7 (Season 3)
+        42199,
+        {
+            RewardType = rewardType.Other,
+            {"PvE Season", 15},
+        },
+    },
+    { -- War Within Delves: Tier 8 (Season 3)
+        42200,
+        {
+            RewardType = rewardType.Other,
+            {"PvE Season", 15},
+        },
+    },
+    { -- War Within Delves: Tier 9 (Season 3)
+        42201,
+        {
+            RewardType = rewardType.Other,
+            {"PvE Season", 15},
+        },
+    },
+    { -- War Within Delves: Tier 10 (Season 3)
+        42202,
+        {
+            RewardType = rewardType.Other,
+            {"PvE Season", 15},
+        },
+    },
+    { -- War Within Delves: Tier 11 (Season 3)
+        42203,
+        {
+            RewardType = rewardType.Title,
+            {"PvE Season", 15},
+        },
+    },
+    {42316}, -- Fractals? For Spring? Groundbreaking.
+    { -- Void Wear Prohibited
+        42325,
+        {
+            RewardType = rewardType.Transmog,
+        },
+    },
+    {42676}, -- Buddy System IX
+    {42677}, -- This Machine Flies?! Don't Care I Got It!
+    {42678}, -- So That's Where My Manaflux Capacitor Was!
+    {42679}, -- Archival Assault Discoveries
+    {42727}, -- K'aresh Glyph Hunter
+    {42729}, -- Dangerous Prowlers of K'aresh
+    {42730}, -- Jump, Jump, and Away!
+    {42731}, -- Become a Hero. Become a Phasediver!
+    {42736}, -- Ixthar's Legacy
+    {42737}, -- Capstoned
+    {42738}, -- We've All Got Swords!
+    {42739}, -- Sojourner of K'aresh
+    {42740}, -- Explore K'aresh
+    {42741}, -- Treasures of K'aresh
+    {42742}, -- Power of the Reshii
+    {42761}, -- Remnants of a Shattered World
+    {42771}, -- Archival Assault Stories
+    { -- A Flicker in the Dark
+        42778,
+        {
+            {"PvE Season", 15},
+        },
+    },
+    { -- A Flash in the Void
+        42779,
+        {
+            RewardType = rewardType.Title,
+            {"PvE Season", 15},
+        },
+    },
+    {42780}, -- Eco-Dome Al'dani
+    {42781}, -- Heroic: Eco-Dome Al'dani
+    {42782}, -- Mythic: Eco-Dome Al'dani
+    {42799}, -- Let Her Solo Me
+    {42800}, -- Astral Attire
+    {42801}, -- Journey's End (Season 3)
+    {42802--[[ , Keystones will no longer deplete below level 26 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 26
+    {42803--[[ , Keystones will no longer deplete below level 27 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 27
+    {42804--[[ , Keystones will no longer deplete below level 28 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 28
+    {42805--[[ , Keystones will no longer deplete below level 29 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 29
+    {42806--[[ , Keystones will no longer deplete below level 30 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 30
+    {60889}, -- Unraveled and Persevering
+    {60890}, -- Secrets of the K'areshi
+    { -- With Flying Colors
+        60933,
+        {
+            RewardType = rewardType.Mount,
+        },
+    },
+    { -- With Flying Colors
+        60934,
+        {
+            RewardType = rewardType.Mount,
+        },
+    },
+    {60939}, -- Bringing Down the House
+    {60940}, -- Vandals! In! Space!
+    { -- Phase-Lost-and-Found
+        61017,
+        {
+            RewardType = rewardType.Mount,
+        },
+    },
+    { -- Hard Mode: Tazavesh, the Veiled Market
+        61092,
+        {
+            {"PvE Season", 15},
+        },
+    },
+    { -- Flawless Transaction
+        61093,
+        {
+            {"PvE Season", 15},
         },
     },
 };

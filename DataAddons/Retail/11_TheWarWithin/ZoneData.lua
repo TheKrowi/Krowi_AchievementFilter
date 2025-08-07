@@ -64,9 +64,12 @@ local delvesTheWarWithin = {
     41114, -- Algari Delver Tank III
     41115, -- Algari Delver
     41116, -- Algari Delver II
-    41709, -- Journey's End (Season 2)
     42212, -- Titan Console Overcharged
     42241, -- Overcharged Delver
+    60934, -- With Flying Colors
+    60933, -- With Flying Colors
+    42778, -- A Flicker in the Dark
+    42779, -- A Flash in the Void
 };
 
 local delvesTheWarWithinS1Progress = {
@@ -97,11 +100,29 @@ local delvesTheWarWithinS2Progress = {
     41195, -- War Within Delves: Tier 9 (Season 2)
     41196, -- War Within Delves: Tier 10 (Season 2)
     41197, -- War Within Delves: Tier 11 (Season 2)
+    41709, -- Journey's End (Season 2)
 };
 
 local delvesTheWarWithinS2 = {
     delvesTheWarWithin,
     delvesTheWarWithinS2Progress
+};
+
+local delvesTheWarWithinS3Progress = {
+    42196, -- War Within Delves: Tier 4 (Season 3)
+    42197, -- War Within Delves: Tier 5 (Season 3)
+    42198, -- War Within Delves: Tier 6 (Season 3)
+    42199, -- War Within Delves: Tier 7 (Season 3)
+    42200, -- War Within Delves: Tier 8 (Season 3)
+    42201, -- War Within Delves: Tier 9 (Season 3)
+    42202, -- War Within Delves: Tier 10 (Season 3)
+    42203, -- War Within Delves: Tier 11 (Season 3)
+    42801, -- Journey's End (Season 3)
+};
+
+local delvesTheWarWithinS3 = {
+    delvesTheWarWithin,
+    delvesTheWarWithinS3Progress
 };
 
 KrowiAF.ZoneData.TheWarWithin = {
@@ -524,6 +545,38 @@ KrowiAF.ZoneData.TheWarWithin = {
             41133, -- Isle Remember You
         }
     },
+    { -- K'aresh (zone)
+        {2371, 2472, 2477},
+        {
+            41970, -- The Knife's Edge
+            42739, -- Sojourner of K'aresh
+            41808, -- Otherworldly Ecologist
+            41809, -- Ecological Variety
+            41811, -- Ecological Stability
+            41812, -- Expertly Done
+            41815, -- Ecological Succession
+            41978, -- Moonlighter
+            41979, -- Bounty Seeker
+            41980, -- Vigilante
+            42731, -- Become a Hero. Become a Phasediver!
+            42737, -- Capstoned
+            42740, -- Explore K'aresh
+            42741, -- Treasures of K'aresh
+            42761, -- Remnants of a Shattered World
+            42727, -- K'aresh Glyph Hunter
+            42729, -- Dangerous Prowlers of K'aresh
+            42730, -- Jump, Jump, and Away!
+            42736, -- Ixthar's Legacy
+            42738, -- We've All Got Swords!
+            42742, -- Power of the Reshii
+            60890, -- Secrets of the K'areshi
+            61017, -- Phase-Lost-and-Found
+            42131, -- Tour of Duty: K'aresh
+            42022, -- A Trusted Partner
+            41778, -- Brokers Don't Care How You Win
+            60889, -- Unraveled and Persevering
+        }
+    },
     { -- Operation: Floodgate (dungeon)
         {2387, 2388},
         {
@@ -613,6 +666,7 @@ KrowiAF.ZoneData.TheWarWithin = {
             41234, -- Mythic: The One-Armed Bandit
             41235, -- Mythic: Mug'Zee, Heads of Security
             41236, -- Mythic: Chrome King Gallywix
+            60939, -- Bringing Down the House
         }
     },
     { -- Sidestreet Sluice (delve)
@@ -656,6 +710,67 @@ KrowiAF.ZoneData.TheWarWithin = {
             41950, -- Defeat the Dastardlies
             41951, -- Defeat the Dastardlies
             41952, -- Defeat the Dastardlies
+        }
+    },
+    { -- Eco-Dome Al'dani (dungeon)
+        2449,
+        {
+            42780, -- Eco-Dome Al'dani
+            42781, -- Heroic: Eco-Dome Al'dani
+            42782, -- Mythic: Eco-Dome Al'dani
+            42173, -- Keystone Hero: Eco-Dome Al'dani
+        }
+    },
+    { -- Archival Assault (delve)
+        {2452, 2453, 2454, 2455, 2476},
+        {
+            delvesTheWarWithinS3,
+            42771, -- Archival Assault Stories
+            42679, -- Archival Assault Discoveries
+        }
+    },
+    { -- Manaforge Omega (raid)
+        {2460, 2461, 2462, 2463, 2464, 2465, 2466, 2467, 2468, 2469, 2470, 2471},
+        {
+            41601, -- Might of the Shadowguard
+            41602, -- Monsters of the Sands
+            41603, -- Heart of Darkness
+            41598, -- Manaforge Omega
+            41599, -- Heroic: Manaforge Omega
+            41600, -- Mythic: Manaforge Omega
+            41624, -- Ahead of the Curve: Dimensius, the All-Devouring
+            41625, -- Cutting Edge: Dimensius, the All-Devouring
+            42316, -- Fractals? For Spring? Groundbreaking.
+            41937, -- The War Within Season 3: Voidborne Victor
+            42325, -- Void Wear Prohibited
+            42118, -- Of Mice and Manaforges
+            41613, -- Time to Vote! Cute or Scary?
+            41614, -- Mother of All Tantrums
+            41615, -- Cheat Meal
+            41616, -- I See... Absolutely Nothing
+            41617, -- Breaking the Fourth Wall
+            41618, -- King's Ransom
+            41619, -- Defying Gravity
+            41604, -- Mythic: Plexus Sentinel
+            41605, -- Mythic: Loom'ithar
+            41606, -- Mythic: Soulbinder Naazindhri
+            41607, -- Mythic: Forgeweaver Araz
+            41608, -- Mythic: The Soul Hunters
+            41609, -- Mythic: Fractillus
+            41610, -- Mythic: Nexus-King Salhadaar
+            41611, -- Mythic: Dimensius, the All-Devouring
+            60940, -- Vandals! In! Space!
+        }
+    },
+    { -- Voidrazor Sanctuary (delve)
+        2484,
+        {
+            delvesTheWarWithinS3,
+            40732, -- Heavy-Handed
+            42799, -- Let Her Solo Me
+            42193, -- My Stab-Happy Nemesis
+            42194, -- Pruning the Princess
+            42190, -- Let Me Solo Her: Nexus-Princess Ky'veza
         }
     },
 };

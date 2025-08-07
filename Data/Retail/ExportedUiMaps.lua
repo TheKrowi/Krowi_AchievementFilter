@@ -1105,14 +1105,14 @@ tasks = {
     {C, 1956, 112}, -- Eye of the Storm (Wrath Classic)
     {C, 1957, 122}, -- Isle of Quel'Danas (Wrath Classic)
     {A, 1978, {16585, 16291, 16292, 16808, 17739, 16683, 18958, 20206, 19463, 16761, 16446, 16298, 15890, 16323, 16338, 16729, 17830, 17977, 17978, 17560, 16589, 16590, 16599, 16601, 16603, 16612, 16611, 16613, 16614, 16616, 16615, 17335, 17336, 17345, 41172, 41174, 41171, 41182, 41179, 16571, 16560, 16566, 16567, 16568, 16572, 16573, 16570, 16587, 16588, 16591, 16600, 16623, 16624, 16625, 16758, 41184, 19466, 19483, 19486, 19478}}, -- Dragon Isles
-    {A, 1989, {15496, 15498, 15499, 15506, 15691, 15688, 15689, 15690, 15109, 15106, 15179, 15190, 15178, 15177, 15650, 15652, 15500}}, -- Tazavesh, the Veiled Market - The Veiled Market
-    {C, 1990, 1989}, -- Tazavesh, the Veiled Market - The Grand Menagerie
-    {C, 1991, 1989}, -- Tazavesh, the Veiled Market - The P.O.S.T.
-    {C, 1992, 1989}, -- Tazavesh, the Veiled Market - Myza's Oasis
-    {C, 1993, 1989}, -- Tazavesh, the Veiled Market - The Opulent Nexus
-    {C, 1995, 1989}, -- Tazavesh, the Veiled Market - Stormheim
-    {C, 1996, 1989}, -- Tazavesh, the Veiled Market - Boralus Harbor
-    {C, 1997, 1989}, -- Tazavesh, the Veiled Market - Aggramar's Vault
+    -- {A, 1989, {15496, 15498, 15499, 15506, 15691, 15688, 15689, 15690, 15109, 15106, 15179, 15190, 15178, 15177, 15650, 15652, 15500}}, -- Tazavesh, the Veiled Market - The Veiled Market
+    -- {C, 1990, 1989}, -- Tazavesh, the Veiled Market - The Grand Menagerie
+    -- {C, 1991, 1989}, -- Tazavesh, the Veiled Market - The P.O.S.T.
+    -- {C, 1992, 1989}, -- Tazavesh, the Veiled Market - Myza's Oasis
+    -- {C, 1993, 1989}, -- Tazavesh, the Veiled Market - The Opulent Nexus
+    -- {C, 1995, 1989}, -- Tazavesh, the Veiled Market - Stormheim
+    -- {C, 1996, 1989}, -- Tazavesh, the Veiled Market - Boralus Harbor
+    -- {C, 1997, 1989}, -- Tazavesh, the Veiled Market - Aggramar's Vault
     {A, 1998, {15130, 15122, 15123, 15124, 15125, 15126, 15127, 15128, 15134, 15135, 15110, 15191, 15667, 15668, 15669, 14998, 15065, 15003, 15058, 15105, 15131, 15132, 15040, 15108, 15133, 15112, 15113, 15114, 15115, 15116, 15117, 15118, 15119, 15120, 15121}}, -- Sanctum of Domination - Tower of the Damned
     {C, 1999, 1998}, -- Sanctum of Domination - Shadowsteel Foundry
     {C, 2000, 1998}, -- Sanctum of Domination - The Torment Chambers

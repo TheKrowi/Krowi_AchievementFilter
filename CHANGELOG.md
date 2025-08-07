@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 86.0 - 2025-08-05
+### Added
+- New 11.2.0 achievements
+
+### Fixed
+- Popup dialog errors
+
 ## 85.2 - 2025-07-19
 ### Fixed
 - GW2_UI compatibility issue when disabling Event Reminders
