@@ -174,3 +174,17 @@ Some options may require a UI reload to take effect. This is indicated in the op
 ---
 
 For further help, see the main README.md or open an issue on GitHub.
+
+---
+
+## FAQ
+
+**Q: Is there a setting or option in the addon to hide the ‘Not earned by: [character name]’ line in the achievement tooltip? Since the achievement is already completed by my warband, I’d prefer not to see which individual characters haven’t earned it.**
+
+A: Yes! To hide the “Not earned by: [character name]” line in the tooltip and focus on warband progress:
+
+1. Open the addon’s Options.
+2. Go to **Layout → Achievements → Tooltip**.
+3. Set the **Number of Not Earned By characters** option to **0**.
+
+This will prevent the tooltip from listing any characters who haven’t earned the achievement, giving you a cleaner view focused on warband progress.
