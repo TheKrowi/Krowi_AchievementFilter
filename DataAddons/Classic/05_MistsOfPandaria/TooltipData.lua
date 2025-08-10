@@ -667,25 +667,25 @@ KrowiAF.TooltipData.MistsOfPandaria = {
         8293,
         {
             {1, 17521, type.Unit}, -- The Big Bad Wolf
-            {1, 71014, type.Item}, -- Lil Bad Wolf
+            {1, 97548, type.Item}, -- Lil Bad Wolf
             {2, 15691, type.Unit}, -- The Curator
-            {2, 71015, type.Item}, -- Menagerie Custodian
+            {2, 97549, type.Item}, -- Menagerie Custodian
             {3, 15690, type.Unit}, -- Prince Malchezaar
-            {3, 71016, type.Item}, -- Netherspace Abyssal
+            {3, 97550, type.Item}, -- Netherspace Abyssal
             {4, 15688, type.Unit}, -- Terestian Illhoof
-            {4, 71033, type.Item}, -- Fiendish Imp
+            {4, 97551, type.Item}, -- Fiendish Imp
             {5, 21213, type.Unit}, -- Morogrim Tidewalker
-            {5, 71017, type.Item}, -- Tideskipper
+            {5, 97552, type.Item}, -- Tideskipper
             {6, 21216, type.Unit}, -- Hydross The Unstable
-            {6, 71018, type.Item}, -- Tainted Waveling
+            {6, 97553, type.Item}, -- Tainted Waveling
             {7, 21212, type.Unit}, -- Lady Vashj
-            {7, 71019, type.Item}, -- Coilfang Stalker
+            {7, 97554, type.Item}, -- Coilfang Stalker
             {8, 19516, type.Unit}, -- Void Reaver
-            {8, 71020, type.Item}, -- Pocket Reaver
+            {8, 97555, type.Item}, -- Pocket Reaver
             {9, 18805, type.Unit}, -- High Astromancer Solarian
-            {9, 71021, type.Item}, -- Lesser Voidcaller
+            {9, 97556, type.Item}, -- Lesser Voidcaller
             {10, 19514, type.Unit}, -- Alar
-            {10, 71022, type.Item}, -- Phoenix Hawk Hatchling
+            {10, 97557, type.Item}, -- Phoenix Hawk Hatchling
         }
     },
     { -- Crazy for Cats
