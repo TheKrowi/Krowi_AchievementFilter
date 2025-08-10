@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 86.1 - 2025-08-10
+### Fixed
+- Moved Court is Now in Session to a more fitting category
+- Raiding with Leashes II: Attunement Edition should now have proper tooltip data
+
+### Mists Classic
+- Raiding with Leashes II: Attunement Edition should now have proper tooltip data
+- Multiple Wrath and Cata schievements should now have proper tooltip data
+
 ## 86.0 - 2025-08-05
 ### Added
 - New 11.2.0 achievements
