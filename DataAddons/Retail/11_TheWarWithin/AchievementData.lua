@@ -1064,12 +1064,6 @@ KrowiAF.AchievementData["11_00_05"] = {
 			RewardType = rewardType.Pet,
 		},
 	},
-	{ -- Court is Now in Session
-		16731,
-		{
-			RewardType = rewardType.Title,
-		},
-	},
     { -- Zoomies!
         40661,
         {

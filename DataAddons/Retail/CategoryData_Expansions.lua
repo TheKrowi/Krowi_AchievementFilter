@@ -437,6 +437,7 @@ local crossExpansion = { -- Cross-Expansion
                 7464, -- Quality & Quantity
                 6608, -- Family Reunion
                 6571, -- That Was Close!
+                16731, -- Court is Now in Session
             },
         },
         { -- Battle
@@ -10245,7 +10246,6 @@ local shadowlands = { -- Shadowlands
                 14726, -- It's Certainly Never Boring
                 14727, -- Master of Ceremonies
                 14749, -- Rendle's Big Day
-                16731, -- Court is Now in Session
             },
         },
         { -- Night Fae
