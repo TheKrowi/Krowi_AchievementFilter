@@ -43,6 +43,8 @@ local delvesTheWarWithin = {
     40461, -- Buddy System VI
     41537, -- Buddy System VII
     41723, -- Buddy System VIII
+    61342, -- Buddy System IX
+    42676, -- Buddy System X
     40100, -- Undying Caver
     40098, -- Immortal Spelunker
     40524, -- Good Deed Delver

@@ -12658,7 +12658,8 @@ local theWarWithin = { -- The War Within
             40461, -- Buddy System VI
             41537, -- Buddy System VII
             41723, -- Buddy System VIII
-            42676, -- Buddy System IX
+            61342, -- Buddy System IX
+            42676, -- Buddy System X
             40100, -- Undying Caver
             40098, -- Immortal Spelunker
             40459, -- I've Got a Flying Machine!

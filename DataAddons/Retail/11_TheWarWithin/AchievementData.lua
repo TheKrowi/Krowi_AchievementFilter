@@ -2662,7 +2662,7 @@ KrowiAF.AchievementData["11_02_00"] = {
             RewardType = rewardType.Transmog,
         },
     },
-    {42676}, -- Buddy System IX
+    {42676}, -- Buddy System X
     {42677}, -- This Machine Flies?! Don't Care I Got It!
     {42678}, -- So That's Where My Manaflux Capacitor Was!
     {42679}, -- Archival Assault Discoveries
@@ -2707,12 +2707,16 @@ KrowiAF.AchievementData["11_02_00"] = {
     {60890}, -- Secrets of the K'areshi
     { -- With Flying Colors
         60933,
+        faction.Horde,
+        60934,
         {
             RewardType = rewardType.Mount,
         },
     },
     { -- With Flying Colors
         60934,
+        faction.Alliance,
+        60933,
         {
             RewardType = rewardType.Mount,
         },
@@ -2737,4 +2741,7 @@ KrowiAF.AchievementData["11_02_00"] = {
             {"PvE Season", 15},
         },
     },
+    {61342}, -- Buddy System IX
+    {61401}, -- Heroic Edition: Lightwing Dragonhawk
+    {61402}, -- Epic Edition: Voidlight Surger
 };

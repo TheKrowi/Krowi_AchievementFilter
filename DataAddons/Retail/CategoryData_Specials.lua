@@ -1187,6 +1187,8 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 18929, -- Storm Rider: Silver
                 18931, -- Storm Rider: Gold
                 19030, -- Squally
+                61401, -- Heroic Edition: Lightwing Dragonhawk
+                61402, -- Epic Edition: Voidlight Surger
             },
         },
         { -- Diablo
