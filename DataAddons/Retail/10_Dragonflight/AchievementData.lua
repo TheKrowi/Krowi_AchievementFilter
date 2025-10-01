@@ -3102,7 +3102,7 @@ KrowiAF.AchievementData["10_02_07"] = {
         faction.Alliance,
         19883,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
@@ -3111,14 +3111,14 @@ KrowiAF.AchievementData["10_02_07"] = {
         faction.Horde,
         19882,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Campaign: Valley of the Four Winds
         19884,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
@@ -3127,7 +3127,7 @@ KrowiAF.AchievementData["10_02_07"] = {
         faction.Alliance,
         19886,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
@@ -3136,7 +3136,7 @@ KrowiAF.AchievementData["10_02_07"] = {
         faction.Horde,
         19885,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
@@ -3145,7 +3145,7 @@ KrowiAF.AchievementData["10_02_07"] = {
         faction.Alliance,
         19888,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
@@ -3154,203 +3154,203 @@ KrowiAF.AchievementData["10_02_07"] = {
         faction.Horde,
         19887,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Campaign: Townlong Steppes
         19889,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Campaign: Dread Wastes
         19890,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Campaign: Landfall
         19891,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Campaign: Isle of Thunder
         19892,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- A Brewing Storm
         19893,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Temple of the Jade Serpent
         19894,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Heroic: Temple of the Jade Serpent
         19895,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Stormstout Brewery
         19896,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Heroic: Stormstout Brewery
         19897,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Shado-Pan Monastery
         19898,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Heroic: Shado-Pan Monastery
         19899,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Siege of Niuzao Temple
         19900,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Heroic: Siege of Niuzao Temple
         19901,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Gate of the Setting Sun
         19902,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Heroic: Gate of the Setting Sun
         19903,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Mogu'shan Palace
         19904,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Heroic: Mogu'shan Palace
         19905,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Scarlet Halls
         19906,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Heroic: Scarlet Halls
         19907,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Scarlet Monastery
         19908,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Heroic: Scarlet Monastery
         19909,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Scholomance
         19910,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Heroic: Scholomance
         19911,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Order of the Cloud Serpent
         19912,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- The August Celestials
         19913,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Shado-Pan
         19914,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- The Klaxxi
         19915,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Golden Lotus
         19916,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
@@ -3359,7 +3359,7 @@ KrowiAF.AchievementData["10_02_07"] = {
         faction.Alliance,
         19918,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
@@ -3368,7 +3368,7 @@ KrowiAF.AchievementData["10_02_07"] = {
         faction.Horde,
         19917,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
@@ -3377,7 +3377,7 @@ KrowiAF.AchievementData["10_02_07"] = {
         faction.Alliance,
         19920,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
@@ -3386,84 +3386,84 @@ KrowiAF.AchievementData["10_02_07"] = {
         faction.Horde,
         19919,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Shado-Pan Assault
         19921,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Emperor Shaohao
         19922,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Greenstone Village
         19923,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Heroic: A Brewing Storm
         19924,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Unga Ingoo
         19925,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Brewmoon Festival
         19926,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Arena of Annihilation
         19927,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Crypt of Forgotten Kings
         19928,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Heroic: Crypt of Forgotten Kings
         19929,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Assault on Zan'vess
         19930,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- A Little Patience
         19931,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
@@ -3472,14 +3472,14 @@ KrowiAF.AchievementData["10_02_07"] = {
         faction.Horde,
         20500,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Dagger in the Dark
         19933,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
@@ -3488,7 +3488,7 @@ KrowiAF.AchievementData["10_02_07"] = {
         faction.Alliance,
         19936,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
@@ -3497,7 +3497,7 @@ KrowiAF.AchievementData["10_02_07"] = {
         faction.Alliance,
         19937,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
@@ -3506,7 +3506,7 @@ KrowiAF.AchievementData["10_02_07"] = {
         faction.Horde,
         19934,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
@@ -3515,7 +3515,7 @@ KrowiAF.AchievementData["10_02_07"] = {
         faction.Horde,
         19935,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
@@ -3524,7 +3524,7 @@ KrowiAF.AchievementData["10_02_07"] = {
         faction.Alliance,
         19939,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
@@ -3533,154 +3533,154 @@ KrowiAF.AchievementData["10_02_07"] = {
         faction.Horde,
         19938,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Blood in the Snow
         19940,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Heroic: Blood in the Snow
         19941,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Dark Heart of Pandaria
         19942,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Heroic: Dark Heart of Pandaria
         19943,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Secrets of Ragefire
         19944,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Heroic: Secrets of Ragefire
         19945,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Raid Finder: Mogu'shan Vaults
         19946,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Mogu'shan Vaults
         19947,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Heroic: Mogu'shan Vaults
         19948,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Raid Finder: Heart of Fear
         19949,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Heart of Fear
         19950,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Heroic: Heart of Fear
         19951,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Raid Finder: Terrace of Endless Spring
         19952,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Terrace of Endless Spring
         19953,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Heroic: Terrace of Endless Spring
         19954,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Raid Finder: Throne of Thunder
         19955,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Throne of Thunder
         19956,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Heroic: Throne of Thunder
         19957,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Raid Finder: Siege of Orgrimmar
         19958,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Siege of Orgrimmar
         19959,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Heroic: Siege of Orgrimmar
         19960,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
@@ -3694,161 +3694,161 @@ KrowiAF.AchievementData["10_02_07"] = {
     { -- Tour The Jade Forest
         19962,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Tour Valley of the Four Winds
         19963,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Tour Krasarang Wilds
         19964,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Tour Kun-Lai Summit
         19965,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Tour Townlong Steppes
         19966,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Tour Dread Wastes
         19967,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Tour Timeless Isle
         19970,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Hidden Treasures: The Jade Forest
         19977,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Hidden Treasures: Valley of the Four Winds
         19978,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Hidden Treasures: Krasarang Wilds
         19979,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Hidden Treasures: Kun-Lai Summit
         19980,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Hidden Treasures: Townlong Steppes
         19981,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Hidden Treasures: Timeless Isle
         19982,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Elusive Foes: The Jade Forest
         19993,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Elusive Foes: Valley of the Four Winds
         19994,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Elusive Foes: Krasarang Wilds
         19995,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Elusive Foes: Kun-Lai Summit
         19996,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Elusive Foes: Townlong Steppes
         19997,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Elusive Foes: Dread Wastes
         19998,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Elusive Foes: Landfall
         19999,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Elusive Foes: Isle of Thunder
         20000,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Elusive Foes: Timeless Isle
         20001,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Powerful Enemies: Timeless Isle
         20002,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
@@ -3890,161 +3890,161 @@ KrowiAF.AchievementData["10_02_07"] = {
     { -- Looking For Group: The Jade Forest
         20008,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Looking For Group: Valley of the Four Winds
         20009,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Looking For Group: Kun-Lai Summit
         20011,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Looking For Group: Townlong Steppes
         20012,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Looking For Group: Vale of Eternal Blossoms
         20014,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Looking For Group: Isle of Thunder
         20015,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Looking For Group: Timeless Isle
         20016,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Salyis's Warband
         20017,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Sha of Anger
         20018,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Nalak, the Storm Lord
         20019,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Oondasta
         20020,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Chi-ji, the Red Crane
         20021,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Yu'lon, the Jade Serpent
         20022,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Niuzao, the Black Ox
         20023,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Xuen, the White Tiger
         20024,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Ordos
         20025,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Explore Jade Forest
         20026,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Explore Valley of the Four Winds
         20027,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Explore Krasarang Wilds
         20028,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Explore Kun-Lai Summit
         20029,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Explore Townlong Steppes
         20030,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Explore Dread Wastes
         20031,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
     { -- Elusive Foes: Vale of Eternal Blossoms
         20069,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },
@@ -4053,7 +4053,7 @@ KrowiAF.AchievementData["10_02_07"] = {
         faction.Alliance,
         19932,
         {
-            RewardType = rewardType.RemixPandariaBronze,
+            RewardType = rewardType.RemixBronze,
             {"Event", 1514},
         },
     },

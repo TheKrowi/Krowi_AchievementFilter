@@ -57,11 +57,11 @@ KrowiAF.BuildVersionData.TheWarWithin = { -- 11
                     BuildVersionId = "110200",
                     Name = addon.L["Ghosts of K'aresh"]
                 },
-                -- { -- 11.1.5
-                --     Patch = 5,
-                --     BuildVersionId = "110105",
-                --     Name = addon.L["Nightfall"]
-                -- },
+                { -- 11.2.5
+                    Patch = 5,
+                    BuildVersionId = "110205",
+                    Name = addon.L["Legion Remix"]
+                },
                 -- { -- 11.1.7
                 --     Patch = 7,
                 --     BuildVersionId = "110107",

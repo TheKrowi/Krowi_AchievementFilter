@@ -375,6 +375,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
             15218, -- WoW's 18th Anniversary
             18702, -- WoW's 19th Anniversary
             41220, -- WoW's 20th Anniversary
+            61406, -- WoW's 21st Anniversary
             10335, -- Did Someone Say...?
             19192, -- Lil' Frostwing
         },
@@ -831,6 +832,424 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
             20538, -- Infinite Power XII
             20593, -- Time Trial
             40223, -- Timerunner
+        },
+    },
+    { -- Legion: Remix
+        2569,
+        addon.GetCategoryInfoTitle(15554),
+        { -- Zones
+            addon.L["Zones"],
+            { -- Azsuna
+                addon.GetMapName(630),
+                {
+                    42317, -- Campaign: Azsuna
+                    61103, -- Sojourner of Azsuna
+                    61108, -- Lorerunner of Azsuna
+                    42516, -- Explore Azsuna
+                    42518, -- Elusive Foes: Azsuna
+                    42517, -- Hidden Treasures: Azsuna
+                    42515, -- Tour Azsuna
+                    42669, -- Withered J'im
+                    42526, -- Calamir
+                    42527, -- Levantus
+                    42318, -- Court of Farondis
+                    42519, -- Looking for Group: Azsuna
+                    42319, -- Azsuna
+                },
+            },
+            { -- Val'sharah
+                addon.GetMapName(641),
+                {
+                    42617, -- Campaign: Val'Sharah
+                    61106, -- Sojourner of Val'Sharah
+                    61111, -- Lorerunner of Val'Sharah
+                    60809, -- Explore Val'sharah
+                    60810, -- Elusive Foes: Val'sharah
+                    60811, -- Hidden Treasures: Val'sharah
+                    42594, -- Tour Val'Sharah
+                    42529, -- Humongris
+                    42619, -- Dreamweavers
+                    42663, -- Looking for Group: Val'Sharah
+                    42630, -- Val'Sharah
+                },
+            },
+            { -- Highmountain
+                addon.GetMapName(650),
+                {
+                    42552, -- Campaign: Highmountain
+                    61104, -- Sojourner of Highmountain
+                    61109, -- Lorerunner of Highmountain
+                    60803, -- Explore Highmountain
+                    60804, -- Elusive Foes: Highmountain
+                    60805, -- Hidden Treasures: Highmountain
+                    42642, -- Tour Highmountain
+                    42542, -- Drugon the Frostblood
+                    42614, -- Flotsam
+                    42547, -- Highmountain Tribe
+                    42533, -- Looking for Group: Highmountain
+                    42541, -- Highmountain
+                },
+            },
+            { -- Stormheim
+                addon.GetMapName(634),
+                {
+                    42596, -- Campaign: Stormheim
+                    61105, -- Sojourner of Stormheim
+                    61110, -- Lorerunner of Stormheim
+                    60806, -- Explore Stormheim
+                    60807, -- Elusive Foes: Stormheim
+                    60808, -- Hidden Treasures: Stormheim
+                    42590, -- Tour Stormheim
+                    42536, -- Nithogg
+                    42610, -- The Soultakers
+                    42658, -- Valarjar
+                    42578, -- Looking for Group: Stormheim
+                    42582, -- Stormheim
+                },
+            },
+            { -- Suramar
+                addon.GetMapName(680),
+                true,
+                {
+                    42586, -- Campaign: Suramar
+                    61107, -- Sojourner of Suramar
+                    61112, -- Lorerunner of Suramar
+                    60812, -- Explore Suramar
+                    60813, -- Elusive Foes: Suramar
+                    60814, -- Hidden Treasures: Suramar
+                    42564, -- Tour Suramar
+                    42559, -- Ana-Mouz
+                    42637, -- Na'zak the Fiend
+                    42659, -- Shar'thos
+                    42628, -- The Nightfallen
+                    42551, -- Looking for Group: Suramar
+                    42605, -- Suramar
+                    42537, -- Insurrection
+                },
+            },
+            { -- Broken Shore
+                addon.GetMapName(646),
+                {
+                    42647, -- Breaching the Tomb
+                    60815, -- Explore Broken Shore
+                    42530, -- Si'vash
+                    42662, -- Apocron
+                    42643, -- Brutallus
+                    42629, -- Malificus
+                    61080, -- Broken Shore World Bosses
+                    42655, -- The Armies of Legionfall
+                    42540, -- Looking for Group: The Broken Shore
+                    42666, -- The Broken Shore
+                },
+            },
+            { -- Argus
+                addon.GetMapName(905),
+                {
+                    42612, -- You Are Now Prepared!
+                    60817, -- Explore Argus
+                    60818, -- Elusive Foes: Argus
+                    60816, -- Hidden Treasures: Argus
+                    42567, -- Tour Argus
+                    42627, -- Argussian Reach
+                    42618, -- Looking for Group: Argus
+                    42549, -- Argus
+                },
+            },
+            {
+                42593, -- Pillars of Creation
+                61337, -- To Fel and Back
+                42624, -- Broken Isles World Quests I
+                42539, -- Broken Isles World Quests II
+                42570, -- Broken Isles World Quests III
+                42555, -- Broken Isles World Quests IV
+                42674, -- Broken Isles World Quests V
+                61076, -- Broken Isles World Bosses
+                61218, -- The Wardens
+                42673, -- Defending the Broken Isles I
+                42672, -- Defending the Broken Isles II
+                42675, -- Defending the Broken Isles III
+                42574, -- Matron Folnuna
+                42616, -- Pit Lord Vilemus
+                42581, -- Inquisitor Meto
+                42604, -- Occularus
+                42534, -- Sotanathor
+                42538, -- Mistress Alluradel
+                61077, -- Argus Invasion Point Bosses
+                42693, -- Breaking the Legion I
+                42694, -- Breaking the Legion II
+                42695, -- Breaking the Legion III
+                42696, -- Greater Invasion Points I
+                42697, -- Greater Invasion Points II
+                42698, -- Greater Invasion Points III
+            },
+        },
+        { -- Heroic World Tier
+            addon.GetCategoryInfoTitle(15561),
+            {
+                42699, -- You Were Not Prepared!
+                61057, -- Heroic Broken Isles World Quests I
+                61056, -- Heroic Broken Isles World Quests II
+                61054, -- Heroic Broken Isles World Quests III
+                61070, -- Heroic Broken Isles World Quests IV
+                61059, -- Legionslayer I
+                61058, -- Legionslayer II
+                61053, -- Legionslayer III
+                61071, -- Legionslayer IV
+                61323, -- Legionslayer V
+                61061, -- Power of the Obelisks I
+                61060, -- Power of the Obelisks II
+                61055, -- Power of the Obelisks III
+                61072, -- Power of the Obelisks IV
+                61174, -- Building a Heroic Army
+            },
+        },
+        { -- Dungeons
+            addon.GetCategoryInfoTitle(15272),
+            { -- Eye of Azshara
+                addon.GetInstanceInfoName(716),
+                true,
+                {
+                    60819, -- Eye of Azshara
+                    60820, -- Heroic: Eye of Azshara
+                    60821, -- Mythic: Eye of Azshara
+                },
+            },
+            { -- Darkheart Thicket
+                addon.GetInstanceInfoName(762),
+                true,
+                {
+                    60837, -- Darkheart Thicket
+                    60838, -- Heroic: Darkheart Thicket
+                    60839, -- Mythic: Darkheart Thicket
+                },
+            },
+            { -- Halls of Valor
+                addon.GetInstanceInfoName(721),
+                true,
+                {
+                    60831, -- Halls of Valor
+                    60832, -- Heroic: Halls of Valor
+                    60833, -- Mythic: Halls of Valor
+                },
+            },
+            { -- Neltharions Lair
+                addon.GetInstanceInfoName(767),
+                true,
+                {
+                    60825, -- Neltharion's Lair
+                    60826, -- Heroic: Neltharion's Lair
+                    60827, -- Mythic: Neltharion's Lair
+                },
+            },
+            { -- Assault on Violet Hold
+                addon.GetInstanceInfoName(777),
+                true,
+                {
+                    60846, -- Assault on Violet Hold
+                    60847, -- Heroic: Assault on Violet Hold
+                    60848, -- Mythic: Assault on Violet Hold
+                },
+            },
+            { -- Vault of the Wardens
+                addon.GetInstanceInfoName(707),
+                true,
+                {
+                    60822, -- Vault of the Wardens
+                    60823, -- Heroic: Vault of the Wardens
+                    60824, -- Mythic: Vault of the Wardens
+                },
+            },
+            { -- Black Rook Hold
+                addon.GetInstanceInfoName(740),
+                true,
+                {
+                    60834, -- Black Rook Hold
+                    60835, -- Heroic: Black Rook Hold
+                    60836, -- Mythic: Black Rook Hold
+                },
+            },
+            { -- Maw of Souls
+                addon.GetInstanceInfoName(727),
+                true,
+                {
+                    60828, -- Maw of Souls
+                    60829, -- Heroic: Maw of Souls
+                    60830, -- Mythic: Maw of Souls
+                },
+            },
+            { -- The Arcway
+                addon.GetInstanceInfoName(726),
+                true,
+                {
+                    60840, -- The Arcway
+                    60841, -- Heroic: The Arcway
+                    60842, -- Mythic: The Arcway
+                },
+            },
+            { -- Court of Stars
+                addon.GetInstanceInfoName(800),
+                true,
+                {
+                    60843, -- Court of Stars
+                    60844, -- Heroic: Court of Stars
+                    60845, -- Mythic: Court of Stars
+                },
+            },
+            { -- Return to Karazhan
+                addon.GetInstanceInfoName(860),
+                true,
+                {
+                    60854, -- Heroic: Return to Karazhan
+                    60855, -- Mythic: Return to Karazhan
+                },
+            },
+            { -- Cathedral of Eternal Night
+                addon.GetInstanceInfoName(900),
+                true,
+                {
+                    60849, -- Cathedral of Eternal Night
+                    60850, -- Heroic: Cathedral of Eternal Night
+                    60851, -- Mythic: Cathedral of Eternal Night
+                },
+            },
+            { -- Seat of the Triumvirate
+                addon.GetInstanceInfoName(945),
+                true,
+                {
+                    60852, -- Heroic: Seat of the Triumvirate
+                    60853, -- Mythic: Seat of the Triumvirate
+                },
+            },
+            {
+                61113, -- Legion Dungeons: Threats of the Isle
+                61115, -- Legion Dungeons: Might of the Legion
+                61114, -- Legion Dungeons: Power of the Ancients
+                42692, -- Broken Isles Dungeoneer
+                42320, -- Legion Remix Dungeoneer
+                61073, -- Heroic Legion Remix Dungeoneer
+                61074, -- Mythic Legion Remix Dungeoneer
+                42615, -- Timeworn Keystone Apprentice
+                42688, -- Timeworn Keystone Adept
+                42689, -- Timeworn Keystone Master
+                42690, -- Timeworn Keystone Hero
+                42691, -- Timeworn Keystone Enthusiast
+            },
+        },
+        { -- Raids
+            addon.GetCategoryInfoTitle(15271),
+            { -- Emerald Nightmare
+                addon.GetInstanceInfoName(768),
+                true,
+                {
+                    60856, -- Darkbough
+                    60857, -- Tormented Guardians
+                    60858, -- Rift of Aln
+                    42603, -- Raid Finder: Emerald Nightmare
+                    60859, -- The Emerald Nightmare
+                    42531, -- Heroic: Emerald Nightmare
+                    42651, -- Mythic: Emerald Nightmare
+                },
+            },
+            { -- The Nighthold
+                addon.GetInstanceInfoName(786),
+                true,
+                {
+                    60861, -- Arcing Aqueducts
+                    60862, -- Royal Athenaeum
+                    60863, -- Nightspire
+                    60864, -- Betrayer's Rise
+                    42553, -- Raid Finder: The Nighthold
+                    60865, -- The Nighthold
+                    42543, -- Heroic: The Nighthold
+                    42544, -- Mythic: The Nighthold
+                },
+            },
+            { -- Trial of Valor
+                addon.GetInstanceInfoName(861),
+                true,
+                {
+                    42558, -- Raid Finder: Trial of Valor
+                    60860, -- Trial of Valor
+                    42639, -- Heroic: Trial of Valor
+                    42636, -- Mythic: Trial of Valor
+                    61024, -- The Deathless Champion
+                    61025, -- The Deathless Marauder
+                    61026, -- The Deathless Wanderer
+                    61027, -- The Deathless Magus
+                },
+            },
+            { -- Tomb of Sargeras
+                addon.GetInstanceInfoName(875),
+                true,
+                {
+                    60866, -- The Gates of Hell
+                    60867, -- Wailing Halls
+                    60868, -- Chamber of the Avatar
+                    60869, -- Deceiver's Fall
+                    42649, -- Raid Finder: Tomb of Sargeras
+                    60870, -- Tomb of Sargeras
+                    42661, -- Heroic: Tomb of Sargeras
+                    42576, -- Mythic: Tomb of Sargeras
+                },
+            },
+            { -- Antorus, the Burning Throne
+                addon.GetInstanceInfoName(946),
+                true,
+                {
+                    60871, -- Light's Breach
+                    60873, -- Hope's End
+                    60872, -- Forbidden Descent
+                    60874, -- Seat of the Pantheon
+                    42554, -- Raid Finder: Antorus the Burning Throne
+                    60875, -- Antorus, the Burning Throne
+                    42664, -- Heroic: Antorus the Burning Throne
+                    42583, -- Mythic: Antorus the Burning Throne
+                },
+            },
+            {
+                42321, -- Legion Remix Raids
+                61075, -- Heroic Legion Remix Raider
+                61079, -- Heroic Legion Remix Raids
+                61078, -- Mythic Legion Remix Raids
+            },
+        },
+        {
+            42314, -- Unlimited Power
+            42315, -- Unlimited Power II
+            42505, -- Unlimited Power III
+            42506, -- Unlimited Power IV
+            42507, -- Unlimited Power V
+            42508, -- Unlimited Power VI
+            42509, -- Unlimited Power VII
+            42510, -- Unlimited Power VIII
+            42511, -- Unlimited Power IX
+            42512, -- Unlimited Power X
+            42513, -- Unlimited Power XI
+            42514, -- Unlimited Power XII
+            60959, -- Tenured in the Timeways I
+            60960, -- Tenured in the Timeways II
+            60961, -- Tenured in the Timeways III
+            60935, -- Tenured in the Timeways IV
+            61339, -- Putting the Finite in Infinite
+            42313, -- Remixing Time
+            42312, -- Artifact, Remixed
+            42502, -- Artifact, Remixed II
+            42503, -- Artifact, Remixed III
+            42301, -- Timerunner
+            42504, -- Timerunner: Paladin
+            42684, -- Timerunner: Warrior
+            42685, -- Timerunner: Death Knight
+            42686, -- Timerunner: Shaman
+            42687, -- Timerunner: Hunter
+            61084, -- Timerunner: Rogue
+            61085, -- Timerunner: Monk
+            61086, -- Timerunner: Druid
+            61087, -- Timerunner: Demon Hunter
+            61088, -- Timerunner: Priest
+            61089, -- Timerunner: Mage
+            61090, -- Timerunner: Warlock
+            42565, -- Bringing Order to the Isles
+            42807, -- Cloudy With a Chance of Infernals
         },
     },
     { -- Plunderstorm

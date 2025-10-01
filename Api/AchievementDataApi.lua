@@ -12,14 +12,15 @@ KrowiAF.Enum.RewardType = EnumUtil.MakeEnum(
     "Garrison",
     "Mount",
     "Pet",
-    "RemixPandariaBronze",
+    "RemixBronze",
     "Tabard",
     "Teleport",
     "Title",
     "Toy",
     "TradersTender",
     "Transmog",
-    "WarbandCampsite"
+    "WarbandCampsite",
+    "RemixInfiniteKnowledge"
 );
 
 KrowiAF.AchievementData = {};

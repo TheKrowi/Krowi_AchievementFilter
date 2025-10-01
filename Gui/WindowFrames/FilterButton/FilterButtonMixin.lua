@@ -250,7 +250,8 @@ do -- AchievementFilters
         self:CreateCheckbox(reward, addon.L["Warband Campsite"], filters, {"RewardType", KrowiAF.Enum.RewardType.WarbandCampsite}, true);
         self:CreateCheckbox(reward, addon.L["Other"], filters, {"RewardType", KrowiAF.Enum.RewardType.Other}, true);
         addon.MenuUtil:CreateDivider(reward);
-        self:CreateCheckbox(reward, addon.L["Remix Pandaria Bronze"], filters, {"RewardType", KrowiAF.Enum.RewardType.RemixPandariaBronze}, true);
+        self:CreateCheckbox(reward, addon.L["Remix Bronze"], filters, {"RewardType", KrowiAF.Enum.RewardType.RemixBronze}, true);
+        self:CreateCheckbox(reward, addon.L["Remix Infinite Knowledge"], filters, {"RewardType", KrowiAF.Enum.RewardType.RemixInfiniteKnowledge}, true);
         addon.MenuUtil:CreateDivider(reward);
         self:CreateCheckbox(reward, addon.L["Not Categorized"], filters, {"RewardType", KrowiAF.Enum.RewardType.NotCategorized}, true);
         addon.MenuUtil:CreateDivider(reward);
