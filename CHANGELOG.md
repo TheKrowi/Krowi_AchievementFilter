@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 87.0 - 2025-10-01
+### Added
+- Missing season 2 and 3 transmog sets
+- Legion Remix achievements and event
+
+### Changed
+- Transfered some Shadowlands and Dragonflight map data into the new system
+
 ## 86.2 - 2025-08-30
 ### Added
 - Additional zhCN localization
