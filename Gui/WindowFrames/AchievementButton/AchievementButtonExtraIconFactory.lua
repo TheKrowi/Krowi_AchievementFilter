@@ -96,19 +96,19 @@ local function SetExtraIconIsExcluded(self, achievement)
 	extraIcon.Text = addon.L["Achievement is excluded"];
 end
 
-local function SetExtraIconRemixPandaria(self, achievement)
+local function SetExtraIconRemix(self, achievement)
 	if not achievement.TemporaryObtainable then
 		return;
 	end
 
-	local remixPandariaRecord;
+	local remixRecord;
 	for _, record in next, achievement.TemporaryObtainable do
-		if record.Start and record.Start.Function == "Event" and record.Start.Value == "1514" then
-			remixPandariaRecord = record;
+		if record.Start and record.Start.Function == "Event" and (record.Start.Value == "1514" or  record.Start.Value == "1640") then
+			remixRecord = record;
 		end
 	end
 
-	if not remixPandariaRecord then
+	if not remixRecord then
 		return;
 	end
 
@@ -119,7 +119,7 @@ local function SetExtraIconRemixPandaria(self, achievement)
 
 	extraIcon.Texture:SetAtlas("timerunning-glues-icon");
 	local text, occurrence;
-	text, extraIcon.Color, occurrence = addon.Data.TemporaryObtainable:GetNotObtainableText(remixPandariaRecord);
+	text, extraIcon.Color, occurrence = addon.Data.TemporaryObtainable:GetNotObtainableText(remixRecord);
 	extraIcon.Lines = {
 		text,
 		occurrence
@@ -166,7 +166,7 @@ end
 function factory.SetExtraIcons(self, achievement)
     factory.ResetExtraIcons(self);
 	SetExtraIconWarband(self, achievement);
-	if not SetExtraIconRemixPandaria(self, achievement) then
+	if not SetExtraIconRemix(self, achievement) then
 		SetExtraIconEvent(self, achievement);
 	end
 	SetExtraIconAlwaysVisible(self, achievement);

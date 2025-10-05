@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 87.0 - 2025-10-01
+## 87.0 - 2025-10-05
 ### Added
 - Missing season 2 and 3 transmog sets
 - Legion Remix achievements and event

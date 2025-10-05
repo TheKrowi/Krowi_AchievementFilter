@@ -8,7 +8,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-06-18 15-02-41 ]] --
+-- [[ Exported at 2025-10-05 23-14-36 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -48,8 +48,8 @@ Dieser Wert kann geändert werden, während das Erfolg-Fenster geöffnet ist und
 (1) FPS-Einbrüche und Stottern während der Anpassung des Wertes, NICHT während der normalen Addon-Nutzung.]=]
 L["Active"] = "Aktiv"
 L["Active Event Login Delay"] = "Aktive Ereignisse Login-Verzögerung"
-L["Active events"] = "Aktive Ereignisse"
 L["Active Events"] = "Aktive Ereignisse"
+L["Active events"] = "Aktive Ereignisse"
 L["Add addon name to world map icon"] = "Addon-Namen zum Weltkarten-Icon hinzufügen"
 L["Add addon name to world map icon Desc"] = "Fügt '{addonName}' am Ende des Tooltips hinzu, wenn man mit der Maus über das Icon fährt."
 L["Add Locale"] = "Installationspfad hinzufügen"
@@ -138,8 +138,8 @@ Dieser Wert kann geändert werden, während das Erfolgsfenster geöffnet ist und
 {reloadRequired}]=]
 L["Category shown temporarily"] = "Diese Kategorie wurde durch Klicken auf die {eventName} Event Erinnerung ausgewählt und wird nur vorübergehend angezeigt, da sie keine Erfolge enthält, die den eingestellten Filtern entsprechen."
 L["Caverns Criss-Cross"] = "Kreuz und quer durch die Höhlen"
-L["Center header"] = "Kopfzeile zentrieren"
 L["Center Header"] = "Erfolgs-Überschrift zentrieren"
+L["Center header"] = "Kopfzeile zentrieren"
 L["Center header Desc"] = "Zentriere die Kopfzeile im Erfolgsfenster."
 L["Center Header Desc"] = "Zentriere die Erfolgs-Überschrift"
 L["Central Circuit"] = "Zentralrundstrecke"
@@ -189,8 +189,8 @@ L["Completion"] = "Komplettierung"
 L["Copy Account Wide to Character"] = "Account-übergreifend auf Beobachtungsliste pro Charakter umstellen"
 L["Copy Account Wide to Character Desc"] = "Kopiere die accountweite {watchList} (alle von allen Charakteren beobachteten Erfolge) in die aktuelle charakterspezifische {watchList}. Von nun an wird dieser Charakter seine eigene {watchList} haben."
 L["Covenant"] = "Pakt"
-L["Covenant assaults"] = "Paktangriffe"
 L["Covenant Assaults"] = "Paktangriffe"
+L["Covenant assaults"] = "Paktangriffe"
 L["Credits"] = true
 L["Criteria"] = "Kriterien"
 L["Criteria Behaviour"] = "Erfolgs-Kriterien Darstellung"
@@ -568,7 +568,9 @@ L["Left Alt"] = "Links Alt"
 L["Left click"] = "Links-Klick"
 L["Left Ctrl"] = "Links Ctrl"
 L["Left Shift"] = "Links Shift"
+L["Legacy of Arathor"] = "Vermächtnis von Arathor"
 L["Legion Assaults"] = "Angriffe der Legion"
+L["Legion: Remix"] = true
 L["Level 80"] = true
 L["Level 85"] = true
 L["Level 90"] = true
@@ -584,6 +586,7 @@ L["Lock month"] = "Gewählten Monat immer behalten."
 L["Lock month Desc"] = "Behalte den zuletzt angezeigten immer Monat bei, wenn du den Kalender wieder öffnest, nachdem er geschlossen wurde."
 L["Lock month when closed by achievement"] = "Gewählten Monat behalten beim Anklicken eines Erfolgs."
 L["Lock month when closed by achievement Desc"] = "Behalte den zuletzt angezeigten Monat bei, wenn du den Kalender wieder öffnest, nachdem er durch Anklicken eines Erfolgs geschlossen wurde."
+L["Lorewalking"] = "Lehrensuche"
 L["Love is in the Air"] = "Liebe liegt in der Luft"
 L["Lucky Yi"] = "Glückspilz Yi"
 L["Lunar Festival"] = "Mondfest"
@@ -771,6 +774,7 @@ L["Related Tab Desc"] = "Fügt dem {wowheadLink} ein zusätzliches Bit hinzu, da
 L["Remember frame position"] = "{frame} Position merken"
 L["Remember frame position Desc"] = "Die Position des {frame} wird gespeichert. Dadurch bleibt der {frame} bei der nächsten Anmeldung an seiner letzten bekannten Position."
 L["Remix Bronze"] = true
+L["Remix Infinite Knowledge"] = "Remix Ewige Forschung"
 L["Remove from Watch List"] = "Von {watchList} löschen"
 L["Required for"] = "Wird benötigt für..."
 L["Requires"] = "Voraussetzung"
