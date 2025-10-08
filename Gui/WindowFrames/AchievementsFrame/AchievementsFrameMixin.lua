@@ -213,7 +213,7 @@ end
 function KrowiAF_AchievementsFrameMixin:ScrollToNearest(achievement)
 	local scrollBox = self.ScrollBox;
 	scrollBox:RecalculateDerivedExtent();
-	local dataIndex = scrollBox:FindIndex(achievement);
+	local dataIndex = scrollBox:FindFrameElementDataIndex(achievement);
 	if not dataIndex then
 		return;
 	end
