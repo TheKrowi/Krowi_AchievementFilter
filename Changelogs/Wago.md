@@ -1,13 +1,6 @@
 ### Added
-- New 11.2.0 achievements
+- Missing season 2 and 3 transmog sets
+- Legion Remix achievements and event
 
-### Fixed
-- Popup dialog errors
-
-### Fixed (86.1)
-- Moved Court is Now in Session to a more fitting category
-- Raiding with Leashes II: Attunement Edition should now have proper tooltip data
-
-### Mists Classic (86.1)
-- Raiding with Leashes II: Attunement Edition should now have proper tooltip data
-- Multiple Wrath and Cata schievements should now have proper tooltip data
+### Changed
+- Transfered some Shadowlands and Dragonflight map data into the new system

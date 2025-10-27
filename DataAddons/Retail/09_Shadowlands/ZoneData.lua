@@ -162,7 +162,6 @@ KrowiAF.ZoneData.Shadowlands = {
             14510, -- Dreamweaver, As N'Zoth
             14511, -- Tour of Duty: Ardenweald
             14337, -- The Wild Hunt
-
             14280, -- Loremaster of Shadowlands
             14758, -- The World Beyond
             15388, -- Shadowlands Explorer
@@ -257,6 +256,56 @@ KrowiAF.ZoneData.Shadowlands = {
             15258, -- The Jailer's Gauntlet: Layer 8
         }
     },
+    { -- Halls of Atonement (dungeon)
+        {1663, 1664, 1665},
+        {
+            14567, -- Picking Up the Pieces
+            14284, -- Breaking Bad
+            14352, -- Nobody Puts Denathrius in a Corner
+            14370, -- Halls of Atonement
+            14410, -- Heroic: Halls of Atonement
+            14411, -- Mythic: Halls of Atonement
+            15048, -- Keystone Hero: Halls of Atonement
+        }
+    },
+    { -- Castle Nathria (raid)
+        {1735, 1744, 1745, 1746, 1747, 1748, 1750},
+        {
+            14715, -- Castle Nathria
+            14717, -- Heroic: Castle Nathria
+            14718, -- Mythic: Castle Nathria
+            14460, -- Ahead of the Curve: Sire Denathrius
+            14461, -- Cutting Edge: Sire Denathrius
+            14614, -- Castle Vain
+            15663, -- Fate of Nathria
+            15664, -- Heroic: Fate of Nathria
+            15665, -- Mythic: Fate of Nathria
+            14293, -- Blind as a Bat
+            14523, -- Taking Care of Business
+            14376, -- Feed the Beast
+            14524, -- I Don't Know What I Expected
+            14617, -- Private Stock
+            14608, -- Burning Bright
+            14619, -- Pour Decision Making
+            14294, -- Dirtflap's Revenge
+            14525, -- Feed Me, Seymour!
+            14610, -- Clear Conscience
+            14355, -- Glory of the Nathria Raider
+            14356, -- Mythic: Shriekwing
+            14357, -- Mythic: Huntsman Altimor
+            14358, -- Mythic: Hungering Destroyer
+            14361, -- Mythic: Lady Inerva Darkvein
+            14359, -- Mythic: Artificer Xy'mox
+            14360, -- Mythic: Sun King's Salvation
+            14362, -- Mythic: The Council of Blood
+            14363, -- Mythic: Sludgefist
+            14364, -- Mythic: Stone Legion Generals
+            14365, -- Mythic: Sire Denathrius
+            15684, -- Fates of the Shadowlands Raids
+            15685, -- Heroic: Fates of the Shadowlands Raids
+            15687, -- Mythic: Fates of the Shadowlands Raids
+        }
+    },
     { -- Korthia (zone)
         {1961, 2006, 2007, 2008},
         {
@@ -269,7 +318,6 @@ KrowiAF.ZoneData.Shadowlands = {
             15099, -- Treasures of Korthia
             15059, -- Death's Advance
             15069, -- The Archivists' Codex
-
             15064, -- Breaking the Chains
         }
     },
@@ -316,6 +364,49 @@ KrowiAF.ZoneData.Shadowlands = {
             15652, -- Mythic: So'leah's Gambit
             61092, -- Hard Mode: Tazavesh, the Veiled Market
             61093, -- Flawless Transaction
+        }
+    },
+    { -- Sanctum of Domination (raid)
+        {1998, 1999, 2000, 2001, 2002, 2003, 2004},
+        {
+            15122, -- The Jailer's Vanguard
+            15123, -- The Dark Bastille
+            15124, -- Shackles of Fate
+            15125, -- The Reckoning
+            15126, -- Sanctum of Domination
+            15127, -- Heroic: Sanctum of Domination
+            15128, -- Mythic: Sanctum of Domination
+            15134, -- Ahead of the Curve: Sylvanas Windrunner
+            15135, -- Cutting Edge: Sylvanas Windrunner
+            15110, -- Dominating the Catwalk
+            15191, -- Rae'shalare, Death's Whisper
+            15667, -- Fate of Domination
+            15668, -- Heroic: Fate of Domination
+            15669, -- Mythic: Fate of Domination
+            14998, -- Name A Better Duo, I'll Wait
+            15065, -- Eye Wish You Were Here
+            15003, -- To the Nines
+            15058, -- I Used to Bullseye Deeprun Rats Back Home
+            15105, -- Tormentor's Tango
+            15131, -- Whack-A-Soul
+            15132, -- Knowledge is Power
+            15040, -- Flawless Fate
+            15108, -- Together Forever
+            15133, -- This World is a Prism
+            15130, -- Glory of the Dominant Raider
+            15112, -- Mythic: The Tarragrue
+            15113, -- Mythic: The Eye of the Jailer
+            15114, -- Mythic: The Nine
+            15115, -- Mythic: Remnant of Ner'zhul
+            15116, -- Mythic: Soulrender Dormazain
+            15117, -- Mythic: Painsmith Raznal
+            15118, -- Mythic: Guardian of the First Ones
+            15119, -- Mythic: Fatescribe Roh-Kalo
+            15120, -- Mythic: Kel'Thuzad
+            15121, -- Mythic: Sylvanas Windrunner
+            15684, -- Fates of the Shadowlands Raids
+            15685, -- Heroic: Fates of the Shadowlands Raids
+            15687, -- Mythic: Fates of the Shadowlands Raids
         }
     },
     { -- Sepulcher of the First Ones (raid)
