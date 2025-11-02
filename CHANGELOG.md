@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 87.1 - 2025-11-02
+### Added
+- Missing dungeon achievements
+
+### Changed
+- Legion Remix achievements now have the event linked
+
+### Fixed
+- Zygor Guides Viewer plugin
+
 ## 87.0 - 2025-10-05
 ### Added
 - Missing season 2 and 3 transmog sets

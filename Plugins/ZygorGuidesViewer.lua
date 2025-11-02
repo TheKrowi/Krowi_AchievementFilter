@@ -57,7 +57,7 @@ local function IconSetup()
     end
 
     ZGV.SearchIconPool = ZGV.SearchIconPool or CreateFramePool("BUTTON", nil, "ZygorSearchButton");
-    hooksecurefunc(KrowiAF_AchievementsFrame, "Update", ScheduleUpdate);
+    hooksecurefunc(KrowiAF_AchievementsFrame.ScrollBox, "Update", ScheduleUpdate);
     ZGV.Achievement.KrowiAF_Loaded = true;
 end
 

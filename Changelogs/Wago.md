@@ -4,3 +4,12 @@
 
 ### Changed
 - Transfered some Shadowlands and Dragonflight map data into the new system
+
+### Added (87.1)
+- Missing dungeon achievements
+
+### Changed (87.1)
+- Legion Remix achievements now have the event linked
+
+### Fixed (87.1)
+- Zygor Guides Viewer plugin
