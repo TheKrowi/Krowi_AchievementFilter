@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 87.2 - 2025-11-03
+### Fixed
+- Links in the pop up window should once again be full length
+
 ## 87.1 - 2025-11-02
 ### Added
 - Missing dungeon achievements

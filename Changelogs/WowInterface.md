@@ -23,3 +23,8 @@
 [LIST]
 [*]Zygor Guides Viewer plugin
 [/LIST]
+
+[B]Fixed (87.2)[/B]
+[LIST]
+[*]Links in the pop up window should once again be full length
+[/LIST]
