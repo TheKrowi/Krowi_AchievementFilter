@@ -55,6 +55,9 @@ KrowiAF.AchievementData["08_00_01"] = {
         12479,
         faction.Horde,
         12891,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
     },
     { -- A Bargain of Blood
         12480,
@@ -96,6 +99,9 @@ KrowiAF.AchievementData["08_00_01"] = {
         12509,
         faction.Horde,
         12510,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
     },
     { -- Ready for War
         12510,
@@ -247,6 +253,9 @@ KrowiAF.AchievementData["08_00_01"] = {
         12582,
         faction.Alliance,
         12555,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
     },
     {12587}, -- Unbound Monstrosities
     {12588}, -- Eat Your Greens
@@ -297,6 +306,9 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Loa Expectations
         12614,
         faction.Horde,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
     },
     { -- Spirits Be With You
         12719,
@@ -321,6 +333,9 @@ KrowiAF.AchievementData["08_00_01"] = {
         12733,
         faction.Horde,
         12731,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
     },
     { -- Working in Kul Tiras
         12734,
@@ -369,6 +384,9 @@ KrowiAF.AchievementData["08_00_01"] = {
         12746,
         faction.Horde,
         12744,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
     },
     {12747}, -- Catering for Combat
     { -- Kul Tiran Fisherman
@@ -533,16 +551,25 @@ KrowiAF.AchievementData["08_00_01"] = {
         12867,
         faction.Horde,
         12896,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
     },
     { -- Azeroth at War: After Lordaeron
         12869,
         faction.Horde,
         12898,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
     },
     { -- Azeroth at War: Kalimdor on Fire
         12870,
         faction.Horde,
         12899,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
     },
     {12872}, -- The Dirty Five
     { -- War is Hell
@@ -950,6 +977,9 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- The Pride of Kul Tiras
         12997,
         faction.Alliance,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
     },
     {12998}, -- That Sweete Booty
     { -- Adept Sandfisher
@@ -966,7 +996,12 @@ KrowiAF.AchievementData["08_00_01"] = {
         13017,
         faction.Horde,
     },
-    {13018}, -- Dune Rider
+    { -- Dune Rider
+        13018,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     { -- Bow to Your Masters
         13020,
         faction.Horde,
@@ -1001,10 +1036,16 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Raptari Rider
         13038,
         faction.Horde,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
     },
     { -- Paku'ai
         13039,
         faction.Horde,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
     },
     { -- Hungry, Hungry Ranishu
         13041,
@@ -1018,6 +1059,9 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- The Long Con
         13049,
         faction.Alliance,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
     },
     {13050}, -- Bless the Rains Down in Freehold
     {13051}, -- Legends of the Tidesages
@@ -1329,6 +1373,9 @@ KrowiAF.AchievementData["08_01_00"] = {
         13283,
         faction.Alliance,
         13284,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
     },
     { -- Frontline Warrior
         13284,
@@ -1781,11 +1828,26 @@ KrowiAF.AchievementData["08_02_00"] = {
 	},
     {13470}, -- Rest In Pistons
     {13472}, -- Deep Pockets
-    {13473}, -- Diversified Investments
+    { -- Diversified Investments
+        13473,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     {13474}, -- Junkyard Machinist
-    {13475}, -- Junkyard Scavenger
+    { -- Junkyard Scavenger
+        13475,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     {13476}, -- Junkyard Tinkerer
-    {13477}, -- Junkyard Apprentice
+    { -- Junkyard Apprentice
+        13477,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     {13478}, -- Junkyard Collector
     {13479}, -- Junkyard Architect
     {13482}, -- Head Financier of Mechagon
@@ -2069,7 +2131,12 @@ KrowiAF.AchievementData["08_02_00"] = {
         },
     },
     {13722}, -- Terror of the Tadpoles
-    {13723}, -- M.C., Hammered
+    { -- M.C., Hammered
+        13723,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     {13724}, -- A Smack of Jellyfish
     {13725}, -- The Circle of Stars
     {13726}, -- Mythic: Abyssal Commander Sivara

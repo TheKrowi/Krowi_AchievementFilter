@@ -46,6 +46,9 @@ KrowiAF.AchievementData["07_00_03"] = {
     },
     { -- Drum Circle
         10398,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
     },
     { -- Helheim Hath No Fury
         10411,
@@ -313,6 +316,9 @@ KrowiAF.AchievementData["07_00_03"] = {
     },
     { -- That's Val'sharah Folks!
         10698,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
     },
     { -- Infinitesimal
         10699,
@@ -680,6 +686,9 @@ KrowiAF.AchievementData["07_00_03"] = {
     },
     { -- Got to Ketchum All
         10996,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
     },
     { -- Vindictive Combatant
         10997,
@@ -1278,6 +1287,9 @@ KrowiAF.AchievementData["07_00_03"] = {
     },
     { -- Good Suramaritan
         11124,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
     },
     { -- Now You're Thinking With Portals
         11125,
@@ -1591,9 +1603,15 @@ KrowiAF.AchievementData["07_00_03"] = {
     },
     { -- Treasures of Highmountain
         11257,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
     },
     { -- Treasures of Val'sharah
         11258,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
     },
     { -- Treasures of Stormheim
         11259,
@@ -1725,6 +1743,9 @@ KrowiAF.AchievementData["07_02_00"] = {
     },
     { -- Insurrection
         11340,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
     },
     { -- Patient Zero
         11377,

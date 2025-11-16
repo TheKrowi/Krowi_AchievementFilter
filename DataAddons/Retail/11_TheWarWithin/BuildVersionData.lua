@@ -62,11 +62,11 @@ KrowiAF.BuildVersionData.TheWarWithin = { -- 11
                     BuildVersionId = "110205",
                     Name = addon.L["Legion Remix"]
                 },
-                -- { -- 11.1.7
-                --     Patch = 7,
-                --     BuildVersionId = "110107",
-                --     Name = addon.L["Legacy of Arathor"]
-                -- },
+                { -- 11.2.7
+                    Patch = 7,
+                    BuildVersionId = "110207",
+                    Name = addon.L["The Warning"]
+                },
             }
         },
 	},

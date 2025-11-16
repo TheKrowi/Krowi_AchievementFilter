@@ -1643,7 +1643,7 @@ KrowiAF.AchievementData["04_03_00"] = {
         },
     },
     {5995}, -- Moon Guard
-    { -- Vicious Gladiator
+    { -- Vicious Gladiator: Season 9
         6002,
         {
             IsPvP = true,
@@ -1840,7 +1840,7 @@ KrowiAF.AchievementData["04_03_00"] = {
     {6117}, -- Heroic: End Time
     {6118}, -- Heroic: Well of Eternity
     {6119}, -- Heroic: Hour of Twilight
-    { -- Ruthless Gladiator
+    { -- Ruthless Gladiator: Season 10
         6124,
         {
             IsPvP = true,
@@ -1914,6 +1914,42 @@ KrowiAF.AchievementData["04_03_02"] = {
     },
 };
 
+KrowiAF.AchievementData["04_04_00"] = {
+    {KrowiAF.SetAchievementPatch, 4, 4, 0},
+    { -- Rival: Season 9
+        40968,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 9},
+        },
+    },
+    { -- Gladiator: Season 9
+        40969,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 9},
+        },
+    },
+    { -- Duelist: Season 9
+        40970,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 9},
+        },
+    },
+    { -- Challenger: Season 9
+        40971,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 9},
+        },
+    },
+};
+
 KrowiAF.AchievementData["04_04_01"] = {
     {KrowiAF.SetAchievementPatch, 4, 4, 1},
     {41139}, -- Protocol Inferno: Blackrock Caverns
@@ -1926,4 +1962,36 @@ KrowiAF.AchievementData["04_04_01"] = {
     {41146}, -- Protocol Inferno: Deadmines
     {41147}, -- Protocol Inferno: Shadowfang Keep
     {41148}, -- Protocol Inferno: Terminated
+    { -- Rival: Season 10
+        41332,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 10},
+        },
+    },
+    { -- Duelist: Season 10
+        41333,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 10},
+        },
+    },
+    { -- Challenger: Season 10
+        41334,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 10},
+        },
+    },
+    { -- Gladiator: Season 10
+        41336,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 10},
+        },
+    },
 };

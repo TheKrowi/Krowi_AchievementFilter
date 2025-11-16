@@ -161,6 +161,7 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- Me and the Cappin' Makin' it Happen
         158,
         {
+            RewardType = rewardType.HousingDecor,
             IsPvP = true,
         },
     },
@@ -197,6 +198,7 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- Warsong Gulch Veteran
         167,
         {
+            RewardType = rewardType.HousingDecor,
             IsPvP = true,
         },
     },
@@ -215,6 +217,7 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- Persistent Defender
         200,
         {
+            RewardType = rewardType.HousingDecor,
             IsPvP = true,
         },
     },
@@ -275,12 +278,14 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- Storm Capper
         212,
         {
+            RewardType = rewardType.HousingDecor,
             IsPvP = true,
         },
     },
     { -- Stormtrooper
         213,
         {
+            RewardType = rewardType.HousingDecor,
             IsPvP = true,
         },
     },
@@ -317,12 +322,14 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- Alterac Grave Robber
         221,
         {
+            RewardType = rewardType.HousingDecor,
             IsPvP = true,
         },
     },
     { -- Tower Defense
         222,
         {
+            RewardType = rewardType.HousingDecor,
             IsPvP = true,
         },
     },
@@ -359,6 +366,7 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- The Grim Reaper
         229,
         {
+            RewardType = rewardType.HousingDecor,
             IsPvP = true,
         },
     },
@@ -374,6 +382,7 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- Wrecking Ball
         231,
         {
+            RewardType = rewardType.HousingDecor,
             IsPvP = true,
         },
     },
@@ -1776,9 +1785,19 @@ KrowiAF.AchievementData["03_00_02"] = {
             {"Event", 327},
         },
     },
-    {938}, -- The Snows of Northrend
+    { -- The Snows of Northrend
+        938,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     {939}, -- Hills Like White Elekk
-    {940}, -- The Green Hills of Stranglethorn
+    { -- The Green Hills of Stranglethorn
+        940,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     {941}, -- Hemet Nesingwary: The Collected Quests
     { -- The Diplomat
         942,
@@ -2144,12 +2163,14 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- Overly Defensive
         1153,
         {
+            RewardType = rewardType.HousingDecor,
             IsPvP = true,
         },
     },
     { -- Duel-icious
         1157,
         {
+            RewardType = rewardType.HousingDecor,
             IsPvP = true,
         },
     },
@@ -3013,6 +3034,7 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- School of Hard Knocks
         1786,
         {
+            IsPvP = true,
             {"Event", 201},
         },
     },
@@ -5087,7 +5109,12 @@ KrowiAF.AchievementData["03_02_02"] = {
     {4402}, -- More Dots! (10 player)
     {4403}, -- Many Whelps! Handle It! (10 player)
     {4404}, -- She Deep Breaths More (10 player)
-    {4405}, -- More Dots! (25 player)
+    { -- More Dots! (25 player)
+        4405,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     {4406}, -- Many Whelps! Handle It! (25 player)
     {4407}, -- She Deep Breaths More (25 player)
     { -- BB King

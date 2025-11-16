@@ -70,7 +70,12 @@ KrowiAF.BuildVersionData.MistsOfPandaria = { -- 5
                 { -- 5.5.0
                     Patch = 0,
                     BuildVersionId = "050500",
-                    Name = addon.L["Mists of Pandaria (pre-patch)"]
+                    Name = addon.L["Mists of Pandaria"]
+                },
+                { -- 5.5.1
+                    Patch = 1,
+                    BuildVersionId = "050501",
+                    Name = addon.L["Landfall"]
                 },
             }
         },

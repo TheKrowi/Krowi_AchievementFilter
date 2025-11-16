@@ -1,6 +1,23 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 88.0 - 2025-11-16
+### Added
+- WoW's 21st Anniversary event
+- 11.2.7 achievements
+- Housing Decor filter
+
+### Changed
+- Moved some Legion Remix Argus achievements previously in the main Zones category to Argus
+
+### Fixed
+- School of Hard Knocks is now flagged as a pvp achievement
+- Moved Shar'thos from Legion Remix Surumar to Val'sharah
+- Potential load fix for first time users
+
+### Mists Classic
+- Added a bunch of missing pvp achievements
+
 ## 87.2 - 2025-11-03
 ### Fixed
 - Links in the pop up window should once again be full length

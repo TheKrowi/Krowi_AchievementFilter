@@ -5,7 +5,12 @@ local rewardType = KrowiAF.Enum.RewardType;
 
 KrowiAF.AchievementData["11_00_00"] = {
     {KrowiAF.SetAchievementPatch, 11, 0, 0},
-    {19408}, -- Professional Algari Master
+    { -- Professional Algari Master
+        19408,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     {19409}, -- Working Underground
     {19410}, -- Algari Master of All
     {19414}, -- Algari Cook
@@ -159,7 +164,12 @@ KrowiAF.AchievementData["11_00_00"] = {
         },
     },
     {20594}, -- Flamegard's Hope
-    {20595}, -- Sojourner of Isle of Dorn
+    { -- Sojourner of Isle of Dorn
+        20595,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     { -- Loremaster of Khaz Algar
 		20596,
 		{
@@ -262,7 +272,12 @@ KrowiAF.AchievementData["11_00_00"] = {
 			RewardType = rewardType.Pet,
 		},
 	},
-    {40210}, -- Deephaul Ravine Victory
+    { -- Deephaul Ravine Victory
+        40210,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     {40211}, -- Deephaul Ravine Veteran
     {40215}, -- Deephaul Ravine Shutout
     {40216}, -- Deephaul Ravine Expedience
@@ -568,12 +583,14 @@ KrowiAF.AchievementData["11_00_00"] = {
     { -- Hunting the Hunter
         40431,
         {
+            RewardType = rewardType.Title,
             {"PvE Season", 13},
         },
     },
     { -- Let Me Solo Him: Zekvir
         40433,
         {
+            RewardType = rewardType.Mount,
             {"PvE Season", 13},
         },
     },
@@ -742,7 +759,12 @@ KrowiAF.AchievementData["11_00_00"] = {
 			RewardType = rewardType.Other,
 		},
 	},
-    {40504}, -- Rocked to Sleep
+    { -- Rocked to Sleep
+        40504,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
 	{ -- Leave No Treasure Unfound
 		40506,
 		{
@@ -833,7 +855,12 @@ KrowiAF.AchievementData["11_00_00"] = {
 			RewardType = rewardType.Mount,
 		},
 	},
-    {40542}, -- Smelling History
+    { -- Smelling History
+        40542,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     {40585}, -- Super Size Snuffling
     {40590}, -- Priory of the Sacred Flame
     -- {40591}, -- Khaz Algar Diplomat [Removed in 11.0.7, replaced by 41169]
@@ -845,7 +872,12 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40606}, -- Flat Earthen
     {40607}, -- Wandering in the Ravine
     {40608}, -- Running in the Ravine
-    {40612}, -- Sprinting in the Ravine
+    { -- Sprinting in the Ravine
+        40612,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     {40613}, -- Resilient Runner
     {40614}, -- Gobblin' with Glublurp
     {40615}, -- Unexpected Arrival
@@ -999,7 +1031,12 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40848}, -- Treasures of Hallowfall
     {40851}, -- Adventurer of Hallowfall
     -- {40856}, -- Council of Dornogal [Removed in 11.0.7, replaced by 41161]
-    {40859}, -- We're Here All Night
+    { -- We're Here All Night
+        40859,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     {40860}, -- A Star of Dorn
 };
 
@@ -1043,7 +1080,12 @@ KrowiAF.AchievementData["11_00_02"] = {
 			RewardType = rewardType.Title,
 		},
 	},
-    {40885}, -- The Key to Madness
+    { -- The Key to Madness
+        40885,
+        {
+            RewardType = rewardType.Other,
+        },
+    },
     -- {40904}, -- Cornerstone of Dornogal [Removed in 11.0.7, replaced by 41162]
     -- {40905}, -- From Many, One [Removed in 11.0.7, replaced by 41166]
     -- {40906}, -- The Flame Burns Within [Removed in 11.0.7, replaced by 41168]
@@ -1250,7 +1292,7 @@ KrowiAF.AchievementData["11_00_07"] = {
 	{ -- A Farewell to Arms
 		40953,
 		{
-			RewardType = rewardType.Mount,
+			RewardType = {rewardType.Mount, rewardType.HousingDecor},
 		},
 	},
     {40955}, -- War Stories
@@ -1369,7 +1411,12 @@ KrowiAF.AchievementData["11_00_07"] = {
     {41183}, -- There's No Place Like Loamm
     {41184}, -- Freshscales Fifteen
     {41185}, -- Siren's Squall
-    {41186}, -- Slate of the Union
+    { -- Slate of the Union
+        41186,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     {41187}, -- Rage Aside the Machine
     {41188}, -- Crystal Chronicled
     {41189}, -- Azj the World Turns
@@ -1392,7 +1439,12 @@ KrowiAF.AchievementData["11_01_00"] = {
     {KrowiAF.SetAchievementPatch, 11, 1, 0},
     {40142}, -- Learning to Share
     {40145}, -- So Much Sharing
-    {40894}, -- Sojourner of Undermine
+    { -- Sojourner of Undermine
+        40894,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     {40900}, -- Undermined
     { -- The War Within Season 2: Master Blaster
         40911,
@@ -1435,7 +1487,12 @@ KrowiAF.AchievementData["11_01_00"] = {
             {"PvE Season", 14},
         }
     },
-    {40948}, -- Nine-Tenths of the Law
+    { -- Nine-Tenths of the Law
+        40948,
+        {
+            RewardType = rewardType.TradersTender,
+        },
+    },
     { -- The War Within Keystone Explorer: Season Two
         40949,
         {
@@ -1614,7 +1671,12 @@ KrowiAF.AchievementData["11_01_00"] = {
     {41114}, -- Algari Delver Tank III
     {41115}, -- Algari Delver
     {41116}, -- Algari Delver II
-    {41119}, -- One Rank Higher
+    { -- One Rank Higher
+        41119,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     {41120}, -- Two Ranks Higher
     {41121}, -- Three Ranks Higher
     { -- Best In Class
@@ -2233,9 +2295,24 @@ KrowiAF.AchievementData["11_01_07"] = {
     {42030}, -- The Nighthold
     {42031}, -- Tomb of Sargeras
     {42032}, -- Antorus, the Burning Throne
-    {42187}, -- Lorewalking: Ethereal Wisdom
-    {42188}, -- Lorewalking: Blade's Bane
-    {42189}, -- Lorewalking: The Lich King
+    { -- Lorewalking: Ethereal Wisdom
+        42187,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Lorewalking: Blade's Bane
+        42188,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Lorewalking: The Lich King
+        42189,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     { -- Titan Console Overcharged
         42212,
         {
@@ -2793,7 +2870,7 @@ KrowiAF.AchievementData["11_02_05"] = {
     { -- Court of Farondis
         42318,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
             {"Event", 1640},
         },
     },
@@ -2814,7 +2891,7 @@ KrowiAF.AchievementData["11_02_05"] = {
     { -- Legion Remix Raids
         42321,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
             {"Event", 1640},
         },
     },
@@ -3059,7 +3136,7 @@ KrowiAF.AchievementData["11_02_05"] = {
     { -- Highmountain Tribe
         42547,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
             {"Event", 1640},
         },
     },
@@ -3297,7 +3374,7 @@ KrowiAF.AchievementData["11_02_05"] = {
     { -- Dreamweavers
         42619,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
             {"Event", 1640},
         },
     },
@@ -3311,14 +3388,14 @@ KrowiAF.AchievementData["11_02_05"] = {
     { -- Argussian Reach
         42627,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
             {"Event", 1640},
         },
     },
     { -- The Nightfallen
         42628,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
             {"Event", 1640},
         },
     },
@@ -3395,14 +3472,14 @@ KrowiAF.AchievementData["11_02_05"] = {
     { -- The Armies of Legionfall
         42655,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
             {"Event", 1640},
         },
     },
     { -- Valarjar
         42658,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
             {"Event", 1640},
         },
     },
@@ -3472,14 +3549,14 @@ KrowiAF.AchievementData["11_02_05"] = {
     { -- Broken Isles World Quests V
         42674,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
             {"Event", 1640},
         },
     },
     { -- Defending the Broken Isles III
         42675,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
             {"Event", 1640},
         },
     },
@@ -3521,7 +3598,7 @@ KrowiAF.AchievementData["11_02_05"] = {
     { -- Timeworn Keystone Master
         42689,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
             {"Event", 1640},
         },
     },
@@ -3542,7 +3619,7 @@ KrowiAF.AchievementData["11_02_05"] = {
     { -- Broken Isles Dungeoneer
         42692,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
             {"Event", 1640},
         },
     },
@@ -4173,7 +4250,7 @@ KrowiAF.AchievementData["11_02_05"] = {
     { -- Heroic Broken Isles World Quests III
         61054,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
             {"Event", 1640},
         },
     },
@@ -4215,7 +4292,7 @@ KrowiAF.AchievementData["11_02_05"] = {
     { -- Power of the Obelisks II
         61060,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
             {"Event", 1640},
         },
     },
@@ -4453,7 +4530,7 @@ KrowiAF.AchievementData["11_02_05"] = {
     { -- The Wardens
         61218,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
             {"Event", 1640},
         },
     },
@@ -4477,7 +4554,12 @@ KrowiAF.AchievementData["11_02_05"] = {
             {"Event", 1640},
         },
     },
-    {61406}, -- WoW's 21st Anniversary
+    { -- WoW's 21st Anniversary
+        61406,
+        {
+            {"Event", 1501},
+        },
+    },
     { -- The Unbound Tank
         61874,
         {
@@ -4501,6 +4583,410 @@ KrowiAF.AchievementData["11_02_05"] = {
         {
             RewardType = rewardType.Title,
             {"PvE Season", 15},
+        },
+    },
+};
+
+KrowiAF.AchievementData["11_02_07"] = {
+    {KrowiAF.SetAchievementPatch, 11, 2, 7},
+    {42192}, -- Snowball Fight!
+    { -- The Deathlord's Campaign
+        42270,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- The Slayer's Campaign
+        42271,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- The Archdruid's Campaign
+        42272,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- The Huntmaster's Campaign
+        42273,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- The Archmage's Campaign
+        42274,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- The Grandmaster's Campaign
+        42275,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- The Highlord's Campaign
+        42276,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- The High Priest's Campaign
+        42277,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- The Shadowblade's Campaign
+        42279,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- The Farseer's Campaign
+        42280,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- The Netherlord's Campaign
+        42281,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- The Battlelord's Campaign
+        42282,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Hidden Potential of the Deathlord
+        42287,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Hidden Potential of the Slayer
+        42288,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Hidden Potential of the Archdruid
+        42289,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Hidden Potential of the Huntmaster
+        42290,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Hidden Potential of the Archmage
+        42291,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Hidden Potential of the Grandmaster
+        42292,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Hidden Potential of the Highlord
+        42293,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Hidden Potential of the High Priest
+        42294,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Hidden Potential of the Shadowblade
+        42295,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Hidden Potential of the Farseer
+        42296,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Hidden Potential of the Netherlord
+        42297,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Hidden Potential of the Battlelord
+        42298,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    {42299}, -- Visions of a Shadowed Sun
+    {51753}, -- Azsuna Matata
+    { -- Legendary Research of the Ebon Blade
+        60962,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Legendary Research of the Illidari
+        60963,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Legendary Research of the Dreamgrove
+        60964,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Legendary Research of the Unseen Path
+        60965,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Legendary Research of the Tirisgarde
+        60966,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Legendary Research of Five Dawns
+        60967,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Legendary Research of the Silver Hand
+        60968,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Legendary Research of the Netherlight Conclave
+        60969,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Legendary Research of the Uncrowned
+        60970,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Legendary Research of the Maelstrom
+        60971,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Legendary Research of the Black Harvest
+        60972,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Legendary Research of the Valarjar
+        60973,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Raise an Army for Acherus
+        60981,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Raise an Army for the Fel Hammer
+        60982,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Raise an Army for the Dreamgrove
+        60983,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Raise an Army for the Trueshot Lodge
+        60984,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Raise an Army for the Hall of the Guardian
+        60985,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Raise an Army for the Temple of Five Dawns
+        60986,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Raise an Army for the Sanctum of Light
+        60987,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Raise an Army for the Netherlight Temple
+        60988,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Raise an Army for the Hall of Shadows
+        60989,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Raise an Army for the Maelstrom
+        60990,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Raise an Army for the Dreadscar Rift
+        60991,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Raise an Army for Skyhold
+        60992,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    {61211}, -- Welcome Home
+    {61308}, -- Score a Decor
+    {61309}, -- Amateur Antiquarian
+    {61310}, -- Casual Collector
+    {61311}, -- Ready to Remodel
+    {61312}, -- Center Stager
+    {61313}, -- Well-Travelled Collection
+    {61314}, -- Furniture Historian
+    {61315}, -- Array of Antiquities
+    {61316}, -- Custom Cabinets
+    {61317}, -- Domicile Designer
+    { -- Fully Furnished
+        61318,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
+    { -- Master of the Turbulent Timeways IV
+        61394,
+        {
+            RewardType = rewardType.Mount,
+        },
+    },
+    { -- The First Rule of Brawler's Guild
+        61413,
+        faction.Alliance,
+        61414,
+    },
+    { -- The First Rule of Brawler's Guild
+        61414,
+        faction.Horde,
+        61413,
+    },
+    {61419}, -- Brawler's Chilled
+    {61420}, -- Let Me Solo It
+    {61421}, -- A Prime Ordeal
+    {61422}, -- Audience Participation
+    {61423}, -- Featherweight Brawler
+    {61424}, -- Brawlzilla
+    {61425}, -- Hot Footed
+    {61426}, -- Bare Knuckle Brawl
+    { -- Brawl Star
+        61429,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
+    { -- Worldsoul-Searching
+        61451,
+        {
+            RewardType = {rewardType.Mount, rewardType.HousingDecor},
+        },
+    },
+    {61466}, -- The Best There Is
+    { -- Lorewalking: The Elves of Quel'thalas
+        61467,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Ready for Midnight
+        61498,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
+    {61516}, -- Radiant Singer
+    { -- Entering Battle
+        61683,
+        {
+            RewardType = rewardType.HousingDecor,
+            IsPvP = true,
+        },
+    },
+    { -- Progressing in Battle
+        61684,
+        {
+            RewardType = rewardType.HousingDecor,
+            IsPvP = true,
+        },
+    },
+    { -- Proficient in Battle
+        61685,
+        {
+            RewardType = rewardType.HousingDecor,
+            IsPvP = true,
+        },
+    },
+    { -- Expert in Battle
+        61686,
+        {
+            RewardType = rewardType.HousingDecor,
+            IsPvP = true,
+        },
+    },
+    { -- Champion in Battle
+        61687,
+        {
+            RewardType = rewardType.HousingDecor,
+            IsPvP = true,
+        },
+    },
+    { -- Master in Battle
+        61688,
+        {
+            RewardType = rewardType.HousingDecor,
+            IsPvP = true,
         },
     },
 };

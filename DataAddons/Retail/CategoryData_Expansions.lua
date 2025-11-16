@@ -517,6 +517,18 @@ local crossExpansion = { -- Cross-Expansion
             11176, -- Remember to Share
             12996, -- Toybox Tycoon
             15781, -- The Joy of Toy
+            61211, -- Welcome Home
+            61308, -- Score a Decor
+            61309, -- Amateur Antiquarian
+            61310, -- Casual Collector
+            61311, -- Ready to Remodel
+            61312, -- Center Stager
+            61313, -- Well-Travelled Collection
+            61314, -- Furniture Historian
+            61315, -- Array of Antiquities
+            61316, -- Custom Cabinets
+            61317, -- Domicile Designer
+            61318, -- Fully Furnished
         },
     },
     { -- Feats of Strength
@@ -7153,6 +7165,7 @@ local legion = { -- Legion
                 true,
                 {
                     10763, -- Azsuna Matata
+                    51753, -- Azsuna Matata
                 },
             },
             { -- Exploration
@@ -7913,48 +7926,116 @@ local legion = { -- Legion
     },
     { -- Class Hall
         429,
-        addon.L["Class Hall"],
+        addon.L["Class Halls"],
         {
-            10994, -- A Glorious Campaign
-            11135, -- A Heroic Campaign
-            11136, -- An Epic Campaign
-            10706, -- Training the Troops
-            11212, -- Raise an Army
-            11213, -- Lead a Legion
-            11214, -- Many Missions
-            11215, -- Quite a Few Missions
-            11216, -- So Many Missions
-            11217, -- Many Many Missions, Handle It!
-            11219, -- Need Backup
-            11220, -- Roster of Champions
-            11221, -- Champions Rise
-            11222, -- Champions of Power
-            11223, -- Legendary Research
+            addon.GetAchievmentName(11137),
+            {
+                10994, -- A Glorious Campaign
+                11135, -- A Heroic Campaign
+                11136, -- An Epic Campaign
+                42270, -- The Deathlord's Campaign
+                42271, -- The Slayer's Campaign
+                42272, -- The Archdruid's Campaign
+                42273, -- The Huntmaster's Campaign
+                42274, -- The Archmage's Campaign
+                42275, -- The Grandmaster's Campaign
+                42276, -- The Highlord's Campaign
+                42277, -- The High Priest's Campaign
+                42279, -- The Shadowblade's Campaign
+                42280, -- The Farseer's Campaign
+                42281, -- The Netherlord's Campaign
+                42282, -- The Battlelord's Campaign
+                11137, -- A Legendary Campaign
+            },
+        },
+        {
+            addon.GetAchievmentName(11212),
+            {
+                10706, -- Training the Troops
+                11212, -- Raise an Army
+                11213, -- Lead a Legion
+                60981, -- Raise an Army for Acherus
+                60982, -- Raise an Army for the Fel Hammer
+                60983, -- Raise an Army for the Dreamgrove
+                60984, -- Raise an Army for the Trueshot Lodge
+                60985, -- Raise an Army for the Hall of the Guardian
+                60986, -- Raise an Army for the Temple of Five Dawns
+                60987, -- Raise an Army for the Sanctum of Light
+                60988, -- Raise an Army for the Netherlight Temple
+                60989, -- Raise an Army for the Hall of Shadows
+                60990, -- Raise an Army for the Maelstrom
+                60991, -- Raise an Army for the Dreadscar Rift
+                60992, -- Raise an Army for Skyhold
+                11214, -- Many Missions
+                11215, -- Quite a Few Missions
+                11216, -- So Many Missions
+                11217, -- Many Many Missions, Handle It!
+                11218, -- There's a Boss In There
+                11219, -- Need Backup
+                11220, -- Roster of Champions
+                11221, -- Champions Rise
+                11222, -- Champions of Power
+            },
+        },
+        {
+            addon.GetAchievmentName(11223),
+            {
+                11223, -- Legendary Research
+                60962, -- Legendary Research of the Ebon Blade
+                60963, -- Legendary Research of the Illidari
+                60964, -- Legendary Research of the Dreamgrove
+                60965, -- Legendary Research of the Unseen Path
+                60966, -- Legendary Research of the Tirisgarde
+                60967, -- Legendary Research of Five Dawns
+                60968, -- Legendary Research of the Silver Hand
+                60969, -- Legendary Research of the Netherlight Conclave
+                60970, -- Legendary Research of the Uncrowned
+                60971, -- Legendary Research of the Maelstrom
+                60972, -- Legendary Research of the Black Harvest
+                60973, -- Legendary Research of the Valarjar
+                10852, -- Artifact or Artifiction
+                10853, -- Part of History
+            },
+        },
+        {
+            addon.GetAchievmentName(10460),
+            {
+                10746, -- Forged for Battle
+                10459, -- Improving on History
+                10743, -- The Prestige
+                10745, -- The Prestige
+                10460, -- Hidden Potential
+                42287, -- Hidden Potential of the Deathlord
+                42288, -- Hidden Potential of the Slayer
+                42289, -- Hidden Potential of the Archdruid
+                42290, -- Hidden Potential of the Huntmaster
+                42291, -- Hidden Potential of the Archmage
+                42292, -- Hidden Potential of the Grandmaster
+                42293, -- Hidden Potential of the Highlord
+                42294, -- Hidden Potential of the High Priest
+                42295, -- Hidden Potential of the Shadowblade
+                42296, -- Hidden Potential of the Farseer
+                42297, -- Hidden Potential of the Netherlord
+                42298, -- Hidden Potential of the Battlelord
+                10461, -- Fighting with Style: Classic
+                10747, -- Fighting with Style: Upgraded
+                10748, -- Fighting with Style: Valorous
+                11173, -- Fighting with Style: War-torn
+                10749, -- Fighting with Style: War-torn
+                10750, -- Fighting with Style: Hidden
+                11611, -- A Challenging Look
+                11612, -- Fighting with Style: Challenging
+            },
+        },
+        {
             11298, -- A Classy Outfit
-            10746, -- Forged for Battle
-            10459, -- Improving on History
-            10743, -- The Prestige
-            10745, -- The Prestige
-            10460, -- Hidden Potential
-            10461, -- Fighting with Style: Classic
-            10747, -- Fighting with Style: Upgraded
-            10748, -- Fighting with Style: Valorous
-            11173, -- Fighting with Style: War-torn
-            10749, -- Fighting with Style: War-torn
-            10750, -- Fighting with Style: Hidden
             11171, -- Arsenal of Power
-            11137, -- A Legendary Campaign
-            11611, -- A Challenging Look
-            11612, -- Fighting with Style: Challenging
             11144, -- Power Realized
             11772, -- Power Ascended
             11609, -- Power Unbound
             11610, -- Power Unleashed
-            10852, -- Artifact or Artifiction
-            10853, -- Part of History
             12071, -- Crucible's Promise
             12072, -- Now You're Cooking with Netherlight
-            11218, -- There's a Boss In There
         },
     },
     {
@@ -13082,6 +13163,23 @@ local theWarWithin = { -- The War Within
             41551, -- Family Battler of Undermine
         },
     },
+    { -- Brawler's Guild
+        addon.L["Brawler's Guild"],
+        {
+            61413, -- The First Rule of Brawler's Guild
+            61414, -- The First Rule of Brawler's Guild
+            61419, -- Brawler's Chilled
+            61420, -- Let Me Solo It
+            61421, -- A Prime Ordeal
+            61422, -- Audience Participation
+            61423, -- Featherweight Brawler
+            61424, -- Brawlzilla
+            61425, -- Hot Footed
+            61426, -- Bare Knuckle Brawl
+            61429, -- Brawl Star
+            61466, -- The Best There Is
+        },
+    },
     { -- Skyriding Races
         1606,
         addon.L["Skyriding Races"],
@@ -13213,10 +13311,14 @@ local theWarWithin = { -- The War Within
             42187, -- Lorewalking: Ethereal Wisdom
             42188, -- Lorewalking: Blade's Bane
             42189, -- Lorewalking: The Lich Kingdoms
+            61467, -- Lorewalking: The Elves of Quel'thalas
         },
     },
     {
         40231, -- The War Within Pathfinder
+        61451, -- Worldsoul-Searching
+        42299, -- Visions of a Shadowed Sun
+        61498, -- Ready for Midnight
     },
 };
 

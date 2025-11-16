@@ -576,7 +576,7 @@
         // },
         {
             "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
-            "target":"H:\\World of Warcraft\\_ptr_\\Interface\\AddOns\\Krowi_AchievementFilter",
+            "target":"H:\\World of Warcraft\\_xptr_\\Interface\\AddOns\\Krowi_AchievementFilter",
             "include":"**/*.{lua,toc,blp,tga,xml,md}",
             "exclude":"**/{.git,.github,.vscode,Changelogs,Descriptions}/**",
             "deleteTargetOnDeploy": true

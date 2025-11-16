@@ -679,7 +679,7 @@ KrowiAF.AchievementData["03_00_02"] = {
             {"Never"},
         },
     },
-    { -- Merciless Gladiator
+    { -- Merciless Gladiator: Season 2
         418,
         {
             RewardType = rewardType.Title,
@@ -687,7 +687,7 @@ KrowiAF.AchievementData["03_00_02"] = {
             {"PvP Season", 2},
         },
     },
-    { -- Vengeful Gladiator
+    { -- Vengeful Gladiator: Season 3
         419,
         {
             RewardType = rewardType.Title,
@@ -695,7 +695,7 @@ KrowiAF.AchievementData["03_00_02"] = {
             {"PvP Season", 3},
         },
     },
-    { -- Brutal Gladiator
+    { -- Brutal Gladiator: Season 4
         420,
         {
             RewardType = rewardType.Title,
@@ -4684,7 +4684,7 @@ KrowiAF.AchievementData["03_01_00"] = {
             RewardType = rewardType.Title,
         },
     },
-    { -- Deadly Gladiator
+    { -- Deadly Gladiator: Season 5
         3336,
         {
             IsPvP = true,
@@ -4701,7 +4701,7 @@ KrowiAF.AchievementData["03_01_00"] = {
         faction.Horde,
         3356,
     },
-    { -- Furious Gladiator
+    { -- Furious Gladiator: Season 6
         3436,
         {
             IsPvP = true,
@@ -4875,7 +4875,7 @@ KrowiAF.AchievementData["03_02_00"] = {
             {"PvP Season", 7},
         },
     },
-    { -- Relentless Gladiator
+    { -- Relentless Gladiator: Season 7
         3758,
         {
             IsPvP = true,
@@ -5251,7 +5251,7 @@ KrowiAF.AchievementData["03_03_00"] = {
             RewardType = rewardType.Title,
         },
     },
-    { -- Wrathful Gladiator
+    { -- Wrathful Gladiator: Season 8
         4599,
         {
             IsPvP = true,
@@ -5358,6 +5358,142 @@ KrowiAF.AchievementData["03_03_05"] = {
 
 KrowiAF.AchievementData["03_04_00"] = {
     {KrowiAF.SetAchievementPatch, 3, 4, 0},
+        { -- Infernal Gladiator: Season 1
+        15018,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 1},
+        },
+    },
+    { -- Gladiator: Season 1
+        15019,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 1},
+        },
+    },
+    { -- Duelist: Season 1
+        15020,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 1},
+        },
+    },
+    { -- Rival: Season 1
+        15021,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 1},
+        },
+    },
+    { -- Challenger: Season 1
+        15022,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 1},
+        },
+    },
+    { -- Gladiator: Season 2
+        15199,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 2},
+        },
+    },
+    { -- Gladiator: Season 4
+        15200,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 4},
+        },
+    },
+    { -- Duelist: Season 4
+        15201,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 4},
+        },
+    },
+    { -- Rival: Season 4
+        15202,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 4},
+        },
+    },
+    { -- Challenger: Season 4
+        15203,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 4},
+        },
+    },
+    { -- Gladiator: Season 3
+        15204,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 3},
+        },
+    },
+    { -- Duelist: Season 3
+        15205,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 3},
+        },
+    },
+    { -- Rival: Season 3
+        15206,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 3},
+        },
+    },
+    { -- Challenger: Season 3
+        15207,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 3},
+        },
+    },
+    { -- Duelist: Season 2
+        15208,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 2},
+        },
+    },
+    { -- Rival: Season 2
+        15209,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 2},
+        },
+    },
+    { -- Challenger: Season 2
+        15210,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 2},
+        },
+    },
     { -- Survivor of the Firelord (Season of Mastery)
         15330,
         {
@@ -5388,6 +5524,38 @@ KrowiAF.AchievementData["03_04_00"] = {
             {"Never"},
         },
     },
+    { -- Rival: Season 5
+        16313,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 5},
+        },
+    },
+    { -- Gladiator: Season 5
+        16314,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 5},
+        },
+    },
+    { -- Duelist: Season 5
+        16315,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 5},
+        },
+    },
+    { -- Challenger: Season 5
+        16316, -- 3.4.0
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 5},
+        },
+    },
     {16332}, -- The Perfect Pebble
     { -- Soul of Iron (Season of Mastery)
         16433,
@@ -5412,6 +5580,38 @@ KrowiAF.AchievementData["03_04_01"] = {
     {17301}, -- Defense Protocol Alpha: Utgarde Pinnacle
     {17302}, -- Defense Protocol Alpha: The Culling of Stratholme
     {17304}, -- Defense Protocol Alpha: Terminated
+    { -- Rival: Season 6
+        17415,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 6},
+        },
+    },
+    { -- Gladiator: Season 6
+        17416,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 6},
+        },
+    },
+    { -- Duelist: Season 6
+        17417,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 6},
+        },
+    },
+    { -- Challenger: Season 6
+        17418,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 6},
+        },
+    },
 };
 
 KrowiAF.AchievementData["03_04_02"] = {
@@ -5426,6 +5626,70 @@ KrowiAF.AchievementData["03_04_02"] = {
         17341,
         {
             {"Before", "Version", {3, 4, 3}},
+        },
+    },
+    { -- Rival: Season 7
+        18544,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 7},
+        },
+    },
+    { -- Gladiator: Season 7
+        18545,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 7},
+        },
+    },
+    { -- Duelist: Season 7
+        18546,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 7},
+        },
+    },
+    { -- Challenger: Season 7
+        18547,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 7},
+        },
+    },
+    { -- Rival: Season 8
+        18548,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 8},
+        },
+    },
+    { -- Duelist: Season 8
+        18549,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 8},
+        },
+    },
+    { -- Challenger: Season 8
+        18550,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 8},
+        },
+    },
+    { -- Gladiator: Season 8
+        18551,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 8},
         },
     },
     {18590}, -- Defense Protocol Beta: Utgarde Keep

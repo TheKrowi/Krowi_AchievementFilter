@@ -20,7 +20,8 @@ KrowiAF.Enum.RewardType = EnumUtil.MakeEnum(
     "TradersTender",
     "Transmog",
     "WarbandCampsite",
-    "RemixInfiniteKnowledge"
+    "RemixInfiniteKnowledge",
+    "HousingDecor"
 );
 
 KrowiAF.AchievementData = {};

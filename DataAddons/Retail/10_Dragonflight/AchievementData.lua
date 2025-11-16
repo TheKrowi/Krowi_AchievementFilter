@@ -1070,7 +1070,12 @@ KrowiAF.AchievementData["10_00_07"] = {
     {17526}, -- Treasures of the Forbidden Reach
     {17527}, -- Scavenger of the Forbidden Reach
     {17528}, -- Hoarder of the Forbidden Reach
-    {17529}, -- Forbidden Spoils
+    { -- Forbidden Spoils
+        17529,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     {17530}, -- Librarian of the Reach
     {17531}, -- X Marks the Spot
     {17532}, -- Scroll Hunter
@@ -1787,7 +1792,12 @@ KrowiAF.AchievementData["10_01_07"] = {
             {"Event", 324},
         },
     },
-    {17773}, -- A Blue Dawn
+    { -- A Blue Dawn
+        17773,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     {18250}, -- Ysergle The Dreamurk
     { -- A Round on the House
         18579,
@@ -2641,7 +2651,12 @@ KrowiAF.AchievementData["10_02_05"] = {
         },
     },
     {19685}, -- Tenured Archivist
-    {19719}, -- Reclamation of Gilneas
+    { -- Reclamation of Gilneas
+        19719,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     { -- Northrend Racing Completionist
         19721,
         {
@@ -2739,7 +2754,7 @@ KrowiAF.AchievementData["10_02_06"] = {
 	{ -- A World Awoken
 		19458,
 		{
-			RewardType = rewardType.Mount,
+			RewardType = {rewardType.Mount, rewardType.HousingDecor},
 		},
 	},
     {19463}, -- Dragon Quests
@@ -2863,7 +2878,12 @@ KrowiAF.AchievementData["10_02_06"] = {
             {"PvP Season", 37},
         },
     },
-    {19507}, -- Fringe Benefits
+    { -- Fringe Benefits
+        19507,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     { -- Elite: Dragonflight Season 4
         19509,
         {
@@ -3002,7 +3022,7 @@ KrowiAF.AchievementData["10_02_06"] = {
 	{ -- Back from the Beyond
 		20501,
 		{
-			RewardType = rewardType.Mount,
+			RewardType = {rewardType.Mount, rewardType.HousingDecor},
 		},
 	},
     { -- Plunder Wonder

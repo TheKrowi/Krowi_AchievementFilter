@@ -285,6 +285,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                     19130, -- Junior Racing Champion
                     20510, -- What Could it be?
                     20511, -- Gotta Punt em' All
+                    42192, -- Snowball Fight!
                 },
             },
             {
@@ -868,6 +869,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                     60811, -- Hidden Treasures: Val'sharah
                     42594, -- Tour Val'Sharah
                     42529, -- Humongris
+                    42659, -- Shar'thos
                     42619, -- Dreamweavers
                     42663, -- Looking for Group: Val'Sharah
                     42630, -- Val'Sharah
@@ -920,7 +922,6 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                     42564, -- Tour Suramar
                     42559, -- Ana-Mouz
                     42637, -- Na'zak the Fiend
-                    42659, -- Shar'thos
                     42628, -- The Nightfallen
                     42551, -- Looking for Group: Suramar
                     42605, -- Suramar
@@ -953,6 +954,19 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                     42627, -- Argussian Reach
                     42618, -- Looking for Group: Argus
                     42549, -- Argus
+                    42574, -- Matron Folnuna
+                    42616, -- Pit Lord Vilemus
+                    42581, -- Inquisitor Meto
+                    42604, -- Occularus
+                    42534, -- Sotanathor
+                    42538, -- Mistress Alluradel
+                    61077, -- Argus Invasion Point Bosses
+                    42693, -- Breaking the Legion I
+                    42694, -- Breaking the Legion II
+                    42695, -- Breaking the Legion III
+                    42696, -- Greater Invasion Points I
+                    42697, -- Greater Invasion Points II
+                    42698, -- Greater Invasion Points III
                 },
             },
             {
@@ -968,19 +982,6 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                 42673, -- Defending the Broken Isles I
                 42672, -- Defending the Broken Isles II
                 42675, -- Defending the Broken Isles III
-                42574, -- Matron Folnuna
-                42616, -- Pit Lord Vilemus
-                42581, -- Inquisitor Meto
-                42604, -- Occularus
-                42534, -- Sotanathor
-                42538, -- Mistress Alluradel
-                61077, -- Argus Invasion Point Bosses
-                42693, -- Breaking the Legion I
-                42694, -- Breaking the Legion II
-                42695, -- Breaking the Legion III
-                42696, -- Greater Invasion Points I
-                42697, -- Greater Invasion Points II
-                42698, -- Greater Invasion Points III
             },
         },
         { -- Heroic World Tier
@@ -1311,6 +1312,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                 19079, -- Master of the Turbulent Timeways
                 41056, -- Master of the Turbulent Timeways II
                 41779, -- Master of the Turbulent Timeways III
+                61394, -- Master of the Turbulent Timeways IV
             },
         },
         {
@@ -1727,6 +1729,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
             1637, -- Spirit of Competition
             2079, -- Tabard of the Protector
             2116, -- Tabard of the Argent Dawn
+            61516, -- Radiant Singer
         },
     },
 };
