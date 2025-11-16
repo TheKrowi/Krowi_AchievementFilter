@@ -3066,6 +3066,7 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- School of Hard Knocks
         1786,
         {
+            IsPvP = true,
             {"Event", 201},
         },
     },

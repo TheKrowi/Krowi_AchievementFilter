@@ -1741,12 +1741,14 @@ KrowiAF.AchievementData["04_03_00"] = {
     { -- Darkmoon Duelist
         6023,
         {
+            IsPvP = true,
             {"Event", 374},
         },
     },
     { -- Darkmoon Dominator
         6024,
         {
+            IsPvP = true,
             {"Event", 374},
         },
     },
@@ -1771,6 +1773,7 @@ KrowiAF.AchievementData["04_03_00"] = {
     { -- Darkmoon Defender
         6028,
         {
+            IsPvP = true,
             {"Event", 374},
         },
     },

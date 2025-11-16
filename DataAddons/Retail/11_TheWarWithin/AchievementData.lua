@@ -179,31 +179,79 @@ KrowiAF.AchievementData["11_00_00"] = {
     {20597}, -- The War Within
     {20598}, -- Hallowfall
     {40082}, -- Never Enough
-    {40083}, -- Tour of Duty: Isle of Dorn
-    {40084}, -- Tour of Duty: The Ringing Deeps
-    {40085}, -- Tour of Duty: Hallowfall
-    {40086}, -- Tour of Duty: Azj-Kahet
-    {40087}, -- Unbound Battle
+    { -- Tour of Duty: Isle of Dorn
+        40083,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Tour of Duty: The Ringing Deeps
+        40084,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Tour of Duty: Hallowfall
+        40085,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Tour of Duty: Azj-Kahet
+        40086,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Unbound Battle
+        40087,
+        {
+            IsPvP = true,
+        },
+    },
 	{ -- A Champion's Tour: The War Within
 		40088,
 		{
 			RewardType = rewardType.Pet,
+            IsPvP = true,
 		},
 	},
-    {40089}, -- Spoiled Goods
-    {40090}, -- Spoiled Goods
-    {40091}, -- Slightly Spoiled
-    {40095}, -- Sparking Battle
+    { -- Spoiled Goods
+        40089,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Spoiled Goods
+        40090,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Slightly Spoiled
+        40091,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Sparking Battle
+        40095,
+        {
+            IsPvP = true,
+        },
+    },
 	{ -- Sparking Battle
 		40096,
 		{
 			RewardType = rewardType.Toy,
+            IsPvP = true,
 		},
 	},
 	{ -- Ruffious's Bid
 		40097,
 		{
 			RewardType = rewardType.Mount,
+            IsPvP = true,
 		},
 	},
 	{ -- Immortal Spelunker
@@ -276,15 +324,51 @@ KrowiAF.AchievementData["11_00_00"] = {
         40210,
         {
             RewardType = rewardType.HousingDecor,
+            IsPvP = true,
         },
     },
-    {40211}, -- Deephaul Ravine Veteran
-    {40215}, -- Deephaul Ravine Shutout
-    {40216}, -- Deephaul Ravine Expedience
-    {40217}, -- Battleground Blitzer
-    {40219}, -- Battleground Blitzest
-    {40220}, -- Setting Records
-    {40221}, -- Battleground Blitz Master
+    { -- Deephaul Ravine Veteran
+        40211,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Deephaul Ravine Shutout
+        40215,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Deephaul Ravine Expedience
+        40216,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Battleground Blitzer
+        40217,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Battleground Blitzest
+        40219,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Setting Records
+        40220,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Battleground Blitz Master
+        40221,
+        {
+            IsPvP = true,
+        },
+    },
 	{ -- Echoes of Danger
 		40222,
 		{
@@ -623,11 +707,36 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40461}, -- Buddy System VI
     {40462}, -- Delve Deeper
     {40463}, -- Delve Deepest
-    {40464}, -- Bounty Master
-    {40465}, -- Unbound Bounty
-    {40466}, -- Unbound Glory
-    {40467}, -- Unbound Glory
-    {40468}, -- Unbound Glory
+    { -- Bounty Master
+        40464,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Unbound Bounty
+        40465,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Unbound Glory
+        40466,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Unbound Glory
+        40467,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Unbound Glory
+        40468,
+        {
+            IsPvP = true,
+        },
+    },
     {40469}, -- I'm Bringing Nerub-ack
     { -- Battle Mender: The War Within Season 1
         40472,
@@ -870,22 +979,49 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40601}, -- Heroic: The Dawnbreaker
     {40604}, -- Mythic: The Dawnbreaker
     {40606}, -- Flat Earthen
-    {40607}, -- Wandering in the Ravine
-    {40608}, -- Running in the Ravine
+    { -- Wandering in the Ravine
+        40607,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Running in the Ravine
+        40608,
+        {
+            IsPvP = true,
+        },
+    },
     { -- Sprinting in the Ravine
         40612,
         {
             RewardType = rewardType.HousingDecor,
+            IsPvP = true,
         },
     },
-    {40613}, -- Resilient Runner
+    { -- Resilient Runner
+        40613,
+        {
+            IsPvP = true,
+        },
+    },
     {40614}, -- Gobblin' with Glublurp
-    {40615}, -- Unexpected Arrival
-    {40616}, -- Unexpected Arrivals
+    { -- Unexpected Arrival
+        40615,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Unexpected Arrivals
+        40616,
+        {
+            IsPvP = true,
+        },
+    },
 	{ -- Deepholla
 		40617,
 		{
 			RewardType = rewardType.Title,
+            IsPvP = true,
 		},
 	},
     { -- Lost and Found
@@ -1919,7 +2055,12 @@ KrowiAF.AchievementData["11_01_00"] = {
             {"PvP Season", 39},
         },
     },
-    {41522}, -- Tour of Duty: Undermine
+    { -- Tour of Duty: Undermine
+        41522,
+        {
+            IsPvP = true,
+        },
+    },
     {41525}, -- Can You Please Spell "Gobanna?"
     { -- Breaking the Bank
         41529,
@@ -2599,7 +2740,12 @@ KrowiAF.AchievementData["11_02_00"] = {
     },
     -- {42114}, -- Broken Memories
     {42118}, -- Of Mice and Manaforges
-    {42131}, -- Tour of Duty: K'aresh
+    { -- Tour of Duty: K'aresh
+        42131,
+        {
+            IsPvP = true,
+        },
+    },
     {42149--[[ , Keystones will no longer deplete below level 12 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 12
     {42150--[[ , Keystones will no longer deplete below level 13 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 13
     {42151--[[ , Keystones will no longer deplete below level 14 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 14
