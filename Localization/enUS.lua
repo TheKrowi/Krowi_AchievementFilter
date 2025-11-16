@@ -7,7 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-10-01 21-40-53 ]] --
+-- [[ Exported at 2025-11-16 16-51-26 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -543,6 +543,7 @@ L["Holidays"] = true
 L["Horizontal position"] = true
 L["Horrific Visions Revisited"] = true
 L["Hour of Twilight"] = true
+L["Housing Decor"] = true
 L["Icon Left click"] = "to open the Achievement window."
 L["Icon Right click"] = "for Options."
 L["ID"] = true
@@ -1043,6 +1044,7 @@ L["The Vakthros Ascent"] = true
 L["The Waking Shore"] = true
 L["The Wanderer: Next"] = true
 L["The War Within (pre-patch)"] = true
+L["The Warning"] = true
 L["Theater Troupe"] = true
 L["This achievement"] = true
 L["This achievement can't be earned by this character."] = true
@@ -1163,5 +1165,3 @@ L["Zaqali Ruin Investigation: Soon"] = true
 L["Zaqali Ruin Investigation: Starting Soon"] = true
 L["Zones"] = true
 L["Zuldazar"] = true
-L["Housing Decor"] = true
-L["The Warning"] = true

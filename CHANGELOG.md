@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 - WoW's 21st Anniversary event
 - 11.2.7 achievements
 - Housing Decor filter
+- Updated localizations
 
 ### Changed
 - Moved some Legion Remix Argus achievements previously in the main Zones category to Argus

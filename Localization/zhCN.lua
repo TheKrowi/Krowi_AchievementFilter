@@ -8,7 +8,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-06-18 15-02-57 ]] --
+-- [[ Exported at 2025-11-16 16-52-41 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -48,8 +48,8 @@ L["Achievements width offset Desc"] = [=[在默认基础上增加或减少成就
 (1)仅在调整数值时可能出现掉帧和卡顿，不影响正常游戏]=]
 L["Active"] = "激活"
 L["Active Event Login Delay"] = "激活事件登录延迟"
-L["Active events"] = "激活事件"
 L["Active Events"] = "激活事件"
+L["Active events"] = "激活事件"
 L["Add addon name to world map icon"] = "图标添加插件名称"
 L["Add addon name to world map icon Desc"] = "鼠标悬停时在图标底部显示'{addonName}'"
 L["Add Locale"] = "添加本地域名"
@@ -139,8 +139,8 @@ L["Categories width offset Desc"] = [=[在默认基础上增加或减少类别�
 (1)仅在调整数值时可能出现掉帧和卡顿，不影响正常游戏]=]
 L["Category shown temporarily"] = "该类别由点击{eventName}事件提醒时选中。当前过滤器设置下无可用成就，仅为临时显示"
 L["Caverns Criss-Cross"] = "交错洞窟"
-L["Center header"] = "页眉居中"
 L["Center Header"] = "页眉居中"
+L["Center header"] = "页眉居中"
 L["Center header Desc"] = "成就界面的页眉保持居中"
 L["Center Header Desc"] = "居中成就按钮的成就名称"
 L["Central Circuit"] = "中央赛道"
@@ -157,7 +157,6 @@ L["Characters"] = "角色"
 L["Chat messages"] = "聊天信息"
 L["Checked"] = "开启"
 L["Children's Week"] = "儿童周"
-L["Class Hall"] = "职业大厅"
 L["Clear all"] = "全部清除"
 L["Clear all Desc"] = "清除所有已关注成就"
 L["Clear search field on Right Click"] = "右键清除搜索框"
@@ -194,8 +193,8 @@ L["Completion"] = "获得"
 L["Copy Account Wide to Character"] = "复制账号范围至角色"
 L["Copy Account Wide to Character Desc"] = "复制账号范围{watchList}列表（所有角色关注的成就）至当前角色的独立{watchList}列表，该角色将开始使用独立{watchList}列表"
 L["Covenant"] = "盟约"
-L["Covenant assaults"] = "盟约突袭"
 L["Covenant Assaults"] = "盟约突袭"
+L["Covenant assaults"] = "盟约突袭"
 L["Credits"] = "致谢"
 L["Criteria"] = "成就要求"
 L["Criteria Behaviour"] = "条件文本处理"
@@ -552,8 +551,8 @@ L["Ignore Filters"] = "忽略过滤器"
 L["Ignore Filters Desc"] = "忽略所有过滤器，在{category}中显示所有成就"
 L["Imbu"] = "伊姆布"
 L["Import"] = "导入"
-L["in"] = "在"
 L["In"] = "在"
+L["in"] = "在"
 L["In instances"] = "副本中"
 L["Include"] = "显示"
 L["Include all"] = "全部清除"
@@ -721,7 +720,7 @@ L["Open"] = "打开"
 L["Order"] = "排序"
 L["Other"] = "其他"
 L["Other faction"] = "其他阵营"
-L["Other locations"] = "其他地点"
+L["Other locations"] = "其他定位"
 L["Other wings"] = "其他"
 L["Outland Cup"] = "外域杯"
 L["Overflow"] = "溢出"
@@ -783,7 +782,7 @@ L["Related Tab"] = "关联标签"
 L["Related Tab Desc"] = "为{wowheadLink}添加一个额外标识符，将跳转至网页对应的标签而非默认页面"
 L["Remember frame position"] = "记住{frame}位置"
 L["Remember frame position Desc"] = "记住{frame}位置，保留{frame}的最后位置至下次登录"
-L["Remix Bronze"] = "幻境新生青铜"
+L["Remix Bronze"] = "幻境新生青铜宝盒"
 L["Remix Infinite Knowledge"] = "幻境新生永恒知识"
 L["Remove from Watch List"] = "取消关注"
 L["Required for"] = "所属成就"
@@ -1047,7 +1046,7 @@ L["The War Within (pre-patch)"] = "地心之战（前夕）"
 L["Theater Troupe"] = "剧场巡演"
 L["This achievement"] = "该成就"
 L["This achievement can't be earned by this character."] = "该成就无法由当前角色获得"
-L["This achievement is no longer obtainable"] = "该成 : 已绝版"
+L["This achievement is no longer obtainable"] = "该成就: 已绝版"
 L["This category has no achievements"] = "该类别没有成就"
 L["This character's class has no transmog set that meet the requirements."] = "当前职业无对应的套装外观"
 L["Thundering Pandaren Spirit"] = "熊猫人雷霆之灵"
@@ -1142,7 +1141,7 @@ L["World Map Button Desc"] = [=[悬停:
 点击: 
 |T:1:8|t- 打开成就界面并跳转至{selectedZone}类别]=]
 L["Worldsoul Memory"] = "世界之魂的回忆"
-L["WoW Remix: Mists of Pandaria"] = "潘达利亚幻境"
+L["WoW Remix: Mists of Pandaria"] = "幻境新生：潘达利亚"
 L["Wowhead"] = true
 L["Wowhead Link"] = "Wowhead链接"
 L["WoWInterface"] = true
