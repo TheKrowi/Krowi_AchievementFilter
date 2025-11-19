@@ -9,7 +9,7 @@ end
 local function GetCriteriumText(achievement, criterium)
     local exists = addon.Util.IsTable(achievement) and select(16, addon.GetAchievementInfo(achievement.Id));
     if exists then
-        return addon.GetAchievementCriteriaInfo(achievement.Id, criterium.CriteriaIndex);
+        return GetAchievementCriteriaInfo(achievement.Id, criterium.CriteriaIndex);
     end
     return "* Placeholder for " .. achievement.Id .. " and " .. criterium.CriteriaIndex .. " * ";
 end

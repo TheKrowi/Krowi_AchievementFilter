@@ -125,7 +125,7 @@ function VerifySavedCharacterData()
 end
 
 function VerifyTheWarWithinAchievementsData()
-    if not addon.Util.IsTheWarWithin or not KrowiAF_Achievements then
+    if not addon.Util.IsMainline or not KrowiAF_Achievements then
         diagnostics.Debug("Nothing to varify for The War Within's Achievements Data");
         return;
     end

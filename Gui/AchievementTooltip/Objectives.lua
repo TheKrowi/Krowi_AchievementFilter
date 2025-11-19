@@ -14,7 +14,7 @@ function section:CheckAdd(achievement)
 	if achievement.IsCompleted and not addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.ShowWhenAchievementCompleted then
 		return;
 	end
-	numCriteria = addon.GetAchievementNumCriteria(achievement.Id);
+	numCriteria = GetAchievementNumCriteria(achievement.Id);
 	return numCriteria > 0;
 end
 

@@ -11,7 +11,7 @@ function menuItem:AddCritExtLinkFull(achievementID, criteriaNum, externalLink)
     local exists = select(16, addon.GetAchievementInfo(achievementID));
     local criteriaString;
     if exists then
-        criteriaString = addon.GetAchievementCriteriaInfo(achievementID, criteriaNum);
+        criteriaString = GetAchievementCriteriaInfo(achievementID, criteriaNum);
     else
         criteriaString = "* Placeholder for " .. achievementID .. " and " .. criteriaNum .. " * ";
     end

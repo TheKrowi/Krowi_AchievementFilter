@@ -14,7 +14,7 @@ local function CreateMenu(self, menu, event)
 	end
 end
 
-if addon.Util.IsTheWarWithin then
+if addon.Util.IsMainline then
 	function eventReminderMenu:Open(caller, event, anchor, offsetX, offsetY, point, relativePoint, frameStrata, frameLevel)
 		MenuUtil.CreateContextMenu(caller, function(owner, menu)
 			menu:SetTag("RIGHT_CLICK_MENU_EVENT_REMINDER");

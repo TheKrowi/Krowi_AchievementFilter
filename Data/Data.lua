@@ -40,6 +40,14 @@ function data:RegisterAchievementDataTasks()
     end
 end
 
+function data:RegisterCustomCriteriaDataTasks()
+    local name = "Custom Criteria Data: ";
+    for k, v in next, KrowiAF.CustomCriteriaData do
+        self.InjectLoadingDebug(v, name .. k);
+        tinsert(self.TasksGroups, 1, v);
+    end
+end
+
 function data:RegisterCategoryDataTasks()
     local name = "Category Data: ";
     self.InjectLoadingDebug({KrowiAF.CreateCategories}, name .. 1);
@@ -119,6 +127,7 @@ function data:LoadOnPlayerLogin()
     KrowiAF.CreateBuildVersions();
 
     self:RegisterAchievementDataTasks();
+    self:RegisterCustomCriteriaDataTasks();
     self:RegisterCategoryDataTasks();
     self:RegisterEventDataTasks();
     self.ExportedUiMaps.RegisterTasks(self.Maps, self.Achievements);

@@ -536,7 +536,9 @@
         "CollectionsJournal_GetTab",
         "KrowiAF_Collections_AchievementFrame",
         "EventRegistry",
-        "HEIRLOOMS_PROGRESS_FORMAT"
+        "HEIRLOOMS_PROGRESS_FORMAT",
+        "GetClassInfo",
+        "C_Reputation"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
@@ -569,18 +571,18 @@
         // },
         // {
         //     "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
-        //     "target":"H:\\World of Warcraft\\_classic_ptr_\\Interface\\AddOns\\Krowi_AchievementFilter",
+        //     "target":"H:\\World of Warcraft\\_beta_\\Interface\\AddOns\\Krowi_AchievementFilter",
         //     "include":"**/*.{lua,toc,blp,tga,xml,md}",
         //     "exclude":"**/{.git,.github,.vscode,Changelogs,Descriptions}/**",
         //     "deleteTargetOnDeploy": true
         // },
-        {
-            "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
-            "target":"H:\\World of Warcraft\\_xptr_\\Interface\\AddOns\\Krowi_AchievementFilter",
-            "include":"**/*.{lua,toc,blp,tga,xml,md}",
-            "exclude":"**/{.git,.github,.vscode,Changelogs,Descriptions}/**",
-            "deleteTargetOnDeploy": true
-        },
+        // {
+        //     "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
+        //     "target":"H:\\World of Warcraft\\_xptr_\\Interface\\AddOns\\Krowi_AchievementFilter",
+        //     "include":"**/*.{lua,toc,blp,tga,xml,md}",
+        //     "exclude":"**/{.git,.github,.vscode,Changelogs,Descriptions}/**",
+        //     "deleteTargetOnDeploy": true
+        // },
     ],
     "fsdeploy.deployWorkspaceOnSave": true,
 }

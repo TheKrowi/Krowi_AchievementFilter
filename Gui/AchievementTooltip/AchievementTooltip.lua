@@ -53,7 +53,7 @@ local function GetCriteriaElements(achievementData, criteriaIndex)
 	if type(achievementData) == "table" then
 		criteriaString, completed, quantity, reqQuantity, hasValueProgress = unpack(achievementData[criteriaIndex]);
 	else
-		criteriaString, _, completed, quantity, reqQuantity, _, _, _, _, _, _, hasValueProgress = addon.GetAchievementCriteriaInfo(achievementData, criteriaIndex);
+		criteriaString, _, completed, quantity, reqQuantity, _, _, _, _, _, _, _, _, hasValueProgress = GetAchievementCriteriaInfo(achievementData, criteriaIndex);
 	end
 	return criteriaString, completed, quantity, reqQuantity, hasValueProgress;
 end

@@ -11,7 +11,7 @@ function section:CheckAdd(achievement)
 	if not addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.Show or state == "Past" then
 		return;
 	end
-	numCriteria = addon.GetAchievementNumCriteria(achievement.Id);
+	numCriteria = GetAchievementNumCriteria(achievement.Id);
 	return numCriteria > 0;
 end
 
@@ -49,7 +49,7 @@ local function GetAchievementData(guid, achievementId)
 	local achievementNumCriteria = GetAchievementNumCriteria(achievementId);
 	local details = {};
 	for i = 1, achievementNumCriteria do
-		local criteriaString, _, completed, quantity, reqQuantity, _, _, _, _, _, _, hasValueProgress = addon.GetAchievementCriteriaInfo(achievementId, i);
+		local criteriaString, _, completed, quantity, reqQuantity, _, _, _, _, _, _, _, _, hasValueProgress = GetAchievementCriteriaInfo(achievementId, i);
 		local progress = achievementProgress[i];
 		if type(progress) == "boolean" and progress then
 			completed = true;
