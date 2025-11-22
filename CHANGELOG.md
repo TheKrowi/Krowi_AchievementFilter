@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 89.0 - 2025-11-16
+### Changed
+- Backend custom criteria management
+- Custom criteria can now be provided via the API
+
 ## 88.0 - 2025-11-16
 ### Added
 - WoW's 21st Anniversary event

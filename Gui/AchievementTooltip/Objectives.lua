@@ -20,5 +20,5 @@ end
 
 function section:Add(achievement)
 	GameTooltip:AddLine(addon.L["Objectives progress"]);
-	addon.Gui.AchievementTooltip:AddCriteria(achievement.Id, numCriteria);
+	addon.Gui.AchievementTooltip:AddCriteria(achievement.Id, achievement.Id, numCriteria);
 end

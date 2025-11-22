@@ -49,7 +49,7 @@ local function GetAchievementData(guid, achievementId)
 	local achievementNumCriteria = GetAchievementNumCriteria(achievementId);
 	local details = {};
 	for i = 1, achievementNumCriteria do
-		local criteriaString, _, completed, quantity, reqQuantity, _, _, _, _, _, _, _, _, hasValueProgress = GetAchievementCriteriaInfo(achievementId, i);
+		local criteriaString, _, completed, quantity, reqQuantity = GetAchievementCriteriaInfo(achievementId, i);
 		local progress = achievementProgress[i];
 		if type(progress) == "boolean" and progress then
 			completed = true;
@@ -58,7 +58,7 @@ local function GetAchievementData(guid, achievementId)
 			completed = progress >= reqQuantity;
 			quantity = progress;
 		end
-		tinsert(details, {criteriaString, completed, quantity, reqQuantity, hasValueProgress});
+		tinsert(details, {criteriaString, completed, quantity, reqQuantity});
 	end
 	return details;
 end
@@ -152,5 +152,5 @@ function section:Add(achievement)
 
 	local names = GetNames(characters, achievement);
 	GameTooltip:AddLine(names);
-	addon.Gui.AchievementTooltip:AddCriteria(achievementData, numCriteria);
+	addon.Gui.AchievementTooltip:AddCriteria(achievement.Id, achievementData, numCriteria);
 end

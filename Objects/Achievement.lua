@@ -249,6 +249,10 @@ function achievement:SetCustomCriteria(customCriteria)
         if criteriaIndex == nil then
             return numCriteria;
         elseif criteriaIndex >= 1 and criteriaIndex <= numCriteria then
+            if customCriteria.ReturnFunc then
+                return customCriteria.ReturnFunc(criteriaIndex);
+            end
+
             local quantity = customCriteria.QuantityFunc();
             local reqQuantity = customCriteria.ReqQuantity;
             return

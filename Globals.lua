@@ -315,8 +315,8 @@ end
 local function HandleNotCompletedAchievement(characterGuid, achievementInfo, numCriteria)
     addon.Data.SavedData.AchievementData.SetNotEarnedBy(characterGuid, achievementInfo);
     for i = 1, numCriteria do
-        local _, _, criteriaIsCompleted, quantity, _, _, _, _, _, _, _, _, _, hasValueProgress = GetAchievementCriteriaInfo(achievementInfo.Id, i);
-        addon.Data.SavedData.AchievementData.SetCriteriaProgress(characterGuid, achievementInfo, i, hasValueProgress and quantity or criteriaIsCompleted);
+        local _, _, criteriaIsCompleted, quantity, reqQuantity = GetAchievementCriteriaInfo(achievementInfo.Id, i);
+        addon.Data.SavedData.AchievementData.SetCriteriaProgress(characterGuid, achievementInfo, i, reqQuantity > 1 and quantity or criteriaIsCompleted);
     end
 end
 
@@ -510,40 +510,6 @@ function addon.OverwriteFunctions()
         origAchievementFrame_SelectAchievement(id);
     end
 end
-
-local function GetAchievementCriteriaInfoInternal(achievementId, criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible, duration, elapsed)
-    local hasValueProgress = (quantity ~= nil and reqQuantity ~= nil and not (quantity == 0 and (reqQuantity == 0 or reqQuantity == 1))) or achievementId == 17335;
-    return criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible, duration, elapsed, hasValueProgress;
-end
-
-local origGetAchievementCriteriaInfo = GetAchievementCriteriaInfo;
-GetAchievementCriteriaInfo = function(achievementId, criteriaIndex, countHidden)
-    if type(addon.Data.CustomCriteria[achievementId]) == "function" then
-        return GetAchievementCriteriaInfoInternal(achievementId, addon.Data.CustomCriteria[achievementId](criteriaIndex));
-    elseif addon.Data.Achievements[achievementId] and addon.Data.Achievements[achievementId].GetCustomCriteria then
-        return GetAchievementCriteriaInfoInternal(achievementId, addon.Data.Achievements[achievementId].GetCustomCriteria(criteriaIndex));
-    end
-    return GetAchievementCriteriaInfoInternal(achievementId, origGetAchievementCriteriaInfo(achievementId, criteriaIndex, countHidden));
-end
-KrowiAF_origGetAchievementCriteriaInfo = origGetAchievementCriteriaInfo;
-
-local origGetAchievementCriteriaInfoById = GetAchievementCriteriaInfoByID;
-GetAchievementCriteriaInfoByID = function(achievementId, criteriaId)
-    return GetAchievementCriteriaInfoInternal(achievementId, origGetAchievementCriteriaInfoById(achievementId, criteriaId));
-end
-KrowiAF_origGetAchievementCriteriaInfoById = origGetAchievementCriteriaInfoById;
-
-local origGetAchievementNumCriteria = GetAchievementNumCriteria;
-GetAchievementNumCriteria = function(achievementId)
-    if type(addon.Data.CustomCriteria[achievementId]) == "function" then
-        return addon.Data.CustomCriteria[achievementId]();
-    elseif addon.Data.Achievements[achievementId] and addon.Data.Achievements[achievementId].GetCustomCriteria then
-        return addon.Data.Achievements[achievementId].GetCustomCriteria();
-    else
-        return origGetAchievementNumCriteria(achievementId);
-    end
-end
-KrowiAF_origGetAchievementNumCriteria = origGetAchievementNumCriteria;
 
 function addon.LoadBlizzardApiChanges()
     -- Bunch of API changes in 10.1.5

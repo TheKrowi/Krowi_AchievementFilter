@@ -1,7 +1,6 @@
 <Ui>
     <Script file="Data.lua" />
     <Script file="TemporaryObtainable.lua" />
-    <Script file="CustomCriteria.lua" />
     <Script file="CustomWidgetEventTimers.lua" />
     <Script file="CustomWorldEventTimers.lua" />
     <Script file="EventData.lua" />

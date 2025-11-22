@@ -111,6 +111,8 @@ local function PostLoadOnPlayerLogin(self, start)
             addon.Gui:RefreshViewAfterPlayerLogin();
         end
 
+        KrowiAF.ReloadTrackedAchievements();
+
         addon.Diagnostics.Trace("On Player Login: Finished loading data in " .. floor(debugprofilestop() - start + 0.5) .. " ms");
     end
 
