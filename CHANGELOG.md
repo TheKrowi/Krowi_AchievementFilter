@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 89.1 - 2025-12-01
+### Changed
+- Updated Credits
+
 ## 89.0 - 2025-11-16
 ### Changed
 - Backend custom criteria management

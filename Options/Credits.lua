@@ -13,7 +13,7 @@ function credits.RegisterOptionsTable()
 end
 
 function credits.PostLoad()
-    local specialThanks = addon.Credits.GetSpecialThanksAsTable();
+    local specialThanks = addon.Util.Credits.GetSpecialThanksAsTable();
     for i, specialTnx in next, specialThanks do
         addon.InjectOptions:AddTable("Credits.args.SpecialThanks.args", "Name" .. i, {
             order = OrderPP(), type = "description", width = "full",
@@ -22,7 +22,7 @@ function credits.PostLoad()
         });
     end
 
-    local donations = addon.Credits.GetDonationsAsTable();
+    local donations = addon.Util.Credits.GetDonationsAsTable();
     for i, donation in next, donations do
         addon.InjectOptions:AddTable("Credits.args.Donations.args", "Name" .. i, {
             order = OrderPP(), type = "description", width = "full",
@@ -31,7 +31,7 @@ function credits.PostLoad()
         });
     end
 
-    local localizations = addon.Credits.GetLocalizationsAsTable();
+    local localizations = addon.Util.Credits.GetLocalizationsAsTable();
     for i, localization in next, localizations do
         addon.InjectOptions:AddTable("Credits.args.Localizations.args", "Name" .. i, {
             order = OrderPP(), type = "description", width = "full",

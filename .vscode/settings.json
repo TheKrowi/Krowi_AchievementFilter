@@ -538,7 +538,8 @@
         "EventRegistry",
         "HEIRLOOMS_PROGRESS_FORMAT",
         "GetClassInfo",
-        "C_Reputation"
+        "C_Reputation",
+        "RunNextFrame"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
