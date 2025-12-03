@@ -561,6 +561,9 @@ function addon.HookFunctions()
         hooksecurefunc("AchievementFrame_SetComparisonTabs", function()
             addon.Gui:ShowHideTabs();
         end);
+        hooksecurefunc("AchievementFrame_SetRestrictedMode", function(frame, subFrame)
+            addon.Gui:ShowHideTabs();
+        end);
     end
 
     AchievementFrameFilterDropdown:HookScript("OnShow", function()

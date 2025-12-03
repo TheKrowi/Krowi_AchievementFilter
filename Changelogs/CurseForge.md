@@ -1,25 +1,13 @@
-<p><h3>Added</h3></p>
-<ul>
-<li>Missing season 2 and 3 transmog sets</li>
-<li>Legion Remix achievements and event</li>
-</ul>
 <p><h3>Changed</h3></p>
 <ul>
-<li>Transfered some Shadowlands and Dragonflight map data into the new system</li>
+<li>Backend custom criteria management</li>
+<li>Custom criteria can now be provided via the API</li>
 </ul>
-<p><h3>Added (87.1)</h3></p>
+<p><h3>Changed (89.1)</h3></p>
 <ul>
-<li>Missing dungeon achievements</li>
+<li>Updated Credits</li>
 </ul>
-<p><h3>Changed (87.1)</h3></p>
+<p><h3>Fixed (89.2)</h3></p>
 <ul>
-<li>Legion Remix achievements now have the event linked</li>
-</ul>
-<p><h3>Fixed (87.1)</h3></p>
-<ul>
-<li>Zygor Guides Viewer plugin</li>
-</ul>
-<p><h3>Fixed (87.2)</h3></p>
-<ul>
-<li>Links in the pop up window should once again be full length</li>
+<li>Hidden tabs should no longer be shown</li>
 </ul>

@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 89.2 - 2025-12-03
+### Fixed
+- Hidden tabs should no longer be shown
+
 ## 89.1 - 2025-12-01
 ### Changed
 - Updated Credits
