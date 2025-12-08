@@ -61,7 +61,7 @@ Achievement Filter completely replaces the default Achievements tab and adds sev
 - A ***data manager*** to manipulate your saved variables.
 - An open API for other developers to add additional categories with achievements.
 
-More features are planned in the future and can be requested via the issues system or discord.
+More features can be requested via the issues system or discord.
 
 Feel free to join discord and say hi: [https://discord.gg/mdBFQJYeQZ](https://discord.gg/mdBFQJYeQZ).
 
