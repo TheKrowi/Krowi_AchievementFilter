@@ -7,3 +7,6 @@
 
 ### Fixed (89.2)
 - Hidden tabs should no longer be shown
+
+### Changed (89.3)
+- Packaging

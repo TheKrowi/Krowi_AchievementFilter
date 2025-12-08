@@ -20,7 +20,7 @@ local function AddCriteriumChildren(menu, children)
             menu,
             child.Text,
             function()
-                LibStub("Krowi_PopopDialog-1.0").ShowExternalLink(child.Link);
+                LibStub("Krowi_PopupDialog-1.0").ShowExternalLink(child.Link);
             end
         );
     end
@@ -31,7 +31,7 @@ local function AddCriterium(menu, achievement, criterium)
     local criteriumFunc;
     if criterium.Link then
         criteriumFunc = function()
-            LibStub("Krowi_PopopDialog-1.0").ShowExternalLink(criterium.Link);
+            LibStub("Krowi_PopupDialog-1.0").ShowExternalLink(criterium.Link);
         end
     end
     local criteriumLink = addon.MenuUtil:CreateButton(
@@ -65,7 +65,7 @@ function AddData(menu, achievement, linkText)
     local petBattleLinkFunc;
     if petBattleLinkData.Link then
         petBattleLinkFunc = function()
-            LibStub("Krowi_PopopDialog-1.0").ShowExternalLink(petBattleLinkData.Link);
+            LibStub("Krowi_PopupDialog-1.0").ShowExternalLink(petBattleLinkData.Link);
         end
     end
     local petBattleLink = addon.MenuUtil:CreateButton(
