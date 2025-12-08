@@ -41,7 +41,7 @@ local function AddTooltipLine(tooltip, tooltipLine)
         if tooltipLine.CriteriaIndex > GetAchievementNumCriteria(tooltipLine.AchievementId) then
             return;
         end
-        criteriaString, _, criteriaIsCompleted = addon.GetAchievementCriteriaInfo(tooltipLine.AchievementId, tooltipLine.CriteriaIndex);
+        criteriaString, _, criteriaIsCompleted = GetAchievementCriteriaInfo(tooltipLine.AchievementId, tooltipLine.CriteriaIndex);
     else
         criteriaString = achievementName;
         criteriaIsCompleted = achievementIsCompleted;

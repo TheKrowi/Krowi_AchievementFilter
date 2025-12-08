@@ -8,7 +8,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-10-05 23-14-36 ]] --
+-- [[ Exported at 2025-11-16 16-51-59 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -152,7 +152,6 @@ L["Characters"] = "Charaktere"
 L["Chat messages"] = "Chat-Mitteilungen"
 L["Checked"] = "Aktivert"
 L["Children's Week"] = "Kinderwoche"
-L["Class Hall"] = "Ordenshalle"
 L["Clear all"] = "Alle löschen"
 L["Clear all Desc"] = "Löschen Sie alle Erfolge von der Beobachtungsliste."
 L["Clear search field on Right Click"] = "Lösche das Such-Feld durch Rechts-Klick."

@@ -353,6 +353,13 @@ local function SwitchAchievementTabs()
     end
 end
 
+local function SafeSwitchAchievementTabs()
+    local success, err = pcall(SwitchAchievementTabs);
+    if not success then
+        print("Error switching achievement tabs: " .. err);
+    end
+end
+
 local needsCleanup = true;
 function gui:TabsOrderGetActiveKeys()
     if not needsCleanup then
@@ -364,7 +371,7 @@ function gui:TabsOrderGetActiveKeys()
     KrowiAF_SavedData.FirstTimeSetUp = KrowiAF_SavedData.FirstTimeSetUp or {};
 
     if not KrowiAF_SavedData.FirstTimeSetUp.AchievementTabsSwitched then
-        SwitchAchievementTabs()
+        SafeSwitchAchievementTabs();
         KrowiAF_SavedData.FirstTimeSetUp.AchievementTabsSwitched = true;
     end
 

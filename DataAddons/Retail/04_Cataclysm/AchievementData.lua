@@ -106,7 +106,12 @@ KrowiAF.AchievementData["04_00_03"] = {
     },
     {4857}, -- Journeyman Archaeologist
     {4858}, -- Seven Scepters
-    {4859}, -- Kings Under the Mountain
+    { -- Kings Under the Mountain
+        4859,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     {4863}, -- Explore Hyjal
     {4864}, -- Explore Deepholm
     {4865}, -- Explore Uldum
@@ -486,6 +491,7 @@ KrowiAF.AchievementData["04_00_03"] = {
     { -- Master of Twin Peaks
         5223,
         {
+            RewardType = rewardType.HousingDecor,
             IsPvP = true,
         },
     },
@@ -528,6 +534,7 @@ KrowiAF.AchievementData["04_00_03"] = {
     { -- Battle for Gilneas Victory
         5245,
         {
+            RewardType = rewardType.HousingDecor,
             IsPvP = true,
         },
     },
@@ -1199,7 +1206,12 @@ KrowiAF.AchievementData["04_00_03"] = {
         5417,
         true,
     },
-    {5442}, -- Full Caravan
+    { -- Full Caravan
+        5442,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     {5443}, -- E'ko Madness
     {5444}, -- Ready, Set, Goat!
     {5445}, -- Fungalophobia
@@ -1729,12 +1741,14 @@ KrowiAF.AchievementData["04_03_00"] = {
     { -- Darkmoon Duelist
         6023,
         {
+            IsPvP = true,
             {"Event", 374},
         },
     },
     { -- Darkmoon Dominator
         6024,
         {
+            IsPvP = true,
             {"Event", 374},
         },
     },
@@ -1759,6 +1773,7 @@ KrowiAF.AchievementData["04_03_00"] = {
     { -- Darkmoon Defender
         6028,
         {
+            IsPvP = true,
             {"Event", 374},
         },
     },

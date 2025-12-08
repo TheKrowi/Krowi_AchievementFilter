@@ -7,7 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-10-01 21-40-53 ]] --
+-- [[ Exported at 2025-12-04 18-59-35 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -156,7 +156,7 @@ L["Characters"] = true
 L["Chat messages"] = true
 L["Checked"] = true
 L["Children's Week"] = true
-L["Class Hall"] = true
+L["Class Halls"] = true
 L["Clear all"] = true
 L["Clear all Desc"] = "Clear all watched achievements."
 L["Clear search field on Right Click"] = true
@@ -507,6 +507,7 @@ L["Fyrakk Assaults"] = true
 L["Garden Gallivant"] = true
 L["Garrisons Update"] = true
 L["Gathering"] = true
+L["Ghosts of K'aresh"] = true
 L["Gifts"] = true
 L["Gladiator's Sanctum"] = true
 L["Glory"] = true
@@ -543,6 +544,7 @@ L["Holidays"] = true
 L["Horizontal position"] = true
 L["Horrific Visions Revisited"] = true
 L["Hour of Twilight"] = true
+L["Housing Decor"] = true
 L["Icon Left click"] = "to open the Achievement window."
 L["Icon Right click"] = "for Options."
 L["ID"] = true
@@ -578,6 +580,7 @@ L["Left Ctrl"] = true
 L["Left Shift"] = true
 L["Legacy of Arathor"] = true
 L["Legion Assaults"] = true
+L["Legion Remix"] = true
 L["Legion: Remix"] = true
 L["Level 80"] = true
 L["Level 85"] = true
@@ -1043,6 +1046,7 @@ L["The Vakthros Ascent"] = true
 L["The Waking Shore"] = true
 L["The Wanderer: Next"] = true
 L["The War Within (pre-patch)"] = true
+L["The Warning"] = true
 L["Theater Troupe"] = true
 L["This achievement"] = true
 L["This achievement can't be earned by this character."] = true

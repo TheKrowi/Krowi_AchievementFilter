@@ -138,10 +138,13 @@ function KrowiAF_Collections_AchievementFrameMixin:OnLoad()
         button:Show();
     end
 
-    PanelTemplates_SetNumTabs(self, #addon.TabsOrder);
-	PanelTemplates_SetTab(self, 1);
-
     KrowiAF_Collections_CategoriesFrameMixin:Load(self);
+
+    PanelTemplates_SetNumTabs(self, #addon.TabsOrder);
+
+    RunNextFrame(function()
+	    PanelTemplates_SetTab(self, 1);
+    end);
 end
 
 function KrowiAF_Collections_AchievementFrameMixin:OnEvent(event)
@@ -149,7 +152,7 @@ function KrowiAF_Collections_AchievementFrameMixin:OnEvent(event)
 end
 
 function KrowiAF_Collections_AchievementFrameMixin:OnShow()
-    CollectionsJournal:SetPortraitToAsset(addon.Metadata.Icon);
+    -- CollectionsJournal:SetPortraitToAsset(addon.Metadata.Icon);
     -- self:UpdateProgressBar();
 end
 

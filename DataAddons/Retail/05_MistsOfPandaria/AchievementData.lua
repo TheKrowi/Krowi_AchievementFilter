@@ -989,6 +989,7 @@ KrowiAF.AchievementData["05_00_04"] = {
     { -- Master of Temple of Kotmogu
         6981,
         {
+            RewardType = rewardType.HousingDecor,
             IsPvP = true,
         },
     },
@@ -1999,7 +2000,12 @@ KrowiAF.AchievementData["05_03_00"] = {
         faction.Horde,
         8314,
     },
-    {8316}, -- Blood in the Snow
+    { -- Blood in the Snow
+        8316,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     {8317}, -- Dark Heart of Pandaria
     {8318}, -- Heroic: Dark Heart of Pandaria
     {8319}, -- Accelerated Archaeology

@@ -8,7 +8,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-06-18 15-02-46 ]] --
+-- [[ Exported at 2025-11-16 16-52-31 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -47,6 +47,8 @@ Cette valeur peut être modifiée pendant que la fenêtre des Hauts faits est ou
 
 Les FPS chutent pendant l'ajustement de la valeur, mais PAS pendant l'utilisation normale de l'addon.]=]
 L["Active"] = "Actif"
+L["Active Event Login Delay"] = "Délai de connexion pour les événements en cours"
+L["Active Events"] = "Événements en cours"
 L["Active events"] = "Évènements en cours"
 L["Add addon name to world map icon"] = "Ajouter le nom de l'addon à l'icône de la carte du monde"
 L["Add addon name to world map icon Desc"] = "Ajoute '{addonName}' en bas de l'infobulle quand la souris passe sur l'icône."
@@ -57,6 +59,7 @@ L["Add to Watch List"] = "Ajouter à {watchList}"
 L["Added in version"] = "Le Haut-fait à été ajouté la version"
 L["Adjustable Categories"] = "Catégories ajustables"
 L["Aki the Chosen"] = "Aki l'Elue"
+L["Allied Race"] = "Race alliée"
 L["Alt"] = true
 L["Always Show Completed"] = "Toujours afficher les hauts faits terminés"
 L["Always show realm"] = "Toujours afficher le royaume"
@@ -96,6 +99,7 @@ L["Blizzard"] = true
 L["BlizzCon"] = true
 L["Brackenhide Hollow"] = "Tempête élémentaire : Creux des Fougerobes"
 L["Brawler's Guild"] = "Les bastonneurs"
+L["Breaknecking Races"] = "Courses effrénées"
 L["Brewfest"] = "Fête des Brasseurs"
 L["Broken Isles Cup"] = "Coupe des îles Brisées"
 L["Build"] = "Version"
@@ -136,19 +140,24 @@ Les FPS chutent pendant l'ajustement de la valeur non PAS pendant l'utilisation 
 {reloadRequired}]=]
 L["Category shown temporarily"] = "Cette catégorie a été sélectionnée en cliquant sur le rappel d'événement {eventName} et est affichée temporairement car elle ne contient aucun haut fait correspondant aux filtres définis."
 L["Caverns Criss-Cross"] = "Réseau des grottes"
-L["Center header"] = "En-tête centré"
 L["Center Header"] = "En-tête centré"
+L["Center header"] = "En-tête centré"
 L["Center header Desc"] = "Gardez l'en-tête centré sur la fenêtre des Hauts-faits."
 L["Center Header Desc"] = "Centre le nom du Haut-fait sur le bouton du Haut-fait."
 L["Central Circuit"] = "Circuit Central"
 L["Chains of Domination"] = "Chaînes de domination"
 L["Character / Account wide"] = "Personnage et compte"
 L["Character only"] = "Personnage uniquement"
+L["Character Specific"] = "Spécifique au personnage"
+L["Character Specific Desc"] = [=[La {watchList} dispose toujours d’un suivi des hauts faits observés à l’échelle du compte, accessible depuis tous les personnages. Lorsqu’elle est désactivée, ce suivi global est utilisé.
+
+Lors de son activation pour une utilisation spécifique au personnage, tous les personnages partageant le même profil passeront en mode spécifique.
+
+Lors de sa désactivation, la {watchList} du compte sera de nouveau utilisée et la {watchList} propre au personnage sera supprimée.]=]
 L["Characters"] = "Personnages"
 L["Chat messages"] = "Message écrit"
 L["Checked"] = "Coché"
 L["Children's Week"] = "Semaine des enfants"
-L["Class Hall"] = "Domaine de classe"
 L["Clear all"] = "Tout effacer"
 L["Clear all Desc"] = "Efface tous les Hauts-fait de la liste surveillée."
 L["Clear search field on Right Click"] = "Effacer le champ de recherche avec le clic droit"
@@ -181,9 +190,11 @@ Les Hauts faits compacts peuvent être activés à partir des options (actuellem
 L["Compact Desc"] = [=[Utiliser une version plus compacte avec une seule ligne d'affichage de l'heure.
 {reloadRequired}]=]
 L["Completion"] = "Terminé"
+L["Copy Account Wide to Character"] = "Copier les données du compte vers le personnage"
+L["Copy Account Wide to Character Desc"] = "Copier la {watchList} globale du compte (tout haut fait suivi par n'importe quel personnage) vers la {watchList} spécifique du personnage actuel. À partir de maintenant, ce personnage aura sa propre {watchList}."
 L["Covenant"] = "Congrégation"
-L["Covenant assaults"] = "Assauts des congregations"
 L["Covenant Assaults"] = "Assauts de congrégations"
+L["Covenant assaults"] = "Assauts des congregations"
 L["Credits"] = "Crédits"
 L["Criteria"] = "Critères"
 L["Criteria Behaviour"] = "Comportement des critères."
@@ -204,6 +215,7 @@ L["CurseForge Desc"] = "Ouvre une fenêtre avec un lien vers la page {addonName}
 L["Custom"] = "Personnalisation"
 L["Dark Heart"] = "Cœur obscur"
 L["Darkmoon Faire"] = "Foire de Sombrelune"
+L["Dastardly Duos"] = "Duos infâmes"
 L["Data Manager"] = "Gestionnaire de données"
 L["Date and Time format"] = "Format de la date et de l'heure"
 L["Date and Time formatting guide"] = "Guide de formatage de la date et de l'heure"
@@ -291,8 +303,12 @@ L["Enable"] = "Activé"
 L["Enable debug info"] = "Activer les informations de débogage"
 L["Enable debug info Desc"] = "Activer ou désactiver les informations de débogage"
 L["Enable Desc"] = "Active ou désactive le plugin. Si le plugin est désactivé ici MAIS que l'addon est actif, des choses imprévisibles peuvent se produire."
+L["Enable Tab Priority"] = "Activer la priorité des onglets"
+L["Enable Tab Priority Desc"] = "Activez la fonctionnalité priorité des onglets."
 L["Enable trace info"] = "Activer les informations de suivi"
 L["Enable trace info Desc"] = "Activer ou désactiver les informations de suivi"
+L["Enable Upcoming Calendar Events"] = "Activer les événements à venir du calendrier"
+L["Enable Upcoming Calendar Events Desc"] = "Lorsqu’il est désactivé, le module {upcomingCalendarEvents} est désactivé."
 L["End Time"] = "Heure de fin"
 L["Enhanced filtering and sorting"] = "Filtre et tri avancés"
 L["Enhanced filtering and sorting Desc"] = [=[Les fonctions suivantes ont été ajoutées au filtrage et au tri des Hauts-faits.
@@ -403,6 +419,7 @@ Types d'événements :
 
 (1) Voir {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {eventReminders} pour les options.]=]
 L["Event Reminders"] = "Rappels d'événements"
+L["Event Reminders Enable Desc"] = "Lorsqu’il est désactivé, le module complet {eventReminders} est désactivé."
 L["Events"] = "Évènements"
 L["Exclude"] = "Masquer"
 L["Exclude Excluded achievements"] = "Exclure les Hauts faits masqué"
@@ -434,7 +451,12 @@ Catégories spéciales :
 L["Export"] = "Exporter"
 L["Export Criteria"] = "Exporter les critères"
 L["Export Criteria Desc"] = "Exporte les critères du haut fait vers les variables enregistrées. Cela est utilisé pour ajouter du nouveau contenu."
+L["Export Missing Achievements"] = "Exporter les hauts faits manquants"
+L["Export Missing Achievements Desc"] = "Exporte les hauts faits manquants. Il s’agit d’une fonctionnalité de débogage et ne devrait pas être utilisée."
+L["Export Removed Achievements"] = "Exporter les hauts faits supprimés"
+L["Export Removed Achievements Desc"] = "Exporter les hauts faits supprimés. Il s'agit d'une fonctionnalité de débogage et elle ne doit pas être utilisée."
 L["Faction Assaults"] = "Assauts de faction"
+L["Faction Icon Transparency"] = "Transparence de l’icône de faction"
 L["Fade delay"] = "Délai de fondu"
 L["Fade delay Desc"] = "Temps en secondes pour que la pop-ups d'évènements disparaisse. Un clic droit dessus la fermera immédiatement."
 L["Fall of the Lich King"] = "La chute du roi liche"
@@ -467,6 +489,7 @@ L["Force two columns"] = "Forcer deux colonnes."
 L["Force two columns Desc"] = "Activer ou désactiver l'algorithme pour forcer l'affichage en deux colonnes des objectifs des réalisations. Lorsque cette option est activée, si seulement une colonne d'objectifs devait être affichée en raison de la longueur du texte d'un ou plusieurs objectifs, une deuxième colonne sera forcée en fonction des autres paramètres."
 L["Force two columns threshold"] = "Limite pour forcer deux colonnes."
 L["Force two columns threshold Desc"] = "Le nombre de critères que la réalisation doit avoir avant de forcer l'affichage en deux colonnes si normalement un seul serait affiché."
+L["Forget Me Not: Next"] = "Ne m’oublie pas : Suivant"
 L["Format"] = true
 L["Fracture Chambers"] = "hambres aux Fractures"
 L["Fractures in Time"] = "Fractures temporelles"
@@ -503,6 +526,7 @@ L["Grow direction Desc"] = "La direction dans laquelle les nouveaux rappels sero
 L["Guardians of the Dream"] = "Gardiens du Rêve"
 L["Guides"] = "Guide"
 L["Hallow's End"] = "Sansaint"
+L["Has Reward"] = " Donne une récompense"
 L["Header"] = "En-tête"
 L["Header tooltip"] = "En-tête de l'infobulle"
 L["Hearthstone"] = true
@@ -515,6 +539,7 @@ L["Hide Not Earned By if current character earned the achievement Desc"] = "Masq
 L["Highmountain"] = "Haut-Roc"
 L["Holidays"] = "Fêtes saisonnières"
 L["Horizontal position"] = "Position horizontale"
+L["Horrific Visions Revisited"] = "Visions horrifiques revisitées"
 L["Hour of Twilight"] = "L’Heure du Crépuscule"
 L["Icon Left click"] = "pour ouvrir la fenêtre des hauts faits"
 L["Icon Right click"] = "pour les options."
@@ -524,6 +549,7 @@ L["Ignore Filters"] = "Ignorer les filtres"
 L["Ignore Filters Desc"] = "Ignorer tous les filtres et afficher tous les hauts faits dans la catégorie {category}"
 L["Imbu"] = "Tempête élémentaire : Imbou"
 L["Import"] = "Importer"
+L["In"] = "Dans"
 L["in"] = "dans"
 L["In instances"] = "Dans les instances"
 L["Include"] = "Inclure"
@@ -548,6 +574,7 @@ L["Left Alt"] = "Alt gauche"
 L["Left click"] = "Clic gauche"
 L["Left Ctrl"] = "Ctrl gauche"
 L["Left Shift"] = "Shitft gauche"
+L["Legacy of Arathor"] = "Héritage d’Arathor"
 L["Legion Assaults"] = "Assauts de la Légion"
 L["Level 80"] = "Niveau 80"
 L["Level 85"] = "Niveau 85"
@@ -565,6 +592,7 @@ L["Lock month"] = "Verrouiller le mois"
 L["Lock month Desc"] = "Garder le dernier mois affiché comme mois à afficher lorsque le calendrier est rouvert après avoir été fermé."
 L["Lock month when closed by achievement"] = "Verrouiller le mois lorsqu'il est fermé par un Haut fait"
 L["Lock month when closed by achievement Desc"] = "Garder le dernier mois affiché comme mois à afficher lorsque le calendrier est rouvert après avoir été fermé en cliquant sur une réalisation sur le côté."
+L["Lorewalking"] = "Campagne des chroniques"
 L["Love is in the Air"] = "De l'amour dans l'air"
 L["Lucky Yi"] = "Yi la Chance"
 L["Lunar Festival"] = "Fête lunaire"
@@ -631,6 +659,7 @@ L["Next"] = "Suivant"
 L["Next from startDate until endDate"] = "Prochainement du {startDate} au {endDate}"
 L["Next occurrence unknown"] = "Prochaine occurrence inconnue"
 L["Night Fae Assault"] = "L'assaut des Faë nocturnes"
+L["Nightfall"] = "Noctechute"
 L["Nitun"] = true
 L["No achievements are available with the current set of filters"] = "Aucune Haut fait n'est disponible avec l'ensemble de filtres actuel"
 L["No category selected"] = "Aucune catégorie sélectionnée"
@@ -643,6 +672,7 @@ L["NONC"] = true
 L["None"] = "Aucun"
 L["No-No"] = true
 L["Northrend Cup"] = "Coupe de Norfendre"
+L["Not Categorized"] = "Non catégorisé"
 L["Not Earned By"] = "Non réalisé par"
 L["Not earned by:"] = "Non obtenu par :"
 L["Not loaded"] = "Non chargé"
@@ -652,6 +682,7 @@ L["Number of Earned By characters"] = "Nombre de personnages ayant accompli le h
 L["Number of Earned By characters Desc"] = [=[Le nombre de personnages ayant obtenu le haut fait sera affiché.
 
  Si vous définissez ce paramètre sur 0, cette fonctionnalité sera désactivée.]=]
+L["Number of lines"] = "Nombre de lignes"
 L["Number of Most progress characters"] = "Nombre de personnages ayant le plus de progression"
 L["Number of Most progress characters Desc"] = [=[Le nombre de personnages qui seront affichés et qui ont une progression sur le Haut-fait.
 Le paramétrer à 0 désactivera cette fonctionnalité. ]=]
@@ -663,6 +694,7 @@ L["Number of search previews"] = "Nombre d'aperçus de recherche"
 L["Number of search previews Desc"] = "Le nombre de haut fait qui seront prévisualisés dans la liste pendant la recherche"
 L["Number of summary achievements"] = "Nombre de Hauts faits récapitulatifs"
 L["Number of summary achievements Desc"] = "Nombre de Hauts faits qui seront affichés dans la vue récapitulative de chaque onglet."
+L["Number of Temporarily obtainable lines Desc"] = "Le nombre de lignes qui seront affichées pour les hauts faits {temporarilyObtainable}, si plusieurs moments ont permis de les obtenir."
 L["N'Zoth (Uldum)"] = true
 L["N'Zoth (Vale of Eternal Blossoms)"] = "N'Zoth (Val de l'Éternel Printemps)"
 L["N'Zoth Assaults"] = "Assauts de N'Zoth"
@@ -708,6 +740,11 @@ L["Pre-Patch Event"] = "Évènement du Pré-Patch"
 L["Presets"] = "Préconfigurations"
 L["Primal Storms"] = "Tempêtes primordiales"
 L["Primalist Tomorrow"] = "Tempête élémentaire : L’avenir des Primalistes"
+L["Print map info"] = "Afficher les infos de la carte"
+L["Print map info Desc"] = "Afficher l’identifiant de la carte dans le chat"
+L["Print map info w/o reload"] = "Afficher les infos de la carte sans rechargement"
+L["Print map info w/o reload Desc"] = "L’imprimer directement sans avoir à recharger"
+L["PvE Season"] = "Saison JcE"
 L["PvP"] = "Joueur contre Joueur"
 L["PvP Season"] = "Saison JcJ"
 L["Quick Search"] = "Recherche rapide"
@@ -868,6 +905,12 @@ L["Show Other faction"] = "Afficher les autres factions"
 L["Show Other faction Desc"] = [=[Affiche ou masque {otherFaction}.
 
 Si cette option est activée, le haut fait de l'autre faction sera affiché dans l'infobulle si disponible. Cela peut expliquer plus clairement pourquoi votre nouveau personnage de la Horde a certains hauts faits si vous n'avez joué que l'Alliance auparavant.]=]
+L["Show Other Faction Warband as Completed"] = "Afficher les haut faits de bataillons de l’autre faction comme terminées"
+L["Show Other Faction Warband as Completed Desc"] = [=[Certaines réussites sont spécifiques à une faction et liées au bataillon. Ces réussites peuvent apparaître comme accomplies sur un personnage d’une faction, mais non accomplies sur un personnage de l’autre faction.}
+
+{Lorsque cette option est cochée, les réussites liées au bataillon apparaîtront comme accomplies sur un personnage de l’autre faction si ce personnage a accompli la réussite dans l’autre faction.}
+
+{Un exemple est la nécessité de {hordeIntro} et {allianceIntro} pour {warStories}, où {hordeIntro} n’apparaît comme accompli que sur les personnages de la Horde et {allianceIntro} uniquement sur ceux de l’Alliance.]=]
 L["Show Part of a chain"] = "Afficher {partOfAChain}"
 L["Show Part of a chain Desc"] = [=[Afficher / masquer {partOfAChain}.
 
@@ -902,6 +945,9 @@ Si cette option est activée, les hauts faits seront placés dans leurs sous-cat
 L["Show Temporarily obtainable"] = "Afficher {temporarilyObtainable}"
 L["Show Temporarily obtainable Desc"] = [=[Affiche ou masque {temporarilyObtainable}.
 Lorsque l'option est coché et que le Haut-fait est {temporarilyObtainable}, cette information sera visible dans l'infobulle.]=]
+L["Show Temporarily obtainable Icon"] = "Afficher l’icône {tempObt}"
+L["Show Temporarily obtainable Icon Desc"] = "Afficher / masquer une icône supplémentaire sur le haut fait lorsqu’il est uniquement {tempObt}."
+L["Show Warband Icon"] = "Afficher l’icône du bataillon"
 L["Show world map icon"] = "Afficher l'icône de la carte du monde"
 L["Show world map icon Desc"] = "Afficher ou masquer l'icône de la carte du monde"
 L["Side Button Anchor"] = "Ancre d'affichage des alertes d'évènements"
@@ -911,9 +957,11 @@ L["Siege of Orgrimmar"] = "Siège d'Orgrimmar"
 L["Siege on Dragonbane Keep"] = "Fléau-des-Dragons"
 L["Siege on Dragonbane Keep: Active"] = "Fléau-des-Dragons : En cours"
 L["Siege on Dragonbane Keep: Gathering"] = "Fléau-des-Dragons : Bientôt"
+L["Siren Isle"] = "Île aux sirènes"
 L["Skitterer Xi'a"] = "Glisseur Xi'a"
 L["Skoldus Hall"] = "Salle de Skoldus"
 L["Skyriding Races"] = "Course de Vol dynamique"
+L["Skyrocketing Races"] = "Courses à réaction"
 L["Slagmire"] = "Tempête élémentaire : Slagmire"
 L["Snowstorms"] = "Tempêtes de neige"
 L["Soon"] = "Bientôt"
@@ -948,8 +996,10 @@ L["Superbloom: Active"] = "Superfloraison : En cours"
 L["Superbloom: Next"] = "Superfloraison : Prochaine"
 L["Tab"] = "Onglet"
 L["tab"] = "onglet"
+L["Tab Priority"] = "Priorité des onglets"
 L["Tabs"] = "Onglets"
 L["Ta's Pet Collection"] = "Collection de mascottes"
+L["Teleport"] = "Téléportation"
 L["Temporarily obtainable"] = "Temporairement obtenable"
 L["temporarily obtainable"] = "temporairement obtenable"
 L["Temporarily Obtainable Text"] = "{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}"
@@ -961,15 +1011,19 @@ L["The Azure Span Sprint"] = "Sprint de la travée d’Azur"
 L["The Big Dig: Active"] = "La grande fouille : En cours"
 L["The Big Dig: Next"] = "La grande fouille : Prochaine"
 L["The Big Dig: Soon"] = "La grande fouille : Bientôt"
+L["The Cruelty of Dornic: Next"] = "La cruauté de Dornic : Suivant"
 L["The Entitled"] = "Titres pour"
 L["the event name with run time"] = "L'évènement \"{eventName}\" se déroule du {startDate} jusqu'au {endDate}"
 L["The Flowing Forest Flight"] = "Vol de la forêt Ondoyante"
 L["The Iron Tide"] = "La Vague de Fer"
+L["The Rivals: Next"] = "Les rivaux : Suivant"
 L["The Shattering"] = "L'Effondrement"
+L["The Thraegar's Descent: Next"] = "La descente de Thraegar : Suivant"
 L["The Thunder King"] = "Le Roi-Tonnerre"
 L["The Tomb of Sargeras"] = "La tombe de Sargeras"
 L["The Vakthros Ascent"] = "Ascension du Vakthros"
 L["The Waking Shore"] = "Les Rivages de l'Éveil"
+L["The Wanderer: Next"] = "Le vagabond : Suivant"
 L["The War Within (pre-patch)"] = "The War Within (Pre-patch)"
 L["Theater Troupe"] = "Troupe de théâtre"
 L["This achievement"] = "Ce Haut fait"
@@ -1006,6 +1060,7 @@ L["Track achievement browsing history Desc"] = [=[Lorsque activé, affiche les b
 Cela permet de naviguer dans votre historique de consultation des Hauts faits sélectionnés, tout comme votre navigateur internet le fait pour les sites visités.]=]
 L["Tracking"] = "Suivi"
 L["Tracking Achievements"] = "Suivi des Hauts faits"
+L["Trader's Tender"] = "Deniers"
 L["Trading Post"] = "Le Comptoir"
 L["Transmog Sets"] = "Ensembles de transmogrification"
 L["Truncate"] = "Tronquer"
@@ -1016,9 +1071,14 @@ L["Tyrhold"] = "Tempête élémentaire : Bastion de Tyr"
 L["Uktulut Coaster"] = "Circuit d'Uktulut"
 L["Uncategorized"] = "Sans catégorie"
 L["Unchecked"] = "Non coché"
+L["Undermine(d)"] = "Terremine(r)"
 L["until the end of"] = "Jusqu'à la fin de"
 L["Up"] = "Haut"
 L["up until the start of"] = "jusqu'au début de"
+L["Upcoming"] = "À venir"
+L["Upcoming Calendar Event Days"] = "Jours des événements à venir du calendrier"
+L["Upcoming Calendar Event Login Delay"] = "Délai de connexion pour les événements du calendrier à venir"
+L["Upcoming Calendar Events"] = "Événements à venir du calendrier"
 L["Upper Reaches"] = "Étages supérieurs"
 L["Val'sharah"] = true
 L["Vendor"] = "Marchands"
@@ -1031,6 +1091,9 @@ L["Wago"] = true
 L["Wago Desc"] = "Ouvre une fenêtre avec un lien vers la page {addonName} {wago}."
 L["Waking Shores"] = "Rivages de l’Éveil"
 L["Waking Shores: Next"] = "Rivage de l'éveil : Prochaine"
+L["Warband Achievement"] = "Haut fait de bataillon"
+L["Warband Campsite"] = "Campement de bataillon"
+L["Warband Header Color"] = "Couleur d’en-tête du bataillon"
 L["Warcraft III: Reforged"] = true
 L["Warcraft Rumble"] = true
 L["was"] = "était"

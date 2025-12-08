@@ -242,3 +242,33 @@ function achievement:SetTemporaryObtainable(startInclusion, startFunction, start
         return;
     end
 end
+
+function achievement:SetCustomCriteria(customCriteria)
+    self.GetCustomCriteria = function(criteriaIndex)
+        local numCriteria = customCriteria.NumCriteria or KrowiAF_origGetAchievementNumCriteria(self.Id);
+        if criteriaIndex == nil then
+            return numCriteria;
+        elseif criteriaIndex >= 1 and criteriaIndex <= numCriteria then
+            if customCriteria.ReturnFunc then
+                return customCriteria.ReturnFunc(criteriaIndex);
+            end
+
+            local quantity = customCriteria.QuantityFunc();
+            local reqQuantity = customCriteria.ReqQuantity;
+            return
+            "", -- criteriaString
+            nil, -- criteriaType
+            customCriteria.CompletedFunc and customCriteria.CompletedFunc() or quantity >= reqQuantity, -- completed
+            quantity, -- quantity
+            reqQuantity, -- reqQuantity
+            nil, -- charName
+            0x00000001, -- flags
+            0, -- assetId
+            quantity .. " / " .. reqQuantity, -- quantityString
+            0, -- criteriaId
+            true, -- eligible
+            nil, -- duration
+            nil; -- elapsed
+        end
+    end;
+end

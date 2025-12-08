@@ -103,7 +103,7 @@ local function SetExtraIconRemix(self, achievement)
 
 	local remixRecord;
 	for _, record in next, achievement.TemporaryObtainable do
-		if record.Start and record.Start.Function == "Event" and (record.Start.Value == "1514" or  record.Start.Value == "1640") then
+		if record.Start and record.Start.Function == "Event" and (record.Start.Value == 1514 or  record.Start.Value == 1640) then
 			remixRecord = record;
 		end
 	end

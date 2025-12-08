@@ -1608,7 +1608,7 @@ local criteriaOptions = {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
                     name = addon.L["Show Criteria"],
                     desc = function() return addon.L["Show Criteria Desc"]:K_ReplaceVars{
-                        criteria = (addon.GetAchievementCriteriaInfo(1206, 1)),
+                        criteria = (GetAchievementCriteriaInfo(1206, 1)),
                         achievement = addon.GetAchievmentName(1206)
                     }:KAF_AddDefaultValueText("Tooltip.Criteria.Show"); end,
                     get = function() return addon.Options.db.profile.Tooltip.Criteria.Show; end,

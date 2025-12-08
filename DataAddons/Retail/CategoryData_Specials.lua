@@ -1504,15 +1504,15 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                     15050, -- Keystone Hero: Theater of Pain
                     40966, -- Keystone Hero: Operation: Mechagon - Workshop
                     40965, -- Keystone Hero: The MOTHERLODE!!
-                    42139, -- The Enterprising Tank
-                    42141, -- The Enterprising Healer
-                    42144, -- The Enterprising Damage Dealer
-                    42148, -- The Enterprising Dungeon Master
                     40949, -- The War Within Keystone Explorer: Season Two
                     40950, -- The War Within Keystone Conqueror: Season Two
                     41533, -- The War Within Keystone Master: Season Two
                     40952, -- The War Within Keystone Hero: Season Two
                     40951, -- The War Within Keystone Legend: Season Two
+                    42139, -- The Enterprising Tank
+                    42141, -- The Enterprising Healer
+                    42144, -- The Enterprising Damage Dealer
+                    42148, -- The Enterprising Dungeon Master
                     40954, -- Enterprising Hero: The War Within Season Two
                 },
             },
@@ -1537,6 +1537,10 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                     41973, -- The War Within Keystone Master: Season Three
                     42171, -- The War Within Keystone Hero: Season Three
                     42172, -- The War Within Keystone Legend: Season Three
+                    61874, -- The Unbound Tank
+                    61875, -- The Unbound Healer
+                    61876, -- The Unbound Damage Dealer
+                    61877, -- The Unbound Dungeon Master
                     42174, -- Unbound Hero: The War Within Season Three
                 },
             },

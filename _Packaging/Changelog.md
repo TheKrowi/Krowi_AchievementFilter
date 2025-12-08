@@ -1,6 +1,55 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 89.3 - 2025-12-03
+### Changed
+- Packaging
+
+## 89.2 - 2025-12-03
+### Fixed
+- Hidden tabs should no longer be shown
+
+## 89.1 - 2025-12-01
+### Changed
+- Updated Credits
+
+## 89.0 - 2025-11-16
+### Changed
+- Backend custom criteria management
+- Custom criteria can now be provided via the API
+
+## 88.0 - 2025-11-16
+### Added
+- WoW's 21st Anniversary event
+- 11.2.7 achievements
+- Housing Decor filter
+- Updated localizations
+
+### Changed
+- Moved some Legion Remix Argus achievements previously in the main Zones category to Argus
+
+### Fixed
+- School of Hard Knocks is now flagged as a pvp achievement
+- Moved Shar'thos from Legion Remix Surumar to Val'sharah
+- Potential load fix for first time users
+
+### Mists Classic
+- Added a bunch of missing pvp achievements
+
+## 87.2 - 2025-11-03
+### Fixed
+- Links in the pop up window should once again be full length
+
+## 87.1 - 2025-11-02
+### Added
+- Missing dungeon achievements
+
+### Changed
+- Legion Remix achievements now have the event linked
+
+### Fixed
+- Zygor Guides Viewer plugin
+
 ## 87.0 - 2025-10-05
 ### Added
 - Missing season 2 and 3 transmog sets

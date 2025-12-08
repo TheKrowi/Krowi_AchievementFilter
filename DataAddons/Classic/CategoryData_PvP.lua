@@ -392,34 +392,145 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
         1199,
         addon.GetCategoryInfoTitle(14865),
         {
-            418, -- Merciless Gladiator
-            419, -- Vengeful Gladiator
-            420, -- Brutal Gladiator
+            15022, -- Challenger: Season 1
+            15021, -- Rival: Season 1
+            15020, -- Duelist: Season 1
+            15019, -- Gladiator: Season 1
+            15018, -- Infernal Gladiator: Season 1
+            15210, -- Challenger: Season 2
+            15209, -- Rival: Season 2
+            15208, -- Duelist: Season 2
+            15199, -- Gladiator: Season 2
+            418, -- Merciless Gladiator: Season 2
+            15207, -- Challenger: Season 3
+            15206, -- Rival: Season 3
+            15205, -- Duelist: Season 3
+            15204, -- Gladiator: Season 3
+            419, -- Vengeful Gladiator: Season 3
+            15203, -- Challenger: Season 4
+            15202, -- Rival: Season 4
+            15201, -- Duelist: Season 4
+            15200, -- Gladiator: Season 4
+            420, -- Brutal Gladiator: Season 4
         },
     },
     { -- Wrath of the Lich King
         1200,
         addon.GetCategoryInfoTitle(14866),
         {
-            3336, -- Deadly Gladiator
-            3436, -- Furious Gladiator
-            3758, -- Relentless Gladiator
-            4599, -- Wrathful Gladiator
+            16316, -- Challenger: Season 5
+            16313, -- Rival: Season 5
+            16315, -- Duelist: Season 5
+            16314, -- Gladiator: Season 5
+            3336, -- Deadly Gladiator: Season 5
+            17418, -- Challenger: Season 6
+            17415, -- Rival: Season 6
+            17417, -- Duelist: Season 6
+            17416, -- Gladiator: Season 6
+            3436, -- Furious Gladiator: Season 6
+            18547, -- Challenger: Season 7
+            18544, -- Rival: Season 7
+            18546, -- Duelist: Season 7
+            18545, -- Gladiator: Season 7
+            3758, -- Relentless Gladiator: Season 7
+            18550, -- Challenger: Season 8
+            18548, -- Rival: Season 8
+            18549, -- Duelist: Season 8
+            18551, -- Gladiator: Season 8
+            4599, -- Wrathful Gladiator: Season 8
         },
     },
     { -- Cataclysm
         1197,
         addon.GetCategoryInfoTitle(15072),
         {
-            6002, -- Vicious Gladiator
+            40971, -- Challenger: Season 9
+            40968, -- Rival: Season 9
+            40970, -- Duelist: Season 9
+            40969, -- Gladiator: Season 9
+            6002, -- Vicious Gladiator: Season 9
             5344, -- Hero of the Alliance: Vicious
             5358, -- Hero of the Horde: Vicious
-            6124, -- Ruthless Gladiator
+            41334, -- Challenger: Season 10
+            41332, -- Rival: Season 10
+            41333, -- Duelist: Season 10
+            41336, -- Gladiator: Season 10
+            6124, -- Ruthless Gladiator: Season 10
             6316, -- Hero of the Alliance: Ruthless
             6317, -- Hero of the Horde: Ruthless
-            6938, -- Cataclysmic Gladiator
+            42775, -- Challenger: Season 11
+            42772, -- Rival: Season 11
+            42774, -- Duelist: Season 11
+            42777, -- Gladiator: Season 11
+            6938, -- Cataclysmic Gladiator: Season 11
             6939, -- Hero of the Alliance: Cataclysmic
             6940, -- Hero of the Horde: Cataclysmic
+        },
+    },
+    { -- Mists of Pandaria
+        1198,
+        addon.GetCategoryInfoTitle(15164),
+        {
+            42762, -- Challenger: Season 12
+            42764, -- Rival: Season 12
+            42763, -- Duelist: Season 12
+            61350, -- Gladiator: Season 12 (2v2)
+            61354, -- Malevolent Gladiator: Season 12 (2v2)
+            42765, -- Gladiator: Season 12 (3v3)
+            8214, -- Malevolent Gladiator: Season 12 (3v3)
+            61358, -- Gladiator: Season 12 (5v5)
+            61362, -- Malevolent Gladiator: Season 12 (5v5)
+            61415, -- Undisputed Gladiator: Season 12
+            8243, -- Hero of the Alliance: Malevolent
+            8244, -- Hero of the Horde: Malevolent
+            61460, -- Malevolent Conquest
+            61459, -- Malevolent Conquest
+            61098, -- Challenger: Season 13
+            61099, -- Rival: Season 13
+            61097, -- Duelist: Season 13
+            61351, -- Gladiator: Season 13 (2v2)
+            61355, -- Tyrannical Gladiator: Season 13 (2v2)
+            61096, -- Gladiator: Season 13 (3v3)
+            8791, -- Tyrannical Gladiator: Season 13 (3v3)
+            61359, -- Gladiator: Season 13 (5v5)
+            61363, -- Tyrannical Gladiator: Season 13 (5v5)
+            61416, -- Undisputed Gladiator: Season 13
+            8652, -- Hero of the Alliance: Tyrannical
+            8653, -- Hero of the Horde: Tyrannical
+            8218, -- Tyrannical Conquest
+            8093, -- Tyrannical Conquest
+            8649, -- Challenger: Season 14
+            8646, -- Rival: Season 14
+            8645, -- Duelist: Season 14
+            61352, -- Gladiator: Season 14 (2v2)
+            61356, -- Grievous Gladiator: Season 14 (2v2)
+            8644, -- Gladiator: Season 14 (3v3)
+            8643, -- Grievous Gladiator: Season 14 (3v3)
+            61360, -- Gladiator: Season 14 (5v5)
+            61364, -- Grievous Gladiator: Season 14 (5v5)
+            61417, -- Undisputed Gladiator: Season 14
+            8654, -- Hero of the Alliance: Grievous
+            8657, -- Hero of the Horde: Grievous
+            8485, -- Grievous Combatant
+            8484, -- Grievous Combatant
+            8382, -- Grievous Conquest
+            8381, -- Grievous Conquest
+            8670, -- Challenger: Season 15
+            8669, -- Rival: Season 15
+            8668, -- Duelist: Season 15
+            61353, -- Gladiator: Season 15 (2v2)
+            61357, -- Prideful Gladiator: Season 15 (2v2)
+            8667, -- Gladiator: Season 15 (3v3)
+            8666, -- Prideful Gladiator: Season 15 (3v3)
+            61361, -- Gladiator: Season 15 (5v5)
+            61365, -- Prideful Gladiator: Season 15 (5v5)
+            61418, -- Undisputed Gladiator: Season 15
+            8658, -- Hero of the Alliance: Prideful
+            8659, -- Hero of the Horde: Prideful
+            8642, -- Prideful Combatant
+            8641, -- Prideful Combatant
+            8451, -- Prideful Conquest
+            8450, -- Prideful Conquest
         },
     },
 };

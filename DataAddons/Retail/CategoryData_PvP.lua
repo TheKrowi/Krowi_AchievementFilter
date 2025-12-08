@@ -41,6 +41,12 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
             12571, -- Bounty Hunting
             40464, -- Bounty Master
             40795, -- Battleground Blitz Medic: The War Within
+            61683, -- Entering Battle
+            61684, -- Progressing in Battle
+            61685, -- Proficient in Battle
+            61686, -- Expert in Battle
+            61687, -- Champion in Battle
+            61688, -- Master in Battle
         },
     },
     { -- Honor

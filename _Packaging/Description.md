@@ -14,7 +14,7 @@ Achievement Filter completely replaces the default Achievements tab and adds sev
 ### Categories (Expansions)
 - The ***Current Zone*** category shows which achievements are related to the current zone you're in.
 - The ***Selected Zone*** category shows which achievements are related to the zone you're viewing in the World Map.
-- The ***Focused*** category shows achievements you want to focus on.
+- The ***Watch List*** category shows achievements you're actively tracking. Showing this category can be toggled in the options.
 - The ***Tracking Achievements*** category shows tracking achievements usualy not visible. Showing this category can be toggled in the options.
 - The ***Excluded*** category shows excluded achievements you don't want to see. Showing this category can be toggled in the options.
 - Each expansion has its own category: ***Classic***, ***The Burning Crusade***, ***Wrath of the Lich King***, ***Cataclysm***, ***Mists of Pandaria***, ***Warlords of Dreanor***, ***Legion***, ***Battle for Azeroth***, ***Shadowlands***, ***Dragonflight*** and ***The War Within***.
@@ -33,6 +33,7 @@ Achievement Filter completely replaces the default Achievements tab and adds sev
 
 ### Features
 - Enhanced ***searching***, ***filtering***, ***sorting*** and ***tracking*** of achievements per tab.
+- ***Reward filters*** to show only achievements that award mounts, pets, titles, toys, transmog, tabards, teleports, and housing decor.
 - Enhanced ***achievement tooltip*** to show more about the achievement and related achievements.
 - Enhanced ***unit and item tooltip*** to show if the unit or item is required for an achievement. (Still working on expanding this.)
 - ***Movable windows*** with the option to remember their last position.
@@ -44,11 +45,11 @@ Achievement Filter completely replaces the default Achievements tab and adds sev
 - Clicking achievements in meta achievements select the achievement.
 - Hovering achievements in meta achievements shows more information about the achievement.
 - ***World Map Button*** with its own Selected Zone category to show achievements for the zone you're viewing.
-- ***Focus achievements*** you're more interested in.
+- ***Watch List*** to track achievements you're actively working on, with options to display with or without subcategories.
 - ***Exclude achievements*** you're not interested in.
 - ***Event reminder*** for active events with achievements with a compact version option.
 - ***Compact achievements*** similar to the summary achievements.
-- Overview of which character earned how many achievement points.
+- Overview of which character earned how many achievement points, with per-character progress tracking.
 - Saturate achievements based on earned by your account, current character or a mix.
 - Custom objectives for certain achievements. (If you find missing ones, let me know.)
 - A ***summary view*** for each new tab.
@@ -56,7 +57,7 @@ Achievement Filter completely replaces the default Achievements tab and adds sev
 - A ***data manager*** to manipulate your saved variables.
 - An open API for other developers to add additional categories with achievements.
 
-More features are planned in the future and can be requested via the issues system or discord.
+More features can be requested via the issues system or discord.
 
 Feel free to join discord and say hi: [https://discord.gg/mdBFQJYeQZ](https://discord.gg/mdBFQJYeQZ).
 

@@ -5,7 +5,12 @@ local rewardType = KrowiAF.Enum.RewardType;
 
 KrowiAF.AchievementData["11_00_00"] = {
     {KrowiAF.SetAchievementPatch, 11, 0, 0},
-    {19408}, -- Professional Algari Master
+    { -- Professional Algari Master
+        19408,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     {19409}, -- Working Underground
     {19410}, -- Algari Master of All
     {19414}, -- Algari Cook
@@ -159,7 +164,12 @@ KrowiAF.AchievementData["11_00_00"] = {
         },
     },
     {20594}, -- Flamegard's Hope
-    {20595}, -- Sojourner of Isle of Dorn
+    { -- Sojourner of Isle of Dorn
+        20595,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     { -- Loremaster of Khaz Algar
 		20596,
 		{
@@ -169,31 +179,79 @@ KrowiAF.AchievementData["11_00_00"] = {
     {20597}, -- The War Within
     {20598}, -- Hallowfall
     {40082}, -- Never Enough
-    {40083}, -- Tour of Duty: Isle of Dorn
-    {40084}, -- Tour of Duty: The Ringing Deeps
-    {40085}, -- Tour of Duty: Hallowfall
-    {40086}, -- Tour of Duty: Azj-Kahet
-    {40087}, -- Unbound Battle
+    { -- Tour of Duty: Isle of Dorn
+        40083,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Tour of Duty: The Ringing Deeps
+        40084,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Tour of Duty: Hallowfall
+        40085,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Tour of Duty: Azj-Kahet
+        40086,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Unbound Battle
+        40087,
+        {
+            IsPvP = true,
+        },
+    },
 	{ -- A Champion's Tour: The War Within
 		40088,
 		{
 			RewardType = rewardType.Pet,
+            IsPvP = true,
 		},
 	},
-    {40089}, -- Spoiled Goods
-    {40090}, -- Spoiled Goods
-    {40091}, -- Slightly Spoiled
-    {40095}, -- Sparking Battle
+    { -- Spoiled Goods
+        40089,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Spoiled Goods
+        40090,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Slightly Spoiled
+        40091,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Sparking Battle
+        40095,
+        {
+            IsPvP = true,
+        },
+    },
 	{ -- Sparking Battle
 		40096,
 		{
 			RewardType = rewardType.Toy,
+            IsPvP = true,
 		},
 	},
 	{ -- Ruffious's Bid
 		40097,
 		{
 			RewardType = rewardType.Mount,
+            IsPvP = true,
 		},
 	},
 	{ -- Immortal Spelunker
@@ -262,14 +320,55 @@ KrowiAF.AchievementData["11_00_00"] = {
 			RewardType = rewardType.Pet,
 		},
 	},
-    {40210}, -- Deephaul Ravine Victory
-    {40211}, -- Deephaul Ravine Veteran
-    {40215}, -- Deephaul Ravine Shutout
-    {40216}, -- Deephaul Ravine Expedience
-    {40217}, -- Battleground Blitzer
-    {40219}, -- Battleground Blitzest
-    {40220}, -- Setting Records
-    {40221}, -- Battleground Blitz Master
+    { -- Deephaul Ravine Victory
+        40210,
+        {
+            RewardType = rewardType.HousingDecor,
+            IsPvP = true,
+        },
+    },
+    { -- Deephaul Ravine Veteran
+        40211,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Deephaul Ravine Shutout
+        40215,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Deephaul Ravine Expedience
+        40216,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Battleground Blitzer
+        40217,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Battleground Blitzest
+        40219,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Setting Records
+        40220,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Battleground Blitz Master
+        40221,
+        {
+            IsPvP = true,
+        },
+    },
 	{ -- Echoes of Danger
 		40222,
 		{
@@ -568,12 +667,14 @@ KrowiAF.AchievementData["11_00_00"] = {
     { -- Hunting the Hunter
         40431,
         {
+            RewardType = rewardType.Title,
             {"PvE Season", 13},
         },
     },
     { -- Let Me Solo Him: Zekvir
         40433,
         {
+            RewardType = rewardType.Mount,
             {"PvE Season", 13},
         },
     },
@@ -606,11 +707,36 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40461}, -- Buddy System VI
     {40462}, -- Delve Deeper
     {40463}, -- Delve Deepest
-    {40464}, -- Bounty Master
-    {40465}, -- Unbound Bounty
-    {40466}, -- Unbound Glory
-    {40467}, -- Unbound Glory
-    {40468}, -- Unbound Glory
+    { -- Bounty Master
+        40464,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Unbound Bounty
+        40465,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Unbound Glory
+        40466,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Unbound Glory
+        40467,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Unbound Glory
+        40468,
+        {
+            IsPvP = true,
+        },
+    },
     {40469}, -- I'm Bringing Nerub-ack
     { -- Battle Mender: The War Within Season 1
         40472,
@@ -742,7 +868,12 @@ KrowiAF.AchievementData["11_00_00"] = {
 			RewardType = rewardType.Other,
 		},
 	},
-    {40504}, -- Rocked to Sleep
+    { -- Rocked to Sleep
+        40504,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
 	{ -- Leave No Treasure Unfound
 		40506,
 		{
@@ -833,7 +964,12 @@ KrowiAF.AchievementData["11_00_00"] = {
 			RewardType = rewardType.Mount,
 		},
 	},
-    {40542}, -- Smelling History
+    { -- Smelling History
+        40542,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     {40585}, -- Super Size Snuffling
     {40590}, -- Priory of the Sacred Flame
     -- {40591}, -- Khaz Algar Diplomat [Removed in 11.0.7, replaced by 41169]
@@ -843,17 +979,49 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40601}, -- Heroic: The Dawnbreaker
     {40604}, -- Mythic: The Dawnbreaker
     {40606}, -- Flat Earthen
-    {40607}, -- Wandering in the Ravine
-    {40608}, -- Running in the Ravine
-    {40612}, -- Sprinting in the Ravine
-    {40613}, -- Resilient Runner
+    { -- Wandering in the Ravine
+        40607,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Running in the Ravine
+        40608,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Sprinting in the Ravine
+        40612,
+        {
+            RewardType = rewardType.HousingDecor,
+            IsPvP = true,
+        },
+    },
+    { -- Resilient Runner
+        40613,
+        {
+            IsPvP = true,
+        },
+    },
     {40614}, -- Gobblin' with Glublurp
-    {40615}, -- Unexpected Arrival
-    {40616}, -- Unexpected Arrivals
+    { -- Unexpected Arrival
+        40615,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Unexpected Arrivals
+        40616,
+        {
+            IsPvP = true,
+        },
+    },
 	{ -- Deepholla
 		40617,
 		{
 			RewardType = rewardType.Title,
+            IsPvP = true,
 		},
 	},
     { -- Lost and Found
@@ -999,7 +1167,12 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40848}, -- Treasures of Hallowfall
     {40851}, -- Adventurer of Hallowfall
     -- {40856}, -- Council of Dornogal [Removed in 11.0.7, replaced by 41161]
-    {40859}, -- We're Here All Night
+    { -- We're Here All Night
+        40859,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     {40860}, -- A Star of Dorn
 };
 
@@ -1043,7 +1216,12 @@ KrowiAF.AchievementData["11_00_02"] = {
 			RewardType = rewardType.Title,
 		},
 	},
-    {40885}, -- The Key to Madness
+    { -- The Key to Madness
+        40885,
+        {
+            RewardType = rewardType.Other,
+        },
+    },
     -- {40904}, -- Cornerstone of Dornogal [Removed in 11.0.7, replaced by 41162]
     -- {40905}, -- From Many, One [Removed in 11.0.7, replaced by 41166]
     -- {40906}, -- The Flame Burns Within [Removed in 11.0.7, replaced by 41168]
@@ -1250,7 +1428,7 @@ KrowiAF.AchievementData["11_00_07"] = {
 	{ -- A Farewell to Arms
 		40953,
 		{
-			RewardType = rewardType.Mount,
+			RewardType = {rewardType.Mount, rewardType.HousingDecor},
 		},
 	},
     {40955}, -- War Stories
@@ -1369,7 +1547,12 @@ KrowiAF.AchievementData["11_00_07"] = {
     {41183}, -- There's No Place Like Loamm
     {41184}, -- Freshscales Fifteen
     {41185}, -- Siren's Squall
-    {41186}, -- Slate of the Union
+    { -- Slate of the Union
+        41186,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     {41187}, -- Rage Aside the Machine
     {41188}, -- Crystal Chronicled
     {41189}, -- Azj the World Turns
@@ -1392,7 +1575,12 @@ KrowiAF.AchievementData["11_01_00"] = {
     {KrowiAF.SetAchievementPatch, 11, 1, 0},
     {40142}, -- Learning to Share
     {40145}, -- So Much Sharing
-    {40894}, -- Sojourner of Undermine
+    { -- Sojourner of Undermine
+        40894,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     {40900}, -- Undermined
     { -- The War Within Season 2: Master Blaster
         40911,
@@ -1435,7 +1623,12 @@ KrowiAF.AchievementData["11_01_00"] = {
             {"PvE Season", 14},
         }
     },
-    {40948}, -- Nine-Tenths of the Law
+    { -- Nine-Tenths of the Law
+        40948,
+        {
+            RewardType = rewardType.TradersTender,
+        },
+    },
     { -- The War Within Keystone Explorer: Season Two
         40949,
         {
@@ -1614,7 +1807,12 @@ KrowiAF.AchievementData["11_01_00"] = {
     {41114}, -- Algari Delver Tank III
     {41115}, -- Algari Delver
     {41116}, -- Algari Delver II
-    {41119}, -- One Rank Higher
+    { -- One Rank Higher
+        41119,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     {41120}, -- Two Ranks Higher
     {41121}, -- Three Ranks Higher
     { -- Best In Class
@@ -1857,7 +2055,12 @@ KrowiAF.AchievementData["11_01_00"] = {
             {"PvP Season", 39},
         },
     },
-    {41522}, -- Tour of Duty: Undermine
+    { -- Tour of Duty: Undermine
+        41522,
+        {
+            IsPvP = true,
+        },
+    },
     {41525}, -- Can You Please Spell "Gobanna?"
     { -- Breaking the Bank
         41529,
@@ -2233,9 +2436,24 @@ KrowiAF.AchievementData["11_01_07"] = {
     {42030}, -- The Nighthold
     {42031}, -- Tomb of Sargeras
     {42032}, -- Antorus, the Burning Throne
-    {42187}, -- Lorewalking: Ethereal Wisdom
-    {42188}, -- Lorewalking: Blade's Bane
-    {42189}, -- Lorewalking: The Lich King
+    { -- Lorewalking: Ethereal Wisdom
+        42187,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Lorewalking: Blade's Bane
+        42188,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Lorewalking: The Lich King
+        42189,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
     { -- Titan Console Overcharged
         42212,
         {
@@ -2522,7 +2740,12 @@ KrowiAF.AchievementData["11_02_00"] = {
     },
     -- {42114}, -- Broken Memories
     {42118}, -- Of Mice and Manaforges
-    {42131}, -- Tour of Duty: K'aresh
+    { -- Tour of Duty: K'aresh
+        42131,
+        {
+            IsPvP = true,
+        },
+    },
     {42149--[[ , Keystones will no longer deplete below level 12 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 12
     {42150--[[ , Keystones will no longer deplete below level 13 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 13
     {42151--[[ , Keystones will no longer deplete below level 14 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 14
@@ -2748,730 +2971,851 @@ KrowiAF.AchievementData["11_02_00"] = {
 
 KrowiAF.AchievementData["11_02_05"] = {
     {KrowiAF.SetAchievementPatch, 11, 2, 5},
-    { -- Timerunner
+ { -- Timerunner
         42301,
         {
             RewardType = rewardType.Title,
+            {"Event", 1640},
         },
     },
     { -- Artifact, Remixed
         42312,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Remixing Time
         42313,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Unlimited Power
         42314,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Unlimited Power II
         42315,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Campaign: Azsuna
         42317,
         {
             RewardType = rewardType.Other,
+            {"Event", 1640},
         },
     },
     { -- Court of Farondis
         42318,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
+            {"Event", 1640},
         },
     },
     { -- Azsuna
         42319,
         {
             RewardType = rewardType.Pet,
+            {"Event", 1640},
         },
     },
     { -- Legion Remix Dungeoneer
         42320,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Legion Remix Raids
         42321,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
+            {"Event", 1640},
         },
     },
     { -- Artifact, Remixed II
         42502,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Artifact, Remixed III
         42503,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Timerunner: Paladin
         42504,
         {
             RewardType = rewardType.Mount,
+            {"Event", 1640},
         },
     },
     { -- Unlimited Power III
         42505,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Unlimited Power IV
         42506,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Unlimited Power V
         42507,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Unlimited Power VI
         42508,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Unlimited Power VII
         42509,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Unlimited Power VIII
         42510,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Unlimited Power IX
         42511,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Unlimited Power X
         42512,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Unlimited Power XI
         42513,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Unlimited Power XII
         42514,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Tour Azsuna
         42515,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Explore Azsuna
         42516,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Hidden Treasures: Azsuna
         42517,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Elusive Foes: Azsuna
         42518,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Looking for Group: Azsuna
         42519,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Calamir
         42526,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Levantus
         42527,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Humongris
         42529,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Si'vash
         42530,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Heroic: Emerald Nightmare
         42531,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Looking for Group: Highmountain
         42533,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Sotanathor
         42534,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Nithogg
         42536,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Insurrection
         42537,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Mistress Alluradel
         42538,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Broken Isles World Quests II
         42539,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Looking for Group: The Broken Shore
         42540,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Highmountain
         42541,
         {
             RewardType = rewardType.Pet,
+            {"Event", 1640},
         },
     },
     { -- Drugon the Frostblood
         42542,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Heroic: The Nighthold
         42543,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Mythic: The Nighthold
         42544,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Highmountain Tribe
         42547,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
+            {"Event", 1640},
         },
     },
     { -- Argus
         42549,
         {
             RewardType = rewardType.Transmog,
+            {"Event", 1640},
         },
     },
     { -- Looking for Group: Suramar
         42551,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Campaign: Highmountain
         42552,
         {
             RewardType = rewardType.Other,
+            {"Event", 1640},
         },
     },
     { -- Raid Finder: The Nighthold
         42553,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Raid Finder: Antorus the Burning Throne
         42554,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Broken Isles World Quests IV
         42555,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Raid Finder: Trial of Valor
         42558,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Ana-Mouz
         42559,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Tour Suramar
         42564,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Bringing Order to the Isles
         42565,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Tour Argus
         42567,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Broken Isles World Quests III
         42570,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Matron Folnuna
         42574,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Mythic: Tomb of Sargeras
         42576,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Looking for Group: Stormheim
         42578,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Inquisitor Meto
         42581,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Stormheim
         42582,
         {
             RewardType = rewardType.Transmog,
+            {"Event", 1640},
         },
     },
     { -- Mythic: Antorus the Burning Throne
         42583,
         {
             RewardType = rewardType.Transmog,
+            {"Event", 1640},
         },
     },
     { -- Campaign: Suramar
         42586,
         {
             RewardType = rewardType.Other,
+            {"Event", 1640},
         },
     },
     { -- Tour Stormheim
         42590,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Pillars of Creation
         42593,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Tour Val'Sharah
         42594,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Campaign: Stormheim
         42596,
         {
             RewardType = rewardType.Other,
+            {"Event", 1640},
         },
     },
     { -- Raid Finder: Emerald Nightmare
         42603,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Occularus
         42604,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Suramar
         42605,
         {
             RewardType = rewardType.Transmog,
+            {"Event", 1640},
         },
     },
     { -- The Soultakers
         42610,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- You Are Now Prepared!
         42612,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Flotsam
         42614,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Timeworn Keystone Apprentice
         42615,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Pit Lord Vilemus
         42616,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Campaign: Val'Sharah
         42617,
         {
             RewardType = rewardType.Other,
+            {"Event", 1640},
         },
     },
     { -- Looking for Group: Argus
         42618,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Dreamweavers
         42619,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
+            {"Event", 1640},
         },
     },
     { -- Broken Isles World Quests I
         42624,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Argussian Reach
         42627,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
+            {"Event", 1640},
         },
     },
     { -- The Nightfallen
         42628,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
+            {"Event", 1640},
         },
     },
     { -- Malificus
         42629,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Val'Sharah
         42630,
         {
             RewardType = rewardType.Transmog,
+            {"Event", 1640},
         },
     },
     { -- Mythic: Trial of Valor
         42636,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Na'zak the Fiend
         42637,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Heroic: Trial of Valor
         42639,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Tour Highmountain
         42642,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Brutallus
         42643,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Breaching the Tomb
         42647,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Raid Finder: Tomb of Sargeras
         42649,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Mythic: Emerald Nightmare
         42651,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- The Armies of Legionfall
         42655,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
+            {"Event", 1640},
         },
     },
     { -- Valarjar
         42658,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
+            {"Event", 1640},
         },
     },
     { -- Shar'thos
         42659,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Heroic: Tomb of Sargeras
         42661,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Apocron
         42662,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Looking for Group: Val'Sharah
         42663,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Heroic: Antorus the Burning Throne
         42664,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- The Broken Shore
         42666,
         {
             RewardType = rewardType.Transmog,
+            {"Event", 1640},
         },
     },
     { -- Withered J'im
         42669,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Defending the Broken Isles II
         42672,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Defending the Broken Isles I
         42673,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Broken Isles World Quests V
         42674,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
+            {"Event", 1640},
         },
     },
     { -- Defending the Broken Isles III
         42675,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
+            {"Event", 1640},
         },
     },
     { -- Timerunner: Warrior
         42684,
         {
             RewardType = rewardType.Mount,
+            {"Event", 1640},
         },
     },
     { -- Timerunner: Death Knight
         42685,
         {
             RewardType = rewardType.Mount,
+            {"Event", 1640},
         },
     },
     { -- Timerunner: Shaman
         42686,
         {
             RewardType = rewardType.Mount,
+            {"Event", 1640},
         },
     },
     { -- Timerunner: Hunter
         42687,
         {
             RewardType = rewardType.Mount,
+            {"Event", 1640},
         },
     },
     { -- Timeworn Keystone Adept
         42688,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Timeworn Keystone Master
         42689,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
+            {"Event", 1640},
         },
     },
     { -- Timeworn Keystone Hero
         42690,
         {
             RewardType = rewardType.Transmog,
+            {"Event", 1640},
         },
     },
     { -- Timeworn Keystone Enthusiast
         42691,
         {
             RewardType = rewardType.Title,
+            {"Event", 1640},
         },
     },
     { -- Broken Isles Dungeoneer
         42692,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
+            {"Event", 1640},
         },
     },
     { -- Breaking the Legion I
         42693,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Breaking the Legion II
         42694,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Breaking the Legion III
         42695,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Greater Invasion Points I
         42696,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Greater Invasion Points II
         42697,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Greater Invasion Points III
         42698,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- You Were Not Prepared!
         42699,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     {42807}, -- Cloudy With a Chance of Infernals
@@ -3479,752 +3823,1316 @@ KrowiAF.AchievementData["11_02_05"] = {
         60803,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Elusive Foes: Highmountain
         60804,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Hidden Treasures: Highmountain
         60805,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Explore Stormheim
         60806,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Elusive Foes: Stormheim
         60807,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Hidden Treasures: Stormheim
         60808,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Explore Val'sharah
         60809,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Elusive Foes: Val'sharah
         60810,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Hidden Treasures: Val'sharah
         60811,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Explore Suramar
         60812,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Elusive Foes: Suramar
         60813,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Hidden Treasures: Suramar
         60814,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Explore Broken Shore
         60815,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Hidden Treasures: Argus
         60816,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Explore Argus
         60817,
         {
             RewardType = rewardType.Mount,
+            {"Event", 1640},
         },
     },
     { -- Elusive Foes: Argus
         60818,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Eye of Azshara
         60819,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Heroic: Eye of Azshara
         60820,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Mythic: Eye of Azshara
         60821,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Vault of the Wardens
         60822,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Heroic: Vault of the Wardens
         60823,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Mythic: Vault of the Wardens
         60824,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Neltharion's Lair
         60825,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Heroic: Neltharion's Lair
         60826,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Mythic: Neltharion's Lair
         60827,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Maw of Souls
         60828,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Heroic: Maw of Souls
         60829,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Mythic: Maw of Souls
         60830,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Halls of Valor
         60831,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Heroic: Halls of Valor
         60832,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Mythic: Halls of Valor
         60833,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Black Rook Hold
         60834,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Heroic: Black Rook Hold
         60835,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Mythic: Black Rook Hold
         60836,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Darkheart Thicket
         60837,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Heroic: Darkheart Thicket
         60838,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Mythic: Darkheart Thicket
         60839,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- The Arcway
         60840,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Heroic: The Arcway
         60841,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Mythic: The Arcway
         60842,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Court of Stars
         60843,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Heroic: Court of Stars
         60844,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Mythic: Court of Stars
         60845,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Assault on Violet Hold
         60846,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Heroic: Assault on Violet Hold
         60847,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Mythic: Assault on Violet Hold
         60848,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Cathedral of Eternal Night
         60849,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Heroic: Cathedral of Eternal Night
         60850,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Mythic: Cathedral of Eternal Night
         60851,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Heroic: Seat of the Triumvirate
         60852,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Mythic: Seat of the Triumvirate
         60853,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Heroic: Return to Karazhan
         60854,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Mythic: Return to Karazhan
         60855,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Darkbough
         60856,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Tormented Guardians
         60857,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Rift of Aln
         60858,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- The Emerald Nightmare
         60859,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Trial of Valor
         60860,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Arcing Aqueducts
         60861,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Royal Athenaeum
         60862,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Nightspire
         60863,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Betrayer's Rise
         60864,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- The Nighthold
         60865,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- The Gates of Hell
         60866,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Wailing Halls
         60867,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Chamber of the Avatar
         60868,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Deceiver's Fall
         60869,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Tomb of Sargeras
         60870,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Light's Breach
         60871,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Forbidden Descent
         60872,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Hope's End
         60873,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Seat of the Pantheon
         60874,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Antorus, the Burning Throne
         60875,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Tenured in the Timeways IV
         60935,
         {
             RewardType = rewardType.Title,
+            {"Event", 1640},
         },
     },
     { -- Tenured in the Timeways I
         60959,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Tenured in the Timeways II
         60960,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Tenured in the Timeways III
         60961,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- The Deathless Champion
         61024,
         {
             RewardType = rewardType.Transmog,
+            {"Event", 1640},
         },
     },
     { -- The Deathless Marauder
         61025,
         {
             RewardType = rewardType.Transmog,
+            {"Event", 1640},
         },
     },
     { -- The Deathless Wanderer
         61026,
         {
             RewardType = rewardType.Transmog,
+            {"Event", 1640},
         },
     },
     { -- The Deathless Magus
         61027,
         {
             RewardType = rewardType.Transmog,
+            {"Event", 1640},
         },
     },
     { -- Legionslayer III
         61053,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Heroic Broken Isles World Quests III
         61054,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
+            {"Event", 1640},
         },
     },
     { -- Power of the Obelisks III
         61055,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Heroic Broken Isles World Quests II
         61056,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Heroic Broken Isles World Quests I
         61057,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Legionslayer II
         61058,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Legionslayer I
         61059,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Power of the Obelisks II
         61060,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
+            {"Event", 1640},
         },
     },
     { -- Power of the Obelisks I
         61061,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Heroic Broken Isles World Quests IV
         61070,
         {
             RewardType = rewardType.Transmog,
+            {"Event", 1640},
         },
     },
     { -- Legionslayer IV
         61071,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Power of the Obelisks IV
         61072,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Heroic Legion Remix Dungeoneer
         61073,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Mythic Legion Remix Dungeoneer
         61074,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Heroic Legion Remix Raider
         61075,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Broken Isles World Bosses
         61076,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Argus Invasion Point Bosses
         61077,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Mythic Legion Remix Raids
         61078,
         {
             RewardType = rewardType.Transmog,
+            {"Event", 1640},
         },
     },
     { -- Heroic Legion Remix Raids
         61079,
         {
             RewardType = rewardType.Title,
+            {"Event", 1640},
         },
     },
     { -- Broken Shore World Bosses
         61080,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Timerunner: Rogue
         61084,
         {
             RewardType = rewardType.Mount,
+            {"Event", 1640},
         },
     },
     { -- Timerunner: Monk
         61085,
         {
             RewardType = rewardType.Mount,
+            {"Event", 1640},
         },
     },
     { -- Timerunner: Druid
         61086,
         {
             RewardType = rewardType.Mount,
+            {"Event", 1640},
         },
     },
     { -- Timerunner: Demon Hunter
         61087,
         {
             RewardType = rewardType.Mount,
+            {"Event", 1640},
         },
     },
     { -- Timerunner: Priest
         61088,
         {
             RewardType = rewardType.Mount,
+            {"Event", 1640},
         },
     },
     { -- Timerunner: Mage
         61089,
         {
             RewardType = rewardType.Mount,
+            {"Event", 1640},
         },
     },
     { -- Timerunner: Warlock
         61090,
         {
             RewardType = rewardType.Mount,
+            {"Event", 1640},
         },
     },
     { -- Sojourner of Azsuna
         61103,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Sojourner of Highmountain
         61104,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Sojourner of Stormheim
         61105,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Sojourner of Val'Sharah
         61106,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Sojourner of Suramar
         61107,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Lorerunner of Azsuna
         61108,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Lorerunner of Highmountain
         61109,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Lorerunner of Stormheim
         61110,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Lorerunner of Val'Sharah
         61111,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Lorerunner of Suramar
         61112,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Legion Dungeons: Threats of the Isle
         61113,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Legion Dungeons: Power of the Ancients
         61114,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Legion Dungeons: Might of the Legion
         61115,
         {
             RewardType = rewardType.RemixInfiniteKnowledge,
+            {"Event", 1640},
         },
     },
     { -- Building a Heroic Army
         61174,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- The Wardens
         61218,
         {
-            RewardType = rewardType.RemixBronze,
+            RewardType = {rewardType.RemixBronze, rewardType.HousingDecor},
+            {"Event", 1640},
         },
     },
     { -- Legionslayer V
         61323,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- To Fel and Back
         61337,
         {
             RewardType = rewardType.Transmog,
+            {"Event", 1640},
         },
     },
-    {61339}, -- Putting the Finite in Infinite
-    {61406}, -- WoW's 21st Anniversary
+    { -- Putting the Finite in Infinite
+        61339,
+        {
+            {"Event", 1640},
+        },
+    },
+    { -- WoW's 21st Anniversary
+        61406,
+        {
+            {"Event", 1501},
+        },
+    },
+    { -- The Unbound Tank
+        61874,
+        {
+            {"PvE Season", 15},
+        },
+    },
+    { -- The Unbound Healer
+        61875,
+        {
+            {"PvE Season", 15},
+        },
+    },
+    { -- The Unbound Damage Dealer
+        61876,
+        {
+            {"PvE Season", 15},
+        },
+    },
+    { -- The Unbound Dungeon Master
+        61877,
+        {
+            RewardType = rewardType.Title,
+            {"PvE Season", 15},
+        },
+    },
+};
+
+KrowiAF.AchievementData["11_02_07"] = {
+    {KrowiAF.SetAchievementPatch, 11, 2, 7},
+    {42192}, -- Snowball Fight!
+    { -- The Deathlord's Campaign
+        42270,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- The Slayer's Campaign
+        42271,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- The Archdruid's Campaign
+        42272,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- The Huntmaster's Campaign
+        42273,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- The Archmage's Campaign
+        42274,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- The Grandmaster's Campaign
+        42275,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- The Highlord's Campaign
+        42276,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- The High Priest's Campaign
+        42277,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- The Shadowblade's Campaign
+        42279,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- The Farseer's Campaign
+        42280,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- The Netherlord's Campaign
+        42281,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- The Battlelord's Campaign
+        42282,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Hidden Potential of the Deathlord
+        42287,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Hidden Potential of the Slayer
+        42288,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Hidden Potential of the Archdruid
+        42289,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Hidden Potential of the Huntmaster
+        42290,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Hidden Potential of the Archmage
+        42291,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Hidden Potential of the Grandmaster
+        42292,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Hidden Potential of the Highlord
+        42293,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Hidden Potential of the High Priest
+        42294,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Hidden Potential of the Shadowblade
+        42295,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Hidden Potential of the Farseer
+        42296,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Hidden Potential of the Netherlord
+        42297,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Hidden Potential of the Battlelord
+        42298,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    {42299}, -- Visions of a Shadowed Sun
+    {51753}, -- Azsuna Matata
+    { -- Legendary Research of the Ebon Blade
+        60962,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Legendary Research of the Illidari
+        60963,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Legendary Research of the Dreamgrove
+        60964,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Legendary Research of the Unseen Path
+        60965,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Legendary Research of the Tirisgarde
+        60966,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Legendary Research of Five Dawns
+        60967,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Legendary Research of the Silver Hand
+        60968,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Legendary Research of the Netherlight Conclave
+        60969,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Legendary Research of the Uncrowned
+        60970,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Legendary Research of the Maelstrom
+        60971,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Legendary Research of the Black Harvest
+        60972,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Legendary Research of the Valarjar
+        60973,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Raise an Army for Acherus
+        60981,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Raise an Army for the Fel Hammer
+        60982,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Raise an Army for the Dreamgrove
+        60983,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Raise an Army for the Trueshot Lodge
+        60984,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Raise an Army for the Hall of the Guardian
+        60985,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Raise an Army for the Temple of Five Dawns
+        60986,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Raise an Army for the Sanctum of Light
+        60987,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Raise an Army for the Netherlight Temple
+        60988,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Raise an Army for the Hall of Shadows
+        60989,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Raise an Army for the Maelstrom
+        60990,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Raise an Army for the Dreadscar Rift
+        60991,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Raise an Army for Skyhold
+        60992,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    {61211}, -- Welcome Home
+    {61308}, -- Score a Decor
+    {61309}, -- Amateur Antiquarian
+    {61310}, -- Casual Collector
+    {61311}, -- Ready to Remodel
+    {61312}, -- Center Stager
+    {61313}, -- Well-Travelled Collection
+    {61314}, -- Furniture Historian
+    {61315}, -- Array of Antiquities
+    {61316}, -- Custom Cabinets
+    {61317}, -- Domicile Designer
+    { -- Fully Furnished
+        61318,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
+    { -- Master of the Turbulent Timeways IV
+        61394,
+        {
+            RewardType = rewardType.Mount,
+        },
+    },
+    { -- The First Rule of Brawler's Guild
+        61413,
+        faction.Alliance,
+        61414,
+    },
+    { -- The First Rule of Brawler's Guild
+        61414,
+        faction.Horde,
+        61413,
+    },
+    {61419}, -- Brawler's Chilled
+    {61420}, -- Let Me Solo It
+    {61421}, -- A Prime Ordeal
+    {61422}, -- Audience Participation
+    {61423}, -- Featherweight Brawler
+    {61424}, -- Brawlzilla
+    {61425}, -- Hot Footed
+    {61426}, -- Bare Knuckle Brawl
+    { -- Brawl Star
+        61429,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
+    { -- Worldsoul-Searching
+        61451,
+        {
+            RewardType = {rewardType.Mount, rewardType.HousingDecor},
+        },
+    },
+    {61466}, -- The Best There Is
+    { -- Lorewalking: The Elves of Quel'thalas
+        61467,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Ready for Midnight
+        61498,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
+    {61516}, -- Radiant Singer
+    { -- Entering Battle
+        61683,
+        {
+            RewardType = rewardType.HousingDecor,
+            IsPvP = true,
+        },
+    },
+    { -- Progressing in Battle
+        61684,
+        {
+            RewardType = rewardType.HousingDecor,
+            IsPvP = true,
+        },
+    },
+    { -- Proficient in Battle
+        61685,
+        {
+            RewardType = rewardType.HousingDecor,
+            IsPvP = true,
+        },
+    },
+    { -- Expert in Battle
+        61686,
+        {
+            RewardType = rewardType.HousingDecor,
+            IsPvP = true,
+        },
+    },
+    { -- Champion in Battle
+        61687,
+        {
+            RewardType = rewardType.HousingDecor,
+            IsPvP = true,
+        },
+    },
+    { -- Master in Battle
+        61688,
+        {
+            RewardType = rewardType.HousingDecor,
+            IsPvP = true,
+        },
+    },
 };

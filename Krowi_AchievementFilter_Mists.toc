@@ -1,8 +1,8 @@
-## Interface: 50501
+## Interface: 50502
 ## Title: Krowi's |cFF1D92C2Achievement Filter|r
 ## X-Prefix: KrowiAF
 ## X-Acronym: KAF
-## Version: 87.0
+## Version: 89.3
 ## Author: Krowi-Frostmane EU
 ## SavedVariables: KrowiAF_DebugTable, KrowiAF_Options, KrowiAF_SavedData, KrowiAF_Filters, KrowiAF_SearchOptions, KrowiAF_Achievements
 ## Notes: Filters your achievements.
@@ -21,8 +21,6 @@ Libs\Files.xml
 Api\Files.xml
 
 Plugins\Files.xml
-
-Credits.lua
 
 Localization\Files.xml
 

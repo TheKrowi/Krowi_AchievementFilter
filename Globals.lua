@@ -304,7 +304,7 @@ local function AddToCriteriaCache(achievementInfo)
         return 0;
     end
     for i = 1, numCriteria do
-        local _, criteriaType, _, _, _, _, _, assetId, _, _, _, _ = addon.GetAchievementCriteriaInfo(achievementId, i);
+        local _, criteriaType, _, _, _, _, _, assetId, _, _, _, _ = GetAchievementCriteriaInfo(achievementId, i);
         if criteriaType == 8 then -- See https://wowpedia.fandom.com/wiki/API_GetAchievementCriteriaInfo for all criteria types
             tinsert(criteriaCache, {AchievementId = assetId, RequiredForId = achievementId});
         end
@@ -315,8 +315,8 @@ end
 local function HandleNotCompletedAchievement(characterGuid, achievementInfo, numCriteria)
     addon.Data.SavedData.AchievementData.SetNotEarnedBy(characterGuid, achievementInfo);
     for i = 1, numCriteria do
-        local _, _, criteriaIsCompleted, quantity, _, _, _, _, _, _, _, hasValueProgress = addon.GetAchievementCriteriaInfo(achievementInfo.Id, i);
-        addon.Data.SavedData.AchievementData.SetCriteriaProgress(characterGuid, achievementInfo, i, hasValueProgress and quantity or criteriaIsCompleted);
+        local _, _, criteriaIsCompleted, quantity, reqQuantity = GetAchievementCriteriaInfo(achievementInfo.Id, i);
+        addon.Data.SavedData.AchievementData.SetCriteriaProgress(characterGuid, achievementInfo, i, reqQuantity > 1 and quantity or criteriaIsCompleted);
     end
 end
 
@@ -561,6 +561,9 @@ function addon.HookFunctions()
         hooksecurefunc("AchievementFrame_SetComparisonTabs", function()
             addon.Gui:ShowHideTabs();
         end);
+        hooksecurefunc("AchievementFrame_SetRestrictedMode", function(frame, subFrame)
+            addon.Gui:ShowHideTabs();
+        end);
     end
 
     AchievementFrameFilterDropdown:HookScript("OnShow", function()
@@ -747,30 +750,6 @@ function addon.GetNextAchievement(achievement)
         end
     end
     return nil, false;
-end
-
-local function GetAchievementCriteriaInfoInternal(achievementId, criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible, duration, elapsed)
-    local hasValueProgress = (quantity ~= nil and reqQuantity ~= nil and not (quantity == 0 and (reqQuantity == 0 or reqQuantity == 1))) or achievementId == 17335;
-    return criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible, hasValueProgress, duration, elapsed;
-end
-
-function addon.GetAchievementCriteriaInfo(achievementId, criteriaIndex, countHidden)
-    if type(addon.Data.CustomCriteria[achievementId]) == "function" then
-        return GetAchievementCriteriaInfoInternal(achievementId, addon.Data.CustomCriteria[achievementId](criteriaIndex));
-    end
-    return GetAchievementCriteriaInfoInternal(achievementId, GetAchievementCriteriaInfo(achievementId, criteriaIndex, countHidden));
-end
-
-function addon.GetAchievementCriteriaInfoById(achievementId, criteriaId)
-    return GetAchievementCriteriaInfoInternal(achievementId, GetAchievementCriteriaInfoByID(achievementId, criteriaId));
-end
-
-function addon.GetAchievementNumCriteria(achievementId)
-    if type(addon.Data.CustomCriteria[achievementId]) == "function" then
-        return addon.Data.CustomCriteria[achievementId]();
-    else
-        return GetAchievementNumCriteria(achievementId);
-    end
 end
 
 local function ClassCanUseSet(setInfo, classId)

@@ -891,7 +891,7 @@ KrowiAF.AchievementData["05_00_04"] = {
     {6933}, -- Who's Got Two Green Thumbs?
     {6936}, -- Candle in the Wind
     {6937}, -- Overzealous
-    { -- Cataclysmic Gladiator
+    { -- Cataclysmic Gladiator: Season 11
         6938,
         {
             IsPvP = true,
@@ -1826,9 +1826,10 @@ KrowiAF.AchievementData["05_02_00"] = {
             {"Before", "Date", {2019, 6, 11}},
         },
     },
-    { -- Malevolent Gladiator
+    { -- Malevolent Gladiator: Season 12 (3v3)
         8214,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 12},
         },
@@ -2504,7 +2505,7 @@ KrowiAF.AchievementData["05_04_00"] = {
             {"PvP Season", 15},
         },
     },
-    { -- Grievous Gladiator: Season 14
+    { -- Grievous Gladiator: Season 14 (3v3)
         8643,
         {
             RewardType = rewardType.Title,
@@ -2512,7 +2513,7 @@ KrowiAF.AchievementData["05_04_00"] = {
             {"PvP Season", 14},
         },
     },
-    { -- Gladiator: Season 14
+    { -- Gladiator: Season 14 (3v3)
         8644,
         {
             RewardType = rewardType.Title,
@@ -2598,7 +2599,7 @@ KrowiAF.AchievementData["05_04_00"] = {
             {"PvP Season", 15},
         },
     },
-    { -- Prideful Gladiator: Season 15
+    { -- Prideful Gladiator: Season 15 (3v3)
         8666,
         {
             RewardType = rewardType.Title,
@@ -2606,7 +2607,7 @@ KrowiAF.AchievementData["05_04_00"] = {
             {"PvP Season", 15},
         },
     },
-    { -- Gladiator: Season 15
+    { -- Gladiator: Season 15 (3v3)
         8667,
         {
             RewardType = rewardType.Title,
@@ -2734,9 +2735,10 @@ KrowiAF.AchievementData["05_04_00"] = {
     {8730}, -- Rolo's Riddle
     {8743}, -- Zarhym Altogether
     {8784}, -- Timeless Legends
-    { -- Tyrannical Gladiator
+    { -- Tyrannical Gladiator: Season 13 (3v3)
         8791,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 13},
         },
@@ -2763,6 +2765,70 @@ KrowiAF.AchievementData["05_05_00"] = {
     {KrowiAF.SetAchievementPatch, 5, 5, 0},
     {8913}, -- Collector's Edition: Dread Raven
     {8915}, -- Collector's Edition: Dread Hatchling
+    { -- Challenger: Season 12
+        42762,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 12},
+        },
+    },
+    { -- Duelist: Season 12
+        42763,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 12},
+        },
+    },
+    { -- Rival: Season 12
+        42764,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 12},
+        },
+    },
+    { -- Gladiator: Season 12 (3v3)
+        42765,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 12},
+        },
+    },
+    { -- Rival: Season 11
+        42772,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 11},
+        },
+    },
+    { -- Duelist: Season 11
+        42774,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 11},
+        },
+    },
+    { -- Challenger: Season 11
+        42775,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 11},
+        },
+    },
+    { -- Gladiator: Season 11
+        42777,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 11},
+        },
+    },
     {60892}, -- Celestial: Temple of the Jade Serpent
     {60893}, -- Celestial: Stormstout Brewery
     {60894}, -- Celestial: Mogu'shan Palace
@@ -2773,4 +2839,219 @@ KrowiAF.AchievementData["05_05_00"] = {
     {60899}, -- Celestial: Scholomance
     {60900}, -- Celestial: Siege of Niuzao Temple
     {60901}, -- Pandaria Celestial Hero
+};
+
+KrowiAF.AchievementData["05_05_01"] = {
+    {KrowiAF.SetAchievementPatch, 5, 5, 1},
+    -- {40821, }, -- Successfully Stress Test CN Realms
+    { -- Gladiator: Season 13 (3v3)
+        61096,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 13},
+        },
+    },
+    { -- Duelist: Season 13
+        61097,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 13},
+        },
+    },
+    { -- Challenger: Season 13
+        61098,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 13},
+        },
+    },
+    { -- Rival: Season 13
+        61099,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 13},
+        },
+    },
+    { -- Gladiator: Season 12 (2v2)
+        61350,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 12},
+        },
+    },
+    { -- Gladiator: Season 13 (2v2)
+        61351,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 13},
+        },
+    },
+    { -- Gladiator: Season 14 (2v2)
+        61352,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 14},
+        },
+    },
+    { -- Gladiator: Season 15 (2v2)
+        61353,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 15},
+        },
+    },
+    { -- Malevolent Gladiator: Season 12 (2v2)
+        61354,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 12},
+        },
+    },
+    { -- Tyrannical Gladiator: Season 13 (2v2)
+        61355,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 13},
+        },
+    },
+    { -- Grievous Gladiator: Season 14 (2v2)
+        61356,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 14},
+        },
+    },
+    { -- Prideful Gladiator: Season 15 (2v2)
+        61357,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 15},
+        },
+    },
+    { -- Gladiator: Season 12 (5v5)
+        61358,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 12},
+        },
+    },
+    { -- Gladiator: Season 13 (5v5)
+        61359,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 13},
+        },
+    },
+    { -- Gladiator: Season 14 (5v5)
+        61360,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 14},
+        },
+    },
+    { -- Gladiator: Season 15 (5v5)
+        61361,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 15},
+        },
+    },
+    { -- Malevolent Gladiator: Season 12 (5v5)
+        61362,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 12},
+        },
+    },
+    { -- Tyrannical Gladiator: Season 13 (5v5)
+        61363,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 13},
+        },
+    },
+    { -- Grievous Gladiator: Season 14 (5v5)
+        61364,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 14},
+        },
+    },
+    { -- Prideful Gladiator: Season 15 (5v5)
+        61365,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 15},
+        },
+    },
+    { -- Undisputed Gladiator: Season 12
+        61415,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 12},
+        },
+    },
+    { -- Undisputed Gladiator: Season 13
+        61416,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 13},
+        },
+    },
+    { -- Undisputed Gladiator: Season 14
+        61417,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 14},
+        },
+    },
+    { -- Undisputed Gladiator: Season 15
+        61418,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+            {"PvP Season", 15},
+        },
+    },
+    { -- Malevolent Conquest
+        61459,
+        faction.Horde,
+        61460,
+        {
+            IsPvP = true,
+            {"PvP Season", 12},
+        },
+    },
+    { -- Malevolent Conquest
+        61460,
+        faction.Alliance,
+        61459,
+        {
+            IsPvP = true,
+            {"PvP Season", 12},
+        },
+    },
 };
