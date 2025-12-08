@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 89.3 - 2025-12-03
+## 89.3 - 2025-12-08
 ### Changed
 - Packaging
 
