@@ -8,7 +8,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-11-16 16-51-59 ]] --
+-- [[ Exported at 2025-12-27 11-13-59 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -152,6 +152,7 @@ L["Characters"] = "Charaktere"
 L["Chat messages"] = "Chat-Mitteilungen"
 L["Checked"] = "Aktivert"
 L["Children's Week"] = "Kinderwoche"
+L["Class Halls"] = "Klassenhallen"
 L["Clear all"] = "Alle löschen"
 L["Clear all Desc"] = "Löschen Sie alle Erfolge von der Beobachtungsliste."
 L["Clear search field on Right Click"] = "Lösche das Such-Feld durch Rechts-Klick."
@@ -498,6 +499,7 @@ L["Fyrakk Assaults"] = "Angriffe von Fyrakk"
 L["Garden Gallivant"] = "Gartenpromenade"
 L["Garrisons Update"] = "Garnisonsupdate"
 L["Gathering"] = "Zusammenkunft"
+L["Ghosts of K'aresh"] = "Geister von K'aresh"
 L["Gifts"] = "Geschenke"
 L["Gladiator's Sanctum"] = "Heiligtum des Gladiators"
 L["Glory"] = "Standard"
@@ -534,6 +536,7 @@ L["Holidays"] = "Feiertage"
 L["Horizontal position"] = "Horizontale Position"
 L["Horrific Visions Revisited"] = "Überarbeitete Verstörende Visionen"
 L["Hour of Twilight"] = "Die Stunde des Zwielichts"
+L["Housing Decor"] = "Behausungsdekorationen"
 L["Icon Left click"] = "um das \"Erfolge\" Fenster zu öffnen."
 L["Icon Right click"] = "für die Optionen."
 L["ID"] = true
@@ -569,6 +572,7 @@ L["Left Ctrl"] = "Links Ctrl"
 L["Left Shift"] = "Links Shift"
 L["Legacy of Arathor"] = "Vermächtnis von Arathor"
 L["Legion Assaults"] = "Angriffe der Legion"
+L["Legion Remix"] = true
 L["Legion: Remix"] = true
 L["Level 80"] = true
 L["Level 85"] = true
@@ -1013,6 +1017,7 @@ L["The Vakthros Ascent"] = "Vakthrosaufstieg"
 L["The Waking Shore"] = "Die Küste des Erwachens"
 L["The Wanderer: Next"] = "Theatertruppe: Der Wanderer: Bald"
 L["The War Within (pre-patch)"] = true
+L["The Warning"] = "Die Warnung"
 L["Theater Troupe"] = "Theatertruppe"
 L["This achievement"] = "Dieser Erfolg"
 L["This achievement can't be earned by this character."] = "Dieser Erfolg kann nicht von diesem Charakter erzielt werden."
@@ -1128,4 +1133,3 @@ L["Zaqali Ruin Investigation: Next"] = "Zaqaliruinen: Nächstes Event"
 L["Zaqali Ruin Investigation: Soon"] = "Zaqaliruinen: Bald"
 L["Zaqali Ruin Investigation: Starting Soon"] = "Zaqaliruinen: Startet Bald"
 L["Zones"] = "Zonen"
-L["Zuldazar"] = true

@@ -7,7 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-12-04 18-59-35 ]] --
+-- [[ Exported at 2025-12-27 11-13-56 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -1166,4 +1166,3 @@ L["Zaqali Ruin Investigation: Next"] = true
 L["Zaqali Ruin Investigation: Soon"] = true
 L["Zaqali Ruin Investigation: Starting Soon"] = true
 L["Zones"] = true
-L["Zuldazar"] = true

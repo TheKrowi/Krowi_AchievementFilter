@@ -72,6 +72,7 @@ local delvesTheWarWithin = {
     60933, -- With Flying Colors
     42778, -- A Flicker in the Dark
     42779, -- A Flash in the Void
+    40438, -- Glory of the Delver
 };
 
 local delvesTheWarWithinS1Progress = {
@@ -83,14 +84,13 @@ local delvesTheWarWithinS1Progress = {
     40520, -- War Within Delves: Tier 9 (Season 1)
     40521, -- War Within Delves: Tier 10 (Season 1)
     40726, -- War Within Delves: Tier 11 (Season 1)
+    40459, -- I've Got a Flying Machine!
+    40789, -- Flying in Style
 };
 
 local delvesTheWarWithinS1 = {
     delvesTheWarWithin,
     delvesTheWarWithinS1Progress,
-    40459, -- I've Got a Flying Machine!
-    40789, -- Flying in Style
-    40438, -- Glory of the Delver
 };
 
 local delvesTheWarWithinS2Progress = {
@@ -102,6 +102,8 @@ local delvesTheWarWithinS2Progress = {
     41195, -- War Within Delves: Tier 9 (Season 2)
     41196, -- War Within Delves: Tier 10 (Season 2)
     41197, -- War Within Delves: Tier 11 (Season 2)
+    41532, -- I've Got a Flying Machine?
+    41714, -- From Trash to Treasure
     41709, -- Journey's End (Season 2)
 };
 
@@ -119,6 +121,8 @@ local delvesTheWarWithinS3Progress = {
     42201, -- War Within Delves: Tier 9 (Season 3)
     42202, -- War Within Delves: Tier 10 (Season 3)
     42203, -- War Within Delves: Tier 11 (Season 3)
+    42677, -- This Machine Flies?! Don't Care I Got It!
+    42678, -- So That's Where My Manaflux Capacitor Was!
     42801, -- Journey's End (Season 3)
 };
 
@@ -269,54 +273,60 @@ KrowiAF.ZoneData.TheWarWithin = {
         2249,
         {
             delvesTheWarWithinS1,
+            delvesTheWarWithinS2Progress,
+            delvesTheWarWithinS3Progress,
             40525, -- Fungal Folly Stories
             40803, -- Fungal Folly Discoveries,
-            delvesTheWarWithinS2Progress
         }
     },
     { -- Kriegval's Rest (delve)
         2250,
         {
             delvesTheWarWithinS1,
+            delvesTheWarWithinS2Progress,
+            delvesTheWarWithinS3Progress,
             40526, -- Kriegval's Rest Stories
             40807, -- Kriegval's Rest Discoveries
-            delvesTheWarWithinS2Progress
         }
     },
     { -- The Waterworks (delve)
         2251,
         {
             delvesTheWarWithinS1,
+            delvesTheWarWithinS2Progress,
+            delvesTheWarWithinS3Progress,
             40528, -- The Waterworks Stories
             40816, -- The Waterworks Discoveries
-            delvesTheWarWithinS2Progress
         }
     },
     { -- Tak-Rethan Abyss (delve)
         2259,
         {
             delvesTheWarWithinS1,
+            delvesTheWarWithinS2Progress,
+            delvesTheWarWithinS3Progress,
             40535, -- Tak-Rethan Abyss Stories
             40811, -- Tak-Rethan Abyss Discoveries
-            delvesTheWarWithinS2Progress
         }
     },
     { -- Earthcrawl Mines (delve)
         2269,
         {
             delvesTheWarWithinS1,
+            delvesTheWarWithinS2Progress,
+            delvesTheWarWithinS3Progress,
             40527, -- Earthcrawl Mines Stories
             40806, -- Earthcrawl Mines Discoveries
-            delvesTheWarWithinS2Progress
         }
     },
     { -- Nightfall Sanctum (delve)
         2277,
         {
             delvesTheWarWithinS1,
+            delvesTheWarWithinS2Progress,
+            delvesTheWarWithinS3Progress,
             40530, -- Nightfall Sanctum Stories
             40809, -- Nightfall Sanctum Discoveries
-            delvesTheWarWithinS2Progress
         }
     },
     { -- Nerub-ar Palace (raid)
@@ -356,27 +366,30 @@ KrowiAF.ZoneData.TheWarWithin = {
         2299,
         {
             delvesTheWarWithinS1,
+            delvesTheWarWithinS2Progress,
+            delvesTheWarWithinS3Progress,
             40534, -- The Underkeep Stories
             40815, -- The Underkeep Discoveries
-            delvesTheWarWithinS2Progress
         }
     },
     { -- The Sinkhole (delve)
         2301,
         {
             delvesTheWarWithinS1,
+            delvesTheWarWithinS2Progress,
+            delvesTheWarWithinS3Progress,
             40532, -- The Sinkhole Stories
             40813, -- The Sinkhole Discoveries
-            delvesTheWarWithinS2Progress
         }
     },
     { -- The Dread Pit (delve)
         2302,
         {
             delvesTheWarWithinS1,
+            delvesTheWarWithinS2Progress,
+            delvesTheWarWithinS3Progress,
             40529, -- The Dread Pit Stories
             40812, -- The Dread Pit Discoveries
-            delvesTheWarWithinS2Progress
         }
     },
     { -- Darkflame Cleft (dungeon)
@@ -401,18 +414,20 @@ KrowiAF.ZoneData.TheWarWithin = {
         2310,
         {
             delvesTheWarWithinS1,
+            delvesTheWarWithinS2Progress,
+            delvesTheWarWithinS3Progress,
             40533, -- Skittering Breach Stories
             40810, -- Skittering Breach Discoveries
-            delvesTheWarWithinS2Progress
         }
     },
     { -- Mycomancer Cavern (delve)
         2312,
         {
             delvesTheWarWithinS1,
+            delvesTheWarWithinS2Progress,
+            delvesTheWarWithinS3Progress,
             40531, -- Mycomancer Cavern Stories
             40808, -- Mycomancer Cavern Discoveries
-            delvesTheWarWithinS2Progress
         }
     },
     { -- The Rookery (dungeon)
@@ -500,20 +515,20 @@ KrowiAF.ZoneData.TheWarWithin = {
         2347,
         {
             delvesTheWarWithinS1,
+            delvesTheWarWithinS2Progress,
+            delvesTheWarWithinS3Progress,
             40536, -- The Spiral Weave Stories
             40814, -- The Spiral Weave Discoveries
-            delvesTheWarWithinS2Progress
         }
     },
     { -- Zekvir's Lair (delve)
         2348,
         {
-            delvesTheWarWithinS1,
+            delvesTheWarWithin,
             40732, -- Heavy-Handed
             40103, -- My First Nemesis
             40431, -- Hunting the Hunter
             40433, -- Let Me Solo Him: Zekvir
-            delvesTheWarWithinS2Progress
         }
     },
     { -- Ara-Kara, City of Echoes (dungeon)
@@ -592,6 +607,7 @@ KrowiAF.ZoneData.TheWarWithin = {
         2396,
         {
             delvesTheWarWithinS2,
+            delvesTheWarWithinS3Progress,
             41098, -- Excavation Site 9 Stories
             41100, -- Excavation Site 9 Discoveries
         }
@@ -675,6 +691,7 @@ KrowiAF.ZoneData.TheWarWithin = {
         {2420, 2421, 2422, 2423},
         {
             delvesTheWarWithinS2,
+            delvesTheWarWithinS3Progress,
             41099, -- Sidestreet Sluice Stories
             41101, -- Sidestreet Sluice Discoveries
         }
@@ -682,7 +699,7 @@ KrowiAF.ZoneData.TheWarWithin = {
     { -- Demolition Dome (delve)
         {2425, 2426},
         {
-            delvesTheWarWithinS2,
+            delvesTheWarWithin,
             40732, -- Heavy-Handed
             41530, -- My New Nemesis
             41529, -- Breaking the Bank
@@ -767,7 +784,7 @@ KrowiAF.ZoneData.TheWarWithin = {
     { -- Voidrazor Sanctuary (delve)
         2484,
         {
-            delvesTheWarWithinS3,
+            delvesTheWarWithin,
             40732, -- Heavy-Handed
             42799, -- Let Her Solo Me
             42193, -- My Stab-Happy Nemesis

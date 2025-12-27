@@ -8,7 +8,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-11-16 16-52-41 ]] --
+-- [[ Exported at 2025-12-27 11-14-11 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -157,6 +157,7 @@ L["Characters"] = "角色"
 L["Chat messages"] = "聊天信息"
 L["Checked"] = "开启"
 L["Children's Week"] = "儿童周"
+L["Class Halls"] = "职业大厅"
 L["Clear all"] = "全部清除"
 L["Clear all Desc"] = "清除所有已关注成就"
 L["Clear search field on Right Click"] = "右键清除搜索框"
@@ -507,6 +508,7 @@ L["Fyrakk Assaults"] = "菲莱克突袭"
 L["Garden Gallivant"] = "花园休闲赛"
 L["Garrisons Update"] = "要塞更新"
 L["Gathering"] = "准备中"
+L["Ghosts of K'aresh"] = "卡雷什的残影"
 L["Gifts"] = "礼物"
 L["Gladiator's Sanctum"] = "角斗士圣殿"
 L["Glory"] = "荣耀"
@@ -543,6 +545,7 @@ L["Holidays"] = "节日"
 L["Horizontal position"] = "水平位置"
 L["Horrific Visions Revisited"] = "重访惊魂幻象"
 L["Hour of Twilight"] = "暮光审判"
+L["Housing Decor"] = "住宅装饰"
 L["Icon Left click"] = "打开成就界面"
 L["Icon Right click"] = "打开插件设置"
 L["ID"] = true
@@ -578,6 +581,7 @@ L["Left Ctrl"] = "左Ctrl"
 L["Left Shift"] = "左Shift"
 L["Legacy of Arathor"] = "阿拉索的传承"
 L["Legion Assaults"] = "军团突袭"
+L["Legion Remix"] = "军团再临：幻境新生"
 L["Legion: Remix"] = "军团再临：幻境新生"
 L["Level 80"] = "80级"
 L["Level 85"] = "85级"
@@ -1043,6 +1047,7 @@ L["The Vakthros Ascent"] = "瓦克索斯攀升赛"
 L["The Waking Shore"] = "觉醒海岸"
 L["The Wanderer: Next"] = "浪子回头: 下次"
 L["The War Within (pre-patch)"] = "地心之战（前夕）"
+L["The Warning"] = "幻世警钟"
 L["Theater Troupe"] = "剧场巡演"
 L["This achievement"] = "该成就"
 L["This achievement can't be earned by this character."] = "该成就无法由当前角色获得"
@@ -1162,4 +1167,3 @@ L["Zaqali Ruin Investigation: Next"] = "扎卡利废墟调查: 下次"
 L["Zaqali Ruin Investigation: Soon"] = "扎卡利废墟调查: 即将"
 L["Zaqali Ruin Investigation: Starting Soon"] = "扎卡利废墟调查: 即将开始"
 L["Zones"] = "区域"
-L["Zuldazar"] = "祖达萨"

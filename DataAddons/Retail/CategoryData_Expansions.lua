@@ -12684,7 +12684,6 @@ local theWarWithin = { -- The War Within
             addon.GetMapName(2484),
             {
                 40732, -- Heavy-Handed
-                42799, -- Let Her Solo Me
                 42193, -- My Stab-Happy Nemesis
                 42194, -- Pruning the Princess
                 42190, -- Let Me Solo Her: Nexus-Princess Ky'veza
@@ -12774,6 +12773,7 @@ local theWarWithin = { -- The War Within
             42801, -- Journey's End (Season 3)
             60934, -- With Flying Colors
             60933, -- With Flying Colors
+            42799, -- Let Her Solo Me
             42778, -- A Flicker in the Dark
             42779, -- A Flash in the Void
         },
