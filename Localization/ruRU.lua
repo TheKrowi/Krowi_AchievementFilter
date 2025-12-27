@@ -8,7 +8,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-11-16 16-52-38 ]] --
+-- [[ Exported at 2025-12-27 11-14-09 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -131,6 +131,7 @@ L["Characters"] = "Персонажи"
 L["Chat messages"] = "Сообщения в чат"
 L["Checked"] = "Проверено"
 L["Children's Week"] = "Детская неделя"
+L["Class Halls"] = "Оплот класса"
 L["Clear all"] = "Очистить всё"
 L["Clear all Desc"] = "Очистить все отслеживаемые достижения"
 L["Clear search field on Right Click"] = "Очистить область поиска правым кликом"
@@ -307,6 +308,7 @@ L["Fyrakk Assaults"] = "Нападение Фиракка"
 L["Garden Gallivant"] = "Спринт по садам"
 L["Garrisons Update"] = "Обновление Гарнизона"
 L["Gathering"] = "Сбор"
+L["Ghosts of K'aresh"] = "Призраки К'ареша"
 L["Gifts"] = "Подарки"
 L["Gladiator's Sanctum"] = "Святилище гладиатора"
 L["Glory"] = "Слава"
@@ -343,6 +345,7 @@ L["Holidays"] = "Праздники"
 L["Horizontal position"] = "Позиция по горизонтали"
 L["Horrific Visions Revisited"] = "Возвращение в жуткие видения"
 L["Hour of Twilight"] = "Время Сумерек"
+L["Housing Decor"] = "Декор для дома"
 L["Icon Left click"] = "для открытия окна Достижения"
 L["Icon Right click"] = "для Настроек."
 L["ID"] = true
@@ -379,6 +382,7 @@ L["Left Ctrl"] = true
 L["Left Shift"] = true
 L["Legacy of Arathor"] = "Наследие Аратора"
 L["Legion Assaults"] = "Атаки Легиона"
+L["Legion Remix"] = true
 L["Legion: Remix"] = true
 L["Level 80"] = "Уровень 80"
 L["Level 85"] = "Уровень 85"
@@ -736,6 +740,7 @@ L["The Vakthros Ascent"] = "Подъем на Вактрос"
 L["The Waking Shore"] = "Берега Пробуждения"
 L["The Wanderer: Next"] = "Странник: Следущее"
 L["The War Within (pre-patch)"] = "The War Within (Пре-Патч)"
+L["The Warning"] = true
 L["Theater Troupe"] = "Театральная Труппа"
 L["This achievement"] = "Это достижение"
 L["This achievement can't be earned by this character."] = "Это достижение не может быть заработано этим персонажем."
@@ -844,4 +849,3 @@ L["Zaqali Ruin Investigation: Next"] = "Руины Закали: Следуще�
 L["Zaqali Ruin Investigation: Soon"] = "Руины Закали: Скоро"
 L["Zaqali Ruin Investigation: Starting Soon"] = "Руины Закали: Скоро начало"
 L["Zones"] = "Зоны"
-L["Zuldazar"] = "Зульдазар"

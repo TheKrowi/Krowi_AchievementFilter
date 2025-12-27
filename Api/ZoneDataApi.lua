@@ -8,7 +8,11 @@ local function AddAchievements(zoneAchievements, achievementIds)
     end
 
     for _, achievementId in next, achievementIds do
-        tinsert(zoneAchievements, addon.Data.Achievements[achievementId]);
+        if addon.Util.IsTable(achievementId) then
+            AddAchievements(zoneAchievements, achievementId);
+        else
+            tinsert(zoneAchievements, addon.Data.Achievements[achievementId]);
+        end
     end
 end
 

@@ -689,20 +689,35 @@ KrowiAF.AchievementData["11_00_00"] = {
 		},
 	},
     {40445}, -- Sporesweeper
-    {40446}, -- I TAKE Candle!
+    { -- I TAKE Candle!
+        40446,
+        {
+            {"Before", "Version", {11, 1, 0}},
+        },
+    },
     {40447}, -- Delver of the Depths II
     {40448}, -- Delver of the Depths III
     {40449}, -- Delver of the Depths IV
     {40450}, -- Buddy System II
     {40451}, -- Buddy System III
-    {40452}, -- Just Keep Swimming
+    { -- Just Keep Swimming
+        40452,
+        {
+            {"Before", "Version", {11, 2, 0}},
+        },
+    },
     {40453}, -- Spider Senses
     {40454}, -- Daystormer
     {40455}, -- Buddy System
     {40456}, -- Buddy System IV
     {40457}, -- Buddy System V
     {40458}, -- Stranger Delves
-    {40459}, -- I've Got a Flying Machine!
+    { -- I've Got a Flying Machine!
+        40459,
+        {
+            {"PvE Season", 13},
+        },
+    },
     {40460}, -- Delve Deep
     {40461}, -- Buddy System VI
     {40462}, -- Delve Deeper
@@ -1109,7 +1124,12 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40732}, -- Heavy-Handed
     {40763}, -- I'm not a Thief, I'm a Treasure Hunter
     {40788}, -- I Got the Keys
-    {40789}, -- Flying in Style
+    { -- Flying in Style
+        40789,
+        {
+            {"PvE Season", 13},
+        },
+    },
     {40790}, -- Khaz Algar Explorer
     { -- Solo Shuffle Medic: The War Within
         40792,
@@ -2082,7 +2102,12 @@ KrowiAF.AchievementData["11_01_00"] = {
             {"PvE Season", 14},
         },
     },
-    {41532}, -- I've Got a Flying Machine?
+    { -- I've Got a Flying Machine?
+        41532,
+        {
+            {"PvE Season", 14},
+        },
+    },
     { -- The War Within Keystone Master: Season Two
         41533,
         {
@@ -2170,7 +2195,12 @@ KrowiAF.AchievementData["11_01_00"] = {
         },
     },
     {41711}, -- Conveyor Slayer
-    {41714}, -- From Trash to Treasure
+    { -- From Trash to Treasure
+        41714,
+        {
+            {"PvE Season", 14},
+        },
+    },
     {41723}, -- Buddy System VIII
 };
 
@@ -2413,7 +2443,7 @@ KrowiAF.AchievementData["11_01_07"] = {
         41779,
         {
             RewardType = rewardType.Mount,
-            {"Event", 1425},
+            {"Event", 1425, false},
         },
     },
     { -- Rise of the Red Dawn
@@ -2458,12 +2488,14 @@ KrowiAF.AchievementData["11_01_07"] = {
         42212,
         {
             RewardType = rewardType.Mount,
+            {"Before", "PvE Season", 15},
         },
     },
     { -- Overcharged Delver
         42241,
         {
             RewardType = rewardType.Toy,
+            {"Before", "PvE Season", 15},
         },
     },
 };
@@ -2886,8 +2918,18 @@ KrowiAF.AchievementData["11_02_00"] = {
         },
     },
     {42676}, -- Buddy System X
-    {42677}, -- This Machine Flies?! Don't Care I Got It!
-    {42678}, -- So That's Where My Manaflux Capacitor Was!
+    { -- This Machine Flies?! Don't Care I Got It!
+        42677,
+        {
+            {"PvE Season", 15},
+        },
+    },
+    { -- So That's Where My Manaflux Capacitor Was!
+        42678,
+        {
+            {"PvE Season", 15},
+        },
+    },
     {42679}, -- Archival Assault Discoveries
     {42727}, -- K'aresh Glyph Hunter
     {42729}, -- Dangerous Prowlers of K'aresh
@@ -2918,9 +2960,19 @@ KrowiAF.AchievementData["11_02_00"] = {
     {42780}, -- Eco-Dome Al'dani
     {42781}, -- Heroic: Eco-Dome Al'dani
     {42782}, -- Mythic: Eco-Dome Al'dani
-    {42799}, -- Let Her Solo Me
+    { -- Let Her Solo Me
+        42799,
+        {
+            {"PvE Season", 15},
+        },
+    },
     {42800}, -- Astral Attire
-    {42801}, -- Journey's End (Season 3)
+    { -- Journey's End (Season 3)
+        42801,
+        {
+            {"PvE Season", 15},
+        },
+    },
     {42802--[[ , Keystones will no longer deplete below level 26 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 26
     {42803--[[ , Keystones will no longer deplete below level 27 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 27
     {42804--[[ , Keystones will no longer deplete below level 28 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 28
@@ -2934,6 +2986,7 @@ KrowiAF.AchievementData["11_02_00"] = {
         60934,
         {
             RewardType = rewardType.Mount,
+            {"Before", "Version", {11, 2, 5}},
         },
     },
     { -- With Flying Colors
@@ -2942,6 +2995,7 @@ KrowiAF.AchievementData["11_02_00"] = {
         60933,
         {
             RewardType = rewardType.Mount,
+            {"Before", "Version", {11, 2, 5}},
         },
     },
     {60939}, -- Bringing Down the House
@@ -5047,6 +5101,7 @@ KrowiAF.AchievementData["11_02_07"] = {
         61394,
         {
             RewardType = rewardType.Mount,
+            {"Event", 1425},
         },
     },
     { -- The First Rule of Brawler's Guild
