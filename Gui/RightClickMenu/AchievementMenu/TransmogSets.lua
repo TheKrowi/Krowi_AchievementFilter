@@ -6,13 +6,13 @@ function section:CheckAdd(achievement)
     return achievement.TransmogSetIds ~= nil;
 end
 
-function section:Add(menu, achievement)
-	local transmogSets = addon.MenuUtil:CreateButton(menu, addon.L["Transmog Sets"]);
+function section:Add(menu, achievement, menuBuilder)
+	local transmogSets = menuBuilder:CreateSubmenuButton(menu, addon.L["Transmog Sets"]);
 
 	local transmogSetIds = addon.GetUsableSets(achievement.TransmogSetIds);
 	for _, transmogSetId in next, transmogSetIds do
 		local setInfo = C_TransmogSets.GetSetInfo(transmogSetId);
-		addon.MenuUtil:CreateButtonAndAdd(
+		menuBuilder:CreateButtonAndAdd(
 			transmogSets,
 			setInfo.name .. " (" .. setInfo.description .. ")",
 			function()
@@ -27,5 +27,5 @@ function section:Add(menu, achievement)
 		);
 	end
 
-    addon.MenuUtil:AddChildMenu(menu, transmogSets);
+    menuBuilder:AddChildMenu(menu, transmogSets);
 end

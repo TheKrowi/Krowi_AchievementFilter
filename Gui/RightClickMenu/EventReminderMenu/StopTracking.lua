@@ -15,8 +15,8 @@ local function GetTypeAsString(type)
     end
 end
 
-function section:Add(menu, event)
-    addon.MenuUtil:CreateButtonAndAdd(
+function section:Add(menu, event, menuBuilder)
+    menuBuilder:CreateButtonAndAdd(
         menu,
         addon.L["Stop tracking"],
 		function()

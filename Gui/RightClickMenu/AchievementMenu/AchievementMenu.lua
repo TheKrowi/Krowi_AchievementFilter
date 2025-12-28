@@ -3,9 +3,7 @@ addon.Gui.RightClickMenu.AchievementMenu = {
 	Sections = {}
 };
 local achievementMenu = addon.Gui.RightClickMenu.AchievementMenu;
-
-local MenuBuilder = LibStub("Krowi_MenuBuilder-1.0");
-local menuBuilder = MenuBuilder:New({});
+local menuBuilder = addon.MenuBuilder:New({});
 
 function achievementMenu:CloseMenu()
 	menuBuilder:Close();
@@ -48,7 +46,7 @@ local function CreateMenuFunc(builder, achievement)
 
 	for _, section in next, achievementMenu.Sections do
 		if section:CheckAdd(achievement) then
-			section:Add(menu, achievement);
+			section:Add(menu, achievement, menuBuilder);
 		end
 	end
 

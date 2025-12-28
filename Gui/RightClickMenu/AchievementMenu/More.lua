@@ -6,9 +6,11 @@ function section:CheckAdd()
     return true;
 end
 
+local menuBuilder;
+
 local function AddClearWatch(menu, achievement)
 	if achievement.IsWatched then
-		addon.MenuUtil:CreateButtonAndAdd(
+		menuBuilder:CreateButtonAndAdd(
 			menu,
 			addon.L["Remove from Watch List"]:K_ReplaceVars(addon.L["Watch List"]),
 			function()
@@ -17,7 +19,7 @@ local function AddClearWatch(menu, achievement)
 			end
 		);
 	else
-		addon.MenuUtil:CreateButtonAndAdd(
+		menuBuilder:CreateButtonAndAdd(
 			menu,
 			addon.L["Add to Watch List"]:K_ReplaceVars(addon.L["Watch List"]),
 			function()
@@ -30,7 +32,7 @@ end
 
 local function AddIncludeExclude(menu, achievement)
 	if achievement.IsExcluded then
-		addon.MenuUtil:CreateButtonAndAdd(
+		menuBuilder:CreateButtonAndAdd(
 			menu,
 			addon.L["Include"],
 			function()
@@ -39,7 +41,7 @@ local function AddIncludeExclude(menu, achievement)
 			end
 		);
 	else
-		addon.MenuUtil:CreateButtonAndAdd(
+		menuBuilder:CreateButtonAndAdd(
 			menu,
 			addon.L["Exclude"],
 			function()
@@ -50,11 +52,12 @@ local function AddIncludeExclude(menu, achievement)
 	end
 end
 
-function section:Add(menu, achievement)
-	local more = addon.MenuUtil:CreateButton(menu, addon.L["More"]);
+function section:Add(menu, achievement, builder)
+	menuBuilder = builder;
+	local more = menuBuilder:CreateSubmenuButton(menu, addon.L["More"]);
 
 	AddClearWatch(more, achievement);
 	AddIncludeExclude(more, achievement);
 
-    addon.MenuUtil:AddChildMenu(menu, more);
+    menuBuilder:AddChildMenu(menu, more);
 end

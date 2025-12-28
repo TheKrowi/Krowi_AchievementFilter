@@ -14,9 +14,11 @@ local function GetCriteriumText(achievement, criterium)
     return "* Placeholder for " .. achievement.Id .. " and " .. criterium.CriteriaIndex .. " * ";
 end
 
+local menuBuilder;
+
 local function AddCriteriumChildren(menu, children)
     for _, child in next, children do
-        addon.MenuUtil:CreateButtonAndAdd(
+        menuBuilder:CreateButtonAndAdd(
             menu,
             child.Text,
             function()
@@ -34,7 +36,7 @@ local function AddCriterium(menu, achievement, criterium)
             LibStub("Krowi_PopupDialog-1.0").ShowExternalLink(criterium.Link);
         end
     end
-    local criteriumLink = addon.MenuUtil:CreateButton(
+    local criteriumLink = menuBuilder:CreateSubmenuButton(
         menu,
         criteriaString,
         criteriumFunc
@@ -42,7 +44,7 @@ local function AddCriterium(menu, achievement, criterium)
     if criterium.Children then
         AddCriteriumChildren(criteriumLink, criterium.Children);
     end
-    addon.MenuUtil:AddChildMenu(menu, criteriumLink);
+    menuBuilder:AddChildMenu(menu, criteriumLink);
 end
 
 local AddData;
@@ -68,7 +70,7 @@ function AddData(menu, achievement, linkText)
             LibStub("Krowi_PopupDialog-1.0").ShowExternalLink(petBattleLinkData.Link);
         end
     end
-    local petBattleLink = addon.MenuUtil:CreateButton(
+    local petBattleLink = menuBuilder:CreateSubmenuButton(
         menu,
         linkText or addon.L["Xu-Fu's Pet Guides"],
         petBattleLinkFunc
@@ -77,10 +79,11 @@ function AddData(menu, achievement, linkText)
         AddCriteria(petBattleLink, achievement, petBattleLinkData.Criteria);
     end
 
-    addon.MenuUtil:AddChildMenu(menu, petBattleLink);
+    menuBuilder:AddChildMenu(menu, petBattleLink);
 end
 
 
-function section:Add(menu, achievement)
+function section:Add(menu, achievement, builder)
+    menuBuilder = builder;
     AddData(menu, achievement, addon.Data.PetBattleLinkData[achievement.Id].Text);
 end

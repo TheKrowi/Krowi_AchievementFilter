@@ -12,11 +12,11 @@ local function CreateSearchOptionsMenuFunc(builder)
     builder:CreateTitle(menu, addon.L["Search options"]);
     
     local profile = addon.SearchOptions.db.profile;
-    builder:CreateCheckbox(addon.L["Search Ids"] .. " (#)", profile, {"SearchIds"}, menu);
-    builder:CreateCheckbox(addon.L["Search Names"], profile, {"SearchNames"}, menu);
-    builder:CreateCheckbox(addon.L["Search Descriptions"], profile, {"SearchDescriptions"}, menu);
-    builder:CreateCheckbox(addon.L["Search Criteria"] .. " (@)", profile, {"SearchCriteria"}, menu);
-    builder:CreateCheckbox(addon.L["Search Rewards"], profile, {"SearchRewards"}, menu);
+    builder:CreateCheckbox(menu, addon.L["Search Ids"] .. " (#)", profile, {"SearchIds"});
+    builder:CreateCheckbox(menu, addon.L["Search Names"], profile, {"SearchNames"});
+    builder:CreateCheckbox(menu, addon.L["Search Descriptions"], profile, {"SearchDescriptions"});
+    builder:CreateCheckbox(menu, addon.L["Search Criteria"] .. " (@)", profile, {"SearchCriteria"});
+    builder:CreateCheckbox(menu, addon.L["Search Rewards"], profile, {"SearchRewards"});
 end
 
 function KrowiAF_SearchOptionsMenuButtonMixin:OnLoad()

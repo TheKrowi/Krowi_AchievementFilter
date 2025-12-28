@@ -8,8 +8,8 @@ function section:CheckAdd(achievement)
     return #requiredForIds ~= 0;
 end
 
-function section:Add(menu, achievement)
-	addon.MenuUtil:CreateTitle(menu, addon.L["Required for"]);
+function section:Add(menu, achievement, menuBuilder)
+	menuBuilder:CreateTitle(menu, addon.L["Required for"]);
 	for _, id in next, requiredForIds do
 		if id ~= achievement.Id then
 			addon.Gui.RightClickMenu.AchievementMenu:AddGoToAchievementLine(menu, id);

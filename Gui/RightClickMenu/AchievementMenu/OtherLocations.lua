@@ -6,8 +6,8 @@ function section:CheckAdd(achievement)
     return achievement.MoreCategories;
 end
 
-function section:Add(menu, achievement)
-	addon.MenuUtil:CreateTitle(menu, addon.L["Other locations"]);
+function section:Add(menu, achievement, menuBuilder)
+	menuBuilder:CreateTitle(menu, addon.L["Other locations"]);
 	local selectedCategory = addon.Gui.SelectedTab and addon.Gui.SelectedTab.SelectedCategory or nil;
 	if selectedCategory ~= achievement.Category then
 		addon.Gui.RightClickMenu.AchievementMenu:AddGoToAchievementWithCategoryLine(menu, achievement, achievement.Category);

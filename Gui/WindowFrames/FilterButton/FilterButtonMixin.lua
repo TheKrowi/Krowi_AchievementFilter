@@ -1,6 +1,5 @@
 local _, addon = ...;
 
-local MenuBuilder = LibStub("Krowi_MenuBuilder-1.0");
 local isModern = addon.Util.IsMainline;
 
 KrowiAF_AchievementFrameFilterButtonMixin = {};
@@ -16,60 +15,33 @@ do -- Mixin
         
         -- Initialize MenuBuilder with callbacks
         local config = {
-            callbacks = {
-                GetCheckBoxStateText = function(text, filters, keys)
-                    return self:GetCheckBoxStateText(text, filters, keys);
-                end,
-                KeyIsTrue = function(filters, keys)
-                    return self:KeyIsTrue(filters, keys);
-                end,
-                OnCheckboxSelect = function(filters, keys, checkTabs)
-                    self:OnCheckboxSelect(filters, keys, checkTabs);
-                end,
-                KeyEqualsText = function(text, filters, keys)
-                    return self:KeyEqualsText(text, filters, keys);
-                end,
-                OnRadioSelect = function(text, filters, keys, checkTabs)
-                    self:OnRadioSelect(text, filters, keys, checkTabs);
-                end,
-                IsMinorVersionChecked = function(filters, minor)
-                    return self:IsMinorVersionChecked(filters, minor);
-                end,
-                OnMinorVersionSelect = function(filters, minor)
-                    self:OnMinorVersionSelect(filters, minor);
-                end,
-                IsMajorVersionChecked = function(filters, major)
-                    return self:IsMajorVersionChecked(filters, major);
-                end,
-                OnMajorVersionSelect = function(filters, major)
-                    self:OnMajorVersionSelect(filters, major);
-                end,
-                OnAllVersionsSelect = function(filters, value)
-                    self:OnAllVersionsSelect(filters, value);
-                end,
-                CreateBuildVersionFilterGroups = function(version, filters, menuBuilder)
-                    self:CreateBuildVersionFilterGroups(version, filters);
-                end,
-                SetRewardsFilters = function(filters, value)
-                    self:SetRewardsFilters(filters, value);
-                end,
-                SetFactionFilters = function(filters, value)
-                    self:SetFactionFilters(filters, value);
-                end,
-            },
+            callbacks = addon.MenuBuilder.BindCallbacks(self, {
+                GetCheckBoxStateText = "GetCheckBoxStateText",
+                OnCheckboxSelect = "OnCheckboxSelect",
+                OnRadioSelect = "OnRadioSelect",
+                IsMinorVersionChecked = "IsMinorVersionChecked",
+                OnMinorVersionSelect = "OnMinorVersionSelect",
+                IsMajorVersionChecked = "IsMajorVersionChecked",
+                OnMajorVersionSelect = "OnMajorVersionSelect",
+                OnAllVersionsSelect = "OnAllVersionsSelect",
+                CreateBuildVersionFilterGroups = "CreateBuildVersionFilterGroups",
+                SetRewardsFilters = "SetRewardsFilters",
+                SetFactionFilters = "SetFactionFilters",
+            }),
             translations = addon.L
         };
         
-        self.menuBuilder = MenuBuilder:New(config);
+        local menuBuilder = addon.MenuBuilder:New(config);
+        self.menuBuilder = menuBuilder;
         
         -- Set CreateMenu function directly on the instance
-        self.menuBuilder.CreateMenu = function(menuBuilder)
-            self:CreateMenu(menuBuilder:GetMenu());
+        menuBuilder.CreateMenu = function(mb)
+            self:CreateMenu(mb:GetMenu());
         end;
         
         -- Modern needs SetupMenuForModern
         if isModern then
-            self.menuBuilder:SetupMenuForModern(self);
+            menuBuilder:SetupMenuForModern(self);
         end
     end
     
@@ -141,32 +113,16 @@ do -- Checkbox
         return text .. ((filters == addon.Filters.db.profile and CheckBoxStateIsIndeterminate(keys)) and " (*)" or "");
     end
 
-    function KrowiAF_AchievementFrameFilterButtonMixin:KeyIsTrue(filters, keys)
-        return addon.Util.ReadNestedKeys(filters, keys);
-    end
-
     function KrowiAF_AchievementFrameFilterButtonMixin:OnCheckboxSelect(filters, keys, checkTabs)
-        self:SetSelected(filters, keys, not self:KeyIsTrue(filters, keys), checkTabs, true);
+        self:SetSelected(filters, keys, not self.menuBuilder:KeyIsTrue(filters, keys), checkTabs, true);
         self:UpdateAchievementFrame();
-    end
-
-    function KrowiAF_AchievementFrameFilterButtonMixin:CreateCheckbox(menu, text, filters, keys, checkTabs)
-        self.menuBuilder:CreateCheckbox(text, filters, keys, menu, checkTabs);
     end
 end
 
 do -- Radio
-    function KrowiAF_AchievementFrameFilterButtonMixin:KeyEqualsText(text, filters, keys)
-        return addon.Util.ReadNestedKeys(filters, keys) == text;
-    end
-
     function KrowiAF_AchievementFrameFilterButtonMixin:OnRadioSelect(text, filters, keys, checkTabs)
         self:SetSelected(filters, keys, text, checkTabs, false);
         KrowiAF_AchievementsFrame:ForceUpdate();
-    end
-
-    function KrowiAF_AchievementFrameFilterButtonMixin:CreateRadio(menu, text, filters, keys, checkTabs)
-        self.menuBuilder:CreateRadio(text, filters, keys, menu, checkTabs);
     end
 end
 
@@ -191,18 +147,15 @@ do -- BuildVersionFilter
         self:UpdateAchievementFrame();
     end
 
-    function KrowiAF_AchievementFrameFilterButtonMixin:CreateMinorVersionGroup(majorGroup, filters, major, minor)
-        return self.menuBuilder:CreateMinorVersionGroup(majorGroup, filters, major, minor);
-    end
-
     function KrowiAF_AchievementFrameFilterButtonMixin:CreateMinorVersion(majorGroup, filters, major, minor)
+        local mb = self.menuBuilder;
         if #minor.Patches <= 1 then
-            self:CreateCheckbox(majorGroup, major.Major .. "." .. minor.Minor .. "." .. minor.Patches[1].Patch, filters, {"BuildVersion", minor.Patches[1].BuildVersionId}, true);
+            mb:CreateCheckbox(majorGroup, major.Major .. "." .. minor.Minor .. "." .. minor.Patches[1].Patch, filters, {"BuildVersion", minor.Patches[1].BuildVersionId}, true);
             return;
         end
-        local minorGroup = self:CreateMinorVersionGroup(majorGroup, filters, major, minor);
+        local minorGroup = mb:CreateMinorVersionGroup(majorGroup, filters, major, minor);
         for _, patch in next, minor.Patches do
-            self:CreateCheckbox(minorGroup, major.Major .. "." .. minor.Minor .. "." .. patch.Patch, filters, {"BuildVersion", patch.BuildVersionId}, true);
+            mb:CreateCheckbox(minorGroup, major.Major .. "." .. minor.Minor .. "." .. patch.Patch, filters, {"BuildVersion", patch.BuildVersionId}, true);
         end
     end
 
@@ -222,12 +175,8 @@ do -- BuildVersionFilter
         self:UpdateAchievementFrame();
     end
 
-    function KrowiAF_AchievementFrameFilterButtonMixin:CreateMajorVersionGroup(version, filters, major)
-        return self.menuBuilder:CreateMajorVersionGroup(version, filters, major);
-    end
-
     function KrowiAF_AchievementFrameFilterButtonMixin:CreateMajorVersion(version, filters, major)
-        local majorGroup = self:CreateMajorVersionGroup(version, filters, major);
+        local majorGroup = self.menuBuilder:CreateMajorVersionGroup(version, filters, major);
         for _, minor in next, major.Minors do
             self:CreateMinorVersion(majorGroup, filters, major, minor);
         end
@@ -244,10 +193,6 @@ do -- BuildVersionFilter
         self:UpdateAchievementFrame();
     end
 
-    function KrowiAF_AchievementFrameFilterButtonMixin:CreateSelectDeselectAllVersions(version, filters)
-        self.menuBuilder:CreateSelectDeselectAllVersions(version, filters);
-    end
-
     function KrowiAF_AchievementFrameFilterButtonMixin:CreateBuildVersionFilterGroups(version, filters)
         if #addon.Data.BuildVersionsGrouped > 1 then
             for _, major in next, addon.Data.BuildVersionsGrouped do
@@ -259,12 +204,9 @@ do -- BuildVersionFilter
                 self:CreateMinorVersion(version, filters, major, minor);
             end
         end
-        self:CreateSelectDeselectAllVersions(version, filters);
+        self.menuBuilder:CreateSelectDeselectAllVersions(version, filters);
     end
 
-    function KrowiAF_AchievementFrameFilterButtonMixin:CreateBuildVersionFilter(menu, filters)
-        self.menuBuilder:CreateBuildVersionFilter(filters, menu);
-    end
 end
 
 do -- AchievementFilters
@@ -277,19 +219,11 @@ do -- AchievementFilters
         self:UpdateAchievementFrame();
     end
 
-    function KrowiAF_AchievementFrameFilterButtonMixin:CreateSelectDeselectAllRewards(menu, text, filters, value)
-        self.menuBuilder:CreateSelectDeselectAllRewards(text, filters, value, menu);
-    end
-
     function KrowiAF_AchievementFrameFilterButtonMixin:SetFactionFilters(filters, value)
         for faction, _ in next, filters.Faction do
             self:SetSelected(filters, {"Faction", faction}, value, true, true);
         end
         self:UpdateAchievementFrame();
-    end
-
-    function KrowiAF_AchievementFrameFilterButtonMixin:CreateSelectDeselectAllFactions(menu, text, filters, value)
-        self.menuBuilder:CreateSelectDeselectAllFactions(text, filters, value, menu);
     end
 
     local function SortByValueIsIndeterminate(keys)
@@ -306,77 +240,78 @@ do -- AchievementFilters
     end
 
     function KrowiAF_AchievementFrameFilterButtonMixin:CreateAchievementFilters(menu, filters, parentMenu)
-        self:CreateCheckbox(menu, addon.L["Completed"], filters, {"Completion", "Completed"}, true);
-        self:CreateCheckbox(menu, addon.L["Not Completed"], filters, {"Completion", "NotCompleted"}, true);
-        self:CreateCheckbox(menu, addon.L["Past Obtainable"], filters, {"Obtainability", "PastObtainable"}, true);
-        self:CreateCheckbox(menu, addon.L["Current Obtainable"], filters, {"Obtainability", "CurrentObtainable"}, true);
-        self:CreateCheckbox(menu, addon.L["Future Obtainable"], filters, {"Obtainability", "FutureObtainable"}, true);
+        local mb = self.menuBuilder;
+        mb:CreateCheckbox(menu, addon.L["Completed"], filters, {"Completion", "Completed"}, true);
+        mb:CreateCheckbox(menu, addon.L["Not Completed"], filters, {"Completion", "NotCompleted"}, true);
+        mb:CreateCheckbox(menu, addon.L["Past Obtainable"], filters, {"Obtainability", "PastObtainable"}, true);
+        mb:CreateCheckbox(menu, addon.L["Current Obtainable"], filters, {"Obtainability", "CurrentObtainable"}, true);
+        mb:CreateCheckbox(menu, addon.L["Future Obtainable"], filters, {"Obtainability", "FutureObtainable"}, true);
 
-        local reward = self.menuBuilder:CreateSubmenuButton(menu, addon.L["Has Reward"]);
-        self:CreateCheckbox(reward, addon.L["Yes"], filters, {"HasReward", "Yes"}, true);
-        self:CreateCheckbox(reward, addon.L["No"], filters, {"HasReward", "No"}, true);
-        self.menuBuilder:CreateDivider(reward);
-        self:CreateCheckbox(reward, addon.L["Allied Race"], filters, {"RewardType", KrowiAF.Enum.RewardType.AlliedRace}, true);
-        self:CreateCheckbox(reward, addon.L["Garrison"], filters, {"RewardType", KrowiAF.Enum.RewardType.Garrison}, true);
-        self:CreateCheckbox(reward, addon.L["Mount"], filters, {"RewardType", KrowiAF.Enum.RewardType.Mount}, true);
-        self:CreateCheckbox(reward, addon.L["Pet"], filters, {"RewardType", KrowiAF.Enum.RewardType.Pet}, true);
-        self:CreateCheckbox(reward, addon.L["Tabard"], filters, {"RewardType", KrowiAF.Enum.RewardType.Tabard}, true);
-        self:CreateCheckbox(reward, addon.L["Teleport"], filters, {"RewardType", KrowiAF.Enum.RewardType.Teleport}, true);
-        self:CreateCheckbox(reward, addon.L["Title"], filters, {"RewardType", KrowiAF.Enum.RewardType.Title}, true);
-        self:CreateCheckbox(reward, addon.L["Toy"], filters, {"RewardType", KrowiAF.Enum.RewardType.Toy}, true);
-        self:CreateCheckbox(reward, addon.L["Trader's Tender"], filters, {"RewardType", KrowiAF.Enum.RewardType.TradersTender}, true);
-        self:CreateCheckbox(reward, addon.L["Transmog"], filters, {"RewardType", KrowiAF.Enum.RewardType.Transmog}, true);
-        self:CreateCheckbox(reward, addon.L["Warband Campsite"], filters, {"RewardType", KrowiAF.Enum.RewardType.WarbandCampsite}, true);
-        self:CreateCheckbox(reward, addon.L["Housing Decor"], filters, {"RewardType", KrowiAF.Enum.RewardType.HousingDecor}, true);
-        self:CreateCheckbox(reward, addon.L["Other"], filters, {"RewardType", KrowiAF.Enum.RewardType.Other}, true);
-        self.menuBuilder:CreateDivider(reward);
-        self:CreateCheckbox(reward, addon.L["Remix Bronze"], filters, {"RewardType", KrowiAF.Enum.RewardType.RemixBronze}, true);
-        self:CreateCheckbox(reward, addon.L["Remix Infinite Knowledge"], filters, {"RewardType", KrowiAF.Enum.RewardType.RemixInfiniteKnowledge}, true);
-        self.menuBuilder:CreateDivider(reward);
-        self:CreateCheckbox(reward, addon.L["Not Categorized"], filters, {"RewardType", KrowiAF.Enum.RewardType.NotCategorized}, true);
-        self.menuBuilder:CreateDivider(reward);
-        self:CreateSelectDeselectAllRewards(reward, addon.L["Select All"], filters, true);
-        self:CreateSelectDeselectAllRewards(reward, addon.L["Deselect All"], filters, false);
-        self.menuBuilder:AddChildMenu(menu, reward);
+        local reward = mb:CreateSubmenuButton(menu, addon.L["Has Reward"]);
+        mb:CreateCheckbox(reward, addon.L["Yes"], filters, {"HasReward", "Yes"}, true);
+        mb:CreateCheckbox(reward, addon.L["No"], filters, {"HasReward", "No"}, true);
+        mb:CreateDivider(reward);
+        mb:CreateCheckbox(reward, addon.L["Allied Race"], filters, {"RewardType", KrowiAF.Enum.RewardType.AlliedRace}, true);
+        mb:CreateCheckbox(reward, addon.L["Garrison"], filters, {"RewardType", KrowiAF.Enum.RewardType.Garrison}, true);
+        mb:CreateCheckbox(reward, addon.L["Mount"], filters, {"RewardType", KrowiAF.Enum.RewardType.Mount}, true);
+        mb:CreateCheckbox(reward, addon.L["Pet"], filters, {"RewardType", KrowiAF.Enum.RewardType.Pet}, true);
+        mb:CreateCheckbox(reward, addon.L["Tabard"], filters, {"RewardType", KrowiAF.Enum.RewardType.Tabard}, true);
+        mb:CreateCheckbox(reward, addon.L["Teleport"], filters, {"RewardType", KrowiAF.Enum.RewardType.Teleport}, true);
+        mb:CreateCheckbox(reward, addon.L["Title"], filters, {"RewardType", KrowiAF.Enum.RewardType.Title}, true);
+        mb:CreateCheckbox(reward, addon.L["Toy"], filters, {"RewardType", KrowiAF.Enum.RewardType.Toy}, true);
+        mb:CreateCheckbox(reward, addon.L["Trader's Tender"], filters, {"RewardType", KrowiAF.Enum.RewardType.TradersTender}, true);
+        mb:CreateCheckbox(reward, addon.L["Transmog"], filters, {"RewardType", KrowiAF.Enum.RewardType.Transmog}, true);
+        mb:CreateCheckbox(reward, addon.L["Warband Campsite"], filters, {"RewardType", KrowiAF.Enum.RewardType.WarbandCampsite}, true);
+        mb:CreateCheckbox(reward, addon.L["Housing Decor"], filters, {"RewardType", KrowiAF.Enum.RewardType.HousingDecor}, true);
+        mb:CreateCheckbox(reward, addon.L["Other"], filters, {"RewardType", KrowiAF.Enum.RewardType.Other}, true);
+        mb:CreateDivider(reward);
+        mb:CreateCheckbox(reward, addon.L["Remix Bronze"], filters, {"RewardType", KrowiAF.Enum.RewardType.RemixBronze}, true);
+        mb:CreateCheckbox(reward, addon.L["Remix Infinite Knowledge"], filters, {"RewardType", KrowiAF.Enum.RewardType.RemixInfiniteKnowledge}, true);
+        mb:CreateDivider(reward);
+        mb:CreateCheckbox(reward, addon.L["Not Categorized"], filters, {"RewardType", KrowiAF.Enum.RewardType.NotCategorized}, true);
+        mb:CreateDivider(reward);
+        mb:CreateSelectDeselectAllRewards(reward, addon.L["Select All"], filters, true);
+        mb:CreateSelectDeselectAllRewards(reward, addon.L["Deselect All"], filters, false);
+        mb:AddChildMenu(menu, reward);
 
-        self:CreateBuildVersionFilter(menu, filters);
+        mb:CreateBuildVersionFilter(filters, menu);
 
-        local faction = self.menuBuilder:CreateSubmenuButton(menu, addon.L["Faction"]);
-        self:CreateCheckbox(faction, addon.L["Neutral"], filters, {"Faction", "Neutral"}, true);
-        self:CreateCheckbox(faction, addon.L["Alliance"], filters, {"Faction", "Alliance"}, true);
-        self:CreateCheckbox(faction, addon.L["Horde"], filters, {"Faction", "Horde"}, true);
-        self.menuBuilder:CreateDivider(faction);
-        self:CreateSelectDeselectAllFactions(faction, addon.L["Select All"], filters, true);
-        self:CreateSelectDeselectAllFactions(faction, addon.L["Deselect All"], filters, false);
-        self.menuBuilder:AddChildMenu(menu, faction);
+        local faction = mb:CreateSubmenuButton(menu, addon.L["Faction"]);
+        mb:CreateCheckbox(faction, addon.L["Neutral"], filters, {"Faction", "Neutral"}, true);
+        mb:CreateCheckbox(faction, addon.L["Alliance"], filters, {"Faction", "Alliance"}, true);
+        mb:CreateCheckbox(faction, addon.L["Horde"], filters, {"Faction", "Horde"}, true);
+        mb:CreateDivider(faction);
+        mb:CreateSelectDeselectAllFactions(faction, addon.L["Select All"], filters, true);
+        mb:CreateSelectDeselectAllFactions(faction, addon.L["Deselect All"], filters, false);
+        mb:AddChildMenu(menu, faction);
 
-        self:CreateCheckbox(menu, addon.L["Realm First!"], filters, {"Special", "RealmFirst"}, true);
-        self:CreateCheckbox(menu, addon.GetCategoryInfoTitle(81), filters, {"Special", "FeatsOfStrength"}, true);
-        self:CreateCheckbox(menu, addon.GetCategoryInfoTitle(95), filters, {"Special", "PvP"}, true);
-        self:CreateCheckbox(menu, addon.L["Collapse Chain"], filters, {"CollapseSeries"}, true);
+        mb:CreateCheckbox(menu, addon.L["Realm First!"], filters, {"Special", "RealmFirst"}, true);
+        mb:CreateCheckbox(menu, addon.GetCategoryInfoTitle(81), filters, {"Special", "FeatsOfStrength"}, true);
+        mb:CreateCheckbox(menu, addon.GetCategoryInfoTitle(95), filters, {"Special", "PvP"}, true);
+        mb:CreateCheckbox(menu, addon.L["Collapse Chain"], filters, {"CollapseSeries"}, true);
         if addon.Options.db.profile.Categories.TrackingAchievements.DoLoad then
-            self:CreateCheckbox(menu, addon.L["Tracking"], filters, {"Tracking"}, true);
+            mb:CreateCheckbox(menu, addon.L["Tracking"], filters, {"Tracking"}, true);
         end
-        self:CreateCheckbox(menu, addon.L["Excluded"], filters, {"Excluded"}, true);
-        self:CreateCheckbox(menu, addon.L["Always Show Completed"], filters, {"Completion", "AlwaysShowCompleted"}, true);
+        mb:CreateCheckbox(menu, addon.L["Excluded"], filters, {"Excluded"}, true);
+        mb:CreateCheckbox(menu, addon.L["Always Show Completed"], filters, {"Completion", "AlwaysShowCompleted"}, true);
 
-        self.menuBuilder:CreateDivider(menu);
+        mb:CreateDivider(menu);
 
         local text = addon.L["Sort By"];
         if filters == addon.Filters.db.profile and SortByValueIsIndeterminate({"SortBy", "Criteria"}) then
             text = text .. " (*)";
         end
-        local sortBy = self.menuBuilder:CreateSubmenuButton(menu, text);
-        self:CreateRadio(sortBy, addon.L["Default"], filters, {"SortBy", "Criteria"}, true);
-        self:CreateRadio(sortBy, addon.L["Name"], filters, {"SortBy", "Criteria"}, true);
-        self:CreateRadio(sortBy, addon.L["Completion"], filters, {"SortBy", "Criteria"}, true);
-        self:CreateRadio(sortBy, addon.L["ID"], filters, {"SortBy", "Criteria"}, true);
-        self:CreateRadio(sortBy, addon.L["Points"], filters, {"SortBy", "Criteria"}, true);
-        self.menuBuilder:CreateDivider(sortBy);
-        self:CreateCheckbox(sortBy, addon.L["Reverse Sort"], filters, {"SortBy", "ReverseSort"}, true);
-        self.menuBuilder:AddChildMenu(menu, sortBy);
+        local sortBy = mb:CreateSubmenuButton(menu, text);
+        mb:CreateRadio(sortBy, addon.L["Default"], filters, {"SortBy", "Criteria"}, true);
+        mb:CreateRadio(sortBy, addon.L["Name"], filters, {"SortBy", "Criteria"}, true);
+        mb:CreateRadio(sortBy, addon.L["Completion"], filters, {"SortBy", "Criteria"}, true);
+        mb:CreateRadio(sortBy, addon.L["ID"], filters, {"SortBy", "Criteria"}, true);
+        mb:CreateRadio(sortBy, addon.L["Points"], filters, {"SortBy", "Criteria"}, true);
+        mb:CreateDivider(sortBy);
+        mb:CreateCheckbox(sortBy, addon.L["Reverse Sort"], filters, {"SortBy", "ReverseSort"}, true);
+        mb:AddChildMenu(menu, sortBy);
 
-        self.menuBuilder:AddChildMenu(parentMenu, menu);
+        mb:AddChildMenu(parentMenu, menu);
     end
 end
 
@@ -388,37 +323,38 @@ function KrowiAF_AchievementFrameFilterButtonMixin:HelpShowTutorial(index)
 end
 
 function KrowiAF_AchievementFrameFilterButtonMixin:CreateMenu(menu)
-    self.menuBuilder:CreateTitle(menu, addon.L["Categories"]);
-    self:CreateCheckbox(menu, addon.L["Merge Small Categories"], addon.Filters.db.profile, {"MergeSmallCategories"});
+    local mb = self.menuBuilder;
+    mb:CreateTitle(menu, addon.L["Categories"]);
+    mb:CreateCheckbox(menu, addon.L["Merge Small Categories"], addon.Filters.db.profile, {"MergeSmallCategories"});
 
-    self.menuBuilder:CreateDivider(menu);
-    self.menuBuilder:CreateTitle(menu, addon.L["Achievements"]);
+    mb:CreateDivider(menu);
+    mb:CreateTitle(menu, addon.L["Achievements"]);
     self:CreateAchievementFilters(menu, addon.Filters.db.profile);
 
-    local earnedBy = self.menuBuilder:CreateSubmenuButton(menu, addon.L["Earned By"]);
-    self:CreateRadio(earnedBy, addon.Filters.Account, addon.Filters.db.profile, {"EarnedBy"}, false);
-    self:CreateRadio(earnedBy, addon.Filters.CharacterAccount, addon.Filters.db.profile, {"EarnedBy"}, false);
-    self:CreateRadio(earnedBy, addon.Filters.CharacterOnly, addon.Filters.db.profile, {"EarnedBy"}, false);
-    self.menuBuilder:AddChildMenu(menu, earnedBy);
+    local earnedBy = mb:CreateSubmenuButton(menu, addon.L["Earned By"]);
+    mb:CreateRadio(earnedBy, addon.Filters.Account, addon.Filters.db.profile, {"EarnedBy"}, false);
+    mb:CreateRadio(earnedBy, addon.Filters.CharacterAccount, addon.Filters.db.profile, {"EarnedBy"}, false);
+    mb:CreateRadio(earnedBy, addon.Filters.CharacterOnly, addon.Filters.db.profile, {"EarnedBy"}, false);
+    mb:AddChildMenu(menu, earnedBy);
 
-    self.menuBuilder:CreateDivider(menu);
-    self.menuBuilder:CreateTitle(menu, addon.L["Tabs"]);
+    mb:CreateDivider(menu);
+    mb:CreateTitle(menu, addon.L["Tabs"]);
     for _, t in next, addon.TabsOrder do
-        self:CreateAchievementFilters(self.menuBuilder:CreateSubmenuButton(menu, addon.Tabs[t].Text), addon.Tabs[t].Filters, menu);
+        self:CreateAchievementFilters(mb:CreateSubmenuButton(menu, addon.Tabs[t].Text), addon.Tabs[t].Filters, menu);
     end
 
-    self.menuBuilder:CreateDivider(menu);
-    self.menuBuilder:CreateTitle(menu, addon.L["Special Categories"]);
-    self:CreateAchievementFilters(self.menuBuilder:CreateSubmenuButton(menu, addon.L["Current Zone"]), addon.Filters.db.profile.CurrentZone, menu);
-    self:CreateAchievementFilters(self.menuBuilder:CreateSubmenuButton(menu, addon.L["Selected Zone"]), addon.Filters.db.profile.SelectedZone, menu);
-    self:CreateAchievementFilters(self.menuBuilder:CreateSubmenuButton(menu, addon.L["Tracking Achievements"]), addon.Filters.db.profile.TrackingAchievements, menu);
+    mb:CreateDivider(menu);
+    mb:CreateTitle(menu, addon.L["Special Categories"]);
+    self:CreateAchievementFilters(mb:CreateSubmenuButton(menu, addon.L["Current Zone"]), addon.Filters.db.profile.CurrentZone, menu);
+    self:CreateAchievementFilters(mb:CreateSubmenuButton(menu, addon.L["Selected Zone"]), addon.Filters.db.profile.SelectedZone, menu);
+    self:CreateAchievementFilters(mb:CreateSubmenuButton(menu, addon.L["Tracking Achievements"]), addon.Filters.db.profile.TrackingAchievements, menu);
 
-    self.menuBuilder:CreateDivider(menu);
-    local help = self.menuBuilder:CreateSubmenuButton(menu, (addon.Tutorials.FeaturesTutorial:HasUnviewedPages() and "|T132049:0|t" or "") .. addon.L["Help"]);
+    mb:CreateDivider(menu);
+    local help = mb:CreateSubmenuButton(menu, (addon.Tutorials.FeaturesTutorial:HasUnviewedPages() and "|T132049:0|t" or "") .. addon.L["Help"]);
     local pages = addon.Tutorials.FeaturesTutorial.Pages;
-    self.menuBuilder:CreateTitle(help, addon.L["View Tutorial"]);
+    mb:CreateTitle(help, addon.L["View Tutorial"]);
     for i, _ in next, pages do
-        self.menuBuilder:CreateButtonAndAdd(
+        mb:CreateButtonAndAdd(
             help,
             (pages[i].IsViewed and "" or "|T132049:0|t") .. string.format(addon.Util.Colors.White, addon.Util.Colors.RemoveColor(pages[i].SubTitle)),
             function()
@@ -426,16 +362,16 @@ function KrowiAF_AchievementFrameFilterButtonMixin:CreateMenu(menu)
             end
         );
     end
-    self.menuBuilder:AddChildMenu(menu, help);
+    mb:AddChildMenu(menu, help);
 
-    self.menuBuilder:CreateButtonAndAdd(
+    mb:CreateButtonAndAdd(
         menu,
         addon.L["Options"],
         addon.Options.Open
     );
 
     if addon.Options.db.profile.ShowPlaceholdersFilter then
-        self.menuBuilder:CreateDivider(menu);
-        self:CreateCheckbox(menu, addon.L["Show placeholders"], addon.Filters.db.profile, {"ShowPlaceholders"});
+        mb:CreateDivider(menu);
+        mb:CreateCheckbox(menu, addon.L["Show placeholders"], addon.Filters.db.profile, {"ShowPlaceholders"});
     end
 end

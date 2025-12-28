@@ -7,7 +7,7 @@ function section:CheckAdd()
     return selectedCategory and (selectedCategory.IsCurrentZone or selectedCategory.IsSelectedZone);
 end
 
-function section:Add(menu, achievement)
-	addon.MenuUtil:CreateTitle(menu, achievement.Category:GetPath());
+function section:Add(menu, achievement, menuBuilder)
+	menuBuilder:CreateTitle(menu, achievement.Category:GetPath());
 	addon.Gui.RightClickMenu.AchievementMenu:AddGoToAchievementLine(menu, achievement.Id);
 end

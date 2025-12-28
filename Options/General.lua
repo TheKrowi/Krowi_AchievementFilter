@@ -41,7 +41,8 @@ local function CreateTutorialMenuFunc(builder)
 
     builder:CreateTitle(menu, addon.L["View Tutorial"]);
     for i, _ in next, pages do
-        builder:CreateButton(
+        builder:CreateButtonAndAdd(
+            menu,
             (pages[i].IsViewed and "" or "|T132049:0|t") .. string.format(addon.Util.Colors.White, addon.Util.Colors.RemoveColor(pages[i].SubTitle)),
             function()
                 if addon.Util.IsWrathClassic then
@@ -50,8 +51,7 @@ local function CreateTutorialMenuFunc(builder)
                     SettingsPanel:Close();
                 end
                 addon.Tutorials.FeaturesTutorial:ShowTutorial(i);
-            end,
-            menu
+            end
         );
     end
 end

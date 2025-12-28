@@ -3,9 +3,7 @@ addon.Gui.RightClickMenu.EventReminderMenu = {
 	Sections = {}
 };
 local eventReminderMenu = addon.Gui.RightClickMenu.EventReminderMenu;
-
-local MenuBuilder = LibStub("Krowi_MenuBuilder-1.0");
-local menuBuilder = MenuBuilder:New({});
+local menuBuilder = addon.MenuBuilder:New({});
 
 local function CreateMenuFunc(builder, event)
 	local menu = builder:GetMenu();
@@ -14,7 +12,7 @@ local function CreateMenuFunc(builder, event)
 
 	for _, section in next, eventReminderMenu.Sections do
 		if section:CheckAdd(event) then
-			section:Add(menu, event);
+			section:Add(menu, event, menuBuilder);
 		end
 	end
 end

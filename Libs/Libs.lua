@@ -11,3 +11,4 @@ libs.Krowi_MenuUtil = "Krowi_MenuUtil-1.0";
 addon.Util = LibStub(addon.Libs.Krowi_Util);
 addon.MenuUtil = LibStub(addon.Libs.Krowi_MenuUtil);
 addon.Metadata = addon.Util.Metadata.GetAddOnMetadata(addonName);
+addon.MenuBuilder = LibStub("Krowi_MenuBuilder-1.0");

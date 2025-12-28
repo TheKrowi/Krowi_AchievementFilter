@@ -16,7 +16,7 @@ function section:CheckAdd(achievement)
     return true;
 end
 
-function section:Add(menu, achievement)
+function section:Add(menu, achievement, menuBuilder)
 	local locale = "";
 	if addon.Options.db.profile.RightClickMenu.WowheadLink.AddLocale then
 		locale = GetLocale();
@@ -37,7 +37,7 @@ function section:Add(menu, achievement)
 	end
 
 	local externalLink = "https://" .. locale .. "wowhead.com/" .. expansion .. "achievement=" .. achievement.Id .. relatedTab;
-    addon.MenuUtil:CreateButtonAndAdd(
+    menuBuilder:CreateButtonAndAdd(
 		menu,
 		addon.L["Wowhead"],
 		function()
