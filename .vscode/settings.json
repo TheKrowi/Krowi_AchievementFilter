@@ -575,6 +575,25 @@
             "include":"*.toc",
             "deleteTargetOnDeploy": false
         },
+                {
+            "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
+            "target":"H:\\World of Warcraft\\_classic_\\Interface\\AddOns\\Krowi_AchievementFilter",
+            "include":"**/*.{lua,blp,tga,xml}",
+            "exclude":"**/{.git,.vscode,_Packaging}/**",
+            "deleteTargetOnDeploy": true
+        },
+        {
+            "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
+            "target":"H:\\World of Warcraft\\_classic_\\Interface\\AddOns\\Krowi_AchievementFilter",
+            "include":"LICENSE",
+            "deleteTargetOnDeploy": false
+        },
+        {
+            "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
+            "target":"H:\\World of Warcraft\\_classic_\\Interface\\AddOns\\Krowi_AchievementFilter",
+            "include":"*.toc",
+            "deleteTargetOnDeploy": false
+        },
         // _classic_
         // _beta_
         // _xptr_

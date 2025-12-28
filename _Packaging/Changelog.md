@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 90.1 - 2025-12-xx
+### Removed
+- WowInterface link
+
 ## 90.0 - 2025-12-27
 ### Added
 - Brawler's Guild achievements mapped to zones

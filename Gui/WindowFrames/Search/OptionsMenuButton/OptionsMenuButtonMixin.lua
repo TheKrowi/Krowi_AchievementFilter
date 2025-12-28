@@ -1,60 +1,48 @@
 local _, addon = ...;
 
+local MenuBuilder = LibStub("Krowi_MenuBuilder-1.0");
+local isModern = addon.Util.IsMainline;
+
 KrowiAF_SearchOptionsMenuButtonMixin = {};
 
-local function AddCheckBox(_menu, text, options, keys, ignoreAsMenuSelection)
-    _menu:AddFull({
-		Text = text,
-		Checked = function() -- Using function here, we force the Gui to get the value again instead of only once (caused visual bugs)
-			return addon.Util.ReadNestedKeys(options, keys); -- e.g.: return filters.Completion.Completed;
-		end,
-		Func = function()
-			addon.Util.WriteNestedKeys(options, keys, not addon.Util.ReadNestedKeys(options, keys));
-			addon.SearchOptions.Changed = true;
-			if addon.Util.IsClassicWithAchievements then
-				KrowiAF_SearchBoxFrame:Focus();
-			end
-		end,
-		IsNotRadio = true,
-		NotCheckable = false,
-		KeepShownOnClick = true,
-		IgnoreAsMenuSelection = ignoreAsMenuSelection
-	});
+local function CreateSearchOptionsMenuFunc(builder)
+    local menu = builder:GetMenu();
+    
+    -- Always add header
+    builder:CreateTitle(menu, addon.L["Search options"]);
+    
+    local profile = addon.SearchOptions.db.profile;
+    builder:CreateCheckbox(addon.L["Search Ids"] .. " (#)", profile, {"SearchIds"}, menu);
+    builder:CreateCheckbox(addon.L["Search Names"], profile, {"SearchNames"}, menu);
+    builder:CreateCheckbox(addon.L["Search Descriptions"], profile, {"SearchDescriptions"}, menu);
+    builder:CreateCheckbox(addon.L["Search Criteria"] .. " (@)", profile, {"SearchCriteria"}, menu);
+    builder:CreateCheckbox(addon.L["Search Rewards"], profile, {"SearchRewards"}, menu);
 end
 
-local menu = LibStub("Krowi_Menu-1.0");
+function KrowiAF_SearchOptionsMenuButtonMixin:OnLoad()
+    -- Initialize MenuBuilder with callbacks
+    local config = {
+        callbacks = {
+            KeyIsTrue = function(options, keys)
+                return addon.Util.ReadNestedKeys(options, keys);
+            end,
+            OnCheckboxSelect = function(options, keys)
+                addon.Util.WriteNestedKeys(options, keys, not addon.Util.ReadNestedKeys(options, keys));
+                addon.SearchOptions.Changed = true;
+                if addon.Util.IsClassicWithAchievements then
+                    KrowiAF_SearchBoxFrame:Focus();
+                end
+            end,
+        }
+    };
+    
+    self.menuBuilder = MenuBuilder:New(config);
+end
+
 function KrowiAF_SearchOptionsMenuButtonMixin:OnMouseDown()
+    if not isModern then
+		PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
+	end
     UIMenuButtonStretchMixin.OnMouseDown(self);
-	PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
-
-	-- Reset menu
-	menu:Clear();
-
-	-- Always add header
-	menu:AddFull({
-		Text = addon.L["Search options"],
-		IsTitle = true
-	});
-
-	local profile = addon.SearchOptions.db.profile;
-	AddCheckBox(menu, addon.L["Search Ids"] .. " (#)", profile, {"SearchIds"});
-	AddCheckBox(menu, addon.L["Search Names"], profile, {"SearchNames"});
-	AddCheckBox(menu, addon.L["Search Descriptions"], profile, {"SearchDescriptions"});
-	AddCheckBox(menu, addon.L["Search Criteria"] .. " (@)", profile, {"SearchCriteria"});
-	AddCheckBox(menu, addon.L["Search Rewards"], profile, {"SearchRewards"});
-
-	menu:Toggle(self);
-end
-
-function KrowiAF_SearchOptionsMenuButtonMixin:OnEnter()
-	-- GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
-	-- GameTooltip_SetTitle(GameTooltip, addon.L["Search Options"]);
-	-- GameTooltip:AddLine(addon.L["Search Options Tip Line 1"]);
-	-- GameTooltip:AddLine(addon.L["Search Options Tip Line 2"]);
-	-- GameTooltip:AddLine(addon.L["Search Options Tip Line 3"]);
-	-- GameTooltip:Show();
-end
-
-function KrowiAF_SearchOptionsMenuButtonMixin:OnLeave()
-	-- GameTooltip:Hide();
+    self.menuBuilder:ShowPopup(CreateSearchOptionsMenuFunc, self);
 end

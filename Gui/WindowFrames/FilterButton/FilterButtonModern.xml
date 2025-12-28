@@ -1,9 +1,8 @@
 <Ui>
     <Script file="FilterButton.lua"/>
     <Script file="FilterButtonMixin.lua"/>
-    <Script file="FilterButtonModernMixin.lua"/>
 
-	<DropdownButton name="KrowiAF_AchievementFrameFilterButton_Modern_Template" mixin="KrowiAF_AchievementFrameFilterButtonModernMixin" inherits="WowStyle1FilterDropdownTemplate" virtual="true" hidden="true">		
+	<DropdownButton name="KrowiAF_AchievementFrameFilterButton_Modern_Template" mixin="KrowiAF_AchievementFrameFilterButtonMixin" inherits="WowStyle1FilterDropdownTemplate" virtual="true" hidden="true">		
 		<Size x="112" y="18"/>
 		<KeyValues>
 			<KeyValue key="resizeToText" type="boolean" value="false"/>
