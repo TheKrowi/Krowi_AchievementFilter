@@ -21,10 +21,10 @@
     <Include file="Krowi_Menu\Krowi_Menu-1.0.xml" />
     <Include file="Krowi_ProgressBar\Krowi_ProgressBar-2.0.xml" />
     <Include file="Krowi_WorldMapButtons\Krowi_WorldMapButtons-1.4.xml" />
-    
+
     <Script file="Krowi_Util\Options\InjectOptions.lua" />
     <Script file="Libs.lua" />
-    
+
     <Include file="AceSerializer-3.0\AceSerializer-3.0.xml" />
     <Include file="LibSerialize\lib.xml" />
     <Include file="LibDeflate\lib.xml" />

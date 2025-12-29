@@ -1,6 +1,6 @@
 <Ui>
     <Script file="AchievementsFrameLightMixin.lua" />
-    
+
     <Frame name="KrowiAF_AchievementsFrameLight_Template" mixin="KrowiAF_AchievementsFrameLightMixin" virtual="true">
         <Layers>
             <Layer level="BACKGROUND">

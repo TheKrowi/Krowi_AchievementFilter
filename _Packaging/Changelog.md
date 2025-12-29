@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 91.0 - 2025-12-xx
+## 91.0 - 2025-12-29
 ### Changed
 - Menu generation and handling (dev note: for classic user this should be an invisible change; for mainline users this should reflect in modern looking drop down menus)
 

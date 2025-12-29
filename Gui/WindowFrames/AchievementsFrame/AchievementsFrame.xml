@@ -1,7 +1,7 @@
 <Ui>
     <Script file="AchievementsFrame.lua"/>
     <Script file="AchievementsFrameMixin.lua"/>
-	
+
 	<Frame name="KrowiAF_AchievementsFrame_Template" mixin="KrowiAF_AchievementsFrameMixin" virtual="true" hidden="true">
 		<Frames>
 			<Frame parentKey="ScrollBox" inherits="WowScrollBoxList"/>

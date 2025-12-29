@@ -510,7 +510,7 @@ end
 function FixNewEarnedByFilter2(prevBuild, currBuild, prevVersion, currVersion, firstTime)
     -- In version 37.0 the Character earned by filter changed again to Character only
     -- Here we transfer that data
-    
+
     if firstTime and currVersion > "37.0" then
         KrowiAF_SavedData.Fixes.FixNewEarnedByFilter2 = true;
         diagnostics.Debug("First time New earned by filter2 OK");

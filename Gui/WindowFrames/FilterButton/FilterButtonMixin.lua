@@ -10,11 +10,12 @@ do -- Mixin
         if isModern then
             WowStyle1FilterDropdownMixin.OnLoad(self);
         end
-        
+
         self:SetFrameLevel(self:GetParent():GetFrameLevel() + 7);
-        
+
         -- Initialize MenuBuilder with callbacks
         local config = {
+		    uniqueTag = "KAF_FILTERS",
             callbacks = addon.MenuBuilder.BindCallbacks(self, {
                 GetCheckBoxStateText = "GetCheckBoxStateText",
                 OnCheckboxSelect = "OnCheckboxSelect",
@@ -25,26 +26,24 @@ do -- Mixin
                 OnMajorVersionSelect = "OnMajorVersionSelect",
                 OnAllVersionsSelect = "OnAllVersionsSelect",
                 CreateBuildVersionFilterGroups = "CreateBuildVersionFilterGroups",
-                SetRewardsFilters = "SetRewardsFilters",
-                SetFactionFilters = "SetFactionFilters",
             }),
             translations = addon.L
         };
-        
+
         local menuBuilder = addon.MenuBuilder:New(config);
         self.menuBuilder = menuBuilder;
-        
+
         -- Set CreateMenu function directly on the instance
         menuBuilder.CreateMenu = function(mb)
             self:CreateMenu(mb:GetMenu());
         end;
-        
+
         -- Modern needs SetupMenuForModern
         if isModern then
             menuBuilder:SetupMenuForModern(self);
         end
     end
-    
+
     function KrowiAF_AchievementFrameFilterButtonMixin:OnMouseDown()
         if isModern then
             WowStyle1FilterDropdownMixin.OnMouseDown(self);
@@ -204,7 +203,6 @@ do -- BuildVersionFilter
                 self:CreateMinorVersion(version, filters, major, minor);
             end
         end
-        self.menuBuilder:CreateSelectDeselectAllVersions(version, filters);
     end
 
 end
@@ -270,8 +268,7 @@ do -- AchievementFilters
         mb:CreateDivider(reward);
         mb:CreateCheckbox(reward, addon.L["Not Categorized"], filters, {"RewardType", KrowiAF.Enum.RewardType.NotCategorized}, true);
         mb:CreateDivider(reward);
-        mb:CreateSelectDeselectAllRewards(reward, addon.L["Select All"], filters, true);
-        mb:CreateSelectDeselectAllRewards(reward, addon.L["Deselect All"], filters, false);
+        mb:CreateSelectDeselectAllButtons(reward, nil, nil, function(_, _, _, value) self:SetRewardsFilters(filters, value); end);
         mb:AddChildMenu(menu, reward);
 
         mb:CreateBuildVersionFilter(filters, menu);
@@ -281,8 +278,7 @@ do -- AchievementFilters
         mb:CreateCheckbox(faction, addon.L["Alliance"], filters, {"Faction", "Alliance"}, true);
         mb:CreateCheckbox(faction, addon.L["Horde"], filters, {"Faction", "Horde"}, true);
         mb:CreateDivider(faction);
-        mb:CreateSelectDeselectAllFactions(faction, addon.L["Select All"], filters, true);
-        mb:CreateSelectDeselectAllFactions(faction, addon.L["Deselect All"], filters, false);
+        mb:CreateSelectDeselectAllButtons(faction, nil, nil, function(_, _, _, value) self:SetFactionFilters(filters, value); end);
         mb:AddChildMenu(menu, faction);
 
         mb:CreateCheckbox(menu, addon.L["Realm First!"], filters, {"Special", "RealmFirst"}, true);
@@ -302,16 +298,18 @@ do -- AchievementFilters
             text = text .. " (*)";
         end
         local sortBy = mb:CreateSubmenuButton(menu, text);
-        mb:CreateRadio(sortBy, addon.L["Default"], filters, {"SortBy", "Criteria"}, true);
-        mb:CreateRadio(sortBy, addon.L["Name"], filters, {"SortBy", "Criteria"}, true);
-        mb:CreateRadio(sortBy, addon.L["Completion"], filters, {"SortBy", "Criteria"}, true);
-        mb:CreateRadio(sortBy, addon.L["ID"], filters, {"SortBy", "Criteria"}, true);
-        mb:CreateRadio(sortBy, addon.L["Points"], filters, {"SortBy", "Criteria"}, true);
+        mb:CreateRadio(sortBy, addon.L["Default"], filters, {"SortBy", "Criteria"}, nil, true);
+        mb:CreateRadio(sortBy, addon.L["Name"], filters, {"SortBy", "Criteria"}, nil, true);
+        mb:CreateRadio(sortBy, addon.L["Completion"], filters, {"SortBy", "Criteria"}, nil, true);
+        mb:CreateRadio(sortBy, addon.L["ID"], filters, {"SortBy", "Criteria"}, nil, true);
+        mb:CreateRadio(sortBy, addon.L["Points"], filters, {"SortBy", "Criteria"}, nil, true);
         mb:CreateDivider(sortBy);
         mb:CreateCheckbox(sortBy, addon.L["Reverse Sort"], filters, {"SortBy", "ReverseSort"}, true);
         mb:AddChildMenu(menu, sortBy);
 
-        mb:AddChildMenu(parentMenu, menu);
+        if parentMenu then
+            mb:AddChildMenu(parentMenu, menu);
+        end
     end
 end
 
@@ -332,9 +330,9 @@ function KrowiAF_AchievementFrameFilterButtonMixin:CreateMenu(menu)
     self:CreateAchievementFilters(menu, addon.Filters.db.profile);
 
     local earnedBy = mb:CreateSubmenuButton(menu, addon.L["Earned By"]);
-    mb:CreateRadio(earnedBy, addon.Filters.Account, addon.Filters.db.profile, {"EarnedBy"}, false);
-    mb:CreateRadio(earnedBy, addon.Filters.CharacterAccount, addon.Filters.db.profile, {"EarnedBy"}, false);
-    mb:CreateRadio(earnedBy, addon.Filters.CharacterOnly, addon.Filters.db.profile, {"EarnedBy"}, false);
+    mb:CreateRadio(earnedBy, addon.Filters.Account, addon.Filters.db.profile, {"EarnedBy"}, nil, false);
+    mb:CreateRadio(earnedBy, addon.Filters.CharacterAccount, addon.Filters.db.profile, {"EarnedBy"}, nil, false);
+    mb:CreateRadio(earnedBy, addon.Filters.CharacterOnly, addon.Filters.db.profile, {"EarnedBy"}, nil, false);
     mb:AddChildMenu(menu, earnedBy);
 
     mb:CreateDivider(menu);

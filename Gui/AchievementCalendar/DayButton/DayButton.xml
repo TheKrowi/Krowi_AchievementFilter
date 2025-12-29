@@ -1,6 +1,6 @@
 <Ui>
     <Script file="DayButtonMixin.lua" />
-	
+
 	<Frame name="KrowiAF_CalendarDayButtonAchievement_Template" virtual="true">
 		<Size x="41" y="41"/>
 		<Layers>
@@ -10,7 +10,7 @@
 			</Layer>
 		</Layers>
 	</Frame>
-	
+
 	<Button name="KrowiAF_AchievementCalendarDayButton_Template" mixin="KrowiAF_AchievementCalendarDayButtonMixin" registerForClicks="LeftButtonUp" virtual="true">
 		<Size x="91" y="91"/>
 		<Anchors>

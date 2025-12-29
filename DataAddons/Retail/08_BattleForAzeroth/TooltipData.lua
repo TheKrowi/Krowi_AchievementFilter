@@ -26,7 +26,7 @@ local battleForAzerothMenuCriteria =  {
     {11, {162297, 154886}, type.Item}, -- Spiced Snapper
     {11, {259447, 259445, 259446}, type.Spell}, -- Spiced Snapper
     {12, {154884, 162291}, type.Item}, -- Swamp Fish 'n Chips
-    {12, {259427, 259429, 259428}, type.Spell}, -- Swamp Fish 'n Chips    
+    {12, {259427, 259429, 259428}, type.Spell}, -- Swamp Fish 'n Chips
 };
 
 KrowiAF.TooltipData.BattleForAzeroth = {

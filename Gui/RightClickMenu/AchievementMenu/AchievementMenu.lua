@@ -39,23 +39,22 @@ function achievementMenu:AddGoToAchievementWithCategoryLine(menu, achievement, c
 	);
 end
 
-local function CreateMenuFunc(builder, achievement)
-	local menu = builder:GetMenu();
-	
-	menuBuilder:CreateTitle(menu, addon.GetAchievmentName(achievement.Id));
+local function CreateMenu(menuObj, achievement)
+	menuBuilder:CreateTitle(menuObj, addon.GetAchievmentName(achievement.Id));
 
 	for _, section in next, achievementMenu.Sections do
 		if section:CheckAdd(achievement) then
-			section:Add(menu, achievement, menuBuilder);
+			section:Add(menuObj, achievement, menuBuilder);
 		end
 	end
 
-	KrowiAF.PluginsApi:AddAchievementRightClickMenuItems(menu, achievement);
+	KrowiAF.PluginsApi:AddAchievementRightClickMenuItems(menuObj, achievement);
 end
 
 function achievementMenu:Open(caller, achievement, anchor, offsetX, offsetY, point, relativePoint, frameStrata, frameLevel)
-	menuBuilder:ShowPopup(function(builder)
-		CreateMenuFunc(builder, achievement);
+	menuBuilder:ShowPopup(function()
+		local menuObj = menuBuilder:GetMenu();
+		CreateMenu(menuObj, achievement);
 	end);
 end
 

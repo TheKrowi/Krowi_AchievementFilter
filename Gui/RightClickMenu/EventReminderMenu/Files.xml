@@ -1,7 +1,7 @@
 <Ui>
     <!-- The order of these items is important !!! -->
     <Script file="EventReminderMenu.lua" />
-    
+
     <Script file="StopTracking.lua" />
     <!-- <Script file="WowheadLink.lua" />
     <Script file="GoTo.lua" />

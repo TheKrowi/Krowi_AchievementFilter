@@ -1,7 +1,7 @@
 <Ui>
     <Script file="SummaryFrame.lua" />
     <Script file="SummaryFrameMixin.lua" />
-	
+
 	<Frame name="KrowiAF_SummaryFrame_Template" mixin="KrowiAF_SummaryFrameMixin" virtual="true" hidden="true">
 		<Layers>
 			<Layer level="BACKGROUND">

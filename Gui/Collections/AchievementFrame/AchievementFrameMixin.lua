@@ -179,5 +179,5 @@ function KrowiAF_Collections_AchievementFrame_SearchBoxMixin:OnTextChanged()
 end
 
 function KrowiAF_Collections_AchievementFrame_SearchBoxMixin:OnHide()
-    
+
 end

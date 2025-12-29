@@ -153,7 +153,7 @@ KrowiAF.TooltipData.Cataclysm = {
             {35, 88039, type.Spell}, -- Severed Sagefish Head
 			{36, 58277, type.Item}, -- Simmered Squid
             {37, {62669, 65425}, type.Item}, -- Skewered Eel
-            {37, 88042, type.Spell}, -- Skewered Eel            
+            {37, 88042, type.Spell}, -- Skewered Eel
 			{38, 58262, type.Item}, -- Sliced Raw Billfish
 			{39, 58258, type.Item}, -- Smoked String Cheese
 			{40, 58264, type.Item}, -- Sour Green Apple
