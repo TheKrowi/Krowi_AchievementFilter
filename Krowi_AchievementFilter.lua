@@ -148,7 +148,7 @@ loadHelper:SetScript("OnEvent", loadHelper.OnEvent);
 --     if not AllTheThings then
 --         return;
 --     end
-    
+
 --     DebugTable = {};
 --     -- for key1, value1 in pairs(KrowiAF_ATT.Achievements) do
 --         for key2, value2 in pairs(AllTheThings.Achievements) do

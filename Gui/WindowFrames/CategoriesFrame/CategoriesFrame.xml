@@ -1,7 +1,7 @@
 <Ui>
     <Script file="CategoriesFrame.lua"/>
     <Script file="CategoriesFrameMixin.lua"/>
-	
+
 	<Frame name="KrowiAF_CategoriesFrame_Template" mixin="KrowiAF_CategoriesFrameMixin" virtual="true" hidden="true">
 		<Frames>
 			<Frame parentKey="ScrollBox" inherits="WowScrollBoxList"/>

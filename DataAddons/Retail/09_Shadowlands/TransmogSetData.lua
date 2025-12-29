@@ -77,7 +77,7 @@ KrowiAF.TransmogSetData.Shadowlands = {
             2409, 2408, 2410, 2411, -- Shroud of the Demon Star (Raid Finder, Normal, Heroic, Mythic)
             2379, 2378, 2380, 2381, -- Garb of the Grand Upwelling (Raid Finder, Normal, Heroic, Mythic)
             2361, 2360, 2362, 2363, -- Tapestry of the Fixed Stars (Raid Finder, Normal, Heroic, Mythic)
-            2355, 2354, 2356, 2357, -- Mercurial Punisher's Painweave (Raid Finder, Normal, Heroic, Mythic)            
+            2355, 2354, 2356, 2357, -- Mercurial Punisher's Painweave (Raid Finder, Normal, Heroic, Mythic)
         }
     },
 };

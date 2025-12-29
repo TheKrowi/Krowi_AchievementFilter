@@ -26,7 +26,7 @@ local function AddPartOfAChainAchievement(menu, id, nameSuffix)
 	end
 end
 
-function section:Add(menu)
-	addon.MenuUtil:CreateTitle(menu, addon.L["Part of a chain"]);
+function section:Add(menu, achievement, menuBuilder)
+	menuBuilder:CreateTitle(menu, addon.L["Part of a chain"]);
     AddPartOfAChainAchievement(menu, firstAchievement.Id);
 end

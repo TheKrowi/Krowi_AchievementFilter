@@ -39,7 +39,7 @@ function browsingHistory:Add(category, achievement)
     end
 
     tinsert(KrowiAF_SavedData.BrowsingHistory, lastAddedRecord);
-    
+
     self.Index = #KrowiAF_SavedData.BrowsingHistory;
 end
 

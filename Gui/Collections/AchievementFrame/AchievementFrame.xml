@@ -1,7 +1,7 @@
 <Ui>
     <Script file="AchievementFrame.lua"/>
     <Script file="AchievementFrameMixin.lua"/>
-	
+
 	<Frame name="KrowiAF_Collections_AchievementFrame_Template" mixin="KrowiAF_Collections_AchievementFrameMixin" setAllPoints="true" hidden="true" virtual="true">
 		<Frames>
 			<!-- <EditBox name="$parentSearchBox" parentKey="SearchBox" mixin="WardrobeCollectionFrameSearchBoxMixin" inherits="SearchBoxTemplate" letters="40">

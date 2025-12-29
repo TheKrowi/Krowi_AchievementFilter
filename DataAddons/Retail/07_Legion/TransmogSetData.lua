@@ -151,7 +151,7 @@ KrowiAF.TransmogSetData.Legion = {
             947, -- Brutal Gladiator's Felweave Armor (Gladiator)
             953, -- Brutal Gladiator's Dragonhide Armor (Gladiator)
         }
-    },    
+    },
     { -- Lethal Looks
         11710,
         {
@@ -595,7 +595,7 @@ KrowiAF.TransmogSetData.Legion = {
             678, -- Heroes' Plagueheart Garb (10 Player (Normal))
             679, -- Valorous Plagueheart Garb (25 Player (Normal))
             829, -- Heroes' Dreamwalker Battlegear (10 Player (Normal))
-            830, -- Valorous Dreamwalker Battlegear (25 Player (Normal))    
+            830, -- Valorous Dreamwalker Battlegear (25 Player (Normal))
         }
     },
     { -- Mogg-Saron

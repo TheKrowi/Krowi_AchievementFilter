@@ -2488,14 +2488,14 @@ KrowiAF.AchievementData["11_01_07"] = {
         42212,
         {
             RewardType = rewardType.Mount,
-            {"Before", "PvE Season", 15},
+            {"Before", "Version", {11, 2, 0}},
         },
     },
     { -- Overcharged Delver
         42241,
         {
             RewardType = rewardType.Toy,
-            {"Before", "PvE Season", 15},
+            {"Before", "Version", {11, 2, 0}},
         },
     },
 };

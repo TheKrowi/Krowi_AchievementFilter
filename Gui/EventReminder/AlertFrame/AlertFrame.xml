@@ -115,14 +115,14 @@
 			<OnClick method="OnClick"/>
 		</Scripts>
 	</ContainedAlertFrame>
-	
+
 	<ContainedAlertFrame name="KrowiAF_EventReminderAlertFrame_Normal_Template" inherits="KrowiAF_EventReminderAlertFrame_Template" virtual="true">
 		<Size x="256" y="84"/>
 		<Scripts>
 			<OnLoad function="KrowiAF_EventReminderAlertFrame_Normal_OnLoad"/>
 		</Scripts>
 	</ContainedAlertFrame>
-	
+
 	<ContainedAlertFrame name="KrowiAF_EventReminderAlertFrame_Small_Template" inherits="KrowiAF_EventReminderAlertFrame_Template" virtual="true">
 		<Size x="256" y="64"/>
 		<Scripts>

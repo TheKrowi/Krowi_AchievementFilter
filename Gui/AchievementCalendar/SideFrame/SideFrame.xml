@@ -21,7 +21,7 @@
 					<Anchor point="TOPLEFT" x="9" y="-27"/>
 					<Anchor point="BOTTOMRIGHT" x="-9" y="9"/>
 				</Anchors>
-			</Frame>	
+			</Frame>
 			<Button name="$parentCloseButton" parentKey="CloseButton" mixin="KrowiAF_AchievementCalendarSideFrameCloseButtonMixin" inherits="UIPanelCloseButton">
 				<Anchors>
 					<Anchor point="TOPRIGHT" x="-7" y="-7"/>

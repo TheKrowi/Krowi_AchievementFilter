@@ -35,17 +35,16 @@ function general.OnProfileReset(db)
     RefreshOptions();
 end
 
-local function GeneralTutorialFunc()
-    local menu = LibStub("Krowi_Menu-1.0");
+local function CreateTutorialMenuFunc(builder)
+    local menu = builder:GetMenu();
     local pages = addon.Tutorials.FeaturesTutorial.Pages;
 
-    menu:Clear(); -- Reset menu
-
-    menu:AddFull({Text = addon.L["View Tutorial"], IsTitle = true});
+    builder:CreateTitle(menu, addon.L["View Tutorial"]);
     for i, _ in next, pages do
-        menu:AddFull({
-            Text = (pages[i].IsViewed and "" or "|T132049:0|t") .. string.format(addon.Util.Colors.White, addon.Util.Colors.RemoveColor(pages[i].SubTitle)),
-            Func = function()
+        builder:CreateButtonAndAdd(
+            menu,
+            (pages[i].IsViewed and "" or "|T132049:0|t") .. string.format(addon.Util.Colors.White, addon.Util.Colors.RemoveColor(pages[i].SubTitle)),
+            function()
                 if addon.Util.IsWrathClassic then
                     InterfaceOptionsFrame:Hide();
                 else
@@ -53,10 +52,18 @@ local function GeneralTutorialFunc()
                 end
                 addon.Tutorials.FeaturesTutorial:ShowTutorial(i);
             end
-        });
+        );
+    end
+end
+
+local tutorialMenuBuilder;
+local function GeneralTutorialFunc()
+    if not tutorialMenuBuilder then
+        local MenuBuilder = LibStub("Krowi_MenuBuilder-1.0");
+        tutorialMenuBuilder = MenuBuilder:New({});
     end
 
-    menu:Open();
+    tutorialMenuBuilder:ShowPopup(CreateTutorialMenuFunc);
 end
 
 local function MinimapShowMinimapIconSet(_, value)
@@ -266,12 +273,6 @@ local infoOptions = {
                     desc = addon.L["Wago Desc"]:KAF_InjectAddonName():K_ReplaceVars(addon.L["Wago"]),
                     func = function() LibStub("Krowi_PopupDialog-1.0").ShowExternalLink(addon.Metadata.Wago); end
                 },
-                WoWInterface = {
-                    order = OrderPP(), type = "execute", width = AdjustedWidth(),
-                    name = addon.L["WoWInterface"],
-                    desc = addon.L["WoWInterface Desc"]:KAF_InjectAddonName():K_ReplaceVars(addon.L["WoWInterface"]),
-                    func = function() LibStub("Krowi_PopupDialog-1.0").ShowExternalLink(addon.Metadata.WoWInterface); end
-                }
             }
         }
     }

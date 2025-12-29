@@ -1,7 +1,7 @@
 <Ui>
     <!-- The order of these items is important !!! -->
     <Script file="AchievementMenu.lua" />
-    
+
     <Script file="WowheadLink.lua" />
     <Script file="GoTo.lua" />
     <Script file="PartOfAChain.lua" />

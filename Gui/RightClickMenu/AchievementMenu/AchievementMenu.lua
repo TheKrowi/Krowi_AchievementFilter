@@ -3,10 +3,10 @@ addon.Gui.RightClickMenu.AchievementMenu = {
 	Sections = {}
 };
 local achievementMenu = addon.Gui.RightClickMenu.AchievementMenu;
+local menuBuilder = addon.MenuBuilder:New({});
 
-local rightClickMenu = LibStub("Krowi_Menu-1.0");
 function achievementMenu:CloseMenu()
-	rightClickMenu:Close();
+	menuBuilder:Close();
 end
 
 function achievementMenu:AddGoToAchievementLine(menu, id, nameSuffix)
@@ -17,56 +17,45 @@ function achievementMenu:AddGoToAchievementLine(menu, id, nameSuffix)
 		name = name .. " (" .. addon.L["Missing"] .. ")";
 		disabled = true;
 	end
-	addon.MenuUtil:CreateButtonAndAdd(
+	menuBuilder:CreateButtonAndAdd(
 		menu,
 		name .. nameSuffix,
 		function()
 			KrowiAF_SelectAchievementFromID(id);
-			rightClickMenu:Close();
+			menuBuilder:Close();
 		end,
 		disabled
 	);
 end
 
 function achievementMenu:AddGoToAchievementWithCategoryLine(menu, achievement, category)
-	addon.MenuUtil:CreateButtonAndAdd(
+	menuBuilder:CreateButtonAndAdd(
 		menu,
 		category:GetPath(),
 		function()
 			KrowiAF_SelectAchievementWithCategory(achievement, category);
-			rightClickMenu:Close();
+			menuBuilder:Close();
 		end
 	);
 end
 
-local function CreateMenu(self, menu, achievement)
-	addon.MenuUtil:CreateTitle(menu, addon.GetAchievmentName(achievement.Id));
+local function CreateMenu(menuObj, achievement)
+	menuBuilder:CreateTitle(menuObj, addon.GetAchievmentName(achievement.Id));
 
-	for _, section in next, self.Sections do
+	for _, section in next, achievementMenu.Sections do
 		if section:CheckAdd(achievement) then
-			section:Add(menu, achievement);
+			section:Add(menuObj, achievement, menuBuilder);
 		end
 	end
 
-	KrowiAF.PluginsApi:AddAchievementRightClickMenuItems(menu, achievement);
+	KrowiAF.PluginsApi:AddAchievementRightClickMenuItems(menuObj, achievement);
 end
 
-if addon.Util.IsMainline then
-	function achievementMenu:Open(caller, achievement, anchor, offsetX, offsetY, point, relativePoint, frameStrata, frameLevel)
-		MenuUtil.CreateContextMenu(caller, function(owner, menu)
-			menu:SetTag("RIGHT_CLICK_MENU_ACHIEVEMENT");
-
-			CreateMenu(self, menu, achievement);
-		end);
-	end
-else
-	function achievementMenu:Open(caller, achievement, anchor, offsetX, offsetY, point, relativePoint, frameStrata, frameLevel)
-		rightClickMenu:Clear();
-
-		CreateMenu(self, rightClickMenu, achievement);
-
-		rightClickMenu:Open(anchor, offsetX, offsetY, point, relativePoint, frameStrata, frameLevel);
-	end
+function achievementMenu:Open(caller, achievement, anchor, offsetX, offsetY, point, relativePoint, frameStrata, frameLevel)
+	menuBuilder:ShowPopup(function()
+		local menuObj = menuBuilder:GetMenu();
+		CreateMenu(menuObj, achievement);
+	end);
 end
 
 function achievementMenu:GetLastSection()
