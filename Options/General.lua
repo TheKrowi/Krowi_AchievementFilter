@@ -252,8 +252,8 @@ local infoOptions = {
                 Discord = {
                     order = OrderPP(), type = "execute", width = AdjustedWidth(),
                     name = addon.L["Discord"],
-                    desc = addon.L["Discord Desc"]:K_ReplaceVars(addon.Metadata.DiscordServerName),
-                    func = function() LibStub("Krowi_PopupDialog-1.0").ShowExternalLink(addon.Metadata.DiscordInviteLink); end
+                    desc = addon.L["Discord Desc"]:K_ReplaceVars(addon.Util.Constants.DiscordServerName),
+                    func = function() LibStub("Krowi_PopupDialog-1.0").ShowExternalLink(addon.Util.Constants.DiscordInviteLink); end
                 }
             }
         },

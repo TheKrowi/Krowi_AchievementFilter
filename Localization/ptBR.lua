@@ -1,11 +1,9 @@
-local addonName, addon = ...;
-local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "ptBR");
+local _, addon = ...
+local L = addon.Localization.NewLocale("ptBR")
 if not L then return end
-addon.L = L;
 
 KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
--- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2025-12-27 11-14-06 ]] --

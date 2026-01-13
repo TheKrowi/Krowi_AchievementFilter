@@ -1,3 +1,5 @@
+-- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
+
 local _, addon = ...;
 local L = addon.L;
 
@@ -141,3 +143,9 @@ L["Tabard"] = TABARDSLOT
 L["Title"] = LFG_LIST_TITLE
 L["Toy"] = TOY
 L["Transmog"] = PERKS_VENDOR_CATEGORY_TRANSMOG
+
+
+local l = addon.Localization.GetLocale(addon)
+L["Not earned by:"] = l["Not earned by:"]:SetColorRed() .. " %s";
+
+addon.L = addon.Localization.GetLocale(addon)

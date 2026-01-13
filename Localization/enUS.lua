@@ -1,13 +1,17 @@
-local _, addon = ...;
-local L = addon.Localization.GetDefaultLocale();
-addon.L = L;
+local _, addon = ...
+local L = addon.Localization.NewDefaultLocale()
 
 KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
--- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2025-12-27 11-13-56 ]] --
+L['Experimental'] = true
+L['Collections Achievement Window'] = true
+L['Collections Achievement Window Desc'] = true
+L['Export to CSV'] = true
+L['Export to CSV Desc'] = true
+L['Zuldazar'] = true
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true

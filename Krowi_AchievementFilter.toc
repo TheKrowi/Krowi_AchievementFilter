@@ -2,7 +2,7 @@
 ## Title: Krowi's |cFF1D92C2Achievement Filter|r
 ## X-Prefix: KrowiAF
 ## X-Acronym: KAF
-## Version: 91.0
+## Version: 92.0
 ## Author: Krowi-Frostmane EU
 ## SavedVariables: KrowiAF_DebugTable, KrowiAF_Options, KrowiAF_SavedData, KrowiAF_Filters, KrowiAF_SearchOptions, KrowiAF_Achievements
 ## OptionalDeps: BetterWardrobe, ElvUI, GW2_UI, InstanceAchievementTracker
@@ -22,11 +22,8 @@
 ## Category-ruRU: Коллекции отряда
 ## Category-zhCN: 战团藏品
 ## Category-zhTW: 戰隊收藏
-## X-Discord-Invite-Link: https://discord.gg/mdBFQJYeQZ
-## X-Discord-Server-Name: Krowi's Addons
-## X-CurseForge: https://www.curseforge.com/wow/addons/krowi-achievement-filter
-## X-Curse-Project-ID: 413582
-## X-Wago: https://addons.wago.io/addons/krowi-achievement-filter
+## X-Slug: krowi-achievement-filter
+## X-CurseForge-ID: 413582
 ## X-Wago-ID: XrNkx46a
 
 Libs\Files.xml

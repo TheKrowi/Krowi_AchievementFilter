@@ -5,6 +5,7 @@ KrowiAF.Enum.Faction = EnumUtil.MakeEnum(
     "Alliance",
     "Horde"
 );
+-- EnumUtil.GenerateNameTranslation
 KrowiAF.Enum.RewardType = EnumUtil.MakeEnum(
     "NotCategorized",
     "Other",

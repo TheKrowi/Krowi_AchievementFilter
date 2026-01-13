@@ -4,10 +4,8 @@ local addonName, addon = ...;
 -- C_AddOns.LoadAddOn("Blizzard_AchievementUI"); -- For testing
 
 -- [[ Ace ]] --
-addon.L = LibStub(addon.Libs.AceLocale):GetLocale(addonName);
-addon.Localization.SetColors(addon.L);
 addon.Event = {};
-LibStub(addon.Libs.AceEvent):Embed(addon.Event);
+LibStub("AceEvent-3.0"):Embed(addon.Event);
 
 -- [[ Binding names ]] --
 BINDING_HEADER_KrowiAF = addon.Metadata.Title;
