@@ -16,9 +16,9 @@
 
     <Script file="MetaLua\MetaLua.lua" />
     <Include file="Krowi_PopupDialog\Krowi_PopupDialog.xml" />
-    <Include file="Krowi_Tutorials\Krowi_Tutorials-3.0.xml" />
+    <Include file="Krowi_Tutorials\Krowi_Tutorials.xml" />
     <Include file="Krowi_Menu\Krowi_Menu.xml" />
-    <Include file="Krowi_ProgressBar\Krowi_ProgressBar-2.0.xml" />
+    <Include file="Krowi_ProgressBar\Krowi_ProgressBar.xml" />
     <Include file="Krowi_WorldMapButtons\Krowi_WorldMapButtons-1.4.xml" />
 
     <Script file="Krowi_Util\Options\InjectOptions.lua" />

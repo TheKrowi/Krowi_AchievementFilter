@@ -287,7 +287,7 @@ function gui.ShowStatusBarTooltip(frame, anchor, extraText, color) -- . instead 
 	end
 	text = frame.NumOfCompAch .. text .. " / " .. frame.NumOfAch;
 
-	LibStub("Krowi_GameTooltipWithProgressBar-2.0"):Show(GameTooltip, 0, frame.NumOfAch, frame.NumOfCompAch, numOfNotObtAch, 0, 0, addon.Util.Colors.GreenRGB, addon.Util.Colors.RedRGB, nil, nil, text);
+    addon.ProgressBarLib.GameTooltipWithProgressBar:Show(GameTooltip, 0, frame.NumOfAch, frame.NumOfCompAch, numOfNotObtAch, 0, 0, addon.Util.Colors.GreenRGB, addon.Util.Colors.RedRGB, nil, nil, text);
 
     if extraText then
         GameTooltip_AddBlankLineToTooltip(GameTooltip);

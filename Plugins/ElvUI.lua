@@ -51,7 +51,7 @@ end
 
 --[[ GameTooltipProgressBar ]]
 local function SkinGameTooltipProgressBar()
-    local progressBar = LibStub("Krowi_GameTooltipWithProgressBar-2.0").ProgressBar;
+    local progressBar = addon.ProgressBarLib.GameTooltipWithProgressBar.ProgressBar;
     progressBar.BorderLeftTop:StripTextures();
     progressBar.BorderLeftMiddle:StripTextures();
     progressBar.BorderLeftBottom:StripTextures();

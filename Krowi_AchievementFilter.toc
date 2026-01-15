@@ -1,4 +1,4 @@
-## Interface: 110207
+## Interface: 120000, 110207, 50503
 ## Title: Krowi's |cFF1D92C2Achievement Filter|r
 ## X-Prefix: KrowiAF
 ## X-Acronym: KAF
@@ -48,10 +48,17 @@ Objects\Files.xml
 
 Filters.lua
 SearchOptions.lua
-Gui\FilesModern.xml
+Gui\FilesModern.xml [AllowLoadGameType mainline]
+Gui\FilesClassic.xml [AllowLoadGameType wrath, cata, mists]
 
 Data\Files.xml
-Data\Retail\Files.xml
+
+Data\Retail\Files.xml [AllowLoadGameType mainline]
+Data\Classic\Files.xml [AllowLoadGameType wrath, cata, mists]
+
 DataAddons\Shared\Files.xml
-DataAddons\Retail\Files.xml
+
+DataAddons\Retail\Files.xml [AllowLoadGameType mainline]
+DataAddons\Classic\Files.xml [AllowLoadGameType wrath, cata, mists]
+
 DataAddons\Loaders\Files.xml

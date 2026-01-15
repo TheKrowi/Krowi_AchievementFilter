@@ -225,19 +225,19 @@ end
 
 local infoOptions = {
     order = OrderPP(), type = "group",
-    name = addon.L["Info"],
+    name = addon.Util.L["Info"],
     args = {
         General = {
             order = OrderPP(), type = "group", inline = true,
-            name = addon.L["General"],
+            name = addon.Util.L["General"],
             args = {
                 Version = {
                     order = OrderPP(), type = "description", width = AdjustedWidth(), fontSize = "medium",
-                    name = (addon.L["Version"] .. ": "):SetColorYellow() .. addon.Metadata.Version,
+                    name = (addon.Util.L["Version"] .. ": "):SetColorYellow() .. addon.Metadata.Version,
                 },
                 Build = {
                     order = OrderPP(), type = "description", width = AdjustedWidth(), fontSize = "medium",
-                    name = (addon.L["Build"] .. ": "):SetColorYellow() .. addon.Metadata.Build,
+                    name = (addon.Util.L["Build"] .. ": "):SetColorYellow() .. addon.Metadata.Build,
                 },
                 Tutorial = {
                     order = OrderPP(), type = "execute", width = AdjustedWidth(),
@@ -247,31 +247,31 @@ local infoOptions = {
                 },
                 Author = {
                     order = OrderPP(), type = "description", width = AdjustedWidth(2), fontSize = "medium",
-                    name = (addon.L["Author"] .. ": "):SetColorYellow() .. addon.Metadata.Author,
+                    name = (addon.Util.L["Author"] .. ": "):SetColorYellow() .. addon.Metadata.Author,
                 },
                 Discord = {
                     order = OrderPP(), type = "execute", width = AdjustedWidth(),
-                    name = addon.L["Discord"],
-                    desc = addon.L["Discord Desc"]:K_ReplaceVars(addon.Util.Constants.DiscordServerName),
-                    func = function() LibStub("Krowi_PopupDialog-1.0").ShowExternalLink(addon.Util.Constants.DiscordInviteLink); end
+                    name = addon.Util.L["Discord"],
+                    desc = addon.Util.L["Discord Desc"]:K_ReplaceVars(addon.Util.Constants.DiscordServerName),
+                    func = function() LibStub("Krowi_PopupDialog_2").ShowExternalLink(addon.Util.Constants.DiscordInviteLink); end
                 }
             }
         },
         Sources = {
             order = OrderPP(), type = "group", inline = true,
-            name = addon.L["Sources"],
+            name = addon.Util.L["Sources"],
             args = {
                 CurseForge = {
                     order = OrderPP(), type = "execute", width = AdjustedWidth(),
-                    name = addon.L["CurseForge"],
-                    desc = addon.L["CurseForge Desc"]:KAF_InjectAddonName():K_ReplaceVars(addon.L["CurseForge"]),
-                    func = function() LibStub("Krowi_PopupDialog-1.0").ShowExternalLink(addon.Metadata.CurseForge); end
+                    name = addon.Util.L["CurseForge"],
+                    desc = addon.Util.L["CurseForge Desc"]:KAF_InjectAddonName():K_ReplaceVars(addon.Util.L["CurseForge"]),
+                    func = function() LibStub("Krowi_PopupDialog_2").ShowExternalLink(addon.Metadata.CurseForge); end
                 },
                 Wago = {
                     order = OrderPP(), type = "execute", width = AdjustedWidth(),
-                    name = addon.L["Wago"],
-                    desc = addon.L["Wago Desc"]:KAF_InjectAddonName():K_ReplaceVars(addon.L["Wago"]),
-                    func = function() LibStub("Krowi_PopupDialog-1.0").ShowExternalLink(addon.Metadata.Wago); end
+                    name = addon.Util.L["Wago"],
+                    desc = addon.Util.L["Wago Desc"]:KAF_InjectAddonName():K_ReplaceVars(addon.Util.L["Wago"]),
+                    func = function() LibStub("Krowi_PopupDialog_2").ShowExternalLink(addon.Metadata.Wago); end
                 },
             }
         }
@@ -280,16 +280,16 @@ local infoOptions = {
 
 local iconOptions = {
     order = OrderPP(), type = "group",
-    name = addon.L["Icon"],
+    name = addon.Util.L['Icon'],
     args = {
         Minimap = {
             order = OrderPP(), type = "group", inline = true,
-            name = addon.L["Minimap"],
+            name = addon.Util.L["Minimap"],
             args = {
                 ShowMinimapIcon = {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(),
-                    name = addon.L["Show minimap icon"],
-                    desc = addon.L["Show minimap icon Desc"]:KAF_AddDefaultValueText("ShowMinimapIcon"),
+                    name = addon.Util.L["Show minimap icon"],
+                    desc = addon.Util.L["Show minimap icon Desc"]:KAF_AddDefaultValueText("ShowMinimapIcon"),
                     get = function() return addon.Options.db.profile.ShowMinimapIcon; end,
                     set = MinimapShowMinimapIconSet
                 }
@@ -325,7 +325,7 @@ local keyBindingOptions = {
     args = {
         General = {
             order = OrderPP(), type = "group",
-            name = addon.L["General"],
+            name = addon.Util.L["General"],
             args = {
                 ResetView = {
                     order = OrderPP(), type = "group", inline = true,
@@ -580,7 +580,7 @@ local debugOptions = {
 
 options.OptionsTable.args["General"] = {
     type = "group", childGroups = "tab",
-    name = addon.L["General"],
+    name = addon.Util.L["General"],
     args = {
         Info = infoOptions,
         Icon = iconOptions,

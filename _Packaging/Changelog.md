@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## 92.0 - 2026-01-14
 ### Changed
+- Support for WoW 12.0.0 (Midnight)
 - Library rework changes integrated (dev note: this change affects all addons and is a preparation for a better unified system for long term support)
 
 ## 91.0 - 2025-12-29

@@ -151,7 +151,7 @@ end
 
 local generalOptions = {
     order = OrderPP(), type = "group",
-    name = addon.L["General"],
+    name = addon.Util.L["General"],
     args = {
         Style = {
             order = OrderPP(), type = "group", inline = true,

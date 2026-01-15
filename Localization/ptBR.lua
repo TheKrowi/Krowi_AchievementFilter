@@ -6,7 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-12-27 11-14-06 ]] --
+-- [[ Exported at 2026-01-15 22-26-17 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -66,7 +66,6 @@ L["Assault: Mantid"] = "Ataque: Mantídeos"
 L["Assault: Mogu"] = "Ataque: Mogu"
 L["Assault: N'Zoth (Uldum)"] = "Ataque: N'Zoth (Uldum)"
 L["Assault: N'Zoth (Vale of Eternal Blossoms)"] = "Ataque: N'Zoth (Vale das Flores Eternas)"
-L["Author"] = "Autor"
 L["Awakening the Machine"] = "Despertando a Máquina"
 L["Azerothian Archives"] = "Arquivo Azerothiano"
 L["Azsuna"] = true
@@ -92,7 +91,6 @@ L["Caverns Criss-Cross"] = "Zigue-zague de Cavernas"
 L["Chains of Domination"] = "Correntes da Dominação"
 L["Characters"] = "Personagens"
 L["Chat messages"] = "Mensagens no chat"
-L["Checked"] = "Verificado"
 L["Children's Week"] = "Semana das Crianças"
 L["Clear all"] = "Limpar tudo"
 L["Click here to view in achievement window"] = "Clique aqui para ver na janela de conquistas"
@@ -118,7 +116,6 @@ L["Criteria"] = "Critério"
 L["Criteria is Completed"] = "Critério está completo"
 L["Ctrl"] = true
 L["Current Zone"] = "Zona Atual"
-L["CurseForge"] = true
 L["Dark Heart"] = "Coração Sombrio"
 L["Darkmoon Faire"] = "Feira de Negraluna"
 L["Dastardly Duos"] = "Duplas da Discórdia"
@@ -129,7 +126,6 @@ L["Defending the Ruby Sanctum"] = "Defendendo o Santuário Rubi"
 L["Diablo"] = true
 L["Diablo III"] = true
 L["Diablo IV"] = true
-L["Discord"] = true
 L["Donations"] = "Doações"
 L["Dos-Ryga"] = true
 L["Dragonbane Keep"] = "Bastilha de Ruína Dragônica"
@@ -313,7 +309,6 @@ L["Skyrocketing Races"] = "Corridas Estratosféricas"
 L["Slagmire"] = "Campo de Lava"
 L["Soon"] = "Em Breve"
 L["Soulforges"] = "Forjas da Alma"
-L["Sources"] = "Fontes"
 L["Special thanks"] = "Agradecimento especial"
 L["Spreading the Light"] = "Semeando a Luz"
 L["Stables"] = "Estábulos"
@@ -403,3 +398,4 @@ L["Zaqali Ruin Investigation: Next"] = "Investigação das Ruínas Zaqali: Próx
 L["Zaqali Ruin Investigation: Soon"] = "Investigação das Ruínas Zaqali: Em Breve"
 L["Zaqali Ruin Investigation: Starting Soon"] = "Investigação das Ruínas Zaqali: Começando em Breve"
 L["Zones"] = "Zonas"
+L["Zuldazar"] = true

@@ -1,7 +1,7 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
 
-addon.Tutorials = LibStub("Krowi_Tutorials-3.0");
+addon.Tutorials = addon.TutorialsLib;
 local tutorials = addon.Tutorials;
 
 local media = "Interface\\AddOns\\Krowi_AchievementFilter\\Media\\";
@@ -12,9 +12,9 @@ local function ReplaceVarsWithMenu(str, vars)
         str = vars[1];
     end
     vars["arrow"] = "|T" .. media .. "ui-backarrow:0|t";
-    vars["gameMenu"] = addon.L["Game Menu"];
-    vars["interface"] = addon.L["Interface"];
-    vars["addOns"] = addon.L["AddOns"];
+    vars["gameMenu"] = addon.Util.L["Game Menu"];
+    vars["interface"] = addon.Util.L["Interface"];
+    vars["addOns"] = addon.Util.L["AddOns"];
     vars["addonName"] = addon.Metadata.Title;
     return addon.Util.Strings.ReplaceVars(str, vars);
 end
@@ -120,9 +120,9 @@ function tutorials.Load()
             account = L["Account"]:SetColorYellow(),
             character = (GetCategoryInfo(92)):SetColorYellow(),
             help = L["Help"]:SetColorYellow(),
-            options = L["Options"]:SetColorYellow(),
-            discord = addon.L["Discord"],
-            curseForge = addon.L["CurseForge"],
+            options = addon.Util.L["Options"]:SetColorYellow(),
+            discord = addon.Util.L["Discord"],
+            curseForge = addon.Util.L["CurseForge"],
             layout = addon.L["Layout"],
             categories = addon.L["Categories"]
         },
@@ -261,8 +261,8 @@ function tutorials.Load()
             lightGreen = L["Green"]:SetColorLightGreen(),
             lightGrey = L["Grey"]:SetColorLightGrey(),
             lightRed = L["Red"]:SetColorLightRed(),
-            discord = L["Discord"],
-            curseForge = L["CurseForge"],
+            discord = addon.Util.L["Discord"],
+            curseForge = addon.Util.L["CurseForge"],
             layout = L["Layout"],
             achievements = L["Achievements"]
         },
