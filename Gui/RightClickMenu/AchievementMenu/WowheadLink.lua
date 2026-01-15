@@ -2,7 +2,7 @@ local _, addon = ...;
 local section = {};
 tinsert(addon.Gui.RightClickMenu.AchievementMenu.Sections, section);
 
-local popupDialog = LibStub("Krowi_PopupDialog-1.0");
+local popupDialog = LibStub("Krowi_PopupDialog_2");
 local relatedTabs = {
     "",
 	"#criteria-of",

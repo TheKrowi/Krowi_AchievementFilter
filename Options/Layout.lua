@@ -708,11 +708,11 @@ local tabsOptions = {
     args = {
         General = {
             order = OrderPP(), type = "group",
-            name = addon.L["General"],
+            name = addon.Util.L["General"],
             args = {
                 General = {
                     order = OrderPP(), type = "group", inline = true,
-                    name = addon.L["General"],
+                    name = addon.Util.L["General"],
                     args = {
                         Spacing = {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
@@ -760,7 +760,7 @@ local headerOptions = {
     args = {
         General = {
             order = OrderPP(), type = "group", inline = true,
-            name = addon.L["General"],
+            name = addon.Util.L["General"],
             args = {
                 CenterHeader = {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
@@ -1542,7 +1542,7 @@ local calendarOptions = {
     args = {
         General = {
             order = OrderPP(), type = "group", inline = true,
-            name = addon.L["General"],
+            name = addon.Util.L["General"],
             args = {
                 LockAchievementMonth = {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),

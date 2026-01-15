@@ -1,14 +1,12 @@
-local addonName, addon = ...;
-local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "deDE");
+local _, addon = ...
+local L = addon.Localization.NewLocale("deDE")
 if not L then return end
-addon.L = L;
 
 KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
--- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-12-27 11-13-59 ]] --
+-- [[ Exported at 2026-01-15 22-26-11 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -86,7 +84,6 @@ L["Assault: Mantid"] = "Angriff: Der unendliche Schwarm (Mantid)"
 L["Assault: Mogu"] = "Angriff: Die verfeindeten Klans (Mogu)"
 L["Assault: N'Zoth (Uldum)"] = "Angriffe von N'Zoth (Uldum)"
 L["Assault: N'Zoth (Vale of Eternal Blossoms)"] = "Angriffe von N'Zoth (Das Tal der ewigen Blüten)"
-L["Author"] = "Autor"
 L["Auto number of summary achievements"] = "Automatisierte Anzeige der Erfolgsansicht (Anzahl der Erfolge)"
 L["Auto number of summary achievements Desc"] = "Passt die Anzahl der angezeigten Erfolge automatisch an, so dass keine Scroll-Leiste angezeigt wird."
 L["Awakened Raids"] = "Erweckte Schlachtzüge"
@@ -102,7 +99,6 @@ L["Brawler's Guild"] = "Kampfgilde"
 L["Breaknecking Races"] = "Halsbrecherrennen"
 L["Brewfest"] = "Braufest"
 L["Broken Isles Cup"] = "Verheerte Inseln Pokal"
-L["Build"] = "Version"
 L["Buildings"] = "Gebäude"
 L["Burning Pandaren Spirit"] = "Brennender Pandarengeist"
 L["Bur's Mount Collection"] = "Bur's Reittier Sammlung"
@@ -150,7 +146,6 @@ L["Character Specific"] = "Charakter-spezifisch"
 L["Character Specific Desc"] = "Die {watchList} umfasst immer einen accountweiten Datensatz, der alle beobachteten Erfolge für alle Charaktere aufzeichnet. Wenn sie deaktiviert wird, wird dieser kontoübergreifende Datensatz verwendet. Wenn sie für die charakterspezifische Verwendung aktiviert wird, wechseln alle Charaktere, die das gleiche Profil verwenden, in diesen Modus. Bei der Deaktivierung wird die accountweite {watchList} wieder verwendet und die charakterspezifische {watchList} wird entfernt."
 L["Characters"] = "Charaktere"
 L["Chat messages"] = "Chat-Mitteilungen"
-L["Checked"] = "Aktivert"
 L["Children's Week"] = "Kinderwoche"
 L["Class Halls"] = "Klassenhallen"
 L["Clear all"] = "Alle löschen"
@@ -206,8 +201,6 @@ L["Cross-Expansion"] = "Addon-Übergreifend"
 L["Ctrl"] = true
 L["Current Obtainable"] = "Aktuell Erreichbar"
 L["Current Zone"] = "Aktuelle Zone"
-L["CurseForge"] = true
-L["CurseForge Desc"] = "Öffnet ein Popup-Fenster mit einem Link zur Seite {addonName} {curseForge}."
 L["Custom"] = "Benutzerdefiniert"
 L["Dark Heart"] = "Das Dunkle Herz"
 L["Darkmoon Faire"] = "Dunkelmond-Jahrmarkt"
@@ -249,15 +242,12 @@ L["Date and Time formatting guide Desc"] = [=[{a} - Abbreviated weekday name (eg
 L["Day of the Dead"] = "Tag der Toten"
 L["Debug"] = true
 L["Debug Desc"] = "Jede der unten aufgeführten Optionen ist für Debugging- und Testzwecke verfügbar. Verwendung auf eigene Gefahr!"
-L["Default value"] = "Vorgabewert (Standard)"
 L["Defending Azeroth Assaults"] = "Verteidigung Azeroths"
 L["Defending the Ruby Sanctum"] = "Sturm auf das Rubinsanktum"
 L["Deselect All"] = "Alle abwählen"
 L["Diablo"] = true
 L["Diablo III"] = "Diablo 3"
 L["Diablo IV"] = "Diablo 4"
-L["Discord"] = true
-L["Discord Desc"] = "Öffnet ein Popup-Fenster mit einem Link zum {serverName} Discord-Server. Hier können Sie Kommentare, Berichte, Bemerkungen, Ideen und alles andere posten."
 L["Donations"] = "Spenden"
 L["Dos-Ryga"] = true
 L["Down"] = "Runter"
@@ -890,8 +880,6 @@ L["Show Faction Faction Icon"] = "Zeige {faction} Fraktions Symbol"
 L["Show Faction Faction Icon Desc"] = "Zeigt das {faction} Fraktionssymbol auf den Erfolgen an, wenn nur {faction} Spieler diese verdienen können."
 L["Show faction icon"] = "Fraktions-Symbol anzeigen"
 L["Show faction icon Desc"] = "Ein Fraktionssymbol vor dem Namen des Charakters anzeigen."
-L["Show minimap icon"] = "Zeige Minimap Icon"
-L["Show minimap icon Desc"] = "Zeige / Verstecke das Minimap Icon."
 L["Show Not Obtainable"] = "Zeige {notObtainable}"
 L["Show Not Obtainable Desc"] = "Zeigt / versteckt {notObtainable} Erfolge in Rot auf dem Fortschrittsbalken."
 L["Show Objectives progress"] = "Zeige {objectivesProgress}"
@@ -956,7 +944,6 @@ L["Snowstorms"] = "Schneestürme"
 L["Soon"] = "Bald"
 L["Sort priority"] = "Priorität sortieren"
 L["Soulforges"] = "Die Seelenschmieden"
-L["Sources"] = "Quellen"
 L["Southshore vs. Tarren Mill"] = "Süderstade vs. Tarrens Mühle"
 L["Spacing"] = "Abstand"
 L["Spacing Desc"] = "Der Abstand, der zum Standardabstand zwischen den Tabs addiert bzw. von diesem subtrahiert wird."
@@ -1061,7 +1048,6 @@ L["Tutorial Desc"] = "Öffne das Tutorial beim Start."
 L["Tyrhold"] = true
 L["Uktulut Coaster"] = "Uktuluter Küstenachter"
 L["Uncategorized"] = "Nicht kategorisiert"
-L["Unchecked"] = "Nicht aktiviert"
 L["Undermine(d)"] = true
 L["until the end of"] = "bis zum Ende von"
 L["Up"] = "Hoch"
@@ -1079,8 +1065,6 @@ L["Vertical position"] = "Vertikale Position"
 L["View Tutorial"] = "Tutorial anzeigen"
 L["Visions of N'Zoth"] = "Visionen von N'Zoth"
 L["Vol'dun"] = true
-L["Wago"] = true
-L["Wago Desc"] = "Öffnet ein Popup-Fenster mit einem Link zur Seite {addonName} {wago}."
 L["Waking Shores"] = "Küste des Erwachens"
 L["Waking Shores: Next"] = "Küste des Erwachens: Nächstes Event"
 L["Warband Achievement"] = "Kriegsmeuten-Erfolg"
@@ -1115,8 +1099,6 @@ L["Worldsoul Memory"] = "Weltenseelenerinnerung"
 L["WoW Remix: Mists of Pandaria"] = true
 L["Wowhead"] = true
 L["Wowhead Link"] = true
-L["WoWInterface"] = true
-L["WoWInterface Desc"] = "Öffnet ein Popup-Fenster mit einem Link zur Seite {addonName} {woWInterface}."
 L["WoW's 10th Anniversary"] = "10-jähriges Jubiläum von WoW"
 L["WoW's 18th Anniversary"] = "WoW's 18. Geburtstag"
 L["WoW's 19th Anniversary"] = "WoW's 19. Geburtstag"
@@ -1133,3 +1115,4 @@ L["Zaqali Ruin Investigation: Next"] = "Zaqaliruinen: Nächstes Event"
 L["Zaqali Ruin Investigation: Soon"] = "Zaqaliruinen: Bald"
 L["Zaqali Ruin Investigation: Starting Soon"] = "Zaqaliruinen: Startet Bald"
 L["Zones"] = "Zonen"
+L["Zuldazar"] = true

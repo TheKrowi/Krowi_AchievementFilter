@@ -1,7 +1,6 @@
-local _, addon = ...;
-local L = addon.Localization.GetDefaultLocale();
+local _, addon = ...
+local L = addon.Localization.NewDefaultLocale(true)
 
--- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2025-05-17 22-05-27 ]] --

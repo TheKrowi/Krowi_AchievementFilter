@@ -6,6 +6,16 @@ function section:CheckAdd()
     return true;
 end
 
+local function GetFactionName(faction)
+	if faction == KrowiAF.Enum.Faction.Alliance then
+		return addon.L["Alliance"];
+	elseif faction == KrowiAF.Enum.Faction.Horde then
+		return addon.L["Horde"];
+	else -- Neutral
+		return addon.L["Neutral"];
+	end
+end
+
 local function AddName(achievement, thisRealm, numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy, character, guid)
 	if character.ExcludeFromEarnedByAchievementTooltip then
 		return numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy;
@@ -13,7 +23,7 @@ local function AddName(achievement, thisRealm, numEarnedBy, earnedBy, numNotEarn
 	local _, _, _, argbHex = GetClassColor(character.Class);
 	local name = "|c" .. argbHex .. character.Name;
 	if achievement.OtherFactionAchievementId and character.Faction and character.Faction ~= achievement.Faction then
-		name = name .. " (" .. addon.L[character.Faction] .. ")";
+		name = name .. " (" .. GetFactionName(character.Faction) .. ")";
 	end
 	if addon.Options.db.profile.Tooltip.Achievements.EarnedBy.AlwaysShowRealm or character.Realm ~= thisRealm then
 		name = name .. " - " .. character.Realm;

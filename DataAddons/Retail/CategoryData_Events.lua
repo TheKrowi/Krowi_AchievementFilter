@@ -837,7 +837,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
     },
     { -- Legion: Remix
         2569,
-        addon.GetCategoryInfoTitle(15554),
+        addon.GetCategoryInfoTitle(15562),
         { -- Zones
             addon.L["Zones"],
             { -- Azsuna
@@ -985,7 +985,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
             },
         },
         { -- Heroic World Tier
-            addon.GetCategoryInfoTitle(15561),
+            addon.L['Heroic World Tier'],
             {
                 42699, -- You Were Not Prepared!
                 61057, -- Heroic Broken Isles World Quests I

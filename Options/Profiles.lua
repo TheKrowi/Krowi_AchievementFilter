@@ -10,7 +10,7 @@ local AdjustedWidth = addon.InjectOptions.AdjustedWidth;
 function profiles.RegisterOptionsTable()
     options.OptionsTable.args.Profiles.args.Options = LibStub("AceDBOptions-3.0"):GetOptionsTable(addon.Options.db);
     options.OptionsTable.args.Profiles.args.Options.order = OrderPP();
-    options.OptionsTable.args.Profiles.args.Options.name = addon.L["Options"];
+    options.OptionsTable.args.Profiles.args.Options.name = addon.Util.L["Options"];
 
     addon.Filters:Load();
     options.OptionsTable.args.Profiles.args.Filters = LibStub("AceDBOptions-3.0"):GetOptionsTable(addon.Filters.db);

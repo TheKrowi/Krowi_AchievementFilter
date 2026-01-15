@@ -1,3 +1,5 @@
+-- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
+
 local _, addon = ...;
 local L = addon.L;
 
@@ -86,20 +88,12 @@ L["Guild"] = ACHIEVEMENTS_GUILD_TAB;
 L["Statistics"] = STATISTICS;
 L["Categories"] = CATEGORIES;
 L["Help"] = GAMEMENU_HELP;
-L["Options"] = GAMEOPTIONS_MENU;
 L["Missing"] = ADDON_MISSING;
-L["General"] = GENERAL;
-L["Info"] = INFO;
-L["Version"] = GAME_VERSION_LABEL;
-L["Icon"] = EMBLEM_SYMBOL;
 L["Key Binding"] = KEY_BINDING;
 L["Achievement Points"] = ACHIEVEMENT_POINTS;
 L["Enabled"] = PVP_WAR_MODE_ENABLED or VIDEO_OPTIONS_ENABLED;
 L["Disabled"] = ADDON_DISABLED;
 L["Show All %d Results"] = ENCOUNTER_JOURNAL_SHOW_SEARCH_RESULTS;
-L["Game Menu"] = MAINMENU_BUTTON;
-L["Interface"] = UIOPTIONS_MENU;
-L["AddOns"] = ADDONS;
 L["Miscellaneous"] = AUCTION_CATEGORY_MISCELLANEOUS;
 L["Close"] = CLOSE;
 L["Summary"] = ACHIEVEMENT_SUMMARY_CATEGORY;
@@ -120,7 +114,6 @@ L["October"] = MONTH_OCTOBER;
 L["November"] = MONTH_NOVEMBER;
 L["December"] = MONTH_DECEMBER;
 L["Weekdays"] = GUILD_AVAILABILITY_WEEKDAYS;
-L["Minimap"] = MINIMAP_LABEL;
 L["Class"] = CLASS;
 L["Category"] = CATEGORY;
 L["World Map"] = WORLDMAP_BUTTON;
@@ -132,7 +125,7 @@ L["Wednesday"] = WEEKDAY_WEDNESDAY;
 L["Thursday"] = WEEKDAY_THURSDAY;
 L["Friday"] = WEEKDAY_FRIDAY;
 L["Saturday"] = WEEKDAY_SATURDAY;
-L["Warband"] = REPUTATION_SORT_TYPE_ACCOUNT
+L["Warband"] = REPUTATION_SORT_TYPE_ACCOUNT or ""
 L["Yes"] = YES
 L["No"] = NO
 L["Mount"] = MOUNT
@@ -141,3 +134,9 @@ L["Tabard"] = TABARDSLOT
 L["Title"] = LFG_LIST_TITLE
 L["Toy"] = TOY
 L["Transmog"] = PERKS_VENDOR_CATEGORY_TRANSMOG
+
+
+local l = addon.Localization.GetLocale(addon)
+L["Not earned by:"] = l["Not earned by:"]:SetColorRed() .. " %s";
+
+addon.L = addon.Localization.GetLocale(addon)

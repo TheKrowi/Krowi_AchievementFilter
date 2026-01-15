@@ -49,7 +49,7 @@ local function OverRideTextures(statusBar)
 end
 
 local function GetNewStatusBar(self)
-    local statusBar = LibStub("Krowi_ProgressBar-2.0"):GetNew(self);
+    local statusBar = addon.ProgressBarLib:GetNew(self);
     OverRideTextures(statusBar);
     statusBar:SetHeight(49);
     statusBar:Reset();

@@ -27,7 +27,7 @@ do -- Mixin
                 OnAllVersionsSelect = "OnAllVersionsSelect",
                 CreateBuildVersionFilterGroups = "CreateBuildVersionFilterGroups",
             }),
-            translations = addon.L
+            translations = addon.Util.L
         };
 
         local menuBuilder = addon.MenuBuilder:New(config);
@@ -364,7 +364,7 @@ function KrowiAF_AchievementFrameFilterButtonMixin:CreateMenu(menu)
 
     mb:CreateButtonAndAdd(
         menu,
-        addon.L["Options"],
+        addon.Util.L["Options"],
         addon.Options.Open
     );
 

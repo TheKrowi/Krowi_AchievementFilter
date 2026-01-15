@@ -254,7 +254,7 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
         elseif record.Start.Function == "Patch" then
             startDetail = addon.L["Patch"];
         elseif record.Start.Function == "Version" then
-            startDetail = addon.L["Version"];
+            startDetail = addon.Util.L["Version"];
         elseif record.Start.Function == "Season" then
             startDetail = addon.L["Season"];
         else
@@ -311,7 +311,7 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
         elseif record.End.Function == "Patch" then
             endDetail = addon.L["Patch"];
         elseif record.End.Function == "Version" then
-            endDetail = addon.L["Version"];
+            endDetail = addon.Util.L["Version"];
         elseif record.End.Function == "Season" then
             endDetail = addon.L["Season"];
         else

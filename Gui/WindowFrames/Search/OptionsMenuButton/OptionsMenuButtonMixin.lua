@@ -5,9 +5,7 @@ KrowiAF_SearchOptionsMenuButtonMixin = {};
 local menuBuilder;
 
 function KrowiAF_SearchOptionsMenuButtonMixin:OnLoad()
-	local lib = LibStub("Krowi_MenuBuilder-1.0");
-
-	menuBuilder = lib:New({
+	menuBuilder = addon.MenuBuilder:New({
 		uniqueTag = "KAF_SEARCH_OPTIONS",
         callbacks = {
             OnCheckboxSelect = function(options, keys)
