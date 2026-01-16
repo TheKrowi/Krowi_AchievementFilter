@@ -58,6 +58,7 @@ L["Adjustable Categories"] = true
 L["Aki the Chosen"] = true
 L["Allied Race"] = true
 L["Alt"] = true
+L["Keystone Resilience"] = true
 L["Always Show Completed"] = true
 L["Always show realm"] = true
 L["Always show realm Desc"] = "Always show the character's realm regardless if the character is on the same realm as this character."

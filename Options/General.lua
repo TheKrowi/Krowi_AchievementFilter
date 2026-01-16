@@ -164,7 +164,60 @@ local function ExportMissingAchievements()
             numMissingAchievements = numMissingAchievements + 1;
             -- exportString = exportString .. "    { -- " .. achievementInfo.Name .. "\r\n";
             -- exportString = exportString .. "        " .. achievementInfo.Id .. "," .. "\r\n";
-            exportString = exportString .. "    {" .. achievementInfo.Id .. ", " .. achievementInfo.RewardText .. "}, -- " .. achievementInfo.Name .. "\r\n";
+            local rewardText = tostring(achievementInfo.RewardText or ""):gsub("[\r\n]+", " ");
+            local rewardSuffix = rewardText ~= "" and (" (" .. rewardText .. ")") or "";
+            local rewardTypes = {};
+            if rewardText:find("Title:", 1, true) then
+                tinsert(rewardTypes, "rewardType.Title");
+            end
+            if rewardText:find("Mount:", 1, true) then
+                tinsert(rewardTypes, "rewardType.Mount");
+            end
+            if rewardText:find("Pet:", 1, true) then
+                tinsert(rewardTypes, "rewardType.Pet");
+            end
+            if rewardText:find("Toy:", 1, true) then
+                tinsert(rewardTypes, "rewardType.Toy");
+            end
+            if rewardText:find("Tabard:", 1, true) then
+                tinsert(rewardTypes, "rewardType.Tabard");
+            end
+            if rewardText:find("Teleport:", 1, true) then
+                tinsert(rewardTypes, "rewardType.Teleport");
+            end
+            if rewardText:find("Transmog:", 1, true) then
+                tinsert(rewardTypes, "rewardType.Transmog");
+            end
+            if rewardText:find("Trader's Tender:", 1, true) then
+                tinsert(rewardTypes, "rewardType.TradersTender");
+            end
+            if rewardText:find("Decor Reward:", 1, true) then
+                tinsert(rewardTypes, "rewardType.HousingDecor");
+            end
+            if rewardText:find("Keystones will no longer deplete below level", 1, true) then
+                tinsert(rewardTypes, "rewardType.KeystoneResilience");
+            end
+
+            if #rewardTypes == 0 then
+                if rewardText == "" then
+                    exportString = exportString .. "    {" .. achievementInfo.Id .. "}, -- " .. achievementInfo.Name .. "\r\n";
+                else
+                    exportString = exportString .. "    { -- " .. achievementInfo.Name .. rewardSuffix .. "\r\n";
+                    exportString = exportString .. "        " .. achievementInfo.Id .. ",\r\n";
+                    exportString = exportString .. "        {\r\n";
+                    exportString = exportString .. "            RewardType = rewardType.NotCategorized,\r\n";
+                    exportString = exportString .. "        },\r\n";
+                    exportString = exportString .. "    },\r\n";
+                end
+            else
+                local rewardTypeValue = #rewardTypes == 1 and rewardTypes[1] or ("{" .. table.concat(rewardTypes, ", ") .. "}");
+                exportString = exportString .. "    { -- " .. achievementInfo.Name .. rewardSuffix .. "\r\n";
+                exportString = exportString .. "        " .. achievementInfo.Id .. ",\r\n";
+                exportString = exportString .. "        {\r\n";
+                exportString = exportString .. "            RewardType = " .. rewardTypeValue .. ",\r\n";
+                exportString = exportString .. "        },\r\n";
+                exportString = exportString .. "    },\r\n";
+            end
         end
     end
 

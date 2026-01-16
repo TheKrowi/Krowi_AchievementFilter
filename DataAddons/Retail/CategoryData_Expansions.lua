@@ -7165,7 +7165,7 @@ local legion = { -- Legion
                 true,
                 {
                     10763, -- Azsuna Matata
-                    51753, -- Azsuna Matata
+                    -- 51753, -- Azsuna Matata
                 },
             },
             { -- Exploration

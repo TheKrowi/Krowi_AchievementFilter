@@ -2209,6 +2209,7 @@ KrowiAF.AchievementData["11_01_05"] = {
     { -- Flame Warden of Khaz Algar
         41631,
         faction.Alliance,
+        41632,
         {
             {"Event", 341},
         },
@@ -2216,6 +2217,7 @@ KrowiAF.AchievementData["11_01_05"] = {
     { -- Flame Keeper of Khaz Algar
         41632,
         faction.Horde,
+        41631,
         {
             {"Event", 341},
         },
@@ -2778,20 +2780,90 @@ KrowiAF.AchievementData["11_02_00"] = {
             IsPvP = true,
         },
     },
-    {42149--[[ , Keystones will no longer deplete below level 12 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 12
-    {42150--[[ , Keystones will no longer deplete below level 13 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 13
-    {42151--[[ , Keystones will no longer deplete below level 14 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 14
-    {42152--[[ , Keystones will no longer deplete below level 15 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 15
-    {42153--[[ , Keystones will no longer deplete below level 16 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 16
-    {42154--[[ , Keystones will no longer deplete below level 17 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 17
-    {42155--[[ , Keystones will no longer deplete below level 18 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 18
-    {42156--[[ , Keystones will no longer deplete below level 19 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 19
-    {42157--[[ , Keystones will no longer deplete below level 20 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 20
-    {42158--[[ , Keystones will no longer deplete below level 21 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 21
-    {42159--[[ , Keystones will no longer deplete below level 22 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 22
-    {42160--[[ , Keystones will no longer deplete below level 23 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 23
-    {42161--[[ , Keystones will no longer deplete below level 24 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 24
-    {42162--[[ , Keystones will no longer deplete below level 25 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 25
+    { -- The War Within Season 3: Resilient Keystone 12 (Keystones will no longer deplete below level 12 during the War Within Season 3.)
+        42149,
+        {
+            RewardType = rewardType.KeystoneResilience,
+        },
+    },
+    { -- The War Within Season 3: Resilient Keystone 13 (Keystones will no longer deplete below level 13 during the War Within Season 3.)
+        42150,
+        {
+            RewardType = rewardType.KeystoneResilience,
+        },
+    },
+    { -- The War Within Season 3: Resilient Keystone 14 (Keystones will no longer deplete below level 14 during the War Within Season 3.)
+        42151,
+        {
+            RewardType = rewardType.KeystoneResilience,
+        },
+    },
+    { -- The War Within Season 3: Resilient Keystone 15 (Keystones will no longer deplete below level 15 during the War Within Season 3.)
+        42152,
+        {
+            RewardType = rewardType.KeystoneResilience,
+        },
+    },
+    { -- The War Within Season 3: Resilient Keystone 16 (Keystones will no longer deplete below level 16 during the War Within Season 3.)
+        42153,
+        {
+            RewardType = rewardType.KeystoneResilience,
+        },
+    },
+    { -- The War Within Season 3: Resilient Keystone 17 (Keystones will no longer deplete below level 17 during the War Within Season 3.)
+        42154,
+        {
+            RewardType = rewardType.KeystoneResilience,
+        },
+    },
+    { -- The War Within Season 3: Resilient Keystone 18 (Keystones will no longer deplete below level 18 during the War Within Season 3.)
+        42155,
+        {
+            RewardType = rewardType.KeystoneResilience,
+        },
+    },
+    { -- The War Within Season 3: Resilient Keystone 19 (Keystones will no longer deplete below level 19 during the War Within Season 3.)
+        42156,
+        {
+            RewardType = rewardType.KeystoneResilience,
+        },
+    },
+    { -- The War Within Season 3: Resilient Keystone 20 (Keystones will no longer deplete below level 20 during the War Within Season 3.)
+        42157,
+        {
+            RewardType = rewardType.KeystoneResilience,
+        },
+    },
+    { -- The War Within Season 3: Resilient Keystone 21 (Keystones will no longer deplete below level 21 during the War Within Season 3.)
+        42158,
+        {
+            RewardType = rewardType.KeystoneResilience,
+        },
+    },
+    { -- The War Within Season 3: Resilient Keystone 22 (Keystones will no longer deplete below level 22 during the War Within Season 3.)
+        42159,
+        {
+            RewardType = rewardType.KeystoneResilience,
+        },
+    },
+    { -- The War Within Season 3: Resilient Keystone 23 (Keystones will no longer deplete below level 23 during the War Within Season 3.)
+        42160,
+        {
+            RewardType = rewardType.KeystoneResilience,
+        },
+    },
+    { -- The War Within Season 3: Resilient Keystone 24 (Keystones will no longer deplete below level 24 during the War Within Season 3.)
+        42161,
+        {
+            RewardType = rewardType.KeystoneResilience,
+        },
+    },
+    { -- The War Within Season 3: Resilient Keystone 25 (Keystones will no longer deplete below level 25 during the War Within Season 3.)
+        42162,
+        {
+            RewardType = rewardType.KeystoneResilience,
+        },
+    },
     { -- The War Within Keystone Explorer: Season Three
         42169,
         {
@@ -2973,11 +3045,36 @@ KrowiAF.AchievementData["11_02_00"] = {
             {"PvE Season", 15},
         },
     },
-    {42802--[[ , Keystones will no longer deplete below level 26 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 26
-    {42803--[[ , Keystones will no longer deplete below level 27 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 27
-    {42804--[[ , Keystones will no longer deplete below level 28 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 28
-    {42805--[[ , Keystones will no longer deplete below level 29 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 29
-    {42806--[[ , Keystones will no longer deplete below level 30 during the War Within Season 3. ]]}, -- The War Within Season 3: Resilient Keystone 30
+    { -- The War Within Season 3: Resilient Keystone 26 (Keystones will no longer deplete below level 26 during the War Within Season 3.)
+        42802,
+        {
+            RewardType = rewardType.KeystoneResilience,
+        },
+    },
+    { -- The War Within Season 3: Resilient Keystone 27 (Keystones will no longer deplete below level 27 during the War Within Season 3.)
+        42803,
+        {
+            RewardType = rewardType.KeystoneResilience,
+        },
+    },
+    { -- The War Within Season 3: Resilient Keystone 28 (Keystones will no longer deplete below level 28 during the War Within Season 3.)
+        42804,
+        {
+            RewardType = rewardType.KeystoneResilience,
+        },
+    },
+    { -- The War Within Season 3: Resilient Keystone 29 (Keystones will no longer deplete below level 29 during the War Within Season 3.)
+        42805,
+        {
+            RewardType = rewardType.KeystoneResilience,
+        },
+    },
+    { -- The War Within Season 3: Resilient Keystone 30 (Keystones will no longer deplete below level 30 during the War Within Season 3.)
+        42806,
+        {
+            RewardType = rewardType.KeystoneResilience,
+        },
+    },
     {60889}, -- Unraveled and Persevering
     {60890}, -- Secrets of the K'areshi
     { -- With Flying Colors
@@ -4935,7 +5032,7 @@ KrowiAF.AchievementData["11_02_07"] = {
         },
     },
     {42299}, -- Visions of a Shadowed Sun
-    {51753}, -- Azsuna Matata
+    -- {51753}, -- Azsuna Matata
     { -- Legendary Research of the Ebon Blade
         60962,
         {

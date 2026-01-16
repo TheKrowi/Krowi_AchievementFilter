@@ -23,4 +23,16 @@ function section:Add(achievement)
             GameTooltip:AddLine("  " .. tostring(k) .. ": " .. tostring(v));
         end
     end
+    GameTooltip:AddLine("");
+    GameTooltip:AddLine("More:");
+    for k, v in pairs(achievement) do
+        if type(v) == "table" then
+            GameTooltip:AddLine("  " .. tostring(k) .. ": {table}");
+            for tk, tv in pairs(v) do
+                GameTooltip:AddLine("    " .. tostring(tk) .. ": " .. tostring(tv));
+            end
+        else
+            GameTooltip:AddLine("  " .. tostring(k) .. ": " .. tostring(v));
+        end
+    end
 end
