@@ -1,4 +1,5 @@
 local _, addon = ...;
+local shared = addon.Data.CategoryData.Shared;
 
 KrowiAF.CategoryData.Specials = { -- TAB - Specials
     971,
@@ -1468,83 +1469,8 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 },
             },
         },
-        { -- The War Within
-            1640,
-            addon.GetCategoryInfoTitle(15520),
-            { -- Season 1
-                1641,
-                addon.L["Season"] .. " " .. 1,
-                true,
-                {
-                    20586, -- Keystone Hero: Ara-Kara, City of Echoes
-                    20582, -- Keystone Hero: City of Threads
-                    20580, -- Keystone Hero: The Stonevault
-                    20585, -- Keystone Hero: The Dawnbreaker
-                    15047, -- Keystone Hero: Mists of Tirna Scithe
-                    15045, -- Keystone Hero: The Necrotic Wake
-                    20587, -- Keystone Hero: Siege of Boralus
-                    20588, -- Keystone Hero: Grim Batol
-                    20523, -- The War Within Keystone Explorer: Season One
-                    20524, -- The War Within Keystone Conqueror: Season One
-                    20525, -- The War Within Keystone Master: Season One
-                    20526, -- The War Within Keystone Hero: Season One
-                    20589, -- Tempered Hero: The War Within Season 1
-                },
-            },
-            { -- Season 2
-                1679,
-                addon.L["Season"] .. " " .. 2,
-                true,
-                {
-                    41348, -- Keystone Hero: Operation: Floodgate
-                    20583, -- Keystone Hero: Cinderbrew Meadery
-                    20584, -- Keystone Hero: Darkflame Cleft
-                    20579, -- Keystone Hero: The Rookery
-                    20581, -- Keystone Hero: Priory of the Sacred Flame
-                    15050, -- Keystone Hero: Theater of Pain
-                    40966, -- Keystone Hero: Operation: Mechagon - Workshop
-                    40965, -- Keystone Hero: The MOTHERLODE!!
-                    40949, -- The War Within Keystone Explorer: Season Two
-                    40950, -- The War Within Keystone Conqueror: Season Two
-                    41533, -- The War Within Keystone Master: Season Two
-                    40952, -- The War Within Keystone Hero: Season Two
-                    40951, -- The War Within Keystone Legend: Season Two
-                    42139, -- The Enterprising Tank
-                    42141, -- The Enterprising Healer
-                    42144, -- The Enterprising Damage Dealer
-                    42148, -- The Enterprising Dungeon Master
-                    40954, -- Enterprising Hero: The War Within Season Two
-                },
-            },
-            { -- Season 3
-                addon.L["Season"] .. " " .. 3,
-                true,
-                {
-                    -- 41348, -- Keystone Hero: Operation: Floodgate
-                    -- 20583, -- Keystone Hero: Cinderbrew Meadery
-                    -- 20584, -- Keystone Hero: Darkflame Cleft
-                    -- 20579, -- Keystone Hero: The Rookery
-                    -- 20581, -- Keystone Hero: Priory of the Sacred Flame
-                    -- 15050, -- Keystone Hero: Theater of Pain
-                    -- 40966, -- Keystone Hero: Operation: Mechagon - Workshop
-                    -- 40965, -- Keystone Hero: The MOTHERLODE!!
-                    -- 42139, -- The Enterprising Tank
-                    -- 42141, -- The Enterprising Healer
-                    -- 42144, -- The Enterprising Damage Dealer
-                    -- 42148, -- The Enterprising Dungeon Master
-                    42169, -- The War Within Keystone Explorer: Season Three
-                    42170, -- The War Within Keystone Conqueror: Season Three
-                    41973, -- The War Within Keystone Master: Season Three
-                    42171, -- The War Within Keystone Hero: Season Three
-                    42172, -- The War Within Keystone Legend: Season Three
-                    61874, -- The Unbound Tank
-                    61875, -- The Unbound Healer
-                    61876, -- The Unbound Damage Dealer
-                    61877, -- The Unbound Dungeon Master
-                    42174, -- Unbound Hero: The War Within Season Three
-                },
-            },
-        },
+        shared.GetTheWarWithinMythicPlus(addon.GetCategoryInfoTitle(15520)),
+        shared.GetMidnightMythicPlus(addon.GetCategoryInfoTitle(15542)),
     },
     { -- Ta's Pet Collection
         1346,

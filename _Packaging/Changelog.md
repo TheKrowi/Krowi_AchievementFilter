@@ -1,10 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 92.0 - 2026-01-14
+## 93.0 - 2026-01-17
 ### Added
-- 12.0.0 achievements
+- 12.0.0 achievements (500+)
+  - Family Battler of Northrend in Wrath of the Lich King category
+  - Mythic+ Season 1 in both special tab and under dungeon category in expansions (dev note: before, these were partially in the base dungeons category and partially in the mythic+ category of the specials tab)
+  - PvP Season 1 in PvP tab
+  - Dungeons
+  - Raids
 - New Keystone Resilience rewar type filter
+
+### Fixed
+- Event Reminders should no longer pop up or print to chat when it's disabled on login or reload
 
 ## 92.0 - 2026-01-14
 ### Changed

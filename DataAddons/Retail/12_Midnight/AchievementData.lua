@@ -70,126 +70,147 @@ KrowiAF.AchievementData["12_00_00"] = {
         42528,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Explore Eredath (Bronze Cache)
         42535,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Explore Antoran Wastes (Bronze Cache)
         42560,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Explore Val'Sharah (Bronze Cache)
         42573,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Elusive Foes: Antoran Wastes (Bronze Cache)
         42575,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Hidden Treasures: Suramar (Bronze Cache)
         42577,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Elusive Foes: Highmountain (Bronze Cache)
         42579,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Elusive Foes: Val'Sharah (Bronze Cache)
         42580,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Hidden Treasures: Krokuun (Bronze Cache)
         42588,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Elusive Foes: Krokuun (Bronze Cache)
         42591,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Hidden Treasures: Stormheim (Bronze Cache)
         42606,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Explore Stormheim (Bronze Cache)
         42608,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Explore Krokuun (Bronze Cache)
         42620,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Hidden Treasures: Eredath (Bronze Cache)
         42626,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Hidden Treasures: Antoran Wastes (Bronze Cache)
         42631,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Hidden Treasures: Highmountain (Bronze Cache)
         42634,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Elusive Foes: Stormheim (Bronze Cache)
         42640,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Elusive Foes: Eredath (Bronze Cache)
         42646,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Elusive Foes: Suramar (Bronze Cache)
         42650,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Explore Suramar (Bronze Cache)
         42665,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     { -- Hidden Treasures: Val'Sharah (Bronze Cache)
         42668,
         {
             RewardType = rewardType.RemixBronze,
+            {"Event", 1640},
         },
     },
     {42701}, -- Prey: Normal Mode III
@@ -547,6 +568,7 @@ KrowiAF.AchievementData["12_00_00"] = {
         61233,
         {
             RewardType = rewardType.KeystoneResilience,
+            {"PvE Season", 16},
         },
     },
     {61234}, -- Hunt in the Night
@@ -554,18 +576,21 @@ KrowiAF.AchievementData["12_00_00"] = {
         61235,
         {
             RewardType = rewardType.KeystoneResilience,
+            {"PvE Season", 16},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 14 (Keystones will no longer deplete below level 14 during Midnight Season 1.)
         61236,
         {
             RewardType = rewardType.KeystoneResilience,
+            {"PvE Season", 16},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 15 (Keystones will no longer deplete below level 15 during Midnight Season 1.)
         61237,
         {
             RewardType = rewardType.KeystoneResilience,
+            {"PvE Season", 16},
         },
     },
     {61238}, -- Midnight Hunter
@@ -573,119 +598,154 @@ KrowiAF.AchievementData["12_00_00"] = {
         61239,
         {
             RewardType = rewardType.KeystoneResilience,
+            {"PvE Season", 16},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 17 (Keystones will no longer deplete below level 17 during Midnight Season 1.)
         61240,
         {
             RewardType = rewardType.KeystoneResilience,
+            {"PvE Season", 16},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 18 (Keystones will no longer deplete below level 18 during Midnight Season 1.)
         61241,
         {
             RewardType = rewardType.KeystoneResilience,
+            {"PvE Season", 16},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 19 (Keystones will no longer deplete below level 19 during Midnight Season 1.)
         61242,
         {
             RewardType = rewardType.KeystoneResilience,
+            {"PvE Season", 16},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 20 (Keystones will no longer deplete below level 20 during Midnight Season 1.)
         61243,
         {
             RewardType = rewardType.KeystoneResilience,
+            {"PvE Season", 16},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 21 (Keystones will no longer deplete below level 21 during Midnight Season 1.)
         61244,
         {
             RewardType = rewardType.KeystoneResilience,
+            {"PvE Season", 16},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 22 (Keystones will no longer deplete below level 22 during Midnight Season 1.)
         61245,
         {
             RewardType = rewardType.KeystoneResilience,
+            {"PvE Season", 16},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 23 (Keystones will no longer deplete below level 23 during Midnight Season 1.)
         61246,
         {
             RewardType = rewardType.KeystoneResilience,
+            {"PvE Season", 16},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 24 (Keystones will no longer deplete below level 24 during Midnight Season 1.)
         61247,
         {
             RewardType = rewardType.KeystoneResilience,
+            {"PvE Season", 16},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 25 (Keystones will no longer deplete below level 25 during Midnight Season 1.)
         61248,
         {
             RewardType = rewardType.KeystoneResilience,
+            {"PvE Season", 16},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 26 (Keystones will no longer deplete below level 26 during Midnight Season 1.)
         61249,
         {
             RewardType = rewardType.KeystoneResilience,
+            {"PvE Season", 16},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 27 (Keystones will no longer deplete below level 27 during Midnight Season 1.)
         61250,
         {
             RewardType = rewardType.KeystoneResilience,
+            {"PvE Season", 16},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 28 (Keystones will no longer deplete below level 28 during Midnight Season 1.)
         61251,
         {
             RewardType = rewardType.KeystoneResilience,
+            {"PvE Season", 16},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 29 (Keystones will no longer deplete below level 29 during Midnight Season 1.)
         61252,
         {
             RewardType = rewardType.KeystoneResilience,
+            {"PvE Season", 16},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 30 (Keystones will no longer deplete below level 30 during Midnight Season 1.)
         61253,
         {
             RewardType = rewardType.KeystoneResilience,
+            {"PvE Season", 16},
         },
     },
-    {61254}, -- Midnight Keystone Explorer: Season One
+    { -- Midnight Keystone Explorer: Season One
+        61254,
+        {
+            {"PvE Season", 16},
+        },
+    },
     { -- Midnight Keystone Conqueror: Season One (Title: The Umbral)
         61255,
         {
             RewardType = rewardType.Title,
+            {"PvE Season", 16},
         },
     },
     { -- Midnight Keystone Master: Season One (Mount: Calamitous Carrion)
         61256,
         {
             RewardType = rewardType.Mount,
+            {"PvE Season", 16},
         },
     },
-    {61257}, -- Midnight Keystone Hero: Season One
+    { -- Midnight Keystone Hero: Season One
+        61257,
+        {
+            {"PvE Season", 16},
+        },
+    },
     { -- Midnight Keystone Legend: Season One (Mount: Convalescent Carrion)
         61258,
         {
             RewardType = rewardType.Mount,
+            {"PvE Season", 16},
         },
     },
     { -- Umbral Hero: Midnight Season One (Title: The Umbral Hero)
         61259,
         {
             RewardType = rewardType.Title,
+            {"PvE Season", 16},
         },
     },
-    {61262}, -- Keystone Hero: Windrunner Spire (Max Level Unlock: Teleport to Windrunner Spire)
+    { -- Keystone Hero: Windrunner Spire (Max Level Unlock: Teleport to Windrunner Spire)
+        61262,
+        {
+            RewardType = rewardType.Teleport,
+            {"PvE Season", 16},
+        },
+    },
     { -- Treasures of Harandar (Reward: Brilliant Petalwing)
         61263,
         {
@@ -695,12 +755,48 @@ KrowiAF.AchievementData["12_00_00"] = {
     {61264}, -- Leaf None Behind
     {61265}, -- Spectral Capture
     {61266}, -- Spectral Stocker
-    {61267}, -- Keystone Hero: Magisters' Terrace (Max Level Unlock: Teleport to Magisters' Terrace)
-    {61268}, -- Keystone Hero: Nexus-Point Xenas (Max Level Unlock: Teleport to Nexus-Point Xenas)
-    {61269}, -- Keystone Hero: Maisara Caverns (Max Level Unlock: Teleport to Maisara Caverns)
-    {61270}, -- Keystone Hero: Seat of the Triumvirate (Max Level Unlock: Teleport to Seat of the Triumvirate)
-    {61271}, -- Keystone Hero: Pit of Saron (Max Level Unlock: Teleport to Pit of Saron)
-    {61272}, -- Keystone Hero: Skyreach (Max Level Unlock: Teleport to Skyreach)
+    { -- Keystone Hero: Magisters' Terrace (Max Level Unlock: Teleport to Magisters' Terrace)
+        61267,
+        {
+            RewardType = rewardType.Teleport,
+            {"PvE Season", 16},
+        },
+    },
+    { -- Keystone Hero: Nexus-Point Xenas (Max Level Unlock: Teleport to Nexus-Point Xenas)
+        61268,
+        {
+            RewardType = rewardType.Teleport,
+            {"PvE Season", 16},
+        },
+    },
+    { -- Keystone Hero: Maisara Caverns (Max Level Unlock: Teleport to Maisara Caverns)
+        61269,
+        {
+            RewardType = rewardType.Teleport,
+            {"PvE Season", 16},
+        },
+    },
+    { -- Keystone Hero: Seat of the Triumvirate (Max Level Unlock: Teleport to Seat of the Triumvirate)
+        61270,
+        {
+            RewardType = rewardType.Teleport,
+            {"PvE Season", 16},
+        },
+    },
+    { -- Keystone Hero: Pit of Saron (Max Level Unlock: Teleport to Pit of Saron)
+        61271,
+        {
+            RewardType = rewardType.Teleport,
+            {"PvE Season", 16},
+        },
+    },
+    { -- Keystone Hero: Skyreach (Max Level Unlock: Teleport to Skyreach)
+        61272,
+        {
+            RewardType = rewardType.Teleport,
+            {"PvE Season", 16},
+        },
+    },
     { -- Chronicler of the Haranir (Reward: Title: "Chronicler of the Haranir")
         61344,
         {
@@ -840,14 +936,54 @@ KrowiAF.AchievementData["12_00_00"] = {
     {61584}, -- Midnight Glyph Hunter
     {61585}, -- You Conduit!
     {61586}, -- Galactic Gala
-    {61587}, -- Keystone Victor: Magisters' Terrace (Midnight)
-    {61588}, -- Keystone Victor: Maisara Caverns
-    {61589}, -- Keystone Victor: Nexus-Point Xenas
-    {61590}, -- Keystone Victor: Windrunner Spire
-    {61591}, -- Keystone Victor: Algeth'ar Academy
-    {61592}, -- Keystone Victor: Pit of Saron
-    {61593}, -- Keystone Victor: Seat of the Triumvirate
-    {61594}, -- Keystone Victor: Skyreach
+    { -- Keystone Victor: Magisters' Terrace (Midnight)
+        61587,
+        {
+            {"PvE Season", 16},
+        },
+    },
+    { -- Keystone Victor: Maisara Caverns
+        61588,
+        {
+            {"PvE Season", 16},
+        },
+    },
+    { -- Keystone Victor: Nexus-Point Xenas
+        61589,
+        {
+            {"PvE Season", 16},
+        },
+    },
+    { -- Keystone Victor: Windrunner Spire
+        61590,
+        {
+            {"PvE Season", 16},
+        },
+    },
+    { -- Keystone Victor: Algeth'ar Academy
+        61591,
+        {
+            {"PvE Season", 16},
+        },
+    },
+    { -- Keystone Victor: Pit of Saron
+        61592,
+        {
+            {"PvE Season", 16},
+        },
+    },
+    { -- Keystone Victor: Seat of the Triumvirate
+        61593,
+        {
+            {"PvE Season", 16},
+        },
+    },
+    { -- Keystone Victor: Skyreach
+        61594,
+        {
+            {"PvE Season", 16},
+        },
+    },
     {61624}, -- Ahead of the Curve: Crown of the Cosmos
     {61625}, -- Cutting Edge: Crown of the Cosmos
     {61626}, -- Ahead of the Curve: Midnight Falls

@@ -312,7 +312,22 @@ function eventReminderAlertSystem:ShowActiveEventsOnPlayerEnteringWorld(popUpsOp
     KrowiAF_SavedData.ActiveEventPopUpsShown = {};
     KrowiAF_SavedData.ActiveEventChatMessagesShown = {};
 
-    if not self:ShowActiveEvents(popUpsOptions, chatMessagesOptions, time()) then
+    local currentTime = time();
+
+    if popUpsOptions and not popUpsOptions.Show then
+        local activeEvents = addon.EventData.GetActiveEvents(true);
+        for _, event in next, activeEvents do
+            KrowiAF_SavedData.ActiveEventPopUpsShown[event.Id] = event.EventDetails and event.EventDetails.EndTime or placeholderEpoch;
+        end
+    end
+    if chatMessagesOptions and not chatMessagesOptions.Show then
+        local activeEvents = addon.EventData.GetActiveEvents(true);
+        for _, event in next, activeEvents do
+            KrowiAF_SavedData.ActiveEventChatMessagesShown[event.Id] = event.EventDetails and event.EventDetails.EndTime or placeholderEpoch;
+        end
+    end
+
+    if not self:ShowActiveEvents(popUpsOptions, chatMessagesOptions, currentTime) then
         return;
     end
 
@@ -327,7 +342,30 @@ function eventReminderAlertSystem:ShowUpcomingCalendarEventsOnPlayerEnteringWorl
     KrowiAF_SavedData.UpcomingCalendarEventPopUpsShown = {};
     KrowiAF_SavedData.UpcomingCalendarEventChatMessagesShown = {};
 
-    if not self:ShowUpcomingCalendarEvents(popUpsOptions, chatMessagesOptions, time()) then
+    local currentTime = time();
+
+    if popUpsOptions and not popUpsOptions.Show then
+        local upcomingCalendarEvents = addon.EventData.GetUpcomingCalendarEvents(true);
+        for _, event in next, upcomingCalendarEvents do
+            local startTime = (KrowiAF_SavedData.CalendarEventsCache and KrowiAF_SavedData.CalendarEventsCache[event.Id] and KrowiAF_SavedData.CalendarEventsCache[event.Id].StartTime)
+                or (event.UpcomingEventDetails and event.UpcomingEventDetails.StartTime);
+            if startTime then
+                KrowiAF_SavedData.UpcomingCalendarEventPopUpsShown[event.Id] = startTime;
+            end
+        end
+    end
+    if chatMessagesOptions and not chatMessagesOptions.Show then
+        local upcomingCalendarEvents = addon.EventData.GetUpcomingCalendarEvents(true);
+        for _, event in next, upcomingCalendarEvents do
+            local startTime = (KrowiAF_SavedData.CalendarEventsCache and KrowiAF_SavedData.CalendarEventsCache[event.Id] and KrowiAF_SavedData.CalendarEventsCache[event.Id].StartTime)
+                or (event.UpcomingEventDetails and event.UpcomingEventDetails.StartTime);
+            if startTime then
+                KrowiAF_SavedData.UpcomingCalendarEventChatMessagesShown[event.Id] = startTime;
+            end
+        end
+    end
+
+    if not self:ShowUpcomingCalendarEvents(popUpsOptions, chatMessagesOptions, currentTime) then
         return;
     end
 

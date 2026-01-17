@@ -1,4 +1,5 @@
 local _, addon = ...;
+local shared = addon.Data.CategoryData.Shared;
 
 local crossExpansion = { -- Cross-Expansion
     1431,
@@ -2185,7 +2186,30 @@ local classic = { -- Classic
             6613, -- Eastern Kingdoms Tamer
             6612, -- Kalimdor Tamer
             6603, -- Taming Eastern Kingdoms
+            61029, -- Aquatic Battler of Eastern Kingdoms
+            61030, -- Beast Battler of Eastern Kingdoms
+            61031, -- Critter Battler of Eastern Kingdoms
+            61032, -- Dragonkin Battler of Eastern Kingdoms
+            61033, -- Elemental Battler of Eastern Kingdoms
+            61034, -- Flying Battler of Eastern Kingdoms
+            61035, -- Humanoid Battler of Eastern Kingdoms
+            61036, -- Magic Battler of Eastern Kingdoms
+            61037, -- Mechanical Battler of Eastern Kingdoms
+            61028, -- Undead Battler of Eastern Kingdoms
+            61040, -- Family Battler of Eastern Kingdoms
             6602, -- Taming Kalimdor
+            61041, -- Aquatic Battler of Kalimdor
+            61042, -- Beast Battler of Kalimdor
+            61043, -- Critter Battler of Kalimdor
+            61044, -- Dragonkin Battler of Kalimdor
+            61045, -- Elemental Battler of Kalimdor
+            61046, -- Flying Battler of Kalimdor
+            61047, -- Humanoid Battler of Kalimdor
+            61048, -- Magic Battler of Kalimdor
+            61049, -- Mechanical Battler of Kalimdor
+            61050, -- Undead Battler of Kalimdor
+            61051, -- Family Battler of Kalimdor
+            61094, -- Old World Family Battler
             6558, -- Local Pet Mauler
             6559, -- Traveling Pet Mauler
             6560, -- World Pet Mauler
@@ -3457,6 +3481,8 @@ local wrathOfTheLichKing = { -- Wrath of the Lich King
                 4525, -- Don't Look Up
                 4517, -- The Pit of Saron
                 4520, -- Heroic: The Pit of Saron
+                61271, -- Keystone Hero: Pit of Saron
+                61592, -- Keystone Victor: Pit of Saron
             },
         },
         { -- Halls of Reflection
@@ -4141,6 +4167,17 @@ local wrathOfTheLichKing = { -- Wrath of the Lich King
             6588, -- Northrend Safari
             6615, -- Northrend Tamer
             6605, -- Taming Northrend
+            60942, -- Aquatic Battler of Northrend
+            60951, -- Beast Battler of Northrend
+            60943, -- Critter Battler of Northrend
+            60944, -- Dragonkin Battler of Northrend
+            60948, -- Elemental Battler of Northrend
+            60949, -- Flying Battler of Northrend
+            60950, -- Humanoid Battler of Northrend
+            60952, -- Magic Battler of Northrend
+            60953, -- Mechanical Battler of Northrend
+            60954, -- Undead Battler of Northrend
+            60956, -- Family Battler of Northrend
             6558, -- Local Pet Mauler
             6559, -- Traveling Pet Mauler
             6560, -- World Pet Mauler
@@ -6512,6 +6549,8 @@ local warlordsOfDreanor = { -- Warlords of Dreanor
                 8843, -- Skyreach
                 8844, -- Heroic: Skyreach
                 10081, -- Mythic: Skyreach
+                61272, -- Keystone Hero: Skyreach
+                61594, -- Keystone Victor: Skyreach
                 8871, -- Skyreach Challenger
                 8872, -- Skyreach: Bronze
                 8873, -- Skyreach: Silver
@@ -7572,6 +7611,8 @@ local legion = { -- Legion
                 12009, -- Darker Side
                 12007, -- Heroic: Seat of the Triumvirate
                 12008, -- Mythic: Seat of the Triumvirate
+                61270, -- Keystone Hero: Seat of the Triumvirate
+                61593, -- Keystone Victor: Seat of the Triumvirate
             },
         },
         {
@@ -11229,6 +11270,7 @@ local dragonflight = { -- Dragonflight
                 16270, -- Heroic: Algeth'ar Academy
                 16271, -- Mythic: Algeth'ar Academy
                 16643, -- Keystone Hero: Algeth'ar Academy
+                61591, -- Keystone Victor: Algeth'ar Academy
             },
         },
         { -- Brackenhide Hollow
@@ -12781,6 +12823,67 @@ local theWarWithin = { -- The War Within
     { -- Dungeons
         1601,
         addon.GetCategoryInfoTitle(15272),
+        shared.GetTheWarWithinMythicPlus(addon.L["Mythic+"]),
+        { -- Ara-Kara, City of Echoes
+            1639,
+            addon.GetInstanceInfoName(1271),
+            {
+                40370, -- Ara-Kara, City of Echoes
+                40374, -- Heroic: Ara-Kara, City of Echoes
+                40375, -- Mythic: Ara-Kara, City of Echoes
+                20586, -- Keystone Hero: Ara-Kara, City of Echoes
+            },
+        },
+        { -- Cinderbrew Meadery
+            1636,
+            addon.GetInstanceInfoName(1272),
+            {
+                40361, -- Cinderbrew Meadery
+                40363, -- Heroic: Cinderbrew Meadery
+                40366, -- Mythic: Cinderbrew Meadery
+                20583, -- Keystone Hero: Cinderbrew Meadery
+            },
+        },
+        { -- City of Threads
+            1635,
+            addon.GetInstanceInfoName(1274),
+            {
+                40376, -- City of Threads
+                40377, -- Heroic: City of Threads
+                40379, -- Mythic: City of Threads
+                20582, -- Keystone Hero: City of Threads
+            },
+        },
+        { -- Darkflame Cleft
+            1637,
+            addon.GetInstanceInfoName(1210),
+            {
+                40427, -- Darkflame Cleft
+                40428, -- Heroic: Darkflame Cleft
+                40429, -- Mythic: Darkflame Cleft
+                20584, -- Keystone Hero: Darkflame Cleft
+            },
+        },
+        { -- Priory of the Sacred Flame
+            1634,
+            addon.GetInstanceInfoName(1267),
+            {
+                40590, -- Priory of the Sacred Flame
+                40592, -- Heroic: Priory of the Sacred Flame
+                40596, -- Mythic: Priory of the Sacred Flame
+                20581, -- Keystone Hero: Priory of the Sacred Flame
+            },
+        },
+        { -- The Dawnbreaker
+            1638,
+            addon.GetInstanceInfoName(1270),
+            {
+                40599, -- The Dawnbreaker
+                40601, -- Heroic: The Dawnbreaker
+                40604, -- Mythic: The Dawnbreaker
+                20585, -- Keystone Hero: The Dawnbreaker
+            },
+        },
         { -- The Rookery
             1632,
             addon.GetInstanceInfoName(1268),
@@ -12799,66 +12902,6 @@ local theWarWithin = { -- The War Within
                 40644, -- Heroic: The Stonevault
                 40648, -- Mythic: The Stonevault
                 20580, -- Keystone Hero: The Stonevault
-            },
-        },
-        { -- Priory of the Sacred Flame
-            1634,
-            addon.GetInstanceInfoName(1267),
-            {
-                40590, -- Priory of the Sacred Flame
-                40592, -- Heroic: Priory of the Sacred Flame
-                40596, -- Mythic: Priory of the Sacred Flame
-                20581, -- Keystone Hero: Priory of the Sacred Flame
-            },
-        },
-        { -- City of Threads
-            1635,
-            addon.GetInstanceInfoName(1274),
-            {
-                40376, -- City of Threads
-                40377, -- Heroic: City of Threads
-                40379, -- Mythic: City of Threads
-                20582, -- Keystone Hero: City of Threads
-            },
-        },
-        { -- Cinderbrew Meadery
-            1636,
-            addon.GetInstanceInfoName(1272),
-            {
-                40361, -- Cinderbrew Meadery
-                40363, -- Heroic: Cinderbrew Meadery
-                40366, -- Mythic: Cinderbrew Meadery
-                20583, -- Keystone Hero: Cinderbrew Meadery
-            },
-        },
-        { -- Darkflame Cleft
-            1637,
-            addon.GetInstanceInfoName(1210),
-            {
-                40427, -- Darkflame Cleft
-                40428, -- Heroic: Darkflame Cleft
-                40429, -- Mythic: Darkflame Cleft
-                20584, -- Keystone Hero: Darkflame Cleft
-            },
-        },
-        { -- The Dawnbreaker
-            1638,
-            addon.GetInstanceInfoName(1270),
-            {
-                40599, -- The Dawnbreaker
-                40601, -- Heroic: The Dawnbreaker
-                40604, -- Mythic: The Dawnbreaker
-                20585, -- Keystone Hero: The Dawnbreaker
-            },
-        },
-        { -- Ara-Kara, City of Echoes
-            1639,
-            addon.GetInstanceInfoName(1271),
-            {
-                40370, -- Ara-Kara, City of Echoes
-                40374, -- Heroic: Ara-Kara, City of Echoes
-                40375, -- Mythic: Ara-Kara, City of Echoes
-                20586, -- Keystone Hero: Ara-Kara, City of Echoes
             },
         },
         { -- Operation: Floodgate
@@ -12884,37 +12927,6 @@ local theWarWithin = { -- The War Within
             40140, -- Algari Dungeon Healer
             40139, -- Algari Dungeon Damage Dealer
             40138, -- Algari Dungeoneer
-            20523, -- The War Within Keystone Explorer: Season One
-            20524, -- The War Within Keystone Conqueror: Season One
-            20525, -- The War Within Keystone Master: Season One
-            20526, -- The War Within Keystone Hero: Season One
-            20589, -- Tempered Hero: The War Within Season 1
-            40660, -- The War Within Season 1: Spelunker Supreme
-            40723, -- Web-Wrapped in the Finest Silks
-            40949, -- The War Within Keystone Explorer: Season Two
-            40950, -- The War Within Keystone Conqueror: Season Two
-            41533, -- The War Within Keystone Master: Season Two
-            40952, -- The War Within Keystone Hero: Season Two
-            40951, -- The War Within Keystone Legend: Season Two
-            42139, -- The Enterprising Tank
-            42141, -- The Enterprising Healer
-            42144, -- The Enterprising Damage Dealer
-            42148, -- The Enterprising Dungeon Master
-            40954, -- Enterprising Hero: The War Within Season Two
-            40911, -- The War Within Season 2: Master Blaster
-            41665, -- Dressed to the Mines
-            42169, -- The War Within Keystone Explorer: Season Three
-            42170, -- The War Within Keystone Conqueror: Season Three
-            41973, -- The War Within Keystone Master: Season Three
-            42171, -- The War Within Keystone Hero: Season Three
-            42172, -- The War Within Keystone Legend: Season Three
-            61874, -- The Unbound Tank
-            61875, -- The Unbound Healer
-            61876, -- The Unbound Damage Dealer
-            61877, -- The Unbound Dungeon Master
-            42174, -- Unbound Hero: The War Within Season Three
-            41937, -- The War Within Season 3: Voidborne Victor
-            42325, -- Void Wear Prohibited
         },
     },
     { -- Raids
@@ -13322,6 +13334,332 @@ local theWarWithin = { -- The War Within
     },
 };
 
+local midnight = { -- Midnight
+    addon.GetCategoryInfoTitle(15542),
+    { -- Character
+        addon.GetCategoryInfoTitle(92),
+        {
+            61678, -- Midnight Superior
+            61679, -- Midnight Epic
+            42328, -- One Warband Mentor: Midnight
+            42329, -- Two Warband Mentors: Midnight
+            42330, -- Three Warband Mentors: Midnight
+            42331, -- Four Warband Mentors: Midnight
+            42332, -- Five Warband Mentors: Midnight
+            61809, -- Adventurer of the Dawn
+            42767, -- Veteran of the Dawn
+            42768, -- Champion of the Dawn
+            42769, -- Hero of the Dawn
+            42770, -- Myth of the Dawn
+        }
+    },
+    { -- Zones
+        addon.L["Zones"],
+        { -- Eversong Woods
+            addon.GetMapName(2395),
+            { -- Quests
+                addon.GetCategoryInfoTitle(96),
+                true,
+                {
+                    41802, -- Eversong In Reprise
+                    61957, -- Sojourner of Eversong Woods
+                },
+            },
+            { -- Exploration
+                addon.GetCategoryInfoTitle(97),
+                true,
+                {
+                    61855, -- Explore Eversong Woods
+                    61960, -- Treasures of Eversong Woods
+                    61576, -- Eversong Woods Glyph Hunter
+                },
+            },
+            { -- Player vs. Player
+                addon.GetCategoryInfoTitle(95),
+                true,
+                {
+                    61221, -- Tour of Duty: Eversong Woods
+                },
+            },
+            {
+                62261, -- Forever Song
+            }
+        },
+        { -- Zul'Aman
+            addon.GetMapName(2437),
+            { -- Quests
+                addon.GetCategoryInfoTitle(96),
+                true,
+                {
+                    61452, -- Sojourner of Zul'Aman
+                },
+            },
+            { -- Exploration
+                addon.GetCategoryInfoTitle(97),
+                true,
+                {
+                    61856, -- Explore Zul'Aman
+                    62125, -- Treasures of Zul'Aman
+                    61581, -- Zul'Aman Glyph Hunter
+                    61455, -- Shadowpine Scattered
+                },
+            },
+            { -- Player vs. Player
+                addon.GetCategoryInfoTitle(95),
+                true,
+                {
+                    61222, -- Tour of Duty: Zul'Aman
+                },
+            },
+            { -- Reputation
+                addon.GetCategoryInfoTitle(201),
+                true,
+                {
+                    62263, -- Amani Tribe Champion
+                },
+            },
+            {
+                61453, -- Making an Amani Out of You
+            }
+        },
+        { -- Harandar
+            addon.GetMapName(2413),
+            { -- Quests
+                addon.GetCategoryInfoTitle(96),
+                true,
+                {
+                    41804, -- One Does Not Simply Walk Into Harandar
+                    61739, -- Sojourner of Harandar
+                },
+            },
+            { -- Exploration
+                addon.GetCategoryInfoTitle(97),
+                true,
+                {
+                    61520, -- Explore Harandar
+                    61263, -- Treasures of Harandar
+                    61582, -- Harandar Glyph Hunter
+                },
+            },
+            { -- Player vs. Player
+                addon.GetCategoryInfoTitle(95),
+                true,
+                {
+                    61223, -- Tour of Duty: Harandar
+                },
+            },
+        },
+        { -- Voidstorm
+            addon.GetMapName(2405),
+            { -- Quests
+                addon.GetCategoryInfoTitle(96),
+                true,
+                {
+                    41806, -- Breaching the Voidstorm
+                    61864, -- Sojourner of Voidstorm
+                },
+            },
+            { -- Exploration
+                addon.GetCategoryInfoTitle(97),
+                true,
+                {
+                    61857, -- Explore Voidstorm
+                    62126, -- Treasures of Voidstorm
+                    61583, -- Voidstorm Glyph Hunter
+                },
+            },
+            { -- Player vs. Player
+                addon.GetCategoryInfoTitle(95),
+                true,
+                {
+                    61224, -- Tour of Duty: Voidstorm
+                },
+            },
+            {
+                62256, -- Yelling into the Voidstorm
+            }
+        },
+    },
+    { -- Delves
+        addon.GetCategoryInfoTitle(15522),
+        -- ADD DELVE ACHIEVEMENTS HERE
+    },
+    { -- Dungeons
+        addon.GetCategoryInfoTitle(15272),
+        shared.GetMidnightMythicPlus(addon.L["Mythic+"]),
+        { -- Den of Nalorakk
+            addon.GetInstanceInfoName(1311),
+            {
+                61638, -- Den of Nalorakk
+                61642, -- Heroic: Den of Nalorakk
+                61643, -- Mythic: Den of Nalorakk
+            },
+        },
+        { -- Magisters' Terrace
+            addon.GetInstanceInfoName(1300),
+            {
+                61212, -- Magisters' Terrace
+                61213, -- Heroic: Magisters' Terrace
+                61214, -- Mythic: Magisters' Terrace
+                61267, -- Keystone Hero: Magisters' Terrace
+                61587, -- Keystone Victor: Magisters' Terrace (Midnight)
+            },
+        },
+        { -- Maisara Caverns
+            addon.GetInstanceInfoName(1315),
+            {
+                61639, -- Maisara Caverns
+                61644, -- Heroic: Maisara Caverns
+                61645, -- Mythic: Maisara Caverns
+                61269, -- Keystone Hero: Maisara Caverns
+                61588, -- Keystone Victor: Maisara Caverns
+            },
+        },
+        { -- Murder Row
+            addon.GetInstanceInfoName(1304),
+            {
+                41960, -- Murder Row
+                41961, -- Heroic: Murder Row
+                41962, -- Mythic: Murder Row
+            },
+        },
+        { -- Nexus-Point Xenas
+            addon.GetInstanceInfoName(1316),
+            {
+                61640, -- Nexus-Point Xenas
+                61646, -- Heroic: Nexus-Point Xenas
+                61647, -- Mythic: Nexus-Point Xenas
+                61268, -- Keystone Hero: Nexus-Point Xenas
+                61589, -- Keystone Victor: Nexus-Point Xenas
+            },
+        },
+        { -- The Blinding Vale
+            addon.GetInstanceInfoName(1309),
+            {
+                61641, -- The Blinding Vale
+                61648, -- Heroic: The Blinding Vale
+                61649, -- Mythic: The Blinding Vale
+            },
+        },
+        { -- Voidscar Arena
+            addon.GetInstanceInfoName(1313),
+            {
+                61508, -- Voidscar Arena
+                61509, -- Heroic: Voidscar Arena
+                61510, -- Mythic: Voidscar Arena
+            },
+        },
+        { -- Windrunner Spire
+            addon.GetInstanceInfoName(1299),
+            {
+                41287, -- Windrunner Spire
+                41288, -- Heroic: Windrunner Spire
+                41291, -- Mythic: Windrunner Spire
+                61262, -- Keystone Hero: Windrunner Spire
+                61590, -- Keystone Victor: Windrunner Spire
+            },
+        },
+        {
+            62195, -- Midnight Dungeon Tank
+            62194, -- Midnight Dungeon Healer
+            62193, -- Midnight Dungeon Damage Dealer
+            62196, -- Midnight Dungeoneer
+        }
+    },
+    { -- Raids
+        addon.GetCategoryInfoTitle(15271),
+        { -- The Dreamrift
+            addon.GetInstanceInfoName(1314),
+            { -- Glory
+                addon.L["Glory"],
+                true,
+                {
+                    61454, -- Falling Between The Quacks
+                },
+            },
+            {
+                61487, -- Chimaerus, the Undreamt God
+                61488, -- Heroic: Chimaerus, the Undreamt God
+                61489, -- Mythic: Chimaerus, the Undreamt God (Title: Dream-Eater)
+                61491, -- Ahead of the Curve: Chimaerus, the Undreamt God
+                61492, -- Cutting Edge: Chimaerus, the Undreamt God
+            }
+        },
+        { -- The Voidspire
+            addon.GetInstanceInfoName(1307),
+            { -- Glory
+                addon.L["Glory"],
+                {
+                    62106, -- The Only Winning Move Is Not To Play
+                    62058, -- Hungry Hungry Hatchlings
+                    61514, -- It's Treason Then
+                    61911, -- Ready, Set, Snap!
+                    61936, -- Aura Farming
+                    61346, -- We Will, In Fact, See It Again
+                },
+            },
+            { -- Mythic
+                addon.L["Mythic"],
+                {
+                    61372, -- Mythic: Imperator Averzian
+                    61373, -- Mythic: Vorasius
+                    61374, -- Mythic: Fallen-King Salhadaar
+                    61375, -- Mythic: Vaelgor & Ezzorak
+                    61376, -- Mythic: Lightblinded Vanguard
+                    61377, -- Mythic: Crown of the Cosmos (Title: Spirebane)
+                },
+            },
+            {
+                61635, -- Voidspire: Weapons of the Void
+                61636, -- Voidspire: Fanatics of the Light
+                61637, -- Voidspire: Crown of the Cosmos
+                61366, -- The Voidspire
+                61368, -- Heroic: The Voidspire
+                61370, -- Mythic: The Voidspire
+                61624, -- Ahead of the Curve: Crown of the Cosmos
+                61625, -- Cutting Edge: Crown of the Cosmos
+            }
+        },
+        { -- March on Quel'Danas
+            addon.GetInstanceInfoName(1308),
+            { -- Glory
+                addon.L["Glory"],
+                true,
+                {
+                    61381, -- Eggsistential Crisis
+                },
+            },
+            { -- Mythic
+                addon.L["Mythic"],
+                true,
+                {
+                    61378, -- Mythic: Belo'ren, Child of Al'ar
+                    61379, -- Mythic: Midnight Falls (Title: Dawnbringer)
+                },
+            },
+            {
+                61367, -- March on Quel'Danas
+                61369, -- Heroic: March on Quel'Danas
+                61371, -- Mythic: March on Quel'Danas
+                61626, -- Ahead of the Curve: Midnight Falls
+                61627, -- Cutting Edge: Midnight Falls
+            }
+        },
+        {
+            61380, -- Glory of the Midnight Raider (Mount: Tenebrous Harrower)
+        }
+    },
+    { -- Professions
+        addon.GetCategoryInfoTitle(169),
+    },
+    { -- Pet Battles
+        addon.GetCategoryInfoTitle(15117),
+        {
+            61091, -- Midnight Safari
+        },
+    },
+};
+
 KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
     883,
     addon.L["Expansions"],
@@ -13340,4 +13678,5 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
     shadowlands,
     dragonflight,
     theWarWithin,
+    midnight,
 };

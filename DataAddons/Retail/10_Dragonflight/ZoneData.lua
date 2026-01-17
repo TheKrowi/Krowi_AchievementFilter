@@ -2,6 +2,19 @@ local _, addon = ...;
 local shared = addon.Data.ZoneData.Shared;
 
 KrowiAF.ZoneData.Dragonflight = {
+    { -- Algeth'ar Academy (dungeon)
+        {2097, 2098, 2099},
+        {
+            16434, -- See Me After Class
+            16329, -- Duck, Duck, Spruce!
+            16441, -- Squad Goals
+            16269, -- Algeth'ar Academy
+            16270, -- Heroic: Algeth'ar Academy
+            16271, -- Mythic: Algeth'ar Academy
+            16643, -- Keystone Hero: Algeth'ar Academy
+            61591, -- Keystone Victor: Algeth'ar Academy
+        }
+    },
     { -- Vault of the Incarnates (raid)
         {2119, 2120, 2121, 2122, 2123, 2124, 2125, 2126},
         {
