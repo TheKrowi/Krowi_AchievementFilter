@@ -249,6 +249,8 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                     41362, -- Prized Gladiator's Fel Bat
                     41049, -- Gladiator: The War Within Season 3
                     42039, -- Astral Gladiator's Fel Bat
+                    61188, -- Gladiator: Midnight Season 1
+                    61450, -- Galactic Gladiator's Goredrake
                 },
             },
             {
@@ -951,6 +953,7 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 40728, -- Forged Finery
                 41595, -- Prized Guise
                 42800, -- Astral Attire
+                61586, -- Galactic Gala
             },
         },
         {

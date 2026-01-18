@@ -36,6 +36,7 @@ KrowiAF.ZoneData.Cataclysm = {
             4886, -- Dragonmaw Clan
             4881, -- The Earthen Ring
             61430, -- Crunching for Cultists
+            42300, -- Two Minutes to Midnight
         }
     },
 };

@@ -550,6 +550,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
             18645, -- Tools of the Trade
             18646, -- Whodunnit?
             19080, -- Arcane Influence
+            62189, -- Mind-Seeker
         },
     },
     { -- Pandaria: Remix

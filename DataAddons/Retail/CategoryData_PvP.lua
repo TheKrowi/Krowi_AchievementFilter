@@ -6,6 +6,26 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
     {
         TabName = "PvP",
     },
+    { -- Training Grounds
+        addon.GetCategoryInfoTitle(15575),
+        {
+            61953, -- Putting in the Practice
+            61954, -- Putting in the Practice
+            61955, -- Putting in the Practice
+            61956, -- Putting in the Practice
+            61958, -- Focused Target
+            61959, -- Focused Target
+            62107, -- Mandatory Training
+            62108, -- Training with Patience
+            62109, -- Training with Patience
+            62111, -- Boots on the Ground: Arathi Basin
+            62114, -- Learning the Landscape: Arathi Basin
+            62112, -- Boots on the Ground: Battle for Gilneas
+            62115, -- Learning the Landscape: Battle for Gilneas
+            62113, -- Boots on the Ground: Silvershard Mines
+            62116, -- Learning the Landscape: Silvershard Mines
+        }
+    },
     { -- Player vs. Player
         1162,
         addon.GetCategoryInfoTitle(95),

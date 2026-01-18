@@ -183,6 +183,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
             {
                 61430, -- Crunching for Cultists
+                42300, -- Two Minutes to Midnight
             }
         },
         { -- Molten Front

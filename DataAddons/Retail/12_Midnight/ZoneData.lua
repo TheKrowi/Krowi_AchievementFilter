@@ -1,5 +1,5 @@
-local _, addon = ...;
-local shared = addon.Data.ZoneData.Shared;
+local _, addon = ...
+local shared = addon.Data.ZoneData.Shared
 
 local delves = {
     shared.CrossExpansionDelves,
@@ -41,30 +41,114 @@ local delvesS1Progress = {
     61796, -- Midnight: Journey's End (Season 1)
     -- 40459, -- I've Got a Flying Machine!
     -- 40789, -- Flying in Style
-};
+}
 
 local delvesS1 = {
     delves,
     delvesS1Progress,
-};
+}
+
+local quelThalas = {
+    62110, -- Loremaster of Midnight
+    42045, -- Midnight
+    61859, -- Midnight Flight Master
+    61854, -- The Midnight Explorer
+    61584, -- Midnight Glyph Hunter
+    61941, -- Abundance: Acolyte of a Glorious Entity
+    61943, -- Abundance: Prosperous Plentitude!
+    42283, -- Abundance: Azeroth Runs on Dundun
+    62268, -- Abundance: Professionals Only
+    61681, -- Abundance: You Should See Him in a Crown
+    62266, -- Abundance: An Acolyte no Longer
+    62057, -- Midnight: The Highest Peaks
+    62104, -- Midnight Lore Hunter
+    61464, -- Spark in the Night
+    61465, -- Spark in the Night
+    61234, -- Hunt in the Night
+    61238, -- Midnight Hunter
+    61225, -- Investigating the Rise
+    61226, -- Uprising
+    61227, -- Entering the Void
+    61228, -- Embracing the Void
+    61229, -- Dedication in the Void
+    61265, -- Spectral Capture
+    61266, -- Spectral Stocker
+    61231, -- Midnight Loot
+    61232, -- Midnight Treasures
+    61230, -- Remains in the Rise
+    61447, -- Partake in the Rise
+    61448, -- Frequent the Rise
+    61449, -- Customary Rise
+    61446, -- Slayer's Mastery (Title: Voidslayer)
+    62192, -- Midnight Diplomat (Reward: Finery Funds)
+}
 
 KrowiAF.ZoneData.Midnight = {
     { -- Eversong Woods (zone)
         2395,
         {
-
+            41802, -- Eversong In Reprise
+            61957, -- Sojourner of Eversong Woods
+            61855, -- Explore Eversong Woods
+            61960, -- Treasures of Eversong Woods
+            61507, -- A Bloody Song
+            61576, -- Eversong Woods Glyph Hunter
+            61937, -- Abundance: Artisan of Mausoloa
+            61961, -- Runestone Rush
+            62186, -- The Party Must Go On
+            62187, -- Grand Magister's Sommelier
+            62185, -- Ever Painting
+            61221, -- Tour of Duty: Eversong Woods
+            62190, -- Life of the Party
+            62262, -- Silvermoon Court Champion
+            62261, -- Forever Song
+            quelThalas,
         }
     },
     { -- Voidstorm (zone)
         2405,
         {
-
+            41806, -- Breaching the Voidstorm
+            61864, -- Sojourner of Voidstorm
+            62105, -- Lysikas Would Be Proud
+            61857, -- Explore Voidstorm
+            62126, -- Treasures of Voidstorm
+            62130, -- The Ultimate Predator
+            61583, -- Voidstorm Glyph Hunter
+            61940, -- Abundance: Artisan of Loanite
+            61861, -- Oh, No You Don't!
+            61912, -- Anchoring the Defense
+            61913, -- A Singular Problem
+            61922, -- Ninety Percent is Good Enough
+            62133, -- Thrill of the Chase
+            61224, -- Tour of Duty: Voidstorm
+            62265, -- The Singularity Champion
+            62256, -- Yelling into the Voidstorm
+            quelThalas,
         }
     },
     { -- Harandar (zone)
         2413,
         {
-
+            41804, -- One Does Not Simply Walk Into Harandar
+            61739, -- Sojourner of Harandar
+            42278, -- The Empty Cradle
+            61219, -- No Time to Paws
+            61520, -- Explore Harandar
+            61263, -- Treasures of Harandar
+            61264, -- Leaf None Behind
+            61582, -- Harandar Glyph Hunter
+            61939, -- Abundance: Artisan of Floaret
+            61860, -- From The Cradle to the Grave
+            62188, -- More Than Just Their Roots
+            61052, -- Dust 'Em Off (Reward: Title: "Dustlord")
+            61344, -- Chronicler of the Haranir
+            61574, -- Legends Never Die
+            61917, -- "Hold aggro, I got this"
+            61223, -- Tour of Duty: Harandar
+            62264, -- Hara'ti Champion
+            62260, -- That's Aln, Folks!
+            quelThalas,
         }
     },
     { -- Murder Row (dungeon)
@@ -78,7 +162,28 @@ KrowiAF.ZoneData.Midnight = {
     { -- Zul'Aman (zone)
         2437,
         {
-
+            41803, -- For Zul'Aman! (Customization Reward: Amani Appearances for Darkspear Troll)
+            61452, -- Sojourner of Zul'Aman
+            61910, -- Mrglgrgl of Grglmrgl
+            61856, -- Explore Zul'Aman
+            62125, -- Treasures of Zul'Aman
+            62122, -- Tallest Tree in the Forest
+            61581, -- Zul'Aman Glyph Hunter
+            61938, -- Abundance: Artisan of Loaknit
+            61455, -- Shadowpine Scattered
+            62120, -- Altar of Blessings: The Penitent Troll
+            62121, -- Altar of Blessings: Sacred Buffet Devotee
+            62269, -- Altar of Blessings: Amani Curious
+            62270, -- Altar of Blessings: One for Altar
+            62199, -- Put a Pin in It
+            62200, -- Gnome Alone
+            62201, -- The Frog and the Princesses
+            62202, -- Spiritpaw Marathon
+            62267, -- A Most Violent Loa
+            61222, -- Tour of Duty: Zul'Aman
+            62263, -- Amani Tribe Champion
+            61453, -- Making an Amani Out of You
+            quelThalas,
         }
     },
     { -- Windrunner Spire (dungeon)
@@ -257,7 +362,11 @@ KrowiAF.ZoneData.Midnight = {
     { -- Quel'Thalas (zone)
         2537,
         {
-
+            41805, -- Arator's Journey
+            42117, -- The War of Light and Shadow
+            60891, -- The Crimson Rogue
+            62191, -- Call of the Light
+            61839, -- Midnight Pathfinder (Reward: Steady Flight unlocked within Midnight, Finery Funds)
         }
     },
     { -- Parhelion Plaza (delve)
@@ -294,4 +403,4 @@ KrowiAF.ZoneData.Midnight = {
             61510, -- Mythic: Voidscar Arena
         }
     },
-};
+}

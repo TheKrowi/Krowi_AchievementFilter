@@ -672,17 +672,6 @@ tasks = {
     {C, 647, 24}, -- Acherus: The Ebon Hold - The Heart of Acherus
     {C, 648, 24}, -- Acherus: The Ebon Hold - Hall of Command
     {C, 649, 634}, -- Stormheim - Helheim
-    {A, 650, {7520, 2556, 11190, 11446, 11160, 11157, 10877, 11189, 11186, 11544, 14729, 11188, 11474, 10672, 11159, 11652, 11653, 10059, 10774, 10626, 10398, 11427, 10667, 11257, 11264, 11478, 12292, 46}}, -- Highmountain
-    {C, 651, 650}, -- Highmountain - Bitestone Enclave
-    {C, 652, 650}, -- Highmountain - Thunder Totem
-    {C, 653, 650}, -- Highmountain - Cave of the Blood Trial
-    {C, 654, 650}, -- Highmountain - Mucksnout Den
-    {C, 655, 650}, -- Highmountain - Lifespring Cavern - Lifespring Lower Cavern
-    {C, 656, 650}, -- Highmountain - Lifespring Cavern - Lifespring Upper Cavern
-    {C, 657, 650}, -- Highmountain - Path of Huln - Floor 1
-    {C, 658, 650}, -- Highmountain - Path of Huln - Floor 2
-    {C, 659, 650}, -- Highmountain - Stonedark Grotto
-    {C, 660, 650}, -- Highmountain - Feltotem Caverns
     {A, 661, {10023, 10024, 10025, 10020, 10019, 9680, 10044, 10045, 11631, 10026, 10057, 10013, 10054, 9972, 9979, 9988, 10086, 9989, 10012, 10087, 10030, 10073, 10027, 10032, 10033, 10034, 10035, 10253, 10037, 10040, 10041, 10038, 10039, 10042, 10043}}, -- Hellfire Citadel - Hellfire Citadel
     {C, 662, 661}, -- Hellfire Citadel - Hellfire Antechamber
     {C, 663, 661}, -- Hellfire Citadel - Hellfire Passage

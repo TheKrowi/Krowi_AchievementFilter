@@ -10,6 +10,9 @@ All notable changes to this project will be documented in this file.
   - Dungeons
   - Raids
   - Delves
+  - Abyss Anglers
+  - Prey
+  - The Arcantina
 - New Keystone Resilience rewar type filter
 
 ### Fixed

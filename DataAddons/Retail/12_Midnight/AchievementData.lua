@@ -34,6 +34,7 @@ KrowiAF.AchievementData["12_00_00"] = {
         42300,
         {
             RewardType = {rewardType.Title, rewardType.Mount},
+            {"Before", "Version", {12, 0, 1}},
         },
     },
     { -- One Warband Mentor: Midnight (Reward: 5% additional experience up to level 90)
@@ -225,21 +226,29 @@ KrowiAF.AchievementData["12_00_00"] = {
         42767,
         {
             RewardType = rewardType.Other,
+            {"PvE Season", 16},
         },
     },
     { -- Champion of the Dawn (Character Unlock: Trade Champion for Hero Dawncrests)
         42768,
         {
             RewardType = rewardType.Other,
+            {"PvE Season", 16},
         },
     },
     { -- Hero of the Dawn (Character Unlock: Trade Hero for Myth Dawncrests)
         42769,
         {
             RewardType = rewardType.Other,
+            {"PvE Season", 16},
         },
     },
-    {42770}, -- Myth of the Dawn
+    { -- Myth of the Dawn
+        42770,
+        {
+            {"PvE Season", 16},
+        },
+    },
     { -- Leatherworking at Midnight (Decor Reward: Midnight Leatherworker's Shop Sign)
         42786,
         {
@@ -558,14 +567,54 @@ KrowiAF.AchievementData["12_00_00"] = {
     {61222}, -- Tour of Duty: Zul'Aman
     {61223}, -- Tour of Duty: Harandar
     {61224}, -- Tour of Duty: Voidstorm
-    {61225}, -- Investigating the Rise
-    {61226}, -- Uprising
-    {61227}, -- Entering the Void
-    {61228}, -- Embracing the Void
-    {61229}, -- Dedication in the Void
-    {61230}, -- Remains in the Rise
-    {61231}, -- Midnight Loot
-    {61232}, -- Midnight Treasures
+    { -- Investigating the Rise
+        61225,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Uprising
+        61226,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Entering the Void
+        61227,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Embracing the Void
+        61228,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Dedication in the Void
+        61229,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Remains in the Rise
+        61230,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Midnight Loot
+        61231,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Midnight Treasures
+        61232,
+        {
+            IsPvP = true,
+        },
+    },
     { -- Midnight Season 1: Resilient Keystone 12 (Keystones will no longer deplete below level 12 during Midnight Season 1.)
         61233,
         {
@@ -573,7 +622,12 @@ KrowiAF.AchievementData["12_00_00"] = {
             {"PvE Season", 16},
         },
     },
-    {61234}, -- Hunt in the Night
+    { -- Hunt in the Night
+        61234,
+        {
+            IsPvP = true,
+        },
+    },
     { -- Midnight Season 1: Resilient Keystone 13 (Keystones will no longer deplete below level 13 during Midnight Season 1.)
         61235,
         {
@@ -595,7 +649,12 @@ KrowiAF.AchievementData["12_00_00"] = {
             {"PvE Season", 16},
         },
     },
-    {61238}, -- Midnight Hunter
+    { -- Midnight Hunter
+        61238,
+        {
+            IsPvP = true,
+        },
+    },
     { -- Midnight Season 1: Resilient Keystone 16 (Keystones will no longer deplete below level 16 during Midnight Season 1.)
         61239,
         {
@@ -755,8 +814,18 @@ KrowiAF.AchievementData["12_00_00"] = {
         },
     },
     {61264}, -- Leaf None Behind
-    {61265}, -- Spectral Capture
-    {61266}, -- Spectral Stocker
+    { -- Spectral Capture
+        61265,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Spectral Stocker
+        61266,
+        {
+            IsPvP = true,
+        },
+    },
     { -- Keystone Hero: Magisters' Terrace (Max Level Unlock: Teleport to Magisters' Terrace)
         61267,
         {
@@ -870,18 +939,49 @@ KrowiAF.AchievementData["12_00_00"] = {
         61446,
         {
             RewardType = rewardType.Title,
+            IsPvP = true,
         },
     },
-    {61447}, -- Partake in the Rise
-    {61448}, -- Frequent the Rise
-    {61449}, -- Customary Rise
-    {61450}, -- Galactic Gladiator's Goredrake
+    { -- Partake in the Rise
+        61447,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Frequent the Rise
+        61448,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Customary Rise
+        61449,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Galactic Gladiator's Goredrake
+        61450,
+        {
+            IsPvP = true,
+        },
+    },
     {61452}, -- Sojourner of Zul'Aman
     {61453}, -- Making an Amani Out of You
     {61454}, -- Falling Between The Quacks
     {61455}, -- Shadowpine Scattered
-    {61464}, -- Spark in the Night
-    {61465}, -- Spark in the Night
+    { -- Spark in the Night
+        61464,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Spark in the Night
+        61465,
+        {
+            IsPvP = true,
+        },
+    },
     {61487}, -- Chimaerus, the Undreamt God
     {61488}, -- Heroic: Chimaerus, the Undreamt God
     { -- Mythic: Chimaerus, the Undreamt God (Title: Dream-Eater)
@@ -913,6 +1013,7 @@ KrowiAF.AchievementData["12_00_00"] = {
         61519,
         {
             RewardType = rewardType.Transmog,
+            {"PvE Season", 16},
         },
     },
     {61520}, -- Explore Harandar
@@ -942,7 +1043,12 @@ KrowiAF.AchievementData["12_00_00"] = {
     {61583}, -- Voidstorm Glyph Hunter
     {61584}, -- Midnight Glyph Hunter
     {61585}, -- You Conduit!
-    {61586}, -- Galactic Gala
+    { -- Galactic Gala
+        61586,
+        {
+            IsPvP = true,
+        },
+    },
     { -- Keystone Victor: Magisters' Terrace (Midnight)
         61587,
         {
@@ -1136,7 +1242,12 @@ KrowiAF.AchievementData["12_00_00"] = {
             {"PvE Season", 16},
         },
     },
-    {61809}, -- Adventurer of the Dawn (Character Unlock: Trade Adventurer for Veteran Dawncrests)
+    { -- Adventurer of the Dawn (Character Unlock: Trade Adventurer for Veteran Dawncrests)
+        61809,
+        {
+            {"PvE Season", 16},
+        },
+    },
     {61832}, -- Midnight Delves: Tier 1 (Unlock: Tier 2 delves in Midnight)
     {61835}, -- Midnight Delves: Tier 2 (Unlock: Tier 3 delves in Midnight)
     {61836}, -- Midnight Delves: Tier 3
@@ -1208,20 +1319,46 @@ KrowiAF.AchievementData["12_00_00"] = {
         },
     },
     {61943}, -- Abundance: Prosperous Plentitude!
-    {61953}, -- Putting in the Practice
-    {61954}, -- Putting in the Practice
-    {61955}, -- Putting in the Practice
-    {61956}, -- Putting in the Practice
+    { -- Putting in the Practice
+        61953,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Putting in the Practice
+        61954,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Putting in the Practice
+        61955,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Putting in the Practice
+        61956,
+        {
+            IsPvP = true,
+        },
+    },
     {61957}, -- Sojourner of Eversong Woods
     { -- Focused Target
         61958,
         faction.Alliance,
         61959,
+        {
+            IsPvP = true,
+        },
     },
     { -- Focused Target
         61959,
         faction.Horde,
         61958,
+        {
+            IsPvP = true,
+        },
     },
     {61960}, -- Treasures of Eversong Woods
     {61961}, -- Runestone Rush
@@ -1246,21 +1383,66 @@ KrowiAF.AchievementData["12_00_00"] = {
     {62104}, -- Midnight Lore Hunter
     {62105}, -- Lysikas Would Be Proud
     {62106}, -- The Only Winning Move Is Not To Play
-    {62107}, -- Mandatory Training
-    {62108}, -- Training with Patience
-    {62109}, -- Training with Patience
+    { -- Mandatory Training
+        62107,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Training with Patience
+        62108,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Training with Patience
+        62109,
+        {
+            IsPvP = true,
+        },
+    },
     { -- Loremaster of Midnight (Reward: Finery Funds)
         62110,
         {
             RewardType = rewardType.Transmog,
         },
     },
-    {62111}, -- Boots on the Ground: Arathi Basin
-    {62112}, -- Boots on the Ground: Battle for Gilneas
-    {62113}, -- Boots on the Ground: Silvershard Mines
-    {62114}, -- Learning the Landscape: Arathi Basin
-    {62115}, -- Learning the Landscape: Battle for Gilneas
-    {62116}, -- Learning the Landscape: Silvershard Mines
+    { -- Boots on the Ground: Arathi Basin
+        62111,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Boots on the Ground: Battle for Gilneas
+        62112,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Boots on the Ground: Silvershard Mines
+        62113,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Learning the Landscape: Arathi Basin
+        62114,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Learning the Landscape: Battle for Gilneas
+        62115,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Learning the Landscape: Silvershard Mines
+        62116,
+        {
+            IsPvP = true,
+        },
+    },
     { -- Abyss Anglers: Boarhide Catch Sack (Reward: Unlock Boarhide Catch Sack for purchase)
         62117,
         {

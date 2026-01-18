@@ -560,6 +560,7 @@ KrowiAF.ZoneData.TheWarWithin = {
             41980, -- Vigilante
             42731, -- Become a Hero. Become a Phasediver!
             42737, -- Capstoned
+            61916, -- Rage of the Ren'dorei (Reward: Void Elf Demon Hunter Unlocked)
             42740, -- Explore K'aresh
             42741, -- Treasures of K'aresh
             42761, -- Remnants of a Shattered World

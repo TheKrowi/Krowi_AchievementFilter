@@ -494,6 +494,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The War Within
                     41980, -- Vigilante
                     42731, -- Become a Hero. Become a Phasediver!
                     42737, -- Capstoned
+                    61916, -- Rage of the Ren'dorei (Reward: Void Elf Demon Hunter Unlocked)
                 },
             },
             { -- Exploration
@@ -883,6 +884,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The War Within
             },
         },
         {
+            61565, -- War Within Dungeon Hero (Pet: Moss Skipper)
             61566, -- Glory of the War Within Hero
             40141, -- Algari Dungeon Tank
             40140, -- Algari Dungeon Healer

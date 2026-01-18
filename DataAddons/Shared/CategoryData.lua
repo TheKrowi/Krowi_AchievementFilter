@@ -402,6 +402,8 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
                 14002, -- Heritage of the Vulpera
                 40307, -- Allied Races: Earthen
                 40309, -- Heritage of the Earthen
+                61506, -- Allied Race: Haranir (Reward: Haranir Race Unlocked)
+                61942, -- Heritage of the Haranir (Reward: Haranir Heritage Armor)
             },
         },
         { -- Pet Battles

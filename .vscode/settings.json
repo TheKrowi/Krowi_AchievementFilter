@@ -541,7 +541,12 @@
         "C_Reputation",
         "RunNextFrame",
         "KROWI_LIBMAN",
-        "EXPANSION_NAME11"
+        "EXPANSION_NAME11",
+        "securecallfunction",
+        "WOW_PROJECT_MAINLINE",
+        "ChatFrameUtil",
+        "C_Spell",
+        "C_SettingsUtil"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

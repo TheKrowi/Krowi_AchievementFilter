@@ -13,6 +13,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             42330, -- Three Warband Mentors: Midnight
             42331, -- Four Warband Mentors: Midnight
             42332, -- Five Warband Mentors: Midnight
+            61519, -- Midnight Season 1: Catalyst Unbound
             61809, -- Adventurer of the Dawn
             42767, -- Veteran of the Dawn
             42768, -- Champion of the Dawn
@@ -28,6 +29,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                 addon.GetCategoryInfoTitle(96),
                 true,
                 {
+                    62110, -- Loremaster of Midnight
                     42045, -- Midnight
                 },
             },
@@ -40,6 +42,10 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                     61584, -- Midnight Glyph Hunter
                     61941, -- Abundance: Acolyte of a Glorious Entity
                     61943, -- Abundance: Prosperous Plentitude!
+                    42283, -- Abundance: Azeroth Runs on Dundun
+                    62268, -- Abundance: Professionals Only
+                    61681, -- Abundance: You Should See Him in a Crown
+                    62266, -- Abundance: An Acolyte no Longer
                     62057, -- Midnight: The Highest Peaks
                     62104, -- Midnight Lore Hunter
                 },
@@ -48,6 +54,24 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                 addon.GetCategoryInfoTitle(95),
                 true,
                 {
+                    61464, -- Spark in the Night
+                    61465, -- Spark in the Night
+                    61234, -- Hunt in the Night
+                    61238, -- Midnight Hunter
+                    61225, -- Investigating the Rise
+                    61226, -- Uprising
+                    61227, -- Entering the Void
+                    61228, -- Embracing the Void
+                    61229, -- Dedication in the Void
+                    61265, -- Spectral Capture
+                    61266, -- Spectral Stocker
+                    61231, -- Midnight Loot
+                    61232, -- Midnight Treasures
+                    61230, -- Remains in the Rise
+                    61447, -- Partake in the Rise
+                    61448, -- Frequent the Rise
+                    61449, -- Customary Rise
+                    61446, -- Slayer's Mastery (Title: Voidslayer)
                 },
             },
             { -- Reputation
@@ -80,6 +104,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                     61961, -- Runestone Rush
                     62186, -- The Party Must Go On
                     62187, -- Grand Magister's Sommelier
+                    62185, -- Ever Painting
                 },
             },
             { -- Player vs. Player
@@ -107,6 +132,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                 addon.GetCategoryInfoTitle(96),
                 true,
                 {
+                    41803, -- For Zul'Aman! (Customization Reward: Amani Appearances for Darkspear Troll)
                     61452, -- Sojourner of Zul'Aman
                     61910, -- Mrglgrgl of Grglmrgl
                 },
@@ -173,6 +199,10 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                     61939, -- Abundance: Artisan of Floaret
                     61860, -- From The Cradle to the Grave
                     62188, -- More Than Just Their Roots
+                    61052, -- Dust 'Em Off (Reward: Title: "Dustlord")
+                    61344, -- Chronicler of the Haranir
+                    61574, -- Legends Never Die
+                    61917, -- "Hold aggro, I got this"
                 },
             },
             { -- Player vs. Player
@@ -191,6 +221,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             },
             {
                 62260, -- That's Aln, Folks!
+                61706, -- Herald of the Goddess
             }
         },
         { -- Voidstorm
@@ -405,6 +436,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
         { -- Nexus-Point Xenas
             addon.GetInstanceInfoName(1316),
             {
+                61585, -- You Conduit!
                 61640, -- Nexus-Point Xenas
                 61646, -- Heroic: Nexus-Point Xenas
                 61647, -- Mythic: Nexus-Point Xenas
@@ -439,6 +471,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             },
         },
         {
+            61567, -- Midnight Dungeon Hero (Pet: Niblet)
             61568, -- Glory of the Midnight Hero
             62195, -- Midnight Dungeon Tank
             62194, -- Midnight Dungeon Healer
@@ -527,6 +560,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
         },
         {
             61380, -- Glory of the Midnight Raider (Mount: Tenebrous Harrower)
+            61843, -- Quel'Dressed
         }
     },
     { -- Professions
@@ -763,5 +797,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
         42117, -- The War of Light and Shadow
         60891, -- The Crimson Rogue
         62191, -- Call of the Light
+        61839, -- Midnight Pathfinder (Reward: Steady Flight unlocked within Midnight, Finery Funds)
     }
 });
