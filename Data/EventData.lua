@@ -155,7 +155,11 @@ function eventData.GetWidgetEventDetails(event)
         return
     end
 
-    local endTime = GetServerTime() + secondsLeft
+    local endTime
+    if secondsLeft ~= nil and secondsLeft ~= 0 then
+        endTime = GetServerTime() + secondsLeft
+    end
+
     local details = GetOrCreateEventDetails(event)
     details.EndTime = endTime
     details.Name = event.Name
@@ -183,7 +187,11 @@ function eventData.GetWorldEventDetails(event)
         return
     end
 
-    local endTime = GetServerTime() + secondsLeft
+    local endTime
+    if secondsLeft ~= nil and secondsLeft ~= 0 then
+        endTime = GetServerTime() + secondsLeft
+    end
+
     local details = GetOrCreateEventDetails(event)
     details.EndTime = endTime
     details.Name = event.Name

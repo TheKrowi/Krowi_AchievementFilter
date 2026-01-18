@@ -1,5 +1,6 @@
 local _, addon = ...;
 local shared = addon.Data.AchievementData.Shared;
+local Ach, PvE, PvP, Title = shared.Ach, shared.PvE, shared.PvP, shared.Title;
 local faction = KrowiAF.Enum.Faction;
 local rewardType = KrowiAF.Enum.RewardType;
 
@@ -53,19 +54,15 @@ KrowiAF.AchievementData["11_00_00"] = {
 			RewardType = rewardType.Transmog,
 		},
 	},
-    {19559}, -- Azj-Kahet
-    {19560}, -- The Ringing Deeps
-    {19704}, -- Overflowing Algari Flasks
-    {19716}, -- Plentiful Algari Potions
-    {20118}, -- The Isle of Dorn
-    {20510}, -- What Could it be?
-    {20511}, -- Gotta Punt em' All
-    { -- The War Within Keystone Explorer: Season One
-        20523,
-        {
-            {"PvE Season", 13},
-        },
-    },
+    Ach(19559), -- Azj-Kahet
+    Ach(19560), -- The Ringing Deeps
+    Ach(19704), -- Overflowing Algari Flasks
+    Ach(19716), -- Plentiful Algari Potions
+    Ach(20118), -- The Isle of Dorn
+    Ach(20510), -- What Could it be?
+    Ach(20511), -- Gotta Punt em' All
+    Ach(20523, PvE(13)), -- The War Within Keystone Explorer: Season One
+    Ach(20524, PvE(13), Title()), -- The War Within Keystone Conqueror: Season One
     { -- The War Within Keystone Conqueror: Season One
         20524,
         {
