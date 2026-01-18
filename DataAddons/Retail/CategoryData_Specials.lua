@@ -33,6 +33,8 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 12934, -- A Horde of Hoofbeats
                 15834, -- Thanks for the Carry!
                 15833, -- Thanks for the Carry!
+                62103, -- Insurmountable Collection (Mount: Anu'shalla, Shadow's Guidance)
+                62096, -- Insurmountable Collection (Mount: Anu'shalla, Shadow's Guidance)
                 9713, -- Awake the Drakes
             },
         },

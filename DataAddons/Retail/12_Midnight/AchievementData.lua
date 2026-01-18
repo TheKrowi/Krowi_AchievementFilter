@@ -252,7 +252,7 @@ KrowiAF.AchievementData["12_00_00"] = {
             RewardType = rewardType.HousingDecor,
         },
     },
-    { -- Alchemizing at Midnight (Decor Reward: Midnight Alchemist's Shop Sign)
+    { -- 3
         42788,
         {
             RewardType = rewardType.HousingDecor,
@@ -546,6 +546,8 @@ KrowiAF.AchievementData["12_00_00"] = {
         61200,
         {
             RewardType = rewardType.Toy,
+            IsPvP = true,
+            {"PvP Season", 41},
         },
     },
     {61212}, -- Magisters' Terrace
@@ -841,7 +843,12 @@ KrowiAF.AchievementData["12_00_00"] = {
     {61389}, -- Prey: Hard Mode I
     {61391}, -- Prey: Nightmare Mode II
     {61392}, -- Prey: Nightmare Mode I
-    {61430}, -- Crunching for Cultists
+    { -- Crunching for Cultists
+        61430,
+        {
+            {"Before", "Version", {12, 0, 1}},
+        },
+    },
     {61438}, -- Thalassian Profession Master
     {61439}, -- Thalassian Artisan
     { -- Thalassian Polymath (Reward: Finery Funds)
@@ -1047,7 +1054,12 @@ KrowiAF.AchievementData["12_00_00"] = {
     {61734}, -- Midnight Delves: Endgame (Unlock: Tier 4 delves in Midnight)
     {61739}, -- Sojourner of Harandar
     {61741}, -- Delve Loremaster: Midnight
-    {61796}, -- Midnight: Journey's End (Season 1)
+    { -- Midnight: Journey's End (Season 1)
+        61796,
+        {
+            {"PvE Season", 16},
+        },
+    },
     { -- My Shady Nemesis (Reward: Nullaeus Domaneye)
         61797,
         {
@@ -1058,31 +1070,70 @@ KrowiAF.AchievementData["12_00_00"] = {
         61798,
         {
             RewardType = rewardType.Title,
+            {"PvE Season", 16},
         },
     },
     { -- Let Me Solo Him: Nullaeus (Reward: Arcanovoid Construct)
         61799,
         {
             RewardType = rewardType.Mount,
+            {"PvE Season", 16},
         },
     },
-    {61800}, -- Midnight Delves: Tier 4 (Season 1) (Unlock: Tier 5 delves in Midnight Season 1)
-    {61801}, -- Midnight Delves: Tier 5 (Season 1) (Unlock: Tier 6 delves in Midnight Season 1)
-    {61802}, -- Midnight Delves: Tier 6 (Season 1) (Unlock: Tier 7 delves in Midnight Season 1)
-    {61803}, -- Midnight Delves: Tier 7 (Season 1) (Unlock: Tier 7 delves in Midnight Season 1)
-    {61804}, -- Midnight Delves: Tier 8 (Season 1) (Unlock: Tier 9 delves in Midnight Season 1)
-    {61805}, -- Midnight Delves: Tier 9 (Season 1) (Unlock: Tier 10 delves in Midnight Season 1)
-    {61806}, -- Midnight Delves: Tier 10 (Season 1) (Unlock: Tier 11 delves in Midnight Season 1)
+    { -- Midnight Delves: Tier 4 (Season 1) (Unlock: Tier 5 delves in Midnight Season 1)
+        61800,
+        {
+            {"PvE Season", 16},
+        },
+    },
+    { -- Midnight Delves: Tier 5 (Season 1) (Unlock: Tier 6 delves in Midnight Season 1)
+        61801,
+        {
+            {"PvE Season", 16},
+        },
+    },
+    { -- Midnight Delves: Tier 6 (Season 1) (Unlock: Tier 7 delves in Midnight Season 1)
+        61802,
+        {
+            {"PvE Season", 16},
+        },
+    },
+    { -- Midnight Delves: Tier 7 (Season 1) (Unlock: Tier 7 delves in Midnight Season 1)
+        61803,
+        {
+            {"PvE Season", 16},
+        },
+    },
+    { -- Midnight Delves: Tier 8 (Season 1) (Unlock: Tier 9 delves in Midnight Season 1)
+        61804,
+        {
+            {"PvE Season", 16},
+        },
+    },
+    { -- Midnight Delves: Tier 9 (Season 1) (Unlock: Tier 10 delves in Midnight Season 1)
+        61805,
+        {
+            {"PvE Season", 16},
+        },
+    },
+    { -- Midnight Delves: Tier 10 (Season 1) (Unlock: Tier 11 delves in Midnight Season 1)
+        61806,
+        {
+            {"PvE Season", 16},
+        },
+    },
     { -- Midnight Delves: Tier 11 (Season 1) (Title: High Explorer)
         61807,
         {
             RewardType = rewardType.Title,
+            {"PvE Season", 16},
         },
     },
     { -- Fabled Let Me Solo Him: Nullaeus (Title: Fabled Vanquisher of Nullaeus)
         61808,
         {
             RewardType = rewardType.Title,
+            {"PvE Season", 16},
         },
     },
     {61809}, -- Adventurer of the Dawn (Character Unlock: Trade Adventurer for Veteran Dawncrests)
@@ -1235,9 +1286,24 @@ KrowiAF.AchievementData["12_00_00"] = {
     {62126}, -- Treasures of Voidstorm
     {62130}, -- The Ultimate Predator
     {62133}, -- Thrill of the Chase
-    {62134}, -- The Deadliest of Prey
-    {62135}, -- Now It's A Party
-    {62136}, -- I'm Good At What I Do
+    { -- The Deadliest of Prey
+        62134,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Now It's A Party
+        62135,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- I'm Good At What I Do
+        62136,
+        {
+            IsPvP = true,
+        },
+    },
     {62137}, -- I'm Not Trapped In Here With You
     {62138}, -- You're Trapped In Here With Me
     {62139}, -- Midnight Hunter

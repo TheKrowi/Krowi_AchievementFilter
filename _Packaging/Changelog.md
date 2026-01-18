@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
   - PvP Season 1 in PvP tab
   - Dungeons
   - Raids
+  - Delves
 - New Keystone Resilience rewar type filter
 
 ### Fixed

@@ -1,6 +1,7 @@
 <Ui>
     <Script file="AchievementData.lua" />
     <Script file="BuildVersionData.lua" />
+    <Script file="CategoryData.lua" />
     <!-- <Script file="CustomCriteriaData.lua" /> -->
     <!-- <Script file="EventData.lua" /> -->
     <!-- <Script file="PetBattleLinkData.lua" /> -->

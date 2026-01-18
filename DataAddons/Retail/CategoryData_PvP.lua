@@ -1200,6 +1200,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
                 61179, -- Galactic Legend: Midnight Season 1
                 61198, -- Battle Mender: Midnight Season 1
                 61199, -- Solo Shuffle Medic: Midnight
+                61200, -- Battleground Blitz Medic: Midnight (Reward: Nightfall Strategist's Pennant)
                 61194, -- Strategist: Midnight Season 1
                 61177, -- Galactic Marshal: Midnight Season 1
                 61178, -- Galactic Warlord: Midnight Season 1
