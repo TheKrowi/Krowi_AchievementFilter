@@ -41,21 +41,24 @@ if gameLocale == "enUS" then
 else
     function LocalizeDateFormat(event)
         local dateFormat = addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime;
-        if string.match(dateFormat, "%%B") then
+        local hasB = dateFormat:find("%B", 1, true) ~= nil;
+        local hasb = dateFormat:find("%b", 1, true) ~= nil;
+        local hasA = dateFormat:find("%A", 1, true) ~= nil;
+        local hasa = dateFormat:find("%a", 1, true) ~= nil;
+        if hasB or hasb or hasA or hasa then
             local dateTable = date("*t", event.EventDetails.EndTime);
-            dateFormat = dateFormat:gsub("%%B", addon.MonthNames[dateTable.month]);
-        end
-        if string.match(dateFormat, "%%b") then
-            local dateTable = date("*t", event.EventDetails.EndTime);
-            dateFormat = dateFormat:gsub("%%b", string.sub(addon.MonthNames[dateTable.month], 1, 3));
-        end
-        if string.match(dateFormat, "%%A") then
-            local dateTable = date("*t", event.EventDetails.EndTime);
-            dateFormat = dateFormat:gsub("%%A", addon.WeekdayNames[dateTable.wday]);
-        end
-        if string.match(dateFormat, "%%a") then
-            local dateTable = date("*t", event.EventDetails.EndTime);
-            dateFormat = dateFormat:gsub("%%a", string.sub(addon.WeekdayNames[dateTable.wday], 1, 3));
+            if hasB then
+                dateFormat = dateFormat:gsub("%%B", addon.MonthNames[dateTable.month]);
+            end
+            if hasb then
+                dateFormat = dateFormat:gsub("%%b", string.sub(addon.MonthNames[dateTable.month], 1, 3));
+            end
+            if hasA then
+                dateFormat = dateFormat:gsub("%%A", addon.WeekdayNames[dateTable.wday]);
+            end
+            if hasa then
+                dateFormat = dateFormat:gsub("%%a", string.sub(addon.WeekdayNames[dateTable.wday], 1, 3));
+            end
         end
         return dateFormat;
     end
@@ -195,7 +198,7 @@ local function ShowActiveEventChatMessage(self, event, canShow, canShowWithTimeD
     end
 end
 
-function eventReminderAlertSystem:ShowActiveEvents(popUpsOptions, chatMessagesOptions, currentTime)
+function eventReminderAlertSystem:ShowActiveEvents(popUpsOptions, chatMessagesOptions, currentTime, activeEvents)
     local isInInstance = (select(3, GetInstanceInfo())) ~= 0;
     local canShowPopUps = popUpsOptions.Show and (not isInInstance or (popUpsOptions.ShowInInstances and isInInstance));
     local canShowChatMessages = chatMessagesOptions.Show and (not isInInstance or (chatMessagesOptions.ShowInInstances and isInInstance));
@@ -206,7 +209,7 @@ function eventReminderAlertSystem:ShowActiveEvents(popUpsOptions, chatMessagesOp
         return;
     end
 
-    local activeEvents = addon.EventData.GetActiveEvents(true);
+    activeEvents = activeEvents or addon.EventData.GetActiveEvents(true);
     for _, event in next, activeEvents do
         ShowActiveEventPopUp(self, event, canShowPopUps, canShowPopUpsWithTimeDataOnly, currentTime);
         ShowActiveEventChatMessage(self, event, canShowChatMessages, canShowChatMessagesWithTimeDataOnly, currentTime);
@@ -223,7 +226,11 @@ local function ShowUpcomingCalendarEventPopUp(self, event, canShow, currentTime)
     if KrowiAF_SavedData.UpcomingCalendarEventPopUpsShown[event.Id] then
         return;
     end
-    KrowiAF_SavedData.UpcomingCalendarEventPopUpsShown[event.Id] = KrowiAF_SavedData.CalendarEventsCache[event.Id].StartTime;
+    local occurrence = addon.EventData.GetNextEventOccurance(event.Id);
+    if not (occurrence and occurrence.StartTime) then
+        return;
+    end
+    KrowiAF_SavedData.UpcomingCalendarEventPopUpsShown[event.Id] = occurrence.StartTime;
     if KrowiAF_SavedData.UpcomingCalendarEventPopUpsShown[event.Id] < currentTime + (addon.Options.db.profile.EventReminders.UpcomingCalendarEvents.Days * 24 * 60 * 60) then
         if not self:AddAlert(event, addon.Options.db.profile.EventReminders.PopUps.FadeDelay) then
             KrowiAF_SavedData.UpcomingCalendarEventPopUpsShown[event.Id] = nil;
@@ -243,13 +250,17 @@ local function ShowUpcomingCalendarEventChatMessage(self, event, canShow, curren
         print(addon.Metadata.Title, "-", addon.L["Upcoming Calendar Events"] .. ":");
         printOnceUpcomingCalendarEvents = true;
     end
-    KrowiAF_SavedData.UpcomingCalendarEventChatMessagesShown[event.Id] = KrowiAF_SavedData.CalendarEventsCache[event.Id].StartTime;
+    local occurrence = addon.EventData.GetNextEventOccurance(event.Id);
+    if not (occurrence and occurrence.StartTime) then
+        return;
+    end
+    KrowiAF_SavedData.UpcomingCalendarEventChatMessagesShown[event.Id] = occurrence.StartTime;
     if KrowiAF_SavedData.UpcomingCalendarEventChatMessagesShown[event.Id] < currentTime + (addon.Options.db.profile.EventReminders.UpcomingCalendarEvents.Days * 24 * 60 * 60) then
-        print("    -", event.UpcomingEventDetails.Name, "(In " .. GetSecondsLeftFormattedText(event.UpcomingEventDetails.StartTime - currentTime) .. ")");
+        print("    -", occurrence.Name, "(In " .. GetSecondsLeftFormattedText(occurrence.StartTime - currentTime) .. ")");
     end
 end
 
-function eventReminderAlertSystem:ShowUpcomingCalendarEvents(popUpsOptions, chatMessagesOptions, currentTime)
+function eventReminderAlertSystem:ShowUpcomingCalendarEvents(popUpsOptions, chatMessagesOptions, currentTime, upcomingCalendarEvents)
     if not addon.Options.db.profile.EventReminders.UpcomingCalendarEvents.Enabled then
         return;
     end
@@ -262,7 +273,7 @@ function eventReminderAlertSystem:ShowUpcomingCalendarEvents(popUpsOptions, chat
         return;
     end
 
-    local upcomingCalendarEvents = addon.EventData.GetUpcomingCalendarEvents(true);
+    upcomingCalendarEvents = upcomingCalendarEvents or addon.EventData.GetUpcomingCalendarEvents();
     for _, event in next, upcomingCalendarEvents do
         ShowUpcomingCalendarEventPopUp(self, event, canShowPopUps, currentTime);
         ShowUpcomingCalendarEventChatMessage(self, event, canShowChatMessages, currentTime);
@@ -272,14 +283,71 @@ function eventReminderAlertSystem:ShowUpcomingCalendarEvents(popUpsOptions, chat
     return true;
 end
 
-local timer = LibStub("AceTimer-3.0");
-local function Refresh(self)
-    timer:ScheduleTimer(Refresh, addon.Options.db.profile.EventReminders.RefreshInterval, self);
+local refreshCallbacks = {};
 
+local refreshTicker;
+local lastRefreshInterval;
+
+local refreshStartReasons = {
+    Alerts = false,
+    Callbacks = false
+};
+
+local function GetRefreshInterval()
+    local interval = addon.Options.db.profile.EventReminders.RefreshInterval;
+    if not interval or interval < 1 then
+        interval = 1;
+    end
+    return interval;
+end
+
+local function CancelRefreshTicker()
+    if refreshTicker then
+        refreshTicker:Cancel();
+        refreshTicker = nil;
+        lastRefreshInterval = nil;
+    end
+end
+
+local Refresh;
+local function EnsureRefreshTicker(self)
+    local interval = GetRefreshInterval();
+    if refreshTicker and lastRefreshInterval == interval then
+        return;
+    end
+
+    CancelRefreshTicker();
+    lastRefreshInterval = interval;
+    refreshTicker = C_Timer.NewTicker(interval, function()
+        Refresh(self);
+    end);
+end
+
+local function UpdateRefreshTickerState(self)
+    if refreshStartReasons.Alerts or refreshStartReasons.Callbacks then
+        EnsureRefreshTicker(self);
+    else
+        CancelRefreshTicker();
+    end
+end
+
+function Refresh(self)
+    -- If the user changed the interval in options, reschedule the ticker.
+    EnsureRefreshTicker(self);
+
+    local hasCallbacks = next(refreshCallbacks) ~= nil;
+    local refreshedActiveEvents;
+    local refreshedUpcomingCalendarEvents;
+    if hasCallbacks then
+        refreshedActiveEvents = addon.EventData.GetActiveEvents(true);
+        if addon.Options.db.profile.EventReminders.UpcomingCalendarEvents.Enabled then
+            refreshedUpcomingCalendarEvents = addon.EventData.GetUpcomingCalendarEvents();
+        end
+    end
 
     local currentTime = time();
-    self:ShowActiveEvents(addon.Options.db.profile.EventReminders.PopUps.OnEventStart, addon.Options.db.profile.EventReminders.ChatMessages.OnEventStart, currentTime);
-    self:ShowUpcomingCalendarEvents(addon.Options.db.profile.EventReminders.PopUps.OnEventStartUpcoming, addon.Options.db.profile.EventReminders.ChatMessages.OnEventStartUpcoming, currentTime);
+    self:ShowActiveEvents(addon.Options.db.profile.EventReminders.PopUps.OnEventStart, addon.Options.db.profile.EventReminders.ChatMessages.OnEventStart, currentTime, refreshedActiveEvents);
+    self:ShowUpcomingCalendarEvents(addon.Options.db.profile.EventReminders.PopUps.OnEventStartUpcoming, addon.Options.db.profile.EventReminders.ChatMessages.OnEventStartUpcoming, currentTime, refreshedUpcomingCalendarEvents);
 
     for i, endTime in next, KrowiAF_SavedData.ActiveEventPopUpsShown do
         if endTime < currentTime then
@@ -291,17 +359,49 @@ local function Refresh(self)
             KrowiAF_SavedData.ActiveEventChatMessagesShown[i] = nil;
         end
     end
+
+    for _, callback in next, refreshCallbacks do
+        local ok, err = pcall(callback, currentTime, refreshedActiveEvents, refreshedUpcomingCalendarEvents);
+        if not ok then
+            geterrorhandler()(err);
+        end
+    end
 end
 
-local refreshStarted;
-local function StartRefresh(self)
-    if refreshStarted then
-        return;
+local function StartRefresh(self, reason)
+    if reason then
+        refreshStartReasons[reason] = true;
     end
 
-    timer:ScheduleTimer(Refresh, addon.Options.db.profile.EventReminders.RefreshInterval, self);
+    UpdateRefreshTickerState(self);
+end
 
-    refreshStarted = true;
+function eventReminderAlertSystem:StartRefreshTicker()
+    if not addon.Options.db.profile.EventReminders.Enabled then
+        return;
+    end
+    StartRefresh(self, "Callbacks");
+end
+
+function eventReminderAlertSystem:RegisterOnRefresh(key, callback)
+    if not key or not callback then
+        return;
+    end
+    refreshCallbacks[key] = callback;
+    -- Ensure the ticker is running if something depends on it.
+    self:StartRefreshTicker();
+end
+
+function eventReminderAlertSystem:UnregisterOnRefresh(key)
+    if not key then
+        return;
+    end
+    refreshCallbacks[key] = nil;
+
+    if next(refreshCallbacks) == nil then
+        refreshStartReasons.Callbacks = false;
+        UpdateRefreshTickerState(self);
+    end
 end
 
 function eventReminderAlertSystem:ShowActiveEventsOnPlayerEnteringWorld(popUpsOptions, chatMessagesOptions)
@@ -331,7 +431,7 @@ function eventReminderAlertSystem:ShowActiveEventsOnPlayerEnteringWorld(popUpsOp
         return;
     end
 
-    StartRefresh(self);
+    StartRefresh(self, "Alerts");
 end
 
 function eventReminderAlertSystem:ShowUpcomingCalendarEventsOnPlayerEnteringWorld(popUpsOptions, chatMessagesOptions)
@@ -345,22 +445,20 @@ function eventReminderAlertSystem:ShowUpcomingCalendarEventsOnPlayerEnteringWorl
     local currentTime = time();
 
     if popUpsOptions and not popUpsOptions.Show then
-        local upcomingCalendarEvents = addon.EventData.GetUpcomingCalendarEvents(true);
+        local upcomingCalendarEvents = addon.EventData.GetUpcomingCalendarEvents();
         for _, event in next, upcomingCalendarEvents do
-            local startTime = (KrowiAF_SavedData.CalendarEventsCache and KrowiAF_SavedData.CalendarEventsCache[event.Id] and KrowiAF_SavedData.CalendarEventsCache[event.Id].StartTime)
-                or (event.UpcomingEventDetails and event.UpcomingEventDetails.StartTime);
-            if startTime then
-                KrowiAF_SavedData.UpcomingCalendarEventPopUpsShown[event.Id] = startTime;
+            local occurrence = addon.EventData.GetNextEventOccurance(event.Id);
+            if occurrence and occurrence.StartTime then
+                KrowiAF_SavedData.UpcomingCalendarEventPopUpsShown[event.Id] = occurrence.StartTime;
             end
         end
     end
     if chatMessagesOptions and not chatMessagesOptions.Show then
-        local upcomingCalendarEvents = addon.EventData.GetUpcomingCalendarEvents(true);
+        local upcomingCalendarEvents = addon.EventData.GetUpcomingCalendarEvents();
         for _, event in next, upcomingCalendarEvents do
-            local startTime = (KrowiAF_SavedData.CalendarEventsCache and KrowiAF_SavedData.CalendarEventsCache[event.Id] and KrowiAF_SavedData.CalendarEventsCache[event.Id].StartTime)
-                or (event.UpcomingEventDetails and event.UpcomingEventDetails.StartTime);
-            if startTime then
-                KrowiAF_SavedData.UpcomingCalendarEventChatMessagesShown[event.Id] = startTime;
+            local occurrence = addon.EventData.GetNextEventOccurance(event.Id);
+            if occurrence and occurrence.StartTime then
+                KrowiAF_SavedData.UpcomingCalendarEventChatMessagesShown[event.Id] = occurrence.StartTime;
             end
         end
     end
@@ -369,5 +467,5 @@ function eventReminderAlertSystem:ShowUpcomingCalendarEventsOnPlayerEnteringWorl
         return;
     end
 
-    StartRefresh(self);
+    StartRefresh(self, "Alerts");
 end

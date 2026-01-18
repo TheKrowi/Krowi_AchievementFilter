@@ -1,11 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 93.0 - 2026-01-17
+## 93.0 - 2026-01-18
 ### Added
 - 12.0.0 achievements (500+)
   - Family Battler of Northrend in Wrath of the Lich King category
-  - Mythic+ Season 1 in both special tab and under dungeon category in expansions (dev note: before, these were partially in the base dungeons category and partially in the mythic+ category of the specials tab)
+  - Mythic+ Season 1 in both special tab and under the dungeons category in expansions (dev note: before, these were partially in the base dungeons category and partially in the mythic+ category of the specials tab)
   - PvP Season 1 in PvP tab
   - Dungeons
   - Raids
@@ -13,7 +13,10 @@ All notable changes to this project will be documented in this file.
   - Abyss Anglers
   - Prey
   - The Arcantina
-- New Keystone Resilience rewar type filter
+- New Keystone Resilience reward type filter
+
+### Changed
+- Made some significant performance enhancements regarding the alert system (dev note: by optimizing API calls and caching where possible, the alert system’s performance is 100× more efficient)
 
 ### Fixed
 - Event Reminders should no longer pop up or print to chat when it's disabled on login or reload

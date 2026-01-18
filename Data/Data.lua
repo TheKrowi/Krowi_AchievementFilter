@@ -125,7 +125,7 @@ function data:LoadOnPlayerLogin()
     addon.Diagnostics.Trace("On Player Login: Start loading data");
 
     self.TemporaryObtainable:Load();
-    addon.EventData.BuildCalendarEventsCache();
+    -- addon.EventData.BuildCalendarEventsCache();
     KrowiAF.CreateBuildVersions();
 
     self:RegisterAchievementDataTasks();

@@ -60,20 +60,19 @@ local function SetPoints(self)
     end
 end
 
-local timer = LibStub("AceTimer-3.0");
-function eventReminderSideButtonSystem:Refresh()
-    if not self:GetAnchor() or not self:GetAnchor():IsShown() then
+function eventReminderSideButtonSystem:Refresh(activeEvents, upcomingCalendarEvents)
+    local anchor = self:GetAnchor();
+    if not anchor or not anchor:IsShown() then
         return;
     end
-    timer:ScheduleTimer(self.Refresh, addon.Options.db.profile.EventReminders.RefreshInterval, self);
 
     ResetButtons();
-    local activeEvents = addon.EventData.GetActiveEvents(); -- Alert system does the refreshing
+    activeEvents = activeEvents or addon.EventData.GetActiveEvents(); -- Alert system does the refreshing
     for index, activeEvent in next, activeEvents do
         AddEvent(index, activeEvent);
     end
     if addon.Options.db.profile.EventReminders.UpcomingCalendarEvents.Enabled then
-        local upcomingCalendarEvents = addon.EventData.GetUpcomingCalendarEvents(); -- Alert system does the refreshing
+        upcomingCalendarEvents = upcomingCalendarEvents or addon.EventData.GetUpcomingCalendarEvents(); -- Alert system does the refreshing
         for index, upcomgingCalendarEvent in next, upcomingCalendarEvents do
             AddEvent(#activeEvents + index, upcomgingCalendarEvent);
         end
@@ -82,12 +81,20 @@ function eventReminderSideButtonSystem:Refresh()
     SetPoints(self);
 end
 
+local function OnAlertSystemRefresh(_, activeEvents, upcomingCalendarEvents)
+    eventReminderSideButtonSystem:Refresh(activeEvents, upcomingCalendarEvents);
+end
+
 function eventReminderSideButtonSystem:Load()
     if not addon.Options.db.profile.EventReminders.Enabled or not self:GetAnchor() then
         return false; -- Anchoring failed because frame does not exist yet, try again later
     end
     hooksecurefunc(self:GetAnchor(), "Show", function()
+        addon.Gui.EventReminderAlertSystem:RegisterOnRefresh("SideButtonSystem", OnAlertSystemRefresh);
         self:Refresh();
+    end);
+    hooksecurefunc(self:GetAnchor(), "Hide", function()
+        addon.Gui.EventReminderAlertSystem:UnregisterOnRefresh("SideButtonSystem");
     end);
     return true;
 end
