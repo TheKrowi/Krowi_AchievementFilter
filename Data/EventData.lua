@@ -187,6 +187,11 @@ function eventData.GetWorldEventDetails(event)
         return
     end
 
+    local poiInfo = C_AreaPoiInfo.GetAreaPOIInfo(event.MapId, event.Id);
+    if not poiInfo then -- The event is not active
+        return;
+    end
+
     local endTime
     if secondsLeft ~= nil and secondsLeft ~= 0 then
         endTime = GetServerTime() + secondsLeft

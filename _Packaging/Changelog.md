@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 93.1 - 2026-01-20
+### Fixed
+- Some event reminders should be less intrusive now
+
 ## 93.0 - 2026-01-18
 ### Added
 - 12.0.0 achievements (500+)

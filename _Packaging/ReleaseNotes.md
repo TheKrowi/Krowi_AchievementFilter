@@ -16,3 +16,6 @@
 
 ### Fixed
 - Event Reminders should no longer pop up or print to chat when it's disabled on login or reload
+
+### Fixed (93.1)
+- Some event reminders should be less intrusive now
