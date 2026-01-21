@@ -768,6 +768,7 @@ KrowiAF.AchievementData["09_01_00"] = {
             RewardType = rewardType.Teleport,
             {"PvE Season", 6},
             {"PvE Season", 7},
+            {"PvE Season", 15},
         },
     },
     { -- Keystone Hero: Spires of Ascension
@@ -1321,6 +1322,7 @@ KrowiAF.AchievementData["09_02_00"] = {
             RewardType = rewardType.Teleport,
             {"PvE Season", 7},
             {"PvE Season", 8},
+            {"PvE Season", 15},
         },
     },
     {15502}, -- Sand, Sand Everywhere!

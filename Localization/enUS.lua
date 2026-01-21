@@ -5,7 +5,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-01-15 22-26-07 ]] --
+-- [[ Exported at 2026-01-18 23-13-01 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -16,6 +16,7 @@ L["10th Anniversary"] = true
 L["450 skill"] = true
 L["525 skill"] = true
 L["600 skill"] = true
+L["Abyss Anglers"] = true
 L["Academy Ascent"] = true
 L["Account"] = true
 L["Account wide (default)"] = true
@@ -524,6 +525,7 @@ L["Grow direction Desc"] = "The direction in which new reminders will be added."
 L["Guardians of the Dream"] = true
 L["Guides"] = true
 L["Hallow's End"] = true
+L["Hard"] = true
 L["Has Reward"] = true
 L["Header"] = true
 L["Header tooltip"] = true
@@ -566,6 +568,7 @@ L["Ka'wi the Gorger"] = true
 L["Keep current character"] = true
 L["Keep current character Desc"] = "Keep the current character in the list of characters in the tooltip regardless if the character would be truncated from the list by the {maxNumChar} or not."
 L["Keybindings Desc"] = "To change keybindings for {addonName}, select the Game tab in the top left of this window. Then select the {keybindings} category on the left. Lastly select AddOns in the right view."
+L["Keystone Resilience"] = true
 L["Kyrian Assault"] = true
 L["Landfall"] = true
 L["Layout"] = true
@@ -661,6 +664,7 @@ L["Next from startDate until endDate"] = "Next from {startDate} until {endDate}"
 L["Next occurrence unknown"] = true
 L["Night Fae Assault"] = true
 L["Nightfall"] = true
+L["Nightmare"] = true
 L["Nitun"] = true
 L["No achievements are available with the current set of filters"] = true
 L["No category selected"] = true
@@ -849,6 +853,7 @@ L["Search Results"] = true
 L["Search Rewards"] = true
 L["Searing Gorge"] = true
 L["Season"] = true
+L["Seasonal"] = true
 L["Second column threshold"] = true
 L["Second column threshold Desc"] = "Achievements with more objectives than this number will be visible in two columns instead of one."
 L["Secrets of Azeroth"] = true
@@ -1019,6 +1024,7 @@ L["Temporarily obtainable Header Colors Desc"] = "When enabled, the default oran
 L["Temporarily Obtainable Text"] = "{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}"
 L["Thaldraszus"] = true
 L["Thaldraszus: Next"] = true
+L["The Arcantina"] = true
 L["The Azure Span"] = true
 L["The Azure Span Slalom"] = true
 L["The Azure Span Sprint"] = true

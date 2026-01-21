@@ -550,6 +550,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
             18645, -- Tools of the Trade
             18646, -- Whodunnit?
             19080, -- Arcane Influence
+            62189, -- Mind-Seeker
         },
     },
     { -- Pandaria: Remix
@@ -865,8 +866,11 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                     61106, -- Sojourner of Val'Sharah
                     61111, -- Lorerunner of Val'Sharah
                     60809, -- Explore Val'sharah
+                    42573, -- Explore Val'Sharah (Bronze Cache)
                     60810, -- Elusive Foes: Val'sharah
+                    42580, -- Elusive Foes: Val'Sharah (Bronze Cache)
                     60811, -- Hidden Treasures: Val'sharah
+                    42668, -- Hidden Treasures: Val'Sharah (Bronze Cache)
                     42594, -- Tour Val'Sharah
                     42529, -- Humongris
                     42659, -- Shar'thos
@@ -882,8 +886,11 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                     61104, -- Sojourner of Highmountain
                     61109, -- Lorerunner of Highmountain
                     60803, -- Explore Highmountain
+                    42528, -- Explore Highmountain (Bronze Cache)
                     60804, -- Elusive Foes: Highmountain
+                    42579, -- Elusive Foes: Highmountain (Bronze Cache)
                     60805, -- Hidden Treasures: Highmountain
+                    42634, -- Hidden Treasures: Highmountain (Bronze Cache)
                     42642, -- Tour Highmountain
                     42542, -- Drugon the Frostblood
                     42614, -- Flotsam
@@ -899,8 +906,11 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                     61105, -- Sojourner of Stormheim
                     61110, -- Lorerunner of Stormheim
                     60806, -- Explore Stormheim
+                    42608, -- Explore Stormheim (Bronze Cache)
                     60807, -- Elusive Foes: Stormheim
+                    42640, -- Elusive Foes: Stormheim (Bronze Cache)
                     60808, -- Hidden Treasures: Stormheim
+                    42606, -- Hidden Treasures: Stormheim (Bronze Cache)
                     42590, -- Tour Stormheim
                     42536, -- Nithogg
                     42610, -- The Soultakers
@@ -917,8 +927,11 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                     61107, -- Sojourner of Suramar
                     61112, -- Lorerunner of Suramar
                     60812, -- Explore Suramar
+                    42665, -- Explore Suramar (Bronze Cache)
                     60813, -- Elusive Foes: Suramar
+                    42650, -- Elusive Foes: Suramar (Bronze Cache)
                     60814, -- Hidden Treasures: Suramar
+                    42577, -- Hidden Treasures: Suramar (Bronze Cache)
                     42564, -- Tour Suramar
                     42559, -- Ana-Mouz
                     42637, -- Na'zak the Fiend
@@ -948,8 +961,17 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                 {
                     42612, -- You Are Now Prepared!
                     60817, -- Explore Argus
+                    42620, -- Explore Krokuun (Bronze Cache)
+                    42535, -- Explore Eredath (Bronze Cache)
+                    42560, -- Explore Antoran Wastes (Bronze Cache)
                     60818, -- Elusive Foes: Argus
+                    42591, -- Elusive Foes: Krokuun (Bronze Cache)
+                    42646, -- Elusive Foes: Eredath (Bronze Cache)
+                    42575, -- Elusive Foes: Antoran Wastes (Bronze Cache)
                     60816, -- Hidden Treasures: Argus
+                    42588, -- Hidden Treasures: Krokuun (Bronze Cache)
+                    42626, -- Hidden Treasures: Eredath (Bronze Cache)
+                    42631, -- Hidden Treasures: Antoran Wastes (Bronze Cache)
                     42567, -- Tour Argus
                     42627, -- Argussian Reach
                     42618, -- Looking for Group: Argus

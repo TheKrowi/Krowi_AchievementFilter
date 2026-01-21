@@ -67,6 +67,7 @@ L["Battle for Azeroth"] = EXPANSION_NAME7;
 L["Shadowlands"] = EXPANSION_NAME8;
 L["Dragonflight"] = EXPANSION_NAME9;
 L["The War Within"] = EXPANSION_NAME10;
+L["Midnight"] = EXPANSION_NAME11;
 L["Scenarios"] = SCENARIOS;
 L["Garrison"] = GARRISON_LOCATION_TOOLTIP;
 L["Cities"] = BUG_CATEGORY4;

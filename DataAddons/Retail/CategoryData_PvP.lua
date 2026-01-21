@@ -6,6 +6,26 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
     {
         TabName = "PvP",
     },
+    { -- Training Grounds
+        addon.GetCategoryInfoTitle(15575),
+        {
+            61953, -- Putting in the Practice
+            61954, -- Putting in the Practice
+            61955, -- Putting in the Practice
+            61956, -- Putting in the Practice
+            61958, -- Focused Target
+            61959, -- Focused Target
+            62107, -- Mandatory Training
+            62108, -- Training with Patience
+            62109, -- Training with Patience
+            62111, -- Boots on the Ground: Arathi Basin
+            62114, -- Learning the Landscape: Arathi Basin
+            62112, -- Boots on the Ground: Battle for Gilneas
+            62115, -- Learning the Landscape: Battle for Gilneas
+            62113, -- Boots on the Ground: Silvershard Mines
+            62116, -- Learning the Landscape: Silvershard Mines
+        }
+    },
     { -- Player vs. Player
         1162,
         addon.GetCategoryInfoTitle(95),
@@ -1100,10 +1120,8 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
         },
     },
     { -- The War Within
-        1651,
         addon.GetCategoryInfoTitle(15520),
         { -- Season 1
-            1652,
             addon.L["Season"] .. " " .. 1,
             {
                 40385, -- Combatant I: The War Within Season 1
@@ -1179,6 +1197,36 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
                 41048, -- Astral Weapons of Conquest
                 41937, -- The War Within Season 3: Voidborne Victor
                 42325, -- Void Wear Prohibited
+            },
+        },
+    },
+    { -- Midnight
+        addon.GetCategoryInfoTitle(15542),
+        { -- Season 1
+            addon.L["Season"] .. " " .. 1,
+            {
+                61181, -- Combatant I: Midnight Season 1
+                61182, -- Combatant II: Midnight Season 1
+                61183, -- Challenger I: Midnight Season 1
+                61184, -- Challenger II: Midnight Season 1
+                61185, -- Rival I: Midnight Season 1
+                61186, -- Rival II: Midnight Season 1
+                61187, -- Duelist: Midnight Season 1
+                61197, -- Elite: Midnight Season 1
+                61180, -- Galactic Gladiator: Midnight Season 1
+                61195, -- Hero of the Alliance: Galactic
+                61196, -- Hero of the Horde: Galactic
+                61190, -- Legend: Midnight Season 1
+                61179, -- Galactic Legend: Midnight Season 1
+                61198, -- Battle Mender: Midnight Season 1
+                61199, -- Solo Shuffle Medic: Midnight
+                61200, -- Battleground Blitz Medic: Midnight (Reward: Nightfall Strategist's Pennant)
+                61194, -- Strategist: Midnight Season 1
+                61177, -- Galactic Marshal: Midnight Season 1
+                61178, -- Galactic Warlord: Midnight Season 1
+                61443, -- Galactic Weapons of Conquest
+                61490, -- Midnight Season 1: Champion of the Dawn
+                61858, -- Light of the Party
             },
         },
     },

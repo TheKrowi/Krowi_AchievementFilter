@@ -1,6 +1,34 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 93.2 - 2026-01-21
+### Fixed
+- Error: attempt to perform string conversion on a secret value
+
+## 93.1 - 2026-01-20
+### Fixed
+- Some event reminders should be less intrusive now
+
+## 93.0 - 2026-01-18
+### Added
+- 12.0.0 achievements (500+)
+  - Family Battler of Northrend in Wrath of the Lich King category
+  - Mythic+ Season 1 in both special tab and under the dungeons category in expansions (dev note: before, these were partially in the base dungeons category and partially in the mythic+ category of the specials tab)
+  - PvP Season 1 in PvP tab
+  - Dungeons
+  - Raids
+  - Delves
+  - Abyss Anglers
+  - Prey
+  - The Arcantina
+- New Keystone Resilience reward type filter
+
+### Changed
+- Made some significant performance enhancements regarding the alert system (dev note: by optimizing API calls and caching where possible, the alert system’s performance is 100× more efficient)
+
+### Fixed
+- Event Reminders should no longer pop up or print to chat when it's disabled on login or reload
+
 ## 92.0 - 2026-01-14
 ### Changed
 - Support for WoW 12.0.0 (Midnight)

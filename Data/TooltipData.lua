@@ -66,6 +66,10 @@ local function AddTooltipLine(tooltip, tooltipLine)
 end
 
 local function ProcessUnit(tooltip, guid)
+    if issecretvalue(guid) then
+        return;
+    end
+    
     if not addon.Options.db.profile.Tooltip.Criteria.Show then
         return;
     end
