@@ -19,3 +19,6 @@
 
 ### Fixed (93.1)
 - Some event reminders should be less intrusive now
+
+### Fixed (93.2)
+- Error: attempt to perform string conversion on a secret value

@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 93.2 - 2026-01-21
+### Fixed
+- Error: attempt to perform string conversion on a secret value
+
 ## 93.1 - 2026-01-20
 ### Fixed
 - Some event reminders should be less intrusive now
