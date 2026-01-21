@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 93.3 - 2026-01-21
+### Mists Classic
+- Fixed Error: attempt to call global 'issecretvalue' (a nil value)
+
 ## 93.2 - 2026-01-21
 ### Fixed
 - Error: attempt to perform string conversion on a secret value

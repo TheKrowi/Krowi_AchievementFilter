@@ -22,3 +22,6 @@
 
 ### Fixed (93.2)
 - Error: attempt to perform string conversion on a secret value
+
+### Mists Classic (93.3)
+- Fixed Error: attempt to call global 'issecretvalue' (a nil value)
