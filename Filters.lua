@@ -274,7 +274,7 @@ function filters.Validate(_filters, achievement, ignoreFilters, ignoreCollapseSe
         return 2;
     end
     achievementInfoCache = addon.GetAchievementInfoTable(achievement.Id);
-    if addon.Filters.db.profile.EarnedBy == addon.Filters.CharacterOnly then
+    if addon.Filters.db.profile.EarnedBy == 'CharacterOnly' then
         achievementInfoCache.IsCompleted = achievementInfoCache.WasEarnedByMe;
     end
     ignoreFilters = ignoreFilters or {};
@@ -448,15 +448,15 @@ function filters:Sort(achievements, defaultOrder)
 	local reverse = filters2.SortBy.ReverseSort;
 
     local sortFunc;
-    if criteria == addon.L["Name"] then
+    if criteria == "Name" then
         sortFunc = CompareName;
-	elseif criteria == addon.L["Completion"] then
+	elseif criteria == "Completion" then
         sortFunc = CompareCompletion;
-	elseif criteria == addon.L["ID"] then
+	elseif criteria == "ID" then
         sortFunc = CompareId;
-	elseif criteria == addon.L["Points"] then
+	elseif criteria == "Points" then
         sortFunc = ComparePoints;
-	else -- criteria == addon.L["Default"]
+	else -- criteria == "Default"
         if reverse then
 			local tmpTbl = {};
 			for i = #achievements, 1, -1 do

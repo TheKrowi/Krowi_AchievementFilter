@@ -432,7 +432,7 @@ function FixNewEarnedByFilter(prevBuild, currBuild, prevVersion, currVersion, fi
     end
 
     if Filters.profiles and Filters.profiles.Default and Filters.profiles.Default.EarnedBy == (GetCategoryInfo(92)) then
-        Filters.profiles.Default.EarnedBy = (GetCategoryInfo(92)) .. " / " .. addon.L["Account"];
+        Filters.profiles.Default.EarnedBy = 'CharacterAccount';
     end
 
     KrowiAF_SavedData.Fixes.FixNewEarnedByFilter = true;
@@ -522,7 +522,7 @@ function FixNewEarnedByFilter2(prevBuild, currBuild, prevVersion, currVersion, f
     end
 
     if Filters.profiles and Filters.profiles.Default and Filters.profiles.Default.EarnedBy == (GetCategoryInfo(92)) then
-        Filters.profiles.Default.EarnedBy = addon.L["Character only"];
+        Filters.profiles.Default.EarnedBy = 'CharacterOnly';
     end
 
     KrowiAF_SavedData.Fixes.FixNewEarnedByFilter2 = true;

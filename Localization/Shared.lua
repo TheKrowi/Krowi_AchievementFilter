@@ -7,29 +7,43 @@ function addon.GetCovenantName(covenantID)
     return C_Covenants and C_Covenants.GetCovenantData(covenantID).name or covenantID;
 end
 
+local instanceInfoNames = {}
 function addon.GetInstanceInfoName(journalInstanceId)
+    if instanceInfoNames[journalInstanceId] then
+        return instanceInfoNames[journalInstanceId];
+    end
     local name = EJ_GetInstanceInfo and (EJ_GetInstanceInfo(journalInstanceId)) or nil;
     if name then
+        instanceInfoNames[journalInstanceId] = name;
         return name;
     end
     name = addon.L["EJ_GetInstanceInfo" .. journalInstanceId];
     if name then
+        instanceInfoNames[journalInstanceId] = name;
         return name;
     end
     return journalInstanceId;
 end
 
+local categoryInfoTitles = {}
 function addon.GetCategoryInfoTitle(categoryId)
+    if categoryInfoTitles[categoryId] then
+        return categoryInfoTitles[categoryId];
+    end
     local title = (GetCategoryInfo(categoryId));
     if title then
+        categoryInfoTitles[categoryId] = title;
         return title;
     end
     title = addon.L["GetCategoryInfo" .. categoryId];
     if title then
+        categoryInfoTitles[categoryId] = title;
         return title;
     end
     return categoryId;
 end
+KrowiAF_GetCategoryInfoTitle = addon.GetCategoryInfoTitle
+
 
 function addon.GetLFGDungeonInfo(dungeonId)
     return GetLFGDungeonInfo and GetLFGDungeonInfo(dungeonId) or dungeonId;

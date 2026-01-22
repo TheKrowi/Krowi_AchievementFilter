@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 93.4 - 2026-01-22
+### Fixed
+- Sort by and Earned by should once again be working
+- First attempt on improving performance after pre-patch
+
 ## 93.3 - 2026-01-21
 ### Mists Classic
 - Fixed Error: attempt to call global 'issecretvalue' (a nil value)

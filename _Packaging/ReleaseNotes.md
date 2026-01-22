@@ -25,3 +25,7 @@
 
 ### Mists Classic (93.3)
 - Fixed Error: attempt to call global 'issecretvalue' (a nil value)
+
+### Fixed (93.4)
+- Sort by and Earned by should once again be working
+- First attempt on improving performance after pre-patch
