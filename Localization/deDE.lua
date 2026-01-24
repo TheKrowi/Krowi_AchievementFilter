@@ -6,7 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-01-15 22-26-11 ]] --
+-- [[ Exported at 2026-01-24 17-48-22 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -658,12 +658,12 @@ L["NONC"] = true
 L["None"] = "Keine"
 L["No-No"] = true
 L["Northrend Cup"] = "Northrend Pokal"
-L["NotCategorized"] = "Nicht kategorisiert"
 L["Not Earned By"] = "Nicht erzielt durch"
 L["Not earned by:"] = "Nicht erzielt durch:"
 L["Not loaded"] = "Nicht Geladen"
 L["Not Obtainable"] = "Nicht Verfügbar"
 L["Not part of set"] = "Nicht Teil des Transmog-Sets"
+L["NotCategorized"] = "Nicht kategorisiert"
 L["Number of Earned By characters"] = "Anzahl der {earnedBy} Charaktere"
 L["Number of Earned By characters Desc"] = [=[Die Anzahl der Charaktere, die angezeigt werden, die den Erfolg erlangt haben.
 
@@ -1068,9 +1068,9 @@ L["Vol'dun"] = true
 L["Waking Shores"] = "Küste des Erwachens"
 L["Waking Shores: Next"] = "Küste des Erwachens: Nächstes Event"
 L["Warband Achievement"] = "Kriegsmeuten-Erfolg"
-L["WarbandCampsite"] = "Kriegsmeute Lagerplatz"
 L["Warband Header Color"] = "{warband} Kopfzeilen Farbe"
 L["Warband Header Color Desc"] = "Wenn diese Option deaktiviert ist, wird die standardmäßige blaue Farbe der Kopfzeile durch eine orange Farbe ersetzt. In diesem Fall wird empfohlen das {warbandIcon} zu aktivieren."
+L["WarbandCampsite"] = "Kriegsmeute Lagerplatz"
 L["Warcraft III: Reforged"] = true
 L["Warcraft Rumble"] = true
 L["was"] = "war"

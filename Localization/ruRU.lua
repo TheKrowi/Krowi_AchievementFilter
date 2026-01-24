@@ -6,7 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-01-15 22-26-20 ]] --
+-- [[ Exported at 2026-01-24 17-48-34 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -138,6 +138,8 @@ L["Cobalt Assembly"] = "Кобальтовая ассамблея"
 L["Coldheart Interstitia"] = "Междумирье Бессердечных"
 L["Collapse Chain"] = "Свернуть Цепочку"
 L["Collecting data"] = "Сбор данных"
+L["Collections Achievement Window"] = "Окно Коллекций достижений"
+L["Collections Achievement Window Desc"] = "Окно Коллекций достижений Описание"
 L["Collector's Edition"] = "Коллекционное издание"
 L["Comments"] = "Комментарии"
 L["Community Feast"] = "Большое пиршество"
@@ -241,6 +243,7 @@ L["Excluded"] = "Исключено"
 L["Expansions"] = "Дополнения"
 L["Expansions tab"] = "Вкладка Дополнений"
 L["Expansions tab Desc"] = "Достижения сгруппированы по категориям для каждого дополнения с более логичной иерархией. Иерархия выглядит следующим образом: |T:1:8|t - {expansion} |T:1:8|t|T:1:8|t -  {zones} T:1:8|t|T:1:8|t|T:1:8|t- {quests} |T:1:8|t|T:1:8/t/T:1:8/t - {exploration} |T:1:8|t|T:1:8|t|T:1:8|t - {pvp} |T:1:8/t|T:1:8|t|T:1:8|t - {reputation}  |T:1:8|t|T:1:8|t - {dungeons}  |T:1:8|t|T:1:8|t - {raids}  |T:1:8|t|T:1:8|t - {petBattles}  |T:1:8|t|T:1:8|t - {expansionFeatures} Специальные категории:  |T:1:8|t - {currentZone}: Показывает достижения, связанные с текущей зоной, в которой вы находитесь.  |T:1:8|t - {selectedZone}: Показывает достижения, связанные с выбранной зоной на карте мира.  |T:1:8|t- {watchListCategory}: Показывает просмотренные достижения. Достижения могут отображаться как с подкатегориями, так и без них (1).  |T:1:8|t - {excludedCategory}: Показывает исключенные достижения. Достижения могут отображаться как с подкатегориями, так и без них (1). Могут быть постоянно скрыты из параметров (1). (1) Параметры можно найти в разделе {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {categories}"
+L["Experimental"] = "Экперименты.."
 L["Export"] = "Экспорт"
 L["Export Criteria"] = "Экспорт Критерии"
 L["Export Criteria Desc"] = "Экспортирования критерий Достижений в Saved Variables. Используется для добавления нового контента."
@@ -248,6 +251,8 @@ L["Export Missing Achievements"] = "Добавить недостающие до
 L["Export Missing Achievements Desc"] = "Добавить недостающие достижения. Это отладочная функция и лучше её не трогать."
 L["Export Removed Achievements"] = "Добавить удаленные достижения"
 L["Export Removed Achievements Desc"] = "Добавить удаленные достижения. Это отладочная функция и лучше её не трогать."
+L["Export to CSV"] = "Экспорт в CSV"
+L["Export to CSV Desc"] = "Сохранить список в CSV"
 L["Faction Assaults"] = "Нападения Фракций"
 L["Faction Icon Transparency"] = "Прозрачность значка фракции"
 L["Faction Icon Transparency Desc"] = "Настраивает прозрачность значка фракции, где 0 полностью прозрачна и 1 - не прозрачна"
@@ -326,6 +331,7 @@ L["Header tooltip"] = "Подсказка Заголовка"
 L["Hearthstone"] = true
 L["Hearthstone's 10th Anniversary"] = "Hearthstone 10я Годовщина"
 L["Heroes of the Storm"] = true
+L["Heroic World Tier"] = "Героический Мир"
 L["Hide Date Completed"] = "Спрятать дату получения"
 L["Hide Date Completed Desc"] = "Спрятать дату когда достижение было завершено"
 L["Hide Not Earned By if current character earned the achievement"] = "Спрятать {notEarnedBy} если текущий персонаж завершил достижение."
@@ -445,12 +451,12 @@ L["NONC"] = true
 L["None"] = "Нету"
 L["No-No"] = "Но-Но"
 L["Northrend Cup"] = "Кубок Нордскола"
-L["NotCategorized"] = "Без категории"
 L["Not Earned By"] = "Не Получено"
 L["Not earned by:"] = "Не получено"
 L["Not loaded"] = "Не загружено"
 L["Not Obtainable"] = "Недоступное"
 L["Not part of set"] = "Не часть набора"
+L["NotCategorized"] = "Без категории"
 L["Number of Earned By characters"] = "Количество {earnedBy} персонажей"
 L["Number of Earned By characters Desc"] = "Количество персонажей отображаемых в полученном достижении. Выставьте 0 для отключения данной функции."
 L["Number of lines"] = "Количество строк"
@@ -791,9 +797,9 @@ L["Vol'dun"] = "Вол'дун"
 L["Waking Shores"] = "Берега Пробуждения"
 L["Waking Shores: Next"] = "Берега Пробуждения: Следущее"
 L["Warband Achievement"] = "Достижение Отряда"
-L["WarbandCampsite"] = "Лагерь отряда"
 L["Warband Header Color"] = "{warband} цвет заголовка"
 L["Warband Header Color Desc"] = "Когда включено, по умолчанию цвет заголовка будет заменен на стандартный оранжевый цвет. Рекомндуем включить {warbandIcon}."
+L["WarbandCampsite"] = "Лагерь отряда"
 L["Warcraft III: Reforged"] = true
 L["Warcraft Rumble"] = true
 L["was"] = "уже"

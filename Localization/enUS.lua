@@ -5,7 +5,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-01-18 23-13-01 ]] --
+-- [[ Exported at 2026-01-24 17-48-19 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -677,12 +677,12 @@ L["NONC"] = true
 L["None"] = true
 L["No-No"] = true
 L["Northrend Cup"] = true
-L["NotCategorized"] = true
 L["Not Earned By"] = true
 L["Not earned by:"] = true
 L["Not loaded"] = true
 L["Not Obtainable"] = true
 L["Not part of set"] = true
+L["NotCategorized"] = true
 L["Number of Earned By characters"] = "Number of {earnedBy} characters"
 L["Number of Earned By characters Desc"] = [=[The number of characters that will be displayed that have earned the achievement.
 
@@ -1111,11 +1111,11 @@ L["Vol'dun"] = true
 L["Waking Shores"] = true
 L["Waking Shores: Next"] = true
 L["Warband Achievement"] = true
-L["WarbandCampsite"] = true
 L["Warband Header Color"] = "{warband} Header Colors"
 L["Warband Header Color Desc"] = [=[When disabled, the default blue header color will be replaced by the default orange color.
 Recommended to enable {warbandIcon}.
 ]=]
+L["WarbandCampsite"] = true
 L["Warcraft III: Reforged"] = true
 L["Warcraft Rumble"] = true
 L["was"] = true

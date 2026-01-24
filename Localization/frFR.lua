@@ -6,7 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-01-15 22-26-14 ]] --
+-- [[ Exported at 2026-01-24 17-48-27 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -662,12 +662,12 @@ L["NONC"] = true
 L["None"] = "Aucun"
 L["No-No"] = true
 L["Northrend Cup"] = "Coupe de Norfendre"
-L["NotCategorized"] = "Non catégorisé"
 L["Not Earned By"] = "Non réalisé par"
 L["Not earned by:"] = "Non obtenu par :"
 L["Not loaded"] = "Non chargé"
 L["Not Obtainable"] = "Non disponible"
 L["Not part of set"] = "Ne fait pas parti de l'ensemble d'armure"
+L["NotCategorized"] = "Non catégorisé"
 L["Number of Earned By characters"] = "Nombre de personnages ayant accompli le haut fait"
 L["Number of Earned By characters Desc"] = [=[Le nombre de personnages ayant obtenu le haut fait sera affiché.
 
@@ -1076,8 +1076,8 @@ L["Vol'dun"] = true
 L["Waking Shores"] = "Rivages de l’Éveil"
 L["Waking Shores: Next"] = "Rivage de l'éveil : Prochaine"
 L["Warband Achievement"] = "Haut fait de bataillon"
-L["WarbandCampsite"] = "Campement de bataillon"
 L["Warband Header Color"] = "Couleur d’en-tête du bataillon"
+L["WarbandCampsite"] = "Campement de bataillon"
 L["Warcraft III: Reforged"] = true
 L["Warcraft Rumble"] = true
 L["was"] = "était"
