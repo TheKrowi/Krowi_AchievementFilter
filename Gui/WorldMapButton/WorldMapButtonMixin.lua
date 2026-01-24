@@ -23,10 +23,8 @@ function KrowiAF_WorldMapButtonMixin:OnClick()
     if achievements and #achievements > 0 then
         HideUIPanel(WorldMapFrame);
         for i = 1, #addon.SpecialCategories.SelectedZone do
-            local category = addon.SpecialCategories.SelectedZone[i];
-            category.Achievements = addon.Options.db.profile.AdjustableCategories.SelectedZone[i] and achievements or nil;
-            category.Name = addon.L["Selected Zone"] .. " (" .. self.Text .. ")";
-            category.CountsDirty = true;
+            addon.SpecialCategories.SelectedZone[i].Achievements = addon.Options.db.profile.AdjustableCategories.SelectedZone[i] and achievements or nil;
+            addon.SpecialCategories.SelectedZone[i].Name = addon.L["Selected Zone"] .. " (" .. self.Text .. ")";
         end
         for i = 1, #addon.SpecialCategories.SelectedZone do
             if addon.Options.db.profile.AdjustableCategories.SelectedZone[i] then

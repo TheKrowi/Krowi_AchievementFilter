@@ -1,32 +1,4 @@
 local _, addon = ...;
-local addonName = addon.Metadata and addon.Metadata.AddonName or "Krowi_AchievementFilter";
-local UpdateAddOnMemoryUsage = _G.UpdateAddOnMemoryUsage;
-local GetAddOnMemoryUsage = _G.GetAddOnMemoryUsage;
-local unpackSafe = table.unpack or unpack;
-
-local function ProfileSection(label, fn, ...)
-	local startMem;
-	if UpdateAddOnMemoryUsage and GetAddOnMemoryUsage then
-		UpdateAddOnMemoryUsage();
-		startMem = GetAddOnMemoryUsage(addonName);
-	end
-
-	local startTime = debugprofilestop();
-	local results = {fn(...)};
-	local elapsed = debugprofilestop() - startTime;
-
-	local deltaMem;
-	if startMem then
-		UpdateAddOnMemoryUsage();
-		deltaMem = (GetAddOnMemoryUsage(addonName) or startMem) - startMem;
-	end
-
-	if addon.Diagnostics and addon.Diagnostics.Trace then
-		addon.Diagnostics.Trace(string.format("[Profile] %s: %.1f ms, %+0.1f KB", label, elapsed, deltaMem or 0));
-	end
-
-	return unpackSafe(results);
-end
 
 KrowiAF_CategoriesFrameMixin = {};
 
@@ -89,15 +61,13 @@ local function RestoreScrollPosition(frame)
 end
 
 function KrowiAF_CategoriesFrameMixin:OnShow()
-	ProfileSection("CategoriesFrame:OnShow", function()
-		self:RegisterEvent("ACHIEVEMENT_EARNED");
-		self:SetRightPoint();
-		AchievementFrameCategories:Hide();
-		AchievementFrameWaterMark:SetTexture(addon.Gui.SelectedTab and addon.Gui.SelectedTab.WaterMark or "Interface/AchievementFrame/UI-Achievement-AchievementWatermark");
-		self:Update(addon.AchievementEarnedUpdateCategoriesFrameOnNextShow);
-		addon.AchievementEarnedUpdateCategoriesFrameOnNextShow = nil;
-		RestoreScrollPosition(self);
-	end);
+	self:RegisterEvent("ACHIEVEMENT_EARNED");
+	self:SetRightPoint();
+	AchievementFrameCategories:Hide();
+	AchievementFrameWaterMark:SetTexture(addon.Gui.SelectedTab and addon.Gui.SelectedTab.WaterMark or "Interface/AchievementFrame/UI-Achievement-AchievementWatermark");
+	self:Update(addon.AchievementEarnedUpdateCategoriesFrameOnNextShow);
+	addon.AchievementEarnedUpdateCategoriesFrameOnNextShow = nil;
+	RestoreScrollPosition(self);
 end
 
 function KrowiAF_CategoriesFrameMixin:OnHide()
@@ -106,32 +76,23 @@ function KrowiAF_CategoriesFrameMixin:OnHide()
 	AchievementFrameCategoriesBG:SetWidth(195);
 end
 
-local function GetDisplayCategories(displayCategories, category, getAchNums, stats)
-	stats.Processed = stats.Processed + 1;
-
+local function GetDisplayCategories(displayCategories, category, getAchNums)
 	if category.NotHidden or category.AlwaysVisible or category.HasFlexibleData then -- If already visible, keep visible
-		local needsCounts = (category.NumOfAch == nil) or getAchNums or (category.HasFlexibleData and category.CountsDirty);
-		if needsCounts and category.Parent.TabName ~= nil then
+		if (category.NumOfAch == nil or getAchNums or category.HasFlexibleData) and category.Parent.TabName ~= nil then
 			-- Huge increase over performance if we cache the achievement numbers and only update them when needed,
 			-- only for the top level categories since it works recursive
-			local start = debugprofilestop();
 			if category:GetAchievementNumbers() > 0 or category.AlwaysVisible then
 				tinsert(displayCategories, category);
-				stats.Added = stats.Added + 1;
 			end
-			stats.GetNumsCalls = stats.GetNumsCalls + 1;
-			stats.GetNumsTime = stats.GetNumsTime + (debugprofilestop() - start);
-			category.CountsDirty = nil; -- counts refreshed
 		elseif category.NumOfAch > 0 or category.AlwaysVisible then
 			tinsert(displayCategories, category);
-			stats.Added = stats.Added + 1;
 		end
 	end
 
 	local children = category.Children;
 	if children then
 		for _, child in next, children do
-			GetDisplayCategories(displayCategories, child, getAchNums, stats);
+			GetDisplayCategories(displayCategories, child, getAchNums);
 		end
 	end
 end
@@ -157,28 +118,18 @@ function KrowiAF_CategoriesFrameMixin:Update(getAchNums, retainScrollPosition)
 	end
 
 	local displayCategories = {};
-	local stats = {Processed = 0, Added = 0, GetNumsCalls = 0, GetNumsTime = 0};
 	local categories = addon.Gui.SelectedTab:GetCategories();
     if not categories then
         return;
     end
-
-	-- Ensure current zone categories have up-to-date achievements before counting
-	addon.Data.GetCurrentZoneAchievements();
-	
-	ProfileSection("CategoriesFrame:Update:Collect", function()
-		for _, category in next, categories do
-			GetDisplayCategories(displayCategories, category, getAchNums, stats);
-		end
-	end);
-	if addon.Diagnostics and addon.Diagnostics.Trace then
-		addon.Diagnostics.Trace(string.format("[Profile] CategoriesFrame:Update:CollectStats processed=%d added=%d getNums=%d time=%.1f ms", stats.Processed, stats.Added, stats.GetNumsCalls, stats.GetNumsTime));
+	for _, category in next, categories do
+		GetDisplayCategories(displayCategories, category, getAchNums);
 	end
 	if not addon.Util.TableFindKeyByValue(displayCategories, selectedTab.SelectedCategory) then
 		selectedTab.SelectedCategory = displayCategories[1];
 		selectedTab:ShowSubFrames();
 	end
-	ProfileSection("CategoriesFrame:Update:SetDataProvider", UpdateDataProvider, self, displayCategories, retainScrollPosition);
+	UpdateDataProvider(self, displayCategories, retainScrollPosition);
 end
 
 local function OpenCloseCategory(targetCategory, category)

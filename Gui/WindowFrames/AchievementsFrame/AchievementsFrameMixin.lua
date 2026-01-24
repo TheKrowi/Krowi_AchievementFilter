@@ -1,32 +1,4 @@
 local _, addon = ...;
-local addonName = addon.Metadata and addon.Metadata.AddonName or "Krowi_AchievementFilter";
-local UpdateAddOnMemoryUsage = _G.UpdateAddOnMemoryUsage;
-local GetAddOnMemoryUsage = _G.GetAddOnMemoryUsage;
-local unpackSafe = table.unpack or unpack;
-
-local function ProfileSection(label, fn, ...)
-	local startMem;
-	if UpdateAddOnMemoryUsage and GetAddOnMemoryUsage then
-		UpdateAddOnMemoryUsage();
-		startMem = GetAddOnMemoryUsage(addonName);
-	end
-
-	local startTime = debugprofilestop();
-	local results = {fn(...)};
-	local elapsed = debugprofilestop() - startTime;
-
-	local deltaMem;
-	if startMem then
-		UpdateAddOnMemoryUsage();
-		deltaMem = (GetAddOnMemoryUsage(addonName) or startMem) - startMem;
-	end
-
-	if addon.Diagnostics and addon.Diagnostics.Trace then
-		addon.Diagnostics.Trace(string.format("[Profile] %s: %.1f ms, %+0.1f KB", label, elapsed, deltaMem or 0));
-	end
-
-	return unpackSafe(results);
-end
 
 KrowiAF_AchievementsFrameMixin = {};
 
@@ -129,36 +101,33 @@ end
 
 local updateOnNextShow;
 function KrowiAF_AchievementsFrameMixin:OnShow()
-	ProfileSection("AchievementsFrame:OnShow", function()
-		self:RegisterEvent("ACHIEVEMENT_EARNED");
+    self:RegisterEvent("ACHIEVEMENT_EARNED");
+	if addon.AchievementEarnedUpdateAchievementsFrameOnNextShow or updateOnNextShow then
+		self:ForceUpdate();
+		addon.AchievementEarnedUpdateAchievementsFrameOnNextShow = nil;
+	end
 
-		if addon.AchievementEarnedUpdateAchievementsFrameOnNextShow or updateOnNextShow then
-			self:ForceUpdate();
-			addon.AchievementEarnedUpdateAchievementsFrameOnNextShow = nil;
+	local selectedTab = addon.Gui.SelectedTab;
+	if not selectedTab then
+		return;
+	end
+
+	self.Text:Hide();
+
+	local selectedCategory = selectedTab.SelectedCategory;
+	if not selectedCategory then
+		if not selectedTab:GetCategories() then
+			self.Text:SetText(addon.L["Categories not loaded"]:KAF_InjectAddonName());
+		else
+			self.Text:SetText(addon.L["No category selected"]);
 		end
+		self.Text:Show();
+		return;
+	end
 
-		local selectedTab = addon.Gui.SelectedTab;
-		if not selectedTab then
-			return;
-		end
-
-		self.Text:Hide();
-
-		local selectedCategory = selectedTab.SelectedCategory;
-		if not selectedCategory then
-			if not selectedTab:GetCategories() then
-				self.Text:SetText(addon.L["Categories not loaded"]:KAF_InjectAddonName());
-			else
-				self.Text:SetText(addon.L["No category selected"]);
-			end
-			self.Text:Show();
-			return;
-		end
-
-		if selectedTab.SelectedCategory and selectedTab.SelectedCategory.IsCurrentZone then
-			self:ForceUpdate();
-		end
-	end);
+	if selectedTab.SelectedCategory and selectedTab.SelectedCategory.IsCurrentZone then
+		self:ForceUpdate();
+	end
 end
 
 function KrowiAF_AchievementsFrameMixin:OnHide()
@@ -291,12 +260,6 @@ function KrowiAF_AchievementsFrameMixin:ForceUpdate()
 		return;
 	end
 	updateOnNextShow = nil;
-
-	if selectedTab.SelectedCategory and selectedTab.SelectedCategory.IsCurrentZone then
-		if addon.Data and addon.Data.GetCurrentZoneAchievements then
-			addon.Data.GetCurrentZoneAchievements();
-		end
-	end
 
 	local buttons = self.ScrollView:GetFrames();
 	for _, button in next, buttons do
