@@ -20,12 +20,6 @@ do -- Mixin
                 GetCheckBoxStateText = "GetCheckBoxStateText",
                 OnCheckboxSelect = "OnCheckboxSelect",
                 OnRadioSelect = "OnRadioSelect",
-                IsMinorVersionChecked = "IsMinorVersionChecked",
-                OnMinorVersionSelect = "OnMinorVersionSelect",
-                IsMajorVersionChecked = "IsMajorVersionChecked",
-                OnMajorVersionSelect = "OnMajorVersionSelect",
-                OnAllVersionsSelect = "OnAllVersionsSelect",
-                CreateBuildVersionFilterGroups = "CreateBuildVersionFilterGroups",
             }),
             translations = addon.Util.L
         };
@@ -89,9 +83,11 @@ do -- Logic
     end
 
     function KrowiAF_AchievementFrameFilterButtonMixin:UpdateAchievementFrame()
-        KrowiAF_CategoriesFrame:Update(true);
-        KrowiAF_AchievementsFrame:ForceUpdate(); -- Issue #27: Fix
-        KrowiAF_SummaryFrame:Update();
+        addon.Util.DelayFunction("KAF_FilterRefresh", 0.05, function()
+            KrowiAF_CategoriesFrame:Update(true);
+            KrowiAF_AchievementsFrame:ForceUpdate(); -- Issue #27: Fix
+            KrowiAF_SummaryFrame:Update();
+        end);
     end
 end
 
@@ -125,98 +121,7 @@ do -- Radio
     end
 end
 
-do -- BuildVersionFilter
-    function KrowiAF_AchievementFrameFilterButtonMixin:OnPatchVersionSelect(filters, patches, checked)
-        for _, patch in next, patches do
-            self:SetSelected(filters, {"BuildVersion", patch.BuildVersionId}, not checked, true, true);
-        end
-    end
-
-    function KrowiAF_AchievementFrameFilterButtonMixin:IsMinorVersionChecked(filters, minor)
-        local isChecked = true;
-        for _, patch in next, minor.Patches do
-            isChecked = isChecked and addon.Util.ReadNestedKeys(filters, {"BuildVersion", patch.BuildVersionId});
-        end
-        return isChecked;
-    end
-
-    function KrowiAF_AchievementFrameFilterButtonMixin:OnMinorVersionSelect(filters, minor)
-        local checked = self:IsMinorVersionChecked(filters, minor);
-        self:OnPatchVersionSelect(filters, minor.Patches, checked);
-        self:UpdateAchievementFrame();
-    end
-
-    function KrowiAF_AchievementFrameFilterButtonMixin:CreateMinorVersion(majorGroup, filters, major, minor)
-        local mb = self.menuBuilder;
-        if #minor.Patches <= 1 then
-            mb:CreateCheckbox(majorGroup, major.Major .. "." .. minor.Minor .. "." .. minor.Patches[1].Patch, filters, {"BuildVersion", minor.Patches[1].BuildVersionId}, true);
-            return;
-        end
-        local minorGroup = mb:CreateMinorVersionGroup(majorGroup, filters, major, minor);
-        for _, patch in next, minor.Patches do
-            mb:CreateCheckbox(minorGroup, major.Major .. "." .. minor.Minor .. "." .. patch.Patch, filters, {"BuildVersion", patch.BuildVersionId}, true);
-        end
-    end
-
-    function KrowiAF_AchievementFrameFilterButtonMixin:IsMajorVersionChecked(filters, major)
-        local isChecked = true;
-        for _, minor in next, major.Minors do
-            isChecked = isChecked and self:IsMinorVersionChecked(filters, minor);
-        end
-        return isChecked;
-    end
-
-    function KrowiAF_AchievementFrameFilterButtonMixin:OnMajorVersionSelect(filters, major)
-        local checked = self:IsMajorVersionChecked(filters, major);
-        for _, minor in next, major.Minors do
-            self:OnPatchVersionSelect(filters, minor.Patches, checked);
-        end
-        self:UpdateAchievementFrame();
-    end
-
-    function KrowiAF_AchievementFrameFilterButtonMixin:CreateMajorVersion(version, filters, major)
-        local majorGroup = self.menuBuilder:CreateMajorVersionGroup(version, filters, major);
-        for _, minor in next, major.Minors do
-            self:CreateMinorVersion(majorGroup, filters, major, minor);
-        end
-    end
-
-    function KrowiAF_AchievementFrameFilterButtonMixin:OnAllVersionsSelect(filters, value)
-        for _, major in next, addon.Data.BuildVersionsGrouped do
-            for _, minor in next, major.Minors do
-                for _, patch in next, minor.Patches do
-                    self:SetSelected(filters, {"BuildVersion", patch.BuildVersionId}, value, true, true);
-                end
-            end
-        end
-        self:UpdateAchievementFrame();
-    end
-
-    function KrowiAF_AchievementFrameFilterButtonMixin:CreateBuildVersionFilterGroups(version, filters)
-        if #addon.Data.BuildVersionsGrouped > 1 then
-            for _, major in next, addon.Data.BuildVersionsGrouped do
-                self:CreateMajorVersion(version, filters, major)
-            end
-        else
-            local major = addon.Data.BuildVersionsGrouped[1];
-            for _, minor in next, major.Minors do
-                self:CreateMinorVersion(version, filters, major, minor);
-            end
-        end
-    end
-
-end
-
 do -- AchievementFilters
-    function KrowiAF_AchievementFrameFilterButtonMixin:SetRewardsFilters(filters, value)
-        self:SetSelected(filters, {"HasReward", "Yes"}, value, true, true);
-        self:SetSelected(filters, {"HasReward", "No"}, value, true, true);
-        for rewardType, _ in next, filters.RewardType do
-            self:SetSelected(filters, {"RewardType", rewardType}, value, true, true);
-        end
-        self:UpdateAchievementFrame();
-    end
-
     function KrowiAF_AchievementFrameFilterButtonMixin:SetFactionFilters(filters, value)
         for faction, _ in next, filters.Faction do
             self:SetSelected(filters, {"Faction", faction}, value, true, true);
@@ -237,52 +142,6 @@ do -- AchievementFilters
         return counter > 1;
     end
 
-    local rewardItems = {
-        {label = addon.L["Yes"],      keys = {"HasReward", "Yes"}},
-        {label = addon.L["No"],       keys = {"HasReward", "No"}},
-        {divider = true},
-        {label = addon.L["Allied Race"],        keys = {"RewardType", KrowiAF.Enum.RewardType.AlliedRace}},
-        {label = addon.L["Garrison"],           keys = {"RewardType", KrowiAF.Enum.RewardType.Garrison}},
-        {label = addon.L["Mount"],              keys = {"RewardType", KrowiAF.Enum.RewardType.Mount}},
-        {label = addon.L["Pet"],                keys = {"RewardType", KrowiAF.Enum.RewardType.Pet}},
-        {label = addon.L["Tabard"],             keys = {"RewardType", KrowiAF.Enum.RewardType.Tabard}},
-        {label = addon.L["Teleport"],           keys = {"RewardType", KrowiAF.Enum.RewardType.Teleport}},
-        {label = addon.L["Keystone Resilience"],keys = {"RewardType", KrowiAF.Enum.RewardType.KeystoneResilience}},
-        {label = addon.L["Title"],              keys = {"RewardType", KrowiAF.Enum.RewardType.Title}},
-        {label = addon.L["Toy"],                keys = {"RewardType", KrowiAF.Enum.RewardType.Toy}},
-        {label = addon.L["Trader's Tender"],    keys = {"RewardType", KrowiAF.Enum.RewardType.TradersTender}},
-        {label = addon.L["Transmog"],           keys = {"RewardType", KrowiAF.Enum.RewardType.Transmog}},
-        {label = addon.L["Warband Campsite"],   keys = {"RewardType", KrowiAF.Enum.RewardType.WarbandCampsite}},
-        {label = addon.L["Housing Decor"],      keys = {"RewardType", KrowiAF.Enum.RewardType.HousingDecor}},
-        {label = addon.L["Other"],              keys = {"RewardType", KrowiAF.Enum.RewardType.Other}},
-        {divider = true},
-        {label = addon.L["Remix Bronze"],       keys = {"RewardType", KrowiAF.Enum.RewardType.RemixBronze}},
-        {label = addon.L["Remix Infinite Knowledge"], keys = {"RewardType", KrowiAF.Enum.RewardType.RemixInfiniteKnowledge}},
-        {divider = true},
-        {label = addon.L["Not Categorized"],    keys = {"RewardType", KrowiAF.Enum.RewardType.NotCategorized}},
-        {divider = true},
-        {selectAll = true}, -- sentinel for select/deselect-all
-    }
-
-    function KrowiAF_AchievementFrameFilterButtonMixin:CreateRewardMenu(menu, filters)
-        local mb = self.menuBuilder
-        local reward = mb:CreateSubmenuButton(menu, addon.L["Has Reward"])
-
-        for _, item in ipairs(rewardItems) do
-            if item.divider then
-                mb:CreateDivider(reward)
-            elseif item.selectAll then
-                mb:CreateSelectDeselectAllButtons(reward, nil, nil, function(_, _, _, value)
-                    self:SetRewardsFilters(filters, value)
-                end)
-            else
-                mb:CreateCheckbox(reward, item.label, filters, item.keys, true)
-            end
-        end
-
-        mb:AddChildMenu(menu, reward)
-    end
-
     function KrowiAF_AchievementFrameFilterButtonMixin:CreateAchievementFilters(menu, filters, parentMenu)
         local mb = self.menuBuilder;
         mb:CreateCheckbox(menu, addon.L["Completed"], filters, {"Completion", "Completed"}, true);
@@ -291,36 +150,9 @@ do -- AchievementFilters
         mb:CreateCheckbox(menu, addon.L["Current Obtainable"], filters, {"Obtainability", "CurrentObtainable"}, true);
         mb:CreateCheckbox(menu, addon.L["Future Obtainable"], filters, {"Obtainability", "FutureObtainable"}, true);
 
-        -- local reward = mb:CreateSubmenuButton(menu, addon.L["Has Reward"]);
-        -- mb:CreateCheckbox(reward, addon.L["Yes"], filters, {"HasReward", "Yes"}, true);
-        -- mb:CreateCheckbox(reward, addon.L["No"], filters, {"HasReward", "No"}, true);
-        -- mb:CreateDivider(reward);
-        -- mb:CreateCheckbox(reward, addon.L["Allied Race"], filters, {"RewardType", KrowiAF.Enum.RewardType.AlliedRace}, true);
-        -- mb:CreateCheckbox(reward, addon.L["Garrison"], filters, {"RewardType", KrowiAF.Enum.RewardType.Garrison}, true);
-        -- mb:CreateCheckbox(reward, addon.L["Mount"], filters, {"RewardType", KrowiAF.Enum.RewardType.Mount}, true);
-        -- mb:CreateCheckbox(reward, addon.L["Pet"], filters, {"RewardType", KrowiAF.Enum.RewardType.Pet}, true);
-        -- mb:CreateCheckbox(reward, addon.L["Tabard"], filters, {"RewardType", KrowiAF.Enum.RewardType.Tabard}, true);
-        -- mb:CreateCheckbox(reward, addon.L["Teleport"], filters, {"RewardType", KrowiAF.Enum.RewardType.Teleport}, true);
-        -- mb:CreateCheckbox(reward, addon.L["Keystone Resilience"], filters, {"RewardType", KrowiAF.Enum.RewardType.KeystoneResilience}, true);
-        -- mb:CreateCheckbox(reward, addon.L["Title"], filters, {"RewardType", KrowiAF.Enum.RewardType.Title}, true);
-        -- mb:CreateCheckbox(reward, addon.L["Toy"], filters, {"RewardType", KrowiAF.Enum.RewardType.Toy}, true);
-        -- mb:CreateCheckbox(reward, addon.L["Trader's Tender"], filters, {"RewardType", KrowiAF.Enum.RewardType.TradersTender}, true);
-        -- mb:CreateCheckbox(reward, addon.L["Transmog"], filters, {"RewardType", KrowiAF.Enum.RewardType.Transmog}, true);
-        -- mb:CreateCheckbox(reward, addon.L["Warband Campsite"], filters, {"RewardType", KrowiAF.Enum.RewardType.WarbandCampsite}, true);
-        -- mb:CreateCheckbox(reward, addon.L["Housing Decor"], filters, {"RewardType", KrowiAF.Enum.RewardType.HousingDecor}, true);
-        -- mb:CreateCheckbox(reward, addon.L["Other"], filters, {"RewardType", KrowiAF.Enum.RewardType.Other}, true);
-        -- mb:CreateDivider(reward);
-        -- mb:CreateCheckbox(reward, addon.L["Remix Bronze"], filters, {"RewardType", KrowiAF.Enum.RewardType.RemixBronze}, true);
-        -- mb:CreateCheckbox(reward, addon.L["Remix Infinite Knowledge"], filters, {"RewardType", KrowiAF.Enum.RewardType.RemixInfiniteKnowledge}, true);
-        -- mb:CreateDivider(reward);
-        -- mb:CreateCheckbox(reward, addon.L["Not Categorized"], filters, {"RewardType", KrowiAF.Enum.RewardType.NotCategorized}, true);
-        -- mb:CreateDivider(reward);
-        -- mb:CreateSelectDeselectAllButtons(reward, nil, nil, function(_, _, _, value) self:SetRewardsFilters(filters, value); end);
-        -- mb:AddChildMenu(menu, reward);
+        addon.FilterButtonRewardTypes.CreateRewardMenu(self, menu, filters);
 
-        self:CreateRewardMenu(menu, filters)
-
-        mb:CreateBuildVersionFilter(filters, menu);
+        addon.FilterButtonBuildVersions.CreateBuildVersionFilter(self, menu, filters);
 
         local faction = mb:CreateSubmenuButton(menu, addon.L["Faction"]);
         mb:CreateCheckbox(faction, addon.L["Neutral"], filters, {"Faction", "Neutral"}, true);

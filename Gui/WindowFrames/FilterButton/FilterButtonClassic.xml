@@ -1,6 +1,8 @@
 <Ui>
-    <Script file="FilterButton.lua"/>
-    <Script file="FilterButtonMixin.lua"/>
+	<Script file="FilterButton.lua"/>
+	<Script file="FilterButtonRewardTypes.lua"/>
+	<Script file="FilterButtonBuildVersions.lua"/>
+	<Script file="FilterButtonMixin.lua"/>
 
 	<DropDownToggleButton name="KrowiAF_AchievementFrameFilterButton_Template" mixin="KrowiAF_AchievementFrameFilterButtonMixin" inherits="UIMenuButtonStretchTemplate" text="FILTER" virtual="true" hidden="true">
 		<Size x="116" y="22"/>
