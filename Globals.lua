@@ -31,8 +31,6 @@ function addon.GetActiveCovenant()
 end
 
 function addon.GetAchievementsInZone(mapID, getAll)
-    addon.Diagnostics.Trace("addon.GetAchievementsInZone");
-
     -- Differentiate between 10 and 25 man raids and Normal and Heroic raids
     local player10 = GetDifficultyInfo(3); -- 10 player
     local player10Hc = GetDifficultyInfo(5); -- 10 player

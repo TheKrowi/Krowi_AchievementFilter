@@ -4,11 +4,16 @@ local UpdateAddOnMemoryUsage = _G.UpdateAddOnMemoryUsage;
 local GetAddOnMemoryUsage = _G.GetAddOnMemoryUsage;
 local unpackSafe = table.unpack or unpack;
 
+local SAMPLE_MEM = false; -- Set true when you explicitly want memory deltas
+
 local function ProfileSection(label, fn, ...)
 	local startMem;
-	if UpdateAddOnMemoryUsage and GetAddOnMemoryUsage then
+	local memTime = 0;
+	if SAMPLE_MEM and UpdateAddOnMemoryUsage and GetAddOnMemoryUsage then
+		local memStart = debugprofilestop();
 		UpdateAddOnMemoryUsage();
 		startMem = GetAddOnMemoryUsage(addonName);
+		memTime = memTime + (debugprofilestop() - memStart);
 	end
 
 	local startTime = debugprofilestop();
@@ -16,13 +21,15 @@ local function ProfileSection(label, fn, ...)
 	local elapsed = debugprofilestop() - startTime;
 
 	local deltaMem;
-	if startMem then
+	if SAMPLE_MEM and startMem then
+		local memStart = debugprofilestop();
 		UpdateAddOnMemoryUsage();
 		deltaMem = (GetAddOnMemoryUsage(addonName) or startMem) - startMem;
+		memTime = memTime + (debugprofilestop() - memStart);
 	end
 
 	if addon.Diagnostics and addon.Diagnostics.Trace then
-		addon.Diagnostics.Trace(string.format("[Profile] %s: %.1f ms, %+0.1f KB", label, elapsed, deltaMem or 0));
+		addon.Diagnostics.Trace(string.format("[Profile] %s: %.1f ms%s", label, elapsed, SAMPLE_MEM and string.format(", %+0.1f KB (mem %.1f ms)", deltaMem or 0, memTime) or ""));
 	end
 
 	return unpackSafe(results);
@@ -94,7 +101,9 @@ function KrowiAF_CategoriesFrameMixin:OnShow()
 		self:SetRightPoint();
 		AchievementFrameCategories:Hide();
 		AchievementFrameWaterMark:SetTexture(addon.Gui.SelectedTab and addon.Gui.SelectedTab.WaterMark or "Interface/AchievementFrame/UI-Achievement-AchievementWatermark");
-		self:Update(addon.AchievementEarnedUpdateCategoriesFrameOnNextShow);
+		ProfileSection("CategoriesFrame:OnShow:Update", function()
+			self:Update(addon.AchievementEarnedUpdateCategoriesFrameOnNextShow);
+		end);
 		addon.AchievementEarnedUpdateCategoriesFrameOnNextShow = nil;
 		RestoreScrollPosition(self);
 	end);
@@ -165,20 +174,20 @@ function KrowiAF_CategoriesFrameMixin:Update(getAchNums, retainScrollPosition)
 
 	-- Ensure current zone categories have up-to-date achievements before counting
 	addon.Data.GetCurrentZoneAchievements();
-	
-	ProfileSection("CategoriesFrame:Update:Collect", function()
-		for _, category in next, categories do
-			GetDisplayCategories(displayCategories, category, getAchNums, stats);
-		end
-	end);
+
+	for _, category in next, categories do
+		GetDisplayCategories(displayCategories, category, getAchNums, stats);
+	end
 	if addon.Diagnostics and addon.Diagnostics.Trace then
 		addon.Diagnostics.Trace(string.format("[Profile] CategoriesFrame:Update:CollectStats processed=%d added=%d getNums=%d time=%.1f ms", stats.Processed, stats.Added, stats.GetNumsCalls, stats.GetNumsTime));
 	end
 	if not addon.Util.TableFindKeyByValue(displayCategories, selectedTab.SelectedCategory) then
 		selectedTab.SelectedCategory = displayCategories[1];
-		selectedTab:ShowSubFrames();
+		ProfileSection("CategoriesFrame:Update:ShowSubFrames", function()
+			selectedTab:ShowSubFrames();
+		end);
 	end
-	ProfileSection("CategoriesFrame:Update:SetDataProvider", UpdateDataProvider, self, displayCategories, retainScrollPosition);
+	UpdateDataProvider(self, displayCategories, retainScrollPosition);
 end
 
 local function OpenCloseCategory(targetCategory, category)

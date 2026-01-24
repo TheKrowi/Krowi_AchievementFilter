@@ -1,32 +1,5 @@
 local _, addon = ...;
-local addonName = addon.Metadata and addon.Metadata.AddonName or "Krowi_AchievementFilter";
-local UpdateAddOnMemoryUsage = _G.UpdateAddOnMemoryUsage;
-local GetAddOnMemoryUsage = _G.GetAddOnMemoryUsage;
-local unpackSafe = table.unpack or unpack;
-
-local function ProfileSection(label, fn, ...)
-    local startMem;
-    if UpdateAddOnMemoryUsage and GetAddOnMemoryUsage then
-        UpdateAddOnMemoryUsage();
-        startMem = GetAddOnMemoryUsage(addonName);
-    end
-
-    local startTime = debugprofilestop();
-    local results = {fn(...)};
-    local elapsed = debugprofilestop() - startTime;
-
-    local deltaMem;
-    if startMem then
-        UpdateAddOnMemoryUsage();
-        deltaMem = (GetAddOnMemoryUsage(addonName) or startMem) - startMem;
-    end
-
-    if addon.Diagnostics and addon.Diagnostics.Trace then
-        addon.Diagnostics.Trace(string.format("[Profile] %s: %.1f ms, %+0.1f KB", label, elapsed, deltaMem or 0));
-    end
-
-    return unpackSafe(results);
-end
+-- No profiling needed here; SummaryFrame paths are lightweight
 
 KrowiAF_SummaryFrameMixin = {};
 
@@ -108,11 +81,9 @@ function KrowiAF_SummaryFrameMixin:OnEvent(event)
 end
 
 function KrowiAF_SummaryFrameMixin:OnShow()
-    ProfileSection("SummaryFrame:OnShow", function()
-        self:RegisterEvent("ACHIEVEMENT_EARNED");
-        self:Update(addon.AchievementEarnedUpdateSummaryFrameOnNextShow and "ACHIEVEMENT_EARNED" or nil);
-        addon.AchievementEarnedUpdateSummaryFrameOnNextShow = nil;
-    end);
+    self:RegisterEvent("ACHIEVEMENT_EARNED");
+    self:Update(addon.AchievementEarnedUpdateSummaryFrameOnNextShow and "ACHIEVEMENT_EARNED" or nil);
+    addon.AchievementEarnedUpdateSummaryFrameOnNextShow = nil;
 end
 
 function KrowiAF_SummaryFrameMixin:OnHide()
