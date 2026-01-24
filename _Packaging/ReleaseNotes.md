@@ -29,3 +29,6 @@
 ### Fixed (93.4)
 - Sort by and Earned by should once again be working
 - First attempt on improving performance after pre-patch
+
+### Changed (93.5)
+- Improved caching and performance
