@@ -1,9 +1,35 @@
 local addonName, addon = ...;
+local UpdateAddOnMemoryUsage = _G.UpdateAddOnMemoryUsage;
+local GetAddOnMemoryUsage = _G.GetAddOnMemoryUsage;
 addon.Gui = {
     Tabs = {},
     SubFrames = {}
 };
 local gui = addon.Gui;
+local unpackSafe = table.unpack or unpack;
+local function ProfileSection(label, fn, ...)
+    local startMem;
+    if UpdateAddOnMemoryUsage and GetAddOnMemoryUsage then
+        UpdateAddOnMemoryUsage();
+        startMem = GetAddOnMemoryUsage(addonName);
+    end
+
+    local startTime = debugprofilestop();
+    local results = {fn(...)};
+    local elapsed = debugprofilestop() - startTime;
+
+    local deltaMem;
+    if startMem then
+        UpdateAddOnMemoryUsage();
+        deltaMem = (GetAddOnMemoryUsage(addonName) or startMem) - startMem;
+    end
+
+    if addon.Diagnostics and addon.Diagnostics.Trace then
+        addon.Diagnostics.Trace(string.format("[Profile] %s: %.1f ms, %+0.1f KB", label, elapsed, deltaMem or 0));
+    end
+
+    return unpackSafe(results);
+end
 
 local eventReminderSideButtonSystemIsLoaded;
 function gui:LoadWithAddon()
@@ -207,16 +233,18 @@ function gui:ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
         return;
     end
 
-    AchievementFrame_SetTabs();
-    AchievementFrame:Show();
+    ProfileSection("Toggle:SetTabs", AchievementFrame_SetTabs);
+    ProfileSection("Toggle:FrameShow", function()
+        AchievementFrame:Show();
+    end);
     if not addon.Util.IsClassicWithAchievements then
         AchievementFrame_HideSearchPreview();
     end
     if firstTimeLatch or not (not addon.Options.db.profile.ResetViewOnOpen and addon.Options.db.profile.ToggleWindow) or resetView or forceOpen then
-        SelectTab(self, _addonName, tabName);
+        ProfileSection("Toggle:SelectTab", SelectTab, self, _addonName, tabName);
     end
     if addon.Options.db.profile.ResetViewOnOpen or resetView then
-        ResetView();
+        ProfileSection("Toggle:ResetView", ResetView);
     end
     firstTimeLatch = nil;
 end
