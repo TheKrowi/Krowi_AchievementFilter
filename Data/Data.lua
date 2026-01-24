@@ -151,6 +151,8 @@ end
 
 local cachedZone;
 function data.GetCurrentZoneAchievements()
+	diagnostics.Trace("data.GetCurrentZoneAchievements");
+
     if #addon.SpecialCategories.CurrentZone == 0 then
         return;
     end

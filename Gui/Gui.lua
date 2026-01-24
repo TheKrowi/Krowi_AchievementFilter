@@ -7,10 +7,9 @@ addon.Gui = {
 };
 local gui = addon.Gui;
 local unpackSafe = table.unpack or unpack;
-local SAMPLE_MEM = false; -- Enable only when you need memory deltas
 local function ProfileSection(label, fn, ...)
     local startMem;
-    if SAMPLE_MEM and UpdateAddOnMemoryUsage and GetAddOnMemoryUsage then
+    if UpdateAddOnMemoryUsage and GetAddOnMemoryUsage then
         UpdateAddOnMemoryUsage();
         startMem = GetAddOnMemoryUsage(addonName);
     end
@@ -20,13 +19,13 @@ local function ProfileSection(label, fn, ...)
     local elapsed = debugprofilestop() - startTime;
 
     local deltaMem;
-    if SAMPLE_MEM and startMem then
+    if startMem then
         UpdateAddOnMemoryUsage();
         deltaMem = (GetAddOnMemoryUsage(addonName) or startMem) - startMem;
     end
 
     if addon.Diagnostics and addon.Diagnostics.Trace then
-        addon.Diagnostics.Trace(string.format("[Profile] %s: %.1f ms%s", label, elapsed, SAMPLE_MEM and string.format(", %+0.1f KB", deltaMem or 0) or ""));
+        addon.Diagnostics.Trace(string.format("[Profile] %s: %.1f ms, %+0.1f KB", label, elapsed, deltaMem or 0));
     end
 
     return unpackSafe(results);
@@ -214,33 +213,10 @@ local function ResetView()
 end
 
 local firstTimeLatch = true;
-local function WrapAchievementFrameOnShowForProfiling()
-    local onShow = AchievementFrame:GetScript("OnShow");
-    if onShow and not AchievementFrame.KAF_OnShowProfileWrapped then
-        AchievementFrame:SetScript("OnShow", function(frame, ...)
-            ProfileSection("AchievementFrame:OnShow", onShow, frame, ...);
-        end);
-        AchievementFrame.KAF_OnShowProfileWrapped = true;
-    end
-end
-
-local function WrapAchievementFrameShowSubFrame()
-    if AchievementFrame_ShowSubFrame and not AchievementFrame.KAF_ShowSubFrameProfileWrapped then
-        local orig = AchievementFrame_ShowSubFrame;
-        AchievementFrame_ShowSubFrame = function(...)
-            return ProfileSection("AchievementFrame:ShowSubFrame", orig, ...);
-        end
-        AchievementFrame.KAF_ShowSubFrameProfileWrapped = true;
-    end
-end
-
 function gui:ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -- Issue #26 Broken, Fix
     if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
         C_AddOns.LoadAddOn("Blizzard_AchievementUI");
     end
-
-    WrapAchievementFrameOnShowForProfiling();
-    WrapAchievementFrameShowSubFrame();
 
     AchievementFrameComparison:Hide();
     AchievementFrameTab_OnClick = AchievementFrameBaseTab_OnClick;
@@ -257,7 +233,7 @@ function gui:ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
         return;
     end
 
-    AchievementFrame_SetTabs();
+    ProfileSection("Toggle:SetTabs", AchievementFrame_SetTabs);
     ProfileSection("Toggle:FrameShow", function()
         AchievementFrame:Show();
     end);
@@ -265,10 +241,10 @@ function gui:ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
         AchievementFrame_HideSearchPreview();
     end
     if firstTimeLatch or not (not addon.Options.db.profile.ResetViewOnOpen and addon.Options.db.profile.ToggleWindow) or resetView or forceOpen then
-        SelectTab(self, _addonName, tabName);
+        ProfileSection("Toggle:SelectTab", SelectTab, self, _addonName, tabName);
     end
     if addon.Options.db.profile.ResetViewOnOpen or resetView then
-        ResetView();
+        ProfileSection("Toggle:ResetView", ResetView);
     end
     firstTimeLatch = nil;
 end

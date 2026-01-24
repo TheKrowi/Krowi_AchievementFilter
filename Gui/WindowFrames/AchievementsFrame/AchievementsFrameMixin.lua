@@ -4,10 +4,9 @@ local UpdateAddOnMemoryUsage = _G.UpdateAddOnMemoryUsage;
 local GetAddOnMemoryUsage = _G.GetAddOnMemoryUsage;
 local unpackSafe = table.unpack or unpack;
 
-local SAMPLE_MEM = false; -- Enable when memory deltas are needed
 local function ProfileSection(label, fn, ...)
 	local startMem;
-	if SAMPLE_MEM and UpdateAddOnMemoryUsage and GetAddOnMemoryUsage then
+	if UpdateAddOnMemoryUsage and GetAddOnMemoryUsage then
 		UpdateAddOnMemoryUsage();
 		startMem = GetAddOnMemoryUsage(addonName);
 	end
@@ -17,13 +16,13 @@ local function ProfileSection(label, fn, ...)
 	local elapsed = debugprofilestop() - startTime;
 
 	local deltaMem;
-	if SAMPLE_MEM and startMem then
+	if startMem then
 		UpdateAddOnMemoryUsage();
 		deltaMem = (GetAddOnMemoryUsage(addonName) or startMem) - startMem;
 	end
 
 	if addon.Diagnostics and addon.Diagnostics.Trace then
-		addon.Diagnostics.Trace(string.format("[Profile] %s: %.1f ms%s", label, elapsed, SAMPLE_MEM and string.format(", %+0.1f KB", deltaMem or 0) or ""));
+		addon.Diagnostics.Trace(string.format("[Profile] %s: %.1f ms, %+0.1f KB", label, elapsed, deltaMem or 0));
 	end
 
 	return unpackSafe(results);
@@ -299,14 +298,12 @@ function KrowiAF_AchievementsFrameMixin:ForceUpdate()
 		end
 	end
 
-	ProfileSection("AchievementsFrame:ForceUpdate:Update", function()
-		local buttons = self.ScrollView:GetFrames();
-		for _, button in next, buttons do
-			button.Achievement = nil;
-		end
+	local buttons = self.ScrollView:GetFrames();
+	for _, button in next, buttons do
+		button.Achievement = nil;
+	end
 
-		self:Update();
-	end);
+	self:Update();
 
 	if selectedTab.SelectedAchievement then
 		self.ScrollBox:ScrollToElementData(selectedTab.SelectedAchievement, ScrollBoxConstants.AlignCenter, nil, ScrollBoxConstants.NoScrollInterpolation);
