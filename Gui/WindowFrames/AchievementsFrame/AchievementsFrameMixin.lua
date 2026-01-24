@@ -261,6 +261,10 @@ function KrowiAF_AchievementsFrameMixin:ForceUpdate()
 	end
 	updateOnNextShow = nil;
 
+	if selectedTab.SelectedCategory and selectedTab.SelectedCategory.IsCurrentZone then
+		addon.Data.GetCurrentZoneAchievements();
+	end
+
 	local buttons = self.ScrollView:GetFrames();
 	for _, button in next, buttons do
 		button.Achievement = nil;

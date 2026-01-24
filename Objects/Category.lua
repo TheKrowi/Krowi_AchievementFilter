@@ -80,6 +80,7 @@ function category:AddWatchedAchievement(achievement)
     self.Achievements = self.Achievements or {}; -- By creating the achievements table here we reduce memory usage because not every category has achievements
     achievement:AddWatchListCategory(self);
     tinsert(self.Achievements, achievement);
+	self.CountsDirty = true;
     return achievement;
 end
 
@@ -87,6 +88,7 @@ function category:AddExcludedAchievement(achievement)
     self.Achievements = self.Achievements or {}; -- By creating the achievements table here we reduce memory usage because not every category has achievements
     achievement:AddExcludedCategory(self);
     tinsert(self.Achievements, achievement);
+	self.CountsDirty = true;
     return achievement;
 end
 
@@ -104,10 +106,12 @@ end
 
 function category:RemoveWatchedAchievement(achievement)
     self:RemoveAchievement(achievement);
+	self.CountsDirty = true;
 end
 
 function category:RemoveExcludedAchievement(achievement)
     self:RemoveAchievement(achievement);
+	self.CountsDirty = true;
 end
 
 function category:GetTree()
@@ -146,11 +150,6 @@ function category:GetAchievementNumbers()
 
 	if not self then
 		return numOfAch, numOfCompAch, numOfNotObtAch;
-	end
-
-	if self.IsCurrentZone then
-		-- Refresh the current zone achievements here, otherwise category:GetAchievementNumbers might return 0
-		addon.Data.GetCurrentZoneAchievements();
 	end
 
 	self:UnMergeAchievements();
@@ -233,4 +232,5 @@ end
 
 function category:SetFlexibleData(value)
 	self.HasFlexibleData = value;
+	self.CountsDirty = value; -- Mark flexible categories dirty until first calculation
 end

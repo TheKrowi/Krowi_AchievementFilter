@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 93.5 - 2026-01-24
+### Changed
+- Improved caching and performance
+
 ## 93.4 - 2026-01-22
 ### Fixed
 - Sort by and Earned by should once again be working

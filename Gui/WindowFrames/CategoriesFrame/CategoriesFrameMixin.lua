@@ -78,12 +78,14 @@ end
 
 local function GetDisplayCategories(displayCategories, category, getAchNums)
 	if category.NotHidden or category.AlwaysVisible or category.HasFlexibleData then -- If already visible, keep visible
-		if (category.NumOfAch == nil or getAchNums or category.HasFlexibleData) and category.Parent.TabName ~= nil then
+		local needsCounts = (category.NumOfAch == nil) or getAchNums or (category.HasFlexibleData and category.CountsDirty);
+		if needsCounts and category.Parent.TabName ~= nil then
 			-- Huge increase over performance if we cache the achievement numbers and only update them when needed,
 			-- only for the top level categories since it works recursive
 			if category:GetAchievementNumbers() > 0 or category.AlwaysVisible then
 				tinsert(displayCategories, category);
 			end
+			category.CountsDirty = nil; -- counts refreshed
 		elseif category.NumOfAch > 0 or category.AlwaysVisible then
 			tinsert(displayCategories, category);
 		end
@@ -122,6 +124,9 @@ function KrowiAF_CategoriesFrameMixin:Update(getAchNums, retainScrollPosition)
     if not categories then
         return;
     end
+
+	addon.Data.GetCurrentZoneAchievements();
+
 	for _, category in next, categories do
 		GetDisplayCategories(displayCategories, category, getAchNums);
 	end
