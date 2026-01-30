@@ -134,7 +134,8 @@ addon.Options.Defaults = {
                         StartTimeAndEndTime = "%d/%m/%Y %R"
                     },
                     NumberOfLines = 5
-                }
+                },
+                ShowRewards = true
             },
             Criteria = {
                 Show = true,

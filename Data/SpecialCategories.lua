@@ -1,18 +1,18 @@
-local _, addon = ...;
-local data = addon.Data;
-addon.SpecialCategories = {};
-local specialCategories = addon.SpecialCategories;
+local _, addon = ...
+local data = addon.Data
+addon.SpecialCategories = {}
+local specialCategories = addon.SpecialCategories
 
 local function LoadAchievements(sourceTable, func)
     if sourceTable == nil or type(sourceTable) ~= "table" then
-        return;
+        return
     end
 
     for achievementId, _ in next, sourceTable do
         if data.Achievements[achievementId] then
-            func(data.Achievements[achievementId], false);
+            func(data.Achievements[achievementId], false)
         else -- This is to clean up achievements that are no longer in the dataset
-            sourceTable[achievementId] = nil;
+            sourceTable[achievementId] = nil
         end
     end
 end
@@ -23,9 +23,9 @@ local specialCategoriesMatrix = { -- Order of this list is important
         Text = addon.L["Summary"],
         Side = "TOP",
         PostLoad = function(category, index)
-            local value = addon.Options.db.profile.AdjustableCategories.Summary[index];
-            category:SetAlwaysVisible(value);
-            category.IsSummary = true;
+            local value = addon.Options.db.profile.AdjustableCategories.Summary[index]
+            category:SetAlwaysVisible(value)
+            category.IsSummary = true
         end,
         ShowByDefault = true
     },
@@ -34,12 +34,12 @@ local specialCategoriesMatrix = { -- Order of this list is important
         Text = addon.L["Watch List"],
         Side = "TOP",
         PostLoad = function(category)
-            category:SetFlexibleData(true);
-            category.IsWatchList = true;
+            category:SetFlexibleData(true)
+            category.IsWatchList = true
         end,
         LoadData = function()
-            addon.Data.SavedData.AchievementData.LoadWatchedAchievements();
-            addon.Diagnostics.Trace("Watched achievements loaded");
+            addon.Data.SavedData.AchievementData.LoadWatchedAchievements()
+            addon.Diagnostics.Trace("Watched achievements loaded")
         end
     },
     {
@@ -47,8 +47,8 @@ local specialCategoriesMatrix = { -- Order of this list is important
         Text = addon.L["Current Zone"],
         Side = "TOP",
         PostLoad = function(category)
-            category:SetFlexibleData(true);
-            category.IsCurrentZone = true;
+            category:SetFlexibleData(true)
+            category.IsCurrentZone = true
         end
     },
     {
@@ -56,8 +56,8 @@ local specialCategoriesMatrix = { -- Order of this list is important
         Text = addon.L["Selected Zone"],
         Side = "TOP",
         PostLoad = function(category)
-            category:SetFlexibleData(true);
-            category.IsSelectedZone = true;
+            category:SetFlexibleData(true)
+            category.IsSelectedZone = true
         end
     },
     {
@@ -65,7 +65,7 @@ local specialCategoriesMatrix = { -- Order of this list is important
         Text = addon.L["Search Results"],
         Side = "TOP",
         PostLoad = function(category)
-            category:SetFlexibleData(true);
+            category:SetFlexibleData(true)
         end
     },
     {
@@ -73,12 +73,12 @@ local specialCategoriesMatrix = { -- Order of this list is important
         Text = addon.L["Tracking Achievements"],
         Side = "BOTTOM",
         PostLoad = function(category)
-            category:SetFlexibleData(true);
-            category.IsTracking = true;
+            category:SetFlexibleData(true)
+            category.IsTracking = true
         end,
         LoadData = function()
-            LoadAchievements(addon.TrackingAchievements, addon.AddToTrackingAchievementsCategories);
-            addon.Diagnostics.Trace("Tracking achievements loaded");
+            LoadAchievements(addon.TrackingAchievements, addon.AddToTrackingAchievementsCategories)
+            addon.Diagnostics.Trace("Tracking achievements loaded")
         end
     },
     {
@@ -86,11 +86,11 @@ local specialCategoriesMatrix = { -- Order of this list is important
         Text = addon.L["Excluded"],
         Side = "BOTTOM",
         PostLoad = function(category)
-            category:SetFlexibleData(true);
+            category:SetFlexibleData(true)
         end,
         LoadData = function()
-            LoadAchievements(KrowiAF_SavedData.ExcludedAchievements, addon.ExcludeAchievement);
-            addon.Diagnostics.Trace("Excluded achievements loaded");
+            LoadAchievements(KrowiAF_SavedData.ExcludedAchievements, addon.ExcludeAchievement)
+            addon.Diagnostics.Trace("Excluded achievements loaded")
         end
     },
     {
@@ -98,36 +98,96 @@ local specialCategoriesMatrix = { -- Order of this list is important
         Text = addon.L["Uncategorized"],
         Side = "BOTTOM",
         PostLoad = function(category)
-            category:SetFlexibleData(true);
+            category:SetFlexibleData(true)
         end,
         LoadData = function()
-            LoadAchievements(addon.UncategorizedAchievements, addon.AddToUncategorizedAchievementsCategories);
-            addon.Diagnostics.Trace("Uncategorized achievements loaded");
+            LoadAchievements(addon.UncategorizedAchievements, addon.AddToUncategorizedAchievementsCategories)
+            addon.Diagnostics.Trace("Uncategorized achievements loaded")
         end
     },
-};
+    {
+        CategoryType = "RecentlyAdded",
+        Text = addon.L["Recently Added"],
+        LoadData = function()
+            local version = (GetBuildInfo())
+            local major, minor, patch = string.match(version, "(%d+)%.(%d+)%.?(%d*)")
+            patch = patch ~= nil and patch ~= "" and patch or 0
+            local currentBuildId = KrowiAF.GetBuildVersionId(tonumber(major), tonumber(minor), tonumber(patch))
+
+            for i = #data.AchievementIds, 1, -1 do
+                local achievement = data.Achievements[data.AchievementIds[i]]
+                if achievement and achievement.BuildVersion and achievement.BuildVersion.Id == currentBuildId then
+                    for _, category in next, specialCategories.RecentlyAdded do
+                        category:AddAchievement(achievement)
+                    end
+                end
+            end
+
+            for _, category in next, specialCategories.RecentlyAdded do
+                category:GetAchievementNumbers()
+            end
+        end,
+        ParentCategoryType = "Summary",
+    },
+    -- here
+    {
+        CategoryType = "CurrentlyAvailable",
+        Text = addon.L["Currently Obtainable"],
+        LoadData = function()
+            for i = #data.AchievementIds, 1, -1 do
+                local achievement = data.Achievements[data.AchievementIds[i]]
+                if achievement then
+                    local state = data.TemporaryObtainable:GetObtainableState(achievement)
+                    if state == "Current" then
+                        for _, category in next, specialCategories.CurrentlyAvailable do
+                            category:AddAchievement(achievement)
+                        end
+                    end
+                end
+            end
+
+            for _, category in next, specialCategories.CurrentlyAvailable do
+                category:GetAchievementNumbers()
+            end
+        end,
+        ParentCategoryType = "Summary",
+    },
+}
+
+local specialCategoryIds = {}
 
 local function AddCategory(id, specialCategory, categoryTypeTable, tab, categoryOrder)
-    data.Categories[id] = addon.Objects.Category:New(id, specialCategory.Text);
-    if specialCategory.Side == "TOP" then
-        data.Categories[tab.Category.Id]:InsertCategory(data.Categories[id], categoryOrder);
-    else
-        data.Categories[tab.Category.Id]:AddCategory(data.Categories[id]);
+    tinsert(specialCategoryIds[specialCategory.CategoryType], id)
+    specialCategoryIds[specialCategory.CategoryType][tab.Name] = id
+    data.Categories[id] = addon.Objects.Category:New(id, specialCategory.Text)
+    local parentCategoryId = tab.Category.Id
+    if specialCategory.ParentCategoryType then
+        local parentCategoryIds = specialCategoryIds[specialCategory.ParentCategoryType]
+        if parentCategoryIds then
+            parentCategoryId = parentCategoryIds[tab.Name] or parentCategoryId
+        end
     end
-    tinsert(categoryTypeTable, data.Categories[id]);
+    if specialCategory.Side == "TOP" then
+        data.Categories[parentCategoryId]:InsertCategory(data.Categories[id], categoryOrder)
+    else
+        data.Categories[parentCategoryId]:AddCategory(data.Categories[id])
+    end
+    tinsert(categoryTypeTable, data.Categories[id])
     if specialCategory.PostLoad then
-        specialCategory.PostLoad(data.Categories[id], #categoryTypeTable);
+        specialCategory.PostLoad(data.Categories[id], #categoryTypeTable)
     end
 end
 
 function specialCategories:Load()
-    local categoryOrder = 0;
+    local categoryOrder = 0
     for _, specialCategory in next, specialCategoriesMatrix do
-        specialCategories[specialCategory.CategoryType] = specialCategories[specialCategory.CategoryType] or {};
-        wipe(specialCategories[specialCategory.CategoryType]);
-        categoryOrder = categoryOrder + 1;
+        specialCategories[specialCategory.CategoryType] = specialCategories[specialCategory.CategoryType] or {}
+        wipe(specialCategories[specialCategory.CategoryType])
+        specialCategoryIds[specialCategory.CategoryType] = specialCategoryIds[specialCategory.CategoryType] or {}
+        wipe(specialCategoryIds[specialCategory.CategoryType])
+        categoryOrder = categoryOrder + 1
         for _, tabName in next, addon.TabsOrder do
-            AddCategory(data.GetNextFreeCategoryId(), specialCategory, specialCategories[specialCategory.CategoryType], addon.Tabs[tabName], categoryOrder);
+            AddCategory(data.GetNextFreeCategoryId(), specialCategory, specialCategories[specialCategory.CategoryType], addon.Tabs[tabName], categoryOrder)
         end
     end
 end
@@ -142,7 +202,7 @@ function specialCategories.InjectDynamicOptions()
                 tabName,
                 addon.Tabs[tabName].Text,
                 specialCategory.ShowByDefault or tabName == "Specials"
-            );
+            )
         end
     end
 end
@@ -150,7 +210,7 @@ end
 function specialCategories.LoadData()
     for _, specialCategory in next, specialCategoriesMatrix do
         if specialCategory.LoadData then
-            specialCategory.LoadData();
+            specialCategory.LoadData()
         end
     end
 end

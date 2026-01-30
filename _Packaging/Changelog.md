@@ -1,6 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 93.6 - 2026-01-31
+### Added
+- zhTW localization
+- Achievement: It's Nearly Midnight
+- Under Summary, 2 new dynamically generated categories are added to display Recently Added achievements (current expansion) and Currently Obtainable achievements
+
+### Changed
+- Bottle Service (Season 2) flagged as obtainable again
+
+### Fixed
+- Potential fix for `attempt to perform arithmetic on a secret value` error
+- Error when clicking on an event reminder for upcoming events without achievements
+
 ## 93.5 - 2026-01-24
 ### Changed
 - Improved caching and performance

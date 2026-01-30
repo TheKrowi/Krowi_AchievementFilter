@@ -32,3 +32,15 @@
 
 ### Changed (93.5)
 - Improved caching and performance
+
+### Added (93.6)
+- zhTW localization
+- Achievement: It's Nearly Midnight
+- Under Summary, 2 new dynamically generated categories are added to display Recently Added achievements (current expansion) and Currently Obtainable achievements
+
+### Changed (93.6)
+- Bottle Service (Season 2) flagged as obtainable again
+
+### Fixed (93.6)
+- Potential fix for `attempt to perform arithmetic on a secret value` error
+- Error when clicking on an event reminder for upcoming events without achievements

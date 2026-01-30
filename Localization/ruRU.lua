@@ -6,7 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-01-24 17-48-34 ]] --
+-- [[ Exported at 2026-01-30 20-48-18 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -17,6 +17,7 @@ L["10th Anniversary"] = "10я Годовщина "
 L["450 skill"] = "Уровень навыка 450"
 L["525 skill"] = "Уровень навыка  525"
 L["600 skill"] = "Уровень навыка  600"
+L["Abyss Anglers"] = "Глубинные рыболовы (РН)"
 L["Academy Ascent"] = "Подъем до академии"
 L["Account"] = "Аккаунт"
 L["Account wide (default)"] = "Аккаунт (по умолчанию)"
@@ -325,6 +326,7 @@ L["Grow direction Desc"] = "Направление, в котором будут
 L["Guardians of the Dream"] = "Стражи Сна"
 L["Guides"] = "Гайды"
 L["Hallow's End"] = "Тыквовин"
+L["Hard"] = "Сложно"
 L["Has Reward"] = "Имеет награду"
 L["Header"] = "Заголовок"
 L["Header tooltip"] = "Подсказка Заголовка"
@@ -368,6 +370,7 @@ L["Keep current character"] = "Сохранять текущий символ"
 L["Keep current character Desc"] = "Сохраняйте текущий символ в списке символов во всплывающей подсказке независимо от того, будет ли символ удален из списка с помощью {maxNumChar} или нет."
 L["Keybindings Desc"] = [=[Изменение привязки клавиш для {addonName}, выберите вкладку игры сверху слева этого окна. Затем выберите категорию {keybindings} слева.
 Напоследок выберите АддОны справа.]=]
+L["KeystoneResilience"] = "КлючаПрочность (РН)"
 L["Kyrian Assault"] = "Атака кирий"
 L["Landfall"] = "Оползень"
 L["Layout"] = "Слои"
@@ -439,6 +442,7 @@ L["Next from startDate until endDate"] = "Следущая с {startDate} до {
 L["Next occurrence unknown"] = "Следущее неизвестно"
 L["Night Fae Assault"] = "Атака ночного народца"
 L["Nightfall"] = "Сумерки"
+L["Nightmare"] = "Кошмар"
 L["Nitun"] = "Нитун"
 L["No achievements are available with the current set of filters"] = "Нет достижений удовлетворяющих данным фильтрам"
 L["No category selected"] = "Не выделена категория"
@@ -585,6 +589,7 @@ L["Search Results"] = "Результаты Поиска"
 L["Search Rewards"] = "Награды Поиска"
 L["Searing Gorge"] = "Тлеющее ущелье"
 L["Season"] = "Сезон"
+L["Seasonal"] = "Сезонное"
 L["Second column threshold"] = "Лимит второго столбца"
 L["Second column threshold Desc"] = "Достижения с большим количеством критерий чем это число будут отображаться в два столбца а не в один."
 L["Secrets of Azeroth"] = "Тайны Азерота"
@@ -713,6 +718,7 @@ L["Temporarily obtainable Header Colors Desc"] = "Когда включено, �
 L["Temporarily Obtainable Text"] = "{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}"
 L["Thaldraszus"] = "Тальдразус"
 L["Thaldraszus: Next"] = "Тальдразус: Следущее"
+L["The Arcantina"] = "Тайная таверна"
 L["The Azure Span"] = "Лазурный Простор"
 L["The Azure Span Slalom"] = "Лазурный слалом"
 L["The Azure Span Sprint"] = "Лазурный марафон"

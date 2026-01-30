@@ -1277,6 +1277,7 @@ KrowiAF.AchievementData["07_00_03"] = {
         11065,
         {
             {"Until", "Version", {7, 0, 3}},
+            {"Event", 1640},
         },
     },
     { -- Underbelly Tycoon

@@ -1,32 +1,36 @@
-local _, addon = ...;
-local section = {};
-tinsert(addon.Gui.RightClickMenu.AchievementMenu:GetLastSection().Sections, section);
+local _, addon = ...
+local section = {}
+tinsert(addon.Gui.RightClickMenu.AchievementMenu:GetLastSection().Sections, section)
 
-local firstAchievement;
+local firstAchievement
 function section:CheckAdd(achievement)
-    local id = addon.GetFirstAchievementId(achievement.Id);
-    firstAchievement = addon.Data.Achievements[id];
-    return firstAchievement.NextAchievements ~= nil;
+    local id = addon.GetFirstAchievementId(achievement.Id)
+    firstAchievement = addon.Data.Achievements[id]
+    return firstAchievement.NextAchievements ~= nil
 end
 
+local getFactionName
 local function AddPartOfAChainAchievement(menu, id, nameSuffix)
-	addon.Gui.RightClickMenu.AchievementMenu:AddGoToAchievementLine(menu, id, nameSuffix);
-	local achievement = addon.Data.Achievements[id];
-	local nextAchievements = achievement.NextAchievements;
+	addon.Gui.RightClickMenu.AchievementMenu:AddGoToAchievementLine(menu, id, nameSuffix)
+	local achievement = addon.Data.Achievements[id]
+	local nextAchievements = achievement.NextAchievements
 	if nextAchievements == nil then
-		return;
+		return
+	end
+	if not getFactionName then
+		getFactionName = EnumUtil.GenerateNameTranslation(KrowiAF.Enum.Faction)
 	end
 	for nextId, _ in next, nextAchievements do
 		if achievement.NumNextAchievements > 1 and addon.Data.Achievements[nextId].Faction then
-			nameSuffix = " (";
-			nameSuffix = nameSuffix .. addon.L[EnumUtil.GenerateNameTranslation(KrowiAF.Enum.Faction)(addon.Data.Achievements[nextId].Faction)];
-			nameSuffix = nameSuffix .. ")";
+			nameSuffix = " ("
+			nameSuffix = nameSuffix .. addon.L[getFactionName(addon.Data.Achievements[nextId].Faction)]
+			nameSuffix = nameSuffix .. ")"
 		end
-		AddPartOfAChainAchievement(menu, nextId, nameSuffix);
+		AddPartOfAChainAchievement(menu, nextId, nameSuffix)
 	end
 end
 
 function section:Add(menu, achievement, menuBuilder)
-	menuBuilder:CreateTitle(menu, addon.L["Part of a chain"]);
-    AddPartOfAChainAchievement(menu, firstAchievement.Id);
+	menuBuilder:CreateTitle(menu, addon.L["Part of a chain"])
+    AddPartOfAChainAchievement(menu, firstAchievement.Id)
 end

@@ -1,5 +1,5 @@
-local _, addon = ...;
-local shared = addon.Data.CategoryData.Shared;
+local _, addon = ...
+local shared = addon.Data.CategoryData.Shared
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
     addon.GetCategoryInfoTitle(15542),
@@ -793,10 +793,11 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
         }
     },
     {
+        62387, -- It's Nearly Midnight
         41805, -- Arator's Journey
         42117, -- The War of Light and Shadow
         60891, -- The Crimson Rogue
         62191, -- Call of the Light
         61839, -- Midnight Pathfinder (Reward: Steady Flight unlocked within Midnight, Finery Funds)
     }
-});
+})
