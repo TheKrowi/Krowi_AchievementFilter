@@ -187,6 +187,7 @@ function addon.AddToTrackingAchievementsCategories(achievement, update)
         if addon.Options.db.profile.AdjustableCategories.TrackingAchievements[i] then
             local trackingAchievementsCategory = AddTrackingAchievementsCategoriesTree(addon.SpecialCategories.TrackingAchievements[i], achievement);
             trackingAchievementsCategory:AddAchievement(achievement);
+            trackingAchievementsCategory.CountsDirty = true;
         end
     end
     if update ~= false then
@@ -198,7 +199,9 @@ end
 function addon.AddToUncategorizedAchievementsCategories(achievement, update)
     for i = 1, #addon.SpecialCategories.Uncategorized do
         if addon.Options.db.profile.AdjustableCategories.Uncategorized[i] then
-            addon.SpecialCategories.Uncategorized[i]:AddAchievement(achievement);
+            local category = addon.SpecialCategories.Uncategorized[i];
+            category:AddAchievement(achievement);
+            category.CountsDirty = true;
         end
     end
     if update ~= false then

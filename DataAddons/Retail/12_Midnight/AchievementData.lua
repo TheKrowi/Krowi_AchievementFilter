@@ -1877,4 +1877,11 @@ KrowiAF.AchievementData["12_00_00"] = {
     {62270}, -- Altar of Blessings: One for Altar
     {62271}, -- Abyss Anglers: Trench Berserker
     {62272}, -- Abyss Anglers: Certified Depthdiver
+    { -- It's Nearly Midnight (Decor Reward: Miniature Replica Dark Portal)
+        62387,
+        {
+            RewardType = rewardType.HousingDecor,
+            {"Before", "Version", {12, 0, 1}},
+        },
+    },
 };

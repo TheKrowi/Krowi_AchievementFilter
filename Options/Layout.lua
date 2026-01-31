@@ -1278,6 +1278,17 @@ local achievementsOptions = {
                             get = function() return addon.Options.db.profile.Tooltip.Achievements.ShowAddedInVersion; end,
                             set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.ShowAddedInVersion = value; end
                         },
+                        Rewards = {
+                            order = OrderPP(), type = "header",
+                            name = addon.L["Rewards"]
+                        },
+                        ShowRewards = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
+                            name = addon.L["Show Rewards"]:K_ReplaceVars(addon.L["Rewards"]),
+                            desc = addon.L["Show Rewards Desc"]:K_ReplaceVars(addon.L["Rewards"]):KAF_AddDefaultValueText("Tooltip.Achievements.ShowRewards"),
+                            get = function() return addon.Options.db.profile.Tooltip.Achievements.ShowRewards; end,
+                            set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.ShowRewards = value; end
+                        },
                         PartOfAChain = {
                             order = OrderPP(), type = "header",
                             name = addon.L["Part of a chain"]

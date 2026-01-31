@@ -17,5 +17,8 @@
     <Script file="zhCN.lua" />
     <Script file="zhCN.WrathClassic.lua" />
     <Script file="zhCN.Plugins.lua" />
+    <Script file="zhTW.lua" />
+    <Script file="zhTW.WrathClassic.lua" />
+    <Script file="zhTW.Plugins.lua" />
     <Script file="Shared.lua" />
 </Ui>

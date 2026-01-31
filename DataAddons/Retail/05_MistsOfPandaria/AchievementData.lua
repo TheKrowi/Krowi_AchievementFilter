@@ -1505,6 +1505,7 @@ KrowiAF.AchievementData["05_01_00"] = {
         7944,
         {
             {"From", "Version", {6, 0, 3}, "Before", "Version", {7, 0, 3}},
+            {"From", "Version", {11, 2, 7}}
         },
     },
     { -- Haters Gonna Hate (Season 2)

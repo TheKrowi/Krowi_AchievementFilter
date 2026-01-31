@@ -22,3 +22,28 @@
 
 ### Fixed (93.2)
 - Error: attempt to perform string conversion on a secret value
+
+### Mists Classic (93.3)
+- Fixed Error: attempt to call global 'issecretvalue' (a nil value)
+
+### Fixed (93.4)
+- Sort by and Earned by should once again be working
+- First attempt on improving performance after pre-patch
+
+### Changed (93.5)
+- Improved caching and performance
+
+### Added (93.6)
+- zhTW localization
+- Achievement: It's Nearly Midnight
+- Under Summary, 2 new dynamically generated categories are added to display Recently Added achievements (current expansion) and Currently Obtainable achievements
+
+### Changed (93.6)
+- Bottle Service (Season 2) flagged as obtainable again
+
+### Fixed (93.6)
+- Error: attempt to perform arithmetic on a secret value
+- Error when clicking on an event reminder for upcoming events without achievements
+
+### Fixed (93.7)
+- Error: table index is secret

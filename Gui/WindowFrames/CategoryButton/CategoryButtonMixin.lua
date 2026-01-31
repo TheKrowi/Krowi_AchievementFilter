@@ -43,7 +43,7 @@ end
 local function SetLabel(self, category)
 	local children = category.Children;
 	local name = category.Name;
-	if children and #children > 0 and category.ShowCollapseIcon then
+	if children and #children > 0 and (category.ShowCollapseIcon or category.IsSummary) then
 		if category.NotCollapsed then
 			name = "- " .. name;
 		else

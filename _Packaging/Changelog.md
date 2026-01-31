@@ -1,6 +1,36 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 93.7 - 2026-01-31
+### Fixed
+- Error: table index is secret
+
+## 93.6 - 2026-01-31
+### Added
+- zhTW localization
+- Achievement: It's Nearly Midnight
+- Under Summary, 2 new dynamically generated categories are added to display Recently Added achievements (current expansion) and Currently Obtainable achievements
+
+### Changed
+- Bottle Service (Season 2) flagged as obtainable again
+
+### Fixed
+- Error: attempt to perform arithmetic on a secret value
+- Error when clicking on an event reminder for upcoming events without achievements
+
+## 93.5 - 2026-01-24
+### Changed
+- Improved caching and performance
+
+## 93.4 - 2026-01-22
+### Fixed
+- Sort by and Earned by should once again be working
+- First attempt on improving performance after pre-patch
+
+## 93.3 - 2026-01-21
+### Mists Classic
+- Fixed Error: attempt to call global 'issecretvalue' (a nil value)
+
 ## 93.2 - 2026-01-21
 ### Fixed
 - Error: attempt to perform string conversion on a secret value

@@ -604,7 +604,7 @@ theWarWithin.MythicPlus = {
     { -- Season 3
         addon.L["Season"] .. " " .. 3,
         {
-            addon.L["Keystone Resilience"],
+            addon.L["KeystoneResilience"],
             true,
             {
                 42149, -- The War Within Season 3: Resilient Keystone 12
@@ -672,7 +672,7 @@ midnight.MythicPlus = {
     { -- Season 1
         addon.L["Season"] .. " " .. 1,
         {
-            addon.L["Keystone Resilience"],
+            addon.L["KeystoneResilience"],
             true,
             {
                 61233, -- Midnight Season 1: Resilient Keystone 12

@@ -5,7 +5,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-01-18 23-13-01 ]] --
+-- [[ Exported at 2026-01-31 00-00-19 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -57,7 +57,7 @@ L["Add to Watch List"] = "Add to {watchList}"
 L["Added in version"] = true
 L["Adjustable Categories"] = true
 L["Aki the Chosen"] = true
-L["Allied Race"] = true
+L["AlliedRace"] = "Allied Race"
 L["Alt"] = true
 L["Always Show Completed"] = true
 L["Always show realm"] = true
@@ -208,6 +208,7 @@ L["Cross-Expansion"] = true
 L["Ctrl"] = true
 L["Current Obtainable"] = true
 L["Current Zone"] = true
+L["Currently Obtainable"] = true
 L["Custom"] = true
 L["Dark Heart"] = true
 L["Darkmoon Faire"] = true
@@ -542,7 +543,7 @@ L["Holidays"] = true
 L["Horizontal position"] = true
 L["Horrific Visions Revisited"] = true
 L["Hour of Twilight"] = true
-L["Housing Decor"] = true
+L["HousingDecor"] = "Housing Decor"
 L["Icon Left click"] = "to open the Achievement window."
 L["Icon Right click"] = "for Options."
 L["ID"] = true
@@ -568,7 +569,7 @@ L["Ka'wi the Gorger"] = true
 L["Keep current character"] = true
 L["Keep current character Desc"] = "Keep the current character in the list of characters in the tooltip regardless if the character would be truncated from the list by the {maxNumChar} or not."
 L["Keybindings Desc"] = "To change keybindings for {addonName}, select the Game tab in the top left of this window. Then select the {keybindings} category on the left. Lastly select AddOns in the right view."
-L["Keystone Resilience"] = true
+L["KeystoneResilience"] = "Keystone Resilience"
 L["Kyrian Assault"] = true
 L["Landfall"] = true
 L["Layout"] = true
@@ -677,12 +678,12 @@ L["NONC"] = true
 L["None"] = true
 L["No-No"] = true
 L["Northrend Cup"] = true
-L["Not Categorized"] = true
 L["Not Earned By"] = true
 L["Not earned by:"] = true
 L["Not loaded"] = true
 L["Not Obtainable"] = true
 L["Not part of set"] = true
+L["NotCategorized"] = "Not Categorized"
 L["Number of Earned By characters"] = "Number of {earnedBy} characters"
 L["Number of Earned By characters Desc"] = [=[The number of characters that will be displayed that have earned the achievement.
 
@@ -785,8 +786,8 @@ L["Related Tab"] = true
 L["Related Tab Desc"] = "Adds an extra bit to the {wowheadLink} so another tab different than the default one will be selected."
 L["Remember frame position"] = "Remember {frame} position"
 L["Remember frame position Desc"] = "Remember the {frame} position. This will keep the {frame} in it's last known position the next time you log in."
-L["Remix Bronze"] = true
-L["Remix Infinite Knowledge"] = true
+L["RemixBronze"] = "Remix Bronze"
+L["RemixInfiniteKnowledge"] = "Remix Infinite Knowledge"
 L["Remove from Watch List"] = "Remove from {watchList}"
 L["Required for"] = true
 L["Requires"] = true
@@ -805,6 +806,7 @@ L["Reset view on open"] = true
 L["Reset view on open Desc"] = "Collapse all categories and select the summary."
 L["Return to the Forbidden Reach"] = true
 L["Reverse Sort"] = true
+L["Rewards"] = true
 L["Right"] = true
 L["Right Alt"] = true
 L["Right click"] = true
@@ -940,9 +942,9 @@ L["Show Required for Desc"] = [=[Show / hide {requiredFor}.
 
 When checked, the achievement that requires the selected achievement to be completed will be visible in the tooltip.]=]
 L["Show Rewards"] = true
-L["Show Rewards Desc"] = [=[Show / hide {rewards},
+L["Show Rewards Desc"] = [=[Show / hide {rewards}.
 
-When checked and if available, the {rewards} this achievement gives will be visible in the tooltip.]=]
+When checked, the reward types of the achievement will be visible in the tooltip.]=]
 L["Show Right Click Menu"] = "Show {rightClickMenu} button"
 L["Show Right Click Menu Desc"] = [=[Show / hide {rightClickMenu} button on each achievement.
 
@@ -1081,7 +1083,7 @@ L["Track achievement browsing history Desc"] = [=[When enabled, show a back and 
 This allows for the navigation of your browsing history of selected achievements just like your internet browser does for visited websites.]=]
 L["Tracking"] = true
 L["Tracking Achievements"] = true
-L["Trader's Tender"] = true
+L["TradersTender"] = "Trader's Tender"
 L["Trading Post"] = true
 L["Transmog Sets"] = true
 L["Truncate"] = true
@@ -1111,11 +1113,11 @@ L["Vol'dun"] = true
 L["Waking Shores"] = true
 L["Waking Shores: Next"] = true
 L["Warband Achievement"] = true
-L["Warband Campsite"] = true
 L["Warband Header Color"] = "{warband} Header Colors"
 L["Warband Header Color Desc"] = [=[When disabled, the default blue header color will be replaced by the default orange color.
 Recommended to enable {warbandIcon}.
 ]=]
+L["WarbandCampsite"] = "Warband Campsite"
 L["Warcraft III: Reforged"] = true
 L["Warcraft Rumble"] = true
 L["was"] = true

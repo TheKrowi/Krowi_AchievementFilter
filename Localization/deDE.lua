@@ -6,7 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-01-15 22-26-11 ]] --
+-- [[ Exported at 2026-01-30 20-48-07 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -57,7 +57,7 @@ L["Add to Watch List"] = "Zu {watchList} hinzufügen"
 L["Added in version"] = "Hinzugefügt mit Version"
 L["Adjustable Categories"] = "Anpassbare Kategorien"
 L["Aki the Chosen"] = "Aki die Auserwählte"
-L["Allied Race"] = "Verbündetes Volk"
+L["AlliedRace"] = "Verbündetes Volk"
 L["Alt"] = true
 L["Always Show Completed"] = "Erreichte Erfolge immer anzeigen"
 L["Always show realm"] = "Immer Realm anzeigen"
@@ -526,7 +526,7 @@ L["Holidays"] = "Feiertage"
 L["Horizontal position"] = "Horizontale Position"
 L["Horrific Visions Revisited"] = "Überarbeitete Verstörende Visionen"
 L["Hour of Twilight"] = "Die Stunde des Zwielichts"
-L["Housing Decor"] = "Behausungsdekorationen"
+L["HousingDecor"] = "Behausungsdekorationen"
 L["Icon Left click"] = "um das \"Erfolge\" Fenster zu öffnen."
 L["Icon Right click"] = "für die Optionen."
 L["ID"] = true
@@ -658,12 +658,12 @@ L["NONC"] = true
 L["None"] = "Keine"
 L["No-No"] = true
 L["Northrend Cup"] = "Northrend Pokal"
-L["Not Categorized"] = "Nicht kategorisiert"
 L["Not Earned By"] = "Nicht erzielt durch"
 L["Not earned by:"] = "Nicht erzielt durch:"
 L["Not loaded"] = "Nicht Geladen"
 L["Not Obtainable"] = "Nicht Verfügbar"
 L["Not part of set"] = "Nicht Teil des Transmog-Sets"
+L["NotCategorized"] = "Nicht kategorisiert"
 L["Number of Earned By characters"] = "Anzahl der {earnedBy} Charaktere"
 L["Number of Earned By characters Desc"] = [=[Die Anzahl der Charaktere, die angezeigt werden, die den Erfolg erlangt haben.
 
@@ -766,8 +766,8 @@ L["Related Tab"] = "Zugehöriger Tab"
 L["Related Tab Desc"] = "Fügt dem {wowheadLink} ein zusätzliches Bit hinzu, damit ein anderer Tab als der Standard-Tab ausgewählt werden kann."
 L["Remember frame position"] = "{frame} Position merken"
 L["Remember frame position Desc"] = "Die Position des {frame} wird gespeichert. Dadurch bleibt der {frame} bei der nächsten Anmeldung an seiner letzten bekannten Position."
-L["Remix Bronze"] = true
-L["Remix Infinite Knowledge"] = "Remix Ewige Forschung"
+L["RemixBronze"] = true
+L["RemixInfiniteKnowledge"] = "Remix Ewige Forschung"
 L["Remove from Watch List"] = "Von {watchList} löschen"
 L["Required for"] = "Wird benötigt für..."
 L["Requires"] = "Voraussetzung"
@@ -1038,7 +1038,7 @@ L["Track achievement browsing history"] = "Verfolgung des Erfolgs-Browsing-Verla
 L["Track achievement browsing history Desc"] = "Wenn diese Option aktiviert ist, wird in der Fensterüberschrift eine Schaltfläche zum Zurück- und Vorwärtsblättern angezeigt. Dies ermöglicht die Navigation durch den Browserverlauf ausgewählter Errungenschaften, so wie es Ihr Internetbrowser für besuchte Websites tut."
 L["Tracking"] = "Tracking-Erfolge"
 L["Tracking Achievements"] = "Tracking-Erfolge"
-L["Trader's Tender"] = "Händlerdevisen"
+L["TradersTender"] = "Händlerdevisen"
 L["Trading Post"] = "Handelsposten"
 L["Transmog Sets"] = "Transmog-Sets"
 L["Truncate"] = "Abschneiden"
@@ -1068,9 +1068,9 @@ L["Vol'dun"] = true
 L["Waking Shores"] = "Küste des Erwachens"
 L["Waking Shores: Next"] = "Küste des Erwachens: Nächstes Event"
 L["Warband Achievement"] = "Kriegsmeuten-Erfolg"
-L["Warband Campsite"] = "Kriegsmeute Lagerplatz"
 L["Warband Header Color"] = "{warband} Kopfzeilen Farbe"
 L["Warband Header Color Desc"] = "Wenn diese Option deaktiviert ist, wird die standardmäßige blaue Farbe der Kopfzeile durch eine orange Farbe ersetzt. In diesem Fall wird empfohlen das {warbandIcon} zu aktivieren."
+L["WarbandCampsite"] = "Kriegsmeute Lagerplatz"
 L["Warcraft III: Reforged"] = true
 L["Warcraft Rumble"] = true
 L["was"] = "war"

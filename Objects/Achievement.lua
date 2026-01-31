@@ -203,6 +203,13 @@ function achievement:SetTemporaryObtainableFromVersionToEnd(startInclusion, star
     tinsert(self.TemporaryObtainable, record);
 end
 
+function achievement:SetTemporaryObtainableStartOnly(startInclusion, startFunction, startValue)
+    local record = {};
+    self:SetTemporaryObtainableStart(record, startInclusion, startFunction, GetStartValue(startFunction, startValue));
+    self:SetTemporaryObtainableEnd(record, "Until", "Date", GetStartValue("Date", {2100, 1, 1}));
+    tinsert(self.TemporaryObtainable, record);
+end
+
 function achievement:SetTemporaryObtainableFull(startInclusion, startFunction, startValue, endInclusion, endFunction, endValue)
     local record = {};
     self:SetTemporaryObtainableStart(record, startInclusion, startFunction, GetStartValue(startFunction, startValue));
@@ -230,13 +237,19 @@ function achievement:SetTemporaryObtainable(startInclusion, startFunction, start
         return;
     end
 
-    -- Case 3: From version added - [startInclusion, startFunction, startValue]
-    if startInclusion and startFunction and startValue and not endInclusion then
+    -- Case 3: Only handle "Before" cutoff (temporary until a future version) - [Before, startFunction, startValue]
+    if startInclusion == "Before" and startFunction and startValue and not endInclusion then
         self:SetTemporaryObtainableFromVersionToEnd(startInclusion, startFunction, startValue);
         return;
     end
 
-    -- Case 4: Everything defined - [startInclusion, startFunction, startValue, endInclusion, endFunction, endValue]
+    -- Case 4: Open-ended start only - [startInclusion, startFunction, startValue]
+    if startInclusion and startFunction and startValue and not endInclusion then
+        self:SetTemporaryObtainableStartOnly(startInclusion, startFunction, startValue);
+        return;
+    end
+
+    -- Case 5: Everything defined - [startInclusion, startFunction, startValue, endInclusion, endFunction, endValue]
     if startInclusion and startFunction and startValue and endInclusion and endFunction and endValue then
         self:SetTemporaryObtainableFull(startInclusion, startFunction, startValue, endInclusion, endFunction, endValue);
         return;

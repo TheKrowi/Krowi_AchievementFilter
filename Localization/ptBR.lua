@@ -6,7 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-01-15 22-26-17 ]] --
+-- [[ Exported at 2026-01-30 20-48-14 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -41,7 +41,7 @@ L["Add addon name to world map icon"] = "Adicionar nome do addon ao ícone do ma
 L["Added in version"] = "Adicionado na versão"
 L["Adjustable Categories"] = "Categorias Ajustáveis"
 L["Aki the Chosen"] = "Aki, a Escolhida"
-L["Allied Race"] = "Raça Aliada"
+L["AlliedRace"] = "Raça Aliada"
 L["Alt"] = true
 L["Always show realm"] = "Sempre mostre o reino"
 L["Amathet"] = "Amatet"
@@ -358,7 +358,7 @@ L["Ti'un the Wanderer"] = "Ti'un, o Vagante"
 L["Tooltip"] = "Dica"
 L["Tracking"] = "Rastreando"
 L["Tracking Achievements"] = "Rastreando Conquistas"
-L["Trader's Tender"] = "Créditos do Comerciante"
+L["TradersTender"] = "Créditos do Comerciante"
 L["Trading Post"] = "Posto Comercial"
 L["Turbulent Timeways"] = "Percursos Temporais Turbulentos"
 L["Tutorial"] = true

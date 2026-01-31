@@ -440,7 +440,7 @@ local function SetCompletionState(self, achievement, completed, month, day, year
 	-- end
 
 	local earnedByFilter = addon.Filters.db.profile.EarnedBy;
-	if (earnedByFilter == addon.Filters.Account and completed or wasEarnedByMe) or (earnedByFilter == addon.Filters.CharacterAccount and completed and wasEarnedByMe) then
+	if (earnedByFilter == 'Account' and completed or wasEarnedByMe) or (earnedByFilter == 'CharacterAccount' and completed and wasEarnedByMe) then
 		self.Completed = true;
 		achievement.IsCompleted = true;
 		self.DateCompleted:SetText(FormatShortDate(day, month, year));
@@ -452,7 +452,7 @@ local function SetCompletionState(self, achievement, completed, month, day, year
 		end
 		return;
 	end
-	if (earnedByFilter == addon.Filters.CharacterAccount and completed and not wasEarnedByMe) then
+	if (earnedByFilter == 'CharacterAccount' and completed and not wasEarnedByMe) then
 		self.Completed = true;
 		achievement.IsCompleted = true;
 		self.DateCompleted:SetText(FormatShortDate(day, month, year));
@@ -654,7 +654,7 @@ function KrowiAF_AchievementButtonMixin:ToggleTracking()
 
 	local _, _, _, completed, _, _, _, _, _, _, _, _, wasEarnedByMe = GetAchievementInfo(id);
 	local earnedByFilter = addon.Filters.db.profile.EarnedBy;
-	if (earnedByFilter == addon.Filters.Account and completed or wasEarnedByMe) or (earnedByFilter == addon.Filters.CharacterAccount and completed and wasEarnedByMe) then
+	if (earnedByFilter == 'Account' and completed or wasEarnedByMe) or (earnedByFilter == 'CharacterAccount' and completed and wasEarnedByMe) then
 		UIErrorsFrame:AddMessage(ERR_ACHIEVEMENT_WATCH_COMPLETED, 1.0, 0.1, 0.1, 1.0);
 		SetAsTracked(self, false);
 		return;
