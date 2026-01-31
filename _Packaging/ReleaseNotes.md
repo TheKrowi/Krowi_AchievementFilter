@@ -42,5 +42,8 @@
 - Bottle Service (Season 2) flagged as obtainable again
 
 ### Fixed (93.6)
-- Potential fix for `attempt to perform arithmetic on a secret value` error
+- Error: attempt to perform arithmetic on a secret value
 - Error when clicking on an event reminder for upcoming events without achievements
+
+### Fixed (93.7)
+- Error: table index is secret

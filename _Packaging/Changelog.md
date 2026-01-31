@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 93.7 - 2026-01-31
+### Fixed
+- Error: table index is secret
+
 ## 93.6 - 2026-01-31
 ### Added
 - zhTW localization
@@ -11,7 +15,7 @@ All notable changes to this project will be documented in this file.
 - Bottle Service (Season 2) flagged as obtainable again
 
 ### Fixed
-- Potential fix for `attempt to perform arithmetic on a secret value` error
+- Error: attempt to perform arithmetic on a secret value
 - Error when clicking on an event reminder for upcoming events without achievements
 
 ## 93.5 - 2026-01-24
