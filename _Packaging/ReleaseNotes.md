@@ -47,3 +47,6 @@
 
 ### Fixed (93.7)
 - Error: table index is secret
+
+### Fixed (93.8)
+- Error: ADDON_ACTION_BLOCKED (dev note: apparently custom criteria is breaking stuff at random places. disabled this for now to resolve the errors)

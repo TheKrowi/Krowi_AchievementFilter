@@ -18,30 +18,30 @@ function KrowiAF.ReloadTrackedAchievements()
     end
 end
 
-local origGetAchievementCriteriaInfo = GetAchievementCriteriaInfo;
-GetAchievementCriteriaInfo = function(achievementId, criteriaIndex, countHidden)
-    if addon.Data.Achievements[achievementId] and addon.Data.Achievements[achievementId].GetCustomCriteria then
-        return addon.Data.Achievements[achievementId].GetCustomCriteria(criteriaIndex);
-    end
-    return origGetAchievementCriteriaInfo(achievementId, criteriaIndex, countHidden);
-end
-KrowiAF_origGetAchievementCriteriaInfo = origGetAchievementCriteriaInfo;
+-- local origGetAchievementCriteriaInfo = GetAchievementCriteriaInfo;
+-- GetAchievementCriteriaInfo = function(achievementId, criteriaIndex, countHidden)
+--     if addon.Data.Achievements[achievementId] and addon.Data.Achievements[achievementId].GetCustomCriteria then
+--         return addon.Data.Achievements[achievementId].GetCustomCriteria(criteriaIndex);
+--     end
+--     return origGetAchievementCriteriaInfo(achievementId, criteriaIndex, countHidden);
+-- end
+KrowiAF_origGetAchievementCriteriaInfo = GetAchievementCriteriaInfo;
 
-local origGetAchievementCriteriaInfoById = GetAchievementCriteriaInfoByID;
-GetAchievementCriteriaInfoByID = function(achievementId, criteriaId)
-    return origGetAchievementCriteriaInfoById(achievementId, criteriaId);
-end
-KrowiAF_origGetAchievementCriteriaInfoById = origGetAchievementCriteriaInfoById;
+-- local origGetAchievementCriteriaInfoById = GetAchievementCriteriaInfoByID;
+-- GetAchievementCriteriaInfoByID = function(achievementId, criteriaId)
+--     return origGetAchievementCriteriaInfoById(achievementId, criteriaId);
+-- end
+KrowiAF_origGetAchievementCriteriaInfoById = GetAchievementCriteriaInfoByID;
 
-local origGetAchievementNumCriteria = GetAchievementNumCriteria;
-GetAchievementNumCriteria = function(achievementId)
-    if addon.Data.Achievements[achievementId] and addon.Data.Achievements[achievementId].GetCustomCriteria then
-        return addon.Data.Achievements[achievementId].GetCustomCriteria();
-    else
-        return origGetAchievementNumCriteria(achievementId);
-    end
-end
-KrowiAF_origGetAchievementNumCriteria = origGetAchievementNumCriteria;
+-- local origGetAchievementNumCriteria = GetAchievementNumCriteria;
+-- GetAchievementNumCriteria = function(achievementId)
+--     if addon.Data.Achievements[achievementId] and addon.Data.Achievements[achievementId].GetCustomCriteria then
+--         return addon.Data.Achievements[achievementId].GetCustomCriteria();
+--     else
+--         return origGetAchievementNumCriteria(achievementId);
+--     end
+-- end
+KrowiAF_origGetAchievementNumCriteria = GetAchievementNumCriteria;
 
 if not addon.Util.IsMainline then
     return;
