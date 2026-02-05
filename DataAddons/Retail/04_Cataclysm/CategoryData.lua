@@ -608,6 +608,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             4924, -- Professional Cataclysmic Master
             4914, -- Working In the Heat
             18719, -- Cataclysmic Master of All
+            62360, -- Cataclysmic Lumberjack
             4918, -- Illustrious Grand Master Medic
             4915, -- More Skills to Pay the Bills
         },

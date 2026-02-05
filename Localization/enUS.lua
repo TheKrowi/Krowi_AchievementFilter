@@ -5,7 +5,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-01-31 00-00-19 ]] --
+-- [[ Exported at 2026-02-05 17-24-36 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -208,7 +208,6 @@ L["Cross-Expansion"] = true
 L["Ctrl"] = true
 L["Current Obtainable"] = true
 L["Current Zone"] = true
-L["Time Limited"] = true
 L["Custom"] = true
 L["Dark Heart"] = true
 L["Darkmoon Faire"] = true
@@ -1059,6 +1058,7 @@ L["Thunderstorms"] = true
 L["Tides of Vengeance"] = true
 L["Time display"] = true
 L["Time Left"] = true
+L["Time Limited"] = true
 L["Time Rift"] = true
 L["Time Rift: Active"] = true
 L["Time Rift: Next"] = true

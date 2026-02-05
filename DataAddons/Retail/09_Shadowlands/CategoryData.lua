@@ -700,6 +700,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
             14328, -- Professional Shadowlands Master
             14329, -- Working the Afterlife
             14330, -- Shadowlands Master of All
+            62365, -- Shadowy Lumberjack
         },
     },
     { -- Pet Battles

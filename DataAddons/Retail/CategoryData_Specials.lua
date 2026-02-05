@@ -1311,6 +1311,7 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             17305, -- Trading Post: Dragonflight
             19029, -- Lil' Maggz
             19031, -- Fyrn
+            62400, -- Craft Your World
         },
     },
     { -- Mythic+

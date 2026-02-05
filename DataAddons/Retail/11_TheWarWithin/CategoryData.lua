@@ -1105,6 +1105,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The War Within
             19409, -- Working Underground
             19515, -- Algari Master of Many
             19410, -- Algari Master of All
+            62369, -- The Lumberjack Within
         },
     },
     { -- Pet Battles

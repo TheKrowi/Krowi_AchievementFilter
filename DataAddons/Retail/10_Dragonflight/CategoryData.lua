@@ -1245,6 +1245,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             16627, -- Professional Draconic Master
             16626, -- Working with Wyrms
             16630, -- Draconic Master of All
+            62366, -- Draconic Lumberjack
         },
     },
     { -- Pet Battles

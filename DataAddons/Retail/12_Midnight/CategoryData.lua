@@ -42,10 +42,24 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                     61584, -- Midnight Glyph Hunter
                     61941, -- Abundance: Acolyte of a Glorious Entity
                     61943, -- Abundance: Prosperous Plentitude!
-                    42283, -- Abundance: Azeroth Runs on Dundun
                     62268, -- Abundance: Professionals Only
                     61681, -- Abundance: You Should See Him in a Crown
                     62266, -- Abundance: An Acolyte no Longer
+                    62324, -- Abundance: Loa of all Trades
+                    62333, -- Abundance: Harvester
+                    62336, -- Abundance: Contributer
+                    62337, -- Abundance: Professional
+                    62338, -- Abundance: Artisan
+                    62340, -- Abundance: Investor
+                    62339, -- Abundance: Gambler
+                    62325, -- Abundance: Treasures Aplenty
+                    62326, -- Abundance: Golden Opportunities
+                    62329, -- Abundance: Squash the Competition
+                    62330, -- Abundance: One Bite at a Time
+                    62331, -- Abundance: Drops of Prosperity
+                    62332, -- Abundance: Dundun's Favored
+                    42283, -- Abundance: Azeroth Runs on Dundun
+                    62341, -- Abundance: Ain't Dun Till It's Dun
                     62057, -- Midnight: The Highest Peaks
                     62104, -- Midnight Lore Hunter
                 },
@@ -98,6 +112,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                 {
                     61855, -- Explore Eversong Woods
                     61960, -- Treasures of Eversong Woods
+                    62288, -- Eversong Woods: The Highest Peaks
                     61507, -- A Bloody Song
                     61576, -- Eversong Woods Glyph Hunter
                     61937, -- Abundance: Artisan of Mausoloa
@@ -143,6 +158,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                 {
                     61856, -- Explore Zul'Aman
                     62125, -- Treasures of Zul'Aman
+                    62289, -- Zul'Aman: The Highest Peaks
                     62122, -- Tallest Tree in the Forest
                     61581, -- Zul'Aman Glyph Hunter
                     61938, -- Abundance: Artisan of Loaknit
@@ -194,6 +210,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                 {
                     61520, -- Explore Harandar
                     61263, -- Treasures of Harandar
+                    62290, -- Harandar: The Highest Peaks
                     61264, -- Leaf None Behind
                     61582, -- Harandar Glyph Hunter
                     61939, -- Abundance: Artisan of Floaret
@@ -233,6 +250,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                     41806, -- Breaching the Voidstorm
                     61864, -- Sojourner of Voidstorm
                     62105, -- Lysikas Would Be Proud
+                    62385, -- Staring Into The Void
                 },
             },
             { -- Exploration
@@ -241,6 +259,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                 {
                     61857, -- Explore Voidstorm
                     62126, -- Treasures of Voidstorm
+                    62291, -- Voidstorm: The Highest Peaks
                     62130, -- The Ultimate Predator
                     61583, -- Voidstorm Glyph Hunter
                     61940, -- Abundance: Artisan of Loanite
@@ -269,6 +288,9 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                 62256, -- Yelling into the Voidstorm
             }
         },
+        {
+            62386, -- Light Up the Night
+        }
     },
     { -- Delves
         addon.GetCategoryInfoTitle(15522),
@@ -477,6 +499,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             62194, -- Midnight Dungeon Healer
             62193, -- Midnight Dungeon Damage Dealer
             62196, -- Midnight Dungeoneer
+            62388, -- Illicit Rain: Five Stars
         }
     },
     { -- Raids
@@ -540,6 +563,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                 true,
                 {
                     61381, -- Eggsistential Crisis
+                    62406, -- All the Things She Said
                 },
             },
             { -- Mythic
@@ -559,6 +583,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             }
         },
         {
+            62352, -- Nothing to See Here
             61380, -- Glory of the Midnight Raider (Mount: Tenebrous Harrower)
             61843, -- Quel'Dressed
         }
@@ -684,6 +709,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             61439, -- Thalassian Artisan
             61440, -- Thalassian Polymath (Reward: Finery Funds)
             61441, -- Working WAY Past Midnight
+            62370, -- Midnight Lumberjack
         }
     },
     { -- Pet Battles
@@ -750,6 +776,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                 62136, -- I'm Good At What I Do
                 62141, -- Look, I'm Just Trying To Fish Here
                 62140, -- Kitchen Nightmare
+                62403, -- 'Tis But A Scratch
                 62167, -- Prey: Mad Magisters (Nightmare)
                 62168, -- Prey: Insane Inventors (Nightmare)
                 62169, -- Prey: A Different Kind of Void (Nightmare)
@@ -794,6 +821,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
     },
     {
         62387, -- It's Nearly Midnight
+        62273, -- Echoes of Midnight
         41805, -- Arator's Journey
         42117, -- The War of Light and Shadow
         60891, -- The Crimson Rogue

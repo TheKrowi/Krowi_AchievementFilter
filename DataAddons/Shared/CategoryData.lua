@@ -540,6 +540,13 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
                 61316, -- Custom Cabinets
                 61317, -- Domicile Designer
                 61318, -- Fully Furnished
+                62371, -- Couponing for Beginners
+                62373, -- Coupon Collector
+                62374, -- You Get The Best Deals Anywhere
+                62375, -- Buying in Bulk
+                62376, -- Extreme Couponing
+                62377, -- A Fist Full of Coupons
+                62378, -- A Few Coupons More
             },
         },
         { -- Feats of Strength

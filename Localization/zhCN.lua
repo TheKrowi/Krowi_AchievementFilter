@@ -6,7 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-01-30 20-48-23 ]] --
+-- [[ Exported at 2026-02-05 17-24-55 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -566,6 +566,7 @@ L["Ka'wi the Gorger"] = "贪吃的卡瓦"
 L["Keep current character"] = "保留当前角色"
 L["Keep current character Desc"] = "总是在鼠标提示列表中保留当前角色，无论是否超过{maxNumChar}上限"
 L["Keybindings Desc"] = "{addonName}的快捷键设置: 点击窗口左上角的游戏标签，在{keybindings}分类的插件选项卡中进行设置"
+L["KeystoneResilience"] = "坚韧钥石"
 L["Kyrian Assault"] = "格里恩突袭"
 L["Landfall"] = "夺岛奇兵"
 L["Layout"] = "布局"
@@ -802,6 +803,7 @@ L["Reset view on open"] = "打开时重置显示"
 L["Reset view on open Desc"] = "勾选后打开时折叠所有类别并选择第一个"
 L["Return to the Forbidden Reach"] = "重返禁忌离岛"
 L["Reverse Sort"] = "反转排序"
+L["Rewards"] = "奖励"
 L["Right"] = "右"
 L["Right Alt"] = "右Alt"
 L["Right click"] = "右键"
@@ -1054,6 +1056,7 @@ L["Thunderstorms"] = "雷暴"
 L["Tides of Vengeance"] = "复仇之潮"
 L["Time display"] = "显示时间"
 L["Time Left"] = "剩余时间"
+L["Time Limited"] = "限时"
 L["Time Rift"] = "时光裂隙"
 L["Time Rift: Active"] = "时光裂隙: 激活"
 L["Time Rift: Next"] = "时光裂隙: 下次"

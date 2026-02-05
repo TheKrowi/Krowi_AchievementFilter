@@ -1169,6 +1169,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             734, -- Professional Northrend Master
             735, -- Working In the Cold
             18722, -- Northrend Master of All
+            62359, -- Wrathful Lumberjack
             135, -- Grand Master Medic
             730, -- Skills to Pay the Bills
         },
