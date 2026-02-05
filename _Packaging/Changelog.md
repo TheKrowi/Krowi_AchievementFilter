@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 94.0 - 2026-02-05
+### Added
+- 12.0.1 achievements (47)
+
+## 93.8 - 2026-02-04
+### Fixed
+- Error: ADDON_ACTION_BLOCKED (dev note: apparently custom criteria is breaking stuff at random places. disabled this for now to resolve the errors)
+
 ## 93.7 - 2026-01-31
 ### Fixed
 - Error: table index is secret

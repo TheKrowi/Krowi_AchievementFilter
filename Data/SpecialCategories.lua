@@ -131,22 +131,22 @@ local specialCategoriesMatrix = { -- Order of this list is important
     },
     -- here
     {
-        CategoryType = "CurrentlyAvailable",
-        Text = addon.L["Currently Obtainable"],
+        CategoryType = "TimeLimited",
+        Text = addon.L["Time Limited"],
         LoadData = function()
             for i = #data.AchievementIds, 1, -1 do
                 local achievement = data.Achievements[data.AchievementIds[i]]
                 if achievement then
                     local state = data.TemporaryObtainable:GetObtainableState(achievement)
                     if state == "Current" then
-                        for _, category in next, specialCategories.CurrentlyAvailable do
+                        for _, category in next, specialCategories.TimeLimited do
                             category:AddAchievement(achievement)
                         end
                     end
                 end
             end
 
-            for _, category in next, specialCategories.CurrentlyAvailable do
+            for _, category in next, specialCategories.TimeLimited do
                 category:GetAchievementNumbers()
             end
         end,

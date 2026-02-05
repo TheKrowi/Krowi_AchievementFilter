@@ -1630,6 +1630,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             732, -- Professional Classic Master
             18728, -- Working from the Start
             18720, -- Classic Master of All
+            62357, -- Classically Trained Lumberjack
             131, -- Journeyman Medic
             132, -- Expert Medic
             133, -- Artisan Medic

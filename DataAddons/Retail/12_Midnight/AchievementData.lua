@@ -1884,4 +1884,156 @@ KrowiAF.AchievementData["12_00_00"] = {
             {"Before", "Version", {12, 0, 1}},
         },
     },
+    { -- Echoes of Midnight (Midnight themed cross-promotional game rewards)
+        62273,
+        {
+            RewardType = rewardType.NotCategorized,
+        },
+    },
+    { -- Eversong Woods: The Highest Peaks (Decor Reward: "Eversong Lantern" Painting)
+        62288,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Zul'Aman: The Highest Peaks (Decor Reward: Amani Spearhunter's Spit)
+        62289,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Harandar: The Highest Peaks (Decor Reward: Fungarian Vine Fence)
+        62290,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    { -- Voidstorm: The Highest Peaks (Decor Reward: Void Elf Weapon Rack)
+        62291,
+        {
+            RewardType = rewardType.HousingDecor,
+        },
+    },
+    {62324}, -- Abundance: Loa of all Trades
+    {62325}, -- Abundance: Treasures Aplenty
+    {62326}, -- Abundance: Golden Opportunities
+    {62329}, -- Abundance: Squash the Competition
+    {62330}, -- Abundance: One Bite at a Time
+    {62331}, -- Abundance: Drops of Prosperity
+    {62332}, -- Abundance: Dundun's Favored
+    {62333}, -- Abundance: Harvester
+    {62336}, -- Abundance: Contributer
+    {62337}, -- Abundance: Professional
+    {62338}, -- Abundance: Artisan
+    {62339}, -- Abundance: Gambler
+    {62340}, -- Abundance: Investor
+    {62341}, -- Abundance: Ain't Dun Till It's Dun
+    { -- Preying For Midnight (Title: Preyseeker)
+        62351,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
+    {62352}, -- Nothing to See Here
+    { -- Classically Trained Lumberjack (Reward: Mounted Lumber Harvesting in Classic Zones)
+        62357,
+        {
+            RewardType = rewardType.NotCategorized,
+        },
+    },
+    { -- Outlandish Lumberjack (Reward: Mounted Lumber Harvesting in Burning Crusade Zones)
+        62358,
+        {
+            RewardType = rewardType.NotCategorized,
+        },
+    },
+    { -- Wrathful Lumberjack (Reward: Mounted Lumber Harvesting in Wrath of the Lich King Zones)
+        62359,
+        {
+            RewardType = rewardType.NotCategorized,
+        },
+    },
+    { -- Cataclysmic Lumberjack (Reward: Mounted Lumber Harvesting in Cataclysm Zones)
+        62360,
+        {
+            RewardType = rewardType.NotCategorized,
+        },
+    },
+    { -- Mist-Shrouded Lumberjack (Reward: Mounted Lumber Harvesting in Mists of Pandaria Zones)
+        62361,
+        {
+            RewardType = rewardType.NotCategorized,
+        },
+    },
+    { -- Lumberjack Warlord (Reward: Mounted Lumber Harvesting in Warlords of Draenor Zones)
+        62362,
+        {
+            RewardType = rewardType.NotCategorized,
+        },
+    },
+    { -- Legion Lumberjack (Reward: Mounted Lumber Harvesting in Legion Zones)
+        62363,
+        {
+            RewardType = rewardType.NotCategorized,
+        },
+    },
+    { -- Azeroth's Lumberjack (Reward: Mounted Lumber Harvesting in Battle for Azeroth Zones)
+        62364,
+        {
+            RewardType = rewardType.NotCategorized,
+        },
+    },
+    { -- Shadowy Lumberjack (Reward: Mounted Lumber Harvesting in Shadowlands Zones)
+        62365,
+        {
+            RewardType = rewardType.NotCategorized,
+        },
+    },
+    { -- Draconic Lumberjack (Reward: Mounted Lumber Harvesting in Dragonflight Zones)
+        62366,
+        {
+            RewardType = rewardType.NotCategorized,
+        },
+    },
+    { -- The Lumberjack Within (Reward: Mounted Lumber Harvesting in War Within Zones)
+        62369,
+        {
+            RewardType = rewardType.NotCategorized,
+        },
+    },
+    { -- Midnight Lumberjack (Reward: Mounted Lumber Harvesting in Midnight Zones)
+        62370,
+        {
+            RewardType = rewardType.NotCategorized,
+        },
+    },
+    {62371}, -- Couponing for Beginners
+    {62373}, -- Coupon Collector
+    {62374}, -- You Get The Best Deals Anywhere
+    {62375}, -- Buying in Bulk
+    {62376}, -- Extreme Couponing
+    {62377}, -- A Fist Full of Coupons
+    {62378}, -- A Few Coupons More
+    {62383}, -- Gotta Hunt Them All
+    { -- Staring Into The Void (Mount: Lab-grown Stormray)
+        62385,
+        {
+            RewardType = rewardType.Mount,
+        },
+    },
+    { -- Light Up the Night (Mount: Brilliant Petalwing)
+        62386,
+        {
+            RewardType = rewardType.Mount,
+        },
+    },
+    { -- Illicit Rain: Five Stars (Toy: Feeling Fielder Mk. 7)
+        62388,
+        {
+            RewardType = rewardType.Toy,
+        },
+    },
+    {62400}, -- Craft Your World
+    {62403}, -- 'Tis But A Scratch
+    {62406}, -- All the Things She Said
 };

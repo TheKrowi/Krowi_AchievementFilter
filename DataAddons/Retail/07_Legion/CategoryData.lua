@@ -812,6 +812,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             10582, -- Professional Legion Master
             10581, -- Working the Isles
             10583, -- Legion Master of All
+            62363, -- Legion Lumberjack
             10761, -- Resourceful
             10599, -- Legion Medic
             10580, -- Heroic Skills to Pay the Bills

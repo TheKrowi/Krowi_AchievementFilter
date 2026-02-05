@@ -676,6 +676,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             733, -- Professional Outland Master
             18729, -- Working in Hellfire
             18721, -- Outland Master of All
+            62358, -- Outlandish Lumberjack
             1257, -- The Scavenger
             134, -- Master Medic
         },

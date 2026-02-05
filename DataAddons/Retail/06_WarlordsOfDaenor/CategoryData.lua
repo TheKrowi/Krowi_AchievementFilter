@@ -706,6 +706,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
             9464, -- Professional Draenor Master
             9507, -- Working in Draenor
             9087, -- Draenor Master of All
+            62362, -- Lumberjack Warlord
             9505, -- Draenor Medic
             9506, -- Savage Skills to Pay the Bills
         },

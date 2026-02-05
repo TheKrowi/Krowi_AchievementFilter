@@ -6,7 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-01-30 20-48-18 ]] --
+-- [[ Exported at 2026-02-05 17-24-52 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -560,6 +560,7 @@ L["Reset view on open"] = "Сбросить вид при открытии"
 L["Reset view on open Desc"] = "Скинуть все категории и выбрать общие."
 L["Return to the Forbidden Reach"] = "Возвращение в Запретный край"
 L["Reverse Sort"] = "Обратная сортировка"
+L["Rewards"] = "Награды"
 L["Right"] = "Право"
 L["Right Alt"] = true
 L["Right click"] = "Правый щелчок"
@@ -751,6 +752,7 @@ L["Thunderstorms"] = "Грозовые бури"
 L["Tides of Vengeance"] = "Волны возмездия"
 L["Time display"] = "Отобразить время"
 L["Time Left"] = "Время осталось"
+L["Time Limited"] = "Ограничен по времени"
 L["Time Rift"] = "Портал времени"
 L["Time Rift: Active"] = "Портал времени: Активно"
 L["Time Rift: Next"] = "Портал времени: Следущий"

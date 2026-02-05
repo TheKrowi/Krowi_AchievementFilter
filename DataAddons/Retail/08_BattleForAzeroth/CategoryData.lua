@@ -1096,6 +1096,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             12735, -- Working in Zandalar
             12736, -- Kul Tiran Master of All
             12737, -- Zandalari Master of All
+            62364, -- Azeroth's Lumberjack
             13516, -- Massive Tool
             18778, -- Massive Toolshed
         },
