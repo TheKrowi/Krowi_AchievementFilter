@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 94.1 - 2026-02-05
+### Changed
+- Sub-special categories should no longer show in the Adjustable categories options
+
 ## 94.0 - 2026-02-05
 ### Added
 - 12.0.1 achievements (47)

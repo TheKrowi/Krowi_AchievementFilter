@@ -5,7 +5,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-02-05 17-24-36 ]] --
+-- [[ Exported at 2026-02-08 10-28-08 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -776,6 +776,7 @@ L["Realm"] = true
 L["Realm First!"] = true
 L["Rebind Micro Button"] = true
 L["Rebind Micro Button Desc"] = "Rebind the Achievements micro button to open a different tab than the default one."
+L["Recently Added"] = true
 L["Recruit-a-Friend"] = true
 L["Red"] = true
 L["Refresh Events"] = true
