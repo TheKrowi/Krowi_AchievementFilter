@@ -3,3 +3,6 @@
 
 ### Changed (94.1)
 - Sub-special categories should no longer show in the Adjustable categories options
+
+### Fixed (94.2)
+- Dragonflight's zone data for achievements should once again work

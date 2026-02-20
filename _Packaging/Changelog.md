@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 94.2 - 2026-02-20
+### Fixed
+- Dragonflight's zone data for achievements should once again work
+
 ## 94.1 - 2026-02-05
 ### Changed
 - Sub-special categories should no longer show in the Adjustable categories options
