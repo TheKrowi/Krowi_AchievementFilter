@@ -2036,4 +2036,34 @@ KrowiAF.AchievementData["12_00_00"] = {
     {62400}, -- Craft Your World
     {62403}, -- 'Tis But A Scratch
     {62406}, -- All the Things She Said
+    { -- Slayer's Rise Victory
+        62493,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Slayer's Rise Veteran
+        62494,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Slayer's Rise Dominance
+        62514,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- The Voided Gazelle
+        62516,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Rise of the Ultradon Slayer
+        62517,
+        {
+            IsPvP = true,
+        },
+    },
 };

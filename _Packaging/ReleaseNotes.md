@@ -6,3 +6,6 @@
 
 ### Fixed (94.2)
 - Dragonflight's zone data for achievements should once again work
+
+### Added (94.3)
+- 12.0.1 achievements (4)

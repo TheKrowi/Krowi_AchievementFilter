@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 94.3 - 2026-03-21
+### Added
+- 12.0.1 achievements (4)
+
 ## 94.2 - 2026-02-20
 ### Fixed
 - Dragonflight's zone data for achievements should once again work
