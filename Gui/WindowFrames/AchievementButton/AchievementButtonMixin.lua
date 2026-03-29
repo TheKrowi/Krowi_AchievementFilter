@@ -100,7 +100,9 @@ function KrowiAF_AchievementButtonLightMixin:OnEnter()
 	local link = GetAchievementLink(self.Achievement.Id);
 	GameTooltip:SetHyperlink(link);
 	GameTooltip:Show();
-	if GameTooltip:GetTop() > self:GetTop() then
+	local gameTooltipTop = GameTooltip:GetTop()
+	if issecretvalue and issecretvalue(gameTooltipTop) then return end
+	if gameTooltipTop > self:GetTop() then -- Can cause taint as GameTooltip:GetTop() can be a secret value
 		GameTooltip:ClearAllPoints();
 		GameTooltip:SetPoint("BOTTOMLEFT", self, "BOTTOMRIGHT");
 	end

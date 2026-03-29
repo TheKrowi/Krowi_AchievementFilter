@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 94.4 - 2026-03-29
+### Fixed
+- Midnight Season 1 now correctly indicates it has started
+- Mousing over an achievement should no longer cause an error
+
+### Mists Classic
+- Added missing 5.5.3 achievements
+
 ## 94.3 - 2026-03-21
 ### Added
 - 12.0.1 achievements (4)

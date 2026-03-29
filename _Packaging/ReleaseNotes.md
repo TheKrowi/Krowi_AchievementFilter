@@ -9,3 +9,10 @@
 
 ### Added (94.3)
 - 12.0.1 achievements (4)
+
+### Fixed (94.4)
+- Midnight Season 1 now correctly indicates it has started
+- Mousing over an achievement should no longer cause an error
+
+### Mists Classic (94.4)
+- Added missing 5.5.3 achievements

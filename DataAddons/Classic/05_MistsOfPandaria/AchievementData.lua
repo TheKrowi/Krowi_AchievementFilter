@@ -3055,3 +3055,115 @@ KrowiAF.AchievementData["05_05_01"] = {
         },
     },
 };
+
+KrowiAF.AchievementData["05_05_03"] = {
+    {40821}, -- Successfully Stress Test CN Realms
+    { -- Realm First! Challenge Conqueror: Platinum (Season 2) (Title Reward: The Thundering Stampede)
+        61962,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
+    { -- Realm First! Challenge Conqueror: Platinum (Season 3) (Title Reward: The Momentous Terror)
+        61963,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
+    { -- Temple of the Jade Serpent: Platinum (Reward: Platinum Boots of Expeditious Retreat)
+        61967,
+        {
+            RewardType = rewardType.Transmog,
+        },
+    },
+    { -- Stormstout Brewery: Platinum (Reward: Platinum "Little Ale")
+        61968,
+        {
+            RewardType = rewardType.Toy,
+        },
+    },
+    { -- Mogu'shan Palace: Platinum (Reward: Platinum Battle Horn)
+        61969,
+        {
+            RewardType = rewardType.Toy,
+        },
+    },
+    { -- Shado-Pan Monastery: Platinum (Reward: Platinum Potion of Invisibility)
+        61970,
+        {
+            RewardType = rewardType.Toy,
+        },
+    },
+    { -- Gate of the Setting Sun: Platinum (Reward: Platinum Rod of Ambershaping)
+        61971,
+        {
+            RewardType = rewardType.Toy,
+        },
+    },
+    { -- Scarlet Halls: Platinum (Reward: Platinum Battle Banner)
+        61972,
+        {
+            RewardType = rewardType.Toy,
+        },
+    },
+    { -- Scarlet Monastery: Platinum (Reward: Platinum Sacrificial Dagger)
+        61973,
+        {
+            RewardType = rewardType.Toy,
+        },
+    },
+    { -- Scholomance: Platinum (Reward: Platinum Vial of Polyformic Acid)
+        61974,
+        {
+            RewardType = rewardType.Toy,
+        },
+    },
+    { -- Siege of Niuzao Temple: Platinum (Reward: Platinum Amber)
+        61975,
+        {
+            RewardType = rewardType.Toy,
+        },
+    },
+    { -- Challenge Conqueror: Platinum (Season 1) (Reward: Precious and rare coins used for fancy curiosities)
+        61987,
+        {
+            RewardType = rewardType.NotCategorized,
+        },
+    },
+    { -- Challenge Conqueror: Platinum (Season 2) (Reward: Precious and rare coins used for fancy curiosities)
+        61990,
+        {
+            RewardType = rewardType.NotCategorized,
+        },
+    },
+    { -- Challenge Conqueror: Platinum (Season 3) (Reward: Precious and rare coins used for fancy curiosities)
+        61991,
+        {
+            RewardType = rewardType.NotCategorized,
+        },
+    },
+    { -- The Mistwalker (Reward: Mistwalker, Celestial Riding Tiger)
+        62055,
+        {
+            RewardType = rewardType.Mount,
+        },
+    },
+    { -- Mistborne (Title Reward: Mistborne, Celestial Riding Serpent)
+        62059,
+        {
+            RewardType = rewardType.Mount,
+        },
+    },
+    { -- Heir to the Mist (Reward: Heir to the Mist)
+        62060,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
+    { -- The Mistwalker (Reward: Mistwalker, Celestial Riding Tiger)
+        62399,
+        {
+            RewardType = rewardType.Mount,
+        },
+    },
+};
