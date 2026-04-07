@@ -4851,6 +4851,7 @@ local mistsOfPandaria = { -- Mists of Pandaria
                 8430, -- Challenge Master: Temple of the Jade Serpent
                 16661, -- Keystone Hero: Temple of the Jade Serpent
                 60892, -- Celestial: Temple of the Jade Serpent
+                61967, -- Temple of the Jade Serpent: Platinum
             },
         },
         { -- Stormstout Brewery
@@ -4869,6 +4870,7 @@ local mistsOfPandaria = { -- Mists of Pandaria
                 6891, -- Stormstout Brewery: Gold
                 8431, -- Challenge Master: Stormstout Brewery
                 60893, -- Celestial: Stormstout Brewery
+                61968, -- Stormstout Brewery: Platinum
             },
         },
         { -- Mogu'shan Palace
@@ -4886,6 +4888,7 @@ local mistsOfPandaria = { -- Mists of Pandaria
                 6901, -- Mogu'shan Palace: Gold
                 8433, -- Challenge Master: Mogu'shan Palace
                 60894, -- Celestial: Mogu'shan Palace
+                61969, -- Mogu'shan Palace: Platinum
             },
         },
         { -- Shado-Pan Monastery
@@ -4903,6 +4906,7 @@ local mistsOfPandaria = { -- Mists of Pandaria
                 6904, -- Shado-Pan Monastery: Gold
                 8432, -- Challenge Master: Shado-Pan Monastery
                 60895, -- Celestial: Shado-Pan Monastery
+                61970, -- Shado-Pan Monastery: Platinum
             },
         },
         { -- Gate of the Setting Sun
@@ -4920,6 +4924,7 @@ local mistsOfPandaria = { -- Mists of Pandaria
                 6907, -- Gate of the Setting Sun: Gold
                 8434, -- Challenge Master: Gate of the Setting Sun
                 60896, -- Celestial: Gate of the Setting Sun
+                61971, -- Gate of the Setting Sun: Platinum
             },
         },
         { -- Siege of Niuzao Temple
@@ -4937,6 +4942,7 @@ local mistsOfPandaria = { -- Mists of Pandaria
                 6919, -- Siege of Niuzao Temple: Gold
                 8439, -- Challenge Master: Siege of Niuzao Temple
                 60900, -- Celestial: Siege of Niuzao Temple
+                61975, -- Siege of Niuzao Temple: Platinum
             },
         },
         { -- Scarlet Halls
@@ -4953,6 +4959,7 @@ local mistsOfPandaria = { -- Mists of Pandaria
                 6910, -- Scarlet Halls: Gold
                 8436, -- Challenge Master: Scarlet Halls
                 60897, -- Celestial: Scarlet Halls
+                61972, -- Scarlet Halls: Platinum
             },
         },
         { -- Scarlet Monastery
@@ -4970,6 +4977,7 @@ local mistsOfPandaria = { -- Mists of Pandaria
                 6913, -- Scarlet Monastery: Gold
                 8437, -- Challenge Master: Scarlet Monastery
                 60898, -- Celestial: Scarlet Monastery
+                61973, -- Scarlet Monastery: Platinum
                 980, -- The Horseman's Reins
             },
         },
@@ -4990,6 +4998,7 @@ local mistsOfPandaria = { -- Mists of Pandaria
                 6916, -- Scholomance: Gold
                 8438, -- Challenge Master: Scholomance
                 60899, -- Celestial: Scholomance
+                61974, -- Scholomance: Platinum
             },
         },
         {
@@ -5001,6 +5010,15 @@ local mistsOfPandaria = { -- Mists of Pandaria
             6375, -- Challenge Conqueror: Silver
             6378, -- Challenge Conqueror: Gold
             60901, -- Pandaria Celestial Hero
+            61987, -- Challenge Conqueror: Platinum (Season 1)
+            61990, -- Challenge Conqueror: Platinum (Season 2)
+            61991, -- Challenge Conqueror: Platinum (Season 3)
+            62055, -- The Mistwalker
+            62059, -- Mistborne
+            62060, -- Heir to the Mist
+            62399, -- The Mistwalker
+            61962, -- Realm First! Challenge Conqueror: Platinum (Season 2)
+            61963, -- Realm First! Challenge Conqueror: Platinum (Season 3)
         },
     },
     { -- Raids

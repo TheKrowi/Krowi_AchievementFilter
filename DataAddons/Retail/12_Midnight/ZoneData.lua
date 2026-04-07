@@ -85,7 +85,7 @@ local quelThalas = {
 
 KrowiAF.ZoneData.Midnight = {
     { -- Eversong Woods (zone)
-        2395,
+        {2395, 2579},
         {
             41802, -- Eversong In Reprise
             61957, -- Sojourner of Eversong Woods
@@ -128,7 +128,7 @@ KrowiAF.ZoneData.Midnight = {
         }
     },
     { -- Harandar (zone)
-        2413,
+        {2413, 2576},
         {
             41804, -- One Does Not Simply Walk Into Harandar
             61739, -- Sojourner of Harandar
@@ -160,7 +160,7 @@ KrowiAF.ZoneData.Midnight = {
         }
     },
     { -- Zul'Aman (zone)
-        2437,
+        {2437, 2536},
         {
             41803, -- For Zul'Aman! (Customization Reward: Amani Appearances for Darkspear Troll)
             61452, -- Sojourner of Zul'Aman
@@ -367,6 +367,14 @@ KrowiAF.ZoneData.Midnight = {
             60891, -- The Crimson Rogue
             62191, -- Call of the Light
             61839, -- Midnight Pathfinder (Reward: Steady Flight unlocked within Midnight, Finery Funds)
+        }
+    },
+    { -- Arcantina
+        2541,
+        {
+            61081, -- Share a Drink
+            61082, -- Old Soldiers
+            61083, -- Highly Decorated
         }
     },
     { -- Parhelion Plaza (delve)

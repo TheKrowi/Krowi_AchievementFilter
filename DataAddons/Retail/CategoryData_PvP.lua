@@ -427,6 +427,16 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
                 40617, -- Deepholla
             },
         },
+        { -- Slayer's Rise
+            addon.GetCategoryInfoTitle(15609),
+            {
+                62493, -- Slayer's Rise Victory
+                62494, -- Slayer's Rise Veteran
+                62514, -- Slayer's Rise Dominance
+                62516, -- The Voided Gazelle
+                62517, -- Rise of the Ultradon Slayer
+            },
+        },
         {
             229, -- The Grim Reaper
             907, -- The Justicar

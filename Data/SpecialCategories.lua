@@ -194,15 +194,17 @@ end
 
 function specialCategories.InjectDynamicOptions()
     for _, specialCategory in next, specialCategoriesMatrix do
-        for index, tabName in next, addon.TabsOrder do
-            addon.Options.Layout.InjectDynamicAdjustableCategoryOptions(
-                specialCategory.CategoryType,
-                specialCategory.Text,
-                index,
-                tabName,
-                addon.Tabs[tabName].Text,
-                specialCategory.ShowByDefault or tabName == "Specials"
-            )
+        if not specialCategory.ParentCategoryType then
+            for index, tabName in next, addon.TabsOrder do
+                addon.Options.Layout.InjectDynamicAdjustableCategoryOptions(
+                    specialCategory.CategoryType,
+                    specialCategory.Text,
+                    index,
+                    tabName,
+                    addon.Tabs[tabName].Text,
+                    specialCategory.ShowByDefault or tabName == "Specials"
+                )
+            end
         end
     end
 end

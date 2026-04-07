@@ -694,7 +694,7 @@ KrowiAF.AchievementData["10_00_00"] = {
             RewardType = rewardType.Teleport,
             {"PvE Season", 9},
             {"PvE Season", 12},
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Keystone Hero: Neltharus

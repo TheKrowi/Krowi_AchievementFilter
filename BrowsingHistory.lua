@@ -71,4 +71,3 @@ end
 function browsingHistory:GetAllRecords()
     return KrowiAF_SavedData.BrowsingHistory;
 end
-

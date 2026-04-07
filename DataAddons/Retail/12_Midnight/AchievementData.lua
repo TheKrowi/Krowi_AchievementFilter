@@ -226,27 +226,27 @@ KrowiAF.AchievementData["12_00_00"] = {
         42767,
         {
             RewardType = rewardType.Other,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Champion of the Dawn (Character Unlock: Trade Champion for Hero Dawncrests)
         42768,
         {
             RewardType = rewardType.Other,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Hero of the Dawn (Character Unlock: Trade Hero for Myth Dawncrests)
         42769,
         {
             RewardType = rewardType.Other,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Myth of the Dawn
         42770,
         {
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Leatherworking at Midnight (Decor Reward: Midnight Leatherworker's Shop Sign)
@@ -619,7 +619,7 @@ KrowiAF.AchievementData["12_00_00"] = {
         61233,
         {
             RewardType = rewardType.KeystoneResilience,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Hunt in the Night
@@ -632,21 +632,21 @@ KrowiAF.AchievementData["12_00_00"] = {
         61235,
         {
             RewardType = rewardType.KeystoneResilience,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 14 (Keystones will no longer deplete below level 14 during Midnight Season 1.)
         61236,
         {
             RewardType = rewardType.KeystoneResilience,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 15 (Keystones will no longer deplete below level 15 during Midnight Season 1.)
         61237,
         {
             RewardType = rewardType.KeystoneResilience,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Hunter
@@ -659,152 +659,152 @@ KrowiAF.AchievementData["12_00_00"] = {
         61239,
         {
             RewardType = rewardType.KeystoneResilience,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 17 (Keystones will no longer deplete below level 17 during Midnight Season 1.)
         61240,
         {
             RewardType = rewardType.KeystoneResilience,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 18 (Keystones will no longer deplete below level 18 during Midnight Season 1.)
         61241,
         {
             RewardType = rewardType.KeystoneResilience,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 19 (Keystones will no longer deplete below level 19 during Midnight Season 1.)
         61242,
         {
             RewardType = rewardType.KeystoneResilience,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 20 (Keystones will no longer deplete below level 20 during Midnight Season 1.)
         61243,
         {
             RewardType = rewardType.KeystoneResilience,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 21 (Keystones will no longer deplete below level 21 during Midnight Season 1.)
         61244,
         {
             RewardType = rewardType.KeystoneResilience,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 22 (Keystones will no longer deplete below level 22 during Midnight Season 1.)
         61245,
         {
             RewardType = rewardType.KeystoneResilience,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 23 (Keystones will no longer deplete below level 23 during Midnight Season 1.)
         61246,
         {
             RewardType = rewardType.KeystoneResilience,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 24 (Keystones will no longer deplete below level 24 during Midnight Season 1.)
         61247,
         {
             RewardType = rewardType.KeystoneResilience,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 25 (Keystones will no longer deplete below level 25 during Midnight Season 1.)
         61248,
         {
             RewardType = rewardType.KeystoneResilience,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 26 (Keystones will no longer deplete below level 26 during Midnight Season 1.)
         61249,
         {
             RewardType = rewardType.KeystoneResilience,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 27 (Keystones will no longer deplete below level 27 during Midnight Season 1.)
         61250,
         {
             RewardType = rewardType.KeystoneResilience,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 28 (Keystones will no longer deplete below level 28 during Midnight Season 1.)
         61251,
         {
             RewardType = rewardType.KeystoneResilience,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 29 (Keystones will no longer deplete below level 29 during Midnight Season 1.)
         61252,
         {
             RewardType = rewardType.KeystoneResilience,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Season 1: Resilient Keystone 30 (Keystones will no longer deplete below level 30 during Midnight Season 1.)
         61253,
         {
             RewardType = rewardType.KeystoneResilience,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Keystone Explorer: Season One
         61254,
         {
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Keystone Conqueror: Season One (Title: The Umbral)
         61255,
         {
             RewardType = rewardType.Title,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Keystone Master: Season One (Mount: Calamitous Carrion)
         61256,
         {
             RewardType = rewardType.Mount,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Keystone Hero: Season One
         61257,
         {
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Keystone Legend: Season One (Mount: Convalescent Carrion)
         61258,
         {
             RewardType = rewardType.Mount,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Umbral Hero: Midnight Season One (Title: The Umbral Hero)
         61259,
         {
             RewardType = rewardType.Title,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Keystone Hero: Windrunner Spire (Max Level Unlock: Teleport to Windrunner Spire)
         61262,
         {
             RewardType = rewardType.Teleport,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Treasures of Harandar (Reward: Brilliant Petalwing)
@@ -830,42 +830,42 @@ KrowiAF.AchievementData["12_00_00"] = {
         61267,
         {
             RewardType = rewardType.Teleport,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Keystone Hero: Nexus-Point Xenas (Max Level Unlock: Teleport to Nexus-Point Xenas)
         61268,
         {
             RewardType = rewardType.Teleport,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Keystone Hero: Maisara Caverns (Max Level Unlock: Teleport to Maisara Caverns)
         61269,
         {
             RewardType = rewardType.Teleport,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Keystone Hero: Seat of the Triumvirate (Max Level Unlock: Teleport to Seat of the Triumvirate)
         61270,
         {
             RewardType = rewardType.Teleport,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Keystone Hero: Pit of Saron (Max Level Unlock: Teleport to Pit of Saron)
         61271,
         {
             RewardType = rewardType.Teleport,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Keystone Hero: Skyreach (Max Level Unlock: Teleport to Skyreach)
         61272,
         {
             RewardType = rewardType.Teleport,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Chronicler of the Haranir (Reward: Title: "Chronicler of the Haranir")
@@ -1013,7 +1013,7 @@ KrowiAF.AchievementData["12_00_00"] = {
         61519,
         {
             RewardType = rewardType.Transmog,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     {61520}, -- Explore Harandar
@@ -1052,49 +1052,49 @@ KrowiAF.AchievementData["12_00_00"] = {
     { -- Keystone Victor: Magisters' Terrace (Midnight)
         61587,
         {
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Keystone Victor: Maisara Caverns
         61588,
         {
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Keystone Victor: Nexus-Point Xenas
         61589,
         {
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Keystone Victor: Windrunner Spire
         61590,
         {
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Keystone Victor: Algeth'ar Academy
         61591,
         {
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Keystone Victor: Pit of Saron
         61592,
         {
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Keystone Victor: Seat of the Triumvirate
         61593,
         {
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Keystone Victor: Skyreach
         61594,
         {
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     {61624}, -- Ahead of the Curve: Crown of the Cosmos
@@ -1163,7 +1163,7 @@ KrowiAF.AchievementData["12_00_00"] = {
     { -- Midnight: Journey's End (Season 1)
         61796,
         {
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- My Shady Nemesis (Reward: Nullaeus Domaneye)
@@ -1176,76 +1176,76 @@ KrowiAF.AchievementData["12_00_00"] = {
         61798,
         {
             RewardType = rewardType.Title,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Let Me Solo Him: Nullaeus (Reward: Arcanovoid Construct)
         61799,
         {
             RewardType = rewardType.Mount,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Delves: Tier 4 (Season 1) (Unlock: Tier 5 delves in Midnight Season 1)
         61800,
         {
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Delves: Tier 5 (Season 1) (Unlock: Tier 6 delves in Midnight Season 1)
         61801,
         {
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Delves: Tier 6 (Season 1) (Unlock: Tier 7 delves in Midnight Season 1)
         61802,
         {
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Delves: Tier 7 (Season 1) (Unlock: Tier 7 delves in Midnight Season 1)
         61803,
         {
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Delves: Tier 8 (Season 1) (Unlock: Tier 9 delves in Midnight Season 1)
         61804,
         {
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Delves: Tier 9 (Season 1) (Unlock: Tier 10 delves in Midnight Season 1)
         61805,
         {
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Delves: Tier 10 (Season 1) (Unlock: Tier 11 delves in Midnight Season 1)
         61806,
         {
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Midnight Delves: Tier 11 (Season 1) (Title: High Explorer)
         61807,
         {
             RewardType = rewardType.Title,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Fabled Let Me Solo Him: Nullaeus (Title: Fabled Vanquisher of Nullaeus)
         61808,
         {
             RewardType = rewardType.Title,
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     { -- Adventurer of the Dawn (Character Unlock: Trade Adventurer for Veteran Dawncrests)
         61809,
         {
-            {"PvE Season", 16},
+            {"PvE Season", 17},
         },
     },
     {61832}, -- Midnight Delves: Tier 1 (Unlock: Tier 2 delves in Midnight)
@@ -2036,4 +2036,34 @@ KrowiAF.AchievementData["12_00_00"] = {
     {62400}, -- Craft Your World
     {62403}, -- 'Tis But A Scratch
     {62406}, -- All the Things She Said
+    { -- Slayer's Rise Victory
+        62493,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Slayer's Rise Veteran
+        62494,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Slayer's Rise Dominance
+        62514,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- The Voided Gazelle
+        62516,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Rise of the Ultradon Slayer
+        62517,
+        {
+            IsPvP = true,
+        },
+    },
 };

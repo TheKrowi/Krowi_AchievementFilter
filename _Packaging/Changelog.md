@@ -1,6 +1,30 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 94.5 - 2026-04-07
+### Fixed
+- Secret values should now be safe
+
+## 94.4 - 2026-03-29
+### Fixed
+- Midnight Season 1 now correctly indicates it has started
+- Mousing over an achievement should no longer cause an error
+
+### Mists Classic
+- Added missing 5.5.3 achievements
+
+## 94.3 - 2026-03-21
+### Added
+- 12.0.1 achievements (4)
+
+## 94.2 - 2026-02-20
+### Fixed
+- Dragonflight's zone data for achievements should once again work
+
+## 94.1 - 2026-02-05
+### Changed
+- Sub-special categories should no longer show in the Adjustable categories options
+
 ## 94.0 - 2026-02-05
 ### Added
 - 12.0.1 achievements (47)
