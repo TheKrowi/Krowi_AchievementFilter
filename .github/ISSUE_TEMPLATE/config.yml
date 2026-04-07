@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Discord (fastest response)
+    url: https://discord.gg/AaqZnCMkFR
+    about: For questions, discussion, and informal bug reports, join the Discord server.
+  - name: CurseForge
+    url: https://www.curseforge.com/wow/addons/krowi-achievement-filter
+    about: Bugs and feedback can also be left on the CurseForge addon page.
+  - name: Wago
+    url: https://addons.wago.io/addons/krowi-achievement-filter
+    about: Alternative download and feedback page on Wago.

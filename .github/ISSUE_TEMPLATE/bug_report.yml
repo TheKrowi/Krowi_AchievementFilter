@@ -1,0 +1,86 @@
+name: Bug Report
+description: Report a bug or unexpected behaviour in Krowi's Achievement Filter
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before filing, please check [open issues](https://github.com/TheKrowi/Krowi_AchievementFilter/issues) and the [Discord](https://discord.gg/AaqZnCMkFR) to see if this has already been reported.
+
+  - type: dropdown
+    id: game_type
+    attributes:
+      label: WoW Client
+      description: Which WoW client are you playing on?
+      options:
+        - Retail (mainline)
+        - Wrath of the Lich King Classic
+        - Cataclysm Classic
+        - Mists of Pandaria Classic
+    validations:
+      required: true
+
+  - type: input
+    id: wow_version
+    attributes:
+      label: WoW Client Version
+      description: "e.g. 12.0.1 — shown in the bottom-left corner of the login screen"
+      placeholder: "12.0.1"
+    validations:
+      required: true
+
+  - type: input
+    id: addon_version
+    attributes:
+      label: KAF Addon Version
+      description: "e.g. 94.4 — shown in the addon list (ESC → AddOns)"
+      placeholder: "94.4"
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: What did you do to trigger the bug?
+      placeholder: |
+        1. Open the Achievements window
+        2. Click the Expansions tab
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behaviour
+      description: What should have happened?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behaviour
+      description: What happened instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: lua_error
+    attributes:
+      label: Lua Error (if any)
+      description: |
+        Paste the full error text from BugSack/BugGrabber or the in-game error frame.
+        Enable error capture with `/luaerror on` if you don't use BugSack.
+      render: lua
+    validations:
+      required: false
+
+  - type: textarea
+    id: other_addons
+    attributes:
+      label: Other Addons Enabled
+      description: List any addons that might be interacting with the Achievements UI (e.g. ElvUI, GW2 UI, InstanceAchievementTracker).
+    validations:
+      required: false

@@ -16,3 +16,6 @@
 
 ### Mists Classic (94.4)
 - Added missing 5.5.3 achievements
+
+### Fixed (94.5)
+- Secret values should now be safe

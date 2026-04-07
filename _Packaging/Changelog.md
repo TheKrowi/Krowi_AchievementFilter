@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 94.5 - 2026-04-07
+### Fixed
+- Secret values should now be safe
+
 ## 94.4 - 2026-03-29
 ### Fixed
 - Midnight Season 1 now correctly indicates it has started

@@ -3,8 +3,6 @@ local _, addon = ...;
 KrowiAF_AchievementsObjectivesOtherAchievementMixin = {};
 
 function KrowiAF_AchievementsObjectivesOtherAchievementMixin:OnEnter()
-	GameTooltip:SetOwner(self, "ANCHOR_NONE");
-	GameTooltip:SetPoint("TOPLEFT", self, "BOTTOMLEFT");
 	local link = GetAchievementLink(self.Id);
 	-- if addon.Options.db.profile.Achievements.ShowOtherFactionWarbandAsCompleted then
 	-- 	if self.Completed and not addon.GetAchievementInfoTable(self.Id).IsCompleted and KrowiAF_Achievements.Completed[self.Id] then
@@ -12,12 +10,17 @@ function KrowiAF_AchievementsObjectivesOtherAchievementMixin:OnEnter()
 	-- 		link = link:gsub(":0:0:0:%-1", ":1:" .. date.month .. ":" .. date.day .. ":" .. tostring(date.year - 2000));
 	-- 	end
 	-- end
+	GameTooltip:SetOwner(self, "ANCHOR_NONE");
+	GameTooltip:SetPoint("TOPLEFT", self, "BOTTOMLEFT");
 	GameTooltip:SetHyperlink(link);
 	GameTooltip:Show();
-	if GameTooltip:GetTop() > self:GetBottom() then
-		GameTooltip:ClearAllPoints();
-		GameTooltip:SetPoint("BOTTOMLEFT", self, "TOPLEFT");
-	end
+    local ok, shouldFlip = pcall(function()
+        return GameTooltip:GetTop() > self:GetBottom()
+    end);
+    if ok and shouldFlip then
+        GameTooltip:ClearAllPoints();
+        GameTooltip:SetPoint("BOTTOMLEFT", self, "TOPLEFT");
+    end
 end
 
 function KrowiAF_AchievementsObjectivesOtherAchievementMixin:OnLeave()
