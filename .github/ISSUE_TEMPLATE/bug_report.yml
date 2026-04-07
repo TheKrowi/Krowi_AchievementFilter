@@ -5,7 +5,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Before filing, please check [open issues](https://github.com/TheKrowi/Krowi_AchievementFilter/issues) and the [Discord](https://discord.gg/AaqZnCMkFR) to see if this has already been reported.
+        Before filing, please check [open issues](https://github.com/TheKrowi/Krowi_AchievementFilter/issues) and the [Discord](https://discord.gg/mdBFQJYeQZ) to see if this has already been reported.
 
   - type: dropdown
     id: game_type
