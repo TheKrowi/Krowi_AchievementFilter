@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 94.6 - 2026-04-13
+### Fixed
+- A 2nd attempt on fixing taint issues (dev note: when using GameTooltip:SetHyperlink and GameTooltip:SetPoint, the system gets tainted; by using GameTooltip:SetOwner this should be resolved, fingers crossed)
+
 ## 94.5 - 2026-04-07
 ### Fixed
 - Secret values should now be safe

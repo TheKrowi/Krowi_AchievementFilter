@@ -10,17 +10,9 @@ function KrowiAF_AchievementsObjectivesOtherAchievementMixin:OnEnter()
 	-- 		link = link:gsub(":0:0:0:%-1", ":1:" .. date.month .. ":" .. date.day .. ":" .. tostring(date.year - 2000));
 	-- 	end
 	-- end
-	GameTooltip:SetOwner(self, "ANCHOR_NONE");
-	GameTooltip:SetPoint("TOPLEFT", self, "BOTTOMLEFT");
+	GameTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT", -self:GetWidth(), 0);
 	GameTooltip:SetHyperlink(link);
 	GameTooltip:Show();
-    local ok, shouldFlip = pcall(function()
-        return GameTooltip:GetTop() > self:GetBottom()
-    end);
-    if ok and shouldFlip then
-        GameTooltip:ClearAllPoints();
-        GameTooltip:SetPoint("BOTTOMLEFT", self, "TOPLEFT");
-    end
 end
 
 function KrowiAF_AchievementsObjectivesOtherAchievementMixin:OnLeave()
