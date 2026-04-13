@@ -19,3 +19,6 @@
 
 ### Fixed (94.5)
 - Secret values should now be safe
+
+### Fixed (94.6)
+- A 2nd attempt on fixing taint issues (dev note: when using GameTooltip:SetHyperlink and GameTooltip:SetPoint, the system gets tainted; by using GameTooltip:SetOwner this should be resolved, fingers crossed)
