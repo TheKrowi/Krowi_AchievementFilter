@@ -3,16 +3,17 @@ local _, addon = ...;
 KrowiAF_AchievementsObjectivesOtherAchievementMixin = {};
 
 function KrowiAF_AchievementsObjectivesOtherAchievementMixin:OnEnter()
-	local link = GetAchievementLink(self.Id);
+	local achievement = addon.Data.Achievements[self.Id];
 	-- if addon.Options.db.profile.Achievements.ShowOtherFactionWarbandAsCompleted then
 	-- 	if self.Completed and not addon.GetAchievementInfoTable(self.Id).IsCompleted and KrowiAF_Achievements.Completed[self.Id] then
 	-- 		local date = date("*t", KrowiAF_Achievements.Completed[self.Id].FirstCompletedOn);
 	-- 		link = link:gsub(":0:0:0:%-1", ":1:" .. date.month .. ":" .. date.day .. ":" .. tostring(date.year - 2000));
 	-- 	end
 	-- end
-	GameTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT", -self:GetWidth(), 0);
-	GameTooltip:SetHyperlink(link);
-	GameTooltip:Show();
+	if achievement == nil then
+		return;
+	end
+	addon.Gui.AchievementTooltip:ShowTooltip(self, achievement);
 end
 
 function KrowiAF_AchievementsObjectivesOtherAchievementMixin:OnLeave()

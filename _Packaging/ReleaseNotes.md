@@ -22,3 +22,6 @@
 
 ### Fixed (94.6)
 - A 2nd attempt on fixing taint issues (dev note: when using GameTooltip:SetHyperlink and GameTooltip:SetPoint, the system gets tainted; by using GameTooltip:SetOwner this should be resolved, fingers crossed)
+
+### Fixed (94.7)
+- A 3rd attempt on fixing taint issues (dev note: when using GameTooltip:SetHyperlink, the system gets tainted; by using GameTooltip:SetOwner this should be resolved, fingers crossed)
