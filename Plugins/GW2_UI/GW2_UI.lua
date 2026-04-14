@@ -881,7 +881,11 @@ end
 
 local function SkinHeader()
     hooksecurefunc(AchievementFrame.Header.Points, "SetText", UpdatePointsDisplay);
-    hooksecurefunc("AchievementFrame_RefreshView", UpdatePointsDisplay);
+    if type(AchievementFrame_RefreshView) == "function" then
+        hooksecurefunc("AchievementFrame_RefreshView", UpdatePointsDisplay);
+    elseif type(AchievementFrame_ToggleView) == "function" then
+        hooksecurefunc("AchievementFrame_ToggleView", UpdatePointsDisplay);
+    end
     hooksecurefunc("AchievementFrame_UpdateTabs", UpdatePointsDisplay);
 
     AchievementFrameFilterDropdown:ClearAllPoints()
