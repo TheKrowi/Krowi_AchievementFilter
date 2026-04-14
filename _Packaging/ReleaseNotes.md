@@ -25,3 +25,6 @@
 
 ### Fixed (94.7)
 - A 3rd attempt on fixing taint issues (dev note: when using GameTooltip:SetHyperlink, the system gets tainted; by using GameTooltip:SetOwner this should be resolved, fingers crossed)
+
+### Mists Classic (94.8)
+- Fixed error: attempt to call global 'AchievementFrame_RefreshView' (a nil value) when switching to the Statistics tab
