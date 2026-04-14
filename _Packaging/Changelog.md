@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 94.8 - 2026-04-14
+### Mists Classic
+- Fixed error: attempt to call global 'AchievementFrame_RefreshView' (a nil value) when switching to the Statistics tab
+
 ## 94.7 - 2026-04-14
 ### Fixed
 - A 3rd attempt on fixing taint issues (dev note: when using GameTooltip:SetHyperlink, the system gets tainted; by using GameTooltip:SetOwner this should be resolved, fingers crossed)

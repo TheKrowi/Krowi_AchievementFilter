@@ -5,6 +5,14 @@ local achievementFrameTabButtonFactory = addon.Gui.AchievementFrameTabButtonFact
 local ourTabs = {};
 local onClick;
 
+local function RefreshAchievementView()
+    if type(AchievementFrame_RefreshView) == "function" then
+        AchievementFrame_RefreshView();
+    elseif type(AchievementFrame_ToggleView) == "function" then
+        AchievementFrame_ToggleView();
+    end
+end
+
 local function Base_OnClick(tabId)
     local tab = ourTabs[tabId];
     if not tab then
@@ -68,11 +76,7 @@ function achievementFrameTabButtonFactory:GetNew(index, text, framesToShow, cate
             end);
             hooksecurefunc("AchievementFrameBaseTab_OnClick", function(tabIndex)
                 if tabIndex == 3 then -- Statistics tab does not refresh the guild/personal look
-                    if addon.Util.IsCataClassic then
-                        AchievementFrame_ToggleView();
-                    else
-                        AchievementFrame_RefreshView();
-                    end
+                    RefreshAchievementView();
                 end
             end);
         end
