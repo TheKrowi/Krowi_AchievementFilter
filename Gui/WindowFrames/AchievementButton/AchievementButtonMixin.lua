@@ -95,10 +95,7 @@ function KrowiAF_AchievementButtonLightMixin:OnEnter()
 	if self.Achievement == nil then
 		return;
 	end
-	local link = GetAchievementLink(self.Achievement.Id);
-	GameTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT", 0, self:GetHeight());
-	GameTooltip:SetHyperlink(link);
-	GameTooltip:Show();
+	addon.Gui.AchievementTooltip:ShowTooltip(self, self.Achievement);
 end
 
 function KrowiAF_AchievementButtonLightMixin:OnLeave()
