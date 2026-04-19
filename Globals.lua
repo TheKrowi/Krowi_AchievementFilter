@@ -367,7 +367,7 @@ local function HandleAchievement(characterGuid, achievementInfo)
         return;
     end
 
-    if addon.Diagnostics.DebugEnabled() and achievement and achievement.BuildVersion and achievement.BuildVersion.Id == "120000" then
+    if addon.Diagnostics.DebugEnabled() and achievement and achievement.BuildVersion and achievement.BuildVersion.Id == "120005" then
         -- find achievement.Category top most parent (nil-safe + loop-safe)
         local topMostParent = GetTopMostParentCategory(achievement.Category);
         if topMostParent and topMostParent.Name == addon.L["Achievements"] then

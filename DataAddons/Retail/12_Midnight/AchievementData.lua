@@ -2067,3 +2067,124 @@ KrowiAF.AchievementData["12_00_00"] = {
         },
     },
 };
+
+KrowiAF.AchievementData["12_00_05"] = {
+    {KrowiAF.SetAchievementPatch, 12, 0, 5},
+    {61792}, -- T-A-G that spells "Gotcha!"
+    {61793}, -- Deployed to the Void
+    {61878}, -- Tagged and Bagged
+    {61879}, -- You're It
+    {61880}, -- It's Cold Here in This Shadow
+    {61881}, -- Hide and Peekless
+    {61882}, -- Null and Avoided
+    {61883}, -- Now You Don't See Me...
+    {61886}, -- The Whole Kit and Caboodle
+    {61887}, -- Disguised to the Nines
+    {62342}, -- Abyss Anglers: The Finest of Fish
+    {62343}, -- Abyss Anglers: Myths from Beneath
+    {62450}, -- Ritual Sites 101: An Introduction to Basic Magical Rituals
+    {62451}, -- Ritual Sites 200: Intermediate Ritual Practices
+    {62452}, -- Ritual Sites 320: Ritual Items and Their Uses in Quel'Thalas
+    {62453}, -- Ritual Sites 415: Applied Ritual Strategies
+    {62454}, -- Ritual Sites 505: A Seminar in Void Ritual Nuance
+    {62498}, -- Void Assault: Eversong
+    {62499}, -- Void Assault: Zul'Aman
+    { -- Abyss Anglers: Pressurized Eyeglass (Reward: Unlock Pressurized Eyeglass for purchase from Depthdiver Jeju)
+        62506,
+        {
+            RewardType = rewardType.Other,
+        },
+    },
+    {62507}, -- Void Smasher: Eversong
+    {62508}, -- Void Eradicator: Eversong
+    {62509}, -- Void Bane: Eversong
+    {62510}, -- Void Smasher: Zul'Aman
+    {62511}, -- Void Eradicator: Zul'Aman
+    {62512}, -- Void Bane: Zul'Aman
+    {62513}, -- Outstanding in the Field
+    { -- Cosmic Exterminator (Reward: Unlock Cappy for purchase)
+        62518,
+        {
+            RewardType = rewardType.Pet,
+        },
+    },
+    {62521}, -- Ritual Site: Broken Throne
+    {62522}, -- Ritual Site: Daggerspine Point
+    {62523}, -- Ritual Site Mastery: Broken Throne
+    {62524}, -- Ritual Site Challenge: Broken Throne
+    {62525}, -- Ritual Site Extreme: Broken Throne
+    {62526}, -- Ritual Site Mastery: Daggerspine Point
+    {62527}, -- Ritual Site Challenge: Daggerspine Point
+    {62528}, -- Ritual Site Extreme: Daggerspine Point
+    {62529}, -- Ritual Site Starter
+    {62530}, -- Ritual Site Achiever
+    {62531}, -- Ritual Site Adept
+    {62532}, -- Ritual Site Handler
+    {62533}, -- Ritual Site Master
+    {62534}, -- Ritual Site Rogue: Broken Throne
+    {62535}, -- Ritual Site Rogue: Daggerspine Point
+    {62536}, -- Neighborhood Ritual Watch: Broken Throne
+    {62537}, -- Neighborhood Ritual Team: Broken Throne
+    {62538}, -- Neighborhood Ritual Watch: Daggerspine Point
+    {62539}, -- Neighborhood Ritual Team: Daggerspine Point
+    {62540}, -- Challenge: Tendrils
+    {62541}, -- Challenge: Tainted Corpses
+    {62542}, -- Challenge: Manifestations
+    {62543}, -- Challenge: Patrols!
+    {62544}, -- Challenge: Magical Alarm Bells
+    {62545}, -- Challenge: Malevolent Boons
+    {62546}, -- Challenge: Reinforced
+    {62547}, -- Challenge: Embers
+    {62548}, -- Expert Challenge: Tendrils
+    {62549}, -- Expert Challenge: Tainted Corpses
+    {62550}, -- Expert Challenge: Manifestations
+    {62551}, -- Expert Challenge: Patrols!
+    {62552}, -- Expert Challenge: Magical Alarm Bells
+    {62553}, -- Expert Challenge: Malevolent Boons
+    {62554}, -- Expert Challenge: Reinforced
+    {62555}, -- Expert Challenge: Embers
+    {62556}, -- Quick Reflexes
+    {62558}, -- Patrol Ambusher
+    {62559}, -- Malevolence Shrugged
+    {62560}, -- Ember Still Burning
+    {62561}, -- Reinforcement Obliteration
+    {62562}, -- Ritual Site Disruptor
+    { -- Void Response Team (Reward: Unlock Unbound Manawyrm for purchase)
+        62563,
+        {
+            RewardType = rewardType.Mount,
+        },
+    },
+    {62568}, -- Void Shmoid
+    {62569}, -- Traces in the Dark
+    {62570}, -- Cosmic Slayer
+    {62571}, -- Everybody Gets One
+    {62572}, -- Battery Bombardment
+    {62573}, -- Air Traffic Controller
+    {62574}, -- Accolade to Rest
+    {62621}, -- Challenging Sites
+    {62622}, -- Ritual Renown
+    {62759}, -- Abyss Anglers: History Below
+    {62760}, -- Abyss Anglers: Angler Physics
+    {62761}, -- Abyss Anglers: One with the Depths
+    {62762}, -- Abyss Anglers: Top of the Class
+    {62763}, -- Abyss Anglers: Vintage Collector
+    {62772}, -- Abyss Anglers: Now That's Anglin'
+    {62773}, -- Abyss Anglers: Jeju's New Rival
+    {62774}, -- Abyss Anglers: Not Done Yet
+    {62775}, -- Abyss Anglers: Delicate Diver
+    { -- Abyss Anglers: All Blue Angler (Reward: Unlock Ka'bubb for purchase from Depthdiver Tu'nakit)
+        62776,
+        {
+            RewardType = rewardType.Pet,
+        },
+    },
+    {62777}, -- Abyss Anglers: Pearls to the Abyss
+    {62778}, -- Abyss Anglers: Luck of the Loa
+    {62811}, -- [PH] JZB Test Achievement 01
+    {62812}, -- [PH] JZB Test Achievement 02
+    {62813}, -- [PH] JZB Test Achievement 03
+    {62814}, -- [PH] JZB Test Achievement 04
+    {62829}, -- Abyss Anglers: Don't Know What You Expected
+    {62832}, -- Abyss Anglers: Reservation for One
+};

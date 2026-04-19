@@ -1417,6 +1417,7 @@ KrowiAF.AchievementData["06_00_02"] = {
 		9550,
 		{
 			RewardType = rewardType.Mount,
+			{},
 		},
 	},
     {9551}, -- Demon's Souls

@@ -1410,6 +1410,8 @@ KrowiAF.AchievementData["10_01_00"] = {
 		18027,
 		{
 			RewardType = rewardType.Other,
+			{"PvP Season", 35},
+			{"PvE Season", 10},
 		},
 	},
 	{ -- Cavern Clawbbering
@@ -1745,6 +1747,7 @@ KrowiAF.AchievementData["10_01_05"] = {
 		18705,
 		{
 			RewardType = rewardType.Title,
+			{"Before", "Version", {10, 2, 0}},
 		},
 	},
     { -- Put That Thing Back Where It Came From
@@ -2505,6 +2508,8 @@ KrowiAF.AchievementData["10_02_00"] = {
 		19396,
 		{
 			RewardType = rewardType.Transmog,
+			{"PvP Season", 36},
+			{"PvE Season", 11},
 		},
 	},
     { -- Dreaming of Wyrms
@@ -3018,6 +3023,8 @@ KrowiAF.AchievementData["10_02_06"] = {
 		20481,
 		{
 			RewardType = rewardType.Transmog,
+			{"PvP Season", 37},
+			{"PvE Season", 12},
 		},
 	},
 	{ -- Back from the Beyond

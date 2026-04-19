@@ -40,6 +40,14 @@ function data:RegisterAchievementDataTasks()
     end
 end
 
+function data:RegisterAchievementDataV2Tasks()
+    local name = "Achievement Data V2: ";
+    for k, v in next, KrowiAF.AchievementData2 do
+        self.InjectLoadingDebug(v, name .. k);
+        tinsert(self.TasksGroups, 1, v);
+    end
+end
+
 function data:RegisterCustomCriteriaDataTasks()
     local name = "Custom Criteria Data: ";
     for k, v in next, KrowiAF.CustomCriteriaData do
@@ -129,6 +137,7 @@ function data:LoadOnPlayerLogin()
     KrowiAF.CreateBuildVersions();
 
     self:RegisterAchievementDataTasks();
+    self:RegisterAchievementDataV2Tasks();
     self:RegisterCustomCriteriaDataTasks();
     self:RegisterCategoryDataTasks();
     self:RegisterEventDataTasks();

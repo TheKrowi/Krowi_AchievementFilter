@@ -27,6 +27,7 @@ KrowiAF.Enum.RewardType = EnumUtil.MakeEnum(
 );
 
 KrowiAF.AchievementData = {};
+KrowiAF.AchievementData2 = {};
 
 local achievementPatch;
 function KrowiAF.SetAchievementPatch(major, minor, patch)
@@ -91,4 +92,19 @@ end
 
 function KrowiAF.AddAchievementData(id, faction, otherFactionAchievementId, isPvP, isRealmFirst)
     AddAchievementData(ParseAddAchievementData(id, faction, otherFactionAchievementId, isPvP, isRealmFirst));
+end
+
+function KrowiAF.AddAchievementDataV2(id, extras)
+    if not extras then
+        AddAchievementData(id);
+        return;
+    end
+    local temporaryObtainables;
+    if #extras > 0 then
+        temporaryObtainables = {};
+        for i = 1, #extras do
+            tinsert(temporaryObtainables, extras[i]);
+        end
+    end
+    AddAchievementData(id, extras.Faction, extras.AltId, extras.RewardType, extras.IsPvP, extras.IsRealmFirst, temporaryObtainables);
 end

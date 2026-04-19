@@ -12,6 +12,11 @@ KrowiAF.BuildVersionData.Midnight = { -- 12
 					BuildVersionId = "120000",
 					Name = addon.L["Midnight"]
 				},
+				{ -- 12.0.5
+					Patch = 5,
+					BuildVersionId = "120005",
+					Name = addon.L["Lingering Shadows"]
+				},
 			},
 		},
 	},
