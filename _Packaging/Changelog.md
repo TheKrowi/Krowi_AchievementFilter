@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file.
     - Additional Abyss Anglers achievements (16)
 
 ### Changed
-- The War Within achievement data internally migrated to a new fluent V2 builder format (dev note: this is an invisible change for users; the new format uses method chaining instead of nested tables — e.g. `Ach(12345):Mount():PvE(13)` — which greatly improves readability and reduces data entry errors)
+- The War Within and Midnight achievement data internally migrated to a new fluent V2 builder format (dev note: this is an invisible change for users; the new format uses method chaining instead of nested tables — e.g. `Ach(12345):Mount():PvE(13)` — which greatly improves readability and reduces data entry errors)
 
 ### Fixed
 - Season-gated achievements using the legacy "Season" end function keyword were evaluating obtainability state against the wrong field (start instead of end), producing incorrect results

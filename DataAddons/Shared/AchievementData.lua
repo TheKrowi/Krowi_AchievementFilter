@@ -4,10 +4,7 @@ addon.Data.AchievementData.Shared = {};
 local shared = addon.Data.AchievementData.Shared;
 local rewardType = KrowiAF.Enum.RewardType;
 
--- ============================================================
 -- AchBuilder: fluent builder for V2 data entries
--- Usage: Ach(id):PvE(13):Title()
--- ============================================================
 local AchBuilder = {}
 AchBuilder.__index = AchBuilder
 
@@ -42,6 +39,14 @@ function AchBuilder:FactionSplit(f, altId)
     local e = GetExtras(self)
     e.Faction = f
     e.AltId = altId
+    return self
+end
+
+function AchBuilder:AutoFactionSplit(f, altId)
+    local e = GetExtras(self)
+    e.Faction = f
+    e.AltId = altId
+    e.AutoPair = true
     return self
 end
 

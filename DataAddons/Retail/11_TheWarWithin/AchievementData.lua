@@ -97,8 +97,7 @@ KrowiAF.AchievementData2["11_00_00"] = {
     Ach(40231):Other(), -- The War Within Pathfinder
 	Ach(40232):Mount(), -- Glory of the Nerub-ar Raider
     Ach(40233):Title():Toy():PvP(38), -- Strategist: The War Within Season 1
-    Ach(40234):FactionSplit(faction.Horde, 40235):Title():PvP(38), -- Forged Warlord: The War Within Season 1
-    Ach(40235):FactionSplit(faction.Alliance, 40234):Title():PvP(38), -- Forged Marshal: The War Within Season 1
+    Ach(40234):AutoFactionSplit(faction.Horde, 40235):Title():PvP(38), -- Forged Warlord / Marshal: The War Within Season 1
     Ach(40236), -- Mythic: Ulgrax the Devourer
     Ach(40237), -- Mythic: The Bloodbound Horror
     Ach(40238), -- Mythic: Sikran, Captain of the Sureki
@@ -183,8 +182,7 @@ KrowiAF.AchievementData2["11_00_00"] = {
     Ach(40379), -- Mythic: City of Threads
     Ach(40380):Title():PvP(38), -- Forged Gladiator: The War Within Season 1
     Ach(40381):Title():PvP(38), -- Forged Legend: The War Within Season 1
-    Ach(40383):FactionSplit(faction.Alliance, 40384):PvP(38), -- Hero of the Alliance: Forged
-    Ach(40384):FactionSplit(faction.Horde, 40383):PvP(38), -- Hero of the Horde: Forged
+    Ach(40383):AutoFactionSplit(faction.Alliance, 40384):PvP(38), -- Hero of the Alliance / Horde: Forged
     Ach(40385):Title():PvP(38), -- Combatant I: The War Within Season 1
     Ach(40386):PvP(38), -- Combatant II: The War Within Season 1
     Ach(40387):Title():PvP(38), -- Challenger I: The War Within Season 1
@@ -615,12 +613,10 @@ KrowiAF.AchievementData2["11_01_00"] = {
     Ach(41352):Title(), -- Trade-Duke
     Ach(41354):Title():PvP(39), -- Prized Gladiator: The War Within Season 2
     Ach(41355):Title():PvP(39), -- Prized Legend: The War Within Season 2
-    Ach(41356):FactionSplit(faction.Horde, 41357):Title():PvP(39), -- Prized Warlord: The War Within Season 2
-    Ach(41357):FactionSplit(faction.Alliance, 41356):Title():PvP(39), -- Prized Marshal: The War Within Season 2
+    Ach(41356):AutoFactionSplit(faction.Horde, 41357):Title():PvP(39), -- Prized Warlord / Marshal: The War Within Season 2
     Ach(41358):Title():Toy():PvP(39), -- Legend: The War Within Season 2
     Ach(41359):Title():PvP(39), -- Battle Mender: The War Within Season 2
-    Ach(41360):FactionSplit(faction.Horde, 41361):PvP(39), -- Hero of the Horde: Prized
-    Ach(41361):FactionSplit(faction.Alliance, 41360):PvP(39), -- Hero of the Alliance: Prized
+    Ach(41360):AutoFactionSplit(faction.Horde, 41361):PvP(39), -- Hero of the Horde / Alliance: Prized
     Ach(41362):PvP(39), -- Prized Gladiator's Fel Bat
     Ach(41363):Title():Toy():PvP(39), -- Strategist: The War Within Season 2
     Ach(41522):IsPvP(), -- Tour of Duty: Undermine
@@ -671,8 +667,7 @@ KrowiAF.AchievementData2["11_01_00"] = {
 
 KrowiAF.AchievementData2["11_01_05"] = {
     {KrowiAF.SetAchievementPatch, 11, 1, 5},
-    Ach(41631):FactionSplit(faction.Alliance, 41632):Obtainable("Event", 341), -- Flame Warden of Khaz Algar
-    Ach(41632):FactionSplit(faction.Horde, 41631):Obtainable("Event", 341), -- Flame Keeper of Khaz Algar
+    Ach(41631):AutoFactionSplit(faction.Alliance, 41632):Obtainable("Event", 341), -- Flame Warden / Keeper of Khaz Algar
     Ach(41706):Obtainable("Event", 1599), -- Dastardly Duos Weekly High Score
     Ach(41707):Obtainable("Event", 1599), -- Dastardly Devices
     Ach(41715):Other():Obtainable("Event", 1599), -- Fiendishly Famous
@@ -734,8 +729,7 @@ KrowiAF.AchievementData2["11_01_05"] = {
 KrowiAF.AchievementData2["11_01_07"] = {
     {KrowiAF.SetAchievementPatch, 11, 1, 7},
     Ach(41779):Mount():Obtainable("Event", 1425, false), -- Master of the Turbulent Timeways III
-    Ach(41818):FactionSplit(faction.Alliance, 41820):Title(), -- Rise of the Red Dawn
-    Ach(41820):FactionSplit(faction.Horde, 41818):Title(), -- Rise of the Red Dawn
+    Ach(41818):AutoFactionSplit(faction.Alliance, 41820):Title(), -- Rise of the Red Dawn
     Ach(42029), -- The Emerald Nightmare
     Ach(42030), -- The Nighthold
     Ach(42031), -- Tomb of Sargeras
@@ -804,11 +798,9 @@ KrowiAF.AchievementData2["11_02_00"] = {
     Ach(42023):Title():Toy():PvP(40), -- Legend: The War Within Season 3
     Ach(42024):Title():Toy():PvP(40), -- Strategist: The War Within Season 3
     Ach(42033):Title():PvP(40), -- Astral Legend: The War Within Season 3
-    Ach(42034):FactionSplit(faction.Horde, 42035):Title():PvP(40), -- Astral Warlord: The War Within Season 3
-    Ach(42035):FactionSplit(faction.Alliance, 42034):Title():PvP(40), -- Astral Marshal: The War Within Season 3
+    Ach(42034):AutoFactionSplit(faction.Horde, 42035):Title():PvP(40), -- Astral Warlord / Marshal: The War Within Season 3
     Ach(42036):Title():PvP(40), -- Astral Gladiator: The War Within Season 3
-    Ach(42037):FactionSplit(faction.Horde, 42038):PvP(40), -- Hero of the Horde: Astral
-    Ach(42038):FactionSplit(faction.Alliance, 42037):PvP(40), -- Hero of the Alliance: Astral
+    Ach(42037):AutoFactionSplit(faction.Horde, 42038):PvP(40), -- Hero of the Horde / Alliance: Astral
     Ach(42039):PvP(40), -- Astral Gladiator's Fel Bat
     Ach(42044):Title():PvP(40), -- Battle Mender: The War Within Season 3
     -- {42114}, -- Broken Memories
@@ -880,8 +872,7 @@ KrowiAF.AchievementData2["11_02_00"] = {
     Ach(42806):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 30 (Keystones will no longer deplete below level 30 during the War Within Season 3.)
     Ach(60889), -- Unraveled and Persevering
     Ach(60890), -- Secrets of the K'areshi
-    Ach(60933):FactionSplit(faction.Horde, 60934):Mount():Obtainable("Before", "Version", {11, 2, 5}), -- With Flying Colors
-    Ach(60934):FactionSplit(faction.Alliance, 60933):Mount():Obtainable("Before", "Version", {11, 2, 5}), -- With Flying Colors
+    Ach(60933):AutoFactionSplit(faction.Horde, 60934):Mount():Obtainable("Before", "Version", {11, 2, 5}), -- With Flying Colors
     Ach(60939), -- Bringing Down the House
     Ach(60940), -- Vandals! In! Space!
     Ach(61017):Mount(), -- Phase-Lost-and-Found
@@ -1215,8 +1206,7 @@ KrowiAF.AchievementData2["11_02_07"] = {
     Ach(61317), -- Domicile Designer
     Ach(61318):Title(), -- Fully Furnished
     Ach(61394):Mount():Obtainable("Event", 1425), -- Master of the Turbulent Timeways IV
-    Ach(61413):FactionSplit(faction.Alliance, 61414), -- The First Rule of Brawler's Guild
-    Ach(61414):FactionSplit(faction.Horde, 61413), -- The First Rule of Brawler's Guild
+    Ach(61413):AutoFactionSplit(faction.Alliance, 61414), -- The First Rule of Brawler's Guild
     Ach(61419), -- Brawler's Chilled
     Ach(61420), -- Let Me Solo It
     Ach(61421), -- A Prime Ordeal
