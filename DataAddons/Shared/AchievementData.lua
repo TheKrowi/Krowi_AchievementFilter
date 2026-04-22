@@ -4,27 +4,70 @@ addon.Data.AchievementData.Shared = {};
 local shared = addon.Data.AchievementData.Shared;
 local rewardType = KrowiAF.Enum.RewardType;
 
-function shared.Ach(id, ...)
-    if select("#", ...) == 0 then
-        return {id}
-    end
-    return {id, {...}}
+-- AchBuilder: fluent builder for V2 data entries
+local AchBuilder = {}
+AchBuilder.__index = AchBuilder
+
+local function GetExtras(self)
+    if not self[2] then self[2] = {} end
+    return self[2]
 end
 
-function shared.PvE(season)
-    return {"PvE Season", season}
+function AchBuilder:PvE(season)
+    tinsert(GetExtras(self), {"PvE Season", season})
+    return self
 end
 
-function shared.PvP(season)
-    return {"PvP Season", season}
+function AchBuilder:PvP(season)
+    local e = GetExtras(self)
+    e.IsPvP = true
+    tinsert(e, {"PvP Season", season})
+    return self
 end
 
-function shared.Reward(reward)
-    return {RewardType = reward}
+function AchBuilder:IsPvP()
+    GetExtras(self).IsPvP = true
+    return self
+end
+
+function AchBuilder:IsRealmFirst()
+    GetExtras(self).IsRealmFirst = true
+    return self
+end
+
+function AchBuilder:FactionSplit(f, altId)
+    local e = GetExtras(self)
+    e.Faction = f
+    e.AltId = altId
+    return self
+end
+
+function AchBuilder:AutoFactionSplit(f, altId)
+    local e = GetExtras(self)
+    e.Faction = f
+    e.AltId = altId
+    e.AutoPair = true
+    return self
+end
+
+function AchBuilder:Obtainable(...)
+    tinsert(GetExtras(self), {...})
+    return self
 end
 
 for key, value in pairs(rewardType) do
-    shared[key] = function()
-        return {RewardType = value}
+    AchBuilder[key] = function(self)
+        local e = GetExtras(self)
+        local rt = e.RewardType
+        if rt == nil then
+            e.RewardType = {value}
+        else
+            tinsert(rt, value)
+        end
+        return self
     end
+end
+
+function shared.Ach(id)
+    return setmetatable({id}, AchBuilder)
 end

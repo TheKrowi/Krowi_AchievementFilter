@@ -4,7 +4,7 @@ Use this guide when WoW releases an entirely new expansion that needs its own da
 
 **Commit type:** `data(<expansion>): initial expansion data folder` — e.g. `data(thenextexpansion): create initial data folder`
 
-The canonical reference for all file structures is the most recent expansion folder, currently `DataAddons/Retail/12_Midnight/`.
+The canonical reference for all file structures is `DataAddons/Retail/11_TheWarWithin/`.
 
 ---
 
@@ -12,7 +12,7 @@ The canonical reference for all file structures is the most recent expansion fol
 
 Create `DataAddons/Retail/13_TheNextExpansion/` (adjust number and name).
 
-Copy `DataAddons/Retail/12_Midnight/` as your starting template. You'll replace all data but keep the file structure.
+Copy `DataAddons/Retail/11_TheWarWithin/` as your starting template. You'll replace all data but keep the file structure.
 
 ---
 
@@ -42,18 +42,23 @@ Only include files you actually have data for. Comment out the rest.
 ## 3. Create `AchievementData.lua`
 
 ```lua
-local _, addon = ...;
-local shared = addon.Data.AchievementData.Shared;
-local faction = KrowiAF.Enum.Faction;
-local rewardType = KrowiAF.Enum.RewardType;
+local _, addon = ...
+local shared = addon.Data.AchievementData.Shared
+local Ach = shared.Ach
+local faction = KrowiAF.Enum.Faction -- only needed if FactionSplit is used
 
-KrowiAF.AchievementData["13_00_00"] = {
+KrowiAF.AchievementData2["13_00_00"] = {
     {KrowiAF.SetAchievementPatch, 13, 0, 0},
-    -- Add achievement entries here
+    -- Add achievement entries here using Ach() builder
+    -- Examples:
+    --   Ach(12345),                             -- simple
+    --   Ach(12346):Mount(),                     -- with reward type
+    --   Ach(12347):Title():PvE(15),             -- reward + PvE season
+    --   Ach(12348):FactionSplit(faction.Alliance, 12349), -- faction split
 }
 ```
 
-See [`add-patch-achievements.md`](add-patch-achievements.md) for the full set of supported achievement entry patterns. Use `Api/ApiDocumentation.lua` as the canonical reference.
+See [`add-patch-achievements.md`](add-patch-achievements.md) for the full method reference table. Use `Api/ApiDocumentation.lua` as the canonical reference.
 
 ---
 

@@ -728,20 +728,37 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             62210, -- Abyss Anglers: Depthdiver's Used Tank
             62218, -- Abyss Anglers: Even The Best
             62211, -- Abyss Anglers: Fathom-Tested Tank
+            62342, -- Abyss Anglers: The Finest of Fish
             62221, -- Abyss Anglers: Fresh Depth Tech
             62215, -- Abyss Anglers: Heavy Harpoon Cannon
             62216, -- Abyss Anglers: Hollowcore Harpoon Turret
             62217, -- Abyss Anglers: Idol of the Depths
+            62773, -- Abyss Anglers: Jeju's New Rival
             62119, -- Abyss Anglers: Loaknit-Woven Catch Satchel
+            62778, -- Abyss Anglers: Luck of the Loa
+            62343, -- Abyss Anglers: Myths from Beneath
             62212, -- Abyss Anglers: Nalorakk's Breath Tank
             62219, -- Abyss Anglers: No Sea Can Hold Me
+            62774, -- Abyss Anglers: Not Done Yet
+            62772, -- Abyss Anglers: Now That's Anglin'
+            62761, -- Abyss Anglers: One with the Depths
             62209, -- Abyss Anglers: Pahk Trench Fins
+            62777, -- Abyss Anglers: Pearls to the Abyss
+            62506, -- Abyss Anglers: Pressurized Eyeglass
             62220, -- Abyss Anglers: Proper Procedure
             62207, -- Abyss Anglers: Reinforced Joints
+            62829, -- Abyss Anglers: Don't Know What You Expected
+            62832, -- Abyss Anglers: Reservation for One
             62213, -- Abyss Anglers: Shallows Net
             62222, -- Abyss Anglers: The Amani Way
+            62762, -- Abyss Anglers: Top of the Class
             62271, -- Abyss Anglers: Trench Berserker
             62214, -- Abyss Anglers: Triple-Thread Net
+            62763, -- Abyss Anglers: Vintage Collector
+            62760, -- Abyss Anglers: Angler Physics
+            62776, -- Abyss Anglers: All Blue Angler (Pet: Ka'bubb)
+            62775, -- Abyss Anglers: Delicate Diver
+            62759, -- Abyss Anglers: History Below
         }
     },
     { -- Prey
@@ -818,6 +835,100 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             61082, -- Old Soldiers
             61083, -- Highly Decorated
         }
+    },
+    { -- Ritual Sites
+        addon.GetCategoryInfoTitle(15608),
+        { -- Broken Throne
+            addon.L["Broken Throne"],
+            true,
+            {
+                62521, -- Ritual Site: Broken Throne
+                62523, -- Ritual Site Mastery: Broken Throne
+                62524, -- Ritual Site Challenge: Broken Throne
+                62525, -- Ritual Site Extreme: Broken Throne
+                62534, -- Ritual Site Rogue: Broken Throne
+                62536, -- Neighborhood Ritual Watch: Broken Throne
+                62537, -- Neighborhood Ritual Team: Broken Throne
+            },
+        },
+        { -- Daggerspine Point
+            addon.L["Daggerspine Point"],
+            true,
+            {
+                62522, -- Ritual Site: Daggerspine Point
+                62526, -- Ritual Site Mastery: Daggerspine Point
+                62527, -- Ritual Site Challenge: Daggerspine Point
+                62528, -- Ritual Site Extreme: Daggerspine Point
+                62535, -- Ritual Site Rogue: Daggerspine Point
+                62538, -- Neighborhood Ritual Watch: Daggerspine Point
+                62539, -- Neighborhood Ritual Team: Daggerspine Point
+            },
+        },
+        { -- Challenges
+            addon.L["Challenges"],
+            true,
+            {
+                62540, -- Challenge: Tendrils
+                62541, -- Challenge: Tainted Corpses
+                62542, -- Challenge: Manifestations
+                62543, -- Challenge: Patrols!
+                62544, -- Challenge: Magical Alarm Bells
+                62545, -- Challenge: Malevolent Boons
+                62546, -- Challenge: Reinforced
+                62547, -- Challenge: Embers
+                62548, -- Expert Challenge: Tendrils
+                62549, -- Expert Challenge: Tainted Corpses
+                62550, -- Expert Challenge: Manifestations
+                62551, -- Expert Challenge: Patrols!
+                62552, -- Expert Challenge: Magical Alarm Bells
+                62553, -- Expert Challenge: Malevolent Boons
+                62554, -- Expert Challenge: Reinforced
+                62555, -- Expert Challenge: Embers
+                62556, -- Quick Reflexes
+                62558, -- Patrol Ambusher
+                62559, -- Malevolence Shrugged
+                62560, -- Ember Still Burning
+                62561, -- Reinforcement Obliteration
+            },
+        },
+        {
+            62450, -- Ritual Sites 101: An Introduction to Basic Magical Rituals
+            62451, -- Ritual Sites 200: Intermediate Ritual Practices
+            62452, -- Ritual Sites 320: Ritual Items and Their Uses in Quel'Thalas
+            62453, -- Ritual Sites 415: Applied Ritual Strategies
+            62454, -- Ritual Sites 505: A Seminar in Void Ritual Nuance
+            62529, -- Ritual Site Starter
+            62530, -- Ritual Site Achiever
+            62531, -- Ritual Site Adept
+            62532, -- Ritual Site Handler
+            62533, -- Ritual Site Master
+            62562, -- Ritual Site Disruptor
+            62621, -- Challenging Sites
+            62622, -- Ritual Renown
+        },
+    },
+    { -- Void Assaults
+        addon.GetCategoryInfoTitle(15610),
+        {
+            62498, -- Void Assault: Eversong
+            62499, -- Void Assault: Zul'Aman
+            62507, -- Void Smasher: Eversong
+            62508, -- Void Eradicator: Eversong
+            62509, -- Void Bane: Eversong
+            62510, -- Void Smasher: Zul'Aman
+            62511, -- Void Eradicator: Zul'Aman
+            62512, -- Void Bane: Zul'Aman
+            62513, -- Outstanding in the Field
+            62518, -- Cosmic Exterminator (Pet: Cappy)
+            62563, -- Void Response Team (Mount: Unbound Manawyrm)
+            62568, -- Void Shmoid
+            62569, -- Traces in the Dark
+            62570, -- Cosmic Slayer
+            62571, -- Everybody Gets One
+            62572, -- Battery Bombardment
+            62573, -- Air Traffic Controller
+            62574, -- Accolade to Rest
+        },
     },
     {
         62387, -- It's Nearly Midnight

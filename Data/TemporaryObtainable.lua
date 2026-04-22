@@ -1,10 +1,7 @@
--- [[ Namespaces ]] --
 local _, addon = ...
 local data = addon.Data
 data.TemporaryObtainable = {}
 local temporaryObtainable = data.TemporaryObtainable
-
-local DEBUG --= true
 
 function temporaryObtainable:Load()
     if C_MythicPlus then
@@ -17,30 +14,18 @@ end
 
 do -- GetData
     function temporaryObtainable:GetPreviousMplusSeason()
-        if DEBUG then
-            return 6
-        end
         return tonumber(GetCVar("newMythicPlusSeason"))
     end
 
     function temporaryObtainable:GetCurrentMplusSeason()
-        if DEBUG then
-            return 7
-        end
         return C_MythicPlus.GetCurrentSeason()
     end
 
     function temporaryObtainable:GetPreviousPvpSeason()
-        if DEBUG then
-            return 33
-        end
         return GetPreviousArenaSeason()
     end
 
     function temporaryObtainable:GetCurrentPvpSeason()
-        if DEBUG then
-            return 0
-        end
         return GetCurrentArenaSeason()
     end
 
@@ -93,7 +78,7 @@ function temporaryObtainable:GetObtainableState(achievement)
     end
 
     local endFunction = record.End.Function
-    if endFunction == "PvE Season" or startFunction == "Season" then
+    if endFunction == "PvE Season" or endFunction == "Season" then
         _end = self:GetMplusSeasonEndState(record)
     elseif endFunction == "PvP Season" then
         _end = self:GetPvpSeasonEndState(record)

@@ -1290,6 +1290,21 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
             20509, -- Plunderkind
         }
     },
+    { -- Decor Duel
+        addon.GetCategoryInfoTitle(15574),
+        {
+            61792, -- T-A-G that spells "Gotcha!"
+            61793, -- Deployed to the Void
+            61878, -- Tagged and Bagged
+            61879, -- You're It
+            61880, -- It's Cold Here in This Shadow
+            61881, -- Hide and Peekless
+            61882, -- Null and Avoided
+            61883, -- Now You Don't See Me...
+            61886, -- The Whole Kit and Caboodle
+            61887, -- Disguised to the Nines
+        }
+    },
     { -- Dastardly Duos
         1681,
         addon.L["Dastardly Duos"],

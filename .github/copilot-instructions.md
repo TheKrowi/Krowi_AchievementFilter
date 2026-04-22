@@ -85,7 +85,7 @@ Game-version-conditional loading uses `[AllowLoadGameType mainline]` and `[Allow
 All Lua files use `local addonName, addon = ...;` (or `local _, addon = ...;`) to receive the shared addon table. The addon namespace is private. The public API is exposed via the `KrowiAF` global table (created in `Api/API.lua`). Key globals:
 - `KrowiAF` — Public API and data registration
 - `KrowiAF.Enum.*` — Enums (Faction, RewardType, EventType)
-- `KrowiAF.AchievementData`, `KrowiAF.CategoryData`, etc. — Data registration tables
+- `KrowiAF.AchievementData`, `KrowiAF.AchievementData2`, `KrowiAF.CategoryData`, etc. — Data registration tables
 - `KROWI_LIBMAN` — Library manager (from `Krowi_Util/LibMan.lua`)
 - `addon.*` sub-tables: `addon.Data`, `addon.Objects`, `addon.Gui`, `addon.Options`, `addon.Filters`, `addon.Diagnostics`, `addon.Plugins`, etc.
 
@@ -95,8 +95,37 @@ Declared in the `.toc`: `KrowiAF_DebugTable`, `KrowiAF_Options`, `KrowiAF_SavedD
 
 ### Adding New Data (Common Task)
 
-To add new achievements for a new patch or expansion content:
-1. Add achievement data in the appropriate `DataAddons/Retail/XX_ExpansionName/AchievementData.lua` file following the pattern in `Api/ApiDocumentation.lua`.
+#### Achievement Data Format — V2 (Current Standard)
+
+All new achievement entries use `KrowiAF.AchievementData2` with the fluent `Ach()` builder. This applies to all expansions (Retail and Classic), including new patches added to existing old expansion files.
+
+Required file header for any file using V2:
+```lua
+local _, addon = ...
+local shared = addon.Data.AchievementData.Shared
+local Ach = shared.Ach
+local faction = KrowiAF.Enum.Faction -- only if FactionSplit is used
+```
+
+New patch table:
+```lua
+KrowiAF.AchievementData2["11_01_00"] = {
+    {KrowiAF.SetAchievementPatch, 11, 1, 0},
+    Ach(12345),                                      -- simple
+    Ach(12346):Mount(),                              -- reward type
+    Ach(12347):Title():PvE(15),                      -- reward + season
+    Ach(12348):FactionSplit(faction.Alliance, 12349), -- faction split
+}
+```
+
+**When adding a new patch to a file that still contains V1 entries** (expansions 01–10 and 12, pending migration): add the `shared`/`Ach` imports to the header if not present, then use `KrowiAF.AchievementData2` for the new patch table. The V1 entries in the same file are unaffected — both table keys coexist.
+
+#### V1 Format (Legacy — existing data only)
+
+Expansions 01–10 and 12 still contain V1-format entries using `KrowiAF.AchievementData` with positional/nested tables. Do not use V1 for new entries. See `docs/codebase-analysis.md` for the migration roadmap.
+
+#### Steps for adding new achievements:
+1. Add achievement data in the appropriate `DataAddons/Retail/XX_ExpansionName/AchievementData.lua` file using V2 format. Canonical reference: `DataAddons/Retail/11_TheWarWithin/AchievementData.lua` and `Api/ApiDocumentation.lua`.
 2. Add category data in the corresponding `CategoryData.lua`.
 3. If achievements have zone associations, update the corresponding `ZoneData.lua`.
 4. If achievements have tooltip extras, update `TooltipData.lua`.
@@ -111,11 +140,90 @@ For step-by-step guides on the most common data tasks, see `docs/how-to/`:
 
 ### Code Style Conventions
 
-- Semicolons at end of statements: **no** — do not add semicolons in new or changed code. Existing semicolons may remain, but removing them is advised when working on surrounding code.
-- Local variables use `camelCase`; object constructors/methods use `PascalCase`.
-- Tables as namespaces: `addon.ModuleName = {}; local moduleName = addon.ModuleName;`
-- Metatables with `__index` for OOP: `obj.__index = obj; function obj:New(...) ... setmetatable({}, obj) ... end`
-- String concatenation with `..` operator.
+These rules apply to **all** new and edited code. Follow them without being asked.
+
+#### File Header
+
+Every file starts with the vararg unpack. Use `_` for unused positional variables. Do **not** add a `-- [[ Namespaces ]] --` (or similar) comment above this line.
+
+```lua
+-- correct: addonName not used
+local _, addon = ...
+
+-- correct: both used
+local addonName, addon = ...
+```
+
+#### Semicolons
+
+Do **not** use semicolons at the end of statements. Existing semicolons may remain in untouched code, but remove them when editing surrounding lines.
+
+#### Naming
+
+| Kind | Convention | Example |
+|------|-----------|---------|
+| Local variables | `camelCase` | `local myValue` |
+| Module tables | `camelCase` local, `PascalCase` on `addon.*` | `local gui = addon.Gui` |
+| Object constructors / methods | `PascalCase` | `function category:New()` |
+| Module-level private helpers | `PascalCase` for named functions, `camelCase` for locals | `local function VersionLessThan(a, b)` |
+
+#### Module Pattern
+
+```lua
+local _, addon = ...
+addon.MyModule = {}
+local myModule = addon.MyModule
+
+function myModule.DoThing()
+    ...
+end
+```
+
+#### OOP Pattern
+
+```lua
+local myObject = {}
+myObject.__index = myObject
+
+function myObject:New(...)
+    local instance = setmetatable({}, myObject)
+    ...
+    return instance
+end
+
+function myObject:DoThing()
+    ...
+end
+```
+
+#### Forward Declarations
+
+Declare at the top of the relevant scope, not at the top of the file unless necessary:
+
+```lua
+local Foo, Bar
+
+function Foo()
+    Bar()
+end
+
+function Bar()
+    ...
+end
+```
+
+#### Nil-safe Defaults
+
+Use `or {}` for lazy table initialisation:
+
+```lua
+self.Children = self.Children or {}
+KrowiAF_SavedData.Fixes = KrowiAF_SavedData.Fixes or {}
+```
+
+#### Other
+
+- String concatenation uses the `..` operator.
 - WoW API calls are used directly (no wrappers unless specifically needed).
 
 ## Important Notes
