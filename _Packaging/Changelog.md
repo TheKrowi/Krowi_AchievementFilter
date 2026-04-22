@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 95.0 - 2026-04-19
+## 95.0 - 2026-04-22
 ### Added
 - 12.0.5 achievements (~90)
     - Decor Duel event achievements (10)

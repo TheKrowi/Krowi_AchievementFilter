@@ -1,30 +1,19 @@
 ### Added
-- 12.0.1 achievements (47)
+- 12.0.5 achievements (~90)
+    - Decor Duel event achievements (10)
+    - Ritual Sites achievements including Broken Throne and Daggerspine Point sub-categories and their Challenges (55)
+    - Void Assaults achievements for Eversong and Zul'Aman (18)
+    - Additional Abyss Anglers achievements (16)
 
-### Changed (94.1)
-- Sub-special categories should no longer show in the Adjustable categories options
+### Changed
+- The War Within and Midnight achievement data internally migrated to a new fluent V2 builder format (dev note: this is an invisible change for users; the new format uses method chaining instead of nested tables — e.g. `Ach(12345):Mount():PvE(13)` — which greatly improves readability and reduces data entry errors)
 
-### Fixed (94.2)
-- Dragonflight's zone data for achievements should once again work
-
-### Added (94.3)
-- 12.0.1 achievements (4)
-
-### Fixed (94.4)
-- Midnight Season 1 now correctly indicates it has started
-- Mousing over an achievement should no longer cause an error
-
-### Mists Classic (94.4)
-- Added missing 5.5.3 achievements
-
-### Fixed (94.5)
-- Secret values should now be safe
-
-### Fixed (94.6)
-- A 2nd attempt on fixing taint issues (dev note: when using GameTooltip:SetHyperlink and GameTooltip:SetPoint, the system gets tainted; by using GameTooltip:SetOwner this should be resolved, fingers crossed)
-
-### Fixed (94.7)
-- A 3rd attempt on fixing taint issues (dev note: when using GameTooltip:SetHyperlink, the system gets tainted; by using GameTooltip:SetOwner this should be resolved, fingers crossed)
-
-### Mists Classic (94.8)
-- Fixed error: attempt to call global 'AchievementFrame_RefreshView' (a nil value) when switching to the Statistics tab
+### Fixed
+- Season-gated achievements using the legacy "Season" end function keyword were evaluating obtainability state against the wrong field (start instead of end), producing incorrect results
+- Removed a debug flag in TemporaryObtainable that could have accidentally shipped with hardcoded season and version overrides, causing all time-gated achievements to show incorrect obtainability states
+- Several unobtainable achievements were incorrectly showing as obtainable when "Past Obtainable" was unchecked:
+    - Boldly, You Sought the Power of Ragnaros (9550) — WoW 10th Anniversary Molten Core LFR, never returned
+    - Dragonflight Season 2 Master (18027) — now gated to PvE Season 10 / PvP Season 35
+    - Defender of the Timeways (18705) — now gated to before version 10.2.0
+    - Dragonflight Season 3 Master (19396) — now gated to PvE Season 11 / PvP Season 36
+    - Dragonflight Season 4 Master (20481) — now gated to PvE Season 12 / PvP Season 37
