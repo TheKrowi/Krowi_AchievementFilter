@@ -1,1683 +1,624 @@
-local _, addon = ...;
-local shared = addon.Data.AchievementData.Shared;
-local faction = KrowiAF.Enum.Faction;
-local rewardType = KrowiAF.Enum.RewardType;
+local _, addon = ...
+local shared = addon.Data.AchievementData.Shared
+local Ach = shared.Ach
+local faction = KrowiAF.Enum.Faction
 
-KrowiAF.AchievementData["09_00_01"] = {
+KrowiAF.AchievementData2["09_00_01"] = {
     {KrowiAF.SetAchievementPatch, 9, 0, 1},
-    {13878}, -- The Master of Revendreth
-    {14164}, -- Awaken, Ardenweald
-    {14197}, -- Sanguine Depths
-    {14198}, -- Heroic: Sanguine Depths
-    {14199}, -- Mythic: Sanguine Depths
-    {14206}, -- Blade of the Primus
-    {14222}, -- Exile's Reach
-    {14233}, -- Tea Tales
-    { -- WoW's 16th Anniversary
-        14271,
-        {
-            {},
-        },
-    },
-    {14272}, -- Best Bud With Benefits
-    {14273}, -- Crypt Kicker
-    {14274}, -- Absolution for All
-    {14276}, -- It's Always Sinny in Revendreth
-	{ -- The Accuser's Avowed
-		14277,
-		{
-			RewardType = rewardType.Title,
-		},
-	},
-    {14280}, -- Loremaster of Shadowlands
-    {14281}, -- The Path to Ascension
-    {14283}, -- Heroic Edition: Ensorcelled Everwyrm
-    {14284}, -- Breaking Bad
-    {14285}, -- Ready for Raiding VII
-    {14286}, -- Residue Evil
-    {14289}, -- Kaal-ed Shot
-    {14290}, -- I Only Have Eyes For You
-    {14291}, -- Someone Could Trip on These!
-    {14292}, -- Riding with my Slimes
-    {14293}, -- Blind as a Bat
-    {14294}, -- Dirtflap's Revenge
-    {14295}, -- Bountiful Harvest
-    {14296}, -- Going Viral
-    {14297}, -- Three Choose One
-    {14303}, -- Explore Bastion
-    {14304}, -- Explore Ardenweald
-    {14305}, -- Explore Maldraxxus
-    {14306}, -- Explore Revendreth
-    {14307}, -- Adventurer of Bastion
-    {14308}, -- Adventurer of Maldraxxus
-    {14309}, -- Adventurer of Ardenweald
-    {14310}, -- Adventurer of Revendreth
-    {14311}, -- Treasures of Bastion
-    {14312}, -- Treasures of Maldraxxus
-    {14313}, -- Treasures of Ardenweald
-    {14314}, -- Treasures of Revendreth
-    {14315}, -- Shadowlands Diplomat
-    {14320}, -- Surgeon's Supplies
-	{ -- Glory of the Shadowlands Hero
-		14322,
-		{
-			RewardType = rewardType.Mount,
-		},
-	},
-    {14323}, -- ExSPEARiential
-    {14324}, -- Heroic: Spires of Ascension
-    {14325}, -- Mythic: Spires of Ascension
-    {14326}, -- Spires of Ascension
-    {14327}, -- I Can See My House From Here
-    {14328}, -- Professional Shadowlands Master
-    {14329}, -- Working the Afterlife
-    {14330}, -- Shadowlands Master of All
-    {14331}, -- Goliath Offline
-    {14332}, -- Shadowlands Cook
-    {14333}, -- Shadowlands Fisherman
-    {14334}, -- Into the Maw
-    {14335}, -- The Ascended
-    {14336}, -- Undying Army
-    {14337}, -- The Wild Hunt
-    {14338}, -- Court of Harvesters
-    {14339}, -- Shard Labor
-    {14347}, -- Full Gores Meal
-    {14352}, -- Nobody Puts Denathrius in a Corner
-    {14353}, -- Ardenweald's a Stage
-    {14354}, -- Highly Communicable
-	{ -- Glory of the Nathria Raider
-		14355,
-		{
-			RewardType = rewardType.Mount,
-		},
-	},
-    {14356}, -- Mythic: Shriekwing
-    {14357}, -- Mythic: Huntsman Altimor
-    {14358}, -- Mythic: Hungering Destroyer
-    {14359}, -- Mythic: Artificer Xy'mox
-    {14360}, -- Mythic: Sun King's Salvation
-    {14361}, -- Mythic: Lady Inerva Darkvein
-    {14362}, -- Mythic: The Council of Blood
-    {14363}, -- Mythic: Sludgefist
-    {14364}, -- Mythic: Stone Legion Generals
-	{ -- Mythic: Sire Denathrius
-		14365,
-		{
-			RewardType = rewardType.Title,
-		},
-	},
-    {14366}, -- The Necrotic Wake
-    {14367}, -- Heroic: The Necrotic Wake
-    {14368}, -- Mythic: The Necrotic Wake
-    {14369}, -- Plaguefall
-    {14370}, -- Halls of Atonement
-    {14371}, -- Mists of Tirna Scithe
-    {14372}, -- Theater of Pain
-    {14373}, -- De Other Side
-    {14374}, -- Couple's Therapy
-    {14375}, -- Hunger for Knowledge
-    {14376}, -- Feed the Beast
-    {14408}, -- Heroic: De Other Side
-    {14409}, -- Mythic: De Other Side
-    {14410}, -- Heroic: Halls of Atonement
-    {14411}, -- Mythic: Halls of Atonement
-    {14412}, -- Heroic: Mists of Tirna Scithe
-    {14413}, -- Mythic: Mists of Tirna Scithe
-    {14414}, -- Heroic: Plaguefall
-    {14415}, -- Mythic: Plaguefall
-    {14416}, -- Heroic: Theater of Pain
-    {14417}, -- Mythic: Theater of Pain
-    {14418}, -- Shadowlands Dungeon Hero
-    { -- Ahead of the Curve: Sire Denathrius
-        14460,
-        {
-            {"PvE Season", 5},
-        },
-    },
-    { -- Cutting Edge: Sire Denathrius
-        14461,
-        {
-            {"PvE Season", 5},
-        },
-    },
-    {14463}, -- Skoldus Hall
-    {14468}, -- Twisting Corridors: Layer 1
-	{ -- Twisting Corridors: Layer 2
-		14469,
-		{
-			RewardType = rewardType.Pet,
-		},
-	},
-    {14470}, -- Twisting Corridors: Layer 3
-	{ -- Twisting Corridors: Layer 4
-		14471,
-		{
-			RewardType = rewardType.Toy,
-		},
-	},
-    {14472}, -- Twisting Corridors: Layer 5
-    {14473}, -- Fracture Chambers
-    {14478}, -- The Soulforges
-    {14483}, -- Coldheart Interstitia
-    {14488}, -- Mort'regar
-    {14493}, -- The Upper Reaches
-    {14498}, -- Gatekeepers of Torghast
-    {14499}, -- Phanciful
-    {14500}, -- Phantastic
-    {14501}, -- Phanatical
-    {14502}, -- Pursuing Loyalty
-    {14503}, -- Hooked On Hydroponics
-    {14504}, -- Niya, As Xavius
-    {14505}, -- Senthii, As Gul'dan
-    {14506}, -- Glimmerdust, As Kil'jaeden
-    {14507}, -- Mi'kai, As Argus
-    {14508}, -- Glimmerdust, As Jaina
-    {14509}, -- Astra, As Azshara
-    {14510}, -- Dreamweaver, As N'Zoth
-    { -- Tour of Duty: Ardenweald
-        14511,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Tour of Duty: Revendreth
-        14512,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Tour of Duty: Maldraxxus
-        14513,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Tour of Duty: Bastion
-        14514,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Zo'Sorg's Bidding
-        14515,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Impressing Zo'Sorg
-        14516,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Covenant Combat
-        14519,
-        {
-            IsPvP = true,
-        },
-    },
-    {14523}, -- Taking Care of Business
-    {14524}, -- I Don't Know What I Expected
-    {14525}, -- Feed Me, Seymour!
-    { -- Shadowlands Keystone Conqueror: Season One
-        14531,
-        {
-            RewardType = rewardType.Title,
-            {"PvE Season", 5},
-        },
-    },
-    { -- Shadowlands Keystone Master: Season One
-        14532,
-        {
-            RewardType = rewardType.Mount,
-            {"PvE Season", 5},
-        },
-    },
-    {14533}, -- Royal Rumble
-    {14567}, -- Picking Up the Pieces
-	{ -- Twisting Corridors: Layer 6
-		14568,
-		{
-			RewardType = rewardType.Title,
-		},
-	},
-    {14569}, -- Twisting Corridors: Layer 7
-    { -- Twisting Corridors: Layer 8
-        14570,
-        {
-            RewardType = rewardType.Mount,
-        },
-    },
-    {14606}, -- Thinking with...
-    {14607}, -- Fresh Meat!
-    {14608}, -- Burning Bright
-    {14610}, -- Clear Conscience
-    {14614}, -- Castle Vain
-    {14617}, -- Private Stock
-    {14619}, -- Pour Decision Making
-	{ -- Battle in the Shadowlands
-		14625,
-		{
-			RewardType = rewardType.Pet,
-		},
-	},
-    {14626}, -- Harvester of Sorrow
-    {14627}, -- Choosing Your Purpose
-    {14628}, -- The Road to Renown
-    {14629}, -- Gaining Respect
-    {14630}, -- Becoming a Hero
-    {14631}, -- Champion of the Covenant
-    {14632}, -- Conducting Anima
-    {14633}, -- Master Navigator
-	{ -- Nine Afterlives
-		14634,
-		{
-			RewardType = rewardType.Toy,
-		},
-	},
-    {14636}, -- Adventurer in Chief
-    {14637}, -- Your Covenant's Flavor
-    {14638}, -- The Anima Must Flow
-    {14639}, -- Dedication to the Restoration
-    {14656}, -- Trading Partners
-    {14658}, -- Soulkeeper's Burden
-    {14659}, -- Handling His Henchmen
-    {14660}, -- It's About Sending a Message
-    { -- Realm First! Shadowlands Keystone Master
-        14662,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    {14663}, -- Explore The Maw
-    {14670}, -- That's the Spirit
-    {14671}, -- Something's Not Quite Right....
-    {14672}, -- A Bit of This, A Bit of That
-    {14675}, -- Spirit Talker
-    {14676}, -- Divine Spirit Savior
-    {14677}, -- Spiritual Observations
-    {14678}, -- Court Favors
-    {14679}, -- Party Palace
-    {14680}, -- Something for Everyone
-    {14681}, -- Dredger Academy
-	{ -- The Party Herald
-		14682,
-		{
-			RewardType = rewardType.Title,
-		},
-	},
-    {14683}, -- Dredger Style
-    {14684}, -- Abominable Lives
-    { -- Combatant: Shadowlands Season 1
-        14685,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 30},
-        },
-    },
-    { -- Challenger: Shadowlands Season 1
-        14686,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 30},
-        },
-    },
-    { -- Rival: Shadowlands Season 1
-        14687,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 30},
-        },
-    },
-    { -- Duelist: Shadowlands Season 1
-        14688,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 30},
-        },
-    },
-    { -- Gladiator: Shadowlands Season 1
-        14689,
-        {
-            RewardType = {rewardType.Title, rewardType.Mount},
-            IsPvP = true,
-            {"PvP Season", 30},
-        },
-    },
-    { -- Sinful Gladiator: Shadowlands Season 1
-        14690,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 30},
-        },
-    },
-    { -- Elite: Shadowlands Season 1
-        14691,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 30},
-        },
-    },
-    { -- Hero of the Alliance: Sinful
-        14692,
-        faction.Alliance,
-        14693,
-        {
-            IsPvP = true,
-            {"PvP Season", 30},
-        },
-    },
-    { -- Hero of the Horde: Sinful
-        14693,
-        faction.Horde,
-        14692,
-        {
-            IsPvP = true,
-            {"PvP Season", 30},
-        },
-    },
-    {14715}, -- Castle Nathria
-    {14717}, -- Heroic: Castle Nathria
-    {14718}, -- Mythic: Castle Nathria
-	{ -- It's In The Mix
-		14721,
-		{
-			RewardType = rewardType.Toy,
-		},
-	},
-    {14723}, -- Be Our Guest
-    {14724}, -- People Pleaser
-    {14725}, -- We Happy Few
-    {14726}, -- It's Certainly Never Boring
-    {14727}, -- Master of Ceremonies
-    {14728}, -- To All the Squirrels Through Time and Space
-    {14729}, -- To All the Squirrels I Love Despite Their Scars
-    {14730}, -- To All the Squirrels I Set Sail to See
-    {14731}, -- To All the Squirrels I've Loved and Lost
-    {14733}, -- In the Hot Seat
-    {14734}, -- Rallying Cry of the Ascended
-    {14735}, -- Flight School Graduate
-    {14737}, -- What Bastion Remembered
-    {14738}, -- Hunting Party
-    {14741}, -- Aerial Ace
-    {14742}, -- Who Sent You?
-    {14743}, -- Deadly Serious
-    {14744}, -- Better to Be Lucky Than Dead
-    {14745}, -- Grand Theft Shadehound
-    {14746}, -- Prepare for Trouble!
-    {14747}, -- Make it Double!
-    {14748}, -- Wardrobe Makeover
-    {14749}, -- Rendle's Big Day
-    { -- Death Rising
-        14750,
-        {
-            {"Before", "Version", {9, 0, 1}},
-        },
-    },
-	{ -- The Gang's All Here
-		14751,
-		{
-			RewardType = rewardType.Mount,
-		},
-	},
-	{ -- Things To Do When You're Dead
-		14752,
-		{
-			RewardType = {rewardType.Title, rewardType.Mount},
-		},
-	},
-    {14753}, -- It's a Wrap
-    {14754}, -- The Forgotten One
-    {14755}, -- Legendary Accord
-    {14758}, -- The World Beyond
-    {14759}, -- It's Coming Back to Me...
-    {14760}, -- Recollection Collection
-    {14761}, -- Deciphering Death's Intentions
-    {14762}, -- Breaking the Stratus Fear
-    { -- Crypt Couture
-		14763,
-		{
-			RewardType = rewardType.Transmog,
-		},
-	},
-    {14764}, -- The Great Luckydo
-    {14765}, -- Ramparts Racer
-	{ -- Parasoling
-		14766,
-		{
-			RewardType = rewardType.Toy,
-		},
-	},
-    {14767}, -- Count Your Blessings
-    {14768}, -- What is that Melody?
-    {14769}, -- Bat!
-    {14770}, -- What We Ride in the Shadows
-    {14771}, -- The Afterlife Express
-    {14772}, -- Caught in a Bat Romance
-    {14773}, -- Explosive Extermination
-    {14774}, -- Ardenweald Gourmand
-	{ -- Mush Appreciated
-		14775,
-		{
-			RewardType = rewardType.Title,
-		},
-	},
-    {14776}, -- For the Hoarder!
-    {14777}, -- Restoration Expert
-    {14778}, -- Extremely Ravenous
-    {14779}, -- Wild Hunting
-    {14780}, -- Meditation Master
-    {14782}, -- Level 50
-    {14783}, -- Level 60
-    {14788}, -- Fractured Faerie Tales
-    {14789}, -- All Spirits Great and Small
-    {14790}, -- Covenant Campaign
-    {14791}, -- Toss a Seed to Your Hunter...
-    {14795}, -- Clearing the Fog
-    { -- Superior (Shadowlands)
-        14796,
-        {
-            {"Before", "Version", {10, 0, 0}},
-        },
-    },
-    { -- Epic (Shadowlands)
-        14797,
-        {
-            {"Before", "Version", {10, 0, 0}},
-        },
-    },
-    {14798}, -- Sojourner of Revendreth
-    {14799}, -- Sojourner of Maldraxxus
-    {14800}, -- Sojourner of Ardenweald
-    {14801}, -- Sojourner of Bastion
-    {14802}, -- Bloodsport
-    {14808}, -- Touring Torghast
-    {14809}, -- Traversing Torghast
-    {14810}, -- Terror of Torghast
-    { -- Executing the Exarch
-        14815,
-        faction.Horde,
-        14817,
-        true,
-    },
-    { -- Opposing Orgrimmar
-        14817,
-        faction.Alliance,
-        14815,
-        true,
-    },
-};
+    Ach(13878), -- The Master of Revendreth
+    Ach(14164), -- Awaken, Ardenweald
+    Ach(14197), -- Sanguine Depths
+    Ach(14198), -- Heroic: Sanguine Depths
+    Ach(14199), -- Mythic: Sanguine Depths
+    Ach(14206), -- Blade of the Primus
+    Ach(14222), -- Exile's Reach
+    Ach(14233), -- Tea Tales
+    Ach(14271), -- WoW's 16th Anniversary
+    Ach(14272), -- Best Bud With Benefits
+    Ach(14273), -- Crypt Kicker
+    Ach(14274), -- Absolution for All
+    Ach(14276), -- It's Always Sinny in Revendreth
+    Ach(14277):Title(), -- The Accuser's Avowed
+    Ach(14280), -- Loremaster of Shadowlands
+    Ach(14281), -- The Path to Ascension
+    Ach(14283), -- Heroic Edition: Ensorcelled Everwyrm
+    Ach(14284), -- Breaking Bad
+    Ach(14285), -- Ready for Raiding VII
+    Ach(14286), -- Residue Evil
+    Ach(14289), -- Kaal-ed Shot
+    Ach(14290), -- I Only Have Eyes For You
+    Ach(14291), -- Someone Could Trip on These!
+    Ach(14292), -- Riding with my Slimes
+    Ach(14293), -- Blind as a Bat
+    Ach(14294), -- Dirtflap's Revenge
+    Ach(14295), -- Bountiful Harvest
+    Ach(14296), -- Going Viral
+    Ach(14297), -- Three Choose One
+    Ach(14303), -- Explore Bastion
+    Ach(14304), -- Explore Ardenweald
+    Ach(14305), -- Explore Maldraxxus
+    Ach(14306), -- Explore Revendreth
+    Ach(14307), -- Adventurer of Bastion
+    Ach(14308), -- Adventurer of Maldraxxus
+    Ach(14309), -- Adventurer of Ardenweald
+    Ach(14310), -- Adventurer of Revendreth
+    Ach(14311), -- Treasures of Bastion
+    Ach(14312), -- Treasures of Maldraxxus
+    Ach(14313), -- Treasures of Ardenweald
+    Ach(14314), -- Treasures of Revendreth
+    Ach(14315), -- Shadowlands Diplomat
+    Ach(14320), -- Surgeon's Supplies
+    Ach(14322):Mount(), -- Glory of the Shadowlands Hero
+    Ach(14323), -- ExSPEARiential
+    Ach(14324), -- Heroic: Spires of Ascension
+    Ach(14325), -- Mythic: Spires of Ascension
+    Ach(14326), -- Spires of Ascension
+    Ach(14327), -- I Can See My House From Here
+    Ach(14328), -- Professional Shadowlands Master
+    Ach(14329), -- Working the Afterlife
+    Ach(14330), -- Shadowlands Master of All
+    Ach(14331), -- Goliath Offline
+    Ach(14332), -- Shadowlands Cook
+    Ach(14333), -- Shadowlands Fisherman
+    Ach(14334), -- Into the Maw
+    Ach(14335), -- The Ascended
+    Ach(14336), -- Undying Army
+    Ach(14337), -- The Wild Hunt
+    Ach(14338), -- Court of Harvesters
+    Ach(14339), -- Shard Labor
+    Ach(14347), -- Full Gores Meal
+    Ach(14352), -- Nobody Puts Denathrius in a Corner
+    Ach(14353), -- Ardenweald's a Stage
+    Ach(14354), -- Highly Communicable
+    Ach(14355):Mount(), -- Glory of the Nathria Raider
+    Ach(14356), -- Mythic: Shriekwing
+    Ach(14357), -- Mythic: Huntsman Altimor
+    Ach(14358), -- Mythic: Hungering Destroyer
+    Ach(14359), -- Mythic: Artificer Xy'mox
+    Ach(14360), -- Mythic: Sun King's Salvation
+    Ach(14361), -- Mythic: Lady Inerva Darkvein
+    Ach(14362), -- Mythic: The Council of Blood
+    Ach(14363), -- Mythic: Sludgefist
+    Ach(14364), -- Mythic: Stone Legion Generals
+    Ach(14365):Title(), -- Mythic: Sire Denathrius
+    Ach(14366), -- The Necrotic Wake
+    Ach(14367), -- Heroic: The Necrotic Wake
+    Ach(14368), -- Mythic: The Necrotic Wake
+    Ach(14369), -- Plaguefall
+    Ach(14370), -- Halls of Atonement
+    Ach(14371), -- Mists of Tirna Scithe
+    Ach(14372), -- Theater of Pain
+    Ach(14373), -- De Other Side
+    Ach(14374), -- Couple's Therapy
+    Ach(14375), -- Hunger for Knowledge
+    Ach(14376), -- Feed the Beast
+    Ach(14408), -- Heroic: De Other Side
+    Ach(14409), -- Mythic: De Other Side
+    Ach(14410), -- Heroic: Halls of Atonement
+    Ach(14411), -- Mythic: Halls of Atonement
+    Ach(14412), -- Heroic: Mists of Tirna Scithe
+    Ach(14413), -- Mythic: Mists of Tirna Scithe
+    Ach(14414), -- Heroic: Plaguefall
+    Ach(14415), -- Mythic: Plaguefall
+    Ach(14416), -- Heroic: Theater of Pain
+    Ach(14417), -- Mythic: Theater of Pain
+    Ach(14418), -- Shadowlands Dungeon Hero
+    Ach(14460):PvE(5), -- Ahead of the Curve: Sire Denathrius
+    Ach(14461):PvE(5), -- Cutting Edge: Sire Denathrius
+    Ach(14463), -- Skoldus Hall
+    Ach(14468), -- Twisting Corridors: Layer 1
+    Ach(14469):Pet(), -- Twisting Corridors: Layer 2
+    Ach(14470), -- Twisting Corridors: Layer 3
+    Ach(14471):Toy(), -- Twisting Corridors: Layer 4
+    Ach(14472), -- Twisting Corridors: Layer 5
+    Ach(14473), -- Fracture Chambers
+    Ach(14478), -- The Soulforges
+    Ach(14483), -- Coldheart Interstitia
+    Ach(14488), -- Mort'regar
+    Ach(14493), -- The Upper Reaches
+    Ach(14498), -- Gatekeepers of Torghast
+    Ach(14499), -- Phanciful
+    Ach(14500), -- Phantastic
+    Ach(14501), -- Phanatical
+    Ach(14502), -- Pursuing Loyalty
+    Ach(14503), -- Hooked On Hydroponics
+    Ach(14504), -- Niya, As Xavius
+    Ach(14505), -- Senthii, As Gul'dan
+    Ach(14506), -- Glimmerdust, As Kil'jaeden
+    Ach(14507), -- Mi'kai, As Argus
+    Ach(14508), -- Glimmerdust, As Jaina
+    Ach(14509), -- Astra, As Azshara
+    Ach(14510), -- Dreamweaver, As N'Zoth
+    Ach(14511):IsPvP(), -- Tour of Duty: Ardenweald
+    Ach(14512):IsPvP(), -- Tour of Duty: Revendreth
+    Ach(14513):IsPvP(), -- Tour of Duty: Maldraxxus
+    Ach(14514):IsPvP(), -- Tour of Duty: Bastion
+    Ach(14515):IsPvP(), -- Zo'Sorg's Bidding
+    Ach(14516):IsPvP(), -- Impressing Zo'Sorg
+    Ach(14519):IsPvP(), -- Covenant Combat
+    Ach(14523), -- Taking Care of Business
+    Ach(14524), -- I Don't Know What I Expected
+    Ach(14525), -- Feed Me, Seymour!
+    Ach(14531):Title():PvE(5), -- Shadowlands Keystone Conqueror: Season One
+    Ach(14532):Mount():PvE(5), -- Shadowlands Keystone Master: Season One
+    Ach(14533), -- Royal Rumble
+    Ach(14567), -- Picking Up the Pieces
+    Ach(14568):Title(), -- Twisting Corridors: Layer 6
+    Ach(14569), -- Twisting Corridors: Layer 7
+    Ach(14570):Mount(), -- Twisting Corridors: Layer 8
+    Ach(14606), -- Thinking with...
+    Ach(14607), -- Fresh Meat!
+    Ach(14608), -- Burning Bright
+    Ach(14610), -- Clear Conscience
+    Ach(14614), -- Castle Vain
+    Ach(14617), -- Private Stock
+    Ach(14619), -- Pour Decision Making
+    Ach(14625):Pet(), -- Battle in the Shadowlands
+    Ach(14626), -- Harvester of Sorrow
+    Ach(14627), -- Choosing Your Purpose
+    Ach(14628), -- The Road to Renown
+    Ach(14629), -- Gaining Respect
+    Ach(14630), -- Becoming a Hero
+    Ach(14631), -- Champion of the Covenant
+    Ach(14632), -- Conducting Anima
+    Ach(14633), -- Master Navigator
+    Ach(14634):Toy(), -- Nine Afterlives
+    Ach(14636), -- Adventurer in Chief
+    Ach(14637), -- Your Covenant's Flavor
+    Ach(14638), -- The Anima Must Flow
+    Ach(14639), -- Dedication to the Restoration
+    Ach(14656), -- Trading Partners
+    Ach(14658), -- Soulkeeper's Burden
+    Ach(14659), -- Handling His Henchmen
+    Ach(14660), -- It's About Sending a Message
+    Ach(14662):IsRealmFirst():Obtainable("Once"), -- Realm First! Shadowlands Keystone Master
+    Ach(14663), -- Explore The Maw
+    Ach(14670), -- That's the Spirit
+    Ach(14671), -- Something's Not Quite Right....
+    Ach(14672), -- A Bit of This, A Bit of That
+    Ach(14675), -- Spirit Talker
+    Ach(14676), -- Divine Spirit Savior
+    Ach(14677), -- Spiritual Observations
+    Ach(14678), -- Court Favors
+    Ach(14679), -- Party Palace
+    Ach(14680), -- Something for Everyone
+    Ach(14681), -- Dredger Academy
+    Ach(14682):Title(), -- The Party Herald
+    Ach(14683), -- Dredger Style
+    Ach(14684), -- Abominable Lives
+    Ach(14685):Title():PvP(30), -- Combatant: Shadowlands Season 1
+    Ach(14686):Title():PvP(30), -- Challenger: Shadowlands Season 1
+    Ach(14687):Title():PvP(30), -- Rival: Shadowlands Season 1
+    Ach(14688):Title():PvP(30), -- Duelist: Shadowlands Season 1
+    Ach(14689):Title():Mount():PvP(30), -- Gladiator: Shadowlands Season 1
+    Ach(14690):Title():PvP(30), -- Sinful Gladiator: Shadowlands Season 1
+    Ach(14691):Title():PvP(30), -- Elite: Shadowlands Season 1
+    Ach(14692):AutoFactionSplit(faction.Alliance, 14693):PvP(30), -- Hero of the Alliance: Sinful / Hero of the Horde: Sinful
+    Ach(14715), -- Castle Nathria
+    Ach(14717), -- Heroic: Castle Nathria
+    Ach(14718), -- Mythic: Castle Nathria
+    Ach(14721):Toy(), -- It's In The Mix
+    Ach(14723), -- Be Our Guest
+    Ach(14724), -- People Pleaser
+    Ach(14725), -- We Happy Few
+    Ach(14726), -- It's Certainly Never Boring
+    Ach(14727), -- Master of Ceremonies
+    Ach(14728), -- To All the Squirrels Through Time and Space
+    Ach(14729), -- To All the Squirrels I Love Despite Their Scars
+    Ach(14730), -- To All the Squirrels I Set Sail to See
+    Ach(14731), -- To All the Squirrels I've Loved and Lost
+    Ach(14733), -- In the Hot Seat
+    Ach(14734), -- Rallying Cry of the Ascended
+    Ach(14735), -- Flight School Graduate
+    Ach(14737), -- What Bastion Remembered
+    Ach(14738), -- Hunting Party
+    Ach(14741), -- Aerial Ace
+    Ach(14742), -- Who Sent You?
+    Ach(14743), -- Deadly Serious
+    Ach(14744), -- Better to Be Lucky Than Dead
+    Ach(14745), -- Grand Theft Shadehound
+    Ach(14746), -- Prepare for Trouble!
+    Ach(14747), -- Make it Double!
+    Ach(14748), -- Wardrobe Makeover
+    Ach(14749), -- Rendle's Big Day
+    Ach(14750):Obtainable("Before", "Version", {9, 0, 1}), -- Death Rising
+    Ach(14751):Mount(), -- The Gang's All Here
+    Ach(14752):Title():Mount(), -- Things To Do When You're Dead
+    Ach(14753), -- It's a Wrap
+    Ach(14754), -- The Forgotten One
+    Ach(14755), -- Legendary Accord
+    Ach(14758), -- The World Beyond
+    Ach(14759), -- It's Coming Back to Me...
+    Ach(14760), -- Recollection Collection
+    Ach(14761), -- Deciphering Death's Intentions
+    Ach(14762), -- Breaking the Stratus Fear
+    Ach(14763):Transmog(), -- Crypt Couture
+    Ach(14764), -- The Great Luckydo
+    Ach(14765), -- Ramparts Racer
+    Ach(14766):Toy(), -- Parasoling
+    Ach(14767), -- Count Your Blessings
+    Ach(14768), -- What is that Melody?
+    Ach(14769), -- Bat!
+    Ach(14770), -- What We Ride in the Shadows
+    Ach(14771), -- The Afterlife Express
+    Ach(14772), -- Caught in a Bat Romance
+    Ach(14773), -- Explosive Extermination
+    Ach(14774), -- Ardenweald Gourmand
+    Ach(14775):Title(), -- Mush Appreciated
+    Ach(14776), -- For the Hoarder!
+    Ach(14777), -- Restoration Expert
+    Ach(14778), -- Extremely Ravenous
+    Ach(14779), -- Wild Hunting
+    Ach(14780), -- Meditation Master
+    Ach(14782), -- Level 50
+    Ach(14783), -- Level 60
+    Ach(14788), -- Fractured Faerie Tales
+    Ach(14789), -- All Spirits Great and Small
+    Ach(14790), -- Covenant Campaign
+    Ach(14791), -- Toss a Seed to Your Hunter...
+    Ach(14795), -- Clearing the Fog
+    Ach(14796):Obtainable("Before", "Version", {10, 0, 0}), -- Superior (Shadowlands)
+    Ach(14797):Obtainable("Before", "Version", {10, 0, 0}), -- Epic (Shadowlands)
+    Ach(14798), -- Sojourner of Revendreth
+    Ach(14799), -- Sojourner of Maldraxxus
+    Ach(14800), -- Sojourner of Ardenweald
+    Ach(14801), -- Sojourner of Bastion
+    Ach(14802), -- Bloodsport
+    Ach(14808), -- Touring Torghast
+    Ach(14809), -- Traversing Torghast
+    Ach(14810), -- Terror of Torghast
+    Ach(14815):AutoFactionSplit(faction.Horde, 14817):IsPvP(), -- Executing the Exarch / Opposing Orgrimmar
+}
 
-KrowiAF.AchievementData["09_00_02"] = {
+KrowiAF.AchievementData2["09_00_02"] = {
     {KrowiAF.SetAchievementPatch, 9, 0, 2},
-    { -- Sinful Gladiator's Soul Eater
-        14816,
-        {
-            IsPvP = true,
-            {"PvP Season", 30},
-        },
-    },
-    {14825}, -- Shadowlands Voyager
-    { -- I Live, I Die, I Queue Again
-        14831,
-        {
-            IsPvP = true,
-        },
-    },
-    {14833}, -- Fashion Abomination
-    {14834}, -- Bound with Purpose
-    {14835}, -- A Resolute Bond
-    {14836}, -- Unwavering Bond
-    {14837}, -- Nexus of Bonds
-    {14839}, -- Adventures: Off To Adventure
-    {14840}, -- Adventures: Learning the Ropes
-    {14841}, -- Adventures: Now You're Cooking
-    {14842}, -- Adventures: Strength and Resilience
-    {14843}, -- Adventures: Harmony of Purpose
-    {14844}, -- Adventures: Into the Breach
-    {14845}, -- Adventures: A Step in the Right Direction
-    {14846}, -- Adventures: Leaves in the Forest
-    {14847}, -- Adventures: Protector of the Shadowlands
-    {14851}, -- Bastion of Protection
-    {14852}, -- The Hoot of the Issue
-    {14853}, -- All The Colors of the Painbow
-    {14854}, -- It's Not What You Wear
-    {14856}, -- Charmed, I'm Sure
-    {14857}, -- Itsy Bitsy Fighters
-    {14858}, -- Curse of Thirst
-    {14859}, -- Inside the Park Home Run
-    {14860}, -- Bare Necessities
-    {14861}, -- Learning from the Masters
-    {14862}, -- It's How You Wear It
-    {14863}, -- Death Foursworn
-    {14864}, -- Personal Nightmare
-    {14865}, -- Disciple of Humility
-    {14866}, -- Master of the Path
-    {14867}, -- Shadowlands Safari
-    {14868}, -- Aquatic Apparitions
-    {14869}, -- Beast Busters
-    {14870}, -- Creepy Critters
-    {14871}, -- Deathly Dragonkin
-    {14872}, -- Eerie Elementals
-    {14873}, -- Flickering Fliers
-    {14874}, -- Haunted Humanoids
-    {14875}, -- Mummified Magics
-    {14876}, -- Macabre Mechanicals
-    {14877}, -- Unholy Undead
-	{ -- Family Exorcist
-		14879,
-		{
-			RewardType = rewardType.Pet,
-		},
-	},
-	{ -- Abhorrent Adversaries of the Afterlife
-		14881,
-		{
-			RewardType = rewardType.Pet,
-		},
-	},
-    {14887}, -- To the Moon
-    {14894}, -- To 'Ghast, Two Curios
-    {14895}, -- 'Ghast Five
-    { -- Netherwhelp Online
-        14904,
-        {
-            {"From", "Date", {2021, 2, 1}, "Until", "Date", {2022, 2, 20}},
-        },
-    },
-};
+    Ach(14816):PvP(30), -- Sinful Gladiator's Soul Eater
+    Ach(14825), -- Shadowlands Voyager
+    Ach(14831):IsPvP(), -- I Live, I Die, I Queue Again
+    Ach(14833), -- Fashion Abomination
+    Ach(14834), -- Bound with Purpose
+    Ach(14835), -- A Resolute Bond
+    Ach(14836), -- Unwavering Bond
+    Ach(14837), -- Nexus of Bonds
+    Ach(14839), -- Adventures: Off To Adventure
+    Ach(14840), -- Adventures: Learning the Ropes
+    Ach(14841), -- Adventures: Now You're Cooking
+    Ach(14842), -- Adventures: Strength and Resilience
+    Ach(14843), -- Adventures: Harmony of Purpose
+    Ach(14844), -- Adventures: Into the Breach
+    Ach(14845), -- Adventures: A Step in the Right Direction
+    Ach(14846), -- Adventures: Leaves in the Forest
+    Ach(14847), -- Adventures: Protector of the Shadowlands
+    Ach(14851), -- Bastion of Protection
+    Ach(14852), -- The Hoot of the Issue
+    Ach(14853), -- All The Colors of the Painbow
+    Ach(14854), -- It's Not What You Wear
+    Ach(14856), -- Charmed, I'm Sure
+    Ach(14857), -- Itsy Bitsy Fighters
+    Ach(14858), -- Curse of Thirst
+    Ach(14859), -- Inside the Park Home Run
+    Ach(14860), -- Bare Necessities
+    Ach(14861), -- Learning from the Masters
+    Ach(14862), -- It's How You Wear It
+    Ach(14863), -- Death Foursworn
+    Ach(14864), -- Personal Nightmare
+    Ach(14865), -- Disciple of Humility
+    Ach(14866), -- Master of the Path
+    Ach(14867), -- Shadowlands Safari
+    Ach(14868), -- Aquatic Apparitions
+    Ach(14869), -- Beast Busters
+    Ach(14870), -- Creepy Critters
+    Ach(14871), -- Deathly Dragonkin
+    Ach(14872), -- Eerie Elementals
+    Ach(14873), -- Flickering Fliers
+    Ach(14874), -- Haunted Humanoids
+    Ach(14875), -- Mummified Magics
+    Ach(14876), -- Macabre Mechanicals
+    Ach(14877), -- Unholy Undead
+    Ach(14879):Pet(), -- Family Exorcist
+    Ach(14881):Pet(), -- Abhorrent Adversaries of the Afterlife
+    Ach(14887), -- To the Moon
+    Ach(14894), -- To 'Ghast, Two Curios
+    Ach(14895), -- 'Ghast Five
+    Ach(14904):Obtainable("From", "Date", {2021, 2, 1}, "Until", "Date", {2022, 2, 20}), -- Netherwhelp Online
+}
 
-KrowiAF.AchievementData["09_00_05"] = {
+KrowiAF.AchievementData2["09_00_05"] = {
     {KrowiAF.SetAchievementPatch, 9, 0, 5},
-    {14931}, -- Flying Festivities
-    { -- Shadowlands Keystone Explorer: Season One
-        14938,
-        {
-            {"PvE Season", 5},
-        },
-    },
-    { -- We Can Rebuild
-		15023,
-		{
-			RewardType = rewardType.Other,
-		},
-	},
-    { -- Denying the Drought
-		15024,
-		{
-			RewardType = rewardType.Other,
-		},
-	},
-    { -- Sanctum Superior
-		15025,
-		{
-			RewardType = rewardType.Other,
-		},
-	},
-};
+    Ach(14931), -- Flying Festivities
+    Ach(14938):PvE(5), -- Shadowlands Keystone Explorer: Season One
+    Ach(15023):Other(), -- We Can Rebuild
+    Ach(15024):Other(), -- Denying the Drought
+    Ach(15025):Other(), -- Sanctum Superior
+}
 
-KrowiAF.AchievementData["09_01_00"] = {
+KrowiAF.AchievementData2["09_01_00"] = {
     {KrowiAF.SetAchievementPatch, 9, 1, 0},
-    { -- WoW's 17th Anniversary
-        14942,
-        {
-            {},
-        },
-    },
-    {14943}, -- Guarmageddon
-    {14961}, -- Chains of Domination
-    { -- Combatant I: Shadowlands Season 2
-        14968,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 31},
-        },
-    },
-    { -- Challenger I: Shadowlands Season 2
-        14969,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 31},
-        },
-    },
-    { -- Rival I: Shadowlands Season 2
-        14970,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 31},
-        },
-    },
-    { -- Duelist: Shadowlands Season 2
-        14971,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 31},
-        },
-    },
-    { -- Gladiator: Shadowlands Season 2
-        14972,
-        {
-            RewardType = {rewardType.Title, rewardType.Mount},
-            IsPvP = true,
-            {"PvP Season", 31},
-        },
-    },
-    { -- Unchained Gladiator: Shadowlands Season 2
-        14973,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 31},
-        },
-    },
-    { -- Elite: Shadowlands Season 2
-        14974,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 31},
-        },
-    },
-    { -- Hero of the Alliance: Unchained
-        14975,
-        faction.Alliance,
-        14976,
-        {
-            IsPvP = true,
-            {"PvP Season", 31},
-        },
-    },
-    { -- Hero of the Horde: Unchained
-        14976,
-        faction.Horde,
-        14975,
-        {
-            IsPvP = true,
-            {"PvP Season", 31},
-        },
-    },
-    {14998}, -- Name A Better Duo, I'll Wait
-    { -- Unchained Gladiator's Soul Eater
-        14999,
-        {
-            IsPvP = true,
-            {"PvP Season", 31},
-        },
-    },
-    {15000}, -- United Front
-    {15001}, -- Jailer's Personal Stash
-    {15003}, -- To the Nines
-	{ -- A Sly Fox
-		15004,
-		{
-			RewardType = rewardType.Pet,
-		},
-	},
-    {15032}, -- Breaking Their Hold
-    {15033}, -- Taking the Tremaculum
-    {15034}, -- Wings Against the Flames
-    {15035}, -- On the Offensive
-    {15036}, -- Rooting Out the Evil
-    {15037}, -- This Army
-    {15039}, -- Up For Grabs
-    {15040}, -- Flawless Fate
-    {15041}, -- The Zovaal Shuffle
-    {15042}, -- Tea for the Troubled
-    {15043}, -- Hoarder of Torghast
-    {15044}, -- Krrprripripkraak's Heroes
-    { -- Keystone Hero: The Necrotic Wake
-        15045,
-        {
-            RewardType = rewardType.Teleport,
-            {"PvE Season", 6},
-            {"PvE Season", 7},
-            {"PvE Season", 13},
-        },
-    },
-    { -- Keystone Hero: Plaguefall
-        15046,
-        {
-            RewardType = rewardType.Teleport,
-            {"PvE Season", 6},
-            {"PvE Season", 7},
-        },
-    },
-    { -- Keystone Hero: Mists of Tirna Scithe
-        15047,
-        {
-            RewardType = rewardType.Teleport,
-            {"PvE Season", 6},
-            {"PvE Season", 7},
-            {"PvE Season", 13},
-        },
-    },
-    { -- Keystone Hero: Halls of Atonement
-        15048,
-        {
-            RewardType = rewardType.Teleport,
-            {"PvE Season", 6},
-            {"PvE Season", 7},
-            {"PvE Season", 15},
-        },
-    },
-    { -- Keystone Hero: Spires of Ascension
-        15049,
-        {
-            RewardType = rewardType.Teleport,
-            {"PvE Season", 6},
-            {"PvE Season", 7},
-        },
-    },
-    { -- Keystone Hero: Theater of Pain
-        15050,
-        {
-            RewardType = rewardType.Teleport,
-            {"PvE Season", 6},
-            {"PvE Season", 7},
-            {"PvE Season", 14},
-        },
-    },
-    { -- Keystone Hero: De Other Side
-        15051,
-        {
-            RewardType = rewardType.Teleport,
-            {"PvE Season", 6},
-            {"PvE Season", 7},
-        },
-    },
-    { -- Keystone Hero: Sanguine Depths
-        15052,
-        {
-            RewardType = rewardType.Teleport,
-            {"PvE Season", 6},
-            {"PvE Season", 7},
-        },
-    },
-    {15053}, -- Explore Korthia
-    {15054}, -- Minions of the Cold Dark
-    {15055}, -- Friend of Ooz
-    {15056}, -- Friend of Bloop
-    {15057}, -- Friend of Plaguey
-    {15058}, -- I Used to Bullseye Deeprun Rats Back Home
-    {15059}, -- Death's Advance
-	{ -- Breaking the Chains
-		15064,
-		{
-			RewardType = rewardType.Mount,
-		},
-	},
-    {15065}, -- Eye Wish You Were Here
-    {15066}, -- Reliquary Restoration
-    {15067}, -- Adamant Vaults
-    {15069}, -- The Archivists' Codex
-    { -- Shadowlands Keystone Explorer: Season Two
-        15073,
-        {
-            {"PvE Season", 6},
-        },
-    },
-    {15075}, -- Infiltrators
-    {15076}, -- The Box of Many Things
-    { -- Shadowlands Keystone Conqueror: Season Two
-        15077,
-        {
-            RewardType = rewardType.Title,
-            {"PvE Season", 6},
-        },
-    },
-    { -- Shadowlands Keystone Master: Season Two
-        15078,
-        {
-            RewardType = rewardType.Mount,
-            {"PvE Season", 6},
-        },
-    },
-	{ -- Many, Many Things
-		15079,
-		{
-			RewardType = rewardType.Pet,
-		},
-	},
-    {15080}, -- So Blessed
-    {15081}, -- Flawless: Skoldus Hall (Layer 12)
-    {15082}, -- Flawless: Fracture Chambers (Layer 12)
-    {15083}, -- Flawless: Coldheart Interstitia (Layer 12)
-    {15084}, -- Flawless: The Soulforges (Layer 12)
-    {15087}, -- Flawless: Mort'regar (Layer 12)
-    {15088}, -- Flawless: The Upper Reaches (Layer 12)
-	{ -- Flawless Master (Layer 12)
-		15089,
-		{
-			RewardType = rewardType.Mount,
-		},
-	},
-    {15091}, -- A Taste of Perfection
-    {15092}, -- Master of Torment
-    {15093}, -- Avenge Me!
-    {15094}, -- Rampage
-    {15095}, -- No Doubt
-    {15096}, -- Crowd Pleaser
-    {15099}, -- Treasures of Korthia
-    { -- It's Off the Chain!
-        15102,
-        {
-            IsPvP = true,
-        },
-    },
-    {15105}, -- Tormentor's Tango
-    {15106}, -- Quality Control
-    {15107}, -- Conquering Korthia
-    {15108}, -- Together Forever
-    {15109}, -- Will it Blend?
-    {15110}, -- Dominating the Catwalk
-    {15112}, -- Mythic: The Tarragrue
-    {15113}, -- Mythic: The Eye of the Jailer
-    {15114}, -- Mythic: The Nine
-    {15115}, -- Mythic: Remnant of Ner'zhul
-    {15116}, -- Mythic: Soulrender Dormazain
-    {15117}, -- Mythic: Painsmith Raznal
-    {15118}, -- Mythic: Guardian of the First Ones
-    {15119}, -- Mythic: Fatescribe Roh-Kalo
-    {15120}, -- Mythic: Kel'Thuzad
-	{ -- Mythic: Sylvanas Windrunner
-		15121,
-		{
-			RewardType = rewardType.Title,
-		},
-	},
-    {15122}, -- The Jailer's Vanguard
-    {15123}, -- The Dark Bastille
-    {15124}, -- Shackles of Fate
-    {15125}, -- The Reckoning
-    {15126}, -- Sanctum of Domination
-    {15127}, -- Heroic: Sanctum of Domination
-    {15128}, -- Mythic: Sanctum of Domination
-	{ -- Glory of the Dominant Raider
-		15130,
-		{
-			RewardType = rewardType.Mount,
-		},
-	},
-    {15131}, -- Whack-A-Soul
-    {15132}, -- Knowledge is Power
-    {15133}, -- This World is a Prism
-    { -- Ahead of the Curve: Sylvanas Windrunner
-        15134,
-        {
-            {"PvE Season", 6},
-        },
-    },
-    { -- Cutting Edge: Sylvanas Windrunner
-        15135,
-        {
-            {"PvE Season", 6},
-        },
-    },
-    {15177}, -- Tazavesh, the Veiled Market
-	{ -- Fake It 'Til You Make It
-		15178,
-		{
-			RewardType = rewardType.Mount,
-		},
-	},
-    {15179}, -- This is Fine
-    {15190}, -- Mischief!
-    {15191}, -- Rae'shalare, Death's Whisper
-};
+    Ach(14942), -- WoW's 17th Anniversary
+    Ach(14943), -- Guarmageddon
+    Ach(14961), -- Chains of Domination
+    Ach(14968):Title():PvP(31), -- Combatant I: Shadowlands Season 2
+    Ach(14969):Title():PvP(31), -- Challenger I: Shadowlands Season 2
+    Ach(14970):Title():PvP(31), -- Rival I: Shadowlands Season 2
+    Ach(14971):Title():PvP(31), -- Duelist: Shadowlands Season 2
+    Ach(14972):Title():Mount():PvP(31), -- Gladiator: Shadowlands Season 2
+    Ach(14973):Title():PvP(31), -- Unchained Gladiator: Shadowlands Season 2
+    Ach(14974):Title():PvP(31), -- Elite: Shadowlands Season 2
+    Ach(14975):AutoFactionSplit(faction.Alliance, 14976):PvP(31), -- Hero of the Alliance: Unchained / Hero of the Horde: Unchained
+    Ach(14998), -- Name A Better Duo, I'll Wait
+    Ach(14999):PvP(31), -- Unchained Gladiator's Soul Eater
+    Ach(15000), -- United Front
+    Ach(15001), -- Jailer's Personal Stash
+    Ach(15003), -- To the Nines
+    Ach(15004):Pet(), -- A Sly Fox
+    Ach(15032), -- Breaking Their Hold
+    Ach(15033), -- Taking the Tremaculum
+    Ach(15034), -- Wings Against the Flames
+    Ach(15035), -- On the Offensive
+    Ach(15036), -- Rooting Out the Evil
+    Ach(15037), -- This Army
+    Ach(15039), -- Up For Grabs
+    Ach(15040), -- Flawless Fate
+    Ach(15041), -- The Zovaal Shuffle
+    Ach(15042), -- Tea for the Troubled
+    Ach(15043), -- Hoarder of Torghast
+    Ach(15044), -- Krrprripripkraak's Heroes
+    Ach(15045):Teleport():PvE(6):PvE(7):PvE(13), -- Keystone Hero: The Necrotic Wake
+    Ach(15046):Teleport():PvE(6):PvE(7), -- Keystone Hero: Plaguefall
+    Ach(15047):Teleport():PvE(6):PvE(7):PvE(13), -- Keystone Hero: Mists of Tirna Scithe
+    Ach(15048):Teleport():PvE(6):PvE(7):PvE(15), -- Keystone Hero: Halls of Atonement
+    Ach(15049):Teleport():PvE(6):PvE(7), -- Keystone Hero: Spires of Ascension
+    Ach(15050):Teleport():PvE(6):PvE(7):PvE(14), -- Keystone Hero: Theater of Pain
+    Ach(15051):Teleport():PvE(6):PvE(7), -- Keystone Hero: De Other Side
+    Ach(15052):Teleport():PvE(6):PvE(7), -- Keystone Hero: Sanguine Depths
+    Ach(15053), -- Explore Korthia
+    Ach(15054), -- Minions of the Cold Dark
+    Ach(15055), -- Friend of Ooz
+    Ach(15056), -- Friend of Bloop
+    Ach(15057), -- Friend of Plaguey
+    Ach(15058), -- I Used to Bullseye Deeprun Rats Back Home
+    Ach(15059), -- Death's Advance
+    Ach(15064):Mount(), -- Breaking the Chains
+    Ach(15065), -- Eye Wish You Were Here
+    Ach(15066), -- Reliquary Restoration
+    Ach(15067), -- Adamant Vaults
+    Ach(15069), -- The Archivists' Codex
+    Ach(15073):PvE(6), -- Shadowlands Keystone Explorer: Season Two
+    Ach(15075), -- Infiltrators
+    Ach(15076), -- The Box of Many Things
+    Ach(15077):Title():PvE(6), -- Shadowlands Keystone Conqueror: Season Two
+    Ach(15078):Mount():PvE(6), -- Shadowlands Keystone Master: Season Two
+    Ach(15079):Pet(), -- Many, Many Things
+    Ach(15080), -- So Blessed
+    Ach(15081), -- Flawless: Skoldus Hall (Layer 12)
+    Ach(15082), -- Flawless: Fracture Chambers (Layer 12)
+    Ach(15083), -- Flawless: Coldheart Interstitia (Layer 12)
+    Ach(15084), -- Flawless: The Soulforges (Layer 12)
+    Ach(15087), -- Flawless: Mort'regar (Layer 12)
+    Ach(15088), -- Flawless: The Upper Reaches (Layer 12)
+    Ach(15089):Mount(), -- Flawless Master (Layer 12)
+    Ach(15091), -- A Taste of Perfection
+    Ach(15092), -- Master of Torment
+    Ach(15093), -- Avenge Me!
+    Ach(15094), -- Rampage
+    Ach(15095), -- No Doubt
+    Ach(15096), -- Crowd Pleaser
+    Ach(15099), -- Treasures of Korthia
+    Ach(15102):IsPvP(), -- It's Off the Chain!
+    Ach(15105), -- Tormentor's Tango
+    Ach(15106), -- Quality Control
+    Ach(15107), -- Conquering Korthia
+    Ach(15108), -- Together Forever
+    Ach(15109), -- Will it Blend?
+    Ach(15110), -- Dominating the Catwalk
+    Ach(15112), -- Mythic: The Tarragrue
+    Ach(15113), -- Mythic: The Eye of the Jailer
+    Ach(15114), -- Mythic: The Nine
+    Ach(15115), -- Mythic: Remnant of Ner'zhul
+    Ach(15116), -- Mythic: Soulrender Dormazain
+    Ach(15117), -- Mythic: Painsmith Raznal
+    Ach(15118), -- Mythic: Guardian of the First Ones
+    Ach(15119), -- Mythic: Fatescribe Roh-Kalo
+    Ach(15120), -- Mythic: Kel'Thuzad
+    Ach(15121):Title(), -- Mythic: Sylvanas Windrunner
+    Ach(15122), -- The Jailer's Vanguard
+    Ach(15123), -- The Dark Bastille
+    Ach(15124), -- Shackles of Fate
+    Ach(15125), -- The Reckoning
+    Ach(15126), -- Sanctum of Domination
+    Ach(15127), -- Heroic: Sanctum of Domination
+    Ach(15128), -- Mythic: Sanctum of Domination
+    Ach(15130):Mount(), -- Glory of the Dominant Raider
+    Ach(15131), -- Whack-A-Soul
+    Ach(15132), -- Knowledge is Power
+    Ach(15133), -- This World is a Prism
+    Ach(15134):PvE(6), -- Ahead of the Curve: Sylvanas Windrunner
+    Ach(15135):PvE(6), -- Cutting Edge: Sylvanas Windrunner
+    Ach(15177), -- Tazavesh, the Veiled Market
+    Ach(15178):Mount(), -- Fake It 'Til You Make It
+    Ach(15179), -- This is Fine
+    Ach(15190), -- Mischief!
+    Ach(15191), -- Rae'shalare, Death's Whisper
+}
 
-KrowiAF.AchievementData["09_01_05"] = {
+KrowiAF.AchievementData2["09_01_05"] = {
     {KrowiAF.SetAchievementPatch, 9, 1, 5},
-    { -- Rock n' Roll
-        15181,
-        {
-            {"Event", 141},
-        },
-    },
-    { -- Combatant II: Shadowlands Season 2
-        15232,
-        {
-            IsPvP = true,
-            {"PvP Season", 31},
-        },
-    },
-    { -- Challenger II: Shadowlands Season 2
-        15233,
-        {
-            IsPvP = true,
-            {"PvP Season", 31},
-        },
-    },
-    { -- Rival II: Shadowlands Season 2
-        15234,
-        {
-            IsPvP = true,
-            {"PvP Season", 31},
-        },
-    },
-    {15241}, -- Renowned
-    {15308}, -- Tower Overwhelming
-    {15309}, -- A Towering Success
-	{ -- A Tour of Towers
-		15310,
-		{
-			RewardType = rewardType.Mount,
-		},
-	},
-    {15313}, -- Rockin' Rollin' Racer
-    {15323}, -- Sarge's Tale
-    { -- Tormented Hero: Shadowlands Season 2
-        15327,
-        {
-            RewardType = rewardType.Title,
-            {"PvE Season", 6},
-        },
-    },
-    {15388}, -- Shadowlands Explorer
-};
+    Ach(15181):Obtainable("Event", 141), -- Rock n' Roll
+    Ach(15232):PvP(31), -- Combatant II: Shadowlands Season 2
+    Ach(15233):PvP(31), -- Challenger II: Shadowlands Season 2
+    Ach(15234):PvP(31), -- Rival II: Shadowlands Season 2
+    Ach(15241), -- Renowned
+    Ach(15308), -- Tower Overwhelming
+    Ach(15309), -- A Towering Success
+    Ach(15310):Mount(), -- A Tour of Towers
+    Ach(15313), -- Rockin' Rollin' Racer
+    Ach(15323), -- Sarge's Tale
+    Ach(15327):Title():PvE(6), -- Tormented Hero: Shadowlands Season 2
+    Ach(15388), -- Shadowlands Explorer
+}
 
-KrowiAF.AchievementData["09_02_00"] = {
+KrowiAF.AchievementData2["09_02_00"] = {
     {KrowiAF.SetAchievementPatch, 9, 2, 0},
-	{ -- Completing the Code
-		15211,
-		{
-			RewardType = rewardType.Toy,
-		},
-	},
-    { -- First Dance
-        15212,
-        {
-            {"Event", 374},
-        },
-    },
-    { -- Don't Stop Dancing
-        15213,
-        {
-            {"Event", 374},
-        },
-    },
-    { -- What a Feeling
-        15214,
-        {
-            {"Event", 374},
-        },
-    },
-    { -- Can't Stop the Feeling
-        15215,
-        {
-            {"Event", 374},
-        },
-    },
-    { -- Make You Sweat
-        15216,
-        {
-            {"Event", 374},
-        },
-    },
-    { -- Maniac on the Dance Floor
-        15217,
-        {
-            {"Event", 374},
-        },
-    },
-    { -- WoW's 18th Anniversary
-        15218,
-        {
-            {"Event", 1262},
-        },
-    },
-    {15220}, -- The Enlightened
-    { -- Dancing Machine
-        15221,
-        {
-            RewardType = rewardType.Toy,
-            {"Event", 374},
-        },
-    },
-    { -- You Got the Beat
-        15222,
-        {
-            {"Event", 374},
-        },
-    },
-    { -- Feeling It
-        15223,
-        {
-            {"Event", 374},
-        },
-    },
-    {15224}, -- Explore Zereth Mortis
-	{ -- Traversing the Spheres
-		15229,
-		{
-			RewardType = rewardType.Toy,
-		},
-	},
-	{ -- The Jailer's Gauntlet: Layer 1
-		15251,
-		{
-			RewardType = rewardType.Pet,
-		},
-	},
-	{ -- The Jailer's Gauntlet: Layer 2
-		15252,
-		{
-			RewardType = rewardType.Toy,
-		},
-	},
-	{ -- The Jailer's Gauntlet: Layer 3
-		15253,
-		{
-			RewardType = rewardType.Title,
-		},
-	},
-	{ -- The Jailer's Gauntlet: Layer 4
-		15254,
-		{
-			RewardType = rewardType.Mount,
-		},
-	},
-    {15255}, -- The Jailer's Gauntlet: Layer 5
-    {15256}, -- The Jailer's Gauntlet: Layer 6
-    {15257}, -- The Jailer's Gauntlet: Layer 7
-    {15258}, -- The Jailer's Gauntlet: Layer 8
-    {15259}, -- Secrets of the First Ones
-    {15314}, -- Flawless: Skoldus Hall (Layer 16)
-    {15315}, -- Amidst Ourselves
-    {15316}, -- Flawless: Fracture Chambers (Layer 16)
-    {15317}, -- Flawless: The Soulforges (Layer 16)
-    {15318}, -- Flawless: Coldheart Interstitia (Layer 16)
-    {15319}, -- Flawless: Mort'regar (Layer 16)
-    {15320}, -- Flawless: The Upper Reaches (Layer 16)
-	{ -- Flawless Master (Layer 16)
-		15322,
-		{
-			RewardType = rewardType.Mount,
-		},
-	},
-	{ -- Tower Ranger
-		15324,
-		{
-			RewardType = rewardType.Title,
-		},
-	},
-    {15331}, -- Treasures of Zereth Mortis
-	{ -- From A to Zereth
-		15336,
-		{
-			RewardType = rewardType.Mount,
-		},
-	},
-    { -- Combatant I: Shadowlands Season 3
-        15348,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 32},
-        },
-    },
-    { -- Challenger I: Shadowlands Season 3
-        15349,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 32},
-        },
-    },
-    { -- Rival I: Shadowlands Season 3
-        15350,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 32},
-        },
-    },
-    { -- Duelist: Shadowlands Season 3
-        15351,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 32},
-        },
-    },
-    { -- Gladiator: Shadowlands Season 3
-        15352,
-        {
-            RewardType = {rewardType.Title, rewardType.Mount},
-            IsPvP = true,
-            {"PvP Season", 32},
-        },
-    },
-    { -- Cosmic Gladiator: Shadowlands Season 3
-        15353,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 32},
-        },
-    },
-    { -- Elite: Shadowlands Season 3
-        15354,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 32},
-        },
-    },
-    { -- Hero of the Alliance: Cosmic
-        15355,
-        faction.Alliance,
-        15356,
-        {
-            IsPvP = true,
-            {"PvP Season", 32},
-        },
-    },
-    { -- Hero of the Horde: Cosmic
-        15356,
-        faction.Horde,
-        15355,
-        {
-            IsPvP = true,
-            {"PvP Season", 32},
-        },
-    },
-    { -- Rival II: Shadowlands Season 3
-        15378,
-        {
-            IsPvP = true,
-            {"PvP Season", 32},
-        },
-    },
-    { -- Challenger II: Shadowlands Season 3
-        15379,
-        {
-            IsPvP = true,
-            {"PvP Season", 32},
-        },
-    },
-    { -- Combatant II: Shadowlands Season 3
-        15380,
-        {
-            IsPvP = true,
-            {"PvP Season", 32},
-        },
-    },
-    {15381}, -- Power ON
-    { -- Cosmic Gladiator's Soul Eater
-        15384,
-        {
-            IsPvP = true,
-            {"PvP Season", 32},
-        },
-    },
-    {15386}, -- Shimmering Secrets
-    {15391}, -- Adventurer of Zereth Mortis
-    { -- Dune Dominance
-		15392,
-		{
-			RewardType = rewardType.Transmog,
-		},
-	},
-    {15396}, -- We Are All Made of Stars
-    {15397}, -- Four Ring Circus
-    {15398}, -- Xy Never, Ever Marks the Spot.
-    {15399}, -- Coming to Terms
-    {15400}, -- Where the Wild Corgis Are
-    {15401}, -- Wisdom Comes From the Desert
-    { -- Cyphers of the First Ones
-		15402,
-		{
-			RewardType = rewardType.Mount,
-		},
-	},
-    {15404}, -- Cosmic Empowerment
-    {15406}, -- Synthesized!
-    {15407}, -- Synthe-fived!
-    { -- Cosmic Chic
-        15408,
-        {
-            IsPvP = true,
-        },
-    },
-    {15409}, -- First Wonders
-    {15410}, -- Synthe-superfived!
-    {15411}, -- Synthe-supersized!
-    {15416}, -- Domination's Grasp
-    {15417}, -- Sepulcher of the First Ones
-    {15418}, -- The Grand Design
-    {15419}, -- The Protoform Matrix
-    { -- Ahead of the Curve: The Jailer
-        15470,
-        {
-            {"PvE Season", 7},
-        },
-    },
-    { -- Cutting Edge: The Jailer
-        15471,
-        {
-            {"PvE Season", 7},
-        },
-    },
-    {15478}, -- Heroic: Sepulcher of the First Ones
-    {15479}, -- Mythic: Vigilant Guardian
-    {15480}, -- Mythic: Skolex
-    {15481}, -- Mythic: Artificer Xy'mox
-    {15482}, -- Mythic: Dausegne
-    {15483}, -- Mythic: Prototype Pantheon
-    {15484}, -- Mythic: Lihuvim
-    {15485}, -- Mythic: Halondrus
-    {15486}, -- Mythic: Anduin Wrynn
-    {15487}, -- Mythic: Lords of Dread
-    {15488}, -- Mythic: Rygelon
-	{ -- Mythic: The Jailer
-		15489,
-		{
-			RewardType = rewardType.Title,
-		},
-	},
-    {15490}, -- Mythic: Sepulcher of the First Ones
-	{ -- Glory of the Sepulcher Raider
-		15491,
-		{
-			RewardType = rewardType.Mount,
-		},
-	},
-    {15492}, -- Cornerstone of Creation
-    {15493}, -- Ephemeral Plains
-    {15494}, -- Damnation Aviation
-    { -- Shadowlands Keystone Explorer: Season Three
-        15496,
-        {
-            {"PvE Season", 7},
-        },
-    },
-    { -- Shadowlands Keystone Conqueror: Season Three
-        15498,
-        {
-            RewardType = rewardType.Title,
-            {"PvE Season", 7},
-        },
-    },
-    { -- Shadowlands Keystone Master: Season Three
-        15499,
-        {
-            RewardType = rewardType.Mount,
-            {"PvE Season", 7},
-        },
-    },
-    { -- Keystone Hero: Tazavesh, the Veiled Market
-        15500,
-        {
-            RewardType = rewardType.Teleport,
-            {"PvE Season", 7},
-            {"PvE Season", 8},
-            {"PvE Season", 15},
-        },
-    },
-    {15502}, -- Sand, Sand Everywhere!
-    { -- Shadowlands Keystone Hero: Season Three
-        15506,
-        {
-            {"PvE Season", 7},
-        },
-    },
-	{ -- Fashion of the First Ones
-		15508,
-		{
-			RewardType = rewardType.Pet,
-		},
-	},
-    {15509}, -- Tales of the Exile
-    { -- Solely Motivated
-        15511,
-        {
-            IsPvP = true,
-        },
-    },
-    {15512}, -- Adventures in Zereth Mortis
-    {15513}, -- Curious Collections
-    { -- Unlocking the Secrets
-		15514,
-		{
-			RewardType = rewardType.Other,
-		},
-	},
-    {15515}, -- Path to Enlightenment
-    {15518}, -- A Means to an End
-    { -- Solo Aspirations
-        15539,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Steadfast Soloist
-        15540,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Sole Survivor
-        15541,
-        {
-            IsPvP = true,
-        },
-    },
-    {15542}, -- Apocopocolypse Now
-    { -- Successful Solos
-        15543,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Supreme Soloist
-        15544,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-        },
-    },
-};
+    Ach(15211):Toy(), -- Completing the Code
+    Ach(15212):Obtainable("Event", 374), -- First Dance
+    Ach(15213):Obtainable("Event", 374), -- Don't Stop Dancing
+    Ach(15214):Obtainable("Event", 374), -- What a Feeling
+    Ach(15215):Obtainable("Event", 374), -- Can't Stop the Feeling
+    Ach(15216):Obtainable("Event", 374), -- Make You Sweat
+    Ach(15217):Obtainable("Event", 374), -- Maniac on the Dance Floor
+    Ach(15218):Obtainable("Event", 1262), -- WoW's 18th Anniversary
+    Ach(15220), -- The Enlightened
+    Ach(15221):Toy():Obtainable("Event", 374), -- Dancing Machine
+    Ach(15222):Obtainable("Event", 374), -- You Got the Beat
+    Ach(15223):Obtainable("Event", 374), -- Feeling It
+    Ach(15224), -- Explore Zereth Mortis
+    Ach(15229):Toy(), -- Traversing the Spheres
+    Ach(15251):Pet(), -- The Jailer's Gauntlet: Layer 1
+    Ach(15252):Toy(), -- The Jailer's Gauntlet: Layer 2
+    Ach(15253):Title(), -- The Jailer's Gauntlet: Layer 3
+    Ach(15254):Mount(), -- The Jailer's Gauntlet: Layer 4
+    Ach(15255), -- The Jailer's Gauntlet: Layer 5
+    Ach(15256), -- The Jailer's Gauntlet: Layer 6
+    Ach(15257), -- The Jailer's Gauntlet: Layer 7
+    Ach(15258), -- The Jailer's Gauntlet: Layer 8
+    Ach(15259), -- Secrets of the First Ones
+    Ach(15314), -- Flawless: Skoldus Hall (Layer 16)
+    Ach(15315), -- Amidst Ourselves
+    Ach(15316), -- Flawless: Fracture Chambers (Layer 16)
+    Ach(15317), -- Flawless: The Soulforges (Layer 16)
+    Ach(15318), -- Flawless: Coldheart Interstitia (Layer 16)
+    Ach(15319), -- Flawless: Mort'regar (Layer 16)
+    Ach(15320), -- Flawless: The Upper Reaches (Layer 16)
+    Ach(15322):Mount(), -- Flawless Master (Layer 16)
+    Ach(15324):Title(), -- Tower Ranger
+    Ach(15331), -- Treasures of Zereth Mortis
+    Ach(15336):Mount(), -- From A to Zereth
+    Ach(15348):Title():PvP(32), -- Combatant I: Shadowlands Season 3
+    Ach(15349):Title():PvP(32), -- Challenger I: Shadowlands Season 3
+    Ach(15350):Title():PvP(32), -- Rival I: Shadowlands Season 3
+    Ach(15351):Title():PvP(32), -- Duelist: Shadowlands Season 3
+    Ach(15352):Title():Mount():PvP(32), -- Gladiator: Shadowlands Season 3
+    Ach(15353):Title():PvP(32), -- Cosmic Gladiator: Shadowlands Season 3
+    Ach(15354):Title():PvP(32), -- Elite: Shadowlands Season 3
+    Ach(15355):AutoFactionSplit(faction.Alliance, 15356):PvP(32), -- Hero of the Alliance: Cosmic / Hero of the Horde: Cosmic
+    Ach(15378):PvP(32), -- Rival II: Shadowlands Season 3
+    Ach(15379):PvP(32), -- Challenger II: Shadowlands Season 3
+    Ach(15380):PvP(32), -- Combatant II: Shadowlands Season 3
+    Ach(15381), -- Power ON
+    Ach(15384):PvP(32), -- Cosmic Gladiator's Soul Eater
+    Ach(15386), -- Shimmering Secrets
+    Ach(15391), -- Adventurer of Zereth Mortis
+    Ach(15392):Transmog(), -- Dune Dominance
+    Ach(15396), -- We Are All Made of Stars
+    Ach(15397), -- Four Ring Circus
+    Ach(15398), -- Xy Never, Ever Marks the Spot.
+    Ach(15399), -- Coming to Terms
+    Ach(15400), -- Where the Wild Corgis Are
+    Ach(15401), -- Wisdom Comes From the Desert
+    Ach(15402):Mount(), -- Cyphers of the First Ones
+    Ach(15404), -- Cosmic Empowerment
+    Ach(15406), -- Synthesized!
+    Ach(15407), -- Synthe-fived!
+    Ach(15408):IsPvP(), -- Cosmic Chic
+    Ach(15409), -- First Wonders
+    Ach(15410), -- Synthe-superfived!
+    Ach(15411), -- Synthe-supersized!
+    Ach(15416), -- Domination's Grasp
+    Ach(15417), -- Sepulcher of the First Ones
+    Ach(15418), -- The Grand Design
+    Ach(15419), -- The Protoform Matrix
+    Ach(15470):PvE(7), -- Ahead of the Curve: The Jailer
+    Ach(15471):PvE(7), -- Cutting Edge: The Jailer
+    Ach(15478), -- Heroic: Sepulcher of the First Ones
+    Ach(15479), -- Mythic: Vigilant Guardian
+    Ach(15480), -- Mythic: Skolex
+    Ach(15481), -- Mythic: Artificer Xy'mox
+    Ach(15482), -- Mythic: Dausegne
+    Ach(15483), -- Mythic: Prototype Pantheon
+    Ach(15484), -- Mythic: Lihuvim
+    Ach(15485), -- Mythic: Halondrus
+    Ach(15486), -- Mythic: Anduin Wrynn
+    Ach(15487), -- Mythic: Lords of Dread
+    Ach(15488), -- Mythic: Rygelon
+    Ach(15489):Title(), -- Mythic: The Jailer
+    Ach(15490), -- Mythic: Sepulcher of the First Ones
+    Ach(15491):Mount(), -- Glory of the Sepulcher Raider
+    Ach(15492), -- Cornerstone of Creation
+    Ach(15493), -- Ephemeral Plains
+    Ach(15494), -- Damnation Aviation
+    Ach(15496):PvE(7), -- Shadowlands Keystone Explorer: Season Three
+    Ach(15498):Title():PvE(7), -- Shadowlands Keystone Conqueror: Season Three
+    Ach(15499):Mount():PvE(7), -- Shadowlands Keystone Master: Season Three
+    Ach(15500):Teleport():PvE(7):PvE(8):PvE(15), -- Keystone Hero: Tazavesh, the Veiled Market
+    Ach(15502), -- Sand, Sand Everywhere!
+    Ach(15506):PvE(7), -- Shadowlands Keystone Hero: Season Three
+    Ach(15508):Pet(), -- Fashion of the First Ones
+    Ach(15509), -- Tales of the Exile
+    Ach(15511):IsPvP(), -- Solely Motivated
+    Ach(15512), -- Adventures in Zereth Mortis
+    Ach(15513), -- Curious Collections
+    Ach(15514):Other(), -- Unlocking the Secrets
+    Ach(15515), -- Path to Enlightenment
+    Ach(15518), -- A Means to an End
+    Ach(15539):IsPvP(), -- Solo Aspirations
+    Ach(15540):IsPvP(), -- Steadfast Soloist
+    Ach(15541):IsPvP(), -- Sole Survivor
+    Ach(15542), -- Apocopocolypse Now
+    Ach(15543):IsPvP(), -- Successful Solos
+    Ach(15544):Title():IsPvP(), -- Supreme Soloist
+}
 
-KrowiAF.AchievementData["09_02_05"] = {
+KrowiAF.AchievementData2["09_02_05"] = {
     {KrowiAF.SetAchievementPatch, 9, 2, 5},
-    { -- Return to Lordaeron
-		15579,
-		{
-			RewardType = {rewardType.Title, rewardType.Other},
-		},
-	},
-    { -- Fearless Spectator
-        15594,
-        {
-            RewardType = rewardType.Title,
-            {"From", "Date", {2022, 7, 8}, "Until", "Date", {2022, 7, 24}},
-        },
-    },
-    { -- Challenger I: Shadowlands Season 4
-        15600,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 33},
-        },
-    },
-    { -- Challenger II: Shadowlands Season 4
-        15601,
-        {
-            IsPvP = true,
-            {"PvP Season", 33},
-        },
-    },
-    { -- Rival I: Shadowlands Season 4
-        15602,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 33},
-        },
-    },
-    { -- Rival II: Shadowlands Season 4
-        15603,
-        {
-            IsPvP = true,
-            {"PvP Season", 33},
-        },
-    },
-    { -- Duelist: Shadowlands Season 4
-        15604,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 33},
-        },
-    },
-    { -- Gladiator: Shadowlands Season 4
-        15605,
-        {
-            RewardType = {rewardType.Title, rewardType.Mount},
-            IsPvP = true,
-            {"PvP Season", 33},
-        },
-    },
-    { -- Eternal Gladiator: Shadowlands Season 4
-        15606,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 33},
-        },
-    },
-    { -- Hero of the Horde: Eternal
-        15607,
-        faction.Horde,
-        15608,
-        {
-            IsPvP = true,
-            {"PvP Season", 33},
-        },
-    },
-    { -- Hero of the Alliance: Eternal
-        15608,
-        faction.Alliance,
-        15607,
-        {
-            IsPvP = true,
-            {"PvP Season", 33},
-        },
-    },
-    { -- Combatant I: Shadowlands Season 4
-        15609,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 33},
-        },
-    },
-    { -- Combatant II: Shadowlands Season 4
-        15610,
-        {
-            IsPvP = true,
-            {"PvP Season", 33},
-        },
-    },
-    { -- Eternal Gladiator's Soul Eater
-        15612,
-        {
-            IsPvP = true,
-            {"PvP Season", 33},
-        },
-    },
-    { -- Elite: Shadowlands Season 4
-        15639,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 33},
-        },
-    },
-    {15645}, -- To Catch Falling Stars
-    {15646}, -- Re-Re-Re-Renowned
-    {15647}, -- Dead Men Tell Some Tales
-	{ -- Walking in Maw-mphis
-		15648,
-		{
-			RewardType = rewardType.Title,
-		},
-	},
-    {15649}, -- Shadowlands Dilettante
-    {15650}, -- Mythic: Streets of Wonder
-    {15651}, -- Myths of the Shadowlands Dungeons
-    {15652}, -- Mythic: So'leah's Gambit
-    {15653}, -- The More You Know*
-    { -- Back from the Beyond (Legacy)
-        15654,
-        {
-            RewardType = rewardType.Title,
-            {"Before", "Version", {10, 0, 2}},
-        },
-    },
-    { -- Fate of Nathria
-        15663,
-        {
-            {"PvE Season", 8},
-        },
-    },
-    { -- Heroic: Fate of Nathria
-        15664,
-        {
-            {"PvE Season", 8},
-        },
-    },
-    { -- Mythic: Fate of Nathria
-        15665,
-        {
-            {"PvE Season", 8},
-        },
-    },
-    { -- Fate of Domination
-        15667,
-        {
-            {"PvE Season", 8},
-        },
-    },
-    { -- Heroic: Fate of Domination
-        15668,
-        {
-            {"PvE Season", 8},
-        },
-    },
-    { -- Mythic: Fate of Domination
-        15669,
-        {
-            {"PvE Season", 8},
-        },
-    },
-    { -- Fate of the Sepulcher
-        15681,
-        {
-            {"PvE Season", 8},
-        },
-    },
-    { -- Heroic: Fate of the Sepulcher
-        15682,
-        {
-            {"PvE Season", 8},
-        },
-    },
-    { -- Mythic: Fate of the Sepulcher
-        15683,
-        {
-            {"PvE Season", 8},
-        },
-    },
-    { -- Fates of the Shadowlands Raids
-        15684,
-        {
-            RewardType = rewardType.Mount,
-            {"PvE Season", 8},
-        },
-    },
-    { -- Heroic: Fates of the Shadowlands Raids
-        15685,
-        {
-            RewardType = rewardType.Title,
-            {"PvE Season", 8},
-        },
-    },
-    { -- Mythic: Fates of the Shadowlands Raids
-        15687,
-        {
-            RewardType = rewardType.Teleport,
-            {"PvE Season", 8},
-        },
-    },
-    { -- Shadowlands Keystone Explorer: Season Four
-        15688,
-        {
-            {"PvE Season", 8},
-        },
-    },
-    { -- Shadowlands Keystone Conqueror: Season Four
-        15689,
-        {
-            RewardType = rewardType.Title,
-            {"PvE Season", 8},
-        },
-    },
-    { -- Shadowlands Keystone Master: Season Four
-        15690,
-        {
-            RewardType = rewardType.Mount,
-            {"PvE Season", 8},
-        },
-    },
-    { -- Cryptic Hero: Shadowlands Season 3
-        15691,
-        {
-            RewardType = rewardType.Title,
-            {"PvE Season", 7},
-        },
-    },
-    { -- Keystone Hero: Return to Karazhan
-        15692,
-        {
-            RewardType = rewardType.Teleport,
-            {"PvE Season", 8},
-        },
-    },
-    { -- Keystone Hero: Operation: Mechagon
-        15693,
-        {
-            RewardType = rewardType.Teleport,
-            {"PvE Season", 8},
-        },
-    },
-    { -- Keystone Hero: Iron Docks
-        15694,
-        {
-            RewardType = rewardType.Teleport,
-            {"PvE Season", 8},
-        },
-    },
-    { -- Keystone Hero: Grimrail Depot
-        15695,
-        {
-            RewardType = rewardType.Teleport,
-            {"PvE Season", 8},
-        },
-    },
-    { -- Shrouded Hero: Shadowlands Season 4
-        15756,
-        {
-            RewardType = rewardType.Title,
-            {"PvE Season", 8},
-        },
-    },
-};
+    Ach(15579):Title():Other(), -- Return to Lordaeron
+    Ach(15594):Title():Obtainable("From", "Date", {2022, 7, 8}, "Until", "Date", {2022, 7, 24}), -- Fearless Spectator
+    Ach(15600):Title():PvP(33), -- Challenger I: Shadowlands Season 4
+    Ach(15601):PvP(33), -- Challenger II: Shadowlands Season 4
+    Ach(15602):Title():PvP(33), -- Rival I: Shadowlands Season 4
+    Ach(15603):PvP(33), -- Rival II: Shadowlands Season 4
+    Ach(15604):Title():PvP(33), -- Duelist: Shadowlands Season 4
+    Ach(15605):Title():Mount():PvP(33), -- Gladiator: Shadowlands Season 4
+    Ach(15606):Title():PvP(33), -- Eternal Gladiator: Shadowlands Season 4
+    Ach(15607):AutoFactionSplit(faction.Horde, 15608):PvP(33), -- Hero of the Horde: Eternal / Hero of the Alliance: Eternal
+    Ach(15609):Title():PvP(33), -- Combatant I: Shadowlands Season 4
+    Ach(15610):PvP(33), -- Combatant II: Shadowlands Season 4
+    Ach(15612):PvP(33), -- Eternal Gladiator's Soul Eater
+    Ach(15639):Title():PvP(33), -- Elite: Shadowlands Season 4
+    Ach(15645), -- To Catch Falling Stars
+    Ach(15646), -- Re-Re-Re-Renowned
+    Ach(15647), -- Dead Men Tell Some Tales
+    Ach(15648):Title(), -- Walking in Maw-mphis
+    Ach(15649), -- Shadowlands Dilettante
+    Ach(15650), -- Mythic: Streets of Wonder
+    Ach(15651), -- Myths of the Shadowlands Dungeons
+    Ach(15652), -- Mythic: So'leah's Gambit
+    Ach(15653), -- The More You Know*
+    Ach(15654):Title():Obtainable("Before", "Version", {10, 0, 2}), -- Back from the Beyond (Legacy)
+    Ach(15663):PvE(8), -- Fate of Nathria
+    Ach(15664):PvE(8), -- Heroic: Fate of Nathria
+    Ach(15665):PvE(8), -- Mythic: Fate of Nathria
+    Ach(15667):PvE(8), -- Fate of Domination
+    Ach(15668):PvE(8), -- Heroic: Fate of Domination
+    Ach(15669):PvE(8), -- Mythic: Fate of Domination
+    Ach(15681):PvE(8), -- Fate of the Sepulcher
+    Ach(15682):PvE(8), -- Heroic: Fate of the Sepulcher
+    Ach(15683):PvE(8), -- Mythic: Fate of the Sepulcher
+    Ach(15684):Mount():PvE(8), -- Fates of the Shadowlands Raids
+    Ach(15685):Title():PvE(8), -- Heroic: Fates of the Shadowlands Raids
+    Ach(15687):Teleport():PvE(8), -- Mythic: Fates of the Shadowlands Raids
+    Ach(15688):PvE(8), -- Shadowlands Keystone Explorer: Season Four
+    Ach(15689):Title():PvE(8), -- Shadowlands Keystone Conqueror: Season Four
+    Ach(15690):Mount():PvE(8), -- Shadowlands Keystone Master: Season Four
+    Ach(15691):Title():PvE(7), -- Cryptic Hero: Shadowlands Season 3
+    Ach(15692):Teleport():PvE(8), -- Keystone Hero: Return to Karazhan
+    Ach(15693):Teleport():PvE(8), -- Keystone Hero: Operation: Mechagon
+    Ach(15694):Teleport():PvE(8), -- Keystone Hero: Iron Docks
+    Ach(15695):Teleport():PvE(8), -- Keystone Hero: Grimrail Depot
+    Ach(15756):Title():PvE(8), -- Shrouded Hero: Shadowlands Season 4
+}
 
-KrowiAF.AchievementData["09_02_07"] = {
+KrowiAF.AchievementData2["09_02_07"] = {
     {KrowiAF.SetAchievementPatch, 9, 2, 7},
-    { -- We Are All Made of Stars (Heroic)
-        15468,
-        {
-            {"From", "PvE Season", 8, "Before", "Version", {10, 0, 2}},
-        },
-    },
-    { -- We Are All Made of Stars (Mythic)
-        15469,
-        {
-            {"From", "PvE Season", 8, "Before", "Version", {10, 0, 2}},
-        },
-    },
-};
+    Ach(15468):Obtainable("From", "PvE Season", 8, "Before", "Version", {10, 0, 2}), -- We Are All Made of Stars (Heroic)
+    Ach(15469):Obtainable("From", "PvE Season", 8, "Before", "Version", {10, 0, 2}), -- We Are All Made of Stars (Mythic)
+}

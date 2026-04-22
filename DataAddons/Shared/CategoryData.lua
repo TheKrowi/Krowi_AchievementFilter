@@ -561,6 +561,178 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
     }
 };
 
+shared.Shadowlands = {}
+local shadowlands = shared.Shadowlands
+
+shadowlands.MythicPlus = {
+    { -- Season 1
+        -- 1567,
+        addon.L["Season"] .. " " .. 1,
+        true,
+        {
+            14938, -- Shadowlands Keystone Explorer: Season One
+            14531, -- Shadowlands Keystone Conqueror: Season One
+            14532, -- Shadowlands Keystone Master: Season One
+        },
+    },
+    { -- Season 2
+        -- 1568,
+        addon.L["Season"] .. " " .. 2,
+        true,
+        {
+            15051, -- Keystone Hero: De Other Side
+            15048, -- Keystone Hero: Halls of Atonement
+            15047, -- Keystone Hero: Mists of Tirna Scithe
+            15045, -- Keystone Hero: The Necrotic Wake
+            15046, -- Keystone Hero: Plaguefall
+            15052, -- Keystone Hero: Sanguine Depths
+            15049, -- Keystone Hero: Spires of Ascension
+            15050, -- Keystone Hero: Theater of Pain
+            15073, -- Shadowlands Keystone Explorer: Season Two
+            15077, -- Shadowlands Keystone Conqueror: Season Two
+            15078, -- Shadowlands Keystone Master: Season Two
+            15327, -- Tormented Hero: Shadowlands Season 2
+        },
+    },
+    { -- Season 3
+        -- 1569,
+        addon.L["Season"] .. " " .. 3,
+        true,
+        {
+            15051, -- Keystone Hero: De Other Side
+            15048, -- Keystone Hero: Halls of Atonement
+            15047, -- Keystone Hero: Mists of Tirna Scithe
+            15045, -- Keystone Hero: The Necrotic Wake
+            15046, -- Keystone Hero: Plaguefall
+            15052, -- Keystone Hero: Sanguine Depths
+            15049, -- Keystone Hero: Spires of Ascension
+            15500, -- Keystone Hero: Tazavesh, the Veiled Market
+            15050, -- Keystone Hero: Theater of Pain
+            15496, -- Shadowlands Keystone Explorer: Season Three
+            15498, -- Shadowlands Keystone Conqueror: Season Three
+            15499, -- Shadowlands Keystone Master: Season Three
+            15506, -- Shadowlands Keystone Hero: Season Three
+            15691, -- Cryptic Hero: Shadowlands Season 3
+        },
+    },
+    { -- Season 4
+        -- 1572,
+        addon.L["Season"] .. " " .. 4,
+        true,
+        {
+            15500, -- Keystone Hero: Tazavesh, the Veiled Market
+            15693, -- Keystone Hero: Operation: Mechagon
+            15692, -- Keystone Hero: Return to Karazhan
+            15695, -- Keystone Hero: Grimrail Depot
+            15694, -- Keystone Hero: Iron Docks
+            15688, -- Shadowlands Keystone Explorer: Season Four
+            15689, -- Shadowlands Keystone Conqueror: Season Four
+            15690, -- Shadowlands Keystone Master: Season Four
+            15756, -- Shrouded Hero: Shadowlands Season 4
+        },
+    },
+}
+
+shared.GetShadowlandsMythicPlus = function(categoryName)
+    return {
+        categoryName,
+        unpack(shadowlands.MythicPlus)
+    }
+end
+
+shared.Dragonflight = {}
+local dragonflight = shared.Dragonflight
+
+dragonflight.MythicPlus = {
+    { -- Season 1
+        addon.L["Season"] .. " " .. 1,
+        true,
+        {
+            16643, -- Keystone Hero: Algeth'ar Academy
+            16645, -- Keystone Hero: The Azure Vault
+            16641, -- Keystone Hero: The Nokhud Offensive
+            16640, -- Keystone Hero: Ruby Life Pools
+            16658, -- Keystone Hero: Court of Stars
+            16659, -- Keystone Hero: Halls of Valor
+            16660, -- Keystone Hero: Shadowmoon Burial Grounds
+            16661, -- Keystone Hero: Temple of the Jade Serpent
+            16647, -- Dragonflight Keystone Explorer: Season One
+            16648, -- Dragonflight Keystone Conqueror: Season One
+            16649, -- Dragonflight Keystone Master: Season One
+            16650, -- Dragonflight Keystone Hero: Season One
+            16429, -- Thundering Hero: Dragonflight Season 1
+            17119, -- Deep Cuts From the Vault
+        },
+    },
+    { -- Season 2
+        addon.L["Season"] .. " " .. 2,
+        true,
+        {
+            16642, -- Keystone Hero: Brackenhide Hollow
+            16646, -- Keystone Hero: Halls of Infusion
+            16644, -- Keystone Hero: Neltharus
+            16639, -- Keystone Hero: Uldaman: Legacy of Tyr
+            17848, -- Keystone Hero: Freehold
+            17849, -- Keystone Hero: The Underrot
+            17850, -- Keystone Hero: Neltharion's Lair
+            17847, -- Keystone Hero: The Vortex Pinnacle
+            17842, -- Dragonflight Keystone Explorer: Season Two
+            17843, -- Dragonflight Keystone Conqueror: Season Two
+            17844, -- Dragonflight Keystone Master: Season Two
+            17845, -- Dragonflight Keystone Hero: Season Two
+            18542, -- Dragonflight Keystone Master: Season Two
+            17846, -- Smoldering Hero: Dragonflight Season 2
+            18027, -- Dragonflight Season 2 Master
+            18380, -- Dragonflight Season 2 Hero
+        },
+    },
+    { -- Season 3
+        addon.L["Season"] .. " " .. 3,
+        true,
+        {
+            19088, -- Keystone Hero: Dawn of the Infinite
+            19087, -- Keystone Hero: Atal'Dazar
+            19086, -- Keystone Hero: Waycrest Manor
+            19084, -- Keystone Hero: Black Rook Hold
+            19085, -- Keystone Hero: Darkheart Thicket
+            19083, -- Keystone Hero: The Everbloom
+            19082, -- Keystone Hero: Throne of the Tides
+            19009, -- Dragonflight Keystone Explorer: Season Three
+            19010, -- Dragonflight Keystone Conqueror: Season Three
+            19011, -- Dragonflight Keystone Master: Season Three
+            19012, -- Dragonflight Keystone Hero: Season Three
+            19396, -- Dragonflight Season 3 Master
+            19420, -- Dragonflight Season 3 Hero
+        },
+    },
+    { -- Season 4
+        addon.L["Season"] .. " " .. 4,
+        true,
+        {
+            16643, -- Keystone Hero: Algeth'ar Academy
+            16642, -- Keystone Hero: Brackenhide Hollow
+            16646, -- Keystone Hero: Halls of Infusion
+            16644, -- Keystone Hero: Neltharus
+            16640, -- Keystone Hero: Ruby Life Pools
+            16645, -- Keystone Hero: The Azure Vault
+            16641, -- Keystone Hero: The Nokhud Offensive
+            16639, -- Keystone Hero: Uldaman: Legacy of Tyr
+            19780, -- Dragonflight Keystone Explorer: Season Four
+            19781, -- Dragonflight Keystone Conqueror: Season Four
+            19782, -- Dragonflight Keystone Master: Season Four
+            19783, -- Dragonflight Keystone Hero: Season Four
+            20481, -- Dragonflight Season 4 Master
+        },
+    },
+}
+
+shared.GetDragonflightMythicPlus = function(categoryName)
+    return {
+        categoryName,
+        unpack(dragonflight.MythicPlus)
+    }
+end
+
 shared.TheWarWithin = {}
 local theWarWithin = shared.TheWarWithin
 
