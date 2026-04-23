@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 - Mythic+ seasons for Shadowlands and Dragonflight are now listed under their respective expansion's Dungeons category (in addition to the Specials tab)
 
 ### Changed
-- Battle for Azeroth, Shadowlands and Dragonflight achievement data internally migrated to a new fluent V2 builder format (dev note: this is an invisible change for users; the new format uses method chaining instead of nested tables — e.g. `Ach(12345):Mount():PvE(13)` — which greatly improves readability and reduces data entry errors)
+- Legion, Battle for Azeroth, Shadowlands and Dragonflight achievement data internally migrated to a new fluent V2 builder format (dev note: this is an invisible change for users; the new format uses method chaining instead of nested tables — e.g. `Ach(12345):Mount():PvE(13)` — which greatly improves readability and reduces data entry errors)
 - WoW Anniversary achievements for the 16th through 21st anniversaries now use explicit date-based obtainability windows instead of calendar event IDs, making them more reliable
 
 ### Removed

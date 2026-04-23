@@ -289,7 +289,9 @@ This puts the original V1 file back on disk so WoW loads V1 data.
 Prompt the user: *"Please reload WoW (or log in). Wait for the `[KAF-Verify]` message in chat (~10 s after login), then type `/reload` to flush saved variables. Let me know when done."*
 
 **Step 4 — Agent: Snapshot V1 saved variables**
-Run: `Copy-Item "$env:APPDATA\..\Local\VirtualStore\Program Files (x86)\World of Warcraft\_retail_\WTF\Account\<ACCOUNT>\SavedVariables\Krowi_AchievementFilter.lua" "$env:TEMP\KAF_v1.lua"` (adjust path as needed — ask the user for their WTF path if unknown).
+Run: `Copy-Item "H:\World of Warcraft\_retail_\WTF\Account\133658957#1\SavedVariables\Krowi_AchievementFilter.lua" "$env:TEMP\KAF_v1.lua"`
+
+The user's WTF saved variables path is: `H:\World of Warcraft\_retail_\WTF\Account\133658957#1\SavedVariables\Krowi_AchievementFilter.lua`
 
 **Step 5 — Agent: Restore V2 to disk**
 Restore the converted V2 file from the working tree. If the file was stashed: `git stash pop`. If the V2 file is already the working-tree version (user never stashed), it may already be in place — verify with `git status`.

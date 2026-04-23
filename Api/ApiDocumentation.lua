@@ -1,5 +1,3 @@
-local _, addon = ...;
-
 KrowiAF.CategoryData.Example1 = {
     1, -- Category Id [Required]
     "General", -- Category Name [Optional][Required when the root is a new category]
@@ -34,6 +32,9 @@ KrowiAF.CategoryData.Example1 = {
 
 -- V2 Achievement Data (current standard)
 -- Use KrowiAF.AchievementData2 with the Ach() fluent builder.
+local _, addon = ...
+local shared = addon.Data.AchievementData.Shared
+local Ach = shared.Ach
 KrowiAF.AchievementData2["03_00_02_Example1"] = {
     {KrowiAF.SetAchievementPatch, 3, 0, 2}, -- Patch settings, used to show the "Added in patch" info [Required]
     Ach(6), -- A simple achievement with only its Id [Optional]
