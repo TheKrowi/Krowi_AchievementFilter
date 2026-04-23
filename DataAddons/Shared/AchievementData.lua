@@ -71,3 +71,8 @@ end
 function shared.Ach(id)
     return setmetatable({id}, AchBuilder)
 end
+
+-- Special obtainable helpers
+function AchBuilder:Anniv20()
+    return self:Obtainable("From", "Date", {2024, 11, 4}, "Until", "Date", {2025, 1, 7})
+end

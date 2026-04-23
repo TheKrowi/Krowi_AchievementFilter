@@ -403,39 +403,39 @@ KrowiAF.AchievementData2["11_00_02"] = {
 KrowiAF.AchievementData2["11_00_05"] = {
     {KrowiAF.SetAchievementPatch, 11, 0, 5},
 	Ach(15644):Pet(), -- Good Things Come in Small Packages
-    Ach(40661):Obtainable("Event", 1592), -- Zoomies!
+    Ach(40661):Anniv20(), -- Zoomies!
 	Ach(40870):Title(), -- Azeroth's Greatest Detective
     Ach(40871):Transmog(), -- Assistant to the Assistant Guest Relations Manager
     Ach(40872):Transmog(), -- I Saved the Party and All I Got Was This Lousy Hat
     Ach(40873), -- Crate Insurance Agent
     Ach(40967), -- Ratts' Revenge
-    Ach(40976):Mount():Obtainable("Event", 1592), -- A Cool Twenty Years
-    Ach(40977):Obtainable("Event", 1592), -- Codex Editor: Ahn'Qiraj
+    Ach(40976):Mount():Anniv20(), -- A Cool Twenty Years
+    Ach(40977):Anniv20(), -- Codex Editor: Ahn'Qiraj
     Ach(40979), -- No Crate Left Behind
     Ach(40980):Pet(), -- Family Battler of Khaz Algar
-    Ach(40984):Obtainable("Event", 1592), -- Big Fan
-    Ach(40985):Obtainable("Event", 1592), -- I Have That One!
-    Ach(40986):Obtainable("Event", 1592), -- Mount Master
-    Ach(40987):Obtainable("Event", 1592), -- Fashion Critic
+    Ach(40984):Anniv20(), -- Big Fan
+    Ach(40985):Anniv20(), -- I Have That One!
+    Ach(40986):Anniv20(), -- Mount Master
+    Ach(40987):Anniv20(), -- Fashion Critic
     Ach(40988), -- Photo Op!
-    Ach(40989):Obtainable("Event", 1592), -- Pet Mischief
-    Ach(40990):Obtainable("Event", 1592), -- Balloonist
-    Ach(40991):Obtainable("Event", 1592), -- Frequent Flyer
-    Ach(40992):Obtainable("Event", 1592), -- Peanut Gallery
-    Ach(40993):Obtainable("Event", 1592), -- Avid Listener
-    Ach(40994):Obtainable("Event", 1592), -- An Original
-    Ach(40995):Obtainable("Event", 1592), -- The Originals
-    Ach(40996):Obtainable("Event", 1592), -- A Gatecrasher
-    Ach(40997):Obtainable("Event", 1592), -- The Gatecrashers
+    Ach(40989):Anniv20(), -- Pet Mischief
+    Ach(40990):Anniv20(), -- Balloonist
+    Ach(40991):Anniv20(), -- Frequent Flyer
+    Ach(40992):Anniv20(), -- Peanut Gallery
+    Ach(40993):Anniv20(), -- Avid Listener
+    Ach(40994):Anniv20(), -- An Original
+    Ach(40995):Anniv20(), -- The Originals
+    Ach(40996):Anniv20(), -- A Gatecrasher
+    Ach(40997):Anniv20(), -- The Gatecrashers
     Ach(40998), -- A Timewalking Step Back to a Classic Dungeon Time
-    Ach(40999):Obtainable("Event", 1592), -- You're in Your Blackrock Depths
+    Ach(40999):Anniv20(), -- You're in Your Blackrock Depths
     Ach(41000), -- A Timewalking Journey Back to a Classic Dungeon Time
     Ach(41013):Other(), -- Upgraded Apparel
-    Ach(41015):Obtainable("Event", 1592), -- A Dark Iron Past
+    Ach(41015):Anniv20(), -- A Dark Iron Past
     Ach(41033):Other(), -- Classy Dresser
-    Ach(41038):Other():Obtainable("Event", 1592), -- Token Collector
+    Ach(41038):Other():Anniv20(), -- Token Collector
     Ach(41044):Transmog():PvP(38), -- Forged Weapons of Conquest
-    Ach(41220):Obtainable("Event", 1592), -- WoW's 20th Anniversary
+    Ach(41220):Anniv20(), -- WoW's 20th Anniversary
 };
 
 KrowiAF.AchievementData2["11_00_07"] = {
@@ -1133,7 +1133,7 @@ KrowiAF.AchievementData2["11_02_05"] = {
     Ach(61323):RemixBronze():Obtainable("Event", 1640), -- Legionslayer V
     Ach(61337):Transmog():Obtainable("Event", 1640), -- To Fel and Back
     Ach(61339):Obtainable("Event", 1640), -- Putting the Finite in Infinite
-    Ach(61406):Obtainable("Event", 1501), -- WoW's 21st Anniversary
+    Ach(61406):Obtainable("From", "Date", {2025, 11, 16}, "Until", "Date", {2025, 12, 7}), -- WoW's 21st Anniversary
     Ach(61874):PvE(15), -- The Unbound Tank
     Ach(61875):PvE(15), -- The Unbound Healer
     Ach(61876):PvE(15), -- The Unbound Damage Dealer

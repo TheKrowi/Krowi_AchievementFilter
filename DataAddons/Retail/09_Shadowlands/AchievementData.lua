@@ -13,7 +13,7 @@ KrowiAF.AchievementData2["09_00_01"] = {
     Ach(14206), -- Blade of the Primus
     Ach(14222), -- Exile's Reach
     Ach(14233), -- Tea Tales
-    Ach(14271), -- WoW's 16th Anniversary
+    Ach(14271):Obtainable("From", "Date", {2020, 11, 1}, "Until", "Date", {2020, 11, 22}), -- WoW's 16th Anniversary
     Ach(14272), -- Best Bud With Benefits
     Ach(14273), -- Crypt Kicker
     Ach(14274), -- Absolution for All
@@ -334,7 +334,7 @@ KrowiAF.AchievementData2["09_00_05"] = {
 
 KrowiAF.AchievementData2["09_01_00"] = {
     {KrowiAF.SetAchievementPatch, 9, 1, 0},
-    Ach(14942), -- WoW's 17th Anniversary
+    Ach(14942):Obtainable("From", "Date", {2021, 11, 15}, "Until", "Date", {2021, 12, 6}), -- WoW's 17th Anniversary
     Ach(14943), -- Guarmageddon
     Ach(14961), -- Chains of Domination
     Ach(14968):Title():PvP(31), -- Combatant I: Shadowlands Season 2
@@ -466,7 +466,7 @@ KrowiAF.AchievementData2["09_02_00"] = {
     Ach(15215):Obtainable("Event", 374), -- Can't Stop the Feeling
     Ach(15216):Obtainable("Event", 374), -- Make You Sweat
     Ach(15217):Obtainable("Event", 374), -- Maniac on the Dance Floor
-    Ach(15218):Obtainable("Event", 1262), -- WoW's 18th Anniversary
+    Ach(15218):Obtainable("From", "Date", {2022, 11, 6}, "Until", "Date", {2022, 11, 27}), -- WoW's 18th Anniversary
     Ach(15220), -- The Enlightened
     Ach(15221):Toy():Obtainable("Event", 374), -- Dancing Machine
     Ach(15222):Obtainable("Event", 374), -- You Got the Beat

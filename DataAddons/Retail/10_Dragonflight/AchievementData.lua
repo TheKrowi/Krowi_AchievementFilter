@@ -731,7 +731,7 @@ KrowiAF.AchievementData2["10_01_07"] = {
     Ach(17773):HousingDecor(), -- A Blue Dawn
     Ach(18250), -- Ysergle The Dreamurk
     Ach(18579):Obtainable("Event", 372), -- A Round on the House
-    Ach(18702):Obtainable("Event", 1397), -- WoW's 19th Anniversary
+    Ach(18702):Obtainable("From", "Date", {2023, 11, 11}, "Until", "Date", {2023, 12, 7}), -- WoW's 19th Anniversary
     Ach(18719), -- Cataclysmic Master of All
     Ach(18720), -- Classic Master of All
     Ach(18721), -- Outland Master of All
