@@ -51,6 +51,8 @@ The second positional argument, when it is a table, is a mixed dict + array. Nam
     {"From", "Date", {2010,11,1}, "Until", "Date", {2010,11,22}}, -- tuple: date range
     {"From", "PvP Season", 38, "Until", "PvP Season", 40},        -- tuple: PvP season range
     {"Once"},                          -- tuple: one-time (Realm First)
+    {"Never"},                         -- ⚠️ STOP — flag to user before migrating
+    {},                                -- ⚠️ STOP — flag to user before migrating
 }
 ```
 
@@ -130,6 +132,40 @@ Ach(40234):AutoFactionSplit(faction.Horde, 40235):Title():PvP(38), -- Forged War
 ```
 
 **Edge case — faction with no altId:** `{id, faction.Alliance}` with no third positional. Search the rest of the same patch table for the counterpart. If not found in the file, ask the user before proceeding.
+
+## Pre-Migration: Flag Ambiguous Tuples
+
+Before converting any entries, scan every patch table being migrated for the two patterns below. **Stop and show them all to the user — do not guess, do not skip, do not proceed until each one is resolved.**
+
+### `{"Never"}` — never-obtainable marker
+
+In V1 this tuple means the achievement is permanently unobtainable. However the intended V2 representation varies case-by-case (e.g. it may warrant `:Obtainable("Never")`, removal of the tuple entirely, or a different approach). Present each occurrence to the user:
+
+```
+⚠️  ID <id> — "<name>" has {"Never"}.
+How should this be handled?
+  A) :Obtainable("Never")
+  B) Drop the tuple (no temporary-obtainable marker)
+  C) Other — tell me
+```
+
+Wait for the user's answer before writing any converted output for that entry.
+
+### `{}` — empty tuple
+
+An empty table `{}` inside a `moreDataTable` is a no-op placeholder (it passes through `SetTemporaryObtainable` with no effect but still creates an empty record). Present each occurrence to the user:
+
+```
+⚠️  ID <id> — "<name>" has an empty tuple {}.
+How should this be handled?
+  A) Drop the tuple entirely (most common — it was a V1 placeholder)
+  B) Keep as :Obtainable() with no arguments
+  C) Other — tell me
+```
+
+Wait for the user's answer before writing any converted output for that entry.
+
+**Only after all `{"Never"}` and `{}` occurrences in the batch are resolved, proceed with Steps 1–4.**
 
 ## Processing Steps
 
@@ -260,6 +296,7 @@ B) Show in chat for manual copy-paste
 
 Before returning output, verify:
 
+- [ ] No `{"Never"}` or `{}` tuples were converted without explicit user confirmation
 - [ ] Every V1 entry has a corresponding V2 entry (none skipped)
 - [ ] Faction pairs collapsed — no solo Alliance or Horde entries remain unless they have no counterpart
 - [ ] All `KrowiAF.AchievementData["X_Y_Z"]` renamed to `KrowiAF.AchievementData2["X_Y_Z"]`
