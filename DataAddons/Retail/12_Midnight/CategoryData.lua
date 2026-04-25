@@ -911,10 +911,10 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
         addon.GetCategoryInfoTitle(15610),
         {
             62498, -- Void Assault: Eversong
-            62499, -- Void Assault: Zul'Aman
             62507, -- Void Smasher: Eversong
             62508, -- Void Eradicator: Eversong
             62509, -- Void Bane: Eversong
+            62499, -- Void Assault: Zul'Aman
             62510, -- Void Smasher: Zul'Aman
             62511, -- Void Eradicator: Zul'Aman
             62512, -- Void Bane: Zul'Aman

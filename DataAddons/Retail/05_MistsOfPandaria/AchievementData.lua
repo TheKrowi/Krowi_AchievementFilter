@@ -1,2767 +1,787 @@
-local _, addon = ...;
-local shared = addon.Data.AchievementData.Shared;
-local faction = KrowiAF.Enum.Faction;
-local rewardType = KrowiAF.Enum.RewardType;
+local _, addon = ...
+local shared = addon.Data.AchievementData.Shared
+local Ach = shared.Ach
+local faction = KrowiAF.Enum.Faction
 
-KrowiAF.AchievementData["05_00_04"] = {
-    {KrowiAF.SetAchievementPatch, 5, 0, 4},
-    {6089}, -- Keep Rollin' Rollin' Rollin'
-    { -- Level 90 (Legacy)
-        6193,
-        {
-            {"Before", "Version", {9, 0, 1}},
-        },
-    },
-    { -- Upjade Complete
-        6300,
-        faction.Alliance,
-        6534,
-    },
-    {6301}, -- Rally the Valley
-    { -- That Rabbit's Dynamite!
-        6332,
-        {
-            {"Event", 374},
-        },
-    },
-    { -- Mystically Superior
-        6348,
-        {
-            {"Before", "Version", {8, 0, 1}},
-        },
-    },
-    { -- Mystically Epic
-        6349,
-        {
-            {"Before", "Version", {8, 0, 1}},
-        },
-    },
-    {6350}, -- To All the Squirrels I Once Caressed?
-    {6351}, -- Explore Jade Forest
-    {6365}, -- Zen Master Cook
-    {6366}, -- Shado-Pan
-    { -- Challenge Conqueror: Bronze
-        6374,
-        {
-            RewardType = rewardType.Title,
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Challenge Conqueror: Silver
-        6375,
-        {
-            RewardType = rewardType.Mount,
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Challenge Conqueror: Gold
-        6378,
-        {
-            RewardType = rewardType.Transmog,
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    {6394}, -- Rattle No More
-    {6396}, -- Sanguinarian
-    {6400}, -- How Did He Get Up There?
-	{ -- Ling-Ting's Herbal Journey
-		6402,
-		{
-			RewardType = rewardType.Pet,
-		},
-	},
-    {6420}, -- Hopocalypse Now!
-    {6427}, -- Mosh Pit
-    { -- Realm First! Challenge Conqueror: Gold
-        6433,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    {6455}, -- Show Me Your Moves!
-    {6456}, -- Heroic: Stormstout Brewery
-    {6457}, -- Stormstout Brewery
-    {6458}, -- Guardians of Mogu'shan
-    {6460}, -- Hydrophobia
-    {6462}, -- Master Pet Battler
-    {6469}, -- Shado-Pan Monastery
-    {6470}, -- Heroic: Shado-Pan Monastery
-    {6471}, -- Hate Leads to Suffering
-    {6472}, -- The Obvious Solution
-    {6475}, -- Cleaning Up
-    {6476}, -- Conscriptinator
-    {6477}, -- Respect
-    {6478}, -- Glintrok N' Roll
-    {6479}, -- Bomberman
-    {6480}, -- Settle Down, Bro
-    {6485}, -- Return to Sender
-    {6517}, -- Extinction Event
-    {6518}, -- I Heard You Like Amber...
-    { -- Realm First! Level 90 Shaman (Legacy)
-        6523,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    { -- Realm First! Level 90 (Legacy)
-        6524,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    {6531}, -- Attention to Detail
-    { -- Upjade Complete
-        6534,
-        faction.Horde,
-        6300,
-    },
-    { -- Mighty Roamin' Krasaranger
-        6535,
-        faction.Alliance,
-        6536,
-    },
-    { -- Mighty Roamin' Krasaranger
-        6536,
-        faction.Horde,
-        6535,
-    },
-    { -- Slum It in the Summit
-        6537,
-        faction.Alliance,
-        6538,
-    },
-    { -- Slum It in the Summit
-        6538,
-        faction.Horde,
-        6537,
-    },
-    {6539}, -- One Steppe Forward, Two Steppes Back
-    {6540}, -- Dread Haste Makes Dread Waste
-    {6541}, -- Loremaster of Pandaria
-    {6543}, -- The August Celestials
-    {6544}, -- The Tillers
-    {6545}, -- Klaxxi
-    {6546}, -- The Golden Lotus
-    {6547}, -- The Anglers
-    {6548}, -- The Lorewalkers
-    {6550}, -- Order of the Cloud Serpent
-    {6551}, -- Friend on the Farm
-    {6552}, -- Friends on the Farm
-    {6553}, -- Like an Arrow to the Face
-    {6554}, -- He's Mine!
-    {6555}, -- Building a Team
-	{ -- Going to Need More Traps
-		6556,
-		{
-			RewardType = rewardType.Pet,
-		},
-	},
-    {6557}, -- Master Pet Hunter
-    {6558}, -- Local Pet Mauler
-    {6559}, -- Traveling Pet Mauler
-    {6560}, -- World Pet Mauler
-	{ -- Just a Pup
-		6566,
-		{
-			RewardType = rewardType.Pet,
-		},
-	},
-    {6567}, -- Growing Up
-    {6568}, -- Time for a Leash
-    {6569}, -- Old Timer
-    {6570}, -- All Growns Up!
-    {6571}, -- That Was Close!
-    {6578}, -- Pro Pet Group
-    {6579}, -- Rookie Pet Group
-    {6580}, -- Rookie Pet Crew
-	{ -- Pro Pet Crew
-		6581,
-		{
-			RewardType = rewardType.Pet,
-		},
-	},
-	{ -- Pro Pet Mob
-		6582,
-		{
-			RewardType = rewardType.Pet,
-		},
-	},
-    {6583}, -- Rookie Pet Mob
-    {6584}, -- Big City Pet Brawlin' - Alliance
-    {6585}, -- Kalimdor Safari
-    {6586}, -- Eastern Kingdoms Safari
-    {6587}, -- Outland Safari
-    {6588}, -- Northrend Safari
-    {6589}, -- Pandaria Safari
-    { -- World Safari
-        6590,
-        {
-            RewardType = rewardType.Title,
-        },
-    },
-    {6591}, -- Grand Master Pet Battler
-    {6592}, -- Legendary Pet Battler
-    {6593}, -- Experienced Pet Battler
-    {6594}, -- Cat Fight!
-    { -- Pet Brawler
-        6595,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Experienced Pet Brawler
-        6596,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Master Pet Brawler
-        6597,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Grand Master Pet Brawler
-        6598,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Legendary Pet Brawler
-        6599,
-        {
-            IsPvP = true,
-        },
-    },
-    {6600}, -- Ultimate Trainer
-    {6601}, -- Taming the Wild
-    { -- Taming Kalimdor
-        6602,
-        faction.Horde,
-        6603,
-        {
-            RewardType = rewardType.Pet,
-        },
-    },
-    { -- Taming Eastern Kingdoms
-        6603,
-        faction.Alliance,
-        6602,
-        {
-            RewardType = rewardType.Pet,
-        },
-    },
+KrowiAF.AchievementData2["05_00_04"] = {
+	{KrowiAF.SetAchievementPatch, 5, 0, 4},
+	Ach(6089), -- Keep Rollin' Rollin' Rollin'
+	Ach(6193):Obtainable("Before", "Version", {9, 0, 1}), -- Level 90 (Legacy)
+	Ach(6300):AutoFactionSplit(faction.Alliance, 6534), -- Upjade Complete
+	Ach(6301), -- Rally the Valley
+	Ach(6332):Obtainable("Event", 374), -- That Rabbit's Dynamite!
+	Ach(6348):Obtainable("Before", "Version", {8, 0, 1}), -- Mystically Superior
+	Ach(6349):Obtainable("Before", "Version", {8, 0, 1}), -- Mystically Epic
+	Ach(6350), -- To All the Squirrels I Once Caressed?
+	Ach(6351), -- Explore Jade Forest
+	Ach(6365), -- Zen Master Cook
+	Ach(6366), -- Shado-Pan
+	Ach(6374):Title():Obtainable("Before", "Version", {6, 0, 2}), -- Challenge Conqueror: Bronze
+	Ach(6375):Mount():Obtainable("Before", "Version", {6, 0, 2}), -- Challenge Conqueror: Silver
+	Ach(6378):Transmog():Obtainable("Before", "Version", {6, 0, 2}), -- Challenge Conqueror: Gold
+	Ach(6394), -- Rattle No More
+	Ach(6396), -- Sanguinarian
+	Ach(6400), -- How Did He Get Up There?
+	Ach(6402):Pet(), -- Ling-Ting's Herbal Journey
+	Ach(6420), -- Hopocalypse Now!
+	Ach(6427), -- Mosh Pit
+	Ach(6433):IsRealmFirst():Obtainable("Once"), -- Realm First! Challenge Conqueror: Gold
+	Ach(6455), -- Show Me Your Moves!
+	Ach(6456), -- Heroic: Stormstout Brewery
+	Ach(6457), -- Stormstout Brewery
+	Ach(6458), -- Guardians of Mogu'shan
+	Ach(6460), -- Hydrophobia
+	Ach(6462), -- Master Pet Battler
+	Ach(6469), -- Shado-Pan Monastery
+	Ach(6470), -- Heroic: Shado-Pan Monastery
+	Ach(6471), -- Hate Leads to Suffering
+	Ach(6472), -- The Obvious Solution
+	Ach(6475), -- Cleaning Up
+	Ach(6476), -- Conscriptinator
+	Ach(6477), -- Respect
+	Ach(6478), -- Glintrok N' Roll
+	Ach(6479), -- Bomberman
+	Ach(6480), -- Settle Down, Bro
+	Ach(6485), -- Return to Sender
+	Ach(6517), -- Extinction Event
+	Ach(6518), -- I Heard You Like Amber...
+	Ach(6523):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 90 Shaman (Legacy)
+	Ach(6524):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 90 (Legacy)
+	Ach(6531), -- Attention to Detail
+	Ach(6535):AutoFactionSplit(faction.Alliance, 6536), -- Mighty Roamin' Krasaranger
+	Ach(6537):AutoFactionSplit(faction.Alliance, 6538), -- Slum It in the Summit
+	Ach(6539), -- One Steppe Forward, Two Steppes Back
+	Ach(6540), -- Dread Haste Makes Dread Waste
+	Ach(6541), -- Loremaster of Pandaria
+	Ach(6543), -- The August Celestials
+	Ach(6544), -- The Tillers
+	Ach(6545), -- Klaxxi
+	Ach(6546), -- The Golden Lotus
+	Ach(6547), -- The Anglers
+	Ach(6548), -- The Lorewalkers
+	Ach(6550), -- Order of the Cloud Serpent
+	Ach(6551), -- Friend on the Farm
+	Ach(6552), -- Friends on the Farm
+	Ach(6553), -- Like an Arrow to the Face
+	Ach(6554), -- He's Mine!
+	Ach(6555), -- Building a Team
+	Ach(6556):Pet(), -- Going to Need More Traps
+	Ach(6557), -- Master Pet Hunter
+	Ach(6558), -- Local Pet Mauler
+	Ach(6559), -- Traveling Pet Mauler
+	Ach(6560), -- World Pet Mauler
+	Ach(6566):Pet(), -- Just a Pup
+	Ach(6567), -- Growing Up
+	Ach(6568), -- Time for a Leash
+	Ach(6569), -- Old Timer
+	Ach(6570), -- All Growns Up!
+	Ach(6571), -- That Was Close!
+	Ach(6578), -- Pro Pet Group
+	Ach(6579), -- Rookie Pet Group
+	Ach(6580), -- Rookie Pet Crew
+	Ach(6581):Pet(), -- Pro Pet Crew
+	Ach(6582):Pet(), -- Pro Pet Mob
+	Ach(6583), -- Rookie Pet Mob
+	Ach(6584), -- Big City Pet Brawlin' - Alliance
+	Ach(6585), -- Kalimdor Safari
+	Ach(6586), -- Eastern Kingdoms Safari
+	Ach(6587), -- Outland Safari
+	Ach(6588), -- Northrend Safari
+	Ach(6589), -- Pandaria Safari
+	Ach(6590):Title(), -- World Safari
+	Ach(6591), -- Grand Master Pet Battler
+	Ach(6592), -- Legendary Pet Battler
+	Ach(6593), -- Experienced Pet Battler
+	Ach(6594), -- Cat Fight!
+	Ach(6595):IsPvP(), -- Pet Brawler
+	Ach(6596):IsPvP(), -- Experienced Pet Brawler
+	Ach(6597):IsPvP(), -- Master Pet Brawler
+	Ach(6598):IsPvP(), -- Grand Master Pet Brawler
+	Ach(6599):IsPvP(), -- Legendary Pet Brawler
+	Ach(6600), -- Ultimate Trainer
+	Ach(6601), -- Taming the Wild
+	Ach(6602):Pet():AutoFactionSplit(faction.Horde, 6603), -- Taming Kalimdor / Taming Eastern Kingdoms
+	Ach(6604):Pet(), -- Taming Outland
+	Ach(6605):Pet(), -- Taming Northrend
+	Ach(6606):Pet(), -- Taming Pandaria
+	Ach(6607):Title(), -- Taming Azeroth
+	Ach(6608), -- Family Reunion
+	Ach(6609), -- No Favorites
+	Ach(6610), -- All Pets Allowed
+	Ach(6611), -- Continental Tamer
+	Ach(6612), -- Kalimdor Tamer
+	Ach(6613), -- Eastern Kingdoms Tamer
+	Ach(6614), -- Outland Tamer
+	Ach(6615), -- Northrend Tamer
+	Ach(6616), -- Pandaria Tamer
+	Ach(6618), -- On A Roll
+	Ach(6619), -- Win Streak
+	Ach(6620):IsPvP(), -- No Time To Heal
+	Ach(6621), -- Big City Pet Brawlin' - Horde
+	Ach(6622), -- Big City Pet Brawler
+	Ach(6671), -- Seeds of Doubt
+	Ach(6674), -- Anything You Can Do, I Can Do Better...
+	Ach(6683), -- Less Than Three
+	Ach(6684), -- Humane Society
+	Ach(6686), -- Straight Six
+	Ach(6687), -- Getting Hot In Here
+	Ach(6688), -- Where's My Air Support?
+	Ach(6689), -- Terrace of Endless Spring
+	Ach(6713), -- Quarrelsome Quilen Quintet
+	Ach(6715), -- Polyformic Acid Science
+	Ach(6716), -- Between a Saurok and a Hard Place
+	Ach(6717), -- Power Overwhelming
+	Ach(6718), -- The Dread Approach
+	Ach(6719), -- Heroic: Stone Guard
+	Ach(6720), -- Heroic: Feng the Accursed
+	Ach(6721), -- Heroic: Gara'jal the Spiritbinder
+	Ach(6722), -- Heroic: Four Kings
+	Ach(6723), -- Heroic: Elegon
+	Ach(6724):Title(), -- Heroic: Will of the Emperor
+	Ach(6725), -- Heroic: Imperial Vizier Zor'lok
+	Ach(6726), -- Heroic: Blade Lord Ta'yak
+	Ach(6727), -- Heroic: Garalon
+	Ach(6728), -- Heroic: Wind Lord Mel'jarak
+	Ach(6729), -- Heroic: Amber-Shaper Un'sok
+	Ach(6730), -- Heroic: Grand Empress Shek'zeer
+	Ach(6731), -- Heroic: Protectors of the Endless
+	Ach(6732), -- Heroic: Tsulong
+	Ach(6733), -- Heroic: Lei Shi
+	Ach(6734):Title(), -- Heroic: Sha of Fear
+	Ach(6736), -- What Does This Button Do?
+	Ach(6739):IsPvP(), -- Silvershard Mines Victory
+	Ach(6740):IsPvP(), -- Temple of Kotmogu Victory
+	Ach(6741):PvP(11), -- Cataclysmic Gladiator's Twilight Drake
+	Ach(6742):Title(), -- 60 Exalted Reputations
+	Ach(6743):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 90 Druid (Legacy)
+	Ach(6744):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 90 Paladin (Legacy)
+	Ach(6745):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 90 Priest (Legacy)
+	Ach(6746):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 90 Warlock (Legacy)
+	Ach(6747):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 90 Hunter (Legacy)
+	Ach(6748):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 90 Death Knight (Legacy)
+	Ach(6749):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 90 Mage (Legacy)
+	Ach(6750):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 90 Warrior (Legacy)
+	Ach(6751):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 90 Rogue (Legacy)
+	Ach(6752):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 90 Monk (Legacy)
+	Ach(6753), -- Got My Mind On My Money
+	Ach(6754), -- The Dark Heart of the Mogu
+	Ach(6755), -- Mogu'shan Palace
+	Ach(6756), -- Heroic: Mogu'shan Palace
+	Ach(6757), -- Temple of the Jade Serpent
+	Ach(6758), -- Heroic: Temple of the Jade Serpent
+	Ach(6759), -- Heroic: Gate of the Setting Sun
+	Ach(6760), -- Heroic: Scarlet Halls
+	Ach(6761), -- Heroic: Scarlet Monastery
+	Ach(6762), -- Heroic: Scholomance
+	Ach(6763), -- Heroic: Siege of Niuzao Temple
+	Ach(6821), -- School's Out Forever
+	Ach(6822), -- Run with the Wind
+	Ach(6823), -- Must Love Dogs
+	Ach(6824), -- Face Clutchers
+	Ach(6825), -- The Mind-Killer
+	Ach(6826), -- 55 Exalted Reputations
+	Ach(6827):Mount():AutoFactionSplit(faction.Horde, 6828), -- Pandaren Ambassador
+	Ach(6829):IsRealmFirst():Obtainable("Once"), -- Realm First! Pandaren Ambassador
+	Ach(6830), -- Professional Zen Master
+	Ach(6835), -- Working For a Living
+	Ach(6836):Obtainable("Before", "Version", {8, 0, 1}), -- Serious Skills to Pay the Bills
+	Ach(6837), -- Zen Master Archaeologist
+	Ach(6838):Obtainable("Before", "Version", {8, 0, 1}), -- Zen Master Medic
+	Ach(6839), -- Zen Master Fisherman
+	Ach(6844), -- The Vault of Mysteries
+	Ach(6845), -- Nightmare of Shek'zeer
+	Ach(6846), -- Fish Tales
+	Ach(6847), -- The Song of the Yaungol
+	Ach(6848), -- Collector's Edition: Lucky Quilen Cub
+	Ach(6849), -- Collector's Edition: Imperial Quilen
+	Ach(6850), -- Hozen in the Mist
+	Ach(6851), -- Take 'Em All On!
+	Ach(6855), -- The Seven Burdens of Shaohao
+	Ach(6856), -- Ballad of Liu Lang
+	Ach(6857), -- Heart of the Mantid Swarm
+	Ach(6858), -- What Is Worth Fighting For
+	Ach(6859):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Alchemist
+	Ach(6860):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Blacksmith
+	Ach(6861):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Cook
+	Ach(6862):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Enchanter
+	Ach(6863):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Engineer
+	Ach(6864):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Medic
+	Ach(6865):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Angler
+	Ach(6866):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Herbalist
+	Ach(6867):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Scribe
+	Ach(6868):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Jewelcrafter
+	Ach(6869):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Leatherworker
+	Ach(6870):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Miner
+	Ach(6871):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Skinner
+	Ach(6872):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Tailor
+	Ach(6873):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Archaeologist
+	Ach(6874):Title():AutoFactionSplit(faction.Alliance, 7509), -- Scenaturday
+	Ach(6882):IsPvP(), -- Temple of Kotmogu Veteran
+	Ach(6883):IsPvP(), -- Silvershard Mines Veteran
+	Ach(6884):Obtainable("Before", "Version", {6, 0, 2}), -- Temple of the Jade Serpent Challenger
+	Ach(6885):Obtainable("Before", "Version", {6, 0, 2}), -- Temple of the Jade Serpent: Bronze
+	Ach(6886):Obtainable("Before", "Version", {6, 0, 2}), -- Temple of the Jade Serpent: Silver
+	Ach(6887):Teleport():Obtainable("Before", "Version", {6, 0, 2}), -- Temple of the Jade Serpent: Gold
+	Ach(6888):Obtainable("Before", "Version", {6, 0, 2}), -- Stormstout Brewery Challenger
+	Ach(6889):Obtainable("Before", "Version", {6, 0, 2}), -- Stormstout Brewery: Bronze
+	Ach(6890):Obtainable("Before", "Version", {6, 0, 2}), -- Stormstout Brewery: Silver
+	Ach(6891):Teleport():Obtainable("Before", "Version", {6, 0, 2}), -- Stormstout Brewery: Gold
+	Ach(6892):Obtainable("Before", "Version", {6, 0, 2}), -- Mogu'shan Palace Challenger
+	Ach(6893):Obtainable("Before", "Version", {6, 0, 2}), -- Shado-Pan Monastery Challenger
+	Ach(6894):Obtainable("Before", "Version", {6, 0, 2}), -- Gate of the Setting Sun Challenger
+	Ach(6895):Obtainable("Before", "Version", {6, 0, 2}), -- Scarlet Halls Challenger
+	Ach(6896):Obtainable("Before", "Version", {6, 0, 2}), -- Scarlet Monastery Challenger
+	Ach(6897):Obtainable("Before", "Version", {6, 0, 2}), -- Scholomance Challenger
+	Ach(6898):Obtainable("Before", "Version", {6, 0, 2}), -- Siege of Niuzao Temple Challenger
+	Ach(6899):Obtainable("Before", "Version", {6, 0, 2}), -- Mogu'shan Palace: Bronze
+	Ach(6900):Obtainable("Before", "Version", {6, 0, 2}), -- Mogu'shan Palace: Silver
+	Ach(6901):Teleport():Obtainable("Before", "Version", {6, 0, 2}), -- Mogu'shan Palace: Gold
+	Ach(6902):Obtainable("Before", "Version", {6, 0, 2}), -- Shado-Pan Monastery: Bronze
+	Ach(6903):Obtainable("Before", "Version", {6, 0, 2}), -- Shado-Pan Monastery: Silver
+	Ach(6904):Teleport():Obtainable("Before", "Version", {6, 0, 2}), -- Shado-Pan Monastery: Gold
+	Ach(6905):Obtainable("Before", "Version", {6, 0, 2}), -- Gate of the Setting Sun: Bronze
+	Ach(6906):Obtainable("Before", "Version", {6, 0, 2}), -- Gate of the Setting Sun: Silver
+	Ach(6907):Teleport():Obtainable("Before", "Version", {6, 0, 2}), -- Gate of the Setting Sun: Gold
+	Ach(6908):Obtainable("Before", "Version", {6, 0, 2}), -- Scarlet Halls: Bronze
+	Ach(6909):Obtainable("Before", "Version", {6, 0, 2}), -- Scarlet Halls: Silver
+	Ach(6910):Teleport():Obtainable("Before", "Version", {6, 0, 2}), -- Scarlet Halls: Gold
+	Ach(6911):Obtainable("Before", "Version", {6, 0, 2}), -- Scarlet Monastery: Bronze
+	Ach(6912):Obtainable("Before", "Version", {6, 0, 2}), -- Scarlet Monastery: Silver
+	Ach(6913):Teleport():Obtainable("Before", "Version", {6, 0, 2}), -- Scarlet Monastery: Gold
+	Ach(6914):Obtainable("Before", "Version", {6, 0, 2}), -- Scholomance: Bronze
+	Ach(6915):Obtainable("Before", "Version", {6, 0, 2}), -- Scholomance: Silver
+	Ach(6916):Teleport():Obtainable("Before", "Version", {6, 0, 2}), -- Scholomance: Gold
+	Ach(6917):Obtainable("Before", "Version", {6, 0, 2}), -- Siege of Niuzao Temple: Bronze
+	Ach(6918):Obtainable("Before", "Version", {6, 0, 2}), -- Siege of Niuzao Temple: Silver
+	Ach(6919):Teleport():Obtainable("Before", "Version", {6, 0, 2}), -- Siege of Niuzao Temple: Gold
+	Ach(6920):Obtainable("Before", "Version", {6, 0, 2}), -- Challenge Conqueror
+	Ach(6922), -- Timing is Everything
+	Ach(6923), -- Brewmoon Festival
+	Ach(6924):Obtainable("Before", "Version", {6, 0, 2}), -- 100,000 Valor Points
+	Ach(6925), -- Pandaria Dungeon Hero
+	Ach(6926):Title(), -- Tranquil Master
+	Ach(6927):Mount(), -- Glory of the Pandaria Hero
+	Ach(6928), -- Burning Man
+	Ach(6929), -- And Stay Dead!
+	Ach(6930), -- Yaungolian Barbecue
+	Ach(6931), -- Binan Village All-Star
+	Ach(6932):Mount(), -- Glory of the Pandaria Raider
+	Ach(6933), -- Who's Got Two Green Thumbs?
+	Ach(6936), -- Candle in the Wind
+	Ach(6937), -- Overzealous
+	Ach(6938):PvP(11), -- Cataclysmic Gladiator
+	Ach(6939):IsPvP():PvP(11):AutoFactionSplit(faction.Alliance, 6940), -- Hero of the Alliance: Cataclysmic / Hero of the Horde: Cataclysmic
+	Ach(6941):Title():IsPvP():AutoFactionSplit(faction.Horde, 6942), -- Hero of the Horde / Hero of the Alliance
+	Ach(6943), -- Queuing Spree
+	Ach(6945), -- Mantid Swarm
+	Ach(6946), -- Empowered Spiritualist
+	Ach(6947):IsPvP(), -- Four Square
+	Ach(6950):IsPvP(), -- Powerball
+	Ach(6969), -- Explore Valley of the Four Winds
+	Ach(6970):IsPvP(), -- Blackout
+	Ach(6971):IsPvP(), -- I've Got the Power
+	Ach(6972):IsPvP(), -- What is Best in Life?
+	Ach(6973):IsPvP(), -- Can't Stop Won't Stop
+	Ach(6974), -- Pandaria Explorer
+	Ach(6975), -- Explore Krasarang Wilds
+	Ach(6976), -- Explore Kun-Lai Summit
+	Ach(6977), -- Explore Townlong Steppes
+	Ach(6978), -- Explore Dread Wastes
+	Ach(6979), -- Explore Vale of Eternal Blossoms
+	Ach(6980):IsPvP(), -- Temple of Kotmogu All-Star
+	Ach(6981):HousingDecor():IsPvP(), -- Master of Temple of Kotmogu
+	Ach(7039):IsPvP(), -- The Long Riders
+	Ach(7049):IsPvP(), -- Mine Cart Courier
+	Ach(7056), -- Sorry, Were You Looking for This?
+	Ach(7057):IsPvP(), -- End of the Line
+	Ach(7062):IsPvP(), -- Mine Mine Mine!
+	Ach(7099):IsPvP(), -- Five for Five
+	Ach(7100):IsPvP(), -- My Diamonds and Your Rust
+	Ach(7102):IsPvP(), -- Escort Service
+	Ach(7103):IsPvP(), -- Greed is Good
+	Ach(7106):IsPvP(), -- Master of Silvershard Mines
+	Ach(7230), -- Legend of the Brewfathers
+	Ach(7231), -- Spill No Evil
+	Ach(7232), -- The Keg Runner
+	Ach(7239), -- Monkey in the Middle
+	Ach(7248), -- Monkey See, Monkey Kill
+	Ach(7249), -- Unga Ingoo
+	Ach(7252), -- A Brewing Storm
+	Ach(7257), -- Don't Shake the Keg
+	Ach(7258), -- Party of Six
+	Ach(7261), -- The Perfect Pour
+	Ach(7265), -- Greenstone Village
+	Ach(7266), -- Save it for Later
+	Ach(7267), -- Perfect Delivery
+	Ach(7271), -- Arena of Annihilation
+	Ach(7272), -- In the Eye of the Tiger
+	Ach(7273), -- Beat the Heat
+	Ach(7274), -- Learning from the Best
+	Ach(7275), -- It's a Trap!
+	Ach(7276), -- Fancy Footwork
+	Ach(7281), -- Lost and Found
+	Ach(7282), -- Finders Keepers
+	Ach(7283), -- One Man's Trash...
+	Ach(7284):Title(), -- Is Another Man's Treasure
+	Ach(7285), -- Every Day I'm Pand-a-ren
+	Ach(7286), -- Finish Them!
+	Ach(7287), -- Champion of Chi-Ji
+	Ach(7288), -- Yak Attack
+	Ach(7289), -- Shadow Hopper
+	Ach(7290), -- How To Strain Your Dragon
+	Ach(7291), -- In a Trail of Smoke
+	Ach(7292), -- Green Acres
+	Ach(7293), -- Till the Break of Dawn
+	Ach(7294), -- A Taste of Things to Come
+	Ach(7295), -- Listen to the Drunk Fish
+	Ach(7296), -- Ain't Lost No More
+	Ach(7297), -- Proven Strength
+	Ach(7298), -- Getting Around with the Shado-Pan
+	Ach(7299), -- Loner and a Rebel
+	Ach(7300), -- Master of the Grill
+	Ach(7301), -- Master of the Wok
+	Ach(7302), -- Master of the Pot
+	Ach(7303), -- Master of the Steamer
+	Ach(7304), -- Master of the Oven
+	Ach(7305), -- Master of the Brew
+	Ach(7306):Title(), -- Master of Pandaren Cooking
+	Ach(7307), -- Silent Assassin
+	Ach(7308), -- Know Your Role
+	Ach(7309), -- Fire in the Yaung-hole!
+	Ach(7310), -- Defender of Gods
+	Ach(7312), -- Amber is the Color of My Energy
+	Ach(7313), -- Stay Klaxxi
+	Ach(7314), -- Test Drive
+	Ach(7315):Obtainable("Before", "Version", {5, 4, 0}), -- Eternally in the Vale
+	Ach(7316), -- Over Their Heads
+	Ach(7317), -- One Many Army
+	Ach(7318), -- A Taste of History
+	Ach(7319), -- Ready for Raiding III
+	Ach(7320), -- Dog Pile
+	Ach(7321), -- Spreading the Warmth
+	Ach(7322), -- Roll Club
+	Ach(7323), -- Collateral Damage
+	Ach(7324), -- One Step at a Time
+	Ach(7325), -- Now I Am the Master
+	Ach(7326), -- The Pandaren Gourmet
+	Ach(7327), -- The Pandaren Gourmet
+	Ach(7328), -- Ironpaw Chef
+	Ach(7329), -- Pandaren Cuisine
+	Ach(7330), -- Pandaren Delicacies
+	Ach(7331), -- The Three Brew Fathers
+	Ach(7332), -- The Broken Hearted
+	Ach(7333), -- The Four Celestials
+	Ach(7334), -- Instruments of Cruelty
+	Ach(7335), -- Symbols of Strength
+	Ach(7336), -- Stone Servants
+	Ach(7337), -- Documents of a Dark History
+	Ach(7338), -- Collector: Pandaren Tea Sets
+	Ach(7339), -- Collector: Pandaren Game Boards
+	Ach(7340), -- Collector: Twin Stein Sets of Brewfather Quan Tou Kuo
+	Ach(7341), -- Collector: Walking Canes of Brewfather Ren Yun
+	Ach(7342), -- Collector: Empty Kegs of Brewfather Xin Wo Yin
+	Ach(7343), -- Collector: Carved Bronze Mirrors
+	Ach(7344), -- Collector: Gold-Inlaid Porcelain Funerary Figurines
+	Ach(7345), -- Collector: Apothecary Tins
+	Ach(7346), -- Collector: Pearls of Yu'lon
+	Ach(7347), -- Collector: Standards of Niuzao
+	Ach(7348), -- Collector: Manacles of Rebellion
+	Ach(7349), -- Collector: Cracked Mogu Runestones
+	Ach(7350), -- Collector: Terracotta Arms
+	Ach(7351), -- Collector: Petrified Bone Whips
+	Ach(7352), -- Collector: Thunder King Insignias
+	Ach(7353), -- Collector: Edicts of the Thunder King
+	Ach(7354), -- Collector: Iron Amulets
+	Ach(7355), -- Collector: Warlord's Branding Irons
+	Ach(7356), -- Collector: Mogu Coins
+	Ach(7357), -- Collector: Worn Monument Ledgers
+	Ach(7358), -- Collector: Pandaren Tea Sets
+	Ach(7359), -- Collector: Pandaren Game Boards
+	Ach(7360), -- Collector: Twin Stein Sets of Brewfather Quan Tou Kuo
+	Ach(7361), -- Collector: Walking Canes of Brewfather Ren Yun
+	Ach(7362), -- Collector: Empty Kegs of Brewfather Xin Wo Yin
+	Ach(7363), -- Collector: Carved Bronze Mirrors
+	Ach(7364), -- Collector: Gold-Inlaid Porcelain Funerary Figurines
+	Ach(7365), -- Collector: Apothecary Tins
+	Ach(7366), -- Collector: Pearls of Yu'lon
+	Ach(7367), -- Collector: Standards of Niuzao
+	Ach(7368), -- Collector: Manacles of Rebellion
+	Ach(7369), -- Collector: Cracked Mogu Runestones
+	Ach(7370), -- Collector: Terracotta Arms
+	Ach(7371), -- Collector: Petrified Bone Whips
+	Ach(7372), -- Collector: Thunder King Insignias
+	Ach(7373), -- Collector: Edicts of the Thunder King
+	Ach(7374), -- Collector: Iron Amulets
+	Ach(7375), -- Collector: Warlord's Branding Irons
+	Ach(7376), -- Collector: Mogu Coins
+	Ach(7377), -- Collector: Worn Monument Ledgers
+	Ach(7378), -- Jack of All Trades
+	Ach(7379), -- Pandaren Master of All
+	Ach(7380), -- Double Agent
+	Ach(7381), -- Restore Balance
+	Ach(7382):Other(), -- Dynamic Duo
+	Ach(7383):Other(), -- Terrific Trio
+	Ach(7384):Other(), -- Quintessential Quintet
+	Ach(7385):Toy(), -- Pub Crawl
+	Ach(7386), -- Grand Expedition Yak
+	Ach(7410), -- 5000 Daily Quests Completed
+	Ach(7411), -- 10000 Daily Quests Completed
+	Ach(7412), -- Collector's Edition: Fetish Shaman
+	Ach(7413), -- Scarlet Halls
+	Ach(7433):Pet(), -- Newbie
+	Ach(7436), -- Zen Pet Hunter
+	Ach(7437), -- A Worthy Opponent
+	Ach(7438), -- Could We Find More Like That?
+	Ach(7439), -- Glorious!
+	Ach(7462), -- A Rare Catch
+	Ach(7463), -- Lots of Rarity
+	Ach(7464), -- Quality & Quantity
+	Ach(7465), -- An Uncommon Find
+	Ach(7467):AutoFactionSplit(faction.Alliance, 7468):Obtainable("Never"), -- Theramore's Fall
+	Ach(7479):Title(), -- The Shado-Master
+	Ach(7482), -- Trainer Extraordinaire
+	Ach(7483), -- Battle Master
+	Ach(7485):Obtainable("Before", "Version", {5, 2, 0}), -- Cutting Edge: Will of the Emperor
+	Ach(7486):Obtainable("Before", "Version", {5, 2, 0}), -- Cutting Edge: Grand Empress Shek'zeer
+	Ach(7487):Obtainable("Before", "Version", {5, 2, 0}), -- Cutting Edge: Sha of Fear
+	Ach(7498), -- Taming the Great Outdoors
+	Ach(7499):Pet(), -- Taming the World
+	Ach(7500):Pet(), -- Going to Need More Leashes
+	Ach(7501):Pet(), -- That's a Lot of Pet Food
+	Ach(7502), -- Savior of Stoneplow
+	Ach(7518), -- Wanderers, Dreamers, and You
+	Ach(7520):Title(), -- The Loremaster
+	Ach(7521):Pet(), -- Time to Open a Pet Store
+	Ach(7522), -- Crypt of Forgotten Kings
+	Ach(7523):AutoFactionSplit(faction.Alliance, 7524), -- Theramore's Fall
+	Ach(7525):Pet(), -- Taming Cataclysm
+	Ach(7526):AutoFactionSplit(faction.Alliance, 7529), -- Kite Fight
+	Ach(7527):AutoFactionSplit(faction.Alliance, 7530), -- No Tank You
+	Ach(7533):Obtainable("Before", "Version", {6, 0, 2}), -- Chapter I: Trial of the Black Prince
+	Ach(7534):AutoFactionSplit(faction.Alliance, 8008):Obtainable("Before", "Version", {6, 0, 2}), -- Chapter II: Wrathion's War
+	Ach(7535):Obtainable("Before", "Version", {6, 0, 2}), -- Chapter III: Two Princes
+	Ach(7536):Obtainable("Before", "Version", {6, 0, 2}), -- Chapter IV: Celestial Blessings
+	Ach(7601):AutoFactionSplit(faction.Alliance, 7602):Obtainable("Event", 324), -- Tricks and Treats of Pandaria
+	Ach(7611), -- Pandarian Angler
+	Ach(7612):Title(), -- The Seat of Knowledge
+	Ach(7614), -- Locking Down the Docks
+	Ach(7842), -- Collector's Edition: Baneling
+}
 
-	{ -- Taming Outland
-		6604,
-		{
-			RewardType = rewardType.Pet,
-		},
-	},
-	{ -- Taming Northrend
-		6605,
-		{
-			RewardType = rewardType.Pet,
-		},
-	},
-	{ -- Taming Pandaria
-		6606,
-		{
-			RewardType = rewardType.Pet,
-		},
-	},
-    { -- Taming Azeroth
-        6607,
-        {
-            RewardType = rewardType.Title,
-        },
-    },
-    {6608}, -- Family Reunion
-    {6609}, -- No Favorites
-    {6610}, -- All Pets Allowed
-    {6611}, -- Continental Tamer
-    {6612}, -- Kalimdor Tamer
-    {6613}, -- Eastern Kingdoms Tamer
-    {6614}, -- Outland Tamer
-    {6615}, -- Northrend Tamer
-    {6616}, -- Pandaria Tamer
-    {6618}, -- On A Roll
-    {6619}, -- Win Streak
-    { -- No Time To Heal
-        6620,
-        {
-            IsPvP = true,
-        },
-    },
-    {6621}, -- Big City Pet Brawlin' - Horde
-    {6622}, -- Big City Pet Brawler
-    {6671}, -- Seeds of Doubt
-    {6674}, -- Anything You Can Do, I Can Do Better...
-    {6683}, -- Less Than Three
-    {6684}, -- Humane Society
-    {6686}, -- Straight Six
-    {6687}, -- Getting Hot In Here
-    {6688}, -- Where's My Air Support?
-    {6689}, -- Terrace of Endless Spring
-    {6713}, -- Quarrelsome Quilen Quintet
-    {6715}, -- Polyformic Acid Science
-    {6716}, -- Between a Saurok and a Hard Place
-    {6717}, -- Power Overwhelming
-    {6718}, -- The Dread Approach
-    {6719}, -- Heroic: Stone Guard
-    {6720}, -- Heroic: Feng the Accursed
-    {6721}, -- Heroic: Gara'jal the Spiritbinder
-    {6722}, -- Heroic: Four Kings
-    {6723}, -- Heroic: Elegon
-	{ -- Heroic: Will of the Emperor
-		6724,
-		{
-			RewardType = rewardType.Title,
-		},
-	},
-    {6725}, -- Heroic: Imperial Vizier Zor'lok
-    {6726}, -- Heroic: Blade Lord Ta'yak
-    {6727}, -- Heroic: Garalon
-    {6728}, -- Heroic: Wind Lord Mel'jarak
-    {6729}, -- Heroic: Amber-Shaper Un'sok
-    {6730}, -- Heroic: Grand Empress Shek'zeer
-    {6731}, -- Heroic: Protectors of the Endless
-    {6732}, -- Heroic: Tsulong
-    {6733}, -- Heroic: Lei Shi
-	{ -- Heroic: Sha of Fear
-		6734,
-		{
-			RewardType = rewardType.Title,
-		},
-	},
-    {6736}, -- What Does This Button Do?
-    { -- Silvershard Mines Victory
-        6739,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Temple of Kotmogu Victory
-        6740,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Cataclysmic Gladiator's Twilight Drake
-        6741,
-        {
-            IsPvP = true,
-            {"PvP Season", 11},
-        },
-    },
-	{ -- 60 Exalted Reputations
-		6742,
-		{
-			RewardType = rewardType.Title,
-		},
-	},
-    { -- Realm First! Level 90 Druid (Legacy)
-        6743,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    { -- Realm First! Level 90 Paladin (Legacy)
-        6744,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    { -- Realm First! Level 90 Priest (Legacy)
-        6745,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    { -- Realm First! Level 90 Warlock (Legacy)
-        6746,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    { -- Realm First! Level 90 Hunter (Legacy)
-        6747,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    { -- Realm First! Level 90 Death Knight (Legacy)
-        6748,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    { -- Realm First! Level 90 Mage (Legacy)
-        6749,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    { -- Realm First! Level 90 Warrior (Legacy)
-        6750,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    { -- Realm First! Level 90 Rogue (Legacy)
-        6751,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    { -- Realm First! Level 90 Monk (Legacy)
-        6752,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    {6753}, -- Got My Mind On My Money
-    {6754}, -- The Dark Heart of the Mogu
-    {6755}, -- Mogu'shan Palace
-    {6756}, -- Heroic: Mogu'shan Palace
-    {6757}, -- Temple of the Jade Serpent
-    {6758}, -- Heroic: Temple of the Jade Serpent
-    {6759}, -- Heroic: Gate of the Setting Sun
-    {6760}, -- Heroic: Scarlet Halls
-    {6761}, -- Heroic: Scarlet Monastery
-    {6762}, -- Heroic: Scholomance
-    {6763}, -- Heroic: Siege of Niuzao Temple
-    {6821}, -- School's Out Forever
-    {6822}, -- Run with the Wind
-    {6823}, -- Must Love Dogs
-    {6824}, -- Face Clutchers
-    {6825}, -- The Mind-Killer
-    {6826}, -- 55 Exalted Reputations
-    { -- Pandaren Ambassador
-        6827,
-        faction.Horde,
-        6828,
-        {
-            RewardType = rewardType.Mount,
-        },
-    },
-    { -- Pandaren Ambassador
-        6828,
-        faction.Alliance,
-        6827,
-        {
-            RewardType = rewardType.Mount,
-        },
-    },
-    { -- Realm First! Pandaren Ambassador
-        6829,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    {6830}, -- Professional Zen Master
-    {6835}, -- Working For a Living
-    { -- Serious Skills to Pay the Bills
-        6836,
-        {
-            {"Before", "Version", {8, 0, 1}},
-        },
-    },
-    {6837}, -- Zen Master Archaeologist
-    { -- Zen Master Medic
-        6838,
-        {
-            {"Before", "Version", {8, 0, 1}},
-        },
-    },
-    {6839}, -- Zen Master Fisherman
-    {6844}, -- The Vault of Mysteries
-    {6845}, -- Nightmare of Shek'zeer
-    {6846}, -- Fish Tales
-    {6847}, -- The Song of the Yaungol
-    {6848}, -- Collector's Edition: Lucky Quilen Cub
-    {6849}, -- Collector's Edition: Imperial Quilen
-    {6850}, -- Hozen in the Mist
-    {6851}, -- Take 'Em All On!
-    {6855}, -- The Seven Burdens of Shaohao
-    {6856}, -- Ballad of Liu Lang
-    {6857}, -- Heart of the Mantid Swarm
-    {6858}, -- What Is Worth Fighting For
-    { -- Realm First! Zen Master Alchemist
-        6859,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    { -- Realm First! Zen Master Blacksmith
-        6860,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    { -- Realm First! Zen Master Cook
-        6861,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    { -- Realm First! Zen Master Enchanter
-        6862,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    { -- Realm First! Zen Master Engineer
-        6863,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    { -- Realm First! Zen Master Medic
-        6864,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    { -- Realm First! Zen Master Angler
-        6865,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    { -- Realm First! Zen Master Herbalist
-        6866,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    { -- Realm First! Zen Master Scribe
-        6867,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    { -- Realm First! Zen Master Jewelcrafter
-        6868,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    { -- Realm First! Zen Master Leatherworker
-        6869,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    { -- Realm First! Zen Master Miner
-        6870,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    { -- Realm First! Zen Master Skinner
-        6871,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    { -- Realm First! Zen Master Tailor
-        6872,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    { -- Realm First! Zen Master Archaeologist
-        6873,
-        {
-            IsRealmFirst = true,
-            {"Once"},
-        },
-    },
-    { -- Scenaturday
-        6874,
-        faction.Alliance,
-        7509,
-        {
-            RewardType = rewardType.Title,
-        },
-    },
-    { -- Temple of Kotmogu Veteran
-        6882,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Silvershard Mines Veteran
-        6883,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Temple of the Jade Serpent Challenger
-        6884,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Temple of the Jade Serpent: Bronze
-        6885,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Temple of the Jade Serpent: Silver
-        6886,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Temple of the Jade Serpent: Gold
-        6887,
-        {
-            RewardType = rewardType.Teleport,
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Stormstout Brewery Challenger
-        6888,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Stormstout Brewery: Bronze
-        6889,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Stormstout Brewery: Silver
-        6890,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Stormstout Brewery: Gold
-        6891,
-        {
-            RewardType = rewardType.Teleport,
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Mogu'shan Palace Challenger
-        6892,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Shado-Pan Monastery Challenger
-        6893,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Gate of the Setting Sun Challenger
-        6894,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Scarlet Halls Challenger
-        6895,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Scarlet Monastery Challenger
-        6896,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Scholomance Challenger
-        6897,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Siege of Niuzao Temple Challenger
-        6898,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Mogu'shan Palace: Bronze
-        6899,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Mogu'shan Palace: Silver
-        6900,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Mogu'shan Palace: Gold
-        6901,
-        {
-            RewardType = rewardType.Teleport,
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Shado-Pan Monastery: Bronze
-        6902,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Shado-Pan Monastery: Silver
-        6903,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Shado-Pan Monastery: Gold
-        6904,
-        {
-            RewardType = rewardType.Teleport,
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Gate of the Setting Sun: Bronze
-        6905,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Gate of the Setting Sun: Silver
-        6906,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Gate of the Setting Sun: Gold
-        6907,
-        {
-            RewardType = rewardType.Teleport,
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Scarlet Halls: Bronze
-        6908,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Scarlet Halls: Silver
-        6909,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Scarlet Halls: Gold
-        6910,
-        {
-            RewardType = rewardType.Teleport,
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Scarlet Monastery: Bronze
-        6911,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Scarlet Monastery: Silver
-        6912,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Scarlet Monastery: Gold
-        6913,
-        {
-            RewardType = rewardType.Teleport,
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Scholomance: Bronze
-        6914,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Scholomance: Silver
-        6915,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Scholomance: Gold
-        6916,
-        {
-            RewardType = rewardType.Teleport,
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Siege of Niuzao Temple: Bronze
-        6917,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Siege of Niuzao Temple: Silver
-        6918,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Siege of Niuzao Temple: Gold
-        6919,
-        {
-            RewardType = rewardType.Teleport,
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Challenge Conqueror
-        6920,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    {6922}, -- Timing is Everything
-    {6923}, -- Brewmoon Festival
-    { -- 100,000 Valor Points
-        6924,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    {6925}, -- Pandaria Dungeon Hero
-	{ -- Tranquil Master
-		6926,
-		{
-			RewardType = rewardType.Title,
-		},
-	},
-	{ -- Glory of the Pandaria Hero
-		6927,
-		{
-			RewardType = rewardType.Mount,
-		},
-	},
-    {6928}, -- Burning Man
-    {6929}, -- And Stay Dead!
-    {6930}, -- Yaungolian Barbecue
-    {6931}, -- Binan Village All-Star
-	{ -- Glory of the Pandaria Raider
-		6932,
-		{
-			RewardType = rewardType.Mount,
-		},
-	},
-    {6933}, -- Who's Got Two Green Thumbs?
-    {6936}, -- Candle in the Wind
-    {6937}, -- Overzealous
-    { -- Cataclysmic Gladiator
-        6938,
-        {
-            IsPvP = true,
-            {"PvP Season", 11},
-        },
-    },
-    { -- Hero of the Alliance: Cataclysmic
-        6939,
-        faction.Alliance,
-        6940,
-        {
-            IsPvP = true,
-            {"PvP Season", 11},
-        },
-    },
-    { -- Hero of the Horde: Cataclysmic
-        6940,
-        faction.Horde,
-        6939,
-        {
-            IsPvP = true,
-            {"PvP Season", 11},
-        },
-    },
-    { -- Hero of the Horde
-        6941,
-        faction.Horde,
-        6942,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-        },
-    },
-    { -- Hero of the Alliance
-        6942,
-        faction.Alliance,
-        6941,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-        },
-    },
-    {6943}, -- Queuing Spree
-    {6945}, -- Mantid Swarm
-    {6946}, -- Empowered Spiritualist
-    { -- Four Square
-        6947,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Powerball
-        6950,
-        {
-            IsPvP = true,
-        },
-    },
-    {6969}, -- Explore Valley of the Four Winds
-    { -- Blackout
-        6970,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- I've Got the Power
-        6971,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- What is Best in Life?
-        6972,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Can't Stop Won't Stop
-        6973,
-        {
-            IsPvP = true,
-        },
-    },
-    {6974}, -- Pandaria Explorer
-    {6975}, -- Explore Krasarang Wilds
-    {6976}, -- Explore Kun-Lai Summit
-    {6977}, -- Explore Townlong Steppes
-    {6978}, -- Explore Dread Wastes
-    {6979}, -- Explore Vale of Eternal Blossoms
-    { -- Temple of Kotmogu All-Star
-        6980,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Master of Temple of Kotmogu
-        6981,
-        {
-            RewardType = rewardType.HousingDecor,
-            IsPvP = true,
-        },
-    },
-    { -- The Long Riders
-        7039,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Mine Cart Courier
-        7049,
-        {
-            IsPvP = true,
-        },
-    },
-    {7056}, -- Sorry, Were You Looking for This?
-    { -- End of the Line
-        7057,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Mine Mine Mine!
-        7062,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Five for Five
-        7099,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- My Diamonds and Your Rust
-        7100,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Escort Service
-        7102,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Greed is Good
-        7103,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Master of Silvershard Mines
-        7106,
-        {
-            IsPvP = true,
-        },
-    },
-    {7230}, -- Legend of the Brewfathers
-    {7231}, -- Spill No Evil
-    {7232}, -- The Keg Runner
-    {7239}, -- Monkey in the Middle
-    {7248}, -- Monkey See, Monkey Kill
-    {7249}, -- Unga Ingoo
-    {7252}, -- A Brewing Storm
-    {7257}, -- Don't Shake the Keg
-    {7258}, -- Party of Six
-    {7261}, -- The Perfect Pour
-    {7265}, -- Greenstone Village
-    {7266}, -- Save it for Later
-    {7267}, -- Perfect Delivery
-    {7271}, -- Arena of Annihilation
-    {7272}, -- In the Eye of the Tiger
-    {7273}, -- Beat the Heat
-    {7274}, -- Learning from the Best
-    {7275}, -- It's a Trap!
-    {7276}, -- Fancy Footwork
-    {7281}, -- Lost and Found
-    {7282}, -- Finders Keepers
-    {7283}, -- One Man's Trash...
-	{ -- Is Another Man's Treasure
-		7284,
-		{
-			RewardType = rewardType.Title,
-		},
-	},
-    {7285}, -- Every Day I'm Pand-a-ren
-    {7286}, -- Finish Them!
-    {7287}, -- Champion of Chi-Ji
-    {7288}, -- Yak Attack
-    {7289}, -- Shadow Hopper
-    {7290}, -- How To Strain Your Dragon
-    {7291}, -- In a Trail of Smoke
-    {7292}, -- Green Acres
-    {7293}, -- Till the Break of Dawn
-    {7294}, -- A Taste of Things to Come
-    {7295}, -- Listen to the Drunk Fish
-    {7296}, -- Ain't Lost No More
-    {7297}, -- Proven Strength
-    {7298}, -- Getting Around with the Shado-Pan
-    {7299}, -- Loner and a Rebel
-    {7300}, -- Master of the Grill
-    {7301}, -- Master of the Wok
-    {7302}, -- Master of the Pot
-    {7303}, -- Master of the Steamer
-    {7304}, -- Master of the Oven
-    {7305}, -- Master of the Brew
-	{ -- Master of Pandaren Cooking
-		7306,
-		{
-			RewardType = rewardType.Title,
-		},
-	},
-    {7307}, -- Silent Assassin
-    {7308}, -- Know Your Role
-    {7309}, -- Fire in the Yaung-hole!
-    {7310}, -- Defender of Gods
-    {7312}, -- Amber is the Color of My Energy
-    {7313}, -- Stay Klaxxi
-    {7314}, -- Test Drive
-    { -- Eternally in the Vale
-        7315,
-        {
-            {"Before", "Version", {5, 4, 0}},
-        },
-    },
-    {7316}, -- Over Their Heads
-    {7317}, -- One Many Army
-    {7318}, -- A Taste of History
-    {7319}, -- Ready for Raiding III
-    {7320}, -- Dog Pile
-    {7321}, -- Spreading the Warmth
-    {7322}, -- Roll Club
-    {7323}, -- Collateral Damage
-    {7324}, -- One Step at a Time
-    {7325}, -- Now I Am the Master
-    {7326}, -- The Pandaren Gourmet
-    {7327}, -- The Pandaren Gourmet
-    {7328}, -- Ironpaw Chef
-    {7329}, -- Pandaren Cuisine
-    {7330}, -- Pandaren Delicacies
-    {7331}, -- The Three Brew Fathers
-    {7332}, -- The Broken Hearted
-    {7333}, -- The Four Celestials
-    {7334}, -- Instruments of Cruelty
-    {7335}, -- Symbols of Strength
-    {7336}, -- Stone Servants
-    {7337}, -- Documents of a Dark History
-    {7338}, -- Collector: Pandaren Tea Sets
-    {7339}, -- Collector: Pandaren Game Boards
-    {7340}, -- Collector: Twin Stein Sets of Brewfather Quan Tou Kuo
-    {7341}, -- Collector: Walking Canes of Brewfather Ren Yun
-    {7342}, -- Collector: Empty Kegs of Brewfather Xin Wo Yin
-    {7343}, -- Collector: Carved Bronze Mirrors
-    {7344}, -- Collector: Gold-Inlaid Porcelain Funerary Figurines
-    {7345}, -- Collector: Apothecary Tins
-    {7346}, -- Collector: Pearls of Yu'lon
-    {7347}, -- Collector: Standards of Niuzao
-    {7348}, -- Collector: Manacles of Rebellion
-    {7349}, -- Collector: Cracked Mogu Runestones
-    {7350}, -- Collector: Terracotta Arms
-    {7351}, -- Collector: Petrified Bone Whips
-    {7352}, -- Collector: Thunder King Insignias
-    {7353}, -- Collector: Edicts of the Thunder King
-    {7354}, -- Collector: Iron Amulets
-    {7355}, -- Collector: Warlord's Branding Irons
-    {7356}, -- Collector: Mogu Coins
-    {7357}, -- Collector: Worn Monument Ledgers
-    {7358}, -- Collector: Pandaren Tea Sets
-    {7359}, -- Collector: Pandaren Game Boards
-    {7360}, -- Collector: Twin Stein Sets of Brewfather Quan Tou Kuo
-    {7361}, -- Collector: Walking Canes of Brewfather Ren Yun
-    {7362}, -- Collector: Empty Kegs of Brewfather Xin Wo Yin
-    {7363}, -- Collector: Carved Bronze Mirrors
-    {7364}, -- Collector: Gold-Inlaid Porcelain Funerary Figurines
-    {7365}, -- Collector: Apothecary Tins
-    {7366}, -- Collector: Pearls of Yu'lon
-    {7367}, -- Collector: Standards of Niuzao
-    {7368}, -- Collector: Manacles of Rebellion
-    {7369}, -- Collector: Cracked Mogu Runestones
-    {7370}, -- Collector: Terracotta Arms
-    {7371}, -- Collector: Petrified Bone Whips
-    {7372}, -- Collector: Thunder King Insignias
-    {7373}, -- Collector: Edicts of the Thunder King
-    {7374}, -- Collector: Iron Amulets
-    {7375}, -- Collector: Warlord's Branding Irons
-    {7376}, -- Collector: Mogu Coins
-    {7377}, -- Collector: Worn Monument Ledgers
-    {7378}, -- Jack of All Trades
-    {7379}, -- Pandaren Master of All
-    {7380}, -- Double Agent
-    {7381}, -- Restore Balance
-    { -- Dynamic Duo
-		7382,
-		{
-			RewardType = rewardType.Other,
-		},
-	},
-    { -- Terrific Trio
-		7383,
-		{
-			RewardType = rewardType.Other,
-		},
-	},
-    { -- Quintessential Quintet
-		7384,
-		{
-			RewardType = rewardType.Other,
-		},
-	},
-	{ -- Pub Crawl
-		7385,
-		{
-			RewardType = rewardType.Toy,
-		},
-	},
-    {7386}, -- Grand Expedition Yak
-    {7410}, -- 5000 Daily Quests Completed
-    {7411}, -- 10000 Daily Quests Completed
-    {7412}, -- Collector's Edition: Fetish Shaman
-    {7413}, -- Scarlet Halls
-	{ -- Newbie
-		7433,
-		{
-			RewardType = rewardType.Pet,
-		},
-	},
-    {7436}, -- Zen Pet Hunter
-    {7437}, -- A Worthy Opponent
-    {7438}, -- Could We Find More Like That?
-    {7439}, -- Glorious!
-    {7462}, -- A Rare Catch
-    {7463}, -- Lots of Rarity
-    {7464}, -- Quality & Quantity
-    {7465}, -- An Uncommon Find
-    { -- Theramore's Fall
-        7467,
-        faction.Alliance,
-        7468,
-        {
-            {"Never"},
-        },
-    },
-    { -- Theramore's Fall
-        7468,
-        faction.Horde,
-        7467,
-        {
-            {"Never"},
-        },
-    },
-	{ -- The Shado-Master
-		7479,
-		{
-			RewardType = rewardType.Title,
-		},
-	},
-    {7482}, -- Trainer Extraordinaire
-    {7483}, -- Battle Master
-    { -- Cutting Edge: Will of the Emperor
-        7485,
-        {
-            {"Before", "Version", {5, 2, 0}},
-        },
-    },
-    { -- Cutting Edge: Grand Empress Shek'zeer
-        7486,
-        {
-            {"Before", "Version", {5, 2, 0}},
-        },
-    },
-    { -- Cutting Edge: Sha of Fear
-        7487,
-        {
-            {"Before", "Version", {5, 2, 0}},
-        },
-    },
-    {7498}, -- Taming the Great Outdoors
-	{ -- Taming the World
-		7499,
-		{
-			RewardType = rewardType.Pet,
-		},
-	},
-	{ -- Going to Need More Leashes
-		7500,
-		{
-			RewardType = rewardType.Pet,
-		},
-	},
-	{ -- That's a Lot of Pet Food
-		7501,
-		{
-			RewardType = rewardType.Pet,
-		},
-	},
-    {7502}, -- Savior of Stoneplow
-    { -- Scenaturday
-        7509,
-        faction.Horde,
-        6874,
-        {
-            RewardType = rewardType.Title,
-        },
-    },
-    {7518}, -- Wanderers, Dreamers, and You
-	{ -- The Loremaster
-		7520,
-		{
-			RewardType = rewardType.Title,
-		},
-	},
-	{ -- Time to Open a Pet Store
-		7521,
-		{
-			RewardType = rewardType.Pet,
-		},
-	},
-    {7522}, -- Crypt of Forgotten Kings
-    { -- Theramore's Fall
-        7523,
-        faction.Alliance,
-        7524,
-    },
-    { -- Theramore's Fall
-        7524,
-        faction.Horde,
-        7523,
-    },
-	{ -- Taming Cataclysm
-		7525,
-		{
-			RewardType = rewardType.Pet,
-		},
-	},
-    { -- Kite Fight
-        7526,
-        faction.Alliance,
-        7529,
-    },
-    { -- No Tank You
-        7527,
-        faction.Alliance,
-        7530,
-    },
-    { -- Kite Fight
-        7529,
-        faction.Horde,
-        7526,
-    },
-    { -- No Tank You
-        7530,
-        faction.Horde,
-        7527,
-    },
-    { -- Chapter I: Trial of the Black Prince
-        7533,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Chapter II: Wrathion's War
-        7534,
-        faction.Alliance,
-        8008,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Chapter III: Two Princes
-        7535,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Chapter IV: Celestial Blessings
-        7536,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Tricks and Treats of Pandaria
-        7601,
-        faction.Alliance,
-        7602,
-        {
-            {"Event", 324},
-        },
-    },
-    { -- Tricks and Treats of Pandaria
-        7602,
-        faction.Horde,
-        7601,
-        {
-            {"Event", 324},
-        },
-    },
-    {7611}, -- Pandarian Angler
-	{ -- The Seat of Knowledge
-		7612,
-		{
-			RewardType = rewardType.Title,
-		},
-	},
-    {7614}, -- Locking Down the Docks
-    {7842}, -- Collector's Edition: Baneling
-};
+KrowiAF.AchievementData2["05_01_00"] = {
+	{KrowiAF.SetAchievementPatch, 5, 1, 0},
+	Ach(7852), -- They're Both Footballs?
+	Ach(7853):Obtainable("From", "Date", {2013, 11, 18}, "Until", "Date", {2013, 12, 1}), -- WoW's 9th Anniversary
+	Ach(7860):Mount():AutoFactionSplit(faction.Alliance, 7862), -- We're Going to Need More Saddles
+	Ach(7908):Other(), -- I Choose You
+	Ach(7928):AutoFactionSplit(faction.Alliance, 7929), -- Operation: Shieldwall Campaign / Dominance Offensive Campaign
+	Ach(7932), -- I'm In Your Base, Killing Your Dudes
+	Ach(7933), -- And... It's Good!
+	Ach(7934):Pet(), -- Raiding with Leashes
+	Ach(7936):Pet(), -- Pandaren Spirit Tamer
+	Ach(7937):AutoFactionSplit(faction.Alliance, 8020):Obtainable("Before", "Version", {6, 0, 2}), -- You Are Not Your $#*@! Legplates (Season 1)
+	Ach(7939):AutoFactionSplit(faction.Horde, 7940):Obtainable("Before", "Version", {6, 0, 2}), -- The Second Rule of Brawler's Guild (Season 1)
+	Ach(7941):Title():AutoFactionSplit(faction.Alliance, 7942):Obtainable("Before", "Version", {6, 0, 2}), -- Brawlin' and Shot Callin' (Season 1)
+	Ach(7943):Obtainable("From", "Version", {6, 0, 3}, "Before", "Version", {7, 0, 3}), -- I'm Your Number One Fan (Season 2)
+	Ach(7944):Obtainable("From", "Version", {6, 0, 3}, "Before", "Version", {7, 0, 3}):Obtainable("From", "Version", {11, 2, 7}), -- Bottle Service (Season 2)
+	Ach(7945):Obtainable("From", "Version", {6, 0, 3}, "Before", "Version", {7, 0, 3}), -- Haters Gonna Hate (Season 2)
+	Ach(7946):AutoFactionSplit(faction.Alliance, 8022):Obtainable("Before", "Version", {6, 0, 2}), -- Now You're Just Showing Off (Season 1)
+	Ach(7947):AutoFactionSplit(faction.Alliance, 7948):Obtainable("Before", "Version", {6, 0, 2}), -- The First Rule of Brawler's Guild (Season 1 or 2)
+	Ach(7949):AutoFactionSplit(faction.Alliance, 7950):Obtainable("From", "Version", {6, 0, 3}, "Before", "Version", {7, 0, 3}), -- Rabble Rabble Rabble (Season 2)
+	Ach(7984), -- Watery Grave
+	Ach(7986), -- You Mean That Wasn't a Void Zone?
+	Ach(7987), -- No Egg Left Behind
+	Ach(7988), -- A Little Patience
+	Ach(7989), -- Bubbletrapped!
+	Ach(7990), -- Cannonballer
+	Ach(7991), -- Which Came First?
+	Ach(7992), -- I Used To Love Them
+	Ach(7993), -- We've Been Dancin'
+	Ach(7994), -- Treasure of Pandaria
+	Ach(7995), -- Fortune of Pandaria
+	Ach(7996), -- Bounty of Pandaria
+	Ach(7997), -- Riches of Pandaria
+	Ach(8009), -- Dagger in the Dark
+	Ach(8010):AutoFactionSplit(faction.Alliance, 8013), -- Lion's Landing / Domination Point
+	Ach(8011):AutoFactionSplit(faction.Alliance, 8014), -- Number Five Is Alive
+	Ach(8012):AutoFactionSplit(faction.Alliance, 8015), -- Waste Not, Want Not
+	Ach(8016), -- Assault on Zan'vess
+	Ach(8017), -- For the Swarm
+	Ach(8023):Title(), -- Wakener
+	Ach(8030):AutoFactionSplit(faction.Alliance, 8031):Obtainable("Before", "Version", {6, 0, 2}), -- A Test of Valor
+}
 
-KrowiAF.AchievementData["05_01_00"] = {
-    {KrowiAF.SetAchievementPatch, 5, 1, 0},
-    {7852}, -- They're Both Footballs?
-    { -- WoW's 9th Anniversary
-        7853,
-        {
-            {},
-        },
-    },
-    { -- We're Going to Need More Saddles
-        7860,
-        faction.Alliance,
-        7862,
-        {
-            RewardType = rewardType.Mount,
-        },
-    },
-    { -- We're Going to Need More Saddles
-        7862,
-        faction.Horde,
-        7860,
-        {
-            RewardType = rewardType.Mount,
-        },
-    },
-    { -- I Choose You
-		7908,
-		{
-			RewardType = rewardType.Other,
-		},
-	},
-    { -- Operation: Shieldwall Campaign
-        7928,
-        faction.Alliance,
-        7929,
-    },
-    { -- Dominance Offensive Campaign
-        7929,
-        faction.Horde,
-        7928,
-    },
-    {7932}, -- I'm In Your Base, Killing Your Dudes
-    {7933}, -- And... It's Good!
-	{ -- Raiding with Leashes
-		7934,
-		{
-			RewardType = rewardType.Pet,
-		},
-	},
-	{ -- Pandaren Spirit Tamer
-		7936,
-		{
-			RewardType = rewardType.Pet,
-		},
-	},
-    { -- You Are Not Your $#*@! Legplates (Season 1)
-        7937,
-        faction.Alliance,
-        8020,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- The Second Rule of Brawler's Guild (Season 1)
-        7939,
-        faction.Horde,
-        7940,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- The Second Rule of Brawler's Guild (Season 1)
-        7940,
-        faction.Alliance,
-        7939,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Brawlin' and Shot Callin' (Season 1)
-        7941,
-        faction.Alliance,
-        7942,
-        {
-            RewardType = rewardType.Title,
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Brawlin' and Shot Callin' (Season 1)
-        7942,
-        faction.Horde,
-        7941,
-        {
-            RewardType = rewardType.Title,
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- I'm Your Number One Fan (Season 2)
-        7943,
-        {
-            {"From", "Version", {6, 0, 3}, "Before", "Version", {7, 0, 3}},
-        },
-    },
-    { -- Bottle Service (Season 2)
-        7944,
-        {
-            {"From", "Version", {6, 0, 3}, "Before", "Version", {7, 0, 3}},
-            {"From", "Version", {11, 2, 7}}
-        },
-    },
-    { -- Haters Gonna Hate (Season 2)
-        7945,
-        {
-            {"From", "Version", {6, 0, 3}, "Before", "Version", {7, 0, 3}},
-        },
-    },
-    { -- Now You're Just Showing Off (Season 1)
-        7946,
-        faction.Alliance,
-        8022,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- The First Rule of Brawler's Guild (Season 1 or 2)
-        7947,
-        faction.Alliance,
-        7948,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- The First Rule of Brawler's Guild (Season 1 or 2)
-        7948,
-        faction.Horde,
-        7947,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Rabble Rabble Rabble (Season 2)
-        7949,
-        faction.Alliance,
-        7950,
-        {
-            {"From", "Version", {6, 0, 3}, "Before", "Version", {7, 0, 3}},
-        },
-    },
-    { -- Rabble Rabble Rabble (Season 2)
-        7950,
-        faction.Horde,
-        7949,
-        {
-            {"From", "Version", {6, 0, 3}, "Before", "Version", {7, 0, 3}},
-        },
-    },
-    {7984}, -- Watery Grave
-    {7986}, -- You Mean That Wasn't a Void Zone?
-    {7987}, -- No Egg Left Behind
-    {7988}, -- A Little Patience
-    {7989}, -- Bubbletrapped!
-    {7990}, -- Cannonballer
-    {7991}, -- Which Came First?
-    {7992}, -- I Used To Love Them
-    {7993}, -- We've Been Dancin'
-    {7994}, -- Treasure of Pandaria
-    {7995}, -- Fortune of Pandaria
-    {7996}, -- Bounty of Pandaria
-    {7997}, -- Riches of Pandaria
-    { -- Chapter II: Wrathion's War
-        8008,
-        faction.Horde,
-        7534,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    {8009}, -- Dagger in the Dark
-    { -- Lion's Landing
-        8010,
-        faction.Alliance,
-        8013,
-    },
-    { -- Number Five Is Alive
-        8011,
-        faction.Alliance,
-        8014,
-    },
-    { -- Waste Not, Want Not
-        8012,
-        faction.Alliance,
-        8015,
-    },
-    { -- Domination Point
-        8013,
-        faction.Horde,
-        8010,
-    },
-    { -- Number Five Is Alive
-        8014,
-        faction.Horde,
-        8011,
-    },
-    { -- Waste Not, Want Not
-        8015,
-        faction.Horde,
-        8012,
-    },
-    {8016}, -- Assault on Zan'vess
-    {8017}, -- For the Swarm
-    { -- You Are Not Your $#*@! Legplates (Season 1)
-        8020,
-        faction.Horde,
-        7937,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Now You're Just Showing Off (Season 1)
-        8022,
-        faction.Horde,
-        7946,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-	{ -- Wakener
-		8023,
-		{
-			RewardType = rewardType.Title,
-		},
-	},
-    { -- A Test of Valor
-        8030,
-        faction.Alliance,
-        8031,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- A Test of Valor
-        8031,
-        faction.Horde,
-        8030,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-};
+KrowiAF.AchievementData2["05_02_00"] = {
+	{KrowiAF.SetAchievementPatch, 5, 2, 0},
+	Ach(6954):Obtainable("Before", "Version", {5, 2, 0}), -- Ahead of the Curve: Will of the Emperor
+	Ach(8028), -- Praise the Sun!
+	Ach(8037), -- Genetically Unmodified Organism
+	Ach(8038), -- Cretaceous Collector
+	Ach(8042):AutoFactionSplit(faction.Alliance, 8043):Obtainable("Event", 341), -- Extinguishing Pandaria
+	Ach(8044):AutoFactionSplit(faction.Horde, 8045):Obtainable("Event", 341), -- Flame Keeper of Pandaria / Flame Warden of Pandaria
+	Ach(8049), -- The Zandalari Prophecy
+	Ach(8050), -- Rumbles of Thunder
+	Ach(8051), -- Gods and Monsters
+	Ach(8052):Title():IsPvP():AutoFactionSplit(faction.Alliance, 8055), -- Khan
+	Ach(8056), -- Heroic: Jin'rokh the Breaker
+	Ach(8057), -- Heroic: Horridon
+	Ach(8058), -- Heroic: Council of Elders
+	Ach(8059), -- Heroic: Tortos
+	Ach(8060), -- Heroic: Megaera
+	Ach(8061), -- Heroic: Ji-Kun
+	Ach(8062), -- Heroic: Durumu the Forgotten
+	Ach(8063), -- Heroic: Primordius
+	Ach(8064), -- Heroic: Dark Animus
+	Ach(8065), -- Heroic: Iron Qon
+	Ach(8066), -- Heroic: Twin Empyreans
+	Ach(8067):Title(), -- Heroic: Lei Shen
+	Ach(8068), -- Heroic: Ra-den
+	Ach(8069), -- Last Stand of the Zandalari
+	Ach(8070), -- Forgotten Depths
+	Ach(8071), -- Halls of Flesh-Shaping
+	Ach(8072), -- Pinnacle of Storms
+	Ach(8073), -- Cage Match
+	Ach(8077), -- One-Up
+	Ach(8078), -- Zul'Again
+	Ach(8080):Pet(), -- Fabled Pandaren Tamer
+	Ach(8081), -- Ritualist Who?
+	Ach(8082), -- Head Case
+	Ach(8086), -- From Dusk 'til Dawn
+	Ach(8087), -- Can't Touch This
+	Ach(8089):Obtainable("Before", "Version", {6, 0, 2}), -- I Thought He Was Supposed to Be Hard?
+	Ach(8090), -- A Complete Circuit
+	Ach(8092), -- I've Got 9999 Problems but a Bone-White Primal Raptor Ain't One
+	Ach(8093):PvP(13):AutoFactionSplit(faction.Horde, 8218), -- Tyrannical Conquest
+	Ach(8094), -- Lightning Overload
+	Ach(8097), -- Soft Hands
+	Ach(8098), -- You Said Crossing the Streams Was Bad
+	Ach(8099), -- Isle of Thunder
+	Ach(8100), -- Pay to Slay
+	Ach(8101), -- It Was Worth Every Ritual Stone
+	Ach(8103), -- Champions of Lei Shen
+	Ach(8104), -- Thunder Plunder
+	Ach(8105), -- The Crumble Bundle
+	Ach(8106), -- In the Hall of the Thunder King
+	Ach(8107), -- Ready for RAAAAIIIIDDD?!?ing
+	Ach(8108), -- When in Ihgaluk, Do as the Skumblade Do
+	Ach(8109), -- The Mogu Below-gu
+	Ach(8110), -- These Mogu Have Gotta Go-gu
+	Ach(8111), -- This Isn't Even My Final Form
+	Ach(8112), -- Blue Response
+	Ach(8114), -- Platform Hero
+	Ach(8115), -- Speed Metal
+	Ach(8116), -- You Made Me Bleed My Own Blood
+	Ach(8117), -- For the Ward!
+	Ach(8118), -- Boop
+	Ach(8119), -- Our Powers Combined
+	Ach(8120), -- Direhorn in a China Shop
+	Ach(8121):Title(), -- Stormbreaker
+	Ach(8123), -- Millions of Years of Evolution vs. My Fist
+	Ach(8124):Mount(), -- Glory of the Thundering Raider
+	Ach(8205):AutoFactionSplit(faction.Alliance, 8206), -- Operation: Shieldwall / Dominance Offensive
+	Ach(8208):AutoFactionSplit(faction.Alliance, 8209), -- Kirin Tor Offensive / Sunreaver Onslaught
+	Ach(8210), -- Shado-Pan Assault
+	Ach(8212), -- Zandalari Library Card
+	Ach(8213):Obtainable("Before", "Date", {2019, 6, 11}), -- Friends In Places Higher Yet
+	Ach(8214):PvP(12), -- Malevolent Gladiator
+	Ach(8216):PvP(12), -- Malevolent Gladiator's Cloud Serpent
+	Ach(8219), -- History of the Mantid
+	Ach(8220), -- Collector: Banners of the Mantid Empire
+	Ach(8221), -- Collector: Banners of the Mantid Empire
+	Ach(8222), -- Collector: Ancient Sap Feeders
+	Ach(8223), -- Collector: Ancient Sap Feeders
+	Ach(8224), -- Collector: Praying Mantids
+	Ach(8225), -- Collector: Praying Mantids
+	Ach(8226), -- Collector: Inert Sound Beacons
+	Ach(8227), -- Collector: Inert Sound Beacons
+	Ach(8228), -- Collector: Remains of Paragons
+	Ach(8229), -- Collector: Remains of Paragons
+	Ach(8230), -- Collector: Mantid Lamps
+	Ach(8231), -- Collector: Mantid Lamps
+	Ach(8232), -- Collector: Pollen Collectors
+	Ach(8233), -- Collector: Pollen Collectors
+	Ach(8234), -- Collector: Kypari Sap Containers
+	Ach(8235), -- Collector: Kypari Sap Containers
+	Ach(8238):Obtainable("Before", "Version", {5, 4, 0}), -- Cutting Edge: Lei Shen
+	Ach(8243):PvP(12):AutoFactionSplit(faction.Alliance, 8244), -- Hero of the Alliance: Malevolent / Hero of the Horde: Malevolent
+	Ach(8246):Obtainable("Before", "Version", {5, 2, 0}), -- Ahead of the Curve: Grand Empress Shek'zeer
+	Ach(8248):Obtainable("Before", "Version", {5, 2, 0}), -- Ahead of the Curve: Sha of Fear
+	Ach(8249):Obtainable("Before", "Version", {5, 4, 0}), -- Ahead of the Curve: Lei Shen
+	Ach(8260):Obtainable("Before", "Version", {5, 4, 0}), -- Cutting Edge: Ra-den
+}
 
-KrowiAF.AchievementData["05_02_00"] = {
-    {KrowiAF.SetAchievementPatch, 5, 2, 0},
-    { -- Ahead of the Curve: Will of the Emperor
-        6954,
-        {
-            {"Before", "Version", {5, 2, 0}},
-        },
-    },
-    {8028}, -- Praise the Sun!
-    {8037}, -- Genetically Unmodified Organism
-    {8038}, -- Cretaceous Collector
-    { -- Extinguishing Pandaria
-        8042,
-        faction.Alliance,
-        8043,
-        {
-            {"Event", 341},
-        },
-    },
-    { -- Extinguishing Pandaria
-        8043,
-        faction.Horde,
-        8042,
-        {
-            {"Event", 341},
-        },
-    },
-    { -- Flame Keeper of Pandaria
-        8044,
-        faction.Horde,
-        8045,
-        {
-            {"Event", 341},
-        },
-    },
-    { -- Flame Warden of Pandaria
-        8045,
-        faction.Alliance,
-        8044,
-        {
-            {"Event", 341},
-        },
-    },
-    {8049}, -- The Zandalari Prophecy
-    {8050}, -- Rumbles of Thunder
-    {8051}, -- Gods and Monsters
-    { -- Khan
-        8052,
-        faction.Alliance,
-        8055,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-        },
-    },
-    { -- Khan
-        8055,
-        faction.Horde,
-        8052,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-        },
-    },
-    {8056}, -- Heroic: Jin'rokh the Breaker
-    {8057}, -- Heroic: Horridon
-    {8058}, -- Heroic: Council of Elders
-    {8059}, -- Heroic: Tortos
-    {8060}, -- Heroic: Megaera
-    {8061}, -- Heroic: Ji-Kun
-    {8062}, -- Heroic: Durumu the Forgotten
-    {8063}, -- Heroic: Primordius
-    {8064}, -- Heroic: Dark Animus
-    {8065}, -- Heroic: Iron Qon
-    {8066}, -- Heroic: Twin Empyreans
-	{ -- Heroic: Lei Shen
-		8067,
-		{
-			RewardType = rewardType.Title,
-		},
-	},
-    {8068}, -- Heroic: Ra-den
-    {8069}, -- Last Stand of the Zandalari
-    {8070}, -- Forgotten Depths
-    {8071}, -- Halls of Flesh-Shaping
-    {8072}, -- Pinnacle of Storms
-    {8073}, -- Cage Match
-    {8077}, -- One-Up
-    {8078}, -- Zul'Again
-	{ -- Fabled Pandaren Tamer
-		8080,
-		{
-			RewardType = rewardType.Pet,
-		},
-	},
-    {8081}, -- Ritualist Who?
-    {8082}, -- Head Case
-    {8086}, -- From Dusk 'til Dawn
-    {8087}, -- Can't Touch This
-    { -- I Thought He Was Supposed to Be Hard?
-        8089,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    {8090}, -- A Complete Circuit
-    {8092}, -- I've Got 9999 Problems but a Bone-White Primal Raptor Ain't One
-    { -- Tyrannical Conquest
-        8093,
-        faction.Horde,
-        8218,
-        {
-            IsPvP = true,
-            {"PvP Season", 13},
-        },
-    },
-    {8094}, -- Lightning Overload
-    {8097}, -- Soft Hands
-    {8098}, -- You Said Crossing the Streams Was Bad
-    {8099}, -- Isle of Thunder
-    {8100}, -- Pay to Slay
-    {8101}, -- It Was Worth Every Ritual Stone
-    {8103}, -- Champions of Lei Shen
-    {8104}, -- Thunder Plunder
-    {8105}, -- The Crumble Bundle
-    {8106}, -- In the Hall of the Thunder King
-    {8107}, -- Ready for RAAAAIIIIDDD?!?ing
-    {8108}, -- When in Ihgaluk, Do as the Skumblade Do
-    {8109}, -- The Mogu Below-gu
-    {8110}, -- These Mogu Have Gotta Go-gu
-    {8111}, -- This Isn't Even My Final Form
-    {8112}, -- Blue Response
-    {8114}, -- Platform Hero
-    {8115}, -- Speed Metal
-    {8116}, -- You Made Me Bleed My Own Blood
-    {8117}, -- For the Ward!
-    {8118}, -- Boop
-    {8119}, -- Our Powers Combined
-    {8120}, -- Direhorn in a China Shop
-	{ -- Stormbreaker
-		8121,
-		{
-			RewardType = rewardType.Title,
-		},
-	},
-    {8123}, -- Millions of Years of Evolution vs. My Fist
-	{ -- Glory of the Thundering Raider
-		8124,
-		{
-			RewardType = rewardType.Mount,
-		},
-	},
-    { -- Operation: Shieldwall
-        8205,
-        faction.Alliance,
-        8206,
-    },
-    { -- Dominance Offensive
-        8206,
-        faction.Horde,
-        8205,
-    },
-    { -- Kirin Tor Offensive
-        8208,
-        faction.Alliance,
-        8209,
-    },
-    { -- Sunreaver Onslaught
-        8209,
-        faction.Horde,
-        8208,
-    },
-    {8210}, -- Shado-Pan Assault
-    {8212}, -- Zandalari Library Card
-    { -- Friends In Places Higher Yet
-        8213,
-        {
-            {"Before", "Date", {2019, 6, 11}},
-        },
-    },
-    { -- Malevolent Gladiator
-        8214,
-        {
-            IsPvP = true,
-            {"PvP Season", 12},
-        },
-    },
-    { -- Malevolent Gladiator's Cloud Serpent
-        8216,
-        {
-            IsPvP = true,
-            {"PvP Season", 12},
-        },
-    },
-    { -- Tyrannical Conquest
-        8218,
-        faction.Alliance,
-        8093,
-        {
-            IsPvP = true,
-            {"PvP Season", 13},
-        },
-    },
-    {8219}, -- History of the Mantid
-    {8220}, -- Collector: Banners of the Mantid Empire
-    {8221}, -- Collector: Banners of the Mantid Empire
-    {8222}, -- Collector: Ancient Sap Feeders
-    {8223}, -- Collector: Ancient Sap Feeders
-    {8224}, -- Collector: Praying Mantids
-    {8225}, -- Collector: Praying Mantids
-    {8226}, -- Collector: Inert Sound Beacons
-    {8227}, -- Collector: Inert Sound Beacons
-    {8228}, -- Collector: Remains of Paragons
-    {8229}, -- Collector: Remains of Paragons
-    {8230}, -- Collector: Mantid Lamps
-    {8231}, -- Collector: Mantid Lamps
-    {8232}, -- Collector: Pollen Collectors
-    {8233}, -- Collector: Pollen Collectors
-    {8234}, -- Collector: Kypari Sap Containers
-    {8235}, -- Collector: Kypari Sap Containers
-    { -- Cutting Edge: Lei Shen
-        8238,
-        {
-            {"Before", "Version", {5, 4, 0}},
-        },
-    },
-    { -- Hero of the Alliance: Malevolent
-        8243,
-        faction.Alliance,
-        8244,
-        {
-            IsPvP = true,
-            {"PvP Season", 12},
-        },
-    },
-    { -- Hero of the Horde: Malevolent
-        8244,
-        faction.Horde,
-        8243,
-        {
-            IsPvP = true,
-            {"PvP Season", 12},
-        },
-    },
-    { -- Ahead of the Curve: Grand Empress Shek'zeer
-        8246,
-        {
-            {"Before", "Version", {5, 2, 0}},
-        },
-    },
-    { -- Ahead of the Curve: Sha of Fear
-        8248,
-        {
-            {"Before", "Version", {5, 2, 0}},
-        },
-    },
-    { -- Ahead of the Curve: Lei Shen
-        8249,
-        {
-            {"Before", "Version", {5, 4, 0}},
-        },
-    },
-    { -- Cutting Edge: Ra-den
-        8260,
-        {
-            {"Before", "Version", {5, 4, 0}},
-        },
-    },
-};
+KrowiAF.AchievementData2["05_03_00"] = {
+	{KrowiAF.SetAchievementPatch, 5, 3, 0},
+	Ach(8293):Pet(), -- Raiding with Leashes II: Attunement Edition
+	Ach(8294), -- The Secrets of Ragefire
+	Ach(8295), -- The Few, the Proud, the Gob Squad
+	Ach(8297):IsPvP(), -- Merciless Pet Brawler
+	Ach(8298):IsPvP(), -- Vengeful Pet Brawler
+	Ach(8300):Pet():IsPvP(), -- Brutal Pet Brawler
+	Ach(8301):Title():IsPvP(), -- Deadly Pet Brawler
+	Ach(8302):Mount():AutoFactionSplit(faction.Horde, 8304), -- Mount Parade
+	Ach(8306):Title():AutoFactionSplit(faction.Alliance, 8307):Obtainable("Before", "Version", {5, 4, 0}), -- Hordebreaker / Darkspear Revolutionary
+	Ach(8310), -- Heroic: A Brewing Storm
+	Ach(8311), -- Heroic: Crypt of Forgotten Kings
+	Ach(8312), -- Heroic: Blood in the Snow
+	Ach(8314):AutoFactionSplit(faction.Alliance, 8315), -- Battle on the High Seas
+	Ach(8316):HousingDecor(), -- Blood in the Snow
+	Ach(8317), -- Dark Heart of Pandaria
+	Ach(8318), -- Heroic: Dark Heart of Pandaria
+	Ach(8319), -- Accelerated Archaeology
+	Ach(8325):Title():Obtainable("Before", "Version", {6, 0, 2}), -- Chapter V: Judgment of the Black Prince
+	Ach(8327), -- Heroic: The Secrets of Ragefire
+	Ach(8329), -- Heed the Weed
+	Ach(8330), -- Hekima's Heal-Halter
+	Ach(8331):IsPvP(), -- Deepwind Gorge Victory
+	Ach(8332):IsPvP(), -- Deepwind Gorge Veteran
+	Ach(8333):IsPvP(), -- Deepwind Gorge Perfection
+	Ach(8335):AutoFactionSplit(faction.Alliance, 8337):Obtainable("Before", "Version", {6, 0, 2}), -- Having a Brawl (Season 1)
+	Ach(8336):AutoFactionSplit(faction.Alliance, 8338):Obtainable("Before", "Version", {6, 0, 2}), -- I've Got the Biggest Brawls of Them All (Season 1)
+	Ach(8339):AutoFactionSplit(faction.Alliance, 8342):Obtainable("From", "Version", {6, 0, 3}, "Before", "Version", {7, 0, 3}), -- Collect Your Deck (Season 2)
+	Ach(8340):AutoFactionSplit(faction.Alliance, 8343):Obtainable("Before", "Version", {6, 0, 2}), -- Deck Your Collection (Season 1)
+	Ach(8345), -- Hearthstoned
+	Ach(8347), -- Keep those Bombs Away! (From Me)
+	Ach(8348):Pet(), -- The Longest Day
+	Ach(8350):IsPvP():Obtainable("Before", "Version", {8, 3, 0}), -- Mine! Mine! Mine!
+	Ach(8351):IsPvP():Obtainable("Before", "Version", {8, 3, 0}), -- Other People's Property
+	Ach(8354):IsPvP():Obtainable("Before", "Version", {8, 3, 0}), -- Puddle Jumper
+	Ach(8355):IsPvP():Obtainable("Before", "Version", {8, 3, 0}), -- Weighed Down
+	Ach(8358):IsPvP():Obtainable("Before", "Version", {8, 3, 0}), -- Deepwind Gorge All-Star
+	Ach(8359):IsPvP():Obtainable("Before", "Version", {8, 3, 0}), -- Capping Spree
+	Ach(8360):Title():IsPvP():Obtainable("Before", "Version", {8, 3, 0}), -- Master of Deepwind Gorge
+	Ach(8364):AutoFactionSplit(faction.Alliance, 8366), -- Heroic: Battle on the High Seas
+	Ach(8368), -- Fight Anger with Anger
+	Ach(8391):IsPvP():Obtainable("From", "Date", {2013, 6, 18}, "Until", "Date", {2013, 8, 27}), -- Tournament Participation 2013
+	Ach(8392):Title():IsPvP():Obtainable("From", "Date", {2013, 6, 18}, "Until", "Date", {2013, 8, 27}), -- Tournament Glory 2013
+}
 
-KrowiAF.AchievementData["05_03_00"] = {
-    {KrowiAF.SetAchievementPatch, 5, 3, 0},
-	{ -- Raiding with Leashes II: Attunement Edition
-		8293,
-		{
-			RewardType = rewardType.Pet,
-		},
-	},
-    {8294}, -- The Secrets of Ragefire
-    {8295}, -- The Few, the Proud, the Gob Squad
-    { -- Merciless Pet Brawler
-        8297,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Vengeful Pet Brawler
-        8298,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Brutal Pet Brawler
-        8300,
-        {
-            RewardType = rewardType.Pet,
-            IsPvP = true,
-        },
-    },
-    { -- Deadly Pet Brawler
-        8301,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-        },
-    },
-    { -- Mount Parade
-        8302,
-        faction.Horde,
-        8304,
-        {
-            RewardType = rewardType.Mount,
-        },
-    },
-    { -- Mount Parade
-        8304,
-        faction.Alliance,
-        8302,
-        {
-            RewardType = rewardType.Mount,
-        },
-    },
-    { -- Hordebreaker
-        8306,
-        faction.Alliance,
-        8307,
-        {
-            RewardType = rewardType.Title,
-            {"Before", "Version", {5, 4, 0}},
-        },
-    },
-    { -- Darkspear Revolutionary
-        8307,
-        faction.Horde,
-        8306,
-        {
-            RewardType = rewardType.Title,
-            {"Before", "Version", {5, 4, 0}},
-        },
-    },
-    {8310}, -- Heroic: A Brewing Storm
-    {8311}, -- Heroic: Crypt of Forgotten Kings
-    {8312}, -- Heroic: Blood in the Snow
-    { -- Battle on the High Seas
-        8314,
-        faction.Alliance,
-        8315,
-    },
-    { -- Battle on the High Seas
-        8315,
-        faction.Horde,
-        8314,
-    },
-    { -- Blood in the Snow
-        8316,
-        {
-            RewardType = rewardType.HousingDecor,
-        },
-    },
-    {8317}, -- Dark Heart of Pandaria
-    {8318}, -- Heroic: Dark Heart of Pandaria
-    {8319}, -- Accelerated Archaeology
-    { -- Chapter V: Judgment of the Black Prince
-        8325,
-        {
-            RewardType = rewardType.Title,
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    {8327}, -- Heroic: The Secrets of Ragefire
-    {8329}, -- Heed the Weed
-    {8330}, -- Hekima's Heal-Halter
-    { -- Deepwind Gorge Victory
-        8331,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Deepwind Gorge Veteran
-        8332,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Deepwind Gorge Perfection
-        8333,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Having a Brawl (Season 1)
-        8335,
-        faction.Alliance,
-        8337,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- I've Got the Biggest Brawls of Them All (Season 1)
-        8336,
-        faction.Alliance,
-        8338,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Having a Brawl (Season 1)
-        8337,
-        faction.Horde,
-        8335,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- I've Got the Biggest Brawls of Them All (Season 1)
-        8338,
-        faction.Horde,
-        8336,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Collect Your Deck (Season 2)
-        8339,
-        faction.Alliance,
-        8342,
-        {
-            {"From", "Version", {6, 0, 3}, "Before", "Version", {7, 0, 3}},
-        },
-    },
-    { -- Deck Your Collection (Season 1)
-        8340,
-        faction.Alliance,
-        8343,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Collect Your Deck (Season 2)
-        8342,
-        faction.Horde,
-        8339,
-        {
-            {"From", "Version", {6, 0, 3}, "Before", "Version", {7, 0, 3}},
-        },
-    },
-    { -- Deck Your Collection (Season 1)
-        8343,
-        faction.Horde,
-        8340,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    {8345}, -- Hearthstoned
-    {8347}, -- Keep those Bombs Away! (From Me)
-	{ -- The Longest Day
-		8348,
-		{
-			RewardType = rewardType.Pet,
-		},
-	},
-    { -- Mine! Mine! Mine!
-        8350,
-        {
-            IsPvP = true,
-            {"Before", "Version", {8, 3, 0}},
-        },
-    },
-    { -- Other People's Property
-        8351,
-        {
-            IsPvP = true,
-            {"Before", "Version", {8, 3, 0}},
-        },
-    },
-    { -- Puddle Jumper
-        8354,
-        {
-            IsPvP = true,
-            {"Before", "Version", {8, 3, 0}},
-        },
-    },
-    { -- Weighed Down
-        8355,
-        {
-            IsPvP = true,
-            {"Before", "Version", {8, 3, 0}},
-        },
-    },
-    { -- Deepwind Gorge All-Star
-        8358,
-        {
-            IsPvP = true,
-            {"Before", "Version", {8, 3, 0}},
-        },
-    },
-    { -- Capping Spree
-        8359,
-        {
-            IsPvP = true,
-            {"Before", "Version", {8, 3, 0}},
-        },
-    },
-    { -- Master of Deepwind Gorge
-        8360,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"Before", "Version", {8, 3, 0}},
-        },
-    },
-    { -- Heroic: Battle on the High Seas
-        8364,
-        faction.Alliance,
-        8366,
-    },
-    { -- Heroic: Battle on the High Seas
-        8366,
-        faction.Horde,
-        8364,
-    },
-    {8368}, -- Fight Anger with Anger
-    { -- Tournament Participation 2013
-        8391,
-        {
-            IsPvP = true,
-            {"From", "Date", {2013, 6, 18}, "Until", "Date", {2013, 8, 27}},
-        },
-    },
-    { -- Tournament Glory 2013
-        8392,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"From", "Date", {2013, 6, 18}, "Until", "Date", {2013, 8, 27}},
-        },
-    },
-};
+KrowiAF.AchievementData2["05_04_00"] = {
+	{KrowiAF.SetAchievementPatch, 5, 4, 0},
+	Ach(8381):PvP(14):AutoFactionSplit(faction.Horde, 8382), -- Grievous Conquest
+	Ach(8397):Title(), -- Crazy for Cats
+	Ach(8398):Mount():Obtainable("Before", "Version", {6, 0, 2}), -- Ahead of the Curve: Garrosh Hellscream (10 player)
+	Ach(8399):Mount():Obtainable("Before", "Version", {6, 0, 2}), -- Ahead of the Curve: Garrosh Hellscream (25 player)
+	Ach(8400):Obtainable("Before", "Version", {6, 0, 2}), -- Cutting Edge: Garrosh Hellscream (10 player)
+	Ach(8401):Obtainable("Before", "Version", {6, 0, 2}), -- Cutting Edge: Garrosh Hellscream (25 player)
+	Ach(8410), -- The Celestial Tournament
+	Ach(8430):Obtainable("Before", "Version", {6, 0, 2}), -- Challenge Master: Temple of the Jade Serpent
+	Ach(8431):Obtainable("Before", "Version", {6, 0, 2}), -- Challenge Master: Stormstout Brewery
+	Ach(8432):Obtainable("Before", "Version", {6, 0, 2}), -- Challenge Master: Shado-Pan Monastery
+	Ach(8433):Obtainable("Before", "Version", {6, 0, 2}), -- Challenge Master: Mogu'shan Palace
+	Ach(8434):Obtainable("Before", "Version", {6, 0, 2}), -- Challenge Master: Gate of the Setting Sun
+	Ach(8436):Obtainable("Before", "Version", {6, 0, 2}), -- Challenge Master: Scarlet Halls
+	Ach(8437):Obtainable("Before", "Version", {6, 0, 2}), -- Challenge Master: Scarlet Monastery
+	Ach(8438):Obtainable("Before", "Version", {6, 0, 2}), -- Challenge Master: Scholomance
+	Ach(8439):Obtainable("Before", "Version", {6, 0, 2}), -- Challenge Master: Siege of Niuzao Temple
+	Ach(8448), -- Gamon Will Save Us!
+	Ach(8450):PvP(15):AutoFactionSplit(faction.Horde, 8451), -- Prideful Conquest
+	Ach(8453), -- Rescue Raiders
+	Ach(8454):Mount(), -- Glory of the Orgrimmar Raider
+	Ach(8458), -- Vale of Eternal Sorrows
+	Ach(8459), -- Gates of Retribution
+	Ach(8461), -- The Underhold
+	Ach(8462), -- Downfall
+	Ach(8463), -- Mythic: Immerseus
+	Ach(8465), -- Mythic: Fallen Protectors
+	Ach(8466), -- Mythic: Norushen
+	Ach(8467), -- Mythic: Sha of Pride
+	Ach(8468), -- Mythic: Galakras
+	Ach(8469), -- Mythic: Iron Juggernaut
+	Ach(8470), -- Mythic: Kor'kron Dark Shaman
+	Ach(8471), -- Mythic: General Nazgrim
+	Ach(8472), -- Mythic: Malkorok
+	Ach(8478), -- Mythic: Spoils of Pandaria
+	Ach(8479), -- Mythic: Thok the Bloodthirsty
+	Ach(8480), -- Mythic: Siegecrafter Blackfuse
+	Ach(8481), -- Mythic: Paragons of the Klaxxi
+	Ach(8482):Title(), -- Mythic: Garrosh Hellscream
+	Ach(8484):Mount():PvP(14):AutoFactionSplit(faction.Horde, 8485), -- Grievous Combatant
+	Ach(8486):Obtainable("Before", "Version", {6, 0, 2}), -- Proving Yourself: Bronze Damage (Level 90)
+	Ach(8487):Obtainable("Before", "Version", {6, 0, 2}), -- Proving Yourself: Bronze Tank (Level 90)
+	Ach(8488):Obtainable("Before", "Version", {6, 0, 2}), -- Proving Yourself: Bronze Healer (Level 90)
+	Ach(8491):Obtainable("Before", "Version", {6, 0, 2}), -- Proving Yourself: Silver Damage (Level 90)
+	Ach(8492):Obtainable("Before", "Version", {6, 0, 2}), -- Proving Yourself: Silver Tank (Level 90)
+	Ach(8493):Obtainable("Before", "Version", {6, 0, 2}), -- Proving Yourself: Silver Healer (Level 90)
+	Ach(8496):Obtainable("Before", "Version", {6, 0, 2}), -- Proving Yourself: Gold Damage (Level 90)
+	Ach(8497):Obtainable("Before", "Version", {6, 0, 2}), -- Proving Yourself: Gold Tank (Level 90)
+	Ach(8498):Obtainable("Before", "Version", {6, 0, 2}), -- Proving Yourself: Gold Healer (Level 90)
+	Ach(8501):Obtainable("Before", "Version", {6, 0, 2}), -- Proving Yourself: Endless Damage (Wave 10) (Level 90)
+	Ach(8502):Obtainable("Before", "Version", {6, 0, 2}), -- Proving Yourself: Endless Tank (Wave 10) (Level 90)
+	Ach(8503):Obtainable("Before", "Version", {6, 0, 2}), -- Proving Yourself: Endless Healer (Wave 10) (Level 90)
+	Ach(8504):Obtainable("Before", "Version", {6, 0, 2}), -- Proving Yourself: Endless Damage (Wave 20) (Level 90)
+	Ach(8505):Obtainable("Before", "Version", {6, 0, 2}), -- Proving Yourself: Endless Tank (Wave 20) (Level 90)
+	Ach(8506):Obtainable("Before", "Version", {6, 0, 2}), -- Proving Yourself: Endless Healer (Wave 20) (Level 90)
+	Ach(8507):Title():Obtainable("Before", "Version", {6, 0, 2}), -- Proving Yourself: Endless Damage (Wave 30) (Level 90)
+	Ach(8508):Title():Obtainable("Before", "Version", {6, 0, 2}), -- Proving Yourself: Endless Tank (Wave 30) (Level 90)
+	Ach(8509):Title():Obtainable("Before", "Version", {6, 0, 2}), -- Proving Yourself: Endless Healer (Wave 30) (Level 90)
+	Ach(8518), -- Master of the Masters
+	Ach(8519), -- Celestial Family
+	Ach(8520), -- Fire in the Hole!
+	Ach(8521), -- Swallow Your Pride
+	Ach(8527), -- Giant Dinosaur vs. Mega Snail
+	Ach(8528), -- Go Long
+	Ach(8529), -- Criss Cross
+	Ach(8530), -- The Immortal Vanguard
+	Ach(8531), -- Now We are the Paragon
+	Ach(8532), -- None Shall Pass
+	Ach(8533), -- Ordos
+	Ach(8535), -- Celestial Challenge
+	Ach(8536), -- No More Tears
+	Ach(8537), -- Strike!
+	Ach(8538), -- Unlimited Potential
+	Ach(8543), -- Lasers and Magnets and Drills! Oh My!
+	Ach(8641):Mount():PvP(15):AutoFactionSplit(faction.Horde, 8642), -- Prideful Combatant
+	Ach(8643):Title():PvP(14), -- Grievous Gladiator: Season 14
+	Ach(8644):Title():PvP(14), -- Gladiator: Season 14
+	Ach(8645):Title():PvP(14), -- Duelist: Season 14
+	Ach(8646):Title():PvP(14), -- Rival: Season 14
+	Ach(8649):Title():PvP(14), -- Challenger: Season 14
+	Ach(8652):PvP(13):AutoFactionSplit(faction.Alliance, 8653), -- Hero of the Alliance: Tyrannical / Hero of the Horde: Tyrannical
+	Ach(8654):PvP(14):AutoFactionSplit(faction.Alliance, 8657), -- Hero of the Alliance: Grievous / Hero of the Horde: Grievous
+	Ach(8658):PvP(15):AutoFactionSplit(faction.Alliance, 8659), -- Hero of the Alliance: Prideful / Hero of the Horde: Prideful
+	Ach(8666):Title():PvP(15), -- Prideful Gladiator: Season 15
+	Ach(8667):Title():PvP(15), -- Gladiator: Season 15
+	Ach(8668):Title():PvP(15), -- Duelist: Season 15
+	Ach(8669):Title():PvP(15), -- Rival: Season 15
+	Ach(8670):Title():PvP(15), -- Challenger: Season 15
+	Ach(8678):PvP(13), -- Tyrannical Gladiator's Cloud Serpent
+	Ach(8679):Title():AutoFactionSplit(faction.Alliance, 8680), -- Conqueror of Orgrimmar / Liberator of Orgrimmar
+	Ach(8697):Obtainable("Before", "Version", {6, 0, 2}), -- You're Doing it Wrong (Level 90)
+	Ach(8698), -- Crashin' Thrashin' Flyer
+	Ach(8699):Obtainable("Event", 141), -- The Danger Zone
+	Ach(8705):PvP(14), -- Grievous Gladiator's Cloud Serpent
+	Ach(8707):PvP(15), -- Prideful Gladiator's Cloud Serpent
+	Ach(8712), -- Killing Time
+	Ach(8714), -- Timeless Champion
+	Ach(8715), -- Emperor Shaohao
+	Ach(8716), -- Emissary of Ordos
+	Ach(8717):IsPvP(), -- Candlekeeper
+	Ach(8718):IsPvP(), -- Oathguard
+	Ach(8719):IsPvP(), -- Blazebinder
+	Ach(8720):IsPvP(), -- Kilnmaster
+	Ach(8721):Title():IsPvP(), -- Fire-Watcher
+	Ach(8722), -- Timeless Nutriment
+	Ach(8723), -- Legend of the Past
+	Ach(8724), -- Pilgrimage
+	Ach(8725), -- Eyes On The Ground
+	Ach(8726), -- Extreme Treasure Hunter
+	Ach(8727), -- Where There's Pirates, There's Booty
+	Ach(8728), -- Going To Need A Bigger Bag
+	Ach(8729), -- Treasure, Treasure Everywhere
+	Ach(8730), -- Rolo's Riddle
+	Ach(8743), -- Zarhym Altogether
+	Ach(8784), -- Timeless Legends
+	Ach(8791):PvP(13), -- Tyrannical Gladiator
+}
 
-KrowiAF.AchievementData["05_04_00"] = {
-    {KrowiAF.SetAchievementPatch, 5, 4, 0},
-    { -- Grievous Conquest
-        8381,
-        faction.Horde,
-        8382,
-        {
-            IsPvP = true,
-            {"PvP Season", 14},
-        },
-    },
-    { -- Grievous Conquest
-        8382,
-        faction.Alliance,
-        8381,
-        {
-            IsPvP = true,
-            {"PvP Season", 14},
-        },
-    },
-	{ -- Crazy for Cats
-		8397,
-		{
-			RewardType = rewardType.Title,
-		},
-	},
-    { -- Ahead of the Curve: Garrosh Hellscream (10 player)
-        8398,
-        {
-            RewardType = rewardType.Mount,
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Ahead of the Curve: Garrosh Hellscream (25 player)
-        8399,
-        {
-            RewardType = rewardType.Mount,
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Cutting Edge: Garrosh Hellscream (10 player)
-        8400,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Cutting Edge: Garrosh Hellscream (25 player)
-        8401,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    {8410}, -- The Celestial Tournament
-    { -- Challenge Master: Temple of the Jade Serpent
-        8430,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Challenge Master: Stormstout Brewery
-        8431,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Challenge Master: Shado-Pan Monastery
-        8432,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Challenge Master: Mogu'shan Palace
-        8433,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Challenge Master: Gate of the Setting Sun
-        8434,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Challenge Master: Scarlet Halls
-        8436,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Challenge Master: Scarlet Monastery
-        8437,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Challenge Master: Scholomance
-        8438,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Challenge Master: Siege of Niuzao Temple
-        8439,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    {8448}, -- Gamon Will Save Us!
-    { -- Prideful Conquest
-        8450,
-        faction.Horde,
-        8451,
-        {
-            IsPvP = true,
-            {"PvP Season", 15},
-        },
-    },
-    { -- Prideful Conquest
-        8451,
-        faction.Alliance,
-        8450,
-        {
-            IsPvP = true,
-            {"PvP Season", 15},
-        },
-    },
-    {8453}, -- Rescue Raiders
-	{ -- Glory of the Orgrimmar Raider
-		8454,
-		{
-			RewardType = rewardType.Mount,
-		},
-	},
-    {8458}, -- Vale of Eternal Sorrows
-    {8459}, -- Gates of Retribution
-    {8461}, -- The Underhold
-    {8462}, -- Downfall
-    {8463}, -- Mythic: Immerseus
-    {8465}, -- Mythic: Fallen Protectors
-    {8466}, -- Mythic: Norushen
-    {8467}, -- Mythic: Sha of Pride
-    {8468}, -- Mythic: Galakras
-    {8469}, -- Mythic: Iron Juggernaut
-    {8470}, -- Mythic: Kor'kron Dark Shaman
-    {8471}, -- Mythic: General Nazgrim
-    {8472}, -- Mythic: Malkorok
-    {8478}, -- Mythic: Spoils of Pandaria
-    {8479}, -- Mythic: Thok the Bloodthirsty
-    {8480}, -- Mythic: Siegecrafter Blackfuse
-    {8481}, -- Mythic: Paragons of the Klaxxi
-	{ -- Mythic: Garrosh Hellscream
-		8482,
-		{
-			RewardType = rewardType.Title,
-		},
-	},
-    { -- Grievous Combatant
-        8484,
-        faction.Horde,
-        8485,
-        {
-            RewardType = rewardType.Mount,
-            IsPvP = true,
-            {"PvP Season", 14},
-        },
-    },
-    { -- Grievous Combatant
-        8485,
-        faction.Alliance,
-        8484,
-        {
-            RewardType = rewardType.Mount,
-            IsPvP = true,
-            {"PvP Season", 14},
-        },
-    },
-    { -- Proving Yourself: Bronze Damage (Level 90)
-        8486,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Proving Yourself: Bronze Tank (Level 90)
-        8487,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Proving Yourself: Bronze Healer (Level 90)
-        8488,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Proving Yourself: Silver Damage (Level 90)
-        8491,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Proving Yourself: Silver Tank (Level 90)
-        8492,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Proving Yourself: Silver Healer (Level 90)
-        8493,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Proving Yourself: Gold Damage (Level 90)
-        8496,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Proving Yourself: Gold Tank (Level 90)
-        8497,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Proving Yourself: Gold Healer (Level 90)
-        8498,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Proving Yourself: Endless Damage (Wave 10) (Level 90)
-        8501,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Proving Yourself: Endless Tank (Wave 10) (Level 90)
-        8502,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Proving Yourself: Endless Healer (Wave 10) (Level 90)
-        8503,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Proving Yourself: Endless Damage (Wave 20) (Level 90)
-        8504,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Proving Yourself: Endless Tank (Wave 20) (Level 90)
-        8505,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Proving Yourself: Endless Healer (Wave 20) (Level 90)
-        8506,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Proving Yourself: Endless Damage (Wave 30) (Level 90)
-        8507,
-        {
-            RewardType = rewardType.Title,
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Proving Yourself: Endless Tank (Wave 30) (Level 90)
-        8508,
-        {
-            RewardType = rewardType.Title,
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    { -- Proving Yourself: Endless Healer (Wave 30) (Level 90)
-        8509,
-        {
-            RewardType = rewardType.Title,
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    {8518}, -- Master of the Masters
-    {8519}, -- Celestial Family
-    {8520}, -- Fire in the Hole!
-    {8521}, -- Swallow Your Pride
-    {8527}, -- Giant Dinosaur vs. Mega Snail
-    {8528}, -- Go Long
-    {8529}, -- Criss Cross
-    {8530}, -- The Immortal Vanguard
-    {8531}, -- Now We are the Paragon
-    {8532}, -- None Shall Pass
-    {8533}, -- Ordos
-    {8535}, -- Celestial Challenge
-    {8536}, -- No More Tears
-    {8537}, -- Strike!
-    {8538}, -- Unlimited Potential
-    {8543}, -- Lasers and Magnets and Drills! Oh My!
-    { -- Prideful Combatant
-        8641,
-        faction.Horde,
-        8642,
-        {
-            RewardType = rewardType.Mount,
-            IsPvP = true,
-            {"PvP Season", 15},
-        },
-    },
-    { -- Prideful Combatant
-        8642,
-        faction.Alliance,
-        8641,
-        {
-            RewardType = rewardType.Mount,
-            IsPvP = true,
-            {"PvP Season", 15},
-        },
-    },
-    { -- Grievous Gladiator: Season 14
-        8643,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 14},
-        },
-    },
-    { -- Gladiator: Season 14
-        8644,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 14},
-        },
-    },
-    { -- Duelist: Season 14
-        8645,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 14},
-        },
-    },
-    { -- Rival: Season 14
-        8646,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 14},
-        },
-    },
-    { -- Challenger: Season 14
-        8649,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 14},
-        },
-    },
-    { -- Hero of the Alliance: Tyrannical
-        8652,
-        faction.Alliance,
-        8653,
-        {
-            IsPvP = true,
-            {"PvP Season", 13},
-        },
-    },
-    { -- Hero of the Horde: Tyrannical
-        8653,
-        faction.Horde,
-        8652,
-        {
-            IsPvP = true,
-            {"PvP Season", 13},
-        },
-    },
-    { -- Hero of the Alliance: Grievous
-        8654,
-        faction.Alliance,
-        8657,
-        {
-            IsPvP = true,
-            {"PvP Season", 14},
-        },
-    },
-    { -- Hero of the Horde: Grievous
-        8657,
-        faction.Horde,
-        8654,
-        {
-            IsPvP = true,
-            {"PvP Season", 14},
-        },
-    },
-    { -- Hero of the Alliance: Prideful
-        8658,
-        faction.Alliance,
-        8659,
-        {
-            IsPvP = true,
-            {"PvP Season", 15},
-        },
-    },
-    { -- Hero of the Horde: Prideful
-        8659,
-        faction.Horde,
-        8658,
-        {
-            IsPvP = true,
-            {"PvP Season", 15},
-        },
-    },
-    { -- Prideful Gladiator: Season 15
-        8666,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 15},
-        },
-    },
-    { -- Gladiator: Season 15
-        8667,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 15},
-        },
-    },
-    { -- Duelist: Season 15
-        8668,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 15},
-        },
-    },
-    { -- Rival: Season 15
-        8669,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 15},
-        },
-    },
-    { -- Challenger: Season 15
-        8670,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-            {"PvP Season", 15},
-        },
-    },
-    { -- Tyrannical Gladiator's Cloud Serpent
-        8678,
-        {
-            IsPvP = true,
-            {"PvP Season", 13},
-        },
-    },
-    { -- Conqueror of Orgrimmar
-        8679,
-        faction.Alliance,
-        8680,
-        {
-            RewardType = rewardType.Title,
-        },
-    },
-    { -- Liberator of Orgrimmar
-        8680,
-        faction.Horde,
-        8679,
-        {
-            RewardType = rewardType.Title,
-        },
-    },
-    { -- You're Doing it Wrong (Level 90)
-        8697,
-        {
-            {"Before", "Version", {6, 0, 2}},
-        },
-    },
-    {8698}, -- Crashin' Thrashin' Flyer
-    { -- The Danger Zone
-        8699,
-        {
-            {"Event", 141},
-        },
-    },
-    { -- Grievous Gladiator's Cloud Serpent
-        8705,
-        {
-            IsPvP = true,
-            {"PvP Season", 14},
-        },
-    },
-    { -- Prideful Gladiator's Cloud Serpent
-        8707,
-        {
-            IsPvP = true,
-            {"PvP Season", 15},
-        },
-    },
-    {8712}, -- Killing Time
-    {8714}, -- Timeless Champion
-    {8715}, -- Emperor Shaohao
-    {8716}, -- Emissary of Ordos
-    { -- Candlekeeper
-        8717,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Oathguard
-        8718,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Blazebinder
-        8719,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Kilnmaster
-        8720,
-        {
-            IsPvP = true,
-        },
-    },
-    { -- Fire-Watcher
-        8721,
-        {
-            RewardType = rewardType.Title,
-            IsPvP = true,
-        },
-    },
-    {8722}, -- Timeless Nutriment
-    {8723}, -- Legend of the Past
-    {8724}, -- Pilgrimage
-    {8725}, -- Eyes On The Ground
-    {8726}, -- Extreme Treasure Hunter
-    {8727}, -- Where There's Pirates, There's Booty
-    {8728}, -- Going To Need A Bigger Bag
-    {8729}, -- Treasure, Treasure Everywhere
-    {8730}, -- Rolo's Riddle
-    {8743}, -- Zarhym Altogether
-    {8784}, -- Timeless Legends
-    { -- Tyrannical Gladiator
-        8791,
-        {
-            IsPvP = true,
-            {"PvP Season", 13},
-        },
-    },
-};
+KrowiAF.AchievementData2["05_04_01"] = {
+	{KrowiAF.SetAchievementPatch, 5, 4, 1},
+	Ach(8793), -- Murkalot
+	Ach(8794):Obtainable("Before", "Date", {2019, 6, 11}), -- Friends In Places Even Higher Than That
+}
 
-KrowiAF.AchievementData["05_04_01"] = {
-    {KrowiAF.SetAchievementPatch, 5, 4, 1},
-    {8793}, -- Murkalot
-    { -- Friends In Places Even Higher Than That
-        8794,
-        {
-            {"Before", "Date", {2019, 6, 11}},
-        },
-    },
-};
-
-KrowiAF.AchievementData["05_04_02"] = {
-    {KrowiAF.SetAchievementPatch, 5, 4, 2},
-    {8795}, -- Collector's Edition: Treasure Goblin
-};
+KrowiAF.AchievementData2["05_04_02"] = {
+	{KrowiAF.SetAchievementPatch, 5, 4, 2},
+	Ach(8795), -- Collector's Edition: Treasure Goblin
+}

@@ -889,6 +889,7 @@ midnight.MythicPlus = {
             61256, -- Midnight Keystone Master: Season One
             61257, -- Midnight Keystone Hero: Season One
             61258, -- Midnight Keystone Legend: Season One
+            63097, -- Midnight Keystone Myth: Season One
             61259, -- Umbral Hero: Midnight Season One
         },
     },

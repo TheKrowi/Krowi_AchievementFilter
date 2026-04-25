@@ -656,4 +656,5 @@ KrowiAF.AchievementData2["12_00_05"] = {
 	Ach(62778), -- Abyss Anglers: Luck of the Loa
 	Ach(62829), -- Abyss Anglers: Don't Know What You Expected
 	Ach(62832), -- Abyss Anglers: Reservation for One
+	Ach(63097):Title():Mount():PvE(17), -- Midnight Keystone Myth: Season One
 }
