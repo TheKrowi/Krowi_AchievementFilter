@@ -5,7 +5,7 @@ local _, addon = ...
 -- Set MAJOR to the expansion being verified: 10 = Dragonflight, 11 = The War Within, etc.
 -- TEMPORARY — remove from .toc after verification is done.
 
-local MAJOR = 6 -- <<< SET THIS
+local MAJOR = 3 -- <<< SET THIS
 
 print("|cff00ff00[KAF-Verify]|r Script loaded OK (major=" .. MAJOR .. ")")
 

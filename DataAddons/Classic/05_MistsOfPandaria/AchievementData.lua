@@ -3057,6 +3057,7 @@ KrowiAF.AchievementData["05_05_01"] = {
 };
 
 KrowiAF.AchievementData["05_05_03"] = {
+    {KrowiAF.SetAchievementPatch, 5, 5, 3},
     {40821}, -- Successfully Stress Test CN Realms
     { -- Realm First! Challenge Conqueror: Platinum (Season 2) (Title Reward: The Thundering Stampede)
         61962,
