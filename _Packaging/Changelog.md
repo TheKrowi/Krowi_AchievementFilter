@@ -16,7 +16,7 @@ All notable changes to this project will be documented in this file.
 - Removed obsolete localization strings for anniversary event category names that are no longer needed (10th, 18th, 19th, 21st)
 
 ### Mists Classic
-- Changed Wrath of the Lich King achievement data internally migrated to a new fluent V2 builder format (dev note: this is an invisible change for users; the new format uses method chaining instead of nested tables — e.g. `Ach(12345):Mount():PvE(13)` — which greatly improves readability and reduces data entry errors)
+- Changed Wrath of the Lich King and Cataclysm achievement data internally migrated to a new fluent V2 builder format (dev note: this is an invisible change for users; the new format uses method chaining instead of nested tables — e.g. `Ach(12345):Mount():PvE(13)` — which greatly improves readability and reduces data entry errors)
 - Fixed Mists of Pandaria 5.5.3 missing build version
 
 ## 95.0 - 2026-04-22
