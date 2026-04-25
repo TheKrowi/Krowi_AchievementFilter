@@ -1,6 +1,5 @@
 <Ui>
     <Script file="AchievementData.lua" />
-    <!-- <Script file="AchievementDataV1.lua" /> -->
     <Script file="BuildVersionData.lua" />
     <Script file="EventData.lua" />
     <Script file="TooltipData.lua" />

@@ -36,7 +36,6 @@ Localization\Files.xml
 
 Krowi_AchievementFilter.lua
 Globals.lua
-VerifyHash.lua
 
 Diagnostics.lua
 Options\Files.xml
