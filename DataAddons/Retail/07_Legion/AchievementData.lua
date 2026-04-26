@@ -3,7 +3,7 @@ local shared = addon.Data.AchievementData.Shared
 local Ach = shared.Ach
 local faction = KrowiAF.Enum.Faction
 
-KrowiAF.AchievementData2["07_00_03"] = {
+KrowiAF.AchievementData["07_00_03"] = {
 	{KrowiAF.SetAchievementPatch, 7, 0, 3},
 	Ach(9686), -- Aquatic Acquiescence
 	Ach(9687), -- Best of the Beasts
@@ -323,7 +323,7 @@ KrowiAF.AchievementData2["07_00_03"] = {
 }
 
 
-KrowiAF.AchievementData2["07_02_00"] = {
+KrowiAF.AchievementData["07_02_00"] = {
 	{KrowiAF.SetAchievementPatch, 7, 2, 0},
 	Ach(10537):Obtainable("From", "Date", {2016, 9, 30}, "Until", "Date", {2016, 10, 9}), -- Patron of War
 	Ach(11276):AutoFactionSplit(faction.Alliance, 11277):Obtainable("Event", 341), -- Extinguishing Draenor
@@ -488,7 +488,7 @@ KrowiAF.AchievementData2["07_02_00"] = {
 }
 
 
-KrowiAF.AchievementData2["07_02_05"] = {
+KrowiAF.AchievementData["07_02_05"] = {
 	{KrowiAF.SetAchievementPatch, 7, 2, 5},
 	Ach(11848):Obtainable("From", "Date", {2017, 11, 16}, "Until", "Date", {2017, 11, 30}), -- WoW's 13th Anniversary
 	Ach(11856):Pet(), -- Pet Battle Challenge: Deadmines
@@ -504,7 +504,7 @@ KrowiAF.AchievementData2["07_02_05"] = {
 }
 
 
-KrowiAF.AchievementData2["07_03_00"] = {
+KrowiAF.AchievementData["07_03_00"] = {
 	{KrowiAF.SetAchievementPatch, 7, 3, 0},
 	Ach(11725):Transmog(), -- Fisherfriend of the Isles
 	Ach(11913), -- Don't Play With That In The House
@@ -590,7 +590,7 @@ KrowiAF.AchievementData2["07_03_00"] = {
 }
 
 
-KrowiAF.AchievementData2["07_03_02"] = {
+KrowiAF.AchievementData["07_03_02"] = {
 	{KrowiAF.SetAchievementPatch, 7, 3, 2},
 	Ach(11931), -- Rides of War
 	Ach(12134):Title():PvP(24), -- Dominant Gladiator: Legion Season 6
@@ -615,7 +615,7 @@ KrowiAF.AchievementData2["07_03_02"] = {
 }
 
 
-KrowiAF.AchievementData2["07_03_05"] = {
+KrowiAF.AchievementData["07_03_05"] = {
 	{KrowiAF.SetAchievementPatch, 7, 3, 5},
 	Ach(12185):Title():PvP(25), -- Demonic Gladiator: Legion Season 7
 	Ach(12186):Title():PvP(25), -- Duelist: Legion Season 7

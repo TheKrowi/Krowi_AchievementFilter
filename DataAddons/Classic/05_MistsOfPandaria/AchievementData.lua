@@ -3,7 +3,7 @@ local shared = addon.Data.AchievementData.Shared
 local Ach = shared.Ach
 local faction = KrowiAF.Enum.Faction
 
-KrowiAF.AchievementData2["05_00_04"] = {
+KrowiAF.AchievementData["05_00_04"] = {
 	{KrowiAF.SetAchievementPatch, 5, 0, 4},
 	Ach(6089), -- Keep Rollin' Rollin' Rollin'
 	Ach(6193):Obtainable("Before", "Version", {9, 0, 1}), -- Level 90 (Legacy)
@@ -468,7 +468,7 @@ KrowiAF.AchievementData2["05_00_04"] = {
 	Ach(7842), -- Collector's Edition: Baneling
 };
 
-KrowiAF.AchievementData2["05_01_00"] = {
+KrowiAF.AchievementData["05_01_00"] = {
 	{KrowiAF.SetAchievementPatch, 5, 1, 0},
 	Ach(7852), -- They're Both Footballs?
 	Ach(7853):Obtainable("Never"), -- WoW's 9th Anniversary
@@ -511,7 +511,7 @@ KrowiAF.AchievementData2["05_01_00"] = {
 	Ach(8030):AutoFactionSplit(faction.Alliance, 8031):Obtainable("Before", "Version", {6, 0, 2}), -- A Test of Valor
 };
 
-KrowiAF.AchievementData2["05_02_00"] = {
+KrowiAF.AchievementData["05_02_00"] = {
 	{KrowiAF.SetAchievementPatch, 5, 2, 0},
 	Ach(6954):Obtainable("Before", "Version", {5, 2, 0}), -- Ahead of the Curve: Will of the Emperor
 	Ach(8028), -- Praise the Sun!
@@ -610,7 +610,7 @@ KrowiAF.AchievementData2["05_02_00"] = {
 	Ach(8260):Obtainable("Before", "Version", {5, 4, 0}), -- Cutting Edge: Ra-den
 };
 
-KrowiAF.AchievementData2["05_03_00"] = {
+KrowiAF.AchievementData["05_03_00"] = {
 	{KrowiAF.SetAchievementPatch, 5, 3, 0},
 	Ach(8293):Pet(), -- Raiding with Leashes II: Attunement Edition
 	Ach(8294), -- The Secrets of Ragefire
@@ -656,7 +656,7 @@ KrowiAF.AchievementData2["05_03_00"] = {
 	Ach(8392):Title():IsPvP():Obtainable("From", "Date", {2013, 6, 18}, "Until", "Date", {2013, 8, 27}), -- Tournament Glory 2013
 };
 
-KrowiAF.AchievementData2["05_04_00"] = {
+KrowiAF.AchievementData["05_04_00"] = {
 	{KrowiAF.SetAchievementPatch, 5, 4, 0},
 	Ach(8381):AutoFactionSplit(faction.Horde, 8382):PvP(14), -- Grievous Conquest
 	Ach(8397):Title(), -- Crazy for Cats
@@ -775,18 +775,18 @@ KrowiAF.AchievementData2["05_04_00"] = {
 	Ach(8791):Title():PvP(13), -- Tyrannical Gladiator: Season 13 (3v3)
 };
 
-KrowiAF.AchievementData2["05_04_01"] = {
+KrowiAF.AchievementData["05_04_01"] = {
 	{KrowiAF.SetAchievementPatch, 5, 4, 1},
 	Ach(8793), -- Murkalot
 	Ach(8794):Obtainable("Before", "Date", {2019, 6, 11}), -- Friends In Places Even Higher Than That
 };
 
-KrowiAF.AchievementData2["05_04_02"] = {
+KrowiAF.AchievementData["05_04_02"] = {
 	{KrowiAF.SetAchievementPatch, 5, 4, 2},
 	Ach(8795), -- Collector's Edition: Treasure Goblin
 };
 
-KrowiAF.AchievementData2["05_05_00"] = {
+KrowiAF.AchievementData["05_05_00"] = {
 	{KrowiAF.SetAchievementPatch, 5, 5, 0},
 	Ach(8913), -- Collector's Edition: Dread Raven
 	Ach(8915), -- Collector's Edition: Dread Hatchling
@@ -810,7 +810,7 @@ KrowiAF.AchievementData2["05_05_00"] = {
 	Ach(60901), -- Pandaria Celestial Hero
 };
 
-KrowiAF.AchievementData2["05_05_01"] = {
+KrowiAF.AchievementData["05_05_01"] = {
 	{KrowiAF.SetAchievementPatch, 5, 5, 1},
 	Ach(61096):Title():PvP(13), -- Gladiator: Season 13 (3v3)
 	Ach(61097):Title():PvP(13), -- Duelist: Season 13
@@ -839,7 +839,7 @@ KrowiAF.AchievementData2["05_05_01"] = {
 	Ach(61459):AutoFactionSplit(faction.Horde, 61460):PvP(12), -- Malevolent Conquest
 };
 
-KrowiAF.AchievementData2["05_05_03"] = {
+KrowiAF.AchievementData["05_05_03"] = {
 	{KrowiAF.SetAchievementPatch, 5, 5, 3},
 	Ach(40821), -- Successfully Stress Test CN Realms
 	Ach(61962):Title(), -- Realm First! Challenge Conqueror: Platinum (Season 2)

@@ -3,7 +3,7 @@ local shared = addon.Data.AchievementData.Shared
 local Ach = shared.Ach
 local faction = KrowiAF.Enum.Faction
 
-KrowiAF.AchievementData2["08_00_01"] = {
+KrowiAF.AchievementData["08_00_01"] = {
 	{KrowiAF.SetAchievementPatch, 8, 0, 1},
 	Ach(11861):AutoFactionSplit(faction.Horde, 12473), -- The Throne of Zuldazar / A Sound Plan
 	Ach(11868):AutoFactionSplit(faction.Horde, 12497), -- The Dark Heart of Nazmir / Drust Do It.
@@ -334,7 +334,7 @@ KrowiAF.AchievementData2["08_00_01"] = {
 	Ach(13144), -- Wide World of Quests
 }
 
-KrowiAF.AchievementData2["08_01_00"] = {
+KrowiAF.AchievementData["08_01_00"] = {
 	{KrowiAF.SetAchievementPatch, 8, 1, 0},
 	Ach(13138), -- Flying Colors
 	Ach(13196), -- Meat Marauder
@@ -425,7 +425,7 @@ KrowiAF.AchievementData2["08_01_00"] = {
 	Ach(13451):Title():PvP(27), -- Elite: Battle for Azeroth Season 2
 }
 
-KrowiAF.AchievementData2["08_01_05"] = {
+KrowiAF.AchievementData["08_01_05"] = {
 	{KrowiAF.SetAchievementPatch, 8, 1, 5},
 	Ach(13161):AlliedRace():FactionSplit(faction.Horde, nil), -- Allied Races: Zandalari Troll
 	Ach(13163):AlliedRace():FactionSplit(faction.Alliance, nil), -- Allied Races: Kul Tiran
@@ -447,7 +447,7 @@ KrowiAF.AchievementData2["08_01_05"] = {
 	Ach(13517):Mount(), -- Two Sides to Every Tale
 }
 
-KrowiAF.AchievementData2["08_02_00"] = {
+KrowiAF.AchievementData["08_02_00"] = {
 	{KrowiAF.SetAchievementPatch, 8, 2, 0},
 	Ach(13250):Mount(), -- Battle for Azeroth Pathfinder, Part Two
 	Ach(13470), -- Rest In Pistons
@@ -585,7 +585,7 @@ KrowiAF.AchievementData2["08_02_00"] = {
 	Ach(13836), -- Feline Figurines Found
 }
 
-KrowiAF.AchievementData2["08_02_05"] = {
+KrowiAF.AchievementData["08_02_05"] = {
 	{KrowiAF.SetAchievementPatch, 8, 2, 5},
 	Ach(13917):Obtainable("From", "Date", {2019, 11, 5}, "Until", "Date", {2020, 1, 7}), -- WoW's 15th Anniversary
 	Ach(13924):Title():AutoFactionSplit(faction.Horde, 13925), -- The Fourth War
@@ -594,7 +594,7 @@ KrowiAF.AchievementData2["08_02_05"] = {
 	Ach(13931):Mount():Obtainable("From", "Date", {2019, 11, 5}, "Until", "Date", {2020, 1, 7}), -- Memories of Fel, Frost and Fire
 }
 
-KrowiAF.AchievementData2["08_03_00"] = {
+KrowiAF.AchievementData["08_03_00"] = {
 	{KrowiAF.SetAchievementPatch, 8, 3, 0},
 	Ach(13206):AlliedRace():FactionSplit(faction.Horde, nil), -- Allied Races: Vulpera
 	Ach(13957):Title():PvP(29), -- Corrupted Gladiator: Battle for Azeroth Season 4

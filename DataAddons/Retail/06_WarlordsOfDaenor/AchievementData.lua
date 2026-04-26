@@ -3,7 +3,7 @@ local shared = addon.Data.AchievementData.Shared
 local Ach = shared.Ach
 local faction = KrowiAF.Enum.Faction
 
-KrowiAF.AchievementData2["06_00_02"] = {
+KrowiAF.AchievementData["06_00_02"] = {
 	{KrowiAF.SetAchievementPatch, 6, 0, 2},
 	Ach(8671):Other():AutoFactionSplit(faction.Horde, 8845), -- You'll Get Caught Up In The... Frostfire! / As I Walk Through the Valley of the Shadow of Moon
 	Ach(8812):Obtainable("Never"), -- You're Really Doing It Wrong (Level 90)
@@ -431,7 +431,7 @@ KrowiAF.AchievementData2["06_00_02"] = {
 	Ach(9728), -- Grand Treasure Hunter
 }
 
-KrowiAF.AchievementData2["06_01_00"] = {
+KrowiAF.AchievementData["06_01_00"] = {
 	{KrowiAF.SetAchievementPatch, 6, 1, 0},
 	Ach(9755):Obtainable("Event", 374), -- Darkmoon Race Enthusiast
 	Ach(9756):Obtainable("Event", 374), -- Darkmoon Racer Novice
@@ -492,7 +492,7 @@ KrowiAF.AchievementData2["06_01_00"] = {
 	Ach(9926), -- Hero of the Storm
 }
 
-KrowiAF.AchievementData2["06_02_00"] = {
+KrowiAF.AchievementData["06_02_00"] = {
 	{KrowiAF.SetAchievementPatch, 6, 2, 0},
 	Ach(9972):Garrison(), -- A Race Against Slime
 	Ach(9979), -- Get In My Belly!
@@ -610,7 +610,7 @@ KrowiAF.AchievementData2["06_02_00"] = {
 	Ach(10349):AutoFactionSplit(faction.Horde, 10350), -- Tanaan Diplomat
 }
 
-KrowiAF.AchievementData2["06_02_02"] = {
+KrowiAF.AchievementData["06_02_02"] = {
 	{KrowiAF.SetAchievementPatch, 6, 2, 2},
 	Ach(10309), -- Collector's Edition: Zeradar
 	Ach(10320), -- Collector's Edition: Illidari Felstalker

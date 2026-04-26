@@ -47,7 +47,7 @@ local shared = addon.Data.AchievementData.Shared
 local Ach = shared.Ach
 local faction = KrowiAF.Enum.Faction -- only needed if FactionSplit is used
 
-KrowiAF.AchievementData2["13_00_00"] = {
+KrowiAF.AchievementData["13_00_00"] = {
     {KrowiAF.SetAchievementPatch, 13, 0, 0},
     -- Add achievement entries here using Ach() builder
     -- Examples:

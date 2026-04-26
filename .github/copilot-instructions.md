@@ -85,7 +85,7 @@ Game-version-conditional loading uses `[AllowLoadGameType mainline]` and `[Allow
 All Lua files use `local addonName, addon = ...;` (or `local _, addon = ...;`) to receive the shared addon table. The addon namespace is private. The public API is exposed via the `KrowiAF` global table (created in `Api/API.lua`). Key globals:
 - `KrowiAF` — Public API and data registration
 - `KrowiAF.Enum.*` — Enums (Faction, RewardType, EventType)
-- `KrowiAF.AchievementData`, `KrowiAF.AchievementData2`, `KrowiAF.CategoryData`, etc. — Data registration tables
+- `KrowiAF.AchievementData`, `KrowiAF.CategoryData`, etc. — Data registration tables
 - `KROWI_LIBMAN` — Library manager (from `Krowi_Util/LibMan.lua`)
 - `addon.*` sub-tables: `addon.Data`, `addon.Objects`, `addon.Gui`, `addon.Options`, `addon.Filters`, `addon.Diagnostics`, `addon.Plugins`, etc.
 
@@ -97,7 +97,7 @@ Declared in the `.toc`: `KrowiAF_DebugTable`, `KrowiAF_Options`, `KrowiAF_SavedD
 
 #### Achievement Data Format — V2 (Current Standard)
 
-All new achievement entries use `KrowiAF.AchievementData2` with the fluent `Ach()` builder. This applies to all expansions (Retail and Classic), including new patches added to existing old expansion files.
+All new achievement entries use `KrowiAF.AchievementData` with the fluent `Ach()` builder. This applies to all expansions (Retail and Classic), including new patches added to existing old expansion files.
 
 Required file header for any file using V2:
 ```lua
@@ -109,7 +109,7 @@ local faction = KrowiAF.Enum.Faction -- only if FactionSplit is used
 
 New patch table:
 ```lua
-KrowiAF.AchievementData2["11_01_00"] = {
+KrowiAF.AchievementData["11_01_00"] = {
     {KrowiAF.SetAchievementPatch, 11, 1, 0},
     Ach(12345),                                      -- simple
     Ach(12346):Mount(),                              -- reward type
@@ -118,11 +118,7 @@ KrowiAF.AchievementData2["11_01_00"] = {
 }
 ```
 
-**When adding a new patch to a file that still contains V1 entries** (expansions 01–10 and 12, pending migration): add the `shared`/`Ach` imports to the header if not present, then use `KrowiAF.AchievementData2` for the new patch table. The V1 entries in the same file are unaffected — both table keys coexist.
-
-#### V1 Format (Legacy — existing data only)
-
-Expansions 01–10 and 12 still contain V1-format entries using `KrowiAF.AchievementData` with positional/nested tables. Do not use V1 for new entries. See `docs/codebase-analysis.md` for the migration roadmap.
+**When adding a new patch to a file that still contains V1 entries** (expansions 01–10 and 12, pending migration): add the `shared`/`Ach` imports to the header if not present, then use `KrowiAF.AchievementData` for the new patch table. The V1 entries in the same file are unaffected — both table keys coexist.
 
 #### Steps for adding new achievements:
 1. Add achievement data in the appropriate `DataAddons/Retail/XX_ExpansionName/AchievementData.lua` file using V2 format. Canonical reference: `DataAddons/Retail/11_TheWarWithin/AchievementData.lua` and `Api/ApiDocumentation.lua`.

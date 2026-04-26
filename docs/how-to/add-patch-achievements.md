@@ -43,7 +43,7 @@ local faction = KrowiAF.Enum.Faction -- only needed if AutoFactionSplit or Facti
 Older expansion files (01–12, excluding 11) still contain V1-format entries (`KrowiAF.AchievementData`). When adding a **new patch** to such a file:
 
 1. Add the `shared`/`Ach` imports to the file header if not present.
-2. Use `KrowiAF.AchievementData2` for your new patch table (V2).
+2. Use `KrowiAF.AchievementData` for your new patch table (V2).
 3. The V1 entries in the same file are unaffected — both formats are supported simultaneously.
 
 ### Adding a new patch table
@@ -51,7 +51,7 @@ Older expansion files (01–12, excluding 11) still contain V1-format entries (`
 Add a new table keyed by `"<major>_<minor>_<patch>"` (zero-padded two digits):
 
 ```lua
-KrowiAF.AchievementData2["11_01_00"] = {
+KrowiAF.AchievementData["11_01_00"] = {
     {KrowiAF.SetAchievementPatch, 11, 1, 0},  -- Required: identifies the patch
     Ach(41234),                                -- Simple achievement: just the ID
     Ach(41235):Mount(),                        -- Achievement with a reward type
@@ -196,38 +196,4 @@ Add an entry to `_Packaging/Changelog.md` and `_Packaging/ReleaseNotes.md`:
 ```markdown
 ### Added
 - 11.1.0 achievements (23)
-```
-
----
-
-## Legacy Reference: V1 Format
-
-> **Do not use V1 for new data.** The entries below are shown only so you can read existing V1 files in expansions 01–10 and 12 that have not yet been migrated.
-
-```lua
--- V1 header imports
-local faction = KrowiAF.Enum.Faction;
-local rewardType = KrowiAF.Enum.RewardType;
-
-KrowiAF.AchievementData["12_01_00"] = {
-    {KrowiAF.SetAchievementPatch, 12, 1, 0},
-    {41234},                                   -- Simple achievement
-    {                                          -- With reward type
-        41235,
-        { RewardType = rewardType.Mount },
-    },
-    {                                          -- Faction split
-        41236,
-        faction.Alliance,
-        41237,
-    },
-    {                                          -- Temporarily obtainable
-        41238,
-        { {"Before", "Version", {12, 1, 0}} },
-    },
-    {                                          -- PvP + season
-        41239,
-        { IsPvP = true, {"PvP Season", 38} },
-    },
-}
 ```

@@ -3,7 +3,7 @@ local shared = addon.Data.AchievementData.Shared
 local Ach = shared.Ach
 local faction = KrowiAF.Enum.Faction
 
-KrowiAF.AchievementData2["12_00_00"] = {
+KrowiAF.AchievementData["12_00_00"] = {
 	{KrowiAF.SetAchievementPatch, 12, 0, 0},
 	Ach(41287), -- Windrunner Spire
 	Ach(41288), -- Heroic: Windrunner Spire
@@ -561,7 +561,7 @@ KrowiAF.AchievementData2["12_00_00"] = {
 	Ach(62517):IsPvP(), -- Rise of the Ultradon Slayer
 }
 
-KrowiAF.AchievementData2["12_00_05"] = {
+KrowiAF.AchievementData["12_00_05"] = {
 	{KrowiAF.SetAchievementPatch, 12, 0, 5},
 	Ach(61792), -- T-A-G that spells "Gotcha!"
 	Ach(61793), -- Deployed to the Void

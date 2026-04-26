@@ -31,11 +31,11 @@ KrowiAF.CategoryData.Example1 = {
 };
 
 -- V2 Achievement Data (current standard)
--- Use KrowiAF.AchievementData2 with the Ach() fluent builder.
+-- Use KrowiAF.AchievementData with the Ach() fluent builder.
 local _, addon = ...
 local shared = addon.Data.AchievementData.Shared
 local Ach = shared.Ach
-KrowiAF.AchievementData2["03_00_02_Example1"] = {
+KrowiAF.AchievementData["03_00_02_Example1"] = {
     {KrowiAF.SetAchievementPatch, 3, 0, 2}, -- Patch settings, used to show the "Added in patch" info [Required]
     Ach(6), -- A simple achievement with only its Id [Optional]
     Ach(19408):HousingDecor(), -- Achievement with a reward type [Optional]
@@ -47,22 +47,4 @@ KrowiAF.AchievementData2["03_00_02_Example1"] = {
     Ach(20525):Mount():PvE(13), -- Achievement with mount reward and PvE season [Optional]
     Ach(20579):Teleport():PvE(14), -- Achievement with teleport reward [Optional]
     Ach(40307):AlliedRace(), -- Achievement that unlocks an allied race [Optional]
-}
-
--- V1 Achievement Data (legacy — existing data only, do not use for new entries)
-KrowiAF.AchievementData["03_00_02_Example1_Legacy"] = {
-    {KrowiAF.SetAchievementPatch, 3, 0, 2}, -- Patch settings, used to show the "Added in patch" info [Required]
-    {6}, -- An achievement with only its Id [Optional]
-    { -- Another achievement [Optional]
-        37, -- Achievement Id [Required]
-        KrowiAF.Enum.Faction.Alliance, -- Achievement faction [Optional]
-        1357, -- Achievement Id for other faction [Optional]
-    },
-    { -- Another achievement [Optional]
-        404, -- Achievement Id [Required]
-        { -- Additional achievement info
-            IsPvP = true, -- Achievement is a PvP achievement [Optional]
-            {"Before", "Version", {7, 0, 3}}, -- Achievement temporary availability [Optional]
-        },
-    },
 }

@@ -3,7 +3,7 @@ local shared = addon.Data.AchievementData.Shared
 local Ach = shared.Ach
 local faction = KrowiAF.Enum.Faction
 
-KrowiAF.AchievementData2["03_00_02"] = {
+KrowiAF.AchievementData["03_00_02"] = {
 	{KrowiAF.SetAchievementPatch, 3, 0, 2},
 	Ach(6), -- Level 10
 	Ach(7), -- Level 20
@@ -851,7 +851,7 @@ KrowiAF.AchievementData2["03_00_02"] = {
 	Ach(3496), -- A Brew-FAST Mount
 }
 
-KrowiAF.AchievementData2["03_01_00"] = {
+KrowiAF.AchievementData["03_01_00"] = {
 	{KrowiAF.SetAchievementPatch, 3, 1, 0},
 	Ach(2416):Obtainable("Event", 181), -- Hard Boiled
 	Ach(2417):Obtainable("Event", 181), -- Chocolate Lover
@@ -1041,7 +1041,7 @@ KrowiAF.AchievementData2["03_01_00"] = {
 	Ach(3756):PvP(6), -- Furious Gladiator's Frost Wyrm
 }
 
-KrowiAF.AchievementData2["03_02_00"] = {
+KrowiAF.AchievementData["03_02_00"] = {
 	{KrowiAF.SetAchievementPatch, 3, 2, 0},
 	Ach(3456):Obtainable("Event", 409), -- Dead Man's Party
 	Ach(3457):Obtainable("Event", 398), -- The Captain's Booty
@@ -1113,7 +1113,7 @@ KrowiAF.AchievementData2["03_02_00"] = {
 	Ach(4316):Obtainable("Before", "Version", {4, 0, 3}), -- 2500 Dungeon & Raid Emblems
 }
 
-KrowiAF.AchievementData2["03_02_02"] = {
+KrowiAF.AchievementData["03_02_02"] = {
 	{KrowiAF.SetAchievementPatch, 3, 2, 2},
 	Ach(4396), -- Onyxia's Lair (10 player)
 	Ach(4397), -- Onyxia's Lair (25 player)
@@ -1133,7 +1133,7 @@ KrowiAF.AchievementData2["03_02_02"] = {
 	Ach(4586), -- Toravon the Ice Watcher (25 player)
 }
 
-KrowiAF.AchievementData2["03_03_00"] = {
+KrowiAF.AchievementData["03_03_00"] = {
 	{KrowiAF.SetAchievementPatch, 3, 3, 0},
 	Ach(4516), -- The Forge of Souls
 	Ach(4517), -- The Pit of Saron
@@ -1210,14 +1210,14 @@ KrowiAF.AchievementData2["03_03_00"] = {
 	Ach(4637), -- Heroic: Fall of the Lich King (25 player)
 }
 
-KrowiAF.AchievementData2["03_03_03"] = {
+KrowiAF.AchievementData["03_03_03"] = {
 	{KrowiAF.SetAchievementPatch, 3, 3, 3},
 	Ach(4782):Obtainable("Never"), -- Green Brewfest Stein
 	Ach(4786):FactionSplit(faction.Alliance, nil):Obtainable("Before", "Version", {4, 0, 1}), -- Operation: Gnomeregan
 	Ach(4790):FactionSplit(faction.Horde, nil):Obtainable("Before", "Version", {4, 0, 1}), -- Zalazane's Fall
 }
 
-KrowiAF.AchievementData2["03_03_05"] = {
+KrowiAF.AchievementData["03_03_05"] = {
 	{KrowiAF.SetAchievementPatch, 3, 3, 5},
 	Ach(4815), -- The Twilight Destroyer (25 player)
 	Ach(4816), -- Heroic: The Twilight Destroyer (25 player)

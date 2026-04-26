@@ -3,7 +3,7 @@ local shared = addon.Data.AchievementData.Shared
 local Ach = shared.Ach
 local faction = KrowiAF.Enum.Faction
 
-KrowiAF.AchievementData2["09_00_01"] = {
+KrowiAF.AchievementData["09_00_01"] = {
 	{KrowiAF.SetAchievementPatch, 9, 0, 1},
 	Ach(13878), -- The Master of Revendreth
 	Ach(14164), -- Awaken, Ardenweald
@@ -270,7 +270,7 @@ KrowiAF.AchievementData2["09_00_01"] = {
 	Ach(14815):AutoFactionSplit(faction.Horde, 14817):IsPvP(), -- Executing the Exarch / Opposing Orgrimmar
 }
 
-KrowiAF.AchievementData2["09_00_02"] = {
+KrowiAF.AchievementData["09_00_02"] = {
 	{KrowiAF.SetAchievementPatch, 9, 0, 2},
 	Ach(14816):PvP(30), -- Sinful Gladiator's Soul Eater
 	Ach(14825), -- Shadowlands Voyager
@@ -323,7 +323,7 @@ KrowiAF.AchievementData2["09_00_02"] = {
 	Ach(14904):Obtainable("From", "Date", {2021, 2, 1}, "Until", "Date", {2022, 2, 20}), -- Netherwhelp Online
 }
 
-KrowiAF.AchievementData2["09_00_05"] = {
+KrowiAF.AchievementData["09_00_05"] = {
 	{KrowiAF.SetAchievementPatch, 9, 0, 5},
 	Ach(14931), -- Flying Festivities
 	Ach(14938):PvE(5), -- Shadowlands Keystone Explorer: Season One
@@ -332,7 +332,7 @@ KrowiAF.AchievementData2["09_00_05"] = {
 	Ach(15025):Other(), -- Sanctum Superior
 }
 
-KrowiAF.AchievementData2["09_01_00"] = {
+KrowiAF.AchievementData["09_01_00"] = {
 	{KrowiAF.SetAchievementPatch, 9, 1, 0},
 	Ach(14942):Obtainable("From", "Date", {2021, 11, 15}, "Until", "Date", {2021, 12, 6}), -- WoW's 17th Anniversary
 	Ach(14943), -- Guarmageddon
@@ -441,7 +441,7 @@ KrowiAF.AchievementData2["09_01_00"] = {
 	Ach(15191), -- Rae'shalare, Death's Whisper
 }
 
-KrowiAF.AchievementData2["09_01_05"] = {
+KrowiAF.AchievementData["09_01_05"] = {
 	{KrowiAF.SetAchievementPatch, 9, 1, 5},
 	Ach(15181):Obtainable("Event", 141), -- Rock n' Roll
 	Ach(15232):PvP(31), -- Combatant II: Shadowlands Season 2
@@ -457,7 +457,7 @@ KrowiAF.AchievementData2["09_01_05"] = {
 	Ach(15388), -- Shadowlands Explorer
 }
 
-KrowiAF.AchievementData2["09_02_00"] = {
+KrowiAF.AchievementData["09_02_00"] = {
 	{KrowiAF.SetAchievementPatch, 9, 2, 0},
 	Ach(15211):Toy(), -- Completing the Code
 	Ach(15212):Obtainable("Event", 374), -- First Dance
@@ -568,7 +568,7 @@ KrowiAF.AchievementData2["09_02_00"] = {
 	Ach(15544):Title():IsPvP(), -- Supreme Soloist
 }
 
-KrowiAF.AchievementData2["09_02_05"] = {
+KrowiAF.AchievementData["09_02_05"] = {
 	{KrowiAF.SetAchievementPatch, 9, 2, 5},
 	Ach(15579):Title():Other(), -- Return to Lordaeron
 	Ach(15594):Title():Obtainable("From", "Date", {2022, 7, 8}, "Until", "Date", {2022, 7, 24}), -- Fearless Spectator
@@ -617,7 +617,7 @@ KrowiAF.AchievementData2["09_02_05"] = {
 	Ach(15756):Title():PvE(8), -- Shrouded Hero: Shadowlands Season 4
 }
 
-KrowiAF.AchievementData2["09_02_07"] = {
+KrowiAF.AchievementData["09_02_07"] = {
 	{KrowiAF.SetAchievementPatch, 9, 2, 7},
 	Ach(15468):Obtainable("From", "PvE Season", 8, "Before", "Version", {10, 0, 2}), -- We Are All Made of Stars (Heroic)
 	Ach(15469):Obtainable("From", "PvE Season", 8, "Before", "Version", {10, 0, 2}), -- We Are All Made of Stars (Mythic)

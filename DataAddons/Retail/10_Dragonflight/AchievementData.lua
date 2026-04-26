@@ -3,7 +3,7 @@ local shared = addon.Data.AchievementData.Shared
 local Ach = shared.Ach
 local faction = KrowiAF.Enum.Faction
 
-KrowiAF.AchievementData2["10_00_00"] = {
+KrowiAF.AchievementData["10_00_00"] = {
 	{KrowiAF.SetAchievementPatch, 10, 0, 0},
 	Ach(15325):AutoFactionSplit(faction.Alliance, 15638), -- Dracthyr, Awaken
 	Ach(15394), -- Ohn'a'Roll
@@ -367,7 +367,7 @@ KrowiAF.AchievementData2["10_00_00"] = {
 	Ach(16683), -- In Tyr's Footsteps
 }
 
-KrowiAF.AchievementData2["10_00_02"] = {
+KrowiAF.AchievementData["10_00_02"] = {
 	{KrowiAF.SetAchievementPatch, 10, 0, 2},
 	Ach(15640), -- Return to Darkness
 	Ach(16729), -- To All the Squirrels Hidden Til Now
@@ -400,7 +400,7 @@ KrowiAF.AchievementData2["10_00_02"] = {
 	Ach(17339):Title():PvP(34), -- Legend: Dragonflight Season 1
 }
 
-KrowiAF.AchievementData2["10_00_05"] = {
+KrowiAF.AchievementData["10_00_05"] = {
 	{KrowiAF.SetAchievementPatch, 10, 0, 5},
 	Ach(16696), -- Renewed Proto-Drake Armor
 	Ach(16697), -- Renewed Proto-Drake Head Features
@@ -448,7 +448,7 @@ KrowiAF.AchievementData2["10_00_05"] = {
 	Ach(17345):Title():IsPvP(), -- Airborne Tumbler
 }
 
-KrowiAF.AchievementData2["10_00_07"] = {
+KrowiAF.AchievementData["10_00_07"] = {
 	{KrowiAF.SetAchievementPatch, 10, 0, 7},
 	Ach(17279), -- Forbidden Reach: Bronze
 	Ach(17280), -- Forbidden Reach: Silver
@@ -502,7 +502,7 @@ KrowiAF.AchievementData2["10_00_07"] = {
 	Ach(17546), -- A New Beginning
 }
 
-KrowiAF.AchievementData2["10_01_00"] = {
+KrowiAF.AchievementData["10_01_00"] = {
 	{KrowiAF.SetAchievementPatch, 10, 1, 0},
 	Ach(17483), -- Zaralek Cavern: Bronze
 	Ach(17484):Mount(), -- Zaralek Cavern: Silver
@@ -647,7 +647,7 @@ KrowiAF.AchievementData2["10_01_00"] = {
 	Ach(18542):PvE(10), -- Dragonflight Keystone Master: Season Two
 }
 
-KrowiAF.AchievementData2["10_01_05"] = {
+KrowiAF.AchievementData["10_01_05"] = {
 	{KrowiAF.SetAchievementPatch, 10, 1, 5},
 	Ach(17712):Obtainable("Event", 1395), -- Kalimdor: Bronze
 	Ach(17713):Obtainable("Event", 1395), -- Kalimdor: Silver
@@ -707,7 +707,7 @@ KrowiAF.AchievementData2["10_01_05"] = {
 	Ach(18977):Obtainable("Before", "Version", {11, 0, 0}), -- Draconically Epic
 }
 
-KrowiAF.AchievementData2["10_01_07"] = {
+KrowiAF.AchievementData["10_01_07"] = {
 	{KrowiAF.SetAchievementPatch, 10, 1, 7},
 	Ach(15344), -- "S.A.F.E"" Pilot"
 	Ach(17344), -- Warcraft Rumble Minis, Get 'Em All!
@@ -905,7 +905,7 @@ KrowiAF.AchievementData2["10_01_07"] = {
 	Ach(19192), -- Lil' Frostwing
 }
 
-KrowiAF.AchievementData2["10_02_00"] = {
+KrowiAF.AchievementData["10_02_00"] = {
 	{KrowiAF.SetAchievementPatch, 10, 2, 0},
 	Ach(18958):Title(), -- Of the Tyr's Guard
 	Ach(19009):PvE(11), -- Dragonflight Keystone Explorer: Season Three
@@ -1033,7 +1033,7 @@ KrowiAF.AchievementData2["10_02_00"] = {
 	Ach(19461), -- Kissed by the Wind
 }
 
-KrowiAF.AchievementData2["10_02_05"] = {
+KrowiAF.AchievementData["10_02_05"] = {
 	{KrowiAF.SetAchievementPatch, 10, 2, 5},
 	Ach(19400):Obtainable("Event", 423), -- Support Your Local Artisans
 	Ach(19508):Obtainable("Event", 423), -- Love Language Expert
@@ -1065,7 +1065,7 @@ KrowiAF.AchievementData2["10_02_05"] = {
 	Ach(20206):Title(), -- Champion of the Dragonflights
 }
 
-KrowiAF.AchievementData2["10_02_06"] = {
+KrowiAF.AchievementData["10_02_06"] = {
 	{KrowiAF.SetAchievementPatch, 10, 2, 6},
 	Ach(19453):Title():PvP(37), -- Draconic Legend: Dragonflight Season 4
 	Ach(19454):Title():PvP(37), -- Draconic Gladiator: Dragonflight Season 4
@@ -1117,7 +1117,7 @@ KrowiAF.AchievementData2["10_02_06"] = {
 	Ach(20509), -- Plunderkind
 }
 
-KrowiAF.AchievementData2["10_02_07"] = {
+KrowiAF.AchievementData["10_02_07"] = {
 	{KrowiAF.SetAchievementPatch, 10, 2, 7},
 	Ach(19871):Obtainable("Event", 1514), -- Infinite Power
 	Ach(19872):Toy():Obtainable("Event", 1514), -- The Jade Forest

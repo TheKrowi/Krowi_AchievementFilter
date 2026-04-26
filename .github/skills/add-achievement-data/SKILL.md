@@ -191,15 +191,15 @@ Before generating output, determine the target patch using **Option D** approach
 
 ### Step 2: Scan File for Existing Patches
 - Read the currently open AchievementData.lua file
-- Find all patch keys in both `KrowiAF.AchievementData["X_Y_Z"]` (V1) and `KrowiAF.AchievementData2["X_Y_Z"]` (V2)
+- Find all patch keys in `KrowiAF.AchievementData["X_Y_Z"]`
 - Extract patch versions: parse as `{major=X, minor=Y, patch=Z}`
 - Identify the **latest patch** (highest version across both formats)
 
 Example scan:
 ```lua
-KrowiAF.AchievementData2["11_00_00"] = { ... }   -- 11.0.0
-KrowiAF.AchievementData2["11_01_00"] = { ... }   -- 11.1.0
-KrowiAF.AchievementData2["11_02_00"] = { ... }   -- Latest: 11.2.0
+KrowiAF.AchievementData["11_00_00"] = { ... }   -- 11.0.0
+KrowiAF.AchievementData["11_01_00"] = { ... }   -- 11.1.0
+KrowiAF.AchievementData["11_02_00"] = { ... }   -- Latest: 11.2.0
 ```
 Result: Latest patch = `11.2.0`
 
@@ -221,7 +221,7 @@ C) Specify custom patch version (e.g., 11.3.0)
 - If appending to existing patch: **no new patch marker needed**, just append entries
 - If creating new patch: **insert new patch section** with marker:
   ```lua
-  KrowiAF.AchievementData2["11_02_05"] = {
+  KrowiAF.AchievementData["11_02_05"] = {
       {KrowiAF.SetAchievementPatch, 11, 2, 5},
       -- new achievement entries...
   }

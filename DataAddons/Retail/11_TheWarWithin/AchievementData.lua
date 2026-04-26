@@ -3,7 +3,7 @@ local shared = addon.Data.AchievementData.Shared
 local Ach = shared.Ach
 local faction = KrowiAF.Enum.Faction
 
-KrowiAF.AchievementData2["11_00_00"] = {
+KrowiAF.AchievementData["11_00_00"] = {
 	{KrowiAF.SetAchievementPatch, 11, 0, 0},
 	Ach(19408):HousingDecor(), -- Professional Algari Master
 	Ach(19409), -- Working Underground
@@ -382,7 +382,7 @@ KrowiAF.AchievementData2["11_00_00"] = {
 	Ach(40860), -- A Star of Dorn
 }
 
-KrowiAF.AchievementData2["11_00_02"] = {
+KrowiAF.AchievementData["11_00_02"] = {
 	{KrowiAF.SetAchievementPatch, 11, 0, 2},
 	Ach(40862):Obtainable("Event", 324), -- Tricks and Treats of Khaz Algar
 	Ach(40863), -- Perplexing Puzzle
@@ -400,7 +400,7 @@ KrowiAF.AchievementData2["11_00_02"] = {
 	Ach(40939):PvE(13), -- Harbinger of the Gilded
 }
 
-KrowiAF.AchievementData2["11_00_05"] = {
+KrowiAF.AchievementData["11_00_05"] = {
 	{KrowiAF.SetAchievementPatch, 11, 0, 5},
 	Ach(15644):Pet(), -- Good Things Come in Small Packages
 	Ach(40661):Anniv20(), -- Zoomies!
@@ -438,7 +438,7 @@ KrowiAF.AchievementData2["11_00_05"] = {
 	Ach(41220):Anniv20(), -- WoW's 20th Anniversary
 }
 
-KrowiAF.AchievementData2["11_00_07"] = {
+KrowiAF.AchievementData["11_00_07"] = {
 	{KrowiAF.SetAchievementPatch, 11, 0, 7},
 	Ach(40762), -- Khaz Algar Lore Hunter
 	Ach(40791):Title(), -- Fate of the Kirin Tor
@@ -507,7 +507,7 @@ KrowiAF.AchievementData2["11_00_07"] = {
 	Ach(41209), -- Dressed to Kill: Battle for Azeroth
 }
 
-KrowiAF.AchievementData2["11_01_00"] = {
+KrowiAF.AchievementData["11_01_00"] = {
 	{KrowiAF.SetAchievementPatch, 11, 1, 0},
 	Ach(40142), -- Learning to Share
 	Ach(40145), -- So Much Sharing
@@ -665,7 +665,7 @@ KrowiAF.AchievementData2["11_01_00"] = {
 	Ach(41723), -- Buddy System VIII
 }
 
-KrowiAF.AchievementData2["11_01_05"] = {
+KrowiAF.AchievementData["11_01_05"] = {
 	{KrowiAF.SetAchievementPatch, 11, 1, 5},
 	Ach(41631):AutoFactionSplit(faction.Alliance, 41632):Obtainable("Event", 341), -- Flame Warden / Keeper of Khaz Algar
 	Ach(41706):Obtainable("Event", 1599), -- Dastardly Duos Weekly High Score
@@ -726,7 +726,7 @@ KrowiAF.AchievementData2["11_01_05"] = {
 	Ach(42148):Title():PvE(14), -- The Enterprising Dungeon Master
 }
 
-KrowiAF.AchievementData2["11_01_07"] = {
+KrowiAF.AchievementData["11_01_07"] = {
 	{KrowiAF.SetAchievementPatch, 11, 1, 7},
 	Ach(41779):Mount():Obtainable("Event", 1425, false), -- Master of the Turbulent Timeways III
 	Ach(41818):AutoFactionSplit(faction.Alliance, 41820):Title(), -- Rise of the Red Dawn
@@ -741,7 +741,7 @@ KrowiAF.AchievementData2["11_01_07"] = {
 	Ach(42241):Toy():Obtainable("Before", "Version", {11, 2, 0}), -- Overcharged Delver
 }
 
-KrowiAF.AchievementData2["11_02_00"] = {
+KrowiAF.AchievementData["11_02_00"] = {
 	{KrowiAF.SetAchievementPatch, 11, 2, 0},
 	Ach(41024):Title():PvP(40), -- Rival I: The War Within Season 3
 	Ach(41025):PvP(40), -- Rival II: The War Within Season 3
@@ -883,7 +883,7 @@ KrowiAF.AchievementData2["11_02_00"] = {
 	Ach(61402), -- Epic Edition: Voidlight Surger
 }
 
-KrowiAF.AchievementData2["11_02_05"] = {
+KrowiAF.AchievementData["11_02_05"] = {
 	{KrowiAF.SetAchievementPatch, 11, 2, 5},
  Ach(42301):Title():Obtainable("Event", 1640), -- Timerunner
 	Ach(42312):RemixBronze():Obtainable("Event", 1640), -- Artifact, Remixed
@@ -1140,7 +1140,7 @@ KrowiAF.AchievementData2["11_02_05"] = {
 	Ach(61877):Title():PvE(15), -- The Unbound Dungeon Master
 }
 
-KrowiAF.AchievementData2["11_02_07"] = {
+KrowiAF.AchievementData["11_02_07"] = {
 	{KrowiAF.SetAchievementPatch, 11, 2, 7},
 	Ach(42192), -- Snowball Fight!
 	Ach(42270):HousingDecor(), -- The Deathlord's Campaign

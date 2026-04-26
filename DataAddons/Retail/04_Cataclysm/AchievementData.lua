@@ -3,7 +3,7 @@ local shared = addon.Data.AchievementData.Shared
 local Ach = shared.Ach
 local faction = KrowiAF.Enum.Faction
 
-KrowiAF.AchievementData2["04_00_01"] = {
+KrowiAF.AchievementData["04_00_01"] = {
 	{KrowiAF.SetAchievementPatch, 4, 0, 1},
 	Ach(4832):Obtainable("Before", "Date", {2019, 6, 11}), -- Friends In Even Higher Places
 	Ach(4887):Obtainable("From", "Date", {2010, 11, 1}, "Until", "Date", {2010, 11, 22}), -- Tripping the Rifts
@@ -16,7 +16,7 @@ KrowiAF.AchievementData2["04_00_01"] = {
 	Ach(5538):Obtainable("Before", "Version", {6, 0, 2}), -- 50,000 Valor Points
 }
 
-KrowiAF.AchievementData2["04_00_03"] = {
+KrowiAF.AchievementData["04_00_03"] = {
 	{KrowiAF.SetAchievementPatch, 4, 0, 3},
 	Ach(4825), -- Explore Vashj'ir
 	Ach(4826):Obtainable("Before", "Version", {9, 0, 1}), -- Level 85 (Legacy)
@@ -309,13 +309,13 @@ KrowiAF.AchievementData2["04_00_03"] = {
 	Ach(5548), -- To All the Squirrels Who Cared for Me
 }
 
-KrowiAF.AchievementData2["04_00_06"] = {
+KrowiAF.AchievementData["04_00_06"] = {
 	{KrowiAF.SetAchievementPatch, 4, 0, 6},
 	Ach(5718):AutoFactionSplit(faction.Alliance, 5719), -- Just Another Day in Tol Barad
 	Ach(5723), -- 50 Exalted Reputations
 }
 
-KrowiAF.AchievementData2["04_01_00"] = {
+KrowiAF.AchievementData["04_01_00"] = {
 	{KrowiAF.SetAchievementPatch, 4, 1, 0},
 	Ach(5743), -- It's Not Easy Being Green
 	Ach(5744), -- Gurubashi Headhunter
@@ -338,7 +338,7 @@ KrowiAF.AchievementData2["04_01_00"] = {
 	Ach(5788):Obtainable("Before", "Version", {4, 0, 3}), -- Agent of the Shen'dralar
 }
 
-KrowiAF.AchievementData2["04_02_00"] = {
+KrowiAF.AchievementData["04_02_00"] = {
 	{KrowiAF.SetAchievementPatch, 4, 2, 0},
 	Ach(5794), -- Time Flies When You're Having Fun
 	Ach(5799), -- Only the Penitent...
@@ -391,12 +391,12 @@ KrowiAF.AchievementData2["04_02_00"] = {
 	Ach(5879):Title(), -- Veteran of the Molten Front
 }
 
-KrowiAF.AchievementData2["04_02_02"] = {
+KrowiAF.AchievementData["04_02_02"] = {
 	{KrowiAF.SetAchievementPatch, 4, 2, 2},
 	Ach(6045), -- Occu'thar
 }
 
-KrowiAF.AchievementData2["04_03_00"] = {
+KrowiAF.AchievementData["04_03_00"] = {
 	{KrowiAF.SetAchievementPatch, 4, 3, 0},
 	Ach(5853):AutoFactionSplit(faction.Alliance, 5854):Obtainable("Event", 141), -- A-Caroling We Will Go
 	Ach(5995), -- Moon Guard
@@ -457,7 +457,7 @@ KrowiAF.AchievementData2["04_03_00"] = {
 	Ach(6185), -- Murkablo
 }
 
-KrowiAF.AchievementData2["04_03_02"] = {
+KrowiAF.AchievementData["04_03_02"] = {
 	{KrowiAF.SetAchievementPatch, 4, 3, 2},
 	Ach(6316):AutoFactionSplit(faction.Alliance, 6317):PvP(10), -- Hero of the Alliance / Horde: Ruthless
 	Ach(6322):PvP(10), -- Ruthless Gladiator's Twilight Drake
