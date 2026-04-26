@@ -49,14 +49,14 @@ KrowiAF.AchievementData2["10_00_00"] = {
 	Ach(15941):Title(), -- Dragon Racing Completionist: Gold
 	Ach(15951):Title():PvP(34), -- Crimson Gladiator: Dragonflight Season 1
 	Ach(15952):Title():PvP(34), -- Rival I: Dragonflight Season 1
-	Ach(15953):IsPvP():Obtainable("PvP Season", 34), -- Rival II: Dragonflight Season 1
+	Ach(15953):PvP(34), -- Rival II: Dragonflight Season 1
 	Ach(15954):Title():PvP(34), -- Duelist: Dragonflight Season 1
 	Ach(15955):Title():PvP(34), -- Challenger I: Dragonflight Season 1
-	Ach(15956):IsPvP():Obtainable("PvP Season", 34), -- Challenger II: Dragonflight Season 1
+	Ach(15956):PvP(34), -- Challenger II: Dragonflight Season 1
 	Ach(15957):Title():Mount():Transmog():PvP(34), -- Gladiator: Dragonflight Season 1
-	Ach(15958):AutoFactionSplit(faction.Horde, 15959):IsPvP():Obtainable("PvP Season", 34), -- Hero of the Horde / Alliance: Crimson
+	Ach(15958):AutoFactionSplit(faction.Horde, 15959):PvP(34), -- Hero of the Horde / Alliance: Crimson
 	Ach(15960):Title():PvP(34), -- Combatant I: Dragonflight Season 1
-	Ach(15961):IsPvP():Obtainable("PvP Season", 34), -- Combatant II: Dragonflight Season 1
+	Ach(15961):PvP(34), -- Combatant II: Dragonflight Season 1
 	Ach(15984):Title():PvP(34), -- Elite: Dragonflight Season 1
 	Ach(15985), -- Dragon Glyphs: Skytop Observatory Tower
 	Ach(15986), -- Dragon Glyphs: Wingrest Embassy
@@ -371,7 +371,7 @@ KrowiAF.AchievementData2["10_00_02"] = {
 	{KrowiAF.SetAchievementPatch, 10, 0, 2},
 	Ach(15640), -- Return to Darkness
 	Ach(16729), -- To All the Squirrels Hidden Til Now
-	Ach(16730):IsPvP():Obtainable("PvP Season", 34), -- Crimson Gladiator's Drake
+	Ach(16730):PvP(34), -- Crimson Gladiator's Drake
 	Ach(16731):Title(), -- Court is Now in Session
 	Ach(16734):Title():PvP(34), -- Crimson Legend: Dragonflight Season 1
 	Ach(16736), -- Grand Theft Mammoth
@@ -545,8 +545,8 @@ KrowiAF.AchievementData2["10_01_00"] = {
 	Ach(17765), -- What We Wear In The Shadowflame
 	Ach(17766), -- Explore Zaralek Cavern
 	Ach(17767):Title():PvP(35), -- Obsidian Legend: Dragonflight Season 2
-	Ach(17768):AutoFactionSplit(faction.Alliance, 17772):IsPvP():Obtainable("PvP Season", 35), -- Hero of the Alliance / Horde: Obsidian
-	Ach(17778):IsPvP():Obtainable("PvP Season", 35), -- Obsidian Gladiator's Slitherdrake
+	Ach(17768):AutoFactionSplit(faction.Alliance, 17772):PvP(35), -- Hero of the Alliance / Horde: Obsidian
+	Ach(17778):PvP(35), -- Obsidian Gladiator's Slitherdrake
 	Ach(17779), -- A Serpentine Discovery
 	Ach(17781), -- The Smell of Money
 	Ach(17783), -- Adventurer of Zaralek Cavern
@@ -554,11 +554,11 @@ KrowiAF.AchievementData2["10_01_00"] = {
 	Ach(17786), -- Treasures of Zaralek Cavern
 	Ach(17794):Title():PvP(35), -- Duelist: Dragonflight Season 2
 	Ach(17795):Title():PvP(35), -- Rival I: Dragonflight Season 2
-	Ach(17796):IsPvP():Obtainable("PvP Season", 35), -- Rival II: Dragonflight Season 2
+	Ach(17796):PvP(35), -- Rival II: Dragonflight Season 2
 	Ach(17797):Title():PvP(35), -- Challenger I: Dragonflight Season 2
-	Ach(17798):IsPvP():Obtainable("PvP Season", 35), -- Challenger II: Dragonflight Season 2
+	Ach(17798):PvP(35), -- Challenger II: Dragonflight Season 2
 	Ach(17799):Title():PvP(35), -- Combatant I: Dragonflight Season 2
-	Ach(17800):IsPvP():Obtainable("PvP Season", 35), -- Combatant II: Dragonflight Season 2
+	Ach(17800):PvP(35), -- Combatant II: Dragonflight Season 2
 	Ach(17801):Title():PvP(35), -- Legend: Dragonflight Season 2
 	Ach(17830), -- Stones Can't Fly!
 	Ach(17831):Title():PvP(35), -- Elite: Dragonflight Season 2
@@ -951,13 +951,13 @@ KrowiAF.AchievementData2["10_02_00"] = {
 	Ach(19131):Title():PvP(36), -- Verdant Legend: Dragonflight Season 3
 	Ach(19132):Title():PvP(36), -- Verdant Gladiator: Dragonflight Season 3
 	Ach(19133):Title():PvP(36), -- Rival I: Dragonflight Season 3
-	Ach(19155):IsPvP():Obtainable("PvP Season", 36), -- Rival II: Dragonflight Season 3
+	Ach(19155):PvP(36), -- Rival II: Dragonflight Season 3
 	Ach(19156):Title():PvP(36), -- Duelist: Dragonflight Season 3
 	Ach(19157):Title():PvP(36), -- Combatant I: Dragonflight Season 3
-	Ach(19158):IsPvP():Obtainable("PvP Season", 36), -- Combatant II: Dragonflight Season 3
+	Ach(19158):PvP(36), -- Combatant II: Dragonflight Season 3
 	Ach(19159):Title():PvP(36), -- Challenger I: Dragonflight Season 3
-	Ach(19160):IsPvP():Obtainable("PvP Season", 36), -- Challenger II: Dragonflight Season 3
-	Ach(19161):AutoFactionSplit(faction.Horde, 19162):IsPvP():Obtainable("PvP Season", 36), -- Hero of the Horde / Alliance: Verdant
+	Ach(19160):PvP(36), -- Challenger II: Dragonflight Season 3
+	Ach(19161):AutoFactionSplit(faction.Horde, 19162):PvP(36), -- Hero of the Horde / Alliance: Verdant
 	Ach(19193), -- Ducks In A Row
 	Ach(19194), -- The Emerald Bounty
 	Ach(19196), -- Sowing the Seeds
@@ -967,7 +967,7 @@ KrowiAF.AchievementData2["10_02_00"] = {
 	Ach(19276):IsPvP(), -- Verdant Vogue
 	Ach(19293):Pet(), -- Friends In Feathers
 	Ach(19294), -- Tour of Duty: Emerald Dream
-	Ach(19295):IsPvP():Obtainable("PvP Season", 36), -- Verdant Gladiator's Slitherdrake
+	Ach(19295):PvP(36), -- Verdant Gladiator's Slitherdrake
 	Ach(19296), -- Dragon Glyphs: Eye of Ysera
 	Ach(19297), -- Dragon Glyphs: Furnace Coil
 	Ach(19298), -- Dragon Glyphs: Smoldering Copse
@@ -1027,7 +1027,7 @@ KrowiAF.AchievementData2["10_02_00"] = {
 	Ach(19418):IsPvP(), -- Battle-scarred Battler
 	Ach(19420):Transmog(), -- Dragonflight Season 3 Hero
 	Ach(19442), -- Fire Catwalk With Me
-	Ach(19443):IsPvP():Obtainable("PvP Season", 36), -- Battle Mender: Dragonflight Season 3
+	Ach(19443):PvP(36), -- Battle Mender: Dragonflight Season 3
 	Ach(19449):Title():PvE(11), -- Dreaming Hero: Dragonflight Season 3
 	Ach(19450), -- Fyr'alath the Dreamrender
 	Ach(19461), -- Kissed by the Wind
@@ -1069,7 +1069,7 @@ KrowiAF.AchievementData2["10_02_06"] = {
 	{KrowiAF.SetAchievementPatch, 10, 2, 6},
 	Ach(19453):Title():PvP(37), -- Draconic Legend: Dragonflight Season 4
 	Ach(19454):Title():PvP(37), -- Draconic Gladiator: Dragonflight Season 4
-	Ach(19455):AutoFactionSplit(faction.Alliance, 19456):IsPvP():Obtainable("PvP Season", 37), -- Hero of the Alliance / Horde: Draconic
+	Ach(19455):AutoFactionSplit(faction.Alliance, 19456):PvP(37), -- Hero of the Alliance / Horde: Draconic
 	Ach(19458):Mount():HousingDecor(), -- A World Awoken
 	Ach(19463), -- Dragon Quests
 	Ach(19466), -- Oh My God, They Were Clutchmates
@@ -1084,15 +1084,15 @@ KrowiAF.AchievementData2["10_02_06"] = {
 	Ach(19492):Title():PvP(37), -- Duelist: Dragonflight Season 4
 	Ach(19493):Title():PvP(37), -- Rival I: Dragonflight Season 4
 	Ach(19494):Title():PvP(37), -- Combatant I: Dragonflight Season 4
-	Ach(19495):IsPvP():Obtainable("PvP Season", 37), -- Combatant II: Dragonflight Season 4
+	Ach(19495):PvP(37), -- Combatant II: Dragonflight Season 4
 	Ach(19497):Title():PvP(37), -- Challenger I: Dragonflight Season 4
-	Ach(19498):IsPvP():Obtainable("PvP Season", 37), -- Rival II: Dragonflight Season 4
-	Ach(19499):IsPvP():Obtainable("PvP Season", 37), -- Challenger II: Dragonflight Season 4
+	Ach(19498):PvP(37), -- Rival II: Dragonflight Season 4
+	Ach(19499):PvP(37), -- Challenger II: Dragonflight Season 4
 	Ach(19500):Title():Toy():PvP(37), -- Legend: Dragonflight Season 4
-	Ach(19503):IsPvP():Obtainable("PvP Season", 37), -- Draconic Gladiator's Drake
+	Ach(19503):PvP(37), -- Draconic Gladiator's Drake
 	Ach(19507):HousingDecor(), -- Fringe Benefits
 	Ach(19509):Title():PvP(37), -- Elite: Dragonflight Season 4
-	Ach(19513):IsPvP():Obtainable("PvP Season", 37), -- Battle Mender: Dragonflight Season 4
+	Ach(19513):PvP(37), -- Battle Mender: Dragonflight Season 4
 	Ach(19564):PvE(12), -- Awakened Storms
 	Ach(19565):PvE(12), -- Heroic: Awakened Storms
 	Ach(19566):PvE(12), -- Mythic: Awakened Storms

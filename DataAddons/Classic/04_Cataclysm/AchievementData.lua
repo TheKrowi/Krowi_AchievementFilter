@@ -232,7 +232,7 @@ KrowiAF.AchievementData2["04_00_03"] = {
 	Ach(5341):AutoFactionSplit(faction.Alliance, 5355):Title():IsPvP(), -- Marshal / General
 	Ach(5342):AutoFactionSplit(faction.Horde, 5357):Title():IsPvP(), -- Warlord / Field Marshal
 	Ach(5343):AutoFactionSplit(faction.Alliance, 5356):Title():IsPvP(), -- Grand Marshal / High Warlord
-	Ach(5344):AutoFactionSplit(faction.Alliance, 5358):Title():IsPvP():PvP(9), -- Hero of the Alliance / Horde: Vicious
+	Ach(5344):AutoFactionSplit(faction.Alliance, 5358):Title():PvP(9), -- Hero of the Alliance / Horde: Vicious
 	Ach(5363):Title():IsPvP(), -- 250000 Honorable Kills
 	Ach(5364):Obtainable("Before", "Version", {6, 0, 2}), -- Don't Want No Zombies on My Lawn
 	Ach(5365):Obtainable("Before", "Version", {6, 0, 2}), -- Bloom and Doom
@@ -404,7 +404,7 @@ KrowiAF.AchievementData2["04_03_00"] = {
 	{KrowiAF.SetAchievementPatch, 4, 3, 0},
 	Ach(5853):AutoFactionSplit(faction.Alliance, 5854):Obtainable("Event", 141), -- A-Caroling We Will Go
 	Ach(5995), -- Moon Guard
-	Ach(6002):IsPvP():PvP(9), -- Vicious Gladiator: Season 9
+	Ach(6002):PvP(9), -- Vicious Gladiator: Season 9
 	Ach(6003):PvP(9), -- Vicious Gladiator's Twilight Drake
 	Ach(6006):Obtainable("Event", 327), -- Elders of Cataclysm
 	Ach(6007):AutoFactionSplit(faction.Alliance, 6010):Obtainable("Event", 341), -- Extinguishing Northrend
@@ -463,7 +463,7 @@ KrowiAF.AchievementData2["04_03_00"] = {
 
 KrowiAF.AchievementData2["04_03_02"] = {
 	{KrowiAF.SetAchievementPatch, 4, 3, 2},
-	Ach(6316):AutoFactionSplit(faction.Alliance, 6317):Title():IsPvP():PvP(10), -- Hero of the Alliance / Horde: Ruthless
+	Ach(6316):AutoFactionSplit(faction.Alliance, 6317):Title():PvP(10), -- Hero of the Alliance / Horde: Ruthless
 	Ach(6322):PvP(10), -- Ruthless Gladiator's Twilight Drake
 };
 

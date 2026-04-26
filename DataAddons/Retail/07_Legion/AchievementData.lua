@@ -106,7 +106,7 @@ KrowiAF.AchievementData2["07_00_03"] = {
 	Ach(10722), -- The Wish Remover
 	Ach(10741):Obtainable("From", "Date", {2016, 11, 16}, "Until", "Date", {2016, 11, 30}), -- WoW's 12th Anniversary
 	Ach(10742), -- Gluten Free
-	Ach(10743):AutoFactionSplit(faction.Alliance, 10745):IsPvP():PvP(19), -- The Prestige
+	Ach(10743):AutoFactionSplit(faction.Alliance, 10745):PvP(19), -- The Prestige
 	Ach(10746), -- Forged for Battle
 	Ach(10747):Obtainable("Before", "Version", {8, 0, 1}), -- Fighting with Style: Upgraded
 	Ach(10748), -- Fighting with Style: Valorous
@@ -198,50 +198,50 @@ KrowiAF.AchievementData2["07_00_03"] = {
 	Ach(10994), -- A Glorious Campaign
 	Ach(10995):IsPvP():Obtainable("From", "PvP Season", 19, "Until", "PvP Season", 25), -- For Prestige
 	Ach(10996):HousingDecor(), -- Got to Ketchum All
-	Ach(10997):AutoFactionSplit(faction.Horde, 10998):Mount():IsPvP():PvP(19), -- Vindictive Combatant
-	Ach(10999):IsPvP():PvP(19), -- Vindictive Gladiator's Storm Dragon
-	Ach(11000):IsPvP():PvP(20), -- Fearless Gladiator's Storm Dragon
-	Ach(11001):IsPvP():PvP(21), -- Cruel Gladiator's Storm Dragon
-	Ach(11002):IsPvP():PvP(22), -- Ferocious Gladiator's Storm Dragon
-	Ach(11003):AutoFactionSplit(faction.Horde, 11004):Mount():IsPvP():PvP(20), -- Fearless Combatant
-	Ach(11005):AutoFactionSplit(faction.Horde, 11008):Mount():IsPvP():PvP(21), -- Cruel Combatant
-	Ach(11009):AutoFactionSplit(faction.Horde, 11010):Mount():IsPvP():PvP(22), -- Ferocious Combatant
-	Ach(11011):Title():IsPvP():PvP(19), -- Gladiator: Legion Season 1
-	Ach(11012):Title():IsPvP():PvP(19), -- Vindictive Gladiator: Legion Season 1
-	Ach(11013):Title():IsPvP():PvP(20), -- Gladiator: Legion Season 2
-	Ach(11014):Title():IsPvP():PvP(20), -- Fearless Gladiator: Legion Season 2
-	Ach(11015):Title():IsPvP():PvP(19), -- Duelist: Legion Season 1
-	Ach(11016):Title():IsPvP():PvP(19), -- Rival: Legion Season 1
-	Ach(11017):Title():IsPvP():PvP(19), -- Challenger: Legion Season 1
-	Ach(11018):AutoFactionSplit(faction.Alliance, 11019):IsPvP():PvP(19), -- Hero of the Alliance: Vindictive / Hero of the Horde: Vindictive
-	Ach(11020):AutoFactionSplit(faction.Alliance, 11021):Title():IsPvP():PvP(19), -- Guardian of the Alliance: Legion Season 1 / Guardian of the Horde: Legion Season 1
-	Ach(11022):AutoFactionSplit(faction.Alliance, 11023):Title():IsPvP():PvP(19), -- Defender of the Alliance: Legion Season 1 / Defender of the Horde: Legion Season 1
-	Ach(11024):AutoFactionSplit(faction.Alliance, 11025):Title():IsPvP():PvP(19), -- Soldier of the Alliance: Legion Season 1 / Soldier of the Horde: Legion Season 1
-	Ach(11026):Title():IsPvP():PvP(20), -- Duelist: Legion Season 2
-	Ach(11027):Title():IsPvP():PvP(20), -- Rival: Legion Season 2
-	Ach(11028):Title():IsPvP():PvP(20), -- Challenger: Legion Season 2
-	Ach(11029):AutoFactionSplit(faction.Horde, 11030):IsPvP():PvP(20), -- Hero of the Horde: Fearless / Hero of the Alliance: Fearless
-	Ach(11031):AutoFactionSplit(faction.Horde, 11032):Title():IsPvP():PvP(20), -- Guardian of the Horde: Legion Season 2 / Guardian of the Alliance: Legion Season 2
-	Ach(11033):AutoFactionSplit(faction.Horde, 11034):Title():IsPvP():PvP(20), -- Defender of the Horde: Legion Season 2 / Defender of the Alliance: Legion Season 2
-	Ach(11035):AutoFactionSplit(faction.Horde, 11036):Title():IsPvP():PvP(20), -- Soldier of the Horde: Legion Season 2 / Soldier of the Alliance: Legion Season 2
-	Ach(11037):Title():IsPvP():PvP(21), -- Cruel Gladiator: Legion Season 3
-	Ach(11038):Title():IsPvP():PvP(21), -- Gladiator: Legion Season 3
-	Ach(11039):Title():IsPvP():PvP(21), -- Challenger: Legion Season 3
-	Ach(11040):Title():IsPvP():PvP(21), -- Rival: Legion Season 3
-	Ach(11041):Title():IsPvP():PvP(21), -- Duelist: Legion Season 3
-	Ach(11042):AutoFactionSplit(faction.Horde, 11043):IsPvP():PvP(21), -- Hero of the Horde: Cruel / Hero of the Alliance: Cruel
-	Ach(11044):AutoFactionSplit(faction.Horde, 11045):Title():IsPvP():PvP(21), -- Defender of the Horde: Legion Season 3 / Defender of the Alliance: Legion Season 3
-	Ach(11046):AutoFactionSplit(faction.Horde, 11047):Title():IsPvP():PvP(21), -- Guardian of the Horde: Legion Season 3 / Guardian of the Alliance: Legion Season 3
-	Ach(11048):AutoFactionSplit(faction.Horde, 11049):Title():IsPvP():PvP(21), -- Soldier of the Horde: Legion Season 3 / Soldier of the Alliance: Legion Season 3
-	Ach(11050):AutoFactionSplit(faction.Alliance, 11051):Title():IsPvP():PvP(22), -- Soldier of the Alliance: Legion Season 4 / Soldier of the Horde: Legion Season 4
-	Ach(11052):AutoFactionSplit(faction.Alliance, 11053):Title():IsPvP():PvP(22), -- Guardian of the Alliance: Legion Season 4 / Guardian of the Horde: Legion Season 4
-	Ach(11054):AutoFactionSplit(faction.Alliance, 11055):Title():IsPvP():PvP(22), -- Defender of the Alliance: Legion Season 4 / Defender of the Horde: Legion Season 4
-	Ach(11056):AutoFactionSplit(faction.Alliance, 11057):IsPvP():PvP(22), -- Hero of the Alliance: Ferocious / Hero of the Horde: Ferocious
-	Ach(11058):Title():IsPvP():PvP(22), -- Duelist: Legion Season 4
-	Ach(11059):Title():IsPvP():PvP(22), -- Rival: Legion Season 4
-	Ach(11060):Title():IsPvP():PvP(22), -- Challenger: Legion Season 4
-	Ach(11061):Title():IsPvP():PvP(22), -- Gladiator: Legion Season 4
-	Ach(11062):Title():IsPvP():PvP(22), -- Ferocious Gladiator: Legion Season 4
+	Ach(10997):AutoFactionSplit(faction.Horde, 10998):Mount():PvP(19), -- Vindictive Combatant
+	Ach(10999):PvP(19), -- Vindictive Gladiator's Storm Dragon
+	Ach(11000):PvP(20), -- Fearless Gladiator's Storm Dragon
+	Ach(11001):PvP(21), -- Cruel Gladiator's Storm Dragon
+	Ach(11002):PvP(22), -- Ferocious Gladiator's Storm Dragon
+	Ach(11003):AutoFactionSplit(faction.Horde, 11004):Mount():PvP(20), -- Fearless Combatant
+	Ach(11005):AutoFactionSplit(faction.Horde, 11008):Mount():PvP(21), -- Cruel Combatant
+	Ach(11009):AutoFactionSplit(faction.Horde, 11010):Mount():PvP(22), -- Ferocious Combatant
+	Ach(11011):Title():PvP(19), -- Gladiator: Legion Season 1
+	Ach(11012):Title():PvP(19), -- Vindictive Gladiator: Legion Season 1
+	Ach(11013):Title():PvP(20), -- Gladiator: Legion Season 2
+	Ach(11014):Title():PvP(20), -- Fearless Gladiator: Legion Season 2
+	Ach(11015):Title():PvP(19), -- Duelist: Legion Season 1
+	Ach(11016):Title():PvP(19), -- Rival: Legion Season 1
+	Ach(11017):Title():PvP(19), -- Challenger: Legion Season 1
+	Ach(11018):AutoFactionSplit(faction.Alliance, 11019):PvP(19), -- Hero of the Alliance: Vindictive / Hero of the Horde: Vindictive
+	Ach(11020):AutoFactionSplit(faction.Alliance, 11021):Title():PvP(19), -- Guardian of the Alliance: Legion Season 1 / Guardian of the Horde: Legion Season 1
+	Ach(11022):AutoFactionSplit(faction.Alliance, 11023):Title():PvP(19), -- Defender of the Alliance: Legion Season 1 / Defender of the Horde: Legion Season 1
+	Ach(11024):AutoFactionSplit(faction.Alliance, 11025):Title():PvP(19), -- Soldier of the Alliance: Legion Season 1 / Soldier of the Horde: Legion Season 1
+	Ach(11026):Title():PvP(20), -- Duelist: Legion Season 2
+	Ach(11027):Title():PvP(20), -- Rival: Legion Season 2
+	Ach(11028):Title():PvP(20), -- Challenger: Legion Season 2
+	Ach(11029):AutoFactionSplit(faction.Horde, 11030):PvP(20), -- Hero of the Horde: Fearless / Hero of the Alliance: Fearless
+	Ach(11031):AutoFactionSplit(faction.Horde, 11032):Title():PvP(20), -- Guardian of the Horde: Legion Season 2 / Guardian of the Alliance: Legion Season 2
+	Ach(11033):AutoFactionSplit(faction.Horde, 11034):Title():PvP(20), -- Defender of the Horde: Legion Season 2 / Defender of the Alliance: Legion Season 2
+	Ach(11035):AutoFactionSplit(faction.Horde, 11036):Title():PvP(20), -- Soldier of the Horde: Legion Season 2 / Soldier of the Alliance: Legion Season 2
+	Ach(11037):Title():PvP(21), -- Cruel Gladiator: Legion Season 3
+	Ach(11038):Title():PvP(21), -- Gladiator: Legion Season 3
+	Ach(11039):Title():PvP(21), -- Challenger: Legion Season 3
+	Ach(11040):Title():PvP(21), -- Rival: Legion Season 3
+	Ach(11041):Title():PvP(21), -- Duelist: Legion Season 3
+	Ach(11042):AutoFactionSplit(faction.Horde, 11043):PvP(21), -- Hero of the Horde: Cruel / Hero of the Alliance: Cruel
+	Ach(11044):AutoFactionSplit(faction.Horde, 11045):Title():PvP(21), -- Defender of the Horde: Legion Season 3 / Defender of the Alliance: Legion Season 3
+	Ach(11046):AutoFactionSplit(faction.Horde, 11047):Title():PvP(21), -- Guardian of the Horde: Legion Season 3 / Guardian of the Alliance: Legion Season 3
+	Ach(11048):AutoFactionSplit(faction.Horde, 11049):Title():PvP(21), -- Soldier of the Horde: Legion Season 3 / Soldier of the Alliance: Legion Season 3
+	Ach(11050):AutoFactionSplit(faction.Alliance, 11051):Title():PvP(22), -- Soldier of the Alliance: Legion Season 4 / Soldier of the Horde: Legion Season 4
+	Ach(11052):AutoFactionSplit(faction.Alliance, 11053):Title():PvP(22), -- Guardian of the Alliance: Legion Season 4 / Guardian of the Horde: Legion Season 4
+	Ach(11054):AutoFactionSplit(faction.Alliance, 11055):Title():PvP(22), -- Defender of the Alliance: Legion Season 4 / Defender of the Horde: Legion Season 4
+	Ach(11056):AutoFactionSplit(faction.Alliance, 11057):PvP(22), -- Hero of the Alliance: Ferocious / Hero of the Horde: Ferocious
+	Ach(11058):Title():PvP(22), -- Duelist: Legion Season 4
+	Ach(11059):Title():PvP(22), -- Rival: Legion Season 4
+	Ach(11060):Title():PvP(22), -- Challenger: Legion Season 4
+	Ach(11061):Title():PvP(22), -- Gladiator: Legion Season 4
+	Ach(11062):Title():PvP(22), -- Ferocious Gladiator: Legion Season 4
 	Ach(11064), -- Collector's Edition: Baby Winston
 	Ach(11065):Obtainable("Until", "Version", {7, 0, 3}):Obtainable("Event", 1640), -- It All Makes Sense Now
 	Ach(11066):Mount(), -- Underbelly Tycoon
@@ -267,9 +267,9 @@ KrowiAF.AchievementData2["07_00_03"] = {
 	Ach(11162), -- Keystone Master
 	Ach(11163):Mount(), -- Glory of the Legion Hero
 	Ach(11164), -- Legion Dungeon Hero
-	Ach(11165):AutoFactionSplit(faction.Alliance, 11166):IsPvP():PvP(19), -- Crest of Heroism
-	Ach(11167):AutoFactionSplit(faction.Alliance, 11168):IsPvP():PvP(19), -- Crest of Carnage
-	Ach(11169):AutoFactionSplit(faction.Alliance, 11170):IsPvP():PvP(19), -- Crest of Devastation
+	Ach(11165):AutoFactionSplit(faction.Alliance, 11166):PvP(19), -- Crest of Heroism
+	Ach(11167):AutoFactionSplit(faction.Alliance, 11168):PvP(19), -- Crest of Carnage
+	Ach(11169):AutoFactionSplit(faction.Alliance, 11170):PvP(19), -- Crest of Devastation
 	Ach(11171), -- Arsenal of Power
 	Ach(11175):Other(), -- Higher Dimensional Learning
 	Ach(11176):Mount(), -- Remember to Share
@@ -375,8 +375,8 @@ KrowiAF.AchievementData2["07_02_00"] = {
 	Ach(11570):Obtainable("Before", "Version", {9, 0, 1}), -- Educated Guesser
 	Ach(11572):Obtainable("Before", "Version", {8, 0, 1}), -- I Am Thrall's Complete Lack Of Surprise (Season 3)
 	Ach(11573):Obtainable("Before", "Version", {9, 0, 1}), -- Rumble Club
-	Ach(11578):IsPvP():PvP(19), -- Vindictive Elite
-	Ach(11579):IsPvP():PvP(20), -- Fearless Elite
+	Ach(11578):PvP(19), -- Vindictive Elite
+	Ach(11579):PvP(20), -- Fearless Elite
 	Ach(11580):Obtainable("Before", "Version", {7, 2, 5}), -- Cutting Edge: Helya
 	Ach(11581):Obtainable("Before", "Version", {7, 2, 5}), -- Ahead of the Curve: Helya
 	Ach(11607), -- They See Me Rolling
@@ -406,8 +406,8 @@ KrowiAF.AchievementData2["07_02_00"] = {
 	Ach(11693):IsPvP():Obtainable("From", "PvP Season", 19, "Until", "PvP Season", 25), -- Eighteen and Over
 	Ach(11694):IsPvP():Obtainable("From", "PvP Season", 19, "Until", "PvP Season", 25), -- Hell, It's About Nineteen
 	Ach(11696), -- Grin and Bear It
-	Ach(11697):IsPvP():PvP(21), -- Cruel Elite
-	Ach(11698):IsPvP():PvP(22), -- Ferocious Elite
+	Ach(11697):PvP(21), -- Cruel Elite
+	Ach(11698):PvP(22), -- Ferocious Elite
 	Ach(11699), -- Grand Fin-ale
 	Ach(11700), -- Cathedral of Eternal Night
 	Ach(11701), -- Heroic: Cathedral of Eternal Night
@@ -534,21 +534,21 @@ KrowiAF.AchievementData2["07_03_00"] = {
 	Ach(12007), -- Heroic: Seat of the Triumvirate
 	Ach(12008), -- Mythic: Seat of the Triumvirate
 	Ach(12009), -- Darker Side
-	Ach(12010):Title():IsPvP():PvP(23), -- Fierce Gladiator: Legion Season 5
+	Ach(12010):Title():PvP(23), -- Fierce Gladiator: Legion Season 5
 	Ach(12020), -- Argussy Up
 	Ach(12021), -- Claws Out
 	Ach(12026), -- Invasion Obliteration
 	Ach(12028), -- Envision Invasion Eradication
 	Ach(12030), -- The World Revolves Around Me
-	Ach(12031):AutoFactionSplit(faction.Horde, 12032):Mount():IsPvP():PvP(23), -- Fierce Combatant
-	Ach(12034):Title():IsPvP():PvP(23), -- Duelist: Legion Season 5
-	Ach(12035):Title():IsPvP():PvP(23), -- Rival: Legion Season 5
-	Ach(12036):Title():IsPvP():PvP(23), -- Challenger: Legion Season 5
-	Ach(12037):AutoFactionSplit(faction.Alliance, 12041):IsPvP():PvP(23), -- Hero of the Alliance: Fierce / Hero of the Horde: Fierce
-	Ach(12038):AutoFactionSplit(faction.Alliance, 12042):Title():IsPvP():PvP(23), -- Guardian of the Alliance: Legion Season 5 / Guardian of the Horde: Legion Season 5
-	Ach(12039):AutoFactionSplit(faction.Alliance, 12043):Title():IsPvP():PvP(23), -- Defender of the Alliance: Legion Season 5 / Defender of the Horde: Legion Season 5
-	Ach(12040):AutoFactionSplit(faction.Alliance, 12044):Title():IsPvP():PvP(23), -- Soldier of the Alliance: Legion Season 5 / Soldier of the Horde: Legion Season 5
-	Ach(12045):Title():IsPvP():PvP(23), -- Gladiator: Legion Season 5
+	Ach(12031):AutoFactionSplit(faction.Horde, 12032):Mount():PvP(23), -- Fierce Combatant
+	Ach(12034):Title():PvP(23), -- Duelist: Legion Season 5
+	Ach(12035):Title():PvP(23), -- Rival: Legion Season 5
+	Ach(12036):Title():PvP(23), -- Challenger: Legion Season 5
+	Ach(12037):AutoFactionSplit(faction.Alliance, 12041):PvP(23), -- Hero of the Alliance: Fierce / Hero of the Horde: Fierce
+	Ach(12038):AutoFactionSplit(faction.Alliance, 12042):Title():PvP(23), -- Guardian of the Alliance: Legion Season 5 / Guardian of the Horde: Legion Season 5
+	Ach(12039):AutoFactionSplit(faction.Alliance, 12043):Title():PvP(23), -- Defender of the Alliance: Legion Season 5 / Defender of the Horde: Legion Season 5
+	Ach(12040):AutoFactionSplit(faction.Alliance, 12044):Title():PvP(23), -- Soldier of the Alliance: Legion Season 5 / Soldier of the Horde: Legion Season 5
+	Ach(12045):Title():PvP(23), -- Gladiator: Legion Season 5
 	Ach(12046), -- Remember the Titans
 	Ach(12065), -- Hounds Good To Me
 	Ach(12066), -- You Are Now Prepared!
@@ -567,7 +567,7 @@ KrowiAF.AchievementData2["07_03_00"] = {
 	Ach(12084), -- Infused and Abused
 	Ach(12088), -- Anomalous Animals of Argus
 	Ach(12089), -- Aquatic Assault
-	Ach(12090):IsPvP():PvP(23), -- Fierce Elite
+	Ach(12090):PvP(23), -- Fierce Elite
 	Ach(12091), -- Beast Blitz
 	Ach(12092), -- Critical Critters
 	Ach(12093), -- Draconic Destruction
@@ -593,20 +593,20 @@ KrowiAF.AchievementData2["07_03_00"] = {
 KrowiAF.AchievementData2["07_03_02"] = {
 	{KrowiAF.SetAchievementPatch, 7, 3, 2},
 	Ach(11931), -- Rides of War
-	Ach(12134):Title():IsPvP():PvP(24), -- Dominant Gladiator: Legion Season 6
-	Ach(12135):IsPvP():PvP(24), -- Dominant Elite
-	Ach(12136):AutoFactionSplit(faction.Horde, 12137):Mount():IsPvP():PvP(24), -- Dominant Combatant
-	Ach(12139):IsPvP():PvP(24), -- Dominant Gladiator's Storm Dragon
-	Ach(12140):IsPvP():PvP(25), -- Demonic Gladiator's Storm Dragon
-	Ach(12167):Title():IsPvP():PvP(24), -- Gladiator: Legion Season 6
-	Ach(12168):Title():IsPvP():PvP(25), -- Gladiator: Legion Season 7
-	Ach(12169):Title():IsPvP():PvP(24), -- Challenger: Legion Season 6
-	Ach(12170):Title():IsPvP():PvP(24), -- Rival: Legion Season 6
-	Ach(12171):Title():IsPvP():PvP(24), -- Duelist: Legion Season 6
-	Ach(12172):AutoFactionSplit(faction.Horde, 12173):IsPvP():PvP(24), -- Hero of the Horde: Dominant / Hero of the Alliance: Dominant
-	Ach(12174):AutoFactionSplit(faction.Horde, 12175):Title():IsPvP():PvP(24), -- Defender of the Horde: Legion Season 6 / Defender of the Alliance: Legion Season 6
-	Ach(12176):AutoFactionSplit(faction.Horde, 12177):Title():IsPvP():PvP(24), -- Guardian of the Horde: Legion Season 6 / Guardian of the Alliance: Legion Season 6
-	Ach(12178):AutoFactionSplit(faction.Horde, 12179):Title():IsPvP():PvP(24), -- Soldier of the Horde: Legion Season 6 / Soldier of the Alliance: Legion Season 6
+	Ach(12134):Title():PvP(24), -- Dominant Gladiator: Legion Season 6
+	Ach(12135):PvP(24), -- Dominant Elite
+	Ach(12136):AutoFactionSplit(faction.Horde, 12137):Mount():PvP(24), -- Dominant Combatant
+	Ach(12139):PvP(24), -- Dominant Gladiator's Storm Dragon
+	Ach(12140):PvP(25), -- Demonic Gladiator's Storm Dragon
+	Ach(12167):Title():PvP(24), -- Gladiator: Legion Season 6
+	Ach(12168):Title():PvP(25), -- Gladiator: Legion Season 7
+	Ach(12169):Title():PvP(24), -- Challenger: Legion Season 6
+	Ach(12170):Title():PvP(24), -- Rival: Legion Season 6
+	Ach(12171):Title():PvP(24), -- Duelist: Legion Season 6
+	Ach(12172):AutoFactionSplit(faction.Horde, 12173):PvP(24), -- Hero of the Horde: Dominant / Hero of the Alliance: Dominant
+	Ach(12174):AutoFactionSplit(faction.Horde, 12175):Title():PvP(24), -- Defender of the Horde: Legion Season 6 / Defender of the Alliance: Legion Season 6
+	Ach(12176):AutoFactionSplit(faction.Horde, 12177):Title():PvP(24), -- Guardian of the Horde: Legion Season 6 / Guardian of the Alliance: Legion Season 6
+	Ach(12178):AutoFactionSplit(faction.Horde, 12179):Title():PvP(24), -- Soldier of the Horde: Legion Season 6 / Soldier of the Alliance: Legion Season 6
 	Ach(12180):IsPvP():Obtainable("From", "PvP Season", 19, "Until", "PvP Season", 25), -- Catching Twenty-Two
 	Ach(12181):IsPvP():Obtainable("From", "PvP Season", 19, "Until", "PvP Season", 25), -- Protocol 2.3
 	Ach(12182):IsPvP():Obtainable("From", "PvP Season", 19, "Until", "PvP Season", 25), -- Demonic Double Dozen
@@ -617,16 +617,16 @@ KrowiAF.AchievementData2["07_03_02"] = {
 
 KrowiAF.AchievementData2["07_03_05"] = {
 	{KrowiAF.SetAchievementPatch, 7, 3, 5},
-	Ach(12185):Title():IsPvP():PvP(25), -- Demonic Gladiator: Legion Season 7
-	Ach(12186):Title():IsPvP():PvP(25), -- Duelist: Legion Season 7
-	Ach(12187):Title():IsPvP():PvP(25), -- Challenger: Legion Season 7
-	Ach(12188):Title():IsPvP():PvP(25), -- Rival: Legion Season 7
-	Ach(12189):AutoFactionSplit(faction.Alliance, 12190):Title():IsPvP():PvP(25), -- Soldier of the Alliance: Legion Season 7 / Soldier of the Horde: Legion Season 7
-	Ach(12191):AutoFactionSplit(faction.Alliance, 12192):Title():IsPvP():PvP(25), -- Guardian of the Alliance: Legion Season 7 / Guardian of the Horde: Legion Season 7
-	Ach(12194):AutoFactionSplit(faction.Horde, 12195):Title():IsPvP():PvP(25), -- Defender of the Horde: Legion Season 7 / Defender of the Alliance: Legion Season 7
-	Ach(12196):AutoFactionSplit(faction.Horde, 12197):IsPvP():PvP(25), -- Hero of the Horde: Demonic / Hero of the Alliance: Demonic
-	Ach(12198):IsPvP():PvP(25), -- Demonic Elite
-	Ach(12199):AutoFactionSplit(faction.Horde, 12200):Mount():IsPvP():PvP(25), -- Demonic Combatant
+	Ach(12185):Title():PvP(25), -- Demonic Gladiator: Legion Season 7
+	Ach(12186):Title():PvP(25), -- Duelist: Legion Season 7
+	Ach(12187):Title():PvP(25), -- Challenger: Legion Season 7
+	Ach(12188):Title():PvP(25), -- Rival: Legion Season 7
+	Ach(12189):AutoFactionSplit(faction.Alliance, 12190):Title():PvP(25), -- Soldier of the Alliance: Legion Season 7 / Soldier of the Horde: Legion Season 7
+	Ach(12191):AutoFactionSplit(faction.Alliance, 12192):Title():PvP(25), -- Guardian of the Alliance: Legion Season 7 / Guardian of the Horde: Legion Season 7
+	Ach(12194):AutoFactionSplit(faction.Horde, 12195):Title():PvP(25), -- Defender of the Horde: Legion Season 7 / Defender of the Alliance: Legion Season 7
+	Ach(12196):AutoFactionSplit(faction.Horde, 12197):PvP(25), -- Hero of the Horde: Demonic / Hero of the Alliance: Demonic
+	Ach(12198):PvP(25), -- Demonic Elite
+	Ach(12199):AutoFactionSplit(faction.Horde, 12200):Mount():PvP(25), -- Demonic Combatant
 	Ach(12242):FactionSplit(faction.Alliance):AlliedRace(), -- Allied Races: Void Elf
 	Ach(12243):FactionSplit(faction.Alliance):AlliedRace(), -- Allied Races: Lightforged Draenei
 	Ach(12244):FactionSplit(faction.Horde):AlliedRace(), -- Allied Races: Nightborne

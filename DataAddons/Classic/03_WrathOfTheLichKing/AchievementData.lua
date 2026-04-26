@@ -143,9 +143,9 @@ KrowiAF.AchievementData2["03_00_02"] = {
 	Ach(414):Obtainable("Never"), -- Tyrael's Hilt
 	Ach(415):Obtainable("Never"), -- Big Blizzard Bear
 	Ach(416):Obtainable("Never"), -- Scarab Lord
-	Ach(418):Title():IsPvP():PvP(2), -- Merciless Gladiator: Season 2
-	Ach(419):Title():IsPvP():PvP(3), -- Vengeful Gladiator: Season 3
-	Ach(420):Title():IsPvP():PvP(4), -- Brutal Gladiator: Season 4
+	Ach(418):Title():PvP(2), -- Merciless Gladiator: Season 2
+	Ach(419):Title():PvP(3), -- Vengeful Gladiator: Season 3
+	Ach(420):Title():PvP(4), -- Brutal Gladiator: Season 4
 	Ach(424), -- Why? Because It's Red
 	Ach(425):Obtainable("Never"), -- Atiesh, Greatstaff of the Guardian
 	Ach(426), -- Warglaives of Azzinoth
@@ -344,7 +344,7 @@ KrowiAF.AchievementData2["03_00_02"] = {
 	Ach(697), -- The Black Temple
 	Ach(698), -- Sunwell Plateau
 	Ach(699):IsPvP(), -- World Wide Winner
-	Ach(700):IsPvP():PvP(5):AutoFactionSplit(faction.Horde, 701), -- Freedom of the Horde / Freedom of the Alliance
+	Ach(700):PvP(5):AutoFactionSplit(faction.Horde, 701), -- Freedom of the Horde / Freedom of the Alliance
 	Ach(705):Obtainable("Before", "Version", {4, 0, 1}), -- Master of Arms
 	Ach(706):IsPvP():AutoFactionSplit(faction.Horde, 707), -- Frostwolf Howler / Stormpike Battle Charger
 	Ach(708):IsPvP():AutoFactionSplit(faction.Horde, 709), -- Hero of the Frostwolf Clan / Hero of the Stormpike Guard
@@ -430,9 +430,9 @@ KrowiAF.AchievementData2["03_00_02"] = {
 	Ach(883), -- Reins of the Raven Lord
 	Ach(884), -- Swift White Hawkstrider
 	Ach(885), -- Ashes of Al'ar
-	Ach(886):IsPvP():PvP(1), -- Swift Nether Drake
-	Ach(887):IsPvP():PvP(2), -- Merciless Nether Drake
-	Ach(888):IsPvP():PvP(3), -- Vengeful Nether Drake
+	Ach(886):PvP(1), -- Swift Nether Drake
+	Ach(887):PvP(2), -- Merciless Nether Drake
+	Ach(888):PvP(3), -- Vengeful Nether Drake
 	Ach(889), -- Fast and Furious
 	Ach(890), -- Into The Wild Blue Yonder
 	Ach(891), -- Giddy Up!
@@ -829,7 +829,7 @@ KrowiAF.AchievementData2["03_00_02"] = {
 	Ach(2199):IsPvP(), -- Wintergrasp Ranger
 	Ach(2256), -- Northern Exposure
 	Ach(2257), -- Frostbitten
-	Ach(2316):IsPvP():PvP(4), -- Brutal Nether Drake
+	Ach(2316):PvP(4), -- Brutal Nether Drake
 	Ach(2336):Title():Obtainable("Event", 374), -- Insane in the Membrane
 	Ach(2357):Obtainable("Before", "Version", {4, 0, 3}), -- Dreadsteed of Xoroth
 	Ach(2358):Obtainable("Before", "Version", {4, 0, 3}), -- Charger
@@ -991,7 +991,7 @@ KrowiAF.AchievementData2["03_01_00"] = {
 	Ach(3059):Obtainable("Before", "Version", {7, 3, 5}), -- Heartbreaker (25 player)
 	Ach(3076):Obtainable("Before", "Version", {7, 3, 5}), -- Nine Lives (10 player)
 	Ach(3077):Obtainable("Before", "Version", {7, 3, 5}), -- Nine Lives (25 player)
-	Ach(3096):IsPvP():PvP(5), -- Deadly Gladiator's Frost Wyrm
+	Ach(3096):PvP(5), -- Deadly Gladiator's Frost Wyrm
 	Ach(3097):Obtainable("Before", "Version", {7, 3, 5}), -- Dwarfageddon (10 player)
 	Ach(3098):Obtainable("Before", "Version", {7, 3, 5}), -- Dwarfageddon (25 player)
 	Ach(3117):Title():IsRealmFirst():Obtainable("Once"), -- Realm First! Death's Demise
@@ -1028,12 +1028,12 @@ KrowiAF.AchievementData2["03_01_00"] = {
 	Ach(3259):Title():IsRealmFirst():Obtainable("Once"), -- Realm First! Celestial Defender
 	Ach(3296), -- Cooking with Style
 	Ach(3316):Title(), -- Herald of the Titans
-	Ach(3336):IsPvP():PvP(5), -- Deadly Gladiator: Season 5
+	Ach(3336):PvP(5), -- Deadly Gladiator: Season 5
 	Ach(3356):AutoFactionSplit(faction.Alliance, 3357), -- Winterspring Frostsaber / Venomhide Ravasaur
-	Ach(3436):IsPvP():PvP(6), -- Furious Gladiator: Season 6
+	Ach(3436):PvP(6), -- Furious Gladiator: Season 6
 	Ach(3676):Other():AutoFactionSplit(faction.Alliance, 3677), -- A Silver Confidant / The Sunreavers
 	Ach(3736), -- Pony Up!
-	Ach(3756):IsPvP():PvP(6), -- Furious Gladiator's Frost Wyrm
+	Ach(3756):PvP(6), -- Furious Gladiator's Frost Wyrm
 }
 
 KrowiAF.AchievementData2["03_02_00"] = {
@@ -1053,8 +1053,8 @@ KrowiAF.AchievementData2["03_02_00"] = {
 	Ach(3596):Obtainable("Event", 404):AutoFactionSplit(faction.Alliance, 3597), -- Pilgrim's Progress
 	Ach(3618):IsPvP():Obtainable("Never"), -- Murkimus the Gladiator
 	Ach(3636):Obtainable("Never"), -- Jade Tiger
-	Ach(3757):IsPvP():PvP(7), -- Relentless Gladiator's Frost Wyrm
-	Ach(3758):IsPvP():PvP(7), -- Relentless Gladiator: Season 7
+	Ach(3757):PvP(7), -- Relentless Gladiator's Frost Wyrm
+	Ach(3758):PvP(7), -- Relentless Gladiator: Season 7
 	Ach(3776):IsPvP(), -- Isle of Conquest Victory
 	Ach(3777):IsPvP(), -- Isle of Conquest Veteran
 	Ach(3778):AutoFactionSplit(faction.Horde, 4296), -- Trial of the Champion
@@ -1165,8 +1165,8 @@ KrowiAF.AchievementData2["03_03_00"] = {
 	Ach(4596), -- The Sword in the Skull
 	Ach(4597):Title(), -- The Frozen Throne (25 player)
 	Ach(4598):Title(), -- The Ashen Verdict
-	Ach(4599):IsPvP():PvP(8), -- Wrathful Gladiator: Season 8
-	Ach(4600):IsPvP():PvP(8), -- Wrathful Gladiator's Frost Wyrm
+	Ach(4599):PvP(8), -- Wrathful Gladiator: Season 8
+	Ach(4600):PvP(8), -- Wrathful Gladiator's Frost Wyrm
 	Ach(4601), -- Been Waiting a Long Time for This (10 player)
 	Ach(4602):Mount(), -- Glory of the Icecrown Raider (10 player)
 	Ach(4603):Mount(), -- Glory of the Icecrown Raider (25 player)
@@ -1223,32 +1223,32 @@ KrowiAF.AchievementData2["03_03_05"] = {
 
 KrowiAF.AchievementData2["03_04_00"] = {
 	{KrowiAF.SetAchievementPatch, 3, 4, 0},
-	Ach(15018):Title():IsPvP():PvP(1), -- Infernal Gladiator: Season 1
-	Ach(15019):Title():IsPvP():PvP(1), -- Gladiator: Season 1
-	Ach(15020):Title():IsPvP():PvP(1), -- Duelist: Season 1
-	Ach(15021):Title():IsPvP():PvP(1), -- Rival: Season 1
-	Ach(15022):Title():IsPvP():PvP(1), -- Challenger: Season 1
-	Ach(15199):Title():IsPvP():PvP(2), -- Gladiator: Season 2
-	Ach(15200):Title():IsPvP():PvP(4), -- Gladiator: Season 4
-	Ach(15201):Title():IsPvP():PvP(4), -- Duelist: Season 4
-	Ach(15202):Title():IsPvP():PvP(4), -- Rival: Season 4
-	Ach(15203):Title():IsPvP():PvP(4), -- Challenger: Season 4
-	Ach(15204):Title():IsPvP():PvP(3), -- Gladiator: Season 3
-	Ach(15205):Title():IsPvP():PvP(3), -- Duelist: Season 3
-	Ach(15206):Title():IsPvP():PvP(3), -- Rival: Season 3
-	Ach(15207):Title():IsPvP():PvP(3), -- Challenger: Season 3
-	Ach(15208):Title():IsPvP():PvP(2), -- Duelist: Season 2
-	Ach(15209):Title():IsPvP():PvP(2), -- Rival: Season 2
-	Ach(15210):Title():IsPvP():PvP(2), -- Challenger: Season 2
+	Ach(15018):Title():PvP(1), -- Infernal Gladiator: Season 1
+	Ach(15019):Title():PvP(1), -- Gladiator: Season 1
+	Ach(15020):Title():PvP(1), -- Duelist: Season 1
+	Ach(15021):Title():PvP(1), -- Rival: Season 1
+	Ach(15022):Title():PvP(1), -- Challenger: Season 1
+	Ach(15199):Title():PvP(2), -- Gladiator: Season 2
+	Ach(15200):Title():PvP(4), -- Gladiator: Season 4
+	Ach(15201):Title():PvP(4), -- Duelist: Season 4
+	Ach(15202):Title():PvP(4), -- Rival: Season 4
+	Ach(15203):Title():PvP(4), -- Challenger: Season 4
+	Ach(15204):Title():PvP(3), -- Gladiator: Season 3
+	Ach(15205):Title():PvP(3), -- Duelist: Season 3
+	Ach(15206):Title():PvP(3), -- Rival: Season 3
+	Ach(15207):Title():PvP(3), -- Challenger: Season 3
+	Ach(15208):Title():PvP(2), -- Duelist: Season 2
+	Ach(15209):Title():PvP(2), -- Rival: Season 2
+	Ach(15210):Title():PvP(2), -- Challenger: Season 2
 	Ach(15330):Obtainable("Never"), -- Survivor of the Firelord (Season of Mastery)
 	Ach(15333):Obtainable("Never"), -- Survivor of the Shadow Flame (Season of Mastery)
 	Ach(15334):Obtainable("Never"), -- Survivor of the Old God (Season of Mastery)
 	Ach(15335):Obtainable("Never"), -- Survivor of the Damned (Season of Mastery)
 	Ach(15637):Obtainable("Never"), -- The Immortal (Season of Mastery)
-	Ach(16313):Title():IsPvP():PvP(5), -- Rival: Season 5
-	Ach(16314):Title():IsPvP():PvP(5), -- Gladiator: Season 5
-	Ach(16315):Title():IsPvP():PvP(5), -- Duelist: Season 5
-	Ach(16316):Title():IsPvP():PvP(5), -- Challenger: Season 5
+	Ach(16313):Title():PvP(5), -- Rival: Season 5
+	Ach(16314):Title():PvP(5), -- Gladiator: Season 5
+	Ach(16315):Title():PvP(5), -- Duelist: Season 5
+	Ach(16316):Title():PvP(5), -- Challenger: Season 5
 	Ach(16332), -- The Perfect Pebble
 	Ach(16433):Obtainable("Never"), -- Soul of Iron (Season of Mastery)
 }
@@ -1268,24 +1268,24 @@ KrowiAF.AchievementData2["03_04_01"] = {
 	Ach(17301), -- Defense Protocol Alpha: Utgarde Pinnacle
 	Ach(17302), -- Defense Protocol Alpha: The Culling of Stratholme
 	Ach(17304), -- Defense Protocol Alpha: Terminated
-	Ach(17415):Title():IsPvP():PvP(6), -- Rival: Season 6
-	Ach(17416):Title():IsPvP():PvP(6), -- Gladiator: Season 6
-	Ach(17417):Title():IsPvP():PvP(6), -- Duelist: Season 6
-	Ach(17418):Title():IsPvP():PvP(6), -- Challenger: Season 6
+	Ach(17415):Title():PvP(6), -- Rival: Season 6
+	Ach(17416):Title():PvP(6), -- Gladiator: Season 6
+	Ach(17417):Title():PvP(6), -- Duelist: Season 6
+	Ach(17418):Title():PvP(6), -- Challenger: Season 6
 }
 
 KrowiAF.AchievementData2["03_04_02"] = {
 	{KrowiAF.SetAchievementPatch, 3, 4, 2},
 	Ach(17340):Obtainable("Before", "Version", {3, 4, 3}), -- Ahead of the Curve: Yogg-Saron
 	Ach(17341):Obtainable("Before", "Version", {3, 4, 3}), -- Cutting Edge: Ulduar
-	Ach(18544):Title():IsPvP():PvP(7), -- Rival: Season 7
-	Ach(18545):Title():IsPvP():PvP(7), -- Gladiator: Season 7
-	Ach(18546):Title():IsPvP():PvP(7), -- Duelist: Season 7
-	Ach(18547):Title():IsPvP():PvP(7), -- Challenger: Season 7
-	Ach(18548):Title():IsPvP():PvP(8), -- Rival: Season 8
-	Ach(18549):Title():IsPvP():PvP(8), -- Duelist: Season 8
-	Ach(18550):Title():IsPvP():PvP(8), -- Challenger: Season 8
-	Ach(18551):Title():IsPvP():PvP(8), -- Gladiator: Season 8
+	Ach(18544):Title():PvP(7), -- Rival: Season 7
+	Ach(18545):Title():PvP(7), -- Gladiator: Season 7
+	Ach(18546):Title():PvP(7), -- Duelist: Season 7
+	Ach(18547):Title():PvP(7), -- Challenger: Season 7
+	Ach(18548):Title():PvP(8), -- Rival: Season 8
+	Ach(18549):Title():PvP(8), -- Duelist: Season 8
+	Ach(18550):Title():PvP(8), -- Challenger: Season 8
+	Ach(18551):Title():PvP(8), -- Gladiator: Season 8
 	Ach(18590), -- Defense Protocol Beta: Utgarde Keep
 	Ach(18591), -- Defense Protocol Beta: The Nexus
 	Ach(18592), -- Defense Protocol Beta: Azjol-Nerub

@@ -143,9 +143,9 @@ KrowiAF.AchievementData2["03_00_02"] = {
 	Ach(414), -- Tyrael's Hilt
 	Ach(415), -- Big Blizzard Bear
 	Ach(416):Obtainable("Never"), -- Scarab Lord
-	Ach(418):IsPvP():Obtainable("PvP Season", 2), -- Merciless Gladiator
-	Ach(419):IsPvP():Obtainable("PvP Season", 3), -- Vengeful Gladiator
-	Ach(420):IsPvP():Obtainable("PvP Season", 4), -- Brutal Gladiator
+	Ach(418):PvP(2), -- Merciless Gladiator
+	Ach(419):PvP(3), -- Vengeful Gladiator
+	Ach(420):PvP(4), -- Brutal Gladiator
 	Ach(424), -- Why? Because It's Red
 	Ach(425):Obtainable("Never"), -- Atiesh, Greatstaff of the Guardian
 	Ach(426), -- Warglaives of Azzinoth
@@ -344,7 +344,7 @@ KrowiAF.AchievementData2["03_00_02"] = {
 	Ach(697), -- The Black Temple
 	Ach(698), -- Sunwell Plateau
 	Ach(699):IsPvP(), -- World Wide Winner
-	Ach(700):IsPvP():AutoFactionSplit(faction.Horde, 701):Obtainable("PvP Season", 5), -- Freedom of the Horde / Freedom of the Alliance
+	Ach(700):AutoFactionSplit(faction.Horde, 701):PvP(5), -- Freedom of the Horde / Freedom of the Alliance
 	Ach(705):Obtainable("Before", "Version", {4, 0, 1}), -- Master of Arms
 	Ach(706):IsPvP():AutoFactionSplit(faction.Horde, 707), -- Frostwolf Howler / Stormpike Battle Charger
 	Ach(708):IsPvP():AutoFactionSplit(faction.Horde, 709), -- Hero of the Frostwolf Clan / Hero of the Stormpike Guard
@@ -430,9 +430,9 @@ KrowiAF.AchievementData2["03_00_02"] = {
 	Ach(883), -- Reins of the Raven Lord
 	Ach(884), -- Swift White Hawkstrider
 	Ach(885), -- Ashes of Al'ar
-	Ach(886):IsPvP():Obtainable("PvP Season", 1), -- Swift Nether Drake
-	Ach(887):IsPvP():Obtainable("PvP Season", 2), -- Merciless Nether Drake
-	Ach(888):IsPvP():Obtainable("PvP Season", 3), -- Vengeful Nether Drake
+	Ach(886):PvP(1), -- Swift Nether Drake
+	Ach(887):PvP(2), -- Merciless Nether Drake
+	Ach(888):PvP(3), -- Vengeful Nether Drake
 	Ach(889), -- Fast and Furious
 	Ach(890), -- Into the Wild Blue Yonder
 	Ach(891), -- Giddy Up!
@@ -834,7 +834,7 @@ KrowiAF.AchievementData2["03_00_02"] = {
 	Ach(2199):IsPvP(), -- Wintergrasp Ranger
 	Ach(2256), -- Northern Exposure
 	Ach(2257), -- Frostbitten
-	Ach(2316):IsPvP():Obtainable("PvP Season", 4), -- Brutal Nether Drake
+	Ach(2316):PvP(4), -- Brutal Nether Drake
 	Ach(2336):Title():Obtainable("Event", 374), -- Insane in the Membrane
 	Ach(2357):Obtainable("Before", "Version", {4, 0, 3}), -- Dreadsteed of Xoroth
 	Ach(2358):Obtainable("Before", "Version", {4, 0, 3}), -- Charger
@@ -996,7 +996,7 @@ KrowiAF.AchievementData2["03_01_00"] = {
 	Ach(3059):Obtainable("Before", "Version", {7, 3, 5}), -- Heartbreaker (25 player)
 	Ach(3076):Obtainable("Before", "Version", {7, 3, 5}), -- Nine Lives (10 player)
 	Ach(3077):Obtainable("Before", "Version", {7, 3, 5}), -- Nine Lives (25 player)
-	Ach(3096):IsPvP():Obtainable("PvP Season", 5), -- Deadly Gladiator's Frost Wyrm
+	Ach(3096):PvP(5), -- Deadly Gladiator's Frost Wyrm
 	Ach(3097):Obtainable("Before", "Version", {7, 3, 5}), -- Dwarfageddon (10 player)
 	Ach(3098):Obtainable("Before", "Version", {7, 3, 5}), -- Dwarfageddon (25 player)
 	Ach(3117):Title():IsRealmFirst():Obtainable("Once"), -- Realm First! Death's Demise
@@ -1033,12 +1033,12 @@ KrowiAF.AchievementData2["03_01_00"] = {
 	Ach(3259):Title():IsRealmFirst():Obtainable("Once"), -- Realm First! Celestial Defender
 	Ach(3296), -- Cooking with Style
 	Ach(3316):Title(), -- Herald of the Titans
-	Ach(3336):IsPvP():Obtainable("PvP Season", 5), -- Deadly Gladiator
+	Ach(3336):PvP(5), -- Deadly Gladiator
 	Ach(3356):AutoFactionSplit(faction.Alliance, 3357), -- Winterspring Frostsaber / Venomhide Ravasaur
-	Ach(3436):IsPvP():Obtainable("PvP Season", 6), -- Furious Gladiator
+	Ach(3436):PvP(6), -- Furious Gladiator
 	Ach(3676):Other():AutoFactionSplit(faction.Alliance, 3677), -- A Silver Confidant / The Sunreavers
 	Ach(3736), -- Pony Up!
-	Ach(3756):IsPvP():Obtainable("PvP Season", 6), -- Furious Gladiator's Frost Wyrm
+	Ach(3756):PvP(6), -- Furious Gladiator's Frost Wyrm
 }
 
 KrowiAF.AchievementData2["03_02_00"] = {
@@ -1058,8 +1058,8 @@ KrowiAF.AchievementData2["03_02_00"] = {
 	Ach(3596):AutoFactionSplit(faction.Alliance, 3597):Obtainable("Event", 404), -- Pilgrim's Progress
 	Ach(3618):IsPvP():Obtainable("From", "Date", {2013, 8, 21}, "Until", "Date", {2013, 8, 25}), -- Murkimus the Gladiator
 	Ach(3636):Obtainable("From", "Date", {2009, 10, 19}, "Until", "Date", {2009, 11, 24}), -- Jade Tiger
-	Ach(3757):IsPvP():Obtainable("PvP Season", 7), -- Relentless Gladiator's Frost Wyrm
-	Ach(3758):IsPvP():Obtainable("PvP Season", 7), -- Relentless Gladiator
+	Ach(3757):PvP(7), -- Relentless Gladiator's Frost Wyrm
+	Ach(3758):PvP(7), -- Relentless Gladiator
 	Ach(3776):IsPvP(), -- Isle of Conquest Victory
 	Ach(3777):IsPvP(), -- Isle of Conquest Veteran
 	Ach(3778):AutoFactionSplit(faction.Horde, 4296), -- Trial of the Champion
@@ -1170,8 +1170,8 @@ KrowiAF.AchievementData2["03_03_00"] = {
 	Ach(4596), -- The Sword in the Skull
 	Ach(4597):Title(), -- The Frozen Throne (25 player)
 	Ach(4598):Title(), -- The Ashen Verdict
-	Ach(4599):IsPvP():Obtainable("PvP Season", 8), -- Wrathful Gladiator
-	Ach(4600):IsPvP():Obtainable("PvP Season", 8), -- Wrathful Gladiator's Frost Wyrm
+	Ach(4599):PvP(8), -- Wrathful Gladiator
+	Ach(4600):PvP(8), -- Wrathful Gladiator's Frost Wyrm
 	Ach(4601), -- Been Waiting a Long Time for This (10 player)
 	Ach(4602):Mount(), -- Glory of the Icecrown Raider (10 player)
 	Ach(4603):Mount(), -- Glory of the Icecrown Raider (25 player)

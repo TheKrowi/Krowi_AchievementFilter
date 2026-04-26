@@ -218,7 +218,7 @@ KrowiAF.AchievementData2["08_00_01"] = {
 	Ach(12942), -- Adventurer of Nazmir
 	Ach(12943), -- Adventurer of Vol'dun
 	Ach(12944), -- Adventurer of Zuldazar
-	Ach(12945):Title():IsPvP():Obtainable("PvP Season", 26), -- Dread Gladiator: Battle for Azeroth Season 1
+	Ach(12945):Title():PvP(26), -- Dread Gladiator: Battle for Azeroth Season 1
 	Ach(12947), -- Azerothian Diplomat
 	Ach(12948):AutoFactionSplit(faction.Horde, 12952), -- Talanji's Expedition / Order of Embers
 	Ach(12949):AutoFactionSplit(faction.Horde, 12953), -- The Voldunai / Storm's Wake
@@ -227,11 +227,11 @@ KrowiAF.AchievementData2["08_00_01"] = {
 	Ach(12955), -- Champions of Azeroth
 	Ach(12956), -- Tortollan Seekers
 	Ach(12958):Pet(), -- Master of Minions
-	Ach(12959):Title():IsPvP():Obtainable("PvP Season", 26), -- Challenger: Battle for Azeroth Season 1
-	Ach(12960):Title():IsPvP():Obtainable("PvP Season", 26), -- Rival: Battle for Azeroth Season 1
-	Ach(12961):Title():Mount():IsPvP():Obtainable("PvP Season", 26), -- Gladiator: Battle for Azeroth Season 1
-	Ach(12962):Title():IsPvP():Obtainable("PvP Season", 26), -- Duelist: Battle for Azeroth Season 1
-	Ach(12963):AutoFactionSplit(faction.Alliance, 12964):IsPvP():Obtainable("PvP Season", 26), -- Hero of the Alliance: Dread / Hero of the Horde: Dread
+	Ach(12959):Title():PvP(26), -- Challenger: Battle for Azeroth Season 1
+	Ach(12960):Title():PvP(26), -- Rival: Battle for Azeroth Season 1
+	Ach(12961):Title():Mount():PvP(26), -- Gladiator: Battle for Azeroth Season 1
+	Ach(12962):Title():PvP(26), -- Duelist: Battle for Azeroth Season 1
+	Ach(12963):AutoFactionSplit(faction.Alliance, 12964):PvP(26), -- Hero of the Alliance: Dread / Hero of the Horde: Dread
 	Ach(12988), -- Battle for Azeroth Explorer
 	Ach(12989):Other(), -- Battle for Azeroth Pathfinder, Part One
 	Ach(12990), -- Catchin' Some Rays
@@ -290,7 +290,7 @@ KrowiAF.AchievementData2["08_00_01"] = {
 	Ach(13082):FactionSplit(faction.Alliance, nil), -- Everything Old Is New Again
 	Ach(13083), -- Better, Faster, Stronger
 	Ach(13087), -- Sausage Sampler
-	Ach(13093):IsPvP():Obtainable("PvP Season", 26), -- Dread Gladiator's Proto-Drake
+	Ach(13093):PvP(26), -- Dread Gladiator's Proto-Drake
 	Ach(13094), -- Cursed Game Hunter
 	Ach(13095), -- Dread Chain
 	Ach(13096), -- Heroic: Dread Chain
@@ -338,15 +338,15 @@ KrowiAF.AchievementData2["08_01_00"] = {
 	{KrowiAF.SetAchievementPatch, 8, 1, 0},
 	Ach(13138), -- Flying Colors
 	Ach(13196), -- Meat Marauder
-	Ach(13199):Title():IsPvP():Obtainable("PvP Season", 26), -- Combatant: Battle for Azeroth Season 1
-	Ach(13200):Title():IsPvP():Obtainable("PvP Season", 27), -- Sinister Gladiator: Battle for Azeroth Season 2
-	Ach(13202):IsPvP():Obtainable("PvP Season", 27), -- Sinister Gladiator's Proto-Drake
-	Ach(13203):Title():IsPvP():Obtainable("PvP Season", 27), -- Challenger: Battle for Azeroth Season 2
-	Ach(13204):Title():IsPvP():Obtainable("PvP Season", 27), -- Combatant: Battle for Azeroth Season 2
-	Ach(13205):Title():IsPvP():Obtainable("PvP Season", 27), -- Rival: Battle for Azeroth Season 2
-	Ach(13209):Title():IsPvP():Obtainable("PvP Season", 27), -- Duelist: Battle for Azeroth Season 2
-	Ach(13210):AutoFactionSplit(faction.Alliance, 13211):IsPvP():Obtainable("PvP Season", 27), -- Hero of the Alliance: Sinister / Hero of the Horde: Sinister
-	Ach(13212):Title():Mount():IsPvP():Obtainable("PvP Season", 27), -- Gladiator: Battle for Azeroth Season 2
+	Ach(13199):Title():PvP(26), -- Combatant: Battle for Azeroth Season 1
+	Ach(13200):Title():PvP(27), -- Sinister Gladiator: Battle for Azeroth Season 2
+	Ach(13202):PvP(27), -- Sinister Gladiator's Proto-Drake
+	Ach(13203):Title():PvP(27), -- Challenger: Battle for Azeroth Season 2
+	Ach(13204):Title():PvP(27), -- Combatant: Battle for Azeroth Season 2
+	Ach(13205):Title():PvP(27), -- Rival: Battle for Azeroth Season 2
+	Ach(13209):Title():PvP(27), -- Duelist: Battle for Azeroth Season 2
+	Ach(13210):AutoFactionSplit(faction.Alliance, 13211):PvP(27), -- Hero of the Alliance: Sinister / Hero of the Horde: Sinister
+	Ach(13212):Title():Mount():PvP(27), -- Gladiator: Battle for Azeroth Season 2
 	Ach(13251):Other():FactionSplit(faction.Alliance, 13263), -- In Teldrassil's Shadow
 	Ach(13263):FactionSplit(faction.Horde, 13251), -- The Shadow Hunter
 	Ach(13269):Pet(), -- Pet Battle Challenge: Gnomeregan
@@ -421,8 +421,8 @@ KrowiAF.AchievementData2["08_01_00"] = {
 	Ach(13440):AutoFactionSplit(faction.Alliance, 13441), -- Pushing the Payload
 	Ach(13448):PvE(2), -- Battle for Azeroth Keystone Conqueror: Season Two
 	Ach(13449):PvE(2), -- Battle for Azeroth Keystone Master: Season Two
-	Ach(13450):IsPvP():Obtainable("PvP Season", 23), -- Fierce Gladiator's Storm Dragon
-	Ach(13451):Title():IsPvP():Obtainable("PvP Season", 27), -- Elite: Battle for Azeroth Season 2
+	Ach(13450):PvP(23), -- Fierce Gladiator's Storm Dragon
+	Ach(13451):Title():PvP(27), -- Elite: Battle for Azeroth Season 2
 }
 
 KrowiAF.AchievementData2["08_01_05"] = {
@@ -435,7 +435,7 @@ KrowiAF.AchievementData2["08_01_05"] = {
 	Ach(13194):Obtainable("Before", "Version", {9, 0, 1}), -- I Am Thrall's Complete Lack Of Surprise
 	Ach(13340):AutoFactionSplit(faction.Horde, 13341):Obtainable("Event", 341), -- Flame Keeper of Zandalar / Flame Warden of Kul Tiras
 	Ach(13342):AutoFactionSplit(faction.Horde, 13343):Obtainable("Event", 341), -- Extinguishing Kul Tiras / Extinguishing Zandalar
-	Ach(13465):Title():IsPvP():Obtainable("PvP Season", 26), -- Elite: Battle for Azeroth Season 1
+	Ach(13465):Title():PvP(26), -- Elite: Battle for Azeroth Season 1
 	Ach(13466):AutoFactionSplit(faction.Horde, 13467), -- Tides of Vengeance
 	Ach(13469):Pet(), -- Raiding with Leashes VI: Pets of Pandaria
 	Ach(13501), -- Gotta Bounce
@@ -495,19 +495,19 @@ KrowiAF.AchievementData2["08_02_00"] = {
 	Ach(13627):Pet(), -- Pet Battle Challenge: Stratholme
 	Ach(13628), -- Intro to Marine Biology
 	Ach(13629), -- Simple Geometry
-	Ach(13630):Title():IsPvP():Obtainable("PvP Season", 28), -- Notorious Gladiator: Battle for Azeroth Season 3
-	Ach(13632):IsPvP():Obtainable("PvP Season", 28), -- Notorious Gladiator's Proto-Drake
+	Ach(13630):Title():PvP(28), -- Notorious Gladiator: Battle for Azeroth Season 3
+	Ach(13632):PvP(28), -- Notorious Gladiator's Proto-Drake
 	Ach(13633), -- If It Pleases the Court
-	Ach(13634):Title():IsPvP():Obtainable("PvP Season", 28), -- Challenger: Battle for Azeroth Season 3
+	Ach(13634):Title():PvP(28), -- Challenger: Battle for Azeroth Season 3
 	Ach(13635), -- Tour of the Depths
 	Ach(13638):Title():Mount(), -- Undersea Usurper
-	Ach(13639):Title():IsPvP():Obtainable("PvP Season", 28), -- Combatant: Battle for Azeroth Season 3
-	Ach(13641):Title():IsPvP():Obtainable("PvP Season", 28), -- Rival: Battle for Azeroth Season 3
-	Ach(13642):Title():IsPvP():Obtainable("PvP Season", 28), -- Duelist: Battle for Azeroth Season 3
-	Ach(13643):AutoFactionSplit(faction.Alliance, 13644):IsPvP():Obtainable("PvP Season", 28), -- Hero of the Alliance: Notorious / Hero of the Horde: Notorious
+	Ach(13639):Title():PvP(28), -- Combatant: Battle for Azeroth Season 3
+	Ach(13641):Title():PvP(28), -- Rival: Battle for Azeroth Season 3
+	Ach(13642):Title():PvP(28), -- Duelist: Battle for Azeroth Season 3
+	Ach(13643):AutoFactionSplit(faction.Alliance, 13644):PvP(28), -- Hero of the Alliance: Notorious / Hero of the Horde: Notorious
 	Ach(13645):AutoFactionSplit(faction.Horde, 13704), -- Nautical Battlefield Training
-	Ach(13647):Title():Mount():IsPvP():Obtainable("PvP Season", 28), -- Gladiator: Battle for Azeroth Season 3
-	Ach(13676):Title():IsPvP():Obtainable("PvP Season", 28), -- Elite: Battle for Azeroth Season 3
+	Ach(13647):Title():Mount():PvP(28), -- Gladiator: Battle for Azeroth Season 3
+	Ach(13676):Title():PvP(28), -- Elite: Battle for Azeroth Season 3
 	Ach(13684), -- You and What Army?
 	Ach(13686), -- Junkyard Melomaniac
 	Ach(13687):Mount(), -- Glory of the Eternal Raider
@@ -597,15 +597,15 @@ KrowiAF.AchievementData2["08_02_05"] = {
 KrowiAF.AchievementData2["08_03_00"] = {
 	{KrowiAF.SetAchievementPatch, 8, 3, 0},
 	Ach(13206):AlliedRace():FactionSplit(faction.Horde, nil), -- Allied Races: Vulpera
-	Ach(13957):Title():IsPvP():Obtainable("PvP Season", 29), -- Corrupted Gladiator: Battle for Azeroth Season 4
-	Ach(13958):IsPvP():Obtainable("PvP Season", 29), -- Corrupted Gladiator's Proto-Drake
-	Ach(13959):Title():IsPvP():Obtainable("PvP Season", 29), -- Challenger: Battle for Azeroth Season 4
-	Ach(13962):Title():IsPvP():Obtainable("PvP Season", 29), -- Combatant: Battle for Azeroth Season 4
-	Ach(13963):Title():IsPvP():Obtainable("PvP Season", 29), -- Rival: Battle for Azeroth Season 4
-	Ach(13964):Title():IsPvP():Obtainable("PvP Season", 29), -- Duelist: Battle for Azeroth Season 4
-	Ach(13965):AutoFactionSplit(faction.Horde, 13966):IsPvP():Obtainable("PvP Season", 29), -- Hero of the Horde: Corrupted / Hero of the Alliance: Corrupted
-	Ach(13967):Title():Mount():IsPvP():Obtainable("PvP Season", 29), -- Gladiator: Battle for Azeroth Season 4
-	Ach(13989):Title():IsPvP():Obtainable("PvP Season", 29), -- Elite: Battle for Azeroth Season 4
+	Ach(13957):Title():PvP(29), -- Corrupted Gladiator: Battle for Azeroth Season 4
+	Ach(13958):PvP(29), -- Corrupted Gladiator's Proto-Drake
+	Ach(13959):Title():PvP(29), -- Challenger: Battle for Azeroth Season 4
+	Ach(13962):Title():PvP(29), -- Combatant: Battle for Azeroth Season 4
+	Ach(13963):Title():PvP(29), -- Rival: Battle for Azeroth Season 4
+	Ach(13964):Title():PvP(29), -- Duelist: Battle for Azeroth Season 4
+	Ach(13965):AutoFactionSplit(faction.Horde, 13966):PvP(29), -- Hero of the Horde: Corrupted / Hero of the Alliance: Corrupted
+	Ach(13967):Title():Mount():PvP(29), -- Gladiator: Battle for Azeroth Season 4
+	Ach(13989):Title():PvP(29), -- Elite: Battle for Azeroth Season 4
 	Ach(13990), -- You Can Pet the Dog, But...
 	Ach(13994):Mount(), -- Through the Depths of Visions
 	Ach(13998), -- Pure of Heart

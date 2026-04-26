@@ -270,7 +270,7 @@ KrowiAF.AchievementData2["05_00_04"] = {
 	Ach(6936), -- Candle in the Wind
 	Ach(6937), -- Overzealous
 	Ach(6938):PvP(11), -- Cataclysmic Gladiator
-	Ach(6939):IsPvP():PvP(11):AutoFactionSplit(faction.Alliance, 6940), -- Hero of the Alliance: Cataclysmic / Hero of the Horde: Cataclysmic
+	Ach(6939):PvP(11):AutoFactionSplit(faction.Alliance, 6940), -- Hero of the Alliance: Cataclysmic / Hero of the Horde: Cataclysmic
 	Ach(6941):Title():IsPvP():AutoFactionSplit(faction.Horde, 6942), -- Hero of the Horde / Hero of the Alliance
 	Ach(6943), -- Queuing Spree
 	Ach(6945), -- Mantid Swarm

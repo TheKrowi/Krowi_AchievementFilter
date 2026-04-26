@@ -216,15 +216,15 @@ KrowiAF.AchievementData2["06_00_02"] = {
 	Ach(9223), -- Weed Whacker
 	Ach(9224):IsPvP():AutoFactionSplit(faction.Horde, 9225), -- Take Them Out
 	Ach(9228):FactionSplit(faction.Alliance, nil):IsPvP(), -- Down Goes Van Rook
-	Ach(9229):IsPvP():Obtainable("From", "PvP Season", 16, "Until", "PvP Season", 16), -- Primal Gladiator's Felblood Gronnling
-	Ach(9230):IsPvP():AutoFactionSplit(faction.Alliance, 9231):Obtainable("From", "PvP Season", 16, "Until", "PvP Season", 16), -- Hero of the Alliance: Primal / Hero of the Horde: Primal
-	Ach(9232):Title():IsPvP():Obtainable("From", "PvP Season", 16, "Until", "PvP Season", 16), -- Primal Gladiator: Warlords Season 1
-	Ach(9233):IsPvP():AutoFactionSplit(faction.Horde, 9234):Obtainable("From", "PvP Season", 16, "Until", "PvP Season", 16), -- Primal Conquest
-	Ach(9236):Mount():IsPvP():AutoFactionSplit(faction.Horde, 9238):Obtainable("From", "PvP Season", 16, "Until", "PvP Season", 16), -- Primal Combatant
-	Ach(9239):Title():IsPvP():Obtainable("From", "PvP Season", 16, "Until", "PvP Season", 16), -- Gladiator: Warlords Season 1
-	Ach(9240):Title():IsPvP():Obtainable("From", "PvP Season", 16, "Until", "PvP Season", 16), -- Duelist: Warlords Season 1
-	Ach(9241):Title():IsPvP():Obtainable("From", "PvP Season", 16, "Until", "PvP Season", 16), -- Rival: Warlords Season 1
-	Ach(9242):Title():IsPvP():Obtainable("From", "PvP Season", 16, "Until", "PvP Season", 16), -- Challenger: Warlords Season 1
+	Ach(9229):PvP(16), -- Primal Gladiator's Felblood Gronnling
+	Ach(9230):PvP(16):AutoFactionSplit(faction.Alliance, 9231), -- Hero of the Alliance: Primal / Hero of the Horde: Primal
+	Ach(9232):Title():PvP(16), -- Primal Gladiator: Warlords Season 1
+	Ach(9233):PvP(16):AutoFactionSplit(faction.Horde, 9234), -- Primal Conquest
+	Ach(9236):Mount():PvP(16):AutoFactionSplit(faction.Horde, 9238), -- Primal Combatant
+	Ach(9239):Title():PvP(16), -- Gladiator: Warlords Season 1
+	Ach(9240):Title():PvP(16), -- Duelist: Warlords Season 1
+	Ach(9241):Title():PvP(16), -- Rival: Warlords Season 1
+	Ach(9242):Title():PvP(16), -- Challenger: Warlords Season 1
 	Ach(9243), -- Item Level Force
 	Ach(9244), -- Invasions Are Better with Friends
 	Ach(9246):Garrison(), -- Master Draenor Crafter
@@ -499,9 +499,9 @@ KrowiAF.AchievementData2["06_02_00"] = {
 	Ach(9983):Pet():Obtainable("Event", 374), -- That's Whack!
 	Ach(9988), -- Pro Toss
 	Ach(9989), -- Non-Lethal Enforcer
-	Ach(9995):Title():IsPvP():AutoFactionSplit(faction.Alliance, 9998):Obtainable("From", "PvP Season", 16, "Until", "PvP Season", 16), -- Soldier of the Alliance: Warlords Season 1 / Soldier of the Horde: Warlords Season 1
-	Ach(9996):Title():IsPvP():AutoFactionSplit(faction.Alliance, 10001):Obtainable("From", "PvP Season", 16, "Until", "PvP Season", 16), -- Defender of the Alliance: Warlords Season 1 / Defender of the Horde: Warlords Season 1
-	Ach(9997):Title():IsPvP():AutoFactionSplit(faction.Alliance, 10000):Obtainable("From", "PvP Season", 16, "Until", "PvP Season", 16), -- Guardian of the Alliance: Warlords Season 1 / Guardian of the Horde: Warlords Season 1
+	Ach(9995):Title():PvP(16):AutoFactionSplit(faction.Alliance, 9998), -- Soldier of the Alliance: Warlords Season 1 / Soldier of the Horde: Warlords Season 1
+	Ach(9996):Title():PvP(16):AutoFactionSplit(faction.Alliance, 10001), -- Defender of the Alliance: Warlords Season 1 / Defender of the Horde: Warlords Season 1
+	Ach(9997):Title():PvP(16):AutoFactionSplit(faction.Alliance, 10000), -- Guardian of the Alliance: Warlords Season 1 / Guardian of the Horde: Warlords Season 1
 	Ach(10010), -- Gate of the Setting Sun
 	Ach(10011), -- Siege of Niuzao Temple
 	Ach(10012), -- This Land Was Green and Good Until...
@@ -555,30 +555,30 @@ KrowiAF.AchievementData2["06_02_00"] = {
 	Ach(10085), -- Mythic: Upper Blackrock Spire
 	Ach(10086), -- I'm a Soul Man
 	Ach(10087), -- You Gotta Keep 'em Separated
-	Ach(10088):IsPvP():AutoFactionSplit(faction.Horde, 10089):Obtainable("From", "PvP Season", 17, "Until", "PvP Season", 17), -- Wild Conquest
-	Ach(10090):IsPvP():AutoFactionSplit(faction.Horde, 10091):Obtainable("From", "PvP Season", 18, "Until", "PvP Season", 18), -- Warmongering Conquest
-	Ach(10092):Mount():IsPvP():AutoFactionSplit(faction.Horde, 10093):Obtainable("From", "PvP Season", 17, "Until", "PvP Season", 17), -- Wild Combatant
-	Ach(10094):Mount():IsPvP():AutoFactionSplit(faction.Horde, 10095):Obtainable("From", "PvP Season", 18, "Until", "PvP Season", 18), -- Warmongering Combatant
-	Ach(10096):Title():IsPvP():Obtainable("From", "PvP Season", 17, "Until", "PvP Season", 17), -- Wild Gladiator: Warlords Season 2
-	Ach(10097):Title():IsPvP():Obtainable("From", "PvP Season", 18, "Until", "PvP Season", 18), -- Warmongering Gladiator: Warlords Season 3
-	Ach(10098):Title():IsPvP():Obtainable("From", "PvP Season", 17, "Until", "PvP Season", 17), -- Gladiator: Warlords Season 2
-	Ach(10099):Title():IsPvP():Obtainable("From", "PvP Season", 17, "Until", "PvP Season", 17), -- Duelist: Warlords Season 2
-	Ach(10100):Title():IsPvP():Obtainable("From", "PvP Season", 17, "Until", "PvP Season", 17), -- Rival: Warlords Season 2
-	Ach(10101):Title():IsPvP():Obtainable("From", "PvP Season", 17, "Until", "PvP Season", 17), -- Challenger: Warlords Season 2
-	Ach(10102):IsPvP():AutoFactionSplit(faction.Alliance, 10103):Obtainable("From", "PvP Season", 17, "Until", "PvP Season", 17), -- Hero of the Alliance: Wild / Hero of the Horde: Wild
-	Ach(10104):Title():IsPvP():AutoFactionSplit(faction.Alliance, 10105):Obtainable("From", "PvP Season", 17, "Until", "PvP Season", 17), -- Soldier of the Alliance: Warlords Season 2 / Soldier of the Horde: Warlords Season 2
-	Ach(10106):Title():IsPvP():AutoFactionSplit(faction.Alliance, 10107):Obtainable("From", "PvP Season", 17, "Until", "PvP Season", 17), -- Defender of the Alliance: Warlords Season 2 / Defender of the Horde: Warlords Season 2
-	Ach(10108):Title():IsPvP():AutoFactionSplit(faction.Alliance, 10109):Obtainable("From", "PvP Season", 17, "Until", "PvP Season", 17), -- Guardian of the Alliance: Warlords Season 2 / Guardian of the Horde: Warlords Season 2
-	Ach(10110):Title():IsPvP():Obtainable("From", "PvP Season", 18, "Until", "PvP Season", 18), -- Gladiator: Warlords Season 3
-	Ach(10111):Title():IsPvP():Obtainable("From", "PvP Season", 18, "Until", "PvP Season", 18), -- Duelist: Warlords Season 3
-	Ach(10112):Title():IsPvP():Obtainable("From", "PvP Season", 18, "Until", "PvP Season", 18), -- Rival: Warlords Season 3
-	Ach(10113):Title():IsPvP():Obtainable("From", "PvP Season", 18, "Until", "PvP Season", 18), -- Challenger: Warlords Season 3
-	Ach(10114):IsPvP():AutoFactionSplit(faction.Alliance, 10115):Obtainable("From", "PvP Season", 18, "Until", "PvP Season", 18), -- Hero of the Alliance: Warmongering / Hero of the Horde: Warmongering
-	Ach(10116):Title():IsPvP():AutoFactionSplit(faction.Alliance, 10117):Obtainable("From", "PvP Season", 18, "Until", "PvP Season", 18), -- Guardian of the Alliance: Warlords Season 3 / Guardian of the Horde: Warlords Season 3
-	Ach(10118):Title():IsPvP():AutoFactionSplit(faction.Alliance, 10119):Obtainable("From", "PvP Season", 18, "Until", "PvP Season", 18), -- Defender of the Alliance: Warlords Season 3 / Defender of the Horde: Warlords Season 3
-	Ach(10120):Title():IsPvP():AutoFactionSplit(faction.Alliance, 10121):Obtainable("From", "PvP Season", 18, "Until", "PvP Season", 18), -- Soldier of the Alliance: Warlords Season 3 / Soldier of the Horde: Warlords Season 3
-	Ach(10137):IsPvP():Obtainable("From", "PvP Season", 17, "Until", "PvP Season", 17), -- Wild Gladiator's Felblood Gronnling
-	Ach(10146):IsPvP():Obtainable("From", "PvP Season", 18, "Until", "PvP Season", 18), -- Warmongering Gladiator's Felblood Gronnling
+	Ach(10088):PvP(17):AutoFactionSplit(faction.Horde, 10089), -- Wild Conquest
+	Ach(10090):PvP(18):AutoFactionSplit(faction.Horde, 10091), -- Warmongering Conquest
+	Ach(10092):Mount():PvP(17):AutoFactionSplit(faction.Horde, 10093), -- Wild Combatant
+	Ach(10094):Mount():PvP(18):AutoFactionSplit(faction.Horde, 10095), -- Warmongering Combatant
+	Ach(10096):Title():PvP(17), -- Wild Gladiator: Warlords Season 2
+	Ach(10097):Title():PvP(18), -- Warmongering Gladiator: Warlords Season 3
+	Ach(10098):Title():PvP(17), -- Gladiator: Warlords Season 2
+	Ach(10099):Title():PvP(17), -- Duelist: Warlords Season 2
+	Ach(10100):Title():PvP(17), -- Rival: Warlords Season 2
+	Ach(10101):Title():PvP(17), -- Challenger: Warlords Season 2
+	Ach(10102):PvP(17):AutoFactionSplit(faction.Alliance, 10103), -- Hero of the Alliance: Wild / Hero of the Horde: Wild
+	Ach(10104):Title():PvP(17):AutoFactionSplit(faction.Alliance, 10105), -- Soldier of the Alliance: Warlords Season 2 / Soldier of the Horde: Warlords Season 2
+	Ach(10106):Title():PvP(17):AutoFactionSplit(faction.Alliance, 10107), -- Defender of the Alliance: Warlords Season 2 / Defender of the Horde: Warlords Season 2
+	Ach(10108):Title():PvP(17):AutoFactionSplit(faction.Alliance, 10109), -- Guardian of the Alliance: Warlords Season 2 / Guardian of the Horde: Warlords Season 2
+	Ach(10110):Title():PvP(18), -- Gladiator: Warlords Season 3
+	Ach(10111):Title():PvP(18), -- Duelist: Warlords Season 3
+	Ach(10112):Title():PvP(18), -- Rival: Warlords Season 3
+	Ach(10113):Title():PvP(18), -- Challenger: Warlords Season 3
+	Ach(10114):PvP(18):AutoFactionSplit(faction.Alliance, 10115), -- Hero of the Alliance: Warmongering / Hero of the Horde: Warmongering
+	Ach(10116):Title():PvP(18):AutoFactionSplit(faction.Alliance, 10117), -- Guardian of the Alliance: Warlords Season 3 / Guardian of the Horde: Warlords Season 3
+	Ach(10118):Title():PvP(18):AutoFactionSplit(faction.Alliance, 10119), -- Defender of the Alliance: Warlords Season 3 / Defender of the Horde: Warlords Season 3
+	Ach(10120):Title():PvP(18):AutoFactionSplit(faction.Alliance, 10121), -- Soldier of the Alliance: Warlords Season 3 / Soldier of the Horde: Warlords Season 3
+	Ach(10137):PvP(17), -- Wild Gladiator's Felblood Gronnling
+	Ach(10146):PvP(18), -- Warmongering Gladiator's Felblood Gronnling
 	Ach(10149):Mount(), -- Glory of the Hellfire Raider
 	Ach(10154), -- Naval Combat Expert
 	Ach(10155), -- Naval Siege Expert
