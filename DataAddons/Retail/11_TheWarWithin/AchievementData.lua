@@ -651,10 +651,10 @@ KrowiAF.AchievementData["11_01_00"] = {
 	Ach(41594), -- Can You Believe What People Throw Away?
 	Ach(41595):IsPvP(), -- Prized Guise
 	Ach(41596):Title(), -- Garbage In, Garbage Out
-	{41626, }, -- C.H.E.T.T. a Look
-	{41627, }, -- C.H.E.T.T.ing it Twice
+	Ach(41626), -- C.H.E.T.T. a Look
+	Ach(41627), -- C.H.E.T.T.ing it Twice
 	Ach(41629):Title(), -- C.H.E.T.T.mate
-	{41630, }, -- "Employee" of the Month
+	Ach(41630), -- "Employee" of the Month
 	Ach(41665):Transmog(), -- Dressed to the Mines
 	Ach(41694), -- Flarendo's Biggest Fan
 	Ach(41695), -- Torq's Biggest Fan

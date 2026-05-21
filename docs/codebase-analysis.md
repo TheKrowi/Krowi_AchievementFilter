@@ -620,7 +620,7 @@ The `DataAddons/Retail/` tree spans 12 expansions. `11_TheWarWithin/CategoryData
 | 13 | 🟡 LOW | `Plugins/Plugins.lua` entirely commented out | `Plugins/Plugins.lua` | Delete file; update `Files.xml` |
 | 14 | 🟡 LOW | `Globals.lua` is too large / does too much | `Globals.lua` | Refactor: split cache, compat, and window management |
 | 15 | 🔄 ONGOING | Mixed indentation and semicolons throughout codebase | All files | `.editorconfig` + `docs/styleguide.md` created 2026-04-19. Apply incrementally as files are touched. |
-| 16 | 🟠 MEDIUM | `AchBuilder` reward consumer guards: `IsTable` check + temp table alloc on every filter/render pass | `Filters.lua` validation #6, `Gui/AchievementTooltip/Rewards.lua` | Remove `IsTable` guards once builder loop promote pattern is live. Apply atomically. |
+| 16 | ✅ FIXED | `AchBuilder` reward consumer guards: `IsTable` check + temp table alloc on every filter/render pass | `Filters.lua` validation #6, `Gui/AchievementTooltip/Rewards.lua` | Fixed 2026-04-26: `IsTable` guards removed from both consumers after confirming full V1→V2 data migration. `RewardType` is now always a table or nil. |
 
 ---
 
@@ -632,16 +632,6 @@ When resuming work in a new chat, paste this report as context and reference the
 2. **Refactor `Globals.lua`** — splitting the async cache builder into `Data/AchievementCache.lua` would also allow the `HandleAchievement`, `HandleCompletedAchievement`, `HandleNotCompletedAchievement` family to be tested in isolation conceptually, even if no test runner exists.
 3. **Migrate all `DataAddons/Retail/` data files to the `Ach()`/`PvE()`/`Title()` helper style** — this is a large but mechanical refactor that greatly improves readability of the data layer. The `Shared/AchievementData.lua` helpers are already in place.
 4. **Document the loader mechanism** in `docs/how-to/data-loader-pattern.md` — this is invisible to new contributors and a source of confusion.
-
----
-
-## REWARD-TYPE REFACTOR — DECISION LOG (2026-04-19)
-
-Discussion context for item 16 above.
-
-- **Original:** single-reward methods store raw integer; `Rewards(r1, r2)` stores table. Two `IsTable` guards in filter/tooltip consumers wrap single values in a temp table on every render pass.
-- **Always-table considered:** store `{value}` unconditionally in builder loop. Pros: removes all `IsTable` checks; consistent with `Rewards(...)`. Cons: does not enable chained syntax (second call overwrites). Load cost +14.7% per rewarded entry.
-- **Pending:** remove `IsTable` guards from `Filters.lua` validation #6 and `Gui/AchievementTooltip/Rewards.lua` — apply atomically when ready.
 
 ---
 

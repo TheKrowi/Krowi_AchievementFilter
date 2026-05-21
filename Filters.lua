@@ -174,9 +174,6 @@ local validations = {
 
             local rewardType = achievement.RewardType;
             if rewardType then
-                if not addon.Util.IsTable(rewardType) then
-                    rewardType = {rewardType};
-                end
                 for _, rType in next, rewardType do
                     if _filters.RewardType[rType] then
                         return false;

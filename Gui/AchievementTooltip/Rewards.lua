@@ -14,10 +14,6 @@ function section:Add(achievement)
 	GameTooltip:AddLine(addon.L["Rewards"]) -- Header
     local rewardType = achievement.RewardType
     if rewardType then
-        if not addon.Util.IsTable(rewardType) then
-            rewardType = {rewardType}
-        end
-
         if not getTypeName then
             getTypeName = EnumUtil.GenerateNameTranslation(KrowiAF.Enum.RewardType)
         end
