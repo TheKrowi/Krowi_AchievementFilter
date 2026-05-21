@@ -1,19 +1,20 @@
 ### Added
-- 12.0.5 achievements (~90)
-    - Decor Duel event achievements (10)
-    - Ritual Sites achievements including Broken Throne and Daggerspine Point sub-categories and their Challenges (55)
-    - Void Assaults achievements for Eversong and Zul'Aman (18)
-    - Additional Abyss Anglers achievements (16)
+- Mythic+ seasons for Shadowlands and Dragonflight are now listed under their respective expansion's Dungeons category (in addition to the Specials tab)
+- Midnight Keystone Myth: Season One
 
 ### Changed
-- The War Within and Midnight achievement data internally migrated to a new fluent V2 builder format (dev note: this is an invisible change for users; the new format uses method chaining instead of nested tables — e.g. `Ach(12345):Mount():PvE(13)` — which greatly improves readability and reduces data entry errors)
+- Wrath of the Lich King, Cataclysm, Mists of Pandaria, Warlords of Draenor, Legion, Battle for Azeroth, Shadowlands and Dragonflight achievement data internally migrated to a new fluent V2 builder format (dev note: this is an invisible change for users; the new format uses method chaining instead of nested tables — e.g. `Ach(12345):Mount():PvE(13)` — which greatly improves readability and reduces data entry errors)
+- WoW Anniversary achievements for the 16th through 21st anniversaries now use explicit date-based obtainability windows instead of calendar event IDs, making them more reliable
+- Enhanced the achievement reward to be more performant (dev note: filtering and tooltips should be more responsive)
 
 ### Fixed
-- Season-gated achievements using the legacy "Season" end function keyword were evaluating obtainability state against the wrong field (start instead of end), producing incorrect results
-- Removed a debug flag in TemporaryObtainable that could have accidentally shipped with hardcoded season and version overrides, causing all time-gated achievements to show incorrect obtainability states
-- Several unobtainable achievements were incorrectly showing as obtainable when "Past Obtainable" was unchecked:
-    - Boldly, You Sought the Power of Ragnaros (9550) — WoW 10th Anniversary Molten Core LFR, never returned
-    - Dragonflight Season 2 Master (18027) — now gated to PvE Season 10 / PvP Season 35
-    - Defender of the Timeways (18705) — now gated to before version 10.2.0
-    - Dragonflight Season 3 Master (19396) — now gated to PvE Season 11 / PvP Season 36
-    - Dragonflight Season 4 Master (20481) — now gated to PvE Season 12 / PvP Season 37
+- Attempted fix for a recurring Lua error that could appear in the chat frame after hovering over a category or the world map icon (dev note: WoW 12.0.0 introduced "secret number values" — a security mechanism that marks frame measurements as tainted when addon code writes into Blizzard-owned frames; the progress bar was permanently parented to Blizzard's `GameTooltip`, and calls to `SetParent`, `SetHeight`, `SetPoint`, and `GameTooltip_AddBlankLinesToTooltip` against it were corrupting its layout state; the fix moves the progress bar into a library-owned `Krowi_ProgressBarTooltip` frame so Blizzard's `GameTooltip` is never touched by KAF's tooltip code)
+
+### Removed
+- "Ta's Pet Collection" removed from the Specials tab (dev note: this category was no longer maintained and is now part of [Khamuls Housing/Toys/Mounts/Pets Collections Plugin](https://github.com/KhamulAT/Krowi_AchievementFilter_Khamuls_ExpMetaAchievementFilter))
+- WoW Anniversary events (18th, 19th, 20th, 21st) removed from the Events reminder system; obtainability is now tracked via date ranges directly on the achievements instead
+- Removed obsolete localization strings for anniversary event category names that are no longer needed (10th, 18th, 19th, 21st)
+
+### Mists Classic
+- Changed Wrath of the Lich King, Cataclysm and Mists of Pandaria achievement data internally migrated to a new fluent V2 builder format (dev note: this is an invisible change for users; the new format uses method chaining instead of nested tables — e.g. `Ach(12345):Mount():PvE(13)` — which greatly improves readability and reduces data entry errors)
+- Fixed Mists of Pandaria 5.5.3 missing build version
