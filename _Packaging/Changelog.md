@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 96.1 - 2026-05-22
+### Fixed
+- The progress bar tooltip now correctly hides when moving the mouse away from a category or the world map icon
+
 ## 96.0 - 2026-05-21
 ### Added
 - Mythic+ seasons for Shadowlands and Dragonflight are now listed under their respective expansion's Dungeons category (in addition to the Specials tab)

@@ -18,3 +18,6 @@
 ### Mists Classic
 - Changed Wrath of the Lich King, Cataclysm and Mists of Pandaria achievement data internally migrated to a new fluent V2 builder format (dev note: this is an invisible change for users; the new format uses method chaining instead of nested tables — e.g. `Ach(12345):Mount():PvE(13)` — which greatly improves readability and reduces data entry errors)
 - Fixed Mists of Pandaria 5.5.3 missing build version
+
+### Fixed (96.1)
+- The progress bar tooltip now correctly hides when moving the mouse away from a category or the world map icon
