@@ -19,16 +19,6 @@ KrowiAF.EventData.Dragonflight = {
         addon.L["Other"],
         2
     },
-    { -- WoW's 19th Anniversary
-        1397, type.Calendar,
-        1173,
-        133783,
-		addon.L["WoW's 19th Anniversary"],
-        addon.L["Other"],
-        2,
-        nil,
-        true
-    },
     { -- Eastern Kingdoms Cup
         1400, type.Calendar,
         1531,

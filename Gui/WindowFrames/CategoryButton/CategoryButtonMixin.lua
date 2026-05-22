@@ -17,8 +17,7 @@ function KrowiAF_CategoryButtonMixin:OnEnter()
 end
 
 function KrowiAF_CategoryButtonMixin:OnLeave()
-	GameTooltip:SetMinimumWidth(0, false);
-	GameTooltip:Hide();
+	addon.ProgressBarLib.GameTooltipWithProgressBar:Hide()
 end
 
 function KrowiAF_CategoryButtonMixin:OnClick()

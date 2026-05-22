@@ -11,12 +11,4 @@ KrowiAF.EventData.Cataclysm = {
         addon.L["Holidays"],
         1
     },
-    { -- WoW's 20th Anniversary
-        1500, type.Calendar,
-        1173,
-        133783,
-		addon.L["WoW's 20th Anniversary"],
-        addon.L["Other"],
-        2
-    },
 };

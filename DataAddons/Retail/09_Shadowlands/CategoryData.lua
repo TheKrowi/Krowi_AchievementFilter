@@ -363,6 +363,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
     { -- Dungeons
         369,
         addon.GetCategoryInfoTitle(15272),
+        shared.GetShadowlandsMythicPlus(addon.L["Mythic+"]),
         { -- The Necrotic Wake
             371,
             addon.GetInstanceInfoName(1182),

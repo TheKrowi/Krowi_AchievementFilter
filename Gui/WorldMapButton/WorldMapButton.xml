@@ -61,7 +61,7 @@
 			<OnMouseUp method="OnMouseUp"/>
 			<OnClick method="OnClick"/>
 			<OnEnter method="OnEnter"/>
-			<OnLeave function="GameTooltip_Hide"/>
+			<OnLeave method="OnLeave"/>
 			<OnHide method="OnHide"/>
 		</Scripts>
 	</Button>

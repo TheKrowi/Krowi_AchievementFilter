@@ -9,8 +9,8 @@ local AchBuilder = {}
 AchBuilder.__index = AchBuilder
 
 local function GetExtras(self)
-    if not self[2] then self[2] = {} end
-    return self[2]
+    if not self[3] then self[3] = {} end
+    return self[3]
 end
 
 function AchBuilder:PvE(season)
@@ -69,5 +69,10 @@ for key, value in pairs(rewardType) do
 end
 
 function shared.Ach(id)
-    return setmetatable({id}, AchBuilder)
+    return setmetatable({KrowiAF.AddAchievementData, id}, AchBuilder)
+end
+
+-- Special obtainable helpers
+function AchBuilder:Anniv20()
+    return self:Obtainable("From", "Date", {2024, 11, 4}, "Until", "Date", {2025, 1, 7})
 end

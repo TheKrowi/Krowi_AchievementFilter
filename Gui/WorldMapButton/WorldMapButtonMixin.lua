@@ -52,6 +52,10 @@ function KrowiAF_WorldMapButtonMixin:OnEnter()
     end
 end
 
+function KrowiAF_WorldMapButtonMixin:OnLeave()
+	addon.ProgressBarLib.GameTooltipWithProgressBar:Hide()
+end
+
 function KrowiAF_WorldMapButtonMixin:OnHide()
 
 end

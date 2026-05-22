@@ -3,24 +3,6 @@ local shared = addon.Data.EventData.Shared;
 local type = KrowiAF.Enum.EventType;
 
 KrowiAF.EventData.TheWarWithin = {
-    { -- WoW's 20th Anniversary
-        {1500, 1509, 1592, 1593, 1594, 1595}, type.Calendar,
-        1678,
-        6036545,
-		addon.L["WoW's 20th Anniversary"],
-        addon.L["Other"],
-        2,
-		nil,
-		true
-    },
-    { -- WoW's 21st Anniversary
-        1501, type.Calendar,
-        1173,
-        133783,
-		addon.L["WoW's 21st Anniversary"],
-        addon.L["Other"],
-        2
-    },
     { -- Dastardly Duos
         {1599, 1689}, type.Calendar,
         1681,

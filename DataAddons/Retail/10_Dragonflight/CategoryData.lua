@@ -821,6 +821,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
     { -- Dungeons
         1229,
         addon.GetCategoryInfoTitle(15272),
+        shared.GetDragonflightMythicPlus(addon.L["Mythic+"]),
         { -- Algeth'ar Academy
             1257,
             addon.GetInstanceInfoName(1201),

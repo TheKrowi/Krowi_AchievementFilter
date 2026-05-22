@@ -620,7 +620,7 @@ The `DataAddons/Retail/` tree spans 12 expansions. `11_TheWarWithin/CategoryData
 | 13 | 🟡 LOW | `Plugins/Plugins.lua` entirely commented out | `Plugins/Plugins.lua` | Delete file; update `Files.xml` |
 | 14 | 🟡 LOW | `Globals.lua` is too large / does too much | `Globals.lua` | Refactor: split cache, compat, and window management |
 | 15 | 🔄 ONGOING | Mixed indentation and semicolons throughout codebase | All files | `.editorconfig` + `docs/styleguide.md` created 2026-04-19. Apply incrementally as files are touched. |
-| 16 | 🟠 MEDIUM | `AchBuilder` reward consumer guards: `IsTable` check + temp table alloc on every filter/render pass | `Filters.lua` validation #6, `Gui/AchievementTooltip/Rewards.lua` | Remove `IsTable` guards once builder loop promote pattern is live. Apply atomically. |
+| 16 | ✅ FIXED | `AchBuilder` reward consumer guards: `IsTable` check + temp table alloc on every filter/render pass | `Filters.lua` validation #6, `Gui/AchievementTooltip/Rewards.lua` | Fixed 2026-04-26: `IsTable` guards removed from both consumers after confirming full V1→V2 data migration. `RewardType` is now always a table or nil. |
 
 ---
 
@@ -632,86 +632,6 @@ When resuming work in a new chat, paste this report as context and reference the
 2. **Refactor `Globals.lua`** — splitting the async cache builder into `Data/AchievementCache.lua` would also allow the `HandleAchievement`, `HandleCompletedAchievement`, `HandleNotCompletedAchievement` family to be tested in isolation conceptually, even if no test runner exists.
 3. **Migrate all `DataAddons/Retail/` data files to the `Ach()`/`PvE()`/`Title()` helper style** — this is a large but mechanical refactor that greatly improves readability of the data layer. The `Shared/AchievementData.lua` helpers are already in place.
 4. **Document the loader mechanism** in `docs/how-to/data-loader-pattern.md` — this is invisible to new contributors and a source of confusion.
-
----
-
-## REWARD-TYPE REFACTOR — DECISION LOG (2026-04-19)
-
-Discussion context for item 16 above.
-
-- **Original:** single-reward methods store raw integer; `Rewards(r1, r2)` stores table. Two `IsTable` guards in filter/tooltip consumers wrap single values in a temp table on every render pass.
-- **Always-table considered:** store `{value}` unconditionally in builder loop. Pros: removes all `IsTable` checks; consistent with `Rewards(...)`. Cons: does not enable chained syntax (second call overwrites). Load cost +14.7% per rewarded entry.
-- **Pending:** remove `IsTable` guards from `Filters.lua` validation #6 and `Gui/AchievementTooltip/Rewards.lua` — apply atomically when ready.
-
----
-
-## V1 → V2 Achievement Data Migration Roadmap
-
-**Date added:** April 20, 2026
-
-### Background
-
-The addon uses two coexisting formats for achievement data:
-
-| | V1 (legacy) | V2 (current standard) |
-|--|--|--|
-| **Table** | `KrowiAF.AchievementData["X_Y_Z"]` | `KrowiAF.AchievementData2["X_Y_Z"]` |
-| **Syntax** | Positional tables `{id, faction, {...}}` | Fluent builder `Ach(id):Method():...` |
-| **Import** | `local faction = ...; local rewardType = ...` | `local Ach = shared.Ach` |
-| **Used by** | Expansions 01–10 and 12 (Retail), all Classic | Expansion 11 (Retail) only so far |
-
-V2 is the current standard for **all new data** across all expansions and clients. Both formats are supported simultaneously by the loader (`DataAddons/Loaders/AchievementData.lua`). New patches added to old V1 files should use `KrowiAF.AchievementData2` alongside the existing V1 entries.
-
-### What a Single Expansion Migration Involves
-
-For each `DataAddons/Retail/XX_Name/AchievementData.lua` (and Classic equivalents):
-
-1. **Add V2 imports to the file header** (if not already present):
-   ```lua
-   local shared = addon.Data.AchievementData.Shared;
-   local Ach = shared.Ach;
-   -- Keep `local faction = KrowiAF.Enum.Faction` if FactionSplit is used
-   -- Remove `local rewardType = KrowiAF.Enum.RewardType` (not needed in V2)
-   ```
-2. **Rename all table keys**: `KrowiAF.AchievementData["X_Y_Z"]` → `KrowiAF.AchievementData2["X_Y_Z"]`
-3. **Convert each entry** from positional/table form to `Ach(id):Method():...` fluent syntax
-4. **Clean up unused locals**: remove `local rewardType` and `local faction` if no longer referenced
-
-### End State
-
-Once all expansions (Retail + Classic) are migrated:
-- `KrowiAF.AchievementData` (V1 table) and `KrowiAF.AddAchievementData` can be removed from `Api/AchievementDataApi.lua`
-- The V1 loop in `DataAddons/Loaders/AchievementData.lua` can be removed
-- All V1 legacy sections in documentation and skill files can be removed
-
-### Migration Status
-
-#### Retail
-| Expansion | Folder | Status |
-|-----------|--------|--------|
-| The War Within | `11_TheWarWithin` | ✅ Done |
-| Midnight | `12_Midnight` | ⏳ Pending |
-| Dragonflight | `10_Dragonflight` | ⏳ Pending |
-| Shadowlands | `09_Shadowlands` | ⏳ Pending |
-| Battle for Azeroth | `08_BattleForAzeroth` | ⏳ Pending |
-| Legion | `07_Legion` | ⏳ Pending |
-| Warlords of Draenor | `06_WarlordsOfDaenor` | ⏳ Pending |
-| Mists of Pandaria | `05_MistsOfPandaria` | ⏳ Pending |
-| Cataclysm | `04_Cataclysm` | ⏳ Pending |
-| Wrath of the Lich King | `03_WrathOfTheLichKing` | ⏳ Pending |
-| The Burning Crusade | `02_TheBurningCrusade` | ⏳ Pending |
-| Vanilla | `01_Vanilla` | ⏳ Pending |
-
-#### Classic
-| Expansion | Folder | Status |
-|-----------|--------|--------|
-| Mists of Pandaria | `Classic/05_MistsOfPandaria` | ⏳ Pending |
-| Cataclysm | `Classic/04_Cataclysm` | ⏳ Pending |
-| Wrath of the Lich King | `Classic/03_WrathOfTheLichKing` | ⏳ Pending |
-| The Burning Crusade | `Classic/02_TheBurningCrusade` | ⏳ Pending |
-| Vanilla | `Classic/01_Vanilla` | ⏳ Pending |
-
-**Migration order**: Retail first (12 → 10 → 9 → 8 → 7 → 6 → 5 → 4 → 3 → 2 → 1), then Classic (same order).
 
 ---
 

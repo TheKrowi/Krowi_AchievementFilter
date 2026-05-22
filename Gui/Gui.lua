@@ -271,31 +271,24 @@ function gui:ShowHideTabs(_addonName, tabName)
 end
 
 function gui.ShowStatusBarTooltip(frame, anchor, extraText, color) -- . instead of : because it needs to work for the frame
-	GameTooltip:SetOwner(frame, anchor or "ANCHOR_NONE");
-    if anchor == nil then
-	    GameTooltip:SetPoint("TOPLEFT", frame, "TOPRIGHT", -3, -3);
-    end
-	GameTooltip:SetMinimumWidth(128, true);
-    GameTooltip_SetTitle(GameTooltip, frame.Text);
-
-    local text = "";
-    local numOfNotObtAch = frame.NumOfNotObtAch;
-	if numOfNotObtAch > 0 and addon.Options.db.profile.Tooltip.Categories.ShowNotObtainable then
-		text = " (+" .. numOfNotObtAch .. ")";
+    local text = ""
+    local numOfNotObtAch = frame.NumOfNotObtAch
+    if numOfNotObtAch > 0 and addon.Options.db.profile.Tooltip.Categories.ShowNotObtainable then
+        text = " (+" .. numOfNotObtAch .. ")"
     else
-        numOfNotObtAch = 0;
-	end
-	text = frame.NumOfCompAch .. text .. " / " .. frame.NumOfAch;
+        numOfNotObtAch = 0
+    end
+    text = frame.NumOfCompAch .. text .. " / " .. frame.NumOfAch
 
-    addon.ProgressBarLib.GameTooltipWithProgressBar:Show(GameTooltip, 0, frame.NumOfAch, frame.NumOfCompAch, numOfNotObtAch, 0, 0, addon.Util.Colors.GreenRGB, addon.Util.Colors.RedRGB, nil, nil, text);
+    local sub = addon.ProgressBarLib.GameTooltipWithProgressBar
+    sub:Show(frame, anchor, frame.Text, 0, frame.NumOfAch, frame.NumOfCompAch, numOfNotObtAch, 0, 0, addon.Util.Colors.GreenRGB, addon.Util.Colors.RedRGB, nil, nil, text)
 
     if extraText then
-        GameTooltip_AddBlankLineToTooltip(GameTooltip);
-        GameTooltip_AddColoredLine(GameTooltip, extraText, color or NORMAL_FONT_COLOR);
+        local tooltip = sub.Tooltip
+        GameTooltip_AddBlankLineToTooltip(tooltip)
+        GameTooltip_AddColoredLine(tooltip, extraText, color or NORMAL_FONT_COLOR)
+        tooltip:Show()
     end
-
-	GameTooltip:SetMinimumWidth(140);
-    GameTooltip:Show();
 end
 
 local function AssignProperTabsOrder()
