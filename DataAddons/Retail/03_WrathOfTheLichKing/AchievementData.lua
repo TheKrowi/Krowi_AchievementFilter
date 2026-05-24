@@ -27,18 +27,13 @@ KrowiAF.AchievementData["03_00_02"] = {
 	Ach(664), -- Collector's Edition: Zergling
 	Ach(665), -- Collector's Edition: Netherwhelp
 	Ach(683), -- Collector's Edition: Frost Wyrm Whelp
-	Ach(714):Title():IsPvP():FactionSplit(faction.Horde, 907), -- The Conqueror
-	Ach(762):Title():FactionSplit(faction.Horde, 948), -- Ambassador of the Horde
-	Ach(907):Title():IsPvP():FactionSplit(faction.Alliance, 714), -- The Justicar
+	Ach(714):Title():IsPvP():AutoFactionSplit(faction.Horde, 907), -- The Conqueror / The Justicar
+	Ach(762):Title():AutoFactionSplit(faction.Horde, 948), -- Ambassador of the Horde / Ambassador of the Alliance
 	Ach(938):HousingDecor(), -- The Snows of Northrend
 	Ach(940):HousingDecor(), -- The Green Hills of Stranglethorn
-	Ach(948):Title():FactionSplit(faction.Alliance, 762), -- Ambassador of the Alliance
 	Ach(957):Obtainable("Event", 1592), -- Hero of the Zandalar Tribe
-	Ach(1005):IsPvP():FactionSplit(faction.Horde, 246), -- Know Thy Enemy
-	Ach(1006):IsPvP():FactionSplit(faction.Horde, 388), -- City Defender
 	Ach(1153):HousingDecor():IsPvP(), -- Overly Defensive
 	Ach(1157):HousingDecor():IsPvP(), -- Duel-icious
-	Ach(1175):Title():IsPvP():FactionSplit(faction.Horde, 230), -- Battlemaster
 	Ach(1436):Obtainable("Before", "Date", {2019, 6, 11}), -- Friends In High Places
 	Ach(2398):Obtainable("From", "Date", {2008, 11, 23}, "Until", "Date", {2008, 12, 7}), -- WoW's 4th Anniversary
 	Ach(2456):Obtainable("From", "Date", {2008, 10, 22}, "Until", "Date", {2008, 11, 4}), -- Vampire Hunter

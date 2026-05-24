@@ -15,11 +15,8 @@ KrowiAF.AchievementData["04_00_01"] = {
 KrowiAF.AchievementData["04_00_03"] = {
 	{KrowiAF.SetAchievementPatch, 4, 0, 3},
 	Ach(4859), -- Kings Under the Mountain
-	Ach(4894):FactionSplit(faction.Horde, 4903), -- Silverpine Forest Quests
-	Ach(4899):FactionSplit(faction.Alliance, 4908), -- Loch Modan Quests
-	Ach(4902):FactionSplit(faction.Alliance, 4895), -- Redridge Mountains Quests
-	Ach(4903):FactionSplit(faction.Alliance, 4894), -- Redridge Mountains Quests (Classic)
-	Ach(4908):FactionSplit(faction.Horde, 4899), -- Ghostlands Quests
+	Ach(4894):AutoFactionSplit(faction.Horde, 4903), -- Silverpine Forest / Redridge Mountains (Classic) Quests
+	Ach(4908):AutoFactionSplit(faction.Horde, 4899), -- Ghostlands / Loch Modan Quests
 	Ach(5223):IsPvP(), -- Master of Twin Peaks
 	Ach(5245):IsPvP(), -- Battle for Gilneas Victory
 	Ach(5344):AutoFactionSplit(faction.Alliance, 5358):Title():PvP(9), -- Hero of the Alliance / Horde: Vicious
@@ -27,7 +24,6 @@ KrowiAF.AchievementData["04_00_03"] = {
 	Ach(5365):Obtainable("Before", "Version", {6, 0, 2}), -- Bloom and Doom
 	Ach(5442), -- Full Caravan
 	Ach(5533):Obtainable("Never"), -- Veteran of the Shifting Sands
-	Ach(5552):FactionSplit(faction.Horde, 5231), -- Double Jeopardy
 }
 
 KrowiAF.AchievementData["04_01_00"] = {
