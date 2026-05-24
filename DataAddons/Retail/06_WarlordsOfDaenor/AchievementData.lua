@@ -206,7 +206,7 @@ KrowiAF.AchievementData["06_00_02"] = {
 	Ach(9211), -- My Item Level Is Higher than Yours
 	Ach(9212), -- My Item Level Is Way Higher than Yours
 	Ach(9213), -- Item Level Army
-	Ach(9214):IsPvP():AutoFactionSplit(faction.Alliance, 9215), -- Hero of Stormshield / Hero of Warspear
+	Ach(9214):IsPvP():AutoFactionSplit(faction.Alliance, 9215), -- Hero of Stormshield / Warspear
 	Ach(9216):IsPvP(), -- High-value Targets
 	Ach(9217):IsPvP():AutoFactionSplit(faction.Horde, 9408), -- Operation Counterattack
 	Ach(9218):IsPvP(), -- Grand Theft, 1st Degree
@@ -217,7 +217,7 @@ KrowiAF.AchievementData["06_00_02"] = {
 	Ach(9224):IsPvP():AutoFactionSplit(faction.Horde, 9225), -- Take Them Out
 	Ach(9228):FactionSplit(faction.Alliance, nil):IsPvP(), -- Down Goes Van Rook
 	Ach(9229):PvP(16), -- Primal Gladiator's Felblood Gronnling
-	Ach(9230):PvP(16):AutoFactionSplit(faction.Alliance, 9231), -- Hero of the Alliance: Primal / Hero of the Horde: Primal
+	Ach(9230):PvP(16):AutoFactionSplit(faction.Alliance, 9231), -- Hero of the Alliance / Horde: Primal
 	Ach(9232):Title():PvP(16), -- Primal Gladiator: Warlords Season 1
 	Ach(9233):PvP(16):AutoFactionSplit(faction.Horde, 9234), -- Primal Conquest
 	Ach(9236):Mount():PvP(16):AutoFactionSplit(faction.Horde, 9238), -- Primal Combatant
@@ -316,13 +316,13 @@ KrowiAF.AchievementData["06_00_02"] = {
 	Ach(9506):Obtainable("Before", "Version", {8, 0, 1}), -- Savage Skills to Pay the Bills
 	Ach(9507), -- Working in Draenor
 	Ach(9508):Title():IsPvP():AutoFactionSplit(faction.Horde, 9738), -- Warlord of Draenor
-	Ach(9509):Title():IsPvP():AutoFactionSplit(faction.Horde, 9516), -- Nemesis: Draenei Destroyer / Nemesis: Slayer of Sin'dorei
-	Ach(9510):Title():IsPvP():AutoFactionSplit(faction.Horde, 9522), -- Nemesis: Dwarfstalker / Nemesis: Troll Hunter
-	Ach(9511):Title():IsPvP():AutoFactionSplit(faction.Horde, 9521), -- Nemesis: Gnomebane / Nemesis: The Butcher
-	Ach(9512):Title():IsPvP():AutoFactionSplit(faction.Horde, 9519), -- Nemesis: Manslayer / Nemesis: Orcslayer
-	Ach(9513):Title():IsPvP():AutoFactionSplit(faction.Horde, 9517), -- Nemesis: Scourge of the Kaldorei / Nemesis: Death Stalker
-	Ach(9514):Title():IsPvP():AutoFactionSplit(faction.Horde, 9520), -- Nemesis: Terror of the Tushui / Nemesis: Huojin's Fall
-	Ach(9515):Title():IsPvP():AutoFactionSplit(faction.Horde, 9518), -- Nemesis: Worgen Hunter / Nemesis: Killer of Kezan
+	Ach(9509):Title():IsPvP():AutoFactionSplit(faction.Horde, 9516), -- Nemesis: Draenei Destroyer / Slayer of Sin'dorei
+	Ach(9510):Title():IsPvP():AutoFactionSplit(faction.Horde, 9522), -- Nemesis: Dwarfstalker / Troll Hunter
+	Ach(9511):Title():IsPvP():AutoFactionSplit(faction.Horde, 9521), -- Nemesis: Gnomebane / The Butcher
+	Ach(9512):Title():IsPvP():AutoFactionSplit(faction.Horde, 9519), -- Nemesis: Manslayer / Orcslayer
+	Ach(9513):Title():IsPvP():AutoFactionSplit(faction.Horde, 9517), -- Nemesis: Scourge of the Kaldorei / Death Stalker
+	Ach(9514):Title():IsPvP():AutoFactionSplit(faction.Horde, 9520), -- Nemesis: Terror of the Tushui / Huojin's Fall
+	Ach(9515):Title():IsPvP():AutoFactionSplit(faction.Horde, 9518), -- Nemesis: Worgen Hunter / Killer of Kezan
 	Ach(9523):Garrison(), -- Patrolling Draenor
 	Ach(9524), -- Treasure Master
 	Ach(9526):Garrison(), -- Master of Mounts
@@ -499,9 +499,9 @@ KrowiAF.AchievementData["06_02_00"] = {
 	Ach(9983):Pet():Obtainable("Event", 374), -- That's Whack!
 	Ach(9988), -- Pro Toss
 	Ach(9989), -- Non-Lethal Enforcer
-	Ach(9995):Title():PvP(16):AutoFactionSplit(faction.Alliance, 9998), -- Soldier of the Alliance: Warlords Season 1 / Soldier of the Horde: Warlords Season 1
-	Ach(9996):Title():PvP(16):AutoFactionSplit(faction.Alliance, 10001), -- Defender of the Alliance: Warlords Season 1 / Defender of the Horde: Warlords Season 1
-	Ach(9997):Title():PvP(16):AutoFactionSplit(faction.Alliance, 10000), -- Guardian of the Alliance: Warlords Season 1 / Guardian of the Horde: Warlords Season 1
+	Ach(9995):Title():PvP(16):AutoFactionSplit(faction.Alliance, 9998), -- Soldier of the Alliance / Horde: Warlords Season 1
+	Ach(9996):Title():PvP(16):AutoFactionSplit(faction.Alliance, 10001), -- Defender of the Alliance / Horde: Warlords Season 1
+	Ach(9997):Title():PvP(16):AutoFactionSplit(faction.Alliance, 10000), -- Guardian of the Alliance / Horde: Warlords Season 1
 	Ach(10010), -- Gate of the Setting Sun
 	Ach(10011), -- Siege of Niuzao Temple
 	Ach(10012), -- This Land Was Green and Good Until...
@@ -565,18 +565,18 @@ KrowiAF.AchievementData["06_02_00"] = {
 	Ach(10099):Title():PvP(17), -- Duelist: Warlords Season 2
 	Ach(10100):Title():PvP(17), -- Rival: Warlords Season 2
 	Ach(10101):Title():PvP(17), -- Challenger: Warlords Season 2
-	Ach(10102):PvP(17):AutoFactionSplit(faction.Alliance, 10103), -- Hero of the Alliance: Wild / Hero of the Horde: Wild
-	Ach(10104):Title():PvP(17):AutoFactionSplit(faction.Alliance, 10105), -- Soldier of the Alliance: Warlords Season 2 / Soldier of the Horde: Warlords Season 2
-	Ach(10106):Title():PvP(17):AutoFactionSplit(faction.Alliance, 10107), -- Defender of the Alliance: Warlords Season 2 / Defender of the Horde: Warlords Season 2
-	Ach(10108):Title():PvP(17):AutoFactionSplit(faction.Alliance, 10109), -- Guardian of the Alliance: Warlords Season 2 / Guardian of the Horde: Warlords Season 2
+	Ach(10102):PvP(17):AutoFactionSplit(faction.Alliance, 10103), -- Hero of the Alliance / Horde: Wild
+	Ach(10104):Title():PvP(17):AutoFactionSplit(faction.Alliance, 10105), -- Soldier of the Alliance / Horde: Warlords Season 2
+	Ach(10106):Title():PvP(17):AutoFactionSplit(faction.Alliance, 10107), -- Defender of the Alliance / Horde: Warlords Season 2
+	Ach(10108):Title():PvP(17):AutoFactionSplit(faction.Alliance, 10109), -- Guardian of the Alliance / Horde: Warlords Season 2
 	Ach(10110):Title():PvP(18), -- Gladiator: Warlords Season 3
 	Ach(10111):Title():PvP(18), -- Duelist: Warlords Season 3
 	Ach(10112):Title():PvP(18), -- Rival: Warlords Season 3
 	Ach(10113):Title():PvP(18), -- Challenger: Warlords Season 3
-	Ach(10114):PvP(18):AutoFactionSplit(faction.Alliance, 10115), -- Hero of the Alliance: Warmongering / Hero of the Horde: Warmongering
-	Ach(10116):Title():PvP(18):AutoFactionSplit(faction.Alliance, 10117), -- Guardian of the Alliance: Warlords Season 3 / Guardian of the Horde: Warlords Season 3
-	Ach(10118):Title():PvP(18):AutoFactionSplit(faction.Alliance, 10119), -- Defender of the Alliance: Warlords Season 3 / Defender of the Horde: Warlords Season 3
-	Ach(10120):Title():PvP(18):AutoFactionSplit(faction.Alliance, 10121), -- Soldier of the Alliance: Warlords Season 3 / Soldier of the Horde: Warlords Season 3
+	Ach(10114):PvP(18):AutoFactionSplit(faction.Alliance, 10115), -- Hero of the Alliance / Horde: Warmongering
+	Ach(10116):Title():PvP(18):AutoFactionSplit(faction.Alliance, 10117), -- Guardian of the Alliance / Horde: Warlords Season 3
+	Ach(10118):Title():PvP(18):AutoFactionSplit(faction.Alliance, 10119), -- Defender of the Alliance / Horde: Warlords Season 3
+	Ach(10120):Title():PvP(18):AutoFactionSplit(faction.Alliance, 10121), -- Soldier of the Alliance / Horde: Warlords Season 3
 	Ach(10137):PvP(17), -- Wild Gladiator's Felblood Gronnling
 	Ach(10146):PvP(18), -- Warmongering Gladiator's Felblood Gronnling
 	Ach(10149):Mount(), -- Glory of the Hellfire Raider

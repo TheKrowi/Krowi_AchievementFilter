@@ -213,30 +213,30 @@ KrowiAF.AchievementData["07_00_03"] = {
 	Ach(11015):Title():PvP(19), -- Duelist: Legion Season 1
 	Ach(11016):Title():PvP(19), -- Rival: Legion Season 1
 	Ach(11017):Title():PvP(19), -- Challenger: Legion Season 1
-	Ach(11018):AutoFactionSplit(faction.Alliance, 11019):PvP(19), -- Hero of the Alliance: Vindictive / Hero of the Horde: Vindictive
-	Ach(11020):AutoFactionSplit(faction.Alliance, 11021):Title():PvP(19), -- Guardian of the Alliance: Legion Season 1 / Guardian of the Horde: Legion Season 1
-	Ach(11022):AutoFactionSplit(faction.Alliance, 11023):Title():PvP(19), -- Defender of the Alliance: Legion Season 1 / Defender of the Horde: Legion Season 1
-	Ach(11024):AutoFactionSplit(faction.Alliance, 11025):Title():PvP(19), -- Soldier of the Alliance: Legion Season 1 / Soldier of the Horde: Legion Season 1
+	Ach(11018):AutoFactionSplit(faction.Alliance, 11019):PvP(19), -- Hero of the Alliance / Horde: Vindictive
+	Ach(11020):AutoFactionSplit(faction.Alliance, 11021):Title():PvP(19), -- Guardian of the Alliance / Horde: Legion Season 1
+	Ach(11022):AutoFactionSplit(faction.Alliance, 11023):Title():PvP(19), -- Defender of the Alliance / Horde: Legion Season 1
+	Ach(11024):AutoFactionSplit(faction.Alliance, 11025):Title():PvP(19), -- Soldier of the Alliance / Horde: Legion Season 1
 	Ach(11026):Title():PvP(20), -- Duelist: Legion Season 2
 	Ach(11027):Title():PvP(20), -- Rival: Legion Season 2
 	Ach(11028):Title():PvP(20), -- Challenger: Legion Season 2
-	Ach(11029):AutoFactionSplit(faction.Horde, 11030):PvP(20), -- Hero of the Horde: Fearless / Hero of the Alliance: Fearless
-	Ach(11031):AutoFactionSplit(faction.Horde, 11032):Title():PvP(20), -- Guardian of the Horde: Legion Season 2 / Guardian of the Alliance: Legion Season 2
-	Ach(11033):AutoFactionSplit(faction.Horde, 11034):Title():PvP(20), -- Defender of the Horde: Legion Season 2 / Defender of the Alliance: Legion Season 2
-	Ach(11035):AutoFactionSplit(faction.Horde, 11036):Title():PvP(20), -- Soldier of the Horde: Legion Season 2 / Soldier of the Alliance: Legion Season 2
+	Ach(11029):AutoFactionSplit(faction.Horde, 11030):PvP(20), -- Hero of the Horde / Alliance: Fearless
+	Ach(11031):AutoFactionSplit(faction.Horde, 11032):Title():PvP(20), -- Guardian of the Horde / Alliance: Legion Season 2
+	Ach(11033):AutoFactionSplit(faction.Horde, 11034):Title():PvP(20), -- Defender of the Horde / Alliance: Legion Season 2
+	Ach(11035):AutoFactionSplit(faction.Horde, 11036):Title():PvP(20), -- Soldier of the Horde / Alliance: Legion Season 2
 	Ach(11037):Title():PvP(21), -- Cruel Gladiator: Legion Season 3
 	Ach(11038):Title():PvP(21), -- Gladiator: Legion Season 3
 	Ach(11039):Title():PvP(21), -- Challenger: Legion Season 3
 	Ach(11040):Title():PvP(21), -- Rival: Legion Season 3
 	Ach(11041):Title():PvP(21), -- Duelist: Legion Season 3
-	Ach(11042):AutoFactionSplit(faction.Horde, 11043):PvP(21), -- Hero of the Horde: Cruel / Hero of the Alliance: Cruel
-	Ach(11044):AutoFactionSplit(faction.Horde, 11045):Title():PvP(21), -- Defender of the Horde: Legion Season 3 / Defender of the Alliance: Legion Season 3
-	Ach(11046):AutoFactionSplit(faction.Horde, 11047):Title():PvP(21), -- Guardian of the Horde: Legion Season 3 / Guardian of the Alliance: Legion Season 3
-	Ach(11048):AutoFactionSplit(faction.Horde, 11049):Title():PvP(21), -- Soldier of the Horde: Legion Season 3 / Soldier of the Alliance: Legion Season 3
-	Ach(11050):AutoFactionSplit(faction.Alliance, 11051):Title():PvP(22), -- Soldier of the Alliance: Legion Season 4 / Soldier of the Horde: Legion Season 4
-	Ach(11052):AutoFactionSplit(faction.Alliance, 11053):Title():PvP(22), -- Guardian of the Alliance: Legion Season 4 / Guardian of the Horde: Legion Season 4
-	Ach(11054):AutoFactionSplit(faction.Alliance, 11055):Title():PvP(22), -- Defender of the Alliance: Legion Season 4 / Defender of the Horde: Legion Season 4
-	Ach(11056):AutoFactionSplit(faction.Alliance, 11057):PvP(22), -- Hero of the Alliance: Ferocious / Hero of the Horde: Ferocious
+	Ach(11042):AutoFactionSplit(faction.Horde, 11043):PvP(21), -- Hero of the Horde / Alliance: Cruel
+	Ach(11044):AutoFactionSplit(faction.Horde, 11045):Title():PvP(21), -- Defender of the Horde / Alliance: Legion Season 3
+	Ach(11046):AutoFactionSplit(faction.Horde, 11047):Title():PvP(21), -- Guardian of the Horde / Alliance: Legion Season 3
+	Ach(11048):AutoFactionSplit(faction.Horde, 11049):Title():PvP(21), -- Soldier of the Horde / Alliance: Legion Season 3
+	Ach(11050):AutoFactionSplit(faction.Alliance, 11051):Title():PvP(22), -- Soldier of the Alliance / Horde: Legion Season 4
+	Ach(11052):AutoFactionSplit(faction.Alliance, 11053):Title():PvP(22), -- Guardian of the Alliance / Horde: Legion Season 4
+	Ach(11054):AutoFactionSplit(faction.Alliance, 11055):Title():PvP(22), -- Defender of the Alliance / Horde: Legion Season 4
+	Ach(11056):AutoFactionSplit(faction.Alliance, 11057):PvP(22), -- Hero of the Alliance / Horde: Ferocious
 	Ach(11058):Title():PvP(22), -- Duelist: Legion Season 4
 	Ach(11059):Title():PvP(22), -- Rival: Legion Season 4
 	Ach(11060):Title():PvP(22), -- Challenger: Legion Season 4
@@ -290,7 +290,7 @@ KrowiAF.AchievementData["07_00_03"] = {
 	Ach(11195):Obtainable("Before", "Version", {7, 2, 5}), -- Ahead of the Curve: Gul'dan
 	Ach(11200):Obtainable("From", "Date", {2016, 8, 9}, "Until", "Date", {2016, 8, 30}), -- Stand Against the Legion
 	Ach(11201):Obtainable("From", "Date", {2016, 8, 9}, "Until", "Date", {2016, 8, 30}), -- Defender of Azeroth: Legion Invasions
-	Ach(11210):AutoFactionSplit(faction.Alliance, 11211):Transmog():Obtainable("From", "Date", {2016, 5, 25}, "Until", "Date", {2016, 8, 1}), -- Fight for the Alliance / Fight for the Horde
+	Ach(11210):AutoFactionSplit(faction.Alliance, 11211):Transmog():Obtainable("From", "Date", {2016, 5, 25}, "Until", "Date", {2016, 8, 1}), -- Fight for the Alliance / Horde
 	Ach(11212), -- Raise an Army
 	Ach(11213), -- Lead a Legion
 	Ach(11214), -- Many Missions
@@ -328,8 +328,8 @@ KrowiAF.AchievementData["07_02_00"] = {
 	Ach(10537):Obtainable("From", "Date", {2016, 9, 30}, "Until", "Date", {2016, 10, 9}), -- Patron of War
 	Ach(11276):AutoFactionSplit(faction.Alliance, 11277):Obtainable("Event", 341), -- Extinguishing Draenor
 	Ach(11278):AutoFactionSplit(faction.Alliance, 11279):Obtainable("Event", 341), -- Extinguishing the Broken Isles
-	Ach(11280):AutoFactionSplit(faction.Alliance, 11282):Obtainable("Event", 341), -- Flame Warden of the Broken Isles / Flame Keeper of the Broken Isles
-	Ach(11283):AutoFactionSplit(faction.Alliance, 11284):Obtainable("Event", 341), -- Flame Warden of Draenor / Flame Keeper of Draenor
+	Ach(11280):AutoFactionSplit(faction.Alliance, 11282):Obtainable("Event", 341), -- Flame Warden / Keeper of the Broken Isles
+	Ach(11283):AutoFactionSplit(faction.Alliance, 11284):Obtainable("Event", 341), -- Flame Warden / Keeper of Draenor
 	Ach(11294), -- Murloc Battlemasters
 	Ach(11320):Pet(), -- Raiding with Leashes IV: Wrath of the Lick King
 	Ach(11335), -- Season Tickets
@@ -367,7 +367,7 @@ KrowiAF.AchievementData["07_02_00"] = {
 	Ach(11544), -- Defender of the Broken Isles
 	Ach(11545), -- Legionfall Commander
 	Ach(11546), -- Breaching the Tomb
-	Ach(11558):AutoFactionSplit(faction.Alliance, 11559):Obtainable("Before", "Version", {9, 0, 1}), -- The First Rule of Brawler's Guild
+	Ach(11558):AutoFactionSplit(faction.Alliance, 11559):Obtainable("Before", "Version", {9, 0, 1}), -- The First Rule of Brawler's Guild (Season 3)
 	Ach(11560):AutoFactionSplit(faction.Alliance, 11561):Obtainable("Before", "Version", {8, 0, 1}), -- You Are Not Your $#*@! Legplates (Season 3)
 	Ach(11563):AutoFactionSplit(faction.Alliance, 11564):Other():Obtainable("Before", "Version", {8, 0, 1}), -- The Second Rule of Brawler's Guild (Season 3)
 	Ach(11565):AutoFactionSplit(faction.Alliance, 11566):Title():Obtainable("Before", "Version", {8, 0, 1}), -- King of the Guild (Season 3)
@@ -544,10 +544,10 @@ KrowiAF.AchievementData["07_03_00"] = {
 	Ach(12034):Title():PvP(23), -- Duelist: Legion Season 5
 	Ach(12035):Title():PvP(23), -- Rival: Legion Season 5
 	Ach(12036):Title():PvP(23), -- Challenger: Legion Season 5
-	Ach(12037):AutoFactionSplit(faction.Alliance, 12041):PvP(23), -- Hero of the Alliance: Fierce / Hero of the Horde: Fierce
-	Ach(12038):AutoFactionSplit(faction.Alliance, 12042):Title():PvP(23), -- Guardian of the Alliance: Legion Season 5 / Guardian of the Horde: Legion Season 5
-	Ach(12039):AutoFactionSplit(faction.Alliance, 12043):Title():PvP(23), -- Defender of the Alliance: Legion Season 5 / Defender of the Horde: Legion Season 5
-	Ach(12040):AutoFactionSplit(faction.Alliance, 12044):Title():PvP(23), -- Soldier of the Alliance: Legion Season 5 / Soldier of the Horde: Legion Season 5
+	Ach(12037):AutoFactionSplit(faction.Alliance, 12041):PvP(23), -- Hero of the Alliance / Horde: Fierce
+	Ach(12038):AutoFactionSplit(faction.Alliance, 12042):Title():PvP(23), -- Guardian of the Alliance / Horde: Legion Season 5
+	Ach(12039):AutoFactionSplit(faction.Alliance, 12043):Title():PvP(23), -- Defender of the Alliance / Horde: Legion Season 5
+	Ach(12040):AutoFactionSplit(faction.Alliance, 12044):Title():PvP(23), -- Soldier of the Alliance / Horde: Legion Season 5
 	Ach(12045):Title():PvP(23), -- Gladiator: Legion Season 5
 	Ach(12046), -- Remember the Titans
 	Ach(12065), -- Hounds Good To Me
@@ -603,10 +603,10 @@ KrowiAF.AchievementData["07_03_02"] = {
 	Ach(12169):Title():PvP(24), -- Challenger: Legion Season 6
 	Ach(12170):Title():PvP(24), -- Rival: Legion Season 6
 	Ach(12171):Title():PvP(24), -- Duelist: Legion Season 6
-	Ach(12172):AutoFactionSplit(faction.Horde, 12173):PvP(24), -- Hero of the Horde: Dominant / Hero of the Alliance: Dominant
-	Ach(12174):AutoFactionSplit(faction.Horde, 12175):Title():PvP(24), -- Defender of the Horde: Legion Season 6 / Defender of the Alliance: Legion Season 6
-	Ach(12176):AutoFactionSplit(faction.Horde, 12177):Title():PvP(24), -- Guardian of the Horde: Legion Season 6 / Guardian of the Alliance: Legion Season 6
-	Ach(12178):AutoFactionSplit(faction.Horde, 12179):Title():PvP(24), -- Soldier of the Horde: Legion Season 6 / Soldier of the Alliance: Legion Season 6
+	Ach(12172):AutoFactionSplit(faction.Horde, 12173):PvP(24), -- Hero of the Horde / Alliance: Dominant
+	Ach(12174):AutoFactionSplit(faction.Horde, 12175):Title():PvP(24), -- Defender of the Horde / Alliance: Legion Season 6
+	Ach(12176):AutoFactionSplit(faction.Horde, 12177):Title():PvP(24), -- Guardian of the Horde / Alliance: Legion Season 6
+	Ach(12178):AutoFactionSplit(faction.Horde, 12179):Title():PvP(24), -- Soldier of the Horde / Alliance: Legion Season 6
 	Ach(12180):IsPvP():Obtainable("From", "PvP Season", 19, "Until", "PvP Season", 25), -- Catching Twenty-Two
 	Ach(12181):IsPvP():Obtainable("From", "PvP Season", 19, "Until", "PvP Season", 25), -- Protocol 2.3
 	Ach(12182):IsPvP():Obtainable("From", "PvP Season", 19, "Until", "PvP Season", 25), -- Demonic Double Dozen
@@ -621,10 +621,10 @@ KrowiAF.AchievementData["07_03_05"] = {
 	Ach(12186):Title():PvP(25), -- Duelist: Legion Season 7
 	Ach(12187):Title():PvP(25), -- Challenger: Legion Season 7
 	Ach(12188):Title():PvP(25), -- Rival: Legion Season 7
-	Ach(12189):AutoFactionSplit(faction.Alliance, 12190):Title():PvP(25), -- Soldier of the Alliance: Legion Season 7 / Soldier of the Horde: Legion Season 7
-	Ach(12191):AutoFactionSplit(faction.Alliance, 12192):Title():PvP(25), -- Guardian of the Alliance: Legion Season 7 / Guardian of the Horde: Legion Season 7
-	Ach(12194):AutoFactionSplit(faction.Horde, 12195):Title():PvP(25), -- Defender of the Horde: Legion Season 7 / Defender of the Alliance: Legion Season 7
-	Ach(12196):AutoFactionSplit(faction.Horde, 12197):PvP(25), -- Hero of the Horde: Demonic / Hero of the Alliance: Demonic
+	Ach(12189):AutoFactionSplit(faction.Alliance, 12190):Title():PvP(25), -- Soldier of the Alliance / Horde: Legion Season 7
+	Ach(12191):AutoFactionSplit(faction.Alliance, 12192):Title():PvP(25), -- Guardian of the Alliance / Horde: Legion Season 7
+	Ach(12194):AutoFactionSplit(faction.Horde, 12195):Title():PvP(25), -- Defender of the Horde / Alliance: Legion Season 7
+	Ach(12196):AutoFactionSplit(faction.Horde, 12197):PvP(25), -- Hero of the Horde / Alliance: Demonic
 	Ach(12198):PvP(25), -- Demonic Elite
 	Ach(12199):AutoFactionSplit(faction.Horde, 12200):Mount():PvP(25), -- Demonic Combatant
 	Ach(12242):FactionSplit(faction.Alliance):AlliedRace(), -- Allied Races: Void Elf
@@ -730,6 +730,6 @@ KrowiAF.AchievementData["07_03_05"] = {
 	Ach(12430):FactionSplit(faction.Alliance), -- Duskwood Quests
 	Ach(12431):Pet(), -- Post Haste
 	Ach(12439):Title(), -- Priority Mail
-	Ach(12455):FactionSplit(faction.Alliance, 4894), -- Westfall & Duskwood Quests
-	Ach(12456):FactionSplit(faction.Alliance, 4908), -- Loch Modan & Wetlands Quests
+	Ach(12455):FactionSplit(faction.Alliance, 4894), -- Westfall & Duskwood / Silverpine Forest Quests
+	Ach(12456):FactionSplit(faction.Alliance, 4908), -- Loch Modan & Wetlands / Ghostlands Quests
 }

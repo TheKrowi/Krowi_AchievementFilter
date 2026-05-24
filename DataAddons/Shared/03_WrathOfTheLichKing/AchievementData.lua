@@ -77,7 +77,7 @@ KrowiAF.AchievementData["03_00_02_S"] = {
 	Ach(216):IsPvP(), -- Bound for Glory
 	Ach(218):IsPvP(), -- Alterac Valley Victory
 	Ach(219):IsPvP(), -- Alterac Valley Veteran
-	Ach(220):IsPvP():AutoFactionSplit(faction.Alliance, 873), -- Stormpike Perfection / Frostwolf Perfection
+	Ach(220):IsPvP():AutoFactionSplit(faction.Alliance, 873), -- Stormpike / Frostwolf Perfection
 	Ach(223):IsPvP(), -- The Sickly Gazelle
 	Ach(224):IsPvP():AutoFactionSplit(faction.Horde, 1151), -- Loyal Defender
 	Ach(225):IsPvP():AutoFactionSplit(faction.Alliance, 1164), -- Everything Counts
@@ -146,10 +146,10 @@ KrowiAF.AchievementData["03_00_02_S"] = {
 	Ach(438):IsPvP():Obtainable("Never"):AutoFactionSplit(faction.Alliance, 469), -- Knight-Captain / Legionnaire
 	Ach(439):IsPvP():Obtainable("Never"):AutoFactionSplit(faction.Alliance, 451), -- Knight / Stone Guard
 	Ach(440):IsPvP():Obtainable("Never"):AutoFactionSplit(faction.Alliance, 452), -- Sergeant Major / First Sergeant
-	Ach(441):IsPvP():Obtainable("Never"):AutoFactionSplit(faction.Alliance, 450), -- Master Sergeant / Senior Sergeant
+	Ach(441):IsPvP():Obtainable("Never"):AutoFactionSplit(faction.Alliance, 450), -- Master / Senior Sergeant
 	Ach(442):IsPvP():Obtainable("Never"):AutoFactionSplit(faction.Alliance, 454), -- Private / Scout
 	Ach(446):IsPvP():Obtainable("Never"):AutoFactionSplit(faction.Horde, 473), -- General / Marshal
-	Ach(449):IsPvP():Obtainable("Never"):AutoFactionSplit(faction.Horde, 472), -- Knight-Lieutenant / Blood Guard
+	Ach(449):IsPvP():Obtainable("Never"):AutoFactionSplit(faction.Horde, 472), -- Blood Guard / Knight-Lieutenant
 	Ach(453):IsPvP():Obtainable("Never"):AutoFactionSplit(faction.Horde, 471), -- Sergeant
 	Ach(456):Title():IsRealmFirst():Obtainable("Once"), -- Realm First! Obsidian Slayer
 	Ach(457):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 80 (Legacy)
@@ -234,20 +234,20 @@ KrowiAF.AchievementData["03_00_02_S"] = {
 	Ach(583):IsPvP(), -- Arathi Basin All-Star
 	Ach(584):IsPvP(), -- Arathi Basin Assassin
 	Ach(587):IsPvP(), -- Stormy Assassin
-	Ach(603):IsPvP():AutoFactionSplit(faction.Horde, 604), -- Wrath of the Horde / Wrath of the Alliance
+	Ach(603):IsPvP():AutoFactionSplit(faction.Horde, 604), -- Wrath of the Horde / Alliance
 	Ach(605):Obtainable("Event", 327), -- A Coin of Ancestry
 	Ach(606):Obtainable("Event", 327), -- 5 Coins of Ancestry
 	Ach(607):Obtainable("Event", 327), -- 10 Coins of Ancestry
 	Ach(608):Obtainable("Event", 327), -- 25 Coins of Ancestry
 	Ach(609):Obtainable("Event", 327), -- 50 Coins of Ancestry
-	Ach(610):IsPvP():FactionSplit(faction.Alliance, 615):Obtainable("Before", "Version", {8, 0, 1}), -- Orgrimmar Offensive
-	Ach(615):IsPvP():FactionSplit(faction.Horde, 610):Obtainable("Before", "Version", {9, 0, 1}), -- Storming Stormwind
-	Ach(611):IsPvP():FactionSplit(faction.Alliance, 616):Obtainable("Before", "Version", {9, 0, 1}), -- Bleeding Bloodhoof
-	Ach(616):IsPvP():FactionSplit(faction.Horde, 611), -- Overthrow the Council
-	Ach(612):IsPvP():FactionSplit(faction.Alliance, 617):Obtainable("Before", "Version", {9, 0, 1}), -- Downing the Dark Lady
-	Ach(617):IsPvP():FactionSplit(faction.Horde, 612):Obtainable("Before", "Version", {8, 0, 1}), -- Immortal No More
+	Ach(610):IsPvP():FactionSplit(faction.Alliance, 615):Obtainable("Before", "Version", {8, 0, 1}), -- Orgrimmar Offensive / Storming Stormwind
+	Ach(615):IsPvP():FactionSplit(faction.Horde, 610):Obtainable("Before", "Version", {9, 0, 1}), -- Storming Stormwind / Orgrimmar Offensive
+	Ach(611):IsPvP():FactionSplit(faction.Alliance, 616):Obtainable("Before", "Version", {9, 0, 1}), -- Bleeding Bloodhoof / Overthrow the Council
+	Ach(616):IsPvP():FactionSplit(faction.Horde, 611), -- Overthrow the Council / Bleeding Bloodhoof
+	Ach(612):IsPvP():FactionSplit(faction.Alliance, 617):Obtainable("Before", "Version", {9, 0, 1}), -- Downing the Dark Lady / Immortal No More
+	Ach(617):IsPvP():FactionSplit(faction.Horde, 612):Obtainable("Before", "Version", {8, 0, 1}), -- Immortal No More / Downing the Dark Lady
 	Ach(613):IsPvP():AutoFactionSplit(faction.Alliance, 618), -- Killed in Quel'Thalas / Putting Out the Light
-	Ach(614):Mount():IsPvP():AutoFactionSplit(faction.Alliance, 619), -- For the Alliance! / For the Horde!
+	Ach(614):Mount():IsPvP():AutoFactionSplit(faction.Alliance, 619), -- For the Alliance! / Horde!
 	Ach(621), -- Represent
 	Ach(622), -- The Spellweaver's Downfall (10 player)
 	Ach(623), -- The Spellweaver's Downfall (25 player)
@@ -313,7 +313,7 @@ KrowiAF.AchievementData["03_00_02_S"] = {
 	Ach(688):Obtainable("Before", "Version", {4, 0, 1}), -- Zul'Gurub
 	Ach(689), -- Ruins of Ahn'Qiraj
 	Ach(690), -- Karazhan
-	Ach(691):Obtainable("Before", "Version", {4, 0, 1}), -- Zul'Aman
+	Ach(691):Obtainable("Before", "Version", {4, 0, 1}), -- Zul'Aman (Burning Crusade)
 	Ach(692), -- Gruul's Lair
 	Ach(693), -- Magtheridon's Lair
 	Ach(694), -- Serpentshrine Cavern
@@ -322,10 +322,10 @@ KrowiAF.AchievementData["03_00_02_S"] = {
 	Ach(697), -- The Black Temple
 	Ach(698), -- Sunwell Plateau
 	Ach(699):IsPvP(), -- World Wide Winner
-	Ach(700):AutoFactionSplit(faction.Horde, 701):PvP(5), -- Freedom of the Horde / Freedom of the Alliance
+	Ach(700):AutoFactionSplit(faction.Horde, 701):PvP(5), -- Freedom of the Horde / Alliance
 	Ach(705):Obtainable("Before", "Version", {4, 0, 1}), -- Master of Arms
 	Ach(706):IsPvP():AutoFactionSplit(faction.Horde, 707), -- Frostwolf Howler / Stormpike Battle Charger
-	Ach(708):IsPvP():AutoFactionSplit(faction.Horde, 709), -- Hero of the Frostwolf Clan / Hero of the Stormpike Guard
+	Ach(708):IsPvP():AutoFactionSplit(faction.Horde, 709), -- Hero of the Frostwolf Clan / Stormpike Guard
 	Ach(710):IsPvP():AutoFactionSplit(faction.Horde, 711), -- The Defiler / Knight of Arathor
 	Ach(712):IsPvP():AutoFactionSplit(faction.Horde, 713), -- Warsong Outrider / Silverwing Sentinel
 	Ach(725), -- Thori'dal, the Stars' Fury
@@ -381,7 +381,7 @@ KrowiAF.AchievementData["03_00_02_S"] = {
 	Ach(856), -- Explore Silithus
 	Ach(857), -- Explore Winterspring
 	Ach(858), -- Explore Ghostlands
-	Ach(859), -- Explore Eversong Woods
+	Ach(859), -- Explore Eversong Woods (Burning Crusade)
 	Ach(860), -- Explore Azuremyst Isle
 	Ach(861), -- Explore Bloodmyst Isle
 	Ach(862), -- Explore Hellfire Peninsula
@@ -476,15 +476,15 @@ KrowiAF.AchievementData["03_00_02_S"] = {
 	Ach(1017), -- Can I Keep Him?
 	Ach(1020), -- Ten Tabards
 	Ach(1021):Tabard(), -- Twenty-Five Tabards
-	Ach(1022):AutoFactionSplit(faction.Alliance, 1025):Obtainable("Event", 341), -- Flame Warden of Eastern Kingdoms / Flame Keeper of Eastern Kingdoms
-	Ach(1023):AutoFactionSplit(faction.Alliance, 1026):Obtainable("Event", 341), -- Flame Warden of Kalimdor / Flame Keeper of Kalimdor
-	Ach(1024):AutoFactionSplit(faction.Alliance, 1027):Obtainable("Event", 341), -- Flame Warden of Outland / Flame Keeper of Outland
+	Ach(1022):AutoFactionSplit(faction.Alliance, 1025):Obtainable("Event", 341), -- Flame Warden / Keeper of Eastern Kingdoms
+	Ach(1023):AutoFactionSplit(faction.Alliance, 1026):Obtainable("Event", 341), -- Flame Warden / Keeper of Kalimdor
+	Ach(1024):AutoFactionSplit(faction.Alliance, 1027):Obtainable("Event", 341), -- Flame Warden / Keeper of Outland
 	Ach(1028):AutoFactionSplit(faction.Alliance, 1031):Obtainable("Event", 341), -- Extinguishing Eastern Kingdoms
 	Ach(1029):AutoFactionSplit(faction.Alliance, 1032):Obtainable("Event", 341), -- Extinguishing Kalimdor
 	Ach(1030):AutoFactionSplit(faction.Alliance, 1033):Obtainable("Event", 341), -- Extinguishing Outland
 	Ach(1034):AutoFactionSplit(faction.Alliance, 1036):Obtainable("Event", 341), -- The Fires of Azeroth
-	Ach(1035):AutoFactionSplit(faction.Alliance, 1037):Obtainable("Event", 341), -- Desecration of the Horde / Desecration of the Alliance
-	Ach(1038):Title():AutoFactionSplit(faction.Alliance, 1039):Obtainable("Event", 341), -- The Flame Warden / The Flame Keeper
+	Ach(1035):AutoFactionSplit(faction.Alliance, 1037):Obtainable("Event", 341), -- Desecration of the Horde / Alliance
+	Ach(1038):Title():AutoFactionSplit(faction.Alliance, 1039):Obtainable("Event", 341), -- The Flame Warden / Keeper
 	Ach(1040):AutoFactionSplit(faction.Alliance, 1041):Obtainable("Event", 324), -- Rotten Hallow
 	Ach(1145):Obtainable("Event", 341), -- King of the Fire Festival
 	Ach(1159):IsPvP(), -- Just the Two of Us: 2200
@@ -827,22 +827,22 @@ KrowiAF.AchievementData["03_01_00_S"] = {
 	Ach(2676):Obtainable("Event", 181), -- I Found One!
 	Ach(2756), -- Argent Aspiration
 	Ach(2758), -- Argent Valor
-	Ach(2760):Title():AutoFactionSplit(faction.Alliance, 2769), -- Exalted Champion of Darnassus / Exalted Champion of the Undercity
-	Ach(2761):Title():AutoFactionSplit(faction.Alliance, 2767), -- Exalted Champion of the Exodar / Exalted Champion of Silvermoon City
-	Ach(2762):Title():AutoFactionSplit(faction.Alliance, 2768), -- Exalted Champion of Gnomeregan / Exalted Champion of Thunder Bluff
-	Ach(2763):Title():AutoFactionSplit(faction.Alliance, 2766), -- Exalted Champion of Ironforge / Exalted Champion of Sen'jin
-	Ach(2764):Title():AutoFactionSplit(faction.Alliance, 2765), -- Exalted Champion of Stormwind / Exalted Champion of Orgrimmar
-	Ach(2770):AutoFactionSplit(faction.Alliance, 2771), -- Exalted Champion of the Alliance / Exalted Champion of the Horde
+	Ach(2760):Title():AutoFactionSplit(faction.Alliance, 2769), -- Exalted Champion of Darnassus / the Undercity
+	Ach(2761):Title():AutoFactionSplit(faction.Alliance, 2767), -- Exalted Champion of the Exodar / Silvermoon City
+	Ach(2762):Title():AutoFactionSplit(faction.Alliance, 2768), -- Exalted Champion of Gnomeregan / Thunder Bluff
+	Ach(2763):Title():AutoFactionSplit(faction.Alliance, 2766), -- Exalted Champion of Ironforge / Sen'jin
+	Ach(2764):Title():AutoFactionSplit(faction.Alliance, 2765), -- Exalted Champion of Stormwind / Orgrimmar
+	Ach(2770):AutoFactionSplit(faction.Alliance, 2771), -- Exalted Champion of the Alliance / Horde
 	Ach(2772), -- Tilted!
 	Ach(2773), -- It's Just a Flesh Wound
-	Ach(2777):AutoFactionSplit(faction.Alliance, 2787), -- Champion of Darnassus / Champion of the Undercity
-	Ach(2778):AutoFactionSplit(faction.Alliance, 2785), -- Champion of the Exodar / Champion of Silvermoon City
-	Ach(2779):AutoFactionSplit(faction.Alliance, 2786), -- Champion of Gnomeregan / Champion of Thunder Bluff
-	Ach(2780):AutoFactionSplit(faction.Alliance, 2784), -- Champion of Ironforge / Champion of Sen'jin
-	Ach(2781):AutoFactionSplit(faction.Alliance, 2783), -- Champion of Stormwind / Champion of Orgrimmar
-	Ach(2782):AutoFactionSplit(faction.Alliance, 2788), -- Champion of the Alliance / Champion of the Horde
+	Ach(2777):AutoFactionSplit(faction.Alliance, 2787), -- Champion of Darnassus / the Undercity
+	Ach(2778):AutoFactionSplit(faction.Alliance, 2785), -- Champion of the Exodar / Silvermoon City
+	Ach(2779):AutoFactionSplit(faction.Alliance, 2786), -- Champion of Gnomeregan / Thunder Bluff
+	Ach(2780):AutoFactionSplit(faction.Alliance, 2784), -- Champion of Ironforge / Sen'jin
+	Ach(2781):AutoFactionSplit(faction.Alliance, 2783), -- Champion of Stormwind / Orgrimmar
+	Ach(2782):AutoFactionSplit(faction.Alliance, 2788), -- Champion of the Alliance / Horde
 	Ach(2798):Title():Obtainable("Event", 181), -- Noble Gardener
-	Ach(2816):Title():AutoFactionSplit(faction.Horde, 2817), -- Exalted Argent Champion of the Horde / Exalted Argent Champion of the Alliance
+	Ach(2816):Title():AutoFactionSplit(faction.Horde, 2817), -- Exalted Argent Champion of the Horde / Alliance
 	Ach(2836), -- Lance a Lot
 	Ach(2886):Obtainable("Before", "Version", {7, 3, 5}), -- The Siege of Ulduar (10 player)
 	Ach(2887):Obtainable("Before", "Version", {7, 3, 5}), -- The Siege of Ulduar (25 player)
@@ -1008,7 +1008,7 @@ KrowiAF.AchievementData["03_02_00_S"] = {
 	{KrowiAF.SetAchievementPatch, 3, 2, 0},
 	Ach(3456):Obtainable("Event", 409), -- Dead Man's Party
 	Ach(3457):Obtainable("Event", 398), -- The Captain's Booty
-	Ach(3478):Title():Obtainable("Event", 404), -- Pilgrim
+	Ach(3478):Title():Pet():Obtainable("Event", 404), -- Pilgrim
 	Ach(3556):AutoFactionSplit(faction.Alliance, 3557):Obtainable("Event", 404), -- Pilgrim's Paunch
 	Ach(3558):Obtainable("Event", 404), -- Sharing is Caring
 	Ach(3559):Obtainable("Event", 404), -- Turkey Lurkey

@@ -100,9 +100,24 @@ function Get-MergedFactionComment {
             $u2     = $Secondary.Substring($pLen, $n2 - $pLen - $sLen)
             return "$prefix$u1 / $u2$suffix"
         }
-        # After trimming nothing useful remains — fall through to full names
+        # After trimming nothing useful remains — fall through to prefix check
     }
-    # Single-char or no shared suffix: keep both full names
+
+    # No usable suffix — strip any common prefix (trimmed rightward to a word boundary).
+    # E.g. "In Service of the Alliance" / "In Service of the Horde" → "In Service of the Alliance / Horde"
+    if ($pLen -gt 0) {
+        $prefix = $Primary.Substring(0, $pLen)
+        while ($prefix.Length -gt 0 -and [char]::IsLetterOrDigit($prefix[$prefix.Length - 1])) {
+            $prefix = $prefix.Substring(0, $prefix.Length - 1)
+        }
+        if ($prefix.Length -gt 0) {
+            $u1 = $Primary.Substring($prefix.Length)
+            $u2 = $Secondary.Substring($prefix.Length)
+            return "$prefix$u1 / $u2"
+        }
+    }
+
+    # No usable prefix or suffix: both full names
     return "$Primary / $Secondary"
 }
 
@@ -179,7 +194,7 @@ if (-not $Build) {
 # Commas in the chain are fine; "--" in chains would break this but doesn't occur in practice.
 $entryPat    = '^\s*Ach\((\d+)\)((?:[^-\r\n]|-(?!-))*?)(?:--\s*(.+))?\s*$'
 $factPat     = ':(?:Auto)?FactionSplit\(faction\.(Alliance|Horde),\s*(\d+)\)'
-$factOnlyPat = ':(?:Auto)?FactionSplit\(faction\.(Alliance|Horde)\)'
+$factOnlyPat = ':(?:Auto)?FactionSplit\(faction\.(Alliance|Horde)(?:,\s*nil)?\)'
 
 $entries = [System.Collections.Generic.List[PSCustomObject]]::new()
 
@@ -207,8 +222,11 @@ foreach ($line in $lines) {
         HasPet      = [bool]($eChain -match ':Pet\(\)')
         HasItem     = [bool]($eChain -match ':Item\(\)')
         HasToy      = [bool]($eChain -match ':Toy\(\)')
-        HasTransmog = [bool]($eChain -match ':Transmog\(\)')
-        HasOther    = [bool]($eChain -match ':Other\(\)')
+        HasTransmog   = [bool]($eChain -match ':Transmog\(\)')
+        HasOther      = [bool]($eChain -match ':Other\(\)')
+        HasTabard     = [bool]($eChain -match ':Tabard\(\)')
+        HasGarrison   = [bool]($eChain -match ':Garrison\(\)')
+        HasAlliedRace = [bool]($eChain -match ':AlliedRace\(\)')
         FactionSide = $fSide
         SplitID     = $splitId
     })
@@ -262,14 +280,20 @@ foreach ($e in $entries) {
     }
 
     # title-reward
-    # Two formats signal a title reward in the DB:
-    #   "Title Reward: X" — used in Cataclysm+ expansions
-    #   "Title: X"        — used in WotLK-era achievements (no "Reward" word)
-    # Both are treated as valid signals for :Title().
+    # Accepted title formats in DB Reward_lang:
+    #   "Title Reward: X"          — Cataclysm+ standard format
+    #   "Title: X"                 — WotLK-era format (no "Reward" word)
+    #   "Character Title: X"       — Retail MoP/modern format
+    #   "Seasonal Character Title: X" — Retail seasonal PvP title format
+    #   "Reward: Title & X"        — combined title+item reward (e.g. Loremaster's Colors)
+    #   "Reward: X and Y Title"    — combined mount+title reward (ends with " Title")
+    #   "Reward: X Title & Y"      — combined title+item reward (title in middle, e.g. Pilgrim Title & Plump Turkey Pet)
     if ($runChecks -contains "title-reward") {
         $r         = $db.Reward.Trim()
-        $isTitle   = $r -match '^Title Reward:' -or $r -match '^Title:'
-        $isReward  = $r -match '^Reward:' -and -not $isTitle
+        $isTitle   = $r -match '^Title Reward:' -or $r -match '^Title:' -or $r -match '^Titles:' -or
+                     $r -match '^Character Title:' -or $r -match '^Seasonal Character Title:' -or
+                     $r -match '^Reward:\s*Title\b' -or $r -match '^Reward:.*\bTitle$' -or
+                     $r -match '^Reward:.*\bTitle\s*&'
         if ($isTitle -and -not $e.HasTitle) {
             $failures.Add("[FAIL] title-reward    : Ach($($e.ID)) — DB Reward_lang=`"$r`" but no :Title()")
         }
@@ -279,18 +303,42 @@ foreach ($e in $entries) {
     }
 
     # reward-item
-    # Use Reward_lang starting with "Reward:" (but NOT "Title Reward:") as the reliable signal.
+    # Use Reward_lang as the tangible-reward signal. Retail DB uses specific type prefixes
+    # instead of the generic "Reward:" used in Classic builds. Recognised prefixes:
+    #   "Reward: X"             — Classic-style generic reward
+    #   "Item Reward: X"        — Specific item reward (Classic/Retail)
+    #   "Mount: X"              — Mount reward (Retail)
+    #   "Mount Reward: X"       — Vicious Saddle etc. (Retail)
+    #   "Pet: X"                — Pet reward (Retail)
+    #   "Toy: X"                — Toy reward (Retail)
+    #   "Unlock: X"             — Feature/content unlock (Retail)
+    #   "Character Unlock: X"   — Character-level unlock e.g. transmog sets (Retail)
+    #   "Appearance: X"         — Appearance/transmog unlock (Retail); use :Transmog()
+    #   "Follower: X"           — Garrison follower reward; use :Garrison()
+    #   "Garrison Monument Reward: X" — Garrison monument; use :Garrison()
+    # Title-style prefixes are excluded to avoid double-flagging "Reward: Title & X" entries.
     # RewardItemID alone is unreliable for Classic builds — it is non-zero for virtually all
     # achievements regardless of actual rewards.
     if ($runChecks -contains "reward-item") {
-        $r         = $db.Reward.Trim()
-        $isReward  = $r -match '^Reward:' -and $r -notmatch '^Title Reward:' -and $r -notmatch '^Title:'
-        $hasMethod = $e.HasMount -or $e.HasPet -or $e.HasItem -or $e.HasToy -or $e.HasTransmog -or $e.HasOther
+        $r          = $db.Reward.Trim()
+        $isTitleStr = $r -match '^Title Reward:' -or $r -match '^Title:' -or $r -match '^Titles:' -or
+                      $r -match '^Character Title:' -or $r -match '^Seasonal Character Title:' -or
+                      $r -match '^Reward:\s*Title\b'
+        $isReward   = (-not $isTitleStr) -and (
+                       $r -match '^Reward:' -or $r -match '^Item Reward:' -or
+                       $r -match '^Mount:' -or $r -match '^Mount Reward:' -or
+                       $r -match '^Pet:' -or $r -match '^Toy:' -or
+                       $r -match '^Unlock:' -or $r -match '^Character Unlock:' -or
+                       $r -match '^Appearance:' -or $r -match '^Demon Hunter Appearance:' -or
+                       $r -match '^Arsenal:' -or $r -match '^Cross-Game Reward:' -or
+                       $r -match '^Follower:' -or $r -match '^Garrison Monument Reward:'
+                      )
+        $hasMethod = $e.HasMount -or $e.HasPet -or $e.HasItem -or $e.HasToy -or $e.HasTransmog -or $e.HasOther -or $e.HasTabard -or $e.HasGarrison -or $e.HasAlliedRace
         if ($isReward -and -not $hasMethod) {
-            $failures.Add("[FAIL] reward-item     : Ach($($e.ID)) — DB Reward_lang=`"$r`" but no :Mount()/:Pet()/:Item()/:Toy()/:Transmog()/:Other()")
+            $failures.Add("[FAIL] reward-item     : Ach($($e.ID)) — DB Reward_lang=`"$r`" but no :Mount()/:Pet()/:Item()/:Toy()/:Transmog()/:Other()/:Tabard()")
         }
         if ($hasMethod -and -not $isReward) {
-            $failures.Add("[FAIL] reward-item     : Ach($($e.ID)) — has reward method but DB Reward_lang=`"$r`" is not a tangible reward")
+            $failures.Add("[FAIL] reward-item     : Ach($($e.ID)) — has reward method but DB Reward_lang=`"`$r`" is not a tangible reward")
         }
     }
 

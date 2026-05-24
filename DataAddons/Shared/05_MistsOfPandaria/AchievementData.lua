@@ -270,7 +270,7 @@ KrowiAF.AchievementData["05_00_04_S"] = {
 	Ach(6936), -- Candle in the Wind
 	Ach(6937), -- Overzealous
 	Ach(6938):PvP(11), -- Cataclysmic Gladiator
-	Ach(6939):PvP(11):AutoFactionSplit(faction.Alliance, 6940), -- Hero of the Alliance: Cataclysmic / Hero of the Horde: Cataclysmic
+	Ach(6939):PvP(11):AutoFactionSplit(faction.Alliance, 6940), -- Hero of the Alliance / Horde: Cataclysmic
 	Ach(6941):Title():IsPvP():AutoFactionSplit(faction.Horde, 6942), -- Hero of the Horde / Hero of the Alliance
 	Ach(6943), -- Queuing Spree
 	Ach(6945), -- Mantid Swarm
@@ -472,7 +472,7 @@ KrowiAF.AchievementData["05_01_00_S"] = {
 	Ach(7852), -- They're Both Footballs?
 	Ach(7860):Mount():AutoFactionSplit(faction.Alliance, 7862), -- We're Going to Need More Saddles
 	Ach(7908):Other(), -- I Choose You
-	Ach(7928):AutoFactionSplit(faction.Alliance, 7929), -- Operation: Shieldwall Campaign / Dominance Offensive Campaign
+	Ach(7928):AutoFactionSplit(faction.Alliance, 7929), -- Operation: Shieldwall / Dominance Offensive Campaign
 	Ach(7932), -- I'm In Your Base, Killing Your Dudes
 	Ach(7933), -- And... It's Good!
 	Ach(7934):Pet(), -- Raiding with Leashes
@@ -515,7 +515,7 @@ KrowiAF.AchievementData["05_02_00_S"] = {
 	Ach(8037), -- Genetically Unmodified Organism
 	Ach(8038), -- Cretaceous Collector
 	Ach(8042):AutoFactionSplit(faction.Alliance, 8043):Obtainable("Event", 341), -- Extinguishing Pandaria
-	Ach(8044):AutoFactionSplit(faction.Horde, 8045):Obtainable("Event", 341), -- Flame Keeper of Pandaria / Flame Warden of Pandaria
+	Ach(8044):AutoFactionSplit(faction.Horde, 8045):Obtainable("Event", 341), -- Flame Keeper / Warden of Pandaria
 	Ach(8049), -- The Zandalari Prophecy
 	Ach(8050), -- Rumbles of Thunder
 	Ach(8051), -- Gods and Monsters
@@ -599,7 +599,7 @@ KrowiAF.AchievementData["05_02_00_S"] = {
 	Ach(8234), -- Collector: Kypari Sap Containers
 	Ach(8235), -- Collector: Kypari Sap Containers
 	Ach(8238):Obtainable("Before", "Version", {5, 4, 0}), -- Cutting Edge: Lei Shen
-	Ach(8243):PvP(12):AutoFactionSplit(faction.Alliance, 8244), -- Hero of the Alliance: Malevolent / Hero of the Horde: Malevolent
+	Ach(8243):PvP(12):AutoFactionSplit(faction.Alliance, 8244), -- Hero of the Alliance / Horde: Malevolent
 	Ach(8246):Obtainable("Before", "Version", {5, 2, 0}), -- Ahead of the Curve: Grand Empress Shek'zeer
 	Ach(8248):Obtainable("Before", "Version", {5, 2, 0}), -- Ahead of the Curve: Sha of Fear
 	Ach(8249):Obtainable("Before", "Version", {5, 4, 0}), -- Ahead of the Curve: Lei Shen
@@ -732,16 +732,16 @@ KrowiAF.AchievementData["05_04_00_S"] = {
 	Ach(8645):Title():PvP(14), -- Duelist: Season 14
 	Ach(8646):Title():PvP(14), -- Rival: Season 14
 	Ach(8649):Title():PvP(14), -- Challenger: Season 14
-	Ach(8652):PvP(13):AutoFactionSplit(faction.Alliance, 8653), -- Hero of the Alliance: Tyrannical / Hero of the Horde: Tyrannical
-	Ach(8654):PvP(14):AutoFactionSplit(faction.Alliance, 8657), -- Hero of the Alliance: Grievous / Hero of the Horde: Grievous
-	Ach(8658):PvP(15):AutoFactionSplit(faction.Alliance, 8659), -- Hero of the Alliance: Prideful / Hero of the Horde: Prideful
+	Ach(8652):PvP(13):AutoFactionSplit(faction.Alliance, 8653), -- Hero of the Alliance / Horde: Tyrannical
+	Ach(8654):PvP(14):AutoFactionSplit(faction.Alliance, 8657), -- Hero of the Alliance / Horde: Grievous
+	Ach(8658):PvP(15):AutoFactionSplit(faction.Alliance, 8659), -- Hero of the Alliance / Horde: Prideful
 	Ach(8666):Title():PvP(15), -- Prideful Gladiator: Season 15
 	Ach(8667):Title():PvP(15), -- Gladiator: Season 15
 	Ach(8668):Title():PvP(15), -- Duelist: Season 15
 	Ach(8669):Title():PvP(15), -- Rival: Season 15
 	Ach(8670):Title():PvP(15), -- Challenger: Season 15
 	Ach(8678):PvP(13), -- Tyrannical Gladiator's Cloud Serpent
-	Ach(8679):Title():AutoFactionSplit(faction.Alliance, 8680), -- Conqueror of Orgrimmar / Liberator of Orgrimmar
+	Ach(8679):Title():AutoFactionSplit(faction.Alliance, 8680), -- Conqueror / Liberator of Orgrimmar
 	Ach(8697):Obtainable("Before", "Version", {6, 0, 2}), -- You're Doing it Wrong (Level 90)
 	Ach(8698), -- Crashin' Thrashin' Flyer
 	Ach(8699):Obtainable("Event", 141), -- The Danger Zone

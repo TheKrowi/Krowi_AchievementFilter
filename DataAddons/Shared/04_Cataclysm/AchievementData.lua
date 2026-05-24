@@ -203,8 +203,8 @@ KrowiAF.AchievementData["04_00_03_S"] = {
 	Ach(5320):AutoFactionSplit(faction.Alliance, 5321), -- King of the Mountain
 	Ach(5322):AutoFactionSplit(faction.Alliance, 5323):IsPvP(), -- In Service of the Alliance / Horde
 	Ach(5324):AutoFactionSplit(faction.Horde, 5327):IsPvP(), -- In Service of the Horde / Alliance
-	Ach(5325):AutoFactionSplit(faction.Horde, 5328):Title():IsPvP(), -- Veteran of the Horde / Alliance
-	Ach(5326):AutoFactionSplit(faction.Horde, 5329):Title():IsPvP(), -- Warbringer of the Horde / Warbound Veteran of the Alliance
+	Ach(5325):AutoFactionSplit(faction.Horde, 5328):Mount():Title():IsPvP(), -- Veteran of the Horde / Alliance
+	Ach(5326):AutoFactionSplit(faction.Horde, 5329):Mount():Title():IsPvP(), -- Warbringer of the Horde / Warbound Veteran of the Alliance
 	Ach(5330):AutoFactionSplit(faction.Alliance, 5345):Title():IsPvP(), -- Private / Scout
 	Ach(5331):AutoFactionSplit(faction.Alliance, 5346):Title():IsPvP(), -- Corporal / Grunt
 	Ach(5332):AutoFactionSplit(faction.Alliance, 5347):Title():IsPvP(), -- Sergeant
