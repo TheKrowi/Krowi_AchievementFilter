@@ -11,7 +11,7 @@ KrowiAF.AchievementData["05_00_04"] = {
 KrowiAF.AchievementData["05_01_00"] = {
 	{KrowiAF.SetAchievementPatch, 5, 1, 0},
 	Ach(7853):Obtainable("Never"), -- WoW's 9th Anniversary
-	Ach(7944):Obtainable("From", "Version", {6, 0, 3}, "Before", "Version", {7, 0, 3}), -- Bottle Service (Season 2)
+	Ach(7944):Obtainable("From", "Version", {6, 0, 3}, "Before", "Version", {7, 0, 3}), -- Bottle Service
 }
 
 KrowiAF.AchievementData["05_02_00"] = {
@@ -87,7 +87,7 @@ KrowiAF.AchievementData["05_05_03"] = {
 	Ach(40821), -- Successfully Stress Test CN Realms
 	Ach(61962):Title(), -- Realm First! Challenge Conqueror: Platinum (Season 2)
 	Ach(61963):Title(), -- Realm First! Challenge Conqueror: Platinum (Season 3)
-	Ach(61967):Transmog(), -- Temple of the Jade Serpent: Platinum
+	Ach(61967):Toy(), -- Temple of the Jade Serpent: Platinum
 	Ach(61968):Toy(), -- Stormstout Brewery: Platinum
 	Ach(61969):Toy(), -- Mogu'shan Palace: Platinum
 	Ach(61970):Toy(), -- Shado-Pan Monastery: Platinum
@@ -96,11 +96,11 @@ KrowiAF.AchievementData["05_05_03"] = {
 	Ach(61973):Toy(), -- Scarlet Monastery: Platinum
 	Ach(61974):Toy(), -- Scholomance: Platinum
 	Ach(61975):Toy(), -- Siege of Niuzao Temple: Platinum
-	Ach(61987):NotCategorized(), -- Challenge Conqueror: Platinum (Season 1)
-	Ach(61990):NotCategorized(), -- Challenge Conqueror: Platinum (Season 2)
-	Ach(61991):NotCategorized(), -- Challenge Conqueror: Platinum (Season 3)
+	Ach(61987):Other(), -- Challenge Conqueror: Platinum (Season 1)
+	Ach(61990):Other(), -- Challenge Conqueror: Platinum (Season 2)
+	Ach(61991):Other(), -- Challenge Conqueror: Platinum (Season 3)
 	Ach(62055):Mount(), -- The Mistwalker
-	Ach(62059):Mount(), -- Mistborne
+	Ach(62059):Title(), -- Mistborne
 	Ach(62060):Title(), -- Heir to the Mist
 	Ach(62399):Mount(), -- The Mistwalker
 }

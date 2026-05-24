@@ -626,4 +626,7 @@
         // _xptr_
     ],
     "fsdeploy.deployWorkspaceOnSave": true,
+    "chat.tools.terminal.autoApprove": {
+        "&": true
+    },
 }

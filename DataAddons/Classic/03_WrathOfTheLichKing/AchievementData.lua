@@ -77,7 +77,7 @@ KrowiAF.AchievementData["03_04_00"] = {
 	Ach(15208):Title():PvP(2), -- Duelist: Season 2
 	Ach(15209):Title():PvP(2), -- Rival: Season 2
 	Ach(15210):Title():PvP(2), -- Challenger: Season 2
-	Ach(15330):Obtainable("Never"), -- Survivor of the Firelord (Season of Mastery)
+	Ach(15330):Title():Obtainable("Never"), -- Survivor of the Firelord (Season of Mastery)
 	Ach(15333):Obtainable("Never"), -- Survivor of the Shadow Flame (Season of Mastery)
 	Ach(15334):Obtainable("Never"), -- Survivor of the Old God (Season of Mastery)
 	Ach(15335):Obtainable("Never"), -- Survivor of the Damned (Season of Mastery)
@@ -87,7 +87,7 @@ KrowiAF.AchievementData["03_04_00"] = {
 	Ach(16315):Title():PvP(5), -- Duelist: Season 5
 	Ach(16316):Title():PvP(5), -- Challenger: Season 5
 	Ach(16332), -- The Perfect Pebble
-	Ach(16433):Obtainable("Never"), -- Soul of Iron (Season of Mastery)
+	Ach(16433):Title():Obtainable("Never"), -- Soul of Iron (Season of Mastery)
 }
 
 KrowiAF.AchievementData["03_04_01"] = {
@@ -154,5 +154,5 @@ KrowiAF.AchievementData["03_04_03"] = {
 	Ach(19436), -- Defense Protocol Gamma: The Oculus
 	Ach(19437), -- Defense Protocol Gamma: Utgarde Pinnacle
 	Ach(19438), -- Defense Protocol Gamma: The Culling of Stratholme
-	Ach(19439):AutoFactionSplit(faction.Alliance, 19440), -- Defense Protocol Gamma: Terminated
+	Ach(19439):Pet():AutoFactionSplit(faction.Alliance, 19440), -- Defense Protocol Gamma: Terminated
 }

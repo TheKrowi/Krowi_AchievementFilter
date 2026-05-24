@@ -15,8 +15,8 @@ KrowiAF.AchievementData["04_00_01"] = {
 KrowiAF.AchievementData["04_00_03"] = {
 	{KrowiAF.SetAchievementPatch, 4, 0, 3},
 	Ach(4859), -- Kings Under the Mountain
-	Ach(4894):AutoFactionSplit(faction.Horde, 4903), -- Silverpine Forest / Redridge Mountains (Classic) Quests
-	Ach(4908):AutoFactionSplit(faction.Horde, 4899), -- Ghostlands / Loch Modan Quests
+	Ach(4894):AutoFactionSplit(faction.Horde, 4903), -- Silverpine Forest / Westfall and Duskwood Quests
+	Ach(4908):AutoFactionSplit(faction.Horde, 4899), -- Ghostlands / Loch Modan and Wetlands Quests
 	Ach(5223):IsPvP(), -- Master of Twin Peaks
 	Ach(5245):IsPvP(), -- Battle for Gilneas Victory
 	Ach(5344):AutoFactionSplit(faction.Alliance, 5358):Title():PvP(9), -- Hero of the Alliance / Horde: Vicious
