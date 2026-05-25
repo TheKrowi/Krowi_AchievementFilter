@@ -240,12 +240,12 @@ KrowiAF.AchievementData["03_00_02_S"] = {
 	Ach(607):Obtainable("Event", 327), -- 10 Coins of Ancestry
 	Ach(608):Obtainable("Event", 327), -- 25 Coins of Ancestry
 	Ach(609):Obtainable("Event", 327), -- 50 Coins of Ancestry
-	Ach(610):IsPvP():FactionSplit(faction.Alliance, 615):Obtainable("Before", "Version", {8, 0, 1}), -- Orgrimmar Offensive / Storming Stormwind
-	Ach(615):IsPvP():FactionSplit(faction.Horde, 610):Obtainable("Before", "Version", {9, 0, 1}), -- Storming Stormwind / Orgrimmar Offensive
-	Ach(611):IsPvP():FactionSplit(faction.Alliance, 616):Obtainable("Before", "Version", {9, 0, 1}), -- Bleeding Bloodhoof / Overthrow the Council
-	Ach(616):IsPvP():FactionSplit(faction.Horde, 611), -- Overthrow the Council / Bleeding Bloodhoof
-	Ach(612):IsPvP():FactionSplit(faction.Alliance, 617):Obtainable("Before", "Version", {9, 0, 1}), -- Downing the Dark Lady / Immortal No More
-	Ach(617):IsPvP():FactionSplit(faction.Horde, 612):Obtainable("Before", "Version", {8, 0, 1}), -- Immortal No More / Downing the Dark Lady
+	Ach(610):IsPvP():FactionSplit(faction.Alliance, 615):Obtainable("Before", "Version", {8, 0, 1}), -- Orgrimmar Offensive
+	Ach(615):IsPvP():FactionSplit(faction.Horde, 610):Obtainable("Before", "Version", {9, 0, 1}), -- Storming Stormwind
+	Ach(611):IsPvP():FactionSplit(faction.Alliance, 616):Obtainable("Before", "Version", {9, 0, 1}), -- Bleeding Bloodhoof
+	Ach(616):IsPvP():FactionSplit(faction.Horde, 611), -- Overthrow the Council
+	Ach(612):IsPvP():FactionSplit(faction.Alliance, 617):Obtainable("Before", "Version", {9, 0, 1}), -- Downing the Dark Lady
+	Ach(617):IsPvP():FactionSplit(faction.Horde, 612):Obtainable("Before", "Version", {8, 0, 1}), -- Immortal No More
 	Ach(613):IsPvP():AutoFactionSplit(faction.Alliance, 618), -- Killed in Quel'Thalas / Putting Out the Light
 	Ach(614):Mount():IsPvP():AutoFactionSplit(faction.Alliance, 619), -- For the Alliance! / Horde!
 	Ach(621), -- Represent

@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 -- Test fixture: known-good WotLK entries.
 -- All 8 checks should pass → script must exit 0 with "All 8 entries passed."
 -- Build: wow_classic (WotLK Classic). IDs sourced from verified Classic/03 and Shared/03 files.

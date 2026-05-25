@@ -30,15 +30,19 @@ For entries using `:AutoFactionSplit()`, reconstruct the expected comment by mer
 `:AutoFactionSplit(faction.F, Y)` automatically creates **both** the primary and secondary achievement objects. Therefore:
 
 - The secondary ID `Y` must **not** appear as its own `Ach(Y)` entry anywhere in the same file.
-- Two `:FactionSplit()` entries that mutually reference each other (e.g. `Ach(X):FactionSplit(f1, Y)` and `Ach(Y):FactionSplit(f2, X)`) are also incorrect **unless the two entries have different reward method signatures** — see exception below.
+- Two `:FactionSplit()` entries that mutually reference each other (e.g. `Ach(X):FactionSplit(f1, Y)` and `Ach(Y):FactionSplit(f2, X)`) are also incorrect **unless the two entries differ in any modifier chain beyond `:FactionSplit()` itself** — see exception below.
 
 Both patterns are detected by the `autofactionsplit-unique` check.
 
-**Exception — asymmetric reward types (mutual FactionSplit IS correct):**
+**Exception — asymmetric modifier chains (mutual FactionSplit IS correct):**
 
-`AutoFactionSplit` propagates the primary entry's reward type to the auto-generated secondary. If only one faction's version of an achievement has a reward (e.g. only Horde gets a housing decor item, but Alliance gets nothing), `:AutoFactionSplit()` cannot be used — it would incorrectly tag the no-reward faction as having a reward. In this case, separate mutual `:FactionSplit()` entries with different reward methods are the correct representation.
+`:AutoFactionSplit()` propagates the primary entry's **entire modifier chain** to the auto-generated secondary unchanged. If the two faction versions differ in **any** builder call — reward type, `:Obtainable()`, `:IsPvP()`, or anything else — `:AutoFactionSplit()` cannot be used. Separate mutual `:FactionSplit()` entries are the correct representation.
 
-The `autofactionsplit-unique` check **skips** mutual FactionSplit pairs where the two entries have different reward method signatures (e.g. one has `:HousingDecor()` and the other has no reward modifier).
+The `autofactionsplit-unique` check **skips** mutual FactionSplit pairs where the two entries differ in any modifier beyond `:FactionSplit()` itself. Programmatically: strip the `:FactionSplit(...)` call from each line and compare the remainder — if they differ, skip.
+
+**Examples of asymmetric modifier pairs (mutual FactionSplit is correct):**
+- Different reward methods: `Ach(X):HousingDecor():FactionSplit(faction.Horde, Y)` + `Ach(Y):FactionSplit(faction.Alliance, X)` — only one side has a reward
+- Different `:Obtainable()` windows: `Ach(610):IsPvP():FactionSplit(faction.Alliance, 615):Obtainable("Before", "Version", {8, 0, 1})` + `Ach(615):IsPvP():FactionSplit(faction.Horde, 610):Obtainable("Before", "Version", {9, 0, 1})` — same (no) reward but different obtainability windows. Observed on Ach(610/615, 611/616, 612/617) in `Shared/03_WrathOfTheLichKing/AchievementData.lua`.
 
 **BfA examples of intentionally asymmetric mutual FactionSplit pairs:**
 
@@ -77,7 +81,9 @@ Ach(13553):AutoFactionSplit(faction.Alliance, 13700), -- The Mechagonian Threat
 
 ### faction check
 
-- **Some faction-gated achievements have DB Faction=-1 despite being restricted to one faction** — this affects allied race unlocks (e.g. "Allied Races: Void Elf"), heritage armor achievements (e.g. "Heritage of the Nightborne"), and some event achievements (e.g. "Fight for the Alliance" / "Fight for the Horde"). All record `Faction=-1` in the DB even though they can only be earned by the appropriate faction. `:FactionSplit()` usage IS correct for these — they are known false positives. Observed on Ach(11210, 12242–12245, 12291, 12413–12415) in `Retail/07_Legion/AchievementData.lua`.
+- **Some faction-gated achievements have DB Faction=-1 despite being restricted to one faction** — this affects allied race unlocks (e.g. "Allied Races: Void Elf"), heritage armor achievements (e.g. "Heritage of the Nightborne"), and some event achievements (e.g. "Fight for the Alliance" / "Fight for the Horde"). All record `Faction=-1` in the DB even though they can only be earned by the appropriate faction. `:FactionSplit()` usage IS correct for these — they are known false positives. Two sub-cases:
+  - **Single-faction no-partner** (`:FactionSplit(faction.X, nil)`): `SplitID` is null — suppress as FP. Observed on Ach(11210, 12242–12245, 12291, 12413–12415) in `Retail/07_Legion/AchievementData.lua` and Ach(12515, 12518, 13076, 13077, 13161, 13163, 13503, 13504, 13206, 14002, 14013, 14014) in `Retail/08_BattleForAzeroth/AchievementData.lua`.
+  - **AutoFactionSplit with partner** (`:AutoFactionSplit(faction.X, Y)`): `IsAutoSplit` is true — suppress as FP. `:AutoFactionSplit()` signals explicit developer intent to faction-split; DB Faction=-1 is a data gap. Observed on Ach(11210) in `Retail/07_Legion/AchievementData.lua`.
 
 - **Single-faction FactionSplit without a partner ID** — `:FactionSplit(faction.Alliance)` (no second argument) or `:FactionSplit(faction.Alliance, nil)` (explicit `nil`) marks an achievement as faction-only with no counterpart. The faction-check regex matches both patterns via `$factOnlyPat = ':(?:Auto)?FactionSplit\(faction\.(Alliance|Horde)(?:,\s*nil)?\)'`. Observed on Ach(4899/4903) in `Retail/04_Cataclysm/AchievementData.lua` and Ach(4786/4790) in `Shared/03_WrathOfTheLichKing/AchievementData.lua`.
 
@@ -139,6 +145,10 @@ Ach(13553):AutoFactionSplit(faction.Alliance, 13700), -- The Mechagonian Threat
 
 - **`:RemixBronze():HousingDecor()` with `"Bronze Cache, Decor Reward:"` prefix produces false positives** — Legion Remix reputation achievements grant a bronze cache alongside a housing decor item, so `Reward_lang` reads `"Bronze Cache, Decor Reward: X"` or `"Greater Bronze Cache, Decor Reward: X"`. The existing `'^Decor Rewards?:'` pattern does not match when the string starts with the cache prefix. Observed on Ach(42318, 42321, 42547, 42619, 42627, 42628, 42655, 42658, 42674, 42675, 42689, 42692, 61054, 61060, 61218) in `Retail/11_TheWarWithin/AchievementData.lua`.
 
+- **`:RemixBronze()` alone (standalone cache reward)** — some Legion Remix achievements grant only a bronze cache with no decor item. `Reward_lang` reads `"Bronze Cache"`, `"Lesser Bronze Cache"`, `"Greater Bronze Cache"`, or `"Minor Bronze Cache"` (no `", Decor Reward:"` suffix). These are recognized by the `'\bCache$'` pattern in `$isReward`. `:RemixBronze()` must be in `$hasMethod`. Observed on entries in `Retail/11_TheWarWithin/AchievementData.lua`.
+
+- **`:RemixBronze()` for bronze-progression prose rewards** — some achievements grant extra bronze for ongoing activities rather than a discrete cache item. `Reward_lang` is a sentence ending in `"Bronze"` (e.g. `"Infinite Research assignments grant additional Bronze"`). These are recognized by the `'\bBronze$'` pattern in `$isReward`. Observed on Ach(60961) in `Retail/11_TheWarWithin/AchievementData.lua`.
+
 - **`"Decord Reward:"` (DB typo) produces a false positive for `:HousingDecor()`** — Ach(40612) "Sprinting in the Ravine" has `Reward_lang="Decord Reward: Deephaul Crystal"` (misspelled "Decord" instead of "Decor"). The `:HousingDecor()` tag is correct; the DB has a typo. Observed in `Retail/11_TheWarWithin/AchievementData.lua`.
 
 - **`"D.R.I.V.E. Engine:"` prefix maps to `:Mount()`** — Undermine racing achievements grant a D.R.I.V.E. engine cosmetic (e.g. `"D.R.I.V.E. Engine: the Pozzik Standard"`) which functions as a mount customization. Observed on Ach(41081) in `Retail/11_TheWarWithin/AchievementData.lua`.
@@ -160,3 +170,5 @@ Ach(13553):AutoFactionSplit(faction.Alliance, 13700), -- The Mechagonian Threat
 - **Faction-split comments with prefix only** — when two names share only a common prefix (no suffix ≥ 2), strip the prefix from the second name. E.g. `"In Service of the Alliance / Horde"`, `"Let's Do Lunch: Stormwind / Orgrimmar"`, `"Fish or Cut Bait: Ironforge / Thunder Bluff"`. Observed across `Shared/04_Cataclysm/AchievementData.lua`.
 
 - **`"Reward: X Title & Y"` format with combined title + item** — e.g. `"Reward: Pilgrim Title & Plump Turkey Pet"`. The `title-reward` check accepts `^Reward:.*\bTitle\s*&`; tag with both `:Title()` and the item reward method (e.g. `:Pet()`). Observed on Ach(3478) "Pilgrim" in `Shared/03_WrathOfTheLichKing/AchievementData.lua`.
+
+- **`:HousingDecor()` on pre-housing-era achievements has empty `Reward_lang` in the DB** — housing decor rewards were retroactively added to old achievements (Legion and earlier) but the DB `Reward_lang` was never updated. The `:HousingDecor()` tag is correct; these are expected false positives caused by a DB data gap. The script suppresses `reward-item` failures where `HasHousingDecor` is the sole method and `Reward_lang=""`. Observed on Ach(10398) "Drum Circle" (Decor: Skyhorn Arrow Kite) and Ach(11340) "Insurrection" (Decor: Deluxe Suramar Sleeper) in `Retail/07_Legion/AchievementData.lua`.

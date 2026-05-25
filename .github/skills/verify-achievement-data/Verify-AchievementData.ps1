@@ -28,7 +28,11 @@ param(
 
     [string]$Build = "",
 
-    [string]$BaseUrl = "http://localhost:5000"
+    [string]$BaseUrl = "http://localhost:5000",
+
+    # When set, also prints suppressed false positives (cyan) after real failures.
+    # Use periodically to re-evaluate whether suppressed cases are still valid.
+    [switch]$ShowFalsePositives
 )
 
 Set-StrictMode -Version Latest
@@ -220,6 +224,11 @@ foreach ($line in $lines) {
         $fSide   = $Matches[1]     # Single-faction achievement (no paired ID)
     }
 
+    # Strip :FactionSplit(...) / :AutoFactionSplit(...) from the chain so that mutual
+    # FactionSplit pairs can be compared: if ANY other modifier differs, mutual
+    # FactionSplit is intentional and must not be collapsed into AutoFactionSplit.
+    $chainWithoutFS = ($eChain -replace ':(?:Auto)?FactionSplit\(faction\.\w+(?:,\s*(?:\d+|nil))?\)', '').Trim()
+
     $entries.Add([PSCustomObject]@{
         ID          = $eId
         Comment     = $eComment
@@ -235,13 +244,15 @@ foreach ($line in $lines) {
         HasAlliedRace = [bool]($eChain -match ':AlliedRace\(\)')
         HasHousingDecor   = [bool]($eChain -match ':HousingDecor\(\)')
         HasTradersTender  = [bool]($eChain -match ':TradersTender\(\)')
+        HasRemixBronze    = [bool]($eChain -match ':RemixBronze\(\)')
         HasKeystoneResilience = [bool]($eChain -match ':KeystoneResilience\(\)')
         HasTeleport   = [bool]($eChain -match ':Teleport\(\)')
         HasWarbandCampsite = [bool]($eChain -match ':WarbandCampsite\(\)')
         HasIsPvP      = [bool]($eChain -match ':IsPvP\(\)')
-        FactionSide = $fSide
-        SplitID     = $splitId
-        IsAutoSplit = $isAutoSplit
+        FactionSide    = $fSide
+        SplitID        = $splitId
+        IsAutoSplit    = $isAutoSplit
+        ChainWithoutFS = $chainWithoutFS
     })
 }
 
@@ -263,7 +274,8 @@ for ($i = 0; $i -lt $allIds.Count; $i += $chunk) {
 Write-Host "Queried $($dbById.Count) / $($allIds.Count) IDs from DB"
 
 # ── Verification ──────────────────────────────────────────────────────────────
-$failures = [System.Collections.Generic.List[string]]::new()
+$failures      = [System.Collections.Generic.List[string]]::new()
+$suppressedFPs = [System.Collections.Generic.List[string]]::new()
 
 foreach ($e in $entries) {
     $key = "$($e.ID)"
@@ -288,7 +300,19 @@ foreach ($e in $entries) {
             $failures.Add("[FAIL] faction         : Ach($($e.ID)) — DB Faction=$f ($label) but no :FactionSplit()")
         }
         if ($f -eq "-1" -and $hasFactSplit) {
-            $failures.Add("[FAIL] faction         : Ach($($e.ID)) — DB Faction=-1 (both factions) but has :FactionSplit()")
+            if ($null -eq $e.SplitID) {
+                # Single-faction FactionSplit with no partner — allied race unlocks, heritage armor,
+                # and some event achievements are faction-gated by game mechanics but have Faction=-1
+                # in the DB. The :FactionSplit() tag is correct; this is a known DB data gap.
+                $suppressedFPs.Add("[FP]   faction         : Ach($($e.ID)) — DB Faction=-1 but :FactionSplit(faction.$($e.FactionSide), nil): single-faction gated (allied race / heritage / event)")
+            } elseif ($e.IsAutoSplit) {
+                # AutoFactionSplit with a partner also has DB Faction=-1 for some event achievements
+                # (e.g. "Fight for the Alliance / Horde"). :AutoFactionSplit() signals the developer's
+                # explicit intent to split; the DB Faction=-1 is a known data gap for these events.
+                $suppressedFPs.Add("[FP]   faction         : Ach($($e.ID)) — DB Faction=-1 but :AutoFactionSplit(): event achievement where DB may not reflect faction restriction")
+            } else {
+                $failures.Add("[FAIL] faction         : Ach($($e.ID)) — DB Faction=-1 (both factions) but has :FactionSplit()")
+            }
         }
     }
 
@@ -307,12 +331,19 @@ foreach ($e in $entries) {
         $isTitle   = $r -match '^Title Reward:' -or $r -match '^Title:' -or $r -match '^Titles:' -or
                      $r -match '^Character Title:' -or $r -match '^Seasonal Character Title:' -or
                      $r -match '^Reward:\s*Title\b' -or $r -match '^Reward:.*\bTitle$' -or
-                     $r -match '^Reward:.*\bTitle\s*&' -or $r -match "^Reward:.*'[^']*'\s+Title"
+                     $r -match '^Reward:.*\bTitle\s*&' -or $r -match "^Reward:.*'[^']*'\s+Title" -or
+                     $r -match '^Reward: Heir to the Mist$'   # Classic MoP — non-standard "Reward:" prefix for title
         if ($isTitle -and -not $e.HasTitle) {
             $failures.Add("[FAIL] title-reward    : Ach($($e.ID)) — DB Reward_lang=`"$r`" but no :Title()")
         }
         if ($e.HasTitle -and -not $isTitle) {
-            $failures.Add("[FAIL] title-reward    : Ach($($e.ID)) — has :Title() but DB Reward_lang is not a title reward (`"$r`")")
+            if ($r -eq "") {
+                # Empty Reward_lang with :Title() — known DB data gap for old ranked-BG PvP title
+                # achievements where the DB does not populate Reward_lang despite granting a title.
+                $suppressedFPs.Add("[FP]   title-reward    : Ach($($e.ID)) — has :Title() but DB Reward_lang is empty (known DB data gap for old PvP title achievements)")
+            } else {
+                $failures.Add("[FAIL] title-reward    : Ach($($e.ID)) — has :Title() but DB Reward_lang is not a title reward (`"$r`")")
+            }
         }
     }
 
@@ -359,19 +390,54 @@ foreach ($e in $entries) {
                        $r -match '^Follower:' -or $r -match '^Garrison Monument Reward:' -or
                        $r -match '^Ensemble:' -or $r -match '^Illusion:' -or $r -match '^Item:' -or
                        $r -match '^Drake Customization:' -or $r -match '^Paint Color:' -or
-                       $r -match '^Future Timerunning'
+                       $r -match '^Future Timerunning' -or
+                       # Reward types identified from edge cases in EDGE-CASES.md:
+                       $r -match '^Warband Campsite:' -or                    # :WarbandCampsite()
+                       $r -match '^Keystones? will no longer deplete' -or    # :KeystoneResilience()
+                       $r -match '^(?:Greater )?Bronze Cache,\s*Decor Reward:' -or  # :RemixBronze():HousingDecor()
+                       $r -match '^Decord Reward:' -or                       # :HousingDecor() — DB typo
+                       $r -match '^D\.R\.I\.V\.E\. Engine:' -or            # :Mount() — Undermine racing
+                       $r -match '^Share the (?:Seeker|Angler)thread' -or   # :Other() — warband currency
+                       $r -match 'Dastardly Duos' -or                        # :Other() — in-match gameplay bonus
+                       $r -match '\bCache$' -or                              # :Transmog()/:RemixBronze() — item/bronze cache
+                       $r -match '\bBronze$'                                  # :RemixBronze() — "grants additional Bronze" prose
                       )
         $hasMethod = $e.HasMount -or $e.HasPet -or $e.HasItem -or $e.HasToy -or
                      $e.HasTransmog -or $e.HasOther -or $e.HasTabard -or $e.HasGarrison -or
                      $e.HasAlliedRace -or $e.HasHousingDecor -or $e.HasTradersTender -or
-                     $e.HasKeystoneResilience -or $e.HasTeleport -or $e.HasWarbandCampsite
+                     $e.HasRemixBronze -or $e.HasKeystoneResilience -or $e.HasTeleport -or
+                     $e.HasWarbandCampsite -or
+                     $e.HasTitle   # :Title() counts as a reward method for the reward-item check
         # If it's a title reward and entry has :Title(), that's sufficient; don't require other methods
         if ($isTitleStr -and $e.HasTitle) {
             # Title-only reward with :Title() marker — valid
         } elseif ($isReward -and -not $hasMethod) {
             $failures.Add("[FAIL] reward-item     : Ach($($e.ID)) — DB Reward_lang=""$r"" but no :Mount()/:Pet()/:Item()/:Toy()/:Transmog()/:Other()/:Tabard()")
         } elseif ($hasMethod -and -not $isReward -and -not $isTitleStr) {
-            $failures.Add("[FAIL] reward-item     : Ach($($e.ID)) — has reward method but DB Reward_lang=""$r"" is not a tangible reward")
+            if ($e.HasOther -and -not ($e.HasMount -or $e.HasPet -or $e.HasItem -or $e.HasToy -or
+                    $e.HasTransmog -or $e.HasTabard -or $e.HasGarrison -or $e.HasAlliedRace -or
+                    $e.HasHousingDecor -or $e.HasRemixBronze -or $e.HasKeystoneResilience -or
+                    $e.HasTeleport -or $e.HasWarbandCampsite -or $e.HasTitle)) {
+                # :Other()-only entry with unrecognised DB reward text — :Other() is explicitly
+                # the developer's assertion that a non-standard reward exists; trust it.
+                $suppressedFPs.Add("[FP]   reward-item     : Ach($($e.ID)) — :Other() with unrecognised DB Reward_lang=`"$r`" (non-standard reward, trusted)")
+            } elseif ($r -eq "" -and $e.HasTitle -and -not ($e.HasMount -or $e.HasPet -or $e.HasItem -or
+                    $e.HasToy -or $e.HasTransmog -or $e.HasTabard -or $e.HasGarrison -or
+                    $e.HasAlliedRace -or $e.HasHousingDecor -or $e.HasRemixBronze -or
+                    $e.HasKeystoneResilience -or $e.HasTeleport -or $e.HasWarbandCampsite)) {
+                # :Title()-only entry with empty DB Reward_lang — already suppressed as FP by the
+                # title-reward check's empty-DB rule; skip here to avoid double-reporting.
+            } elseif ($r -eq "" -and $e.HasHousingDecor -and -not ($e.HasMount -or $e.HasPet -or $e.HasItem -or
+                    $e.HasToy -or $e.HasTransmog -or $e.HasTabard -or $e.HasGarrison -or
+                    $e.HasAlliedRace -or $e.HasOther -or $e.HasRemixBronze -or
+                    $e.HasKeystoneResilience -or $e.HasTeleport -or $e.HasWarbandCampsite -or
+                    $e.HasTradersTender -or $e.HasTitle)) {
+                # :HousingDecor()-only entry with empty DB Reward_lang — housing decor was added
+                # retroactively to pre-housing achievements; DB hasn't been updated. Tag is correct.
+                $suppressedFPs.Add("[FP]   reward-item     : Ach($($e.ID)) — :HousingDecor() with empty DB Reward_lang (housing decor added retroactively; DB data gap)")
+            } else {
+                $failures.Add("[FAIL] reward-item     : Ach($($e.ID)) — has reward method but DB Reward_lang=`"$r`" is not a tangible reward")
+            }
         }
     }
 
@@ -402,30 +468,13 @@ foreach ($e in $entries) {
 #   1. AutoFactionSplit duplicate: Ach(X):AutoFactionSplit(f, Y) AND Ach(Y) also appears
 #      as its own entry — the secondary is auto-created and must not be listed separately.
 #   2. Mutual FactionSplit: Ach(X):FactionSplit(f1, Y) AND Ach(Y):FactionSplit(f2, X) both
-#      exist — they reference each other. If the reward methods match on both entries,
-#      only one should remain (as AutoFactionSplit). If the reward methods DIFFER (e.g., one
-#      gives a housing decor and the other gives nothing), the mutual FactionSplit is
-#      intentional and must NOT be flagged — AutoFactionSplit would incorrectly propagate
-#      the reward type to both entries.
-function Get-RewardMethodSignature([PSCustomObject]$entry) {
-    $methods = [System.Collections.Generic.List[string]]::new()
-    if ($entry.HasTitle)                  { $methods.Add("Title") }
-    if ($entry.HasMount)                  { $methods.Add("Mount") }
-    if ($entry.HasPet)                    { $methods.Add("Pet") }
-    if ($entry.HasItem)                   { $methods.Add("Item") }
-    if ($entry.HasToy)                    { $methods.Add("Toy") }
-    if ($entry.HasTransmog)               { $methods.Add("Transmog") }
-    if ($entry.HasOther)                  { $methods.Add("Other") }
-    if ($entry.HasTabard)                 { $methods.Add("Tabard") }
-    if ($entry.HasGarrison)               { $methods.Add("Garrison") }
-    if ($entry.HasAlliedRace)             { $methods.Add("AlliedRace") }
-    if ($entry.HasHousingDecor)           { $methods.Add("HousingDecor") }
-    if ($entry.HasTradersTender)          { $methods.Add("TradersTender") }
-    if ($entry.HasKeystoneResilience)     { $methods.Add("KeystoneResilience") }
-    if ($entry.HasTeleport)               { $methods.Add("Teleport") }
-    if ($entry.HasWarbandCampsite)        { $methods.Add("WarbandCampsite") }
-    return ($methods | Sort-Object) -join ","
-}
+#      exist — they reference each other. If the two entries are identical in every modifier
+#      except the faction/partner ID, only one should remain (as AutoFactionSplit). If the
+#      entries differ in ANY modifier beyond :FactionSplit() (reward type, :Obtainable(),
+#      :IsPvP(), etc.), the mutual FactionSplit is intentional and must NOT be flagged —
+#      AutoFactionSplit would propagate the primary's entire modifier chain to the secondary.
+#      Detection uses the ChainWithoutFS field (chain with :FactionSplit stripped) computed
+#      during parsing — if they differ, the pair is asymmetric and is skipped.
 
 if ($runChecks -contains "autofactionsplit-unique") {
     $primaryIdSet = @{}
@@ -442,15 +491,13 @@ if ($runChecks -contains "autofactionsplit-unique") {
 
         # Case 2: Two FactionSplit entries that mutually reference each other
         # (report only once, on the lower ID)
-        # Skip if the two entries have different reward method signatures — asymmetric rewards
-        # require separate FactionSplit entries and cannot be represented with AutoFactionSplit,
-        # since AutoFactionSplit propagates the reward type to both achievements.
+        # Skip if the two entries differ in any modifier beyond :FactionSplit() — asymmetric
+        # entries cannot be represented with AutoFactionSplit (it would propagate the primary's
+        # full modifier chain to the secondary unchanged).
         if (-not $e.IsAutoSplit -and $primaryIdSet.ContainsKey($partnerId)) {
             $partner = $primaryIdSet[$partnerId]
             if ($null -ne $partner.SplitID -and $partner.SplitID -eq $e.ID -and $e.ID -lt $partner.ID) {
-                $eSig = Get-RewardMethodSignature $e
-                $pSig = Get-RewardMethodSignature $partner
-                if ($eSig -ne $pSig) { continue }
+                if ($e.ChainWithoutFS -ne $partner.ChainWithoutFS) { continue }
                 $failures.Add("[FAIL] autofactionsplit-unique: Ach($($e.ID)) and Ach($($partner.ID)) mutually reference each other via :FactionSplit — use :AutoFactionSplit on the primary entry only")
             }
         }
@@ -459,14 +506,25 @@ if ($runChecks -contains "autofactionsplit-unique") {
 
 # ── Report ────────────────────────────────────────────────────────────────────
 Write-Host ""
-if ($failures.Count -eq 0) {
-    $msg = "All $($entries.Count) entries passed."
-    Write-Host $msg -ForegroundColor Green
-    exit 0
-} else {
+if ($failures.Count -gt 0) {
     $failures | ForEach-Object { Write-Host $_ -ForegroundColor Yellow }
     Write-Host ""
-    $summary = "$($failures.Count) failure(s) in $($entries.Count) entries checked."
-    Write-Host $summary -ForegroundColor Yellow
+}
+
+if ($ShowFalsePositives -and $suppressedFPs.Count -gt 0) {
+    Write-Host "--- Suppressed false positives ($($suppressedFPs.Count)) ---" -ForegroundColor Cyan
+    $suppressedFPs | ForEach-Object { Write-Host $_ -ForegroundColor Cyan }
+    Write-Host ""
+}
+
+$fpNote = if ($suppressedFPs.Count -gt 0) {
+    " ($($suppressedFPs.Count) false positive(s) suppressed$(if (-not $ShowFalsePositives) { '; use -ShowFalsePositives to review' }))"
+} else { "" }
+
+if ($failures.Count -eq 0) {
+    Write-Host "All $($entries.Count) entries passed.$fpNote" -ForegroundColor Green
+    exit 0
+} else {
+    Write-Host "$($failures.Count) failure(s) in $($entries.Count) entries checked.$fpNote" -ForegroundColor Yellow
     exit 1
 }

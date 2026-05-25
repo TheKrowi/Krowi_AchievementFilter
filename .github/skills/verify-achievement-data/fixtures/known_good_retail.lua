@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 -- Test fixture: known-good Retail (BfA) entries.
 -- All entries should pass → script must exit 0 with "All N entries passed."
 -- Build: wow (Retail). IDs sourced from verified Retail/08_BattleForAzeroth file.

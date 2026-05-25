@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 -- Test fixture: known-bad WotLK entries.
 -- Each entry deliberately breaks exactly ONE check → expect 10 failures in 10 entries.
 -- Build: wow_classic (WotLK Classic).

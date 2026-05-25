@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 -- Test fixture: known-bad Retail (BfA) entries.
 -- Each entry deliberately breaks exactly ONE check → expect 1 failure in 2 entries.
 -- Build: wow (Retail).

@@ -100,7 +100,7 @@ KrowiAF.AchievementData["05_00_04_S"] = {
 	Ach(6599):IsPvP(), -- Legendary Pet Brawler
 	Ach(6600), -- Ultimate Trainer
 	Ach(6601), -- Taming the Wild
-	Ach(6602):Pet():AutoFactionSplit(faction.Horde, 6603), -- Taming Kalimdor / Taming Eastern Kingdoms
+	Ach(6602):Pet():AutoFactionSplit(faction.Horde, 6603), -- Taming Kalimdor / Eastern Kingdoms
 	Ach(6604):Pet(), -- Taming Outland
 	Ach(6605):Pet(), -- Taming Northrend
 	Ach(6606):Pet(), -- Taming Pandaria
@@ -271,7 +271,7 @@ KrowiAF.AchievementData["05_00_04_S"] = {
 	Ach(6937), -- Overzealous
 	Ach(6938):PvP(11), -- Cataclysmic Gladiator
 	Ach(6939):PvP(11):AutoFactionSplit(faction.Alliance, 6940), -- Hero of the Alliance / Horde: Cataclysmic
-	Ach(6941):Title():IsPvP():AutoFactionSplit(faction.Horde, 6942), -- Hero of the Horde / Hero of the Alliance
+	Ach(6941):Title():IsPvP():AutoFactionSplit(faction.Horde, 6942), -- Hero of the Horde / Alliance
 	Ach(6943), -- Queuing Spree
 	Ach(6945), -- Mantid Swarm
 	Ach(6946), -- Empowered Spiritualist
