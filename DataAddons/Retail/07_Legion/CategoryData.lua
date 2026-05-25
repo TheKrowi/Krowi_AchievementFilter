@@ -1,5 +1,6 @@
-local _, addon = ...;
+﻿local _, addon = ...;
 local shared = addon.Data.CategoryData.Shared;
+local CT = shared.CT;
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
     237,
@@ -12,7 +13,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             addon.GetMapName(619),
             { -- Quests
                 397,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     11157, -- Loremaster of Legion
@@ -27,7 +28,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
             { -- Exploration
                 398,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     14729, -- To All the Squirrels I Love Despite Their Scars
@@ -36,7 +37,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
             { -- PvP
                 413,
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     11474, -- Free For All, More For Me
@@ -44,7 +45,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
             { -- Reputation
                 414,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     10672, -- Broken Isles Diplomat
@@ -63,7 +64,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             addon.GetMapName(626),
             { -- Quests
                 383,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     12416, -- The Total Package
@@ -73,7 +74,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
             { -- Exploration
                 405,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     11066, -- Underbelly Tycoon
@@ -81,7 +82,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
             { -- Professions
                 1448,
-                addon.GetCategoryInfoTitle(169),
+                CT.Professions,
                 true,
                 {
                     10585, -- Fel-Smelter
@@ -97,7 +98,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             addon.GetMapName(630),
             { -- Quests
                 385,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     10763, -- Azsuna Matata
@@ -106,7 +107,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
             { -- Exploration
                 399,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     10665, -- Explore Azsuna
@@ -117,7 +118,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
             { -- PvP
                 412,
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     11475, -- Mission Accomplished
@@ -129,7 +130,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             addon.GetMapName(641),
             { -- Quests
                 391,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     10698, -- That's Val'sharah Folks!
@@ -137,7 +138,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
             { -- Exploration
                 400,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     10666, -- Explore Val'sharah
@@ -147,7 +148,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
             { -- PvP
                 411,
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     11477, -- Off the Top Rook
@@ -159,7 +160,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             addon.GetMapName(650),
             { -- Quests
                 392,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     10059, -- Ain't No Mountain High Enough
@@ -172,7 +173,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
             { -- Exploration
                 401,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     10667, -- Explore Highmountain
@@ -182,7 +183,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
             { -- PvP
                 410,
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     11478, -- The Darkbrul-oh
@@ -190,7 +191,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
             { -- Reputation
                 416,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     12292, -- Highmountain Tribe
@@ -202,7 +203,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             addon.GetMapName(634),
             { -- Quests
                 390,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     10790, -- Vrykul Story, Bro
@@ -213,7 +214,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
             { -- Exploration
                 402,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     10668, -- Explore Stormheim
@@ -225,7 +226,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
             { -- PvP
                 409,
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     11476, -- Saddle Sore
@@ -237,7 +238,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             addon.GetMapName(680),
             { -- Quests
                 393,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     10617, -- Nightfallen But Not Forgotten
@@ -251,7 +252,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
             { -- Exploration
                 403,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     10669, -- Explore Suramar
@@ -261,7 +262,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
             { -- Reputation
                 415,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     10778, -- The Nightfallen
@@ -273,7 +274,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             addon.GetMapName(646),
             { -- Quests
                 395,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     11607, -- They See Me Rolling
@@ -289,7 +290,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
             { -- Exploration
                 404,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     11543, -- Explore Broken Shore
@@ -299,7 +300,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
             { -- Reputation
                 417,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     11545, -- Legionfall Commander
@@ -315,7 +316,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             addon.GetMapName(905),
             { -- Quests
                 407,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     12066, -- You Are Now Prepared!
@@ -325,7 +326,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
             { -- Exploration
                 408,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     12074, -- Shoot First, Loot Later
@@ -344,7 +345,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
             { -- Reputation
                 418,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     12076, -- Protector of the Argussian Reach
@@ -355,7 +356,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
     },
     { -- Dungeons
         238,
-        addon.GetCategoryInfoTitle(15272),
+        CT.Dungeons,
         { -- Eye of Azshara
             240,
             addon.GetInstanceInfoName(716),
@@ -521,7 +522,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
     },
     { -- Raids
         239,
-        addon.GetCategoryInfoTitle(15271),
+        CT.Raids,
         { -- The Emerald Nightmare
             253,
             addon.GetInstanceInfoName(768),
@@ -724,10 +725,10 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
     },
     { -- Professions
         1156,
-        addon.GetCategoryInfoTitle(169),
+        CT.Professions,
         { -- Archaeology
             1473,
-            addon.GetCategoryInfoTitle(15071),
+            CT.Archaeology,
             true,
             {
                 10600, -- Legion Archaeologist
@@ -744,7 +745,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
         },
         { -- Cooking
             1482,
-            addon.GetCategoryInfoTitle(170),
+            CT.Cooking,
             true,
             {
                 10589, -- Legion Cook
@@ -764,7 +765,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
         },
         { -- Fishing
             1495,
-            addon.GetCategoryInfoTitle(171),
+            CT.Fishing,
             true,
             {
                 10594, -- Legion Fisherman
@@ -822,7 +823,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
     },
     { -- Pet Battles
         430,
-        addon.GetCategoryInfoTitle(15117),
+        CT.PetBattles,
         {
             11233, -- Broken Isles Safari
             10876, -- Battle on the Broken Isles

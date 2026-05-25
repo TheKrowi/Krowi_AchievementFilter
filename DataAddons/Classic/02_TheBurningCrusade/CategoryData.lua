@@ -1,6 +1,5 @@
 ﻿local _, addon = ...;
 local shared = addon.Data.CategoryData.Shared;
-local CT = shared.CT;
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
     55,
@@ -10,15 +9,15 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
         addon.L["Zones"],
         { -- Shattrath City
             794,
-            addon.GetMapName(111),
+            addon.GetMapName(1955),
             {
-                1165, -- My Storage is "Gigantique"""
+                1165, -- "My Storage is ""Gigantique"""
                 9924, -- Field Photographer
             },
         },
         { -- Silvermoon City
             924,
-            addon.GetMapName(110),
+            addon.GetMapName(1954),
             {
                 613, -- Killed in Quel'Thalas
                 614, -- For the Alliance!
@@ -27,7 +26,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
         },
         { -- The Exodar
             969,
-            addon.GetMapName(103),
+            addon.GetMapName(1947),
             {
                 618, -- Putting Out the Light
                 619, -- For the Horde!
@@ -36,19 +35,19 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
         },
         { -- Azuremyst Isle
             758,
-            addon.GetMapName(97),
+            addon.GetMapName(1943),
             { -- Exploration
                 759,
-                CT.Exploration,
-                true,
+                    addon.GetCategoryInfoTitle(97),
+            true,
                 {
                     860, -- Explore Azuremyst Isle
                 },
             },
             { -- Reputation
                 998,
-                CT.Reputation,
-                true,
+                    addon.GetCategoryInfoTitle(201),
+            true,
                 {
                     948, -- Ambassador of the Alliance
                 },
@@ -56,27 +55,27 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
         },
         { -- Bloodmyst Isle
             693,
-            addon.GetMapName(106),
+            addon.GetMapName(1950),
             { -- Quests
                 694,
-                CT.Quests,
-                true,
+                    addon.GetCategoryInfoTitle(96),
+            true,
                 {
                     4926, -- Bloodmyst Isle Quests
                 },
             },
             { -- Exploration
                 763,
-                CT.Exploration,
-                true,
+                    addon.GetCategoryInfoTitle(97),
+            true,
                 {
                     861, -- Explore Bloodmyst Isle
                 },
             },
             { -- Reputation
                 1000,
-                CT.Reputation,
-                true,
+                    addon.GetCategoryInfoTitle(201),
+            true,
                 {
                     948, -- Ambassador of the Alliance
                 },
@@ -84,19 +83,19 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
         },
         { -- Eversong Woods
             727,
-            addon.GetMapName(94),
+            addon.GetMapName(1941),
             { -- Exploration
                 728,
-                CT.Exploration,
-                true,
+                    addon.GetCategoryInfoTitle(97),
+            true,
                 {
                     859, -- Explore Eversong Woods
                 },
             },
             { -- Reputation
                 1008,
-                CT.Reputation,
-                true,
+                    addon.GetCategoryInfoTitle(201),
+            true,
                 {
                     762, -- Ambassador of the Horde
                 },
@@ -104,27 +103,27 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
         },
         { -- Ghostlands
             669,
-            addon.GetMapName(95),
+            addon.GetMapName(1942),
             { -- Quests
                 670,
-                CT.Quests,
-                true,
+                    addon.GetCategoryInfoTitle(96),
+            true,
                 {
                     4908, -- Ghostlands Quests
                 },
             },
             { -- Exploration
                 733,
-                CT.Exploration,
-                true,
+                    addon.GetCategoryInfoTitle(97),
+            true,
                 {
                     858, -- Explore Ghostlands
                 },
             },
             { -- Reputation
                 1010,
-                CT.Reputation,
-                true,
+                    addon.GetCategoryInfoTitle(201),
+            true,
                 {
                     762, -- Ambassador of the Horde
                 },
@@ -132,11 +131,11 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
         },
         { -- Hellfire Peninsula
             617,
-            addon.GetMapName(100),
+            addon.GetMapName(1944),
             { -- Quests
                 624,
-                CT.Quests,
-                true,
+                    addon.GetCategoryInfoTitle(96),
+            true,
                 {
                     1189, -- To Hellfire and Back
                     1271, -- To Hellfire and Back
@@ -144,8 +143,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
             { -- Exploration
                 631,
-                CT.Exploration,
-                true,
+                    addon.GetCategoryInfoTitle(97),
+            true,
                 {
                     862, -- Explore Hellfire Peninsula
                     9924, -- Field Photographer
@@ -153,8 +152,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
             { -- Reputation
                 1011,
-                CT.Reputation,
-                true,
+                    addon.GetCategoryInfoTitle(201),
+            true,
                 {
                     948, -- Ambassador of the Alliance
                     762, -- Ambassador of the Horde
@@ -163,27 +162,27 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
         },
         { -- Zangarmarsh
             618,
-            addon.GetMapName(102),
+            addon.GetMapName(1946),
             { -- Quests
                 625,
-                CT.Quests,
-                true,
+                    addon.GetCategoryInfoTitle(96),
+            true,
                 {
                     1190, -- Mysteries of the Marsh
                 },
             },
             { -- Exploration
                 632,
-                CT.Exploration,
-                true,
+                    addon.GetCategoryInfoTitle(97),
+            true,
                 {
                     863, -- Explore Zangarmarsh
                 },
             },
             { -- Reputation
                 643,
-                CT.Reputation,
-                true,
+                    addon.GetCategoryInfoTitle(201),
+            true,
                 {
                     948, -- Ambassador of the Alliance
                     762, -- Ambassador of the Horde
@@ -197,11 +196,11 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
         },
         { -- Terokkar Forest
             619,
-            addon.GetMapName(108),
+            addon.GetMapName(1952),
             { -- Quests
                 626,
-                CT.Quests,
-                true,
+                    addon.GetCategoryInfoTitle(96),
+            true,
                 {
                     1191, -- Terror of Terokkar
                     1272, -- Terror of Terokkar
@@ -210,16 +209,16 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
             { -- Exploration
                 633,
-                CT.Exploration,
-                true,
+                    addon.GetCategoryInfoTitle(97),
+            true,
                 {
                     867, -- Explore Terokkar Forest
                 },
             },
             { -- Reputation
                 642,
-                CT.Reputation,
-                true,
+                    addon.GetCategoryInfoTitle(201),
+            true,
                 {
                     903, -- Shattrath Divided
                     1205, -- Hero of Shattrath
@@ -228,11 +227,11 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
         },
         { -- Nagrand
             620,
-            addon.GetMapName(107),
+            addon.GetMapName(1951),
             { -- Quests
                 627,
-                CT.Quests,
-                true,
+                    addon.GetCategoryInfoTitle(96),
+            true,
                 {
                     1192, -- Nagrand Slam
                     1273, -- Nagrand Slam
@@ -244,18 +243,18 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
             { -- Exploration
                 634,
-                CT.Exploration,
-                true,
+                    addon.GetCategoryInfoTitle(97),
+            true,
                 {
                     866, -- Explore Nagrand
                 },
             },
             { -- Reputation
                 641,
-                CT.Reputation,
-                true,
+                    addon.GetCategoryInfoTitle(201),
+            true,
                 {
-                    899, -- Oh My, Kurenai
+                    899, -- "Oh My, Kurenai"
                     901, -- Mag'har of Draenor
                     942, -- The Diplomat
                     943, -- The Diplomat
@@ -264,11 +263,11 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
         },
         { -- Blade's Edge Mountains
             621,
-            addon.GetMapName(105),
+            addon.GetMapName(1949),
             { -- Quests
                 628,
-                CT.Quests,
-                true,
+                    addon.GetCategoryInfoTitle(96),
+            true,
                 {
                     1193, -- On the Blade's Edge
                     1276, -- Blade's Edge Bomberman
@@ -276,16 +275,16 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
             { -- Exploration
                 635,
-                CT.Exploration,
-                true,
+                    addon.GetCategoryInfoTitle(97),
+            true,
                 {
                     865, -- Explore Blade's Edge Mountains
                 },
             },
             { -- Reputation
                 640,
-                CT.Reputation,
-                true,
+                    addon.GetCategoryInfoTitle(201),
+            true,
                 {
                     896, -- A Quest a Day Keeps the Ogres at Bay
                 },
@@ -293,19 +292,19 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
         },
         { -- Netherstorm
             622,
-            addon.GetMapName(109),
+            addon.GetMapName(1953),
             { -- Quests
                 629,
-                CT.Quests,
-                true,
+                    addon.GetCategoryInfoTitle(96),
+            true,
                 {
                     1194, -- Into the Nether
                 },
             },
             { -- Exploration
                 636,
-                CT.Exploration,
-                true,
+                    addon.GetCategoryInfoTitle(97),
+            true,
                 {
                     843, -- Explore Netherstorm
                     9924, -- Field Photographer
@@ -314,27 +313,27 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
         },
         { -- Shadowmoon Valley
             623,
-            addon.GetMapName(104),
+            addon.GetMapName(1948),
             { -- Quests
                 630,
-                CT.Quests,
-                true,
+                    addon.GetCategoryInfoTitle(96),
+            true,
                 {
                     1195, -- Shadow of the Betrayer
                 },
             },
             { -- Exploration
                 637,
-                CT.Exploration,
-                true,
+                    addon.GetCategoryInfoTitle(97),
+            true,
                 {
                     864, -- Explore Shadowmoon Valley
                 },
             },
             { -- Reputation
                 638,
-                CT.Reputation,
-                true,
+                    addon.GetCategoryInfoTitle(201),
+            true,
                 {
                     898, -- On Wings of Nether
                     1638, -- Skyshattered
@@ -343,11 +342,11 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
         },
         { -- Isle of Quel'Danas
             750,
-            addon.GetMapName(122),
+            addon.GetMapName(1957),
             { -- Exploration
                 751,
-                CT.Exploration,
-                true,
+                    addon.GetCategoryInfoTitle(97),
+            true,
                 {
                     868, -- Explore Isle of Quel'Danas
                 },
@@ -368,7 +367,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
     },
     { -- Dungeons
         56,
-        CT.Dungeons,
+        addon.GetCategoryInfoTitle(15272),
         { -- Hellfire Ramparts
             57,
             addon.GetInstanceInfoName(248),
@@ -506,14 +505,14 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
     },
     { -- Raids
         73,
-        CT.Raids,
+        addon.GetCategoryInfoTitle(15271),
         { -- Karazhan
             74,
             addon.GetInstanceInfoName(745),
             { -- Reputation
                 647,
-                CT.Reputation,
-                true,
+                    addon.GetCategoryInfoTitle(201),
+            true,
                 {
                     960, -- The Violet Eye
                 },
@@ -566,8 +565,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             addon.GetInstanceInfoName(750),
             { -- Reputation
                 646,
-                CT.Reputation,
-                true,
+                    addon.GetCategoryInfoTitle(201),
+            true,
                 {
                     959, -- The Scale of the Sands
                 },
@@ -582,8 +581,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             addon.GetInstanceInfoName(751),
             { -- Reputation
                 645,
-                CT.Reputation,
-                true,
+                    addon.GetCategoryInfoTitle(201),
+            true,
                 {
                     958, -- Sworn to the Deathsworn
                 },
@@ -610,8 +609,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             addon.GetInstanceInfoName(752),
             {
                 698, -- Sunwell Plateau
-                11749, -- Suns Out, Thori'dals Out
-                725, -- Thori'dal, the Stars' Fury
+                11749, -- "Suns Out, Thori'dals Out"
+                725, -- "Thori'dal, the Stars' Fury"
                 9824, -- Raiding with Leashes III: Drinkin' From the Sunwell
             },
         },
@@ -623,10 +622,10 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
     },
     { -- Professions
         1151,
-        CT.Professions,
+        addon.GetCategoryInfoTitle(169),
         { -- Archaeology
             1469,
-            CT.Archaeology,
+            addon.GetCategoryInfoTitle(15071),
             true,
             {
                 4921, -- Master Archaeologist
@@ -635,7 +634,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
         },
         { -- Cooking
             1478,
-            CT.Cooking,
+            addon.GetCategoryInfoTitle(170),
             true,
             {
                 124, -- Outland Cook
@@ -645,17 +644,9 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
                 1801, -- Captain Rumsey's Lager
             },
         },
-        { -- Engineering
-            1570,
-            addon.GetCategoryInfoTitle(15492),
-            true,
-            {
-                18856, -- Just an Ordinary Gas Cloud
-            },
-        },
         { -- Fishing
             1499,
-            CT.Fishing,
+            addon.GetCategoryInfoTitle(171),
             true,
             {
                 129, -- Outland Fisherman
@@ -665,61 +656,12 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
                 1225, -- Outland Angler
             },
         },
-        { -- Leatherworking
-            1512,
-            addon.GetCategoryInfoTitle(15495),
-            true,
-            {
-                18894, -- Free Stylin'
-            },
-        },
         {
             733, -- Professional Outland Master
             18729, -- Working in Hellfire
             18721, -- Outland Master of All
-            62358, -- Outlandish Lumberjack
             1257, -- The Scavenger
             134, -- Master Medic
-        },
-    },
-    { -- Pet Battles
-        786,
-        CT.PetBattles,
-        {
-            6587, -- Outland Safari
-            6614, -- Outland Tamer
-            6604, -- Taming Outland
-            6558, -- Local Pet Mauler
-            6559, -- Traveling Pet Mauler
-            6560, -- World Pet Mauler
-            6607, -- Taming Azeroth
-            6601, -- Taming the Wild
-            7498, -- Taming the Great Outdoors
-            7499, -- Taming the World
-            6584, -- Big City Pet Brawlin' - Alliance
-            6621, -- Big City Pet Brawlin' - Horde
-            6622, -- Big City Pet Brawler
-            6611, -- Continental Tamer
-            6590, -- World Safari
-            8348, -- The Longest Day
-        },
-    },
-    { -- Dragonriding Races
-        1536,
-        addon.L["Dragonriding Races"],
-        {
-            19092, -- Outland: Bronze
-            19097, -- Outland: Silver
-            19098, -- Outland: Gold
-            19099, -- Outland Advanced: Bronze
-            19100, -- Outland Advanced: Silver
-            19101, -- Outland Advanced: Gold
-            19102, -- Outland Reverse: Bronze
-            19103, -- Outland Reverse: Silver
-            19104, -- Outland Reverse: Gold
-            19105, -- Outland Racing Completionist
-            19106, -- Outland Racing Completionist: Silver
-            19107, -- Outland Racing Completionist: Gold
         },
     },
 });

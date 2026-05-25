@@ -1,7 +1,23 @@
-local _, addon = ...
+﻿local _, addon = ...
 addon.Data.CategoryData = {}
 addon.Data.CategoryData.Shared = {}
 local shared = addon.Data.CategoryData.Shared
+
+shared.CT = {
+    Character   = addon.GetCategoryInfoTitle(92),
+    PvP         = addon.GetCategoryInfoTitle(95),
+    Quests      = addon.GetCategoryInfoTitle(96),
+    Exploration = addon.GetCategoryInfoTitle(97),
+    Professions = addon.GetCategoryInfoTitle(169),
+    Cooking     = addon.GetCategoryInfoTitle(170),
+    Fishing     = addon.GetCategoryInfoTitle(171),
+    Reputation  = addon.GetCategoryInfoTitle(201),
+    Archaeology = addon.GetCategoryInfoTitle(15071),
+    PetBattles  = addon.GetCategoryInfoTitle(15117),
+    Dungeons    = addon.GetCategoryInfoTitle(15272),
+    Raids       = addon.GetCategoryInfoTitle(15271),
+}
+local CT = shared.CT
 
 KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
     883,
@@ -25,7 +41,7 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
         },
         { -- Character
             1432,
-            addon.GetCategoryInfoTitle(92),
+            CT.Character,
             {
                 6, -- Level 10
                 7, -- Level 20
@@ -96,7 +112,7 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
         },
         { -- Quests
             1159,
-            addon.GetCategoryInfoTitle(96),
+            CT.Quests,
             {
                 503, -- 50 Quests Completed
                 504, -- 100 Quests Completed
@@ -130,7 +146,7 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
         },
         { -- Exploration
             1161,
-            addon.GetCategoryInfoTitle(97),
+            CT.Exploration,
             {
                 964, -- Going Down?
                 1244, -- Well Read
@@ -171,7 +187,7 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
         },
         { -- Professions
             1149,
-            addon.GetCategoryInfoTitle(169),
+            CT.Professions,
             { -- Alchemy
                 1456,
                 addon.GetCategoryInfoTitle(15489),
@@ -192,7 +208,7 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
             },
             { -- Archaeology
                 1459,
-                addon.GetCategoryInfoTitle(15071),
+                CT.Archaeology,
                 {
                     5315, -- Digger
                     5469, -- Diggerer
@@ -220,7 +236,7 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
             },
             { -- Cooking
                 1458,
-                addon.GetCategoryInfoTitle(170),
+                CT.Cooking,
                 {
                     1998, -- Cooking Award
                     1999, -- 10 Cooking Awards
@@ -278,7 +294,7 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
             },
             { -- Fishing
                 1462,
-                addon.GetCategoryInfoTitle(171),
+                CT.Fishing,
                 {
                     153, -- The Old Gnome and the Sea
                     1257, -- The Scavenger
@@ -360,7 +376,7 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
         },
         { -- Reputation
             1163,
-            addon.GetCategoryInfoTitle(201),
+            CT.Reputation,
             {
                 522, -- Somebody Likes Me
                 523, -- 5 Exalted Reputations
@@ -408,7 +424,7 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
         },
         { -- Pet Battles
             1170,
-            addon.GetCategoryInfoTitle(15117),
+            CT.PetBattles,
             { -- Collect
                 1433,
                 addon.GetCategoryInfoTitle(15118),

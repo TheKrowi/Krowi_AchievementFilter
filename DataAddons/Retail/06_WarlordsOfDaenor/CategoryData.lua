@@ -1,5 +1,6 @@
-local _, addon = ...;
+﻿local _, addon = ...;
 local shared = addon.Data.CategoryData.Shared;
+local CT = shared.CT;
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
     223,
@@ -12,7 +13,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
             addon.GetMapName(572),
             { -- Quests
                 487,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     8921, -- Welcome to Draenor
@@ -28,7 +29,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
             },
             { -- Exploration
                 488,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     9726, -- Treasure Hunter
@@ -42,7 +43,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
             },
             { -- Reputation
                 489,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     9477, -- Savage Friends
@@ -58,7 +59,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
             addon.GetMapName(539),
             { -- Quests
                 457,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     8845, -- As I Walk Through the Valley of the Shadow of Moon
@@ -77,7 +78,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
             },
             { -- Exploration
                 458,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     8938, -- Explore Shadowmoon Valley
@@ -86,7 +87,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
             },
             { -- Reputation
                 460,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     9470, -- Council of Exarchs
@@ -98,7 +99,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
             addon.GetMapName(525),
             { -- Quests
                 461,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     8671, -- You'll Get Caught Up In The... Frostfire!
@@ -117,7 +118,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
             },
             { -- Exploration
                 462,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     8937, -- Explore Frostfire Ridge
@@ -125,7 +126,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
             },
             { -- Reputation
                 464,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     9471, -- Frostwolf Orcs
@@ -137,7 +138,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
             addon.GetMapName(543),
             { -- Quests
                 465,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     8923, -- Putting the Gore in Gorgrond
@@ -155,7 +156,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
             },
             { -- Exploration
                 466,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     8939, -- Explore Gorgrond
@@ -166,7 +167,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
             },
             { -- Reputation
                 468,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     9475, -- Laughing Skull Orcs
@@ -181,7 +182,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
             addon.GetMapName(535),
             { -- Quests
                 469,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     8920, -- Don't Let the Tala-door Hit You on the Way Out
@@ -199,7 +200,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
             },
             { -- Exploration
                 470,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     8940, -- Explore Talador
@@ -207,7 +208,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
             },
             { -- Reputation
                 472,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     9476, -- Sha'tari Defense
@@ -219,7 +220,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
             addon.GetMapName(542),
             { -- Quests
                 473,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     8925, -- Between Arak and a Hard Place
@@ -233,7 +234,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
             },
             { -- Exploration
                 474,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     8941, -- Explore Spires of Arak
@@ -241,7 +242,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
             },
             { -- Reputation
                 476,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     9469, -- Arakkoa Outcasts
@@ -257,7 +258,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
             addon.GetMapName(550),
             { -- Quests
                 477,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     8927, -- Nagrandeur
@@ -272,7 +273,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
             },
             { -- Exploration
                 478,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     8942, -- Explore Nagrand
@@ -281,7 +282,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
             },
             { -- Reputation
                 480,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     9472, -- Steamwheedle Preservation Society
@@ -293,7 +294,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
             addon.GetMapName(534),
             { -- Quests
                 481,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     10067, -- In Pursuit of Gul'dan
@@ -306,7 +307,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
             },
             { -- Exploration
                 482,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     10261, -- Jungle Treasure Hunter
@@ -321,7 +322,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
             },
             { -- Reputation
                 484,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     10349, -- Tanaan Diplomat
@@ -335,7 +336,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
     },
     { -- Dungeons
         224,
-        addon.GetCategoryInfoTitle(15272),
+        CT.Dungeons,
         { -- Bloodmaul Slag Mines
             226,
             addon.GetInstanceInfoName(385),
@@ -492,7 +493,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
     },
     { -- Raids
         225,
-        addon.GetCategoryInfoTitle(15271),
+        CT.Raids,
         { -- Highmaul
             234,
             addon.GetInstanceInfoName(477),
@@ -636,10 +637,10 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
     },
     { -- Professions
         1155,
-        addon.GetCategoryInfoTitle(169),
+        CT.Professions,
         { -- Archaeology
             1472,
-            addon.GetCategoryInfoTitle(15071),
+            CT.Archaeology,
             true,
             {
                 9409, -- Draenor Archaeologist
@@ -654,7 +655,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
         },
         { -- Cooking
             1481,
-            addon.GetCategoryInfoTitle(170),
+            CT.Cooking,
             true,
             {
                 9500, -- Draenor Cook
@@ -671,7 +672,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
         },
         { -- Fishing
             1496,
-            addon.GetCategoryInfoTitle(171),
+            CT.Fishing,
             true,
             {
                 9503, -- Draenor Fisherman
@@ -713,7 +714,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
     },
     { -- Pet Battles
         548,
-        addon.GetCategoryInfoTitle(15117),
+        CT.PetBattles,
         {
             9685, -- Draenor Safari
             9069, -- An Awfully Big Adventure
@@ -752,7 +753,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
         addon.L["Garrison"],
         { -- Quests
             485,
-            addon.GetCategoryInfoTitle(96),
+            CT.Quests,
             true,
             {
                 9825, -- Master Relic Hunter

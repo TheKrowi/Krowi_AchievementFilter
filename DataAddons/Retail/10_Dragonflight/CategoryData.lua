@@ -1,12 +1,13 @@
-local _, addon = ...;
+﻿local _, addon = ...;
 local shared = addon.Data.CategoryData.Shared;
+local CT = shared.CT;
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
     1207,
     addon.GetCategoryInfoTitle(15466),
     { -- Character
         1610,
-        addon.GetCategoryInfoTitle(92),
+        CT.Character,
         {
             18976, -- Draconically Superior
             18977, -- Draconically Epic
@@ -23,7 +24,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             addon.GetCategoryInfoTitle(15465),
             { -- Quests
                 1342,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     16585, -- Loremaster of the Dragon Isles
@@ -39,7 +40,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
             { -- Exploration
                 1343,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     16761, -- Dragon Isles Explorer
@@ -57,7 +58,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
             { -- Player vs. Player
                 1390,
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     16589, -- Malicia's Challenge
@@ -78,7 +79,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
             { -- Reputation
                 1361,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     41172, -- Friends in the Field
@@ -133,7 +134,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             addon.GetMapName(2022),
             { -- Quests
                 1237,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     16334, -- Waking Hope
@@ -142,7 +143,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
             { -- Exploration
                 1242,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     16400, -- Explore the Waking Shores
@@ -166,7 +167,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
             { -- PvP
                 1247,
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     16592, -- Tour of Duty: The Waking Shores
@@ -174,7 +175,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
             { -- Reputation
                 1248,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     16539, -- In High Esteem
@@ -241,7 +242,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             addon.GetMapName(2023),
             { -- Quests
                 1238,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     15394, -- Ohn'a'Roll
@@ -254,7 +255,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
             { -- Exploration
                 1243,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     16457, -- Explore the Ohn'ahran Plains
@@ -270,7 +271,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
             { -- PvP
                 1249,
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     16595, -- Tour of Duty: Ohn'ahran Plains
@@ -278,7 +279,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
             { -- Reputation
                 1253,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     41170, -- Friends in the Plains
@@ -349,7 +350,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             addon.GetMapName(2024),
             { -- Quests
                 1239,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     16336, -- Azure Spanner
@@ -363,7 +364,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
             { -- Exploration
                 1245,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     16460, -- Explore the Azure Span
@@ -380,7 +381,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
             { -- PvP
                 1250,
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     16594, -- Tour of Duty: The Azure Span
@@ -388,7 +389,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
             { -- Reputation
                 1256,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     41173, -- Friend of the Family
@@ -474,7 +475,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             addon.GetMapName(2025),
             { -- Quests
                 1240,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     16363, -- Just Don't Ask Me to Spell It
@@ -486,7 +487,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
             { -- Exploration
                 1246,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     16518, -- Explore Thaldraszus
@@ -499,7 +500,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
             { -- PvP
                 1251,
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     16593, -- Tour of Duty: Thaldraszus
@@ -562,7 +563,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             addon.GetMapName(2107),
             { -- Quests
                 1241,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     15325, -- Dracthyr, Awaken
@@ -571,7 +572,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
             { -- Exploration
                 1244,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     16452, -- Famliar Skies
@@ -644,7 +645,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             addon.GetMapName(2133),
             { -- Exploration
                 1416,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     17766, -- Explore Zaralek Cavern
@@ -665,7 +666,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
             { -- Player vs. Player
                 1417,
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     17851, -- Tour of Duty: Zaralek Cavern
@@ -674,7 +675,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
             { -- Reputation
                 1418,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     41175, -- Friends in Loamm Places
@@ -730,7 +731,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             addon.GetMapName(2200),
             { -- Quests
                 1548,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     19026, -- Defenders of the Dream
@@ -739,7 +740,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
             { -- Exploration
                 1549,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     19309, -- Explore the Emerald Dream
@@ -754,7 +755,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
             { -- Player vs. Player
                 1546,
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     19294, -- Tour of Duty: Emerald Dream
@@ -762,7 +763,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
             { -- Reputation
                 1547,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     41176, -- Friends in the Dream
@@ -820,7 +821,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
     },
     { -- Dungeons
         1229,
-        addon.GetCategoryInfoTitle(15272),
+        CT.Dungeons,
         shared.GetDragonflightMythicPlus(addon.L["Mythic+"]),
         { -- Algeth'ar Academy
             1257,
@@ -983,7 +984,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
     },
     { -- Raids
         1230,
-        addon.GetCategoryInfoTitle(15271),
+        CT.Raids,
         { -- Vault of the Incarnates
             1265,
             addon.GetInstanceInfoName(1200),
@@ -1149,7 +1150,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
     },
     { -- Professions
         1391,
-        addon.GetCategoryInfoTitle(169),
+        CT.Professions,
         { -- Alchemy
             1466,
             addon.GetCategoryInfoTitle(15489),
@@ -1160,7 +1161,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
         },
         { -- Cooking
             1485,
-            addon.GetCategoryInfoTitle(170),
+            CT.Cooking,
             true,
             {
                 16631, -- Dragon Isles Cook
@@ -1185,7 +1186,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
         },
         { -- Fishing
             1492,
-            addon.GetCategoryInfoTitle(171),
+            CT.Fishing,
             true,
             {
                 16632, -- Dragon Isles Fisherman
@@ -1251,7 +1252,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
     },
     { -- Pet Battles
         1231,
-        addon.GetCategoryInfoTitle(15117),
+        CT.PetBattles,
         {
             16519, -- Dragon Isles Safari
             16464, -- Battle on the Dragon Isles

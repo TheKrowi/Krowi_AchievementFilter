@@ -1,4 +1,5 @@
 <Ui>
+    <Script file="CategoryData_Expansions.lua" />
     <Include file="01_Vanilla\Files.xml" />
     <Include file="02_TheBurningCrusade\Files.xml" />
     <Include file="03_WrathOfTheLichKing\Files.xml" />
@@ -6,7 +7,6 @@
     <Include file="05_MistsOfPandaria\Files.xml" />
     <Script file="CategoryData_Achievements.lua" />
     <Script file="CategoryData_Events.lua" />
-    <Script file="CategoryData_Expansions.lua" />
     <Script file="CategoryData_PvP.lua" />
     <Script file="CategoryData_Specials.lua" />
 </Ui>

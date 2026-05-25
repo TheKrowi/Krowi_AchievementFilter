@@ -1,8 +1,8 @@
-local _, addon = ...;
-local shared = addon.Data.EventData.Shared;
-local type = KrowiAF.Enum.EventType;
+local _, addon = ...
+local shared = addon.Data.EventData.Shared
+local type = KrowiAF.Enum.EventType
 
-KrowiAF.EventData.Vanilla = {
+KrowiAF.EventData.Vanilla_S = {
     { -- Feast of Winter Veil
         141, type.Calendar,
         917,
@@ -59,4 +59,4 @@ KrowiAF.EventData.Vanilla = {
         addon.L["Holidays"],
         1
     },
-};
+}

@@ -1,6 +1,5 @@
 ﻿local _, addon = ...;
 local shared = addon.Data.CategoryData.Shared;
-local CT = shared.CT;
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
     1,
@@ -10,22 +9,14 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
         addon.L["Zones"],
         { -- Eastern Kingdoms
             687,
-            addon.GetMapName(13),
+            addon.GetMapName(1415),
             { -- Stormwind City
                 922,
-                addon.GetMapName(84),
-                { -- Exploration
-                    1033,
-                        CT.Exploration,
-                true,
-                    {
-                        9924, -- Field Photographer
-                    },
-                },
+                addon.GetMapName(1453),
                 { -- Reputation
                     1022,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         948, -- Ambassador of the Alliance
                     },
@@ -40,7 +31,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Ironforge
                 970,
-                addon.GetMapName(87),
+                addon.GetMapName(1455),
                 {
                     616, -- Overthrow the Council
                     619, -- For the Horde!
@@ -49,7 +40,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Undercity
                 974,
-                addon.GetMapName(90),
+                addon.GetMapName(1458),
                 {
                     612, -- Downing the Dark Lady
                     604, -- Wrath of the Alliance
@@ -57,19 +48,19 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Dun Morogh
                 721,
-                addon.GetMapName(27),
+                addon.GetMapName(1426),
                 { -- Exploration
                     723,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         627, -- Explore Dun Morogh
                     },
                 },
                 { -- Reputation
                     1005,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         948, -- Ambassador of the Alliance
                     },
@@ -82,11 +73,11 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Elwynn Forest
                 722,
-                addon.GetMapName(37),
+                addon.GetMapName(1429),
                 { -- Exploration
                     724,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         776, -- Explore Elwynn Forest
                         9924, -- Field Photographer
@@ -94,8 +85,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Reputation
                     1006,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         948, -- Ambassador of the Alliance
                     },
@@ -103,27 +94,19 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Tirisfal Glades
                 725,
-                addon.GetMapName(18),
-                { -- Quests
-                    1201,
-                        CT.Quests,
-                true,
-                    {
-                        15579, -- Return to Lordaeron
-                    },
-                },
+                addon.GetMapName(1420),
                 { -- Exploration
                     726,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         768, -- Explore Tirisfal Glades
                     },
                 },
                 { -- Reputation
                     1026,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         762, -- Ambassador of the Horde
                     },
@@ -131,11 +114,11 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Westfall
                 651,
-                addon.GetMapName(52),
+                addon.GetMapName(1436),
                 { -- Quests
                     653,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4903, -- Westfall Quests
                         12455, -- Westfall & Duskwood Quests
@@ -143,8 +126,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Exploration
                     730,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         802, -- Explore Westfall
                         9924, -- Field Photographer
@@ -152,8 +135,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Reputation
                     1028,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         948, -- Ambassador of the Alliance
                     },
@@ -165,11 +148,11 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Loch Modan
                 655,
-                addon.GetMapName(48),
+                addon.GetMapName(1432),
                 { -- Quests
                     657,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4899, -- Loch Modan Quests
                         12456, -- Loch Modan & Wetlands Quests
@@ -177,8 +160,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Exploration
                     729,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         779, -- Explore Loch Modan
                         9924, -- Field Photographer
@@ -186,8 +169,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Reputation
                     1013,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         948, -- Ambassador of the Alliance
                     },
@@ -195,27 +178,27 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Silverpine Forest
                 681,
-                addon.GetMapName(21),
+                addon.GetMapName(1421),
                 { -- Quests
                     682,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4894, -- Silverpine Forest Quests
                     },
                 },
                 { -- Exploration
                     732,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         769, -- Explore Silverpine Forest
                     },
                 },
                 { -- Reputation
                     1020,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         762, -- Ambassador of the Horde
                     },
@@ -223,27 +206,27 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Redridge Mountains
                 678,
-                addon.GetMapName(49),
+                addon.GetMapName(1433),
                 { -- Quests
                     677,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4902, -- Redridge Mountains Quests
                     },
                 },
                 { -- Exploration
                     734,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         780, -- Explore Redridge Mountains
                     },
                 },
                 { -- Reputation
                     1017,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         948, -- Ambassador of the Alliance
                     },
@@ -251,11 +234,11 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Duskwood
                 652,
-                addon.GetMapName(47),
+                addon.GetMapName(1431),
                 { -- Quests
                     654,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         12430, -- Duskwood Quests
                         12455, -- Westfall & Duskwood Quests
@@ -263,8 +246,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Exploration
                     735,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         778, -- Explore Duskwood
                         9924, -- Field Photographer
@@ -272,8 +255,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Reputation
                     1007,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         948, -- Ambassador of the Alliance
                     },
@@ -281,11 +264,11 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Wetlands
                 656,
-                addon.GetMapName(56),
+                addon.GetMapName(1437),
                 { -- Quests
                     658,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         12429, -- Wetlands Quests
                         12456, -- Loch Modan & Wetlands Quests
@@ -293,8 +276,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Exploration
                     731,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         841, -- Explore Wetlands
                         9924, -- Field Photographer
@@ -302,8 +285,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Reputation
                     1029,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         948, -- Ambassador of the Alliance
                     },
@@ -311,11 +294,11 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Hillsbrad Foothills
                 671,
-                addon.GetMapName(25),
+                addon.GetMapName(1424),
                 { -- Quests
                     672,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         5364, -- Don't Want No Zombies on My Lawn
                         5365, -- Bloom and Doom
@@ -324,8 +307,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Exploration
                     736,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         772, -- Explore Hillsbrad Foothills
                         9924, -- Field Photographer
@@ -333,8 +316,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Reputation
                     1012,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         762, -- Ambassador of the Horde
                         2336, -- Insane in the Membrane
@@ -347,27 +330,27 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Arathi Highlands
                 649,
-                addon.GetMapName(14),
+                addon.GetMapName(1417),
                 { -- Quests
                     650,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4896, -- Arathi Highlands Quests
                     },
                 },
                 { -- Exploration
                     741,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         761, -- Explore Arathi Highlands
                     },
                 },
                 { -- Reputation
                     996,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         948, -- Ambassador of the Alliance
                         762, -- Ambassador of the Horde
@@ -379,8 +362,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 addon.GetMapName(50),
                 { -- Quests
                     676,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4906, -- Northern Stranglethorn Quests
                         940, -- The Green Hills of Stranglethorn
@@ -389,8 +372,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Exploration
                     739,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         781, -- Explore Northern Stranglethorn
                         17366, -- Relics of a Fallen Empire
@@ -398,8 +381,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Reputation
                     1016,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         948, -- Ambassador of the Alliance
                         762, -- Ambassador of the Horde
@@ -411,16 +394,16 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 addon.GetMapName(210),
                 { -- Quests
                     666,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4905, -- Cape of Stranglethorn Quests
                     },
                 },
                 { -- Exploration
                     740,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         4995, -- Explore the Cape of Stranglethorn
                         9924, -- Field Photographer
@@ -428,7 +411,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Player vs. Player
                     1164,
-                    CT.PvP,
+                    addon.GetCategoryInfoTitle(95),
                     {
                         389, -- Gurubashi Arena Master
                         396, -- Gurubashi Arena Grand Master
@@ -436,30 +419,30 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Reputation
                     993,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         762, -- Ambassador of the Horde
-                        871, -- Avast Ye, Admiral!
+                        871, -- "Avast Ye, Admiral!"
                         2336, -- Insane in the Membrane
                     },
                 },
             },
             { -- Western Plaguelands
                 685,
-                addon.GetMapName(22),
+                addon.GetMapName(1422),
                 { -- Quests
                     686,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4893, -- Western Plaguelands Quests
                     },
                 },
                 { -- Exploration
                     746,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         770, -- Explore Western Plaguelands
                         9924, -- Field Photographer
@@ -467,8 +450,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Reputation
                     1027,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         948, -- Ambassador of the Alliance
                         762, -- Ambassador of the Horde
@@ -477,27 +460,27 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- The Hinterlands
                 673,
-                addon.GetMapName(26),
+                addon.GetMapName(1425),
                 { -- Quests
                     674,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4897, -- Hinterlands Quests
                     },
                 },
                 { -- Exploration
                     742,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         773, -- Explore The Hinterlands
                     },
                 },
                 { -- Reputation
                     1024,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         762, -- Ambassador of the Horde
                     },
@@ -505,11 +488,11 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Eastern Plaguelands
                 667,
-                addon.GetMapName(23),
+                addon.GetMapName(1423),
                 { -- Quests
                     668,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4892, -- Eastern Plaguelands Quests
                         5442, -- Full Caravan
@@ -517,8 +500,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Exploration
                     747,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         771, -- Explore Eastern Plaguelands
                         9924, -- Field Photographer
@@ -526,8 +509,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Reputation
                     778,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         946, -- The Argent Dawn
                         945, -- The Argent Champion
@@ -539,20 +522,20 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Badlands
                 659,
-                addon.GetMapName(15),
+                addon.GetMapName(1418),
                 { -- Quests
                     661,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4900, -- Badlands Quests
-                        5444, -- Ready, Set, Goat!
+                        5444, -- "Ready, Set, Goat!"
                     },
                 },
                 { -- Exploration
                     738,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         765, -- Explore Badlands
                     },
@@ -563,19 +546,19 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Searing Gorge
                 679,
-                addon.GetMapName(32),
+                addon.GetMapName(1427),
                 { -- Quests
                     680,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4910, -- Searing Gorge Quests
                     },
                 },
                 { -- Exploration
                     743,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         774, -- Explore Searing Gorge
                     },
@@ -586,27 +569,27 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Swamp of Sorrows
                 683,
-                addon.GetMapName(51),
+                addon.GetMapName(1435),
                 { -- Quests
                     684,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4904, -- Swamp of Sorrows Quests
                     },
                 },
                 { -- Exploration
                     737,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         782, -- Explore Swamp of Sorrows
                     },
                 },
                 { -- Reputation
                     1023,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         948, -- Ambassador of the Alliance
                     },
@@ -614,19 +597,19 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Burning Steppes
                 663,
-                addon.GetMapName(36),
+                addon.GetMapName(1428),
                 { -- Quests
                     664,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4901, -- Burning Steppes Quests
                     },
                 },
                 { -- Exploration
                     745,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         775, -- Explore Burning Steppes
                         9924, -- Field Photographer
@@ -638,19 +621,19 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Blasted Lands
                 660,
-                addon.GetMapName(17),
+                addon.GetMapName(1419),
                 { -- Quests
                     662,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4909, -- Blasted Lands Quests
                     },
                 },
                 { -- Exploration
                     744,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         766, -- Explore Blasted Lands
                         9924, -- Field Photographer
@@ -658,8 +641,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Reputation
                     999,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         948, -- Ambassador of the Alliance
                         762, -- Ambassador of the Horde
@@ -672,11 +655,11 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Deadwind Pass
                 748,
-                addon.GetMapName(42),
+                addon.GetMapName(1430),
                 { -- Exploration
                     749,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         777, -- Explore Deadwind Pass
                     },
@@ -691,10 +674,10 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
         },
         { -- Kalimdor
             688,
-            addon.GetMapName(12),
+            addon.GetMapName(1414),
             { -- Darnassus
                 975,
-                addon.GetMapName(89),
+                addon.GetMapName(1457),
                 {
                     617, -- Immortal No More
                     603, -- Wrath of the Horde
@@ -702,11 +685,11 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Orgrimmar
                 921,
-                addon.GetMapName(85),
+                addon.GetMapName(1454),
                 { -- Reputation
                     1018,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         762, -- Ambassador of the Horde
                     },
@@ -722,7 +705,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Thunder Bluff
                 923,
-                addon.GetMapName(88),
+                addon.GetMapName(1456),
                 {
                     611, -- Bleeding Bloodhoof
                     604, -- Wrath of the Alliance
@@ -730,19 +713,19 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Teldrassil
                 756,
-                addon.GetMapName(57),
+                addon.GetMapName(1438),
                 { -- Exploration
                     757,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         842, -- Explore Teldrassil
                     },
                 },
                 { -- Reputation
                     1025,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         948, -- Ambassador of the Alliance
                     },
@@ -750,11 +733,11 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Durotar
                 752,
-                addon.GetMapName(1),
+                addon.GetMapName(1411),
                 { -- Exploration
                     753,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         728, -- Explore Durotar
                         9924, -- Field Photographer
@@ -762,8 +745,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Reputation
                     1003,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         762, -- Ambassador of the Horde
                     },
@@ -774,19 +757,19 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Mulgore
                 754,
-                addon.GetMapName(7),
+                addon.GetMapName(1412),
                 { -- Exploration
                     755,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         736, -- Explore Mulgore
                     },
                 },
                 { -- Reputation
                     1014,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         762, -- Ambassador of the Horde
                     },
@@ -794,58 +777,45 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Moonglade
                 774,
-                addon.GetMapName(80),
+                addon.GetMapName(1450),
                 { -- Exploration
                     775,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         855, -- Explore Moonglade
                         9924, -- Field Photographer
                     },
                 },
             },
-            { -- Northern Barrens
-                705,
-                addon.GetMapName(10),
-                { -- Quests
-                    706,
-                        CT.Quests,
-                true,
-                    {
-                        4933, -- Northern Barrens Quests
-                    },
-                },
+            { -- The Barrens
+                1379,
+                addon.GetMapName(1413),
                 { -- Exploration
-                    760,
-                        CT.Exploration,
-                true,
+                    1381,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         750, -- Explore Northern Barrens
                     },
                 },
                 { -- Reputation
-                    1015,
-                        CT.Reputation,
-                true,
+                    1382,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         762, -- Ambassador of the Horde
                         2336, -- Insane in the Membrane
                     },
                 },
-                {
-                    11200, -- Stand Against the Legion
-                    11201, -- Defender of Azeroth: Legion Invasions
-                    16431, -- Against the Elements
-                },
             },
             { -- Darkshore
                 695,
-                addon.GetMapName(62),
+                addon.GetMapName(1439),
                 { -- Quests
                     696,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4928, -- Darkshore Quests
                         5453, -- Ghosts in the Dark
@@ -853,16 +823,16 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Exploration
                     762,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         844, -- Explore Darkshore
                     },
                 },
                 { -- Reputation
                     1001,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         948, -- Ambassador of the Alliance
                     },
@@ -870,11 +840,11 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Azshara
                 691,
-                addon.GetMapName(76),
+                addon.GetMapName(1447),
                 { -- Quests
                     692,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4927, -- Azshara Quests
                         5454, -- Joy Ride
@@ -885,16 +855,16 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Exploration
                     771,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         852, -- Explore Azshara
                     },
                 },
                 { -- Reputation
                     990,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         762, -- Ambassador of the Horde
                     },
@@ -906,11 +876,11 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Ashenvale
                 689,
-                addon.GetMapName(63),
+                addon.GetMapName(1440),
                 { -- Quests
                     690,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4925, -- Ashenvale Quests
                         4976, -- Ashenvale Quests
@@ -918,16 +888,16 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Exploration
                     764,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         845, -- Explore Ashenvale
                     },
                 },
                 { -- Reputation
                     997,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         948, -- Ambassador of the Alliance
                     },
@@ -935,11 +905,11 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Stonetalon Mountains
                 709,
-                addon.GetMapName(65),
+                addon.GetMapName(1442),
                 { -- Quests
                     710,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4936, -- Stonetalon Mountains Quests
                         4980, -- Stonetalon Mountains Quests
@@ -947,16 +917,16 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Exploration
                     766,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         847, -- Explore Stonetalon Mountains
                     },
                 },
                 { -- Reputation
                     1021,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         948, -- Ambassador of the Alliance
                         762, -- Ambassador of the Horde
@@ -965,69 +935,39 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Desolace
                 697,
-                addon.GetMapName(66),
+                addon.GetMapName(1443),
                 { -- Quests
                     698,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4930, -- Desolace Quests
                     },
                 },
                 { -- Exploration
                     767,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         848, -- Explore Desolace
                     },
                 },
                 { -- Reputation
                     1002,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
-                        762, -- Ambassador of the Horde
-                    },
-                },
-            },
-            { -- Southern Barrens
-                711,
-                addon.GetMapName(199),
-                { -- Quests
-                    712,
-                        CT.Quests,
-                true,
-                    {
-                        4937, -- Southern Barrens Quests
-                        4981, -- Southern Barrens Quests
-                    },
-                },
-                { -- Exploration
-                    761,
-                        CT.Exploration,
-                true,
-                    {
-                        4996, -- Explore Southern Barrens
-                    },
-                },
-                { -- Reputation
-                    1019,
-                        CT.Reputation,
-                true,
-                    {
-                        948, -- Ambassador of the Alliance
                         762, -- Ambassador of the Horde
                     },
                 },
             },
             { -- Feralas
                 703,
-                addon.GetMapName(69),
+                addon.GetMapName(1444),
                 { -- Quests
                     704,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4932, -- Feralas Quests
                         4979, -- Feralas Quests
@@ -1035,8 +975,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Exploration
                     769,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         849, -- Explore Feralas
                         9924, -- Field Photographer
@@ -1044,8 +984,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Reputation
                     1009,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         948, -- Ambassador of the Alliance
                         762, -- Ambassador of the Horde
@@ -1054,11 +994,11 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Dustwallow Marsh
                 699,
-                addon.GetMapName(70),
+                addon.GetMapName(1445),
                 { -- Quests
                     700,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4929, -- Dustwallow Marsh Quests
                         4978, -- Dustwallow Marsh Quests
@@ -1066,16 +1006,16 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Exploration
                     768,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         850, -- Explore Dustwallow Marsh
                     },
                 },
                 { -- Reputation
                     1004,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         948, -- Ambassador of the Alliance
                     },
@@ -1086,27 +1026,27 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Thousand Needles
                 715,
-                addon.GetMapName(64),
+                addon.GetMapName(1441),
                 { -- Quests
                     716,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4938, -- Thousand Needles Quests
                     },
                 },
                 { -- Exploration
                     765,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         846, -- Explore Thousand Needles
                     },
                 },
                 { -- Reputation
                     994,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         948, -- Ambassador of the Alliance
                         762, -- Ambassador of the Horde
@@ -1115,19 +1055,19 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Tanaris
                 713,
-                addon.GetMapName(71),
+                addon.GetMapName(1446),
                 { -- Quests
                     714,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4935, -- Tanaris Quests
                     },
                 },
                 { -- Exploration
                     770,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         851, -- Explore Tanaris
                         9924, -- Field Photographer
@@ -1135,8 +1075,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Reputation
                     992,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         948, -- Ambassador of the Alliance
                         762, -- Ambassador of the Horde
@@ -1150,27 +1090,27 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Felwood
                 701,
-                addon.GetMapName(77),
+                addon.GetMapName(1448),
                 { -- Quests
                     702,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4931, -- Felwood Quests
                     },
                 },
                 { -- Exploration
                     772,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         853, -- Explore Felwood
                     },
                 },
                 { -- Reputation
                     991,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         948, -- Ambassador of the Alliance
                         762, -- Ambassador of the Horde
@@ -1182,19 +1122,19 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Un'Goro Crater
                 717,
-                addon.GetMapName(78),
+                addon.GetMapName(1449),
                 { -- Quests
                     718,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4939, -- Un'Goro Crater Quests
                     },
                 },
                 { -- Exploration
                     773,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         854, -- Explore Un'Goro Crater
                         9924, -- Field Photographer
@@ -1208,19 +1148,19 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Silithus
                 707,
-                addon.GetMapName(81),
+                addon.GetMapName(1451),
                 { -- Quests
                     708,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4934, -- Silithus Quests
                     },
                 },
                 { -- Exploration
                     776,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         856, -- Explore Silithus
                         9924, -- Field Photographer
@@ -1228,8 +1168,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Reputation
                     783,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         953, -- Guardian of Cenarius
                     },
@@ -1242,11 +1182,11 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
             { -- Winterspring
                 719,
-                addon.GetMapName(83),
+                addon.GetMapName(1452),
                 { -- Quests
                     720,
-                        CT.Quests,
-                true,
+                            addon.GetCategoryInfoTitle(96),
+            true,
                     {
                         4940, -- Winterspring Quests
                         5443, -- E'ko Madness
@@ -1254,16 +1194,16 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
                 { -- Exploration
                     777,
-                        CT.Exploration,
-                true,
+                            addon.GetCategoryInfoTitle(97),
+            true,
                     {
                         857, -- Explore Winterspring
                     },
                 },
                 { -- Reputation
                     1031,
-                        CT.Reputation,
-                true,
+                            addon.GetCategoryInfoTitle(201),
+            true,
                     {
                         2336, -- Insane in the Membrane
                     },
@@ -1288,17 +1228,17 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
     },
     { -- Dungeons
         2,
-        CT.Dungeons,
+        addon.GetCategoryInfoTitle(15272),
         { -- Ragefire Chasm
             5,
-            addon.GetLFGActivityShortName(52),
+            addon.GetLFGActivityShortName(798),
             {
                 629, -- Ragefire Chasm
             },
         },
         { -- Wailing Caverns
             8,
-            addon.GetLFGActivityShortName(50),
+            addon.GetLFGActivityShortName(796),
             {
                 630, -- Wailing Caverns
                 11765, -- Pet Battle Challenge: Wailing Caverns
@@ -1306,21 +1246,21 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
         },
         { -- Blackfathom Deeps
             10,
-            addon.GetLFGActivityShortName(54),
+            addon.GetLFGActivityShortName(801),
             {
                 632, -- Blackfathom Deeps
             },
         },
         { -- Stormwind Stockades
             11,
-            addon.GetLFGActivityShortName(55),
+            addon.GetLFGActivityShortName(802),
             {
                 633, -- Stormwind Stockade
             },
         },
         { -- Gnomeregan
             12,
-            addon.GetLFGActivityShortName(56),
+            addon.GetLFGActivityShortName(803),
             {
                 634, -- Gnomeregan
                 13269, -- Pet Battle Challenge: Gnomeregan
@@ -1328,49 +1268,57 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
         },
         { -- Razorfen Kraul
             13,
-            addon.GetLFGActivityShortName(57),
+            addon.GetLFGActivityShortName(804),
             {
                 635, -- Razorfen Kraul
             },
         },
         { -- Razorfen Downs
             14,
-            addon.GetLFGActivityShortName(58),
+            addon.GetLFGActivityShortName(806),
             {
                 636, -- Razorfen Downs
             },
         },
+        { -- Scarlet Monastery
+            16,
+            addon.GetInstanceInfoName(316),
+            {
+                637, -- Scarlet Monastery
+                980, -- The Horseman's Reins
+            },
+        },
         { -- Uldaman
             17,
-            addon.GetLFGActivityShortName(59),
+            addon.GetLFGActivityShortName(807),
             {
                 638, -- Uldaman
             },
         },
         { -- Zul'Farrak
             18,
-            addon.GetLFGActivityShortName(60),
+            addon.GetLFGActivityShortName(808),
             {
                 639, -- Zul'Farrak
             },
         },
         { -- Maraudon
             19,
-            addon.GetLFGActivityShortName(61),
+            addon.GetLFGActivityShortName(809),
             {
                 640, -- Maraudon
             },
         },
         { -- Sunken Temple
             20,
-            addon.GetLFGActivityShortName(62),
+            addon.GetLFGActivityShortName(810),
             {
                 641, -- Sunken Temple
             },
         },
         { -- Blackrock Depths
             21,
-            addon.GetLFGActivityShortName(63),
+            addon.GetLFGActivityShortName(811),
             {
                 642, -- Blackrock Depths
                 3496, -- A Brew-FAST Mount
@@ -1379,7 +1327,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
         },
         { -- Lower Blackrock Spire
             22,
-            addon.GetLFGActivityShortName(64),
+            addon.GetLFGActivityShortName(812),
             {
                 643, -- Lower Blackrock Spire
             },
@@ -1401,16 +1349,15 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
         },
         { -- Scholomance
-            24,
+            1455,
             addon.GetInstanceInfoName(246),
             {
-                18368, -- Memory of Scholomance
-                18558, -- Leaders of Scholomance
+                645, -- Scholomance
             },
         },
         { -- Stratholme
             25,
-            addon.GetLFGActivityShortName(66),
+            addon.GetLFGActivityShortName(816),
             {
                 646, -- Stratholme
                 729, -- Deathcharger's Reins
@@ -1424,14 +1371,14 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
     },
     { -- Raids
         3,
-        CT.Raids,
+        addon.GetCategoryInfoTitle(15271),
         { -- Molten Core
             7,
             addon.GetInstanceInfoName(741),
             { -- Reputation
                 779,
-                CT.Reputation,
-                true,
+                    addon.GetCategoryInfoTitle(201),
+            true,
                 {
                     955, -- Hydraxian Waterlords
                     2496, -- The Fifth Element
@@ -1440,9 +1387,9 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             {
                 686, -- Molten Core
                 11741, -- So Hot Right Now
-                429, -- Sulfuras, Hand of Ragnaros
-                428, -- Thunderfury, Blessed Blade of the Windseeker
-                9550, -- Boldly, You Sought the Power of Ragnaros
+                429, -- "Sulfuras, Hand of Ragnaros"
+                428, -- "Thunderfury, Blessed Blade of the Windseeker"
+                9550, -- "Boldly, You Sought the Power of Ragnaros"
                 7934, -- Raiding with Leashes
                 11296, -- The Ancient Keeper
                 11297, -- The Balance of Light and Shadow
@@ -1472,7 +1419,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             addon.GetInstanceInfoName(76),
             { -- Reputation
                 789,
-                CT.Reputation,
+                addon.GetCategoryInfoTitle(201),
                 {
                     957, -- Hero of the Zandalar Tribe
                 },
@@ -1489,7 +1436,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             addon.GetInstanceInfoName(743),
             { -- Reputation
                 784,
-                CT.Reputation,
+                addon.GetCategoryInfoTitle(201),
                 {
                     953, -- Guardian of Cenarius
                 },
@@ -1503,8 +1450,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             addon.GetInstanceInfoName(744),
             { -- Reputation
                 780,
-                CT.Reputation,
-                true,
+                    addon.GetCategoryInfoTitle(201),
+            true,
                 {
                     956, -- Brood of Nozdormu
                 },
@@ -1521,12 +1468,12 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             796,
             addon.GetInstanceInfoName(754),
             {
-                11744, -- Drop Dead, Gorgeous
-                425, -- Atiesh, Greatstaff of the Guardian
+                11744, -- "Drop Dead, Gorgeous"
+                425, -- "Atiesh, Greatstaff of the Guardian"
                 15335, -- Survivor of the Damned (Season of Mastery)
                 15637, -- The Immortal (Season of Mastery)
                 18372, -- Wards of the Dread Citadel
-                18557, -- Never Bothered, Anyway
+                18557, -- "Never Bothered, Anyway"
                 18616, -- Putting Wilhelm Out of Business
             },
         },
@@ -1536,10 +1483,10 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
     },
     { -- Professions
         1150,
-        CT.Professions,
+        addon.GetCategoryInfoTitle(169),
         { -- Archaeology
             1468,
-            CT.Archaeology,
+            addon.GetCategoryInfoTitle(15071),
             true,
             {
                 4857, -- Journeyman Archaeologist
@@ -1551,18 +1498,9 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 4859, -- Kings Under the Mountain
             },
         },
-        { -- Blacksmithing
-            1476,
-            addon.GetCategoryInfoTitle(15490),
-            true,
-            {
-                18765, -- Destined to be Legendary
-                18853, -- Seething Flames of Hatred
-            },
-        },
         { -- Cooking
             1477,
-            CT.Cooking,
+            addon.GetCategoryInfoTitle(170),
             true,
             {
                 121, -- Journeyman Cook
@@ -1580,7 +1518,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
         },
         { -- Fishing
             1500,
-            CT.Fishing,
+            addon.GetCategoryInfoTitle(171),
             true,
             {
                 126, -- Journeyman Fisherman
@@ -1601,129 +1539,15 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 17367, -- Deadliest Cache
             },
         },
-        { -- Leatherworking
-            1513,
-            addon.GetCategoryInfoTitle(15495),
-            true,
-            {
-                18899, -- You Saw Nothing
-            },
-        },
-        { -- Mining
-            1516,
-            addon.GetCategoryInfoTitle(15497),
-            true,
-            {
-                18841, -- Doing Your Share
-            },
-        },
-        { -- Tailoring
-            1529,
-            addon.GetCategoryInfoTitle(15496),
-            true,
-            {
-                18903, -- Ton of Tops
-            },
-        },
         {
             116, -- Professional Journeyman
             731, -- Professional Expert
             732, -- Professional Classic Master
             18728, -- Working from the Start
             18720, -- Classic Master of All
-            62357, -- Classically Trained Lumberjack
             131, -- Journeyman Medic
             132, -- Expert Medic
             133, -- Artisan Medic
-        },
-    },
-    { -- Pet Battles
-        785,
-        CT.PetBattles,
-        {
-            6586, -- Eastern Kingdoms Safari
-            6585, -- Kalimdor Safari
-            6613, -- Eastern Kingdoms Tamer
-            6612, -- Kalimdor Tamer
-            6603, -- Taming Eastern Kingdoms
-            61029, -- Aquatic Battler of Eastern Kingdoms
-            61030, -- Beast Battler of Eastern Kingdoms
-            61031, -- Critter Battler of Eastern Kingdoms
-            61032, -- Dragonkin Battler of Eastern Kingdoms
-            61033, -- Elemental Battler of Eastern Kingdoms
-            61034, -- Flying Battler of Eastern Kingdoms
-            61035, -- Humanoid Battler of Eastern Kingdoms
-            61036, -- Magic Battler of Eastern Kingdoms
-            61037, -- Mechanical Battler of Eastern Kingdoms
-            61028, -- Undead Battler of Eastern Kingdoms
-            61040, -- Family Battler of Eastern Kingdoms
-            6602, -- Taming Kalimdor
-            61041, -- Aquatic Battler of Kalimdor
-            61042, -- Beast Battler of Kalimdor
-            61043, -- Critter Battler of Kalimdor
-            61044, -- Dragonkin Battler of Kalimdor
-            61045, -- Elemental Battler of Kalimdor
-            61046, -- Flying Battler of Kalimdor
-            61047, -- Humanoid Battler of Kalimdor
-            61048, -- Magic Battler of Kalimdor
-            61049, -- Mechanical Battler of Kalimdor
-            61050, -- Undead Battler of Kalimdor
-            61051, -- Family Battler of Kalimdor
-            61094, -- Old World Family Battler
-            6558, -- Local Pet Mauler
-            6559, -- Traveling Pet Mauler
-            6560, -- World Pet Mauler
-            6607, -- Taming Azeroth
-            6601, -- Taming the Wild
-            7498, -- Taming the Great Outdoors
-            7499, -- Taming the World
-            14021, -- The Shadows Revealed
-            6584, -- Big City Pet Brawlin' - Alliance
-            6621, -- Big City Pet Brawlin' - Horde
-            6622, -- Big City Pet Brawler
-            6611, -- Continental Tamer
-            6590, -- World Safari
-            8348, -- The Longest Day
-        },
-    },
-    { -- Dragonriding Races
-        1530,
-        addon.L["Dragonriding Races"],
-        { -- Kalimdor Cup
-            1449,
-            addon.L["Kalimdor Cup"],
-            {
-                17712, -- Kalimdor: Bronze
-                17713, -- Kalimdor: Silver
-                17714, -- Kalimdor: Gold
-                17715, -- Kalimdor Advanced: Bronze
-                17716, -- Kalimdor Advanced: Silver
-                17717, -- Kalimdor Advanced: Gold
-                17718, -- Kalimdor Reverse: Bronze
-                17719, -- Kalimdor Reverse: Silver
-                17720, -- Kalimdor Reverse: Gold
-                17721, -- Kalimdor Racing Completionist
-                17722, -- Kalimdor Racing Completionist: Silver
-                17723, -- Kalimdor Racing Completionist: Gold
-            },
-        },
-        { -- Eastern Kingdoms Cup
-            1533,
-            addon.L["Eastern Kingdoms Cup"],
-            {
-                18566, -- Eastern Kingdoms: Bronze
-                18567, -- Eastern Kingdoms: Silver
-                18568, -- Eastern Kingdoms: Gold
-                18569, -- Eastern Kingdoms Advanced: Bronze
-                18570, -- Eastern Kingdoms Advanced: Silver
-                18571, -- Eastern Kingdoms Advanced: Gold
-                18572, -- Eastern Kingdoms Reverse: Bronze
-                18573, -- Eastern Kingdoms Reverse: Silver
-                18574, -- Eastern Kingdoms Reverse: Gold
-                18939, -- Eastern Kingdoms Racing Completionist
-                18940, -- Eastern Kingdoms Racing Completionist: Silver
-                18942, -- Eastern Kingdoms Racing Completionist: Gold
-            },
         },
     },
 });

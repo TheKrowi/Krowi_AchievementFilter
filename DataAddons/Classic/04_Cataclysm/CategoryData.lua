@@ -1,6 +1,5 @@
 ﻿local _, addon = ...;
 local shared = addon.Data.CategoryData.Shared;
-local CT = shared.CT;
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
     129,
@@ -13,20 +12,20 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             addon.GetMapName(203),
             { -- Quests
                 557,
-                CT.Quests,
-                true,
+                    addon.GetCategoryInfoTitle(96),
+            true,
                 {
                     4869, -- Sinking into Vashj'ir
                     4982, -- Sinking into Vashj'ir
                     5452, -- Visions of Vashj'ir Past
-                    5318, -- 20,000 Leagues Under the Sea
-                    5319, -- 20,000 Leagues Under the Sea
+                    5318, -- "20,000 Leagues Under the Sea"
+                    5319, -- "20,000 Leagues Under the Sea"
                 },
             },
             { -- Exploration
                 564,
-                CT.Exploration,
-                true,
+                    addon.GetCategoryInfoTitle(97),
+            true,
                 {
                     4825, -- Explore Vashj'ir
                     4975, -- From Hell's Heart I Stab at Thee
@@ -39,8 +38,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             addon.GetMapName(198),
             { -- Quests
                 558,
-                CT.Quests,
-                true,
+                    addon.GetCategoryInfoTitle(96),
+            true,
                 {
                     4870, -- Coming Down the Mountain
                     4959, -- Beware of the 'Unbeatable?' Pterodactyl
@@ -60,8 +59,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
             { -- Exploration
                 565,
-                CT.Exploration,
-                true,
+                    addon.GetCategoryInfoTitle(97),
+            true,
                 {
                     4863, -- Explore Hyjal
                     9924, -- Field Photographer
@@ -69,8 +68,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
             { -- Reputation
                 571,
-                CT.Reputation,
-                true,
+                    addon.GetCategoryInfoTitle(201),
+            true,
                 {
                     4882, -- The Guardians of Hyjal
                 },
@@ -81,8 +80,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             addon.GetMapName(207),
             { -- Quests
                 559,
-                CT.Quests,
-                true,
+                    addon.GetCategoryInfoTitle(96),
+            true,
                 {
                     4871, -- Deep into Deepholm
                     5445, -- Fungalophobia
@@ -94,8 +93,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
             { -- Exploration
                 566,
-                CT.Exploration,
-                true,
+                    addon.GetCategoryInfoTitle(97),
+            true,
                 {
                     4864, -- Explore Deepholm
                     9924, -- Field Photographer
@@ -103,8 +102,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
             { -- Reputation
                 572,
-                CT.Reputation,
-                true,
+                    addon.GetCategoryInfoTitle(201),
+            true,
                 {
                     4883, -- Therazane
                 },
@@ -115,8 +114,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             addon.GetMapName(249),
             { -- Quests
                 560,
-                CT.Quests,
-                true,
+                    addon.GetCategoryInfoTitle(96),
+            true,
                 {
                     4872, -- Unearthing Uldum
                     4961, -- In a Thousand Years Even You Might be Worth Something
@@ -125,16 +124,16 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
             { -- Exploration
                 567,
-                CT.Exploration,
-                true,
+                    addon.GetCategoryInfoTitle(97),
+            true,
                 {
                     4865, -- Explore Uldum
                 },
             },
             { -- Reputation
                 574,
-                CT.Reputation,
-                true,
+                    addon.GetCategoryInfoTitle(201),
+            true,
                 {
                     4884, -- Ramkahen
                 },
@@ -149,8 +148,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             addon.GetMapName(241),
             { -- Quests
                 561,
-                CT.Quests,
-                true,
+                    addon.GetCategoryInfoTitle(96),
+            true,
                 {
                     4873, -- Fading into Twilight
                     5501, -- Fading into Twilight
@@ -165,16 +164,16 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
             { -- Exploration
                 568,
-                CT.Exploration,
-                true,
+                    addon.GetCategoryInfoTitle(97),
+            true,
                 {
                     4866, -- Explore Twilight Highlands
                 },
             },
             { -- Reputation
                 573,
-                CT.Reputation,
-                true,
+                    addon.GetCategoryInfoTitle(201),
+            true,
                 {
                     948, -- Ambassador of the Alliance
                     762, -- Ambassador of the Horde
@@ -182,10 +181,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
                     4886, -- Dragonmaw Clan
                 },
             },
-            {
-                61430, -- Crunching for Cultists
-                42300, -- Two Minutes to Midnight
-            }
         },
         { -- Molten Front
             556,
@@ -214,7 +209,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
     },
     { -- Dungeons
         130,
-        CT.Dungeons,
+        addon.GetCategoryInfoTitle(15272),
         { -- Blackrock Caverns
             132,
             addon.GetInstanceInfoName(66),
@@ -336,7 +331,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             {
                 5743, -- It's Not Easy Being Green
                 5762, -- Ohganot So Fast!
-                5765, -- Here, Kitty Kitty...
+                5765, -- "Here, Kitty Kitty..."
                 5759, -- Spirit Twister
                 5744, -- Gurubashi Headhunter
                 5768, -- Heroic: Zul'Gurub
@@ -388,7 +383,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
     },
     { -- Raids
         131,
-        CT.Raids,
+        addon.GetCategoryInfoTitle(15271),
         { -- Baradin Hold
             146,
             addon.GetInstanceInfoName(75),
@@ -504,8 +499,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
             { -- Reputation
                 576,
-                CT.Reputation,
-                true,
+                    addon.GetCategoryInfoTitle(201),
+            true,
                 {
                     5827, -- Avengers of Hyjal
                 },
@@ -514,7 +509,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
                 5855, -- Ragnar-O's
                 5802, -- Firelands
                 11755, -- Hot Couture
-                5839, -- Dragonwrath, Tarecgosa's Rest
+                5839, -- "Dragonwrath, Tarecgosa's Rest"
                 12079, -- Raiding with Leashes V: Cuteaclysm
             },
         },
@@ -568,10 +563,10 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
     },
     { -- Professions
         1153,
-        CT.Professions,
+        addon.GetCategoryInfoTitle(169),
         { -- Archaeology
             1471,
-            CT.Archaeology,
+            addon.GetCategoryInfoTitle(15071),
             true,
             {
                 4923, -- Illustrious Grand Master Archaeologist
@@ -580,7 +575,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
         },
         { -- Cooking
             1480,
-            CT.Cooking,
+            addon.GetCategoryInfoTitle(170),
             true,
             {
                 4916, -- Cataclysmic Cook
@@ -590,7 +585,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
         },
         { -- Fishing
             1497,
-            CT.Fishing,
+            addon.GetCategoryInfoTitle(171),
             true,
             {
                 4917, -- Cataclysmic Fisherman
@@ -609,25 +604,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             4924, -- Professional Cataclysmic Master
             4914, -- Working In the Heat
             18719, -- Cataclysmic Master of All
-            62360, -- Cataclysmic Lumberjack
             4918, -- Illustrious Grand Master Medic
             4915, -- More Skills to Pay the Bills
-        },
-    },
-    { -- Pet Battles
-        788,
-        CT.PetBattles,
-        {
-            7525, -- Taming Cataclysm
-            6558, -- Local Pet Mauler
-            6559, -- Traveling Pet Mauler
-            6560, -- World Pet Mauler
-            6607, -- Taming Azeroth
-            6601, -- Taming the Wild
-            7498, -- Taming the Great Outdoors
-            7499, -- Taming the World
-            14021, -- The Shadows Revealed
-            8348, -- The Longest Day
         },
     },
     { -- Tol Barad
@@ -635,7 +613,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
         addon.GetCategoryInfoTitle(15075),
         { -- Quests
             563,
-            CT.Quests,
+            addon.GetCategoryInfoTitle(96),
             true,
             {
                 4874, -- Breaking Out of Tol Barad
@@ -645,7 +623,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
         },
         { -- PvP
             569,
-            CT.PvP,
+            addon.GetCategoryInfoTitle(95),
             true,
             {
                 5412, -- Tol Barad Victory
@@ -659,7 +637,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
         },
         { -- Reputation
             575,
-            CT.Reputation,
+            addon.GetCategoryInfoTitle(201),
             true,
             {
                 5375, -- Baradin's Wardens
@@ -675,8 +653,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
         4887, -- Tripping the Rifts
         5535, -- 1000 Valor Points
         5536, -- 5000 Valor Points
-        5537, -- 25,000 Valor Points
-        5538, -- 50,000 Valor Points
-        6924, -- 100,000 Valor Points
+        5537, -- "25,000 Valor Points"
+        5538, -- "50,000 Valor Points"
+        6924, -- "100,000 Valor Points"
     },
 });

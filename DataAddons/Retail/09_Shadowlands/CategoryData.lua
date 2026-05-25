@@ -1,5 +1,6 @@
-local _, addon = ...;
+﻿local _, addon = ...;
 local shared = addon.Data.CategoryData.Shared;
+local CT = shared.CT;
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
     6,
@@ -12,7 +13,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
             addon.GetMapName(1533),
             { -- Quests
                 346,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     14281, -- The Path to Ascension
@@ -25,7 +26,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
             },
             { -- Exploration
                 347,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     14303, -- Explore Bastion
@@ -40,7 +41,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
             },
             { -- PvP
                 348,
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     14514, -- Tour of Duty: Bastion
@@ -48,7 +49,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
             },
             { -- Reputation
                 349,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     14335, -- The Ascended
@@ -60,7 +61,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
             addon.GetMapName(1536),
             { -- Quests
                 351,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     14206, -- Blade of the Primus
@@ -69,7 +70,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
             },
             { -- Exploration
                 352,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     14305, -- Explore Maldraxxus
@@ -83,7 +84,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
             },
             { -- PvP
                 353,
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     14513, -- Tour of Duty: Maldraxxus
@@ -91,7 +92,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
             },
             { -- Reputation
                 354,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     14336, -- Undying Army
@@ -103,7 +104,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
             addon.GetMapName(1565),
             { -- Quests
                 356,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     14164, -- Awaken, Ardenweald
@@ -114,7 +115,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
             },
             { -- Exploration
                 357,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     14304, -- Explore Ardenweald
@@ -136,7 +137,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
             },
             { -- PvP
                 358,
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     14511, -- Tour of Duty: Ardenweald
@@ -144,7 +145,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
             },
             { -- Reputation
                 359,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     14337, -- The Wild Hunt
@@ -156,7 +157,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
             addon.GetMapName(1525),
             { -- Quests
                 361,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     13878, -- The Master of Revendreth
@@ -169,7 +170,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
             },
             { -- Exploration
                 362,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     14306, -- Explore Revendreth
@@ -187,7 +188,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
             },
             { -- PvP
                 363,
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     14512, -- Tour of Duty: Revendreth
@@ -195,7 +196,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
             },
             { -- Reputation
                 364,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     14338, -- Court of Harvesters
@@ -207,7 +208,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
             addon.GetMapName(1543),
             { -- Quests
                 366,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     14334, -- Into the Maw
@@ -229,7 +230,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
             },
             { -- Exploration
                 367,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     14663, -- Explore The Maw
@@ -253,7 +254,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
             },
             { -- Reputation
                 368,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     14656, -- Trading Partners
@@ -268,7 +269,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
             addon.GetMapName(1961),
             { -- Quests
                 817,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     15066, -- Reliquary Restoration
@@ -279,7 +280,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
             },
             { -- Exploration
                 818,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     15053, -- Explore Korthia
@@ -289,7 +290,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
             },
             { -- Reputation
                 813,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     15059, -- Death's Advance
@@ -302,7 +303,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
             addon.GetMapName(1970),
             { -- Quests
                 1036,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     15229, -- Traversing the Spheres
@@ -314,7 +315,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
             },
             { -- Exploration
                 1037,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     15224, -- Explore Zereth Mortis
@@ -339,7 +340,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
             },
             { -- Reputation
                 1038,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     15220, -- The Enlightened
@@ -362,7 +363,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
     },
     { -- Dungeons
         369,
-        addon.GetCategoryInfoTitle(15272),
+        CT.Dungeons,
         shared.GetShadowlandsMythicPlus(addon.L["Mythic+"]),
         { -- The Necrotic Wake
             371,
@@ -513,7 +514,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
     },
     { -- Raids
         370,
-        addon.GetCategoryInfoTitle(15271),
+        CT.Raids,
         { -- Castle Nathria
             379,
             addon.GetInstanceInfoName(1190),
@@ -680,10 +681,10 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
     },
     { -- Professions
         1158,
-        addon.GetCategoryInfoTitle(169),
+        CT.Professions,
         { -- Cooking
             1484,
-            addon.GetCategoryInfoTitle(170),
+            CT.Cooking,
             true,
             {
                 14332, -- Shadowlands Cook
@@ -691,7 +692,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
         },
         { -- Fishing
             1493,
-            addon.GetCategoryInfoTitle(171),
+            CT.Fishing,
             true,
             {
                 14333, -- Shadowlands Fisherman
@@ -706,7 +707,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
     },
     { -- Pet Battles
         380,
-        addon.GetCategoryInfoTitle(15117),
+        CT.PetBattles,
         {
             14867, -- Shadowlands Safari
             14625, -- Battle in the Shadowlands

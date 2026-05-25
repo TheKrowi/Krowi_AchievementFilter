@@ -1,3 +1,4 @@
 <Ui>
+    <Script file="CategoryData.lua" />
     <Script file="EventData.lua" />
 </Ui>
