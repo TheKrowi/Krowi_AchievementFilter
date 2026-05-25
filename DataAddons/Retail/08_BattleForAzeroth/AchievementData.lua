@@ -8,7 +8,7 @@ KrowiAF.AchievementData["08_00_01"] = {
 	Ach(11861):AutoFactionSplit(faction.Horde, 12473), -- The Throne of Zuldazar / A Sound Plan
 	Ach(11868):AutoFactionSplit(faction.Horde, 12497), -- The Dark Heart of Nazmir / Drust Do It.
 	Ach(12087):FactionSplit(faction.Alliance, nil), -- The Reining Champion
-	Ach(12229):AutoFactionSplit(faction.Alliance, 12230), -- Collector's Edition: Seabraid Stallion / Collector's Edition: Gilded Ravasaur
+	Ach(12229):AutoFactionSplit(faction.Alliance, 12230), -- Collector's Edition: Seabraid Stallion / Gilded Ravasaur
 	Ach(12232), -- Collector's Edition: Tottle
 	Ach(12270), -- Bringing Hexy Back
 	Ach(12272), -- Gold Fever
@@ -69,7 +69,7 @@ KrowiAF.AchievementData["08_00_01"] = {
 	Ach(12559), -- Explore Zuldazar
 	Ach(12560), -- Explore Vol'dun
 	Ach(12561), -- Explore Nazmir
-	Ach(12567):AutoFactionSplit(faction.Alliance, 12568):IsPvP(), -- The Horde Slayer / The Alliance Slayer
+	Ach(12567):AutoFactionSplit(faction.Alliance, 12568):IsPvP(), -- The Horde / Alliance Slayer
 	Ach(12571):IsPvP(), -- Bounty Hunting
 	Ach(12572):IsPvP(), -- War Supplied
 	Ach(12573):IsPvP(), -- Band of Brothers
@@ -86,7 +86,7 @@ KrowiAF.AchievementData["08_00_01"] = {
 	Ach(12590), -- Un'gol Ruins
 	Ach(12591), -- Mythic: Un'gol Ruins
 	Ach(12592):IsPvP(), -- Ruined the Ruins
-	Ach(12593):FactionSplit(faction.Alliance, 13294), -- Loremaster of Kul Tiras
+	Ach(12593):AutoFactionSplit(faction.Alliance, 13294), -- Loremaster of Kul Tiras / Zandalar
 	Ach(12594), -- Competent Captain
 	Ach(12595), -- Expert Expeditioner
 	Ach(12596), -- No Tourist
@@ -104,23 +104,23 @@ KrowiAF.AchievementData["08_00_01"] = {
 	Ach(12727), -- Stand by Me
 	Ach(12731):FactionSplit(faction.Alliance, 12733), -- Professional Kul Tiran Master
 	Ach(12733):HousingDecor():FactionSplit(faction.Horde, 12731), -- Professional Zandalari Master
-	Ach(12734):AutoFactionSplit(faction.Alliance, 12735), -- Working in Kul Tiras / Working in Zandalar
-	Ach(12736):AutoFactionSplit(faction.Alliance, 12737), -- Kul Tiran Master of All / Zandalari Master of All
+	Ach(12734):AutoFactionSplit(faction.Alliance, 12735), -- Working in Kul Tiras / Zandalar
+	Ach(12736):AutoFactionSplit(faction.Alliance, 12737), -- Kul Tiran / Zandalari Master of All
 	Ach(12738), -- Holy Scrap!
 	Ach(12739), -- Scraptastic!
 	Ach(12740), -- Full of Scrap!
 	Ach(12741):AutoFactionSplit(faction.Alliance, 13056), -- Giving a Scrap
-	Ach(12742):AutoFactionSplit(faction.Alliance, 12743), -- Kul Tiran Cook / Zandalari Cook
+	Ach(12742):AutoFactionSplit(faction.Alliance, 12743), -- Kul Tiran / Zandalari Cook
 	Ach(12744):FactionSplit(faction.Alliance, 12746), -- The Kul Tiran Menu
 	Ach(12746):HousingDecor():FactionSplit(faction.Horde, 12744), -- The Zandalari Menu
 	Ach(12747), -- Catering for Combat
-	Ach(12753):AutoFactionSplit(faction.Alliance, 12754), -- Kul Tiran Fisherman / Zandalari Fisherman
+	Ach(12753):AutoFactionSplit(faction.Alliance, 12754), -- Kul Tiran / Zandalari Fisherman
 	Ach(12755), -- Scent of the Sea
 	Ach(12756), -- Fish Me In the Moonlight
 	Ach(12757), -- Angling for Battle
 	Ach(12758):AutoFactionSplit(faction.Alliance, 12759), -- Baiting the Enemy
-	Ach(12760):AutoFactionSplit(faction.Alliance, 12761), -- Kul Tiran Archaeologist / Zandalari Archaeologist
-	Ach(12762):AutoFactionSplit(faction.Alliance, 12764), -- Kul Tiran Curator / Zandalari Curator
+	Ach(12760):AutoFactionSplit(faction.Alliance, 12761), -- Kul Tiran / Zandalari Archaeologist
+	Ach(12762):AutoFactionSplit(faction.Alliance, 12764), -- Kul Tiran / Zandalari Curator
 	Ach(12765), -- Exotic Discoveries
 	Ach(12769), -- Light Travel
 	Ach(12770), -- Lengthy Legwork
@@ -223,7 +223,7 @@ KrowiAF.AchievementData["08_00_01"] = {
 	Ach(12948):AutoFactionSplit(faction.Horde, 12952), -- Talanji's Expedition / Order of Embers
 	Ach(12949):AutoFactionSplit(faction.Horde, 12953), -- The Voldunai / Storm's Wake
 	Ach(12950):AutoFactionSplit(faction.Horde, 12951), -- Zandalari Empire / Proudmoore Admiralty
-	Ach(12954):AutoFactionSplit(faction.Alliance, 12957), -- Champion of the 7th Legion / Champion of the Honorbound
+	Ach(12954):AutoFactionSplit(faction.Alliance, 12957), -- Champion of the 7th Legion / Honorbound
 	Ach(12955), -- Champions of Azeroth
 	Ach(12956), -- Tortollan Seekers
 	Ach(12958):Pet(), -- Master of Minions
@@ -231,7 +231,7 @@ KrowiAF.AchievementData["08_00_01"] = {
 	Ach(12960):Title():PvP(26), -- Rival: Battle for Azeroth Season 1
 	Ach(12961):Title():Mount():PvP(26), -- Gladiator: Battle for Azeroth Season 1
 	Ach(12962):Title():PvP(26), -- Duelist: Battle for Azeroth Season 1
-	Ach(12963):AutoFactionSplit(faction.Alliance, 12964):PvP(26), -- Hero of the Alliance: Dread / Hero of the Horde: Dread
+	Ach(12963):AutoFactionSplit(faction.Alliance, 12964):PvP(26), -- Hero of the Alliance / Horde: Dread
 	Ach(12988), -- Battle for Azeroth Explorer
 	Ach(12989):Other(), -- Battle for Azeroth Pathfinder, Part One
 	Ach(12990), -- Catchin' Some Rays
@@ -274,7 +274,7 @@ KrowiAF.AchievementData["08_00_01"] = {
 	Ach(13051), -- Legends of the Tidesages
 	Ach(13053):FactionSplit(faction.Alliance, nil), -- Deadliest Cache
 	Ach(13054), -- Sabertron Assemble
-	Ach(13057), -- Shanty Raid
+	Ach(13057), -- Sailed in Sea Minor
 	Ach(13058), -- Kul Tiran Up the Dance Floor
 	Ach(13059):FactionSplit(faction.Alliance, nil), -- Drag Race
 	Ach(13060):FactionSplit(faction.Alliance, nil), -- Kul Runnings
@@ -345,7 +345,7 @@ KrowiAF.AchievementData["08_01_00"] = {
 	Ach(13204):Title():PvP(27), -- Combatant: Battle for Azeroth Season 2
 	Ach(13205):Title():PvP(27), -- Rival: Battle for Azeroth Season 2
 	Ach(13209):Title():PvP(27), -- Duelist: Battle for Azeroth Season 2
-	Ach(13210):AutoFactionSplit(faction.Alliance, 13211):PvP(27), -- Hero of the Alliance: Sinister / Hero of the Horde: Sinister
+	Ach(13210):AutoFactionSplit(faction.Alliance, 13211):PvP(27), -- Hero of the Alliance / Horde: Sinister
 	Ach(13212):Title():Mount():PvP(27), -- Gladiator: Battle for Azeroth Season 2
 	Ach(13251):Other():FactionSplit(faction.Alliance, 13263), -- In Teldrassil's Shadow
 	Ach(13263):FactionSplit(faction.Horde, 13251), -- The Shadow Hunter
@@ -361,15 +361,14 @@ KrowiAF.AchievementData["08_01_00"] = {
 	Ach(13279):Pet(), -- Family Battler
 	Ach(13280), -- Hobbyist Aquarist
 	Ach(13281), -- Human Resources
-	Ach(13283):HousingDecor():FactionSplit(faction.Alliance, 13284), -- Frontline Warrior
-	Ach(13284):FactionSplit(faction.Horde, 13283), -- Frontline Warrior
+	Ach(13283):FactionSplit(faction.Alliance, 13284), -- Frontline Warrior
+	Ach(13284):HousingDecor():FactionSplit(faction.Horde, 13283), -- Frontline Warrior
 	Ach(13285):Toy():FactionSplit(faction.Alliance, nil), -- Upright Citizens
-	Ach(13286):AutoFactionSplit(faction.Alliance, 13289), -- Siege of Dazar'alor / Defense of Dazar'alor
+	Ach(13286):AutoFactionSplit(faction.Alliance, 13289), -- Siege / Defense of Dazar'alor
 	Ach(13287):AutoFactionSplit(faction.Alliance, 13290), -- Empire's Fall / Death's Bargain
 	Ach(13288):AutoFactionSplit(faction.Alliance, 13291), -- Might of the Alliance / Victory or Death
 	Ach(13292), -- Mythic: Champion of the Light
 	Ach(13293), -- Mythic: Grong
-	Ach(13294):FactionSplit(faction.Horde, 12593), -- Loremaster of Zandalar
 	Ach(13295):AutoFactionSplit(faction.Horde, 13298), -- Mythic: Jadefire Masters
 	Ach(13296):AutoFactionSplit(faction.Horde, 13297), -- War for the Shore
 	Ach(13299), -- Mythic: Opulence
@@ -433,8 +432,8 @@ KrowiAF.AchievementData["08_01_05"] = {
 	Ach(13189):Other():AutoFactionSplit(faction.Alliance, 13190):Obtainable("Before", "Version", {9, 0, 1}), -- The Second Rule of Brawler's Guild
 	Ach(13191):Title():AutoFactionSplit(faction.Alliance, 13192):Obtainable("Before", "Version", {9, 0, 1}), -- Brawler for Azeroth
 	Ach(13194):Obtainable("Before", "Version", {9, 0, 1}), -- I Am Thrall's Complete Lack Of Surprise
-	Ach(13340):AutoFactionSplit(faction.Horde, 13341):Obtainable("Event", 341), -- Flame Keeper of Zandalar / Flame Warden of Kul Tiras
-	Ach(13342):AutoFactionSplit(faction.Horde, 13343):Obtainable("Event", 341), -- Extinguishing Kul Tiras / Extinguishing Zandalar
+	Ach(13340):AutoFactionSplit(faction.Horde, 13341):Obtainable("Event", 341), -- Flame Keeper of Zandalar / Warden of Kul Tiras
+	Ach(13342):AutoFactionSplit(faction.Horde, 13343):Obtainable("Event", 341), -- Extinguishing Kul Tiras / Zandalar
 	Ach(13465):Title():PvP(26), -- Elite: Battle for Azeroth Season 1
 	Ach(13466):AutoFactionSplit(faction.Horde, 13467), -- Tides of Vengeance
 	Ach(13469):Pet(), -- Raiding with Leashes VI: Pets of Pandaria
@@ -467,7 +466,7 @@ KrowiAF.AchievementData["08_02_00"] = {
 	Ach(13542):FactionSplit(faction.Horde, nil), -- How to Train Your Direhorn
 	Ach(13545), -- Go Ahead, Make My Daisy
 	Ach(13549), -- Trove Tracker
-	Ach(13553):FactionSplit(faction.Alliance, nil), -- The Mechagonian Threat
+	Ach(13553):AutoFactionSplit(faction.Alliance, 13700), -- The Mechagonian Threat
 	Ach(13555):Title(), -- Junkyard Tinkmaster
 	Ach(13556), -- Outside Influences
 	Ach(13557), -- Rustbolt Rebellion
@@ -504,7 +503,7 @@ KrowiAF.AchievementData["08_02_00"] = {
 	Ach(13639):Title():PvP(28), -- Combatant: Battle for Azeroth Season 3
 	Ach(13641):Title():PvP(28), -- Rival: Battle for Azeroth Season 3
 	Ach(13642):Title():PvP(28), -- Duelist: Battle for Azeroth Season 3
-	Ach(13643):AutoFactionSplit(faction.Alliance, 13644):PvP(28), -- Hero of the Alliance: Notorious / Hero of the Horde: Notorious
+	Ach(13643):AutoFactionSplit(faction.Alliance, 13644):PvP(28), -- Hero of the Alliance / Horde: Notorious
 	Ach(13645):AutoFactionSplit(faction.Horde, 13704), -- Nautical Battlefield Training
 	Ach(13647):Title():Mount():PvP(28), -- Gladiator: Battle for Azeroth Season 3
 	Ach(13676):Title():PvP(28), -- Elite: Battle for Azeroth Season 3
@@ -520,7 +519,6 @@ KrowiAF.AchievementData["08_02_00"] = {
 	Ach(13696), -- Scrappy's Best Friend
 	Ach(13698), -- Clean Up On Aisle Mechagon
 	Ach(13699), -- Periodic Destruction
-	Ach(13700):FactionSplit(faction.Horde, nil), -- The Mechagonian Threat
 	Ach(13701):IsPvP(), -- Battlefield Brawler
 	Ach(13702):IsPvP(), -- Battlefield Tactician
 	Ach(13703):IsPvP(), -- Battlefield Master
@@ -550,15 +548,15 @@ KrowiAF.AchievementData["08_02_00"] = {
 	Ach(13733):Title(), -- Mythic: Queen Azshara
 	Ach(13735):AutoFactionSplit(faction.Horde, 13737), -- Heroic: War is Hell
 	Ach(13738):AutoFactionSplit(faction.Horde, 13739), -- Heroic: Tour of War
-	Ach(13743):AutoFactionSplit(faction.Alliance, 13746), -- Seasoned: Hunter Akana / Seasoned: Neri Sharpfin
-	Ach(13744):AutoFactionSplit(faction.Alliance, 13747), -- Seasoned: Bladesman Inowari / Seasoned: Poen Gillbrack
-	Ach(13745):AutoFactionSplit(faction.Alliance, 13748), -- Seasoned: Farseer Ori / Seasoned: Vim Brineheart
-	Ach(13749):AutoFactionSplit(faction.Horde, 13753), -- Veteran: Neri Sharpfin / Veteran: Hunter Akana
-	Ach(13750):AutoFactionSplit(faction.Horde, 13758), -- Battle-Scarred: Neri Sharpfin / Battle-Scarred: Hunter Akana
-	Ach(13751):AutoFactionSplit(faction.Horde, 13754), -- Veteran: Poen Gillbrack / Veteran: Bladesman Inowari
-	Ach(13752):AutoFactionSplit(faction.Horde, 13755), -- Veteran: Vim Brineheart / Veteran: Farseer Ori
-	Ach(13756):AutoFactionSplit(faction.Horde, 13759), -- Battle-Scarred: Poen Gillbrack / Battle-Scarred: Bladesman Inowari
-	Ach(13757):AutoFactionSplit(faction.Horde, 13760), -- Battle-Scarred: Vim Brineheart / Battle-Scarred: Farseer Ori
+	Ach(13743):AutoFactionSplit(faction.Alliance, 13746), -- Seasoned: Hunter Akana / Neri Sharpfin
+	Ach(13744):AutoFactionSplit(faction.Alliance, 13747), -- Seasoned: Bladesman Inowari / Poen Gillbrack
+	Ach(13745):AutoFactionSplit(faction.Alliance, 13748), -- Seasoned: Farseer Ori / Vim Brineheart
+	Ach(13749):AutoFactionSplit(faction.Horde, 13753), -- Veteran: Neri Sharpfin / Hunter Akana
+	Ach(13750):AutoFactionSplit(faction.Horde, 13758), -- Battle-Scarred: Neri Sharpfin / Hunter Akana
+	Ach(13751):AutoFactionSplit(faction.Horde, 13754), -- Veteran: Poen Gillbrack / Bladesman Inowari
+	Ach(13752):AutoFactionSplit(faction.Horde, 13755), -- Veteran: Vim Brineheart / Farseer Ori
+	Ach(13756):AutoFactionSplit(faction.Horde, 13759), -- Battle-Scarred: Poen Gillbrack / Bladesman Inowari
+	Ach(13757):AutoFactionSplit(faction.Horde, 13760), -- Battle-Scarred: Vim Brineheart / Farseer Ori
 	Ach(13761):AutoFactionSplit(faction.Horde, 13762), -- Aqua Team Murder Force
 	Ach(13763), -- Back to the Depths!
 	Ach(13764), -- Puzzle Performer
@@ -603,7 +601,7 @@ KrowiAF.AchievementData["08_03_00"] = {
 	Ach(13962):Title():PvP(29), -- Combatant: Battle for Azeroth Season 4
 	Ach(13963):Title():PvP(29), -- Rival: Battle for Azeroth Season 4
 	Ach(13964):Title():PvP(29), -- Duelist: Battle for Azeroth Season 4
-	Ach(13965):AutoFactionSplit(faction.Horde, 13966):PvP(29), -- Hero of the Horde: Corrupted / Hero of the Alliance: Corrupted
+	Ach(13965):AutoFactionSplit(faction.Horde, 13966):PvP(29), -- Hero of the Horde / Alliance: Corrupted
 	Ach(13967):Title():Mount():PvP(29), -- Gladiator: Battle for Azeroth Season 4
 	Ach(13989):Title():PvP(29), -- Elite: Battle for Azeroth Season 4
 	Ach(13990), -- You Can Pet the Dog, But...

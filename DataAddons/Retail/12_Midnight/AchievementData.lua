@@ -56,7 +56,7 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(42770):PvE(17), -- Myth of the Dawn
 	Ach(42786):HousingDecor(), -- Leatherworking at Midnight
 	Ach(42787):HousingDecor(), -- Enchanting at Midnight
-	Ach(42788):HousingDecor(), -- 3
+	Ach(42788):HousingDecor(), -- Alchemizing at Midnight
 	Ach(42789):HousingDecor(), -- Jewelcrafting at Midnight
 	Ach(42790):HousingDecor(), -- Skinning at Midnight
 	Ach(42791):HousingDecor(), -- Mining at Midnight
@@ -147,7 +147,7 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(61235):KeystoneResilience():PvE(17), -- Midnight Season 1: Resilient Keystone 13
 	Ach(61236):KeystoneResilience():PvE(17), -- Midnight Season 1: Resilient Keystone 14
 	Ach(61237):KeystoneResilience():PvE(17), -- Midnight Season 1: Resilient Keystone 15
-	Ach(61238):IsPvP(), -- Midnight Hunter
+	Ach(61238):IsPvP(), -- Midnight Bounty
 	Ach(61239):KeystoneResilience():PvE(17), -- Midnight Season 1: Resilient Keystone 16
 	Ach(61240):KeystoneResilience():PvE(17), -- Midnight Season 1: Resilient Keystone 17
 	Ach(61241):KeystoneResilience():PvE(17), -- Midnight Season 1: Resilient Keystone 18
@@ -171,7 +171,7 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(61259):Title():PvE(17), -- Umbral Hero: Midnight Season One
 	Ach(61262):Teleport():PvE(17), -- Keystone Hero: Windrunner Spire
 	Ach(61263):Mount(), -- Treasures of Harandar
-	Ach(61264), -- Leaf None Behind
+	Ach(61264):HousingDecor(), -- Leaf None Behind
 	Ach(61265):IsPvP(), -- Spectral Capture
 	Ach(61266):IsPvP(), -- Spectral Stocker
 	Ach(61267):Teleport():PvE(17), -- Keystone Hero: Magisters' Terrace
@@ -228,7 +228,7 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(61491), -- Ahead of the Curve: Chimaerus, the Undreamt God
 	Ach(61492), -- Cutting Edge: Chimaerus, the Undreamt God
 	Ach(61506):AlliedRace(), -- Allied Race: Haranir
-	Ach(61507), -- A Bloody Song
+	Ach(61507):HousingDecor(), -- A Bloody Song
 	Ach(61508), -- Voidscar Arena
 	Ach(61509), -- Heroic: Voidscar Arena
 	Ach(61510), -- Mythic: Voidscar Arena
@@ -244,7 +244,7 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(61581), -- Zul'Aman Glyph Hunter
 	Ach(61582), -- Harandar Glyph Hunter
 	Ach(61583), -- Voidstorm Glyph Hunter
-	Ach(61584), -- Midnight Glyph Hunter
+	Ach(61584):Mount(), -- Midnight Glyph Hunter
 	Ach(61585), -- You Conduit!
 	Ach(61586):IsPvP(), -- Galactic Gala
 	Ach(61587):PvE(17), -- Keystone Victor: Magisters' Terrace (Midnight)
@@ -305,25 +305,25 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(61731), -- The Gulf of Memory Stories
 	Ach(61732), -- Sunkiller Sanctum Stories
 	Ach(61733), -- Shadowguard Point Stories
-	Ach(61734), -- Midnight Delves: Endgame
+	Ach(61734):Other(), -- Midnight Delves: Endgame
 	Ach(61739), -- Sojourner of Harandar
 	Ach(61741), -- Delve Loremaster: Midnight
 	Ach(61796):PvE(17), -- Midnight: Journey's End (Season 1)
 	Ach(61797):Transmog(), -- My Shady Nemesis
 	Ach(61798):Title():PvE(17), -- Lighting the Dark
 	Ach(61799):Mount():PvE(17), -- Let Me Solo Him: Nullaeus
-	Ach(61800):PvE(17), -- Midnight Delves: Tier 4 (Season 1)
-	Ach(61801):PvE(17), -- Midnight Delves: Tier 5 (Season 1)
-	Ach(61802):PvE(17), -- Midnight Delves: Tier 6 (Season 1)
-	Ach(61803):PvE(17), -- Midnight Delves: Tier 7 (Season 1)
-	Ach(61804):PvE(17), -- Midnight Delves: Tier 8 (Season 1)
-	Ach(61805):PvE(17), -- Midnight Delves: Tier 9 (Season 1)
-	Ach(61806):PvE(17), -- Midnight Delves: Tier 10 (Season 1)
+	Ach(61800):Other():PvE(17), -- Midnight Delves: Tier 4 (Season 1)
+	Ach(61801):Other():PvE(17), -- Midnight Delves: Tier 5 (Season 1)
+	Ach(61802):Other():PvE(17), -- Midnight Delves: Tier 6 (Season 1)
+	Ach(61803):Other():PvE(17), -- Midnight Delves: Tier 7 (Season 1)
+	Ach(61804):Other():PvE(17), -- Midnight Delves: Tier 8 (Season 1)
+	Ach(61805):Other():PvE(17), -- Midnight Delves: Tier 9 (Season 1)
+	Ach(61806):Other():PvE(17), -- Midnight Delves: Tier 10 (Season 1)
 	Ach(61807):Title():PvE(17), -- Midnight Delves: Tier 11 (Season 1)
 	Ach(61808):Title():PvE(17), -- Fabled Let Me Solo Him: Nullaeus
-	Ach(61809):PvE(17), -- Adventurer of the Dawn
-	Ach(61832), -- Midnight Delves: Tier 1
-	Ach(61835), -- Midnight Delves: Tier 2
+	Ach(61809):Other():PvE(17), -- Adventurer of the Dawn
+	Ach(61832):Other(), -- Midnight Delves: Tier 1
+	Ach(61835):Other(), -- Midnight Delves: Tier 2
 	Ach(61836), -- Midnight Delves: Tier 3
 	Ach(61839):Transmog(), -- Midnight Pathfinder
 	Ach(61843), -- Quel'Dressed
@@ -348,7 +348,7 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(61900), -- Shadowguard Point Discoveries
 	Ach(61901):Title(), -- Midnight: Leave No Treasure Unfound
 	Ach(61906):Mount(), -- Glory of the Midnight Delver
-	Ach(61910), -- Mrglgrgl of Grglmrgl
+	Ach(61910):Title(), -- Mrglgrgl of Grglmrgl
 	Ach(61911), -- Ready, Set, Snap!
 	Ach(61912), -- Anchoring the Defense
 	Ach(61913), -- A Singular Problem
@@ -369,7 +369,7 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(61956):IsPvP(), -- Putting in the Practice
 	Ach(61957), -- Sojourner of Eversong Woods
 	Ach(61958):AutoFactionSplit(faction.Alliance, 61959):IsPvP(), -- Focused Target
-	Ach(61960), -- Treasures of Eversong Woods
+	Ach(61960):Pet(), -- Treasures of Eversong Woods
 	Ach(61961), -- Runestone Rush
 	Ach(62057), -- Midnight: The Highest Peaks
 	Ach(62058), -- Hungry Hungry Hatchlings
@@ -387,15 +387,15 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(62114):IsPvP(), -- Learning the Landscape: Arathi Basin
 	Ach(62115):IsPvP(), -- Learning the Landscape: Battle for Gilneas
 	Ach(62116):IsPvP(), -- Learning the Landscape: Silvershard Mines
-	Ach(62117):Other(), -- Abyss Anglers: Boarhide Catch Sack
-	Ach(62118):Other(), -- Abyss Anglers: Amazardhide Catch Case
-	Ach(62119):Other(), -- Abyss Anglers: Loaknit-Woven Catch Satchel
+	Ach(62117):Other(), -- Abyss Anglers: Finnow Chum
+	Ach(62118):Other(), -- Abyss Anglers: Plecofin Bait
+	Ach(62119):Other(), -- Abyss Anglers: Murkskimmer Meat
 	Ach(62120), -- Altar of Blessings: The Penitent Troll
 	Ach(62121), -- Altar of Blessings: Sacred Buffet Devotee
-	Ach(62122), -- Tallest Tree in the Forest
-	Ach(62125), -- Treasures of Zul'Aman
-	Ach(62126), -- Treasures of Voidstorm
-	Ach(62130), -- The Ultimate Predator
+	Ach(62122):HousingDecor(), -- Tallest Tree in the Forest
+	Ach(62125):Toy(), -- Treasures of Zul'Aman
+	Ach(62126):Toy(), -- Treasures of Voidstorm
+	Ach(62130):HousingDecor(), -- The Ultimate Predator
 	Ach(62133), -- Thrill of the Chase
 	Ach(62134):IsPvP(), -- The Deadliest of Prey
 	Ach(62135):IsPvP(), -- Now It's A Party
@@ -438,11 +438,11 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(62183):HousingDecor(), -- Prey: A Thorn in the Side (Nightmare)
 	Ach(62184):HousingDecor(), -- Prey: Breaking the Blade (Nightmare)
 	Ach(62185):HousingDecor(), -- Ever Painting
-	Ach(62186), -- The Party Must Go On
+	Ach(62186):HousingDecor(), -- The Party Must Go On
 	Ach(62187), -- Grand Magister's Sommelier
 	Ach(62188), -- More Than Just Their Roots
 	Ach(62189), -- Mind-Seeker
-	Ach(62190), -- Life of the Party
+	Ach(62190):Mount(), -- Life of the Party
 	Ach(62191), -- Call of the Light
 	Ach(62192):Transmog(), -- Midnight Diplomat
 	Ach(62193), -- Midnight Dungeon Damage Dealer
@@ -468,8 +468,8 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(62218), -- Abyss Anglers: Even The Best
 	Ach(62219), -- Abyss Anglers: No Sea Can Hold Me
 	Ach(62220), -- Abyss Anglers: Proper Procedure
-	Ach(62221), -- Abyss Anglers: Fresh Depth Tech
-	Ach(62222), -- Abyss Anglers: The Amani Way
+	Ach(62221), -- Abyss Anglers: Fresh Depth Nets
+	Ach(62222), -- Abyss Anglers: Free Transport
 	Ach(62223), -- Alchemy-on-Demand
 	Ach(62232), -- Blacksmithing-on-Demand
 	Ach(62233), -- Enchanting-on-Demand
@@ -499,13 +499,13 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(62263), -- Amani Tribe Champion
 	Ach(62264), -- Hara'ti Champion
 	Ach(62265), -- The Singularity Champion
-	Ach(62266):Other(), -- Abundance: An Acolyte no Longer
+	Ach(62266), -- Abundance: An Acolyte no Longer
 	Ach(62267), -- A Most Violent Loa
-	Ach(62268):Other(), -- Abundance: Professionals Only
+	Ach(62268), -- Abundance: Professionals Only
 	Ach(62269), -- Altar of Blessings: Amani Curious
 	Ach(62270), -- Altar of Blessings: One for Altar
 	Ach(62271), -- Abyss Anglers: Trench Berserker
-	Ach(62272), -- Abyss Anglers: Certified Depthdiver
+	Ach(62272):Other(), -- Abyss Anglers: Certified Depthdiver
 	Ach(62273):NotCategorized(), -- Echoes of Midnight
 	Ach(62288):HousingDecor(), -- Eversong Woods: The Highest Peaks
 	Ach(62289):HousingDecor(), -- Zul'Aman: The Highest Peaks
@@ -519,7 +519,7 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(62331), -- Abundance: Drops of Prosperity
 	Ach(62332), -- Abundance: Dundun's Favored
 	Ach(62333), -- Abundance: Harvester
-	Ach(62336), -- Abundance: Contributer
+	Ach(62336), -- Abundance: Contributor
 	Ach(62337), -- Abundance: Professional
 	Ach(62338), -- Abundance: Artisan
 	Ach(62339), -- Abundance: Gambler
@@ -527,18 +527,18 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(62341), -- Abundance: Ain't Dun Till It's Dun
 	Ach(62351):Title(), -- Preying For Midnight
 	Ach(62352), -- Nothing to See Here
-	Ach(62357):NotCategorized(), -- Classically Trained Lumberjack
-	Ach(62358):NotCategorized(), -- Outlandish Lumberjack
-	Ach(62359):NotCategorized(), -- Wrathful Lumberjack
-	Ach(62360):NotCategorized(), -- Cataclysmic Lumberjack
-	Ach(62361):NotCategorized(), -- Mist-Shrouded Lumberjack
-	Ach(62362):NotCategorized(), -- Lumberjack Warlord
-	Ach(62363):NotCategorized(), -- Legion Lumberjack
-	Ach(62364):NotCategorized(), -- Azeroth's Lumberjack
-	Ach(62365):NotCategorized(), -- Shadowy Lumberjack
-	Ach(62366):NotCategorized(), -- Draconic Lumberjack
-	Ach(62369):NotCategorized(), -- The Lumberjack Within
-	Ach(62370):NotCategorized(), -- Midnight Lumberjack
+	Ach(62357):Other():NotCategorized(), -- Classically Trained Lumberjack
+	Ach(62358):Other():NotCategorized(), -- Outlandish Lumberjack
+	Ach(62359):Other():NotCategorized(), -- Wrathful Lumberjack
+	Ach(62360):Other():NotCategorized(), -- Cataclysmic Lumberjack
+	Ach(62361):Other():NotCategorized(), -- Mist-Shrouded Lumberjack
+	Ach(62362):Other():NotCategorized(), -- Lumberjack Warlord
+	Ach(62363):Other():NotCategorized(), -- Legion Lumberjack
+	Ach(62364):Other():NotCategorized(), -- Azeroth's Lumberjack
+	Ach(62365):Other():NotCategorized(), -- Shadowy Lumberjack
+	Ach(62366):Other():NotCategorized(), -- Draconic Lumberjack
+	Ach(62369):Other():NotCategorized(), -- The Lumberjack Within
+	Ach(62370):Other():NotCategorized(), -- Midnight Lumberjack
 	Ach(62371), -- Couponing for Beginners
 	Ach(62373), -- Coupon Collector
 	Ach(62374), -- You Get The Best Deals Anywhere

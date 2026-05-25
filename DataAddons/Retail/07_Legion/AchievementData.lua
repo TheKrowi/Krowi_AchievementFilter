@@ -408,7 +408,7 @@ KrowiAF.AchievementData["07_02_00"] = {
 	Ach(11696), -- Grin and Bear It
 	Ach(11697):PvP(21), -- Cruel Elite
 	Ach(11698):PvP(22), -- Ferocious Elite
-	Ach(11699), -- Grand Fin-ale
+	Ach(11699):HousingDecor(), -- Grand Fin-ale
 	Ach(11700), -- Cathedral of Eternal Night
 	Ach(11701), -- Heroic: Cathedral of Eternal Night
 	Ach(11702), -- Mythic: Cathedral of Eternal Night
@@ -730,6 +730,6 @@ KrowiAF.AchievementData["07_03_05"] = {
 	Ach(12430):FactionSplit(faction.Alliance), -- Duskwood Quests
 	Ach(12431):Pet(), -- Post Haste
 	Ach(12439):Title(), -- Priority Mail
-	Ach(12455):FactionSplit(faction.Alliance, 4894), -- Westfall & Duskwood / Silverpine Forest Quests
-	Ach(12456):FactionSplit(faction.Alliance, 4908), -- Loch Modan & Wetlands / Ghostlands Quests
+	Ach(12455):FactionSplit(faction.Alliance, 4894), -- Westfall & Duskwood Quests
+	Ach(12456):FactionSplit(faction.Alliance, 4908), -- Loch Modan & Wetlands Quests
 }

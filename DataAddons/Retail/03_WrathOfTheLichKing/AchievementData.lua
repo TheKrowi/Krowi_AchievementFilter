@@ -27,8 +27,8 @@ KrowiAF.AchievementData["03_00_02"] = {
 	Ach(664), -- Collector's Edition: Zergling
 	Ach(665), -- Collector's Edition: Netherwhelp
 	Ach(683), -- Collector's Edition: Frost Wyrm Whelp
-	Ach(714):Title():IsPvP():AutoFactionSplit(faction.Horde, 907), -- The Conqueror / The Justicar
-	Ach(762):Title():AutoFactionSplit(faction.Horde, 948), -- Ambassador of the Horde / Ambassador of the Alliance
+	Ach(714):Title():IsPvP():AutoFactionSplit(faction.Horde, 907), -- The Conqueror / Justicar
+	Ach(762):Title():AutoFactionSplit(faction.Horde, 948), -- Ambassador of the Horde / Alliance
 	Ach(938):HousingDecor(), -- The Snows of Northrend
 	Ach(940):HousingDecor(), -- The Green Hills of Stranglethorn
 	Ach(957):Obtainable("Event", 1592), -- Hero of the Zandalar Tribe

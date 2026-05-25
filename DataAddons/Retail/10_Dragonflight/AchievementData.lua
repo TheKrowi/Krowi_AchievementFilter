@@ -16,8 +16,7 @@ KrowiAF.AchievementData["10_00_00"] = {
 	Ach(15796), -- Cliffside Companion
 	Ach(15797), -- An Azure Ally
 	Ach(15805), -- Level 70
-	Ach(15833):Mount():FactionSplit(faction.Horde, 15834), -- Thanks for the Carry!
-	Ach(15834):Mount():FactionSplit(faction.Alliance, 15833), -- Thanks for the Carry!
+	Ach(15833):Mount():AutoFactionSplit(faction.Horde, 15834), -- Thanks for the Carry!
 	Ach(15889):Toy(), -- River Rapids Wrangler
 	Ach(15890), -- Dragonscale Expedition: The Highest Peaks
 	Ach(15915), -- Waking Shores: Bronze
@@ -709,7 +708,7 @@ KrowiAF.AchievementData["10_01_05"] = {
 
 KrowiAF.AchievementData["10_01_07"] = {
 	{KrowiAF.SetAchievementPatch, 10, 1, 7},
-	Ach(15344), -- "S.A.F.E"" Pilot"
+	Ach(15344), -- "S.A.F.E" Pilot
 	Ach(17344), -- Warcraft Rumble Minis, Get 'Em All!
 	Ach(17346), -- Warcraft Rumble Minis, Maiev's New Look
 	Ach(17347), -- Warcraft Rumble Minis, Sneed's New Look
@@ -730,7 +729,7 @@ KrowiAF.AchievementData["10_01_07"] = {
 	Ach(17547):Obtainable("Event", 324), -- The Lick King
 	Ach(17773):HousingDecor(), -- A Blue Dawn
 	Ach(18250), -- Ysergle The Dreamurk
-	Ach(18579):Obtainable("Event", 372), -- A Round on the House
+	Ach(18579):Obtainable("Event", 372), -- A Round on the House on the Dragon Isles
 	Ach(18702):Obtainable("From", "Date", {2023, 11, 11}, "Until", "Date", {2023, 12, 7}), -- WoW's 19th Anniversary
 	Ach(18719), -- Cataclysmic Master of All
 	Ach(18720), -- Classic Master of All
@@ -1162,10 +1161,8 @@ KrowiAF.AchievementData["10_02_07"] = {
 	Ach(19914):RemixBronze():Obtainable("Event", 1514), -- Shado-Pan
 	Ach(19915):RemixBronze():Obtainable("Event", 1514), -- The Klaxxi
 	Ach(19916):RemixBronze():Obtainable("Event", 1514), -- Golden Lotus
-	Ach(19917):RemixBronze():FactionSplit(faction.Alliance, 19918):Obtainable("Event", 1514), -- Operation: Shieldwall
-	Ach(19918):RemixBronze():FactionSplit(faction.Horde, 19917):Obtainable("Event", 1514), -- Dominance Offensive
-	Ach(19919):RemixBronze():FactionSplit(faction.Alliance, 19920):Obtainable("Event", 1514), -- Kirin Tor Offensive
-	Ach(19920):RemixBronze():FactionSplit(faction.Horde, 19919):Obtainable("Event", 1514), -- Sunreaver Onslaught
+	Ach(19917):RemixBronze():AutoFactionSplit(faction.Alliance, 19918):Obtainable("Event", 1514), -- Operation: Shieldwall / Dominance Offensive
+	Ach(19919):RemixBronze():AutoFactionSplit(faction.Alliance, 19920):Obtainable("Event", 1514), -- Kirin Tor Offensive / Sunreaver Onslaught
 	Ach(19921):RemixBronze():Obtainable("Event", 1514), -- Shado-Pan Assault
 	Ach(19922):RemixBronze():Obtainable("Event", 1514), -- Emperor Shaohao
 	Ach(19923):RemixBronze():Obtainable("Event", 1514), -- Greenstone Village
@@ -1177,7 +1174,7 @@ KrowiAF.AchievementData["10_02_07"] = {
 	Ach(19929):RemixBronze():Obtainable("Event", 1514), -- Heroic: Crypt of Forgotten Kings
 	Ach(19930):RemixBronze():Obtainable("Event", 1514), -- Assault on Zan'vess
 	Ach(19931):RemixBronze():Obtainable("Event", 1514), -- A Little Patience
-	Ach(19932):RemixBronze():FactionSplit(faction.Horde, 20500):Obtainable("Event", 1514), -- Domination Point
+	Ach(19932):RemixBronze():AutoFactionSplit(faction.Horde, 20500):Obtainable("Event", 1514), -- Domination Point / Lion's Landing
 	Ach(19933):RemixBronze():Obtainable("Event", 1514), -- Dagger in the Dark
 	Ach(19934):RemixBronze():AutoFactionSplit(faction.Alliance, 19936):Obtainable("Event", 1514), -- Battle on the High Seas
 	Ach(19935):RemixBronze():AutoFactionSplit(faction.Alliance, 19937):Obtainable("Event", 1514), -- Heroic: Battle on the High Seas
@@ -1255,7 +1252,6 @@ KrowiAF.AchievementData["10_02_07"] = {
 	Ach(20030):RemixBronze():Obtainable("Event", 1514), -- Explore Townlong Steppes
 	Ach(20031):RemixBronze():Obtainable("Event", 1514), -- Explore Dread Wastes
 	Ach(20069):RemixBronze():Obtainable("Event", 1514), -- Elusive Foes: Vale of Eternal Blossoms
-	Ach(20500):RemixBronze():FactionSplit(faction.Alliance, 19932):Obtainable("Event", 1514), -- Lion's Landing
 	Ach(20527):Other():Obtainable("Event", 1514), -- Infinite Power I
 	Ach(20528):Other():Obtainable("Event", 1514), -- Infinite Power II
 	Ach(20529):Other():Obtainable("Event", 1514), -- Infinite Power III

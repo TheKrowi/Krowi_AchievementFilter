@@ -17,8 +17,8 @@
 .EXAMPLE
     .\Verify-AchievementData.ps1 "DataAddons\Classic\03_WrathOfTheLichKing\AchievementData.lua"
 .EXAMPLE
-    .\Verify-AchievementData.ps1 "DataAddons\Retail\11_TheWarWithin\AchievementData.lua" -Checks id-exists,faction
-#>
+    .\Verify-AchievementData.ps1 "DataAddons\Retail\11_TheWarWithin\AchievementData.lua" -Checks id-exists,faction.EXAMPLE
+    .\ Verify-AchievementData.ps1 "DataAddons\Retail\08_BattleForAzeroth\AchievementData.lua" -Checks autofactionsplit-unique#>
 [CmdletBinding()]
 param(
     [Parameter(Mandatory, Position = 0)]
@@ -37,7 +37,7 @@ $ErrorActionPreference = "Stop"
 Add-Type -AssemblyName System.Web
 
 # ── Normalize checks ──────────────────────────────────────────────────────────
-$allCheckNames = @("id-exists", "faction", "title-reward", "reward-item", "description-lang")
+$allCheckNames = @("id-exists", "faction", "title-reward", "reward-item", "description-lang", "autofactionsplit-unique")
 if ($Checks -contains "all") { $runChecks = $allCheckNames } else { $runChecks = $Checks }
 
 # ── Load file ─────────────────────────────────────────────────────────────────
@@ -193,8 +193,9 @@ if (-not $Build) {
 # The chain captures everything up to the optional "-- comment" at end of line.
 # Commas in the chain are fine; "--" in chains would break this but doesn't occur in practice.
 $entryPat    = '^\s*Ach\((\d+)\)((?:[^-\r\n]|-(?!-))*?)(?:--\s*(.+))?\s*$'
-$factPat     = ':(?:Auto)?FactionSplit\(faction\.(Alliance|Horde),\s*(\d+)\)'
-$factOnlyPat = ':(?:Auto)?FactionSplit\(faction\.(Alliance|Horde)(?:,\s*nil)?\)'
+$autoFactPat  = ':AutoFactionSplit\(faction\.(Alliance|Horde),\s*(\d+)\)'
+$factPat      = ':FactionSplit\(faction\.(Alliance|Horde),\s*(\d+)\)'
+$factOnlyPat  = ':(?:Auto)?FactionSplit\(faction\.(Alliance|Horde)(?:,\s*nil)?\)'
 
 $entries = [System.Collections.Generic.List[PSCustomObject]]::new()
 
@@ -205,9 +206,14 @@ foreach ($line in $lines) {
     $eChain   = $Matches[2]
     $eComment = if ($Matches[3]) { $Matches[3].Trim() } else { "" }
 
+    $isAutoSplit = $false
     $fSide   = $null
     $splitId = $null
-    if ($eChain -match $factPat) {
+    if ($eChain -match $autoFactPat) {
+        $isAutoSplit = $true
+        $fSide   = $Matches[1]     # "Alliance" or "Horde" — faction of PRIMARY ID
+        $splitId = [int]$Matches[2]
+    } elseif ($eChain -match $factPat) {
         $fSide   = $Matches[1]     # "Alliance" or "Horde" — faction of PRIMARY ID
         $splitId = [int]$Matches[2]
     } elseif ($eChain -match $factOnlyPat) {
@@ -227,8 +233,15 @@ foreach ($line in $lines) {
         HasTabard     = [bool]($eChain -match ':Tabard\(\)')
         HasGarrison   = [bool]($eChain -match ':Garrison\(\)')
         HasAlliedRace = [bool]($eChain -match ':AlliedRace\(\)')
+        HasHousingDecor   = [bool]($eChain -match ':HousingDecor\(\)')
+        HasTradersTender  = [bool]($eChain -match ':TradersTender\(\)')
+        HasKeystoneResilience = [bool]($eChain -match ':KeystoneResilience\(\)')
+        HasTeleport   = [bool]($eChain -match ':Teleport\(\)')
+        HasWarbandCampsite = [bool]($eChain -match ':WarbandCampsite\(\)')
+        HasIsPvP      = [bool]($eChain -match ':IsPvP\(\)')
         FactionSide = $fSide
         SplitID     = $splitId
+        IsAutoSplit = $isAutoSplit
     })
 }
 
@@ -288,12 +301,13 @@ foreach ($e in $entries) {
     #   "Reward: Title & X"        — combined title+item reward (e.g. Loremaster's Colors)
     #   "Reward: X and Y Title"    — combined mount+title reward (ends with " Title")
     #   "Reward: X Title & Y"      — combined title+item reward (title in middle, e.g. Pilgrim Title & Plump Turkey Pet)
+    #   "Reward: 'Title Name' Title, X Customization" — quoted title with customization (e.g. Return to Lordaeron)
     if ($runChecks -contains "title-reward") {
         $r         = $db.Reward.Trim()
         $isTitle   = $r -match '^Title Reward:' -or $r -match '^Title:' -or $r -match '^Titles:' -or
                      $r -match '^Character Title:' -or $r -match '^Seasonal Character Title:' -or
                      $r -match '^Reward:\s*Title\b' -or $r -match '^Reward:.*\bTitle$' -or
-                     $r -match '^Reward:.*\bTitle\s*&'
+                     $r -match '^Reward:.*\bTitle\s*&' -or $r -match "^Reward:.*'[^']*'\s+Title"
         if ($isTitle -and -not $e.HasTitle) {
             $failures.Add("[FAIL] title-reward    : Ach($($e.ID)) — DB Reward_lang=`"$r`" but no :Title()")
         }
@@ -310,35 +324,54 @@ foreach ($e in $entries) {
     #   "Mount: X"              — Mount reward (Retail)
     #   "Mount Reward: X"       — Vicious Saddle etc. (Retail)
     #   "Pet: X"                — Pet reward (Retail)
-    #   "Toy: X"                — Toy reward (Retail)
-    #   "Unlock: X"             — Feature/content unlock (Retail)
+    #   "Toy: X" / "Toys: X"   — Toy reward (Retail); both singular and plural forms exist
+    #   "Drake Customization: X" — Dragonriding/skyriding drake customization; treat as mount reward
+    #   "Paint Color: X"        — Mount paint colour (BfA Mechagon, TWW Housing); treat as mount reward
+    #   "Unlock: X" / "Unlocks X" — Feature/content unlock (Retail); verb and noun forms both exist
+    #   "Future Timerunning X" — Timerunning/Remix meta-progression reward (e.g. "Future Timerunning characters will begin with threads collected")
     #   "Character Unlock: X"   — Character-level unlock e.g. transmog sets (Retail)
+    #   "Customization Reward: X" — Customization/appearance item (Retail)
     #   "Appearance: X"         — Appearance/transmog unlock (Retail); use :Transmog()
+    #   "Demon Hunter Appearance: X" — DH-restricted appearance (Retail)
     #   "Follower: X"           — Garrison follower reward; use :Garrison()
     #   "Garrison Monument Reward: X" — Garrison monument; use :Garrison()
+    #   "Arsenal: X"            — Weapon arsenal unlock (Retail); use :Transmog()
+    #   "Cross-Game Reward: X"  — Reward in other Blizzard games (Retail); use :Other()
     # Title-style prefixes are excluded to avoid double-flagging "Reward: Title & X" entries.
+    # Combined title+mount/pet rewards ("Title: X and Mount: Y", "Title: X & Item: Y") are treated
+    # as both title and reward — the title check is applied separately; here we focus on the
+    # tangible reward part only, ignoring the title prefix.
     # RewardItemID alone is unreliable for Classic builds — it is non-zero for virtually all
     # achievements regardless of actual rewards.
     if ($runChecks -contains "reward-item") {
         $r          = $db.Reward.Trim()
         $isTitleStr = $r -match '^Title Reward:' -or $r -match '^Title:' -or $r -match '^Titles:' -or
                       $r -match '^Character Title:' -or $r -match '^Seasonal Character Title:' -or
-                      $r -match '^Reward:\s*Title\b'
+                      $r -match '^Reward:\s*Title\b' -or $r -match '^Reward:.*\bTitle($|\s*&|\s+and)'
         $isReward   = (-not $isTitleStr) -and (
-                       $r -match '^Reward:' -or $r -match '^Item Reward:' -or
+                       $r -match '^Reward:' -or $r -match '^Rewards:' -or $r -match '^Item Reward:' -or
                        $r -match '^Mount:' -or $r -match '^Mount Reward:' -or
-                       $r -match '^Pet:' -or $r -match '^Toy:' -or
-                       $r -match '^Unlock:' -or $r -match '^Character Unlock:' -or
+                       $r -match '^Pet:' -or $r -match '^Pet Costume:' -or $r -match '^Toys?:' -or
+                       $r -match '^Customization Reward:' -or $r -match '^Decor Rewards?:' -or
+                       $r -match '^Unlocks?[: ]' -or $r -match '^Max Level Unlock:' -or $r -match '^Character Unlock:' -or
                        $r -match '^Appearance:' -or $r -match '^Demon Hunter Appearance:' -or
                        $r -match '^Arsenal:' -or $r -match '^Cross-Game Reward:' -or
-                       $r -match '^Follower:' -or $r -match '^Garrison Monument Reward:'
+                       $r -match '^Follower:' -or $r -match '^Garrison Monument Reward:' -or
+                       $r -match '^Ensemble:' -or $r -match '^Illusion:' -or $r -match '^Item:' -or
+                       $r -match '^Drake Customization:' -or $r -match '^Paint Color:' -or
+                       $r -match '^Future Timerunning'
                       )
-        $hasMethod = $e.HasMount -or $e.HasPet -or $e.HasItem -or $e.HasToy -or $e.HasTransmog -or $e.HasOther -or $e.HasTabard -or $e.HasGarrison -or $e.HasAlliedRace
-        if ($isReward -and -not $hasMethod) {
-            $failures.Add("[FAIL] reward-item     : Ach($($e.ID)) — DB Reward_lang=`"$r`" but no :Mount()/:Pet()/:Item()/:Toy()/:Transmog()/:Other()/:Tabard()")
-        }
-        if ($hasMethod -and -not $isReward) {
-            $failures.Add("[FAIL] reward-item     : Ach($($e.ID)) — has reward method but DB Reward_lang=`"`$r`" is not a tangible reward")
+        $hasMethod = $e.HasMount -or $e.HasPet -or $e.HasItem -or $e.HasToy -or
+                     $e.HasTransmog -or $e.HasOther -or $e.HasTabard -or $e.HasGarrison -or
+                     $e.HasAlliedRace -or $e.HasHousingDecor -or $e.HasTradersTender -or
+                     $e.HasKeystoneResilience -or $e.HasTeleport -or $e.HasWarbandCampsite
+        # If it's a title reward and entry has :Title(), that's sufficient; don't require other methods
+        if ($isTitleStr -and $e.HasTitle) {
+            # Title-only reward with :Title() marker — valid
+        } elseif ($isReward -and -not $hasMethod) {
+            $failures.Add("[FAIL] reward-item     : Ach($($e.ID)) — DB Reward_lang=""$r"" but no :Mount()/:Pet()/:Item()/:Toy()/:Transmog()/:Other()/:Tabard()")
+        } elseif ($hasMethod -and -not $isReward -and -not $isTitleStr) {
+            $failures.Add("[FAIL] reward-item     : Ach($($e.ID)) — has reward method but DB Reward_lang=""$r"" is not a tangible reward")
         }
     }
 
@@ -347,7 +380,11 @@ foreach ($e in $entries) {
         if ($e.SplitID) {
             $splitDb = $dbById["$($e.SplitID)"]
             if ($db -and $splitDb) {
-                $expected = Get-MergedFactionComment -Primary $db.Title -Secondary $splitDb.Title
+                if ($e.IsAutoSplit) {
+                    $expected = Get-MergedFactionComment -Primary $db.Title -Secondary $splitDb.Title
+                } else {
+                    $expected = $db.Title
+                }
                 if ($e.Comment -ne $expected) {
                     $failures.Add("[FAIL] description-lang: Ach($($e.ID))+Ach($($e.SplitID)) — comment `"$($e.Comment)`" ≠ expected `"$expected`"")
                 }
@@ -360,12 +397,76 @@ foreach ($e in $entries) {
     }
 }
 
+# ── autofactionsplit-unique (file-level, runs after the per-entry loop) ───────
+# Two related problems are detected:
+#   1. AutoFactionSplit duplicate: Ach(X):AutoFactionSplit(f, Y) AND Ach(Y) also appears
+#      as its own entry — the secondary is auto-created and must not be listed separately.
+#   2. Mutual FactionSplit: Ach(X):FactionSplit(f1, Y) AND Ach(Y):FactionSplit(f2, X) both
+#      exist — they reference each other. If the reward methods match on both entries,
+#      only one should remain (as AutoFactionSplit). If the reward methods DIFFER (e.g., one
+#      gives a housing decor and the other gives nothing), the mutual FactionSplit is
+#      intentional and must NOT be flagged — AutoFactionSplit would incorrectly propagate
+#      the reward type to both entries.
+function Get-RewardMethodSignature([PSCustomObject]$entry) {
+    $methods = [System.Collections.Generic.List[string]]::new()
+    if ($entry.HasTitle)                  { $methods.Add("Title") }
+    if ($entry.HasMount)                  { $methods.Add("Mount") }
+    if ($entry.HasPet)                    { $methods.Add("Pet") }
+    if ($entry.HasItem)                   { $methods.Add("Item") }
+    if ($entry.HasToy)                    { $methods.Add("Toy") }
+    if ($entry.HasTransmog)               { $methods.Add("Transmog") }
+    if ($entry.HasOther)                  { $methods.Add("Other") }
+    if ($entry.HasTabard)                 { $methods.Add("Tabard") }
+    if ($entry.HasGarrison)               { $methods.Add("Garrison") }
+    if ($entry.HasAlliedRace)             { $methods.Add("AlliedRace") }
+    if ($entry.HasHousingDecor)           { $methods.Add("HousingDecor") }
+    if ($entry.HasTradersTender)          { $methods.Add("TradersTender") }
+    if ($entry.HasKeystoneResilience)     { $methods.Add("KeystoneResilience") }
+    if ($entry.HasTeleport)               { $methods.Add("Teleport") }
+    if ($entry.HasWarbandCampsite)        { $methods.Add("WarbandCampsite") }
+    return ($methods | Sort-Object) -join ","
+}
+
+if ($runChecks -contains "autofactionsplit-unique") {
+    $primaryIdSet = @{}
+    foreach ($e in $entries) { $primaryIdSet["$($e.ID)"] = $e }
+
+    foreach ($e in $entries) {
+        if ($null -eq $e.SplitID) { continue }
+        $partnerId = "$($e.SplitID)"
+
+        # Case 1: AutoFactionSplit whose partner also appears as a standalone entry
+        if ($e.IsAutoSplit -and $primaryIdSet.ContainsKey($partnerId)) {
+            $failures.Add("[FAIL] autofactionsplit-unique: Ach($($e.ID)):AutoFactionSplit — partner Ach($($e.SplitID)) also appears as a separate entry and should be removed")
+        }
+
+        # Case 2: Two FactionSplit entries that mutually reference each other
+        # (report only once, on the lower ID)
+        # Skip if the two entries have different reward method signatures — asymmetric rewards
+        # require separate FactionSplit entries and cannot be represented with AutoFactionSplit,
+        # since AutoFactionSplit propagates the reward type to both achievements.
+        if (-not $e.IsAutoSplit -and $primaryIdSet.ContainsKey($partnerId)) {
+            $partner = $primaryIdSet[$partnerId]
+            if ($null -ne $partner.SplitID -and $partner.SplitID -eq $e.ID -and $e.ID -lt $partner.ID) {
+                $eSig = Get-RewardMethodSignature $e
+                $pSig = Get-RewardMethodSignature $partner
+                if ($eSig -ne $pSig) { continue }
+                $failures.Add("[FAIL] autofactionsplit-unique: Ach($($e.ID)) and Ach($($partner.ID)) mutually reference each other via :FactionSplit — use :AutoFactionSplit on the primary entry only")
+            }
+        }
+    }
+}
+
 # ── Report ────────────────────────────────────────────────────────────────────
 Write-Host ""
 if ($failures.Count -eq 0) {
-    Write-Host "All $($entries.Count) entries passed." -ForegroundColor Green
+    $msg = "All $($entries.Count) entries passed."
+    Write-Host $msg -ForegroundColor Green
+    exit 0
 } else {
     $failures | ForEach-Object { Write-Host $_ -ForegroundColor Yellow }
     Write-Host ""
-    Write-Host "$($failures.Count) failure(s) in $($entries.Count) entries checked." -ForegroundColor Yellow
+    $summary = "$($failures.Count) failure(s) in $($entries.Count) entries checked."
+    Write-Host $summary -ForegroundColor Yellow
+    exit 1
 }

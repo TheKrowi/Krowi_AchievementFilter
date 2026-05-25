@@ -15,10 +15,10 @@ KrowiAF.AchievementData["04_00_01"] = {
 KrowiAF.AchievementData["04_00_03"] = {
 	{KrowiAF.SetAchievementPatch, 4, 0, 3},
 	Ach(4859):HousingDecor(), -- Kings Under the Mountain
-	Ach(4894):FactionSplit(faction.Horde, 12455), -- Silverpine Forest / Westfall & Duskwood Quests
+	Ach(4894):FactionSplit(faction.Horde, 12455), -- Silverpine Forest Quests
 	Ach(4899):FactionSplit(faction.Alliance), -- Loch Modan Quests
 	Ach(4903):FactionSplit(faction.Alliance), -- Westfall Quests
-	Ach(4908):FactionSplit(faction.Horde, 12456), -- Ghostlands / Loch Modan & Wetlands Quests
+	Ach(4908):FactionSplit(faction.Horde, 12456), -- Ghostlands Quests
 	Ach(5223):HousingDecor():IsPvP(), -- Master of Twin Peaks
 	Ach(5245):HousingDecor():IsPvP(), -- Battle for Gilneas Victory
 	Ach(5344):AutoFactionSplit(faction.Alliance, 5358):PvP(9), -- Hero of the Alliance / Horde: Vicious

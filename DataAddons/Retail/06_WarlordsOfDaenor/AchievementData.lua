@@ -254,7 +254,7 @@ KrowiAF.AchievementData["06_00_02"] = {
 	Ach(9412), -- Arakkoa Archivist
 	Ach(9413), -- Strength and Honor
 	Ach(9414), -- Ogre Observer
-	Ach(9415), -- Secrets of Skettis
+	Ach(9415):HousingDecor(), -- Secrets of Skettis
 	Ach(9419), -- Draenor Curator
 	Ach(9422), -- The Search For Fact, Not Truth
 	Ach(9423), -- Goliaths of Gorgrond

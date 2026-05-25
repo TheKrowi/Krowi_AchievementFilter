@@ -193,7 +193,7 @@ KrowiAF.AchievementData["09_00_01"] = {
 	Ach(14689):Title():Mount():PvP(30), -- Gladiator: Shadowlands Season 1
 	Ach(14690):Title():PvP(30), -- Sinful Gladiator: Shadowlands Season 1
 	Ach(14691):Title():PvP(30), -- Elite: Shadowlands Season 1
-	Ach(14692):AutoFactionSplit(faction.Alliance, 14693):PvP(30), -- Hero of the Alliance: Sinful / Hero of the Horde: Sinful
+	Ach(14692):AutoFactionSplit(faction.Alliance, 14693):PvP(30), -- Hero of the Alliance / Horde: Sinful
 	Ach(14715), -- Castle Nathria
 	Ach(14717), -- Heroic: Castle Nathria
 	Ach(14718), -- Mythic: Castle Nathria
@@ -344,7 +344,7 @@ KrowiAF.AchievementData["09_01_00"] = {
 	Ach(14972):Title():Mount():PvP(31), -- Gladiator: Shadowlands Season 2
 	Ach(14973):Title():PvP(31), -- Unchained Gladiator: Shadowlands Season 2
 	Ach(14974):Title():PvP(31), -- Elite: Shadowlands Season 2
-	Ach(14975):AutoFactionSplit(faction.Alliance, 14976):PvP(31), -- Hero of the Alliance: Unchained / Hero of the Horde: Unchained
+	Ach(14975):AutoFactionSplit(faction.Alliance, 14976):PvP(31), -- Hero of the Alliance / Horde: Unchained
 	Ach(14998), -- Name A Better Duo, I'll Wait
 	Ach(14999):PvP(31), -- Unchained Gladiator's Soul Eater
 	Ach(15000), -- United Front
@@ -500,7 +500,7 @@ KrowiAF.AchievementData["09_02_00"] = {
 	Ach(15352):Title():Mount():PvP(32), -- Gladiator: Shadowlands Season 3
 	Ach(15353):Title():PvP(32), -- Cosmic Gladiator: Shadowlands Season 3
 	Ach(15354):Title():PvP(32), -- Elite: Shadowlands Season 3
-	Ach(15355):AutoFactionSplit(faction.Alliance, 15356):PvP(32), -- Hero of the Alliance: Cosmic / Hero of the Horde: Cosmic
+	Ach(15355):AutoFactionSplit(faction.Alliance, 15356):PvP(32), -- Hero of the Alliance / Horde: Cosmic
 	Ach(15378):PvP(32), -- Rival II: Shadowlands Season 3
 	Ach(15379):PvP(32), -- Challenger II: Shadowlands Season 3
 	Ach(15380):PvP(32), -- Combatant II: Shadowlands Season 3
@@ -579,7 +579,7 @@ KrowiAF.AchievementData["09_02_05"] = {
 	Ach(15604):Title():PvP(33), -- Duelist: Shadowlands Season 4
 	Ach(15605):Title():Mount():PvP(33), -- Gladiator: Shadowlands Season 4
 	Ach(15606):Title():PvP(33), -- Eternal Gladiator: Shadowlands Season 4
-	Ach(15607):AutoFactionSplit(faction.Horde, 15608):PvP(33), -- Hero of the Horde: Eternal / Hero of the Alliance: Eternal
+	Ach(15607):AutoFactionSplit(faction.Horde, 15608):PvP(33), -- Hero of the Horde / Alliance: Eternal
 	Ach(15609):Title():PvP(33), -- Combatant I: Shadowlands Season 4
 	Ach(15610):PvP(33), -- Combatant II: Shadowlands Season 4
 	Ach(15612):PvP(33), -- Eternal Gladiator's Soul Eater

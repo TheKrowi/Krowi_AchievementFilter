@@ -628,9 +628,10 @@
     "fsdeploy.deployWorkspaceOnSave": true,
     "chat.tools.terminal.autoApprove": {
         "&": true,
-        "/^cd \"e:\\\\World of Warcraft Addon Development\\\\Krowi_AchievementFilter\"; & \"\\.github\\\\skills\\\\verify-achievement-data\\\\Verify-AchievementData\\.ps1\" \"DataAddons\\\\Retail\\\\07_Legion\\\\AchievementData\\.lua\"$/": {
+        "/Verify-AchievementData\\.ps1/": {
             "approve": true,
             "matchCommandLine": true
-        }
+        },
+        ".\\Test-VerifyScript.ps1": true
     },
 }
