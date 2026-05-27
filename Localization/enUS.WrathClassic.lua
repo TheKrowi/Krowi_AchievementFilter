@@ -6,7 +6,7 @@ local L = addon.Localization.NewDefaultLocale(true)
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-05-17 22-05-27 ]] --
+-- [[ Exported at 2026-05-26 20-53-59 ]] --
 L["Completed"] = true
 L["EJ_GetInstanceInfo230"] = "Dire Maul"
 L["EJ_GetInstanceInfo246"] = "Scholomance"

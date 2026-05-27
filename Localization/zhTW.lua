@@ -6,7 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-02-08 10-28-30 ]] --
+-- [[ Exported at 2026-05-26 20-54-36 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -1141,7 +1141,11 @@ L["Worldsoul Memory"] = "世界之魂的回憶"
 L["WoW Remix: Mists of Pandaria"] = "幻境新生：潘達利亞之謎"
 L["Wowhead"] = true
 L["Wowhead Link"] = "Wowhead連結"
+L["WoW's 10th Anniversary"] = "魔獸世界十週年"
+L["WoW's 18th Anniversary"] = "魔獸世界十八週年"
+L["WoW's 19th Anniversary"] = "魔獸世界十九週年"
 L["WoW's 20th Anniversary"] = "魔獸世界二十週年"
+L["WoW's 21st Anniversary"] = "魔獸世界二十一週年"
 L["WoW's Anniversary"] = "魔獸世界週年慶典"
 L["X offset Desc"] = "初始位置水平偏移"
 L["Xu-Fu's Pet Guides"] = "雪福戰寵指南"

@@ -6,7 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-02-08 10-28-26 ]] --
+-- [[ Exported at 2026-05-26 20-54-29 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -774,6 +774,7 @@ L["Realm"] = "服务器"
 L["Realm First!"] = "服务器第一！"
 L["Rebind Micro Button"] = "重新绑定微型按钮"
 L["Rebind Micro Button Desc"] = "重新绑定成就菜单打开时的标签"
+L["Recently Added"] = "新增"
 L["Recruit-a-Friend"] = "战友招募"
 L["Red"] = "红色"
 L["Refresh Events"] = "刷新事件"
@@ -1144,7 +1145,11 @@ L["Worldsoul Memory"] = "世界之魂的回忆"
 L["WoW Remix: Mists of Pandaria"] = "幻境新生：潘达利亚"
 L["Wowhead"] = true
 L["Wowhead Link"] = "Wowhead链接"
+L["WoW's 10th Anniversary"] = "魔兽世界十周年"
+L["WoW's 18th Anniversary"] = "魔兽世界十八周年"
+L["WoW's 19th Anniversary"] = "魔兽世界十九周年"
 L["WoW's 20th Anniversary"] = "魔兽世界二十周年"
+L["WoW's 21st Anniversary"] = "魔兽世界二十一周年"
 L["WoW's Anniversary"] = "魔兽世界周年庆典"
 L["X offset Desc"] = "初始位置水平偏移"
 L["Xu-Fu's Pet Guides"] = "雪福战宠指南"

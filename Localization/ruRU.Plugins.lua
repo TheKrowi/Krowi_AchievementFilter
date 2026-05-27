@@ -4,7 +4,7 @@ if not L then return end
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-05-17 22-06-38 ]] --
+-- [[ Exported at 2026-05-26 20-54-23 ]] --
 L["AchievementsTabFixes"] = "Вкладки Достижений исправлены"
 L["AchievementsTabFixes Desc"] = "Данный плагин позволяет исправить Вкладки Достижений, описанные ниже."
 L["Add To Right Click Menu"] = "Добавить в меню по правому щелчку"

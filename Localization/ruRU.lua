@@ -6,7 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-02-08 10-28-21 ]] --
+-- [[ Exported at 2026-05-26 20-54-23 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -535,6 +535,7 @@ L["Realm"] = "Мир"
 L["Realm First!"] = "Первый в мире!"
 L["Rebind Micro Button"] = "Изменить Микро Кнопку"
 L["Rebind Micro Button Desc"] = "Исменить микро кнопку достижений для открытия конкретной владки, а не стандартной."
+L["Recently Added"] = "Свежее"
 L["Recruit-a-Friend"] = "Программа позови друзей"
 L["Red"] = "Красный"
 L["Refresh Events"] = "Обновить События"
@@ -829,7 +830,11 @@ L["Worldsoul Memory"] = "Воспоминание души мира"
 L["WoW Remix: Mists of Pandaria"] = true
 L["Wowhead"] = true
 L["Wowhead Link"] = "Wowhead ссылка"
+L["WoW's 10th Anniversary"] = "10я Годовщина WoW"
+L["WoW's 18th Anniversary"] = "18я Годовщина WoW"
+L["WoW's 19th Anniversary"] = "19я Годовщина WoW"
 L["WoW's 20th Anniversary"] = "20-я годовщина WoW"
+L["WoW's 21st Anniversary"] = "21-я годовщина WoW"
 L["WoW's Anniversary"] = "Годовщина WoW"
 L["X offset Desc"] = "Смещение по горизонтали от исходного положения."
 L["Xu-Fu's Pet Guides"] = "Гайды питомцев от Ксу-Фу"

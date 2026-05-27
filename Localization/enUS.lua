@@ -5,7 +5,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-02-08 10-28-08 ]] --
+-- [[ Exported at 2026-05-26 20-53-57 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -1147,7 +1147,11 @@ L["Worldsoul Memory"] = true
 L["WoW Remix: Mists of Pandaria"] = true
 L["Wowhead"] = true
 L["Wowhead Link"] = true
+L["WoW's 10th Anniversary"] = true
+L["WoW's 18th Anniversary"] = true
+L["WoW's 19th Anniversary"] = true
 L["WoW's 20th Anniversary"] = true
+L["WoW's 21st Anniversary"] = true
 L["WoW's Anniversary"] = true
 L["X offset Desc"] = "The horizontal offset from the start position."
 L["Xu-Fu's Pet Guides"] = true
@@ -1160,4 +1164,3 @@ L["Zaqali Ruin Investigation: Soon"] = true
 L["Zaqali Ruin Investigation: Starting Soon"] = true
 L["Zones"] = true
 L["Zuldazar"] = true
-L["Lingering Shadows"] = true

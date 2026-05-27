@@ -7,7 +7,7 @@ if not L then return end
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-05-17 22-06-49 ]] --
+-- [[ Exported at 2026-05-26 20-54-31 ]] --
 L["Completed"] = "已获得"
 L["EJ_GetInstanceInfo230"] = "厄运之槌"
 L["EJ_GetInstanceInfo246"] = "通灵学院"
