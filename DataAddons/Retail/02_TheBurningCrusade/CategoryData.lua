@@ -1,6 +1,6 @@
 ﻿local _, addon = ...;
 local shared = addon.Data.CategoryData.Shared;
-local CT = shared.CT;
+local CT = shared.CT
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
     55,

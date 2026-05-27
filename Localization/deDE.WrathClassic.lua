@@ -7,7 +7,7 @@ if not L then return end
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-05-26 20-54-06 ]] --
+-- [[ Exported at 2026-05-27 12-34-25 ]] --
 L["Completed"] = "Abgeschlossen "
 L["EJ_GetInstanceInfo230"] = "Düsterbruch "
 L["EJ_GetInstanceInfo246"] = "Scholomance "
