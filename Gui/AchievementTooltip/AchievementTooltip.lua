@@ -120,8 +120,7 @@ function tooltip:AddCriteria(achievementId, achievementData, numCriteria)
 end
 
 function tooltip:ShowTooltip(anchor, achievement)
-	GameTooltip:SetOwner(anchor, "ANCHOR_NONE");
-	GameTooltip:SetPoint("TOPLEFT", anchor, "TOPRIGHT");
+	GameTooltip:SetOwner(anchor, "ANCHOR_BOTTOMRIGHT", 0, anchor:GetHeight());
 
 	for _, sect in next, self.Sections do
 		if sect:CheckAdd(achievement) then

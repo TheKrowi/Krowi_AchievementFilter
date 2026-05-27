@@ -1,5 +1,5 @@
-local _, addon = ...;
-local shared = addon.Data.CategoryData.Shared;
+local _, addon = ...
+local shared = addon.Data.CategoryData.Shared
 local CT = shared.CT
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
@@ -19,24 +19,25 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
         { -- Borean Tundra
             addon.GetMapName(114),
             { -- Quests
-                    CT.Quests,
-            true,
+                CT.Quests,
+                true,
                 {
                     33, -- Nothing Boring About Borean
                     1358, -- Nothing Boring About Borean
                     561, -- D.E.H.T.A's Little P.I.T.A.
+                    61910, -- Mrglgrgl of Grglmrgl
                 },
             },
             { -- Exploration
-                    CT.Exploration,
-            true,
+                CT.Exploration,
+                true,
                 {
                     1264, -- Explore Borean Tundra
                 },
             },
             { -- Reputation
-                    CT.Reputation,
-            true,
+                CT.Reputation,
+                true,
                 {
                     949, -- Tuskarrmageddon
                 },
@@ -45,16 +46,16 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
         { -- Howling Fjord
             addon.GetMapName(117),
             { -- Quests
-                    CT.Quests,
-            true,
+                CT.Quests,
+                true,
                 {
                     34, -- I've Toured the Fjord
                     1356, -- I've Toured the Fjord
                 },
             },
             { -- Exploration
-                    CT.Exploration,
-            true,
+                CT.Exploration,
+                true,
                 {
                     1263, -- Explore Howling Fjord
                     1254, -- Friend or Fowl?
@@ -65,8 +66,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
         { -- Dragonblight
             addon.GetMapName(115),
             { -- Quests
-                    CT.Quests,
-            true,
+                CT.Quests,
+                true,
                 {
                     35, -- Might of Dragonblight
                     1359, -- Might of Dragonblight
@@ -75,16 +76,16 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
                 },
             },
             { -- Exploration
-                    CT.Exploration,
-            true,
+                CT.Exploration,
+                true,
                 {
                     1265, -- Explore Dragonblight
                     9924, -- Field Photographer
                 },
             },
             { -- Reputation
-                    CT.Reputation,
-            true,
+                CT.Reputation,
+                true,
                 {
                     1007, -- The Wyrmrest Accord
                 },
@@ -96,23 +97,23 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
         { -- Grizzly Hills
             addon.GetMapName(116),
             { -- Quests
-                    CT.Quests,
-            true,
+                CT.Quests,
+                true,
                 {
                     37, -- Fo' Grizzle My Shizzle
                     1357, -- Fo' Grizzle My Shizzle
                 },
             },
             { -- Exploration
-                    CT.Exploration,
-            true,
+                CT.Exploration,
+                true,
                 {
                     1266, -- Explore Grizzly Hills
                 },
             },
             { -- PvP
-                    CT.PvP,
-            true,
+                CT.PvP,
+                true,
                 {
                     2016, -- Grizzled Veteran
                     2017, -- Grizzled Veteran
@@ -122,8 +123,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
         { -- Zul'Drak
             addon.GetMapName(121),
             { -- Quests
-                    CT.Quests,
-            true,
+                CT.Quests,
+                true,
                 {
                     36, -- The Empire of Zul'Drak
                     1596, -- Guru of Drakuru
@@ -132,8 +133,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
                 },
             },
             { -- Exploration
-                    CT.Exploration,
-            true,
+                CT.Exploration,
+                true,
                 {
                     1267, -- Explore Zul'Drak
                 },
@@ -142,8 +143,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
         { -- Sholazar Basin
             addon.GetMapName(119),
             { -- Quests
-                    CT.Quests,
-            true,
+                CT.Quests,
+                true,
                 {
                     39, -- Into the Basin
                     961, -- Honorary Frenzyheart
@@ -153,15 +154,15 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
                 },
             },
             { -- Exploration
-                    CT.Exploration,
-            true,
+                CT.Exploration,
+                true,
                 {
                     1268, -- Explore Sholazar Basin
                 },
             },
             { -- Reputation
-                    CT.Reputation,
-            true,
+                CT.Reputation,
+                true,
                 {
                     950, -- Frenzyheart Tribe
                     951, -- The Oracles
@@ -179,23 +180,23 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
         { -- Storm Peaks
             addon.GetMapName(120),
             { -- Quests
-                    CT.Quests,
-            true,
+                CT.Quests,
+                true,
                 {
                     38, -- The Summit of Storm Peaks
                     1428, -- Mine Sweeper
                 },
             },
             { -- Exploration
-                    CT.Exploration,
-            true,
+                CT.Exploration,
+                true,
                 {
                     1269, -- Explore Storm Peaks
                 },
             },
             { -- Reputation
-                    CT.Reputation,
-            true,
+                CT.Reputation,
+                true,
                 {
                     2082, -- Ice Mammoth
                     2083, -- Grand Ice Mammoth
@@ -205,22 +206,22 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
         { -- Icecrown
             addon.GetMapName(118),
             { -- Quests
-                    CT.Quests,
-            true,
+                CT.Quests,
+                true,
                 {
                     40, -- Icecrown: The Final Goal
                 },
             },
             { -- Exploration
-                    CT.Exploration,
-            true,
+                CT.Exploration,
+                true,
                 {
                     1270, -- Explore Icecrown
                 },
             },
             { -- Reputation
-                    CT.Reputation,
-            true,
+                CT.Reputation,
+                true,
                 {
                     947, -- The Argent Crusade
                     945, -- The Argent Champion
@@ -228,6 +229,12 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             },
             {
                 14750, -- Death Rising
+            },
+        },
+        { -- Wintergrasp
+            addon.GetMapName(123),
+            {
+                9924, -- Field Photographer
             },
         },
         {
@@ -437,6 +444,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
                 4525, -- Don't Look Up
                 4517, -- The Pit of Saron
                 4520, -- Heroic: The Pit of Saron
+                61271, -- Keystone Hero: Pit of Saron
+                61592, -- Keystone Victor: Pit of Saron
             },
         },
         { -- Halls of Reflection
@@ -484,7 +493,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             { -- Vault of Archavon 10
                 (GetDifficultyInfo(3)),
                 {
-                    4016, -- "Earth, Wind & Fire (10 player)"
+                    4016, -- Earth, Wind & Fire (10 player)
                     1722, -- Archavon the Stone Watcher (10 player)
                     3136, -- Emalon the Storm Watcher (10 player)
                     3836, -- Koralon the Flame Watcher (10 player)
@@ -494,7 +503,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             { -- Vault of Archavon 25
                 (GetDifficultyInfo(4)),
                 {
-                    4017, -- "Earth, Wind & Fire (25 player)"
+                    4017, -- Earth, Wind & Fire (25 player)
                     1721, -- Archavon the Stone Watcher (25 player)
                     3137, -- Emalon the Storm Watcher (25 player)
                     3837, -- Koralon the Flame Watcher (25 player)
@@ -625,7 +634,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
                     2927, -- Hot Pocket (10 player)
                     2930, -- Stokin' the Furnace (10 player)
                     2919, -- A Quick Shave (10 player)
-                    2923, -- "Iron Dwarf, Medium Rare (10 player)"
+                    2923, -- Iron Dwarf, Medium Rare (10 player)
                     2931, -- Nerf Engineering (10 player)
                     2933, -- Nerf Scrapbots (10 player)
                     2934, -- Nerf Gravity Bombs (10 player)
@@ -633,9 +642,9 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
                     3058, -- Heartbreaker (10 player)
                     2945, -- But I'm On Your Side (10 player)
                     2947, -- Can't Do That While Stunned (10 player)
-                    2939, -- "I Choose You, Runemaster Molgeim (10 player)"
-                    2940, -- "I Choose You, Stormcaller Brundir (10 player)"
-                    2941, -- "I Choose You, Steelbreaker (10 player)"
+                    2939, -- I Choose You, Runemaster Molgeim (10 player)
+                    2940, -- I Choose You, Stormcaller Brundir (10 player)
+                    2941, -- I Choose You, Steelbreaker (10 player)
                     2955, -- If Looks Could Kill (10 player)
                     2959, -- Rubble and Roll (10 player)
                     2951, -- With Open Arms (10 player)
@@ -657,8 +666,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
                     2985, -- Deforestation (10 player)
                     2982, -- Getting Back to Nature (10 player)
                     3177, -- Knock on Wood (10 player)
-                    3178, -- "Knock, Knock on Wood (10 player)"
-                    3179, -- "Knock, Knock, Knock on Wood (10 player)"
+                    3178, -- Knock, Knock on Wood (10 player)
+                    3179, -- Knock, Knock, Knock on Wood (10 player)
                     2989, -- Set Up Us the Bomb (10 player)
                     3138, -- Not-So-Friendly Fire (10 player)
                     3180, -- Firefighter (10 player)
@@ -700,7 +709,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
                     2928, -- Hot Pocket (25 player)
                     2929, -- Stokin' the Furnace (25 player)
                     2921, -- A Quick Shave (25 player)
-                    2924, -- "Iron Dwarf, Medium Rare (25 player)"
+                    2924, -- Iron Dwarf, Medium Rare (25 player)
                     2932, -- Nerf Engineering (25 player)
                     2935, -- Nerf Scrapbots (25 player)
                     2936, -- Nerf Gravity Bombs (25 player)
@@ -708,9 +717,9 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
                     3059, -- Heartbreaker (25 player)
                     2946, -- But I'm On Your Side (25 player)
                     2948, -- Can't Do That While Stunned (25 player)
-                    2942, -- "I Choose You, Runemaster Molgeim (25 player)"
-                    2943, -- "I Choose You, Stormcaller Brundir (25 player)"
-                    2944, -- "I Choose You, Steelbreaker (25 player)"
+                    2942, -- I Choose You, Runemaster Molgeim (25 player)
+                    2943, -- I Choose You, Stormcaller Brundir (25 player)
+                    2944, -- I Choose You, Steelbreaker (25 player)
                     2956, -- If Looks Could Kill (25 player)
                     2960, -- Rubble and Roll (25 player)
                     2952, -- With Open Arms (25 player)
@@ -732,8 +741,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
                     2984, -- Deforestation (25 player)
                     2983, -- Getting Back to Nature (25 player)
                     3185, -- Knock on Wood (25 player)
-                    3186, -- "Knock, Knock on Wood (25 player)"
-                    3187, -- "Knock, Knock, Knock on Wood (25 player)"
+                    3186, -- Knock, Knock on Wood (25 player)
+                    3187, -- Knock, Knock, Knock on Wood (25 player)
                     3237, -- Set Up Us the Bomb (25 player)
                     2995, -- Not-So-Friendly Fire (25 player)
                     3189, -- Firefighter (25 player)
@@ -773,7 +782,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
                 12324, -- Hot Pocket
                 12325, -- Stokin' the Furnace
                 12321, -- A Quick Shave
-                12322, -- "Iron Dwarf, Medium Rare"
+                12322, -- Iron Dwarf, Medium Rare
                 12326, -- Nerf Engineering
                 12327, -- Nerf Scrapbots
                 12328, -- Nerf Gravity Bombs
@@ -781,9 +790,9 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
                 12330, -- Heartbreaker
                 12335, -- But I'm On Your Side
                 12336, -- Can't Do That While Stunned
-                12332, -- "I Choose You, Runemaster Molgeim"
-                12333, -- "I Choose You, Stormcaller Brundir"
-                12334, -- "I Choose You, Steelbreaker"
+                12332, -- I Choose You, Runemaster Molgeim
+                12333, -- I Choose You, Stormcaller Brundir
+                12334, -- I Choose You, Steelbreaker
                 12339, -- If Looks Could Kill
                 12340, -- Rubble and Roll
                 12337, -- With Open Arms
@@ -805,8 +814,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
                 12362, -- Deforestation
                 12363, -- Getting Back to Nature
                 12364, -- Knock on Wood
-                12365, -- "Knock, Knock on Wood"
-                12366, -- "Knock, Knock, Knock on Wood"
+                12365, -- Knock, Knock on Wood
+                12366, -- Knock, Knock, Knock on Wood
                 12367, -- Set Up Us the Bomb
                 12368, -- Not-So-Friendly Fire
                 12369, -- Firefighter
@@ -830,7 +839,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
                 12399, -- Observed
                 11751, -- Mogg-Saron
                 4626, -- And I'll Form the Head!
-                3142, -- "Val'anyr, Hammer of Ancient Kings"
+                3142, -- Val'anyr, Hammer of Ancient Kings
                 3316, -- Herald of the Titans
                 11320, -- Raiding with Leashes IV: Wrath of the Lick King
                 17340, -- Ahead of the Curve: Yogg-Saron
@@ -843,7 +852,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
                 (GetDifficultyInfo(3)),
                 {
                     3797, -- Upper Back Pain (10 player)
-                    3936, -- "Not One, But Two Jormungars (10 player)"
+                    3936, -- Not One, But Two Jormungars (10 player)
                     3996, -- Three Sixty Pain Spike (10 player)
                     3798, -- Resilience Will Fix It (10 player)
                     3799, -- Salt and Pepper (10 player)
@@ -860,7 +869,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
                 (GetDifficultyInfo(4)),
                 {
                     3813, -- Upper Back Pain (25 player)
-                    3937, -- "Not One, But Two Jormungars (25 player)"
+                    3937, -- Not One, But Two Jormungars (25 player)
                     3997, -- Three Sixty Pain Spike (25 player)
                     3814, -- Resilience Will Fix It (25 player)
                     3815, -- Salt and Pepper (25 player)
@@ -914,9 +923,9 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
                     4537, -- I've Gone and Made a Mess (10 player)
                     4577, -- Flu Shot Shortage (10 player)
                     4538, -- Dances with Oozes (10 player)
-                    4578, -- "Nausea, Heartburn, Indigestion... (10 player)"
+                    4578, -- Nausea, Heartburn, Indigestion... (10 player)
                     4582, -- The Orb Whisperer (10 player)
-                    4539, -- "Once Bitten, Twice Shy (10 player)"
+                    4539, -- Once Bitten, Twice Shy (10 player)
                     4579, -- Portal Jockey (10 player)
                     4580, -- All You Can Eat (10 player)
                     4601, -- Been Waiting a Long Time for This (10 player)
@@ -944,9 +953,9 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
                     4613, -- I've Gone and Made a Mess (25 player)
                     4615, -- Flu Shot Shortage (25 player)
                     4614, -- Dances with Oozes (25 player)
-                    4616, -- "Nausea, Heartburn, Indigestion... (25 player)"
+                    4616, -- Nausea, Heartburn, Indigestion... (25 player)
                     4617, -- The Orb Whisperer (25 player)
-                    4618, -- "Once Bitten, Twice Shy (25 player)"
+                    4618, -- Once Bitten, Twice Shy (25 player)
                     4619, -- Portal Jockey (25 player)
                     4620, -- All You Can Eat (25 player)
                     4621, -- Been Waiting a Long Time for This (25 player)
@@ -966,8 +975,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
                 },
             },
             { -- Reputation
-                    CT.Reputation,
-            true,
+                CT.Reputation,
+                true,
                 {
                     4598, -- The Ashen Verdict
                 },
@@ -1056,6 +1065,13 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
                 2096, -- The Coin Master
             },
         },
+        { -- Inscription
+            CT.Inscription,
+            true,
+            {
+                18725, -- Best Stellar
+            },
+        },
         { -- Tailoring
             CT.Tailoring,
             true,
@@ -1067,8 +1083,38 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             734, -- Professional Northrend Master
             735, -- Working In the Cold
             18722, -- Northrend Master of All
+            62359, -- Wrathful Lumberjack
             135, -- Grand Master Medic
             730, -- Skills to Pay the Bills
+        },
+    },
+    { -- Pet Battles
+        CT.PetBattles,
+        {
+            6588, -- Northrend Safari
+            6615, -- Northrend Tamer
+            6605, -- Taming Northrend
+            60942, -- Aquatic Battler of Northrend
+            60951, -- Beast Battler of Northrend
+            60943, -- Critter Battler of Northrend
+            60944, -- Dragonkin Battler of Northrend
+            60948, -- Elemental Battler of Northrend
+            60949, -- Flying Battler of Northrend
+            60950, -- Humanoid Battler of Northrend
+            60952, -- Magic Battler of Northrend
+            60953, -- Mechanical Battler of Northrend
+            60954, -- Undead Battler of Northrend
+            60956, -- Family Battler of Northrend
+            6558, -- Local Pet Mauler
+            6559, -- Traveling Pet Mauler
+            6560, -- World Pet Mauler
+            6607, -- Taming Azeroth
+            6601, -- Taming the Wild
+            7498, -- Taming the Great Outdoors
+            7499, -- Taming the World
+            6611, -- Continental Tamer
+            6590, -- World Safari
+            8348, -- The Longest Day
         },
     },
     { -- Wintergrasp
@@ -1127,4 +1173,21 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             4596, -- The Sword in the Skull
         },
     },
-});
+    { -- Dragonriding Races
+        addon.L["Dragonriding Races"],
+        {
+            19674, -- Northrend: Bronze
+            19675, -- Northrend: Silver
+            19676, -- Northrend: Gold
+            19677, -- Northrend Advanced: Bronze
+            19679, -- Northrend Advanced: Silver
+            19681, -- Northrend Advanced: Gold
+            19682, -- Northrend Reverse: Bronze
+            19683, -- Northrend Reverse: Silver
+            19684, -- Northrend Reverse: Gold
+            19721, -- Northrend Racing Completionist
+            19722, -- Northrend Racing Completionist: Silver
+            19723, -- Northrend Racing Completionist: Gold
+        },
+    },
+})

@@ -4,7 +4,7 @@ local _, addon = ...;
 local L = addon.L;
 
 function addon.GetCovenantName(covenantID)
-    return C_Covenants and C_Covenants.GetCovenantData(covenantID).name or covenantID;
+    return C_Covenants and C_Covenants.GetCovenantData(covenantID).name or tostring(covenantID);
 end
 
 local instanceInfoNames = {}
@@ -22,7 +22,7 @@ function addon.GetInstanceInfoName(journalInstanceId)
         instanceInfoNames[journalInstanceId] = name;
         return name;
     end
-    return journalInstanceId;
+    return tostring(journalInstanceId);
 end
 
 local categoryInfoTitles = {}
@@ -40,27 +40,27 @@ function addon.GetCategoryInfoTitle(categoryId)
         categoryInfoTitles[categoryId] = title;
         return title;
     end
-    return categoryId;
+    return tostring(categoryId);
 end
 KrowiAF_GetCategoryInfoTitle = addon.GetCategoryInfoTitle
 
 function addon.GetLFGDungeonInfo(dungeonId)
-    return GetLFGDungeonInfo and GetLFGDungeonInfo(dungeonId) or dungeonId;
+    return GetLFGDungeonInfo and GetLFGDungeonInfo(dungeonId) or tostring(dungeonId);
 end
 
 function addon.GetMapName(uiMapId)
     local mapInfo = C_Map.GetMapInfo(uiMapId);
-    return mapInfo and mapInfo.name or uiMapId;
+    return mapInfo and mapInfo.name or tostring(uiMapId);
 end
 
 function addon.GetLFGActivityFullName(activityId)
     local activityInfo = C_LFGList.GetActivityInfoTable(activityId);
-    return activityInfo and activityInfo.fullName or activityInfo;
+    return activityInfo and activityInfo.fullName or tostring(activityId);
 end
 
 function addon.GetLFGActivityShortName(activityId)
     local activityInfo = C_LFGList.GetActivityInfoTable(activityId);
-    return activityInfo and activityInfo.shortName or activityInfo;
+    return activityInfo and activityInfo.shortName or tostring(activityId);
 end
 
 if not addon.Util.IsClassicWithAchievements then -- Wrath Classic does not have these and no fallback exists

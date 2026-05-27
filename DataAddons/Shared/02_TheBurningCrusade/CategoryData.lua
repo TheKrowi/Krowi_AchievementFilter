@@ -7,14 +7,14 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
     { -- Zones
         addon.L["Zones"],
         { -- Shattrath City
-            addon.GetMapName(1955),
+            addon.GetMapName(111),
             {
-                1165, -- "My Storage is ""Gigantique"""
+                1165, -- My Storage is "Gigantique"""
                 9924, -- Field Photographer
             },
         },
         { -- Silvermoon City
-            addon.GetMapName(1954),
+            addon.GetMapName(110),
             {
                 613, -- Killed in Quel'Thalas
                 614, -- For the Alliance!
@@ -22,7 +22,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- The Exodar
-            addon.GetMapName(1947),
+            addon.GetMapName(103),
             {
                 618, -- Putting Out the Light
                 619, -- For the Horde!
@@ -30,7 +30,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Azuremyst Isle
-            addon.GetMapName(1943),
+            addon.GetMapName(97),
             { -- Exploration
                 CT.Exploration,
                 true,
@@ -47,7 +47,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Bloodmyst Isle
-            addon.GetMapName(1950),
+            addon.GetMapName(106),
             { -- Quests
                 CT.Quests,
                 true,
@@ -71,7 +71,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Eversong Woods
-            addon.GetMapName(1941),
+            addon.GetMapName(94),
             { -- Exploration
                 CT.Exploration,
                 true,
@@ -88,7 +88,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Ghostlands
-            addon.GetMapName(1942),
+            addon.GetMapName(95),
             { -- Quests
                 CT.Quests,
                 true,
@@ -112,7 +112,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Hellfire Peninsula
-            addon.GetMapName(1944),
+            addon.GetMapName(100),
             { -- Quests
                 CT.Quests,
                 true,
@@ -139,7 +139,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Zangarmarsh
-            addon.GetMapName(1946),
+            addon.GetMapName(102),
             { -- Quests
                 CT.Quests,
                 true,
@@ -169,7 +169,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Terokkar Forest
-            addon.GetMapName(1952),
+            addon.GetMapName(108),
             { -- Quests
                 CT.Quests,
                 true,
@@ -196,7 +196,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Nagrand
-            addon.GetMapName(1951),
+            addon.GetMapName(107),
             { -- Quests
                 CT.Quests,
                 true,
@@ -220,7 +220,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
                 CT.Reputation,
                 true,
                 {
-                    899, -- "Oh My, Kurenai"
+                    899, -- Oh My, Kurenai
                     901, -- Mag'har of Draenor
                     942, -- The Diplomat
                     943, -- The Diplomat
@@ -228,7 +228,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Blade's Edge Mountains
-            addon.GetMapName(1949),
+            addon.GetMapName(105),
             { -- Quests
                 CT.Quests,
                 true,
@@ -253,7 +253,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Netherstorm
-            addon.GetMapName(1953),
+            addon.GetMapName(109),
             { -- Quests
                 CT.Quests,
                 true,
@@ -271,7 +271,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Shadowmoon Valley
-            addon.GetMapName(1948),
+            addon.GetMapName(104),
             { -- Quests
                 CT.Quests,
                 true,
@@ -296,7 +296,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Isle of Quel'Danas
-            addon.GetMapName(1957),
+            addon.GetMapName(122),
             { -- Exploration
                 CT.Exploration,
                 true,
@@ -532,8 +532,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             addon.GetInstanceInfoName(752),
             {
                 698, -- Sunwell Plateau
-                11749, -- "Suns Out, Thori'dals Out"
-                725, -- "Thori'dal, the Stars' Fury"
+                11749, -- Suns Out, Thori'dals Out
+                725, -- Thori'dal, the Stars' Fury
                 9824, -- Raiding with Leashes III: Drinkin' From the Sunwell
             },
         },
@@ -547,7 +547,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
         CT.Professions,
         { -- Archaeology
             CT.Archaeology,
-                true,
+            true,
             {
                 4921, -- Master Archaeologist
                 5192, -- The Harder they Fall
@@ -555,7 +555,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
         },
         { -- Cooking
             CT.Cooking,
-                true,
+            true,
             {
                 124, -- Outland Cook
                 877, -- The Cake Is Not A Lie
@@ -564,9 +564,16 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
                 1801, -- Captain Rumsey's Lager
             },
         },
+        { -- Engineering
+            CT.Engineering,
+            true,
+            {
+                18856, -- Just an Ordinary Gas Cloud
+            },
+        },
         { -- Fishing
             CT.Fishing,
-                true,
+            true,
             {
                 129, -- Outland Fisherman
                 726, -- Mr. Pinchy's Magical Crawdad Box
@@ -575,12 +582,58 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
                 1225, -- Outland Angler
             },
         },
+        { -- Leatherworking
+            CT.Leatherworking,
+            true,
+            {
+                18894, -- Free Stylin'
+            },
+        },
         {
             733, -- Professional Outland Master
             18729, -- Working in Hellfire
             18721, -- Outland Master of All
+            62358, -- Outlandish Lumberjack
             1257, -- The Scavenger
             134, -- Master Medic
         },
     },
-});
+    { -- Pet Battles
+        CT.PetBattles,
+        {
+            6587, -- Outland Safari
+            6614, -- Outland Tamer
+            6604, -- Taming Outland
+            6558, -- Local Pet Mauler
+            6559, -- Traveling Pet Mauler
+            6560, -- World Pet Mauler
+            6607, -- Taming Azeroth
+            6601, -- Taming the Wild
+            7498, -- Taming the Great Outdoors
+            7499, -- Taming the World
+            6584, -- Big City Pet Brawlin' - Alliance
+            6621, -- Big City Pet Brawlin' - Horde
+            6622, -- Big City Pet Brawler
+            6611, -- Continental Tamer
+            6590, -- World Safari
+            8348, -- The Longest Day
+        },
+    },
+    { -- Dragonriding Races
+        addon.L["Dragonriding Races"],
+        {
+            19092, -- Outland: Bronze
+            19097, -- Outland: Silver
+            19098, -- Outland: Gold
+            19099, -- Outland Advanced: Bronze
+            19100, -- Outland Advanced: Silver
+            19101, -- Outland Advanced: Gold
+            19102, -- Outland Reverse: Bronze
+            19103, -- Outland Reverse: Silver
+            19104, -- Outland Reverse: Gold
+            19105, -- Outland Racing Completionist
+            19106, -- Outland Racing Completionist: Silver
+            19107, -- Outland Racing Completionist: Gold
+        },
+    },
+})
