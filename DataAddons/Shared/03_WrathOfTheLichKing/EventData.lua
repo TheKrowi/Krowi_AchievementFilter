@@ -1,8 +1,8 @@
-local _, addon = ...;
-local shared = addon.Data.EventData.Shared;
-local type = KrowiAF.Enum.EventType;
+local _, addon = ...
+local shared = addon.Data.EventData.Shared
+local type = KrowiAF.Enum.EventType
 
-KrowiAF.EventData.WrathOfTheLichKing = {
+KrowiAF.EventData.WrathOfTheLichKing_S = {
     { -- Pilgrim's Bounty
         404, type.Calendar,
         916,
@@ -19,4 +19,4 @@ KrowiAF.EventData.WrathOfTheLichKing = {
         addon.L["Holidays"],
         1
     },
-};
+}

@@ -1,8 +1,8 @@
-local _, addon = ...;
-local shared = addon.Data.EventData.Shared;
-local type = KrowiAF.Enum.EventType;
+local _, addon = ...
+local shared = addon.Data.EventData.Shared
+local type = KrowiAF.Enum.EventType
 
-KrowiAF.EventData.Cataclysm = {
+KrowiAF.EventData.Cataclysm_S = {
     { -- Darkmoon Faire
         {374, 479}, type.Calendar,
         925,
@@ -11,4 +11,4 @@ KrowiAF.EventData.Cataclysm = {
         addon.L["Holidays"],
         1
     },
-};
+}

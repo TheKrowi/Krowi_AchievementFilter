@@ -1,3 +1,4 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/">
+<Ui>
     <Script file="AchievementData.lua" />
+    <Script file="EventData.lua" />
 </Ui>

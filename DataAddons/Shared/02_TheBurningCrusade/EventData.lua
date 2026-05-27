@@ -1,8 +1,8 @@
-local _, addon = ...;
-local shared = addon.Data.EventData.Shared;
-local type = KrowiAF.Enum.EventType;
+local _, addon = ...
+local shared = addon.Data.EventData.Shared
+local type = KrowiAF.Enum.EventType
 
-KrowiAF.EventData.TheBurningCrusade = {
+KrowiAF.EventData.TheBurningCrusade_S = {
     { -- Brewfest
         372, type.Calendar,
         914,
@@ -19,4 +19,4 @@ KrowiAF.EventData.TheBurningCrusade = {
         addon.L["Holidays"],
         1
     },
-};
+}
