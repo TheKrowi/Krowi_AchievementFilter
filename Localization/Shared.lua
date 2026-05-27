@@ -44,7 +44,6 @@ function addon.GetCategoryInfoTitle(categoryId)
 end
 KrowiAF_GetCategoryInfoTitle = addon.GetCategoryInfoTitle
 
-
 function addon.GetLFGDungeonInfo(dungeonId)
     return GetLFGDungeonInfo and GetLFGDungeonInfo(dungeonId) or dungeonId;
 end
@@ -167,7 +166,6 @@ L["World"] = WORLD
 L["Proving Grounds"] = TRACKER_HEADER_PROVINGGROUNDS
 L["Inscription"] = INSCRIPTION
 L["Timewalking"] = PLAYER_DIFFICULTY_TIMEWALKER
-
 
 local l = addon.Localization.GetLocale(addon)
 L["Not earned by:"] = l["Not earned by:"]:SetColorRed() .. " %s";
