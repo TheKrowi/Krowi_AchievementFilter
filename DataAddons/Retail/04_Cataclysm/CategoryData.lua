@@ -1,18 +1,14 @@
-﻿local _, addon = ...;
+local _, addon = ...;
 local shared = addon.Data.CategoryData.Shared;
 local CT = shared.CT;
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
-    129,
     CT.Cataclysm,
     { -- Zones
-        550,
         addon.L["Zones"],
         { -- Vashj'ir
-            551,
             addon.GetMapName(203),
             { -- Quests
-                557,
                 CT.Quests,
                 true,
                 {
@@ -24,7 +20,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
                 },
             },
             { -- Exploration
-                564,
                 CT.Exploration,
                 true,
                 {
@@ -35,10 +30,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
         },
         { -- Mount Hyjal
-            552,
             addon.GetMapName(198),
             { -- Quests
-                558,
                 CT.Quests,
                 true,
                 {
@@ -59,7 +52,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
                 },
             },
             { -- Exploration
-                565,
                 CT.Exploration,
                 true,
                 {
@@ -68,7 +60,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
                 },
             },
             { -- Reputation
-                571,
                 CT.Reputation,
                 true,
                 {
@@ -77,10 +68,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
         },
         { -- Deepholm
-            553,
             addon.GetMapName(207),
             { -- Quests
-                559,
                 CT.Quests,
                 true,
                 {
@@ -93,7 +82,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
                 },
             },
             { -- Exploration
-                566,
                 CT.Exploration,
                 true,
                 {
@@ -102,7 +90,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
                 },
             },
             { -- Reputation
-                572,
                 CT.Reputation,
                 true,
                 {
@@ -111,10 +98,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
         },
         { -- Uldum
-            554,
             addon.GetMapName(249),
             { -- Quests
-                560,
                 CT.Quests,
                 true,
                 {
@@ -124,7 +109,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
                 },
             },
             { -- Exploration
-                567,
                 CT.Exploration,
                 true,
                 {
@@ -132,7 +116,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
                 },
             },
             { -- Reputation
-                574,
                 CT.Reputation,
                 true,
                 {
@@ -145,10 +128,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
         },
         { -- Twilight Highlands
-            555,
             addon.GetMapName(241),
             { -- Quests
-                561,
                 CT.Quests,
                 true,
                 {
@@ -164,7 +145,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
                 },
             },
             { -- Exploration
-                568,
                 CT.Exploration,
                 true,
                 {
@@ -172,7 +152,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
                 },
             },
             { -- Reputation
-                573,
                 CT.Reputation,
                 true,
                 {
@@ -188,7 +167,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             }
         },
         { -- Molten Front
-            556,
             addon.GetMapName(338),
             {
                 5859, -- Legacy of Leyara
@@ -213,10 +191,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
         },
     },
     { -- Dungeons
-        130,
         CT.Dungeons,
         { -- Blackrock Caverns
-            132,
             addon.GetInstanceInfoName(66),
             {
                 5281, -- Crushing Bones and Cracking Skulls
@@ -229,7 +205,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
         },
         { -- Throne of the Tides
-            133,
             addon.GetInstanceInfoName(65),
             {
                 5285, -- Old Faithful
@@ -241,7 +216,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
         },
         { -- The Stonecore
-            134,
             addon.GetInstanceInfoName(67),
             {
                 5287, -- Rotten to the Core
@@ -251,7 +225,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
         },
         { -- The Vortex Pinnacle
-            135,
             addon.GetInstanceInfoName(68),
             {
                 5289, -- Extra Credit Bonus Stage
@@ -263,7 +236,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
         },
         { -- Grim Batol
-            136,
             addon.GetInstanceInfoName(71),
             {
                 5297, -- Umbrage for Umbriss
@@ -275,7 +247,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
         },
         { -- Halls of Origination
-            137,
             addon.GetInstanceInfoName(70),
             {
                 5293, -- I Hate That Song
@@ -289,7 +260,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
         },
         { -- Lost City of the Tol'vir
-            138,
             addon.GetInstanceInfoName(69),
             {
                 5291, -- Acrocalypse Now
@@ -301,7 +271,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
         },
         { -- Deadmines
-            139,
             addon.GetInstanceInfoName(63),
             {
                 5366, -- Ready for Raiding
@@ -318,7 +287,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
         },
         { -- Shadowfang Keep
-            140,
             addon.GetInstanceInfoName(64),
             {
                 5503, -- Pardon Denied
@@ -331,7 +299,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
         },
         { -- Zul'Gurub
-            141,
             addon.GetInstanceInfoName(76),
             {
                 5743, -- It's Not Easy Being Green
@@ -343,7 +310,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
         },
         { -- Zul'Aman
-            142,
             addon.GetInstanceInfoName(77),
             {
                 5858, -- Bear-ly Made It
@@ -354,7 +320,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
         },
         { -- End Time
-            143,
             addon.GetInstanceInfoName(184),
             {
                 5995, -- Moon Guard
@@ -363,7 +328,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
         },
         { -- Well of Eternity
-            144,
             addon.GetInstanceInfoName(185),
             {
                 6127, -- Lazy Eye
@@ -372,7 +336,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
         },
         { -- Hour of Twilight
-            145,
             addon.GetInstanceInfoName(186),
             {
                 6132, -- Eclipse
@@ -387,10 +350,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
         },
     },
     { -- Raids
-        131,
         CT.Raids,
         { -- Baradin Hold
-            146,
             addon.GetInstanceInfoName(75),
             {
                 5416, -- Pit Lord Argaloth
@@ -399,10 +360,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
         },
         { -- Blackwing Descent
-            147,
             addon.GetInstanceInfoName(73),
             { -- Glory
-                902,
                 addon.L["Glory"],
                 {
                     5306, -- Parasite Evening
@@ -414,7 +373,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
                 },
             },
             { -- Heroic
-                903,
                 addon.L["Heroic"],
                 {
                     5094, -- Heroic: Magmaw
@@ -432,10 +390,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
         },
         { -- The Bastion of Twilight
-            148,
             addon.GetInstanceInfoName(72),
             { -- Glory
-                904,
                 addon.L["Glory"],
                 {
                     5300, -- The Only Escape
@@ -445,7 +401,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
                 },
             },
             { -- Heroic
-                905,
                 addon.L["Heroic"],
                 {
                     5118, -- Heroic: Halfus Wyrmbreaker
@@ -463,7 +418,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
         },
         { -- Throne of the Four Winds
-            149,
             addon.GetInstanceInfoName(74),
             {
                 5304, -- Stay Chill
@@ -475,10 +429,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
         },
         { -- Firelands
-            150,
             addon.GetInstanceInfoName(78),
             { -- Glory
-                906,
                 addon.L["Glory"],
                 {
                     5821, -- Death from Above
@@ -490,7 +442,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
                 },
             },
             { -- Heroic
-                907,
                 addon.L["Heroic"],
                 {
                     5807, -- Heroic: Beth'tilac
@@ -503,7 +454,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
                 },
             },
             { -- Reputation
-                576,
                 CT.Reputation,
                 true,
                 {
@@ -519,10 +469,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
         },
         { -- Dragon Soul
-            151,
             addon.GetInstanceInfoName(187),
             { -- Glory
-                908,
                 addon.L["Glory"],
                 {
                     6174, -- Don't Stand So Close to Me
@@ -535,7 +483,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
                 },
             },
             { -- Heroic
-                909,
                 addon.L["Heroic"],
                 {
                     6109, -- Heroic: Morchok
@@ -567,10 +514,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
         },
     },
     { -- Professions
-        1153,
         CT.Professions,
         { -- Archaeology
-            1471,
             CT.Archaeology,
             true,
             {
@@ -579,7 +524,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
         },
         { -- Cooking
-            1480,
             CT.Cooking,
             true,
             {
@@ -589,7 +533,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
         },
         { -- Fishing
-            1497,
             CT.Fishing,
             true,
             {
@@ -597,7 +540,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
         },
         { -- Tailoring
-            1527,
             CT.Tailoring,
             true,
             {
@@ -615,7 +557,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
         },
     },
     { -- Pet Battles
-        788,
         CT.PetBattles,
         {
             7525, -- Taming Cataclysm
@@ -631,10 +572,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
         },
     },
     { -- Tol Barad
-        547,
         CT.TolBarad,
         { -- Quests
-            563,
             CT.Quests,
             true,
             {
@@ -644,7 +583,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
         },
         { -- PvP
-            569,
             CT.PvP,
             true,
             {
@@ -658,7 +596,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             },
         },
         { -- Reputation
-            575,
             CT.Reputation,
             true,
             {

@@ -1,4 +1,4 @@
-﻿local _, addon = ...
+local _, addon = ...
 addon.Data.CategoryData = {}
 addon.Data.CategoryData.Shared = {}
 local shared = addon.Data.CategoryData.Shared
@@ -109,13 +109,10 @@ shared.CT = {
 local CT = shared.CT
 
 local crossExpansion = { -- Cross-Expansion
-    1431,
     addon.L["Cross-Expansion"],
     { -- Zones
-        1160,
         addon.L["Zones"],
         { -- Exile's Reach
-            953,
             addon.GetAchievmentName(14222),
             {
                 14222, -- Exile's Reach
@@ -123,7 +120,6 @@ local crossExpansion = { -- Cross-Expansion
         },
     },
     { -- Character
-        1432,
         CT.Character,
         {
             6, -- Level 10
@@ -194,7 +190,6 @@ local crossExpansion = { -- Cross-Expansion
         },
     },
     { -- Quests
-        1159,
         CT.Quests,
         {
             503, -- 50 Quests Completed
@@ -228,7 +223,6 @@ local crossExpansion = { -- Cross-Expansion
         },
     },
     { -- Exploration
-        1161,
         CT.Exploration,
         {
             964, -- Going Down?
@@ -240,7 +234,6 @@ local crossExpansion = { -- Cross-Expansion
         },
     },
     { -- Delves
-        1670,
         CT.Delves,
         {
             40436, -- You're Getting a Delve!
@@ -260,7 +253,6 @@ local crossExpansion = { -- Cross-Expansion
         },
     },
     { -- Dungeons & Raids
-        1169,
         CT.DungeonsAndRaids,
         {
             4476, -- Looking For More
@@ -269,10 +261,8 @@ local crossExpansion = { -- Cross-Expansion
         },
     },
     { -- Professions
-        1149,
         CT.Professions,
         { -- Alchemy
-            1456,
             CT.Alchemy,
             {
                 18726, -- A Cure for All Ails I
@@ -290,7 +280,6 @@ local crossExpansion = { -- Cross-Expansion
             },
         },
         { -- Archaeology
-            1459,
             CT.Archaeology,
             {
                 5315, -- Digger
@@ -304,7 +293,6 @@ local crossExpansion = { -- Cross-Expansion
             },
         },
         { -- Blacksmithing
-            1457,
             CT.Blacksmithing,
             {
                 18862, -- Anvil Mastery I
@@ -318,7 +306,6 @@ local crossExpansion = { -- Cross-Expansion
             },
         },
         { -- Cooking
-            1458,
             CT.Cooking,
             {
                 1998, -- Cooking Award
@@ -342,7 +329,6 @@ local crossExpansion = { -- Cross-Expansion
             },
         },
         { -- Enchanting
-            1460,
             CT.Enchanting,
             {
                 18766, -- Disenchantment I
@@ -358,7 +344,6 @@ local crossExpansion = { -- Cross-Expansion
             },
         },
         { -- Engineering
-            1461,
             CT.Engineering,
             {
                 18872, -- Dangerous Devices I
@@ -376,7 +361,6 @@ local crossExpansion = { -- Cross-Expansion
             },
         },
         { -- Fishing
-            1462,
             CT.Fishing,
             {
                 153, -- The Old Gnome and the Sea
@@ -397,7 +381,6 @@ local crossExpansion = { -- Cross-Expansion
             },
         },
         { -- Inscription
-            1464,
             CT.Inscription,
             {
                 18876, -- Ink and Quill I
@@ -412,7 +395,6 @@ local crossExpansion = { -- Cross-Expansion
             },
         },
         { -- Jewelcrafting
-            1465,
             CT.Jewelcrafting,
             {
                 18880, -- Generations of Gemstones I
@@ -425,7 +407,6 @@ local crossExpansion = { -- Cross-Expansion
             },
         },
         { -- Leatherworking
-            1510,
             CT.Leatherworking,
             {
                 18881, -- A Test of Scale I
@@ -439,7 +420,6 @@ local crossExpansion = { -- Cross-Expansion
             },
         },
         { -- Tailoring
-            1524,
             CT.Tailoring,
             {
                 18885, -- Quite the Quilt I
@@ -458,7 +438,6 @@ local crossExpansion = { -- Cross-Expansion
         },
     },
     { -- Reputation
-        1163,
         CT.Reputation,
         {
             522, -- Somebody Likes Me
@@ -506,10 +485,8 @@ local crossExpansion = { -- Cross-Expansion
         },
     },
     { -- Pet Battles
-        1170,
         CT.PetBattles,
         { -- Collect
-            1433,
             CT.Collect,
             true,
             {
@@ -551,7 +528,6 @@ local crossExpansion = { -- Cross-Expansion
             },
         },
         { -- Battle
-            1434,
             CT.Battle,
             true,
             {
@@ -587,7 +563,6 @@ local crossExpansion = { -- Cross-Expansion
             },
         },
         { -- Level
-            1435,
             CT.Level,
             true,
             {
@@ -610,7 +585,6 @@ local crossExpansion = { -- Cross-Expansion
         },
     },
     { -- Collections
-        1171,
         CT.Collections,
         {
             621, -- Represent
@@ -649,7 +623,6 @@ local crossExpansion = { -- Cross-Expansion
         },
     },
     { -- Feats of Strength
-        1172,
         CT.FeatsOfStrength,
         {
             4496, -- It's Over Nine Thousand!

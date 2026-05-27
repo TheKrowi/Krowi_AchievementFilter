@@ -1,31 +1,25 @@
-﻿local _, addon = ...;
+local _, addon = ...;
 local shared = addon.Data.CategoryData.Shared;
 local CT = shared.CT
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
-    1,
     CT.Classic,
     { -- Zones
-        648,
         addon.L["Zones"],
         { -- Eastern Kingdoms
-            687,
             addon.GetMapName(13),
             { -- Stormwind City
-                922,
                 addon.GetMapName(84),
                 { -- Exploration
-                    1033,
-                        CT.Exploration,
-                true,
+                    CT.Exploration,
+                    true,
                     {
                         9924, -- Field Photographer
                     },
                 },
                 { -- Reputation
-                    1022,
-                        CT.Reputation,
-                true,
+                    CT.Reputation,
+                    true,
                     {
                         948, -- Ambassador of the Alliance
                     },
@@ -39,7 +33,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Ironforge
-                970,
                 addon.GetMapName(87),
                 {
                     616, -- Overthrow the Council
@@ -48,7 +41,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Undercity
-                974,
                 addon.GetMapName(90),
                 {
                     612, -- Downing the Dark Lady
@@ -56,10 +48,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Dun Morogh
-                721,
                 addon.GetMapName(27),
                 { -- Exploration
-                    723,
                         CT.Exploration,
                 true,
                     {
@@ -67,7 +57,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    1005,
                         CT.Reputation,
                 true,
                     {
@@ -81,10 +70,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Elwynn Forest
-                722,
                 addon.GetMapName(37),
                 { -- Exploration
-                    724,
                         CT.Exploration,
                 true,
                     {
@@ -93,7 +80,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    1006,
                         CT.Reputation,
                 true,
                     {
@@ -102,10 +88,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Tirisfal Glades
-                725,
                 addon.GetMapName(18),
                 { -- Quests
-                    1201,
                         CT.Quests,
                 true,
                     {
@@ -113,7 +97,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    726,
                         CT.Exploration,
                 true,
                     {
@@ -121,7 +104,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    1026,
                         CT.Reputation,
                 true,
                     {
@@ -130,10 +112,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Westfall
-                651,
                 addon.GetMapName(52),
                 { -- Quests
-                    653,
                         CT.Quests,
                 true,
                     {
@@ -142,7 +122,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    730,
                         CT.Exploration,
                 true,
                     {
@@ -151,7 +130,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    1028,
                         CT.Reputation,
                 true,
                     {
@@ -164,10 +142,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Loch Modan
-                655,
                 addon.GetMapName(48),
                 { -- Quests
-                    657,
                         CT.Quests,
                 true,
                     {
@@ -176,7 +152,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    729,
                         CT.Exploration,
                 true,
                     {
@@ -185,7 +160,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    1013,
                         CT.Reputation,
                 true,
                     {
@@ -194,10 +168,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Silverpine Forest
-                681,
                 addon.GetMapName(21),
                 { -- Quests
-                    682,
                         CT.Quests,
                 true,
                     {
@@ -205,7 +177,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    732,
                         CT.Exploration,
                 true,
                     {
@@ -213,7 +184,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    1020,
                         CT.Reputation,
                 true,
                     {
@@ -222,10 +192,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Redridge Mountains
-                678,
                 addon.GetMapName(49),
                 { -- Quests
-                    677,
                         CT.Quests,
                 true,
                     {
@@ -233,7 +201,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    734,
                         CT.Exploration,
                 true,
                     {
@@ -241,7 +208,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    1017,
                         CT.Reputation,
                 true,
                     {
@@ -250,10 +216,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Duskwood
-                652,
                 addon.GetMapName(47),
                 { -- Quests
-                    654,
                         CT.Quests,
                 true,
                     {
@@ -262,7 +226,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    735,
                         CT.Exploration,
                 true,
                     {
@@ -271,7 +234,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    1007,
                         CT.Reputation,
                 true,
                     {
@@ -280,10 +242,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Wetlands
-                656,
                 addon.GetMapName(56),
                 { -- Quests
-                    658,
                         CT.Quests,
                 true,
                     {
@@ -292,7 +252,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    731,
                         CT.Exploration,
                 true,
                     {
@@ -301,7 +260,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    1029,
                         CT.Reputation,
                 true,
                     {
@@ -310,10 +268,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Hillsbrad Foothills
-                671,
                 addon.GetMapName(25),
                 { -- Quests
-                    672,
                         CT.Quests,
                 true,
                     {
@@ -323,7 +279,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    736,
                         CT.Exploration,
                 true,
                     {
@@ -332,7 +287,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    1012,
                         CT.Reputation,
                 true,
                     {
@@ -346,10 +300,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Arathi Highlands
-                649,
                 addon.GetMapName(14),
                 { -- Quests
-                    650,
                         CT.Quests,
                 true,
                     {
@@ -357,7 +309,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    741,
                         CT.Exploration,
                 true,
                     {
@@ -365,7 +316,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    996,
                         CT.Reputation,
                 true,
                     {
@@ -375,10 +325,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Northern Stranglethorn
-                675,
                 addon.GetMapName(50),
                 { -- Quests
-                    676,
                         CT.Quests,
                 true,
                     {
@@ -388,7 +336,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    739,
                         CT.Exploration,
                 true,
                     {
@@ -397,7 +344,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    1016,
                         CT.Reputation,
                 true,
                     {
@@ -407,10 +353,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- The Cape of Stranglethorn
-                665,
                 addon.GetMapName(210),
                 { -- Quests
-                    666,
                         CT.Quests,
                 true,
                     {
@@ -418,7 +362,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    740,
                         CT.Exploration,
                 true,
                     {
@@ -427,7 +370,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Player vs. Player
-                    1164,
                     CT.PvP,
                     {
                         389, -- Gurubashi Arena Master
@@ -435,7 +377,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    993,
                         CT.Reputation,
                 true,
                     {
@@ -446,10 +387,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Western Plaguelands
-                685,
                 addon.GetMapName(22),
                 { -- Quests
-                    686,
                         CT.Quests,
                 true,
                     {
@@ -457,7 +396,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    746,
                         CT.Exploration,
                 true,
                     {
@@ -466,7 +404,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    1027,
                         CT.Reputation,
                 true,
                     {
@@ -476,10 +413,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- The Hinterlands
-                673,
                 addon.GetMapName(26),
                 { -- Quests
-                    674,
                         CT.Quests,
                 true,
                     {
@@ -487,7 +422,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    742,
                         CT.Exploration,
                 true,
                     {
@@ -495,7 +429,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    1024,
                         CT.Reputation,
                 true,
                     {
@@ -504,10 +437,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Eastern Plaguelands
-                667,
                 addon.GetMapName(23),
                 { -- Quests
-                    668,
                         CT.Quests,
                 true,
                     {
@@ -516,7 +447,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    747,
                         CT.Exploration,
                 true,
                     {
@@ -525,7 +455,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    778,
                         CT.Reputation,
                 true,
                     {
@@ -538,10 +467,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Badlands
-                659,
                 addon.GetMapName(15),
                 { -- Quests
-                    661,
                         CT.Quests,
                 true,
                     {
@@ -550,7 +477,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    738,
                         CT.Exploration,
                 true,
                     {
@@ -562,10 +488,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Searing Gorge
-                679,
                 addon.GetMapName(32),
                 { -- Quests
-                    680,
                         CT.Quests,
                 true,
                     {
@@ -573,7 +497,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    743,
                         CT.Exploration,
                 true,
                     {
@@ -585,10 +508,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Swamp of Sorrows
-                683,
                 addon.GetMapName(51),
                 { -- Quests
-                    684,
                         CT.Quests,
                 true,
                     {
@@ -596,7 +517,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    737,
                         CT.Exploration,
                 true,
                     {
@@ -604,7 +524,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    1023,
                         CT.Reputation,
                 true,
                     {
@@ -613,10 +532,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Burning Steppes
-                663,
                 addon.GetMapName(36),
                 { -- Quests
-                    664,
                         CT.Quests,
                 true,
                     {
@@ -624,7 +541,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    745,
                         CT.Exploration,
                 true,
                     {
@@ -637,10 +553,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Blasted Lands
-                660,
                 addon.GetMapName(17),
                 { -- Quests
-                    662,
                         CT.Quests,
                 true,
                     {
@@ -648,7 +562,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    744,
                         CT.Exploration,
                 true,
                     {
@@ -657,7 +570,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    999,
                         CT.Reputation,
                 true,
                     {
@@ -671,10 +583,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Deadwind Pass
-                748,
                 addon.GetMapName(42),
                 { -- Exploration
-                    749,
                         CT.Exploration,
                 true,
                     {
@@ -690,10 +600,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
         },
         { -- Kalimdor
-            688,
             addon.GetMapName(12),
             { -- Darnassus
-                975,
                 addon.GetMapName(89),
                 {
                     617, -- Immortal No More
@@ -701,10 +609,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Orgrimmar
-                921,
                 addon.GetMapName(85),
                 { -- Reputation
-                    1018,
                         CT.Reputation,
                 true,
                     {
@@ -721,7 +627,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Thunder Bluff
-                923,
                 addon.GetMapName(88),
                 {
                     611, -- Bleeding Bloodhoof
@@ -729,10 +634,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Teldrassil
-                756,
                 addon.GetMapName(57),
                 { -- Exploration
-                    757,
                         CT.Exploration,
                 true,
                     {
@@ -740,7 +643,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    1025,
                         CT.Reputation,
                 true,
                     {
@@ -749,10 +651,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Durotar
-                752,
                 addon.GetMapName(1),
                 { -- Exploration
-                    753,
                         CT.Exploration,
                 true,
                     {
@@ -761,7 +661,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    1003,
                         CT.Reputation,
                 true,
                     {
@@ -773,10 +672,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Mulgore
-                754,
                 addon.GetMapName(7),
                 { -- Exploration
-                    755,
                         CT.Exploration,
                 true,
                     {
@@ -784,7 +681,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    1014,
                         CT.Reputation,
                 true,
                     {
@@ -793,10 +689,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Moonglade
-                774,
                 addon.GetMapName(80),
                 { -- Exploration
-                    775,
                         CT.Exploration,
                 true,
                     {
@@ -806,10 +700,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Northern Barrens
-                705,
                 addon.GetMapName(10),
                 { -- Quests
-                    706,
                         CT.Quests,
                 true,
                     {
@@ -817,7 +709,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    760,
                         CT.Exploration,
                 true,
                     {
@@ -825,7 +716,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    1015,
                         CT.Reputation,
                 true,
                     {
@@ -840,10 +730,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Darkshore
-                695,
                 addon.GetMapName(62),
                 { -- Quests
-                    696,
                         CT.Quests,
                 true,
                     {
@@ -852,7 +740,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    762,
                         CT.Exploration,
                 true,
                     {
@@ -860,7 +747,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    1001,
                         CT.Reputation,
                 true,
                     {
@@ -869,10 +755,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Azshara
-                691,
                 addon.GetMapName(76),
                 { -- Quests
-                    692,
                         CT.Quests,
                 true,
                     {
@@ -884,7 +768,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    771,
                         CT.Exploration,
                 true,
                     {
@@ -892,7 +775,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    990,
                         CT.Reputation,
                 true,
                     {
@@ -905,10 +787,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Ashenvale
-                689,
                 addon.GetMapName(63),
                 { -- Quests
-                    690,
                         CT.Quests,
                 true,
                     {
@@ -917,7 +797,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    764,
                         CT.Exploration,
                 true,
                     {
@@ -925,7 +804,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    997,
                         CT.Reputation,
                 true,
                     {
@@ -934,10 +812,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Stonetalon Mountains
-                709,
                 addon.GetMapName(65),
                 { -- Quests
-                    710,
                         CT.Quests,
                 true,
                     {
@@ -946,7 +822,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    766,
                         CT.Exploration,
                 true,
                     {
@@ -954,7 +829,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    1021,
                         CT.Reputation,
                 true,
                     {
@@ -964,10 +838,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Desolace
-                697,
                 addon.GetMapName(66),
                 { -- Quests
-                    698,
                         CT.Quests,
                 true,
                     {
@@ -975,7 +847,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    767,
                         CT.Exploration,
                 true,
                     {
@@ -983,7 +854,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    1002,
                         CT.Reputation,
                 true,
                     {
@@ -992,10 +862,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Southern Barrens
-                711,
                 addon.GetMapName(199),
                 { -- Quests
-                    712,
                         CT.Quests,
                 true,
                     {
@@ -1004,7 +872,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    761,
                         CT.Exploration,
                 true,
                     {
@@ -1012,7 +879,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    1019,
                         CT.Reputation,
                 true,
                     {
@@ -1022,10 +888,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Feralas
-                703,
                 addon.GetMapName(69),
                 { -- Quests
-                    704,
                         CT.Quests,
                 true,
                     {
@@ -1034,7 +898,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    769,
                         CT.Exploration,
                 true,
                     {
@@ -1043,7 +906,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    1009,
                         CT.Reputation,
                 true,
                     {
@@ -1053,10 +915,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Dustwallow Marsh
-                699,
                 addon.GetMapName(70),
                 { -- Quests
-                    700,
                         CT.Quests,
                 true,
                     {
@@ -1065,7 +925,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    768,
                         CT.Exploration,
                 true,
                     {
@@ -1073,7 +932,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    1004,
                         CT.Reputation,
                 true,
                     {
@@ -1085,10 +943,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Thousand Needles
-                715,
                 addon.GetMapName(64),
                 { -- Quests
-                    716,
                         CT.Quests,
                 true,
                     {
@@ -1096,7 +952,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    765,
                         CT.Exploration,
                 true,
                     {
@@ -1104,7 +959,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    994,
                         CT.Reputation,
                 true,
                     {
@@ -1114,10 +968,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Tanaris
-                713,
                 addon.GetMapName(71),
                 { -- Quests
-                    714,
                         CT.Quests,
                 true,
                     {
@@ -1125,7 +977,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    770,
                         CT.Exploration,
                 true,
                     {
@@ -1134,7 +985,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    992,
                         CT.Reputation,
                 true,
                     {
@@ -1149,10 +999,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Felwood
-                701,
                 addon.GetMapName(77),
                 { -- Quests
-                    702,
                         CT.Quests,
                 true,
                     {
@@ -1160,7 +1008,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    772,
                         CT.Exploration,
                 true,
                     {
@@ -1168,7 +1015,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    991,
                         CT.Reputation,
                 true,
                     {
@@ -1181,10 +1027,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Un'Goro Crater
-                717,
                 addon.GetMapName(78),
                 { -- Quests
-                    718,
                         CT.Quests,
                 true,
                     {
@@ -1192,7 +1036,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    773,
                         CT.Exploration,
                 true,
                     {
@@ -1207,10 +1050,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Silithus
-                707,
                 addon.GetMapName(81),
                 { -- Quests
-                    708,
                         CT.Quests,
                 true,
                     {
@@ -1218,7 +1059,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    776,
                         CT.Exploration,
                 true,
                     {
@@ -1227,7 +1067,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    783,
                         CT.Reputation,
                 true,
                     {
@@ -1241,10 +1080,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                 },
             },
             { -- Winterspring
-                719,
                 addon.GetMapName(83),
                 { -- Quests
-                    720,
                         CT.Quests,
                 true,
                     {
@@ -1253,7 +1090,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Exploration
-                    777,
                         CT.Exploration,
                 true,
                     {
@@ -1261,7 +1097,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
                     },
                 },
                 { -- Reputation
-                    1031,
                         CT.Reputation,
                 true,
                     {
@@ -1287,17 +1122,14 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
         },
     },
     { -- Dungeons
-        2,
         CT.Dungeons,
         { -- Ragefire Chasm
-            5,
             addon.GetLFGActivityShortName(52),
             {
                 629, -- Ragefire Chasm
             },
         },
         { -- Wailing Caverns
-            8,
             addon.GetLFGActivityShortName(50),
             {
                 630, -- Wailing Caverns
@@ -1305,21 +1137,18 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
         },
         { -- Blackfathom Deeps
-            10,
             addon.GetLFGActivityShortName(54),
             {
                 632, -- Blackfathom Deeps
             },
         },
         { -- Stormwind Stockades
-            11,
             addon.GetLFGActivityShortName(55),
             {
                 633, -- Stormwind Stockade
             },
         },
         { -- Gnomeregan
-            12,
             addon.GetLFGActivityShortName(56),
             {
                 634, -- Gnomeregan
@@ -1327,49 +1156,42 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
         },
         { -- Razorfen Kraul
-            13,
             addon.GetLFGActivityShortName(57),
             {
                 635, -- Razorfen Kraul
             },
         },
         { -- Razorfen Downs
-            14,
             addon.GetLFGActivityShortName(58),
             {
                 636, -- Razorfen Downs
             },
         },
         { -- Uldaman
-            17,
             addon.GetLFGActivityShortName(59),
             {
                 638, -- Uldaman
             },
         },
         { -- Zul'Farrak
-            18,
             addon.GetLFGActivityShortName(60),
             {
                 639, -- Zul'Farrak
             },
         },
         { -- Maraudon
-            19,
             addon.GetLFGActivityShortName(61),
             {
                 640, -- Maraudon
             },
         },
         { -- Sunken Temple
-            20,
             addon.GetLFGActivityShortName(62),
             {
                 641, -- Sunken Temple
             },
         },
         { -- Blackrock Depths
-            21,
             addon.GetLFGActivityShortName(63),
             {
                 642, -- Blackrock Depths
@@ -1378,14 +1200,12 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
         },
         { -- Lower Blackrock Spire
-            22,
             addon.GetLFGActivityShortName(64),
             {
                 643, -- Lower Blackrock Spire
             },
         },
         { -- Upper Blackrock Spire
-            797,
             addon.GetInstanceInfoName(559),
             {
                 1307, -- Upper Blackrock Spire (Classic)
@@ -1393,7 +1213,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
         },
         { -- Dire Maul
-            23,
             addon.GetInstanceInfoName(230),
             {
                 644, -- King of Dire Maul
@@ -1401,7 +1220,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
         },
         { -- Scholomance
-            24,
             addon.GetInstanceInfoName(246),
             {
                 18368, -- Memory of Scholomance
@@ -1409,7 +1227,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
         },
         { -- Stratholme
-            25,
             addon.GetLFGActivityShortName(66),
             {
                 646, -- Stratholme
@@ -1423,13 +1240,10 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
         },
     },
     { -- Raids
-        3,
         CT.Raids,
         { -- Molten Core
-            7,
             addon.GetInstanceInfoName(741),
             { -- Reputation
-                779,
                 CT.Reputation,
                 true,
                 {
@@ -1450,7 +1264,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
         },
         { -- Onyxia's Lair
-            26,
             addon.GetInstanceInfoName(760),
             {
                 684, -- Onyxia's Lair (Level 60)
@@ -1458,7 +1271,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
         },
         { -- Blackwing Lair
-            27,
             addon.GetInstanceInfoName(742),
             {
                 685, -- Blackwing Lair
@@ -1468,10 +1280,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
         },
         { -- Zul'Gurub
-            28,
             addon.GetInstanceInfoName(76),
             { -- Reputation
-                789,
                 CT.Reputation,
                 {
                     957, -- Hero of the Zandalar Tribe
@@ -1485,10 +1295,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
         },
         { -- Ruins of Ahn'Qiraj
-            29,
             addon.GetInstanceInfoName(743),
             { -- Reputation
-                784,
                 CT.Reputation,
                 {
                     953, -- Guardian of Cenarius
@@ -1499,10 +1307,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
         },
         { -- Temple of Ahn'Qiraj
-            30,
             addon.GetInstanceInfoName(744),
             { -- Reputation
-                780,
                 CT.Reputation,
                 true,
                 {
@@ -1518,7 +1324,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
         },
         { -- Naxxramas
-            796,
             addon.GetInstanceInfoName(754),
             {
                 11744, -- Drop Dead, Gorgeous
@@ -1535,10 +1340,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
         },
     },
     { -- Professions
-        1150,
         CT.Professions,
         { -- Archaeology
-            1468,
             CT.Archaeology,
             true,
             {
@@ -1552,7 +1355,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
         },
         { -- Blacksmithing
-            1476,
             CT.Blacksmithing,
             true,
             {
@@ -1561,7 +1363,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
         },
         { -- Cooking
-            1477,
             CT.Cooking,
             true,
             {
@@ -1579,7 +1380,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
         },
         { -- Fishing
-            1500,
             CT.Fishing,
             true,
             {
@@ -1602,7 +1402,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
         },
         { -- Leatherworking
-            1513,
             CT.Leatherworking,
             true,
             {
@@ -1610,7 +1409,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
         },
         { -- Mining
-            1516,
             CT.Mining,
             true,
             {
@@ -1618,7 +1416,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
         },
         { -- Tailoring
-            1529,
             CT.Tailoring,
             true,
             {
@@ -1638,7 +1435,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
         },
     },
     { -- Pet Battles
-        785,
         CT.PetBattles,
         {
             6586, -- Eastern Kingdoms Safari
@@ -1687,10 +1483,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
         },
     },
     { -- Dragonriding Races
-        1530,
         addon.L["Dragonriding Races"],
         { -- Kalimdor Cup
-            1449,
             addon.L["Kalimdor Cup"],
             {
                 17712, -- Kalimdor: Bronze
@@ -1708,7 +1502,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
         },
         { -- Eastern Kingdoms Cup
-            1533,
             addon.L["Eastern Kingdoms Cup"],
             {
                 18566, -- Eastern Kingdoms: Bronze

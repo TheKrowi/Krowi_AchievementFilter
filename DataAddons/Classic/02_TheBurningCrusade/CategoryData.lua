@@ -1,15 +1,12 @@
-﻿local _, addon = ...
+local _, addon = ...
 local shared = addon.Data.CategoryData.Shared
 local CT = shared.CT
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
-    55,
     CT.TheBurningCrusade,
     { -- Zones
-        616,
         addon.L["Zones"],
         { -- Shattrath City
-            794,
             addon.GetMapName(1955),
             {
                 1165, -- "My Storage is ""Gigantique"""
@@ -17,7 +14,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Silvermoon City
-            924,
             addon.GetMapName(1954),
             {
                 613, -- Killed in Quel'Thalas
@@ -26,7 +22,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- The Exodar
-            969,
             addon.GetMapName(1947),
             {
                 618, -- Putting Out the Light
@@ -35,10 +30,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Azuremyst Isle
-            758,
             addon.GetMapName(1943),
             { -- Exploration
-                759,
                 CT.Exploration,
                 true,
                 {
@@ -46,7 +39,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
                 },
             },
             { -- Reputation
-                998,
                 CT.Reputation,
                 true,
                 {
@@ -55,10 +47,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Bloodmyst Isle
-            693,
             addon.GetMapName(1950),
             { -- Quests
-                694,
                 CT.Quests,
                 true,
                 {
@@ -66,7 +56,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
                 },
             },
             { -- Exploration
-                763,
                 CT.Exploration,
                 true,
                 {
@@ -74,7 +63,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
                 },
             },
             { -- Reputation
-                1000,
                 CT.Reputation,
                 true,
                 {
@@ -83,10 +71,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Eversong Woods
-            727,
             addon.GetMapName(1941),
             { -- Exploration
-                728,
                 CT.Exploration,
                 true,
                 {
@@ -94,7 +80,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
                 },
             },
             { -- Reputation
-                1008,
                 CT.Reputation,
                 true,
                 {
@@ -103,10 +88,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Ghostlands
-            669,
             addon.GetMapName(1942),
             { -- Quests
-                670,
                 CT.Quests,
                 true,
                 {
@@ -114,7 +97,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
                 },
             },
             { -- Exploration
-                733,
                 CT.Exploration,
                 true,
                 {
@@ -122,7 +104,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
                 },
             },
             { -- Reputation
-                1010,
                 CT.Reputation,
                 true,
                 {
@@ -131,10 +112,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Hellfire Peninsula
-            617,
             addon.GetMapName(1944),
             { -- Quests
-                624,
                 CT.Quests,
                 true,
                 {
@@ -143,7 +122,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
                 },
             },
             { -- Exploration
-                631,
                 CT.Exploration,
                 true,
                 {
@@ -152,7 +130,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
                 },
             },
             { -- Reputation
-                1011,
                 CT.Reputation,
                 true,
                 {
@@ -162,10 +139,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Zangarmarsh
-            618,
             addon.GetMapName(1946),
             { -- Quests
-                625,
                 CT.Quests,
                 true,
                 {
@@ -173,7 +148,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
                 },
             },
             { -- Exploration
-                632,
                 CT.Exploration,
                 true,
                 {
@@ -181,7 +155,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
                 },
             },
             { -- Reputation
-                643,
                 CT.Reputation,
                 true,
                 {
@@ -196,10 +169,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Terokkar Forest
-            619,
             addon.GetMapName(1952),
             { -- Quests
-                626,
                 CT.Quests,
                 true,
                 {
@@ -209,7 +180,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
                 },
             },
             { -- Exploration
-                633,
                 CT.Exploration,
                 true,
                 {
@@ -217,7 +187,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
                 },
             },
             { -- Reputation
-                642,
                 CT.Reputation,
                 true,
                 {
@@ -227,10 +196,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Nagrand
-            620,
             addon.GetMapName(1951),
             { -- Quests
-                627,
                 CT.Quests,
                 true,
                 {
@@ -243,7 +210,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
                 },
             },
             { -- Exploration
-                634,
                 CT.Exploration,
                 true,
                 {
@@ -251,7 +217,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
                 },
             },
             { -- Reputation
-                641,
                 CT.Reputation,
                 true,
                 {
@@ -263,10 +228,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Blade's Edge Mountains
-            621,
             addon.GetMapName(1949),
             { -- Quests
-                628,
                 CT.Quests,
                 true,
                 {
@@ -275,7 +238,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
                 },
             },
             { -- Exploration
-                635,
                 CT.Exploration,
                 true,
                 {
@@ -283,7 +245,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
                 },
             },
             { -- Reputation
-                640,
                 CT.Reputation,
                 true,
                 {
@@ -292,10 +253,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Netherstorm
-            622,
             addon.GetMapName(1953),
             { -- Quests
-                629,
                 CT.Quests,
                 true,
                 {
@@ -303,7 +262,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
                 },
             },
             { -- Exploration
-                636,
                 CT.Exploration,
                 true,
                 {
@@ -313,10 +271,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Shadowmoon Valley
-            623,
             addon.GetMapName(1948),
             { -- Quests
-                630,
                 CT.Quests,
                 true,
                 {
@@ -324,7 +280,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
                 },
             },
             { -- Exploration
-                637,
                 CT.Exploration,
                 true,
                 {
@@ -332,7 +287,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
                 },
             },
             { -- Reputation
-                638,
                 CT.Reputation,
                 true,
                 {
@@ -342,10 +296,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Isle of Quel'Danas
-            750,
             addon.GetMapName(1957),
             { -- Exploration
-                751,
                 CT.Exploration,
                 true,
                 {
@@ -367,10 +319,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
         },
     },
     { -- Dungeons
-        56,
         CT.Dungeons,
         { -- Hellfire Ramparts
-            57,
             addon.GetInstanceInfoName(248),
             {
                 647, -- Hellfire Ramparts
@@ -378,7 +328,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- The Blood Furnace
-            58,
             addon.GetInstanceInfoName(256),
             {
                 648, -- The Blood Furnace
@@ -386,7 +335,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- The Shattered Halls
-            59,
             addon.GetInstanceInfoName(259),
             {
                 657, -- The Shattered Halls
@@ -394,7 +342,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- The Slave Pens
-            60,
             addon.GetInstanceInfoName(260),
             {
                 649, -- The Slave Pens
@@ -402,7 +349,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- The Underbog
-            61,
             addon.GetInstanceInfoName(262),
             {
                 650, -- Underbog
@@ -410,7 +356,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- The Steamvault
-            62,
             addon.GetInstanceInfoName(261),
             {
                 656, -- The Steamvault
@@ -418,7 +363,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Mana-Tombs
-            63,
             addon.GetInstanceInfoName(250),
             {
                 651, -- Mana-Tombs
@@ -426,7 +370,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Auchenai Crypts
-            64,
             addon.GetInstanceInfoName(247),
             {
                 666, -- Auchenai Crypts
@@ -434,7 +377,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Sethekk Halls
-            65,
             addon.GetInstanceInfoName(252),
             {
                 653, -- Sethekk Halls
@@ -443,7 +385,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Shadow Labyrinth
-            66,
             addon.GetInstanceInfoName(253),
             {
                 654, -- Shadow Labyrinth
@@ -451,7 +392,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Old Hillsbrad Foothills
-            67,
             addon.GetInstanceInfoName(251),
             {
                 652, -- The Escape From Durnholde
@@ -459,7 +399,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- The Black Morass
-            68,
             addon.GetInstanceInfoName(255),
             {
                 655, -- Opening of the Dark Portal
@@ -467,7 +406,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- The Mechanar
-            69,
             addon.GetInstanceInfoName(258),
             {
                 658, -- The Mechanar
@@ -475,7 +413,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- The Botanica
-            70,
             addon.GetInstanceInfoName(257),
             {
                 659, -- The Botanica
@@ -483,7 +420,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- The Arcatraz
-            71,
             addon.GetInstanceInfoName(254),
             {
                 660, -- The Arcatraz
@@ -491,7 +427,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Magisters Terrace
-            72,
             addon.GetInstanceInfoName(249),
             {
                 661, -- Magister's Terrace
@@ -505,13 +440,10 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
         },
     },
     { -- Raids
-        73,
         CT.Raids,
         { -- Karazhan
-            74,
             addon.GetInstanceInfoName(745),
             { -- Reputation
-                647,
                 CT.Reputation,
                 true,
                 {
@@ -528,7 +460,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Gruul's Lair
-            75,
             addon.GetInstanceInfoName(746),
             {
                 692, -- Gruul's Lair
@@ -536,7 +467,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Magtheridon's Lair
-            76,
             addon.GetInstanceInfoName(747),
             {
                 693, -- Magtheridon's Lair
@@ -544,7 +474,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Serpentshrine Cavern
-            77,
             addon.GetInstanceInfoName(748),
             {
                 694, -- Serpentshrine Cavern
@@ -553,7 +482,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- The Eye
-            78,
             addon.GetInstanceInfoName(749),
             {
                 696, -- Tempest Keep
@@ -562,10 +490,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- The Battle for Mount Hyjal
-            79,
             addon.GetInstanceInfoName(750),
             { -- Reputation
-                646,
                 CT.Reputation,
                 true,
                 {
@@ -578,10 +504,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Black Temple
-            80,
             addon.GetInstanceInfoName(751),
             { -- Reputation
-                645,
                 CT.Reputation,
                 true,
                 {
@@ -598,7 +522,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Zul'Aman
-            81,
             addon.GetInstanceInfoName(77),
             {
                 691, -- Zul'Aman
@@ -606,7 +529,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Sunwell Plateau
-            82,
             addon.GetInstanceInfoName(752),
             {
                 698, -- Sunwell Plateau
@@ -622,10 +544,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
         },
     },
     { -- Professions
-        1151,
         CT.Professions,
         { -- Archaeology
-            1469,
             CT.Archaeology,
                 true,
             {
@@ -634,7 +554,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Cooking
-            1478,
             CT.Cooking,
                 true,
             {
@@ -646,7 +565,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Fishing
-            1499,
             CT.Fishing,
                 true,
             {

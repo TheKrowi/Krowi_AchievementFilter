@@ -1,18 +1,14 @@
-﻿local _, addon = ...;
+local _, addon = ...;
 local shared = addon.Data.CategoryData.Shared;
 local CT = shared.CT;
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
-    237,
     CT.Legion,
     { -- Zones
-        381,
         addon.L["Zones"],
         { -- Broken Isles
-            396,
             addon.GetMapName(619),
             { -- Quests
-                397,
                 CT.Quests,
                 true,
                 {
@@ -27,7 +23,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
                 },
             },
             { -- Exploration
-                398,
                 CT.Exploration,
                 true,
                 {
@@ -36,7 +31,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
                 },
             },
             { -- PvP
-                413,
                 CT.PvP,
                 true,
                 {
@@ -44,7 +38,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
                 },
             },
             { -- Reputation
-                414,
                 CT.Reputation,
                 true,
                 {
@@ -60,10 +53,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Dalaran
-            382,
             addon.GetMapName(626),
             { -- Quests
-                383,
                 CT.Quests,
                 true,
                 {
@@ -73,7 +64,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
                 },
             },
             { -- Exploration
-                405,
                 CT.Exploration,
                 true,
                 {
@@ -81,7 +71,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
                 },
             },
             { -- Professions
-                1448,
                 CT.Professions,
                 true,
                 {
@@ -94,10 +83,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Azsuna
-            384,
             addon.GetMapName(630),
             { -- Quests
-                385,
                 CT.Quests,
                 true,
                 {
@@ -106,7 +93,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
                 },
             },
             { -- Exploration
-                399,
                 CT.Exploration,
                 true,
                 {
@@ -117,7 +103,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
                 },
             },
             { -- PvP
-                412,
                 CT.PvP,
                 true,
                 {
@@ -126,10 +111,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Val'sharah
-            387,
             addon.GetMapName(641),
             { -- Quests
-                391,
                 CT.Quests,
                 true,
                 {
@@ -137,7 +120,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
                 },
             },
             { -- Exploration
-                400,
                 CT.Exploration,
                 true,
                 {
@@ -147,7 +129,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
                 },
             },
             { -- PvP
-                411,
                 CT.PvP,
                 true,
                 {
@@ -156,10 +137,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Highmountain
-            388,
             addon.GetMapName(650),
             { -- Quests
-                392,
                 CT.Quests,
                 true,
                 {
@@ -172,7 +151,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
                 },
             },
             { -- Exploration
-                401,
                 CT.Exploration,
                 true,
                 {
@@ -182,7 +160,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
                 },
             },
             { -- PvP
-                410,
                 CT.PvP,
                 true,
                 {
@@ -190,7 +167,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
                 },
             },
             { -- Reputation
-                416,
                 CT.Reputation,
                 true,
                 {
@@ -199,10 +175,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Stormheim
-            386,
             addon.GetMapName(634),
             { -- Quests
-                390,
                 CT.Quests,
                 true,
                 {
@@ -213,7 +187,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
                 },
             },
             { -- Exploration
-                402,
                 CT.Exploration,
                 true,
                 {
@@ -225,7 +198,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
                 },
             },
             { -- PvP
-                409,
                 CT.PvP,
                 true,
                 {
@@ -234,10 +206,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Suramar
-            389,
             addon.GetMapName(680),
             { -- Quests
-                393,
                 CT.Quests,
                 true,
                 {
@@ -251,7 +221,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
                 },
             },
             { -- Exploration
-                403,
                 CT.Exploration,
                 true,
                 {
@@ -261,7 +230,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
                 },
             },
             { -- Reputation
-                415,
                 CT.Reputation,
                 true,
                 {
@@ -270,10 +238,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Broken Shore
-            394,
             addon.GetMapName(646),
             { -- Quests
-                395,
                 CT.Quests,
                 true,
                 {
@@ -289,7 +255,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
                 },
             },
             { -- Exploration
-                404,
                 CT.Exploration,
                 true,
                 {
@@ -299,7 +264,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
                 },
             },
             { -- Reputation
-                417,
                 CT.Reputation,
                 true,
                 {
@@ -312,10 +276,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Argus
-            406,
             addon.GetMapName(905),
             { -- Quests
-                407,
                 CT.Quests,
                 true,
                 {
@@ -325,7 +287,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
                 },
             },
             { -- Exploration
-                408,
                 CT.Exploration,
                 true,
                 {
@@ -344,7 +305,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
                 },
             },
             { -- Reputation
-                418,
                 CT.Reputation,
                 true,
                 {
@@ -355,10 +315,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
         },
     },
     { -- Dungeons
-        238,
         CT.Dungeons,
         { -- Eye of Azshara
-            240,
             addon.GetInstanceInfoName(716),
             {
                 10456, -- But You Say He's Just a Friend
@@ -370,7 +328,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Darkheart Thicket
-            241,
             addon.GetInstanceInfoName(762),
             {
                 10766, -- Egg-cellent!
@@ -382,7 +339,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Halls of Valor
-            242,
             addon.GetInstanceInfoName(721),
             {
                 10544, -- Stag Party
@@ -395,7 +351,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Neltharions Lair
-            243,
             addon.GetInstanceInfoName(767),
             {
                 10996, -- Got to Ketchum All
@@ -407,7 +362,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Assault on Violet Hold
-            244,
             addon.GetInstanceInfoName(777),
             {
                 10554, -- I Made a Food!
@@ -418,7 +372,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Vault of the Wardens
-            245,
             addon.GetInstanceInfoName(707),
             {
                 10679, -- I Ain't Even Cold
@@ -430,7 +383,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Black Rook Hold
-            246,
             addon.GetInstanceInfoName(740),
             {
                 10710, -- Black Rook Moan
@@ -443,7 +395,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Maw of Souls
-            247,
             addon.GetInstanceInfoName(727),
             {
                 10413, -- Instant Karma
@@ -455,7 +406,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- The Arcway
-            248,
             addon.GetInstanceInfoName(726),
             {
                 10773, -- Arcanic Cling
@@ -465,7 +415,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Court of Stars
-            249,
             addon.GetInstanceInfoName(800),
             {
                 10610, -- Waiting for Gerdo
@@ -475,7 +424,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Return to Karazhan
-            250,
             addon.GetInstanceInfoName(860),
             {
                 11430, -- One Night in Karazhan
@@ -490,7 +438,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Cathedral of Eternal Night
-            251,
             addon.GetInstanceInfoName(900),
             {
                 11768, -- Boom Bloom
@@ -502,7 +449,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Seat of the Triumvirate
-            252,
             addon.GetInstanceInfoName(945),
             {
                 12004, -- Welcome the Void
@@ -521,13 +467,10 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
         },
     },
     { -- Raids
-        239,
         CT.Raids,
         { -- The Emerald Nightmare
-            253,
             addon.GetInstanceInfoName(768),
             { -- Glory
-                873,
                 addon.L["Glory"],
                 {
                     10555, -- Buggy Fight
@@ -540,7 +483,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
                 },
             },
             { -- Mythic
-                874,
                 addon.L["Mythic"],
                 {
                     10821, -- Mythic: Nythendra
@@ -562,10 +504,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- The Nighthold
-            254,
             addon.GetInstanceInfoName(786),
             { -- Glory
-                875,
                 addon.L["Glory"],
                 {
                     10678, -- Cage Rematch
@@ -581,7 +521,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
                 },
             },
             { -- Mythic
-                876,
                 addon.L["Mythic"],
                 {
                     10840, -- Mythic: Skorpyron
@@ -608,7 +547,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Trial of Valor
-            255,
             addon.GetInstanceInfoName(861),
             {
                 11337, -- You Runed Everything!
@@ -626,10 +564,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Tomb of Sargeras
-            256,
             addon.GetInstanceInfoName(875),
             { -- Glory
-                879,
                 addon.L["Glory"],
                 {
                     11724, -- Fel Turkey!
@@ -644,7 +580,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
                 },
             },
             { -- Mythic
-                880,
                 addon.L["Mythic"],
                 {
                     11767, -- Mythic: Goroth
@@ -670,10 +605,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Antorus, the Burning Throne
-            257,
             addon.GetInstanceInfoName(946),
             { -- Glory
-                881,
                 addon.L["Glory"],
                 {
                     11930, -- Worm-monger
@@ -690,7 +623,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
                 },
             },
             { -- Mythic
-                882,
                 addon.L["Mythic"],
                 {
                     11992, -- Mythic: Garothi Worldbreaker
@@ -724,10 +656,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
         },
     },
     { -- Professions
-        1156,
         CT.Professions,
         { -- Archaeology
-            1473,
             CT.Archaeology,
             true,
             {
@@ -744,7 +674,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Cooking
-            1482,
             CT.Cooking,
             true,
             {
@@ -756,7 +685,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Engineering
-            1489,
             CT.Engineering,
             true,
             {
@@ -764,7 +692,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Fishing
-            1495,
             CT.Fishing,
             true,
             {
@@ -778,7 +705,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Herbalism
-            1502,
             CT.Herbalism,
             true,
             {
@@ -786,7 +712,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Jewelcrafting
-            1508,
             CT.Jewelcrafting,
             true,
             {
@@ -794,7 +719,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Mining
-            1517,
             CT.Mining,
             true,
             {
@@ -802,7 +726,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             },
         },
         { -- Skinning
-            1521,
             CT.Skinning,
             true,
             {
@@ -822,7 +745,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
         },
     },
     { -- Pet Battles
-        430,
         CT.PetBattles,
         {
             11233, -- Broken Isles Safari
@@ -853,7 +775,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
         },
     },
     { -- Brawler's Guild
-        792,
         addon.L["Brawler's Guild"],
         {
             11560, -- You Are Not Your $#*@! Legplates (Season 3)
@@ -866,7 +787,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
         },
     },
     { -- Class Hall
-        429,
         addon.L["Class Halls"],
         {
             addon.GetAchievmentName(11137),

@@ -1,12 +1,10 @@
-﻿local _, addon = ...;
+local _, addon = ...;
 local shared = addon.Data.CategoryData.Shared;
 local CT = shared.CT;
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
-    1207,
     CT.Dragonflight,
     { -- Character
-        1610,
         CT.Character,
         {
             18976, -- Draconically Superior
@@ -17,13 +15,10 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
         },
     },
     { -- Zones
-        1228,
         addon.L["Zones"],
         { -- Dragon Isles
-            1341,
             CT.DragonIsles,
             { -- Quests
-                1342,
                 CT.Quests,
                 true,
                 {
@@ -39,7 +34,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Exploration
-                1343,
                 CT.Exploration,
                 true,
                 {
@@ -57,7 +51,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Player vs. Player
-                1390,
                 CT.PvP,
                 true,
                 {
@@ -78,7 +71,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Reputation
-                1361,
                 CT.Reputation,
                 true,
                 {
@@ -110,7 +102,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Dragonriding Races
-                1577,
                 addon.L["Dragonriding Races"],
                 true,
                 {
@@ -119,7 +110,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Valdrakken
-            1362,
             addon.GetMapName(2112),
             {
                 16556, -- Great Gourmand of The Ruby Feast
@@ -130,10 +120,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- The Waking Shores
-            1232,
             addon.GetMapName(2022),
             { -- Quests
-                1237,
                 CT.Quests,
                 true,
                 {
@@ -142,7 +130,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Exploration
-                1242,
                 CT.Exploration,
                 true,
                 {
@@ -166,7 +153,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- PvP
-                1247,
                 CT.PvP,
                 true,
                 {
@@ -174,7 +160,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Reputation
-                1248,
                 CT.Reputation,
                 true,
                 {
@@ -186,7 +171,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Dragon Glyphs
-                1306,
                 addon.L["Dragon Glyphs"],
                 true,
                 {
@@ -206,7 +190,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Dragonriding Races
-                1310,
                 addon.L["Dragonriding Races"],
                 true,
                 {
@@ -238,10 +221,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Ohn'ahran Plains
-            1233,
             addon.GetMapName(2023),
             { -- Quests
-                1238,
                 CT.Quests,
                 true,
                 {
@@ -254,7 +235,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Exploration
-                1243,
                 CT.Exploration,
                 true,
                 {
@@ -270,7 +250,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- PvP
-                1249,
                 CT.PvP,
                 true,
                 {
@@ -278,7 +257,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Reputation
-                1253,
                 CT.Reputation,
                 true,
                 {
@@ -294,7 +272,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Dragon Glyphs
-                1307,
                 addon.L["Dragon Glyphs"],
                 true,
                 {
@@ -314,7 +291,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Dragonriding Races
-                1311,
                 addon.L["Dragonriding Races"],
                 true,
                 {
@@ -346,10 +322,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- The Azure Span
-            1234,
             addon.GetMapName(2024),
             { -- Quests
-                1239,
                 CT.Quests,
                 true,
                 {
@@ -363,7 +337,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Exploration
-                1245,
                 CT.Exploration,
                 true,
                 {
@@ -380,7 +353,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- PvP
-                1250,
                 CT.PvP,
                 true,
                 {
@@ -388,7 +360,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Reputation
-                1256,
                 CT.Reputation,
                 true,
                 {
@@ -419,7 +390,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Dragon Glyphs
-                1308,
                 addon.L["Dragon Glyphs"],
                 true,
                 {
@@ -439,7 +409,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Dragonriding Races
-                1312,
                 addon.L["Dragonriding Races"],
                 true,
                 {
@@ -471,10 +440,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Thaldraszus
-            1235,
             addon.GetMapName(2025),
             { -- Quests
-                1240,
                 CT.Quests,
                 true,
                 {
@@ -486,7 +453,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Exploration
-                1246,
                 CT.Exploration,
                 true,
                 {
@@ -499,7 +465,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- PvP
-                1251,
                 CT.PvP,
                 true,
                 {
@@ -507,7 +472,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Dragon Glyphs
-                1309,
                 addon.L["Dragon Glyphs"],
                 true,
                 {
@@ -527,7 +491,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Dragonriding Races
-                1313,
                 addon.L["Dragonriding Races"],
                 true,
                 {
@@ -559,10 +522,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- The Forbidden Reach
-            1236,
             addon.GetMapName(2107),
             { -- Quests
-                1241,
                 CT.Quests,
                 true,
                 {
@@ -571,7 +532,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Exploration
-                1244,
                 CT.Exploration,
                 true,
                 {
@@ -594,7 +554,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Dragon Glyphs
-                1408,
                 addon.L["Dragon Glyphs"],
                 true,
                 {
@@ -610,7 +569,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Dragonriding Races
-                1407,
                 addon.L["Dragonriding Races"],
                 true,
                 {
@@ -632,7 +590,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Primal Storms
-                1410,
                 addon.L["Primal Storms"],
                 true,
                 {
@@ -641,10 +598,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Zaralek Cavern
-            1414,
             addon.GetMapName(2133),
             { -- Exploration
-                1416,
                 CT.Exploration,
                 true,
                 {
@@ -665,7 +620,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Player vs. Player
-                1417,
                 CT.PvP,
                 true,
                 {
@@ -674,7 +628,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Reputation
-                1418,
                 CT.Reputation,
                 true,
                 {
@@ -683,7 +636,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Dragon Glyphs
-                1427,
                 addon.L["Dragon Glyphs"],
                 true,
                 {
@@ -699,7 +651,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Dragonriding Races
-                1424,
                 addon.L["Dragonriding Races"],
                 true,
                 {
@@ -727,10 +678,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Emerald Dream
-            1541,
             addon.GetMapName(2200),
             { -- Quests
-                1548,
                 CT.Quests,
                 true,
                 {
@@ -739,7 +688,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Exploration
-                1549,
                 CT.Exploration,
                 true,
                 {
@@ -754,7 +702,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Player vs. Player
-                1546,
                 CT.PvP,
                 true,
                 {
@@ -762,7 +709,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Reputation
-                1547,
                 CT.Reputation,
                 true,
                 {
@@ -771,7 +717,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Dragon Glyphs
-                1551,
                 addon.L["Dragon Glyphs"],
                 true,
                 {
@@ -787,7 +732,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Dragonriding Races
-                1542,
                 addon.L["Dragonriding Races"],
                 true,
                 {
@@ -820,11 +764,9 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
         },
     },
     { -- Dungeons
-        1229,
         CT.Dungeons,
         shared.GetDragonflightMythicPlus(addon.L["Mythic+"]),
         { -- Algeth'ar Academy
-            1257,
             addon.GetInstanceInfoName(1201),
             {
                 16434, -- See Me After Class
@@ -838,7 +780,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Brackenhide Hollow
-            1258,
             addon.GetInstanceInfoName(1196),
             {
                 16110, -- Subscribed to Hyena Facts
@@ -853,7 +794,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Halls of Infusion
-            1259,
             addon.GetInstanceInfoName(1204),
             {
                 16426, -- Hungry Hungry Hornswog
@@ -866,7 +806,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Neltharus
-            1260,
             addon.GetInstanceInfoName(1199),
             {
                 16438, -- Knowledge is... Preserved?
@@ -879,7 +818,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Ruby Life Pools
-            1261,
             addon.GetInstanceInfoName(1202),
             {
                 16402, -- Dragon Kill Points
@@ -892,7 +830,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- The Azure Vault
-            1262,
             addon.GetInstanceInfoName(1203),
             {
                 16445, -- Icy What You Did There
@@ -905,7 +842,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- The Nokhud Offensive
-            1263,
             addon.GetInstanceInfoName(1198),
             {
                 16447, -- What Are The Chances...
@@ -919,7 +855,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Uldaman: Legacy of Tyr
-            1264,
             addon.GetInstanceInfoName(1197),
             {
                 16337, -- It's a Trogg Eat Trogg World
@@ -932,7 +867,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Dawn of the Infinite
-            1450,
             addon.GetInstanceInfoName(1209),
             {
                 18589, -- Crunch Time
@@ -983,13 +917,10 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
         },
     },
     { -- Raids
-        1230,
         CT.Raids,
         { -- Vault of the Incarnates
-            1265,
             addon.GetInstanceInfoName(1200),
             { -- Glory
-                1266,
                 addon.L["Glory"],
                 {
                     16335, -- What Frozen Things Do
@@ -1003,7 +934,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Mythic
-                1267,
                 addon.L["Mythic"],
                 {
                     16346, -- Mythic: Eranog
@@ -1033,10 +963,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Aberrus, the Shadowed Crucible
-            1420,
             addon.GetInstanceInfoName(1208),
             { -- Glory
-                1421,
                 addon.L["Glory"],
                 {
                     18229, -- Cosplate
@@ -1051,7 +979,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Mythic
-                1422,
                 addon.L["Mythic"],
                 {
                     18151, -- Mythic: Kazzara, the Hellforged
@@ -1085,10 +1012,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Amirdrassil, the Dream's Hope
-            1543,
             addon.GetInstanceInfoName(1207),
             { -- Glory
-                1544,
                 addon.L["Glory"],
                 {
                     19322, -- Meaner Pastures
@@ -1103,7 +1028,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 },
             },
             { -- Mythic
-                1545,
                 addon.L["Mythic"],
                 {
                     19335, -- Mythic: Gnarlroot
@@ -1149,10 +1073,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
         },
     },
     { -- Professions
-        1391,
         CT.Professions,
         { -- Alchemy
-            1466,
             CT.Alchemy,
             true,
             {
@@ -1160,7 +1082,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Cooking
-            1485,
             CT.Cooking,
             true,
             {
@@ -1168,7 +1089,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Enchanting
-            1487,
             CT.Enchanting,
             true,
             {
@@ -1177,7 +1097,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Engineering
-            1491,
             CT.Engineering,
             true,
             {
@@ -1185,7 +1104,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Fishing
-            1492,
             CT.Fishing,
             true,
             {
@@ -1193,7 +1111,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Herbalism
-            1504,
             CT.Herbalism,
             true,
             {
@@ -1206,7 +1123,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Jewelcrafting
-            1509,
             CT.Jewelcrafting,
             true,
             {
@@ -1215,7 +1131,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Mining
-            1519,
             CT.Mining,
             true,
             {
@@ -1226,7 +1141,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Skinning
-            1523,
             CT.Skinning,
             true,
             {
@@ -1236,7 +1150,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Tailoring
-            1528,
             CT.Tailoring,
             true,
             {
@@ -1251,7 +1164,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
         },
     },
     { -- Pet Battles
-        1231,
         CT.PetBattles,
         {
             16519, -- Dragon Isles Safari
@@ -1287,10 +1199,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
         },
     },
     { -- Dragonriding
-        1268,
         addon.L["Dragonriding"],
         { -- The Waking Shores
-            1302,
             addon.GetMapName(2022),
             true,
             {
@@ -1310,7 +1220,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Ohn'ahran Plains
-            1303,
             addon.GetMapName(2023),
             true,
             {
@@ -1330,7 +1239,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- The Azure Span
-            1304,
             addon.GetMapName(2024),
             true,
             {
@@ -1350,7 +1258,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Thaldraszus
-            1305,
             addon.GetMapName(2025),
             true,
             {
@@ -1370,7 +1277,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Zaralek Cavern
-            1426,
             addon.GetMapName(2133),
             true,
             {
@@ -1386,7 +1292,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Emerald Dream
-            1550,
             addon.GetMapName(2200),
             true,
             {
@@ -1410,10 +1315,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
         },
     },
     { -- Dragonriding Races
-        1269,
         addon.L["Dragonriding Races"],
         { -- The Waking Shores
-            1293,
             addon.GetMapName(2022),
             {
                 15915, -- Waking Shores: Bronze
@@ -1431,7 +1334,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Ohn'ahran Plains
-            1285,
             addon.GetMapName(2023),
             {
                 15918, -- Ohn'ahran Plains: Bronze
@@ -1449,7 +1351,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- The Azure Span
-            1278,
             addon.GetMapName(2024),
             {
                 15921, -- Azure Span: Bronze
@@ -1467,7 +1368,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Thaldraszus
-            1276,
             addon.GetMapName(2025),
             {
                 15924, -- Thaldraszus: Bronze
@@ -1485,7 +1385,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- The Forbidden Reach
-            1411,
             addon.GetMapName(2107),
             {
                 17279, -- Forbidden Reach: Bronze
@@ -1506,7 +1405,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
             },
         },
         { -- Zaralek Cavern
-            1423,
             addon.GetMapName(2133),
             {
                 17483, -- Zaralek Cavern: Bronze
@@ -1540,7 +1438,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
         },
     },
     { -- Primal Storms
-        1360,
         addon.L["Primal Storms"],
         {
             16492, -- Into the Storm
@@ -1573,7 +1470,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
         },
     },
     { -- Dragon Isle Drake Cosmetics
-        1401,
         CT.DragonIsleDrakeCosmetics,
         {
             16696, -- Renewed Proto-Drake Armor

@@ -10,7 +10,6 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         TabName = "Events",
     },
     { -- Holidays
-        918,
         addon.L["Holidays"],
         { -- Lunar Festival
             885,
@@ -259,7 +258,6 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
             917,
             CT.WinterVeil,
             { -- Gifts
-                950,
                 addon.L["Gifts"],
                 true,
                 {
@@ -316,10 +314,8 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         },
     },
     { -- WoW's Anniversary
-        1173,
         addon.L["WoW's Anniversary"],
         { -- WoW's 20th Anniversary
-            1678,
             addon.L["WoW's 20th Anniversary"],
             {
                 40985, -- I Have That One!
@@ -380,7 +376,6 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         925,
         CT.DarkmoonFaire,
         { -- Reputation
-            1030,
             true,
             CT.Reputation,
             {
@@ -460,7 +455,6 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         },
     },
     { -- Miscellaneous
-        1174,
         addon.L["Miscellaneous"],
         {
             1636, -- Competitor's Tabard
