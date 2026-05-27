@@ -4,7 +4,7 @@ local CT = shared.CT;
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
     189,
-    addon.GetCategoryInfoTitle(15164),
+    CT.MistsOfPandaria,
     { -- Zones
         491,
         addon.L["Zones"],
@@ -1152,7 +1152,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
     },
     { -- Proving Grounds
         490,
-        addon.GetCategoryInfoTitle(15222),
+        CT.ProvingGrounds,
         {
             9572, -- Proving Yourself: Bronze Damage
             9573, -- Proving Yourself: Silver Damage

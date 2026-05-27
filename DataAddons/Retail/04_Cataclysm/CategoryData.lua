@@ -4,7 +4,7 @@ local CT = shared.CT;
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
     129,
-    addon.GetCategoryInfoTitle(15072),
+    CT.Cataclysm,
     { -- Zones
         550,
         addon.L["Zones"],
@@ -598,7 +598,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
         },
         { -- Tailoring
             1527,
-            addon.GetCategoryInfoTitle(15496),
+            CT.Tailoring,
             true,
             {
                 5480, -- Preparing for Disaster
@@ -632,7 +632,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
     },
     { -- Tol Barad
         547,
-        addon.GetCategoryInfoTitle(15075),
+        CT.TolBarad,
         { -- Quests
             563,
             CT.Quests,

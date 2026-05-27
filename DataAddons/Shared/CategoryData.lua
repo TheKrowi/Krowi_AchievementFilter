@@ -4,18 +4,107 @@ addon.Data.CategoryData.Shared = {}
 local shared = addon.Data.CategoryData.Shared
 
 shared.CT = {
-    Character   = addon.GetCategoryInfoTitle(92),
-    PvP         = addon.GetCategoryInfoTitle(95),
-    Quests      = addon.GetCategoryInfoTitle(96),
-    Exploration = addon.GetCategoryInfoTitle(97),
-    Professions = addon.GetCategoryInfoTitle(169),
-    Cooking     = addon.GetCategoryInfoTitle(170),
-    Fishing     = addon.GetCategoryInfoTitle(171),
-    Reputation  = addon.GetCategoryInfoTitle(201),
-    Archaeology = addon.GetCategoryInfoTitle(15071),
-    PetBattles  = addon.GetCategoryInfoTitle(15117),
-    Dungeons    = addon.GetCategoryInfoTitle(15272),
-    Raids       = addon.GetCategoryInfoTitle(15271),
+    Character                = addon.L["Characters"],
+    Midsummer                = addon.L["Midsummer"],
+    PvP                      = addon.L["Player vs. Player"],
+    Quests                   = addon.L["Quests"],
+    Exploration              = addon.L["Exploration"],
+    Professions              = addon.L["Professions"],
+    Cooking                  = addon.L["Cooking"],
+    Fishing                  = addon.L["Fishing"],
+    Reputation               = addon.L["Reputation"],
+    Archaeology              = addon.L["Archaeology"],
+    PetBattles               = addon.L["Pet Battles"],
+    Dungeons                 = addon.L["Dungeons"],
+    Raids                    = addon.L["Raids"],
+    -- Battlegrounds
+    FeatsOfStrength          = addon.L["Feats of Strength"],
+    Battlegrounds            = addon.L["Battlegrounds"],
+    WinterVeil               = addon.L["Winter Veil"],
+    Arena                    = addon.L["Arena"],
+    DungeonsAndRaids         = addon.L["Dungeons & Raids"],
+    AlteracValley            = addon.L["Alterac Valley"],
+    ArathiBasin              = addon.L["Arathi Basin"],
+    EyeOfTheStorm            = addon.L["Eye of the Storm"],
+    WarsongGulch             = addon.L["Warsong Gulch"],
+    Wintergrasp              = addon.L["Wintergrasp"],
+    ArgentTournament         = addon.L["Argent Tournament"],
+    IsleOfConquest           = addon.L["Isle of Conquest"],
+    BattleForGilneas         = addon.L["Battle for Gilneas"],
+    TwinPeaks                = addon.L["Twin Peaks"],
+    TolBarad                 = addon.L["Tol Barad"],
+    SeethingShore            = addon.L["Seething Shore"],
+    Ashran                   = addon.L["Ashran"],
+    DeepwindGorge            = addon.L["Deepwind Gorge"],
+    -- Pet Battles
+    Collect                  = addon.L["Collect"],
+    Battle                   = addon.L["Battle"],
+    Level                    = addon.L["Level"],
+    -- Collections / Misc
+    Collections              = addon.L["Collections"],
+    Honor                    = addon.L["Honor"],
+    Promotions               = addon.L["Promotions"],
+    World                    = addon.L["World"],
+    ProvingGrounds           = addon.L["Proving Grounds"],
+    IslandExpeditions        = addon.L["Island Expeditions"],
+    WarEffort                = addon.L["War Effort"],
+    HeartOfAzeroth           = addon.L["Heart of Azeroth"],
+    CovenantSanctums         = addon.L["Covenant Sanctums"],
+    Timewalking              = addon.L["Timewalking"],
+    Delves                   = addon.L["Delves"],
+    -- Dungeons & Raids
+    SilvershadMines          = addon.L["Silvershard Mines"],
+    TempleOfKotmogu          = addon.L["Temple of Kotmogu"],
+    -- Professions
+    Alchemy                  = addon.L["Alchemy"],
+    Blacksmithing            = addon.L["Blacksmithing"],
+    Enchanting               = addon.L["Enchanting"],
+    Engineering              = addon.L["Engineering"],
+    Inscription              = addon.L["Inscription"],
+    Jewelcrafting            = addon.L["Jewelcrafting"],
+    Leatherworking           = addon.L["Leatherworking"],
+    Tailoring                = addon.L["Tailoring"],
+    Mining                   = addon.L["Mining"],
+    Skinning                 = addon.L["Skinning"],
+    Herbalism                = addon.L["Herbalism"],
+    -- Dragonflight
+    DragonIsles              = addon.L["Dragon Isles"],
+    DragonIsleDrakeCosmetics = addon.L["Dragon Isle Drake Cosmetics"],
+    -- The War Within
+    DeephaulRavine           = addon.L["Deephaul Ravine"],
+    DecorDuel                = addon.L["Decor Duel"],
+    TrainingGrounds          = addon.L["Training Grounds"],
+    Prey                     = addon.L["Prey"],
+    RitualSites              = addon.L["Ritual Sites"],
+    SlayersRise              = addon.L["Slayer's Rise"],
+    VoidAssaults             = addon.L["Void Assaults"],
+    -- Remix
+    RemixMistsOfPandaria     = addon.L["Remix: Mists of Pandaria"],
+    -- Events
+    HallowsEnd               = addon.L["Hallow's End"],
+    Noblegarden              = addon.L["Noblegarden"],
+    LunarFestival            = addon.L["Lunar Festival"],
+    Brewfest                 = addon.L["Brewfest"],
+    ChildrensWeek            = addon.L["Children's Week"],
+    LoveIsInTheAir           = addon.L["Love is in the Air"],
+    PilgrimsBounty           = addon.L["Pilgrim's Bounty"],
+    DarkmoonFaire            = addon.L["Darkmoon Faire"],
+    VisionsOfNZoth           = addon.L["Visions of N'Zoth"],
+    Torghast                 = addon.L["Torghast"],
+    LegionRemix              = addon.L["Legion Remix"],
+    -- Expansion names
+    Classic                  = addon.L["Classic"],
+    TheBurningCrusade        = addon.L["The Burning Crusade"],
+    WrathOfTheLichKing       = addon.L["Wrath of the Lich King"],
+    Cataclysm                = addon.L["Cataclysm"],
+    MistsOfPandaria          = addon.L["Mists of Pandaria"],
+    WarlordsOfDraenor        = addon.L["Warlords of Draenor"],
+    Legion                   = addon.L["Legion"],
+    BattleForAzeroth         = addon.L["Battle for Azeroth"],
+    Shadowlands              = addon.L["Shadowlands"],
+    Dragonflight             = addon.L["Dragonflight"],
+    TheWarWithin             = addon.L["The War Within"],
+    Midnight                 = addon.L["Midnight"],
 }
 local CT = shared.CT
 
@@ -158,7 +247,7 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
         },
         { -- Delves
             1670,
-            addon.GetCategoryInfoTitle(15522),
+            CT.Delves,
             {
                 40436, -- You're Getting a Delve!
                 40460, -- Delve Deep
@@ -178,7 +267,7 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
         },
         { -- Dungeons & Raids
             1169,
-            addon.GetCategoryInfoTitle(168),
+            CT.DungeonsAndRaids,
             {
                 4476, -- Looking For More
                 4477, -- Looking For Many
@@ -190,7 +279,7 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
             CT.Professions,
             { -- Alchemy
                 1456,
-                addon.GetCategoryInfoTitle(15489),
+                CT.Alchemy,
                 {
                     18726, -- A Cure for All Ails I
                     18731, -- A Cure for All Ails II
@@ -222,7 +311,7 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
             },
             { -- Blacksmithing
                 1457,
-                addon.GetCategoryInfoTitle( 15490),
+                CT.Blacksmithing,
                 {
                     18862, -- Anvil Mastery I
                     18864, -- Anvil Mastery II
@@ -260,7 +349,7 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
             },
             { -- Enchanting
                 1460,
-                addon.GetCategoryInfoTitle(15491),
+                CT.Enchanting,
                 {
                     18766, -- Disenchantment I
                     18767, -- Disenchantment II
@@ -276,7 +365,7 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
             },
             { -- Engineering
                 1461,
-                addon.GetCategoryInfoTitle(15492),
+                CT.Engineering,
                 {
                     18872, -- Dangerous Devices I
                     18873, -- Dangerous Devices II
@@ -315,7 +404,7 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
             },
             { -- Inscription
                 1464,
-                addon.GetCategoryInfoTitle(15493),
+                CT.Inscription,
                 {
                     18876, -- Ink and Quill I
                     18877, -- Ink and Quill II
@@ -330,7 +419,7 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
             },
             { -- Jewelcrafting
                 1465,
-                addon.GetCategoryInfoTitle(15494),
+                CT.Jewelcrafting,
                 {
                     18880, -- Generations of Gemstones I
                     18889, -- Generations of Gemstones II
@@ -343,7 +432,7 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
             },
             { -- Leatherworking
                 1510,
-                addon.GetCategoryInfoTitle(15495),
+                CT.Leatherworking,
                 {
                     18881, -- A Test of Scale I
                     18882, -- A Test of Scale II
@@ -357,7 +446,7 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
             },
             { -- Tailoring
                 1524,
-                addon.GetCategoryInfoTitle(15496),
+                CT.Tailoring,
                 {
                     18885, -- Quite the Quilt I
                     18886, -- Quite the Quilt II
@@ -427,7 +516,7 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
             CT.PetBattles,
             { -- Collect
                 1433,
-                addon.GetCategoryInfoTitle(15118),
+                CT.Collect,
                 true,
                 {
                     7482, -- Trainer Extraordinaire
@@ -469,7 +558,7 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
             },
             { -- Battle
                 1434,
-                addon.GetCategoryInfoTitle(15119),
+                CT.Battle,
                 true,
                 {
                     6594, -- Cat Fight!
@@ -505,7 +594,7 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
             },
             { -- Level
                 1435,
-                addon.GetCategoryInfoTitle(15120),
+                CT.Level,
                 true,
                 {
                     7433, -- Newbie
@@ -528,7 +617,7 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
         },
         { -- Collections
             1171,
-            addon.GetCategoryInfoTitle(15246),
+            CT.Collections,
             {
                 621, -- Represent
                 1020, -- Ten Tabards
@@ -567,7 +656,7 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
         },
         { -- Feats of Strength
             1172,
-            addon.GetCategoryInfoTitle(81),
+            CT.FeatsOfStrength,
             {
                 4496, -- It's Over Nine Thousand!
                 3636, -- Jade Tiger

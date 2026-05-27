@@ -4,7 +4,7 @@ local CT = shared.CT;
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
     223,
-    addon.GetCategoryInfoTitle(15233),
+    CT.WarlordsOfDraenor,
     { -- Zones
         449,
         addon.L["Zones"],
@@ -664,7 +664,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
         },
         { -- Engineering
             1490,
-            addon.GetCategoryInfoTitle(15492),
+            CT.Engineering,
             true,
             {
                 9071, -- Inspector Gadgetzan
@@ -689,7 +689,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
         },
         { -- Herbalism
             1501,
-            addon.GetCategoryInfoTitle(15499),
+            CT.Herbalism,
             true,
             {
                 9454, -- Draenic Seed Collector
@@ -697,7 +697,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
         },
         { -- Mining
             1515,
-            addon.GetCategoryInfoTitle(15497),
+            CT.Mining,
             true,
             {
                 9453, -- Draenic Stone Collector

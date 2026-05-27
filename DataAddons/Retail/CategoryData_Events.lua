@@ -1,4 +1,7 @@
-local _, addon = ...;
+﻿local _, addon = ...;
+local shared = addon.Data.CategoryData.Shared
+local CT = shared.CT
+
 
 KrowiAF.CategoryData.Events = { -- TAB - Events
     884,
@@ -11,7 +14,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         addon.L["Holidays"],
         { -- Lunar Festival
             885,
-            addon.GetCategoryInfoTitle(160),
+            CT.LunarFestival,
             {
                 605, -- A Coin of Ancestry
                 606, -- 5 Coins of Ancestry
@@ -36,7 +39,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         },
         { -- Love is in the Air
             910,
-            addon.GetCategoryInfoTitle(187),
+            CT.LoveIsInTheAir,
             {
                 1701, -- Be Mine!
                 260, -- Charming
@@ -66,7 +69,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         },
         { -- Noblegarden
             911,
-            addon.GetCategoryInfoTitle(159),
+            CT.Noblegarden,
             {
                 2676, -- I Found One!
                 2417, -- Chocolate Lover
@@ -87,7 +90,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         },
         { -- Children's Week
             912,
-            addon.GetCategoryInfoTitle(163),
+            CT.ChildrensWeek,
             {
                 1791, -- Home Alone
                 1788, -- Bad Example
@@ -101,7 +104,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         },
         { -- Midsummer
             913,
-            addon.GetCategoryInfoTitle( 161),
+            CT.Midsummer,
             {
                 263, -- Ice the Frost Lord
                 271, -- Burning Hot Pole Dance
@@ -164,7 +167,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         },
         { -- Brewfest
             914,
-            addon.GetCategoryInfoTitle(162),
+            CT.Brewfest,
             {
                 1184, -- Strange Brew
                 1203, -- Strange Brew
@@ -187,7 +190,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         },
         { -- Hallow's End
             915,
-            addon.GetCategoryInfoTitle(158),
+            CT.HallowsEnd,
             {
                 972, -- Trick or Treat!
                 288, -- Out With It
@@ -238,7 +241,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         },
         { -- Pilgrim's Bounty
             916,
-            addon.GetCategoryInfoTitle(14981),
+            CT.PilgrimsBounty,
             {
                 3579, -- "FOOD FIGHT!"""
                 3576, -- Now We're Cookin'
@@ -258,7 +261,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         },
         { -- Winter Veil
             917,
-            addon.GetCategoryInfoTitle(156),
+            CT.WinterVeil,
             { -- Gifts
                 950,
                 addon.L["Gifts"],
@@ -383,11 +386,11 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
     },
     { -- Darkmoon Faire
         925,
-        addon.GetCategoryInfoTitle(15101),
+        CT.DarkmoonFaire,
         { -- Reputation
             1030,
             true,
-            addon.GetCategoryInfoTitle(201),
+            CT.Reputation,
             {
                 2336, -- Insane in the Membrane
             },
@@ -555,7 +558,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
     },
     { -- Pandaria: Remix
         1578,
-        addon.GetCategoryInfoTitle(15536),
+        CT.RemixMistsOfPandaria,
         { -- Zones
             1579,
             addon.L["Zones"],
@@ -736,7 +739,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         },
         { -- Dungeons
             1580,
-            addon.GetCategoryInfoTitle(15272),
+            CT.Dungeons,
             {
                 19894, -- Temple of the Jade Serpent
                 19895, -- Heroic: Temple of the Jade Serpent
@@ -761,7 +764,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         },
         { -- Raids
             1581,
-            addon.GetCategoryInfoTitle(15271),
+            CT.Raids,
             { -- Mogu'shan Vaults
                 1593,
                 addon.GetInstanceInfoName(317),
@@ -838,7 +841,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
     },
     { -- Legion: Remix
         2569,
-        addon.GetCategoryInfoTitle(15562),
+        CT.LegionRemix,
         { -- Zones
             addon.L["Zones"],
             { -- Azsuna
@@ -1027,7 +1030,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
             },
         },
         { -- Dungeons
-            addon.GetCategoryInfoTitle(15272),
+            CT.Dungeons,
             { -- Eye of Azshara
                 addon.GetInstanceInfoName(716),
                 true,
@@ -1159,7 +1162,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
             },
         },
         { -- Raids
-            addon.GetCategoryInfoTitle(15271),
+            CT.Raids,
             { -- Emerald Nightmare
                 addon.GetInstanceInfoName(768),
                 true,
@@ -1291,7 +1294,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         }
     },
     { -- Decor Duel
-        addon.GetCategoryInfoTitle(15574),
+        CT.DecorDuel,
         {
             61792, -- T-A-G that spells "Gotcha!"
             61793, -- Deployed to the Void
@@ -1332,10 +1335,10 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
     },
     { -- Timewalking
         951,
-        addon.GetCategoryInfoTitle(15454),
+        CT.Timewalking,
         { -- Legion
             954,
-            addon.GetCategoryInfoTitle(15258),
+            CT.Legion,
             {
                 15309, -- A Towering Success
                 15310, -- A Tour of Towers
@@ -1360,7 +1363,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
     },
     { -- Legion
         947,
-        addon.GetCategoryInfoTitle(15258),
+        CT.Legion,
         { -- Legion Assaults
             948,
             addon.L["Legion Assaults"],
@@ -1371,7 +1374,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
     },
     { -- Battle for Azeroth
         932,
-        addon.GetCategoryInfoTitle(15305),
+        CT.BattleForAzeroth,
         { -- Faction Assaults
             933,
             addon.L["Faction Assaults"],
@@ -1494,7 +1497,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
     },
     { -- Shadowlands
         926,
-        addon.GetCategoryInfoTitle(15439),
+        CT.Shadowlands,
         { -- Covenant Assaults
             927,
             addon.L["Covenant Assaults"],
@@ -1574,7 +1577,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
     },
     { -- Dragonflight
         1358,
-        addon.GetCategoryInfoTitle(15466),
+        CT.Dragonflight,
         { -- Siege on Dragonbane Keep
             1394,
             addon.L["Siege on Dragonbane Keep"],
@@ -1731,7 +1734,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
     },
     { -- The War Within
         1671,
-        addon.GetCategoryInfoTitle(15520),
+        CT.TheWarWithin,
         { -- Pre-Patch Event
             1677,
             addon.L["Pre-Patch Event"],

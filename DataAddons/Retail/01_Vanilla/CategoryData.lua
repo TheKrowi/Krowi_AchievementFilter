@@ -4,7 +4,7 @@ local CT = shared.CT;
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
     1,
-    addon.GetCategoryInfoTitle(14864),
+    CT.Classic,
     { -- Zones
         648,
         addon.L["Zones"],
@@ -1553,7 +1553,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
         },
         { -- Blacksmithing
             1476,
-            addon.GetCategoryInfoTitle(15490),
+            CT.Blacksmithing,
             true,
             {
                 18765, -- Destined to be Legendary
@@ -1603,7 +1603,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
         },
         { -- Leatherworking
             1513,
-            addon.GetCategoryInfoTitle(15495),
+            CT.Leatherworking,
             true,
             {
                 18899, -- You Saw Nothing
@@ -1611,7 +1611,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
         },
         { -- Mining
             1516,
-            addon.GetCategoryInfoTitle(15497),
+            CT.Mining,
             true,
             {
                 18841, -- Doing Your Share
@@ -1619,7 +1619,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
         },
         { -- Tailoring
             1529,
-            addon.GetCategoryInfoTitle(15496),
+            CT.Tailoring,
             true,
             {
                 18903, -- Ton of Tops

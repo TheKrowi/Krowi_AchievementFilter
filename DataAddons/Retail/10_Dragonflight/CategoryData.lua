@@ -4,7 +4,7 @@ local CT = shared.CT;
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
     1207,
-    addon.GetCategoryInfoTitle(15466),
+    CT.Dragonflight,
     { -- Character
         1610,
         CT.Character,
@@ -21,7 +21,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
         addon.L["Zones"],
         { -- Dragon Isles
             1341,
-            addon.GetCategoryInfoTitle(15465),
+            CT.DragonIsles,
             { -- Quests
                 1342,
                 CT.Quests,
@@ -1153,7 +1153,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
         CT.Professions,
         { -- Alchemy
             1466,
-            addon.GetCategoryInfoTitle(15489),
+            CT.Alchemy,
             true,
             {
                 18805, -- Draconic Phial Cabinet
@@ -1169,7 +1169,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
         },
         { -- Enchanting
             1487,
-            addon.GetCategoryInfoTitle(15491),
+            CT.Enchanting,
             true,
             {
                 18763, -- Spectre of Spectacles
@@ -1178,7 +1178,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
         },
         { -- Engineering
             1491,
-            addon.GetCategoryInfoTitle(15492),
+            CT.Engineering,
             true,
             {
                 18857, -- That's No Ordinary Gas Cloud!
@@ -1194,7 +1194,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
         },
         { -- Herbalism
             1504,
-            addon.GetCategoryInfoTitle(15499),
+            CT.Herbalism,
             true,
             {
                 18822, -- Botanist's Log - Hochenblume
@@ -1207,7 +1207,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
         },
         { -- Jewelcrafting
             1509,
-            addon.GetCategoryInfoTitle(15494),
+            CT.Jewelcrafting,
             true,
             {
                 18727, -- Rave Leader
@@ -1216,7 +1216,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
         },
         { -- Mining
             1519,
-            addon.GetCategoryInfoTitle(15497),
+            CT.Mining,
             true,
             {
                 18818, -- Geologist's Ledger - Serevite
@@ -1227,7 +1227,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
         },
         { -- Skinning
             1523,
-            addon.GetCategoryInfoTitle(15498),
+            CT.Skinning,
             true,
             {
                 18832, -- Elusive Legend of the Dragon Isles
@@ -1237,7 +1237,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
         },
         { -- Tailoring
             1528,
-            addon.GetCategoryInfoTitle(15496),
+            CT.Tailoring,
             true,
             {
                 18902, -- Uncertified Nurse
@@ -1574,7 +1574,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
     },
     { -- Dragon Isle Drake Cosmetics
         1401,
-        addon.GetCategoryInfoTitle(15478),
+        CT.DragonIsleDrakeCosmetics,
         {
             16696, -- Renewed Proto-Drake Armor
             16697, -- Renewed Proto-Drake Head Features

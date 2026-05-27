@@ -1,9 +1,10 @@
 ﻿local _, addon = ...;
 local shared = addon.Data.CategoryData.Shared;
+local CT = shared.CT
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
     83,
-    addon.GetCategoryInfoTitle(14866),
+    CT.WrathOfTheLichKing,
     { -- Zones
         577,
         addon.L["Zones"],
@@ -23,7 +24,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             addon.GetMapName(114),
             { -- Quests
                 586,
-                    addon.GetCategoryInfoTitle(96),
+                    CT.Quests,
             true,
                 {
                     33, -- Nothing Boring About Borean
@@ -33,7 +34,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             },
             { -- Exploration
                 587,
-                    addon.GetCategoryInfoTitle(97),
+                    CT.Exploration,
             true,
                 {
                     1264, -- Explore Borean Tundra
@@ -41,7 +42,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             },
             { -- Reputation
                 588,
-                    addon.GetCategoryInfoTitle(201),
+                    CT.Reputation,
             true,
                 {
                     949, -- Tuskarrmageddon
@@ -53,7 +54,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             addon.GetMapName(117),
             { -- Quests
                 589,
-                    addon.GetCategoryInfoTitle(96),
+                    CT.Quests,
             true,
                 {
                     34, -- I've Toured the Fjord
@@ -62,7 +63,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             },
             { -- Exploration
                 590,
-                    addon.GetCategoryInfoTitle(97),
+                    CT.Exploration,
             true,
                 {
                     1263, -- Explore Howling Fjord
@@ -76,7 +77,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             addon.GetMapName(115),
             { -- Quests
                 592,
-                    addon.GetCategoryInfoTitle(96),
+                    CT.Quests,
             true,
                 {
                     35, -- Might of Dragonblight
@@ -87,7 +88,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             },
             { -- Exploration
                 593,
-                    addon.GetCategoryInfoTitle(97),
+                    CT.Exploration,
             true,
                 {
                     1265, -- Explore Dragonblight
@@ -96,7 +97,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             },
             { -- Reputation
                 594,
-                    addon.GetCategoryInfoTitle(201),
+                    CT.Reputation,
             true,
                 {
                     1007, -- The Wyrmrest Accord
@@ -111,7 +112,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             addon.GetMapName(116),
             { -- Quests
                 595,
-                    addon.GetCategoryInfoTitle(96),
+                    CT.Quests,
             true,
                 {
                     37, -- Fo' Grizzle My Shizzle
@@ -120,7 +121,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             },
             { -- Exploration
                 596,
-                    addon.GetCategoryInfoTitle(97),
+                    CT.Exploration,
             true,
                 {
                     1266, -- Explore Grizzly Hills
@@ -128,7 +129,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             },
             { -- PvP
                 782,
-                    addon.GetCategoryInfoTitle(95),
+                    CT.PvP,
             true,
                 {
                     2016, -- Grizzled Veteran
@@ -141,7 +142,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             addon.GetMapName(121),
             { -- Quests
                 598,
-                    addon.GetCategoryInfoTitle(96),
+                    CT.Quests,
             true,
                 {
                     36, -- The Empire of Zul'Drak
@@ -152,7 +153,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             },
             { -- Exploration
                 599,
-                    addon.GetCategoryInfoTitle(97),
+                    CT.Exploration,
             true,
                 {
                     1267, -- Explore Zul'Drak
@@ -164,7 +165,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             addon.GetMapName(119),
             { -- Quests
                 601,
-                    addon.GetCategoryInfoTitle(96),
+                    CT.Quests,
             true,
                 {
                     39, -- Into the Basin
@@ -176,7 +177,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             },
             { -- Exploration
                 602,
-                    addon.GetCategoryInfoTitle(97),
+                    CT.Exploration,
             true,
                 {
                     1268, -- Explore Sholazar Basin
@@ -184,7 +185,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             },
             { -- Reputation
                 603,
-                    addon.GetCategoryInfoTitle(201),
+                    CT.Reputation,
             true,
                 {
                     950, -- Frenzyheart Tribe
@@ -206,7 +207,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             addon.GetMapName(120),
             { -- Quests
                 604,
-                    addon.GetCategoryInfoTitle(96),
+                    CT.Quests,
             true,
                 {
                     38, -- The Summit of Storm Peaks
@@ -215,7 +216,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             },
             { -- Exploration
                 612,
-                    addon.GetCategoryInfoTitle(97),
+                    CT.Exploration,
             true,
                 {
                     1269, -- Explore Storm Peaks
@@ -223,7 +224,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             },
             { -- Reputation
                 606,
-                    addon.GetCategoryInfoTitle(201),
+                    CT.Reputation,
             true,
                 {
                     2082, -- Ice Mammoth
@@ -236,7 +237,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             addon.GetMapName(118),
             { -- Quests
                 607,
-                    addon.GetCategoryInfoTitle(96),
+                    CT.Quests,
             true,
                 {
                     40, -- Icecrown: The Final Goal
@@ -244,7 +245,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             },
             { -- Exploration
                 608,
-                    addon.GetCategoryInfoTitle(97),
+                    CT.Exploration,
             true,
                 {
                     1270, -- Explore Icecrown
@@ -252,7 +253,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             },
             { -- Reputation
                 609,
-                    addon.GetCategoryInfoTitle(201),
+                    CT.Reputation,
             true,
                 {
                     947, -- The Argent Crusade
@@ -280,7 +281,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
     },
     { -- Dungeons
         84,
-        addon.GetCategoryInfoTitle(15272),
+        CT.Dungeons,
         { -- Utgarde Keep
             86,
             addon.GetInstanceInfoName(285),
@@ -529,7 +530,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
     },
     { -- Raids
         85,
-        addon.GetCategoryInfoTitle(15271),
+        CT.Raids,
         { -- Vault of Archavon
             102,
             addon.GetInstanceInfoName(753),
@@ -1042,7 +1043,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             },
             { -- Reputation
                 615,
-                    addon.GetCategoryInfoTitle(201),
+                    CT.Reputation,
             true,
                 {
                     4598, -- The Ashen Verdict
@@ -1100,10 +1101,10 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
     },
     { -- Professions
         1152,
-        addon.GetCategoryInfoTitle(169),
+        CT.Professions,
         { -- Archaeology
             1470,
-            addon.GetCategoryInfoTitle(15071),
+            CT.Archaeology,
             true,
             {
                 4922, -- Grand Master Archaeologist
@@ -1111,7 +1112,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
         },
         { -- Cooking
             1479,
-            addon.GetCategoryInfoTitle(170),
+            CT.Cooking,
             true,
             {
                 125, -- Northrend Cook
@@ -1126,7 +1127,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
         },
         { -- Fishing
             1498,
-            addon.GetCategoryInfoTitle(171),
+            CT.Fishing,
             true,
             {
                 130, -- Northrend Fisherman
@@ -1141,7 +1142,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
         },
         { -- Tailoring
             1526,
-            addon.GetCategoryInfoTitle(15496),
+            CT.Tailoring,
             true,
             {
                 137, -- Stocking Up
@@ -1157,7 +1158,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
     },
     { -- Wintergrasp
         1138,
-        addon.GetCategoryInfoTitle(14901),
+        CT.Wintergrasp,
         {
             1717, -- Wintergrasp Victory
             1718, -- Wintergrasp Veteran
@@ -1174,7 +1175,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
     },
     { -- Argent Tournament
         781,
-        addon.GetCategoryInfoTitle(14941),
+        CT.ArgentTournament,
         {
             2756, -- Argent Aspiration
             2758, -- Argent Valor

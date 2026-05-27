@@ -3,7 +3,7 @@ local shared = addon.Data.CategoryData.Shared
 local CT = shared.CT
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
-    addon.GetCategoryInfoTitle(15542),
+    CT.Midnight,
     { -- Character
         CT.Character,
         {
@@ -294,7 +294,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
         }
     },
     { -- Delves
-        addon.GetCategoryInfoTitle(15522),
+        CT.Delves,
         { -- Seasonal
             addon.L["Seasonal"],
             {
@@ -592,7 +592,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
     { -- Professions
         CT.Professions,
         { -- Alchemy
-            addon.GetCategoryInfoTitle(15489),
+            CT.Alchemy,
             true,
             {
                 42788, -- Alchemizing at Midnight
@@ -601,7 +601,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             }
         },
         { -- Blacksmithing
-            addon.GetCategoryInfoTitle( 15490),
+            CT.Blacksmithing,
             true,
             {
                 42792, -- Blacksmithing at Midnight
@@ -617,7 +617,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             }
         },
         { -- Enchanting
-            addon.GetCategoryInfoTitle(15491),
+            CT.Enchanting,
             true,
             {
                 42787, -- Enchanting at Midnight
@@ -626,7 +626,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             }
         },
         { -- Engineering
-            addon.GetCategoryInfoTitle(15492),
+            CT.Engineering,
             true,
             {
                 42798, -- Engineering at Midnight
@@ -643,7 +643,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             }
         },
         { -- Herbalism
-            addon.GetCategoryInfoTitle(15499),
+            CT.Herbalism,
             true,
             {
                 42793, -- Herbalism at Midnight
@@ -652,7 +652,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             },
         },
         { -- Inscription
-            addon.GetCategoryInfoTitle(15493),
+            CT.Inscription,
             true,
             {
                 42796, -- Inscribing at Midnight
@@ -661,7 +661,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             }
         },
         { -- Jewelcrafting
-            addon.GetCategoryInfoTitle(15494),
+            CT.Jewelcrafting,
             true,
             {
                 42789, -- Jewelcrafting at Midnight
@@ -670,7 +670,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             }
         },
         { -- Leatherworking
-            addon.GetCategoryInfoTitle(15495),
+            CT.Leatherworking,
             true,
             {
                 42786, -- Leatherworking at Midnight
@@ -679,7 +679,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             }
         },
         { -- Mining
-            addon.GetCategoryInfoTitle(15497),
+            CT.Mining,
             true,
             {
                 42791, -- Mining at Midnight
@@ -688,7 +688,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             },
         },
         { -- Skinning
-            addon.GetCategoryInfoTitle(15498),
+            CT.Skinning,
             true,
             {
                 42790, -- Skinning at Midnight
@@ -697,7 +697,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             },
         },
         { -- Tailoring
-            addon.GetCategoryInfoTitle(15496),
+            CT.Tailoring,
             true,
             {
                 42794, -- Tailoring at Midnight
@@ -763,7 +763,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
         }
     },
     { -- Prey
-        addon.GetCategoryInfoTitle(15605),
+        CT.Prey,
         {
             addon.L["Hard"],
             {
@@ -838,7 +838,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
         }
     },
     { -- Ritual Sites
-        addon.GetCategoryInfoTitle(15608),
+        CT.RitualSites,
         { -- Broken Throne
             addon.L["Broken Throne"],
             true,
@@ -909,7 +909,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
         },
     },
     { -- Void Assaults
-        addon.GetCategoryInfoTitle(15610),
+        CT.VoidAssaults,
         {
             62498, -- Void Assault: Eversong
             62507, -- Void Smasher: Eversong

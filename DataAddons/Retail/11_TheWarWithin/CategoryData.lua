@@ -4,7 +4,7 @@ local CT = shared.CT;
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- The War Within
     1598,
-    addon.GetCategoryInfoTitle(15520),
+    CT.TheWarWithin,
     { -- Character
         1609,
         CT.Character,
@@ -546,7 +546,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The War Within
     },
     { -- Delves
         1600,
-        addon.GetCategoryInfoTitle(15522),
+        CT.Delves,
         { -- Fungal Folly
             1658,
             addon.GetMapName(2249),
@@ -1057,7 +1057,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The War Within
         CT.Professions,
         { -- Alchemy
             1631,
-            addon.GetCategoryInfoTitle(15489),
+            CT.Alchemy,
             true,
             {
                 19704, -- Overflowing Algari Flasks

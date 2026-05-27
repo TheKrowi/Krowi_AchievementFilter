@@ -4,7 +4,7 @@ local CT = shared.CT;
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
     6,
-    addon.GetCategoryInfoTitle(15439),
+    CT.Shadowlands,
     { -- Zones
         344,
         addon.L["Zones"],
@@ -728,7 +728,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
     },
     { -- Torghast
         424,
-        addon.GetCategoryInfoTitle(15440),
+        CT.Torghast,
         { -- Skoldus Hall
             843,
             addon.GetAchievmentName(14463),
@@ -845,7 +845,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
     },
     { -- Covenant Sanctums
         419,
-        addon.GetCategoryInfoTitle(15441),
+        CT.CovenantSanctums,
         { -- Kyrian
             423,
             addon.GetCovenantName(1),

@@ -4,7 +4,7 @@ local CT = shared.CT;
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
     83,
-    addon.GetCategoryInfoTitle(14866),
+    CT.WrathOfTheLichKing,
     { -- Zones
         577,
         addon.L["Zones"],
@@ -1152,7 +1152,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
         },
         { -- Inscription
             1506,
-            addon.GetCategoryInfoTitle(15493),
+            CT.Inscription,
             true,
             {
                 18725, -- Best Stellar
@@ -1160,7 +1160,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
         },
         { -- Tailoring
             1526,
-            addon.GetCategoryInfoTitle(15496),
+            CT.Tailoring,
             true,
             {
                 137, -- Stocking Up
@@ -1207,7 +1207,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
     },
     { -- Wintergrasp
         1138,
-        addon.GetCategoryInfoTitle(14901),
+        CT.Wintergrasp,
         {
             1717, -- Wintergrasp Victory
             1718, -- Wintergrasp Veteran
@@ -1224,7 +1224,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
     },
     { -- Argent Tournament
         781,
-        addon.GetCategoryInfoTitle(14941),
+        CT.ArgentTournament,
         {
             2756, -- Argent Aspiration
             2758, -- Argent Valor

@@ -4,7 +4,7 @@ local CT = shared.CT;
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
     258,
-    addon.GetCategoryInfoTitle(15305),
+    CT.BattleForAzeroth,
     { -- Zones
         259,
         addon.L["Zones"],
@@ -961,7 +961,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
         CT.Professions,
         { -- Alchemy
             1467,
-            addon.GetCategoryInfoTitle(15489),
+            CT.Alchemy,
             true,
             {
                 18770, -- Silas' Sphere of Transmutation
@@ -983,7 +983,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
         },
         { -- Blacksmithing
             1475,
-            addon.GetCategoryInfoTitle(15490),
+            CT.Blacksmithing,
             true,
             {
                 18771, -- Khaz'gorian Smithing Hammer
@@ -1003,7 +1003,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
         },
         { -- Enchanting
             1486,
-            addon.GetCategoryInfoTitle(15491),
+            CT.Enchanting,
             true,
             {
                 18775, -- Iwen's Enchanting Rod
@@ -1011,7 +1011,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
         },
         { -- Engineering
             1488,
-            addon.GetCategoryInfoTitle(15492),
+            CT.Engineering,
             true,
             {
                 18776, -- The Ub3r-Spanner
@@ -1035,7 +1035,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
         },
         { -- Herbalism
             1503,
-            addon.GetCategoryInfoTitle(15499),
+            CT.Herbalism,
             true,
             {
                 18838, -- Fourth War Herbalism Techniques
@@ -1043,7 +1043,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
         },
         { -- Inscription
             1505,
-            addon.GetCategoryInfoTitle(15493),
+            CT.Inscription,
             true,
             {
                 18772, -- Sanguine Feather Quill of Lana'thel
@@ -1051,7 +1051,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
         },
         { -- Jewelcrafting
             1507,
-            addon.GetCategoryInfoTitle(15494),
+            CT.Jewelcrafting,
             true,
             {
                 18773, -- Jewelhammer's Focus
@@ -1059,7 +1059,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
         },
         { -- Leatherworking
             1511,
-            addon.GetCategoryInfoTitle(15495),
+            CT.Leatherworking,
             true,
             {
                 18777, -- Mallet of Thunderous Skins
@@ -1067,7 +1067,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
         },
         { -- Mining
             1518,
-            addon.GetCategoryInfoTitle(15497),
+            CT.Mining,
             true,
             {
                 18840, -- Fourth War Mining Techniques
@@ -1075,7 +1075,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
         },
         { -- Skinning
             1522,
-            addon.GetCategoryInfoTitle(15498),
+            CT.Skinning,
             true,
             {
                 18835, -- Fourth War Skinning Techniques
@@ -1083,7 +1083,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
         },
         { -- Tailoring
             1525,
-            addon.GetCategoryInfoTitle(15496),
+            CT.Tailoring,
             true,
             {
                 18774, -- Synchronous Thread
@@ -1162,7 +1162,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
     },
     { -- Island Expeditions
         425,
-        addon.GetCategoryInfoTitle(15307),
+        CT.IslandExpeditions,
         { -- Un'gol Ruins
             436,
             (addon.GetLFGDungeonInfo(1687)),
@@ -1301,7 +1301,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
     },
     { -- War Effort
         426,
-        addon.GetCategoryInfoTitle(15308),
+        CT.WarEffort,
         { -- Battle for Stromgarde
             434,
             (addon.GetLFGDungeonInfo(1615)),
@@ -1354,7 +1354,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
     },
     { -- Heart of Azeroth
         427,
-        addon.GetCategoryInfoTitle(15417),
+        CT.HeartOfAzeroth,
         {
             12918, -- Have a Heart
             13998, -- Pure of Heart
@@ -1372,7 +1372,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
     },
     { -- Visions of N'Zoth
         428,
-        addon.GetCategoryInfoTitle(15426),
+        CT.VisionsOfNZoth,
         {
             14143, -- Reeking of Visions
             13994, -- Through the Depths of Visions

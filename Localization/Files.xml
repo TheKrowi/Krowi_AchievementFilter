@@ -20,5 +20,17 @@
     <Script file="zhTW.lua" />
     <Script file="zhTW.WrathClassic.lua" />
     <Script file="zhTW.Plugins.lua" />
+    <Script file="esES.lua" />
+    <Script file="esES.WrathClassic.lua" />
+    <Script file="esES.Plugins.lua" />
+    <Script file="esMX.lua" />
+    <Script file="esMX.WrathClassic.lua" />
+    <Script file="esMX.Plugins.lua" />
+    <Script file="itIT.lua" />
+    <Script file="itIT.WrathClassic.lua" />
+    <Script file="itIT.Plugins.lua" />
+    <Script file="koKR.lua" />
+    <Script file="koKR.WrathClassic.lua" />
+    <Script file="koKR.Plugins.lua" />
     <Script file="Shared.lua" />
 </Ui>

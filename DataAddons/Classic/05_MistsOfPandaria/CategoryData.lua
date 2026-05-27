@@ -1,9 +1,10 @@
 ﻿local _, addon = ...;
 local shared = addon.Data.CategoryData.Shared;
+local CT = shared.CT
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
     189,
-    addon.GetCategoryInfoTitle(15164),
+    CT.MistsOfPandaria,
     { -- Zones
         491,
         addon.L["Zones"],
@@ -12,7 +13,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             addon.GetMapName(424),
             { -- Quests
                 527,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     6541, -- Loremaster of Pandaria
@@ -22,7 +23,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             },
             { -- Exploration
                 528,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     6716, -- Between a Saurok and a Hard Place
@@ -54,7 +55,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             },
             { -- Reputation
                 529,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     7479, -- The Shado-Master
@@ -71,7 +72,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             addon.GetMapName(371),
             { -- Quests
                 519,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     6300, -- Upjade Complete
@@ -83,7 +84,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             },
             { -- Exploration
                 545,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     6351, -- Explore Jade Forest
@@ -92,7 +93,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             },
             { -- Reputation
                 546,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     6550, -- Order of the Cloud Serpent
@@ -104,7 +105,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             addon.GetMapName(376),
             { -- Quests
                 516,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     6301, -- Rally the Valley
@@ -118,7 +119,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             },
             { -- Exploration
                 544,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     6969, -- Explore Valley of the Four Winds
@@ -127,7 +128,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             },
             { -- Reputation
                 518,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     6544, -- The Tillers
@@ -144,7 +145,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             addon.GetMapName(418),
             { -- Quests
                 513,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     6535, -- Mighty Roamin' Krasaranger
@@ -156,7 +157,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             },
             { -- Exploration
                 514,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     6975, -- Explore Krasarang Wilds
@@ -167,7 +168,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             },
             { -- Reputation
                 543,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     8205, -- Operation: Shieldwall
@@ -180,7 +181,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             addon.GetMapName(379),
             { -- Quests
                 510,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     6537, -- Slum It in the Summit
@@ -190,7 +191,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             },
             { -- Exploration
                 542,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     6976, -- Explore Kun-Lai Summit
@@ -207,7 +208,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             addon.GetMapName(388),
             { -- Quests
                 507,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     6539, -- One Steppe Forward, Two Steppes Back
@@ -223,7 +224,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             },
             { -- Exploration
                 540,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     6977, -- Explore Townlong Steppes
@@ -231,7 +232,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             },
             { -- Reputation
                 541,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     6366, -- Shado-Pan
@@ -243,7 +244,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             addon.GetMapName(422),
             { -- Quests
                 504,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     6540, -- Dread Haste Makes Dread Waste
@@ -255,7 +256,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             },
             { -- Exploration
                 538,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     6978, -- Explore Dread Wastes
@@ -264,7 +265,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             },
             { -- Reputation
                 539,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     6545, -- Klaxxi
@@ -277,7 +278,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             addon.GetMapName(390),
             { -- Quests
                 501,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     7317, -- One Many Army
@@ -293,7 +294,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             },
             { -- Exploration
                 536,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     6979, -- Explore Vale of Eternal Blossoms
@@ -302,7 +303,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             },
             { -- Reputation
                 537,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     6546, -- The Golden Lotus
@@ -322,7 +323,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             addon.GetMapName(504),
             { -- Quests
                 523,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     8099, -- Isle of Thunder
@@ -350,7 +351,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             },
             { -- Exploration
                 524,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     8103, -- Champions of Lei Shen
@@ -361,7 +362,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             },
             { -- Reputation
                 525,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     8208, -- Kirin Tor Offensive
@@ -378,7 +379,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             addon.GetMapName(554),
             { -- Exploration
                 531,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     8712, -- Killing Time
@@ -404,7 +405,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             },
             { -- Reputation
                 535,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     8715, -- Emperor Shaohao
@@ -418,7 +419,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
     },
     { -- Dungeons
         190,
-        addon.GetCategoryInfoTitle(15272),
+        CT.Dungeons,
         { -- Temple of the Jade Serpent
             193,
             addon.GetInstanceInfoName(313),
@@ -607,7 +608,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
     },
     { -- Raids
         191,
-        addon.GetCategoryInfoTitle(15271),
+        CT.Raids,
         { -- Mogu'shan Vaults
             202,
             addon.GetInstanceInfoName(317),
@@ -825,10 +826,10 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
     },
     { -- Professions
         1437,
-        addon.GetCategoryInfoTitle(169),
+        CT.Professions,
         { -- Archaeology
             1440,
-            addon.GetCategoryInfoTitle(15071),
+            CT.Archaeology,
             { -- Pandaren
                 1441,
                 addon.L["Pandaren"],
@@ -921,7 +922,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
         },
         { -- Cooking
             1143,
-            addon.GetCategoryInfoTitle(170),
+            CT.Cooking,
             true,
             {
                 6365, -- Zen Master Cook
@@ -939,7 +940,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
         },
         { -- Fishing
             1438,
-            addon.GetCategoryInfoTitle(171),
+            CT.Fishing,
             true,
             {
                 6839, -- Zen Master Fisherman
@@ -959,7 +960,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
     },
     { -- Pet Battles
         549,
-        addon.GetCategoryInfoTitle(15117),
+        CT.PetBattles,
         {
             6616, -- Pandaria Tamer
             6589, -- Pandaria Safari
@@ -1178,7 +1179,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
     },
     { -- Proving Grounds
         490,
-        addon.GetCategoryInfoTitle(15222),
+        CT.ProvingGrounds,
         {
             9572, -- Proving Yourself: Bronze Damage
             9573, -- Proving Yourself: Silver Damage

@@ -1,13 +1,16 @@
-local _, addon = ...;
+﻿local _, addon = ...;
+local shared = addon.Data.CategoryData.Shared
+local CT = shared.CT
+
 
 KrowiAF.CategoryData.PvP = { -- TAB - PvP
     955,
-    addon.GetCategoryInfoTitle(95),
+    CT.PvP,
     {
         TabName = "PvP",
     },
     { -- Training Grounds
-        addon.GetCategoryInfoTitle(15575),
+        CT.TrainingGrounds,
         {
             61953, -- Putting in the Practice
             61954, -- Putting in the Practice
@@ -28,7 +31,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
     },
     { -- Player vs. Player
         1162,
-        addon.GetCategoryInfoTitle(95),
+        CT.PvP,
         {
             10561, -- Honorable Medallion
             238, -- An Honorable Kill
@@ -71,7 +74,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
     },
     { -- Honor
         1167,
-        addon.GetCategoryInfoTitle(15266),
+        CT.Honor,
         {
             12893, -- Honor Level 5
             12894, -- Honor Level 10
@@ -101,10 +104,10 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
     },
     { -- Battlegrounds
         1165,
-        addon.GetCategoryInfoTitle(153),
+        CT.Battlegrounds,
         { -- Alterac Valley
             960,
-            addon.GetCategoryInfoTitle(14801),
+            CT.AlteracValley,
             {
                 218, -- Alterac Valley Victory
                 219, -- Alterac Valley Veteran
@@ -129,7 +132,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
         },
         { -- Arathi Basin
             956,
-            addon.GetCategoryInfoTitle(14802),
+            CT.ArathiBasin,
             {
                 154, -- Arathi Basin Victory
                 155, -- Arathi Basin Veteran
@@ -151,7 +154,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
         },
         { -- Ashran
             961,
-            addon.GetCategoryInfoTitle(15414),
+            CT.Ashran,
             {
                 9102, -- Ashran Victory
                 9218, -- Grand Theft, 1st Degree
@@ -180,7 +183,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
         },
         { -- Battle for Gilneas
             964,
-            addon.GetCategoryInfoTitle(15073),
+            CT.BattleForGilneas,
             {
                 5245, -- Battle for Gilneas Victory
                 5246, -- Battle for Gilneas Veteran
@@ -201,7 +204,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
         },
         { -- Deepwind Gorge
             957,
-            addon.GetCategoryInfoTitle(15218),
+            CT.DeepwindGorge,
             {
                 8331, -- Deepwind Gorge Victory
                 8332, -- Deepwind Gorge Veteran
@@ -221,7 +224,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
         },
         { -- Eye of the Storm
             959,
-            addon.GetCategoryInfoTitle(14803),
+            CT.EyeOfTheStorm,
             {
                 208, -- Eye of the Storm Victory
                 209, -- Eye of the Storm Veteran
@@ -240,7 +243,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
         },
         { -- Isle of Conquest
             962,
-            addon.GetCategoryInfoTitle(15003),
+            CT.IsleOfConquest,
             {
                 3776, -- Isle of Conquest Victory
                 3777, -- Isle of Conquest Veteran
@@ -265,7 +268,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
         },
         { -- Seething Shore
             968,
-            addon.GetCategoryInfoTitle(15292),
+            CT.SeethingShore,
             {
                 12409, -- Seething Shore Victory
                 12410, -- Seething Shore Veteran
@@ -280,7 +283,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
         },
         { -- Silvershard Mines
             966,
-            addon.GetCategoryInfoTitle(15162),
+            CT.SilvershadMines,
             {
                 6739, -- Silvershard Mines Victory
                 6883, -- Silvershard Mines Veteran
@@ -320,7 +323,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
         },
         { -- Temple of Kotmogu
             967,
-            addon.GetCategoryInfoTitle(15163),
+            CT.TempleOfKotmogu,
             {
                 6740, -- Temple of Kotmogu Victory
                 6882, -- Temple of Kotmogu Veteran
@@ -336,7 +339,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
         },
         { -- Twin Peaks
             965,
-            addon.GetCategoryInfoTitle(15074),
+            CT.TwinPeaks,
             {
                 5208, -- Twin Peaking
                 5209, -- Twin Peaks Veteran
@@ -362,7 +365,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
         },
         { -- Warsong Gulch
             958,
-            addon.GetCategoryInfoTitle(14804),
+            CT.WarsongGulch,
             {
                 166, -- Warsong Gulch Victory
                 167, -- Warsong Gulch Veteran
@@ -387,7 +390,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
         },
         { -- Wintergrasp
             963,
-            addon.GetCategoryInfoTitle(14901),
+            CT.Wintergrasp,
             {
                 1717, -- Wintergrasp Victory
                 1718, -- Wintergrasp Veteran
@@ -412,7 +415,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
         },
         { -- Deephaul Ravine
             1647,
-            addon.GetCategoryInfoTitle(15525),
+            CT.DeephaulRavine,
             {
                 40210, -- Deephaul Ravine Victory
                 40211, -- Deephaul Ravine Veteran
@@ -428,7 +431,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
             },
         },
         { -- Slayer's Rise
-            addon.GetCategoryInfoTitle(15609),
+            CT.SlayersRise,
             {
                 62493, -- Slayer's Rise Victory
                 62494, -- Slayer's Rise Veteran
@@ -505,7 +508,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
     },
     { -- Arena
         1166,
-        addon.GetCategoryInfoTitle(165),
+        CT.Arena,
         {
             397, -- Step Into The Arena
             398, -- Mercilessly Dedicated
@@ -544,7 +547,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
     },
     { -- Classic
         1131,
-        addon.GetCategoryInfoTitle(14864),
+        CT.Classic,
         {
             442, -- Private
             454, -- Scout
@@ -578,7 +581,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
     },
     { -- The Burning Crusade
         1199,
-        addon.GetCategoryInfoTitle(14865),
+        CT.TheBurningCrusade,
         {
             418, -- Merciless Gladiator
             419, -- Vengeful Gladiator
@@ -587,7 +590,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
     },
     { -- Wrath of the Lich King
         1200,
-        addon.GetCategoryInfoTitle(14866),
+        CT.WrathOfTheLichKing,
         {
             3336, -- Deadly Gladiator
             3436, -- Furious Gladiator
@@ -597,7 +600,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
     },
     { -- Cataclysm
         1197,
-        addon.GetCategoryInfoTitle(15072),
+        CT.Cataclysm,
         {
             6002, -- Vicious Gladiator
             5344, -- Hero of the Alliance: Vicious
@@ -612,7 +615,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
     },
     { -- Mists of Pandaria
         1198,
-        addon.GetCategoryInfoTitle(15164),
+        CT.MistsOfPandaria,
         {
             8214, -- Malevolent Gladiator
             8243, -- Hero of the Alliance: Malevolent
@@ -648,7 +651,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
     },
     { -- Warlords of Dreanor
         1175,
-        addon.GetCategoryInfoTitle(15233),
+        CT.WarlordsOfDraenor,
         { -- Season 1
             1177,
             addon.L["Season"] .. " " .. 1,
@@ -721,7 +724,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
     },
     { -- Legion
         1180,
-        addon.GetCategoryInfoTitle(15258),
+        CT.Legion,
         { -- Season 1
             1176,
             addon.L["Season"] .. " " .. 1,
@@ -914,7 +917,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
     },
     { -- Battle for Azeroth
         1192,
-        addon.GetCategoryInfoTitle(15305),
+        CT.BattleForAzeroth,
         { -- Season 1
             1193,
             addon.L["Season"] .. " " .. 1,
@@ -974,7 +977,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
     },
     { -- Shadowlands
         1187,
-        addon.GetCategoryInfoTitle(15439),
+        CT.Shadowlands,
         { -- Season 1
             1188,
             addon.L["Season"] .. " " .. 1,
@@ -1043,7 +1046,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
     },
     { -- Dragonflight
         1344,
-        addon.GetCategoryInfoTitle(15466),
+        CT.Dragonflight,
         { -- Season 1
             1345,
             addon.L["Season"] .. " " .. 1,
@@ -1130,7 +1133,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
         },
     },
     { -- The War Within
-        addon.GetCategoryInfoTitle(15520),
+        CT.TheWarWithin,
         { -- Season 1
             addon.L["Season"] .. " " .. 1,
             {
@@ -1211,7 +1214,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
         },
     },
     { -- Midnight
-        addon.GetCategoryInfoTitle(15542),
+        CT.Midnight,
         { -- Season 1
             addon.L["Season"] .. " " .. 1,
             {

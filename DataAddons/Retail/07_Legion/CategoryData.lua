@@ -4,7 +4,7 @@ local CT = shared.CT;
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
     237,
-    addon.GetCategoryInfoTitle(15258),
+    CT.Legion,
     { -- Zones
         381,
         addon.L["Zones"],
@@ -757,7 +757,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
         },
         { -- Engineering
             1489,
-            addon.GetCategoryInfoTitle(15492),
+            CT.Engineering,
             true,
             {
                 10588, -- The Shortest Distance
@@ -779,7 +779,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
         },
         { -- Herbalism
             1502,
-            addon.GetCategoryInfoTitle(15499),
+            CT.Herbalism,
             true,
             {
                 18837, -- Broken Isles Herbalism Techniques
@@ -787,7 +787,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
         },
         { -- Jewelcrafting
             1508,
-            addon.GetCategoryInfoTitle(15494),
+            CT.Jewelcrafting,
             true,
             {
                 10587, -- Hot Swapper
@@ -795,7 +795,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
         },
         { -- Mining
             1517,
-            addon.GetCategoryInfoTitle(15497),
+            CT.Mining,
             true,
             {
                 18839, -- Broken Isles Mining Techniques
@@ -803,7 +803,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
         },
         { -- Skinning
             1521,
-            addon.GetCategoryInfoTitle(15498),
+            CT.Skinning,
             true,
             {
                 18834, -- Broken Isles Skinning Techniques

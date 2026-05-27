@@ -1,11 +1,14 @@
-local _, addon = ...;
+﻿local _, addon = ...;
+local shared = addon.Data.CategoryData.Shared
+local CT = shared.CT
+
 
 local crossExpansion = { -- Cross-Expansion
     1431,
     addon.L["Cross-Expansion"],
     { -- Character
         1432,
-        addon.GetCategoryInfoTitle(92),
+        CT.Character,
         {
             6, -- Level 10
             7, -- Level 20
@@ -73,7 +76,7 @@ local crossExpansion = { -- Cross-Expansion
     },
     { -- Quests
         1159,
-        addon.GetCategoryInfoTitle(96),
+        CT.Quests,
         {
             503, -- 50 Quests Completed
             504, -- 100 Quests Completed
@@ -107,7 +110,7 @@ local crossExpansion = { -- Cross-Expansion
     },
     { -- Exploration
         1161,
-        addon.GetCategoryInfoTitle(97),
+        CT.Exploration,
         {
             964, -- Going Down?
             1244, -- Well Read
@@ -119,7 +122,7 @@ local crossExpansion = { -- Cross-Expansion
     },
     { -- Dungeons & Raids
         1169,
-        addon.GetCategoryInfoTitle(168),
+        CT.DungeonsAndRaids,
         {
             4476, -- Looking For More
             4477, -- Looking For Many
@@ -128,10 +131,10 @@ local crossExpansion = { -- Cross-Expansion
     },
     { -- Professions
         1149,
-        addon.GetCategoryInfoTitle(169),
+        CT.Professions,
         { -- Archaeology
             1459,
-            addon.GetCategoryInfoTitle(15071),
+            CT.Archaeology,
             {
                 5315, -- Digger
                 5469, -- Diggerer
@@ -145,7 +148,7 @@ local crossExpansion = { -- Cross-Expansion
         },
         { -- Cooking
             1458,
-            addon.GetCategoryInfoTitle(170),
+            CT.Cooking,
             {
                 1998, -- Cooking Award
                 1999, -- 10 Cooking Awards
@@ -169,7 +172,7 @@ local crossExpansion = { -- Cross-Expansion
         },
         { -- Fishing
             1462,
-            addon.GetCategoryInfoTitle(171),
+            CT.Fishing,
             {
                 153, -- The Old Gnome and the Sea
                 1257, -- The Scavenger
@@ -190,7 +193,7 @@ local crossExpansion = { -- Cross-Expansion
         },
         { -- Tailoring
             1524,
-            addon.GetCategoryInfoTitle(15496),
+            CT.Tailoring,
             {
                 18885, -- Quite the Quilt I
                 18886, -- Quite the Quilt II
@@ -209,7 +212,7 @@ local crossExpansion = { -- Cross-Expansion
     },
     { -- Reputation
         1163,
-        addon.GetCategoryInfoTitle(201),
+        CT.Reputation,
         {
             522, -- Somebody Likes Me
             523, -- 5 Exalted Reputations
@@ -255,10 +258,10 @@ local crossExpansion = { -- Cross-Expansion
     },
     { -- Pet Battles
         1170,
-        addon.GetCategoryInfoTitle(15117),
+        CT.PetBattles,
         { -- Collect
             1433,
-            addon.GetCategoryInfoTitle(15118),
+            CT.Collect,
             true,
             {
                 7482, -- Trainer Extraordinaire
@@ -300,7 +303,7 @@ local crossExpansion = { -- Cross-Expansion
     },
     { -- Collections
         1171,
-        addon.GetCategoryInfoTitle(15246),
+        CT.Collections,
         {
             621, -- Represent
             1020, -- Ten Tabards
@@ -320,7 +323,7 @@ local crossExpansion = { -- Cross-Expansion
     },
     { -- Feats of Strength
         1172,
-        addon.GetCategoryInfoTitle(81),
+        CT.FeatsOfStrength,
         {
             4496, -- It's Over Nine Thousand!
             3636, -- Jade Tiger

@@ -149,6 +149,24 @@ L["Tabard"] = TABARDSLOT
 L["Title"] = LFG_LIST_TITLE
 L["Toy"] = TOY
 L["Transmog"] = PERKS_VENDOR_CATEGORY_TRANSMOG
+L["Player vs. Player"] = PLAYER_V_PLAYER
+L["Quests"] = QUESTS_LABEL
+L["Battlegrounds"] = BATTLEGROUNDS
+L["Arena"] = ARENA
+L["Dungeons & Raids"] = GROUP_FINDER
+L["Professions"] = TRADE_SKILLS
+L["Cooking"] = PROFESSIONS_COOKING
+L["Fishing"] = PROFESSIONS_FISHING
+L["Reputation"] = REPUTATION
+L["Archaeology"] = PROFESSIONS_ARCHAEOLOGY
+L["Level"] = LEVEL
+L["Honor"] = HONOR
+L["Raids"] = RAIDS
+L["Dungeons"] = DUNGEONS
+L["World"] = WORLD
+L["Proving Grounds"] = TRACKER_HEADER_PROVINGGROUNDS
+L["Inscription"] = INSCRIPTION
+L["Timewalking"] = PLAYER_DIFFICULTY_TIMEWALKER
 
 
 local l = addon.Localization.GetLocale(addon)

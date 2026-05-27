@@ -4,7 +4,7 @@ local CT = shared.CT;
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
     55,
-    addon.GetCategoryInfoTitle(14865),
+    CT.TheBurningCrusade,
     { -- Zones
         616,
         addon.L["Zones"],
@@ -647,7 +647,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
         },
         { -- Engineering
             1570,
-            addon.GetCategoryInfoTitle(15492),
+            CT.Engineering,
             true,
             {
                 18856, -- Just an Ordinary Gas Cloud
@@ -667,7 +667,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
         },
         { -- Leatherworking
             1512,
-            addon.GetCategoryInfoTitle(15495),
+            CT.Leatherworking,
             true,
             {
                 18894, -- Free Stylin'
