@@ -1,10 +1,11 @@
-local _, addon = ...
+﻿local _, addon = ...
 local shared = addon.Data.CategoryData.Shared
+local CT = shared.CT
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
-    addon.GetCategoryInfoTitle(15542),
+    CT.Midnight,
     { -- Character
-        addon.GetCategoryInfoTitle(92),
+        CT.Character,
         {
             61678, -- Midnight Superior
             61679, -- Midnight Epic
@@ -26,7 +27,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
         { -- Quel'Thalas
             addon.GetMapName(2537),
             { -- Quests
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     62110, -- Loremaster of Midnight
@@ -34,7 +35,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                 },
             },
             { -- Exploration
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     61859, -- Midnight Flight Master
@@ -65,7 +66,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                 },
             },
             { -- Player vs. Player
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     61464, -- Spark in the Night
@@ -89,7 +90,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                 },
             },
             { -- Reputation
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     62192, -- Midnight Diplomat (Reward: Finery Funds)
@@ -99,7 +100,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
         { -- Eversong Woods
             addon.GetMapName(2395),
             { -- Quests
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     41802, -- Eversong In Reprise
@@ -107,7 +108,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                 },
             },
             { -- Exploration
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     61855, -- Explore Eversong Woods
@@ -123,14 +124,14 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                 },
             },
             { -- Player vs. Player
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     61221, -- Tour of Duty: Eversong Woods
                 },
             },
             { -- Reputation
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     62190, -- Life of the Party
@@ -144,7 +145,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
         { -- Zul'Aman
             addon.GetMapName(2437),
             { -- Quests
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     41803, -- For Zul'Aman! (Customization Reward: Amani Appearances for Darkspear Troll)
@@ -153,7 +154,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                 },
             },
             { -- Exploration
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     61856, -- Explore Zul'Aman
@@ -175,14 +176,14 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                 },
             },
             { -- Player vs. Player
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     61222, -- Tour of Duty: Zul'Aman
                 },
             },
             { -- Reputation
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     62263, -- Amani Tribe Champion
@@ -195,7 +196,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
         { -- Harandar
             addon.GetMapName(2413),
             { -- Quests
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     41804, -- One Does Not Simply Walk Into Harandar
@@ -205,7 +206,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                 },
             },
             { -- Exploration
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     61520, -- Explore Harandar
@@ -223,14 +224,14 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                 },
             },
             { -- Player vs. Player
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     61223, -- Tour of Duty: Harandar
                 },
             },
             { -- Reputation
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     62264, -- Hara'ti Champion
@@ -244,7 +245,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
         { -- Voidstorm
             addon.GetMapName(2405),
             { -- Quests
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     41806, -- Breaching the Voidstorm
@@ -254,7 +255,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                 },
             },
             { -- Exploration
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     61857, -- Explore Voidstorm
@@ -271,14 +272,14 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                 },
             },
             { -- Player vs. Player
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     61224, -- Tour of Duty: Voidstorm
                 },
             },
             { -- Reputation
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     62265, -- The Singularity Champion
@@ -293,7 +294,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
         }
     },
     { -- Delves
-        addon.GetCategoryInfoTitle(15522),
+        CT.Delves,
         { -- Seasonal
             addon.L["Seasonal"],
             {
@@ -417,7 +418,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
         },
     },
     { -- Dungeons
-        addon.GetCategoryInfoTitle(15272),
+        CT.Dungeons,
         shared.GetMidnightMythicPlus(addon.L["Mythic+"]),
         { -- Den of Nalorakk
             addon.GetInstanceInfoName(1311),
@@ -503,7 +504,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
         }
     },
     { -- Raids
-        addon.GetCategoryInfoTitle(15271),
+        CT.Raids,
         { -- The Dreamrift
             addon.GetInstanceInfoName(1314),
             { -- Glory
@@ -589,9 +590,9 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
         }
     },
     { -- Professions
-        addon.GetCategoryInfoTitle(169),
+        CT.Professions,
         { -- Alchemy
-            addon.GetCategoryInfoTitle(15489),
+            CT.Alchemy,
             true,
             {
                 42788, -- Alchemizing at Midnight
@@ -600,7 +601,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             }
         },
         { -- Blacksmithing
-            addon.GetCategoryInfoTitle( 15490),
+            CT.Blacksmithing,
             true,
             {
                 42792, -- Blacksmithing at Midnight
@@ -609,14 +610,14 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             },
         },
         { -- Cooking
-            addon.GetCategoryInfoTitle(170),
+            CT.Cooking,
             true,
             {
                 42795, -- Cooking at Midnight
             }
         },
         { -- Enchanting
-            addon.GetCategoryInfoTitle(15491),
+            CT.Enchanting,
             true,
             {
                 42787, -- Enchanting at Midnight
@@ -625,7 +626,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             }
         },
         { -- Engineering
-            addon.GetCategoryInfoTitle(15492),
+            CT.Engineering,
             true,
             {
                 42798, -- Engineering at Midnight
@@ -635,14 +636,14 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             }
         },
         { -- Fishing
-            addon.GetCategoryInfoTitle(171),
+            CT.Fishing,
             true,
             {
                 42797, -- Fishing at Midnight
             }
         },
         { -- Herbalism
-            addon.GetCategoryInfoTitle(15499),
+            CT.Herbalism,
             true,
             {
                 42793, -- Herbalism at Midnight
@@ -651,7 +652,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             },
         },
         { -- Inscription
-            addon.GetCategoryInfoTitle(15493),
+            CT.Inscription,
             true,
             {
                 42796, -- Inscribing at Midnight
@@ -660,7 +661,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             }
         },
         { -- Jewelcrafting
-            addon.GetCategoryInfoTitle(15494),
+            CT.Jewelcrafting,
             true,
             {
                 42789, -- Jewelcrafting at Midnight
@@ -669,7 +670,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             }
         },
         { -- Leatherworking
-            addon.GetCategoryInfoTitle(15495),
+            CT.Leatherworking,
             true,
             {
                 42786, -- Leatherworking at Midnight
@@ -678,7 +679,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             }
         },
         { -- Mining
-            addon.GetCategoryInfoTitle(15497),
+            CT.Mining,
             true,
             {
                 42791, -- Mining at Midnight
@@ -687,7 +688,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             },
         },
         { -- Skinning
-            addon.GetCategoryInfoTitle(15498),
+            CT.Skinning,
             true,
             {
                 42790, -- Skinning at Midnight
@@ -696,7 +697,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             },
         },
         { -- Tailoring
-            addon.GetCategoryInfoTitle(15496),
+            CT.Tailoring,
             true,
             {
                 42794, -- Tailoring at Midnight
@@ -713,7 +714,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
         }
     },
     { -- Pet Battles
-        addon.GetCategoryInfoTitle(15117),
+        CT.PetBattles,
         {
             61091, -- Midnight Safari
         },
@@ -762,7 +763,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
         }
     },
     { -- Prey
-        addon.GetCategoryInfoTitle(15605),
+        CT.Prey,
         {
             addon.L["Hard"],
             {
@@ -837,7 +838,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
         }
     },
     { -- Ritual Sites
-        addon.GetCategoryInfoTitle(15608),
+        CT.RitualSites,
         { -- Broken Throne
             addon.L["Broken Throne"],
             true,
@@ -908,7 +909,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
         },
     },
     { -- Void Assaults
-        addon.GetCategoryInfoTitle(15610),
+        CT.VoidAssaults,
         {
             62498, -- Void Assault: Eversong
             62507, -- Void Smasher: Eversong

@@ -547,7 +547,25 @@
         "ChatFrameUtil",
         "C_Spell",
         "C_SettingsUtil",
-        "issecretvalue"
+        "issecretvalue",
+        "QUESTS_LABEL",
+        "PLAYER_V_PLAYER",
+        "BATTLEGROUNDS",
+        "ARENA",
+        "GROUP_FINDER",
+        "TRADE_SKILLS",
+        "PROFESSIONS_COOKING",
+        "PROFESSIONS_FISHING",
+        "REPUTATION",
+        "PROFESSIONS_ARCHAEOLOGY",
+        "HONOR",
+        "LEVEL",
+        "RAIDS",
+        "DUNGEONS",
+        "WORLD",
+        "TRACKER_HEADER_PROVINGGROUNDS",
+        "INSCRIPTION",
+        "PLAYER_DIFFICULTY_TIMEWALKER"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
@@ -626,4 +644,12 @@
         // _xptr_
     ],
     "fsdeploy.deployWorkspaceOnSave": true,
+    "chat.tools.terminal.autoApprove": {
+        "&": true,
+        "/Verify-AchievementData\\.ps1/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        ".\\Test-VerifyScript.ps1": true
+    },
 }

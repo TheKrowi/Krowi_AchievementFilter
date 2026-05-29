@@ -4,7 +4,7 @@ local _, addon = ...;
 local L = addon.L;
 
 function addon.GetCovenantName(covenantID)
-    return C_Covenants and C_Covenants.GetCovenantData(covenantID).name or covenantID;
+    return C_Covenants and C_Covenants.GetCovenantData(covenantID).name or tostring(covenantID);
 end
 
 local instanceInfoNames = {}
@@ -22,7 +22,7 @@ function addon.GetInstanceInfoName(journalInstanceId)
         instanceInfoNames[journalInstanceId] = name;
         return name;
     end
-    return journalInstanceId;
+    return tostring(journalInstanceId);
 end
 
 local categoryInfoTitles = {}
@@ -40,28 +40,27 @@ function addon.GetCategoryInfoTitle(categoryId)
         categoryInfoTitles[categoryId] = title;
         return title;
     end
-    return categoryId;
+    return tostring(categoryId);
 end
 KrowiAF_GetCategoryInfoTitle = addon.GetCategoryInfoTitle
 
-
 function addon.GetLFGDungeonInfo(dungeonId)
-    return GetLFGDungeonInfo and GetLFGDungeonInfo(dungeonId) or dungeonId;
+    return GetLFGDungeonInfo and GetLFGDungeonInfo(dungeonId) or tostring(dungeonId);
 end
 
 function addon.GetMapName(uiMapId)
     local mapInfo = C_Map.GetMapInfo(uiMapId);
-    return mapInfo and mapInfo.name or uiMapId;
+    return mapInfo and mapInfo.name or tostring(uiMapId);
 end
 
 function addon.GetLFGActivityFullName(activityId)
     local activityInfo = C_LFGList.GetActivityInfoTable(activityId);
-    return activityInfo and activityInfo.fullName or activityInfo;
+    return activityInfo and activityInfo.fullName or tostring(activityId);
 end
 
 function addon.GetLFGActivityShortName(activityId)
     local activityInfo = C_LFGList.GetActivityInfoTable(activityId);
-    return activityInfo and activityInfo.shortName or activityInfo;
+    return activityInfo and activityInfo.shortName or tostring(activityId);
 end
 
 if not addon.Util.IsClassicWithAchievements then -- Wrath Classic does not have these and no fallback exists
@@ -149,7 +148,24 @@ L["Tabard"] = TABARDSLOT
 L["Title"] = LFG_LIST_TITLE
 L["Toy"] = TOY
 L["Transmog"] = PERKS_VENDOR_CATEGORY_TRANSMOG
-
+L["Player vs. Player"] = PLAYER_V_PLAYER
+L["Quests"] = QUESTS_LABEL
+L["Battlegrounds"] = BATTLEGROUNDS
+L["Arena"] = ARENA
+L["Dungeons & Raids"] = GROUP_FINDER
+L["Professions"] = TRADE_SKILLS
+L["Cooking"] = PROFESSIONS_COOKING
+L["Fishing"] = PROFESSIONS_FISHING
+L["Reputation"] = REPUTATION
+L["Archaeology"] = PROFESSIONS_ARCHAEOLOGY
+L["Level"] = LEVEL
+L["Honor"] = HONOR
+L["Raids"] = RAIDS
+L["Dungeons"] = DUNGEONS
+L["World"] = WORLD
+L["Proving Grounds"] = TRACKER_HEADER_PROVINGGROUNDS
+L["Inscription"] = INSCRIPTION
+L["Timewalking"] = PLAYER_DIFFICULTY_TIMEWALKER
 
 local l = addon.Localization.GetLocale(addon)
 L["Not earned by:"] = l["Not earned by:"]:SetColorRed() .. " %s";

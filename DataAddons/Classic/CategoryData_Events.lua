@@ -1,4 +1,7 @@
-local _, addon = ...;
+﻿local _, addon = ...;
+local shared = addon.Data.CategoryData.Shared
+local CT = shared.CT
+
 
 KrowiAF.CategoryData.Events = { -- TAB - Events
     884,
@@ -7,11 +10,10 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         TabName = "Events",
     },
     { -- Holidays
-        918,
         addon.L["Holidays"],
         { -- Lunar Festival
             885,
-            addon.GetCategoryInfoTitle(160),
+            CT.LunarFestival,
             {
                 605, -- A Coin of Ancestry
                 606, -- 5 Coins of Ancestry
@@ -35,7 +37,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         },
         { -- Love is in the Air
             910,
-            addon.GetCategoryInfoTitle(187),
+            CT.LoveIsInTheAir,
             {
                 1701, -- Be Mine!
                 260, -- Charming
@@ -65,7 +67,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         },
         { -- Noblegarden
             911,
-            addon.GetCategoryInfoTitle(159),
+            CT.Noblegarden,
             {
                 2676, -- I Found One!
                 2417, -- Chocolate Lover
@@ -86,7 +88,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         },
         { -- Children's Week
             912,
-            addon.GetCategoryInfoTitle(163),
+            CT.ChildrensWeek,
             {
                 1791, -- Home Alone
                 1788, -- Bad Example
@@ -100,7 +102,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         },
         { -- Midsummer
             913,
-            addon.GetCategoryInfoTitle( 161),
+            CT.Midsummer,
             {
                 263, -- Ice the Frost Lord
                 271, -- Burning Hot Pole Dance
@@ -161,7 +163,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         },
         { -- Brewfest
             914,
-            addon.GetCategoryInfoTitle(162),
+            CT.Brewfest,
             {
                 1184, -- Strange Brew
                 1203, -- Strange Brew
@@ -183,7 +185,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         },
         { -- Hallow's End
             915,
-            addon.GetCategoryInfoTitle(158),
+            CT.HallowsEnd,
             {
                 972, -- Trick or Treat!
                 288, -- Out With It
@@ -234,7 +236,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         },
         { -- Pilgrim's Bounty
             916,
-            addon.GetCategoryInfoTitle(14981),
+            CT.PilgrimsBounty,
             {
                 3579, -- """FOOD FIGHT!"""
                 3576, -- Now We're Cookin'
@@ -254,9 +256,8 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         },
         { -- Winter Veil
             917,
-            addon.GetCategoryInfoTitle(156),
+            CT.WinterVeil,
             { -- Gifts
-                950,
                 addon.L["Gifts"],
                 true,
                 {
@@ -313,10 +314,8 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         },
     },
     { -- WoW's Anniversary
-        1173,
         addon.L["WoW's Anniversary"],
         { -- WoW's 20th Anniversary
-            1678,
             addon.L["WoW's 20th Anniversary"],
             {
                 40985, -- I Have That One!
@@ -375,11 +374,10 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
     },
     { -- Darkmoon Faire
         925,
-        addon.GetCategoryInfoTitle(15101),
+        CT.DarkmoonFaire,
         { -- Reputation
-            1030,
             true,
-            addon.GetCategoryInfoTitle(201),
+            CT.Reputation,
             {
                 2336, -- Insane in the Membrane
             },
@@ -457,7 +455,6 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         },
     },
     { -- Miscellaneous
-        1174,
         addon.L["Miscellaneous"],
         {
             1636, -- Competitor's Tabard

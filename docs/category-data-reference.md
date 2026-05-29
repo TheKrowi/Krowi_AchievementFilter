@@ -96,6 +96,16 @@ All category IDs in KAF are **KAF-internal integers** — they are not WoW's own
 | PvP tab root | 955 |
 | Specials tab root | 971 |
 
+**Other explicitly-assigned IDs (referenced by EventData navigation):**
+
+| Category | ID | Location |
+|----------|----|----------|
+| Primal Storms – Waking Shores | 1363 | `Retail/10_Dragonflight/CategoryData.lua` |
+| Primal Storms – Ohn'ahran Plains | 1364 | `Retail/10_Dragonflight/CategoryData.lua` |
+| Primal Storms – Azure Span | 1365 | `Retail/10_Dragonflight/CategoryData.lua` |
+| Primal Storms – Thaldraszus | 1366 | `Retail/10_Dragonflight/CategoryData.lua` |
+| Hearthstone – 10th Anniversary | 1563 | `Retail/CategoryData_Specials.lua` |
+
 ### 3.2 Display Names
 
 Category names are **evaluated at load time**, not hardcoded strings. The three most common helpers are:

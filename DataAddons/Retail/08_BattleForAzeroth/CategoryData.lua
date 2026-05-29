@@ -1,18 +1,15 @@
 local _, addon = ...;
 local shared = addon.Data.CategoryData.Shared;
+local CT = shared.CT;
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
-    258,
-    addon.GetCategoryInfoTitle(15305),
+    CT.BattleForAzeroth,
     { -- Zones
-        259,
         addon.L["Zones"],
         { -- Kul Tiras & Zandalar
-            271,
             addon.GetMapName(876) .. " & " .. addon.GetMapName(875),
             { -- Quests
-                272,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     12582, -- Come Sail Away
@@ -40,8 +37,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- Exploration
-                273,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     13061, -- Three Sheets to the Wind
@@ -55,8 +51,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- PvP
-                274,
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     13429, -- Azerfighter
@@ -67,8 +62,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- Reputation
-                275,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     12947, -- Azerothian Diplomat
@@ -82,7 +76,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Boralus & Dazar'alor
-            1447,
             addon.GetMapName(1161) .. " & " .. addon.GetMapName(1165),
             {
                 12741, -- Giving a Scrap
@@ -93,11 +86,9 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Tiragarde Sound
-            276,
             addon.GetMapName(895),
             { -- Quests
-                281,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     12473, -- A Sound Plan
@@ -110,8 +101,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- Exploration
-                278,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     12556, -- Explore Tiragarde Sound
@@ -122,16 +112,14 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- PvP
-                279,
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     12577, -- Tour of Duty: Tiragarde Sound
                 },
             },
             { -- Reputation
-                280,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     12951, -- Proudmoore Admiralty
@@ -143,19 +131,16 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Drustvar
-            282,
             addon.GetMapName(896),
             { -- Quests
-                283,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     12497, -- Drust Do It.
                 },
             },
             { -- Exploration
-                284,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     12557, -- Explore Drustvar
@@ -169,16 +154,14 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- PvP
-                285,
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     12579, -- Tour of Duty: Drustvar
                 },
             },
             { -- Reputation
-                286,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     12952, -- Order of Embers
@@ -189,11 +172,9 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Stormsong Valley
-            287,
             addon.GetMapName(942),
             { -- Quests
-                288,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     12496, -- Stormsong and Dance
@@ -207,8 +188,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- Exploration
-                289,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     12558, -- Explore Stormsong Valley
@@ -218,16 +198,14 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- PvP
-                290,
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     12578, -- Tour of Duty: Stormsong Valley
                 },
             },
             { -- Reputation
-                291,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     12953, -- Storm's Wake
@@ -238,11 +216,9 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Zuldazar
-            292,
             addon.GetMapName(862),
             { -- Quests
-                293,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     11861, -- The Throne of Zuldazar
@@ -263,8 +239,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- Exploration
-                294,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     12559, -- Explore Zuldazar
@@ -273,8 +248,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- PvP
-                295,
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     12575, -- Tour of Duty: Zuldazar
@@ -283,8 +257,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- Reputation
-                296,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     12950, -- Zandalari Empire
@@ -296,11 +269,9 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Nazmir
-            297,
             addon.GetMapName(863),
             { -- Quests
-                298,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     13026, -- 7th Legion Spycatcher
@@ -314,8 +285,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- Exploration
-                299,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     12561, -- Explore Nazmir
@@ -327,16 +297,14 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- PvP
-                300,
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     12574, -- Tour of Duty: Nazmir
                 },
             },
             { -- Reputation
-                301,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     12948, -- Talanji's Expedition
@@ -347,11 +315,9 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Vol'dun
-            302,
             addon.GetMapName(864),
             { -- Quests
-                303,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     12478, -- Secrets in the Sands
@@ -364,8 +330,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- Exploration
-                304,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     12560, -- Explore Vol'dun
@@ -376,16 +341,14 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- PvP
-                305,
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     12576, -- Tour of Duty: Vol'dun
                 },
             },
             { -- Reputation
-                306,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     12949, -- The Voldunai
@@ -396,11 +359,9 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Mechagon Island
-            307,
             addon.GetMapName(1462),
             { -- Quests
-                308,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     13553, -- The Mechagonian Threat
@@ -410,8 +371,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- Exploration
-                309,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     13776, -- Explore Mechagon
@@ -434,16 +394,14 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- PvP
-                310,
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     13570, -- Tour of Duty: Mechagon
                 },
             },
             { -- Reputation
-                311,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     13557, -- Rustbolt Rebellion
@@ -454,11 +412,9 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Nazjatar
-            312,
             addon.GetMapName(1355),
             { -- Quests
-                313,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     13710, -- Sunken Ambitions
@@ -466,8 +422,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- Exploration
-                314,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     13712, -- Explore Nazjatar
@@ -511,8 +466,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- PvP
-                315,
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 true,
                 {
                     13569, -- Tour of Duty: Nazjatar
@@ -521,8 +475,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- Reputation
-                316,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     13558, -- Waveblade Ankoan
@@ -531,11 +484,9 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Vale of Eternal Blossoms
-            317,
             addon.GetMapName(1530),
             { -- Quests
-                318,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     14154, -- Defend the Vale
@@ -543,8 +494,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- Exploration
-                447,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     14160, -- Rare to Well Done
@@ -553,8 +503,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- Reputation
-                321,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     14156, -- The Rajani
@@ -565,11 +514,9 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             }
         },
         { -- Uldum
-            322,
             addon.GetMapName(1527),
             { -- Quests
-                323,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     14153, -- Uldum Under Assault
@@ -577,8 +524,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- Exploration
-                448,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     14160, -- Rare to Well Done
@@ -587,8 +533,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- Reputation
-                324,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     14155, -- Uldum Accord
@@ -603,10 +548,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
         },
     },
     { -- Dungeons
-        325,
-        addon.GetCategoryInfoTitle(15272),
+        CT.Dungeons,
         { -- Freelhold
-            327,
             addon.GetInstanceInfoName(1001),
             {
                 12550, -- Pecking Order
@@ -619,7 +562,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Waycrest Manor
-            328,
             addon.GetInstanceInfoName(1021),
             {
                 12495, -- Run Wild Like a Man On Fire
@@ -632,7 +574,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Shrine of the Storm
-            329,
             addon.GetInstanceInfoName(1036),
             {
                 12600, -- Breath of the Shrine
@@ -644,7 +585,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Atal'Dazar
-            330,
             addon.GetInstanceInfoName(968),
             {
                 12270, -- Bringing Hexy Back
@@ -657,7 +597,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- The Underrot
-            331,
             addon.GetInstanceInfoName(1022),
             {
                 12498, -- Taint Nobody Got Time For That
@@ -670,7 +609,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Temple of Sethraliss
-            332,
             addon.GetInstanceInfoName(1030),
             {
                 12507, -- Snake Eater
@@ -682,7 +620,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Tol Dagor
-            333,
             addon.GetInstanceInfoName(1002),
             {
                 12457, -- Remix to Ignition
@@ -693,7 +630,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- The MOTHERLODE!!
-            334,
             addon.GetInstanceInfoName(1012),
             {
                 12855, -- Pitch Invasion
@@ -705,7 +641,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Siege of Boralus
-            335,
             addon.GetInstanceInfoName(1023),
             {
                 12727, -- Stand by Me
@@ -716,7 +651,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Kings' Rest
-            336,
             addon.GetInstanceInfoName(1041),
             {
                 12722, -- It Belongs in a Mausoleum!
@@ -726,7 +660,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Operation: Mechagon
-            337,
             addon.GetInstanceInfoName(1178),
             {
                 13706, -- Stay Positive
@@ -754,13 +687,10 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
         },
     },
     { -- Raids
-        326,
-        addon.GetCategoryInfoTitle(15271),
+        CT.Raids,
         { -- Uldir
-            338,
             addon.GetInstanceInfoName(1031),
             { -- Glory
-                862,
                 addon.L["Glory"],
                 {
                     12937, -- Elevator Music
@@ -774,7 +704,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- Mythic
-                864,
                 addon.L["Mythic"],
                 {
                     12524, -- Mythic: Taloc
@@ -798,10 +727,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Battle of Dazar'alor
-            339,
             addon.GetInstanceInfoName(1176),
             { -- Glory
-                865,
                 addon.L["Glory"],
                 {
                     13316, -- Can I Get a Hek Hek Hek Yeah?
@@ -816,7 +743,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- Mythic
-                866,
                 addon.L["Mythic"],
                 {
                     13292, -- Mythic: Champion of the Light
@@ -845,7 +771,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Crucible of Storms
-            340,
             addon.GetInstanceInfoName(1177),
             {
                 13501, -- Gotta Bounce
@@ -858,10 +783,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- The Eternal Palace
-            341,
             addon.GetInstanceInfoName(1179),
             { -- Glory
-                869,
                 addon.L["Glory"],
                 {
                     13684, -- You and What Army?
@@ -875,7 +798,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- Mythic
-                870,
                 addon.L["Mythic"],
                 {
                     13726, -- Mythic: Abyssal Commander Sivara
@@ -899,10 +821,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Ny'alotha, the Waking City
-            342,
             addon.GetInstanceInfoName(1180),
             { -- Glory
-                871,
                 addon.L["Glory"],
                 {
                     14019, -- Smoke Test
@@ -920,7 +840,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
                 },
             },
             { -- Mythic
-                872,
                 addon.L["Mythic"],
                 {
                     14041, -- Mythic: Wrathion, the Black Emperor
@@ -956,19 +875,16 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
         },
     },
     { -- Professions
-        1157,
-        addon.GetCategoryInfoTitle(169),
+        CT.Professions,
         { -- Alchemy
-            1467,
-            addon.GetCategoryInfoTitle(15489),
+            CT.Alchemy,
             true,
             {
                 18770, -- Silas' Sphere of Transmutation
             },
         },
         { -- Archaeology
-            1474,
-            addon.GetCategoryInfoTitle(15071),
+            CT.Archaeology,
             true,
             {
                 12760, -- Kul Tiran Archaeologist
@@ -981,16 +897,14 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Blacksmithing
-            1475,
-            addon.GetCategoryInfoTitle(15490),
+            CT.Blacksmithing,
             true,
             {
                 18771, -- Khaz'gorian Smithing Hammer
             },
         },
         { -- Cooking
-            1483,
-            addon.GetCategoryInfoTitle(170),
+            CT.Cooking,
             true,
             {
                 12742, -- Kul Tiran Cook
@@ -1001,24 +915,21 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Enchanting
-            1486,
-            addon.GetCategoryInfoTitle(15491),
+            CT.Enchanting,
             true,
             {
                 18775, -- Iwen's Enchanting Rod
             },
         },
         { -- Engineering
-            1488,
-            addon.GetCategoryInfoTitle(15492),
+            CT.Engineering,
             true,
             {
                 18776, -- The Ub3r-Spanner
             },
         },
         { -- Fishing
-            1494,
-            addon.GetCategoryInfoTitle(171),
+            CT.Fishing,
             true,
             {
                 12753, -- Kul Tiran Fisherman
@@ -1033,56 +944,49 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Herbalism
-            1503,
-            addon.GetCategoryInfoTitle(15499),
+            CT.Herbalism,
             true,
             {
                 18838, -- Fourth War Herbalism Techniques
             },
         },
         { -- Inscription
-            1505,
-            addon.GetCategoryInfoTitle(15493),
+            CT.Inscription,
             true,
             {
                 18772, -- Sanguine Feather Quill of Lana'thel
             },
         },
         { -- Jewelcrafting
-            1507,
-            addon.GetCategoryInfoTitle(15494),
+            CT.Jewelcrafting,
             true,
             {
                 18773, -- Jewelhammer's Focus
             },
         },
         { -- Leatherworking
-            1511,
-            addon.GetCategoryInfoTitle(15495),
+            CT.Leatherworking,
             true,
             {
                 18777, -- Mallet of Thunderous Skins
             },
         },
         { -- Mining
-            1518,
-            addon.GetCategoryInfoTitle(15497),
+            CT.Mining,
             true,
             {
                 18840, -- Fourth War Mining Techniques
             },
         },
         { -- Skinning
-            1522,
-            addon.GetCategoryInfoTitle(15498),
+            CT.Skinning,
             true,
             {
                 18835, -- Fourth War Skinning Techniques
             },
         },
         { -- Tailoring
-            1525,
-            addon.GetCategoryInfoTitle(15496),
+            CT.Tailoring,
             true,
             {
                 18774, -- Synchronous Thread
@@ -1102,8 +1006,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
         },
     },
     { -- Pet Battles
-        343,
-        addon.GetCategoryInfoTitle(15117),
+        CT.PetBattles,
         {
             12930, -- Battle Safari
             13693, -- Mecha-Safari
@@ -1127,7 +1030,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
         },
     },
     { -- Brawler's Guild
-        793,
         addon.L["Brawler's Guild"],
         {
             11558, -- The First Rule of Brawler's Guild
@@ -1145,7 +1047,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
         },
     },
     { -- Dueler's Guild
-        851,
         addon.L["Dueler's Guild"],
         {
             12856, -- The First Rule of Dueler's Guild
@@ -1160,10 +1061,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
         },
     },
     { -- Island Expeditions
-        425,
-        addon.GetCategoryInfoTitle(15307),
+        CT.IslandExpeditions,
         { -- Un'gol Ruins
-            436,
             (addon.GetLFGDungeonInfo(1687)),
             {
                 12590, -- Un'gol Ruins
@@ -1173,7 +1072,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- The Dread Chain
-            437,
             (addon.GetLFGDungeonInfo(1734)),
             {
                 13095, -- Dread Chain
@@ -1183,7 +1081,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- The Rotting Mire
-            438,
             (addon.GetLFGDungeonInfo(1723)),
             {
                 13103, -- Rotting Mire
@@ -1193,7 +1090,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- The Molten Cay
-            439,
             (addon.GetLFGDungeonInfo(1750)),
             {
                 13099, -- Molten Cay
@@ -1203,7 +1099,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Verdant Wilds
-            440,
             (addon.GetLFGDungeonInfo(1724)),
             {
                 13111, -- Verdant Wilds
@@ -1213,7 +1108,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Skittering Hollow
-            441,
             (addon.GetLFGDungeonInfo(1725)),
             {
                 13107, -- Skittering Hollow
@@ -1223,7 +1117,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- The Whispering Reef
-            442,
             (addon.GetLFGDungeonInfo(1735)),
             {
                 13119, -- Whispering Reef
@@ -1233,7 +1126,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Jorundall
-            443,
             (addon.GetLFGDungeonInfo(1932)),
             {
                 13389, -- Jorundall
@@ -1243,7 +1135,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Havenswood
-            444,
             (addon.GetLFGDungeonInfo(1928)),
             {
                 13396, -- Havenswood
@@ -1253,7 +1144,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Crestfall
-            445,
             (addon.GetLFGDungeonInfo(1984)),
             {
                 13577, -- Crestfall
@@ -1263,7 +1153,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- Snowblossom Village
-            446,
             (addon.GetLFGDungeonInfo(1983)),
             {
                 13581, -- Snowblossom Village
@@ -1299,10 +1188,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
         },
     },
     { -- War Effort
-        426,
-        addon.GetCategoryInfoTitle(15308),
+        CT.WarEffort,
         { -- Battle for Stromgarde
-            434,
             (addon.GetLFGDungeonInfo(1615)),
             {
                 12881, -- War is Hell
@@ -1323,7 +1210,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             },
         },
         { -- The Battle for Darkshore
-            435,
             (addon.GetLFGDungeonInfo(1901)),
             {
                 13297, -- War for the Shore
@@ -1352,8 +1238,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
         },
     },
     { -- Heart of Azeroth
-        427,
-        addon.GetCategoryInfoTitle(15417),
+        CT.HeartOfAzeroth,
         {
             12918, -- Have a Heart
             13998, -- Pure of Heart
@@ -1370,8 +1255,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
         },
     },
     { -- Visions of N'Zoth
-        428,
-        addon.GetCategoryInfoTitle(15426),
+        CT.VisionsOfNZoth,
         {
             14143, -- Reeking of Visions
             13994, -- Through the Depths of Visions

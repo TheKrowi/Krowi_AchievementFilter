@@ -234,6 +234,22 @@ Branching, PR expectations, and commit conventions are documented in `CONTRIBUTI
 - Branch from `dev`; PRs target `dev`; `dev` merges to `main` at release.
 - Commits follow Conventional Commits with a custom `data:` type for achievement/event/zone data additions (the most frequent change type). Examples: `data(midnight): add 12.1.0 achievements (23)`, `fix(retail): achievement mouseover error`, `locale(enUS): add event filter strings`.
 
+## External Resources
+
+Use these references when looking up WoW API, UI source code, frame definitions, or global strings.
+
+| Resource | URL |
+|----------|-----|
+| Warcraft Wiki (API reference) | https://warcraft.wiki.gg/wiki/Warcraft_Wiki |
+| FrameXML browser — Retail | https://www.townlong-yak.com/framexml/live |
+| FrameXML browser — Classic | https://www.townlong-yak.com/framexml/classic |
+| WoW UI source (GitHub) — Retail | https://github.com/Gethe/wow-ui-source/tree/live/Interface/AddOns |
+| GlobalStrings — Retail (enUS) | https://www.townlong-yak.com/framexml/live/Helix/GlobalStrings.lua |
+| GlobalStrings — Classic (enUS) | https://www.townlong-yak.com/framexml/classic/Helix/GlobalStrings.lua |
+| GlobalStrings — Retail (other locales) | https://www.townlong-yak.com/framexml/live/Helix/GlobalStrings.lua/`<LOCALE>` (e.g. `/FR`, `/DE`, `/ES`, `/PT`, `/RU`, `/CN`, `/TW`, `/KR`) |
+| WoW UI bug tracker | https://github.com/Stanzilla/WoWUIBugs |
+| wow.tools.local (local game DB) | http://localhost:5000 — API query reference: `.github/skills/verify-achievement-data/API.md` |
+
 ## Trust These Instructions
 
 Always trust the information in this file first. Only perform additional codebase searches if the information here is incomplete or found to be incorrect for the specific task at hand.

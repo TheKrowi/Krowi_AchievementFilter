@@ -3,7 +3,7 @@ local L = addon.Localization.NewDefaultLocale(true)
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-05-17 22-05-27 ]] --
+-- [[ Exported at 2026-05-26 20-53-58 ]] --
 L["AchievementsTabFixes"] = "Achievements Tab Fixes"
 L["AchievementsTabFixes Desc"] = "This plugin provides some fixes for the Achievements Tab, toggleable below."
 L["Add To Right Click Menu"] = true

@@ -1,4 +1,7 @@
 local _, addon = ...;
+local shared = addon.Data.CategoryData.Shared
+local CT = shared.CT
+
 
 KrowiAF.CategoryData.Specials = { -- TAB - Specials
     971,
@@ -7,11 +10,9 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
         TabName = "Specials",
     },
     { -- Bur's Mount Collection
-        972,
         addon.L["Bur's Mount Collection"],
         { -- Collections
-            976,
-            addon.GetCategoryInfoTitle(15246),
+            CT.Collections,
             {
                 2141, -- Stable Keeper
                 2142, -- Filling Up The Barn
@@ -36,7 +37,6 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             },
         },
         { -- Vendor
-            985,
             addon.L["Vendor"],
             {
                 2076, -- Armored Brown Bear
@@ -50,15 +50,13 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             },
         },
         { -- Professions
-            986,
-            addon.GetCategoryInfoTitle(169),
+            CT.Professions,
             {
                 2097, -- Get to the Choppa!
                 5749, -- Vial of the Sands
             },
         },
         { -- Events
-            987,
             addon.L["Events"],
             {
                 416, -- Scarab Lord
@@ -72,7 +70,6 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             },
         },
         { -- Achievements
-            989,
             addon.L["Achievements"],
             {
                 879, -- Old School Ride
@@ -93,10 +90,8 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             },
         },
         { -- Dungeons
-            979,
-            addon.GetCategoryInfoTitle(15272),
+            CT.Dungeons,
             { -- Drops
-                983,
                 addon.L["Drops"],
                 true,
                 {
@@ -106,7 +101,6 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 },
             },
             { -- Glory
-                980,
                 addon.L["Glory"],
                 true,
                 {
@@ -130,10 +124,8 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             },
         },
         { -- Raids
-            982,
-            addon.GetCategoryInfoTitle(15271),
+            CT.Raids,
             { -- Drops
-                984,
                 addon.L["Drops"],
                 true,
                 {
@@ -149,7 +141,6 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 },
             },
             { -- Glory
-                981,
                 addon.L["Glory"],
                 true,
                 {
@@ -184,10 +175,8 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             },
         },
         { -- PvP
-            977,
-            addon.GetCategoryInfoTitle(95),
+            CT.PvP,
             { -- Gladiator
-                978,
                 addon.GetAchievmentName(2091),
                 true,
                 {
@@ -258,7 +247,6 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             },
         },
         { -- Recruit-a-Friend
-            988,
             addon.L["Recruit-a-Friend"],
             {
                 1436, -- Friends In High Places
@@ -275,14 +263,11 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
         },
     },
     { -- The Entitled Player
-        1043,
         addon.L["The Entitled"] .. " " .. (UnitName("player")),
         { -- Classic
-            1045,
-            addon.GetCategoryInfoTitle(14864),
+            CT.Classic,
             { -- Reputation
-                1065,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     948, -- Ambassador of the Alliance
@@ -296,11 +281,9 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             },
         },
         { -- Wrath of the Lich King
-            1047,
-            addon.GetCategoryInfoTitle(14866),
+            CT.WrathOfTheLichKing,
             { -- Reputation
-                1054,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     942, -- The Diplomat
@@ -323,8 +306,7 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 },
             },
             { -- Raids
-                1056,
-                addon.GetCategoryInfoTitle(15271),
+                CT.Raids,
                 true,
                 {
                     2051, -- The Twilight Zone (10 player)
@@ -340,27 +322,23 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             },
         },
         { -- Cataclysm
-            1048,
-            addon.GetCategoryInfoTitle(15072),
+            CT.Cataclysm,
             { -- Exploration
-                1058,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     5879, -- Veteran of the Molten Front
                 },
             },
             { -- Reputation
-                1059,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     5827, -- Avengers of Hyjal
                 },
             },
             { -- Raids
-                1060,
-                addon.GetCategoryInfoTitle(15271),
+                CT.Raids,
                 true,
                 {
                     5116, -- Heroic: Nefarian
@@ -377,11 +355,9 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             },
         },
         { -- Other
-            1084,
             addon.L["Other"],
             { -- Quests
-                1085,
-                addon.GetCategoryInfoTitle(96),
+                CT.Quests,
                 true,
                 {
                     978, -- 3000 Quests Completed
@@ -389,8 +365,7 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 },
             },
             { -- Exploration
-                1086,
-                addon.GetCategoryInfoTitle(97),
+                CT.Exploration,
                 true,
                 {
                     46, -- Universal Explorer
@@ -399,8 +374,7 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 },
             },
             { -- Reputation
-                1088,
-                addon.GetCategoryInfoTitle(201),
+                CT.Reputation,
                 true,
                 {
                     1015, -- 40 Exalted Reputations
@@ -410,16 +384,14 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 },
             },
             { -- Dungeons
-                1087,
-                addon.GetCategoryInfoTitle(15272),
+                CT.Dungeons,
                 true,
                 {
                     4477, -- Looking For Many
                 },
             },
             { -- Professions
-                1092,
-                addon.GetCategoryInfoTitle(169),
+                CT.Professions,
                 true,
                 {
                     1516, -- Accomplished Angler
@@ -431,7 +403,6 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 },
             },
             { -- Events
-                1094,
                 addon.L["Events"],
                 true,
                 {
@@ -448,12 +419,10 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 },
             },
             { -- PvP
-                1093,
-                addon.GetCategoryInfoTitle(95),
+                CT.PvP,
                 { -- Honor
                 true,
-                    1096,
-                        addon.GetCategoryInfoTitle(15266),
+                        CT.Honor,
                 true,
                     {
                         12901, -- Honor Level 25
@@ -467,8 +436,7 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                     },
                 },
                 { -- Battlegrounds
-                    1098,
-                        addon.GetCategoryInfoTitle(153),
+                        CT.Battlegrounds,
                 true,
                     {
                         907, -- The Justicar
@@ -482,7 +450,6 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                     },
                 },
                 { -- Rated
-                    1099,
                         addon.L["Rated"],
                 true,
                     {
@@ -524,13 +491,10 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
         },
     },
     { -- Realm First!
-        1105,
         addon.L["Realm First!"],
         { -- Leveling
-            1106,
             addon.L["Leveling"],
             { -- Level 80
-                1107,
                 addon.L["Level 80"],
                 true,
                 {
@@ -558,7 +522,6 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 },
             },
             { -- Level 85
-                1108,
                 addon.L["Level 85"],
                 true,
                 {
@@ -577,10 +540,8 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             },
         },
         { -- Professions
-            1110,
-            addon.GetCategoryInfoTitle(169),
+            CT.Professions,
             { -- 450 skill
-                1111,
                 addon.L["450 skill"],
                 true,
                 {
@@ -602,7 +563,6 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 },
             },
             { -- 525 skill
-                1112,
                 addon.L["525 skill"],
                 true,
                 {
@@ -625,18 +585,16 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             },
         },
         { -- Reputation
-            1116,
             true,
-            addon.GetCategoryInfoTitle(201),
+            CT.Reputation,
             {
                 1463, -- Realm First! Northrend Vanguard
                 6829, -- Realm First! Pandaren Ambassador
             },
         },
         { -- Raids
-            1115,
             true,
-            addon.GetCategoryInfoTitle(15271),
+            CT.Raids,
             {
                 1402, -- Realm First! Conqueror of Naxxramas
                 456, -- Realm First! Obsidian Slayer
@@ -649,10 +607,8 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
         },
     },
     { -- Promotions
-        1117,
-        addon.GetCategoryInfoTitle(15268),
+        CT.Promotions,
         { -- BlizzCon
-            1118,
             true,
             addon.L["BlizzCon"],
             {
@@ -674,7 +630,6 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             },
         },
         { -- Collector's Edition
-            1119,
             true,
             addon.L["Collector's Edition"],
             {
@@ -704,7 +659,6 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             },
         },
         { -- StarCraft II
-            1122,
             true,
             addon.L["StarCraft II"],
             {
@@ -727,11 +681,9 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
         },
     },
     { -- Ta's Pet Collection
-        1346,
         addon.L["Ta's Pet Collection"],
         { -- Pet Battles
-            1353,
-            addon.GetCategoryInfoTitle(15117),
+            CT.PetBattles,
             {
                 1250, -- "Shop Smart, Shop Pet...Smart"
                 2516, -- Lil' Game Hunter
@@ -747,15 +699,13 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             },
         },
         { -- Wrath of the Lich King
-            1378,
-            addon.GetCategoryInfoTitle(14866),
+            CT.WrathOfTheLichKing,
             {
                 1956, -- Higher Learning
             },
         },
         { -- Cataclysm
-            1352,
-            addon.GetCategoryInfoTitle(15072),
+            CT.Cataclysm,
             {
                 5449, -- Rock Lover
             },

@@ -4,7 +4,7 @@ if not L then return end
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-05-17 22-06-27 ]] --
+-- [[ Exported at 2026-05-26 20-54-12 ]] --
 L["AchievementsTabFixes"] = "Corrections de l'onglet des Hauts faits"
 L["AchievementsTabFixes Desc"] = "Ce plugin offre quelques corrections pour l'onglet des Hauts faits, que vous pouvez activer ou désactiver ci-dessous."
 L["Add To Right Click Menu"] = "Ajouter au menu clic droit"

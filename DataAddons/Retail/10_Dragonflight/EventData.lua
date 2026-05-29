@@ -51,22 +51,6 @@ KrowiAF.EventData.Dragonflight = {
         addon.L["Other"],
         2
     },
-    { -- Pandaria Cup
-        1430, type.Calendar,
-        1560,
-        1100022,
-		addon.L["Pandaria Cup"],
-        addon.L["Other"],
-        2
-    },
-    { -- Broken Isles Cup
-        1431, type.Calendar,
-        1561,
-        1100022,
-		addon.L["Broken Isles Cup"],
-        addon.L["Other"],
-        2
-    },
     { -- Hearthstone's 10th Anniversary
         1462, type.Calendar,
         1563,

@@ -1,7 +1,9 @@
-local addonName, addon = ...;
+﻿local addonName, addon = ...;
 addon.Data.TabData = {};
 addon.Data.TabData.Shared = {};
 local shared = addon.Data.TabData.Shared;
+local CT = addon.Data.CategoryData.Shared.CT
+
 
 KrowiAF.TabData.Base = {
     {
@@ -32,7 +34,7 @@ KrowiAF.TabData.Base = {
         addonName,
         addon.Metadata.Title,
         "PvP",
-        addon.GetCategoryInfoTitle(95),
+        CT.PvP,
         "KrowiAF_OPEN_TAB_PvP",
         true
     },

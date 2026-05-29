@@ -1,0 +1,5 @@
+<Ui>
+    <Script file="CategoryData.lua" />
+    <Script file="AchievementData.lua" />
+    <Script file="EventData.lua" />
+</Ui>

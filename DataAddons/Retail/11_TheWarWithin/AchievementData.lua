@@ -56,8 +56,8 @@ KrowiAF.AchievementData["11_00_00"] = {
 	Ach(40090):IsPvP(), -- Spoiled Goods
 	Ach(40091):IsPvP(), -- Slightly Spoiled
 	Ach(40095):IsPvP(), -- Sparking Battle
-	Ach(40096):Toy():IsPvP(), -- Sparking Battle
-	Ach(40097):Mount():IsPvP(), -- Ruffious's Bid
+	Ach(40096):IsPvP(), -- Sparking Battle
+	Ach(40097):Title():Mount():IsPvP(), -- Ruffious's Bid
 	Ach(40098):Title(), -- Immortal Spelunker
 	Ach(40100), -- Undying Caver
 	Ach(40103):Transmog():PvE(13), -- My First Nemesis
@@ -94,7 +94,7 @@ KrowiAF.AchievementData["11_00_00"] = {
 	Ach(40220):IsPvP(), -- Setting Records
 	Ach(40221):IsPvP(), -- Battleground Blitz Master
 	Ach(40222):Title(), -- Echoes of Danger
-	Ach(40231):Other(), -- The War Within Pathfinder
+	Ach(40231), -- The War Within Pathfinder
 	Ach(40232):Mount(), -- Glory of the Nerub-ar Raider
 	Ach(40233):Title():Toy():PvP(38), -- Strategist: The War Within Season 1
 	Ach(40234):AutoFactionSplit(faction.Horde, 40235):Title():PvP(38), -- Forged Warlord / Marshal: The War Within Season 1
@@ -204,7 +204,7 @@ KrowiAF.AchievementData["11_00_00"] = {
 	Ach(40435), -- Adventurer of the Isle of Dorn
 	Ach(40436), -- You're Getting a Delve!
 	Ach(40437), -- Delver of the Depths
-	Ach(40438):Mount(), -- Glory of the Delver
+	Ach(40438):Mount(), -- Glory of the War Within Delver
 	Ach(40445), -- Sporesweeper
 	Ach(40446):Obtainable("Before", "Version", {11, 1, 0}), -- I TAKE Candle!
 	Ach(40447), -- Delver of the Depths II
@@ -254,11 +254,11 @@ KrowiAF.AchievementData["11_00_00"] = {
 	Ach(40502):Other(), -- 50 Algari Anglerthread
 	Ach(40503):Other(), -- 90 Algari Anglerthread
 	Ach(40504):HousingDecor(), -- Rocked to Sleep
-	Ach(40506):Title(), -- Leave No Treasure Unfound
+	Ach(40506):Title(), -- The War Within: Leave No Treasure Unfound
 	Ach(40507), -- Hanging Tight
 	Ach(40512):Other(), -- War Within Delves: Tier 2
-	Ach(40514):Other(), -- War Within Delves: Tier 3
-	Ach(40515):Other():PvE(13), -- War Within Delves: Tier 4 (Season 1)
+	Ach(40514), -- War Within Delves: Tier 3
+	Ach(40515):PvE(13), -- War Within Delves: Tier 4 (Season 1)
 	Ach(40516):Other():PvE(13), -- War Within Delves: Tier 5 (Season 1)
 	Ach(40517):Other():PvE(13), -- War Within Delves: Tier 6 (Season 1)
 	Ach(40518):Other():PvE(13), -- War Within Delves: Tier 7 (Season 1)
@@ -406,7 +406,7 @@ KrowiAF.AchievementData["11_00_05"] = {
 	Ach(40661):Anniv20(), -- Zoomies!
 	Ach(40870):Title(), -- Azeroth's Greatest Detective
 	Ach(40871):Transmog(), -- Assistant to the Assistant Guest Relations Manager
-	Ach(40872):Transmog(), -- I Saved the Party and All I Got Was This Lousy Hat
+	Ach(40872):Transmog(), -- I Saved the Party and All I Got Were These Lousy Hats
 	Ach(40873), -- Crate Insurance Agent
 	Ach(40967), -- Ratts' Revenge
 	Ach(40976):Mount():Anniv20(), -- A Cool Twenty Years
@@ -430,9 +430,9 @@ KrowiAF.AchievementData["11_00_05"] = {
 	Ach(40998), -- A Timewalking Step Back to a Classic Dungeon Time
 	Ach(40999):Anniv20(), -- You're in Your Blackrock Depths
 	Ach(41000), -- A Timewalking Journey Back to a Classic Dungeon Time
-	Ach(41013):Other(), -- Upgraded Apparel
+	Ach(41013), -- Upgraded Apparel
 	Ach(41015):Anniv20(), -- A Dark Iron Past
-	Ach(41033):Other(), -- Classy Dresser
+	Ach(41033), -- Classy Dresser
 	Ach(41038):Other():Anniv20(), -- Token Collector
 	Ach(41044):Transmog():PvP(38), -- Forged Weapons of Conquest
 	Ach(41220):Anniv20(), -- WoW's 20th Anniversary
@@ -520,7 +520,7 @@ KrowiAF.AchievementData["11_01_00"] = {
 	Ach(40942):Other():PvE(14), -- Weathered of the Undermine
 	Ach(40943):Other():PvE(14), -- Carved of the Undermine
 	Ach(40944):Other():PvE(14), -- Runed of the Undermine
-	Ach(40945):PvE(14), -- Gilded of the Undermined
+	Ach(40945):PvE(14), -- Gilded of the Undermine
 	Ach(40948):TradersTender(), -- Nine-Tenths of the Law
 	Ach(40949):PvE(14), -- The War Within Keystone Explorer: Season Two
 	Ach(40950):Title():PvE(14), -- The War Within Keystone Conqueror: Season Two
@@ -659,7 +659,7 @@ KrowiAF.AchievementData["11_01_00"] = {
 	Ach(41694), -- Flarendo's Biggest Fan
 	Ach(41695), -- Torq's Biggest Fan
 	Ach(41708), -- You're My Friend Now
-	Ach(41709):PvE(14), -- Journey's End (Season 2)
+	Ach(41709):PvE(14), -- The War Within: Journey's End (Season 2)
 	Ach(41711), -- Conveyor Slayer
 	Ach(41714):PvE(14), -- From Trash to Treasure
 	Ach(41723), -- Buddy System VIII
@@ -806,20 +806,20 @@ KrowiAF.AchievementData["11_02_00"] = {
 	-- {42114}, -- Broken Memories
 	Ach(42118), -- Of Mice and Manaforges
 	Ach(42131):IsPvP(), -- Tour of Duty: K'aresh
-	Ach(42149):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 12 (Keystones will no longer deplete below level 12 during the War Within Season 3.)
-	Ach(42150):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 13 (Keystones will no longer deplete below level 13 during the War Within Season 3.)
-	Ach(42151):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 14 (Keystones will no longer deplete below level 14 during the War Within Season 3.)
-	Ach(42152):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 15 (Keystones will no longer deplete below level 15 during the War Within Season 3.)
-	Ach(42153):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 16 (Keystones will no longer deplete below level 16 during the War Within Season 3.)
-	Ach(42154):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 17 (Keystones will no longer deplete below level 17 during the War Within Season 3.)
-	Ach(42155):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 18 (Keystones will no longer deplete below level 18 during the War Within Season 3.)
-	Ach(42156):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 19 (Keystones will no longer deplete below level 19 during the War Within Season 3.)
-	Ach(42157):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 20 (Keystones will no longer deplete below level 20 during the War Within Season 3.)
-	Ach(42158):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 21 (Keystones will no longer deplete below level 21 during the War Within Season 3.)
-	Ach(42159):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 22 (Keystones will no longer deplete below level 22 during the War Within Season 3.)
-	Ach(42160):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 23 (Keystones will no longer deplete below level 23 during the War Within Season 3.)
-	Ach(42161):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 24 (Keystones will no longer deplete below level 24 during the War Within Season 3.)
-	Ach(42162):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 25 (Keystones will no longer deplete below level 25 during the War Within Season 3.)
+	Ach(42149):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 12
+	Ach(42150):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 13
+	Ach(42151):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 14
+	Ach(42152):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 15
+	Ach(42153):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 16
+	Ach(42154):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 17
+	Ach(42155):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 18
+	Ach(42156):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 19
+	Ach(42157):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 20
+	Ach(42158):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 21
+	Ach(42159):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 22
+	Ach(42160):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 23
+	Ach(42161):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 24
+	Ach(42162):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 25
 	Ach(42169):PvE(15), -- The War Within Keystone Explorer: Season Three
 	Ach(42170):Title():PvE(15), -- The War Within Keystone Conqueror: Season Three
 	Ach(42171):PvE(15), -- The War Within Keystone Hero: Season Three
@@ -864,12 +864,12 @@ KrowiAF.AchievementData["11_02_00"] = {
 	Ach(42782), -- Mythic: Eco-Dome Al'dani
 	Ach(42799):PvE(15), -- Let Her Solo Me
 	Ach(42800), -- Astral Attire
-	Ach(42801):PvE(15), -- Journey's End (Season 3)
-	Ach(42802):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 26 (Keystones will no longer deplete below level 26 during the War Within Season 3.)
-	Ach(42803):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 27 (Keystones will no longer deplete below level 27 during the War Within Season 3.)
-	Ach(42804):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 28 (Keystones will no longer deplete below level 28 during the War Within Season 3.)
-	Ach(42805):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 29 (Keystones will no longer deplete below level 29 during the War Within Season 3.)
-	Ach(42806):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 30 (Keystones will no longer deplete below level 30 during the War Within Season 3.)
+	Ach(42801):PvE(15), -- The War Within: Journey's End (Season 3)
+	Ach(42802):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 26
+	Ach(42803):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 27
+	Ach(42804):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 28
+	Ach(42805):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 29
+	Ach(42806):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 30
 	Ach(60889), -- Unraveled and Persevering
 	Ach(60890), -- Secrets of the K'areshi
 	Ach(60933):AutoFactionSplit(faction.Horde, 60934):Mount():Obtainable("Before", "Version", {11, 2, 5}), -- With Flying Colors
@@ -885,7 +885,7 @@ KrowiAF.AchievementData["11_02_00"] = {
 
 KrowiAF.AchievementData["11_02_05"] = {
 	{KrowiAF.SetAchievementPatch, 11, 2, 5},
- Ach(42301):Title():Obtainable("Event", 1640), -- Timerunner
+	Ach(42301):Title():Obtainable("Event", 1640), -- Timerunner
 	Ach(42312):RemixBronze():Obtainable("Event", 1640), -- Artifact, Remixed
 	Ach(42313):RemixInfiniteKnowledge():Obtainable("Event", 1640), -- Remixing Time
 	Ach(42314):RemixInfiniteKnowledge():Obtainable("Event", 1640), -- Unlimited Power

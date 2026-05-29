@@ -9,4 +9,9 @@
     <Script file="TooltipData.lua" />
     <Script file="TransmogSetData.lua" />
     <Script file="ZoneData.lua" />
+    <Include file="01_Vanilla\Files.xml" />
+    <Include file="02_TheBurningCrusade\Files.xml" />
+    <Include file="03_WrathOfTheLichKing\Files.xml" />
+    <Include file="04_Cataclysm\Files.xml" />
+    <Include file="05_MistsOfPandaria\Files.xml" />
 </Ui>

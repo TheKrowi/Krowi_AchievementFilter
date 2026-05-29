@@ -119,8 +119,7 @@ end
 
 local function CopyPrevTooltipLines(originalOwner)
     local linesLeft, linesRight = GetTooltipText();
-    GameTooltip:SetOwner(originalOwner, "ANCHOR_NONE");
-	GameTooltip:SetPoint("TOPLEFT", originalOwner, "TOPRIGHT");
+    GameTooltip:SetOwner(originalOwner, "ANCHOR_BOTTOMRIGHT", 0, originalOwner:GetHeight());
     local lineLeft, lineRight;
     for i = 1, #linesLeft - 1, 1 do
         lineLeft, lineRight = linesLeft[i], linesRight[i];

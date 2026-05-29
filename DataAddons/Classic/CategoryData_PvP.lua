@@ -1,14 +1,16 @@
 local _, addon = ...;
+local shared = addon.Data.CategoryData.Shared
+local CT = shared.CT
+
 
 KrowiAF.CategoryData.PvP = { -- TAB - PvP
     955,
-    addon.GetCategoryInfoTitle(95),
+    CT.PvP,
     {
         TabName = "PvP",
     },
     { -- Player vs. Player
-        1162,
-        addon.GetCategoryInfoTitle(95),
+        CT.PvP,
         {
             10561, -- Honorable Medallion
             238, -- An Honorable Kill
@@ -44,11 +46,9 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
         },
     },
     { -- Battlegrounds
-        1165,
-        addon.GetCategoryInfoTitle(153),
+        CT.Battlegrounds,
         { -- Alterac Valley
-            960,
-            addon.GetCategoryInfoTitle(14801),
+            CT.AlteracValley,
             {
                 218, -- Alterac Valley Victory
                 219, -- Alterac Valley Veteran
@@ -72,8 +72,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
             },
         },
         { -- Arathi Basin
-            956,
-            addon.GetCategoryInfoTitle(14802),
+            CT.ArathiBasin,
             {
                 154, -- Arathi Basin Victory
                 155, -- Arathi Basin Veteran
@@ -94,8 +93,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
             },
         },
         { -- Battle for Gilneas
-            964,
-            addon.GetCategoryInfoTitle(15073),
+            CT.BattleForGilneas,
             {
                 5245, -- Battle for Gilneas Victory
                 5246, -- Battle for Gilneas Veteran
@@ -115,8 +113,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
             },
         },
         { -- Eye of the Storm
-            959,
-            addon.GetCategoryInfoTitle(14803),
+            CT.EyeOfTheStorm,
             {
                 208, -- Eye of the Storm Victory
                 209, -- Eye of the Storm Veteran
@@ -134,8 +131,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
             },
         },
         { -- Isle of Conquest
-            962,
-            addon.GetCategoryInfoTitle(15003),
+            CT.IsleOfConquest,
             {
                 3776, -- Isle of Conquest Victory
                 3777, -- Isle of Conquest Veteran
@@ -159,7 +155,6 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
             },
         },
         { -- Strand of the Ancients
-            973,
             addon.L["Strand of the Ancients"],
             {
                 1308, -- Strand of the Ancients Victory
@@ -182,8 +177,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
             },
         },
         { -- Twin Peaks
-            965,
-            addon.GetCategoryInfoTitle(15074),
+            CT.TwinPeaks,
             {
                 5208, -- Twin Peaking
                 5209, -- Twin Peaks Veteran
@@ -208,8 +202,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
             },
         },
         { -- Warsong Gulch
-            958,
-            addon.GetCategoryInfoTitle(14804),
+            CT.WarsongGulch,
             {
                 166, -- Warsong Gulch Victory
                 167, -- Warsong Gulch Veteran
@@ -233,8 +226,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
             },
         },
         { -- Wintergrasp
-            963,
-            addon.GetCategoryInfoTitle(14901),
+            CT.Wintergrasp,
             {
                 1717, -- Wintergrasp Victory
                 1718, -- Wintergrasp Veteran
@@ -316,8 +308,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
         },
     },
     { -- Arena
-        1166,
-        addon.GetCategoryInfoTitle(165),
+        CT.Arena,
         {
             397, -- Step Into The Arena
             398, -- Mercilessly Dedicated
@@ -355,8 +346,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
         },
     },
     { -- Classic
-        1131,
-        addon.GetCategoryInfoTitle(14864),
+        CT.Classic,
         {
             442, -- Private
             454, -- Scout
@@ -389,8 +379,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
         },
     },
     { -- The Burning Crusade
-        1199,
-        addon.GetCategoryInfoTitle(14865),
+        CT.TheBurningCrusade,
         {
             15022, -- Challenger: Season 1
             15021, -- Rival: Season 1
@@ -415,8 +404,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
         },
     },
     { -- Wrath of the Lich King
-        1200,
-        addon.GetCategoryInfoTitle(14866),
+        CT.WrathOfTheLichKing,
         {
             16316, -- Challenger: Season 5
             16313, -- Rival: Season 5
@@ -441,8 +429,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
         },
     },
     { -- Cataclysm
-        1197,
-        addon.GetCategoryInfoTitle(15072),
+        CT.Cataclysm,
         {
             40971, -- Challenger: Season 9
             40968, -- Rival: Season 9
@@ -468,8 +455,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
         },
     },
     { -- Mists of Pandaria
-        1198,
-        addon.GetCategoryInfoTitle(15164),
+        CT.MistsOfPandaria,
         {
             42762, -- Challenger: Season 12
             42764, -- Rival: Season 12

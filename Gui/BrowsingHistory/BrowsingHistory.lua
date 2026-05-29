@@ -73,8 +73,7 @@ end
 KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButtonMixin = CreateFromMixins(KrowiAF_AchievementFrameBrowsingHistoryPrevNextAchievementButtonMixin);
 
 function KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButtonMixin:OnEnter()
-    GameTooltip:SetOwner(self, "ANCHOR_NONE");
-    GameTooltip:SetPoint("TOPRIGHT", self, "TOPLEFT");
+    GameTooltip:SetOwner(self, "ANCHOR_BOTTOMLEFT", 0, self:GetHeight());
     GameTooltip:SetText(addon.L["Go back one achievement"]);
     SetTooltipHistory();
 end
@@ -82,8 +81,7 @@ end
 KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButtonMixin = CreateFromMixins(KrowiAF_AchievementFrameBrowsingHistoryPrevNextAchievementButtonMixin);
 
 function KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButtonMixin:OnEnter()
-    GameTooltip:SetOwner(self, "ANCHOR_NONE");
-    GameTooltip:SetPoint("TOPLEFT", self, "TOPRIGHT");
+    GameTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT", 0, self:GetHeight());
     GameTooltip:SetText(addon.L["Go forward one achievement"]);
     SetTooltipHistory();
 end

@@ -4,7 +4,7 @@ if not L then return end
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-01-30 20-54-01 ]] --
+-- [[ Exported at 2026-05-26 20-54-37 ]] --
 L["AchievementsTabFixes"] = "成就標籤修復"
 L["AchievementsTabFixes Desc"] = "該插件為成就標籤提供了一些修復，可在下方切換"
 L["Add To Right Click Menu"] = "新增至右鍵選單"
