@@ -53,7 +53,11 @@ function KrowiAF_WorldMapButtonMixin:OnEnter()
 end
 
 function KrowiAF_WorldMapButtonMixin:OnLeave()
-	addon.ProgressBarLib.GameTooltipWithProgressBar:Hide()
+    if self.NumOfAch > 0 then
+        addon.ProgressBarLib.GameTooltipWithProgressBar:Hide()
+    else
+        GameTooltip:Hide()
+    end
 end
 
 function KrowiAF_WorldMapButtonMixin:OnHide()

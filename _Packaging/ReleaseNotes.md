@@ -1,23 +1,11 @@
-### Added
-- Mythic+ seasons for Shadowlands and Dragonflight are now listed under their respective expansion's Dungeons category (in addition to the Specials tab)
-- Midnight Keystone Myth: Season One
-
 ### Changed
-- Wrath of the Lich King, Cataclysm, Mists of Pandaria, Warlords of Draenor, Legion, Battle for Azeroth, Shadowlands and Dragonflight achievement data internally migrated to a new fluent V2 builder format (dev note: this is an invisible change for users; the new format uses method chaining instead of nested tables — e.g. `Ach(12345):Mount():PvE(13)` — which greatly improves readability and reduces data entry errors)
-- WoW Anniversary achievements for the 16th through 21st anniversaries now use explicit date-based obtainability windows instead of calendar event IDs, making them more reliable
-- Enhanced the achievement reward to be more performant (dev note: filtering and tooltips should be more responsive)
+- Wrath of the Lich King, Cataclysm, and Mists of Pandaria achievement and event data internally migrated to shared files (dev note: invisible change for users; eliminates duplicate data between Retail and Classic clients)
+- Vanilla, The Burning Crusade, Wrath of the Lich King, Cataclysm, and Mists of Pandaria category data internally migrated to shared files (dev note: same as above)
+- Achievement data corrections from a comprehensive QA pass across WotLK, Cataclysm, Mists of Pandaria, Warlords of Draenor, Legion, Battle for Azeroth, Shadowlands, Dragonflight, The War Within, and Midnight — faction splits, reward types, and obtainability flags corrected
+- esES, esMX, itIT, and koKR locale files are now properly registered and loaded (the files existed but were not listed in the manifest and were therefore silently ignored)
+- Common category name strings (Player vs. Player, Quests, Battlegrounds, Arena, Dungeons & Raids, Professions, Reputation, etc.) are now sourced from WoW's own GlobalStrings in `Shared.lua` instead of being duplicated in every locale file, making them automatically correct in all languages
+- Updated and expanded translations across multiple locales including a large new koKR translation batch
 
 ### Fixed
-- Attempted fix for a recurring Lua error that could appear in the chat frame after hovering over a category or the world map icon (dev note: WoW 12.0.0 introduced "secret number values" — a security mechanism that marks frame measurements as tainted when addon code writes into Blizzard-owned frames; the progress bar was permanently parented to Blizzard's `GameTooltip`, and calls to `SetParent`, `SetHeight`, `SetPoint`, and `GameTooltip_AddBlankLinesToTooltip` against it were corrupting its layout state; the fix moves the progress bar into a library-owned `Krowi_ProgressBarTooltip` frame so Blizzard's `GameTooltip` is never touched by KAF's tooltip code)
-
-### Removed
-- "Ta's Pet Collection" removed from the Specials tab (dev note: this category was no longer maintained and is now part of [Khamuls Housing/Toys/Mounts/Pets Collections Plugin](https://github.com/KhamulAT/Krowi_AchievementFilter_Khamuls_ExpMetaAchievementFilter))
-- WoW Anniversary events (18th, 19th, 20th, 21st) removed from the Events reminder system; obtainability is now tracked via date ranges directly on the achievements instead
-- Removed obsolete localization strings for anniversary event category names that are no longer needed (10th, 18th, 19th, 21st)
-
-### Mists Classic
-- Changed Wrath of the Lich King, Cataclysm and Mists of Pandaria achievement data internally migrated to a new fluent V2 builder format (dev note: this is an invisible change for users; the new format uses method chaining instead of nested tables — e.g. `Ach(12345):Mount():PvE(13)` — which greatly improves readability and reduces data entry errors)
-- Fixed Mists of Pandaria 5.5.3 missing build version
-
-### Fixed (96.1)
-- The progress bar tooltip now correctly hides when moving the mouse away from a category or the world map icon
+- Further taint fix attempt: tooltip positioning for achievement tooltips, browsing history navigation buttons, and event reminder alerts now uses built-in WoW anchor types instead of manual `SetPoint` calls, which should prevent taint propagation (dev note: replaced `ANCHOR_NONE` + `SetPoint` with `ANCHOR_BOTTOMRIGHT`/`ANCHOR_BOTTOMLEFT` with offsets across all affected `GameTooltip:SetOwner` calls)
+- Category, instance, and map name lookup fallbacks now safely convert the ID to a string, preventing potential type errors when a lookup returns nil
