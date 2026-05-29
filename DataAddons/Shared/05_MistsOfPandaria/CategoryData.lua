@@ -1,5 +1,5 @@
-local _, addon = ...;
-local shared = addon.Data.CategoryData.Shared;
+local _, addon = ...
+local shared = addon.Data.CategoryData.Shared
 local CT = shared.CT
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
@@ -880,6 +880,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             6835, -- Working For a Living
             7378, -- Jack of All Trades
             7379, -- Pandaren Master of All
+            62361, -- Mist-Shrouded Lumberjack
             6838, -- Zen Master Medic
             6836, -- Serious Skills to Pay the Bills
         },
@@ -1142,4 +1143,4 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
         8306, -- Hordebreaker
         8307, -- Darkspear Revolutionary
     },
-});
+})

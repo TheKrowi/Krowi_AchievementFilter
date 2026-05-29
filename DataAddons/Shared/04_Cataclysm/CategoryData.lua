@@ -616,4 +616,4 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
         5538, -- 50,000 Valor Points
         6924, -- 100,000 Valor Points
     },
-});
+})
