@@ -9,3 +9,6 @@
 ### Fixed
 - Further taint fix attempt: tooltip positioning for achievement tooltips, browsing history navigation buttons, and event reminder alerts now uses built-in WoW anchor types instead of manual `SetPoint` calls, which should prevent taint propagation (dev note: replaced `ANCHOR_NONE` + `SetPoint` with `ANCHOR_BOTTOMRIGHT`/`ANCHOR_BOTTOMLEFT` with offsets across all affected `GameTooltip:SetOwner` calls)
 - Category, instance, and map name lookup fallbacks now safely convert the ID to a string, preventing potential type errors when a lookup returns nil
+
+### Fixed (97.1)
+- Calendar event reminder errors ("table index is secret") no longer occur for players who have personal or guild entries on their in-game calendar; those entries are now skipped during cache building since the addon only tracks holiday events

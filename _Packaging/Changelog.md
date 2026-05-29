@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 97.1 - 2026-05-29
+### Fixed
+- Calendar event reminder errors ("table index is secret") no longer occur for players who have personal or guild entries on their in-game calendar; those entries are now skipped during cache building since the addon only tracks holiday events
+
 ## 97.0 - 2026-05-29
 ### Changed
 - Wrath of the Lich King, Cataclysm, and Mists of Pandaria achievement and event data internally migrated to shared files (dev note: invisible change for users; eliminates duplicate data between Retail and Classic clients)

@@ -27,7 +27,7 @@ end
 local calendarEventsCache
 local function CacheDayEvent(monthDay, index)
     local event = C_Calendar.GetDayEvent(0, monthDay, index)
-    if not event or not event.eventID then
+    if not event or not event.eventID or event.calendarType ~= "HOLIDAY" then
         return
     end
 
