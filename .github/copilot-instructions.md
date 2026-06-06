@@ -118,8 +118,6 @@ KrowiAF.AchievementData["11_01_00"] = {
 }
 ```
 
-**When adding a new patch to a file that still contains V1 entries** (expansions 01–10 and 12, pending migration): add the `shared`/`Ach` imports to the header if not present, then use `KrowiAF.AchievementData` for the new patch table. The V1 entries in the same file are unaffected — both table keys coexist.
-
 #### Steps for adding new achievements:
 1. Add achievement data in the appropriate `DataAddons/Retail/XX_ExpansionName/AchievementData.lua` file using V2 format. Canonical reference: `DataAddons/Retail/11_TheWarWithin/AchievementData.lua` and `Api/ApiDocumentation.lua`.
 2. Add category data in the corresponding `CategoryData.lua`.

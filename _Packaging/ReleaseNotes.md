@@ -12,3 +12,6 @@
 
 ### Fixed (97.1)
 - Calendar event reminder errors ("table index is secret") no longer occur for players who have personal or guild entries on their in-game calendar; those entries are now skipped during cache building since the addon only tracks holiday events
+
+### Fixed (97.2)
+- World map button taint fix: `Krowi_WorldMapButtons` library updated to 1.4.10; now hooks `OnMapChanged` exclusively instead of conditionally hooking `RefreshOverlayFrames`, and removes the Wrath Classic workaround that patched `RefreshOverlayFrames` onto `WorldMapFrame` (dev note: the old hook could fire during protected Blizzard execution paths, causing taint; `OnMapChanged` is safe in all supported clients)

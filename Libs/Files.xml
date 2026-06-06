@@ -19,7 +19,7 @@
     <Include file="Krowi_Tutorials\Krowi_Tutorials.xml" />
     <Include file="Krowi_Menu\Krowi_Menu.xml" />
     <Include file="Krowi_ProgressBar\Krowi_ProgressBar.xml" />
-    <Include file="Krowi_WorldMapButtons\Krowi_WorldMapButtons-1.4.xml" />
+    <Include file="Krowi_WorldMapButtons\Krowi_WorldMapButtons.xml" />
 
     <Script file="Krowi_Util\Options\InjectOptions.lua" />
     <Script file="Libs.lua" />

@@ -1,5 +1,4 @@
--- KrowiAF Achievement Data V1 vs V2 Benchmark (frame-aware)
--- V1 = raw table  |  V2 = fluent builder  Ach(id):Method()
+-- KrowiAF Achievement Data V2 Benchmark (frame-aware)
 -- Usage:
 --   1. Add "Benchmark.lua" as the last line of Krowi_AchievementFilter.toc
 --   2. Load the game and type /kafbench
@@ -59,21 +58,8 @@ end
 local function AchP(id) return setmetatable({id}, AchBuilderPromote) end
 
 -- ============================================================
--- Local replicas of the parsers (no writes to addon data)
+-- Local replica of the parser (no writes to addon data)
 -- ============================================================
-local function ParseV1(id, faction, otherFactionId, isPvP, isRealmFirst)
-    local moreData
-    if type(faction)        == "table" then moreData = faction;        faction = nil        end
-    if type(otherFactionId) == "table" then moreData = otherFactionId; otherFactionId = nil end
-    if type(isPvP)          == "table" then moreData = isPvP;          isPvP = nil          end
-    if type(isRealmFirst)   == "table" then moreData = isRealmFirst;   isRealmFirst = nil   end
-    local rewardType_
-    if moreData and moreData.RewardType  then rewardType_ = moreData.RewardType; moreData.RewardType = nil  end
-    if moreData and moreData.IsPvP       then isPvP = true;                      moreData.IsPvP = nil       end
-    if moreData and moreData.IsRealmFirst then isRealmFirst = true;              moreData.IsRealmFirst = nil end
-    return id, faction, otherFactionId, rewardType_, isPvP, isRealmFirst, moreData
-end
-
 local function ParseV2(id, extras)
     if not extras then return id end
     local temporaryObtainables
@@ -125,42 +111,6 @@ end
 -- Scenarios  (construct + parse combined = full cost per entry)
 -- ============================================================
 local scenarios = {
-    {   -- Simple: no extras
-        "simple          V1  {id}",
-        "simple          V2  Ach(id)",
-        function() ParseV1(19559) end,
-        function() local t = Ach(19559); ParseV2(t[1], t[2]) end,
-    },
-    {   -- Reward type only
-        "reward          V1  {id, {RewardType=X}}",
-        "reward          V2  Ach(id):HousingDecor()",
-        function() ParseV1(19408, {RewardType = rewardType.HousingDecor}) end,
-        function() local t = Ach(19408):HousingDecor(); ParseV2(t[1], t[2]) end,
-    },
-    {   -- PvP flag only
-        "isPvP           V1  {id, {IsPvP=true}}",
-        "isPvP           V2  Ach(id):IsPvP()",
-        function() ParseV1(40083, {IsPvP = true}) end,
-        function() local t = Ach(40083):IsPvP(); ParseV2(t[1], t[2]) end,
-    },
-    {   -- Season only
-        "season          V1  {id, {{season}}}",
-        "season          V2  Ach(id):PvE(13)",
-        function() ParseV1(20523, {{"PvE Season", 13}}) end,
-        function() local t = Ach(20523):PvE(13); ParseV2(t[1], t[2]) end,
-    },
-    {   -- Season + reward
-        "season+reward   V1  {id, {R=X, {season}}}",
-        "season+reward   V2  Ach(id):PvE(13):Title()",
-        function() ParseV1(20524, {RewardType = rewardType.Title, {"PvE Season", 13}}) end,
-        function() local t = Ach(20524):PvE(13):Title(); ParseV2(t[1], t[2]) end,
-    },
-    {   -- Two seasons + reward
-        "2seasons+reward V1  {id, {R=X, {s1}, {s2}}}",
-        "2seasons+reward V2  Ach(id):PvE(14):PvE(15):Teleport()",
-        function() ParseV1(20581, {RewardType = rewardType.Teleport, {"PvE Season", 14}, {"PvE Season", 15}}) end,
-        function() local t = Ach(20581):PvE(14):PvE(15):Teleport(); ParseV2(t[1], t[2]) end,
-    },
     -- --------------------------------------------------------
     -- Reward-type builder approach comparison
     -- --------------------------------------------------------
@@ -216,8 +166,8 @@ SlashCmdList["KAFBENCH"] = function()
     local queue = {}
     for i, s in ipairs(scenarios) do
         local isLast = (i == #scenarios)
-        tinsert(queue, {s[1], s[3], false})           -- V1: no separator
-        tinsert(queue, {s[2], s[4], not isLast})      -- V2 builder: separator after, except last
+        tinsert(queue, {s[1], s[3], false})           -- first variant: no separator
+        tinsert(queue, {s[2], s[4], not isLast})      -- second variant: separator after, except last
     end
 
     RunQueue(queue, frameBudget)

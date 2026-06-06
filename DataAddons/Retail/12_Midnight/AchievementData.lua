@@ -658,3 +658,42 @@ KrowiAF.AchievementData["12_00_05"] = {
 	Ach(62832), -- Abyss Anglers: Reservation for One
 	Ach(63097):Title():Mount():PvE(17), -- Midnight Keystone Myth: Season One
 }
+
+KrowiAF.AchievementData["12_00_07"] = {
+	{KrowiAF.SetAchievementPatch, 12, 0, 7},
+	Ach(61335):AutoFactionSplit(faction.Horde, 61336), -- Flame Keeper / Flame Warden of Midnight
+	Ach(61442):HousingDecor(), -- Lorewalking: The Loa
+	Ach(61463):Mount(), -- Master of the Turbulent Timeways V
+	Ach(62413), -- The Curse of Ula'tek
+	Ach(62606), -- The Sunstrider Omnium
+	Ach(62842), -- A Celestial Pain
+	Ach(62873):NotCategorized(), -- A Trip Around the Stars
+	Ach(62874):NotCategorized(), -- A Trip Through the Stars
+	Ach(62880):NotCategorized(), -- Showdown Success: Val
+	Ach(62881):NotCategorized(), -- Showdown Slugger: Val
+	Ach(62882):NotCategorized(), -- Showdown Success: Naigtal
+	Ach(62883):NotCategorized(), -- Showdown Slugger: Naigtal
+	Ach(62887), -- Heroic: Worlds Ahead
+	Ach(62901), -- Heroic: Power Creep
+	Ach(62903), -- Climate Strange: Val
+	Ach(62904), -- Climate Strange: Naigtal
+	Ach(62905), -- Pain of Command
+	Ach(62909), -- Heroic: Pain of Command
+	Ach(62917), -- Heroic Climate Strange: Val
+	Ach(62919), -- Heroic Climate Strange: Naigtal
+	Ach(62940), -- Ritual Sites 612: Practical Ritual Work
+	Ach(62941):Title(), -- Pinnacle Ritual Work
+	Ach(63164), -- Big Prey Hunter (Season 1)
+	Ach(63182), -- Advanced Ritual Site Studies
+	Ach(63237), -- Rotmire
+	Ach(63240), -- Heroic: Rotmire
+	Ach(63241), -- Mythic: Rotmire
+	Ach(63264), -- Heroic Showdowns
+	Ach(63325):HousingDecor(), -- Omnium Folio Studies
+	Ach(63348), -- Heroic Slugger
+	Ach(63349):NotCategorized(), -- Ultradon Carnage
+	Ach(63383), -- Into the Stars
+	Ach(63384), -- Prepared for a Showdown
+	Ach(63385), -- A Hal'hadar Walks into a Swamp
+	Ach(63386), -- Frosty Domanaar Politics
+}
