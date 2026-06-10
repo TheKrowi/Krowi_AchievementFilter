@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 97.3 - 2026-06-10
+### Fixed
+- Further taint fix attempt: `GameTooltip:Hide()` calls in all KAF `OnLeave` handlers are now wrapped in `securecall` so that the widget container cleanup triggered by hiding the tooltip runs in clean execution context, preventing the `attempt to compare a secret number value (execution tainted by 'Krowi_AchievementFilter')` error reported by users
+
 ## 97.2 - 2026-06-06
 ### Fixed
 - World map button taint fix: `Krowi_WorldMapButtons` library updated to 1.4.10; now hooks `OnMapChanged` exclusively instead of conditionally hooking `RefreshOverlayFrames`, and removes the Wrath Classic workaround that patched `RefreshOverlayFrames` onto `WorldMapFrame` (dev note: the old hook could fire during protected Blizzard execution paths, causing taint; `OnMapChanged` is safe in all supported clients)
