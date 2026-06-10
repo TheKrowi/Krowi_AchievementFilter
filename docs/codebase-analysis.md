@@ -620,7 +620,7 @@ The `DataAddons/Retail/` tree spans 12 expansions. `11_TheWarWithin/CategoryData
 | 13 | 🟡 LOW | `Plugins/Plugins.lua` entirely commented out | `Plugins/Plugins.lua` | Delete file; update `Files.xml` |
 | 14 | 🟡 LOW | `Globals.lua` is too large / does too much | `Globals.lua` | Refactor: split cache, compat, and window management |
 | 15 | 🔄 ONGOING | Mixed indentation and semicolons throughout codebase | All files | `.editorconfig` + `docs/styleguide.md` created 2026-04-19. Apply incrementally as files are touched. |
-| 16 | ✅ FIXED | `AchBuilder` reward consumer guards: `IsTable` check + temp table alloc on every filter/render pass | `Filters.lua` validation #6, `Gui/AchievementTooltip/Rewards.lua` | Fixed 2026-04-26: `IsTable` guards removed from both consumers after confirming full V1→V2 data migration. `RewardType` is now always a table or nil. |
+| 16 | ✅ FIXED | `AchBuilder` reward consumer guards: `IsTable` check + temp table alloc on every filter/render pass | `Filters.lua` validation #6, `Gui/AchievementTooltip/Rewards.lua` | Fixed 2026-04-26: `IsTable` guards removed from both consumers. `RewardType` is always a table or nil. |
 
 ---
 

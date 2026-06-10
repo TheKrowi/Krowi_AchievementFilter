@@ -14,5 +14,5 @@ function KrowiAF_AchievementButtonExtraIconMixin:OnEnter()
 end
 
 function KrowiAF_AchievementButtonExtraIconMixin:OnLeave()
-	GameTooltip:Hide();
+	securecall(GameTooltip.Hide, GameTooltip);
 end

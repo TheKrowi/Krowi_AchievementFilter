@@ -73,5 +73,5 @@ function KrowiAF_EventReminderAlertFrameMixin:ShowGameTooltip()
 end
 
 function KrowiAF_EventReminderAlertFrameMixin:HideGameTooltip()
-    GameTooltip:Hide()
+    securecall(GameTooltip.Hide, GameTooltip)
 end

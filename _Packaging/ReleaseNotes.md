@@ -9,3 +9,12 @@
 ### Fixed
 - Further taint fix attempt: tooltip positioning for achievement tooltips, browsing history navigation buttons, and event reminder alerts now uses built-in WoW anchor types instead of manual `SetPoint` calls, which should prevent taint propagation (dev note: replaced `ANCHOR_NONE` + `SetPoint` with `ANCHOR_BOTTOMRIGHT`/`ANCHOR_BOTTOMLEFT` with offsets across all affected `GameTooltip:SetOwner` calls)
 - Category, instance, and map name lookup fallbacks now safely convert the ID to a string, preventing potential type errors when a lookup returns nil
+
+### Fixed (97.1)
+- Calendar event reminder errors ("table index is secret") no longer occur for players who have personal or guild entries on their in-game calendar; those entries are now skipped during cache building since the addon only tracks holiday events
+
+### Fixed (97.2)
+- World map button taint fix: `Krowi_WorldMapButtons` library updated to 1.4.10; now hooks `OnMapChanged` exclusively instead of conditionally hooking `RefreshOverlayFrames`, and removes the Wrath Classic workaround that patched `RefreshOverlayFrames` onto `WorldMapFrame` (dev note: the old hook could fire during protected Blizzard execution paths, causing taint; `OnMapChanged` is safe in all supported clients)
+
+### Fixed (97.3)
+- Further taint fix attempt: `GameTooltip:Hide()` calls in all KAF `OnLeave` handlers are now wrapped in `securecall` so that the widget container cleanup triggered by hiding the tooltip runs in clean execution context, preventing the `attempt to compare a secret number value (execution tainted by 'Krowi_AchievementFilter')` error reported by users

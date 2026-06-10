@@ -38,14 +38,6 @@ local Ach = shared.Ach
 local faction = KrowiAF.Enum.Faction -- only needed if AutoFactionSplit or FactionSplit is used
 ```
 
-### Adding to a file that already has V1 entries
-
-Older expansion files (01–12, excluding 11) still contain V1-format entries (`KrowiAF.AchievementData`). When adding a **new patch** to such a file:
-
-1. Add the `shared`/`Ach` imports to the file header if not present.
-2. Use `KrowiAF.AchievementData` for your new patch table (V2).
-3. The V1 entries in the same file are unaffected — both formats are supported simultaneously.
-
 ### Adding a new patch table
 
 Add a new table keyed by `"<major>_<minor>_<patch>"` (zero-padded two digits):

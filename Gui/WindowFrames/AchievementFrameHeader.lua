@@ -129,7 +129,7 @@ local function CreateTooltip()
     frame:SetPoint("BOTTOMRIGHT", AchievementFrame.Header.PointBorder, -10, 8);
     frame:SetScript("OnEnter", OnEnter);
     frame:SetScript("OnLeave", function()
-        GameTooltip:Hide();
+        securecall(GameTooltip.Hide, GameTooltip);
     end);
     frame:SetScript("OnClick", function()
         KrowiAF_DataManagerFrame:Show();
