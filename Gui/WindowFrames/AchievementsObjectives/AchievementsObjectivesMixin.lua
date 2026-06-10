@@ -17,7 +17,7 @@ function KrowiAF_AchievementsObjectivesOtherAchievementMixin:OnEnter()
 end
 
 function KrowiAF_AchievementsObjectivesOtherAchievementMixin:OnLeave()
-	GameTooltip:Hide();
+	securecall(GameTooltip.Hide, GameTooltip);
 end
 
 function KrowiAF_AchievementsObjectivesOtherAchievementMixin:OnClick(button)
