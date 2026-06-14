@@ -25,7 +25,7 @@ KrowiAF.AchievementData["05_00_04_S"] = {
 	Ach(6402):Pet(), -- Ling-Ting's Herbal Journey
 	Ach(6420), -- Hopocalypse Now!
 	Ach(6427), -- Mosh Pit
-	Ach(6433):IsRealmFirst():Obtainable("Once"), -- Realm First! Challenge Conqueror: Gold
+	Ach(6433):IsRealmFirst(), -- Realm First! Challenge Conqueror: Gold
 	Ach(6455), -- Show Me Your Moves!
 	Ach(6456), -- Heroic: Stormstout Brewery
 	Ach(6457), -- Stormstout Brewery
@@ -45,8 +45,8 @@ KrowiAF.AchievementData["05_00_04_S"] = {
 	Ach(6485), -- Return to Sender
 	Ach(6517), -- Extinction Event
 	Ach(6518), -- I Heard You Like Amber...
-	Ach(6523):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 90 Shaman (Legacy)
-	Ach(6524):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 90 (Legacy)
+	Ach(6523):IsRealmFirst(), -- Realm First! Level 90 Shaman (Legacy)
+	Ach(6524):IsRealmFirst(), -- Realm First! Level 90 (Legacy)
 	Ach(6531), -- Attention to Detail
 	Ach(6535):AutoFactionSplit(faction.Alliance, 6536), -- Mighty Roamin' Krasaranger
 	Ach(6537):AutoFactionSplit(faction.Alliance, 6538), -- Slum It in the Summit
@@ -153,16 +153,16 @@ KrowiAF.AchievementData["05_00_04_S"] = {
 	Ach(6740):IsPvP(), -- Temple of Kotmogu Victory
 	Ach(6741):PvP(11), -- Cataclysmic Gladiator's Twilight Drake
 	Ach(6742):Title(), -- 60 Exalted Reputations
-	Ach(6743):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 90 Druid (Legacy)
-	Ach(6744):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 90 Paladin (Legacy)
-	Ach(6745):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 90 Priest (Legacy)
-	Ach(6746):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 90 Warlock (Legacy)
-	Ach(6747):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 90 Hunter (Legacy)
-	Ach(6748):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 90 Death Knight (Legacy)
-	Ach(6749):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 90 Mage (Legacy)
-	Ach(6750):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 90 Warrior (Legacy)
-	Ach(6751):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 90 Rogue (Legacy)
-	Ach(6752):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 90 Monk (Legacy)
+	Ach(6743):IsRealmFirst(), -- Realm First! Level 90 Druid (Legacy)
+	Ach(6744):IsRealmFirst(), -- Realm First! Level 90 Paladin (Legacy)
+	Ach(6745):IsRealmFirst(), -- Realm First! Level 90 Priest (Legacy)
+	Ach(6746):IsRealmFirst(), -- Realm First! Level 90 Warlock (Legacy)
+	Ach(6747):IsRealmFirst(), -- Realm First! Level 90 Hunter (Legacy)
+	Ach(6748):IsRealmFirst(), -- Realm First! Level 90 Death Knight (Legacy)
+	Ach(6749):IsRealmFirst(), -- Realm First! Level 90 Mage (Legacy)
+	Ach(6750):IsRealmFirst(), -- Realm First! Level 90 Warrior (Legacy)
+	Ach(6751):IsRealmFirst(), -- Realm First! Level 90 Rogue (Legacy)
+	Ach(6752):IsRealmFirst(), -- Realm First! Level 90 Monk (Legacy)
 	Ach(6753), -- Got My Mind On My Money
 	Ach(6754), -- The Dark Heart of the Mogu
 	Ach(6755), -- Mogu'shan Palace
@@ -181,7 +181,7 @@ KrowiAF.AchievementData["05_00_04_S"] = {
 	Ach(6825), -- The Mind-Killer
 	Ach(6826), -- 55 Exalted Reputations
 	Ach(6827):Mount():AutoFactionSplit(faction.Horde, 6828), -- Pandaren Ambassador
-	Ach(6829):IsRealmFirst():Obtainable("Once"), -- Realm First! Pandaren Ambassador
+	Ach(6829):IsRealmFirst(), -- Realm First! Pandaren Ambassador
 	Ach(6830), -- Professional Zen Master
 	Ach(6835), -- Working For a Living
 	Ach(6836):Obtainable("Before", "Version", {8, 0, 1}), -- Serious Skills to Pay the Bills
@@ -200,21 +200,21 @@ KrowiAF.AchievementData["05_00_04_S"] = {
 	Ach(6856), -- Ballad of Liu Lang
 	Ach(6857), -- Heart of the Mantid Swarm
 	Ach(6858), -- What Is Worth Fighting For
-	Ach(6859):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Alchemist
-	Ach(6860):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Blacksmith
-	Ach(6861):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Cook
-	Ach(6862):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Enchanter
-	Ach(6863):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Engineer
-	Ach(6864):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Medic
-	Ach(6865):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Angler
-	Ach(6866):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Herbalist
-	Ach(6867):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Scribe
-	Ach(6868):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Jewelcrafter
-	Ach(6869):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Leatherworker
-	Ach(6870):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Miner
-	Ach(6871):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Skinner
-	Ach(6872):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Tailor
-	Ach(6873):IsRealmFirst():Obtainable("Once"), -- Realm First! Zen Master Archaeologist
+	Ach(6859):IsRealmFirst(), -- Realm First! Zen Master Alchemist
+	Ach(6860):IsRealmFirst(), -- Realm First! Zen Master Blacksmith
+	Ach(6861):IsRealmFirst(), -- Realm First! Zen Master Cook
+	Ach(6862):IsRealmFirst(), -- Realm First! Zen Master Enchanter
+	Ach(6863):IsRealmFirst(), -- Realm First! Zen Master Engineer
+	Ach(6864):IsRealmFirst(), -- Realm First! Zen Master Medic
+	Ach(6865):IsRealmFirst(), -- Realm First! Zen Master Angler
+	Ach(6866):IsRealmFirst(), -- Realm First! Zen Master Herbalist
+	Ach(6867):IsRealmFirst(), -- Realm First! Zen Master Scribe
+	Ach(6868):IsRealmFirst(), -- Realm First! Zen Master Jewelcrafter
+	Ach(6869):IsRealmFirst(), -- Realm First! Zen Master Leatherworker
+	Ach(6870):IsRealmFirst(), -- Realm First! Zen Master Miner
+	Ach(6871):IsRealmFirst(), -- Realm First! Zen Master Skinner
+	Ach(6872):IsRealmFirst(), -- Realm First! Zen Master Tailor
+	Ach(6873):IsRealmFirst(), -- Realm First! Zen Master Archaeologist
 	Ach(6874):Title():AutoFactionSplit(faction.Alliance, 7509), -- Scenaturday
 	Ach(6882):IsPvP(), -- Temple of Kotmogu Veteran
 	Ach(6883):IsPvP(), -- Silvershard Mines Veteran

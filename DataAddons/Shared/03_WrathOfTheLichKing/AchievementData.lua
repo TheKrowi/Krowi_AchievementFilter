@@ -151,18 +151,18 @@ KrowiAF.AchievementData["03_00_02_S"] = {
 	Ach(446):IsPvP():Obtainable("Never"):AutoFactionSplit(faction.Horde, 473), -- General / Marshal
 	Ach(449):IsPvP():Obtainable("Never"):AutoFactionSplit(faction.Horde, 472), -- Blood Guard / Knight-Lieutenant
 	Ach(453):IsPvP():Obtainable("Never"):AutoFactionSplit(faction.Horde, 471), -- Sergeant
-	Ach(456):Title():IsRealmFirst():Obtainable("Once"), -- Realm First! Obsidian Slayer
-	Ach(457):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 80 (Legacy)
-	Ach(458):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 80 Rogue (Legacy)
-	Ach(459):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 80 Warrior (Legacy)
-	Ach(460):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 80 Mage (Legacy)
-	Ach(461):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 80 Death Knight (Legacy)
-	Ach(462):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 80 Hunter (Legacy)
-	Ach(463):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 80 Warlock (Legacy)
-	Ach(464):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 80 Priest (Legacy)
-	Ach(465):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 80 Paladin (Legacy)
-	Ach(466):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 80 Druid (Legacy)
-	Ach(467):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 80 Shaman (Legacy)
+	Ach(456):Title():IsRealmFirst(), -- Realm First! Obsidian Slayer
+	Ach(457):IsRealmFirst(), -- Realm First! Level 80 (Legacy)
+	Ach(458):IsRealmFirst(), -- Realm First! Level 80 Rogue (Legacy)
+	Ach(459):IsRealmFirst(), -- Realm First! Level 80 Warrior (Legacy)
+	Ach(460):IsRealmFirst(), -- Realm First! Level 80 Mage (Legacy)
+	Ach(461):IsRealmFirst(), -- Realm First! Level 80 Death Knight (Legacy)
+	Ach(462):IsRealmFirst(), -- Realm First! Level 80 Hunter (Legacy)
+	Ach(463):IsRealmFirst(), -- Realm First! Level 80 Warlock (Legacy)
+	Ach(464):IsRealmFirst(), -- Realm First! Level 80 Priest (Legacy)
+	Ach(465):IsRealmFirst(), -- Realm First! Level 80 Paladin (Legacy)
+	Ach(466):IsRealmFirst(), -- Realm First! Level 80 Druid (Legacy)
+	Ach(467):IsRealmFirst(), -- Realm First! Level 80 Shaman (Legacy)
 	Ach(468):IsPvP():Obtainable("Never"):AutoFactionSplit(faction.Horde, 470), -- Grunt / Corporal
 	Ach(477), -- Utgarde Keep
 	Ach(478), -- The Nexus
@@ -564,35 +564,35 @@ KrowiAF.AchievementData["03_00_02_S"] = {
 	Ach(1311), -- Medium Rare
 	Ach(1312), -- Bloody Rare
 	Ach(1396):Obtainable("Event", 327), -- Elders of Northrend
-	Ach(1400):Title():IsRealmFirst():Obtainable("Once"), -- Realm First! Magic Seeker
-	Ach(1402):Title():IsRealmFirst():Obtainable("Once"), -- Realm First! Conqueror of Naxxramas
-	Ach(1404):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 80 Gnome (Legacy)
-	Ach(1405):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 80 Blood Elf (Legacy)
-	Ach(1406):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 80 Draenei (Legacy)
-	Ach(1407):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 80 Dwarf (Legacy)
-	Ach(1408):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 80 Human (Legacy)
-	Ach(1409):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 80 Night Elf (Legacy)
-	Ach(1410):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 80 Orc (Legacy)
-	Ach(1411):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 80 Tauren (Legacy)
-	Ach(1412):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 80 Troll (Legacy)
-	Ach(1413):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 80 Forsaken (Legacy)
-	Ach(1414):IsRealmFirst():Obtainable("Once"), -- Realm First! Grand Master Blacksmith
-	Ach(1415):IsRealmFirst():Obtainable("Once"), -- Realm First! Grand Master Alchemist
-	Ach(1416):IsRealmFirst():Obtainable("Once"), -- Realm First! Grand Master Cook
-	Ach(1417):IsRealmFirst():Obtainable("Once"), -- Realm First! Grand Master Enchanter
-	Ach(1418):IsRealmFirst():Obtainable("Once"), -- Realm First! Grand Master Engineer
-	Ach(1419):IsRealmFirst():Obtainable("Once"), -- Realm First! Grand Master Medic
-	Ach(1420):IsRealmFirst():Obtainable("Once"), -- Realm First! Grand Master Angler
-	Ach(1421):IsRealmFirst():Obtainable("Once"), -- Realm First! Grand Master Herbalist
-	Ach(1422):IsRealmFirst():Obtainable("Once"), -- Realm First! Grand Master Scribe
-	Ach(1423):IsRealmFirst():Obtainable("Once"), -- Realm First! Grand Master Jewelcrafter
-	Ach(1424):IsRealmFirst():Obtainable("Once"), -- Realm First! Grand Master Leatherworker
-	Ach(1425):IsRealmFirst():Obtainable("Once"), -- Realm First! Grand Master Miner
-	Ach(1426):IsRealmFirst():Obtainable("Once"), -- Realm First! Grand Master Skinner
-	Ach(1427):IsRealmFirst():Obtainable("Once"), -- Realm First! Grand Master Tailor
+	Ach(1400):Title():IsRealmFirst(), -- Realm First! Magic Seeker
+	Ach(1402):Title():IsRealmFirst(), -- Realm First! Conqueror of Naxxramas
+	Ach(1404):IsRealmFirst(), -- Realm First! Level 80 Gnome (Legacy)
+	Ach(1405):IsRealmFirst(), -- Realm First! Level 80 Blood Elf (Legacy)
+	Ach(1406):IsRealmFirst(), -- Realm First! Level 80 Draenei (Legacy)
+	Ach(1407):IsRealmFirst(), -- Realm First! Level 80 Dwarf (Legacy)
+	Ach(1408):IsRealmFirst(), -- Realm First! Level 80 Human (Legacy)
+	Ach(1409):IsRealmFirst(), -- Realm First! Level 80 Night Elf (Legacy)
+	Ach(1410):IsRealmFirst(), -- Realm First! Level 80 Orc (Legacy)
+	Ach(1411):IsRealmFirst(), -- Realm First! Level 80 Tauren (Legacy)
+	Ach(1412):IsRealmFirst(), -- Realm First! Level 80 Troll (Legacy)
+	Ach(1413):IsRealmFirst(), -- Realm First! Level 80 Forsaken (Legacy)
+	Ach(1414):IsRealmFirst(), -- Realm First! Grand Master Blacksmith
+	Ach(1415):IsRealmFirst(), -- Realm First! Grand Master Alchemist
+	Ach(1416):IsRealmFirst(), -- Realm First! Grand Master Cook
+	Ach(1417):IsRealmFirst(), -- Realm First! Grand Master Enchanter
+	Ach(1418):IsRealmFirst(), -- Realm First! Grand Master Engineer
+	Ach(1419):IsRealmFirst(), -- Realm First! Grand Master Medic
+	Ach(1420):IsRealmFirst(), -- Realm First! Grand Master Angler
+	Ach(1421):IsRealmFirst(), -- Realm First! Grand Master Herbalist
+	Ach(1422):IsRealmFirst(), -- Realm First! Grand Master Scribe
+	Ach(1423):IsRealmFirst(), -- Realm First! Grand Master Jewelcrafter
+	Ach(1424):IsRealmFirst(), -- Realm First! Grand Master Leatherworker
+	Ach(1425):IsRealmFirst(), -- Realm First! Grand Master Miner
+	Ach(1426):IsRealmFirst(), -- Realm First! Grand Master Skinner
+	Ach(1427):IsRealmFirst(), -- Realm First! Grand Master Tailor
 	Ach(1428), -- Mine Sweeper
 	Ach(1457), -- Explore Crystalsong Forest
-	Ach(1463):IsRealmFirst():Obtainable("Once"), -- Realm First! Northrend Vanguard
+	Ach(1463):IsRealmFirst(), -- Realm First! Northrend Vanguard
 	Ach(1516):Title(), -- Accomplished Angler
 	Ach(1517), -- Northrend Angler
 	Ach(1552):Obtainable("Event", 327), -- Frenzied Firecracker
@@ -962,7 +962,7 @@ KrowiAF.AchievementData["03_01_00_S"] = {
 	Ach(3096):PvP(5), -- Deadly Gladiator's Frost Wyrm
 	Ach(3097):Obtainable("Before", "Version", {7, 3, 5}), -- Dwarfageddon (10 player)
 	Ach(3098):Obtainable("Before", "Version", {7, 3, 5}), -- Dwarfageddon (25 player)
-	Ach(3117):Title():IsRealmFirst():Obtainable("Once"), -- Realm First! Death's Demise
+	Ach(3117):Title():IsRealmFirst(), -- Realm First! Death's Demise
 	Ach(3118):Obtainable("Before", "Version", {7, 3, 5}), -- Lumberjacked (25 player)
 	Ach(3136), -- Emalon the Storm Watcher (10 player)
 	Ach(3137), -- Emalon the Storm Watcher (25 player)
@@ -993,7 +993,7 @@ KrowiAF.AchievementData["03_01_00_S"] = {
 	Ach(3217), -- Chasing Marcia
 	Ach(3218), -- Turtles All the Way Down
 	Ach(3237):Obtainable("Before", "Version", {7, 3, 5}), -- Set Up Us the Bomb (25 player)
-	Ach(3259):Title():IsRealmFirst():Obtainable("Once"), -- Realm First! Celestial Defender
+	Ach(3259):Title():IsRealmFirst(), -- Realm First! Celestial Defender
 	Ach(3296), -- Cooking with Style
 	Ach(3316):Title(), -- Herald of the Titans
 	Ach(3336):PvP(5), -- Deadly Gladiator
@@ -1008,7 +1008,7 @@ KrowiAF.AchievementData["03_02_00_S"] = {
 	{KrowiAF.SetAchievementPatch, 3, 2, 0},
 	Ach(3456):Obtainable("Event", 409), -- Dead Man's Party
 	Ach(3457):Obtainable("Event", 398), -- The Captain's Booty
-	Ach(3478):Title():Pet():Obtainable("Event", 404), -- Pilgrim
+	Ach(3478):Pet():Title():Obtainable("Event", 404), -- Pilgrim
 	Ach(3556):AutoFactionSplit(faction.Alliance, 3557):Obtainable("Event", 404), -- Pilgrim's Paunch
 	Ach(3558):Obtainable("Event", 404), -- Sharing is Caring
 	Ach(3559):Obtainable("Event", 404), -- Turkey Lurkey
@@ -1065,7 +1065,7 @@ KrowiAF.AchievementData["03_02_00_S"] = {
 	Ach(3997), -- Three Sixty Pain Spike (25 player)
 	Ach(4016), -- Earth, Wind & Fire (10 player)
 	Ach(4017), -- Earth, Wind & Fire (25 player)
-	Ach(4078):Title():IsRealmFirst():Obtainable("Once"), -- Realm First! Grand Crusader
+	Ach(4078):Title():IsRealmFirst(), -- Realm First! Grand Crusader
 	Ach(4079):Mount():AutoFactionSplit(faction.Horde, 4156):Obtainable("Before", "Version", {4, 0, 3}), -- A Tribute to Immortality
 	Ach(4080):Title():Obtainable("Before", "Version", {4, 0, 3}), -- A Tribute to Dedicated Insanity
 	Ach(4297):AutoFactionSplit(faction.Horde, 4298), -- Heroic: Trial of the Champion
@@ -1115,7 +1115,7 @@ KrowiAF.AchievementData["03_03_00_S"] = {
 	Ach(4537), -- I've Gone and Made a Mess (10 player)
 	Ach(4538), -- Dances with Oozes (10 player)
 	Ach(4539), -- Once Bitten, Twice Shy (10 player)
-	Ach(4576):IsRealmFirst():Obtainable("Once"), -- Realm First! Fall of the Lich King
+	Ach(4576):IsRealmFirst(), -- Realm First! Fall of the Lich King
 	Ach(4577), -- Flu Shot Shortage (10 player)
 	Ach(4578), -- Nausea, Heartburn, Indigestion... (10 player)
 	Ach(4579), -- Portal Jockey (10 player)

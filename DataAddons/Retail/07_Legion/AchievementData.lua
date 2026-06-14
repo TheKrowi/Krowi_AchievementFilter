@@ -303,7 +303,7 @@ KrowiAF.AchievementData["07_00_03"] = {
 	Ach(11221), -- Champions Rise
 	Ach(11222), -- Champions of Power
 	Ach(11223), -- Legendary Research
-	Ach(11224):IsRealmFirst():Obtainable("Once"), -- Realm First! Legion Keystone Master
+	Ach(11224):IsRealmFirst(), -- Realm First! Legion Keystone Master
 	Ach(11232):Title(), -- Lock, Stock and Two Smoking Goblins
 	Ach(11233):Pet(), -- Broken Isles Safari
 	Ach(11240), -- Harbinger

@@ -20,7 +20,7 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(42117), -- The War of Light and Shadow
 	Ach(42278), -- The Empty Cradle
 	Ach(42283):Other(), -- Abundance: Azeroth Runs on Dundun
-	Ach(42300):Title():Mount():Obtainable("Before", "Version", {12, 0, 1}), -- Two Minutes to Midnight
+	Ach(42300):Mount():Title():Obtainable("Before", "Version", {12, 0, 1}), -- Two Minutes to Midnight
 	Ach(42328):Other(), -- One Warband Mentor: Midnight
 	Ach(42329):Other(), -- Two Warband Mentors: Midnight
 	Ach(42330):Other(), -- Three Warband Mentors: Midnight
@@ -119,8 +119,8 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(61186):PvP(41), -- Rival II: Midnight Season 1
 	Ach(61187):Title():PvP(41), -- Duelist: Midnight Season 1
 	Ach(61188):Title(), -- Gladiator: Midnight Season 1
-	Ach(61190):Toy():Title():PvP(41), -- Legend: Midnight Season 1
-	Ach(61194):Toy():Title():PvP(41), -- Strategist: Midnight Season 1
+	Ach(61190):Title():Toy():PvP(41), -- Legend: Midnight Season 1
+	Ach(61194):Title():Toy():PvP(41), -- Strategist: Midnight Season 1
 	Ach(61195):AutoFactionSplit(faction.Alliance, 61196):PvP(41), -- Hero of the Alliance / Horde: Galactic
 	Ach(61197):Title():PvP(41), -- Elite: Midnight Season 1
 	Ach(61198):Title():PvP(41), -- Battle Mender: Midnight Season 1
@@ -527,18 +527,18 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(62341), -- Abundance: Ain't Dun Till It's Dun
 	Ach(62351):Title(), -- Preying For Midnight
 	Ach(62352), -- Nothing to See Here
-	Ach(62357):Other():NotCategorized(), -- Classically Trained Lumberjack
-	Ach(62358):Other():NotCategorized(), -- Outlandish Lumberjack
-	Ach(62359):Other():NotCategorized(), -- Wrathful Lumberjack
-	Ach(62360):Other():NotCategorized(), -- Cataclysmic Lumberjack
-	Ach(62361):Other():NotCategorized(), -- Mist-Shrouded Lumberjack
-	Ach(62362):Other():NotCategorized(), -- Lumberjack Warlord
-	Ach(62363):Other():NotCategorized(), -- Legion Lumberjack
-	Ach(62364):Other():NotCategorized(), -- Azeroth's Lumberjack
-	Ach(62365):Other():NotCategorized(), -- Shadowy Lumberjack
-	Ach(62366):Other():NotCategorized(), -- Draconic Lumberjack
-	Ach(62369):Other():NotCategorized(), -- The Lumberjack Within
-	Ach(62370):Other():NotCategorized(), -- Midnight Lumberjack
+	Ach(62357):NotCategorized():Other(), -- Classically Trained Lumberjack
+	Ach(62358):NotCategorized():Other(), -- Outlandish Lumberjack
+	Ach(62359):NotCategorized():Other(), -- Wrathful Lumberjack
+	Ach(62360):NotCategorized():Other(), -- Cataclysmic Lumberjack
+	Ach(62361):NotCategorized():Other(), -- Mist-Shrouded Lumberjack
+	Ach(62362):NotCategorized():Other(), -- Lumberjack Warlord
+	Ach(62363):NotCategorized():Other(), -- Legion Lumberjack
+	Ach(62364):NotCategorized():Other(), -- Azeroth's Lumberjack
+	Ach(62365):NotCategorized():Other(), -- Shadowy Lumberjack
+	Ach(62366):NotCategorized():Other(), -- Draconic Lumberjack
+	Ach(62369):NotCategorized():Other(), -- The Lumberjack Within
+	Ach(62370):NotCategorized():Other(), -- Midnight Lumberjack
 	Ach(62371), -- Couponing for Beginners
 	Ach(62373), -- Coupon Collector
 	Ach(62374), -- You Get The Best Deals Anywhere
@@ -656,7 +656,7 @@ KrowiAF.AchievementData["12_00_05"] = {
 	Ach(62778), -- Abyss Anglers: Luck of the Loa
 	Ach(62829), -- Abyss Anglers: Don't Know What You Expected
 	Ach(62832), -- Abyss Anglers: Reservation for One
-	Ach(63097):Title():Mount():PvE(17), -- Midnight Keystone Myth: Season One
+	Ach(63097):Mount():Title():PvE(17), -- Midnight Keystone Myth: Season One
 }
 
 KrowiAF.AchievementData["12_00_07"] = {

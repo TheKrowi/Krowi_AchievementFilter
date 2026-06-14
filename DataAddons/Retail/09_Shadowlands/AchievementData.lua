@@ -171,7 +171,7 @@ KrowiAF.AchievementData["09_00_01"] = {
 	Ach(14658), -- Soulkeeper's Burden
 	Ach(14659), -- Handling His Henchmen
 	Ach(14660), -- It's About Sending a Message
-	Ach(14662):IsRealmFirst():Obtainable("Once"), -- Realm First! Shadowlands Keystone Master
+	Ach(14662):IsRealmFirst(), -- Realm First! Shadowlands Keystone Master
 	Ach(14663), -- Explore The Maw
 	Ach(14670), -- That's the Spirit
 	Ach(14671), -- Something's Not Quite Right....
@@ -190,7 +190,7 @@ KrowiAF.AchievementData["09_00_01"] = {
 	Ach(14686):Title():PvP(30), -- Challenger: Shadowlands Season 1
 	Ach(14687):Title():PvP(30), -- Rival: Shadowlands Season 1
 	Ach(14688):Title():PvP(30), -- Duelist: Shadowlands Season 1
-	Ach(14689):Title():Mount():PvP(30), -- Gladiator: Shadowlands Season 1
+	Ach(14689):Mount():Title():PvP(30), -- Gladiator: Shadowlands Season 1
 	Ach(14690):Title():PvP(30), -- Sinful Gladiator: Shadowlands Season 1
 	Ach(14691):Title():PvP(30), -- Elite: Shadowlands Season 1
 	Ach(14692):AutoFactionSplit(faction.Alliance, 14693):PvP(30), -- Hero of the Alliance / Horde: Sinful
@@ -223,7 +223,7 @@ KrowiAF.AchievementData["09_00_01"] = {
 	Ach(14749), -- Rendle's Big Day
 	Ach(14750):Obtainable("Before", "Version", {9, 0, 1}), -- Death Rising
 	Ach(14751):Mount(), -- The Gang's All Here
-	Ach(14752):Title():Mount(), -- Things To Do When You're Dead
+	Ach(14752):Mount():Title(), -- Things To Do When You're Dead
 	Ach(14753), -- It's a Wrap
 	Ach(14754), -- The Forgotten One
 	Ach(14755), -- Legendary Accord
@@ -341,7 +341,7 @@ KrowiAF.AchievementData["09_01_00"] = {
 	Ach(14969):Title():PvP(31), -- Challenger I: Shadowlands Season 2
 	Ach(14970):Title():PvP(31), -- Rival I: Shadowlands Season 2
 	Ach(14971):Title():PvP(31), -- Duelist: Shadowlands Season 2
-	Ach(14972):Title():Mount():PvP(31), -- Gladiator: Shadowlands Season 2
+	Ach(14972):Mount():Title():PvP(31), -- Gladiator: Shadowlands Season 2
 	Ach(14973):Title():PvP(31), -- Unchained Gladiator: Shadowlands Season 2
 	Ach(14974):Title():PvP(31), -- Elite: Shadowlands Season 2
 	Ach(14975):AutoFactionSplit(faction.Alliance, 14976):PvP(31), -- Hero of the Alliance / Horde: Unchained
@@ -497,7 +497,7 @@ KrowiAF.AchievementData["09_02_00"] = {
 	Ach(15349):Title():PvP(32), -- Challenger I: Shadowlands Season 3
 	Ach(15350):Title():PvP(32), -- Rival I: Shadowlands Season 3
 	Ach(15351):Title():PvP(32), -- Duelist: Shadowlands Season 3
-	Ach(15352):Title():Mount():PvP(32), -- Gladiator: Shadowlands Season 3
+	Ach(15352):Mount():Title():PvP(32), -- Gladiator: Shadowlands Season 3
 	Ach(15353):Title():PvP(32), -- Cosmic Gladiator: Shadowlands Season 3
 	Ach(15354):Title():PvP(32), -- Elite: Shadowlands Season 3
 	Ach(15355):AutoFactionSplit(faction.Alliance, 15356):PvP(32), -- Hero of the Alliance / Horde: Cosmic
@@ -570,14 +570,14 @@ KrowiAF.AchievementData["09_02_00"] = {
 
 KrowiAF.AchievementData["09_02_05"] = {
 	{KrowiAF.SetAchievementPatch, 9, 2, 5},
-	Ach(15579):Title():Other(), -- Return to Lordaeron
+	Ach(15579):Other():Title(), -- Return to Lordaeron
 	Ach(15594):Title():Obtainable("From", "Date", {2022, 7, 8}, "Until", "Date", {2022, 7, 24}), -- Fearless Spectator
 	Ach(15600):Title():PvP(33), -- Challenger I: Shadowlands Season 4
 	Ach(15601):PvP(33), -- Challenger II: Shadowlands Season 4
 	Ach(15602):Title():PvP(33), -- Rival I: Shadowlands Season 4
 	Ach(15603):PvP(33), -- Rival II: Shadowlands Season 4
 	Ach(15604):Title():PvP(33), -- Duelist: Shadowlands Season 4
-	Ach(15605):Title():Mount():PvP(33), -- Gladiator: Shadowlands Season 4
+	Ach(15605):Mount():Title():PvP(33), -- Gladiator: Shadowlands Season 4
 	Ach(15606):Title():PvP(33), -- Eternal Gladiator: Shadowlands Season 4
 	Ach(15607):AutoFactionSplit(faction.Horde, 15608):PvP(33), -- Hero of the Horde / Alliance: Eternal
 	Ach(15609):Title():PvP(33), -- Combatant I: Shadowlands Season 4

@@ -168,7 +168,7 @@ KrowiAF.AchievementData["08_00_01"] = {
 	Ach(12863):Tabard():IsPvP(), -- Dueling Master
 	Ach(12864):Title(), -- 80 Exalted Reputations
 	Ach(12865), -- 90 Exalted Reputations
-	Ach(12866):Title():Mount(), -- 100 Exalted Reputations
+	Ach(12866):Mount():Title(), -- 100 Exalted Reputations
 	Ach(12867):HousingDecor():FactionSplit(faction.Horde, 12896), -- Azeroth at War: The Barrens
 	Ach(12869):HousingDecor():FactionSplit(faction.Horde, 12898), -- Azeroth at War: After Lordaeron
 	Ach(12870):HousingDecor():FactionSplit(faction.Horde, 12899), -- Azeroth at War: Kalimdor on Fire
@@ -229,7 +229,7 @@ KrowiAF.AchievementData["08_00_01"] = {
 	Ach(12958):Pet(), -- Master of Minions
 	Ach(12959):Title():PvP(26), -- Challenger: Battle for Azeroth Season 1
 	Ach(12960):Title():PvP(26), -- Rival: Battle for Azeroth Season 1
-	Ach(12961):Title():Mount():PvP(26), -- Gladiator: Battle for Azeroth Season 1
+	Ach(12961):Mount():Title():PvP(26), -- Gladiator: Battle for Azeroth Season 1
 	Ach(12962):Title():PvP(26), -- Duelist: Battle for Azeroth Season 1
 	Ach(12963):AutoFactionSplit(faction.Alliance, 12964):PvP(26), -- Hero of the Alliance / Horde: Dread
 	Ach(12988), -- Battle for Azeroth Explorer
@@ -284,7 +284,7 @@ KrowiAF.AchievementData["08_00_01"] = {
 	Ach(13075), -- Battle for Azeroth Keymaster
 	Ach(13076):Transmog():FactionSplit(faction.Alliance, nil), -- Heritage of the Dark Iron
 	Ach(13077):Transmog():FactionSplit(faction.Horde, nil), -- Heritage of the Mag'har
-	Ach(13078):IsRealmFirst():Obtainable("Once"), -- Realm First! Battle for Azeroth Keystone Master
+	Ach(13078):IsRealmFirst(), -- Realm First! Battle for Azeroth Keystone Master
 	Ach(13079):PvE(1), -- Battle for Azeroth Keystone Conqueror: Season One
 	Ach(13080):PvE(1), -- Battle for Azeroth Keystone Master: Season One
 	Ach(13082):FactionSplit(faction.Alliance, nil), -- Everything Old Is New Again
@@ -346,7 +346,7 @@ KrowiAF.AchievementData["08_01_00"] = {
 	Ach(13205):Title():PvP(27), -- Rival: Battle for Azeroth Season 2
 	Ach(13209):Title():PvP(27), -- Duelist: Battle for Azeroth Season 2
 	Ach(13210):AutoFactionSplit(faction.Alliance, 13211):PvP(27), -- Hero of the Alliance / Horde: Sinister
-	Ach(13212):Title():Mount():PvP(27), -- Gladiator: Battle for Azeroth Season 2
+	Ach(13212):Mount():Title():PvP(27), -- Gladiator: Battle for Azeroth Season 2
 	Ach(13251):Other():FactionSplit(faction.Alliance, 13263), -- In Teldrassil's Shadow
 	Ach(13263):FactionSplit(faction.Horde, 13251), -- The Shadow Hunter
 	Ach(13269):Pet(), -- Pet Battle Challenge: Gnomeregan
@@ -499,13 +499,13 @@ KrowiAF.AchievementData["08_02_00"] = {
 	Ach(13633), -- If It Pleases the Court
 	Ach(13634):Title():PvP(28), -- Challenger: Battle for Azeroth Season 3
 	Ach(13635), -- Tour of the Depths
-	Ach(13638):Title():Mount(), -- Undersea Usurper
+	Ach(13638):Mount():Title(), -- Undersea Usurper
 	Ach(13639):Title():PvP(28), -- Combatant: Battle for Azeroth Season 3
 	Ach(13641):Title():PvP(28), -- Rival: Battle for Azeroth Season 3
 	Ach(13642):Title():PvP(28), -- Duelist: Battle for Azeroth Season 3
 	Ach(13643):AutoFactionSplit(faction.Alliance, 13644):PvP(28), -- Hero of the Alliance / Horde: Notorious
 	Ach(13645):AutoFactionSplit(faction.Horde, 13704), -- Nautical Battlefield Training
-	Ach(13647):Title():Mount():PvP(28), -- Gladiator: Battle for Azeroth Season 3
+	Ach(13647):Mount():Title():PvP(28), -- Gladiator: Battle for Azeroth Season 3
 	Ach(13676):Title():PvP(28), -- Elite: Battle for Azeroth Season 3
 	Ach(13684), -- You and What Army?
 	Ach(13686), -- Junkyard Melomaniac
@@ -602,7 +602,7 @@ KrowiAF.AchievementData["08_03_00"] = {
 	Ach(13963):Title():PvP(29), -- Rival: Battle for Azeroth Season 4
 	Ach(13964):Title():PvP(29), -- Duelist: Battle for Azeroth Season 4
 	Ach(13965):AutoFactionSplit(faction.Horde, 13966):PvP(29), -- Hero of the Horde / Alliance: Corrupted
-	Ach(13967):Title():Mount():PvP(29), -- Gladiator: Battle for Azeroth Season 4
+	Ach(13967):Mount():Title():PvP(29), -- Gladiator: Battle for Azeroth Season 4
 	Ach(13989):Title():PvP(29), -- Elite: Battle for Azeroth Season 4
 	Ach(13990), -- You Can Pet the Dog, But...
 	Ach(13994):Mount(), -- Through the Depths of Visions

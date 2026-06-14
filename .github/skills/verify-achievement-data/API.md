@@ -17,7 +17,8 @@ $json  = $resp.Content | ConvertFrom-Json
 
 | Index | DB Column | Verification use |
 |-------|-----------|-----------------|
-| 1 | `Title_lang` | `description-lang` — compare to inline `-- comment` |
+| 0 | `Description_lang` | Achievement description — context for ambiguous reward or category |
+| 1 | `Title_lang` | `name` — compare to inline `-- comment` |
 | 2 | `Reward_lang` | `title-reward` — non-empty means `:Title()` expected |
 | 3 | `ID` | `id-exists` — record found check |
 | 5 | `Faction` | `faction` — `-1`=both, `0`=Horde, `1`=Alliance |

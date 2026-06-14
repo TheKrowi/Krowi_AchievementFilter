@@ -31,7 +31,9 @@ function AchBuilder:IsPvP()
 end
 
 function AchBuilder:IsRealmFirst()
-    GetExtras(self).IsRealmFirst = true
+    local e = GetExtras(self)
+    e.IsRealmFirst = true
+    tinsert(e, {"Once"})
     return self
 end
 

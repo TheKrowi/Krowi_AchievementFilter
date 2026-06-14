@@ -57,7 +57,7 @@ KrowiAF.AchievementData["11_00_00"] = {
 	Ach(40091):IsPvP(), -- Slightly Spoiled
 	Ach(40095):IsPvP(), -- Sparking Battle
 	Ach(40096):IsPvP(), -- Sparking Battle
-	Ach(40097):Title():Mount():IsPvP(), -- Ruffious's Bid
+	Ach(40097):Mount():Title():IsPvP(), -- Ruffious's Bid
 	Ach(40098):Title(), -- Immortal Spelunker
 	Ach(40100), -- Undying Caver
 	Ach(40103):Transmog():PvE(13), -- My First Nemesis
@@ -191,7 +191,7 @@ KrowiAF.AchievementData["11_00_00"] = {
 	Ach(40390):PvP(38), -- Rival II: The War Within Season 1
 	Ach(40391):Title():PvP(38), -- Duelist: The War Within Season 1
 	Ach(40392):Title():PvP(38), -- Elite: The War Within Season 1
-	Ach(40393):Title():Mount():Transmog():PvP(38), -- Gladiator: The War Within Season 1
+	Ach(40393):Mount():Title():Transmog():PvP(38), -- Gladiator: The War Within Season 1
 	Ach(40395):Title():Toy():PvP(38), -- Legend: The War Within Season 1
 	Ach(40398):PvP(38), -- Forged Gladiator's Fel Bat
 	Ach(40427), -- Darkflame Cleft
@@ -442,7 +442,7 @@ KrowiAF.AchievementData["11_00_07"] = {
 	{KrowiAF.SetAchievementPatch, 11, 0, 7},
 	Ach(40762), -- Khaz Algar Lore Hunter
 	Ach(40791):Title(), -- Fate of the Kirin Tor
-	Ach(40953):Mount():HousingDecor(), -- A Farewell to Arms
+	Ach(40953):HousingDecor():Mount(), -- A Farewell to Arms
 	Ach(40955), -- War Stories
 	Ach(40956):Mount(), -- I'm On Island Time
 	Ach(40957), -- Maximum Effort
@@ -537,7 +537,7 @@ KrowiAF.AchievementData["11_01_00"] = {
 	Ach(41021):PvP(39), -- Combatant II: The War Within Season 2
 	Ach(41022):Title():PvP(39), -- Challenger I: The War Within Season 2
 	Ach(41023):PvP(39), -- Challenger II: The War Within Season 2
-	Ach(41032):Title():Mount():Transmog():PvP(39), -- Gladiator: The War Within Season 2
+	Ach(41032):Mount():Title():Transmog():PvP(39), -- Gladiator: The War Within Season 2
 	Ach(41047):Transmog():PvP(39), -- Prized Weapons of Conquest
 	Ach(41081):Mount(), -- Undermine Breaknecking: Bronze
 	Ach(41083), -- Undermine Breaknecking: Silver
@@ -752,7 +752,7 @@ KrowiAF.AchievementData["11_02_00"] = {
 	Ach(41030):Title():PvP(40), -- Challenger I: The War Within Season 3
 	Ach(41031):PvP(40), -- Challenger II: The War Within Season 3
 	Ach(41048):Transmog():PvP(40), -- Astral Weapons of Conquest
-	Ach(41049):Title():Mount():Transmog():PvP(40), -- Gladiator: The War Within Season 3
+	Ach(41049):Mount():Title():Transmog():PvP(40), -- Gladiator: The War Within Season 3
 	Ach(41212):Obtainable("Event", 372), -- A Round on the House in Khaz Algar
 	Ach(41597):Mount(), -- Glory of the Omega Raider
 	Ach(41598), -- Manaforge Omega
@@ -891,10 +891,10 @@ KrowiAF.AchievementData["11_02_05"] = {
 	Ach(42314):RemixInfiniteKnowledge():Obtainable("Event", 1640), -- Unlimited Power
 	Ach(42315):RemixInfiniteKnowledge():Obtainable("Event", 1640), -- Unlimited Power II
 	Ach(42317):Other():Obtainable("Event", 1640), -- Campaign: Azsuna
-	Ach(42318):RemixBronze():HousingDecor():Obtainable("Event", 1640), -- Court of Farondis
+	Ach(42318):HousingDecor():RemixBronze():Obtainable("Event", 1640), -- Court of Farondis
 	Ach(42319):Pet():Obtainable("Event", 1640), -- Azsuna
 	Ach(42320):RemixInfiniteKnowledge():Obtainable("Event", 1640), -- Legion Remix Dungeoneer
-	Ach(42321):RemixBronze():HousingDecor():Obtainable("Event", 1640), -- Legion Remix Raids
+	Ach(42321):HousingDecor():RemixBronze():Obtainable("Event", 1640), -- Legion Remix Raids
 	Ach(42502):RemixBronze():Obtainable("Event", 1640), -- Artifact, Remixed II
 	Ach(42503):RemixBronze():Obtainable("Event", 1640), -- Artifact, Remixed III
 	Ach(42504):Mount():Obtainable("Event", 1640), -- Timerunner: Paladin
@@ -929,7 +929,7 @@ KrowiAF.AchievementData["11_02_05"] = {
 	Ach(42542):RemixBronze():Obtainable("Event", 1640), -- Drugon the Frostblood
 	Ach(42543):RemixBronze():Obtainable("Event", 1640), -- Heroic: The Nighthold
 	Ach(42544):RemixBronze():Obtainable("Event", 1640), -- Mythic: The Nighthold
-	Ach(42547):RemixBronze():HousingDecor():Obtainable("Event", 1640), -- Highmountain Tribe
+	Ach(42547):HousingDecor():RemixBronze():Obtainable("Event", 1640), -- Highmountain Tribe
 	Ach(42549):Transmog():Obtainable("Event", 1640), -- Argus
 	Ach(42551):RemixBronze():Obtainable("Event", 1640), -- Looking for Group: Suramar
 	Ach(42552):Other():Obtainable("Event", 1640), -- Campaign: Highmountain
@@ -963,10 +963,10 @@ KrowiAF.AchievementData["11_02_05"] = {
 	Ach(42616):RemixBronze():Obtainable("Event", 1640), -- Pit Lord Vilemus
 	Ach(42617):Other():Obtainable("Event", 1640), -- Campaign: Val'Sharah
 	Ach(42618):RemixBronze():Obtainable("Event", 1640), -- Looking for Group: Argus
-	Ach(42619):RemixBronze():HousingDecor():Obtainable("Event", 1640), -- Dreamweavers
+	Ach(42619):HousingDecor():RemixBronze():Obtainable("Event", 1640), -- Dreamweavers
 	Ach(42624):RemixBronze():Obtainable("Event", 1640), -- Broken Isles World Quests I
-	Ach(42627):RemixBronze():HousingDecor():Obtainable("Event", 1640), -- Argussian Reach
-	Ach(42628):RemixBronze():HousingDecor():Obtainable("Event", 1640), -- The Nightfallen
+	Ach(42627):HousingDecor():RemixBronze():Obtainable("Event", 1640), -- Argussian Reach
+	Ach(42628):HousingDecor():RemixBronze():Obtainable("Event", 1640), -- The Nightfallen
 	Ach(42629):RemixBronze():Obtainable("Event", 1640), -- Malificus
 	Ach(42630):Transmog():Obtainable("Event", 1640), -- Val'Sharah
 	Ach(42636):RemixBronze():Obtainable("Event", 1640), -- Mythic: Trial of Valor
@@ -977,8 +977,8 @@ KrowiAF.AchievementData["11_02_05"] = {
 	Ach(42647):RemixInfiniteKnowledge():Obtainable("Event", 1640), -- Breaching the Tomb
 	Ach(42649):RemixBronze():Obtainable("Event", 1640), -- Raid Finder: Tomb of Sargeras
 	Ach(42651):RemixBronze():Obtainable("Event", 1640), -- Mythic: Emerald Nightmare
-	Ach(42655):RemixBronze():HousingDecor():Obtainable("Event", 1640), -- The Armies of Legionfall
-	Ach(42658):RemixBronze():HousingDecor():Obtainable("Event", 1640), -- Valarjar
+	Ach(42655):HousingDecor():RemixBronze():Obtainable("Event", 1640), -- The Armies of Legionfall
+	Ach(42658):HousingDecor():RemixBronze():Obtainable("Event", 1640), -- Valarjar
 	Ach(42659):RemixBronze():Obtainable("Event", 1640), -- Shar'thos
 	Ach(42661):RemixBronze():Obtainable("Event", 1640), -- Heroic: Tomb of Sargeras
 	Ach(42662):RemixBronze():Obtainable("Event", 1640), -- Apocron
@@ -988,17 +988,17 @@ KrowiAF.AchievementData["11_02_05"] = {
 	Ach(42669):RemixBronze():Obtainable("Event", 1640), -- Withered J'im
 	Ach(42672):RemixInfiniteKnowledge():Obtainable("Event", 1640), -- Defending the Broken Isles II
 	Ach(42673):RemixInfiniteKnowledge():Obtainable("Event", 1640), -- Defending the Broken Isles I
-	Ach(42674):RemixBronze():HousingDecor():Obtainable("Event", 1640), -- Broken Isles World Quests V
-	Ach(42675):RemixBronze():HousingDecor():Obtainable("Event", 1640), -- Defending the Broken Isles III
+	Ach(42674):HousingDecor():RemixBronze():Obtainable("Event", 1640), -- Broken Isles World Quests V
+	Ach(42675):HousingDecor():RemixBronze():Obtainable("Event", 1640), -- Defending the Broken Isles III
 	Ach(42684):Mount():Obtainable("Event", 1640), -- Timerunner: Warrior
 	Ach(42685):Mount():Obtainable("Event", 1640), -- Timerunner: Death Knight
 	Ach(42686):Mount():Obtainable("Event", 1640), -- Timerunner: Shaman
 	Ach(42687):Mount():Obtainable("Event", 1640), -- Timerunner: Hunter
 	Ach(42688):RemixInfiniteKnowledge():Obtainable("Event", 1640), -- Timeworn Keystone Adept
-	Ach(42689):RemixBronze():HousingDecor():Obtainable("Event", 1640), -- Timeworn Keystone Master
+	Ach(42689):HousingDecor():RemixBronze():Obtainable("Event", 1640), -- Timeworn Keystone Master
 	Ach(42690):Transmog():Obtainable("Event", 1640), -- Timeworn Keystone Hero
 	Ach(42691):Title():Obtainable("Event", 1640), -- Timeworn Keystone Enthusiast
-	Ach(42692):RemixBronze():HousingDecor():Obtainable("Event", 1640), -- Broken Isles Dungeoneer
+	Ach(42692):HousingDecor():RemixBronze():Obtainable("Event", 1640), -- Broken Isles Dungeoneer
 	Ach(42693):RemixInfiniteKnowledge():Obtainable("Event", 1640), -- Breaking the Legion I
 	Ach(42694):RemixBronze():Obtainable("Event", 1640), -- Breaking the Legion II
 	Ach(42695):RemixBronze():Obtainable("Event", 1640), -- Breaking the Legion III
@@ -1089,13 +1089,13 @@ KrowiAF.AchievementData["11_02_05"] = {
 	Ach(61026):Transmog():Obtainable("Event", 1640), -- The Deathless Wanderer
 	Ach(61027):Transmog():Obtainable("Event", 1640), -- The Deathless Magus
 	Ach(61053):RemixInfiniteKnowledge():Obtainable("Event", 1640), -- Legionslayer III
-	Ach(61054):RemixBronze():HousingDecor():Obtainable("Event", 1640), -- Heroic Broken Isles World Quests III
+	Ach(61054):HousingDecor():RemixBronze():Obtainable("Event", 1640), -- Heroic Broken Isles World Quests III
 	Ach(61055):RemixBronze():Obtainable("Event", 1640), -- Power of the Obelisks III
 	Ach(61056):RemixBronze():Obtainable("Event", 1640), -- Heroic Broken Isles World Quests II
 	Ach(61057):RemixBronze():Obtainable("Event", 1640), -- Heroic Broken Isles World Quests I
 	Ach(61058):RemixBronze():Obtainable("Event", 1640), -- Legionslayer II
 	Ach(61059):RemixBronze():Obtainable("Event", 1640), -- Legionslayer I
-	Ach(61060):RemixBronze():HousingDecor():Obtainable("Event", 1640), -- Power of the Obelisks II
+	Ach(61060):HousingDecor():RemixBronze():Obtainable("Event", 1640), -- Power of the Obelisks II
 	Ach(61061):RemixBronze():Obtainable("Event", 1640), -- Power of the Obelisks I
 	Ach(61070):Transmog():Obtainable("Event", 1640), -- Heroic Broken Isles World Quests IV
 	Ach(61071):RemixBronze():Obtainable("Event", 1640), -- Legionslayer IV
@@ -1129,7 +1129,7 @@ KrowiAF.AchievementData["11_02_05"] = {
 	Ach(61114):RemixInfiniteKnowledge():Obtainable("Event", 1640), -- Legion Dungeons: Power of the Ancients
 	Ach(61115):RemixInfiniteKnowledge():Obtainable("Event", 1640), -- Legion Dungeons: Might of the Legion
 	Ach(61174):RemixBronze():Obtainable("Event", 1640), -- Building a Heroic Army
-	Ach(61218):RemixBronze():HousingDecor():Obtainable("Event", 1640), -- The Wardens
+	Ach(61218):HousingDecor():RemixBronze():Obtainable("Event", 1640), -- The Wardens
 	Ach(61323):RemixBronze():Obtainable("Event", 1640), -- Legionslayer V
 	Ach(61337):Transmog():Obtainable("Event", 1640), -- To Fel and Back
 	Ach(61339):Obtainable("Event", 1640), -- Putting the Finite in Infinite
@@ -1216,7 +1216,7 @@ KrowiAF.AchievementData["11_02_07"] = {
 	Ach(61425), -- Hot Footed
 	Ach(61426), -- Bare Knuckle Brawl
 	Ach(61429):Title(), -- Brawl Star
-	Ach(61451):Mount():HousingDecor(), -- Worldsoul-Searching
+	Ach(61451):HousingDecor():Mount(), -- Worldsoul-Searching
 	Ach(61466), -- The Best There Is
 	Ach(61467):HousingDecor(), -- Lorewalking: The Elves of Quel'thalas
 	Ach(61498):Title(), -- Ready for Midnight
