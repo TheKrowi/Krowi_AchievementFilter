@@ -6,7 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-05-27 12-37-26 ]] --
+-- [[ Exported at 2026-06-17 18-15-57 ]] --
 L["Alchemy"] = "Alquimia"
 L["Alterac Valley"] = "Valle de Alterac"
 L["Arathi Basin"] = "Cuenca de Arathi"
@@ -36,6 +36,7 @@ L["Jewelcrafting"] = "Joyería"
 L["Leatherworking"] = "Peletería"
 L["Midsummer"] = "Solsticio"
 L["Mining"] = "Minería"
+L["Omnium Folio"] = "folio del Omnium"
 L["Pet Battles"] = "Duelos de mascotas"
 L["Prey"] = "Presa"
 L["Promotions"] = "Promociones"
@@ -48,6 +49,7 @@ L["Tailoring"] = "Sastrería"
 L["Temple of Kotmogu"] = "Templo de Kotmogu"
 L["Training Grounds"] = "Campo de Entrenamiento"
 L["Twin Peaks"] = "Cumbres Gemelas"
+L["Val and Naigtal"] = "Val y Naigtal"
 L["Void Assaults"] = "Ataques del Vacío"
 L["War Effort"] = "Esfuerzo de guerra"
 L["Warsong Gulch"] = "G. Grito de Guerra"

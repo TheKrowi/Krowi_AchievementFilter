@@ -6,7 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-05-27 12-37-09 ]] --
+-- [[ Exported at 2026-06-17 18-15-52 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -732,6 +732,7 @@ L["Offsets"] = "Fenster Abstände"
 L["Ohn'ahran Plains"] = "Ebenen von Ohn'ahra"
 L["Ohn'ahran Plains: Next"] = "Ebenen von Ohn'ahra: Nächstes Event"
 L["Ohn'iri Springs"] = "Quellen von Ohn'iri"
+L["Omnium Folio"] = "Omniumfoliant"
 L["On Event Start"] = "Bei Ereignisbeginn"
 L["On Login"] = "Beim Login"
 L["On Reload"] = "Nach einem Reload"
@@ -1114,6 +1115,7 @@ L["Upcoming Calendar Event Days Desc"] = "Die Anzahl der Tage im Voraus, die ans
 L["Upcoming Calendar Event Login Delay"] = "Anstehende Kalender-Ereignisse Login-Verzögerung"
 L["Upcoming Calendar Events"] = "Anstehende Kalender-Ereignisse"
 L["Upper Reaches"] = "Die Oberen Ebenen"
+L["Val and Naigtal"] = "Val und Naigtal"
 L["Val'sharah"] = true
 L["Vendor"] = "Verkäufer"
 L["Venthyr Assault"] = "Venthyr Paktangriff"

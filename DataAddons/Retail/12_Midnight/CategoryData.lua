@@ -63,6 +63,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                     62341, -- Abundance: Ain't Dun Till It's Dun
                     62057, -- Midnight: The Highest Peaks
                     62104, -- Midnight Lore Hunter
+                    63343, -- Goal!
                 },
             },
             { -- Player vs. Player
@@ -151,6 +152,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                     41803, -- For Zul'Aman! (Customization Reward: Amani Appearances for Darkspear Troll)
                     61452, -- Sojourner of Zul'Aman
                     61910, -- Mrglgrgl of Grglmrgl
+                    62413, -- The Curse of Ula'tek
                 },
             },
             { -- Exploration
@@ -583,6 +585,14 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
                 61627, -- Cutting Edge: Midnight Falls
             }
         },
+        { -- Sporefall
+            addon.GetInstanceInfoName(1305),
+            {
+                63237, -- Rotmire
+                63240, -- Heroic: Rotmire
+                63241, -- Mythic: Rotmire
+            }
+        },
         {
             62352, -- Nothing to See Here
             61380, -- Glory of the Midnight Raider (Mount: Tenebrous Harrower)
@@ -827,6 +837,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             62137, -- I'm Not Trapped In Here With You
             62138, -- You're Trapped In Here With Me
             62351, -- Preying For Midnight
+            63164, -- Big Prey Hunter (Season 1)
         }
     },
     { -- The Arcantina
@@ -898,6 +909,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             62452, -- Ritual Sites 320: Ritual Items and Their Uses in Quel'Thalas
             62453, -- Ritual Sites 415: Applied Ritual Strategies
             62454, -- Ritual Sites 505: A Seminar in Void Ritual Nuance
+            62940, -- Ritual Sites 612: Practical Ritual Work
             62529, -- Ritual Site Starter
             62530, -- Ritual Site Achiever
             62531, -- Ritual Site Adept
@@ -906,10 +918,41 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Midnight
             62562, -- Ritual Site Disruptor
             62621, -- Challenging Sites
             62622, -- Ritual Renown
+            62941, -- Pinnacle Ritual Work
+            63182, -- Advanced Ritual Site Studies
         },
     },
     { -- Void Assaults
         CT.VoidAssaults,
+        {
+            addon.L["Omnium Folio"],
+            true,
+            {
+                62606, -- The Sunstrider Omnium
+                63325, -- Omnium Folio Studies
+            }
+        },
+        {
+            addon.L["Val and Naigtal"],
+            true,
+            {
+                63383, -- Into the Stars
+                63384, -- Prepared for a Showdown
+                63385, -- A Hal'hadar Walks into a Swamp
+                63386, -- Frosty Domanaar Politics
+                62903, -- Climate Strange: Val
+                62904, -- Climate Strange: Naigtal
+                62917, -- Heroic Climate Strange: Val
+                62919, -- Heroic Climate Strange: Naigtal
+                62905, -- Pain of Command
+                62909, -- Heroic: Pain of Command
+                62887, -- Heroic: Worlds Ahead
+                62901, -- Heroic: Power Creep
+                63264, -- Heroic Showdowns
+                63348, -- Heroic Slugger
+                62842, -- A Celestial Pain
+            }
+        },
         {
             62498, -- Void Assault: Eversong
             62507, -- Void Smasher: Eversong

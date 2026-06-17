@@ -5,7 +5,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-05-27 12-33-14 ]] --
+-- [[ Exported at 2026-06-17 18-15-49 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -742,6 +742,7 @@ L["Offsets"] = true
 L["Ohn'ahran Plains"] = true
 L["Ohn'ahran Plains: Next"] = true
 L["Ohn'iri Springs"] = true
+L["Omnium Folio"] = true
 L["On Event Start"] = true
 L["On Login"] = true
 L["On Reload"] = true
@@ -1148,6 +1149,7 @@ L["Upcoming Calendar Event Days Desc"] = "The number of days in advance to show 
 L["Upcoming Calendar Event Login Delay"] = true
 L["Upcoming Calendar Events"] = true
 L["Upper Reaches"] = true
+L["Val and Naigtal"] = true
 L["Val'sharah"] = true
 L["Vendor"] = true
 L["Venthyr Assault"] = true

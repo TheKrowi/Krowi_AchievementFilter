@@ -74,6 +74,7 @@ shared.CT = {
     DeephaulRavine           = addon.L["Deephaul Ravine"],
     DecorDuel                = addon.L["Decor Duel"],
     TrainingGrounds          = addon.L["Training Grounds"],
+    -- Midnight
     Prey                     = addon.L["Prey"],
     RitualSites              = addon.L["Ritual Sites"],
     SlayersRise              = addon.L["Slayer's Rise"],
@@ -620,6 +621,16 @@ local crossExpansion = { -- Cross-Expansion
             62376, -- Extreme Couponing
             62377, -- A Fist Full of Coupons
             62378, -- A Few Coupons More
+        },
+    },
+    { -- Lorewalking
+        addon.L["Lorewalking"],
+        {
+            42187, -- Lorewalking: Ethereal Wisdom
+            42188, -- Lorewalking: Blade's Bane
+            42189, -- Lorewalking: The Lich Kingdoms
+            61467, -- Lorewalking: The Elves of Quel'thalas
+            61442, -- Lorewalking: The Loa
         },
     },
     { -- Feats of Strength

@@ -6,7 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-05-27 12-37-32 ]] --
+-- [[ Exported at 2026-06-17 18-16-01 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -724,6 +724,7 @@ L["Offsets"] = "Décalages"
 L["Ohn'ahran Plains"] = "Assaut de Fyrakka : Ohn'ahran"
 L["Ohn'ahran Plains: Next"] = "Plaines d'Ohn'ahran : Prochaine"
 L["Ohn'iri Springs"] = "Tempête élémentaire : Sources des Ohn'irs"
+L["Omnium Folio"] = "feuillet de l'Omnium"
 L["On Event Start"] = "Au démarrage de l'événement"
 L["On Login"] = "À la connexion"
 L["On Reload"] = "Au rechargement de l'interface"
@@ -1105,6 +1106,7 @@ L["Upcoming Calendar Event Days"] = "Jours des événements à venir du calendri
 L["Upcoming Calendar Event Login Delay"] = "Délai de connexion pour les événements du calendrier à venir"
 L["Upcoming Calendar Events"] = "Événements à venir du calendrier"
 L["Upper Reaches"] = "Étages supérieurs"
+L["Val and Naigtal"] = "Val et Naigtal"
 L["Val'sharah"] = true
 L["Vendor"] = "Marchands"
 L["Venthyr Assault"] = "L'assaut des Venthyrs"

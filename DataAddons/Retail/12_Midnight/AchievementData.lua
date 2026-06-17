@@ -663,7 +663,7 @@ KrowiAF.AchievementData["12_00_07"] = {
 	{KrowiAF.SetAchievementPatch, 12, 0, 7},
 	Ach(61335):AutoFactionSplit(faction.Horde, 61336), -- Flame Keeper / Flame Warden of Midnight
 	Ach(61442):HousingDecor(), -- Lorewalking: The Loa
-	Ach(61463):Mount(), -- Master of the Turbulent Timeways V
+	Ach(61463):Mount():Obtainable("Event", 1425), -- Master of the Turbulent Timeways V
 	Ach(62413), -- The Curse of Ula'tek
 	Ach(62606), -- The Sunstrider Omnium
 	Ach(62842), -- A Celestial Pain
@@ -690,6 +690,7 @@ KrowiAF.AchievementData["12_00_07"] = {
 	Ach(63241), -- Mythic: Rotmire
 	Ach(63264), -- Heroic Showdowns
 	Ach(63325):HousingDecor(), -- Omnium Folio Studies
+	Ach(63343):HousingDecor(), -- Goal!
 	Ach(63348), -- Heroic Slugger
 	Ach(63349):NotCategorized(), -- Ultradon Carnage
 	Ach(63383), -- Into the Stars

@@ -1205,7 +1205,7 @@ KrowiAF.AchievementData["11_02_07"] = {
 	Ach(61316), -- Custom Cabinets
 	Ach(61317), -- Domicile Designer
 	Ach(61318):Title(), -- Fully Furnished
-	Ach(61394):Mount():Obtainable("Event", 1425), -- Master of the Turbulent Timeways IV
+	Ach(61394):Mount():Obtainable("Event", 1425, false), -- Master of the Turbulent Timeways IV
 	Ach(61413):AutoFactionSplit(faction.Alliance, 61414), -- The First Rule of Brawler's Guild
 	Ach(61419), -- Brawler's Chilled
 	Ach(61420), -- Let Me Solo It

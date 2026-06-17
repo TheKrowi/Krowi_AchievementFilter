@@ -6,7 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-05-27 12-37-51 ]] --
+-- [[ Exported at 2026-06-17 18-16-10 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -281,6 +281,7 @@ L["Objectives"] = "Objetivos"
 L["Ohn'ahran Plains"] = "Chapada Ohn'ahrana"
 L["Ohn'ahran Plains: Next"] = "Chapada Ohn'ahrana: Próximo"
 L["Ohn'iri Springs"] = "Fontes Ohn'iri"
+L["Omnium Folio"] = "Fólio do Omnium"
 L["Open"] = "Abrir"
 L["Other"] = "Outro"
 L["Other faction"] = "Outra facção"
@@ -408,6 +409,7 @@ L["Tyrhold"] = "Baluarte de Tyr"
 L["Uktulut Coaster"] = "Montanha-russa de Uktulut"
 L["Undermine(d)"] = "Inframinado"
 L["until the end of"] = "até o fim do"
+L["Val and Naigtal"] = "Val e Naigtal"
 L["Val'sharah"] = true
 L["Vendor"] = "Vendedor"
 L["Venthyr Assault"] = "Ataque Venthyr"
