@@ -1,20 +1,15 @@
+### Added
+- 12.0.7 "Revelations" patch data
+    - Sporefall raid instance: Rotmire, Heroic: Rotmire, Mythic: Rotmire
+    - Goal! housing decor achievement
+    - Big Prey Hunter (Season 1) delve achievement
+    - Ritual Sites 612: Practical Ritual Work, Pinnacle Ritual Work, Advanced Ritual Site Studies
+    - The Curse of Ula'tek mapped to Zul'Aman
+    - Omnium Folio void assault subcategory: The Sunstrider Omnium, Omnium Folio Studies
+    - Val and Naigtal void assault subcategory with all associated achievements
+    - Master of the Turbulent Timeways V added to Turbulent Timeways event
+    - Flame Keeper / Flame Warden of Midnight added to Midsummer Fire Festival
+
 ### Changed
-- Wrath of the Lich King, Cataclysm, and Mists of Pandaria achievement and event data internally migrated to shared files (dev note: invisible change for users; eliminates duplicate data between Retail and Classic clients)
-- Vanilla, The Burning Crusade, Wrath of the Lich King, Cataclysm, and Mists of Pandaria category data internally migrated to shared files (dev note: same as above)
-- Achievement data corrections from a comprehensive QA pass across WotLK, Cataclysm, Mists of Pandaria, Warlords of Draenor, Legion, Battle for Azeroth, Shadowlands, Dragonflight, The War Within, and Midnight — faction splits, reward types, and obtainability flags corrected
-- esES, esMX, itIT, and koKR locale files are now properly registered and loaded (the files existed but were not listed in the manifest and were therefore silently ignored)
-- Common category name strings (Player vs. Player, Quests, Battlegrounds, Arena, Dungeons & Raids, Professions, Reputation, etc.) are now sourced from WoW's own GlobalStrings in `Shared.lua` instead of being duplicated in every locale file, making them automatically correct in all languages
-- Updated and expanded translations across multiple locales including a large new koKR translation batch
-
-### Fixed
-- Further taint fix attempt: tooltip positioning for achievement tooltips, browsing history navigation buttons, and event reminder alerts now uses built-in WoW anchor types instead of manual `SetPoint` calls, which should prevent taint propagation (dev note: replaced `ANCHOR_NONE` + `SetPoint` with `ANCHOR_BOTTOMRIGHT`/`ANCHOR_BOTTOMLEFT` with offsets across all affected `GameTooltip:SetOwner` calls)
-- Category, instance, and map name lookup fallbacks now safely convert the ID to a string, preventing potential type errors when a lookup returns nil
-
-### Fixed (97.1)
-- Calendar event reminder errors ("table index is secret") no longer occur for players who have personal or guild entries on their in-game calendar; those entries are now skipped during cache building since the addon only tracks holiday events
-
-### Fixed (97.2)
-- World map button taint fix: `Krowi_WorldMapButtons` library updated to 1.4.10; now hooks `OnMapChanged` exclusively instead of conditionally hooking `RefreshOverlayFrames`, and removes the Wrath Classic workaround that patched `RefreshOverlayFrames` onto `WorldMapFrame` (dev note: the old hook could fire during protected Blizzard execution paths, causing taint; `OnMapChanged` is safe in all supported clients)
-
-### Fixed (97.3)
-- Further taint fix attempt: `GameTooltip:Hide()` calls in all KAF `OnLeave` handlers are now wrapped in `securecall` so that the widget container cleanup triggered by hiding the tooltip runs in clean execution context, preventing the `attempt to compare a secret number value (execution tainted by 'Krowi_AchievementFilter')` error reported by users
+- Lorewalking subcategory moved from The War Within to Cross-Expansion and extended with Lorewalking: The Loa from Midnight
+- Master of the Turbulent Timeways IV marked as no longer obtainable (event ended)
