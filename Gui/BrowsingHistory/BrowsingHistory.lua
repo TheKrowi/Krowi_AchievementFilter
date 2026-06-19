@@ -9,7 +9,7 @@ function KrowiAF_AchievementFrameBrowsingHistoryPrevNextAchievementButtonMixin:O
 end
 
 function KrowiAF_AchievementFrameBrowsingHistoryPrevNextAchievementButtonMixin:OnLeave()
-    securecall(GameTooltip.Hide, GameTooltip);
+    GameTooltip:Hide();
 end
 
 function KrowiAF_AchievementFrameBrowsingHistoryPrevNextAchievementButtonMixin:Click()

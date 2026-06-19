@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 98.1 - 2026-06-19
+### Fixed
+- Further taint fix attempt: recurring `attempt to compare a secret number value` and `attempt to perform arithmetic on local 'textHeight'` errors that appeared after hovering over transmog achievements (dev note: the transmog coroutine's owner guard evaluated to false on a nil owner, letting `CopyPrevTooltipLines` write to `GameTooltip` from addon code after the user moved away; fix aborts when owner is nil or not a KAF frame)
+- Reverted the `securecall(GameTooltip.Hide, GameTooltip)` workaround added in 97.3 now that the actual root cause is fixed
+
 ## 98.0 - 2026-06-17
 ### Added
 - 12.0.7 "Revelations" patch data

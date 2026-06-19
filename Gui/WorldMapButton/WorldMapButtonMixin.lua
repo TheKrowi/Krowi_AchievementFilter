@@ -56,7 +56,7 @@ function KrowiAF_WorldMapButtonMixin:OnLeave()
     if self.NumOfAch > 0 then
         addon.ProgressBarLib.GameTooltipWithProgressBar:Hide()
     else
-        securecall(GameTooltip.Hide, GameTooltip)
+        GameTooltip:Hide()
     end
 end
 
