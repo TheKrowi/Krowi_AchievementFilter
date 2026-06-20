@@ -1,6 +1,4 @@
-local _, addon = ...
-local shared = addon.Data.AchievementData.Shared
-local Ach = shared.Ach
+local Ach = KrowiAF.Ach
 local faction = KrowiAF.Enum.Faction
 
 KrowiAF.AchievementData["12_00_00"] = {
@@ -667,12 +665,12 @@ KrowiAF.AchievementData["12_00_07"] = {
 	Ach(62413), -- The Curse of Ula'tek
 	Ach(62606), -- The Sunstrider Omnium
 	Ach(62842), -- A Celestial Pain
-	Ach(62873):NotCategorized(), -- A Trip Around the Stars
-	Ach(62874):NotCategorized(), -- A Trip Through the Stars
-	Ach(62880):NotCategorized(), -- Showdown Success: Val
-	Ach(62881):NotCategorized(), -- Showdown Slugger: Val
-	Ach(62882):NotCategorized(), -- Showdown Success: Naigtal
-	Ach(62883):NotCategorized(), -- Showdown Slugger: Naigtal
+	Ach(62873):Mount(), -- A Trip Around the Stars
+	Ach(62874):Mount(), -- A Trip Through the Stars
+	Ach(62880):Pet(), -- Showdown Success: Val
+	Ach(62881):Transmog(), -- Showdown Slugger: Val
+	Ach(62882):Pet(), -- Showdown Success: Naigtal
+	Ach(62883), -- Showdown Slugger: Naigtal
 	Ach(62887), -- Heroic: Worlds Ahead
 	Ach(62901), -- Heroic: Power Creep
 	Ach(62903), -- Climate Strange: Val
@@ -692,7 +690,7 @@ KrowiAF.AchievementData["12_00_07"] = {
 	Ach(63325):HousingDecor(), -- Omnium Folio Studies
 	Ach(63343):HousingDecor(), -- Goal!
 	Ach(63348), -- Heroic Slugger
-	Ach(63349):NotCategorized(), -- Ultradon Carnage
+	Ach(63349):Pet(), -- Ultradon Carnagem
 	Ach(63383), -- Into the Stars
 	Ach(63384), -- Prepared for a Showdown
 	Ach(63385), -- A Hal'hadar Walks into a Swamp

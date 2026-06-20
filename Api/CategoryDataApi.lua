@@ -32,6 +32,7 @@ end
 
 local nextCategoryId = 9000;
 local ParseCategory;
+local ParseCategoryV2;
 local function ParseChildData(categoryId, childData)
     local index = 1;
     if addon.Util.IsNumber(childData[1]) then
@@ -39,6 +40,11 @@ local function ParseChildData(categoryId, childData)
     end
 
     if not addon.Util.IsTable(childData) then
+        return;
+    end
+
+    if childData._v2 then
+        ParseCategoryV2(childData, addon.Data.Categories[categoryId]);
         return;
     end
 
@@ -74,9 +80,43 @@ local function ParseChildData(categoryId, childData)
 end
 
 local deferredCategories = {};
+function ParseCategoryV2(node, parent)
+    local categoryId;
+    if node.Id then
+        categoryId = node.Id;
+    else
+        categoryId = nextCategoryId;
+        nextCategoryId = nextCategoryId + 1;
+    end
+
+    KrowiAF.AddIfNewCategoryData(categoryId, node.Name, parent, node.CanMerge);
+
+    if node.TabName then
+        SetCategoryRootForTab(categoryId, node.TabName);
+    end
+    if node.IgnoreFactionFilter then
+        addon.Data.Categories[categoryId]:SetIgnoreFactionFilter();
+    end
+    if node.IgnoreCollapsedChainFilter then
+        addon.Data.Categories[categoryId]:SetIgnoreCollapsedChainFilter();
+    end
+    if node.Tooltip then
+        addon.Data.Categories[categoryId]:SetTooltip(node.Tooltip);
+    end
+
+    if node.Achievements then
+        AddAchievements(categoryId, node.Achievements);
+    end
+    if node.Children then
+        for _, child in next, node.Children do
+            ParseChildData(categoryId, child);
+        end
+    end
+end
+
 function ParseCategory(category, parent)
-    if category.IsLoaded then
-        return;
+    if category._v2 then
+        return ParseCategoryV2(category, parent);
     end
 
     local index = 1;
@@ -117,22 +157,28 @@ function ParseCategory(category, parent)
         deferredCategories[categoryId] = nil;
         ParseCategory(category);
     end
+end
 
-    if not parent then
-        category.IsLoaded = true;
-    end
+local parsed
+local function ParseOnce(categoryData)
+    if parsed[categoryData] then return end
+    parsed[categoryData] = true
+    ParseCategory(categoryData)
 end
 
 function KrowiAF.CreateCategories()
-    -- Always load KAF categories first, this is desired to make sure achievements are redirected correctly
-    ParseCategory(KrowiAF.CategoryData.Achievements);
-    ParseCategory(KrowiAF.CategoryData.Expansions);
-    ParseCategory(KrowiAF.CategoryData.Events);
-    ParseCategory(KrowiAF.CategoryData.PvP);
-    ParseCategory(KrowiAF.CategoryData.Specials);
+    parsed = {}
+
+    ParseOnce(KrowiAF.CategoryData.Achievements);
+    ParseOnce(KrowiAF.CategoryData.Expansions);
+    ParseOnce(KrowiAF.CategoryData.Events);
+    ParseOnce(KrowiAF.CategoryData.PvP);
+    ParseOnce(KrowiAF.CategoryData.Specials);
 
     -- Load the plugins
     for _, categoryData in next, KrowiAF.CategoryData do
-        ParseCategory(categoryData);
+        ParseOnce(categoryData);
     end
+
+    parsed = nil;
 end

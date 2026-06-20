@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 98.2 - 2026-06-20
+### Added
+- V2 category data builder API: `KrowiAF.NewExpansion` and `KrowiAF.NewInjection` fluent builders for defining expansion categories and injecting into existing categories; `AchievementDataBuilder.lua` and `CategoryDataBuilder.lua` registered in the load manifest
+- `KrowiAF.Ach` is now exposed directly on the global `KrowiAF` table, removing the need for the three-line `addon.Data.AchievementData.Shared` boilerplate in every AchievementData file
+- Plugin API V2 injection documented in `ApiDocumentation.lua` with examples for flat, grouped, merged, and direct-ID injection patterns
+
+### Changed
+- Midnight (`12_Midnight`) CategoryData.lua fully rewritten in V2 format using the new fluent builder (`NewExpansion`, `:Character{}`, `:Zones()`, `:Zone()`, `:Quests{}`, `:Exploration{}`, `:PvP{}`, `:Reputation{}`, etc.), replacing the previous nested `tinsert` V1 tables
+- Midnight 12.0.7 achievement reward types corrected: A Trip Around the Stars and A Trip Through the Stars tagged as Mount, Showdown Success: Val and Showdown Success: Naigtal tagged as Pet, Showdown Slugger: Val tagged as Transmog, Ultradon Carnage tagged as Pet
+
 ## 98.1 - 2026-06-19
 ### Fixed
 - Further taint fix attempt: recurring `attempt to compare a secret number value` and `attempt to perform arithmetic on local 'textHeight'` errors that appeared after hovering over transmog achievements (dev note: the transmog coroutine's owner guard evaluated to false on a nil owner, letting `CopyPrevTooltipLines` write to `GameTooltip` from addon code after the user moved away; fix aborts when owner is nil or not a KAF frame)

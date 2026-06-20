@@ -50,8 +50,9 @@ end
 
 function data:RegisterCategoryDataTasks()
     local name = "Category Data: ";
-    self.InjectLoadingDebug({KrowiAF.CreateCategories}, name .. 1);
-    tinsert(self.TasksGroups, 1, {KrowiAF.CreateCategories});
+    local v = {KrowiAF.CreateCategories};
+    self.InjectLoadingDebug(v, name .. 1);
+    tinsert(self.TasksGroups, 1, v);
 end
 
 function data:RegisterEventDataTasks()

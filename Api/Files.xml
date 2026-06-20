@@ -1,7 +1,9 @@
 <Ui>
     <Script file="Api.lua" />
     <Script file="AchievementDataApi.lua" />
+    <Script file="AchievementDataBuilder.lua" />
     <Script file="BuildVersionDataApi.lua" />
+    <Script file="CategoryDataBuilder.lua" />
     <Script file="CategoryDataApi.lua" />
     <Script file="CustomCriteriaApi.lua" />
     <Script file="EventDataApi.lua" />
