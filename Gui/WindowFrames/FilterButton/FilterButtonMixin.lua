@@ -175,7 +175,7 @@ do -- AchievementFilters
         mb:CreateDivider(menu);
 
         local text = addon.L["Sort By"];
-        if filters == addon.Filters.db.profile and SortByValueIsIndeterminate({"SortBy", "Criteria"}) then
+        if filters == addon.Filters.db.profile and SortByValueIsIndeterminate{"SortBy", "Criteria"} then
             text = text .. " (*)";
         end
         local sortBy = mb:CreateSubmenuButton(menu, text);

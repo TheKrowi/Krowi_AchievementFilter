@@ -193,7 +193,7 @@ end
 local function SkinAchievementsFrame()
     -- Buttons
     hooksecurefunc(KrowiAF_AchievementsFrame.ScrollBox, "Update", function()
-        UpdateAchievementButtons({KrowiAF_AchievementsFrame.ScrollBox.ScrollTarget:GetChildren()});
+        UpdateAchievementButtons{KrowiAF_AchievementsFrame.ScrollBox.ScrollTarget:GetChildren()};
     end);
 
     -- Objectives
@@ -244,7 +244,7 @@ end
 local function SkinAchievementsFrameLight(frame)
     -- Buttons
     hooksecurefunc(frame.ScrollBox, "Update", function()
-        UpdateAchievementButtons({frame.ScrollBox.ScrollTarget:GetChildren()});
+        UpdateAchievementButtons{frame.ScrollBox.ScrollTarget:GetChildren()};
     end);
 
     -- Scrollbar

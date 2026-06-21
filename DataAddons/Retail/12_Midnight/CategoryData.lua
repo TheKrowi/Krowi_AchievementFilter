@@ -2,9 +2,17 @@
 local shared = addon.Data.CategoryData.Shared
 local CT = shared.CT
 
-local expansion = KrowiAF.NewExpansion(CT.Midnight)
+local expansion = KrowiAF.NewExpansion(CT.Midnight, {
+    62387, -- It's Nearly Midnight
+    62273, -- Echoes of Midnight
+    41805, -- Arator's Journey
+    42117, -- The War of Light and Shadow
+    60891, -- The Crimson Rogue
+    62191, -- Call of the Light
+    61839, -- Midnight Pathfinder (Reward: Steady Flight unlocked within Midnight, Finery Funds)
+})
 
-expansion:Character {
+expansion:Character{
     61678, -- Midnight Superior
     61679, -- Midnight Epic
     42328, -- One Warband Mentor: Midnight
@@ -20,13 +28,15 @@ expansion:Character {
     42770, -- Myth of the Dawn
 }
 
-local zones = expansion:Zones()
+local zones = expansion:Zones{
+    62386, -- Light Up the Night
+}
 local quelThalas = zones:Zone(2537)
-quelThalas:Quests {
+quelThalas:Quests{
     62110, -- Loremaster of Midnight
     42045, -- Midnight
 }
-quelThalas:Exploration {
+quelThalas:Exploration{
     61859, -- Midnight Flight Master
     61854, -- The Midnight Explorer
     61584, -- Midnight Glyph Hunter
@@ -54,7 +64,7 @@ quelThalas:Exploration {
     62104, -- Midnight Lore Hunter
     63343, -- Goal!
 }
-quelThalas:PvP {
+quelThalas:PvP{
     61464, -- Spark in the Night
     61465, -- Spark in the Night
     61234, -- Hunt in the Night
@@ -74,16 +84,18 @@ quelThalas:PvP {
     61449, -- Customary Rise
     61446, -- Slayer's Mastery (Title: Voidslayer)
 }
-quelThalas:Reputation {
+quelThalas:Reputation{
     62192, -- Midnight Diplomat (Reward: Finery Funds)
 }
 
-local eversong = zones:Zone(2395)
-eversong:Quests {
+local eversong = zones:Zone(2395, {
+    62261, -- Forever Song
+})
+eversong:Quests{
     41802, -- Eversong In Reprise
     61957, -- Sojourner of Eversong Woods
 }
-eversong:Exploration {
+eversong:Exploration{
     61855, -- Explore Eversong Woods
     61960, -- Treasures of Eversong Woods
     62288, -- Eversong Woods: The Highest Peaks
@@ -95,25 +107,24 @@ eversong:Exploration {
     62187, -- Grand Magister's Sommelier
     62185, -- Ever Painting
 }
-eversong:PvP {
+eversong:PvP{
     61221, -- Tour of Duty: Eversong Woods
 }
-eversong:Reputation {
+eversong:Reputation{
     62190, -- Life of the Party
     62262, -- Silvermoon Court Champion
 }
-eversong:Ids {
-    62261, -- Forever Song
-}
 
-local zulaman = zones:Zone(2437)
-zulaman:Quests {
+local zulaman = zones:Zone(2437, {
+    61453, -- Making an Amani Out of You
+})
+zulaman:Quests{
     41803, -- For Zul'Aman! (Customization Reward: Amani Appearances for Darkspear Troll)
     61452, -- Sojourner of Zul'Aman
     61910, -- Mrglgrgl of Grglmrgl
     62413, -- The Curse of Ula'tek
 }
-zulaman:Exploration {
+zulaman:Exploration{
     61856, -- Explore Zul'Aman
     62125, -- Treasures of Zul'Aman
     62289, -- Zul'Aman: The Highest Peaks
@@ -131,24 +142,24 @@ zulaman:Exploration {
     62202, -- Spiritpaw Marathon
     62267, -- A Most Violent Loa
 }
-zulaman:PvP {
+zulaman:PvP{
     61222, -- Tour of Duty: Zul'Aman
 }
-zulaman:Reputation {
+zulaman:Reputation{
     62263, -- Amani Tribe Champion
 }
-zulaman:Ids {
-    61453, -- Making an Amani Out of You
-}
 
-local harandar = zones:Zone(2413)
-harandar:Quests {
+local harandar = zones:Zone(2413, {
+    62260, -- That's Aln, Folks!
+    61706, -- Herald of the Goddess
+})
+harandar:Quests{
     41804, -- One Does Not Simply Walk Into Harandar
     61739, -- Sojourner of Harandar
     42278, -- The Empty Cradle
     61219, -- No Time to Paws
 }
-harandar:Exploration {
+harandar:Exploration{
     61520, -- Explore Harandar
     61263, -- Treasures of Harandar
     62290, -- Harandar: The Highest Peaks
@@ -162,25 +173,23 @@ harandar:Exploration {
     61574, -- Legends Never Die
     61917, -- "Hold aggro, I got this"
 }
-harandar:PvP {
+harandar:PvP{
     61223, -- Tour of Duty: Harandar
 }
-harandar:Reputation {
+harandar:Reputation{
     62264, -- Hara'ti Champion
 }
-harandar:Ids {
-    62260, -- That's Aln, Folks!
-    61706, -- Herald of the Goddess
-}
 
-local voidstorm = zones:Zone(2405)
-voidstorm:Quests {
+local voidstorm = zones:Zone(2405, {
+    62256, -- Yelling into the Voidstorm
+})
+voidstorm:Quests{
     41806, -- Breaching the Voidstorm
     61864, -- Sojourner of Voidstorm
     62105, -- Lysikas Would Be Proud
     62385, -- Staring Into The Void
 }
-voidstorm:Exploration {
+voidstorm:Exploration{
     61857, -- Explore Voidstorm
     62126, -- Treasures of Voidstorm
     62291, -- Voidstorm: The Highest Peaks
@@ -193,22 +202,41 @@ voidstorm:Exploration {
     61922, -- Ninety Percent is Good Enough
     62133, -- Thrill of the Chase
 }
-voidstorm:PvP {
+voidstorm:PvP{
     61224, -- Tour of Duty: Voidstorm
 }
-voidstorm:Reputation {
+voidstorm:Reputation{
     62265, -- The Singularity Champion
 }
-voidstorm:Ids {
-    62256, -- Yelling into the Voidstorm
-}
 
-zones:Ids {
-    62386, -- Light Up the Night
+local delves = expansion:Delves{
+    61832, -- Midnight Delves: Tier 1 (Unlock: Tier 2 delves in Midnight)
+    61835, -- Midnight Delves: Tier 2 (Unlock: Tier 3 delves in Midnight)
+    61836, -- Midnight Delves: Tier 3
+    61734, -- Midnight Delves: Endgame (Unlock: Tier 4 delves in Midnight)
+    61741, -- Delve Loremaster: Midnight
+    61901, -- Midnight: Leave No Treasure Unfound (Title: Treasure Seeker)
+    61906, -- Glory of the Midnight Delver (Mount: Giganto Manis)
+    61707, -- Delver of the Depths: Midnight
+    61708, -- Delver of the Depths II: Midnight
+    61709, -- Delver of the Depths III: Midnight
+    61710, -- Delver of the Depths IV: Midnight
+    61722, -- Curio Enthusiast: Midnight
+    61723, -- Curio Fanatic: Midnight
+    61711, -- Midnight Delver Damage Dealer
+    61712, -- Midnight Delver Damage Dealer II
+    61713, -- Midnight Delver Damage Dealer III
+    61714, -- Midnight Delver Healer
+    61715, -- Midnight Delver Healer II
+    61716, -- Midnight Delver Healer III
+    61717, -- Midnight Delver Tank
+    61718, -- Midnight Delver Tank II
+    61719, -- Midnight Delver Tank III
+    61720, -- Midnight Delver
+    61721, -- Midnight Delver II (Reward: Finery Funds)
+    62206, -- Midnight Delver III
 }
-
-local delves = expansion:Delves()
-delves:Seasonal {
+delves:Seasonal{
     61800, -- Midnight Delves: Tier 4 (Season 1) (Unlock: Tier 5 delves in Midnight Season 1)
     61801, -- Midnight Delves: Tier 5 (Season 1) (Unlock: Tier 6 delves in Midnight Season 1)
     61802, -- Midnight Delves: Tier 6 (Season 1) (Unlock: Tier 7 delves in Midnight Season 1)
@@ -266,86 +294,8 @@ delves:Instance(2507, { -- Torment's Rise
     61799, -- Let Me Solo Him: Nullaeus (Reward: Arcanovoid Construct)
     61808, -- Fabled Let Me Solo Him: Nullaeus (Title: Fabled Vanquisher of Nullaeus)
 })
-delves:Ids {
-    61832, -- Midnight Delves: Tier 1 (Unlock: Tier 2 delves in Midnight)
-    61835, -- Midnight Delves: Tier 2 (Unlock: Tier 3 delves in Midnight)
-    61836, -- Midnight Delves: Tier 3
-    61734, -- Midnight Delves: Endgame (Unlock: Tier 4 delves in Midnight)
-    61741, -- Delve Loremaster: Midnight
-    61901, -- Midnight: Leave No Treasure Unfound (Title: Treasure Seeker)
-    61906, -- Glory of the Midnight Delver (Mount: Giganto Manis)
-    61707, -- Delver of the Depths: Midnight
-    61708, -- Delver of the Depths II: Midnight
-    61709, -- Delver of the Depths III: Midnight
-    61710, -- Delver of the Depths IV: Midnight
-    61722, -- Curio Enthusiast: Midnight
-    61723, -- Curio Fanatic: Midnight
-    61711, -- Midnight Delver Damage Dealer
-    61712, -- Midnight Delver Damage Dealer II
-    61713, -- Midnight Delver Damage Dealer III
-    61714, -- Midnight Delver Healer
-    61715, -- Midnight Delver Healer II
-    61716, -- Midnight Delver Healer III
-    61717, -- Midnight Delver Tank
-    61718, -- Midnight Delver Tank II
-    61719, -- Midnight Delver Tank III
-    61720, -- Midnight Delver
-    61721, -- Midnight Delver II (Reward: Finery Funds)
-    62206, -- Midnight Delver III
-}
 
-local dungeons = expansion:Dungeons()
-dungeons:MythicPlus(shared.GetMidnightMythicPlus)
-dungeons:Instance(1311):Ids { -- Den of Nalorakk
-    61638, -- Den of Nalorakk
-    61642, -- Heroic: Den of Nalorakk
-    61643, -- Mythic: Den of Nalorakk
-}
-dungeons:Instance(1300):Ids { -- Magisters' Terrace
-    61212, -- Magisters' Terrace
-    61213, -- Heroic: Magisters' Terrace
-    61214, -- Mythic: Magisters' Terrace
-    61267, -- Keystone Hero: Magisters' Terrace
-    61587, -- Keystone Victor: Magisters' Terrace (Midnight)
-}
-dungeons:Instance(1315):Ids { -- Maisara Caverns
-    61639, -- Maisara Caverns
-    61644, -- Heroic: Maisara Caverns
-    61645, -- Mythic: Maisara Caverns
-    61269, -- Keystone Hero: Maisara Caverns
-    61588, -- Keystone Victor: Maisara Caverns
-}
-dungeons:Instance(1304):Ids { -- Murder Row
-    41960, -- Murder Row
-    41961, -- Heroic: Murder Row
-    41962, -- Mythic: Murder Row
-}
-dungeons:Instance(1316):Ids { -- Nexus-Point Xenas
-    61585, -- You Conduit!
-    61640, -- Nexus-Point Xenas
-    61646, -- Heroic: Nexus-Point Xenas
-    61647, -- Mythic: Nexus-Point Xenas
-    61268, -- Keystone Hero: Nexus-Point Xenas
-    61589, -- Keystone Victor: Nexus-Point Xenas
-}
-dungeons:Instance(1309):Ids { -- The Blinding Vale
-    61641, -- The Blinding Vale
-    61648, -- Heroic: The Blinding Vale
-    61649, -- Mythic: The Blinding Vale
-}
-dungeons:Instance(1313):Ids { -- Voidscar Arena
-    61508, -- Voidscar Arena
-    61509, -- Heroic: Voidscar Arena
-    61510, -- Mythic: Voidscar Arena
-}
-dungeons:Instance(1299):Ids { -- Windrunner Spire
-    41287, -- Windrunner Spire
-    41288, -- Heroic: Windrunner Spire
-    41291, -- Mythic: Windrunner Spire
-    61262, -- Keystone Hero: Windrunner Spire
-    61590, -- Keystone Victor: Windrunner Spire
-}
-dungeons:Ids {
+local dungeons = expansion:Dungeons{
     61567, -- Midnight Dungeon Hero (Pet: Niblet)
     61568, -- Glory of the Midnight Hero
     62195, -- Midnight Dungeon Tank
@@ -354,13 +304,67 @@ dungeons:Ids {
     62196, -- Midnight Dungeoneer
     62388, -- Illicit Rain: Five Stars
 }
+dungeons:MythicPlus(shared.GetMidnightMythicPlus)
+dungeons:Instance(1311):Ids{ -- Den of Nalorakk
+    61638, -- Den of Nalorakk
+    61642, -- Heroic: Den of Nalorakk
+    61643, -- Mythic: Den of Nalorakk
+}
+dungeons:Instance(1300):Ids{ -- Magisters' Terrace
+    61212, -- Magisters' Terrace
+    61213, -- Heroic: Magisters' Terrace
+    61214, -- Mythic: Magisters' Terrace
+    61267, -- Keystone Hero: Magisters' Terrace
+    61587, -- Keystone Victor: Magisters' Terrace (Midnight)
+}
+dungeons:Instance(1315):Ids{ -- Maisara Caverns
+    61639, -- Maisara Caverns
+    61644, -- Heroic: Maisara Caverns
+    61645, -- Mythic: Maisara Caverns
+    61269, -- Keystone Hero: Maisara Caverns
+    61588, -- Keystone Victor: Maisara Caverns
+}
+dungeons:Instance(1304):Ids{ -- Murder Row
+    41960, -- Murder Row
+    41961, -- Heroic: Murder Row
+    41962, -- Mythic: Murder Row
+}
+dungeons:Instance(1316):Ids{ -- Nexus-Point Xenas
+    61585, -- You Conduit!
+    61640, -- Nexus-Point Xenas
+    61646, -- Heroic: Nexus-Point Xenas
+    61647, -- Mythic: Nexus-Point Xenas
+    61268, -- Keystone Hero: Nexus-Point Xenas
+    61589, -- Keystone Victor: Nexus-Point Xenas
+}
+dungeons:Instance(1309):Ids{ -- The Blinding Vale
+    61641, -- The Blinding Vale
+    61648, -- Heroic: The Blinding Vale
+    61649, -- Mythic: The Blinding Vale
+}
+dungeons:Instance(1313):Ids{ -- Voidscar Arena
+    61508, -- Voidscar Arena
+    61509, -- Heroic: Voidscar Arena
+    61510, -- Mythic: Voidscar Arena
+}
+dungeons:Instance(1299):Ids{ -- Windrunner Spire
+    41287, -- Windrunner Spire
+    41288, -- Heroic: Windrunner Spire
+    41291, -- Mythic: Windrunner Spire
+    61262, -- Keystone Hero: Windrunner Spire
+    61590, -- Keystone Victor: Windrunner Spire
+}
 
-local raids = expansion:Raids()
+local raids = expansion:Raids{
+    62352, -- Nothing to See Here
+    61380, -- Glory of the Midnight Raider (Mount: Tenebrous Harrower)
+    61843, -- Quel'Dressed
+}
 local dreamrift = raids:Instance(1314)
-dreamrift:Glory {
+dreamrift:Glory{
     61454, -- Falling Between The Quacks
 }
-dreamrift:Ids {
+dreamrift:Ids{
     61487, -- Chimaerus, the Undreamt God
     61488, -- Heroic: Chimaerus, the Undreamt God
     61489, -- Mythic: Chimaerus, the Undreamt God (Title: Dream-Eater)
@@ -369,7 +373,7 @@ dreamrift:Ids {
 }
 
 local voidspire = raids:Instance(1307)
-voidspire:Glory {
+voidspire:Glory{
     62106, -- The Only Winning Move Is Not To Play
     62058, -- Hungry Hungry Hatchlings
     61514, -- It's Treason Then
@@ -377,7 +381,7 @@ voidspire:Glory {
     61936, -- Aura Farming
     61346, -- We Will, In Fact, See It Again
 }
-voidspire:Mythic {
+voidspire:Mythic{
     61372, -- Mythic: Imperator Averzian
     61373, -- Mythic: Vorasius
     61374, -- Mythic: Fallen-King Salhadaar
@@ -385,7 +389,7 @@ voidspire:Mythic {
     61376, -- Mythic: Lightblinded Vanguard
     61377, -- Mythic: Crown of the Cosmos (Title: Spirebane)
 }
-voidspire:Ids {
+voidspire:Ids{
     61635, -- Voidspire: Weapons of the Void
     61636, -- Voidspire: Fanatics of the Light
     61637, -- Voidspire: Crown of the Cosmos
@@ -397,15 +401,15 @@ voidspire:Ids {
 }
 
 local march = raids:Instance(1308)
-march:Glory {
+march:Glory{
     61381, -- Eggsistential Crisis
     62406, -- All the Things She Said
 }
-march:Mythic {
+march:Mythic{
     61378, -- Mythic: Belo'ren, Child of Al'ar
     61379, -- Mythic: Midnight Falls (Title: Dawnbringer)
 }
-march:Ids {
+march:Ids{
     61367, -- March on Quel'Danas
     61369, -- Heroic: March on Quel'Danas
     61371, -- Mythic: March on Quel'Danas
@@ -414,93 +418,87 @@ march:Ids {
 }
 
 local sporefall = raids:Instance(1305)
-sporefall:Ids {
+sporefall:Ids{
     63237, -- Rotmire
     63240, -- Heroic: Rotmire
     63241, -- Mythic: Rotmire
 }
-raids:Ids {
-    62352, -- Nothing to See Here
-    61380, -- Glory of the Midnight Raider (Mount: Tenebrous Harrower)
-    61843, -- Quel'Dressed
-}
 
-local professions = expansion:Professions()
-professions:Alchemy {
-    42788, -- Alchemizing at Midnight
-    62223, -- Alchemy-on-Demand
-    62239, -- Dedicated to the Craft: Alchemy
-}
-professions:Blacksmithing {
-    42792, -- Blacksmithing at Midnight
-    62232, -- Blacksmithing-on-Demand
-    62240, -- Dedicated to the Craft: Blacksmithing
-}
-professions:Cooking {
-    42795, -- Cooking at Midnight
-}
-professions:Enchanting {
-    42787, -- Enchanting at Midnight
-    62233, -- Enchanting-on-Demand
-    62241, -- Dedicated to the Craft: Enchanting
-}
-professions:Engineering {
-    42798, -- Engineering at Midnight
-    62234, -- Engineering-on-Demand
-    62242, -- Dedicated to the Craft: Engineering
-    60888, -- Pushing My Buttons
-}
-professions:Fishing {
-    42797, -- Fishing at Midnight
-}
-professions:Herbalism {
-    42793, -- Herbalism at Midnight
-    62247, -- Herbalism-on-Demand
-    62250, -- Dedicated to the Craft: Herbalism
-}
-professions:Inscription {
-    42796, -- Inscribing at Midnight
-    62235, -- Inscription-on-Demand
-    62243, -- Dedicated to the Craft: Inscription
-}
-professions:Jewelcrafting {
-    42789, -- Jewelcrafting at Midnight
-    62236, -- Jewelcrafting-on-Demand
-    62244, -- Dedicated to the Craft: Jewelcrafting
-}
-professions:Leatherworking {
-    42786, -- Leatherworking at Midnight
-    62237, -- Leatherworking-on-Demand
-    62245, -- Dedicated to the Craft: Leatherworking
-}
-professions:Mining {
-    42791, -- Mining at Midnight
-    62248, -- Mining-on-Demand
-    62251, -- Dedicated to the Craft: Mining
-}
-professions:Skinning {
-    42790, -- Skinning at Midnight
-    62249, -- Skinning-on-Demand
-    62252, -- Dedicated to the Craft: Skinning
-}
-professions:Tailoring {
-    42794, -- Tailoring at Midnight
-    62238, -- Tailoring-on-Demand
-    62246, -- Dedicated to the Craft: Tailoring
-}
-professions:Ids {
+local professions = expansion:Professions{
     61438, -- Thalassian Profession Master
     61439, -- Thalassian Artisan
     61440, -- Thalassian Polymath (Reward: Finery Funds)
     61441, -- Working WAY Past Midnight
     62370, -- Midnight Lumberjack
 }
+professions:Alchemy{
+    42788, -- Alchemizing at Midnight
+    62223, -- Alchemy-on-Demand
+    62239, -- Dedicated to the Craft: Alchemy
+}
+professions:Blacksmithing{
+    42792, -- Blacksmithing at Midnight
+    62232, -- Blacksmithing-on-Demand
+    62240, -- Dedicated to the Craft: Blacksmithing
+}
+professions:Cooking{
+    42795, -- Cooking at Midnight
+}
+professions:Enchanting{
+    42787, -- Enchanting at Midnight
+    62233, -- Enchanting-on-Demand
+    62241, -- Dedicated to the Craft: Enchanting
+}
+professions:Engineering{
+    42798, -- Engineering at Midnight
+    62234, -- Engineering-on-Demand
+    62242, -- Dedicated to the Craft: Engineering
+    60888, -- Pushing My Buttons
+}
+professions:Fishing{
+    42797, -- Fishing at Midnight
+}
+professions:Herbalism{
+    42793, -- Herbalism at Midnight
+    62247, -- Herbalism-on-Demand
+    62250, -- Dedicated to the Craft: Herbalism
+}
+professions:Inscription{
+    42796, -- Inscribing at Midnight
+    62235, -- Inscription-on-Demand
+    62243, -- Dedicated to the Craft: Inscription
+}
+professions:Jewelcrafting{
+    42789, -- Jewelcrafting at Midnight
+    62236, -- Jewelcrafting-on-Demand
+    62244, -- Dedicated to the Craft: Jewelcrafting
+}
+professions:Leatherworking{
+    42786, -- Leatherworking at Midnight
+    62237, -- Leatherworking-on-Demand
+    62245, -- Dedicated to the Craft: Leatherworking
+}
+professions:Mining{
+    42791, -- Mining at Midnight
+    62248, -- Mining-on-Demand
+    62251, -- Dedicated to the Craft: Mining
+}
+professions:Skinning{
+    42790, -- Skinning at Midnight
+    62249, -- Skinning-on-Demand
+    62252, -- Dedicated to the Craft: Skinning
+}
+professions:Tailoring{
+    42794, -- Tailoring at Midnight
+    62238, -- Tailoring-on-Demand
+    62246, -- Dedicated to the Craft: Tailoring
+}
 
-expansion:PetBattles {
+expansion:PetBattles{
     61091, -- Midnight Safari
 }
 
-expansion:Insert { -- Abyss Anglers
+expansion:Insert{ -- Abyss Anglers
     addon.L["Abyss Anglers"],
     {
         62118, -- Abyss Anglers: Amazardhide Catch Case
@@ -544,7 +542,7 @@ expansion:Insert { -- Abyss Anglers
     }
 }
 
-expansion:Insert { -- Prey
+expansion:Insert{ -- Prey
     CT.Prey,
     {
         addon.L["Hard"],
@@ -613,7 +611,7 @@ expansion:Insert { -- Prey
     }
 }
 
-expansion:Insert { -- The Arcantina
+expansion:Insert{ -- The Arcantina
     addon.L["The Arcantina"],
     {
         61081, -- Share a Drink
@@ -622,7 +620,7 @@ expansion:Insert { -- The Arcantina
     }
 }
 
-expansion:Insert { -- Ritual Sites
+expansion:Insert{ -- Ritual Sites
     CT.RitualSites,
     {
         addon.L["Broken Throne"],
@@ -697,7 +695,7 @@ expansion:Insert { -- Ritual Sites
     },
 }
 
-expansion:Insert { -- Void Assaults
+expansion:Insert{ -- Void Assaults
     CT.VoidAssaults,
     {
         addon.L["Omnium Folio"],
@@ -756,15 +754,3 @@ expansion:Insert { -- Void Assaults
         62574, -- Accolade to Rest
     },
 }
-
-expansion:Insert {
-    62387, -- It's Nearly Midnight
-    62273, -- Echoes of Midnight
-    41805, -- Arator's Journey
-    42117, -- The War of Light and Shadow
-    60891, -- The Crimson Rogue
-    62191, -- Call of the Light
-    61839, -- Midnight Pathfinder (Reward: Steady Flight unlocked within Midnight, Finery Funds)
-}
-
-expansion:Register()

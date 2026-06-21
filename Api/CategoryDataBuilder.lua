@@ -48,8 +48,8 @@ end
 local ZonesBuilder = WithBase({})
 ZonesBuilder.__index = ZonesBuilder
 
-function ZonesBuilder:Zone(uiMapId)
-    local zone = setmetatable({ _t = { _v2 = true, Name = addon.GetMapName(uiMapId), Children = {} } }, ZoneBuilder)
+function ZonesBuilder:Zone(uiMapId, ids)
+    local zone = setmetatable({ _t = { _v2 = true, Name = addon.GetMapName(uiMapId), Achievements = ids, Children = {} } }, ZoneBuilder)
     tinsert(self._t.Children, zone._t)
     return zone
 end
@@ -138,42 +138,42 @@ function ExpansionBuilder:Character(ids)
     return self
 end
 
-function ExpansionBuilder:Zones()
+function ExpansionBuilder:Zones(ids)
     local name = addon.L["Zones"]
     AssertUniqueContainer(self, name)
-    local z = setmetatable({ _t = { _v2 = true, Name = name, Children = {} } }, ZonesBuilder)
+    local z = setmetatable({ _t = { _v2 = true, Name = name, Achievements = ids, Children = {} } }, ZonesBuilder)
     tinsert(self._t.Children, z._t)
     return z
 end
 
-function ExpansionBuilder:Delves()
+function ExpansionBuilder:Delves(ids)
     local name = CT.Delves
     AssertUniqueContainer(self, name)
-    local d = setmetatable({ _t = { _v2 = true, Name = name, Children = {} } }, DelvesBuilder)
+    local d = setmetatable({ _t = { _v2 = true, Name = name, Achievements = ids, Children = {} } }, DelvesBuilder)
     tinsert(self._t.Children, d._t)
     return d
 end
 
-function ExpansionBuilder:Dungeons()
+function ExpansionBuilder:Dungeons(ids)
     local name = CT.Dungeons
     AssertUniqueContainer(self, name)
-    local d = setmetatable({ _t = { _v2 = true, Name = name, Children = {} } }, DungeonsBuilder)
+    local d = setmetatable({ _t = { _v2 = true, Name = name, Achievements = ids, Children = {} } }, DungeonsBuilder)
     tinsert(self._t.Children, d._t)
     return d
 end
 
-function ExpansionBuilder:Raids()
+function ExpansionBuilder:Raids(ids)
     local name = CT.Raids
     AssertUniqueContainer(self, name)
-    local r = setmetatable({ _t = { _v2 = true, Name = name, Children = {} } }, RaidsBuilder)
+    local r = setmetatable({ _t = { _v2 = true, Name = name, Achievements = ids, Children = {} } }, RaidsBuilder)
     tinsert(self._t.Children, r._t)
     return r
 end
 
-function ExpansionBuilder:Professions()
+function ExpansionBuilder:Professions(ids)
     local name = CT.Professions
     AssertUniqueContainer(self, name)
-    local p = setmetatable({ _t = { _v2 = true, Name = name, Children = {} } }, ProfessionsBuilder)
+    local p = setmetatable({ _t = { _v2 = true, Name = name, Achievements = ids, Children = {} } }, ProfessionsBuilder)
     tinsert(self._t.Children, p._t)
     return p
 end
@@ -183,12 +183,10 @@ function ExpansionBuilder:PetBattles(ids)
     return self
 end
 
-function ExpansionBuilder:Register()
-    tinsert(KrowiAF.CategoryData.Expansions, self._t)
-end
-
-function KrowiAF.NewExpansion(name)
-    return setmetatable({ _t = { _v2 = true, Name = name, Children = {} } }, ExpansionBuilder)
+function KrowiAF.NewExpansion(name, ids)
+    local expansion = setmetatable({ _t = { _v2 = true, Name = name, Achievements = ids, Children = {} } }, ExpansionBuilder)
+    tinsert(KrowiAF.CategoryData.Expansions, expansion._t)
+    return expansion
 end
 
 -- InjectionBuilder

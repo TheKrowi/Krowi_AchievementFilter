@@ -39,17 +39,13 @@ function BuildVersionBuilder:Minor(n)
     return setmetatable({ _expansion = self, _t = minorEntry }, MinorBVBuilder)
 end
 
-function BuildVersionBuilder:Register()
-    assert(#self._t.Minors > 0,
-        "Expansion " .. self._t.Major .. " (" .. self._key .. ") has no minors.")
-    assert(KrowiAF.BuildVersionData[self._key] == nil,
-        "BuildVersionData key '" .. self._key .. "' is already registered.")
-    KrowiAF.BuildVersionData[self._key] = self._t
-end
-
 function KrowiAF.NewBuildVersion(key, major)
-    return setmetatable({
+    assert(KrowiAF.BuildVersionData[key] == nil,
+        "BuildVersionData key '" .. key .. "' is already registered.")
+    local expansion = setmetatable({
         _key = key,
         _t = { Major = major, Minors = {} }
     }, BuildVersionBuilder)
+    KrowiAF.BuildVersionData[key] = expansion._t
+    return expansion
 end

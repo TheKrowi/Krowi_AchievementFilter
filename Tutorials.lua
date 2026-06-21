@@ -391,7 +391,7 @@ function tutorials.Load()
     tutorials.FeaturesTutorial:SetFrameTitle(addon.Metadata.Title .. " - " .. addon.Metadata.BuildVersion);
     tutorials.FeaturesTutorial:SetPages(pages);
     tutorials.FeaturesTutorial:SetImageMargin(10);
-    tutorials.FeaturesTutorial:SetTextMargin({10, 0, 10, 20});
+    tutorials.FeaturesTutorial:SetTextMargin{10, 0, 10, 20};
 
     addon.Diagnostics.Debug("Tutorial loaded");
 end

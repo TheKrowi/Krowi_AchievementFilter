@@ -219,7 +219,7 @@ else
         if StaticPopup_IsCustomGenericConfirmationShown("KrowiAF_ConfirmDeleteCharacter") then
             return;
         end
-        StaticPopup_ShowCustomGenericConfirmation({
+        StaticPopup_ShowCustomGenericConfirmation{
             text = addon.L["Are you sure you want to delete character?"]:K_ReplaceVars{
                 character = KrowiAF_SavedData.CharacterList[self.Guid].Name:SetColorYellow(),
                 ignore = addon.L["Ignore"]:SetColorYellow()
@@ -228,6 +228,6 @@ else
                 DeleteCharacterCallback(self);
             end,
             referenceKey = "KrowiAF_ConfirmDeleteCharacter"
-        });
+        };
     end
 end

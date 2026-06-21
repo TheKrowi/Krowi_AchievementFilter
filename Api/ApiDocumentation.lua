@@ -76,7 +76,7 @@ mergedInjection:RegisterAs("MyPlugin_MergedExample")
 
 -- :Ids — add achievement IDs directly to the target category (no subcategory created):
 local directInjection = KrowiAF.NewInjection(971)
-directInjection:Ids({ 14808, 14814, 14821 }) -- Added directly to category 971 [Optional, repeatable]
+directInjection:Ids{ 14808, 14814, 14821 } -- Added directly to category 971 [Optional, repeatable]
 directInjection:RegisterAs("MyPlugin_DirectIds")
 
 -- V2 Achievement Data (current standard)
