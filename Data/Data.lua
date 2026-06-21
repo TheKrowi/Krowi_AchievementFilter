@@ -33,10 +33,20 @@ data.Events[KrowiAF.Enum.EventType.Widget] = {};
 data.Events[KrowiAF.Enum.EventType.World] = {};
 
 function data:RegisterAchievementDataTasks()
-    local name = "Achievement Data: ";
-    for k, v in next, KrowiAF.AchievementData do
-        self.InjectLoadingDebug(v, name .. k);
-        tinsert(self.TasksGroups, 1, v);
+    local name = "Achievement Data: "
+    local keys = {}
+    for k in next, KrowiAF.AchievementData do
+        tinsert(keys, k)
+    end
+    table.sort(keys)
+    for _, k in next, keys do
+        local v = KrowiAF.AchievementData[k]
+        local major = tonumber(k:sub(1, 2))
+        local minor = tonumber(k:sub(4, 5))
+        local patch = tonumber(k:sub(7, 8))
+        tinsert(v, 1, {KrowiAF.SetAchievementPatch, major, minor, patch})
+        self.InjectLoadingDebug(v, name .. k)
+        tinsert(self.TasksGroups, 1, v)
     end
 end
 
@@ -50,8 +60,9 @@ end
 
 function data:RegisterCategoryDataTasks()
     local name = "Category Data: ";
-    self.InjectLoadingDebug({KrowiAF.CreateCategories}, name .. 1);
-    tinsert(self.TasksGroups, 1, {KrowiAF.CreateCategories});
+    local v = {KrowiAF.CreateCategories};
+    self.InjectLoadingDebug(v, name .. 1);
+    tinsert(self.TasksGroups, 1, v);
 end
 
 function data:RegisterEventDataTasks()

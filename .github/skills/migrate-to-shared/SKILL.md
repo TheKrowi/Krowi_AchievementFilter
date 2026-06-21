@@ -136,8 +136,7 @@ If `DataAddons/Shared/EE_ExpansionName/` does not yet exist:
 1. Create `AchievementData.lua` with the standard header:
    ```lua
    local _, addon = ...
-   local shared = addon.Data.AchievementData.Shared
-   local Ach = shared.Ach
+   local Ach = KrowiAF.Ach
    local faction = KrowiAF.Enum.Faction
    ```
    Only include the `faction` line if any entry in the file uses `AutoFactionSplit` or `FactionSplit`.

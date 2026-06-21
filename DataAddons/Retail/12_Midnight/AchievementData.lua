@@ -1,10 +1,7 @@
-local _, addon = ...
-local shared = addon.Data.AchievementData.Shared
-local Ach = shared.Ach
+local Ach = KrowiAF.Ach
 local faction = KrowiAF.Enum.Faction
 
 KrowiAF.AchievementData["12_00_00"] = {
-	{KrowiAF.SetAchievementPatch, 12, 0, 0},
 	Ach(41287), -- Windrunner Spire
 	Ach(41288), -- Heroic: Windrunner Spire
 	Ach(41291), -- Mythic: Windrunner Spire
@@ -20,7 +17,7 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(42117), -- The War of Light and Shadow
 	Ach(42278), -- The Empty Cradle
 	Ach(42283):Other(), -- Abundance: Azeroth Runs on Dundun
-	Ach(42300):Title():Mount():Obtainable("Before", "Version", {12, 0, 1}), -- Two Minutes to Midnight
+	Ach(42300):Mount():Title():Obtainable("Before", "Version", {12, 0, 1}), -- Two Minutes to Midnight
 	Ach(42328):Other(), -- One Warband Mentor: Midnight
 	Ach(42329):Other(), -- Two Warband Mentors: Midnight
 	Ach(42330):Other(), -- Three Warband Mentors: Midnight
@@ -119,8 +116,8 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(61186):PvP(41), -- Rival II: Midnight Season 1
 	Ach(61187):Title():PvP(41), -- Duelist: Midnight Season 1
 	Ach(61188):Title(), -- Gladiator: Midnight Season 1
-	Ach(61190):Toy():Title():PvP(41), -- Legend: Midnight Season 1
-	Ach(61194):Toy():Title():PvP(41), -- Strategist: Midnight Season 1
+	Ach(61190):Title():Toy():PvP(41), -- Legend: Midnight Season 1
+	Ach(61194):Title():Toy():PvP(41), -- Strategist: Midnight Season 1
 	Ach(61195):AutoFactionSplit(faction.Alliance, 61196):PvP(41), -- Hero of the Alliance / Horde: Galactic
 	Ach(61197):Title():PvP(41), -- Elite: Midnight Season 1
 	Ach(61198):Title():PvP(41), -- Battle Mender: Midnight Season 1
@@ -527,18 +524,18 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(62341), -- Abundance: Ain't Dun Till It's Dun
 	Ach(62351):Title(), -- Preying For Midnight
 	Ach(62352), -- Nothing to See Here
-	Ach(62357):Other():NotCategorized(), -- Classically Trained Lumberjack
-	Ach(62358):Other():NotCategorized(), -- Outlandish Lumberjack
-	Ach(62359):Other():NotCategorized(), -- Wrathful Lumberjack
-	Ach(62360):Other():NotCategorized(), -- Cataclysmic Lumberjack
-	Ach(62361):Other():NotCategorized(), -- Mist-Shrouded Lumberjack
-	Ach(62362):Other():NotCategorized(), -- Lumberjack Warlord
-	Ach(62363):Other():NotCategorized(), -- Legion Lumberjack
-	Ach(62364):Other():NotCategorized(), -- Azeroth's Lumberjack
-	Ach(62365):Other():NotCategorized(), -- Shadowy Lumberjack
-	Ach(62366):Other():NotCategorized(), -- Draconic Lumberjack
-	Ach(62369):Other():NotCategorized(), -- The Lumberjack Within
-	Ach(62370):Other():NotCategorized(), -- Midnight Lumberjack
+	Ach(62357):NotCategorized():Other(), -- Classically Trained Lumberjack
+	Ach(62358):NotCategorized():Other(), -- Outlandish Lumberjack
+	Ach(62359):NotCategorized():Other(), -- Wrathful Lumberjack
+	Ach(62360):NotCategorized():Other(), -- Cataclysmic Lumberjack
+	Ach(62361):NotCategorized():Other(), -- Mist-Shrouded Lumberjack
+	Ach(62362):NotCategorized():Other(), -- Lumberjack Warlord
+	Ach(62363):NotCategorized():Other(), -- Legion Lumberjack
+	Ach(62364):NotCategorized():Other(), -- Azeroth's Lumberjack
+	Ach(62365):NotCategorized():Other(), -- Shadowy Lumberjack
+	Ach(62366):NotCategorized():Other(), -- Draconic Lumberjack
+	Ach(62369):NotCategorized():Other(), -- The Lumberjack Within
+	Ach(62370):NotCategorized():Other(), -- Midnight Lumberjack
 	Ach(62371), -- Couponing for Beginners
 	Ach(62373), -- Coupon Collector
 	Ach(62374), -- You Get The Best Deals Anywhere
@@ -562,7 +559,6 @@ KrowiAF.AchievementData["12_00_00"] = {
 }
 
 KrowiAF.AchievementData["12_00_05"] = {
-	{KrowiAF.SetAchievementPatch, 12, 0, 5},
 	Ach(61792), -- T-A-G that spells "Gotcha!"
 	Ach(61793), -- Deployed to the Void
 	Ach(61878), -- Tagged and Bagged
@@ -656,23 +652,22 @@ KrowiAF.AchievementData["12_00_05"] = {
 	Ach(62778), -- Abyss Anglers: Luck of the Loa
 	Ach(62829), -- Abyss Anglers: Don't Know What You Expected
 	Ach(62832), -- Abyss Anglers: Reservation for One
-	Ach(63097):Title():Mount():PvE(17), -- Midnight Keystone Myth: Season One
+	Ach(63097):Mount():Title():PvE(17), -- Midnight Keystone Myth: Season One
 }
 
 KrowiAF.AchievementData["12_00_07"] = {
-	{KrowiAF.SetAchievementPatch, 12, 0, 7},
 	Ach(61335):AutoFactionSplit(faction.Horde, 61336), -- Flame Keeper / Flame Warden of Midnight
 	Ach(61442):HousingDecor(), -- Lorewalking: The Loa
-	Ach(61463):Mount(), -- Master of the Turbulent Timeways V
+	Ach(61463):Mount():Obtainable("Event", 1425), -- Master of the Turbulent Timeways V
 	Ach(62413), -- The Curse of Ula'tek
 	Ach(62606), -- The Sunstrider Omnium
 	Ach(62842), -- A Celestial Pain
-	Ach(62873):NotCategorized(), -- A Trip Around the Stars
-	Ach(62874):NotCategorized(), -- A Trip Through the Stars
-	Ach(62880):NotCategorized(), -- Showdown Success: Val
-	Ach(62881):NotCategorized(), -- Showdown Slugger: Val
-	Ach(62882):NotCategorized(), -- Showdown Success: Naigtal
-	Ach(62883):NotCategorized(), -- Showdown Slugger: Naigtal
+	Ach(62873):Mount(), -- A Trip Around the Stars
+	Ach(62874):Mount(), -- A Trip Through the Stars
+	Ach(62880):Pet(), -- Showdown Success: Val
+	Ach(62881):Transmog(), -- Showdown Slugger: Val
+	Ach(62882):Pet(), -- Showdown Success: Naigtal
+	Ach(62883), -- Showdown Slugger: Naigtal
 	Ach(62887), -- Heroic: Worlds Ahead
 	Ach(62901), -- Heroic: Power Creep
 	Ach(62903), -- Climate Strange: Val
@@ -690,8 +685,9 @@ KrowiAF.AchievementData["12_00_07"] = {
 	Ach(63241), -- Mythic: Rotmire
 	Ach(63264), -- Heroic Showdowns
 	Ach(63325):HousingDecor(), -- Omnium Folio Studies
+	Ach(63343):HousingDecor(), -- Goal!
 	Ach(63348), -- Heroic Slugger
-	Ach(63349):NotCategorized(), -- Ultradon Carnage
+	Ach(63349):Pet(), -- Ultradon Carnagem
 	Ach(63383), -- Into the Stars
 	Ach(63384), -- Prepared for a Showdown
 	Ach(63385), -- A Hal'hadar Walks into a Swamp

@@ -902,5 +902,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
     {
         11190, -- Broken Isles Pathfinder, Part One
         11446, -- Broken Isles Pathfinder, Part Two
+        42114, -- Broken Memories
     },
 });

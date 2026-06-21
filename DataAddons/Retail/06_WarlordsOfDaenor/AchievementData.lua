@@ -1,10 +1,7 @@
-local _, addon = ...
-local shared = addon.Data.AchievementData.Shared
-local Ach = shared.Ach
+local Ach = KrowiAF.Ach
 local faction = KrowiAF.Enum.Faction
 
 KrowiAF.AchievementData["06_00_02"] = {
-	{KrowiAF.SetAchievementPatch, 6, 0, 2},
 	Ach(8671):Other():AutoFactionSplit(faction.Horde, 8845), -- You'll Get Caught Up In The... Frostfire! / As I Walk Through the Valley of the Shadow of Moon
 	Ach(8812):Obtainable("Never"), -- You're Really Doing It Wrong (Level 90)
 	Ach(8820):Pet():Obtainable("From", "Date", {2014, 11, 21}, "Until", "Date", {2015, 1, 5}), -- WoW's 10th Anniversary
@@ -432,7 +429,6 @@ KrowiAF.AchievementData["06_00_02"] = {
 }
 
 KrowiAF.AchievementData["06_01_00"] = {
-	{KrowiAF.SetAchievementPatch, 6, 1, 0},
 	Ach(9755):Obtainable("Event", 374), -- Darkmoon Race Enthusiast
 	Ach(9756):Obtainable("Event", 374), -- Darkmoon Racer Novice
 	Ach(9759):Obtainable("Event", 374), -- Darkmoon Racer Jockey
@@ -493,7 +489,6 @@ KrowiAF.AchievementData["06_01_00"] = {
 }
 
 KrowiAF.AchievementData["06_02_00"] = {
-	{KrowiAF.SetAchievementPatch, 6, 2, 0},
 	Ach(9972):Garrison(), -- A Race Against Slime
 	Ach(9979), -- Get In My Belly!
 	Ach(9983):Pet():Obtainable("Event", 374), -- That's Whack!
@@ -611,7 +606,6 @@ KrowiAF.AchievementData["06_02_00"] = {
 }
 
 KrowiAF.AchievementData["06_02_02"] = {
-	{KrowiAF.SetAchievementPatch, 6, 2, 2},
 	Ach(10309), -- Collector's Edition: Zeradar
 	Ach(10320), -- Collector's Edition: Illidari Felstalker
 	Ach(10321), -- Collector's Edition: Nibbles

@@ -155,6 +155,8 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                 17738, -- Flame Keeper of the Dragon Isles
                 41631, -- Flame Warden of Khaz Algar
                 41632, -- Flame Keeper of Khaz Algar
+                61336, -- Flame Warden of Midnight
+                61335, -- Flame Keeper of Midnight
             },
         },
         { -- Pirates' Day
@@ -1326,6 +1328,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                 41056, -- Master of the Turbulent Timeways II
                 41779, -- Master of the Turbulent Timeways III
                 61394, -- Master of the Turbulent Timeways IV
+                61463, -- Master of the Turbulent Timeways V
             },
         },
         {

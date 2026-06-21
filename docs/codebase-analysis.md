@@ -147,14 +147,15 @@ Per the project's own instructions, semicolons should not be used. Many newer fi
 
 ### 3. Inconsistent Data Entry Style in `DataAddons/Retail/`
 
-`DataAddons/Shared/AchievementData.lua` introduced shorthand helper functions in 2025:
+The V2 `Ach()` builder (defined in `Api/AchievementDataBuilder.lua` as `KrowiAF.Ach`) is the current standard. All new data files and new patch tables must use:
+
 ```lua
-function shared.Ach(id, ...) ... end
-function shared.PvE(season) return {"PvE Season", season} end
-function shared.Title() return {RewardType = value} end
+local Ach = KrowiAF.Ach
 ```
 
-Only `11_TheWarWithin/AchievementData.lua` imports these helpers (line 3: `local Ach, PvE, PvP, Title = shared.Ach, ...`). All other expansion data files (`01_Vanilla` through `10_Dragonflight` and `12_Midnight`) use the old verbose style. The `12_Midnight` data was written _after_ the helpers existed but doesn't use them. This creates a maintenance split: maintainers must know which style applies to which file.
+However, all legacy expansion data files (`01_Vanilla` through `10_Dragonflight` and `12_Midnight`) still use the old verbose V1 style (bare positional arguments). This creates a maintenance split: any maintainer editing an old expansion file must use the V1 style; any new expansion file (11+) uses V2. Migration of old files to V2 is tracked as a future task.
+
+**Note:** An earlier iteration of the V2 API exposed the builder via `shared.Ach` (`addon.Data.AchievementData.Shared.Ach`). This was superseded by `KrowiAF.Ach` in `Api/AchievementDataBuilder.lua`. All documentation and skill files have been updated to reflect this. Any remaining `shared.Ach` references in data files or docs are outdated and should be changed to `KrowiAF.Ach`.
 
 ### 4. Duplicate Achievement Registration — Bug in `11_TheWarWithin` ✅ FIXED (2026-04-19)
 
@@ -513,7 +514,39 @@ local function ParseAddAchievementData(id, faction, otherFactionAchievementId, i
 
 This function allows any positional argument to be a table by "stealing" it as `moreData`. The result is that the type of every argument must be checked, the order of the arguments matters for correctness, and only one `moreData` table is supported (the last one wins). The `Ach()` helper in `Shared/AchievementData.lua` uses a cleaner variadic approach, but the old parsing function is still in production use for the majority of the data.
 
-### 12. Fragile `strsplit` in `VerifySavedCharacterData`
+### 12. `achievementPatch` is Implicit Shared Mutable State
+
+`Api/AchievementDataApi.lua`:
+
+```lua
+local achievementPatch  -- module-level upvalue
+function KrowiAF.SetAchievementPatch(major, minor, patch)
+    achievementPatch = KrowiAF.GetBuildVersion(major, minor, patch)
+end
+```
+
+Every `AddAchievementData` call implicitly reads `achievementPatch` — the value set by the most recent `SetAchievementPatch` call. In the V2 patch-table format the first entry of every patch table is always `{KrowiAF.SetAchievementPatch, major, minor, patch}`, which keeps this safe by convention. However:
+
+- A patch table that accidentally omits the setter row will silently inherit the previous patch's `BuildVersion`.
+- The initial value is `nil`, so any achievement registered before the first `SetAchievementPatch` call (e.g., a malformed data file loaded before the setter) gets `BuildVersion = nil` with no error.
+
+**Status:** By design — the sequential task-group execution model makes this safe in practice. Documented here as a constraint that must be respected by all data files.
+
+### 13. Mixed Positional and Field-Keyed Extras Table in `AchBuilder`
+
+`Api/AchievementDataBuilder.lua`: the `extras` object stored at `self[3]` is used simultaneously as a hash map (`e.Faction`, `e.AltId`, `e.RewardType`, `e.IsPvP`, `e.IsRealmFirst`, `e.AutoPair`) and as a sequential array (season entries like `{"PvE Season", 13}`, obtainables like `{"From", "Date", {2024, 11, 4}, ...}`). `AddAchievementData` separates them with `if #extras > 0 then` (numeric entries become `temporaryObtainables`) and named-field reads.
+
+This works but makes the extras structure opaque — its shape cannot be inferred from any single call site. Validation of the extras table is entirely implicit (wrong types or wrong keys produce wrong data silently, not errors).
+
+**Status:** No change today. Documented as a structural constraint to be aware of when extending the builder.
+
+### 14. V1 Category Parser Maintained Alongside V2
+
+`Api/CategoryDataApi.lua` contains two parallel code paths: the V1 parser (`ParseCategory` / `ParseChildData`) which uses runtime type-sniffing on positional arguments, and the V2 path (`ParseCategoryV2`) which uses explicit named fields (`_v2 = true` sentinel). Both code paths are active and process the majority of the data tree.
+
+The V1 parser is fragile by design — a wrong type at the wrong positional index is silently misrouted (a numeric name, a boolean ID, or a misplaced nil will produce incorrect category structure). Migration to V2 is the long-term fix.
+
+**Status:** V1 must remain available for existing plugin authors who use the V1 format. A future migration will move all first-party data to V2 and then V1 support can be deprecated. No code changes today.
 
 `DataIntegrityManager.lua`:
 ```lua
@@ -621,6 +654,10 @@ The `DataAddons/Retail/` tree spans 12 expansions. `11_TheWarWithin/CategoryData
 | 14 | 🟡 LOW | `Globals.lua` is too large / does too much | `Globals.lua` | Refactor: split cache, compat, and window management |
 | 15 | 🔄 ONGOING | Mixed indentation and semicolons throughout codebase | All files | `.editorconfig` + `docs/styleguide.md` created 2026-04-19. Apply incrementally as files are touched. |
 | 16 | ✅ FIXED | `AchBuilder` reward consumer guards: `IsTable` check + temp table alloc on every filter/render pass | `Filters.lua` validation #6, `Gui/AchievementTooltip/Rewards.lua` | Fixed 2026-04-26: `IsTable` guards removed from both consumers. `RewardType` is always a table or nil. |
+| 17 | ✅ FIXED | `shared.Ach` reference in docs/skills diverged from actual `KrowiAF.Ach` factory | `copilot-instructions.md`, `ApiDocumentation.lua`, `docs/how-to/`, skill files | Fixed 2026-06-21: all docs updated to `local Ach = KrowiAF.Ach`. |
+| 18 | 🟡 LOW | `achievementPatch` implicit mutable state (see THE BAD §12) | `Api/AchievementDataApi.lua` | By design; no code change. Documented as constraint. |
+| 19 | 🟡 LOW | Mixed positional+field extras table in AchBuilder (see THE BAD §13) | `Api/AchievementDataBuilder.lua` | No change today; documented as structural constraint. |
+| 20 | 🔄 FUTURE | V1 category parser maintained alongside V2 (see THE BAD §14) | `Api/CategoryDataApi.lua` | Migrate all first-party data to V2, then deprecate V1. Plugin authors must stay on V1 until notified. |
 
 ---
 

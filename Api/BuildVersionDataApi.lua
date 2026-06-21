@@ -8,7 +8,9 @@ end
 
 function KrowiAF.GetBuildVersion(major, minor, patch)
     local buildVersionId = KrowiAF.GetBuildVersionId(major, minor, patch);
-    return addon.Data.BuildVersions[buildVersionId];
+    local buildVersion = addon.Data.BuildVersions[buildVersionId];
+    assert(buildVersion ~= nil, "BuildVersion " .. major .. "." .. minor .. "." .. patch .. " (" .. buildVersionId .. ") is not registered. Add it to the matching BuildVersionData.lua first.");
+    return buildVersion;
 end
 
 function KrowiAF.GroupBuildVersions()

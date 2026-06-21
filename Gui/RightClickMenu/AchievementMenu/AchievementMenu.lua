@@ -48,7 +48,7 @@ local function CreateMenu(menuObj, achievement)
 		end
 	end
 
-	KrowiAF.PluginsApi:AddAchievementRightClickMenuItems(menuObj, achievement);
+	KrowiAF.PluginsApi:AddAchievementRightClickMenuItems(menuObj, achievement, menuBuilder);
 end
 
 function achievementMenu:Open(caller, achievement, anchor, offsetX, offsetY, point, relativePoint, frameStrata, frameLevel)

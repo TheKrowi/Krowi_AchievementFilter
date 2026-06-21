@@ -1,10 +1,7 @@
-local _, addon = ...
-local shared = addon.Data.AchievementData.Shared
-local Ach = shared.Ach
+local Ach = KrowiAF.Ach
 local faction = KrowiAF.Enum.Faction
 
 KrowiAF.AchievementData["10_00_00"] = {
-	{KrowiAF.SetAchievementPatch, 10, 0, 0},
 	Ach(15325):AutoFactionSplit(faction.Alliance, 15638), -- Dracthyr, Awaken
 	Ach(15394), -- Ohn'a'Roll
 	Ach(15641):Pet(), -- Many More Mini Minions
@@ -52,7 +49,7 @@ KrowiAF.AchievementData["10_00_00"] = {
 	Ach(15954):Title():PvP(34), -- Duelist: Dragonflight Season 1
 	Ach(15955):Title():PvP(34), -- Challenger I: Dragonflight Season 1
 	Ach(15956):PvP(34), -- Challenger II: Dragonflight Season 1
-	Ach(15957):Title():Mount():Transmog():PvP(34), -- Gladiator: Dragonflight Season 1
+	Ach(15957):Mount():Title():Transmog():PvP(34), -- Gladiator: Dragonflight Season 1
 	Ach(15958):AutoFactionSplit(faction.Horde, 15959):PvP(34), -- Hero of the Horde / Alliance: Crimson
 	Ach(15960):Title():PvP(34), -- Combatant I: Dragonflight Season 1
 	Ach(15961):PvP(34), -- Combatant II: Dragonflight Season 1
@@ -367,7 +364,6 @@ KrowiAF.AchievementData["10_00_00"] = {
 }
 
 KrowiAF.AchievementData["10_00_02"] = {
-	{KrowiAF.SetAchievementPatch, 10, 0, 2},
 	Ach(15640), -- Return to Darkness
 	Ach(16729), -- To All the Squirrels Hidden Til Now
 	Ach(16730):PvP(34), -- Crimson Gladiator's Drake
@@ -383,7 +379,7 @@ KrowiAF.AchievementData["10_00_02"] = {
 	Ach(16790), -- Curious Coin
 	Ach(16791):Title(), -- Merchant Artisan
 	Ach(16799):Title(), -- Personal Crafter
-	Ach(16801):IsRealmFirst():Obtainable("Once"), -- Realm First! Dragonflight Keystone Hero
+	Ach(16801):IsRealmFirst(), -- Realm First! Dragonflight Keystone Hero
 	Ach(16808), -- Friend of the Dragon Isles
 	-- {16884}, -- Friends in the Field [Removed in 11.0.7, replaced by 41172]
 	-- {16944}, -- Friend of the Family [Removed in 11.0.7, replaced by 41173]
@@ -400,7 +396,6 @@ KrowiAF.AchievementData["10_00_02"] = {
 }
 
 KrowiAF.AchievementData["10_00_05"] = {
-	{KrowiAF.SetAchievementPatch, 10, 0, 5},
 	Ach(16696), -- Renewed Proto-Drake Armor
 	Ach(16697), -- Renewed Proto-Drake Head Features
 	Ach(16698), -- Renewed Proto-Drake Tail Features
@@ -439,7 +434,7 @@ KrowiAF.AchievementData["10_00_05"] = {
 	Ach(17330), -- Reverse Racer: Bronze
 	Ach(17331), -- Reverse Racer: Silver
 	Ach(17332):Title(), -- Reverse Racer: Gold
-	Ach(17334):Transmog():TradersTender(), -- Trading Post Enthusiast
+	Ach(17334):TradersTender():Transmog(), -- Trading Post Enthusiast
 	Ach(17335):IsPvP(), -- Airborne Tumbler
 	Ach(17336):IsPvP(), -- Airborne Tumbler
 	Ach(17342), -- The Future We Make
@@ -448,7 +443,6 @@ KrowiAF.AchievementData["10_00_05"] = {
 }
 
 KrowiAF.AchievementData["10_00_07"] = {
-	{KrowiAF.SetAchievementPatch, 10, 0, 7},
 	Ach(17279), -- Forbidden Reach: Bronze
 	Ach(17280), -- Forbidden Reach: Silver
 	Ach(17281), -- Forbidden Reach: Gold
@@ -502,7 +496,6 @@ KrowiAF.AchievementData["10_00_07"] = {
 }
 
 KrowiAF.AchievementData["10_01_00"] = {
-	{KrowiAF.SetAchievementPatch, 10, 1, 0},
 	Ach(17483), -- Zaralek Cavern: Bronze
 	Ach(17484):Mount(), -- Zaralek Cavern: Silver
 	Ach(17485), -- Zaralek Cavern: Gold
@@ -536,7 +529,7 @@ KrowiAF.AchievementData["10_01_00"] = {
 	Ach(17737):FactionSplit(faction.Alliance, nil):Obtainable("Event", 341), -- Flame Warden of the Dragon Isles
 	Ach(17738):FactionSplit(faction.Horde, nil):Obtainable("Event", 341), -- Flame Keeper of the Dragon Isles
 	Ach(17739), -- Embers of Neltharion
-	Ach(17740):Title():Mount():Transmog():PvP(35), -- Gladiator: Dragonflight Season 2
+	Ach(17740):Mount():Title():Transmog():PvP(35), -- Gladiator: Dragonflight Season 2
 	Ach(17741):Pet(), -- Slow and Steady Wins the Race
 	-- {17756}, -- Friends in Loamm Places [Removed in 11.0.7, replaced by 41175]
 	-- {17763}, -- There's No Place Like Loamm [Removed in 11.0.7, replaced by 41183]
@@ -647,7 +640,6 @@ KrowiAF.AchievementData["10_01_00"] = {
 }
 
 KrowiAF.AchievementData["10_01_05"] = {
-	{KrowiAF.SetAchievementPatch, 10, 1, 5},
 	Ach(17712):Obtainable("Event", 1395), -- Kalimdor: Bronze
 	Ach(17713):Obtainable("Event", 1395), -- Kalimdor: Silver
 	Ach(17714):Obtainable("Event", 1395), -- Kalimdor: Gold
@@ -697,7 +689,7 @@ KrowiAF.AchievementData["10_01_05"] = {
 	Ach(18643):Transmog(), -- Community Rumors
 	Ach(18644):Pet(), -- Community Rumor Mill
 	Ach(18645):Transmog(), -- Tools of the Trade
-	Ach(18646):Title():Mount(), -- Whodunnit?
+	Ach(18646):Mount():Title(), -- Whodunnit?
 	Ach(18703), -- Dawn of the Infinite: Galakrond's Fall
 	Ach(18704), -- Dawn of the Infinite: Murozond's Rise
 	Ach(18705):Title():Obtainable("Before", "Version", {10, 2, 0}), -- Defender of the Timeways
@@ -707,7 +699,6 @@ KrowiAF.AchievementData["10_01_05"] = {
 }
 
 KrowiAF.AchievementData["10_01_07"] = {
-	{KrowiAF.SetAchievementPatch, 10, 1, 7},
 	Ach(15344), -- "S.A.F.E" Pilot
 	Ach(17344), -- Warcraft Rumble Minis, Get 'Em All!
 	Ach(17346), -- Warcraft Rumble Minis, Maiev's New Look
@@ -900,12 +891,11 @@ KrowiAF.AchievementData["10_01_07"] = {
 	Ach(19104):Obtainable("Event", 1407), -- Outland Reverse: Gold
 	Ach(19105):Obtainable("Event", 1407), -- Outland Racing Completionist
 	Ach(19106):Obtainable("Event", 1407), -- Outland Racing Completionist: Silver
-	Ach(19107):Title():Tabard():Obtainable("Event", 1407), -- Outland Racing Completionist: Gold
+	Ach(19107):Tabard():Title():Obtainable("Event", 1407), -- Outland Racing Completionist: Gold
 	Ach(19192), -- Lil' Frostwing
 }
 
 KrowiAF.AchievementData["10_02_00"] = {
-	{KrowiAF.SetAchievementPatch, 10, 2, 0},
 	Ach(18958):Title(), -- Of the Tyr's Guard
 	Ach(19009):PvE(11), -- Dragonflight Keystone Explorer: Season Three
 	Ach(19010):Title():PvE(11), -- Dragonflight Keystone Conqueror: Season Three
@@ -924,7 +914,7 @@ KrowiAF.AchievementData["10_02_00"] = {
 	Ach(19088):Teleport():PvE(11), -- Keystone Hero: Dawn of the Infinite
 	Ach(19089):Pet(), -- Don't Let the Doe Hit You On The Way Out
 	Ach(19090):Title():PvP(36), -- Elite: Dragonflight Season 3
-	Ach(19091):Title():Mount():Transmog():PvP(36), -- Gladiator: Dragonflight Season 3
+	Ach(19091):Mount():Title():Transmog():PvP(36), -- Gladiator: Dragonflight Season 3
 	Ach(19109), -- Emerald Dream: Bronze
 	Ach(19110), -- Emerald Dream: Silver
 	Ach(19111), -- Emerald Dream: Gold
@@ -1033,7 +1023,6 @@ KrowiAF.AchievementData["10_02_00"] = {
 }
 
 KrowiAF.AchievementData["10_02_05"] = {
-	{KrowiAF.SetAchievementPatch, 10, 2, 5},
 	Ach(19400):Obtainable("Event", 423), -- Support Your Local Artisans
 	Ach(19508):Obtainable("Event", 423), -- Love Language Expert
 	Ach(19674):Obtainable("Event", 1429), -- Northrend: Bronze
@@ -1049,7 +1038,7 @@ KrowiAF.AchievementData["10_02_05"] = {
 	Ach(19719):HousingDecor(), -- Reclamation of Gilneas
 	Ach(19721):Obtainable("Event", 1429), -- Northrend Racing Completionist
 	Ach(19722):Obtainable("Event", 1429), -- Northrend Racing Completionist: Silver
-	Ach(19723):Title():Tabard():Obtainable("Event", 1429), -- Northrend Racing Completionist: Gold
+	Ach(19723):Tabard():Title():Obtainable("Event", 1429), -- Northrend Racing Completionist: Gold
 	Ach(19724), -- Hearthstone Card Collection
 	Ach(19786), -- When a Rock is Just a Rock
 	Ach(19787), -- Clued In
@@ -1065,11 +1054,10 @@ KrowiAF.AchievementData["10_02_05"] = {
 }
 
 KrowiAF.AchievementData["10_02_06"] = {
-	{KrowiAF.SetAchievementPatch, 10, 2, 6},
 	Ach(19453):Title():PvP(37), -- Draconic Legend: Dragonflight Season 4
 	Ach(19454):Title():PvP(37), -- Draconic Gladiator: Dragonflight Season 4
 	Ach(19455):AutoFactionSplit(faction.Alliance, 19456):PvP(37), -- Hero of the Alliance / Horde: Draconic
-	Ach(19458):Mount():HousingDecor(), -- A World Awoken
+	Ach(19458):HousingDecor():Mount(), -- A World Awoken
 	Ach(19463), -- Dragon Quests
 	Ach(19466), -- Oh My God, They Were Clutchmates
 	Ach(19478):Mount(), -- Now THIS is Dragon Racing!
@@ -1079,7 +1067,7 @@ KrowiAF.AchievementData["10_02_06"] = {
 	Ach(19483):Mount(), -- Flight Club
 	Ach(19485):Mount(), -- Closing Time
 	Ach(19486):Mount(), -- Across the Isles
-	Ach(19490):Title():Mount():Transmog():PvP(37), -- Gladiator: Dragonflight Season 4
+	Ach(19490):Mount():Title():Transmog():PvP(37), -- Gladiator: Dragonflight Season 4
 	Ach(19492):Title():PvP(37), -- Duelist: Dragonflight Season 4
 	Ach(19493):Title():PvP(37), -- Rival I: Dragonflight Season 4
 	Ach(19494):Title():PvP(37), -- Combatant I: Dragonflight Season 4
@@ -1111,13 +1099,12 @@ KrowiAF.AchievementData["10_02_06"] = {
 	Ach(19785):Title():PvE(12), -- Draconic Hero: Dragonflight Season 4
 	Ach(20209):Obtainable("Event", 181), -- Quacked Killer
 	Ach(20481):Transmog():Obtainable("PvP Season", 37):Obtainable("PvE Season", 12), -- Dragonflight Season 4 Master
-	Ach(20501):Mount():HousingDecor(), -- Back from the Beyond
+	Ach(20501):HousingDecor():Mount(), -- Back from the Beyond
 	Ach(20508), -- Plunder Wonder
 	Ach(20509), -- Plunderkind
 }
 
 KrowiAF.AchievementData["10_02_07"] = {
-	{KrowiAF.SetAchievementPatch, 10, 2, 7},
 	Ach(19871):Obtainable("Event", 1514), -- Infinite Power
 	Ach(19872):Toy():Obtainable("Event", 1514), -- The Jade Forest
 	Ach(19873):Transmog():Obtainable("Event", 1514), -- Valley of the Four Winds
@@ -1265,6 +1252,6 @@ KrowiAF.AchievementData["10_02_07"] = {
 	Ach(20537):Other():Obtainable("Event", 1514), -- Infinite Power XI
 	Ach(20538):Toy():Obtainable("Event", 1514), -- Infinite Power XII
 	Ach(20593):Mount():Obtainable("Event", 1514), -- Time Trial
-	Ach(40223):Title():Other():Obtainable("Event", 1514), -- Timerunner
+	Ach(40223):Other():Title():Obtainable("Event", 1514), -- Timerunner
 	Ach(40382), -- Hunt the Harbinger
 }

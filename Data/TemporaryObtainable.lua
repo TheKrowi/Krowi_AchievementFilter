@@ -53,7 +53,7 @@ function temporaryObtainable:GetObtainableState(achievement)
 
     local start, _end
     local startFunction = record.Start.Function
-    if startFunction == "PvE Season" or startFunction == "Season" then
+    if startFunction == "PvE Season" then
         start = self:GetMplusSeasonStartState(record)
     elseif startFunction == "PvP Season" then
         start = self:GetPvpSeasonStartState(record)
@@ -78,7 +78,7 @@ function temporaryObtainable:GetObtainableState(achievement)
     end
 
     local endFunction = record.End.Function
-    if endFunction == "PvE Season" or endFunction == "Season" then
+    if endFunction == "PvE Season" then
         _end = self:GetMplusSeasonEndState(record)
     elseif endFunction == "PvP Season" then
         _end = self:GetPvpSeasonEndState(record)
@@ -126,7 +126,7 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
         local start, _end -- Past, Future
 
         local startFunction = record.Start and record.Start.Function
-        if startFunction == "PvE Season" or startFunction == "Season" then
+        if startFunction == "PvE Season" then
             start = self:GetMplusSeasonStartState(record)
         elseif startFunction == "PvP Season" then
             start = self:GetPvpSeasonStartState(record)
@@ -139,7 +139,7 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
         end
 
         local endFunction = record.End and record.End.Function
-        if endFunction == "PvE Season" or startFunction == "Season" then
+        if endFunction == "PvE Season" then
             _end = self:GetMplusSeasonEndState(record)
         elseif endFunction == "PvP Season" then
             _end = self:GetPvpSeasonEndState(record)
@@ -244,8 +244,6 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
             startDetail = addon.L["Patch"]
         elseif record.Start.Function == "Version" then
             startDetail = addon.Util.L["Version"]
-        elseif record.Start.Function == "Season" then
-            startDetail = addon.L["Season"]
         else
             startDetail = record.Start.Function
         end
@@ -301,8 +299,6 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
             endDetail = addon.L["Patch"]
         elseif record.End.Function == "Version" then
             endDetail = addon.Util.L["Version"]
-        elseif record.End.Function == "Season" then
-            endDetail = addon.L["Season"]
         else
             endDetail = record.End.Function
         end

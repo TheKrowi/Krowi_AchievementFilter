@@ -7,8 +7,11 @@ local ignoreAchievementIds = {};
 ignoreAchievementIds[7268] = true;
 ignoreAchievementIds[7269] = true;
 ignoreAchievementIds[7270] = true;
-ignoreAchievementIds[40910] = true;
-ignoreAchievementIds[42114] = true;
+if addon.Util.IsMainline then
+    ignoreAchievementIds[40910] = true; -- Successfully Stress Test CN Realms
+else
+    ignoreAchievementIds[40821] = true; -- Successfully Stress Test CN Realms
+end
 
 function achievementData.Load()
     KrowiAF_Achievements = KrowiAF_Achievements or {};

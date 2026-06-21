@@ -1217,15 +1217,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The War Within
             41971, -- Through the Looking Glass
         },
     },
-    { -- Lorewalking
-        addon.L["Lorewalking"],
-        {
-            42187, -- Lorewalking: Ethereal Wisdom
-            42188, -- Lorewalking: Blade's Bane
-            42189, -- Lorewalking: The Lich Kingdoms
-            61467, -- Lorewalking: The Elves of Quel'thalas
-        },
-    },
     {
         40231, -- The War Within Pathfinder
         61451, -- Worldsoul-Searching

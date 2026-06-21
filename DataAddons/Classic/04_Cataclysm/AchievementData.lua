@@ -1,10 +1,7 @@
-local _, addon = ...
-local shared = addon.Data.AchievementData.Shared
-local Ach = shared.Ach
+local Ach = KrowiAF.Ach
 local faction = KrowiAF.Enum.Faction
 
 KrowiAF.AchievementData["04_00_01"] = {
-	{KrowiAF.SetAchievementPatch, 4, 0, 1},
 	Ach(4832):Obtainable("Never"), -- Friends In Even Higher Places
 	Ach(4887):Obtainable("Never"), -- Tripping the Rifts
 	Ach(5377):Obtainable("Never"), -- Collector's Edition: Lil' Deathwing
@@ -13,7 +10,6 @@ KrowiAF.AchievementData["04_00_01"] = {
 }
 
 KrowiAF.AchievementData["04_00_03"] = {
-	{KrowiAF.SetAchievementPatch, 4, 0, 3},
 	Ach(4859), -- Kings Under the Mountain
 	Ach(4894):AutoFactionSplit(faction.Horde, 4903), -- Silverpine Forest / Westfall and Duskwood Quests
 	Ach(4908):AutoFactionSplit(faction.Horde, 4899), -- Ghostlands / Loch Modan and Wetlands Quests
@@ -27,28 +23,23 @@ KrowiAF.AchievementData["04_00_03"] = {
 }
 
 KrowiAF.AchievementData["04_01_00"] = {
-	{KrowiAF.SetAchievementPatch, 4, 1, 0},
 	Ach(5788):Obtainable("Never"), -- Agent of the Shen'dralar
 }
 
 KrowiAF.AchievementData["04_02_00"] = {
-	{KrowiAF.SetAchievementPatch, 4, 2, 0},
 	Ach(5863):Obtainable("Never"), -- WoW's 7th Anniversary
 }
 
 KrowiAF.AchievementData["04_03_00"] = {
-	{KrowiAF.SetAchievementPatch, 4, 3, 0},
 	Ach(6131):Obtainable("Never"), -- WoW's 8th Anniversary
 	Ach(6185):Obtainable("Never"), -- Murkablo
 }
 
 KrowiAF.AchievementData["04_03_02"] = {
-	{KrowiAF.SetAchievementPatch, 4, 3, 2},
 	Ach(6316):AutoFactionSplit(faction.Alliance, 6317):Title():PvP(10), -- Hero of the Alliance / Horde: Ruthless
 }
 
 KrowiAF.AchievementData["04_04_00"] = {
-	{KrowiAF.SetAchievementPatch, 4, 4, 0},
 	Ach(40968):Title():PvP(9), -- Rival: Season 9
 	Ach(40969):Title():PvP(9), -- Gladiator: Season 9
 	Ach(40970):Title():PvP(9), -- Duelist: Season 9
@@ -56,7 +47,6 @@ KrowiAF.AchievementData["04_04_00"] = {
 }
 
 KrowiAF.AchievementData["04_04_01"] = {
-	{KrowiAF.SetAchievementPatch, 4, 4, 1},
 	Ach(41139), -- Protocol Inferno: Blackrock Caverns
 	Ach(41140), -- Protocol Inferno: Throne of the Tides
 	Ach(41141), -- Protocol Inferno: The Stonecore

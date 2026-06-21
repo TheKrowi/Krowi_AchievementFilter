@@ -67,6 +67,7 @@ $rows | ForEach-Object { $byId[$_[3]] = $_ }
 
 | Index | DB column | What it tells you |
 |-------|-----------|-------------------|
+| 0 | `Description_lang` | Achievement description — use when reward type or category is ambiguous |
 | 1 | `Title_lang` | Authoritative achievement name — use to correct inline comments |
 | 2 | `Reward_lang` | Non-empty means reward exists. `"Title Reward: X"` or `"Title: X"` → `:Title()`. `"Reward: X"` (no "Title") → tangible reward (mount/pet/toy/etc.) |
 | 3 | `ID` | Confirm ID exists in DB (`recordsFiltered == 0` means not found) |
@@ -426,11 +427,13 @@ Ach(40083):IsPvP(), -- Tour of Duty: Isle of Dorn
 ## Related Files
 - `DataAddons/Retail/12_Midnight/AchievementData.lua` — Newest V2 reference
 - `DataAddons/Retail/11_TheWarWithin/AchievementData.lua` — Canonical V2 reference
-- `DataAddons/Shared/AchievementData.lua` — `AchBuilder` definition and `shared.Ach` factory
+- `DataAddons/Shared/AchievementData.lua` — `AchBuilder` definition (see `Api/AchievementDataBuilder.lua` for `KrowiAF.Ach`)
 - `Api/AchievementDataApi.lua` — `KrowiAF.AddAchievementData` and `KrowiAF.SetAchievementPatch`
 - `Api/ApiDocumentation.lua` — Annotated examples of all data patterns
 
 ## Autolearn Feedback Loop
+
+### Loop A: Verifying generated entries
 
 After generating V2 output, run it through the `verify-achievement-data` skill before presenting the final result:
 
@@ -440,3 +443,40 @@ After generating V2 output, run it through the `verify-achievement-data` skill b
 4. Only present output that passes verification
 
 This loop catches common mistakes (missing `:IsPvP()` on PvP achievements, wrong method names, malformed faction splits) without requiring manual review.
+
+### Loop B: Finding new achievements in a patch
+
+When asked "what new achievements does patch X.Y.Z have?", **always use `Find-NewAchievements.ps1`** as the authoritative source. Never derive the ID list by:
+- Assuming only IDs above a threshold are new (Blizzard can assign any ID)
+- Filtering by name prefix like `[DNT]` manually (use the Flags bitmask instead)
+- Querying a single build without diffing against the previous build
+
+**Mandatory workflow:**
+
+```powershell
+# 1. Ensure wow.tools.local is running (check first — do NOT start if already running)
+$running = Get-Process "wow.tools.local" -ErrorAction SilentlyContinue
+if (-not $running) { Start-Process "E:\World of Warcraft Addon Development\wow.tools.local\wow.tools.local.exe" }
+
+# 2. Run the authoritative diff script
+& ".github\skills\add-achievement-data\Find-NewAchievements.ps1" `
+    -BuildNew "X.Y.Z.NNNNN" `
+    -BuildOld "X.Y.Z.NNNNN"
+```
+
+The script handles:
+- Full build diff (all IDs, not just above a threshold)
+- Flags column bit `0x100000` → hidden/[DNT] entries filtered out
+- Top-level category filter → Statistics (1) and Guild (15076) excluded
+
+**After running the script, self-evaluate before presenting results:**
+
+```powershell
+& ".github\skills\add-achievement-data\Evaluate-FindNewAchievements.ps1" `
+    -BuildNew "X.Y.Z.NNNNN" `
+    -BuildOld "X.Y.Z.NNNNN" `
+    -AgentIds "ID1,ID2,ID3,..." `
+    -LuaFile "DataAddons\Retail\XX_Expansion\AchievementData.lua"
+```
+
+If the evaluator exits non-zero, fix the ID list and re-run. Do not present results until it passes. Max 3 attempts.

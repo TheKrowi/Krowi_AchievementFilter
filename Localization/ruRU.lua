@@ -6,7 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-05-27 12-37-59 ]] --
+-- [[ Exported at 2026-06-17 18-16-14 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -514,6 +514,7 @@ L["Offsets"] = "Смещение"
 L["Ohn'ahran Plains"] = "Равнины Он'ары"
 L["Ohn'ahran Plains: Next"] = "Равнины Он'ары: Следущее"
 L["Ohn'iri Springs"] = "Ключи Он'ир"
+L["Omnium Folio"] = "Фолиант Омниума"
 L["On Event Start"] = "При запуске События"
 L["On Login"] = "При заходе в игру"
 L["On Reload"] = "При Перезагрузке"
@@ -578,6 +579,7 @@ L["Related Tab"] = "Связанная вкладка"
 L["Related Tab Desc"] = "Добавляет дополнительный к {wowheadLink}, так что будет выбрана другая вкладка, отличная от вкладки по умолчанию."
 L["Remember frame position"] = "Запомнить позицию {frame}"
 L["Remember frame position Desc"] = "Запомнить позицию {frame} . Закрепит позицию {frame} в её последнем известном положении при следущем перезаходе."
+L["Remix: Mists of Pandaria"] = true
 L["RemixBronze"] = "Бронза ремикса"
 L["RemixInfiniteKnowledge"] = "Бесконечные знания ремикса"
 L["Remove from Watch List"] = "Убрать из {watchList}"
@@ -839,6 +841,7 @@ L["Upcoming Calendar Event Days Desc"] = "Количество дней допо
 L["Upcoming Calendar Event Login Delay"] = "Будущие календарные события во время входа"
 L["Upcoming Calendar Events"] = "Будущие календарные события"
 L["Upper Reaches"] = "Верхний ярус"
+L["Val and Naigtal"] = "Вал и Найталь"
 L["Val'sharah"] = "Валь'шара"
 L["Vendor"] = "Продавец"
 L["Venthyr Assault"] = "Атака Вентиров"

@@ -1,10 +1,7 @@
-local _, addon = ...
-local shared = addon.Data.AchievementData.Shared
-local Ach = shared.Ach
+local Ach = KrowiAF.Ach
 local faction = KrowiAF.Enum.Faction
 
 KrowiAF.AchievementData["04_00_01_S"] = {
-	{KrowiAF.SetAchievementPatch, 4, 0, 1},
 	Ach(5535):Obtainable("Before", "Version", {6, 0, 2}), -- 1000 Valor Points
 	Ach(5536):Obtainable("Before", "Version", {6, 0, 2}), -- 5000 Valor Points
 	Ach(5537):Obtainable("Before", "Version", {6, 0, 2}), -- 25,000 Valor Points
@@ -12,7 +9,6 @@ KrowiAF.AchievementData["04_00_01_S"] = {
 }
 
 KrowiAF.AchievementData["04_00_03_S"] = {
-	{KrowiAF.SetAchievementPatch, 4, 0, 3},
 	Ach(4825), -- Explore Vashj'ir
 	Ach(4826):Obtainable("Before", "Version", {9, 0, 1}), -- Level 85 (Legacy)
 	Ach(4827), -- Surveying the Damage
@@ -100,17 +96,17 @@ KrowiAF.AchievementData["04_00_03_S"] = {
 	Ach(4975), -- From Hell's Heart I Stab at Thee
 	Ach(4995), -- Explore the Cape of Stranglethorn
 	Ach(4996), -- Explore Southern Barrens
-	Ach(4998):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 85 Shaman (Legacy)
-	Ach(4999):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 85 (Legacy)
-	Ach(5000):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 85 Druid (Legacy)
-	Ach(5001):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 85 Paladin (Legacy)
-	Ach(5002):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 85 Priest (Legacy)
-	Ach(5003):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 85 Warlock (Legacy)
-	Ach(5004):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 85 Hunter (Legacy)
-	Ach(5005):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 85 Death Knight (Legacy)
-	Ach(5006):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 85 Mage (Legacy)
-	Ach(5007):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 85 Warrior (Legacy)
-	Ach(5008):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 85 Rogue (Legacy)
+	Ach(4998):IsRealmFirst(), -- Realm First! Level 85 Shaman (Legacy)
+	Ach(4999):IsRealmFirst(), -- Realm First! Level 85 (Legacy)
+	Ach(5000):IsRealmFirst(), -- Realm First! Level 85 Druid (Legacy)
+	Ach(5001):IsRealmFirst(), -- Realm First! Level 85 Paladin (Legacy)
+	Ach(5002):IsRealmFirst(), -- Realm First! Level 85 Priest (Legacy)
+	Ach(5003):IsRealmFirst(), -- Realm First! Level 85 Warlock (Legacy)
+	Ach(5004):IsRealmFirst(), -- Realm First! Level 85 Hunter (Legacy)
+	Ach(5005):IsRealmFirst(), -- Realm First! Level 85 Death Knight (Legacy)
+	Ach(5006):IsRealmFirst(), -- Realm First! Level 85 Mage (Legacy)
+	Ach(5007):IsRealmFirst(), -- Realm First! Level 85 Warrior (Legacy)
+	Ach(5008):IsRealmFirst(), -- Realm First! Level 85 Rogue (Legacy)
 	Ach(5060), -- Heroic: Blackrock Caverns
 	Ach(5061), -- Heroic: Throne of the Tides
 	Ach(5062), -- Heroic: Grim Batol
@@ -230,22 +226,22 @@ KrowiAF.AchievementData["04_00_03_S"] = {
 	Ach(5373):Obtainable("Before", "Version", {8, 0, 1}), -- Cataclysmically Superior
 	Ach(5374), -- 45 Exalted Reputations
 	Ach(5375):AutoFactionSplit(faction.Alliance, 5376), -- Baradin's Wardens / Hellscream's Reach
-	Ach(5381):IsRealmFirst():Obtainable("Once"), -- Realm First! Illustrious Alchemist
-	Ach(5382):IsRealmFirst():Obtainable("Once"), -- Realm First! Illustrious Blacksmith
-	Ach(5383):IsRealmFirst():Obtainable("Once"), -- Realm First! Illustrious Cook
-	Ach(5384):IsRealmFirst():Obtainable("Once"), -- Realm First! Illustrious Enchanter
-	Ach(5385):IsRealmFirst():Obtainable("Once"), -- Realm First! Illustrious Engineer
-	Ach(5386):IsRealmFirst():Obtainable("Once"), -- Realm First! Illustrious Medic
-	Ach(5387):IsRealmFirst():Obtainable("Once"), -- Realm First! Illustrious Angler
-	Ach(5388):IsRealmFirst():Obtainable("Once"), -- Realm First! Illustrious Herbalist
-	Ach(5389):IsRealmFirst():Obtainable("Once"), -- Realm First! Illustrious Scribe
-	Ach(5390):IsRealmFirst():Obtainable("Once"), -- Realm First! Illustrious Jewelcrafter
-	Ach(5391):IsRealmFirst():Obtainable("Once"), -- Realm First! Illustrious Leatherworker
-	Ach(5392):IsRealmFirst():Obtainable("Once"), -- Realm First! Illustrious Miner
-	Ach(5393):IsRealmFirst():Obtainable("Once"), -- Realm First! Illustrious Skinner
-	Ach(5394):IsRealmFirst():Obtainable("Once"), -- Realm First! Illustrious Tailor
-	Ach(5395):IsRealmFirst():Obtainable("Once"), -- Realm First! Grand Master Archaeologist
-	Ach(5396):IsRealmFirst():Obtainable("Once"), -- Realm First! Illustrious Archaeologist
+	Ach(5381):IsRealmFirst(), -- Realm First! Illustrious Alchemist
+	Ach(5382):IsRealmFirst(), -- Realm First! Illustrious Blacksmith
+	Ach(5383):IsRealmFirst(), -- Realm First! Illustrious Cook
+	Ach(5384):IsRealmFirst(), -- Realm First! Illustrious Enchanter
+	Ach(5385):IsRealmFirst(), -- Realm First! Illustrious Engineer
+	Ach(5386):IsRealmFirst(), -- Realm First! Illustrious Medic
+	Ach(5387):IsRealmFirst(), -- Realm First! Illustrious Angler
+	Ach(5388):IsRealmFirst(), -- Realm First! Illustrious Herbalist
+	Ach(5389):IsRealmFirst(), -- Realm First! Illustrious Scribe
+	Ach(5390):IsRealmFirst(), -- Realm First! Illustrious Jewelcrafter
+	Ach(5391):IsRealmFirst(), -- Realm First! Illustrious Leatherworker
+	Ach(5392):IsRealmFirst(), -- Realm First! Illustrious Miner
+	Ach(5393):IsRealmFirst(), -- Realm First! Illustrious Skinner
+	Ach(5394):IsRealmFirst(), -- Realm First! Illustrious Tailor
+	Ach(5395):IsRealmFirst(), -- Realm First! Grand Master Archaeologist
+	Ach(5396):IsRealmFirst(), -- Realm First! Illustrious Archaeologist
 	Ach(5412):IsPvP(), -- Tol Barad Victory
 	Ach(5415):IsPvP(), -- Tower Plower
 	Ach(5416), -- Pit Lord Argaloth
@@ -295,13 +291,11 @@ KrowiAF.AchievementData["04_00_03_S"] = {
 }
 
 KrowiAF.AchievementData["04_00_06_S"] = {
-	{KrowiAF.SetAchievementPatch, 4, 0, 6},
 	Ach(5718):AutoFactionSplit(faction.Alliance, 5719), -- Just Another Day in Tol Barad
 	Ach(5723), -- 50 Exalted Reputations
 }
 
 KrowiAF.AchievementData["04_01_00_S"] = {
-	{KrowiAF.SetAchievementPatch, 4, 1, 0},
 	Ach(5743), -- It's Not Easy Being Green
 	Ach(5744), -- Gurubashi Headhunter
 	Ach(5749), -- Vial of the Sands
@@ -323,7 +317,6 @@ KrowiAF.AchievementData["04_01_00_S"] = {
 }
 
 KrowiAF.AchievementData["04_02_00_S"] = {
-	{KrowiAF.SetAchievementPatch, 4, 2, 0},
 	Ach(5794), -- Time Flies When You're Having Fun
 	Ach(5799), -- Only the Penitent...
 	Ach(5802), -- Firelands
@@ -375,12 +368,10 @@ KrowiAF.AchievementData["04_02_00_S"] = {
 }
 
 KrowiAF.AchievementData["04_02_02_S"] = {
-	{KrowiAF.SetAchievementPatch, 4, 2, 2},
 	Ach(6045), -- Occu'thar
 }
 
 KrowiAF.AchievementData["04_03_00_S"] = {
-	{KrowiAF.SetAchievementPatch, 4, 3, 0},
 	Ach(5853):AutoFactionSplit(faction.Alliance, 5854):Obtainable("Event", 141), -- A-Caroling We Will Go
 	Ach(5995), -- Moon Guard
 	Ach(6002):PvP(9), -- Vicious Gladiator
@@ -439,6 +430,5 @@ KrowiAF.AchievementData["04_03_00_S"] = {
 }
 
 KrowiAF.AchievementData["04_03_02_S"] = {
-	{KrowiAF.SetAchievementPatch, 4, 3, 2},
 	Ach(6322):PvP(10), -- Ruthless Gladiator's Twilight Drake
 }

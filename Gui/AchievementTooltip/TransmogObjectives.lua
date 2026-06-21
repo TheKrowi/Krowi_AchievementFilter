@@ -66,8 +66,9 @@ end
 
 local function AchievementHasChanged(prevAchievementId)
     local owner = GameTooltip:GetOwner();
-    if owner and prevAchievementId ~= owner.Achievement.Id then -- Owner changed so we stop the current lookup
+    if not owner or not owner.Achievement or prevAchievementId ~= owner.Achievement.Id then -- Owner gone, changed, or non-KAF frame: stop the current lookup
         transmogCriteriaHelper:UnregisterEvent("GET_ITEM_INFO_RECEIVED");
+        co = nil;
         return true;
     end
 end

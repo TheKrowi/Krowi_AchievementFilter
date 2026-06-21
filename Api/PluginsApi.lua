@@ -44,10 +44,10 @@ function pluginsApi:LoadPlugins()
     end
 end
 
-function pluginsApi:AddAchievementRightClickMenuItems(rightClickMenu, achievement)
+function pluginsApi:AddAchievementRightClickMenuItems(rightClickMenu, achievement, menuBuilder)
     for _, plugin in next, self.Plugins do
         if type(plugin.AddAchievementRightClickMenuItems) == "function" then
-            plugin:AddAchievementRightClickMenuItems(rightClickMenu, achievement);
+            plugin:AddAchievementRightClickMenuItems(rightClickMenu, achievement, menuBuilder);
         end
     end
 end

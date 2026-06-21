@@ -34,6 +34,7 @@ function KrowiAF.SetAchievementPatch(major, minor, patch)
 end
 
 local function AddAchievementData(id, faction, otherFactionAchievementId, rewardType, isPvP, isRealmFirst, temporaryObtainables)
+    assert(addon.Data.Achievements[id] == nil, "Achievement " .. id .. " is already registered. Check for duplicate entries or AutoFactionSplit conflicts.")
     addon.Data.Achievements[id] = addon.Objects.Achievement:New(id, achievementPatch, faction, otherFactionAchievementId, rewardType, isPvP, isRealmFirst)
     tinsert(addon.Data.AchievementIds, id)
     if not temporaryObtainables then
