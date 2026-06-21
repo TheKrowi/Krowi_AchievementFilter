@@ -2,7 +2,6 @@ local Ach = KrowiAF.Ach
 local faction = KrowiAF.Enum.Faction
 
 KrowiAF.AchievementData["04_00_01_S"] = {
-	{KrowiAF.SetAchievementPatch, 4, 0, 1},
 	Ach(5535):Obtainable("Before", "Version", {6, 0, 2}), -- 1000 Valor Points
 	Ach(5536):Obtainable("Before", "Version", {6, 0, 2}), -- 5000 Valor Points
 	Ach(5537):Obtainable("Before", "Version", {6, 0, 2}), -- 25,000 Valor Points
@@ -10,7 +9,6 @@ KrowiAF.AchievementData["04_00_01_S"] = {
 }
 
 KrowiAF.AchievementData["04_00_03_S"] = {
-	{KrowiAF.SetAchievementPatch, 4, 0, 3},
 	Ach(4825), -- Explore Vashj'ir
 	Ach(4826):Obtainable("Before", "Version", {9, 0, 1}), -- Level 85 (Legacy)
 	Ach(4827), -- Surveying the Damage
@@ -293,13 +291,11 @@ KrowiAF.AchievementData["04_00_03_S"] = {
 }
 
 KrowiAF.AchievementData["04_00_06_S"] = {
-	{KrowiAF.SetAchievementPatch, 4, 0, 6},
 	Ach(5718):AutoFactionSplit(faction.Alliance, 5719), -- Just Another Day in Tol Barad
 	Ach(5723), -- 50 Exalted Reputations
 }
 
 KrowiAF.AchievementData["04_01_00_S"] = {
-	{KrowiAF.SetAchievementPatch, 4, 1, 0},
 	Ach(5743), -- It's Not Easy Being Green
 	Ach(5744), -- Gurubashi Headhunter
 	Ach(5749), -- Vial of the Sands
@@ -321,7 +317,6 @@ KrowiAF.AchievementData["04_01_00_S"] = {
 }
 
 KrowiAF.AchievementData["04_02_00_S"] = {
-	{KrowiAF.SetAchievementPatch, 4, 2, 0},
 	Ach(5794), -- Time Flies When You're Having Fun
 	Ach(5799), -- Only the Penitent...
 	Ach(5802), -- Firelands
@@ -373,12 +368,10 @@ KrowiAF.AchievementData["04_02_00_S"] = {
 }
 
 KrowiAF.AchievementData["04_02_02_S"] = {
-	{KrowiAF.SetAchievementPatch, 4, 2, 2},
 	Ach(6045), -- Occu'thar
 }
 
 KrowiAF.AchievementData["04_03_00_S"] = {
-	{KrowiAF.SetAchievementPatch, 4, 3, 0},
 	Ach(5853):AutoFactionSplit(faction.Alliance, 5854):Obtainable("Event", 141), -- A-Caroling We Will Go
 	Ach(5995), -- Moon Guard
 	Ach(6002):PvP(9), -- Vicious Gladiator
@@ -437,6 +430,5 @@ KrowiAF.AchievementData["04_03_00_S"] = {
 }
 
 KrowiAF.AchievementData["04_03_02_S"] = {
-	{KrowiAF.SetAchievementPatch, 4, 3, 2},
 	Ach(6322):PvP(10), -- Ruthless Gladiator's Twilight Drake
 }

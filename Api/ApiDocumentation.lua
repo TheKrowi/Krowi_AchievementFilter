@@ -1,3 +1,5 @@
+local _, addon = ...
+
 KrowiAF.CategoryData.Example1 = {
     1, -- Category Id [Required]
     "General", -- Category Name [Optional][Required when the root is a new category]
@@ -51,7 +53,7 @@ KrowiAF.CategoryData.Example1 = {
 --
 -- V2 (new), flat — all IDs in one named subcategory:
 local injection = KrowiAF.NewInjection(971) -- Existing category Id [Required]
-injection:Named(L["Khamul's Meta-Expansion Achievement List"], { -- Named subcategory [Optional, repeatable]
+injection:Named(addon.L["Khamul's Meta-Expansion Achievement List"], { -- Named subcategory [Optional, repeatable]
     14808, 14814, 14821, -- BfA achievements [Required]
     15259, 15260, 15261, -- Shadowlands achievements [Required]
     16462, 16463, 16464, -- Dragonflight achievements [Required]
@@ -61,15 +63,15 @@ injection:RegisterAs("KhamulsExpansionMetaAchievementLists") -- Unique key in Kr
 
 -- V2, grouped — one named subcategory per group:
 local groupedInjection = KrowiAF.NewInjection(971)
-groupedInjection:Named(L["Battle for Azeroth"], { 14808, 14814, 14821 })
-groupedInjection:Named(L["Shadowlands"],        { 15259, 15260, 15261 })
-groupedInjection:Named(L["Dragonflight"],       { 16462, 16463, 16464 })
-groupedInjection:Named(L["The War Within"],     { 19763, 19764, 19765 })
+groupedInjection:Named(addon.L["Battle for Azeroth"], { 14808, 14814, 14821 })
+groupedInjection:Named(addon.L["Shadowlands"],        { 15259, 15260, 15261 })
+groupedInjection:Named(addon.L["Dragonflight"],       { 16462, 16463, 16464 })
+groupedInjection:Named(addon.L["The War Within"],     { 19763, 19764, 19765 })
 groupedInjection:RegisterAs("KhamulsExpansionMetaAchievementLists")
 
 -- :Named with canMerge = true — allows same-named subcategories from different plugins to be merged:
 local mergedInjection = KrowiAF.NewInjection(971)
-mergedInjection:Named(L["My Shared Category"], { 14808, 14814 }, true) -- canMerge [Optional, default false]
+mergedInjection:Named(addon.L["My Shared Category"], { 14808, 14814 }, true) -- canMerge [Optional, default false]
 mergedInjection:RegisterAs("MyPlugin_MergedExample")
 
 -- :Ids — add achievement IDs directly to the target category (no subcategory created):
@@ -79,9 +81,7 @@ directInjection:RegisterAs("MyPlugin_DirectIds")
 
 -- V2 Achievement Data (current standard)
 -- Use KrowiAF.AchievementData with the Ach() fluent builder.
-local _, addon = ...
-local shared = addon.Data.AchievementData.Shared
-local Ach = shared.Ach
+local Ach = KrowiAF.Ach
 KrowiAF.AchievementData["03_00_02_Example1"] = {
     {KrowiAF.SetAchievementPatch, 3, 0, 2}, -- Patch settings, used to show the "Added in patch" info [Required]
     Ach(6), -- A simple achievement with only its Id [Optional]

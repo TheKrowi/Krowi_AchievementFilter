@@ -2,7 +2,6 @@ local Ach = KrowiAF.Ach
 local faction = KrowiAF.Enum.Faction
 
 KrowiAF.AchievementData["12_00_00"] = {
-	{KrowiAF.SetAchievementPatch, 12, 0, 0},
 	Ach(41287), -- Windrunner Spire
 	Ach(41288), -- Heroic: Windrunner Spire
 	Ach(41291), -- Mythic: Windrunner Spire
@@ -560,7 +559,6 @@ KrowiAF.AchievementData["12_00_00"] = {
 }
 
 KrowiAF.AchievementData["12_00_05"] = {
-	{KrowiAF.SetAchievementPatch, 12, 0, 5},
 	Ach(61792), -- T-A-G that spells "Gotcha!"
 	Ach(61793), -- Deployed to the Void
 	Ach(61878), -- Tagged and Bagged
@@ -658,7 +656,6 @@ KrowiAF.AchievementData["12_00_05"] = {
 }
 
 KrowiAF.AchievementData["12_00_07"] = {
-	{KrowiAF.SetAchievementPatch, 12, 0, 7},
 	Ach(61335):AutoFactionSplit(faction.Horde, 61336), -- Flame Keeper / Flame Warden of Midnight
 	Ach(61442):HousingDecor(), -- Lorewalking: The Loa
 	Ach(61463):Mount():Obtainable("Event", 1425), -- Master of the Turbulent Timeways V

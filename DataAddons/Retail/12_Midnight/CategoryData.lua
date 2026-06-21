@@ -1,9 +1,8 @@
 ﻿local _, addon = ...
 local shared = addon.Data.CategoryData.Shared
 local CT = shared.CT
-local NewExpansion = KrowiAF.NewExpansion
 
-local expansion = NewExpansion(CT.Midnight)
+local expansion = KrowiAF.NewExpansion(CT.Midnight)
 
 expansion:Character {
     61678, -- Midnight Superior

@@ -2,33 +2,27 @@ local Ach = KrowiAF.Ach
 local faction = KrowiAF.Enum.Faction
 
 KrowiAF.AchievementData["05_00_04"] = {
-	{KrowiAF.SetAchievementPatch, 5, 0, 4},
 	Ach(6981):IsPvP(), -- Master of Temple of Kotmogu
 }
 
 KrowiAF.AchievementData["05_01_00"] = {
-	{KrowiAF.SetAchievementPatch, 5, 1, 0},
 	Ach(7853):Obtainable("Never"), -- WoW's 9th Anniversary
 	Ach(7944):Obtainable("From", "Version", {6, 0, 3}, "Before", "Version", {7, 0, 3}), -- Bottle Service
 }
 
 KrowiAF.AchievementData["05_02_00"] = {
-	{KrowiAF.SetAchievementPatch, 5, 2, 0},
 	Ach(8214):Title():PvP(12), -- Malevolent Gladiator: Season 12 (3v3)
 }
 
 KrowiAF.AchievementData["05_03_00"] = {
-	{KrowiAF.SetAchievementPatch, 5, 3, 0},
 	Ach(8316), -- Blood in the Snow
 }
 
 KrowiAF.AchievementData["05_04_00"] = {
-	{KrowiAF.SetAchievementPatch, 5, 4, 0},
 	Ach(8791):Title():PvP(13), -- Tyrannical Gladiator: Season 13 (3v3)
 }
 
 KrowiAF.AchievementData["05_05_00"] = {
-	{KrowiAF.SetAchievementPatch, 5, 5, 0},
 	Ach(8913), -- Collector's Edition: Dread Raven
 	Ach(8915), -- Collector's Edition: Dread Hatchling
 	Ach(42762):Title():PvP(12), -- Challenger: Season 12
@@ -52,7 +46,6 @@ KrowiAF.AchievementData["05_05_00"] = {
 }
 
 KrowiAF.AchievementData["05_05_01"] = {
-	{KrowiAF.SetAchievementPatch, 5, 5, 1},
 	Ach(61096):Title():PvP(13), -- Gladiator: Season 13 (3v3)
 	Ach(61097):Title():PvP(13), -- Duelist: Season 13
 	Ach(61098):Title():PvP(13), -- Challenger: Season 13
@@ -81,8 +74,6 @@ KrowiAF.AchievementData["05_05_01"] = {
 }
 
 KrowiAF.AchievementData["05_05_03"] = {
-	{KrowiAF.SetAchievementPatch, 5, 5, 3},
-	Ach(40821), -- Successfully Stress Test CN Realms
 	Ach(61962):Title(), -- Realm First! Challenge Conqueror: Platinum (Season 2)
 	Ach(61963):Title(), -- Realm First! Challenge Conqueror: Platinum (Season 3)
 	Ach(61967):Toy(), -- Temple of the Jade Serpent: Platinum

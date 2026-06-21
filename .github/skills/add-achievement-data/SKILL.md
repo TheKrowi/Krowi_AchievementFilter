@@ -427,7 +427,7 @@ Ach(40083):IsPvP(), -- Tour of Duty: Isle of Dorn
 ## Related Files
 - `DataAddons/Retail/12_Midnight/AchievementData.lua` — Newest V2 reference
 - `DataAddons/Retail/11_TheWarWithin/AchievementData.lua` — Canonical V2 reference
-- `DataAddons/Shared/AchievementData.lua` — `AchBuilder` definition and `shared.Ach` factory
+- `DataAddons/Shared/AchievementData.lua` — `AchBuilder` definition (see `Api/AchievementDataBuilder.lua` for `KrowiAF.Ach`)
 - `Api/AchievementDataApi.lua` — `KrowiAF.AddAchievementData` and `KrowiAF.SetAchievementPatch`
 - `Api/ApiDocumentation.lua` — Annotated examples of all data patterns
 

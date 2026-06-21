@@ -2,7 +2,6 @@ local Ach = KrowiAF.Ach
 local faction = KrowiAF.Enum.Faction
 
 KrowiAF.AchievementData["03_00_02"] = {
-	{KrowiAF.SetAchievementPatch, 3, 0, 2},
 	Ach(158):HousingDecor():IsPvP(), -- Me and the Cappin' Makin' it Happen
 	Ach(167):HousingDecor():IsPvP(), -- Warsong Gulch Veteran
 	Ach(200):HousingDecor():IsPvP(), -- Persistent Defender
@@ -38,7 +37,6 @@ KrowiAF.AchievementData["03_00_02"] = {
 }
 
 KrowiAF.AchievementData["03_02_00"] = {
-	{KrowiAF.SetAchievementPatch, 3, 2, 0},
 	Ach(3536), -- The Marine Marine
 	Ach(3618):IsPvP():Obtainable("From", "Date", {2013, 8, 21}, "Until", "Date", {2013, 8, 25}), -- Murkimus the Gladiator
 	Ach(3636):Obtainable("From", "Date", {2009, 10, 19}, "Until", "Date", {2009, 11, 24}), -- Jade Tiger
@@ -46,12 +44,10 @@ KrowiAF.AchievementData["03_02_00"] = {
 }
 
 KrowiAF.AchievementData["03_02_02"] = {
-	{KrowiAF.SetAchievementPatch, 3, 2, 2},
 	Ach(4400):Obtainable("From", "Date", {2009, 11, 22}, "Until", "Date", {2009, 12, 6}), -- WoW's 5th Anniversary
 	Ach(4405):HousingDecor(), -- More Dots! (25 player)
 }
 
 KrowiAF.AchievementData["03_03_05"] = {
-	{KrowiAF.SetAchievementPatch, 3, 3, 5},
 	Ach(4824), -- Collector's Edition: Mini Thor
 }

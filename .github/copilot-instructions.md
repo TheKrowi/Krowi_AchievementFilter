@@ -102,8 +102,7 @@ All new achievement entries use `KrowiAF.AchievementData` with the fluent `Ach()
 Required file header for any file using V2:
 ```lua
 local _, addon = ...
-local shared = addon.Data.AchievementData.Shared
-local Ach = shared.Ach
+local Ach = KrowiAF.Ach
 local faction = KrowiAF.Enum.Faction -- only if FactionSplit is used
 ```
 

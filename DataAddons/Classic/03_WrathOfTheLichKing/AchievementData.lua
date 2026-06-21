@@ -2,7 +2,6 @@ local Ach = KrowiAF.Ach
 local faction = KrowiAF.Enum.Faction
 
 KrowiAF.AchievementData["03_00_02"] = {
-	{KrowiAF.SetAchievementPatch, 3, 0, 2},
 	Ach(158):IsPvP(), -- Me and the Cappin' Makin' it Happen
 	Ach(167):IsPvP(), -- Warsong Gulch Veteran
 	Ach(200):IsPvP(), -- Persistent Defender
@@ -38,7 +37,6 @@ KrowiAF.AchievementData["03_00_02"] = {
 }
 
 KrowiAF.AchievementData["03_02_00"] = {
-	{KrowiAF.SetAchievementPatch, 3, 2, 0},
 	Ach(3536):Obtainable("Never"), -- The Marine Marine
 	Ach(3618):IsPvP():Obtainable("Never"), -- Murkimus the Gladiator
 	Ach(3636):Obtainable("Never"), -- Jade Tiger
@@ -46,18 +44,15 @@ KrowiAF.AchievementData["03_02_00"] = {
 }
 
 KrowiAF.AchievementData["03_02_02"] = {
-	{KrowiAF.SetAchievementPatch, 3, 2, 2},
 	Ach(4400):Obtainable("Never"), -- WoW's 5th Anniversary
 	Ach(4405), -- More Dots! (25 player)
 }
 
 KrowiAF.AchievementData["03_03_05"] = {
-	{KrowiAF.SetAchievementPatch, 3, 3, 5},
 	Ach(4824):Obtainable("Never"), -- Collector's Edition: Mini Thor
 }
 
 KrowiAF.AchievementData["03_04_00"] = {
-	{KrowiAF.SetAchievementPatch, 3, 4, 0},
 	Ach(15018):Title():PvP(1), -- Infernal Gladiator: Season 1
 	Ach(15019):Title():PvP(1), -- Gladiator: Season 1
 	Ach(15020):Title():PvP(1), -- Duelist: Season 1
@@ -89,7 +84,6 @@ KrowiAF.AchievementData["03_04_00"] = {
 }
 
 KrowiAF.AchievementData["03_04_01"] = {
-	{KrowiAF.SetAchievementPatch, 3, 4, 1},
 	Ach(17213), -- Defense Protocol Alpha: Utgarde Keep
 	Ach(17283), -- Defense Protocol Alpha: The Nexus
 	Ach(17285), -- Defense Protocol Alpha: Azjol-Nerub
@@ -110,7 +104,6 @@ KrowiAF.AchievementData["03_04_01"] = {
 }
 
 KrowiAF.AchievementData["03_04_02"] = {
-	{KrowiAF.SetAchievementPatch, 3, 4, 2},
 	Ach(17340):Obtainable("Before", "Version", {3, 4, 3}), -- Ahead of the Curve: Yogg-Saron
 	Ach(17341):Obtainable("Before", "Version", {3, 4, 3}), -- Cutting Edge: Ulduar
 	Ach(18544):Title():PvP(7), -- Rival: Season 7
@@ -138,7 +131,6 @@ KrowiAF.AchievementData["03_04_02"] = {
 }
 
 KrowiAF.AchievementData["03_04_03"] = {
-	{KrowiAF.SetAchievementPatch, 3, 4, 3},
 	Ach(19425):AutoFactionSplit(faction.Horde, 19426), -- Defense Protocol Gamma: Trial of the Champion
 	Ach(19427), -- Defense Protocol Gamma: Utgarde Keep
 	Ach(19428), -- Defense Protocol Gamma: The Nexus

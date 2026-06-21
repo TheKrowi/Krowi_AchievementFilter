@@ -33,8 +33,7 @@ New expansion files and any new file you create must use this header:
 
 ```lua
 local _, addon = ...
-local shared = addon.Data.AchievementData.Shared
-local Ach = shared.Ach
+local Ach = KrowiAF.Ach
 local faction = KrowiAF.Enum.Faction -- only needed if AutoFactionSplit or FactionSplit is used
 ```
 

@@ -7,6 +7,12 @@ local CT = setmetatable({}, {
     end
 })
 
+local function AssertUniqueContainer(parent, name)
+    for _, child in next, parent._t.Children do
+        assert(child.Name ~= name, "Container '" .. tostring(name) .. "' already added to '" .. tostring(parent._t.Name) .. "'. Each container method may only be called once per builder.")
+    end
+end
+
 local function WithBase(t)
     function t:Ids(ids)
         self._t.Achievements = self._t.Achievements or {}
@@ -133,31 +139,41 @@ function ExpansionBuilder:Character(ids)
 end
 
 function ExpansionBuilder:Zones()
-    local z = setmetatable({ _t = { _v2 = true, Name = addon.L["Zones"], Children = {} } }, ZonesBuilder)
+    local name = addon.L["Zones"]
+    AssertUniqueContainer(self, name)
+    local z = setmetatable({ _t = { _v2 = true, Name = name, Children = {} } }, ZonesBuilder)
     tinsert(self._t.Children, z._t)
     return z
 end
 
 function ExpansionBuilder:Delves()
-    local d = setmetatable({ _t = { _v2 = true, Name = CT.Delves, Children = {} } }, DelvesBuilder)
+    local name = CT.Delves
+    AssertUniqueContainer(self, name)
+    local d = setmetatable({ _t = { _v2 = true, Name = name, Children = {} } }, DelvesBuilder)
     tinsert(self._t.Children, d._t)
     return d
 end
 
 function ExpansionBuilder:Dungeons()
-    local d = setmetatable({ _t = { _v2 = true, Name = CT.Dungeons, Children = {} } }, DungeonsBuilder)
+    local name = CT.Dungeons
+    AssertUniqueContainer(self, name)
+    local d = setmetatable({ _t = { _v2 = true, Name = name, Children = {} } }, DungeonsBuilder)
     tinsert(self._t.Children, d._t)
     return d
 end
 
 function ExpansionBuilder:Raids()
-    local r = setmetatable({ _t = { _v2 = true, Name = CT.Raids, Children = {} } }, RaidsBuilder)
+    local name = CT.Raids
+    AssertUniqueContainer(self, name)
+    local r = setmetatable({ _t = { _v2 = true, Name = name, Children = {} } }, RaidsBuilder)
     tinsert(self._t.Children, r._t)
     return r
 end
 
 function ExpansionBuilder:Professions()
-    local p = setmetatable({ _t = { _v2 = true, Name = CT.Professions, Children = {} } }, ProfessionsBuilder)
+    local name = CT.Professions
+    AssertUniqueContainer(self, name)
+    local p = setmetatable({ _t = { _v2 = true, Name = name, Children = {} } }, ProfessionsBuilder)
     tinsert(self._t.Children, p._t)
     return p
 end

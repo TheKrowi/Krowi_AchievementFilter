@@ -2,7 +2,6 @@ local Ach = KrowiAF.Ach
 local faction = KrowiAF.Enum.Faction
 
 KrowiAF.AchievementData["08_00_01"] = {
-	{KrowiAF.SetAchievementPatch, 8, 0, 1},
 	Ach(11861):AutoFactionSplit(faction.Horde, 12473), -- The Throne of Zuldazar / A Sound Plan
 	Ach(11868):AutoFactionSplit(faction.Horde, 12497), -- The Dark Heart of Nazmir / Drust Do It.
 	Ach(12087):FactionSplit(faction.Alliance, nil), -- The Reining Champion
@@ -333,7 +332,6 @@ KrowiAF.AchievementData["08_00_01"] = {
 }
 
 KrowiAF.AchievementData["08_01_00"] = {
-	{KrowiAF.SetAchievementPatch, 8, 1, 0},
 	Ach(13138), -- Flying Colors
 	Ach(13196), -- Meat Marauder
 	Ach(13199):Title():PvP(26), -- Combatant: Battle for Azeroth Season 1
@@ -423,7 +421,6 @@ KrowiAF.AchievementData["08_01_00"] = {
 }
 
 KrowiAF.AchievementData["08_01_05"] = {
-	{KrowiAF.SetAchievementPatch, 8, 1, 5},
 	Ach(13161):AlliedRace():FactionSplit(faction.Horde, nil), -- Allied Races: Zandalari Troll
 	Ach(13163):AlliedRace():FactionSplit(faction.Alliance, nil), -- Allied Races: Kul Tiran
 	Ach(13186):AutoFactionSplit(faction.Alliance, 13188):Obtainable("Before", "Version", {9, 0, 1}), -- You Are Not Your $#*@! Legplates
@@ -445,7 +442,6 @@ KrowiAF.AchievementData["08_01_05"] = {
 }
 
 KrowiAF.AchievementData["08_02_00"] = {
-	{KrowiAF.SetAchievementPatch, 8, 2, 0},
 	Ach(13250):Mount(), -- Battle for Azeroth Pathfinder, Part Two
 	Ach(13470), -- Rest In Pistons
 	Ach(13472), -- Deep Pockets
@@ -582,7 +578,6 @@ KrowiAF.AchievementData["08_02_00"] = {
 }
 
 KrowiAF.AchievementData["08_02_05"] = {
-	{KrowiAF.SetAchievementPatch, 8, 2, 5},
 	Ach(13917):Obtainable("From", "Date", {2019, 11, 5}, "Until", "Date", {2020, 1, 7}), -- WoW's 15th Anniversary
 	Ach(13924):Title():AutoFactionSplit(faction.Horde, 13925), -- The Fourth War
 	Ach(13927), -- Crashin' Splashin'
@@ -591,7 +586,6 @@ KrowiAF.AchievementData["08_02_05"] = {
 }
 
 KrowiAF.AchievementData["08_03_00"] = {
-	{KrowiAF.SetAchievementPatch, 8, 3, 0},
 	Ach(13206):AlliedRace():FactionSplit(faction.Horde, nil), -- Allied Races: Vulpera
 	Ach(13957):Title():PvP(29), -- Corrupted Gladiator: Battle for Azeroth Season 4
 	Ach(13958):PvP(29), -- Corrupted Gladiator's Proto-Drake

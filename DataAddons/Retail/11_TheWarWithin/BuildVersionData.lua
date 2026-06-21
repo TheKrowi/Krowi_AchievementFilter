@@ -1,73 +1,17 @@
-local _, addon = ...;
-local shared = addon.Data.BuildVersionData.Shared;
+local _, addon = ...
 
-KrowiAF.BuildVersionData.TheWarWithin = { -- 11
-	Major = 11,
-	Minors = {
-		{ -- 11.0
-			Minor = 0,
-			Patches = {
-				{ -- 11.0.0
-					Patch = 0,
-					BuildVersionId = "110000",
-                    Name = addon.L["The War Within (pre-patch)"]
-				},
-				{ -- 11.0.2
-					Patch = 2,
-					BuildVersionId = "110002",
-                    Name = addon.L["The War Within"]
-				},
-				{ -- 11.0.5
-					Patch = 5,
-					BuildVersionId = "110005",
-                    Name = addon.L["WoW's 20th Anniversary"]
-				},
-				{ -- 11.0.7
-					Patch = 7,
-					BuildVersionId = "110007",
-                    Name = addon.L["Siren Isle"]
-				},
-			},
-		},
-        { -- 11.1
-            Minor = 1,
-            Patches = {
-                { -- 11.1.0
-                    Patch = 0,
-                    BuildVersionId = "110100",
-                    Name = addon.L["Undermine(d)"]
-                },
-                { -- 11.1.5
-                    Patch = 5,
-                    BuildVersionId = "110105",
-                    Name = addon.L["Nightfall"]
-                },
-                { -- 11.1.7
-                    Patch = 7,
-                    BuildVersionId = "110107",
-                    Name = addon.L["Legacy of Arathor"]
-                },
-            }
-        },
-        { -- 11.2
-            Minor = 2,
-            Patches = {
-                { -- 11.2.0
-                    Patch = 0,
-                    BuildVersionId = "110200",
-                    Name = addon.L["Ghosts of K'aresh"]
-                },
-                { -- 11.2.5
-                    Patch = 5,
-                    BuildVersionId = "110205",
-                    Name = addon.L["Legion Remix"]
-                },
-                { -- 11.2.7
-                    Patch = 7,
-                    BuildVersionId = "110207",
-                    Name = addon.L["The Warning"]
-                },
-            }
-        },
-	},
-};
+local expansion = KrowiAF.NewBuildVersion("TheWarWithin", 11)
+local minor = expansion:Minor(0)
+minor:Patch(0, addon.L["The War Within (pre-patch)"])
+minor:Patch(2, addon.L["The War Within"])
+minor:Patch(5, addon.L["WoW's 20th Anniversary"])
+minor:Patch(7, addon.L["Siren Isle"])
+minor = expansion:Minor(1)
+minor:Patch(0, addon.L["Undermine(d)"])
+minor:Patch(5, addon.L["Nightfall"])
+minor:Patch(7, addon.L["Legacy of Arathor"])
+minor = expansion:Minor(2)
+minor:Patch(0, addon.L["Ghosts of K'aresh"])
+minor:Patch(5, addon.L["Legion Remix"])
+minor:Patch(7, addon.L["The Warning"])
+expansion:Register()

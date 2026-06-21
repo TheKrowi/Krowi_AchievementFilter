@@ -53,6 +53,7 @@ function AchBuilder:Obtainable(...)
 end
 
 for key, value in pairs(rewardType) do
+    assert(AchBuilder[key] == nil, "RewardType key '" .. key .. "' conflicts with an existing AchBuilder method")
     AchBuilder[key] = function(self)
         local e = GetExtras(self)
         local rt = e.RewardType

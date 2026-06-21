@@ -2,7 +2,6 @@ local Ach = KrowiAF.Ach
 local faction = KrowiAF.Enum.Faction
 
 KrowiAF.AchievementData["03_00_02_S"] = {
-	{KrowiAF.SetAchievementPatch, 3, 0, 2},
 	Ach(6), -- Level 10
 	Ach(7), -- Level 20
 	Ach(8), -- Level 30
@@ -813,7 +812,6 @@ KrowiAF.AchievementData["03_00_02_S"] = {
 }
 
 KrowiAF.AchievementData["03_01_00_S"] = {
-	{KrowiAF.SetAchievementPatch, 3, 1, 0},
 	Ach(2416):Obtainable("Event", 181), -- Hard Boiled
 	Ach(2417):Obtainable("Event", 181), -- Chocolate Lover
 	Ach(2418):Obtainable("Event", 181), -- Chocoholic
@@ -1003,7 +1001,6 @@ KrowiAF.AchievementData["03_01_00_S"] = {
 }
 
 KrowiAF.AchievementData["03_02_00_S"] = {
-	{KrowiAF.SetAchievementPatch, 3, 2, 0},
 	Ach(3456):Obtainable("Event", 409), -- Dead Man's Party
 	Ach(3457):Obtainable("Event", 398), -- The Captain's Booty
 	Ach(3478):Pet():Title():Obtainable("Event", 404), -- Pilgrim
@@ -1071,7 +1068,6 @@ KrowiAF.AchievementData["03_02_00_S"] = {
 }
 
 KrowiAF.AchievementData["03_02_02_S"] = {
-	{KrowiAF.SetAchievementPatch, 3, 2, 2},
 	Ach(4396), -- Onyxia's Lair (10 player)
 	Ach(4397), -- Onyxia's Lair (25 player)
 	Ach(4402), -- More Dots! (10 player)
@@ -1089,7 +1085,6 @@ KrowiAF.AchievementData["03_02_02_S"] = {
 }
 
 KrowiAF.AchievementData["03_03_00_S"] = {
-	{KrowiAF.SetAchievementPatch, 3, 3, 0},
 	Ach(4516), -- The Forge of Souls
 	Ach(4517), -- The Pit of Saron
 	Ach(4518), -- The Halls of Reflection
@@ -1166,14 +1161,12 @@ KrowiAF.AchievementData["03_03_00_S"] = {
 }
 
 KrowiAF.AchievementData["03_03_03_S"] = {
-	{KrowiAF.SetAchievementPatch, 3, 3, 3},
 	Ach(4782):Obtainable("Never"), -- Green Brewfest Stein
 	Ach(4786):FactionSplit(faction.Alliance, nil):Obtainable("Before", "Version", {4, 0, 1}), -- Operation: Gnomeregan
 	Ach(4790):FactionSplit(faction.Horde, nil):Obtainable("Before", "Version", {4, 0, 1}), -- Zalazane's Fall
 }
 
 KrowiAF.AchievementData["03_03_05_S"] = {
-	{KrowiAF.SetAchievementPatch, 3, 3, 5},
 	Ach(4815), -- The Twilight Destroyer (25 player)
 	Ach(4816), -- Heroic: The Twilight Destroyer (25 player)
 	Ach(4817), -- The Twilight Destroyer (10 player)

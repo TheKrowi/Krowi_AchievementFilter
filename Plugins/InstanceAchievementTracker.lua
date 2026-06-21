@@ -3,7 +3,10 @@ local iat = {};
 KrowiAF.PluginsApi:RegisterPlugin("InstanceAchievementTracker", iat);
 
 local function IsLoaded()
-    return C_AddOns.IsAddOnLoaded("InstanceAchievementTracker") and C_AddOns.GetAddOnMetadata("InstanceAchievementTracker", "Version") >= "3.18.0";
+    return C_AddOns.IsAddOnLoaded("InstanceAchievementTracker")
+    and C_AddOns.GetAddOnMetadata("InstanceAchievementTracker", "Version") >= "3.18.0"
+    and IAT_HasAchievement ~= nil
+    and IAT_DisplayAchievement ~= nil;
 end
 
 function iat:InjectOptions()
@@ -40,16 +43,16 @@ function iat:Load()
     };
 end
 
-function iat:AddAchievementRightClickMenuItems(rightClickMenu, achievement)
+function iat:AddAchievementRightClickMenuItems(rightClickMenu, achievement, menuBuilder)
     if IsLoaded()
     and addon.Options.db.profile.Plugins.InstanceAchievementTracker.AddToRightClickMenu
     and IAT_HasAchievement(achievement.Id) then
-        KrowiAF.UtilApi.MenuHelper:CreateButtonAndAdd(
+        menuBuilder:CreateButtonAndAdd(
             rightClickMenu,
-		    addon.L["IAT Tactics"],
+            addon.L["IAT Tactics"],
             function()
                 IAT_DisplayAchievement(achievement.Id);
             end
         );
-	end
+    end
 end

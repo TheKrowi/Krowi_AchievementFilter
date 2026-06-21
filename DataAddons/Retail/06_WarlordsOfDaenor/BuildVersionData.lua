@@ -1,43 +1,11 @@
-local _, addon = ...;
-local shared = addon.Data.BuildVersionData.Shared;
+local _, addon = ...
 
-KrowiAF.BuildVersionData.WarlordsOfDaenor = { -- 6
-    Major = 6,
-    Minors = {
-        { -- 6.0
-            Minor = 0,
-            Patches = {
-                { -- 6.0.2
-                    Patch = 2,
-                    BuildVersionId = "060002",
-                    Name = addon.L["Warlords of Draenor"]
-                },
-            }
-        },
-        { -- 6.1
-            Minor = 1,
-            Patches = {
-                { -- 6.1.0
-                    Patch = 0,
-                    BuildVersionId = "060100",
-                    Name = addon.L["Garrisons Update"]
-                },
-            }
-        },
-        { -- 6.2
-            Minor = 2,
-            Patches = {
-                { -- 6.2.0
-                    Patch = 0,
-                    BuildVersionId = "060200",
-                    Name = addon.L["Fury of Hellfire"]
-                },
-                { -- 6.2.2
-                    Patch = 2,
-                    BuildVersionId = "060202",
-                    Name = addon.L["Fury of Hellfire"]
-                },
-            },
-        },
-    },
-};
+local expansion = KrowiAF.NewBuildVersion("WarlordsOfDaenor", 6)
+local minor = expansion:Minor(0)
+minor:Patch(2, addon.L["Warlords of Draenor"])
+minor = expansion:Minor(1)
+minor:Patch(0, addon.L["Garrisons Update"])
+minor = expansion:Minor(2)
+minor:Patch(0, addon.L["Fury of Hellfire"])
+minor:Patch(2, addon.L["Fury of Hellfire"])
+expansion:Register()

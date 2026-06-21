@@ -43,8 +43,7 @@ Only include files you actually have data for. Comment out the rest.
 
 ```lua
 local _, addon = ...
-local shared = addon.Data.AchievementData.Shared
-local Ach = shared.Ach
+local Ach = KrowiAF.Ach
 local faction = KrowiAF.Enum.Faction -- only needed if FactionSplit is used
 
 KrowiAF.AchievementData["13_00_00"] = {

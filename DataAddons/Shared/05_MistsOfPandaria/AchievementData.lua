@@ -2,7 +2,6 @@ local Ach = KrowiAF.Ach
 local faction = KrowiAF.Enum.Faction
 
 KrowiAF.AchievementData["05_00_04_S"] = {
-	{KrowiAF.SetAchievementPatch, 5, 0, 4},
 	Ach(6089), -- Keep Rollin' Rollin' Rollin'
 	Ach(6193):Obtainable("Before", "Version", {9, 0, 1}), -- Level 90 (Legacy)
 	Ach(6300):AutoFactionSplit(faction.Alliance, 6534), -- Upjade Complete
@@ -466,7 +465,6 @@ KrowiAF.AchievementData["05_00_04_S"] = {
 }
 
 KrowiAF.AchievementData["05_01_00_S"] = {
-	{KrowiAF.SetAchievementPatch, 5, 1, 0},
 	Ach(7852), -- They're Both Footballs?
 	Ach(7860):Mount():AutoFactionSplit(faction.Alliance, 7862), -- We're Going to Need More Saddles
 	Ach(7908):Other(), -- I Choose You
@@ -507,7 +505,6 @@ KrowiAF.AchievementData["05_01_00_S"] = {
 }
 
 KrowiAF.AchievementData["05_02_00_S"] = {
-	{KrowiAF.SetAchievementPatch, 5, 2, 0},
 	Ach(6954):Obtainable("Before", "Version", {5, 2, 0}), -- Ahead of the Curve: Will of the Emperor
 	Ach(8028), -- Praise the Sun!
 	Ach(8037), -- Genetically Unmodified Organism
@@ -605,7 +602,6 @@ KrowiAF.AchievementData["05_02_00_S"] = {
 }
 
 KrowiAF.AchievementData["05_03_00_S"] = {
-	{KrowiAF.SetAchievementPatch, 5, 3, 0},
 	Ach(8293):Pet(), -- Raiding with Leashes II: Attunement Edition
 	Ach(8294), -- The Secrets of Ragefire
 	Ach(8295), -- The Few, the Proud, the Gob Squad
@@ -650,7 +646,6 @@ KrowiAF.AchievementData["05_03_00_S"] = {
 }
 
 KrowiAF.AchievementData["05_04_00_S"] = {
-	{KrowiAF.SetAchievementPatch, 5, 4, 0},
 	Ach(8381):PvP(14):AutoFactionSplit(faction.Horde, 8382), -- Grievous Conquest
 	Ach(8397):Title(), -- Crazy for Cats
 	Ach(8398):Mount():Obtainable("Before", "Version", {6, 0, 2}), -- Ahead of the Curve: Garrosh Hellscream (10 player)
@@ -768,12 +763,10 @@ KrowiAF.AchievementData["05_04_00_S"] = {
 }
 
 KrowiAF.AchievementData["05_04_01_S"] = {
-	{KrowiAF.SetAchievementPatch, 5, 4, 1},
 	Ach(8793), -- Murkalot
 	Ach(8794):Obtainable("Before", "Date", {2019, 6, 11}), -- Friends In Places Even Higher Than That
 }
 
 KrowiAF.AchievementData["05_04_02_S"] = {
-	{KrowiAF.SetAchievementPatch, 5, 4, 2},
 	Ach(8795), -- Collector's Edition: Treasure Goblin
 }
