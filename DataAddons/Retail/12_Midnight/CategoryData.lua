@@ -31,6 +31,7 @@ expansion:Character{
 local zones = expansion:Zones{
     62386, -- Light Up the Night
 }
+
 local quelThalas = zones:Zone(2537)
 quelThalas:Quests{
     62110, -- Loremaster of Midnight
@@ -247,47 +248,47 @@ delves:Seasonal{
     61807, -- Midnight Delves: Tier 11 (Season 1) (Title: High Explorer)
     61796, -- Midnight: Journey's End (Season 1)
 }
-delves:Instance(2535, { -- Atal'Aman
+delves:Delve(2535, { -- Atal'Aman
     61729, -- Atal'Aman Stories
     61863, -- Atal'Aman Discoveries
 })
-delves:Instance(2547, { -- Collegiate Calamity
+delves:Delve(2547, { -- Collegiate Calamity
     61726, -- Collegiate Calamity Stories
     61894, -- Collegiate Calamity Discoveries
 })
-delves:Instance(2525, { -- The Darkway
+delves:Delve(2525, { -- The Darkway
     61728, -- The Darkway Stories
     61895, -- The Darkway Discoveries
 })
-delves:Instance(2510, { -- The Grudge Pit
+delves:Delve(2510, { -- The Grudge Pit
     61724, -- The Grudge Pit Stories
     61897, -- The Grudge Pit Discoveries
 })
-delves:Instance(2505, { -- The Gulf of Memory
+delves:Delve(2505, { -- The Gulf of Memory
     61731, -- The Gulf of Memory Stories
     61898, -- The Gulf of Memory Discoveries
 })
-delves:Instance(2545, { -- Parhelion Plaza
+delves:Delve(2545, { -- Parhelion Plaza
     61725, -- Parhelion Plaza Stories
     61893, -- Parhelion Plaza Discoveries
 })
-delves:Instance(2506, { -- Shadowguard Point
+delves:Delve(2506, { -- Shadowguard Point
     61733, -- Shadowguard Point Stories
     61900, -- Shadowguard Point Discoveries
 })
-delves:Instance(2502, { -- Shadow Enclave
+delves:Delve(2502, { -- Shadow Enclave
     61727, -- The Shadow Enclave Stories
     61892, -- The Shadow Enclave Discoveries
 })
-delves:Instance(2528, { -- Sunkiller Sanctum
+delves:Delve(2528, { -- Sunkiller Sanctum
     61732, -- Sunkiller Sanctum Stories
     61899, -- Sunkiller Sanctum Discoveries
 })
-delves:Instance(2503, { -- Twilight Crypts
+delves:Delve(2503, { -- Twilight Crypts
     61730, -- Twilight Crypts Stories
     61896, -- Twilight Crypts Discoveries
 })
-delves:Instance(2507, { -- Torment's Rise
+delves:Delve(2507, { -- Torment's Rise
     40732, -- Heavy-Handed
     61797, -- My Shady Nemesis (Reward: Nullaeus Domaneye)
     61798, -- Lighting the Dark (Title: the Ominous)
@@ -305,74 +306,72 @@ local dungeons = expansion:Dungeons{
     62388, -- Illicit Rain: Five Stars
 }
 dungeons:MythicPlus(shared.GetMidnightMythicPlus)
-dungeons:Instance(1311):Ids{ -- Den of Nalorakk
+dungeons:Dungeon(1311, { -- Den of Nalorakk
     61638, -- Den of Nalorakk
     61642, -- Heroic: Den of Nalorakk
     61643, -- Mythic: Den of Nalorakk
-}
-dungeons:Instance(1300):Ids{ -- Magisters' Terrace
+})
+dungeons:Dungeon(1300, { -- Magisters' Terrace
     61212, -- Magisters' Terrace
     61213, -- Heroic: Magisters' Terrace
     61214, -- Mythic: Magisters' Terrace
     61267, -- Keystone Hero: Magisters' Terrace
     61587, -- Keystone Victor: Magisters' Terrace (Midnight)
-}
-dungeons:Instance(1315):Ids{ -- Maisara Caverns
+})
+dungeons:Dungeon(1315, { -- Maisara Caverns
     61639, -- Maisara Caverns
     61644, -- Heroic: Maisara Caverns
     61645, -- Mythic: Maisara Caverns
     61269, -- Keystone Hero: Maisara Caverns
     61588, -- Keystone Victor: Maisara Caverns
-}
-dungeons:Instance(1304):Ids{ -- Murder Row
+})
+dungeons:Dungeon(1304, { -- Murder Row
     41960, -- Murder Row
     41961, -- Heroic: Murder Row
     41962, -- Mythic: Murder Row
-}
-dungeons:Instance(1316):Ids{ -- Nexus-Point Xenas
+})
+dungeons:Dungeon(1316, { -- Nexus-Point Xenas
     61585, -- You Conduit!
     61640, -- Nexus-Point Xenas
     61646, -- Heroic: Nexus-Point Xenas
     61647, -- Mythic: Nexus-Point Xenas
     61268, -- Keystone Hero: Nexus-Point Xenas
     61589, -- Keystone Victor: Nexus-Point Xenas
-}
-dungeons:Instance(1309):Ids{ -- The Blinding Vale
+})
+dungeons:Dungeon(1309, { -- The Blinding Vale
     61641, -- The Blinding Vale
     61648, -- Heroic: The Blinding Vale
     61649, -- Mythic: The Blinding Vale
-}
-dungeons:Instance(1313):Ids{ -- Voidscar Arena
+})
+dungeons:Dungeon(1313, { -- Voidscar Arena
     61508, -- Voidscar Arena
     61509, -- Heroic: Voidscar Arena
     61510, -- Mythic: Voidscar Arena
-}
-dungeons:Instance(1299):Ids{ -- Windrunner Spire
+})
+dungeons:Dungeon(1299, { -- Windrunner Spire
     41287, -- Windrunner Spire
     41288, -- Heroic: Windrunner Spire
     41291, -- Mythic: Windrunner Spire
     61262, -- Keystone Hero: Windrunner Spire
     61590, -- Keystone Victor: Windrunner Spire
-}
+})
 
 local raids = expansion:Raids{
     62352, -- Nothing to See Here
     61380, -- Glory of the Midnight Raider (Mount: Tenebrous Harrower)
     61843, -- Quel'Dressed
 }
-local dreamrift = raids:Instance(1314)
-dreamrift:Glory{
-    61454, -- Falling Between The Quacks
-}
-dreamrift:Ids{
-    61487, -- Chimaerus, the Undreamt God
-    61488, -- Heroic: Chimaerus, the Undreamt God
-    61489, -- Mythic: Chimaerus, the Undreamt God (Title: Dream-Eater)
-    61491, -- Ahead of the Curve: Chimaerus, the Undreamt God
-    61492, -- Cutting Edge: Chimaerus, the Undreamt God
-}
 
-local voidspire = raids:Instance(1307)
+local voidspire = raids:Raid(1307, { -- The Voidspire
+    61635, -- Voidspire: Weapons of the Void
+    61636, -- Voidspire: Fanatics of the Light
+    61637, -- Voidspire: Crown of the Cosmos
+    61366, -- The Voidspire
+    61368, -- Heroic: The Voidspire
+    61370, -- Mythic: The Voidspire
+    61624, -- Ahead of the Curve: Crown of the Cosmos
+    61625, -- Cutting Edge: Crown of the Cosmos
+})
 voidspire:Glory{
     62106, -- The Only Winning Move Is Not To Play
     62058, -- Hungry Hungry Hatchlings
@@ -389,18 +388,25 @@ voidspire:Mythic{
     61376, -- Mythic: Lightblinded Vanguard
     61377, -- Mythic: Crown of the Cosmos (Title: Spirebane)
 }
-voidspire:Ids{
-    61635, -- Voidspire: Weapons of the Void
-    61636, -- Voidspire: Fanatics of the Light
-    61637, -- Voidspire: Crown of the Cosmos
-    61366, -- The Voidspire
-    61368, -- Heroic: The Voidspire
-    61370, -- Mythic: The Voidspire
-    61624, -- Ahead of the Curve: Crown of the Cosmos
-    61625, -- Cutting Edge: Crown of the Cosmos
+
+local dreamrift = raids:Raid(1314, { -- Dreamrift
+    61487, -- Chimaerus, the Undreamt God
+    61488, -- Heroic: Chimaerus, the Undreamt God
+    61489, -- Mythic: Chimaerus, the Undreamt God (Title: Dream-Eater)
+    61491, -- Ahead of the Curve: Chimaerus, the Undreamt God
+    61492, -- Cutting Edge: Chimaerus, the Undreamt God
+})
+dreamrift:Glory{
+    61454, -- Falling Between The Quacks
 }
 
-local march = raids:Instance(1308)
+local march = raids:Raid(1308, { -- March on Quel'Danas
+    61367, -- March on Quel'Danas
+    61369, -- Heroic: March on Quel'Danas
+    61371, -- Mythic: March on Quel'Danas
+    61626, -- Ahead of the Curve: Midnight Falls
+    61627, -- Cutting Edge: Midnight Falls
+})
 march:Glory{
     61381, -- Eggsistential Crisis
     62406, -- All the Things She Said
@@ -409,20 +415,12 @@ march:Mythic{
     61378, -- Mythic: Belo'ren, Child of Al'ar
     61379, -- Mythic: Midnight Falls (Title: Dawnbringer)
 }
-march:Ids{
-    61367, -- March on Quel'Danas
-    61369, -- Heroic: March on Quel'Danas
-    61371, -- Mythic: March on Quel'Danas
-    61626, -- Ahead of the Curve: Midnight Falls
-    61627, -- Cutting Edge: Midnight Falls
-}
 
-local sporefall = raids:Instance(1305)
-sporefall:Ids{
+raids:Raid(1305, { -- Sporefall
     63237, -- Rotmire
     63240, -- Heroic: Rotmire
     63241, -- Mythic: Rotmire
-}
+})
 
 local professions = expansion:Professions{
     61438, -- Thalassian Profession Master
@@ -498,259 +496,221 @@ expansion:PetBattles{
     61091, -- Midnight Safari
 }
 
-expansion:Insert{ -- Abyss Anglers
-    addon.L["Abyss Anglers"],
-    {
-        62118, -- Abyss Anglers: Amazardhide Catch Case
-        62117, -- Abyss Anglers: Boarhide Catch Sack
-        62272, -- Abyss Anglers: Certified Depthdiver
-        62208, -- Abyss Anglers: Depth Grease
-        62210, -- Abyss Anglers: Depthdiver's Used Tank
-        62218, -- Abyss Anglers: Even The Best
-        62211, -- Abyss Anglers: Fathom-Tested Tank
-        62342, -- Abyss Anglers: The Finest of Fish
-        62221, -- Abyss Anglers: Fresh Depth Tech
-        62215, -- Abyss Anglers: Heavy Harpoon Cannon
-        62216, -- Abyss Anglers: Hollowcore Harpoon Turret
-        62217, -- Abyss Anglers: Idol of the Depths
-        62773, -- Abyss Anglers: Jeju's New Rival
-        62119, -- Abyss Anglers: Loaknit-Woven Catch Satchel
-        62778, -- Abyss Anglers: Luck of the Loa
-        62343, -- Abyss Anglers: Myths from Beneath
-        62212, -- Abyss Anglers: Nalorakk's Breath Tank
-        62219, -- Abyss Anglers: No Sea Can Hold Me
-        62774, -- Abyss Anglers: Not Done Yet
-        62772, -- Abyss Anglers: Now That's Anglin'
-        62761, -- Abyss Anglers: One with the Depths
-        62209, -- Abyss Anglers: Pahk Trench Fins
-        62777, -- Abyss Anglers: Pearls to the Abyss
-        62506, -- Abyss Anglers: Pressurized Eyeglass
-        62220, -- Abyss Anglers: Proper Procedure
-        62207, -- Abyss Anglers: Reinforced Joints
-        62829, -- Abyss Anglers: Don't Know What You Expected
-        62832, -- Abyss Anglers: Reservation for One
-        62213, -- Abyss Anglers: Shallows Net
-        62222, -- Abyss Anglers: The Amani Way
-        62762, -- Abyss Anglers: Top of the Class
-        62271, -- Abyss Anglers: Trench Berserker
-        62214, -- Abyss Anglers: Triple-Thread Net
-        62763, -- Abyss Anglers: Vintage Collector
-        62760, -- Abyss Anglers: Angler Physics
-        62776, -- Abyss Anglers: All Blue Angler (Pet: Ka'bubb)
-        62775, -- Abyss Anglers: Delicate Diver
-        62759, -- Abyss Anglers: History Below
-    }
+expansion:Named(addon.L["Abyss Anglers"], { -- Abyss Anglers
+    62118, -- Abyss Anglers: Amazardhide Catch Case
+    62117, -- Abyss Anglers: Boarhide Catch Sack
+    62272, -- Abyss Anglers: Certified Depthdiver
+    62208, -- Abyss Anglers: Depth Grease
+    62210, -- Abyss Anglers: Depthdiver's Used Tank
+    62218, -- Abyss Anglers: Even The Best
+    62211, -- Abyss Anglers: Fathom-Tested Tank
+    62342, -- Abyss Anglers: The Finest of Fish
+    62221, -- Abyss Anglers: Fresh Depth Tech
+    62215, -- Abyss Anglers: Heavy Harpoon Cannon
+    62216, -- Abyss Anglers: Hollowcore Harpoon Turret
+    62217, -- Abyss Anglers: Idol of the Depths
+    62773, -- Abyss Anglers: Jeju's New Rival
+    62119, -- Abyss Anglers: Loaknit-Woven Catch Satchel
+    62778, -- Abyss Anglers: Luck of the Loa
+    62343, -- Abyss Anglers: Myths from Beneath
+    62212, -- Abyss Anglers: Nalorakk's Breath Tank
+    62219, -- Abyss Anglers: No Sea Can Hold Me
+    62774, -- Abyss Anglers: Not Done Yet
+    62772, -- Abyss Anglers: Now That's Anglin'
+    62761, -- Abyss Anglers: One with the Depths
+    62209, -- Abyss Anglers: Pahk Trench Fins
+    62777, -- Abyss Anglers: Pearls to the Abyss
+    62506, -- Abyss Anglers: Pressurized Eyeglass
+    62220, -- Abyss Anglers: Proper Procedure
+    62207, -- Abyss Anglers: Reinforced Joints
+    62829, -- Abyss Anglers: Don't Know What You Expected
+    62832, -- Abyss Anglers: Reservation for One
+    62213, -- Abyss Anglers: Shallows Net
+    62222, -- Abyss Anglers: The Amani Way
+    62762, -- Abyss Anglers: Top of the Class
+    62271, -- Abyss Anglers: Trench Berserker
+    62214, -- Abyss Anglers: Triple-Thread Net
+    62763, -- Abyss Anglers: Vintage Collector
+    62760, -- Abyss Anglers: Angler Physics
+    62776, -- Abyss Anglers: All Blue Angler (Pet: Ka'bubb)
+    62775, -- Abyss Anglers: Delicate Diver
+    62759, -- Abyss Anglers: History Below
+})
+
+local prey = expansion:Named(CT.Prey) -- Prey
+prey:Named(addon.L["Hard"], {
+    62144, -- Prey: Mad Magisters (Hard)
+    62153, -- Prey: Insane Inventors (Hard)
+    62154, -- Prey: A Different Kind of Void (Hard)
+    62155, -- Prey: Ethereal Assassins (Hard)
+    62156, -- Prey: Anger Management (Hard)
+    62157, -- Prey: Sadistic Shamans (Hard)
+    62158, -- Prey: The Fallen Farstriders (Hard)
+    62159, -- Prey: Bloody Green Thumbs (Hard)
+    62160, -- Prey: Blinded By The Light (Hard)
+    62161, -- Prey: Outsmarting the Schemers (Hard)
+    62162, -- Prey: Dominating the Void (Hard)
+    62163, -- Prey: Chasing Death (Hard)
+    62164, -- Prey: No Rest for the Wretched (Hard)
+    62165, -- Prey: A Thorn in the Side (Hard)
+    62166, -- Prey: Breaking the Blade (Hard)
+    61389, -- Prey: Hard Mode I
+    61388, -- Prey: Hard Mode II
+    42702, -- Prey: Hard Mode III
+})
+prey:Named(addon.L["Nightmare"], {
+    62135, -- Now It's A Party
+    62136, -- I'm Good At What I Do
+    62141, -- Look, I'm Just Trying To Fish Here
+    62140, -- Kitchen Nightmare
+    62403, -- 'Tis But A Scratch
+    62167, -- Prey: Mad Magisters (Nightmare)
+    62168, -- Prey: Insane Inventors (Nightmare)
+    62169, -- Prey: A Different Kind of Void (Nightmare)
+    62173, -- Prey: Ethereal Assassins (Nightmare)
+    62174, -- Prey: Anger Management (Nightmare)
+    62175, -- Prey: Sadistic Shamans (Nightmare)
+    62176, -- Prey: The Fallen Farstriders (Nightmare)
+    62177, -- Prey: Bloody Green Thumbs (Nightmare)
+    62178, -- Prey: Blinded By The Light (Nightmare)
+    62179, -- Prey: Outsmarting the Schemers (Nightmare)
+    62180, -- Prey: Dominating the Void (Nightmare)
+    62181, -- Prey: Chasing Death (Nightmare)
+    62182, -- Prey: No Rest for the Wretched (Nightmare)
+    62183, -- Prey: A Thorn in the Side (Nightmare)
+    62184, -- Prey: Breaking the Blade (Nightmare)
+    61392, -- Prey: Nightmare Mode I
+    61391, -- Prey: Nightmare Mode II
+    42703, -- Prey: Nightmare Mode III
+})
+prey:Ids{
+    61387, -- Prey: Normal Mode I
+    61386, -- Prey: Normal Mode II
+    42701, -- Prey: Normal Mode III
+    62383, -- Gotta Hunt Them All
+    62134, -- The Deadliest of Prey
+    62143, -- Trapped In The Middle With You
+    62142, -- I Didn't Hear No Bell
+    62139, -- Midnight Hunter
+    62137, -- I'm Not Trapped In Here With You
+    62138, -- You're Trapped In Here With Me
+    62351, -- Preying For Midnight
+    63164, -- Big Prey Hunter (Season 1)
 }
 
-expansion:Insert{ -- Prey
-    CT.Prey,
-    {
-        addon.L["Hard"],
-        {
-            62144, -- Prey: Mad Magisters (Hard)
-            62153, -- Prey: Insane Inventors (Hard)
-            62154, -- Prey: A Different Kind of Void (Hard)
-            62155, -- Prey: Ethereal Assassins (Hard)
-            62156, -- Prey: Anger Management (Hard)
-            62157, -- Prey: Sadistic Shamans (Hard)
-            62158, -- Prey: The Fallen Farstriders (Hard)
-            62159, -- Prey: Bloody Green Thumbs (Hard)
-            62160, -- Prey: Blinded By The Light (Hard)
-            62161, -- Prey: Outsmarting the Schemers (Hard)
-            62162, -- Prey: Dominating the Void (Hard)
-            62163, -- Prey: Chasing Death (Hard)
-            62164, -- Prey: No Rest for the Wretched (Hard)
-            62165, -- Prey: A Thorn in the Side (Hard)
-            62166, -- Prey: Breaking the Blade (Hard)
-            61389, -- Prey: Hard Mode I
-            61388, -- Prey: Hard Mode II
-            42702, -- Prey: Hard Mode III
-        }
-    },
-    {
-        addon.L["Nightmare"],
-        {
-            62135, -- Now It's A Party
-            62136, -- I'm Good At What I Do
-            62141, -- Look, I'm Just Trying To Fish Here
-            62140, -- Kitchen Nightmare
-            62403, -- 'Tis But A Scratch
-            62167, -- Prey: Mad Magisters (Nightmare)
-            62168, -- Prey: Insane Inventors (Nightmare)
-            62169, -- Prey: A Different Kind of Void (Nightmare)
-            62173, -- Prey: Ethereal Assassins (Nightmare)
-            62174, -- Prey: Anger Management (Nightmare)
-            62175, -- Prey: Sadistic Shamans (Nightmare)
-            62176, -- Prey: The Fallen Farstriders (Nightmare)
-            62177, -- Prey: Bloody Green Thumbs (Nightmare)
-            62178, -- Prey: Blinded By The Light (Nightmare)
-            62179, -- Prey: Outsmarting the Schemers (Nightmare)
-            62180, -- Prey: Dominating the Void (Nightmare)
-            62181, -- Prey: Chasing Death (Nightmare)
-            62182, -- Prey: No Rest for the Wretched (Nightmare)
-            62183, -- Prey: A Thorn in the Side (Nightmare)
-            62184, -- Prey: Breaking the Blade (Nightmare)
-            61392, -- Prey: Nightmare Mode I
-            61391, -- Prey: Nightmare Mode II
-            42703, -- Prey: Nightmare Mode III
-        }
-    },
-    {
-        61387, -- Prey: Normal Mode I
-        61386, -- Prey: Normal Mode II
-        42701, -- Prey: Normal Mode III
-        62383, -- Gotta Hunt Them All
-        62134, -- The Deadliest of Prey
-        62143, -- Trapped In The Middle With You
-        62142, -- I Didn't Hear No Bell
-        62139, -- Midnight Hunter
-        62137, -- I'm Not Trapped In Here With You
-        62138, -- You're Trapped In Here With Me
-        62351, -- Preying For Midnight
-        63164, -- Big Prey Hunter (Season 1)
-    }
+expansion:Named(addon.L["The Arcantina"], { -- The Arcantina
+    61081, -- Share a Drink
+    61082, -- Old Soldiers
+    61083, -- Highly Decorated
+})
+
+local ritualSites = expansion:Named(CT.RitualSites) -- Ritual Sites
+ritualSites:Named(addon.L["Broken Throne"], {
+    62521, -- Ritual Site: Broken Throne
+    62523, -- Ritual Site Mastery: Broken Throne
+    62524, -- Ritual Site Challenge: Broken Throne
+    62525, -- Ritual Site Extreme: Broken Throne
+    62534, -- Ritual Site Rogue: Broken Throne
+    62536, -- Neighborhood Ritual Watch: Broken Throne
+    62537, -- Neighborhood Ritual Team: Broken Throne
+}):Merge()
+ritualSites:Named(addon.L["Daggerspine Point"], {
+    62522, -- Ritual Site: Daggerspine Point
+    62526, -- Ritual Site Mastery: Daggerspine Point
+    62527, -- Ritual Site Challenge: Daggerspine Point
+    62528, -- Ritual Site Extreme: Daggerspine Point
+    62535, -- Ritual Site Rogue: Daggerspine Point
+    62538, -- Neighborhood Ritual Watch: Daggerspine Point
+    62539, -- Neighborhood Ritual Team: Daggerspine Point
+}):Merge()
+ritualSites:Named(addon.L["Challenges"], {
+    62540, -- Challenge: Tendrils
+    62541, -- Challenge: Tainted Corpses
+    62542, -- Challenge: Manifestations
+    62543, -- Challenge: Patrols!
+    62544, -- Challenge: Magical Alarm Bells
+    62545, -- Challenge: Malevolent Boons
+    62546, -- Challenge: Reinforced
+    62547, -- Challenge: Embers
+    62548, -- Expert Challenge: Tendrils
+    62549, -- Expert Challenge: Tainted Corpses
+    62550, -- Expert Challenge: Manifestations
+    62551, -- Expert Challenge: Patrols!
+    62552, -- Expert Challenge: Magical Alarm Bells
+    62553, -- Expert Challenge: Malevolent Boons
+    62554, -- Expert Challenge: Reinforced
+    62555, -- Expert Challenge: Embers
+    62556, -- Quick Reflexes
+    62558, -- Patrol Ambusher
+    62559, -- Malevolence Shrugged
+    62560, -- Ember Still Burning
+    62561, -- Reinforcement Obliteration
+}):Merge()
+ritualSites:Ids{
+    62450, -- Ritual Sites 101: An Introduction to Basic Magical Rituals
+    62451, -- Ritual Sites 200: Intermediate Ritual Practices
+    62452, -- Ritual Sites 320: Ritual Items and Their Uses in Quel'Thalas
+    62453, -- Ritual Sites 415: Applied Ritual Strategies
+    62454, -- Ritual Sites 505: A Seminar in Void Ritual Nuance
+    62940, -- Ritual Sites 612: Practical Ritual Work
+    62529, -- Ritual Site Starter
+    62530, -- Ritual Site Achiever
+    62531, -- Ritual Site Adept
+    62532, -- Ritual Site Handler
+    62533, -- Ritual Site Master
+    62562, -- Ritual Site Disruptor
+    62621, -- Challenging Sites
+    62622, -- Ritual Renown
+    62941, -- Pinnacle Ritual Work
+    63182, -- Advanced Ritual Site Studies
 }
 
-expansion:Insert{ -- The Arcantina
-    addon.L["The Arcantina"],
-    {
-        61081, -- Share a Drink
-        61082, -- Old Soldiers
-        61083, -- Highly Decorated
-    }
-}
-
-expansion:Insert{ -- Ritual Sites
-    CT.RitualSites,
-    {
-        addon.L["Broken Throne"],
-        true,
-        {
-            62521, -- Ritual Site: Broken Throne
-            62523, -- Ritual Site Mastery: Broken Throne
-            62524, -- Ritual Site Challenge: Broken Throne
-            62525, -- Ritual Site Extreme: Broken Throne
-            62534, -- Ritual Site Rogue: Broken Throne
-            62536, -- Neighborhood Ritual Watch: Broken Throne
-            62537, -- Neighborhood Ritual Team: Broken Throne
-        },
-    },
-    {
-        addon.L["Daggerspine Point"],
-        true,
-        {
-            62522, -- Ritual Site: Daggerspine Point
-            62526, -- Ritual Site Mastery: Daggerspine Point
-            62527, -- Ritual Site Challenge: Daggerspine Point
-            62528, -- Ritual Site Extreme: Daggerspine Point
-            62535, -- Ritual Site Rogue: Daggerspine Point
-            62538, -- Neighborhood Ritual Watch: Daggerspine Point
-            62539, -- Neighborhood Ritual Team: Daggerspine Point
-        },
-    },
-    {
-        addon.L["Challenges"],
-        true,
-        {
-            62540, -- Challenge: Tendrils
-            62541, -- Challenge: Tainted Corpses
-            62542, -- Challenge: Manifestations
-            62543, -- Challenge: Patrols!
-            62544, -- Challenge: Magical Alarm Bells
-            62545, -- Challenge: Malevolent Boons
-            62546, -- Challenge: Reinforced
-            62547, -- Challenge: Embers
-            62548, -- Expert Challenge: Tendrils
-            62549, -- Expert Challenge: Tainted Corpses
-            62550, -- Expert Challenge: Manifestations
-            62551, -- Expert Challenge: Patrols!
-            62552, -- Expert Challenge: Magical Alarm Bells
-            62553, -- Expert Challenge: Malevolent Boons
-            62554, -- Expert Challenge: Reinforced
-            62555, -- Expert Challenge: Embers
-            62556, -- Quick Reflexes
-            62558, -- Patrol Ambusher
-            62559, -- Malevolence Shrugged
-            62560, -- Ember Still Burning
-            62561, -- Reinforcement Obliteration
-        },
-    },
-    {
-        62450, -- Ritual Sites 101: An Introduction to Basic Magical Rituals
-        62451, -- Ritual Sites 200: Intermediate Ritual Practices
-        62452, -- Ritual Sites 320: Ritual Items and Their Uses in Quel'Thalas
-        62453, -- Ritual Sites 415: Applied Ritual Strategies
-        62454, -- Ritual Sites 505: A Seminar in Void Ritual Nuance
-        62940, -- Ritual Sites 612: Practical Ritual Work
-        62529, -- Ritual Site Starter
-        62530, -- Ritual Site Achiever
-        62531, -- Ritual Site Adept
-        62532, -- Ritual Site Handler
-        62533, -- Ritual Site Master
-        62562, -- Ritual Site Disruptor
-        62621, -- Challenging Sites
-        62622, -- Ritual Renown
-        62941, -- Pinnacle Ritual Work
-        63182, -- Advanced Ritual Site Studies
-    },
-}
-
-expansion:Insert{ -- Void Assaults
-    CT.VoidAssaults,
-    {
-        addon.L["Omnium Folio"],
-        true,
-        {
-            62606, -- The Sunstrider Omnium
-            63325, -- Omnium Folio Studies
-        }
-    },
-    {
-        addon.L["Val and Naigtal"],
-        true,
-        {
-            63383, -- Into the Stars
-            63384, -- Prepared for a Showdown
-            63385, -- A Hal'hadar Walks into a Swamp
-            63386, -- Frosty Domanaar Politics
-            62880, -- Showdown Success: Val
-            62881, -- Showdown Slugger: Val
-            62882, -- Showdown Success: Naigtal
-            62883, -- Showdown Slugger: Naigtal
-            62903, -- Climate Strange: Val
-            62904, -- Climate Strange: Naigtal
-            62917, -- Heroic Climate Strange: Val
-            62919, -- Heroic Climate Strange: Naigtal
-            62905, -- Pain of Command
-            62909, -- Heroic: Pain of Command
-            62887, -- Heroic: Worlds Ahead
-            62901, -- Heroic: Power Creep
-            63264, -- Heroic Showdowns
-            63348, -- Heroic Slugger
-            62842, -- A Celestial Pain
-            63349, -- Ultradon Carnage
-            62873, -- A Trip Around the Stars
-            62874, -- A Trip Through the Stars
-        }
-    },
-    {
-        62498, -- Void Assault: Eversong
-        62507, -- Void Smasher: Eversong
-        62508, -- Void Eradicator: Eversong
-        62509, -- Void Bane: Eversong
-        62499, -- Void Assault: Zul'Aman
-        62510, -- Void Smasher: Zul'Aman
-        62511, -- Void Eradicator: Zul'Aman
-        62512, -- Void Bane: Zul'Aman
-        62513, -- Outstanding in the Field
-        62518, -- Cosmic Exterminator (Pet: Cappy)
-        62563, -- Void Response Team (Mount: Unbound Manawyrm)
-        62568, -- Void Shmoid
-        62569, -- Traces in the Dark
-        62570, -- Cosmic Slayer
-        62571, -- Everybody Gets One
-        62572, -- Battery Bombardment
-        62573, -- Air Traffic Controller
-        62574, -- Accolade to Rest
-    },
+local voidAssaults = expansion:Named(CT.VoidAssaults) -- Void Assaults
+voidAssaults:Named(addon.L["Omnium Folio"], {
+    62606, -- The Sunstrider Omnium
+    63325, -- Omnium Folio Studies
+}):Merge()
+voidAssaults:Named(addon.L["Val and Naigtal"], {
+    63383, -- Into the Stars
+    63384, -- Prepared for a Showdown
+    63385, -- A Hal'hadar Walks into a Swamp
+    63386, -- Frosty Domanaar Politics
+    62880, -- Showdown Success: Val
+    62881, -- Showdown Slugger: Val
+    62882, -- Showdown Success: Naigtal
+    62883, -- Showdown Slugger: Naigtal
+    62903, -- Climate Strange: Val
+    62904, -- Climate Strange: Naigtal
+    62917, -- Heroic Climate Strange: Val
+    62919, -- Heroic Climate Strange: Naigtal
+    62905, -- Pain of Command
+    62909, -- Heroic: Pain of Command
+    62887, -- Heroic: Worlds Ahead
+    62901, -- Heroic: Power Creep
+    63264, -- Heroic Showdowns
+    63348, -- Heroic Slugger
+    62842, -- A Celestial Pain
+    63349, -- Ultradon Carnage
+    62873, -- A Trip Around the Stars
+    62874, -- A Trip Through the Stars
+}):Merge()
+voidAssaults:Ids{
+    62498, -- Void Assault: Eversong
+    62507, -- Void Smasher: Eversong
+    62508, -- Void Eradicator: Eversong
+    62509, -- Void Bane: Eversong
+    62499, -- Void Assault: Zul'Aman
+    62510, -- Void Smasher: Zul'Aman
+    62511, -- Void Eradicator: Zul'Aman
+    62512, -- Void Bane: Zul'Aman
+    62513, -- Outstanding in the Field
+    62518, -- Cosmic Exterminator (Pet: Cappy)
+    62563, -- Void Response Team (Mount: Unbound Manawyrm)
+    62568, -- Void Shmoid
+    62569, -- Traces in the Dark
+    62570, -- Cosmic Slayer
+    62571, -- Everybody Gets One
+    62572, -- Battery Bombardment
+    62573, -- Air Traffic Controller
+    62574, -- Accolade to Rest
 }

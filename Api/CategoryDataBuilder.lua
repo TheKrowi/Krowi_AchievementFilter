@@ -8,30 +8,68 @@ local CT = setmetatable({}, {
 })
 
 local function AssertUniqueContainer(parent, name)
-    for _, child in next, parent._t.Children do
-        assert(child.Name ~= name, "Container '" .. tostring(name) .. "' already added to '" .. tostring(parent._t.Name) .. "'. Each container method may only be called once per builder.")
+    for _, child in next, parent.Children do
+        assert(child.Name ~= name, "Container '" .. tostring(name) .. "' already added to '" .. tostring(parent.Name) .. "'. Each container method may only be called once per builder.")
     end
 end
 
-local function WithBase(t)
-    function t:Ids(ids)
-        self._t.Achievements = self._t.Achievements or {}
-        for _, id in next, ids do
-            tinsert(self._t.Achievements, id)
-        end
-        return self
-    end
-    function t:Insert(v1) tinsert(self._t.Children, v1); return self end
-    return t
+local function NewNode(name, ids)
+    return { _v2 = true, Name = name, Achievements = ids, Children = {} }
 end
 
--- ZoneBuilder
-local ZoneBuilder = WithBase({})
-ZoneBuilder.__index = ZoneBuilder
+-- CategoryBuilder — base builder. The instance IS the data node.
+-- Methods are on the class (metatable) and are invisible to the parser's key lookups.
+local CategoryBuilder = {}
+CategoryBuilder.__index = CategoryBuilder
 
-local function AddZoneSub(self, ct, ids)
-    tinsert(self._t.Children, { _v2 = true, Name = ct, CanMerge = true, Achievements = ids })
+function CategoryBuilder:Ids(ids)
+    self.Achievements = self.Achievements or {}
+    for _, id in next, ids do
+        tinsert(self.Achievements, id)
+    end
     return self
+end
+
+function CategoryBuilder:Insert(node)
+    tinsert(self.Children, node)
+    return self
+end
+
+function CategoryBuilder:Merge()
+    self.CanMerge = true
+    return self
+end
+
+function CategoryBuilder:Named(label, ids)
+    local child = setmetatable(NewNode(label, ids), CategoryBuilder)
+    tinsert(self.Children, child)
+    return child
+end
+
+-- Named after a map; plain CategoryBuilder child, not a ZoneBuilder.
+function CategoryBuilder:ZoneNamed(uiMapId, ids)
+    local child = setmetatable(NewNode(addon.GetMapName(uiMapId), ids), CategoryBuilder)
+    tinsert(self.Children, child)
+    return child
+end
+
+-- Named after an instance; plain CategoryBuilder child, not a RaidBuilder or DungeonsBuilder.
+function CategoryBuilder:InstanceNamed(journalId, ids)
+    local child = setmetatable(NewNode(addon.GetInstanceInfoName(journalId), ids), CategoryBuilder)
+    tinsert(self.Children, child)
+    return child
+end
+
+-- ZoneBuilder — inherits CategoryBuilder; created by ZonesBuilder:Zone. All sub-methods auto-set CanMerge=true.
+local ZoneBuilder = {}
+ZoneBuilder.__index = ZoneBuilder
+setmetatable(ZoneBuilder, { __index = CategoryBuilder })
+
+local function AddZoneSub(self, name, ids)
+    local child = setmetatable(NewNode(name, ids), CategoryBuilder)
+    child.CanMerge = true
+    tinsert(self.Children, child)
+    return child
 end
 
 function ZoneBuilder:Quests(ids)      return AddZoneSub(self, CT.Quests, ids) end
@@ -40,79 +78,91 @@ function ZoneBuilder:PvP(ids)         return AddZoneSub(self, CT.PvP, ids) end
 function ZoneBuilder:Reputation(ids)  return AddZoneSub(self, CT.Reputation, ids) end
 
 function ZoneBuilder:Named(label, ids)
-    tinsert(self._t.Children, { _v2 = true, Name = label, CanMerge = true, Achievements = ids })
-    return self
+    local child = setmetatable(NewNode(label, ids), CategoryBuilder)
+    child.CanMerge = true
+    tinsert(self.Children, child)
+    return child
 end
 
--- ZonesBuilder
-local ZonesBuilder = WithBase({})
+-- ZonesBuilder — inherits CategoryBuilder; Zone returns a ZoneBuilder child.
+local ZonesBuilder = {}
 ZonesBuilder.__index = ZonesBuilder
+setmetatable(ZonesBuilder, { __index = CategoryBuilder })
 
 function ZonesBuilder:Zone(uiMapId, ids)
-    local zone = setmetatable({ _t = { _v2 = true, Name = addon.GetMapName(uiMapId), Achievements = ids, Children = {} } }, ZoneBuilder)
-    tinsert(self._t.Children, zone._t)
-    return zone
+    local child = setmetatable(NewNode(addon.GetMapName(uiMapId), ids), ZoneBuilder)
+    tinsert(self.Children, child)
+    return child
 end
 
--- RaidBuilder
-local RaidBuilder = WithBase({})
+local RaidBuilder = {}
 RaidBuilder.__index = RaidBuilder
+setmetatable(RaidBuilder, { __index = CategoryBuilder })
 
 function RaidBuilder:Glory(ids)
-    tinsert(self._t.Children, { _v2 = true, Name = addon.L["Glory"], Achievements = ids })
-    return self
+    local child = setmetatable(NewNode(addon.L["Glory"], ids), CategoryBuilder)
+    tinsert(self.Children, child)
+    return child
 end
 
 function RaidBuilder:Mythic(ids)
-    tinsert(self._t.Children, { _v2 = true, Name = addon.L["Mythic"], Achievements = ids })
-    return self
+    local child = setmetatable(NewNode(addon.L["Mythic"], ids), CategoryBuilder)
+    tinsert(self.Children, child)
+    return child
 end
 
--- DelvesBuilder
-local DelvesBuilder = WithBase({})
+-- RaidsBuilder — inherits CategoryBuilder; Instance returns a RaidBuilder child.
+local RaidsBuilder = {}
+RaidsBuilder.__index = RaidsBuilder
+setmetatable(RaidsBuilder, { __index = CategoryBuilder })
+
+function RaidsBuilder:Raid(journalId, ids)
+    local child = setmetatable(NewNode(addon.GetInstanceInfoName(journalId), ids), RaidBuilder)
+    tinsert(self.Children, child)
+    return child
+end
+
+local DelvesBuilder = {}
 DelvesBuilder.__index = DelvesBuilder
+setmetatable(DelvesBuilder, { __index = CategoryBuilder })
 
 function DelvesBuilder:Seasonal(ids)
-    tinsert(self._t.Children, { _v2 = true, Name = addon.L["Seasonal"], Achievements = ids })
-    return self
+    local child = setmetatable(NewNode(addon.L["Seasonal"], ids), CategoryBuilder)
+    tinsert(self.Children, child)
+    return child
 end
 
-function DelvesBuilder:Instance(uiMapId, ids)
-    tinsert(self._t.Children, { _v2 = true, Name = addon.GetMapName(uiMapId), Achievements = ids })
-    return self
+function DelvesBuilder:Delve(uiMapId, ids)
+    local child = setmetatable(NewNode(addon.GetMapName(uiMapId), ids), CategoryBuilder)
+    tinsert(self.Children, child)
+    return child
 end
 
--- DungeonsBuilder
-local DungeonsBuilder = WithBase({})
+-- DungeonsBuilder — inherits CategoryBuilder. MythicPlus(fn) inserts a V1 node (bridge; fn produces V1, not a builder).
+local DungeonsBuilder = {}
 DungeonsBuilder.__index = DungeonsBuilder
+setmetatable(DungeonsBuilder, { __index = CategoryBuilder })
 
 function DungeonsBuilder:MythicPlus(fn)
-    tinsert(self._t.Children, fn(addon.L["Mythic+"]))
+    tinsert(self.Children, fn(addon.L["Mythic+"]))
     return self
 end
 
-function DungeonsBuilder:Instance(journalId, ids)
-    tinsert(self._t.Children, { _v2 = true, Name = addon.GetInstanceInfoName(journalId), Achievements = ids })
-    return self
+function DungeonsBuilder:Dungeon(journalId, ids)
+    local child = setmetatable(NewNode(addon.GetInstanceInfoName(journalId), ids), CategoryBuilder)
+    tinsert(self.Children, child)
+    return child
 end
 
--- RaidsBuilder
-local RaidsBuilder = WithBase({})
-RaidsBuilder.__index = RaidsBuilder
-
-function RaidsBuilder:Instance(journalId)
-    local inst = setmetatable({ _t = { _v2 = true, Name = addon.GetInstanceInfoName(journalId), Children = {} } }, RaidBuilder)
-    tinsert(self._t.Children, inst._t)
-    return inst
-end
-
--- ProfessionsBuilder
-local ProfessionsBuilder = WithBase({})
+local ProfessionsBuilder = {}
 ProfessionsBuilder.__index = ProfessionsBuilder
+setmetatable(ProfessionsBuilder, { __index = CategoryBuilder })
 
-local function AddProf(self, ct, ids)
-    tinsert(self._t.Children, { _v2 = true, Name = ct, CanMerge = true, Achievements = ids })
-    return self
+local function AddProf(self, name, ids)
+    local child = setmetatable(NewNode(name, ids), CategoryBuilder)
+    child.CanMerge = true
+    tinsert(self.Children, child)
+    return child
 end
 
 function ProfessionsBuilder:Alchemy(ids)        return AddProf(self, CT.Alchemy, ids) end
@@ -129,79 +179,92 @@ function ProfessionsBuilder:Mining(ids)         return AddProf(self, CT.Mining, 
 function ProfessionsBuilder:Skinning(ids)       return AddProf(self, CT.Skinning, ids) end
 function ProfessionsBuilder:Tailoring(ids)      return AddProf(self, CT.Tailoring, ids) end
 
--- ExpansionBuilder
-local ExpansionBuilder = WithBase({})
+-- ExpansionBuilder — inherits CategoryBuilder. Typed container methods return specialized child builders.
+local ExpansionBuilder = {}
 ExpansionBuilder.__index = ExpansionBuilder
+setmetatable(ExpansionBuilder, { __index = CategoryBuilder })
 
 function ExpansionBuilder:Character(ids)
-    tinsert(self._t.Children, { _v2 = true, Name = CT.Character, Achievements = ids })
-    return self
+    local name = CT.Character
+    AssertUniqueContainer(self, name)
+    local child = setmetatable(NewNode(name, ids), CategoryBuilder)
+    tinsert(self.Children, child)
+    return child
 end
 
 function ExpansionBuilder:Zones(ids)
     local name = addon.L["Zones"]
     AssertUniqueContainer(self, name)
-    local z = setmetatable({ _t = { _v2 = true, Name = name, Achievements = ids, Children = {} } }, ZonesBuilder)
-    tinsert(self._t.Children, z._t)
-    return z
+    local child = setmetatable(NewNode(name, ids), ZonesBuilder)
+    tinsert(self.Children, child)
+    return child
 end
 
 function ExpansionBuilder:Delves(ids)
     local name = CT.Delves
     AssertUniqueContainer(self, name)
-    local d = setmetatable({ _t = { _v2 = true, Name = name, Achievements = ids, Children = {} } }, DelvesBuilder)
-    tinsert(self._t.Children, d._t)
-    return d
+    local child = setmetatable(NewNode(name, ids), DelvesBuilder)
+    tinsert(self.Children, child)
+    return child
 end
 
 function ExpansionBuilder:Dungeons(ids)
     local name = CT.Dungeons
     AssertUniqueContainer(self, name)
-    local d = setmetatable({ _t = { _v2 = true, Name = name, Achievements = ids, Children = {} } }, DungeonsBuilder)
-    tinsert(self._t.Children, d._t)
-    return d
+    local child = setmetatable(NewNode(name, ids), DungeonsBuilder)
+    tinsert(self.Children, child)
+    return child
 end
 
 function ExpansionBuilder:Raids(ids)
     local name = CT.Raids
     AssertUniqueContainer(self, name)
-    local r = setmetatable({ _t = { _v2 = true, Name = name, Achievements = ids, Children = {} } }, RaidsBuilder)
-    tinsert(self._t.Children, r._t)
-    return r
+    local child = setmetatable(NewNode(name, ids), RaidsBuilder)
+    tinsert(self.Children, child)
+    return child
 end
 
 function ExpansionBuilder:Professions(ids)
     local name = CT.Professions
     AssertUniqueContainer(self, name)
-    local p = setmetatable({ _t = { _v2 = true, Name = name, Achievements = ids, Children = {} } }, ProfessionsBuilder)
-    tinsert(self._t.Children, p._t)
-    return p
+    local child = setmetatable(NewNode(name, ids), ProfessionsBuilder)
+    tinsert(self.Children, child)
+    return child
 end
 
 function ExpansionBuilder:PetBattles(ids)
-    tinsert(self._t.Children, { _v2 = true, Name = CT.PetBattles, Achievements = ids })
-    return self
+    local name = CT.PetBattles
+    AssertUniqueContainer(self, name)
+    local child = setmetatable(NewNode(name, ids), CategoryBuilder)
+    tinsert(self.Children, child)
+    return child
+end
+
+-- InjectionBuilder — appends children to an existing category by TargetId. V2 plugin API via KrowiAF.NewInjection. Call Register() to enqueue.
+local injectionCount = 0
+local InjectionBuilder = {}
+InjectionBuilder.__index = InjectionBuilder
+setmetatable(InjectionBuilder, { __index = CategoryBuilder })
+
+function InjectionBuilder:Register()
+    injectionCount = injectionCount + 1
+    KrowiAF.CategoryData["_injection_" .. injectionCount] = self
+end
+
+local function BuildRootCategory(builder, tab, name, ids, id, canMerge)
+    local cat = setmetatable({ _v2 = true, Name = name, Achievements = ids, Id = id, CanMerge = canMerge or false, Children = {} }, builder)
+    tinsert(tab, cat)
+    return cat
+end
+
+function KrowiAF.NewRootCategory(tab, name, ids, id, canMerge)
+    return BuildRootCategory(CategoryBuilder, tab, name, ids, id, canMerge)
 end
 
 function KrowiAF.NewExpansion(name, ids)
-    local expansion = setmetatable({ _t = { _v2 = true, Name = name, Achievements = ids, Children = {} } }, ExpansionBuilder)
-    tinsert(KrowiAF.CategoryData.Expansions, expansion._t)
-    return expansion
-end
-
--- InjectionBuilder
-local InjectionBuilder = WithBase({})
-InjectionBuilder.__index = InjectionBuilder
-
-function InjectionBuilder:Named(label, ids, canMerge)
-    tinsert(self._t.Children, { _v2 = true, Name = label, Achievements = ids, CanMerge = canMerge })
-    return self
-end
-
-function InjectionBuilder:RegisterAs(key)
-    KrowiAF.CategoryData[key] = self._t
+    return BuildRootCategory(ExpansionBuilder, KrowiAF.CategoryData.Expansions, name, ids)
 end
 
 function KrowiAF.NewInjection(id)
-    return setmetatable({ _t = { _v2 = true, Id = id, Children = {} } }, InjectionBuilder)
+    return setmetatable({ _v2 = true, _injection = true, TargetId = id, Children = {} }, InjectionBuilder)
 end
