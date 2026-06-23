@@ -19,6 +19,6 @@ function section:CheckAdd(achievement)
 end
 
 function section:Add(achievement)
-	GameTooltip:AddLine(addon.L["Objectives progress"]);
+	KrowiAF_Tooltip:AddLine(addon.L["Objectives progress"]);
 	addon.Gui.AchievementTooltip:AddCriteria(achievement.Id, achievement.Id, numCriteria);
 end

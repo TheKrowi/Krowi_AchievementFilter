@@ -136,21 +136,21 @@ local function GetNames(characters, achievement)
 end
 
 function section:Add(achievement)
-	GameTooltip:AddLine(addon.L["Most progress"]);
+	KrowiAF_Tooltip:AddLine(addon.L["Most progress"]);
 
 	local characters = BuildCharacterList(achievement);
 	if not characters or #characters == 0 then
-		GameTooltip:AddLine(addon.L["No characters found"]:SetColorRed());
+		KrowiAF_Tooltip:AddLine(addon.L["No characters found"]:SetColorRed());
 		return;
 	end
 
 	local achievementData = GetAchievementData(characters[1].Guid, achievement.Id);
 	if not achievementData then
-		GameTooltip:AddLine(addon.L["No data found"]:SetColorRed());
+		KrowiAF_Tooltip:AddLine(addon.L["No data found"]:SetColorRed());
 		return;
 	end
 
 	local names = GetNames(characters, achievement);
-	GameTooltip:AddLine(names);
+	KrowiAF_Tooltip:AddLine(names);
 	addon.Gui.AchievementTooltip:AddCriteria(achievement.Id, achievementData, numCriteria);
 end

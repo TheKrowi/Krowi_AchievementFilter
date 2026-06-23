@@ -496,48 +496,20 @@ expansion:PetBattles{
     61091, -- Midnight Safari
 }
 
-expansion:Named(addon.L["Abyss Anglers"], { -- Abyss Anglers
-    62118, -- Abyss Anglers: Amazardhide Catch Case
-    62117, -- Abyss Anglers: Boarhide Catch Sack
-    62272, -- Abyss Anglers: Certified Depthdiver
-    62208, -- Abyss Anglers: Depth Grease
-    62210, -- Abyss Anglers: Depthdiver's Used Tank
-    62218, -- Abyss Anglers: Even The Best
-    62211, -- Abyss Anglers: Fathom-Tested Tank
-    62342, -- Abyss Anglers: The Finest of Fish
-    62221, -- Abyss Anglers: Fresh Depth Tech
-    62215, -- Abyss Anglers: Heavy Harpoon Cannon
-    62216, -- Abyss Anglers: Hollowcore Harpoon Turret
-    62217, -- Abyss Anglers: Idol of the Depths
-    62773, -- Abyss Anglers: Jeju's New Rival
-    62119, -- Abyss Anglers: Loaknit-Woven Catch Satchel
-    62778, -- Abyss Anglers: Luck of the Loa
-    62343, -- Abyss Anglers: Myths from Beneath
-    62212, -- Abyss Anglers: Nalorakk's Breath Tank
-    62219, -- Abyss Anglers: No Sea Can Hold Me
-    62774, -- Abyss Anglers: Not Done Yet
-    62772, -- Abyss Anglers: Now That's Anglin'
-    62761, -- Abyss Anglers: One with the Depths
-    62209, -- Abyss Anglers: Pahk Trench Fins
-    62777, -- Abyss Anglers: Pearls to the Abyss
-    62506, -- Abyss Anglers: Pressurized Eyeglass
-    62220, -- Abyss Anglers: Proper Procedure
-    62207, -- Abyss Anglers: Reinforced Joints
-    62829, -- Abyss Anglers: Don't Know What You Expected
-    62832, -- Abyss Anglers: Reservation for One
-    62213, -- Abyss Anglers: Shallows Net
-    62222, -- Abyss Anglers: The Amani Way
-    62762, -- Abyss Anglers: Top of the Class
-    62271, -- Abyss Anglers: Trench Berserker
-    62214, -- Abyss Anglers: Triple-Thread Net
-    62763, -- Abyss Anglers: Vintage Collector
-    62760, -- Abyss Anglers: Angler Physics
-    62776, -- Abyss Anglers: All Blue Angler (Pet: Ka'bubb)
-    62775, -- Abyss Anglers: Delicate Diver
-    62759, -- Abyss Anglers: History Below
+local prey = expansion:Named(CT.Prey, { -- Prey
+    61387, -- Prey: Normal Mode I
+    61386, -- Prey: Normal Mode II
+    42701, -- Prey: Normal Mode III
+    62383, -- Gotta Hunt Them All
+    62134, -- The Deadliest of Prey
+    62143, -- Trapped In The Middle With You
+    62142, -- I Didn't Hear No Bell
+    62139, -- Midnight Hunter
+    62137, -- I'm Not Trapped In Here With You
+    62138, -- You're Trapped In Here With Me
+    62351, -- Preying For Midnight
+    63164, -- Big Prey Hunter (Season 1)
 })
-
-local prey = expansion:Named(CT.Prey) -- Prey
 prey:Named(addon.L["Hard"], {
     62144, -- Prey: Mad Magisters (Hard)
     62153, -- Prey: Insane Inventors (Hard)
@@ -583,20 +555,6 @@ prey:Named(addon.L["Nightmare"], {
     61391, -- Prey: Nightmare Mode II
     42703, -- Prey: Nightmare Mode III
 })
-prey:Ids{
-    61387, -- Prey: Normal Mode I
-    61386, -- Prey: Normal Mode II
-    42701, -- Prey: Normal Mode III
-    62383, -- Gotta Hunt Them All
-    62134, -- The Deadliest of Prey
-    62143, -- Trapped In The Middle With You
-    62142, -- I Didn't Hear No Bell
-    62139, -- Midnight Hunter
-    62137, -- I'm Not Trapped In Here With You
-    62138, -- You're Trapped In Here With Me
-    62351, -- Preying For Midnight
-    63164, -- Big Prey Hunter (Season 1)
-}
 
 expansion:Named(addon.L["The Arcantina"], { -- The Arcantina
     61081, -- Share a Drink
@@ -604,7 +562,63 @@ expansion:Named(addon.L["The Arcantina"], { -- The Arcantina
     61083, -- Highly Decorated
 })
 
-local ritualSites = expansion:Named(CT.RitualSites) -- Ritual Sites
+expansion:Named(addon.L["Abyss Anglers"], { -- Abyss Anglers
+    62118, -- Abyss Anglers: Amazardhide Catch Case
+    62117, -- Abyss Anglers: Boarhide Catch Sack
+    62272, -- Abyss Anglers: Certified Depthdiver
+    62208, -- Abyss Anglers: Depth Grease
+    62210, -- Abyss Anglers: Depthdiver's Used Tank
+    62218, -- Abyss Anglers: Even The Best
+    62211, -- Abyss Anglers: Fathom-Tested Tank
+    62342, -- Abyss Anglers: The Finest of Fish
+    62221, -- Abyss Anglers: Fresh Depth Tech
+    62217, -- Abyss Anglers: Idol of the Depths
+    62773, -- Abyss Anglers: Jeju's New Rival
+    62119, -- Abyss Anglers: Loaknit-Woven Catch Satchel
+    62778, -- Abyss Anglers: Luck of the Loa
+    62343, -- Abyss Anglers: Myths from Beneath
+    62212, -- Abyss Anglers: Nalorakk's Breath Tank
+    62219, -- Abyss Anglers: No Sea Can Hold Me
+    62774, -- Abyss Anglers: Not Done Yet
+    62772, -- Abyss Anglers: Now That's Anglin'
+    62761, -- Abyss Anglers: One with the Depths
+    62209, -- Abyss Anglers: Pahk Trench Fins
+    62777, -- Abyss Anglers: Pearls to the Abyss
+    62506, -- Abyss Anglers: Pressurized Eyeglass
+    62220, -- Abyss Anglers: Proper Procedure
+    62207, -- Abyss Anglers: Reinforced Joints
+    62829, -- Abyss Anglers: Don't Know What You Expected
+    62832, -- Abyss Anglers: Reservation for One
+    62213, -- Abyss Anglers: Shallows Net
+    62222, -- Abyss Anglers: The Amani Way
+    62762, -- Abyss Anglers: Top of the Class
+    62271, -- Abyss Anglers: Trench Berserker
+    62214, -- Abyss Anglers: Triple-Thread Net
+    62763, -- Abyss Anglers: Vintage Collector
+    62760, -- Abyss Anglers: Angler Physics
+    62776, -- Abyss Anglers: All Blue Angler (Pet: Ka'bubb)
+    62775, -- Abyss Anglers: Delicate Diver
+    62759, -- Abyss Anglers: History Below
+})
+
+local ritualSites = expansion:Named(CT.RitualSites, { -- Ritual Sites
+    62450, -- Ritual Sites 101: An Introduction to Basic Magical Rituals
+    62451, -- Ritual Sites 200: Intermediate Ritual Practices
+    62452, -- Ritual Sites 320: Ritual Items and Their Uses in Quel'Thalas
+    62453, -- Ritual Sites 415: Applied Ritual Strategies
+    62454, -- Ritual Sites 505: A Seminar in Void Ritual Nuance
+    62940, -- Ritual Sites 612: Practical Ritual Work
+    62529, -- Ritual Site Starter
+    62530, -- Ritual Site Achiever
+    62531, -- Ritual Site Adept
+    62532, -- Ritual Site Handler
+    62533, -- Ritual Site Master
+    62562, -- Ritual Site Disruptor
+    62621, -- Challenging Sites
+    62622, -- Ritual Renown
+    62941, -- Pinnacle Ritual Work
+    63182, -- Advanced Ritual Site Studies
+})
 ritualSites:Named(addon.L["Broken Throne"], {
     62521, -- Ritual Site: Broken Throne
     62523, -- Ritual Site Mastery: Broken Throne
@@ -613,7 +627,7 @@ ritualSites:Named(addon.L["Broken Throne"], {
     62534, -- Ritual Site Rogue: Broken Throne
     62536, -- Neighborhood Ritual Watch: Broken Throne
     62537, -- Neighborhood Ritual Team: Broken Throne
-}):Merge()
+})
 ritualSites:Named(addon.L["Daggerspine Point"], {
     62522, -- Ritual Site: Daggerspine Point
     62526, -- Ritual Site Mastery: Daggerspine Point
@@ -622,7 +636,7 @@ ritualSites:Named(addon.L["Daggerspine Point"], {
     62535, -- Ritual Site Rogue: Daggerspine Point
     62538, -- Neighborhood Ritual Watch: Daggerspine Point
     62539, -- Neighborhood Ritual Team: Daggerspine Point
-}):Merge()
+})
 ritualSites:Named(addon.L["Challenges"], {
     62540, -- Challenge: Tendrils
     62541, -- Challenge: Tainted Corpses
@@ -645,31 +659,32 @@ ritualSites:Named(addon.L["Challenges"], {
     62559, -- Malevolence Shrugged
     62560, -- Ember Still Burning
     62561, -- Reinforcement Obliteration
-}):Merge()
-ritualSites:Ids{
-    62450, -- Ritual Sites 101: An Introduction to Basic Magical Rituals
-    62451, -- Ritual Sites 200: Intermediate Ritual Practices
-    62452, -- Ritual Sites 320: Ritual Items and Their Uses in Quel'Thalas
-    62453, -- Ritual Sites 415: Applied Ritual Strategies
-    62454, -- Ritual Sites 505: A Seminar in Void Ritual Nuance
-    62940, -- Ritual Sites 612: Practical Ritual Work
-    62529, -- Ritual Site Starter
-    62530, -- Ritual Site Achiever
-    62531, -- Ritual Site Adept
-    62532, -- Ritual Site Handler
-    62533, -- Ritual Site Master
-    62562, -- Ritual Site Disruptor
-    62621, -- Challenging Sites
-    62622, -- Ritual Renown
-    62941, -- Pinnacle Ritual Work
-    63182, -- Advanced Ritual Site Studies
-}
+})
 
-local voidAssaults = expansion:Named(CT.VoidAssaults) -- Void Assaults
+local voidAssaults = expansion:Named(CT.VoidAssaults, { -- Void Assaults
+    62498, -- Void Assault: Eversong
+    62507, -- Void Smasher: Eversong
+    62508, -- Void Eradicator: Eversong
+    62509, -- Void Bane: Eversong
+    62499, -- Void Assault: Zul'Aman
+    62510, -- Void Smasher: Zul'Aman
+    62511, -- Void Eradicator: Zul'Aman
+    62512, -- Void Bane: Zul'Aman
+    62513, -- Outstanding in the Field
+    62518, -- Cosmic Exterminator (Pet: Cappy)
+    62563, -- Void Response Team (Mount: Unbound Manawyrm)
+    62568, -- Void Shmoid
+    62569, -- Traces in the Dark
+    62570, -- Cosmic Slayer
+    62571, -- Everybody Gets One
+    62572, -- Battery Bombardment
+    62573, -- Air Traffic Controller
+    62574, -- Accolade to Rest
+})
 voidAssaults:Named(addon.L["Omnium Folio"], {
     62606, -- The Sunstrider Omnium
     63325, -- Omnium Folio Studies
-}):Merge()
+})
 voidAssaults:Named(addon.L["Val and Naigtal"], {
     63383, -- Into the Stars
     63384, -- Prepared for a Showdown
@@ -693,24 +708,4 @@ voidAssaults:Named(addon.L["Val and Naigtal"], {
     63349, -- Ultradon Carnage
     62873, -- A Trip Around the Stars
     62874, -- A Trip Through the Stars
-}):Merge()
-voidAssaults:Ids{
-    62498, -- Void Assault: Eversong
-    62507, -- Void Smasher: Eversong
-    62508, -- Void Eradicator: Eversong
-    62509, -- Void Bane: Eversong
-    62499, -- Void Assault: Zul'Aman
-    62510, -- Void Smasher: Zul'Aman
-    62511, -- Void Eradicator: Zul'Aman
-    62512, -- Void Bane: Zul'Aman
-    62513, -- Outstanding in the Field
-    62518, -- Cosmic Exterminator (Pet: Cappy)
-    62563, -- Void Response Team (Mount: Unbound Manawyrm)
-    62568, -- Void Shmoid
-    62569, -- Traces in the Dark
-    62570, -- Cosmic Slayer
-    62571, -- Everybody Gets One
-    62572, -- Battery Bombardment
-    62573, -- Air Traffic Controller
-    62574, -- Accolade to Rest
-}
+})

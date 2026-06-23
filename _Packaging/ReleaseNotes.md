@@ -27,3 +27,9 @@
 ### Mists Classic (98.2)
 - Added missing 5.5.3 build version
 - Bumped toc to use 5.5.4 as in some rare occasions KAF did not show up in the addon list
+
+### Fixed (98.3)
+- Root taint fix attempt: `attempt to compare a secret number value (execution tainted by 'Krowi_AchievementFilter')` (dev note: KAF now uses a dedicated `KrowiAF_TooltipFrame` — a private `GameTooltip`-derived frame — for all of its own tooltip content instead of the shared `GameTooltip`; calling `GameTooltip:SetOwner()` from addon code triggered `GameTooltip_ClearWidgetSet` in a tainted context, corrupting the shared tooltip's UIWidget state; pattern mirrors the existing `Krowi_ProgressBarTooltip`; all `GameTooltip` calls across `AchievementTooltip/`, `BrowsingHistory/`, `WorldMapButton/`, `EventReminder/`, and `WindowFrames/` have been redirected to `KrowiAF_TooltipFrame`; `Data/TooltipData.lua` is unchanged as its `TooltipDataProcessor.AddTooltipPostCall` usage is the correct Blizzard API for augmenting native tooltips)
+
+### Removed (98.3)
+- Abyss Anglers: Heavy Harpoon Cannon (62215) and Abyss Anglers: Hollowcore Harpoon Turret (62216) — these are tracking achievements which are not supported

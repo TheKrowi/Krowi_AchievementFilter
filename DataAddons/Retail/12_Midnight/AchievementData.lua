@@ -459,8 +459,6 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(62212):Other(), -- Abyss Anglers: Nalorakk's Breath Tank
 	Ach(62213):Other(), -- Abyss Anglers: Shallows Net
 	Ach(62214):Other(), -- Abyss Anglers: Triple-Thread Net
-	Ach(62215):Other(), -- Abyss Anglers: Heavy Harpoon Cannon
-	Ach(62216):Other(), -- Abyss Anglers: Hollowcore Harpoon Turret
 	Ach(62217):Other(), -- Abyss Anglers: Idol of the Depths
 	Ach(62218), -- Abyss Anglers: Even The Best
 	Ach(62219), -- Abyss Anglers: No Sea Can Hold Me

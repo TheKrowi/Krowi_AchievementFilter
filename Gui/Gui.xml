@@ -6,4 +6,5 @@
         <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
         <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
     </CheckButton>
+    <GameTooltip name="KrowiAF_Tooltip" inherits="GameTooltipTemplate" parent="UIParent" frameStrata="TOOLTIP" hidden="true"/>
 </Ui>

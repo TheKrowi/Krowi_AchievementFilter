@@ -41,14 +41,14 @@ function KrowiAF_WorldMapButtonMixin:OnEnter()
     if self.NumOfAch > 0 then
         addon.Gui.ShowStatusBarTooltip(self, "ANCHOR_RIGHT", addon.Options.db.profile.AddAddonNameToWorldMapIcon and addon.Metadata.Title);
     else
-        GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
-	    GameTooltip_SetTitle(GameTooltip, self.Text);
-        GameTooltip_AddNormalLine(GameTooltip, addon.L["No achievements are available with the current set of filters"]);
+        KrowiAF_Tooltip:SetOwner(self, "ANCHOR_RIGHT");
+	    GameTooltip_SetTitle(KrowiAF_Tooltip, self.Text);
+        GameTooltip_AddNormalLine(KrowiAF_Tooltip, addon.L["No achievements are available with the current set of filters"]);
         if addon.Options.db.profile.AddAddonNameToWorldMapIcon then
-            GameTooltip_AddBlankLineToTooltip(GameTooltip);
-            GameTooltip_AddNormalLine(GameTooltip, addon.Metadata.Title);
+            GameTooltip_AddBlankLineToTooltip(KrowiAF_Tooltip);
+            GameTooltip_AddNormalLine(KrowiAF_Tooltip, addon.Metadata.Title);
         end
-        GameTooltip:Show();
+        KrowiAF_Tooltip:Show();
     end
 end
 
@@ -56,7 +56,7 @@ function KrowiAF_WorldMapButtonMixin:OnLeave()
     if self.NumOfAch > 0 then
         addon.ProgressBarLib.GameTooltipWithProgressBar:Hide()
     else
-        GameTooltip:Hide()
+        KrowiAF_Tooltip:Hide()
     end
 end
 

@@ -1,18 +1,18 @@
 KrowiAF_AchievementButtonExtraIconMixin = {};
 
 function KrowiAF_AchievementButtonExtraIconMixin:OnEnter()
-	GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+	KrowiAF_Tooltip:SetOwner(self, "ANCHOR_RIGHT");
 	local color = self.Color or {};
 	if self.Lines then
 		for i = 1, #self.Lines do
-			GameTooltip:AddLine(self.Lines[i], color.R, color.G, color.B);
+			KrowiAF_Tooltip:AddLine(self.Lines[i], color.R, color.G, color.B);
 		end
-		GameTooltip:Show();
+		KrowiAF_Tooltip:Show();
 		return;
 	end
-	GameTooltip:SetText(self.Text, color.R, color.G, color.B, nil, true);
+	KrowiAF_Tooltip:SetText(self.Text, color.R, color.G, color.B, nil, true);
 end
 
 function KrowiAF_AchievementButtonExtraIconMixin:OnLeave()
-	GameTooltip:Hide();
+	KrowiAF_Tooltip:Hide();
 end

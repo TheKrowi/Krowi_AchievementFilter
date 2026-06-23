@@ -72,12 +72,12 @@ function KrowiAF_AchievementButtonTrackedMixin:OnShow()
 end
 
 function KrowiAF_AchievementButtonTrackedMixin:OnEnter()
-	GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
-	GameTooltip:SetText(self:GetChecked() and UNTRACK_ACHIEVEMENT_TOOLTIP or TRACK_ACHIEVEMENT_TOOLTIP, nil, nil, nil, nil, true);
+	KrowiAF_Tooltip:SetOwner(self, "ANCHOR_RIGHT");
+	KrowiAF_Tooltip:SetText(self:GetChecked() and UNTRACK_ACHIEVEMENT_TOOLTIP or TRACK_ACHIEVEMENT_TOOLTIP, nil, nil, nil, nil, true);
 end
 
 function KrowiAF_AchievementButtonTrackedMixin:OnLeave()
-	GameTooltip:Hide();
+	KrowiAF_Tooltip:Hide();
 end
 
 function KrowiAF_AchievementButtonTrackedMixin:OnClick()
@@ -100,7 +100,7 @@ end
 
 function KrowiAF_AchievementButtonLightMixin:OnLeave()
 	self.Highlight:Hide();
-	GameTooltip:Hide();
+	KrowiAF_Tooltip:Hide();
 end
 
 local function ProcessedModifiers(self, ignoreModifiers)
@@ -232,7 +232,7 @@ end
 
 function KrowiAF_AchievementButtonMixin:OnLeave()
 	KrowiAF_AchievementsFrame:ClearHighlightedButton();
-	GameTooltip:Hide();
+	KrowiAF_Tooltip:Hide();
 	local selectedTab = addon.Gui.SelectedTab;
 	if selectedTab and self.Achievement ~= selectedTab.SelectedAchievement then
 		self.Highlight:Hide();
