@@ -66,12 +66,12 @@ end
 
 function KrowiAF_EventReminderAlertFrameMixin:ShowGameTooltip()
     if self.Name:IsTruncated() then
-        KrowiAF_Tooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT", 0, self:GetHeight())
-        KrowiAF_Tooltip:SetText(self.Name:GetText())
-        KrowiAF_Tooltip:Show()
+        Krowi_Tooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT", 0, self:GetHeight())
+        Krowi_Tooltip:SetText(self.Name:GetText())
+        Krowi_Tooltip:Show()
     end
 end
 
 function KrowiAF_EventReminderAlertFrameMixin:HideGameTooltip()
-    KrowiAF_Tooltip:Hide()
+    Krowi_Tooltip:Hide()
 end

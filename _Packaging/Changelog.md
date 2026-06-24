@@ -1,9 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 98.4 - 2026-06-24
+### Fixed
+- Taint fix attempt 666?: `attempt to compare a secret number value (execution tainted by 'Krowi_AchievementFilter')`
+
 ## 98.3 - 2026-06-23
 ### Fixed
-- Root taint fix attempt: `attempt to compare a secret number value (execution tainted by 'Krowi_AchievementFilter')` (dev note: KAF now uses a dedicated `KrowiAF_TooltipFrame` — a private `GameTooltip`-derived frame — for all of its own tooltip content instead of the shared `GameTooltip`; calling `GameTooltip:SetOwner()` from addon code triggered `GameTooltip_ClearWidgetSet` in a tainted context, corrupting the shared tooltip's UIWidget state; pattern mirrors the existing `Krowi_ProgressBarTooltip`; all `GameTooltip` calls across `AchievementTooltip/`, `BrowsingHistory/`, `WorldMapButton/`, `EventReminder/`, and `WindowFrames/` have been redirected to `KrowiAF_TooltipFrame`; `Data/TooltipData.lua` is unchanged as its `TooltipDataProcessor.AddTooltipPostCall` usage is the correct Blizzard API for augmenting native tooltips)
+- Taint fix attempt: `attempt to compare a secret number value (execution tainted by 'Krowi_AchievementFilter')`
 
 ### Removed
 - Abyss Anglers: Heavy Harpoon Cannon (62215) and Abyss Anglers: Hollowcore Harpoon Turret (62216) — these are tracking achievements which are not supported

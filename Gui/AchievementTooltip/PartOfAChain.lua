@@ -36,6 +36,6 @@ local function AddPartOfAChainAchievement(currentAchievement, id, nameSuffix)
 end
 
 function section:Add(achievement)
-	KrowiAF_Tooltip:AddLine(addon.L["Part of a chain"])
+	Krowi_Tooltip:AddLine(addon.L["Part of a chain"])
 	AddPartOfAChainAchievement(achievement, firstAchievement.Id)
 end

@@ -10,11 +10,11 @@ function section:CheckAdd(achievement)
 end
 
 function section:Add(achievement)
-	KrowiAF_Tooltip:AddLine(addon.L["Added in version"]); -- Header
+	Krowi_Tooltip:AddLine(addon.L["Added in version"]); -- Header
 	if not achievement.BuildVersion then
-		KrowiAF_Tooltip:AddLine(addon.Metadata.Build, 1, 1, 1);
+		Krowi_Tooltip:AddLine(addon.Metadata.Build, 1, 1, 1);
 		return;
 	end
 	local description = achievement.BuildVersion.Description and " (" .. achievement.BuildVersion.Description .. ")" or "";
-	KrowiAF_Tooltip:AddLine(achievement.BuildVersion.Name .. description, 1, 1, 1);
+	Krowi_Tooltip:AddLine(achievement.BuildVersion.Name .. description, 1, 1, 1);
 end

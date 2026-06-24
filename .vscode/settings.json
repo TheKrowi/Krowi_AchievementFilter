@@ -566,7 +566,7 @@
         "TRACKER_HEADER_PROVINGGROUNDS",
         "INSCRIPTION",
         "PLAYER_DIFFICULTY_TIMEWALKER",
-        "KrowiAF_Tooltip"
+        "Krowi_Tooltip"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

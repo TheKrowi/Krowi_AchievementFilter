@@ -16,9 +16,9 @@ function section:Add(achievement)
 			return;
 		end
 		local record = records[i];
-		KrowiAF_Tooltip:AddLine(record.Text, record.Color.R, record.Color.G, record.Color.B);
+		Krowi_Tooltip:AddLine(record.Text, record.Color.R, record.Color.G, record.Color.B);
 		if record.Occurrence and addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.ShowDateTime then
-			KrowiAF_Tooltip:AddLine(record.Occurrence, record.Color.R, record.Color.G, record.Color.B);
+			Krowi_Tooltip:AddLine(record.Occurrence, record.Color.R, record.Color.G, record.Color.B);
 		end
 	end
 end

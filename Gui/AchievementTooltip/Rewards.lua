@@ -11,7 +11,7 @@ end
 
 local getTypeName
 function section:Add(achievement)
-	KrowiAF_Tooltip:AddLine(addon.L["Rewards"]) -- Header
+	Krowi_Tooltip:AddLine(addon.L["Rewards"]) -- Header
     local rewardType = achievement.RewardType
     if rewardType then
         if not getTypeName then
@@ -19,7 +19,7 @@ function section:Add(achievement)
         end
 
         for _, rType in next, rewardType do
-            KrowiAF_Tooltip:AddLine(addon.L[getTypeName(rType)], 1, 1, 1)
+            Krowi_Tooltip:AddLine(addon.L[getTypeName(rType)], 1, 1, 1)
         end
     end
 end

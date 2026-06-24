@@ -63,19 +63,19 @@ end
 function section:Add(achievement)
 	if achievement.IsAccountWide then
 		if achievement.IsCompleted then
-			KrowiAF_Tooltip:AddLine(ACCOUNT_WIDE_ACHIEVEMENT_COMPLETED);
+			Krowi_Tooltip:AddLine(ACCOUNT_WIDE_ACHIEVEMENT_COMPLETED);
 			return;
 		end
-		KrowiAF_Tooltip:AddLine(ACCOUNT_WIDE_ACHIEVEMENT);
+		Krowi_Tooltip:AddLine(ACCOUNT_WIDE_ACHIEVEMENT);
 		return;
 	end
 
 	local earnedByThisCharacter = addon.Data.SavedData.AchievementData.IsEarnedByCharacter(UnitGUID("player"), achievement);
 	local earnedBy, notEarnedBy = EvaluateCharacters(achievement);
 	if earnedBy ~= "" then
-		KrowiAF_Tooltip:AddLine(format(ACHIEVEMENT_EARNED_BY, earnedBy), nil, nil, nil, true);
+		Krowi_Tooltip:AddLine(format(ACHIEVEMENT_EARNED_BY, earnedBy), nil, nil, nil, true);
 	end
 	if notEarnedBy ~= "" and not (addon.Options.db.profile.Tooltip.Achievements.EarnedBy.HideNotEarnedByIfEarnedByCurrentCharacter and earnedByThisCharacter) then
-		KrowiAF_Tooltip:AddLine(format(addon.L["Not earned by:"], notEarnedBy), nil, nil, nil, true);
+		Krowi_Tooltip:AddLine(format(addon.L["Not earned by:"], notEarnedBy), nil, nil, nil, true);
 	end
 end
