@@ -40,3 +40,6 @@
 ### Fixed (98.5)
 - Some categories are flagged as 'Legacy' again (got  removed at some point) as they are replaced in later expansions (dev note: example being Onyxia's Lair having an original implementation in Vanilla and a revamp in WotLK)
 - Translations
+
+### Mists Classic (98.6)
+- Fixed an error due to a missing field

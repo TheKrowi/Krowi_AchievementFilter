@@ -143,7 +143,9 @@ function data:LoadOnPlayerLogin()
     self:RegisterCustomCriteriaDataTasks();
     self:RegisterCategoryDataTasks();
     self:RegisterEventDataTasks();
-    self.ExportedUiMaps.RegisterTasks(self.Maps, self.Achievements);
+    if self.ExportedUiMaps then
+        self.ExportedUiMaps.RegisterTasks(self.Maps, self.Achievements);
+    end
 
     self:RegisterTooltipDataTasks();
     self:RegisterPetBattleLinkDataTasks();
