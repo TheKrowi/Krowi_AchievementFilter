@@ -2,4 +2,5 @@
     <Script file="CategoryData.lua" />
     <Script file="AchievementData.lua" />
     <Script file="EventData.lua" />
+    <Script file="ZoneData.lua" />
 </Ui>

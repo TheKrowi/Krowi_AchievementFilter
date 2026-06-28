@@ -45,7 +45,7 @@ function tooltip:AddAchievementLine(currentAchievement, otherAchievementId, show
 	local icon, color = GetAchievementIconAndColor(completed, state, sameAchievement);
 	local currentCharacterIcon = GetCurrentCharacterIcon(showCurrentCharacterIcons, wasEarnedByMe, state)
 
-	GameTooltip:AddLine(icon .. "|T:1:8|t" .. currentCharacterIcon .. name .. nameSuffix, color.R, color.G, color.B); -- Achievement name
+	Krowi_Tooltip:AddLine(icon .. "|T:1:8|t" .. currentCharacterIcon .. name .. nameSuffix, color.R, color.G, color.B); -- Achievement name
 end
 
 local function GetCriteriaElements(achievementData, criteriaIndex)
@@ -95,7 +95,7 @@ end
 
 local function AddCriteriaLine(achievementId, achievementData, criteriaIndex)
 	local text, color = GetCriteriaTextAndColor(achievementId, achievementData, criteriaIndex);
-	GameTooltip:AddLine(text, color.R, color.G, color.B);
+	Krowi_Tooltip:AddLine(text, color.R, color.G, color.B);
 end
 
 local function AddDoubleCriteriaLine(achievementId, achievementData, criteriaIndex1, criteriaIndex2)
@@ -104,7 +104,7 @@ local function AddDoubleCriteriaLine(achievementId, achievementData, criteriaInd
 	for i, criteriaIndex in next, {criteriaIndex1, criteriaIndex2} do
 		texts[i], colors[i] = GetCriteriaTextAndColor(achievementId, achievementData, criteriaIndex);
 	end
-	GameTooltip:AddDoubleLine(texts[1], texts[2], colors[1].R, colors[1].G, colors[1].B, colors[2].R, colors[2].G, colors[2].B);
+	Krowi_Tooltip:AddDoubleLine(texts[1], texts[2], colors[1].R, colors[1].G, colors[1].B, colors[2].R, colors[2].G, colors[2].B);
 end
 
 function tooltip:AddCriteria(achievementId, achievementData, numCriteria)
@@ -120,12 +120,12 @@ function tooltip:AddCriteria(achievementId, achievementData, numCriteria)
 end
 
 function tooltip:ShowTooltip(anchor, achievement)
-	GameTooltip:SetOwner(anchor, "ANCHOR_BOTTOMRIGHT", 0, anchor:GetHeight());
+	Krowi_Tooltip:SetOwner(anchor, "ANCHOR_BOTTOMRIGHT", 0, anchor:GetHeight());
 
 	for _, sect in next, self.Sections do
 		if sect:CheckAdd(achievement) then
-			if GameTooltip:NumLines() > 0 then
-				GameTooltip_AddBlankLineToTooltip(GameTooltip);
+			if Krowi_Tooltip:NumLines() > 0 then
+				GameTooltip_AddBlankLineToTooltip(Krowi_Tooltip);
 			end
 			sect:Add(achievement);
 		end
@@ -137,5 +137,5 @@ function tooltip:ShowTooltip(anchor, achievement)
 	-- 	GameTooltip_AddBlankLineToTooltip(GameTooltip);
 	-- end
 
-	GameTooltip:Show();
+	Krowi_Tooltip:Show();
 end

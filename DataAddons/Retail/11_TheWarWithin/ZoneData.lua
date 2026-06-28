@@ -1,5 +1,5 @@
-local _, addon = ...;
-local shared = addon.Data.ZoneData.Shared;
+local _, addon = ...
+local shared = addon.Data.ZoneData.Shared
 
 local delves = {
     shared.CrossExpansionDelves,
@@ -56,7 +56,7 @@ local delves = {
     42778, -- A Flicker in the Dark
     42779, -- A Flash in the Void
     40438, -- Glory of the Delver
-};
+}
 
 local delvesS1Progress = {
     40515, -- War Within Delves: Tier 4 (Season 1)
@@ -69,12 +69,12 @@ local delvesS1Progress = {
     40726, -- War Within Delves: Tier 11 (Season 1)
     40459, -- I've Got a Flying Machine!
     40789, -- Flying in Style
-};
+}
 
 local delvesS1 = {
     delves,
     delvesS1Progress,
-};
+}
 
 local delvesS2Progress = {
     41191, -- War Within Delves: Tier 4 (Season 2)
@@ -88,12 +88,12 @@ local delvesS2Progress = {
     41532, -- I've Got a Flying Machine?
     41714, -- From Trash to Treasure
     41709, -- Journey's End (Season 2)
-};
+}
 
 local delvesS2 = {
     delves,
     delvesS2Progress
-};
+}
 
 local delvesS3Progress = {
     42196, -- War Within Delves: Tier 4 (Season 3)
@@ -107,673 +107,590 @@ local delvesS3Progress = {
     42677, -- This Machine Flies?! Don't Care I Got It!
     42678, -- So That's Where My Manaflux Capacitor Was!
     42801, -- Journey's End (Season 3)
-};
+}
 
 local delvesS3 = {
     delves,
     delvesS3Progress
-};
+}
 
-KrowiAF.ZoneData.TheWarWithin = {
-    { -- Azj-Kahet (zone)
-        {2213, 2216, 2255, 2256},
-        {
-            19559, -- Azj-Kahet
-            40636, -- Sojourner of Azj-Kahet
-            40832, -- Leave it to Weaver
-            40833, -- The General's Salute
-            40835, -- Vizier than Ever
-            40620, -- Back to the Wall
-            40869, -- Worm Theory
-            40822, -- Explore Azj-Kahet
-            40828, -- Treasures of Azj-Kahet
-            40840, -- Adventurer of Azj-Kahet
-            40705, -- Azj-Kahet Glyph Hunter
-            40542, -- Smelling History
-            40634, -- You Can't Hang With Us
-            40624, -- Itsy Bitsy Spider
-            40632, -- No Harm Ever Came From Reading A Book
-            40843, -- Mine Poppin'
-            40629, -- Bookworm
-            40727, -- Skittershaw Spin
-            40633, -- The Unseeming
-            40086, -- Tour of Duty: Azj-Kahet
-            41149, -- The Severed Threads
-            41164, -- We Rise Anew
-            40874, -- The Grand Tapestry
-            40875, -- True Strength
-            40876, -- Vox Arachni
-            41189, -- Azj the World Turns
-            40343, -- Azj-Kahet: Bronze
-            40344, -- Azj-Kahet: Silver
-            40345, -- Azj-Kahet: Gold
-            40346, -- Azj-Kahet Advanced: Bronze
-            40347, -- Azj-Kahet Advanced: Silver
-            40348, -- Azj-Kahet Advanced: Gold
-            40349, -- Azj-Kahet Reverse: Bronze
-            40350, -- Azj-Kahet Reverse: Silver
-            40351, -- Azj-Kahet Reverse: Gold
-        }
-    },
-    { -- The Ringing Deeps (zone)
-        2214,
-        {
-            19560, -- The Ringing Deeps
-            40799, -- Sojourner of The Ringing Deeps
-            40507, -- Hanging Tight
-            40623, -- I Only Need One Trip
-            40630, -- For the Collective
-            40825, -- Explore The Ringing Deeps
-            40837, -- Adventurer of The Ringing Deeps
-            40724, -- Treasures of The Ringing Deeps
-            40703, -- The Ringing Deeps Glyph Hunter
-            40628, -- Notable Machines
-            40473, -- Not So Quick Fix
-            40475, -- To All the Slimes I Love
-            40614, -- Gobblin' with Glublurp
-            40731, -- Panhandled
-            40504, -- Rocked to Sleep
-            40585, -- Super Size Snuffling
-            40662, -- It's Not Much, But It's Honest Work
-            40084, -- Tour of Duty: The Ringing Deeps
-            41165, -- Assembly of the Deeps
-            41166, -- From Many, One
-            41187, -- Rage Aside the Machine
-            40325, -- The Ringing Deeps: Bronze
-            40326, -- The Ringing Deeps: Silver
-            40327, -- The Ringing Deeps: Gold
-            40328, -- The Ringing Deeps Advanced: Bronze
-            40329, -- The Ringing Deeps Advanced: Silver
-            40330, -- The Ringing Deeps Advanced: Gold
-            40331, -- The Ringing Deeps Reverse: Bronze
-            40332, -- The Ringing Deeps Reverse: Silver
-            40333, -- The Ringing Deeps Reverse: Gold
-        }
-    },
-    { -- Hallowfall (zone)
-        2215,
-        {
-            20598, -- Hallowfall
-            40844, -- Sojourner of Hallowfall
-            20594, -- Flamegard's Hope
-            40150, -- Children's Entertainer
-            40082, -- Never Enough
-            40360, -- Life on the Farm
-            40308, -- Beacon of Hope
-            40311, -- Sharing the Light
-            40312, -- Starting the Flames
-            40313, -- Igniting the Keyflames
-            40826, -- Explore Hallowfall
-            40848, -- Treasures of Hallowfall
-            40851, -- Adventurer of Hallowfall
-            40704, -- Hallowfall Glyph Hunter
-            40151, -- Mereldar Menace
-            40618, -- Lost and Found
-            40625, -- The Missing Lynx
-            40622, -- Biblo Archivist
-            40729, -- Light's Gambit Champion
-            40085, -- Tour of Duty: Hallowfall
-            41167, -- Hallowfall Arathi
-            41168, -- The Flame Burns Within
-            41188, -- Crystal Chronicled
-            40334, -- Hallowfall: Bronze
-            40335, -- Hallowfall: Silver
-            40336, -- Hallowfall: Gold
-            40337, -- Hallowfall Advanced: Bronze
-            40338, -- Hallowfall Advanced: Silver
-            40339, -- Hallowfall Advanced: Gold
-            40340, -- Hallowfall Reverse: Bronze
-            40341, -- Hallowfall Reverse: Silver
-            40342, -- Hallowfall Reverse: Gold
-        }
-    },
-    { -- Isle of Dorn (zone)
-        {2248, 2322, 2339, 2367, 2368},
-        {
-            20118, -- The Isle of Dorn
-            20595, -- Sojourner of Isle of Dorn
-            40831, -- Explore the Isle of Dorn
-            40435, -- Adventurer of the Isle of Dorn
-            40434, -- Treasures of the Isle of Dorn
-            40166, -- Isle of Dorn Glyph Hunter
-            40606, -- Flat Earthen
-            40083, -- Tour of Duty: Isle of Dorn
-            41161, -- Council of Dornogal
-            41162, -- Cornerstone of Dornogal
-            41186, -- Slate of the Union
-            40316, -- Isle of Dorn: Bronze
-            40317, -- Isle of Dorn: Silver
-            40318, -- Isle of Dorn: Gold
-            40319, -- Isle of Dorn Advanced: Bronze
-            40320, -- Isle of Dorn Advanced: Silver
-            40321, -- Isle of Dorn Advanced: Gold
-            40322, -- Isle of Dorn Reverse: Bronze
-            40323, -- Isle of Dorn Reverse: Silver
-            40324, -- Isle of Dorn Reverse: Gold
-        }
-    },
-    { -- Fungal Folly (delve)
-        2249,
-        {
-            40525, -- Fungal Folly Stories
-            40803, -- Fungal Folly Discoveries,
-            delvesS1,
-            delvesS2Progress,
-            delvesS3Progress,
-        }
-    },
-    { -- Kriegval's Rest (delve)
-        2250,
-        {
-            40526, -- Kriegval's Rest Stories
-            40807, -- Kriegval's Rest Discoveries
-            delvesS1,
-            delvesS2Progress,
-            delvesS3Progress,
-        }
-    },
-    { -- The Waterworks (delve)
-        2251,
-        {
-            40528, -- The Waterworks Stories
-            40816, -- The Waterworks Discoveries
-            delvesS1,
-            delvesS2Progress,
-            delvesS3Progress,
-        }
-    },
-    { -- Tak-Rethan Abyss (delve)
-        2259,
-        {
-            40535, -- Tak-Rethan Abyss Stories
-            40811, -- Tak-Rethan Abyss Discoveries
-            delvesS1,
-            delvesS2Progress,
-            delvesS3Progress,
-        }
-    },
-    { -- Earthcrawl Mines (delve)
-        2269,
-        {
-            40527, -- Earthcrawl Mines Stories
-            40806, -- Earthcrawl Mines Discoveries
-            delvesS1,
-            delvesS2Progress,
-            delvesS3Progress,
-        }
-    },
-    { -- Nightfall Sanctum (delve)
-        2277,
-        {
-            40530, -- Nightfall Sanctum Stories
-            40809, -- Nightfall Sanctum Discoveries
-            delvesS1,
-            delvesS2Progress,
-            delvesS3Progress,
-        }
-    },
-    { -- Nerub-ar Palace (raid)
-        {2291, 2292, 2293, 2294, 2295, 2296},
-        {
-            40247, -- The Skittering Battlements
-            40248, -- Secrets of Nerub-ar Palace
-            40249, -- A Queen's Fall
-            40244, -- Nerub-ar Palace
-            40245, -- Heroic: Nerub-ar Palace
-            40246, -- Mythic: Nerub-ar Palace
-            40253, -- Ahead of the Curve: Queen Ansurek
-            40254, -- Cutting Edge: Queen Ansurek
-            40469, -- I'm Bringing Nerub-ack
-            40660, -- The War Within Season 1: Spelunker Supreme
-            40723, -- Web-Wrapped in the Finest Silks
-            40261, -- Slimy Yet Satisfying
-            40260, -- You Can't See Me
-            40255, -- Sik Parry Bro
-            40262, -- Cowabunga
-            40263, -- Would You Still /love Me if I Was a Worm...
-            40264, -- Kill Streak
-            40730, -- Love is in the Lair
-            40266, -- Missed 'Em by That Much
-            40232, -- Glory of the Nerub-ar Raider
-            40236, -- Mythic: Ulgrax the Devourer
-            40237, -- Mythic: The Bloodbound Horror
-            40238, -- Mythic: Sikran, Captain of the Sureki
-            40239, -- Mythic: Rasha'nan
-            40240, -- Mythic: Broodtwister Ovi'nax
-            40241, -- Mythic: Nexus-Princess Ky'veza
-            40242, -- Mythic: The Silken Court
-            40243, -- Mythic: Queen Ansurek
-        }
-    },
-    { -- The Underkeep (delve)
-        2299,
-        {
-            40534, -- The Underkeep Stories
-            40815, -- The Underkeep Discoveries
-            delvesS1,
-            delvesS2Progress,
-            delvesS3Progress,
-        }
-    },
-    { -- The Sinkhole (delve)
-        2301,
-        {
-            40532, -- The Sinkhole Stories
-            40813, -- The Sinkhole Discoveries
-            delvesS1,
-            delvesS2Progress,
-            delvesS3Progress,
-        }
-    },
-    { -- The Dread Pit (delve)
-        2302,
-        {
-            40529, -- The Dread Pit Stories
-            40812, -- The Dread Pit Discoveries
-            delvesS1,
-            delvesS2Progress,
-            delvesS3Progress,
-        }
-    },
-    { -- Darkflame Cleft (dungeon)
-        2303,
-        {
-            40427, -- Darkflame Cleft
-            40428, -- Heroic: Darkflame Cleft
-            40429, -- Mythic: Darkflame Cleft
-            20584, -- Keystone Hero: Darkflame Cleft
-        },
-    },
-    { -- Priori of the Sacred Flame (dungeon)
-        {2308, 2309},
-        {
-            40590, -- Priory of the Sacred Flame
-            40592, -- Heroic: Priory of the Sacred Flame
-            40596, -- Mythic: Priory of the Sacred Flame
-            20581, -- Keystone Hero: Priory of the Sacred Flame
-        },
-    },
-    { -- Skittering Breach (delve)
-        2310,
-        {
-            40533, -- Skittering Breach Stories
-            40810, -- Skittering Breach Discoveries
-            delvesS1,
-            delvesS2Progress,
-            delvesS3Progress,
-        }
-    },
-    { -- Mycomancer Cavern (delve)
-        2312,
-        {
-            40531, -- Mycomancer Cavern Stories
-            40808, -- Mycomancer Cavern Discoveries
-            delvesS1,
-            delvesS2Progress,
-            delvesS3Progress,
-        }
-    },
-    { -- The Rookery (dungeon)
-        {2315, 2316, 2317, 2318, 2319, 2320},
-        {
-            40621, -- The Rookery
-            40637, -- Heroic: The Rookery
-            40642, -- Mythic: The Rookery
-            20579, -- Keystone Hero: The Rookery
-        },
-    },
-    { -- Isle of Dorn - The Proscenium (zone)
-        2328,
-        {
-            40859, -- We're Here All Night
-            40860, -- A Star of Dorn
-        }
-    },
-    { -- Cinderbrew Meadery (dungeon)
-        2335,
-        {
-            40361, -- Cinderbrew Meadery
-            40363, -- Heroic: Cinderbrew Meadery
-            40366, -- Mythic: Cinderbrew Meadery
-            20583, -- Keystone Hero: Cinderbrew Meadery
-        },
-    },
-    { -- The Stonevault (dungeon)
-        2341,
-        {
-            40643, -- The Stonevault
-            40644, -- Heroic: The Stonevault
-            40648, -- Mythic: The Stonevault
-            20580, -- Keystone Hero: The Stonevault
-        },
-    },
-    { -- City of Threads (dungeon)
-        {2343, 2344},
-        {
-            40376, -- City of Threads
-            40377, -- Heroic: City of Threads
-            40379, -- Mythic: City of Threads
-            20582, -- Keystone Hero: City of Threads
-        },
-    },
-    { -- Undermine (zone)
-        2346,
-        {
-            40900, -- Undermined
-            40894, -- Sojourner of Undermine
-            41587, -- Explore Undermine
-            41217, -- Treasures of Undermine
-            41216, -- Adventurer of Undermine
-            40948, -- Nine-Tenths of the Law
-            41588, -- Read Between the Lines
-            41589, -- That Can-Do Attitude
-            41708, -- You're My Friend Now
-            41590, -- No Littering
-            41591, -- Really No Littering
-            41592, -- Absolutely Zero Littering
-            41593, -- Cleanin' the Streets
-            41594, -- Can You Believe What People Throw Away?
-            41626, -- C.H.E.T.T. a Look
-            41627, -- C.H.E.T.T.ing it Twice
-            41629, -- C.H.E.T.T.mate
-            41630, -- "Employee" of the Month
-            41214, -- Under the Echoes
-            41215, -- Echoes of Deeper Dangers
-            41522, -- Tour of Duty: Undermine
-            41349, -- In with the Cartels
-            41351, -- Cartels Bestie
-            41352, -- Trade-Duke
-            41086, -- Ally of Undermine
-            41350, -- A Long Fuse
-            41586, -- Going Goblin Mode
-            40936, -- Undermine Skyrocketing: Bronze
-            40937, -- Undermine Skyrocketing: Silver
-            40938, -- Undermine Skyrocketing: Gold
-            41081, -- Undermine Breaknecking: Bronze
-            41083, -- Undermine Breaknecking: Silver
-            41084, -- Undermine Breaknecking: Gold
-        }
-    },
-    { -- The Spiral Weave (delve)
-        2347,
-        {
-            40536, -- The Spiral Weave Stories
-            40814, -- The Spiral Weave Discoveries
-            delvesS1,
-            delvesS2Progress,
-            delvesS3Progress,
-        }
-    },
-    { -- Zekvir's Lair (delve)
-        2348,
-        {
-            40732, -- Heavy-Handed
-            40103, -- My First Nemesis
-            40431, -- Hunting the Hunter
-            40433, -- Let Me Solo Him: Zekvir
-            delves,
-        }
-    },
-    { -- Ara-Kara, City of Echoes (dungeon)
-        {2357, 2358},
-        {
-            40370, -- Ara-Kara, City of Echoes
-            40374, -- Heroic: Ara-Kara, City of Echoes
-            40375, -- Mythic: Ara-Kara, City of Echoes
-            20586, -- Keystone Hero: Ara-Kara, City of Echoes
-        },
-    },
-    { -- The Dawnbreaker (dungeon)
-        2359,
-        {
-            40599, -- The Dawnbreaker
-            40601, -- Heroic: The Dawnbreaker
-            40604, -- Mythic: The Dawnbreaker
-            20585, -- Keystone Hero: The Dawnbreaker
-        },
-    },
-    { -- Siren Isle (zone)
-        {2369, 2375},
-        {
-            41042, -- Siren-ity Now!
-            41043, -- Excavation Projects
-            41045, -- A Song of Secrets
-            41185, -- Siren's Squall
-            41046, -- Clean Up on Isle Siren
-            41050, -- A Choir of Citrines
-            41131, -- Treasures of the Storm
-            41133, -- Isle Remember You
-        }
-    },
-    { -- K'aresh (zone)
-        {2371, 2472, 2477},
-        {
-            41970, -- The Knife's Edge
-            42739, -- Sojourner of K'aresh
-            41808, -- Otherworldly Ecologist
-            41809, -- Ecological Variety
-            41811, -- Ecological Stability
-            41812, -- Expertly Done
-            41815, -- Ecological Succession
-            41978, -- Moonlighter
-            41979, -- Bounty Seeker
-            41980, -- Vigilante
-            42731, -- Become a Hero. Become a Phasediver!
-            42737, -- Capstoned
-            61916, -- Rage of the Ren'dorei (Reward: Void Elf Demon Hunter Unlocked)
-            42740, -- Explore K'aresh
-            42741, -- Treasures of K'aresh
-            42761, -- Remnants of a Shattered World
-            42727, -- K'aresh Glyph Hunter
-            42729, -- Dangerous Prowlers of K'aresh
-            42730, -- Jump, Jump, and Away!
-            42736, -- Ixthar's Legacy
-            42738, -- We've All Got Swords!
-            42742, -- Power of the Reshii
-            60890, -- Secrets of the K'areshi
-            61017, -- Phase-Lost-and-Found
-            42131, -- Tour of Duty: K'aresh
-            42022, -- A Trusted Partner
-            41778, -- Brokers Don't Care How You Win
-            60889, -- Unraveled and Persevering
-        }
-    },
-    { -- Operation: Floodgate (dungeon)
-        {2387, 2388},
-        {
-            41339, -- Operation: Floodgate
-            41340, -- Heroic: Operation: Floodgate
-            41341, -- Mythic: Operation: Floodgate
-            41348, -- Keystone Hero: Operation: Floodgate
-        },
-    },
-    { -- Excavation Site 9 (delve)
-        2396,
-        {
-            41098, -- Excavation Site 9 Stories
-            41100, -- Excavation Site 9 Discoveries
-            delvesS2,
-            delvesS3Progress,
-        }
-    },
-    { -- Vision of Orgrimmar / Vision of Stormwind
-        {2403, 2404},
-        {
-            41853, -- Horrific Vision of Stormwind
-            41854, -- The Even More Horrific Vision of Stormwind
-            41855, -- The Most Horrific Vision of Stormwind
-            41964, -- Beyond the Most Horrific Vision of Stormwind
-            41875, -- Horrific Vision of Orgrimmar
-            41876, -- The Even More Horrific Vision of Orgrimmar
-            41879, -- The Most Horrific Vision of Orgrimmar
-            41965, -- Beyond the Most Horrific Vision of Orgrimmar
-            41725, -- We Have the Memories
-            41928, -- Reeking of Visions
-            41929, -- Through the Depths of Visions
-            41966, -- Mastering the Visions
-            41857, -- Masked Soliloquy
-            41858, -- Masked Sextet
-            41859, -- Thanks For The Mementos
-            41896, -- Memento Mori
-            41983, -- Memento Mania
-            41897, -- A Monumental Amount of Mementos
-            41898, -- A Mountain of Mementos
-            41873, -- Incremental Progress
-            41874, -- Symphony of Masks
-            41889, -- Horrific Masquerade
-            41890, -- Masked Duet
-            41891, -- Masked Trio
-            41893, -- Masked Quartet
-            41894, -- Masked Septet
-            41895, -- Orchestra of Masks
-            41953, -- Mad World
-            41971, -- Through the Looking Glass
-        }
-    },
-    { -- Liberation of Undermine (raid)
-        {2406, 2407, 2408, 2409, 2411, 2428},
-        {
-            41225, -- Shock and Awesome
-            41226, -- Maniacal Machinist
-            41227, -- Beating the Odds
-            41228, -- Fall of the Chrome King
-            41222, -- Liberation of Undermine
-            41223, -- Heroic: Liberation of Undermine
-            41224, -- Mythic: Liberation of Undermine
-            41298, -- Ahead of the Curve: Chrome King Gallywix
-            41297, -- Cutting Edge: Chrome King Gallywix
-            41694, -- Flarendo's Biggest Fan
-            41695, -- Torq's Biggest Fan
-            41211, -- A Good Day to Dye Hard
-            41525, -- Can You Please Spell "Gobanna?"
-            40911, -- The War Within Season 2: Master Blaster
-            41665, -- Dressed to the Mines
-            41208, -- Hold My Gear!
-            41554, -- The Splash Zone
-            41338, -- Just /Dance
-            41596, -- Garbage In, Garbage Out
-            41711, -- Conveyor Slayer
-            41119, -- One Rank Higher
-            41120, -- Two Ranks Higher
-            41121, -- Three Ranks Higher
-            41122, -- Best In Class
-            41337, -- Sleep with the Fishes
-            41347, -- Scheming on a Thing
-            41286, -- Glory of the Liberation of Undermine Raider
-            41229, -- Mythic: Vexie and the Geargrinders
-            41230, -- Mythic: Cauldron of Carnage
-            41231, -- Mythic: Rik Reverb
-            41232, -- Mythic: Stix Bunkjunker
-            41233, -- Mythic: Sprocketmonger Lockenstock
-            41234, -- Mythic: The One-Armed Bandit
-            41235, -- Mythic: Mug'Zee, Heads of Security
-            41236, -- Mythic: Chrome King Gallywix
-            60939, -- Bringing Down the House
-        }
-    },
-    { -- Sidestreet Sluice (delve)
-        {2420, 2421, 2422, 2423},
-        {
-            41099, -- Sidestreet Sluice Stories
-            41101, -- Sidestreet Sluice Discoveries
-            delvesS2,
-            delvesS3Progress,
-        }
-    },
-    { -- Demolition Dome (delve)
-        {2425, 2426},
-        {
-            40732, -- Heavy-Handed
-            41530, -- My New Nemesis
-            41529, -- Breaking the Bank
-            41210, -- Let Me Solo Him: The Underpin
-            41531, -- The Hataclysm
-            delves,
-        }
-    },
-    { -- Dastardly Dome
-        2447,
-        {
-            41706, -- Dastardly Duos Weekly High Score
-            41707, -- Dastardly Devices
-            41715, -- Fiendishly Famous
-            41716, -- Duo Darling
-            41717, -- Duos Underdog
-            41722, -- Inside Connections
-            41905, -- Center of Attention
-            41916, -- My Way, The Highway
-            41922, -- Undefeatable
-            41995, -- Boot Hill
-            42002, -- Bullhorn of Plenty
-            42003, -- Bullhorn of More Plenty
-            42004, -- Bullhorn of Most Plenty
-            41810, -- Winner's Podium
-            41948, -- Defeat the Dastardlies
-            41949, -- Defeat the Dastardlies
-            41950, -- Defeat the Dastardlies
-            41951, -- Defeat the Dastardlies
-            41952, -- Defeat the Dastardlies
-        }
-    },
-    { -- Eco-Dome Al'dani (dungeon)
-        2449,
-        {
-            42780, -- Eco-Dome Al'dani
-            42781, -- Heroic: Eco-Dome Al'dani
-            42782, -- Mythic: Eco-Dome Al'dani
-            42173, -- Keystone Hero: Eco-Dome Al'dani
-        }
-    },
-    { -- Archival Assault (delve)
-        {2452, 2453, 2454, 2455, 2476},
-        {
-            42771, -- Archival Assault Stories
-            42679, -- Archival Assault Discoveries
-            delvesS3,
-        }
-    },
-    { -- Manaforge Omega (raid)
-        {2460, 2461, 2462, 2463, 2464, 2465, 2466, 2467, 2468, 2469, 2470, 2471},
-        {
-            41601, -- Might of the Shadowguard
-            41602, -- Monsters of the Sands
-            41603, -- Heart of Darkness
-            41598, -- Manaforge Omega
-            41599, -- Heroic: Manaforge Omega
-            41600, -- Mythic: Manaforge Omega
-            41624, -- Ahead of the Curve: Dimensius, the All-Devouring
-            41625, -- Cutting Edge: Dimensius, the All-Devouring
-            42316, -- Fractals? For Spring? Groundbreaking.
-            41937, -- The War Within Season 3: Voidborne Victor
-            42325, -- Void Wear Prohibited
-            42118, -- Of Mice and Manaforges
-            41613, -- Time to Vote! Cute or Scary?
-            41614, -- Mother of All Tantrums
-            41615, -- Cheat Meal
-            41616, -- I See... Absolutely Nothing
-            41617, -- Breaking the Fourth Wall
-            41618, -- King's Ransom
-            41619, -- Defying Gravity
-            41604, -- Mythic: Plexus Sentinel
-            41605, -- Mythic: Loom'ithar
-            41606, -- Mythic: Soulbinder Naazindhri
-            41607, -- Mythic: Forgeweaver Araz
-            41608, -- Mythic: The Soul Hunters
-            41609, -- Mythic: Fractillus
-            41610, -- Mythic: Nexus-King Salhadaar
-            41611, -- Mythic: Dimensius, the All-Devouring
-            60940, -- Vandals! In! Space!
-        }
-    },
-    { -- Voidrazor Sanctuary (delve)
-        2484,
-        {
-            40732, -- Heavy-Handed
-            42799, -- Let Her Solo Me
-            42193, -- My Stab-Happy Nemesis
-            42194, -- Pruning the Princess
-            42190, -- Let Me Solo Her: Nexus-Princess Ky'veza
-            delves,
-        }
-    },
-};
+local zoneData = KrowiAF.NewZoneData("TheWarWithin")
+
+zoneData:Zone({2213, 2216, 2255, 2256}, { -- Azj-Kahet (zone)
+    19559, -- Azj-Kahet
+    40636, -- Sojourner of Azj-Kahet
+    40832, -- Leave it to Weaver
+    40833, -- The General's Salute
+    40835, -- Vizier than Ever
+    40620, -- Back to the Wall
+    40869, -- Worm Theory
+    40822, -- Explore Azj-Kahet
+    40828, -- Treasures of Azj-Kahet
+    40840, -- Adventurer of Azj-Kahet
+    40705, -- Azj-Kahet Glyph Hunter
+    40542, -- Smelling History
+    40634, -- You Can't Hang With Us
+    40624, -- Itsy Bitsy Spider
+    40632, -- No Harm Ever Came From Reading A Book
+    40843, -- Mine Poppin'
+    40629, -- Bookworm
+    40727, -- Skittershaw Spin
+    40633, -- The Unseeming
+    40086, -- Tour of Duty: Azj-Kahet
+    41149, -- The Severed Threads
+    41164, -- We Rise Anew
+    40874, -- The Grand Tapestry
+    40875, -- True Strength
+    40876, -- Vox Arachni
+    41189, -- Azj the World Turns
+    40343, -- Azj-Kahet: Bronze
+    40344, -- Azj-Kahet: Silver
+    40345, -- Azj-Kahet: Gold
+    40346, -- Azj-Kahet Advanced: Bronze
+    40347, -- Azj-Kahet Advanced: Silver
+    40348, -- Azj-Kahet Advanced: Gold
+    40349, -- Azj-Kahet Reverse: Bronze
+    40350, -- Azj-Kahet Reverse: Silver
+    40351, -- Azj-Kahet Reverse: Gold
+})
+
+zoneData:Zone(2214, { -- The Ringing Deeps (zone)
+    19560, -- The Ringing Deeps
+    40799, -- Sojourner of The Ringing Deeps
+    40507, -- Hanging Tight
+    40623, -- I Only Need One Trip
+    40630, -- For the Collective
+    40825, -- Explore The Ringing Deeps
+    40837, -- Adventurer of The Ringing Deeps
+    40724, -- Treasures of The Ringing Deeps
+    40703, -- The Ringing Deeps Glyph Hunter
+    40628, -- Notable Machines
+    40473, -- Not So Quick Fix
+    40475, -- To All the Slimes I Love
+    40614, -- Gobblin' with Glublurp
+    40731, -- Panhandled
+    40504, -- Rocked to Sleep
+    40585, -- Super Size Snuffling
+    40662, -- It's Not Much, But It's Honest Work
+    40084, -- Tour of Duty: The Ringing Deeps
+    41165, -- Assembly of the Deeps
+    41166, -- From Many, One
+    41187, -- Rage Aside the Machine
+    40325, -- The Ringing Deeps: Bronze
+    40326, -- The Ringing Deeps: Silver
+    40327, -- The Ringing Deeps: Gold
+    40328, -- The Ringing Deeps Advanced: Bronze
+    40329, -- The Ringing Deeps Advanced: Silver
+    40330, -- The Ringing Deeps Advanced: Gold
+    40331, -- The Ringing Deeps Reverse: Bronze
+    40332, -- The Ringing Deeps Reverse: Silver
+    40333, -- The Ringing Deeps Reverse: Gold
+})
+
+zoneData:Zone(2215, { -- Hallowfall (zone)
+    20598, -- Hallowfall
+    40844, -- Sojourner of Hallowfall
+    20594, -- Flamegard's Hope
+    40150, -- Children's Entertainer
+    40082, -- Never Enough
+    40360, -- Life on the Farm
+    40308, -- Beacon of Hope
+    40311, -- Sharing the Light
+    40312, -- Starting the Flames
+    40313, -- Igniting the Keyflames
+    40826, -- Explore Hallowfall
+    40848, -- Treasures of Hallowfall
+    40851, -- Adventurer of Hallowfall
+    40704, -- Hallowfall Glyph Hunter
+    40151, -- Mereldar Menace
+    40618, -- Lost and Found
+    40625, -- The Missing Lynx
+    40622, -- Biblo Archivist
+    40729, -- Light's Gambit Champion
+    40085, -- Tour of Duty: Hallowfall
+    41167, -- Hallowfall Arathi
+    41168, -- The Flame Burns Within
+    41188, -- Crystal Chronicled
+    40334, -- Hallowfall: Bronze
+    40335, -- Hallowfall: Silver
+    40336, -- Hallowfall: Gold
+    40337, -- Hallowfall Advanced: Bronze
+    40338, -- Hallowfall Advanced: Silver
+    40339, -- Hallowfall Advanced: Gold
+    40340, -- Hallowfall Reverse: Bronze
+    40341, -- Hallowfall Reverse: Silver
+    40342, -- Hallowfall Reverse: Gold
+})
+
+zoneData:Zone({2248, 2322, 2339, 2367, 2368}, { -- Isle of Dorn (zone)
+    20118, -- The Isle of Dorn
+    20595, -- Sojourner of Isle of Dorn
+    40831, -- Explore the Isle of Dorn
+    40435, -- Adventurer of the Isle of Dorn
+    40434, -- Treasures of the Isle of Dorn
+    40166, -- Isle of Dorn Glyph Hunter
+    40606, -- Flat Earthen
+    40083, -- Tour of Duty: Isle of Dorn
+    41161, -- Council of Dornogal
+    41162, -- Cornerstone of Dornogal
+    41186, -- Slate of the Union
+    40316, -- Isle of Dorn: Bronze
+    40317, -- Isle of Dorn: Silver
+    40318, -- Isle of Dorn: Gold
+    40319, -- Isle of Dorn Advanced: Bronze
+    40320, -- Isle of Dorn Advanced: Silver
+    40321, -- Isle of Dorn Advanced: Gold
+    40322, -- Isle of Dorn Reverse: Bronze
+    40323, -- Isle of Dorn Reverse: Silver
+    40324, -- Isle of Dorn Reverse: Gold
+})
+
+zoneData:Zone(2249, { -- Fungal Folly (delve)
+    40525, -- Fungal Folly Stories
+    40803, -- Fungal Folly Discoveries,
+    delvesS1,
+    delvesS2Progress,
+    delvesS3Progress,
+})
+
+zoneData:Zone(2250, { -- Kriegval's Rest (delve)
+    40526, -- Kriegval's Rest Stories
+    40807, -- Kriegval's Rest Discoveries
+    delvesS1,
+    delvesS2Progress,
+    delvesS3Progress,
+})
+
+zoneData:Zone(2251, { -- The Waterworks (delve)
+    40528, -- The Waterworks Stories
+    40816, -- The Waterworks Discoveries
+    delvesS1,
+    delvesS2Progress,
+    delvesS3Progress,
+})
+
+zoneData:Zone(2259, { -- Tak-Rethan Abyss (delve)
+    40535, -- Tak-Rethan Abyss Stories
+    40811, -- Tak-Rethan Abyss Discoveries
+    delvesS1,
+    delvesS2Progress,
+    delvesS3Progress,
+})
+
+zoneData:Zone(2269, { -- Earthcrawl Mines (delve)
+    40527, -- Earthcrawl Mines Stories
+    40806, -- Earthcrawl Mines Discoveries
+    delvesS1,
+    delvesS2Progress,
+    delvesS3Progress,
+})
+
+zoneData:Zone(2277, { -- Nightfall Sanctum (delve)
+    40530, -- Nightfall Sanctum Stories
+    40809, -- Nightfall Sanctum Discoveries
+    delvesS1,
+    delvesS2Progress,
+    delvesS3Progress,
+})
+
+zoneData:Zone({2291, 2292, 2293, 2294, 2295, 2296}, { -- Nerub-ar Palace (raid)
+    40247, -- The Skittering Battlements
+    40248, -- Secrets of Nerub-ar Palace
+    40249, -- A Queen's Fall
+    40244, -- Nerub-ar Palace
+    40245, -- Heroic: Nerub-ar Palace
+    40246, -- Mythic: Nerub-ar Palace
+    40253, -- Ahead of the Curve: Queen Ansurek
+    40254, -- Cutting Edge: Queen Ansurek
+    40469, -- I'm Bringing Nerub-ack
+    40660, -- The War Within Season 1: Spelunker Supreme
+    40723, -- Web-Wrapped in the Finest Silks
+    40261, -- Slimy Yet Satisfying
+    40260, -- You Can't See Me
+    40255, -- Sik Parry Bro
+    40262, -- Cowabunga
+    40263, -- Would You Still /love Me if I Was a Worm...
+    40264, -- Kill Streak
+    40730, -- Love is in the Lair
+    40266, -- Missed 'Em by That Much
+    40232, -- Glory of the Nerub-ar Raider
+    40236, -- Mythic: Ulgrax the Devourer
+    40237, -- Mythic: The Bloodbound Horror
+    40238, -- Mythic: Sikran, Captain of the Sureki
+    40239, -- Mythic: Rasha'nan
+    40240, -- Mythic: Broodtwister Ovi'nax
+    40241, -- Mythic: Nexus-Princess Ky'veza
+    40242, -- Mythic: The Silken Court
+    40243, -- Mythic: Queen Ansurek
+})
+
+zoneData:Zone(2299, { -- The Underkeep (delve)
+    40534, -- The Underkeep Stories
+    40815, -- The Underkeep Discoveries
+    delvesS1,
+    delvesS2Progress,
+    delvesS3Progress,
+})
+
+zoneData:Zone(2301, { -- The Sinkhole (delve)
+    40532, -- The Sinkhole Stories
+    40813, -- The Sinkhole Discoveries
+    delvesS1,
+    delvesS2Progress,
+    delvesS3Progress,
+})
+
+zoneData:Zone(2302, { -- The Dread Pit (delve)
+    40529, -- The Dread Pit Stories
+    40812, -- The Dread Pit Discoveries
+    delvesS1,
+    delvesS2Progress,
+    delvesS3Progress,
+})
+
+zoneData:Zone(2303, { -- Darkflame Cleft (dungeon)
+    40427, -- Darkflame Cleft
+    40428, -- Heroic: Darkflame Cleft
+    40429, -- Mythic: Darkflame Cleft
+    20584, -- Keystone Hero: Darkflame Cleft
+})
+
+zoneData:Zone({2308, 2309}, { -- Priory of the Sacred Flame (dungeon)
+    40590, -- Priory of the Sacred Flame
+    40592, -- Heroic: Priory of the Sacred Flame
+    40596, -- Mythic: Priory of the Sacred Flame
+    20581, -- Keystone Hero: Priory of the Sacred Flame
+})
+
+zoneData:Zone(2310, { -- Skittering Breach (delve)
+    40533, -- Skittering Breach Stories
+    40810, -- Skittering Breach Discoveries
+    delvesS1,
+    delvesS2Progress,
+    delvesS3Progress,
+})
+
+zoneData:Zone(2312, { -- Mycomancer Cavern (delve)
+    40531, -- Mycomancer Cavern Stories
+    40808, -- Mycomancer Cavern Discoveries
+    delvesS1,
+    delvesS2Progress,
+    delvesS3Progress,
+})
+
+zoneData:Zone({2315, 2316, 2317, 2318, 2319, 2320}, { -- The Rookery (dungeon)
+    40621, -- The Rookery
+    40637, -- Heroic: The Rookery
+    40642, -- Mythic: The Rookery
+    20579, -- Keystone Hero: The Rookery
+})
+
+zoneData:Zone(2328, { -- Isle of Dorn - The Proscenium (zone)
+    40859, -- We're Here All Night
+    40860, -- A Star of Dorn
+})
+
+zoneData:Zone(2335, { -- Cinderbrew Meadery (dungeon)
+    40361, -- Cinderbrew Meadery
+    40363, -- Heroic: Cinderbrew Meadery
+    40366, -- Mythic: Cinderbrew Meadery
+    20583, -- Keystone Hero: Cinderbrew Meadery
+})
+
+zoneData:Zone(2341, { -- The Stonevault (dungeon)
+    40643, -- The Stonevault
+    40644, -- Heroic: The Stonevault
+    40648, -- Mythic: The Stonevault
+    20580, -- Keystone Hero: The Stonevault
+})
+
+zoneData:Zone({2343, 2344}, { -- City of Threads (dungeon)
+    40376, -- City of Threads
+    40377, -- Heroic: City of Threads
+    40379, -- Mythic: City of Threads
+    20582, -- Keystone Hero: City of Threads
+})
+
+zoneData:Zone(2346, { -- Undermine (zone)
+    40900, -- Undermined
+    40894, -- Sojourner of Undermine
+    41587, -- Explore Undermine
+    41217, -- Treasures of Undermine
+    41216, -- Adventurer of Undermine
+    40948, -- Nine-Tenths of the Law
+    41588, -- Read Between the Lines
+    41589, -- That Can-Do Attitude
+    41708, -- You're My Friend Now
+    41590, -- No Littering
+    41591, -- Really No Littering
+    41592, -- Absolutely Zero Littering
+    41593, -- Cleanin' the Streets
+    41594, -- Can You Believe What People Throw Away?
+    41626, -- C.H.E.T.T. a Look
+    41627, -- C.H.E.T.T.ing it Twice
+    41629, -- C.H.E.T.T.mate
+    41630, -- "Employee" of the Month
+    41214, -- Under the Echoes
+    41215, -- Echoes of Deeper Dangers
+    41522, -- Tour of Duty: Undermine
+    41349, -- In with the Cartels
+    41351, -- Cartels Bestie
+    41352, -- Trade-Duke
+    41086, -- Ally of Undermine
+    41350, -- A Long Fuse
+    41586, -- Going Goblin Mode
+    40936, -- Undermine Skyrocketing: Bronze
+    40937, -- Undermine Skyrocketing: Silver
+    40938, -- Undermine Skyrocketing: Gold
+    41081, -- Undermine Breaknecking: Bronze
+    41083, -- Undermine Breaknecking: Silver
+    41084, -- Undermine Breaknecking: Gold
+})
+
+zoneData:Zone(2347, { -- The Spiral Weave (delve)
+    40536, -- The Spiral Weave Stories
+    40814, -- The Spiral Weave Discoveries
+    delvesS1,
+    delvesS2Progress,
+    delvesS3Progress,
+})
+
+zoneData:Zone(2348, { -- Zekvir's Lair (delve)
+    40732, -- Heavy-Handed
+    40103, -- My First Nemesis
+    40431, -- Hunting the Hunter
+    40433, -- Let Me Solo Him: Zekvir
+    delves,
+})
+
+zoneData:Zone({2357, 2358}, { -- Ara-Kara, City of Echoes (dungeon)
+    40370, -- Ara-Kara, City of Echoes
+    40374, -- Heroic: Ara-Kara, City of Echoes
+    40375, -- Mythic: Ara-Kara, City of Echoes
+    20586, -- Keystone Hero: Ara-Kara, City of Echoes
+})
+
+zoneData:Zone(2359, { -- The Dawnbreaker (dungeon)
+    40599, -- The Dawnbreaker
+    40601, -- Heroic: The Dawnbreaker
+    40604, -- Mythic: The Dawnbreaker
+    20585, -- Keystone Hero: The Dawnbreaker
+})
+
+zoneData:Zone({2369, 2375}, { -- Siren Isle (zone)
+    41042, -- Siren-ity Now!
+    41043, -- Excavation Projects
+    41045, -- A Song of Secrets
+    41185, -- Siren's Squall
+    41046, -- Clean Up on Isle Siren
+    41050, -- A Choir of Citrines
+    41131, -- Treasures of the Storm
+    41133, -- Isle Remember You
+})
+
+zoneData:Zone({2371, 2472, 2477}, { -- K'aresh (zone)
+    41970, -- The Knife's Edge
+    42739, -- Sojourner of K'aresh
+    41808, -- Otherworldly Ecologist
+    41809, -- Ecological Variety
+    41811, -- Ecological Stability
+    41812, -- Expertly Done
+    41815, -- Ecological Succession
+    41978, -- Moonlighter
+    41979, -- Bounty Seeker
+    41980, -- Vigilante
+    42731, -- Become a Hero. Become a Phasediver!
+    42737, -- Capstoned
+    61916, -- Rage of the Ren'dorei (Reward: Void Elf Demon Hunter Unlocked)
+    42740, -- Explore K'aresh
+    42741, -- Treasures of K'aresh
+    42761, -- Remnants of a Shattered World
+    42727, -- K'aresh Glyph Hunter
+    42729, -- Dangerous Prowlers of K'aresh
+    42730, -- Jump, Jump, and Away!
+    42736, -- Ixthar's Legacy
+    42738, -- We've All Got Swords!
+    42742, -- Power of the Reshii
+    60890, -- Secrets of the K'areshi
+    61017, -- Phase-Lost-and-Found
+    42131, -- Tour of Duty: K'aresh
+    42022, -- A Trusted Partner
+    41778, -- Brokers Don't Care How You Win
+    60889, -- Unraveled and Persevering
+})
+
+zoneData:Zone({2387, 2388}, { -- Operation: Floodgate (dungeon)
+    41339, -- Operation: Floodgate
+    41340, -- Heroic: Operation: Floodgate
+    41341, -- Mythic: Operation: Floodgate
+    41348, -- Keystone Hero: Operation: Floodgate
+})
+
+zoneData:Zone(2396, { -- Excavation Site 9 (delve)
+    41098, -- Excavation Site 9 Stories
+    41100, -- Excavation Site 9 Discoveries
+    delvesS2,
+    delvesS3Progress,
+})
+
+zoneData:Zone({2403, 2404}, { -- Vision of Orgrimmar / Vision of Stormwind
+    41853, -- Horrific Vision of Stormwind
+    41854, -- The Even More Horrific Vision of Stormwind
+    41855, -- The Most Horrific Vision of Stormwind
+    41964, -- Beyond the Most Horrific Vision of Stormwind
+    41875, -- Horrific Vision of Orgrimmar
+    41876, -- The Even More Horrific Vision of Orgrimmar
+    41879, -- The Most Horrific Vision of Orgrimmar
+    41965, -- Beyond the Most Horrific Vision of Orgrimmar
+    41725, -- We Have the Memories
+    41928, -- Reeking of Visions
+    41929, -- Through the Depths of Visions
+    41966, -- Mastering the Visions
+    41857, -- Masked Soliloquy
+    41858, -- Masked Sextet
+    41859, -- Thanks For The Mementos
+    41896, -- Memento Mori
+    41983, -- Memento Mania
+    41897, -- A Monumental Amount of Mementos
+    41898, -- A Mountain of Mementos
+    41873, -- Incremental Progress
+    41874, -- Symphony of Masks
+    41889, -- Horrific Masquerade
+    41890, -- Masked Duet
+    41891, -- Masked Trio
+    41893, -- Masked Quartet
+    41894, -- Masked Septet
+    41895, -- Orchestra of Masks
+    41953, -- Mad World
+    41971, -- Through the Looking Glass
+})
+
+zoneData:Zone({2406, 2407, 2408, 2409, 2411, 2428}, { -- Liberation of Undermine (raid)
+    41225, -- Shock and Awesome
+    41226, -- Maniacal Machinist
+    41227, -- Beating the Odds
+    41228, -- Fall of the Chrome King
+    41222, -- Liberation of Undermine
+    41223, -- Heroic: Liberation of Undermine
+    41224, -- Mythic: Liberation of Undermine
+    41298, -- Ahead of the Curve: Chrome King Gallywix
+    41297, -- Cutting Edge: Chrome King Gallywix
+    41694, -- Flarendo's Biggest Fan
+    41695, -- Torq's Biggest Fan
+    41211, -- A Good Day to Dye Hard
+    41525, -- Can You Please Spell "Gobanna?"
+    40911, -- The War Within Season 2: Master Blaster
+    41665, -- Dressed to the Mines
+    41208, -- Hold My Gear!
+    41554, -- The Splash Zone
+    41338, -- Just /Dance
+    41596, -- Garbage In, Garbage Out
+    41711, -- Conveyor Slayer
+    41119, -- One Rank Higher
+    41120, -- Two Ranks Higher
+    41121, -- Three Ranks Higher
+    41122, -- Best In Class
+    41337, -- Sleep with the Fishes
+    41347, -- Scheming on a Thing
+    41286, -- Glory of the Liberation of Undermine Raider
+    41229, -- Mythic: Vexie and the Geargrinders
+    41230, -- Mythic: Cauldron of Carnage
+    41231, -- Mythic: Rik Reverb
+    41232, -- Mythic: Stix Bunkjunker
+    41233, -- Mythic: Sprocketmonger Lockenstock
+    41234, -- Mythic: The One-Armed Bandit
+    41235, -- Mythic: Mug'Zee, Heads of Security
+    41236, -- Mythic: Chrome King Gallywix
+    60939, -- Bringing Down the House
+})
+
+zoneData:Zone({2420, 2421, 2422, 2423}, { -- Sidestreet Sluice (delve)
+    41099, -- Sidestreet Sluice Stories
+    41101, -- Sidestreet Sluice Discoveries
+    delvesS2,
+    delvesS3Progress,
+})
+
+zoneData:Zone({2425, 2426}, { -- Demolition Dome (delve)
+    40732, -- Heavy-Handed
+    41530, -- My New Nemesis
+    41529, -- Breaking the Bank
+    41210, -- Let Me Solo Him: The Underpin
+    41531, -- The Hataclysm
+    delves,
+})
+
+zoneData:Zone(2447, { -- Dastardly Dome
+    41706, -- Dastardly Duos Weekly High Score
+    41707, -- Dastardly Devices
+    41715, -- Fiendishly Famous
+    41716, -- Duo Darling
+    41717, -- Duos Underdog
+    41722, -- Inside Connections
+    41905, -- Center of Attention
+    41916, -- My Way, The Highway
+    41922, -- Undefeatable
+    41995, -- Boot Hill
+    42002, -- Bullhorn of Plenty
+    42003, -- Bullhorn of More Plenty
+    42004, -- Bullhorn of Most Plenty
+    41810, -- Winner's Podium
+    41948, -- Defeat the Dastardlies
+    41949, -- Defeat the Dastardlies
+    41950, -- Defeat the Dastardlies
+    41951, -- Defeat the Dastardlies
+    41952, -- Defeat the Dastardlies
+})
+
+zoneData:Zone(2449, { -- Eco-Dome Al'dani (dungeon)
+    42780, -- Eco-Dome Al'dani
+    42781, -- Heroic: Eco-Dome Al'dani
+    42782, -- Mythic: Eco-Dome Al'dani
+    42173, -- Keystone Hero: Eco-Dome Al'dani
+})
+
+zoneData:Zone({2452, 2453, 2454, 2455, 2476}, { -- Archival Assault (delve)
+    42771, -- Archival Assault Stories
+    42679, -- Archival Assault Discoveries
+    delvesS3,
+})
+
+zoneData:Zone({2460, 2461, 2462, 2463, 2464, 2465, 2466, 2467, 2468, 2469, 2470, 2471}, { -- Manaforge Omega (raid)
+    41601, -- Might of the Shadowguard
+    41602, -- Monsters of the Sands
+    41603, -- Heart of Darkness
+    41598, -- Manaforge Omega
+    41599, -- Heroic: Manaforge Omega
+    41600, -- Mythic: Manaforge Omega
+    41624, -- Ahead of the Curve: Dimensius, the All-Devouring
+    41625, -- Cutting Edge: Dimensius, the All-Devouring
+    42316, -- Fractals? For Spring? Groundbreaking.
+    41937, -- The War Within Season 3: Voidborne Victor
+    42325, -- Void Wear Prohibited
+    42118, -- Of Mice and Manaforges
+    41613, -- Time to Vote! Cute or Scary?
+    41614, -- Mother of All Tantrums
+    41615, -- Cheat Meal
+    41616, -- I See... Absolutely Nothing
+    41617, -- Breaking the Fourth Wall
+    41618, -- King's Ransom
+    41619, -- Defying Gravity
+    41604, -- Mythic: Plexus Sentinel
+    41605, -- Mythic: Loom'ithar
+    41606, -- Mythic: Soulbinder Naazindhri
+    41607, -- Mythic: Forgeweaver Araz
+    41608, -- Mythic: The Soul Hunters
+    41609, -- Mythic: Fractillus
+    41610, -- Mythic: Nexus-King Salhadaar
+    41611, -- Mythic: Dimensius, the All-Devouring
+    60940, -- Vandals! In! Space!
+})
+
+zoneData:Zone(2484, { -- Voidrazor Sanctuary (delve)
+    40732, -- Heavy-Handed
+    42799, -- Let Her Solo Me
+    42193, -- My Stab-Happy Nemesis
+    42194, -- Pruning the Princess
+    42190, -- Let Me Solo Her: Nexus-Princess Ky'veza
+    delves,
+})

@@ -757,6 +757,11 @@ function addon.GetAchievementInfoTable(achievementId) -- Returns an additional b
     };
 end
 
+SLASH_KAFMV1 = "/kafmapverify"
+SlashCmdList["KAFMV"] = function()
+    addon.Gui.MapVerifier.Open()
+end
+
 SLASH_KAFAIT1 = "/kafait"
 SlashCmdList["KAFAIT"] = function(msg)
     local achievementId = tonumber(msg)

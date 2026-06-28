@@ -35,7 +35,7 @@ KrowiAF.CategoryData.Example1 = {
 -- V2 Category Data Injection (current standard for plugins)
 -- Use KrowiAF.NewInjection to add named subcategories under an existing KrowiAF category.
 -- The target category Id must be a built-in KrowiAF category that is always processed first.
--- Call RegisterAs with a unique key before KrowiAF.CreateCategories runs (e.g. during PLAYER_LOGIN).
+-- Call Register() before KrowiAF.CreateCategories runs (e.g. during PLAYER_LOGIN).
 --
 -- Migration example based on a plugin that previously used V1 format:
 --
@@ -59,7 +59,7 @@ injection:Named(addon.L["Khamul's Meta-Expansion Achievement List"], { -- Named 
     16462, 16463, 16464, -- Dragonflight achievements [Required]
     19763, 19764, 19765, -- The War Within achievements [Required]
 })
-injection:RegisterAs("KhamulsExpansionMetaAchievementLists") -- Unique key in KrowiAF.CategoryData [Required]
+injection:Register() -- Registers this injection in KrowiAF.CategoryData [Required]
 
 -- V2, grouped — one named subcategory per group:
 local groupedInjection = KrowiAF.NewInjection(971)
@@ -67,17 +67,17 @@ groupedInjection:Named(addon.L["Battle for Azeroth"], { 14808, 14814, 14821 })
 groupedInjection:Named(addon.L["Shadowlands"],        { 15259, 15260, 15261 })
 groupedInjection:Named(addon.L["Dragonflight"],       { 16462, 16463, 16464 })
 groupedInjection:Named(addon.L["The War Within"],     { 19763, 19764, 19765 })
-groupedInjection:RegisterAs("KhamulsExpansionMetaAchievementLists")
+groupedInjection:Register()
 
 -- :Named with canMerge = true — allows same-named subcategories from different plugins to be merged:
 local mergedInjection = KrowiAF.NewInjection(971)
-mergedInjection:Named(addon.L["My Shared Category"], { 14808, 14814 }, true) -- canMerge [Optional, default false]
-mergedInjection:RegisterAs("MyPlugin_MergedExample")
+mergedInjection:Named(addon.L["My Shared Category"], { 14808, 14814 }):Merge() -- Merge [Optional, default false]
+mergedInjection:Register()
 
 -- :Ids — add achievement IDs directly to the target category (no subcategory created):
 local directInjection = KrowiAF.NewInjection(971)
-directInjection:Ids({ 14808, 14814, 14821 }) -- Added directly to category 971 [Optional, repeatable]
-directInjection:RegisterAs("MyPlugin_DirectIds")
+directInjection:Ids{ 14808, 14814, 14821 } -- Added directly to category 971 [Optional, repeatable]
+directInjection:Register()
 
 -- V2 Achievement Data (current standard)
 -- Use KrowiAF.AchievementData with the Ach() fluent builder.

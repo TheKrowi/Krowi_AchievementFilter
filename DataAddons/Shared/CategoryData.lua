@@ -17,6 +17,7 @@ shared.CT = {
     PetBattles               = addon.L["Pet Battles"],
     Dungeons                 = addon.L["Dungeons"],
     Raids                    = addon.L["Raids"],
+    Legacy                   = " (" .. addon.L["Legacy"] .. ")",
     -- Battlegrounds
     FeatsOfStrength          = addon.L["Feats of Strength"],
     Battlegrounds            = addon.L["Battlegrounds"],

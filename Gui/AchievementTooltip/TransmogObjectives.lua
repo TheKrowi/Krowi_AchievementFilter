@@ -65,7 +65,7 @@ local function AnalyzeTransmogSets()
 end
 
 local function AchievementHasChanged(prevAchievementId)
-    local owner = GameTooltip:GetOwner();
+    local owner = Krowi_Tooltip:GetOwner();
     if not owner or not owner.Achievement or prevAchievementId ~= owner.Achievement.Id then -- Owner gone, changed, or non-KAF frame: stop the current lookup
         transmogCriteriaHelper:UnregisterEvent("GET_ITEM_INFO_RECEIVED");
         co = nil;
@@ -99,17 +99,17 @@ end
 local function GetTooltipText()
     local r, g, b;
     local linesLeft, linesRight = {}, {};
-    for i = 1, GameTooltip:NumLines() do
-        r, g, b = _G["GameTooltipTextLeft" .. i]:GetTextColor();
+    for i = 1, Krowi_Tooltip:NumLines() do
+        r, g, b = _G["Krowi_TooltipTextLeft" .. i]:GetTextColor();
         tinsert(linesLeft, {
-            Text = _G["GameTooltipTextLeft" .. i]:GetText() or "",
+            Text = _G["Krowi_TooltipTextLeft" .. i]:GetText() or "",
             R = r,
             G = g,
             B = b
         });
-        r, g, b = _G["GameTooltipTextRight" .. i]:GetTextColor();
+        r, g, b = _G["Krowi_TooltipTextRight" .. i]:GetTextColor();
         tinsert(linesRight, {
-            Text = _G["GameTooltipTextRight" .. i]:GetText() or "",
+            Text = _G["Krowi_TooltipTextRight" .. i]:GetText() or "",
             R = r,
             G = g,
             B = b
@@ -120,14 +120,14 @@ end
 
 local function CopyPrevTooltipLines(originalOwner)
     local linesLeft, linesRight = GetTooltipText();
-    GameTooltip:SetOwner(originalOwner, "ANCHOR_BOTTOMRIGHT", 0, originalOwner:GetHeight());
+    Krowi_Tooltip:SetOwner(originalOwner, "ANCHOR_BOTTOMRIGHT", 0, originalOwner:GetHeight());
     local lineLeft, lineRight;
     for i = 1, #linesLeft - 1, 1 do
         lineLeft, lineRight = linesLeft[i], linesRight[i];
         if lineRight == "" then
-            GameTooltip:AddLine(lineLeft.Text, lineLeft.R, lineLeft.G, lineLeft.B);
+            Krowi_Tooltip:AddLine(lineLeft.Text, lineLeft.R, lineLeft.G, lineLeft.B);
         else
-            GameTooltip:AddDoubleLine(lineLeft.Text, lineRight.Text, lineLeft.R, lineLeft.G, lineLeft.B, lineRight.R, lineRight.G, lineRight.B);
+            Krowi_Tooltip:AddDoubleLine(lineLeft.Text, lineRight.Text, lineLeft.R, lineLeft.G, lineLeft.B, lineRight.R, lineRight.G, lineRight.B);
         end
     end
 end
@@ -170,17 +170,17 @@ local function AddCriteriaLine(numCollectedPerSet, invTypes)
             color = addon.Util.Colors.Grey;
         end
         text = icon .. "|T:1:8|t" .. string.format(color, _G[invType.EquipLoc] or invType.EquipLoc) .. ":" .. "|T:1:8|t" .. text;
-        GameTooltip:AddLine(text);
+        Krowi_Tooltip:AddLine(text);
     end
 end
 
 local function AddCriteria()
-    local originalOwner = GameTooltip:GetOwner();
-    GameTooltip:AddLine(addon.L["Collecting data"]);
+    local originalOwner = Krowi_Tooltip:GetOwner();
+    Krowi_Tooltip:AddLine(addon.L["Collecting data"]);
     transmogCriteriaHelper:RegisterEvent("GET_ITEM_INFO_RECEIVED");
 
     local achievementId;
-    local owner = GameTooltip:GetOwner();
+    local owner = Krowi_Tooltip:GetOwner();
     if owner then
         achievementId = owner.Achievement.Id;
     end
@@ -200,7 +200,7 @@ local function AddCriteria()
 
     AddCriteriaLine(numCollectedPerSet, invTypes)
 
-    GameTooltip:Show();
+    Krowi_Tooltip:Show();
 
     transmogCriteriaHelper:UnregisterEvent("GET_ITEM_INFO_RECEIVED");
     co = nil;
@@ -212,11 +212,11 @@ local function AddTransmogCriteriaAsync()
 end
 
 function section:Add()
-	GameTooltip:AddLine(addon.L["Objectives progress"]);
+	Krowi_Tooltip:AddLine(addon.L["Objectives progress"]);
     if #transmogSetIds > 0 then
 	    AddTransmogCriteriaAsync();
         return;
     end
-    GameTooltip:AddLine(string.format(addon.Util.Colors.Red, addon.L["This achievement can't be earned by this character."]));
-    GameTooltip:AddLine(string.format(addon.Util.Colors.Red, addon.L["This character's class has no transmog set that meet the requirements."]));
+    Krowi_Tooltip:AddLine(string.format(addon.Util.Colors.Red, addon.L["This achievement can't be earned by this character."]));
+    Krowi_Tooltip:AddLine(string.format(addon.Util.Colors.Red, addon.L["This character's class has no transmog set that meet the requirements."]));
 end

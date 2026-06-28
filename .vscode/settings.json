@@ -565,7 +565,9 @@
         "WORLD",
         "TRACKER_HEADER_PROVINGGROUNDS",
         "INSCRIPTION",
-        "PLAYER_DIFFICULTY_TIMEWALKER"
+        "PLAYER_DIFFICULTY_TIMEWALKER",
+        "Krowi_Tooltip",
+        "LFG_LIST_LEGACY"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

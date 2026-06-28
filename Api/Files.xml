@@ -15,4 +15,5 @@
     <Script file="TransmogSetDataApi.lua" />
     <Script file="UtilApi.lua" />
     <Script file="ZoneDataApi.lua" />
+    <Script file="ZoneDataBuilder.lua" />
 </Ui>

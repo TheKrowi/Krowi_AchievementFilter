@@ -1057,14 +1057,14 @@ local function SkinFloatingAchievementTooltip()
     tooltip.CloseButton:ClearAllPoints();
     tooltip.CloseButton:SetPoint("TOPRIGHT", -3, -3);
     tooltip.NineSlice:Hide();
-    tooltip:GwCreateBackdrop({
+    tooltip:GwCreateBackdrop{
         bgFile = "Interface/AddOns/GW2_UI/textures/uistuff/UI-Tooltip-Background",
         edgeFile = "Interface/AddOns/GW2_UI/textures/uistuff/UI-Tooltip-Border",
         tile = false,
         tileSize = 64,
         edgeSize = 32,
         insets = {left = 2, right = 2, top = 2, bottom = 2}
-    });
+    };
 end
 
 function gw2:OnEvent(event, arg1, arg2)

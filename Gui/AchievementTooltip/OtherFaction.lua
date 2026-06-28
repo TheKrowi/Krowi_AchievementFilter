@@ -25,7 +25,7 @@ function section:Add(achievement)
 	elseif addon.Faction.IsHorde then
 		faction = addon.L["Alliance"];
 	end
-	GameTooltip:AddLine(addon.L["Other faction"] .. " (" .. faction .. ")");
+	Krowi_Tooltip:AddLine(addon.L["Other faction"] .. " (" .. faction .. ")");
 	local otherFactionAchievementCompleted = IsOtherFactionAchievementCompleted(achievement);
 	addon.Gui.AchievementTooltip:AddAchievementLine(achievement, achievement.OtherFactionAchievementId, addon.Options.db.profile.Tooltip.Achievements.ShowCurrentCharacterIconsRequiredFor, nil, otherFactionAchievementCompleted);
 end

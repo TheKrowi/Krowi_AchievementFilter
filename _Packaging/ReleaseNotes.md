@@ -27,3 +27,12 @@
 ### Mists Classic (98.2)
 - Added missing 5.5.3 build version
 - Bumped toc to use 5.5.4 as in some rare occasions KAF did not show up in the addon list
+
+### Fixed (98.3)
+- Taint fix attempt: `attempt to compare a secret number value (execution tainted by 'Krowi_AchievementFilter')`
+
+### Removed (98.3)
+- Abyss Anglers: Heavy Harpoon Cannon (62215) and Abyss Anglers: Hollowcore Harpoon Turret (62216) — these are tracking achievements which are not supported
+
+### Fixed (98.4)
+- Taint fix attempt 666?: `attempt to compare a secret number value (execution tainted by 'Krowi_AchievementFilter')`

@@ -6,7 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-06-17 18-15-57 ]] --
+-- [[ Exported at 2026-06-28 14-38-53 ]] --
 L["Alchemy"] = "Alquimia"
 L["Alterac Valley"] = "Valle de Alterac"
 L["Arathi Basin"] = "Cuenca de Arathi"

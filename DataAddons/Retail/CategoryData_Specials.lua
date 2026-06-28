@@ -255,7 +255,7 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             },
         },
         { -- Recruit-a-Friend
-            addon.L["Recruit-a-Friend"],
+            addon.L["Recruit-a-Friend"] .. CT.Legacy,
             {
                 1436, -- Friends In High Places
                 4832, -- Friends In Even Higher Places
@@ -647,7 +647,7 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 },
             },
             { -- Brawler's Guild
-                addon.L["Brawler's Guild"],
+                addon.L["Brawler's Guild"] .. CT.Legacy,
                 true,
                 {
                     13191, -- Brawler for Azeroth

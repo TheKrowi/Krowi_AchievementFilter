@@ -9,7 +9,7 @@ function KrowiAF_AchievementFrameBrowsingHistoryPrevNextAchievementButtonMixin:O
 end
 
 function KrowiAF_AchievementFrameBrowsingHistoryPrevNextAchievementButtonMixin:OnLeave()
-    GameTooltip:Hide();
+    Krowi_Tooltip:Hide();
 end
 
 function KrowiAF_AchievementFrameBrowsingHistoryPrevNextAchievementButtonMixin:Click()
@@ -24,7 +24,7 @@ function KrowiAF_AchievementFrameBrowsingHistoryPrevNextAchievementButtonMixin:C
     local achievement = addon.Data.Achievements[record.AchievementId];
     KrowiAF_SelectAchievementWithCategory(achievement, category);
 
-    if GameTooltip:GetOwner() == self then
+    if Krowi_Tooltip:GetOwner() == self then
         self:OnEnter();
     end
 end
@@ -45,11 +45,11 @@ end
 
 local function SetTooltipHistory()
     local records = addon.BrowsingHistory:GetAllRecords();
-    GameTooltip_AddBlankLineToTooltip(GameTooltip);
+    GameTooltip_AddBlankLineToTooltip(Krowi_Tooltip);
     if #records < 1 then
         local color = addon.Util.Colors.LightGreyRGB;
-        GameTooltip:AddLine(addon.L["Select achievements to see your browsing history"], color.R, color.G, color.B);
-        GameTooltip:Show();
+        Krowi_Tooltip:AddLine(addon.L["Select achievements to see your browsing history"], color.R, color.G, color.B);
+        Krowi_Tooltip:Show();
         return;
     end
 
@@ -59,7 +59,7 @@ local function SetTooltipHistory()
     for i = firstIndex, lastIndex do
         local color = i == currentIndex and addon.Util.Colors.LightGreenRGB or addon.Util.Colors.LightGreyRGB;
         local path = GetCategoryPath(records[i].CategoryId);
-        GameTooltip:AddLine(path .. " > " .. addon.GetAchievmentName(records[i].AchievementId), color.R, color.G, color.B);
+        Krowi_Tooltip:AddLine(path .. " > " .. addon.GetAchievmentName(records[i].AchievementId), color.R, color.G, color.B);
     end
     -- for index, record in next, records do
     --     local color = index == currentIndex and addon.Util.Colors.LightGreenRGB or addon.Util.Colors.LightGreyRGB;
@@ -67,22 +67,22 @@ local function SetTooltipHistory()
     --     local _, name = addon.GetAchievementInfo(record.AchievementId);
     --     GameTooltip:AddLine(path .. " > " .. name, color.R, color.G, color.B);
     -- end
-    GameTooltip:Show();
+    Krowi_Tooltip:Show();
 end
 
 KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButtonMixin = CreateFromMixins(KrowiAF_AchievementFrameBrowsingHistoryPrevNextAchievementButtonMixin);
 
 function KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButtonMixin:OnEnter()
-    GameTooltip:SetOwner(self, "ANCHOR_BOTTOMLEFT", 0, self:GetHeight());
-    GameTooltip:SetText(addon.L["Go back one achievement"]);
+    Krowi_Tooltip:SetOwner(self, "ANCHOR_BOTTOMLEFT", 0, self:GetHeight());
+    Krowi_Tooltip:SetText(addon.L["Go back one achievement"]);
     SetTooltipHistory();
 end
 
 KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButtonMixin = CreateFromMixins(KrowiAF_AchievementFrameBrowsingHistoryPrevNextAchievementButtonMixin);
 
 function KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButtonMixin:OnEnter()
-    GameTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT", 0, self:GetHeight());
-    GameTooltip:SetText(addon.L["Go forward one achievement"]);
+    Krowi_Tooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT", 0, self:GetHeight());
+    Krowi_Tooltip:SetText(addon.L["Go forward one achievement"]);
     SetTooltipHistory();
 end
 

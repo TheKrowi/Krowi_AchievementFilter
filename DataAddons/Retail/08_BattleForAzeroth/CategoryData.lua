@@ -1030,7 +1030,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
         },
     },
     { -- Brawler's Guild
-        addon.L["Brawler's Guild"],
+        addon.L["Brawler's Guild"] .. CT.Legacy,
         {
             11558, -- The First Rule of Brawler's Guild
             11559, -- The First Rule of Brawler's Guild

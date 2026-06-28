@@ -459,8 +459,6 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(62212):Other(), -- Abyss Anglers: Nalorakk's Breath Tank
 	Ach(62213):Other(), -- Abyss Anglers: Shallows Net
 	Ach(62214):Other(), -- Abyss Anglers: Triple-Thread Net
-	Ach(62215):Other(), -- Abyss Anglers: Heavy Harpoon Cannon
-	Ach(62216):Other(), -- Abyss Anglers: Hollowcore Harpoon Turret
 	Ach(62217):Other(), -- Abyss Anglers: Idol of the Depths
 	Ach(62218), -- Abyss Anglers: Even The Best
 	Ach(62219), -- Abyss Anglers: No Sea Can Hold Me
@@ -656,7 +654,7 @@ KrowiAF.AchievementData["12_00_05"] = {
 }
 
 KrowiAF.AchievementData["12_00_07"] = {
-	Ach(61335):AutoFactionSplit(faction.Horde, 61336), -- Flame Keeper / Flame Warden of Midnight
+	Ach(61335):AutoFactionSplit(faction.Horde, 61336), -- Flame Keeper / Warden of Midnight
 	Ach(61442):HousingDecor(), -- Lorewalking: The Loa
 	Ach(61463):Mount():Obtainable("Event", 1425), -- Master of the Turbulent Timeways V
 	Ach(62413), -- The Curse of Ula'tek
@@ -687,7 +685,7 @@ KrowiAF.AchievementData["12_00_07"] = {
 	Ach(63325):HousingDecor(), -- Omnium Folio Studies
 	Ach(63343):HousingDecor(), -- Goal!
 	Ach(63348), -- Heroic Slugger
-	Ach(63349):Pet(), -- Ultradon Carnagem
+	Ach(63349):Pet(), -- Ultradon Carnage
 	Ach(63383), -- Into the Stars
 	Ach(63384), -- Prepared for a Showdown
 	Ach(63385), -- A Hal'hadar Walks into a Swamp

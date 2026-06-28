@@ -9,30 +9,30 @@ end
 function section:Add(achievement)
     local info = addon.GetAchievementInfoTable(achievement.Id or achievement.AchievementId);
     if not info then
-        GameTooltip:AddLine("Debug: No info found for achievement.");
+        Krowi_Tooltip:AddLine("Debug: No info found for achievement.");
         return;
     end
-    GameTooltip:AddLine("Debug Info:");
+    Krowi_Tooltip:AddLine("Debug Info:");
     for k, v in pairs(info) do
         if type(v) == "table" then
-            GameTooltip:AddLine("  " .. tostring(k) .. ": {table}");
+            Krowi_Tooltip:AddLine("  " .. tostring(k) .. ": {table}");
             for tk, tv in pairs(v) do
-                GameTooltip:AddLine("    " .. tostring(tk) .. ": " .. tostring(tv));
+                Krowi_Tooltip:AddLine("    " .. tostring(tk) .. ": " .. tostring(tv));
             end
         else
-            GameTooltip:AddLine("  " .. tostring(k) .. ": " .. tostring(v));
+            Krowi_Tooltip:AddLine("  " .. tostring(k) .. ": " .. tostring(v));
         end
     end
-    GameTooltip:AddLine("");
-    GameTooltip:AddLine("More:");
+    Krowi_Tooltip:AddLine("");
+    Krowi_Tooltip:AddLine("More:");
     for k, v in pairs(achievement) do
         if type(v) == "table" then
-            GameTooltip:AddLine("  " .. tostring(k) .. ": {table}");
+            Krowi_Tooltip:AddLine("  " .. tostring(k) .. ": {table}");
             for tk, tv in pairs(v) do
-                GameTooltip:AddLine("    " .. tostring(tk) .. ": " .. tostring(tv));
+                Krowi_Tooltip:AddLine("    " .. tostring(tk) .. ": " .. tostring(tv));
             end
         else
-            GameTooltip:AddLine("  " .. tostring(k) .. ": " .. tostring(v));
+            Krowi_Tooltip:AddLine("  " .. tostring(k) .. ": " .. tostring(v));
         end
     end
 end

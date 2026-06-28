@@ -107,8 +107,8 @@ local function AddFactionIcon(name, faction)
 end
 
 local function OnEnter(frame)
-    GameTooltip:SetOwner(frame, "ANCHOR_TOPLEFT");
-    GameTooltip:SetText(addon.L["Achievement points earned by"]);
+    Krowi_Tooltip:SetOwner(frame, "ANCHOR_TOPLEFT");
+    Krowi_Tooltip:SetText(addon.L["Achievement points earned by"]);
     local characters = GetSortedCharacters();
     characters = LimitNumCharacters(characters);
     for _, character in next, characters do
@@ -118,9 +118,9 @@ local function OnEnter(frame)
             name = name .. " - " .. character.Realm;
         end
         name = AddFactionIcon(name, character.Faction);
-        GameTooltip:AddDoubleLine(name, tostring(BreakUpLargeNumbers(character.Points or -1)), r, g, b, 1, 1, 1);
+        Krowi_Tooltip:AddDoubleLine(name, tostring(BreakUpLargeNumbers(character.Points or -1)), r, g, b, 1, 1, 1);
     end
-    GameTooltip:Show();
+    Krowi_Tooltip:Show();
 end
 
 local function CreateTooltip()
@@ -129,7 +129,7 @@ local function CreateTooltip()
     frame:SetPoint("BOTTOMRIGHT", AchievementFrame.Header.PointBorder, -10, 8);
     frame:SetScript("OnEnter", OnEnter);
     frame:SetScript("OnLeave", function()
-        GameTooltip:Hide();
+        Krowi_Tooltip:Hide();
     end);
     frame:SetScript("OnClick", function()
         KrowiAF_DataManagerFrame:Show();

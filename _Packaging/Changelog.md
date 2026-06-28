@@ -1,6 +1,21 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 98.5 - 2026-06-28
+### Fixed
+- Some categories are flagged as 'Legacy' again (got  removed at some point) as they are replaced in later expansions (dev note: example being Onyxia's Lair having an original implementation in Vanilla and a revamp in WotLK)
+
+## 98.4 - 2026-06-24
+### Fixed
+- Taint fix attempt 666?: `attempt to compare a secret number value (execution tainted by 'Krowi_AchievementFilter')`
+
+## 98.3 - 2026-06-23
+### Fixed
+- Taint fix attempt: `attempt to compare a secret number value (execution tainted by 'Krowi_AchievementFilter')`
+
+### Removed
+- Abyss Anglers: Heavy Harpoon Cannon (62215) and Abyss Anglers: Hollowcore Harpoon Turret (62216) — these are tracking achievements which are not supported
+
 ## 98.2 - 2026-06-21
 ### Fixed
 - Instance Achievement Tracker plugin should no longer throw "attempt to call a nil value" when right-clicking an achievement

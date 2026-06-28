@@ -166,6 +166,7 @@ L["World"] = WORLD
 L["Proving Grounds"] = TRACKER_HEADER_PROVINGGROUNDS
 L["Inscription"] = INSCRIPTION
 L["Timewalking"] = PLAYER_DIFFICULTY_TIMEWALKER
+L["Legacy"] = LFG_LIST_LEGACY
 
 local l = addon.Localization.GetLocale(addon)
 L["Not earned by:"] = l["Not earned by:"]:SetColorRed() .. " %s";

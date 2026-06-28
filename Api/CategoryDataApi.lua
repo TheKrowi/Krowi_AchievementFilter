@@ -81,6 +81,17 @@ end
 
 local deferredCategories = {}
 function ParseCategoryV2(node, parent)
+    if node._injection then
+        local targetCat = addon.Data.Categories[node.TargetId]
+        assert(targetCat, "Injection target category " .. tostring(node.TargetId) .. " not found. Ensure the target category is loaded before the injection.")
+        if node.Children then
+            for _, child in next, node.Children do
+                ParseChildData(node.TargetId, child)
+            end
+        end
+        return
+    end
+
     local categoryId
     if node.Id then
         categoryId = node.Id

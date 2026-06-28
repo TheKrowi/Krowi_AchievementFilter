@@ -1,0 +1,280 @@
+primaryId,primaryName,subIds
+1,Durotar,2|3|4|5|6|461|463|464
+7,Mulgore,8|9|462
+10,Northern Barrens,11
+15,Badlands,16
+18,Tirisfal Glades,19|20|465|466
+27,Dun Morogh,28|29|30|31|427|428|469|470
+33,Blackrock Mountain,34|35
+37,Elwynn Forest,38|39|40|425|426
+42,Deadwind Pass,43|44|45|46
+52,Westfall,53|54|55
+57,Teldrassil,58|59|60|61|460
+66,Desolace,67|68
+71,Tanaris,72|73
+74,Caverns of Time,75
+78,Un'Goro Crater,79
+81,Silithus,82
+85,Orgrimmar,86|1534
+87,Ironforge,1361
+91,Alterac Valley,1537|2162
+92,Warsong Gulch,1339
+93,Arathi Basin,1366|1383
+94,Eversong Woods,467
+95,Ghostlands,96
+97,Azuremyst Isle,98|99|106|468
+112,Eye of the Storm,397
+118,Icecrown,170
+125,Dalaran,126
+130,The Culling of Stratholme,131
+133,Utgarde Keep,134|135
+136,Utgarde Pinnacle,137
+138,Halls of Lightning,139
+143,The Oculus,144|145|146
+147,Ulduar,148|149|150|151|152
+157,Azjol-Nerub,158|159
+160,Drak'Tharon Keep,161
+162,Naxxramas,163|164|165|166|167
+172,Trial of the Crusader,173
+174,The Lost Isles,175|176|177|178
+179,Gilneas,180|181|182
+186,Icecrown Citadel,187|188|189|190|191|192|193
+194,Kezan,195|196|197
+201,Kelp'thar Forest,203|204|205
+207,Deepholm,208|209
+217,Ruins of Gilneas,1030|1031
+221,Blackfathom Deeps,222|223
+226,Gnomeregan,227|228|229
+230,Uldaman,231
+235,Dire Maul,236|237|238|239|240
+242,Blackrock Depths,243
+250,Blackrock Spire,251|252|253|254|255
+256,Auchenai Crypts,257
+258,Sethekk Halls,259
+263,The Steamvault,264
+267,The Mechanar,268
+269,The Arcatraz,270|271
+280,Maraudon,281
+283,Blackrock Caverns,284
+285,Blackwing Descent,286
+287,Blackwing Lair,288|289|290
+291,The Deadmines,292
+294,The Bastion of Twilight,295|296
+297,Halls of Origination,298|299
+302,Scarlet Monastery,303|304|305
+306,Legacy of Scholomance,307|308|309
+310,Shadowfang Keep,311|312|313|314|315|316
+317,Stratholme,318
+319,Ahn'Qiraj,320|321
+322,Throne of the Tides,323
+335,Sunwell Plateau,336
+339,Black Temple,340|341|342|343|344|345|346
+348,Magisters' Terrace,349
+350,Karazhan,351|352|353|354|355|356|357|358|359|360|361|362|363|364|365|366
+367,Firelands,368|369
+371,The Jade Forest,372|373|374|375
+376,Valley of the Four Winds,377
+379,Kun-Lai Summit,380|381|382|383|384|385|386|387
+388,Townlong Steppes,389
+390,Vale of Eternal Blossoms,395|396
+391,Shrine of Two Moons,392
+393,Shrine of Seven Stars,394
+399,Hour of Twilight,400
+401,End Time,402|403|404|405|406
+407,Darkmoon Island,408
+409,Dragon Soul,410|411|412|413|414|415
+416,Dustwallow Marsh,483
+418,Krasarang Wilds,419|420|421
+429,Temple of the Jade Serpent,430
+431,Scarlet Halls,432
+433,The Veiled Stair,434
+435,Scarlet Monastery,436
+437,Gate of the Setting Sun,438
+439,Stormstout Brewery,440|441|442
+443,Shado-Pan Monastery,444|445|446
+453,Mogu'shan Palace,454|455
+457,Siege of Niuzao Temple,458|459
+471,Mogu'shan Vaults,472|473
+474,Heart of Fear,475
+476,Scholomance,477|478|479
+481,Crypt of Forgotten Kings,482
+488,Dagger in the Dark,489
+500,Deeprun Tram,503
+501,Dalaran,502
+504,Isle of Thunder,505|506
+508,Throne of Thunder,509|510|511|512|513|514|515
+516,Isle of Thunder,517
+519,Deepwind Gorge,1576
+520,Vale of Eternal Blossoms,521
+525,Frostfire Ridge,526|527|528|529|530|531|532|533
+535,Talador,536|537|538
+539,Shadowmoon Valley,540|541
+543,Gorgrond,544|545|546|547|548|549
+550,Nagrand,551|552|553
+554,Timeless Isle,555
+556,Siege of Orgrimmar,557|558|559|560|561|562|563|564|565|566|567|568|569|570
+574,Shadowmoon Burial Grounds,575|576
+577,Tanaan Jungle,578
+579,Lunarfall Excavation,580|581|582|585|586|587|590
+588,Ashran,589
+596,Blackrock Foundry,597|598|599|600
+601,Skyreach,602
+606,Grimrail Depot,607|608|609
+610,Highmaul,611|612|613|614|615
+616,Upper Blackrock Spire,617|618
+620,The Everbloom,621
+622,Stormshield,624
+627,Dalaran,628|629
+630,Azsuna,631|632|633
+634,Stormheim,635|636|637|638|639|640|649
+641,Val'sharah,642|643|644
+647,Acherus: The Ebon Hold,648
+650,Highmountain,651|652|653|654|655|656|657|658|659|660
+661,Hellfire Citadel,662|663|664|665|666|667|668|669|670
+672,"Mardum, the Shattered Abyss",673|674|675
+677,Vault of the Wardens,678|679
+680,Suramar,681|682|683|684|685|686|687|688|689|690|691|692|693
+698,Icecrown Citadel,699|700|701
+703,Halls of Valor,704|705
+706,Helmouth Cliffs,707|708
+710,Vault of the Wardens,711|712
+715,Emerald Dreamway,747
+719,"Mardum, the Shattered Abyss",720|721
+734,Hall of the Guardian,735
+740,Shadowgore Citadel,741
+742,Abyssal Maw,743
+744,Ulduar,745|746
+751,Black Rook Hold,752|753|754|755|756
+761,Court of Stars,762|763
+764,The Nighthold,765|766|767|768|769|770|771|772
+773,Tol Barad,774
+775,The Exodar,776
+777,The Emerald Nightmare,778|779|780|781|782|783|784|785|786|787|788|789
+791,Temple of the Jade Serpent,792
+794,Karazhan,795|796|797
+799,The Oculus,800|801|802|803
+804,Scarlet Monastery,805
+806,Trial of Valor,807|808
+809,Karazhan,810|811|812|813|814|815|816|817|818|819|820|821|822
+830,Krokuun,831|832|833|882|883|884|885|886|887|905
+835,The Deadmines,836
+840,Gnomeregan,841|842
+845,Cathedral of Eternal Night,846|847|848|849
+850,Tomb of Sargeras,851|852|853|854|855|856
+862,Zuldazar,1173|1174|1176|1177
+865,Stormheim,866
+869,Highmountain,870
+872,Stormstout Brewery,873|874
+879,"Mardum, the Shattered Abyss",880
+889,Arcatraz,890
+891,Azuremyst Isle,892|893|894
+895,Tiragarde Sound,1171|1172|1184|1185
+897,The Deaths of Chromie,898|899|900|901|902
+908,Ruins of Lordaeron,998
+909,"Antorus, the Burning Throne",910|911|912|913|914|915|916|917|918|919|920
+921,Invasion Point: Aurinor,922|923|924|925|926|927|928|929|930|931|932
+934,Atal'Dazar,935
+940,The Vindicaar,941
+942,Stormsong Valley,1179|1180|1182|1183
+974,Tol Dagor,975|976|977|978|979|980
+1015,Waycrest Manor,1016|1017|1018|1029
+1038,Temple of Sethraliss,1043
+1039,Shrine of the Storm,1040
+1041,The Underrot,1042
+1148,Uldir,1149|1150|1151|1152|1153|1154|1155
+1164,Dazar'alor,1165|1166|1167
+1345,Crucible of Storms,1346
+1349,Tol Dagor,1350|1351
+1352,Battle of Dazar'alor,1353|1354|1356|1357|1358|1364|1367
+1355,Nazjatar,1499|1500|1528
+1359,Icecrown Citadel,1360|1681|1682
+1381,Uldir,1382
+1462,Mechagon Island,1522
+1469,Vision of Orgrimmar,1470|2403|2404
+1490,Mechagon,1491|1493|1494|1497
+1512,The Eternal Palace,1513|1514
+1515,The Eternal Palace,1516|1517|1518|1519|1520
+1527,Uldum,1571
+1530,Vale of Eternal Blossoms,1570
+1533,Bastion,1690|1713|1714
+1536,Maldraxxus,1649|1650|1651|1652
+1543,The Maw,1820|1821|1822|1823
+1565,Ardenweald,1816|1818|1824|1825|1826|1827|1829
+1580,Ny'alotha,1581|1582|1590|1591|1592|1593|1594|1595|1596|1597
+1609,Darkmaul Citadel,1610
+1618,Torghast,1619|1620|1621|1623|1624|1627|1628|1629|1630|1631|1632|1635|1636|1641|1645|1712|1721|1736|1749|1751|1752|1753|1754|1756|1757|1758|1759|1760|1761|1763|1764|1765|1766|1767|1768|1769|1770|1771|1772|1773|1774|1776|1777|1778|1779|1780|1781|1782|1783|1784|1785|1786|1787|1788|1789|1791|1792|1793|1794|1795|1796|1797|1798|1799|1800|1801|1802|1803|1804|1805|1806|1807|1808|1809|1810|1811|1812|1911|1913|1920|1962|1963|1964|1965|1966|1967|1968|1969|1974|1975|1976|1977|1979|1980|1981|1982|1983|1984|1985|1986|1987|1988
+1663,Halls of Atonement,1664|1665
+1666,The Necrotic Wake,1667|1668
+1670,Oribos,1671|1672|1673|2016
+1674,Plaguefall,1697
+1675,Sanguine Depths,1676
+1677,De Other Side,1678|1679|1680
+1683,Theater of Pain,1684|1685|1686|1687
+1692,Spires Of Ascension,1693|1694|1695
+1699,Sinfall,1700
+1701,Heart of the Forest,1702|1703|1819
+1707,Elysian Hold,1708
+1735,Castle Nathria,1744|1745|1746|1747|1748|1750
+1961,Korthia,2006|2007|2008
+1970,Zereth Mortis,2027|2028|2029|2030|2031|2066
+1989,"Tazavesh, the Veiled Market",1990|1991|1992|1993|1995|1996|1997
+1998,Sanctum of Domination,1999|2000|2001|2002|2003|2004
+2024,The Azure Span,2132|2262
+2025,Thaldraszus,2199
+2047,Sepulcher of the First Ones,2048|2049|2050|2051|2052|2055|2061
+2071,Uldaman: Legacy of Tyr,2072
+2073,The Azure Vault,2074|2075|2076|2077
+2080,Neltharus,2081
+2082,Halls Of Infusion,2083
+2094,Ruby Life Pools,2095
+2096,Brackenhide Hollow,2106
+2097,Algeth'ar Academy,2098|2099
+2100,The Siege Creche,2101|2102|2109|2110|2111|2150|2151|2154
+2119,Vault of the Incarnates,2120|2121|2122|2123|2124|2125|2126
+2133,Zaralek Cavern,2165|2184
+2166,"Aberrus, the Shadowed Crucible",2167|2168|2169|2170
+2171,"Aberrus, the Shadowed Crucible",2172|2173|2174
+2190,Sanctum of Chronology,2191|2192|2193|2194|2195|2196|2197|2198
+2200,Emerald Dream,2253|2254
+2213,City of Threads,2216|2255|2256
+2232,Amirdrassil,2233|2234|2235|2236|2237|2238|2240|2244
+2248,Isle of Dorn,2328
+2259,Tak-Rethan Abyss,2314
+2291,Nerub-ar Palace,2292|2293|2294|2295|2296
+2300,The Sinkhole,2301
+2305,Dalaran,2306|2307
+2308,Priory of the Sacred Flame,2309
+2313,The Spiral Weave,2347
+2315,The Rookery,2316|2317|2318|2319|2320
+2343,City of Threads,2344
+2351,Razorwind Shores,2352
+2357,City of Echoes,2358
+2362,Blackrock Depths,2363
+2369,Siren Isle,2375
+2371,K'aresh,2472|2477
+2387,Operation: Floodgate,2388
+2395,Eversong Woods,2579
+2405,Voidstorm,2526|2527|2581|2582
+2406,Undermine,2407|2408|2409|2411|2428
+2413,Harandar,2522|2523|2576
+2420,Sidestreet Sluice,2421|2422|2423
+2424,Isle of Quel'Danas,2649
+2425,Demolition Dome,2426
+2433,Murder Row,2434|2435
+2437,Zul'Aman,2536|2580|2583|2584
+2452,Archival Assault,2453|2454|2455|2476
+2460,Manaforge Omega,2461|2462|2463|2464|2465|2466|2467|2468|2469|2470|2471
+2492,Windrunner Spire,2493|2494|2496|2497|2498|2499
+2503,Twilight Crypts,2504
+2505,Gulf of Memory,2575
+2511,Magisters' Terrace,2515|2516|2517|2518|2519|2520
+2513,Den of Nalorakk,2514|2564
+2528,Sunkiller Sanctum,2571
+2529,The Voidspire,2530
+2531,The Dreamrift,2532
+2533,March on Quel'Danas,2534
+2547,Collegiate Calamity,2577|2578
+2557,Derelict Legion Vessel,2558
+2572,Voidscar Arena,2573|2574
+2599,Val,2617|2618|2619|2620|2621
+2600,Naigtal,2646
