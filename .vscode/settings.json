@@ -567,7 +567,8 @@
         "INSCRIPTION",
         "PLAYER_DIFFICULTY_TIMEWALKER",
         "Krowi_Tooltip",
-        "LFG_LIST_LEGACY"
+        "LFG_LIST_LEGACY",
+        "KrowiAF_MapVerifierFrame"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

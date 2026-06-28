@@ -36,3 +36,7 @@
 
 ### Fixed (98.4)
 - Taint fix attempt 666?: `attempt to compare a secret number value (execution tainted by 'Krowi_AchievementFilter')`
+
+### Fixed (98.5)
+- Some categories are flagged as 'Legacy' again (got  removed at some point) as they are replaced in later expansions (dev note: example being Onyxia's Lair having an original implementation in Vanilla and a revamp in WotLK)
+- Translations
