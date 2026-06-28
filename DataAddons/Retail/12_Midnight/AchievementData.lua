@@ -654,7 +654,7 @@ KrowiAF.AchievementData["12_00_05"] = {
 }
 
 KrowiAF.AchievementData["12_00_07"] = {
-	Ach(61335):AutoFactionSplit(faction.Horde, 61336), -- Flame Keeper / Flame Warden of Midnight
+	Ach(61335):AutoFactionSplit(faction.Horde, 61336), -- Flame Keeper / Warden of Midnight
 	Ach(61442):HousingDecor(), -- Lorewalking: The Loa
 	Ach(61463):Mount():Obtainable("Event", 1425), -- Master of the Turbulent Timeways V
 	Ach(62413), -- The Curse of Ula'tek
@@ -685,7 +685,7 @@ KrowiAF.AchievementData["12_00_07"] = {
 	Ach(63325):HousingDecor(), -- Omnium Folio Studies
 	Ach(63343):HousingDecor(), -- Goal!
 	Ach(63348), -- Heroic Slugger
-	Ach(63349):Pet(), -- Ultradon Carnagem
+	Ach(63349):Pet(), -- Ultradon Carnage
 	Ach(63383), -- Into the Stars
 	Ach(63384), -- Prepared for a Showdown
 	Ach(63385), -- A Hal'hadar Walks into a Swamp

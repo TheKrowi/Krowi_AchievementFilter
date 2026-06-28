@@ -775,7 +775,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
         },
     },
     { -- Brawler's Guild
-        addon.L["Brawler's Guild"],
+        addon.L["Brawler's Guild"] .. CT.Legacy,
         {
             11560, -- You Are Not Your $#*@! Legplates (Season 3)
             11561, -- You Are Not Your $#*@! Legplates (Season 3)

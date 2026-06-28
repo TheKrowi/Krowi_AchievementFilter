@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 98.5 - 2026-06-28
+### Fixed
+- Some categories are flagged as 'Legacy' again (got  removed at some point) as they are replaced in later expansions (dev note: example being Onyxia's Lair having an original implementation in Vanilla and a revamp in WotLK)
+
 ## 98.4 - 2026-06-24
 ### Fixed
 - Taint fix attempt 666?: `attempt to compare a secret number value (execution tainted by 'Krowi_AchievementFilter')`

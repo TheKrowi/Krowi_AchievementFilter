@@ -5,4 +5,5 @@
     <Include file="CharacterListFrame\CharacterListFrame.xml"/>
     <Include file="Frame\Frame.xml"/>
     <Include file="TextFrame\TextFrame.xml"/>
+    <Include file="MapVerifier\MapVerifier.xml"/>
 </Ui>

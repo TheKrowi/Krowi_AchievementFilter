@@ -619,7 +619,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
         { -- Ulduar
             addon.GetInstanceInfoName(759),
             { -- Ulduar 10
-                (GetDifficultyInfo(3)),
+                (GetDifficultyInfo(3)) .. (addon.Util.IsMainline and CT.Legacy or ""),
                 {
                     3097, -- Dwarfageddon (10 player)
                     2907, -- Three Car Garage (10 player)
@@ -694,7 +694,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
                 },
             },
             { -- Ulduar 25
-                (GetDifficultyInfo(4)),
+                (GetDifficultyInfo(4)) .. (addon.Util.IsMainline and CT.Legacy or ""),
                 {
                     3098, -- Dwarfageddon (25 player)
                     2908, -- Three Car Garage (25 player)

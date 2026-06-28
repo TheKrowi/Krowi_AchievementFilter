@@ -9,7 +9,7 @@ local expansion = KrowiAF.NewExpansion(CT.Midnight, {
     42117, -- The War of Light and Shadow
     60891, -- The Crimson Rogue
     62191, -- Call of the Light
-    61839, -- Midnight Pathfinder (Reward: Steady Flight unlocked within Midnight, Finery Funds)
+    61839, -- Midnight Pathfinder
 })
 
 expansion:Character{
@@ -48,7 +48,7 @@ quelThalas:Exploration{
     62266, -- Abundance: An Acolyte no Longer
     62324, -- Abundance: Loa of all Trades
     62333, -- Abundance: Harvester
-    62336, -- Abundance: Contributer
+    62336, -- Abundance: Contributor
     62337, -- Abundance: Professional
     62338, -- Abundance: Artisan
     62340, -- Abundance: Investor
@@ -69,7 +69,7 @@ quelThalas:PvP{
     61464, -- Spark in the Night
     61465, -- Spark in the Night
     61234, -- Hunt in the Night
-    61238, -- Midnight Hunter
+    61238, -- Midnight Bounty
     61225, -- Investigating the Rise
     61226, -- Uprising
     61227, -- Entering the Void
@@ -83,10 +83,10 @@ quelThalas:PvP{
     61447, -- Partake in the Rise
     61448, -- Frequent the Rise
     61449, -- Customary Rise
-    61446, -- Slayer's Mastery (Title: Voidslayer)
+    61446, -- Slayer's Mastery
 }
 quelThalas:Reputation{
-    62192, -- Midnight Diplomat (Reward: Finery Funds)
+    62192, -- Midnight Diplomat
 }
 
 local eversong = zones:Zone(2395, {
@@ -120,7 +120,7 @@ local zulaman = zones:Zone(2437, {
     61453, -- Making an Amani Out of You
 })
 zulaman:Quests{
-    41803, -- For Zul'Aman! (Customization Reward: Amani Appearances for Darkspear Troll)
+    41803, -- For Zul'Aman!
     61452, -- Sojourner of Zul'Aman
     61910, -- Mrglgrgl of Grglmrgl
     62413, -- The Curse of Ula'tek
@@ -169,7 +169,7 @@ harandar:Exploration{
     61939, -- Abundance: Artisan of Floaret
     61860, -- From The Cradle to the Grave
     62188, -- More Than Just Their Roots
-    61052, -- Dust 'Em Off (Reward: Title: "Dustlord")
+    61052, -- Dust 'Em Off
     61344, -- Chronicler of the Haranir
     61574, -- Legends Never Die
     61917, -- "Hold aggro, I got this"
@@ -211,13 +211,13 @@ voidstorm:Reputation{
 }
 
 local delves = expansion:Delves{
-    61832, -- Midnight Delves: Tier 1 (Unlock: Tier 2 delves in Midnight)
-    61835, -- Midnight Delves: Tier 2 (Unlock: Tier 3 delves in Midnight)
+    61832, -- Midnight Delves: Tier 1
+    61835, -- Midnight Delves: Tier 2
     61836, -- Midnight Delves: Tier 3
-    61734, -- Midnight Delves: Endgame (Unlock: Tier 4 delves in Midnight)
+    61734, -- Midnight Delves: Endgame
     61741, -- Delve Loremaster: Midnight
-    61901, -- Midnight: Leave No Treasure Unfound (Title: Treasure Seeker)
-    61906, -- Glory of the Midnight Delver (Mount: Giganto Manis)
+    61901, -- Midnight: Leave No Treasure Unfound
+    61906, -- Glory of the Midnight Delver
     61707, -- Delver of the Depths: Midnight
     61708, -- Delver of the Depths II: Midnight
     61709, -- Delver of the Depths III: Midnight
@@ -234,18 +234,18 @@ local delves = expansion:Delves{
     61718, -- Midnight Delver Tank II
     61719, -- Midnight Delver Tank III
     61720, -- Midnight Delver
-    61721, -- Midnight Delver II (Reward: Finery Funds)
+    61721, -- Midnight Delver II
     62206, -- Midnight Delver III
 }
 delves:Seasonal{
-    61800, -- Midnight Delves: Tier 4 (Season 1) (Unlock: Tier 5 delves in Midnight Season 1)
-    61801, -- Midnight Delves: Tier 5 (Season 1) (Unlock: Tier 6 delves in Midnight Season 1)
-    61802, -- Midnight Delves: Tier 6 (Season 1) (Unlock: Tier 7 delves in Midnight Season 1)
-    61803, -- Midnight Delves: Tier 7 (Season 1) (Unlock: Tier 7 delves in Midnight Season 1)
-    61804, -- Midnight Delves: Tier 8 (Season 1) (Unlock: Tier 9 delves in Midnight Season 1)
-    61805, -- Midnight Delves: Tier 9 (Season 1) (Unlock: Tier 10 delves in Midnight Season 1)
-    61806, -- Midnight Delves: Tier 10 (Season 1) (Unlock: Tier 11 delves in Midnight Season 1)
-    61807, -- Midnight Delves: Tier 11 (Season 1) (Title: High Explorer)
+    61800, -- Midnight Delves: Tier 4 (Season 1)
+    61801, -- Midnight Delves: Tier 5 (Season 1)
+    61802, -- Midnight Delves: Tier 6 (Season 1)
+    61803, -- Midnight Delves: Tier 7 (Season 1)
+    61804, -- Midnight Delves: Tier 8 (Season 1)
+    61805, -- Midnight Delves: Tier 9 (Season 1)
+    61806, -- Midnight Delves: Tier 10 (Season 1)
+    61807, -- Midnight Delves: Tier 11 (Season 1)
     61796, -- Midnight: Journey's End (Season 1)
 }
 delves:Delve(2535, { -- Atal'Aman
@@ -290,14 +290,14 @@ delves:Delve(2503, { -- Twilight Crypts
 })
 delves:Delve(2507, { -- Torment's Rise
     40732, -- Heavy-Handed
-    61797, -- My Shady Nemesis (Reward: Nullaeus Domaneye)
-    61798, -- Lighting the Dark (Title: the Ominous)
-    61799, -- Let Me Solo Him: Nullaeus (Reward: Arcanovoid Construct)
-    61808, -- Fabled Let Me Solo Him: Nullaeus (Title: Fabled Vanquisher of Nullaeus)
+    61797, -- My Shady Nemesis
+    61798, -- Lighting the Dark
+    61799, -- Let Me Solo Him: Nullaeus
+    61808, -- Fabled Let Me Solo Him: Nullaeus
 })
 
 local dungeons = expansion:Dungeons{
-    61567, -- Midnight Dungeon Hero (Pet: Niblet)
+    61567, -- Midnight Dungeon Hero
     61568, -- Glory of the Midnight Hero
     62195, -- Midnight Dungeon Tank
     62194, -- Midnight Dungeon Healer
@@ -358,7 +358,7 @@ dungeons:Dungeon(1299, { -- Windrunner Spire
 
 local raids = expansion:Raids{
     62352, -- Nothing to See Here
-    61380, -- Glory of the Midnight Raider (Mount: Tenebrous Harrower)
+    61380, -- Glory of the Midnight Raider
     61843, -- Quel'Dressed
 }
 
@@ -386,13 +386,13 @@ voidspire:Mythic{
     61374, -- Mythic: Fallen-King Salhadaar
     61375, -- Mythic: Vaelgor & Ezzorak
     61376, -- Mythic: Lightblinded Vanguard
-    61377, -- Mythic: Crown of the Cosmos (Title: Spirebane)
+    61377, -- Mythic: Crown of the Cosmos
 }
 
 local dreamrift = raids:Raid(1314, { -- Dreamrift
     61487, -- Chimaerus, the Undreamt God
     61488, -- Heroic: Chimaerus, the Undreamt God
-    61489, -- Mythic: Chimaerus, the Undreamt God (Title: Dream-Eater)
+    61489, -- Mythic: Chimaerus, the Undreamt God
     61491, -- Ahead of the Curve: Chimaerus, the Undreamt God
     61492, -- Cutting Edge: Chimaerus, the Undreamt God
 })
@@ -413,7 +413,7 @@ march:Glory{
 }
 march:Mythic{
     61378, -- Mythic: Belo'ren, Child of Al'ar
-    61379, -- Mythic: Midnight Falls (Title: Dawnbringer)
+    61379, -- Mythic: Midnight Falls
 }
 
 raids:Raid(1305, { -- Sporefall
@@ -425,7 +425,7 @@ raids:Raid(1305, { -- Sporefall
 local professions = expansion:Professions{
     61438, -- Thalassian Profession Master
     61439, -- Thalassian Artisan
-    61440, -- Thalassian Polymath (Reward: Finery Funds)
+    61440, -- Thalassian Polymath
     61441, -- Working WAY Past Midnight
     62370, -- Midnight Lumberjack
 }
@@ -563,18 +563,18 @@ expansion:Named(addon.L["The Arcantina"], { -- The Arcantina
 })
 
 expansion:Named(addon.L["Abyss Anglers"], { -- Abyss Anglers
-    62118, -- Abyss Anglers: Amazardhide Catch Case
-    62117, -- Abyss Anglers: Boarhide Catch Sack
+    62118, -- Abyss Anglers: Plecofin Bait
+    62117, -- Abyss Anglers: Finnow Chum
     62272, -- Abyss Anglers: Certified Depthdiver
     62208, -- Abyss Anglers: Depth Grease
     62210, -- Abyss Anglers: Depthdiver's Used Tank
     62218, -- Abyss Anglers: Even The Best
     62211, -- Abyss Anglers: Fathom-Tested Tank
     62342, -- Abyss Anglers: The Finest of Fish
-    62221, -- Abyss Anglers: Fresh Depth Tech
+    62221, -- Abyss Anglers: Fresh Depth Nets
     62217, -- Abyss Anglers: Idol of the Depths
     62773, -- Abyss Anglers: Jeju's New Rival
-    62119, -- Abyss Anglers: Loaknit-Woven Catch Satchel
+    62119, -- Abyss Anglers: Murkskimmer Meat
     62778, -- Abyss Anglers: Luck of the Loa
     62343, -- Abyss Anglers: Myths from Beneath
     62212, -- Abyss Anglers: Nalorakk's Breath Tank
@@ -590,13 +590,13 @@ expansion:Named(addon.L["Abyss Anglers"], { -- Abyss Anglers
     62829, -- Abyss Anglers: Don't Know What You Expected
     62832, -- Abyss Anglers: Reservation for One
     62213, -- Abyss Anglers: Shallows Net
-    62222, -- Abyss Anglers: The Amani Way
+    62222, -- Abyss Anglers: Free Transport
     62762, -- Abyss Anglers: Top of the Class
     62271, -- Abyss Anglers: Trench Berserker
     62214, -- Abyss Anglers: Triple-Thread Net
     62763, -- Abyss Anglers: Vintage Collector
     62760, -- Abyss Anglers: Angler Physics
-    62776, -- Abyss Anglers: All Blue Angler (Pet: Ka'bubb)
+    62776, -- Abyss Anglers: All Blue Angler
     62775, -- Abyss Anglers: Delicate Diver
     62759, -- Abyss Anglers: History Below
 })
@@ -671,8 +671,8 @@ local voidAssaults = expansion:Named(CT.VoidAssaults, { -- Void Assaults
     62511, -- Void Eradicator: Zul'Aman
     62512, -- Void Bane: Zul'Aman
     62513, -- Outstanding in the Field
-    62518, -- Cosmic Exterminator (Pet: Cappy)
-    62563, -- Void Response Team (Mount: Unbound Manawyrm)
+    62518, -- Cosmic Exterminator
+    62563, -- Void Response Team
     62568, -- Void Shmoid
     62569, -- Traces in the Dark
     62570, -- Cosmic Slayer

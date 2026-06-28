@@ -247,7 +247,7 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             },
         },
         { -- Recruit-a-Friend
-            addon.L["Recruit-a-Friend"],
+            addon.L["Recruit-a-Friend"].. CT.Legacy,
             {
                 1436, -- Friends In High Places
                 4832, -- Friends In Even Higher Places

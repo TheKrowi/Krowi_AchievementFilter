@@ -625,6 +625,13 @@ local debugOptions = {
                     name = addon.L["Export to CSV"],
                     desc = addon.L["Export to CSV Desc"],
                     func = ExportToCsv
+                },
+                Blank7 = {order = OrderPP(), type = "description", width = AdjustedWidth(2), name = ""},
+                MapVerifier = {
+                    order = OrderPP(), type = "execute",
+                    name = "Map Verifier",
+                    desc = "Open the Map Verifier tool to inspect and tag all UiMap IDs.",
+                    func = function() addon.Gui.MapVerifier.Open() end
                 }
             }
         }

@@ -1206,7 +1206,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
         },
         { -- Upper Blackrock Spire
-            addon.GetInstanceInfoName(559),
+            addon.GetInstanceInfoName(559) .. (addon.Util.IsMainline and CT.Legacy or ""),
             {
                 1307, -- Upper Blackrock Spire (Classic)
                 2188, -- Leeeeeeeeeeeeeroy!
@@ -1220,7 +1220,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
         },
         { -- Scholomance
-            addon.GetInstanceInfoName(246),
+            addon.GetInstanceInfoName(246) .. CT.Legacy,
             {
                 18368, -- Memory of Scholomance
                 18558, -- Leaders of Scholomance
@@ -1264,7 +1264,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
         },
         { -- Onyxia's Lair
-            addon.GetInstanceInfoName(760),
+            addon.GetInstanceInfoName(760) .. CT.Legacy,
             {
                 684, -- Onyxia's Lair (Level 60)
                 11296, -- The Ancient Keeper
@@ -1280,7 +1280,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
         },
         { -- Zul'Gurub
-            addon.GetInstanceInfoName(76),
+            addon.GetInstanceInfoName(76) .. CT.Legacy,
             { -- Reputation
                 CT.Reputation,
                 {
@@ -1324,7 +1324,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Classic
             },
         },
         { -- Naxxramas
-            addon.GetInstanceInfoName(754),
+            addon.GetInstanceInfoName(754) .. CT.Legacy,
             {
                 11744, -- Drop Dead, Gorgeous
                 425, -- Atiesh, Greatstaff of the Guardian

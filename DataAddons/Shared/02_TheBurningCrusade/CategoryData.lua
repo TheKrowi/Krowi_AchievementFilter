@@ -522,7 +522,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             },
         },
         { -- Zul'Aman
-            addon.GetInstanceInfoName(77),
+            addon.GetInstanceInfoName(77) .. CT.Legacy,
             {
                 691, -- Zul'Aman
                 430, -- Amani War Bear

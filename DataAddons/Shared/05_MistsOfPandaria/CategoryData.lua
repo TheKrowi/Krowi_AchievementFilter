@@ -911,7 +911,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
         },
     },
     { -- Brawler's Guild
-        addon.L["Brawler's Guild"],
+        addon.L["Brawler's Guild"] .. (addon.Util.IsMainline and CT.Legacy or ""),
         {
             7937, -- You Are Not Your $#*@! Legplates (Season 1)
             8020, -- You Are Not Your $#*@! Legplates (Season 1)

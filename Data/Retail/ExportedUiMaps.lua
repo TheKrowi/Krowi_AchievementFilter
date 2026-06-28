@@ -32,14 +32,6 @@ local function A(id, achievementIds)
     end
 end
 
-local function A10(id, achievementIds)
-    N(id, "10", achievementIds);
-end
-
-local function A25(id, achievementIds)
-    N(id, "25", achievementIds);
-end
-
 local function C(mId1, mId2)
     maps[mId1] = maps[mId2];
 end
@@ -49,385 +41,6 @@ end
 
 -- [[ Exported at 2024-11-10 06-03-24 ]] --
 tasks = {
-    {A, 1, {1206, 43, 4790, 728, 9924, 762, 6585, 6612, 6602, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 2556, 4827, 46}}, -- Durotar
-    {C, 2, 1}, -- Durotar - Burning Blade Coven
-    {C, 3, 1}, -- Durotar - Tiragarde Keep - Tiragarde Keep
-    {C, 4, 1}, -- Durotar - Tiragarde Keep - Great Hall
-    {C, 5, 1}, -- Durotar - Skull Rock
-    {C, 6, 1}, -- Durotar - Dustwind Cave
-    {A, 7, {1206, 43, 736, 762, 6585, 6612, 6558, 6559, 6560, 6611, 6590, 2556, 46}}, -- Mulgore
-    {C, 8, 7}, -- Mulgore - Palemane Rock
-    {C, 9, 7}, -- Mulgore - The Venture Co. Mine
-    {A, 10, {1206, 43, 11200, 11201, 16431, 4933, 750, 762, 2336, 6585, 6612, 6602, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 2556, 46}}, -- Northern Barrens
-    {C, 11, 10}, -- Northern Barrens - Wailing Caverns
-    {A, 12, {1206, 944, 942, 943, 7520, 1678, 43, 6602, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 8348, 4875, 4827, 5548, 4868, 7525, 46}}, -- Kalimdor
-    {A, 13, {1206, 1676, 42, 7520, 6586, 6613, 6603, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 897, 4875, 4827, 5548, 4868, 4881, 7525, 46}}, -- Eastern Kingdoms
-    {A, 14, {1206, 1676, 42, 7520, 4896, 761, 948, 762, 6586, 6613, 6558, 6559, 6560, 6611, 6590, 2556, 46}}, -- Arathi Highlands
-    {A, 15, {1676, 42, 7520, 16431, 4900, 5444, 765, 6586, 6613, 6558, 6559, 6560, 6611, 6590, 2556, 4827, 46}}, -- Badlands
-    {C, 16, 15}, -- Badlands - Uldaman
-    {A, 17, {1676, 42, 7520, 9618, 11297, 4909, 766, 9924, 948, 762, 6586, 6613, 6558, 6559, 6560, 6611, 6590, 2556, 46}}, -- Blasted Lands
-    {A, 18, {1206, 42, 15579, 768, 762, 6586, 6613, 6558, 6559, 6560, 6611, 6590, 2556, 46}}, -- Tirisfal Glades
-    {C, 19, 18}, -- Tirisfal Glades - Scarlet Monastery Entrance
-    {C, 20, 18}, -- Tirisfal Glades - Keeper's Rest
-    {A, 21, {42, 4894, 769, 762, 6586, 6613, 6558, 6559, 6560, 6611, 6590, 2556, 4827, 46}}, -- Silverpine Forest
-    {A, 22, {1206, 1676, 42, 7520, 4893, 770, 9924, 948, 762, 6586, 6613, 6558, 6559, 6560, 6611, 6590, 2556, 46}}, -- Western Plaguelands
-    {A, 23, {1676, 42, 7520, 11297, 4892, 5442, 771, 9924, 946, 945, 6586, 6613, 6603, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 2556, 46}}, -- Eastern Plaguelands
-    {A, 24, {10994, 11135, 11136, 10706, 11212, 11213, 11214, 11215, 11216, 11217, 11219, 11220, 11221, 11222, 11223, 11298, 10746, 10459, 10743, 10745, 10460, 10461, 10747, 10748, 11173, 10749, 10750, 11171, 11137, 11611, 11612, 11144, 11772, 11609, 11610, 10852, 10853, 12071, 12072, 11218}}, -- Light's Hope Chapel
-    {A, 25, {1206, 42, 11200, 11201, 4895, 772, 9924, 762, 2336, 6586, 6613, 6558, 6559, 6560, 6611, 6590, 2556, 4827, 46}}, -- Hillsbrad Foothills
-    {A, 26, {1206, 1676, 42, 7520, 4897, 773, 762, 6586, 6613, 6603, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 2556, 46}}, -- The Hinterlands
-    {A, 27, {42, 11200, 11201, 4786, 627, 948, 6558, 6559, 6560, 46}}, -- Dun Morogh
-    {C, 28, 27}, -- Dun Morogh - Coldridge Pass
-    {C, 29, 27}, -- Dun Morogh - The Grizzled Den
-    {C, 30, 27}, -- Dun Morogh - New Tinkertown
-    {C, 31, 27}, -- Dun Morogh - Gol'Bolar Quarry
-    {A, 32, {1676, 42, 7520, 40796, 4910, 774, 6603, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 8348, 2556, 46}}, -- Searing Gorge
-    {A, 33, {1676, 42, 7520, 11296, 4901, 775, 9924, 6586, 6613, 6603, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 2556, 46}}, -- Burning Steppes - Blackrock Mountain - Blackrock Spire
-    {C, 34, 33}, -- Burning Steppes - Blackrock Mountain - Blackrock Caverns
-    {C, 35, 32}, -- Searing Gorge - Blackrock Mountain - Blackrock Depths
-    {C, 36, 33}, -- Burning Steppes
-    {A, 37, {1206, 42, 776, 9924, 948, 6586, 6613, 6603, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 46}}, -- Elwynn Forest
-    {C, 38, 37}, -- Elwynn Forest - Fargodeep Mine - Fargodeep Mine
-    {C, 39, 37}, -- Elwynn Forest - Fargodeep Mine - Lower Mines
-    {C, 40, 37}, -- Elwynn Forest - Jasperlode Mine
-    {A, 42, {42, 777, 6586, 6613, 6603, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 11240, 46}}, -- Deadwind Pass
-    {C, 43, 42}, -- Deadwind Pass - The Master's Cellar
-    {C, 44, 42}, -- Deadwind Pass - The Master's Cellar - The Master's Cellar
-    {C, 45, 42}, -- Deadwind Pass - The Master's Cellar - Lower Cellar
-    {C, 46, 42}, -- Deadwind Pass - Karazhan Catacombs
-    {A, 47, {1206, 1676, 42, 7520, 12430, 12455, 778, 9924, 948, 6586, 6613, 6603, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 2556, 46}}, -- Duskwood
-    {A, 48, {1206, 1676, 42, 7520, 4899, 12456, 779, 9924, 948, 6586, 6613, 6558, 6559, 6560, 6611, 6590, 4827, 46}}, -- Loch Modan
-    {A, 49, {1206, 1676, 42, 7520, 4902, 780, 948, 6586, 6613, 6603, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 2556, 46}}, -- Redridge Mountains
-    {A, 50, {1206, 1676, 42, 7520, 4906, 940, 941, 781, 17366, 948, 762, 6586, 6613, 6603, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 2556, 4827, 46}}, -- Northern Stranglethorn
-    {A, 51, {1206, 1676, 42, 7520, 4904, 782, 948, 6586, 6613, 6603, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 2556, 46}}, -- Swamp of Sorrows
-    {A, 52, {1206, 1676, 42, 7520, 11200, 11201, 4903, 12455, 802, 9924, 948, 6586, 6613, 6603, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 2556, 4827, 46}}, -- Westfall
-    {C, 53, 52}, -- Westfall - Gold Coast Quarry
-    {C, 54, 52}, -- Westfall - Jangolode Mine
-    {C, 55, 52}, -- Westfall - The Deadmines
-    {A, 56, {1206, 1676, 42, 7520, 12429, 12456, 841, 9924, 948, 6586, 6613, 6558, 6559, 6560, 6611, 6590, 2556, 46}}, -- Wetlands
-    {A, 57, {1206, 43, 842, 948, 6558, 6559, 6560, 46}}, -- Teldrassil
-    {C, 58, 57}, -- Shadowthread Cave
-    {C, 59, 57}, -- Fel Rock
-    {C, 60, 57}, -- Ban'ethil Barrow Den - Upper Den
-    {C, 61, 57}, -- Ban'ethil Barrow Den - Lower Den
-    {A, 62, {1206, 7520, 1678, 43, 4928, 5453, 844, 948, 6585, 6612, 6558, 6559, 6560, 6611, 6590, 2556, 4827, 46, 12572}}, -- Darkshore
-    {A, 63, {1206, 7520, 1678, 43, 4925, 4976, 845, 948, 6585, 6612, 6602, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 2556, 4827, 46}}, -- Ashenvale
-    {A, 64, {7520, 1678, 43, 4938, 846, 948, 762, 6585, 6612, 6602, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 2556, 4827, 46}}, -- Thousand Needles
-    {A, 65, {1206, 7520, 1678, 43, 4936, 4980, 847, 948, 762, 6585, 6612, 6602, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 2556, 46}}, -- Stonetalon Mountains
-    {A, 66, {1206, 7520, 1678, 43, 4930, 848, 762, 6585, 6612, 6602, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 2556, 4827, 46}}, -- Desolace
-    {C, 67, 66}, -- Desolace - Maraudon - The Wicked Grotto
-    {C, 68, 66}, -- Desolace - Maraudon - Foulspore Cavern
-    {A, 69, {1206, 7520, 1678, 43, 4932, 4979, 849, 9924, 948, 762, 6585, 6612, 6602, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 2556, 46}}, -- Feralas
-    {A, 70, {1206, 7520, 1678, 43, 40796, 4929, 4978, 850, 948, 6585, 6612, 6602, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 2556, 46}}, -- Dustwallow Marsh
-    {A, 71, {7520, 1678, 43, 11200, 11201, 4935, 851, 9924, 948, 762, 2336, 6585, 6612, 6558, 6559, 6560, 6611, 6590, 2556, 4827, 46}}, -- Tanaris
-    {C, 72, 71}, -- Tanaris - The Noxious Lair
-    {C, 73, 71}, -- Tanaris - The Gaping Chasm
-    {A, 74, {763, 764}}, -- Caverns of Time - Timeless Tunnel
-    {C, 75, 74}, -- Caverns of Time - Caverns of Time
-    {A, 76, {1206, 43, 11200, 11201, 4927, 5454, 5448, 5546, 5547, 852, 762, 6585, 6612, 6558, 6559, 6560, 6611, 6590, 2556, 46}}, -- Azshara
-    {A, 77, {1206, 944, 942, 943, 7520, 1678, 43, 11296, 4931, 853, 948, 762, 6585, 6612, 6602, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 46}}, -- Felwood
-    {A, 78, {1206, 7520, 1678, 43, 3357, 11296, 16431, 4939, 854, 9924, 6585, 6612, 6558, 6559, 6560, 6611, 6590, 2556, 46}}, -- Un'Goro Crater
-    {C, 79, 78}, -- Un'Goro Crater - The Slithering Scar
-    {A, 80, {1206, 43, 855, 9924, 6602, 6607, 6601, 7498, 7499, 8348, 2556, 46}}, -- Moonglade
-    {A, 81, {7520, 1678, 43, 416, 5533, 11296, 4934, 856, 9924, 953, 6585, 6612, 6558, 6559, 6560, 6611, 6590, 2556, 46}}, -- Silithus
-    {C, 82, 81}, -- Silithus - Twilight's Run
-    {A, 83, {944, 942, 943, 7520, 1678, 43, 3356, 11296, 4940, 5443, 857, 2336, 6585, 6612, 6602, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 2556, 46}}, -- Winterspring
-    {A, 84, {1206, 615, 14815, 388, 11065, 603, 9924, 948, 5474, 5476, 6584, 6622, 2556, 18854}}, -- Stormwind City
-    {A, 85, {1206, 610, 14817, 614, 1006, 11065, 604, 762, 5475, 1836, 5477, 6621, 6622, 2556, 18854}}, -- Orgrimmar - Orgrimmar
-    {C, 86, 85}, -- Orgrimmar - Cleft of Shadow
-    {A, 87, {388, 616, 619, 603, 5841, 1837, 5847, 6584, 6622}}, -- Ironforge
-    {A, 88, {1206, 1006, 611, 604, 5843, 5849, 6621, 6622, 2556}}, -- Thunder Bluff
-    {A, 89, {1206, 388, 617, 603, 5842, 5848, 6584, 6622, 2556}}, -- Darnassus
-    {A, 90, {612, 604, 1006, 5844, 5850, 6621, 6622, 2556}}, -- Undercity
-    {A, 91, {13928, 13930, 218, 219, 221, 222, 1151, 224, 225, 1164, 223, 220, 873, 582, 707, 706, 1166, 1167, 226, 709, 708}}, -- Alterac Valley
-    {A, 92, {166, 167, 199, 200, 872, 168, 201, 204, 203, 1251, 202, 1502, 206, 1252, 207, 1172, 1259, 713, 712}}, -- Warsong Gulch
-    {A, 93, {154, 155, 165, 158, 73, 1153, 157, 161, 156, 159, 162, 583, 584, 1169, 711, 710}}, -- Arathi Basin
-    {A, 94, {42, 6586, 6613, 6558, 6559, 6560, 6611, 6590, 859, 762, 2556, 46}}, -- Eversong Woods
-    {A, 95, {42, 6586, 6613, 6558, 6559, 6560, 6611, 6590, 4908, 858, 762, 2556, 46}}, -- Ghostlands
-    {C, 96, 95}, -- Amani Catacombs
-    {A, 97, {43, 6585, 6612, 6558, 6559, 6560, 6611, 6590, 860, 948, 2556, 46}}, -- Azuremyst Isle
-    {C, 98, 97}, -- Tides' Hollow
-    {C, 99, 97}, -- Stillpine Hold
-    {A, 100, {7520, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 1262, 1311, 1312, 44, 763, 764, 1189, 1271, 862, 9924, 948, 762, 6587, 6614, 6604, 2556, 46}}, -- Hellfire Peninsula
-    {A, 101, {942, 943, 7520, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 1262, 1311, 1312, 44, 763, 764, 894, 902, 6587, 6614, 6604, 46}}, -- Outland
-    {A, 102, {942, 943, 7520, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 1262, 1311, 1312, 44, 763, 764, 1190, 863, 948, 762, 893, 953, 900, 6587, 6614, 6604, 2556, 46}}, -- Zangarmarsh
-    {A, 103, {388, 6584, 6622, 618, 619, 603, 2556}}, -- The Exodar
-    {A, 104, {7520, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 1262, 1311, 1312, 44, 1195, 864, 898, 1638, 6587, 6614, 6604, 2556, 46}}, -- Shadowmoon Valley
-    {A, 105, {7520, 6558, 6559, 6560, 6611, 6590, 1262, 1311, 1312, 44, 894, 1193, 1276, 865, 896, 6587, 6614, 2556, 46}}, -- Blade's Edge Mountains
-    {A, 106, {7520, 1678, 43, 6585, 6612, 6558, 6559, 6560, 6611, 6590, 4926, 861, 948, 2556, 46}}, -- Bloodmyst Isle
-    {A, 107, {942, 943, 7520, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 1262, 1311, 1312, 44, 902, 1192, 1273, 939, 941, 1576, 4958, 866, 899, 901, 6587, 6614, 6604, 2556, 46}}, -- Nagrand
-    {A, 108, {7520, 6558, 6559, 6560, 6611, 6590, 1262, 1311, 1312, 44, 763, 764, 894, 1191, 1272, 1275, 867, 903, 1205, 6587, 6614, 2556, 46}}, -- Terokkar Forest
-    {A, 109, {7520, 6558, 6559, 6560, 6611, 6590, 1262, 1311, 1312, 44, 902, 1194, 843, 9924, 6587, 6614, 46}}, -- Netherstorm
-    {A, 110, {1006, 6621, 6622, 613, 614, 604, 2556}}, -- Silvermoon City
-    {A, 111, {6607, 6601, 7498, 7499, 8348, 1165, 9924, 6604}}, -- Shattrath City
-    {A, 112, {208, 209, 783, 784, 214, 213, 212, 216, 233, 1171, 587, 1258, 211}}, -- Eye of the Storm
-    {A, 113, {7520, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 41, 2256, 2257, 2557, 45, 1008, 1009, 1010, 1011, 1012, 2556, 6588, 6615, 6605, 46}}, -- Northrend
-    {A, 115, {7520, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 41, 2256, 2257, 2557, 45, 1008, 1010, 1011, 1012, 40796, 35, 1359, 547, 1277, 1265, 9924, 1007, 6588, 6615, 6605, 11941, 46}}, -- Dragonblight
-    {A, 116, {7520, 6558, 6559, 6560, 6611, 6590, 41, 2256, 2257, 2557, 45, 37, 1357, 1266, 2016, 2017, 6588, 6615, 46}}, -- Grizzly Hills
-    {A, 117, {7520, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 41, 2256, 2257, 2557, 45, 1011, 1012, 2556, 34, 1356, 1263, 1254, 9924, 6588, 6615, 6605, 46}}, -- Howling Fjord
-    {A, 118, {7520, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 41, 2256, 2257, 2557, 45, 1009, 1010, 1011, 1012, 14750, 40, 1270, 947, 945, 6588, 6615, 6605, 2756, 2758, 2772, 2836, 2773, 3736, 2777, 2787, 2760, 2769, 2778, 2785, 2761, 2767, 2779, 2786, 2762, 2768, 2780, 2784, 2763, 2766, 2781, 2783, 2764, 2765, 2782, 2788, 2770, 2771, 2817, 2816, 3676, 3677, 4596, 46}}, -- Icecrown
-    {A, 119, {7520, 6558, 6559, 6560, 6611, 6590, 41, 2256, 2257, 2557, 45, 2556, 39, 961, 962, 938, 941, 1268, 950, 951, 952, 6588, 6615, 46}}, -- Sholazar Basin
-    {A, 120, {7520, 6558, 6559, 6560, 6611, 6590, 41, 2256, 2257, 2557, 45, 1012, 2556, 38, 1428, 1269, 2082, 2083, 6588, 6615, 46}}, -- The Storm Peaks
-    {A, 121, {7520, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 41, 2256, 2257, 2557, 45, 1009, 1010, 2556, 36, 1596, 1576, 4958, 1267, 6588, 6615, 6605, 46}}, -- Zul'Drak
-    {A, 122, {42, 897, 868, 46}}, -- Isle of Quel'Danas
-    {A, 123, {9924, 1717, 1718, 1755, 2199, 2080, 1737, 2476, 1723, 1727, 1751, 1752}}, -- Wintergrasp
-    {A, 125, {1008, 1010, 1956, 2084, 2076, 2077, 2078, 2094, 2095, 1957, 1958, 2096}}, -- Dalaran - Dalaran City
-    {A, 126, {1008, 1010, 2556, 1956, 2084, 2076, 2077, 2078, 2094, 2095, 1957, 1958, 2096}}, -- Dalaran - The Underbelly
-    {A, 127, {6607, 6601, 7498, 7499, 6611, 6590, 8348, 45, 2556, 1457, 9924, 6588, 6615, 6605, 46}}, -- Crystalsong Forest
-    {A, 129, {2150, 2037, 2036, 478, 490}}, -- The Nexus
-    {A, 130, {1872, 1817, 479, 500}}, -- The Culling of Stratholme - The Culling of Stratholme
-    {C, 131, 130}, -- The Culling of Stratholme - Stratholme City
-    {A, 132, {2038, 2056, 1862, 481, 492}}, -- Ahn'kahet: The Old Kingdom
-    {A, 133, {1919, 477, 489}}, -- Utgarde Keep - Njorndir Preparation
-    {C, 134, 133}, -- Utgarde Keep - Dragonflayer Ascent
-    {C, 135, 133}, -- Utgarde Keep - Tyr's Terrace
-    {A, 136, {2043, 1873, 2156, 2157, 488, 499}}, -- Utgarde Pinnacle - Lower Pinnacle
-    {C, 137, 136}, -- Utgarde Pinnacle - Upper Pinnacle
-    {A, 138, {1834, 2042, 1867, 486, 497}}, -- Halls of Lightning - Unyielding Garrison
-    {C, 139, 138}, -- Halls of Lightning - Walk of the Makers
-    {A, 140, {1866, 2154, 2155, 485, 496}}, -- Halls of Stone
-    {A10, 141, {2148, 1874, 1869, 622}}, -- The Eye of Eternity
-    {A25, 141, {2149, 1875, 1870, 623}}, -- The Eye of Eternity
-    {A, 143, {1868, 2046, 2045, 2044, 1871, 487, 498}}, -- The Oculus - Band of Variance
-    {C, 144, 143}, -- The Oculus - Band of Acceleration
-    {C, 145, 143}, -- The Oculus - Band of Transmutation
-    {C, 146, 143}, -- The Oculus - Band of Alignment
-    {A, 147, {12312, 12314, 12313, 12316, 12315, 12317, 12318, 12319, 12320, 12323, 12324, 12325, 12321, 12322, 12326, 12327, 12328, 12329, 12330, 12335, 12336, 12332, 12333, 12334, 12339, 12340, 12337, 12338, 12342, 12341, 12343, 12344, 12345, 12346, 12347, 12348, 12349, 12350, 12351, 12352, 12360, 12361, 12362, 12363, 12364, 12365, 12366, 12367, 12368, 12369, 12372, 12373, 12384, 12395, 12396, 12397, 12398, 12385, 12386, 12387, 12388, 12400, 12297, 12302, 12309, 12310, 12311, 12399, 11751, 4626, 3142, 3316, 11320}}, -- Ulduar - Ulduar
-    {A10, 147, {3097, 2907, 2905, 2911, 2909, 2913, 2914, 2915, 3056, 2925, 2927, 2930, 2919, 2923, 2931, 2933, 2934, 2937, 3058, 2945, 2947, 2939, 2940, 2941, 2955, 2959, 2951, 2953, 3076, 3006, 2961, 2963, 2967, 2969, 3182, 2971, 2973, 2975, 2977, 3176, 2979, 2980, 2985, 2982, 3177, 3178, 3179, 2989, 3138, 3180, 2996, 3181, 3009, 3008, 3012, 3014, 3015, 3157, 3141, 3158, 3159, 3003, 2886, 2888, 2890, 2892, 2894, 3036, 3004, 2903}}, -- Ulduar - Ulduar
-    {A25, 147, {3098, 2908, 2906, 2912, 2910, 2918, 2916, 2917, 3057, 2926, 2928, 2929, 2921, 2924, 2932, 2935, 2936, 2938, 3059, 2946, 2948, 2942, 2943, 2944, 2956, 2960, 2952, 2954, 3077, 3007, 2962, 2965, 2968, 2970, 3184, 2972, 2974, 2976, 2978, 3183, 3118, 2981, 2984, 2983, 3185, 3186, 3187, 3237, 2995, 3189, 2997, 3188, 3011, 3010, 3013, 3017, 3016, 3161, 3162, 3163, 3164, 3002, 2887, 2889, 2891, 2893, 2895, 3037, 3005, 2904}}, -- Ulduar - Ulduar
-    {C, 148, 147}, -- Ulduar - The Antechamber of Ulduar
-    {C, 148, 147}, -- Ulduar - The Antechamber of Ulduar
-    {C, 148, 147}, -- Ulduar - The Antechamber of Ulduar
-    {C, 149, 147}, -- Ulduar - The Inner Sanctum of Ulduar
-    {C, 149, 147}, -- Ulduar - The Inner Sanctum of Ulduar
-    {C, 149, 147}, -- Ulduar - The Inner Sanctum of Ulduar
-    {C, 150, 147}, -- Ulduar - The Prison of Yogg-Saron
-    {C, 150, 147}, -- Ulduar - The Prison of Yogg-Saron
-    {C, 150, 147}, -- Ulduar - The Prison of Yogg-Saron
-    {C, 151, 147}, -- Ulduar - The Spark of Imagination
-    {C, 151, 147}, -- Ulduar - The Spark of Imagination
-    {C, 151, 147}, -- Ulduar - The Spark of Imagination
-    {C, 152, 147}, -- Ulduar - The Mind's Eye
-    {C, 152, 147}, -- Ulduar - The Mind's Eye
-    {C, 152, 147}, -- Ulduar - The Mind's Eye
-    {A, 154, {2058, 2040, 1864, 2152, 484, 495}}, -- Gundrak
-    {A10, 155, {2047, 2049, 2050, 2051, 624, 1876}}, -- The Obsidian Sanctum
-    {A25, 155, {2048, 2052, 2053, 2054, 1877, 625}}, -- The Obsidian Sanctum
-    {A, 156, {2081}}, -- Vault of Archavon
-    {A10, 156, {4016, 1722, 3136, 3836, 4585}}, -- Vault of Archavon
-    {A25, 156, {4017, 1721, 3137, 3837, 4586}}, -- Vault of Archavon
-    {A, 157, {1296, 1297, 1860, 480, 491}}, -- Azjol-Nerub - The Brood Pit
-    {C, 158, 157}, -- Azjol-Nerub - Hadronox's Lair
-    {C, 159, 157}, -- Azjol-Nerub - The Gilded Gate
-    {A, 160, {2151, 2057, 2039, 482, 493}}, -- Drak'Tharon Keep - The Vestibules of Drak'Tharon
-    {C, 161, 160}, -- Drak'Tharon Keep - Drak'Tharon Overlook
-    {A, 162, {11750, 7934, 9924}}, -- Naxxramas - The Construct Quarter
-    {A10, 162, {1997, 1858, 1856, 2178, 2180, 1996, 2182, 2176, 2146, 2184, 578, 562, 564, 566, 568, 572, 574, 576, 2187}}, -- Naxxramas - The Construct Quarter
-    {A25, 162, {2140, 1859, 1857, 2179, 2181, 2139, 2183, 2177, 2147, 2185, 579, 563, 565, 567, 569, 573, 575, 577, 2186}}, -- Naxxramas - The Construct Quarter
-    {C, 163, 162}, -- Naxxramas - The Arachnid Quarter
-    {C, 163, 162}, -- Naxxramas - The Arachnid Quarter
-    {C, 163, 162}, -- Naxxramas - The Arachnid Quarter
-    {C, 164, 162}, -- Naxxramas - The Military Quarter
-    {C, 164, 162}, -- Naxxramas - The Military Quarter
-    {C, 164, 162}, -- Naxxramas - The Military Quarter
-    {C, 165, 162}, -- Naxxramas - The Plague Quarter
-    {C, 165, 162}, -- Naxxramas - The Plague Quarter
-    {C, 165, 162}, -- Naxxramas - The Plague Quarter
-    {C, 166, 162}, -- Naxxramas - The Lower Necropolis
-    {C, 166, 162}, -- Naxxramas - The Lower Necropolis
-    {C, 166, 162}, -- Naxxramas - The Lower Necropolis
-    {C, 167, 162}, -- Naxxramas - The Upper Necropolis
-    {C, 167, 162}, -- Naxxramas - The Upper Necropolis
-    {C, 167, 162}, -- Naxxramas - The Upper Necropolis
-    {A, 168, {1865, 2041, 2153, 1816, 483, 494}}, -- The Violet Hold
-    {A, 169, {3776, 3777, 3851, 4177, 3847, 3848, 3849, 3850, 3852, 3853, 3854, 3856, 4256, 3855, 3857, 3957, 3845, 3846, 4176}}, -- Isle of Conquest
-    {C, 170, 118}, -- Icecrown - Hrothgar's Landing
-    {A, 171, {3803, 3802, 3804, 4296, 3778, 4298, 4297}}, -- Trial of the Champion
-    {A, 172, {11752, 11320}}, -- Trial of the Crusader - The Argent Coliseum
-    {A10, 172, {3797, 3936, 3996, 3798, 3799, 3800, 3917, 3918, 3808, 3809, 3810, 4080}}, -- Trial of the Crusader - The Argent Coliseum
-    {A25, 172, {3813, 3937, 3997, 3815, 3816, 3916, 3812, 3817, 3818, 3819, 4156, 4079}}, -- Trial of the Crusader - The Argent Coliseum
-    {C, 173, 172}, -- Trial of the Crusader - The Icy Depths
-    {C, 173, 172}, -- Trial of the Crusader - The Icy Depths
-    {C, 173, 172}, -- Trial of the Crusader - The Icy Depths
-    {A, 183, {4522, 4523, 4516, 4519}}, -- The Forge of Souls
-    {A, 185, {4526, 4518, 4521}}, -- Halls of Reflection
-    {A, 186, {11753, 4625, 4623, 11320, 9924, 4598}}, -- Icecrown Citadel
-    {A10, 186, {4534, 4535, 4536, 4537, 4577, 4538, 4578, 4582, 4539, 4579, 4580, 4601, 4581, 4531, 4528, 4529, 4527, 4530, 4532, 4628, 4629, 4630, 4631, 4583, 4636}}, -- Icecrown Citadel
-    {A25, 186, {4610, 4611, 4612, 4613, 4615, 4614, 4616, 4617, 4618, 4619, 4620, 4621, 4622, 4604, 4605, 4606, 4607, 4597, 4608, 4632, 4633, 4634, 4635, 4584, 4637}}, -- Icecrown Citadel
-    {C, 187, 186}, -- Icecrown Citadel
-    {C, 187, 186}, -- Icecrown Citadel
-    {C, 187, 186}, -- Icecrown Citadel
-    {C, 188, 186}, -- Icecrown Citadel
-    {C, 188, 186}, -- Icecrown Citadel
-    {C, 188, 186}, -- Icecrown Citadel
-    {C, 189, 186}, -- Icecrown Citadel
-    {C, 189, 186}, -- Icecrown Citadel
-    {C, 189, 186}, -- Icecrown Citadel
-    {C, 190, 186}, -- Icecrown Citadel
-    {C, 190, 186}, -- Icecrown Citadel
-    {C, 190, 186}, -- Icecrown Citadel
-    {C, 191, 186}, -- Icecrown Citadel
-    {C, 191, 186}, -- Icecrown Citadel
-    {C, 191, 186}, -- Icecrown Citadel
-    {C, 192, 186}, -- Icecrown Citadel
-    {C, 192, 186}, -- Icecrown Citadel
-    {C, 192, 186}, -- Icecrown Citadel
-    {C, 193, 186}, -- Icecrown Citadel
-    {C, 193, 186}, -- Icecrown Citadel
-    {C, 193, 186}, -- Icecrown Citadel
-    {A, 198, {7520, 6585, 6612, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 2556, 4875, 5548, 4868, 4870, 4959, 5860, 5483, 5859, 5866, 5861, 5870, 5862, 5868, 5864, 5865, 5869, 5879, 4863, 9924, 4882, 7525, 46}}, -- Mount Hyjal
-    {A, 199, {1206, 7520, 1678, 43, 4937, 4981, 4996, 948, 762, 6585, 6612, 6602, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 2556, 4827, 46}}, -- Southern Barrens
-    {A10, 200, {4817, 4818}}, -- The Ruby Sanctum
-    {A25, 200, {4815, 4816}}, -- The Ruby Sanctum
-    {A, 201, {7520, 4875, 5548, 4868, 4881, 4869, 4982, 5452, 5318, 5319, 4825, 4975, 9924, 46}}, -- Vashj'ir - Kelp'thar Forest
-    {C, 203, 201}, -- Vashj'ir
-    {C, 204, 201}, -- Vashj'ir - Abyssal Depths
-    {C, 205, 201}, -- Vashj'ir - Shimmering Expanse
-    {A, 206, {5208, 5209, 5210, 5211, 5213, 5214, 5215, 5216, 5226, 5227, 5229, 5228, 5219, 5220, 5221, 5222, 5230, 5231, 5552, 5223}}, -- Twin Peaks
-    {A, 207, {7520, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 8348, 4875, 4868, 4881, 4871, 5445, 5446, 5449, 5450, 5447, 4864, 9924, 4883, 7525, 46}}, -- Deepholm
-    {C, 208, 207}, -- Deepholm - Twilight Depths - Floor 1
-    {C, 209, 207}, -- Deepholm - Twilight Depths - Floor 2
-    {A, 210, {1206, 1676, 42, 7520, 4905, 4995, 9924, 389, 396, 762, 871, 2336, 6586, 6613, 6603, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 2556, 4827, 46}}, -- The Cape of Stranglethorn
-    {A, 213, {629}}, -- Ragefire Chasm
-    {A, 217, {1206}}, -- Ruins of Gilneas
-    {C, 218, 217}, -- Ruins of Gilneas City
-    {A, 219, {639}}, -- Zul'Farrak
-    {A, 220, {641}}, -- The Temple of Atal'Hakkar
-    {A, 221, {632}}, -- Blackfathom Deeps - The Pool of Ask'Ar
-    {C, 222, 221}, -- Blackfathom Deeps - Moonshrine Sanctum
-    {C, 223, 221}, -- Blackfathom Deeps - The Forgotten Pool
-    {A, 224, {1206, 1676, 42, 7520, 6586, 6613, 6603, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 2556, 4827, 46}}, -- Stranglethorn Vale
-    {A, 225, {633}}, -- The Stockade
-    {A, 226, {634, 13269, 14021}}, -- Gnomeregan - The Hall of Gears
-    {C, 227, 226}, -- Gnomeregan - The Dormitory
-    {C, 228, 226}, -- Gnomeregan - Launch Bay
-    {C, 229, 226}, -- Gnomeregan - Tinkers' Court
-    {A, 230, {638}}, -- Uldaman - Hall of the Keepers
-    {C, 231, 230}, -- Uldaman - Khaz'Goroth's Seat
-    {A, 232, {686, 11741, 429, 428, 9550, 7934, 11296, 11297, 955, 2496}}, -- Molten Core
-    {A, 235, {644, 5788}}, -- Dire Maul - Gordok Commons
-    {C, 236, 235}, -- Dire Maul - Capital Gardens
-    {C, 237, 235}, -- Dire Maul - Court of the Highborne
-    {C, 238, 235}, -- Dire Maul - Prison of Immol'Thar
-    {C, 239, 235}, -- Dire Maul - Warpwood Quarter
-    {C, 240, 235}, -- Dire Maul - The Shrine of Eldretharr
-    {A, 242, {642, 3496, 14020, 14021}}, -- Blackrock Depths - Detention Block
-    {C, 243, 242}, -- Blackrock Depths - Shadowforge City
-    {A, 244, {5548, 5489, 5490, 4874, 5718, 5719, 5412, 5418, 5417, 5415, 5488, 5487, 5486, 5375, 5376}}, -- Tol Barad
-    {A, 245, {2556, 5548, 5489, 5490, 4874, 5718, 5719, 5412, 5418, 5417, 5415, 5488, 5487, 5486, 5375, 5376}}, -- Tol Barad Peninsula
-    {A, 246, {763, 764, 657, 678}}, -- The Shattered Halls
-    {A, 247, {689, 953}}, -- Ruins of Ahn'Qiraj
-    {A, 248, {684, 11296, 9924}}, -- Onyxia's Lair
-    {A10, 248, {4402, 4403, 4404, 4396}}, -- Onyxia's Lair
-    {A25, 248, {4405, 4406, 4407, 4397}}, -- Onyxia's Lair
-    {A, 249, {1206, 7520, 6585, 6612, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 4875, 4868, 5767, 4888, 4872, 4961, 5317, 4865, 4884, 7525, 46}}, -- Uldum
-    {A, 250, {643}}, -- Blackrock Spire - Tazz'Alor
-    {C, 251, 250}, -- Blackrock Spire - Skitterweb Tunnels
-    {C, 252, 250}, -- Blackrock Spire - Hordemar City
-    {C, 253, 250}, -- Blackrock Spire - Hall of Blackhand
-    {C, 254, 250}, -- Blackrock Spire - Halycon's Lair
-    {C, 255, 250}, -- Blackrock Spire - Chamber of Battle
-    {A, 256, {763, 764, 666, 672}}, -- Auchenai Crypts - Halls of the Hereafter
-    {C, 257, 256}, -- Auchenai Crypts - Bridge of Souls
-    {A, 258, {763, 764, 653, 674, 883}}, -- Sethekk Halls - Veil Sethekk
-    {C, 259, 258}, -- Sethekk Halls - Halls of Mourning
-    {A, 260, {763, 764, 654, 675}}, -- Shadow Labyrinth
-    {A, 261, {763, 764, 648, 668}}, -- The Blood Furnace
-    {A, 262, {763, 764, 650, 670}}, -- The Underbog
-    {A, 263, {763, 764, 656, 677}}, -- The Steamvault - The Steamvault
-    {C, 264, 263}, -- The Steamvault - The Cooling Pools
-    {A, 265, {763, 764, 649, 669}}, -- The Slave Pens
-    {A, 266, {763, 764, 659, 680}}, -- The Botanica
-    {A, 267, {763, 764, 658, 679}}, -- The Mechanar - The Mechanar
-    {C, 268, 267}, -- The Mechanar - Calculation Chamber
-    {A, 269, {763, 764, 660, 681}}, -- The Arcatraz - Stasis Block: Trion
-    {C, 270, 269}, -- The Arcatraz - Stasis Block: Maximus
-    {C, 271, 269}, -- The Arcatraz - Containment Core
-    {A, 272, {902, 651, 671}}, -- Mana-Tombs
-    {A, 273, {763, 764, 655, 676}}, -- The Black Morass
-    {A, 274, {763, 764, 652, 673}}, -- Old Hillsbrad Foothills
-    {A, 275, {5245, 5246, 5247, 5248, 5249, 5250, 5251, 5252, 5253, 5254, 5255, 5256, 5257, 5262, 5258}}, -- The Battle for Gilneas
-    {A, 277, {5291, 5290, 5292, 4848, 5066}}, -- Lost City of the Tol'vir
-    {A, 279, {630, 11765, 14021}}, -- Wailing Caverns
-    {A, 280, {640}}, -- Maraudon - Caverns of Maraudon
-    {C, 281, 280}, -- Maraudon - Zaetar's Grave
-    {A, 282, {5416, 6045, 6108}}, -- Baradin Hold
-    {A, 283, {5281, 5282, 5283, 5284, 4833, 5060}}, -- Blackrock Caverns - Chamber of Incineration
-    {C, 284, 283}, -- Blackrock Caverns - Twilight Forge
-    {A, 285, {4842, 11754, 12079, 5306, 5307, 5309, 5308, 5310, 4849, 5094, 5107, 5115, 5109, 5108, 5116}}, -- Blackwing Descent - The Broken Hall
-    {C, 286, 285}, -- Blackwing Descent - Vault of the Shadowflame
-    {A, 287, {685, 11742, 7934}}, -- Blackwing Lair - Dragonmaw Garrison
-    {C, 288, 287}, -- Blackwing Lair - Halls of Strife
-    {C, 289, 287}, -- Blackwing Lair - Crimson Laboratories
-    {C, 290, 287}, -- Blackwing Lair - Nefarian's Lair
-    {A, 291, {14021, 5366, 5367, 5368, 5369, 5370, 5371, 628, 5083, 11856, 9924}}, -- The Deadmines - The Deadmines
-    {C, 292, 291}, -- The Deadmines - Ironclad Cove
-    {A, 293, {5297, 5298, 4840, 5062, 20588}}, -- Grim Batol
-    {A, 294, {4850, 5313, 11754, 12079, 5300, 4852, 5311, 5312, 5118, 5117, 5119, 5120, 5121}}, -- The Bastion of Twilight - The Twilight Enclave
-    {C, 295, 294}, -- The Bastion of Twilight - Throne of the Apocalypse
-    {C, 296, 294}, -- The Bastion of Twilight - The Twilight Caverns
-    {A, 297, {5293, 5294, 5296, 5295, 4841, 5065, 9924}}, -- Halls of Origination - The Vault of Lights
-    {C, 298, 297}, -- Halls of Origination - Tomb of the Earthrager
-    {C, 299, 297}, -- Halls of Origination - The Four Seats
-    {A, 300, {636}}, -- Razorfen Downs
-    {A, 301, {635}}, -- Razorfen Kraul
-    {A, 310, {5503, 5504, 5505, 631, 5093, 4627}}, -- Shadowfang Keep - The Courtyard
-    {C, 311, 310}, -- Shadowfang Keep - Dining Hall
-    {C, 312, 310}, -- Shadowfang Keep - The Vacant Den
-    {C, 313, 310}, -- Shadowfang Keep - Lower Observatory
-    {C, 314, 310}, -- Shadowfang Keep - Upper Observatory
-    {C, 315, 310}, -- Shadowfang Keep - Lord Godfrey's Chamber
-    {C, 316, 310}, -- Shadowfang Keep - The Wall Walk
-    {A, 317, {646, 729, 13627, 13766, 14021}}, -- Stratholme - Crusader's Square
-    {C, 318, 317}, -- Stratholme - The Gauntlet
-    {A, 319, {687, 424, 11743, 7934, 956}}, -- Ahn'Qiraj - The Hive Undergrounds
-    {C, 320, 319}, -- Ahn'Qiraj - The Temple Gates
-    {C, 321, 319}, -- Ahn'Qiraj - Vault of C'Thun
-    {A, 322, {5285, 5286, 4839, 5061, 19082}}, -- Throne of the Tides - Abyssal Halls
-    {C, 323, 322}, -- Throne of the Tides - Throne of Neptulon
-    {A, 324, {5287, 4846, 5063}}, -- The Stonecore
-    {A, 325, {5289, 5288, 4847, 5064, 17847}}, -- The Vortex Pinnacle
-    {A, 328, {5304, 5305, 5122, 5123, 4851, 12079}}, -- Throne of the Four Winds
-    {A, 329, {695, 9824, 959}}, -- The Battle for Mount Hyjal (Hyjal Summit)
-    {A, 330, {692, 11746}}, -- Gruul's Lair
-    {A, 331, {693, 11746}}, -- Magtheridon's Lair
-    {A, 332, {694, 11747, 8293, 144}}, -- Serpentshrine Cavern
-    {A, 333, {691, 430, 5858, 5750, 5761, 5760, 5769}}, -- Zul'Aman
-    {A, 334, {763, 764, 696, 885, 8293}}, -- The Eye (Tempest Keep)
-    {A, 335, {698, 11749, 725, 9824}}, -- Sunwell Plateau - Sunwell Plateau
-    {C, 336, 335}, -- Sunwell Plateau - Shrine of the Eclipse
-    {A, 337, {560, 688, 880, 881, 957, 5743, 5762, 5765, 5759, 5744, 5768}}, -- Zul'Gurub
-    {A, 338, {5859, 5866, 5867, 5871, 5872, 5874, 5873, 5879}}, -- Molten Front
-    {A, 339, {697, 11748, 9016, 426, 11869, 9824, 958}}, -- Black Temple - Black Temple
-    {C, 340, 339}, -- Black Temple - Karabor Sewers
-    {C, 341, 339}, -- Black Temple - Sanctuary of Shadows
-    {C, 342, 339}, -- Black Temple - Halls of Anguish
-    {C, 343, 339}, -- Black Temple - Gorefiend's Vigil
-    {C, 344, 339}, -- Black Temple - Den of Mortal Delights
-    {C, 345, 339}, -- Black Temple - Chamber of Command
-    {C, 346, 339}, -- Black Temple - Temple Summit
-    {A, 347, {763, 764, 647, 667}}, -- Hellfire Ramparts
-    {A, 348, {897, 661, 682, 884}}, -- Magisters' Terrace - Grand Magister's Asylum
-    {C, 349, 348}, -- Magisters' Terrace - Observation Grounds
-    {A, 350, {690, 882, 11746, 2456, 8293, 9924, 960}}, -- Karazhan - Servant's Quarters
-    {C, 351, 350}, -- Karazhan - Upper Livery Stables
-    {C, 352, 350}, -- Karazhan - The Banquet Hall
-    {C, 353, 350}, -- Karazhan - The Guest Chambers
-    {C, 354, 350}, -- Karazhan - Opera Hall Balcony
-    {C, 355, 350}, -- Karazhan - Master's Terrace
-    {C, 356, 350}, -- Karazhan - Lower Broken Stair
-    {C, 357, 350}, -- Karazhan - Upper Broken Stair
-    {C, 358, 350}, -- Karazhan - The Menagerie
-    {C, 359, 350}, -- Karazhan - Guardian's Library
-    {C, 360, 350}, -- Karazhan - The Repository
-    {C, 361, 350}, -- Karazhan - Upper Library
-    {C, 362, 350}, -- Karazhan - The Celestial Watch
-    {C, 363, 350}, -- Karazhan - Gamesman's Hall
-    {C, 364, 350}, -- Karazhan - Medivh's Chambers
-    {C, 365, 350}, -- Karazhan - The Power Station
-    {C, 366, 350}, -- Karazhan - Netherspace
-    {A, 367, {5855, 5802, 11755, 5839, 12079, 5821, 5813, 5810, 5829, 5830, 5799, 5807, 5809, 5808, 5806, 5805, 5804, 5803, 5827}}, -- Firelands - Firelands
-    {C, 368, 367}, -- Firelands - The Anvil of Conflagration
-    {C, 369, 367}, -- Firelands - Sulfuron Keep
     {A, 371, {7520, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 6541, 7285, 6716, 6754, 6846, 6850, 6855, 6858, 7230, 7994, 7995, 7996, 7997, 7281, 7282, 7283, 7284, 7437, 7438, 7439, 8078, 6350, 6974, 6543, 6548, 6827, 6828, 6300, 6534, 7289, 7290, 7291, 6351, 7381, 6550, 6837, 7612, 7331, 7332, 7333, 7338, 7358, 7339, 7359, 7340, 7360, 7341, 7361, 7342, 7362, 7343, 7363, 7344, 7364, 7345, 7365, 7346, 7366, 7347, 7367, 7334, 7335, 7337, 7336, 7348, 7368, 7349, 7369, 7350, 7370, 7351, 7371, 7352, 7372, 7373, 7353, 7354, 7374, 7355, 7375, 7356, 7376, 7357, 7377, 6616, 6589, 6606, 46, 19882, 19883, 19912, 20026, 19993, 19977, 19962, 20008, 19872}}, -- The Jade Forest
     {C, 372, 371}, -- The Jade Forest - Greenstone Quarry - Upper Quarry
     {C, 373, 371}, -- The Jade Forest - Greenstone Quarry - Lower Quarry
@@ -453,25 +66,6 @@ tasks = {
     {C, 394, 390}, -- Vale of Eternal Blossoms - Shrine of Seven Stars - The Imperial Exchange
     {C, 395, 390}, -- Vale of Eternal Blossoms - Guo-Lai Halls - Guo-Lai Halls
     {C, 396, 390}, -- Vale of Eternal Blossoms - Guo-Lai Halls - The Hall of the Serpent
-    {C, 397, 112}, -- Eye of the Storm
-    {A, 398, {6127, 6070, 6118}}, -- Well of Eternity
-    {A, 399, {6132, 6119}}, -- Hour of Twilight - Hour of Twilight
-    {C, 400, 399}, -- Hour of Twilight - Wyrmrest Temple
-    {A, 401, {5995, 6130, 6117}}, -- End Time - End Time
-    {C, 402, 401}, -- End Time - Azure Dragonshrine
-    {C, 403, 401}, -- End Time - Ruby Dragonshrine
-    {C, 404, 401}, -- End Time - Obsidian Dragonshrine
-    {C, 405, 401}, -- End Time - Emerald Dragonshrine
-    {C, 406, 401}, -- End Time - Bronze Dragonshrine
-    {A, 407, {6019, 6021, 6023, 6024, 6027, 6028, 6029, 6032, 6026, 6025, 6022, 6020, 6030, 6031, 6332, 9250, 9251, 9252, 9885, 9894, 9983, 9755, 9756, 9759, 9760, 9761, 9770, 9769, 9766, 9764, 9786, 9787, 9790, 9792, 9780, 9781, 9783, 9785, 9793, 9794, 9795, 9797, 9799, 9800, 9801, 9803, 9805, 9806, 9807, 9809, 9811, 9812, 9813, 9815, 9817, 9819, 11918, 11919, 11920, 11921, 15212, 15213, 15222, 15223, 15214, 15215, 15216, 15217, 15221, 2336}}, -- Darkmoon Island
-    {C, 408, 407}, -- Darkmoon Island
-    {A, 409, {6175, 5518, 6106, 6107, 6177, 11756, 6181, 12079, 6174, 6128, 6129, 6084, 6105, 6133, 6180, 6109, 6110, 6111, 6112, 6113, 6114, 6115, 6116}}, -- Dragon Soul - Dragon Soul
-    {C, 410, 409}, -- Dragon Soul - Maw of Go'rath
-    {C, 411, 409}, -- Dragon Soul - Maw of Shu'ma
-    {C, 412, 409}, -- Dragon Soul - Eye of Eternity
-    {C, 413, 409}, -- Dragon Soul - Skyfire Airship
-    {C, 414, 409}, -- Dragon Soul - Spine of Deathwing
-    {C, 415, 409}, -- Dragon Soul - The Maelstrom
     {A, 416, {7523, 7524, 7526, 7529, 7527, 7530, 7467, 7468}}, -- Theramore's Fall
     {A, 417, {6740, 6882, 6947, 6950, 6970, 6973, 6971, 6972, 6980, 6981}}, -- Temple of Kotmogu
     {A, 418, {7520, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 6541, 7285, 6716, 6754, 6846, 6850, 6855, 6856, 7230, 7281, 7282, 7283, 7284, 7437, 7438, 7439, 8078, 6350, 6974, 6543, 6547, 6548, 6827, 6828, 6535, 6536, 7287, 7928, 7929, 6975, 7518, 7932, 9924, 8205, 8206, 6837, 7612, 7331, 7332, 7333, 7338, 7358, 7339, 7359, 7340, 7360, 7341, 7361, 7342, 7362, 7343, 7363, 7344, 7364, 7345, 7365, 7346, 7366, 7347, 7367, 7334, 7335, 7337, 7336, 7348, 7368, 7349, 7369, 7350, 7370, 7351, 7371, 7352, 7372, 7373, 7353, 7354, 7374, 7355, 7375, 7356, 7376, 7357, 7377, 6616, 6589, 6606, 46, 19885, 19886, 20028, 19995, 19979, 19964, 19874, 19891, 19917, 19918, 19999, 19879}}, -- Krasarang Wilds
@@ -481,10 +75,6 @@ tasks = {
     {A, 422, {7520, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 6541, 7285, 6716, 7281, 7282, 7283, 7284, 7437, 7438, 7439, 6350, 6974, 6547, 6548, 6827, 6828, 6540, 7312, 7313, 7314, 7316, 6978, 6857, 6545, 8023, 7331, 7332, 7333, 7338, 7358, 7339, 7359, 7340, 7360, 7341, 7361, 7342, 7362, 7343, 7363, 7344, 7364, 7345, 7365, 7346, 7366, 7347, 7367, 7334, 7335, 7337, 7336, 7348, 7368, 7349, 7369, 7350, 7370, 7351, 7371, 7352, 7372, 7373, 7353, 7354, 7374, 7355, 7375, 7356, 7376, 7357, 7377, 8220, 8221, 8222, 8223, 8224, 8225, 8226, 8227, 8228, 8229, 8230, 8231, 8232, 8233, 8234, 8235, 6616, 6589, 6606, 46, 19890, 19915, 20031, 19998, 19967, 19878}}, -- Dread Wastes
     {A, 423, {6739, 6883, 7039, 7049, 7057, 7062, 7099, 7100, 7102, 7103, 7106}}, -- Silvershard Mines
     {A, 424, {7520, 6558, 6559, 6560, 6607, 6601, 7498, 7499, 6611, 6590, 8348, 6541, 7285, 6716, 6754, 6846, 6850, 6847, 6855, 6856, 6858, 7230, 7994, 7995, 7996, 7997, 7281, 7282, 7283, 7284, 7437, 7438, 7439, 8078, 6350, 6974, 7479, 6543, 6547, 6548, 6827, 6828, 7331, 7332, 7333, 7338, 7358, 7339, 7359, 7340, 7360, 7341, 7361, 7342, 7362, 7343, 7363, 7344, 7364, 7345, 7365, 7346, 7366, 7347, 7367, 7334, 7335, 7337, 7336, 7348, 7368, 7349, 7369, 7350, 7370, 7351, 7371, 7352, 7372, 7373, 7353, 7354, 7374, 7355, 7375, 7356, 7376, 7357, 7377, 8220, 8221, 8222, 8223, 8224, 8225, 8226, 8227, 8228, 8229, 8230, 8231, 8232, 8233, 8234, 8235, 6616, 6589, 6606, 46}}, -- Pandaria
-    {C, 425, 37}, -- Northshire
-    {C, 426, 37}, -- Echo Ridge Mine
-    {C, 427, 27}, -- Dun Morogh - Coldridge Valley
-    {C, 428, 27}, -- Frostmane Hovel
     {A, 429, {6475, 6460, 6671, 6757, 6758, 6884, 6885, 6886, 6887, 8430, 16661, 19894, 19895}}, -- Temple of the Jade Serpent - Temple of the Jade Serpent
     {C, 430, 429}, -- Temple of the Jade Serpent - The Scrollkeeper's Sanctum
     {A, 431, {6684, 6427, 7413, 6760, 6895, 6908, 6909, 6910, 8436, 19906, 19907}}, -- Scarlet Halls - Training Grounds
@@ -516,17 +106,6 @@ tasks = {
     {A, 457, {6688, 6485, 6822, 10011, 6763, 6898, 6917, 6918, 6919, 8439, 19900, 19901}}, -- Siege of Niuzao Temple - Siege of Niuzao Temple
     {C, 458, 457}, -- Siege of Niuzao Temple - The Hollowed Out Tree
     {C, 459, 457}, -- Siege of Niuzao Temple - Upper Tree Ring
-    {C, 460, 57}, -- Shadowglen
-    {C, 461, 1}, -- Durotar - Valley of Trials
-    {C, 462, 7}, -- Mulgore - Camp Narache
-    {C, 463, 1}, -- Echo Isles
-    {C, 464, 1}, -- Spitescale Cavern
-    {C, 465, 18}, -- Tirisfal Glades - Deathknell
-    {C, 466, 18}, -- Night Web's Hollow
-    {C, 467, 94}, -- Sunstrider Isle
-    {C, 468, 97}, -- Ammen Vale
-    {C, 469, 27}, -- Dun Morogh - New Tinkertown
-    {C, 470, 27}, -- Frostmane Hold
     {A, 471, {7933, 6687, 6455, 6458, 6844, 6954, 7485, 6823, 6674, 7056, 6686, 6719, 6720, 6721, 6722, 6723, 6724, 19946, 19947, 19948}}, -- Mogu'shan Vaults - Dais of Conquerors
     {C, 472, 471}, -- Mogu'shan Vaults - The Repository
     {C, 473, 471}, -- Mogu'shan Vaults - Forge of the Endless
@@ -641,15 +220,11 @@ tasks = {
     {C, 613, 610}, -- Highmaul - Chamber of Nullification
     {C, 614, 610}, -- Highmaul - Imperator's Rise
     {C, 615, 610}, -- Highmaul - Throne of the Imperator
-    {A, 616, {1307, 2188, 9045, 9058, 9056, 9057, 9042, 9055, 10085, 8891, 8892, 8893, 8894, 9627}}, -- Upper Blackrock Spire - Dragonspire Hall
-    {C, 617, 616}, -- Upper Blackrock Spire - The Rookery
-    {C, 618, 616}, -- Upper Blackrock Spire - Hall of Blackhand
     {A, 619, {7520, 11190, 11446, 11160, 11157, 10877, 11189, 11186, 11544, 11846, 14729, 11188, 11474, 10672, 11159, 11652, 11653, 46}}, -- Broken Isles
     {A, 620, {9017, 9493, 9223, 9044, 9053, 10083, 9001, 9002, 9003, 9004, 9624, 19083}}, -- The Everbloom - The Everbloom
     {C, 621, 620}, -- The Everbloom - The Overlook
     {C, 622, 588}, -- Stormshield
     {C, 624, 588}, -- Warspear
-    {C, 626, 24}, -- Dalaran - The Hall of Shadows
     {A, 627, {10770, 12416, 12431, 12439, 11066, 10585, 10586}}, -- Dalaran - Dalaran
     {C, 628, 627}, -- Dalaran - The Underbelly
     {C, 629, 627}, -- Dalaran - Aegwynn's Gallery
@@ -669,8 +244,6 @@ tasks = {
     {C, 643, 641}, -- Val'sharah - Sleeper's Barrow - Lower Sleepers Barrow
     {C, 644, 641}, -- Val'sharah - Sleeper's Barrow - Upper Sleepers Barrow
     {A, 646, {11446, 11846, 11652, 11653, 11786, 11607, 11546, 11681, 11731, 11732, 11735, 11736, 11737, 11738, 11543, 11802, 11841, 11545, 11796}}, -- Broken Shore
-    {C, 647, 24}, -- Acherus: The Ebon Hold - The Heart of Acherus
-    {C, 648, 24}, -- Acherus: The Ebon Hold - Hall of Command
     {C, 649, 634}, -- Stormheim - Helheim
     {A, 661, {10023, 10024, 10025, 10020, 10019, 9680, 10044, 10045, 11631, 10026, 10057, 10013, 10054, 9972, 9979, 9988, 10086, 9989, 10012, 10087, 10030, 10073, 10027, 10032, 10033, 10034, 10035, 10253, 10037, 10040, 10041, 10038, 10039, 10042, 10043}}, -- Hellfire Citadel - Hellfire Citadel
     {C, 662, 661}, -- Hellfire Citadel - Hellfire Antechamber
@@ -695,34 +268,20 @@ tasks = {
     {C, 689, 680}, -- Suramar - Ley Station Moonfall
     {C, 690, 680}, -- Suramar - Ley Station Aethenar
     {C, 691, 680}, -- Suramar - Nyell's Workshop
-    {C, 695, 24}, -- Skyhold
-    {C, 702, 24}, -- Netherlight Temple
     {A, 703, {11164, 11163, 11181, 10544, 10542, 10543, 10786, 10788, 10789, 16659}}, -- Halls of Valor - Halls of Valor
     {C, 704, 703}, -- Halls of Valor - The High Gate
     {C, 705, 703}, -- Halls of Valor - Halls of Valor
     {A, 706, {11164, 11163, 11181, 10413, 10411, 10412, 10807, 10808, 10809}}, -- Maw of Souls - Helmouth Cliffs - Helmouth Cliffs
     {C, 707, 706}, -- Maw of Souls - Helmouth Cliffs - The Hold
     {C, 708, 706}, -- Maw of Souls - Helmouth Cliffs - The Naglfar
-    {C, 709, 24}, -- The Wandering Isle
     {A, 710, {11240, 11164, 11163, 11181, 10679, 10680, 10707, 10801, 10802, 10803}}, -- Vault of the Wardens - The Warden's Court
     {C, 711, 710}, -- Vault of the Wardens - Vault of the Wardens
     {C, 712, 710}, -- Vault of the Wardens - Vault of the Betrayer
     {A, 713, {11164, 11163, 11181, 10456, 10457, 10458, 10780, 10781, 10782}}, -- Eye of Azshara
-    {C, 717, 24}, -- Dreadscar Rift
-    {C, 718, 24}, -- Dreadscar Rift
-    {C, 719, 24}, -- Mardum, the Shattered Abyss - Mardum, the Shattered Abyss
-    {C, 720, 24}, -- Mardum, the Shattered Abyss - Upper Command Center
-    {C, 721, 24}, -- Mardum, the Shattered Abyss - Lower Command Center
-    {C, 725, 24}, -- The Maelstrom
-    {C, 726, 24}, -- The Maelstrom
     {C, 729, 207}, -- Deepholm - Crumbling Depths
     {A, 731, {11164, 11163, 11181, 10996, 10875, 10795, 10796, 10797, 17850}}, -- Neltharion's Lair
     {A, 732, {11164, 11163, 10554, 10553, 10798, 10799, 10800}}, -- Violet Hold
     {A, 733, {11164, 11163, 11181, 10766, 10769, 10783, 10784, 10785, 19085}}, -- Darkheart Thicket
-    {C, 734, 24}, -- Hall of the Guardian - Hall of the Guardian
-    {C, 735, 24}, -- Hall of the Guardian - The Guardian's Library
-    {C, 739, 24}, -- Trueshot Lodge
-    {C, 747, 24}, -- The Dreamgrove
     {A, 749, {11181, 10773, 10775, 10776, 10813}}, -- The Arcway
     {C, 750, 650}, -- Highmountain - Thunder Totem
     {A, 751, {11164, 11163, 11181, 10710, 10709, 10711, 10804, 10805, 10806, 19084}}, -- Black Rook Hold - The Ravenscrypt
@@ -777,8 +336,6 @@ tasks = {
     {C, 831, 830}, -- Argus - Krokuun - The Vindicaar - Upper Deck
     {C, 832, 830}, -- Argus - Krokuun - The Vindicaar - Lower Deck
     {C, 833, 830}, -- Argus - Krokuun - Nath'raxas Spire
-    {C, 837, 93}, -- Arathi Basin
-    {C, 844, 93}, -- Arathi Basin
     {A, 845, {11768, 11769, 11703, 11700, 11701, 11702}}, -- Cathedral of Eternal Night - Hall of the Moon
     {C, 846, 845}, -- Cathedral of Eternal Night - Twilight Grove
     {C, 847, 845}, -- Cathedral of Eternal Night - The Emerald Archives
@@ -791,7 +348,6 @@ tasks = {
     {C, 854, 850}, -- Tomb of Sargeras - Chamber of the Avatar
     {C, 855, 850}, -- Tomb of Sargeras - Felstorm's Breach
     {C, 856, 850}, -- Tomb of Sargeras - The Twisting Nether
-    {C, 859, 92}, -- Warsong Gulch
     {A, 862, {7520, 12989, 13250, 46, 12587, 13294, 12479, 13512, 12510, 13466, 13517, 13144, 12482, 13036, 13029, 13027, 14730, 12988, 12572, 12573, 12605, 12604, 12947, 12955, 12956, 11861, 12480, 12481, 13441, 13039, 13048, 13038, 12719, 13020, 12614, 13030, 13573, 13542, 13035, 13440, 12559, 12944, 12851, 12575, 13439, 13438, 12950, 12957, 13317, 13283, 13284, 13387, 13388, 13402, 13403, 12571}}, -- Zuldazar
     {A, 863, {7520, 12989, 13250, 46, 12587, 13294, 12479, 13512, 12510, 13466, 13517, 13144, 12482, 13036, 13029, 13027, 14730, 12988, 13429, 12572, 12573, 12605, 12604, 12947, 12955, 12956, 13026, 13025, 11868, 13048, 13023, 13022, 13021, 13426, 12561, 12942, 12771, 12588, 13024, 13028, 12574, 12948, 13317, 13283, 13284, 13387, 13388, 13402, 13403, 12571}}, -- Nazmir
     {A, 864, {7520, 12989, 13250, 46, 12587, 13294, 12479, 13512, 12510, 13517, 13144, 12482, 13036, 13029, 13027, 14730, 12988, 12572, 12573, 12605, 12604, 12947, 12955, 12956, 12478, 13009, 13011, 13014, 13041, 13017, 13437, 12560, 12943, 12849, 13016, 13018, 12576, 12949, 13317, 13283, 13284, 13387, 13388, 13402, 13403, 12571}}, -- Vol'dun
@@ -809,7 +365,6 @@ tasks = {
     {C, 885, 830}, -- Argus - Antoran Wastes
     {C, 886, 830}, -- Argus - The Vindicaar - Upper Deck
     {C, 887, 830}, -- Argus - The Vindicaar - Lower Deck
-    {C, 888, 119}, -- Hall of Communion
     {A, 895, {7520, 12989, 13250, 46, 12587, 12997, 12593, 12891, 13512, 13384, 12509, 13467, 13466, 13517, 13144, 13061, 14730, 12988, 12572, 12573, 12605, 12604, 12947, 12955, 12956, 12473, 13060, 13059, 13050, 13049, 12087, 13285, 12556, 12939, 12852, 13057, 13058, 12577, 12951, 12954, 13317, 13283, 13284, 13387, 13388, 13402, 13403, 12571}}, -- Tiragarde Sound
     {A, 896, {7520, 2556, 12989, 13250, 46, 12587, 12997, 12593, 12891, 13512, 12509, 13517, 13144, 13061, 14730, 12988, 12572, 12573, 12605, 12604, 12947, 12955, 12956, 12497, 12557, 12941, 12995, 13087, 13083, 13082, 13064, 13094, 12579, 12952, 13317, 13283, 13284, 13387, 13388, 13402, 13403, 12571}}, -- Drustvar
     {C, 905, 830}, -- Argus
@@ -902,11 +457,9 @@ tasks = {
     {A, 1203, {13297, 13296, 14150, 14149, 13302, 13301, 13305, 13306, 13308, 13307, 13310, 13309}}, -- The Battle for Darkshore
     {C, 1332, 1203}, -- The Battle for Darkshore
     {C, 1333, 1203}, -- The Battle for Darkshore
-    {C, 1334, 123}, -- Wintergrasp
     {A, 1336, {13142, 13122, 13141, 12596, 12594, 12595, 12597, 13120, 13121, 13129, 13123, 13124, 13125, 13126, 13127, 13128, 13132, 13133, 13135, 13134, 13701, 13702, 13703, 13396, 13397, 13398, 13400}}, -- Havenswood
     {A, 1337, {13142, 13122, 13141, 12596, 12594, 12595, 12597, 13120, 13121, 13129, 13123, 13124, 13125, 13126, 13127, 13128, 13132, 13133, 13135, 13134, 13701, 13702, 13703, 13389, 13394, 13395, 13399}}, -- Jorundall
     {C, 1338, 1203}, -- The Battle for Darkshore
-    {C, 1339, 92}, -- Warsong Gulch
     {A, 1345, {13501, 13506, 13414, 13416, 13417, 13418, 13419}}, -- Crucible of Storms - Shrine of Shadows
     {C, 1346, 1345}, -- Crucible of Storms - Tendril of Corruption
     {A, 1352, {13315, 13286, 13289, 13287, 13290, 13288, 13291, 40961, 13322, 13323, 13385, 13316, 13431, 13383, 13345, 13325, 13425, 13401, 13430, 13410, 13292, 13298, 13293, 13295, 13299, 13300, 13311, 13312, 13313, 13314}}, -- Battle of Dazar'alor - Port of Zandalar
@@ -916,71 +469,16 @@ tasks = {
     {C, 1356, 1352}, -- Battle of Dazar'alor - Walk of Kings
     {C, 1357, 1352}, -- Battle of Dazar'alor - Heart of the Empire
     {C, 1358, 1352}, -- Battle of Dazar'alor - The Zocalo
-    {C, 1361, 87}, -- OldIronforge
     {C, 1364, 1352}, -- Battle of Dazar'alor - The Great Sea
-    {C, 1366, 93}, -- Arathi Basin
     {C, 1367, 1352}, -- Battle of Dazar'alor - Boralus
     {C, 1375, 140}, -- Halls of Stone
-    {C, 1383, 93}, -- Arathi Basin
-    {C, 1404, 123}, -- Wintergrasp
     {C, 1408, 588}, -- Ashran
     {A, 1409, {14222}}, -- Exile's Reach
-    {C, 1411, 1}, -- Durotar (Wrath Classic)
-    {C, 1412, 7}, -- Mulgore (Wrath Classic)
-    {C, 1414, 12}, -- Kalimdor (Wrath Classic)
-    {C, 1415, 13}, -- Eastern Kingdoms (Wrath Classic)
-    {C, 1417, 14}, -- Arathi Highlands (Wrath Classic)
-    {C, 1418, 15}, -- Badlands (Wrath Classic)
-    {C, 1419, 17}, -- Blasted Lands (Wrath Classic)
-    {C, 1420, 18}, -- Tirisfal Glades (Wrath Classic)
-    {C, 1421, 21}, -- Silverpine Forest (Wrath Classic)
-    {C, 1422, 22}, -- Western Plaguelands (Wrath Classic)
-    {C, 1423, 23}, -- Eastern Plaguelands (Wrath Classic)
-    {C, 1424, 25}, -- Hillsbrad Foothills (Wrath Classic)
-    {C, 1425, 26}, -- The Hinterlands (Wrath Classic)
-    {C, 1426, 27}, -- Dun Morogh (Wrath Classic)
-    {C, 1427, 32}, -- Searing Gorge (Wrath Classic)
-    {C, 1428, 33}, -- Burning Steppes (Wrath Classic)
-    {C, 1429, 37}, -- Elwynn Forest (Wrath Classic)
-    {C, 1430, 42}, -- Deadwind Pass (Wrath Classic)
-    {C, 1431, 47}, -- Duskwood (Wrath Classic)
-    {C, 1432, 48}, -- Loch Modan (Wrath Classic)
-    {C, 1433, 49}, -- Redridge Mountains (Wrath Classic)
     {A, 1434, {4906, 940, 941, 781, 17366, 948, 762}}, -- Stranglethorn Vale (Wrath Classic)
-    {C, 1435, 51}, -- Swamp of Sorrows (Wrath Classic)
-    {C, 1436, 52}, -- Westfall (Wrath Classic)
-    {C, 1437, 56}, -- Wetlands (Wrath Classic)
-    {C, 1438, 57}, -- Teldrassil (Wrath Classic)
-    {C, 1439, 62}, -- Darkshore (Wrath Classic)
-    {C, 1440, 63}, -- Ashenvale (Wrath Classic)
-    {C, 1441, 64}, -- Thousand Needles (Wrath Classic)
-    {C, 1442, 65}, -- Stonetalon Mountains (Wrath Classic)
-    {C, 1443, 66}, -- Desolace (Wrath Classic)
-    {C, 1444, 69}, -- Feralas (Wrath Classic)
-    {C, 1445, 70}, -- Dustwallow Marsh (Wrath Classic)
-    {C, 1446, 71}, -- Tanaris (Wrath Classic)
-    {C, 1447, 76}, -- Azshara (Wrath Classic)
-    {C, 1448, 77}, -- Felwood (Wrath Classic)
-    {C, 1449, 78}, -- Un'Goro Crater (Wrath Classic)
-    {C, 1450, 80}, -- Moonglade (Wrath Classic)
-    {C, 1451, 81}, -- Silithus (Wrath Classic)
-    {C, 1452, 83}, -- Winterspring (Wrath Classic)
-    {C, 1453, 84}, -- Stormwind City (Wrath Classic)
-    {C, 1454, 85}, -- Orgrimmar (Wrath Classic)
-    {C, 1455, 87}, -- Ironforge (Wrath Classic)
-    {C, 1456, 88}, -- Thunder Bluff (Wrath Classic)
-    {C, 1457, 89}, -- Darnassus (Wrath Classic)
-    {C, 1458, 90}, -- Undercity (Wrath Classic)
-    {C, 1459, 91}, -- Alterac Valley (Wrath Classic)
-    {C, 1460, 92}, -- Warsong Gulch (Wrath Classic)
-    {C, 1461, 93}, -- Arathi Basin (Wrath Classic)
     {A, 1462, {13250, 12573, 12605, 12604, 13708, 13553, 13700, 13790, 13791, 13776, 13470, 13472, 13482, 13473, 13474, 13696, 13686, 13475, 13477, 13476, 13555, 13478, 13479, 13556, 13513, 13541, 13570, 13557, 12571}}, -- Mechagon Island
-    {C, 1468, 24}, -- The Dreamgrove
     {A, 1469, {14143, 13994, 14060, 14061, 14062, 14064, 14066, 14063, 14065, 14067, 14162, 14165, 14166, 14167, 14168, 14169, 14170, 14171, 14172, 14173, 14140}}, -- Vision of Orgrimmar
     {C, 1470, 1469}, -- Vision of Stormwind
-    {C, 1471, 24}, -- Emerald Dreamway
     {C, 1473, 1021}, -- Chamber of Heart
-    {C, 1475, 24}, -- The Emerald Dream
     {C, 1478, 588}, -- Ashran
     {A, 1490, {14144, 14145, 13706, 13698, 13723, 13545, 13624, 13789, 15693, 15688, 15689, 15690, 40966}}, -- Mechagon - Mechagon Island
     {C, 1491, 1490}, -- Mechagon - The Robodrome
@@ -1001,11 +499,7 @@ tasks = {
     {A, 1527, {5548, 14153, 14161, 14160, 14159, 14158, 14155}}, -- Uldum
     {C, 1528, 1355}, -- Nazjatar - Raid Entrance
     {A, 1530, {14154, 14161, 14160, 14159, 14158, 14156}}, -- Vale of Eternal Blossoms
-    {C, 1534, 85}, -- Orgrimmar
-    {C, 1537, 91}, -- Alterac Valley
     {A, 1550, {14280, 14758, 15388, 14825, 14731, 14515, 14516, 14519, 14315, 15064, 7520}}, -- The Shadowlands
-    {C, 1552, 74}, -- Caverns of Time
-    {C, 1553, 74}, -- Caverns of Time
     {C, 1570, 1530}, -- Vale of Eternal Blossoms
     {C, 1571, 1527}, -- Uldum
     {C, 1576, 519}, -- Deepwind Gorge
@@ -1061,29 +555,11 @@ tasks = {
     {C, 1708, 1707}, -- Elysian Hold - Sanctum of Binding
     {A, 1711, {14851, 14852, 14853, 14854, 14502, 14856, 14857, 14858, 14859, 14860, 14861, 14862, 14863, 14864, 14865, 14866, 14887}}, -- Ascension Coliseum
     {C, 1819, 1701}, -- Ardenweald - Fungal Terminus
-    {C, 1941, 94}, -- Eversong Woods (Wrath Classic)
-    {C, 1942, 95}, -- Ghostlands (Wrath Classic)
-    {C, 1943, 97}, -- Azuremyst Isle (Wrath Classic)
-    {C, 1944, 100}, -- Hellfire Peninsula (Wrath Classic)
-    {C, 1945, 101}, -- Outland (Wrath Classic)
-    {C, 1946, 102}, -- Zangarmarsh (Wrath Classic)
-    {C, 1947, 103}, -- The Exodar (Wrath Classic)
-    {C, 1948, 104}, -- Shadowmoon Valley (Wrath Classic)
-    {C, 1949, 105}, -- Blade's Edge Mountains (Wrath Classic)
-    {C, 1950, 106}, -- Bloodmyst Isle (Wrath Classic)
-    {C, 1951, 107}, -- Nagrand (Wrath Classic)
-    {C, 1952, 108}, -- Terokkar Forest (Wrath Classic)
-    {C, 1953, 109}, -- Netherstorm (Wrath Classic)
-    {C, 1954, 110}, -- Silvermoon City (Wrath Classic)
-    {C, 1955, 111}, -- Shattrath City (Wrath Classic)
-    {C, 1956, 112}, -- Eye of the Storm (Wrath Classic)
-    {C, 1957, 122}, -- Isle of Quel'Danas (Wrath Classic)
     {A, 1978, {16585, 16291, 16292, 16808, 17739, 16683, 18958, 20206, 19463, 16761, 16446, 16298, 15890, 16323, 16338, 16729, 17830, 17977, 17978, 17560, 16589, 16590, 16599, 16601, 16603, 16612, 16611, 16613, 16614, 16616, 16615, 17335, 17336, 17345, 41172, 41174, 41171, 41182, 41179, 16571, 16560, 16566, 16567, 16568, 16572, 16573, 16570, 16587, 16588, 16591, 16600, 16623, 16624, 16625, 16758, 41184, 19466, 19483, 19486, 19478}}, -- Dragon Isles
     {A, 2022, {16585, 16291, 16292, 16808, 17739, 16683, 18958, 20206, 19463, 16761, 16446, 16298, 15890, 16323, 16338, 16729, 17830, 17977, 17978, 17560, 16589, 16590, 16599, 16601, 16603, 16612, 16611, 16613, 16614, 16616, 16615, 17335, 17336, 17345, 41172, 41174, 41171, 41182, 41179, 16571, 16560, 16566, 16567, 16568, 16572, 16573, 16570, 16587, 16588, 16591, 16600, 16623, 16624, 16625, 16758, 41184, 19466, 19483, 19486, 19478, 16334, 16401, 16400, 16676, 16297, 16411, 16412, 16410, 16406, 16409, 16494, 16495, 16496, 16497, 16584, 17561, 16493, 16736, 18559, 16592, 16539, 16532, 16536, 16760, 19479, 15991, 16051, 16669, 15990, 15987, 16053, 15988, 16052, 16668, 15985, 15989, 15986, 16575, 15915, 15916, 15917, 15927, 15928, 15929, 17195, 17196, 17197, 18748, 18749, 18750, 16463, 16465, 16466, 16467, 16468}}, -- The Waking Shores
     {A, 2023, {16585, 16291, 16292, 16808, 17739, 16683, 18958, 20206, 19463, 16761, 16446, 16298, 15890, 16323, 16338, 16729, 17830, 17977, 17978, 17560, 16589, 16590, 16599, 16601, 16603, 16612, 16611, 16613, 16614, 16616, 16615, 17335, 17336, 17345, 41172, 41174, 41171, 41182, 41179, 16571, 16560, 16566, 16567, 16568, 16572, 16573, 16570, 16587, 16588, 16591, 16600, 16623, 16624, 16625, 16758, 41184, 19466, 19483, 19486, 19478, 15394, 16405, 16574, 17546, 17735, 18867, 16457, 16677, 16299, 16423, 16424, 16462, 16583, 17506, 17562, 16595, 41170, 41180, 16544, 16540, 16545, 16541, 16542, 16543, 19481, 16061, 16056, 16671, 16059, 16055, 16054, 16060, 16670, 16062, 16058, 16057, 16063, 16576, 15918, 15919, 15920, 15930, 15931, 15932, 17198, 17199, 17200, 18754, 18755, 18756, 16475, 16477, 16478, 16479, 16476}}, -- Ohn'ahran Plains
     {A, 2024, {16585, 16291, 16292, 16808, 17739, 16683, 18958, 20206, 19463, 16761, 16446, 16298, 15890, 16323, 16338, 16729, 17830, 17977, 17978, 17560, 16589, 16590, 16599, 16601, 16603, 16612, 16611, 16613, 16614, 16616, 16615, 17335, 17336, 17345, 41172, 41174, 41171, 41182, 41179, 16571, 16560, 16566, 16567, 16568, 16572, 16573, 16570, 16587, 16588, 16591, 16600, 16623, 16624, 16625, 16758, 41184, 19466, 19483, 19486, 19478, 16336, 16428, 15889, 16580, 17735, 18867, 17773, 16460, 16678, 16300, 16474, 16569, 16638, 16622, 16581, 17506, 17563, 16594, 41173, 41181, 16533, 16531, 16546, 16547, 16548, 16550, 16551, 16552, 16553, 16561, 16562, 16563, 16564, 16565, 16537, 16317, 16321, 16322, 16444, 16443, 17427, 19482, 16065, 16068, 16064, 16069, 16672, 16070, 16072, 16067, 16066, 16673, 16073, 16071, 16577, 15921, 15922, 15923, 15933, 15934, 15935, 17201, 17202, 17203, 18757, 18758, 18759, 16480, 16481, 16482, 16483, 16484}}, -- The Azure Span
     {A, 2025, {16585, 16291, 16292, 16808, 17739, 16683, 18958, 20206, 19463, 16761, 16446, 16298, 15890, 16323, 16338, 16729, 17830, 17977, 17978, 17560, 16589, 16590, 16599, 16601, 16603, 16612, 16611, 16613, 16614, 16616, 16615, 17335, 17336, 17345, 41172, 41174, 41171, 41182, 41179, 16571, 16560, 16566, 16567, 16568, 16572, 16573, 16570, 16587, 16588, 16591, 16600, 16623, 16624, 16625, 16758, 41184, 19466, 19483, 19486, 19478, 16363, 16398, 17342, 17343, 19507, 16518, 16679, 16301, 16634, 16621, 17564, 16593, 16104, 16102, 16666, 16667, 16100, 16099, 16098, 16107, 16103, 16101, 16106, 16105, 16578, 15924, 15925, 15926, 15936, 15937, 15938, 17204, 17205, 17206, 18760, 18761, 18762, 16485, 16486, 16487, 16488, 16489}}, -- Thaldraszus
-    {C, 2070, 18}, -- Tirisfal Glades
     {A, 2071, {16337, 16282, 16281, 16278, 16279, 16280, 16639}}, -- Uldaman - Hall of the Keepers
     {C, 2072, 2071}, -- Uldaman - The Vault of Tyr
     {A, 2073, {16445, 16331, 16330, 16272, 16273, 16274, 16645}}, -- The Azure Vault - The Arcane Conservatory
@@ -1103,7 +579,6 @@ tasks = {
     {A, 2100, {16452, 17534, 17315, 17524, 17525, 17526, 17527, 17528, 17529, 17530, 17531, 17532, 17397, 17413, 17509, 17543, 17398, 17399, 17400, 17401, 17402, 17403, 17404, 17405, 17411, 17279, 17280, 17281, 17284, 17286, 17287, 17288, 17289, 17290, 17294, 17296, 17298, 18779, 18780, 18781, 17540}}, -- The Siege Creche
     {C, 2101, 2100}, -- The Support Creche
     {C, 2102, 2100}, -- The War Creche
-    {C, 2104, 123}, -- Wintergrasp (Wrath Classic)
     {C, 2106, 2096}, -- Brackenhide Hollow - Den of Decay
     {A, 2107, {15325, 15638}}, -- The Forbidden Reach (Dracthyr)
     {C, 2109, 2107}, -- The War Creche

@@ -287,7 +287,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
             },
         },
         { -- Strand of the Ancients
-            addon.L["Strand of the Ancients"],
+            addon.L["Strand of the Ancients"] .. CT.Legacy,
             {
                 1308, -- Strand of the Ancients Victory
                 1309, -- Strand of the Ancients Veteran
@@ -389,7 +389,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
             },
         },
         { -- Southshore vs. Tarren Mill
-            addon.L["Southshore vs. Tarren Mill"],
+            addon.L["Southshore vs. Tarren Mill"] .. CT.Legacy,
             {
                 9729, -- Victory in Hillsbrad
                 9566, -- Victory in Hillsbrad
