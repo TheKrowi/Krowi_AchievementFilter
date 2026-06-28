@@ -161,7 +161,7 @@ end
 
 function buildVersions.CreateBuildVersionFilter(owner, menu, filters)
     local mb = owner.menuBuilder
-    local versionMenu = mb:CreateSubmenuButton(menu, addon.L["Version"])
+    local versionMenu = mb:CreateSubmenuButton(menu, addon.Util.L["Version"])
     local nodes = GetNodes()
 
     if nodes then

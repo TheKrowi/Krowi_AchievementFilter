@@ -1157,7 +1157,6 @@ L["Val and Naigtal"] = true
 L["Val'sharah"] = true
 L["Vendor"] = true
 L["Venthyr Assault"] = true
-L["Version"] = true
 L["Vertical position"] = true
 L["View Tutorial"] = true
 L["Visions of N'Zoth"] = true
