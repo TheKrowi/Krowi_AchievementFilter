@@ -5,7 +5,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-06-28 14-38-45 ]] --
+-- [[ Exported at 2026-06-28 15-04-43 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -217,9 +217,9 @@ L["Criteria is Completed Desc"] = "Show Achievement Criteria even if the Achieve
 L["Criteria of"] = true
 L["Cross-Expansion"] = true
 L["Ctrl"] = true
-L["Curse of Ula'tek"] = true
 L["Current Obtainable"] = true
 L["Current Zone"] = true
+L["Curse of Ula'tek"] = true
 L["Custom"] = true
 L["Dark Heart"] = true
 L["Darkmoon Faire"] = true
@@ -1069,7 +1069,6 @@ L["temporarily obtainable"] = true
 L["Temporarily obtainable Header Colors"] = "{tempObt} Header Colors"
 L["Temporarily obtainable Header Colors Desc"] = "When enabled, the default orange and blue header colors will be extended with green, yellow, and red colors, indicating respectively that the achievement is currently obtainable, will be obtainable in the future or is no longer obtainable."
 L["Temporarily Obtainable Text"] = "{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}"
-L["Title"] = true
 L["Thaldraszus"] = true
 L["Thaldraszus: Next"] = true
 L["The Arcantina"] = true
@@ -1117,6 +1116,7 @@ L["Titan Lockdown: Active"] = true
 L["Titan Lockdown: Next"] = true
 L["Titan Lockdown: Soon"] = true
 L["Titan Lockdown: Starting Soon"] = true
+L["Title"] = true
 L["Ti'un the Wanderer"] = true
 L["Toggle"] = true
 L["Toggle Tracking"] = true
@@ -1157,7 +1157,6 @@ L["Val and Naigtal"] = true
 L["Val'sharah"] = true
 L["Vendor"] = true
 L["Venthyr Assault"] = true
-L["Version"] = true
 L["Vertical position"] = true
 L["View Tutorial"] = true
 L["Visions of N'Zoth"] = true

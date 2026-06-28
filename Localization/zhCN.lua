@@ -6,7 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-06-28 14-39-11 ]] --
+-- [[ Exported at 2026-06-28 15-05-11 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -1070,7 +1070,6 @@ L["temporarily obtainable"] = "限时可得"
 L["Temporarily obtainable Header Colors"] = "{tempObt}页眉颜色"
 L["Temporarily obtainable Header Colors Desc"] = "启用后默认页眉背景从橙/蓝扩展为绿/黄/红，分别表示成就当前可得/未来可得/已绝版"
 L["Temporarily Obtainable Text"] = "{thisAchievement}{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}"
-L["Title"] = "头衔"
 L["Thaldraszus"] = "索德拉苏斯"
 L["Thaldraszus: Next"] = "索德拉苏斯: 下次"
 L["The Arcantina"] = "奥术秘社"
@@ -1118,6 +1117,7 @@ L["Titan Lockdown: Active"] = "泰坦封锁: 激活"
 L["Titan Lockdown: Next"] = "泰坦封锁: 下次"
 L["Titan Lockdown: Soon"] = "泰坦封锁: 即将"
 L["Titan Lockdown: Starting Soon"] = "泰坦封锁: 即将开始"
+L["Title"] = "头衔"
 L["Ti'un the Wanderer"] = "云游者啼乌"
 L["Toggle"] = "打开/关闭"
 L["Toggle Tracking"] = "追踪"
@@ -1158,7 +1158,6 @@ L["Val and Naigtal"] = "瓦尔和奈格塔尔"
 L["Val'sharah"] = "瓦尔莎拉"
 L["Vendor"] = "商人"
 L["Venthyr Assault"] = "温西尔突袭"
-L["Version"] = "版本"
 L["Vertical position"] = "垂直位置"
 L["View Tutorial"] = "查看教程"
 L["Visions of N'Zoth"] = "恩佐斯的幻象"

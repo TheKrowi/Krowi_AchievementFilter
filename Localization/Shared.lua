@@ -145,7 +145,6 @@ L["No"] = NO
 L["Mount"] = MOUNT
 L["Pet"] = PET
 L["Tabard"] = TABARDSLOT
---L["Title"] = LFG_LIST_TITLE
 L["Toy"] = TOY
 L["Transmog"] = PERKS_VENDOR_CATEGORY_TRANSMOG
 L["Player vs. Player"] = PLAYER_V_PLAYER
