@@ -774,18 +774,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
             12100, -- Family Fighter
         },
     },
-    { -- Brawler's Guild
-        addon.L["Brawler's Guild"] .. CT.Legacy,
-        {
-            11560, -- You Are Not Your $#*@! Legplates (Season 3)
-            11561, -- You Are Not Your $#*@! Legplates (Season 3)
-            11563, -- The Second Rule of Brawler's Guild (Season 3)
-            11564, -- The Second Rule of Brawler's Guild (Season 3)
-            11565, -- King of the Guild (Season 3)
-            11566, -- King of the Guild (Season 3)
-            11572, -- I Am Thrall's Complete Lack Of Surprise (Season 3)
-        },
-    },
     { -- Class Hall
         addon.L["Class Halls"],
         {

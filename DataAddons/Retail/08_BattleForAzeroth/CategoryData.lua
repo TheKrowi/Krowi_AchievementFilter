@@ -1029,23 +1029,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
             13695, -- Team Aquashock
         },
     },
-    { -- Brawler's Guild
-        addon.L["Brawler's Guild"] .. CT.Legacy,
-        {
-            11558, -- The First Rule of Brawler's Guild
-            11559, -- The First Rule of Brawler's Guild
-            13186, -- You Are Not Your $#*@! Legplates
-            13188, -- You Are Not Your $#*@! Legplates
-            13189, -- The Second Rule of Brawler's Guild
-            13190, -- The Second Rule of Brawler's Guild
-            13191, -- Brawler for Azeroth
-            13192, -- Brawler for Azeroth
-            11567, -- You Are Not The Contents Of Your Wallet
-            11570, -- Educated Guesser
-            13194, -- I Am Thrall's Complete Lack Of Surprise
-            11573, -- Rumble Club
-        },
-    },
     { -- Dueler's Guild
         addon.L["Dueler's Guild"],
         {

@@ -74,9 +74,11 @@ local function GetData()
     d.RangeStart     = d.RangeStart     or RANGE_DEFAULT_START
     d.RangeEnd       = d.RangeEnd       or RANGE_DEFAULT_END
     d.Maps           = d.Maps           or {}
+    d.NameOverrides  = d.NameOverrides  or {}
     d.ParentOverrides = d.ParentOverrides or {}
     d.Links           = d.Links           or {}
     d.Expansions      = d.Expansions      or {}
+    d.Comments        = d.Comments        or {}
     return d
 end
 
@@ -193,7 +195,9 @@ local function UpdateDisplay()
             f.ExpansionText:SetText("Expansion: —")
             f.ProgressText:SetText("Progress: —")
             f.CursorText:SetText("Cursor: " .. id)
+            f.NameOverrideBox:SetText("")
             f.ParentOverrideBox:SetText("")
+            f.CommentBox:SetText("")
             f.LinkText:SetText("Link:    -")
             f.LinkBox:SetText("")
             f.SuggestLinkBtn:SetText("No suggestion")
@@ -260,7 +264,9 @@ local function UpdateDisplay()
     f.CursorText:SetText(string.format(
         "Cursor: %d  |  Range: %d – %d", id, d.RangeStart, d.RangeEnd))
 
+    f.NameOverrideBox:SetText(d.NameOverrides[id] or "")
     f.ParentOverrideBox:SetText(overrideParentId and tostring(overrideParentId) or "")
+    f.CommentBox:SetText(d.Comments[id] or "")
 
     local linkPrimaryId = d.Links[id]
     local linkStr
@@ -349,8 +355,8 @@ end
 
 -- [[ Export ]] --
 
-local CSV_HEADER_MAPS   = "id,name,type,expansion,link,parentOverride"
-local CSV_HEADER_GROUPS = "primaryId,primaryName,subIds"
+local CSV_HEADER_MAPS   = "id,name,type,expansion,link,parentOverride,nameOverride,comment"
+local CSV_HEADER_GROUPS = "primaryId,primaryName,ids"
 
 local function EscapeCSV(v)
     local s = tostring(v or "")
@@ -397,7 +403,9 @@ local function BuildExportCSV_Active()
         local primId   = d.Links[id]
         local expansion = d.Expansions[id] or (primId and d.Expansions[primId]) or ""
         local override = d.ParentOverrides[id] or ""
-        tinsert(lines, CSVRow(id, name, type_, expansion, primId or "", override))
+        local nameOverride = d.NameOverrides[id] or ""
+        local comment = d.Comments[id] or ""
+        tinsert(lines, CSVRow(id, name, type_, expansion, primId or "", override, nameOverride, comment))
     end
 
     return table.concat(lines, "\n")
@@ -436,7 +444,9 @@ local function BuildExportCSV_Skip()
         local primId   = d.Links[id]
         local expansion = d.Expansions[id] or (primId and d.Expansions[primId]) or ""
         local override = d.ParentOverrides[id] or ""
-        tinsert(lines, CSVRow(id, name, type_, expansion, primId or "", override))
+        local nameOverride = d.NameOverrides[id] or ""
+        local comment = d.Comments[id] or ""
+        tinsert(lines, CSVRow(id, name, type_, expansion, primId or "", override, nameOverride, comment))
     end
 
     return table.concat(lines, "\n")
@@ -461,7 +471,11 @@ local function BuildExportCSV_LinkGroups()
         table.sort(secs)
         local pinfo = C_Map.GetMapInfo(primId)
         local pname = pinfo and pinfo.name or "?"
-        tinsert(lines, CSVRow(primId, pname, table.concat(secs, "|")))
+        local ids = { primId }
+        for _, secId in next, secs do
+            tinsert(ids, secId)
+        end
+        tinsert(lines, CSVRow(primId, pname, table.concat(ids, ", ")))
     end
 
     return table.concat(lines, "\n")
@@ -633,6 +647,88 @@ function KrowiAF_MapVerifierMixin:OnLoad()
             self.LinkBox:SetText(tostring(suggestedId))
             self.LinkBtn:Click()
         end
+    end)
+
+    y = y - 30
+
+    -- Name override row
+    local nameOverrideLabel = inset:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    nameOverrideLabel:SetPoint("TOPLEFT", inset, "TOPLEFT", padLeft, y)
+    nameOverrideLabel:SetText("Name override:")
+
+    self.NameOverrideBox = CreateFrame("EditBox", nil, inset, "InputBoxTemplate")
+    self.NameOverrideBox:SetSize(220, 20)
+    self.NameOverrideBox:SetPoint("LEFT", nameOverrideLabel, "RIGHT", 6, 0)
+    self.NameOverrideBox:SetAutoFocus(false)
+    self.NameOverrideBox:SetMaxLetters(255)
+
+    local setNameOverrideBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
+    setNameOverrideBtn:SetSize(50, 22)
+    setNameOverrideBtn:SetText("Set")
+    setNameOverrideBtn:SetPoint("LEFT", self.NameOverrideBox, "RIGHT", 6, 0)
+    setNameOverrideBtn:SetScript("OnClick", function()
+        local d = GetData()
+        local id = d.Cursor
+        local nameOverride = self.NameOverrideBox:GetText()
+        if nameOverride == "" then
+            d.NameOverrides[id] = nil
+        else
+            d.NameOverrides[id] = nameOverride
+        end
+        UpdateDisplay()
+    end)
+    self.NameOverrideBox:SetScript("OnEnterPressed", function() setNameOverrideBtn:Click() end)
+
+    local clearNameOverrideBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
+    clearNameOverrideBtn:SetSize(60, 22)
+    clearNameOverrideBtn:SetText("Clear")
+    clearNameOverrideBtn:SetPoint("LEFT", setNameOverrideBtn, "RIGHT", 4, 0)
+    clearNameOverrideBtn:SetScript("OnClick", function()
+        local d = GetData()
+        d.NameOverrides[d.Cursor] = nil
+        self.NameOverrideBox:SetText("")
+        UpdateDisplay()
+    end)
+
+    y = y - 30
+
+    -- Comment row
+    local commentLabel = inset:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    commentLabel:SetPoint("TOPLEFT", inset, "TOPLEFT", padLeft, y)
+    commentLabel:SetText("Comment:")
+
+    self.CommentBox = CreateFrame("EditBox", nil, inset, "InputBoxTemplate")
+    self.CommentBox:SetSize(240, 20)
+    self.CommentBox:SetPoint("LEFT", commentLabel, "RIGHT", 6, 0)
+    self.CommentBox:SetAutoFocus(false)
+    self.CommentBox:SetMaxLetters(255)
+
+    local setCommentBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
+    setCommentBtn:SetSize(50, 22)
+    setCommentBtn:SetText("Set")
+    setCommentBtn:SetPoint("LEFT", self.CommentBox, "RIGHT", 6, 0)
+    setCommentBtn:SetScript("OnClick", function()
+        local d = GetData()
+        local id = d.Cursor
+        local comment = self.CommentBox:GetText()
+        if comment == "" then
+            d.Comments[id] = nil
+        else
+            d.Comments[id] = comment
+        end
+        UpdateDisplay()
+    end)
+    self.CommentBox:SetScript("OnEnterPressed", function() setCommentBtn:Click() end)
+
+    local clearCommentBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
+    clearCommentBtn:SetSize(60, 22)
+    clearCommentBtn:SetText("Clear")
+    clearCommentBtn:SetPoint("LEFT", setCommentBtn, "RIGHT", 4, 0)
+    clearCommentBtn:SetScript("OnClick", function()
+        local d = GetData()
+        d.Comments[d.Cursor] = nil
+        self.CommentBox:SetText("")
+        UpdateDisplay()
     end)
 
     y = y - 30

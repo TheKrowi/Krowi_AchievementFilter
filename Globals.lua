@@ -357,7 +357,7 @@ local function HandleAchievement(characterGuid, achievementInfo)
         return;
     end
 
-    if achievementInfo.Flags.IsTracking then
+    if achievementInfo.Flags.IsTracking and achievementInfo.Id ~= 11558 and achievementInfo.Id ~= 11559 then
         HandleTrackingAchievement(achievementInfo);
         return;
     end
@@ -528,6 +528,13 @@ function addon.OverwriteFunctions()
         AchievementFrameTab_OnClick = AchievementFrameComparisonTab_OnClick;
         AchievementFrameTab_OnClick(1);
         if addon.Util.IsMainline then
+            -- Clear addon's custom tab anchoring to avoid circular dependency with Blizzard's comparison tab setup
+            for i = 1, 3 do
+                local tab = _G["AchievementFrameTab" .. i];
+                if tab then
+                    tab:ClearAllPoints();
+                end
+            end
             AchievementFrame_SetComparisonTabs();
         end
         AchievementFrame:Show();

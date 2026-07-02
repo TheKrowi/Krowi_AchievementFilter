@@ -70,20 +70,8 @@ quelThalas:PvP{
     61465, -- Spark in the Night
     61234, -- Hunt in the Night
     61238, -- Midnight Bounty
-    61225, -- Investigating the Rise
-    61226, -- Uprising
-    61227, -- Entering the Void
-    61228, -- Embracing the Void
-    61229, -- Dedication in the Void
-    61265, -- Spectral Capture
-    61266, -- Spectral Stocker
     61231, -- Midnight Loot
     61232, -- Midnight Treasures
-    61230, -- Remains in the Rise
-    61447, -- Partake in the Rise
-    61448, -- Frequent the Rise
-    61449, -- Customary Rise
-    61446, -- Slayer's Mastery
 }
 quelThalas:Reputation{
     62192, -- Midnight Diplomat
@@ -210,6 +198,50 @@ voidstorm:Reputation{
     62265, -- The Singularity Champion
 }
 
+zones:ZoneNamed(2444, { -- Slayer's Rise
+    61225, -- Investigating the Rise
+    61226, -- Uprising
+    61227, -- Entering the Void
+    61228, -- Embracing the Void
+    61229, -- Dedication in the Void
+    61265, -- Spectral Capture
+    61266, -- Spectral Stocker
+    61230, -- Remains in the Rise
+    61447, -- Partake in the Rise
+    61448, -- Frequent the Rise
+    61449, -- Customary Rise
+    61446, -- Slayer's Mastery
+})
+
+local valAndNaigtal = zones:Named(addon.L["Val and Naigtal"], {
+    63383, -- Into the Stars
+    63384, -- Prepared for a Showdown
+    62905, -- Pain of Command
+    62887, -- Heroic: Worlds Ahead
+    62901, -- Heroic: Power Creep
+    62909, -- Heroic: Pain of Command
+    63348, -- Heroic Slugger
+    63264, -- Heroic Showdowns
+})
+valAndNaigtal:ZoneNamed(2599, { -- Val
+    63386, -- Frosty Domanaar Politics
+    62903, -- Climate Strange: Val
+    62917, -- Heroic Climate Strange: Val
+    62881, -- Showdown Slugger: Val
+    62880, -- Showdown Success: Val
+    62873, -- A Trip Around the Stars
+    62842, -- A Celestial Pain
+    63349, -- Ultradon Carnage
+})
+valAndNaigtal:ZoneNamed(2600, { -- Naigtal
+    63385, -- A Hal'hadar Walks into a Swamp
+    62904, -- Climate Strange: Naigtal
+    62919, -- Heroic Climate Strange: Naigtal
+    62883, -- Showdown Slugger: Naigtal
+    62882, -- Showdown Success: Naigtal
+    62874, -- A Trip Through the Stars
+})
+
 local delves = expansion:Delves{
     61832, -- Midnight Delves: Tier 1
     61835, -- Midnight Delves: Tier 2
@@ -248,47 +280,47 @@ delves:Seasonal{
     61807, -- Midnight Delves: Tier 11 (Season 1)
     61796, -- Midnight: Journey's End (Season 1)
 }
-delves:Delve(2535, { -- Atal'Aman
+delves:Delve(8443, { -- Atal'Aman
     61729, -- Atal'Aman Stories
     61863, -- Atal'Aman Discoveries
 })
-delves:Delve(2547, { -- Collegiate Calamity
+delves:Delve(8425, { -- Collegiate Calamity
     61726, -- Collegiate Calamity Stories
     61894, -- Collegiate Calamity Discoveries
 })
-delves:Delve(2525, { -- The Darkway
+delves:Delve(8439, { -- The Darkway
     61728, -- The Darkway Stories
     61895, -- The Darkway Discoveries
 })
-delves:Delve(2510, { -- The Grudge Pit
+delves:Delve(8433, { -- The Grudge Pit
     61724, -- The Grudge Pit Stories
     61897, -- The Grudge Pit Discoveries
 })
-delves:Delve(2505, { -- The Gulf of Memory
+delves:Delve(8435, { -- The Gulf of Memory
     61731, -- The Gulf of Memory Stories
     61898, -- The Gulf of Memory Discoveries
 })
-delves:Delve(2545, { -- Parhelion Plaza
+delves:Delve(8427, { -- Parhelion Plaza
     61725, -- Parhelion Plaza Stories
     61893, -- Parhelion Plaza Discoveries
 })
-delves:Delve(2506, { -- Shadowguard Point
+delves:Delve(8431, { -- Shadowguard Point
     61733, -- Shadowguard Point Stories
     61900, -- Shadowguard Point Discoveries
 })
-delves:Delve(2502, { -- Shadow Enclave
+delves:Delve(8437, { -- The Shadow Enclave
     61727, -- The Shadow Enclave Stories
     61892, -- The Shadow Enclave Discoveries
 })
-delves:Delve(2528, { -- Sunkiller Sanctum
+delves:Delve(8429, { -- Sunkiller Sanctum
     61732, -- Sunkiller Sanctum Stories
     61899, -- Sunkiller Sanctum Discoveries
 })
-delves:Delve(2503, { -- Twilight Crypts
+delves:Delve(8441, { -- Twilight Crypts
     61730, -- Twilight Crypts Stories
     61896, -- Twilight Crypts Discoveries
 })
-delves:Delve(2507, { -- Torment's Rise
+delves:Delve(8445, { -- Torment's Rise
     40732, -- Heavy-Handed
     61797, -- My Shady Nemesis
     61798, -- Lighting the Dark
@@ -684,28 +716,4 @@ local voidAssaults = expansion:Named(CT.VoidAssaults, { -- Void Assaults
 voidAssaults:Named(addon.L["Omnium Folio"], {
     62606, -- The Sunstrider Omnium
     63325, -- Omnium Folio Studies
-})
-voidAssaults:Named(addon.L["Val and Naigtal"], {
-    63383, -- Into the Stars
-    63384, -- Prepared for a Showdown
-    63385, -- A Hal'hadar Walks into a Swamp
-    63386, -- Frosty Domanaar Politics
-    62880, -- Showdown Success: Val
-    62881, -- Showdown Slugger: Val
-    62882, -- Showdown Success: Naigtal
-    62883, -- Showdown Slugger: Naigtal
-    62903, -- Climate Strange: Val
-    62904, -- Climate Strange: Naigtal
-    62917, -- Heroic Climate Strange: Val
-    62919, -- Heroic Climate Strange: Naigtal
-    62905, -- Pain of Command
-    62909, -- Heroic: Pain of Command
-    62887, -- Heroic: Worlds Ahead
-    62901, -- Heroic: Power Creep
-    63264, -- Heroic Showdowns
-    63348, -- Heroic Slugger
-    62842, -- A Celestial Pain
-    63349, -- Ultradon Carnage
-    62873, -- A Trip Around the Stars
-    62874, -- A Trip Through the Stars
 })
