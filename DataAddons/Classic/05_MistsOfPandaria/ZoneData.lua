@@ -1,4 +1,4 @@
-local _, addon = ...
+﻿local _, addon = ...
 local sharedMoP = addon.Data.ZoneData.Shared.MistsOfPandaria
 
 local zoneData = sharedMoP.ZoneData
@@ -7,8 +7,6 @@ zoneData:Zone({520, 521}, { -- Vale of Eternal Blossoms (Dark Heart of Pandaria)
     8317, -- Dark Heart of Pandaria
     8318, -- Heroic: Dark Heart of Pandaria
     8319, -- Accelerated Archaeology
-    19942, -- Dark Heart of Pandaria
-    19943, -- Heroic: Dark Heart of Pandaria
 })
 
 zoneData:Zone({371, 372, 373, 374, 375}, { -- The Jade Forest (zone)
@@ -111,15 +109,6 @@ zoneData:Zone({371, 372, 373, 374, 375}, { -- The Jade Forest (zone)
     6589, -- Pandaria Safari
     6606, -- Taming Pandaria
     46, -- Universal Explorer
-    19882, -- Campaign: The Jade Forest
-    19883, -- Campaign: The Jade Forest
-    19912, -- Order of the Cloud Serpent
-    20026, -- Explore Jade Forest
-    19993, -- Elusive Foes: The Jade Forest
-    19977, -- Hidden Treasures: The Jade Forest
-    19962, -- Tour The Jade Forest
-    20008, -- Looking For Group: The Jade Forest
-    19872, -- The Jade Forest
 })
 
 zoneData:Zone({376, 377}, { -- Valley of the Four Winds (zone)
@@ -166,7 +155,6 @@ zoneData:Zone({376, 377}, { -- Valley of the Four Winds (zone)
     7296, -- Ain't Lost No More
     7502, -- Savior of Stoneplow
     6969, -- Explore Valley of the Four Winds
-    9924, -- Field Photographer
     6544, -- The Tillers
     6551, -- Friend on the Farm
     6552, -- Friends on the Farm
@@ -231,14 +219,6 @@ zoneData:Zone({376, 377}, { -- Valley of the Four Winds (zone)
     6589, -- Pandaria Safari
     6606, -- Taming Pandaria
     46, -- Universal Explorer
-    19884, -- Campaign: Valley of the Four Winds
-    20027, -- Explore Valley of the Four Winds
-    19994, -- Elusive Foes: Valley of the Four Winds
-    19978, -- Hidden Treasures: Valley of the Four Winds
-    19963, -- Tour Valley of the Four Winds
-    20017, -- Salyis's Warband
-    20009, -- Looking For Group: Valley of the Four Winds
-    19873, -- Valley of the Four Winds
 })
 
 zoneData:Zone({379, 380, 381, 382, 383, 384, 385, 386, 387, 434}, { -- Kun-Lai Summit (zone)
@@ -286,7 +266,6 @@ zoneData:Zone({379, 380, 381, 382, 383, 384, 385, 386, 387, 434}, { -- Kun-Lai S
     6538, -- Slum It in the Summit
     7286, -- Finish Them!
     6976, -- Explore Kun-Lai Summit
-    9924, -- Field Photographer
     6837, -- Zen Master Archaeologist
     7612, -- The Seat of Knowledge
     7331, -- The Three Brew Fathers
@@ -340,15 +319,6 @@ zoneData:Zone({379, 380, 381, 382, 383, 384, 385, 386, 387, 434}, { -- Kun-Lai S
     6589, -- Pandaria Safari
     6606, -- Taming Pandaria
     46, -- Universal Explorer
-    19887, -- Campaign: Kun-Lai Summit
-    19888, -- Campaign: Kun-Lai Summit
-    20029, -- Explore Kun-Lai Summit
-    19996, -- Elusive Foes: Kun-Lai Summit
-    19980, -- Hidden Treasures: Kun-Lai Summit
-    19965, -- Tour Kun-Lai Summit
-    20018, -- Sha of Anger
-    20011, -- Looking For Group: Kun-Lai Summit
-    19875, -- Kun-Lai Summit
 })
 
 zoneData:Zone({388, 389}, { -- Townlong Steppes (zone)
@@ -464,14 +434,6 @@ zoneData:Zone({388, 389}, { -- Townlong Steppes (zone)
     6589, -- Pandaria Safari
     6606, -- Taming Pandaria
     46, -- Universal Explorer
-    19889, -- Campaign: Townlong Steppes
-    19914, -- Shado-Pan
-    20030, -- Explore Townlong Steppes
-    19997, -- Elusive Foes: Townlong Steppes
-    19981, -- Hidden Treasures: Townlong Steppes
-    19966, -- Tour Townlong Steppes
-    20012, -- Looking For Group: Townlong Steppes
-    19877, -- Townlong Steppes
 })
 
 zoneData:Zone({390, 391, 392, 393, 394, 395, 396}, { -- Vale of Eternal Blossoms (zone)
@@ -507,7 +469,6 @@ zoneData:Zone({390, 391, 392, 393, 394, 395, 396}, { -- Vale of Eternal Blossoms
     7324, -- One Step at a Time
     7315, -- Eternally in the Vale
     6979, -- Explore Vale of Eternal Blossoms
-    9924, -- Field Photographer
     6546, -- The Golden Lotus
     6837, -- Zen Master Archaeologist
     7612, -- The Seat of Knowledge
@@ -562,11 +523,6 @@ zoneData:Zone({390, 391, 392, 393, 394, 395, 396}, { -- Vale of Eternal Blossoms
     6589, -- Pandaria Safari
     6606, -- Taming Pandaria
     46, -- Universal Explorer
-    19913, -- The August Celestials
-    19916, -- Golden Lotus
-    20069, -- Elusive Foes: Vale of Eternal Blossoms
-    20014, -- Looking For Group: Vale of Eternal Blossoms
-    19876, -- Vale of Eternal Blossoms
 })
 
 zoneData:Zone({416, 483}, { -- Theramore's Fall (scenario)
@@ -578,8 +534,6 @@ zoneData:Zone({416, 483}, { -- Theramore's Fall (scenario)
     7530, -- No Tank You
     7467, -- Theramore's Fall
     7468, -- Theramore's Fall
-    19938, -- Theramore's Fall
-    19939, -- Theramore's Fall
 })
 
 zoneData:Zone({418, 419, 420, 421}, { -- Krasarang Wilds (zone)
@@ -620,15 +574,14 @@ zoneData:Zone({418, 419, 420, 421}, { -- Krasarang Wilds (zone)
     6828, -- Pandaren Ambassador
     6535, -- Mighty Roamin' Krasaranger
     6536, -- Mighty Roamin' Krasaranger
-    7287, -- Fish Are Friends, Not Food
+    7287, -- Champion of Chi-Ji
     7928, -- Operation: Shieldwall / Dominance Offensive Campaign
-    7929, -- Dominance Offensive Campaign
+    7929, -- Operation: Shieldwall / Dominance Offensive Campaign
     6975, -- Explore Krasarang Wilds
-    7518, -- Riverblade Stalker
-    7932, -- It's A Trap!
-    9924, -- Field Photographer
+    7518, -- Wanderers, Dreamers, and You
+    7932, -- I'm In Your Base, Killing Your Dudes
     8205, -- Operation: Shieldwall / Dominance Offensive
-    8206, -- Dominance Offensive
+    8206, -- Operation: Shieldwall / Dominance Offensive
     6837, -- Zen Master Archaeologist
     7612, -- The Seat of Knowledge
     7331, -- The Three Brew Fathers
@@ -682,18 +635,6 @@ zoneData:Zone({418, 419, 420, 421}, { -- Krasarang Wilds (zone)
     6589, -- Pandaria Safari
     6606, -- Taming Pandaria
     46, -- Universal Explorer
-    19885, -- Campaign: Krasarang Wilds
-    19886, -- Campaign: Krasarang Wilds
-    20028, -- Explore Krasarang Wilds
-    19995, -- Elusive Foes: Krasarang Wilds
-    19979, -- Hidden Treasures: Krasarang Wilds
-    19964, -- Tour Krasarang Wilds
-    19874, -- Krasarang Wilds
-    19891, -- Operation: Shieldwall / Dominance Offensive Campaign
-    19917, -- Operation: Shieldwall / Dominance Offensive Campaign
-    19918, -- Dominance Offensive
-    19999, -- Elusive Foes: Krasarang Wilds
-    19879, -- Krasarang Wilds
 })
 
 zoneData:Zone(422, { -- Dread Wastes (zone)
@@ -800,12 +741,6 @@ zoneData:Zone(422, { -- Dread Wastes (zone)
     6589, -- Pandaria Safari
     6606, -- Taming Pandaria
     46, -- Universal Explorer
-    19890, -- Campaign: Dread Wastes
-    19915, -- The Klaxxi
-    20031, -- Explore Dread Wastes
-    19998, -- Elusive Foes: Dread Wastes
-    19967, -- Tour Dread Wastes
-    19878, -- Dread Wastes
 })
 
 zoneData:Zone({429, 430}, { -- Temple of the Jade Serpent (dungeon)
@@ -819,9 +754,6 @@ zoneData:Zone({429, 430}, { -- Temple of the Jade Serpent (dungeon)
     6886, -- Temple of the Jade Serpent: Silver
     6887, -- Temple of the Jade Serpent: Gold
     8430, -- Challenge Master: Temple of the Jade Serpent
-    16661, -- Keystone Hero: Temple of the Jade Serpent
-    19894, -- Temple of the Jade Serpent
-    19895, -- Heroic: Temple of the Jade Serpent
 })
 
 zoneData:Zone({431, 432}, { -- Scarlet Halls (dungeon)
@@ -834,8 +766,6 @@ zoneData:Zone({431, 432}, { -- Scarlet Halls (dungeon)
     6909, -- Scarlet Halls: Silver
     6910, -- Scarlet Halls: Gold
     8436, -- Challenge Master: Scarlet Halls
-    19906, -- Scarlet Halls
-    19907, -- Heroic: Scarlet Halls
 })
 
 zoneData:Zone({435, 436}, { -- Scarlet Monastery (dungeon)
@@ -850,23 +780,18 @@ zoneData:Zone({435, 436}, { -- Scarlet Monastery (dungeon)
     6913, -- Scarlet Monastery: Gold
     8437, -- Challenge Master: Scarlet Monastery
     980, -- The Horseman's Reins
-    19908, -- Scarlet Monastery
-    19909, -- Heroic: Scarlet Monastery
 })
 
 zoneData:Zone({437, 438}, { -- Gate of the Setting Sun (dungeon)
     6479, -- Bomberman
     6476, -- Conscriptinator
     6945, -- Mantid Swarm
-    10010, -- Gate of the Setting Sun
     6759, -- Heroic: Gate of the Setting Sun
     6894, -- Gate of the Setting Sun Challenger
     6905, -- Gate of the Setting Sun: Bronze
     6906, -- Gate of the Setting Sun: Silver
     6907, -- Gate of the Setting Sun: Gold
     8434, -- Challenge Master: Gate of the Setting Sun
-    19902, -- Gate of the Setting Sun
-    19903, -- Heroic: Gate of the Setting Sun
 })
 
 zoneData:Zone({439, 440, 441, 442}, { -- Stormstout Brewery (dungeon)
@@ -881,8 +806,6 @@ zoneData:Zone({439, 440, 441, 442}, { -- Stormstout Brewery (dungeon)
     6890, -- Stormstout Brewery: Silver
     6891, -- Stormstout Brewery: Gold
     8431, -- Challenge Master: Stormstout Brewery
-    19896, -- Stormstout Brewery
-    19897, -- Heroic: Stormstout Brewery
 })
 
 zoneData:Zone({443, 444, 445, 446}, { -- Shado-Pan Monastery (dungeon)
@@ -897,8 +820,6 @@ zoneData:Zone({443, 444, 445, 446}, { -- Shado-Pan Monastery (dungeon)
     6903, -- Shado-Pan Monastery: Silver
     6904, -- Shado-Pan Monastery: Gold
     8432, -- Challenge Master: Shado-Pan Monastery
-    19898, -- Shado-Pan Monastery
-    19899, -- Heroic: Shado-Pan Monastery
 })
 
 zoneData:Zone(447, { -- A Brewing Storm (scenario)
@@ -907,15 +828,12 @@ zoneData:Zone(447, { -- A Brewing Storm (scenario)
     7257, -- Don't Shake the Keg
     7261, -- The Perfect Pour
     7258, -- Party of Six
-    19893, -- A Brewing Storm
-    19924, -- Heroic: A Brewing Storm
 })
 
 zoneData:Zone(448, { -- Greenstone Village (scenario)
     7265, -- Greenstone Village
     7267, -- Perfect Delivery
     7266, -- Save it for Later
-    19923, -- Greenstone Village
 })
 
 zoneData:Zone(450, { -- Unga Ingoo (scenario)
@@ -924,20 +842,17 @@ zoneData:Zone(450, { -- Unga Ingoo (scenario)
     7239, -- Monkey in the Middle
     7248, -- Monkey See, Monkey Kill
     7231, -- Spill No Evil
-    19925, -- Unga Ingoo
 })
 
 zoneData:Zone(451, { -- Assault on Zan'vess (scenario)
     8016, -- Assault on Zan'vess
     8017, -- For the Swarm
-    19930, -- Assault on Zan'vess
 })
 
 zoneData:Zone(452, { -- Brewmoon Festival (scenario)
     6923, -- Brewmoon Festival
     6931, -- Binan Village All-Star
     6930, -- Yaungolian Barbecue
-    19926, -- Brewmoon Festival
 })
 
 zoneData:Zone({453, 454, 455}, { -- Mogu'shan Palace (dungeon)
@@ -951,15 +866,12 @@ zoneData:Zone({453, 454, 455}, { -- Mogu'shan Palace (dungeon)
     6900, -- Mogu'shan Palace: Silver
     6901, -- Mogu'shan Palace: Gold
     8433, -- Challenge Master: Mogu'shan Palace
-    19904, -- Mogu'shan Palace
-    19905, -- Heroic: Mogu'shan Palace
 })
 
 zoneData:Zone(456, { -- Terrace of Endless Spring (raid)
     6689, -- Terrace of Endless Spring
     8248, -- Ahead of the Curve: Sha of Fear
     7487, -- Cutting Edge: Sha of Fear
-    11757, -- Sha of Fabulous
     6717, -- Power Overwhelming
     6933, -- Who's Got Two Green Thumbs?
     6824, -- Face Clutchers
@@ -968,24 +880,18 @@ zoneData:Zone(456, { -- Terrace of Endless Spring (raid)
     6732, -- Heroic: Tsulong
     6733, -- Heroic: Lei Shi
     6734, -- Heroic: Sha of Fear
-    19952, -- Raid Finder: Terrace of Endless Spring
-    19953, -- Terrace of Endless Spring
-    19954, -- Heroic: Terrace of Endless Spring
 })
 
 zoneData:Zone({457, 458, 459}, { -- Siege of Niuzao Temple (dungeon)
     6688, -- Where's My Air Support?
     6485, -- Return to Sender
     6822, -- Run with the Wind
-    10011, -- Siege of Niuzao Temple
     6763, -- Heroic: Siege of Niuzao Temple
     6898, -- Siege of Niuzao Temple Challenger
     6917, -- Siege of Niuzao Temple: Bronze
     6918, -- Siege of Niuzao Temple: Silver
     6919, -- Siege of Niuzao Temple: Gold
     8439, -- Challenge Master: Siege of Niuzao Temple
-    19900, -- Siege of Niuzao Temple
-    19901, -- Heroic: Siege of Niuzao Temple
 })
 
 zoneData:Zone({471, 472, 473}, { -- Mogu'shan Vaults (raid)
@@ -1006,9 +912,6 @@ zoneData:Zone({471, 472, 473}, { -- Mogu'shan Vaults (raid)
     6722, -- Heroic: Four Kings
     6723, -- Heroic: Elegon
     6724, -- Heroic: Will of the Emperor
-    19946, -- Raid Finder: Mogu'shan Vaults
-    19947, -- Mogu'shan Vaults
-    19948, -- Heroic: Mogu'shan Vaults
 })
 
 zoneData:Zone({474, 475}, { -- Heart of Fear (raid)
@@ -1016,7 +919,6 @@ zoneData:Zone({474, 475}, { -- Heart of Fear (raid)
     6845, -- Nightmare of Shek'zeer
     8246, -- Ahead of the Curve: Grand Empress Shek'zeer
     7486, -- Cutting Edge: Grand Empress Shek'zeer
-    11757, -- Sha of Fabulous
     6937, -- Overzealous
     6936, -- Candle in the Wind
     6553, -- Like an Arrow to the Face
@@ -1029,14 +931,9 @@ zoneData:Zone({474, 475}, { -- Heart of Fear (raid)
     6728, -- Heroic: Wind Lord Mel'jarak
     6729, -- Heroic: Amber-Shaper Un'sok
     6730, -- Heroic: Grand Empress Shek'zeer
-    19949, -- Raid Finder: Heart of Fear
-    19950, -- Heart of Fear
-    19951, -- Heroic: Heart of Fear
 })
 
 zoneData:Zone({476, 477, 478, 479}, { -- Scholomance (dungeon)
-    18368, -- Memory of Scholomance
-    18558, -- Leaders of Scholomance
     6531, -- Attention to Detail
     6394, -- Rattle No More
     6396, -- Sanguinarian
@@ -1049,34 +946,12 @@ zoneData:Zone({476, 477, 478, 479}, { -- Scholomance (dungeon)
     6915, -- Scholomance: Silver
     6916, -- Scholomance: Gold
     8438, -- Challenge Master: Scholomance
-    19910, -- Scholomance
-    19911, -- Heroic: Scholomance
 })
 
 zoneData:Zone(480, { -- Arena of Annihilation (scenario)
     7271, -- Arena of Annihilation
     7273, -- Beat the Heat
     7272, -- In the Eye of the Tiger
-    9572, -- Proving Yourself: Bronze Damage
-    9573, -- Proving Yourself: Silver Damage
-    9574, -- Proving Yourself: Gold Damage
-    9575, -- Proving Yourself: Endless Damage (Wave 10)
-    9576, -- Proving Yourself: Endless Damage (Wave 20)
-    9577, -- Proving Yourself: Endless Damage (Wave 30)
-    9578, -- Proving Yourself: Bronze Tank
-    9579, -- Proving Yourself: Silver Tank
-    9580, -- Proving Yourself: Gold Tank
-    9581, -- Proving Yourself: Endless Tank (Wave 10)
-    9582, -- Proving Yourself: Endless Tank (Wave 20)
-    9583, -- Proving Yourself: Endless Tank (Wave 30)
-    9584, -- Proving Yourself: Bronze Healer
-    9585, -- Proving Yourself: Silver Healer
-    9586, -- Proving Yourself: Gold Healer
-    9587, -- Proving Yourself: Endless Healer (Wave 10)
-    9588, -- Proving Yourself: Endless Healer (Wave 20)
-    9589, -- Proving Yourself: Endless Healer (Wave 30)
-    9590, -- You're Doing it Wrong
-    9597, -- You're Really Doing It Wrong
     8486, -- Proving Yourself: Bronze Damage (Level 90)
     8491, -- Proving Yourself: Silver Damage (Level 90)
     8496, -- Proving Yourself: Gold Damage (Level 90)
@@ -1096,8 +971,6 @@ zoneData:Zone(480, { -- Arena of Annihilation (scenario)
     8506, -- Proving Yourself: Endless Healer (Wave 20) (Level 90)
     8509, -- Proving Yourself: Endless Healer (Wave 30) (Level 90)
     8697, -- You're Doing it Wrong (Level 90)
-    8812, -- You're Really Doing It Wrong (Level 90)
-    19927, -- Arena of Annihilation
 })
 
 zoneData:Zone({481, 482}, { -- Crypt of Forgotten Kings (scenario)
@@ -1106,15 +979,12 @@ zoneData:Zone({481, 482}, { -- Crypt of Forgotten Kings (scenario)
     7276, -- Fancy Footwork
     7275, -- It's a Trap!
     8368, -- Fight Anger with Anger
-    19928, -- Crypt of Forgotten Kings
-    19929, -- Heroic: Crypt of Forgotten Kings
 })
 
 zoneData:Zone(486, { -- Lion's Landing (scenario)
     8010, -- Lion's Landing / Domination Point
     8011, -- Number Five Is Alive
     8012, -- Waste Not, Want Not
-    20500, -- Lion's Landing
 })
 
 zoneData:Zone(487, { -- A Little Patience (scenario)
@@ -1124,7 +994,6 @@ zoneData:Zone(487, { -- A Little Patience (scenario)
     7992, -- I Used To Love Them
     7993, -- We've Been Dancin'
     7991, -- Which Came First?
-    19931, -- A Little Patience
 })
 
 zoneData:Zone({488, 489}, { -- Dagger in the Dark (scenario)
@@ -1132,14 +1001,12 @@ zoneData:Zone({488, 489}, { -- Dagger in the Dark (scenario)
     7987, -- No Egg Left Behind
     7984, -- Watery Grave
     7986, -- You Mean That Wasn't a Void Zone?
-    19933, -- Dagger in the Dark
 })
 
 zoneData:Zone(498, { -- Domination Point (scenario)
-    8013, -- Domination Point
+    8013, -- Lion's Landing / Domination Point
     8014, -- Number Five Is Alive
     8015, -- Waste Not, Want Not
-    19932, -- Domination Point / Lion's Landing
 })
 
 zoneData:Zone({504, 505, 506}, { -- Isle of Thunder (zone)
@@ -1174,22 +1041,13 @@ zoneData:Zone({504, 505, 506}, { -- Isle of Thunder (zone)
     8050, -- Rumbles of Thunder
     8051, -- Gods and Monsters
     8208, -- Kirin Tor Offensive / Sunreaver Onslaught
-    8209, -- Sunreaver Onslaught
+    8209, -- Kirin Tor Offensive / Sunreaver Onslaught
     8210, -- Shado-Pan Assault
-    19892, -- Campaign: Isle of Thunder
-    19919, -- Kirin Tor Offensive / Sunreaver Onslaught
-    19920, -- Sunreaver Onslaught
-    19921, -- Shado-Pan Assault
-    20000, -- Elusive Foes: Isle of Thunder
-    20019, -- Nalak, the Storm Lord
-    20015, -- Looking For Group: Isle of Thunder
-    19880, -- Isle of Thunder
 })
 
 zoneData:Zone(507, { -- Isle of Giants (zone)
     8123, -- Millions of Years of Evolution vs. My Fist
     8092, -- I've Got 9999 Problems but a Bone-White Primal Raptor Ain't One
-    20020, -- Oondasta
 })
 
 zoneData:Zone({508, 509, 510, 511, 512, 513, 514, 515}, { -- Throne of Thunder (raid)
@@ -1201,7 +1059,6 @@ zoneData:Zone({508, 509, 510, 511, 512, 513, 514, 515}, { -- Throne of Thunder (
     8249, -- Ahead of the Curve: Lei Shen
     8238, -- Cutting Edge: Lei Shen
     8260, -- Cutting Edge: Ra-den
-    11758, -- Thunderwear
     8094, -- Lightning Overload
     8038, -- Cretaceous Collector
     8073, -- Cage Match
@@ -1227,19 +1084,12 @@ zoneData:Zone({508, 509, 510, 511, 512, 513, 514, 515}, { -- Throne of Thunder (
     8066, -- Heroic: Twin Empyreans
     8067, -- Heroic: Lei Shen
     8068, -- Heroic: Ra-den
-    19955, -- Raid Finder: Throne of Thunder
-    19956, -- Throne of Thunder
-    19957, -- Heroic: Throne of Thunder
 })
 
 zoneData:Zone({519, 1576}, { -- Deepwind Gorge (battleground)
     8331, -- Deepwind Gorge Victory
     8332, -- Deepwind Gorge Veteran
     8333, -- Deepwind Gorge Perfection
-    14187, -- Cruisin' for a Brewsin'
-    14186, -- Market Dominance
-    14188, -- Well Gorged
-    14175, -- Master of Deepwind Gorge
     8350, -- Mine! Mine! Mine!
     8351, -- Other People's Property
     8354, -- Puddle Jumper
@@ -1249,21 +1099,12 @@ zoneData:Zone({519, 1576}, { -- Deepwind Gorge (battleground)
     8360, -- Master of Deepwind Gorge
 })
 
-zoneData:Zone(523, { -- Blood in the Snow (scenario)
-    19940, -- Blood in the Snow
-    19941, -- Heroic: Blood in the Snow
-})
-
 zoneData:Zone(524, { -- Battle on the High Seas (scenario)
     8314, -- Battle on the High Seas
     8315, -- Battle on the High Seas
     8364, -- Heroic: Battle on the High Seas
     8366, -- Heroic: Battle on the High Seas
     8347, -- Keep those Bombs Away! (From Me)
-    19934, -- Battle on the High Seas
-    19935, -- Heroic: Battle on the High Seas
-    19936, -- Battle on the High Seas
-    19937, -- Heroic: Battle on the High Seas
 })
 
 zoneData:Zone({554, 555}, { -- Timeless Isle (zone)
@@ -1271,18 +1112,6 @@ zoneData:Zone({554, 555}, { -- Timeless Isle (zone)
     7285, -- Every Day I'm Pand-a-ren
     8535, -- Celestial Challenge
     8533, -- Ordos
-    19922, -- Emperor Shaohao
-    20001, -- Elusive Foes: Timeless Isle
-    19982, -- Hidden Treasures: Timeless Isle
-    20002, -- Powerful Enemies: Timeless Isle
-    19970, -- Tour Timeless Isle
-    20021, -- Chi-ji, the Red Crane
-    20022, -- Yu'lon, the Jade Serpent
-    20023, -- Niuzao, the Black Ox
-    20024, -- Xuen, the White Tiger
-    20025, -- Ordos
-    20016, -- Looking For Group: Timeless Isle
-    20003, -- Timeless Isle
 })
 
 zoneData:Zone({556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570}, { -- Siege of Orgrimmar (raid)
@@ -1291,12 +1120,11 @@ zoneData:Zone({556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568, 
     8461, -- The Underhold
     8462, -- Downfall
     8679, -- Conqueror / Liberator of Orgrimmar
-    8680, -- Liberator of Orgrimmar
+    8680, -- Conqueror / Liberator of Orgrimmar
     8398, -- Ahead of the Curve: Garrosh Hellscream (10 player)
     8400, -- Cutting Edge: Garrosh Hellscream (10 player)
     8399, -- Ahead of the Curve: Garrosh Hellscream (25 player)
     8401, -- Cutting Edge: Garrosh Hellscream (25 player)
-    11759, -- Yaass'shaarj
     8536, -- No More Tears
     8528, -- Go Long
     8532, -- None Shall Pass
@@ -1325,8 +1153,4 @@ zoneData:Zone({556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568, 
     8480, -- Mythic: Siegecrafter Blackfuse
     8481, -- Mythic: Paragons of the Klaxxi
     8482, -- Mythic: Garrosh Hellscream
-    19958, -- Raid Finder: Siege of Orgrimmar
-    19959, -- Siege of Orgrimmar
-    19960, -- Heroic: Siege of Orgrimmar
-    19961, -- Mythic Remix: Siege of Orgrimmar
 })
