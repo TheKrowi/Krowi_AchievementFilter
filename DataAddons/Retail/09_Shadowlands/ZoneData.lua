@@ -1,5 +1,4 @@
 ﻿local _, addon = ...
-local shared = addon.Data.ZoneData.Shared
 
 local zoneData = KrowiAF.NewZoneData("Shadowlands")
 
@@ -23,7 +22,6 @@ zoneData:Zone(1525, { -- Revendreth (zone)
     14273, -- Crypt Kicker
     14512, -- Tour of Duty: Revendreth
     14338, -- Court of Harvesters
-
     14280, -- Loremaster of Shadowlands
     14758, -- The World Beyond
     15388, -- Shadowlands Explorer
@@ -53,7 +51,6 @@ zoneData:Zone({1533, 1690, 1713, 1714}, { -- Bastion (zone)
     14733, -- In the Hot Seat
     14514, -- Tour of Duty: Bastion
     14335, -- The Ascended
-
     14280, -- Loremaster of Shadowlands
     14758, -- The World Beyond
     15388, -- Shadowlands Explorer
@@ -78,7 +75,6 @@ zoneData:Zone({1536, 1649, 1650, 1651, 1652}, { -- Maldraxxus (zone)
     14634, -- Nine Afterlives
     14513, -- Tour of Duty: Maldraxxus
     14336, -- Undying Army
-
     14280, -- Loremaster of Shadowlands
     14758, -- The World Beyond
     15388, -- Shadowlands Explorer
@@ -127,7 +123,6 @@ zoneData:Zone({1543, 1820, 1821, 1822, 1823}, { -- The Maw (zone)
     14656, -- Trading Partners
     15648, -- Walking in Maw-mphis
     15004, -- A Sly Fox
-
     15064, -- Breaking the Chains
 })
 
@@ -414,7 +409,7 @@ zoneData:Zone(1711, { -- Ascension Coliseum (scenario)
     14887, -- To the Moon
 })
 
-zoneData:Zone({1618, 1619, 1620, 1621, 1623, 1624, 1627, 1628, 1629, 1630, 1631, 1632, 1635, 1636, 1641, 1645, 1712, 1721, 1736, 1749, 1751, 1752, 1753, 1754, 1756, 1757, 1758, 1759, 1760, 1761, 1763, 1764, 1765, 1766, 1767, 1768, 1769, 1770, 1771, 1772, 1773, 1774, 1776, 1777, 1778, 1779, 1780, 1781, 1782, 1783, 1784, 1785, 1786, 1787, 1788, 1789, 1791, 1792, 1793, 1794, 1795, 1796, 1797, 1798, 1799, 1800, 1801, 1802, 1803, 1804, 1805, 1806, 1807, 1808, 1809, 1810, 1811, 1812, 1911, 1912, 1913, 1920, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1974, 1975, 1976, 1977, 1979, 1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988}, {
+zoneData:Zone({1618, 1619, 1620, 1621, 1623, 1624, 1627, 1628, 1629, 1630, 1631, 1632, 1635, 1636, 1641, 1645, 1712, 1721, 1736, 1749, 1751, 1752, 1753, 1754, 1756, 1757, 1758, 1759, 1760, 1761, 1763, 1764, 1765, 1766, 1767, 1768, 1769, 1770, 1771, 1772, 1773, 1774, 1776, 1777, 1778, 1779, 1780, 1781, 1782, 1783, 1784, 1785, 1786, 1787, 1788, 1789, 1791, 1792, 1793, 1794, 1795, 1796, 1797, 1798, 1799, 1800, 1801, 1802, 1803, 1804, 1805, 1806, 1807, 1808, 1809, 1810, 1811, 1812, 1911, 1912, 1913, 1920, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1974, 1975, 1976, 1977, 1979, 1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988}, { -- Torghast (zone)
     14808, -- Touring Torghast
     14809, -- Traversing Torghast
     14810, -- Terror of Torghast
@@ -683,7 +678,7 @@ zoneData:Zone({1683, 1684, 1685, 1686, 1687}, { -- Theater of Pain (dungeon)
     15050, -- Keystone Hero: Theater of Pain
 })
 
-zoneData:Zone({1692, 1693, 1694, 1695}, { -- Spires Of Ascension (dungeon)
+zoneData:Zone({1692, 1693, 1694, 1695}, { -- Spires of Ascension (dungeon)
     14418, -- Shadowlands Dungeon Hero
     15651, -- Myths of the Shadowlands Dungeons
     14322, -- Glory of the Shadowlands Hero

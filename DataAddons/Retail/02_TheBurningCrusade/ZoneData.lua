@@ -290,8 +290,6 @@ zoneData:Zone(111, { -- Shattrath City (city)
     6604, -- Taming Outland
 })
 
--- [[ TBC Raids ]] --
-
 zoneData:Zone({350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366}, { -- Karazhan
     sharedTBC.Karazhan,
     11746, -- Outlandish Style

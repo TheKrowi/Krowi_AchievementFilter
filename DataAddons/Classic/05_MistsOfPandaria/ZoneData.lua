@@ -3,7 +3,7 @@ local sharedMoP = addon.Data.ZoneData.Shared.MistsOfPandaria
 
 local zoneData = sharedMoP.ZoneData
 
-zoneData:Zone({520, 521}, { -- Vale of Eternal Blossoms (Dark Heart of Pandaria)
+zoneData:Zone({520, 521}, { -- Dark Heart of Pandaria (scenario)
     8317, -- Dark Heart of Pandaria
     8318, -- Heroic: Dark Heart of Pandaria
     8319, -- Accelerated Archaeology

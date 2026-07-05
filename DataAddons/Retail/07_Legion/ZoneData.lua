@@ -46,9 +46,46 @@ zoneData:Zone(903, { -- Seat of the Triumvirate (dungeon)
 })
 
 zoneData:Zone({24, 626, 647, 648, 695, 702, 709, 717, 719, 720, 721, 726, 734, 735, 739, 747}, { -- Light's Hope Chapel (class halls)
-    10994, 11135, 11136, 10706, 11212, 11213, 11214, 11215, 11216, 11217, 11219, 11220, 11221, 11222, 11223, 11298,
-    10746, 10459, 10743, 10745, 10460, 10461, 10747, 10748, 11173, 10749, 10750, 11171, 11137, 11611, 11612, 11144,
-    11772, 11609, 11610, 10852, 10853, 12071, 12072, 11218,
+    10994, -- A Glorious Campaign
+    11135, -- A Heroic Campaign
+    11136, -- An Epic Campaign
+    10706, -- Training the Troops
+    11212, -- Raise an Army
+    11213, -- Lead a Legion
+    11214, -- Many Missions
+    11215, -- Quite a Few Missions
+    11216, -- So Many Missions
+    11217, -- Many Many Missions, Handle It!
+    11219, -- Need Backup
+    11220, -- Roster of Champions
+    11221, -- Champions Rise
+    11222, -- Champions of Power
+    11223, -- Legendary Research
+    11298, -- A Classy Outfit
+    10746, -- Forged for Battle
+    10459, -- Improving on History
+    10743, -- The Prestige
+    10745, -- The Prestige
+    10460, -- Hidden Potential
+    10461, -- Fighting with Style: Classic
+    10747, -- Fighting with Style: Upgraded
+    10748, -- Fighting with Style: Valorous
+    11173, -- Fighting with Style: War-torn
+    10749, -- Fighting with Style: War-torn
+    10750, -- Fighting with Style: Hidden
+    11171, -- Arsenal of Power
+    11137, -- A Legendary Campaign
+    11611, -- A Challenging Look
+    11612, -- Fighting with Style: Challenging
+    11144, -- Power Realized
+    11772, -- Power Ascended
+    11609, -- Power Unbound
+    11610, -- Power Unleashed
+    10852, -- Artifact or Artifiction
+    10853, -- Part of History
+    12071, -- Crucible's Promise
+    12072, -- Now You're Cooking with Netherlight
+    11218, -- There's a Boss In There
 })
 
 zoneData:Zone(619, { -- Broken Isles (continent)

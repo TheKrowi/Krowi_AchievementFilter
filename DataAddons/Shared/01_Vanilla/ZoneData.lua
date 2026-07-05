@@ -23,14 +23,10 @@ sharedVanilla.AhnQiraj = {
     956, -- Brood of Nozdormu
 }
 
--- [[ Zones identical in Retail and Classic ]] --
-
 zoneData:Zone({74, 75}, { -- Caverns of Time (zone)
     763, -- The Burning Crusader
     764, -- The Burning Crusader
 })
-
--- [[ Vanilla Battlegrounds — identical in Retail and Classic ]] --
 
 zoneData:Zone({92, 1339}, { -- Warsong Gulch (battleground)
     166, -- Warsong Gulch Victory
@@ -72,8 +68,6 @@ zoneData:Zone({93, 1366, 1383}, { -- Arathi Basin (battleground)
     711, -- Knight of Arathor
     710, -- The Defiler
 })
-
--- [[ Vanilla Dungeons — identical in Retail and Classic ]] --
 
 zoneData:Zone(213, { -- Ragefire Chasm (dungeon)
     629, -- Ragefire Chasm

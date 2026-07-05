@@ -4,8 +4,6 @@ local sharedVanilla = addon.Data.ZoneData.Shared.Vanilla
 
 local zoneData = sharedVanilla.ZoneData
 
--- [[ Eastern Kingdoms ]] --
-
 zoneData:Zone(13, { -- Eastern Kingdoms (continent)
     1206, -- To All The Squirrels I've Loved Before
     1676, -- Loremaster of Eastern Kingdoms
@@ -418,8 +416,6 @@ zoneData:Zone({52, 53, 54, 55}, { -- Westfall (zone)
     46, -- Universal Explorer
 })
 
--- [[ Kalimdor ]] --
-
 zoneData:Zone(12, { -- Kalimdor (continent)
     1206, -- To All The Squirrels I've Loved Before
     944, -- They Love Me In That Tunnel
@@ -802,8 +798,6 @@ zoneData:Zone({81, 82}, { -- Silithus (zone)
     46, -- Universal Explorer
 })
 
--- [[ Cities ]] --
-
 zoneData:Zone(84, { -- Stormwind City (city)
     1206, -- To All The Squirrels I've Loved Before
     615, -- Storming Stormwind
@@ -886,8 +880,6 @@ zoneData:Zone(90, { -- Undercity (city)
     2556, -- Pest Control
 })
 
--- [[ Vanilla Battleground ]] --
-
 zoneData:Zone({91, 1537, 2162}, { -- Alterac Valley (battleground)
     13928, -- Alterac Valley of Olde
     13930, -- Alterac Valley of Olde
@@ -911,8 +903,6 @@ zoneData:Zone({91, 1537, 2162}, { -- Alterac Valley (battleground)
     709, -- Hero of the Stormpike Guard
     708, -- Hero of the Frostwolf Clan
 })
-
--- [[ Vanilla Dungeons ]] --
 
 zoneData:Zone(279, { -- Wailing Caverns (dungeon)
     630, -- Wailing Caverns

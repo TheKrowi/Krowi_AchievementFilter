@@ -5,8 +5,6 @@ local sharedCata = addon.Data.ZoneData.Shared.Cataclysm
 local zoneData = KrowiAF.NewZoneData("Cataclysm")
 sharedCata.ZoneData = zoneData
 
--- [[ Zones identical in Retail and Classic ]] --
-
 zoneData:Zone(337, { -- Zul'Gurub (dungeon)
     560, -- Deadliest Catch
     688, -- Zul'Gurub

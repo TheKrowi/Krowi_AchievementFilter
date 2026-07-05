@@ -48,8 +48,6 @@ sharedTBC.SunwellPlateau = {
     725, -- Thori'dal, the Stars' Fury
 }
 
--- [[ Zones identical in Retail and Classic ]] --
-
 zoneData:Zone(112, { -- Eye of the Storm (battleground)
     208, -- Eye of the Storm
     209, -- Eye of the Storm Victory
@@ -72,8 +70,6 @@ zoneData:Zone(122, { -- Isle of Quel'Danas (zone)
     868, -- Explore Isle of Quel'Danas
     46, -- Universal Explorer
 })
-
--- [[ TBC Dungeons — identical in Retail and Classic ]] --
 
 zoneData:Zone(347, { -- Hellfire Ramparts
     763, -- The Burning Crusader
@@ -186,8 +182,6 @@ zoneData:Zone({348, 349}, { -- Magisters' Terrace
     682, -- Heroic: Magister's Terrace
     884, -- Swift White Hawkstrider
 })
-
--- [[ TBC Raids — identical in Retail and Classic ]] --
 
 zoneData:Zone(333, { -- Zul'Aman
     691, -- Zul'Aman

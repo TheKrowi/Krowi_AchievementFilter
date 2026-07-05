@@ -185,8 +185,6 @@ zoneData:Zone(111, { -- Shattrath City (city)
     1165, -- My Storage is "Gigantique"
 })
 
--- [[ TBC Raids ]] --
-
 zoneData:Zone({350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366}, sharedTBC.Karazhan) -- Karazhan
 
 zoneData:Zone(330, sharedTBC.GrullsLair) -- Gruul's Lair
