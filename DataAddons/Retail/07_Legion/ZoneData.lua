@@ -1,4 +1,4 @@
-local _, addon = ...
+﻿local _, addon = ...
 local shared = addon.Data.ZoneData.Shared
 
 local zoneData = KrowiAF.NewZoneData("Legion")
@@ -45,7 +45,7 @@ zoneData:Zone(903, { -- Seat of the Triumvirate (dungeon)
     61593, -- Keystone Victor: Seat of the Triumvirate
 })
 
-zoneData:Zone({24, 626, 647, 648, 695, 702, 709, 717, 718, 719, 720, 721, 725, 726, 734, 735, 739, 747, 1468, 1471, 1475}, { -- Light's Hope Chapel (class halls)
+zoneData:Zone({24, 626, 647, 648, 695, 702, 709, 717, 719, 720, 721, 726, 734, 735, 739, 747}, { -- Light's Hope Chapel (class halls)
     10994, 11135, 11136, 10706, 11212, 11213, 11214, 11215, 11216, 11217, 11219, 11220, 11221, 11222, 11223, 11298,
     10746, 10459, 10743, 10745, 10460, 10461, 10747, 10748, 11173, 10749, 10750, 11171, 11137, 11611, 11612, 11144,
     11772, 11609, 11610, 10852, 10853, 12071, 12072, 11218,
@@ -82,7 +82,7 @@ zoneData:Zone({627, 628, 629}, { -- Dalaran (city)
     10586, -- Mass Obliteration
 })
 
-zoneData:Zone({630, 631, 632, 633, 867}, { -- Azsuna (zone)
+zoneData:Zone({630, 631, 632, 633}, { -- Azsuna (zone)
     7520, -- The Loremaster
     11190, -- Broken Isles Pathfinder, Part One
     11446, -- Broken Isles Pathfinder, Part Two
@@ -108,7 +108,7 @@ zoneData:Zone({630, 631, 632, 633, 867}, { -- Azsuna (zone)
     46, -- Universal Explorer
 })
 
-zoneData:Zone({634, 635, 636, 637, 638, 639, 640, 649, 671, 865, 866}, { -- Stormheim (zone)
+zoneData:Zone({634, 635, 636, 637, 638, 639, 640, 649}, { -- Stormheim (zone)
     7520, -- The Loremaster
     11190, -- Broken Isles Pathfinder, Part One
     11446, -- Broken Isles Pathfinder, Part Two
@@ -138,7 +138,7 @@ zoneData:Zone({634, 635, 636, 637, 638, 639, 640, 649, 671, 865, 866}, { -- Stor
     46, -- Universal Explorer
 })
 
-zoneData:Zone({641, 642, 643, 644, 868}, { -- Val'sharah (zone)
+zoneData:Zone({641, 642, 643, 644}, { -- Val'sharah (zone)
     7520, -- The Loremaster
     11190, -- Broken Isles Pathfinder, Part One
     11446, -- Broken Isles Pathfinder, Part Two

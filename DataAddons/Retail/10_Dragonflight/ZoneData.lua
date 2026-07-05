@@ -1,4 +1,4 @@
-local _, addon = ...
+﻿local _, addon = ...
 local shared = addon.Data.ZoneData.Shared
 
 local zoneData = KrowiAF.NewZoneData("Dragonflight")
@@ -50,7 +50,7 @@ zoneData:Zone({2119, 2120, 2121, 2122, 2123, 2124, 2125, 2126}, { -- Vault of th
     19576, -- Mythic: Awakening the Dragonflight Raids
 })
 
-zoneData:Zone({2166, 2167, 2168, 2169, 2170, 2171, 2172, 2173, 2174}, { -- Aberrus, the Shadowed Crucible (raid)
+zoneData:Zone({2166, 2167, 2168, 2169, 2170}, { -- Aberrus, the Shadowed Crucible (raid)
     18163, -- Discarded Works
     18164, -- Fury of Giants
     18165, -- Neltharion's Shadow

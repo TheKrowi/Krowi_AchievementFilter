@@ -2,7 +2,7 @@
     <Script file="MapVerifierMixin.lua"/>
 
     <Frame name="KrowiAF_MapVerifier_Template" mixin="KrowiAF_MapVerifierMixin" toplevel="true" parent="UIParent" enableMouse="true" inherits="ButtonFrameTemplate" virtual="true" hidden="true">
-        <Size x="500" y="778"/>
+        <Size x="500" y="806"/>
         <Anchors>
             <Anchor point="CENTER" x="0" y="0"/>
         </Anchors>

@@ -1,4 +1,4 @@
-local _, addon = ...
+﻿local _, addon = ...
 addon.Data.ZoneData.Shared.MistsOfPandaria = {}
 local sharedMoP = addon.Data.ZoneData.Shared.MistsOfPandaria
 
@@ -117,7 +117,7 @@ zoneData:Zone(424, { -- Pandaria (continent)
     46, -- Universal Explorer
 })
 
-zoneData:Zone({417, 449}, { -- Temple of Kotmogu (battleground)
+zoneData:Zone(417, { -- Temple of Kotmogu (battleground)
     6740, -- Temple of Kotmogu Victory
     6882, -- Temple of Kotmogu Veteran
     6947, -- Four Square

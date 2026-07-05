@@ -1,4 +1,4 @@
-local _, addon = ...
+﻿local _, addon = ...
 local shared = addon.Data.ZoneData.Shared
 
 local zoneData = KrowiAF.NewZoneData("Shadowlands")
@@ -165,21 +165,256 @@ zoneData:Zone({1565, 1816, 1818, 1824, 1825, 1826, 1827, 1829}, { -- Ardenweald 
     7520, -- The Loremaster
 })
 
-zoneData:Zone({ -- Torghast
-    1615, 1616, 1617, 1618, 1619, 1620, 1621, 1623, 1624, 1627, 1628, 1629, 1630, 1631, 1632,
-    1635, 1636, 1641, 1645, 1656, 1705, 1712, 1716, 1720, 1721, 1736, 1749, 1751, 1752, 1753,
-    1754, 1756, 1757, 1758, 1759, 1760, 1761, 1762, 1763, 1764, 1765, 1766, 1767, 1768, 1769,
-    1770, 1771, 1772, 1773, 1774, 1776, 1777, 1778, 1779, 1780, 1781, 1782, 1783, 1784, 1785,
-    1786, 1787, 1788, 1789, 1791, 1792, 1793, 1794, 1795, 1796, 1797, 1798, 1799, 1800, 1801,
-    1802, 1803, 1804, 1805, 1806, 1807, 1808, 1809, 1810, 1811, 1812, 1833, 1834, 1835, 1836,
-    1837, 1838, 1839, 1840, 1841, 1842, 1843, 1844, 1845, 1846, 1847, 1848, 1849, 1850, 1851,
-    1852, 1853, 1854, 1855, 1856, 1857, 1858, 1859, 1860, 1861, 1862, 1863, 1864, 1865, 1867,
-    1868, 1869, 1870, 1871, 1872, 1873, 1874, 1875, 1876, 1877, 1878, 1879, 1880, 1881, 1882,
-    1883, 1884, 1885, 1886, 1887, 1888, 1889, 1890, 1891, 1892, 1893, 1894, 1895, 1896, 1897,
-    1898, 1899, 1900, 1901, 1902, 1903, 1904, 1905, 1907, 1908, 1909, 1910, 1911, 1912, 1913,
-    1914, 1920, 1921, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1974, 1975, 1976, 1977,
-    1979, 1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988, 2009, 2010, 2011, 2012
-}, {
+zoneData:Zone(1550, { -- The Shadowlands (continent)
+    14280, -- Loremaster of Shadowlands
+    14758, -- The World Beyond
+    15388, -- Shadowlands Explorer
+    14825, -- Shadowlands Voyager
+    14731, -- To All the Squirrels I've Loved and Lost
+    14515, -- Zo'Sorg's Bidding
+    14516, -- Impressing Zo'Sorg
+    14519, -- Covenant Combat
+    14315, -- Shadowlands Diplomat
+    15064, -- Breaking the Chains
+    7520, -- The Loremaster
+})
+
+zoneData:Zone(1644, { -- Ember Court (scenario)
+    14678, -- Court Favors
+    14679, -- Party Palace
+    14680, -- Something for Everyone
+    14681, -- Dredger Academy
+    14682, -- The Party Herald
+    14683, -- Dredger Style
+    14723, -- Be Our Guest
+    14724, -- People Pleaser
+    14725, -- We Happy Few
+    14726, -- It's Certainly Never Boring
+    14727, -- Master of Ceremonies
+    14749, -- Rendle's Big Day
+    16731, -- Court is Now in Session
+})
+
+zoneData:Zone(1662, { -- Queen's Conservatory (scenario)
+    14670, -- That's the Spirit
+    14675, -- Spirit Talker
+    14676, -- Divine Spirit Savior
+    14677, -- Spiritual Observations
+    14775, -- Mush Appreciated
+    14780, -- Meditation Master
+    14789, -- All Spirits Great and Small
+})
+
+zoneData:Zone(1698, { -- Seat of the Primus (covenant hall)
+    14627, -- Choosing Your Purpose
+    14790, -- Covenant Campaign
+    15647, -- Dead Men Tell Some Tales
+    14834, -- Bound with Purpose
+    14835, -- A Resolute Bond
+    14836, -- Unwavering Bond
+    14837, -- Nexus of Bonds
+    14628, -- The Road to Renown
+    14629, -- Gaining Respect
+    14630, -- Becoming a Hero
+    14631, -- Champion of the Covenant
+    15241, -- Renowned
+    15646, -- Re-Re-Re-Renowned
+    14632, -- Conducting Anima
+    14633, -- Master Navigator
+    14636, -- Adventurer in Chief
+    14839, -- Adventures: Off To Adventure
+    14840, -- Adventures: Learning the Ropes
+    14841, -- Adventures: Now You're Cooking
+    14842, -- Adventures: Strength and Resilience
+    14843, -- Adventures: Harmony of Purpose
+    14844, -- Adventures: Into the Breach
+    14845, -- Adventures: A Step in the Right Direction
+    14846, -- Adventures: Leaves in the Forest
+    14847, -- Adventures: Protector of the Shadowlands
+    14637, -- Your Covenant's Flavor
+    14638, -- The Anima Must Flow
+    14639, -- Dedication to the Restoration
+    14777, -- Restoration Expert
+    15023, -- We Can Rebuild
+    15024, -- Denying the Drought
+    15025, -- Sanctum Superior
+    15649, -- Shadowlands Dilettante
+    14684, -- Abominable Lives
+    14748, -- Wardrobe Makeover
+    14751, -- The Gang's All Here
+    14752, -- Things To Do When You're Dead
+    14753, -- It's a Wrap
+    14764, -- The Great Luckydo
+    14833, -- Fashion Abomination
+    14763, -- Crypt Couture
+})
+
+zoneData:Zone({1699, 1700}, { -- Sinfall (covenant hall)
+    14627, -- Choosing Your Purpose
+    14790, -- Covenant Campaign
+    15647, -- Dead Men Tell Some Tales
+    14834, -- Bound with Purpose
+    14835, -- A Resolute Bond
+    14836, -- Unwavering Bond
+    14837, -- Nexus of Bonds
+    14628, -- The Road to Renown
+    14629, -- Gaining Respect
+    14630, -- Becoming a Hero
+    14631, -- Champion of the Covenant
+    15241, -- Renowned
+    15646, -- Re-Re-Re-Renowned
+    14632, -- Conducting Anima
+    14633, -- Master Navigator
+    14636, -- Adventurer in Chief
+    14839, -- Adventures: Off To Adventure
+    14840, -- Adventures: Learning the Ropes
+    14841, -- Adventures: Now You're Cooking
+    14842, -- Adventures: Strength and Resilience
+    14843, -- Adventures: Harmony of Purpose
+    14844, -- Adventures: Into the Breach
+    14845, -- Adventures: A Step in the Right Direction
+    14846, -- Adventures: Leaves in the Forest
+    14847, -- Adventures: Protector of the Shadowlands
+    14637, -- Your Covenant's Flavor
+    14638, -- The Anima Must Flow
+    14639, -- Dedication to the Restoration
+    14777, -- Restoration Expert
+    15023, -- We Can Rebuild
+    15024, -- Denying the Drought
+    15025, -- Sanctum Superior
+    15649, -- Shadowlands Dilettante
+    14678, -- Court Favors
+    14679, -- Party Palace
+    14680, -- Something for Everyone
+    14681, -- Dredger Academy
+    14682, -- The Party Herald
+    14683, -- Dredger Style
+    14723, -- Be Our Guest
+    14724, -- People Pleaser
+    14725, -- We Happy Few
+    14726, -- It's Certainly Never Boring
+    14727, -- Master of Ceremonies
+    14749, -- Rendle's Big Day
+    16731, -- Court is Now in Session
+})
+
+zoneData:Zone({1701, 1702, 1703, 1819}, { -- Heart of the Forest (covenant hall)
+    14627, -- Choosing Your Purpose
+    14790, -- Covenant Campaign
+    15647, -- Dead Men Tell Some Tales
+    14834, -- Bound with Purpose
+    14835, -- A Resolute Bond
+    14836, -- Unwavering Bond
+    14837, -- Nexus of Bonds
+    14628, -- The Road to Renown
+    14629, -- Gaining Respect
+    14630, -- Becoming a Hero
+    14631, -- Champion of the Covenant
+    15241, -- Renowned
+    15646, -- Re-Re-Re-Renowned
+    14632, -- Conducting Anima
+    14633, -- Master Navigator
+    14636, -- Adventurer in Chief
+    14839, -- Adventures: Off To Adventure
+    14840, -- Adventures: Learning the Ropes
+    14841, -- Adventures: Now You're Cooking
+    14842, -- Adventures: Strength and Resilience
+    14843, -- Adventures: Harmony of Purpose
+    14844, -- Adventures: Into the Breach
+    14845, -- Adventures: A Step in the Right Direction
+    14846, -- Adventures: Leaves in the Forest
+    14847, -- Adventures: Protector of the Shadowlands
+    14637, -- Your Covenant's Flavor
+    14638, -- The Anima Must Flow
+    14639, -- Dedication to the Restoration
+    14777, -- Restoration Expert
+    15023, -- We Can Rebuild
+    15024, -- Denying the Drought
+    15025, -- Sanctum Superior
+    15649, -- Shadowlands Dilettante
+    14670, -- That's the Spirit
+    14675, -- Spirit Talker
+    14676, -- Divine Spirit Savior
+    14677, -- Spiritual Observations
+    14775, -- Mush Appreciated
+    14780, -- Meditation Master
+    14789, -- All Spirits Great and Small
+})
+
+zoneData:Zone({1707, 1708}, { -- Elysian Hold (covenant hall)
+    14627, -- Choosing Your Purpose
+    14790, -- Covenant Campaign
+    15647, -- Dead Men Tell Some Tales
+    14834, -- Bound with Purpose
+    14835, -- A Resolute Bond
+    14836, -- Unwavering Bond
+    14837, -- Nexus of Bonds
+    14628, -- The Road to Renown
+    14629, -- Gaining Respect
+    14630, -- Becoming a Hero
+    14631, -- Champion of the Covenant
+    15241, -- Renowned
+    15646, -- Re-Re-Re-Renowned
+    14632, -- Conducting Anima
+    14633, -- Master Navigator
+    14636, -- Adventurer in Chief
+    14839, -- Adventures: Off To Adventure
+    14840, -- Adventures: Learning the Ropes
+    14841, -- Adventures: Now You're Cooking
+    14842, -- Adventures: Strength and Resilience
+    14843, -- Adventures: Harmony of Purpose
+    14844, -- Adventures: Into the Breach
+    14845, -- Adventures: A Step in the Right Direction
+    14846, -- Adventures: Leaves in the Forest
+    14847, -- Adventures: Protector of the Shadowlands
+    14637, -- Your Covenant's Flavor
+    14638, -- The Anima Must Flow
+    14639, -- Dedication to the Restoration
+    14777, -- Restoration Expert
+    15023, -- We Can Rebuild
+    15024, -- Denying the Drought
+    15025, -- Sanctum Superior
+    15649, -- Shadowlands Dilettante
+    14851, -- Bastion of Protection
+    14852, -- The Hoot of the Issue
+    14853, -- All The Colors of the Painbow
+    14854, -- It's Not What You Wear
+    14502, -- Pursuing Loyalty
+    14856, -- Charmed, I'm Sure
+    14857, -- Itsy Bitsy Fighters
+    14858, -- Curse of Thirst
+    14859, -- Inside the Park Home Run
+    14860, -- Bare Necessities
+    14861, -- Learning from the Masters
+    14862, -- It's How You Wear It
+    14863, -- Death Foursworn
+    14864, -- Personal Nightmare
+    14865, -- Disciple of Humility
+    14866, -- Master of the Path
+    14887, -- To the Moon
+})
+
+zoneData:Zone(1711, { -- Ascension Coliseum (scenario)
+    14851, -- Bastion of Protection
+    14852, -- The Hoot of the Issue
+    14853, -- All The Colors of the Painbow
+    14854, -- It's Not What You Wear
+    14502, -- Pursuing Loyalty
+    14856, -- Charmed, I'm Sure
+    14857, -- Itsy Bitsy Fighters
+    14858, -- Curse of Thirst
+    14859, -- Inside the Park Home Run
+    14860, -- Bare Necessities
+    14861, -- Learning from the Masters
+    14862, -- It's How You Wear It
+    14863, -- Death Foursworn
+    14864, -- Personal Nightmare
+    14865, -- Disciple of Humility
+    14866, -- Master of the Path
+    14887, -- To the Moon
+})
+
+zoneData:Zone({1618, 1619, 1620, 1621, 1623, 1624, 1627, 1628, 1629, 1630, 1631, 1632, 1635, 1636, 1641, 1645, 1712, 1721, 1736, 1749, 1751, 1752, 1753, 1754, 1756, 1757, 1758, 1759, 1760, 1761, 1763, 1764, 1765, 1766, 1767, 1768, 1769, 1770, 1771, 1772, 1773, 1774, 1776, 1777, 1778, 1779, 1780, 1781, 1782, 1783, 1784, 1785, 1786, 1787, 1788, 1789, 1791, 1792, 1793, 1794, 1795, 1796, 1797, 1798, 1799, 1800, 1801, 1802, 1803, 1804, 1805, 1806, 1807, 1808, 1809, 1810, 1811, 1812, 1911, 1912, 1913, 1920, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1974, 1975, 1976, 1977, 1979, 1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988}, {
     14808, -- Touring Torghast
     14809, -- Traversing Torghast
     14810, -- Terror of Torghast
@@ -246,6 +481,25 @@ zoneData:Zone({ -- Torghast
 })
 
 zoneData:Zone({1663, 1664, 1665}, { -- Halls of Atonement (dungeon)
+    14418, -- Shadowlands Dungeon Hero
+    15651, -- Myths of the Shadowlands Dungeons
+    14322, -- Glory of the Shadowlands Hero
+    11183, -- Keystone Initiate
+    11184, -- Keystone Challenger
+    11185, -- Keystone Conqueror
+    11162, -- Keystone Master
+    14938, -- Shadowlands Keystone Explorer: Season One
+    14531, -- Shadowlands Keystone Conqueror: Season One
+    14532, -- Shadowlands Keystone Master: Season One
+    15073, -- Shadowlands Keystone Explorer: Season Two
+    15077, -- Shadowlands Keystone Conqueror: Season Two
+    15078, -- Shadowlands Keystone Master: Season Two
+    15327, -- Tormented Hero: Shadowlands Season 2
+    15496, -- Shadowlands Keystone Explorer: Season Three
+    15498, -- Shadowlands Keystone Conqueror: Season Three
+    15499, -- Shadowlands Keystone Master: Season Three
+    15506, -- Shadowlands Keystone Hero: Season Three
+    15691, -- Cryptic Hero: Shadowlands Season 3
     14567, -- Picking Up the Pieces
     14284, -- Breaking Bad
     14352, -- Nobody Puts Denathrius in a Corner
@@ -253,6 +507,209 @@ zoneData:Zone({1663, 1664, 1665}, { -- Halls of Atonement (dungeon)
     14410, -- Heroic: Halls of Atonement
     14411, -- Mythic: Halls of Atonement
     15048, -- Keystone Hero: Halls of Atonement
+})
+
+zoneData:Zone({1666, 1667, 1668}, { -- The Necrotic Wake (dungeon)
+    14418, -- Shadowlands Dungeon Hero
+    15651, -- Myths of the Shadowlands Dungeons
+    14322, -- Glory of the Shadowlands Hero
+    11183, -- Keystone Initiate
+    11184, -- Keystone Challenger
+    11185, -- Keystone Conqueror
+    11162, -- Keystone Master
+    14938, -- Shadowlands Keystone Explorer: Season One
+    14531, -- Shadowlands Keystone Conqueror: Season One
+    14532, -- Shadowlands Keystone Master: Season One
+    15073, -- Shadowlands Keystone Explorer: Season Two
+    15077, -- Shadowlands Keystone Conqueror: Season Two
+    15078, -- Shadowlands Keystone Master: Season Two
+    15327, -- Tormented Hero: Shadowlands Season 2
+    15496, -- Shadowlands Keystone Explorer: Season Three
+    15498, -- Shadowlands Keystone Conqueror: Season Three
+    15499, -- Shadowlands Keystone Master: Season Three
+    15506, -- Shadowlands Keystone Hero: Season Three
+    15691, -- Cryptic Hero: Shadowlands Season 3
+    14295, -- Bountiful Harvest
+    14320, -- Surgeon's Supplies
+    14285, -- Ready for Raiding VII
+    14366, -- The Necrotic Wake
+    14367, -- Heroic: The Necrotic Wake
+    14368, -- Mythic: The Necrotic Wake
+    15045, -- Keystone Hero: The Necrotic Wake
+})
+
+zoneData:Zone(1669, { -- Mists of Tirna Scithe (dungeon)
+    14418, -- Shadowlands Dungeon Hero
+    15651, -- Myths of the Shadowlands Dungeons
+    14322, -- Glory of the Shadowlands Hero
+    11183, -- Keystone Initiate
+    11184, -- Keystone Challenger
+    11185, -- Keystone Conqueror
+    11162, -- Keystone Master
+    14938, -- Shadowlands Keystone Explorer: Season One
+    14531, -- Shadowlands Keystone Conqueror: Season One
+    14532, -- Shadowlands Keystone Master: Season One
+    15073, -- Shadowlands Keystone Explorer: Season Two
+    15077, -- Shadowlands Keystone Conqueror: Season Two
+    15078, -- Shadowlands Keystone Master: Season Two
+    15327, -- Tormented Hero: Shadowlands Season 2
+    15496, -- Shadowlands Keystone Explorer: Season Three
+    15498, -- Shadowlands Keystone Conqueror: Season Three
+    15499, -- Shadowlands Keystone Master: Season Three
+    15506, -- Shadowlands Keystone Hero: Season Three
+    15691, -- Cryptic Hero: Shadowlands Season 3
+    14503, -- Hooked On Hydroponics
+    14291, -- Someone Could Trip on These!
+    14375, -- Hunger for Knowledge
+    14371, -- Mists of Tirna Scithe
+    14412, -- Heroic: Mists of Tirna Scithe
+    14413, -- Mythic: Mists of Tirna Scithe
+    15047, -- Keystone Hero: Mists of Tirna Scithe
+})
+
+zoneData:Zone({1674, 1697}, { -- Plaguefall (dungeon)
+    14418, -- Shadowlands Dungeon Hero
+    15651, -- Myths of the Shadowlands Dungeons
+    14322, -- Glory of the Shadowlands Hero
+    11183, -- Keystone Initiate
+    11184, -- Keystone Challenger
+    11185, -- Keystone Conqueror
+    11162, -- Keystone Master
+    14938, -- Shadowlands Keystone Explorer: Season One
+    14531, -- Shadowlands Keystone Conqueror: Season One
+    14532, -- Shadowlands Keystone Master: Season One
+    15073, -- Shadowlands Keystone Explorer: Season Two
+    15077, -- Shadowlands Keystone Conqueror: Season Two
+    15078, -- Shadowlands Keystone Master: Season Two
+    15327, -- Tormented Hero: Shadowlands Season 2
+    15496, -- Shadowlands Keystone Explorer: Season Three
+    15498, -- Shadowlands Keystone Conqueror: Season Three
+    15499, -- Shadowlands Keystone Master: Season Three
+    15506, -- Shadowlands Keystone Hero: Season Three
+    15691, -- Cryptic Hero: Shadowlands Season 3
+    14292, -- Riding with my Slimes
+    14347, -- Full Gores Meal
+    14296, -- Going Viral
+    14369, -- Plaguefall
+    14414, -- Heroic: Plaguefall
+    14415, -- Mythic: Plaguefall
+    15046, -- Keystone Hero: Plaguefall
+})
+
+zoneData:Zone({1675, 1676}, { -- Sanguine Depths (dungeon)
+    14418, -- Shadowlands Dungeon Hero
+    15651, -- Myths of the Shadowlands Dungeons
+    14322, -- Glory of the Shadowlands Hero
+    11183, -- Keystone Initiate
+    11184, -- Keystone Challenger
+    11185, -- Keystone Conqueror
+    11162, -- Keystone Master
+    14938, -- Shadowlands Keystone Explorer: Season One
+    14531, -- Shadowlands Keystone Conqueror: Season One
+    14532, -- Shadowlands Keystone Master: Season One
+    15073, -- Shadowlands Keystone Explorer: Season Two
+    15077, -- Shadowlands Keystone Conqueror: Season Two
+    15078, -- Shadowlands Keystone Master: Season Two
+    15327, -- Tormented Hero: Shadowlands Season 2
+    15496, -- Shadowlands Keystone Explorer: Season Three
+    15498, -- Shadowlands Keystone Conqueror: Season Three
+    15499, -- Shadowlands Keystone Master: Season Three
+    15506, -- Shadowlands Keystone Hero: Season Three
+    15691, -- Cryptic Hero: Shadowlands Season 3
+    14286, -- Residue Evil
+    14290, -- I Only Have Eyes For You
+    14289, -- Kaal-ed Shot
+    14197, -- Sanguine Depths
+    14198, -- Heroic: Sanguine Depths
+    14199, -- Mythic: Sanguine Depths
+    15052, -- Keystone Hero: Sanguine Depths
+})
+
+zoneData:Zone({1677, 1678, 1679, 1680}, { -- De Other Side (dungeon)
+    14418, -- Shadowlands Dungeon Hero
+    15651, -- Myths of the Shadowlands Dungeons
+    14322, -- Glory of the Shadowlands Hero
+    11183, -- Keystone Initiate
+    11184, -- Keystone Challenger
+    11185, -- Keystone Conqueror
+    11162, -- Keystone Master
+    14938, -- Shadowlands Keystone Explorer: Season One
+    14531, -- Shadowlands Keystone Conqueror: Season One
+    14532, -- Shadowlands Keystone Master: Season One
+    15073, -- Shadowlands Keystone Explorer: Season Two
+    15077, -- Shadowlands Keystone Conqueror: Season Two
+    15078, -- Shadowlands Keystone Master: Season Two
+    15327, -- Tormented Hero: Shadowlands Season 2
+    15496, -- Shadowlands Keystone Explorer: Season Three
+    15498, -- Shadowlands Keystone Conqueror: Season Three
+    15499, -- Shadowlands Keystone Master: Season Three
+    15506, -- Shadowlands Keystone Hero: Season Three
+    15691, -- Cryptic Hero: Shadowlands Season 3
+    14354, -- Highly Communicable
+    14374, -- Couple's Therapy
+    14606, -- Thinking with...
+    14373, -- De Other Side
+    14408, -- Heroic: De Other Side
+    14409, -- Mythic: De Other Side
+    15051, -- Keystone Hero: De Other Side
+})
+
+zoneData:Zone({1683, 1684, 1685, 1686, 1687}, { -- Theater of Pain (dungeon)
+    14418, -- Shadowlands Dungeon Hero
+    15651, -- Myths of the Shadowlands Dungeons
+    14322, -- Glory of the Shadowlands Hero
+    11183, -- Keystone Initiate
+    11184, -- Keystone Challenger
+    11185, -- Keystone Conqueror
+    11162, -- Keystone Master
+    14938, -- Shadowlands Keystone Explorer: Season One
+    14531, -- Shadowlands Keystone Conqueror: Season One
+    14532, -- Shadowlands Keystone Master: Season One
+    15073, -- Shadowlands Keystone Explorer: Season Two
+    15077, -- Shadowlands Keystone Conqueror: Season Two
+    15078, -- Shadowlands Keystone Master: Season Two
+    15327, -- Tormented Hero: Shadowlands Season 2
+    15496, -- Shadowlands Keystone Explorer: Season Three
+    15498, -- Shadowlands Keystone Conqueror: Season Three
+    15499, -- Shadowlands Keystone Master: Season Three
+    15506, -- Shadowlands Keystone Hero: Season Three
+    15691, -- Cryptic Hero: Shadowlands Season 3
+    14297, -- Three Choose One
+    14607, -- Fresh Meat!
+    14533, -- Royal Rumble
+    14372, -- Theater of Pain
+    14416, -- Heroic: Theater of Pain
+    14417, -- Mythic: Theater of Pain
+    15050, -- Keystone Hero: Theater of Pain
+})
+
+zoneData:Zone({1692, 1693, 1694, 1695}, { -- Spires Of Ascension (dungeon)
+    14418, -- Shadowlands Dungeon Hero
+    15651, -- Myths of the Shadowlands Dungeons
+    14322, -- Glory of the Shadowlands Hero
+    11183, -- Keystone Initiate
+    11184, -- Keystone Challenger
+    11185, -- Keystone Conqueror
+    11162, -- Keystone Master
+    14938, -- Shadowlands Keystone Explorer: Season One
+    14531, -- Shadowlands Keystone Conqueror: Season One
+    14532, -- Shadowlands Keystone Master: Season One
+    15073, -- Shadowlands Keystone Explorer: Season Two
+    15077, -- Shadowlands Keystone Conqueror: Season Two
+    15078, -- Shadowlands Keystone Master: Season Two
+    15327, -- Tormented Hero: Shadowlands Season 2
+    15496, -- Shadowlands Keystone Explorer: Season Three
+    15498, -- Shadowlands Keystone Conqueror: Season Three
+    15499, -- Shadowlands Keystone Master: Season Three
+    15506, -- Shadowlands Keystone Hero: Season Three
+    15691, -- Cryptic Hero: Shadowlands Season 3
+    14331, -- Goliath Offline
+    14323, -- ExSPEARiential
+    14327, -- I Can See My House From Here
+    14326, -- Spires of Ascension
+    14324, -- Heroic: Spires of Ascension
+    14325, -- Mythic: Spires of Ascension
+    15049, -- Keystone Hero: Spires of Ascension
 })
 
 zoneData:Zone({1735, 1744, 1745, 1746, 1747, 1748, 1750}, { -- Castle Nathria (raid)
@@ -394,7 +851,6 @@ zoneData:Zone({2047, 2048, 2049, 2050, 2051, 2052}, { -- Sepulcher of the First 
     15417, -- Sepulcher of the First Ones
     15478, -- Heroic: Sepulcher of the First Ones
     15490, -- Mythic: Sepulcher of the First Ones
-    15396, -- We Are All Made of Stars
     15468, -- We Are All Made of Stars (Heroic)
     15469, -- We Are All Made of Stars (Mythic)
     15470, -- Ahead of the Curve: The Jailer

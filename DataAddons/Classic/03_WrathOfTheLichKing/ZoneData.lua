@@ -3,22 +3,23 @@ local sharedWotLK = addon.Data.ZoneData.Shared.WrathOfTheLichKing
 
 local zoneData = sharedWotLK.ZoneData
 
-local northrendMeta = {
+zoneData:Zone(113, { -- Northrend (continent)
     41, -- Loremaster of Northrend
     2256, -- Northern Exposure
     2257, -- Frostbitten
     2557, -- To All The Squirrels Who Shared My Life
     45, -- Northrend Explorer
     46, -- Universal Explorer
-}
-
-zoneData:Zone(113, { -- Northrend (continent)
-    northrendMeta,
     sharedWotLK.Northrend,
 })
 
 zoneData:Zone(114, { -- Borean Tundra (zone)
-    northrendMeta,
+    41, -- Loremaster of Northrend
+    2256, -- Northern Exposure
+    2257, -- Frostbitten
+    2557, -- To All The Squirrels Who Shared My Life
+    45, -- Northrend Explorer
+    46, -- Universal Explorer
     1008, -- The Kirin Tor
     1010, -- Northrend Vanguard
     1011, -- The Winds of the North
@@ -31,7 +32,12 @@ zoneData:Zone(114, { -- Borean Tundra (zone)
 })
 
 zoneData:Zone(115, { -- Dragonblight (zone)
-    northrendMeta,
+    41, -- Loremaster of Northrend
+    2256, -- Northern Exposure
+    2257, -- Frostbitten
+    2557, -- To All The Squirrels Who Shared My Life
+    45, -- Northrend Explorer
+    46, -- Universal Explorer
     1008, -- The Kirin Tor
     1010, -- Northrend Vanguard
     1011, -- The Winds of the North
@@ -45,12 +51,22 @@ zoneData:Zone(115, { -- Dragonblight (zone)
 })
 
 zoneData:Zone(116, { -- Grizzly Hills (zone)
-    northrendMeta,
+    41, -- Loremaster of Northrend
+    2256, -- Northern Exposure
+    2257, -- Frostbitten
+    2557, -- To All The Squirrels Who Shared My Life
+    45, -- Northrend Explorer
+    46, -- Universal Explorer
     sharedWotLK.GrizzlyHills,
 })
 
 zoneData:Zone(117, { -- Howling Fjord (zone)
-    northrendMeta,
+    41, -- Loremaster of Northrend
+    2256, -- Northern Exposure
+    2257, -- Frostbitten
+    2557, -- To All The Squirrels Who Shared My Life
+    45, -- Northrend Explorer
+    46, -- Universal Explorer
     1011, -- The Winds of the North
     1012, -- The Winds of the North
     2556, -- Pest Control
@@ -61,7 +77,12 @@ zoneData:Zone(117, { -- Howling Fjord (zone)
 })
 
 zoneData:Zone({118, 170}, { -- Icecrown (zone)
-    northrendMeta,
+    41, -- Loremaster of Northrend
+    2256, -- Northern Exposure
+    2257, -- Frostbitten
+    2557, -- To All The Squirrels Who Shared My Life
+    45, -- Northrend Explorer
+    46, -- Universal Explorer
     1009, -- Knights of the Ebon Blade
     1010, -- Northrend Vanguard
     1011, -- The Winds of the North
@@ -74,17 +95,32 @@ zoneData:Zone({118, 170}, { -- Icecrown (zone)
 })
 
 zoneData:Zone(119, { -- Sholazar Basin (zone)
-    northrendMeta,
+    41, -- Loremaster of Northrend
+    2256, -- Northern Exposure
+    2257, -- Frostbitten
+    2557, -- To All The Squirrels Who Shared My Life
+    45, -- Northrend Explorer
+    46, -- Universal Explorer
     sharedWotLK.SholazarBasin,
 })
 
 zoneData:Zone(120, { -- The Storm Peaks (zone)
-    northrendMeta,
+    41, -- Loremaster of Northrend
+    2256, -- Northern Exposure
+    2257, -- Frostbitten
+    2557, -- To All The Squirrels Who Shared My Life
+    45, -- Northrend Explorer
+    46, -- Universal Explorer
     sharedWotLK.StormPeaks,
 })
 
 zoneData:Zone(121, { -- Zul'Drak (zone)
-    northrendMeta,
+    41, -- Loremaster of Northrend
+    2256, -- Northern Exposure
+    2257, -- Frostbitten
+    2557, -- To All The Squirrels Who Shared My Life
+    45, -- Northrend Explorer
+    46, -- Universal Explorer
     1009, -- Knights of the Ebon Blade
     1010, -- Northrend Vanguard
     2556, -- Pest Control

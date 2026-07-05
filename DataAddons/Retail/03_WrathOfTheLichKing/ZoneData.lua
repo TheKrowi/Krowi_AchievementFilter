@@ -4,7 +4,7 @@ local sharedWotLK = addon.Data.ZoneData.Shared.WrathOfTheLichKing
 
 local zoneData = sharedWotLK.ZoneData
 
-local northrendMeta = {
+zoneData:Zone(113, { -- Northrend (continent)
     7520, -- The Loremaster
     shared.OldWorldPetAchievements,
     41, -- Loremaster of Northrend
@@ -15,10 +15,6 @@ local northrendMeta = {
     6588, -- Northrend Safari
     6615, -- Northrend Tamer
     46, -- Universal Explorer
-}
-
-zoneData:Zone(113, { -- Northrend (continent)
-    northrendMeta,
     6607, -- Taming Azeroth
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
@@ -29,7 +25,16 @@ zoneData:Zone(113, { -- Northrend (continent)
 })
 
 zoneData:Zone(114, { -- Borean Tundra (zone)
-    northrendMeta,
+    7520, -- The Loremaster
+    shared.OldWorldPetAchievements,
+    41, -- Loremaster of Northrend
+    2256, -- Northern Exposure
+    2257, -- Frostbitten
+    2557, -- To All The Squirrels Who Shared My Life
+    45, -- Northrend Explorer
+    6588, -- Northrend Safari
+    6615, -- Northrend Tamer
+    46, -- Universal Explorer
     1008, -- The Kirin Tor
     1010, -- Northrend Vanguard
     1011, -- The Winds of the North
@@ -43,7 +48,16 @@ zoneData:Zone(114, { -- Borean Tundra (zone)
 })
 
 zoneData:Zone(115, { -- Dragonblight (zone)
-    northrendMeta,
+    7520, -- The Loremaster
+    shared.OldWorldPetAchievements,
+    41, -- Loremaster of Northrend
+    2256, -- Northern Exposure
+    2257, -- Frostbitten
+    2557, -- To All The Squirrels Who Shared My Life
+    45, -- Northrend Explorer
+    6588, -- Northrend Safari
+    6615, -- Northrend Tamer
+    46, -- Universal Explorer
     6607, -- Taming Azeroth
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
@@ -66,12 +80,30 @@ zoneData:Zone(115, { -- Dragonblight (zone)
 })
 
 zoneData:Zone(116, { -- Grizzly Hills (zone)
-    northrendMeta,
+    7520, -- The Loremaster
+    shared.OldWorldPetAchievements,
+    41, -- Loremaster of Northrend
+    2256, -- Northern Exposure
+    2257, -- Frostbitten
+    2557, -- To All The Squirrels Who Shared My Life
+    45, -- Northrend Explorer
+    6588, -- Northrend Safari
+    6615, -- Northrend Tamer
+    46, -- Universal Explorer
     sharedWotLK.GrizzlyHills,
 })
 
 zoneData:Zone(117, { -- Howling Fjord (zone)
-    northrendMeta,
+    7520, -- The Loremaster
+    shared.OldWorldPetAchievements,
+    41, -- Loremaster of Northrend
+    2256, -- Northern Exposure
+    2257, -- Frostbitten
+    2557, -- To All The Squirrels Who Shared My Life
+    45, -- Northrend Explorer
+    6588, -- Northrend Safari
+    6615, -- Northrend Tamer
+    46, -- Universal Explorer
     6607, -- Taming Azeroth
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
@@ -89,7 +121,16 @@ zoneData:Zone(117, { -- Howling Fjord (zone)
 })
 
 zoneData:Zone({118, 170}, { -- Icecrown (zone)
-    northrendMeta,
+    7520, -- The Loremaster
+    shared.OldWorldPetAchievements,
+    41, -- Loremaster of Northrend
+    2256, -- Northern Exposure
+    2257, -- Frostbitten
+    2557, -- To All The Squirrels Who Shared My Life
+    45, -- Northrend Explorer
+    6588, -- Northrend Safari
+    6615, -- Northrend Tamer
+    46, -- Universal Explorer
     6607, -- Taming Azeroth
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
@@ -109,17 +150,44 @@ zoneData:Zone({118, 170}, { -- Icecrown (zone)
 })
 
 zoneData:Zone(119, { -- Sholazar Basin (zone)
-    northrendMeta,
+    7520, -- The Loremaster
+    shared.OldWorldPetAchievements,
+    41, -- Loremaster of Northrend
+    2256, -- Northern Exposure
+    2257, -- Frostbitten
+    2557, -- To All The Squirrels Who Shared My Life
+    45, -- Northrend Explorer
+    6588, -- Northrend Safari
+    6615, -- Northrend Tamer
+    46, -- Universal Explorer
     sharedWotLK.SholazarBasin,
 })
 
 zoneData:Zone(120, { -- The Storm Peaks (zone)
-    northrendMeta,
+    7520, -- The Loremaster
+    shared.OldWorldPetAchievements,
+    41, -- Loremaster of Northrend
+    2256, -- Northern Exposure
+    2257, -- Frostbitten
+    2557, -- To All The Squirrels Who Shared My Life
+    45, -- Northrend Explorer
+    6588, -- Northrend Safari
+    6615, -- Northrend Tamer
+    46, -- Universal Explorer
     sharedWotLK.StormPeaks,
 })
 
 zoneData:Zone(121, { -- Zul'Drak (zone)
-    northrendMeta,
+    7520, -- The Loremaster
+    shared.OldWorldPetAchievements,
+    41, -- Loremaster of Northrend
+    2256, -- Northern Exposure
+    2257, -- Frostbitten
+    2557, -- To All The Squirrels Who Shared My Life
+    45, -- Northrend Explorer
+    6588, -- Northrend Safari
+    6615, -- Northrend Tamer
+    46, -- Universal Explorer
     6607, -- Taming Azeroth
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors

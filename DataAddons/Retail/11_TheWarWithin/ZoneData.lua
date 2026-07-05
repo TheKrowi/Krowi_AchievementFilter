@@ -1,4 +1,4 @@
-local _, addon = ...
+﻿local _, addon = ...
 local shared = addon.Data.ZoneData.Shared
 
 local delves = {
@@ -222,7 +222,7 @@ zoneData:Zone(2215, { -- Hallowfall (zone)
     40342, -- Hallowfall Reverse: Gold
 })
 
-zoneData:Zone({2248, 2322, 2339, 2367, 2368}, { -- Isle of Dorn (zone)
+zoneData:Zone({2248, 2339}, { -- Isle of Dorn (zone)
     20118, -- The Isle of Dorn
     20595, -- Sojourner of Isle of Dorn
     40831, -- Explore the Isle of Dorn

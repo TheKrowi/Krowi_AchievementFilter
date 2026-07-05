@@ -1,4 +1,4 @@
-local _, addon = ...
+﻿local _, addon = ...
 local shared = addon.Data.ZoneData.Shared
 
 local zoneData = KrowiAF.NewZoneData("WarlordsOfDaenor")
@@ -326,7 +326,7 @@ zoneData:Zone({574, 575, 576}, { -- Shadowmoon Burial Grounds (dungeon)
     16660, -- Keystone Hero: Shadowmoon Burial Grounds
 })
 
-zoneData:Zone({588, 589, 622, 624, 1408, 1478}, { -- Ashran (battleground)
+zoneData:Zone({588, 589, 622, 624}, { -- Ashran (battleground)
     9102, -- Ashran Victory
     9218, -- Grand Theft, 1st Degree
     9219, -- Grand Theft, 2nd Degree

@@ -481,6 +481,115 @@ local function BuildExportCSV_LinkGroups()
     return table.concat(lines, "\n")
 end
 
+local function BuildExportCSV_AchievementZones()
+    local d = GetData()
+    local lines = { "achievementId,zones" }
+
+    local achToMaps = {}
+
+    local primaryIds = {}
+    for id, verdict in next, d.Maps do
+        if verdict ~= "Skip" and not d.Links[id] then
+            tinsert(primaryIds, id)
+        end
+    end
+    table.sort(primaryIds)
+
+    for _, primId in next, primaryIds do
+        local groupIds = { primId }
+        for otherId, pId in next, d.Links do
+            if pId == primId then
+                tinsert(groupIds, otherId)
+            end
+        end
+
+        for _, mapId in next, groupIds do
+            local mapData = addon.Data.Maps[mapId]
+            if mapData then
+                for _, achList in next, { mapData.Achievements, mapData.Achievements10, mapData.Achievements25 } do
+                    if achList then
+                        for _, ach in next, achList do
+                            if ach then
+                                local achId = ach.Id
+                                achToMaps[achId] = achToMaps[achId] or {}
+                                local found = false
+                                for _, existingId in next, achToMaps[achId] do
+                                    if existingId == primId then
+                                        found = true
+                                        break
+                                    end
+                                end
+                                if not found then
+                                    tinsert(achToMaps[achId], primId)
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+
+    local sortedAchs = {}
+    for achId in next, achToMaps do tinsert(sortedAchs, achId) end
+    table.sort(sortedAchs)
+
+    for _, achId in next, sortedAchs do
+        local mapIds = achToMaps[achId]
+        table.sort(mapIds)
+        tinsert(lines, CSVRow(achId, table.concat(mapIds, ", ")))
+    end
+
+    return table.concat(lines, "\n")
+end
+
+local function BuildExportCSV_AchievementCount()
+    local d = GetData()
+    local lines = { "primaryId,primaryName,achievementCount" }
+
+    local primaryIds = {}
+    for id, verdict in next, d.Maps do
+        if verdict ~= "Skip" and not d.Links[id] then
+            tinsert(primaryIds, id)
+        end
+    end
+    table.sort(primaryIds)
+
+    for _, primId in next, primaryIds do
+        local info = C_Map.GetMapInfo(primId)
+        local name = info and info.name or "?"
+
+        local groupIds = { primId }
+        for otherId, pId in next, d.Links do
+            if pId == primId then
+                tinsert(groupIds, otherId)
+            end
+        end
+
+        local seen = {}
+        local count = 0
+        for _, mapId in next, groupIds do
+            local mapData = addon.Data.Maps[mapId]
+            if mapData then
+                for _, achList in next, { mapData.Achievements, mapData.Achievements10, mapData.Achievements25 } do
+                    if achList then
+                        for _, ach in next, achList do
+                            if ach and not seen[ach] then
+                                seen[ach] = true
+                                count = count + 1
+                            end
+                        end
+                    end
+                end
+            end
+        end
+
+        tinsert(lines, CSVRow(primId, name, count))
+    end
+
+    return table.concat(lines, "\n")
+end
+
 -- [[ OnLoad ]] --
 
 function KrowiAF_MapVerifierMixin:OnLoad()
@@ -1044,7 +1153,7 @@ function KrowiAF_MapVerifierMixin:OnLoad()
     end)
 
     local exportGroupsBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
-    exportGroupsBtn:SetSize(95, 22)
+    exportGroupsBtn:SetSize(82, 22)
     exportGroupsBtn:SetText("Exp Groups")
     exportGroupsBtn:SetPoint("TOPRIGHT", inset, "TOPRIGHT", -padLeft, y)
     exportGroupsBtn:SetScript("OnClick", function()
@@ -1055,7 +1164,7 @@ function KrowiAF_MapVerifierMixin:OnLoad()
     end)
 
     local exportSkipBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
-    exportSkipBtn:SetSize(95, 22)
+    exportSkipBtn:SetSize(82, 22)
     exportSkipBtn:SetText("Exp Skip")
     exportSkipBtn:SetPoint("RIGHT", exportGroupsBtn, "LEFT", -4, 0)
     exportSkipBtn:SetScript("OnClick", function()
@@ -1066,13 +1175,37 @@ function KrowiAF_MapVerifierMixin:OnLoad()
     end)
 
     local exportActiveBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
-    exportActiveBtn:SetSize(95, 22)
+    exportActiveBtn:SetSize(82, 22)
     exportActiveBtn:SetText("Exp Active")
     exportActiveBtn:SetPoint("RIGHT", exportSkipBtn, "LEFT", -4, 0)
     exportActiveBtn:SetScript("OnClick", function()
         local textFrame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template")
         textFrame:Init("Map Verifier Export — Active Maps")
         textFrame.Input:SetText(BuildExportCSV_Active())
+        textFrame:Show()
+    end)
+
+    local exportAchCountBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
+    exportAchCountBtn:SetSize(82, 22)
+    exportAchCountBtn:SetText("Exp AchCnt")
+    exportAchCountBtn:SetPoint("RIGHT", exportActiveBtn, "LEFT", -4, 0)
+    exportAchCountBtn:SetScript("OnClick", function()
+        local textFrame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template")
+        textFrame:Init("Map Verifier Export — Achievement Counts")
+        textFrame.Input:SetText(BuildExportCSV_AchievementCount())
+        textFrame:Show()
+    end)
+
+    y = y - 28
+
+    local exportAchZonesBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
+    exportAchZonesBtn:SetSize(110, 22)
+    exportAchZonesBtn:SetText("Exp AchZones")
+    exportAchZonesBtn:SetPoint("TOPLEFT", inset, "TOPLEFT", padLeft, y)
+    exportAchZonesBtn:SetScript("OnClick", function()
+        local textFrame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template")
+        textFrame:Init("Map Verifier Export — Achievement Zones")
+        textFrame.Input:SetText(BuildExportCSV_AchievementZones())
         textFrame:Show()
     end)
 end
