@@ -653,6 +653,16 @@
             "approve": true,
             "matchCommandLine": true
         },
-        ".\\Test-VerifyScript.ps1": true
+        ".\\Test-VerifyScript.ps1": true,
+        "/^\\$ids = 151\\.\\.175\n\\$results = @\\(\\)\nforeach \\(\\$id in \\$ids\\) \\{\n    \\$body = \"draw=1&start=0&length=1&search\\[value\\]=\\$id\"\n    try \\{\n        \\$resp = Invoke-RestMethod -Uri \"http://localhost:5000/dbc/data/achievement/\\?build=12\\.0\\.7\\.68275\" -Method POST -Body \\$body -ContentType \"application/x-www-form-urlencoded\"\n        \\$rows = \\$resp\\.data\n        if \\(\\$rows -and \\$rows\\.Count -gt 0\\) \\{\n            # find exact id match\n            \\$match = \\$rows \\| Where-Object \\{ \\$_\\[5\\] -eq \\$id \\}\n            if \\(-not \\$match\\) \\{ \\$match = \\$rows\\[0\\] \\}\n            \\$results \\+= \\[PSCustomObject\\]@\\{ id=\\$id; title=\\$match\\[1\\]; description=\\$match\\[0\\] \\}\n        \\} else \\{\n            \\$results \\+= \\[PSCustomObject\\]@\\{ id=\\$id; title=\"NOT FOUND\"; description=\"\" \\}\n        \\}\n    \\} catch \\{\n        \\$results \\+= \\[PSCustomObject\\]@\\{ id=\\$id; title=\"ERROR: \\$_\"; description=\"\" \\}\n    \\}\n\\}\n\\$results \\| Format-Table -AutoSize\n$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        ".\\Evaluate-ZoneData.ps1": true,
+        ".\\Evaluate-ZoneDataDecisions.ps1": true,
+        "/^& \"e:\\\\World of Warcraft Addon Development\\\\Krowi_AchievementFilter\\\\\\.github\\\\skills\\\\add-zone-data\\\\_lookup_ids\\.ps1\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
     },
 }
