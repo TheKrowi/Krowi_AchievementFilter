@@ -129,6 +129,55 @@ foreach ($entry in ($added + $present)) {
 }
 if ($missingViolations -eq 0) { Write-Host "  OK — no violations." }
 
+# ── Check 3: DB title verification ───────────────────────────────────────────
+# Queries wow.tools.local for every ID in the main log and verifies the title
+# in the decisions log matches the game DB exactly (after HTML-entity decode).
+# IDs not found in this build (e.g. Classic-only IDs) are silently skipped.
+# If the DB server is unreachable the check fails hard — it is not optional.
+Write-Host "Check 3: Verifying titles in main log match the game DB"
+
+$idsToVerify = @($decisions | Select-Object -ExpandProperty Id | Sort-Object -Unique)
+$build = "12.0.7.68275"
+$pat   = "^(" + ($idsToVerify -join "|") + ")$"
+$body  = "draw=1&start=0&length=$($idsToVerify.Count + 10)&columns[3][search][value]=$pat&columns[3][search][regex]=true"
+
+function Decode-Html([string]$s) {
+    $s -replace '&#39;', "'" -replace '&amp;', '&' -replace '&quot;', '"' -replace '&lt;', '<' -replace '&gt;', '>'
+}
+
+try {
+    $resp = Invoke-WebRequest "http://localhost:5000/dbc/data/achievement/?build=$build" `
+        -Method POST -Body $body -ContentType "application/x-www-form-urlencoded" -UseBasicParsing
+} catch {
+    Add-Issue "DB unreachable at http://localhost:5000 — title check requires the local DB server running. Error: $_"
+    $resp = $null
+}
+
+if ($null -ne $resp) {
+    $rows = ($resp.Content | ConvertFrom-Json).data
+    $dbTitles = @{}
+    foreach ($row in $rows) { $dbTitles[$row[3]] = $row[1] }  # col3=ID, col1=Title_lang
+
+    $titleViolations = 0
+    foreach ($entry in $decisions) {
+        $sid = "$($entry.Id)"
+        if (-not $dbTitles.ContainsKey($sid)) { continue }  # not in this DB build (Classic-only etc.) — skip
+
+        $dbTitle  = (Decode-Html $dbTitles[$sid]).Trim()
+        $logTitle = $entry.Title.Trim()
+
+        if ($dbTitle -cne $logTitle) {
+            Add-Issue "Achievement $($entry.Id) title mismatch — log: '$logTitle' | DB says: '$dbTitle'"
+            $titleViolations++
+        }
+    }
+
+    $checkedCount = ($decisions | Where-Object { $dbTitles.ContainsKey("$($_.Id)") }).Count
+    if ($titleViolations -eq 0) {
+        Write-Host "  OK — $checkedCount/$($idsToVerify.Count) titles verified against DB (build $build); $($idsToVerify.Count - $checkedCount) not in this build (skipped)."
+    }
+}
+
 # ── Summary ──────────────────────────────────────────────────────────────────
 Write-Host "`n─────────────────────────────────────────────────────────────"
 if ($issueCount -eq 0) {

@@ -96,3 +96,9 @@ zoneData:Zone({500, 503}, { -- Bizmo's Brawlpub / Brawl'gar Arena (zone)
     61426, -- Bare Knuckle Brawl
     61429, -- Brawl Star
 })
+
+shared.GenericBattleground = {
+    227, -- Damage Control
+    229, -- The Grim Reaper
+    231, -- Wrecking Ball
+}

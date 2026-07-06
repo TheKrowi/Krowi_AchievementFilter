@@ -89,6 +89,7 @@ local zoneData = KrowiAF.NewZoneData("Midnight")
 
 zoneData:Zone(2393, { -- Silvermoon City (city)
     63343, -- Goal!
+    275, -- Veteran Nanny
 })
 
 zoneData:Zone({2395, 2579}, { -- Eversong Woods (zone)
@@ -190,7 +191,7 @@ zoneData:Zone({2437, 2536}, { -- Zul'Aman (zone)
     quelThalas,
 })
 
-zoneData:Zone(2444, { -- Slayer's Rise (battleground)
+zoneData:Zone(2444, { -- Slayer's Rise (zone)
     61225, -- Investigating the Rise
     61226, -- Uprising
     61227, -- Entering the Void
@@ -203,6 +204,10 @@ zoneData:Zone(2444, { -- Slayer's Rise (battleground)
     61448, -- Frequent the Rise
     61449, -- Customary Rise
     61446, -- Slayer's Mastery
+})
+
+zoneData:Zone(2397, { -- Slayer's Rise (battleground)
+    shared.GenericBattleground,
 })
 
 zoneData:Zone({2492, 2493, 2494, 2496, 2497, 2498, 2499}, { -- Windrunner Spire (dungeon)

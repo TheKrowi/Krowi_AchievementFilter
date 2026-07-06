@@ -663,6 +663,26 @@
         "/^& \"e:\\\\World of Warcraft Addon Development\\\\Krowi_AchievementFilter\\\\\\.github\\\\skills\\\\add-zone-data\\\\_lookup_ids\\.ps1\"$/": {
             "approve": true,
             "matchCommandLine": true
+        },
+        "/^& \"e:\\\\World of Warcraft Addon Development\\\\Krowi_AchievementFilter\\\\\\.github\\\\skills\\\\add-zone-data\\\\_check_csv\\.ps1\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^& \"e:\\\\World of Warcraft Addon Development\\\\Krowi_AchievementFilter\\\\\\.github\\\\skills\\\\add-zone-data\\\\_zone_search\\.ps1\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^& \"e:\\\\World of Warcraft Addon Development\\\\Krowi_AchievementFilter\\\\\\.github\\\\skills\\\\add-zone-data\\\\_linkgroups_search\\.ps1\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^& \"e:\\\\World of Warcraft Addon Development\\\\Krowi_AchievementFilter\\\\\\.github\\\\skills\\\\add-zone-data\\\\_find_zonefile\\.ps1\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^& \"e:\\\\World of Warcraft Addon Development\\\\Krowi_AchievementFilter\\\\\\.github\\\\skills\\\\add-zone-data\\\\_find_zonefile\\.ps1\" \\| Select-String \"ZoneData\" \\| Select-Object -First 30 Line$/": {
+            "approve": true,
+            "matchCommandLine": true
         }
     },
 }

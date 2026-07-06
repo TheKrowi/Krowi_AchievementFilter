@@ -486,6 +486,7 @@ zoneData:Zone({850, 851, 852, 853, 854, 855, 856}, { -- Tomb of Sargeras (raid)
 })
 
 zoneData:Zone(907, { -- Seething Shore (battleground)
+    shared.GenericBattleground,
     12409, -- Seething Shore Victory
     12410, -- Seething Shore Veteran
     12404, -- Claim Jumper

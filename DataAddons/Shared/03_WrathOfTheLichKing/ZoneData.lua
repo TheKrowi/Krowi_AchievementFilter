@@ -17,6 +17,7 @@ zoneData:Zone(125, { -- Dalaran (city)
     1957, -- There's Gold In That There Fountain
     1958, -- I Smell A Giant Rat
     2096, -- The Coin Master
+    272, -- Torch Juggler
 })
 
 zoneData:Zone(126, { -- Dalaran - The Underbelly
@@ -35,7 +36,9 @@ zoneData:Zone(126, { -- Dalaran - The Underbelly
     2096, -- The Coin Master
 })
 
-zoneData:Zone(128, nil) -- Strand of the Ancients (battleground)
+zoneData:Zone(128, { -- Strand of the Ancients (battleground)
+    shared.GenericBattleground,
+})
 
 zoneData:Zone(141, nil, { -- The Eye of Eternity (raid)
     2148, -- Denyin' the Scion (10 player)
@@ -82,6 +85,7 @@ zoneData:Zone(156, { -- Vault of Archavon (raid)
 })
 
 zoneData:Zone(169, { -- Isle of Conquest (battleground)
+    shared.GenericBattleground,
     3776, -- Isle of Conquest Victory
     3777, -- Isle of Conquest Veteran
     3851, -- Mine
@@ -384,6 +388,7 @@ zoneData:Zone(121, { -- Zul'Drak (zone)
 })
 
 zoneData:Zone(123, { -- Wintergrasp (battleground)
+    shared.GenericBattleground,
     9924, -- Field Photographer
     1717, -- Wintergrasp Victory
     1718, -- Wintergrasp Veteran

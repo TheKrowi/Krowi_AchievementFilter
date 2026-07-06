@@ -3,6 +3,8 @@
 Records every achievement evaluated for zone placement — added, already present, or skipped with reason.
 Update this file whenever a zone placement decision is made via the `add-zone-data` skill.
 
+**Highest ID Analyzed: 275**
+
 ## Main Log
 
 | ID | Title | Decision | Zone ID | Zone Name | Reason | Date |
@@ -68,6 +70,50 @@ Update this file whenever a zone placement decision is made via the `add-zone-da
 | 167 | Warsong Gulch Veteran | ✅ already present | 92, 1339 | Warsong Gulch | Already in `Shared/01_Vanilla/ZoneData.lua` Warsong Gulch entry | 2026-07-05 |
 | 168 | Warsong Gulch Perfection | ✅ already present | 92, 1339 | Warsong Gulch | Already in `Shared/01_Vanilla/ZoneData.lua` Warsong Gulch entry | 2026-07-05 |
 | 174 | Nothing Boring About Borean | ✅ added | 114 | Borean Tundra | Added to `Shared/03_WrathOfTheLichKing/ZoneData.lua`; Classic variant achievement ID for same zone | 2026-07-05 |
+| 199 | Capture the Flag | ✅ already present | 92 | Warsong Gulch | Already in `Shared/01_Vanilla/ZoneData.lua` Warsong Gulch entry | 2026-07-05 |
+| 200 | Persistent Defender | ✅ already present | 92 | Warsong Gulch | Already in `Shared/01_Vanilla/ZoneData.lua` Warsong Gulch entry | 2026-07-05 |
+| 201 | Warsong Expedience | ✅ already present | 92 | Warsong Gulch | Already in `Shared/01_Vanilla/ZoneData.lua` Warsong Gulch entry | 2026-07-05 |
+| 202 | Quick Cap | ✅ already present | 92 | Warsong Gulch | Already in `Shared/01_Vanilla/ZoneData.lua` Warsong Gulch entry | 2026-07-05 |
+| 203 | Not In My House | ✅ already present | 92 | Warsong Gulch | Already in `Shared/01_Vanilla/ZoneData.lua` Warsong Gulch entry | 2026-07-05 |
+| 204 | Ironman | ✅ already present | 92 | Warsong Gulch | Already in `Shared/01_Vanilla/ZoneData.lua` Warsong Gulch entry | 2026-07-05 |
+| 206 | Supreme Defender | ✅ already present | 92 | Warsong Gulch | Already in `Shared/01_Vanilla/ZoneData.lua` Warsong Gulch entry | 2026-07-05 |
+| 207 | Save the Day | ✅ already present | 92 | Warsong Gulch | Already in `Shared/01_Vanilla/ZoneData.lua` Warsong Gulch entry | 2026-07-05 |
+| 208 | Eye of the Storm Victory | ✅ already present | 112 | Eye of the Storm | Already in `Shared/01_Vanilla/ZoneData.lua` Eye of the Storm entry | 2026-07-05 |
+| 209 | Eye of the Storm Veteran | ✅ already present | 112 | Eye of the Storm | Already in `Shared/01_Vanilla/ZoneData.lua` Eye of the Storm entry | 2026-07-05 |
+| 211 | Storm Glory | ✅ already present | 112 | Eye of the Storm | Already in `Shared/01_Vanilla/ZoneData.lua` Eye of the Storm entry | 2026-07-05 |
+| 212 | Storm Capper | ✅ already present | 112 | Eye of the Storm | Already in `Shared/01_Vanilla/ZoneData.lua` Eye of the Storm entry | 2026-07-05 |
+| 213 | Stormtrooper | ✅ already present | 112 | Eye of the Storm | Already in `Shared/01_Vanilla/ZoneData.lua` Eye of the Storm entry | 2026-07-05 |
+| 214 | Flurry | ✅ already present | 112 | Eye of the Storm | Already in `Shared/01_Vanilla/ZoneData.lua` Eye of the Storm entry | 2026-07-05 |
+| 216 | Bound for Glory | ✅ already present | 112 | Eye of the Storm | Already in `Shared/01_Vanilla/ZoneData.lua` Eye of the Storm entry | 2026-07-05 |
+| 218 | Alterac Valley Victory | ✅ already present | 91 | Alterac Valley | Already in `Shared/01_Vanilla/ZoneData.lua` Alterac Valley entry | 2026-07-05 |
+| 219 | Alterac Valley Veteran | ✅ already present | 91 | Alterac Valley | Already in `Shared/01_Vanilla/ZoneData.lua` Alterac Valley entry | 2026-07-05 |
+| 220 | Stormpike Perfection | ✅ already present | 91 | Alterac Valley | Already in `Shared/01_Vanilla/ZoneData.lua` Alterac Valley entry | 2026-07-05 |
+| 221 | Alterac Grave Robber | ✅ already present | 91 | Alterac Valley | Already in `Shared/01_Vanilla/ZoneData.lua` Alterac Valley entry | 2026-07-05 |
+| 222 | Tower Defense | ✅ already present | 91 | Alterac Valley | Already in `Shared/01_Vanilla/ZoneData.lua` Alterac Valley entry | 2026-07-05 |
+| 223 | The Sickly Gazelle | ✅ already present | 91 | Alterac Valley | Already in `Shared/01_Vanilla/ZoneData.lua` Alterac Valley entry | 2026-07-05 |
+| 224 | Loyal Defender | ✅ already present | 91 | Alterac Valley | Already in `Shared/01_Vanilla/ZoneData.lua` Alterac Valley entry | 2026-07-05 |
+| 225 | Everything Counts | ✅ already present | 91 | Alterac Valley | Already in `Shared/01_Vanilla/ZoneData.lua` Alterac Valley entry | 2026-07-05 |
+| 226 | The Alterac Blitz | ✅ already present | 91, 1537, 2162 | Alterac Valley | Already in `Shared/01_Vanilla/ZoneData.lua` Alterac Valley entry | 2026-07-05 |
+| 227 | Damage Control | ✅ added | all BGs | All battlegrounds | Added to all 18 BG zone entries via `shared.GenericBattleground` in `DataAddons/Shared/ZoneData.lua` | 2026-07-05 |
+| 229 | The Grim Reaper | ✅ added | all BGs | All battlegrounds | Added to all 18 BG zone entries via `shared.GenericBattleground` in `DataAddons/Shared/ZoneData.lua` | 2026-07-05 |
+| 230 | Battlemaster | ✅ added | 91, 92, 93, 112 | Alterac Valley, Warsong Gulch, Arathi Basin, Eye of the Storm | Added to all 4 BG entries in `Shared/01_Vanilla/ZoneData.lua` and `Shared/02_TheBurningCrusade/ZoneData.lua`; meta-achievement requiring completion of achievements in each | 2026-07-05 |
+| 231 | Wrecking Ball | ✅ added | all BGs | All battlegrounds | Added to all 18 BG zone entries via `shared.GenericBattleground` in `DataAddons/Shared/ZoneData.lua` | 2026-07-05 |
+| 233 | Bloodthirsty Berserker | ✅ already present | 112 | Eye of the Storm | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Eye of the Storm entry | 2026-07-05 |
+| 238 | An Honorable Kill | ⏭ skipped | — | — | PvP general achievement; no specific zone | 2026-07-05 |
+| 245 | That Takes Class | ⏭ skipped | — | — | PvP general achievement; no specific zone | 2026-07-05 |
+| 246 | Know Thy Enemy | ⏭ skipped | — | — | PvP general achievement; no specific zone | 2026-07-05 |
+| 247 | Make Love, Not Warcraft | ⏭ skipped | — | — | PvP general achievement; no specific zone | 2026-07-05 |
+| 248 | Sunday's Finest | ⏭ skipped | — | — | Event achievement (Noblegarden); no fixed geographic zone | 2026-07-05 |
+| 249 | Dressed for the Occasion | ⏭ skipped | — | — | Event achievement (Noblegarden); no fixed geographic zone | 2026-07-05 |
+| 252 | With a Little Helper from My Friends | ⏭ skipped | — | — | Event achievement (Winter Veil); no fixed geographic zone | 2026-07-06 |
+| 255 | Bring Me The Head of... Oh Wait | ✅ added | 435, 436 | Scarlet Monastery | Added to `{435, 436}` entry in `Shared/05_MistsOfPandaria/ZoneData.lua`; Headless Horseman uses the revamped Scarlet Monastery maps | 2026-07-06 |
+| 259 | Scrooge | ✅ added | 88 | Thunder Bluff | Added to Thunder Bluff (88) entry in `Shared/01_Vanilla/ZoneData.lua`; requires throwing a snowball at Baine Bloodhoof in Thunder Bluff during Winter Veil | 2026-07-06 |
+| 260 | Charming | ⏭ skipped | — | — | Event achievement (Love is in the Air); crafting bracelets has no zone requirement | 2026-07-06 |
+| 263 | Ice the Frost Lord | ✅ added | 265 | The Slave Pens | Added to existing Slave Pens (265) entry in `Shared/02_TheBurningCrusade/ZoneData.lua`; Ahune fought in The Slave Pens during Midsummer Fire Festival | 2026-07-06 |
+| 271 | Burning Hot Pole Dance | ⏭ skipped | — | — | Event achievement (Midsummer); ribbon poles in many zones, no fixed zone | 2026-07-06 |
+| 272 | Torch Juggler | ✅ added | 125 | Dalaran | Added to existing Dalaran (125) entry in `Shared/03_WrathOfTheLichKing/ZoneData.lua`; specifically requires being in Dalaran | 2026-07-06 |
+| 273 | On Metzen! | ✅ added | 25 | Hillsbrad Foothills | Added to Hillsbrad Foothills (25) entry in `Shared/01_Vanilla/ZoneData.lua`; Horde version of the Winter Veil rescue quest takes place in this zone | 2026-07-06 |
+| 275 | Veteran Nanny | ✅ added | 84, 85, 111, 2339, 2393 | Stormwind City, Orgrimmar, Shattrath City, Isle of Dorn (Dornogal), Silvermoon City | Added to city/zone entries across 4 files; Children's Week pets obtained from quest hubs in each location | 2026-07-06 |
 
 ## Statistics-Tracking Achievements (Skipped)
 
@@ -101,6 +147,10 @@ All skipped — cumulative counter / statistics-tracking achievements not in Ach
 | 113 | Deaths from fatigue |
 | 114 | Deaths from falling |
 | 115 | Deaths from fire and lava |
+| 178 | Enchanting formulae learned |
+| 181 | Items disenchanted |
+| 183 | Materials produced from disenchanting |
+| 239 | 25000 Honorable Kills |
 
 ## IDs Not Found in Game DB (Skipped)
 
@@ -108,6 +158,7 @@ All skipped — achievement ID not found in game DB (verified against build 12.0
 
 1, 2, 3, 4, 5, 14, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 47, 48,
 56, 57, 58, 59, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 96,
-106, 109, 111, 117, 118, 119, 120,
-136, 138, 139, 140, 142, 143, 145, 146, 147, 148, 149, 151, 152, 160, 163, 164,
-169, 170, 171, 172, 173, 175
+106, 109, 111, 117, 118, 119, 120, 136, 138, 139, 140, 142, 143, 145, 146, 147, 148, 149,
+151, 152, 160, 163, 164, 169, 170, 171, 172, 173, 175, 176, 177, 179, 180, 182, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198,
+205, 210, 215, 217, 228, 232, 234, 235, 236, 237, 240, 241, 242, 243, 244, 250,
+251, 253, 254, 256, 257, 258, 261, 262, 264, 265, 266, 267, 268, 269, 270, 274

@@ -19,6 +19,7 @@ zoneData:Zone(337, { -- Zul'Gurub (dungeon)
 })
 
 zoneData:Zone(206, { -- Twin Peaks (battleground)
+    shared.GenericBattleground,
     5208, -- Twin Peaking
     5209, -- Twin Peaks Veteran
     5210, -- Two-Timer
@@ -42,6 +43,7 @@ zoneData:Zone(206, { -- Twin Peaks (battleground)
 })
 
 zoneData:Zone(244, { -- Tol Barad (battleground)
+    shared.GenericBattleground,
     5548, -- To All the Squirrels Who Cared for Me
     5489, -- Master of Tol Barad
     5490, -- Master of Tol Barad
@@ -79,6 +81,7 @@ zoneData:Zone(245, { -- Tol Barad Peninsula (zone)
 })
 
 zoneData:Zone(275, { -- The Battle for Gilneas (battleground)
+    shared.GenericBattleground,
     5245, -- Battle for Gilneas Victory
     5246, -- Battle for Gilneas Veteran
     5247, -- Battle for Gilneas Perfection

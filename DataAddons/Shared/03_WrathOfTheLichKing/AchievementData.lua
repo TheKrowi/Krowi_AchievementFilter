@@ -90,7 +90,7 @@ KrowiAF.AchievementData["03_00_02_S"] = {
 	Ach(248):Obtainable("Event", 181), -- Sunday's Finest
 	Ach(249):Obtainable("Event", 181), -- Dressed for the Occasion
 	Ach(252):IsPvP():Obtainable("Event", 141), -- With a Little Helper from My Friends
-	Ach(255):Obtainable("Event", 324), -- Bring Me The Head of... Oh Wait
+	Ach(255):Obtainable("Before", "Version", {10, 1, 7}), -- Bring Me The Head of... Oh Wait
 	Ach(259):AutoFactionSplit(faction.Horde, 1255):Obtainable("Event", 141), -- Scrooge
 	Ach(260):Obtainable("Before", "Version", {10, 2, 5}), -- Charming
 	Ach(263):Obtainable("Event", 341), -- Ice the Frost Lord

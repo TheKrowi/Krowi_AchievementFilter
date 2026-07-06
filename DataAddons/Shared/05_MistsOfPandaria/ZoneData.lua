@@ -1,5 +1,6 @@
 local _, addon = ...
 addon.Data.ZoneData.Shared.MistsOfPandaria = {}
+local shared = addon.Data.ZoneData.Shared
 
 local zoneData = KrowiAF.NewZoneData("MistsOfPandaria")
 
@@ -116,6 +117,7 @@ zoneData:Zone(424, { -- Pandaria (continent)
 })
 
 zoneData:Zone(417, { -- Temple of Kotmogu (battleground)
+    shared.GenericBattleground,
     6740, -- Temple of Kotmogu Victory
     6882, -- Temple of Kotmogu Veteran
     6947, -- Four Square
@@ -129,6 +131,7 @@ zoneData:Zone(417, { -- Temple of Kotmogu (battleground)
 })
 
 zoneData:Zone(423, { -- Silvershard Mines (battleground)
+    shared.GenericBattleground,
     6739, -- Silvershard Mines Victory
     6883, -- Silvershard Mines Veteran
     7039, -- The Long Riders
@@ -1025,6 +1028,7 @@ zoneData:Zone({431, 432}, { -- Scarlet Halls (dungeon)
 })
 
 zoneData:Zone({435, 436}, { -- Scarlet Monastery (dungeon)
+    255, -- Bring Me The Head of... Oh Wait
     6946, -- Empowered Spiritualist
     6928, -- Burning Man
     6929, -- And Stay Dead!
@@ -1419,6 +1423,7 @@ zoneData:Zone({508, 509, 510, 511, 512, 513, 514, 515}, { -- Throne of Thunder (
 })
 
 zoneData:Zone({519, 1576}, { -- Deepwind Gorge (battleground)
+    shared.GenericBattleground,
     8331, -- Deepwind Gorge Victory
     8332, -- Deepwind Gorge Veteran
     8333, -- Deepwind Gorge Perfection

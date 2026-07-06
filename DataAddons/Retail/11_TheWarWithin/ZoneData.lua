@@ -154,6 +154,10 @@ zoneData:Zone({2213, 2216, 2255, 2256}, { -- Azj-Kahet (zone)
     40351, -- Azj-Kahet Reverse: Gold
 })
 
+zoneData:Zone(2345, { -- Deephaul Ravine (battleground)
+    shared.GenericBattleground,
+})
+
 zoneData:Zone(2214, { -- The Ringing Deeps (zone)
     19560, -- The Ringing Deeps
     40799, -- Sojourner of The Ringing Deeps
@@ -243,6 +247,7 @@ zoneData:Zone({2248, 2339}, { -- Isle of Dorn (zone)
     40322, -- Isle of Dorn Reverse: Bronze
     40323, -- Isle of Dorn Reverse: Silver
     40324, -- Isle of Dorn Reverse: Gold
+    275, -- Veteran Nanny
 })
 
 zoneData:Zone(2249, { -- Fungal Folly (delve)

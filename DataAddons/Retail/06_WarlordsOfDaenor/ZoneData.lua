@@ -326,7 +326,8 @@ zoneData:Zone({574, 575, 576}, { -- Shadowmoon Burial Grounds (dungeon)
     16660, -- Keystone Hero: Shadowmoon Burial Grounds
 })
 
-zoneData:Zone({588, 589, 622, 624}, { -- Ashran (battleground)
+zoneData:Zone({588, 589}, { -- Ashran (battleground)
+    shared.GenericBattleground,
     9102, -- Ashran Victory
     9218, -- Grand Theft, 1st Degree
     9219, -- Grand Theft, 2nd Degree
@@ -350,6 +351,10 @@ zoneData:Zone({588, 589, 622, 624}, { -- Ashran (battleground)
     9473, -- Wrynn's Vanguard
     9214, -- Hero of Warspear
     9215, -- Hero of Stormshield
+})
+
+zoneData:Zone(623, { -- Southshore vs. Tarren Mill (battleground)
+    shared.GenericBattleground,
 })
 
 zoneData:Zone(593, { -- Auchindoun (dungeon)

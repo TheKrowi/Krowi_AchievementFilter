@@ -5,6 +5,7 @@ local shared = addon.Data.ZoneData.Shared
 local zoneData = KrowiAF.NewZoneData("TheBurningCrusade")
 
 zoneData:Zone(112, { -- Eye of the Storm (battleground)
+    shared.GenericBattleground,
     208, -- Eye of the Storm
     209, -- Eye of the Storm Victory
     783, -- Eye of the Storm Veteran
@@ -18,6 +19,7 @@ zoneData:Zone(112, { -- Eye of the Storm (battleground)
     587, -- The Eye of the Storm
     1258, -- Stormy Assassin
     211, -- Veteran of the Eye of the Storm
+    230, -- Battlemaster
 })
 
 zoneData:Zone(122, { -- Isle of Quel'Danas (zone)
@@ -53,6 +55,7 @@ zoneData:Zone(265, { -- The Slave Pens
     764, -- The Burning Crusader
     649, -- The Slave Pens
     669, -- Heroic: The Slave Pens
+    263, -- Ice the Frost Lord
 })
 
 zoneData:Zone(262, { -- The Underbog
@@ -433,6 +436,7 @@ zoneData:Zone(111, { -- Shattrath City (city)
     1165, -- My Storage is "Gigantique"
     9924, -- Field Photographer
     6604, -- Taming Outland
+    275, -- Veteran Nanny
 })
 
 zoneData:Zone({350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366}, { -- Karazhan

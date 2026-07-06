@@ -21,28 +21,42 @@ DataAddons/Shared/XX_ExpansionName/ZoneData.lua   ← Retail+Classic shared
 DataAddons/Shared/ZoneData.lua                     ← cross-expansion (delve base tables, etc.)
 ```
 
+**Resuming work ("next N"):** The decisions log (`raw/ZoneDataDecisions.md`) contains a **Highest ID Analyzed** line near the top. Read that value, add 1, and use that as the starting point for the next batch. After completing a batch, update the **Highest ID Analyzed** line to the largest ID processed in that batch (across all three sections — Main Log, Statistics, and Not Found).
+
 ---
 
-## DB Lookup via Script (VS Code 1.104+)
+## Data Lookups via Script (VS Code 1.104+)
 
-VS Code 1.104+ shows a network-warning popup for any terminal command containing `Invoke-RestMethod`, `Invoke-WebRequest`, `curl`, or `wget` — even with auto-approve enabled. To avoid this, **never call `Invoke-RestMethod` directly in a terminal command**. Instead, write a PS1 script to disk and execute it.
+**Rule: no terminal command may contain specific values (IDs, map IDs, patterns, search terms) inline.** VS Code 1.104+ shows a network-warning popup for commands containing `Invoke-RestMethod` / `Invoke-WebRequest` / `curl` / `wget`, and the user will reject any inline command that embeds specific values. All lookups must go through the designated scripts below.
 
-Whenever the parent agent needs to query the local DB from the terminal, use this pattern:
+| Script | Placeholder var | Purpose | Output format |
+|---|---|---|---|
+| `_lookup_ids.ps1` | `$ids = @()` | DB lookup via wow.tools.local | `id\|Title\|Description` |
+| `_check_csv.ps1` | `$ids = @()` | Check ZonesPerAchievement.csv for existing entries | `id\|PRESENT\|zones=...` or `id\|NOT_PRESENT` |
+| `_zone_search.ps1` | `$terms = @()` | Search ActiveZones.csv by zone name (partial, case-insensitive) | `term\|id\|name` |
+| `_linkgroups_search.ps1` | `$ids = @()` | Find the link group (primary map ID) for any map ID | `id\|primary=N\|primaryName=...\|ids=...` |
+| `_find_zonefile.ps1` | `$ids = @()` | Find which ZoneData.lua files reference specific map IDs (word-boundary match) | `file\|line N: ...` |
 
-**Step A — Overwrite the script's `$ids` line** using `replace_string_in_file` on `.github/skills/add-zone-data/_lookup_ids.ps1`. Replace the placeholder with the actual IDs, e.g. `@(151, 152, 174)`:
+**Usage pattern for every script:**
 
+**Step A** — Set values via `replace_string_in_file`:
 ```
-oldString: $ids = @()
-newString: $ids = @({{IDS}})
+oldString: $ids = @()          # (or $terms = @())
+newString: $ids = @({{VALUES}})
 ```
 
-**Step B — Run the script** (terminal command contains no network verbs):
-
+**Step B** — Run the script:
 ```powershell
-& "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\.github\skills\add-zone-data\_lookup_ids.ps1"
+& "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\.github\skills\add-zone-data\_SCRIPTNAME_.ps1"
 ```
 
-Use `replace_string_in_file` for Step A, then `run_in_terminal` for Step B. After the run, reset the IDs back to `@()` so the script stays clean for next time.
+**Step C** — Reset immediately after reading the output:
+```
+oldString: $ids = @({{VALUES}})
+newString: $ids = @()
+```
+
+**Never create separate temp scripts.** The five scripts above are the only designated lookup tools. Use them for every lookup — DB queries, CSV searches, and file searches alike.
 
 ---
 
@@ -138,7 +152,7 @@ Include 3–5 lines of unchanged context before and after each change in oldStri
 
 ---
 
-## Step 3 — Validate (parent runs both, max 3 fix attempts)
+## Step 3 — Validate (parent runs all three, max 3 fix attempts)
 
 ```powershell
 cd "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\raw"
@@ -146,10 +160,15 @@ cd "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\raw"
 .\Evaluate-ZoneDataDecisions.ps1
 ```
 
-If either fails: analyze output, fix the reported issues, re-run both. Escalate to user after 3 failed attempts.
+Also run the scripts-reset check **before finishing**:
+```powershell
+& "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\.github\skills\add-zone-data\_check_scripts_reset.ps1"
+```
+
+If any evaluator fails: analyze output, fix the reported issues, re-run all three. Escalate to user after 3 failed attempts.
 
 `Evaluate-ZoneData.ps1` checks: duplicates, inactive map IDs, unknown map IDs, missing achievement IDs.  
-`Evaluate-ZoneDataDecisions.ps1` checks: skipped IDs absent from ZoneData files, added/present IDs present in at least one ZoneData file.
+`Evaluate-ZoneDataDecisions.ps1` checks: skipped IDs absent from ZoneData files, added/present IDs present in at least one ZoneData file, **title in the main log matches the game DB exactly** (Check 3 — requires `wow.tools.local` running; reports `log: '...' | DB says: '...'` so the correct value is visible without a separate lookup).
 
 ---
 

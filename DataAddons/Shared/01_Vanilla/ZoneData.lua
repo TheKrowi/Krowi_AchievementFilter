@@ -10,6 +10,7 @@ zoneData:Zone({74, 75}, { -- Caverns of Time (zone)
 })
 
 zoneData:Zone({92, 1339}, { -- Warsong Gulch (battleground)
+    shared.GenericBattleground,
     166, -- Warsong Gulch Victory
     167, -- Warsong Gulch Veteran
     199, -- Capture the Flag
@@ -29,9 +30,11 @@ zoneData:Zone({92, 1339}, { -- Warsong Gulch (battleground)
     1259, -- Not So Fast
     713, -- Silverwing Sentinel
     712, -- Warsong Outrider
+    230, -- Battlemaster
 })
 
 zoneData:Zone({93, 1366, 1383}, { -- Arathi Basin (battleground)
+    shared.GenericBattleground,
     154, -- Arathi Basin Victory
     155, -- Arathi Basin Veteran
     165, -- Arathi Basin Perfection
@@ -48,6 +51,7 @@ zoneData:Zone({93, 1366, 1383}, { -- Arathi Basin (battleground)
     1169, -- Master of Arathi Basin
     711, -- Knight of Arathor
     710, -- The Defiler
+    230, -- Battlemaster
 })
 
 zoneData:Zone(213, { -- Ragefire Chasm (dungeon)
@@ -236,6 +240,7 @@ zoneData:Zone(25, { -- Hillsbrad Foothills (zone)
     46, -- Universal Explorer
     5364, -- Don't Want No Zombies on My Lawn
     5365, -- Bloom and Doom
+    273, -- On Metzen!
 })
 
 zoneData:Zone(14, { -- Arathi Highlands (zone)
@@ -913,6 +918,7 @@ zoneData:Zone(84, { -- Stormwind City (city)
     6622, -- Big City Pet Brawler
     2556, -- Pest Control
     18854, -- Seeing Red
+    275, -- Veteran Nanny
 })
 
 zoneData:Zone({85, 86, 1534}, { -- Orgrimmar (city)
@@ -932,6 +938,7 @@ zoneData:Zone({85, 86, 1534}, { -- Orgrimmar (city)
     6622, -- Big City Pet Brawler
     2556, -- Pest Control
     18854, -- Seeing Red
+    275, -- Veteran Nanny
 })
 
 zoneData:Zone({87, 1361}, { -- Ironforge (city)
@@ -956,6 +963,7 @@ zoneData:Zone(88, { -- Thunder Bluff (city)
     6621, -- Big City Pet Brawlin' - Horde
     6622, -- Big City Pet Brawler
     2556, -- Pest Control
+    259, -- Scrooge
 })
 
 zoneData:Zone(89, { -- Darnassus (city)
@@ -982,6 +990,7 @@ zoneData:Zone(90, { -- Undercity (city)
 })
 
 zoneData:Zone({91, 1537, 2162}, { -- Alterac Valley (battleground)
+    shared.GenericBattleground,
     13928, -- Alterac Valley of Olde
     13930, -- Alterac Valley of Olde
     218, -- Alterac Valley Victory
@@ -1003,6 +1012,7 @@ zoneData:Zone({91, 1537, 2162}, { -- Alterac Valley (battleground)
     226, -- The Alterac Blitz
     709, -- Hero of the Stormpike Guard
     708, -- Hero of the Frostwolf Clan
+    230, -- Battlemaster
 })
 
 zoneData:Zone(279, { -- Wailing Caverns (dungeon)
