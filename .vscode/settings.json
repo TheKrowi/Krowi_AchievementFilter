@@ -683,6 +683,10 @@
         "/^& \"e:\\\\World of Warcraft Addon Development\\\\Krowi_AchievementFilter\\\\\\.github\\\\skills\\\\add-zone-data\\\\_find_zonefile\\.ps1\" \\| Select-String \"ZoneData\" \\| Select-Object -First 30 Line$/": {
             "approve": true,
             "matchCommandLine": true
+        },
+        "/^& \"e:\\\\World of Warcraft Addon Development\\\\Krowi_AchievementFilter\\\\\\.github\\\\skills\\\\add-zone-data\\\\_check_scripts_reset\\.ps1\"$/": {
+            "approve": true,
+            "matchCommandLine": true
         }
     },
 }

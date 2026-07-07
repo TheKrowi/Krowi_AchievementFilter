@@ -18,6 +18,7 @@ zoneData:Zone(125, { -- Dalaran (city)
     1958, -- I Smell A Giant Rat
     2096, -- The Coin Master
     272, -- Torch Juggler
+    293, -- Disturbing the Peace
 })
 
 zoneData:Zone(126, { -- Dalaran - The Underbelly

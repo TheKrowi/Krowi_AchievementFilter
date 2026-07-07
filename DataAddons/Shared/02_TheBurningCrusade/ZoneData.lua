@@ -160,6 +160,7 @@ zoneData:Zone({94, 467}, { -- Eversong Woods (zone)
     859, -- Explore Eversong Woods
     762, -- Ambassador of the Horde
     2556, -- Pest Control
+    289, -- The Savior of Hallow's End
     46, -- Universal Explorer
 })
 
@@ -183,6 +184,7 @@ zoneData:Zone({97, 98, 99, 468}, { -- Azuremyst Isle (zone)
     860, -- Explore Azuremyst Isle
     948, -- Ambassador of the Alliance
     2556, -- Pest Control
+    289, -- The Savior of Hallow's End
     46, -- Universal Explorer
 })
 

@@ -3,7 +3,7 @@
 Records every achievement evaluated for zone placement — added, already present, or skipped with reason.
 Update this file whenever a zone placement decision is made via the `add-zone-data` skill.
 
-**Highest ID Analyzed: 275**
+**Highest ID Analyzed: 300**
 
 ## Main Log
 
@@ -114,6 +114,17 @@ Update this file whenever a zone placement decision is made via the `add-zone-da
 | 272 | Torch Juggler | ✅ added | 125 | Dalaran | Added to existing Dalaran (125) entry in `Shared/03_WrathOfTheLichKing/ZoneData.lua`; specifically requires being in Dalaran | 2026-07-06 |
 | 273 | On Metzen! | ✅ added | 25 | Hillsbrad Foothills | Added to Hillsbrad Foothills (25) entry in `Shared/01_Vanilla/ZoneData.lua`; Horde version of the Winter Veil rescue quest takes place in this zone | 2026-07-06 |
 | 275 | Veteran Nanny | ✅ added | 84, 85, 111, 2339, 2393 | Stormwind City, Orgrimmar, Shattrath City, Isle of Dorn (Dornogal), Silvermoon City | Added to city/zone entries across 4 files; Children's Week pets obtained from quest hubs in each location | 2026-07-06 |
+| 277 | 'Tis the Season | ⏭ skipped | — | — | World event achievement (Winter Veil); activities span multiple locations | 2026-07-07 |
+| 279 | Simply Abominable | ✅ added | {85, 86}, {87, 1361} | Orgrimmar, Ironforge | Added to Orgrimmar and Ironforge entries in `Shared/01_Vanilla/ZoneData.lua`; Winter Veil quest (retrieve stolen treats) originates from Smokywood Pastures in both capitals | 2026-07-07 |
+| 281 | First Aid skill | ⏭ skipped | — | — | Proficiency/skill achievement; no geographic association | 2026-07-07 |
+| 283 | The Masquerade | ⏭ skipped | — | — | Hallow's End event achievement; no fixed geographic zone | 2026-07-07 |
+| 284 | A Mask for All Occasions | ⏭ skipped | — | — | Hallow's End event achievement; collecting masks has no zone requirement | 2026-07-07 |
+| 288 | Out With It | ⏭ skipped | — | — | Hallow's End event achievement; no fixed geographic zone | 2026-07-07 |
+| 289 | The Savior of Hallow's End | ✅ added | {18,...}, {27,...}, {37,...}, {1,...}, {94,467}, {97,...} | Tirisfal Glades, Dun Morogh, Elwynn Forest, Durotar, Eversong Woods, Azuremyst Isle | Added to all 6 Hallow's End village zones in `Shared/01_Vanilla/ZoneData.lua` and `Shared/02_TheBurningCrusade/ZoneData.lua`; quest to save Brill, Kharanos, Goldshire, Razor Hill, Falconwing Square, and Azure Watch | 2026-07-07 |
+| 291 | Check Your Head | ⏭ skipped | — | — | Hallow's End event achievement; no fixed geographic zone | 2026-07-07 |
+| 292 | Sinister Calling | ⏭ skipped | — | — | Hallow's End event achievement; no fixed geographic zone | 2026-07-07 |
+| 293 | Disturbing the Peace | ✅ added | 125 | Dalaran | Added to Dalaran (125) in `Shared/03_WrathOfTheLichKing/ZoneData.lua`; specifically requires dancing in Dalaran during Brewfest | 2026-07-07 |
+| 295 | Direbrewfest | ✅ added | {242, 243} | Blackrock Depths | Added to Blackrock Depths ({242, 243}) in `Shared/01_Vanilla/ZoneData.lua`; Coren Direbrew fought in Brewfest dungeon (Grim Guzzler) | 2026-07-07 |
 
 ## Statistics-Tracking Achievements (Skipped)
 
@@ -161,4 +172,5 @@ All skipped — achievement ID not found in game DB (verified against build 12.0
 106, 109, 111, 117, 118, 119, 120, 136, 138, 139, 140, 142, 143, 145, 146, 147, 148, 149,
 151, 152, 160, 163, 164, 169, 170, 171, 172, 173, 175, 176, 177, 179, 180, 182, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198,
 205, 210, 215, 217, 228, 232, 234, 235, 236, 237, 240, 241, 242, 243, 244, 250,
-251, 253, 254, 256, 257, 258, 261, 262, 264, 265, 266, 267, 268, 269, 270, 274
+251, 253, 254, 256, 257, 258, 261, 262, 264, 265, 266, 267, 268, 269, 270, 274,
+276, 278, 280, 282, 285, 286, 287, 290, 294, 296, 297, 298, 299, 300

@@ -140,6 +140,7 @@ zoneData:Zone({18, 19, 20, 465, 466}, { -- Tirisfal Glades (zone)
     6613, -- Eastern Kingdoms Tamer
     shared.OldWorldPetAchievements,
     2556, -- Pest Control
+    289, -- The Savior of Hallow's End
     46, -- Universal Explorer
 })
 
@@ -303,6 +304,7 @@ zoneData:Zone({27, 28, 29, 30, 31, 427, 428, 469, 470}, { -- Dun Morogh (zone)
     6558, -- Local Pet Mauler
     6559, -- Traveling Pet Mauler
     6560, -- World Pet Mauler
+    289, -- The Savior of Hallow's End
     46, -- Universal Explorer
 })
 
@@ -346,6 +348,7 @@ zoneData:Zone({37, 38, 39, 40, 425, 426}, { -- Elwynn Forest (zone)
     6611, -- Continental Tamer
     6590, -- World Safari
     8348, -- The Longest Day
+    289, -- The Savior of Hallow's End
     46, -- Universal Explorer
 })
 
@@ -698,6 +701,7 @@ zoneData:Zone({1, 2, 3, 4, 5, 6, 461, 463, 464}, { -- Durotar (zone)
     8348, -- The Longest Day
     2556, -- Pest Control
     4827, -- Surveying the Damage
+    289, -- The Savior of Hallow's End
     46, -- Universal Explorer
 })
 
@@ -921,7 +925,7 @@ zoneData:Zone(84, { -- Stormwind City (city)
     275, -- Veteran Nanny
 })
 
-zoneData:Zone({85, 86, 1534}, { -- Orgrimmar (city)
+zoneData:Zone({85, 86}, { -- Orgrimmar (city)
     1206, -- To All The Squirrels I've Loved Before
     610, -- Orgrimmar Offensive
     14817, -- Opposing Orgrimmar
@@ -934,6 +938,7 @@ zoneData:Zone({85, 86, 1534}, { -- Orgrimmar (city)
     1836, -- Old Crafty
     5477, -- Fish or Cut Bait: Orgrimmar
     150, -- The Fishing Diplomat
+    279, -- Simply Abominable
     6621, -- Big City Pet Brawlin' - Horde
     6622, -- Big City Pet Brawler
     2556, -- Pest Control
@@ -949,6 +954,7 @@ zoneData:Zone({87, 1361}, { -- Ironforge (city)
     5841, -- Let's Do Lunch: Ironforge
     1837, -- Old Ironjaw
     5847, -- Fish or Cut Bait: Ironforge
+    279, -- Simply Abominable
     6584, -- Big City Pet Brawlin' - Alliance
     6622, -- Big City Pet Brawler
 })
@@ -1029,6 +1035,7 @@ zoneData:Zone({226, 227, 228, 229}, { -- Gnomeregan (dungeon)
 
 zoneData:Zone({242, 243}, { -- Blackrock Depths (dungeon)
     642, -- Blackrock Depths
+    295, -- Direbrewfest
     3496, -- A Brew-FAST Mount
     14020, -- Pet Battle Challenge: Blackrock Depths
     14021, -- The Shadows Revealed
