@@ -430,7 +430,7 @@ zoneData:Zone({376, 377}, { -- Valley of the Four Winds (zone)
     19873, -- Valley of the Four Winds
 })
 
-zoneData:Zone({379, 380, 381, 382, 383, 384, 385, 386, 387, 434}, { -- Kun-Lai Summit (zone)
+zoneData:Zone({379, 380, 381, 382, 383, 384, 385, 386, 387}, { -- Kun-Lai Summit (zone)
     7520, -- The Loremaster
     6558, -- Local Pet Mauler
     6559, -- Traveling Pet Mauler
@@ -663,7 +663,7 @@ zoneData:Zone({388, 389}, { -- Townlong Steppes (zone)
     19877, -- Townlong Steppes
 })
 
-zoneData:Zone({390, 391, 392, 393, 394, 395, 396}, { -- Vale of Eternal Blossoms (zone)
+zoneData:Zone({390, 395, 396}, { -- Vale of Eternal Blossoms (zone)
     6558, -- Local Pet Mauler
     6559, -- Traveling Pet Mauler
     6560, -- World Pet Mauler

@@ -132,7 +132,7 @@ zoneData:Zone(2405, { -- Voidstorm (zone)
     quelThalas,
 })
 
-zoneData:Zone({2413, 2576}, { -- Harandar (zone)
+zoneData:Zone({2413, 2522, 2523, 2576}, { -- Harandar (zone)
     41804, -- One Does Not Simply Walk Into Harandar
     61739, -- Sojourner of Harandar
     42278, -- The Empty Cradle
@@ -166,7 +166,7 @@ zoneData:Zone({2433, 2434, 2435}, { -- Murder Row (dungeon)
     41962, -- Mythic: Murder Row
 })
 
-zoneData:Zone({2437, 2536}, { -- Zul'Aman (zone)
+zoneData:Zone({2437, 2536, 2580, 2583, 2584}, { -- Zul'Aman (zone)
     41803, -- For Zul'Aman! (Customization Reward: Amani Appearances for Darkspear Troll)
     61452, -- Sojourner of Zul'Aman
     61910, -- Mrglgrgl of Grglmrgl

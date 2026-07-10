@@ -9,22 +9,27 @@ local RANGE_DEFAULT_START = 1
 local RANGE_DEFAULT_END = 3000
 
 local verdictColors = {
-    Zone         = { 0.27, 1.00, 0.27 },
-    City         = { 1.00, 0.45, 0.65 },
-    Continent    = { 0.50, 0.90, 1.00 },
-    Dungeon      = { 0.40, 0.60, 1.00 },
-    Raid         = { 0.80, 0.40, 1.00 },
-    Delve        = { 1.00, 0.60, 0.20 },
-    ClassHall    = { 1.00, 0.84, 0.00 },
-    Battleground = { 1.00, 0.20, 0.20 },
-    Scenario     = { 0.20, 0.90, 0.70 },
-    Skip         = { 0.55, 0.55, 0.55 },
-    Unknown      = { 0.80, 0.80, 0.80 },
+    Zone             = { 0.27, 1.00, 0.27 },
+    StartingZone     = { 0.40, 1.00, 0.80 },
+    City             = { 1.00, 0.45, 0.65 },
+    Continent        = { 0.50, 0.90, 1.00 },
+    Dungeon          = { 0.40, 0.60, 1.00 },
+    Raid             = { 0.80, 0.40, 1.00 },
+    Delve            = { 1.00, 0.60, 0.20 },
+    ClassHall        = { 1.00, 0.84, 0.00 },
+    Battleground     = { 1.00, 0.20, 0.20 },
+    Scenario         = { 0.20, 0.90, 0.70 },
+    TaxiAndAdventure = { 0.70, 0.85, 0.40 },
+    Error            = { 0.90, 0.10, 0.30 },
+    Skip             = { 0.55, 0.55, 0.55 },
+    Unknown          = { 0.80, 0.80, 0.80 },
 }
 
 local verdictDisplayNames = {
-    ClassHall    = "Class Hall",
-    Battleground = "BG",
+    ClassHall        = "Class Hall",
+    Battleground     = "BG",
+    TaxiAndAdventure = "Taxi & Adv",
+    StartingZone     = "Start Zone",
 }
 
 local mapTypeNames = {
@@ -37,10 +42,14 @@ local mapTypeNames = {
     [6] = "Orphan",
 }
 
-local verdictList = { "Zone", "City", "Continent", "Dungeon", "Raid", "Delve", "ClassHall", "Battleground", "Scenario", "Skip" }
+local skipLike    = { Skip = true, TaxiAndAdventure = true, Error = true, StartingZone = true }
+local inactiveLike = { TaxiAndAdventure = true, Error = true, StartingZone = true }
+
+local verdictList = { "Zone", "StartingZone", "City", "Continent", "Dungeon", "Raid", "Delve", "ClassHall", "Battleground", "Scenario", "Error", "TaxiAndAdventure", "Skip" }
 local verdictRows = {
     { "Zone", "City", "Continent", "Dungeon", "Raid" },
-    { "Delve", "ClassHall", "Battleground", "Scenario", "Skip" },
+    { "Delve", "ClassHall", "Battleground", "Scenario", "Error" },
+    { "StartingZone", "TaxiAndAdventure", "Skip" },
 }
 
 local expansionColors = {
@@ -109,7 +118,7 @@ local function FindNext(fromId, unreviewedOnly, expansionModeOnly)
             local include = true
             if expansionModeOnly then
                 local v = d.Maps[id]
-                if not v or v == "Skip" then
+                if not v or skipLike[v] then
                     include = false
                 end
             end
@@ -140,7 +149,7 @@ local function FindPrev(fromId, expansionModeOnly)
                 return id
             end
             local v = d.Maps[id]
-            if v and v ~= "Skip" then
+            if v and not skipLike[v] then
                 return id
             end
         end
@@ -327,14 +336,19 @@ local function SetVerdict(v)
     local d = GetData()
     local currentId = d.Cursor
     d.Maps[currentId] = v
-    local unreviewedOnly = mapVerifierFrame and mapVerifierFrame.UnreviewedCheck:GetChecked() or false
-    local expansionModeOnly = mapVerifierFrame and mapVerifierFrame.ExpansionModeCheck:GetChecked() or false
-    local nextId = FindNext(currentId, unreviewedOnly, expansionModeOnly)
-    if nextId then
-        NavigateTo(nextId)
+    local autoAdvance = mapVerifierFrame and mapVerifierFrame.AutoAdvanceTypeCheck:GetChecked() or false
+    if autoAdvance then
+        local unreviewedOnly = mapVerifierFrame and mapVerifierFrame.UnreviewedCheck:GetChecked() or false
+        local expansionModeOnly = mapVerifierFrame and mapVerifierFrame.ExpansionModeCheck:GetChecked() or false
+        local nextId = FindNext(currentId, unreviewedOnly, expansionModeOnly)
+        if nextId then
+            NavigateTo(nextId)
+        else
+            UpdateDisplay()
+            print("|cFF88CCFFKrowiAF Map Verifier:|r Reached end of range in current mode.")
+        end
     else
         UpdateDisplay()
-        print("|cFF88CCFFKrowiAF Map Verifier:|r Reached end of range in current mode.")
     end
 end
 
@@ -342,14 +356,19 @@ local function SetExpansion(e)
     local d = GetData()
     local currentId = d.Cursor
     d.Expansions[currentId] = e
-    local unreviewedOnly = mapVerifierFrame and mapVerifierFrame.UnreviewedCheck:GetChecked() or false
-    local expansionModeOnly = mapVerifierFrame and mapVerifierFrame.ExpansionModeCheck:GetChecked() or false
-    local nextId = FindNext(currentId, unreviewedOnly, expansionModeOnly)
-    if nextId then
-        NavigateTo(nextId)
+    local autoAdvance = mapVerifierFrame and mapVerifierFrame.AutoAdvanceExpansionCheck:GetChecked() or false
+    if autoAdvance then
+        local unreviewedOnly = mapVerifierFrame and mapVerifierFrame.UnreviewedCheck:GetChecked() or false
+        local expansionModeOnly = mapVerifierFrame and mapVerifierFrame.ExpansionModeCheck:GetChecked() or false
+        local nextId = FindNext(currentId, unreviewedOnly, expansionModeOnly)
+        if nextId then
+            NavigateTo(nextId)
+        else
+            UpdateDisplay()
+            print("|cFF88CCFFKrowiAF Map Verifier:|r Reached end of range in current mode.")
+        end
     else
         UpdateDisplay()
-        print("|cFF88CCFFKrowiAF Map Verifier:|r Reached end of range in current mode.")
     end
 end
 
@@ -381,13 +400,13 @@ local function BuildExportCSV_Active()
 
     local ids = {}
     for id, verdict in next, d.Maps do
-        if verdict ~= "Skip" then
+        if not skipLike[verdict] then
             ids[id] = true
         end
     end
     for id, primaryId in next, d.Links do
         local primaryVerdict = d.Maps[primaryId]
-        if primaryVerdict and primaryVerdict ~= "Skip" then
+        if primaryVerdict and not skipLike[primaryVerdict] then
             ids[id] = true
         end
     end
@@ -452,6 +471,42 @@ local function BuildExportCSV_Skip()
     return table.concat(lines, "\n")
 end
 
+local function BuildExportCSV_Inactive()
+    local d = GetData()
+    BuildValidIdsCache()
+    local lines = { CSV_HEADER_MAPS }
+
+    local ids = {}
+    for id, verdict in next, d.Maps do
+        if inactiveLike[verdict] then
+            ids[id] = true
+        end
+    end
+    for id, primaryId in next, d.Links do
+        if inactiveLike[d.Maps[primaryId]] then
+            ids[id] = true
+        end
+    end
+
+    local sortedIds = {}
+    for id in next, ids do tinsert(sortedIds, id) end
+    table.sort(sortedIds)
+
+    for _, id in next, sortedIds do
+        local info     = C_Map.GetMapInfo(id)
+        local name     = info and info.name or "?"
+        local type_    = d.Maps[id] or ""
+        local primId   = d.Links[id]
+        local expansion = d.Expansions[id] or (primId and d.Expansions[primId]) or ""
+        local override = d.ParentOverrides[id] or ""
+        local nameOverride = d.NameOverrides[id] or ""
+        local comment = d.Comments[id] or ""
+        tinsert(lines, CSVRow(id, name, type_, expansion, primId or "", override, nameOverride, comment))
+    end
+
+    return table.concat(lines, "\n")
+end
+
 local function BuildExportCSV_LinkGroups()
     local d = GetData()
     local lines = { CSV_HEADER_GROUPS }
@@ -489,7 +544,7 @@ local function BuildExportCSV_AchievementZones()
 
     local primaryIds = {}
     for id, verdict in next, d.Maps do
-        if verdict ~= "Skip" and not d.Links[id] then
+        if not skipLike[verdict] and not d.Links[id] then
             tinsert(primaryIds, id)
         end
     end
@@ -549,7 +604,7 @@ local function BuildExportCSV_AchievementCount()
 
     local primaryIds = {}
     for id, verdict in next, d.Maps do
-        if verdict ~= "Skip" and not d.Links[id] then
+        if not skipLike[verdict] and not d.Links[id] then
             tinsert(primaryIds, id)
         end
     end
@@ -1001,6 +1056,30 @@ function KrowiAF_MapVerifierMixin:OnLoad()
 
     y = y - 28
 
+    -- Auto-advance type checkbox
+    self.AutoAdvanceTypeCheck = CreateFrame("CheckButton", nil, inset, "UICheckButtonTemplate")
+    self.AutoAdvanceTypeCheck:SetSize(24, 24)
+    self.AutoAdvanceTypeCheck:SetPoint("TOPLEFT", inset, "TOPLEFT", padLeft, y + 2)
+    self.AutoAdvanceTypeCheck:SetChecked(true)
+
+    local autoAdvanceTypeLabel = inset:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    autoAdvanceTypeLabel:SetPoint("LEFT", self.AutoAdvanceTypeCheck, "RIGHT", 4, 0)
+    autoAdvanceTypeLabel:SetText("Auto-advance after setting type")
+
+    y = y - 28
+
+    -- Auto-advance expansion checkbox
+    self.AutoAdvanceExpansionCheck = CreateFrame("CheckButton", nil, inset, "UICheckButtonTemplate")
+    self.AutoAdvanceExpansionCheck:SetSize(24, 24)
+    self.AutoAdvanceExpansionCheck:SetPoint("TOPLEFT", inset, "TOPLEFT", padLeft, y + 2)
+    self.AutoAdvanceExpansionCheck:SetChecked(false)
+
+    local autoAdvanceExpansionLabel = inset:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    autoAdvanceExpansionLabel:SetPoint("LEFT", self.AutoAdvanceExpansionCheck, "RIGHT", 4, 0)
+    autoAdvanceExpansionLabel:SetText("Auto-advance after setting expansion")
+
+    y = y - 28
+
     -- Divider 2
     local div2 = inset:CreateTexture(nil, "ARTWORK")
     div2:SetColorTexture(0.4, 0.4, 0.4, 0.8)
@@ -1136,7 +1215,7 @@ function KrowiAF_MapVerifierMixin:OnLoad()
     div3:SetSize(472, 1)
     y = y - 10
 
-    -- Bottom row: Reset Range (left) + 3 Export buttons (right)
+    -- Bottom row 1: Reset Range (left) + Exp Active / Skip / Inactive (right)
     local resetBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
     resetBtn:SetSize(110, 22)
     resetBtn:SetText("Reset Range")
@@ -1152,21 +1231,21 @@ function KrowiAF_MapVerifierMixin:OnLoad()
         UpdateDisplay()
     end)
 
-    local exportGroupsBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
-    exportGroupsBtn:SetSize(82, 22)
-    exportGroupsBtn:SetText("Exp Groups")
-    exportGroupsBtn:SetPoint("TOPRIGHT", inset, "TOPRIGHT", -padLeft, y)
-    exportGroupsBtn:SetScript("OnClick", function()
+    local exportInactiveBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
+    exportInactiveBtn:SetSize(82, 22)
+    exportInactiveBtn:SetText("Exp Inactive")
+    exportInactiveBtn:SetPoint("TOPRIGHT", inset, "TOPRIGHT", -padLeft, y)
+    exportInactiveBtn:SetScript("OnClick", function()
         local textFrame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template")
-        textFrame:Init("Map Verifier Export — Link Groups")
-        textFrame.Input:SetText(BuildExportCSV_LinkGroups())
+        textFrame:Init("Map Verifier Export — Inactive")
+        textFrame.Input:SetText(BuildExportCSV_Inactive())
         textFrame:Show()
     end)
 
     local exportSkipBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
     exportSkipBtn:SetSize(82, 22)
     exportSkipBtn:SetText("Exp Skip")
-    exportSkipBtn:SetPoint("RIGHT", exportGroupsBtn, "LEFT", -4, 0)
+    exportSkipBtn:SetPoint("RIGHT", exportInactiveBtn, "LEFT", -4, 0)
     exportSkipBtn:SetScript("OnClick", function()
         local textFrame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template")
         textFrame:Init("Map Verifier Export — Skip / Unknown")
@@ -1185,10 +1264,24 @@ function KrowiAF_MapVerifierMixin:OnLoad()
         textFrame:Show()
     end)
 
+    y = y - 28
+
+    -- Bottom row 2: Exp Groups / AchCount / AchZones (left)
+    local exportGroupsBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
+    exportGroupsBtn:SetSize(82, 22)
+    exportGroupsBtn:SetText("Exp Groups")
+    exportGroupsBtn:SetPoint("TOPLEFT", inset, "TOPLEFT", padLeft, y)
+    exportGroupsBtn:SetScript("OnClick", function()
+        local textFrame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template")
+        textFrame:Init("Map Verifier Export — Link Groups")
+        textFrame.Input:SetText(BuildExportCSV_LinkGroups())
+        textFrame:Show()
+    end)
+
     local exportAchCountBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
     exportAchCountBtn:SetSize(82, 22)
     exportAchCountBtn:SetText("Exp AchCnt")
-    exportAchCountBtn:SetPoint("RIGHT", exportActiveBtn, "LEFT", -4, 0)
+    exportAchCountBtn:SetPoint("LEFT", exportGroupsBtn, "RIGHT", 4, 0)
     exportAchCountBtn:SetScript("OnClick", function()
         local textFrame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template")
         textFrame:Init("Map Verifier Export — Achievement Counts")
@@ -1196,12 +1289,10 @@ function KrowiAF_MapVerifierMixin:OnLoad()
         textFrame:Show()
     end)
 
-    y = y - 28
-
     local exportAchZonesBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
     exportAchZonesBtn:SetSize(110, 22)
     exportAchZonesBtn:SetText("Exp AchZones")
-    exportAchZonesBtn:SetPoint("TOPLEFT", inset, "TOPLEFT", padLeft, y)
+    exportAchZonesBtn:SetPoint("LEFT", exportAchCountBtn, "RIGHT", 4, 0)
     exportAchZonesBtn:SetScript("OnClick", function()
         local textFrame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template")
         textFrame:Init("Map Verifier Export — Achievement Zones")

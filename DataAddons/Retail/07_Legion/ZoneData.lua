@@ -45,7 +45,7 @@ zoneData:Zone(903, { -- Seat of the Triumvirate (dungeon)
     61593, -- Keystone Victor: Seat of the Triumvirate
 })
 
-zoneData:Zone({24, 626, 647, 648, 695, 702, 709, 717, 719, 720, 721, 726, 734, 735, 739, 747}, { -- Light's Hope Chapel (class halls)
+local classHalls = {
     10994, -- A Glorious Campaign
     11135, -- A Heroic Campaign
     11136, -- An Epic Campaign
@@ -86,7 +86,20 @@ zoneData:Zone({24, 626, 647, 648, 695, 702, 709, 717, 719, 720, 721, 726, 734, 7
     12071, -- Crucible's Promise
     12072, -- Now You're Cooking with Netherlight
     11218, -- There's a Boss In There
-})
+}
+
+zoneData:Zone(24, classHalls) -- Light's Hope Chapel (Paladin)
+zoneData:Zone(626, classHalls) -- Dalaran (Rogue — Hall of Shadows)
+zoneData:Zone({647, 648}, classHalls) -- Acherus: The Ebon Hold (Death Knight)
+zoneData:Zone(695, classHalls) -- Skyhold (Warrior)
+zoneData:Zone(702, classHalls) -- Netherlight Temple (Priest)
+zoneData:Zone(709, classHalls) -- The Wandering Isle (Monk)
+zoneData:Zone(717, classHalls) -- Dreadscar Rift (Warlock)
+zoneData:Zone({719, 720, 721}, classHalls) -- Mardum, the Shattered Abyss (Demon Hunter)
+zoneData:Zone(726, classHalls) -- The Maelstrom (Shaman)
+zoneData:Zone({734, 735}, classHalls) -- Hall of the Guardian (Mage)
+zoneData:Zone(739, classHalls) -- Trueshot Lodge (Hunter)
+zoneData:Zone(747, classHalls) -- The Dreamgrove (Druid)
 
 zoneData:Zone(619, { -- Broken Isles (continent)
     7520, -- The Loremaster
@@ -531,7 +544,7 @@ zoneData:Zone({909, 910, 911, 912, 913, 914, 915, 916, 917, 918, 919, 920}, { --
     12002, -- Mythic: Argus the Unmaker
 })
 
-zoneData:Zone({830, 831, 832, 833, 882, 883, 884, 885, 886, 887, 905, 921, 922, 923, 924, 925, 926, 927, 928, 929, 930, 931, 932}, { -- Argus (zone)
+local argus = {
     12066, -- You Are Now Prepared!
     12073, -- Locked and Loaded
     18854, -- Seeing Red
@@ -549,4 +562,7 @@ zoneData:Zone({830, 831, 832, 833, 882, 883, 884, 885, 886, 887, 905, 921, 922, 
     12104, -- And We're All Out of Mana Buns
     12076, -- Protector of the Argussian Reach
     12081, -- Officer of the Light
-})
+}
+
+zoneData:Zone({830, 831, 832, 833, 882, 883, 884, 885, 886, 887, 905}, argus) -- Argus (Krokuun / Mac'Aree / Antoran Wastes)
+zoneData:Zone({921, 922, 923, 924, 925, 926, 927, 928, 929, 930, 931, 932}, argus) -- Argus (Invasion Points)

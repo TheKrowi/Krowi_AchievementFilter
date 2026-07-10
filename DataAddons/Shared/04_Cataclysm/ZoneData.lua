@@ -225,7 +225,7 @@ zoneData:Zone(50, { -- Northern Stranglethorn (zone)
     46, -- Universal Explorer
 })
 
-zoneData:Zone({217, 218}, { -- Ruins of Gilneas (zone)
+zoneData:Zone({217, 1030, 1031}, { -- Ruins of Gilneas (zone)
     1206, -- To All The Squirrels I've Loved Before
 })
 
@@ -374,6 +374,7 @@ zoneData:Zone(210, { -- The Cape of Stranglethorn (zone)
     396, -- Gurubashi Arena Grand Master
     762, -- Ambassador of the Horde
     871, -- Avast Ye, Admiral!
+    306, -- Master Angler of Azeroth
     2336, -- Insane in the Membrane
     6586, -- Eastern Kingdoms Safari
     6613, -- Eastern Kingdoms Tamer

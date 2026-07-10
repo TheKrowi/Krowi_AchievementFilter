@@ -2,7 +2,7 @@
 
 local zoneData = KrowiAF.NewZoneData("BattleForAzeroth")
 
-zoneData:Zone({862, 1173, 1174, 1176, 1177, 1166, 1167}, { -- Zuldazar (zone)
+zoneData:Zone({862, 1173, 1174, 1176, 1177}, { -- Zuldazar (zone)
     7520, -- The Loremaster
     12989, -- Battle for Azeroth Pathfinder, Part One
     13250, -- Battle for Azeroth Pathfinder, Part Two

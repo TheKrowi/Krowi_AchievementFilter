@@ -130,7 +130,7 @@ zoneData:Zone(13, { -- Eastern Kingdoms (continent)
     46, -- Universal Explorer
 })
 
-zoneData:Zone({18, 19, 20, 465, 466}, { -- Tirisfal Glades (zone)
+zoneData:Zone({18, 19, 20}, { -- Tirisfal Glades (zone)
     1206, -- To All The Squirrels I've Loved Before
     42, -- Eastern Kingdoms Explorer
     15579, -- Return to Lordaeron
@@ -294,7 +294,7 @@ zoneData:Zone(48, { -- Loch Modan (zone)
     46, -- Universal Explorer
 })
 
-zoneData:Zone({27, 28, 29, 30, 31, 427, 428, 469, 470}, { -- Dun Morogh (zone)
+zoneData:Zone({27, 28, 29, 30, 31, 427, 428}, { -- Dun Morogh (zone)
     42, -- Eastern Kingdoms Explorer
     11200, -- Stand Against the Legion
     11201, -- Defender of Azeroth: Legion Invasions
@@ -368,7 +368,7 @@ zoneData:Zone({15, 16}, { -- Badlands (zone)
     46, -- Universal Explorer
 })
 
-zoneData:Zone({32, 35}, { -- Searing Gorge (zone)
+zoneData:Zone(32, { -- Searing Gorge (zone)
     1676, -- Loremaster of Eastern Kingdoms
     42, -- Eastern Kingdoms Explorer
     7520, -- The Loremaster
@@ -388,7 +388,7 @@ zoneData:Zone({32, 35}, { -- Searing Gorge (zone)
     46, -- Universal Explorer
 })
 
-zoneData:Zone({33, 34, 36}, { -- Burning Steppes (zone)
+zoneData:Zone(36, { -- Burning Steppes (zone)
     1676, -- Loremaster of Eastern Kingdoms
     42, -- Eastern Kingdoms Explorer
     7520, -- The Loremaster
@@ -548,7 +548,7 @@ zoneData:Zone(12, { -- Kalimdor (continent)
     46, -- Universal Explorer
 })
 
-zoneData:Zone({57, 58, 59, 60, 61, 460}, { -- Teldrassil (zone)
+zoneData:Zone({57, 58, 59, 60, 61}, { -- Teldrassil (zone)
     1206, -- To All The Squirrels I've Loved Before
     43, -- Kalimdor Explorer
     842, -- Explore Teldrassil
@@ -669,7 +669,7 @@ zoneData:Zone(77, { -- Felwood (zone)
     46, -- Universal Explorer
 })
 
-zoneData:Zone({7, 8, 9, 462}, { -- Mulgore (zone)
+zoneData:Zone({7, 8, 9}, { -- Mulgore (zone)
     1206, -- To All The Squirrels I've Loved Before
     43, -- Kalimdor Explorer
     736, -- Explore Mulgore
@@ -681,7 +681,7 @@ zoneData:Zone({7, 8, 9, 462}, { -- Mulgore (zone)
     46, -- Universal Explorer
 })
 
-zoneData:Zone({1, 2, 3, 4, 5, 6, 461, 463, 464}, { -- Durotar (zone)
+zoneData:Zone({1, 2, 3, 4, 5, 6}, { -- Durotar (zone)
     1206, -- To All The Squirrels I've Loved Before
     43, -- Kalimdor Explorer
     4790, -- Zalazane's Fall

@@ -8,6 +8,11 @@ description: Add achievement IDs to the correct ZoneData.lua entries in Krowi's 
 ## Orchestration Workflow
 
 Given a list of achievement IDs, the parent agent:
+0. **Pre-flight: verify wow.tools.local is reachable.** Run:
+   ```powershell
+   & "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\.github\skills\add-zone-data\_start_server.ps1"
+   ```
+   The script starts wow.tools.local if needed and waits up to 60 seconds. If it still isn't reachable after that, **stop immediately** — do not proceed and do not waste tokens on lookups that will all return NOT_FOUND.
 1. Runs **Lookup subagent** → compact decisions JSON
 2. Groups `add` decisions by expansion → runs **Write subagent** per expansion → minimal file diffs
 3. Applies all diffs via `multi_replace_string_in_file`

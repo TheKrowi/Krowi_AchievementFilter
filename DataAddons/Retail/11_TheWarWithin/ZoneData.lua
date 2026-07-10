@@ -226,7 +226,7 @@ zoneData:Zone(2215, { -- Hallowfall (zone)
     40342, -- Hallowfall Reverse: Gold
 })
 
-zoneData:Zone({2248, 2339}, { -- Isle of Dorn (zone)
+zoneData:Zone({2248, 2328}, { -- Isle of Dorn (zone)
     20118, -- The Isle of Dorn
     20595, -- Sojourner of Isle of Dorn
     40831, -- Explore the Isle of Dorn
@@ -538,7 +538,7 @@ zoneData:Zone(2396, { -- Excavation Site 9 (delve)
     delvesS3Progress,
 })
 
-zoneData:Zone({2403, 2404}, { -- Vision of Orgrimmar / Vision of Stormwind
+zoneData:Zone({1469, 1470, 2403, 2404}, { -- Vision of Orgrimmar / Vision of Stormwind
     41853, -- Horrific Vision of Stormwind
     41854, -- The Even More Horrific Vision of Stormwind
     41855, -- The Most Horrific Vision of Stormwind

@@ -152,7 +152,7 @@ zoneData:Zone(333, { -- Zul'Aman
     5769, -- Zul'Aman
 })
 
-zoneData:Zone({94, 467}, { -- Eversong Woods (zone)
+zoneData:Zone(94, { -- Eversong Woods (zone)
     42, -- Eastern Kingdoms Explorer
     6586, -- Eastern Kingdoms Safari
     6613, -- Eastern Kingdoms Tamer
@@ -176,7 +176,7 @@ zoneData:Zone({95, 96}, { -- Ghostlands (zone)
     46, -- Universal Explorer
 })
 
-zoneData:Zone({97, 98, 99, 468}, { -- Azuremyst Isle (zone)
+zoneData:Zone({97, 98, 99, 106}, { -- Azuremyst Isle (zone)
     43, -- Kalimdor Explorer
     6585, -- Kalimdor Safari
     6612, -- Kalimdor Tamer

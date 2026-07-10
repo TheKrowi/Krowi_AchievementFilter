@@ -1,5 +1,5 @@
 primaryId,primaryName,achievementCount
-1,Durotar,22
+1,Durotar,23
 7,Mulgore,13
 10,Northern Barrens,24
 12,Kalimdor,22
@@ -7,18 +7,18 @@ primaryId,primaryName,achievementCount
 14,Arathi Highlands,17
 15,Badlands,17
 17,Blasted Lands,19
-18,Tirisfal Glades,14
+18,Tirisfal Glades,15
 21,Silverpine Forest,14
 22,Western Plaguelands,18
 23,Eastern Plaguelands,25
 24,Light's Hope Chapel,40
 25,Hillsbrad Foothills,20
 26,The Hinterlands,22
-27,Dun Morogh,10
+27,Dun Morogh,11
 32,Searing Gorge,17
 33,Blackrock Mountain,25
 36,Burning Steppes,22
-37,Elwynn Forest,19
+37,Elwynn Forest,20
 42,Deadwind Pass,14
 47,Duskwood,24
 48,Loch Modan,18
@@ -52,9 +52,9 @@ primaryId,primaryName,achievementCount
 91,Alterac Valley,25
 92,Warsong Gulch,23
 93,Arathi Basin,20
-94,Eversong Woods,12
+94,Eversong Woods,13
 95,Ghostlands,13
-97,Azuremyst Isle,16
+97,Azuremyst Isle,17
 100,Hellfire Peninsula,28
 101,Outland,25
 102,Zangarmarsh,31
@@ -111,7 +111,7 @@ primaryId,primaryName,achievementCount
 201,Kelp'thar Forest,14
 206,Twin Peaks,23
 207,Deepholm,23
-210,The Cape of Stranglethorn,28
+210,The Cape of Stranglethorn,29
 213,Ragefire Chasm,1
 217,Ruins of Gilneas,1
 218,Ruins of Gilneas City,1

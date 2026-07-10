@@ -3,7 +3,7 @@
 Records every achievement evaluated for zone placement — added, already present, or skipped with reason.
 Update this file whenever a zone placement decision is made via the `add-zone-data` skill.
 
-**Highest ID Analyzed: 300**
+**Highest ID Analyzed: 400**
 
 ## Main Log
 
@@ -125,6 +125,13 @@ Update this file whenever a zone placement decision is made via the `add-zone-da
 | 292 | Sinister Calling | ⏭ skipped | — | — | Hallow's End event achievement; no fixed geographic zone | 2026-07-07 |
 | 293 | Disturbing the Peace | ✅ added | 125 | Dalaran | Added to Dalaran (125) in `Shared/03_WrathOfTheLichKing/ZoneData.lua`; specifically requires dancing in Dalaran during Brewfest | 2026-07-07 |
 | 295 | Direbrewfest | ✅ added | {242, 243} | Blackrock Depths | Added to Blackrock Depths ({242, 243}) in `Shared/01_Vanilla/ZoneData.lua`; Coren Direbrew fought in Brewfest dungeon (Grim Guzzler) | 2026-07-07 |
+| 303 | Have Keg, Will Travel | ⏭ skipped | — | — | Mount/toy reward collection achievement; no geographic association | 2026-07-08 |
+| 306 | Master Angler of Azeroth | ✅ added | 210 | The Cape of Stranglethorn | Added to Cape of Stranglethorn (210) in `Shared/04_Cataclysm/ZoneData.lua`; Booty Bay fishing tournament — Classic is MoP era so Cata zone split is in effect for both Retail and Classic | 2026-07-08 |
+| 388 | City Defender | ✅ already present | 84, 87, 89, 103 | Stormwind City, Ironforge, Darnassus, The Exodar | Already in `Shared/01_Vanilla/ZoneData.lua` (Stormwind, Ironforge, Darnassus) and `Shared/02_TheBurningCrusade/ZoneData.lua` (The Exodar); Alliance city-defense achievement | 2026-07-10 |
+| 389 | Gurubashi Arena Master | ✅ already present | 210 | The Cape of Stranglethorn | Already in `Shared/04_Cataclysm/ZoneData.lua` Gurubashi Arena entry | 2026-07-10 |
+| 396 | Gurubashi Arena Grand Master | ✅ already present | 210 | The Cape of Stranglethorn | Already in `Shared/04_Cataclysm/ZoneData.lua` Gurubashi Arena entry | 2026-07-10 |
+| 397 | Step Into The Arena | REVISIT - MISSING ARENA MAP IDS | — | — | PvP arena achievement; no geographic zone association | 2026-07-10 |
+| 398 | Mercilessly Dedicated | REVISIT - MISSING ARENA MAP IDS | — | — | PvP season arena achievement; no geographic zone association | 2026-07-10 |
 
 ## Statistics-Tracking Achievements (Skipped)
 
@@ -162,15 +169,46 @@ All skipped — cumulative counter / statistics-tracking achievements not in Ach
 | 181 | Items disenchanted |
 | 183 | Materials produced from disenchanting |
 | 239 | 25000 Honorable Kills |
+| 318 | Total deaths from opposite faction |
+| 319 | Duels won |
+| 320 | Duels lost |
+| 321 | Total raid and dungeon deaths |
+| 326 | Gold from quest rewards |
+| 328 | Total gold acquired |
+| 329 | Auctions posted |
+| 330 | Auction purchases |
+| 331 | Most expensive bid on auction |
+| 332 | Most expensive auction sold |
+| 333 | Gold looted |
+| 334 | Most gold ever owned |
+| 338 | Vanity pets owned |
+| 344 | Bandages used |
+| 345 | Health potions consumed |
+| 346 | Beverages consumed |
+| 347 | Food eaten |
+| 349 | Flight paths taken |
+| 350 | Mage Portals taken |
+| 353 | Number of times hearthed |
+| 362 | 5v5 victories |
+| 363 | 5v5 matches |
+| 364 | 3v3 victories |
+| 365 | 3v3 matches |
+| 366 | 2v2 victories |
+| 367 | 2v2 matches |
+| 370 | Highest 2v2 personal rating |
+| 374 | Highest 2v2 team rating |
+| 399 | Just the Two of Us: 1550 |
+| 400 | Just the Two of Us: 1750 |
 
 ## IDs Not Found in Game DB (Skipped)
 
 All skipped — achievement ID not found in game DB (verified against build 12.0.7.68275).
 
-1, 2, 3, 4, 5, 14, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 47, 48,
+0, 1, 2, 3, 4, 5, 14, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 47, 48,
 56, 57, 58, 59, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 96,
 106, 109, 111, 117, 118, 119, 120, 136, 138, 139, 140, 142, 143, 145, 146, 147, 148, 149,
 151, 152, 160, 163, 164, 169, 170, 171, 172, 173, 175, 176, 177, 179, 180, 182, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198,
-205, 210, 215, 217, 228, 232, 234, 235, 236, 237, 240, 241, 242, 243, 244, 250,
-251, 253, 254, 256, 257, 258, 261, 262, 264, 265, 266, 267, 268, 269, 270, 274,
-276, 278, 280, 282, 285, 286, 287, 290, 294, 296, 297, 298, 299, 300
+205, 210, 215, 217, 228, 232, 234, 235, 236, 237, 240, 241, 242, 243, 244,
+250, 251, 253, 254, 256, 257, 258, 261, 262, 264, 265, 266, 267, 268, 269, 270, 274, 276, 278, 280, 282, 285, 286, 287, 290, 294, 296, 297, 298, 299, 300,
+301, 302, 304, 305, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 322, 323, 324, 325, 327, 335, 336, 337, 339, 340, 341, 342, 343, 348,
+351, 352, 354, 355, 356, 357, 358, 359, 360, 361, 368, 369, 371, 372, 373, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 390, 391, 392, 393, 394, 395
