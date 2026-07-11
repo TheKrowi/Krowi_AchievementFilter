@@ -3,7 +3,7 @@
 Records every achievement evaluated for zone placement — added, already present, or skipped with reason.
 Update this file whenever a zone placement decision is made via the `add-zone-data` skill.
 
-**Highest ID Analyzed: 400**
+**Highest ID Analyzed: 450**
 
 ## Main Log
 
@@ -130,8 +130,44 @@ Update this file whenever a zone placement decision is made via the `add-zone-da
 | 388 | City Defender | ✅ already present | 84, 87, 89, 103 | Stormwind City, Ironforge, Darnassus, The Exodar | Already in `Shared/01_Vanilla/ZoneData.lua` (Stormwind, Ironforge, Darnassus) and `Shared/02_TheBurningCrusade/ZoneData.lua` (The Exodar); Alliance city-defense achievement | 2026-07-10 |
 | 389 | Gurubashi Arena Master | ✅ already present | 210 | The Cape of Stranglethorn | Already in `Shared/04_Cataclysm/ZoneData.lua` Gurubashi Arena entry | 2026-07-10 |
 | 396 | Gurubashi Arena Grand Master | ✅ already present | 210 | The Cape of Stranglethorn | Already in `Shared/04_Cataclysm/ZoneData.lua` Gurubashi Arena entry | 2026-07-10 |
-| 397 | Step Into The Arena | REVISIT - MISSING ARENA MAP IDS | — | — | PvP arena achievement; no geographic zone association | 2026-07-10 |
-| 398 | Mercilessly Dedicated | REVISIT - MISSING ARENA MAP IDS | — | — | PvP season arena achievement; no geographic zone association | 2026-07-10 |
+| 397 | Step Into The Arena | ⏭ skipped | — | — | PvP arena achievement; no geographic zone association | 2026-07-10 |
+| 398 | Mercilessly Dedicated | ⏭ skipped | — | — | PvP season arena achievement; no geographic zone association | 2026-07-10 |
+| 408 | Hot Streak | ⏭ skipped | — | — | PvP arena achievement (win 10 ranked matches in a row); no geographic zone association | 2026-07-10 |
+| 409 | Last Man Standing | ⏭ skipped | — | — | PvP arena achievement (sole survivor in 5v5 match); no geographic zone association | 2026-07-10 |
+| 411 | Murky | ⏭ skipped | — | — | Pet collection Feat of Strength (BlizzCon 2005 exclusive); no geographic association | 2026-07-10 |
+| 412 | Murloc Costume | ⏭ skipped | — | — | Special item Feat of Strength (BlizzCon 2007 exclusive); no geographic association | 2026-07-10 |
+| 414 | Tyrael's Hilt | ⏭ skipped | — | — | Special item Feat of Strength (2008 WWI exclusive); no geographic association | 2026-07-10 |
+| 415 | Big Blizzard Bear | ⏭ skipped | — | — | Mount collection Feat of Strength (BlizzCon 2008 exclusive); no geographic association | 2026-07-10 |
+| 416 | Scarab Lord | ✅ already present | 81 | Silithus | Already in `Shared/01_Vanilla/ZoneData.lua` Silithus entry | 2026-07-10 |
+| 418 | Merciless Gladiator | ⏭ skipped | — | — | PvP season title Feat of Strength; no geographic zone association | 2026-07-10 |
+| 419 | Vengeful Gladiator | ⏭ skipped | — | — | PvP season title Feat of Strength; no geographic zone association | 2026-07-10 |
+| 420 | Brutal Gladiator | ⏭ skipped | — | — | PvP season title Feat of Strength; no geographic zone association | 2026-07-10 |
+| 424 | Why? Because It's Red | ✅ already present | 319 | Ahn'Qiraj | Already in `Shared/01_Vanilla/ZoneData.lua` Ahn'Qiraj (raid) entry | 2026-07-10 |
+| 425 | Atiesh, Greatstaff of the Guardian | ⏭ skipped | — | — | Legendary item Feat of Strength; original 40-man Naxxramas no longer accessible, no current zone requirement | 2026-07-10 |
+| 426 | Warglaives of Azzinoth | ✅ already present | 339 | Black Temple | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Black Temple entry | 2026-07-10 |
+| 428 | Thunderfury, Blessed Blade of the Windseeker | ✅ already present | 232 | Molten Core | Already in `Shared/01_Vanilla/ZoneData.lua` Molten Core entry | 2026-07-10 |
+| 429 | Sulfuras, Hand of Ragnaros | ✅ already present | 232 | Molten Core | Already in `Shared/01_Vanilla/ZoneData.lua` Molten Core entry | 2026-07-10 |
+| 430 | Amani War Bear | ✅ already present | 333 | Zul'Aman | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Zul'Aman entry | 2026-07-10 |
+| 431 | Hand of A'dal | ✅ added | 104 | Shadowmoon Valley | Added to Shadowmoon Valley (104) in `Shared/02_TheBurningCrusade/ZoneData.lua`; title achievement obtained via quest chain in Shadowmoon Valley | 2026-07-11 |
+| 432 | Champion of the Naaru | ✅ added | 111 | Shattrath City | Added to Shattrath City (111) in `Shared/02_TheBurningCrusade/ZoneData.lua`; title achievement obtained via quest chain in Shattrath City | 2026-07-11 |
+| 433 | Grand Marshal | ⏭ skipped | — | — | PvP rank title Feat of Strength (Classic Honor System); no geographic zone association | 2026-07-10 |
+| 434 | Field Marshal | ⏭ skipped | — | — | PvP rank title Feat of Strength (Classic Honor System); no geographic zone association | 2026-07-10 |
+| 435 | Commander | ⏭ skipped | — | — | PvP rank title Feat of Strength (Classic Honor System); no geographic zone association | 2026-07-10 |
+| 436 | Lieutenant Commander | ⏭ skipped | — | — | PvP rank title Feat of Strength (Classic Honor System); no geographic zone association | 2026-07-10 |
+| 437 | Knight-Champion | ⏭ skipped | — | — | PvP rank title Feat of Strength (Classic Honor System); no geographic zone association | 2026-07-10 |
+| 438 | Knight-Captain | ⏭ skipped | — | — | PvP rank title Feat of Strength (Classic Honor System); no geographic zone association | 2026-07-10 |
+| 439 | Knight | ⏭ skipped | — | — | PvP rank title Feat of Strength (Classic Honor System); no geographic zone association | 2026-07-10 |
+| 440 | Sergeant Major | ⏭ skipped | — | — | PvP rank title Feat of Strength (Classic Honor System); no geographic zone association | 2026-07-10 |
+| 441 | Master Sergeant | ⏭ skipped | — | — | PvP rank title Feat of Strength (Classic Honor System); no geographic zone association | 2026-07-10 |
+| 442 | Private | ⏭ skipped | — | — | PvP rank title Feat of Strength (Classic Honor System); no geographic zone association | 2026-07-10 |
+| 443 | High Warlord | ⏭ skipped | — | — | PvP rank title Feat of Strength (Classic Honor System); no geographic zone association | 2026-07-10 |
+| 444 | Lieutenant General | ⏭ skipped | — | — | PvP rank title Feat of Strength (Classic Honor System); no geographic zone association | 2026-07-10 |
+| 445 | Warlord | ⏭ skipped | — | — | PvP rank title Feat of Strength (Classic Honor System); no geographic zone association | 2026-07-10 |
+| 446 | General | ⏭ skipped | — | — | PvP rank title Feat of Strength (Classic Honor System); no geographic zone association | 2026-07-10 |
+| 447 | Champion | ⏭ skipped | — | — | PvP rank title Feat of Strength (Classic Honor System); no geographic zone association | 2026-07-10 |
+| 448 | Centurion | ⏭ skipped | — | — | PvP rank title Feat of Strength (Classic Honor System); no geographic zone association | 2026-07-10 |
+| 449 | Blood Guard | ⏭ skipped | — | — | PvP rank title Feat of Strength (Classic Honor System); no geographic zone association | 2026-07-10 |
+| 450 | Senior Sergeant | ⏭ skipped | — | — | PvP rank title Feat of Strength (Classic Honor System); no geographic zone association | 2026-07-10 |
 
 ## Statistics-Tracking Achievements (Skipped)
 
@@ -199,6 +235,13 @@ All skipped — cumulative counter / statistics-tracking achievements not in Ach
 | 374 | Highest 2v2 team rating |
 | 399 | Just the Two of Us: 1550 |
 | 400 | Just the Two of Us: 1750 |
+| 401 | Just the Two of Us: 2000 |
+| 402 | Three's Company: 1550 |
+| 403 | Three's Company: 1750 |
+| 404 | High Five: 2000 |
+| 405 | Three's Company: 2000 |
+| 406 | High Five: 1550 |
+| 407 | High Five: 1750 |
 
 ## IDs Not Found in Game DB (Skipped)
 
@@ -211,4 +254,5 @@ All skipped — achievement ID not found in game DB (verified against build 12.0
 205, 210, 215, 217, 228, 232, 234, 235, 236, 237, 240, 241, 242, 243, 244,
 250, 251, 253, 254, 256, 257, 258, 261, 262, 264, 265, 266, 267, 268, 269, 270, 274, 276, 278, 280, 282, 285, 286, 287, 290, 294, 296, 297, 298, 299, 300,
 301, 302, 304, 305, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 322, 323, 324, 325, 327, 335, 336, 337, 339, 340, 341, 342, 343, 348,
-351, 352, 354, 355, 356, 357, 358, 359, 360, 361, 368, 369, 371, 372, 373, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 390, 391, 392, 393, 394, 395
+351, 352, 354, 355, 356, 357, 358, 359, 360, 361, 368, 369, 371, 372, 373, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 390, 391, 392, 393, 394, 395,
+410, 413, 417, 421, 422, 423, 427

@@ -314,6 +314,7 @@ zoneData:Zone(104, { -- Shadowmoon Valley (zone)
     1312, -- Bloody Rare
     44, -- Outland Explorer
     1195, -- Shadow of the Betrayer
+    431, -- Hand of A'dal
     864, -- Explore Shadowmoon Valley
     898, -- On Wings of Nether
     1638, -- Skyshattered
@@ -436,6 +437,7 @@ zoneData:Zone(111, { -- Shattrath City (city)
     7499, -- Taming the World
     8348, -- The Longest Day
     1165, -- My Storage is "Gigantique"
+    432, -- Champion of the Naaru
     9924, -- Field Photographer
     6604, -- Taming Outland
     275, -- Veteran Nanny

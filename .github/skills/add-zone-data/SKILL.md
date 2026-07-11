@@ -13,7 +13,7 @@ Given a list of achievement IDs, the parent agent:
    & "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\.github\skills\add-zone-data\_start_server.ps1"
    ```
    The script starts wow.tools.local if needed and waits up to 60 seconds. If it still isn't reachable after that, **stop immediately** — do not proceed and do not waste tokens on lookups that will all return NOT_FOUND.
-1. Runs **Lookup subagent** → compact decisions JSON
+1. **Performs all lookups directly** (see scripts below) and builds a compact decisions JSON — do **not** delegate to a subagent for this step; `Explore` subagents cannot make HTTP calls to `localhost:5000`.
 2. Groups `add` decisions by expansion → runs **Write subagent** per expansion → minimal file diffs
 3. Applies all diffs via `multi_replace_string_in_file`
 4. Runs both evaluators (Step 3)
@@ -85,12 +85,21 @@ STEP 1 — DB lookup
   No result → decision=skip, reason="not in game DB" → go to next ID
 
 STEP 2 — Skip rules (no map lookup needed)
-  Skip with "no geographic association" if title/description matches any of:
+  The following go in the **Statistics table** (not the main log):
+  - Pure cumulative counters: quests completed/abandoned, total kills, critters killed, deaths,
+    arena/BG battles or wins, daily quests
+  - Arena rating milestones: "Just the Two of Us: X", "Three's Company: X", "High Five: X",
+    and equivalent rating-bracket series
+
+  The following go in the **Main log** as ⏭ skipped, reason="no geographic association":
   - "Level N" or level milestone
   - Proficiency/skill rank (Journeyman/Expert/Artisan/Grand Master + profession or skill)
   - Pet, mount, or toy collection count
-  - Pure cumulative counter: quests completed/abandoned, total kills, critters killed, deaths,
-    arena/BG battles or wins, daily quests → reason="statistics tracking"
+  - PvP arena performance achievements (e.g. Hot Streak, Last Man Standing) — not rating milestones
+  - PvP gladiator/elite season titles (Merciless/Vengeful/Brutal/Wrathful Gladiator, etc.)
+  - Feats of Strength for real-world event exclusives (BlizzCon pets/mounts/toys, WWI items)
+  - Legendary item FoS where the source instance no longer exists in the current game
+    (e.g. Atiesh — required original 40-man Naxxramas which was removed)
 
 STEP 3 — Zone lookup (non-skipped only)
   a. Check raw\MapVerifier_ZonesPerAchievement.csv — if achievementId column contains this ID
