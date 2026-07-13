@@ -203,7 +203,7 @@ zoneData:Zone(115, { -- Dragonblight (zone)
     1359, -- Might of Dragonblight
     547, -- Veteran of the Wrathgate
     1277, -- Rapid Defense
-    1265, -- Explore Dragonflight
+    1265, -- Explore Dragonblight
     9924, -- Field Photographer
     1007, -- The Wyrmrest Accord
     6605, -- Taming Northrend
