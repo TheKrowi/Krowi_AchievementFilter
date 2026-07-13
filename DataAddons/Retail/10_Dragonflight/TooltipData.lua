@@ -419,7 +419,7 @@ KrowiAF.TooltipData.Dragonflight = {
             {4, 212003}, -- Zul'Drak Zephyr
             {5, 212118}, -- Makers' Marathon
             {6, 212193}, -- Crystalsong Crisis
-            {7, 212250}, -- Dragonflight Dragon Flight
+            {7, 212250}, -- Dragonblight Dragon Flight
             {8, 212418}, -- Citadel Sortie
             {9, 212666}, -- Sholazar Spree
             {10, 213086}, -- Geothermal Jaunt
