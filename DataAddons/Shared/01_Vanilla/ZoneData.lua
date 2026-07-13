@@ -30,6 +30,7 @@ zoneData:Zone({92, 1339}, { -- Warsong Gulch (battleground)
     1259, -- Not So Fast
     713, -- Silverwing Sentinel
     712, -- Warsong Outrider
+    714, -- The Conqueror
     230, -- Battlemaster
 })
 
@@ -51,6 +52,7 @@ zoneData:Zone({93, 1366, 1383}, { -- Arathi Basin (battleground)
     1169, -- Master of Arathi Basin
     711, -- Knight of Arathor
     710, -- The Defiler
+    714, -- The Conqueror
     230, -- Battlemaster
 })
 
@@ -1019,6 +1021,7 @@ zoneData:Zone({91, 1537, 2162}, { -- Alterac Valley (battleground)
     226, -- The Alterac Blitz
     709, -- Hero of the Stormpike Guard
     708, -- Hero of the Frostwolf Clan
+    714, -- The Conqueror
     230, -- Battlemaster
 })
 

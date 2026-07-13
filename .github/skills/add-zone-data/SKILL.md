@@ -190,12 +190,15 @@ If any evaluator fails: analyze output, fix the reported issues, re-run all thre
 
 ## Step 4 — Update decisions log (parent writes)
 
-File: `raw/ZoneDataDecisions.md` — three sections:
+File: `raw/ZoneDataDecisions.md` — three sections, each with an HTML comment end-marker as the insertion anchor:
 
 **Main Log** `| ID | Title | Decision | Zone ID | Zone Name | Reason | Date |`
 - Decisions: `✅ added`, `✅ already present`, `⏭ skipped`
 - Covers all non-statistics entries with a contextual reason.
+- Insert new rows **before** `<!-- END_MAIN_LOG -->`.
 
 **Statistics-Tracking Achievements (Skipped)** — `| ID | Title |` compact table, no per-row reason.
+- Insert new rows **before** `<!-- END_STATS_LOG -->`.
 
 **IDs Not Found in Game DB (Skipped)** — comma-separated bare IDs in numeric order, no table.
+- Append new IDs **before** `<!-- END_NOTFOUND -->` (maintain numeric order; add a trailing comma to the previous last line if needed).

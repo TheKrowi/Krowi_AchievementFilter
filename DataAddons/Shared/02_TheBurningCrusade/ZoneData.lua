@@ -73,6 +73,8 @@ zoneData:Zone({263, 264}, { -- The Steamvault
 })
 
 zoneData:Zone(272, { -- Mana-Tombs
+    763, -- The Burning Crusader
+    764, -- The Burning Crusader
     902, -- Chief Exalted Officer
     651, -- Mana-Tombs
     671, -- Heroic: Mana-Tombs
@@ -394,6 +396,7 @@ zoneData:Zone(108, { -- Terokkar Forest (zone)
     1272, -- Terror of Terokkar
     1275, -- Bombs Away
     867, -- Explore Terokkar Forest
+    726, -- Mr. Pinchy's Magical Crawdad Box
     903, -- Shattrath Divided
     1205, -- Hero of Shattrath
     6587, -- Outland Safari
@@ -411,6 +414,8 @@ zoneData:Zone(109, { -- Netherstorm (zone)
     1311, -- Medium Rare
     1312, -- Bloody Rare
     44, -- Outland Explorer
+    763, -- The Burning Crusader
+    764, -- The Burning Crusader
     902, -- Chief Exalted Officer
     1194, -- Into the Nether
     843, -- Explore Netherstorm

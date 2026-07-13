@@ -3,7 +3,7 @@
 Records every achievement evaluated for zone placement — added, already present, or skipped with reason.
 Update this file whenever a zone placement decision is made via the `add-zone-data` skill.
 
-**Highest ID Analyzed: 625**
+**Highest ID Analyzed: 800**
 
 ## Main Log
 
@@ -272,6 +272,129 @@ Update this file whenever a zone placement decision is made via the `add-zone-da
 | 623 | The Spellweaver's Downfall (25 player) | ✅ already present | 141 | Eye of Eternity | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` Eye of Eternity entry | 2026-07-13 |
 | 624 | Less Is More (10 player) | ✅ already present | 155 | The Obsidian Sanctum | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` The Obsidian Sanctum entry | 2026-07-13 |
 | 625 | Besting the Black Dragonflight (25 player) | ✅ already present | 155 | The Obsidian Sanctum | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` The Obsidian Sanctum entry | 2026-07-13 |
+| 626 | Lunar Festival Finery | ⏭ skipped | — | — | Event achievement (Lunar Festival); no fixed geographic zone | 2026-07-13 |
+| 627 | Explore Dun Morogh | ✅ already present | 27 | Dun Morogh | Already in `Shared/01_Vanilla/ZoneData.lua` Dun Morogh entry | 2026-07-13 |
+| 628 | Deadmines | ✅ already present | 291 | The Deadmines | Already in `Shared/01_Vanilla/ZoneData.lua` The Deadmines entry | 2026-07-13 |
+| 629 | Ragefire Chasm | ✅ already present | 213 | Ragefire Chasm | Already in `Shared/01_Vanilla/ZoneData.lua` Ragefire Chasm entry | 2026-07-13 |
+| 630 | Wailing Caverns | ✅ already present | 279 | Wailing Caverns | Already in `Shared/01_Vanilla/ZoneData.lua` Wailing Caverns entry | 2026-07-13 |
+| 631 | Shadowfang Keep | ✅ already present | 310 | Shadowfang Keep | Already in `Shared/01_Vanilla/ZoneData.lua` Shadowfang Keep entry | 2026-07-13 |
+| 632 | Blackfathom Deeps | ✅ already present | 221 | Blackfathom Deeps | Already in `Shared/01_Vanilla/ZoneData.lua` Blackfathom Deeps entry | 2026-07-13 |
+| 633 | Stormwind Stockade | ✅ already present | 225 | The Stockade | Already in `Shared/01_Vanilla/ZoneData.lua` The Stockade entry | 2026-07-13 |
+| 634 | Gnomeregan | ✅ already present | 226 | Gnomeregan | Already in `Shared/01_Vanilla/ZoneData.lua` Gnomeregan entry | 2026-07-13 |
+| 635 | Razorfen Kraul | ✅ already present | 301 | Razorfen Kraul | Already in `Shared/01_Vanilla/ZoneData.lua` Razorfen Kraul entry | 2026-07-13 |
+| 636 | Razorfen Downs | ✅ already present | 300 | Razorfen Downs | Already in `Shared/01_Vanilla/ZoneData.lua` Razorfen Downs entry | 2026-07-13 |
+| 637 | Scarlet Monastery | ✅ already present | 435 | Scarlet Monastery | Already in `Shared/05_MistsOfPandaria/ZoneData.lua` Scarlet Monastery entry | 2026-07-13 |
+| 638 | Uldaman | ✅ already present | 230 | Uldaman | Already in `Shared/01_Vanilla/ZoneData.lua` Uldaman entry | 2026-07-13 |
+| 639 | Zul'Farrak | ✅ already present | 219 | Zul'Farrak | Already in `Shared/01_Vanilla/ZoneData.lua` Zul'Farrak entry | 2026-07-13 |
+| 640 | Maraudon | ✅ already present | 280 | Maraudon | Already in `Shared/01_Vanilla/ZoneData.lua` Maraudon entry | 2026-07-13 |
+| 641 | Sunken Temple | ✅ already present | 220 | The Temple of Atal'Hakkar | Already in `Shared/01_Vanilla/ZoneData.lua` The Temple of Atal'Hakkar entry | 2026-07-13 |
+| 642 | Blackrock Depths | ✅ already present | 242 | Blackrock Depths | Already in `Shared/01_Vanilla/ZoneData.lua` Blackrock Depths entry | 2026-07-13 |
+| 643 | Lower Blackrock Spire | ✅ already present | 250 | Blackrock Spire | Already in `Shared/01_Vanilla/ZoneData.lua` Blackrock Spire entry | 2026-07-13 |
+| 644 | King of Dire Maul | ✅ already present | 235 | Dire Maul | Already in `Shared/01_Vanilla/ZoneData.lua` Dire Maul entry | 2026-07-13 |
+| 645 | Scholomance | ✅ already present | 476 | Scholomance | Already in `Shared/05_MistsOfPandaria/ZoneData.lua` Scholomance entry | 2026-07-13 |
+| 646 | Stratholme | ✅ already present | 317 | Stratholme | Already in `Shared/01_Vanilla/ZoneData.lua` Stratholme entry | 2026-07-13 |
+| 647 | Hellfire Ramparts | ✅ already present | 347 | Hellfire Ramparts | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Hellfire Ramparts entry | 2026-07-13 |
+| 648 | The Blood Furnace | ✅ already present | 261 | The Blood Furnace | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` The Blood Furnace entry | 2026-07-13 |
+| 649 | The Slave Pens | ✅ already present | 265 | The Slave Pens | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` The Slave Pens entry | 2026-07-13 |
+| 650 | Underbog | ✅ already present | 262 | The Underbog | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` The Underbog entry | 2026-07-13 |
+| 651 | Mana-Tombs | ✅ already present | 272 | Mana-Tombs | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Mana-Tombs entry | 2026-07-13 |
+| 652 | The Escape From Durnholde | ✅ already present | 274 | Old Hillsbrad Foothills | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Old Hillsbrad Foothills entry | 2026-07-13 |
+| 653 | Sethekk Halls | ✅ already present | 258, 259 | Sethekk Halls | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Sethekk Halls entry | 2026-07-13 |
+| 654 | Shadow Labyrinth | ✅ already present | 260 | Shadow Labyrinth | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Shadow Labyrinth entry | 2026-07-13 |
+| 655 | Opening of the Dark Portal | ✅ already present | 273 | The Black Morass | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` The Black Morass entry | 2026-07-13 |
+| 656 | The Steamvault | ✅ already present | 263, 264 | The Steamvault | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` The Steamvault entry | 2026-07-13 |
+| 657 | The Shattered Halls | ✅ already present | 246 | The Shattered Halls | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` The Shattered Halls entry | 2026-07-13 |
+| 658 | The Mechanar | ✅ already present | 267, 268 | The Mechanar | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` The Mechanar entry | 2026-07-13 |
+| 659 | The Botanica | ✅ already present | 266 | The Botanica | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` The Botanica entry | 2026-07-13 |
+| 660 | The Arcatraz | ✅ already present | 269, 270, 271 | The Arcatraz | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` The Arcatraz entry | 2026-07-13 |
+| 661 | Magister's Terrace | ✅ already present | 348, 349 | Magisters' Terrace | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Magisters' Terrace entry | 2026-07-13 |
+| 662 | Collector's Edition: Mini-Diablo | ⏭ skipped | — | — | Real-world exclusive Collector's Edition pet FoS; no geographic association | 2026-07-13 |
+| 663 | Collector's Edition: Panda | ⏭ skipped | — | — | Real-world exclusive Collector's Edition pet FoS; no geographic association | 2026-07-13 |
+| 664 | Collector's Edition: Zergling | ⏭ skipped | — | — | Real-world exclusive Collector's Edition pet FoS; no geographic association | 2026-07-13 |
+| 665 | Collector's Edition: Netherwhelp | ⏭ skipped | — | — | Real-world exclusive Collector's Edition pet FoS (TBC); no geographic association | 2026-07-13 |
+| 666 | Auchenai Crypts | ✅ already present | 256, 257 | Auchenai Crypts | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Auchenai Crypts entry | 2026-07-13 |
+| 667 | Heroic: Hellfire Ramparts | ✅ already present | 347 | Hellfire Ramparts | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Hellfire Ramparts entry | 2026-07-13 |
+| 668 | Heroic: The Blood Furnace | ✅ already present | 261 | The Blood Furnace | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` The Blood Furnace entry | 2026-07-13 |
+| 669 | Heroic: The Slave Pens | ✅ already present | 265 | The Slave Pens | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` The Slave Pens entry | 2026-07-13 |
+| 670 | Heroic: Underbog | ✅ already present | 262 | The Underbog | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` The Underbog entry | 2026-07-13 |
+| 671 | Heroic: Mana-Tombs | ✅ already present | 272 | Mana-Tombs | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Mana-Tombs entry | 2026-07-13 |
+| 672 | Heroic: Auchenai Crypts | ✅ already present | 256, 257 | Auchenai Crypts | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Auchenai Crypts entry | 2026-07-13 |
+| 673 | Heroic: The Escape From Durnholde | ✅ already present | 274 | Old Hillsbrad Foothills | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Old Hillsbrad Foothills entry | 2026-07-13 |
+| 674 | Heroic: Sethekk Halls | ✅ already present | 258, 259 | Sethekk Halls | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Sethekk Halls entry | 2026-07-13 |
+| 675 | Heroic: Shadow Labyrinth | ✅ already present | 260 | Shadow Labyrinth | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Shadow Labyrinth entry | 2026-07-13 |
+| 676 | Heroic: Opening of the Dark Portal | ✅ already present | 273 | The Black Morass | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` The Black Morass entry | 2026-07-13 |
+| 677 | Heroic: The Steamvault | ✅ already present | 263 | The Steamvault | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` The Steamvault entry | 2026-07-13 |
+| 678 | Heroic: The Shattered Halls | ✅ already present | 246 | The Shattered Halls | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` The Shattered Halls entry | 2026-07-13 |
+| 679 | Heroic: The Mechanar | ✅ already present | 267 | The Mechanar | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` The Mechanar entry | 2026-07-13 |
+| 680 | Heroic: The Botanica | ✅ already present | 266 | The Botanica | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` The Botanica entry | 2026-07-13 |
+| 681 | Heroic: The Arcatraz | ✅ already present | 269 | The Arcatraz | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` The Arcatraz entry | 2026-07-13 |
+| 682 | Heroic: Magister's Terrace | ✅ already present | 348 | Magisters' Terrace | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Magisters' Terrace entry | 2026-07-13 |
+| 683 | Collector's Edition: Frost Wyrm Whelp | ⏭ skipped | — | — | Feat of Strength for real-world event exclusive (WotLK CE); no geographic association | 2026-07-13 |
+| 684 | Onyxia's Lair (Level 60) | ✅ already present | 248 | Onyxia's Lair | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` Onyxia's Lair entry | 2026-07-13 |
+| 685 | Blackwing Lair | ✅ already present | 287 | Blackwing Lair | Already in `Shared/01_Vanilla/ZoneData.lua` Blackwing Lair entry | 2026-07-13 |
+| 686 | Molten Core | ✅ already present | 232 | Molten Core | Already in `Shared/01_Vanilla/ZoneData.lua` Molten Core entry | 2026-07-13 |
+| 687 | Temple of Ahn'Qiraj | ✅ already present | 319 | Ahn'Qiraj (raid) | Already in `Shared/01_Vanilla/ZoneData.lua` Ahn'Qiraj entry | 2026-07-13 |
+| 688 | Zul'Gurub | ✅ already present | 337 | Zul'Gurub | Already in `Shared/04_Cataclysm/ZoneData.lua` Zul'Gurub entry | 2026-07-13 |
+| 689 | Ruins of Ahn'Qiraj | ✅ already present | 247 | Ruins of Ahn'Qiraj | Already in `Shared/01_Vanilla/ZoneData.lua` Ruins of Ahn'Qiraj entry | 2026-07-13 |
+| 690 | Karazhan | ✅ already present | 350 | Karazhan | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Karazhan entry | 2026-07-13 |
+| 691 | Zul'Aman (Burning Crusade) | ✅ already present | 333 | Zul'Aman | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Zul'Aman entry | 2026-07-13 |
+| 692 | Gruul's Lair | ✅ already present | 330 | Gruul's Lair | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Gruul's Lair entry | 2026-07-13 |
+| 693 | Magtheridon's Lair | ✅ already present | 331 | Magtheridon's Lair | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Magtheridon's Lair entry | 2026-07-13 |
+| 694 | Serpentshrine Cavern | ✅ already present | 332 | Serpentshrine Cavern | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Serpentshrine Cavern entry | 2026-07-13 |
+| 695 | The Battle for Mount Hyjal | ✅ already present | 329 | The Battle for Mount Hyjal | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` The Battle for Mount Hyjal entry | 2026-07-13 |
+| 696 | Tempest Keep | ✅ already present | 334 | The Eye (Tempest Keep) | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` The Eye entry | 2026-07-13 |
+| 697 | The Black Temple | ✅ already present | 339 | The Black Temple | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` The Black Temple entry | 2026-07-13 |
+| 698 | Sunwell Plateau | ✅ already present | 335 | Sunwell Plateau | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Sunwell Plateau entry | 2026-07-13 |
+| 699 | World Wide Winner | ⏭ skipped | — | — | Multi-arena PvP requirement spanning multiple zones; no single geographic association | 2026-07-13 |
+| 700 | Freedom of the Horde | ⏭ skipped | — | — | PvP item collection achievement; no geographic association | 2026-07-13 |
+| 701 | Freedom of the Alliance | ⏭ skipped | — | — | PvP item collection achievement; no geographic association | 2026-07-13 |
+| 705 | Master of Arms | ⏭ skipped | — | — | Weapon skill mastery achievement; no geographic association | 2026-07-13 |
+| 706 | Frostwolf Howler | ✅ already present | 91 | Alterac Valley | Already in `Shared/01_Vanilla/ZoneData.lua` Alterac Valley entry | 2026-07-13 |
+| 707 | Stormpike Battle Charger | ✅ already present | 91 | Alterac Valley | Already in `Shared/01_Vanilla/ZoneData.lua` Alterac Valley entry | 2026-07-13 |
+| 708 | Hero of the Frostwolf Clan | ✅ already present | 91 | Alterac Valley | Already in `Shared/01_Vanilla/ZoneData.lua` Alterac Valley entry | 2026-07-13 |
+| 709 | Hero of the Stormpike Guard | ✅ already present | 91 | Alterac Valley | Already in `Shared/01_Vanilla/ZoneData.lua` Alterac Valley entry | 2026-07-13 |
+| 710 | The Defiler | ✅ already present | 93 | Arathi Basin | Already in `Shared/01_Vanilla/ZoneData.lua` Arathi Basin entry | 2026-07-13 |
+| 711 | Knight of Arathor | ✅ already present | 93 | Arathi Basin | Already in `Shared/01_Vanilla/ZoneData.lua` Arathi Basin entry | 2026-07-13 |
+| 712 | Warsong Outrider | ✅ already present | 92 | Warsong Gulch | Already in `Shared/01_Vanilla/ZoneData.lua` Warsong Gulch entry | 2026-07-13 |
+| 713 | Silverwing Sentinel | ✅ already present | 92 | Warsong Gulch | Already in `Shared/01_Vanilla/ZoneData.lua` Warsong Gulch entry | 2026-07-13 |
+| 714 | The Conqueror | ✅ added | 91, 92, 93 | Alterac Valley, Warsong Gulch, Arathi Basin | Added to all 3 BG zone entries in `Shared/01_Vanilla/ZoneData.lua` | 2026-07-13 |
+| 725 | Thori'dal, the Stars' Fury | ✅ already present | 335 | Sunwell Plateau | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Sunwell Plateau entry | 2026-07-13 |
+| 726 | Mr. Pinchy's Magical Crawdad Box | ✅ added | 108 | Terokkar Forest | Added to `Shared/02_TheBurningCrusade/ZoneData.lua` Terokkar Forest entry | 2026-07-13 |
+| 727 | Call in the Cavalry | ⏭ skipped | — | — | Mount collection via PvP honor; no geographic association | 2026-07-13 |
+| 728 | Explore Durotar | ✅ already present | 1 | Durotar | Already in `Shared/01_Vanilla/ZoneData.lua` Durotar entry | 2026-07-13 |
+| 729 | Deathcharger's Reins | ✅ already present | 317 | Stratholme | Already in `Shared/01_Vanilla/ZoneData.lua` Stratholme entry | 2026-07-13 |
+| 730 | Skills to Pay the Bills | ⏭ skipped | — | — | Multi-skill proficiency achievement; no geographic association | 2026-07-13 |
+| 731 | Professional Expert | ⏭ skipped | — | — | Proficiency/skill rank achievement; no geographic association | 2026-07-13 |
+| 732 | Professional Classic Master | ⏭ skipped | — | — | Proficiency/skill rank achievement; no geographic association | 2026-07-13 |
+| 733 | Professional Outland Master | ⏭ skipped | — | — | Proficiency/skill rank achievement; no geographic association | 2026-07-13 |
+| 734 | Professional Northrend Master | ⏭ skipped | — | — | Proficiency/skill rank achievement; no geographic association | 2026-07-13 |
+| 735 | Working In the Cold | ⏭ skipped | — | — | Proficiency/skill rank achievement; no geographic association | 2026-07-13 |
+| 736 | Explore Mulgore | ✅ already present | 7 | Mulgore | Already in `Shared/01_Vanilla/ZoneData.lua` Mulgore entry | 2026-07-13 |
+| 750 | Explore Northern Barrens | ✅ already present | 10 | Northern Barrens | Already in `Shared/04_Cataclysm/ZoneData.lua` Northern Barrens entry | 2026-07-13 |
+| 761 | Explore Arathi Highlands | ✅ already present | 14 | Arathi Highlands | Already in `Shared/01_Vanilla/ZoneData.lua` Arathi Highlands entry | 2026-07-13 |
+| 762 | Ambassador of the Horde | ✅ already present | 1, 7, 10, 14, 17, 18, 21, 22, 25, 26, 50, 64, 65, 66, 69, 71, 76, 77, 85, 94, 95, 100, 102, 199, 210, 241 | All 6 Horde faction rep zones: Durotar, Mulgore, Northern Barrens, Arathi Highlands, Blasted Lands, Tirisfal Glades, Silverpine Forest, Western Plaguelands, Hillsbrad Foothills, The Hinterlands, Northern Stranglethorn, Thousand Needles, Stonetalon Mountains, Desolace, Feralas, Tanaris, Azshara, Felwood, Orgrimmar, Eversong Woods, Ghostlands, Hellfire Peninsula, Zangarmarsh, Southern Barrens, Cape of Stranglethorn, Twilight Highlands | All 25 wiki-listed rep zones verified present across `Shared/01_Vanilla`, `Shared/02_TheBurningCrusade`, and `Shared/04_Cataclysm` ZoneData files; Echo Isles has no separate map entry and is covered by Durotar (1) | 2026-07-13 |
+| 763 | The Burning Crusader | ✅ added | 74, 100, 101, 102, 108, 109, 246, 256, 258, 260, 261, 262, 263, 265, 266, 267, 269, 272, 273, 274, 334, 347 | Outland zones + all 14 TBC rep dungeons | All 5 TBC dungeon rep factions covered: Honor Hold/Thrallmar (347, 261, 246), Cenarion Expedition (265, 262, 263), Lower City (256, 258, 260, 272), Keepers of Time (274, 273), The Sha'tar (267, 266, 269, 334); zone entries for Hellfire Peninsula (100), Zangarmarsh (102), Terokkar Forest (108), Netherstorm (109), Outland continent (101), Caverns of Time (74) also covered; **added 763 to Mana-Tombs (272) and Netherstorm (109)** which were missing | 2026-07-13 |
+| 764 | The Burning Crusader | ✅ added | 74, 100, 101, 102, 108, 109, 246, 256, 258, 260, 261, 262, 263, 265, 266, 267, 269, 272, 273, 274, 334, 347 | Outland zones + all 14 TBC rep dungeons | Horde faction variant of 763; same zone coverage; **added 764 to Mana-Tombs (272) and Netherstorm (109)** which were missing | 2026-07-13 |
+| 765 | Explore Badlands | ✅ already present | 15 | Badlands | Already in `Shared/01_Vanilla/ZoneData.lua` Badlands entry | 2026-07-13 |
+| 766 | Explore Blasted Lands | ✅ already present | 17 | Blasted Lands | Already in `Shared/01_Vanilla/ZoneData.lua` Blasted Lands entry | 2026-07-13 |
+| 768 | Explore Tirisfal Glades | ✅ already present | 18 | Tirisfal Glades | Already in `Shared/01_Vanilla/ZoneData.lua` Tirisfal Glades entry | 2026-07-13 |
+| 769 | Explore Silverpine Forest | ✅ already present | 21 | Silverpine Forest | Already in `Shared/01_Vanilla/ZoneData.lua` Silverpine Forest entry | 2026-07-13 |
+| 770 | Explore Western Plaguelands | ✅ already present | 22 | Western Plaguelands | Already in `Shared/01_Vanilla/ZoneData.lua` Western Plaguelands entry | 2026-07-13 |
+| 771 | Explore Eastern Plaguelands | ✅ already present | 23 | Eastern Plaguelands | Already in `Shared/01_Vanilla/ZoneData.lua` Eastern Plaguelands entry | 2026-07-13 |
+| 772 | Explore Hillsbrad Foothills | ✅ already present | 25 | Hillsbrad Foothills | Already in `Shared/01_Vanilla/ZoneData.lua` Hillsbrad Foothills entry | 2026-07-13 |
+| 773 | Explore The Hinterlands | ✅ already present | 26 | The Hinterlands | Already in `Shared/01_Vanilla/ZoneData.lua` The Hinterlands entry | 2026-07-13 |
+| 774 | Explore Searing Gorge | ✅ already present | 32, 33 | Searing Gorge | Already in `Shared/01_Vanilla/ZoneData.lua` Searing Gorge entry | 2026-07-13 |
+| 775 | Explore Burning Steppes | ✅ already present | 33, 36 | Burning Steppes | Already in `Shared/01_Vanilla/ZoneData.lua` Burning Steppes entry | 2026-07-13 |
+| 776 | Explore Elwynn Forest | ✅ already present | 37 | Elwynn Forest | Already in `Shared/01_Vanilla/ZoneData.lua` Elwynn Forest entry | 2026-07-13 |
+| 777 | Explore Deadwind Pass | ✅ already present | 42 | Deadwind Pass | Already in `Shared/01_Vanilla/ZoneData.lua` Deadwind Pass entry | 2026-07-13 |
+| 778 | Explore Duskwood | ✅ already present | 47 | Duskwood | Already in `Shared/01_Vanilla/ZoneData.lua` Duskwood entry | 2026-07-13 |
+| 779 | Explore Loch Modan | ✅ already present | 48 | Loch Modan | Already in `Shared/01_Vanilla/ZoneData.lua` Loch Modan entry | 2026-07-13 |
+| 780 | Explore Redridge Mountains | ✅ already present | 49 | Redridge Mountains | Already in `Shared/01_Vanilla/ZoneData.lua` Redridge Mountains entry | 2026-07-13 |
+| 781 | Explore Northern Stranglethorn | ✅ already present | 50 | Northern Stranglethorn | Already in `Shared/04_Cataclysm/ZoneData.lua` Northern Stranglethorn entry | 2026-07-13 |
+| 782 | Explore Swamp of Sorrows | ✅ already present | 51 | Swamp of Sorrows | Already in `Shared/01_Vanilla/ZoneData.lua` Swamp of Sorrows entry | 2026-07-13 |
+| 783 | The Perfect Storm | ✅ already present | 112 | Eye of the Storm | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Eye of the Storm entry | 2026-07-13 |
+| 784 | Eye of the Storm Domination | ✅ already present | 112 | Eye of the Storm | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Eye of the Storm entry | 2026-07-13 |
+<!-- END_MAIN_LOG -->
 
 ## Statistics-Tracking Achievements (Skipped)
 
@@ -364,6 +487,13 @@ All skipped — cumulative counter / statistics-tracking achievements not in Ach
 | 590 | Highest 3v3 team rating |
 | 595 | Highest 3v3 personal rating |
 | 596 | Highest 5v5 personal rating |
+| 753 | Average gold earned per day |
+| 759 | Average daily quests completed per day |
+| 796 | Resurrected by priests |
+| 798 | Rebirthed by druids |
+| 799 | Spirit returned to body by shamans |
+| 800 | Redeemed by paladins |
+<!-- END_STATS_LOG -->
 
 ## IDs Not Found in Game DB (Skipped)
 
@@ -374,10 +504,14 @@ All skipped — achievement ID not found in game DB (verified against build 12.0
 106, 109, 111, 117, 118, 119, 120, 136, 138, 139, 140, 142, 143, 145, 146, 147, 148, 149,
 151, 152, 160, 163, 164, 169, 170, 171, 172, 173, 175, 176, 177, 179, 180, 182, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198,
 205, 210, 215, 217, 228, 232, 234, 235, 236, 237, 240, 241, 242, 243, 244,
-250, 251, 253, 254, 256, 257, 258, 261, 262, 264, 265, 266, 267, 268, 269, 270, 274, 276, 278, 280, 282, 285, 286, 287, 290, 294, 296, 297, 298, 299, 300,
-301, 302, 304, 305, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 322, 323, 324, 325, 327, 335, 336, 337, 339, 340, 341, 342, 343, 348,
+250, 251, 253, 254, 256, 257, 258, 261, 262, 264, 265, 266, 267, 268, 269, 270, 274, 276, 278, 280, 282, 285, 286, 287, 290, 294, 296, 297, 298, 299,
+300, 301, 302, 304, 305, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 322, 323, 324, 325, 327, 335, 336, 337, 339, 340, 341, 342, 343, 348,
 351, 352, 354, 355, 356, 357, 358, 359, 360, 361, 368, 369, 371, 372, 373, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 390, 391, 392, 393, 394, 395,
-410, 413, 417, 421, 422, 423, 427, 455, 474, 475, 476,
-501, 502, 510, 511, 514, 517, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541, 542, 543, 544, 548, 549, 550,
-551, 552, 553, 554, 555, 570, 571, 580, 581, 591, 592, 593, 594, 597, 598, 599, 600,
-601, 602, 620
+410, 413, 417, 421, 422, 423, 427,
+455, 474, 475, 476,
+501, 502, 510, 511, 514, 517, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541, 542, 543, 544, 548, 549,
+550, 551, 552, 553, 554, 555, 570, 571, 580, 581, 591, 592, 593, 594, 597, 598, 599,
+600, 601, 602, 620,
+702, 703, 704, 715, 716, 717, 718, 719, 720, 721, 722, 723, 724, 737, 738, 739, 740, 741, 742, 743, 744, 745, 746, 747, 748, 749,
+751, 752, 754, 755, 756, 757, 758, 760, 767, 785, 786, 787, 788, 789, 790, 791, 792, 793, 794, 795, 797
+<!-- END_NOTFOUND -->
