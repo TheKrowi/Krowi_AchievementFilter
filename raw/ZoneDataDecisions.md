@@ -3,7 +3,7 @@
 Records every achievement evaluated for zone placement — added, already present, or skipped with reason.
 Update this file whenever a zone placement decision is made via the `add-zone-data` skill.
 
-**Highest ID Analyzed: 850**
+**Highest ID Analyzed: 900**
 
 ## Main Log
 
@@ -405,6 +405,51 @@ Update this file whenever a zone placement decision is made via the `add-zone-da
 | 848 | Explore Desolace | ✅ already present | 66 | Desolace | Already in `Shared/01_Vanilla/ZoneData.lua` Desolace entry | 2026-07-13 |
 | 849 | Explore Feralas | ✅ already present | 69 | Feralas | Already in `Shared/01_Vanilla/ZoneData.lua` Feralas entry | 2026-07-13 |
 | 850 | Explore Dustwallow Marsh | ✅ already present | 70 | Dustwallow Marsh | Already in `Shared/01_Vanilla/ZoneData.lua` Dustwallow Marsh entry | 2026-07-13 |
+| 851 | Explore Tanaris | ✅ already present | 71, 72, 73 | Tanaris | Already in `Shared/01_Vanilla/ZoneData.lua` Tanaris entry | 2026-07-13 |
+| 852 | Explore Azshara | ✅ already present | 76 | Azshara | Already in `Shared/01_Vanilla/ZoneData.lua` Azshara entry | 2026-07-13 |
+| 853 | Explore Felwood | ✅ already present | 77 | Felwood | Already in `Shared/01_Vanilla/ZoneData.lua` Felwood entry | 2026-07-13 |
+| 854 | Explore Un'Goro Crater | ✅ already present | 78, 79 | Un'Goro Crater | Already in `Shared/01_Vanilla/ZoneData.lua` Un'Goro Crater entry | 2026-07-13 |
+| 855 | Explore Moonglade | ✅ already present | 80 | Moonglade | Already in `Shared/01_Vanilla/ZoneData.lua` Moonglade entry | 2026-07-13 |
+| 856 | Explore Silithus | ✅ already present | 81 | Silithus | Already in `Shared/01_Vanilla/ZoneData.lua` Silithus entry | 2026-07-13 |
+| 857 | Explore Winterspring | ✅ already present | 83 | Winterspring | Already in `Shared/01_Vanilla/ZoneData.lua` Winterspring entry | 2026-07-13 |
+| 858 | Explore Ghostlands | ✅ already present | 95, 96 | Ghostlands | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Ghostlands entry | 2026-07-13 |
+| 859 | Explore Eversong Woods (Burning Crusade) | ✅ already present | 94 | Eversong Woods | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Eversong Woods entry | 2026-07-13 |
+| 860 | Explore Azuremyst Isle | ✅ already present | 97, 98, 99, 106 | Azuremyst Isle | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Azuremyst Isle entry | 2026-07-13 |
+| 861 | Explore Bloodmyst Isle | ✅ already present | 97, 98, 99, 106 | Azuremyst Isle | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Azuremyst Isle entry; Bloodmyst Isle (map 98) is included in the same entry | 2026-07-13 |
+| 862 | Explore Hellfire Peninsula | ✅ already present | 100 | Hellfire Peninsula | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Hellfire Peninsula entry | 2026-07-13 |
+| 863 | Explore Zangarmarsh | ✅ already present | 102 | Zangarmarsh | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Zangarmarsh entry | 2026-07-13 |
+| 864 | Explore Shadowmoon Valley | ✅ already present | 104 | Shadowmoon Valley | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Shadowmoon Valley entry | 2026-07-13 |
+| 865 | Explore Blade's Edge Mountains | ✅ already present | 105 | Blade's Edge Mountains | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Blade's Edge Mountains entry | 2026-07-13 |
+| 866 | Explore Nagrand | ✅ already present | 107 | Nagrand | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Nagrand entry | 2026-07-13 |
+| 867 | Explore Terokkar Forest | ✅ already present | 108 | Terokkar Forest | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Terokkar Forest entry | 2026-07-13 |
+| 868 | Explore Isle of Quel'Danas | ✅ already present | 122 | Isle of Quel'Danas | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Isle of Quel'Danas entry | 2026-07-13 |
+| 871 | Avast Ye, Admiral! | ✅ already present | 210 | The Cape of Stranglethorn | Already in `Shared/04_Cataclysm/ZoneData.lua` Cape of Stranglethorn entry; Bloodsail Buccaneers are based in Cape of Stranglethorn near Booty Bay | 2026-07-13 |
+| 872 | Frenzied Defender | ✅ already present | 92, 1339 | Warsong Gulch | Already in `Shared/01_Vanilla/ZoneData.lua` Warsong Gulch entry | 2026-07-13 |
+| 873 | Frostwolf Perfection | ✅ already present | 91, 1537, 2162 | Alterac Valley | Already in `Shared/01_Vanilla/ZoneData.lua` Alterac Valley entry | 2026-07-13 |
+| 875 | Vengefully Dedicated | ⏭ skipped | — | — | PvP arena achievement (win 200 ranked matches); no geographic zone association | 2026-07-13 |
+| 877 | The Cake Is Not A Lie | ⏭ skipped | — | — | Cooking recipe achievement; no geographic association | 2026-07-13 |
+| 878 | One That Didn't Get Away | ⏭ skipped | — | — | Fishing achievement requiring any one of several rare fish from diverse zones; no single primary zone | 2026-07-13 |
+| 879 | Old School Ride | ⏭ skipped | — | — | FoS for owning original epic mounts no longer attainable; mount collection, no geographic association | 2026-07-13 |
+| 880 | Swift Zulian Tiger | ✅ already present | 337 | Zul'Gurub | Already in ZoneData.lua Zul'Gurub entry | 2026-07-13 |
+| 881 | Swift Razzashi Raptor | ✅ already present | 337 | Zul'Gurub | Already in ZoneData.lua Zul'Gurub entry | 2026-07-13 |
+| 882 | Fiery Warhorse's Reins | ✅ already present | 350 | Karazhan | Already in ZoneData.lua Karazhan entry | 2026-07-13 |
+| 883 | Reins of the Raven Lord | ✅ already present | 258 | Sethekk Halls | Already in ZoneData.lua Sethekk Halls entry | 2026-07-13 |
+| 884 | Swift White Hawkstrider | ✅ already present | 348 | Magisters' Terrace | Already in ZoneData.lua Magisters' Terrace entry | 2026-07-13 |
+| 885 | Ashes of Al'ar | ✅ already present | 334 | Tempest Keep | Already in ZoneData.lua Tempest Keep entry | 2026-07-13 |
+| 886 | Swift Nether Drake | ⏭ skipped | — | — | PvP arena season 1 (TBC) elite reward; no geographic association | 2026-07-13 |
+| 887 | Merciless Nether Drake | ⏭ skipped | — | — | PvP arena season 2 (TBC) elite reward; no geographic association | 2026-07-13 |
+| 888 | Vengeful Nether Drake | ⏭ skipped | — | — | PvP arena season 3 (TBC) elite reward; no geographic association | 2026-07-13 |
+| 889 | Fast and Furious | ⏭ skipped | — | — | Riding skill rank achievement; no geographic association | 2026-07-13 |
+| 890 | Into the Wild Blue Yonder | ⏭ skipped | — | — | Riding skill rank achievement; no geographic association | 2026-07-13 |
+| 891 | Giddy Up! | ⏭ skipped | — | — | Riding skill rank achievement; no geographic association | 2026-07-13 |
+| 892 | The Right Stuff | ⏭ skipped | — | — | Riding skill rank achievement; no geographic association | 2026-07-13 |
+| 893 | Cenarion War Hippogryph | ✅ already present | 102 | Zangarmarsh | Already in ZoneData.lua Zangarmarsh entry; Cenarion Expedition based in Zangarmarsh | 2026-07-13 |
+| 894 | Flying High Over Skettis | ✅ already present | 105, 108 | Blade's Edge Mountains, Terokkar Forest | Already in ZoneData.lua; Sha'tari Skyguard has quests in Terokkar Forest (Skettis) and Blade's Edge Mountains | 2026-07-13 |
+| 896 | A Quest a Day Keeps the Ogres at Bay | ✅ already present | 105 | Blade's Edge Mountains | Already in ZoneData.lua Blade's Edge Mountains entry; Ogri'la is in Blade's Edge | 2026-07-13 |
+| 897 | You're So Offensive | ✅ already present | 122, 348 | Isle of Quel'Danas, Magisters' Terrace | Already in ZoneData.lua zones 122 and 348; zone 13 (Eastern Kingdoms) is a parent map appearing in CSV via hierarchy, not directly coded; wiki confirms SSO rep is earned on the Isle and in Magisters' Terrace only | 2026-07-13 |
+| 898 | On Wings of Nether | ✅ already present | 104 | Shadowmoon Valley | Already in ZoneData.lua Shadowmoon Valley entry; Netherwing Ledge is in Shadowmoon Valley | 2026-07-13 |
+| 899 | Oh My, Kurenai | ✅ already present | 107 | Nagrand | Already in ZoneData.lua Nagrand entry; Kurenai is based in Nagrand | 2026-07-13 |
+| 900 | The Czar of Sporeggar | ✅ already present | 102 | Zangarmarsh | Already in ZoneData.lua Zangarmarsh entry; Sporeggar is in Zangarmarsh | 2026-07-13 |
 <!-- END_MAIN_LOG -->
 
 ## Statistics-Tracking Achievements (Skipped)
@@ -511,6 +556,9 @@ All skipped — cumulative counter / statistics-tracking achievements not in Ach
 | 838 | Arenas played |
 | 839 | Battlegrounds played |
 | 840 | Battlegrounds won |
+| 869 | 50000 Honorable Kills |
+| 870 | 100000 Honorable Kills |
+| 876 | Brutally Dedicated |
 <!-- END_STATS_LOG -->
 
 ## IDs Not Found in Game DB (Skipped)
@@ -532,5 +580,6 @@ All skipped — achievement ID not found in game DB (verified against build 12.0
 600, 601, 602, 620,
 702, 703, 704, 715, 716, 717, 718, 719, 720, 721, 722, 723, 724, 737, 738, 739, 740, 741, 742, 743, 744, 745, 746, 747, 748, 749,
 751, 752, 754, 755, 756, 757, 758, 760, 767, 785, 786, 787, 788, 789, 790, 791, 792, 793, 794, 795, 797,
-803, 804, 805, 806, 807, 808, 809, 810, 813, 814, 815, 816, 817, 818, 819, 820, 821, 822, 823, 824, 825, 826, 827, 828, 829, 830, 831, 832, 833, 834, 835, 836
+803, 804, 805, 806, 807, 808, 809, 810, 813, 814, 815, 816, 817, 818, 819, 820, 821, 822, 823, 824, 825, 826, 827, 828, 829, 830, 831, 832, 833, 834, 835, 836,
+874, 895
 <!-- END_NOTFOUND -->

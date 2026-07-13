@@ -222,7 +222,6 @@ zoneData:Zone(101, { -- Outland (continent)
     44, -- Outland Explorer
     763, -- The Burning Crusader
     764, -- The Burning Crusader
-    894, -- Flying High Over Skettis
     902, -- Chief Exalted Officer
     6587, -- Outland Safari
     6614, -- Outland Tamer
