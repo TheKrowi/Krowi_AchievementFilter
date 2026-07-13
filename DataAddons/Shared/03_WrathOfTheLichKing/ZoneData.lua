@@ -178,7 +178,7 @@ zoneData:Zone(114, { -- Borean Tundra (zone)
     949, -- Tuskarrmageddon
 })
 
-zoneData:Zone(115, { -- Dragonblight (zone)
+zoneData:Zone(115, { -- Dragonflight (zone)
     7520, -- The Loremaster
     shared.OldWorldPetAchievements,
     41, -- Loremaster of Northrend
@@ -199,11 +199,11 @@ zoneData:Zone(115, { -- Dragonblight (zone)
     1011, -- The Winds of the North
     1012, -- The Winds of the North
     40796, -- This Takes Me Back
-    35, -- Might of Dragonblight
-    1359, -- Might of Dragonblight
+    35, -- Might of Dragonflight
+    1359, -- Might of Dragonflight
     547, -- Veteran of the Wrathgate
     1277, -- Rapid Defense
-    1265, -- Explore Dragonblight
+    1265, -- Explore Dragonflight
     9924, -- Field Photographer
     1007, -- The Wyrmrest Accord
     6605, -- Taming Northrend

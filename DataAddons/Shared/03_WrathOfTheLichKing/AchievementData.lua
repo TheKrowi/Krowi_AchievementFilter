@@ -16,7 +16,7 @@ KrowiAF.AchievementData["03_00_02_S"] = {
 	Ach(32), -- 2000 Quests Completed
 	Ach(33):AutoFactionSplit(faction.Alliance, 1358), -- Nothing Boring About Borean
 	Ach(34):AutoFactionSplit(faction.Alliance, 1356), -- I've Toured the Fjord
-	Ach(35):AutoFactionSplit(faction.Alliance, 1359), -- Might of Dragonblight
+	Ach(35):AutoFactionSplit(faction.Alliance, 1359), -- Might of Dragonflight
 	Ach(36), -- The Empire of Zul'Drak
 	Ach(37):AutoFactionSplit(faction.Alliance, 1357), -- Fo' Grizzle My Shizzle
 	Ach(38), -- The Summit of Storm Peaks
@@ -529,7 +529,7 @@ KrowiAF.AchievementData["03_00_02_S"] = {
 	Ach(1262), -- Loremaster of Outland
 	Ach(1263), -- Explore Howling Fjord
 	Ach(1264), -- Explore Borean Tundra
-	Ach(1265), -- Explore Dragonblight
+	Ach(1265), -- Explore Dragonflight
 	Ach(1266), -- Explore Grizzly Hills
 	Ach(1267), -- Explore Zul'Drak
 	Ach(1268), -- Explore Sholazar Basin

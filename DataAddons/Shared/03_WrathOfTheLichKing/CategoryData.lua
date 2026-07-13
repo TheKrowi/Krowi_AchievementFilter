@@ -63,14 +63,14 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
                 },
             },
         },
-        { -- Dragonblight
+        { -- Dragonflight
             addon.GetMapName(115),
             { -- Quests
                 CT.Quests,
                 true,
                 {
-                    35, -- Might of Dragonblight
-                    1359, -- Might of Dragonblight
+                    35, -- Might of Dragonflight
+                    1359, -- Might of Dragonflight
                     547, -- Veteran of the Wrathgate
                     1277, -- Rapid Defense
                 },
@@ -79,7 +79,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
                 CT.Exploration,
                 true,
                 {
-                    1265, -- Explore Dragonblight
+                    1265, -- Explore Dragonflight
                     9924, -- Field Photographer
                 },
             },
