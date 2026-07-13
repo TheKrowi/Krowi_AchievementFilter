@@ -61,6 +61,7 @@ zoneData:Zone(155, nil, { -- The Obsidian Sanctum (raid)
     624, -- Less Is More (10 player)
     1876, -- Besting the Black Dragonflight (10 player)
 }, {
+    456, -- Realm First! Obsidian Slayer
     2048, -- Gonna Go When the Volcano Blows (25 player)
     2052, -- Twilight Assist (25 player)
     2053, -- Twilight Duo (25 player)

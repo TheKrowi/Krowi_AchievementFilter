@@ -3,7 +3,7 @@
 Records every achievement evaluated for zone placement — added, already present, or skipped with reason.
 Update this file whenever a zone placement decision is made via the `add-zone-data` skill.
 
-**Highest ID Analyzed: 450**
+**Highest ID Analyzed: 625**
 
 ## Main Log
 
@@ -168,6 +168,110 @@ Update this file whenever a zone placement decision is made via the `add-zone-da
 | 448 | Centurion | ⏭ skipped | — | — | PvP rank title Feat of Strength (Classic Honor System); no geographic zone association | 2026-07-10 |
 | 449 | Blood Guard | ⏭ skipped | — | — | PvP rank title Feat of Strength (Classic Honor System); no geographic zone association | 2026-07-10 |
 | 450 | Senior Sergeant | ⏭ skipped | — | — | PvP rank title Feat of Strength (Classic Honor System); no geographic zone association | 2026-07-10 |
+| 451 | Stone Guard | ⏭ skipped | — | — | PvP honor rank title (Classic Honor System); no geographic association | 2026-07-12 |
+| 452 | First Sergeant | ⏭ skipped | — | — | PvP honor rank title (Classic Honor System); no geographic association | 2026-07-12 |
+| 453 | Sergeant | ⏭ skipped | — | — | PvP honor rank title (Classic Honor System); no geographic association | 2026-07-12 |
+| 454 | Scout | ⏭ skipped | — | — | PvP honor rank title (Classic Honor System); no geographic association | 2026-07-12 |
+| 456 | Realm First! Obsidian Slayer | ✅ added | 155 | The Obsidian Sanctum | Realm First! raid boss feat (25-player); added to `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-07-12 |
+| 457 | Realm First! Level 80 (Legacy) | ⏭ skipped | — | — | Level milestone Feat of Strength; no geographic association | 2026-07-12 |
+| 458 | Realm First! Level 80 Rogue (Legacy) | ⏭ skipped | — | — | Level milestone Feat of Strength; no geographic association | 2026-07-12 |
+| 459 | Realm First! Level 80 Warrior (Legacy) | ⏭ skipped | — | — | Level milestone Feat of Strength; no geographic association | 2026-07-12 |
+| 460 | Realm First! Level 80 Mage (Legacy) | ⏭ skipped | — | — | Level milestone Feat of Strength; no geographic association | 2026-07-12 |
+| 461 | Realm First! Level 80 Death Knight (Legacy) | ⏭ skipped | — | — | Level milestone Feat of Strength; no geographic association | 2026-07-12 |
+| 462 | Realm First! Level 80 Hunter (Legacy) | ⏭ skipped | — | — | Level milestone Feat of Strength; no geographic association | 2026-07-12 |
+| 463 | Realm First! Level 80 Warlock (Legacy) | ⏭ skipped | — | — | Level milestone Feat of Strength; no geographic association | 2026-07-12 |
+| 464 | Realm First! Level 80 Priest (Legacy) | ⏭ skipped | — | — | Level milestone Feat of Strength; no geographic association | 2026-07-12 |
+| 465 | Realm First! Level 80 Paladin (Legacy) | ⏭ skipped | — | — | Level milestone Feat of Strength; no geographic association | 2026-07-12 |
+| 466 | Realm First! Level 80 Druid (Legacy) | ⏭ skipped | — | — | Level milestone Feat of Strength; no geographic association | 2026-07-12 |
+| 467 | Realm First! Level 80 Shaman (Legacy) | ⏭ skipped | — | — | Level milestone Feat of Strength; no geographic association | 2026-07-12 |
+| 468 | Grunt | ⏭ skipped | — | — | PvP honor rank title (Classic Honor System); no geographic association | 2026-07-12 |
+| 469 | Legionnaire | ⏭ skipped | — | — | PvP honor rank title (Classic Honor System); no geographic association | 2026-07-12 |
+| 470 | Corporal | ⏭ skipped | — | — | PvP honor rank title (Classic Honor System); no geographic association | 2026-07-12 |
+| 471 | Sergeant | ⏭ skipped | — | — | PvP honor rank title (Classic Honor System); no geographic association | 2026-07-12 |
+| 472 | Knight-Lieutenant | ⏭ skipped | — | — | PvP honor rank title (Classic Honor System); no geographic association | 2026-07-12 |
+| 473 | Marshal | ⏭ skipped | — | — | PvP honor rank title (Classic Honor System); no geographic association | 2026-07-12 |
+| 477 | Utgarde Keep | ✅ already present | 133, 134, 135 | Utgarde Keep | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` Utgarde Keep entry | 2026-07-12 |
+| 478 | The Nexus | ✅ already present | 129 | The Nexus | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` The Nexus entry | 2026-07-12 |
+| 479 | The Culling of Stratholme | ✅ already present | 130, 131 | The Culling of Stratholme | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` Culling of Stratholme entry | 2026-07-12 |
+| 480 | Azjol-Nerub | ✅ already present | 157, 158, 159 | Azjol-Nerub | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` Azjol-Nerub entry | 2026-07-12 |
+| 481 | Ahn'kahet: The Old Kingdom | ✅ already present | 132 | Ahn'kahet: The Old Kingdom | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` Ahn'kahet entry | 2026-07-12 |
+| 482 | Drak'Tharon Keep | ✅ already present | 160, 161 | Drak'Tharon Keep | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` Drak'Tharon Keep entry | 2026-07-12 |
+| 483 | The Violet Hold | ✅ already present | 168 | The Violet Hold | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` Violet Hold entry | 2026-07-12 |
+| 484 | Gundrak | ✅ already present | 154 | Gundrak | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` Gundrak entry | 2026-07-12 |
+| 485 | Halls of Stone | ✅ already present | 140 | Halls of Stone | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` Halls of Stone entry | 2026-07-12 |
+| 486 | Halls of Lightning | ✅ already present | 138, 139 | Halls of Lightning | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` Halls of Lightning entry | 2026-07-12 |
+| 487 | The Oculus | ✅ already present | 143, 144, 145, 146 | The Oculus | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` Oculus entry | 2026-07-12 |
+| 488 | Utgarde Pinnacle | ✅ already present | 136, 137 | Utgarde Pinnacle | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` Utgarde Pinnacle entry | 2026-07-12 |
+| 489 | Heroic: Utgarde Keep | ✅ already present | 133, 134, 135 | Utgarde Keep | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` Utgarde Keep entry | 2026-07-12 |
+| 490 | Heroic: The Nexus | ✅ already present | 129 | The Nexus | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` The Nexus entry | 2026-07-12 |
+| 491 | Heroic: Azjol-Nerub | ✅ already present | 157, 158, 159 | Azjol-Nerub | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` Azjol-Nerub entry | 2026-07-12 |
+| 492 | Heroic: Ahn'kahet: The Old Kingdom | ✅ already present | 132 | Ahn'kahet: The Old Kingdom | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` Ahn'kahet entry | 2026-07-12 |
+| 493 | Heroic: Drak'Tharon Keep | ✅ already present | 160, 161 | Drak'Tharon Keep | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` Drak'Tharon Keep entry | 2026-07-12 |
+| 494 | Heroic: The Violet Hold | ✅ already present | 168 | The Violet Hold | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` Violet Hold entry | 2026-07-12 |
+| 495 | Heroic: Gundrak | ✅ already present | 154 | Gundrak | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` Gundrak entry | 2026-07-12 |
+| 496 | Heroic: Halls of Stone | ✅ already present | 140 | Halls of Stone | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` Halls of Stone entry | 2026-07-12 |
+| 497 | Heroic: Halls of Lightning | ✅ already present | 138, 139 | Halls of Lightning | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` Halls of Lightning entry | 2026-07-12 |
+| 498 | Heroic: The Oculus | ✅ already present | 143, 144, 145, 146 | The Oculus | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` Oculus entry | 2026-07-12 |
+| 499 | Heroic: Utgarde Pinnacle | ✅ already present | 136, 137 | Utgarde Pinnacle | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` Utgarde Pinnacle entry | 2026-07-12 |
+| 500 | Heroic: The Culling of Stratholme | ✅ already present | 130, 131 | The Culling of Stratholme | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` Culling of Stratholme entry | 2026-07-12 |
+| 518 | 30 Exalted Reputations | ⏭ skipped | — | — | Reputation count achievement; no geographic association | 2026-07-12 |
+| 519 | 25 Exalted Reputations | ⏭ skipped | — | — | Reputation count achievement; no geographic association | 2026-07-12 |
+| 520 | 20 Exalted Reputations | ⏭ skipped | — | — | Reputation count achievement; no geographic association | 2026-07-12 |
+| 521 | 15 Exalted Reputations | ⏭ skipped | — | — | Reputation count achievement; no geographic association | 2026-07-12 |
+| 522 | Somebody Likes Me | ⏭ skipped | — | — | Reputation count achievement; no geographic association | 2026-07-12 |
+| 523 | 5 Exalted Reputations | ⏭ skipped | — | — | Reputation count achievement; no geographic association | 2026-07-12 |
+| 524 | 10 Exalted Reputations | ⏭ skipped | — | — | Reputation count achievement; no geographic association | 2026-07-12 |
+| 545 | Shave and a Haircut | ⏭ skipped | — | — | Barber shop cosmetic; no geographic association | 2026-07-12 |
+| 546 | Safe Deposit | ⏭ skipped | — | — | Bank slot purchase; no geographic association | 2026-07-12 |
+| 547 | Veteran of the Wrathgate | ✅ already present | 115 | Dragonblight | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-07-12 |
+| 556 | Epic | ⏭ skipped | — | — | Gear/equipment achievement; no geographic association | 2026-07-13 |
+| 557 | Superior | ⏭ skipped | — | — | Gear/equipment achievement; no geographic association | 2026-07-13 |
+| 558 | Greedy | ⏭ skipped | — | — | Loot roll achievement; no geographic association | 2026-07-13 |
+| 559 | Needy | ⏭ skipped | — | — | Loot roll achievement; no geographic association | 2026-07-13 |
+| 560 | Deadliest Catch | ✅ already present | 337 | Zul'Gurub | Already in `Shared/04_Cataclysm/ZoneData.lua` | 2026-07-13 |
+| 561 | D.E.H.T.A's Little P.I.T.A. | ✅ already present | 114 | Borean Tundra | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-07-13 |
+| 562 | The Arachnid Quarter (10 player) | ✅ already present | 162 | Naxxramas | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-07-13 |
+| 563 | The Arachnid Quarter (25 player) | ✅ already present | 162 | Naxxramas | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-07-13 |
+| 564 | The Construct Quarter (10 player) | ✅ already present | 162 | Naxxramas | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-07-13 |
+| 565 | The Construct Quarter (25 player) | ✅ already present | 162 | Naxxramas | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-07-13 |
+| 566 | The Plague Quarter (10 player) | ✅ already present | 162 | Naxxramas | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-07-13 |
+| 567 | The Plague Quarter (25 player) | ✅ already present | 162 | Naxxramas | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-07-13 |
+| 568 | The Military Quarter (10 player) | ✅ already present | 162 | Naxxramas | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-07-13 |
+| 569 | The Military Quarter (25 player) | ✅ already present | 162 | Naxxramas | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-07-13 |
+| 572 | Sapphiron's Demise (10 player) | ✅ already present | 162 | Naxxramas | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-07-13 |
+| 573 | Sapphiron's Demise (25 player) | ✅ already present | 162 | Naxxramas | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-07-13 |
+| 574 | Kel'Thuzad's Defeat (10 player) | ✅ already present | 162 | Naxxramas | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-07-13 |
+| 575 | Kel'Thuzad's Defeat (25 player) | ✅ already present | 162 | Naxxramas | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-07-13 |
+| 576 | The Fall of Naxxramas (10 player) | ✅ already present | 162 | Naxxramas | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-07-13 |
+| 577 | The Fall of Naxxramas (25 player) | ✅ already present | 162 | Naxxramas | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-07-13 |
+| 578 | The Dedicated Few (10 player) | ✅ already present | 162 | Naxxramas | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-07-13 |
+| 579 | The Dedicated Few (25 player) | ✅ already present | 162 | Naxxramas | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-07-13 |
+| 582 | Alterac Valley All-Star | ✅ already present | 91 | Alterac Valley | Already in `Shared/01_Vanilla/ZoneData.lua` Alterac Valley entry | 2026-07-13 |
+| 583 | Arathi Basin All-Star | ✅ already present | 93 | Arathi Basin | Already in `Shared/01_Vanilla/ZoneData.lua` Arathi Basin entry | 2026-07-13 |
+| 584 | Arathi Basin Assassin | ✅ already present | 93 | Arathi Basin | Already in `Shared/01_Vanilla/ZoneData.lua` Arathi Basin entry | 2026-07-13 |
+| 587 | Stormy Assassin | ✅ already present | 112 | Eye of the Storm | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Eye of the Storm entry | 2026-07-13 |
+| 603 | Wrath of the Horde | ✅ already present | 84, 87, 89, 103 | Stormwind City, Ironforge, Darnassus, The Exodar | Already in `Shared/01_Vanilla/ZoneData.lua` (Stormwind City, Ironforge, Darnassus) and `Shared/02_TheBurningCrusade/ZoneData.lua` (The Exodar); Horde PvP city-raid achievement requiring kills of Alliance players in each Alliance capital | 2026-07-13 |
+| 604 | Wrath of the Alliance | ✅ already present | 85, 88, 90, 110 | Orgrimmar, Thunder Bluff, Undercity, Silvermoon City | Already in `Shared/01_Vanilla/ZoneData.lua` (Orgrimmar, Thunder Bluff, Undercity) and `Shared/02_TheBurningCrusade/ZoneData.lua` (Silvermoon City); Alliance PvP city-raid achievement requiring kills of Horde players in each Horde capital | 2026-07-13 |
+| 605 | A Coin of Ancestry | ⏭ skipped | — | — | Event achievement (Lunar Festival); collecting coins has no fixed geographic zone | 2026-07-13 |
+| 606 | 5 Coins of Ancestry | ⏭ skipped | — | — | Event achievement (Lunar Festival); collecting coins has no fixed geographic zone | 2026-07-13 |
+| 607 | 10 Coins of Ancestry | ⏭ skipped | — | — | Event achievement (Lunar Festival); collecting coins has no fixed geographic zone | 2026-07-13 |
+| 608 | 25 Coins of Ancestry | ⏭ skipped | — | — | Event achievement (Lunar Festival); collecting coins has no fixed geographic zone | 2026-07-13 |
+| 609 | 50 Coins of Ancestry | ⏭ skipped | — | — | Event achievement (Lunar Festival); collecting coins has no fixed geographic zone | 2026-07-13 |
+| 610 | Orgrimmar Offensive | ✅ already present | 85 | Orgrimmar | Already in `Shared/01_Vanilla/ZoneData.lua` Orgrimmar entry | 2026-07-13 |
+| 611 | Bleeding Bloodhoof | ✅ already present | 88 | Thunder Bluff | Already in `Shared/01_Vanilla/ZoneData.lua` Thunder Bluff entry | 2026-07-13 |
+| 612 | Downing the Dark Lady | ✅ already present | 90 | Undercity | Already in `Shared/01_Vanilla/ZoneData.lua` Undercity entry | 2026-07-13 |
+| 613 | Killed in Quel'Thalas | ✅ already present | 110 | Silvermoon City | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Silvermoon City entry | 2026-07-13 |
+| 614 | For the Alliance! | ✅ already present | 85, 110 | Orgrimmar, Silvermoon City | Already in `Shared/01_Vanilla/ZoneData.lua` and `Shared/02_TheBurningCrusade/ZoneData.lua`; meta-achievement for slaying all Horde leaders | 2026-07-13 |
+| 615 | Storming Stormwind | ✅ already present | 84 | Stormwind City | Already in `Shared/01_Vanilla/ZoneData.lua` Stormwind City entry | 2026-07-13 |
+| 616 | Overthrow the Council | ✅ already present | 87 | Ironforge | Already in `Shared/01_Vanilla/ZoneData.lua` Ironforge entry | 2026-07-13 |
+| 617 | Immortal No More | ✅ already present | 89 | Darnassus | Already in `Shared/01_Vanilla/ZoneData.lua` Darnassus entry | 2026-07-13 |
+| 618 | Putting Out the Light | ✅ already present | 103 | The Exodar | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` The Exodar entry | 2026-07-13 |
+| 619 | For the Horde! | ✅ added | 84, 87, 103 | Stormwind City, Ironforge, The Exodar | Added 619 to Stormwind City (84) in `Shared/01_Vanilla/ZoneData.lua`; already present in Ironforge (87) and The Exodar (103); Darnassus excluded — Immortal No More removed from criteria in Patch 8.0.1 | 2026-07-13 |
+| 621 | Represent | ⏭ skipped | — | — | Tabard slot appearance collection achievement; no geographic association | 2026-07-13 |
+| 622 | The Spellweaver's Downfall (10 player) | ✅ already present | 141 | Eye of Eternity | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` Eye of Eternity entry | 2026-07-13 |
+| 623 | The Spellweaver's Downfall (25 player) | ✅ already present | 141 | Eye of Eternity | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` Eye of Eternity entry | 2026-07-13 |
+| 624 | Less Is More (10 player) | ✅ already present | 155 | The Obsidian Sanctum | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` The Obsidian Sanctum entry | 2026-07-13 |
+| 625 | Besting the Black Dragonflight (25 player) | ✅ already present | 155 | The Obsidian Sanctum | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` The Obsidian Sanctum entry | 2026-07-13 |
 
 ## Statistics-Tracking Achievements (Skipped)
 
@@ -242,6 +346,24 @@ All skipped — cumulative counter / statistics-tracking achievements not in Ach
 | 405 | Three's Company: 2000 |
 | 406 | High Five: 1550 |
 | 407 | High Five: 1750 |
+| 503 | 50 Quests Completed |
+| 504 | 100 Quests Completed |
+| 505 | 250 Quests Completed |
+| 506 | 500 Quests Completed |
+| 507 | 1000 Quests Completed |
+| 508 | 1500 Quests Completed |
+| 509 | 10000 Honorable Kills |
+| 512 | 5000 Honorable Kills |
+| 513 | 100 Honorable Kills |
+| 515 | 500 Honorable Kills |
+| 516 | 1000 Honorable Kills |
+| 585 | Eye of the Storm flags captured |
+| 586 | Warsong Gulch flags returned |
+| 588 | Total Honorable Kills |
+| 589 | Highest 5v5 team rating |
+| 590 | Highest 3v3 team rating |
+| 595 | Highest 3v3 personal rating |
+| 596 | Highest 5v5 personal rating |
 
 ## IDs Not Found in Game DB (Skipped)
 
@@ -255,4 +377,7 @@ All skipped — achievement ID not found in game DB (verified against build 12.0
 250, 251, 253, 254, 256, 257, 258, 261, 262, 264, 265, 266, 267, 268, 269, 270, 274, 276, 278, 280, 282, 285, 286, 287, 290, 294, 296, 297, 298, 299, 300,
 301, 302, 304, 305, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 322, 323, 324, 325, 327, 335, 336, 337, 339, 340, 341, 342, 343, 348,
 351, 352, 354, 355, 356, 357, 358, 359, 360, 361, 368, 369, 371, 372, 373, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 390, 391, 392, 393, 394, 395,
-410, 413, 417, 421, 422, 423, 427
+410, 413, 417, 421, 422, 423, 427, 455, 474, 475, 476,
+501, 502, 510, 511, 514, 517, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541, 542, 543, 544, 548, 549, 550,
+551, 552, 553, 554, 555, 570, 571, 580, 581, 591, 592, 593, 594, 597, 598, 599, 600,
+601, 602, 620

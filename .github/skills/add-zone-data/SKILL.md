@@ -26,6 +26,8 @@ DataAddons/Shared/XX_ExpansionName/ZoneData.lua   ← Retail+Classic shared
 DataAddons/Shared/ZoneData.lua                     ← cross-expansion (delve base tables, etc.)
 ```
 
+**Default invocation (no arguments):** When the skill is called without a specific ID list, automatically process the next 25 IDs. Read the **Highest ID Analyzed** value from `raw/ZoneDataDecisions.md`, add 1 to get the start ID, and process IDs `start` through `start + 24` (inclusive).
+
 **Resuming work ("next N"):** The decisions log (`raw/ZoneDataDecisions.md`) contains a **Highest ID Analyzed** line near the top. Read that value, add 1, and use that as the starting point for the next batch. After completing a batch, update the **Highest ID Analyzed** line to the largest ID processed in that batch (across all three sections — Main Log, Statistics, and Not Found).
 
 ---

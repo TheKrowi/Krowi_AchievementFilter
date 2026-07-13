@@ -909,6 +909,7 @@ zoneData:Zone({81, 82}, { -- Silithus (zone)
 zoneData:Zone(84, { -- Stormwind City (city)
     1206, -- To All The Squirrels I've Loved Before
     615, -- Storming Stormwind
+    619, -- For the Horde!
     14815, -- Executing the Exarch
     388, -- City Defender
     11065, -- It All Makes Sense Now
