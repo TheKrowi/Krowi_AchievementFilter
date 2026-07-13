@@ -3,7 +3,7 @@
 Records every achievement evaluated for zone placement — added, already present, or skipped with reason.
 Update this file whenever a zone placement decision is made via the `add-zone-data` skill.
 
-**Highest ID Analyzed: 800**
+**Highest ID Analyzed: 850**
 
 ## Main Log
 
@@ -394,6 +394,17 @@ Update this file whenever a zone placement decision is made via the `add-zone-da
 | 782 | Explore Swamp of Sorrows | ✅ already present | 51 | Swamp of Sorrows | Already in `Shared/01_Vanilla/ZoneData.lua` Swamp of Sorrows entry | 2026-07-13 |
 | 783 | The Perfect Storm | ✅ already present | 112 | Eye of the Storm | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Eye of the Storm entry | 2026-07-13 |
 | 784 | Eye of the Storm Domination | ✅ already present | 112 | Eye of the Storm | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Eye of the Storm entry | 2026-07-13 |
+| 802 | Explore Westfall | ✅ already present | 52 | Westfall | Already in `Shared/01_Vanilla/ZoneData.lua` Westfall entry | 2026-07-13 |
+| 841 | Explore Wetlands | ✅ already present | 56 | Wetlands | Already in `Shared/01_Vanilla/ZoneData.lua` Wetlands entry | 2026-07-13 |
+| 842 | Explore Teldrassil | ✅ already present | 57 | Teldrassil | Already in `Shared/01_Vanilla/ZoneData.lua` Teldrassil entry | 2026-07-13 |
+| 843 | Explore Netherstorm | ✅ already present | 109 | Netherstorm | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Netherstorm entry | 2026-07-13 |
+| 844 | Explore Darkshore | ✅ already present | 62 | Darkshore | Already in `Shared/01_Vanilla/ZoneData.lua` Darkshore entry | 2026-07-13 |
+| 845 | Explore Ashenvale | ✅ already present | 63 | Ashenvale | Already in `Shared/01_Vanilla/ZoneData.lua` Ashenvale entry | 2026-07-13 |
+| 846 | Explore Thousand Needles | ✅ already present | 64 | Thousand Needles | Already in `Shared/01_Vanilla/ZoneData.lua` Thousand Needles entry | 2026-07-13 |
+| 847 | Explore Stonetalon Mountains | ✅ already present | 65 | Stonetalon Mountains | Already in `Shared/01_Vanilla/ZoneData.lua` Stonetalon Mountains entry | 2026-07-13 |
+| 848 | Explore Desolace | ✅ already present | 66 | Desolace | Already in `Shared/01_Vanilla/ZoneData.lua` Desolace entry | 2026-07-13 |
+| 849 | Explore Feralas | ✅ already present | 69 | Feralas | Already in `Shared/01_Vanilla/ZoneData.lua` Feralas entry | 2026-07-13 |
+| 850 | Explore Dustwallow Marsh | ✅ already present | 70 | Dustwallow Marsh | Already in `Shared/01_Vanilla/ZoneData.lua` Dustwallow Marsh entry | 2026-07-13 |
 <!-- END_MAIN_LOG -->
 
 ## Statistics-Tracking Achievements (Skipped)
@@ -493,6 +504,13 @@ All skipped — cumulative counter / statistics-tracking achievements not in Ach
 | 798 | Rebirthed by druids |
 | 799 | Spirit returned to body by shamans |
 | 800 | Redeemed by paladins |
+| 801 | Resurrected by soulstones |
+| 811 | Flasks consumed |
+| 812 | Healthstones used |
+| 837 | Arenas won |
+| 838 | Arenas played |
+| 839 | Battlegrounds played |
+| 840 | Battlegrounds won |
 <!-- END_STATS_LOG -->
 
 ## IDs Not Found in Game DB (Skipped)
@@ -513,5 +531,6 @@ All skipped — achievement ID not found in game DB (verified against build 12.0
 550, 551, 552, 553, 554, 555, 570, 571, 580, 581, 591, 592, 593, 594, 597, 598, 599,
 600, 601, 602, 620,
 702, 703, 704, 715, 716, 717, 718, 719, 720, 721, 722, 723, 724, 737, 738, 739, 740, 741, 742, 743, 744, 745, 746, 747, 748, 749,
-751, 752, 754, 755, 756, 757, 758, 760, 767, 785, 786, 787, 788, 789, 790, 791, 792, 793, 794, 795, 797
+751, 752, 754, 755, 756, 757, 758, 760, 767, 785, 786, 787, 788, 789, 790, 791, 792, 793, 794, 795, 797,
+803, 804, 805, 806, 807, 808, 809, 810, 813, 814, 815, 816, 817, 818, 819, 820, 821, 822, 823, 824, 825, 826, 827, 828, 829, 830, 831, 832, 833, 834, 835, 836
 <!-- END_NOTFOUND -->
