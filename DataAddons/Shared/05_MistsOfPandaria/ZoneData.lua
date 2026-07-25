@@ -1241,6 +1241,7 @@ zoneData:Zone({476, 477, 478, 479}, { -- Scholomance (dungeon)
     8438, -- Challenge Master: Scholomance
     19910, -- Scholomance
     19911, -- Heroic: Scholomance
+    912, -- Elders of Eastern Kingdoms
 })
 
 zoneData:Zone(480, { -- Arena of Annihilation (scenario)

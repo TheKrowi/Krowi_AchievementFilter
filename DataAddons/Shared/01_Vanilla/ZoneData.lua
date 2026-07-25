@@ -30,6 +30,7 @@ zoneData:Zone({92, 1339}, { -- Warsong Gulch (battleground)
     1259, -- Not So Fast
     713, -- Silverwing Sentinel
     712, -- Warsong Outrider
+    907, -- The Justicar
     714, -- The Conqueror
     230, -- Battlemaster
 })
@@ -52,6 +53,7 @@ zoneData:Zone({93, 1366, 1383}, { -- Arathi Basin (battleground)
     1169, -- Master of Arathi Basin
     711, -- Knight of Arathor
     710, -- The Defiler
+    907, -- The Justicar
     714, -- The Conqueror
     230, -- Battlemaster
 })
@@ -62,10 +64,12 @@ zoneData:Zone(213, { -- Ragefire Chasm (dungeon)
 
 zoneData:Zone(219, { -- Zul'Farrak (dungeon)
     639, -- Zul'Farrak
+    910, -- Elders of the Dungeons
 })
 
 zoneData:Zone(220, { -- The Temple of Atal'Hakkar (dungeon)
     641, -- Sunken Temple
+    910, -- Elders of the Dungeons
 })
 
 zoneData:Zone({221, 222, 223}, { -- Blackfathom Deeps (dungeon)
@@ -83,6 +87,7 @@ zoneData:Zone({230, 231}, { -- Uldaman (dungeon)
 zoneData:Zone({235, 236, 237, 238, 239, 240}, { -- Dire Maul (dungeon)
     644, -- King of Dire Maul
     5788, -- Agent of the Shen'dralar
+    911, -- Elders of Kalimdor
 })
 
 zoneData:Zone(247, { -- Ruins of Ahn'Qiraj (raid)
@@ -92,10 +97,12 @@ zoneData:Zone(247, { -- Ruins of Ahn'Qiraj (raid)
 
 zoneData:Zone({250, 251, 252, 253, 254, 255}, { -- Blackrock Spire (dungeon)
     643, -- Lower Blackrock Spire
+    910, -- Elders of the Dungeons
 })
 
 zoneData:Zone({280, 281}, { -- Maraudon (dungeon)
     640, -- Maraudon
+    910, -- Elders of the Dungeons
 })
 
 zoneData:Zone(300, { -- Razorfen Downs (dungeon)
@@ -144,6 +151,7 @@ zoneData:Zone({18, 19, 20}, { -- Tirisfal Glades (zone)
     2556, -- Pest Control
     289, -- The Savior of Hallow's End
     46, -- Universal Explorer
+    912, -- Elders of Eastern Kingdoms
 })
 
 zoneData:Zone(21, { -- Silverpine Forest (zone)
@@ -157,6 +165,7 @@ zoneData:Zone(21, { -- Silverpine Forest (zone)
     2556, -- Pest Control
     4827, -- Surveying the Damage
     46, -- Universal Explorer
+    912, -- Elders of Eastern Kingdoms
 })
 
 zoneData:Zone(22, { -- Western Plaguelands (zone)
@@ -174,6 +183,7 @@ zoneData:Zone(22, { -- Western Plaguelands (zone)
     shared.OldWorldPetAchievements,
     2556, -- Pest Control
     46, -- Universal Explorer
+    912, -- Elders of Eastern Kingdoms
 })
 
 zoneData:Zone(23, { -- Eastern Plaguelands (zone)
@@ -200,6 +210,7 @@ zoneData:Zone(23, { -- Eastern Plaguelands (zone)
     8348, -- The Longest Day
     2556, -- Pest Control
     46, -- Universal Explorer
+    912, -- Elders of Eastern Kingdoms
 })
 
 zoneData:Zone(26, { -- The Hinterlands (zone)
@@ -294,6 +305,7 @@ zoneData:Zone(48, { -- Loch Modan (zone)
     shared.OldWorldPetAchievements,
     4827, -- Surveying the Damage
     46, -- Universal Explorer
+    912, -- Elders of Eastern Kingdoms
 })
 
 zoneData:Zone({27, 28, 29, 30, 31, 427, 428}, { -- Dun Morogh (zone)
@@ -308,6 +320,7 @@ zoneData:Zone({27, 28, 29, 30, 31, 427, 428}, { -- Dun Morogh (zone)
     6560, -- World Pet Mauler
     289, -- The Savior of Hallow's End
     46, -- Universal Explorer
+    912, -- Elders of Eastern Kingdoms
 })
 
 zoneData:Zone(49, { -- Redridge Mountains (zone)
@@ -352,6 +365,7 @@ zoneData:Zone({37, 38, 39, 40, 425, 426}, { -- Elwynn Forest (zone)
     8348, -- The Longest Day
     289, -- The Savior of Hallow's End
     46, -- Universal Explorer
+    912, -- Elders of Eastern Kingdoms
 })
 
 zoneData:Zone({15, 16}, { -- Badlands (zone)
@@ -388,6 +402,7 @@ zoneData:Zone(32, { -- Searing Gorge (zone)
     8348, -- The Longest Day
     2556, -- Pest Control
     46, -- Universal Explorer
+    912, -- Elders of Eastern Kingdoms
 })
 
 zoneData:Zone(36, { -- Burning Steppes (zone)
@@ -411,6 +426,7 @@ zoneData:Zone(36, { -- Burning Steppes (zone)
     8348, -- The Longest Day
     2556, -- Pest Control
     46, -- Universal Explorer
+    912, -- Elders of Eastern Kingdoms
 })
 
 zoneData:Zone({42, 43, 44, 45, 46}, { -- Deadwind Pass (zone)
@@ -495,6 +511,7 @@ zoneData:Zone(17, { -- Blasted Lands (zone)
     shared.OldWorldPetAchievements,
     2556, -- Pest Control
     46, -- Universal Explorer
+    912, -- Elders of Eastern Kingdoms
 })
 
 zoneData:Zone({52, 53, 54, 55}, { -- Westfall (zone)
@@ -523,6 +540,7 @@ zoneData:Zone({52, 53, 54, 55}, { -- Westfall (zone)
     2556, -- Pest Control
     4827, -- Surveying the Damage
     46, -- Universal Explorer
+    912, -- Elders of Eastern Kingdoms
 })
 
 zoneData:Zone(12, { -- Kalimdor (continent)
@@ -559,6 +577,7 @@ zoneData:Zone({57, 58, 59, 60, 61}, { -- Teldrassil (zone)
     6559, -- Traveling Pet Mauler
     6560, -- World Pet Mauler
     46, -- Universal Explorer
+    911, -- Elders of Kalimdor
 })
 
 zoneData:Zone(62, { -- Darkshore (zone)
@@ -577,6 +596,7 @@ zoneData:Zone(62, { -- Darkshore (zone)
     4827, -- Surveying the Damage
     46, -- Universal Explorer
     12572, -- War Supplied
+    911, -- Elders of Kalimdor
 })
 
 zoneData:Zone(63, { -- Ashenvale (zone)
@@ -602,6 +622,7 @@ zoneData:Zone(63, { -- Ashenvale (zone)
     2556, -- Pest Control
     4827, -- Surveying the Damage
     46, -- Universal Explorer
+    911, -- Elders of Kalimdor
 })
 
 zoneData:Zone(65, { -- Stonetalon Mountains (zone)
@@ -627,6 +648,7 @@ zoneData:Zone(65, { -- Stonetalon Mountains (zone)
     8348, -- The Longest Day
     2556, -- Pest Control
     46, -- Universal Explorer
+    911, -- Elders of Kalimdor
 })
 
 zoneData:Zone(80, { -- Moonglade (zone)
@@ -669,6 +691,7 @@ zoneData:Zone(77, { -- Felwood (zone)
     6590, -- World Safari
     8348, -- The Longest Day
     46, -- Universal Explorer
+    911, -- Elders of Kalimdor
 })
 
 zoneData:Zone({7, 8, 9}, { -- Mulgore (zone)
@@ -681,6 +704,7 @@ zoneData:Zone({7, 8, 9}, { -- Mulgore (zone)
     shared.OldWorldPetAchievements,
     2556, -- Pest Control
     46, -- Universal Explorer
+    911, -- Elders of Kalimdor
 })
 
 zoneData:Zone({1, 2, 3, 4, 5, 6}, { -- Durotar (zone)
@@ -705,6 +729,7 @@ zoneData:Zone({1, 2, 3, 4, 5, 6}, { -- Durotar (zone)
     4827, -- Surveying the Damage
     289, -- The Savior of Hallow's End
     46, -- Universal Explorer
+    911, -- Elders of Kalimdor
 })
 
 zoneData:Zone(64, { -- Thousand Needles (zone)
@@ -729,6 +754,7 @@ zoneData:Zone(64, { -- Thousand Needles (zone)
     2556, -- Pest Control
     4827, -- Surveying the Damage
     46, -- Universal Explorer
+    911, -- Elders of Kalimdor
 })
 
 zoneData:Zone({66, 67, 68}, { -- Desolace (zone)
@@ -778,6 +804,7 @@ zoneData:Zone(69, { -- Feralas (zone)
     8348, -- The Longest Day
     2556, -- Pest Control
     46, -- Universal Explorer
+    911, -- Elders of Kalimdor
 })
 
 zoneData:Zone(70, { -- Dustwallow Marsh (zone)
@@ -823,6 +850,7 @@ zoneData:Zone({71, 72, 73}, { -- Tanaris (zone)
     2556, -- Pest Control
     4827, -- Surveying the Damage
     46, -- Universal Explorer
+    911, -- Elders of Kalimdor
 })
 
 zoneData:Zone(76, { -- Azshara (zone)
@@ -842,6 +870,7 @@ zoneData:Zone(76, { -- Azshara (zone)
     shared.OldWorldPetAchievements,
     2556, -- Pest Control
     46, -- Universal Explorer
+    911, -- Elders of Kalimdor
 })
 
 zoneData:Zone(83, { -- Winterspring (zone)
@@ -870,6 +899,7 @@ zoneData:Zone(83, { -- Winterspring (zone)
     8348, -- The Longest Day
     2556, -- Pest Control
     46, -- Universal Explorer
+    911, -- Elders of Kalimdor
 })
 
 zoneData:Zone({78, 79}, { -- Un'Goro Crater (zone)
@@ -888,6 +918,7 @@ zoneData:Zone({78, 79}, { -- Un'Goro Crater (zone)
     shared.OldWorldPetAchievements,
     2556, -- Pest Control
     46, -- Universal Explorer
+    911, -- Elders of Kalimdor
 })
 
 zoneData:Zone({81, 82}, { -- Silithus (zone)
@@ -906,6 +937,7 @@ zoneData:Zone({81, 82}, { -- Silithus (zone)
     shared.OldWorldPetAchievements,
     2556, -- Pest Control
     46, -- Universal Explorer
+    911, -- Elders of Kalimdor
 })
 
 zoneData:Zone(84, { -- Stormwind City (city)
@@ -923,6 +955,7 @@ zoneData:Zone(84, { -- Stormwind City (city)
     150, -- The Fishing Diplomat
     6584, -- Big City Pet Brawlin' - Alliance
     6622, -- Big City Pet Brawler
+    915, -- Elders of the Alliance
     2556, -- Pest Control
     18854, -- Seeing Red
     275, -- Veteran Nanny
@@ -942,6 +975,7 @@ zoneData:Zone({85, 86}, { -- Orgrimmar (city)
     5477, -- Fish or Cut Bait: Orgrimmar
     150, -- The Fishing Diplomat
     279, -- Simply Abominable
+    914, -- Elders of the Horde
     6621, -- Big City Pet Brawlin' - Horde
     6622, -- Big City Pet Brawler
     2556, -- Pest Control
@@ -960,6 +994,7 @@ zoneData:Zone({87, 1361}, { -- Ironforge (city)
     279, -- Simply Abominable
     6584, -- Big City Pet Brawlin' - Alliance
     6622, -- Big City Pet Brawler
+    915, -- Elders of the Alliance
 })
 
 zoneData:Zone(88, { -- Thunder Bluff (city)
@@ -969,6 +1004,7 @@ zoneData:Zone(88, { -- Thunder Bluff (city)
     604, -- Wrath of the Alliance
     5843, -- Let's Do Lunch: Thunder Bluff
     5849, -- Fish or Cut Bait: Thunder Bluff
+    914, -- Elders of the Horde
     6621, -- Big City Pet Brawlin' - Horde
     6622, -- Big City Pet Brawler
     2556, -- Pest Control
@@ -984,6 +1020,7 @@ zoneData:Zone(89, { -- Darnassus (city)
     5848, -- Fish or Cut Bait: Darnassus
     6584, -- Big City Pet Brawlin' - Alliance
     6622, -- Big City Pet Brawler
+    915, -- Elders of the Alliance
     2556, -- Pest Control
 })
 
@@ -993,6 +1030,7 @@ zoneData:Zone(90, { -- Undercity (city)
     1006, -- City Defender
     5844, -- Let's Do Lunch: Undercity
     5850, -- Fish or Cut Bait: Undercity
+    914, -- Elders of the Horde
     6621, -- Big City Pet Brawlin' - Horde
     6622, -- Big City Pet Brawler
     2556, -- Pest Control
@@ -1021,6 +1059,7 @@ zoneData:Zone({91, 1537, 2162}, { -- Alterac Valley (battleground)
     226, -- The Alterac Blitz
     709, -- Hero of the Stormpike Guard
     708, -- Hero of the Frostwolf Clan
+    907, -- The Justicar
     714, -- The Conqueror
     230, -- Battlemaster
 })
@@ -1043,6 +1082,7 @@ zoneData:Zone({242, 243}, { -- Blackrock Depths (dungeon)
     3496, -- A Brew-FAST Mount
     14020, -- Pet Battle Challenge: Blackrock Depths
     14021, -- The Shadows Revealed
+    910, -- Elders of the Dungeons
 })
 
 zoneData:Zone({291, 292}, { -- The Deadmines (dungeon)
@@ -1076,6 +1116,7 @@ zoneData:Zone({317, 318}, { -- Stratholme (dungeon)
     13627, -- Pet Battle Challenge: Stratholme
     13766, -- Malowned
     14021, -- The Shadows Revealed
+    910, -- Elders of the Dungeons
 })
 
 zoneData:Zone(232, { -- Molten Core (raid)

@@ -43,3 +43,23 @@
 
 ### Mists Classic (98.6)
 - Fixed an error due to a missing field
+
+### Added (98.7)
+- Zone data for Brawler's Guild Season 5 achievements
+- Zone data for Val and Naigtal achievements
+- You Conduit! to Nexus-Point Xenas' zone data
+- Zone data for a bunch of Abundance achievements
+
+### Changed (98.7)
+- Moved all Brawler's Guild categories into Cross-Expansion and divided them in seasons; was in multiple expansions
+- Moved Val and Naigtal category into Midnight - Zones and split in a Val subcategory and Naigtal subcategory; was in Midnight - Void Assaults
+- Slayer's Rise achievements are now in Midnight - Zones - Slayer's Rise; were in Midnight - Zones - Quel'Thalas - PvP
+- Slayer's Rise achievements now only show in the Slayer's Rise subzone of Voidstorm; was all of Quel'Thalas
+- Goal! achievement now only shows in Silvermoon City
+
+### Removed (98.7)
+- Bur's Mount Collection removed from the Specials tab (dev note: this category was no longer maintained and is now part of [Khamuls Housing/Toys/Mounts/Pets Collections Plugin](https://github.com/KhamulAT/Krowi_AchievementFilter_Khamuls_ExpMetaAchievementFilter))
+
+### Added (98.8)
+- Zone data for the first 925 achievements
+- New obtainability for affected achievements posted here: https://worldofwarcraft.blizzard.com/en-us/news/24293280

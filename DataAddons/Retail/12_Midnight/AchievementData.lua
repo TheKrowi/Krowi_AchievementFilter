@@ -222,8 +222,8 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(61488), -- Heroic: Chimaerus, the Undreamt God
 	Ach(61489):Title(), -- Mythic: Chimaerus, the Undreamt God
 	Ach(61490):Transmog(), -- Midnight Season 1: Champion of the Dawn
-	Ach(61491), -- Ahead of the Curve: Chimaerus, the Undreamt God
-	Ach(61492), -- Cutting Edge: Chimaerus, the Undreamt God
+	Ach(61491):PvE(17), -- Ahead of the Curve: Chimaerus, the Undreamt God
+	Ach(61492):PvE(17), -- Cutting Edge: Chimaerus, the Undreamt God
 	Ach(61506):AlliedRace(), -- Allied Race: Haranir
 	Ach(61507):HousingDecor(), -- A Bloody Song
 	Ach(61508), -- Voidscar Arena
@@ -252,10 +252,10 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(61592):PvE(17), -- Keystone Victor: Pit of Saron
 	Ach(61593):PvE(17), -- Keystone Victor: Seat of the Triumvirate
 	Ach(61594):PvE(17), -- Keystone Victor: Skyreach
-	Ach(61624), -- Ahead of the Curve: Crown of the Cosmos
-	Ach(61625), -- Cutting Edge: Crown of the Cosmos
-	Ach(61626), -- Ahead of the Curve: Midnight Falls
-	Ach(61627), -- Cutting Edge: Midnight Falls
+	Ach(61624):PvE(17), -- Ahead of the Curve: Crown of the Cosmos
+	Ach(61625):PvE(17), -- Cutting Edge: Crown of the Cosmos
+	Ach(61626):PvE(17), -- Ahead of the Curve: Midnight Falls
+	Ach(61627):PvE(17), -- Cutting Edge: Midnight Falls
 	Ach(61635), -- Voidspire: Weapons of the Void
 	Ach(61636), -- Voidspire: Fanatics of the Light
 	Ach(61637), -- Voidspire: Crown of the Cosmos
@@ -306,7 +306,7 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(61739), -- Sojourner of Harandar
 	Ach(61741), -- Delve Loremaster: Midnight
 	Ach(61796):PvE(17), -- Midnight: Journey's End (Season 1)
-	Ach(61797):Transmog(), -- My Shady Nemesis
+	Ach(61797):Transmog():PvE(17), -- My Shady Nemesis
 	Ach(61798):Title():PvE(17), -- Lighting the Dark
 	Ach(61799):Mount():PvE(17), -- Let Me Solo Him: Nullaeus
 	Ach(61800):Other():PvE(17), -- Midnight Delves: Tier 4 (Season 1)
@@ -557,16 +557,16 @@ KrowiAF.AchievementData["12_00_00"] = {
 }
 
 KrowiAF.AchievementData["12_00_05"] = {
-	Ach(61792), -- T-A-G that spells "Gotcha!"
-	Ach(61793), -- Deployed to the Void
-	Ach(61878), -- Tagged and Bagged
-	Ach(61879), -- You're It
-	Ach(61880), -- It's Cold Here in This Shadow
-	Ach(61881), -- Hide and Peekless
-	Ach(61882), -- Null and Avoided
-	Ach(61883), -- Now You Don't See Me...
-	Ach(61886), -- The Whole Kit and Caboodle
-	Ach(61887), -- Disguised to the Nines
+	Ach(61792):Obtainable("Before", "Version", {12, 1, 0}), -- T-A-G that spells "Gotcha!"
+	Ach(61793):Obtainable("Before", "Version", {12, 1, 0}), -- Deployed to the Void
+	Ach(61878):Obtainable("Before", "Version", {12, 1, 0}), -- Tagged and Bagged
+	Ach(61879):Obtainable("Before", "Version", {12, 1, 0}), -- You're It
+	Ach(61880):Obtainable("Before", "Version", {12, 1, 0}), -- It's Cold Here in This Shadow
+	Ach(61881):Obtainable("Before", "Version", {12, 1, 0}), -- Hide and Peekless
+	Ach(61882):Obtainable("Before", "Version", {12, 1, 0}), -- Null and Avoided
+	Ach(61883):Obtainable("Before", "Version", {12, 1, 0}), -- Now You Don't See Me...
+	Ach(61886):Obtainable("Before", "Version", {12, 1, 0}), -- The Whole Kit and Caboodle
+	Ach(61887):Obtainable("Before", "Version", {12, 1, 0}), -- Disguised to the Nines
 	Ach(62342), -- Abyss Anglers: The Finest of Fish
 	Ach(62343), -- Abyss Anglers: Myths from Beneath
 	Ach(62450), -- Ritual Sites 101: An Introduction to Basic Magical Rituals
@@ -676,7 +676,7 @@ KrowiAF.AchievementData["12_00_07"] = {
 	Ach(62919), -- Heroic Climate Strange: Naigtal
 	Ach(62940), -- Ritual Sites 612: Practical Ritual Work
 	Ach(62941):Title(), -- Pinnacle Ritual Work
-	Ach(63164), -- Big Prey Hunter (Season 1)
+	Ach(63164):PvE(17), -- Big Prey Hunter (Season 1)
 	Ach(63182), -- Advanced Ritual Site Studies
 	Ach(63237), -- Rotmire
 	Ach(63240), -- Heroic: Rotmire

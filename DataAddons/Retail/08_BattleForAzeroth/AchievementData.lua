@@ -29,12 +29,12 @@ KrowiAF.AchievementData["08_00_01"] = {
 	Ach(12500), -- Underrot
 	Ach(12501), -- Heroic: Underrot
 	Ach(12502), -- Mythic: Underrot
-	Ach(12503), -- Snake Eyes
+	Ach(12503):Obtainable("Before", "Version", {12, 1, 0}), -- Snake Eyes
 	Ach(12504), -- The Temple of Sethraliss
 	Ach(12505), -- Heroic: The Temple of Sethraliss
 	Ach(12506), -- Mythic: The Temple of Sethraliss
-	Ach(12507), -- Snake Eater
-	Ach(12508), -- Good Night, Sweet Prince
+	Ach(12507):Obtainable("Before", "Version", {12, 1, 0}), -- Snake Eater
+	Ach(12508):Obtainable("Before", "Version", {12, 1, 0}), -- Good Night, Sweet Prince
 	Ach(12509):HousingDecor():FactionSplit(faction.Horde, 12510), -- Ready for War
 	Ach(12510):FactionSplit(faction.Alliance, 12509), -- Ready for War
 	Ach(12515):AlliedRace():FactionSplit(faction.Alliance, nil), -- Allied Races: Dark Iron Dwarf

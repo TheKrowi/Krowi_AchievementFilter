@@ -222,7 +222,6 @@ zoneData:Zone(101, { -- Outland (continent)
     44, -- Outland Explorer
     763, -- The Burning Crusader
     764, -- The Burning Crusader
-    902, -- Chief Exalted Officer
     6587, -- Outland Safari
     6614, -- Outland Tamer
     6604, -- Taming Outland
@@ -297,6 +296,7 @@ zoneData:Zone(103, { -- The Exodar (city)
     618, -- Putting Out the Light
     619, -- For the Horde!
     603, -- Wrath of the Horde
+    915, -- Elders of the Alliance
     2556, -- Pest Control
 })
 
@@ -396,6 +396,7 @@ zoneData:Zone(108, { -- Terokkar Forest (zone)
     1275, -- Bombs Away
     867, -- Explore Terokkar Forest
     726, -- Mr. Pinchy's Magical Crawdad Box
+    905, -- Old Man Barlowned
     903, -- Shattrath Divided
     1205, -- Hero of Shattrath
     6587, -- Outland Safari
@@ -431,6 +432,7 @@ zoneData:Zone(110, { -- Silvermoon City (city)
     613, -- Killed in Quel'Thalas
     614, -- For the Alliance!
     604, -- Wrath of the Alliance
+    914, -- Elders of the Horde
     2556, -- Pest Control
 })
 
@@ -441,6 +443,7 @@ zoneData:Zone(111, { -- Shattrath City (city)
     7499, -- Taming the World
     8348, -- The Longest Day
     1165, -- My Storage is "Gigantique"
+    906, -- Kickin' It Up a Notch
     432, -- Champion of the Naaru
     9924, -- Field Photographer
     6604, -- Taming Outland

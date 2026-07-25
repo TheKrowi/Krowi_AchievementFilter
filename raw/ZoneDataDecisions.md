@@ -3,7 +3,7 @@
 Records every achievement evaluated for zone placement — added, already present, or skipped with reason.
 Update this file whenever a zone placement decision is made via the `add-zone-data` skill.
 
-**Highest ID Analyzed: 900**
+**Highest ID Analyzed: 925**
 
 ## Main Log
 
@@ -450,6 +450,20 @@ Update this file whenever a zone placement decision is made via the `add-zone-da
 | 898 | On Wings of Nether | ✅ already present | 104 | Shadowmoon Valley | Already in ZoneData.lua Shadowmoon Valley entry; Netherwing Ledge is in Shadowmoon Valley | 2026-07-13 |
 | 899 | Oh My, Kurenai | ✅ already present | 107 | Nagrand | Already in ZoneData.lua Nagrand entry; Kurenai is based in Nagrand | 2026-07-13 |
 | 900 | The Czar of Sporeggar | ✅ already present | 102 | Zangarmarsh | Already in ZoneData.lua Zangarmarsh entry; Sporeggar is in Zangarmarsh | 2026-07-13 |
+| 901 | Mag'har of Draenor | ✅ already present | 107 | Nagrand | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Nagrand entry | 2026-07-14 |
+| 902 | Chief Exalted Officer | ✅ already present | 107, 109, 272 | Nagrand, Netherstorm, Mana-Tombs | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` entries; removed from Outland continent (101) — Consortium has no presence at continent level | 2026-07-14 |
+| 903 | Shattrath Divided | ✅ already present | 108 | Terokkar Forest | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` Terokkar Forest entry | 2026-07-14 |
+| 905 | Old Man Barlowned | ✅ added | 108 | Terokkar Forest | Added to Terokkar Forest entry in `Shared/02_TheBurningCrusade/ZoneData.lua`; Old Man Barlo's fishing dailies are in Terokkar Forest | 2026-07-14 |
+| 906 | Kickin' It Up a Notch | ✅ added | 111 | Shattrath City | Added to Shattrath City entry in `Shared/02_TheBurningCrusade/ZoneData.lua`; The Rokk's cooking dailies are in Shattrath City | 2026-07-14 |
+| 907 | The Justicar | ✅ added | 91, 92, 93 | Alterac Valley, Warsong Gulch, Arathi Basin | Added to all three battleground entries in `Shared/01_Vanilla/ZoneData.lua`; achievement requires Exalted with all three BG factions | 2026-07-14 |
+| 908 | Call to Arms! | ⏭ skipped | — | — | Battleground participation count achievement; no single geographic association | 2026-07-14 |
+| 909 | Call to Arms! | ⏭ skipped | — | — | Battleground participation count achievement; no single geographic association | 2026-07-14 |
+| 910 | Elders of the Dungeons | ✅ added | 219, 220, 250, 280, 242/243, 317, 129, 133–135, 136/137, 140, 154, 157–159, 160/161 | Zul'Farrak, Sunken Temple, Blackrock Spire, Maraudon, Blackrock Depths, Stratholme, The Nexus, Utgarde Keep, Utgarde Pinnacle, Halls of Stone, Gundrak, Azjol-Nerub, Drak'Tharon Keep | Added 910 to each dungeon entry containing a Lunar Festival elder in `Shared/01_Vanilla/ZoneData.lua` (Vanilla dungeons) and `Shared/03_WrathOfTheLichKing/ZoneData.lua` (WotLK dungeons) | 2026-07-15 |
+| 911 | Elders of Kalimdor | ✅ added | 1, 7, 57, 62, 63, 64, 65, 69, 71–73, 76, 77, 81/82, 83, 235, 78/79, 10/11 | Durotar, Mulgore, Teldrassil, Darkshore, Ashenvale, Thousand Needles, Stonetalon Mountains, Feralas, Tanaris, Azshara, Felwood, Silithus, Winterspring, Dire Maul, Un'Goro Crater, Northern Barrens | Added 911 to each zone entry containing a Lunar Festival elder in `Shared/01_Vanilla/ZoneData.lua` and `Shared/04_Cataclysm/ZoneData.lua` | 2026-07-15 |
+| 912 | Elders of Eastern Kingdoms | ✅ added | 17, 18, 21, 22, 23, 26, 27, 36, 37, 48, 52, 32, 210, 337, 476 | Blasted Lands, Tirisfal Glades, Silverpine Forest, Western Plaguelands, Eastern Plaguelands, The Hinterlands, Dun Morogh, Burning Steppes, Elwynn Forest, Loch Modan, Westfall, Searing Gorge, Cape of Stranglethorn, Zul'Gurub, Scholomance | Added 912 to each zone entry containing a Lunar Festival elder across `Shared/01_Vanilla/ZoneData.lua`, `Shared/04_Cataclysm/ZoneData.lua`, and `Shared/05_MistsOfPandaria/ZoneData.lua` | 2026-07-15 |
+| 913 | To Honor One's Elders | ⏭ skipped | — | — | Lunar Festival meta-achievement with no single geographic association | 2026-07-14 |
+| 914 | Elders of the Horde | ✅ added | 85, 88, 90, 110 | Orgrimmar, Thunder Bluff, Undercity, Silvermoon City | Added to Horde capital city entries in `Shared/01_Vanilla/ZoneData.lua` and `Shared/02_TheBurningCrusade/ZoneData.lua` | 2026-07-14 |
+| 915 | Elders of the Alliance | ✅ added | 84, 87, 89, 103 | Stormwind City, Ironforge, Darnassus, The Exodar | Added to Alliance capital city entries in `Shared/01_Vanilla/ZoneData.lua` and `Shared/02_TheBurningCrusade/ZoneData.lua` | 2026-07-14 |
 <!-- END_MAIN_LOG -->
 
 ## Statistics-Tracking Achievements (Skipped)
@@ -559,6 +573,10 @@ All skipped — cumulative counter / statistics-tracking achievements not in Ach
 | 869 | 50000 Honorable Kills |
 | 870 | 100000 Honorable Kills |
 | 876 | Brutally Dedicated |
+| 919 | Gold earned from auctions |
+| 921 | Gold from vendors |
+| 922 | Mana potions consumed |
+| 923 | Elixirs consumed |
 <!-- END_STATS_LOG -->
 
 ## IDs Not Found in Game DB (Skipped)
@@ -581,5 +599,5 @@ All skipped — achievement ID not found in game DB (verified against build 12.0
 702, 703, 704, 715, 716, 717, 718, 719, 720, 721, 722, 723, 724, 737, 738, 739, 740, 741, 742, 743, 744, 745, 746, 747, 748, 749,
 751, 752, 754, 755, 756, 757, 758, 760, 767, 785, 786, 787, 788, 789, 790, 791, 792, 793, 794, 795, 797,
 803, 804, 805, 806, 807, 808, 809, 810, 813, 814, 815, 816, 817, 818, 819, 820, 821, 822, 823, 824, 825, 826, 827, 828, 829, 830, 831, 832, 833, 834, 835, 836,
-874, 895
+874, 895, 916, 917, 918, 920, 924, 925
 <!-- END_NOTFOUND -->

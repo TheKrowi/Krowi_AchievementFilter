@@ -432,6 +432,7 @@ zoneData:Zone(129, { -- The Nexus (dungeon)
     2036, -- Intense Cold
     478, -- The Nexus
     490, -- Heroic: The Nexus
+    910, -- Elders of the Dungeons
 })
 
 zoneData:Zone({130, 131}, { -- The Culling of Stratholme (dungeon)
@@ -462,6 +463,7 @@ zoneData:Zone({133, 134, 135}, { -- Utgarde Keep (dungeon)
     1919, -- On The Rocks
     477, -- Utgarde Keep
     489, -- Heroic: Utgarde Keep
+    910, -- Elders of the Dungeons
 })
 
 zoneData:Zone({136, 137}, { -- Utgarde Pinnacle (dungeon)
@@ -474,6 +476,7 @@ zoneData:Zone({136, 137}, { -- Utgarde Pinnacle (dungeon)
     2157, -- King's Bane
     488, -- Utgarde Pinnacle
     499, -- Heroic: Utgarde Pinnacle
+    910, -- Elders of the Dungeons
 })
 
 zoneData:Zone({138, 139}, { -- Halls of Lightning (dungeon)
@@ -496,6 +499,7 @@ zoneData:Zone(140, { -- Halls of Stone (dungeon)
     2155, -- Abuse the Ooze
     485, -- Halls of Stone
     496, -- Heroic: Halls of Stone
+    910, -- Elders of the Dungeons
 })
 
 zoneData:Zone({143, 144, 145, 146}, { -- The Oculus (dungeon)
@@ -521,6 +525,7 @@ zoneData:Zone(154, { -- Gundrak (dungeon)
     2152, -- Share The Love
     484, -- Gundrak
     495, -- Heroic: Gundrak
+    910, -- Elders of the Dungeons
 })
 
 zoneData:Zone({157, 158, 159}, { -- Azjol-Nerub (dungeon)
@@ -532,6 +537,7 @@ zoneData:Zone({157, 158, 159}, { -- Azjol-Nerub (dungeon)
     1860, -- Gotta Go!
     480, -- Azjol-Nerub
     491, -- Heroic: Azjol-Nerub
+    910, -- Elders of the Dungeons
 })
 
 zoneData:Zone({160, 161}, { -- Drak'Tharon Keep (dungeon)
@@ -543,6 +549,7 @@ zoneData:Zone({160, 161}, { -- Drak'Tharon Keep (dungeon)
     2039, -- Better Off Dred
     482, -- Drak'Tharon Keep
     493, -- Heroic: Drak'Tharon Keep
+    910, -- Elders of the Dungeons
 })
 
 zoneData:Zone(168, { -- The Violet Hold (dungeon)

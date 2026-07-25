@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 98.8 - 2026-07-26
+### Added
+- Zone data for the first 925 achievements
+- New obtainability for affected achievements posted here: https://worldofwarcraft.blizzard.com/en-us/news/24293280
+
 ## 98.7 - 2026-06-28
 ### Added
 - Zone data for Brawler's Guild Season 5 achievements

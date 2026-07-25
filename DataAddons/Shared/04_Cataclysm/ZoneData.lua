@@ -16,6 +16,7 @@ zoneData:Zone(337, { -- Zul'Gurub (dungeon)
     5759, -- Spirit Twister
     5744, -- Gurubashi Headhunter
     5768, -- Heroic: Zul'Gurub
+    912, -- Elders of Eastern Kingdoms
 })
 
 zoneData:Zone(206, { -- Twin Peaks (battleground)
@@ -193,6 +194,7 @@ zoneData:Zone({10, 11}, { -- Northern Barrens (zone)
     8348, -- The Longest Day
     2556, -- Pest Control
     46, -- Universal Explorer
+    911, -- Elders of Kalimdor
 })
 
 zoneData:Zone(50, { -- Northern Stranglethorn (zone)
@@ -392,6 +394,7 @@ zoneData:Zone(210, { -- The Cape of Stranglethorn (zone)
     2556, -- Pest Control
     4827, -- Surveying the Damage
     46, -- Universal Explorer
+    912, -- Elders of Eastern Kingdoms
 })
 
 zoneData:Zone(249, { -- Uldum (zone)
