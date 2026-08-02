@@ -611,23 +611,31 @@ function addon.HookFunctions()
         end);
         hooksecurefunc("AchievementFrame_SetRestrictedMode", function(frame, subFrame)
             addon.Gui:ShowHideTabs();
+            -- AchievementFrame_SetRestrictedMode always shows AchievementFrame.SearchBox; re-hide it if our own search box is active
+            if KrowiAF_SearchBoxFrame and KrowiAF_SearchBoxFrame:IsShown() then
+                AchievementFrame.SearchBox:Hide();
+            end
         end);
     end
 
     AchievementFrameFilterDropdown:HookScript("OnShow", function()
         if addon.Util.IsClassicWithAchievements then
-            AchievementFrame.Header.RightDDLInset:Show();
+            if AchievementFrame.Header.RightDDLInset then
+                AchievementFrame.Header.RightDDLInset:Show();
+            end
         else
-            AchievementFrame.Header.LeftDDLInset:Show();
+            if AchievementFrame.Header.LeftDDLInset then
+                AchievementFrame.Header.LeftDDLInset:Show();
+            end
         end
     end);
     AchievementFrameFilterDropdown:HookScript("OnHide", function()
         if addon.Util.IsClassicWithAchievements then
-            if not KrowiAF_SearchBoxFrame:IsShown() then
+            if AchievementFrame.Header.RightDDLInset and not KrowiAF_SearchBoxFrame:IsShown() then
                 AchievementFrame.Header.RightDDLInset:Hide();
             end
         else
-            if not KrowiAF_AchievementFrameFilterButton:IsShown() then
+            if AchievementFrame.Header.LeftDDLInset and not KrowiAF_AchievementFrameFilterButton:IsShown() then
                 AchievementFrame.Header.LeftDDLInset:Hide();
             end
         end

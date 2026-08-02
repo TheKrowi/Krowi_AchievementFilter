@@ -1,17 +1,22 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 98.8 - 2026-07-26
-### Added
-- Zone data for the first 925 achievements
-- New obtainability for affected achievements posted here: https://worldofwarcraft.blizzard.com/en-us/news/24293280
+## 99.0 - 2026-08-02
+### Changed
+- Support for WoW 12.1.0 PTR (dev note: the Achievements frame's header details strip — Back button, filter dropdown, search box — moved into `AchievementFrame.HeaderDetails.Filters`; the addon's filter button, search box, summary/achievements frames, and browsing history buttons now anchor to it, falling back to the old layout when it's absent)
 
-## 98.7 - 2026-06-28
+### Fixed
+- Filter dropdown and search box no longer error on the 12.1.0 layout, which no longer has `AchievementFrame.Header.LeftDDLInset`/`RightDDLInset`
+- Blizzard's search box no longer reappears after closing the addon's own search box (dev note: `AchievementFrame_SetRestrictedMode` always shows it; it's now re-hidden if ours is active)
+
+## 98.8 - 2026-07-26
 ### Added
 - Zone data for Brawler's Guild Season 5 achievements
 - Zone data for Val and Naigtal achievements
 - You Conduit! to Nexus-Point Xenas' zone data
 - Zone data for a bunch of Abundance achievements
+- Zone data for the first 925 achievements
+- New obtainability for affected achievements posted here: https://worldofwarcraft.blizzard.com/en-us/news/24293280
 
 ### Changed
 - Moved all Brawler's Guild categories into Cross-Expansion and divided them in seasons; was in multiple expansions

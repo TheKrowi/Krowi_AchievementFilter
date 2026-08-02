@@ -48,8 +48,14 @@ local function LoadOldAchievementFrameTabsCompatibility()
 end
 
 local function LoadOldGuiCompatibility()
+    -- 12.1.0 PTR moved FilterDropdown/SearchBox from direct children of AchievementFrame into AchievementFrame.HeaderDetails.Filters
+    local newFilters = AchievementFrame.HeaderDetails and AchievementFrame.HeaderDetails.Filters
+
     if not AchievementFrameFilterDropdown then
-        AchievementFrameFilterDropdown = AchievementFrameFilterDropDown;
+        AchievementFrameFilterDropdown = AchievementFrameFilterDropDown or (newFilters and newFilters.FilterDropdown);
+    end
+    if not AchievementFrame.SearchBox then
+        AchievementFrame.SearchBox = newFilters and newFilters.SearchBox;
     end
 end
 

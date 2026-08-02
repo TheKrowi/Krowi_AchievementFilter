@@ -90,12 +90,22 @@ function browsingHistory:Load()
     if not addon.Options.db.profile.TrackAchievementBrowserHistory then
         return;
     end
-    self.NextAchievementButton = CreateFrame("Button", "KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton", AchievementFrame.Header, "KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton_Template");
-    self.NextAchievementButton:SetPoint("RIGHT", AchievementFrame.Header.PointBorder, "LEFT", 10, -1);
-    -- self.NextAchievementButton:SetPoint("LEFT", AchievementFrame.Header.PointBorder, "RIGHT", -10, -1);
-    self.PrevAchievementButton = CreateFrame("Button", "KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton", AchievementFrame.Header, "KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton_Template");
-    -- self.PrevAchievementButton:SetPoint("RIGHT", AchievementFrame.Header.PointBorder, "LEFT", 10, -1);
-    self.PrevAchievementButton:SetPoint("RIGHT", self.NextAchievementButton, "LEFT", 5, 0);
+    if AchievementFrame.HeaderDetails then
+        self.PrevAchievementButton = CreateFrame("Button", "KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton", AchievementFrame.HeaderDetails, "KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton_Template");
+        -- self.PrevAchievementButton:SetPoint("RIGHT", AchievementFrame.Header.PointBorder, "LEFT", 10, -1);
+        self.PrevAchievementButton:SetPoint("LEFT", AchievementFrame.HeaderDetails, "LEFT", 30, 0);
+        self.NextAchievementButton = CreateFrame("Button", "KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton", AchievementFrame.HeaderDetails, "KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton_Template");
+        self.NextAchievementButton:SetPoint("LEFT", self.PrevAchievementButton, "RIGHT", -5, 0);
+        -- self.NextAchievementButton:SetPoint("LEFT", AchievementFrame.Header.PointBorder, "RIGHT", -10, -1);
+    else
+        self.NextAchievementButton = CreateFrame("Button", "KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton", AchievementFrame.Header, "KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton_Template");
+        self.NextAchievementButton:SetPoint("RIGHT", AchievementFrame.Header.PointBorder, "LEFT", 10, -1);
+        -- self.NextAchievementButton:SetPoint("LEFT", AchievementFrame.Header.PointBorder, "RIGHT", -10, -1);
+        self.PrevAchievementButton = CreateFrame("Button", "KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton", AchievementFrame.Header, "KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton_Template");
+        -- self.PrevAchievementButton:SetPoint("RIGHT", AchievementFrame.Header.PointBorder, "LEFT", 10, -1);
+        self.PrevAchievementButton:SetPoint("RIGHT", self.NextAchievementButton, "LEFT", 5, 0);
+    end
+
     self:Update();
 end
 
