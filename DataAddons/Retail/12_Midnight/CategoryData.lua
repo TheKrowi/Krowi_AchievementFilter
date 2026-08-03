@@ -550,8 +550,8 @@ local venomousAbyss = raids:Raid(1320, { -- The Venomous Abyss
     63522, -- Mythic: The Venomous Abyss
     63650, -- Ahead of the Curve: Ula'tek
     63651, -- Cutting Edge: Ula'tek
-    63472, -- Fang Fatale
     63670, -- Comforting Da Spirits
+    63472, -- Fang Fatale
 })
 venomousAbyss:Glory{
     63418, -- Well, Well, Little Sky
