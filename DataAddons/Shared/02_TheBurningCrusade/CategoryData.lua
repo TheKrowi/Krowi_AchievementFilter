@@ -617,6 +617,17 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The Burning Crusade
             6611, -- Continental Tamer
             6590, -- World Safari
             8348, -- The Longest Day
+            62466, -- Aquatic Battler of Outland
+            62467, -- Beast Battler of Outland
+            62468, -- Critter Battler of Outland
+            62469, -- Dragonkin Battler of Outland
+            62470, -- Elemental Battler of Outland
+            62471, -- Flying Battler of Outland
+            62472, -- Humanoid Battler of Outland
+            62473, -- Magic Battler of Outland
+            62474, -- Mechanical Battler of Outland
+            62475, -- Undead Battler of Outland
+            62460, -- Family Battler of Outland
         },
     },
     { -- Dragonriding Races

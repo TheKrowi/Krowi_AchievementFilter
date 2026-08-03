@@ -3,11 +3,14 @@
 .SYNOPSIS
     Calibration test harness for Verify-AchievementData.ps1.
 .DESCRIPTION
-    Runs the verifier against four fixture files and asserts expected results:
+    Runs the verifier against five fixture files and asserts expected results:
       known_good.lua        — 8 entries (Classic); verifier must exit 0, no [FAIL] lines.
       known_bad.lua         — 10 entries (Classic); verifier must exit 1, exactly 11 [FAIL] lines (10 check failures + 1 autofactionsplit-unique Case 1 from Ach(714)/Ach(907) combination).
       known_good_retail.lua — 2 entries (Retail); verifier must exit 0, no [FAIL] lines.
       known_bad_retail.lua  — 2 entries (Retail); verifier must exit 1, exactly 1 [FAIL] line.
+      known_good_ptr_fallback.lua — 2 entries; first id resolves in the live "wow" build (chosen as
+        primary via auto-detect), second id only exists on "wowt" (PTR) and must be resolved via the
+        fallback-build pass. Run WITHOUT -Build so auto-detection actually runs. Verifier must exit 0.
     Requires wow.tools.local running at http://localhost:5000 with both a wow_classic and a wow build loaded.
 .EXAMPLE
     cd "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\.github\skills\verify-achievement-data"
@@ -28,6 +31,7 @@ $knownGood       = Join-Path $fixturesDir "known_good.lua"
 $knownBad        = Join-Path $fixturesDir "known_bad.lua"
 $knownGoodRetail = Join-Path $fixturesDir "known_good_retail.lua"
 $knownBadRetail  = Join-Path $fixturesDir "known_bad_retail.lua"
+$knownGoodPtrFallback = Join-Path $fixturesDir "known_good_ptr_fallback.lua"
 
 $passCount = 0
 $failCount = 0
@@ -106,7 +110,7 @@ Assert ($r2.Text -match "\[FAIL\] faction.*Ach\(907\).*Faction=1.*Alliance") "[F
 Assert ($r2.Text -match "\[FAIL\] faction.*Ach\(938\).*Faction=-1.*both")   "[FAIL] faction both   : Ach(938)"
 # title-reward — 2 branches
 Assert ($r2.Text -match "\[FAIL\] title-reward.*Ach\(418\)")            "[FAIL] title-reward db→missing: Ach(418)"
-Assert ($r2.Text -match "\[FAIL\] title-reward.*Ach\(938\)")            "[FAIL] title-reward method→no db: Ach(938)"
+Assert ($r2.Text -match "\[FAIL\] title-reward.*Ach\(2136\)")          "[FAIL] title-reward method→non-title reward: Ach(2136)"
 # reward-item — 2 branches
 Assert ($r2.Text -match "\[FAIL\] reward-item.*Ach\(940\)")             "[FAIL] reward-item method→no db: Ach(940)"
 Assert ($r2.Text -match "\[FAIL\] reward-item.*Ach\(2136\)")            "[FAIL] reward-item db→missing: Ach(2136)"
@@ -148,6 +152,18 @@ $unexpected4 = @($r4.Lines | Where-Object {
     $_ -notmatch "Ach\(12593\)" -and $_ -notmatch "Ach\(13294\)"
 })
 Assert ($unexpected4.Count -eq 0) "No unexpected [FAIL] lines (false positives)"
+Write-Host ""
+
+# ════════════════════════════════════════════════════════════════════════════════
+Write-Host "Test 5: known_good_ptr_fallback.lua — id missing from primary build must resolve via fallback"
+Write-Host "──────────────────────────────────────────────────────────────────────────────────────────────"
+$output5 = @(& $verifyScript $knownGoodPtrFallback *>&1 | ForEach-Object { "$_" })
+$r5 = [PSCustomObject]@{ ExitCode = $LASTEXITCODE; Text = ($output5 -join "`n"); Lines = $output5 }
+
+Assert ($r5.ExitCode -eq 0)                                     "Exit code 0"
+Assert ($r5.Text -match "All \d+ entries passed")                "Output: 'All X entries passed'"
+Assert ($r5.Text -notmatch "\[FAIL\]")                           "No [FAIL] lines"
+Assert ($r5.Text -match "Resolved \d+ additional ID\(s\) from fallback build") "Fallback build resolution message printed"
 Write-Host ""
 
 # ════════════════════════════════════════════════════════════════════════════════

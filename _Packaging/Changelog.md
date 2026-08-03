@@ -2,12 +2,26 @@
 All notable changes to this project will be documented in this file.
 
 ## 99.0 - 2026-08-02
+### Added
+- 12.1.0 "The Curse of Ula'tek" patch data
+    - Altar of Fangs dungeon: Normal, Heroic, Mythic, Keystone Hero and Keystone Victor
+    - The Venomous Abyss raid: Normal, Heroic, Mythic, boss kills, Glory, Ahead of the Curve/Cutting Edge, Mythic: Ula'tek
+    - Midnight Season 2 Mythic+ (Resilient Keystones, Keystone Hero/Victor for all 8 dungeons, Explorer/Conqueror/Master/Hero/Legend) and Delve tiers 4-11
+    - Midnight Season 2 PvP ladder (Combatant through Gladiator/Legend/Strategist), Battle Mender, Hero of the Alliance/Horde, Weapons of Conquest, and season mount
+    - The Coiled Isle zone: exploration, Curse Surges world event, Vaults of Atal'Utek, housing decor, and Souvenir Seeker achievements
+    - Family Battler of Outland and Family Battler of Cataclysm pet battle achievements
+    - A Round on the House in Midnight and Tricks and Treats of Midnight holiday achievements
+    - Keystone Hero/Victor entries added to older dungeons rejoining the Season 2 rotation (Ruby Life Pools, Temple of Sethraliss, Kings' Rest)
+
 ### Changed
 - Support for WoW 12.1.0 PTR (dev note: the Achievements frame's header details strip — Back button, filter dropdown, search box — moved into `AchievementFrame.HeaderDetails.Filters`; the addon's filter button, search box, summary/achievements frames, and browsing history buttons now anchor to it, falling back to the old layout when it's absent)
 
 ### Fixed
 - Filter dropdown and search box no longer error on the 12.1.0 layout, which no longer has `AchievementFrame.Header.LeftDDLInset`/`RightDDLInset`
 - Blizzard's search box no longer reappears after closing the addon's own search box (dev note: `AchievementFrame_SetRestrictedMode` always shows it; it's now re-hidden if ours is active)
+
+### Removed
+- Achievement 62413, The Curse of Ula'tek, to be replaced by 62297
 
 ## 98.8 - 2026-07-26
 ### Added

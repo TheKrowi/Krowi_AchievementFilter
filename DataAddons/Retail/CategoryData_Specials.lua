@@ -616,6 +616,7 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 41595, -- Prized Guise
                 42800, -- Astral Attire
                 61586, -- Galactic Gala
+                63608, -- Venomous Vestments
             },
         },
         {

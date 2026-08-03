@@ -27,6 +27,11 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
             62115, -- Learning the Landscape: Battle for Gilneas
             62113, -- Boots on the Ground: Silvershard Mines
             62116, -- Learning the Landscape: Silvershard Mines
+            63695, -- Arena Exercise
+            63696, -- Arena Exercise
+            63697, -- Arena Exercise
+            63698, -- Arena Exercise
+            63699, -- World Wide Trainer
         }
     },
     { -- Player vs. Player
@@ -1188,6 +1193,33 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
                 61443, -- Galactic Weapons of Conquest
                 61490, -- Midnight Season 1: Champion of the Dawn
                 61858, -- Light of the Party
+            },
+        },
+        { -- Season 2
+            addon.L["Season"] .. " " .. 2,
+            {
+                62926, -- Combatant I: Midnight Season 2
+                62951, -- Combatant II: Midnight Season 2
+                62927, -- Challenger I: Midnight Season 2
+                62952, -- Challenger II: Midnight Season 2
+                62928, -- Rival I: Midnight Season 2
+                62911, -- Rival II: Midnight Season 2
+                62929, -- Duelist: Midnight Season 2
+                62931, -- Elite: Midnight Season 2
+                62930, -- Gladiator: Midnight Season 2
+                62922, -- Venomous Gladiator: Midnight Season 2
+                62953, -- Hero of the Alliance: Venomous
+                62954, -- Hero of the Horde: Venomous
+                62932, -- Legend: Midnight Season 2
+                62923, -- Venomous Legend: Midnight Season 2
+                62921, -- Battle Mender: Midnight Season 2
+                62950, -- Strategist: Midnight Season 2
+                62924, -- Venomous Marshal: Midnight Season 2
+                62925, -- Venomous Warlord: Midnight Season 2
+                62497, -- Venomous Weapons of Conquest
+                62955, -- Venomous Gladiator's Goredrake
+                62872, -- Midnight Season 2: Serpent Scion
+                63473, -- Sssensational!
             },
         },
     },

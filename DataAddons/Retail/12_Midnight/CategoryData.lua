@@ -26,6 +26,12 @@ expansion:Character{
     42768, -- Champion of the Dawn
     42769, -- Hero of the Dawn
     42770, -- Myth of the Dawn
+    62410, -- Adventurer of the Mist
+    62411, -- Veteran of the Mist
+    62412, -- Champion of the Mist
+    62414, -- Hero of the Mist
+    62416, -- Myth of the Mist
+    62871, -- Midnight Season 2: Catalyst Unbound
 }
 
 local zones = expansion:Zones{
@@ -111,7 +117,7 @@ zulaman:Quests{
     41803, -- For Zul'Aman!
     61452, -- Sojourner of Zul'Aman
     61910, -- Mrglgrgl of Grglmrgl
-    62413, -- The Curse of Ula'tek
+    62297, -- The Curse of Ula'tek
 }
 zulaman:Exploration{
     61856, -- Explore Zul'Aman
@@ -242,6 +248,44 @@ valAndNaigtal:ZoneNamed(2600, { -- Naigtal
     62874, -- A Trip Through the Stars
 })
 
+local coiledIsle = zones:Zone(2512, {
+    63639, -- Ula'tek Uncoiled
+})
+coiledIsle:Quests{
+    63641, -- Snake Charmed, I'm Sure
+    63633, -- A Stack of Snacks
+}
+coiledIsle:Exploration{
+    63359, -- Treasures of the Coiled Isle
+    63395, -- The Coiled Isles Glyph Hunter
+    63640, -- Explore the Coiled Isle
+    63662, -- Student of Hissstory
+    63358, -- Coiled to Strike
+    63382, -- It's Definitely Something
+    63432, -- Mysterious Mix Master
+}
+coiledIsle:PvP{
+    63167, -- Tour of Duty: The Coiled Isle
+}
+coiledIsle:Reputation{
+    63631, -- Captain Tokka's Crew
+}
+coiledIsle:Named(addon.L["Vaults of Atal'Utek"], {
+    62600, -- Ritual Behavior
+    62601, -- Soft Underbelly
+    62604, -- Dance While Everyone Watches
+    62649, -- A Lone Wanderer
+    63596, -- Snake Stompin'
+    63598, -- Roll the Patrol
+    63599, -- Submerge the Incursion
+    63600, -- Spike the Strike
+    63601, -- Oppose the Foes
+    63610, -- The Honored Dead
+    63630, -- Assault the Vault
+    63636, -- Fully Corroded
+    63653, -- Pro Poison Patroller
+})
+
 local delves = expansion:Delves{
     61832, -- Midnight Delves: Tier 1
     61835, -- Midnight Delves: Tier 2
@@ -268,6 +312,8 @@ local delves = expansion:Delves{
     61720, -- Midnight Delver
     61721, -- Midnight Delver II
     62206, -- Midnight Delver III
+    63434, -- Buddy System VII: Valeera
+    63435, -- Buddy System VIII: Valeera
 }
 delves:Seasonal{
     61800, -- Midnight Delves: Tier 4 (Season 1)
@@ -279,6 +325,15 @@ delves:Seasonal{
     61806, -- Midnight Delves: Tier 10 (Season 1)
     61807, -- Midnight Delves: Tier 11 (Season 1)
     61796, -- Midnight: Journey's End (Season 1)
+    62889, -- Midnight Delves: Tier 4 (Season 2)
+    62890, -- Midnight Delves: Tier 5 (Season 2)
+    62891, -- Midnight Delves: Tier 6 (Season 2)
+    62892, -- Midnight Delves: Tier 7 (Season 2)
+    62893, -- Midnight Delves: Tier 8 (Season 2)
+    62894, -- Midnight Delves: Tier 9 (Season 2)
+    62895, -- Midnight Delves: Tier 10 (Season 2)
+    62897, -- Midnight Delves: Tier 11 (Season 2)
+    63433, -- Midnight: Journey's End (Season 2)
 }
 delves:Delve(8443, { -- Atal'Aman
     61729, -- Atal'Aman Stories
@@ -327,6 +382,21 @@ delves:Delve(8445, { -- Torment's Rise
     61799, -- Let Me Solo Him: Nullaeus
     61808, -- Fabled Let Me Solo Him: Nullaeus
 })
+delves:Delve(8761, { -- Gnarldor Isle
+    63437, -- Gnarldor Isle Stories
+    63170, -- Gnarldor Isle Discoveries
+})
+delves:Delve(8764, { -- The Ring of Glory
+    63436, -- The Ring of Glory Stories
+    63171, -- The Ring of Glory Discoveries
+})
+delves:Delve(8779, { -- Venomfall Deeps
+    40732, -- Heavy-Handed
+    63326, -- My Venomous Nemesis
+    63332, -- Purging the Poison
+    63333, -- Let Me Solo Him: Azta'rec
+    63334, -- Fabled Let Me Solo Him: Azta'rec
+})
 
 local dungeons = expansion:Dungeons{
     61567, -- Midnight Dungeon Hero
@@ -342,6 +412,8 @@ dungeons:Dungeon(1311, { -- Den of Nalorakk
     61638, -- Den of Nalorakk
     61642, -- Heroic: Den of Nalorakk
     61643, -- Mythic: Den of Nalorakk
+    62439, -- Keystone Hero: Den of Nalorakk
+    63622, -- Keystone Victor: Den of Nalorakk
 })
 dungeons:Dungeon(1300, { -- Magisters' Terrace
     61212, -- Magisters' Terrace
@@ -361,6 +433,8 @@ dungeons:Dungeon(1304, { -- Murder Row
     41960, -- Murder Row
     41961, -- Heroic: Murder Row
     41962, -- Mythic: Murder Row
+    62440, -- Keystone Hero: Murder Row
+    63623, -- Keystone Victor: Murder Row
 })
 dungeons:Dungeon(1316, { -- Nexus-Point Xenas
     61585, -- You Conduit!
@@ -374,11 +448,15 @@ dungeons:Dungeon(1309, { -- The Blinding Vale
     61641, -- The Blinding Vale
     61648, -- Heroic: The Blinding Vale
     61649, -- Mythic: The Blinding Vale
+    62437, -- Keystone Hero: The Blinding Vale
+    63624, -- Keystone Victor: The Blinding Vale
 })
 dungeons:Dungeon(1313, { -- Voidscar Arena
     61508, -- Voidscar Arena
     61509, -- Heroic: Voidscar Arena
     61510, -- Mythic: Voidscar Arena
+    62438, -- Keystone Hero: Voidscar Arena
+    63625, -- Keystone Victor: Voidscar Arena
 })
 dungeons:Dungeon(1299, { -- Windrunner Spire
     41287, -- Windrunner Spire
@@ -387,11 +465,20 @@ dungeons:Dungeon(1299, { -- Windrunner Spire
     61262, -- Keystone Hero: Windrunner Spire
     61590, -- Keystone Victor: Windrunner Spire
 })
+dungeons:Dungeon(1322, { -- Altar of Fangs
+    63679, -- In Case Of Emergency
+    62282, -- Altar of Fangs
+    62283, -- Heroic: Altar of Fangs
+    62284, -- Mythic: Altar of Fangs
+    62441, -- Keystone Hero: Altar of Fangs
+    63621, -- Keystone Victor: Altar of Fangs
+})
 
 local raids = expansion:Raids{
     62352, -- Nothing to See Here
     61380, -- Glory of the Midnight Raider
     61843, -- Quel'Dressed
+    63254, -- Glory of the Venomous Raider
 }
 
 local voidspire = raids:Raid(1307, { -- The Voidspire
@@ -454,6 +541,45 @@ raids:Raid(1305, { -- Sporefall
     63241, -- Mythic: Rotmire
 })
 
+local venomousAbyss = raids:Raid(1320, { -- The Venomous Abyss
+    63530, -- The Venomous Abyss: Essence of Ula'tek
+    63531, -- The Venomous Abyss: Beasts of Ula'tek
+    63532, -- The Venomous Abyss: Ula'tek
+    63521, -- The Venomous Abyss
+    63520, -- Heroic: The Venomous Abyss
+    63522, -- Mythic: The Venomous Abyss
+    63650, -- Ahead of the Curve: Ula'tek
+    63651, -- Cutting Edge: Ula'tek
+    63472, -- Fang Fatale
+    63670, -- Comforting Da Spirits
+})
+venomousAbyss:Glory{
+    63418, -- Well, Well, Little Sky
+    63250, -- Is Venom Stasis A Joke To You?
+    63645, -- Accidental Inclusion
+    63397, -- Kept You Waiting Huh?
+    63391, -- Jumping Through Hoops
+    63656, -- Taking a Bite out of Slime
+    63669, -- Watch Out Behind You
+    63609, -- No Egg Scramble
+}
+venomousAbyss:Mythic{
+    63523, -- Mythic: Nek'zali the Soulcoiler
+    63524, -- Mythic: Entombed Sentinels
+    63525, -- Mythic: The Lost Explorers
+    63526, -- Mythic: Vashnik the Malignant
+    63527, -- Mythic: Sszorak
+    63528, -- Mythic: The Twin Fangs
+    63529, -- Mythic: The Coiled Altar
+    63476, -- Mythic: Ula'tek
+}
+
+raids:Raid(1317, { -- The Tidebound Grotto
+    63683, -- Nymrissa Wavecaller
+    63681, -- Heroic: Nymrissa Wavecaller
+    63682, -- Mythic: Nymrissa Wavecaller
+})
+
 local professions = expansion:Professions{
     61438, -- Thalassian Profession Master
     61439, -- Thalassian Artisan
@@ -487,6 +613,12 @@ professions:Engineering{
 }
 professions:Fishing{
     42797, -- Fishing at Midnight
+    63510, -- The Briny Best
+    63512, -- Treasures of the Damned
+    63629, -- Angler of The Coiled Isle
+    63632, -- Toxic Trophies
+    63634, -- Where Did You Get That?
+    63635, -- Tokka's Terrible Trials
 }
 professions:Herbalism{
     42793, -- Herbalism at Midnight
@@ -526,6 +658,7 @@ professions:Tailoring{
 
 expansion:PetBattles{
     61091, -- Midnight Safari
+    62492, -- The Coiled Isle Safari
 }
 
 local prey = expansion:Named(CT.Prey, { -- Prey
@@ -541,6 +674,7 @@ local prey = expansion:Named(CT.Prey, { -- Prey
     62138, -- You're Trapped In Here With Me
     62351, -- Preying For Midnight
     63164, -- Big Prey Hunter (Season 1)
+    63611, -- Big Prey Hunter (Season 2)
 })
 prey:Named(addon.L["Hard"], {
     62144, -- Prey: Mad Magisters (Hard)
@@ -587,11 +721,25 @@ prey:Named(addon.L["Nightmare"], {
     61391, -- Prey: Nightmare Mode II
     42703, -- Prey: Nightmare Mode III
 })
+prey:Named(addon.L["Coiled Nightmares"], {
+    63416, -- That's a Wrap
+    63457, -- Let Sleeping Skulls Lie
+    63642, -- Sashay Away
+    63643, -- You Guys, Again?
+    63644, -- Kill Me Now
+    63451, -- Scales for Days
+    63452, -- Fangs for the Memories
+    63453, -- One, Two, Ral'kala's Coming for You
+    63454, -- Nine, Ten, Never Sleep Again
+    63415, -- Prey: Coiled Nightmares
+})
 
 expansion:Named(addon.L["The Arcantina"], { -- The Arcantina
     61081, -- Share a Drink
     61082, -- Old Soldiers
     61083, -- Highly Decorated
+    63619, -- New Friends
+    63620, -- Well Decorated
 })
 
 expansion:Named(addon.L["Abyss Anglers"], { -- Abyss Anglers
@@ -716,4 +864,9 @@ local voidAssaults = expansion:Named(CT.VoidAssaults, { -- Void Assaults
 voidAssaults:Named(addon.L["Omnium Folio"], {
     62606, -- The Sunstrider Omnium
     63325, -- Omnium Folio Studies
+})
+
+expansion:Named(addon.L["Curse Surges"], { -- Curse Surges
+    63390, -- Turn the Surge
+    63381, -- Cursebreaker
 })

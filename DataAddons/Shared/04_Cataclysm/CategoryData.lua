@@ -569,6 +569,17 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Cataclysm
             7499, -- Taming the World
             14021, -- The Shadows Revealed
             8348, -- The Longest Day
+            62476, -- Aquatic Battler of Cataclysm
+            62477, -- Beast Battler of Cataclysm
+            62478, -- Critter Battler of Cataclysm
+            62479, -- Dragonkin Battler of Cataclysm
+            62480, -- Elemental Battler of Cataclysm
+            62481, -- Flying Battler of Cataclysm
+            62482, -- Humanoid Battler of Cataclysm
+            62483, -- Magic Battler of Cataclysm
+            62487, -- Mechanical Battler of Cataclysm
+            62488, -- Undead Battler of Cataclysm
+            62461, -- Family Battler of Cataclysm
         },
     },
     { -- Tol Barad

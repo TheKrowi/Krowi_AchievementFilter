@@ -1,71 +1,71 @@
 primaryId,primaryName,achievementCount
-1,Durotar,23
-7,Mulgore,13
-10,Northern Barrens,24
+1,Durotar,24
+7,Mulgore,14
+10,Northern Barrens,25
 12,Kalimdor,22
 13,Eastern Kingdoms,25
 14,Arathi Highlands,17
 15,Badlands,17
-17,Blasted Lands,19
-18,Tirisfal Glades,15
-21,Silverpine Forest,14
-22,Western Plaguelands,18
-23,Eastern Plaguelands,25
+17,Blasted Lands,20
+18,Tirisfal Glades,16
+21,Silverpine Forest,15
+22,Western Plaguelands,19
+23,Eastern Plaguelands,26
 24,Light's Hope Chapel,40
 25,Hillsbrad Foothills,20
 26,The Hinterlands,22
-27,Dun Morogh,11
-32,Searing Gorge,17
-33,Blackrock Mountain,25
-36,Burning Steppes,22
-37,Elwynn Forest,20
+27,Dun Morogh,12
+32,Searing Gorge,18
+33,Blackrock Mountain,0
+36,Burning Steppes,23
+37,Elwynn Forest,21
 42,Deadwind Pass,14
 47,Duskwood,24
-48,Loch Modan,18
+48,Loch Modan,19
 49,Redridge Mountains,22
 50,Northern Stranglethorn,27
 51,Swamp of Sorrows,22
-52,Westfall,27
+52,Westfall,28
 56,Wetlands,18
-57,Teldrassil,8
-62,Darkshore,19
-63,Ashenvale,24
-64,Thousand Needles,23
-65,Stonetalon Mountains,24
+57,Teldrassil,9
+62,Darkshore,20
+63,Ashenvale,25
+64,Thousand Needles,24
+65,Stonetalon Mountains,25
 66,Desolace,20
-69,Feralas,25
+69,Feralas,26
 70,Dustwallow Marsh,24
-71,Tanaris,21
+71,Tanaris,22
 74,Caverns of Time,2
-76,Azshara,20
-77,Felwood,26
-78,Un'Goro Crater,19
+76,Azshara,21
+77,Felwood,27
+78,Un'Goro Crater,20
 80,Moonglade,12
-81,Silithus,19
-83,Winterspring,27
-84,Stormwind City,16
-85,Orgrimmar,18
-87,Ironforge,10
-88,Thunder Bluff,10
-89,Darnassus,9
-90,Undercity,8
-91,Alterac Valley,25
-92,Warsong Gulch,23
-93,Arathi Basin,20
+81,Silithus,20
+83,Winterspring,28
+84,Stormwind City,18
+85,Orgrimmar,19
+87,Ironforge,11
+88,Thunder Bluff,11
+89,Darnassus,10
+90,Undercity,9
+91,Alterac Valley,27
+92,Warsong Gulch,25
+93,Arathi Basin,22
 94,Eversong Woods,13
 95,Ghostlands,13
 97,Azuremyst Isle,17
 100,Hellfire Peninsula,28
-101,Outland,25
+101,Outland,23
 102,Zangarmarsh,31
-103,The Exodar,7
-104,Shadowmoon Valley,24
+103,The Exodar,8
+104,Shadowmoon Valley,25
 105,Blade's Edge Mountains,19
 107,Nagrand,32
-108,Terokkar Forest,23
-109,Netherstorm,17
-110,Silvermoon City,7
-111,Shattrath City,9
+108,Terokkar Forest,25
+109,Netherstorm,19
+110,Silvermoon City,8
+111,Shattrath City,11
 112,Eye of the Storm,17
 113,Northrend,26
 114,Borean Tundra,24
@@ -81,21 +81,21 @@ primaryId,primaryName,achievementCount
 125,Dalaran,15
 127,Crystalsong Forest,15
 128,Strand of the Ancients,3
-129,The Nexus,5
+129,The Nexus,6
 130,The Culling of Stratholme,4
 132,Ahn'kahet: The Old Kingdom,5
-133,Utgarde Keep,3
-136,Utgarde Pinnacle,6
+133,Utgarde Keep,4
+136,Utgarde Pinnacle,7
 138,Halls of Lightning,5
-140,Halls of Stone,5
+140,Halls of Stone,6
 141,The Eye of Eternity,8
 143,The Oculus,7
 147,Ulduar,213
-154,Gundrak,6
-155,The Obsidian Sanctum,12
+154,Gundrak,7
+155,The Obsidian Sanctum,13
 156,Vault of Archavon,11
-157,Azjol-Nerub,5
-160,Drak'Tharon Keep,5
+157,Azjol-Nerub,6
+160,Drak'Tharon Keep,6
 162,Naxxramas,41
 168,The Violet Hold,6
 169,Isle of Conquest,22
@@ -111,28 +111,28 @@ primaryId,primaryName,achievementCount
 201,Kelp'thar Forest,14
 206,Twin Peaks,23
 207,Deepholm,23
-210,The Cape of Stranglethorn,29
+210,The Cape of Stranglethorn,30
 213,Ragefire Chasm,1
 217,Ruins of Gilneas,1
-218,Ruins of Gilneas City,1
-219,Zul'Farrak,1
-220,The Temple of Atal'Hakkar,1
+218,Ruins of Gilneas City,0
+219,Zul'Farrak,2
+220,The Temple of Atal'Hakkar,2
 221,Blackfathom Deeps,1
 224,Stranglethorn Vale,20
 225,The Stockade,1
 226,Gnomeregan,3
 230,Uldaman,1
 232,Molten Core,10
-235,Dire Maul,2
+235,Dire Maul,3
 241,Twilight Highlands,36
-242,Blackrock Depths,5
+242,Blackrock Depths,6
 244,Tol Barad,18
 245,Tol Barad Peninsula,16
 246,The Shattered Halls,4
 247,Ruins of Ahn'Qiraj,2
 248,Onyxia's Lair,11
 249,Uldum,25
-250,Blackrock Spire,1
+250,Blackrock Spire,2
 256,Auchenai Crypts,4
 258,Sethekk Halls,5
 260,Shadow Labyrinth,4
@@ -143,14 +143,14 @@ primaryId,primaryName,achievementCount
 266,The Botanica,4
 267,The Mechanar,4
 269,The Arcatraz,4
-272,Mana-Tombs,3
+272,Mana-Tombs,5
 273,The Black Morass,4
 274,Old Hillsbrad Foothills,4
 275,The Battle for Gilneas,18
 276,The Maelstrom,0
 277,Lost City of the Tol'vir,5
 279,Wailing Caverns,3
-280,Maraudon,1
+280,Maraudon,2
 282,Baradin Hold,3
 283,Blackrock Caverns,6
 285,Blackwing Descent,15
@@ -164,7 +164,7 @@ primaryId,primaryName,achievementCount
 302,Scarlet Monastery,0
 306,Legacy of Scholomance,0
 310,Shadowfang Keep,6
-317,Stratholme,5
+317,Stratholme,6
 319,Ahn'Qiraj,5
 322,Throne of the Tides,5
 324,The Stonecore,3
@@ -178,7 +178,7 @@ primaryId,primaryName,achievementCount
 333,Zul'Aman,7
 334,Tempest Keep,5
 335,Sunwell Plateau,4
-337,Zul'Gurub,11
+337,Zul'Gurub,12
 338,Molten Front,8
 339,Black Temple,7
 347,Hellfire Ramparts,4
@@ -190,8 +190,8 @@ primaryId,primaryName,achievementCount
 379,Kun-Lai Summit,107
 388,Townlong Steppes,120
 390,Vale of Eternal Blossoms,92
-391,Shrine of Two Moons,92
-393,Shrine of Seven Stars,92
+391,Shrine of Two Moons,0
+393,Shrine of Seven Stars,0
 398,Well of Eternity,3
 399,Hour of Twilight,2
 401,End Time,3
@@ -205,7 +205,7 @@ primaryId,primaryName,achievementCount
 424,Pandaria,109
 429,Temple of the Jade Serpent,13
 431,Scarlet Halls,11
-433,The Veiled Stair,108
+433,The Veiled Stair,38
 435,Scarlet Monastery,14
 437,Gate of the Setting Sun,12
 439,Stormstout Brewery,13
@@ -220,7 +220,7 @@ primaryId,primaryName,achievementCount
 457,Siege of Niuzao Temple,12
 471,Mogu'shan Vaults,20
 474,Heart of Fear,20
-476,Scholomance,16
+476,Scholomance,17
 480,Proving Grounds,44
 481,Crypt of Forgotten Kings,7
 486,Krasarang Wilds,4
@@ -329,7 +329,7 @@ primaryId,primaryName,achievementCount
 1148,Uldir,24
 1161,Boralus,22
 1162,Siege of Boralus,16
-1164,Dazar'alor,70
+1164,Dazar'alor,20
 1345,Crucible of Storms,7
 1352,Battle of Dazar'alor,30
 1355,Nazjatar,51
@@ -365,7 +365,7 @@ primaryId,primaryName,achievementCount
 1707,Elysian Hold,50
 1711,Ascension Coliseum,17
 1735,Castle Nathria,33
-1912,The Runecarver's Oubliette,63
+1912,The Runecarver's Oubliette,0
 1961,Korthia,10
 1970,Zereth Mortis,24
 1978,Dragon Isles,60
@@ -417,7 +417,7 @@ primaryId,primaryName,achievementCount
 2313,The Spiral Weave,101
 2315,The Rookery,4
 2335,Cinderbrew Meadery,4
-2339,Dornogal,21
+2339,Dornogal,0
 2341,The Stonevault,4
 2343,City of Threads,4
 2345,Deephaul Ravine,3
@@ -457,8 +457,10 @@ primaryId,primaryName,achievementCount
 2505,Gulf of Memory,50
 2506,Shadowguard Point,50
 2507,Torment's Rise,5
+2509,Vaults of Atal'Utek,0
 2510,The Grudge Pit,50
 2511,Magisters' Terrace,5
+2512,The Coiled Isle,0
 2513,Den of Nalorakk,3
 2525,The Darkway,50
 2528,Sunkiller Sanctum,50
@@ -472,5 +474,11 @@ primaryId,primaryName,achievementCount
 2547,Collegiate Calamity,50
 2556,Nexus Point Xenas,6
 2572,Voidscar Arena,3
+2588,Altar of Fangs,0
 2599,Val,16
 2600,Naigtal,14
+2606,The Venomous Abyss,0
+2632,The Tidebound Grotto,0
+2633,The Ring of Glory,0
+2634,Venomfall Deeps,0
+2635,Gnarldor Isle,0

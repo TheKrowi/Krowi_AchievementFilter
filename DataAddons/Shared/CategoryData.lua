@@ -718,6 +718,9 @@ local crossExpansion = { -- Cross-Expansion
             62376, -- Extreme Couponing
             62377, -- A Fist Full of Coupons
             62378, -- A Few Coupons More
+            63441, -- Souvenir Seeker, Razorwind Shores
+            63605, -- Souvenir Seeker, Founder's Point
+            63606, -- Superlative Souvenir Seeker
         },
     },
     { -- Lorewalking
@@ -1079,6 +1082,51 @@ midnight.MythicPlus = {
             61258, -- Midnight Keystone Legend: Season One
             63097, -- Midnight Keystone Myth: Season One
             61259, -- Umbral Hero: Midnight Season One
+            63104, -- Umbral Champion: Midnight Season 1
+        },
+    },
+    { -- Season 2
+        addon.L["Season"] .. " " .. 2,
+        {
+            addon.L["KeystoneResilience"],
+            true,
+            {
+                62417, -- Midnight Season 2: Resilient Keystone 12
+                62418, -- Midnight Season 2: Resilient Keystone 13
+                62419, -- Midnight Season 2: Resilient Keystone 14
+                62420, -- Midnight Season 2: Resilient Keystone 15
+                62421, -- Midnight Season 2: Resilient Keystone 16
+                62422, -- Midnight Season 2: Resilient Keystone 17
+                62423, -- Midnight Season 2: Resilient Keystone 18
+                62424, -- Midnight Season 2: Resilient Keystone 19
+                62425, -- Midnight Season 2: Resilient Keystone 20
+                62426, -- Midnight Season 2: Resilient Keystone 21
+                62427, -- Midnight Season 2: Resilient Keystone 22
+                62428, -- Midnight Season 2: Resilient Keystone 23
+                62429, -- Midnight Season 2: Resilient Keystone 24
+                62430, -- Midnight Season 2: Resilient Keystone 25
+                62431, -- Midnight Season 2: Resilient Keystone 26
+                62432, -- Midnight Season 2: Resilient Keystone 27
+                62433, -- Midnight Season 2: Resilient Keystone 28
+                62434, -- Midnight Season 2: Resilient Keystone 29
+                62435, -- Midnight Season 2: Resilient Keystone 30
+            }
+        },
+        {
+            62441, -- Keystone Hero: Altar of Fangs
+            62439, -- Keystone Hero: Den of Nalorakk
+            62440, -- Keystone Hero: Murder Row
+            62437, -- Keystone Hero: The Blinding Vale
+            62438, -- Keystone Hero: Voidscar Arena
+            62444, -- Keystone Hero: Kings' Rest
+            62443, -- Keystone Hero: Temple of Sethraliss
+            62442, -- Keystone Hero: Ruby Life Pools (Midnight Season 2)
+            62445, -- Midnight Keystone Explorer: Season 2
+            62446, -- Midnight Keystone Conqueror: Season 2
+            62447, -- Midnight Keystone Master: Season 2
+            62448, -- Midnight Keystone Hero: Season 2
+            62449, -- Midnight Keystone Legend: Season 2
+            62436, -- Venomous Hero: Midnight Season 2
         },
     },
 }
