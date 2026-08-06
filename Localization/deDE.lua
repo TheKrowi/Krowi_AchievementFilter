@@ -6,7 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-06-28 15-04-46 ]] --
+-- [[ Exported at 2026-08-06 20-58-53 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -73,6 +73,7 @@ L["Arathi Basin"] = "Arathibecken"
 L["Archive Ambit"] = "Archivring"
 L["Are you sure you want to delete character?"] = "Sind Sie sicher, dass Sie {character} löschen möchten? Dieser Charakter wird wieder hinzugefügt, wenn Sie sich erneut mit diesem einloggen. Wenn Sie den Charakter dauerhaft nicht sehen wollen, markieren Sie bitte die {ignore} Checkbox."
 L["Argent Tournament"] = "Argentumturnier"
+L["Ashran"] = true
 L["Assault on Azsuna"] = "Schlacht um Azsuna"
 L["Assault on Drustvar"] = "Angriff Drustvar"
 L["Assault on Highmountain"] = "Schlacht um den Hochberg"
@@ -214,6 +215,7 @@ L["Cross-Expansion"] = "Addon-Übergreifend"
 L["Ctrl"] = true
 L["Current Obtainable"] = "Aktuell Erreichbar"
 L["Current Zone"] = "Aktuelle Zone"
+L["Curse of Ula'tek"] = "Fluch von Ula'tek"
 L["Custom"] = "Benutzerdefiniert"
 L["Dark Heart"] = "Das Dunkle Herz"
 L["Darkmoon Faire"] = "Dunkelmond-Jahrmarkt"
@@ -810,6 +812,7 @@ L["Related Tab"] = "Zugehöriger Tab"
 L["Related Tab Desc"] = "Fügt dem {wowheadLink} ein zusätzliches Bit hinzu, damit ein anderer Tab als der Standard-Tab ausgewählt werden kann."
 L["Remember frame position"] = "{frame} Position merken"
 L["Remember frame position Desc"] = "Die Position des {frame} wird gespeichert. Dadurch bleibt der {frame} bei der nächsten Anmeldung an seiner letzten bekannten Position."
+L["Remix: Mists of Pandaria"] = "Remix: Mists of Pandaria "
 L["RemixBronze"] = true
 L["RemixInfiniteKnowledge"] = "Remix Ewige Forschung"
 L["Remove from Watch List"] = "Von {watchList} löschen"
@@ -1082,11 +1085,13 @@ L["Titan Lockdown: Active"] = "Titanenabriegelung: Aktiv"
 L["Titan Lockdown: Next"] = "Titanenabriegelung: Nächstes Event"
 L["Titan Lockdown: Soon"] = "Titanenabriegelung: Startet Bald"
 L["Titan Lockdown: Starting Soon"] = "Titanenabriegelung: Startet Bald"
+L["Title"] = "Titel"
 L["Ti'un the Wanderer"] = "Ti'un der Wanderer"
 L["Toggle"] = "Auswählen"
 L["Toggle Tracking"] = "Erfolgs-Verfolgung umschalten"
 L["Toggle window once opened"] = "Fenster nach dem Öffnen umschalten"
 L["Toggle window once opened Desc"] = "Wenn das Erfolgsfenster das erste Mal geöffnet wird, öffnet sich ein Tab und zeigt die Zusammenfassung an. Ab dem zweiten Mal, unabhängig von der verwendeten Tastenkombination, öffnet sich die zuletzt gezeigte Ansicht."
+L["Tol Barad"] = true
 L["Tooltip"] = true
 L["Torghast"] = true
 L["Track achievement browsing history"] = "Verfolgung des Erfolgs-Browsing-Verlaufs"

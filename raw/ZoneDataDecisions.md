@@ -464,6 +464,210 @@ Update this file whenever a zone placement decision is made via the `add-zone-da
 | 913 | To Honor One's Elders | ⏭ skipped | — | — | Lunar Festival meta-achievement with no single geographic association | 2026-07-14 |
 | 914 | Elders of the Horde | ✅ added | 85, 88, 90, 110 | Orgrimmar, Thunder Bluff, Undercity, Silvermoon City | Added to Horde capital city entries in `Shared/01_Vanilla/ZoneData.lua` and `Shared/02_TheBurningCrusade/ZoneData.lua` | 2026-07-14 |
 | 915 | Elders of the Alliance | ✅ added | 84, 87, 89, 103 | Stormwind City, Ironforge, Darnassus, The Exodar | Added to Alliance capital city entries in `Shared/01_Vanilla/ZoneData.lua` and `Shared/02_TheBurningCrusade/ZoneData.lua` | 2026-07-14 |
+| 62282 | Altar of Fangs | ✅ added | 2588 | Altar of Fangs | New Midnight Season 2 dungeon in `Retail/12_Midnight/ZoneData.lua` | 2026-08-06 |
+| 62283 | Heroic: Altar of Fangs | ✅ added | 2588 | Altar of Fangs | Same new dungeon entry | 2026-08-06 |
+| 62284 | Mythic: Altar of Fangs | ✅ added | 2588 | Altar of Fangs | Same new dungeon entry | 2026-08-06 |
+| 62297 | The Curse of Ula'tek | ✅ added | 2437, 2512 | Zul'Aman, The Coiled Isle | Quest achievement bridging both zones; added to Zul'Aman and The Coiled Isle zone entries | 2026-08-06 |
+| 62410 | Adventurer of the Mist | ⏭ skipped | — | — | Character crest-trade chain; no geographic association (Season 1 equivalent 42767 also absent from ZoneData) | 2026-08-06 |
+| 62411 | Veteran of the Mist | ⏭ skipped | — | — | Character crest-trade chain; no geographic association | 2026-08-06 |
+| 62412 | Champion of the Mist | ⏭ skipped | — | — | Character crest-trade chain; no geographic association | 2026-08-06 |
+| 62414 | Hero of the Mist | ⏭ skipped | — | — | Character crest-trade chain; no geographic association | 2026-08-06 |
+| 62416 | Myth of the Mist | ⏭ skipped | — | — | Character crest-trade chain; no geographic association | 2026-08-06 |
+| 62417 | Midnight Season 2: Resilient Keystone 12 | ⏭ skipped | — | — | M+ season ladder achievement; no geographic association | 2026-08-06 |
+| 62418 | Midnight Season 2: Resilient Keystone 13 | ⏭ skipped | — | — | M+ season ladder achievement; no geographic association | 2026-08-06 |
+| 62419 | Midnight Season 2: Resilient Keystone 14 | ⏭ skipped | — | — | M+ season ladder achievement; no geographic association | 2026-08-06 |
+| 62420 | Midnight Season 2: Resilient Keystone 15 | ⏭ skipped | — | — | M+ season ladder achievement; no geographic association | 2026-08-06 |
+| 62421 | Midnight Season 2: Resilient Keystone 16 | ⏭ skipped | — | — | M+ season ladder achievement; no geographic association | 2026-08-06 |
+| 62422 | Midnight Season 2: Resilient Keystone 17 | ⏭ skipped | — | — | M+ season ladder achievement; no geographic association | 2026-08-06 |
+| 62423 | Midnight Season 2: Resilient Keystone 18 | ⏭ skipped | — | — | M+ season ladder achievement; no geographic association | 2026-08-06 |
+| 62424 | Midnight Season 2: Resilient Keystone 19 | ⏭ skipped | — | — | M+ season ladder achievement; no geographic association | 2026-08-06 |
+| 62425 | Midnight Season 2: Resilient Keystone 20 | ⏭ skipped | — | — | M+ season ladder achievement; no geographic association | 2026-08-06 |
+| 62426 | Midnight Season 2: Resilient Keystone 21 | ⏭ skipped | — | — | M+ season ladder achievement; no geographic association | 2026-08-06 |
+| 62427 | Midnight Season 2: Resilient Keystone 22 | ⏭ skipped | — | — | M+ season ladder achievement; no geographic association | 2026-08-06 |
+| 62428 | Midnight Season 2: Resilient Keystone 23 | ⏭ skipped | — | — | M+ season ladder achievement; no geographic association | 2026-08-06 |
+| 62429 | Midnight Season 2: Resilient Keystone 24 | ⏭ skipped | — | — | M+ season ladder achievement; no geographic association | 2026-08-06 |
+| 62430 | Midnight Season 2: Resilient Keystone 25 | ⏭ skipped | — | — | M+ season ladder achievement; no geographic association | 2026-08-06 |
+| 62431 | Midnight Season 2: Resilient Keystone 26 | ⏭ skipped | — | — | M+ season ladder achievement; no geographic association | 2026-08-06 |
+| 62432 | Midnight Season 2: Resilient Keystone 27 | ⏭ skipped | — | — | M+ season ladder achievement; no geographic association | 2026-08-06 |
+| 62433 | Midnight Season 2: Resilient Keystone 28 | ⏭ skipped | — | — | M+ season ladder achievement; no geographic association | 2026-08-06 |
+| 62434 | Midnight Season 2: Resilient Keystone 29 | ⏭ skipped | — | — | M+ season ladder achievement; no geographic association | 2026-08-06 |
+| 62435 | Midnight Season 2: Resilient Keystone 30 | ⏭ skipped | — | — | M+ season ladder achievement; no geographic association | 2026-08-06 |
+| 62436 | Venomous Hero: Midnight Season 2 | ⏭ skipped | — | — | M+ season meta achievement; no geographic association | 2026-08-06 |
+| 62437 | Keystone Hero: The Blinding Vale | ✅ added | 2500 | The Blinding Vale | Season 2 M+ rotation dungeon, added to existing entry | 2026-08-06 |
+| 62438 | Keystone Hero: Voidscar Arena | ✅ added | 2572 | Voidscar Arena | Season 2 M+ rotation dungeon, added to existing entry | 2026-08-06 |
+| 62439 | Keystone Hero: Den of Nalorakk | ✅ added | 2513 | Den of Nalorakk | Season 2 M+ rotation dungeon, added to existing entry | 2026-08-06 |
+| 62440 | Keystone Hero: Murder Row | ✅ added | 2433 | Murder Row | Season 2 M+ rotation dungeon, added to existing entry | 2026-08-06 |
+| 62441 | Keystone Hero: Altar of Fangs | ✅ added | 2588 | Altar of Fangs | New Season 2 dungeon | 2026-08-06 |
+| 62442 | Keystone Hero: Ruby Life Pools (Midnight Season 2) | ✅ added | 2094 | Ruby Life Pools | Old Dragonflight dungeon rejoining rotation; new entry in `Retail/10_Dragonflight/ZoneData.lua` | 2026-08-06 |
+| 62443 | Keystone Hero: Temple of Sethraliss | ✅ added | 1038 | Temple of Sethraliss | Old BfA dungeon rejoining rotation, added to existing entry in `Retail/08_BattleForAzeroth/ZoneData.lua` | 2026-08-06 |
+| 62444 | Keystone Hero: Kings' Rest | ✅ added | 1004 | Kings' Rest | Old BfA dungeon rejoining rotation, added to existing entry in `Retail/08_BattleForAzeroth/ZoneData.lua` | 2026-08-06 |
+| 62445 | Midnight Keystone Explorer: Season 2 | ⏭ skipped | — | — | M+ season meta achievement; no geographic association | 2026-08-06 |
+| 62446 | Midnight Keystone Conqueror: Season 2 | ⏭ skipped | — | — | M+ season meta achievement; no geographic association | 2026-08-06 |
+| 62447 | Midnight Keystone Master: Season 2 | ⏭ skipped | — | — | M+ season meta achievement; no geographic association | 2026-08-06 |
+| 62448 | Midnight Keystone Hero: Season 2 | ⏭ skipped | — | — | M+ season meta achievement; no geographic association | 2026-08-06 |
+| 62449 | Midnight Keystone Legend: Season 2 | ⏭ skipped | — | — | M+ season meta achievement; no geographic association | 2026-08-06 |
+| 62460 | Family Battler of Outland | ⏭ skipped | — | — | Pet battle achievement; no ZoneData precedent for any "Battler of" achievement | 2026-08-06 |
+| 62461 | Family Battler of Cataclysm | ⏭ skipped | — | — | Pet battle achievement; no ZoneData precedent | 2026-08-06 |
+| 62466 | Aquatic Battler of Outland | ⏭ skipped | — | — | Pet battle achievement; no ZoneData precedent | 2026-08-06 |
+| 62467 | Beast Battler of Outland | ⏭ skipped | — | — | Pet battle achievement; no ZoneData precedent | 2026-08-06 |
+| 62468 | Critter Battler of Outland | ⏭ skipped | — | — | Pet battle achievement; no ZoneData precedent | 2026-08-06 |
+| 62469 | Dragonkin Battler of Outland | ⏭ skipped | — | — | Pet battle achievement; no ZoneData precedent | 2026-08-06 |
+| 62470 | Elemental Battler of Outland | ⏭ skipped | — | — | Pet battle achievement; no ZoneData precedent | 2026-08-06 |
+| 62471 | Flying Battler of Outland | ⏭ skipped | — | — | Pet battle achievement; no ZoneData precedent | 2026-08-06 |
+| 62472 | Humanoid Battler of Outland | ⏭ skipped | — | — | Pet battle achievement; no ZoneData precedent | 2026-08-06 |
+| 62473 | Magic Battler of Outland | ⏭ skipped | — | — | Pet battle achievement; no ZoneData precedent | 2026-08-06 |
+| 62474 | Mechanical Battler of Outland | ⏭ skipped | — | — | Pet battle achievement; no ZoneData precedent | 2026-08-06 |
+| 62475 | Undead Battler of Outland | ⏭ skipped | — | — | Pet battle achievement; no ZoneData precedent | 2026-08-06 |
+| 62476 | Aquatic Battler of Cataclysm | ⏭ skipped | — | — | Pet battle achievement; no ZoneData precedent | 2026-08-06 |
+| 62477 | Beast Battler of Cataclysm | ⏭ skipped | — | — | Pet battle achievement; no ZoneData precedent | 2026-08-06 |
+| 62478 | Critter Battler of Cataclysm | ⏭ skipped | — | — | Pet battle achievement; no ZoneData precedent | 2026-08-06 |
+| 62479 | Dragonkin Battler of Cataclysm | ⏭ skipped | — | — | Pet battle achievement; no ZoneData precedent | 2026-08-06 |
+| 62480 | Elemental Battler of Cataclysm | ⏭ skipped | — | — | Pet battle achievement; no ZoneData precedent | 2026-08-06 |
+| 62481 | Flying Battler of Cataclysm | ⏭ skipped | — | — | Pet battle achievement; no ZoneData precedent | 2026-08-06 |
+| 62482 | Humanoid Battler of Cataclysm | ⏭ skipped | — | — | Pet battle achievement; no ZoneData precedent | 2026-08-06 |
+| 62483 | Magic Battler of Cataclysm | ⏭ skipped | — | — | Pet battle achievement; no ZoneData precedent | 2026-08-06 |
+| 62487 | Mechanical Battler of Cataclysm | ⏭ skipped | — | — | Pet battle achievement; no ZoneData precedent | 2026-08-06 |
+| 62488 | Undead Battler of Cataclysm | ⏭ skipped | — | — | Pet battle achievement; no ZoneData precedent | 2026-08-06 |
+| 62492 | The Coiled Isle Safari | ⏭ skipped | — | — | Pet battle safari achievement; no ZoneData precedent (Midnight Safari 61091 also absent) | 2026-08-06 |
+| 62497 | Venomous Weapons of Conquest | ⏭ skipped | — | — | PvP season transmog set; no ZoneData precedent (Galactic Weapons of Conquest 61443 also absent) | 2026-08-06 |
+| 62600 | Ritual Behavior | ✅ added | 2509 | Vaults of Atal'Utek | Own zone, distinct from The Coiled Isle (2512) | 2026-08-06 |
+| 62601 | Soft Underbelly | ✅ added | 2509 | Vaults of Atal'Utek | Own zone, distinct from The Coiled Isle | 2026-08-06 |
+| 62604 | Dance While Everyone Watches | ✅ added | 2509 | Vaults of Atal'Utek | Own zone, distinct from The Coiled Isle | 2026-08-06 |
+| 62649 | A Lone Wanderer | ✅ added | 2509 | Vaults of Atal'Utek | Own zone, distinct from The Coiled Isle | 2026-08-06 |
+| 62871 | Midnight Season 2: Catalyst Unbound | ⏭ skipped | — | — | Character catalyst achievement; no geographic association (Season 1 equivalent 61519 also absent) | 2026-08-06 |
+| 62872 | Midnight Season 2: Serpent Scion | ⏭ skipped | — | — | NotCategorized PvP/raid combo achievement; no geographic association | 2026-08-06 |
+| 62889 | Midnight Delves: Tier 4 (Season 2) | ✅ added | — | Midnight delves (all) | New `delvesS2Progress` table referenced by all 10 Season 1 delves + new Season 2 delves | 2026-08-06 |
+| 62890 | Midnight Delves: Tier 5 (Season 2) | ✅ added | — | Midnight delves (all) | `delvesS2Progress` table | 2026-08-06 |
+| 62891 | Midnight Delves: Tier 6 (Season 2) | ✅ added | — | Midnight delves (all) | `delvesS2Progress` table | 2026-08-06 |
+| 62892 | Midnight Delves: Tier 7 (Season 2) | ✅ added | — | Midnight delves (all) | `delvesS2Progress` table | 2026-08-06 |
+| 62893 | Midnight Delves: Tier 8 (Season 2) | ✅ added | — | Midnight delves (all) | `delvesS2Progress` table | 2026-08-06 |
+| 62894 | Midnight Delves: Tier 9 (Season 2) | ✅ added | — | Midnight delves (all) | `delvesS2Progress` table | 2026-08-06 |
+| 62895 | Midnight Delves: Tier 10 (Season 2) | ✅ added | — | Midnight delves (all) | `delvesS2Progress` table | 2026-08-06 |
+| 62897 | Midnight Delves: Tier 11 (Season 2) | ✅ added | — | Midnight delves (all) | `delvesS2Progress` table | 2026-08-06 |
+| 62911 | Rival II: Midnight Season 2 | ⏭ skipped | — | — | PvP arena ladder; no geographic association | 2026-08-06 |
+| 62921 | Battle Mender: Midnight Season 2 | ⏭ skipped | — | — | PvP arena ladder; no geographic association | 2026-08-06 |
+| 62922 | Venomous Gladiator: Midnight Season 2 | ⏭ skipped | — | — | PvP arena ladder; no geographic association | 2026-08-06 |
+| 62923 | Venomous Legend: Midnight Season 2 | ⏭ skipped | — | — | PvP arena ladder; no geographic association | 2026-08-06 |
+| 62924 | Venomous Marshal: Midnight Season 2 | ⏭ skipped | — | — | PvP arena ladder; no geographic association | 2026-08-06 |
+| 62925 | Venomous Warlord: Midnight Season 2 | ⏭ skipped | — | — | PvP arena ladder (Horde faction split of 62924); no geographic association | 2026-08-06 |
+| 62926 | Combatant I: Midnight Season 2 | ⏭ skipped | — | — | PvP arena ladder; no geographic association | 2026-08-06 |
+| 62927 | Challenger I: Midnight Season 2 | ⏭ skipped | — | — | PvP arena ladder; no geographic association | 2026-08-06 |
+| 62928 | Rival I: Midnight Season 2 | ⏭ skipped | — | — | PvP arena ladder; no geographic association | 2026-08-06 |
+| 62929 | Duelist: Midnight Season 2 | ⏭ skipped | — | — | PvP arena ladder; no geographic association | 2026-08-06 |
+| 62930 | Gladiator: Midnight Season 2 | ⏭ skipped | — | — | PvP arena ladder; no geographic association | 2026-08-06 |
+| 62931 | Elite: Midnight Season 2 | ⏭ skipped | — | — | PvP arena ladder; no geographic association | 2026-08-06 |
+| 62932 | Legend: Midnight Season 2 | ⏭ skipped | — | — | PvP arena ladder; no geographic association | 2026-08-06 |
+| 62950 | Strategist: Midnight Season 2 | ⏭ skipped | — | — | PvP BG Blitz ladder; no geographic association | 2026-08-06 |
+| 62951 | Combatant II: Midnight Season 2 | ⏭ skipped | — | — | PvP arena ladder; no geographic association | 2026-08-06 |
+| 62952 | Challenger II: Midnight Season 2 | ⏭ skipped | — | — | PvP arena ladder; no geographic association | 2026-08-06 |
+| 62953 | Hero of the Alliance: Venomous | ⏭ skipped | — | — | PvP RBG ladder; no geographic association | 2026-08-06 |
+| 62954 | Hero of the Horde: Venomous | ⏭ skipped | — | — | PvP RBG ladder (Horde faction split of 62953); no geographic association | 2026-08-06 |
+| 62955 | Venomous Gladiator's Goredrake | ⏭ skipped | — | — | PvP season mount reward achievement; no geographic association | 2026-08-06 |
+| 63104 | Umbral Champion: Midnight Season 1 | ⏭ skipped | — | — | PvP season mount meta; no geographic association (Umbral Hero 61259 also absent) | 2026-08-06 |
+| 63167 | Tour of Duty: The Coiled Isle | ✅ added | 2512 | The Coiled Isle | Zone PvP quest chain | 2026-08-06 |
+| 63170 | Gnarldor Isle Discoveries | ✅ added | 2635 | Gnarldor Isle | New Season 2 delve | 2026-08-06 |
+| 63171 | The Ring of Glory Discoveries | ✅ added | 2633 | The Ring of Glory | New Season 2 delve | 2026-08-06 |
+| 63250 | Is Venom Stasis A Joke To You? | ✅ added | 2606 | The Venomous Abyss | New Season 2 raid, Glory-analog achievement | 2026-08-06 |
+| 63253 | A Round on the House in Midnight | ⏭ skipped | — | — | Brewfest holiday achievement; belongs in CategoryData_Events.lua, no ZoneData precedent | 2026-08-06 |
+| 63254 | Glory of the Venomous Raider | ✅ added | 2606 | The Venomous Abyss | Season 2 raid glory meta (Tidebound Grotto excluded — single-boss mini-raid, matches Sporefall precedent of no shared meta) | 2026-08-06 |
+| 63326 | My Venomous Nemesis | ✅ added | 2634 | Venomfall Deeps | New Season 2 boss-lair delve | 2026-08-06 |
+| 63332 | Purging the Poison | ✅ added | 2634 | Venomfall Deeps | New Season 2 boss-lair delve | 2026-08-06 |
+| 63333 | Let Me Solo Him: Azta'rec | ✅ added | 2634 | Venomfall Deeps | New Season 2 boss-lair delve | 2026-08-06 |
+| 63334 | Fabled Let Me Solo Him: Azta'rec | ✅ added | 2634 | Venomfall Deeps | New Season 2 boss-lair delve | 2026-08-06 |
+| 63358 | Coiled to Strike | ✅ added | 2512 | The Coiled Isle | Zone exploration | 2026-08-06 |
+| 63359 | Treasures of the Coiled Isle | ✅ added | 2512 | The Coiled Isle | Zone exploration | 2026-08-06 |
+| 63381 | Cursebreaker | ⏭ skipped | — | — | Curse Surges expansion-wide rotating mechanic; no ZoneData precedent (matches Ritual Sites/Void Assaults) | 2026-08-06 |
+| 63382 | It's Definitely Something | ✅ added | 2512 | The Coiled Isle | Zone exploration | 2026-08-06 |
+| 63390 | Turn the Surge | ⏭ skipped | — | — | Curse Surges expansion-wide rotating mechanic; no ZoneData precedent | 2026-08-06 |
+| 63391 | Jumping Through Hoops | ✅ added | 2606 | The Venomous Abyss | Glory-analog achievement | 2026-08-06 |
+| 63395 | The Coiled Isles Glyph Hunter | ✅ added | 2512 | The Coiled Isle | Zone exploration | 2026-08-06 |
+| 63397 | Kept You Waiting Huh? | ✅ added | 2606 | The Venomous Abyss | Glory-analog achievement | 2026-08-06 |
+| 63400 | Tricks and Treats of Midnight | ⏭ skipped | — | — | Hallow's End holiday achievement; belongs in CategoryData_Events.lua, no ZoneData precedent | 2026-08-06 |
+| 63415 | Prey: Coiled Nightmares | ⏭ skipped | — | — | Prey rotating world-hunt mechanic; no ZoneData precedent | 2026-08-06 |
+| 63416 | That's a Wrap | ⏭ skipped | — | — | Prey rotating world-hunt mechanic; no ZoneData precedent | 2026-08-06 |
+| 63418 | Well, Well, Little Sky | ✅ added | 2606 | The Venomous Abyss | Glory-analog achievement | 2026-08-06 |
+| 63432 | Mysterious Mix Master | ✅ added | 2512 | The Coiled Isle | Zone exploration | 2026-08-06 |
+| 63433 | Midnight: Journey's End (Season 2) | ✅ added | — | Midnight delves (all) | `delvesS2Progress` table | 2026-08-06 |
+| 63434 | Buddy System VII: Valeera | ✅ added | — | Midnight delves (all) | Appended to base `delves` table (persistent companion chain, like TWW Buddy System) | 2026-08-06 |
+| 63435 | Buddy System VIII: Valeera | ✅ added | — | Midnight delves (all) | Appended to base `delves` table | 2026-08-06 |
+| 63436 | The Ring of Glory Stories | ✅ added | 2633 | The Ring of Glory | New Season 2 delve | 2026-08-06 |
+| 63437 | Gnarldor Isle Stories | ✅ added | 2635 | Gnarldor Isle | New Season 2 delve | 2026-08-06 |
+| 63441 | Souvenir Seeker, Razorwind Shores | ⏭ skipped | — | — | Housing neighborhood achievement; no ZoneData precedent for Housing | 2026-08-06 |
+| 63451 | Scales for Days | ⏭ skipped | — | — | Prey "Coiled Nightmares" sub-tier; no ZoneData precedent | 2026-08-06 |
+| 63452 | Fangs for the Memories | ⏭ skipped | — | — | Prey "Coiled Nightmares" sub-tier; no ZoneData precedent | 2026-08-06 |
+| 63453 | One, Two, Ral'kala's Coming for You | ⏭ skipped | — | — | Prey "Coiled Nightmares" sub-tier; no ZoneData precedent | 2026-08-06 |
+| 63454 | Nine, Ten, Never Sleep Again | ⏭ skipped | — | — | Prey "Coiled Nightmares" sub-tier; no ZoneData precedent | 2026-08-06 |
+| 63457 | Let Sleeping Skulls Lie | ⏭ skipped | — | — | Prey "Coiled Nightmares" sub-tier; no ZoneData precedent | 2026-08-06 |
+| 63472 | Fang Fatale | ✅ added | 2606 | The Venomous Abyss | Raid transmog-set achievement, root list after AotC/CE | 2026-08-06 |
+| 63473 | Sssensational! | ⏭ skipped | — | — | NotCategorized PvP/raid combo achievement; no geographic association (matches 61490/61858 pattern) | 2026-08-06 |
+| 63476 | Mythic: Ula'tek | ✅ added | 2606 | The Venomous Abyss | Final boss, end of Mythic boss-kill list | 2026-08-06 |
+| 63510 | The Briny Best | ⏭ skipped | — | — | Fishing profession achievement; no ZoneData precedent for professions | 2026-08-06 |
+| 63512 | Treasures of the Damned | ⏭ skipped | — | — | Fishing profession achievement; no ZoneData precedent | 2026-08-06 |
+| 63520 | Heroic: The Venomous Abyss | ✅ added | 2606 | The Venomous Abyss | Base raid clear | 2026-08-06 |
+| 63521 | The Venomous Abyss | ✅ added | 2606 | The Venomous Abyss | Base raid clear | 2026-08-06 |
+| 63522 | Mythic: The Venomous Abyss | ✅ added | 2606 | The Venomous Abyss | Base raid clear | 2026-08-06 |
+| 63523 | Mythic: Nek'zali the Soulcoiler | ✅ added | 2606 | The Venomous Abyss | Mythic boss kill | 2026-08-06 |
+| 63524 | Mythic: Entombed Sentinels | ✅ added | 2606 | The Venomous Abyss | Mythic boss kill | 2026-08-06 |
+| 63525 | Mythic: The Lost Explorers | ✅ added | 2606 | The Venomous Abyss | Mythic boss kill | 2026-08-06 |
+| 63526 | Mythic: Vashnik the Malignant | ✅ added | 2606 | The Venomous Abyss | Mythic boss kill | 2026-08-06 |
+| 63527 | Mythic: Sszorak | ✅ added | 2606 | The Venomous Abyss | Mythic boss kill | 2026-08-06 |
+| 63528 | Mythic: The Twin Fangs | ✅ added | 2606 | The Venomous Abyss | Mythic boss kill | 2026-08-06 |
+| 63529 | Mythic: The Coiled Altar | ✅ added | 2606 | The Venomous Abyss | Mythic boss kill | 2026-08-06 |
+| 63530 | The Venomous Abyss: Essence of Ula'tek | ✅ added | 2606 | The Venomous Abyss | Boss-group meta achievement | 2026-08-06 |
+| 63531 | The Venomous Abyss: Beasts of Ula'tek | ✅ added | 2606 | The Venomous Abyss | Boss-group meta achievement | 2026-08-06 |
+| 63532 | The Venomous Abyss: Ula'tek | ✅ added | 2606 | The Venomous Abyss | Boss-group meta achievement | 2026-08-06 |
+| 63596 | Snake Stompin' | ✅ added | 2509 | Vaults of Atal'Utek | Own zone, distinct from The Coiled Isle | 2026-08-06 |
+| 63598 | Roll the Patrol | ✅ added | 2509 | Vaults of Atal'Utek | Own zone, distinct from The Coiled Isle | 2026-08-06 |
+| 63599 | Submerge the Incursion | ✅ added | 2509 | Vaults of Atal'Utek | Own zone, distinct from The Coiled Isle | 2026-08-06 |
+| 63600 | Spike the Strike | ✅ added | 2509 | Vaults of Atal'Utek | Own zone, distinct from The Coiled Isle | 2026-08-06 |
+| 63601 | Oppose the Foes | ✅ added | 2509 | Vaults of Atal'Utek | Own zone, distinct from The Coiled Isle | 2026-08-06 |
+| 63605 | Souvenir Seeker, Founder's Point | ⏭ skipped | — | — | Housing neighborhood achievement; no ZoneData precedent | 2026-08-06 |
+| 63606 | Superlative Souvenir Seeker | ⏭ skipped | — | — | Housing neighborhood achievement; no ZoneData precedent | 2026-08-06 |
+| 63608 | Venomous Vestments | ⏭ skipped | — | — | PvP season transmog set; no ZoneData precedent (Galactic Gala 61586 also absent) | 2026-08-06 |
+| 63609 | No Egg Scramble | ✅ added | 2606 | The Venomous Abyss | Glory-analog achievement | 2026-08-06 |
+| 63610 | The Honored Dead | ✅ added | 2509 | Vaults of Atal'Utek | Own zone, distinct from The Coiled Isle | 2026-08-06 |
+| 63611 | Big Prey Hunter (Season 2) | ⏭ skipped | — | — | Prey rotating world-hunt mechanic; no ZoneData precedent | 2026-08-06 |
+| 63619 | New Friends | ✅ added | 2541 | Arcantina | Added to existing Arcantina zone | 2026-08-06 |
+| 63620 | Well Decorated | ✅ added | 2541 | Arcantina | Added to existing Arcantina zone | 2026-08-06 |
+| 63621 | Keystone Victor: Altar of Fangs | ✅ added | 2588 | Altar of Fangs | New Season 2 dungeon | 2026-08-06 |
+| 63622 | Keystone Victor: Den of Nalorakk | ✅ added | 2513 | Den of Nalorakk | Season 2 M+ rotation dungeon | 2026-08-06 |
+| 63623 | Keystone Victor: Murder Row | ✅ added | 2433 | Murder Row | Season 2 M+ rotation dungeon | 2026-08-06 |
+| 63624 | Keystone Victor: The Blinding Vale | ✅ added | 2500 | The Blinding Vale | Season 2 M+ rotation dungeon | 2026-08-06 |
+| 63625 | Keystone Victor: Voidscar Arena | ✅ added | 2572 | Voidscar Arena | Season 2 M+ rotation dungeon | 2026-08-06 |
+| 63626 | Keystone Victor: Kings' Rest | ✅ added | 1004 | Kings' Rest | Old BfA dungeon, added to existing entry in `Retail/08_BattleForAzeroth/ZoneData.lua` | 2026-08-06 |
+| 63627 | Keystone Victor: Ruby Life Pools | ✅ added | 2094 | Ruby Life Pools | Old Dragonflight dungeon, new entry in `Retail/10_Dragonflight/ZoneData.lua` | 2026-08-06 |
+| 63628 | Keystone Victor: Temple of Sethraliss | ✅ added | 1038 | Temple of Sethraliss | Old BfA dungeon, added to existing entry in `Retail/08_BattleForAzeroth/ZoneData.lua` | 2026-08-06 |
+| 63629 | Angler of The Coiled Isle | ⏭ skipped | — | — | Fishing profession achievement; no ZoneData precedent | 2026-08-06 |
+| 63630 | Assault the Vault | ✅ added | 2509 | Vaults of Atal'Utek | Own zone, distinct from The Coiled Isle | 2026-08-06 |
+| 63631 | Captain Tokka's Crew | ✅ added | 2512 | The Coiled Isle | Zone reputation | 2026-08-06 |
+| 63632 | Toxic Trophies | ⏭ skipped | — | — | Fishing profession achievement; no ZoneData precedent | 2026-08-06 |
+| 63633 | A Stack of Snacks | ✅ added | 2512 | The Coiled Isle | Zone quest | 2026-08-06 |
+| 63634 | Where Did You Get That? | ⏭ skipped | — | — | Fishing profession achievement; no ZoneData precedent | 2026-08-06 |
+| 63635 | Tokka's Terrible Trials | ⏭ skipped | — | — | Fishing profession achievement; no ZoneData precedent | 2026-08-06 |
+| 63636 | Fully Corroded | ✅ added | 2509 | Vaults of Atal'Utek | Own zone, distinct from The Coiled Isle | 2026-08-06 |
+| 63639 | Ula'tek Uncoiled | ✅ added | 2512 | The Coiled Isle | Zone summary/meta achievement | 2026-08-06 |
+| 63640 | Explore the Coiled Isle | ✅ added | 2512 | The Coiled Isle | Zone exploration | 2026-08-06 |
+| 63641 | Snake Charmed, I'm Sure | ✅ added | 2512 | The Coiled Isle | Zone quest | 2026-08-06 |
+| 63642 | Sashay Away | ⏭ skipped | — | — | Prey "Coiled Nightmares" sub-tier; no ZoneData precedent | 2026-08-06 |
+| 63643 | You Guys, Again? | ⏭ skipped | — | — | Prey "Coiled Nightmares" sub-tier; no ZoneData precedent | 2026-08-06 |
+| 63644 | Kill Me Now | ⏭ skipped | — | — | Prey "Coiled Nightmares" sub-tier; no ZoneData precedent | 2026-08-06 |
+| 63645 | Accidental Inclusion | ✅ added | 2606 | The Venomous Abyss | Glory-analog achievement | 2026-08-06 |
+| 63650 | Ahead of the Curve: Ula'tek | ✅ added | 2606 | The Venomous Abyss | Raid AotC | 2026-08-06 |
+| 63651 | Cutting Edge: Ula'tek | ✅ added | 2606 | The Venomous Abyss | Raid CE | 2026-08-06 |
+| 63653 | Pro Poison Patroller | ✅ added | 2509 | Vaults of Atal'Utek | Own zone, distinct from The Coiled Isle | 2026-08-06 |
+| 63656 | Taking a Bite out of Slime | ✅ added | 2606 | The Venomous Abyss | Glory-analog achievement | 2026-08-06 |
+| 63662 | Student of Hissstory | ✅ added | 2512 | The Coiled Isle | Zone exploration | 2026-08-06 |
+| 63669 | Watch Out Behind You | ✅ added | 2606 | The Venomous Abyss | Glory-analog achievement | 2026-08-06 |
+| 63670 | Comforting Da Spirits | ✅ added | 2606 | The Venomous Abyss | Raid lore achievement | 2026-08-06 |
+| 63679 | In Case Of Emergency | ✅ added | 2588 | Altar of Fangs | Dungeon lore achievement, listed first per convention | 2026-08-06 |
+| 63681 | Heroic: Nymrissa Wavecaller | ✅ added | 2632 | The Tidebound Grotto | New Season 2 single-boss raid | 2026-08-06 |
+| 63682 | Mythic: Nymrissa Wavecaller | ✅ added | 2632 | The Tidebound Grotto | New Season 2 single-boss raid | 2026-08-06 |
+| 63683 | Nymrissa Wavecaller | ✅ added | 2632 | The Tidebound Grotto | New Season 2 single-boss raid | 2026-08-06 |
+| 63695 | Arena Exercise | ⏭ skipped | — | — | PvP Training Grounds achievement; no ZoneData precedent | 2026-08-06 |
+| 63696 | Arena Exercise | ⏭ skipped | — | — | PvP Training Grounds achievement; no ZoneData precedent | 2026-08-06 |
+| 63697 | Arena Exercise | ⏭ skipped | — | — | PvP Training Grounds achievement; no ZoneData precedent | 2026-08-06 |
+| 63698 | Arena Exercise | ⏭ skipped | — | — | PvP Training Grounds achievement; no ZoneData precedent | 2026-08-06 |
+| 63699 | World Wide Trainer | ⏭ skipped | — | — | PvP Training Grounds meta; no ZoneData precedent | 2026-08-06 |
 <!-- END_MAIN_LOG -->
 
 ## Statistics-Tracking Achievements (Skipped)

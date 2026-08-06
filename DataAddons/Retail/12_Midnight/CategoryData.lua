@@ -270,7 +270,7 @@ coiledIsle:PvP{
 coiledIsle:Reputation{
     63631, -- Captain Tokka's Crew
 }
-coiledIsle:Named(addon.L["Vaults of Atal'Utek"], {
+zones:ZoneNamed(2509, { -- Vaults of Atal'Utek
     62600, -- Ritual Behavior
     62601, -- Soft Underbelly
     62604, -- Dance While Everyone Watches

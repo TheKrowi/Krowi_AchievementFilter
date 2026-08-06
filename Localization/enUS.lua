@@ -5,7 +5,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-06-28 15-04-43 ]] --
+-- [[ Exported at 2026-08-06 20-58-48 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -107,6 +107,7 @@ L["Brawler's Guild"] = true
 L["Breaknecking Races"] = true
 L["Brewfest"] = true
 L["Broken Isles Cup"] = true
+L["Broken Throne"] = true
 L["Buildings"] = true
 L["Burning Pandaren Spirit"] = true
 L["Bur's Mount Collection"] = true
@@ -149,6 +150,7 @@ L["Center header Desc"] = "Keep the header centered on the achievements window."
 L["Center Header Desc"] = "Center the achievement's name on the achievement button."
 L["Central Circuit"] = true
 L["Chains of Domination"] = true
+L["Challenges"] = true
 L["Character / Account wide"] = true
 L["Character only"] = true
 L["Character Specific"] = true
@@ -223,6 +225,7 @@ L["Current Zone"] = true
 L["Curse of Ula'tek"] = true
 L["Curse Surges"] = true
 L["Custom"] = true
+L["Daggerspine Point"] = true
 L["Dark Heart"] = true
 L["Darkmoon Faire"] = true
 L["Dastardly Duos"] = true

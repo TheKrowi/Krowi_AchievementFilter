@@ -6,7 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-06-28 15-05-06 ]] --
+-- [[ Exported at 2026-08-06 20-59-16 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -183,6 +183,7 @@ L["Cross-Expansion"] = "Пересечение дополнений"
 L["Ctrl"] = true
 L["Current Obtainable"] = "Доступно сейчас"
 L["Current Zone"] = "Текущее место"
+L["Curse of Ula'tek"] = "Проклятие Ула'тек"
 L["Custom"] = "Настроить"
 L["Dark Heart"] = "Тёмное Сердце"
 L["Darkmoon Faire"] = "Ярмарка Новолуния"
@@ -215,7 +216,7 @@ L["Dragonbane Keep"] = "Драконья Погибель"
 L["Dragonblight"] = true
 L["Dragonflight (pre-patch)"] = "Dragonflight (пре-патч)"
 L["Dragonriding"] = "Полеты на драконе"
-L["Dragonriding Races"] = "Dragonblight Расы"
+L["Dragonriding Races"] = "Dragonflight Расы"
 L["Dreamsurge"] = "Прилив Снов"
 L["Dreamsurges"] = "Прилив Снов"
 L["Drops"] = "Падает"
@@ -416,6 +417,7 @@ L["Level 85"] = "Уровень 85"
 L["Level 90"] = "Уровень 90"
 L["Leveling"] = "Поднятие уровня"
 L["Line"] = "Полоса"
+L["Lingering Shadows"] = "Задержавшиеся тени"
 L["Load Tracking Achievements"] = "Загрузить Отслеживааемые Достижения"
 L["Load Tracking Achievements Desc"] = "Загрузить достижения помеченные как отслеживаемые, но обычно не видимые игроку. Также включает поиск и просмотр по ним в окне достижений."
 L["Loaded"] = "Загружено"
@@ -595,6 +597,7 @@ L["Reset view"] = "Сброс вида"
 L["Reset view on open"] = "Сбросить вид при открытии"
 L["Reset view on open Desc"] = "Скинуть все категории и выбрать общие."
 L["Return to the Forbidden Reach"] = "Возвращение в Запретный край"
+L["Revelations"] = "Откровения"
 L["Reverse Sort"] = "Обратная сортировка"
 L["Rewards"] = "Награды"
 L["Right"] = "Право"
@@ -807,6 +810,7 @@ L["Titan Lockdown: Active"] = "Изоляция Титанов: Активно"
 L["Titan Lockdown: Next"] = "Изоляция Титанов: Следущее"
 L["Titan Lockdown: Soon"] = "Изоляция Титанов: Скоро"
 L["Titan Lockdown: Starting Soon"] = "Изоляция Титанов: Скоро начнется"
+L["Title"] = "Заголовок"
 L["Ti'un the Wanderer"] = "Ти'ун Странник"
 L["Toggle"] = "Переключить"
 L["Toggle Tracking"] = "Переключить отслеживание"

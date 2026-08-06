@@ -6,7 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-06-28 15-05-11 ]] --
+-- [[ Exported at 2026-08-06 20-59-19 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -126,7 +126,7 @@ L["Calendar Desc"] = [=[与{calendar}相似
 |T:1:8|t- 日期上的箭头标志表示当日获得过4个以上成就
 
 设置(1)
-|T:1:8|t- 可以选择在打开日历时总是保留关闭前的月份（{lockMonth}）或因点击成就而关闭时保留（{lockAchievementMonth}）
+|T:1:8|t- 可以选择打开日历时总是保留关闭前的月份（{lockMonth}）或因点击成就而关闭时保留（{lockAchievementMonth}）
 |T:1:8|t- 可以更改每周的第一天，当前设置为{firstWeekDay}
 
 (1) {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {calendar}]=]
@@ -144,9 +144,9 @@ L["Categories width offset Desc"] = [=[在默认基础上增加或减少类别�
 (1)仅在调整数值时可能出现掉帧和卡顿，不影响正常游戏]=]
 L["Category shown temporarily"] = "点击{eventName}事件提醒时跳转到此类别。当前过滤器设置下无可用成就，仅为临时显示"
 L["Caverns Criss-Cross"] = "交错洞窟"
-L["Center Header"] = "页眉居中"
-L["Center header"] = "页眉居中"
-L["Center header Desc"] = "成就窗口的页眉保持居中"
+L["Center Header"] = "标题栏居中"
+L["Center header"] = "标题栏居中"
+L["Center header Desc"] = "成就窗口的标题栏保持居中"
 L["Center Header Desc"] = "居中成就按钮的成就名称"
 L["Central Circuit"] = "中央赛道"
 L["Chains of Domination"] = "统御之链"
@@ -292,7 +292,7 @@ L["Dueler's Guild"] = "决斗俱乐部"
 L["during"] = "- 限定"
 L["Dustwallow Marsh"] = "尘泥沼泽"
 L["Earned By"] = "已获得"
-L["Earned By Desc"] = [=[页眉
+L["Earned By Desc"] = [=[标题栏
 |T:1:8|t- {achievementPointsEarnedBy}: 显示当前角色{achievementPointsEarnedBy_wc}和/或账号{achievementPointsEarnedBy_wc}（{achievementPointsEarnedByFormat}）(1)
 |T:1:8|t- {tooltip}: 显示单个角色已获得的成就点数，每个角色必须登录至少一次才能添加到此列表。不同服务器的角色将显示服务器名称，可在设置(1)启用总是显示
 
@@ -300,7 +300,7 @@ L["Earned By Desc"] = [=[页眉
 |T:1:8|t- {account}: 账号中任意角色获得成就都会被计入（默认）
 |T:1:8|t- {character}: 当前角色获得的成就才会被计入，非当前角色获得的成就部分被计入
 
-鼠标提示
+提示信息
 |T:1:8|t- {earnedBy}: 显示{earnedByNumber}个获得此成就的角色(2)，包含有对应成就的阵营专属成就，例如联盟角色可能会显示部落成就。不同服务器的角色将显示服务器名称，可在设置(2)启用总是显示
 |T:1:8|t- {notEarnedBy}: 显示{notEarnedByNumber}个未获得此成就的角色(2)，包含有对应成就的阵营专属成就，例如联盟角色可能会显示部落成就。不同服务器的角色将显示服务器名称，可在设置(2)启用总是显示
 
@@ -324,7 +324,7 @@ L["Enable Upcoming Calendar Events Desc"] = "禁用后关闭{upcomingCalendarEve
 L["Enchanting"] = "附魔"
 L["End Time"] = "结束时间"
 L["Engineering"] = "工程学"
-L["Enhanced filtering and sorting"] = "增强的过滤器和排序"
+L["Enhanced filtering and sorting"] = "强化过滤器和排序"
 L["Enhanced filtering and sorting Desc"] = [=[成就的过滤器和排序添加下列特性
 
 类别: 
@@ -369,8 +369,8 @@ L["Enhanced filtering and sorting Desc"] = [=[成就的过滤器和排序添加�
 
 (1) {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {categories}
 (2) {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName}]=]
-L["Enhanced tooltip"] = "增强的鼠标提示"
-L["Enhanced tooltip Achievements Desc"] = [=[在鼠标提示中添加几种新的成就关联信息
+L["Enhanced tooltip"] = "强化提示信息"
+L["Enhanced tooltip Achievements Desc"] = [=[在提示信息中添加几种新的成就关联信息
 
 特性: 
 |T:1:8|t- {notObtainable}: 绝版成就显示“{noLongerObtainable}”
@@ -396,7 +396,7 @@ L["Enhanced tooltip Achievements Desc"] = [=[在鼠标提示中添加几种新�
 
 (1) （可选）每行可以显示两个图标: 第一个为默认图标，第二个为当前角色图标（{currentCharacterIconEnabled}）(2)
 (2) {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {achievements}]=]
-L["Enhanced tooltip Categories Desc"] = [=[在鼠标提示中添加可获得/绝版和已获得/未获得的成就数量信息
+L["Enhanced tooltip Categories Desc"] = [=[在提示信息中添加可获得/绝版和已获得/未获得的成就数量信息
 
 进度条中的数字格式如下: 
 |T:1:8|tOC (+NONC) / T
@@ -416,7 +416,7 @@ L["Error Tabs Order"] = "{blizzard}的{statistics}标签不能放在{guild}之�
 L["Escalation"] = "绝地反击"
 L["Eternity's End"] = "永恒之尽"
 L["Event Reminder"] = "事件提醒"
-L["Event Reminder Desc"] = [=[添加{events}到新的{events}标签，在事件活跃时弹窗提醒（同时最多{numPopUps}个）（{popUpEnabled}）(1)
+L["Event Reminder Desc"] = [=[添加{events}到新的{events}标签，事件激活时弹窗提醒（最多同时{numPopUps}个）（{popUpEnabled}）(1)
 
 事件提醒包含名称及最多2行结束时间信息(1)
 时间格式可选择预设或自定义(1)
@@ -500,7 +500,7 @@ L["Fen Flythrough"] = "泽地漫游"
 L["Filters"] = "过滤器"
 L["Firestorms"] = "火焰风暴"
 L["First day of the week"] = "每周的第一天"
-L["First day of the week Desc"] = "选择日历中所使用的每周的第一天"
+L["First day of the week Desc"] = "选择日历中每周的第一天"
 L["FixTabs"] = [=[新的标签排序功能已启用，重新显示所有标签
 不便之处，敬请谅解]=]
 L["Flashfrost Flyover"] = "闪霜飞越"
@@ -551,8 +551,8 @@ L["Guides"] = "指南"
 L["Hallow's End"] = "万圣节"
 L["Hard"] = "困难"
 L["Has Reward"] = "奖励"
-L["Header"] = "页眉"
-L["Header tooltip"] = "页眉提示"
+L["Header"] = "标题栏"
+L["Header tooltip"] = "标题栏提示"
 L["Heart of Azeroth"] = "艾泽拉斯之心"
 L["Hearthstone"] = "炉石传说"
 L["Hearthstone's 10th Anniversary"] = "炉石传说10周年"
@@ -595,7 +595,7 @@ L["Kafi"] = "咖菲"
 L["Kalimdor Cup"] = "卡利姆多杯"
 L["Ka'wi the Gorger"] = "贪吃的卡瓦"
 L["Keep current character"] = "保留当前角色"
-L["Keep current character Desc"] = "总是在鼠标提示列表中保留当前角色，无论是否超过{maxNumChar}上限"
+L["Keep current character Desc"] = "总是在提示信息列表中保留当前角色，无论是否超过{maxNumChar}上限"
 L["Keybindings Desc"] = "{addonName}的快捷键设置: 点击窗口左上角的游戏标签，在{keybindings}分类的插件选项卡中进行设置"
 L["KeystoneResilience"] = "坚韧钥石"
 L["Kyrian Assault"] = "格里恩突袭"
@@ -634,13 +634,13 @@ L["Lunar Festival"] = "春节"
 L["Make windows movable"] = "解锁窗口"
 L["Make windows movable Desc"] = [=[解锁/锁定成就窗口和成就日历
 
-勾选后在窗口页眉或边缘，按住鼠标左键拖动可以移动窗口]=]
+勾选后在窗口标题栏或边缘，按住鼠标左键拖动可以移动窗口]=]
 L["Mantid"] = "螳螂妖"
 L["Maruukai Dash"] = "马鲁凯飞奔"
 L["Max number of alerts"] = "最大提醒数"
 L["Max number of alerts Desc"] = "同一时间显示的弹窗数量上限"
 L["Maximum number of characters"] = "最大角色数量"
-L["Maximum number of characters Desc"] = "在鼠标提示中可显示的最大角色数量"
+L["Maximum number of characters Desc"] = "在提示信息中可显示的最大角色数量"
 L["Merge Small Categories"] = "合并小类"
 L["Merge small categories threshold"] = "合并小类阈值"
 L["Merge small categories threshold Desc"] = [=[当一个类别的成就数量小于此数值时，将其并入父类
@@ -854,7 +854,7 @@ L["Right Click Menu Desc"] = [=[新标签中的所有成就都可以使用{right
 
 特性: 
 |T:1:8|t- 提供{wowhead}链接
-|T:1:8|t- 可以快速{goTo}所在的{partOfAChain}和{require}中的其他成就，也可以快速前往{currentZone}类别中成就的默认定位
+|T:1:8|t- 可以快速{goTo}所属{partOfAChain}和{require}中的其他成就，也可以快速前往{currentZone}类别中成就的默认定位
 |T:1:8|t- 如果是{petBattles}相关成就且{xuFuPetGuides}有相关信息，提供{xuFuPetGuides}链接
 |T:1:8|t- 如果成就目标是收集外观，提供对应套装的链接
 {pluginText}
@@ -908,8 +908,8 @@ L["Seething Shore"] = "涌泉海滩"
 L["Select achievements to see your browsing history"] = "选择一个成就后显示浏览历史"
 L["Select All"] = "全部选择"
 L["Selected Zone"] = "所选区域"
-L["Set Keybind"] = "设置按键绑定"
-L["Set Keybind Desc"] = "将所选标签的快捷键设置为“Y”键，这将解除“Y”键的其他按键绑定，也可以前往{keyBindings}中更改为其他按键"
+L["Set Keybind"] = "设置快捷键"
+L["Set Keybind Desc"] = "将所选标签的快捷键设置为“Y”键，这将解除“Y”键的其他按键绑定，可在{keyBindings}中更改为其他按键"
 L["Shadowlands (pre-patch)"] = "暗影国度（前夕）"
 L["Shadows of Argus"] = "阿古斯之影"
 L["Shift"] = true
@@ -918,7 +918,7 @@ L["Show"] = "显示"
 L["Show Added in version"] = "显示{addedInVersion}"
 L["Show Added in version Desc"] = [=[显示/隐藏{addedInVersion}
 
-勾选后在鼠标提示中显示成就添加的版本]=]
+勾选后在提示信息中显示成就添加的版本]=]
 L["Show alertSystem on event start Desc"] = "事件开始时显示/隐藏事件{alertSystem}"
 L["Show alertSystem on event start in instances Desc"] = "事件开始并在副本中时显示/隐藏事件{alertSystem}"
 L["Show alertSystem on event start only when time data is available Desc"] = "事件开始且时间数据可用时显示/隐藏事件{alertSystem}"
@@ -956,11 +956,11 @@ L["Show Not Obtainable Desc"] = "在进度条中以红色进度显示/隐藏{not
 L["Show Objectives progress"] = "显示{objectivesProgress}"
 L["Show Objectives progress Desc"] = [=[显示/隐藏{objectivesProgress}
 
-勾选后在鼠标提示中显示成就的{objectivesProgress}]=]
+勾选后在提示信息中显示成就的{objectivesProgress}]=]
 L["Show Other faction"] = "显示其他阵营"
 L["Show Other faction Desc"] = [=[显示/隐藏其他阵营
 
-勾选后在鼠标提示中显示其他阵营成就，这将更清楚地表明为何只玩联盟的玩家，新建的部落角色会有一些成就]=]
+勾选后在提示信息中显示其他阵营成就，这将更清楚地表明为何只玩联盟的玩家，新建的部落角色会有一些成就]=]
 L["Show Other Faction Warband as Completed"] = "其他阵营战团成就显示为已获得"
 L["Show Other Faction Warband as Completed Desc"] = [=[部分阵营专属的战团成就在同阵营角色上显示为已获得，在其他阵营角色上却显示为未获得
 
@@ -970,7 +970,7 @@ L["Show Other Faction Warband as Completed Desc"] = [=[部分阵营专属的战�
 L["Show Part of a chain"] = "显示 {partOfAChain}"
 L["Show Part of a chain Desc"] = [=[显示/隐藏 {partOfAChain}
 
-勾选后在鼠标提示中显示所属系列成就]=]
+勾选后在提示信息中显示所属系列成就]=]
 L["Show placeholders"] = "显示占位符"
 L["Show placeholders Desc"] = "显示一个事件占位符帮助反馈修改设置后的视觉效果，右键点击可以关闭"
 L["Show placeholders filter"] = "显示占位符过滤器"
@@ -981,11 +981,11 @@ L["Show pop ups on login delay Desc"] = "进入游戏时延迟启动事件弹窗
 L["Show Required for"] = "显示{requiredFor}"
 L["Show Required for Desc"] = [=[显示/隐藏{requiredFor}
 
-勾选后在鼠标提示中显示所属成就]=]
+勾选后在提示信息中显示所属成就]=]
 L["Show Rewards"] = "显示奖励"
 L["Show Rewards Desc"] = [=[显示/隐藏{rewards}
 
-勾选后在鼠标提示中显示成就的{rewards}]=]
+勾选后在提示信息中显示成就的{rewards}]=]
 L["Show Right Click Menu"] = "显示{rightClickMenu}按钮"
 L["Show Right Click Menu Desc"] = [=[在每个成就上显示/隐藏{rightClickMenu}按钮
 
@@ -993,7 +993,7 @@ L["Show Right Click Menu Desc"] = [=[在每个成就上显示/隐藏{rightClickM
 L["Show Start Time & End Time"] = "显示{startTime}和{endTime}"
 L["Show Start Time & End Time Desc"] = [=[显示{startTime}和{endTime}.
 
-勾选后当成就{temporarilyObtainable}时，在鼠标提示中显示成就可得的开始和结束时间
+勾选后当成就{temporarilyObtainable}时，在提示信息中显示成就可得的开始和结束时间
 
 仅支持有日历事件的{temporarilyObtainable}成就]=]
 L["Show Sub Categories"] = "显示子类"
@@ -1003,7 +1003,7 @@ L["Show Sub Categories Desc"] = [=[显示/隐藏子类
 L["Show Temporarily obtainable"] = "显示{temporarilyObtainable}"
 L["Show Temporarily obtainable Desc"] = [=[显示/隐藏{temporarilyObtainable}.
 
-勾选后当成就{temporarilyObtainable}时，在鼠标提示中显示此信息]=]
+勾选后当成就{temporarilyObtainable}时，在提示信息中显示此信息]=]
 L["Show Temporarily obtainable Icon"] = "显示{tempObt}图标"
 L["Show Temporarily obtainable Icon Desc"] = "{tempObt}成就显示/隐藏额外图标"
 L["Show Warband Icon"] = "显示{warband}图标"
@@ -1067,8 +1067,8 @@ L["Teleport"] = "传送"
 L["Temple of Kotmogu"] = "寇魔古寺"
 L["Temporarily obtainable"] = "限时可得"
 L["temporarily obtainable"] = "限时可得"
-L["Temporarily obtainable Header Colors"] = "{tempObt}页眉颜色"
-L["Temporarily obtainable Header Colors Desc"] = "启用后默认页眉背景从橙/蓝扩展为绿/黄/红，分别表示成就当前可得/未来可得/已绝版"
+L["Temporarily obtainable Header Colors"] = "{tempObt}标题栏颜色"
+L["Temporarily obtainable Header Colors Desc"] = "启用后默认标题栏背景从橙/蓝扩展为绿/黄/红，分别表示成就当前可得/未来可得/已绝版"
 L["Temporarily Obtainable Text"] = "{thisAchievement}{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}"
 L["Thaldraszus"] = "索德拉苏斯"
 L["Thaldraszus: Next"] = "索德拉苏斯: 下次"
@@ -1124,10 +1124,10 @@ L["Toggle Tracking"] = "追踪"
 L["Toggle window once opened"] = "打开窗口后切换模式"
 L["Toggle window once opened Desc"] = "首次打开成就窗口时跳转到设置的标签页并选择总览，之后使用任何快捷键都打开上次停留的窗口"
 L["Tol Barad"] = "托尔巴拉德"
-L["Tooltip"] = "鼠标提示"
+L["Tooltip"] = "提示信息"
 L["Torghast"] = "托加斯特"
 L["Track achievement browsing history"] = "追踪成就浏览历史"
-L["Track achievement browsing history Desc"] = [=[启用后在成就窗口页眉显示前后按钮
+L["Track achievement browsing history Desc"] = [=[启用后在成就窗口标题栏显示前后按钮
 
 可以使用网页浏览器一样，查看选择过的成就历史记录]=]
 L["Tracking"] = "追踪"
@@ -1167,8 +1167,8 @@ L["Waking Shores"] = "觉醒海岸"
 L["Waking Shores: Next"] = "觉醒海岸: 下次"
 L["War Effort"] = "军事行动"
 L["Warband Achievement"] = "战团成就"
-L["Warband Header Color"] = "{warband}页眉颜色"
-L["Warband Header Color Desc"] = [=[禁用后默认页眉背景从蓝色替换为橙色
+L["Warband Header Color"] = "{warband}标题栏颜色"
+L["Warband Header Color Desc"] = [=[禁用后默认标题栏背景从蓝色替换为橙色
 推荐启用{warbandIcon}.
 ]=]
 L["WarbandCampsite"] = "战团营区"
@@ -1180,7 +1180,7 @@ L["Watch List"] = "已关注"
 L["When achievement completed"] = "成就已获得时"
 L["When achievement completed Desc"] = [=[成就已获得时显示/隐藏{objectivesProgress}
 
-勾选后在鼠标提示中显示成就的{objectivesProgress}，无论成就是否获得]=]
+勾选后在提示信息中显示成就的{objectivesProgress}，无论成就是否获得]=]
 L["Whispering Pandaren Spirit"] = "熊猫人微风之灵"
 L["Widget Events"] = "小型事件"
 L["Wild Preserve Circuit"] = "狂野禁猎区巡回赛"

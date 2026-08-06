@@ -14,6 +14,11 @@ zoneData:Zone({2097, 2098, 2099}, { -- Algeth'ar Academy (dungeon)
     61591, -- Keystone Victor: Algeth'ar Academy
 })
 
+zoneData:Zone({2094, 2095}, { -- Ruby Life Pools (dungeon)
+    62442, -- Keystone Hero: Ruby Life Pools (Midnight Season 2)
+    63627, -- Keystone Victor: Ruby Life Pools
+})
+
 zoneData:Zone({2119, 2120, 2121, 2122, 2123, 2124, 2125, 2126}, { -- Vault of the Incarnates (raid)
     17110, -- The Primal Bulwark
     17111, -- Caverns of Infusion

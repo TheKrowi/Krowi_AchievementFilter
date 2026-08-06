@@ -518,6 +518,8 @@ zoneData:Zone(1004, { -- Kings' Rest (dungeon)
     12721, -- Wrap God
     12723, -- How to Keep a Mummy
     12848, -- Kings' Rest
+    62444, -- Keystone Hero: Kings' Rest
+    63626, -- Keystone Victor: Kings' Rest
 })
 
 zoneData:Zone(1010, { -- The MOTHERLODE!! (dungeon)
@@ -579,6 +581,8 @@ zoneData:Zone({1038, 1043}, { -- Temple of Sethraliss (dungeon)
     12504, -- The Temple of Sethraliss
     12505, -- Heroic: The Temple of Sethraliss
     12506, -- Mythic: The Temple of Sethraliss
+    62443, -- Keystone Hero: Temple of Sethraliss
+    63628, -- Keystone Victor: Temple of Sethraliss
 })
 
 zoneData:Zone({1039, 1040}, { -- Shrine of the Storm (dungeon)
