@@ -3,7 +3,7 @@
 Records every achievement evaluated for zone placement — added, already present, or skipped with reason.
 Update this file whenever a zone placement decision is made via the `add-zone-data` skill.
 
-**Highest ID Analyzed: 925**
+**Highest ID Analyzed: 1050**
 
 ## Main Log
 
@@ -668,6 +668,76 @@ Update this file whenever a zone placement decision is made via the `add-zone-da
 | 63697 | Arena Exercise | ⏭ skipped | — | — | PvP Training Grounds achievement; no ZoneData precedent | 2026-08-06 |
 | 63698 | Arena Exercise | ⏭ skipped | — | — | PvP Training Grounds achievement; no ZoneData precedent | 2026-08-06 |
 | 63699 | World Wide Trainer | ⏭ skipped | — | — | PvP Training Grounds meta; no ZoneData precedent | 2026-08-06 |
+| 937 | Elune's Blessing | ✅ added | 80 | Moonglade | Lunar Festival quest (defeat Omen); zone-specific | 2026-08-07 |
+| 938 | The Snows of Northrend | ✅ already present | 119 | Sholazar Basin | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-08-07 |
+| 939 | Hills Like White Elekk | ✅ already present | 107 | Nagrand | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` | 2026-08-07 |
+| 940 | The Green Hills of Stranglethorn | ✅ already present | 50 | Northern Stranglethorn | Present in `Shared/04_Cataclysm/ZoneData.lua` zone 50 list (inline comment there reads "Of Blood and Anguish" — pre-existing stale/mislabeled comment, functionally still ID 940) | 2026-08-07 |
+| 941 | Hemet Nesingwary: The Collected Quests | ✅ already present | 50, 107, 119 | Northern Stranglethorn + Nagrand + Sholazar Basin | Meta achievement; present in `Shared/04_Cataclysm` (comment there reads "Better Him Than Me" — same stale-comment issue as 940), `Shared/02_TheBurningCrusade`, and `Shared/03_WrathOfTheLichKing` ZoneData files | 2026-08-07 |
+| 942 | The Diplomat | ✅ already present | 12, 77, 83, 101, 102, 107 | Multi-zone (Timbermaw/Sporeggar/Kurenai rep) | Already in `Shared/01_Vanilla`/`Shared/02_TheBurningCrusade/ZoneData.lua` | 2026-08-07 |
+| 943 | The Diplomat | ✅ already present | 12, 77, 83, 101, 102, 107 | Multi-zone (Timbermaw/Sporeggar/Mag'har rep) | Already in `Shared/01_Vanilla`/`Shared/02_TheBurningCrusade/ZoneData.lua` | 2026-08-07 |
+| 944 | They Love Me In That Tunnel | ✅ already present | 12, 77, 83 | Kalimdor (continent) + Felwood + Winterspring | Already in `Shared/01_Vanilla/ZoneData.lua` | 2026-08-07 |
+| 945 | The Argent Champion | ✅ already present | 23, 118 | Eastern Plaguelands + Icecrown | Already in `Shared/01_Vanilla`/`Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-08-07 |
+| 946 | The Argent Dawn | ✅ already present | 23 | Eastern Plaguelands | Already in `Shared/01_Vanilla/ZoneData.lua` | 2026-08-07 |
+| 947 | The Argent Crusade | ✅ already present | 118 | Icecrown | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-08-07 |
+| 948 | Ambassador of the Alliance | ✅ added (partial) | 28 zones (was missing Gilneas) | Multiple Alliance rep zones + Ruins of Gilneas | Wowhead criteria confirms the 6 required factions are Stormwind/Ironforge/Gnomeregan Exiles/Darnassus/Exodar/Gilneas; audit found 28 zones already present (Western Plaguelands, Arathi Highlands, Wetlands, Loch Modan, Dun Morogh, Redridge, Elwynn, Duskwood, Swamp of Sorrows, Blasted Lands, Westfall, Teldrassil, Darkshore, Ashenvale, Stonetalon, Felwood, Thousand Needles, Feralas, Dustwallow Marsh, Tanaris, Stormwind City, Azuremyst/Bloodmyst Isle, Hellfire Peninsula, Zangarmarsh, Twilight Highlands, Northern Stranglethorn, Southern Barrens) but Gilneas (217, 1030, 1031 — Ruins of Gilneas) was missing; added there in `Shared/04_Cataclysm/ZoneData.lua` | 2026-08-07 |
+| 949 | Tuskarrmageddon | ✅ already present | 114 | Borean Tundra | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-08-07 |
+| 950 | Frenzyheart Tribe | ✅ already present | 119 | Sholazar Basin | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-08-07 |
+| 951 | The Oracles | ✅ already present | 119 | Sholazar Basin | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-08-07 |
+| 952 | Mercenary of Sholazar | ✅ already present | 119 | Sholazar Basin | Multi-faction (Oracles + Frenzyheart Tribe) but both based in Sholazar Basin — single zone, no continent tag; already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-08-07 |
+| 953 | Guardian of Cenarius | ✅ already present | 81, 102, 247 | Silithus + Zangarmarsh + Ruins of Ahn'Qiraj (raid) | Multi-faction (Cenarion Circle + Cenarion Expedition); already in `Shared/01_Vanilla`/`Shared/02_TheBurningCrusade/ZoneData.lua`; no continent tag — consistent with continent tags being reserved for genuinely continent-wide achievements | 2026-08-07 |
+| 955 | Hydraxian Waterlords | ✅ already present | 232 | Molten Core (raid) | Already in `Shared/01_Vanilla/ZoneData.lua` | 2026-08-07 |
+| 956 | Brood of Nozdormu | ✅ already present | 319, 320, 321 | Ahn'Qiraj (raid) | Already in `Shared/01_Vanilla/ZoneData.lua` | 2026-08-07 |
+| 957 | Hero of the Zandalar Tribe | ✅ already present | 337 | Zul'Gurub (dungeon) | Already in `Shared/04_Cataclysm/ZoneData.lua` | 2026-08-07 |
+| 958 | Sworn to the Deathsworn | ✅ already present | 339, 340, 341, 342, 343, 344, 345, 346 | Black Temple | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` | 2026-08-07 |
+| 959 | The Scale of the Sands | ✅ already present | 329 | The Battle for Mount Hyjal | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` | 2026-08-07 |
+| 960 | The Violet Eye | ✅ already present | 350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366 | Karazhan | Already in `Shared/02_TheBurningCrusade/ZoneData.lua` | 2026-08-07 |
+| 961 | Honorary Frenzyheart | ✅ already present | 119 | Sholazar Basin | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-08-07 |
+| 962 | Savior of the Oracles | ✅ already present | 119 | Sholazar Basin | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-08-07 |
+| 963 | Tricks and Treats of Kalimdor | ✅ added | 12 + 16 zones | Kalimdor (continent) + Ashenvale, Azuremyst/Bloodmyst Isle, Darnassus, Darkshore, Desolace, Dustwallow Marsh, Exodar, Felwood, Feralas, Northern Barrens, Silithus, Southern Barrens, Stonetalon Mountains, Tanaris, Teldrassil, Un'Goro Crater, Winterspring | Wowhead criteria (Alliance side) mapped to zone-level tags per user instruction (2026-08-07): add to both continent tag AND each individual criteria zone | 2026-08-07 |
+| 964 | Going Down? | ⏭ skipped | — | — | Fall-damage achievement; no geographic association | 2026-08-07 |
+| 965 | Tricks and Treats of Kalimdor | ✅ added | 12 + 17 zones | Kalimdor (continent) + Ashenvale, Azshara, Desolace, Durotar, Dustwallow Marsh, Felwood, Feralas, Mulgore, Northern Barrens, Orgrimmar, Silithus, Southern Barrens, Stonetalon Mountains, Tanaris, Thunder Bluff, Un'Goro Crater, Winterspring | Horde faction-split pairing of 963 (`AutoFactionSplit`); Wowhead criteria (Horde side) mapped to zone-level tags per user instruction | 2026-08-07 |
+| 966 | Tricks and Treats of Eastern Kingdoms | ✅ added | 13 + 18 zones | Eastern Kingdoms (continent) + Arathi Highlands, Badlands, Blasted Lands, Cape of Stranglethorn, Dun Morogh, Duskwood, Eastern Plaguelands, Elwynn Forest, Hinterlands, Ironforge, Loch Modan, Northern Stranglethorn, Redridge Mountains, Searing Gorge, Stormwind City, Swamp of Sorrows, Westfall, Wetlands | Wowhead criteria mapped to zone-level tags per user instruction | 2026-08-07 |
+| 967 | Tricks and Treats of Eastern Kingdoms | ✅ added | 13 + 16 zones | Eastern Kingdoms (continent) + Arathi Highlands, Blasted Lands, Cape of Stranglethorn, Eastern Plaguelands, Eversong Woods, Ghostlands, Hillsbrad Foothills, Hinterlands, Northern Stranglethorn, Searing Gorge, Silvermoon City, Silverpine Forest, Swamp of Sorrows, Tirisfal Glades, Undercity, Western Plaguelands | Alliance faction-split pairing of 966 (`AutoFactionSplit`); Wowhead criteria mapped to zone-level tags per user instruction | 2026-08-07 |
+| 968 | Tricks and Treats of Outland | ✅ added | 101 + 8 zones | Outland (continent) + Blade's Edge Mountains, Hellfire Peninsula, Nagrand, Netherstorm, Shadowmoon Valley, Shattrath City, Terokkar Forest, Zangarmarsh | Wowhead criteria mapped to zone-level tags per user instruction | 2026-08-07 |
+| 969 | Tricks and Treats of Outland | ✅ added | 101 + 8 zones | Outland (continent) + Blade's Edge Mountains, Hellfire Peninsula, Nagrand, Netherstorm, Shadowmoon Valley, Shattrath City, Terokkar Forest, Zangarmarsh | Horde faction-split pairing of 968 (`AutoFactionSplit`); Wowhead criteria mapped to zone-level tags per user instruction | 2026-08-07 |
+| 971 | Tricks and Treats of Azeroth | ✅ added | 12, 13, 101, 947 | Kalimdor, Eastern Kingdoms, Outland, Azeroth (continent) | Meta achievement (complete 963/966/968) — user explicitly confirmed continent tags for this one (2026-08-07); new `947 Azeroth (continent)` entry created in `Shared/ZoneData.lua`'s CrossExpansion table | 2026-08-07 |
+| 972 | Trick or Treat! | ⏭ skipped | — | — | Received from any inn's Candy Bucket; not zone-specific (per user, 2026-08-07) | 2026-08-07 |
+| 979 | The Mask Task | ⏭ skipped | — | — | Holiday/event achievement (Hallow's End); no ZoneData precedent | 2026-08-07 |
+| 980 | The Horseman's Reins | ✅ already present | 435, 436 | Scarlet Monastery (dungeon) | Already in `Shared/05_MistsOfPandaria/ZoneData.lua` | 2026-08-07 |
+| 981 | That Sparkling Smile | ⏭ skipped | — | — | Item-use achievement (Tooth Pick); no geographic association | 2026-08-07 |
+| 1005 | Know Thy Enemy | ⏭ skipped | — | — | PvP general achievement; no specific zone | 2026-08-07 |
+| 1006 | City Defender | ✅ already present | 85, 88, 90, 110 | Orgrimmar, Thunder Bluff, Undercity, Silvermoon City | Already in `Shared/01_Vanilla/ZoneData.lua` (Orgrimmar, Thunder Bluff, Undercity) and `Shared/02_TheBurningCrusade/ZoneData.lua` (Silvermoon City); Horde city-defense achievement, all 4 Horde home cities covered | 2026-08-07 |
+| 1007 | The Wyrmrest Accord | ✅ already present | 115 | Dragonblight | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-08-07 |
+| 1008 | The Kirin Tor | ✅ already present | 113, 114, 115, 125 | Northrend + Borean Tundra, Dragonblight, Dalaran | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-08-07 |
+| 1009 | Knights of the Ebon Blade | ✅ already present | 113, 118, 121 | Northrend + Icecrown, Zul'Drak | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua` | 2026-08-07 |
+| 1010 | Northrend Vanguard | ✅ already present | 113, 114, 115, 118, 121, 125 | Northrend + Borean Tundra, Dragonblight, Icecrown, Zul'Drak, Dalaran | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua`; meta rep achievement (Argent Crusade, Wyrmrest Accord, Kirin Tor, Knights of the Ebon Blade) | 2026-08-07 |
+| 1011 | The Winds of the North | ✅ already present | 113, 114, 115, 117, 118 | Northrend + Borean Tundra, Dragonblight, Howling Fjord, Icecrown | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua`; Horde Expedition rep (Warsong Offensive/Taunka/Hand of Vengeance) variant | 2026-08-07 |
+| 1012 | The Winds of the North | ✅ already present | 113, 114, 115, 117, 118, 120 | Northrend + Borean Tundra, Dragonblight, Howling Fjord, Icecrown, The Storm Peaks | Already in `Shared/03_WrathOfTheLichKing/ZoneData.lua`; Alliance Vanguard rep variant | 2026-08-07 |
+| 1014 | 35 Exalted Reputations | ⏭ skipped | — | — | Reputation count achievement; no geographic association | 2026-08-07 |
+| 1015 | 40 Exalted Reputations | ⏭ skipped | — | — | Reputation count achievement; no geographic association | 2026-08-07 |
+| 1017 | Can I Keep Him? | ⏭ skipped | — | — | Pet collection achievement; no geographic association | 2026-08-07 |
+| 1020 | Ten Tabards | ⏭ skipped | — | — | Tabard appearance collection achievement; no geographic association | 2026-08-07 |
+| 1021 | Twenty-Five Tabards | ⏭ skipped | — | — | Tabard appearance collection achievement; no geographic association | 2026-08-07 |
+| 1022 | Flame Warden of Eastern Kingdoms | ✅ added | 13 + 14 zones | Eastern Kingdoms (continent) + Arathi Highlands, Badlands, Blasted Lands, Burning Steppes, Dun Morogh, Duskwood, Elwynn Forest, Loch Modan, Northern Stranglethorn, Redridge Mountains, Swamp of Sorrows, The Cape of Stranglethorn, The Hinterlands, Westfall, Wetlands | CORRECTED (2026-08-07): originally miscategorized as a Hallow's End-style holiday skip; Wowhead criteria confirms this is a continent-wide bonfire achievement structurally identical to Tricks and Treats of `<Continent>` — same treatment applied (continent tag + every criteria zone) | 2026-08-07 |
+| 1023 | Flame Warden of Kalimdor | ✅ added | 12 + 13 zones | Kalimdor (continent) + Ashenvale, Azuremyst/Bloodmyst Isle, Darkshore, Desolace, Dustwallow Marsh, Feralas, Silithus, Southern Barrens, Stonetalon Mountains, Tanaris, Teldrassil, Un'Goro Crater, Winterspring | CORRECTED (2026-08-07): same Tricks-and-Treats-style treatment as 1022 | 2026-08-07 |
+| 1024 | Flame Warden of Outland | ✅ added | 101 + 7 zones | Outland (continent) + Blade's Edge Mountains, Hellfire Peninsula, Nagrand, Netherstorm, Shadowmoon Valley, Terokkar Forest, Zangarmarsh | CORRECTED (2026-08-07): same Tricks-and-Treats-style treatment as 1022 | 2026-08-07 |
+| 1025 | Flame Keeper of Eastern Kingdoms | ✅ added | 13 + 14 zones | Eastern Kingdoms (continent) + Arathi Highlands, Badlands, Blasted Lands, Burning Steppes, Eversong Woods, Ghostlands, Hillsbrad Foothills, Northern Stranglethorn, Silverpine Forest, Swamp of Sorrows, The Cape of Stranglethorn, The Hinterlands, Tirisfal Glades, Western Plaguelands | CORRECTED (2026-08-07): Horde faction variant of 1022 (Flame Keeper vs Flame Warden); same treatment | 2026-08-07 |
+| 1026 | Flame Keeper of Kalimdor | ✅ added | 12 + 14 zones | Kalimdor (continent) + Ashenvale, Azshara, Desolace, Durotar, Dustwallow Marsh, Feralas, Mulgore, Northern Barrens, Silithus, Southern Barrens, Stonetalon Mountains, Tanaris, Un'Goro Crater, Winterspring | Horde faction variant of 1023 (Flame Warden); Wowhead criteria confirms Horde-territory + contested Kalimdor zones, same continent+zone treatment | 2026-08-07 |
+| 1027 | Flame Keeper of Outland | ✅ added | 101 + 7 zones | Outland (continent) + Blade's Edge Mountains, Hellfire Peninsula, Nagrand, Netherstorm, Shadowmoon Valley, Terokkar Forest, Zangarmarsh | Horde faction variant of 1024 (Flame Warden); identical zone footprint (Outland zones aren't faction-split) | 2026-08-07 |
+| 1028 | Extinguishing Eastern Kingdoms | ✅ added | 13 + 13 zones | Eastern Kingdoms (continent) + Arathi Highlands, Badlands, Blasted Lands, Burning Steppes, Eversong Woods, Ghostlands, Hillsbrad Foothills, Northern Stranglethorn, Silverpine Forest, Swamp of Sorrows, The Hinterlands, Tirisfal Glades, Western Plaguelands | Alliance-side, extinguishes Horde's bonfires; mirrors 1025 (Flame Keeper EK) zone footprint exactly (verified via Wowhead criteria) | 2026-08-07 |
+| 1029 | Extinguishing Kalimdor | ✅ added | 12 + 14 zones | Kalimdor (continent) + Ashenvale, Azshara, Desolace, Durotar, Dustwallow Marsh, Feralas, Mulgore, Northern Barrens, Silithus, Southern Barrens, Stonetalon Mountains, Tanaris, Un'Goro Crater, Winterspring | Alliance-side, extinguishes Horde's bonfires; mirrors 1026 (Flame Keeper Kalimdor) zone footprint exactly (verified via Wowhead criteria) | 2026-08-07 |
+| 1030 | Extinguishing Outland | ✅ added | 101 + 7 zones | Outland (continent) + Blade's Edge Mountains, Hellfire Peninsula, Nagrand, Netherstorm, Shadowmoon Valley, Terokkar Forest, Zangarmarsh | Alliance-side, extinguishes Horde's bonfires; mirrors 1024/1027 Outland zone footprint (verified via Wowhead criteria) | 2026-08-07 |
+| 1031 | Extinguishing Eastern Kingdoms | ✅ added | 13 + 16 zones | Eastern Kingdoms (continent) + Arathi Highlands, Badlands, Blasted Lands, Burning Steppes, Cape of Stranglethorn, Dun Morogh, Duskwood, Elwynn Forest, Loch Modan, Northern Stranglethorn, Redridge Mountains, Swamp of Sorrows, The Hinterlands, Western Plaguelands, Westfall, Wetlands | Horde-side, extinguishes Alliance's bonfires; mirrors 1022 (Flame Warden EK) zone footprint exactly (verified via Wowhead criteria) | 2026-08-07 |
+| 1032 | Extinguishing Kalimdor | ✅ added | 12 + 14 zones | Kalimdor (continent) + Ashenvale, Azuremyst Isle, Bloodmyst Isle, Darkshore, Desolace, Dustwallow Marsh, Feralas, Silithus, Southern Barrens, Stonetalon Mountains, Tanaris, Teldrassil, Un'Goro Crater, Winterspring | Horde-side, extinguishes Alliance's bonfires; mirrors 1023 (Flame Warden Kalimdor), PLUS Bloodmyst Isle which 1023 itself is missing (real gap in 1023's existing coverage, confirmed via Wowhead criteria — flagged for future audit, not auto-fixed per standing rule) | 2026-08-07 |
+| 1033 | Extinguishing Outland | ✅ added | 101 + 7 zones | Outland (continent) + Blade's Edge Mountains, Hellfire Peninsula, Nagrand, Netherstorm, Shadowmoon Valley, Terokkar Forest, Zangarmarsh | Horde-side, extinguishes Alliance's bonfires; mirrors 1024/1027/1030 Outland zone footprint (verified via Wowhead criteria) | 2026-08-07 |
+| 1034 | The Fires of Azeroth | ✅ added | 12, 13, 101, 947 | Kalimdor, Eastern Kingdoms, Outland, Azeroth (continent) | Meta achievement (complete the 3 Flame Warden continent achievements); same treatment as 971, user-confirmed 2026-08-07 | 2026-08-07 |
+| 1035 | Desecration of the Horde | ✅ added | 12, 13, 101, 947 | Kalimdor, Eastern Kingdoms, Outland, Azeroth (continent) | Meta achievement (complete the 3 Extinguishing-vs-Horde achievements); same treatment as 971, user-confirmed 2026-08-07 | 2026-08-07 |
+| 1036 | The Fires of Azeroth | ✅ added | 12, 13, 101, 947 | Kalimdor, Eastern Kingdoms, Outland, Azeroth (continent) | Meta achievement (complete the 3 Flame Keeper continent achievements); same treatment as 971, user-confirmed 2026-08-07 | 2026-08-07 |
+| 1037 | Desecration of the Alliance | ✅ added | 12, 13, 101, 947 | Kalimdor, Eastern Kingdoms, Outland, Azeroth (continent) | Meta achievement (complete the 3 Extinguishing-vs-Alliance achievements); same treatment as 971, user-confirmed 2026-08-07 | 2026-08-07 |
+| 1038 | The Flame Warden | ⏭ skipped | — | — | Title meta requiring 1034 plus other achievements outside this batch (Ice the Frost Lord, King of the Fire Festival, Burning Hot Pole Dance, Torch Juggler) with unverified zone footprint; deferred to a later batch per user (2026-08-07) | 2026-08-07 |
+| 1039 | The Flame Keeper | ⏭ skipped | — | — | Title meta requiring 1036 plus other achievements outside this batch; same deferral as 1038 per user (2026-08-07) | 2026-08-07 |
+| 1040 | Rotten Hallow | ⏭ skipped | — | — | Hallow's End quest chain sourced primarily from inn-generic "Stink Bombs Away!" daily quest (10 quest-giver locations, confirmed via Wowhead quest search) plus a Stormwind-specific side quest; not meaningfully zone-specific, matches 972 Trick or Treat! precedent | 2026-08-07 |
+| 1041 | Rotten Hallow | ⏭ skipped | — | — | Horde-side counterpart of 1040; same inn-generic reasoning | 2026-08-07 |
 <!-- END_MAIN_LOG -->
 
 ## Statistics-Tracking Achievements (Skipped)
@@ -781,6 +851,18 @@ All skipped — cumulative counter / statistics-tracking achievements not in Ach
 | 921 | Gold from vendors |
 | 922 | Mana potions consumed |
 | 923 | Elixirs consumed |
+| 932 | Total 5-player dungeons entered |
+| 933 | Total 10-player raids entered |
+| 934 | Total 25-player raids entered |
+| 973 | 5 Daily Quests Completed |
+| 974 | 50 Daily Quests Completed |
+| 975 | 200 Daily Quests Completed |
+| 976 | 500 Daily Quests Completed |
+| 977 | 1000 Daily Quests Completed |
+| 978 | 3000 Quests Completed |
+| 1042 | Number of hugs |
+| 1045 | Total cheers |
+| 1047 | Total facepalms |
 <!-- END_STATS_LOG -->
 
 ## IDs Not Found in Game DB (Skipped)
@@ -803,5 +885,8 @@ All skipped — achievement ID not found in game DB (verified against build 12.0
 702, 703, 704, 715, 716, 717, 718, 719, 720, 721, 722, 723, 724, 737, 738, 739, 740, 741, 742, 743, 744, 745, 746, 747, 748, 749,
 751, 752, 754, 755, 756, 757, 758, 760, 767, 785, 786, 787, 788, 789, 790, 791, 792, 793, 794, 795, 797,
 803, 804, 805, 806, 807, 808, 809, 810, 813, 814, 815, 816, 817, 818, 819, 820, 821, 822, 823, 824, 825, 826, 827, 828, 829, 830, 831, 832, 833, 834, 835, 836,
-874, 895, 916, 917, 918, 920, 924, 925
+874, 895,
+916, 917, 918, 920, 924, 925, 926, 927, 928, 929, 930, 931, 935, 936,
+954, 970, 982, 983, 984, 985, 986, 987, 988, 989, 990, 991, 992, 993, 994, 995, 996, 997, 998, 999,
+1000, 1001, 1002, 1003, 1004, 1013, 1016, 1018, 1019, 1043, 1044, 1046, 1048, 1049, 1050
 <!-- END_NOTFOUND -->

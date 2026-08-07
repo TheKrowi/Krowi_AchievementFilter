@@ -67,6 +67,18 @@ newString: $ids = @()
 
 ---
 
+## Zone Placement Rules (confirmed with user — do not infer new rules from existing file conventions)
+
+These rules were derived and explicitly confirmed with the user, not inferred by pattern-matching existing ZoneData.lua content. "It's already there" is never sufficient justification for a placement decision — existing data can itself be an inconsistent legacy convention. If a new case challenges one of these rules or falls outside them, STOP and ask the user rather than extrapolating.
+
+1. **Continent-level tags** (e.g. `12` Kalimdor, `101` Outland, `13` Eastern Kingdoms) are reserved for achievements that are **genuinely continent-wide** (Explorer, Loremaster, Taming/Safari-style — "do this in every zone of the continent"). Reputation/faction achievements do NOT get a continent tag just because the faction spans 2+ zones within that continent — they get only their specific zone(s), never the parent continent. If borderline, ask the user.
+2. **Zone-name/file-path prose must be verified against the actual file, never derived from a mapId number by memory or CSV inference.** Use `_find_zonefile.ps1` (exact-ID word-boundary search) to confirm which file(s) truly contain a bare achievement ID and what the `zoneData:Zone(N, { -- ZoneName` header actually says before writing any zone name or file path into the decisions log.
+3. **Zone revamps (old zone replaced by a new, unlinked map ID in a later expansion)** default to **no backfill**: pre-existing achievements stay on their original map ID only; the new post-revamp map ID is used exclusively for achievements introduced by the revamping patch itself. Do not cross-tag in either direction as a default. Exception: Cataclysm's Old World revamp sometimes split one old zone into multiple new sub-zone IDs (e.g. Northern/Southern Barrens) — that is a known, already-handled special case, not the default pattern. If a new revamp doesn't look like a clean 1:1 replacement, ask the user before deviating from the no-backfill default.
+4. **"Ambiguous" test**: a zone assignment must be backed by a specific, checkable fact — a quest-giver/NPC location, a faction headquarters, or a boss/instance location — found in the DB description, Warcraft Wiki (https://warcraft.wiki.gg/wiki/Warcraft_Wiki), or achievement criteria. "The title sounds like it's set there" is NOT sufficient. If two or more zones each have an equally strong corroborating fact, or none do, the achievement is genuinely ambiguous → ask the user. Multi-zone quest chains and reputation achievements ARE expected to require this kind of external research (DB + Warcraft Wiki) — that is legitimate fact-finding, not the same as inferring from existing ZoneData.lua conventions.
+5. **Partial-coverage backfill is NOT automatic.** If an "already present" achievement is found missing from one or more zones it also qualifies for (discovered while doing the per-zone criteria check), do NOT silently edit its zone list to fill the gap — flag it to the user and let them decide, every time. (Precedent `763`/`764` auto-backfilled gaps without asking — that is no longer the default behavior.)
+
+---
+
 ## Subagent 1 — Lookup
 
 Invoke: `runSubagent("Explore", prompt)` where prompt is the template below, filled with the actual IDs and expansion hint.
@@ -105,12 +117,24 @@ STEP 2 — Skip rules (no map lookup needed)
 
 STEP 3 — Zone lookup (non-skipped only)
   a. Check raw\MapVerifier_ZonesPerAchievement.csv — if achievementId column contains this ID
-     → decision=already_present, use the mapId/mapName from that row
+     → decision=already_present, use the mapId from that row. The CSV has NO zone-name column —
+     do NOT guess the zone name from the mapId number. Use _find_zonefile.ps1 to find which
+     file(s) actually contain this bare ID and read the real `zoneData:Zone(N, { -- ZoneName`
+     header there for the true zone name and file path.
   b. Search raw\MapVerifier_ActiveZones.csv by name column using zone name derived from
      the achievement title or description. Only accept IDs in this file (never InactiveZones).
   c. For dungeons/raids with multiple floors, also check raw\MapVerifier_LinkGroups.csv
      and use the primary map ID.
-  d. If zone is still ambiguous → decision=ambiguous (parent will ask user)
+  d. Apply the Zone Placement Rules above (continent tags, zone revamps, ambiguity test) —
+     do not add a continent-level tag or cross-revamp tag unless the rules explicitly call
+     for it. When the DB description alone doesn't pin down a zone, check Warcraft Wiki
+     (https://warcraft.wiki.gg/wiki/Warcraft_Wiki) for the quest-giver/faction/boss location
+     before deciding — that is legitimate research, not "inferring from existing conventions".
+  e. If, while checking coverage, an "already present" achievement turns out to be missing
+     from one or more zones it also qualifies for, do NOT edit it — set decision=already_present
+     but add reason="partial coverage gap found, flagged for user" so the parent can ask.
+  f. If zone is still ambiguous per the ambiguity test, or a case challenges a Zone Placement
+     Rule → decision=ambiguous (parent will ask user)
 
 Return ONLY this JSON array, no prose, no markdown:
 [

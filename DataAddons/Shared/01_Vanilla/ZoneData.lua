@@ -137,6 +137,15 @@ zoneData:Zone(13, { -- Eastern Kingdoms (continent)
     4881, -- The Earthen Ring
     7525, -- Taming Cataclysm
     46, -- Universal Explorer
+    971, -- Tricks and Treats of Azeroth
+    1022, -- Flame Warden of Eastern Kingdoms
+    1025, -- Flame Keeper of Eastern Kingdoms
+    1028, -- Extinguishing Eastern Kingdoms
+    1031, -- Extinguishing Eastern Kingdoms
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
 })
 
 zoneData:Zone({18, 19, 20}, { -- Tirisfal Glades (zone)
@@ -152,6 +161,9 @@ zoneData:Zone({18, 19, 20}, { -- Tirisfal Glades (zone)
     289, -- The Savior of Hallow's End
     46, -- Universal Explorer
     912, -- Elders of Eastern Kingdoms
+    967, -- Tricks and Treats of Eastern Kingdoms
+    1025, -- Flame Keeper of Eastern Kingdoms
+    1028, -- Extinguishing Eastern Kingdoms
 })
 
 zoneData:Zone(21, { -- Silverpine Forest (zone)
@@ -166,6 +178,9 @@ zoneData:Zone(21, { -- Silverpine Forest (zone)
     4827, -- Surveying the Damage
     46, -- Universal Explorer
     912, -- Elders of Eastern Kingdoms
+    967, -- Tricks and Treats of Eastern Kingdoms
+    1025, -- Flame Keeper of Eastern Kingdoms
+    1028, -- Extinguishing Eastern Kingdoms
 })
 
 zoneData:Zone(22, { -- Western Plaguelands (zone)
@@ -184,6 +199,11 @@ zoneData:Zone(22, { -- Western Plaguelands (zone)
     2556, -- Pest Control
     46, -- Universal Explorer
     912, -- Elders of Eastern Kingdoms
+    967, -- Tricks and Treats of Eastern Kingdoms
+    1022, -- Flame Warden of Eastern Kingdoms
+    1025, -- Flame Keeper of Eastern Kingdoms
+    1028, -- Extinguishing Eastern Kingdoms
+    1031, -- Extinguishing Eastern Kingdoms
 })
 
 zoneData:Zone(23, { -- Eastern Plaguelands (zone)
@@ -211,6 +231,8 @@ zoneData:Zone(23, { -- Eastern Plaguelands (zone)
     2556, -- Pest Control
     46, -- Universal Explorer
     912, -- Elders of Eastern Kingdoms
+    966, -- Tricks and Treats of Eastern Kingdoms
+    967, -- Tricks and Treats of Eastern Kingdoms
 })
 
 zoneData:Zone(26, { -- The Hinterlands (zone)
@@ -234,6 +256,10 @@ zoneData:Zone(26, { -- The Hinterlands (zone)
     8348, -- The Longest Day
     2556, -- Pest Control
     46, -- Universal Explorer
+    966, -- Tricks and Treats of Eastern Kingdoms
+    967, -- Tricks and Treats of Eastern Kingdoms
+    1022, -- Flame Warden of Eastern Kingdoms
+    1025, -- Flame Keeper of Eastern Kingdoms
 })
 
 zoneData:Zone(25, { -- Hillsbrad Foothills (zone)
@@ -255,6 +281,9 @@ zoneData:Zone(25, { -- Hillsbrad Foothills (zone)
     5364, -- Don't Want No Zombies on My Lawn
     5365, -- Bloom and Doom
     273, -- On Metzen!
+    967, -- Tricks and Treats of Eastern Kingdoms
+    1025, -- Flame Keeper of Eastern Kingdoms
+    1028, -- Extinguishing Eastern Kingdoms
 })
 
 zoneData:Zone(14, { -- Arathi Highlands (zone)
@@ -271,6 +300,12 @@ zoneData:Zone(14, { -- Arathi Highlands (zone)
     shared.OldWorldPetAchievements,
     2556, -- Pest Control
     46, -- Universal Explorer
+    966, -- Tricks and Treats of Eastern Kingdoms
+    967, -- Tricks and Treats of Eastern Kingdoms
+    1022, -- Flame Warden of Eastern Kingdoms
+    1025, -- Flame Keeper of Eastern Kingdoms
+    1028, -- Extinguishing Eastern Kingdoms
+    1031, -- Extinguishing Eastern Kingdoms
 })
 
 zoneData:Zone(56, { -- Wetlands (zone)
@@ -288,6 +323,9 @@ zoneData:Zone(56, { -- Wetlands (zone)
     shared.OldWorldPetAchievements,
     2556, -- Pest Control
     46, -- Universal Explorer
+    966, -- Tricks and Treats of Eastern Kingdoms
+    1022, -- Flame Warden of Eastern Kingdoms
+    1031, -- Extinguishing Eastern Kingdoms
 })
 
 zoneData:Zone(48, { -- Loch Modan (zone)
@@ -306,6 +344,9 @@ zoneData:Zone(48, { -- Loch Modan (zone)
     4827, -- Surveying the Damage
     46, -- Universal Explorer
     912, -- Elders of Eastern Kingdoms
+    966, -- Tricks and Treats of Eastern Kingdoms
+    1022, -- Flame Warden of Eastern Kingdoms
+    1031, -- Extinguishing Eastern Kingdoms
 })
 
 zoneData:Zone({27, 28, 29, 30, 31, 427, 428}, { -- Dun Morogh (zone)
@@ -321,6 +362,9 @@ zoneData:Zone({27, 28, 29, 30, 31, 427, 428}, { -- Dun Morogh (zone)
     289, -- The Savior of Hallow's End
     46, -- Universal Explorer
     912, -- Elders of Eastern Kingdoms
+    966, -- Tricks and Treats of Eastern Kingdoms
+    1022, -- Flame Warden of Eastern Kingdoms
+    1031, -- Extinguishing Eastern Kingdoms
 })
 
 zoneData:Zone(49, { -- Redridge Mountains (zone)
@@ -344,6 +388,9 @@ zoneData:Zone(49, { -- Redridge Mountains (zone)
     8348, -- The Longest Day
     2556, -- Pest Control
     46, -- Universal Explorer
+    966, -- Tricks and Treats of Eastern Kingdoms
+    1022, -- Flame Warden of Eastern Kingdoms
+    1031, -- Extinguishing Eastern Kingdoms
 })
 
 zoneData:Zone({37, 38, 39, 40, 425, 426}, { -- Elwynn Forest (zone)
@@ -366,6 +413,9 @@ zoneData:Zone({37, 38, 39, 40, 425, 426}, { -- Elwynn Forest (zone)
     289, -- The Savior of Hallow's End
     46, -- Universal Explorer
     912, -- Elders of Eastern Kingdoms
+    966, -- Tricks and Treats of Eastern Kingdoms
+    1022, -- Flame Warden of Eastern Kingdoms
+    1031, -- Extinguishing Eastern Kingdoms
 })
 
 zoneData:Zone({15, 16}, { -- Badlands (zone)
@@ -382,6 +432,11 @@ zoneData:Zone({15, 16}, { -- Badlands (zone)
     2556, -- Pest Control
     4827, -- Surveying the Damage
     46, -- Universal Explorer
+    966, -- Tricks and Treats of Eastern Kingdoms
+    1022, -- Flame Warden of Eastern Kingdoms
+    1025, -- Flame Keeper of Eastern Kingdoms
+    1028, -- Extinguishing Eastern Kingdoms
+    1031, -- Extinguishing Eastern Kingdoms
 })
 
 zoneData:Zone(32, { -- Searing Gorge (zone)
@@ -403,6 +458,8 @@ zoneData:Zone(32, { -- Searing Gorge (zone)
     2556, -- Pest Control
     46, -- Universal Explorer
     912, -- Elders of Eastern Kingdoms
+    966, -- Tricks and Treats of Eastern Kingdoms
+    967, -- Tricks and Treats of Eastern Kingdoms
 })
 
 zoneData:Zone(36, { -- Burning Steppes (zone)
@@ -427,6 +484,10 @@ zoneData:Zone(36, { -- Burning Steppes (zone)
     2556, -- Pest Control
     46, -- Universal Explorer
     912, -- Elders of Eastern Kingdoms
+    1022, -- Flame Warden of Eastern Kingdoms
+    1025, -- Flame Keeper of Eastern Kingdoms
+    1028, -- Extinguishing Eastern Kingdoms
+    1031, -- Extinguishing Eastern Kingdoms
 })
 
 zoneData:Zone({42, 43, 44, 45, 46}, { -- Deadwind Pass (zone)
@@ -470,6 +531,9 @@ zoneData:Zone(47, { -- Duskwood (zone)
     2556, -- Pest Control
     46, -- Universal Explorer
     4907, -- Duskwood Quests
+    966, -- Tricks and Treats of Eastern Kingdoms
+    1022, -- Flame Warden of Eastern Kingdoms
+    1031, -- Extinguishing Eastern Kingdoms
 })
 
 zoneData:Zone(51, { -- Swamp of Sorrows (zone)
@@ -493,6 +557,12 @@ zoneData:Zone(51, { -- Swamp of Sorrows (zone)
     8348, -- The Longest Day
     2556, -- Pest Control
     46, -- Universal Explorer
+    966, -- Tricks and Treats of Eastern Kingdoms
+    967, -- Tricks and Treats of Eastern Kingdoms
+    1022, -- Flame Warden of Eastern Kingdoms
+    1025, -- Flame Keeper of Eastern Kingdoms
+    1028, -- Extinguishing Eastern Kingdoms
+    1031, -- Extinguishing Eastern Kingdoms
 })
 
 zoneData:Zone(17, { -- Blasted Lands (zone)
@@ -512,6 +582,12 @@ zoneData:Zone(17, { -- Blasted Lands (zone)
     2556, -- Pest Control
     46, -- Universal Explorer
     912, -- Elders of Eastern Kingdoms
+    966, -- Tricks and Treats of Eastern Kingdoms
+    967, -- Tricks and Treats of Eastern Kingdoms
+    1022, -- Flame Warden of Eastern Kingdoms
+    1025, -- Flame Keeper of Eastern Kingdoms
+    1028, -- Extinguishing Eastern Kingdoms
+    1031, -- Extinguishing Eastern Kingdoms
 })
 
 zoneData:Zone({52, 53, 54, 55}, { -- Westfall (zone)
@@ -541,6 +617,8 @@ zoneData:Zone({52, 53, 54, 55}, { -- Westfall (zone)
     4827, -- Surveying the Damage
     46, -- Universal Explorer
     912, -- Elders of Eastern Kingdoms
+    1022, -- Flame Warden of Eastern Kingdoms
+    1031, -- Extinguishing Eastern Kingdoms
 })
 
 zoneData:Zone(12, { -- Kalimdor (continent)
@@ -566,6 +644,17 @@ zoneData:Zone(12, { -- Kalimdor (continent)
     4868, -- Cataclysm Explorer
     7525, -- Taming Cataclysm
     46, -- Universal Explorer
+    971, -- Tricks and Treats of Azeroth
+    963, -- Tricks and Treats of Kalimdor
+    965, -- Tricks and Treats of Kalimdor
+    1023, -- Flame Warden of Kalimdor
+    1026, -- Flame Keeper of Kalimdor
+    1029, -- Extinguishing Kalimdor
+    1032, -- Extinguishing Kalimdor
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
 })
 
 zoneData:Zone({57, 58, 59, 60, 61}, { -- Teldrassil (zone)
@@ -578,6 +667,9 @@ zoneData:Zone({57, 58, 59, 60, 61}, { -- Teldrassil (zone)
     6560, -- World Pet Mauler
     46, -- Universal Explorer
     911, -- Elders of Kalimdor
+    963, -- Tricks and Treats of Kalimdor
+    1023, -- Flame Warden of Kalimdor
+    1032, -- Extinguishing Kalimdor
 })
 
 zoneData:Zone(62, { -- Darkshore (zone)
@@ -597,6 +689,9 @@ zoneData:Zone(62, { -- Darkshore (zone)
     46, -- Universal Explorer
     12572, -- War Supplied
     911, -- Elders of Kalimdor
+    963, -- Tricks and Treats of Kalimdor
+    1023, -- Flame Warden of Kalimdor
+    1032, -- Extinguishing Kalimdor
 })
 
 zoneData:Zone(63, { -- Ashenvale (zone)
@@ -623,6 +718,12 @@ zoneData:Zone(63, { -- Ashenvale (zone)
     4827, -- Surveying the Damage
     46, -- Universal Explorer
     911, -- Elders of Kalimdor
+    963, -- Tricks and Treats of Kalimdor
+    965, -- Tricks and Treats of Kalimdor
+    1023, -- Flame Warden of Kalimdor
+    1026, -- Flame Keeper of Kalimdor
+    1029, -- Extinguishing Kalimdor
+    1032, -- Extinguishing Kalimdor
 })
 
 zoneData:Zone(65, { -- Stonetalon Mountains (zone)
@@ -649,12 +750,19 @@ zoneData:Zone(65, { -- Stonetalon Mountains (zone)
     2556, -- Pest Control
     46, -- Universal Explorer
     911, -- Elders of Kalimdor
+    963, -- Tricks and Treats of Kalimdor
+    965, -- Tricks and Treats of Kalimdor
+    1023, -- Flame Warden of Kalimdor
+    1026, -- Flame Keeper of Kalimdor
+    1029, -- Extinguishing Kalimdor
+    1032, -- Extinguishing Kalimdor
 })
 
 zoneData:Zone(80, { -- Moonglade (zone)
     1206, -- To All The Squirrels I've Loved Before
     43, -- Kalimdor Explorer
     855, -- Explore Moonglade
+    937, -- Elune's Blessing
     9924, -- Field Photographer
     6602, -- Taming Kalimdor
     6607, -- Taming Azeroth
@@ -692,6 +800,8 @@ zoneData:Zone(77, { -- Felwood (zone)
     8348, -- The Longest Day
     46, -- Universal Explorer
     911, -- Elders of Kalimdor
+    963, -- Tricks and Treats of Kalimdor
+    965, -- Tricks and Treats of Kalimdor
 })
 
 zoneData:Zone({7, 8, 9}, { -- Mulgore (zone)
@@ -705,6 +815,9 @@ zoneData:Zone({7, 8, 9}, { -- Mulgore (zone)
     2556, -- Pest Control
     46, -- Universal Explorer
     911, -- Elders of Kalimdor
+    965, -- Tricks and Treats of Kalimdor
+    1026, -- Flame Keeper of Kalimdor
+    1029, -- Extinguishing Kalimdor
 })
 
 zoneData:Zone({1, 2, 3, 4, 5, 6}, { -- Durotar (zone)
@@ -730,6 +843,9 @@ zoneData:Zone({1, 2, 3, 4, 5, 6}, { -- Durotar (zone)
     289, -- The Savior of Hallow's End
     46, -- Universal Explorer
     911, -- Elders of Kalimdor
+    965, -- Tricks and Treats of Kalimdor
+    1026, -- Flame Keeper of Kalimdor
+    1029, -- Extinguishing Kalimdor
 })
 
 zoneData:Zone(64, { -- Thousand Needles (zone)
@@ -778,6 +894,12 @@ zoneData:Zone({66, 67, 68}, { -- Desolace (zone)
     2556, -- Pest Control
     4827, -- Surveying the Damage
     46, -- Universal Explorer
+    963, -- Tricks and Treats of Kalimdor
+    965, -- Tricks and Treats of Kalimdor
+    1023, -- Flame Warden of Kalimdor
+    1026, -- Flame Keeper of Kalimdor
+    1029, -- Extinguishing Kalimdor
+    1032, -- Extinguishing Kalimdor
 })
 
 zoneData:Zone(69, { -- Feralas (zone)
@@ -805,6 +927,12 @@ zoneData:Zone(69, { -- Feralas (zone)
     2556, -- Pest Control
     46, -- Universal Explorer
     911, -- Elders of Kalimdor
+    963, -- Tricks and Treats of Kalimdor
+    965, -- Tricks and Treats of Kalimdor
+    1023, -- Flame Warden of Kalimdor
+    1026, -- Flame Keeper of Kalimdor
+    1029, -- Extinguishing Kalimdor
+    1032, -- Extinguishing Kalimdor
 })
 
 zoneData:Zone(70, { -- Dustwallow Marsh (zone)
@@ -830,6 +958,12 @@ zoneData:Zone(70, { -- Dustwallow Marsh (zone)
     8348, -- The Longest Day
     2556, -- Pest Control
     46, -- Universal Explorer
+    963, -- Tricks and Treats of Kalimdor
+    965, -- Tricks and Treats of Kalimdor
+    1023, -- Flame Warden of Kalimdor
+    1026, -- Flame Keeper of Kalimdor
+    1029, -- Extinguishing Kalimdor
+    1032, -- Extinguishing Kalimdor
 })
 
 zoneData:Zone({71, 72, 73}, { -- Tanaris (zone)
@@ -851,6 +985,12 @@ zoneData:Zone({71, 72, 73}, { -- Tanaris (zone)
     4827, -- Surveying the Damage
     46, -- Universal Explorer
     911, -- Elders of Kalimdor
+    963, -- Tricks and Treats of Kalimdor
+    965, -- Tricks and Treats of Kalimdor
+    1023, -- Flame Warden of Kalimdor
+    1026, -- Flame Keeper of Kalimdor
+    1029, -- Extinguishing Kalimdor
+    1032, -- Extinguishing Kalimdor
 })
 
 zoneData:Zone(76, { -- Azshara (zone)
@@ -871,6 +1011,9 @@ zoneData:Zone(76, { -- Azshara (zone)
     2556, -- Pest Control
     46, -- Universal Explorer
     911, -- Elders of Kalimdor
+    965, -- Tricks and Treats of Kalimdor
+    1026, -- Flame Keeper of Kalimdor
+    1029, -- Extinguishing Kalimdor
 })
 
 zoneData:Zone(83, { -- Winterspring (zone)
@@ -900,6 +1043,12 @@ zoneData:Zone(83, { -- Winterspring (zone)
     2556, -- Pest Control
     46, -- Universal Explorer
     911, -- Elders of Kalimdor
+    963, -- Tricks and Treats of Kalimdor
+    965, -- Tricks and Treats of Kalimdor
+    1023, -- Flame Warden of Kalimdor
+    1026, -- Flame Keeper of Kalimdor
+    1029, -- Extinguishing Kalimdor
+    1032, -- Extinguishing Kalimdor
 })
 
 zoneData:Zone({78, 79}, { -- Un'Goro Crater (zone)
@@ -919,6 +1068,12 @@ zoneData:Zone({78, 79}, { -- Un'Goro Crater (zone)
     2556, -- Pest Control
     46, -- Universal Explorer
     911, -- Elders of Kalimdor
+    963, -- Tricks and Treats of Kalimdor
+    965, -- Tricks and Treats of Kalimdor
+    1023, -- Flame Warden of Kalimdor
+    1026, -- Flame Keeper of Kalimdor
+    1029, -- Extinguishing Kalimdor
+    1032, -- Extinguishing Kalimdor
 })
 
 zoneData:Zone({81, 82}, { -- Silithus (zone)
@@ -938,6 +1093,12 @@ zoneData:Zone({81, 82}, { -- Silithus (zone)
     2556, -- Pest Control
     46, -- Universal Explorer
     911, -- Elders of Kalimdor
+    963, -- Tricks and Treats of Kalimdor
+    965, -- Tricks and Treats of Kalimdor
+    1023, -- Flame Warden of Kalimdor
+    1026, -- Flame Keeper of Kalimdor
+    1029, -- Extinguishing Kalimdor
+    1032, -- Extinguishing Kalimdor
 })
 
 zoneData:Zone(84, { -- Stormwind City (city)
@@ -959,6 +1120,7 @@ zoneData:Zone(84, { -- Stormwind City (city)
     2556, -- Pest Control
     18854, -- Seeing Red
     275, -- Veteran Nanny
+    966, -- Tricks and Treats of Eastern Kingdoms
 })
 
 zoneData:Zone({85, 86}, { -- Orgrimmar (city)
@@ -981,6 +1143,7 @@ zoneData:Zone({85, 86}, { -- Orgrimmar (city)
     2556, -- Pest Control
     18854, -- Seeing Red
     275, -- Veteran Nanny
+    965, -- Tricks and Treats of Kalimdor
 })
 
 zoneData:Zone({87, 1361}, { -- Ironforge (city)
@@ -995,6 +1158,7 @@ zoneData:Zone({87, 1361}, { -- Ironforge (city)
     6584, -- Big City Pet Brawlin' - Alliance
     6622, -- Big City Pet Brawler
     915, -- Elders of the Alliance
+    966, -- Tricks and Treats of Eastern Kingdoms
 })
 
 zoneData:Zone(88, { -- Thunder Bluff (city)
@@ -1009,6 +1173,7 @@ zoneData:Zone(88, { -- Thunder Bluff (city)
     6622, -- Big City Pet Brawler
     2556, -- Pest Control
     259, -- Scrooge
+    965, -- Tricks and Treats of Kalimdor
 })
 
 zoneData:Zone(89, { -- Darnassus (city)
@@ -1022,6 +1187,7 @@ zoneData:Zone(89, { -- Darnassus (city)
     6622, -- Big City Pet Brawler
     915, -- Elders of the Alliance
     2556, -- Pest Control
+    963, -- Tricks and Treats of Kalimdor
 })
 
 zoneData:Zone(90, { -- Undercity (city)
@@ -1034,6 +1200,7 @@ zoneData:Zone(90, { -- Undercity (city)
     6621, -- Big City Pet Brawlin' - Horde
     6622, -- Big City Pet Brawler
     2556, -- Pest Control
+    967, -- Tricks and Treats of Eastern Kingdoms
 })
 
 zoneData:Zone({91, 1537, 2162}, { -- Alterac Valley (battleground)

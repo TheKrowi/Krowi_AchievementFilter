@@ -164,6 +164,9 @@ zoneData:Zone(94, { -- Eversong Woods (zone)
     2556, -- Pest Control
     289, -- The Savior of Hallow's End
     46, -- Universal Explorer
+    967, -- Tricks and Treats of Eastern Kingdoms
+    1025, -- Flame Keeper of Eastern Kingdoms
+    1028, -- Extinguishing Eastern Kingdoms
 })
 
 zoneData:Zone({95, 96}, { -- Ghostlands (zone)
@@ -176,6 +179,9 @@ zoneData:Zone({95, 96}, { -- Ghostlands (zone)
     762, -- Ambassador of the Horde
     2556, -- Pest Control
     46, -- Universal Explorer
+    967, -- Tricks and Treats of Eastern Kingdoms
+    1025, -- Flame Keeper of Eastern Kingdoms
+    1028, -- Extinguishing Eastern Kingdoms
 })
 
 zoneData:Zone({97, 98, 99, 106}, { -- Azuremyst Isle (zone)
@@ -188,6 +194,9 @@ zoneData:Zone({97, 98, 99, 106}, { -- Azuremyst Isle (zone)
     2556, -- Pest Control
     289, -- The Savior of Hallow's End
     46, -- Universal Explorer
+    963, -- Tricks and Treats of Kalimdor
+    1023, -- Flame Warden of Kalimdor
+    1032, -- Extinguishing Kalimdor
 })
 
 zoneData:Zone(106, { -- Bloodmyst Isle (zone)
@@ -202,6 +211,7 @@ zoneData:Zone(106, { -- Bloodmyst Isle (zone)
     948, -- Ambassador of the Alliance
     2556, -- Pest Control
     46, -- Universal Explorer
+    1032, -- Extinguishing Kalimdor
 })
 
 zoneData:Zone(101, { -- Outland (continent)
@@ -226,6 +236,17 @@ zoneData:Zone(101, { -- Outland (continent)
     6614, -- Outland Tamer
     6604, -- Taming Outland
     46, -- Universal Explorer
+    971, -- Tricks and Treats of Azeroth
+    968, -- Tricks and Treats of Outland
+    969, -- Tricks and Treats of Outland
+    1024, -- Flame Warden of Outland
+    1027, -- Flame Keeper of Outland
+    1030, -- Extinguishing Outland
+    1033, -- Extinguishing Outland
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
 })
 
 zoneData:Zone(100, { -- Hellfire Peninsula (zone)
@@ -255,6 +276,12 @@ zoneData:Zone(100, { -- Hellfire Peninsula (zone)
     6604, -- Taming Outland
     2556, -- Pest Control
     46, -- Universal Explorer
+    968, -- Tricks and Treats of Outland
+    969, -- Tricks and Treats of Outland
+    1024, -- Flame Warden of Outland
+    1027, -- Flame Keeper of Outland
+    1030, -- Extinguishing Outland
+    1033, -- Extinguishing Outland
 })
 
 zoneData:Zone(102, { -- Zangarmarsh (zone)
@@ -287,6 +314,12 @@ zoneData:Zone(102, { -- Zangarmarsh (zone)
     6604, -- Taming Outland
     2556, -- Pest Control
     46, -- Universal Explorer
+    968, -- Tricks and Treats of Outland
+    969, -- Tricks and Treats of Outland
+    1024, -- Flame Warden of Outland
+    1027, -- Flame Keeper of Outland
+    1030, -- Extinguishing Outland
+    1033, -- Extinguishing Outland
 })
 
 zoneData:Zone(103, { -- The Exodar (city)
@@ -298,6 +331,7 @@ zoneData:Zone(103, { -- The Exodar (city)
     603, -- Wrath of the Horde
     915, -- Elders of the Alliance
     2556, -- Pest Control
+    963, -- Tricks and Treats of Kalimdor
 })
 
 zoneData:Zone(104, { -- Shadowmoon Valley (zone)
@@ -324,6 +358,12 @@ zoneData:Zone(104, { -- Shadowmoon Valley (zone)
     6604, -- Taming Outland
     2556, -- Pest Control
     46, -- Universal Explorer
+    968, -- Tricks and Treats of Outland
+    969, -- Tricks and Treats of Outland
+    1024, -- Flame Warden of Outland
+    1027, -- Flame Keeper of Outland
+    1030, -- Extinguishing Outland
+    1033, -- Extinguishing Outland
 })
 
 zoneData:Zone(105, { -- Blade's Edge Mountains (zone)
@@ -344,6 +384,12 @@ zoneData:Zone(105, { -- Blade's Edge Mountains (zone)
     6614, -- Outland Tamer
     2556, -- Pest Control
     46, -- Universal Explorer
+    968, -- Tricks and Treats of Outland
+    969, -- Tricks and Treats of Outland
+    1024, -- Flame Warden of Outland
+    1027, -- Flame Keeper of Outland
+    1030, -- Extinguishing Outland
+    1033, -- Extinguishing Outland
 })
 
 zoneData:Zone(107, { -- Nagrand (zone)
@@ -377,6 +423,12 @@ zoneData:Zone(107, { -- Nagrand (zone)
     6604, -- Taming Outland
     2556, -- Pest Control
     46, -- Universal Explorer
+    968, -- Tricks and Treats of Outland
+    969, -- Tricks and Treats of Outland
+    1024, -- Flame Warden of Outland
+    1027, -- Flame Keeper of Outland
+    1030, -- Extinguishing Outland
+    1033, -- Extinguishing Outland
 })
 
 zoneData:Zone(108, { -- Terokkar Forest (zone)
@@ -403,6 +455,12 @@ zoneData:Zone(108, { -- Terokkar Forest (zone)
     6614, -- Outland Tamer
     2556, -- Pest Control
     46, -- Universal Explorer
+    968, -- Tricks and Treats of Outland
+    969, -- Tricks and Treats of Outland
+    1024, -- Flame Warden of Outland
+    1027, -- Flame Keeper of Outland
+    1030, -- Extinguishing Outland
+    1033, -- Extinguishing Outland
 })
 
 zoneData:Zone(109, { -- Netherstorm (zone)
@@ -423,6 +481,12 @@ zoneData:Zone(109, { -- Netherstorm (zone)
     6587, -- Outland Safari
     6614, -- Outland Tamer
     46, -- Universal Explorer
+    968, -- Tricks and Treats of Outland
+    969, -- Tricks and Treats of Outland
+    1024, -- Flame Warden of Outland
+    1027, -- Flame Keeper of Outland
+    1030, -- Extinguishing Outland
+    1033, -- Extinguishing Outland
 })
 
 zoneData:Zone(110, { -- Silvermoon City (city)
@@ -434,6 +498,7 @@ zoneData:Zone(110, { -- Silvermoon City (city)
     604, -- Wrath of the Alliance
     914, -- Elders of the Horde
     2556, -- Pest Control
+    967, -- Tricks and Treats of Eastern Kingdoms
 })
 
 zoneData:Zone(111, { -- Shattrath City (city)
@@ -448,6 +513,8 @@ zoneData:Zone(111, { -- Shattrath City (city)
     9924, -- Field Photographer
     6604, -- Taming Outland
     275, -- Veteran Nanny
+    968, -- Tricks and Treats of Outland
+    969, -- Tricks and Treats of Outland
 })
 
 zoneData:Zone({350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366}, { -- Karazhan

@@ -195,6 +195,10 @@ zoneData:Zone({10, 11}, { -- Northern Barrens (zone)
     2556, -- Pest Control
     46, -- Universal Explorer
     911, -- Elders of Kalimdor
+    963, -- Tricks and Treats of Kalimdor
+    965, -- Tricks and Treats of Kalimdor
+    1026, -- Flame Keeper of Kalimdor
+    1029, -- Extinguishing Kalimdor
 })
 
 zoneData:Zone(50, { -- Northern Stranglethorn (zone)
@@ -225,10 +229,17 @@ zoneData:Zone(50, { -- Northern Stranglethorn (zone)
     2556, -- Pest Control
     4827, -- Surveying the Damage
     46, -- Universal Explorer
+    966, -- Tricks and Treats of Eastern Kingdoms
+    967, -- Tricks and Treats of Eastern Kingdoms
+    1022, -- Flame Warden of Eastern Kingdoms
+    1025, -- Flame Keeper of Eastern Kingdoms
+    1028, -- Extinguishing Eastern Kingdoms
+    1031, -- Extinguishing Eastern Kingdoms
 })
 
 zoneData:Zone({217, 1030, 1031}, { -- Ruins of Gilneas (zone)
     1206, -- To All The Squirrels I've Loved Before
+    948, -- Ambassador of the Alliance
 })
 
 zoneData:Zone(224, { -- Stranglethorn Vale (zone)
@@ -319,6 +330,12 @@ zoneData:Zone(199, { -- Southern Barrens (zone)
     2556, -- Pest Control
     4827, -- Surveying the Damage
     46, -- Universal Explorer
+    963, -- Tricks and Treats of Kalimdor
+    965, -- Tricks and Treats of Kalimdor
+    1023, -- Flame Warden of Kalimdor
+    1026, -- Flame Keeper of Kalimdor
+    1029, -- Extinguishing Kalimdor
+    1032, -- Extinguishing Kalimdor
 })
 
 zoneData:Zone({201, 203, 204, 205}, { -- Vashj'ir (zone)
@@ -395,6 +412,12 @@ zoneData:Zone(210, { -- The Cape of Stranglethorn (zone)
     4827, -- Surveying the Damage
     46, -- Universal Explorer
     912, -- Elders of Eastern Kingdoms
+    966, -- Tricks and Treats of Eastern Kingdoms
+    967, -- Tricks and Treats of Eastern Kingdoms
+    1022, -- Flame Warden of Eastern Kingdoms
+    1025, -- Flame Keeper of Eastern Kingdoms
+    1028, -- Extinguishing Eastern Kingdoms
+    1031, -- Extinguishing Eastern Kingdoms
 })
 
 zoneData:Zone(249, { -- Uldum (zone)

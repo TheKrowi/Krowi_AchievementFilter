@@ -30,6 +30,14 @@ shared.CrossExpansionDelves = {
 
 local zoneData = KrowiAF.NewZoneData("CrossExpansion")
 
+zoneData:Zone(947, { -- Azeroth (continent)
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+})
+
 zoneData:Zone({500, 503}, { -- Bizmo's Brawlpub / Brawl'gar Arena (zone)
     7947, -- The First Rule of Brawler's Guild (Season 1 or 2)
     7948, -- The First Rule of Brawler's Guild (Season 1 or 2)
