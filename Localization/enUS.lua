@@ -5,7 +5,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-08-06 20-58-48 ]] --
+-- [[ Exported at 2026-08-08 23-41-36 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -785,12 +785,12 @@ L["Overwatch"] = true
 L["Pandaren"] = true
 L["Pandaria Cup"] = true
 L["Part of a chain"] = true
-L["Persist Across Sessions"] = true
-L["Persist Across Sessions Desc"] = "Remember popped-out achievement windows (and their position) across /reload and login."
 L["Passage Pathway"] = true
 L["Past Obtainable"] = true
 L["Paste to Chat"] = true
 L["Patch"] = true
+L["Persist Across Sessions"] = true
+L["Persist Across Sessions Desc"] = "Remember popped-out achievement windows (and their position) across /reload and login."
 L["Pet Battles"] = true
 L["Pilgrim's Bounty"] = true
 L["Pirates' Day"] = true

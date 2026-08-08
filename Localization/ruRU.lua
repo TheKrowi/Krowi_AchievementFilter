@@ -6,7 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-08-06 20-59-16 ]] --
+-- [[ Exported at 2026-08-08 23-42-05 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -104,6 +104,7 @@ L["Brawler's Guild"] = "Бойцовская гильдия"
 L["Breaknecking Races"] = "Скоростные гонки"
 L["Brewfest"] = "Хмельной фестиваль"
 L["Broken Isles Cup"] = "Кубок Расколотых островов"
+L["Broken Throne"] = "Разрушенный трон"
 L["Buildings"] = "Строения"
 L["Burning Pandaren Spirit"] = "Пылающий пандаренский дух"
 L["Bur's Mount Collection"] = "Коллекция ездовых животныйх Бурса"
@@ -128,6 +129,7 @@ L["Center header Desc"] = "Оставить заголовок центриро�
 L["Center Header Desc"] = "Центр названия достижений на кнопке достижений"
 L["Central Circuit"] = "Центр контура"
 L["Chains of Domination"] = "Цепи Господства"
+L["Challenges"] = "Испытания"
 L["Character / Account wide"] = "На весь Персонаж / Аккаунт "
 L["Character only"] = "Только на Персонаж"
 L["Character Specific"] = "Характерный персонаж"
@@ -144,6 +146,7 @@ L["Click here to view in achievement window"] = "Щелкните здесь д�
 L["Click here to view in achievements"] = "Щелкните здесь для просмотра в достижениях"
 L["Cliffside Circuit"] = "Горная трасса"
 L["Cobalt Assembly"] = "Кобальтовая ассамблея"
+L["Coiled Nightmares"] = "Спиральные кошмары"
 L["Coldheart Interstitia"] = "Междумирье Бессердечных"
 L["Collapse Chain"] = "Свернуть Цепочку"
 L["Collect"] = "Коллекции"
@@ -184,7 +187,10 @@ L["Ctrl"] = true
 L["Current Obtainable"] = "Доступно сейчас"
 L["Current Zone"] = "Текущее место"
 L["Curse of Ula'tek"] = "Проклятие Ула'тек"
+L["Curse Surges"] = "Приливы проклятия"
 L["Custom"] = "Настроить"
+L["Daggerspine Point"] = [=[Высота Пронзающего Гребня
+]=]
 L["Dark Heart"] = "Тёмное Сердце"
 L["Darkmoon Faire"] = "Ярмарка Новолуния"
 L["Dastardly Duos"] = "Коварные Дуо"
@@ -773,6 +779,7 @@ L["The Big Dig: Active"] = "Большие раскопки: Активно"
 L["The Big Dig: Next"] = "Большие раскопки: Следущее"
 L["The Big Dig: Soon"] = "Большие раскопки: Скоро"
 L["The Cruelty of Dornic: Next"] = "Жестокость на острове Дорн: Следущее"
+L["The Curse of Ula'tek"] = "Проклятие Ула'тек"
 L["The Entitled"] = "Привелегированный"
 L["the event name with run time"] = "{eventName} от {startDate} до {endDate}"
 L["The Flowing Forest Flight"] = "Тур Текущих лесов"
@@ -847,6 +854,7 @@ L["Upcoming Calendar Events"] = "Будущие календарные собы�
 L["Upper Reaches"] = "Верхний ярус"
 L["Val and Naigtal"] = "Вал и Найталь"
 L["Val'sharah"] = "Валь'шара"
+L["Vaults of Atal'Utek"] = "Хранилища Атал'Утека"
 L["Vendor"] = "Продавец"
 L["Venthyr Assault"] = "Атака Вентиров"
 L["Vertical position"] = "Позиция по вертикали"

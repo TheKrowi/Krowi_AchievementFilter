@@ -6,7 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-08-06 20-58-53 ]] --
+-- [[ Exported at 2026-08-08 23-41-44 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -108,6 +108,7 @@ L["Brawler's Guild"] = "Kampfgilde"
 L["Breaknecking Races"] = "Halsbrecherrennen"
 L["Brewfest"] = "Braufest"
 L["Broken Isles Cup"] = "Verheerte Inseln Pokal"
+L["Broken Throne"] = "Zerschlagener Thron"
 L["Buildings"] = "Gebäude"
 L["Burning Pandaren Spirit"] = "Brennender Pandarengeist"
 L["Bur's Mount Collection"] = "Bur's Reittier Sammlung"
@@ -149,6 +150,7 @@ L["Center header Desc"] = "Zentriere die Kopfzeile im Erfolgsfenster."
 L["Center Header Desc"] = "Zentriere die Erfolgs-Überschrift"
 L["Central Circuit"] = "Zentralrundstrecke"
 L["Chains of Domination"] = "Ketten der Herrschaft"
+L["Challenges"] = "Herausforderung"
 L["Character / Account wide"] = "Charakter & Account"
 L["Character only"] = "Nur Charakter-Erfolge"
 L["Character Specific"] = "Charakter-spezifisch"
@@ -216,7 +218,9 @@ L["Ctrl"] = true
 L["Current Obtainable"] = "Aktuell Erreichbar"
 L["Current Zone"] = "Aktuelle Zone"
 L["Curse of Ula'tek"] = "Fluch von Ula'tek"
+L["Curse Surges"] = "Fluchwellen"
 L["Custom"] = "Benutzerdefiniert"
+L["Daggerspine Point"] = "Säbelflossenspitze"
 L["Dark Heart"] = "Das Dunkle Herz"
 L["Darkmoon Faire"] = "Dunkelmond-Jahrmarkt"
 L["Dastardly Duos"] = "Durchtriebene Duos"
@@ -540,7 +544,7 @@ L["Grow direction Desc"] = "Die Richtung, in der neue Benachrichtigungs-Fenster 
 L["Guardians of the Dream"] = "Wächter des Traums"
 L["Guides"] = "Hilfe-Leitfaden"
 L["Hallow's End"] = "Schlotternächte"
-L["Hard"] = "Hart"
+L["Hard"] = "Schwer"
 L["Has Reward"] = "Belohnung verfügbar"
 L["Header"] = true
 L["Header tooltip"] = "Überschrift Tooltip"
@@ -828,6 +832,7 @@ L["Reset view"] = "Ansicht zurücksetzen"
 L["Reset view on open"] = "Zurücksetzen der Ansicht beim Öffnen"
 L["Reset view on open Desc"] = "Alle geöffneten Kategorien schliessen und die erste Kategorie auswählen."
 L["Return to the Forbidden Reach"] = "Rückkehr auf die Verbotene Insel"
+L["Revelations"] = "Enthüllungen"
 L["Reverse Sort"] = "Umgekehrte Sortierung"
 L["Rewards"] = "Belohnungen"
 L["Right"] = "Rechts"
@@ -1048,6 +1053,7 @@ L["The Big Dig: Active"] = "Das große Buddeln: Aktiv"
 L["The Big Dig: Next"] = "Das große Buddeln: Nächstes Event"
 L["The Big Dig: Soon"] = "Das große Buddeln: Bald"
 L["The Cruelty of Dornic: Next"] = "Theatertruppe: Die Grausamkeit von Dornic: Bald"
+L["The Curse of Ula'tek"] = "Der Fluch von Ula'tek"
 L["The Entitled"] = "Hochverehrter"
 L["the event name with run time"] = "{eventName} ab {startDate} bis {endDate}"
 L["The Flowing Forest Flight"] = "Flug des Wallenden Walds"
@@ -1122,6 +1128,7 @@ L["Upcoming Calendar Events"] = "Anstehende Kalender-Ereignisse"
 L["Upper Reaches"] = "Die Oberen Ebenen"
 L["Val and Naigtal"] = "Val und Naigtal"
 L["Val'sharah"] = true
+L["Vaults of Atal'Utek"] = "Kammern von Atal'Utek"
 L["Vendor"] = "Verkäufer"
 L["Venthyr Assault"] = "Venthyr Paktangriff"
 L["Vertical position"] = "Vertikale Position"
