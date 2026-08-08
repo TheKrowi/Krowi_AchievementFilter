@@ -1,6 +1,59 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 99.0 - 2026-08-09
+### Added
+- 12.1.0 "The Curse of Ula'tek" patch data
+    - Altar of Fangs dungeon: Normal, Heroic, Mythic, Keystone Hero and Keystone Victor
+    - The Venomous Abyss raid: Normal, Heroic, Mythic, boss kills, Glory, Ahead of the Curve/Cutting Edge, Mythic: Ula'tek
+    - Midnight Season 2 Mythic+ (Resilient Keystones, Keystone Hero/Victor for all 8 dungeons, Explorer/Conqueror/Master/Hero/Legend) and Delve tiers 4-11
+    - Midnight Season 2 PvP ladder (Combatant through Gladiator/Legend/Strategist), Battle Mender, Hero of the Alliance/Horde, Weapons of Conquest, and season mount
+    - The Coiled Isle zone: exploration, Curse Surges world event, Vaults of Atal'Utek, housing decor, and Souvenir Seeker achievements
+    - Family Battler of Outland and Family Battler of Cataclysm pet battle achievements
+    - A Round on the House in Midnight and Tricks and Treats of Midnight holiday achievements
+    - Keystone Hero/Victor entries added to older dungeons rejoining the Season 2 rotation (Ruby Life Pools, Temple of Sethraliss, Kings' Rest)
+- Pop Out: right-click an achievement to open it in its own standalone, movable and resizable window
+    - Ctrl-click an achievement (rebindable) to pop it out directly, alongside the existing Paste to Chat/Toggle Tracking/Watch List/Exclude modifiers (Options -> General -> Key Binding -> Modifiers)
+    - Snapping: drag a popped-out window close to another one to snap it into a stack below it; moving or resizing the top of a stack moves/resizes the whole stack, while moving or resizing any other window in it breaks it back out (hold Alt while dragging to bypass snapping)
+    - Window position, size, and snap relationships can optionally persist across sessions
+    - Auto-fade: windows can fade to a configurable opacity (and fade speed) when not moused over
+    - Close and resize buttons can be set to auto-hide until moused over
+    - Configurable default window width and snap distance
+    - All Pop Out settings found under Options -> Layout -> Pop Out
+
+### Changed
+- Support for WoW 12.1.0 PTR (dev note: the Achievements frame's header details strip — Back button, filter dropdown, search box — moved into `AchievementFrame.HeaderDetails.Filters`; the addon's filter button, search box, summary/achievements frames, and browsing history buttons now anchor to it, falling back to the old layout when it's absent)
+
+### Fixed
+- Filter dropdown and search box no longer error on the 12.1.0 layout
+- Blizzard's search box no longer reappears after closing the addon's own search box
+
+### Removed
+- Achievement 62413, The Curse of Ula'tek, to be replaced by 62297
+
+## 98.8 - 2026-07-26
+### Added
+- Zone data for Brawler's Guild Season 5 achievements
+- Zone data for Val and Naigtal achievements
+- You Conduit! to Nexus-Point Xenas' zone data
+- Zone data for a bunch of Abundance achievements
+- Zone data for the first 925 achievements
+- New obtainability for affected achievements posted here: https://worldofwarcraft.blizzard.com/en-us/news/24293280
+
+### Changed
+- Moved all Brawler's Guild categories into Cross-Expansion and divided them in seasons; was in multiple expansions
+- Moved Val and Naigtal category into Midnight - Zones and split in a Val subcategory and Naigtal subcategory; was in Midnight - Void Assaults
+- Slayer's Rise achievements are now in Midnight - Zones - Slayer's Rise; were in Midnight - Zones - Quel'Thalas - PvP
+- Slayer's Rise achievements now only show in the Slayer's Rise subzone of Voidstorm; was all of Quel'Thalas
+- Goal! achievement now only shows in Silvermoon City
+
+### Removed
+- Bur's Mount Collection removed from the Specials tab (dev note: this category was no longer maintained and is now part of [Khamuls Housing/Toys/Mounts/Pets Collections Plugin](https://github.com/KhamulAT/Krowi_AchievementFilter_Khamuls_ExpMetaAchievementFilter))
+
+## 98.6 - 2026-06-28
+### Mists Classic
+- Fixed an error due to a missing field
+
 ## 98.5 - 2026-06-28
 ### Fixed
 - Some categories are flagged as 'Legacy' again (got  removed at some point) as they are replaced in later expansions (dev note: example being Onyxia's Lair having an original implementation in Vanilla and a revamp in WotLK)

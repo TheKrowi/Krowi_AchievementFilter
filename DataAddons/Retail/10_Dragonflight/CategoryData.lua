@@ -827,6 +827,8 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
                 16267, -- Heroic: Ruby Life Pools
                 16268, -- Mythic: Ruby Life Pools
                 16640, -- Keystone Hero: Ruby Life Pools
+                62442, -- Keystone Hero: Ruby Life Pools (Midnight Season 2)
+                63627, -- Keystone Victor: Ruby Life Pools
             },
         },
         { -- The Azure Vault

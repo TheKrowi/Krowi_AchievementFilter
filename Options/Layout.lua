@@ -1505,6 +1505,134 @@ local achievementsOptions = {
     }
 };
 
+local function AutoHideCloseButtonSet(_, value)
+    addon.Options.db.profile.Popout.AutoHideCloseButton = value;
+    addon.Gui.AchievementPopout:RefreshAllChrome();
+end
+
+local function AutoHideResizeButtonSet(_, value)
+    addon.Options.db.profile.Popout.AutoHideResizeButton = value;
+    addon.Gui.AchievementPopout:RefreshAllChrome();
+end
+
+local function FadeWhenNotHoveredSet(_, value)
+    addon.Options.db.profile.Popout.FadeWhenNotHovered = value;
+    addon.Gui.AchievementPopout:RefreshAllChrome();
+end
+
+local function FadedOpacitySet(_, value)
+    addon.Options.db.profile.Popout.FadedOpacity = value;
+    addon.Gui.AchievementPopout:RefreshAllChrome();
+end
+
+local function FadeSpeedSet(_, value)
+    addon.Options.db.profile.Popout.FadeSpeed = value;
+    addon.Gui.AchievementPopout:RefreshAllChrome();
+end
+
+local popoutOptions = {
+    order = OrderPP(), type = "group",
+    name = addon.L["Pop Out"],
+    args = {
+        General = {
+            order = OrderPP(), type = "group", inline = true,
+            name = addon.Util.L["General"],
+            args = {
+                PersistAcrossSessions = {
+                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                    name = addon.L["Persist Across Sessions"],
+                    desc = addon.L["Persist Across Sessions Desc"]:KAF_AddDefaultValueText("Popout.PersistAcrossSessions"),
+                    get = function() return addon.Options.db.profile.Popout.PersistAcrossSessions; end,
+                    set = function(_, value) addon.Options.db.profile.Popout.PersistAcrossSessions = value; end
+                },
+                RememberSize = {
+                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                    name = addon.L["Remember Size"],
+                    desc = addon.L["Remember Size Desc"]:K_ReplaceVars(addon.L["Pop Out"]):KAF_AddDefaultValueText("Popout.RememberSize"),
+                    get = function() return addon.Options.db.profile.Popout.RememberSize; end,
+                    set = function(_, value) addon.Options.db.profile.Popout.RememberSize = value; end
+                },
+                DefaultWidth = {
+                    order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
+                    name = addon.L["Default Width"],
+                    desc = addon.L["Default Width Desc"]:K_ReplaceVars(addon.L["Pop Out"]):KAF_AddDefaultValueText("Popout.DefaultWidth"),
+                    min = 360, max = 800, step = 1,
+                    get = function() return addon.Options.db.profile.Popout.DefaultWidth; end,
+                    set = function(_, value) addon.Options.db.profile.Popout.DefaultWidth = value; end
+                },
+                Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.5), name = ""},
+                EnableSnapping = {
+                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                    name = addon.L["Enable Snapping"],
+                    desc = addon.L["Enable Snapping Desc"]:KAF_AddDefaultValueText("Popout.EnableSnapping"),
+                    get = function() return addon.Options.db.profile.Popout.EnableSnapping; end,
+                    set = function(_, value) addon.Options.db.profile.Popout.EnableSnapping = value; end
+                },
+                SnapDistance = {
+                    order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
+                    name = addon.L["Snap Distance"],
+                    desc = addon.L["Snap Distance Desc"]:K_ReplaceVars(addon.L["Pop Out"]):KAF_AddDefaultValueText("Popout.SnapDistance"),
+                    min = 5, max = 50, step = 1,
+                    get = function() return addon.Options.db.profile.Popout.SnapDistance; end,
+                    set = function(_, value) addon.Options.db.profile.Popout.SnapDistance = value; end,
+                    disabled = function() return not addon.Options.db.profile.Popout.EnableSnapping; end
+                }
+            }
+        },
+        Buttons = {
+            order = OrderPP(), type = "group", inline = true,
+            name = addon.L["Button"],
+            args = {
+                AutoHideCloseButton = {
+                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                    name = addon.L["Auto-Hide Close Button"],
+                    desc = addon.L["Auto-Hide Close Button Desc"]:K_ReplaceVars(addon.L["Pop Out"]):KAF_AddDefaultValueText("Popout.AutoHideCloseButton"),
+                    get = function() return addon.Options.db.profile.Popout.AutoHideCloseButton; end,
+                    set = AutoHideCloseButtonSet
+                },
+                AutoHideResizeButton = {
+                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                    name = addon.L["Auto-Hide Resize Button"],
+                    desc = addon.L["Auto-Hide Resize Button Desc"]:K_ReplaceVars(addon.L["Pop Out"]):KAF_AddDefaultValueText("Popout.AutoHideResizeButton"),
+                    get = function() return addon.Options.db.profile.Popout.AutoHideResizeButton; end,
+                    set = AutoHideResizeButtonSet
+                }
+            }
+        },
+        Appearance = {
+            order = OrderPP(), type = "group", inline = true,
+            name = addon.L["Appearance"],
+            args = {
+                FadeWhenNotHovered = {
+                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                    name = addon.L["Fade When Not Hovered"],
+                    desc = addon.L["Fade When Not Hovered Desc"]:K_ReplaceVars(addon.L["Pop Out"]):KAF_AddDefaultValueText("Popout.FadeWhenNotHovered"),
+                    get = function() return addon.Options.db.profile.Popout.FadeWhenNotHovered; end,
+                    set = FadeWhenNotHoveredSet
+                },
+                FadedOpacity = {
+                    order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
+                    name = addon.L["Faded Opacity"],
+                    desc = addon.L["Faded Opacity Desc"]:K_ReplaceVars{popout = addon.L["Pop Out"], fadeWhenNotHovered = addon.L["Fade When Not Hovered"]}:KAF_AddDefaultValueText("Popout.FadedOpacity"),
+                    min = 0, max = 1, step = 0.01,
+                    get = function() return addon.Options.db.profile.Popout.FadedOpacity; end,
+                    set = FadedOpacitySet,
+                    disabled = function() return not addon.Options.db.profile.Popout.FadeWhenNotHovered; end
+                },
+                FadeSpeed = {
+                    order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
+                    name = addon.L["Fade Speed"],
+                    desc = addon.L["Fade Speed Desc"]:K_ReplaceVars{popout = addon.L["Pop Out"], fadeWhenNotHovered = addon.L["Fade When Not Hovered"]}:KAF_AddDefaultValueText("Popout.FadeSpeed"),
+                    min = 0, max = 1, step = 0.05,
+                    get = function() return addon.Options.db.profile.Popout.FadeSpeed; end,
+                    set = FadeSpeedSet,
+                    disabled = function() return not addon.Options.db.profile.Popout.FadeWhenNotHovered; end
+                }
+            }
+        }
+    }
+};
+
 local rightClickMenuOptions = {
     order = OrderPP(), type = "group",
     name = addon.L["Right Click Menu"],
@@ -1690,6 +1818,7 @@ options.OptionsTable.args["Layout"] = {
         Categories = categoriesOptions,
         AdjustableCategories = adjustableCategoriesOptions,
         Achievements = achievementsOptions,
+        Popout = popoutOptions,
         RightClickMenu = rightClickMenuOptions,
         Calendar = calendarOptions,
         Criteria = criteriaOptions,

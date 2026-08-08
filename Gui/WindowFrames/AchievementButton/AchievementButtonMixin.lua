@@ -103,7 +103,12 @@ function KrowiAF_AchievementButtonLightMixin:OnLeave()
 	Krowi_Tooltip:Hide();
 end
 
-local function ProcessedModifiers(self, ignoreModifiers)
+addon.Gui.AchievementButton = addon.Gui.AchievementButton or {};
+local achievementButton = addon.Gui.AchievementButton;
+
+-- Exposed on the module table so other button clones (e.g. the popout) can reuse the same
+-- shift-click-to-track/paste-to-chat/watch/exclude/pop-out modifier behavior.
+function achievementButton.ProcessModifiers(self, ignoreModifiers)
 	if not IsModifierKeyDown() or ignoreModifiers then
 		return;
 	end
@@ -140,11 +145,15 @@ local function ProcessedModifiers(self, ignoreModifiers)
 		end
 		return true;
 	end
+	if addon.IsCustomModifierKeyDown(addon.Options.db.profile.Achievements.Modifiers.PopOut) then
+		addon.Gui.AchievementPopout:Open(self.Achievement);
+		return true;
+	end
 	return true;
 end
 
 local function Select(self, ignoreModifiers)
-	if ProcessedModifiers(self, ignoreModifiers) then
+	if achievementButton.ProcessModifiers(self, ignoreModifiers) then
 		return;
 	end
 
@@ -165,7 +174,7 @@ function KrowiAF_AchievementButtonLightMixin:OnClick(button, _, ignoreModifiers)
 		Click(self, button, ignoreModifiers);
 		return;
 	end
-	if ProcessedModifiers(self, ignoreModifiers) then
+	if achievementButton.ProcessModifiers(self, ignoreModifiers) then
 		return;
 	end
 	KrowiAF_SelectAchievementFromID(self.Achievement.Id);
@@ -262,7 +271,13 @@ end
 
 local cachedWidthDisplayObjectives;
 function KrowiAF_AchievementButtonMixin:DisplayObjectives(forced)
-	local objectives = KrowiAF_AchievementsObjectives;
+	local objectives = self.Objectives or KrowiAF_AchievementsObjectives;
+	if objectives.IsDisplaying then
+		-- Reentrancy guard: GetWidth()/GetTop()/etc. below can synchronously flush a pending resize
+		-- and re-trigger DisplayObjectives (e.g. via the popout's OnSizeChanged) on this same frame.
+		return objectives.LastHeight or self.MinExpandedHeight;
+	end
+	objectives.IsDisplaying = true;
 	objectives:SetParent(self);
 	objectives:SetPoint("TOP", self.HiddenDescription, "BOTTOM", 0, -8);
 	objectives:SetPoint("LEFT", self.ObjectivesLeftAnchor, "RIGHT", 0, 0);
@@ -294,6 +309,8 @@ function KrowiAF_AchievementButtonMixin:DisplayObjectives(forced)
 	end
 	objectives.Id = id;
 	height = max(self.MinExpandedHeight, height);
+	objectives.IsDisplaying = nil;
+	objectives.LastHeight = height;
 	return height;
 end
 

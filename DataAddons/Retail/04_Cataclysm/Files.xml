@@ -2,5 +2,4 @@
     <Script file="AchievementData.lua" />
     <Script file="BuildVersionData.lua" />
     <Script file="TooltipData.lua" />
-    <Script file="ZoneData.lua" />
 </Ui>

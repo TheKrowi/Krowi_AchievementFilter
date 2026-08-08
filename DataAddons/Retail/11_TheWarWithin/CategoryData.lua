@@ -519,91 +519,91 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The War Within
     { -- Delves
         CT.Delves,
         { -- Fungal Folly
-            addon.GetMapName(2249),
+            addon.GetAreaPoiNameName(7864),
             {
                 40525, -- Fungal Folly Stories
                 40803, -- Fungal Folly Discoveries
             },
         },
         { -- Kriegval's Rest
-            addon.GetMapName(2250),
+            addon.GetAreaPoiNameName(7865),
             {
                 40526, -- Kriegval's Rest Stories
                 40807, -- Kriegval's Rest Discoveries
             },
         },
         { -- Earthcrawl Mines
-            addon.GetMapName(2269),
+            addon.GetAreaPoiNameName(7863),
             {
                 40527, -- Earthcrawl Mines Stories
                 40806, -- Earthcrawl Mines Discoveries
             },
         },
         { -- The Waterworks
-            addon.GetMapName(2251),
+            addon.GetAreaPoiNameName(7866),
             {
                 40528, -- The Waterworks Stories
                 40816, -- The Waterworks Discoveries
             },
         },
         { -- The Dread Pit
-            addon.GetMapName(2302),
+            addon.GetAreaPoiNameName(7867),
             {
                 40529, -- The Dread Pit Stories
                 40812, -- The Dread Pit Discoveries
             },
         },
         { -- Nightfall Sanctum
-            addon.GetMapName(2277),
+            addon.GetAreaPoiNameName(7868),
             {
                 40530, -- Nightfall Sanctum Stories
                 40809, -- Nightfall Sanctum Discoveries
             },
         },
         { -- Mycomancer Cavern
-            addon.GetMapName(2312),
+            addon.GetAreaPoiNameName(7869),
             {
                 40531, -- Mycomancer Cavern Stories
                 40808, -- Mycomancer Cavern Discoveries
             },
         },
         { -- The Sinkhole
-            addon.GetMapName(2301),
+            addon.GetAreaPoiNameName(7870),
             {
                 40532, -- The Sinkhole Stories
                 40813, -- The Sinkhole Discoveries
             },
         },
         { -- Skittering Breach
-            addon.GetMapName(2310),
+            addon.GetAreaPoiNameName(7871),
             {
                 40533, -- Skittering Breach Stories
                 40810, -- Skittering Breach Discoveries
             },
         },
         { -- The Underkeep
-            addon.GetMapName(2299),
+            addon.GetAreaPoiNameName(7872),
             {
                 40534, -- The Underkeep Stories
                 40815, -- The Underkeep Discoveries
             },
         },
         { -- Tak-Rethan Abyss
-            addon.GetMapName(2259),
+            addon.GetAreaPoiNameName(7873),
             {
                 40535, -- Tak-Rethan Abyss Stories
                 40811, -- Tak-Rethan Abyss Discoveries
             },
         },
         { -- The Spiral Weave
-            addon.GetMapName(2347),
+            addon.GetAreaPoiNameName(7874),
             {
                 40536, -- The Spiral Weave Stories
                 40814, -- The Spiral Weave Discoveries
             },
         },
         { -- Zekvir's Lair
-            addon.GetMapName(2348),
+            addon.GetAreaPoiNameName(7875),
             {
                 40732, -- Heavy-Handed
                 40103, -- My First Nemesis
@@ -612,21 +612,21 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The War Within
             },
         },
         { -- Excavation Site 9
-            addon.GetMapName(2396),
+            addon.GetAreaPoiNameName(8143),
             {
                 41098, -- Excavation Site 9 Stories
                 41100, -- Excavation Site 9 Discoveries
             },
         },
         { -- Sidestreet Sluice
-            addon.GetMapName(2420),
+            addon.GetAreaPoiNameName(8140),
             {
                 41099, -- Sidestreet Sluice Stories
                 41101, -- Sidestreet Sluice Discoveries
             },
         },
         { -- Demolition Dome
-            addon.GetMapName(2425),
+            addon.GetAreaPoiNameName(8142),
             {
                 40732, -- Heavy-Handed
                 41530, -- My New Nemesis
@@ -636,14 +636,14 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The War Within
             },
         },
         { -- Archival Assault
-            addon.GetMapName(2452),
+            addon.GetAreaPoiNameName(8274),
             {
                 42771, -- Archival Assault Stories
                 42679, -- Archival Assault Discoveries
             },
         },
         { -- Voidrazor Sanctuary
-            addon.GetMapName(2484),
+            addon.GetAreaPoiNameName(8323),
             {
                 40732, -- Heavy-Handed
                 42193, -- My Stab-Happy Nemesis
@@ -1078,23 +1078,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The War Within
             41549, -- Mechanical Battler of Undermine
             41550, -- Undead Battler of Undermine
             41551, -- Family Battler of Undermine
-        },
-    },
-    { -- Brawler's Guild
-        addon.L["Brawler's Guild"],
-        {
-            61413, -- The First Rule of Brawler's Guild
-            61414, -- The First Rule of Brawler's Guild
-            61419, -- Brawler's Chilled
-            61420, -- Let Me Solo It
-            61421, -- A Prime Ordeal
-            61422, -- Audience Participation
-            61423, -- Featherweight Brawler
-            61424, -- Brawlzilla
-            61425, -- Hot Footed
-            61426, -- Bare Knuckle Brawl
-            61429, -- Brawl Star
-            61466, -- The Best There Is
         },
     },
     { -- Skyriding Races

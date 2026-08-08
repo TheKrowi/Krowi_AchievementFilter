@@ -1,0 +1,8 @@
+## Interface: 120100, 120007
+## Title: KAF Taint Probe
+## Version: 1.0
+## Notes: Read-only diagnostic for Krowi_AchievementFilter issue #300. Detects when shared tooltip state becomes tainted and by whom.
+## SavedVariables: KAF_TaintProbeDB
+## DefaultState: enabled
+
+KAF_TaintProbe.lua

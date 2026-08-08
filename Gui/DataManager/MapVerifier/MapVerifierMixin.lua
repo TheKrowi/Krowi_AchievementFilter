@@ -9,22 +9,27 @@ local RANGE_DEFAULT_START = 1
 local RANGE_DEFAULT_END = 3000
 
 local verdictColors = {
-    Zone         = { 0.27, 1.00, 0.27 },
-    City         = { 1.00, 0.45, 0.65 },
-    Continent    = { 0.50, 0.90, 1.00 },
-    Dungeon      = { 0.40, 0.60, 1.00 },
-    Raid         = { 0.80, 0.40, 1.00 },
-    Delve        = { 1.00, 0.60, 0.20 },
-    ClassHall    = { 1.00, 0.84, 0.00 },
-    Battleground = { 1.00, 0.20, 0.20 },
-    Scenario     = { 0.20, 0.90, 0.70 },
-    Skip         = { 0.55, 0.55, 0.55 },
-    Unknown      = { 0.80, 0.80, 0.80 },
+    Zone             = { 0.27, 1.00, 0.27 },
+    StartingZone     = { 0.40, 1.00, 0.80 },
+    City             = { 1.00, 0.45, 0.65 },
+    Continent        = { 0.50, 0.90, 1.00 },
+    Dungeon          = { 0.40, 0.60, 1.00 },
+    Raid             = { 0.80, 0.40, 1.00 },
+    Delve            = { 1.00, 0.60, 0.20 },
+    ClassHall        = { 1.00, 0.84, 0.00 },
+    Battleground     = { 1.00, 0.20, 0.20 },
+    Scenario         = { 0.20, 0.90, 0.70 },
+    TaxiAndAdventure = { 0.70, 0.85, 0.40 },
+    Error            = { 0.90, 0.10, 0.30 },
+    Skip             = { 0.55, 0.55, 0.55 },
+    Unknown          = { 0.80, 0.80, 0.80 },
 }
 
 local verdictDisplayNames = {
-    ClassHall    = "Class Hall",
-    Battleground = "BG",
+    ClassHall        = "Class Hall",
+    Battleground     = "BG",
+    TaxiAndAdventure = "Taxi & Adv",
+    StartingZone     = "Start Zone",
 }
 
 local mapTypeNames = {
@@ -37,10 +42,14 @@ local mapTypeNames = {
     [6] = "Orphan",
 }
 
-local verdictList = { "Zone", "City", "Continent", "Dungeon", "Raid", "Delve", "ClassHall", "Battleground", "Scenario", "Skip" }
+local skipLike    = { Skip = true, TaxiAndAdventure = true, Error = true, StartingZone = true }
+local inactiveLike = { TaxiAndAdventure = true, Error = true, StartingZone = true }
+
+local verdictList = { "Zone", "StartingZone", "City", "Continent", "Dungeon", "Raid", "Delve", "ClassHall", "Battleground", "Scenario", "Error", "TaxiAndAdventure", "Skip" }
 local verdictRows = {
     { "Zone", "City", "Continent", "Dungeon", "Raid" },
-    { "Delve", "ClassHall", "Battleground", "Scenario", "Skip" },
+    { "Delve", "ClassHall", "Battleground", "Scenario", "Error" },
+    { "StartingZone", "TaxiAndAdventure", "Skip" },
 }
 
 local expansionColors = {
@@ -74,9 +83,11 @@ local function GetData()
     d.RangeStart     = d.RangeStart     or RANGE_DEFAULT_START
     d.RangeEnd       = d.RangeEnd       or RANGE_DEFAULT_END
     d.Maps           = d.Maps           or {}
+    d.NameOverrides  = d.NameOverrides  or {}
     d.ParentOverrides = d.ParentOverrides or {}
     d.Links           = d.Links           or {}
     d.Expansions      = d.Expansions      or {}
+    d.Comments        = d.Comments        or {}
     return d
 end
 
@@ -107,7 +118,7 @@ local function FindNext(fromId, unreviewedOnly, expansionModeOnly)
             local include = true
             if expansionModeOnly then
                 local v = d.Maps[id]
-                if not v or v == "Skip" then
+                if not v or skipLike[v] then
                     include = false
                 end
             end
@@ -138,7 +149,7 @@ local function FindPrev(fromId, expansionModeOnly)
                 return id
             end
             local v = d.Maps[id]
-            if v and v ~= "Skip" then
+            if v and not skipLike[v] then
                 return id
             end
         end
@@ -193,7 +204,9 @@ local function UpdateDisplay()
             f.ExpansionText:SetText("Expansion: —")
             f.ProgressText:SetText("Progress: —")
             f.CursorText:SetText("Cursor: " .. id)
+            f.NameOverrideBox:SetText("")
             f.ParentOverrideBox:SetText("")
+            f.CommentBox:SetText("")
             f.LinkText:SetText("Link:    -")
             f.LinkBox:SetText("")
             f.SuggestLinkBtn:SetText("No suggestion")
@@ -260,7 +273,9 @@ local function UpdateDisplay()
     f.CursorText:SetText(string.format(
         "Cursor: %d  |  Range: %d – %d", id, d.RangeStart, d.RangeEnd))
 
+    f.NameOverrideBox:SetText(d.NameOverrides[id] or "")
     f.ParentOverrideBox:SetText(overrideParentId and tostring(overrideParentId) or "")
+    f.CommentBox:SetText(d.Comments[id] or "")
 
     local linkPrimaryId = d.Links[id]
     local linkStr
@@ -321,14 +336,19 @@ local function SetVerdict(v)
     local d = GetData()
     local currentId = d.Cursor
     d.Maps[currentId] = v
-    local unreviewedOnly = mapVerifierFrame and mapVerifierFrame.UnreviewedCheck:GetChecked() or false
-    local expansionModeOnly = mapVerifierFrame and mapVerifierFrame.ExpansionModeCheck:GetChecked() or false
-    local nextId = FindNext(currentId, unreviewedOnly, expansionModeOnly)
-    if nextId then
-        NavigateTo(nextId)
+    local autoAdvance = mapVerifierFrame and mapVerifierFrame.AutoAdvanceTypeCheck:GetChecked() or false
+    if autoAdvance then
+        local unreviewedOnly = mapVerifierFrame and mapVerifierFrame.UnreviewedCheck:GetChecked() or false
+        local expansionModeOnly = mapVerifierFrame and mapVerifierFrame.ExpansionModeCheck:GetChecked() or false
+        local nextId = FindNext(currentId, unreviewedOnly, expansionModeOnly)
+        if nextId then
+            NavigateTo(nextId)
+        else
+            UpdateDisplay()
+            print("|cFF88CCFFKrowiAF Map Verifier:|r Reached end of range in current mode.")
+        end
     else
         UpdateDisplay()
-        print("|cFF88CCFFKrowiAF Map Verifier:|r Reached end of range in current mode.")
     end
 end
 
@@ -336,21 +356,26 @@ local function SetExpansion(e)
     local d = GetData()
     local currentId = d.Cursor
     d.Expansions[currentId] = e
-    local unreviewedOnly = mapVerifierFrame and mapVerifierFrame.UnreviewedCheck:GetChecked() or false
-    local expansionModeOnly = mapVerifierFrame and mapVerifierFrame.ExpansionModeCheck:GetChecked() or false
-    local nextId = FindNext(currentId, unreviewedOnly, expansionModeOnly)
-    if nextId then
-        NavigateTo(nextId)
+    local autoAdvance = mapVerifierFrame and mapVerifierFrame.AutoAdvanceExpansionCheck:GetChecked() or false
+    if autoAdvance then
+        local unreviewedOnly = mapVerifierFrame and mapVerifierFrame.UnreviewedCheck:GetChecked() or false
+        local expansionModeOnly = mapVerifierFrame and mapVerifierFrame.ExpansionModeCheck:GetChecked() or false
+        local nextId = FindNext(currentId, unreviewedOnly, expansionModeOnly)
+        if nextId then
+            NavigateTo(nextId)
+        else
+            UpdateDisplay()
+            print("|cFF88CCFFKrowiAF Map Verifier:|r Reached end of range in current mode.")
+        end
     else
         UpdateDisplay()
-        print("|cFF88CCFFKrowiAF Map Verifier:|r Reached end of range in current mode.")
     end
 end
 
 -- [[ Export ]] --
 
-local CSV_HEADER_MAPS   = "id,name,type,expansion,link,parentOverride"
-local CSV_HEADER_GROUPS = "primaryId,primaryName,subIds"
+local CSV_HEADER_MAPS   = "id,name,type,expansion,link,parentOverride,nameOverride,comment"
+local CSV_HEADER_GROUPS = "primaryId,primaryName,ids"
 
 local function EscapeCSV(v)
     local s = tostring(v or "")
@@ -375,13 +400,13 @@ local function BuildExportCSV_Active()
 
     local ids = {}
     for id, verdict in next, d.Maps do
-        if verdict ~= "Skip" then
+        if not skipLike[verdict] then
             ids[id] = true
         end
     end
     for id, primaryId in next, d.Links do
         local primaryVerdict = d.Maps[primaryId]
-        if primaryVerdict and primaryVerdict ~= "Skip" then
+        if primaryVerdict and not skipLike[primaryVerdict] then
             ids[id] = true
         end
     end
@@ -397,7 +422,9 @@ local function BuildExportCSV_Active()
         local primId   = d.Links[id]
         local expansion = d.Expansions[id] or (primId and d.Expansions[primId]) or ""
         local override = d.ParentOverrides[id] or ""
-        tinsert(lines, CSVRow(id, name, type_, expansion, primId or "", override))
+        local nameOverride = d.NameOverrides[id] or ""
+        local comment = d.Comments[id] or ""
+        tinsert(lines, CSVRow(id, name, type_, expansion, primId or "", override, nameOverride, comment))
     end
 
     return table.concat(lines, "\n")
@@ -436,7 +463,45 @@ local function BuildExportCSV_Skip()
         local primId   = d.Links[id]
         local expansion = d.Expansions[id] or (primId and d.Expansions[primId]) or ""
         local override = d.ParentOverrides[id] or ""
-        tinsert(lines, CSVRow(id, name, type_, expansion, primId or "", override))
+        local nameOverride = d.NameOverrides[id] or ""
+        local comment = d.Comments[id] or ""
+        tinsert(lines, CSVRow(id, name, type_, expansion, primId or "", override, nameOverride, comment))
+    end
+
+    return table.concat(lines, "\n")
+end
+
+local function BuildExportCSV_Inactive()
+    local d = GetData()
+    BuildValidIdsCache()
+    local lines = { CSV_HEADER_MAPS }
+
+    local ids = {}
+    for id, verdict in next, d.Maps do
+        if inactiveLike[verdict] then
+            ids[id] = true
+        end
+    end
+    for id, primaryId in next, d.Links do
+        if inactiveLike[d.Maps[primaryId]] then
+            ids[id] = true
+        end
+    end
+
+    local sortedIds = {}
+    for id in next, ids do tinsert(sortedIds, id) end
+    table.sort(sortedIds)
+
+    for _, id in next, sortedIds do
+        local info     = C_Map.GetMapInfo(id)
+        local name     = info and info.name or "?"
+        local type_    = d.Maps[id] or ""
+        local primId   = d.Links[id]
+        local expansion = d.Expansions[id] or (primId and d.Expansions[primId]) or ""
+        local override = d.ParentOverrides[id] or ""
+        local nameOverride = d.NameOverrides[id] or ""
+        local comment = d.Comments[id] or ""
+        tinsert(lines, CSVRow(id, name, type_, expansion, primId or "", override, nameOverride, comment))
     end
 
     return table.concat(lines, "\n")
@@ -461,7 +526,120 @@ local function BuildExportCSV_LinkGroups()
         table.sort(secs)
         local pinfo = C_Map.GetMapInfo(primId)
         local pname = pinfo and pinfo.name or "?"
-        tinsert(lines, CSVRow(primId, pname, table.concat(secs, "|")))
+        local ids = { primId }
+        for _, secId in next, secs do
+            tinsert(ids, secId)
+        end
+        tinsert(lines, CSVRow(primId, pname, table.concat(ids, ", ")))
+    end
+
+    return table.concat(lines, "\n")
+end
+
+local function BuildExportCSV_AchievementZones()
+    local d = GetData()
+    local lines = { "achievementId,zones" }
+
+    local achToMaps = {}
+
+    local primaryIds = {}
+    for id, verdict in next, d.Maps do
+        if not skipLike[verdict] and not d.Links[id] then
+            tinsert(primaryIds, id)
+        end
+    end
+    table.sort(primaryIds)
+
+    for _, primId in next, primaryIds do
+        local groupIds = { primId }
+        for otherId, pId in next, d.Links do
+            if pId == primId then
+                tinsert(groupIds, otherId)
+            end
+        end
+
+        for _, mapId in next, groupIds do
+            local mapData = addon.Data.Maps[mapId]
+            if mapData then
+                for _, achList in next, { mapData.Achievements, mapData.Achievements10, mapData.Achievements25 } do
+                    if achList then
+                        for _, ach in next, achList do
+                            if ach then
+                                local achId = ach.Id
+                                achToMaps[achId] = achToMaps[achId] or {}
+                                local found = false
+                                for _, existingId in next, achToMaps[achId] do
+                                    if existingId == primId then
+                                        found = true
+                                        break
+                                    end
+                                end
+                                if not found then
+                                    tinsert(achToMaps[achId], primId)
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+
+    local sortedAchs = {}
+    for achId in next, achToMaps do tinsert(sortedAchs, achId) end
+    table.sort(sortedAchs)
+
+    for _, achId in next, sortedAchs do
+        local mapIds = achToMaps[achId]
+        table.sort(mapIds)
+        tinsert(lines, CSVRow(achId, table.concat(mapIds, ", ")))
+    end
+
+    return table.concat(lines, "\n")
+end
+
+local function BuildExportCSV_AchievementCount()
+    local d = GetData()
+    local lines = { "primaryId,primaryName,achievementCount" }
+
+    local primaryIds = {}
+    for id, verdict in next, d.Maps do
+        if not skipLike[verdict] and not d.Links[id] then
+            tinsert(primaryIds, id)
+        end
+    end
+    table.sort(primaryIds)
+
+    for _, primId in next, primaryIds do
+        local info = C_Map.GetMapInfo(primId)
+        local name = info and info.name or "?"
+
+        local groupIds = { primId }
+        for otherId, pId in next, d.Links do
+            if pId == primId then
+                tinsert(groupIds, otherId)
+            end
+        end
+
+        local seen = {}
+        local count = 0
+        for _, mapId in next, groupIds do
+            local mapData = addon.Data.Maps[mapId]
+            if mapData then
+                for _, achList in next, { mapData.Achievements, mapData.Achievements10, mapData.Achievements25 } do
+                    if achList then
+                        for _, ach in next, achList do
+                            if ach and not seen[ach] then
+                                seen[ach] = true
+                                count = count + 1
+                            end
+                        end
+                    end
+                end
+            end
+        end
+
+        tinsert(lines, CSVRow(primId, name, count))
     end
 
     return table.concat(lines, "\n")
@@ -637,6 +815,88 @@ function KrowiAF_MapVerifierMixin:OnLoad()
 
     y = y - 30
 
+    -- Name override row
+    local nameOverrideLabel = inset:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    nameOverrideLabel:SetPoint("TOPLEFT", inset, "TOPLEFT", padLeft, y)
+    nameOverrideLabel:SetText("Name override:")
+
+    self.NameOverrideBox = CreateFrame("EditBox", nil, inset, "InputBoxTemplate")
+    self.NameOverrideBox:SetSize(220, 20)
+    self.NameOverrideBox:SetPoint("LEFT", nameOverrideLabel, "RIGHT", 6, 0)
+    self.NameOverrideBox:SetAutoFocus(false)
+    self.NameOverrideBox:SetMaxLetters(255)
+
+    local setNameOverrideBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
+    setNameOverrideBtn:SetSize(50, 22)
+    setNameOverrideBtn:SetText("Set")
+    setNameOverrideBtn:SetPoint("LEFT", self.NameOverrideBox, "RIGHT", 6, 0)
+    setNameOverrideBtn:SetScript("OnClick", function()
+        local d = GetData()
+        local id = d.Cursor
+        local nameOverride = self.NameOverrideBox:GetText()
+        if nameOverride == "" then
+            d.NameOverrides[id] = nil
+        else
+            d.NameOverrides[id] = nameOverride
+        end
+        UpdateDisplay()
+    end)
+    self.NameOverrideBox:SetScript("OnEnterPressed", function() setNameOverrideBtn:Click() end)
+
+    local clearNameOverrideBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
+    clearNameOverrideBtn:SetSize(60, 22)
+    clearNameOverrideBtn:SetText("Clear")
+    clearNameOverrideBtn:SetPoint("LEFT", setNameOverrideBtn, "RIGHT", 4, 0)
+    clearNameOverrideBtn:SetScript("OnClick", function()
+        local d = GetData()
+        d.NameOverrides[d.Cursor] = nil
+        self.NameOverrideBox:SetText("")
+        UpdateDisplay()
+    end)
+
+    y = y - 30
+
+    -- Comment row
+    local commentLabel = inset:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    commentLabel:SetPoint("TOPLEFT", inset, "TOPLEFT", padLeft, y)
+    commentLabel:SetText("Comment:")
+
+    self.CommentBox = CreateFrame("EditBox", nil, inset, "InputBoxTemplate")
+    self.CommentBox:SetSize(240, 20)
+    self.CommentBox:SetPoint("LEFT", commentLabel, "RIGHT", 6, 0)
+    self.CommentBox:SetAutoFocus(false)
+    self.CommentBox:SetMaxLetters(255)
+
+    local setCommentBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
+    setCommentBtn:SetSize(50, 22)
+    setCommentBtn:SetText("Set")
+    setCommentBtn:SetPoint("LEFT", self.CommentBox, "RIGHT", 6, 0)
+    setCommentBtn:SetScript("OnClick", function()
+        local d = GetData()
+        local id = d.Cursor
+        local comment = self.CommentBox:GetText()
+        if comment == "" then
+            d.Comments[id] = nil
+        else
+            d.Comments[id] = comment
+        end
+        UpdateDisplay()
+    end)
+    self.CommentBox:SetScript("OnEnterPressed", function() setCommentBtn:Click() end)
+
+    local clearCommentBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
+    clearCommentBtn:SetSize(60, 22)
+    clearCommentBtn:SetText("Clear")
+    clearCommentBtn:SetPoint("LEFT", setCommentBtn, "RIGHT", 4, 0)
+    clearCommentBtn:SetScript("OnClick", function()
+        local d = GetData()
+        d.Comments[d.Cursor] = nil
+        self.CommentBox:SetText("")
+        UpdateDisplay()
+    end)
+
+    y = y - 30
+
     -- Pin row
     local pinLabel = inset:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     pinLabel:SetPoint("TOPLEFT", inset, "TOPLEFT", padLeft, y)
@@ -796,6 +1056,30 @@ function KrowiAF_MapVerifierMixin:OnLoad()
 
     y = y - 28
 
+    -- Auto-advance type checkbox
+    self.AutoAdvanceTypeCheck = CreateFrame("CheckButton", nil, inset, "UICheckButtonTemplate")
+    self.AutoAdvanceTypeCheck:SetSize(24, 24)
+    self.AutoAdvanceTypeCheck:SetPoint("TOPLEFT", inset, "TOPLEFT", padLeft, y + 2)
+    self.AutoAdvanceTypeCheck:SetChecked(true)
+
+    local autoAdvanceTypeLabel = inset:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    autoAdvanceTypeLabel:SetPoint("LEFT", self.AutoAdvanceTypeCheck, "RIGHT", 4, 0)
+    autoAdvanceTypeLabel:SetText("Auto-advance after setting type")
+
+    y = y - 28
+
+    -- Auto-advance expansion checkbox
+    self.AutoAdvanceExpansionCheck = CreateFrame("CheckButton", nil, inset, "UICheckButtonTemplate")
+    self.AutoAdvanceExpansionCheck:SetSize(24, 24)
+    self.AutoAdvanceExpansionCheck:SetPoint("TOPLEFT", inset, "TOPLEFT", padLeft, y + 2)
+    self.AutoAdvanceExpansionCheck:SetChecked(false)
+
+    local autoAdvanceExpansionLabel = inset:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    autoAdvanceExpansionLabel:SetPoint("LEFT", self.AutoAdvanceExpansionCheck, "RIGHT", 4, 0)
+    autoAdvanceExpansionLabel:SetText("Auto-advance after setting expansion")
+
+    y = y - 28
+
     -- Divider 2
     local div2 = inset:CreateTexture(nil, "ARTWORK")
     div2:SetColorTexture(0.4, 0.4, 0.4, 0.8)
@@ -931,7 +1215,7 @@ function KrowiAF_MapVerifierMixin:OnLoad()
     div3:SetSize(472, 1)
     y = y - 10
 
-    -- Bottom row: Reset Range (left) + 3 Export buttons (right)
+    -- Bottom row 1: Reset Range (left) + Exp Active / Skip / Inactive (right)
     local resetBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
     resetBtn:SetSize(110, 22)
     resetBtn:SetText("Reset Range")
@@ -947,21 +1231,21 @@ function KrowiAF_MapVerifierMixin:OnLoad()
         UpdateDisplay()
     end)
 
-    local exportGroupsBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
-    exportGroupsBtn:SetSize(95, 22)
-    exportGroupsBtn:SetText("Exp Groups")
-    exportGroupsBtn:SetPoint("TOPRIGHT", inset, "TOPRIGHT", -padLeft, y)
-    exportGroupsBtn:SetScript("OnClick", function()
+    local exportInactiveBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
+    exportInactiveBtn:SetSize(82, 22)
+    exportInactiveBtn:SetText("Exp Inactive")
+    exportInactiveBtn:SetPoint("TOPRIGHT", inset, "TOPRIGHT", -padLeft, y)
+    exportInactiveBtn:SetScript("OnClick", function()
         local textFrame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template")
-        textFrame:Init("Map Verifier Export — Link Groups")
-        textFrame.Input:SetText(BuildExportCSV_LinkGroups())
+        textFrame:Init("Map Verifier Export — Inactive")
+        textFrame.Input:SetText(BuildExportCSV_Inactive())
         textFrame:Show()
     end)
 
     local exportSkipBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
-    exportSkipBtn:SetSize(95, 22)
+    exportSkipBtn:SetSize(82, 22)
     exportSkipBtn:SetText("Exp Skip")
-    exportSkipBtn:SetPoint("RIGHT", exportGroupsBtn, "LEFT", -4, 0)
+    exportSkipBtn:SetPoint("RIGHT", exportInactiveBtn, "LEFT", -4, 0)
     exportSkipBtn:SetScript("OnClick", function()
         local textFrame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template")
         textFrame:Init("Map Verifier Export — Skip / Unknown")
@@ -970,13 +1254,49 @@ function KrowiAF_MapVerifierMixin:OnLoad()
     end)
 
     local exportActiveBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
-    exportActiveBtn:SetSize(95, 22)
+    exportActiveBtn:SetSize(82, 22)
     exportActiveBtn:SetText("Exp Active")
     exportActiveBtn:SetPoint("RIGHT", exportSkipBtn, "LEFT", -4, 0)
     exportActiveBtn:SetScript("OnClick", function()
         local textFrame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template")
         textFrame:Init("Map Verifier Export — Active Maps")
         textFrame.Input:SetText(BuildExportCSV_Active())
+        textFrame:Show()
+    end)
+
+    y = y - 28
+
+    -- Bottom row 2: Exp Groups / AchCount / AchZones (left)
+    local exportGroupsBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
+    exportGroupsBtn:SetSize(82, 22)
+    exportGroupsBtn:SetText("Exp Groups")
+    exportGroupsBtn:SetPoint("TOPLEFT", inset, "TOPLEFT", padLeft, y)
+    exportGroupsBtn:SetScript("OnClick", function()
+        local textFrame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template")
+        textFrame:Init("Map Verifier Export — Link Groups")
+        textFrame.Input:SetText(BuildExportCSV_LinkGroups())
+        textFrame:Show()
+    end)
+
+    local exportAchCountBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
+    exportAchCountBtn:SetSize(82, 22)
+    exportAchCountBtn:SetText("Exp AchCnt")
+    exportAchCountBtn:SetPoint("LEFT", exportGroupsBtn, "RIGHT", 4, 0)
+    exportAchCountBtn:SetScript("OnClick", function()
+        local textFrame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template")
+        textFrame:Init("Map Verifier Export — Achievement Counts")
+        textFrame.Input:SetText(BuildExportCSV_AchievementCount())
+        textFrame:Show()
+    end)
+
+    local exportAchZonesBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
+    exportAchZonesBtn:SetSize(110, 22)
+    exportAchZonesBtn:SetText("Exp AchZones")
+    exportAchZonesBtn:SetPoint("LEFT", exportAchCountBtn, "RIGHT", 4, 0)
+    exportAchZonesBtn:SetScript("OnClick", function()
+        local textFrame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template")
+        textFrame:Init("Map Verifier Export — Achievement Zones")
+        textFrame.Input:SetText(BuildExportCSV_AchievementZones())
         textFrame:Show()
     end)
 end

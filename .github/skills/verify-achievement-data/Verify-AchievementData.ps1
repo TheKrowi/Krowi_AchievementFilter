@@ -150,25 +150,26 @@ if (-not $serverReachable) {
 }
 
 # ── Auto-detect build ─────────────────────────────────────────────────────────
+# Priority order of build types to try per file path. Includes PTR/Beta fallback
+# types because new-patch achievements often land on PTR ("wowt") before the
+# corresponding live ("wow") build is available locally in wow.tools.local.
+$norm = $LuaFile.Replace('\', '/')
+$candidates = if ($norm -match '/DataAddons/Retail/') {
+    @("wow", "wowt", "wow_beta")
+} elseif ($norm -match '/DataAddons/Classic/') {
+    @("wow_classic", "wow_classic_ptr", "wow_classic_beta", "wow_classic_era", "wow_classic_era_ptr")
+} elseif ($norm -match '/DataAddons/Shared/') {
+    @("wow", "wowt", "wow_beta", "wow_classic", "wow_classic_ptr", "wow_classic_beta", "wow_classic_era", "wow_classic_era_ptr")
+} else {
+    @("wow", "wowt", "wow_beta", "wow_classic", "wow_classic_ptr", "wow_classic_beta", "wow_classic_era", "wow_classic_era_ptr")
+}
+
+$availableBuilds = (Invoke-RestMethod "$BaseUrl/casc/builds" -Method POST `
+    -Body "draw=1&start=0&length=50" `
+    -ContentType "application/x-www-form-urlencoded").data |
+    ForEach-Object { [PSCustomObject]@{ Build = "$($_[0]).$($_[1])"; Type = $_[2] } }
+
 if (-not $Build) {
-    $availableBuilds = (Invoke-RestMethod "$BaseUrl/casc/builds" -Method POST `
-        -Body "draw=1&start=0&length=50" `
-        -ContentType "application/x-www-form-urlencoded").data |
-        ForEach-Object { [PSCustomObject]@{ Build = "$($_[0]).$($_[1])"; Type = $_[2] } }
-
-    $norm = $LuaFile.Replace('\', '/')
-
-    # Priority order of build types to try per file path
-    $candidates = if ($norm -match '/DataAddons/Retail/') {
-        @("wow")
-    } elseif ($norm -match '/DataAddons/Classic/') {
-        @("wow_classic", "wow_classic_era")
-    } elseif ($norm -match '/DataAddons/Shared/') {
-        @("wow", "wow_classic", "wow_classic_era")
-    } else {
-        @("wow", "wow_classic", "wow_classic_era")
-    }
-
     # Find the first ID in the file to probe with
     $probeId = $null
     foreach ($line in $lines) {
@@ -191,6 +192,16 @@ if (-not $Build) {
     if (-not $Build) { throw "Could not auto-detect build for '$LuaFile'. Pass -Build explicitly." }
     Write-Host "Auto-detected build: $Build"
 }
+
+# Fallback build queue: remaining candidate builds (excluding whichever is $Build),
+# used later to re-check any IDs that come back missing from the primary build.
+# This handles files that span multiple patches, where older entries live in a
+# "wow" (live) build and newer entries only exist in a "wowt" (PTR) build yet.
+$fallbackBuilds = $candidates |
+    ForEach-Object { $type = $_; $availableBuilds | Where-Object { $_.Type -eq $type } | Select-Object -First 1 } |
+    Where-Object { $_ -and $_.Build -ne $Build } |
+    Select-Object -Unique -Property Build |
+    ForEach-Object { $_.Build }
 
 # ── Parse Lua entries ─────────────────────────────────────────────────────────
 # Matches:  Ach(ID)[chain], -- comment
@@ -239,6 +250,7 @@ foreach ($line in $lines) {
         HasToy      = [bool]($eChain -match ':Toy\(\)')
         HasTransmog   = [bool]($eChain -match ':Transmog\(\)')
         HasOther      = [bool]($eChain -match ':Other\(\)')
+        HasNotCategorized = [bool]($eChain -match ':NotCategorized\(\)')
         HasTabard     = [bool]($eChain -match ':Tabard\(\)')
         HasGarrison   = [bool]($eChain -match ':Garrison\(\)')
         HasAlliedRace = [bool]($eChain -match ':AlliedRace\(\)')
@@ -271,7 +283,28 @@ for ($i = 0; $i -lt $allIds.Count; $i += $chunk) {
         ForEach-Object { $dbById[$_.Key] = $_.Value }
 }
 
-Write-Host "Queried $($dbById.Count) / $($allIds.Count) IDs from DB"
+Write-Host "Queried $($dbById.Count) / $($allIds.Count) IDs from DB (build $Build)"
+
+# ── Fallback build re-query ───────────────────────────────────────────────────
+# IDs missing from the primary build may belong to a newer patch that only exists
+# on a PTR/Beta build locally (e.g. new-patch achievements added via PTR data
+# before the live build is refreshed). Re-check missing IDs against each
+# remaining candidate build in priority order until all are resolved or the
+# candidate list is exhausted.
+$missingIds = @($allIds | Where-Object { -not $dbById.ContainsKey("$_") })
+foreach ($fbBuild in $fallbackBuilds) {
+    if ($missingIds.Count -eq 0) { break }
+    $found = @()
+    for ($i = 0; $i -lt $missingIds.Count; $i += $chunk) {
+        $slice = [int[]]$missingIds[$i .. [Math]::Min($i + $chunk - 1, $missingIds.Count - 1)]
+        (Invoke-AchievementQuery -Ids $slice -BuildStr $fbBuild).GetEnumerator() |
+            ForEach-Object { $dbById[$_.Key] = $_.Value; $found += [int]$_.Key }
+    }
+    if ($found.Count -gt 0) {
+        Write-Host "Resolved $($found.Count) additional ID(s) from fallback build $fbBuild"
+        $missingIds = @($missingIds | Where-Object { $_ -notin $found })
+    }
+}
 
 # ── Verification ──────────────────────────────────────────────────────────────
 $failures      = [System.Collections.Generic.List[string]]::new()
@@ -382,7 +415,7 @@ foreach ($e in $entries) {
         $isReward   = (-not $isTitleStr) -and (
                        $r -match '^Reward:' -or $r -match '^Rewards:' -or $r -match '^Item Reward:' -or
                        $r -match '^Mount:' -or $r -match '^Mount Reward:' -or
-                       $r -match '^Pet:' -or $r -match '^Pet Costume:' -or $r -match '^Toys?:' -or
+                       $r -match '^Pet:' -or $r -match '^Pet Costume:' -or $r -match '^Pet Reward:' -or $r -match '^Toys?:' -or
                        $r -match '^Customization Reward:' -or $r -match '^Decor Rewards?:' -or
                        $r -match '^Unlocks?[: ]' -or $r -match '^Max Level Unlock:' -or $r -match '^Character Unlock:' -or
                        $r -match '^Appearance:' -or $r -match '^Demon Hunter Appearance:' -or
@@ -391,6 +424,8 @@ foreach ($e in $entries) {
                        $r -match '^Ensemble:' -or $r -match '^Illusion:' -or $r -match '^Item:' -or
                        $r -match '^Drake Customization:' -or $r -match '^Paint Color:' -or
                        $r -match '^Future Timerunning' -or
+                       $r -match '^Transmog:' -or $r -match '^Transmog Reward:' -or
+                       $r -match '^Weapon Illusion:' -or $r -match '^Companion Pet:' -or
                        # Reward types identified from edge cases in EDGE-CASES.md:
                        $r -match '^Warband Campsite:' -or                    # :WarbandCampsite()
                        $r -match '^Keystones? will no longer deplete' -or    # :KeystoneResilience()
@@ -406,7 +441,7 @@ foreach ($e in $entries) {
                      $e.HasTransmog -or $e.HasOther -or $e.HasTabard -or $e.HasGarrison -or
                      $e.HasAlliedRace -or $e.HasHousingDecor -or $e.HasTradersTender -or
                      $e.HasRemixBronze -or $e.HasKeystoneResilience -or $e.HasTeleport -or
-                     $e.HasWarbandCampsite -or
+                     $e.HasWarbandCampsite -or $e.HasNotCategorized -or
                      $e.HasTitle   # :Title() counts as a reward method for the reward-item check
         # If it's a title reward and entry has :Title(), that's sufficient; don't require other methods
         if ($isTitleStr -and $e.HasTitle) {
@@ -414,13 +449,22 @@ foreach ($e in $entries) {
         } elseif ($isReward -and -not $hasMethod) {
             $failures.Add("[FAIL] reward-item     : Ach($($e.ID)) — DB Reward_lang=""$r"" but no :Mount()/:Pet()/:Item()/:Toy()/:Transmog()/:Other()/:Tabard()")
         } elseif ($hasMethod -and -not $isReward -and -not $isTitleStr) {
-            if ($e.HasOther -and -not ($e.HasMount -or $e.HasPet -or $e.HasItem -or $e.HasToy -or
+            if (($e.HasOther -or $e.HasNotCategorized) -and -not ($e.HasMount -or $e.HasPet -or $e.HasItem -or $e.HasToy -or
                     $e.HasTransmog -or $e.HasTabard -or $e.HasGarrison -or $e.HasAlliedRace -or
                     $e.HasHousingDecor -or $e.HasRemixBronze -or $e.HasKeystoneResilience -or
                     $e.HasTeleport -or $e.HasWarbandCampsite -or $e.HasTitle)) {
-                # :Other()-only entry with unrecognised DB reward text — :Other() is explicitly
-                # the developer's assertion that a non-standard reward exists; trust it.
-                $suppressedFPs.Add("[FP]   reward-item     : Ach($($e.ID)) — :Other() with unrecognised DB Reward_lang=`"$r`" (non-standard reward, trusted)")
+                # :Other()/:NotCategorized()-only entry with unrecognised DB reward text — both are
+                # explicitly the developer's assertion that a non-standard/unclear reward exists; trust it.
+                $tagName = if ($e.HasOther) { ":Other()" } else { ":NotCategorized()" }
+                $suppressedFPs.Add("[FP]   reward-item     : Ach($($e.ID)) — $tagName with unrecognised DB Reward_lang=`"$r`" (non-standard reward, trusted)")
+            } elseif ($r -eq "" -and $e.HasMount -and -not ($e.HasPet -or $e.HasItem -or $e.HasToy -or
+                    $e.HasTransmog -or $e.HasTabard -or $e.HasGarrison -or $e.HasAlliedRace -or
+                    $e.HasHousingDecor -or $e.HasOther -or $e.HasNotCategorized -or $e.HasRemixBronze -or
+                    $e.HasKeystoneResilience -or $e.HasTeleport -or $e.HasWarbandCampsite -or $e.HasTitle)) {
+                # :Mount()-only entry with empty DB Reward_lang — some account-wide/standalone mount
+                # achievements (e.g. seasonal PvP mount FoS achievements) have no Reward_lang populated
+                # despite the mount being confirmed via Wowhead. Known DB data gap.
+                $suppressedFPs.Add("[FP]   reward-item     : Ach($($e.ID)) — :Mount() with empty DB Reward_lang (known DB data gap; confirm via Wowhead)")
             } elseif ($r -eq "" -and $e.HasTitle -and -not ($e.HasMount -or $e.HasPet -or $e.HasItem -or
                     $e.HasToy -or $e.HasTransmog -or $e.HasTabard -or $e.HasGarrison -or
                     $e.HasAlliedRace -or $e.HasHousingDecor -or $e.HasRemixBronze -or

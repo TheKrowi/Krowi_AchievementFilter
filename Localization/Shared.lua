@@ -53,6 +53,11 @@ function addon.GetMapName(uiMapId)
     return mapInfo and mapInfo.name or tostring(uiMapId);
 end
 
+function addon.GetAreaPoiNameName(areaPoiId)
+    local areaPoiInfo = C_AreaPoiInfo.GetAreaPOIInfo(nil, areaPoiId)
+    return areaPoiInfo and areaPoiInfo.name or tostring(areaPoiId)
+end
+
 function addon.GetLFGActivityFullName(activityId)
     local activityInfo = C_LFGList.GetActivityInfoTable(activityId);
     return activityInfo and activityInfo.fullName or tostring(activityId);

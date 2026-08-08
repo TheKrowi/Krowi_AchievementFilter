@@ -153,6 +153,17 @@ Seasonal M+ achievement lists live in `DataAddons/Shared/CategoryData.lua` as `s
 
 ## Code Style
 
+**Check the target file's existing style FIRST — there are two, and they are not interchangeable.**
+Recently-touched expansion files (e.g. `DataAddons/Retail/12_Midnight/CategoryData.lua`) use the
+**V2 fluent builder API** defined in `Api/CategoryDataBuilder.lua`: `expansion:Zones()`,
+`zones:Zone(uiMapId)`, `zone:Quests{}/:Exploration{}/:PvP{}/:Reputation{}/:Named()`,
+`expansion:Delves()`, `delves:Delve(areaPoiId)/:Seasonal{}`, `expansion:Raids()`,
+`raids:Raid(journalId):Glory{}/:Mythic{}`, `expansion:Dungeons()`, `dungeons:Dungeon(journalId)`,
+`expansion:Named(label, ids)`. Older, untouched expansion files (TWW, BfA, Dragonflight, TBC,
+Cataclysm, etc.) still use the raw V1 table style shown below via `tinsert(KrowiAF.CategoryData.Expansions, {...})`.
+**Never mix styles within one file.** The V1 example below remains valid ONLY for files that
+haven't been migrated to V2 yet.
+
 ```lua
 { -- Zone Name
     addon.GetMapName(2405),           -- uiMapId from uimap lookup

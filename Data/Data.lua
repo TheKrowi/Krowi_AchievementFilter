@@ -115,6 +115,8 @@ local function PostLoadOnPlayerLogin(self, start)
 
     addon.SpecialCategories:Load();
 
+    addon.Gui.AchievementPopout:Load(); -- Achievement lookups need self.Achievements populated, so this can't run at ADDON_LOADED
+
     local function PostBuildCache()
         addon.SpecialCategories.LoadData();
 
@@ -143,7 +145,9 @@ function data:LoadOnPlayerLogin()
     self:RegisterCustomCriteriaDataTasks();
     self:RegisterCategoryDataTasks();
     self:RegisterEventDataTasks();
-    self.ExportedUiMaps.RegisterTasks(self.Maps, self.Achievements);
+    if self.ExportedUiMaps then
+        self.ExportedUiMaps.RegisterTasks(self.Maps, self.Achievements);
+    end
 
     self:RegisterTooltipDataTasks();
     self:RegisterPetBattleLinkDataTasks();

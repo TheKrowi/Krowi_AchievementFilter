@@ -132,8 +132,8 @@ function DelvesBuilder:Seasonal(ids)
     return child
 end
 
-function DelvesBuilder:Delve(uiMapId, ids)
-    local child = setmetatable(NewNode(addon.GetMapName(uiMapId), ids), CategoryBuilder)
+function DelvesBuilder:Delve(areaPoiId, ids)
+    local child = setmetatable(NewNode(addon.GetAreaPoiNameName(areaPoiId), ids), CategoryBuilder)
     tinsert(self.Children, child)
     return child
 end

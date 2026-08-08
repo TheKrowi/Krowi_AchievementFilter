@@ -1,4 +1,4 @@
-local _, addon = ...
+﻿local _, addon = ...
 local shared = addon.Data.ZoneData.Shared
 
 local delves = {
@@ -154,6 +154,10 @@ zoneData:Zone({2213, 2216, 2255, 2256}, { -- Azj-Kahet (zone)
     40351, -- Azj-Kahet Reverse: Gold
 })
 
+zoneData:Zone(2345, { -- Deephaul Ravine (battleground)
+    shared.GenericBattleground,
+})
+
 zoneData:Zone(2214, { -- The Ringing Deeps (zone)
     19560, -- The Ringing Deeps
     40799, -- Sojourner of The Ringing Deeps
@@ -222,7 +226,7 @@ zoneData:Zone(2215, { -- Hallowfall (zone)
     40342, -- Hallowfall Reverse: Gold
 })
 
-zoneData:Zone({2248, 2322, 2339, 2367, 2368}, { -- Isle of Dorn (zone)
+zoneData:Zone({2248, 2328}, { -- Isle of Dorn (zone)
     20118, -- The Isle of Dorn
     20595, -- Sojourner of Isle of Dorn
     40831, -- Explore the Isle of Dorn
@@ -243,6 +247,7 @@ zoneData:Zone({2248, 2322, 2339, 2367, 2368}, { -- Isle of Dorn (zone)
     40322, -- Isle of Dorn Reverse: Bronze
     40323, -- Isle of Dorn Reverse: Silver
     40324, -- Isle of Dorn Reverse: Gold
+    275, -- Veteran Nanny
 })
 
 zoneData:Zone(2249, { -- Fungal Folly (delve)
@@ -533,7 +538,7 @@ zoneData:Zone(2396, { -- Excavation Site 9 (delve)
     delvesS3Progress,
 })
 
-zoneData:Zone({2403, 2404}, { -- Vision of Orgrimmar / Vision of Stormwind
+zoneData:Zone({1469, 1470, 2403, 2404}, { -- Vision of Orgrimmar / Vision of Stormwind
     41853, -- Horrific Vision of Stormwind
     41854, -- The Even More Horrific Vision of Stormwind
     41855, -- The Most Horrific Vision of Stormwind

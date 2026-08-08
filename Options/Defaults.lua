@@ -83,7 +83,8 @@ addon.Options.Defaults = {
                 PasteToChat = 4,
                 ToggleTracking = 4,
                 ToggleWatchList = 2,
-                ToggleExcluded = 1
+                ToggleExcluded = 1,
+                PopOut = 3
             },
             MouseWheelPanScalar = 1,
             ShowTemporarilyObtainableIcon = true,
@@ -100,6 +101,18 @@ addon.Options.Defaults = {
                 AddLocale = true,
                 AddRelatedTab = 1
             }
+        },
+        Popout = {
+            PersistAcrossSessions = true,
+            RememberSize = true,
+            DefaultWidth = 434,
+            EnableSnapping = true,
+            SnapDistance = 20,
+            AutoHideCloseButton = false,
+            AutoHideResizeButton = false,
+            FadeWhenNotHovered = false,
+            FadedOpacity = 0.5,
+            FadeSpeed = 0.2
         },
         Tooltip = {
             Categories = {

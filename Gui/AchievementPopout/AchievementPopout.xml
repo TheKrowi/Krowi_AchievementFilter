@@ -1,0 +1,53 @@
+<Ui>
+    <Script file="AchievementPopout.lua"/>
+    <Script file="AchievementPopoutMixin.lua"/>
+
+    <Frame name="KrowiAF_AchievementPopout_Template" mixin="KrowiAF_AchievementPopoutMixin" parent="UIParent" enableMouse="true" movable="true" resizable="true" toplevel="true" virtual="true">
+        <Size x="434" y="142"/>
+        <Frames>
+            <Button parentKey="CloseButton" mixin="KrowiAF_AchievementPopoutCloseButtonMixin" inherits="UIPanelCloseButtonNoScripts">
+                <Anchors>
+                    <Anchor point="TOPRIGHT" x="-1" y="-1"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick method="OnClick"/>
+                    <OnEnter method="OnEnter"/>
+                    <OnLeave method="OnLeave"/>
+                </Scripts>
+            </Button>
+            <Button parentKey="ResizeButton" mixin="KrowiAF_AchievementPopoutResizeButtonMixin">
+                <Size x="16" y="16"/>
+                <Anchors>
+                    <Anchor point="BOTTOMRIGHT" x="-4" y="4"/>
+                </Anchors>
+                <NormalTexture file="Interface\ChatFrame\UI-ChatIM-SizeGrabber-Up"/>
+                <PushedTexture file="Interface\ChatFrame\UI-ChatIM-SizeGrabber-Down"/>
+                <HighlightTexture file="Interface\ChatFrame\UI-ChatIM-SizeGrabber-Highlight"/>
+                <Scripts>
+                    <OnMouseDown method="OnMouseDown"/>
+                    <OnMouseUp method="OnMouseUp"/>
+                    <OnEnter method="OnEnter"/>
+                    <OnLeave method="OnLeave"/>
+                </Scripts>
+            </Button>
+            <EventButton name="$parentButton" parentKey="Button" inherits="KrowiAF_AchievementButton_Normal_Template">
+                <Anchors>
+                    <Anchor point="TOPLEFT" x="0" y="0"/>
+                    <Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+                </Anchors>
+                <Frames>
+                    <Frame name="$parentObjectives" parentKey="Objectives" inherits="KrowiAF_AchievementsObjectives_Template"/>
+                </Frames>
+            </EventButton>
+        </Frames>
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+            <OnDragStart method="OnDragStart"/>
+            <OnDragStop method="OnDragStop"/>
+            <OnSizeChanged method="OnSizeChanged"/>
+            <OnHide method="OnHide"/>
+            <OnEnter method="OnEnter"/>
+            <OnLeave method="OnLeave"/>
+        </Scripts>
+    </Frame>
+</Ui>

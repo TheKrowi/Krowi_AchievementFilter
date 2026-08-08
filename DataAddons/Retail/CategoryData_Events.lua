@@ -187,6 +187,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                 1186, -- Down With The Dark Iron
                 18579, -- A Round on the House
                 41212, -- A Round on the House in Khaz Algar
+                63253, -- A Round on the House in Midnight
             },
         },
         { -- Hallow's End
@@ -224,6 +225,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                 7602, -- Tricks and Treats of Pandaria
                 18360, -- Tricks and Treats of the Dragon Isles
                 40862, -- Tricks and Treats of Khaz Algar
+                63400, -- Tricks and Treats of Midnight
                 10365, -- A Frightening Friend
                 1656, -- Hallowed Be Thy Name
                 980, -- The Horseman's Reins

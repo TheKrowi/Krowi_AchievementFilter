@@ -662,30 +662,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
             10052, -- Tiny Terrors in Tanaan
         },
     },
-    { -- Brawler's Guild
-        addon.L["Brawler's Guild"] .. CT.Legacy,
-        {
-            9168, -- You Are Not Your $#*@! Legplates (Season 2)
-            9172, -- You Are Not Your $#*@! Legplates (Season 2)
-            9169, -- The Second Rule of Brawler's Guild (Season 2)
-            9173, -- The Second Rule of Brawler's Guild (Season 2)
-            9170, -- Brawlin' and Shot Callin' (Season 2)
-            9174, -- Brawlin' and Shot Callin' (Season 2)
-            9171, -- Now You're Just Showing Off (Season 2)
-            9175, -- Now You're Just Showing Off (Season 2)
-            8339, -- Collect Your Deck (Season 2)
-            8342, -- Collect Your Deck (Season 2)
-            9176, -- Deck Your Collection (Season 2)
-            9177, -- Deck Your Collection (Season 2)
-            7949, -- Rabble Rabble Rabble (Season 2)
-            7950, -- Rabble Rabble Rabble (Season 2)
-            7943, -- I'm Your Number One Fan (Season 2)
-            7945, -- Haters Gonna Hate (Season 2)
-            7944, -- Bottle Service (Season 2)
-            7947, -- The First Rule of Brawler's Guild (Season 1 or 2)
-            7948, -- The First Rule of Brawler's Guild (Season 1 or 2)
-        },
-    },
     { -- Garrison
         addon.L["Garrison"],
         { -- Quests

@@ -137,8 +137,10 @@ local function CreateTooltip()
 end
 
 function header:AnchorHeader()
-    AchievementFrameFilterDropdown:ClearAllPoints();
-    AchievementFrameFilterDropdown:SetPoint("BOTTOMLEFT", AchievementFrame.Header, "BOTTOMLEFT", 123, 17);
+    if not AchievementFrame.HeaderDetails then -- Newer layouts already place the dropdown above the list; only old layouts need it pulled onto the Header banner
+        AchievementFrameFilterDropdown:ClearAllPoints();
+        AchievementFrameFilterDropdown:SetPoint("BOTTOMLEFT", AchievementFrame.Header, "BOTTOMLEFT", 123, 17);
+    end
 
     AchievementFrame.Header:ClearAllPoints();
     if addon.Options.db.profile.CenterHeader then

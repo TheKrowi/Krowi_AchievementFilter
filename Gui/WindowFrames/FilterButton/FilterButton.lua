@@ -4,7 +4,11 @@ local filterButton = addon.Gui.FilterButton;
 
 local function CreateModern()
     local button = CreateFrame("DropdownButton", "KrowiAF_AchievementFrameFilterButton", AchievementFrame, "KrowiAF_AchievementFrameFilterButton_Modern_Template");
-    button:SetPoint("BOTTOMLEFT", AchievementFrame.Header, "BOTTOMLEFT", 118, 28);
+    if AchievementFrame.HeaderDetails then
+        button:SetPoint("RIGHT", AchievementFrame.HeaderDetails, "RIGHT", -8, 0);
+    else
+        button:SetPoint("BOTTOMLEFT", AchievementFrame.Header, "BOTTOMLEFT", 118, 28);
+    end
     return button;
 end
 

@@ -52,11 +52,13 @@ do -- Mixin
         if isModern then
             WowStyle1FilterDropdownMixin.OnShow(self);
         end
-        AchievementFrame.Header.LeftDDLInset:Show();
+        if AchievementFrame.Header.LeftDDLInset then
+            AchievementFrame.Header.LeftDDLInset:Show();
+        end
     end
 
     function KrowiAF_AchievementFrameFilterButtonMixin:OnHide()
-        if addon.Util.IsCataClassic or not AchievementFrameFilterDropdown:IsShown() then
+        if AchievementFrame.Header.LeftDDLInset and (addon.Util.IsCataClassic or not AchievementFrameFilterDropdown:IsShown()) then
             AchievementFrame.Header.LeftDDLInset:Hide();
         end
     end

@@ -1,4 +1,4 @@
-local _, addon = ...
+﻿local _, addon = ...
 local shared = addon.Data.ZoneData.Shared
 
 local zoneData = KrowiAF.NewZoneData("Dragonflight")
@@ -12,6 +12,11 @@ zoneData:Zone({2097, 2098, 2099}, { -- Algeth'ar Academy (dungeon)
     16271, -- Mythic: Algeth'ar Academy
     16643, -- Keystone Hero: Algeth'ar Academy
     61591, -- Keystone Victor: Algeth'ar Academy
+})
+
+zoneData:Zone({2094, 2095}, { -- Ruby Life Pools (dungeon)
+    62442, -- Keystone Hero: Ruby Life Pools (Midnight Season 2)
+    63627, -- Keystone Victor: Ruby Life Pools
 })
 
 zoneData:Zone({2119, 2120, 2121, 2122, 2123, 2124, 2125, 2126}, { -- Vault of the Incarnates (raid)
@@ -50,7 +55,7 @@ zoneData:Zone({2119, 2120, 2121, 2122, 2123, 2124, 2125, 2126}, { -- Vault of th
     19576, -- Mythic: Awakening the Dragonflight Raids
 })
 
-zoneData:Zone({2166, 2167, 2168, 2169, 2170, 2171, 2172, 2173, 2174}, { -- Aberrus, the Shadowed Crucible (raid)
+zoneData:Zone({2166, 2167, 2168, 2169, 2170}, { -- Aberrus, the Shadowed Crucible (raid)
     18163, -- Discarded Works
     18164, -- Fury of Giants
     18165, -- Neltharion's Shadow

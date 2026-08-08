@@ -7,6 +7,10 @@ function search:Load()
 	if addon.Util.IsClassicWithAchievements then
 		frame:SetSize(107, 30);
 		frame:SetPoint("TOPLEFT", AchievementFrame.Header.RightDDLInset, "TOPLEFT", 12, 2);
+	elseif AchievementFrame.HeaderDetails then
+		-- Newer layouts: sit to the left of our filter button, matching Blizzard's own Filters spacing (7px)
+		frame:SetSize(200, 30);
+		frame:SetPoint("RIGHT", KrowiAF_AchievementFrameFilterButton, "LEFT", -7, 0);
 	else
 		frame:SetPoint("TOPLEFT", AchievementFrame.SearchBox);
 		frame:SetPoint("BOTTOMRIGHT", AchievementFrame.SearchBox);

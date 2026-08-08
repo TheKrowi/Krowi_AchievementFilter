@@ -58,20 +58,27 @@ function KrowiAF_SearchBoxFrameMixin:OnLoad()
 end
 
 function KrowiAF_SearchBoxFrameMixin:OnShow()
-	AchievementFrame.Header.RightDDLInset:Show();
+	if AchievementFrame.Header.RightDDLInset and addon.Util.IsClassicWithAchievements then
+		AchievementFrame.Header.RightDDLInset:Show();
+	end
 	if not addon.Util.IsClassicWithAchievements then
 		AchievementFrame.SearchBox:Hide();
+		if AchievementFrame.HeaderDetails and AchievementFrame.HeaderDetails.Back then
+			AchievementFrame.HeaderDetails.Back:Hide();
+		end
 	end
 	self.OptionsMenuButton:Show();
 end
 
 function KrowiAF_SearchBoxFrameMixin:OnHide()
-	if addon.Util.IsClassicWithAchievements and not AchievementFrameFilterDropdown:IsShown() then
+	if addon.Util.IsClassicWithAchievements and AchievementFrame.Header.RightDDLInset and not AchievementFrameFilterDropdown:IsShown() then
 		AchievementFrame.Header.RightDDLInset:Hide();
 	end
 	if not addon.Util.IsClassicWithAchievements then
 		AchievementFrame.SearchBox:Show();
-		AchievementFrame.Header.RightDDLInset:Show();
+		-- if AchievementFrame.Header.RightDDLInset then
+		-- 	AchievementFrame.Header.RightDDLInset:Show();
+		-- end
 	end
 	if not AchievementFrame:IsShown() then
 		self:SetText("");

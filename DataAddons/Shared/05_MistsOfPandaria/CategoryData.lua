@@ -910,27 +910,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Mists of Pandaria
             8348, -- The Longest Day
         },
     },
-    { -- Brawler's Guild
-        addon.L["Brawler's Guild"] .. (addon.Util.IsMainline and CT.Legacy or ""),
-        {
-            7937, -- You Are Not Your $#*@! Legplates (Season 1)
-            8020, -- You Are Not Your $#*@! Legplates (Season 1)
-            7940, -- The Second Rule of Brawler's Guild (Season 1)
-            7939, -- The Second Rule of Brawler's Guild (Season 1)
-            7941, -- Brawlin' and Shot Callin' (Season 1)
-            7942, -- Brawlin' and Shot Callin' (Season 1)
-            8335, -- Having a Brawl (Season 1)
-            8337, -- Having a Brawl (Season 1)
-            8336, -- I've Got the Biggest Brawls of Them All (Season 1)
-            8338, -- I've Got the Biggest Brawls of Them All (Season 1)
-            7946, -- Now You're Just Showing Off (Season 1)
-            8022, -- Now You're Just Showing Off (Season 1)
-            8340, -- Deck Your Collection (Season 1)
-            8343, -- Deck Your Collection (Season 1)
-            7947, -- The First Rule of Brawler's Guild (Season 1 or 2)
-            7948, -- The First Rule of Brawler's Guild (Season 1 or 2)
-        },
-    },
     { -- Scenarios
         addon.L["Scenarios"],
         { -- A Brewing Storm

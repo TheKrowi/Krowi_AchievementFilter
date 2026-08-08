@@ -222,8 +222,8 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(61488), -- Heroic: Chimaerus, the Undreamt God
 	Ach(61489):Title(), -- Mythic: Chimaerus, the Undreamt God
 	Ach(61490):Transmog(), -- Midnight Season 1: Champion of the Dawn
-	Ach(61491), -- Ahead of the Curve: Chimaerus, the Undreamt God
-	Ach(61492), -- Cutting Edge: Chimaerus, the Undreamt God
+	Ach(61491):PvE(17), -- Ahead of the Curve: Chimaerus, the Undreamt God
+	Ach(61492):PvE(17), -- Cutting Edge: Chimaerus, the Undreamt God
 	Ach(61506):AlliedRace(), -- Allied Race: Haranir
 	Ach(61507):HousingDecor(), -- A Bloody Song
 	Ach(61508), -- Voidscar Arena
@@ -252,10 +252,10 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(61592):PvE(17), -- Keystone Victor: Pit of Saron
 	Ach(61593):PvE(17), -- Keystone Victor: Seat of the Triumvirate
 	Ach(61594):PvE(17), -- Keystone Victor: Skyreach
-	Ach(61624), -- Ahead of the Curve: Crown of the Cosmos
-	Ach(61625), -- Cutting Edge: Crown of the Cosmos
-	Ach(61626), -- Ahead of the Curve: Midnight Falls
-	Ach(61627), -- Cutting Edge: Midnight Falls
+	Ach(61624):PvE(17), -- Ahead of the Curve: Crown of the Cosmos
+	Ach(61625):PvE(17), -- Cutting Edge: Crown of the Cosmos
+	Ach(61626):PvE(17), -- Ahead of the Curve: Midnight Falls
+	Ach(61627):PvE(17), -- Cutting Edge: Midnight Falls
 	Ach(61635), -- Voidspire: Weapons of the Void
 	Ach(61636), -- Voidspire: Fanatics of the Light
 	Ach(61637), -- Voidspire: Crown of the Cosmos
@@ -306,7 +306,7 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(61739), -- Sojourner of Harandar
 	Ach(61741), -- Delve Loremaster: Midnight
 	Ach(61796):PvE(17), -- Midnight: Journey's End (Season 1)
-	Ach(61797):Transmog(), -- My Shady Nemesis
+	Ach(61797):Transmog():PvE(17), -- My Shady Nemesis
 	Ach(61798):Title():PvE(17), -- Lighting the Dark
 	Ach(61799):Mount():PvE(17), -- Let Me Solo Him: Nullaeus
 	Ach(61800):Other():PvE(17), -- Midnight Delves: Tier 4 (Season 1)
@@ -557,16 +557,16 @@ KrowiAF.AchievementData["12_00_00"] = {
 }
 
 KrowiAF.AchievementData["12_00_05"] = {
-	Ach(61792), -- T-A-G that spells "Gotcha!"
-	Ach(61793), -- Deployed to the Void
-	Ach(61878), -- Tagged and Bagged
-	Ach(61879), -- You're It
-	Ach(61880), -- It's Cold Here in This Shadow
-	Ach(61881), -- Hide and Peekless
-	Ach(61882), -- Null and Avoided
-	Ach(61883), -- Now You Don't See Me...
-	Ach(61886), -- The Whole Kit and Caboodle
-	Ach(61887), -- Disguised to the Nines
+	Ach(61792):Obtainable("Before", "Version", {12, 1, 0}), -- T-A-G that spells "Gotcha!"
+	Ach(61793):Obtainable("Before", "Version", {12, 1, 0}), -- Deployed to the Void
+	Ach(61878):Obtainable("Before", "Version", {12, 1, 0}), -- Tagged and Bagged
+	Ach(61879):Obtainable("Before", "Version", {12, 1, 0}), -- You're It
+	Ach(61880):Obtainable("Before", "Version", {12, 1, 0}), -- It's Cold Here in This Shadow
+	Ach(61881):Obtainable("Before", "Version", {12, 1, 0}), -- Hide and Peekless
+	Ach(61882):Obtainable("Before", "Version", {12, 1, 0}), -- Null and Avoided
+	Ach(61883):Obtainable("Before", "Version", {12, 1, 0}), -- Now You Don't See Me...
+	Ach(61886):Obtainable("Before", "Version", {12, 1, 0}), -- The Whole Kit and Caboodle
+	Ach(61887):Obtainable("Before", "Version", {12, 1, 0}), -- Disguised to the Nines
 	Ach(62342), -- Abyss Anglers: The Finest of Fish
 	Ach(62343), -- Abyss Anglers: Myths from Beneath
 	Ach(62450), -- Ritual Sites 101: An Introduction to Basic Magical Rituals
@@ -657,7 +657,7 @@ KrowiAF.AchievementData["12_00_07"] = {
 	Ach(61335):AutoFactionSplit(faction.Horde, 61336), -- Flame Keeper / Warden of Midnight
 	Ach(61442):HousingDecor(), -- Lorewalking: The Loa
 	Ach(61463):Mount():Obtainable("Event", 1425), -- Master of the Turbulent Timeways V
-	Ach(62413), -- The Curse of Ula'tek
+	-- Ach(62413), -- The Curse of Ula'tek
 	Ach(62606), -- The Sunstrider Omnium
 	Ach(62842), -- A Celestial Pain
 	Ach(62873):Mount(), -- A Trip Around the Stars
@@ -676,7 +676,7 @@ KrowiAF.AchievementData["12_00_07"] = {
 	Ach(62919), -- Heroic Climate Strange: Naigtal
 	Ach(62940), -- Ritual Sites 612: Practical Ritual Work
 	Ach(62941):Title(), -- Pinnacle Ritual Work
-	Ach(63164), -- Big Prey Hunter (Season 1)
+	Ach(63164):PvE(17), -- Big Prey Hunter (Season 1)
 	Ach(63182), -- Advanced Ritual Site Studies
 	Ach(63237), -- Rotmire
 	Ach(63240), -- Heroic: Rotmire
@@ -690,4 +690,210 @@ KrowiAF.AchievementData["12_00_07"] = {
 	Ach(63384), -- Prepared for a Showdown
 	Ach(63385), -- A Hal'hadar Walks into a Swamp
 	Ach(63386), -- Frosty Domanaar Politics
+}
+
+KrowiAF.AchievementData["12_01_00"] = {
+	{KrowiAF.SetAchievementPatch, 12, 1, 0},
+	Ach(62282), -- Altar of Fangs
+	Ach(62283), -- Heroic: Altar of Fangs
+	Ach(62284), -- Mythic: Altar of Fangs
+	Ach(62297), -- The Curse of Ula'tek
+	Ach(62410):Other():PvE(18), -- Adventurer of the Mist
+	Ach(62411):Other():PvE(18), -- Veteran of the Mist
+	Ach(62412):Other():PvE(18), -- Champion of the Mist
+	Ach(62414):Other():PvE(18), -- Hero of the Mist
+	Ach(62416):PvE(18), -- Myth of the Mist
+	Ach(62417):KeystoneResilience():PvE(18), -- Midnight Season 2: Resilient Keystone 12
+	Ach(62418):KeystoneResilience():PvE(18), -- Midnight Season 2: Resilient Keystone 13
+	Ach(62419):KeystoneResilience():PvE(18), -- Midnight Season 2: Resilient Keystone 14
+	Ach(62420):KeystoneResilience():PvE(18), -- Midnight Season 2: Resilient Keystone 15
+	Ach(62421):KeystoneResilience():PvE(18), -- Midnight Season 2: Resilient Keystone 16
+	Ach(62422):KeystoneResilience():PvE(18), -- Midnight Season 2: Resilient Keystone 17
+	Ach(62423):KeystoneResilience():PvE(18), -- Midnight Season 2: Resilient Keystone 18
+	Ach(62424):KeystoneResilience():PvE(18), -- Midnight Season 2: Resilient Keystone 19
+	Ach(62425):KeystoneResilience():PvE(18), -- Midnight Season 2: Resilient Keystone 20
+	Ach(62426):KeystoneResilience():PvE(18), -- Midnight Season 2: Resilient Keystone 21
+	Ach(62427):KeystoneResilience():PvE(18), -- Midnight Season 2: Resilient Keystone 22
+	Ach(62428):KeystoneResilience():PvE(18), -- Midnight Season 2: Resilient Keystone 23
+	Ach(62429):KeystoneResilience():PvE(18), -- Midnight Season 2: Resilient Keystone 24
+	Ach(62430):KeystoneResilience():PvE(18), -- Midnight Season 2: Resilient Keystone 25
+	Ach(62431):KeystoneResilience():PvE(18), -- Midnight Season 2: Resilient Keystone 26
+	Ach(62432):KeystoneResilience():PvE(18), -- Midnight Season 2: Resilient Keystone 27
+	Ach(62433):KeystoneResilience():PvE(18), -- Midnight Season 2: Resilient Keystone 28
+	Ach(62434):KeystoneResilience():PvE(18), -- Midnight Season 2: Resilient Keystone 29
+	Ach(62435):KeystoneResilience():PvE(18), -- Midnight Season 2: Resilient Keystone 30
+	Ach(62436):Title():PvE(18), -- Venomous Hero: Midnight Season 2
+	Ach(62437):Teleport():PvE(18), -- Keystone Hero: The Blinding Vale
+	Ach(62438):Teleport():PvE(18), -- Keystone Hero: Voidscar Arena
+	Ach(62439):Teleport():PvE(18), -- Keystone Hero: Den of Nalorakk
+	Ach(62440):Teleport():PvE(18), -- Keystone Hero: Murder Row
+	Ach(62441):Teleport():PvE(18), -- Keystone Hero: Altar of Fangs
+	Ach(62442):Teleport():PvE(18), -- Keystone Hero: Ruby Life Pools (Midnight Season 2)
+	Ach(62443):Teleport():PvE(18), -- Keystone Hero: Temple of Sethraliss
+	Ach(62444):Teleport():PvE(18), -- Keystone Hero: Kings' Rest
+	Ach(62445):PvE(18), -- Midnight Keystone Explorer: Season 2
+	Ach(62446):Title():PvE(18), -- Midnight Keystone Conqueror: Season 2
+	Ach(62447):Mount():PvE(18), -- Midnight Keystone Master: Season 2
+	Ach(62448):PvE(18), -- Midnight Keystone Hero: Season 2
+	Ach(62449):Mount():PvE(18), -- Midnight Keystone Legend: Season 2
+	Ach(62460):Pet(), -- Family Battler of Outland
+	Ach(62461):Pet(), -- Family Battler of Cataclysm
+	Ach(62466), -- Aquatic Battler of Outland
+	Ach(62467), -- Beast Battler of Outland
+	Ach(62468), -- Critter Battler of Outland
+	Ach(62469), -- Dragonkin Battler of Outland
+	Ach(62470), -- Elemental Battler of Outland
+	Ach(62471), -- Flying Battler of Outland
+	Ach(62472), -- Humanoid Battler of Outland
+	Ach(62473), -- Magic Battler of Outland
+	Ach(62474), -- Mechanical Battler of Outland
+	Ach(62475), -- Undead Battler of Outland
+	Ach(62476), -- Aquatic Battler of Cataclysm
+	Ach(62477), -- Beast Battler of Cataclysm
+	Ach(62478), -- Critter Battler of Cataclysm
+	Ach(62479), -- Dragonkin Battler of Cataclysm
+	Ach(62480), -- Elemental Battler of Cataclysm
+	Ach(62481), -- Flying Battler of Cataclysm
+	Ach(62482), -- Humanoid Battler of Cataclysm
+	Ach(62483), -- Magic Battler of Cataclysm
+	Ach(62487), -- Mechanical Battler of Cataclysm
+	Ach(62488), -- Undead Battler of Cataclysm
+	Ach(62492):Pet(), -- The Coiled Isle Safari
+	Ach(62497):Transmog():PvP(42), -- Venomous Weapons of Conquest
+	Ach(62600), -- Ritual Behavior
+	Ach(62601), -- Soft Underbelly
+	Ach(62604), -- Dance While Everyone Watches
+	Ach(62649), -- A Lone Wanderer
+	Ach(62871):Transmog():PvE(18), -- Midnight Season 2: Catalyst Unbound
+	Ach(62872):NotCategorized(), -- Midnight Season 2: Serpent Scion
+	Ach(62889):Other():PvE(18), -- Midnight Delves: Tier 4 (Season 2)
+	Ach(62890):Other():PvE(18), -- Midnight Delves: Tier 5 (Season 2)
+	Ach(62891):Other():PvE(18), -- Midnight Delves: Tier 6 (Season 2)
+	Ach(62892):Other():PvE(18), -- Midnight Delves: Tier 7 (Season 2)
+	Ach(62893):Other():PvE(18), -- Midnight Delves: Tier 8 (Season 2)
+	Ach(62894):Other():PvE(18), -- Midnight Delves: Tier 9 (Season 2)
+	Ach(62895):Other():PvE(18), -- Midnight Delves: Tier 10 (Season 2)
+	Ach(62897):Title():PvE(18), -- Midnight Delves: Tier 11 (Season 2)
+	Ach(62911):Transmog():PvP(42), -- Rival II: Midnight Season 2
+	Ach(62921):Title():PvP(42), -- Battle Mender: Midnight Season 2
+	Ach(62922):Title():PvP(42), -- Venomous Gladiator: Midnight Season 2
+	Ach(62923):Title():PvP(42), -- Venomous Legend: Midnight Season 2
+	Ach(62924):AutoFactionSplit(faction.Alliance, 62925):Title():PvP(42), -- Venomous Marshal / Warlord: Midnight Season 2
+	Ach(62926):Title():PvP(42), -- Combatant I: Midnight Season 2
+	Ach(62927):Title():PvP(42), -- Challenger I: Midnight Season 2
+	Ach(62928):Title():PvP(42), -- Rival I: Midnight Season 2
+	Ach(62929):Title():PvP(42), -- Duelist: Midnight Season 2
+	Ach(62930):Mount():Title():PvP(42), -- Gladiator: Midnight Season 2
+	Ach(62931):Title():PvP(42), -- Elite: Midnight Season 2
+	Ach(62932):Title():Toy():PvP(42), -- Legend: Midnight Season 2
+	Ach(62950):Title():Toy():PvP(42), -- Strategist: Midnight Season 2
+	Ach(62951):PvP(42), -- Combatant II: Midnight Season 2
+	Ach(62952):PvP(42), -- Challenger II: Midnight Season 2
+	Ach(62953):AutoFactionSplit(faction.Alliance, 62954):PvP(42), -- Hero of the Alliance / Horde: Venomous
+	Ach(62955):Mount():PvP(42), -- Venomous Gladiator's Goredrake
+	Ach(63104):Mount():PvE(17), -- Umbral Champion: Midnight Season 1
+	Ach(63167):Toy():IsPvP(), -- Tour of Duty: The Coiled Isle
+	Ach(63170), -- Gnarldor Isle Discoveries
+	Ach(63171), -- The Ring of Glory Discoveries
+	Ach(63250), -- Is Venom Stasis A Joke To You?
+	Ach(63253), -- A Round on the House in Midnight
+	Ach(63254):Mount(), -- Glory of the Venomous Raider
+	Ach(63326):Transmog():PvE(18), -- My Venomous Nemesis
+	Ach(63332):Title(), -- Purging the Poison
+	Ach(63333):Transmog():PvE(18), -- Let Me Solo Him: Azta'rec
+	Ach(63334):Title():PvE(18), -- Fabled Let Me Solo Him: Azta'rec
+	Ach(63358):HousingDecor(), -- Coiled to Strike
+	Ach(63359):Mount(), -- Treasures of the Coiled Isle
+	Ach(63381):Title(), -- Cursebreaker
+	Ach(63382), -- It's Definitely Something
+	Ach(63390), -- Turn the Surge
+	Ach(63391), -- Jumping Through Hoops
+	Ach(63395), -- The Coiled Isles Glyph Hunter
+	Ach(63397), -- Kept You Waiting Huh?
+	Ach(63400), -- Tricks and Treats of Midnight
+	Ach(63415), -- Prey: Coiled Nightmares
+	Ach(63416), -- That's a Wrap
+	Ach(63418), -- Well, Well, Little Sky
+	Ach(63432):HousingDecor(), -- Mysterious Mix Master
+	Ach(63433), -- Midnight: Journey's End (Season 2)
+	Ach(63434), -- Buddy System VII: Valeera
+	Ach(63435), -- Buddy System VIII: Valeera
+	Ach(63436), -- The Ring of Glory Stories
+	Ach(63437), -- Gnarldor Isle Stories
+	Ach(63441), -- Souvenir Seeker, Razorwind Shores
+	Ach(63451):HousingDecor(), -- Scales for Days
+	Ach(63452):HousingDecor(), -- Fangs for the Memories
+	Ach(63453):HousingDecor(), -- One, Two, Ral'kala's Coming for You
+	Ach(63454):HousingDecor(), -- Nine, Ten, Never Sleep Again
+	Ach(63457), -- Let Sleeping Skulls Lie
+	Ach(63472), -- Fang Fatale
+	Ach(63473):NotCategorized(), -- Sssensational!
+	Ach(63476):Title(), -- Mythic: Ula'tek
+	Ach(63510):Title(), -- The Briny Best
+	Ach(63512), -- Treasures of the Damned
+	Ach(63520), -- Heroic: The Venomous Abyss
+	Ach(63521), -- The Venomous Abyss
+	Ach(63522), -- Mythic: The Venomous Abyss
+	Ach(63523), -- Mythic: Nek'zali the Soulcoiler
+	Ach(63524), -- Mythic: Entombed Sentinels
+	Ach(63525), -- Mythic: The Lost Explorers
+	Ach(63526), -- Mythic: Vashnik the Malignant
+	Ach(63527), -- Mythic: Sszorak
+	Ach(63528), -- Mythic: The Twin Fangs
+	Ach(63529), -- Mythic: The Coiled Altar
+	Ach(63530), -- The Venomous Abyss: Essence of Ula'tek
+	Ach(63531), -- The Venomous Abyss: Beasts of Ula'tek
+	Ach(63532), -- The Venomous Abyss: Ula'tek
+	Ach(63596), -- Snake Stompin'
+	Ach(63598), -- Roll the Patrol
+	Ach(63599), -- Submerge the Incursion
+	Ach(63600), -- Spike the Strike
+	Ach(63601), -- Oppose the Foes
+	Ach(63605), -- Souvenir Seeker, Founder's Point
+	Ach(63606), -- Superlative Souvenir Seeker
+	Ach(63608), -- Venomous Vestments
+	Ach(63609):Pet(), -- No Egg Scramble
+	Ach(63610), -- The Honored Dead
+	Ach(63611):PvE(18), -- Big Prey Hunter (Season 2)
+	Ach(63619), -- New Friends
+	Ach(63620), -- Well Decorated
+	Ach(63621):PvE(18), -- Keystone Victor: Altar of Fangs
+	Ach(63622):PvE(18), -- Keystone Victor: Den of Nalorakk
+	Ach(63623):PvE(18), -- Keystone Victor: Murder Row
+	Ach(63624):PvE(18), -- Keystone Victor: The Blinding Vale
+	Ach(63625):PvE(18), -- Keystone Victor: Voidscar Arena
+	Ach(63626):PvE(18), -- Keystone Victor: Kings' Rest
+	Ach(63627):PvE(18), -- Keystone Victor: Ruby Life Pools
+	Ach(63628):PvE(18), -- Keystone Victor: Temple of Sethraliss
+	Ach(63629):Transmog(), -- Angler of The Coiled Isle
+	Ach(63630):Mount(), -- Assault the Vault
+	Ach(63631), -- Captain Tokka's Crew
+	Ach(63632), -- Toxic Trophies
+	Ach(63633):Pet(), -- A Stack of Snacks
+	Ach(63634), -- Where Did You Get That?
+	Ach(63635):Title(), -- Tokka's Terrible Trials
+	Ach(63636):Title(), -- Fully Corroded
+	Ach(63639), -- Ula'tek Uncoiled
+	Ach(63640), -- Explore the Coiled Isle
+	Ach(63641), -- Snake Charmed, I'm Sure
+	Ach(63642), -- Sashay Away
+	Ach(63643), -- You Guys, Again?
+	Ach(63644), -- Kill Me Now
+	Ach(63645), -- Accidental Inclusion
+	Ach(63650):PvE(18), -- Ahead of the Curve: Ula'tek
+	Ach(63651):PvE(18), -- Cutting Edge: Ula'tek
+	Ach(63653):Mount(), -- Pro Poison Patroller
+	Ach(63656), -- Taking a Bite out of Slime
+	Ach(63662):Toy(), -- Student of Hissstory
+	Ach(63669), -- Watch Out Behind You
+	Ach(63670), -- Comforting Da Spirits
+	Ach(63679), -- In Case Of Emergency
+	Ach(63681), -- Heroic: Nymrissa Wavecaller
+	Ach(63682), -- Mythic: Nymrissa Wavecaller
+	Ach(63683), -- Nymrissa Wavecaller
+	Ach(63695), -- Arena Exercise
+	Ach(63696), -- Arena Exercise
+	Ach(63697), -- Arena Exercise
+	Ach(63698), -- Arena Exercise
+	Ach(63699), -- World Wide Trainer
 }
