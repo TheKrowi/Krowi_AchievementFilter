@@ -459,6 +459,14 @@ local keyBindingOptions = {
                             values = addon.Modifiers,
                             get = function() return addon.Options.db.profile.Achievements.Modifiers.ToggleExcluded; end,
                             set = function(_, value) addon.Options.db.profile.Achievements.Modifiers.ToggleExcluded = value; end
+                        },
+                        PopOut = {
+                            order = OrderPP(), type = "select", width = AdjustedWidth(0.93),
+                            name = addon.L["Pop Out"],
+                            desc = addon.L["Pop Out"]:KAF_AddDefaultValueText("Achievements.Modifiers.PopOut", addon.Modifiers),
+                            values = addon.Modifiers,
+                            get = function() return addon.Options.db.profile.Achievements.Modifiers.PopOut; end,
+                            set = function(_, value) addon.Options.db.profile.Achievements.Modifiers.PopOut = value; end
                         }
                     }
                 }

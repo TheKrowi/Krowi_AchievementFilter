@@ -115,6 +115,8 @@ local function PostLoadOnPlayerLogin(self, start)
 
     addon.SpecialCategories:Load();
 
+    addon.Gui.AchievementPopout:Load(); -- Achievement lookups need self.Achievements populated, so this can't run at ADDON_LOADED
+
     local function PostBuildCache()
         addon.SpecialCategories.LoadData();
 

@@ -9,6 +9,7 @@
     <Script file="OtherFaction.lua" />
     <Script file="OtherLocations.lua" />
     <Script file="FirstCategory.lua" />
+    <Script file="PopOut.lua" />
     <Script file="TransmogSets.lua" />
     <Script file="PetBattleLinks.lua" />
     <Script file="More.lua" />

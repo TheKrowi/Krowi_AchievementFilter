@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 99.0 - 2026-08-02
+## 99.0 - 2026-08-09
 ### Added
 - 12.1.0 "The Curse of Ula'tek" patch data
     - Altar of Fangs dungeon: Normal, Heroic, Mythic, Keystone Hero and Keystone Victor
@@ -12,13 +12,21 @@ All notable changes to this project will be documented in this file.
     - Family Battler of Outland and Family Battler of Cataclysm pet battle achievements
     - A Round on the House in Midnight and Tricks and Treats of Midnight holiday achievements
     - Keystone Hero/Victor entries added to older dungeons rejoining the Season 2 rotation (Ruby Life Pools, Temple of Sethraliss, Kings' Rest)
+- Pop Out: right-click an achievement to open it in its own standalone, movable and resizable window
+    - Ctrl-click an achievement (rebindable) to pop it out directly, alongside the existing Paste to Chat/Toggle Tracking/Watch List/Exclude modifiers (Options -> General -> Key Binding -> Modifiers)
+    - Snapping: drag a popped-out window close to another one to snap it into a stack below it; moving or resizing the top of a stack moves/resizes the whole stack, while moving or resizing any other window in it breaks it back out (hold Alt while dragging to bypass snapping)
+    - Window position, size, and snap relationships can optionally persist across sessions
+    - Auto-fade: windows can fade to a configurable opacity (and fade speed) when not moused over
+    - Close and resize buttons can be set to auto-hide until moused over
+    - Configurable default window width and snap distance
+    - All Pop Out settings found under Options -> Layout -> Pop Out
 
 ### Changed
 - Support for WoW 12.1.0 PTR (dev note: the Achievements frame's header details strip — Back button, filter dropdown, search box — moved into `AchievementFrame.HeaderDetails.Filters`; the addon's filter button, search box, summary/achievements frames, and browsing history buttons now anchor to it, falling back to the old layout when it's absent)
 
 ### Fixed
-- Filter dropdown and search box no longer error on the 12.1.0 layout, which no longer has `AchievementFrame.Header.LeftDDLInset`/`RightDDLInset`
-- Blizzard's search box no longer reappears after closing the addon's own search box (dev note: `AchievementFrame_SetRestrictedMode` always shows it; it's now re-hidden if ours is active)
+- Filter dropdown and search box no longer error on the 12.1.0 layout
+- Blizzard's search box no longer reappears after closing the addon's own search box
 
 ### Removed
 - Achievement 62413, The Curse of Ula'tek, to be replaced by 62297

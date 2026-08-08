@@ -38,25 +38,25 @@ KrowiAF_AchievementsObjectivesMixin = {
 
 local defaultMetaWidth;
 function KrowiAF_AchievementsObjectivesMixin:OnLoad()
+	-- Per-instance caches: multiple objectives frames can exist at once (main list singleton + popouts)
+	self.criteriaTable, self.progressBarTable, self.miniTable, self.metaCriteriaTable = {}, {}, {}, {};
 	self:RegisterEvent("CRITERIA_UPDATE");
 	local meta = self:GetMeta(1);
 	defaultMetaWidth = meta:GetWidth();
 end
 
-local refreshOnNextShow;
 function KrowiAF_AchievementsObjectivesMixin:OnEvent(event)
 	if event ~= "CRITERIA_UPDATE" then
 		return;
 	end
 
-	local selectedTab = addon.Gui.SelectedTab;
-	if selectedTab and selectedTab.SelectedAchievement then
-		local button = self:GetParent();
+	local button = self:GetParent();
+	if button and button.Achievement then
 		self.Id = nil;
 		if self:IsVisible() then
 			button:DisplayObjectives(true);
 		else
-			refreshOnNextShow = true;
+			self.RefreshOnNextShow = true;
 		end
 	else
 		self.Id = nil;
@@ -64,82 +64,80 @@ function KrowiAF_AchievementsObjectivesMixin:OnEvent(event)
 end
 
 function KrowiAF_AchievementsObjectivesMixin:OnShow()
-	if not refreshOnNextShow then
+	if not self.RefreshOnNextShow then
 		return;
 	end
 
 	local button = self:GetParent();
 	button:DisplayObjectives(true);
 
-	refreshOnNextShow = nil;
+	self.RefreshOnNextShow = nil;
 end
 
-local criteriaTable, progressBarTable, miniTable, metaCriteriaTable = {}, {}, {}, {};
-
-local function ResetTextCriteria()
-	AchievementButton_ResetTable(criteriaTable);
+local function ResetTextCriteria(self)
+	AchievementButton_ResetTable(self.criteriaTable);
 end
 
-local function ResetProgressBars()
-	AchievementButton_ResetTable(progressBarTable);
+local function ResetProgressBars(self)
+	AchievementButton_ResetTable(self.progressBarTable);
 end
 
-local function ResetMiniAchievements()
-	AchievementButton_ResetTable(miniTable);
+local function ResetMiniAchievements(self)
+	AchievementButton_ResetTable(self.miniTable);
 end
 
-local function ResetMetas()
-	AchievementButton_ResetTable(metaCriteriaTable);
+local function ResetMetas(self)
+	AchievementButton_ResetTable(self.metaCriteriaTable);
 end
 
 function KrowiAF_AchievementsObjectivesMixin:ResetAll()
-	ResetTextCriteria();
-	ResetProgressBars();
-	ResetMiniAchievements();
-	ResetMetas();
+	ResetTextCriteria(self);
+	ResetProgressBars(self);
+	ResetMiniAchievements(self);
+	ResetMetas(self);
 end
 
 function KrowiAF_AchievementsObjectivesMixin:GetTextCriteria(index) -- Public for skinning
-	if criteriaTable[index] then
-		return criteriaTable[index];
+	if self.criteriaTable[index] then
+		return self.criteriaTable[index];
 	end
 	local frame = CreateFrame("FRAME", self:GetName() .. "TextCriteria" .. index, self, "KrowiAF_TextCriteria_Template");
 	frame.Name = frame.Label; -- Fixes #56
 	AchievementFrame_LocalizeCriteria(frame);
-	criteriaTable[index] = frame;
+	self.criteriaTable[index] = frame;
 	return frame;
 end
 
 function KrowiAF_AchievementsObjectivesMixin:GetProgressBar(index) -- Public for skinning
-	if progressBarTable[index] then
-		return progressBarTable[index];
+	if self.progressBarTable[index] then
+		return self.progressBarTable[index];
 	end
 	local frame = CreateFrame("STATUSBAR", self:GetName() .. "ProgressBar" .. index, self, "AchievementProgressBarTemplate");
 	if addon.Util.IsClassicWithAchievements then
 		frame.Text = frame.text;
 	end
 	AchievementButton_LocalizeProgressBar(frame);
-	progressBarTable[index] = frame;
+	self.progressBarTable[index] = frame;
 	return frame;
 end
 
 function KrowiAF_AchievementsObjectivesMixin:GetMiniAchievement(index) -- Public for skinning
-	if miniTable[index] then
-		return miniTable[index];
+	if self.miniTable[index] then
+		return self.miniTable[index];
 	end
 	local frame = CreateFrame("BUTTON", self:GetName() .. "MiniAchievement" .. index, self, "KrowiAF_MiniAchievement_Template");
 	AchievementButton_LocalizeMiniAchievement(frame);
-	miniTable[index] = frame;
+	self.miniTable[index] = frame;
 	return frame;
 end
 
 function KrowiAF_AchievementsObjectivesMixin:GetMeta(index) -- Public for skinning
-	if metaCriteriaTable[index] then
-		return metaCriteriaTable[index];
+	if self.metaCriteriaTable[index] then
+		return self.metaCriteriaTable[index];
 	end
 	local frame = CreateFrame("BUTTON", self:GetName() .. "Meta" .. index, self, "KrowiAF_MetaCriteria_Template");
 	AchievementButton_LocalizeMetaAchievement(frame);
-	metaCriteriaTable[index] = frame;
+	self.metaCriteriaTable[index] = frame;
 	return frame;
 end
 

@@ -542,6 +542,7 @@
         "KrowiAF_SearchResultsFrame",
         "KrowiAF_SearchBoxFrame",
         "CreateFromMixins",
+        "Mixin",
         "InCombatLockdown",
         "KrowiAF_AchievementFrameHeaderButton",
         "KrowiAF_AchievementFrameFilterButton",
