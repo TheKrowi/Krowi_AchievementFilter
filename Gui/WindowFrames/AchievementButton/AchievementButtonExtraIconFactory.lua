@@ -47,6 +47,9 @@ function factory.ResetExtraIcons(self)
         extraIcon.Used = nil;
         extraIcon.Texture:SetVertexColor(1, 1, 1, 1);
         extraIcon.Texture:SetTexCoord(0, 1, 0, 1);
+        extraIcon.OnEnterCallback = nil
+        extraIcon.OnLeaveCallback = nil
+        extraIcon.OnClickCallback = nil
         extraIcon:Hide();
     end
 end
@@ -163,6 +166,66 @@ local function SetExtraIconWarband(self, achievement)
 	extraIcon.Text = addon.L["Warband Achievement"];
 end
 
+local function RewardPreviewOnEnter(icon)
+	if not addon.Options.db.profile.Achievements.RewardPreviewMouseoverShow then
+		return
+	end
+	local frame = KrowiAF_RewardPreview
+	local button = icon:GetParent()
+	if frame:IsShown() and frame.Pinned then
+		if frame.OwnerButton ~= button then
+			return -- something else is pinned; ignore hover elsewhere
+		end
+		if frame.OwnerEntry == icon.RewardEntry then
+			return -- already showing this pinned reward
+		end
+	end
+	addon.Gui.RewardPreview:ShowUnpinned(button, icon.AchievementId, icon.RewardEntry)
+end
+
+local function RewardPreviewOnLeave(icon)
+	if not addon.Options.db.profile.Achievements.RewardPreviewMouseoverShow then
+		return
+	end
+	addon.Gui.RewardPreview:HideIfUnpinned(icon:GetParent())
+end
+
+local function RewardPreviewOnClick(icon)
+	addon.Gui.RewardPreview:TogglePin(icon:GetParent(), icon.AchievementId, icon.RewardEntry)
+end
+
+-- One extra icon per previewable reward, so achievements with multiple rewards can all be previewed
+local function SetExtraIconRewardPreview(self, achievement)
+	if not addon.Options.db.profile.Achievements.ShowRewardPreviewIcon then
+		return
+	end
+	if not addon.RewardPreviewData then
+		return
+	end
+	local entries = addon.RewardPreviewData.GetPreviewableEntries(achievement.Id)
+	if not entries then
+		return
+	end
+
+	for _, entry in next, entries do
+		local extraIcon = factory.Get(self);
+		if not extraIcon then
+			return
+		end
+
+		extraIcon.Texture:SetAtlas("Crosshair_Inspect_32")
+		extraIcon.Lines = {
+			addon.L["Preview Reward"],
+			addon.RewardPreviewData.GetLabel(entry)
+		}
+		extraIcon.AchievementId = achievement.Id
+		extraIcon.RewardEntry = entry
+		extraIcon.OnEnterCallback = RewardPreviewOnEnter
+		extraIcon.OnLeaveCallback = RewardPreviewOnLeave
+		extraIcon.OnClickCallback = RewardPreviewOnClick
+	end
+end
+
 function factory.SetExtraIcons(self, achievement)
     factory.ResetExtraIcons(self);
 	SetExtraIconWarband(self, achievement);
@@ -172,4 +235,5 @@ function factory.SetExtraIcons(self, achievement)
 	SetExtraIconAlwaysVisible(self, achievement);
 	SetExtraIconIsWatched(self, achievement);
 	SetExtraIconIsExcluded(self, achievement);
+	SetExtraIconRewardPreview(self, achievement); -- Always last
 end

@@ -20,6 +20,10 @@ All notable changes to this project will be documented in this file.
     - Close and resize buttons can be set to auto-hide until moused over
     - Configurable default window width and snap distance
     - All Pop Out settings found under Options -> Layout -> Pop Out
+- Reward Preview: 3D-model preview for mount, pet and housing decor rewards
+    - An extra icon appears on achievements with a previewable reward (one icon per reward, for achievements granting multiple); click it, or use the right-click menu's Preview Reward option, to open the preview
+    - Rotate and zoom the 3D model; pin the window to keep it open and move it around, or leave it unpinned to show on mouseover and close automatically when you move away
+    - Options -> Layout -> Reward Preview: toggle the extra icon, toggle mouseover-to-show, invert the vertical rotation drag direction, and set the default window width/height
 
 ### Changed
 - Support for WoW 12.1.0 PTR (dev note: the Achievements frame's header details strip — Back button, filter dropdown, search box — moved into `AchievementFrame.HeaderDetails.Filters`; the addon's filter button, search box, summary/achievements frames, and browsing history buttons now anchor to it, falling back to the old layout when it's absent)

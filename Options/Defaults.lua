@@ -93,6 +93,11 @@ addon.Options.Defaults = {
             TabPriority = 5,
             ShowWarbandIcon = true,
             WarbandHeaderColor = true,
+            ShowRewardPreviewIcon = true,
+            RewardPreviewMouseoverShow = false,
+            RewardPreviewInvertVerticalRotation = false,
+            RewardPreviewDefaultWidth = 280,
+            RewardPreviewDefaultHeight = 360,
             -- ShowOtherFactionWarbandAsCompleted = true
         },
         RightClickMenu = {

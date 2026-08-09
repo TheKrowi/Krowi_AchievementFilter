@@ -2,7 +2,7 @@ local Ach = KrowiAF.Ach
 local faction = KrowiAF.Enum.Faction
 
 KrowiAF.AchievementData["05_00_04"] = {
-	Ach(6981):HousingDecor():IsPvP(), -- Master of Temple of Kotmogu
+	Ach(6981):HousingDecor(3880):IsPvP(), -- Master of Temple of Kotmogu
 }
 
 KrowiAF.AchievementData["05_01_00"] = {
@@ -15,7 +15,7 @@ KrowiAF.AchievementData["05_02_00"] = {
 }
 
 KrowiAF.AchievementData["05_03_00"] = {
-	Ach(8316):HousingDecor(), -- Blood in the Snow
+	Ach(8316):HousingDecor(11160), -- Blood in the Snow
 }
 
 KrowiAF.AchievementData["05_04_00"] = {

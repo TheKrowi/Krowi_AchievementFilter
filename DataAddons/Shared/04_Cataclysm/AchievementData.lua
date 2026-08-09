@@ -18,7 +18,7 @@ KrowiAF.AchievementData["04_00_03_S"] = {
 	Ach(4841), -- Halls of Origination
 	Ach(4842), -- Blackwing Descent
 	Ach(4844), -- Cataclysm Dungeon Hero
-	Ach(4845):Mount(), -- Glory of the Cataclysm Hero
+	Ach(4845):Mount(391), -- Glory of the Cataclysm Hero
 	Ach(4846), -- The Stonecore
 	Ach(4847), -- The Vortex Pinnacle
 	Ach(4848), -- Lost City of the Tol'vir
@@ -26,7 +26,7 @@ KrowiAF.AchievementData["04_00_03_S"] = {
 	Ach(4850), -- The Bastion of Twilight
 	Ach(4851), -- Throne of the Four Winds
 	Ach(4852), -- Double Dragon
-	Ach(4853):Mount(), -- Glory of the Cataclysm Raider
+	Ach(4853):Mount(392), -- Glory of the Cataclysm Raider
 	Ach(4854):Title(), -- I Had It in My Hand
 	Ach(4855):Title(), -- What was Briefly Yours is Now Mine
 	Ach(4856):Title(), -- It Belongs in a Museum!
@@ -199,8 +199,10 @@ KrowiAF.AchievementData["04_00_03_S"] = {
 	Ach(5320):AutoFactionSplit(faction.Alliance, 5321), -- King of the Mountain
 	Ach(5322):AutoFactionSplit(faction.Alliance, 5323):IsPvP(), -- In Service of the Alliance / Horde
 	Ach(5324):AutoFactionSplit(faction.Horde, 5327):IsPvP(), -- In Service of the Horde / Alliance
-	Ach(5325):AutoFactionSplit(faction.Horde, 5328):Mount():Title():IsPvP(), -- Veteran of the Horde / Alliance
-	Ach(5326):AutoFactionSplit(faction.Horde, 5329):Mount():Title():IsPvP(), -- Warbringer of the Horde / Warbound Veteran of the Alliance
+	Ach(5325):FactionSplit(faction.Horde, 5328):Mount(423):Title():IsPvP(), -- Veteran of the Horde
+	Ach(5326):FactionSplit(faction.Horde, 5329):Mount(423):Title():IsPvP(), -- Warbringer of the Horde
+	Ach(5328):FactionSplit(faction.Alliance, 5325):Mount(422):Title():IsPvP(), -- Veteran of the Alliance
+	Ach(5329):FactionSplit(faction.Alliance, 5326):Mount(422):Title():IsPvP(), -- Warbound Veteran of the Alliance
 	Ach(5330):AutoFactionSplit(faction.Alliance, 5345):Title():IsPvP(), -- Private / Scout
 	Ach(5331):AutoFactionSplit(faction.Alliance, 5346):Title():IsPvP(), -- Corporal / Grunt
 	Ach(5332):AutoFactionSplit(faction.Alliance, 5347):Title():IsPvP(), -- Sergeant
@@ -252,7 +254,7 @@ KrowiAF.AchievementData["04_00_03_S"] = {
 	Ach(5446), -- The Glop Family Line
 	Ach(5447), -- My Very Own Broodmother
 	Ach(5448), -- Glutton for Fiery Punishment
-	Ach(5449):Pet(), -- Rock Lover
+	Ach(5449):Pet(265), -- Rock Lover
 	Ach(5450), -- Fungal Frenzy
 	Ach(5451), -- Consumed by Nightmare
 	Ach(5452), -- Visions of Vashj'ir Past
@@ -330,9 +332,10 @@ KrowiAF.AchievementData["04_02_00_S"] = {
 	Ach(5810), -- Not an Ambi-Turner
 	Ach(5813), -- Do a Barrel Roll!
 	Ach(5821), -- Death from Above
-	Ach(5823):AutoFactionSplit(faction.Alliance, 5824):Mount():IsPvP(), -- Veteran of the Alliance / Horde II
+	Ach(5823):FactionSplit(faction.Alliance, 5824):Mount(422):IsPvP(), -- Veteran of the Alliance II
+	Ach(5824):FactionSplit(faction.Horde, 5823):Mount(423):IsPvP(), -- Veteran of the Horde II
 	Ach(5827):Title(), -- Avengers of Hyjal
-	Ach(5828):Mount(), -- Glory of the Firelands Raider
+	Ach(5828):Mount(417), -- Glory of the Firelands Raider
 	Ach(5829), -- Bucket List
 	Ach(5830), -- Share the Pain
 	Ach(5835):AutoFactionSplit(faction.Horde, 5836):Obtainable("Event", 324), -- Tricks and Treats of Northrend
@@ -347,12 +350,12 @@ KrowiAF.AchievementData["04_02_00_S"] = {
 	Ach(5855), -- Ragnar-O's
 	Ach(5858), -- Bear-ly Made It
 	Ach(5859):Other(), -- Legacy of Leyara
-	Ach(5860):Pet(), -- The 'Unbeatable?' Pterodactyl: BEATEN.
+	Ach(5860):Pet(259, 260), -- The 'Unbeatable?' Pterodactyl: BEATEN.
 	Ach(5861), -- The Fiery Lords of Sethria's Roost
 	Ach(5862), -- Ludicrous Speed
 	Ach(5864), -- Gang War
 	Ach(5865), -- Have... Have We Met?
-	Ach(5866):Mount(), -- The Molten Front Offensive
+	Ach(5866):Mount(413), -- The Molten Front Offensive
 	Ach(5867), -- Flawless Victory
 	Ach(5868), -- And the Meek Shall Inherit Kalimdor
 	Ach(5869), -- Infernal Ambassadors
@@ -361,9 +364,9 @@ KrowiAF.AchievementData["04_02_00_S"] = {
 	Ach(5872), -- King of the Spider-Hill
 	Ach(5873), -- Ready for Raiding II
 	Ach(5874), -- Death From Above
-	Ach(5875):Pet(), -- Littlest Pet Shop
-	Ach(5876):Pet(), -- Petting Zoo
-	Ach(5877):Pet(), -- Menagerie
+	Ach(5875):Pet(255), -- Littlest Pet Shop
+	Ach(5876):Pet(323), -- Petting Zoo
+	Ach(5877):Pet(325), -- Menagerie
 	Ach(5879):Title(), -- Veteran of the Molten Front
 }
 
@@ -421,7 +424,7 @@ KrowiAF.AchievementData["04_03_00_S"] = {
 	Ach(6130), -- Severed Ties
 	Ach(6132), -- Eclipse
 	Ach(6133), -- Maybe He'll Get Dizzy...
-	Ach(6169):Mount(), -- Glory of the Dragon Soul Raider
+	Ach(6169):Mount(443), -- Glory of the Dragon Soul Raider
 	Ach(6174), -- Don't Stand So Close to Me
 	Ach(6175), -- Holding Hands
 	Ach(6177):Title(), -- Destroyer's End

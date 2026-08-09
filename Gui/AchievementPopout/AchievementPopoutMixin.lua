@@ -88,8 +88,11 @@ local function OnButtonClick(button, mouseButton)
 		return;
 	end
 	-- Left click: reuse the same shift-click-to-track/paste-to-chat/watch/exclude/pop-out
-	-- modifiers as the main list button, but skip the main-list-only selection behavior
-	addon.Gui.AchievementButton.ProcessModifiers(button);
+	-- modifiers as the main list button; otherwise open the achievement in the main window
+	if addon.Gui.AchievementButton.ProcessModifiers(button) then
+		return;
+	end
+	KrowiAF_SelectAchievementFromID(button.Achievement.Id);
 end
 
 local function OnButtonEvent(button, event, ...)

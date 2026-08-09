@@ -8,11 +8,23 @@ function KrowiAF_AchievementButtonExtraIconMixin:OnEnter()
 			Krowi_Tooltip:AddLine(self.Lines[i], color.R, color.G, color.B);
 		end
 		Krowi_Tooltip:Show();
-		return;
+	else
+		Krowi_Tooltip:SetText(self.Text, color.R, color.G, color.B, nil, true);
 	end
-	Krowi_Tooltip:SetText(self.Text, color.R, color.G, color.B, nil, true);
+	if self.OnEnterCallback then
+		self.OnEnterCallback(self)
+	end
 end
 
 function KrowiAF_AchievementButtonExtraIconMixin:OnLeave()
 	Krowi_Tooltip:Hide();
+	if self.OnLeaveCallback then
+		self.OnLeaveCallback(self)
+	end
+end
+
+function KrowiAF_AchievementButtonExtraIconMixin:OnMouseUp(button)
+	if button == "LeftButton" and self.OnClickCallback then
+		self.OnClickCallback(self)
+	end
 end

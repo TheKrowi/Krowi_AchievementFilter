@@ -606,6 +606,8 @@ L["Include all Desc"] = "Include all excluded achievements."
 L["Indentation"] = true
 L["Indentation Desc"] = "The size of the indentation of child categories."
 L["Invasions"] = true
+L["Invert Reward Preview Vertical Rotation"] = true
+L["Invert Reward Preview Vertical Rotation Desc"] = "Invert the vertical drag direction when rotating the {rewardPreview} model."
 L["is"] = true
 L["Iskaara Flyover"] = true
 L["Island Expeditions"] = true
@@ -802,6 +804,7 @@ L["Pop Out"] = true
 L["Pop ups"] = true
 L["Pre-Patch Event"] = true
 L["Presets"] = true
+L["Preview Reward"] = true
 L["Prey"] = true
 L["Primal Storms"] = true
 L["Primalist Tomorrow"] = true
@@ -870,6 +873,11 @@ L["Reset view on open Desc"] = "Collapse all categories and select the summary."
 L["Return to the Forbidden Reach"] = true
 L["Revelations"] = true
 L["Reverse Sort"] = true
+L["Reward Preview"] = true
+L["Reward Preview Default Height"] = true
+L["Reward Preview Default Height Desc"] = "The default height of the {rewardPreview} window."
+L["Reward Preview Default Width"] = true
+L["Reward Preview Default Width Desc"] = "The default width of the {rewardPreview} window."
 L["Rewards"] = true
 L["Right"] = true
 L["Right Alt"] = true
@@ -1007,6 +1015,14 @@ L["Show Required for"] = "Show {requiredFor}"
 L["Show Required for Desc"] = [=[Show / hide {requiredFor}.
 
 When checked, the achievement that requires the selected achievement to be completed will be visible in the tooltip.]=]
+L["Show Reward Preview Icon"] = "Show {rewardPreview} Icon"
+L["Show Reward Preview Icon Desc"] = "Show / hide an extra icon on the achievement that lets you preview its {rewardPreview}."
+L["Show Reward Preview on Mouseover"] = "Show {rewardPreview} on Mouseover"
+L["Show Reward Preview on Mouseover Desc"] = [=[When checked, hovering the {rewardPreview} icon shows the preview and moving the mouse away closes it again.
+
+When unchecked, clicking the icon is required to open the preview.
+
+Clicking the icon always pins the preview open and makes it movable, regardless of this setting.]=]
 L["Show Rewards"] = true
 L["Show Rewards Desc"] = [=[Show / hide {rewards}.
 

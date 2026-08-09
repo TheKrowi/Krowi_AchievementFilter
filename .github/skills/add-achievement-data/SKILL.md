@@ -149,6 +149,48 @@ Map comment text to `AchBuilder` method names:
 - If comment contains "Reward:" but no recognizable keyword, ask user for clarification
 - If no reward hint in comment, use simple form: `Ach(id), -- Comment`
 
+### 3.5 Pet Reward Preview: SpeciesID Lookup
+
+`:Pet()` optionally takes a battle pet **SpeciesID** — this is the only way to deterministically render the correct pet model in the reward preview (there's no reliable spell/item → species API). At runtime the game resolves name + display model from this id via `C_PetJournal.GetPetInfoBySpeciesID(speciesId)`. Always look this up when the achievement grants a battle pet.
+
+1. Get the achievement's `Reward_lang` from the DB (already fetched in step 0.5 via `_lookup_ids.ps1`), e.g. `"Pet: Fledgling Warden's Companion"`. Strip the `"Pet: "` prefix to get the creature name.
+2. Look up that creature name's SpeciesID using the designated script `.github/skills/add-achievement-data/_lookup_pet_speciesid.ps1` — set `$names = @("Fledgling Warden's Companion")` (and `$build` if needed) via `replace_string_in_file`, then run it. Never write a new ad-hoc query for this. The script chains two DB tables: `creature` (find the creature's `ID` by exact `Name_lang` match) → `battlepetspecies` (filter `CreatureID` column by that id, read its `ID` column — the SpeciesID).
+   ```powershell
+   .\.github\skills\add-achievement-data\_lookup_pet_speciesid.ps1
+   ```
+   Output: `<Name>|CreatureID=<id>|SpeciesID=<id>` (or `NOTFOUND`).
+3. Pass the SpeciesID value into the builder: `Ach(42319):Pet(4901), -- Azsuna (Pet: Fledgling Warden's Companion)`.
+4. If the creature name search returns multiple/no matches, fall back to a manual lookup in the web UI: `/dbc/?dbc=creature&build=<build>&locale=enUS#page=1&colFilter[1]=<Name>` to find the creature's `ID`, then `/dbc/?dbc=battlepetspecies&build=<build>&locale=enUS#page=1&colFilter[3]=exact:<creatureId>` to find its `ID` (SpeciesID).
+5. If no SpeciesID can be found at all (rare), fall back to a plain `:Pet()` with no argument rather than guessing an id.
+
+### 3.6 Mount Reward Preview: MountId Lookup
+
+`:Mount()` optionally takes a **mount id** (the `mount` DBC table's own `ID`, NOT the summoning spell id) — needed to deterministically render the correct mount model in the reward preview. At runtime the game resolves name/display via `C_MountJournal.GetMountInfoByID(mountId)` (name) and `C_MountJournal.GetMountInfoExtraByID(mountId)` (display/scene id). Always look this up when the achievement grants a mount.
+
+1. Get the achievement's `Reward_lang` from the DB, e.g. `"Mount: Stormtouched Bruffalon"`. Strip the `"Mount: "` prefix to get the mount name.
+2. Look up that mount name's id using the designated script `.github/skills/add-achievement-data/_lookup_mount_id.ps1` — set `$names = @("Stormtouched Bruffalon")` (and `$build` if needed) via `replace_string_in_file`, then run it. Never write a new ad-hoc query for this.
+   ```powershell
+   .\.github\skills\add-achievement-data\_lookup_mount_id.ps1
+   ```
+   Output: `<Name>|MountID=<id>` (or `NOTFOUND`).
+3. Pass the mount id value into the builder: `Ach(19486):Mount(1614), -- Across the Isles (Mount: Stormtouched Bruffalon)`.
+4. If the name search returns multiple/no matches, fall back to a manual lookup in the web UI: `/dbc/?dbc=mount&build=<build>&locale=enUS#page=1&colFilter[0]=<Name>` and read the `ID` column (4th column).
+5. If no mount id can be found at all (rare), fall back to a plain `:Mount()` with no argument rather than guessing an id.
+
+### 3.7 Housing Decor Reward Preview: RecordID Lookup
+
+`:HousingDecor()` optionally takes a **record id** (the `housedecor` DBC table's own `ID`) — needed to deterministically render the correct model in the reward preview. At runtime the game resolves the asset/scene via `C_HousingCatalog.GetCatalogEntryInfoByRecordID(Enum.HousingCatalogEntryType.Decor, recordId)`. Always look this up when the achievement grants a housing decoration.
+
+1. Get the achievement's `Reward_lang` from the DB, e.g. `"Reward: Preyseeker's Twilight Effigy"`. Strip the `"Reward: "` prefix to get the decor item name.
+2. Look up that decor name's id using the designated script `.github/skills/add-achievement-data/_lookup_housingdecor_id.ps1` — set `$names = @("Preyseeker's Twilight Effigy")` (and `$build` if needed) via `replace_string_in_file`, then run it. Never write a new ad-hoc query for this.
+   ```powershell
+   .\.github\skills\add-achievement-data\_lookup_housingdecor_id.ps1
+   ```
+   Output: `<Name>|RecordID=<id>` (or `NOTFOUND`).
+3. Pass the record id value into the builder: `Ach(62184):HousingDecor(17454), -- Achievement Name (Reward: Preyseeker's Twilight Effigy)`.
+4. If the name search returns multiple/no matches, fall back to a manual lookup in the web UI: `/dbc/?dbc=housedecor&build=<build>&locale=enUS#page=1&colFilter[0]=<Name>` and read the `ID` column (5th column).
+5. If no record id can be found at all (rare), fall back to a plain `:HousingDecor()` with no argument rather than guessing an id.
+
 ### 4. Season/Event Reference Detection
 Extract from comment text:
 

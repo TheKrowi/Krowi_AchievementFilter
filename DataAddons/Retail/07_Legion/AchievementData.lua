@@ -12,11 +12,11 @@ KrowiAF.AchievementData["07_00_03"] = {
 	Ach(9693), -- Master of Magic
 	Ach(9694), -- Roboteer
 	Ach(9695), -- The Lil' Necromancer
-	Ach(9696):Pet(), -- Family Familiar
+	Ach(9696):Pet(1933), -- Family Familiar
 	Ach(10059), -- Ain't No Mountain High Enough
-	Ach(10398):HousingDecor(), -- Drum Circle
+	Ach(10398):HousingDecor(11751), -- Drum Circle
 	Ach(10411), -- Helheim Hath No Fury
-	Ach(10412):Pet(), -- Poor Unfortunate Souls
+	Ach(10412):Pet(1930), -- Poor Unfortunate Souls
 	Ach(10413), -- Instant Karma
 	Ach(10456), -- But You Say He's Just a Friend
 	Ach(10457), -- Stay Salty
@@ -92,7 +92,7 @@ KrowiAF.AchievementData["07_00_03"] = {
 	Ach(10694):Title(), -- Fabulous
 	Ach(10696), -- I've Got My Eyes On You
 	Ach(10697), -- Grand Opening
-	Ach(10698):HousingDecor(), -- That's Val'sharah Folks!
+	Ach(10698):HousingDecor(1881), -- That's Val'sharah Folks!
 	Ach(10699), -- Infinitesimal
 	Ach(10704), -- Not For You
 	Ach(10706), -- Training the Troops
@@ -194,7 +194,7 @@ KrowiAF.AchievementData["07_00_03"] = {
 	Ach(10993):IsPvP():Obtainable("From", "PvP Season", 19, "Until", "PvP Season", 25), -- Third Time's the Charm
 	Ach(10994), -- A Glorious Campaign
 	Ach(10995):IsPvP():Obtainable("From", "PvP Season", 19, "Until", "PvP Season", 25), -- For Prestige
-	Ach(10996):HousingDecor(), -- Got to Ketchum All
+	Ach(10996):HousingDecor(11315), -- Got to Ketchum All
 	Ach(10997):AutoFactionSplit(faction.Horde, 10998):Mount():PvP(19), -- Vindictive Combatant
 	Ach(10999):PvP(19), -- Vindictive Gladiator's Storm Dragon
 	Ach(11000):PvP(20), -- Fearless Gladiator's Storm Dragon
@@ -241,8 +241,8 @@ KrowiAF.AchievementData["07_00_03"] = {
 	Ach(11062):Title():PvP(22), -- Ferocious Gladiator: Legion Season 4
 	Ach(11064), -- Collector's Edition: Baby Winston
 	Ach(11065):Obtainable("Until", "Version", {7, 0, 3}):Obtainable("Event", 1640), -- It All Makes Sense Now
-	Ach(11066):Mount(), -- Underbelly Tycoon
-	Ach(11124):HousingDecor(), -- Good Suramaritan
+	Ach(11066):Mount(804), -- Underbelly Tycoon
+	Ach(11124):HousingDecor(752), -- Good Suramaritan
 	Ach(11125), -- Now You're Thinking With Portals
 	Ach(11126), -- 50 World Quests Completed
 	Ach(11127), -- 200 World Quests Completed
@@ -262,17 +262,17 @@ KrowiAF.AchievementData["07_00_03"] = {
 	Ach(11159), -- Friends in a Broken Land
 	Ach(11160), -- Unleashed Monstrosities
 	Ach(11162), -- Keystone Master
-	Ach(11163):Mount(), -- Glory of the Legion Hero
+	Ach(11163):Mount(846), -- Glory of the Legion Hero
 	Ach(11164), -- Legion Dungeon Hero
 	Ach(11165):AutoFactionSplit(faction.Alliance, 11166):PvP(19), -- Crest of Heroism
 	Ach(11167):AutoFactionSplit(faction.Alliance, 11168):PvP(19), -- Crest of Carnage
 	Ach(11169):AutoFactionSplit(faction.Alliance, 11170):PvP(19), -- Crest of Devastation
 	Ach(11171), -- Arsenal of Power
 	Ach(11175):Other(), -- Higher Dimensional Learning
-	Ach(11176):Mount(), -- Remember to Share
+	Ach(11176):Mount(845), -- Remember to Share
 	Ach(11177), -- 70 Exalted Reputations
 	Ach(11178), -- Wake the Dragon
-	Ach(11180):Mount(), -- Glory of the Legion Raider
+	Ach(11180):Mount(773), -- Glory of the Legion Raider
 	Ach(11181):Obtainable("Before", "Version", {8, 0, 1}), -- Legion Keymaster
 	Ach(11183), -- Keystone Initiate
 	Ach(11184), -- Keystone Challenger
@@ -302,11 +302,11 @@ KrowiAF.AchievementData["07_00_03"] = {
 	Ach(11223), -- Legendary Research
 	Ach(11224):IsRealmFirst(), -- Realm First! Legion Keystone Master
 	Ach(11232):Title(), -- Lock, Stock and Two Smoking Goblins
-	Ach(11233):Pet(), -- Broken Isles Safari
+	Ach(11233):Pet(1938), -- Broken Isles Safari
 	Ach(11240), -- Harbinger
 	Ach(11256), -- Treasures of Azsuna
-	Ach(11257):HousingDecor(), -- Treasures of Highmountain
-	Ach(11258):HousingDecor(), -- Treasures of Val'sharah
+	Ach(11257):HousingDecor(1307), -- Treasures of Highmountain
+	Ach(11258):HousingDecor(1887), -- Treasures of Val'sharah
 	Ach(11259), -- Treasures of Stormheim
 	Ach(11260), -- Treasures of Suramar
 	Ach(11261), -- Adventurer of Azsuna
@@ -327,11 +327,11 @@ KrowiAF.AchievementData["07_02_00"] = {
 	Ach(11280):AutoFactionSplit(faction.Alliance, 11282):Obtainable("Event", 341), -- Flame Warden / Keeper of the Broken Isles
 	Ach(11283):AutoFactionSplit(faction.Alliance, 11284):Obtainable("Event", 341), -- Flame Warden / Keeper of Draenor
 	Ach(11294), -- Murloc Battlemasters
-	Ach(11320):Pet(), -- Raiding with Leashes IV: Wrath of the Lick King
+	Ach(11320):Pet(1969), -- Raiding with Leashes IV: Wrath of the Lick King
 	Ach(11335), -- Season Tickets
 	Ach(11337), -- You Runed Everything!
 	Ach(11338), -- Dine and Bash
-	Ach(11340):HousingDecor(), -- Insurrection
+	Ach(11340):HousingDecor(3982), -- Insurrection
 	Ach(11377), -- Patient Zero
 	Ach(11386), -- Boneafide Tri Tip
 	Ach(11387):Title():Obtainable("Before", "Version", {8, 0, 1}), -- The Chosen
@@ -354,7 +354,7 @@ KrowiAF.AchievementData["07_02_00"] = {
 	Ach(11470):IsPvP():Obtainable("From", "PvP Season", 19, "Until", "PvP Season", 25), -- Slayin' to Seven
 	Ach(11471):IsPvP():Obtainable("From", "PvP Season", 19, "Until", "PvP Season", 25), -- Don't Hate, Grind to Eight
 	Ach(11472):IsPvP():Obtainable("From", "PvP Season", 19, "Until", "PvP Season", 25), -- Hell, It's About Nine
-	Ach(11474):Mount():IsPvP(), -- Free For All, More For Me
+	Ach(11474):Mount(775, 784):IsPvP(), -- Free For All, More For Me
 	Ach(11475), -- Mission Accomplished
 	Ach(11476), -- Saddle Sore
 	Ach(11477), -- Off the Top Rook
@@ -404,7 +404,7 @@ KrowiAF.AchievementData["07_02_00"] = {
 	Ach(11696), -- Grin and Bear It
 	Ach(11697):PvP(21), -- Cruel Elite
 	Ach(11698):PvP(22), -- Ferocious Elite
-	Ach(11699):HousingDecor(), -- Grand Fin-ale
+	Ach(11699):HousingDecor(11909), -- Grand Fin-ale
 	Ach(11700), -- Cathedral of Eternal Night
 	Ach(11701), -- Heroic: Cathedral of Eternal Night
 	Ach(11702), -- Mythic: Cathedral of Eternal Night
@@ -457,7 +457,7 @@ KrowiAF.AchievementData["07_02_00"] = {
 	Ach(11761):Title(), -- Azeroth's Next Top Model
 	Ach(11762), -- Can I Get A Helya
 	Ach(11763):Title(), -- Glory of the Tomb Raider
-	Ach(11765):Pet(), -- Pet Battle Challenge: Wailing Caverns
+	Ach(11765):Pet(1990), -- Pet Battle Challenge: Wailing Caverns
 	Ach(11767), -- Mythic: Goroth
 	Ach(11768), -- Boom Bloom
 	Ach(11769), -- A Steamy Romance Saga
@@ -486,7 +486,7 @@ KrowiAF.AchievementData["07_02_00"] = {
 
 KrowiAF.AchievementData["07_02_05"] = {
 	Ach(11848):Obtainable("From", "Date", {2017, 11, 16}, "Until", "Date", {2017, 11, 30}), -- WoW's 13th Anniversary
-	Ach(11856):Pet(), -- Pet Battle Challenge: Deadmines
+	Ach(11856):Pet(2028), -- Pet Battle Challenge: Deadmines
 	Ach(11869):Transmog(), -- I'll Hold These For You Until You Get Out
 	Ach(11874):Obtainable("Before", "Version", {7, 3, 0}), -- Ahead of the Curve: Kil'jaeden
 	Ach(11875):Obtainable("Before", "Version", {7, 3, 0}), -- Cutting Edge: Kil'jaeden
@@ -507,7 +507,7 @@ KrowiAF.AchievementData["07_03_00"] = {
 	Ach(11930), -- Worm-monger
 	Ach(11948), -- Together We Stand
 	Ach(11949), -- Hard to Kill
-	Ach(11987):Mount(), -- Glory of the Argus Raider
+	Ach(11987):Mount(972), -- Glory of the Argus Raider
 	Ach(11988), -- Light's Breach
 	Ach(11989), -- Forbidden Descent
 	Ach(11990), -- Hope's End
@@ -555,7 +555,7 @@ KrowiAF.AchievementData["07_03_00"] = {
 	Ach(12076), -- Protector of the Argussian Reach
 	Ach(12077), -- Adventurer of Argus
 	Ach(12078):Transmog(), -- Commander of Argus
-	Ach(12079):Pet(), -- Raiding with Leashes V: Cuteaclysm
+	Ach(12079):Pet(2093), -- Raiding with Leashes V: Cuteaclysm
 	Ach(12081), -- Officer of the Light
 	Ach(12083):Title(), -- Paragon of Argus
 	Ach(12084), -- Infused and Abused
@@ -571,10 +571,10 @@ KrowiAF.AchievementData["07_03_00"] = {
 	Ach(12097), -- Magical Mayhem
 	Ach(12098), -- Mechanical Melee
 	Ach(12099), -- Unstoppable Undead
-	Ach(12100):Pet(), -- Family Fighter
+	Ach(12100):Pet(2113), -- Family Fighter
 	Ach(12101), -- We Came Here For Two Reasons
 	Ach(12102), -- To Kill Demons...
-	Ach(12103):Mount(), -- ...And Chew Mana Buns
+	Ach(12103):Mount(986), -- ...And Chew Mana Buns
 	Ach(12104):Title(), -- And We're All Out of Mana Buns
 	Ach(12108):IsPvP():Obtainable("From", "PvP Season", 19, "Until", "PvP Season", 25), -- Double Decade of Dominance
 	Ach(12109):IsPvP():Obtainable("From", "PvP Season", 19, "Until", "PvP Season", 25), -- Twenty-One Arms Salute
@@ -704,7 +704,7 @@ KrowiAF.AchievementData["07_03_05"] = {
 	Ach(12398), -- In His House He Waits Dreaming
 	Ach(12399):Title(), -- Observed
 	Ach(12400), -- Supermassive
-	Ach(12401):Mount(), -- Glory of the Ulduar Raider
+	Ach(12401):Mount(306, 307), -- Glory of the Ulduar Raider
 	Ach(12404):IsPvP(), -- Claim Jumper
 	Ach(12405):IsPvP(), -- Death from Above
 	Ach(12406):IsPvP(), -- A Good Start
@@ -720,7 +720,7 @@ KrowiAF.AchievementData["07_03_05"] = {
 	Ach(12416), -- The Total Package
 	Ach(12429):FactionSplit(faction.Alliance), -- Wetlands Quests
 	Ach(12430):FactionSplit(faction.Alliance), -- Duskwood Quests
-	Ach(12431):Pet(), -- Post Haste
+	Ach(12431):Pet(2158), -- Post Haste
 	Ach(12439):Title(), -- Priority Mail
 	Ach(12455):FactionSplit(faction.Alliance, 4894), -- Westfall & Duskwood Quests
 	Ach(12456):FactionSplit(faction.Alliance, 4908), -- Loch Modan & Wetlands Quests

@@ -1,3 +1,4 @@
 <Ui>
     <Script file="ExportedUiMaps.lua" />
+    <Script file="RewardPreviewData.lua" />
 </Ui>
