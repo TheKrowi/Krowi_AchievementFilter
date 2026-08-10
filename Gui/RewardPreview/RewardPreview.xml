@@ -14,10 +14,16 @@
                 </Texture>
             </Layer>
             <Layer level="OVERLAY">
-                <FontString parentKey="Title" inherits="GameFontHighlight" justifyH="LEFT">
+                <Texture parentKey="Icon">
+                    <Size x="36" y="36"/>
                     <Anchors>
-                        <Anchor point="TOPLEFT" x="8" y="-6"/>
-                        <Anchor point="TOPRIGHT" x="-26" y="-6"/>
+                        <Anchor point="TOPLEFT" x="8" y="-8"/>
+                    </Anchors>
+                </Texture>
+                <FontString parentKey="Title" inherits="GameFontHighlightLarge" justifyH="LEFT">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="52" y="-14"/>
+                        <Anchor point="TOPRIGHT" x="-26" y="-14"/>
                     </Anchors>
                 </FontString>
             </Layer>

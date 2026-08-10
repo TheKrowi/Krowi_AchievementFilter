@@ -109,7 +109,7 @@ function KrowiAF_RewardPreviewMixin:EnsureModelScene()
     if not ok or not modelScene then
         modelScene = CreateFrame("ModelScene", nil, self)
     end
-    modelScene:SetPoint("TOPLEFT", 6, -24)
+    modelScene:SetPoint("TOPLEFT", 6, -46)
     modelScene:SetPoint("BOTTOMRIGHT", -6, 6)
     modelScene:Hide()
     self.ModelScene = modelScene

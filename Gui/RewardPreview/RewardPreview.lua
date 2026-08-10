@@ -53,6 +53,16 @@ function rewardPreview:ShowUnpinned(button, achievementId, entry)
     frame:SetPoint("TOPLEFT", button, "TOPRIGHT", 0, 0)
     frame:ShowEntry(entry)
     frame.Title:SetText(addon.RewardPreviewData.GetLabel(entry))
+    local icon, iconAtlas = addon.RewardPreviewData.GetIcon(entry)
+    if iconAtlas then
+        frame.Icon:SetAtlas(iconAtlas)
+        frame.Icon:Show()
+    elseif icon then
+        frame.Icon:SetTexture(icon)
+        frame.Icon:Show()
+    else
+        frame.Icon:Hide()
+    end
     frame.Pinned = nil
     frame:Show()
 end
