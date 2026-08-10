@@ -88,8 +88,8 @@ KrowiAF.AchievementData["05_05_03"] = {
 	Ach(61987):Other(), -- Challenge Conqueror: Platinum (Season 1)
 	Ach(61990):Other(), -- Challenge Conqueror: Platinum (Season 2)
 	Ach(61991):Other(), -- Challenge Conqueror: Platinum (Season 3)
-	Ach(62055):Mount(), -- The Mistwalker
+	Ach(62055):Mount(2638), -- The Mistwalker
 	Ach(62059):Title(), -- Mistborne
 	Ach(62060):Title(), -- Heir to the Mist
-	Ach(62399):Mount(), -- The Mistwalker
+	Ach(62399):Mount(2638), -- The Mistwalker
 }

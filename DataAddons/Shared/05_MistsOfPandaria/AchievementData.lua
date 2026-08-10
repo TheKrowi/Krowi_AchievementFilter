@@ -177,7 +177,8 @@ KrowiAF.AchievementData["05_00_04_S"] = {
 	Ach(6824), -- Face Clutchers
 	Ach(6825), -- The Mind-Killer
 	Ach(6826), -- 55 Exalted Reputations
-	Ach(6827):Mount(450):AutoFactionSplit(faction.Horde, 6828), -- Pandaren Ambassador
+	Ach(6827):FactionSplit(faction.Horde, 6828):Mount(450), -- Pandaren Ambassador
+	Ach(6828):FactionSplit(faction.Alliance, 6827):Mount(516), -- Pandaren Ambassador
 	Ach(6829):IsRealmFirst(), -- Realm First! Pandaren Ambassador
 	Ach(6830), -- Professional Zen Master
 	Ach(6835), -- Working For a Living

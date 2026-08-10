@@ -167,6 +167,7 @@ When disabling it, the account wide {watchList} will be used again and the chara
 L["Characters"] = true
 L["Chat messages"] = true
 L["Children's Week"] = true
+L["Choose one of {count} rewards"] = true
 L["Class Halls"] = true
 L["Clear all"] = true
 L["Clear all Desc"] = "Clear all watched achievements."
@@ -878,6 +879,8 @@ L["Reward Preview Default Height"] = true
 L["Reward Preview Default Height Desc"] = "The default height of the {rewardPreview} window."
 L["Reward Preview Default Width"] = true
 L["Reward Preview Default Width Desc"] = "The default width of the {rewardPreview} window."
+L["Reward Preview Max Individual Icons"] = true
+L["Reward Preview Max Individual Icons Desc"] = "Achievements with more previewable rewards than this (e.g. an item that lets you choose from many mounts) show a single icon to choose from instead of one icon each."
 L["Rewards"] = true
 L["Right"] = true
 L["Right Alt"] = true

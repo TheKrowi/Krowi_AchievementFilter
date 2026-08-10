@@ -91,6 +91,7 @@ KrowiAF.AchievementData["03_00_02_Example1"] = {
     Ach(40088):Pet():IsPvP(), -- PvP achievement with a reward type [Optional]
     Ach(42319):Pet(4901), -- Pet reward with a battle pet SpeciesID for the preview [Optional]
     Ach(19486):Mount(1614), -- Mount reward with a mount id for the preview [Optional]
+    Ach(61086):Other():CreatureDisplay(137376, 1255451), -- Achievement with a raw CreatureDisplayID + spell id (for the preview name) [Optional]
     Ach(40098):Title(), -- Achievement with a single reward type [Optional]
     Ach(20524):Title():PvE(13), -- Achievement with reward type and PvE season [Optional]
     Ach(20525):Mount():PvE(13), -- Achievement with mount reward and PvE season [Optional]

@@ -118,6 +118,14 @@ function AchBuilder:Pet(...)
     return self
 end
 
+-- Registers a raw CreatureDisplayID for reward preview when no dedicated Mount/Pet/HousingDecor API applies (e.g. a Barbershop customization-unlock item). The preview name is resolved from the shapeshift/customization spell id at display time. Does not tag RewardType — combine with another reward-type method (e.g. :Other()) as needed.
+function AchBuilder:CreatureDisplay(displayId, spellId)
+    local e = GetExtras(self)
+    e.CreatureDisplayId = e.CreatureDisplayId or {}
+    tinsert(e.CreatureDisplayId, {Id = displayId, SpellId = spellId})
+    return self
+end
+
 function KrowiAF.Ach(id)
     return setmetatable({KrowiAF.AddAchievementData, id}, AchBuilder)
 end

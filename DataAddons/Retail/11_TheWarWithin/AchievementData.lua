@@ -1099,7 +1099,7 @@ KrowiAF.AchievementData["11_02_05"] = {
 	Ach(61080):RemixInfiniteKnowledge():Obtainable("Event", 1640), -- Broken Shore World Bosses
 	Ach(61084):Mount(2721):Obtainable("Event", 1640), -- Timerunner: Rogue
 	Ach(61085):Mount(2725):Obtainable("Event", 1640), -- Timerunner: Monk
-	Ach(61086):Mount():Obtainable("Event", 1640), -- Timerunner: Druid
+	Ach(61086):Mount():CreatureDisplay(137376, 1255451):Obtainable("Event", 1640), -- Timerunner: Druid
 	Ach(61087):Mount(2728):Obtainable("Event", 1640), -- Timerunner: Demon Hunter
 	Ach(61088):Mount(2727):Obtainable("Event", 1640), -- Timerunner: Priest
 	Ach(61089):Mount(2724):Obtainable("Event", 1640), -- Timerunner: Mage
@@ -1193,7 +1193,7 @@ KrowiAF.AchievementData["11_02_07"] = {
 	Ach(61316), -- Custom Cabinets
 	Ach(61317), -- Domicile Designer
 	Ach(61318):Title(), -- Fully Furnished
-	Ach(61394):Mount():Obtainable("Event", 1425, false), -- Master of the Turbulent Timeways IV
+	Ach(61394):Mount(2795, 2796, 2797, 2798):Obtainable("Event", 1425, false), -- Master of the Turbulent Timeways IV
 	Ach(61413):AutoFactionSplit(faction.Alliance, 61414), -- The First Rule of Brawler's Guild
 	Ach(61419), -- Brawler's Chilled
 	Ach(61420), -- Let Me Solo It

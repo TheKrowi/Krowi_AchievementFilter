@@ -85,6 +85,11 @@ function KrowiAF.AddAchievementData(id, extras)
             KrowiAF.AddRewardPreviewData(id, KrowiAF.Enum.RewardPreviewType.PetSpeciesId, extras.PetSpeciesId)
         end
     end
+    if extras.CreatureDisplayId then
+        for _, preview in next, extras.CreatureDisplayId do
+            KrowiAF.AddRewardPreviewData(id, KrowiAF.Enum.RewardPreviewType.CreatureDisplayId, preview.Id, nil, preview.SpellId)
+        end
+    end
     if extras.AutoPair and extras.AltId and extras.Faction then
         local mirrorFaction = extras.Faction == KrowiAF.Enum.Faction.Alliance
             and KrowiAF.Enum.Faction.Horde

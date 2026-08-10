@@ -6,7 +6,7 @@
         <Size x="280" y="360"/>
         <Layers>
             <Layer level="BACKGROUND">
-                <Texture parentKey="ModelBackground" atlas="catalog-list-preview-bg">
+                <Texture parentKey="ModelBackground"> <!-- Atlas/color set in OnLoad; catalog-list-preview-bg doesn't exist on Classic -->
                     <Anchors>
                         <Anchor point="TOPLEFT" x="4" y="-4"/>
                         <Anchor point="BOTTOMRIGHT" x="-4" y="4"/>
@@ -48,6 +48,37 @@
                 <Scripts>
                     <OnMouseDown method="OnMouseDown"/>
                     <OnMouseUp method="OnMouseUp"/>
+                </Scripts>
+            </Button>
+            <!-- Browse a collapsed "choice of many" reward group (e.g. Vicious Saddle); hidden unless a multi-entry group is being previewed. Anchored next to Controls' zoomInButton/resetButton row once it's created (see EnsureModelScene) - these are fallback positions. alpha/OnEnter/OnLeave mirror Controls' own dim-until-hovered behavior -->
+            <Button parentKey="PrevButton" mixin="KrowiAF_RewardPreviewPrevButtonMixin" hidden="true" alpha="0.5">
+                <Size x="32" y="32"/>
+                <Anchors>
+                    <Anchor point="BOTTOMLEFT" x="4" y="6"/>
+                </Anchors>
+                <NormalTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Up"/>
+                <PushedTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Down"/>
+                <DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Disabled"/>
+                <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+                <Scripts>
+                    <OnClick method="OnClick"/>
+                    <OnEnter method="OnEnter"/>
+                    <OnLeave method="OnLeave"/>
+                </Scripts>
+            </Button>
+            <Button parentKey="NextButton" mixin="KrowiAF_RewardPreviewNextButtonMixin" hidden="true" alpha="0.5">
+                <Size x="32" y="32"/>
+                <Anchors>
+                    <Anchor point="BOTTOMRIGHT" x="-4" y="6"/>
+                </Anchors>
+                <NormalTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Up"/>
+                <PushedTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Down"/>
+                <DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Disabled"/>
+                <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+                <Scripts>
+                    <OnClick method="OnClick"/>
+                    <OnEnter method="OnEnter"/>
+                    <OnLeave method="OnLeave"/>
                 </Scripts>
             </Button>
         </Frames>

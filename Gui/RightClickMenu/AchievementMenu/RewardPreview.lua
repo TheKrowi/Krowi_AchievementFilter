@@ -27,7 +27,7 @@ function section:Add(menu, achievement, menuBuilder, caller)
             previewMenu,
             addon.RewardPreviewData.GetLabel(entry),
             function()
-                addon.Gui.RewardPreview:TogglePin(caller, achievement.Id, entry)
+                addon.Gui.RewardPreview:TogglePin(caller, achievement.Id, entry, entries)
                 addon.Gui.RightClickMenu.AchievementMenu:CloseMenu()
             end
         )

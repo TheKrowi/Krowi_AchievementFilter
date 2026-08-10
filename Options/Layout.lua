@@ -542,6 +542,15 @@ local function RewardPreviewInvertVerticalRotationSet(_, value)
     addon.Options.db.profile.Achievements.RewardPreviewInvertVerticalRotation = value
 end
 
+local function RewardPreviewMaxIndividualIconsSet(_, value)
+    addon.Options.db.profile.Achievements.RewardPreviewMaxIndividualIcons = value
+    if not KrowiAF_AchievementsFrame then
+        return
+    end
+    KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow()
+    KrowiAF_AchievementsFrame:ForceUpdate()
+end
+
 local function RewardPreviewDefaultWidthSet(_, value)
     addon.Options.db.profile.Achievements.RewardPreviewDefaultWidth = value
     if KrowiAF_RewardPreview and not KrowiAF_RewardPreview:IsShown() then
@@ -1206,6 +1215,15 @@ local achievementsOptions = {
                             desc = addon.L["Invert Reward Preview Vertical Rotation Desc"]:K_ReplaceVars(addon.L["Reward Preview"]):KAF_AddDefaultValueText("Achievements.RewardPreviewInvertVerticalRotation"),
                             get = function() return addon.Options.db.profile.Achievements.RewardPreviewInvertVerticalRotation end,
                             set = RewardPreviewInvertVerticalRotationSet,
+                            disabled = function() return not addon.Options.db.profile.Achievements.ShowRewardPreviewIcon end
+                        },
+                        RewardPreviewMaxIndividualIcons = {
+                            order = OrderPP(), type = "range", width = AdjustedWidth(1.35),
+                            name = addon.L["Reward Preview Max Individual Icons"],
+                            desc = addon.L["Reward Preview Max Individual Icons Desc"]:K_ReplaceVars(addon.L["Reward Preview"]):KAF_AddDefaultValueText("Achievements.RewardPreviewMaxIndividualIcons"),
+                            min = 1, max = 10, step = 1,
+                            get = function() return addon.Options.db.profile.Achievements.RewardPreviewMaxIndividualIcons end,
+                            set = RewardPreviewMaxIndividualIconsSet,
                             disabled = function() return not addon.Options.db.profile.Achievements.ShowRewardPreviewIcon end
                         },
                         RewardPreviewDefaultWidth = {

@@ -91,13 +91,6 @@ Every id below still has a bare `:Mount()`, `:Pet()`, or `:HousingDecor()` call 
 |---|---|---|---|
 | 13513 | Available in Eight Colors | Mount | Reward is a "Paint Color" customization option, not a distinct mount |
 
-### `Retail/11_TheWarWithin/AchievementData.lua` (8)
-
-| ID | Achievement | Reward tag | Reason |
-|---|---|---|---|
-| 61086 | Timerunner: Druid | Mount | "Feldruid's Scornwing Idol" not found in the mount table |
-| 61394 | Master of the Turbulent Timeways IV | Mount | Reward is "Ta'readon's Mount Voucher" — a choice-token item, not a single mount |
-
 ### `Retail/12_Midnight/AchievementData.lua` (23)
 
 | ID | Achievement | Reward tag | Reason |
@@ -134,7 +127,6 @@ Every id below still has a bare `:Mount()`, `:Pet()`, or `:HousingDecor()` call 
 
 | ID | Achievement | Reward tag | Reason |
 |---|---|---|---|
-| 7499 | Taming the World | Pet | Reward "Safari Hat" is an item, not a creature |
 | 8484 | Grievous Combatant | Mount | Vicious Saddle |
 | 8641 | Prideful Combatant | Mount | Vicious Saddle |
 

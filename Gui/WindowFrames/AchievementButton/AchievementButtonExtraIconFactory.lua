@@ -52,6 +52,7 @@ function factory.ResetExtraIcons(self)
         extraIcon.Color = nil
         extraIcon.AchievementId = nil
         extraIcon.RewardEntry = nil
+        extraIcon.RewardGroup = nil
         extraIcon.OnEnterCallback = nil
         extraIcon.OnLeaveCallback = nil
         extraIcon.OnClickCallback = nil
@@ -196,10 +197,18 @@ local function RewardPreviewOnLeave(icon)
 end
 
 local function RewardPreviewOnClick(icon)
-	addon.Gui.RewardPreview:TogglePin(icon:GetParent(), icon.AchievementId, icon.RewardEntry)
+	-- Sibling entries are only threaded through on click so Prev/Next appear once pinned, not while merely hovering
+	local entries = addon.RewardPreviewData.GetPreviewableEntries(icon.AchievementId)
+	local entryList = entries and #entries > 1 and entries or nil
+	addon.Gui.RewardPreview:TogglePin(icon:GetParent(), icon.AchievementId, icon.RewardEntry, entryList)
 end
 
--- One extra icon per previewable reward, so achievements with multiple rewards can all be previewed
+local function RewardPreviewGroupOnClick(icon)
+	addon.Gui.RewardPreview:ShowChooser(icon, icon.AchievementId, icon.RewardGroup)
+end
+
+-- One extra icon per previewable reward, so achievements with multiple rewards can all be previewed.
+-- Achievements with more than a handful of options (e.g. a "choose any of ~50 mounts" item reward) collapse into a single chooser icon instead.
 local function SetExtraIconRewardPreview(self, achievement)
 	if not addon.Options.db.profile.Achievements.ShowRewardPreviewIcon then
 		return
@@ -207,27 +216,45 @@ local function SetExtraIconRewardPreview(self, achievement)
 	if not addon.RewardPreviewData then
 		return
 	end
-	local entries = addon.RewardPreviewData.GetPreviewableEntries(achievement.Id)
-	if not entries then
+	local groups = addon.RewardPreviewData.GetIconGroups(achievement.Id)
+	if not groups then
 		return
 	end
 
-	for _, entry in next, entries do
+	for _, group in next, groups do
 		local extraIcon = factory.Get(self);
 		if not extraIcon then
 			return
 		end
 
-		extraIcon.Texture:SetAtlas("Crosshair_Inspect_32")
-		extraIcon.Lines = {
-			addon.L["Preview Reward"],
-			addon.RewardPreviewData.GetLabel(entry)
-		}
-		extraIcon.AchievementId = achievement.Id
-		extraIcon.RewardEntry = entry
-		extraIcon.OnEnterCallback = RewardPreviewOnEnter
-		extraIcon.OnLeaveCallback = RewardPreviewOnLeave
-		extraIcon.OnClickCallback = RewardPreviewOnClick
+		if group.IsGroup then
+			extraIcon.Texture:SetAtlas("crosshair_inspect_32")
+			if not addon.Util.IsMainline then
+				extraIcon.Texture:SetAtlas("common-search-magnifyingglass")
+			end
+			extraIcon.Lines = {
+				addon.L["Preview Reward"],
+				addon.L["Choose one of {count} rewards"]:K_ReplaceVars(tostring(#group.Entries))
+			}
+			extraIcon.AchievementId = achievement.Id
+			extraIcon.RewardGroup = group.Entries
+			extraIcon.OnClickCallback = RewardPreviewGroupOnClick
+		else
+			local entry = group.Entries[1]
+			extraIcon.Texture:SetAtlas("crosshair_inspect_32")
+			if not addon.Util.IsMainline then
+				extraIcon.Texture:SetAtlas("common-search-magnifyingglass")
+			end
+			extraIcon.Lines = {
+				addon.L["Preview Reward"],
+				addon.RewardPreviewData.GetLabel(entry)
+			}
+			extraIcon.AchievementId = achievement.Id
+			extraIcon.RewardEntry = entry
+			extraIcon.OnEnterCallback = RewardPreviewOnEnter
+			extraIcon.OnLeaveCallback = RewardPreviewOnLeave
+			extraIcon.OnClickCallback = RewardPreviewOnClick
+		end
 	end
 end
 

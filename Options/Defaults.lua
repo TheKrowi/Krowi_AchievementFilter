@@ -96,6 +96,7 @@ addon.Options.Defaults = {
             ShowRewardPreviewIcon = true,
             RewardPreviewMouseoverShow = false,
             RewardPreviewInvertVerticalRotation = false,
+            RewardPreviewMaxIndividualIcons = 3,
             RewardPreviewDefaultWidth = 280,
             RewardPreviewDefaultHeight = 360,
             -- ShowOtherFactionWarbandAsCompleted = true

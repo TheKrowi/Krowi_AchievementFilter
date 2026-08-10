@@ -3,6 +3,7 @@ addon.Gui.RewardPreview = {}
 local rewardPreview = addon.Gui.RewardPreview
 
 local hookedOwners = {}
+local menuBuilder = addon.MenuBuilder:New({})
 
 -- Walks up from the triggering button to the top-level window that owns it (main
 -- Achievements frame or a specific Popout), so auto-close and anchoring stay per-button/per-window
@@ -32,9 +33,10 @@ local function HookOwner(ownerWindow)
     end)
 end
 
--- Shows the preview anchored to button, without pinning it (hover/tooltip-like)
-function rewardPreview:ShowUnpinned(button, achievementId, entry)
-    local entries = addon.RewardPreviewData.GetPreviewableEntries(achievementId)
+-- Shows the preview anchored to button, without pinning it (hover/tooltip-like).
+-- entryList is only passed when browsing a collapsed "choice of many" reward group (e.g. Vicious Saddle) - it enables the prev/next nav buttons.
+function rewardPreview:ShowUnpinned(button, achievementId, entry, entryList)
+    local entries = entryList or addon.RewardPreviewData.GetPreviewableEntries(achievementId)
     if not entries then
         return
     end
@@ -43,7 +45,9 @@ function rewardPreview:ShowUnpinned(button, achievementId, entry)
     local frame = KrowiAF_RewardPreview
     frame.OwnerButton = button
     frame.OwnerEntry = entry
+    frame.OwnerAchievementId = achievementId
     frame.OwnerWindow = GetOwnerWindow(button)
+    frame.EntryList = entryList
     HookOwner(frame.OwnerWindow)
 
     local achievementsOptions = addon.Options.db.profile.Achievements
@@ -63,24 +67,45 @@ function rewardPreview:ShowUnpinned(button, achievementId, entry)
     else
         frame.Icon:Hide()
     end
+    local hasMultiple = entryList ~= nil and #entryList > 1
+    frame.PrevButton:SetShown(hasMultiple)
+    frame.NextButton:SetShown(hasMultiple)
     frame.Pinned = nil
     frame:Show()
 end
 
 -- Pins the preview (stays open, becomes movable). Clicking the same reward entry again unpins/closes it,
 -- clicking a different entry on the same button switches to it instead of just closing.
-function rewardPreview:TogglePin(button, achievementId, entry)
+function rewardPreview:TogglePin(button, achievementId, entry, entryList)
     local frame = KrowiAF_RewardPreview
     if not entry then
-        local entries = addon.RewardPreviewData.GetPreviewableEntries(achievementId)
+        local entries = entryList or addon.RewardPreviewData.GetPreviewableEntries(achievementId)
         entry = entries and entries[1]
     end
     if frame:IsShown() and frame.Pinned and frame.OwnerButton == button and frame.OwnerEntry == entry then
         self:Close()
         return
     end
-    self:ShowUnpinned(button, achievementId, entry)
+    self:ShowUnpinned(button, achievementId, entry, entryList)
     frame.Pinned = true
+end
+
+-- Opens a small chooser menu listing every option in a collapsed "choice of many" reward group, anchored to the extra icon that was clicked
+function rewardPreview:ShowChooser(icon, achievementId, entries)
+    local button = icon:GetParent()
+    menuBuilder:ShowPopup(function()
+        local menu = menuBuilder:GetMenu()
+        menuBuilder:CreateTitle(menu, addon.L["Preview Reward"])
+        for _, entry in next, entries do
+            menuBuilder:CreateButtonAndAdd(
+                menu,
+                addon.RewardPreviewData.GetLabel(entry),
+                function()
+                    self:TogglePin(button, achievementId, entry, entries)
+                end
+            )
+        end
+    end, icon)
 end
 
 -- Called from OnLeave; a no-op while pinned or while a different button owns the current preview

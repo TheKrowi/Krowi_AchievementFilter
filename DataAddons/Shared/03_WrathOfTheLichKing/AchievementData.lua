@@ -1061,7 +1061,8 @@ KrowiAF.AchievementData["03_02_00_S"] = {
 	Ach(4016), -- Earth, Wind & Fire (10 player)
 	Ach(4017), -- Earth, Wind & Fire (25 player)
 	Ach(4078):Title():IsRealmFirst(), -- Realm First! Grand Crusader
-	Ach(4079):Mount(345):AutoFactionSplit(faction.Horde, 4156):Obtainable("Before", "Version", {4, 0, 3}), -- A Tribute to Immortality
+	Ach(4079):FactionSplit(faction.Horde, 4156):Mount(345):Obtainable("Before", "Version", {4, 0, 3}), -- A Tribute to Immortality
+	Ach(4156):FactionSplit(faction.Alliance, 4079):Mount(344):Obtainable("Before", "Version", {4, 0, 3}), -- A Tribute to Immortality
 	Ach(4080):Title():Obtainable("Before", "Version", {4, 0, 3}), -- A Tribute to Dedicated Insanity
 	Ach(4297):AutoFactionSplit(faction.Horde, 4298), -- Heroic: Trial of the Champion
 	Ach(4316):Obtainable("Before", "Version", {4, 0, 3}), -- 2500 Dungeon & Raid Emblems

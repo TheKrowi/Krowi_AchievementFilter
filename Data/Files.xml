@@ -5,6 +5,7 @@
     <Script file="CustomWorldEventTimers.lua" />
     <Script file="EventData.lua" />
     <Script file="TooltipData.lua" />
+    <Script file="RewardPreviewData.lua" />
     <Script file="DataIntegrityManager.lua" />
     <Include file="SavedData\Files.xml"/>
     <Script file="SpecialCategories.lua" />
