@@ -31,6 +31,7 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - Filter dropdown and search box no longer error on the 12.1.0 layout
 - Blizzard's search box no longer reappears after closing the addon's own search box
+- Achievement button extra icons no longer show a stale tooltip from a previous achievement (e.g. leftover temporarily-obtainable text on a Warband icon)
 
 ### Removed
 - Achievement 62413, The Curse of Ula'tek, to be replaced by 62297

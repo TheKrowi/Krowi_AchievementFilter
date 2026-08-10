@@ -47,6 +47,11 @@ function factory.ResetExtraIcons(self)
         extraIcon.Used = nil;
         extraIcon.Texture:SetVertexColor(1, 1, 1, 1);
         extraIcon.Texture:SetTexCoord(0, 1, 0, 1);
+        extraIcon.Text = nil
+        extraIcon.Lines = nil
+        extraIcon.Color = nil
+        extraIcon.AchievementId = nil
+        extraIcon.RewardEntry = nil
         extraIcon.OnEnterCallback = nil
         extraIcon.OnLeaveCallback = nil
         extraIcon.OnClickCallback = nil
