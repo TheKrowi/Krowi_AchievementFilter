@@ -89,7 +89,7 @@ function KrowiAF_SnapFrameMixin:SnapFrame_CascadeWidthToChild()
 	end
 end
 
--- Relinks neighbors around self (parent<->child, or freezes child as a new independent top if self was the top)
+-- Relinks neighbors around self (parent<->child, or promotes child to a new independent top if self was the top)
 function KrowiAF_SnapFrameMixin:SnapFrame_Close()
 	local parent, child = self.SnappedParent, self.SnappedChild;
 	if parent then
@@ -99,7 +99,15 @@ function KrowiAF_SnapFrameMixin:SnapFrame_Close()
 		if parent then
 			child:SnapFrame_AttachTo(parent, false);
 		else
-			child:SnapFrame_Freeze();
+			-- No parent above: child takes self's own vacated spot so the rest of the chain slides up
+			-- instead of leaving a gap where self used to be
+			local left, top = self:GetLeft(), self:GetTop();
+			if left and top then
+				child:ClearAllPoints();
+				child:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", left, top);
+			else
+				child:SnapFrame_Freeze();
+			end
 			child.SnappedParent = nil;
 		end
 	end

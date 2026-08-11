@@ -12,6 +12,10 @@ local function RememberSizeEnabled()
 	return addon.Options.db.profile.Popout.RememberSize;
 end
 
+local function RememberLastPositionEnabled()
+	return addon.Options.db.profile.Popout.RememberLastPosition;
+end
+
 local function SavedPopouts()
 	KrowiAF_SavedData.AchievementPopouts = KrowiAF_SavedData.AchievementPopouts or {};
 	return KrowiAF_SavedData.AchievementPopouts;
@@ -50,13 +54,18 @@ function achievementPopout:Open(achievement)
 		return existing;
 	end
 
+	local isFirstPopout = next(self.OpenPopouts) == nil;
+
 	local popout = CreatePopout(achievement);
 	self.OpenPopouts[achievement.Id] = popout;
 
 	local saved = PersistenceEnabled() and SavedPopouts()[achievement.Id];
+	local lastPosition = isFirstPopout and RememberLastPositionEnabled() and KrowiAF_SavedData.LastPopoutPosition;
 	popout:ClearAllPoints();
 	if saved and saved.Point then
 		popout:SetPoint(saved.Point, UIParent, saved.RelativePoint, saved.X, saved.Y);
+	elseif lastPosition and lastPosition.Point then
+		popout:SetPoint(lastPosition.Point, UIParent, lastPosition.RelativePoint, lastPosition.X, lastPosition.Y);
 	else
 		popout:SetPoint("CENTER", UIParent, "CENTER", 0, 0);
 	end
@@ -106,6 +115,10 @@ end
 function achievementPopout:OnSnapClosed(_, oldParent, oldChild)
 	if oldChild then
 		SaveSnapParent(oldChild, oldParent);
+		if not oldParent then
+			-- oldChild was promoted to the new top of the chain; its (now-reflowed) spot is the new last position
+			self:SaveLastPosition(oldChild);
+		end
 	end
 end
 
@@ -119,19 +132,31 @@ function achievementPopout:OnPopoutHide(popout)
 end
 
 function achievementPopout:SavePosition(popout)
-	if not PersistenceEnabled() then
+	if PersistenceEnabled() then
+		local point, _, relativePoint, x, y = popout:GetPoint(1);
+		local saved = SavedPopouts()[popout.AchievementId] or {};
+		saved.Point = point;
+		saved.RelativePoint = relativePoint;
+		saved.X = x;
+		saved.Y = y;
+		if RememberSizeEnabled() then
+			saved.Width = popout:GetWidth();
+		end
+		SavedPopouts()[popout.AchievementId] = saved;
+	end
+
+	-- A snapped child's screen position is a byproduct of its parent's; only a chain's top sets the last position
+	if not popout.SnappedParent then
+		self:SaveLastPosition(popout);
+	end
+end
+
+function achievementPopout:SaveLastPosition(popout)
+	if not RememberLastPositionEnabled() then
 		return;
 	end
 	local point, _, relativePoint, x, y = popout:GetPoint(1);
-	local saved = SavedPopouts()[popout.AchievementId] or {};
-	saved.Point = point;
-	saved.RelativePoint = relativePoint;
-	saved.X = x;
-	saved.Y = y;
-	if RememberSizeEnabled() then
-		saved.Width = popout:GetWidth();
-	end
-	SavedPopouts()[popout.AchievementId] = saved;
+	KrowiAF_SavedData.LastPopoutPosition = {Point = point, RelativePoint = relativePoint, X = x, Y = y};
 end
 
 function achievementPopout:RefreshAllChrome()

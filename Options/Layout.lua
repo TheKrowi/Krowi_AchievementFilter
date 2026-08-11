@@ -1646,6 +1646,13 @@ local popoutOptions = {
                     get = function() return addon.Options.db.profile.Popout.RememberSize; end,
                     set = function(_, value) addon.Options.db.profile.Popout.RememberSize = value; end
                 },
+                RememberLastPosition = {
+                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                    name = addon.L["Remember Last Position"],
+                    desc = addon.L["Remember Last Position Desc"]:K_ReplaceVars(addon.L["Pop Out"]):KAF_AddDefaultValueText("Popout.RememberLastPosition"),
+                    get = function() return addon.Options.db.profile.Popout.RememberLastPosition; end,
+                    set = function(_, value) addon.Options.db.profile.Popout.RememberLastPosition = value; end
+                },
                 DefaultWidth = {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                     name = addon.L["Default Width"],
@@ -1655,6 +1662,22 @@ local popoutOptions = {
                     set = function(_, value) addon.Options.db.profile.Popout.DefaultWidth = value; end
                 },
                 Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.5), name = ""},
+                CloseOnEarn = {
+                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                    name = addon.L["Close On Earn"],
+                    desc = addon.L["Close On Earn Desc"]:K_ReplaceVars(addon.L["Pop Out"]):KAF_AddDefaultValueText("Popout.CloseOnEarn"),
+                    get = function() return addon.Options.db.profile.Popout.CloseOnEarn; end,
+                    set = function(_, value) addon.Options.db.profile.Popout.CloseOnEarn = value; end
+                },
+                CloseOnEarnDelay = {
+                    order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
+                    name = addon.L["Close On Earn Delay"],
+                    desc = addon.L["Close On Earn Delay Desc"]:K_ReplaceVars{popout = addon.L["Pop Out"], closeOnEarn = addon.L["Close On Earn"]}:KAF_AddDefaultValueText("Popout.CloseOnEarnDelay"),
+                    min = 0, max = 10, step = 0.5,
+                    get = function() return addon.Options.db.profile.Popout.CloseOnEarnDelay; end,
+                    set = function(_, value) addon.Options.db.profile.Popout.CloseOnEarnDelay = value; end,
+                    disabled = function() return not addon.Options.db.profile.Popout.CloseOnEarn; end
+                },
                 EnableSnapping = {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
                     name = addon.L["Enable Snapping"],

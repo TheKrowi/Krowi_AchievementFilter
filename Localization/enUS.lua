@@ -5,7 +5,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-08-08 23-41-36 ]] --
+-- [[ Exported at 2026-08-11 20-41-08 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -176,6 +176,10 @@ L["Clear search field on Right Click Desc"] = "Enable / disable clearing the sea
 L["Click here to view in achievement window"] = true
 L["Click here to view in achievements"] = true
 L["Cliffside Circuit"] = true
+L["Close On Earn"] = true
+L["Close On Earn Delay"] = true
+L["Close On Earn Delay Desc"] = "The time in seconds to wait after an achievement is earned before its {popout} auto-closes, when {closeOnEarn} is enabled. Set to 0 to close instantly."
+L["Close On Earn Desc"] = "Automatically close a {popout} when its achievement is earned."
 L["Close Popout"] = true
 L["Cobalt Assembly"] = true
 L["Coiled Nightmares"] = true
@@ -850,6 +854,8 @@ L["Related Tab"] = true
 L["Related Tab Desc"] = "Adds an extra bit to the {wowheadLink} so another tab different than the default one will be selected."
 L["Remember frame position"] = "Remember {frame} position"
 L["Remember frame position Desc"] = "Remember the {frame} position. This will keep the {frame} in it's last known position the next time you log in."
+L["Remember Last Position"] = true
+L["Remember Last Position Desc"] = "Remember the last position a {popout} was moved to, and use it for the next {popout} you open when none are currently shown."
 L["Remember Size"] = true
 L["Remember Size Desc"] = "Remember a {popout}'s size across /reload and login."
 L["Remix: Mists of Pandaria"] = true

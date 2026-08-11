@@ -113,6 +113,21 @@ local function OnButtonEvent(button, event, ...)
 		button:SetAchievement(achievement, true);
 	end
 	RefreshButton(button);
+
+	-- Popping out an already-completed achievement must still work; this only reacts to a live earn
+	if event == "ACHIEVEMENT_EARNED" and addon.Options.db.profile.Popout.CloseOnEarn then
+		local popout = button:GetParent();
+		local delay = addon.Options.db.profile.Popout.CloseOnEarnDelay;
+		if delay <= 0 then
+			popout:Hide();
+		else
+			C_Timer.After(delay, function()
+				if popout:IsShown() then
+					popout:Hide();
+				end
+			end);
+		end
+	end
 end
 
 function KrowiAF_AchievementPopoutMixin:OnLoad()
