@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 99.1 - 2026-08-12
+### Added
+- Reward Preview: several Midnight Season 2 achievements (mounts, pets, housing decor) now have reward data
+
+### Changed
+- Pop Out: opening a new window while others are already open now stacks it onto the end of a snap chain instead of reopening it dead-center (Options -> Layout -> Pop Out -> Remember Last Position); prefers the chain most recently moved, otherwise any other currently open chain
+
+### Fixed
+- They Burn, Burn, Burn marked unobtainable
+- Pop Out: a window restored to a saved position could fail to reappear (and look like it silently didn't reopen) if that position fell off-screen, e.g. after changing resolution or UI scale
+
 ## 99.0 - 2026-08-11
 ### Added
 - 12.1.0 "The Curse of Ula'tek" patch data

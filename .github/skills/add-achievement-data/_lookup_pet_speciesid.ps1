@@ -2,8 +2,8 @@
 # Chains creature (by exact Name_lang) -> battlepetspecies (by CreatureID) to get the SpeciesID
 # passed to :Pet(speciesId) -- the game resolves name/displayId from this at runtime via GetPetInfoBySpeciesID.
 # Pre-requisite: wow.tools.local must already be running.
-$names = @("Hopling", "Singing Cricket", "Feral Vermling", "Venus", "Jade Tentacle", "Mr. Bigglesworth", "Tito", "Stunted Direhorn")
-$build = "12.0.7.68974"
+$names = @("Lil'Kruul", "Furiostraza", "Zesty", "Ula'took", "Ki'clak")
+$build = "12.1.0.69273"
 $baseUrl = "http://localhost:5000"
 foreach ($name in $names) {
     $body = "draw=1&start=0&length=10&search[value]=$name"

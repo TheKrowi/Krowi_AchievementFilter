@@ -298,7 +298,7 @@ KrowiAF.AchievementData["06_00_02"] = {
 	Ach(9486), -- Goodness Gracious
 	Ach(9487):Garrison(), -- Got My Mind On My Draenor Money
 	Ach(9491):AutoFactionSplit(faction.Alliance, 9492), -- The Garrison Campaign
-	Ach(9493), -- They Burn, Burn, Burn
+	Ach(9493):Obtainable("Before", "Version", {10, 2, 0}), -- They Burn, Burn, Burn
 	Ach(9494), -- Commander
 	Ach(9495):Garrison():IsPvP(), -- The Bone Collector
 	Ach(9496):Mount(651):Obtainable("From", "Date", {2014, 8, 1}, "Until", "Date", {2014, 9, 30}), -- Warlord's Deathwheel

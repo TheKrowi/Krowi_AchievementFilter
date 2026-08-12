@@ -34,3 +34,13 @@
 
 ### Removed
 - Achievement 62413, The Curse of Ula'tek, to be replaced by 62297
+
+### Added (99.1)
+- Reward Preview: several Midnight Season 2 achievements (mounts, pets, housing decor) now have reward data
+
+### Changed (99.1)
+- Pop Out: opening a new window while others are already open now stacks it onto the end of a snap chain instead of reopening it dead-center (Options -> Layout -> Pop Out -> Remember Last Position); prefers the chain most recently moved, otherwise any other currently open chain
+
+### Fixed (99.1)
+- They Burn, Burn, Burn marked unobtainable
+- Pop Out: a window restored to a saved position could fail to reappear (and look like it silently didn't reopen) if that position fell off-screen, e.g. after changing resolution or UI scale

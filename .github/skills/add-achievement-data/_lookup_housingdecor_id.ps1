@@ -2,19 +2,14 @@
 # Looks up housedecor table ID by exact Name_lang match -- this is the id passed to :HousingDecor(recordId).
 # Pre-requisite: wow.tools.local must already be running.
 $names = @(
-    "Lightbloom Moss Mound",
-    "Silvermoon Energy Focus",
-    "Colossal Amani Stone Visage",
-    "Opened Domanaar Storage Crate",
-    "Eversong Feast Platter",
-    "Eversong Lantern Painting",
-    "Amani Spearhunter's Spit",
-    "Fungarian Vine Fence",
-    "Void Elf Weapon Rack",
-    "Tome of Kings",
-    "Sunstrider Omnium Simulacrum"
+    "Amani Forge",
+    "Mysterious Voodoo Mask",
+    "Preyhunter's Scaled Effigy",
+    "Preyhunter's Fanged Effigy",
+    "Preyhunter's Terror Bust",
+    "Preyhunter's Terror Effigy"
 )
-$build = "12.0.7.68974"
+$build = "12.1.0.69273"
 $baseUrl = "http://localhost:5000"
 foreach ($name in $names) {
     $body = "draw=1&start=0&length=10&search[value]=$name"

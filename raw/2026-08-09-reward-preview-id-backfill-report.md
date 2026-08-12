@@ -96,26 +96,6 @@ Every id below still has a bare `:Mount()`, `:Pet()`, or `:HousingDecor()` call 
 | ID | Achievement | Reward tag | Reason |
 |---|---|---|---|
 | 63097 | Midnight Keystone Myth: Season One | Mount | Reward "Timelost Saddle" not found in the mount table |
-| 62447 | Midnight Keystone Master: Season 2 | Mount | Season 2 (patch 12.1.0) content, not present in the loaded `12.0.7.68974` build |
-| 62449 | Midnight Keystone Legend: Season 2 | Mount | Season 2 — not in loaded build |
-| 62460 | Family Battler of Outland | Pet | Season 2 — not in loaded build |
-| 62461 | Family Battler of Cataclysm | Pet | Season 2 — not in loaded build |
-| 62492 | The Coiled Isle Safari | Pet | Season 2 — not in loaded build |
-| 62930 | Gladiator: Midnight Season 2 | Mount | Season 2 — not in loaded build |
-| 62955 | Venomous Gladiator's Goredrake | Mount | Season 2 — even the mount itself (named directly in the achievement title) was not found in the mount table |
-| 63104 | Umbral Champion: Midnight Season 1 | Mount | Not found in the loaded DB build despite the "Season 1" name (likely added alongside the Season 2 patch) |
-| 63254 | Glory of the Venomous Raider | Mount | Season 2 — not in loaded build |
-| 63358 | Coiled to Strike | HousingDecor | Season 2 — not in loaded build |
-| 63359 | Treasures of the Coiled Isle | Mount | Season 2 — not in loaded build |
-| 63432 | Mysterious Mix Master | HousingDecor | Season 2 — not in loaded build |
-| 63451 | Scales for Days | HousingDecor | Season 2 — not in loaded build |
-| 63452 | Fangs for the Memories | HousingDecor | Season 2 — not in loaded build |
-| 63453 | One, Two, Ral'kala's Coming for You | HousingDecor | Season 2 — not in loaded build |
-| 63454 | Nine, Ten, Never Sleep Again | HousingDecor | Season 2 — not in loaded build |
-| 63609 | No Egg Scramble | Pet | Season 2 — not in loaded build |
-| 63630 | Assault the Vault | Mount | Season 2 — not in loaded build |
-| 63633 | A Stack of Snacks | Pet | Season 2 — not in loaded build |
-| 63653 | Pro Poison Patroller | Mount | Season 2 — not in loaded build |
 
 ### `Shared/03_WrathOfTheLichKing/AchievementData.lua` (1)
 
