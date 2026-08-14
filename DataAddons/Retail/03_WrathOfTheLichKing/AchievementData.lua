@@ -2,15 +2,15 @@ local Ach = KrowiAF.Ach
 local faction = KrowiAF.Enum.Faction
 
 KrowiAF.AchievementData["03_00_02"] = {
-	Ach(158):HousingDecor():IsPvP(), -- Me and the Cappin' Makin' it Happen
-	Ach(167):HousingDecor():IsPvP(), -- Warsong Gulch Veteran
-	Ach(200):HousingDecor():IsPvP(), -- Persistent Defender
-	Ach(212):HousingDecor():IsPvP(), -- Storm Capper
-	Ach(213):HousingDecor():IsPvP(), -- Stormtrooper
-	Ach(221):HousingDecor():IsPvP(), -- Alterac Grave Robber
-	Ach(222):HousingDecor():IsPvP(), -- Tower Defense
-	Ach(229):HousingDecor():IsPvP(), -- The Grim Reaper
-	Ach(231):HousingDecor():IsPvP(), -- Wrecking Ball
+	Ach(158):HousingDecor(3894):IsPvP(), -- Me and the Cappin' Makin' it Happen
+	Ach(167):HousingDecor(3887):IsPvP(), -- Warsong Gulch Veteran
+	Ach(200):HousingDecor(3886):IsPvP(), -- Persistent Defender
+	Ach(212):HousingDecor(3898):IsPvP(), -- Storm Capper
+	Ach(213):HousingDecor(3899):IsPvP(), -- Stormtrooper
+	Ach(221):HousingDecor(3895):IsPvP(), -- Alterac Grave Robber
+	Ach(222):HousingDecor(3897):IsPvP(), -- Tower Defense
+	Ach(229):HousingDecor(3885):IsPvP(), -- The Grim Reaper
+	Ach(231):HousingDecor(3884):IsPvP(), -- Wrecking Ball
 	Ach(411), -- Murky
 	Ach(412), -- Murloc Costume
 	Ach(414), -- Tyrael's Hilt
@@ -26,11 +26,11 @@ KrowiAF.AchievementData["03_00_02"] = {
 	Ach(683), -- Collector's Edition: Frost Wyrm Whelp
 	Ach(714):Title():IsPvP():AutoFactionSplit(faction.Horde, 907), -- The Conqueror / Justicar
 	Ach(762):Title():AutoFactionSplit(faction.Horde, 948), -- Ambassador of the Horde / Alliance
-	Ach(938):HousingDecor(), -- The Snows of Northrend
-	Ach(940):HousingDecor(), -- The Green Hills of Stranglethorn
+	Ach(938):HousingDecor(4839), -- The Snows of Northrend
+	Ach(940):HousingDecor(4841), -- The Green Hills of Stranglethorn
 	Ach(957):Obtainable("Event", 1592), -- Hero of the Zandalar Tribe
-	Ach(1153):HousingDecor():IsPvP(), -- Overly Defensive
-	Ach(1157):HousingDecor():IsPvP(), -- Duel-icious
+	Ach(1153):HousingDecor(3896):IsPvP(), -- Overly Defensive
+	Ach(1157):HousingDecor(3893):IsPvP(), -- Duel-icious
 	Ach(1436):Obtainable("Before", "Date", {2019, 6, 11}), -- Friends In High Places
 	Ach(2398):Obtainable("From", "Date", {2008, 11, 23}, "Until", "Date", {2008, 12, 7}), -- WoW's 4th Anniversary
 	Ach(2456):Obtainable("From", "Date", {2008, 10, 22}, "Until", "Date", {2008, 11, 4}), -- Vampire Hunter
@@ -45,7 +45,7 @@ KrowiAF.AchievementData["03_02_00"] = {
 
 KrowiAF.AchievementData["03_02_02"] = {
 	Ach(4400):Obtainable("From", "Date", {2009, 11, 22}, "Until", "Date", {2009, 12, 6}), -- WoW's 5th Anniversary
-	Ach(4405):HousingDecor(), -- More Dots! (25 player)
+	Ach(4405):HousingDecor(1674), -- More Dots! (25 player)
 }
 
 KrowiAF.AchievementData["03_03_05"] = {

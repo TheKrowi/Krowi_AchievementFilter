@@ -9,6 +9,7 @@
     <Include file="RightClickMenu\Files.xml"/>
     <Include file="SnapFrame\SnapFrame.xml"/>
     <Include file="AchievementPopout\AchievementPopout.xml"/>
+    <Include file="RewardPreview\RewardPreview.xml"/>
     <Include file="AchievementCalendar\Files.xml"/>
     <Include file="DataManager\Files.xml"/>
     <Include file="BrowsingHistory\BrowsingHistory.xml"/>

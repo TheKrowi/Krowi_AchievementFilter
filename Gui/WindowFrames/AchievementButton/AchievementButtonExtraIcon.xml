@@ -1,7 +1,7 @@
 <Ui>
     <Script file="AchievementButtonExtraIconMixin.lua"/>
 
-	<Frame name="KrowiAF_AchievementButtonExtraIcon_Template" mixin="KrowiAF_AchievementButtonExtraIconMixin" hidden="true" virtual="true">
+	<Frame name="KrowiAF_AchievementButtonExtraIcon_Template" mixin="KrowiAF_AchievementButtonExtraIconMixin" hidden="true" enableMouse="true" virtual="true">
 		<Size x="15" y="15"/>
 		<Layers>
 			<Layer level="OVERLAY">
@@ -11,6 +11,7 @@
 		<Scripts>
 			<OnEnter method="OnEnter"/>
 			<OnLeave method="OnLeave"/>
+			<OnMouseUp method="OnMouseUp"/>
 		</Scripts>
 	</Frame>
 </Ui>

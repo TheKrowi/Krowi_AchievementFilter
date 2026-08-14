@@ -5,7 +5,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-08-08 23-41-36 ]] --
+-- [[ Exported at 2026-08-12 23-51-36 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -167,6 +167,7 @@ When disabling it, the account wide {watchList} will be used again and the chara
 L["Characters"] = true
 L["Chat messages"] = true
 L["Children's Week"] = true
+L["Choose one of {count} rewards"] = true
 L["Class Halls"] = true
 L["Clear all"] = true
 L["Clear all Desc"] = "Clear all watched achievements."
@@ -175,6 +176,10 @@ L["Clear search field on Right Click Desc"] = "Enable / disable clearing the sea
 L["Click here to view in achievement window"] = true
 L["Click here to view in achievements"] = true
 L["Cliffside Circuit"] = true
+L["Close On Earn"] = true
+L["Close On Earn Delay"] = true
+L["Close On Earn Delay Desc"] = "The time in seconds to wait after an achievement is earned before its {popout} auto-closes, when {closeOnEarn} is enabled. Set to 0 to close instantly."
+L["Close On Earn Desc"] = "Automatically close a {popout} when its achievement is earned."
 L["Close Popout"] = true
 L["Cobalt Assembly"] = true
 L["Coiled Nightmares"] = true
@@ -606,6 +611,8 @@ L["Include all Desc"] = "Include all excluded achievements."
 L["Indentation"] = true
 L["Indentation Desc"] = "The size of the indentation of child categories."
 L["Invasions"] = true
+L["Invert Reward Preview Vertical Rotation"] = true
+L["Invert Reward Preview Vertical Rotation Desc"] = "Invert the vertical drag direction when rotating the {rewardPreview} model."
 L["is"] = true
 L["Iskaara Flyover"] = true
 L["Island Expeditions"] = true
@@ -802,6 +809,7 @@ L["Pop Out"] = true
 L["Pop ups"] = true
 L["Pre-Patch Event"] = true
 L["Presets"] = true
+L["Preview Reward"] = true
 L["Prey"] = true
 L["Primal Storms"] = true
 L["Primalist Tomorrow"] = true
@@ -846,6 +854,8 @@ L["Related Tab"] = true
 L["Related Tab Desc"] = "Adds an extra bit to the {wowheadLink} so another tab different than the default one will be selected."
 L["Remember frame position"] = "Remember {frame} position"
 L["Remember frame position Desc"] = "Remember the {frame} position. This will keep the {frame} in it's last known position the next time you log in."
+L["Remember Last Position"] = true
+L["Remember Last Position Desc"] = "Remember the last position a {popout} was moved to, and use it for the next {popout} you open when none are currently shown."
 L["Remember Size"] = true
 L["Remember Size Desc"] = "Remember a {popout}'s size across /reload and login."
 L["Remix: Mists of Pandaria"] = true
@@ -870,6 +880,13 @@ L["Reset view on open Desc"] = "Collapse all categories and select the summary."
 L["Return to the Forbidden Reach"] = true
 L["Revelations"] = true
 L["Reverse Sort"] = true
+L["Reward Preview"] = true
+L["Reward Preview Default Height"] = true
+L["Reward Preview Default Height Desc"] = "The default height of the {rewardPreview} window."
+L["Reward Preview Default Width"] = true
+L["Reward Preview Default Width Desc"] = "The default width of the {rewardPreview} window."
+L["Reward Preview Max Individual Icons"] = true
+L["Reward Preview Max Individual Icons Desc"] = "Achievements with more previewable rewards than this (e.g. an item that lets you choose from many mounts) show a single icon to choose from instead of one icon each."
 L["Rewards"] = true
 L["Right"] = true
 L["Right Alt"] = true
@@ -1007,6 +1024,14 @@ L["Show Required for"] = "Show {requiredFor}"
 L["Show Required for Desc"] = [=[Show / hide {requiredFor}.
 
 When checked, the achievement that requires the selected achievement to be completed will be visible in the tooltip.]=]
+L["Show Reward Preview Icon"] = "Show {rewardPreview} Icon"
+L["Show Reward Preview Icon Desc"] = "Show / hide an extra icon on the achievement that lets you preview its {rewardPreview}."
+L["Show Reward Preview on Mouseover"] = "Show {rewardPreview} on Mouseover"
+L["Show Reward Preview on Mouseover Desc"] = [=[When checked, hovering the {rewardPreview} icon shows the preview and moving the mouse away closes it again.
+
+When unchecked, clicking the icon is required to open the preview.
+
+Clicking the icon always pins the preview open and makes it movable, regardless of this setting.]=]
 L["Show Rewards"] = true
 L["Show Rewards Desc"] = [=[Show / hide {rewards}.
 

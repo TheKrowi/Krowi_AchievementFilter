@@ -66,6 +66,66 @@ for key, value in pairs(rewardType) do
     end
 end
 
+-- Overrides the generic reward type method above to also accept previewable decor item id(s)
+function AchBuilder:HousingDecor(...)
+    local e = GetExtras(self)
+    local rt = e.RewardType
+    if rt == nil then
+        e.RewardType = {rewardType.HousingDecor}
+    else
+        tinsert(rt, rewardType.HousingDecor)
+    end
+    if select("#", ...) > 1 then
+        e.HousingDecorId = {...}
+    else
+        e.HousingDecorId = ...
+    end
+    return self
+end
+
+-- Overrides the generic reward type method above to also accept preview mount id(s) (found via the reward mount's own DBC record)
+-- Multiple ids are used for faction-specific mount rewards (e.g. Alliance/Horde variants of the same achievement)
+function AchBuilder:Mount(...)
+    local e = GetExtras(self)
+    local rt = e.RewardType
+    if rt == nil then
+        e.RewardType = {rewardType.Mount}
+    else
+        tinsert(rt, rewardType.Mount)
+    end
+    if select("#", ...) > 1 then
+        e.MountId = {...}
+    else
+        e.MountId = ...
+    end
+    return self
+end
+
+-- Overrides the generic reward type method above to also accept preview battle pet species id(s) (found via the reward creature's battlepetspecies record)
+function AchBuilder:Pet(...)
+    local e = GetExtras(self)
+    local rt = e.RewardType
+    if rt == nil then
+        e.RewardType = {rewardType.Pet}
+    else
+        tinsert(rt, rewardType.Pet)
+    end
+    if select("#", ...) > 1 then
+        e.PetSpeciesId = {...}
+    else
+        e.PetSpeciesId = ...
+    end
+    return self
+end
+
+-- Registers a raw CreatureDisplayID for reward preview when no dedicated Mount/Pet/HousingDecor API applies (e.g. a Barbershop customization-unlock item). The preview name is resolved from the shapeshift/customization spell id at display time. Does not tag RewardType — combine with another reward-type method (e.g. :Other()) as needed.
+function AchBuilder:CreatureDisplay(displayId, spellId)
+    local e = GetExtras(self)
+    e.CreatureDisplayId = e.CreatureDisplayId or {}
+    tinsert(e.CreatureDisplayId, {Id = displayId, SpellId = spellId})
+    return self
+end
+
 function KrowiAF.Ach(id)
     return setmetatable({KrowiAF.AddAchievementData, id}, AchBuilder)
 end

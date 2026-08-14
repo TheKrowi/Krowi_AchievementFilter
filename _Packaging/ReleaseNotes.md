@@ -1,65 +1,46 @@
 ### Added
-- 12.0.7 "Revelations" patch data
-    - Sporefall raid instance: Rotmire, Heroic: Rotmire, Mythic: Rotmire
-    - Goal! housing decor achievement
-    - Big Prey Hunter (Season 1) delve achievement
-    - Ritual Sites 612: Practical Ritual Work, Pinnacle Ritual Work, Advanced Ritual Site Studies
-    - The Curse of Ula'tek mapped to Zul'Aman
-    - Omnium Folio void assault subcategory: The Sunstrider Omnium, Omnium Folio Studies
-    - Val and Naigtal void assault subcategory with all associated achievements
-    - Master of the Turbulent Timeways V added to Turbulent Timeways event
-    - Flame Keeper / Flame Warden of Midnight added to Midsummer Fire Festival
+- 12.1.0 "The Curse of Ula'tek" patch data
+    - Altar of Fangs dungeon: Normal, Heroic, Mythic, Keystone Hero and Keystone Victor
+    - The Venomous Abyss raid: Normal, Heroic, Mythic, boss kills, Glory, Ahead of the Curve/Cutting Edge, Mythic: Ula'tek
+    - Midnight Season 2 Mythic+ (Resilient Keystones, Keystone Hero/Victor for all 8 dungeons, Explorer/Conqueror/Master/Hero/Legend) and Delve tiers 4-11
+    - Midnight Season 2 PvP ladder (Combatant through Gladiator/Legend/Strategist), Battle Mender, Hero of the Alliance/Horde, Weapons of Conquest, and season mount
+    - The Coiled Isle zone: exploration, Curse Surges world event, Vaults of Atal'Utek, housing decor, and Souvenir Seeker achievements
+    - Family Battler of Outland and Family Battler of Cataclysm pet battle achievements
+    - A Round on the House in Midnight and Tricks and Treats of Midnight holiday achievements
+    - Keystone Hero/Victor entries added to older dungeons rejoining the Season 2 rotation (Ruby Life Pools, Temple of Sethraliss, Kings' Rest)
+- Pop Out: right-click an achievement to open it in its own standalone, movable and resizable window
+    - Ctrl-click an achievement (rebindable) to pop it out directly, alongside the existing Paste to Chat/Toggle Tracking/Watch List/Exclude modifiers (Options -> General -> Key Binding -> Modifiers)
+    - Snapping: drag a popped-out window close to another one to snap it into a stack below it; moving or resizing the top of a stack moves/resizes the whole stack, while moving or resizing any other window in it breaks it back out (hold Alt while dragging to bypass snapping)
+    - Window position, size, and snap relationships can optionally persist across sessions
+    - Remembers the position a window was last moved to, and opens the next window there when none are currently shown (Options -> Layout -> Pop Out -> Remember Last Position)
+    - Auto-fade: windows can fade to a configurable opacity (and fade speed) when not moused over
+    - Close and resize buttons can be set to auto-hide until moused over
+    - Configurable default window width and snap distance
+    - All Pop Out settings found under Options -> Layout -> Pop Out
+- Reward Preview: 3D-model preview for mount, pet and housing decor rewards
+    - An extra icon appears on achievements with a previewable reward (one icon per reward, for achievements granting multiple); click it, or use the right-click menu's Preview Reward option, to open the preview
+    - Rotate and zoom the 3D model; pin the window to keep it open and move it around, or leave it unpinned to show on mouseover and close automatically when you move away
+    - Options -> Layout -> Reward Preview: toggle the extra icon, toggle mouseover-to-show, invert the vertical rotation drag direction, and set the default window width/height
 
 ### Changed
-- Lorewalking subcategory moved from The War Within to Cross-Expansion and extended with Lorewalking: The Loa from Midnight
-- Master of the Turbulent Timeways IV marked as no longer obtainable (event ended)
+- Support for WoW 12.1.0 PTR (dev note: the Achievements frame's header details strip — Back button, filter dropdown, search box — moved into `AchievementFrame.HeaderDetails.Filters`; the addon's filter button, search box, summary/achievements frames, and browsing history buttons now anchor to it, falling back to the old layout when it's absent)
 
-### Fixed (98.1)
-- Further taint fix attempt: recurring `attempt to compare a secret number value` and `attempt to perform arithmetic on local 'textHeight'` errors that appeared after hovering over transmog achievements (dev note: the transmog coroutine's owner guard evaluated to false on a nil owner, letting `CopyPrevTooltipLines` write to `GameTooltip` from addon code after the user moved away; fix aborts when owner is nil or not a KAF frame)
-- Reverted the `securecall(GameTooltip.Hide, GameTooltip)` workaround added in 97.3 now that the actual root cause is fixed
+### Fixed
+- Filter dropdown and search box no longer error on the 12.1.0 layout
+- Blizzard's search box no longer reappears after closing the addon's own search box
+- Achievement button extra icons no longer show a stale tooltip from a previous achievement (e.g. leftover temporarily-obtainable text on a Warband icon)
+- GW2_UI: no longer errors skinning the filter dropdown's backdrop on the 12.1.0 layout
+- GW2_UI: no longer errors anchoring the browsing history buttons on the 12.1.0 layout
 
-### Fixed (98.2)
-- Instance Achievement Tracker plugin should no longer throw "attempt to call a nil value" when right-clicking an achievement
+### Removed
+- Achievement 62413, The Curse of Ula'tek, to be replaced by 62297
 
-### Changed (98.2)
-- Midnight 12.0.7 achievement reward types corrected: A Trip Around the Stars and A Trip Through the Stars tagged as Mount, Showdown Success: Val and Showdown Success: Naigtal tagged as Pet, Showdown Slugger: Val tagged as Transmog, Ultradon Carnage tagged as Pet
+### Added (99.1)
+- Reward Preview: several Midnight Season 2 achievements (mounts, pets, housing decor) now have reward data
 
-### Mists Classic (98.2)
-- Added missing 5.5.3 build version
-- Bumped toc to use 5.5.4 as in some rare occasions KAF did not show up in the addon list
+### Changed (99.1)
+- Pop Out: opening a new window while others are already open now stacks it onto the end of a snap chain instead of reopening it dead-center (Options -> Layout -> Pop Out -> Remember Last Position); prefers the chain most recently moved, otherwise any other currently open chain
 
-### Fixed (98.3)
-- Taint fix attempt: `attempt to compare a secret number value (execution tainted by 'Krowi_AchievementFilter')`
-
-### Removed (98.3)
-- Abyss Anglers: Heavy Harpoon Cannon (62215) and Abyss Anglers: Hollowcore Harpoon Turret (62216) — these are tracking achievements which are not supported
-
-### Fixed (98.4)
-- Taint fix attempt 666?: `attempt to compare a secret number value (execution tainted by 'Krowi_AchievementFilter')`
-
-### Fixed (98.5)
-- Some categories are flagged as 'Legacy' again (got  removed at some point) as they are replaced in later expansions (dev note: example being Onyxia's Lair having an original implementation in Vanilla and a revamp in WotLK)
-- Translations
-
-### Mists Classic (98.6)
-- Fixed an error due to a missing field
-
-### Added (98.7)
-- Zone data for Brawler's Guild Season 5 achievements
-- Zone data for Val and Naigtal achievements
-- You Conduit! to Nexus-Point Xenas' zone data
-- Zone data for a bunch of Abundance achievements
-
-### Changed (98.7)
-- Moved all Brawler's Guild categories into Cross-Expansion and divided them in seasons; was in multiple expansions
-- Moved Val and Naigtal category into Midnight - Zones and split in a Val subcategory and Naigtal subcategory; was in Midnight - Void Assaults
-- Slayer's Rise achievements are now in Midnight - Zones - Slayer's Rise; were in Midnight - Zones - Quel'Thalas - PvP
-- Slayer's Rise achievements now only show in the Slayer's Rise subzone of Voidstorm; was all of Quel'Thalas
-- Goal! achievement now only shows in Silvermoon City
-
-### Removed (98.7)
-- Bur's Mount Collection removed from the Specials tab (dev note: this category was no longer maintained and is now part of [Khamuls Housing/Toys/Mounts/Pets Collections Plugin](https://github.com/KhamulAT/Krowi_AchievementFilter_Khamuls_ExpMetaAchievementFilter))
-
-### Added (98.8)
-- Zone data for the first 925 achievements
-- New obtainability for affected achievements posted here: https://worldofwarcraft.blizzard.com/en-us/news/24293280
+### Fixed (99.1)
+- They Burn, Burn, Burn marked unobtainable
+- Pop Out: a window restored to a saved position could fail to reappear (and look like it silently didn't reopen) if that position fell off-screen, e.g. after changing resolution or UI scale

@@ -4,7 +4,7 @@ local faction = KrowiAF.Enum.Faction
 KrowiAF.AchievementData["06_00_02"] = {
 	Ach(8671):Other():AutoFactionSplit(faction.Horde, 8845), -- You'll Get Caught Up In The... Frostfire! / As I Walk Through the Valley of the Shadow of Moon
 	Ach(8812):Obtainable("Never"), -- You're Really Doing It Wrong (Level 90)
-	Ach(8820):Pet():Obtainable("From", "Date", {2014, 11, 21}, "Until", "Date", {2015, 1, 5}), -- WoW's 10th Anniversary
+	Ach(8820):Pet(1451):Obtainable("From", "Date", {2014, 11, 21}, "Until", "Date", {2015, 1, 5}), -- WoW's 10th Anniversary
 	Ach(8843), -- Skyreach
 	Ach(8844), -- Heroic: Skyreach
 	Ach(8871):Obtainable("Before", "Version", {7, 0, 3}), -- Skyreach Challenger
@@ -33,7 +33,7 @@ KrowiAF.AchievementData["06_00_02"] = {
 	Ach(8894):Teleport():Obtainable("Before", "Version", {7, 0, 3}), -- Upper Blackrock Spire: Gold
 	Ach(8895):Obtainable("Before", "Version", {7, 0, 3}), -- Challenge Warlord
 	Ach(8897):Title():Obtainable("Before", "Version", {7, 0, 3}), -- Challenge Warlord: Bronze
-	Ach(8898):Mount():Obtainable("Before", "Version", {7, 0, 3}), -- Challenge Warlord: Silver
+	Ach(8898):Mount(654):Obtainable("Before", "Version", {7, 0, 3}), -- Challenge Warlord: Silver
 	Ach(8899):Transmog():Obtainable("Before", "Version", {7, 0, 3}), -- Challenge Warlord: Gold
 	Ach(8903):Title():Obtainable("Never"), -- Mistwalker
 	Ach(8916), -- Collector's Edition: Dread Raven
@@ -85,7 +85,7 @@ KrowiAF.AchievementData["06_00_02"] = {
 	Ach(8982), -- There's Always a Bigger Train
 	Ach(8983), -- Would You Give Me a Hand?
 	Ach(8984), -- Be Quick or Be Dead
-	Ach(8985):Mount(), -- Glory of the Draenor Raider
+	Ach(8985):Mount(607), -- Glory of the Draenor Raider
 	Ach(8986), -- The Walled City
 	Ach(8987), -- Arcane Sanctum
 	Ach(8988), -- Imperator's Fall
@@ -135,7 +135,7 @@ KrowiAF.AchievementData["06_00_02"] = {
 	Ach(9057), -- Dragonmaw? More Like Dragonfall!
 	Ach(9058):Title(), -- Leeeeeeeeeeeeeroy...?
 	Ach(9060):Obtainable("Before", "Version", {9, 0, 1}), -- Level 100 (Legacy)
-	Ach(9069):Pet(), -- An Awfully Big Adventure
+	Ach(9069):Pet(1605), -- An Awfully Big Adventure
 	Ach(9070), -- Overstuffed
 	Ach(9071), -- Inspector Gadgetzan
 	Ach(9072):Title(), -- Mantle of the Talon King
@@ -238,7 +238,7 @@ KrowiAF.AchievementData["06_00_02"] = {
 	Ach(9392):Obtainable("Event", 423), -- Love Magnet
 	Ach(9393):Obtainable("Event", 423), -- Beacon of Love
 	Ach(9394):Toy():Obtainable("Event", 423), -- They Really Love Me!
-	Ach(9396):Mount(), -- Glory of the Draenor Hero
+	Ach(9396):Mount(623), -- Glory of the Draenor Hero
 	Ach(9400), -- Gorgrond Monster Hunter
 	Ach(9401), -- Shredder Maniac
 	Ach(9402), -- Prove Your Strength
@@ -251,7 +251,7 @@ KrowiAF.AchievementData["06_00_02"] = {
 	Ach(9412), -- Arakkoa Archivist
 	Ach(9413), -- Strength and Honor
 	Ach(9414), -- Ogre Observer
-	Ach(9415):HousingDecor(), -- Secrets of Skettis
+	Ach(9415):HousingDecor(12200), -- Secrets of Skettis
 	Ach(9419), -- Draenor Curator
 	Ach(9422), -- The Search For Fact, Not Truth
 	Ach(9423), -- Goliaths of Gorgrond
@@ -298,10 +298,10 @@ KrowiAF.AchievementData["06_00_02"] = {
 	Ach(9486), -- Goodness Gracious
 	Ach(9487):Garrison(), -- Got My Mind On My Draenor Money
 	Ach(9491):AutoFactionSplit(faction.Alliance, 9492), -- The Garrison Campaign
-	Ach(9493), -- They Burn, Burn, Burn
+	Ach(9493):Obtainable("Before", "Version", {10, 2, 0}), -- They Burn, Burn, Burn
 	Ach(9494), -- Commander
 	Ach(9495):Garrison():IsPvP(), -- The Bone Collector
-	Ach(9496):Mount():Obtainable("From", "Date", {2014, 8, 1}, "Until", "Date", {2014, 9, 30}), -- Warlord's Deathwheel
+	Ach(9496):Mount(651):Obtainable("From", "Date", {2014, 8, 1}, "Until", "Date", {2014, 9, 30}), -- Warlord's Deathwheel
 	Ach(9497):Garrison(), -- Finding Your Waystones
 	Ach(9498), -- Wingman
 	Ach(9499), -- Wingmen
@@ -338,7 +338,7 @@ KrowiAF.AchievementData["06_00_02"] = {
 	Ach(9543), -- Invasion? What Invasion?
 	Ach(9547), -- Everything Is Awesome!
 	Ach(9548), -- Buried Treasures
-	Ach(9550):Mount():Obtainable("From", "Date", {2014, 11, 21}, "Until", "Date", {2015, 1, 5}), -- Boldly, You Sought the Power of Ragnaros
+	Ach(9550):Mount(606):Obtainable("From", "Date", {2014, 11, 21}, "Until", "Date", {2015, 1, 5}), -- Boldly, You Sought the Power of Ragnaros
 	Ach(9551), -- Demon's Souls
 	Ach(9552), -- No Tag-backs!
 	Ach(9562):AutoFactionSplit(faction.Horde, 9564), -- Securing Draenor
@@ -365,7 +365,7 @@ KrowiAF.AchievementData["06_00_02"] = {
 	Ach(9589):Title(), -- Proving Yourself: Endless Healer (Wave 30)
 	Ach(9590), -- You're Doing it Wrong
 	Ach(9597), -- You're Really Doing It Wrong
-	Ach(9598):Mount():AutoFactionSplit(faction.Alliance, 9599), -- Mountacular
+	Ach(9598):Mount(416):AutoFactionSplit(faction.Alliance, 9599), -- Mountacular
 	Ach(9600), -- Monster Mash
 	Ach(9601), -- King of the Monsters
 	Ach(9602):AutoFactionSplit(faction.Alliance, 9606), -- Shoot For the Moon / Frostfire Fridge
@@ -397,7 +397,7 @@ KrowiAF.AchievementData["06_00_02"] = {
 	Ach(9640):Obtainable("Before", "Version", {7, 0, 3}), -- Chapter I: Call of the Archmage
 	Ach(9641):Obtainable("Before", "Version", {7, 0, 3}), -- Chapter II: Gul'dan Strikes Back
 	Ach(9642):Obtainable("Before", "Version", {7, 0, 3}), -- Chapter III: The Foundry Falls
-	Ach(9643):Pet(), -- So. Many. Pets.
+	Ach(9643):Pet(1546), -- So. Many. Pets.
 	Ach(9654), -- Mean and Green
 	Ach(9655), -- Fight the Power
 	Ach(9656), -- In Plain Sight
@@ -412,14 +412,14 @@ KrowiAF.AchievementData["06_00_02"] = {
 	Ach(9674), -- I Want More Talador
 	Ach(9678), -- Ancient No More
 	Ach(9680):Garrison():Obtainable("Before", "Version", {7, 0, 3}), -- Time is a Flat Circle
-	Ach(9685):Pet(), -- Draenor Safari
+	Ach(9685):Pet(1411), -- Draenor Safari
 	Ach(9703):Garrison(), -- Stay Awhile and Listen
 	Ach(9707):Obtainable("Before", "Version", {8, 0, 1}), -- Savagely Superior
 	Ach(9708):Obtainable("Before", "Version", {8, 0, 1}), -- Savagely Epic
 	Ach(9710), -- Poisoning the Well
 	Ach(9711), -- Planned to Fail
 	Ach(9712), -- Shiny Pet Charmer
-	Ach(9713):Mount(), -- Awake the Drakes
+	Ach(9713):Mount(664), -- Awake the Drakes
 	Ach(9714):IsPvP():AutoFactionSplit(faction.Alliance, 9715), -- Thy Kingdom Come
 	Ach(9724), -- Taming Draenor
 	Ach(9725):Title():IsPvP(), -- The Last of Us
@@ -465,7 +465,7 @@ KrowiAF.AchievementData["06_01_00"] = {
 	Ach(9815):Obtainable("Event", 374), -- Big Powermonger: Silver
 	Ach(9817):Toy():Obtainable("Event", 374), -- Big Powermonger: Gold
 	Ach(9819):Obtainable("Event", 374), -- Darkmoon Like the Wind
-	Ach(9824):Pet(), -- Raiding with Leashes III: Drinkin' From the Sunwell
+	Ach(9824):Pet(1635), -- Raiding with Leashes III: Drinkin' From the Sunwell
 	Ach(9825):AutoFactionSplit(faction.Alliance, 9836), -- Master Relic Hunter
 	Ach(9826), -- Platinum Defender
 	Ach(9827), -- Impervious Defender
@@ -479,7 +479,7 @@ KrowiAF.AchievementData["06_01_00"] = {
 	Ach(9901):Garrison():AutoFactionSplit(faction.Horde, 9928), -- Don't Call Me Junior
 	Ach(9906), -- Alt-ernative Lifestyle
 	Ach(9908), -- Ready for Powerleveling
-	Ach(9909):Mount(), -- Heirloom Hoarder
+	Ach(9909):Mount(679, 678), -- Heirloom Hoarder
 	Ach(9911), -- Where's the Mailbox?
 	Ach(9912):Toy():AutoFactionSplit(faction.Alliance, 9914), -- Azeroth's Top Twenty Tunes
 	Ach(9915), -- Crashin' Thrashin' Shredder
@@ -491,7 +491,7 @@ KrowiAF.AchievementData["06_01_00"] = {
 KrowiAF.AchievementData["06_02_00"] = {
 	Ach(9972):Garrison(), -- A Race Against Slime
 	Ach(9979), -- Get In My Belly!
-	Ach(9983):Pet():Obtainable("Event", 374), -- That's Whack!
+	Ach(9983):Pet(1384):Obtainable("Event", 374), -- That's Whack!
 	Ach(9988), -- Pro Toss
 	Ach(9989), -- Non-Lethal Enforcer
 	Ach(9995):Title():PvP(16):AutoFactionSplit(faction.Alliance, 9998), -- Soldier of the Alliance / Horde: Warlords Season 1
@@ -503,7 +503,7 @@ KrowiAF.AchievementData["06_02_00"] = {
 	Ach(10013), -- Waves Came Crashing Down All Around
 	Ach(10015):AutoFactionSplit(faction.Alliance, 10016), -- Full Discography
 	Ach(10017), -- Naval Bonus Specialist
-	Ach(10018):Mount(), -- Draenor Pathfinder
+	Ach(10018):Mount(772), -- Draenor Pathfinder
 	Ach(10019), -- The Black Gate
 	Ach(10020), -- Destructor's Rise
 	Ach(10021):Garrison():AutoFactionSplit(faction.Alliance, 10148):Obtainable("Before", "Version", {7, 0, 3}), -- Chapter IV: Darkness Incarnate
@@ -574,7 +574,7 @@ KrowiAF.AchievementData["06_02_00"] = {
 	Ach(10120):Title():PvP(18):AutoFactionSplit(faction.Alliance, 10121), -- Soldier of the Alliance / Horde: Warlords Season 3
 	Ach(10137):PvP(17), -- Wild Gladiator's Felblood Gronnling
 	Ach(10146):PvP(18), -- Warmongering Gladiator's Felblood Gronnling
-	Ach(10149):Mount(), -- Glory of the Hellfire Raider
+	Ach(10149):Mount(758), -- Glory of the Hellfire Raider
 	Ach(10154), -- Naval Combat Expert
 	Ach(10155), -- Naval Siege Expert
 	Ach(10156), -- Naval Combat Specialist
@@ -614,6 +614,6 @@ KrowiAF.AchievementData["06_02_02"] = {
 	Ach(10337), -- Crashin' Thrashin' Flamer
 	Ach(10353):Obtainable("Event", 141), -- Iron Armada
 	Ach(10354):Title(), -- Crashin' Thrashin' Commander
-	Ach(10355):Mount():AutoFactionSplit(faction.Horde, 10356), -- Lord of the Reins
+	Ach(10355):Mount(477):AutoFactionSplit(faction.Horde, 10356), -- Lord of the Reins
 	Ach(10365):Obtainable("Event", 324), -- A Frightening Friend
 }
