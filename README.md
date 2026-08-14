@@ -4,9 +4,9 @@
 
 **See the images for a quick look at the ingame UI! This might give you a better idea of what is added to the default Blizzard UI.**
 
-Achievement Filter completely replaces the default Achievements tab and adds several new tabs that order the achievements by expansion, pvp, events or other curated lists. Over 6400 achievements are added so far spread over 1200+ categories, linked to 1800+ zones and 120+ events.
+Achievement Filter completely replaces the default Achievements tab and adds several new tabs that order the achievements by expansion, pvp, events or other curated lists. Over 8800 achievements are added so far spread over 1200+ categories, linked to 1800+ zones and 120+ events.
 
-### Now also mostly available in German, French, Portuguese (Brazilian), Russian and Chinese (Simplified)!
+### Now also mostly available in German, French, Portuguese (Brazilian), Russian, Chinese (Simplified) and Chinese (Traditional)!
 
 ### Tabs
 - **Achievements**: A copy of the default Achievements tab but with all the additional features.
@@ -16,48 +16,70 @@ Achievement Filter completely replaces the default Achievements tab and adds sev
 - **Specials**: A combination of curated lists that might appeal to certain achievement hunters.
 
 ### Categories (Expansions)
+
+#### Special Categories
 - The ***Current Zone*** category shows which achievements are related to the current zone you're in.
 - The ***Selected Zone*** category shows which achievements are related to the zone you're viewing in the World Map.
 - The ***Watch List*** category shows achievements you're actively tracking. Showing this category can be toggled in the options.
 - The ***Tracking Achievements*** category shows tracking achievements usualy not visible. Showing this category can be toggled in the options.
 - The ***Excluded*** category shows excluded achievements you don't want to see. Showing this category can be toggled in the options.
-- Each expansion has its own category: ***Classic***, ***The Burning Crusade***, ***Wrath of the Lich King***, ***Cataclysm***, ***Mists of Pandaria***, ***Warlords of Dreanor***, ***Legion***, ***Battle for Azeroth***, ***Shadowlands***, ***Dragonflight*** and ***The War Within***.
-- Each expansion is divided in Zones, Dungeons and Raids and Pet Battles where available.
-- ***Wrath of the Lich King*** has separate categories for 10 and 25 man Raids.
-- ***Wrath of the Lich King*** expansion feature: Argent Tournament.
-- ***Cataclysm*** expansion feature: Tol Barad.
-- ***Mists of Pandaria*** expansion feature: Brawler's Guild, Scenarios, Proving Grounds.
-- ***Warlords of Dreanor*** expansion feature: Brawler's Guild and Garrison.
-- ***Legion*** expansion feature: Brawler's Guild and Class Hall.
-- ***Battle for Azeroth*** expansion feature: Brawler's Guild, Island Expeditions, War Effort, Heart of Azeroth and Visions of N'Zoth.
-- ***Shadowlands*** expansion feature: Torghast and Covenant Sanctums.
-- ***Dragonflight*** expansion feature: Dragonriding, Dragonriding Racing and Primal Storms.
-- ***The War Within*** expansion feature: Skyriding Races and Delves.
 - Unobtainable ***Legacy*** categories can be found when the 'Not Obtainable' filter is checked.
 
+#### Expansion Categories
+- Each expansion has its own category: ***Classic***, ***The Burning Crusade***, ***Wrath of the Lich King***, ***Cataclysm***, ***Mists of Pandaria***, ***Warlords of Dreanor***, ***Legion***, ***Battle for Azeroth***, ***Shadowlands***, ***Dragonflight***, ***The War Within*** and ***Midnight***.
+- Each expansion is divided in Zones, Dungeons and Raids and Pet Battles where available.
+- ***Wrath of the Lich King*** has separate categories for 10 and 25 man Raids.
+
+#### Expansion Features
+- **Wrath of the Lich King**: Argent Tournament.
+- **Cataclysm**: Tol Barad.
+- **Mists of Pandaria**: Brawler's Guild, Scenarios, Proving Grounds.
+- **Warlords of Dreanor**: Brawler's Guild and Garrison.
+- **Legion**: Brawler's Guild and Class Hall.
+- **Battle for Azeroth**: Brawler's Guild, Island Expeditions, War Effort, Heart of Azeroth and Visions of N'Zoth.
+- **Shadowlands**: Torghast and Covenant Sanctums.
+- **Dragonflight**: Dragonriding, Dragonriding Racing and Primal Storms.
+- **The War Within**: Skyriding Races and Delves.
+- **Midnight**: Ritual Sites, Void Assaults, Curse Surges and Abyss Anglers.
+
 ### Features
-- Enhanced ***searching***, ***filtering***, ***sorting*** and ***tracking*** of achievements per tab.
-- ***Reward filters*** to show only achievements that award mounts, pets, titles, toys, transmog, tabards, teleports, and housing decor.
+
+#### Tooltips & Information
 - Enhanced ***achievement tooltip*** to show more about the achievement and related achievements.
 - Enhanced ***unit and item tooltip*** to show if the unit or item is required for an achievement. (Still working on expanding this.)
-- ***Movable windows*** with the option to remember their last position.
-- Achievements are sorted in a way so they make more sense and are easier to find.
-- A ***Right Click Menu*** for each achievement with a link to Wowhead, IAT (3.18.0+) (if tactics are available), Transmog sets (if linked to collecting it), Go to (related achievements) and wow-petguide.com (Xu-Fu's Pet Guides).
-- A ***tutorial*** for first time users with an ingame explanation of the most important features.
-- The option to ***keybind*** the new tabs so it opens in one go. (Game Menu -> Key Bindings -> Addons -> Krowi's Achievement Filter)
-- ***ElvUI and GW2 UI skin***. (See the ingame options on how to enable each part.)
-- Clicking achievements in meta achievements select the achievement.
+- ***Reward Preview*** to see a 3D preview of the mount, pet or housing decor an achievement rewards before you've earned it.
 - Hovering achievements in meta achievements shows more information about the achievement.
+
+#### Windows & Navigation
+- ***Movable windows*** with the option to remember their last position.
+- ***Pop out achievements*** into their own movable, resizable window. Multiple pop outs can be snapped together into a stack.
+- ***Achievement browsing history*** to navigate back and forth between previously viewed achievements, similar to a web browser.
 - ***World Map Button*** with its own Selected Zone category to show achievements for the zone you're viewing.
+- A ***Right Click Menu*** for each achievement with a link to Wowhead, IAT (3.18.0+) (if tactics are available), Transmog sets (if linked to collecting it), Go to (related achievements) and wow-petguide.com (Xu-Fu's Pet Guides).
+- Clicking achievements in meta achievements select the achievement.
+- The option to ***keybind*** the new tabs so it opens in one go. (Game Menu -> Key Bindings -> Addons -> Krowi's Achievement Filter)
+
+#### Filtering, Search & Tracking
+- Enhanced ***searching***, ***filtering***, ***sorting*** and ***tracking*** of achievements per tab.
+- ***Reward filters*** to show only achievements that award mounts, pets, titles, toys, transmog, tabards, teleports, and housing decor.
+- Achievements are sorted in a way so they make more sense and are easier to find.
 - ***Watch List*** to track achievements you're actively working on, with options to display with or without subcategories.
 - ***Exclude achievements*** you're not interested in.
-- ***Event reminder*** for active events with achievements with a compact version option.
+- Custom objectives for certain achievements. (If you find missing ones, let me know.)
+
+#### Views & Overviews
+- A ***summary view*** for each new tab.
+- A new ***calendar view*** that puts achievements earned on their respective day.
 - ***Compact achievements*** similar to the summary achievements.
 - Overview of which character earned how many achievement points, with per-character progress tracking.
 - Saturate achievements based on earned by your account, current character or a mix.
-- Custom objectives for certain achievements. (If you find missing ones, let me know.)
-- A ***summary view*** for each new tab.
-- A new ***calendar view*** that puts achievements earned on their respective day.
+
+#### Events
+- ***Event reminder*** for active events with achievements with a compact version option.
+
+#### Customization & Tools
+- ***ElvUI and GW2 UI skin***. (See the ingame options on how to enable each part.)
+- A ***tutorial*** for first time users with an ingame explanation of the most important features.
 - A ***data manager*** to manipulate your saved variables.
 - An open API for other developers to add additional categories with achievements.
 
