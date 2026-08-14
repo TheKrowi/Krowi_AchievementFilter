@@ -228,10 +228,33 @@ function achievementPopout:Load()
 	end
 
 	-- Re-establish snap chains now that every saved popout exists as a frame
-	for id, saved in next, SavedPopouts() do
-		if saved.SnappedParentId then
+	local saved = SavedPopouts();
+
+	-- A stale/cyclic SnappedParentId (e.g. from a since-fixed bug) would make SetPoint anchor a
+	-- frame to a region dependent on itself; detect via the saved ids (before any live attaching) and break it
+	for id, savedEntry in next, saved do
+		if savedEntry.SnappedParentId then
+			local seen, current = {[id] = true}, savedEntry.SnappedParentId;
+			local isCyclic = false;
+			while current do
+				if seen[current] then
+					isCyclic = true;
+					break;
+				end
+				seen[current] = true;
+				current = saved[current] and saved[current].SnappedParentId;
+			end
+			if isCyclic then
+				addon.Diagnostics.Debug("AchievementPopout:Load - broke cyclic SnappedParentId chain at " .. id, true);
+				savedEntry.SnappedParentId = nil;
+			end
+		end
+	end
+
+	for id, savedEntry in next, saved do
+		if savedEntry.SnappedParentId then
 			local child = self.OpenPopouts[id];
-			local parent = self.OpenPopouts[saved.SnappedParentId];
+			local parent = self.OpenPopouts[savedEntry.SnappedParentId];
 			if child and parent then
 				child:SnapFrame_AttachTo(parent, true);
 			end

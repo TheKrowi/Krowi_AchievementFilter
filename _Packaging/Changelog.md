@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 99.2 - 2026-08-14
+### Fixed
+- Further taint fix attempt: `attempt to compare a secret number value (execution tainted by 'Krowi_AchievementFilter')` (dev note: an embedded AceGUI-3.0 tab widget called `GameTooltip:Hide()` directly instead of through `securecall`, same class of issue as the 97.3/98.1/98.4 attempts but in a different, previously-unaudited code path — every direct `GameTooltip` touch in the addon and its bundled libraries has now been reviewed)
+- Pop Out: a window could fail to reappear after `/reload` due to a stale or cyclic snap-chain link left over from dragging a window onto an already-occupied slot (dev note: displacing an existing child during a snap now also persists that child's new parent link; loading also detects and breaks any already-corrupted cyclic chains from before this fix)
+
 ## 99.1 - 2026-08-12
 ### Added
 - Reward Preview: several Midnight Season 2 achievements (mounts, pets, housing decor) now have reward data
