@@ -215,6 +215,12 @@ function KrowiAF_SnapFrameMixin:SnapFrame_OnDragStop()
 	self:SnapFrame_AttachTo(target, true);
 	if displacedChild and displacedChild ~= self then
 		displacedChild:SnapFrame_AttachTo(self, true);
+		-- displacedChild's own parent link changed too; without this its persisted SnappedParentId
+		-- would keep pointing at target, eventually producing a stale/cyclic saved chain
+		local displacedConfig = displacedChild.SnapConfig;
+		if displacedConfig and displacedConfig.OnSnapped then
+			displacedConfig.OnSnapped(displacedChild, self);
+		end
 	end
 
 	local config = self.SnapConfig;

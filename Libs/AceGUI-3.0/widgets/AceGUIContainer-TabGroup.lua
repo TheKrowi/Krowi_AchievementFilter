@@ -134,7 +134,7 @@ local function PanelTemplates_SelectTab(tab)
 	rightDisabled:Show();
 
 	if GameTooltip:IsOwned(tab) then
-		GameTooltip:Hide();
+		securecall(GameTooltip.Hide, GameTooltip); -- avoids tainting GameTooltip (Krowi_AchievementFilter taint fix)
 	end
 end
 
