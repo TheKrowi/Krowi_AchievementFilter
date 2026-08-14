@@ -244,7 +244,7 @@ KrowiAF.AchievementData["03_00_02_S"] = {
 	Ach(612):IsPvP():FactionSplit(faction.Alliance, 617):Obtainable("Before", "Version", {9, 0, 1}), -- Downing the Dark Lady
 	Ach(617):IsPvP():FactionSplit(faction.Horde, 612):Obtainable("Before", "Version", {8, 0, 1}), -- Immortal No More
 	Ach(613):IsPvP():AutoFactionSplit(faction.Alliance, 618), -- Killed in Quel'Thalas / Putting Out the Light
-	Ach(614):Mount():IsPvP():AutoFactionSplit(faction.Alliance, 619), -- For the Alliance! / Horde!
+	Ach(614):Mount(271):IsPvP():AutoFactionSplit(faction.Alliance, 619), -- For the Alliance! / Horde!
 	Ach(621), -- Represent
 	Ach(622), -- The Spellweaver's Downfall (10 player)
 	Ach(623), -- The Spellweaver's Downfall (25 player)
@@ -519,7 +519,7 @@ KrowiAF.AchievementData["03_00_02_S"] = {
 	Ach(1243), -- Fish Don't Leave Footprints
 	Ach(1244), -- Well Read
 	Ach(1248), -- Plethora of Pets
-	Ach(1250):Pet(), -- Shop Smart, Shop Pet...Smart
+	Ach(1250):Pet(160), -- Shop Smart, Shop Pet...Smart
 	Ach(1254), -- Friend or Fowl?
 	Ach(1257), -- The Scavenger
 	Ach(1258):IsPvP(), -- Take a Chill Pill
@@ -754,15 +754,15 @@ KrowiAF.AchievementData["03_00_02_S"] = {
 	Ach(2096):Toy(), -- The Coin Master
 	Ach(2097), -- Get to the Choppa!
 	Ach(2116):Obtainable("Never"), -- Tabard of the Argent Dawn
-	Ach(2136):Mount(), -- Glory of the Hero
+	Ach(2136):Mount(262), -- Glory of the Hero
 	Ach(2137), -- Glory of the Raider (10 player)
 	Ach(2138), -- Glory of the Raider (25 player)
 	Ach(2139), -- The Safety Dance (25 player)
 	Ach(2140), -- Momma Said Knock You Out (25 player)
 	Ach(2141), -- Stable Keeper
 	Ach(2142), -- Filling Up The Barn
-	Ach(2143):Mount(), -- Leading the Cavalry
-	Ach(2144):Mount(), -- What a Long, Strange Trip It's Been
+	Ach(2143):Mount(268), -- Leading the Cavalry
+	Ach(2144):Mount(267), -- What a Long, Strange Trip It's Been
 	Ach(2146), -- The Hundred Club (10 player)
 	Ach(2147), -- The Hundred Club (25 player)
 	Ach(2148), -- Denyin' the Scion (10 player)
@@ -802,8 +802,8 @@ KrowiAF.AchievementData["03_00_02_S"] = {
 	Ach(2358):Obtainable("Before", "Version", {4, 0, 3}), -- Charger
 	Ach(2359):Obtainable("Before", "Version", {4, 0, 3}), -- Swift Flight Form
 	Ach(2496):Obtainable("Never"), -- The Fifth Element
-	Ach(2516):Pet(), -- Lil' Game Hunter
-	Ach(2536):Mount():AutoFactionSplit(faction.Alliance, 2537), -- Mountain o' Mounts
+	Ach(2516):Pet(203), -- Lil' Game Hunter
+	Ach(2536):Mount(291):AutoFactionSplit(faction.Alliance, 2537), -- Mountain o' Mounts
 	Ach(2556), -- Pest Control
 	Ach(2557), -- To All The Squirrels Who Shared My Life
 	Ach(2716):Obtainable("Before", "Version", {7, 0, 3}), -- Dual Talent Specialization
@@ -900,8 +900,8 @@ KrowiAF.AchievementData["03_01_00_S"] = {
 	Ach(2954):Obtainable("Before", "Version", {7, 3, 5}), -- Disarmed (25 player)
 	Ach(2955):Obtainable("Before", "Version", {7, 3, 5}), -- If Looks Could Kill (10 player)
 	Ach(2956):Obtainable("Before", "Version", {7, 3, 5}), -- If Looks Could Kill (25 player)
-	Ach(2957):Mount():Obtainable("Before", "Version", {7, 3, 5}), -- Glory of the Ulduar Raider (10 player)
-	Ach(2958):Mount():Obtainable("Before", "Version", {7, 3, 5}), -- Glory of the Ulduar Raider (25 player)
+	Ach(2957):Mount(307):Obtainable("Before", "Version", {7, 3, 5}), -- Glory of the Ulduar Raider (10 player)
+	Ach(2958):Mount(306):Obtainable("Before", "Version", {7, 3, 5}), -- Glory of the Ulduar Raider (25 player)
 	Ach(2959):Obtainable("Before", "Version", {7, 3, 5}), -- Rubble and Roll (10 player)
 	Ach(2960):Obtainable("Before", "Version", {7, 3, 5}), -- Rubble and Roll (25 player)
 	Ach(2961):Obtainable("Before", "Version", {7, 3, 5}), -- Cheese the Freeze (10 player)
@@ -1003,7 +1003,7 @@ KrowiAF.AchievementData["03_01_00_S"] = {
 KrowiAF.AchievementData["03_02_00_S"] = {
 	Ach(3456):Obtainable("Event", 409), -- Dead Man's Party
 	Ach(3457):Obtainable("Event", 398), -- The Captain's Booty
-	Ach(3478):Pet():Title():Obtainable("Event", 404), -- Pilgrim
+	Ach(3478):Pet(201):Title():Obtainable("Event", 404), -- Pilgrim
 	Ach(3556):AutoFactionSplit(faction.Alliance, 3557):Obtainable("Event", 404), -- Pilgrim's Paunch
 	Ach(3558):Obtainable("Event", 404), -- Sharing is Caring
 	Ach(3559):Obtainable("Event", 404), -- Turkey Lurkey
@@ -1061,7 +1061,8 @@ KrowiAF.AchievementData["03_02_00_S"] = {
 	Ach(4016), -- Earth, Wind & Fire (10 player)
 	Ach(4017), -- Earth, Wind & Fire (25 player)
 	Ach(4078):Title():IsRealmFirst(), -- Realm First! Grand Crusader
-	Ach(4079):Mount():AutoFactionSplit(faction.Horde, 4156):Obtainable("Before", "Version", {4, 0, 3}), -- A Tribute to Immortality
+	Ach(4079):FactionSplit(faction.Horde, 4156):Mount(345):Obtainable("Before", "Version", {4, 0, 3}), -- A Tribute to Immortality
+	Ach(4156):FactionSplit(faction.Alliance, 4079):Mount(344):Obtainable("Before", "Version", {4, 0, 3}), -- A Tribute to Immortality
 	Ach(4080):Title():Obtainable("Before", "Version", {4, 0, 3}), -- A Tribute to Dedicated Insanity
 	Ach(4297):AutoFactionSplit(faction.Horde, 4298), -- Heroic: Trial of the Champion
 	Ach(4316):Obtainable("Before", "Version", {4, 0, 3}), -- 2500 Dungeon & Raid Emblems
@@ -1078,7 +1079,7 @@ KrowiAF.AchievementData["03_02_02_S"] = {
 	Ach(4436):AutoFactionSplit(faction.Alliance, 4437):Obtainable("Event", 141), -- BB King
 	Ach(4476), -- Looking For More
 	Ach(4477):Title(), -- Looking For Many
-	Ach(4478):Pet(), -- Looking For Multitudes
+	Ach(4478):Pet(250), -- Looking For Multitudes
 	Ach(4496), -- It's Over Nine Thousand!
 	Ach(4585), -- Toravon the Ice Watcher (10 player)
 	Ach(4586), -- Toravon the Ice Watcher (25 player)
@@ -1123,8 +1124,8 @@ KrowiAF.AchievementData["03_03_00_S"] = {
 	Ach(4599):PvP(8), -- Wrathful Gladiator
 	Ach(4600):PvP(8), -- Wrathful Gladiator's Frost Wyrm
 	Ach(4601), -- Been Waiting a Long Time for This (10 player)
-	Ach(4602):Mount(), -- Glory of the Icecrown Raider (10 player)
-	Ach(4603):Mount(), -- Glory of the Icecrown Raider (25 player)
+	Ach(4602):Mount(365), -- Glory of the Icecrown Raider (10 player)
+	Ach(4603):Mount(364), -- Glory of the Icecrown Raider (25 player)
 	Ach(4604), -- Storming the Citadel (25 player)
 	Ach(4605), -- The Plagueworks (25 player)
 	Ach(4606), -- The Crimson Hall (25 player)

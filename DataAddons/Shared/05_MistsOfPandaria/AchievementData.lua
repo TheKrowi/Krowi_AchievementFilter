@@ -14,12 +14,12 @@ KrowiAF.AchievementData["05_00_04_S"] = {
 	Ach(6365), -- Zen Master Cook
 	Ach(6366), -- Shado-Pan
 	Ach(6374):Title():Obtainable("Before", "Version", {6, 0, 2}), -- Challenge Conqueror: Bronze
-	Ach(6375):Mount():Obtainable("Before", "Version", {6, 0, 2}), -- Challenge Conqueror: Silver
+	Ach(6375):Mount(503, 518, 519, 520):Obtainable("Before", "Version", {6, 0, 2}), -- Challenge Conqueror: Silver
 	Ach(6378):Transmog():Obtainable("Before", "Version", {6, 0, 2}), -- Challenge Conqueror: Gold
 	Ach(6394), -- Rattle No More
 	Ach(6396), -- Sanguinarian
 	Ach(6400), -- How Did He Get Up There?
-	Ach(6402):Pet(), -- Ling-Ting's Herbal Journey
+	Ach(6402):Pet(835), -- Ling-Ting's Herbal Journey
 	Ach(6420), -- Hopocalypse Now!
 	Ach(6427), -- Mosh Pit
 	Ach(6433):IsRealmFirst(), -- Realm First! Challenge Conqueror: Gold
@@ -77,7 +77,7 @@ KrowiAF.AchievementData["05_00_04_S"] = {
 	Ach(6579), -- Rookie Pet Group
 	Ach(6580), -- Rookie Pet Crew
 	Ach(6581):Pet(), -- Pro Pet Crew
-	Ach(6582):Pet(), -- Pro Pet Mob
+	Ach(6582):Pet(820), -- Pro Pet Mob
 	Ach(6583), -- Rookie Pet Mob
 	Ach(6584), -- Big City Pet Brawlin' - Alliance
 	Ach(6585), -- Kalimdor Safari
@@ -177,7 +177,8 @@ KrowiAF.AchievementData["05_00_04_S"] = {
 	Ach(6824), -- Face Clutchers
 	Ach(6825), -- The Mind-Killer
 	Ach(6826), -- 55 Exalted Reputations
-	Ach(6827):Mount():AutoFactionSplit(faction.Horde, 6828), -- Pandaren Ambassador
+	Ach(6827):FactionSplit(faction.Horde, 6828):Mount(450), -- Pandaren Ambassador
+	Ach(6828):FactionSplit(faction.Alliance, 6827):Mount(516), -- Pandaren Ambassador
 	Ach(6829):IsRealmFirst(), -- Realm First! Pandaren Ambassador
 	Ach(6830), -- Professional Zen Master
 	Ach(6835), -- Working For a Living
@@ -257,12 +258,12 @@ KrowiAF.AchievementData["05_00_04_S"] = {
 	Ach(6924):Obtainable("Before", "Version", {6, 0, 2}), -- 100,000 Valor Points
 	Ach(6925), -- Pandaria Dungeon Hero
 	Ach(6926):Title(), -- Tranquil Master
-	Ach(6927):Mount(), -- Glory of the Pandaria Hero
+	Ach(6927):Mount(472), -- Glory of the Pandaria Hero
 	Ach(6928), -- Burning Man
 	Ach(6929), -- And Stay Dead!
 	Ach(6930), -- Yaungolian Barbecue
 	Ach(6931), -- Binan Village All-Star
-	Ach(6932):Mount(), -- Glory of the Pandaria Raider
+	Ach(6932):Mount(474), -- Glory of the Pandaria Raider
 	Ach(6933), -- Who's Got Two Green Thumbs?
 	Ach(6936), -- Candle in the Wind
 	Ach(6937), -- Overzealous
@@ -442,12 +443,12 @@ KrowiAF.AchievementData["05_00_04_S"] = {
 	Ach(7487):Obtainable("Before", "Version", {5, 2, 0}), -- Cutting Edge: Sha of Fear
 	Ach(7498), -- Taming the Great Outdoors
 	Ach(7499):Pet(), -- Taming the World
-	Ach(7500):Pet(), -- Going to Need More Leashes
-	Ach(7501):Pet(), -- That's a Lot of Pet Food
+	Ach(7500):Pet(821), -- Going to Need More Leashes
+	Ach(7501):Pet(855), -- That's a Lot of Pet Food
 	Ach(7502), -- Savior of Stoneplow
 	Ach(7518), -- Wanderers, Dreamers, and You
 	Ach(7520):Title(), -- The Loremaster
-	Ach(7521):Pet(), -- Time to Open a Pet Store
+	Ach(7521):Pet(856), -- Time to Open a Pet Store
 	Ach(7522), -- Crypt of Forgotten Kings
 	Ach(7523):AutoFactionSplit(faction.Alliance, 7524), -- Theramore's Fall
 	Ach(7525):Pet(), -- Taming Cataclysm
@@ -466,12 +467,12 @@ KrowiAF.AchievementData["05_00_04_S"] = {
 
 KrowiAF.AchievementData["05_01_00_S"] = {
 	Ach(7852), -- They're Both Footballs?
-	Ach(7860):Mount():AutoFactionSplit(faction.Alliance, 7862), -- We're Going to Need More Saddles
+	Ach(7860):Mount(521):AutoFactionSplit(faction.Alliance, 7862), -- We're Going to Need More Saddles
 	Ach(7908):Other(), -- I Choose You
 	Ach(7928):AutoFactionSplit(faction.Alliance, 7929), -- Operation: Shieldwall / Dominance Offensive Campaign
 	Ach(7932), -- I'm In Your Base, Killing Your Dudes
 	Ach(7933), -- And... It's Good!
-	Ach(7934):Pet(), -- Raiding with Leashes
+	Ach(7934):Pet(1145), -- Raiding with Leashes
 	Ach(7936):Pet(), -- Pandaren Spirit Tamer
 	Ach(7937):AutoFactionSplit(faction.Alliance, 8020):Obtainable("Before", "Version", {6, 0, 2}), -- You Are Not Your $#*@! Legplates (Season 1)
 	Ach(7939):AutoFactionSplit(faction.Horde, 7940):Obtainable("Before", "Version", {6, 0, 2}), -- The Second Rule of Brawler's Guild (Season 1)
@@ -569,7 +570,7 @@ KrowiAF.AchievementData["05_02_00_S"] = {
 	Ach(8120), -- Direhorn in a China Shop
 	Ach(8121):Title(), -- Stormbreaker
 	Ach(8123), -- Millions of Years of Evolution vs. My Fist
-	Ach(8124):Mount(), -- Glory of the Thundering Raider
+	Ach(8124):Mount(530), -- Glory of the Thundering Raider
 	Ach(8205):AutoFactionSplit(faction.Alliance, 8206), -- Operation: Shieldwall / Dominance Offensive
 	Ach(8208):AutoFactionSplit(faction.Alliance, 8209), -- Kirin Tor Offensive / Sunreaver Onslaught
 	Ach(8210), -- Shado-Pan Assault
@@ -602,14 +603,14 @@ KrowiAF.AchievementData["05_02_00_S"] = {
 }
 
 KrowiAF.AchievementData["05_03_00_S"] = {
-	Ach(8293):Pet(), -- Raiding with Leashes II: Attunement Edition
+	Ach(8293):Pet(1236), -- Raiding with Leashes II: Attunement Edition
 	Ach(8294), -- The Secrets of Ragefire
 	Ach(8295), -- The Few, the Proud, the Gob Squad
 	Ach(8297):IsPvP(), -- Merciless Pet Brawler
 	Ach(8298):IsPvP(), -- Vengeful Pet Brawler
-	Ach(8300):Pet():IsPvP(), -- Brutal Pet Brawler
+	Ach(8300):Pet(1184):IsPvP(), -- Brutal Pet Brawler
 	Ach(8301):Title():IsPvP(), -- Deadly Pet Brawler
-	Ach(8302):Mount():AutoFactionSplit(faction.Horde, 8304), -- Mount Parade
+	Ach(8302):Mount(548):AutoFactionSplit(faction.Horde, 8304), -- Mount Parade
 	Ach(8306):Title():AutoFactionSplit(faction.Alliance, 8307):Obtainable("Before", "Version", {5, 4, 0}), -- Hordebreaker / Darkspear Revolutionary
 	Ach(8310), -- Heroic: A Brewing Storm
 	Ach(8311), -- Heroic: Crypt of Forgotten Kings
@@ -648,8 +649,8 @@ KrowiAF.AchievementData["05_03_00_S"] = {
 KrowiAF.AchievementData["05_04_00_S"] = {
 	Ach(8381):PvP(14):AutoFactionSplit(faction.Horde, 8382), -- Grievous Conquest
 	Ach(8397):Title(), -- Crazy for Cats
-	Ach(8398):Mount():Obtainable("Before", "Version", {6, 0, 2}), -- Ahead of the Curve: Garrosh Hellscream (10 player)
-	Ach(8399):Mount():Obtainable("Before", "Version", {6, 0, 2}), -- Ahead of the Curve: Garrosh Hellscream (25 player)
+	Ach(8398):Mount(558):Obtainable("Before", "Version", {6, 0, 2}), -- Ahead of the Curve: Garrosh Hellscream (10 player)
+	Ach(8399):Mount(558):Obtainable("Before", "Version", {6, 0, 2}), -- Ahead of the Curve: Garrosh Hellscream (25 player)
 	Ach(8400):Obtainable("Before", "Version", {6, 0, 2}), -- Cutting Edge: Garrosh Hellscream (10 player)
 	Ach(8401):Obtainable("Before", "Version", {6, 0, 2}), -- Cutting Edge: Garrosh Hellscream (25 player)
 	Ach(8410), -- The Celestial Tournament
@@ -665,7 +666,7 @@ KrowiAF.AchievementData["05_04_00_S"] = {
 	Ach(8448), -- Gamon Will Save Us!
 	Ach(8450):PvP(15):AutoFactionSplit(faction.Horde, 8451), -- Prideful Conquest
 	Ach(8453), -- Rescue Raiders
-	Ach(8454):Mount(), -- Glory of the Orgrimmar Raider
+	Ach(8454):Mount(557), -- Glory of the Orgrimmar Raider
 	Ach(8458), -- Vale of Eternal Sorrows
 	Ach(8459), -- Gates of Retribution
 	Ach(8461), -- The Underhold

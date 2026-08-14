@@ -144,5 +144,6 @@ KrowiAF.AchievementData["03_04_03"] = {
 	Ach(19436), -- Defense Protocol Gamma: The Oculus
 	Ach(19437), -- Defense Protocol Gamma: Utgarde Pinnacle
 	Ach(19438), -- Defense Protocol Gamma: The Culling of Stratholme
-	Ach(19439):Pet():AutoFactionSplit(faction.Alliance, 19440), -- Defense Protocol Gamma: Terminated
+	Ach(19439):FactionSplit(faction.Alliance, 19440):Pet(4329), -- Defense Protocol Gamma: Terminated
+	Ach(19440):FactionSplit(faction.Horde, 19439):Pet(4329), -- Defense Protocol Gamma: Terminated
 }

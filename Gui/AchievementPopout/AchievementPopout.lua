@@ -12,6 +12,10 @@ local function RememberSizeEnabled()
 	return addon.Options.db.profile.Popout.RememberSize;
 end
 
+local function RememberLastPositionEnabled()
+	return addon.Options.db.profile.Popout.RememberLastPosition;
+end
+
 local function SavedPopouts()
 	KrowiAF_SavedData.AchievementPopouts = KrowiAF_SavedData.AchievementPopouts or {};
 	return KrowiAF_SavedData.AchievementPopouts;
@@ -28,6 +32,24 @@ local function CreatePopout(achievement)
 	local popout = _G[name] or CreateFrame("Frame", name, UIParent, "KrowiAF_AchievementPopout_Template");
 	popout.AchievementId = achievement.Id;
 	return popout;
+end
+
+local function GetChainEnd(popout)
+	local node = popout;
+	while node.SnappedChild do
+		node = node.SnappedChild;
+	end
+	return node;
+end
+
+-- exclude is the just-created popout itself, which is already in OpenPopouts by the time this runs
+local function FindOpenRoot(self, exclude)
+	for _, popout in pairs(self.OpenPopouts) do
+		if popout ~= exclude and not popout.SnappedParent then
+			return popout;
+		end
+	end
+	return nil;
 end
 
 function achievementPopout:IsOpen(id)
@@ -50,17 +72,44 @@ function achievementPopout:Open(achievement)
 		return existing;
 	end
 
+	local isFirstPopout = next(self.OpenPopouts) == nil;
+
 	local popout = CreatePopout(achievement);
 	self.OpenPopouts[achievement.Id] = popout;
 
 	local saved = PersistenceEnabled() and SavedPopouts()[achievement.Id];
+	if PersistenceEnabled() then
+		-- Created up front (rather than after positioning) so OnSnapped below has a table to save SnappedParentId into
+		SavedPopouts()[achievement.Id] = saved or {};
+	end
 	popout:ClearAllPoints();
 	if saved and saved.Point then
 		popout:SetPoint(saved.Point, UIParent, saved.RelativePoint, saved.X, saved.Y);
+		popout:SetWidth((RememberSizeEnabled() and saved.Width) or addon.Options.db.profile.Popout.DefaultWidth);
+		-- A saved raw screen position can fall outside the current resolution/UI scale (e.g. after
+		-- changing monitors or UIParent scale) and would otherwise silently restore off-screen
+		ValidateFramePosition(popout);
 	else
-		popout:SetPoint("CENTER", UIParent, "CENTER", 0, 0);
+		-- Opening a new one while others are already up stacks it onto the end of a chain instead of
+		-- reopening dead-center: prefer the chain most recently moved, else any other currently open chain
+		local lastRootId = KrowiAF_SavedData.LastPopoutPosition and KrowiAF_SavedData.LastPopoutPosition.AchievementId;
+		local root = not isFirstPopout and RememberLastPositionEnabled()
+			and ((lastRootId ~= achievement.Id and self.OpenPopouts[lastRootId]) or FindOpenRoot(self, popout));
+		local attachTarget = root and GetChainEnd(root);
+
+		if attachTarget then
+			popout:SnapFrame_AttachTo(attachTarget, true); -- also force-matches the chain's width
+			self:OnSnapped(popout, attachTarget);
+		else
+			local lastPosition = isFirstPopout and RememberLastPositionEnabled() and KrowiAF_SavedData.LastPopoutPosition;
+			if lastPosition and lastPosition.Point then
+				popout:SetPoint(lastPosition.Point, UIParent, lastPosition.RelativePoint, lastPosition.X, lastPosition.Y);
+			else
+				popout:SetPoint("CENTER", UIParent, "CENTER", 0, 0);
+			end
+			popout:SetWidth((RememberSizeEnabled() and saved and saved.Width) or addon.Options.db.profile.Popout.DefaultWidth);
+		end
 	end
-	popout:SetWidth((RememberSizeEnabled() and saved and saved.Width) or addon.Options.db.profile.Popout.DefaultWidth);
 	popout:Show();
 	-- Deferred a frame: GetTop()/GetBottom() on the criteria rows need the UI to have actually
 	-- rendered this frame at least once (SetPoint/Show alone isn't enough on a brand new frame)
@@ -69,10 +118,6 @@ function achievementPopout:Open(achievement)
 			popout:PopulateAchievement(achievement);
 		end
 	end);
-
-	if PersistenceEnabled() then
-		SavedPopouts()[achievement.Id] = SavedPopouts()[achievement.Id] or {};
-	end
 
 	return popout;
 end
@@ -106,6 +151,10 @@ end
 function achievementPopout:OnSnapClosed(_, oldParent, oldChild)
 	if oldChild then
 		SaveSnapParent(oldChild, oldParent);
+		if not oldParent then
+			-- oldChild was promoted to the new top of the chain; its (now-reflowed) spot is the new last position
+			self:SaveLastPosition(oldChild);
+		end
 	end
 end
 
@@ -119,19 +168,31 @@ function achievementPopout:OnPopoutHide(popout)
 end
 
 function achievementPopout:SavePosition(popout)
-	if not PersistenceEnabled() then
+	if PersistenceEnabled() then
+		local point, _, relativePoint, x, y = popout:GetPoint(1);
+		local saved = SavedPopouts()[popout.AchievementId] or {};
+		saved.Point = point;
+		saved.RelativePoint = relativePoint;
+		saved.X = x;
+		saved.Y = y;
+		if RememberSizeEnabled() then
+			saved.Width = popout:GetWidth();
+		end
+		SavedPopouts()[popout.AchievementId] = saved;
+	end
+
+	-- A snapped child's screen position is a byproduct of its parent's; only a chain's top sets the last position
+	if not popout.SnappedParent then
+		self:SaveLastPosition(popout);
+	end
+end
+
+function achievementPopout:SaveLastPosition(popout)
+	if not RememberLastPositionEnabled() then
 		return;
 	end
 	local point, _, relativePoint, x, y = popout:GetPoint(1);
-	local saved = SavedPopouts()[popout.AchievementId] or {};
-	saved.Point = point;
-	saved.RelativePoint = relativePoint;
-	saved.X = x;
-	saved.Y = y;
-	if RememberSizeEnabled() then
-		saved.Width = popout:GetWidth();
-	end
-	SavedPopouts()[popout.AchievementId] = saved;
+	KrowiAF_SavedData.LastPopoutPosition = {Point = point, RelativePoint = relativePoint, X = x, Y = y, AchievementId = popout.AchievementId};
 end
 
 function achievementPopout:RefreshAllChrome()
@@ -159,6 +220,10 @@ function achievementPopout:Load()
 		local achievement = addon.Data.Achievements[id];
 		if achievement then
 			self:Open(achievement);
+		else
+			-- Leave the saved entry in place (rather than silently dropping it) in case this is a
+			-- transient data-load timing issue rather than a genuinely removed/renamed achievement id
+			addon.Diagnostics.Debug("AchievementPopout:Load - achievement " .. id .. " not found, skipping restore");
 		end
 	end
 
