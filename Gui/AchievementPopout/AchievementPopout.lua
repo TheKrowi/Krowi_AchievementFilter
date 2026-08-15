@@ -4,6 +4,41 @@ addon.Gui.AchievementPopout = {
 };
 local achievementPopout = addon.Gui.AchievementPopout;
 
+-- Cross-session forensic log for the "AchievementPopouts randomly empty" bug - describes state
+-- rather than dumping full saved data, and is capped so it can't grow the SavedVariables file forever
+local function DescribePopoutState()
+	local t = KrowiAF_SavedData and KrowiAF_SavedData.AchievementPopouts;
+	if t == nil then
+		return "nil";
+	end
+	if next(t) == nil then
+		return "empty";
+	end
+	local ids = {};
+	for id in next, t do
+		tinsert(ids, tostring(id));
+	end
+	return "ids=" .. table.concat(ids, ",");
+end
+
+local function LogPopoutLifecycle(event)
+	KrowiAF_SavedData = KrowiAF_SavedData or {};
+	KrowiAF_SavedData.PopoutLifecycleLog = KrowiAF_SavedData.PopoutLifecycleLog or {};
+	local log = KrowiAF_SavedData.PopoutLifecycleLog;
+	tinsert(log, date("%Y-%m-%d %H:%M:%S") .. " " .. event .. " " .. DescribePopoutState());
+	while #log > 40 do
+		tremove(log, 1);
+	end
+end
+
+-- Earliest possible read: before any other addon code (DataIntegrityManager included) can touch
+-- KrowiAF_SavedData, capturing exactly what came off disk this session
+LogPopoutLifecycle("FileLoad");
+
+local logoutLogFrame = CreateFrame("Frame");
+logoutLogFrame:RegisterEvent("PLAYER_LOGOUT");
+logoutLogFrame:SetScript("OnEvent", function() LogPopoutLifecycle("PLAYER_LOGOUT"); end);
+
 local function PersistenceEnabled()
 	return addon.Options.db.profile.Popout.PersistAcrossSessions;
 end
@@ -21,16 +56,12 @@ local function SavedPopouts()
 	return KrowiAF_SavedData.AchievementPopouts;
 end
 
--- PLAYER_LOGOUT also fires on /reload; frames get hidden during teardown and must not be treated as a user close
-local loggingOut = false
-local logoutFrame = CreateFrame("Frame")
-logoutFrame:RegisterEvent("PLAYER_LOGOUT")
-logoutFrame:SetScript("OnEvent", function() loggingOut = true end)
-
 local function CreatePopout(achievement)
 	local name = "KrowiAF_AchievementPopout" .. achievement.Id;
 	local popout = _G[name] or CreateFrame("Frame", name, UIParent, "KrowiAF_AchievementPopout_Template");
 	popout.AchievementId = achievement.Id;
+	-- Reset in case a previous open cycle left it set (the frame is reused, never destroyed)
+	popout.UserClosed = nil;
 	return popout;
 end
 
@@ -38,6 +69,14 @@ local function GetChainEnd(popout)
 	local node = popout;
 	while node.SnappedChild do
 		node = node.SnappedChild;
+	end
+	return node;
+end
+
+local function GetChainRoot(popout)
+	local node = popout;
+	while node.SnappedParent do
+		node = node.SnappedParent;
 	end
 	return node;
 end
@@ -93,8 +132,12 @@ function achievementPopout:Open(achievement)
 		-- Opening a new one while others are already up stacks it onto the end of a chain instead of
 		-- reopening dead-center: prefer the chain most recently moved, else any other currently open chain
 		local lastRootId = KrowiAF_SavedData.LastPopoutPosition and KrowiAF_SavedData.LastPopoutPosition.AchievementId;
-		local root = not isFirstPopout and RememberLastPositionEnabled()
-			and ((lastRootId ~= achievement.Id and self.OpenPopouts[lastRootId]) or FindOpenRoot(self, popout));
+		local lastRoot = lastRootId ~= achievement.Id and self.OpenPopouts[lastRootId];
+		-- Guards against stale saved data: the tracked id may have since been snapped under another chain
+		if lastRoot and lastRoot.SnappedParent then
+			lastRoot = nil;
+		end
+		local root = not isFirstPopout and RememberLastPositionEnabled() and (lastRoot or FindOpenRoot(self, popout));
 		local attachTarget = root and GetChainEnd(root);
 
 		if attachTarget then
@@ -125,6 +168,7 @@ end
 function achievementPopout:Close(id)
 	local popout = self.OpenPopouts[id];
 	if popout then
+		popout.UserClosed = true;
 		popout:Hide();
 	end
 end
@@ -142,6 +186,13 @@ end
 
 function achievementPopout:OnSnapped(popout, parent)
 	SaveSnapParent(popout, parent);
+
+	-- popout just lost its root status; if the saved "last position" was still tracking it, retarget
+	-- that tracking to the merged chain's actual new root instead of leaving a stale mid-chain reference
+	local lastPosition = KrowiAF_SavedData.LastPopoutPosition;
+	if lastPosition and lastPosition.AchievementId == popout.AchievementId then
+		self:SaveLastPosition(GetChainRoot(parent));
+	end
 end
 
 function achievementPopout:OnUnsnapped(popout)
@@ -159,10 +210,14 @@ function achievementPopout:OnSnapClosed(_, oldParent, oldChild)
 end
 
 function achievementPopout:OnPopoutHide(popout)
+	KrowiAF_SavedData.PopoutHideDebug = KrowiAF_SavedData.PopoutHideDebug or {};
+	KrowiAF_SavedData.PopoutHideDebug[popout.AchievementId] = debugstack(2, 3, 0); -- for debugging unexpected popout closes
 	self.OpenPopouts[popout.AchievementId] = nil;
-	if loggingOut then
-		return -- Keep the saved entry so Load() can reopen it next session
+	if not popout.UserClosed then
+		return -- Hidden for any reason other than an explicit close (logout/reload teardown, a full game
+		-- exit, etc.) - keep the saved entry so Load() can reopen it next session instead of losing it
 	end
+	popout.UserClosed = nil;
 	popout:SnapFrame_Close();
 	SavedPopouts()[popout.AchievementId] = nil;
 end
@@ -202,6 +257,7 @@ function achievementPopout:RefreshAllChrome()
 end
 
 function achievementPopout:Load()
+	LogPopoutLifecycle("Load:start");
 	if not PersistenceEnabled() then
 		return;
 	end

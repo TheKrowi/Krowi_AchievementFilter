@@ -3,7 +3,9 @@ local _, addon = ...;
 KrowiAF_AchievementPopoutCloseButtonMixin = {};
 
 function KrowiAF_AchievementPopoutCloseButtonMixin:OnClick()
-	self:GetParent():Hide();
+	local popout = self:GetParent();
+	popout.UserClosed = true;
+	popout:Hide();
 end
 
 -- The button fully overlaps the popout, so hovering it must also refresh the popout's own chrome
@@ -107,6 +109,11 @@ local function OnButtonEvent(button, event, ...)
 		return;
 	end
 
+	-- The client can refire ACHIEVEMENT_EARNED for an already-completed achievement (e.g. an
+	-- account-wide completion resync after a game/addon update) - only auto-close below if this
+	-- is a genuine new completion, not a re-fire for something already shown as done
+	local wasAlreadyCompleted = button.Completed;
+
 	if event == "ACHIEVEMENT_EARNED" then
 		local achievement = button.Achievement;
 		button.Achievement = nil;
@@ -114,15 +121,16 @@ local function OnButtonEvent(button, event, ...)
 	end
 	RefreshButton(button);
 
-	-- Popping out an already-completed achievement must still work; this only reacts to a live earn
-	if event == "ACHIEVEMENT_EARNED" and addon.Options.db.profile.Popout.CloseOnEarn then
+	if event == "ACHIEVEMENT_EARNED" and not wasAlreadyCompleted and addon.Options.db.profile.Popout.CloseOnEarn then
 		local popout = button:GetParent();
 		local delay = addon.Options.db.profile.Popout.CloseOnEarnDelay;
 		if delay <= 0 then
+			popout.UserClosed = true;
 			popout:Hide();
 		else
 			C_Timer.After(delay, function()
 				if popout:IsShown() then
+					popout.UserClosed = true;
 					popout:Hide();
 				end
 			end);
@@ -226,9 +234,19 @@ function KrowiAF_AchievementPopoutMixin:OnLeave()
 	self:RefreshChrome();
 end
 
+-- self:IsMouseOver() is a geometric rect check that ignores stacking, so it would report "hovered"
+-- even when an unrelated frame on top actually has focus. GetMouseFocus(Foci) is WoW's real hit-test
+-- result, so checking ancestry against it is immune to that false positive - see BoxFrameMixin.lua
+local function IsHovered(popout)
+	if addon.Util.IsMainline then
+		return DoesAncestryIncludeAny(popout, GetMouseFoci());
+	end
+	return DoesAncestryInclude(popout, GetMouseFocus());
+end
+
 -- Called after a chrome-related option changes, so already-open popouts update immediately
 function KrowiAF_AchievementPopoutMixin:RefreshChrome()
-	UpdateChrome(self, self:IsMouseOver());
+	UpdateChrome(self, IsHovered(self));
 end
 
 function KrowiAF_AchievementPopoutMixin:PopulateAchievement(achievement)

@@ -48,3 +48,14 @@
 ### Fixed (99.2)
 - Further taint fix attempt: `attempt to compare a secret number value (execution tainted by 'Krowi_AchievementFilter')` (dev note: an embedded AceGUI-3.0 tab widget called `GameTooltip:Hide()` directly instead of through `securecall`, same class of issue as the 97.3/98.1/98.4 attempts but in a different, previously-unaudited code path — every direct `GameTooltip` touch in the addon and its bundled libraries has now been reviewed)
 - Pop Out: a window could fail to reappear after `/reload` due to a stale or cyclic snap-chain link left over from dragging a window onto an already-occupied slot (dev note: displacing an existing child during a snap now also persists that child's new parent link; loading also detects and breaks any already-corrupted cyclic chains from before this fix)
+
+### Added (99.3)
+- Options -> General -> Debug: a small, capped, read-only diagnostic log (on by default) that helps track down the recurring "secret number value... execution tainted by 'Krowi_AchievementFilter'" errors reported by some players (dev note: previously this needed a separate standalone debug addon installed by the affected player; now the data is collected automatically and can be copied via the new "Export Taint Diagnostics" button, or disabled entirely via the new "Enable taint diagnostics" toggle)
+
+### Fixed (99.3)
+- Pop Out: a window's saved position could be lost if it was hidden for any reason other than an explicit close
+- Pop Out: an achievement re-triggering `ACHIEVEMENT_EARNED` after already being completed (e.g. an account-wide completion resync after a game/addon update) could incorrectly auto-close and lose a window when Close on Earn was enabled
+- Pop Out: opening a new window could attach to a stale chain reference if the tracked "last moved" window had since been snapped under another chain
+- Pop Out: snapping a window into a chain no longer leaves the "last moved" tracking pointing at a window that just lost its root status
+- Pop Out: a window's close/resize buttons could stay hidden or faded while hovering them if another frame happened to be stacked on top
+- Pop Out: further diagnostics added for the rare, not-yet-reproduced report of a window's saved data disappearing between sessions (dev note: nothing conclusively identified yet; a small capped lifecycle log is now kept in the addon's saved data to help narrow down whether a future occurrence happens in memory during a session or in the file write/read step itself)

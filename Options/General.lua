@@ -259,6 +259,14 @@ local function PrintMapInfoWithoutReload()
     addon.Options.db.profile.PrintMapInfo = true;
 end
 
+local function ExportTaintDiagnostics()
+    local frame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template");
+	frame:Init(addon.L["Export Taint Diagnostics"]);
+    local sessions = KrowiAF_DebugTable and KrowiAF_DebugTable.TaintDiagnostics and KrowiAF_DebugTable.TaintDiagnostics.Sessions;
+    frame.Input:SetText(sessions and TableToString(sessions, 100) or "");
+    frame:Show();
+end
+
 local function ExportToCsv()
     local frame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template");
 	frame:Init(addon.L["Export to CSV"]);
@@ -635,6 +643,22 @@ local debugOptions = {
                     func = ExportToCsv
                 },
                 Blank7 = {order = OrderPP(), type = "description", width = AdjustedWidth(2), name = ""},
+                EnableTaintDiagnostics = {
+                    order = OrderPP(), type = "toggle", width = AdjustedWidth(),
+                    name = addon.L["Enable taint diagnostics"],
+                    desc = addon.L["Enable taint diagnostics Desc"]:KAF_AddDefaultValueText("EnableTaintDiagnostics"):K_AddReloadRequired(),
+                    get = function() return addon.Options.db.profile.EnableTaintDiagnostics; end,
+                    set = function(_, value) addon.Options.db.profile.EnableTaintDiagnostics = value; end
+                },
+                Blank8 = {order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""},
+                ExportTaintDiagnostics = {
+                    order = OrderPP(), type = "execute",
+                    name = addon.L["Export Taint Diagnostics"],
+                    desc = addon.L["Export Taint Diagnostics Desc"],
+                    disabled = function() return not addon.Diagnostics.TaintProbe.HasData(); end,
+                    func = ExportTaintDiagnostics
+                },
+                Blank9 = {order = OrderPP(), type = "description", width = AdjustedWidth(2), name = ""},
                 MapVerifier = {
                     order = OrderPP(), type = "execute",
                     name = "Map Verifier",
