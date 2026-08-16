@@ -49,7 +49,6 @@
 - Further taint fix attempt: `attempt to compare a secret number value (execution tainted by 'Krowi_AchievementFilter')` (dev note: an embedded AceGUI-3.0 tab widget called `GameTooltip:Hide()` directly instead of through `securecall`, same class of issue as the 97.3/98.1/98.4 attempts but in a different, previously-unaudited code path — every direct `GameTooltip` touch in the addon and its bundled libraries has now been reviewed)
 - Pop Out: a window could fail to reappear after `/reload` due to a stale or cyclic snap-chain link left over from dragging a window onto an already-occupied slot (dev note: displacing an existing child during a snap now also persists that child's new parent link; loading also detects and breaks any already-corrupted cyclic chains from before this fix)
 
-### Added (99.3)
 - Options -> General -> Debug: a small, capped, read-only diagnostic log (on by default) that helps track down the recurring "secret number value... execution tainted by 'Krowi_AchievementFilter'" errors reported by some players (dev note: previously this needed a separate standalone debug addon installed by the affected player; now the data is collected automatically and can be copied via the new "Export Taint Diagnostics" button, or disabled entirely via the new "Enable taint diagnostics" toggle)
 
 ### Fixed (99.3)
@@ -64,3 +63,9 @@
 - Further taint fix attempts, both found via the new Taint Diagnostics data added in 99.3 (dev note: first real-world exports confirming `execution tainted by 'Krowi_AchievementFilter'` from actual affected players, rather than guesswork):
   - `attempt to compare a secret number value` in the Objective Tracker's cooldown display, after tracking/untracking an achievement (dev note: `AddTrackedAchievement`/`RemoveTrackedAchievement` called Blizzard's content tracking API directly, which synchronously refreshes the tracker; now routed through `securecall`)
   - `attempt to compare a secret number value` on `GameTooltip`, from the achievement tooltip criteria addon (dev note: Blizzard's tooltip post-call hook runs our callback forced-insecure; the callback's own `tooltip:AddLine` write is now routed through `securecall` so it can no longer leave tainted state behind on the tooltip)
+
+### Added (99.5)
+- EllesmereUI skin compatibility for Krowi's achievement tabs, categories, achievement rows, summary frames, progress bars and scrollbars
+
+### Fixed (99.5)
+- EllesmereUI: summary, objective and category-tooltip progress fills remain visible when EllesmereUI refreshes its panel artwork

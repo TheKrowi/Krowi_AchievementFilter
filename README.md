@@ -78,7 +78,7 @@ Achievement Filter completely replaces the default Achievements tab and adds sev
 - ***Event reminder*** for active events with achievements with a compact version option.
 
 #### Customization & Tools
-- ***ElvUI, GW2 UI and EllesmereUI skins***. (See the ingame options on how to enable each part.)
+- ***ElvUI and GW2 UI skin***. (See the ingame options on how to enable each part.)
 - A ***tutorial*** for first time users with an ingame explanation of the most important features.
 - A ***data manager*** to manipulate your saved variables.
 - An open API for other developers to add additional categories with achievements.
