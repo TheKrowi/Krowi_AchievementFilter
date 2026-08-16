@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 99.4 - 2026-08-16
+### Fixed
+- Further taint fix attempts, both found via the new Taint Diagnostics data added in 99.3 (dev note: first real-world exports confirming `execution tainted by 'Krowi_AchievementFilter'` from actual affected players, rather than guesswork):
+  - `attempt to compare a secret number value` in the Objective Tracker's cooldown display, after tracking/untracking an achievement (dev note: `AddTrackedAchievement`/`RemoveTrackedAchievement` called Blizzard's content tracking API directly, which synchronously refreshes the tracker; now routed through `securecall`)
+  - `attempt to compare a secret number value` on `GameTooltip`, from the achievement tooltip criteria addon (dev note: Blizzard's tooltip post-call hook runs our callback forced-insecure; the callback's own `tooltip:AddLine` write is now routed through `securecall` so it can no longer leave tainted state behind on the tooltip)
+
 ## 99.3 - 2026-08-15
 ### Added
 - Options -> General -> Debug: a small, capped, read-only diagnostic log (on by default) that helps track down the recurring "secret number value... execution tainted by 'Krowi_AchievementFilter'" errors reported by some players (dev note: previously this needed a separate standalone debug addon installed by the affected player; now the data is collected automatically and can be copied via the new "Export Taint Diagnostics" button, or disabled entirely via the new "Enable taint diagnostics" toggle)

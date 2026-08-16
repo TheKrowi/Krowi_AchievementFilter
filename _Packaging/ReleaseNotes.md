@@ -59,3 +59,8 @@
 - Pop Out: snapping a window into a chain no longer leaves the "last moved" tracking pointing at a window that just lost its root status
 - Pop Out: a window's close/resize buttons could stay hidden or faded while hovering them if another frame happened to be stacked on top
 - Pop Out: further diagnostics added for the rare, not-yet-reproduced report of a window's saved data disappearing between sessions (dev note: nothing conclusively identified yet; a small capped lifecycle log is now kept in the addon's saved data to help narrow down whether a future occurrence happens in memory during a session or in the file write/read step itself)
+
+### Fixed (99.4)
+- Further taint fix attempts, both found via the new Taint Diagnostics data added in 99.3 (dev note: first real-world exports confirming `execution tainted by 'Krowi_AchievementFilter'` from actual affected players, rather than guesswork):
+  - `attempt to compare a secret number value` in the Objective Tracker's cooldown display, after tracking/untracking an achievement (dev note: `AddTrackedAchievement`/`RemoveTrackedAchievement` called Blizzard's content tracking API directly, which synchronously refreshes the tracker; now routed through `securecall`)
+  - `attempt to compare a secret number value` on `GameTooltip`, from the achievement tooltip criteria addon (dev note: Blizzard's tooltip post-call hook runs our callback forced-insecure; the callback's own `tooltip:AddLine` write is now routed through `securecall` so it can no longer leave tainted state behind on the tooltip)

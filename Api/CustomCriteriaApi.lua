@@ -13,8 +13,8 @@ end
 function KrowiAF.ReloadTrackedAchievements()
     local trackedAchievementIds = C_ContentTracking.GetTrackedIDs(Enum.ContentTrackingType.Achievement);
     for _, achievementId in ipairs(trackedAchievementIds) do
-        C_ContentTracking.StopTracking(Enum.ContentTrackingType.Achievement, achievementId, Enum.ContentTrackingStopType.Manual);
-        C_ContentTracking.StartTracking(Enum.ContentTrackingType.Achievement, achievementId);
+        securecall(C_ContentTracking.StopTracking, Enum.ContentTrackingType.Achievement, achievementId, Enum.ContentTrackingStopType.Manual);
+        securecall(C_ContentTracking.StartTracking, Enum.ContentTrackingType.Achievement, achievementId);
     end
 end
 
