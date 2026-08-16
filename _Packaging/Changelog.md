@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 99.6 - 2026-08-16
+### Changed
+- Diagnostic build for the recurring `attempt to compare a secret number value... execution tainted by 'Krowi_AchievementFilter'` reports (dev note: the 99.4 fix for the achievement-criteria tooltip addon was confirmed insufficient by a follow-up Taint Diagnostics export still showing self-tainted `GameTooltip` fields on that build; achievement criteria are temporarily NOT shown in unit/item/spell tooltips in this build so we can confirm or rule out that code path as the source before attempting another fix — if you were affected, please report back whether the error still occurs)
+
 ## 99.5 - 2026-08-16
 ### Added
 - EllesmereUI skin compatibility for Krowi's achievement tabs, categories, achievement rows, summary frames, progress bars and scrollbars
