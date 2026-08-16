@@ -6,4 +6,5 @@
     <Script file="InstanceAchievementTracker.lua" />
     <Script file="ZygorGuidesViewer.lua" />
     <Script file="AchievementsTabFixes.lua" />
+    <Script file="EllesmereUI.lua" />
 </Ui>

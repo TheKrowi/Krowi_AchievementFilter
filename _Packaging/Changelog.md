@@ -3,9 +3,11 @@ All notable changes to this project will be documented in this file.
 
 ## 99.3 - 2026-08-15
 ### Added
+- EllesmereUI skin compatibility for Krowi's achievement tabs, categories, achievement rows, summary frames, progress bars and scrollbars
 - Options -> General -> Debug: a small, capped, read-only diagnostic log (on by default) that helps track down the recurring "secret number value... execution tainted by 'Krowi_AchievementFilter'" errors reported by some players (dev note: previously this needed a separate standalone debug addon installed by the affected player; now the data is collected automatically and can be copied via the new "Export Taint Diagnostics" button, or disabled entirely via the new "Enable taint diagnostics" toggle)
 
 ### Fixed
+- EllesmereUI: summary, objective and category-tooltip progress fills remain visible when EllesmereUI refreshes its panel artwork
 - Pop Out: a window's saved position could be lost if it was hidden for any reason other than an explicit close
 - Pop Out: an achievement re-triggering `ACHIEVEMENT_EARNED` after already being completed (e.g. an account-wide completion resync after a game/addon update) could incorrectly auto-close and lose a window when Close on Earn was enabled
 - Pop Out: opening a new window could attach to a stale chain reference if the tracked "last moved" window had since been snapped under another chain
