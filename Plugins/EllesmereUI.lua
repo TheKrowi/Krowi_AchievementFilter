@@ -52,6 +52,56 @@ local function FadeTexture(texture)
     end
 end
 
+-- [[ Palette ]] --
+-- Muted stand-ins for Krowi's parchment-tuned colors.
+local mutedMissing = {R = 0.5, G = 0.13, B = 0.13}
+local neutralMissing = {R = 0.34, G = 0.34, B = 0.34}
+local completedCriteria = {0.4, 0.85, 0.5}
+
+-- Neutral gray in place of the red when the earned fill's own red channel dominates.
+local function GetMissingColor(r, g, b)
+    if r > 0.35 and r > g * 1.6 and r > b * 1.6 then
+        return neutralMissing
+    end
+    return mutedMissing
+end
+
+-- Rewritten in place; Krowi_ProgressBarMixin keeps the reference and re-reads it on Resize.
+local earnedFill = {R = 0.16, G = 0.46, B = 0.3}
+
+-- Adds the SetStatusBarColor that S.ApplyBarFill writes through. Krowi_ProgressBar_Template
+-- is a plain Frame with Fill textures and has none.
+local function InstallBarFillShim(bar)
+    if bar.SetStatusBarColor then
+        return
+    end
+    bar.SetStatusBarColor = function(self, r, g, b, a)
+        earnedFill.R, earnedFill.G, earnedFill.B = r, g, b
+        self:SetColors(earnedFill, GetMissingColor(r, g, b))
+        -- Only once the bar has been populated. Resize, not UpdateTextures: this runs
+        -- inside that hook.
+        if self.Min and self.Max and self.Values then
+            self:Resize()
+        end
+        for _, fill in next, self.Fill or {} do
+            fill:SetAlpha(a or 1)
+        end
+    end
+end
+
+-- Black -> white, pure green -> muted green; every other color left alone.
+local function RecolorCriteriaText(fontString)
+    if not (fontString and fontString.GetTextColor) then
+        return
+    end
+    local r, g, b = fontString:GetTextColor()
+    if r < 0.1 and g < 0.1 and b < 0.1 then
+        fontString:SetTextColor(1, 1, 1)
+    elseif r < 0.1 and g > 0.9 and b < 0.1 then
+        fontString:SetTextColor(unpack(completedCriteria))
+    end
+end
+
 -- S.ScrollBar handles the arrows/track art and paints its own thumb strip, but leaves
 -- WowTrimScrollBar's groove Background texture(s) alone; fade those ourselves, the thumb is untouched.
 local function SkinScrollBar(scrollBar)
@@ -87,6 +137,132 @@ local function SkinKrowiTabs()
     end
 end
 
+-- [[ Tab row ]]
+-- Seats the achievement tab row, Blizzard's tabs included: Gui.lua's AddDataToBlizzardTabs
+-- registers those as Krowi tabs. EllesmereUI's window pack re-chains AchievementFrameTab1..3
+-- onto each other from hooks on their SetPoint, OnShow and OnHide, and that re-chain always
+-- gets the last write, so the shown Blizzard tabs are seated as one contiguous group and
+-- everything else is chained around it. Anchoring a tab to one the pack moves would produce
+-- a circular anchor, which drops the whole row's points.
+local blizzardTabIndices = {1, 2, 3} -- the tabs the window pack re-chains
+
+local function GetShownBlizzardTabs()
+    local shown = {}
+    for _, index in next, blizzardTabIndices do
+        local tab = _G["AchievementFrameTab" .. index]
+        if tab and tab:IsShown() then
+            shown[#shown + 1] = tab
+        end
+    end
+    return shown
+end
+
+-- One physical pixel in the frame's own coordinate space: the seam the window pack puts
+-- between the tabs it owns, and the seam the whole row holds. SkinKrowiTabs runs every tab in
+-- the row through S.Tab, Blizzard's own three included, so the tab art whose padding Gui.lua's
+-- -5 compensates for is flattened away throughout. Krowi's Spacing is not added on top: the
+-- pack pins the seams between the tabs it re-chains and re-asserts them from its own hooks, so
+-- Spacing could only ever reach part of the row. DisableOptions greys the slider out.
+-- Shared with the event side strip.
+local function GetPixelSeam(frame)
+    local pp = EllesmereUI and EllesmereUI.PP
+    local scale = frame:GetEffectiveScale()
+    if pp and pp.perfect and scale and scale > 0 then
+        return pp.perfect / scale
+    end
+    return (pp and pp.mult) or 1
+end
+
+-- Sets a tab to the height of one the window pack owns, which it trims by a couple of
+-- pixels. Reads the reference rather than assuming the trim. Re-asserts on every pass.
+local function MatchTabHeight(tab, reference)
+    if not reference then
+        return
+    end
+    local height = reference:GetHeight()
+    if height and height > 0 then
+        tab:SetHeight(height)
+    end
+end
+
+-- Anchors one tab, mirroring Gui.lua's UpdateTabsLayout, at the seam GetPixelSeam gives.
+local function SeatTab(tab, previous, seam)
+    tab:ClearAllPoints()
+    if previous then
+        tab:SetPoint("LEFT", previous, "RIGHT", seam, 0)
+    else
+        tab:SetPoint("BOTTOMLEFT", AchievementFrame, 11, -30)
+    end
+end
+
+-- Reports whether EllesmereUI's window pack has taken over AchievementFrame: it skins the
+-- window's chrome, and re-chains and height-trims Blizzard's three tabs. The pack is switchable
+-- per window and runs for every style except "off". Also gates the skin as a whole; see Load.
+local achievementWindowKey = "achievements" -- the pack's own key for AchievementFrame
+local function AchievementWindowIsSkinned()
+    local getStyle = EllesmereUI and EllesmereUI.GetBlizzWindowStyle
+    if not getStyle then
+        return false -- older EllesmereUI without the per-window style API
+    end
+    local ok, style = pcall(getStyle, achievementWindowKey)
+    return ok and style ~= "off"
+end
+
+local lastTabsOrder
+local relayoutingTabRow
+local function RelayoutTabRow(_, tabsOrder)
+    tabsOrder = tabsOrder or lastTabsOrder
+    if relayoutingTabRow or not (skin and AchievementFrame and tabsOrder) then
+        return
+    end
+    relayoutingTabRow = true
+    lastTabsOrder = tabsOrder
+
+    -- tabsOrder is keyed by each tab's Order and goes sparse when one is missing (no guild
+    -- tab, an unloaded tab addon), so walk it by sorted key rather than with next.
+    local ordered = {}
+    for order, button in next, tabsOrder do
+        ordered[#ordered + 1] = {Order = order, Button = button}
+    end
+    table.sort(ordered, function(a, b) return a.Order < b.Order end)
+
+    local packOwned = AchievementWindowIsSkinned()
+    local group = GetShownBlizzardTabs()
+    local inGroup = {}
+    -- The pack only re-chains from the second shown tab on, so a lone shown Blizzard tab is
+    -- left on its own anchor and is seated here like any other tab.
+    local rechained = packOwned and #group > 1
+    if rechained then
+        for _, tab in next, group do
+            inGroup[tab] = true
+        end
+    end
+    -- Height reference for the tabs the window pack does not own. It trims every Blizzard tab
+    -- it takes over, re-chained or not; with the pack off nothing is trimmed and the row keeps
+    -- the template height throughout.
+    local metricsReference = packOwned and group[1] or nil
+
+    local previous, groupSeated
+    for _, entry in ipairs(ordered) do -- ordered walk, not next
+        local button = entry.Button
+        if button and button:IsShown() then
+            if inGroup[button] then
+                if not groupSeated then
+                    groupSeated = true
+                    SeatTab(group[1], previous, GetPixelSeam(group[1]))
+                    previous = group[#group] -- the pack chains the rest onto group[1]
+                end
+            else
+                MatchTabHeight(button, metricsReference)
+                SeatTab(button, previous, GetPixelSeam(button))
+                previous = button
+            end
+        end
+    end
+
+    relayoutingTabRow = nil
+end
+
 -- [[ Categories ]]
 local function SkinCategoryButton(button)
     if not (skin and button) then
@@ -100,15 +276,15 @@ local progressBarPanels = setmetatable({}, {__mode = "k"})
 
 -- S.Panel fades every texture region on the frame it's given, which would alpha out a
 -- progress bar's own fill textures too; skin a same-sized overlay child instead.
-local function GetProgressBarPanel(progressBar)
+-- anchorRegion sizes the panel to the fill band rather than the whole frame.
+local function GetProgressBarPanel(progressBar, anchorRegion)
     local panel = progressBarPanels[progressBar]
     if not panel then
         panel = CreateFrame("Frame", nil, progressBar)
-        -- panel:SetColors({R = 0, G = 0.5, B = 0}, {R = 0.8, G = 0, B = 0})
-        panel:SetAllPoints(progressBar)
         panel:SetFrameLevel(progressBar:GetFrameLevel())
         progressBarPanels[progressBar] = panel
     end
+    panel:SetAllPoints(anchorRegion or progressBar)
     return panel
 end
 
@@ -124,6 +300,8 @@ local function SkinProgressBar(bar)
         if fill and fill.SetAlpha then
             fill:SetAlpha(1)
         end
+        -- Fade the template's own rounded border; the panel supplies one.
+        skin.FadeRegions(bar, fill and {[fill] = true} or nil)
         skin.ApplyBarFill(bar)
     end
     skin.Font(bar.Text or bar.text)
@@ -143,13 +321,14 @@ local function SkinAchievementTitle(button)
     end
 
     skin.Font(title)
+    -- Lifted from Krowi's parchment values.
     local completed = button.DateCompleted and button.DateCompleted.IsShown and button.DateCompleted:IsShown()
     if button.accountWide then
-        title:SetTextColor(completed and 0.35 or 0.24, completed and 0.75 or 0.46, completed and 1 or 0.6)
+        title:SetTextColor(completed and 0.45 or 0.42, completed and 0.8 or 0.66, completed and 1 or 0.85)
     elseif completed then
         title:SetTextColor(1, 0.85, 0.35)
     else
-        title:SetTextColor(0.64, 0.56, 0.3)
+        title:SetTextColor(0.82, 0.74, 0.45)
     end
 end
 
@@ -183,6 +362,12 @@ local function SkinAchievementButton(button)
     -- panel instead (border only, so the icon/text underneath stays visible).
     skin.Panel(GetButtonBorderCover(button), {noBg = true})
 
+    -- Saturate/Desaturate recolor the backdrop border on every Update; clear it.
+    if button.SetBackdropBorderColor then
+        button:SetBackdropColor(0, 0, 0, 0)
+        button:SetBackdropBorderColor(0, 0, 0, 0)
+    end
+
     if button.Highlight then
         skin.FadeRegions(button.Highlight)
     end
@@ -208,6 +393,32 @@ local function SkinAchievementButton(button)
     end
 end
 
+-- Sets the criteria fonts at fetch time, before Krowi measures each criterion's width and
+-- row height. The DisplayCriteria post-hook runs too late for that.
+local function InstallObjectivesFontHooks()
+    local objectivesMixin = KrowiAF_AchievementsObjectivesMixin
+
+    hooksecurefunc(objectivesMixin, "GetTextCriteria", function(self, index)
+        local criteria = self.criteriaTable[index]
+        if criteria then
+            skin.Font(criteria.Label)
+            skin.Font(criteria.Dash)
+        end
+    end)
+    hooksecurefunc(objectivesMixin, "GetMeta", function(self, index)
+        local meta = self.metaCriteriaTable[index]
+        if meta then
+            skin.Font(meta.Label)
+        end
+    end)
+    hooksecurefunc(objectivesMixin, "GetProgressBar", function(self, index)
+        local bar = self.progressBarTable[index]
+        if bar then
+            skin.Font(bar.Text or bar.text)
+        end
+    end)
+end
+
 local function SkinObjectives(objectives)
     if not (skin and objectives) then
         return
@@ -216,9 +427,12 @@ local function SkinObjectives(objectives)
     for _, criteria in next, objectives.criteriaTable or {} do
         skin.Font(criteria.Label)
         skin.Font(criteria.Dash)
+        RecolorCriteriaText(criteria.Label)
+        RecolorCriteriaText(criteria.Dash)
     end
     for _, meta in next, objectives.metaCriteriaTable or {} do
         skin.Font(meta.Label)
+        RecolorCriteriaText(meta.Label)
     end
     for _, bar in next, objectives.progressBarTable or {} do
         SkinProgressBar(bar)
@@ -240,7 +454,8 @@ local function SkinSummaryStatusBar(statusBar)
         return
     end
 
-    skin.Panel(GetProgressBarPanel(statusBar), {inset = true})
+    -- Anchored to Background, which Resize keeps on the fill band.
+    skin.Panel(GetProgressBarPanel(statusBar, statusBar.Background), {inset = true})
     for _, key in next, progressBorderKeys do
         FadeTexture(statusBar[key])
     end
@@ -249,8 +464,18 @@ local function SkinSummaryStatusBar(statusBar)
         fill:SetTexture("Interface\\Buttons\\WHITE8x8")
         fill:SetAlpha(1)
     end
+
+    -- Replaces Krowi's pure (0,1,0)/(1,0,0) with the house fill and a muted red, through our
+    -- own tables; the caller's are shared constants (addon.Util.Colors).
+    if statusBar.SetColors then
+        InstallBarFillShim(statusBar)
+        skin.ApplyBarFill(statusBar)
+    end
+
     skin.Font(statusBar.TextLeft)
     skin.Font(statusBar.TextRight)
+    skin.White(statusBar.TextLeft) -- GameFontNormal is gold
+    skin.White(statusBar.TextRight)
     if statusBar.Button then
         skin.FadeRegions(statusBar.Button)
     end
@@ -351,7 +576,15 @@ local function SkinSearchOptionsButton()
     if not (skin and KrowiAF_SearchBoxFrame) then
         return
     end
-    skin.Button(KrowiAF_SearchBoxFrame.OptionsMenuButton)
+    -- Keep Icon: S.Button fades unnamed regions.
+    local button = KrowiAF_SearchBoxFrame.OptionsMenuButton
+    if not button then
+        return
+    end
+    skin.Button(button, {"Icon"})
+    if button.Icon then
+        button.Icon:SetAlpha(1)
+    end
 end
 
 local function SkinSearchBoxFrame(frame)
@@ -410,6 +643,7 @@ local function SkinSearchResultsFrame()
 end
 
 -- [[ Header ]]
+-- EllesmereUI's own window pack skins AchievementFrame.Header: art, fonts and plate.
 local function SkinHeader()
     if not skin then
         return
@@ -421,7 +655,16 @@ end
 
 -- [[ Some Blizzard-owned layout fixes (EllesmereUI already skins AchievementFrame itself) ]]
 local function ReskinBlizzard()
+    if not AchievementFrameCategories then
+        return
+    end
     AchievementFrameCategories:SetPoint("TOPLEFT", AchievementFrame, 21, -26)
+
+    -- Moves the dropdown onto the list on pre-HeaderDetails layouts only, matching the
+    -- condition in AchievementFrameHeader.lua's AnchorHeader.
+    if AchievementFrame.HeaderDetails or not AchievementFrameFilterDropdown then
+        return
+    end
     AchievementFrameFilterDropdown:ClearAllPoints()
     AchievementFrameFilterDropdown:SetPoint("TOPLEFT", AchievementFrameAchievements, "TOPLEFT", -16, 25)
     AchievementFrameFilterDropdown:SetSize(AchievementFrameFilterDropdown:GetWidth(), AchievementFrameFilterDropdown:GetHeight() - 1)
@@ -477,6 +720,8 @@ local function SkinCalendarButton()
     local button = KrowiAF_AchievementFrameCalendarButton
     skin.Button(button)
     skin.Font(button:GetFontString())
+    skin.White(button:GetFontString()) -- GameFontBlack
+    button:SetSize(22, 22) -- 40x40 art tile once flattened
 end
 
 local function SkinCalendarDayButton(button)
@@ -554,47 +799,115 @@ local function SkinCalendarSideFrame()
 end
 
 -- [[ EventReminder alert toasts ]]
+-- Clears a texture outright rather than alphaing it out: a toast fades in through an
+-- animation that drives alpha every frame and overwrites a SetAlpha.
+local function KillTexture(texture)
+    if not texture then
+        return
+    end
+    if texture.SetAtlas then
+        texture:SetAtlas("")
+    end
+    if texture.SetTexture then
+        texture:SetTexture("")
+    end
+    if texture.SetAlpha then
+        texture:SetAlpha(0)
+    end
+end
+
 local function SkinAlertFrameTemplate(frame)
     if not (skin and frame) then
         return
     end
 
-    FadeTexture(frame.Background)
-    FadeTexture(frame.glow)
-    FadeTexture(frame.shine)
-    -- pcall-isolated: some client/EllesmereUI combos throw inside S.Panel's region walk for this
-    -- Blizzard AlertFrameTemplate-derived frame (WindowEngine.lua's FadeRegions, "attempt to call
-    -- a nil value" iterating frame:GetRegions()); must never interrupt Blizzard's ShowAlert flow
-    -- or spam an error on every toast.
-    pcall(skin.Panel, frame)
-    skin.White(frame.Unlocked)
-    skin.Font(frame.Name)
-    if frame.Icon and frame.Icon.Texture then
-        skin.SquareIcon(frame.Icon.Texture, frame.Icon)
+    -- Backdrop before art, so a throw leaves the plate rather than floating text. S.Shell is
+    -- the toast-shaped primitive (no top bar, the frame has no title row); S.Panel is the
+    -- fallback and is known to throw inside its region walk on this AlertFrameTemplate-derived
+    -- frame. Both pcall-isolated: this runs inside Blizzard's ShowAlert flow, once per toast.
+    local ok = pcall(skin.Shell, frame, {noTopBar = true})
+    if not ok then
+        ok = pcall(skin.Panel, frame)
     end
+    if not ok then
+        return false -- no backdrop, so leave Blizzard's plate in place
+    end
+
+    KillTexture(frame.Background)
+    KillTexture(frame.glow)
+    KillTexture(frame.shine)
+    if frame.Icon then
+        KillTexture(frame.Icon.Overlay) -- AchievementToast ring; SquareIcon supplies the border
+        if frame.Icon.Texture then
+            skin.SquareIcon(frame.Icon.Texture, frame.Icon)
+        end
+    end
+
+    skin.Font(frame.Name)
+    skin.White(frame.Name)
+    skin.Font(frame.Unlocked)
+    skin.White(frame.Unlocked) -- GameFontBlack, unreadable on the shell
+    return true -- reports that the frame rect is now the panel
 end
 
-local function SkinSideButton(button, prevButton)
-    if not button then
-        return
+-- [[ EventReminder side strip ]]
+-- The side buttons inherit the alert toast templates (SideButton.xml), so they take the same
+-- skin. A skinned button's frame rect is the panel and seats flush on a one-pixel seam; the
+-- offsets below are for the unskinned art, which insets the plate inside the frame rect.
+local function SkinSideButton(button, previous, anchor)
+    local x, y, stack = 5, 6, 9 -- offsets for the unskinned toast art
+    if SkinAlertFrameTemplate(button) then
+        local seam = GetPixelSeam(button)
+        x, y, stack = seam, 0, -seam
     end
+
     button:ClearAllPoints()
-    if not prevButton then
-        button:SetPoint("TOPLEFT", AchievementFrame, "TOPRIGHT", 5, 6)
+    if previous then
+        button:SetPoint("TOPLEFT", previous, "BOTTOMLEFT", 0, stack)
     else
-        button:SetPoint("TOPLEFT", prevButton, "BOTTOMLEFT", 0, 9)
+        button:SetPoint("TOPLEFT", anchor, "TOPRIGHT", x, y)
     end
 end
 
 local function SkinSideButtons()
-    local i = 1
-    local button = _G["KrowiAF_AchievementFrameSideButton" .. i]
-    local prevButton
+    -- The strip can be anchored to the world map instead; SideButtonSystem owns that choice.
+    local system = addon.Gui.EventReminderSideButtonSystem
+    local anchor = system.GetAnchor and system:GetAnchor()
+    if not anchor then
+        return
+    end
+
+    local index = 1
+    local button = _G["KrowiAF_AchievementFrameSideButton" .. index]
+    local previous
     while button do
-        SkinSideButton(button, prevButton)
-        prevButton = button
-        i = i + 1
-        button = _G["KrowiAF_AchievementFrameSideButton" .. i]
+        -- Buttons are pooled by index and never destroyed, so hidden ones linger in _G.
+        -- SideButtonSystem's SetPoints chains the shown ones only.
+        if button:IsShown() then
+            SkinSideButton(button, previous, anchor)
+            previous = button
+        end
+        index = index + 1
+        button = _G["KrowiAF_AchievementFrameSideButton" .. index]
+    end
+end
+
+-- [[ AchievementPopout ]]
+-- The button clone and its objectives ride the mixin hooks; corner chrome only.
+local function SkinAchievementPopout(popout)
+    if not (skin and popout) then
+        return
+    end
+    skin.CloseButton(popout.CloseButton)
+    if popout.ResizeButton then
+        skin.Button(popout.ResizeButton)
+    end
+end
+
+local function SkinAchievementPopouts()
+    local popouts = addon.Gui.AchievementPopout and addon.Gui.AchievementPopout.OpenPopouts
+    for _, popout in next, popouts or {} do
+        SkinAchievementPopout(popout)
     end
 end
 
@@ -614,6 +927,7 @@ local function ApplyVisuals()
     end
 
     SkinKrowiTabs()
+    RelayoutTabRow() -- re-seats the row in case the window pack has re-chained it
     SkinStaticFrames()
     SkinRealizedRows()
     SkinObjectives(KrowiAF_AchievementsObjectives)
@@ -631,6 +945,7 @@ local function ApplyVisuals()
     SkinCalendarFrame()
     SkinCalendarSideFrame()
     SkinFloatingAchievementTooltip()
+    SkinAchievementPopouts()
 end
 
 local function RefreshScrollBar(self)
@@ -661,23 +976,33 @@ local function InstallHooks()
     end
     hooksInstalled = true
 
-    -- Krowi retains complete control of visibility, ordering, spacing, anchors, sizing,
-    -- selection, clicks, data, and saved variables. Every hook below runs after Krowi's
-    -- own update and changes visual regions only; every primitive is idempotent.
+    -- Krowi retains control of visibility, ordering, spacing, sizing, selection, clicks,
+    -- data, and saved variables. Every hook below runs after Krowi's own update and changes
+    -- visual regions only; every primitive is idempotent. The tab row is the exception:
+    -- RelayoutTabRow replaces Krowi's layout pass (see Tab row above).
     hooksecurefunc(addon.Gui.AchievementFrameTabButtonFactory, "GetNew", SkinKrowiTabs)
     hooksecurefunc(addon.Gui, "LoadWithBlizzard_AchievementUI", ApplyVisuals)
+    -- Replaced rather than post-hooked, so Krowi's own pass never forms the circular anchor.
+    -- SeatTab mirrors Gui.lua's UpdateTabsLayout; keep the two in step if it changes.
+    addon.Gui.UpdateTabsLayout = RelayoutTabRow
     hooksecurefunc(KrowiAF_AchievementButtonMixin, "Update", SkinAchievementButton)
     -- The ScrollBox recycles pooled achievement buttons: a reused button is Shown again with
     -- new data, which is exactly when Blizzard's backdrop template creeps back in.
     hooksecurefunc(KrowiAF_AchievementButtonMixin, "OnShow", SkinAchievementButton)
     hooksecurefunc(KrowiAF_CategoryButtonMixin, "SetCategory", SkinCategoryButton)
+    -- Before the DisplayCriteria hook: these set the font Krowi measures with.
+    InstallObjectivesFontHooks()
     hooksecurefunc(KrowiAF_AchievementsObjectivesMixin, "DisplayCriteria", SkinObjectives)
     hooksecurefunc(Krowi_ProgressBarMixin, "UpdateTextures", function(statusBar)
-        local isSummaryBar = KrowiAF_SummaryFrame and statusBar:GetParent() == KrowiAF_SummaryFrame
-        if isSummaryBar or statusBar == GetTooltipProgressBar() then
+        if KrowiAF_SummaryFrame and statusBar:GetParent() == KrowiAF_SummaryFrame then
             SkinSummaryStatusBar(statusBar)
         end
     end)
+    -- Hooks the category-tooltip bar itself instead of the mixin table.
+    local tooltipBar = GetTooltipProgressBar()
+    if tooltipBar then
+        hooksecurefunc(tooltipBar, "UpdateTextures", SkinSummaryStatusBar)
+    end
 
     -- Blizzard's managed scroll bar visibility behavior re-asserts its own arrow/track
     -- textures whenever a list's data provider changes, undoing the fade; S.ScrollBar is
@@ -687,6 +1012,13 @@ local function InstallHooks()
     hooksecurefunc(KrowiAF_AchievementsFrameLightMixin, "Update", RefreshScrollBar)
 
     hooksecurefunc(addon.Gui.DataManager, "GetTextFrame", SkinTextFrame)
+
+    -- Popouts are pooled and reused.
+    if addon.Gui.AchievementPopout then
+        hooksecurefunc(addon.Gui.AchievementPopout, "Open", function(self, achievement)
+            SkinAchievementPopout(self.OpenPopouts[achievement and achievement.Id])
+        end)
+    end
 
     InstallAlertFrameHooks()
 end
@@ -733,6 +1065,17 @@ local function DisableOptions()
         order = KrowiAF.UtilApi.InjectOptions.AutoOrderPlusPlus(), type = "description", width = "full",
         name = addon.L["Calendar Button Position Overwrite Desc"]:K_ReplaceVars(addon.L["EllesmereUI"])
     })
+
+    -- The tab row holds a one pixel seam throughout while the skin is on (see GetPixelSeam),
+    -- so grey the slider out and give the reason above it. The note takes the order just below
+    -- Spacing's own; AutoOrderPlusPlus is one counter shared by every options file and is long
+    -- past Layout's numbers by the time a plugin injects.
+    local spacing = KrowiAF_GetOptions.GetTable(appName, "args.Tabs.args.General.args.General.args.Spacing")
+    spacing.disabled = true
+    addon.InjectOptions:AddTable(KrowiAF_GetOptions.GetTable(appName, "args.Tabs.args.General.args.General.args"), "EllesmereUIComment", {
+        order = spacing.order - 1, type = "description", width = "full",
+        name = addon.L["Tab Spacing Overwrite Desc"]:K_ReplaceVars(addon.L["EllesmereUI"])
+    })
 end
 
 function compatibility:Load()
@@ -741,6 +1084,14 @@ function compatibility:Load()
     end
 
     EllesmereUI.RegisterSkin("Krowi_AchievementFilter", function(S)
+        -- EllesmereUI keeps third-party skinning independent of its per-window enables. Krowi
+        -- builds on AchievementFrame itself -- the same border, header and Blizzard tabs the
+        -- "achievements" window pack skins -- so this follows that window instead and leaves
+        -- everything stock while it is off. Checked inside the callback rather than before
+        -- RegisterSkin: it is dispatched at PLAYER_LOGIN, with EllesmereUI's saved variables in.
+        if not AchievementWindowIsSkinned() then
+            return
+        end
         skin = S
         InstallHooks()
         ApplyVisuals()

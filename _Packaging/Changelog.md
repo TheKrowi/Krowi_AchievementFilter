@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 99.8 - 2026-08-17
+### Fixed
+- EllesmereUI: the skin now covers the event reminder pop-ups and the event side strip, and matches EllesmereUI's colors, fonts and spacing across the rest of the achievement window
+
 ## 99.7 - 2026-08-17
 ### Fixed
 - GW2_UI: `Action[SetPoint] failed because[Cannot anchor to a region dependent on it]` error on the filter button when loading the achievement frame (dev note: on newer client layouts the search box starts anchored to our filter button, so re-anchoring the filter button to the search box before it was reparented created a circular anchor; the skinning order was adjusted so the search box is reparented first)
