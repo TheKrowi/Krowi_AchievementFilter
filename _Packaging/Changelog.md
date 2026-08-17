@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 99.7 - 2026-08-17
+### Fixed
+- GW2_UI: `Action[SetPoint] failed because[Cannot anchor to a region dependent on it]` error on the filter button when loading the achievement frame (dev note: on newer client layouts the search box starts anchored to our filter button, so re-anchoring the filter button to the search box before it was reparented created a circular anchor; the skinning order was adjusted so the search box is reparented first)
+
 ## 99.6 - 2026-08-16
 ### Changed
 - Diagnostic build for the recurring `attempt to compare a secret number value... execution tainted by 'Krowi_AchievementFilter'` reports (dev note: the 99.4 fix for the achievement-criteria tooltip addon was confirmed insufficient by a follow-up Taint Diagnostics export still showing self-tainted `GameTooltip` fields on that build; achievement criteria are temporarily NOT shown in unit/item/spell tooltips in this build so we can confirm or rule out that code path as the source before attempting another fix — if you were affected, please report back whether the error still occurs)
