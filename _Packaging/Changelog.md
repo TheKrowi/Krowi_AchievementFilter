@@ -1,6 +1,44 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 99.8 - 2026-08-18
+### Fixed
+- EllesmereUI: the skin now covers the event reminder pop-ups and the event side strip, and matches EllesmereUI's colors, fonts and spacing across the rest of the achievement window
+- Shiny Pet Charmer is marked no longer obtainable (unobtainable after 10.2.5)
+- Several Brawler's Guild Season 2 achievements are marked as reintroduced in patch 11.2.7: You Are Not The Contents Of Your Wallet, I Am Thrall's Complete Lack Of Surprise (both Legion and Battle for Azeroth versions), and Haters Gonna Hate
+
+## 99.7 - 2026-08-17
+### Fixed
+- GW2_UI: `Action[SetPoint] failed because[Cannot anchor to a region dependent on it]` error on the filter button when loading the achievement frame (dev note: on newer client layouts the search box starts anchored to our filter button, so re-anchoring the filter button to the search box before it was reparented created a circular anchor; the skinning order was adjusted so the search box is reparented first)
+
+## 99.6 - 2026-08-16
+### Changed
+- Diagnostic build for the recurring `attempt to compare a secret number value... execution tainted by 'Krowi_AchievementFilter'` reports (dev note: the 99.4 fix for the achievement-criteria tooltip addon was confirmed insufficient by a follow-up Taint Diagnostics export still showing self-tainted `GameTooltip` fields on that build; achievement criteria are temporarily NOT shown in unit/item/spell tooltips in this build so we can confirm or rule out that code path as the source before attempting another fix — if you were affected, please report back whether the error still occurs)
+
+## 99.5 - 2026-08-16
+### Added
+- EllesmereUI skin compatibility for Krowi's achievement tabs, categories, achievement rows, summary frames, progress bars and scrollbars
+
+### Fixed
+- EllesmereUI: summary, objective and category-tooltip progress fills remain visible when EllesmereUI refreshes its panel artwork
+
+## 99.4 - 2026-08-16
+### Fixed
+- Further taint fix attempts, both found via the new Taint Diagnostics data added in 99.3 (dev note: first real-world exports confirming `execution tainted by 'Krowi_AchievementFilter'` from actual affected players, rather than guesswork):
+  - `attempt to compare a secret number value` in the Objective Tracker's cooldown display, after tracking/untracking an achievement (dev note: `AddTrackedAchievement`/`RemoveTrackedAchievement` called Blizzard's content tracking API directly, which synchronously refreshes the tracker; now routed through `securecall`)
+  - `attempt to compare a secret number value` on `GameTooltip`, from the achievement tooltip criteria addon (dev note: Blizzard's tooltip post-call hook runs our callback forced-insecure; the callback's own `tooltip:AddLine` write is now routed through `securecall` so it can no longer leave tainted state behind on the tooltip)
+
+## 99.3 - 2026-08-15
+- Options -> General -> Debug: a small, capped, read-only diagnostic log (on by default) that helps track down the recurring "secret number value... execution tainted by 'Krowi_AchievementFilter'" errors reported by some players (dev note: previously this needed a separate standalone debug addon installed by the affected player; now the data is collected automatically and can be copied via the new "Export Taint Diagnostics" button, or disabled entirely via the new "Enable taint diagnostics" toggle)
+
+### Fixed
+- Pop Out: a window's saved position could be lost if it was hidden for any reason other than an explicit close
+- Pop Out: an achievement re-triggering `ACHIEVEMENT_EARNED` after already being completed (e.g. an account-wide completion resync after a game/addon update) could incorrectly auto-close and lose a window when Close on Earn was enabled
+- Pop Out: opening a new window could attach to a stale chain reference if the tracked "last moved" window had since been snapped under another chain
+- Pop Out: snapping a window into a chain no longer leaves the "last moved" tracking pointing at a window that just lost its root status
+- Pop Out: a window's close/resize buttons could stay hidden or faded while hovering them if another frame happened to be stacked on top
+- Pop Out: further diagnostics added for the rare, not-yet-reproduced report of a window's saved data disappearing between sessions (dev note: nothing conclusively identified yet; a small capped lifecycle log is now kept in the addon's saved data to help narrow down whether a future occurrence happens in memory during a session or in the file write/read step itself)
+
 ## 99.2 - 2026-08-14
 ### Fixed
 - Further taint fix attempt: `attempt to compare a secret number value (execution tainted by 'Krowi_AchievementFilter')` (dev note: an embedded AceGUI-3.0 tab widget called `GameTooltip:Hide()` directly instead of through `securecall`, same class of issue as the 97.3/98.1/98.4 attempts but in a different, previously-unaudited code path — every direct `GameTooltip` touch in the addon and its bundled libraries has now been reviewed)

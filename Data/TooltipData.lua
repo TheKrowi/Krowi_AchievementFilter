@@ -56,10 +56,11 @@ local function AddTooltipLine(tooltip, tooltipLine)
         icon = "|T136813:0|t"
         color = addon.Util.Colors.RedRGB
     end
-    tooltip:AddLine(icon .. " |T" .. achievementIcon .. ":0|t " .. achievementName .. " > " .. criteriaString, color.R, color.G, color.B)
+    -- securecall: AddTooltipPostCall runs forced-insecure (Issue #300 taint); firewall the write itself, not just the caller
+    securecall(tooltip.AddLine, tooltip, icon .. " |T" .. achievementIcon .. ":0|t " .. achievementName .. " > " .. criteriaString, color.R, color.G, color.B)
     -- tooltip:AddDoubleLine(icon .. " |T" .. achievementIcon .. ":0|t " .. achievementName, criteriaString, color.R, color.G, color.B, color.R, color.G, color.B)
     if addon.Diagnostics.DebugEnabled() then
-        tooltip:AddLine(tooltipLine.AchievementId .. " - " .. tooltipLine.CriteriaIndex)
+        securecall(tooltip.AddLine, tooltip, tooltipLine.AchievementId .. " - " .. tooltipLine.CriteriaIndex)
     end
 end
 
@@ -75,7 +76,7 @@ local function ProcessUnit(tooltip, guid)
     end
 
     if addon.Diagnostics.DebugEnabled() then
-        tooltip:AddLine(guid)
+        securecall(tooltip.AddLine, tooltip, guid)
     end
 
     local unitType, _, _, _, unitId = ProcessGuid(guid)
@@ -108,7 +109,7 @@ local function ProcessItem(tooltip, itemId)
     end
 
     if addon.Diagnostics.DebugEnabled() then
-        tooltip:AddLine(itemId)
+        securecall(tooltip.AddLine, tooltip, itemId)
     end
 
     itemId = tonumber(itemId)
@@ -140,7 +141,7 @@ local function ProcessSpell(tooltip, spellId)
     end
 
     if addon.Diagnostics.DebugEnabled() then
-        tooltip:AddLine(spellId)
+        securecall(tooltip.AddLine, tooltip, spellId)
     end
 
     spellId = tonumber(spellId)

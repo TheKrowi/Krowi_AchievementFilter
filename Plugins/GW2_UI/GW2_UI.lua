@@ -950,9 +950,9 @@ local function SkinAll()
         SkinGameTooltipProgressBar();
         SkinAchievementsFrame();
         SkinAchievementSummary();
+        SkinSearchBoxFrame(); -- must run before SkinFilterButton to avoid a circular anchor (SearchBoxFrame may start anchored to FilterButton)
         SkinFilterButton();
         SkinSearchOptionsButton();
-        SkinSearchBoxFrame();
         SkinSearchPreviewFrame();
         SkinHeader();
         ReskinBlizzard();

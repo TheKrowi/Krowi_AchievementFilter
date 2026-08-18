@@ -569,7 +569,8 @@ function addon.LoadBlizzardApiChanges()
 
     if not RemoveTrackedAchievement then
         RemoveTrackedAchievement = function(achievementId)
-            C_ContentTracking.StopTracking(Enum.ContentTrackingType.Achievement, achievementId, Enum.ContentTrackingStopType.Manual);
+            -- securecall: StopTracking synchronously refreshes Blizzard's ObjectiveTracker (Issue #300 taint)
+            securecall(C_ContentTracking.StopTracking, Enum.ContentTrackingType.Achievement, achievementId, Enum.ContentTrackingStopType.Manual);
         end
     end
 
@@ -585,7 +586,8 @@ function addon.LoadBlizzardApiChanges()
 
     if not AddTrackedAchievement then
         AddTrackedAchievement = function(achievementId)
-            return C_ContentTracking.StartTracking(Enum.ContentTrackingType.Achievement, achievementId);
+            -- securecall: StartTracking synchronously refreshes Blizzard's ObjectiveTracker (Issue #300 taint)
+            return securecall(C_ContentTracking.StartTracking, Enum.ContentTrackingType.Achievement, achievementId);
         end
     end
 

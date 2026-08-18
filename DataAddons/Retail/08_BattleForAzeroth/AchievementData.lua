@@ -426,7 +426,7 @@ KrowiAF.AchievementData["08_01_05"] = {
 	Ach(13186):AutoFactionSplit(faction.Alliance, 13188):Obtainable("Before", "Version", {9, 0, 1}), -- You Are Not Your $#*@! Legplates
 	Ach(13189):Other():AutoFactionSplit(faction.Alliance, 13190):Obtainable("Before", "Version", {9, 0, 1}), -- The Second Rule of Brawler's Guild
 	Ach(13191):Title():AutoFactionSplit(faction.Alliance, 13192):Obtainable("Before", "Version", {9, 0, 1}), -- Brawler for Azeroth
-	Ach(13194):Obtainable("Before", "Version", {9, 0, 1}), -- I Am Thrall's Complete Lack Of Surprise
+	Ach(13194):Obtainable("Before", "Version", {9, 0, 1}):Obtainable("From", "Version", {11, 2, 7}), -- I Am Thrall's Complete Lack Of Surprise
 	Ach(13340):AutoFactionSplit(faction.Horde, 13341):Obtainable("Event", 341), -- Flame Keeper of Zandalar / Warden of Kul Tiras
 	Ach(13342):AutoFactionSplit(faction.Horde, 13343):Obtainable("Event", 341), -- Extinguishing Kul Tiras / Zandalar
 	Ach(13465):Title():PvP(26), -- Elite: Battle for Azeroth Season 1

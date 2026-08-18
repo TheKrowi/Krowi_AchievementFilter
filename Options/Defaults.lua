@@ -10,6 +10,7 @@ addon.Options.Defaults = {
         MicroButtonTab = 1,
         EnableDebugInfo = false,
         EnableTraceInfo = false,
+        EnableTaintDiagnostics = true,
         ShowPlaceholdersFilter = false,
         PrintMapInfo = false,
         CenterHeader = true,

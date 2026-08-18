@@ -7,7 +7,7 @@ KrowiAF.AchievementData["05_00_04"] = {
 
 KrowiAF.AchievementData["05_01_00"] = {
 	Ach(7853):Obtainable("Never"), -- WoW's 9th Anniversary
-	Ach(7944):Obtainable("From", "Version", {6, 0, 3}, "Before", "Version", {7, 0, 3}), -- Bottle Service
+	Ach(7944):Obtainable("From", "Version", {6, 0, 2}, "Before", "Version", {7, 0, 3}), -- Bottle Service
 }
 
 KrowiAF.AchievementData["05_02_00"] = {

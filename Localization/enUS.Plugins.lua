@@ -1,6 +1,9 @@
 local _, addon = ...
 local L = addon.Localization.NewDefaultLocale(true)
 
+-- [[ Added here until it is exported from CurseForge into the block below ]] --
+L["Tab Spacing Overwrite Desc"] = "The spacing setting is not active when {addon} is enabled. All tabs are seated 1 pixel apart to match the rest of the {addon} skin."
+
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-05-26 20-53-58 ]] --
@@ -16,6 +19,14 @@ L["Better Wardrobe Desc"] = [=[This plugin fixes the link to the wardrobe that i
 
 There are no options.]=]
 L["Calendar Button Position Overwrite Desc"] = "The position settings are not active when {addon} is enabled."
+L["EllesmereUI"] = true
+L["EllesmereUI Desc"] = [=[Each of the options below is controlled by EllesmereUI and is purely informational.
+
+To change these, go to Game Menu -> EllesmereUI -> Blizz UI Enhanced -> Blizzard Window Skins -> Third-Party Addons and toggle the desired option.
+]=]
+L["EllesmereUI Skin Achievements"] = "Skin Achievements"
+L["EllesmereUI Skin Achievements Desc"] = [=[Applies the EllesmereUI skin to the Achievements Window.
+-> Blizz UI Enhanced -> Blizzard Window Skins -> Third-Party Addons]=]
 L["ElvUI"] = true
 L["ElvUI Desc"] = [=[Each of the options below is controlled by ElvUI and is purely informational.
 

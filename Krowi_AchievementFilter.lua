@@ -53,7 +53,9 @@ local function LoadKrowi_AchievementFilter()
     addon.Tutorials.Load();
     addon.BrowsingHistory:Load();
 
-    addon.TooltipData.Load(); -- Might be moved to PLAYER_LOGIN event but easier for testing on every /reload
+    -- addon.TooltipData.Load(); -- Temporarily disabled (Issue #300 taint diagnostic build): the 99.4 securecall fix here was confirmed insufficient by a later user report; disabling entirely to confirm/deny this is the taint source before attempting another fix
+
+    addon.Diagnostics.TaintProbe.Load();
 end
 
 local function LoadBlizzard_AchievementUI()
