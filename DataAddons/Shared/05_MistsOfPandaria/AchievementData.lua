@@ -477,11 +477,11 @@ KrowiAF.AchievementData["05_01_00_S"] = {
 	Ach(7937):AutoFactionSplit(faction.Alliance, 8020):Obtainable("Before", "Version", {6, 0, 2}), -- You Are Not Your $#*@! Legplates (Season 1)
 	Ach(7939):AutoFactionSplit(faction.Horde, 7940):Obtainable("Before", "Version", {6, 0, 2}), -- The Second Rule of Brawler's Guild (Season 1)
 	Ach(7941):Title():AutoFactionSplit(faction.Alliance, 7942):Obtainable("Before", "Version", {6, 0, 2}), -- Brawlin' and Shot Callin' (Season 1)
-	Ach(7943):Obtainable("From", "Version", {6, 0, 3}, "Before", "Version", {7, 0, 3}), -- I'm Your Number One Fan (Season 2)
-	Ach(7945):Obtainable("From", "Version", {6, 0, 3}, "Before", "Version", {7, 0, 3}), -- Haters Gonna Hate (Season 2)
+	Ach(7943):Obtainable("From", "Version", {6, 0, 2}, "Before", "Version", {7, 0, 3}), -- I'm Your Number One Fan (Season 2)
+	Ach(7945):Obtainable("From", "Version", {6, 0, 2}, "Before", "Version", {7, 0, 3}):Obtainable("From", "Version", {11, 2, 7}), -- Haters Gonna Hate (Season 2)
 	Ach(7946):AutoFactionSplit(faction.Alliance, 8022):Obtainable("Before", "Version", {6, 0, 2}), -- Now You're Just Showing Off (Season 1)
 	Ach(7947):AutoFactionSplit(faction.Alliance, 7948):Obtainable("Before", "Version", {6, 0, 2}), -- The First Rule of Brawler's Guild (Season 1 or 2)
-	Ach(7949):AutoFactionSplit(faction.Alliance, 7950):Obtainable("From", "Version", {6, 0, 3}, "Before", "Version", {7, 0, 3}), -- Rabble Rabble Rabble (Season 2)
+	Ach(7949):AutoFactionSplit(faction.Alliance, 7950):Obtainable("From", "Version", {6, 0, 2}, "Before", "Version", {7, 0, 3}), -- Rabble Rabble Rabble (Season 2)
 	Ach(7984), -- Watery Grave
 	Ach(7986), -- You Mean That Wasn't a Void Zone?
 	Ach(7987), -- No Egg Left Behind
@@ -628,7 +628,7 @@ KrowiAF.AchievementData["05_03_00_S"] = {
 	Ach(8333):IsPvP(), -- Deepwind Gorge Perfection
 	Ach(8335):AutoFactionSplit(faction.Alliance, 8337):Obtainable("Before", "Version", {6, 0, 2}), -- Having a Brawl (Season 1)
 	Ach(8336):AutoFactionSplit(faction.Alliance, 8338):Obtainable("Before", "Version", {6, 0, 2}), -- I've Got the Biggest Brawls of Them All (Season 1)
-	Ach(8339):AutoFactionSplit(faction.Alliance, 8342):Obtainable("From", "Version", {6, 0, 3}, "Before", "Version", {7, 0, 3}), -- Collect Your Deck (Season 2)
+	Ach(8339):AutoFactionSplit(faction.Alliance, 8342):Obtainable("From", "Version", {6, 0, 2}, "Before", "Version", {7, 0, 3}), -- Collect Your Deck (Season 2)
 	Ach(8340):AutoFactionSplit(faction.Alliance, 8343):Obtainable("Before", "Version", {6, 0, 2}), -- Deck Your Collection (Season 1)
 	Ach(8345), -- Hearthstoned
 	Ach(8347), -- Keep those Bombs Away! (From Me)

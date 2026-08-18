@@ -367,9 +367,9 @@ KrowiAF.AchievementData["07_02_00"] = {
 	Ach(11560):AutoFactionSplit(faction.Alliance, 11561):Obtainable("Before", "Version", {8, 0, 1}), -- You Are Not Your $#*@! Legplates (Season 3)
 	Ach(11563):AutoFactionSplit(faction.Alliance, 11564):Other():Obtainable("Before", "Version", {8, 0, 1}), -- The Second Rule of Brawler's Guild (Season 3)
 	Ach(11565):AutoFactionSplit(faction.Alliance, 11566):Title():Obtainable("Before", "Version", {8, 0, 1}), -- King of the Guild (Season 3)
-	Ach(11567):Obtainable("Before", "Version", {9, 0, 1}), -- You Are Not The Contents Of Your Wallet
+	Ach(11567):Obtainable("Before", "Version", {9, 0, 1}):Obtainable("From", "Version", {11, 2, 7}), -- You Are Not The Contents Of Your Wallet
 	Ach(11570):Obtainable("Before", "Version", {9, 0, 1}), -- Educated Guesser
-	Ach(11572):Obtainable("Before", "Version", {8, 0, 1}), -- I Am Thrall's Complete Lack Of Surprise (Season 3)
+	Ach(11572):Obtainable("Before", "Version", {8, 0, 1}):Obtainable("From", "Version", {11, 2, 7}), -- I Am Thrall's Complete Lack Of Surprise (Season 3)
 	Ach(11573):Obtainable("Before", "Version", {9, 0, 1}), -- Rumble Club
 	Ach(11578):PvP(19), -- Vindictive Elite
 	Ach(11579):PvP(20), -- Fearless Elite

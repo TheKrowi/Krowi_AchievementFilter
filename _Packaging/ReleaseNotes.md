@@ -75,3 +75,8 @@
 
 ### Fixed (99.7)
 - GW2_UI: `Action[SetPoint] failed because[Cannot anchor to a region dependent on it]` error on the filter button when loading the achievement frame (dev note: on newer client layouts the search box starts anchored to our filter button, so re-anchoring the filter button to the search box before it was reparented created a circular anchor; the skinning order was adjusted so the search box is reparented first)
+
+### Fixed (99.8)
+- EllesmereUI: the skin now covers the event reminder pop-ups and the event side strip, and matches EllesmereUI's colors, fonts and spacing across the rest of the achievement window
+- Shiny Pet Charmer is marked no longer obtainable (unobtainable after 10.2.5)
+- Several Brawler's Guild Season 2 achievements are marked as reintroduced in patch 11.2.7: You Are Not The Contents Of Your Wallet, I Am Thrall's Complete Lack Of Surprise (both Legion and Battle for Azeroth versions), and Haters Gonna Hate

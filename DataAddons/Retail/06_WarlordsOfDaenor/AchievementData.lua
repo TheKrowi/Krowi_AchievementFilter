@@ -418,7 +418,7 @@ KrowiAF.AchievementData["06_00_02"] = {
 	Ach(9708):Obtainable("Before", "Version", {8, 0, 1}), -- Savagely Epic
 	Ach(9710), -- Poisoning the Well
 	Ach(9711), -- Planned to Fail
-	Ach(9712), -- Shiny Pet Charmer
+	Ach(9712):Obtainable("Before", "Version", {10, 2, 5}), -- Shiny Pet Charmer
 	Ach(9713):Mount(664), -- Awake the Drakes
 	Ach(9714):IsPvP():AutoFactionSplit(faction.Alliance, 9715), -- Thy Kingdom Come
 	Ach(9724), -- Taming Draenor

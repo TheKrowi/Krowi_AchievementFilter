@@ -1,9 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 99.8 - 2026-08-17
+## 99.8 - 2026-08-18
 ### Fixed
 - EllesmereUI: the skin now covers the event reminder pop-ups and the event side strip, and matches EllesmereUI's colors, fonts and spacing across the rest of the achievement window
+- Shiny Pet Charmer is marked no longer obtainable (unobtainable after 10.2.5)
+- Several Brawler's Guild Season 2 achievements are marked as reintroduced in patch 11.2.7: You Are Not The Contents Of Your Wallet, I Am Thrall's Complete Lack Of Surprise (both Legion and Battle for Azeroth versions), and Haters Gonna Hate
 
 ## 99.7 - 2026-08-17
 ### Fixed
