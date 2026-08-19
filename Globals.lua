@@ -569,7 +569,7 @@ function addon.LoadBlizzardApiChanges()
 
     if not RemoveTrackedAchievement then
         RemoveTrackedAchievement = function(achievementId)
-            -- securecall: StopTracking synchronously refreshes Blizzard's ObjectiveTracker (Issue #300 taint)
+            -- securecall only keeps the tracker refresh from tainting our own continuation; it cannot make the refresh itself run secure (Issue #300)
             securecall(C_ContentTracking.StopTracking, Enum.ContentTrackingType.Achievement, achievementId, Enum.ContentTrackingStopType.Manual);
         end
     end
@@ -586,7 +586,7 @@ function addon.LoadBlizzardApiChanges()
 
     if not AddTrackedAchievement then
         AddTrackedAchievement = function(achievementId)
-            -- securecall: StartTracking synchronously refreshes Blizzard's ObjectiveTracker (Issue #300 taint)
+            -- securecall only keeps the tracker refresh from tainting our own continuation; it cannot make the refresh itself run secure (Issue #300)
             return securecall(C_ContentTracking.StartTracking, Enum.ContentTrackingType.Achievement, achievementId);
         end
     end

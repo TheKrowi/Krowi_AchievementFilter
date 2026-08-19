@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 99.9 - 2026-08-19
+### Fixed
+- `attempt to compare local 'start' (a secret number value, while execution tainted by 'Krowi_AchievementFilter')` in the Objective Tracker's spell cooldowns, and the matching `GetAuraDataByIndex(): Auras cannot be accessed when secret while tainted` error, both spamming while in a delve or scenario (dev note: on login, every tracked achievement was untracked and immediately retracked. That ran from our own insecure context, so Blizzard's objective tracker container was marked dirty — and its whole deferred update pass, covering *all* tracker modules including the scenario module, ran tainted, permanently poisoning the scenario spell frame pool for the rest of the session. The untrack/retrack loop was left over from an older approach that overrode the achievement criteria API globally; those overrides were removed long ago, so the loop no longer did anything except cause this. Also note the 99.4 `securecall` change for this error was ineffective: `securecall` stops a called function from tainting *us*, it cannot make Blizzard's refresh run secure)
+
 ## 99.8 - 2026-08-18
 ### Fixed
 - EllesmereUI: the skin now covers the event reminder pop-ups and the event side strip, and matches EllesmereUI's colors, fonts and spacing across the rest of the achievement window
