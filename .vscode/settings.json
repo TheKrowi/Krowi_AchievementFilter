@@ -620,6 +620,7 @@
         "ORBIT_CAMERA_MOUSE_MODE_PITCH_ROTATION",
         "C_SettingsUtil",
         "issecretvalue",
+        "canaccessvalue",
         "issecurevariable",
         "seterrorhandler",
         "debugstack",

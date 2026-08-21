@@ -111,6 +111,7 @@ function loadHelper:OnEvent(event, arg1, arg2)
         end
     elseif event == "PLAYER_ENTERING_WORLD" then
          -- arg1 = isLogin, arg2 = isReload
+        addon.EventData.ClearCalendarEventsCacheDeferral()
         local popUpsOptions, chatMessagesOptions, popUpsUpcomingOptions, chatMessagesUpcomingOptions;
         if arg1 then
             popUpsOptions = addon.Options.db.profile.EventReminders.PopUps.OnLogin;
