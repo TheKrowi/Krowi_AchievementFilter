@@ -256,6 +256,13 @@ function achievement:SetTemporaryObtainable(startInclusion, startFunction, start
     end
 end
 
+function achievement:SetTemporaryObtainableWeeks(weeks)
+    local record = self.TemporaryObtainable[#self.TemporaryObtainable]
+    if record then
+        record.Weeks = weeks
+    end
+end
+
 function achievement:SetCustomCriteria(customCriteria)
     self.GetCustomCriteria = function(criteriaIndex)
         local numCriteria = customCriteria.NumCriteria or KrowiAF_origGetAchievementNumCriteria(self.Id);

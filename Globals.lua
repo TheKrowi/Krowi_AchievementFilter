@@ -774,6 +774,24 @@ function addon.GetAchievementInfoTable(achievementId) -- Returns an additional b
     };
 end
 
+-- Custom criteria used to be applied by overriding the Blizzard globals, which tainted anything
+-- reading them; our own rendering paths call these wrappers instead
+function addon.GetAchievementNumCriteria(achievementId)
+    local achievement = addon.Data.Achievements[achievementId]
+    if achievement and achievement.GetCustomCriteria then
+        return achievement.GetCustomCriteria()
+    end
+    return GetAchievementNumCriteria(achievementId)
+end
+
+function addon.GetAchievementCriteriaInfo(achievementId, criteriaIndex, countHidden)
+    local achievement = addon.Data.Achievements[achievementId]
+    if achievement and achievement.GetCustomCriteria then
+        return achievement.GetCustomCriteria(criteriaIndex)
+    end
+    return GetAchievementCriteriaInfo(achievementId, criteriaIndex, countHidden)
+end
+
 SLASH_KAFMV1 = "/kafmapverify"
 SlashCmdList["KAFMV"] = function()
     addon.Gui.MapVerifier.Open()

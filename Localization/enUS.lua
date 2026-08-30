@@ -941,6 +941,9 @@ L["Search Results"] = true
 L["Search Rewards"] = true
 L["Searing Gorge"] = true
 L["Season"] = true
+L["season from startDate"] = "{season} (from {startDate})"
+L["season from startDate until endDate"] = "{season} ({startDate} - {endDate})"
+L["season until endDate"] = "{season} (until {endDate})"
 L["Seasonal"] = true
 L["Second column threshold"] = true
 L["Second column threshold Desc"] = "Achievements with more objectives than this number will be visible in two columns instead of one."
@@ -1235,6 +1238,8 @@ L["Warcraft Rumble"] = true
 L["Warsong Gulch"] = true
 L["was"] = true
 L["Watch List"] = true
+L["week weekNumber of season"] = "week {weekNumber} of {season}"
+L["weeks firstWeek to lastWeek of season"] = "weeks {firstWeek} to {lastWeek} of {season}"
 L["When achievement completed"] = true
 L["When achievement completed Desc"] = [=[Show / hide {objectivesProgress} when achievement is completed.
 

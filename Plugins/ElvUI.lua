@@ -198,11 +198,11 @@ local function SkinAchievementsFrame()
 
     -- Objectives
     hooksecurefunc(KrowiAF_AchievementsObjectives, "DisplayCriteria", function(self, id)
-        local numCriteria = GetAchievementNumCriteria(id);
+        local numCriteria = addon.GetAchievementNumCriteria(id);
         local textStrings, metas = 0, 0;
         local criteria, object;
         for i = 1, numCriteria do
-            local _, criteriaType, completed, _, _, _, _, assetID = GetAchievementCriteriaInfo(id, i);
+            local _, criteriaType, completed, _, _, _, _, assetID = addon.GetAchievementCriteriaInfo(id, i);
             if assetID and criteriaType == _G.CRITERIA_TYPE_ACHIEVEMENT then
                 metas = metas + 1;
                 criteria, object = self:GetMeta(metas), 'Label';

@@ -801,7 +801,7 @@ KrowiAF.AchievementData["12_01_00"] = {
 	Ach(63326):Transmog():PvE(18), -- My Venomous Nemesis
 	Ach(63332):Title(), -- Purging the Poison
 	Ach(63333):Transmog():PvE(18), -- Let Me Solo Him: Azta'rec
-	Ach(63334):Title():PvE(18), -- Fabled Let Me Solo Him: Azta'rec
+	Ach(63334):Title():PvE(18):Weeks(1), -- Fabled Let Me Solo Him: Azta'rec
 	Ach(63358):HousingDecor(15283), -- Coiled to Strike
 	Ach(63359):Mount(3023), -- Treasures of the Coiled Isle
 	Ach(63381):Title(), -- Cursebreaker
@@ -896,4 +896,5 @@ KrowiAF.AchievementData["12_01_00"] = {
 	Ach(63697), -- Arena Exercise
 	Ach(63698), -- Arena Exercise
 	Ach(63699), -- World Wide Trainer
+	Ach(63838), -- Zul'jarra's Forces Champion
 }

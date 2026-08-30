@@ -8,4 +8,5 @@
     <Script file="CategoryData_Events.lua" />
     <Script file="CategoryData_PvP.lua" />
     <Script file="CategoryData_Specials.lua" />
+    <Script file="SeasonData.lua" />
 </Ui>

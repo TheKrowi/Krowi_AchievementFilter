@@ -42,6 +42,9 @@ local function AddAchievementData(id, faction, otherFactionAchievementId, reward
     end
     for _, temporaryObtainable in next, temporaryObtainables do
         addon.Data.Achievements[id]:SetTemporaryObtainable(unpack(temporaryObtainable))
+        if temporaryObtainable.Weeks then
+            addon.Data.Achievements[id]:SetTemporaryObtainableWeeks(temporaryObtainable.Weeks)
+        end
     end
 end
 

@@ -20,6 +20,21 @@ function AchBuilder:PvP(season)
     return self
 end
 
+-- Narrows the season it follows to a week range, e.g. :PvE(18):Weeks(1) for a week one only
+-- achievement. Weeks resolve against that season's registered start anchor, so without one the
+-- whole season still applies. Pass an explicit nil as the second argument to run to the season end.
+function AchBuilder:Weeks(firstWeek, ...)
+    local e = GetExtras(self)
+    local season = e[#e]
+    assert(season, "Weeks() must follow a season, e.g. :PvE(18):Weeks(1)")
+    local lastWeek = firstWeek
+    if select("#", ...) > 0 then
+        lastWeek = ...
+    end
+    season.Weeks = {firstWeek, lastWeek}
+    return self
+end
+
 function AchBuilder:IsPvP()
     GetExtras(self).IsPvP = true
     return self
