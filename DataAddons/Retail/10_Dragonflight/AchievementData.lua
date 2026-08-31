@@ -955,7 +955,7 @@ KrowiAF.AchievementData["10_02_00"] = {
 	-- {19235}, -- Warden of the Dream [Removed in 11.0.7, replaced by 41177]
 	Ach(19276):IsPvP(), -- Verdant Vogue
 	Ach(19293):Pet(4288), -- Friends In Feathers
-	Ach(19294), -- Tour of Duty: Emerald Dream
+	Ach(19294):IsPvP(), -- Tour of Duty: Emerald Dream
 	Ach(19295):PvP(36), -- Verdant Gladiator's Slitherdrake
 	Ach(19296), -- Dragon Glyphs: Eye of Ysera
 	Ach(19297), -- Dragon Glyphs: Furnace Coil
