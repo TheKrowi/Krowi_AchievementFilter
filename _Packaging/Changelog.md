@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 100.2
+### Fixed
+- Fixed several PvP achievements not being recognized by the PvP filter (Tour of Duty and Training Grounds achievements)
+
 ## 100.1 - 2026-08-30
 ### Added
 - Zul'jarra's Forces Champion added to The Coiled Isle reputation achievements
