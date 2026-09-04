@@ -11,8 +11,11 @@
                                  (Shared counts for both Retail and Classic)
       saved-variables  [Error]   every `KrowiAF_X = KrowiAF_X or` saved variable is declared in the .toc
       lua-syntax       [Error]   every .lua parses under Lua 5.1 (the vendored interpreter)
-      data-load        [Error]   Api + DataAddons evaluate headlessly for Retail and Classic
-                                 (headless/load-data.lua: builder args, patch keys, duplicates)
+      data-load        [Error]   the data pipeline runs headlessly for Retail and Classic
+                                 (headless/load-data.lua: builder args, patch keys, duplicate and
+                                 AutoFactionSplit registrations, category/zone/tooltip references
+                                 to achievements no data file registers)
+      lookup-placeholders [Warning] _lookup_*.ps1 skill scripts are committed with empty @() placeholders
       bom              [Warning] no UTF-8 byte order mark (.editorconfig: utf-8)
       line-endings     [Warning] CRLF only (.editorconfig: crlf)
       semicolon        [Error]   no trailing semicolons on added .lua lines (changed files only)
@@ -233,17 +236,29 @@ Write-Timing 'lua-syntax'
 # --- data-load: evaluate Api + DataAddons headlessly for each client -----------------------------
 $loader = Join-Path $root '.claude\tools\headless\load-data.lua'
 if ((Test-Path $lua) -and (Test-Path $loader)) {
-    foreach ($client in 'Retail', 'Classic') {
-        $ErrorActionPreference = 'Continue'
-        $out = & $lua $loader $root $client 2>&1 | ForEach-Object { "$_" }
-        $ErrorActionPreference = 'Stop'
-        foreach ($line in $out) {
-            $m = [regex]::Match($line, '^(.*?):(\d+): (.*)$')
-            if ($m.Success) { Add-Finding 'data-load' 'Error' $m.Groups[1].Value ([int]$m.Groups[2].Value) "[$client] $($m.Groups[3].Value)" }
-        }
+    $ErrorActionPreference = 'Continue'
+    $out = & $lua $loader $root Both 2>&1 | ForEach-Object { "$_" }   # runs Retail and Classic, cross-checks references
+    $ErrorActionPreference = 'Stop'
+    foreach ($line in $out) {
+        $m = [regex]::Match($line, '^(.*?):(\d+): (.*)$')
+        if ($m.Success) { Add-Finding 'data-load' 'Error' $m.Groups[1].Value ([int]$m.Groups[2].Value) $m.Groups[3].Value }
     }
 }
 Write-Timing 'data-load'
+
+# --- lookup-placeholders: designated DB lookup scripts must be left with empty placeholders -----
+foreach ($script in Get-ChildItem -Path (Join-Path $root '.claude\skills') -Recurse -Filter '_lookup_*.ps1') {
+    $rel = ConvertTo-RelativePath $script.FullName
+    $n = 0
+    foreach ($line in Get-Content -LiteralPath $script.FullName) {
+        $n++
+        if ($line -match '^\s*\$(ids|terms)\s*=\s*@\(\s*[^)\s]') {
+            $sev = if ($changed.ContainsKey($rel)) { 'Error' } else { 'Warning' }
+            Add-Finding 'lookup-placeholders' $sev $rel $n 'lookup script committed with ids in its placeholder; reset it to @() after running (CLAUDE.md rule)'
+        }
+    }
+}
+Write-Timing 'lookup-placeholders'
 
 # --- Diff-based rules: semicolon, enus-autogen -------------------------------------------------
 function Get-AddedLines([string]$rel) {

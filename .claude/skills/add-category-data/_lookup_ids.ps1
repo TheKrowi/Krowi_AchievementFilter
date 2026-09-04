@@ -1,7 +1,7 @@
 # Overwrite $ids before running. wow.tools.local must already be running.
 # Overwrite $ids before running. wow.tools.local must already be running.
 # Overwrite $ids before running. wow.tools.local must already be running.
-$ids = @(63441, 63605, 63606, 63670)
+$ids = @()
 $build = "12.1.0.68914"
 $baseUrl = "http://localhost:5000"
 $pat = "^(" + ($ids -join "|") + ")$"
