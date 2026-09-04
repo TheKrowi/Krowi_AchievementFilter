@@ -11,7 +11,9 @@
       known_good_ptr_fallback.lua — 2 entries; first id resolves in the live "wow" build (chosen as
         primary via auto-detect), second id only exists on "wowt" (PTR) and must be resolved via the
         fallback-build pass. Run WITHOUT -Build so auto-detection actually runs. Verifier must exit 0.
-    Requires wow.tools.local running at http://localhost:5000 with both a wow_classic and a wow build loaded.
+    Requires wow.tools.local running at http://localhost:5000 with a wow (Retail) build loaded. Tests 1 and 2
+    also need a wow_classic build (Mists of Pandaria Classic) and are skipped without one; the fallback
+    assertion in test 5 needs a wowt (PTR) build and is skipped without one.
 .EXAMPLE
     cd "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\.claude\skills\verify-achievement-data"
     .\Test-VerifyScript.ps1
@@ -54,19 +56,25 @@ try {
     throw "wow.tools.local not reachable at $BaseUrl. Start it before running tests."
 }
 
-# ── Detect wow_classic build ──────────────────────────────────────────────────
+# ── Detect wow_classic build (Mists of Pandaria Classic is the current wow_classic product) ──
 $builds = (Invoke-RestMethod "$BaseUrl/casc/builds" -Method POST `
     -Body "draw=1&start=0&length=50" -ContentType "application/x-www-form-urlencoded").data
-$wotlkBuild = $builds | Where-Object { $_[2] -eq "wow_classic" } |
+$classicBuild = $builds | Where-Object { $_[2] -eq "wow_classic" } |
     Select-Object -First 1 | ForEach-Object { "$($_[0]).$($_[1])" }
-if (-not $wotlkBuild) { throw "No wow_classic build found locally. Load a WotLK Classic build in wow.tools.local." }
-Write-Host "Using Classic build: $wotlkBuild"
+if ($classicBuild) {
+    Write-Host "Using Classic build: $classicBuild"
+} else {
+    Write-Warning "No wow_classic build loaded in wow.tools.local; skipping the Classic tests (1 and 2). Load a Mists Classic build to run them."
+}
 
 # ── Detect wow (Retail) build ─────────────────────────────────────────────────
 $retailBuild = $builds | Where-Object { $_[2] -eq "wow" } |
     Select-Object -First 1 | ForEach-Object { "$($_[0]).$($_[1])" }
 if (-not $retailBuild) { throw "No wow (Retail) build found locally. Load a Retail build in wow.tools.local." }
 Write-Host "Using Retail build:  $retailBuild"
+$ptrBuild = $builds | Where-Object { $_[2] -eq "wowt" } |
+    Select-Object -First 1 | ForEach-Object { "$($_[0]).$($_[1])" }
+if (-not $ptrBuild) { Write-Warning "No wowt (PTR) build loaded; test 5 cannot prove the fallback pass and only checks the ids resolve." }
 Write-Host ""
 
 # ── Helper: invoke the verifier and capture pipeline output + exit code ───────
@@ -85,10 +93,11 @@ function Invoke-Verifier {
     }
 }
 
+if ($classicBuild) {
 # ════════════════════════════════════════════════════════════════════════════════
 Write-Host "Test 1: known_good.lua — all entries should pass"
 Write-Host "──────────────────────────────────────────────────"
-$r1 = Invoke-Verifier -LuaFile $knownGood -Build $wotlkBuild
+$r1 = Invoke-Verifier -LuaFile $knownGood -Build $classicBuild
 
 Assert ($r1.ExitCode -eq 0)                       "Exit code 0"
 Assert ($r1.Text -match "All \d+ entries passed")  "Output: 'All X entries passed'"
@@ -98,7 +107,7 @@ Write-Host ""
 # ════════════════════════════════════════════════════════════════════════════════
 Write-Host "Test 2: known_bad.lua — each entry should fail exactly one check"
 Write-Host "──────────────────────────────────────────────────────────────────"
-$r2 = Invoke-Verifier -LuaFile $knownBad -Build $wotlkBuild
+$r2 = Invoke-Verifier -LuaFile $knownBad -Build $classicBuild
 
 Assert ($r2.ExitCode -eq 1)                                            "Exit code 1"
 Assert ($r2.Text -match "11 failure\(s\) in 10 entries checked")        "Summary: 11 failures in 10 entries (10 check failures + 1 autofactionsplit-unique Case 1)"
@@ -127,6 +136,7 @@ $unexpected = @($r2.Lines | Where-Object {
 })
 Assert ($unexpected.Count -eq 0) "No unexpected [FAIL] lines (false positives)"
 Write-Host ""
+}   # end Classic tests
 
 # ════════════════════════════════════════════════════════════════════════════════
 Write-Host "Test 3: known_good_retail.lua — all entries should pass (Retail build)"
@@ -163,7 +173,9 @@ $r5 = [PSCustomObject]@{ ExitCode = $LASTEXITCODE; Text = ($output5 -join "`n");
 Assert ($r5.ExitCode -eq 0)                                     "Exit code 0"
 Assert ($r5.Text -match "All \d+ entries passed")                "Output: 'All X entries passed'"
 Assert ($r5.Text -notmatch "\[FAIL\]")                           "No [FAIL] lines"
-Assert ($r5.Text -match "Resolved \d+ additional ID\(s\) from fallback build") "Fallback build resolution message printed"
+if ($ptrBuild) {
+    Assert ($r5.Text -match "Resolved \d+ additional ID\(s\) from fallback build") "Fallback build resolution message printed"
+}
 Write-Host ""
 
 # ════════════════════════════════════════════════════════════════════════════════
@@ -175,10 +187,14 @@ if ($failCount -eq 0) {
 } else {
     Write-Host "$failCount of $total assertions failed. Verifier needs calibration." -ForegroundColor Red
     Write-Host ""
-    Write-Host "Verifier output (known_good):" -ForegroundColor Cyan
-    $r1.Lines | ForEach-Object { Write-Host "  $_" }
-    Write-Host ""
-    Write-Host "Verifier output (known_bad):" -ForegroundColor Cyan
-    $r2.Lines | ForEach-Object { Write-Host "  $_" }
+    if ($classicBuild) {
+        Write-Host "Verifier output (known_good):" -ForegroundColor Cyan
+        $r1.Lines | ForEach-Object { Write-Host "  $_" }
+        Write-Host ""
+        Write-Host "Verifier output (known_bad):" -ForegroundColor Cyan
+        $r2.Lines | ForEach-Object { Write-Host "  $_" }
+    }
+    Write-Host "Verifier output (known_good_retail):" -ForegroundColor Cyan
+    $r3.Lines | ForEach-Object { Write-Host "  $_" }
     exit 1
 }
