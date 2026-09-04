@@ -693,7 +693,6 @@ KrowiAF.AchievementData["12_00_07"] = {
 }
 
 KrowiAF.AchievementData["12_01_00"] = {
-	{KrowiAF.SetAchievementPatch, 12, 1, 0},
 	Ach(62282), -- Altar of Fangs
 	Ach(62283), -- Heroic: Altar of Fangs
 	Ach(62284), -- Mythic: Altar of Fangs
