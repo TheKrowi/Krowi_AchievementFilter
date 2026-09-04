@@ -99,7 +99,7 @@ zoneData:Zone({719, 720, 721}, classHalls) -- Mardum, the Shattered Abyss (Demon
 zoneData:Zone(726, classHalls) -- The Maelstrom (Shaman)
 zoneData:Zone({734, 735}, classHalls) -- Hall of the Guardian (Mage)
 zoneData:Zone(739, classHalls) -- Trueshot Lodge (Hunter)
-zoneData:Zone(747, classHalls) -- The Dreamgrove (Druid)
+zoneData:Zone({715, 747}, classHalls) -- The Dreamgrove (Druid), Emerald Dreamway
 
 zoneData:Zone(619, { -- Broken Isles (continent)
     7520, -- The Loremaster

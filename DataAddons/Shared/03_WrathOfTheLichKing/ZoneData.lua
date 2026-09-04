@@ -4,7 +4,7 @@ local shared = addon.Data.ZoneData.Shared
 
 local zoneData = KrowiAF.NewZoneData("WrathOfTheLichKing")
 
-zoneData:Zone(125, { -- Dalaran (city)
+zoneData:Zone({125, 126}, { -- Dalaran (city), The Underbelly
     1008, -- The Kirin Tor
     1010, -- Northrend Vanguard
     1956, -- Higher Learning
@@ -19,22 +19,7 @@ zoneData:Zone(125, { -- Dalaran (city)
     2096, -- The Coin Master
     272, -- Torch Juggler
     293, -- Disturbing the Peace
-})
-
-zoneData:Zone(126, { -- Dalaran - The Underbelly
-    1008, -- The Kirin Tor
-    1010, -- Northrend Vanguard
     2556, -- Pest Control
-    1956, -- Higher Learning
-    2084, -- Ring of the Kirin Tor
-    2076, -- Armored Brown Bear
-    2077, -- Wooly Mammoth
-    2078, -- Traveler's Tundra Mammoth
-    2094, -- A Penny For Your Thoughts
-    2095, -- Silver in the City
-    1957, -- There's Gold In That There Fountain
-    1958, -- I Smell A Giant Rat
-    2096, -- The Coin Master
 })
 
 zoneData:Zone(128, { -- Strand of the Ancients (battleground)

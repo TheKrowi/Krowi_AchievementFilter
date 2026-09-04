@@ -418,7 +418,7 @@ zoneData:Zone(1161, { -- Boralus (city)
     40957, -- Maximum Effort
 })
 
-zoneData:Zone(1165, { -- Dazar'alor (city)
+zoneData:Zone({1164, 1165, 1166, 1167}, { -- Dazar'alor (city)
     7520, -- The Loremaster
     13294, -- Loremaster of Zandalar
     12479, -- Zandalar Forever!

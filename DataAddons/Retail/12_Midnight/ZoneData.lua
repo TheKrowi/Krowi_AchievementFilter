@@ -131,7 +131,7 @@ zoneData:Zone({2395, 2579}, { -- Eversong Woods (zone)
     quelThalas,
 })
 
-zoneData:Zone(2405, { -- Voidstorm (zone)
+zoneData:Zone({2405, 2526, 2527, 2581, 2582}, { -- Voidstorm (zone), Lair of Predaxas, Voidburrow
     41806, -- Breaching the Voidstorm
     61864, -- Sojourner of Voidstorm
     62105, -- Lysikas Would Be Proud

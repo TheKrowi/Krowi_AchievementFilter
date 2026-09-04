@@ -248,6 +248,8 @@ zoneData:Zone({2248, 2328}, { -- Isle of Dorn (zone)
     40323, -- Isle of Dorn Reverse: Silver
     40324, -- Isle of Dorn Reverse: Gold
     275, -- Veteran Nanny
+    40859, -- We're Here All Night
+    40860, -- A Star of Dorn
 })
 
 zoneData:Zone(2249, { -- Fungal Folly (delve)
@@ -274,7 +276,7 @@ zoneData:Zone(2251, { -- The Waterworks (delve)
     delvesS3Progress,
 })
 
-zoneData:Zone(2259, { -- Tak-Rethan Abyss (delve)
+zoneData:Zone({2259, 2314}, { -- Tak-Rethan Abyss (delve)
     40535, -- Tak-Rethan Abyss Stories
     40811, -- Tak-Rethan Abyss Discoveries
     delvesS1,
@@ -337,7 +339,7 @@ zoneData:Zone(2299, { -- The Underkeep (delve)
     delvesS3Progress,
 })
 
-zoneData:Zone(2301, { -- The Sinkhole (delve)
+zoneData:Zone({2300, 2301}, { -- The Sinkhole (delve)
     40532, -- The Sinkhole Stories
     40813, -- The Sinkhole Discoveries
     delvesS1,
@@ -388,11 +390,6 @@ zoneData:Zone({2315, 2316, 2317, 2318, 2319, 2320}, { -- The Rookery (dungeon)
     40637, -- Heroic: The Rookery
     40642, -- Mythic: The Rookery
     20579, -- Keystone Hero: The Rookery
-})
-
-zoneData:Zone(2328, { -- Isle of Dorn - The Proscenium (zone)
-    40859, -- We're Here All Night
-    40860, -- A Star of Dorn
 })
 
 zoneData:Zone(2335, { -- Cinderbrew Meadery (dungeon)
@@ -452,7 +449,7 @@ zoneData:Zone(2346, { -- Undermine (zone)
     41084, -- Undermine Breaknecking: Gold
 })
 
-zoneData:Zone(2347, { -- The Spiral Weave (delve)
+zoneData:Zone({2313, 2347}, { -- The Spiral Weave (delve)
     40536, -- The Spiral Weave Stories
     40814, -- The Spiral Weave Discoveries
     delvesS1,

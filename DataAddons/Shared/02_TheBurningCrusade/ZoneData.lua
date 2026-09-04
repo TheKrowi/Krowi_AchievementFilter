@@ -4,7 +4,7 @@ local shared = addon.Data.ZoneData.Shared
 
 local zoneData = KrowiAF.NewZoneData("TheBurningCrusade")
 
-zoneData:Zone(112, { -- Eye of the Storm (battleground)
+zoneData:Zone({112, 397}, { -- Eye of the Storm (battleground)
     shared.GenericBattleground,
     208, -- Eye of the Storm
     209, -- Eye of the Storm Victory
@@ -184,7 +184,7 @@ zoneData:Zone({95, 96}, { -- Ghostlands (zone)
     1028, -- Extinguishing Eastern Kingdoms
 })
 
-zoneData:Zone({97, 98, 99, 106}, { -- Azuremyst Isle (zone)
+zoneData:Zone({97, 98, 99}, { -- Azuremyst Isle (zone)
     43, -- Kalimdor Explorer
     6585, -- Kalimdor Safari
     6612, -- Kalimdor Tamer
