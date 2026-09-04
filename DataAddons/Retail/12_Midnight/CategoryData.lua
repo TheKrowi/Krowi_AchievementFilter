@@ -269,6 +269,7 @@ coiledIsle:PvP{
 }
 coiledIsle:Reputation{
     63631, -- Captain Tokka's Crew
+    63838, -- Zul'jarra's Forces Champion
 }
 zones:ZoneNamed(2509, { -- Vaults of Atal'Utek
     62600, -- Ritual Behavior

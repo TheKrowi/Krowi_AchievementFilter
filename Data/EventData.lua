@@ -24,10 +24,21 @@ function KrowiAF_GetUtcOffsetSeconds()
     return utcOffsetSeconds
 end
 
-local calendarEventsCache
+local calendarEventsCache, calendarEventsCacheDeferred
 local function CacheDayEvent(monthDay, index)
     local event = C_Calendar.GetDayEvent(0, monthDay, index)
-    if not event or not event.eventID or event.calendarType ~= "HOLIDAY" then
+    if not event then
+        return
+    end
+
+    -- GetDayEvent is SecretInChatMessagingLockdown: every field turns secret on communication restricted
+    -- maps and under encounter, Mythic+ or PvP match restrictions, which tainted code cannot compare
+    if canaccessvalue and not canaccessvalue(event.calendarType) then
+        calendarEventsCacheDeferred = true
+        return
+    end
+
+    if not event.eventID or event.calendarType ~= "HOLIDAY" then
         return
     end
 
@@ -48,6 +59,9 @@ local function CacheDayEvents(monthDay)
     local numDayEvents = C_Calendar.GetNumDayEvents(0, monthDay)
     for index = 1, numDayEvents do
         CacheDayEvent(monthDay, index)
+        if calendarEventsCacheDeferred then
+            return
+        end
     end
 end
 
@@ -55,10 +69,17 @@ local function CacheMonthEvents(startDay)
     startDay = startDay or 1
     for monthDay = startDay, 31 do
         CacheDayEvents(monthDay)
+        if calendarEventsCacheDeferred then
+            return
+        end
     end
 end
 
 function eventData.BuildCalendarEventsCache()
+    if calendarEventsCacheDeferred then
+        return
+    end
+
     calendarEventsCache = {}
 
     local currentDate = C_DateAndTime.GetCurrentCalendarTime()
@@ -67,11 +88,23 @@ function eventData.BuildCalendarEventsCache()
     local startDay = currentDate.monthDay
     for _ = 1, 13 do
         CacheMonthEvents(startDay)
+        if calendarEventsCacheDeferred then
+            break
+        end
         C_Calendar.SetMonth(1)
         startDay = nil
     end
 
     C_Calendar.SetAbsMonth(currentDate.month, currentDate.year)
+
+    if calendarEventsCacheDeferred then
+        calendarEventsCache = nil
+        addon.Diagnostics.Debug("Calendar events cache deferred, C_Calendar.GetDayEvent returned secret values")
+    end
+end
+
+function eventData.ClearCalendarEventsCacheDeferral()
+    calendarEventsCacheDeferred = nil
 end
 
 function eventData.GetNextEventOccurance(eventId)
@@ -81,7 +114,7 @@ function eventData.GetNextEventOccurance(eventId)
         eventData.BuildCalendarEventsCache()
     end
 
-    return calendarEventsCache[eventId]
+    return calendarEventsCache and calendarEventsCache[eventId]
 end
 
 local stopCalendarEventsRefresh

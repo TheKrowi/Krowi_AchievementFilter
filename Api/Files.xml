@@ -11,6 +11,7 @@
     <Script file="PetBattleLinkDataApi.lua" />
     <Script file="PluginsApi.lua" />
     <Script file="RewardPreviewDataApi.lua" />
+    <Script file="SeasonDataApi.lua" />
     <Script file="TabDataApi.lua" />
     <Script file="TooltipDataApi.lua" />
     <Script file="TransmogSetDataApi.lua" />

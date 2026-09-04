@@ -343,7 +343,7 @@ local function UpdatePlusMinusTexture(self)
 	end
 
 	local id = self.Achievement.Id;
-	local display = self.Compact or GetAchievementNumCriteria(id) ~= 0 or (self.Completed and addon.GetPreviousAchievement(id));
+	local display = self.Compact or addon.GetAchievementNumCriteria(id) ~= 0 or (self.Completed and addon.GetPreviousAchievement(id));
 	if not display then
 		self.PlusMinus:Hide();
 		return;

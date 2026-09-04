@@ -620,6 +620,7 @@
         "ORBIT_CAMERA_MOUSE_MODE_PITCH_ROTATION",
         "C_SettingsUtil",
         "issecretvalue",
+        "canaccessvalue",
         "issecurevariable",
         "seterrorhandler",
         "debugstack",
@@ -647,7 +648,9 @@
         "PLAYER_DIFFICULTY_TIMEWALKER",
         "Krowi_Tooltip",
         "LFG_LIST_LEGACY",
-        "KrowiAF_MapVerifierFrame"
+        "KrowiAF_MapVerifierFrame",
+        "C_GossipInfo",
+        "Krowi_ProgressBarMixin"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

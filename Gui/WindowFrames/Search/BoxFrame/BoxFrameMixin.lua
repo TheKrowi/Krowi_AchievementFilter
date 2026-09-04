@@ -182,9 +182,9 @@ local function SearchCriteria(text, numAchievementIds, results, excludeExcluded,
 		local numCriteria, criteriaString;
 		for i = 1, numAchievementIds do
 			achievement = addon.Data.Achievements[addon.Data.AchievementIds[i]];
-			numCriteria = GetAchievementNumCriteria(achievement.Id);
+			numCriteria = addon.GetAchievementNumCriteria(achievement.Id);
 			for j = 1, numCriteria do -- Build the cache the first time to limit API requests
-				criteriaString = GetAchievementCriteriaInfo(achievement.Id, j);
+				criteriaString = addon.GetAchievementCriteriaInfo(achievement.Id, j) or ""; -- Custom criteria can resolve to no text
 				tinsert(criteriaCache, {Achievement = achievement, CriteriaString = criteriaString});
 			end
 		end

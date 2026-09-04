@@ -3,13 +3,17 @@ local data = addon.Data
 data.TemporaryObtainable = {}
 local temporaryObtainable = data.TemporaryObtainable
 
+local secondsPerWeek = 604800
+
 function temporaryObtainable:Load()
     if C_MythicPlus then
         C_MythicPlus.RequestMapInfo()
+        self:WarnMissingSeasonData("PvE Season", self:GetCurrentMplusSeason())
     else -- Classic
         self.GetPreviousMplusSeason = function() return 99 end
         self.GetCurrentMplusSeason = function() return 99 end
     end
+    self:WarnMissingSeasonData("PvP Season", self:GetCurrentPvpSeason())
 end
 
 do -- GetData
@@ -27,6 +31,59 @@ do -- GetData
 
     function temporaryObtainable:GetCurrentPvpSeason()
         return GetCurrentArenaSeason()
+    end
+
+    local function GetAnchorTime(anchor)
+        local year, month, day = unpack(anchor)
+        return time{year = year, month = month, day = day, hour = 0, min = 0, sec = 0} - KrowiAF_GetUtcOffsetSeconds()
+    end
+
+    -- Anchors are region agnostic, so the client's own reset schedule decides which instant one
+    -- means: every region resets on a different weekday and hour, and shifts with DST
+    function temporaryObtainable:GetResetTime(anchor)
+        local anchorTime = GetAnchorTime(anchor)
+        local secondsUntilReset = C_DateAndTime.GetSecondsUntilWeeklyReset and C_DateAndTime.GetSecondsUntilWeeklyReset()
+        if not secondsUntilReset or secondsUntilReset <= 0 then
+            return anchorTime
+        end
+        local nextReset = time() + secondsUntilReset
+        return nextReset + floor((anchorTime - nextReset) / secondsPerWeek + 0.5) * secondsPerWeek
+    end
+
+    local function GetSeason(seasonFunction, seasonNumber)
+        local seasons = data.Seasons and data.Seasons[seasonFunction]
+        return seasons and seasons[seasonNumber]
+    end
+
+    function temporaryObtainable:WarnMissingSeasonData(seasonFunction, seasonNumber)
+        if not seasonNumber or seasonNumber <= 0 or GetSeason(seasonFunction, seasonNumber) then
+            return
+        end
+        addon.Diagnostics.Debug("No season data for " .. seasonFunction .. " " .. seasonNumber)
+    end
+
+    -- Returns nil when no anchor covers this side, leaving the season API in charge of it
+    function temporaryObtainable:GetSeasonStartTime(record)
+        local season = GetSeason(record.Start.Function, record.Start.Value)
+        if not (season and season.Start) then
+            return
+        end
+        local startTime = self:GetResetTime(season.Start)
+        if record.Weeks then
+            startTime = startTime + (record.Weeks[1] - 1) * secondsPerWeek
+        end
+        return startTime
+    end
+
+    function temporaryObtainable:GetSeasonEndTime(record)
+        local season = GetSeason(record.End.Function, record.End.Value)
+        if not season then
+            return
+        end
+        if record.Weeks and record.Weeks[2] then
+            return season.Start and self:GetResetTime(season.Start) + record.Weeks[2] * secondsPerWeek
+        end
+        return season.End and self:GetResetTime(season.End)
     end
 
     function temporaryObtainable:GetVersionString(version)
@@ -67,6 +124,8 @@ function temporaryObtainable:GetObtainableState(achievement)
         start = self:GetEventStartState(record)
     elseif startFunction == "Date" then
         start = self:GetDateStartState(record)
+    elseif startFunction == "Reset" then
+        start = self:GetResetStartState(record)
     end
 
     -- print(achievement.Id, startFunction, start)
@@ -88,6 +147,8 @@ function temporaryObtainable:GetObtainableState(achievement)
         _end = self:GetEventEndState(record)
     elseif endFunction == "Date" then
         _end = self:GetDateEndState(record)
+    elseif endFunction == "Reset" then
+        _end = self:GetResetEndState(record)
     end
 
     -- local endState = _end
@@ -136,6 +197,8 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
             start = self:GetEventStartState(record)
         elseif startFunction == "Date" then
             start = self:GetDateStartState(record)
+        elseif startFunction == "Reset" then
+            start = self:GetResetStartState(record)
         end
 
         local endFunction = record.End and record.End.Function
@@ -149,6 +212,8 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
             _end = self:GetEventEndState(record)
         elseif endFunction == "Date" then
             _end = self:GetDateEndState(record)
+        elseif endFunction == "Reset" then
+            _end = self:GetResetEndState(record)
         end
 
         if record.IsNotObtainable then
@@ -216,6 +281,51 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
         return text .. "."
     end
 
+    local function FormatTime(timestamp)
+        return tostring(date(addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime, timestamp))
+    end
+
+    function temporaryObtainable:GetSeasonDetail(record, seasonDetail)
+        local weeks = record.Weeks
+        if weeks and weeks[2] and weeks[2] > weeks[1] then
+            seasonDetail = addon.L["weeks firstWeek to lastWeek of season"]:K_ReplaceVars{
+                firstWeek = weeks[1],
+                lastWeek = weeks[2],
+                season = seasonDetail
+            }
+        elseif weeks then
+            seasonDetail = addon.L["week weekNumber of season"]:K_ReplaceVars{
+                weekNumber = weeks[1],
+                season = seasonDetail
+            }
+        end
+
+        if not addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.ShowDateTime then
+            return seasonDetail
+        end
+
+        local startTime = self:GetSeasonStartTime(record)
+        local endTime = self:GetSeasonEndTime(record)
+        if startTime and endTime then
+            return addon.L["season from startDate until endDate"]:K_ReplaceVars{
+                season = seasonDetail,
+                startDate = FormatTime(startTime),
+                endDate = FormatTime(endTime)
+            }
+        elseif startTime then
+            return addon.L["season from startDate"]:K_ReplaceVars{
+                season = seasonDetail,
+                startDate = FormatTime(startTime)
+            }
+        elseif endTime then
+            return addon.L["season until endDate"]:K_ReplaceVars{
+                season = seasonDetail,
+                endDate = FormatTime(endTime)
+            }
+        end
+        return seasonDetail
+    end
+
     function temporaryObtainable:GetNotObtainableText(record)
         if record.Start == nil and record.End == nil then
             return addon.L["This achievement is no longer obtainable"], addon.Util.Colors.RedRGB
@@ -254,6 +364,14 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
             if buildVersion then
                 startDetail = buildVersion.Description .. " (" .. buildVersion.Name .. ")"
             end
+        end
+
+        if record.Start.Function == "PvE Season" or record.Start.Function == "PvP Season" then
+            startDetail = self:GetSeasonDetail(record, startDetail)
+        end
+
+        if record.Start.Function == "Reset" then
+            startDetail = FormatTime(self:GetResetTime(record.Start.Value))
         end
 
         if record.Start.Function == "Date" then
@@ -311,6 +429,10 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
             end
         end
 
+        if record.End.Function == "Reset" then
+            endDetail = FormatTime(self:GetResetTime(record.End.Value))
+        end
+
         if record.End.Function == "Date" then
             local year, month, day = unpack(record.End.Value)
             local endTime = time{year = year, month = month, day = day, hour = 0, min = 0, sec = 0} - KrowiAF_GetUtcOffsetSeconds()
@@ -350,6 +472,10 @@ end
 
 do -- Get Start Sate
     function temporaryObtainable:GetMplusSeasonStartState(record)
+        local startTime = self:GetSeasonStartTime(record)
+        if startTime then
+            return startTime <= time() and "Past" or "Future"
+        end
         if record.Start.Inclusion == "From" then
             if self:GetCurrentMplusSeason() == 0 then
                 return self:GetPreviousMplusSeason() >= record.Start.Value and "Past" or "Future"
@@ -364,6 +490,10 @@ do -- Get Start Sate
     end
 
     function temporaryObtainable:GetPvpSeasonStartState(record)
+        local startTime = self:GetSeasonStartTime(record)
+        if startTime then
+            return startTime <= time() and "Past" or "Future"
+        end
         if record.Start.Inclusion == "From" then
             if self:GetCurrentPvpSeason() == 0 then
                 return self:GetPreviousPvpSeason() >= record.Start.Value and "Past" or "Future"
@@ -409,10 +539,19 @@ do -- Get Start Sate
             return startTime <= time() and "Past" or "Future"
         end
     end
+
+    -- A reset is an instant rather than a day, so Inclusion has nothing to shift here
+    function temporaryObtainable:GetResetStartState(record)
+        return self:GetResetTime(record.Start.Value) <= time() and "Past" or "Future"
+    end
 end
 
 do -- Get End State
     function temporaryObtainable:GetMplusSeasonEndState(record)
+        local endTime = self:GetSeasonEndTime(record)
+        if endTime then
+            return endTime <= time() and "Past" or "Future"
+        end
         if record.End.Inclusion == "Until" then
             if self:GetCurrentMplusSeason() == 0 then
                 return self:GetPreviousMplusSeason() >= record.End.Value and "Past" or "Future"
@@ -427,6 +566,10 @@ do -- Get End State
     end
 
     function temporaryObtainable:GetPvpSeasonEndState(record)
+        local endTime = self:GetSeasonEndTime(record)
+        if endTime then
+            return endTime <= time() and "Past" or "Future"
+        end
         if record.End.Inclusion == "Until" then
             if self:GetCurrentPvpSeason() == 0 then
                 return self:GetPreviousPvpSeason() >= record.End.Value and "Past" or "Future"
@@ -471,5 +614,9 @@ do -- Get End State
             local endTime = time{year = year, month = month, day = day, hour = 0, min = 0, sec = 0} - KrowiAF_GetUtcOffsetSeconds()
             return endTime <= time() and "Past" or "Future"
         end
+    end
+
+    function temporaryObtainable:GetResetEndState(record)
+        return self:GetResetTime(record.End.Value) <= time() and "Past" or "Future"
     end
 end

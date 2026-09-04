@@ -22,4 +22,3 @@
 - Added: chaining mechanics (last record governs filter state; all records in tooltip)
 - Added: note on implicit start for cutoff patterns (BuildVersion.Id substitution)
 - Added: new Common Patterns examples for all new patterns
-

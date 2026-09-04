@@ -10,14 +10,6 @@ function KrowiAF.AddCustomCriteriaData(achievementId, customCriteria)
     addon.Data.Achievements[achievementId]:SetCustomCriteria(customCriteria);
 end
 
-function KrowiAF.ReloadTrackedAchievements()
-    local trackedAchievementIds = C_ContentTracking.GetTrackedIDs(Enum.ContentTrackingType.Achievement);
-    for _, achievementId in ipairs(trackedAchievementIds) do
-        securecall(C_ContentTracking.StopTracking, Enum.ContentTrackingType.Achievement, achievementId, Enum.ContentTrackingStopType.Manual);
-        securecall(C_ContentTracking.StartTracking, Enum.ContentTrackingType.Achievement, achievementId);
-    end
-end
-
 -- local origGetAchievementCriteriaInfo = GetAchievementCriteriaInfo;
 -- GetAchievementCriteriaInfo = function(achievementId, criteriaIndex, countHidden)
 --     if addon.Data.Achievements[achievementId] and addon.Data.Achievements[achievementId].GetCustomCriteria then

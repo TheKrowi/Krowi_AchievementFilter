@@ -407,7 +407,7 @@ function KrowiAF_AchievementsObjectivesMixin:DisplayCriteria(id)
 		return;
 	end
 
-	local numCriteria = GetAchievementNumCriteria(id);
+	local numCriteria = addon.GetAchievementNumCriteria(id);
 	if numCriteria == 0 then
 		self.Mode = self.Modes.NoCriteria;
 		return;
@@ -422,7 +422,7 @@ function KrowiAF_AchievementsObjectivesMixin:DisplayCriteria(id)
 	local numTextCriteria, numProgressBars, numMetas = 0, 0, 0;
 	local maxTextCriteriaWidth = 0;
 	for i = 1, numCriteria do
-		local criteriaString, criteriaType, completed, quantity, reqQuantity, _, flags, assetID, quantityString = GetAchievementCriteriaInfo(id, i);
+		local criteriaString, criteriaType, completed, quantity, reqQuantity, _, flags, assetID, quantityString = addon.GetAchievementCriteriaInfo(id, i);
 		flags = addon.Objects.Flags:New(flags);
 		if criteriaType == CRITERIA_TYPE_ACHIEVEMENT and assetID then
 			numMetas = numMetas + 1;

@@ -127,10 +127,10 @@ KrowiAF.AchievementData["12_00_00"] = {
 	Ach(61213), -- Heroic: Magisters' Terrace
 	Ach(61214), -- Mythic: Magisters' Terrace
 	Ach(61219), -- No Time to Paws
-	Ach(61221), -- Tour of Duty: Eversong Woods
-	Ach(61222), -- Tour of Duty: Zul'Aman
-	Ach(61223), -- Tour of Duty: Harandar
-	Ach(61224), -- Tour of Duty: Voidstorm
+	Ach(61221):IsPvP(), -- Tour of Duty: Eversong Woods
+	Ach(61222):IsPvP(), -- Tour of Duty: Zul'Aman
+	Ach(61223):IsPvP(), -- Tour of Duty: Harandar
+	Ach(61224):IsPvP(), -- Tour of Duty: Voidstorm
 	Ach(61225):IsPvP(), -- Investigating the Rise
 	Ach(61226):IsPvP(), -- Uprising
 	Ach(61227):IsPvP(), -- Entering the Void
@@ -801,7 +801,7 @@ KrowiAF.AchievementData["12_01_00"] = {
 	Ach(63326):Transmog():PvE(18), -- My Venomous Nemesis
 	Ach(63332):Title(), -- Purging the Poison
 	Ach(63333):Transmog():PvE(18), -- Let Me Solo Him: Azta'rec
-	Ach(63334):Title():PvE(18), -- Fabled Let Me Solo Him: Azta'rec
+	Ach(63334):Title():PvE(18):Weeks(1), -- Fabled Let Me Solo Him: Azta'rec
 	Ach(63358):HousingDecor(15283), -- Coiled to Strike
 	Ach(63359):Mount(3023), -- Treasures of the Coiled Isle
 	Ach(63381):Title(), -- Cursebreaker
@@ -891,9 +891,10 @@ KrowiAF.AchievementData["12_01_00"] = {
 	Ach(63681), -- Heroic: Nymrissa Wavecaller
 	Ach(63682), -- Mythic: Nymrissa Wavecaller
 	Ach(63683), -- Nymrissa Wavecaller
-	Ach(63695), -- Arena Exercise
-	Ach(63696), -- Arena Exercise
-	Ach(63697), -- Arena Exercise
-	Ach(63698), -- Arena Exercise
-	Ach(63699), -- World Wide Trainer
+	Ach(63695):IsPvP(), -- Arena Exercise
+	Ach(63696):IsPvP(), -- Arena Exercise
+	Ach(63697):IsPvP(), -- Arena Exercise
+	Ach(63698):IsPvP(), -- Arena Exercise
+	Ach(63699):IsPvP(), -- World Wide Trainer
+	Ach(63838), -- Zul'jarra's Forces Champion
 }
