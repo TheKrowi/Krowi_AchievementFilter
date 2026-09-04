@@ -473,16 +473,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             2087, -- 250 Stone Keeper's Shards
             2088, -- 500 Stone Keeper's Shards
             2089, -- 1000 Stone Keeper's Shards
-            4784, -- Emblematic
-            4785, -- Emblematic
-            3838, -- Dungeon & Raid Emblem
-            3839, -- 25 Dungeon & Raid Emblems
-            3840, -- 50 Dungeon & Raid Emblems
-            3841, -- 100 Dungeon & Raid Emblems
-            3842, -- 250 Dungeon & Raid Emblems
-            3843, -- 500 Dungeon & Raid Emblems
             3844, -- 1000 Dungeon & Raid Emblems
-            3876, -- 1500 Dungeon & Raid Emblems
             4316, -- 2500 Dungeon & Raid Emblems
         },
     },
@@ -871,7 +862,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
                     3813, -- Upper Back Pain (25 player)
                     3937, -- Not One, But Two Jormungars (25 player)
                     3997, -- Three Sixty Pain Spike (25 player)
-                    3814, -- Resilience Will Fix It (25 player)
                     3815, -- Salt and Pepper (25 player)
                     3816, -- The Traitor King (25 player)
                     3916, -- Call of the Crusade (25 player)
@@ -1015,16 +1005,7 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Wrath of the Lich King
             4603, -- Glory of the Icecrown Raider (25 player)
             2957, -- Glory of the Ulduar Raider (10 player)
             2958, -- Glory of the Ulduar Raider (25 player)
-            4784, -- Emblematic
-            4785, -- Emblematic
-            3838, -- Dungeon & Raid Emblem
-            3839, -- 25 Dungeon & Raid Emblems
-            3840, -- 50 Dungeon & Raid Emblems
-            3841, -- 100 Dungeon & Raid Emblems
-            3842, -- 250 Dungeon & Raid Emblems
-            3843, -- 500 Dungeon & Raid Emblems
             3844, -- 1000 Dungeon & Raid Emblems
-            3876, -- 1500 Dungeon & Raid Emblems
             4316, -- 2500 Dungeon & Raid Emblems
         },
     },

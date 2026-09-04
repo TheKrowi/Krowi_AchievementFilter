@@ -172,7 +172,6 @@ zoneData:Zone(114, { -- Borean Tundra (zone)
     1012, -- The Winds of the North
     33, -- Nothing Boring About Borean
     1358, -- Nothing Boring About Borean
-    174, -- Nothing Boring About Borean
     561, -- D.E.H.T.A's Little P.I.T.A.
     61910, -- Mrglgrgl of Grglmrgl
     1264, -- Explore Borean Tundra

@@ -187,7 +187,6 @@ local crossExpansion = { -- Cross-Expansion
             705, -- Master of Arms
             16, -- Did Somebody Order a Knuckle Sandwich?
             2716, -- Dual Talent Specialization
-            1187, -- The Keymaster
             17334, -- Trading Post Enthusiast
         },
     },

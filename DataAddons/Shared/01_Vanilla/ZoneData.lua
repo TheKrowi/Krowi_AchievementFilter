@@ -530,7 +530,6 @@ zoneData:Zone(47, { -- Duskwood (zone)
     8348, -- The Longest Day
     2556, -- Pest Control
     46, -- Universal Explorer
-    4907, -- Duskwood Quests
     966, -- Tricks and Treats of Eastern Kingdoms
     1022, -- Flame Warden of Eastern Kingdoms
     1031, -- Extinguishing Eastern Kingdoms

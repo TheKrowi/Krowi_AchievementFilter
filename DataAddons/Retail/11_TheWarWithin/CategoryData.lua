@@ -171,11 +171,6 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The War Within
                     40731, -- Panhandled
                     40504, -- Rocked to Sleep
                     40585, -- Super Size Snuffling
-                    40509, -- Awakening The Machine: Wave 10
-                    40586, -- Awakening The Machine: Wave 20
-                    40587, -- Awakening The Machine: Wave 30
-                    40588, -- Awakening The Machine: Wave 40
-                    40589, -- Awakening The Machine: Wave 50
                     40662, -- It's Not Much, But It's Honest Work
                 },
             },
