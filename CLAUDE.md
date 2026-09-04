@@ -10,11 +10,25 @@ Krowi's Achievement Filter (`KrowiAF`) is a World of Warcraft addon written in L
 
 ## No build, no tests, no linter
 
-The WoW client is the only runtime and the only validator. There is no `luacheck`, `busted`, Makefile, or CI in this repo. Do not invent or run one. Packaging and publishing are done by the sibling Krowi Addon Manager project; the `release` skill in `.claude/skills/release/` documents how to drive it.
+The WoW client is the only runtime and the only full validator. There is no `luacheck`, `busted`, Makefile, or CI in this repo. Do not invent or run one. The one offline check that exists is the syntax checker below; use it, and extend the harness under `.claude/` rather than adding system dependencies. Packaging and publishing are done by the sibling Krowi Addon Manager project; the `release` skill in `.claude/skills/release/` documents how to drive it.
 
 - **Deploy to the game**: the VS Code `fsdeploy` config in `.vscode/settings.json` mirrors `**/*.{lua,blp,tga,xml}` (excluding `.github`, `.vscode`, `_Packaging`, `raw`, `wiki`, `docs`) into `H:\World of Warcraft\_retail_\Interface\AddOns\Krowi_AchievementFilter`. The Classic target is commented out there.
 - **Reload in game**: `/reload`. Enable errors with `/luaerror on` or BugSack + BugGrabber.
 - **Static checks**: the Lua language server globals list in `.vscode/settings.json`. New WoW API globals may need adding there to silence diagnostics.
+
+### Harness tooling under `.claude/` (self-contained, installs nothing)
+
+The repo carries its own Lua 5.1.5 (`.claude/tools/lua51/lua.exe`, `luac.exe`), the exact interpreter WoW embeds, built from the official lua.org source by `Build-Lua51.ps1` in that folder (see its README for provenance). Prefer it over any Lua on PATH: Lua 5.4 and LuaJIT accept syntax the game rejects.
+
+- `.claude/hooks/Check-LuaSyntax.ps1` runs automatically after every Edit/Write of a `.lua` file (wired in `.claude/settings.json`) and feeds parse errors back. It strips the UTF-8 BOM first because WoW tolerates one and stock Lua 5.1 does not. It fails open if the tooling is missing.
+- Check files by hand, or the whole tree (about 0.4 s for 400 files):
+
+```powershell
+& ".claude\tools\lua51\lua.exe" ".claude\tools\lua51\check-syntax.lua" "Globals.lua" "Data\Data.lua"
+Get-ChildItem -Recurse -Filter *.lua | Where-Object FullName -notlike '*\.claude\*' | ForEach-Object FullName | & '.claude\tools\lua51\lua.exe' '.claude\tools\lua51\check-syntax.lua' -
+```
+
+`.claude/` is excluded from the release zip (any dot-directory is) and from fsdeploy, so nothing in it reaches players or the game folder.
 
 ### Data-verification tooling (the only "commands" in the repo)
 

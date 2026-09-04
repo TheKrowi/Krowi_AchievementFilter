@@ -4,7 +4,7 @@
             "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
             "target":"H:\\World of Warcraft\\_retail_\\Interface\\AddOns\\Krowi_AchievementFilter",
             "include":"**/*.{lua,blp,tga,xml}",
-            "exclude":"**/{.github,.vscode,_Packaging,raw,wiki,docs}/**",
+            "exclude":"**/{.github,.vscode,.claude,_Packaging,raw,wiki,docs}/**",
             "deleteTargetOnDeploy": true
         },
         {
@@ -23,7 +23,7 @@
         //     "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
         //     "target":"H:\\World of Warcraft\\_classic_\\Interface\\AddOns\\Krowi_AchievementFilter",
         //     "include":"**/*.{lua,blp,tga,xml}",
-        //     "exclude":"**/{.github,.vscode,_Packaging,raw,wiki,docs}/**",
+        //     "exclude":"**/{.github,.vscode,.claude,_Packaging,raw,wiki,docs}/**",
         //     "deleteTargetOnDeploy": true
         // },
         // {
@@ -42,7 +42,7 @@
         //     "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
         //     "target":"H:\\World of Warcraft\\_ptr_\\Interface\\AddOns\\Krowi_AchievementFilter",
         //     "include":"**/*.{lua,blp,tga,xml}",
-        //     "exclude":"**/{.github,.vscode,_Packaging,raw,wiki,docs}/**",
+        //     "exclude":"**/{.github,.vscode,.claude,_Packaging,raw,wiki,docs}/**",
         //     "deleteTargetOnDeploy": true
         // },
         // {
