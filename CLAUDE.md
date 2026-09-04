@@ -44,6 +44,8 @@ Get-ChildItem -Recurse -Filter *.lua | Where-Object FullName -notlike '*\.claude
 & ".claude\tools\Read-GameErrors.ps1"                   # -Hours 0 -All -Client Classic
 ```
 
+- **Subagents** in `.claude/agents/`: `data-verifier` checks achievement ids against both game builds through the designated lookup scripts and runs the headless pipeline; delegate to it before calling any data line dead. `taint-reviewer` reviews a diff for taint and secret-value hazards using the changelog's dev notes as case law; delegate to it after GUI or Blizzard-API changes.
+
 `.claude/` is excluded from the release zip (any dot-directory is) and from fsdeploy, so nothing in it reaches players or the game folder.
 
 ### Data-verification tooling (the only "commands" in the repo)
