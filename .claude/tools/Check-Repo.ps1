@@ -11,6 +11,8 @@
                                  (Shared counts for both Retail and Classic)
       saved-variables  [Error]   every `KrowiAF_X = KrowiAF_X or` saved variable is declared in the .toc
       lua-syntax       [Error]   every .lua parses under Lua 5.1 (the vendored interpreter)
+      data-load        [Error]   Api + DataAddons evaluate headlessly for Retail and Classic
+                                 (headless/load-data.lua: builder args, patch keys, duplicates)
       bom              [Warning] no UTF-8 byte order mark (.editorconfig: utf-8)
       line-endings     [Warning] CRLF only (.editorconfig: crlf)
       semicolon        [Error]   no trailing semicolons on added .lua lines (changed files only)
@@ -228,6 +230,21 @@ else {
 
 Write-Timing 'lua-syntax'
 
+# --- data-load: evaluate Api + DataAddons headlessly for each client -----------------------------
+$loader = Join-Path $root '.claude\tools\headless\load-data.lua'
+if ((Test-Path $lua) -and (Test-Path $loader)) {
+    foreach ($client in 'Retail', 'Classic') {
+        $ErrorActionPreference = 'Continue'
+        $out = & $lua $loader $root $client 2>&1 | ForEach-Object { "$_" }
+        $ErrorActionPreference = 'Stop'
+        foreach ($line in $out) {
+            $m = [regex]::Match($line, '^(.*?):(\d+): (.*)$')
+            if ($m.Success) { Add-Finding 'data-load' 'Error' $m.Groups[1].Value ([int]$m.Groups[2].Value) "[$client] $($m.Groups[3].Value)" }
+        }
+    }
+}
+Write-Timing 'data-load'
+
 # --- Diff-based rules: semicolon, enus-autogen -------------------------------------------------
 function Get-AddedLines([string]$rel) {
     # lines added vs HEAD as @{Line; Text}; every line for an untracked file
@@ -285,7 +302,7 @@ if (Test-Path $ignoreFile) {
         if ($t -match '^(\S+)\s+(\S+)$') { $ignore += @{ Rule = $Matches[1]; Path = $Matches[2] } }
     }
 }
-$alwaysOn = @('dup-id', 'saved-variables', 'lua-syntax', 'changelog')
+$alwaysOn = @('dup-id', 'saved-variables', 'lua-syntax', 'data-load', 'changelog')
 $report = $findings | Where-Object {
     $f = $_
     -not ($ignore | Where-Object { ($_.Rule -eq '*' -or $_.Rule -eq $f.Rule) -and $f.Path -like $_.Path })

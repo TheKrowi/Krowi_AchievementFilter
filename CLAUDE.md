@@ -35,6 +35,15 @@ Get-ChildItem -Recurse -Filter *.lua | Where-Object FullName -notlike '*\.claude
 & ".claude\tools\Check-Repo.ps1" -ChangedOnly  # what the Stop hook runs
 ```
 
+- `.claude/tools/headless/load-data.lua` evaluates `Api/` and `DataAddons/` for one client in the vendored Lua with WoW globals stubbed, the way the game would: unknown builder methods, misspelled enum members, non-numeric ids and seasons, malformed or mis-suffixed patch keys and duplicate ids all surface with file and line, in about 0.1 s. The lint runs it for both clients as the `data-load` rule. Extend the stubs at the top of the file when a new WoW global is used at load time.
+- **Closing the loop with the game**: `Deploy.ps1` mirrors the addon into the client's AddOns folder (what fsdeploy does, incremental, `-WhatIf` to preview), you `/reload` in game, then `Read-GameErrors.ps1` prints the errors BugGrabber recorded for this addon. Saved variables are written only on `/reload` or logout, so the reader shows when the log was last written.
+
+```powershell
+& ".claude\tools\lua51\lua.exe" ".claude\tools\headless\load-data.lua" "$PWD" Retail   # or Classic; -v lists stubbed globals
+& ".claude\tools\Deploy.ps1" -WhatIf                    # -Client Classic|Ptr
+& ".claude\tools\Read-GameErrors.ps1"                   # -Hours 0 -All -Client Classic
+```
+
 `.claude/` is excluded from the release zip (any dot-directory is) and from fsdeploy, so nothing in it reaches players or the game folder.
 
 ### Data-verification tooling (the only "commands" in the repo)
