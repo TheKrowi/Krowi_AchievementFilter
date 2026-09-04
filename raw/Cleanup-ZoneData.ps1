@@ -1,5 +1,5 @@
 # Cleanup-ZoneData.ps1
-# Removes map IDs found in MapVerifier_InactiveZones.csv from all ZoneData.lua files.
+# Removes inactive map IDs (raw\MapVerifier.csv verdict TaxiAndAdventure, Error or StartingZone) from all ZoneData.lua files.
 # - If removing inactive IDs from an entry leaves at least one valid map ID, the entry is updated.
 # - If removing inactive IDs leaves NO valid map IDs, the entire zoneData:Zone(...) call is deleted.
 # - Single-element map ID tables are collapsed:  {895}  ->  895
@@ -15,17 +15,9 @@ param(
 Set-StrictMode -Version 3
 $ErrorActionPreference = "Stop"
 
-#region ─── Load inactive zones ─────────────────────────────────────────────────
-$inactivePath = "$PSScriptRoot\MapVerifier_InactiveZones.csv"
-$inactiveRows = Import-Csv $inactivePath
-$inactiveIds  = [System.Collections.Generic.HashSet[int]]::new()
-
-foreach ($row in $inactiveRows) {
-    $id = 0
-    if ([int]::TryParse($row.id.Trim(), [ref]$id)) {
-        [void]$inactiveIds.Add($id)
-    }
-}
+#region ─── Load inactive zones (raw\MapVerifier.csv: verdict TaxiAndAdventure, Error or StartingZone) ──
+. "$RootDir\.claude\skills\add-zone-data\_zonedata_parser.ps1"
+$inactiveIds = (Get-MapReference -RootDir $RootDir).Inactive
 Write-Host "Inactive map IDs loaded: $($inactiveIds.Count)"
 #endregion
 

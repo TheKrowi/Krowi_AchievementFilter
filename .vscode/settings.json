@@ -680,40 +680,44 @@
         },
         ".\\Evaluate-ZoneData.ps1": true,
         ".\\Evaluate-ZoneDataDecisions.ps1": true,
-        "/^& \"e:\\\\World of Warcraft Addon Development\\\\Krowi_AchievementFilter\\\\\\.github\\\\skills\\\\add-zone-data\\\\_lookup_ids\\.ps1\"$/": {
+        "/^& \"e:\\\\World of Warcraft Addon Development\\\\Krowi_AchievementFilter\\\\\\.claude\\\\skills\\\\add-zone-data\\\\_lookup_ids\\.ps1\"$/": {
             "approve": true,
             "matchCommandLine": true
         },
-        "/^& \"e:\\\\World of Warcraft Addon Development\\\\Krowi_AchievementFilter\\\\\\.github\\\\skills\\\\add-zone-data\\\\_check_csv\\.ps1\"$/": {
+        "/^& \"e:\\\\World of Warcraft Addon Development\\\\Krowi_AchievementFilter\\\\\\.claude\\\\skills\\\\add-zone-data\\\\_check_zonedata\\.ps1\"$/": {
             "approve": true,
             "matchCommandLine": true
         },
-        "/^& \"e:\\\\World of Warcraft Addon Development\\\\Krowi_AchievementFilter\\\\\\.github\\\\skills\\\\add-zone-data\\\\_zone_search\\.ps1\"$/": {
+        "/^& \"e:\\\\World of Warcraft Addon Development\\\\Krowi_AchievementFilter\\\\\\.claude\\\\skills\\\\add-zone-data\\\\_lookup_criteria\\.ps1\"$/": {
             "approve": true,
             "matchCommandLine": true
         },
-        "/^& \"e:\\\\World of Warcraft Addon Development\\\\Krowi_AchievementFilter\\\\\\.github\\\\skills\\\\add-zone-data\\\\_linkgroups_search\\.ps1\"$/": {
+        "/^& \"e:\\\\World of Warcraft Addon Development\\\\Krowi_AchievementFilter\\\\\\.claude\\\\skills\\\\add-zone-data\\\\_zone_search\\.ps1\"$/": {
             "approve": true,
             "matchCommandLine": true
         },
-        "/^& \"e:\\\\World of Warcraft Addon Development\\\\Krowi_AchievementFilter\\\\\\.github\\\\skills\\\\add-zone-data\\\\_find_zonefile\\.ps1\"$/": {
+        "/^& \"e:\\\\World of Warcraft Addon Development\\\\Krowi_AchievementFilter\\\\\\.claude\\\\skills\\\\add-zone-data\\\\_linkgroups_search\\.ps1\"$/": {
             "approve": true,
             "matchCommandLine": true
         },
-        "/^& \"e:\\\\World of Warcraft Addon Development\\\\Krowi_AchievementFilter\\\\\\.github\\\\skills\\\\add-zone-data\\\\_find_zonefile\\.ps1\" \\| Select-String \"ZoneData\" \\| Select-Object -First 30 Line$/": {
+        "/^& \"e:\\\\World of Warcraft Addon Development\\\\Krowi_AchievementFilter\\\\\\.claude\\\\skills\\\\add-zone-data\\\\_find_zonefile\\.ps1\"$/": {
             "approve": true,
             "matchCommandLine": true
         },
-        "/^& \"e:\\\\World of Warcraft Addon Development\\\\Krowi_AchievementFilter\\\\\\.github\\\\skills\\\\add-zone-data\\\\_check_scripts_reset\\.ps1\"$/": {
+        "/^& \"e:\\\\World of Warcraft Addon Development\\\\Krowi_AchievementFilter\\\\\\.claude\\\\skills\\\\add-zone-data\\\\_find_zonefile\\.ps1\" \\| Select-String \"ZoneData\" \\| Select-Object -First 30 Line$/": {
             "approve": true,
             "matchCommandLine": true
         },
-        "/^& \"e:\\\\World of Warcraft Addon Development\\\\Krowi_AchievementFilter\\\\\\.github\\\\skills\\\\add-zone-data\\\\_start_server\\.ps1\"$/": {
+        "/^& \"e:\\\\World of Warcraft Addon Development\\\\Krowi_AchievementFilter\\\\\\.claude\\\\skills\\\\add-zone-data\\\\_check_scripts_reset\\.ps1\"$/": {
             "approve": true,
             "matchCommandLine": true
         },
-        ".\\.github\\skills\\add-achievement-data\\_lookup_ids.ps1": true,
-        ".\\.github\\skills\\add-category-data\\_lookup_ids.ps1": true,
-        ".\\.github\\skills\\add-category-data\\_evaluate_coverage.ps1": true
+        "/^& \"e:\\\\World of Warcraft Addon Development\\\\Krowi_AchievementFilter\\\\\\.claude\\\\skills\\\\add-zone-data\\\\_start_server\\.ps1\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        ".\\.claude\\skills\\add-achievement-data\\_lookup_ids.ps1": true,
+        ".\\.claude\\skills\\add-category-data\\_lookup_ids.ps1": true,
+        ".\\.claude\\skills\\add-category-data\\_evaluate_coverage.ps1": true
     },
 }

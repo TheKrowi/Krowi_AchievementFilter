@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 100.3
+### Added
+- Map Verifier (debug tool): one Export and one Import button replace the six partial exports. Export writes the whole verifier state (verdicts, link groups, expansions, overrides, comments) as a single CSV; Import validates a pasted CSV, shows what would change and replaces the saved data after confirmation
+
 ## 100.2 - 2026-09-04
 ### Fixed
 - Fixed several PvP achievements not being recognized by the PvP filter (Tour of Duty and Training Grounds achievements)

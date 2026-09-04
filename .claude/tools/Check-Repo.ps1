@@ -260,6 +260,24 @@ foreach ($script in Get-ChildItem -Path (Join-Path $root '.claude\skills') -Recu
 }
 Write-Timing 'lookup-placeholders'
 
+# --- mapverifier: raw/MapVerifier.csv must be valid and in canonical form (Sync-MapVerifier.ps1 -Verify) --
+$mvSync = Join-Path $root '.claude\skills\sync-mapverifier\Sync-MapVerifier.ps1'
+if ((Test-Path $mvSync) -and (-not $ChangedOnly -or $changed.ContainsKey('raw/MapVerifier.csv'))) {
+    $ErrorActionPreference = 'Continue'
+    $out = & $mvSync -Verify *>&1 | ForEach-Object { "$_" }
+    $ErrorActionPreference = 'Stop'
+    foreach ($line in $out) {
+        $m = [regex]::Match($line, '^(?:\[ERROR\]|FAIL —)\s+(.*)$')
+        if (-not $m.Success) { continue }
+        $msg = $m.Groups[1].Value
+        $n = 1
+        $lm = [regex]::Match($msg, '^line (\d+):')
+        if ($lm.Success) { $n = [int]$lm.Groups[1].Value }
+        Add-Finding 'mapverifier' 'Error' 'raw/MapVerifier.csv' $n $msg
+    }
+}
+Write-Timing 'mapverifier'
+
 # --- Diff-based rules: semicolon, enus-autogen -------------------------------------------------
 function Get-AddedLines([string]$rel) {
     # lines added vs HEAD as @{Line; Text}; every line for an untracked file
@@ -301,6 +319,28 @@ foreach ($rel in @($changed.Keys | Where-Object { $_ -like '*.lua' -and $_ -notl
 
 Write-Timing 'diff rules'
 
+# --- zone-decisions: raw/ZoneDataDecisions.md must agree with the ZoneData.lua files (offline checks) --
+$zoneEval = Join-Path $root 'raw\Evaluate-ZoneDataDecisions.ps1'
+$zoneTouched = $changed.Keys | Where-Object { $_ -eq 'raw/ZoneDataDecisions.md' -or $_ -like '*/ZoneData.lua' }
+if ((Test-Path $zoneEval) -and (-not $ChangedOnly -or $zoneTouched)) {
+    $ErrorActionPreference = 'Continue'
+    $out = & $zoneEval -SkipDb *>&1 | ForEach-Object { "$_" }   # *> : the evaluator reports through Write-Host (information stream)
+    $ErrorActionPreference = 'Stop'
+    foreach ($line in $out) {
+        $m = [regex]::Match($line, '^\[(ERROR|WARN)\s*\]\s+(\S+)\s+(.*)$')
+        if (-not $m.Success) { continue }
+        $sev = if ($m.Groups[1].Value -eq 'ERROR') { 'Error' } else { 'Warning' }
+        $n = 1
+        $idm = [regex]::Match($m.Groups[3].Value, '\bID (\d+)\b')
+        if ($idm.Success) {
+            $hit = Select-String -LiteralPath (Join-Path $root 'raw\ZoneDataDecisions.md') -Pattern ('^\| ' + $idm.Groups[1].Value + ' \|') | Select-Object -First 1
+            if ($hit) { $n = $hit.LineNumber }
+        }
+        Add-Finding 'zone-decisions' $sev 'raw/ZoneDataDecisions.md' $n "$($m.Groups[2].Value): $($m.Groups[3].Value)"
+    }
+}
+Write-Timing 'zone-decisions'
+
 # --- changelog ---------------------------------------------------------------------------------
 $codeChanged = @($changed.Keys | Where-Object { (Test-AddonPath $_) -and $_ -notlike '*.md' -and $_ -notlike 'Libs/*' })
 if ($codeChanged.Count -gt 0 -and -not $changed.ContainsKey('_Packaging/Changelog.md')) {
@@ -317,7 +357,7 @@ if (Test-Path $ignoreFile) {
         if ($t -match '^(\S+)\s+(\S+)$') { $ignore += @{ Rule = $Matches[1]; Path = $Matches[2] } }
     }
 }
-$alwaysOn = @('dup-id', 'saved-variables', 'lua-syntax', 'data-load', 'changelog')
+$alwaysOn = @('dup-id', 'saved-variables', 'lua-syntax', 'data-load', 'zone-decisions', 'mapverifier', 'changelog')
 $report = $findings | Where-Object {
     $f = $_
     -not ($ignore | Where-Object { ($_.Rule -eq '*' -or $_.Rule -eq $f.Rule) -and $f.Path -like $_.Path })

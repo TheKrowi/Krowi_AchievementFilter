@@ -3,11 +3,12 @@
 $skillDir = "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\.claude\skills\add-zone-data"
 
 $scripts = @{
-    "_lookup_ids.ps1"       = '\$ids\s*=\s*@\((?!\s*\))'    # matches $ids = @( with content
-    "_check_csv.ps1"        = '\$ids\s*=\s*@\((?!\s*\))'
-    "_zone_search.ps1"      = '\$terms\s*=\s*@\((?!\s*\))'
-    "_linkgroups_search.ps1"= '\$ids\s*=\s*@\((?!\s*\))'
-    "_find_zonefile.ps1"    = '\$ids\s*=\s*@\((?!\s*\))'
+    "_lookup_ids.ps1"        = '\$ids\s*=\s*@\((?!\s*\))'    # matches $ids = @( with content
+    "_lookup_criteria.ps1"   = '\$ids\s*=\s*@\((?!\s*\))'
+    "_check_zonedata.ps1"    = '\$ids\s*=\s*@\((?!\s*\))'
+    "_zone_search.ps1"       = '\$terms\s*=\s*@\((?!\s*\))'
+    "_linkgroups_search.ps1" = '\$ids\s*=\s*@\((?!\s*\))'
+    "_find_zonefile.ps1"     = '\$ids\s*=\s*@\((?!\s*\))'
 }
 
 $dirty = @()
