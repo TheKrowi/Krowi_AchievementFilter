@@ -28,6 +28,13 @@ The repo carries its own Lua 5.1.5 (`.claude/tools/lua51/lua.exe`, `luac.exe`), 
 Get-ChildItem -Recurse -Filter *.lua | Where-Object FullName -notlike '*\.claude\*' | ForEach-Object FullName | & '.claude\tools\lua51\lua.exe' '.claude\tools\lua51\check-syntax.lua' -
 ```
 
+- `.claude/tools/Check-Repo.ps1` is the repo lint: unregistered or missing Files.xml entries, duplicate achievement IDs per client, saved variables missing from the .toc, Lua syntax, BOM and line endings, trailing semicolons and enUS additions below the AUTOGENTOKEN marker on changed lines, and a changelog reminder. It runs automatically as a Stop hook in `-ChangedOnly` mode and hands errors back. A deliberate exception goes in `Check-Repo.ignore` with a comment; a file whose registration is commented out in an XML is already treated as intentionally disabled.
+
+```powershell
+& ".claude\tools\Check-Repo.ps1"               # whole tree, about 2 s
+& ".claude\tools\Check-Repo.ps1" -ChangedOnly  # what the Stop hook runs
+```
+
 `.claude/` is excluded from the release zip (any dot-directory is) and from fsdeploy, so nothing in it reaches players or the game folder.
 
 ### Data-verification tooling (the only "commands" in the repo)

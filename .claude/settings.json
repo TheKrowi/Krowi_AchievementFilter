@@ -11,6 +11,17 @@
                     }
                 ]
             }
+        ],
+        "Stop": [
+            {
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "pwsh -NoProfile -NonInteractive -File \"$CLAUDE_PROJECT_DIR/.claude/hooks/Check-RepoOnStop.ps1\"",
+                        "timeout": 60
+                    }
+                ]
+            }
         ]
     }
 }
