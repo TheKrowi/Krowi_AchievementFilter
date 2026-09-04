@@ -649,7 +649,8 @@
         "Krowi_Tooltip",
         "LFG_LIST_LEGACY",
         "KrowiAF_MapVerifierFrame",
-        "C_GossipInfo"
+        "C_GossipInfo",
+        "Krowi_ProgressBarMixin"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

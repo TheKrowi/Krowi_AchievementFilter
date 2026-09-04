@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 100.2
+## 100.2 - 2026-09-04
 ### Fixed
 - Fixed several PvP achievements not being recognized by the PvP filter (Tour of Duty and Training Grounds achievements)
 
