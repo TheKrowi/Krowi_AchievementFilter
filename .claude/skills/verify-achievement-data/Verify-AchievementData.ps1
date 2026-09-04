@@ -155,19 +155,22 @@ if (-not $serverReachable) {
 # corresponding live ("wow") build is available locally in wow.tools.local.
 $norm = $LuaFile.Replace('\', '/')
 $candidates = if ($norm -match '/DataAddons/Retail/') {
-    @("wow", "wowt", "wow_beta")
+    @("wow", "wowt", "wowxptr", "wow_beta")
 } elseif ($norm -match '/DataAddons/Classic/') {
     @("wow_classic", "wow_classic_ptr", "wow_classic_beta", "wow_classic_era", "wow_classic_era_ptr")
 } elseif ($norm -match '/DataAddons/Shared/') {
-    @("wow", "wowt", "wow_beta", "wow_classic", "wow_classic_ptr", "wow_classic_beta", "wow_classic_era", "wow_classic_era_ptr")
+    @("wow", "wowt", "wowxptr", "wow_beta", "wow_classic", "wow_classic_ptr", "wow_classic_beta", "wow_classic_era", "wow_classic_era_ptr")
 } else {
-    @("wow", "wowt", "wow_beta", "wow_classic", "wow_classic_ptr", "wow_classic_beta", "wow_classic_era", "wow_classic_era_ptr")
+    @("wow", "wowt", "wowxptr", "wow_beta", "wow_classic", "wow_classic_ptr", "wow_classic_beta", "wow_classic_era", "wow_classic_era_ptr")
 }
 
-$availableBuilds = (Invoke-RestMethod "$BaseUrl/casc/builds" -Method POST `
-    -Body "draw=1&start=0&length=50" `
-    -ContentType "application/x-www-form-urlencoded").data |
-    ForEach-Object { [PSCustomObject]@{ Build = "$($_[0]).$($_[1])"; Type = $_[2] } }
+# Locally loaded builds first, then the remote list: the DBC endpoint fetches any build on demand,
+# so a Classic (wow_classic) build answers queries even when only Retail is loaded locally.
+$buildsBody = "draw=1&start=0&length=200"
+$availableBuilds = @(
+    (Invoke-RestMethod "$BaseUrl/casc/builds" -Method POST -Body $buildsBody -ContentType "application/x-www-form-urlencoded").data
+    (Invoke-RestMethod "$BaseUrl/casc/builds?remote=true" -Method POST -Body $buildsBody -ContentType "application/x-www-form-urlencoded").data
+) | ForEach-Object { [PSCustomObject]@{ Build = "$($_[0]).$($_[1])"; Type = $_[2] } }
 
 if (-not $Build) {
     # Find the first ID in the file to probe with
