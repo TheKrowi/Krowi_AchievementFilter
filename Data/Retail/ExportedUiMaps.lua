@@ -1,4 +1,4 @@
-﻿local _, addon = ...;
+local _, addon = ...
 addon.Data.ExportedUiMaps = {};
 local exportedUiMaps = addon.Data.ExportedUiMaps;
 

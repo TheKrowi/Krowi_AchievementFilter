@@ -1,4 +1,4 @@
-﻿local addonName, addon = ...;
+local addonName, addon = ...
 addon.Data.TabData = {};
 addon.Data.TabData.Shared = {};
 local shared = addon.Data.TabData.Shared;
