@@ -23,5 +23,12 @@
                 ]
             }
         ]
+    },
+    "permissions": {
+        "allow": [
+            "Bash(pwsh -NoProfile -NonInteractive -File .claude/tools/Check-Repo.ps1)",
+            "Bash(pwsh -NoProfile -NonInteractive -File .claude/tools/Check-Repo.ps1 *)",
+            "Bash(pwsh -NoProfile -NonInteractive -File .claude/hooks/Check-LuaSyntax.ps1)"
+        ]
     }
 }
