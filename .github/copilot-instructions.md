@@ -245,7 +245,7 @@ Use these references when looking up WoW API, UI source code, frame definitions,
 | GlobalStrings — Classic (enUS) | https://www.townlong-yak.com/framexml/classic/Helix/GlobalStrings.lua |
 | GlobalStrings — Retail (other locales) | https://www.townlong-yak.com/framexml/live/Helix/GlobalStrings.lua/`<LOCALE>` (e.g. `/FR`, `/DE`, `/ES`, `/PT`, `/RU`, `/CN`, `/TW`, `/KR`) |
 | WoW UI bug tracker | https://github.com/Stanzilla/WoWUIBugs |
-| wow.tools.local (local game DB) | http://localhost:5000 — API query reference: `.github/skills/verify-achievement-data/API.md` |
+| wow.tools.local (local game DB) | http://localhost:5000 — API query reference: `.claude/skills/verify-achievement-data/API.md` |
 
 ## Trust These Instructions
 

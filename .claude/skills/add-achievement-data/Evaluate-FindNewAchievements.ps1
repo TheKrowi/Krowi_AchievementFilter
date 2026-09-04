@@ -33,7 +33,7 @@
 
 .EXAMPLE
     # Agent claims these IDs are new valid achievements for 12.0.7:
-    & ".github\skills\add-achievement-data\Evaluate-FindNewAchievements.ps1" `
+    & ".claude\skills\add-achievement-data\Evaluate-FindNewAchievements.ps1" `
         -BuildNew "12.0.7.67808" `
         -BuildOld "12.0.5.67823" `
         -AgentIds "62607,62608,62609,62887,62901" `

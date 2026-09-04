@@ -10,7 +10,7 @@ Krowi's Achievement Filter (`KrowiAF`) is a World of Warcraft addon written in L
 
 ## No build, no tests, no linter
 
-The WoW client is the only runtime and the only full validator. There is no `luacheck`, `busted`, Makefile, or CI in this repo. Do not invent or run one. The one offline check that exists is the syntax checker below; use it, and extend the harness under `.claude/` rather than adding system dependencies. Packaging and publishing are done by the sibling Krowi Addon Manager project; the `release` skill in `.claude/skills/release/` documents how to drive it.
+The WoW client is the only runtime and the only full validator. There is no `luacheck`, `busted`, Makefile, or CI in this repo. Do not invent or run one. The offline checks that exist are the syntax checker and repo lint below; use them, and extend the harness under `.claude/` rather than adding system dependencies. Packaging and publishing are done by the sibling Krowi Addon Manager project; the `release` skill in `.claude/skills/release/` documents how to drive it.
 
 - **Deploy to the game**: the VS Code `fsdeploy` config in `.vscode/settings.json` mirrors `**/*.{lua,blp,tga,xml}` (excluding `.github`, `.vscode`, `_Packaging`, `raw`, `wiki`, `docs`) into `H:\World of Warcraft\_retail_\Interface\AddOns\Krowi_AchievementFilter`. The Classic target is commented out there.
 - **Reload in game**: `/reload`. Enable errors with `/luaerror on` or BugSack + BugGrabber.
@@ -39,21 +39,21 @@ Get-ChildItem -Recurse -Filter *.lua | Where-Object FullName -notlike '*\.claude
 
 ### Data-verification tooling (the only "commands" in the repo)
 
-These PowerShell scripts under `.github/skills/` query a local game-database server (wow.tools.local at `http://localhost:5000`). Each `SKILL.md` documents the workflow.
+These PowerShell scripts under `.claude/skills/` query a local game-database server (wow.tools.local at `http://localhost:5000`). Each `SKILL.md` documents the workflow.
 
 ```powershell
 # Start the DB server if it is not running (waits up to 60 s)
-& ".github\skills\add-zone-data\_start_server.ps1"
+& ".claude\skills\add-zone-data\_start_server.ps1"
 
 # Verify a data file against the game DB (ids exist, faction splits, title rewards, comments)
-& ".github\skills\verify-achievement-data\Verify-AchievementData.ps1" "DataAddons\Retail\11_TheWarWithin\AchievementData.lua"
-& ".github\skills\verify-achievement-data\Verify-AchievementData.ps1" "<file>" -Checks id-exists,faction,title-reward,description-lang
+& ".claude\skills\verify-achievement-data\Verify-AchievementData.ps1" "DataAddons\Retail\11_TheWarWithin\AchievementData.lua"
+& ".claude\skills\verify-achievement-data\Verify-AchievementData.ps1" "<file>" -Checks id-exists,faction,title-reward,description-lang
 
 # Check every achievement in a patch block is placed in some CategoryData.lua
-& ".github\skills\add-category-data\_evaluate_coverage.ps1"   # set $patchKey/$achievementFile/$build inside first
+& ".claude\skills\add-category-data\_evaluate_coverage.ps1"   # set $patchKey/$achievementFile/$build inside first
 
 # Batch ID lookup: id|Title|Reward|Faction|RewardItemID
-& ".github\skills\add-achievement-data\_lookup_ids.ps1"        # set $ids (and $build) inside first
+& ".claude\skills\add-achievement-data\_lookup_ids.ps1"        # set $ids (and $build) inside first
 ```
 
 **Rule for lookup scripts**: edit the placeholder variable (`$ids = @()`, `$terms = @()`) inside the designated script, run it with the same unchanged command, then reset the placeholder. Never write ad-hoc inline `Invoke-RestMethod`/`curl` commands with IDs embedded; the user rejects them. `Explore` subagents cannot reach `localhost:5000`, so do lookups from the main agent.
@@ -86,7 +86,7 @@ KrowiAF.AchievementData["11_01_00"] = {   -- key = EE_PP_SS (expansion, major, m
 
 `DataAddons/Loaders/*.lua` (loaded last) prepend the processor function at index 1 of each chunk (e.g. `KrowiAF.AddEventData`). `Data/Data.lua`'s `Register*DataTasks` push each chunk into `TasksGroups`; the runner (`addon.StartTasksGroups`, `Globals.lua`) calls `chunk[1](unpack(rest))`. For achievements, `Data.lua` also inserts `{KrowiAF.SetAchievementPatch, major, minor, patch}` derived from the table key, and `Ach()` entries resolve to `KrowiAF.AddAchievementData`, which constructs `addon.Objects.Achievement`. Registering the same ID twice hits an `assert`, so each achievement lives in exactly one place: Shared (`DataAddons/Shared/EE_.../`, identical on both clients) or the Retail/Classic file (client-specific entries only). Classic-only patches are never migrated to Shared.
 
-Per-expansion folder contents: `AchievementData`, `CategoryData`, `ZoneData` (one per expansion, never per patch), `TooltipData`, `TransmogSetData`, `PetBattleLinkData`, `CustomCriteriaData`, `EventData`, `BuildVersionData`. `Data/Retail/ExportedUiMaps.lua` is a legacy zone fallback being migrated into `ZoneData` (see `.github/skills/migrate-zone-fallbacks`).
+Per-expansion folder contents: `AchievementData`, `CategoryData`, `ZoneData` (one per expansion, never per patch), `TooltipData`, `TransmogSetData`, `PetBattleLinkData`, `CustomCriteriaData`, `EventData`, `BuildVersionData`. `Data/Retail/ExportedUiMaps.lua` is a legacy zone fallback being migrated into `ZoneData` (see `.claude/skills/migrate-zone-fallbacks`).
 
 Format references with worked examples: `wiki/achievement-data/*.md`, `docs/how-to/*.md`, `Api/ApiDocumentation.lua`, and `DataAddons/Retail/11_TheWarWithin/` as the canonical V2 expansion.
 

@@ -50,13 +50,13 @@ Follow exact formatting from existing entries (see REFERENCE.md § Code Style). 
 After writing the Lua edits, run the feedback loop below. Do not stop until both checks pass
 or you have exhausted 4 attempts — on each attempt, state what you changed and why.
 
-1. Run `.github/skills/add-category-data/_evaluate_coverage.ps1` (overwrite `$patchKey`,
+1. Run `.claude/skills/add-category-data/_evaluate_coverage.ps1` (overwrite `$patchKey`,
    `$achievementFile`, `$build` for the current patch first). This is a fast, deterministic,
    DB-backed check that every achievement ID from the patch is placed somewhere in
    `DataAddons/**/CategoryData*.lua`, or is confirmed out-of-scope (`:NotCategorized()` tag or
    a known-excluded `achievement_category`). If it FAILs, place the missing IDs or, if genuinely
    out of scope, confirm with the user and add the category to the script's allowlist.
-2. Walk through `.github/skills/add-category-data/RUBRIC.md` — a judgment-call checklist
+2. Walk through `.claude/skills/add-category-data/RUBRIC.md` — a judgment-call checklist
    covering placement (cross-expansion insertion, PvP/Events/Housing/Collections exclusions,
    Keystone Hero+Victor pairing, zone-vs-expansion-scoped world events) and ordering (season
    MythicPlus lists, raid root/Glory/Mythic order, Prey tier blocks, zone patch-chronology).

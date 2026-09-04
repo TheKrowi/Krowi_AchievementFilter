@@ -1,6 +1,6 @@
 # Evaluator: verify all designated lookup scripts are properly reset to their empty-placeholder state.
 # Exits 0 (pass) when all scripts have @() or no values. Exits 1 (fail) listing dirty scripts.
-$skillDir = "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\.github\skills\add-zone-data"
+$skillDir = "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\.claude\skills\add-zone-data"
 
 $scripts = @{
     "_lookup_ids.ps1"       = '\$ids\s*=\s*@\((?!\s*\))'    # matches $ids = @( with content

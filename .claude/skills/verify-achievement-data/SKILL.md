@@ -21,9 +21,9 @@ Start-Process "E:\World of Warcraft Addon Development\wow.tools.local\wow.tools.
 
 ```powershell
 cd "e:\World of Warcraft Addon Development\Krowi_AchievementFilter"
-& ".github\skills\verify-achievement-data\Verify-AchievementData.ps1" "DataAddons\Classic\03_WrathOfTheLichKing\AchievementData.lua"
+& ".claude\skills\verify-achievement-data\Verify-AchievementData.ps1" "DataAddons\Classic\03_WrathOfTheLichKing\AchievementData.lua"
 # or with specific checks only:
-& ".github\skills\verify-achievement-data\Verify-AchievementData.ps1" "DataAddons\Retail\11_TheWarWithin\AchievementData.lua" -Checks id-exists,faction,title-reward,description-lang
+& ".claude\skills\verify-achievement-data\Verify-AchievementData.ps1" "DataAddons\Retail\11_TheWarWithin\AchievementData.lua" -Checks id-exists,faction,title-reward,description-lang
 ```
 
 The script auto-detects the correct build by probing the DB with the first ID in the file.

@@ -48,13 +48,13 @@ Before applying comment-based heuristics, query authoritative sources. The DB is
 
 #### wow.tools.local (primary — game DB)
 
-Query all IDs in a single batch using the **designated script** `.github/skills/add-achievement-data/_lookup_ids.ps1` — never write a new inline/ad-hoc PowerShell snippet. Full API reference: `.github/skills/verify-achievement-data/API.md`.
+Query all IDs in a single batch using the **designated script** `.claude/skills/add-achievement-data/_lookup_ids.ps1` — never write a new inline/ad-hoc PowerShell snippet. Full API reference: `.claude/skills/verify-achievement-data/API.md`.
 
 **Rule:** Never create new throwaway `.ps1` files for one-off lookups. Edit the `$ids` (and `$build` if needed) line in the designated script via `replace_string_in_file`, then run it with the same terminal command every time. This keeps the terminal command identical across runs so it isn't re-flagged for approval after the first run.
 
 ```powershell
 # Edit $ids and $build inside _lookup_ids.ps1 first, then:
-.\.github\skills\add-achievement-data\_lookup_ids.ps1
+.\.claude\skills\add-achievement-data\_lookup_ids.ps1
 ```
 
 Output format per line: `id|Title_lang|Reward_lang|Faction|RewardItemID` (or `id|NOTFOUND`).
@@ -154,9 +154,9 @@ Map comment text to `AchBuilder` method names:
 `:Pet()` optionally takes a battle pet **SpeciesID** — this is the only way to deterministically render the correct pet model in the reward preview (there's no reliable spell/item → species API). At runtime the game resolves name + display model from this id via `C_PetJournal.GetPetInfoBySpeciesID(speciesId)`. Always look this up when the achievement grants a battle pet.
 
 1. Get the achievement's `Reward_lang` from the DB (already fetched in step 0.5 via `_lookup_ids.ps1`), e.g. `"Pet: Fledgling Warden's Companion"`. Strip the `"Pet: "` prefix to get the creature name.
-2. Look up that creature name's SpeciesID using the designated script `.github/skills/add-achievement-data/_lookup_pet_speciesid.ps1` — set `$names = @("Fledgling Warden's Companion")` (and `$build` if needed) via `replace_string_in_file`, then run it. Never write a new ad-hoc query for this. The script chains two DB tables: `creature` (find the creature's `ID` by exact `Name_lang` match) → `battlepetspecies` (filter `CreatureID` column by that id, read its `ID` column — the SpeciesID).
+2. Look up that creature name's SpeciesID using the designated script `.claude/skills/add-achievement-data/_lookup_pet_speciesid.ps1` — set `$names = @("Fledgling Warden's Companion")` (and `$build` if needed) via `replace_string_in_file`, then run it. Never write a new ad-hoc query for this. The script chains two DB tables: `creature` (find the creature's `ID` by exact `Name_lang` match) → `battlepetspecies` (filter `CreatureID` column by that id, read its `ID` column — the SpeciesID).
    ```powershell
-   .\.github\skills\add-achievement-data\_lookup_pet_speciesid.ps1
+   .\.claude\skills\add-achievement-data\_lookup_pet_speciesid.ps1
    ```
    Output: `<Name>|CreatureID=<id>|SpeciesID=<id>` (or `NOTFOUND`).
 3. Pass the SpeciesID value into the builder: `Ach(42319):Pet(4901), -- Azsuna (Pet: Fledgling Warden's Companion)`.
@@ -168,9 +168,9 @@ Map comment text to `AchBuilder` method names:
 `:Mount()` optionally takes a **mount id** (the `mount` DBC table's own `ID`, NOT the summoning spell id) — needed to deterministically render the correct mount model in the reward preview. At runtime the game resolves name/display via `C_MountJournal.GetMountInfoByID(mountId)` (name) and `C_MountJournal.GetMountInfoExtraByID(mountId)` (display/scene id). Always look this up when the achievement grants a mount.
 
 1. Get the achievement's `Reward_lang` from the DB, e.g. `"Mount: Stormtouched Bruffalon"`. Strip the `"Mount: "` prefix to get the mount name.
-2. Look up that mount name's id using the designated script `.github/skills/add-achievement-data/_lookup_mount_id.ps1` — set `$names = @("Stormtouched Bruffalon")` (and `$build` if needed) via `replace_string_in_file`, then run it. Never write a new ad-hoc query for this.
+2. Look up that mount name's id using the designated script `.claude/skills/add-achievement-data/_lookup_mount_id.ps1` — set `$names = @("Stormtouched Bruffalon")` (and `$build` if needed) via `replace_string_in_file`, then run it. Never write a new ad-hoc query for this.
    ```powershell
-   .\.github\skills\add-achievement-data\_lookup_mount_id.ps1
+   .\.claude\skills\add-achievement-data\_lookup_mount_id.ps1
    ```
    Output: `<Name>|MountID=<id>` (or `NOTFOUND`).
 3. Pass the mount id value into the builder: `Ach(19486):Mount(1614), -- Across the Isles (Mount: Stormtouched Bruffalon)`.
@@ -182,9 +182,9 @@ Map comment text to `AchBuilder` method names:
 `:HousingDecor()` optionally takes a **record id** (the `housedecor` DBC table's own `ID`) — needed to deterministically render the correct model in the reward preview. At runtime the game resolves the asset/scene via `C_HousingCatalog.GetCatalogEntryInfoByRecordID(Enum.HousingCatalogEntryType.Decor, recordId)`. Always look this up when the achievement grants a housing decoration.
 
 1. Get the achievement's `Reward_lang` from the DB, e.g. `"Reward: Preyseeker's Twilight Effigy"`. Strip the `"Reward: "` prefix to get the decor item name.
-2. Look up that decor name's id using the designated script `.github/skills/add-achievement-data/_lookup_housingdecor_id.ps1` — set `$names = @("Preyseeker's Twilight Effigy")` (and `$build` if needed) via `replace_string_in_file`, then run it. Never write a new ad-hoc query for this.
+2. Look up that decor name's id using the designated script `.claude/skills/add-achievement-data/_lookup_housingdecor_id.ps1` — set `$names = @("Preyseeker's Twilight Effigy")` (and `$build` if needed) via `replace_string_in_file`, then run it. Never write a new ad-hoc query for this.
    ```powershell
-   .\.github\skills\add-achievement-data\_lookup_housingdecor_id.ps1
+   .\.claude\skills\add-achievement-data\_lookup_housingdecor_id.ps1
    ```
    Output: `<Name>|RecordID=<id>` (or `NOTFOUND`).
 3. Pass the record id value into the builder: `Ach(62184):HousingDecor(17454), -- Achievement Name (Reward: Preyseeker's Twilight Effigy)`.
@@ -497,7 +497,7 @@ $running = Get-Process "wow.tools.local" -ErrorAction SilentlyContinue
 if (-not $running) { Start-Process "E:\World of Warcraft Addon Development\wow.tools.local\wow.tools.local.exe" }
 
 # 2. Run the authoritative diff script
-& ".github\skills\add-achievement-data\Find-NewAchievements.ps1" `
+& ".claude\skills\add-achievement-data\Find-NewAchievements.ps1" `
     -BuildNew "X.Y.Z.NNNNN" `
     -BuildOld "X.Y.Z.NNNNN"
 ```
@@ -510,7 +510,7 @@ The script handles:
 **After running the script, self-evaluate before presenting results:**
 
 ```powershell
-& ".github\skills\add-achievement-data\Evaluate-FindNewAchievements.ps1" `
+& ".claude\skills\add-achievement-data\Evaluate-FindNewAchievements.ps1" `
     -BuildNew "X.Y.Z.NNNNN" `
     -BuildOld "X.Y.Z.NNNNN" `
     -AgentIds "ID1,ID2,ID3,..." `

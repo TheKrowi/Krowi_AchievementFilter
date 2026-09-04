@@ -10,7 +10,7 @@ description: Add achievement IDs to the correct ZoneData.lua entries in Krowi's 
 Given a list of achievement IDs, the parent agent:
 0. **Pre-flight: verify wow.tools.local is reachable.** Run:
    ```powershell
-   & "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\.github\skills\add-zone-data\_start_server.ps1"
+   & "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\.claude\skills\add-zone-data\_start_server.ps1"
    ```
    The script starts wow.tools.local if needed and waits up to 60 seconds. If it still isn't reachable after that, **stop immediately** — do not proceed and do not waste tokens on lookups that will all return NOT_FOUND.
 1. **Performs all lookups directly** (see scripts below) and builds a compact decisions JSON — do **not** delegate to a subagent for this step; `Explore` subagents cannot make HTTP calls to `localhost:5000`.
@@ -54,7 +54,7 @@ newString: $ids = @({{VALUES}})
 
 **Step B** — Run the script:
 ```powershell
-& "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\.github\skills\add-zone-data\_SCRIPTNAME_.ps1"
+& "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\.claude\skills\add-zone-data\_SCRIPTNAME_.ps1"
 ```
 
 **Step C** — Reset immediately after reading the output:
@@ -202,7 +202,7 @@ cd "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\raw"
 
 Also run the scripts-reset check **before finishing**:
 ```powershell
-& "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\.github\skills\add-zone-data\_check_scripts_reset.ps1"
+& "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\.claude\skills\add-zone-data\_check_scripts_reset.ps1"
 ```
 
 If any evaluator fails: analyze output, fix the reported issues, re-run all three. Escalate to user after 3 failed attempts.

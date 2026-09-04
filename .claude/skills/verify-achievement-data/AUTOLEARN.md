@@ -7,7 +7,7 @@ How to extend the skill when you discover a new edge case (false positive, false
 The test harness is the evaluator. Run it with:
 
 ```powershell
-cd "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\.github\skills\verify-achievement-data"
+cd "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\.claude\skills\verify-achievement-data"
 .\Test-VerifyScript.ps1
 ```
 
@@ -28,7 +28,7 @@ If either check is wrong, the evaluator is miscalibrated — fix the script or f
 When you fix a detection gap, run:
 
 > ```powershell
-> cd "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\.github\skills\verify-achievement-data"
+> cd "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\.claude\skills\verify-achievement-data"
 > .\Test-VerifyScript.ps1
 > ```
 >

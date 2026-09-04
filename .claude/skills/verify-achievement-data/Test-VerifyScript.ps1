@@ -13,7 +13,7 @@
         fallback-build pass. Run WITHOUT -Build so auto-detection actually runs. Verifier must exit 0.
     Requires wow.tools.local running at http://localhost:5000 with both a wow_classic and a wow build loaded.
 .EXAMPLE
-    cd "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\.github\skills\verify-achievement-data"
+    cd "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\.claude\skills\verify-achievement-data"
     .\Test-VerifyScript.ps1
 #>
 [CmdletBinding()]
