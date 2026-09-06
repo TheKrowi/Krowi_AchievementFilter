@@ -102,7 +102,7 @@ KrowiAF.AchievementData["11_01_00"] = {   -- key = EE_PP_SS (expansion, major, m
 
 `DataAddons/Loaders/*.lua` (loaded last) prepend the processor function at index 1 of each chunk (e.g. `KrowiAF.AddEventData`). `Data/Data.lua`'s `Register*DataTasks` push each chunk into `TasksGroups`; the runner (`addon.StartTasksGroups`, `Globals.lua`) calls `chunk[1](unpack(rest))`. For achievements, `Data.lua` also inserts `{KrowiAF.SetAchievementPatch, major, minor, patch}` derived from the table key, and `Ach()` entries resolve to `KrowiAF.AddAchievementData`, which constructs `addon.Objects.Achievement`. Registering the same ID twice hits an `assert`, so each achievement lives in exactly one place: Shared (`DataAddons/Shared/EE_.../`, identical on both clients) or the Retail/Classic file (client-specific entries only). Classic-only patches are never migrated to Shared.
 
-Per-expansion folder contents: `AchievementData`, `CategoryData`, `ZoneData` (one per expansion, never per patch), `TooltipData`, `TransmogSetData`, `PetBattleLinkData`, `CustomCriteriaData`, `EventData`, `BuildVersionData`. `Data/Retail/ExportedUiMaps.lua` is a legacy zone fallback being migrated into `ZoneData` (see `.claude/skills/migrate-zone-fallbacks`).
+Per-expansion folder contents: `AchievementData`, `CategoryData`, `ZoneData` (one per expansion, never per patch), `TooltipData`, `TransmogSetData`, `PetBattleLinkData`, `CustomCriteriaData`, `EventData`, `BuildVersionData`.
 
 Format references with worked examples: `wiki/achievement-data/*.md`, `docs/how-to/*.md`, `Api/ApiDocumentation.lua`, and `DataAddons/Retail/11_TheWarWithin/` as the canonical V2 expansion.
 

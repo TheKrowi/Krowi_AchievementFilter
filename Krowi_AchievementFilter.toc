@@ -54,8 +54,6 @@ Gui\FilesClassic.xml [AllowLoadGameType wrath, cata, mists]
 
 Data\Files.xml
 
-Data\Retail\Files.xml [AllowLoadGameType mainline]
-
 DataAddons\Shared\Files.xml
 
 DataAddons\Retail\Files.xml [AllowLoadGameType mainline]
