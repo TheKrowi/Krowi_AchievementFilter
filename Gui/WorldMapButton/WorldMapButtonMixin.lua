@@ -64,6 +64,34 @@ function KrowiAF_WorldMapButtonMixin:OnHide()
 
 end
 
+-- Continent and world maps carry no zone data of their own (zone placement Rule 1, decision D2), so the button
+-- shows the union of the zones below them. Linked maps share one table and the same meta sits on many zones,
+-- so the union is de-duplicated on the achievement object. Every other map type stays the flat lookup that
+-- the Current Zone category uses as well.
+local function GetAchievementsForMap(mapID, mapInfo)
+    local mapType = mapInfo and mapInfo.mapType
+    if mapType ~= Enum.UIMapType.Continent and mapType ~= Enum.UIMapType.World then
+        return addon.GetAchievementsInZone(mapID, true)
+    end
+
+    local achievements, seen = {}, {}
+    local function Add(list)
+        for _, achievement in next, list do
+            if not seen[achievement] then
+                seen[achievement] = true
+                achievements[#achievements + 1] = achievement
+            end
+        end
+    end
+
+    Add(addon.GetAchievementsInZone(mapID, true))
+    local children = C_Map.GetMapChildrenInfo(mapID, Enum.UIMapType.Zone, true) or {}
+    for _, child in next, children do
+        Add(addon.GetAchievementsInZone(child.mapID, true))
+    end
+    return achievements
+end
+
 function KrowiAF_WorldMapButtonMixin:Refresh()
     if not addon.Options.db.profile.ShowWorldmapIcon then
         self:Hide();
@@ -72,13 +100,14 @@ function KrowiAF_WorldMapButtonMixin:Refresh()
     self:Show();
 
     local mapID = WorldMapFrame:GetMapID();
-    self.Achievements = addon.GetAchievementsInZone(mapID, true);
+    local mapInfo = C_Map.GetMapInfo(mapID)
+    self.Achievements = GetAchievementsForMap(mapID, mapInfo)
     local numOfAch, numOfCompAch, numOfNotObtAch = 0, 0, 0;
     for _, achievement in next, self.Achievements do
         numOfAch, numOfCompAch, numOfNotObtAch = addon.GetAchievementNumbers(addon.Filters.db.profile.SelectedZone, achievement, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
     end
 
-    self.Text = C_Map.GetMapInfo(mapID).name;
+    self.Text = mapInfo and mapInfo.name or ""
     self.NumOfAch, self.NumOfCompAch, self.NumOfNotObtAch = numOfAch, numOfCompAch, numOfNotObtAch;
     if self.NumOfAch > 0 then
         self:Enable();

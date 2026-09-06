@@ -676,7 +676,7 @@ When resuming work in a new chat, paste this report as context and reference the
 
 ## Follow-ups from the zone-data sweep (2026-09-06)
 
-Two code changes fell out of the zone placement rules work (rules in `.claude/skills/add-zone-data/SKILL.md`, decision record in `wiki/achievement-data/zone-data-format.md`). Both are runtime changes, not data.
+Two code changes fell out of the zone placement rules work (rules in `.claude/skills/add-zone-data/SKILL.md`, decision record in `wiki/achievement-data/zone-data-format.md`). Both are runtime changes, not data. **Both applied 2026-09-06** on the `chore/zone-sweep-followups` branch: item 1 removed the file, the now empty `Data/Retail/Files.xml` and its `.toc` line, the `Data.lua` call and the skill; item 2 added a `GetAchievementsForMap` helper in the mixin that unions the Zone-type descendants (`C_Map.GetMapChildrenInfo(mapID, Enum.UIMapType.Zone, true)`) for Continent and World maps. The text below is kept as the record of what was asked.
 
 ### 1. Retire the ExportedUiMaps fallback mechanism
 
