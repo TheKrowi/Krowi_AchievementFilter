@@ -47,7 +47,7 @@ foreach ($e in $zd.Entries) {
     $mapStr = $e.MapIds -join ', '
     foreach ($mapId in $e.MapIds) {
         $primary = ConvertTo-PrimaryMap $mapRef $mapId
-        if ($mapRef.Inactive.Contains($mapId)) { Add-Issue $e.File "line $($e.Line): map $mapId is inactive (verdict TaxiAndAdventure, Error or StartingZone) and should not be in ZoneData" }
+        if ($mapRef.Inactive.Contains($mapId)) { Add-Issue $e.File "line $($e.Line): map $mapId is inactive (verdict TaxiAndAdventure or Error) and should not be in ZoneData" }
         elseif (-not $mapRef.Names.ContainsKey($primary)) { Add-Issue $e.File "line $($e.Line): map $mapId (primary $primary) has no row in raw\MapVerifier.csv" }
     }
     # duplicates: written twice, or written directly and also brought in by a referenced table

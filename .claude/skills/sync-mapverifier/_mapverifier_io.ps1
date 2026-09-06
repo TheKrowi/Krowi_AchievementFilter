@@ -12,7 +12,9 @@ $MapVerifierColumns = @('id', 'name', 'mapType', 'parentMapID', 'verdict', 'expa
 $MapVerifierVerdicts = @('Zone', 'StartingZone', 'City', 'Continent', 'Dungeon', 'Raid', 'Delve', 'ClassHall', 'Battleground', 'Scenario', 'Error', 'TaxiAndAdventure', 'Skip')
 $MapVerifierExpansions = @('Vanilla', 'TBC', 'WotLK', 'Cata', 'MoP', 'WoD', 'Legion', 'BfA', 'SL', 'DF', 'TWW', 'Midnight', 'Cross')
 $MapVerifierSkipLike = @('Skip', 'TaxiAndAdventure', 'Error', 'StartingZone')       # not shown on the world map
-$MapVerifierInactiveLike = @('TaxiAndAdventure', 'Error', 'StartingZone')           # maps that must not appear in ZoneData
+$MapVerifierInactiveLike = @('TaxiAndAdventure', 'Error')                           # maps that must not appear in ZoneData
+# StartingZone maps may hold the achievements of their intro experience (decided 2026-09-05: Welcome to Draenor on the intro
+# Tanaan Jungle 577, Exile's Reach 14222 on 1409); they stay Skip-like for the world map.
 
 function ConvertFrom-CsvLine([string] $line) {
     # RFC 4180 style split: quoted fields may contain commas and doubled quotes

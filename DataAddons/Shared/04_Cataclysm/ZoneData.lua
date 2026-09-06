@@ -17,6 +17,8 @@ zoneData:Zone(337, { -- Zul'Gurub (dungeon)
     5744, -- Gurubashi Headhunter
     5768, -- Heroic: Zul'Gurub
     912, -- Elders of Eastern Kingdoms
+    913, -- To Honor One's Elders
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(206, { -- Twin Peaks (battleground)
@@ -41,6 +43,8 @@ zoneData:Zone(206, { -- Twin Peaks (battleground)
     5231, -- Double Jeopardy
     5552, -- Double Jeopardy
     5223, -- Master of Twin Peaks
+    8052, -- Khan
+    8055, -- Khan
 })
 
 zoneData:Zone(244, { -- Tol Barad (battleground)
@@ -98,12 +102,16 @@ zoneData:Zone(275, { -- The Battle for Gilneas (battleground)
     5257, -- Battle for Gilneas Assassin
     5262, -- Double Rainbow
     5258, -- Master of the Battle for Gilneas
+    8052, -- Khan
+    8055, -- Khan
 })
 
 zoneData:Zone(282, { -- Baradin Hold (raid)
     5416, -- Pit Lord Argaloth
     6045, -- Occu'thar
     6108, -- Alizabal
+    5489, -- Master of Tol Barad
+    5490, -- Master of Tol Barad
 })
 
 zoneData:Zone(338, { -- Molten Front (zone)
@@ -182,15 +190,10 @@ zoneData:Zone({10, 11}, { -- Northern Barrens (zone)
     6585, -- Kalimdor Safari
     6612, -- Kalimdor Tamer
     6602, -- Taming Kalimdor
-    6558, -- Local Pet Mauler
-    6559, -- Traveling Pet Mauler
-    6560, -- World Pet Mauler
     6607, -- Taming Azeroth
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     2556, -- Pest Control
     46, -- Universal Explorer
@@ -199,6 +202,17 @@ zoneData:Zone({10, 11}, { -- Northern Barrens (zone)
     965, -- Tricks and Treats of Kalimdor
     1026, -- Flame Keeper of Kalimdor
     1029, -- Extinguishing Kalimdor
+    971, -- Tricks and Treats of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    913, -- To Honor One's Elders
+    1678, -- Loremaster of Kalimdor
+    shared.OldWorldPetAchievements,
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
+    7520, -- The Loremaster
 })
 
 zoneData:Zone(50, { -- Northern Stranglethorn (zone)
@@ -235,6 +249,15 @@ zoneData:Zone(50, { -- Northern Stranglethorn (zone)
     1025, -- Flame Keeper of Eastern Kingdoms
     1028, -- Extinguishing Eastern Kingdoms
     1031, -- Extinguishing Eastern Kingdoms
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone({217, 1030, 1031}, { -- Ruins of Gilneas (zone)
@@ -250,34 +273,25 @@ zoneData:Zone(224, { -- Stranglethorn Vale (zone)
     6586, -- Eastern Kingdoms Safari
     6613, -- Eastern Kingdoms Tamer
     6603, -- Taming Eastern Kingdoms
-    6558, -- Local Pet Mauler
-    6559, -- Traveling Pet Mauler
-    6560, -- World Pet Mauler
     6607, -- Taming Azeroth
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     2556, -- Pest Control
     4827, -- Surveying the Damage
     46, -- Universal Explorer
+    shared.OldWorldPetAchievements,
 })
 
 zoneData:Zone(198, { -- Mount Hyjal (zone)
     7520, -- The Loremaster
     6585, -- Kalimdor Safari
     6612, -- Kalimdor Tamer
-    6558, -- Local Pet Mauler
-    6559, -- Traveling Pet Mauler
-    6560, -- World Pet Mauler
     6607, -- Taming Azeroth
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     2556, -- Pest Control
     4875, -- Loremaster of Cataclysm
@@ -302,6 +316,7 @@ zoneData:Zone(198, { -- Mount Hyjal (zone)
     4882, -- The Guardians of Hyjal
     7525, -- Taming Cataclysm
     46, -- Universal Explorer
+    shared.OldWorldPetAchievements,
 })
 
 zoneData:Zone(199, { -- Southern Barrens (zone)
@@ -317,15 +332,10 @@ zoneData:Zone(199, { -- Southern Barrens (zone)
     6585, -- Kalimdor Safari
     6612, -- Kalimdor Tamer
     6602, -- Taming Kalimdor
-    6558, -- Local Pet Mauler
-    6559, -- Traveling Pet Mauler
-    6560, -- World Pet Mauler
     6607, -- Taming Azeroth
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     2556, -- Pest Control
     4827, -- Surveying the Damage
@@ -336,6 +346,16 @@ zoneData:Zone(199, { -- Southern Barrens (zone)
     1026, -- Flame Keeper of Kalimdor
     1029, -- Extinguishing Kalimdor
     1032, -- Extinguishing Kalimdor
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    shared.OldWorldPetAchievements,
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone({201, 203, 204, 205}, { -- Vashj'ir (zone)
@@ -357,9 +377,6 @@ zoneData:Zone({201, 203, 204, 205}, { -- Vashj'ir (zone)
 
 zoneData:Zone({207, 208, 209}, { -- Deepholm (zone)
     7520, -- The Loremaster
-    6558, -- Local Pet Mauler
-    6559, -- Traveling Pet Mauler
-    6560, -- World Pet Mauler
     6607, -- Taming Azeroth
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
@@ -379,6 +396,7 @@ zoneData:Zone({207, 208, 209}, { -- Deepholm (zone)
     4883, -- Therazane
     7525, -- Taming Cataclysm
     46, -- Universal Explorer
+    shared.OldWorldPetAchievements,
 })
 
 zoneData:Zone(210, { -- The Cape of Stranglethorn (zone)
@@ -418,6 +436,17 @@ zoneData:Zone(210, { -- The Cape of Stranglethorn (zone)
     1025, -- Flame Keeper of Eastern Kingdoms
     1028, -- Extinguishing Eastern Kingdoms
     1031, -- Extinguishing Eastern Kingdoms
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    913, -- To Honor One's Elders
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1516, -- Accomplished Angler
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(249, { -- Uldum (zone)
@@ -425,15 +454,10 @@ zoneData:Zone(249, { -- Uldum (zone)
     7520, -- The Loremaster
     6585, -- Kalimdor Safari
     6612, -- Kalimdor Tamer
-    6558, -- Local Pet Mauler
-    6559, -- Traveling Pet Mauler
-    6560, -- World Pet Mauler
     6607, -- Taming Azeroth
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     4875, -- Loremaster of Cataclysm
     4868, -- Cataclysm Explorer
@@ -446,6 +470,7 @@ zoneData:Zone(249, { -- Uldum (zone)
     4884, -- Ramkahen
     7525, -- Taming Cataclysm
     46, -- Universal Explorer
+    shared.OldWorldPetAchievements,
 })
 
 zoneData:Zone(277, { -- Lost City of the Tol'vir (dungeon)
@@ -455,6 +480,9 @@ zoneData:Zone(277, { -- Lost City of the Tol'vir (dungeon)
     4848, -- Lost City of the Tol'vir
     5066, -- Heroic: Lost City of the Tol'vir
     41145, -- Protocol Inferno: Lost City of the Tol'vir
+    4844, -- Cataclysm Dungeon Hero
+    4845, -- Glory of the Cataclysm Hero
+    5506, -- Defender of a Shattered World
 })
 
 zoneData:Zone({283, 284}, { -- Blackrock Caverns (dungeon)
@@ -465,6 +493,9 @@ zoneData:Zone({283, 284}, { -- Blackrock Caverns (dungeon)
     4833, -- Blackrock Caverns
     5060, -- Heroic: Blackrock Caverns
     41139, -- Protocol Inferno: Blackrock Caverns
+    4844, -- Cataclysm Dungeon Hero
+    4845, -- Glory of the Cataclysm Hero
+    5506, -- Defender of a Shattered World
 })
 
 zoneData:Zone({285, 286}, { -- Blackwing Descent (raid)
@@ -483,6 +514,9 @@ zoneData:Zone({285, 286}, { -- Blackwing Descent (raid)
     5109, -- Heroic: Atramedes
     5108, -- Heroic: Maloriak
     5116, -- Heroic: Nefarian
+    4853, -- Glory of the Cataclysm Raider
+    5506, -- Defender of a Shattered World
+    11761, -- Azeroth's Next Top Model
 })
 
 zoneData:Zone(293, { -- Grim Batol (dungeon)
@@ -492,6 +526,15 @@ zoneData:Zone(293, { -- Grim Batol (dungeon)
     5062, -- Heroic: Grim Batol
     20588, -- Keystone Hero: Grim Batol
     41143, -- Protocol Inferno: Grim Batol
+    4844, -- Cataclysm Dungeon Hero
+    4845, -- Glory of the Cataclysm Hero
+    5506, -- Defender of a Shattered World
+    20523, -- The War Within Keystone Explorer: Season One
+    20524, -- The War Within Keystone Conqueror: Season One
+    20525, -- The War Within Keystone Master: Season One
+    20526, -- The War Within Keystone Hero: Season One
+    20589, -- Tempered Hero: The War Within Season 1
+    40723, -- Web-Wrapped in the Finest Silks
 })
 
 zoneData:Zone({294, 295, 296}, { -- The Bastion of Twilight (raid)
@@ -508,6 +551,9 @@ zoneData:Zone({294, 295, 296}, { -- The Bastion of Twilight (raid)
     5119, -- Heroic: Ascendant Council
     5120, -- Heroic: Cho'gall
     5121, -- Heroic: Sinestra
+    4853, -- Glory of the Cataclysm Raider
+    5506, -- Defender of a Shattered World
+    11761, -- Azeroth's Next Top Model
 })
 
 zoneData:Zone({297, 298, 299}, { -- Halls of Origination (dungeon)
@@ -519,6 +565,9 @@ zoneData:Zone({297, 298, 299}, { -- Halls of Origination (dungeon)
     5065, -- Heroic: Halls of Origination
     9924, -- Field Photographer
     41144, -- Protocol Inferno: Halls of Origination
+    4844, -- Cataclysm Dungeon Hero
+    4845, -- Glory of the Cataclysm Hero
+    5506, -- Defender of a Shattered World
 })
 
 zoneData:Zone({322, 323}, { -- Throne of the Tides (dungeon)
@@ -528,6 +577,15 @@ zoneData:Zone({322, 323}, { -- Throne of the Tides (dungeon)
     5061, -- Heroic: Throne of the Tides
     19082, -- Keystone Hero: Throne of the Tides
     41140, -- Protocol Inferno: Throne of the Tides
+    4844, -- Cataclysm Dungeon Hero
+    5506, -- Defender of a Shattered World
+    4845, -- Glory of the Cataclysm Hero
+    19009, -- Dragonflight Keystone Explorer: Season Three
+    19010, -- Dragonflight Keystone Conqueror: Season Three
+    19011, -- Dragonflight Keystone Master: Season Three
+    19012, -- Dragonflight Keystone Hero: Season Three
+    19396, -- Dragonflight Season 3 Master
+    19420, -- Dragonflight Season 3 Hero
 })
 
 zoneData:Zone(324, { -- The Stonecore (dungeon)
@@ -535,6 +593,9 @@ zoneData:Zone(324, { -- The Stonecore (dungeon)
     4846, -- The Stonecore
     5063, -- Heroic: The Stonecore
     41141, -- Protocol Inferno: The Stonecore
+    4844, -- Cataclysm Dungeon Hero
+    4845, -- Glory of the Cataclysm Hero
+    5506, -- Defender of a Shattered World
 })
 
 zoneData:Zone(325, { -- The Vortex Pinnacle (dungeon)
@@ -544,6 +605,17 @@ zoneData:Zone(325, { -- The Vortex Pinnacle (dungeon)
     5064, -- Heroic: The Vortex Pinnacle
     17847, -- Keystone Hero: The Vortex Pinnacle
     41142, -- Protocol Inferno: The Vortex Pinnacle
+    4844, -- Cataclysm Dungeon Hero
+    4845, -- Glory of the Cataclysm Hero
+    5506, -- Defender of a Shattered World
+    17842, -- Dragonflight Keystone Explorer: Season Two
+    17843, -- Dragonflight Keystone Conqueror: Season Two
+    17844, -- Dragonflight Keystone Master: Season Two
+    17845, -- Dragonflight Keystone Hero: Season Two
+    18542, -- Dragonflight Keystone Master: Season Two
+    17846, -- Smoldering Hero: Dragonflight Season 2
+    18027, -- Dragonflight Season 2 Master
+    18380, -- Dragonflight Season 2 Hero
 })
 
 zoneData:Zone(328, { -- Throne of the Four Winds (raid)
@@ -553,6 +625,8 @@ zoneData:Zone(328, { -- Throne of the Four Winds (raid)
     5123, -- Heroic: Al'Akir
     4851, -- Throne of the Four Winds
     12079, -- Raiding with Leashes V: Cuteaclysm
+    4853, -- Glory of the Cataclysm Raider
+    5506, -- Defender of a Shattered World
 })
 
 zoneData:Zone({367, 368, 369}, { -- Firelands (raid)
@@ -575,6 +649,8 @@ zoneData:Zone({367, 368, 369}, { -- Firelands (raid)
     5804, -- Heroic: Majordomo Fandral Staghelm
     5803, -- Heroic: Ragnaros
     5827, -- Avengers of Hyjal
+    5828, -- Glory of the Firelands Raider
+    11761, -- Azeroth's Next Top Model
 })
 
 zoneData:Zone({407, 408}, { -- Darkmoon Island (zone)
@@ -674,4 +750,6 @@ zoneData:Zone({409, 410, 411, 412, 413, 414, 415}, { -- Dragon Soul (raid)
     6114, -- Heroic: Warmaster Blackhorn
     6115, -- Heroic: Spine of Deathwing
     6116, -- Heroic: Madness of Deathwing
+    6169, -- Glory of the Dragon Soul Raider
+    11761, -- Azeroth's Next Top Model
 })

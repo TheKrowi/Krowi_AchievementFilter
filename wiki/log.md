@@ -22,3 +22,5 @@
 - Added: chaining mechanics (last record governs filter state; all records in tooltip)
 - Added: note on implicit start for cutoff patterns (BuildVersion.Id substitution)
 - Added: new Common Patterns examples for all new patterns
+## [2026-09-05] rewrite | Zone Data Format — builder syntax replaces the V1 table format; placement model (achievements now, criteria later); twelve placement rules with rationale; decision record D1 to D9; validation tooling incl. new raw/Evaluate-ZoneCriteria.ps1
+- Raw: raw/ZoneDataDecisions.md (Reconciliation sweep backlog), .claude/skills/add-zone-data/SKILL.md (binding rule text)

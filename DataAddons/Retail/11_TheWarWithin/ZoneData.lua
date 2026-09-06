@@ -152,6 +152,17 @@ zoneData:Zone({2213, 2216, 2255, 2256}, { -- Azj-Kahet (zone)
     40349, -- Azj-Kahet Reverse: Bronze
     40350, -- Azj-Kahet Reverse: Silver
     40351, -- Azj-Kahet Reverse: Gold
+    20596, -- Loremaster of Khaz Algar
+    40097, -- Ruffious's Bid
+    40231, -- The War Within Pathfinder
+    40352, -- Khaz Algar Completionist: Bronze
+    40353, -- Khaz Algar Completionist: Silver
+    40354, -- Khaz Algar Completionist: Gold
+    40702, -- Khaz Algar Glyph Hunter
+    40790, -- Khaz Algar Explorer
+    41201, -- You Xal Not Pass
+    41555, -- All That Khaz
+    61451, -- Worldsoul-Searching
 })
 
 zoneData:Zone(2345, { -- Deephaul Ravine (battleground)
@@ -189,6 +200,18 @@ zoneData:Zone(2214, { -- The Ringing Deeps (zone)
     40331, -- The Ringing Deeps Reverse: Bronze
     40332, -- The Ringing Deeps Reverse: Silver
     40333, -- The Ringing Deeps Reverse: Gold
+    41186, -- Slate of the Union
+    20596, -- Loremaster of Khaz Algar
+    40097, -- Ruffious's Bid
+    40231, -- The War Within Pathfinder
+    40352, -- Khaz Algar Completionist: Bronze
+    40353, -- Khaz Algar Completionist: Silver
+    40354, -- Khaz Algar Completionist: Gold
+    40702, -- Khaz Algar Glyph Hunter
+    40790, -- Khaz Algar Explorer
+    41201, -- You Xal Not Pass
+    41555, -- All That Khaz
+    61451, -- Worldsoul-Searching
 })
 
 zoneData:Zone(2215, { -- Hallowfall (zone)
@@ -224,6 +247,17 @@ zoneData:Zone(2215, { -- Hallowfall (zone)
     40340, -- Hallowfall Reverse: Bronze
     40341, -- Hallowfall Reverse: Silver
     40342, -- Hallowfall Reverse: Gold
+    20596, -- Loremaster of Khaz Algar
+    40097, -- Ruffious's Bid
+    40231, -- The War Within Pathfinder
+    40352, -- Khaz Algar Completionist: Bronze
+    40353, -- Khaz Algar Completionist: Silver
+    40354, -- Khaz Algar Completionist: Gold
+    40702, -- Khaz Algar Glyph Hunter
+    40790, -- Khaz Algar Explorer
+    41201, -- You Xal Not Pass
+    41555, -- All That Khaz
+    61451, -- Worldsoul-Searching
 })
 
 zoneData:Zone({2248, 2328}, { -- Isle of Dorn (zone)
@@ -250,6 +284,17 @@ zoneData:Zone({2248, 2328}, { -- Isle of Dorn (zone)
     275, -- Veteran Nanny
     40859, -- We're Here All Night
     40860, -- A Star of Dorn
+    20596, -- Loremaster of Khaz Algar
+    40097, -- Ruffious's Bid
+    40231, -- The War Within Pathfinder
+    40352, -- Khaz Algar Completionist: Bronze
+    40353, -- Khaz Algar Completionist: Silver
+    40354, -- Khaz Algar Completionist: Gold
+    40702, -- Khaz Algar Glyph Hunter
+    40790, -- Khaz Algar Explorer
+    41201, -- You Xal Not Pass
+    41555, -- All That Khaz
+    61451, -- Worldsoul-Searching
 })
 
 zoneData:Zone(2249, { -- Fungal Folly (delve)
@@ -258,6 +303,7 @@ zoneData:Zone(2249, { -- Fungal Folly (delve)
     delvesS1,
     delvesS2Progress,
     delvesS3Progress,
+    61451, -- Worldsoul-Searching
 })
 
 zoneData:Zone(2250, { -- Kriegval's Rest (delve)
@@ -266,6 +312,7 @@ zoneData:Zone(2250, { -- Kriegval's Rest (delve)
     delvesS1,
     delvesS2Progress,
     delvesS3Progress,
+    61451, -- Worldsoul-Searching
 })
 
 zoneData:Zone(2251, { -- The Waterworks (delve)
@@ -274,6 +321,7 @@ zoneData:Zone(2251, { -- The Waterworks (delve)
     delvesS1,
     delvesS2Progress,
     delvesS3Progress,
+    61451, -- Worldsoul-Searching
 })
 
 zoneData:Zone({2259, 2314}, { -- Tak-Rethan Abyss (delve)
@@ -282,6 +330,7 @@ zoneData:Zone({2259, 2314}, { -- Tak-Rethan Abyss (delve)
     delvesS1,
     delvesS2Progress,
     delvesS3Progress,
+    61451, -- Worldsoul-Searching
 })
 
 zoneData:Zone(2269, { -- Earthcrawl Mines (delve)
@@ -290,6 +339,7 @@ zoneData:Zone(2269, { -- Earthcrawl Mines (delve)
     delvesS1,
     delvesS2Progress,
     delvesS3Progress,
+    61451, -- Worldsoul-Searching
 })
 
 zoneData:Zone(2277, { -- Nightfall Sanctum (delve)
@@ -298,6 +348,7 @@ zoneData:Zone(2277, { -- Nightfall Sanctum (delve)
     delvesS1,
     delvesS2Progress,
     delvesS3Progress,
+    61451, -- Worldsoul-Searching
 })
 
 zoneData:Zone({2291, 2292, 2293, 2294, 2295, 2296}, { -- Nerub-ar Palace (raid)
@@ -329,6 +380,8 @@ zoneData:Zone({2291, 2292, 2293, 2294, 2295, 2296}, { -- Nerub-ar Palace (raid)
     40241, -- Mythic: Nexus-Princess Ky'veza
     40242, -- Mythic: The Silken Court
     40243, -- Mythic: Queen Ansurek
+    11761, -- Azeroth's Next Top Model
+    61451, -- Worldsoul-Searching
 })
 
 zoneData:Zone(2299, { -- The Underkeep (delve)
@@ -337,6 +390,7 @@ zoneData:Zone(2299, { -- The Underkeep (delve)
     delvesS1,
     delvesS2Progress,
     delvesS3Progress,
+    61451, -- Worldsoul-Searching
 })
 
 zoneData:Zone({2300, 2301}, { -- The Sinkhole (delve)
@@ -345,6 +399,7 @@ zoneData:Zone({2300, 2301}, { -- The Sinkhole (delve)
     delvesS1,
     delvesS2Progress,
     delvesS3Progress,
+    61451, -- Worldsoul-Searching
 })
 
 zoneData:Zone(2302, { -- The Dread Pit (delve)
@@ -353,6 +408,7 @@ zoneData:Zone(2302, { -- The Dread Pit (delve)
     delvesS1,
     delvesS2Progress,
     delvesS3Progress,
+    61451, -- Worldsoul-Searching
 })
 
 zoneData:Zone(2303, { -- Darkflame Cleft (dungeon)
@@ -360,6 +416,19 @@ zoneData:Zone(2303, { -- Darkflame Cleft (dungeon)
     40428, -- Heroic: Darkflame Cleft
     40429, -- Mythic: Darkflame Cleft
     20584, -- Keystone Hero: Darkflame Cleft
+    61565, -- War Within Dungeon Hero
+    61566, -- Glory of the War Within Hero
+    40949, -- The War Within Keystone Explorer: Season Two
+    40950, -- The War Within Keystone Conqueror: Season Two
+    41533, -- The War Within Keystone Master: Season Two
+    40952, -- The War Within Keystone Hero: Season Two
+    40951, -- The War Within Keystone Legend: Season Two
+    42139, -- The Enterprising Tank
+    42141, -- The Enterprising Healer
+    42144, -- The Enterprising Damage Dealer
+    42148, -- The Enterprising Dungeon Master
+    40954, -- Enterprising Hero: The War Within Season Two
+    41665, -- Dressed to the Mines
 })
 
 zoneData:Zone({2308, 2309}, { -- Priory of the Sacred Flame (dungeon)
@@ -367,6 +436,49 @@ zoneData:Zone({2308, 2309}, { -- Priory of the Sacred Flame (dungeon)
     40592, -- Heroic: Priory of the Sacred Flame
     40596, -- Mythic: Priory of the Sacred Flame
     20581, -- Keystone Hero: Priory of the Sacred Flame
+    61565, -- War Within Dungeon Hero
+    61566, -- Glory of the War Within Hero
+    40949, -- The War Within Keystone Explorer: Season Two
+    40950, -- The War Within Keystone Conqueror: Season Two
+    41533, -- The War Within Keystone Master: Season Two
+    40952, -- The War Within Keystone Hero: Season Two
+    40951, -- The War Within Keystone Legend: Season Two
+    42139, -- The Enterprising Tank
+    42141, -- The Enterprising Healer
+    42144, -- The Enterprising Damage Dealer
+    42148, -- The Enterprising Dungeon Master
+    40954, -- Enterprising Hero: The War Within Season Two
+    42149, -- The War Within Season 3: Resilient Keystone 12
+    42150, -- The War Within Season 3: Resilient Keystone 13
+    42151, -- The War Within Season 3: Resilient Keystone 14
+    42152, -- The War Within Season 3: Resilient Keystone 15
+    42153, -- The War Within Season 3: Resilient Keystone 16
+    42154, -- The War Within Season 3: Resilient Keystone 17
+    42155, -- The War Within Season 3: Resilient Keystone 18
+    42156, -- The War Within Season 3: Resilient Keystone 19
+    42157, -- The War Within Season 3: Resilient Keystone 20
+    42158, -- The War Within Season 3: Resilient Keystone 21
+    42159, -- The War Within Season 3: Resilient Keystone 22
+    42160, -- The War Within Season 3: Resilient Keystone 23
+    42161, -- The War Within Season 3: Resilient Keystone 24
+    42162, -- The War Within Season 3: Resilient Keystone 25
+    42802, -- The War Within Season 3: Resilient Keystone 26
+    42803, -- The War Within Season 3: Resilient Keystone 27
+    42804, -- The War Within Season 3: Resilient Keystone 28
+    42805, -- The War Within Season 3: Resilient Keystone 29
+    42806, -- The War Within Season 3: Resilient Keystone 30
+    42169, -- The War Within Keystone Explorer: Season Three
+    42170, -- The War Within Keystone Conqueror: Season Three
+    41973, -- The War Within Keystone Master: Season Three
+    42171, -- The War Within Keystone Hero: Season Three
+    42172, -- The War Within Keystone Legend: Season Three
+    61874, -- The Unbound Tank
+    61875, -- The Unbound Healer
+    61876, -- The Unbound Damage Dealer
+    61877, -- The Unbound Dungeon Master
+    42174, -- Unbound Hero: The War Within Season Three
+    41665, -- Dressed to the Mines
+    42325, -- Void Wear Prohibited
 })
 
 zoneData:Zone(2310, { -- Skittering Breach (delve)
@@ -375,6 +487,7 @@ zoneData:Zone(2310, { -- Skittering Breach (delve)
     delvesS1,
     delvesS2Progress,
     delvesS3Progress,
+    61451, -- Worldsoul-Searching
 })
 
 zoneData:Zone(2312, { -- Mycomancer Cavern (delve)
@@ -383,6 +496,7 @@ zoneData:Zone(2312, { -- Mycomancer Cavern (delve)
     delvesS1,
     delvesS2Progress,
     delvesS3Progress,
+    61451, -- Worldsoul-Searching
 })
 
 zoneData:Zone({2315, 2316, 2317, 2318, 2319, 2320}, { -- The Rookery (dungeon)
@@ -390,6 +504,19 @@ zoneData:Zone({2315, 2316, 2317, 2318, 2319, 2320}, { -- The Rookery (dungeon)
     40637, -- Heroic: The Rookery
     40642, -- Mythic: The Rookery
     20579, -- Keystone Hero: The Rookery
+    61565, -- War Within Dungeon Hero
+    61566, -- Glory of the War Within Hero
+    40949, -- The War Within Keystone Explorer: Season Two
+    40950, -- The War Within Keystone Conqueror: Season Two
+    41533, -- The War Within Keystone Master: Season Two
+    40952, -- The War Within Keystone Hero: Season Two
+    40951, -- The War Within Keystone Legend: Season Two
+    42139, -- The Enterprising Tank
+    42141, -- The Enterprising Healer
+    42144, -- The Enterprising Damage Dealer
+    42148, -- The Enterprising Dungeon Master
+    40954, -- Enterprising Hero: The War Within Season Two
+    41665, -- Dressed to the Mines
 })
 
 zoneData:Zone(2335, { -- Cinderbrew Meadery (dungeon)
@@ -397,6 +524,19 @@ zoneData:Zone(2335, { -- Cinderbrew Meadery (dungeon)
     40363, -- Heroic: Cinderbrew Meadery
     40366, -- Mythic: Cinderbrew Meadery
     20583, -- Keystone Hero: Cinderbrew Meadery
+    61565, -- War Within Dungeon Hero
+    61566, -- Glory of the War Within Hero
+    40949, -- The War Within Keystone Explorer: Season Two
+    40950, -- The War Within Keystone Conqueror: Season Two
+    41533, -- The War Within Keystone Master: Season Two
+    40952, -- The War Within Keystone Hero: Season Two
+    40951, -- The War Within Keystone Legend: Season Two
+    42139, -- The Enterprising Tank
+    42141, -- The Enterprising Healer
+    42144, -- The Enterprising Damage Dealer
+    42148, -- The Enterprising Dungeon Master
+    40954, -- Enterprising Hero: The War Within Season Two
+    41665, -- Dressed to the Mines
 })
 
 zoneData:Zone(2341, { -- The Stonevault (dungeon)
@@ -404,6 +544,14 @@ zoneData:Zone(2341, { -- The Stonevault (dungeon)
     40644, -- Heroic: The Stonevault
     40648, -- Mythic: The Stonevault
     20580, -- Keystone Hero: The Stonevault
+    61565, -- War Within Dungeon Hero
+    61566, -- Glory of the War Within Hero
+    20523, -- The War Within Keystone Explorer: Season One
+    20524, -- The War Within Keystone Conqueror: Season One
+    20525, -- The War Within Keystone Master: Season One
+    20526, -- The War Within Keystone Hero: Season One
+    20589, -- Tempered Hero: The War Within Season 1
+    40723, -- Web-Wrapped in the Finest Silks
 })
 
 zoneData:Zone({2343, 2344}, { -- City of Threads (dungeon)
@@ -411,6 +559,14 @@ zoneData:Zone({2343, 2344}, { -- City of Threads (dungeon)
     40377, -- Heroic: City of Threads
     40379, -- Mythic: City of Threads
     20582, -- Keystone Hero: City of Threads
+    61565, -- War Within Dungeon Hero
+    61566, -- Glory of the War Within Hero
+    20523, -- The War Within Keystone Explorer: Season One
+    20524, -- The War Within Keystone Conqueror: Season One
+    20525, -- The War Within Keystone Master: Season One
+    20526, -- The War Within Keystone Hero: Season One
+    20589, -- Tempered Hero: The War Within Season 1
+    40723, -- Web-Wrapped in the Finest Silks
 })
 
 zoneData:Zone(2346, { -- Undermine (zone)
@@ -447,6 +603,7 @@ zoneData:Zone(2346, { -- Undermine (zone)
     41081, -- Undermine Breaknecking: Bronze
     41083, -- Undermine Breaknecking: Silver
     41084, -- Undermine Breaknecking: Gold
+    61451, -- Worldsoul-Searching
 })
 
 zoneData:Zone({2313, 2347}, { -- The Spiral Weave (delve)
@@ -455,6 +612,7 @@ zoneData:Zone({2313, 2347}, { -- The Spiral Weave (delve)
     delvesS1,
     delvesS2Progress,
     delvesS3Progress,
+    61451, -- Worldsoul-Searching
 })
 
 zoneData:Zone(2348, { -- Zekvir's Lair (delve)
@@ -463,6 +621,7 @@ zoneData:Zone(2348, { -- Zekvir's Lair (delve)
     40431, -- Hunting the Hunter
     40433, -- Let Me Solo Him: Zekvir
     delves,
+    61451, -- Worldsoul-Searching
 })
 
 zoneData:Zone({2357, 2358}, { -- Ara-Kara, City of Echoes (dungeon)
@@ -470,6 +629,44 @@ zoneData:Zone({2357, 2358}, { -- Ara-Kara, City of Echoes (dungeon)
     40374, -- Heroic: Ara-Kara, City of Echoes
     40375, -- Mythic: Ara-Kara, City of Echoes
     20586, -- Keystone Hero: Ara-Kara, City of Echoes
+    61565, -- War Within Dungeon Hero
+    61566, -- Glory of the War Within Hero
+    20523, -- The War Within Keystone Explorer: Season One
+    20524, -- The War Within Keystone Conqueror: Season One
+    20525, -- The War Within Keystone Master: Season One
+    20526, -- The War Within Keystone Hero: Season One
+    20589, -- Tempered Hero: The War Within Season 1
+    42149, -- The War Within Season 3: Resilient Keystone 12
+    42150, -- The War Within Season 3: Resilient Keystone 13
+    42151, -- The War Within Season 3: Resilient Keystone 14
+    42152, -- The War Within Season 3: Resilient Keystone 15
+    42153, -- The War Within Season 3: Resilient Keystone 16
+    42154, -- The War Within Season 3: Resilient Keystone 17
+    42155, -- The War Within Season 3: Resilient Keystone 18
+    42156, -- The War Within Season 3: Resilient Keystone 19
+    42157, -- The War Within Season 3: Resilient Keystone 20
+    42158, -- The War Within Season 3: Resilient Keystone 21
+    42159, -- The War Within Season 3: Resilient Keystone 22
+    42160, -- The War Within Season 3: Resilient Keystone 23
+    42161, -- The War Within Season 3: Resilient Keystone 24
+    42162, -- The War Within Season 3: Resilient Keystone 25
+    42802, -- The War Within Season 3: Resilient Keystone 26
+    42803, -- The War Within Season 3: Resilient Keystone 27
+    42804, -- The War Within Season 3: Resilient Keystone 28
+    42805, -- The War Within Season 3: Resilient Keystone 29
+    42806, -- The War Within Season 3: Resilient Keystone 30
+    42169, -- The War Within Keystone Explorer: Season Three
+    42170, -- The War Within Keystone Conqueror: Season Three
+    41973, -- The War Within Keystone Master: Season Three
+    42171, -- The War Within Keystone Hero: Season Three
+    42172, -- The War Within Keystone Legend: Season Three
+    61874, -- The Unbound Tank
+    61875, -- The Unbound Healer
+    61876, -- The Unbound Damage Dealer
+    61877, -- The Unbound Dungeon Master
+    42174, -- Unbound Hero: The War Within Season Three
+    40723, -- Web-Wrapped in the Finest Silks
+    42325, -- Void Wear Prohibited
 })
 
 zoneData:Zone(2359, { -- The Dawnbreaker (dungeon)
@@ -477,6 +674,44 @@ zoneData:Zone(2359, { -- The Dawnbreaker (dungeon)
     40601, -- Heroic: The Dawnbreaker
     40604, -- Mythic: The Dawnbreaker
     20585, -- Keystone Hero: The Dawnbreaker
+    61565, -- War Within Dungeon Hero
+    61566, -- Glory of the War Within Hero
+    20523, -- The War Within Keystone Explorer: Season One
+    20524, -- The War Within Keystone Conqueror: Season One
+    20525, -- The War Within Keystone Master: Season One
+    20526, -- The War Within Keystone Hero: Season One
+    20589, -- Tempered Hero: The War Within Season 1
+    42149, -- The War Within Season 3: Resilient Keystone 12
+    42150, -- The War Within Season 3: Resilient Keystone 13
+    42151, -- The War Within Season 3: Resilient Keystone 14
+    42152, -- The War Within Season 3: Resilient Keystone 15
+    42153, -- The War Within Season 3: Resilient Keystone 16
+    42154, -- The War Within Season 3: Resilient Keystone 17
+    42155, -- The War Within Season 3: Resilient Keystone 18
+    42156, -- The War Within Season 3: Resilient Keystone 19
+    42157, -- The War Within Season 3: Resilient Keystone 20
+    42158, -- The War Within Season 3: Resilient Keystone 21
+    42159, -- The War Within Season 3: Resilient Keystone 22
+    42160, -- The War Within Season 3: Resilient Keystone 23
+    42161, -- The War Within Season 3: Resilient Keystone 24
+    42162, -- The War Within Season 3: Resilient Keystone 25
+    42802, -- The War Within Season 3: Resilient Keystone 26
+    42803, -- The War Within Season 3: Resilient Keystone 27
+    42804, -- The War Within Season 3: Resilient Keystone 28
+    42805, -- The War Within Season 3: Resilient Keystone 29
+    42806, -- The War Within Season 3: Resilient Keystone 30
+    42169, -- The War Within Keystone Explorer: Season Three
+    42170, -- The War Within Keystone Conqueror: Season Three
+    41973, -- The War Within Keystone Master: Season Three
+    42171, -- The War Within Keystone Hero: Season Three
+    42172, -- The War Within Keystone Legend: Season Three
+    61874, -- The Unbound Tank
+    61875, -- The Unbound Healer
+    61876, -- The Unbound Damage Dealer
+    61877, -- The Unbound Dungeon Master
+    42174, -- Unbound Hero: The War Within Season Three
+    40723, -- Web-Wrapped in the Finest Silks
+    42325, -- Void Wear Prohibited
 })
 
 zoneData:Zone({2369, 2375}, { -- Siren Isle (zone)
@@ -488,6 +723,8 @@ zoneData:Zone({2369, 2375}, { -- Siren Isle (zone)
     41050, -- A Choir of Citrines
     41131, -- Treasures of the Storm
     41133, -- Isle Remember You
+    41201, -- You Xal Not Pass
+    61451, -- Worldsoul-Searching
 })
 
 zoneData:Zone({2371, 2472, 2477}, { -- K'aresh (zone)
@@ -519,6 +756,7 @@ zoneData:Zone({2371, 2472, 2477}, { -- K'aresh (zone)
     42022, -- A Trusted Partner
     41778, -- Brokers Don't Care How You Win
     60889, -- Unraveled and Persevering
+    61451, -- Worldsoul-Searching
 })
 
 zoneData:Zone({2387, 2388}, { -- Operation: Floodgate (dungeon)
@@ -526,6 +764,49 @@ zoneData:Zone({2387, 2388}, { -- Operation: Floodgate (dungeon)
     41340, -- Heroic: Operation: Floodgate
     41341, -- Mythic: Operation: Floodgate
     41348, -- Keystone Hero: Operation: Floodgate
+    61565, -- War Within Dungeon Hero
+    61566, -- Glory of the War Within Hero
+    40949, -- The War Within Keystone Explorer: Season Two
+    40950, -- The War Within Keystone Conqueror: Season Two
+    41533, -- The War Within Keystone Master: Season Two
+    40952, -- The War Within Keystone Hero: Season Two
+    40951, -- The War Within Keystone Legend: Season Two
+    42139, -- The Enterprising Tank
+    42141, -- The Enterprising Healer
+    42144, -- The Enterprising Damage Dealer
+    42148, -- The Enterprising Dungeon Master
+    40954, -- Enterprising Hero: The War Within Season Two
+    42149, -- The War Within Season 3: Resilient Keystone 12
+    42150, -- The War Within Season 3: Resilient Keystone 13
+    42151, -- The War Within Season 3: Resilient Keystone 14
+    42152, -- The War Within Season 3: Resilient Keystone 15
+    42153, -- The War Within Season 3: Resilient Keystone 16
+    42154, -- The War Within Season 3: Resilient Keystone 17
+    42155, -- The War Within Season 3: Resilient Keystone 18
+    42156, -- The War Within Season 3: Resilient Keystone 19
+    42157, -- The War Within Season 3: Resilient Keystone 20
+    42158, -- The War Within Season 3: Resilient Keystone 21
+    42159, -- The War Within Season 3: Resilient Keystone 22
+    42160, -- The War Within Season 3: Resilient Keystone 23
+    42161, -- The War Within Season 3: Resilient Keystone 24
+    42162, -- The War Within Season 3: Resilient Keystone 25
+    42802, -- The War Within Season 3: Resilient Keystone 26
+    42803, -- The War Within Season 3: Resilient Keystone 27
+    42804, -- The War Within Season 3: Resilient Keystone 28
+    42805, -- The War Within Season 3: Resilient Keystone 29
+    42806, -- The War Within Season 3: Resilient Keystone 30
+    42169, -- The War Within Keystone Explorer: Season Three
+    42170, -- The War Within Keystone Conqueror: Season Three
+    41973, -- The War Within Keystone Master: Season Three
+    42171, -- The War Within Keystone Hero: Season Three
+    42172, -- The War Within Keystone Legend: Season Three
+    61874, -- The Unbound Tank
+    61875, -- The Unbound Healer
+    61876, -- The Unbound Damage Dealer
+    61877, -- The Unbound Dungeon Master
+    42174, -- Unbound Hero: The War Within Season Three
+    41665, -- Dressed to the Mines
+    42325, -- Void Wear Prohibited
 })
 
 zoneData:Zone(2396, { -- Excavation Site 9 (delve)
@@ -533,6 +814,7 @@ zoneData:Zone(2396, { -- Excavation Site 9 (delve)
     41100, -- Excavation Site 9 Discoveries
     delvesS2,
     delvesS3Progress,
+    61451, -- Worldsoul-Searching
 })
 
 zoneData:Zone({1469, 1470, 2403, 2404}, { -- Vision of Orgrimmar / Vision of Stormwind
@@ -604,6 +886,8 @@ zoneData:Zone({2406, 2407, 2408, 2409, 2411, 2428}, { -- Liberation of Undermine
     41235, -- Mythic: Mug'Zee, Heads of Security
     41236, -- Mythic: Chrome King Gallywix
     60939, -- Bringing Down the House
+    11761, -- Azeroth's Next Top Model
+    61451, -- Worldsoul-Searching
 })
 
 zoneData:Zone({2420, 2421, 2422, 2423}, { -- Sidestreet Sluice (delve)
@@ -611,6 +895,7 @@ zoneData:Zone({2420, 2421, 2422, 2423}, { -- Sidestreet Sluice (delve)
     41101, -- Sidestreet Sluice Discoveries
     delvesS2,
     delvesS3Progress,
+    61451, -- Worldsoul-Searching
 })
 
 zoneData:Zone({2425, 2426}, { -- Demolition Dome (delve)
@@ -620,6 +905,7 @@ zoneData:Zone({2425, 2426}, { -- Demolition Dome (delve)
     41210, -- Let Me Solo Him: The Underpin
     41531, -- The Hataclysm
     delves,
+    61451, -- Worldsoul-Searching
 })
 
 zoneData:Zone(2447, { -- Dastardly Dome
@@ -649,12 +935,45 @@ zoneData:Zone(2449, { -- Eco-Dome Al'dani (dungeon)
     42781, -- Heroic: Eco-Dome Al'dani
     42782, -- Mythic: Eco-Dome Al'dani
     42173, -- Keystone Hero: Eco-Dome Al'dani
+    61565, -- War Within Dungeon Hero
+    61566, -- Glory of the War Within Hero
+    42149, -- The War Within Season 3: Resilient Keystone 12
+    42150, -- The War Within Season 3: Resilient Keystone 13
+    42151, -- The War Within Season 3: Resilient Keystone 14
+    42152, -- The War Within Season 3: Resilient Keystone 15
+    42153, -- The War Within Season 3: Resilient Keystone 16
+    42154, -- The War Within Season 3: Resilient Keystone 17
+    42155, -- The War Within Season 3: Resilient Keystone 18
+    42156, -- The War Within Season 3: Resilient Keystone 19
+    42157, -- The War Within Season 3: Resilient Keystone 20
+    42158, -- The War Within Season 3: Resilient Keystone 21
+    42159, -- The War Within Season 3: Resilient Keystone 22
+    42160, -- The War Within Season 3: Resilient Keystone 23
+    42161, -- The War Within Season 3: Resilient Keystone 24
+    42162, -- The War Within Season 3: Resilient Keystone 25
+    42802, -- The War Within Season 3: Resilient Keystone 26
+    42803, -- The War Within Season 3: Resilient Keystone 27
+    42804, -- The War Within Season 3: Resilient Keystone 28
+    42805, -- The War Within Season 3: Resilient Keystone 29
+    42806, -- The War Within Season 3: Resilient Keystone 30
+    42169, -- The War Within Keystone Explorer: Season Three
+    42170, -- The War Within Keystone Conqueror: Season Three
+    41973, -- The War Within Keystone Master: Season Three
+    42171, -- The War Within Keystone Hero: Season Three
+    42172, -- The War Within Keystone Legend: Season Three
+    61874, -- The Unbound Tank
+    61875, -- The Unbound Healer
+    61876, -- The Unbound Damage Dealer
+    61877, -- The Unbound Dungeon Master
+    42174, -- Unbound Hero: The War Within Season Three
+    42325, -- Void Wear Prohibited
 })
 
 zoneData:Zone({2452, 2453, 2454, 2455, 2476}, { -- Archival Assault (delve)
     42771, -- Archival Assault Stories
     42679, -- Archival Assault Discoveries
     delvesS3,
+    61451, -- Worldsoul-Searching
 })
 
 zoneData:Zone({2460, 2461, 2462, 2463, 2464, 2465, 2466, 2467, 2468, 2469, 2470, 2471}, { -- Manaforge Omega (raid)
@@ -686,6 +1005,9 @@ zoneData:Zone({2460, 2461, 2462, 2463, 2464, 2465, 2466, 2467, 2468, 2469, 2470,
     41610, -- Mythic: Nexus-King Salhadaar
     41611, -- Mythic: Dimensius, the All-Devouring
     60940, -- Vandals! In! Space!
+    11761, -- Azeroth's Next Top Model
+    41597, -- Glory of the Omega Raider
+    61451, -- Worldsoul-Searching
 })
 
 zoneData:Zone(2484, { -- Voidrazor Sanctuary (delve)
@@ -695,4 +1017,5 @@ zoneData:Zone(2484, { -- Voidrazor Sanctuary (delve)
     42194, -- Pruning the Princess
     42190, -- Let Me Solo Her: Nexus-Princess Ky'veza
     delves,
+    61451, -- Worldsoul-Searching
 })

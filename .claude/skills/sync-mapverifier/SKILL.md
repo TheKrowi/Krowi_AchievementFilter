@@ -17,7 +17,7 @@ id,name,mapType,parentMapID,verdict,expansion,link,parentOverride,nameOverride,c
 ```
 
 - One row per map id the game or the saved variable knows, ascending. An unreviewed id has an empty verdict.
-- `verdict`: Zone, StartingZone, City, Continent, Dungeon, Raid, Delve, ClassHall, Battleground, Scenario, Error, TaxiAndAdventure, Skip. Skip-like (Skip, TaxiAndAdventure, Error, StartingZone) never show on the world map; inactive-like (TaxiAndAdventure, Error, StartingZone) must not appear in ZoneData.
+- `verdict`: Zone, StartingZone, City, Continent, Dungeon, Raid, Delve, ClassHall, Battleground, Scenario, Error, TaxiAndAdventure, Skip. Skip-like (Skip, TaxiAndAdventure, Error, StartingZone) never show on the world map; inactive-like (TaxiAndAdventure, Error) must not appear in ZoneData. A StartingZone map may hold the achievements of its intro experience (decided 2026-09-05), which is why it is not inactive-like.
 - `link`: the primary map id this sub-zone belongs to. A link group is the primary plus every row linking to it; a target may not itself be linked. Zone entries list whole groups (add-zone-data Rule 1).
 - `name`, `mapType` (numeric `C_Map` type: 2 continent, 3 zone, 4 dungeon, 5 micro, 6 orphan) and `parentMapID` come from the game and are ignored on import.
 - CRLF, no final newline, UTF-8 without BOM, quoting only where needed. `Sync-MapVerifier.ps1` produces exactly this form; `Check-Repo.ps1` (rule `mapverifier`) refuses anything else.

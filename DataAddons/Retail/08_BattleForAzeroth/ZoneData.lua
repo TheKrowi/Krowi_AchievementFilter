@@ -59,6 +59,15 @@ zoneData:Zone({862, 1173, 1174, 1176, 1177}, { -- Zuldazar (zone)
     13402, -- Frontline Slayer
     13403, -- Frontline Slayer
     12571, -- Bounty Hunting
+    13924, -- The Fourth War
+    13925, -- The Fourth War
+    40957, -- Maximum Effort
+    12555, -- Welcome to Zandalar
+    14183, -- Conspicuous Consumption
+    40953, -- A Farewell to Arms
+    40955, -- War Stories
+    40956, -- I'm On Island Time
+    41202, -- Hot Tropic
 })
 
 zoneData:Zone(863, { -- Nazmir (zone)
@@ -112,6 +121,15 @@ zoneData:Zone(863, { -- Nazmir (zone)
     13402, -- Frontline Slayer
     13403, -- Frontline Slayer
     12571, -- Bounty Hunting
+    13924, -- The Fourth War
+    13925, -- The Fourth War
+    40957, -- Maximum Effort
+    13263, -- The Shadow Hunter
+    40953, -- A Farewell to Arms
+    40955, -- War Stories
+    40956, -- I'm On Island Time
+    41202, -- Hot Tropic
+    41203, -- Bwon Voyage
 })
 
 zoneData:Zone(864, { -- Vol'dun (zone)
@@ -161,92 +179,13 @@ zoneData:Zone(864, { -- Vol'dun (zone)
     13402, -- Frontline Slayer
     13403, -- Frontline Slayer
     12571, -- Bounty Hunting
-})
-
-zoneData:Zone(875, { -- Zandalar (continent)
-    7520, -- The Loremaster
-    12989, -- Battle for Azeroth Pathfinder, Part One
-    13250, -- Battle for Azeroth Pathfinder, Part Two
-    46, -- Universal Explorer
-    14183, -- Conspicuous Consumption
-    12587, -- Unbound Monstrosities
-    12555, -- Welcome to Zandalar
-    13294, -- Loremaster of Zandalar
-    12479, -- Zandalar Forever!
-    13512, -- Master Calligrapher
-    12510, -- Ready for War
-    13466, -- Tides of Vengeance
     13925, -- The Fourth War
-    13924, -- The Fourth War
-    13517, -- Two Sides to Every Tale
-    13144, -- Wide World of Quests
-    13263, -- The Shadow Hunter
-    14157, -- The Corruptor's End
-    12482, -- Get Hek'd
-    13036, -- A Loa of a Tale
-    13029, -- Eating Out of the Palm of My Tiny Hand
-    13027, -- Mushroom Harvest
-    14730, -- To All the Squirrels I Set Sail to See
-    12988, -- Battle for Azeroth Explorer
-    13429, -- Azerfighter
-    12572, -- War Supplied
-    12573, -- Band of Brothers
-    12605, -- Conqueror of Azeroth
-    12604, -- Conqueror of Azeroth
-    12947, -- Azerothian Diplomat
-    12955, -- Champions of Azeroth
-    12956, -- Tortollan Seekers
-    13317, -- Supplied and Ready
-    13283, -- Frontline Warrior
-    13284, -- Frontline Warrior
-    13387, -- Frontline Veteran
-    13388, -- Frontline Veteran
-    13402, -- Frontline Slayer
-    13403, -- Frontline Slayer
-    12571, -- Bounty Hunting
-})
-
-zoneData:Zone(876, { -- Kul Tiras (continent)
-    7520, -- The Loremaster
-    12989, -- Battle for Azeroth Pathfinder, Part One
-    13250, -- Battle for Azeroth Pathfinder, Part Two
-    46, -- Universal Explorer
-    14183, -- Conspicuous Consumption
-    12587, -- Unbound Monstrosities
-    12582, -- Come Sail Away
-    12997, -- The Pride of Kul Tiras
-    12593, -- Loremaster of Kul Tiras / Zandalar
-    12891, -- A Nation United
-    13512, -- Master Calligrapher
-    13384, -- Kul Tirans Don't Look at Explosions
-    12509, -- Ready for War
-    13467, -- Tides of Vengeance
-    13466, -- Tides of Vengeance
-    13925, -- The Fourth War
-    13924, -- The Fourth War
-    13517, -- Two Sides to Every Tale
-    13251, -- In Teldrassil's Shadow
-    13144, -- Wide World of Quests
-    14157, -- The Corruptor's End
-    13061, -- Three Sheets to the Wind
-    14730, -- To All the Squirrels I Set Sail to See
-    12988, -- Battle for Azeroth Explorer
-    13429, -- Azerfighter
-    12572, -- War Supplied
-    12573, -- Band of Brothers
-    12605, -- Conqueror of Azeroth
-    12604, -- Conqueror of Azeroth
-    12947, -- Azerothian Diplomat
-    12955, -- Champions of Azeroth
-    12956, -- Tortollan Seekers
-    13317, -- Supplied and Ready
-    13283, -- Frontline Warrior
-    13284, -- Frontline Warrior
-    13387, -- Frontline Veteran
-    13388, -- Frontline Veteran
-    13402, -- Frontline Slayer
-    13403, -- Frontline Slayer
-    12571, -- Bounty Hunting
+    40957, -- Maximum Effort
+    40953, -- A Farewell to Arms
+    40955, -- War Stories
+    40956, -- I'm On Island Time
+    41202, -- Hot Tropic
+    41204, -- Dune Squad
 })
 
 zoneData:Zone({895, 1171, 1172, 1184, 1185}, { -- Tiragarde Sound (zone)
@@ -298,6 +237,15 @@ zoneData:Zone({895, 1171, 1172, 1184, 1185}, { -- Tiragarde Sound (zone)
     13402, -- Frontline Slayer
     13403, -- Frontline Slayer
     12571, -- Bounty Hunting
+    13924, -- The Fourth War
+    13925, -- The Fourth War
+    40957, -- Maximum Effort
+    12582, -- Come Sail Away
+    14183, -- Conspicuous Consumption
+    40953, -- A Farewell to Arms
+    40955, -- War Stories
+    40956, -- I'm On Island Time
+    41205, -- Sound Off
 })
 
 zoneData:Zone(896, { -- Drustvar (zone)
@@ -343,6 +291,13 @@ zoneData:Zone(896, { -- Drustvar (zone)
     13402, -- Frontline Slayer
     13403, -- Frontline Slayer
     12571, -- Bounty Hunting
+    13924, -- The Fourth War
+    40957, -- Maximum Effort
+    40953, -- A Farewell to Arms
+    40955, -- War Stories
+    40956, -- I'm On Island Time
+    41205, -- Sound Off
+    41207, -- When the Drust Settles
 })
 
 zoneData:Zone({942, 1179, 1180, 1182, 1183}, { -- Stormsong Valley (zone)
@@ -391,6 +346,13 @@ zoneData:Zone({942, 1179, 1180, 1182, 1183}, { -- Stormsong Valley (zone)
     13402, -- Frontline Slayer
     13403, -- Frontline Slayer
     12571, -- Bounty Hunting
+    13924, -- The Fourth War
+    40957, -- Maximum Effort
+    40953, -- A Farewell to Arms
+    40955, -- War Stories
+    40956, -- I'm On Island Time
+    41205, -- Sound Off
+    41206, -- Songs of Storms
 })
 
 zoneData:Zone(1161, { -- Boralus (city)
@@ -416,6 +378,14 @@ zoneData:Zone(1161, { -- Boralus (city)
     12899, -- Azeroth at War: Kalimdor on Fire
     12872, -- The Dirty Five
     40957, -- Maximum Effort
+    12989, -- Battle for Azeroth Pathfinder, Part One
+    13925, -- The Fourth War
+    13251, -- In Teldrassil's Shadow
+    13250, -- Battle for Azeroth Pathfinder, Part Two
+    40953, -- A Farewell to Arms
+    40955, -- War Stories
+    40956, -- I'm On Island Time
+    41205, -- Sound Off
 })
 
 zoneData:Zone({1164, 1165, 1166, 1167}, { -- Dazar'alor (city)
@@ -439,6 +409,14 @@ zoneData:Zone({1164, 1165, 1166, 1167}, { -- Dazar'alor (city)
     12899, -- Azeroth at War: Kalimdor on Fire
     12872, -- The Dirty Five
     40957, -- Maximum Effort
+    12989, -- Battle for Azeroth Pathfinder, Part One
+    13924, -- The Fourth War
+    12555, -- Welcome to Zandalar
+    13250, -- Battle for Azeroth Pathfinder, Part Two
+    40953, -- A Farewell to Arms
+    40955, -- War Stories
+    40956, -- I'm On Island Time
+    41202, -- Hot Tropic
 })
 
 zoneData:Zone({934, 935}, { -- Atal'Dazar (dungeon)
@@ -460,6 +438,13 @@ zoneData:Zone({934, 935}, { -- Atal'Dazar (dungeon)
     12825, -- Heroic: Atal'Dazar
     12826, -- Mythic: Atal'Dazar
     19087, -- Keystone Hero: Atal'Dazar
+    40953, -- A Farewell to Arms
+    19009, -- Dragonflight Keystone Explorer: Season Three
+    19010, -- Dragonflight Keystone Conqueror: Season Three
+    19011, -- Dragonflight Keystone Master: Season Three
+    19012, -- Dragonflight Keystone Hero: Season Three
+    19396, -- Dragonflight Season 3 Master
+    19420, -- Dragonflight Season 3 Hero
 })
 
 zoneData:Zone(936, { -- Freehold (dungeon)
@@ -481,6 +466,15 @@ zoneData:Zone(936, { -- Freehold (dungeon)
     12832, -- Heroic: Freehold
     12833, -- Mythic: Freehold
     17848, -- Keystone Hero: Freehold
+    40953, -- A Farewell to Arms
+    17842, -- Dragonflight Keystone Explorer: Season Two
+    17843, -- Dragonflight Keystone Conqueror: Season Two
+    17844, -- Dragonflight Keystone Master: Season Two
+    17845, -- Dragonflight Keystone Hero: Season Two
+    18542, -- Dragonflight Keystone Master: Season Two
+    17846, -- Smoldering Hero: Dragonflight Season 2
+    18027, -- Dragonflight Season 2 Master
+    18380, -- Dragonflight Season 2 Hero
 })
 
 zoneData:Zone({974, 975, 976, 977, 978, 979, 980}, { -- Tol Dagor (dungeon)
@@ -500,6 +494,7 @@ zoneData:Zone({974, 975, 976, 977, 978, 979, 980}, { -- Tol Dagor (dungeon)
     12840, -- Tol Dagor
     12841, -- Heroic: Tol Dagor
     12842, -- Mythic: Tol Dagor
+    40953, -- A Farewell to Arms
 })
 
 zoneData:Zone(1004, { -- Kings' Rest (dungeon)
@@ -520,6 +515,33 @@ zoneData:Zone(1004, { -- Kings' Rest (dungeon)
     12848, -- Kings' Rest
     62444, -- Keystone Hero: Kings' Rest
     63626, -- Keystone Victor: Kings' Rest
+    40953, -- A Farewell to Arms
+    62417, -- Midnight Season 2: Resilient Keystone 12
+    62418, -- Midnight Season 2: Resilient Keystone 13
+    62419, -- Midnight Season 2: Resilient Keystone 14
+    62420, -- Midnight Season 2: Resilient Keystone 15
+    62421, -- Midnight Season 2: Resilient Keystone 16
+    62422, -- Midnight Season 2: Resilient Keystone 17
+    62423, -- Midnight Season 2: Resilient Keystone 18
+    62424, -- Midnight Season 2: Resilient Keystone 19
+    62425, -- Midnight Season 2: Resilient Keystone 20
+    62426, -- Midnight Season 2: Resilient Keystone 21
+    62427, -- Midnight Season 2: Resilient Keystone 22
+    62428, -- Midnight Season 2: Resilient Keystone 23
+    62429, -- Midnight Season 2: Resilient Keystone 24
+    62430, -- Midnight Season 2: Resilient Keystone 25
+    62431, -- Midnight Season 2: Resilient Keystone 26
+    62432, -- Midnight Season 2: Resilient Keystone 27
+    62433, -- Midnight Season 2: Resilient Keystone 28
+    62434, -- Midnight Season 2: Resilient Keystone 29
+    62435, -- Midnight Season 2: Resilient Keystone 30
+    62445, -- Midnight Keystone Explorer: Season 2
+    62446, -- Midnight Keystone Conqueror: Season 2
+    62447, -- Midnight Keystone Master: Season 2
+    62448, -- Midnight Keystone Hero: Season 2
+    62449, -- Midnight Keystone Legend: Season 2
+    62436, -- Venomous Hero: Midnight Season 2
+    63473, -- Sssensational!
 })
 
 zoneData:Zone(1010, { -- The MOTHERLODE!! (dungeon)
@@ -540,6 +562,18 @@ zoneData:Zone(1010, { -- The MOTHERLODE!! (dungeon)
     12845, -- Heroic: The MOTHERLODE!!
     12846, -- Mythic: The MOTHERLODE!!
     40965, -- Keystone Hero: The MOTHERLODE!!
+    40953, -- A Farewell to Arms
+    40949, -- The War Within Keystone Explorer: Season Two
+    40950, -- The War Within Keystone Conqueror: Season Two
+    41533, -- The War Within Keystone Master: Season Two
+    40952, -- The War Within Keystone Hero: Season Two
+    40951, -- The War Within Keystone Legend: Season Two
+    42139, -- The Enterprising Tank
+    42141, -- The Enterprising Healer
+    42144, -- The Enterprising Damage Dealer
+    42148, -- The Enterprising Dungeon Master
+    40954, -- Enterprising Hero: The War Within Season Two
+    41665, -- Dressed to the Mines
 })
 
 zoneData:Zone({1015, 1016, 1017, 1018, 1029}, { -- Waycrest Manor (dungeon)
@@ -561,6 +595,13 @@ zoneData:Zone({1015, 1016, 1017, 1018, 1029}, { -- Waycrest Manor (dungeon)
     12484, -- Heroic: Waycrest Manor
     12488, -- Mythic: Waycrest Manor
     19086, -- Keystone Hero: Waycrest Manor
+    40953, -- A Farewell to Arms
+    19009, -- Dragonflight Keystone Explorer: Season Three
+    19010, -- Dragonflight Keystone Conqueror: Season Three
+    19011, -- Dragonflight Keystone Master: Season Three
+    19012, -- Dragonflight Keystone Hero: Season Three
+    19396, -- Dragonflight Season 3 Master
+    19420, -- Dragonflight Season 3 Hero
 })
 
 zoneData:Zone({1038, 1043}, { -- Temple of Sethraliss (dungeon)
@@ -583,6 +624,33 @@ zoneData:Zone({1038, 1043}, { -- Temple of Sethraliss (dungeon)
     12506, -- Mythic: The Temple of Sethraliss
     62443, -- Keystone Hero: Temple of Sethraliss
     63628, -- Keystone Victor: Temple of Sethraliss
+    40953, -- A Farewell to Arms
+    62417, -- Midnight Season 2: Resilient Keystone 12
+    62418, -- Midnight Season 2: Resilient Keystone 13
+    62419, -- Midnight Season 2: Resilient Keystone 14
+    62420, -- Midnight Season 2: Resilient Keystone 15
+    62421, -- Midnight Season 2: Resilient Keystone 16
+    62422, -- Midnight Season 2: Resilient Keystone 17
+    62423, -- Midnight Season 2: Resilient Keystone 18
+    62424, -- Midnight Season 2: Resilient Keystone 19
+    62425, -- Midnight Season 2: Resilient Keystone 20
+    62426, -- Midnight Season 2: Resilient Keystone 21
+    62427, -- Midnight Season 2: Resilient Keystone 22
+    62428, -- Midnight Season 2: Resilient Keystone 23
+    62429, -- Midnight Season 2: Resilient Keystone 24
+    62430, -- Midnight Season 2: Resilient Keystone 25
+    62431, -- Midnight Season 2: Resilient Keystone 26
+    62432, -- Midnight Season 2: Resilient Keystone 27
+    62433, -- Midnight Season 2: Resilient Keystone 28
+    62434, -- Midnight Season 2: Resilient Keystone 29
+    62435, -- Midnight Season 2: Resilient Keystone 30
+    62445, -- Midnight Keystone Explorer: Season 2
+    62446, -- Midnight Keystone Conqueror: Season 2
+    62447, -- Midnight Keystone Master: Season 2
+    62448, -- Midnight Keystone Hero: Season 2
+    62449, -- Midnight Keystone Legend: Season 2
+    62436, -- Venomous Hero: Midnight Season 2
+    63473, -- Sssensational!
 })
 
 zoneData:Zone({1039, 1040}, { -- Shrine of the Storm (dungeon)
@@ -603,6 +671,7 @@ zoneData:Zone({1039, 1040}, { -- Shrine of the Storm (dungeon)
     12835, -- Shrine of the Storm
     12837, -- Heroic: Shrine of the Storm
     12838, -- Mythic: Shrine of the Storm
+    40953, -- A Farewell to Arms
 })
 
 zoneData:Zone({1041, 1042}, { -- The Underrot (dungeon)
@@ -624,6 +693,15 @@ zoneData:Zone({1041, 1042}, { -- The Underrot (dungeon)
     12501, -- Heroic: Underrot
     12502, -- Mythic: Underrot
     17849, -- Keystone Hero: The Underrot
+    40953, -- A Farewell to Arms
+    17842, -- Dragonflight Keystone Explorer: Season Two
+    17843, -- Dragonflight Keystone Conqueror: Season Two
+    17844, -- Dragonflight Keystone Master: Season Two
+    17845, -- Dragonflight Keystone Hero: Season Two
+    18542, -- Dragonflight Keystone Master: Season Two
+    17846, -- Smoldering Hero: Dragonflight Season 2
+    18027, -- Dragonflight Season 2 Master
+    18380, -- Dragonflight Season 2 Hero
 })
 
 zoneData:Zone(1162, { -- Siege of Boralus (dungeon)
@@ -643,6 +721,13 @@ zoneData:Zone(1162, { -- Siege of Boralus (dungeon)
     12489, -- Losing My Profession
     12847, -- Siege of Boralus
     20587, -- Keystone Hero: Siege of Boralus
+    40953, -- A Farewell to Arms
+    20523, -- The War Within Keystone Explorer: Season One
+    20524, -- The War Within Keystone Conqueror: Season One
+    20525, -- The War Within Keystone Master: Season One
+    20526, -- The War Within Keystone Hero: Season One
+    20589, -- Tempered Hero: The War Within Season 1
+    40723, -- Web-Wrapped in the Finest Silks
 })
 
 zoneData:Zone({1148, 1149, 1150, 1151, 1152, 1153, 1154, 1155}, { -- Uldir (raid)
@@ -670,6 +755,9 @@ zoneData:Zone({1148, 1149, 1150, 1151, 1152, 1153, 1154, 1155}, { -- Uldir (raid
     12531, -- Mythic: Zul
     12532, -- Mythic: Mythrax the Unraveler
     12533, -- Mythic: G'huun
+    11761, -- Azeroth's Next Top Model
+    40953, -- A Farewell to Arms
+    41209, -- Dressed to Kill: Battle for Azeroth
 })
 
 zoneData:Zone(1473, { -- Chamber of Heart
@@ -705,6 +793,10 @@ zoneData:Zone(1473, { -- Chamber of Heart
     14172, -- A Monumental Amount of Mementos
     14173, -- A Mountain of Mementos
     14140, -- Mad World
+    40953, -- A Farewell to Arms
+    40958, -- Full Heart, Can't Lose
+    14157, -- The Corruptor's End
+    40955, -- War Stories
 })
 
 zoneData:Zone({1345, 1346}, { -- Crucible of Storms (raid)
@@ -715,6 +807,7 @@ zoneData:Zone({1345, 1346}, { -- Crucible of Storms (raid)
     13417, -- Mythic: Uu'nat, Harbinger of the Void
     13418, -- Ahead of the Curve: Uu'nat, Harbinger of the Void
     13419, -- Cutting Edge: Uu'nat, Harbinger of the Void
+    40953, -- A Farewell to Arms
 })
 
 zoneData:Zone({1352, 1353, 1354, 1356, 1357, 1358, 1364, 1367}, { -- Battle of Dazar'alor (raid)
@@ -748,6 +841,9 @@ zoneData:Zone({1352, 1353, 1354, 1356, 1357, 1358, 1364, 1367}, { -- Battle of D
     13312, -- Mythic: Mekkatorque
     13313, -- Mythic: Stormwall Blockade
     13314, -- Mythic: Lady Jaina Proudmoore
+    11761, -- Azeroth's Next Top Model
+    40953, -- A Farewell to Arms
+    41209, -- Dressed to Kill: Battle for Azeroth
 })
 
 zoneData:Zone({1355, 1499, 1500, 1528}, { -- Nazjatar (zone)
@@ -802,6 +898,8 @@ zoneData:Zone({1355, 1499, 1500, 1528}, { -- Nazjatar (zone)
     13558, -- Waveblade Ankoan
     13559, -- The Unshackled
     12571, -- Bounty Hunting
+    40953, -- A Farewell to Arms
+    40955, -- War Stories
 })
 
 zoneData:Zone({1462, 1522}, { -- Mechagon Island (zone)
@@ -834,6 +932,8 @@ zoneData:Zone({1462, 1522}, { -- Mechagon Island (zone)
     13570, -- Tour of Duty: Mechagon
     13557, -- Rustbolt Rebellion
     12571, -- Bounty Hunting
+    40953, -- A Farewell to Arms
+    40955, -- War Stories
 })
 
 zoneData:Zone({1490, 1491, 1493, 1494, 1497}, { -- Mechagon (dungeon)
@@ -850,6 +950,18 @@ zoneData:Zone({1490, 1491, 1493, 1494, 1497}, { -- Mechagon (dungeon)
     15689, -- Shadowlands Keystone Conqueror: Season Four
     15690, -- Shadowlands Keystone Master: Season Four
     40966, -- Keystone Hero: Operation: Mechagon - Workshop
+    15756, -- Shrouded Hero: Shadowlands Season 4
+    40949, -- The War Within Keystone Explorer: Season Two
+    40950, -- The War Within Keystone Conqueror: Season Two
+    41533, -- The War Within Keystone Master: Season Two
+    40952, -- The War Within Keystone Hero: Season Two
+    40951, -- The War Within Keystone Legend: Season Two
+    42139, -- The Enterprising Tank
+    42141, -- The Enterprising Healer
+    42144, -- The Enterprising Damage Dealer
+    42148, -- The Enterprising Dungeon Master
+    40954, -- Enterprising Hero: The War Within Season Two
+    41665, -- Dressed to the Mines
 })
 
 zoneData:Zone({1512, 1513, 1514}, { -- The Eternal Palace (raid)
@@ -877,6 +989,9 @@ zoneData:Zone({1512, 1513, 1514}, { -- The Eternal Palace (raid)
     13731, -- Mythic: The Queen's Court
     13732, -- Mythic: Za'qul
     13733, -- Mythic: Queen Azshara
+    11761, -- Azeroth's Next Top Model
+    40953, -- A Farewell to Arms
+    41209, -- Dressed to Kill: Battle for Azeroth
 })
 
 zoneData:Zone({1469, 1470, 2403, 2404}, { -- Vision of Orgrimmar / Vision of Stormwind
@@ -901,6 +1016,7 @@ zoneData:Zone({1469, 1470, 2403, 2404}, { -- Vision of Orgrimmar / Vision of Sto
     14172, -- A Monumental Amount of Mementos
     14173, -- A Mountain of Mementos
     14140, -- Mad World
+    40953, -- A Farewell to Arms
 })
 
 zoneData:Zone({1527, 1571}, { -- Uldum (Horrific Vision)
@@ -911,6 +1027,10 @@ zoneData:Zone({1527, 1571}, { -- Uldum (Horrific Vision)
     14159, -- Combating the Corruption
     14158, -- It's Not A Tumor!
     14155, -- Uldum Accord
+    40959, -- Black Empire State of Mind
+    40953, -- A Farewell to Arms
+    14157, -- The Corruptor's End
+    40955, -- War Stories
 })
 
 zoneData:Zone({1530, 1570}, { -- Vale of Eternal Blossoms (Horrific Vision)
@@ -920,6 +1040,10 @@ zoneData:Zone({1530, 1570}, { -- Vale of Eternal Blossoms (Horrific Vision)
     14159, -- Combating the Corruption
     14158, -- It's Not A Tumor!
     14156, -- The Rajani
+    40959, -- Black Empire State of Mind
+    40953, -- A Farewell to Arms
+    14157, -- The Corruptor's End
+    40955, -- War Stories
 })
 
 zoneData:Zone({1580, 1581, 1582, 1590, 1591, 1592, 1593, 1594, 1595, 1596, 1597}, { -- Ny'alotha (raid)
@@ -956,4 +1080,7 @@ zoneData:Zone({1580, 1581, 1582, 1590, 1591, 1592, 1593, 1594, 1595, 1596, 1597}
     14052, -- Mythic: Il'gynoth, Corruption Reborn
     14054, -- Mythic: Carapace of N'Zoth
     14055, -- Mythic: N'Zoth the Corruptor
+    11761, -- Azeroth's Next Top Model
+    40953, -- A Farewell to Arms
+    41209, -- Dressed to Kill: Battle for Azeroth
 })

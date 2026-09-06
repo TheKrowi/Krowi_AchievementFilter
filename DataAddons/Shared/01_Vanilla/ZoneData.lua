@@ -7,6 +7,10 @@ local zoneData = KrowiAF.NewZoneData("Vanilla")
 zoneData:Zone({74, 75}, { -- Caverns of Time (zone)
     763, -- The Burning Crusader
     764, -- The Burning Crusader
+    851, -- Explore Tanaris
+    9924, -- Field Photographer
+    43, -- Kalimdor Explorer
+    46, -- Universal Explorer
 })
 
 zoneData:Zone({92, 1339}, { -- Warsong Gulch (battleground)
@@ -33,6 +37,7 @@ zoneData:Zone({92, 1339}, { -- Warsong Gulch (battleground)
     907, -- The Justicar
     714, -- The Conqueror
     230, -- Battlemaster
+    1175, -- Battlemaster
 })
 
 zoneData:Zone({93, 1366, 1383}, { -- Arathi Basin (battleground)
@@ -56,96 +61,84 @@ zoneData:Zone({93, 1366, 1383}, { -- Arathi Basin (battleground)
     907, -- The Justicar
     714, -- The Conqueror
     230, -- Battlemaster
+    1175, -- Battlemaster
 })
 
 zoneData:Zone(213, { -- Ragefire Chasm (dungeon)
     629, -- Ragefire Chasm
+    1283, -- Classic Dungeonmaster
 })
 
 zoneData:Zone(219, { -- Zul'Farrak (dungeon)
     639, -- Zul'Farrak
     910, -- Elders of the Dungeons
+    913, -- To Honor One's Elders
+    1283, -- Classic Dungeonmaster
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(220, { -- The Temple of Atal'Hakkar (dungeon)
     641, -- Sunken Temple
     910, -- Elders of the Dungeons
+    913, -- To Honor One's Elders
+    1283, -- Classic Dungeonmaster
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone({221, 222, 223}, { -- Blackfathom Deeps (dungeon)
     632, -- Blackfathom Deeps
+    1283, -- Classic Dungeonmaster
 })
 
 zoneData:Zone(225, { -- The Stockade (dungeon)
     633, -- Stormwind Stockade
+    1283, -- Classic Dungeonmaster
 })
 
 zoneData:Zone({230, 231}, { -- Uldaman (dungeon)
     638, -- Uldaman
+    1283, -- Classic Dungeonmaster
 })
 
 zoneData:Zone({235, 236, 237, 238, 239, 240}, { -- Dire Maul (dungeon)
     644, -- King of Dire Maul
     5788, -- Agent of the Shen'dralar
     911, -- Elders of Kalimdor
+    913, -- To Honor One's Elders
+    1283, -- Classic Dungeonmaster
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(247, { -- Ruins of Ahn'Qiraj (raid)
     689, -- Ruins of Ahn'Qiraj
     953, -- Guardian of Cenarius
+    1285, -- Classic Raider
 })
 
 zoneData:Zone({250, 251, 252, 253, 254, 255}, { -- Blackrock Spire (dungeon)
     643, -- Lower Blackrock Spire
     910, -- Elders of the Dungeons
+    913, -- To Honor One's Elders
+    1283, -- Classic Dungeonmaster
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone({280, 281}, { -- Maraudon (dungeon)
     640, -- Maraudon
     910, -- Elders of the Dungeons
+    913, -- To Honor One's Elders
+    1283, -- Classic Dungeonmaster
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(300, { -- Razorfen Downs (dungeon)
     636, -- Razorfen Downs
+    1283, -- Classic Dungeonmaster
 })
 
 zoneData:Zone(301, { -- Razorfen Kraul (dungeon)
     635, -- Razorfen Kraul
-})
-
-zoneData:Zone(13, { -- Eastern Kingdoms (continent)
-    1206, -- To All The Squirrels I've Loved Before
-    1676, -- Loremaster of Eastern Kingdoms
-    42, -- Eastern Kingdoms Explorer
-    7520, -- The Loremaster
-    6586, -- Eastern Kingdoms Safari
-    6613, -- Eastern Kingdoms Tamer
-    6603, -- Taming Eastern Kingdoms
-    shared.OldWorldPetAchievements,
-    6607, -- Taming Azeroth
-    6601, -- Taming the Wild
-    7498, -- Taming the Great Outdoors
-    7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
-    8348, -- The Longest Day
-    897, -- You're So Offensive
-    4875, -- Loremaster of Cataclysm
-    4827, -- Surveying the Damage
-    5548, -- To All the Squirrels Who Cared for Me
-    4868, -- Cataclysm Explorer
-    4881, -- The Earthen Ring
-    7525, -- Taming Cataclysm
-    46, -- Universal Explorer
-    971, -- Tricks and Treats of Azeroth
-    1022, -- Flame Warden of Eastern Kingdoms
-    1025, -- Flame Keeper of Eastern Kingdoms
-    1028, -- Extinguishing Eastern Kingdoms
-    1031, -- Extinguishing Eastern Kingdoms
-    1034, -- The Fires of Azeroth
-    1035, -- Desecration of the Horde
-    1036, -- The Fires of Azeroth
-    1037, -- Desecration of the Alliance
+    1283, -- Classic Dungeonmaster
 })
 
 zoneData:Zone({18, 19, 20}, { -- Tirisfal Glades (zone)
@@ -164,6 +157,14 @@ zoneData:Zone({18, 19, 20}, { -- Tirisfal Glades (zone)
     967, -- Tricks and Treats of Eastern Kingdoms
     1025, -- Flame Keeper of Eastern Kingdoms
     1028, -- Extinguishing Eastern Kingdoms
+    971, -- Tricks and Treats of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    913, -- To Honor One's Elders
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(21, { -- Silverpine Forest (zone)
@@ -181,6 +182,16 @@ zoneData:Zone(21, { -- Silverpine Forest (zone)
     967, -- Tricks and Treats of Eastern Kingdoms
     1025, -- Flame Keeper of Eastern Kingdoms
     1028, -- Extinguishing Eastern Kingdoms
+    971, -- Tricks and Treats of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    913, -- To Honor One's Elders
+    1676, -- Loremaster of Eastern Kingdoms
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
+    7520, -- The Loremaster
 })
 
 zoneData:Zone(22, { -- Western Plaguelands (zone)
@@ -204,6 +215,16 @@ zoneData:Zone(22, { -- Western Plaguelands (zone)
     1025, -- Flame Keeper of Eastern Kingdoms
     1028, -- Extinguishing Eastern Kingdoms
     1031, -- Extinguishing Eastern Kingdoms
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    913, -- To Honor One's Elders
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(23, { -- Eastern Plaguelands (zone)
@@ -225,14 +246,16 @@ zoneData:Zone(23, { -- Eastern Plaguelands (zone)
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     2556, -- Pest Control
     46, -- Universal Explorer
     912, -- Elders of Eastern Kingdoms
     966, -- Tricks and Treats of Eastern Kingdoms
     967, -- Tricks and Treats of Eastern Kingdoms
+    971, -- Tricks and Treats of Azeroth
+    913, -- To Honor One's Elders
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(26, { -- The Hinterlands (zone)
@@ -251,8 +274,6 @@ zoneData:Zone(26, { -- The Hinterlands (zone)
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     2556, -- Pest Control
     46, -- Universal Explorer
@@ -260,6 +281,19 @@ zoneData:Zone(26, { -- The Hinterlands (zone)
     967, -- Tricks and Treats of Eastern Kingdoms
     1022, -- Flame Warden of Eastern Kingdoms
     1025, -- Flame Keeper of Eastern Kingdoms
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1036, -- The Fires of Azeroth
+    912, -- Elders of Eastern Kingdoms
+    1028, -- Extinguishing Eastern Kingdoms
+    1031, -- Extinguishing Eastern Kingdoms
+    913, -- To Honor One's Elders
+    1035, -- Desecration of the Horde
+    1037, -- Desecration of the Alliance
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(25, { -- Hillsbrad Foothills (zone)
@@ -284,6 +318,16 @@ zoneData:Zone(25, { -- Hillsbrad Foothills (zone)
     967, -- Tricks and Treats of Eastern Kingdoms
     1025, -- Flame Keeper of Eastern Kingdoms
     1028, -- Extinguishing Eastern Kingdoms
+    971, -- Tricks and Treats of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1676, -- Loremaster of Eastern Kingdoms
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    1691, -- Merrymaker
+    7520, -- The Loremaster
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(14, { -- Arathi Highlands (zone)
@@ -306,6 +350,15 @@ zoneData:Zone(14, { -- Arathi Highlands (zone)
     1025, -- Flame Keeper of Eastern Kingdoms
     1028, -- Extinguishing Eastern Kingdoms
     1031, -- Extinguishing Eastern Kingdoms
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(56, { -- Wetlands (zone)
@@ -326,6 +379,13 @@ zoneData:Zone(56, { -- Wetlands (zone)
     966, -- Tricks and Treats of Eastern Kingdoms
     1022, -- Flame Warden of Eastern Kingdoms
     1031, -- Extinguishing Eastern Kingdoms
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(48, { -- Loch Modan (zone)
@@ -347,6 +407,14 @@ zoneData:Zone(48, { -- Loch Modan (zone)
     966, -- Tricks and Treats of Eastern Kingdoms
     1022, -- Flame Warden of Eastern Kingdoms
     1031, -- Extinguishing Eastern Kingdoms
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    913, -- To Honor One's Elders
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone({27, 28, 29, 30, 31, 427, 428}, { -- Dun Morogh (zone)
@@ -356,15 +424,21 @@ zoneData:Zone({27, 28, 29, 30, 31, 427, 428}, { -- Dun Morogh (zone)
     4786, -- Operation: Gnomeregan
     627, -- Explore Dun Morogh
     948, -- Ambassador of the Alliance
-    6558, -- Local Pet Mauler
-    6559, -- Traveling Pet Mauler
-    6560, -- World Pet Mauler
     289, -- The Savior of Hallow's End
     46, -- Universal Explorer
     912, -- Elders of Eastern Kingdoms
     966, -- Tricks and Treats of Eastern Kingdoms
     1022, -- Flame Warden of Eastern Kingdoms
     1031, -- Extinguishing Eastern Kingdoms
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    913, -- To Honor One's Elders
+    shared.OldWorldPetAchievements,
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(49, { -- Redridge Mountains (zone)
@@ -383,14 +457,19 @@ zoneData:Zone(49, { -- Redridge Mountains (zone)
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     2556, -- Pest Control
     46, -- Universal Explorer
     966, -- Tricks and Treats of Eastern Kingdoms
     1022, -- Flame Warden of Eastern Kingdoms
     1031, -- Extinguishing Eastern Kingdoms
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone({37, 38, 39, 40, 425, 426}, { -- Elwynn Forest (zone)
@@ -407,8 +486,6 @@ zoneData:Zone({37, 38, 39, 40, 425, 426}, { -- Elwynn Forest (zone)
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     289, -- The Savior of Hallow's End
     46, -- Universal Explorer
@@ -416,6 +493,14 @@ zoneData:Zone({37, 38, 39, 40, 425, 426}, { -- Elwynn Forest (zone)
     966, -- Tricks and Treats of Eastern Kingdoms
     1022, -- Flame Warden of Eastern Kingdoms
     1031, -- Extinguishing Eastern Kingdoms
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    913, -- To Honor One's Elders
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone({15, 16}, { -- Badlands (zone)
@@ -437,6 +522,15 @@ zoneData:Zone({15, 16}, { -- Badlands (zone)
     1025, -- Flame Keeper of Eastern Kingdoms
     1028, -- Extinguishing Eastern Kingdoms
     1031, -- Extinguishing Eastern Kingdoms
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(32, { -- Searing Gorge (zone)
@@ -447,9 +541,6 @@ zoneData:Zone(32, { -- Searing Gorge (zone)
     4910, -- Searing Gorge Quests
     774, -- Explore Searing Gorge
     6603, -- Taming Eastern Kingdoms
-    6558, -- Local Pet Mauler
-    6559, -- Traveling Pet Mauler
-    6560, -- World Pet Mauler
     6607, -- Taming Azeroth
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
@@ -460,6 +551,12 @@ zoneData:Zone(32, { -- Searing Gorge (zone)
     912, -- Elders of Eastern Kingdoms
     966, -- Tricks and Treats of Eastern Kingdoms
     967, -- Tricks and Treats of Eastern Kingdoms
+    971, -- Tricks and Treats of Azeroth
+    913, -- To Honor One's Elders
+    6613, -- Eastern Kingdoms Tamer
+    shared.OldWorldPetAchievements,
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(36, { -- Burning Steppes (zone)
@@ -478,8 +575,6 @@ zoneData:Zone(36, { -- Burning Steppes (zone)
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     2556, -- Pest Control
     46, -- Universal Explorer
@@ -488,6 +583,14 @@ zoneData:Zone(36, { -- Burning Steppes (zone)
     1025, -- Flame Keeper of Eastern Kingdoms
     1028, -- Extinguishing Eastern Kingdoms
     1031, -- Extinguishing Eastern Kingdoms
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    913, -- To Honor One's Elders
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone({42, 43, 44, 45, 46}, { -- Deadwind Pass (zone)
@@ -525,14 +628,19 @@ zoneData:Zone(47, { -- Duskwood (zone)
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     2556, -- Pest Control
     46, -- Universal Explorer
     966, -- Tricks and Treats of Eastern Kingdoms
     1022, -- Flame Warden of Eastern Kingdoms
     1031, -- Extinguishing Eastern Kingdoms
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(51, { -- Swamp of Sorrows (zone)
@@ -551,8 +659,6 @@ zoneData:Zone(51, { -- Swamp of Sorrows (zone)
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     2556, -- Pest Control
     46, -- Universal Explorer
@@ -562,6 +668,15 @@ zoneData:Zone(51, { -- Swamp of Sorrows (zone)
     1025, -- Flame Keeper of Eastern Kingdoms
     1028, -- Extinguishing Eastern Kingdoms
     1031, -- Extinguishing Eastern Kingdoms
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(17, { -- Blasted Lands (zone)
@@ -587,6 +702,16 @@ zoneData:Zone(17, { -- Blasted Lands (zone)
     1025, -- Flame Keeper of Eastern Kingdoms
     1028, -- Extinguishing Eastern Kingdoms
     1031, -- Extinguishing Eastern Kingdoms
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    913, -- To Honor One's Elders
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone({52, 53, 54, 55}, { -- Westfall (zone)
@@ -609,8 +734,6 @@ zoneData:Zone({52, 53, 54, 55}, { -- Westfall (zone)
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     2556, -- Pest Control
     4827, -- Surveying the Damage
@@ -618,42 +741,12 @@ zoneData:Zone({52, 53, 54, 55}, { -- Westfall (zone)
     912, -- Elders of Eastern Kingdoms
     1022, -- Flame Warden of Eastern Kingdoms
     1031, -- Extinguishing Eastern Kingdoms
-})
-
-zoneData:Zone(12, { -- Kalimdor (continent)
-    1206, -- To All The Squirrels I've Loved Before
-    944, -- They Love Me In That Tunnel
-    942, -- The Diplomat
-    943, -- The Diplomat
-    7520, -- The Loremaster
-    1678, -- Loremaster of Kalimdor
-    43, -- Kalimdor Explorer
-    6602, -- Taming Kalimdor
-    6558, -- Local Pet Mauler
-    6559, -- Traveling Pet Mauler
-    6560, -- World Pet Mauler
-    6607, -- Taming Azeroth
-    6601, -- Taming the Wild
-    7498, -- Taming the Great Outdoors
-    7499, -- Taming the World
-    8348, -- The Longest Day
-    4875, -- Loremaster of Cataclysm
-    4827, -- Surveying the Damage
-    5548, -- To All the Squirrels Who Cared for Me
-    4868, -- Cataclysm Explorer
-    7525, -- Taming Cataclysm
-    46, -- Universal Explorer
-    971, -- Tricks and Treats of Azeroth
-    963, -- Tricks and Treats of Kalimdor
-    965, -- Tricks and Treats of Kalimdor
-    1023, -- Flame Warden of Kalimdor
-    1026, -- Flame Keeper of Kalimdor
-    1029, -- Extinguishing Kalimdor
-    1032, -- Extinguishing Kalimdor
     1034, -- The Fires of Azeroth
-    1035, -- Desecration of the Horde
-    1036, -- The Fires of Azeroth
     1037, -- Desecration of the Alliance
+    913, -- To Honor One's Elders
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone({57, 58, 59, 60, 61}, { -- Teldrassil (zone)
@@ -661,14 +754,20 @@ zoneData:Zone({57, 58, 59, 60, 61}, { -- Teldrassil (zone)
     43, -- Kalimdor Explorer
     842, -- Explore Teldrassil
     948, -- Ambassador of the Alliance
-    6558, -- Local Pet Mauler
-    6559, -- Traveling Pet Mauler
-    6560, -- World Pet Mauler
     46, -- Universal Explorer
     911, -- Elders of Kalimdor
     963, -- Tricks and Treats of Kalimdor
     1023, -- Flame Warden of Kalimdor
     1032, -- Extinguishing Kalimdor
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    913, -- To Honor One's Elders
+    shared.OldWorldPetAchievements,
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(62, { -- Darkshore (zone)
@@ -691,6 +790,16 @@ zoneData:Zone(62, { -- Darkshore (zone)
     963, -- Tricks and Treats of Kalimdor
     1023, -- Flame Warden of Kalimdor
     1032, -- Extinguishing Kalimdor
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    913, -- To Honor One's Elders
+    12604, -- Conqueror of Azeroth
+    12605, -- Conqueror of Azeroth
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(63, { -- Ashenvale (zone)
@@ -710,8 +819,6 @@ zoneData:Zone(63, { -- Ashenvale (zone)
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     2556, -- Pest Control
     4827, -- Surveying the Damage
@@ -723,6 +830,19 @@ zoneData:Zone(63, { -- Ashenvale (zone)
     1026, -- Flame Keeper of Kalimdor
     1029, -- Extinguishing Kalimdor
     1032, -- Extinguishing Kalimdor
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    913, -- To Honor One's Elders
+    13251, -- In Teldrassil's Shadow
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
+    40955, -- War Stories
+    40953, -- A Farewell to Arms
 })
 
 zoneData:Zone(65, { -- Stonetalon Mountains (zone)
@@ -743,8 +863,6 @@ zoneData:Zone(65, { -- Stonetalon Mountains (zone)
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     2556, -- Pest Control
     46, -- Universal Explorer
@@ -755,6 +873,16 @@ zoneData:Zone(65, { -- Stonetalon Mountains (zone)
     1026, -- Flame Keeper of Kalimdor
     1029, -- Extinguishing Kalimdor
     1032, -- Extinguishing Kalimdor
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    913, -- To Honor One's Elders
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(80, { -- Moonglade (zone)
@@ -771,6 +899,8 @@ zoneData:Zone(80, { -- Moonglade (zone)
     8348, -- The Longest Day
     2556, -- Pest Control
     46, -- Universal Explorer
+    913, -- To Honor One's Elders
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(77, { -- Felwood (zone)
@@ -794,13 +924,15 @@ zoneData:Zone(77, { -- Felwood (zone)
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     46, -- Universal Explorer
     911, -- Elders of Kalimdor
     963, -- Tricks and Treats of Kalimdor
     965, -- Tricks and Treats of Kalimdor
+    971, -- Tricks and Treats of Azeroth
+    913, -- To Honor One's Elders
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone({7, 8, 9}, { -- Mulgore (zone)
@@ -817,6 +949,14 @@ zoneData:Zone({7, 8, 9}, { -- Mulgore (zone)
     965, -- Tricks and Treats of Kalimdor
     1026, -- Flame Keeper of Kalimdor
     1029, -- Extinguishing Kalimdor
+    971, -- Tricks and Treats of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    913, -- To Honor One's Elders
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone({1, 2, 3, 4, 5, 6}, { -- Durotar (zone)
@@ -834,8 +974,6 @@ zoneData:Zone({1, 2, 3, 4, 5, 6}, { -- Durotar (zone)
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     2556, -- Pest Control
     4827, -- Surveying the Damage
@@ -845,6 +983,14 @@ zoneData:Zone({1, 2, 3, 4, 5, 6}, { -- Durotar (zone)
     965, -- Tricks and Treats of Kalimdor
     1026, -- Flame Keeper of Kalimdor
     1029, -- Extinguishing Kalimdor
+    971, -- Tricks and Treats of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    913, -- To Honor One's Elders
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(64, { -- Thousand Needles (zone)
@@ -863,13 +1009,13 @@ zoneData:Zone(64, { -- Thousand Needles (zone)
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     2556, -- Pest Control
     4827, -- Surveying the Damage
     46, -- Universal Explorer
     911, -- Elders of Kalimdor
+    913, -- To Honor One's Elders
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone({66, 67, 68}, { -- Desolace (zone)
@@ -899,6 +1045,15 @@ zoneData:Zone({66, 67, 68}, { -- Desolace (zone)
     1026, -- Flame Keeper of Kalimdor
     1029, -- Extinguishing Kalimdor
     1032, -- Extinguishing Kalimdor
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(69, { -- Feralas (zone)
@@ -920,8 +1075,6 @@ zoneData:Zone(69, { -- Feralas (zone)
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     2556, -- Pest Control
     46, -- Universal Explorer
@@ -932,6 +1085,16 @@ zoneData:Zone(69, { -- Feralas (zone)
     1026, -- Flame Keeper of Kalimdor
     1029, -- Extinguishing Kalimdor
     1032, -- Extinguishing Kalimdor
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    913, -- To Honor One's Elders
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(70, { -- Dustwallow Marsh (zone)
@@ -952,8 +1115,6 @@ zoneData:Zone(70, { -- Dustwallow Marsh (zone)
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     2556, -- Pest Control
     46, -- Universal Explorer
@@ -963,6 +1124,15 @@ zoneData:Zone(70, { -- Dustwallow Marsh (zone)
     1026, -- Flame Keeper of Kalimdor
     1029, -- Extinguishing Kalimdor
     1032, -- Extinguishing Kalimdor
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone({71, 72, 73}, { -- Tanaris (zone)
@@ -990,6 +1160,16 @@ zoneData:Zone({71, 72, 73}, { -- Tanaris (zone)
     1026, -- Flame Keeper of Kalimdor
     1029, -- Extinguishing Kalimdor
     1032, -- Extinguishing Kalimdor
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    913, -- To Honor One's Elders
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(76, { -- Azshara (zone)
@@ -1013,6 +1193,16 @@ zoneData:Zone(76, { -- Azshara (zone)
     965, -- Tricks and Treats of Kalimdor
     1026, -- Flame Keeper of Kalimdor
     1029, -- Extinguishing Kalimdor
+    971, -- Tricks and Treats of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    913, -- To Honor One's Elders
+    1678, -- Loremaster of Kalimdor
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
+    7520, -- The Loremaster
 })
 
 zoneData:Zone(83, { -- Winterspring (zone)
@@ -1036,8 +1226,6 @@ zoneData:Zone(83, { -- Winterspring (zone)
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     2556, -- Pest Control
     46, -- Universal Explorer
@@ -1048,6 +1236,16 @@ zoneData:Zone(83, { -- Winterspring (zone)
     1026, -- Flame Keeper of Kalimdor
     1029, -- Extinguishing Kalimdor
     1032, -- Extinguishing Kalimdor
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    913, -- To Honor One's Elders
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone({78, 79}, { -- Un'Goro Crater (zone)
@@ -1073,6 +1271,16 @@ zoneData:Zone({78, 79}, { -- Un'Goro Crater (zone)
     1026, -- Flame Keeper of Kalimdor
     1029, -- Extinguishing Kalimdor
     1032, -- Extinguishing Kalimdor
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    913, -- To Honor One's Elders
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone({81, 82}, { -- Silithus (zone)
@@ -1098,6 +1306,16 @@ zoneData:Zone({81, 82}, { -- Silithus (zone)
     1026, -- Flame Keeper of Kalimdor
     1029, -- Extinguishing Kalimdor
     1032, -- Extinguishing Kalimdor
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    913, -- To Honor One's Elders
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(84, { -- Stormwind City (city)
@@ -1120,6 +1338,19 @@ zoneData:Zone(84, { -- Stormwind City (city)
     18854, -- Seeing Red
     275, -- Veteran Nanny
     966, -- Tricks and Treats of Eastern Kingdoms
+    971, -- Tricks and Treats of Azeroth
+    913, -- To Honor One's Elders
+    1516, -- Accomplished Angler
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
+    5845, -- A Bunch of Lunch
+    5851, -- Gone Fishin'
+    6030, -- Taking the Show on the Road
+    15325, -- Dracthyr, Awaken
+})
+
+zoneData:Zone(499, { -- Deeprun Tram (zone)
+    9924, -- Field Photographer
 })
 
 zoneData:Zone({85, 86}, { -- Orgrimmar (city)
@@ -1143,6 +1374,17 @@ zoneData:Zone({85, 86}, { -- Orgrimmar (city)
     18854, -- Seeing Red
     275, -- Veteran Nanny
     965, -- Tricks and Treats of Kalimdor
+    971, -- Tricks and Treats of Azeroth
+    913, -- To Honor One's Elders
+    1516, -- Accomplished Angler
+    1656, -- Hallowed Be Thy Name
+    1691, -- Merrymaker
+    2144, -- What a Long, Strange Trip It's Been
+    5845, -- A Bunch of Lunch
+    5851, -- Gone Fishin'
+    6031, -- Taking the Show on the Road
+    9924, -- Field Photographer
+    15638, -- Dracthyr, Awaken
 })
 
 zoneData:Zone({87, 1361}, { -- Ironforge (city)
@@ -1158,6 +1400,14 @@ zoneData:Zone({87, 1361}, { -- Ironforge (city)
     6622, -- Big City Pet Brawler
     915, -- Elders of the Alliance
     966, -- Tricks and Treats of Eastern Kingdoms
+    971, -- Tricks and Treats of Azeroth
+    913, -- To Honor One's Elders
+    1656, -- Hallowed Be Thy Name
+    1691, -- Merrymaker
+    2144, -- What a Long, Strange Trip It's Been
+    5845, -- A Bunch of Lunch
+    5851, -- Gone Fishin'
+    6030, -- Taking the Show on the Road
 })
 
 zoneData:Zone(88, { -- Thunder Bluff (city)
@@ -1173,6 +1423,14 @@ zoneData:Zone(88, { -- Thunder Bluff (city)
     2556, -- Pest Control
     259, -- Scrooge
     965, -- Tricks and Treats of Kalimdor
+    971, -- Tricks and Treats of Azeroth
+    913, -- To Honor One's Elders
+    1656, -- Hallowed Be Thy Name
+    1691, -- Merrymaker
+    2144, -- What a Long, Strange Trip It's Been
+    5845, -- A Bunch of Lunch
+    5851, -- Gone Fishin'
+    6031, -- Taking the Show on the Road
 })
 
 zoneData:Zone(89, { -- Darnassus (city)
@@ -1187,6 +1445,13 @@ zoneData:Zone(89, { -- Darnassus (city)
     915, -- Elders of the Alliance
     2556, -- Pest Control
     963, -- Tricks and Treats of Kalimdor
+    971, -- Tricks and Treats of Azeroth
+    913, -- To Honor One's Elders
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
+    5845, -- A Bunch of Lunch
+    5851, -- Gone Fishin'
+    6030, -- Taking the Show on the Road
 })
 
 zoneData:Zone(90, { -- Undercity (city)
@@ -1200,6 +1465,13 @@ zoneData:Zone(90, { -- Undercity (city)
     6622, -- Big City Pet Brawler
     2556, -- Pest Control
     967, -- Tricks and Treats of Eastern Kingdoms
+    971, -- Tricks and Treats of Azeroth
+    913, -- To Honor One's Elders
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
+    5845, -- A Bunch of Lunch
+    5851, -- Gone Fishin'
+    6031, -- Taking the Show on the Road
 })
 
 zoneData:Zone({91, 1537, 2162}, { -- Alterac Valley (battleground)
@@ -1228,18 +1500,21 @@ zoneData:Zone({91, 1537, 2162}, { -- Alterac Valley (battleground)
     907, -- The Justicar
     714, -- The Conqueror
     230, -- Battlemaster
+    1175, -- Battlemaster
 })
 
 zoneData:Zone(279, { -- Wailing Caverns (dungeon)
     630, -- Wailing Caverns
     11765, -- Pet Battle Challenge: Wailing Caverns
     14021, -- The Shadows Revealed
+    1283, -- Classic Dungeonmaster
 })
 
 zoneData:Zone({226, 227, 228, 229}, { -- Gnomeregan (dungeon)
     634, -- Gnomeregan
     13269, -- Pet Battle Challenge: Gnomeregan
     14021, -- The Shadows Revealed
+    1283, -- Classic Dungeonmaster
 })
 
 zoneData:Zone({242, 243}, { -- Blackrock Depths (dungeon)
@@ -1249,6 +1524,10 @@ zoneData:Zone({242, 243}, { -- Blackrock Depths (dungeon)
     14020, -- Pet Battle Challenge: Blackrock Depths
     14021, -- The Shadows Revealed
     910, -- Elders of the Dungeons
+    913, -- To Honor One's Elders
+    1283, -- Classic Dungeonmaster
+    1683, -- Brewmaster
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone({291, 292}, { -- The Deadmines (dungeon)
@@ -1264,6 +1543,10 @@ zoneData:Zone({291, 292}, { -- The Deadmines (dungeon)
     11856, -- Pet Battle Challenge: Deadmines
     9924, -- Field Photographer
     41146, -- Protocol Inferno: Deadmines
+    1283, -- Classic Dungeonmaster
+    4844, -- Cataclysm Dungeon Hero
+    4845, -- Glory of the Cataclysm Hero
+    5506, -- Defender of a Shattered World
 })
 
 zoneData:Zone({310, 311, 312, 313, 314, 315, 316}, { -- Shadowfang Keep (dungeon)
@@ -1274,6 +1557,10 @@ zoneData:Zone({310, 311, 312, 313, 314, 315, 316}, { -- Shadowfang Keep (dungeon
     5093, -- Heroic: Shadowfang Keep
     4627, -- X-45 Heartbreaker
     41147, -- Protocol Inferno: Shadowfang Keep
+    1283, -- Classic Dungeonmaster
+    4844, -- Cataclysm Dungeon Hero
+    4845, -- Glory of the Cataclysm Hero
+    5506, -- Defender of a Shattered World
 })
 
 zoneData:Zone({317, 318}, { -- Stratholme (dungeon)
@@ -1283,6 +1570,9 @@ zoneData:Zone({317, 318}, { -- Stratholme (dungeon)
     13766, -- Malowned
     14021, -- The Shadows Revealed
     910, -- Elders of the Dungeons
+    913, -- To Honor One's Elders
+    1283, -- Classic Dungeonmaster
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(232, { -- Molten Core (raid)
@@ -1297,6 +1587,8 @@ zoneData:Zone(232, { -- Molten Core (raid)
     11296, -- The Ancient Keeper
     11297, -- The Balance of Light and Shadow
     15330, -- Survivor of the Firelord (Season of Mastery)
+    1285, -- Classic Raider
+    11761, -- Azeroth's Next Top Model
 })
 
 zoneData:Zone({287, 288, 289, 290}, { -- Blackwing Lair (raid)
@@ -1304,6 +1596,8 @@ zoneData:Zone({287, 288, 289, 290}, { -- Blackwing Lair (raid)
     11742, -- Dress in Lairs
     7934, -- Raiding with Leashes
     15333, -- Survivor of the Shadow Flame (Season of Mastery)
+    1285, -- Classic Raider
+    11761, -- Azeroth's Next Top Model
 })
 
 zoneData:Zone({319, 320, 321}, { -- Ahn'Qiraj (raid)
@@ -1313,6 +1607,8 @@ zoneData:Zone({319, 320, 321}, { -- Ahn'Qiraj (raid)
     11743, -- Accessor-Eyes
     7934, -- Raiding with Leashes
     15334, -- Survivor of the Old God (Season of Mastery)
+    1285, -- Classic Raider
+    11761, -- Azeroth's Next Top Model
 })
 
 zoneData:Zone({616, 617, 618}, { -- Upper Blackrock Spire (dungeon)

@@ -2,6 +2,10 @@ local _, addon = ...
 
 local zoneData = KrowiAF.NewZoneData("Shadowlands")
 
+zoneData:Zone({1409, 1609, 1610}, { -- Exile's Reach (starting zone)
+    14222, -- Exile's Reach
+})
+
 zoneData:Zone(1525, { -- Revendreth (zone)
     13878, -- The Master of Revendreth
     14798, -- Sojourner of Revendreth
@@ -124,6 +128,8 @@ zoneData:Zone({1543, 1820, 1821, 1822, 1823}, { -- The Maw (zone)
     15648, -- Walking in Maw-mphis
     15004, -- A Sly Fox
     15064, -- Breaking the Chains
+    15654, -- Back from the Beyond (Legacy)
+    20501, -- Back from the Beyond
 })
 
 zoneData:Zone({1565, 1816, 1818, 1824, 1825, 1826, 1827, 1829}, { -- Ardenweald (zone)
@@ -160,20 +166,6 @@ zoneData:Zone({1565, 1816, 1818, 1824, 1825, 1826, 1827, 1829}, { -- Ardenweald 
     7520, -- The Loremaster
 })
 
-zoneData:Zone(1550, { -- The Shadowlands (continent)
-    14280, -- Loremaster of Shadowlands
-    14758, -- The World Beyond
-    15388, -- Shadowlands Explorer
-    14825, -- Shadowlands Voyager
-    14731, -- To All the Squirrels I've Loved and Lost
-    14515, -- Zo'Sorg's Bidding
-    14516, -- Impressing Zo'Sorg
-    14519, -- Covenant Combat
-    14315, -- Shadowlands Diplomat
-    15064, -- Breaking the Chains
-    7520, -- The Loremaster
-})
-
 zoneData:Zone(1644, { -- Ember Court (scenario)
     14678, -- Court Favors
     14679, -- Party Palace
@@ -188,6 +180,9 @@ zoneData:Zone(1644, { -- Ember Court (scenario)
     14727, -- Master of Ceremonies
     14749, -- Rendle's Big Day
     16731, -- Court is Now in Session
+    15649, -- Shadowlands Dilettante
+    15654, -- Back from the Beyond (Legacy)
+    20501, -- Back from the Beyond
 })
 
 zoneData:Zone(1662, { -- Queen's Conservatory (scenario)
@@ -198,6 +193,9 @@ zoneData:Zone(1662, { -- Queen's Conservatory (scenario)
     14775, -- Mush Appreciated
     14780, -- Meditation Master
     14789, -- All Spirits Great and Small
+    15649, -- Shadowlands Dilettante
+    15654, -- Back from the Beyond (Legacy)
+    20501, -- Back from the Beyond
 })
 
 zoneData:Zone(1698, { -- Seat of the Primus (covenant hall)
@@ -242,6 +240,11 @@ zoneData:Zone(1698, { -- Seat of the Primus (covenant hall)
     14764, -- The Great Luckydo
     14833, -- Fashion Abomination
     14763, -- Crypt Couture
+    15654, -- Back from the Beyond (Legacy)
+    20501, -- Back from the Beyond
+    14305, -- Explore Maldraxxus
+    14825, -- Shadowlands Voyager
+    15388, -- Shadowlands Explorer
 })
 
 zoneData:Zone({1699, 1700}, { -- Sinfall (covenant hall)
@@ -291,6 +294,8 @@ zoneData:Zone({1699, 1700}, { -- Sinfall (covenant hall)
     14727, -- Master of Ceremonies
     14749, -- Rendle's Big Day
     16731, -- Court is Now in Session
+    15654, -- Back from the Beyond (Legacy)
+    20501, -- Back from the Beyond
 })
 
 zoneData:Zone({1701, 1702, 1703, 1819}, { -- Heart of the Forest (covenant hall)
@@ -334,6 +339,11 @@ zoneData:Zone({1701, 1702, 1703, 1819}, { -- Heart of the Forest (covenant hall)
     14775, -- Mush Appreciated
     14780, -- Meditation Master
     14789, -- All Spirits Great and Small
+    15654, -- Back from the Beyond (Legacy)
+    20501, -- Back from the Beyond
+    14304, -- Explore Ardenweald
+    14825, -- Shadowlands Voyager
+    15388, -- Shadowlands Explorer
 })
 
 zoneData:Zone({1707, 1708}, { -- Elysian Hold (covenant hall)
@@ -387,6 +397,11 @@ zoneData:Zone({1707, 1708}, { -- Elysian Hold (covenant hall)
     14865, -- Disciple of Humility
     14866, -- Master of the Path
     14887, -- To the Moon
+    15654, -- Back from the Beyond (Legacy)
+    20501, -- Back from the Beyond
+    14303, -- Explore Bastion
+    14825, -- Shadowlands Voyager
+    15388, -- Shadowlands Explorer
 })
 
 zoneData:Zone(1711, { -- Ascension Coliseum (scenario)
@@ -407,6 +422,9 @@ zoneData:Zone(1711, { -- Ascension Coliseum (scenario)
     14865, -- Disciple of Humility
     14866, -- Master of the Path
     14887, -- To the Moon
+    15649, -- Shadowlands Dilettante
+    15654, -- Back from the Beyond (Legacy)
+    20501, -- Back from the Beyond
 })
 
 zoneData:Zone({1618, 1619, 1620, 1621, 1623, 1624, 1627, 1628, 1629, 1630, 1631, 1632, 1635, 1636, 1641, 1712, 1721, 1736, 1749, 1751, 1752, 1753, 1754, 1756, 1757, 1758, 1759, 1760, 1761, 1763, 1764, 1765, 1766, 1767, 1768, 1769, 1770, 1771, 1772, 1773, 1774, 1776, 1777, 1778, 1779, 1780, 1781, 1782, 1783, 1784, 1785, 1786, 1787, 1788, 1789, 1791, 1792, 1793, 1794, 1795, 1796, 1797, 1798, 1799, 1800, 1801, 1802, 1803, 1804, 1805, 1806, 1807, 1808, 1809, 1810, 1811, 1812, 1911, 1913, 1920, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1974, 1975, 1976, 1977, 1979, 1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988}, { -- Torghast (zone)
@@ -473,16 +491,14 @@ zoneData:Zone({1618, 1619, 1620, 1621, 1623, 1624, 1627, 1628, 1629, 1630, 1631,
     15256, -- The Jailer's Gauntlet: Layer 6
     15257, -- The Jailer's Gauntlet: Layer 7
     15258, -- The Jailer's Gauntlet: Layer 8
+    15654, -- Back from the Beyond (Legacy)
+    20501, -- Back from the Beyond
 })
 
 zoneData:Zone({1663, 1664, 1665}, { -- Halls of Atonement (dungeon)
     14418, -- Shadowlands Dungeon Hero
     15651, -- Myths of the Shadowlands Dungeons
     14322, -- Glory of the Shadowlands Hero
-    11183, -- Keystone Initiate
-    11184, -- Keystone Challenger
-    11185, -- Keystone Conqueror
-    11162, -- Keystone Master
     14938, -- Shadowlands Keystone Explorer: Season One
     14531, -- Shadowlands Keystone Conqueror: Season One
     14532, -- Shadowlands Keystone Master: Season One
@@ -502,16 +518,44 @@ zoneData:Zone({1663, 1664, 1665}, { -- Halls of Atonement (dungeon)
     14410, -- Heroic: Halls of Atonement
     14411, -- Mythic: Halls of Atonement
     15048, -- Keystone Hero: Halls of Atonement
+    15654, -- Back from the Beyond (Legacy)
+    20501, -- Back from the Beyond
+    42149, -- The War Within Season 3: Resilient Keystone 12
+    42150, -- The War Within Season 3: Resilient Keystone 13
+    42151, -- The War Within Season 3: Resilient Keystone 14
+    42152, -- The War Within Season 3: Resilient Keystone 15
+    42153, -- The War Within Season 3: Resilient Keystone 16
+    42154, -- The War Within Season 3: Resilient Keystone 17
+    42155, -- The War Within Season 3: Resilient Keystone 18
+    42156, -- The War Within Season 3: Resilient Keystone 19
+    42157, -- The War Within Season 3: Resilient Keystone 20
+    42158, -- The War Within Season 3: Resilient Keystone 21
+    42159, -- The War Within Season 3: Resilient Keystone 22
+    42160, -- The War Within Season 3: Resilient Keystone 23
+    42161, -- The War Within Season 3: Resilient Keystone 24
+    42162, -- The War Within Season 3: Resilient Keystone 25
+    42802, -- The War Within Season 3: Resilient Keystone 26
+    42803, -- The War Within Season 3: Resilient Keystone 27
+    42804, -- The War Within Season 3: Resilient Keystone 28
+    42805, -- The War Within Season 3: Resilient Keystone 29
+    42806, -- The War Within Season 3: Resilient Keystone 30
+    42169, -- The War Within Keystone Explorer: Season Three
+    42170, -- The War Within Keystone Conqueror: Season Three
+    41973, -- The War Within Keystone Master: Season Three
+    42171, -- The War Within Keystone Hero: Season Three
+    42172, -- The War Within Keystone Legend: Season Three
+    61874, -- The Unbound Tank
+    61875, -- The Unbound Healer
+    61876, -- The Unbound Damage Dealer
+    61877, -- The Unbound Dungeon Master
+    42174, -- Unbound Hero: The War Within Season Three
+    42325, -- Void Wear Prohibited
 })
 
 zoneData:Zone({1666, 1667, 1668}, { -- The Necrotic Wake (dungeon)
     14418, -- Shadowlands Dungeon Hero
     15651, -- Myths of the Shadowlands Dungeons
     14322, -- Glory of the Shadowlands Hero
-    11183, -- Keystone Initiate
-    11184, -- Keystone Challenger
-    11185, -- Keystone Conqueror
-    11162, -- Keystone Master
     14938, -- Shadowlands Keystone Explorer: Season One
     14531, -- Shadowlands Keystone Conqueror: Season One
     14532, -- Shadowlands Keystone Master: Season One
@@ -531,16 +575,20 @@ zoneData:Zone({1666, 1667, 1668}, { -- The Necrotic Wake (dungeon)
     14367, -- Heroic: The Necrotic Wake
     14368, -- Mythic: The Necrotic Wake
     15045, -- Keystone Hero: The Necrotic Wake
+    15654, -- Back from the Beyond (Legacy)
+    20501, -- Back from the Beyond
+    20523, -- The War Within Keystone Explorer: Season One
+    20524, -- The War Within Keystone Conqueror: Season One
+    20525, -- The War Within Keystone Master: Season One
+    20526, -- The War Within Keystone Hero: Season One
+    20589, -- Tempered Hero: The War Within Season 1
+    40723, -- Web-Wrapped in the Finest Silks
 })
 
 zoneData:Zone(1669, { -- Mists of Tirna Scithe (dungeon)
     14418, -- Shadowlands Dungeon Hero
     15651, -- Myths of the Shadowlands Dungeons
     14322, -- Glory of the Shadowlands Hero
-    11183, -- Keystone Initiate
-    11184, -- Keystone Challenger
-    11185, -- Keystone Conqueror
-    11162, -- Keystone Master
     14938, -- Shadowlands Keystone Explorer: Season One
     14531, -- Shadowlands Keystone Conqueror: Season One
     14532, -- Shadowlands Keystone Master: Season One
@@ -560,16 +608,20 @@ zoneData:Zone(1669, { -- Mists of Tirna Scithe (dungeon)
     14412, -- Heroic: Mists of Tirna Scithe
     14413, -- Mythic: Mists of Tirna Scithe
     15047, -- Keystone Hero: Mists of Tirna Scithe
+    15654, -- Back from the Beyond (Legacy)
+    20501, -- Back from the Beyond
+    20523, -- The War Within Keystone Explorer: Season One
+    20524, -- The War Within Keystone Conqueror: Season One
+    20525, -- The War Within Keystone Master: Season One
+    20526, -- The War Within Keystone Hero: Season One
+    20589, -- Tempered Hero: The War Within Season 1
+    40723, -- Web-Wrapped in the Finest Silks
 })
 
 zoneData:Zone({1674, 1697}, { -- Plaguefall (dungeon)
     14418, -- Shadowlands Dungeon Hero
     15651, -- Myths of the Shadowlands Dungeons
     14322, -- Glory of the Shadowlands Hero
-    11183, -- Keystone Initiate
-    11184, -- Keystone Challenger
-    11185, -- Keystone Conqueror
-    11162, -- Keystone Master
     14938, -- Shadowlands Keystone Explorer: Season One
     14531, -- Shadowlands Keystone Conqueror: Season One
     14532, -- Shadowlands Keystone Master: Season One
@@ -589,16 +641,14 @@ zoneData:Zone({1674, 1697}, { -- Plaguefall (dungeon)
     14414, -- Heroic: Plaguefall
     14415, -- Mythic: Plaguefall
     15046, -- Keystone Hero: Plaguefall
+    15654, -- Back from the Beyond (Legacy)
+    20501, -- Back from the Beyond
 })
 
 zoneData:Zone({1675, 1676}, { -- Sanguine Depths (dungeon)
     14418, -- Shadowlands Dungeon Hero
     15651, -- Myths of the Shadowlands Dungeons
     14322, -- Glory of the Shadowlands Hero
-    11183, -- Keystone Initiate
-    11184, -- Keystone Challenger
-    11185, -- Keystone Conqueror
-    11162, -- Keystone Master
     14938, -- Shadowlands Keystone Explorer: Season One
     14531, -- Shadowlands Keystone Conqueror: Season One
     14532, -- Shadowlands Keystone Master: Season One
@@ -618,16 +668,14 @@ zoneData:Zone({1675, 1676}, { -- Sanguine Depths (dungeon)
     14198, -- Heroic: Sanguine Depths
     14199, -- Mythic: Sanguine Depths
     15052, -- Keystone Hero: Sanguine Depths
+    15654, -- Back from the Beyond (Legacy)
+    20501, -- Back from the Beyond
 })
 
 zoneData:Zone({1677, 1678, 1679, 1680}, { -- De Other Side (dungeon)
     14418, -- Shadowlands Dungeon Hero
     15651, -- Myths of the Shadowlands Dungeons
     14322, -- Glory of the Shadowlands Hero
-    11183, -- Keystone Initiate
-    11184, -- Keystone Challenger
-    11185, -- Keystone Conqueror
-    11162, -- Keystone Master
     14938, -- Shadowlands Keystone Explorer: Season One
     14531, -- Shadowlands Keystone Conqueror: Season One
     14532, -- Shadowlands Keystone Master: Season One
@@ -647,16 +695,14 @@ zoneData:Zone({1677, 1678, 1679, 1680}, { -- De Other Side (dungeon)
     14408, -- Heroic: De Other Side
     14409, -- Mythic: De Other Side
     15051, -- Keystone Hero: De Other Side
+    15654, -- Back from the Beyond (Legacy)
+    20501, -- Back from the Beyond
 })
 
 zoneData:Zone({1683, 1684, 1685, 1686, 1687}, { -- Theater of Pain (dungeon)
     14418, -- Shadowlands Dungeon Hero
     15651, -- Myths of the Shadowlands Dungeons
     14322, -- Glory of the Shadowlands Hero
-    11183, -- Keystone Initiate
-    11184, -- Keystone Challenger
-    11185, -- Keystone Conqueror
-    11162, -- Keystone Master
     14938, -- Shadowlands Keystone Explorer: Season One
     14531, -- Shadowlands Keystone Conqueror: Season One
     14532, -- Shadowlands Keystone Master: Season One
@@ -676,16 +722,25 @@ zoneData:Zone({1683, 1684, 1685, 1686, 1687}, { -- Theater of Pain (dungeon)
     14416, -- Heroic: Theater of Pain
     14417, -- Mythic: Theater of Pain
     15050, -- Keystone Hero: Theater of Pain
+    15654, -- Back from the Beyond (Legacy)
+    20501, -- Back from the Beyond
+    40949, -- The War Within Keystone Explorer: Season Two
+    40950, -- The War Within Keystone Conqueror: Season Two
+    41533, -- The War Within Keystone Master: Season Two
+    40952, -- The War Within Keystone Hero: Season Two
+    40951, -- The War Within Keystone Legend: Season Two
+    42139, -- The Enterprising Tank
+    42141, -- The Enterprising Healer
+    42144, -- The Enterprising Damage Dealer
+    42148, -- The Enterprising Dungeon Master
+    40954, -- Enterprising Hero: The War Within Season Two
+    41665, -- Dressed to the Mines
 })
 
 zoneData:Zone({1692, 1693, 1694, 1695}, { -- Spires of Ascension (dungeon)
     14418, -- Shadowlands Dungeon Hero
     15651, -- Myths of the Shadowlands Dungeons
     14322, -- Glory of the Shadowlands Hero
-    11183, -- Keystone Initiate
-    11184, -- Keystone Challenger
-    11185, -- Keystone Conqueror
-    11162, -- Keystone Master
     14938, -- Shadowlands Keystone Explorer: Season One
     14531, -- Shadowlands Keystone Conqueror: Season One
     14532, -- Shadowlands Keystone Master: Season One
@@ -705,6 +760,8 @@ zoneData:Zone({1692, 1693, 1694, 1695}, { -- Spires of Ascension (dungeon)
     14324, -- Heroic: Spires of Ascension
     14325, -- Mythic: Spires of Ascension
     15049, -- Keystone Hero: Spires of Ascension
+    15654, -- Back from the Beyond (Legacy)
+    20501, -- Back from the Beyond
 })
 
 zoneData:Zone({1735, 1744, 1745, 1746, 1747, 1748, 1750}, { -- Castle Nathria (raid)
@@ -741,6 +798,9 @@ zoneData:Zone({1735, 1744, 1745, 1746, 1747, 1748, 1750}, { -- Castle Nathria (r
     15684, -- Fates of the Shadowlands Raids
     15685, -- Heroic: Fates of the Shadowlands Raids
     15687, -- Mythic: Fates of the Shadowlands Raids
+    11761, -- Azeroth's Next Top Model
+    15654, -- Back from the Beyond (Legacy)
+    20501, -- Back from the Beyond
 })
 
 zoneData:Zone({1961, 2006, 2007, 2008}, { -- Korthia (zone)
@@ -781,6 +841,8 @@ zoneData:Zone({1970, 2027, 2028, 2029, 2030, 2031, 2066}, { -- Zereth Mortis (zo
     15514, -- Unlocking the Secrets
     15542, -- Apocopocolypse Now
     15220, -- The Enlightened
+    15654, -- Back from the Beyond (Legacy)
+    20501, -- Back from the Beyond
 })
 
 zoneData:Zone({1989, 1990, 1991, 1992, 1993, 1995, 1996, 1997}, { -- Tazavesh, the Veiled Market (dungeon)
@@ -795,6 +857,48 @@ zoneData:Zone({1989, 1990, 1991, 1992, 1993, 1995, 1996, 1997}, { -- Tazavesh, t
     15652, -- Mythic: So'leah's Gambit
     61092, -- Hard Mode: Tazavesh, the Veiled Market
     61093, -- Flawless Transaction
+    15651, -- Myths of the Shadowlands Dungeons
+    15654, -- Back from the Beyond (Legacy)
+    20501, -- Back from the Beyond
+    15496, -- Shadowlands Keystone Explorer: Season Three
+    15498, -- Shadowlands Keystone Conqueror: Season Three
+    15499, -- Shadowlands Keystone Master: Season Three
+    15506, -- Shadowlands Keystone Hero: Season Three
+    15691, -- Cryptic Hero: Shadowlands Season 3
+    15688, -- Shadowlands Keystone Explorer: Season Four
+    15689, -- Shadowlands Keystone Conqueror: Season Four
+    15690, -- Shadowlands Keystone Master: Season Four
+    15756, -- Shrouded Hero: Shadowlands Season 4
+    42149, -- The War Within Season 3: Resilient Keystone 12
+    42150, -- The War Within Season 3: Resilient Keystone 13
+    42151, -- The War Within Season 3: Resilient Keystone 14
+    42152, -- The War Within Season 3: Resilient Keystone 15
+    42153, -- The War Within Season 3: Resilient Keystone 16
+    42154, -- The War Within Season 3: Resilient Keystone 17
+    42155, -- The War Within Season 3: Resilient Keystone 18
+    42156, -- The War Within Season 3: Resilient Keystone 19
+    42157, -- The War Within Season 3: Resilient Keystone 20
+    42158, -- The War Within Season 3: Resilient Keystone 21
+    42159, -- The War Within Season 3: Resilient Keystone 22
+    42160, -- The War Within Season 3: Resilient Keystone 23
+    42161, -- The War Within Season 3: Resilient Keystone 24
+    42162, -- The War Within Season 3: Resilient Keystone 25
+    42802, -- The War Within Season 3: Resilient Keystone 26
+    42803, -- The War Within Season 3: Resilient Keystone 27
+    42804, -- The War Within Season 3: Resilient Keystone 28
+    42805, -- The War Within Season 3: Resilient Keystone 29
+    42806, -- The War Within Season 3: Resilient Keystone 30
+    42169, -- The War Within Keystone Explorer: Season Three
+    42170, -- The War Within Keystone Conqueror: Season Three
+    41973, -- The War Within Keystone Master: Season Three
+    42171, -- The War Within Keystone Hero: Season Three
+    42172, -- The War Within Keystone Legend: Season Three
+    61874, -- The Unbound Tank
+    61875, -- The Unbound Healer
+    61876, -- The Unbound Damage Dealer
+    61877, -- The Unbound Dungeon Master
+    42174, -- Unbound Hero: The War Within Season Three
+    42325, -- Void Wear Prohibited
 })
 
 zoneData:Zone({1998, 1999, 2000, 2001, 2002, 2003, 2004}, { -- Sanctum of Domination (raid)
@@ -836,6 +940,9 @@ zoneData:Zone({1998, 1999, 2000, 2001, 2002, 2003, 2004}, { -- Sanctum of Domina
     15684, -- Fates of the Shadowlands Raids
     15685, -- Heroic: Fates of the Shadowlands Raids
     15687, -- Mythic: Fates of the Shadowlands Raids
+    11761, -- Azeroth's Next Top Model
+    15654, -- Back from the Beyond (Legacy)
+    20501, -- Back from the Beyond
 })
 
 zoneData:Zone({2047, 2048, 2049, 2050, 2051, 2052, 2061}, { -- Sepulcher of the First Ones (raid)
@@ -880,4 +987,7 @@ zoneData:Zone({2047, 2048, 2049, 2050, 2051, 2052, 2061}, { -- Sepulcher of the 
     15684, -- Fates of the Shadowlands Raids
     15685, -- Heroic: Fates of the Shadowlands Raids
     15687, -- Mythic: Fates of the Shadowlands Raids
+    11761, -- Azeroth's Next Top Model
+    15654, -- Back from the Beyond (Legacy)
+    20501, -- Back from the Beyond
 })

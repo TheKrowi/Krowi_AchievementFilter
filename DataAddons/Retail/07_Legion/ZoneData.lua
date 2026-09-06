@@ -33,6 +33,7 @@ zoneData:Zone({650, 651, 652, 653, 654, 655, 656, 657, 658, 659, 660}, { -- High
     11478, -- The Darkbrul-oh
     12292, -- Highmountain Tribe
     46, -- Universal Explorer
+    42114, -- Broken Memories
 })
 
 zoneData:Zone(903, { -- Seat of the Triumvirate (dungeon)
@@ -43,10 +44,42 @@ zoneData:Zone(903, { -- Seat of the Triumvirate (dungeon)
     12008, -- Mythic: Seat of the Triumvirate
     61270, -- Keystone Hero: Seat of the Triumvirate
     61593, -- Keystone Victor: Seat of the Triumvirate
+    11298, -- A Classy Outfit
+    12083, -- Paragon of Argus
+    61233, -- Midnight Season 1: Resilient Keystone 12
+    61235, -- Midnight Season 1: Resilient Keystone 13
+    61236, -- Midnight Season 1: Resilient Keystone 14
+    61237, -- Midnight Season 1: Resilient Keystone 15
+    61239, -- Midnight Season 1: Resilient Keystone 16
+    61240, -- Midnight Season 1: Resilient Keystone 17
+    61241, -- Midnight Season 1: Resilient Keystone 18
+    61242, -- Midnight Season 1: Resilient Keystone 19
+    61243, -- Midnight Season 1: Resilient Keystone 20
+    61244, -- Midnight Season 1: Resilient Keystone 21
+    61245, -- Midnight Season 1: Resilient Keystone 22
+    61246, -- Midnight Season 1: Resilient Keystone 23
+    61247, -- Midnight Season 1: Resilient Keystone 24
+    61248, -- Midnight Season 1: Resilient Keystone 25
+    61249, -- Midnight Season 1: Resilient Keystone 26
+    61250, -- Midnight Season 1: Resilient Keystone 27
+    61251, -- Midnight Season 1: Resilient Keystone 28
+    61252, -- Midnight Season 1: Resilient Keystone 29
+    61253, -- Midnight Season 1: Resilient Keystone 30
+    61254, -- Midnight Keystone Explorer: Season 1
+    61255, -- Midnight Keystone Conqueror: Season 1
+    61256, -- Midnight Keystone Master: Season 1
+    61257, -- Midnight Keystone Hero: Season 1
+    61258, -- Midnight Keystone Legend: Season 1
+    63097, -- Midnight Keystone Myth: Season 1
+    61259, -- Umbral Hero: Midnight Season 1
+    63104, -- Umbral Champion: Midnight Season 1
+    61858, -- Light of the Party
 })
 
 local classHalls = {
     10994, -- A Glorious Campaign
+    11190, -- Broken Isles Pathfinder, Part One
+    11446, -- Broken Isles Pathfinder, Part Two
     11135, -- A Heroic Campaign
     11136, -- An Epic Campaign
     10706, -- Training the Troops
@@ -101,27 +134,6 @@ zoneData:Zone({734, 735}, classHalls) -- Hall of the Guardian (Mage)
 zoneData:Zone(739, classHalls) -- Trueshot Lodge (Hunter)
 zoneData:Zone({715, 747}, classHalls) -- The Dreamgrove (Druid), Emerald Dreamway
 
-zoneData:Zone(619, { -- Broken Isles (continent)
-    7520, -- The Loremaster
-    11190, -- Broken Isles Pathfinder, Part One
-    11446, -- Broken Isles Pathfinder, Part Two
-    11160, -- Unleashed Monstrosities
-    11157, -- Loremaster of Legion
-    10877, -- Pillars of Creation
-    11189, -- Variety is the Spice of Life
-    11186, -- Tehd & Marius' Excellent Adventure
-    11544, -- Defender of the Broken Isles
-    11846, -- Champions of Legionfall
-    14729, -- To All the Squirrels I Love Despite Their Scars
-    11188, -- Broken Isles Explorer
-    11474, -- Free For All, More For Me
-    10672, -- Broken Isles Diplomat
-    11159, -- Friends in a Broken Land
-    11652, -- The Reputable
-    11653, -- Paragon of the Broken Isles
-    46, -- Universal Explorer
-})
-
 zoneData:Zone({627, 628, 629}, { -- Dalaran (city)
     10770, -- The Tangerine Traveler
     12416, -- The Total Package
@@ -130,6 +142,8 @@ zoneData:Zone({627, 628, 629}, { -- Dalaran (city)
     11066, -- Underbelly Tycoon
     10585, -- Fel-Smelter
     10586, -- Mass Obliteration
+    11190, -- Broken Isles Pathfinder, Part One
+    11446, -- Broken Isles Pathfinder, Part Two
 })
 
 zoneData:Zone({630, 631, 632, 633}, { -- Azsuna (zone)
@@ -156,6 +170,7 @@ zoneData:Zone({630, 631, 632, 633}, { -- Azsuna (zone)
     11261, -- Adventurer of Azsuna
     11475, -- Mission Accomplished
     46, -- Universal Explorer
+    42114, -- Broken Memories
 })
 
 zoneData:Zone({634, 635, 636, 637, 638, 639, 640, 649}, { -- Stormheim (zone)
@@ -186,6 +201,7 @@ zoneData:Zone({634, 635, 636, 637, 638, 639, 640, 649}, { -- Stormheim (zone)
     11178, -- Wake the Dragon
     11476, -- Saddle Sore
     46, -- Universal Explorer
+    42114, -- Broken Memories
 })
 
 zoneData:Zone({641, 642, 643, 644}, { -- Val'sharah (zone)
@@ -211,6 +227,7 @@ zoneData:Zone({641, 642, 643, 644}, { -- Val'sharah (zone)
     11262, -- Adventurer of Val'sharah
     11477, -- Off the Top Rook
     46, -- Universal Explorer
+    42114, -- Broken Memories
 })
 
 zoneData:Zone(646, { -- Broken Shore (zone)
@@ -261,6 +278,7 @@ zoneData:Zone({680, 681, 682, 683, 684, 685, 686, 687, 688, 689, 690, 691, 692, 
     11265, -- Adventurer of Suramar
     10778, -- The Nightfallen
     46, -- Universal Explorer
+    42114, -- Broken Memories
 })
 
 zoneData:Zone({703, 704, 705}, { -- Halls of Valor (dungeon)
@@ -274,6 +292,14 @@ zoneData:Zone({703, 704, 705}, { -- Halls of Valor (dungeon)
     10788, -- Heroic: Halls of Valor
     10789, -- Mythic: Halls of Valor
     16659, -- Keystone Hero: Halls of Valor
+    10748, -- Fighting with Style: Valorous
+    11298, -- A Classy Outfit
+    16647, -- Dragonflight Keystone Explorer: Season One
+    16648, -- Dragonflight Keystone Conqueror: Season One
+    16649, -- Dragonflight Keystone Master: Season One
+    16650, -- Dragonflight Keystone Hero: Season One
+    16429, -- Thundering Hero: Dragonflight Season 1
+    17119, -- Deep Cuts From the Vault
 })
 
 zoneData:Zone({706, 707, 708}, { -- Maw of Souls (dungeon)
@@ -286,6 +312,8 @@ zoneData:Zone({706, 707, 708}, { -- Maw of Souls (dungeon)
     10807, -- Maw of Souls
     10808, -- Heroic: Maw of Souls
     10809, -- Mythic: Maw of Souls
+    10748, -- Fighting with Style: Valorous
+    11298, -- A Classy Outfit
 })
 
 zoneData:Zone({710, 711, 712}, { -- Vault of the Wardens (dungeon)
@@ -299,6 +327,8 @@ zoneData:Zone({710, 711, 712}, { -- Vault of the Wardens (dungeon)
     10801, -- Vault of the Wardens
     10802, -- Heroic: Vault of the Wardens
     10803, -- Mythic: Vault of the Wardens
+    10748, -- Fighting with Style: Valorous
+    11298, -- A Classy Outfit
 })
 
 zoneData:Zone(713, { -- Eye of Azshara (dungeon)
@@ -311,6 +341,8 @@ zoneData:Zone(713, { -- Eye of Azshara (dungeon)
     10780, -- Eye of Azshara
     10781, -- Heroic: Eye of Azshara
     10782, -- Mythic: Eye of Azshara
+    10748, -- Fighting with Style: Valorous
+    11298, -- A Classy Outfit
 })
 
 zoneData:Zone(731, { -- Neltharion's Lair (dungeon)
@@ -323,6 +355,16 @@ zoneData:Zone(731, { -- Neltharion's Lair (dungeon)
     10796, -- Heroic: Neltharion's Lair
     10797, -- Mythic: Neltharion's Lair
     17850, -- Keystone Hero: Neltharion's Lair
+    10748, -- Fighting with Style: Valorous
+    11298, -- A Classy Outfit
+    17842, -- Dragonflight Keystone Explorer: Season Two
+    17843, -- Dragonflight Keystone Conqueror: Season Two
+    17844, -- Dragonflight Keystone Master: Season Two
+    17845, -- Dragonflight Keystone Hero: Season Two
+    18542, -- Dragonflight Keystone Master: Season Two
+    17846, -- Smoldering Hero: Dragonflight Season 2
+    18027, -- Dragonflight Season 2 Master
+    18380, -- Dragonflight Season 2 Hero
 })
 
 zoneData:Zone(732, { -- Violet Hold (dungeon)
@@ -333,6 +375,8 @@ zoneData:Zone(732, { -- Violet Hold (dungeon)
     10798, -- Assault on Violet Hold
     10799, -- Heroic: Assault on Violet Hold
     10800, -- Mythic: Assault on Violet Hold
+    10748, -- Fighting with Style: Valorous
+    11298, -- A Classy Outfit
 })
 
 zoneData:Zone(733, { -- Darkheart Thicket (dungeon)
@@ -345,6 +389,14 @@ zoneData:Zone(733, { -- Darkheart Thicket (dungeon)
     10784, -- Heroic: Darkheart Thicket
     10785, -- Mythic: Darkheart Thicket
     19085, -- Keystone Hero: Darkheart Thicket
+    10748, -- Fighting with Style: Valorous
+    11298, -- A Classy Outfit
+    19009, -- Dragonflight Keystone Explorer: Season Three
+    19010, -- Dragonflight Keystone Conqueror: Season Three
+    19011, -- Dragonflight Keystone Master: Season Three
+    19012, -- Dragonflight Keystone Hero: Season Three
+    19396, -- Dragonflight Season 3 Master
+    19420, -- Dragonflight Season 3 Hero
 })
 
 zoneData:Zone(749, { -- The Arcway (dungeon)
@@ -353,6 +405,8 @@ zoneData:Zone(749, { -- The Arcway (dungeon)
     10775, -- Clean House
     10776, -- No Time to Waste
     10813, -- Mythic: The Arcway
+    11163, -- Glory of the Legion Hero
+    10748, -- Fighting with Style: Valorous
 })
 
 zoneData:Zone({751, 752, 753, 754, 755, 756}, { -- Black Rook Hold (dungeon)
@@ -366,6 +420,14 @@ zoneData:Zone({751, 752, 753, 754, 755, 756}, { -- Black Rook Hold (dungeon)
     10805, -- Heroic: Black Rook Hold
     10806, -- Mythic: Black Rook Hold
     19084, -- Keystone Hero: Black Rook Hold
+    10748, -- Fighting with Style: Valorous
+    11298, -- A Classy Outfit
+    19009, -- Dragonflight Keystone Explorer: Season Three
+    19010, -- Dragonflight Keystone Conqueror: Season Three
+    19011, -- Dragonflight Keystone Master: Season Three
+    19012, -- Dragonflight Keystone Hero: Season Three
+    19396, -- Dragonflight Season 3 Master
+    19420, -- Dragonflight Season 3 Hero
 })
 
 zoneData:Zone({761, 762, 763}, { -- Court of Stars (dungeon)
@@ -374,6 +436,14 @@ zoneData:Zone({761, 762, 763}, { -- Court of Stars (dungeon)
     10611, -- Dropping Some Eaves
     10816, -- Mythic: Court of Stars
     16658, -- Keystone Hero: Court of Stars
+    11163, -- Glory of the Legion Hero
+    10748, -- Fighting with Style: Valorous
+    16647, -- Dragonflight Keystone Explorer: Season One
+    16648, -- Dragonflight Keystone Conqueror: Season One
+    16649, -- Dragonflight Keystone Master: Season One
+    16650, -- Dragonflight Keystone Hero: Season One
+    16429, -- Thundering Hero: Dragonflight Season 1
+    17119, -- Deep Cuts From the Vault
 })
 
 zoneData:Zone({764, 765, 766, 767, 768, 769, 770, 771, 772}, { -- The Nighthold (raid)
@@ -405,6 +475,8 @@ zoneData:Zone({764, 765, 766, 767, 768, 769, 770, 771, 772}, { -- The Nighthold 
     10847, -- Mythic: Tichondrius
     10849, -- Mythic: Grand Magistrix Elisande
     10850, -- Mythic: Gul'dan
+    11761, -- Azeroth's Next Top Model
+    42030, -- The Nighthold
 })
 
 zoneData:Zone({777, 778, 779, 780, 781, 782, 783, 784, 785, 786, 787, 788, 789}, { -- The Emerald Nightmare (raid)
@@ -428,6 +500,7 @@ zoneData:Zone({777, 778, 779, 780, 781, 782, 783, 784, 785, 786, 787, 788, 789},
     10825, -- Mythic: Dragons of Nightmare
     10826, -- Mythic: Cenarius
     10827, -- Mythic: Xavius
+    42029, -- The Emerald Nightmare
 })
 
 zoneData:Zone({806, 807, 808}, { -- Trial of Valor (raid)
@@ -443,6 +516,7 @@ zoneData:Zone({806, 807, 808}, { -- Trial of Valor (raid)
     11581, -- Ahead of the Curve: Helya
     11580, -- Cutting Edge: Helya
     11762, -- Can I Get A Helya
+    11761, -- Azeroth's Next Top Model
 })
 
 zoneData:Zone({809, 810, 811, 812, 813, 814, 815, 816, 817, 818, 819, 820, 821, 822}, { -- Return to Karazhan (dungeon)
@@ -458,6 +532,7 @@ zoneData:Zone({809, 810, 811, 812, 813, 814, 815, 816, 817, 818, 819, 820, 821, 
     15688, -- Shadowlands Keystone Explorer: Season Four
     15689, -- Shadowlands Keystone Conqueror: Season Four
     15690, -- Shadowlands Keystone Master: Season Four
+    15756, -- Shrouded Hero: Shadowlands Season 4
 })
 
 zoneData:Zone({845, 846, 847, 848, 849}, { -- Cathedral of Eternal Night (dungeon)
@@ -467,6 +542,7 @@ zoneData:Zone({845, 846, 847, 848, 849}, { -- Cathedral of Eternal Night (dungeo
     11700, -- Cathedral of Eternal Night
     11701, -- Heroic: Cathedral of Eternal Night
     11702, -- Mythic: Cathedral of Eternal Night
+    11298, -- A Classy Outfit
 })
 
 zoneData:Zone({850, 851, 852, 853, 854, 855, 856}, { -- Tomb of Sargeras (raid)
@@ -496,6 +572,8 @@ zoneData:Zone({850, 851, 852, 853, 854, 855, 856}, { -- Tomb of Sargeras (raid)
     11779, -- Mythic: Maiden of Vigilance
     11780, -- Mythic: Fallen Avatar
     11781, -- Mythic: Kil'jaeden
+    11761, -- Azeroth's Next Top Model
+    42031, -- Tomb of Sargeras
 })
 
 zoneData:Zone(907, { -- Seething Shore (battleground)
@@ -542,6 +620,9 @@ zoneData:Zone({909, 910, 911, 912, 913, 914, 915, 916, 917, 918, 919, 920}, { --
     12000, -- Mythic: The Coven of Shivarra
     12001, -- Mythic: Aggramar
     12002, -- Mythic: Argus the Unmaker
+    11761, -- Azeroth's Next Top Model
+    12083, -- Paragon of Argus
+    42032, -- Antorus, the Burning Throne
 })
 
 local argus = {

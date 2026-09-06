@@ -673,3 +673,15 @@ When resuming work in a new chat, paste this report as context and reference the
 ---
 
 *End of report.*
+
+## Follow-ups from the zone-data sweep (2026-09-06)
+
+Two code changes fell out of the zone placement rules work (rules in `.claude/skills/add-zone-data/SKILL.md`, decision record in `wiki/achievement-data/zone-data-format.md`). Both are runtime changes, not data.
+
+### 1. Retire the ExportedUiMaps fallback mechanism
+
+Every fallback entry of `Data/Retail/ExportedUiMaps.lua` has been migrated into `DataAddons/*/ZoneData.lua`; the file's `tasks` table is empty but the file is still registered in `Data/Retail/Files.xml` and `Data/Data.lua` (around line 146) still calls `self.ExportedUiMaps.RegisterTasks(self.Maps, self.Achievements)` when the table exists. Remove the file, its Files.xml line, the two Data.lua lines, the `A`/`C`/`A10`/`A25` helpers and the `.claude/skills/migrate-zone-fallbacks` skill (obsolete), then run `.claude/tools/Check-Repo.ps1` and the headless pipeline for both clients. There is no Classic counterpart file. Low risk, no Blizzard API involved.
+
+### 2. World Map button on continent maps
+
+Continent maps no longer carry zone data (placement Rule 1, decision D2), so `KrowiAF_WorldMapButtonMixin:Refresh` in `Gui/WorldMapButton/WorldMapButtonMixin.lua` finds nothing for Kalimdor, Khaz Algar and the other continents and disables the button. Intended fix: when `C_Map.GetMapInfo(mapID).mapType` is `Enum.UIMapType.Continent` (or World), union the achievements of the child maps from `C_Map.GetMapChildrenInfo(mapID)` (zones and their link groups; de-duplicate, the same meta sits on many zones) before counting. `addon.GetAchievementsInZone` itself stays a flat lookup so the Current Zone category is unaffected. Read-only map API, no Blizzard frame hooks, but it is GUI code: run the `taint-reviewer` subagent on the diff and test the button on a continent map, a zone and inside a dungeon (10/25-player difficulty branch). Add a changelog line under the next version.
