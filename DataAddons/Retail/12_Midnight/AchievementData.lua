@@ -896,4 +896,5 @@ KrowiAF.AchievementData["12_01_00"] = {
 	Ach(63698):IsPvP(), -- Arena Exercise
 	Ach(63699):IsPvP(), -- World Wide Trainer
 	Ach(63838), -- Zul'jarra's Forces Champion
+	Ach(64140):TradersTender():Obtainable("Event", 1636), -- Winds of Particularly Mysterious Fortune
 }

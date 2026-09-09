@@ -3,6 +3,8 @@ local L = addon.Localization.NewDefaultLocale()
 
 KrowiAF.PluginsApi:LoadPluginLocalization(L);
 
+L["Winds of Mysterious Fortune"] = true
+
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-08-14 12-07-42 ]] --

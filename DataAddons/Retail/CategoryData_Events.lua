@@ -318,6 +318,13 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                 1691, -- Merrymaker
             },
         },
+        { -- Winds of Mysterious Fortune
+            2570,
+            addon.L["Winds of Mysterious Fortune"],
+            {
+                64140, -- Winds of Particularly Mysterious Fortune
+            },
+        },
         {
             2144, -- What a Long, Strange Trip It's Been
         },
