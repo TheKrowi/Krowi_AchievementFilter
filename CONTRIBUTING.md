@@ -1,6 +1,6 @@
 # Contributing to Krowi's Achievement Filter
 
-For a full technical overview of the addon's architecture, load order, data patterns, and code conventions, see [`.github/copilot-instructions.md`](.github/copilot-instructions.md). This file covers the contributor workflow.
+The canonical technical reference for the addon (architecture, load order, offline tooling, data formats and code conventions) is [`.github/copilot-instructions.md`](.github/copilot-instructions.md). This file covers the contributor workflow only.
 
 ---
 
@@ -8,11 +8,11 @@ For a full technical overview of the addon's architecture, load order, data patt
 
 | Branch | Purpose |
 |--------|---------|
-| `main` | Release-ready. Only merge completed, tested work here. |
+| `main` | Historical. Not updated by the release flow; releases are tagged on `dev`. |
 | `dev` | Active development. All feature branches target this. |
 | `feature/<description>` | Optional short-lived branches off `dev` for larger features. |
 
-PRs go to `dev`. `dev` is merged to `main` at release time.
+PRs go to `dev`. Releases are cut on `dev`: the Krowi Addon Manager makes the `Release X.Y` commit and tag there. `main` is not updated as part of the release flow.
 
 ---
 

@@ -21,7 +21,7 @@ Everything after step 3 is outward-facing and not reversible. Preflight exists t
 
 ## Conventions in this repo
 
-- Releases are tagged on `dev`. Every recent `Release X.Y` commit and tag lives on `dev`. `main` is far behind and is not part of the release flow today, even though copilot-instructions says dev merges to main at release.
+- Releases are tagged on `dev`. Every recent `Release X.Y` commit and tag lives on `dev`. `main` is far behind and is not part of the release flow today.
 - Version is `major.minor` (e.g. `100.2`), occasionally `major.minor.patch`. Tag name equals the TOC `## Version:` value.
 - The changelog header must be `## <version> - <YYYY-MM-DD>`. Without the date the regex in the addon manager does not match and the release fails with "No changelog entries found".
 - The commit made by the tool includes `.vscode/settings.json` and anything else modified. That is accepted practice here.

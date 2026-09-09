@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Repo lint for Krowi_AchievementFilter: the mechanical rules from CLAUDE.md that the game
+    Repo lint for Krowi_AchievementFilter: the mechanical rules from .github/copilot-instructions.md that the game
     cannot check for you. Runs offline in about a second and installs nothing.
 
 .DESCRIPTION
@@ -317,7 +317,7 @@ foreach ($script in Get-ChildItem -Path (Join-Path $root '.claude\skills') -Recu
         $n++
         if ($line -match '^\s*\$(ids|terms)\s*=\s*@\(\s*[^)\s]') {
             $sev = if ($changed.ContainsKey($rel)) { 'Error' } else { 'Warning' }
-            Add-Finding 'lookup-placeholders' $sev $rel $n 'lookup script committed with ids in its placeholder; reset it to @() after running (CLAUDE.md rule)'
+            Add-Finding 'lookup-placeholders' $sev $rel $n 'lookup script committed with ids in its placeholder; reset it to @() after running (.github/copilot-instructions.md rule)'
         }
     }
 }
@@ -363,7 +363,7 @@ foreach ($rel in @($changed.Keys | Where-Object { $_ -like '*.lua' -and $_ -notl
     $added = Get-AddedLines $rel
     foreach ($a in $added) {
         if ($a.Text -match ';\s*(--.*)?$' -and $a.Text -notmatch '^\s*--') {
-            Add-Finding 'semicolon' 'Error' $rel $a.Line 'trailing semicolon on an added line; new and edited code drops them (CLAUDE.md)'
+            Add-Finding 'semicolon' 'Error' $rel $a.Line 'trailing semicolon on an added line; new and edited code drops them (.github/copilot-instructions.md)'
         }
     }
     if ($rel -eq $enUsRel) {

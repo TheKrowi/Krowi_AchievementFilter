@@ -26,7 +26,7 @@ Secret values are separate. Some APIs return values flagged `SecretInChatMessagi
 2. Calls that make Blizzard code run work now: `:Update()`, `:Refresh()`, `:MarkDirty()`, `:Show()` on Blizzard frames, tracking/untracking, `SetCVar`, template instantiation from Blizzard pools.
 3. Values from `C_Calendar`, `C_UnitAuras` / `GetAuraDataByIndex`, `C_Timer` callbacks that read the above, objective tracker modules, chat messages: are they compared, used in arithmetic, indexed, concatenated or stored? Is there a `canaccessvalue` / `issecretvalue` probe first, and does the code abort cleanly when the probe fails?
 4. Event handlers registered on Blizzard frames or via `EventRegistry` that then touch Blizzard state.
-5. Anything running at `ADDON_LOADED` for `Blizzard_AchievementUI` that should wait for the frame, or at `PLAYER_LOGIN` before `addon.Data.Achievements` is populated (see the three-phase boot in CLAUDE.md).
+5. Anything running at `ADDON_LOADED` for `Blizzard_AchievementUI` that should wait for the frame, or at `PLAYER_LOGIN` before `addon.Data.Achievements` is populated (see the three-phase boot in .github/copilot-instructions.md).
 
 Use `git diff` (or the files named in the request) to scope the review. Read enough surrounding code to know whether a frame is ours or Blizzard's; our frames are created in `Gui/` with `KrowiAF_` prefixes and mixins.
 

@@ -19,7 +19,7 @@ try {
 
     $output = (& $lint -ChangedOnly 2>&1 | ForEach-Object { "$_" }) -join "`n"
     if ($LASTEXITCODE -ne 0) {
-        [Console]::Error.WriteLine("Repo lint found errors in the working tree (see CLAUDE.md rules). Fix them, or if a finding is a deliberate exception add it to .claude/tools/Check-Repo.ignore with a comment:")
+        [Console]::Error.WriteLine("Repo lint found errors in the working tree (see the rules in .github/copilot-instructions.md). Fix them, or if a finding is a deliberate exception add it to .claude/tools/Check-Repo.ignore with a comment:")
         [Console]::Error.WriteLine($output.Trim())
         exit 2
     }
