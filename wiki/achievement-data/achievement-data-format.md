@@ -14,8 +14,7 @@ Every file using V2 requires this header. Include `faction` only when using `Fac
 
 ```lua
 local _, addon = ...
-local shared = addon.Data.AchievementData.Shared
-local Ach = shared.Ach
+local Ach = KrowiAF.Ach
 local faction = KrowiAF.Enum.Faction  -- include only if needed
 ```
 
@@ -264,7 +263,7 @@ Ach(7944):Obtainable("From", "Version", {6, 0, 3}, "Before", "Version", {7, 0, 3
 
 | File | Role |
 |---|---|
-| `DataAddons/Shared/AchievementData.lua` | `AchBuilder` metatable + `shared.Ach()` factory |
+| `Api/AchievementDataBuilder.lua` | `AchBuilder` metatable + `KrowiAF.Ach()` factory |
 | `Api/AchievementDataApi.lua` | `KrowiAF.AddAchievementData`, `KrowiAF.SetAchievementPatch` |
 | `Api/ApiDocumentation.lua` | Canonical annotated examples |
 | `DataAddons/Retail/11_TheWarWithin/AchievementData.lua` | Primary real-world V2 reference |

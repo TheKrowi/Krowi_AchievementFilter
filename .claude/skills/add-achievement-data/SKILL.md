@@ -272,8 +272,7 @@ Ach(id):Method():Method(), -- Achievement Name
 **File header** (ensure present when V2 entries are added to a file):
 ```lua
 local _, addon = ...
-local shared = addon.Data.AchievementData.Shared
-local Ach = shared.Ach
+local Ach = KrowiAF.Ach
 local faction = KrowiAF.Enum.Faction -- only if AutoFactionSplit or FactionSplit is used
 ```
 
@@ -406,7 +405,7 @@ Before returning output, verify:
 - [ ] Lua syntax is valid (no missing commas, balanced parentheses)
 - [ ] Indentation is consistent (tabs, matching file style)
 - [ ] No duplicate entries
-- [ ] File header includes `local Ach = shared.Ach` (add if missing)
+- [ ] File header includes `local Ach = KrowiAF.Ach` (add if missing)
 - [ ] `local faction = KrowiAF.Enum.Faction` is present if any `:AutoFactionSplit()` or `:FactionSplit()` is used
 
 ## Clarification Questions

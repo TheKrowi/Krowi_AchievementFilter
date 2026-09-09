@@ -24,3 +24,5 @@
 - Added: new Common Patterns examples for all new patterns
 ## [2026-09-05] rewrite | Zone Data Format — builder syntax replaces the V1 table format; placement model (achievements now, criteria later); twelve placement rules with rationale; decision record D1 to D9; validation tooling incl. new raw/Evaluate-ZoneCriteria.ps1
 - Raw: raw/ZoneDataDecisions.md (Reconciliation sweep backlog), .claude/skills/add-zone-data/SKILL.md (binding rule text)
+
+## [2026-09-09] lint | Achievement Data Format — file header and Key Files table now name `KrowiAF.Ach` and `Api/AchievementDataBuilder.lua`; the last two `shared.Ach` stragglers (also in add-achievement-data SKILL.md) are gone

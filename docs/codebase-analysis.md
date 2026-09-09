@@ -145,17 +145,20 @@ The codebase mixes 4-space indentation (most files), tab indentation, and occasi
 
 Per the project's own instructions, semicolons should not be used. Many newer files omit them. However, almost every file in `Api/`, `Options/`, `DataAddons/`, and `Gui/WindowFrames/` uses semicolons consistently at end-of-statement. Files like `Data/TemporaryObtainable.lua` and `Data/EventData.lua` (newer code) omit them entirely. The inconsistency is project-wide.
 
-### 3. Inconsistent Data Entry Style in `DataAddons/Retail/`
+### 3. Inconsistent Data Entry Style in `DataAddons/Retail/` ✅ FIXED (verified 2026-09-09)
 
-The V2 `Ach()` builder (defined in `Api/AchievementDataBuilder.lua` as `KrowiAF.Ach`) is the current standard. All new data files and new patch tables must use:
+The V2 `Ach()` builder (defined in `Api/AchievementDataBuilder.lua` as `KrowiAF.Ach`) is the only style in use. All new data files and new patch tables must use:
 
 ```lua
 local Ach = KrowiAF.Ach
 ```
 
-However, all legacy expansion data files (`01_Vanilla` through `10_Dragonflight` and `12_Midnight`) still use the old verbose V1 style (bare positional arguments). This creates a maintenance split: any maintainer editing an old expansion file must use the V1 style; any new expansion file (11+) uses V2. Migration of old files to V2 is tracked as a future task.
+<details>
+<summary>Original issue (resolved before 2026-05-29, verified 2026-09-09)</summary>
 
-**Note:** An earlier iteration of the V2 API exposed the builder via `shared.Ach` (`addon.Data.AchievementData.Shared.Ach`). This was superseded by `KrowiAF.Ach` in `Api/AchievementDataBuilder.lua`. All documentation and skill files have been updated to reflect this. Any remaining `shared.Ach` references in data files or docs are outdated and should be changed to `KrowiAF.Ach`.
+The legacy expansion data files used the old verbose V1 style (bare positional arguments) next to V2 files, splitting maintenance between two formats. As of 2026-09-09 all 17 `AchievementData*.lua` files under `DataAddons/` contain V2 entries only (grep for `^\s*\{\s*\d+\s*,` finds zero V1 rows). The interim `shared.Ach` factory was superseded by `KrowiAF.Ach`; the last two stale references (`wiki/achievement-data/achievement-data-format.md`, `.claude/skills/add-achievement-data/SKILL.md`) were fixed 2026-09-09.
+
+</details>
 
 ### 4. Duplicate Achievement Registration — Bug in `11_TheWarWithin` ✅ FIXED (2026-04-19)
 
@@ -649,15 +652,18 @@ The `DataAddons/Retail/` tree spans 12 expansions. `11_TheWarWithin/CategoryData
 | 9 | ✅ FIXED | "varify" typos in debug messages | `Data/DataIntegrityManager.lua` | Fixed 2026-04-19 |
 | 10 | 🟡 LOW | BrowsingHistory stored to SavedData but never restored | `BrowsingHistory.lua` | Decide: restore or use session-local table |
 | 11 | 🟡 LOW | Undocumented `ignoreAchievementIds` entries | `Data/SavedData/AchievementData.lua` | Add per-entry comments |
-| 12 | 🟡 LOW | Dead code: `GetTopMostParentCategory` + debug branch for `120005` | `Globals.lua` | Remove before next release |
-| 13 | 🟡 LOW | `Plugins/Plugins.lua` entirely commented out | `Plugins/Plugins.lua` | Delete file; update `Files.xml` |
+| 12 | ✅ FIXED | Dead code: `GetTopMostParentCategory` + debug branch for `120005` | `Globals.lua` | Fixed 2026-09-09: both removed |
+| 13 | ✅ FIXED | `Plugins/Plugins.lua` entirely commented out | `Plugins/Plugins.lua` | Fixed 2026-09-09: file and its commented-out `Files.xml` line deleted |
 | 14 | 🟡 LOW | `Globals.lua` is too large / does too much | `Globals.lua` | Refactor: split cache, compat, and window management |
-| 15 | 🔄 ONGOING | Mixed indentation and semicolons throughout codebase | All files | `.editorconfig` + `docs/styleguide.md` created 2026-04-19. Apply incrementally as files are touched. |
+| 15 | 🔄 ONGOING | Mixed indentation and semicolons throughout codebase | All files | `.editorconfig` exists; `docs/styleguide.md` was never created, the rules live in `.github/copilot-instructions.md`. Semicolons: 7621 lines in 224 files as of 2026-09-09; dropped on touched lines, a one-time bulk strip is an open decision. |
 | 16 | ✅ FIXED | `AchBuilder` reward consumer guards: `IsTable` check + temp table alloc on every filter/render pass | `Filters.lua` validation #6, `Gui/AchievementTooltip/Rewards.lua` | Fixed 2026-04-26: `IsTable` guards removed from both consumers. `RewardType` is always a table or nil. |
-| 17 | ✅ FIXED | `shared.Ach` reference in docs/skills diverged from actual `KrowiAF.Ach` factory | `copilot-instructions.md`, `ApiDocumentation.lua`, `docs/how-to/`, skill files | Fixed 2026-06-21: all docs updated to `local Ach = KrowiAF.Ach`. |
+| 17 | ✅ FIXED | `shared.Ach` reference in docs/skills diverged from actual `KrowiAF.Ach` factory | `copilot-instructions.md`, `ApiDocumentation.lua`, `docs/how-to/`, skill files | Fixed 2026-06-21; two stragglers in the wiki and the add-achievement-data skill fixed 2026-09-09. |
 | 18 | 🟡 LOW | `achievementPatch` implicit mutable state (see THE BAD §12) | `Api/AchievementDataApi.lua` | By design; no code change. Documented as constraint. |
 | 19 | 🟡 LOW | Mixed positional+field extras table in AchBuilder (see THE BAD §13) | `Api/AchievementDataBuilder.lua` | No change today; documented as structural constraint. |
 | 20 | 🔄 FUTURE | V1 category parser maintained alongside V2 (see THE BAD §14) | `Api/CategoryDataApi.lua` | Migrate all first-party data to V2, then deprecate V1. Plugin authors must stay on V1 until notified. |
+| 21 | ✅ FIXED | Accidental globals: `GetActiveCalendarEvents`, `AddNestedCriterium`, `HandleScrollBar`, `DebugTable` declared without `local` | `Data/EventData.lua`, `Gui/RightClickMenu/AchievementMenu/PetBattleLinks.lua`, `Plugins/GW2_UI/GW2_UI.lua`, `Options/General.lua` | Fixed 2026-09-09; guarded by the new `globals` rule in `.claude/tools/Check-Repo.ps1` (allowlist `Check-Repo.globals`) |
+| 22 | 🟠 MEDIUM | `TooltipData.Load()` commented out as an Issue #300 diagnostic in 99.6 and shipped that way through 100.3, although 99.9 found the taint cause elsewhere | `Krowi_AchievementFilter.lua` | Decide: re-enable (run `taint-reviewer` on the tooltip hooks first) or remove the feature; add a lint rule that fails on `-- Temporarily` toggles without an expiry version |
+| 23 | 🟡 LOW | Calendar wrapper globals `C_CalendarSetMonth`, `C_CalendarSetAbsMonth`, `C_CalendarResetAbsMonth`, `C_CalendarGetMonthInfo` mimic Blizzard API names in `_G` | `Gui/AchievementCalendar/C_Calendar.lua` | Move under `addon.Gui.AchievementCalendar`; allowlisted in `Check-Repo.globals` until then |
 
 ---
 
