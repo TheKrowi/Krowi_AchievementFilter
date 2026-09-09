@@ -11,6 +11,9 @@
                                  (Shared counts for both Retail and Classic)
       saved-variables  [Error]   every `KrowiAF_X = KrowiAF_X or` saved variable is declared in the .toc
       lua-syntax       [Error]   every .lua parses under Lua 5.1 (the vendored interpreter)
+      globals          [Error]   no assignment to an undeclared global (luac -l SETGLOBAL) other than
+                                 KrowiAF*/BINDING_*/SLASH_* names and the deliberate Blizzard
+                                 FrameXML overrides and API polyfills listed in Check-Repo.globals
       data-load        [Error]   the data pipeline runs headlessly for Retail and Classic
                                  (headless/load-data.lua: builder args, patch keys, duplicate and
                                  AutoFactionSplit registrations, category/zone/tooltip references
@@ -233,6 +236,66 @@ else {
 
 Write-Timing 'lua-syntax'
 
+# --- globals: no accidental writes to the global environment -----------------------------------
+# luac -l lists one SETGLOBAL per assignment to an undeclared name. Anything that is not a KrowiAF*/
+# BINDING_*/SLASH_* name and not listed in Check-Repo.globals ("<path glob> <name glob>") is a leak,
+# or a Blizzard override nobody has owned up to. Vendored Libs are not ours to lint.
+$luac = Join-Path $root '.claude\tools\lua51\luac.exe'
+if (Test-Path $luac) {
+    $allowGlobals = @()
+    $allowFile = Join-Path $PSScriptRoot 'Check-Repo.globals'
+    if (Test-Path $allowFile) {
+        foreach ($line in Get-Content $allowFile) {
+            $t = ($line -replace '#.*$', '').Trim()
+            if ($t -match '^(\S+)\s+(\S+)$') { $allowGlobals += @{ Path = $Matches[1]; Name = $Matches[2] } }
+        }
+    }
+    $targets = @(if ($ChangedOnly) { $ownLuaFiles | Where-Object { $changed.ContainsKey($_) } } else { $ownLuaFiles })
+    $bomMap = @{}     # temp copy path -> repo path, for files whose BOM stock luac would reject
+    $tmpDir = $null
+    # The listing is one line per bytecode instruction (about 100k lines for the tree), so it is
+    # captured whole and scanned with one regex: a function header sets the current file, a
+    # SETGLOBAL line yields (source line, name). 150 paths per call keeps the command line short.
+    $listingRx = [regex]'(?m)^(?:main|function) <(?<path>.+?):\d+,\d+>|^\s*\d+\s+\[(?<line>\d+)\]\s+SETGLOBAL\s[^;]*;\s*(?<name>\S+)'
+    for ($i = 0; $i -lt $targets.Count; $i += 150) {
+        $chunk = @($targets[$i..([Math]::Min($i + 149, $targets.Count - 1))])
+        $psi = [Diagnostics.ProcessStartInfo]::new($luac)
+        $psi.UseShellExecute = $false; $psi.RedirectStandardOutput = $true; $psi.RedirectStandardError = $true
+        $psi.WorkingDirectory = $root
+        $psi.ArgumentList.Add('-l'); $psi.ArgumentList.Add('-p')
+        foreach ($rel in $chunk) {
+            $b = $fileBytes[$rel]
+            if ($b.Length -ge 3 -and $b[0] -eq 0xEF -and $b[1] -eq 0xBB -and $b[2] -eq 0xBF) {
+                if (-not $tmpDir) { $tmpDir = Join-Path ([IO.Path]::GetTempPath()) "kaf-globals-$PID"; New-Item -ItemType Directory -Force $tmpDir | Out-Null }
+                $tmp = Join-Path $tmpDir ($rel -replace '[\\/]', '__')
+                [IO.File]::WriteAllBytes($tmp, $b[3..($b.Length - 1)])
+                $bomMap[$tmp.Replace('\', '/')] = $rel
+                $psi.ArgumentList.Add($tmp)
+            }
+            else { $psi.ArgumentList.Add($rel) }
+        }
+        $proc = [Diagnostics.Process]::Start($psi)
+        $errTask = $proc.StandardError.ReadToEndAsync()   # drain both pipes so neither blocks
+        $listing = $proc.StandardOutput.ReadToEnd()
+        $proc.WaitForExit(); $null = $errTask.Result           # syntax errors are the lua-syntax rule's job
+        $current = $null
+        foreach ($m in $listingRx.Matches($listing)) {
+            if ($m.Groups['path'].Success) {
+                $p = $m.Groups['path'].Value.Replace('\', '/')
+                $current = if ($bomMap.ContainsKey($p)) { $bomMap[$p] } else { $p }
+                continue
+            }
+            if (-not $current) { continue }
+            $name = $m.Groups['name'].Value
+            if ($name -like 'KrowiAF*' -or $name -like 'BINDING_*' -or $name -like 'SLASH_*') { continue }
+            if ($allowGlobals | Where-Object { $current -like $_.Path -and $name -like $_.Name }) { continue }
+            Add-Finding 'globals' 'Error' $current ([int]$m.Groups['line'].Value) "assigns global '$name'; declare it local (or hang it on addon.*), or if it is a deliberate Blizzard FrameXML override or API polyfill list it in .claude/tools/Check-Repo.globals with the reason"
+        }
+    }
+    if ($tmpDir) { Remove-Item -Recurse -Force $tmpDir -ErrorAction SilentlyContinue }
+}
+Write-Timing 'globals'
+
 # --- data-load: evaluate Api + DataAddons headlessly for each client -----------------------------
 $loader = Join-Path $root '.claude\tools\headless\load-data.lua'
 if ((Test-Path $lua) -and (Test-Path $loader)) {
@@ -357,7 +420,7 @@ if (Test-Path $ignoreFile) {
         if ($t -match '^(\S+)\s+(\S+)$') { $ignore += @{ Rule = $Matches[1]; Path = $Matches[2] } }
     }
 }
-$alwaysOn = @('dup-id', 'saved-variables', 'lua-syntax', 'data-load', 'zone-decisions', 'mapverifier', 'changelog')
+$alwaysOn = @('dup-id', 'saved-variables', 'lua-syntax', 'globals', 'data-load', 'zone-decisions', 'mapverifier', 'changelog')
 $report = $findings | Where-Object {
     $f = $_
     -not ($ignore | Where-Object { ($_.Rule -eq '*' -or $_.Rule -eq $f.Rule) -and $f.Path -like $_.Path })

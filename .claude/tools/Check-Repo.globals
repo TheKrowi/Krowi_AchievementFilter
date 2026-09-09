@@ -1,0 +1,38 @@
+# Deliberate writes to the global environment, for the Check-Repo.ps1 `globals` rule.
+# One "<path glob> <name glob>" per line, # comments. KrowiAF*, BINDING_* and SLASH_* names never
+# need a line. Everything else the rule finds is an accidental global until it is listed here with
+# the reason, so an addition to this file is a review item, not a formality.
+
+# --- addon.OverwriteFunctions (Globals.lua): the FrameXML achievement UI functions the addon
+#     replaces on purpose. This is the whole point of the addon; it reshapes AchievementFrame.
+#     Blizzard *API* functions (GetAchievementCriteriaInfo, ...) are never allowed here.
+Globals.lua AchievementFrame_ToggleAchievementFrame
+Globals.lua AchievementFrame_DisplayComparison
+Globals.lua AchievementFrame_SelectAchievement
+Globals.lua AchievementFrame_SetTabs
+Globals.lua AchievementFrameTab_OnClick
+Gui/Gui.lua AchievementFrameTab_OnClick
+Gui/WindowFrames/AchievementFrameTabButtonFactory/AchievementFrameTabButtonFactory.lua AchievementFrameTab_OnClick
+
+# --- addon.LoadBlizzardApiChanges (Globals.lua): polyfills for globals Blizzard removed in
+#     10.1.5, defined only when the game no longer provides them (`if not X then X = ... end`)
+Globals.lua IsTrackedAchievement
+Globals.lua RemoveTrackedAchievement
+Globals.lua GetNumTrackedAchievements
+Globals.lua AddTrackedAchievement
+Globals.lua MAX_TRACKED_ACHIEVEMENTS
+Globals.lua WatchFrame_Update
+Globals.lua SetFocusedAchievement
+
+# --- Blizzard frame aliases and constants the classic/retail GUI code adjusts
+Gui/Gui.lua AchievementFrameFilterDropdown                                         # alias: the frame is AchievementFrameFilterDropDown on Classic, Filters.FilterDropdown on Retail
+Gui/WindowFrames/AchievementFrameHeader.lua AchievementFrameHeaderLeftDDLInset     # named texture other GUI files and skins reach by global name
+Gui/WindowFrames/AchievementsObjectives/AchievementsObjectives.lua ACHIEVEMENTBUTTON_METAROWHEIGHT   # Blizzard layout constant, set to 28 on Classic at load
+
+# --- Achievement Calendar month cursor wrappers, mimic C_Calendar.* names and are called from
+#     Gui/AchievementCalendar/Frame/FrameMixin.lua. Follow-up: move under addon.Gui.AchievementCalendar
+#     (docs/codebase-analysis.md item 23) and delete these four lines.
+Gui/AchievementCalendar/C_Calendar.lua C_CalendarSetMonth
+Gui/AchievementCalendar/C_Calendar.lua C_CalendarSetAbsMonth
+Gui/AchievementCalendar/C_Calendar.lua C_CalendarResetAbsMonth
+Gui/AchievementCalendar/C_Calendar.lua C_CalendarGetMonthInfo

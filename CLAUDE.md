@@ -8,9 +8,9 @@ Krowi's Achievement Filter (`KrowiAF`) is a World of Warcraft addon written in L
 
 `.github/copilot-instructions.md` is the canonical, detailed reference for layout, load order, data formats, and code style. Read it before non-trivial work; this file only adds what it does not cover and calls out the parts that matter most.
 
-## No build, no tests, no linter
+## No build, no tests, no external linter
 
-The WoW client is the only runtime and the only full validator. There is no `luacheck`, `busted`, Makefile, or CI in this repo. Do not invent or run one. The offline checks that exist are the syntax checker and repo lint below; use them, and extend the harness under `.claude/` rather than adding system dependencies. Packaging and publishing are done by the sibling Krowi Addon Manager project; the `release` skill in `.claude/skills/release/` documents how to drive it.
+The WoW client is the only runtime and the only full validator. There is no `luacheck`, `busted`, Makefile, or CI in this repo. Do not invent or run one. The offline checks that exist are the syntax checker, the repo lint and the headless data pipeline below; use them, and extend the harness under `.claude/` rather than adding system dependencies. Packaging and publishing are done by the sibling Krowi Addon Manager project; the `release` skill in `.claude/skills/release/` documents how to drive it.
 
 - **Deploy to the game**: the VS Code `fsdeploy` config in `.vscode/settings.json` mirrors `**/*.{lua,blp,tga,xml}` (excluding `.github`, `.vscode`, `_Packaging`, `raw`, `wiki`, `docs`) into `H:\World of Warcraft\_retail_\Interface\AddOns\Krowi_AchievementFilter`. The Classic target is commented out there.
 - **Reload in game**: `/reload`. Enable errors with `/luaerror on` or BugSack + BugGrabber.
@@ -28,10 +28,10 @@ The repo carries its own Lua 5.1.5 (`.claude/tools/lua51/lua.exe`, `luac.exe`), 
 Get-ChildItem -Recurse -Filter *.lua | Where-Object FullName -notlike '*\.claude\*' | ForEach-Object FullName | & '.claude\tools\lua51\lua.exe' '.claude\tools\lua51\check-syntax.lua' -
 ```
 
-- `.claude/tools/Check-Repo.ps1` is the repo lint: unregistered or missing Files.xml entries, duplicate achievement IDs per client, saved variables missing from the .toc, Lua syntax, BOM and line endings, trailing semicolons and enUS additions below the AUTOGENTOKEN marker on changed lines, the zone-decisions log against the ZoneData files (rule `zone-decisions`, runs when either changed), and a changelog reminder. It runs automatically as a Stop hook in `-ChangedOnly` mode and hands errors back. A deliberate exception goes in `Check-Repo.ignore` with a comment; a file whose registration is commented out in an XML is already treated as intentionally disabled.
+- `.claude/tools/Check-Repo.ps1` is the repo lint: unregistered or missing Files.xml entries, duplicate achievement IDs per client, saved variables missing from the .toc, Lua syntax, assignments to undeclared globals (rule `globals`, from `luac -l`; the deliberate FrameXML overrides and API polyfills are allowlisted per file in `Check-Repo.globals`), BOM and line endings, trailing semicolons and enUS additions below the AUTOGENTOKEN marker on changed lines, the zone-decisions log against the ZoneData files (rule `zone-decisions`, runs when either changed), and a changelog reminder. It runs automatically as a Stop hook in `-ChangedOnly` mode and hands errors back. A deliberate exception goes in `Check-Repo.ignore` with a comment; a file whose registration is commented out in an XML is already treated as intentionally disabled.
 
 ```powershell
-& ".claude\tools\Check-Repo.ps1"               # whole tree, about 6 s (2 s without the zone-decisions rule)
+& ".claude\tools\Check-Repo.ps1"               # whole tree, about 12 s (zone-decisions and mapverifier are 7 s of it); -Verbose prints per-rule timings
 & ".claude\tools\Check-Repo.ps1" -ChangedOnly  # what the Stop hook runs
 ```
 
@@ -39,7 +39,8 @@ Get-ChildItem -Recurse -Filter *.lua | Where-Object FullName -notlike '*\.claude
 - **Closing the loop with the game**: `Deploy.ps1` mirrors the addon into the client's AddOns folder (what fsdeploy does, incremental, `-WhatIf` to preview), you `/reload` in game, then `Read-GameErrors.ps1` prints the errors BugGrabber recorded for this addon. Saved variables are written only on `/reload` or logout, so the reader shows when the log was last written.
 
 ```powershell
-& ".claude\tools\lua51\lua.exe" ".claude\tools\headless\load-data.lua" "$PWD" Retail   # or Classic; -v lists stubbed globals
+& ".claude\tools\lua51\lua.exe" ".claude\tools\headless\load-data.lua" "$PWD" Both     # what the lint runs; -v lists stubbed globals
+# Retail or Classic alone also works, but then every Shared reference to an id that only the other client registers is reported (about 1200 lines on Classic); only Both cross-checks
 & ".claude\tools\Deploy.ps1" -WhatIf                    # -Client Classic|Ptr
 & ".claude\tools\Read-GameErrors.ps1"                   # -Hours 0 -All -Client Classic
 ```
@@ -112,7 +113,7 @@ Format references with worked examples: `wiki/achievement-data/*.md`, `docs/how-
 
 ### Taint is the recurring bug class
 
-Most recent fixes (see the dev notes in `_Packaging/Changelog.md`) are taint or secret-value errors. Never override Blizzard globals; that approach was removed years ago and its leftovers still cause bugs. Do not compare or do arithmetic on values from `C_Calendar`, aura, or objective-tracker APIs without considering `SecretInChatMessagingLockdown`. `TaintDiagnostics.lua` and `Diagnostics.lua` exist for probing this; `addon.Diagnostics.DebugEnabled()` gates debug paths.
+Most recent fixes (see the dev notes in `_Packaging/Changelog.md`) are taint or secret-value errors. Never override Blizzard API functions (`GetAchievementCriteriaInfo`, `GetAchievementNumCriteria` and the like); that approach was removed years ago and its leftovers still cause bugs. The only globals the addon writes on purpose are the FrameXML UI functions it replaces in `addon.OverwriteFunctions` and the polyfills for removed API in `addon.LoadBlizzardApiChanges` (both in `Globals.lua`); they are listed in `.claude/tools/Check-Repo.globals` and the `globals` lint rule fails on any other write to the global environment. Do not compare or do arithmetic on values from `C_Calendar`, aura, or objective-tracker APIs without considering `SecretInChatMessagingLockdown`. `TaintDiagnostics.lua` and `Diagnostics.lua` exist for probing this; `addon.Diagnostics.DebugEnabled()` gates debug paths.
 
 ### Saved variables and migrations
 
@@ -130,6 +131,8 @@ Declared in the `.toc` `## SavedVariables` line; a new one that is not listed th
 
 New and edited code uses **no trailing semicolons**; most existing files still have them, and the rule is to drop them on lines you touch. The header is `local _, addon = ...` with no `-- [[ Namespaces ]] --` banner. Full naming/OOP/forward-declaration rules are in `.github/copilot-instructions.md`. Files are CRLF, 4-space indent, no final newline (`.editorconfig`).
 
+Edit files with the Edit/Write tools or PowerShell only. Git Bash `sed -i` and `awk` on this machine rewrite the whole file with LF endings (and `awk` adds a final newline) even when the pattern does not match, so a "no-op" sed silently breaks the `line-endings` rule on every file it touched. Use Bash for read-only work: grep, diff, git, running the vendored Lua.
+
 ## Git workflow
 
 - Branch from `dev`; PRs target `dev`. Releases are cut on `dev`: the addon manager makes a `Release X.Y` commit and tag there and uploads to Wago, CurseForge and GitHub. `main` is not updated as part of the release flow. Use the `release` skill.
@@ -139,7 +142,7 @@ New and edited code uses **no trailing semicolons**; most existing files still h
 
 ## Where non-code material lives
 
-- `docs/how-to/` step-by-step guides; `docs/codebase-analysis.md` is a quality review listing known debt (`Globals.lua` grab-bag, O(n^2) `GetMergedCategory`, version-string compare in DataIntegrityManager).
+- `docs/how-to/` step-by-step guides; `docs/codebase-analysis.md` is a quality review listing known debt (`Globals.lua` grab-bag, O(n^2) `GetMergedCategory`, `Category:RemoveCategory` matching by name); its priority table carries the status of each item, check it before trusting the prose above it.
 - `wiki/` knowledge base on data formats with `index.md` and a `log.md` of changes.
 - `raw/` scratch reports and zone-data PowerShell tooling; `raw/MapVerifier.csv` is the canonical Map Verifier state (map verdicts, link groups, expansions; round-tripped with the in-game tool through the `sync-mapverifier` skill, validated by the `mapverifier` lint rule); `raw/ZoneDataDecisions.md` tracks the highest achievement ID analyzed for zone coverage.
 - `_Packaging/` changelog, release notes, CurseForge description. Not loaded by the game.
