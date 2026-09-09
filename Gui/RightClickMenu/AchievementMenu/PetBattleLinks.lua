@@ -48,7 +48,7 @@ local function AddCriterium(menu, achievement, criterium)
 end
 
 local AddData;
-function AddNestedCriterium(menu, achievement, criterium)
+local function AddNestedCriterium(menu, achievement, criterium)
     AddData(menu, addon.Data.Achievements[criterium.Link], GetCriteriumText(achievement, criterium));
 end
 

@@ -150,7 +150,7 @@ local function ExportCriteria()
             end
         end
     end
-    DebugTable = criteriaCache;
+    KrowiAF_ExportedCriteria = criteriaCache -- inspect in game with /dump KrowiAF_ExportedCriteria
 end
 
 local function ExportMissingAchievements()

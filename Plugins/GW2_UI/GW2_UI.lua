@@ -41,7 +41,7 @@ end
 local doSkin;
 
 -- [[ ScrollBars ]]
-function HandleScrollBar(self)
+local function HandleScrollBar(self)
     self:SetWidth(20);
 
     self.Back:SetSize(12, 12);

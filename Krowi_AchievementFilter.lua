@@ -1,8 +1,6 @@
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
 
--- C_AddOns.LoadAddOn("Blizzard_AchievementUI"); -- For testing
-
 -- [[ Ace ]] --
 addon.Event = {};
 LibStub("AceEvent-3.0"):Embed(addon.Event);
@@ -34,8 +32,6 @@ local function LoadKrowi_AchievementFilter()
     addon.SpecialCategories.InjectDynamicOptions();
     KrowiAF.InjectEventDataDynamicOptions();
 
-    -- addon.Gui:PrepareTabsOrder();
-    -- addon.Tabs.InjectDynamicOptions();
     KrowiAF.InjectTabDataDynamicOptions();
     addon.Gui.AchievementFrameHeader:InjectDynamicOptions();
     addon.Filters:InjectDefaults();
@@ -136,45 +132,11 @@ function loadHelper:OnEvent(event, arg1, arg2)
                 end);
             end);
         end
-
-        -- C_AddOns.LoadAddOn("Blizzard_Calendar");
-        -- C_AddOns.LoadAddOn("Blizzard_AchievementUI");
     elseif event == "ACHIEVEMENT_EARNED" then
         addon.OnAchievementEarned(arg1);
     end
 end
 loadHelper:SetScript("OnEvent", loadHelper.OnEvent);
-
--- function KrowiAF_AttCheck()
---     if not AllTheThings then
---         return;
---     end
-
---     DebugTable = {};
---     -- for key1, value1 in pairs(KrowiAF_ATT.Achievements) do
---         for key2, value2 in pairs(AllTheThings.Achievements) do
---             if type(value2) == "table" and type(value2.g) == "table" then
---                 for key3, value3 in pairs(value2.g) do
---                     if type(value3) == "table" and value3["achID"] then
---                         tinsert(DebugTable, {id = value3["achID"], awp = value3["awp"], rwp = value3["rwp"],})
---                         -- for key4, value4 in pairs(value3) do
---                         --     DebugTable[key4] = 1;
---                         --     -- if key4 == "nmr"then
---                         --     --     DebugTable[value3["achID"]]
---                         --     -- end
---                         -- end
---                     end
---                 end
---             end
---         end
---     -- end
--- end
-
--- local frame = CreateFrame("Frame", "TESTFRAME", UIParent, "PortraitFrameTemplate");
--- frame:SetPoint("CENTER");
--- frame:SetSize(100,100);
--- frame:Show();
--- frame:EnableMouse(true);
 
 hooksecurefunc("ToggleGameMenu", function()
     if KrowiAF_FloatingAchievementTooltip and KrowiAF_FloatingAchievementTooltip:IsShown() then

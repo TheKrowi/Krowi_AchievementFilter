@@ -152,7 +152,7 @@ end
 
 local activeEvents
 
-function GetActiveCalendarEvents()
+local function GetActiveCalendarEvents()
     if stopCalendarEventsRefresh then
         return
     end

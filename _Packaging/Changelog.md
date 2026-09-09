@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 100.4
+### Fixed
+- Four helper functions and a debug table no longer leak into the global environment, where they could collide with same-named functions of other addons (dev note: `GetActiveCalendarEvents`, `AddNestedCriterium`, `HandleScrollBar` and `DebugTable` were declared without `local`. Found with `luac -l`, which lists a SETGLOBAL per such assignment; the repo lint now runs that check as the `globals` rule, with the deliberate FrameXML overrides and API polyfills allowlisted in `.claude/tools/Check-Repo.globals`)
+
 ## 100.3 - 2026-09-09
 ### Added
 - Winds of Mysterious Fortune added to the Events tab under Holidays, with the Winds of Particularly Mysterious Fortune feat of strength for the September 2026 occurrence (dev note: the achievement is a server side hotfix, so it is in no client build and none of the lookup scripts can see it. Id 64140, its name, description and the 500 Trader's Tender reward were read out of the live client's own hotfix cache, `_retail_/Cache/ADB/enUS/DBCache.bin*`, as the record with recordId 64140 under Achievement.db2's table hash 0xD2EE2CA7; that hash was confirmed by cross checking four other record ids in the same cache against the game DB. The event is region split over five Holidays.db2 rows, 1636 us, 1670 eu, 1671 kr, 1672 tw and 1683 cn, and all five are listed so the reminder and the obtainable state resolve in every region. The feat is gated with `Obtainable("Event", 1636)`, so its obtainable state follows the event's own calendar occurrence per region rather than a hardcoded date)
