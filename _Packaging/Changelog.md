@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 100.3
+## 100.3 - 2026-09-09
 ### Added
 - Winds of Mysterious Fortune added to the Events tab under Holidays, with the Winds of Particularly Mysterious Fortune feat of strength for the September 2026 occurrence (dev note: the achievement is a server side hotfix, so it is in no client build and none of the lookup scripts can see it. Id 64140, its name, description and the 500 Trader's Tender reward were read out of the live client's own hotfix cache, `_retail_/Cache/ADB/enUS/DBCache.bin*`, as the record with recordId 64140 under Achievement.db2's table hash 0xD2EE2CA7; that hash was confirmed by cross checking four other record ids in the same cache against the game DB. The event is region split over five Holidays.db2 rows, 1636 us, 1670 eu, 1671 kr, 1672 tw and 1683 cn, and all five are listed so the reminder and the obtainable state resolve in every region. The feat is gated with `Obtainable("Event", 1636)`, so its obtainable state follows the event's own calendar occurrence per region rather than a hardcoded date)
 - Map Verifier (debug tool): one Export and one Import button replace the six partial exports. Export writes the whole verifier state (verdicts, link groups, expansions, overrides, comments) as a single CSV; Import validates a pasted CSV, shows what would change and replaces the saved data after confirmation
