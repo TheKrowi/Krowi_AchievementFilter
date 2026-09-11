@@ -30,7 +30,7 @@ KrowiAF.CategoryData.Example1 = {
         2003, -- Achievement Id [Required]
         2005, -- Achievement Id [Required]
     },
-};
+}
 
 -- V2 Category Data Injection (current standard for plugins)
 -- Use KrowiAF.NewInjection to add named subcategories under an existing KrowiAF category.

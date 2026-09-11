@@ -1,6 +1,6 @@
-local _, addon = ...;
-local shared = addon.Data.PetBattleLinkData.Shared;
-local sec, enc = shared.Section, shared.Encounter;
+local _, addon = ...
+local shared = addon.Data.PetBattleLinkData.Shared
+local sec, enc = shared.Section, shared.Encounter
 
 KrowiAF.PetBattleLinkData.Dragonflight = {
     { -- Battle on the Dragon Isles
@@ -323,4 +323,4 @@ KrowiAF.PetBattleLinkData.Dragonflight = {
             {10, 17918}, -- Undead Battler of Zaralek Cavern
         }
     },
-};
+}

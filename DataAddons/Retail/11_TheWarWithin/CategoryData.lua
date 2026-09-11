@@ -1,6 +1,6 @@
-local _, addon = ...;
-local shared = addon.Data.CategoryData.Shared;
-local CT = shared.CT;
+local _, addon = ...
+local shared = addon.Data.CategoryData.Shared
+local CT = shared.CT
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- The War Within
     CT.TheWarWithin,
@@ -1201,4 +1201,4 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- The War Within
         42299, -- Visions of a Shadowed Sun
         61498, -- Ready for Midnight
     },
-});
+})

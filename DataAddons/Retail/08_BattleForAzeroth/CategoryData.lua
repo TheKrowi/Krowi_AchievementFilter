@@ -1,6 +1,6 @@
-local _, addon = ...;
-local shared = addon.Data.CategoryData.Shared;
-local CT = shared.CT;
+local _, addon = ...
+local shared = addon.Data.CategoryData.Shared
+local CT = shared.CT
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
     CT.BattleForAzeroth,
@@ -1273,4 +1273,4 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Battle for Azeroth
         40953, -- A Farewell to Arms
         41209, -- Dressed to Kill: Battle for Azeroth
     },
-});
+})

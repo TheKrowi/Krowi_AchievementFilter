@@ -1,5 +1,5 @@
-local _, addon = ...;
-local shared = addon.Data.CategoryData.Shared;
+local _, addon = ...
+local shared = addon.Data.CategoryData.Shared
 local CT = shared.CT
 
 
@@ -960,4 +960,4 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
         shared.GetTheWarWithinMythicPlus(CT.TheWarWithin),
         shared.GetMidnightMythicPlus(CT.Midnight),
     },
-};
+}

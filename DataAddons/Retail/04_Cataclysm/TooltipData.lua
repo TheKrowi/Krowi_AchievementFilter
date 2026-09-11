@@ -1,6 +1,6 @@
-local _, addon = ...;
-local shared = addon.Data.TooltipData.Shared;
-local type = Enum.TooltipDataType;
+local _, addon = ...
+local shared = addon.Data.TooltipData.Shared
+local type = Enum.TooltipDataType
 
 KrowiAF.TooltipData.Cataclysm = {
     { -- The Cataclysmic Gourmet (15, 30)
@@ -188,4 +188,4 @@ KrowiAF.TooltipData.Cataclysm = {
 			{10, 88045, type.Spell}, -- Starfire Espresso
         }
     },
-};
+}

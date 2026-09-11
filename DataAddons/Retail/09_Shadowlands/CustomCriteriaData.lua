@@ -1,5 +1,5 @@
-local _, addon = ...;
-local shared = addon.Data.CustomCriteriaData.Shared;
+local _, addon = ...
+local shared = addon.Data.CustomCriteriaData.Shared
 
 KrowiAF.CustomCriteriaData.Shadowlands = {
     { -- Synthesized!
@@ -7,7 +7,7 @@ KrowiAF.CustomCriteriaData.Shadowlands = {
         {
             NumCriteria = 1,
             QuantityFunc = function()
-                return tonumber((GetStatistic(15406)));
+                return tonumber((GetStatistic(15406)))
             end,
             ReqQuantity = 1,
         }
@@ -17,7 +17,7 @@ KrowiAF.CustomCriteriaData.Shadowlands = {
         {
             NumCriteria = 1,
             QuantityFunc = function()
-                return tonumber((GetStatistic(15407)));
+                return tonumber((GetStatistic(15407)))
             end,
             ReqQuantity = 5,
         }
@@ -27,7 +27,7 @@ KrowiAF.CustomCriteriaData.Shadowlands = {
         {
             NumCriteria = 1,
             QuantityFunc = function()
-                return tonumber((GetStatistic(15410)));
+                return tonumber((GetStatistic(15410)))
             end,
             ReqQuantity = 25,
         }
@@ -37,9 +37,9 @@ KrowiAF.CustomCriteriaData.Shadowlands = {
         {
             NumCriteria = 1,
             QuantityFunc = function()
-                return tonumber((GetStatistic(15411)));
+                return tonumber((GetStatistic(15411)))
             end,
             ReqQuantity = 50,
         }
     },
-};
+}

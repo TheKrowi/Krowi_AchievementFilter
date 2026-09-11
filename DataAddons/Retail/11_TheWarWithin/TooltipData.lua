@@ -1,6 +1,6 @@
-local _, addon = ...;
-local shared = addon.Data.TooltipData.Shared;
-local type = Enum.TooltipDataType;
+local _, addon = ...
+local shared = addon.Data.TooltipData.Shared
+local type = Enum.TooltipDataType
 
 KrowiAF.TooltipData.TheWarWithin = {
     { -- Battle on Khaz Algar
@@ -147,4 +147,4 @@ KrowiAF.TooltipData.TheWarWithin = {
             {21, 231310}, -- Darkfuse Precipitant
         }
     },
-};
+}

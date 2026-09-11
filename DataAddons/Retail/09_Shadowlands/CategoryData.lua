@@ -1,6 +1,6 @@
-local _, addon = ...;
-local shared = addon.Data.CategoryData.Shared;
-local CT = shared.CT;
+local _, addon = ...
+local shared = addon.Data.CategoryData.Shared
+local CT = shared.CT
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
     CT.Shadowlands,
@@ -883,4 +883,4 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Shadowlands
         15654, -- Back from the Beyond (Legacy)
         20501, -- Back from the Beyond
     },
-});
+})

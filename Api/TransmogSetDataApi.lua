@@ -1,10 +1,10 @@
-local _, addon = ...;
+local _, addon = ...
 
-KrowiAF.TransmogSetData = {};
+KrowiAF.TransmogSetData = {}
 
 function KrowiAF.AddTransmogSetData(achievementId, transmogSetIds)
     if not addon.Data.Achievements[achievementId] then
-        return;
+        return
     end
-    addon.Data.Achievements[achievementId].TransmogSetIds = transmogSetIds;
+    addon.Data.Achievements[achievementId].TransmogSetIds = transmogSetIds
 end

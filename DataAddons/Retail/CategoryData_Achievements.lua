@@ -1,4 +1,4 @@
-local _, addon = ...;
+local _, addon = ...
 
 KrowiAF.CategoryData.Achievements = { -- TAB - Achievements
     1100,
@@ -6,4 +6,4 @@ KrowiAF.CategoryData.Achievements = { -- TAB - Achievements
     {
         TabName = "Achievements",
     },
-};
+}

@@ -1,6 +1,6 @@
-local _, addon = ...;
-local shared = addon.Data.TooltipData.Shared;
-local type = Enum.TooltipDataType;
+local _, addon = ...
+local shared = addon.Data.TooltipData.Shared
+local type = Enum.TooltipDataType
 
 local battleForAzerothMenuCriteria =  {
     {1, {156526, 162288, 162289}, type.Item}, -- Bountiful Captain's Feast
@@ -27,7 +27,7 @@ local battleForAzerothMenuCriteria =  {
     {11, {259447, 259445, 259446}, type.Spell}, -- Spiced Snapper
     {12, {154884, 162291}, type.Item}, -- Swamp Fish 'n Chips
     {12, {259427, 259429, 259428}, type.Spell}, -- Swamp Fish 'n Chips
-};
+}
 
 KrowiAF.TooltipData.BattleForAzeroth = {
     { -- Raiding with Leashes V: Cuteaclysm
@@ -186,4 +186,4 @@ KrowiAF.TooltipData.BattleForAzeroth = {
             {7, 151631}, -- Slimy Sea Slug
         }
     },
-};
+}

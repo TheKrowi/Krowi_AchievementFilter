@@ -1,48 +1,48 @@
 -- [[ Namespaces ]] --
-local _, addon = ...;
+local _, addon = ...
 
-addon.Tutorials = addon.TutorialsLib;
-local tutorials = addon.Tutorials;
+addon.Tutorials = addon.TutorialsLib
+local tutorials = addon.Tutorials
 
-local media = "Interface\\AddOns\\Krowi_AchievementFilter\\Media\\";
+local media = "Interface\\AddOns\\Krowi_AchievementFilter\\Media\\"
 
 local function ReplaceVarsWithMenu(str, vars)
     if not vars then
-        vars = type(str) == "table" and str or {str};
-        str = vars[1];
+        vars = type(str) == "table" and str or {str}
+        str = vars[1]
     end
-    vars["arrow"] = "|T" .. media .. "ui-backarrow:0|t";
-    vars["gameMenu"] = addon.Util.L["Game Menu"];
-    vars["interface"] = addon.Util.L["Interface"];
-    vars["addOns"] = addon.Util.L["AddOns"];
-    vars["addonName"] = addon.Metadata.Title;
-    return addon.Util.Strings.ReplaceVars(str, vars);
+    vars["arrow"] = "|T" .. media .. "ui-backarrow:0|t"
+    vars["gameMenu"] = addon.Util.L["Game Menu"]
+    vars["interface"] = addon.Util.L["Interface"]
+    vars["addOns"] = addon.Util.L["AddOns"]
+    vars["addonName"] = addon.Metadata.Title
+    return addon.Util.Strings.ReplaceVars(str, vars)
 end
-string.ReplaceVarsWithMenu = ReplaceVarsWithMenu;
+string.ReplaceVarsWithMenu = ReplaceVarsWithMenu
 
 
 local function GetTextColorLower(text, lower, color)
     if lower then
-        text = text:lower();
+        text = text:lower()
     end
     if color then
-        text = addon.Util.Colors.SetTextColor(text, color);
+        text = addon.Util.Colors.SetTextColor(text, color)
     end
-    return text;
+    return text
 end
 
 local function GetText1Or2(test, text1, lower1, color1, text2, lower2, color2)
     if test then
-        return GetTextColorLower(text1, lower1, color1);
+        return GetTextColorLower(text1, lower1, color1)
     end
-    return GetTextColorLower(text2, lower2 or lower1, color2 or color1);
+    return GetTextColorLower(text2, lower2 or lower1, color2 or color1)
 end
 
-local pages = {};
+local pages = {}
 function tutorials.Load()
-    local options = addon.Options.db.profile;
-    local colors = addon.Util.Colors;
-    local L = addon.L;
+    local options = addon.Options.db.profile
+    local colors = addon.Util.Colors
+    local L = addon.L
 
     tinsert(pages, { -- TabButtons
         Image = media .. "TabButton",
@@ -61,7 +61,7 @@ function tutorials.Load()
             tabs = L["Tabs"],
             pluginText = ""
         }
-    });
+    })
     tinsert(pages, { -- ExpansionsTab
         Layout = "HORIZONTAL",
         Image = media .. "Categories",
@@ -86,7 +86,7 @@ function tutorials.Load()
             layout = L["Layout"],
             categories = L["Categories"]
         }
-    });
+    })
     tinsert(pages, { -- FilteringSorting
         Layout = "HORIZONTAL",
         Image = media .. "FilteringSorting",
@@ -131,9 +131,9 @@ function tutorials.Load()
             {
                 mergeSmallCategoriesNumber = tostring(addon.Options.db.profile.Window.MergeSmallCategoriesThreshold):SetColorYellow(),
                 resetFactionFiltersEnabled = GetText1Or2(addon.Options.db.profile.Filters.ResetFactionFilters, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red)
-            };
+            }
         end
-    });
+    })
     tinsert(pages, { -- QuickSearch
         Layout = "HORIZONTAL",
         Image = media .. "QuickSearch",
@@ -157,9 +157,9 @@ function tutorials.Load()
                 searchFilteredAchievementsEnabled = GetText1Or2(options.SearchBox.OnlySearchFiltered, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
                 minCharToSearchNumber = tostring(addon.Options.db.profile.SearchBox.MinimumCharactersToSearch):SetColorYellow(),
                 numSearchPreviewsNumber = tostring(addon.Options.db.profile.SearchBox.NumberOfSearchPreviews):SetColorYellow()
-            };
+            }
         end
-    });
+    })
     tinsert(pages, { -- FullSearch
         Image = media .. "FullSearch",
         ImageSize = {826, 512},
@@ -169,13 +169,13 @@ function tutorials.Load()
             showAllResults = L["Show All %d Results"]:gsub("%%d", "X"),
             quickSearchTutorial = L["Quick Search"]:SetColorYellow()
         }
-    });
+    })
     tinsert(pages, { -- AchievementColors
         Image = media .. "NewAchievementColors",
         ImageSize = {722, 499},
         SubTitle = L["New Achievement Colors"]:SetColorYellow(),
         Text = L["New Achievement Colors Desc"]
-    });
+    })
     tinsert(pages, { -- EarnedBy
         Image = media .. "EarnedBy",
         ImageSize = {1018, 473},
@@ -199,9 +199,9 @@ function tutorials.Load()
                 earnedByNumber = tostring(addon.Options.db.profile.Tooltip.Achievements.EarnedBy.Characters):SetColorYellow(),
                 notEarnedByNumber = tostring(addon.Options.db.profile.Tooltip.Achievements.EarnedBy.NotCharacters):SetColorYellow(),
                 achievementPointsEarnedByFormat = string.format(addon.Util.Colors.Yellow, LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Prefix .. "_Layout", "cmd", "KROWIAF-0.0").args.Header.args.General.args.AchievementPointsFormat.values[addon.Options.db.profile.AchievementPoints.Format])
-            };
+            }
         end
-    });
+    })
     tinsert(pages, { -- CompactAchievements
         Image = media .. "CompactAchievements",
         ImageSize = {722, 385},
@@ -215,9 +215,9 @@ function tutorials.Load()
             self.Text = self.Text:K_ReplaceVars
             {
                 compactEnabled = GetText1Or2(options.Achievements.Compact, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red)
-            };
+            }
         end
-    });
+    })
     tinsert(pages, { -- TooltipCategories
         Image = media .. "TooltipCategories",
         ImageSize = {554, 154},
@@ -236,9 +236,9 @@ function tutorials.Load()
             self.Text = self.Text:K_ReplaceVars
             {
                 showNotObtainable = GetText1Or2(options.Tooltip.Categories.ShowNotObtainable, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red)
-            };
+            }
         end
-    });
+    })
     tinsert(pages, { -- TooltipAchievements
         Image = media .. "TooltipAchievements",
         ImageSize = {1016, 381},
@@ -274,9 +274,9 @@ function tutorials.Load()
                 otherFactionEnabled = GetText1Or2(options.Tooltip.Achievements.ShowOtherFaction, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
                 objectivesProgressEnabled = GetText1Or2(options.Tooltip.Achievements.ObjectivesProgress.Show, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
                 currentCharacterIconEnabled = GetText1Or2(options.Tooltip.Achievements.ShowCurrentCharacterIcons, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red)
-            };
+            }
         end
-    });
+    })
     tinsert(pages, { -- WorldMapButton
         Image = media .. "WorldMapButton",
         ImageSize = {433, 392},
@@ -287,7 +287,7 @@ function tutorials.Load()
             selectedZone = L["Selected Zone"]:SetColorYellow(),
             enhancedFilteringAndSorting = L["Enhanced filtering and sorting"]:SetColorYellow()
         }
-    });
+    })
     tinsert(pages, { -- RightClickMenu
         Image = media .. "RightClickMenu",
         ImageSize = {772, 340},
@@ -321,9 +321,9 @@ function tutorials.Load()
             self.Text = self.Text:K_ReplaceVars
             {
                 enabled = GetText1Or2(options.RightClickMenu.ShowButtonOnAchievement, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red)
-            };
+            }
         end
-    });
+    })
     tinsert(pages, { -- EventReminder
         Layout = "HORIZONTAL",
         Image = media .. "EventReminder",
@@ -345,9 +345,9 @@ function tutorials.Load()
                 numPopUps = tostring(addon.Options.db.profile.EventReminders.PopUps.MaxAlerts):SetColorYellow(),
                 compactEnabled = GetText1Or2(options.EventReminders.Compact, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
                 eventAlertFadeDelay = tostring(addon.Options.db.profile.EventReminders.PopUps.FadeDelay):SetColorYellow()
-            };
+            }
         end
-    });
+    })
     tinsert(pages, { -- Summary
     Layout = "HORIZONTAL",
     Image = media .. "Summary",
@@ -365,9 +365,9 @@ function tutorials.Load()
         self.Text = self.Text:K_ReplaceVars
         {
             numAchievements = tostring(addon.Options.db.profile.Summary.NumAchievements):SetColorYellow()
-        };
+        }
     end
-    });
+    })
     tinsert(pages, { -- Calendar
         Image = media .. "Calendar",
         ImageSize = {1041, 518},
@@ -383,15 +383,15 @@ function tutorials.Load()
                 lockMonth = GetText1Or2(addon.Options.db.profile.Calendar.LockMonth, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
                 lockAchievementMonth = GetText1Or2(addon.Options.db.profile.Calendar.LockAchievementMonth, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
                 firstWeekDay = string.format(addon.Util.Colors.Yellow, LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Prefix .. "_Layout", "cmd", "KROWIAF-0.0").args.Calendar.args.Weekdays.args.FirstDayOfTheWeek.values[addon.Options.db.profile.Calendar.FirstWeekDay]),
-            };
+            }
         end
-    });
+    })
 
-    tutorials.FeaturesTutorial = tutorials:New("FeaturesTutorial", KrowiAF_SavedData);
-    tutorials.FeaturesTutorial:SetFrameTitle(addon.Metadata.Title .. " - " .. addon.Metadata.BuildVersion);
-    tutorials.FeaturesTutorial:SetPages(pages);
-    tutorials.FeaturesTutorial:SetImageMargin(10);
-    tutorials.FeaturesTutorial:SetTextMargin{10, 0, 10, 20};
+    tutorials.FeaturesTutorial = tutorials:New("FeaturesTutorial", KrowiAF_SavedData)
+    tutorials.FeaturesTutorial:SetFrameTitle(addon.Metadata.Title .. " - " .. addon.Metadata.BuildVersion)
+    tutorials.FeaturesTutorial:SetPages(pages)
+    tutorials.FeaturesTutorial:SetImageMargin(10)
+    tutorials.FeaturesTutorial:SetTextMargin{10, 0, 10, 20}
 
-    addon.Diagnostics.Debug("Tutorial loaded");
+    addon.Diagnostics.Debug("Tutorial loaded")
 end

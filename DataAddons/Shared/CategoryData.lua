@@ -740,7 +740,7 @@ local crossExpansion = { -- Cross-Expansion
             3896, -- Onyx Panther
         },
     },
-};
+}
 
 KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
     883,
@@ -749,7 +749,7 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
         TabName = "Expansions",
     },
     crossExpansion,
-};
+}
 
 shared.Shadowlands = {}
 local shadowlands = shared.Shadowlands

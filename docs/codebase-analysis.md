@@ -141,9 +141,9 @@ The codebase mixes 4-space indentation (most files), tab indentation, and occasi
 
 **Impact:** Low-severity but causes diff noise and makes code review harder.
 
-### 2. Inconsistent Semicolon Usage
+### 2. Inconsistent Semicolon Usage ✅ FIXED (2026-09-11)
 
-Per the project's own instructions, semicolons should not be used. Many newer files omit them. However, almost every file in `Api/`, `Options/`, `DataAddons/`, and `Gui/WindowFrames/` uses semicolons consistently at end-of-statement. Files like `Data/TemporaryObtainable.lua` and `Data/EventData.lua` (newer code) omit them entirely. The inconsistency is project-wide.
+Per the project's own instructions, semicolons should not be used, yet almost every file in `Api/`, `Options/`, `DataAddons/` and `Gui/WindowFrames/` ended statements with them while newer files such as `Data/TemporaryObtainable.lua` did not. The tree was stripped in one pass by `.claude/tools/Strip-Semicolons.ps1`: 7572 statement semicolons removed and 21 table-field separators turned into commas across 221 files, each file accepted only after `luac -s` produced byte-identical bytecode before and after. The `semicolon` lint rule keeps them from coming back on added lines.
 
 ### 3. Inconsistent Data Entry Style in `DataAddons/Retail/` ✅ FIXED (verified 2026-09-09)
 
@@ -655,14 +655,14 @@ The `DataAddons/Retail/` tree spans 12 expansions. `11_TheWarWithin/CategoryData
 | 12 | ✅ FIXED | Dead code: `GetTopMostParentCategory` + debug branch for `120005` | `Globals.lua` | Fixed 2026-09-09: both removed |
 | 13 | ✅ FIXED | `Plugins/Plugins.lua` entirely commented out | `Plugins/Plugins.lua` | Fixed 2026-09-09: file and its commented-out `Files.xml` line deleted |
 | 14 | 🟡 LOW | `Globals.lua` is too large / does too much | `Globals.lua` | Refactor: split cache, compat, and window management |
-| 15 | 🔄 ONGOING | Mixed indentation and semicolons throughout codebase | All files | `.editorconfig` exists; `docs/styleguide.md` was never created, the rules live in `.github/copilot-instructions.md`. Semicolons: 7621 lines in 224 files as of 2026-09-09; dropped on touched lines, a one-time bulk strip is an open decision. |
+| 15 | ✅ FIXED | Mixed indentation and semicolons throughout codebase | All files | `.editorconfig` exists; the style rules live in `.github/copilot-instructions.md`. Semicolons stripped tree-wide 2026-09-11 by `.claude/tools/Strip-Semicolons.ps1` (7593 in 221 files, bytecode-verified); the `semicolon` lint rule guards added lines. |
 | 16 | ✅ FIXED | `AchBuilder` reward consumer guards: `IsTable` check + temp table alloc on every filter/render pass | `Filters.lua` validation #6, `Gui/AchievementTooltip/Rewards.lua` | Fixed 2026-04-26: `IsTable` guards removed from both consumers. `RewardType` is always a table or nil. |
 | 17 | ✅ FIXED | `shared.Ach` reference in docs/skills diverged from actual `KrowiAF.Ach` factory | `copilot-instructions.md`, `ApiDocumentation.lua`, `docs/how-to/`, skill files | Fixed 2026-06-21; two stragglers in the wiki and the add-achievement-data skill fixed 2026-09-09. |
 | 18 | 🟡 LOW | `achievementPatch` implicit mutable state (see THE BAD §12) | `Api/AchievementDataApi.lua` | By design; no code change. Documented as constraint. |
 | 19 | 🟡 LOW | Mixed positional+field extras table in AchBuilder (see THE BAD §13) | `Api/AchievementDataBuilder.lua` | No change today; documented as structural constraint. |
 | 20 | 🔄 FUTURE | V1 category parser maintained alongside V2 (see THE BAD §14) | `Api/CategoryDataApi.lua` | Migrate all first-party data to V2, then deprecate V1. Plugin authors must stay on V1 until notified. |
 | 21 | ✅ FIXED | Accidental globals: `GetActiveCalendarEvents`, `AddNestedCriterium`, `HandleScrollBar`, `DebugTable` declared without `local` | `Data/EventData.lua`, `Gui/RightClickMenu/AchievementMenu/PetBattleLinks.lua`, `Plugins/GW2_UI/GW2_UI.lua`, `Options/General.lua` | Fixed 2026-09-09; guarded by the new `globals` rule in `.claude/tools/Check-Repo.ps1` (allowlist `Check-Repo.globals`) |
-| 22 | 🟠 MEDIUM | `TooltipData.Load()` commented out as an Issue #300 diagnostic in 99.6 and shipped that way through 100.3, although 99.9 found the taint cause elsewhere | `Krowi_AchievementFilter.lua` | Decide: re-enable (run `taint-reviewer` on the tooltip hooks first) or remove the feature; add a lint rule that fails on `-- Temporarily` toggles without an expiry version |
+| 22 | ⛔ WON'T FIX | `TooltipData.Load()` commented out as an Issue #300 diagnostic in 99.6 and shipped that way through 100.3, although 99.9 found the taint cause elsewhere | `Krowi_AchievementFilter.lua` | Decided 2026-09-09: stays disabled by design. It was switched off for taint problems, the feature has not been maintained for a long time and is not a priority. Do not re-enable; the only remaining cleanup would be removing the dead call and data, and only on request. |
 | 23 | 🟡 LOW | Calendar wrapper globals `C_CalendarSetMonth`, `C_CalendarSetAbsMonth`, `C_CalendarResetAbsMonth`, `C_CalendarGetMonthInfo` mimic Blizzard API names in `_G` | `Gui/AchievementCalendar/C_Calendar.lua` | Move under `addon.Gui.AchievementCalendar`; allowlisted in `Check-Repo.globals` until then |
 | 24 | ✅ FIXED | Two overlapping instruction files (`CLAUDE.md` and `.github/copilot-instructions.md`) drifted apart: V2 header and patch record, `Plugins/Plugins.lua`, `Data/Retail`, "dev merges to main" | `CLAUDE.md`, `.github/copilot-instructions.md`, `CONTRIBUTING.md` | Fixed 2026-09-09: `copilot-instructions.md` is the single canonical file (merged and corrected); `CLAUDE.md` imports it with `@` and keeps only the Claude Code wiring; lint messages, the release skill and `CONTRIBUTING.md` point at the canonical file |
 

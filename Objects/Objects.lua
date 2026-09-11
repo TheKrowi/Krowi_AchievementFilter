@@ -1,3 +1,3 @@
 -- [[ Namespaces ]] --
-local _, addon = ...;
-addon.Objects = {};
+local _, addon = ...
+addon.Objects = {}

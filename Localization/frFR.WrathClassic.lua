@@ -1,6 +1,6 @@
-local _, addon = ...;
+local _, addon = ...
 if not addon.Util.IsClassicWithAchievements then
-    return;
+    return
 end
 local L = addon.Localization.NewLocale("frFR", true)
 if not L then return end

@@ -1,6 +1,6 @@
-local _, addon = ...;
-local shared = addon.Data.TooltipData.Shared;
-local type = Enum.TooltipDataType;
+local _, addon = ...
+local shared = addon.Data.TooltipData.Shared
+local type = Enum.TooltipDataType
 
 KrowiAF.TooltipData.MistsOfPandaria = {
     { -- To All the Squirrels I Once Caressed?
@@ -759,4 +759,4 @@ KrowiAF.TooltipData.MistsOfPandaria = {
             {4, 72464}, -- Zao Calfling Of Niuzao
         }
     },
-};
+}

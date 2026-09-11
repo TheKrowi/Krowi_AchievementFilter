@@ -1,9 +1,9 @@
-local _, addon = ...;
+local _, addon = ...
 
-KrowiAF_AchievementsObjectivesOtherAchievementMixin = {};
+KrowiAF_AchievementsObjectivesOtherAchievementMixin = {}
 
 function KrowiAF_AchievementsObjectivesOtherAchievementMixin:OnEnter()
-	local achievement = addon.Data.Achievements[self.Id];
+	local achievement = addon.Data.Achievements[self.Id]
 	-- if addon.Options.db.profile.Achievements.ShowOtherFactionWarbandAsCompleted then
 	-- 	if self.Completed and not addon.GetAchievementInfoTable(self.Id).IsCompleted and KrowiAF_Achievements.Completed[self.Id] then
 	-- 		local date = date("*t", KrowiAF_Achievements.Completed[self.Id].FirstCompletedOn);
@@ -11,20 +11,20 @@ function KrowiAF_AchievementsObjectivesOtherAchievementMixin:OnEnter()
 	-- 	end
 	-- end
 	if achievement == nil then
-		return;
+		return
 	end
-	addon.Gui.AchievementTooltip:ShowTooltip(self, achievement);
+	addon.Gui.AchievementTooltip:ShowTooltip(self, achievement)
 end
 
 function KrowiAF_AchievementsObjectivesOtherAchievementMixin:OnLeave()
-	Krowi_Tooltip:Hide();
+	Krowi_Tooltip:Hide()
 end
 
 function KrowiAF_AchievementsObjectivesOtherAchievementMixin:OnClick(button)
 	if button == "LeftButton" then
-		KrowiAF_SelectAchievementFromID(self.Id);
+		KrowiAF_SelectAchievementFromID(self.Id)
 	elseif button == "RightButton" then
-		addon.Gui.RightClickMenu.AchievementMenu:Open(self, addon.Data.Achievements[self.Id]);
+		addon.Gui.RightClickMenu.AchievementMenu:Open(self, addon.Data.Achievements[self.Id])
 	end
 end
 
@@ -34,425 +34,425 @@ KrowiAF_AchievementsObjectivesMixin = {
 		Progressive = 2,
 		NoCriteria = 3
 	}
-};
+}
 
-local defaultMetaWidth;
+local defaultMetaWidth
 function KrowiAF_AchievementsObjectivesMixin:OnLoad()
 	-- Per-instance caches: multiple objectives frames can exist at once (main list singleton + popouts)
-	self.criteriaTable, self.progressBarTable, self.miniTable, self.metaCriteriaTable = {}, {}, {}, {};
-	self:RegisterEvent("CRITERIA_UPDATE");
-	local meta = self:GetMeta(1);
-	defaultMetaWidth = meta:GetWidth();
+	self.criteriaTable, self.progressBarTable, self.miniTable, self.metaCriteriaTable = {}, {}, {}, {}
+	self:RegisterEvent("CRITERIA_UPDATE")
+	local meta = self:GetMeta(1)
+	defaultMetaWidth = meta:GetWidth()
 end
 
 function KrowiAF_AchievementsObjectivesMixin:OnEvent(event)
 	if event ~= "CRITERIA_UPDATE" then
-		return;
+		return
 	end
 
-	local button = self:GetParent();
+	local button = self:GetParent()
 	if button and button.Achievement then
-		self.Id = nil;
+		self.Id = nil
 		if self:IsVisible() then
-			button:DisplayObjectives(true);
+			button:DisplayObjectives(true)
 		else
-			self.RefreshOnNextShow = true;
+			self.RefreshOnNextShow = true
 		end
 	else
-		self.Id = nil;
+		self.Id = nil
 	end
 end
 
 function KrowiAF_AchievementsObjectivesMixin:OnShow()
 	if not self.RefreshOnNextShow then
-		return;
+		return
 	end
 
-	local button = self:GetParent();
-	button:DisplayObjectives(true);
+	local button = self:GetParent()
+	button:DisplayObjectives(true)
 
-	self.RefreshOnNextShow = nil;
+	self.RefreshOnNextShow = nil
 end
 
 local function ResetTextCriteria(self)
-	AchievementButton_ResetTable(self.criteriaTable);
+	AchievementButton_ResetTable(self.criteriaTable)
 end
 
 local function ResetProgressBars(self)
-	AchievementButton_ResetTable(self.progressBarTable);
+	AchievementButton_ResetTable(self.progressBarTable)
 end
 
 local function ResetMiniAchievements(self)
-	AchievementButton_ResetTable(self.miniTable);
+	AchievementButton_ResetTable(self.miniTable)
 end
 
 local function ResetMetas(self)
-	AchievementButton_ResetTable(self.metaCriteriaTable);
+	AchievementButton_ResetTable(self.metaCriteriaTable)
 end
 
 function KrowiAF_AchievementsObjectivesMixin:ResetAll()
-	ResetTextCriteria(self);
-	ResetProgressBars(self);
-	ResetMiniAchievements(self);
-	ResetMetas(self);
+	ResetTextCriteria(self)
+	ResetProgressBars(self)
+	ResetMiniAchievements(self)
+	ResetMetas(self)
 end
 
 function KrowiAF_AchievementsObjectivesMixin:GetTextCriteria(index) -- Public for skinning
 	if self.criteriaTable[index] then
-		return self.criteriaTable[index];
+		return self.criteriaTable[index]
 	end
-	local frame = CreateFrame("FRAME", self:GetName() .. "TextCriteria" .. index, self, "KrowiAF_TextCriteria_Template");
-	frame.Name = frame.Label; -- Fixes #56
-	AchievementFrame_LocalizeCriteria(frame);
-	self.criteriaTable[index] = frame;
-	return frame;
+	local frame = CreateFrame("FRAME", self:GetName() .. "TextCriteria" .. index, self, "KrowiAF_TextCriteria_Template")
+	frame.Name = frame.Label -- Fixes #56
+	AchievementFrame_LocalizeCriteria(frame)
+	self.criteriaTable[index] = frame
+	return frame
 end
 
 function KrowiAF_AchievementsObjectivesMixin:GetProgressBar(index) -- Public for skinning
 	if self.progressBarTable[index] then
-		return self.progressBarTable[index];
+		return self.progressBarTable[index]
 	end
-	local frame = CreateFrame("STATUSBAR", self:GetName() .. "ProgressBar" .. index, self, "AchievementProgressBarTemplate");
+	local frame = CreateFrame("STATUSBAR", self:GetName() .. "ProgressBar" .. index, self, "AchievementProgressBarTemplate")
 	if addon.Util.IsClassicWithAchievements then
-		frame.Text = frame.text;
+		frame.Text = frame.text
 	end
-	AchievementButton_LocalizeProgressBar(frame);
-	self.progressBarTable[index] = frame;
-	return frame;
+	AchievementButton_LocalizeProgressBar(frame)
+	self.progressBarTable[index] = frame
+	return frame
 end
 
 function KrowiAF_AchievementsObjectivesMixin:GetMiniAchievement(index) -- Public for skinning
 	if self.miniTable[index] then
-		return self.miniTable[index];
+		return self.miniTable[index]
 	end
-	local frame = CreateFrame("BUTTON", self:GetName() .. "MiniAchievement" .. index, self, "KrowiAF_MiniAchievement_Template");
-	AchievementButton_LocalizeMiniAchievement(frame);
-	self.miniTable[index] = frame;
-	return frame;
+	local frame = CreateFrame("BUTTON", self:GetName() .. "MiniAchievement" .. index, self, "KrowiAF_MiniAchievement_Template")
+	AchievementButton_LocalizeMiniAchievement(frame)
+	self.miniTable[index] = frame
+	return frame
 end
 
 function KrowiAF_AchievementsObjectivesMixin:GetMeta(index) -- Public for skinning
 	if self.metaCriteriaTable[index] then
-		return self.metaCriteriaTable[index];
+		return self.metaCriteriaTable[index]
 	end
-	local frame = CreateFrame("BUTTON", self:GetName() .. "Meta" .. index, self, "KrowiAF_MetaCriteria_Template");
-	AchievementButton_LocalizeMetaAchievement(frame);
-	self.metaCriteriaTable[index] = frame;
-	return frame;
+	local frame = CreateFrame("BUTTON", self:GetName() .. "Meta" .. index, self, "KrowiAF_MetaCriteria_Template")
+	AchievementButton_LocalizeMetaAchievement(frame)
+	self.metaCriteriaTable[index] = frame
+	return frame
 end
 
-local achievements, rowOffset, columnOffset = {}, 8, 4;
+local achievements, rowOffset, columnOffset = {}, 8, 4
 function KrowiAF_AchievementsObjectivesMixin:DisplayProgressiveAchievement(id)
 	if not id then
-		return;
+		return
 	end
 
 	for i in next, achievements do
-		achievements[i] = nil;
+		achievements[i] = nil
 	end
 
-	tinsert(achievements, 1, id);
-    local prevId = addon.GetPreviousAchievement(id);
+	tinsert(achievements, 1, id)
+    local prevId = addon.GetPreviousAchievement(id)
 	while prevId do
-		tinsert(achievements, 1, prevId);
-		prevId = addon.GetPreviousAchievement(prevId);
+		tinsert(achievements, 1, prevId)
+		prevId = addon.GetPreviousAchievement(prevId)
 	end
 
-	local miniAchievementWidth = self:GetMiniAchievement(1):GetWidth();
-	local objectivesWidth = self:GetWidth();
-	local numColumns = floor(objectivesWidth / (miniAchievementWidth + columnOffset));
-	local numRows = ceil(#achievements / numColumns);
-	local width = min(numColumns, #achievements) * (miniAchievementWidth + columnOffset) - columnOffset;
-	local offsetX = (objectivesWidth - width) / 2;
+	local miniAchievementWidth = self:GetMiniAchievement(1):GetWidth()
+	local objectivesWidth = self:GetWidth()
+	local numColumns = floor(objectivesWidth / (miniAchievementWidth + columnOffset))
+	local numRows = ceil(#achievements / numColumns)
+	local width = min(numColumns, #achievements) * (miniAchievementWidth + columnOffset) - columnOffset
+	local offsetX = (objectivesWidth - width) / 2
 
 	for i, achId in ipairs(achievements) do
-		local _, _, points, _, _, _, _, _, _, icon = addon.GetAchievementInfo(achId);
-		local miniAchievement = self:GetMiniAchievement(i);
-		miniAchievement:Show();
-		miniAchievement.Id = achId;
-		miniAchievement.Icon:SetTexture(icon);
+		local _, _, points, _, _, _, _, _, _, icon = addon.GetAchievementInfo(achId)
+		local miniAchievement = self:GetMiniAchievement(i)
+		miniAchievement:Show()
+		miniAchievement.Id = achId
+		miniAchievement.Icon:SetTexture(icon)
 		if i == 1 then
-			miniAchievement:SetPoint("TOPLEFT", self, "TOPLEFT", offsetX, 0);
+			miniAchievement:SetPoint("TOPLEFT", self, "TOPLEFT", offsetX, 0)
 		elseif mod(i, numColumns) == 1 then
-			miniAchievement:SetPoint("TOPLEFT", self:GetMiniAchievement(i - numColumns), "BOTTOMLEFT", 0, -rowOffset);
+			miniAchievement:SetPoint("TOPLEFT", self:GetMiniAchievement(i - numColumns), "BOTTOMLEFT", 0, -rowOffset)
 		else
-			miniAchievement:SetPoint("TOPLEFT", self:GetMiniAchievement(i - 1), "TOPRIGHT", columnOffset, 0);
+			miniAchievement:SetPoint("TOPLEFT", self:GetMiniAchievement(i - 1), "TOPRIGHT", columnOffset, 0)
 		end
 		if points > 0 then
-			miniAchievement.Points:SetText(points);
-			miniAchievement.Points:Show();
-			miniAchievement.Shield:SetTexture("Interface/AchievementFrame/UI-Achievement-Progressive-Shield");
+			miniAchievement.Points:SetText(points)
+			miniAchievement.Points:Show()
+			miniAchievement.Shield:SetTexture("Interface/AchievementFrame/UI-Achievement-Progressive-Shield")
 		else
-			miniAchievement.Points:Hide();
-			miniAchievement.Shield:SetTexture("Interface/AchievementFrame/UI-Achievement-Progressive-Shield-NoPoints");
+			miniAchievement.Points:Hide()
+			miniAchievement.Shield:SetTexture("Interface/AchievementFrame/UI-Achievement-Progressive-Shield-NoPoints")
 		end
 	end
 
-	self:SetHeight(numRows * (self:GetMiniAchievement(1):GetHeight() + rowOffset));
-	self.Mode = self.Modes.Progressive;
+	self:SetHeight(numRows * (self:GetMiniAchievement(1):GetHeight() + rowOffset))
+	self.Mode = self.Modes.Progressive
 end
 
 local function AddMeta(self, index, completed, assetId)
-	local metaCriteria = self:GetMeta(index);
-	local id, name, _, _, _, _, _, _, _, icon = GetAchievementInfo(assetId);
-	metaCriteria:Show();
-	metaCriteria.Id = id;
-	metaCriteria.Label:SetText(name);
-	metaCriteria.Icon:SetTexture(icon);
-	metaCriteria.Completed = completed;
+	local metaCriteria = self:GetMeta(index)
+	local id, name, _, _, _, _, _, _, _, icon = GetAchievementInfo(assetId)
+	metaCriteria:Show()
+	metaCriteria.Id = id
+	metaCriteria.Label:SetText(name)
+	metaCriteria.Icon:SetTexture(icon)
+	metaCriteria.Completed = completed
 	-- Have to check if criteria is completed here, can't just check if achievement is completed.
 	-- This is because the criteria could have modifiers on it that prevent completion even though the achievement is earned.
 	if self.Completed and completed then
-		metaCriteria.Check:Show();
-		metaCriteria.Border:SetVertexColor(1, 1, 1, 1);
-		metaCriteria.Icon:SetVertexColor(1, 1, 1, 1);
+		metaCriteria.Check:Show()
+		metaCriteria.Border:SetVertexColor(1, 1, 1, 1)
+		metaCriteria.Icon:SetVertexColor(1, 1, 1, 1)
 		metaCriteria.Label:SetShadowOffset(0, 0)
-		metaCriteria.Label:SetTextColor(0, 0, 0, 1);
+		metaCriteria.Label:SetTextColor(0, 0, 0, 1)
 	elseif completed then
-		metaCriteria.Check:Show();
-		metaCriteria.Border:SetVertexColor(1, 1, 1, 1);
-		metaCriteria.Icon:SetVertexColor(1, 1, 1, 1);
+		metaCriteria.Check:Show()
+		metaCriteria.Border:SetVertexColor(1, 1, 1, 1)
+		metaCriteria.Icon:SetVertexColor(1, 1, 1, 1)
 		metaCriteria.Label:SetShadowOffset(1, -1)
-		metaCriteria.Label:SetTextColor(0, 1, 0, 1);
+		metaCriteria.Label:SetTextColor(0, 1, 0, 1)
 	else
-		metaCriteria.Check:Hide();
-		metaCriteria.Border:SetVertexColor(0.75, 0.75, 0.75, 1);
-		metaCriteria.Icon:SetVertexColor(0.55, 0.55, 0.55, 1);
+		metaCriteria.Check:Hide()
+		metaCriteria.Border:SetVertexColor(0.75, 0.75, 0.75, 1)
+		metaCriteria.Icon:SetVertexColor(0.55, 0.55, 0.55, 1)
 		metaCriteria.Label:SetShadowOffset(1, -1)
-		metaCriteria.Label:SetTextColor(0.6, 0.6, 0.6, 1);
+		metaCriteria.Label:SetTextColor(0.6, 0.6, 0.6, 1)
 	end
 end
 
-local progressBarOffset = 10;
+local progressBarOffset = 10
 local function AddProgressBar(self, index, quantity, reqQuantity, quantityString)
-	local progressBar = self:GetProgressBar(index);
-	local extraHeight;
+	local progressBar = self:GetProgressBar(index)
+	local extraHeight
 	if index == 1 then
-		progressBar:SetPoint("TOP", self, "TOP", 0, 0);
-		extraHeight = 5;
+		progressBar:SetPoint("TOP", self, "TOP", 0, 0)
+		extraHeight = 5
 	else
-		progressBar:SetPoint("TOP", self:GetProgressBar(index - 1), "BOTTOM", 0, -progressBarOffset);
-		extraHeight = progressBarOffset;
+		progressBar:SetPoint("TOP", self:GetProgressBar(index - 1), "BOTTOM", 0, -progressBarOffset)
+		extraHeight = progressBarOffset
 	end
-	progressBar.Text:SetText(string.format("%s", quantityString));
-	progressBar:SetMinMaxValues(0, reqQuantity);
-	progressBar:SetValue(quantity);
-	progressBar:SetParent(self);
-	progressBar:SetHeight(16); -- Template is 14 but borders 16
-	progressBar:Show();
+	progressBar.Text:SetText(string.format("%s", quantityString))
+	progressBar:SetMinMaxValues(0, reqQuantity)
+	progressBar:SetValue(quantity)
+	progressBar:SetParent(self)
+	progressBar:SetHeight(16) -- Template is 14 but borders 16
+	progressBar:Show()
 
-	return progressBar:GetWidth(), progressBar:GetHeight() + extraHeight;
+	return progressBar:GetWidth(), progressBar:GetHeight() + extraHeight
 end
 
 local function AddTextCriteria(self, index, numCriteria, criteriaString, completed)
-	local criteria = self:GetTextCriteria(index);
-	criteria:ClearAllPoints();
+	local criteria = self:GetTextCriteria(index)
+	criteria:ClearAllPoints()
 	if index == 1 then
 		if numCriteria == 1 then
-			criteria:SetPoint("TOP", self, "TOP", 0, 0);
+			criteria:SetPoint("TOP", self, "TOP", 0, 0)
 		else
-			criteria:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 0);
+			criteria:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 0)
 		end
 	else
-		criteria:SetPoint("TOPLEFT", self:GetTextCriteria(index - 1), "BOTTOMLEFT", 0, 0);
+		criteria:SetPoint("TOPLEFT", self:GetTextCriteria(index - 1), "BOTTOMLEFT", 0, 0)
 	end
 	if self.Completed and completed then
-		criteria.Dash:SetTextColor(0, 0, 0, 1);
-		criteria.Dash:SetShadowOffset(0, 0);
-		criteria.Label:SetTextColor(0, 0, 0, 1);
-		criteria.Label:SetShadowOffset(0, 0);
+		criteria.Dash:SetTextColor(0, 0, 0, 1)
+		criteria.Dash:SetShadowOffset(0, 0)
+		criteria.Label:SetTextColor(0, 0, 0, 1)
+		criteria.Label:SetShadowOffset(0, 0)
 	elseif completed then
-		criteria.Dash:SetTextColor(0, 1, 0, 1);
-		criteria.Dash:SetShadowOffset(1, -1);
-		criteria.Label:SetTextColor(0, 1, 0, 1);
-		criteria.Label:SetShadowOffset(1, -1);
+		criteria.Dash:SetTextColor(0, 1, 0, 1)
+		criteria.Dash:SetShadowOffset(1, -1)
+		criteria.Label:SetTextColor(0, 1, 0, 1)
+		criteria.Label:SetShadowOffset(1, -1)
 	else
-		criteria.Dash:SetTextColor(0.6, 0.6, 0.6, 1);
-		criteria.Dash:SetShadowOffset(1, -1);
-		criteria.Label:SetTextColor(0.6, 0.6, 0.6, 1);
-		criteria.Label:SetShadowOffset(1, -1);
+		criteria.Dash:SetTextColor(0.6, 0.6, 0.6, 1)
+		criteria.Dash:SetShadowOffset(1, -1)
+		criteria.Label:SetTextColor(0.6, 0.6, 0.6, 1)
+		criteria.Label:SetShadowOffset(1, -1)
 	end
-	local labelWidth = 0;
-	local maxLabelWidth = self:GetWidth() - criteria.Check:GetWidth();
+	local labelWidth = 0
+	local maxLabelWidth = self:GetWidth() - criteria.Check:GetWidth()
 	if completed then
-		criteria.Check:Show();
-		criteria.Dash:Hide();
+		criteria.Check:Show()
+		criteria.Dash:Hide()
 	else
-		criteria.Check:Hide();
-		criteria.Dash:Show();
+		criteria.Check:Hide()
+		criteria.Dash:Show()
 	end
-	criteria.Label:SetText(criteriaString);
-	labelWidth = min(criteria.Label:GetStringWidth(), maxLabelWidth);
-	criteria.Label:SetWidth(labelWidth);
-	local height = 15;
+	criteria.Label:SetText(criteriaString)
+	labelWidth = min(criteria.Label:GetStringWidth(), maxLabelWidth)
+	criteria.Label:SetWidth(labelWidth)
+	local height = 15
 	if criteria.Label:GetStringWidth() > maxLabelWidth then
-		height = criteria.Label:GetHeight() + 5;
+		height = criteria.Label:GetHeight() + 5
 	end
-	criteria:SetParent(self);
-	criteria:SetWidth(labelWidth + criteria.Check:GetWidth());
-	criteria:SetHeight(height);
-	criteria:Show();
+	criteria:SetParent(self)
+	criteria:SetWidth(labelWidth + criteria.Check:GetWidth())
+	criteria:SetHeight(height)
+	criteria:Show()
 
-	return criteria:GetWidth(), criteria:GetHeight();
+	return criteria:GetWidth(), criteria:GetHeight()
 end
 
 local function SetProgressBarAndTextPoints(self, numProgressBars, numTextCriteria)
 	-- If we have text criteria and progressBar criteria, display the progressBar criteria first and position the textStrings under them.
-	local criteria;
+	local criteria
 	for i = 1, numTextCriteria do
-		criteria = self:GetTextCriteria(i);
-		criteria:ClearAllPoints();
+		criteria = self:GetTextCriteria(i)
+		criteria:ClearAllPoints()
 		if i == 1 then
-			criteria:SetPoint("TOP", self:GetProgressBar(numProgressBars), "BOTTOM", 0, -10);
+			criteria:SetPoint("TOP", self:GetProgressBar(numProgressBars), "BOTTOM", 0, -10)
 		else
-			criteria:SetPoint("TOP", self:GetTextCriteria(i - 1), "BOTTOM", 0, 0);
+			criteria:SetPoint("TOP", self:GetTextCriteria(i - 1), "BOTTOM", 0, 0)
 		end
 	end
 end
 
 local function SetTextPoints(self, numTextCriteria, maxCriteriaWidth)
-	local numColumns = max(1, floor(self:GetWidth() / maxCriteriaWidth));
+	local numColumns = max(1, floor(self:GetWidth() / maxCriteriaWidth))
 
-	local truncate, flex;
+	local truncate, flex
 	if addon.Options.db.profile.Achievements.Objectives.ForceTwoColumns then
 		if numColumns < 2 and numTextCriteria >= addon.Options.db.profile.Achievements.Objectives.ForceTwoColumnsThreshold then
-			numColumns = 2;
+			numColumns = 2
 			-- addon.Options.db.profile.Achievements.Objectives.CriteriaBehaviour == 1 needs no additional code to overflow
 			if addon.Options.db.profile.Achievements.Objectives.CriteriaBehaviour == 2 then -- Truncate
-				truncate = self:GetWidth() / 2;
+				truncate = self:GetWidth() / 2
 			elseif addon.Options.db.profile.Achievements.Objectives.CriteriaBehaviour == 3 then
-				flex = true;
+				flex = true
 			end
 		end
 	end
 
 	if numColumns == 1 then -- They're already in the correct positions
-		local top = self:GetTextCriteria(1):GetTop();
-		local bottom = self:GetTextCriteria(numTextCriteria):GetBottom();
-		return top - bottom;
+		local top = self:GetTextCriteria(1):GetTop()
+		local bottom = self:GetTextCriteria(numTextCriteria):GetBottom()
+		return top - bottom
 	end
 
-	local columnWidth = self:GetWidth() / numColumns;
+	local columnWidth = self:GetWidth() / numColumns
 
-	local numRows = 1;
-	local position = 0;
-	local textCriteria;
+	local numRows = 1
+	local position = 0
+	local textCriteria
 	for i = 1, numTextCriteria do -- The 1st one is already at its correct position
-		textCriteria = self:GetTextCriteria(i);
-		position = position + 1;
+		textCriteria = self:GetTextCriteria(i)
+		position = position + 1
 		if flex and position == 2 and textCriteria:GetWidth() > columnWidth then
-			position = position + 1;
+			position = position + 1
 		end
 		if position > numColumns then
-			position = position - numColumns;
-			numRows = numRows + 1;
+			position = position - numColumns
+			numRows = numRows + 1
 		end
 		if truncate then
-			textCriteria:SetWidth(truncate);
+			textCriteria:SetWidth(truncate)
 		end
-		textCriteria:ClearAllPoints();
-		textCriteria:SetPoint("TOPLEFT", self, "TOPLEFT", (position - 1) * columnWidth, -(numRows - 1) * textCriteria:GetHeight());
+		textCriteria:ClearAllPoints()
+		textCriteria:SetPoint("TOPLEFT", self, "TOPLEFT", (position - 1) * columnWidth, -(numRows - 1) * textCriteria:GetHeight())
 		if flex and textCriteria:GetWidth() > columnWidth then
-			position = position + 1;
+			position = position + 1
 		end
 	end
-	local top = self:GetTextCriteria(1):GetTop();
-	local bottom = self:GetTextCriteria(numTextCriteria):GetBottom();
-	return top - bottom;
+	local top = self:GetTextCriteria(1):GetTop()
+	local bottom = self:GetTextCriteria(numTextCriteria):GetBottom()
+	return top - bottom
 end
 
 local function FindNumColumns(self, numMetas, numColumns)
-	local width = self:GetWidth() / numColumns;
-	local meta;
+	local width = self:GetWidth() / numColumns
+	local meta
 	for i = 1, numMetas do
-		meta = self:GetMeta(i);
-		meta:SetWidth(width);
+		meta = self:GetMeta(i)
+		meta:SetWidth(width)
 		if self:GetMeta(i).Label:IsTruncated() then
 			if numColumns <= 3 then
-				return 2;
+				return 2
 			end
-			return FindNumColumns(self, numMetas, numColumns - 1);
+			return FindNumColumns(self, numMetas, numColumns - 1)
 		end
 	end
-	return numColumns;
+	return numColumns
 end
 
 local function SetMetaPoints(self, numMetas, offset)
-	offset = offset or 0;
-	local numColumns = max(2, floor(self:GetWidth() / defaultMetaWidth));
-	numColumns = FindNumColumns(self, numMetas, numColumns);
+	offset = offset or 0
+	local numColumns = max(2, floor(self:GetWidth() / defaultMetaWidth))
+	numColumns = FindNumColumns(self, numMetas, numColumns)
 
-	local width = self:GetWidth() / numColumns;
-	local numRows = 1;
-	local position = 0;
-	local meta;
+	local width = self:GetWidth() / numColumns
+	local numRows = 1
+	local position = 0
+	local meta
 	for i = 1, numMetas do
-		position = position + 1;
+		position = position + 1
 		if position > numColumns then
-			position = position - numColumns;
-			numRows = numRows + 1;
+			position = position - numColumns
+			numRows = numRows + 1
 		end
-		meta = self:GetMeta(i);
-		meta:SetWidth(width);
-		meta:ClearAllPoints();
-		meta:SetPoint("TOPLEFT", self, "TOPLEFT", (position - 1) * width, -(numRows - 1) * ACHIEVEMENTBUTTON_METAROWHEIGHT - offset);
+		meta = self:GetMeta(i)
+		meta:SetWidth(width)
+		meta:ClearAllPoints()
+		meta:SetPoint("TOPLEFT", self, "TOPLEFT", (position - 1) * width, -(numRows - 1) * ACHIEVEMENTBUTTON_METAROWHEIGHT - offset)
 	end
-	local top = self:GetMeta(1):GetTop();
-	local bottom = self:GetMeta(numMetas):GetBottom();
-	return top - bottom;
+	local top = self:GetMeta(1):GetTop()
+	local bottom = self:GetMeta(numMetas):GetBottom()
+	return top - bottom
 end
 
 function KrowiAF_AchievementsObjectivesMixin:DisplayCriteria(id)
 	if not id then
-		return;
+		return
 	end
 
-	local numCriteria = addon.GetAchievementNumCriteria(id);
+	local numCriteria = addon.GetAchievementNumCriteria(id)
 	if numCriteria == 0 then
-		self.Mode = self.Modes.NoCriteria;
-		return;
+		self.Mode = self.Modes.NoCriteria
+		return
 	end
 
-	local progressBarHeight;
-	local totalProgressBarHeight = 0;
-	local textCriteriaWidth, textCriteriaHeight;
-	local totalTextCriteriaHeight = 0;
-	local numCriteriaRows = 0;
+	local progressBarHeight
+	local totalProgressBarHeight = 0
+	local textCriteriaWidth, textCriteriaHeight
+	local totalTextCriteriaHeight = 0
+	local numCriteriaRows = 0
 
-	local numTextCriteria, numProgressBars, numMetas = 0, 0, 0;
-	local maxTextCriteriaWidth = 0;
+	local numTextCriteria, numProgressBars, numMetas = 0, 0, 0
+	local maxTextCriteriaWidth = 0
 	for i = 1, numCriteria do
-		local criteriaString, criteriaType, completed, quantity, reqQuantity, _, flags, assetID, quantityString = addon.GetAchievementCriteriaInfo(id, i);
-		flags = addon.Objects.Flags:New(flags);
+		local criteriaString, criteriaType, completed, quantity, reqQuantity, _, flags, assetID, quantityString = addon.GetAchievementCriteriaInfo(id, i)
+		flags = addon.Objects.Flags:New(flags)
 		if criteriaType == CRITERIA_TYPE_ACHIEVEMENT and assetID then
-			numMetas = numMetas + 1;
-			AddMeta(self, numMetas, completed, assetID);
+			numMetas = numMetas + 1
+			AddMeta(self, numMetas, completed, assetID)
 		elseif flags.IsCriteriaProgressBar then
-			numProgressBars = numProgressBars + 1;
-			_, progressBarHeight = AddProgressBar(self, numProgressBars, quantity, reqQuantity, quantityString);
-			totalProgressBarHeight = totalProgressBarHeight + progressBarHeight;
-			numCriteriaRows = numCriteriaRows + 1;
+			numProgressBars = numProgressBars + 1
+			_, progressBarHeight = AddProgressBar(self, numProgressBars, quantity, reqQuantity, quantityString)
+			totalProgressBarHeight = totalProgressBarHeight + progressBarHeight
+			numCriteriaRows = numCriteriaRows + 1
 		else
-			numTextCriteria = numTextCriteria + 1;
-			textCriteriaWidth, textCriteriaHeight = AddTextCriteria(self, numTextCriteria, numCriteria, criteriaString, completed);
-			maxTextCriteriaWidth = max(maxTextCriteriaWidth, textCriteriaWidth);
-			totalTextCriteriaHeight = totalTextCriteriaHeight + textCriteriaHeight;
-			numCriteriaRows = numCriteriaRows + 1;
+			numTextCriteria = numTextCriteria + 1
+			textCriteriaWidth, textCriteriaHeight = AddTextCriteria(self, numTextCriteria, numCriteria, criteriaString, completed)
+			maxTextCriteriaWidth = max(maxTextCriteriaWidth, textCriteriaWidth)
+			totalTextCriteriaHeight = totalTextCriteriaHeight + textCriteriaHeight
+			numCriteriaRows = numCriteriaRows + 1
 		end
 	end
-	local height = 0;
+	local height = 0
 	if numProgressBars > 0 then
-		SetProgressBarAndTextPoints(self, numProgressBars, numTextCriteria);
-		height = totalProgressBarHeight + totalTextCriteriaHeight;
+		SetProgressBarAndTextPoints(self, numProgressBars, numTextCriteria)
+		height = totalProgressBarHeight + totalTextCriteriaHeight
 	elseif numTextCriteria > 0 then
-		height = totalTextCriteriaHeight;
-		height = SetTextPoints(self, numTextCriteria, maxTextCriteriaWidth);
+		height = totalTextCriteriaHeight
+		height = SetTextPoints(self, numTextCriteria, maxTextCriteriaWidth)
 		if numMetas > 0 then
-			height = height + SetMetaPoints(self, numMetas, height);
+			height = height + SetMetaPoints(self, numMetas, height)
 		end
 	else
-		height = SetMetaPoints(self, numMetas);
+		height = SetMetaPoints(self, numMetas)
 	end
-	self:SetHeight(height + 1);
-	self.Mode = self.Modes.Criteria;
+	self:SetHeight(height + 1)
+	self.Mode = self.Modes.Criteria
 end

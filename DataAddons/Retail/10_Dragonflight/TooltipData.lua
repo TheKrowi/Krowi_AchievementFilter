@@ -1,6 +1,6 @@
-local _, addon = ...;
-local shared = addon.Data.TooltipData.Shared;
-local type = Enum.TooltipDataType;
+local _, addon = ...
+local shared = addon.Data.TooltipData.Shared
+local type = Enum.TooltipDataType
 
 KrowiAF.TooltipData.Dragonflight = {
     { -- Waking Shores Basic / Advanced / Reverse
@@ -427,4 +427,4 @@ KrowiAF.TooltipData.Dragonflight = {
             {12, 215825}, -- Coldarra Climb
         }
     },
-};
+}

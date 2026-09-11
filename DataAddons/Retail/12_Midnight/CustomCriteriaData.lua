@@ -1,5 +1,5 @@
-local _, addon = ...;
-local shared = addon.Data.CustomCriteriaData.Shared;
+local _, addon = ...
+local shared = addon.Data.CustomCriteriaData.Shared
 
 KrowiAF.CustomCriteriaData.Midnight = {
     { -- Captain Tokka's Crew
@@ -14,4 +14,4 @@ KrowiAF.CustomCriteriaData.Midnight = {
             ReqQuantity = 8400 -- Sum of all 5 ranks, no API exposes it
         }
     },
-};
+}

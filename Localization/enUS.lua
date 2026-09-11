@@ -1,7 +1,7 @@
 local _, addon = ...
 local L = addon.Localization.NewDefaultLocale()
 
-KrowiAF.PluginsApi:LoadPluginLocalization(L);
+KrowiAF.PluginsApi:LoadPluginLocalization(L)
 
 L["Winds of Mysterious Fortune"] = true
 

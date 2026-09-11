@@ -1,7 +1,7 @@
 local addonName, addon = ...
-addon.Data.TabData = {};
-addon.Data.TabData.Shared = {};
-local shared = addon.Data.TabData.Shared;
+addon.Data.TabData = {}
+addon.Data.TabData.Shared = {}
+local shared = addon.Data.TabData.Shared
 local CT = addon.Data.CategoryData.Shared.CT
 
 
@@ -46,4 +46,4 @@ KrowiAF.TabData.Base = {
         "KrowiAF_OPEN_TAB_Specials",
         true
     },
-};
+}

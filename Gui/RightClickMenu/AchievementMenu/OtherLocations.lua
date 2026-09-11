@@ -1,20 +1,20 @@
-local _, addon = ...;
-local section = {};
-tinsert(addon.Gui.RightClickMenu.AchievementMenu:GetLastSection().Sections, section);
+local _, addon = ...
+local section = {}
+tinsert(addon.Gui.RightClickMenu.AchievementMenu:GetLastSection().Sections, section)
 
 function section:CheckAdd(achievement)
-    return achievement.MoreCategories;
+    return achievement.MoreCategories
 end
 
 function section:Add(menu, achievement, menuBuilder)
-	menuBuilder:CreateTitle(menu, addon.L["Other locations"]);
-	local selectedCategory = addon.Gui.SelectedTab and addon.Gui.SelectedTab.SelectedCategory or nil;
+	menuBuilder:CreateTitle(menu, addon.L["Other locations"])
+	local selectedCategory = addon.Gui.SelectedTab and addon.Gui.SelectedTab.SelectedCategory or nil
 	if selectedCategory ~= achievement.Category then
-		addon.Gui.RightClickMenu.AchievementMenu:AddGoToAchievementWithCategoryLine(menu, achievement, achievement.Category);
+		addon.Gui.RightClickMenu.AchievementMenu:AddGoToAchievementWithCategoryLine(menu, achievement, achievement.Category)
 	end
 	for _, category in next, achievement.MoreCategories do
 		if selectedCategory ~= category then
-			addon.Gui.RightClickMenu.AchievementMenu:AddGoToAchievementWithCategoryLine(menu, achievement, category);
+			addon.Gui.RightClickMenu.AchievementMenu:AddGoToAchievementWithCategoryLine(menu, achievement, category)
 		end
 	end
 end

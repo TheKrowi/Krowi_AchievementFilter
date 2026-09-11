@@ -1,8 +1,8 @@
-local _, addon = ...;
-local shared = addon.Data.CustomCriteriaData.Shared;
+local _, addon = ...
+local shared = addon.Data.CustomCriteriaData.Shared
 
-local baseCriteriaId = 108648;
-local criteriaIdOffsets = {-288, -272, 3, 7, 6, 0, 8, 4, 9, 5, 2, 1};
+local baseCriteriaId = 108648
+local criteriaIdOffsets = {-288, -272, 3, 7, 6, 0, 8, 4, 9, 5, 2, 1}
 
 KrowiAF.CustomCriteriaData.TheWarWithin = {
     { -- Lub and Plunder
@@ -10,7 +10,7 @@ KrowiAF.CustomCriteriaData.TheWarWithin = {
         {
             NumCriteria = 1,
             QuantityFunc = function()
-                return tonumber(C_CurrencyInfo.GetCurrencyInfo(2922).quantity);
+                return tonumber(C_CurrencyInfo.GetCurrencyInfo(2922).quantity)
             end,
             ReqQuantity = 2000,
         }
@@ -20,7 +20,7 @@ KrowiAF.CustomCriteriaData.TheWarWithin = {
         {
             NumCriteria = 1,
             QuantityFunc = function()
-                return tonumber(C_CurrencyInfo.GetCurrencyInfo(2922).quantity);
+                return tonumber(C_CurrencyInfo.GetCurrencyInfo(2922).quantity)
             end,
             ReqQuantity = 10000,
         }
@@ -30,7 +30,7 @@ KrowiAF.CustomCriteriaData.TheWarWithin = {
         {
             NumCriteria = 1,
             QuantityFunc = function()
-                return tonumber(C_CurrencyInfo.GetCurrencyInfo(2922).quantity);
+                return tonumber(C_CurrencyInfo.GetCurrencyInfo(2922).quantity)
             end,
             ReqQuantity = 25000,
         }
@@ -40,7 +40,7 @@ KrowiAF.CustomCriteriaData.TheWarWithin = {
         {
             NumCriteria = 1,
             QuantityFunc = function()
-                return tonumber(C_CurrencyInfo.GetCurrencyInfo(2922).quantity);
+                return tonumber(C_CurrencyInfo.GetCurrencyInfo(2922).quantity)
             end,
             ReqQuantity = 50000,
         }
@@ -50,7 +50,7 @@ KrowiAF.CustomCriteriaData.TheWarWithin = {
         {
             NumCriteria = 1,
             QuantityFunc = function()
-                return tonumber(C_CurrencyInfo.GetCurrencyInfo(2922).quantity);
+                return tonumber(C_CurrencyInfo.GetCurrencyInfo(2922).quantity)
             end,
             ReqQuantity = 100000,
         }
@@ -60,7 +60,7 @@ KrowiAF.CustomCriteriaData.TheWarWithin = {
         {
             NumCriteria = 1,
             QuantityFunc = function()
-                return tonumber(C_CurrencyInfo.GetCurrencyInfo(2922).quantity);
+                return tonumber(C_CurrencyInfo.GetCurrencyInfo(2922).quantity)
             end,
             ReqQuantity = 250000,
         }
@@ -70,7 +70,7 @@ KrowiAF.CustomCriteriaData.TheWarWithin = {
         {
             NumCriteria = 1,
             QuantityFunc = function()
-                return tonumber(C_CurrencyInfo.GetCurrencyInfo(2922).quantity);
+                return tonumber(C_CurrencyInfo.GetCurrencyInfo(2922).quantity)
             end,
             ReqQuantity = 150000,
         }
@@ -80,8 +80,8 @@ KrowiAF.CustomCriteriaData.TheWarWithin = {
         {
             NumCriteria = 12,
             ReturnFunc = function(criteriaIndex)
-                local _, _, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible, duration, elapsed = KrowiAF_origGetAchievementCriteriaInfoById(42565, baseCriteriaId + criteriaIdOffsets[criteriaIndex]);
-                return (GetClassInfo(criteriaIndex)), 0, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible, duration, elapsed;
+                local _, _, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible, duration, elapsed = KrowiAF_origGetAchievementCriteriaInfoById(42565, baseCriteriaId + criteriaIdOffsets[criteriaIndex])
+                return (GetClassInfo(criteriaIndex)), 0, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible, duration, elapsed
             end,
         }
     },
@@ -90,7 +90,7 @@ KrowiAF.CustomCriteriaData.TheWarWithin = {
         {
             NumCriteria = 1,
             QuantityFunc = function()
-                return tonumber(C_Reputation.GetFactionDataByID(2170).currentStanding);
+                return tonumber(C_Reputation.GetFactionDataByID(2170).currentStanding)
             end,
             ReqQuantity = 42000,
         }
@@ -100,9 +100,9 @@ KrowiAF.CustomCriteriaData.TheWarWithin = {
         {
             NumCriteria = 1,
             QuantityFunc = function()
-                return tonumber(C_Reputation.GetFactionDataByID(2045).currentStanding);
+                return tonumber(C_Reputation.GetFactionDataByID(2045).currentStanding)
             end,
             ReqQuantity = 42000,
         }
     },
-};
+}

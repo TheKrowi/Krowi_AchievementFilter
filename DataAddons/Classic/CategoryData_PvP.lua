@@ -1,4 +1,4 @@
-local _, addon = ...;
+local _, addon = ...
 local shared = addon.Data.CategoryData.Shared
 local CT = shared.CT
 
@@ -519,4 +519,4 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
             8450, -- Prideful Conquest
         },
     },
-};
+}

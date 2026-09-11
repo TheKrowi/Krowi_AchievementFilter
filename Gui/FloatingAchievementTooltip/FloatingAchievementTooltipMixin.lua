@@ -1,94 +1,94 @@
-local _, addon = ...;
+local _, addon = ...
 
-KrowiAF_FloatingAchievementTooltipCloseButtonMixin = {};
+KrowiAF_FloatingAchievementTooltipCloseButtonMixin = {}
 
 function KrowiAF_FloatingAchievementTooltipCloseButtonMixin:OnClick()
-	self:GetParent():Hide();
+	self:GetParent():Hide()
 end
 
-KrowiAF_FloatingAchievementTooltipAchievementLinkMixin = {};
+KrowiAF_FloatingAchievementTooltipAchievementLinkMixin = {}
 
 function KrowiAF_FloatingAchievementTooltipAchievementLinkMixin:OnClick()
-	local parent = self:GetParent();
+	local parent = self:GetParent()
     if not parent then
-        return;
+        return
     end
 
-    local info = parent:GetPrimaryTooltipInfo();
-    local id = info and info.tooltipData and info.tooltipData.id;
+    local info = parent:GetPrimaryTooltipInfo()
+    local id = info and info.tooltipData and info.tooltipData.id
     if not id then
-        return;
+        return
     end
 
-    KrowiAF_SelectAchievementFromID(id);
+    KrowiAF_SelectAchievementFromID(id)
 end
 
-KrowiAF_FloatingAchievementTooltipMixin = {};
+KrowiAF_FloatingAchievementTooltipMixin = {}
 
 function KrowiAF_FloatingAchievementTooltipMixin:OnLoad()
-    addon.Gui:RegisterFrameForClosing(self);
+    addon.Gui:RegisterFrameForClosing(self)
 
-	GameTooltip_OnLoad(self);
-	self:RegisterForDrag("LeftButton");
+	GameTooltip_OnLoad(self)
+	self:RegisterForDrag("LeftButton")
 end
 
 function KrowiAF_FloatingAchievementTooltipMixin:OnMouseUp(button)
 	if button ~= "RightButton" then
-		return;
+		return
 	end
 
-	local info = self:GetPrimaryTooltipInfo();
-	local id = info and info.tooltipData and info.tooltipData.id;
+	local info = self:GetPrimaryTooltipInfo()
+	local id = info and info.tooltipData and info.tooltipData.id
 	if not id then
-		return;
+		return
 	end
 
-	addon.Gui.RightClickMenu.AchievementMenu:Open(self, addon.Data.Achievements[id], nil, nil, nil, nil, nil, "TOOLTIP");
+	addon.Gui.RightClickMenu.AchievementMenu:Open(self, addon.Data.Achievements[id], nil, nil, nil, nil, nil, "TOOLTIP")
 end
 
 function KrowiAF_FloatingAchievementTooltipMixin:OnDragStart()
-	self:StartMoving();
+	self:StartMoving()
 end
 
 function KrowiAF_FloatingAchievementTooltipMixin:OnDragStop()
-	self:StopMovingOrSizing();
-	ValidateFramePosition(self);
+	self:StopMovingOrSizing()
+	ValidateFramePosition(self)
 end
 
 function KrowiAF_FloatingAchievementTooltipMixin:ItemRefSetHyperlink(link)
-	self:SetPadding(0, 0);
-	self:SetHyperlink(link);
+	self:SetPadding(0, 0)
+	self:SetHyperlink(link)
 	if addon.Util.IsClassicWithAchievements then
-		local _, id = strsplit(":", link);
+		local _, id = strsplit(":", link)
 		self.info = {
 			tooltipData = {
 				id = tonumber(id)
 			}
-		};
+		}
 	end
-	local title = _G[self:GetName().."TextLeft1"];
+	local title = _G[self:GetName().."TextLeft1"]
 	if title and title:GetRight() - self.CloseButton:GetLeft() > 0 then
-		local xPadding = 16;
-		self:SetPadding(xPadding, 0);
+		local xPadding = 16
+		self:SetPadding(xPadding, 0)
 	end
 end
 
 if not addon.Util.IsClassicWithAchievements then
 	function KrowiAF_FloatingAchievementTooltipMixin:SetHyperlink(...)
 		-- it's the same hyperlink as current data, close instead
-		local info = self:GetPrimaryTooltipInfo();
+		local info = self:GetPrimaryTooltipInfo()
 		if info and info.getterName == "GetHyperlink" then
-			local getterArgs = {...};
+			local getterArgs = {...}
 			if tCompare(info.getterArgs, getterArgs) then
-				self:Hide();
-				return false;
+				self:Hide()
+				return false
 			end
 		end
-		local tooltipInfo = CreateBaseTooltipInfo("GetHyperlink", ...);
-		return self:ProcessInfo(tooltipInfo);
+		local tooltipInfo = CreateBaseTooltipInfo("GetHyperlink", ...)
+		return self:ProcessInfo(tooltipInfo)
 	end
 else
 	function KrowiAF_FloatingAchievementTooltipMixin:GetPrimaryTooltipInfo()
-		return self.info;
+		return self.info
 	end
 end

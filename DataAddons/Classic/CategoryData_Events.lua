@@ -465,4 +465,4 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
             20509, -- Plunderkind
         },
     },
-};
+}

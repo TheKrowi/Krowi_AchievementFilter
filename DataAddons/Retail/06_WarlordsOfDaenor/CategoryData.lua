@@ -1,6 +1,6 @@
-local _, addon = ...;
-local shared = addon.Data.CategoryData.Shared;
-local CT = shared.CT;
+local _, addon = ...
+local shared = addon.Data.CategoryData.Shared
+local CT = shared.CT
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
     CT.WarlordsOfDraenor,
@@ -862,4 +862,4 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Warlords of Dreanor
         10148, -- Chapter IV: Darkness Incarnate
         10018, -- Draenor Pathfinder
     },
-});
+})

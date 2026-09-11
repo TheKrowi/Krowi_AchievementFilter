@@ -1,4 +1,4 @@
-local _, addon = ...;
+local _, addon = ...
 local shared = addon.Data.CategoryData.Shared
 local CT = shared.CT
 
@@ -462,4 +462,4 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             3478, -- Pilgrim
         },
     },
-};
+}

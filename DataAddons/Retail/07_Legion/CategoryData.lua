@@ -1,6 +1,6 @@
-local _, addon = ...;
-local shared = addon.Data.CategoryData.Shared;
-local CT = shared.CT;
+local _, addon = ...
+local shared = addon.Data.CategoryData.Shared
+local CT = shared.CT
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
     CT.Legion,
@@ -892,4 +892,4 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Legion
         11446, -- Broken Isles Pathfinder, Part Two
         42114, -- Broken Memories
     },
-});
+})

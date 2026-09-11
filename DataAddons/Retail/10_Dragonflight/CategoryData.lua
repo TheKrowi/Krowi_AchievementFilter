@@ -1,6 +1,6 @@
-local _, addon = ...;
-local shared = addon.Data.CategoryData.Shared;
-local CT = shared.CT;
+local _, addon = ...
+local shared = addon.Data.CategoryData.Shared
+local CT = shared.CT
 
 tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
     CT.Dragonflight,
@@ -1502,4 +1502,4 @@ tinsert(KrowiAF.CategoryData.Expansions, { -- Dragonflight
         19458, -- A World Awoken
         40382, -- Hunt the Harbinger
     },
-});
+})

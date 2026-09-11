@@ -1737,4 +1737,4 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
             61516, -- Radiant Singer
         },
     },
-};
+}

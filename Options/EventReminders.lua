@@ -1,41 +1,41 @@
 -- [[ Namespaces ]] --
-local _, addon = ...;
-local options = addon.Options;
-options.EventReminders = {};
-local eventReminders = options.EventReminders;
-tinsert(options.OptionsTables, eventReminders);
+local _, addon = ...
+local options = addon.Options
+options.EventReminders = {}
+local eventReminders = options.EventReminders
+tinsert(options.OptionsTables, eventReminders)
 
-local OrderPP = addon.InjectOptions.AutoOrderPlusPlus;
-local AdjustedWidth = addon.InjectOptions.AdjustedWidth;
+local OrderPP = addon.InjectOptions.AutoOrderPlusPlus
+local AdjustedWidth = addon.InjectOptions.AdjustedWidth
 
 function eventReminders.RegisterOptionsTable()
-    LibStub("AceConfig-3.0"):RegisterOptionsTable(addon.Metadata.Prefix .. "_EventReminders", options.OptionsTable.args.EventReminders);
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addon.Metadata.Prefix .. "_EventReminders", addon.L["Event Reminders"], addon.Metadata.Title);
+    LibStub("AceConfig-3.0"):RegisterOptionsTable(addon.Metadata.Prefix .. "_EventReminders", options.OptionsTable.args.EventReminders)
+    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addon.Metadata.Prefix .. "_EventReminders", addon.L["Event Reminders"], addon.Metadata.Title)
 end
 
-local RefreshOptions; -- Assigned at the end of the file
+local RefreshOptions -- Assigned at the end of the file
 function eventReminders.OnProfileChanged(db, newProfile)
-    RefreshOptions();
+    RefreshOptions()
 end
 
 function eventReminders.OnProfileCopied(db, sourceProfile)
-    RefreshOptions();
+    RefreshOptions()
 end
 
 function eventReminders.OnProfileReset(db)
-    RefreshOptions();
+    RefreshOptions()
 end
 
 local timeDisplaysLine1 = {
     addon.L["End Time"],
     addon.L["Time Left"]
-};
+}
 
 local timeDisplaysLine2 = {
     addon.L["None"],
     addon.L["End Time"],
     addon.L["Time Left"]
-};
+}
 
 local sideButtonsAnchor = {
     addon.L["Achievement Window"],
@@ -45,91 +45,91 @@ local sideButtonsAnchor = {
 local growDirection = {
     addon.L["Up"],
     addon.L["Down"]
-};
+}
 
-local startTimeAndEndTimeDateTimeFormats, startTimeAndEndTimeDateTimeValues = {}, {};
+local startTimeAndEndTimeDateTimeFormats, startTimeAndEndTimeDateTimeValues = {}, {}
 
 local function AddFormat(formats, values, format)
-    tinsert(formats, format);
-    tinsert(values, date(format, time()));
+    tinsert(formats, format)
+    tinsert(values, date(format, time()))
 end
 
 local function AddStartTimeAndEndTimeFormat(format)
-    AddFormat(startTimeAndEndTimeDateTimeFormats, startTimeAndEndTimeDateTimeValues, format);
+    AddFormat(startTimeAndEndTimeDateTimeFormats, startTimeAndEndTimeDateTimeValues, format)
 end
 
-AddStartTimeAndEndTimeFormat(options.Defaults.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime);
-AddStartTimeAndEndTimeFormat(addon.L["%d/%m/%Y %I:%M %p"]);
-AddStartTimeAndEndTimeFormat(addon.L["%m/%d/%Y %R"]);
-AddStartTimeAndEndTimeFormat(addon.L["%m/%d/%Y %I:%M %p"]);
-AddStartTimeAndEndTimeFormat(addon.L["%Y/%m/%d %R"]);
-AddStartTimeAndEndTimeFormat(addon.L["%Y/%m/%d %I:%M %p"]);
-AddStartTimeAndEndTimeFormat(addon.L["%c"]);
-tinsert(startTimeAndEndTimeDateTimeValues, "Custom");
-tinsert(startTimeAndEndTimeDateTimeFormats, addon.L["%m/%d/%Y %R"]);
+AddStartTimeAndEndTimeFormat(options.Defaults.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime)
+AddStartTimeAndEndTimeFormat(addon.L["%d/%m/%Y %I:%M %p"])
+AddStartTimeAndEndTimeFormat(addon.L["%m/%d/%Y %R"])
+AddStartTimeAndEndTimeFormat(addon.L["%m/%d/%Y %I:%M %p"])
+AddStartTimeAndEndTimeFormat(addon.L["%Y/%m/%d %R"])
+AddStartTimeAndEndTimeFormat(addon.L["%Y/%m/%d %I:%M %p"])
+AddStartTimeAndEndTimeFormat(addon.L["%c"])
+tinsert(startTimeAndEndTimeDateTimeValues, "Custom")
+tinsert(startTimeAndEndTimeDateTimeFormats, addon.L["%m/%d/%Y %R"])
 
 local function TimeDisplayLine1Set(_, value)
-    if addon.Options.db.profile.EventReminders.TimeDisplay.Line1 == value then return; end;
-    addon.Options.db.profile.EventReminders.TimeDisplay.Line1 = value;
-    addon.Gui.EventReminderSideButtonSystem:Refresh();
+    if addon.Options.db.profile.EventReminders.TimeDisplay.Line1 == value then return; end
+    addon.Options.db.profile.EventReminders.TimeDisplay.Line1 = value
+    addon.Gui.EventReminderSideButtonSystem:Refresh()
 end
 
 local function TimeDisplayLine2Set(_, value)
-    if addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == value then return; end;
-    addon.Options.db.profile.EventReminders.TimeDisplay.Line2 = value;
-    addon.Gui.EventReminderSideButtonSystem:Refresh();
+    if addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == value then return; end
+    addon.Options.db.profile.EventReminders.TimeDisplay.Line2 = value
+    addon.Gui.EventReminderSideButtonSystem:Refresh()
 end
 
 local function SideButtonsAnchorSet(_, value)
-    if addon.Options.db.profile.EventReminders.SideButtonsAnchor == value then return; end;
-    addon.Options.db.profile.EventReminders.SideButtonsAnchor = value;
-    addon.Gui.EventReminderSideButtonSystem:Reload();
+    if addon.Options.db.profile.EventReminders.SideButtonsAnchor == value then return; end
+    addon.Options.db.profile.EventReminders.SideButtonsAnchor = value
+    addon.Gui.EventReminderSideButtonSystem:Reload()
 end
 
 local function PopUpsGrowDirectionSet(_, value)
-    if addon.Options.db.profile.EventReminders.PopUps.GrowDirection == value then return; end;
-    addon.Options.db.profile.EventReminders.PopUps.GrowDirection = value;
-    addon.Gui.EventReminderAlertSystem:UpdateGrowDirection();
-    AlertFrame:UpdateAnchors();
+    if addon.Options.db.profile.EventReminders.PopUps.GrowDirection == value then return; end
+    addon.Options.db.profile.EventReminders.PopUps.GrowDirection = value
+    addon.Gui.EventReminderAlertSystem:UpdateGrowDirection()
+    AlertFrame:UpdateAnchors()
 end
 
 local function PopUpsSpacingSet(_, value)
-    if addon.Options.db.profile.EventReminders.PopUps.Spacing == value then return; end;
-    addon.Options.db.profile.EventReminders.PopUps.Spacing = value;
-    addon.Gui.EventReminderAlertSystem:UpdateGrowDirection();
-    AlertFrame:UpdateAnchors();
+    if addon.Options.db.profile.EventReminders.PopUps.Spacing == value then return; end
+    addon.Options.db.profile.EventReminders.PopUps.Spacing = value
+    addon.Gui.EventReminderAlertSystem:UpdateGrowDirection()
+    AlertFrame:UpdateAnchors()
 end
 
 local function PopUpsOffsetXSet(_, value)
-    if addon.Options.db.profile.EventReminders.PopUps.OffsetX == value then return; end;
-    addon.Options.db.profile.EventReminders.PopUps.OffsetX = value;
-    AlertFrame:ClearAllPoints();
-    AlertFrame:SetPoint("BOTTOM", UIParent, "BOTTOM", addon.Options.db.profile.EventReminders.PopUps.OffsetX, addon.Options.db.profile.EventReminders.PopUps.OffsetY);
+    if addon.Options.db.profile.EventReminders.PopUps.OffsetX == value then return; end
+    addon.Options.db.profile.EventReminders.PopUps.OffsetX = value
+    AlertFrame:ClearAllPoints()
+    AlertFrame:SetPoint("BOTTOM", UIParent, "BOTTOM", addon.Options.db.profile.EventReminders.PopUps.OffsetX, addon.Options.db.profile.EventReminders.PopUps.OffsetY)
 end
 
 local function PopUpsOffsetYSet(_, value)
-    if addon.Options.db.profile.EventReminders.PopUps.OffsetY == value then return; end;
-    addon.Options.db.profile.EventReminders.PopUps.OffsetY = value;
-    AlertFrame:ClearAllPoints();
-    AlertFrame:SetPoint("BOTTOM", UIParent, "BOTTOM", addon.Options.db.profile.EventReminders.PopUps.OffsetX, addon.Options.db.profile.EventReminders.PopUps.OffsetY);
+    if addon.Options.db.profile.EventReminders.PopUps.OffsetY == value then return; end
+    addon.Options.db.profile.EventReminders.PopUps.OffsetY = value
+    AlertFrame:ClearAllPoints()
+    AlertFrame:SetPoint("BOTTOM", UIParent, "BOTTOM", addon.Options.db.profile.EventReminders.PopUps.OffsetX, addon.Options.db.profile.EventReminders.PopUps.OffsetY)
 end
 
 local function PopUpsShowPlaceholderFunc()
-    local calendarEvents = addon.Data.Events[KrowiAF.Enum.EventType.Calendar];
-    local showPopUpsWithTimeDataOnly = addon.Options.db.profile.EventReminders.PopUps.OnLogin.ShowOnlyWhenTimeDataIsAvailable or addon.Options.db.profile.EventReminders.PopUps.OnReload.ShowOnlyWhenTimeDataIsAvailable or addon.Options.db.profile.EventReminders.PopUps.OnEventStart.ShowOnlyWhenTimeDataIsAvailable;
+    local calendarEvents = addon.Data.Events[KrowiAF.Enum.EventType.Calendar]
+    local showPopUpsWithTimeDataOnly = addon.Options.db.profile.EventReminders.PopUps.OnLogin.ShowOnlyWhenTimeDataIsAvailable or addon.Options.db.profile.EventReminders.PopUps.OnReload.ShowOnlyWhenTimeDataIsAvailable or addon.Options.db.profile.EventReminders.PopUps.OnEventStart.ShowOnlyWhenTimeDataIsAvailable
     for i, event in next, calendarEvents do
         if i == 141 then -- Fake not active event
             if not showPopUpsWithTimeDataOnly or (showPopUpsWithTimeDataOnly and event.EventDetails and event.EventDetails.EndTime) then
-                addon.Gui.EventReminderAlertSystem:AddAlert(event, 60);
+                addon.Gui.EventReminderAlertSystem:AddAlert(event, 60)
             end
         elseif i == 181 then -- Fake not active event
-            event.EventDetails = {EndTime = nil, Name = i .. " - " .. addon.L["Placeholder"]};
+            event.EventDetails = {EndTime = nil, Name = i .. " - " .. addon.L["Placeholder"]}
             if not showPopUpsWithTimeDataOnly or (showPopUpsWithTimeDataOnly and event.EventDetails and event.EventDetails.EndTime) then
-                addon.Gui.EventReminderAlertSystem:AddAlert(event, 60);
+                addon.Gui.EventReminderAlertSystem:AddAlert(event, 60)
             end
         else
-            event.EventDetails = {EndTime = time() + 600010, Name = i .. " - " .. addon.L["Placeholder"]};
-            addon.Gui.EventReminderAlertSystem:AddAlert(event, 60);
+            event.EventDetails = {EndTime = time() + 600010, Name = i .. " - " .. addon.L["Placeholder"]}
+            addon.Gui.EventReminderAlertSystem:AddAlert(event, 60)
         end
     end
 end
@@ -137,16 +137,16 @@ end
 local function StartTimeAndEndTimePresetsGet()
     for i, format in next, startTimeAndEndTimeDateTimeFormats do
         if format == addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime then
-            return i;
+            return i
         end
     end
-    return #startTimeAndEndTimeDateTimeFormats;
+    return #startTimeAndEndTimeDateTimeFormats
 end
 
 local function StartTimeAndEndTimeCustomSet(_, value)
-    if addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime == value then return; end;
-    addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime = value;
-    addon.Gui.EventReminderSideButtonSystem:Refresh();
+    if addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime == value then return; end
+    addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime = value
+    addon.Gui.EventReminderSideButtonSystem:Refresh()
 end
 
 local generalOptions = {
@@ -255,7 +255,7 @@ local generalOptions = {
             }
         }
     }
-};
+}
 
 local popUpsOptions = {
     order = OrderPP(), type = "group",
@@ -491,7 +491,7 @@ local popUpsOptions = {
             }
         }
     }
-};
+}
 
 local chatMessagesOptions = {
     order = OrderPP(), type = "group",
@@ -661,21 +661,21 @@ local chatMessagesOptions = {
             }
         },
     }
-};
+}
 
 local calendarEventsOptions = {
     order = OrderPP(), type = "group", childGroups = "tab",
     name = addon.L["Calendar Events"],
     disabled = function() return not addon.Options.db.profile.EventReminders.Enabled; end,
     args = { --[[ Automatically generated ]] }
-};
+}
 
 local worldOptions = {
     order = OrderPP(), type = "group", childGroups = "tab",
     name = addon.L["World Events"],
     disabled = function() return not addon.Options.db.profile.EventReminders.Enabled; end,
     args = { --[[ Automatically generated ]] }
-};
+}
 
 local dateTimeFormatOptions = {
     order = OrderPP(), type = "group",
@@ -692,8 +692,8 @@ local dateTimeFormatOptions = {
                     values = startTimeAndEndTimeDateTimeValues,
                     get = StartTimeAndEndTimePresetsGet,
                     set = function(_, value)
-                        local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Prefix .. "_EventReminders", "cmd", "KROWIAF-0.0").args.DateTimeFormat.args.StartTimeAndEndTime.args.Custom;
-                        custom.set(nil, startTimeAndEndTimeDateTimeFormats[value]);
+                        local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Prefix .. "_EventReminders", "cmd", "KROWIAF-0.0").args.DateTimeFormat.args.StartTimeAndEndTime.args.Custom
+                        custom.set(nil, startTimeAndEndTimeDateTimeFormats[value])
                     end
                 },
                 Custom = {
@@ -748,7 +748,7 @@ local dateTimeFormatOptions = {
             }
         }
     }
-};
+}
 
 options.OptionsTable.args["EventReminders"] = {
     type = "group", childGroups = "tab",
@@ -761,17 +761,17 @@ options.OptionsTable.args["EventReminders"] = {
         WorldEvents = worldOptions,
         DateTimeFormat = dateTimeFormatOptions
     }
-};
+}
 
 function RefreshOptions()
-    local profile = addon.Options.db.profile;
-    TimeDisplayLine1Set(_, profile.EventReminders.TimeDisplay.Line1);
-    TimeDisplayLine2Set(_, profile.EventReminders.TimeDisplay.Line2);
-    SideButtonsAnchorSet(_, profile.EventReminders.SideButtonsAnchor);
-    PopUpsGrowDirectionSet(_, profile.EventReminders.PopUps.GrowDirection);
-    PopUpsSpacingSet(_, profile.EventReminders.PopUps.Spacing);
-    PopUpsOffsetXSet(_, profile.EventReminders.PopUps.OffsetX);
-    PopUpsOffsetYSet(_, profile.EventReminders.PopUps.OffsetY);
-    addon.Gui.EventReminderSideButtonSystem:Refresh(); -- Dynamic stuff is handled by this one
-    StartTimeAndEndTimeCustomSet(_, profile.EventReminders.DateTimeFormat.StartTimeAndEndTime);
+    local profile = addon.Options.db.profile
+    TimeDisplayLine1Set(_, profile.EventReminders.TimeDisplay.Line1)
+    TimeDisplayLine2Set(_, profile.EventReminders.TimeDisplay.Line2)
+    SideButtonsAnchorSet(_, profile.EventReminders.SideButtonsAnchor)
+    PopUpsGrowDirectionSet(_, profile.EventReminders.PopUps.GrowDirection)
+    PopUpsSpacingSet(_, profile.EventReminders.PopUps.Spacing)
+    PopUpsOffsetXSet(_, profile.EventReminders.PopUps.OffsetX)
+    PopUpsOffsetYSet(_, profile.EventReminders.PopUps.OffsetY)
+    addon.Gui.EventReminderSideButtonSystem:Refresh() -- Dynamic stuff is handled by this one
+    StartTimeAndEndTimeCustomSet(_, profile.EventReminders.DateTimeFormat.StartTimeAndEndTime)
 end

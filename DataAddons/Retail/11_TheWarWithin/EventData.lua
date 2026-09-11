@@ -1,6 +1,6 @@
-local _, addon = ...;
-local shared = addon.Data.EventData.Shared;
-local type = KrowiAF.Enum.EventType;
+local _, addon = ...
+local shared = addon.Data.EventData.Shared
+local type = KrowiAF.Enum.EventType
 
 KrowiAF.EventData.TheWarWithin = {
     { -- Dastardly Duos
@@ -74,4 +74,4 @@ KrowiAF.EventData.TheWarWithin = {
 		false,
 		2248,
 	},
-};
+}

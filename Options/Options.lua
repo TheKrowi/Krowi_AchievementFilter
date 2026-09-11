@@ -1,8 +1,8 @@
-local _, addon = ...;
-local options = addon.Options;
+local _, addon = ...
+local options = addon.Options
 
 function options.SetMaxNumberOfSearchPreviews()
-    local numberOfSearchPreviews = KrowiAF_GetOptions.GetTable(addon.Metadata.Prefix .. "_Layout", "args.Search.args.SearchPreview.args.NumberOfSearchPreviews");
-    numberOfSearchPreviews.max = 17 + math.floor(addon.Options.db.profile.Window.AchievementFrameHeightOffset / 29);
-    return numberOfSearchPreviews;
+    local numberOfSearchPreviews = KrowiAF_GetOptions.GetTable(addon.Metadata.Prefix .. "_Layout", "args.Search.args.SearchPreview.args.NumberOfSearchPreviews")
+    numberOfSearchPreviews.max = 17 + math.floor(addon.Options.db.profile.Window.AchievementFrameHeightOffset / 29)
+    return numberOfSearchPreviews
 end

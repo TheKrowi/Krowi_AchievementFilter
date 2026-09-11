@@ -52,6 +52,12 @@ Get-ChildItem -Recurse -Filter *.lua | Where-Object FullName -notlike '*\.claude
 & ".claude\tools\Read-GameErrors.ps1"                   # -Hours 0 -All -Client Classic
 ```
 
+- **Semicolon strip** `Strip-Semicolons.ps1`: removes trailing statement semicolons (a field separator inside a table constructor becomes a comma) through the lexer-aware `lua51/strip-semicolons.lua`, and replaces a file only when `luac -s` produces byte-identical bytecode before and after. Scope is every tracked `.lua` outside `Libs/` and the non-addon folders; `-DryRun` reports without writing, `-Path` limits it to given files.
+
+```powershell
+& ".claude\tools\Strip-Semicolons.ps1" -DryRun          # -Path Globals.lua, Filters.lua
+```
+
 `.claude/` is excluded from the release zip (any dot-directory is) and from fsdeploy, so nothing in it reaches players or the game folder.
 
 ### Data-verification scripts (the only "commands" in the repo)
@@ -234,7 +240,7 @@ local addonName, addon = ...
 
 ### Semicolons
 
-Do **not** end statements with semicolons. Most existing files still have them; remove them on the lines you touch and leave untouched lines alone. The `semicolon` lint rule fails on a trailing semicolon on an added line.
+Do **not** end statements with semicolons. The whole tree was stripped on 2026-09-11 (7593 semicolons in 221 files, proven identical through `luac -s` bytecode), so any trailing semicolon is new. The `semicolon` lint rule fails on one on an added line; `.claude/tools/Strip-Semicolons.ps1` re-runs the same verified strip if a batch of them ever comes back (a CurseForge locale export, an upstream merge).
 
 ### Naming
 

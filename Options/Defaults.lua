@@ -1,4 +1,4 @@
-local _, addon = ...;
+local _, addon = ...
 
 addon.Options.Defaults = {
     profile = {
@@ -283,4 +283,4 @@ addon.Options.Defaults = {
         },
         Plugins = {}
     }
-};
+}
