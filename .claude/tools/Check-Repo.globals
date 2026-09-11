@@ -28,11 +28,3 @@ Globals.lua SetFocusedAchievement
 Gui/Gui.lua AchievementFrameFilterDropdown                                         # alias: the frame is AchievementFrameFilterDropDown on Classic, Filters.FilterDropdown on Retail
 Gui/WindowFrames/AchievementFrameHeader.lua AchievementFrameHeaderLeftDDLInset     # named texture other GUI files and skins reach by global name
 Gui/WindowFrames/AchievementsObjectives/AchievementsObjectives.lua ACHIEVEMENTBUTTON_METAROWHEIGHT   # Blizzard layout constant, set to 28 on Classic at load
-
-# --- Achievement Calendar month cursor wrappers, mimic C_Calendar.* names and are called from
-#     Gui/AchievementCalendar/Frame/FrameMixin.lua. Follow-up: move under addon.Gui.AchievementCalendar
-#     (docs/codebase-analysis.md item 23) and delete these four lines.
-Gui/AchievementCalendar/C_Calendar.lua C_CalendarSetMonth
-Gui/AchievementCalendar/C_Calendar.lua C_CalendarSetAbsMonth
-Gui/AchievementCalendar/C_Calendar.lua C_CalendarResetAbsMonth
-Gui/AchievementCalendar/C_Calendar.lua C_CalendarGetMonthInfo

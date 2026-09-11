@@ -1,5 +1,5 @@
 <Ui>
-    <Script file="C_Calendar.lua" />
+    <Script file="MonthCursor.lua" />
     <Script file="Calendar.lua" />
 
     <Include file="DayButton\DayButton.xml" />

@@ -1,5 +1,5 @@
 local _, addon = ...
-addon.Gui.Calendar = {}
+addon.Gui.Calendar = addon.Gui.Calendar or {}
 local calendar = addon.Gui.Calendar
 
 local function CreateCalendarButton(frame)

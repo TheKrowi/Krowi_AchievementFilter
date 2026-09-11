@@ -1,4 +1,5 @@
 local _, addon = ...
+local monthCursor = addon.Gui.Calendar.MonthCursor
 
 -- Data taken from Blizzard_Calendar.lua and changed the names, line 160
 local darkFlagPrevMonth = 0x0001
@@ -80,7 +81,7 @@ KrowiAF_AchievementCalendarFramePrevNextMonthButtonMixin = {}
 
 function KrowiAF_AchievementCalendarFramePrevNextMonthButtonMixin:Click()
 	PlaySound(SOUNDKIT.IG_ABILITY_PAGE_TURN)
-	C_CalendarSetMonth(self.MonthOffset)
+	monthCursor.SetMonth(self.MonthOffset)
 	self:GetParent():Update()
 end
 
@@ -216,7 +217,7 @@ end
 function KrowiAF_AchievementCalendarFrameMixin:OnLoad()
 	addon.Gui:RegisterFrameForClosing(self)
 
-	C_CalendarResetAbsMonth()
+	monthCursor.ResetAbsMonth()
 
 	LoadDayButtons(self)
 	LoadSideFrame(self)
@@ -245,7 +246,7 @@ function KrowiAF_AchievementCalendarFrameMixin:OnShow()
 	self:RegisterEvent("ACHIEVEMENT_EARNED")
 	if (not self.LockMonth and not addon.Options.db.profile.Calendar.LockMonth) or firstTimeOpen then
 		local currentCalendarTime = C_DateAndTime.GetCurrentCalendarTime()
-		C_CalendarSetAbsMonth(currentCalendarTime.month, currentCalendarTime.year)
+		monthCursor.SetAbsMonth(currentCalendarTime.month, currentCalendarTime.year)
 		self:Update()
 		firstTimeOpen = nil
 	end
@@ -280,7 +281,7 @@ function KrowiAF_AchievementCalendarFrameMixin:ResetPosition()
 end
 
 local function GetMonthInfo(offset)
-	local monthInfo = C_CalendarGetMonthInfo(offset)
+	local monthInfo = monthCursor.GetMonthInfo(offset)
 	return monthInfo.year, monthInfo.month, monthInfo.numDays, monthInfo.firstWeekday
 end
 
