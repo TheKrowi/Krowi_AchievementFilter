@@ -14,6 +14,12 @@
       globals          [Error]   no assignment to an undeclared global (luac -l SETGLOBAL) other than
                                  KrowiAF*/BINDING_*/SLASH_* names and the deliberate Blizzard
                                  FrameXML overrides and API polyfills listed in Check-Repo.globals
+      luarc            [Error]   .luarc.json diagnostics.globals holds exactly what the language server
+                                 cannot see on its own: every entry is read by an addon file (luac -l
+                                 GETGLOBAL), none is assigned by one, no duplicates, sorted ordinally
+      luals            [Warning] the Lua language server reports nothing on a tree-wide check, using the
+                                 VS Code extensions sumneko.lua and ketho.wow-api when installed
+                                 (about 30 s; full runs only, or -Luals; skipped when they are absent)
       data-load        [Error]   the data pipeline runs headlessly for Retail and Classic
                                  (headless/load-data.lua: builder args, patch keys, duplicate and
                                  AutoFactionSplit registrations, category/zone/tooltip references
@@ -33,6 +39,9 @@
     Report only findings that involve changed files (plus the always-on structural errors).
     This is what the Stop hook uses.
 
+.PARAMETER Luals
+    Run the luals rule with -ChangedOnly too (it is always part of a full run).
+
 .OUTPUTS
     One line per finding: <path>:<line>: [<rule>] <severity>: <message>, then a summary.
     Exit code 1 when any Error was found, else 0.
@@ -43,7 +52,8 @@
 #>
 [CmdletBinding()]
 param(
-    [switch]$ChangedOnly
+    [switch]$ChangedOnly,
+    [switch]$Luals
 )
 
 $ErrorActionPreference = 'Stop'
@@ -64,6 +74,7 @@ function Write-Timing([string]$Section) {
 function ConvertTo-RelativePath([string]$full) { $full.Substring($root.Length).TrimStart('\', '/').Replace('\', '/') }
 function Test-AddonPath([string]$rel) {
     $top = $rel.Split('/')[0]
+    if ($top -eq $rel -and $top.StartsWith('.')) { return $false }   # root dotfiles (.editorconfig, .luarc.json) are tooling
     return -not ($nonAddonDirs -contains $top)
 }
 
@@ -250,15 +261,22 @@ if (Test-Path $luac) {
             if ($t -match '^(\S+)\s+(\S+)$') { $allowGlobals += @{ Path = $Matches[1]; Name = $Matches[2] } }
         }
     }
-    $targets = @(if ($ChangedOnly) { $ownLuaFiles | Where-Object { $changed.ContainsKey($_) } } else { $ownLuaFiles })
+    # Every addon file is listed even with -ChangedOnly (about a second): the luarc rule below needs the
+    # tree-wide read/write sets. Findings are still only raised for the target files.
+    $targetSet = @{}
+    foreach ($rel in @(if ($ChangedOnly) { $ownLuaFiles | Where-Object { $changed.ContainsKey($_) } } else { $ownLuaFiles })) { $targetSet[$rel] = $true }
+    # Lua names are case-sensitive (AchievementFrameFilterDropdown and ...DropDown are two globals), PowerShell hashtables are not
+    $readGlobals = [hashtable]::new([StringComparer]::Ordinal)   # name -> $true when an addon file reads it (GETGLOBAL)
+    $setGlobals = [hashtable]::new([StringComparer]::Ordinal)    # name -> $true when an addon file assigns it (SETGLOBAL)
     $bomMap = @{}     # temp copy path -> repo path, for files whose BOM stock luac would reject
     $tmpDir = $null
     # The listing is one line per bytecode instruction (about 100k lines for the tree), so it is
     # captured whole and scanned with one regex: a function header sets the current file, a
-    # SETGLOBAL line yields (source line, name). 150 paths per call keeps the command line short.
-    $listingRx = [regex]'(?m)^(?:main|function) <(?<path>.+?):\d+,\d+>|^\s*\d+\s+\[(?<line>\d+)\]\s+SETGLOBAL\s[^;]*;\s*(?<name>\S+)'
-    for ($i = 0; $i -lt $targets.Count; $i += 150) {
-        $chunk = @($targets[$i..([Math]::Min($i + 149, $targets.Count - 1))])
+    # SETGLOBAL/GETGLOBAL line yields (opcode, source line, name). 150 paths per call keeps the
+    # command line short.
+    $listingRx = [regex]'(?m)^(?:main|function) <(?<path>.+?):\d+,\d+>|^\s*\d+\s+\[(?<line>\d+)\]\s+(?<op>[SG]ETGLOBAL)\s[^;]*;\s*(?<name>\S+)'
+    for ($i = 0; $i -lt $ownLuaFiles.Count; $i += 150) {
+        $chunk = @($ownLuaFiles[$i..([Math]::Min($i + 149, $ownLuaFiles.Count - 1))])
         $psi = [Diagnostics.ProcessStartInfo]::new($luac)
         $psi.UseShellExecute = $false; $psi.RedirectStandardOutput = $true; $psi.RedirectStandardError = $true
         $psi.WorkingDirectory = $root
@@ -287,6 +305,9 @@ if (Test-Path $luac) {
             }
             if (-not $current) { continue }
             $name = $m.Groups['name'].Value
+            if ($m.Groups['op'].Value -eq 'GETGLOBAL') { $readGlobals[$name] = $true; continue }
+            $setGlobals[$name] = $true
+            if (-not $targetSet.ContainsKey($current)) { continue }
             if ($name -like 'KrowiAF*' -or $name -like 'BINDING_*' -or $name -like 'SLASH_*') { continue }
             if ($allowGlobals | Where-Object { $current -like $_.Path -and $name -like $_.Name }) { continue }
             Add-Finding 'globals' 'Error' $current ([int]$m.Groups['line'].Value) "assigns global '$name'; declare it local (or hang it on addon.*), or if it is a deliberate Blizzard FrameXML override or API polyfill list it in .claude/tools/Check-Repo.globals with the reason"
@@ -295,6 +316,97 @@ if (Test-Path $luac) {
     if ($tmpDir) { Remove-Item -Recurse -Force $tmpDir -ErrorAction SilentlyContinue }
 }
 Write-Timing 'globals'
+
+# --- luarc: .luarc.json diagnostics.globals stays exact ------------------------------------------
+# The language server resolves the WoW API and FrameXML (ketho.wow-api annotations) and every global
+# an addon file assigns by itself, so the list holds only what it cannot see: global strings,
+# Classic-only frames and API, third-party addon globals, frames the addon creates by name in Lua or
+# XML. An entry nobody reads is stale, an entry an addon file assigns is redundant; both are errors
+# so the list cannot rot the way the old 600-line settings.json block did.
+$luarcRel = '.luarc.json'
+$luarcPath = Join-Path $root $luarcRel
+if ((Test-Path $luarcPath) -and $readGlobals.Count -gt 0) {
+    $luarcText = [IO.File]::ReadAllText($luarcPath)
+    $luarcLines = $luarcText -split "`r?`n"
+    function Get-LuarcLine([string]$name) {
+        for ($n = 0; $n -lt $luarcLines.Count; $n++) { if ($luarcLines[$n] -cmatch ('^\s*"' + [regex]::Escape($name) + '"')) { return $n + 1 } }
+        return 1
+    }
+    $listed = @()
+    try {
+        $luarc = $luarcText | ConvertFrom-Json -AsHashtable
+        foreach ($key in 'diagnostics.globals', 'Lua.diagnostics.globals') { if ($luarc.ContainsKey($key)) { $listed = @($luarc[$key]) } }
+    }
+    catch { Add-Finding 'luarc' 'Error' $luarcRel 1 "not valid JSON: $($_.Exception.Message)" }
+    $seen = [hashtable]::new([StringComparer]::Ordinal)
+    foreach ($name in $listed) {
+        $n = Get-LuarcLine $name
+        if ($seen.ContainsKey($name)) { Add-Finding 'luarc' 'Error' $luarcRel $n "'$name' is listed twice in diagnostics.globals"; continue }
+        $seen[$name] = $true
+        if (-not $readGlobals.ContainsKey($name)) {
+            Add-Finding 'luarc' 'Error' $luarcRel $n "'$name' is in diagnostics.globals but no addon Lua file reads it; remove the stale entry"
+        }
+        elseif ($setGlobals.ContainsKey($name)) {
+            Add-Finding 'luarc' 'Error' $luarcRel $n "'$name' is in diagnostics.globals but an addon Lua file assigns it, so the language server already knows it; remove the entry"
+        }
+    }
+    $sorted = [string[]]$listed
+    [Array]::Sort($sorted, [StringComparer]::Ordinal)
+    for ($i = 0; $i -lt $listed.Count; $i++) {
+        if ($listed[$i] -cne $sorted[$i]) {
+            Add-Finding 'luarc' 'Error' $luarcRel (Get-LuarcLine $listed[$i]) "diagnostics.globals is not sorted (ordinal, upper case first); '$($sorted[$i])' belongs here"
+            break
+        }
+    }
+}
+Write-Timing 'luarc'
+
+# --- luals: the editor's own diagnostics, tree-wide ----------------------------------------------
+# Runs the Lua language server the VS Code extension sumneko.lua installs, with the WoW annotations
+# from ketho.wow-api, on the whole tree. Nothing is downloaded; without the extensions the rule is
+# skipped. The config handed over is .luarc.json plus the annotation folders as workspace.library,
+# which is what the editor sees (the extension injects that path through the user settings, and
+# .vscode/settings.json decides whether the FrameXML annotations are on). About 30 s, so it is part
+# of full runs only unless -Luals is given.
+if (-not $ChangedOnly -or $Luals) {
+    $extRoots = @(Get-ChildItem -Path $env:USERPROFILE -Directory -Filter '.vscode*' -Force -ErrorAction SilentlyContinue |
+        ForEach-Object { Join-Path $_.FullName 'extensions' } | Where-Object { Test-Path $_ })
+    $lsExe = $extRoots | ForEach-Object { Get-ChildItem -Path $_ -Directory -Filter 'sumneko.lua-*' } | Sort-Object Name -Descending |
+        ForEach-Object { Join-Path $_.FullName 'server\bin\lua-language-server.exe' } | Where-Object { Test-Path $_ } | Select-Object -First 1
+    $annotations = $extRoots | ForEach-Object { Get-ChildItem -Path $_ -Directory -Filter 'ketho.wow-api-*' } | Sort-Object Name -Descending |
+        ForEach-Object { Join-Path $_.FullName 'Annotations' } | Where-Object { Test-Path $_ } | Select-Object -First 1
+    if ($lsExe -and $annotations -and (Test-Path $luarcPath)) {
+        $settingsPath = Join-Path $root '.vscode\settings.json'
+        $settingsText = if (Test-Path $settingsPath) { [IO.File]::ReadAllText($settingsPath) } else { '' }
+        $cfg = [IO.File]::ReadAllText($luarcPath) | ConvertFrom-Json -AsHashtable
+        $cfg.Remove('$schema')
+        $library = @((Join-Path $annotations 'Core').Replace('\', '/'))
+        if ($settingsText -match '"wowAPI\.luals\.frameXML"\s*:\s*true') { $library += (Join-Path $annotations 'FrameXML').Replace('\', '/') }
+        $cfg['workspace.library'] = $library
+        $tmpCfg = Join-Path ([IO.Path]::GetTempPath()) "kaf-luals-$PID.json"
+        $tmpOut = Join-Path ([IO.Path]::GetTempPath()) "kaf-luals-$PID.out.json"
+        [IO.File]::WriteAllText($tmpCfg, ($cfg | ConvertTo-Json -Depth 5))
+        Remove-Item $tmpOut -ErrorAction SilentlyContinue
+        $ErrorActionPreference = 'Continue'
+        $null = & $lsExe "--check=$root" "--configpath=$tmpCfg" '--checklevel=Warning' '--check_format=json' "--check_out_path=$tmpOut" 2>&1
+        $ErrorActionPreference = 'Stop'
+        if (Test-Path $tmpOut) {   # not written when the check is clean
+            $result = [IO.File]::ReadAllText($tmpOut) | ConvertFrom-Json -AsHashtable
+            foreach ($uri in $result.Keys) {
+                $full = [Uri]::UnescapeDataString(($uri -replace '^file:///', '')).Replace('/', '\')
+                if (-not $full.StartsWith($root, [StringComparison]::OrdinalIgnoreCase)) { continue }
+                $rel = ConvertTo-RelativePath $full
+                foreach ($d in $result[$uri]) {
+                    $sev = if ($d.severity -eq 1 -or $changed.ContainsKey($rel)) { 'Error' } else { 'Warning' }
+                    Add-Finding 'luals' $sev $rel ([int]$d.range.start.line + 1) "[$($d.code)] $($d.message)"
+                }
+            }
+        }
+        Remove-Item $tmpCfg, $tmpOut -ErrorAction SilentlyContinue
+    }
+    else { Write-Verbose 'luals: skipped, needs the VS Code extensions sumneko.lua and ketho.wow-api' }
+}
+Write-Timing 'luals'
 
 # --- data-load: evaluate Api + DataAddons headlessly for each client -----------------------------
 $loader = Join-Path $root '.claude\tools\headless\load-data.lua'
@@ -420,7 +532,7 @@ if (Test-Path $ignoreFile) {
         if ($t -match '^(\S+)\s+(\S+)$') { $ignore += @{ Rule = $Matches[1]; Path = $Matches[2] } }
     }
 }
-$alwaysOn = @('dup-id', 'saved-variables', 'lua-syntax', 'globals', 'data-load', 'zone-decisions', 'mapverifier', 'changelog')
+$alwaysOn = @('dup-id', 'saved-variables', 'lua-syntax', 'globals', 'luarc', 'data-load', 'zone-decisions', 'mapverifier', 'changelog')
 $report = $findings | Where-Object {
     $f = $_
     -not ($ignore | Where-Object { ($_.Rule -eq '*' -or $_.Rule -eq $f.Rule) -and $f.Path -like $_.Path })
