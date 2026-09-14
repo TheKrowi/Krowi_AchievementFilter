@@ -2,10 +2,14 @@ local _, addon = ...
 addon.BrowsingHistory = {}
 local browsingHistory = addon.BrowsingHistory
 
+-- The history lives for one session only: category ids are generated at load time and shift between
+-- releases, so a record from an earlier session would resolve to the wrong category
+local records = {}
+
 function browsingHistory:Load()
     KrowiAF_SavedData = KrowiAF_SavedData or {}
-    KrowiAF_SavedData.BrowsingHistory = --[[KrowiAF_SavedData.BrowsingHistory or]] {}
-    self.Index = #KrowiAF_SavedData.BrowsingHistory
+    KrowiAF_SavedData.BrowsingHistory = nil -- Versions up to 100.3 wrote the records here without ever reading them back
+    self.Index = #records
 end
 
 local lastAddedRecord, lock
@@ -32,23 +36,23 @@ function browsingHistory:Add(category, achievement)
         AchievementId = achievement.Id
     }
 
-    if self.Index ~= #KrowiAF_SavedData.BrowsingHistory then
-        for i = self.Index + 1, #KrowiAF_SavedData.BrowsingHistory do
-            KrowiAF_SavedData.BrowsingHistory[i] = nil
+    if self.Index ~= #records then
+        for i = self.Index + 1, #records do
+            records[i] = nil
         end
     end
 
-    tinsert(KrowiAF_SavedData.BrowsingHistory, lastAddedRecord)
+    tinsert(records, lastAddedRecord)
 
-    self.Index = #KrowiAF_SavedData.BrowsingHistory
+    self.Index = #records
 end
 
 function browsingHistory:GetMinIndex()
-    return min(#KrowiAF_SavedData.BrowsingHistory, 1)
+    return min(#records, 1)
 end
 
 function browsingHistory:GetMaxIndex()
-    return #KrowiAF_SavedData.BrowsingHistory
+    return #records
 end
 
 function browsingHistory:GetCurrentIndex()
@@ -61,7 +65,7 @@ end
 
 function browsingHistory:GetCurrentRecord()
     lock = true
-    return KrowiAF_SavedData.BrowsingHistory[self.Index]
+    return records[self.Index]
 end
 
 function browsingHistory:Unlock()
@@ -69,5 +73,5 @@ function browsingHistory:Unlock()
 end
 
 function browsingHistory:GetAllRecords()
-    return KrowiAF_SavedData.BrowsingHistory
+    return records
 end
