@@ -651,7 +651,7 @@ The `DataAddons/Retail/` tree spans 12 expansions. `11_TheWarWithin/CategoryData
 | 8 | ✅ FIXED | Missing solution #24 in migration chain | `Data/DataIntegrityManager.lua` | Fixed 2026-04-19: entire legacy solutions list removed |
 | 9 | ✅ FIXED | "varify" typos in debug messages | `Data/DataIntegrityManager.lua` | Fixed 2026-04-19 |
 | 10 | ✅ FIXED | BrowsingHistory stored to SavedData but never restored | `BrowsingHistory.lua` | Fixed 2026-09-14: session-local `records` table; `Load` removes the stale `KrowiAF_SavedData.BrowsingHistory` once. The restore was commented out in the feature's first commit (5c64807, 2024-05-03), so session-only was the design; restoring would be wrong anyway because auto-generated and mirror category ids shift between releases. |
-| 11 | 🟡 LOW | Undocumented `ignoreAchievementIds` entries | `Data/SavedData/AchievementData.lua` | Add per-entry comments |
+| 11 | ✅ FIXED | Undocumented `ignoreAchievementIds` entries | `Data/SavedData/AchievementData.lua` | Fixed 2026-09-14: 7268, 7269, 7270 are the Temple of Kotmogu scenario achievements from the Mists of Pandaria beta (never released, no faction, no reward), now commented; 40910/40821 already carried a comment and a Retail/Classic split; 42114 had been removed in 98.2. |
 | 12 | ✅ FIXED | Dead code: `GetTopMostParentCategory` + debug branch for `120005` | `Globals.lua` | Fixed 2026-09-09: both removed |
 | 13 | ✅ FIXED | `Plugins/Plugins.lua` entirely commented out | `Plugins/Plugins.lua` | Fixed 2026-09-09: file and its commented-out `Files.xml` line deleted |
 | 14 | 🟡 LOW | `Globals.lua` is too large / does too much | `Globals.lua` | Refactor: split cache, compat, and window management |

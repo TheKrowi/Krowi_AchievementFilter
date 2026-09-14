@@ -3,10 +3,12 @@ local savedData = addon.Data.SavedData
 savedData.AchievementData = {}
 local achievementData = savedData.AchievementData
 
+-- Achievements the client DB still carries but that were never obtainable; they are neither statistics nor
+-- negative-point entries, so without this list the cache would count them as regular achievements
 local ignoreAchievementIds = {}
-ignoreAchievementIds[7268] = true
-ignoreAchievementIds[7269] = true
-ignoreAchievementIds[7270] = true
+ignoreAchievementIds[7268] = true -- The Temple of Kotmogu: Mists of Pandaria beta scenario, never released
+ignoreAchievementIds[7269] = true -- Stay Off the Grass: same scenario
+ignoreAchievementIds[7270] = true -- For Display Only: same scenario
 if addon.Util.IsMainline then
     ignoreAchievementIds[40910] = true -- Successfully Stress Test CN Realms
 else
