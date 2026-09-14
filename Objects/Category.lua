@@ -51,8 +51,8 @@ function category:RemoveCategory(cat)
     if self.Children == nil then
         return
     end
-    for i, _ in next, self.Children do
-        if self.Children[i].Name == cat.Name and self.Children[i].Level == cat.Level then
+    for i = 1, #self.Children do
+        if self.Children[i] == cat then
             tremove(self.Children, i)
             return
         end
