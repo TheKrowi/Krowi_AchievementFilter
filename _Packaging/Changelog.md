@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## 100.4
 ### Fixed
 - Four helper functions and a debug table no longer leak into the global environment, where they could collide with same-named functions of other addons (dev note: `GetActiveCalendarEvents`, `AddNestedCriterium`, `HandleScrollBar` and `DebugTable` were declared without `local`. Found with `luac -l`, which lists a SETGLOBAL per such assignment; the repo lint now runs that check as the `globals` rule, with the deliberate FrameXML overrides and API polyfills allowlisted in `.claude/tools/Check-Repo.globals`)
+- The sub-categories mirrored under Watch List, Tracking and Excluded now get unique category ids (dev note: they used the source category id plus 9999, which landed inside the range of the auto-generated ids that start at 9000 and of the Blizzard tab categories added after them, and the same id was written for every tab and every special tree, so `addon.Data.Categories` kept only the last mirror. They now draw from `addon.Data.GetNextFreeCategoryId`, the counter the Blizzard tab and special categories already use)
 
 ## 100.3 - 2026-09-09
 ### Added

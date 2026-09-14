@@ -95,8 +95,11 @@ local function AddCategoriesTree(category, achievement, extraFunc)
             end
         end
         if alreadyAdded == nil then
-            local newCategory = addon.Objects.Category:New(cat.Id + 9999, cat.Name)
-            addon.Data.Categories[cat.Id + 9999] = newCategory
+            -- Mirror nodes get a fresh id from the shared counter; an offset on the source id overlapped the
+            -- auto-generated and Blizzard category ranges and was reused for every tab and every special tree
+            local newId = addon.Data.GetNextFreeCategoryId()
+            local newCategory = addon.Objects.Category:New(newId, cat.Name)
+            addon.Data.Categories[newId] = newCategory
             extraFunc(newCategory)
             category = category:AddCategory(newCategory)
         end
