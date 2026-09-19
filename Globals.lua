@@ -523,6 +523,47 @@ function addon.OverwriteFunctions()
         end
         origAchievementFrame_SelectAchievement(id)
     end
+
+    -- Shift-clicking an achievement in Blizzard's own summary or achievement list into a whisper or community
+    -- channel reports telemetry through C_AchievementTelemetry.LinkAchievementInWhisper / LinkAchievementInClub,
+    -- which are protected. Blizzard's achievement frame runs tainted as soon as this addon reshapes it (the
+    -- summary buttons' ids and the list's element data are written under our replaced toggle and tab functions),
+    -- so that call raises ADDON_ACTION_FORBIDDEN (WoWUIBugs #780 is the same error through a chat filter). The
+    -- link itself is not protected, so insert it ourselves and skip the telemetry; everything else falls through
+    -- to Blizzard's handler. The helper is a file local in Blizzard_AchievementUI.lua, so its callers are wrapped.
+    -- Retail only: Mists exports C_AchievementTelemetry too, but its Cata-era handlers never call it and its summary
+    -- handler only selects the achievement, so wrapping there would add behaviour Blizzard does not have.
+    if addon.Util.IsMainline and C_AchievementTelemetry and ChatFrameUtil and ChatFrameUtil.InsertLink then
+        local function InsertAchievementLink(id)
+            if not id or not IsModifiedClick("CHATLINK") then
+                return false
+            end
+            local achievementLink = GetAchievementLink(id)
+            if not achievementLink then
+                return false
+            end
+            return ChatFrameUtil.InsertLink(achievementLink) and true or false
+        end
+
+        local origAchievementFrameSummaryAchievement_OnClick = AchievementFrameSummaryAchievement_OnClick
+        AchievementFrameSummaryAchievement_OnClick = function(self, ...)
+            if InsertAchievementLink(self.id) then
+                return
+            end
+            origAchievementFrameSummaryAchievement_OnClick(self, ...)
+        end
+
+        if AchievementTemplateMixin and AchievementTemplateMixin.ProcessClick then
+            local origProcessClick = AchievementTemplateMixin.ProcessClick
+            AchievementTemplateMixin.ProcessClick = function(self, ...)
+                local elementData = IsModifiedClick("CHATLINK") and self:GetElementData()
+                if elementData and InsertAchievementLink(elementData.id) then
+                    return
+                end
+                origProcessClick(self, ...)
+            end
+        end
+    end
 end
 
 function addon.LoadBlizzardApiChanges()

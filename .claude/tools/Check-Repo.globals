@@ -6,10 +6,13 @@
 # --- addon.OverwriteFunctions (Globals.lua): the FrameXML achievement UI functions the addon
 #     replaces on purpose. This is the whole point of the addon; it reshapes AchievementFrame.
 #     Blizzard *API* functions (GetAchievementCriteriaInfo, ...) are never allowed here.
+#     Not visible to this rule, listed for the review trail: Globals.lua also replaces the table field
+#     AchievementTemplateMixin.ProcessClick (same reason as AchievementFrameSummaryAchievement_OnClick below).
 Globals.lua AchievementFrame_ToggleAchievementFrame
 Globals.lua AchievementFrame_DisplayComparison
 Globals.lua AchievementFrame_SelectAchievement
 Globals.lua AchievementFrame_SetTabs
+Globals.lua AchievementFrameSummaryAchievement_OnClick    # wrapped: inserts the chat link itself, skipping the protected C_AchievementTelemetry call
 Globals.lua AchievementFrameTab_OnClick
 Gui/Gui.lua AchievementFrameTab_OnClick
 Gui/WindowFrames/AchievementFrameTabButtonFactory/AchievementFrameTabButtonFactory.lua AchievementFrameTab_OnClick
