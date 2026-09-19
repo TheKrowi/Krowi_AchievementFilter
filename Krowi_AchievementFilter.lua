@@ -17,8 +17,7 @@ addon.Faction.IsHorde = UnitFactionGroup("player") == "Horde"
 addon.Faction.IsNeutral = UnitFactionGroup("player") == "Neutral"
 
 -- [[ Load addon ]] --
-local loadHelper = CreateFrame("Frame", "KrowiAF_SpecialFrame")
-tinsert(UISpecialFrames, "KrowiAF_SpecialFrame")
+local loadHelper = CreateFrame("Frame", "KrowiAF_SpecialFrame") -- also the Escape proxy on Classic, see Gui/FramesForClosing.lua
 loadHelper:RegisterEvent("ADDON_LOADED")
 loadHelper:RegisterEvent("PLAYER_LOGIN")
 loadHelper:RegisterEvent("PLAYER_ENTERING_WORLD")
@@ -137,28 +136,3 @@ function loadHelper:OnEvent(event, arg1, arg2)
     end
 end
 loadHelper:SetScript("OnEvent", loadHelper.OnEvent)
-
-hooksecurefunc("ToggleGameMenu", function()
-    if KrowiAF_FloatingAchievementTooltip and KrowiAF_FloatingAchievementTooltip:IsShown() then
-        KrowiAF_FloatingAchievementTooltip:Hide()
-    elseif KrowiAF_TextFrame and KrowiAF_TextFrame:IsShown() then
-        KrowiAF_TextFrame:Hide()
-    elseif KrowiAF_DataManagerFrame and KrowiAF_DataManagerFrame:IsShown() then
-        KrowiAF_DataManagerFrame:Hide()
-    elseif KrowiAF_AchievementCalendarFrame and KrowiAF_AchievementCalendarFrame.SideFrame and KrowiAF_AchievementCalendarFrame.SideFrame:IsShown() then
-        KrowiAF_AchievementCalendarFrame.SideFrame:Hide()
-    elseif KrowiAF_AchievementCalendarFrame and KrowiAF_AchievementCalendarFrame:IsShown() then
-        KrowiAF_AchievementCalendarFrame:Hide()
-    elseif AchievementFrame and AchievementFrame:IsShown() then
-        AchievementFrame:Hide()
-    end
-
-    if KrowiAF_FloatingAchievementTooltip and KrowiAF_FloatingAchievementTooltip:IsShown()
-    or KrowiAF_TextFrame and KrowiAF_TextFrame:IsShown()
-    or KrowiAF_DataManagerFrame and KrowiAF_DataManagerFrame:IsShown()
-    or KrowiAF_AchievementCalendarFrame and KrowiAF_AchievementCalendarFrame.SideFrame and KrowiAF_AchievementCalendarFrame.SideFrame:IsShown()
-    or KrowiAF_AchievementCalendarFrame and KrowiAF_AchievementCalendarFrame:IsShown()
-    or AchievementFrame and AchievementFrame:IsShown() then
-        KrowiAF_SpecialFrame:Show()
-    end
-end)

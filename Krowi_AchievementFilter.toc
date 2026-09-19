@@ -60,3 +60,5 @@ DataAddons\Retail\Files.xml [AllowLoadGameType mainline]
 DataAddons\Classic\Files.xml [AllowLoadGameType wrath, cata, mists]
 
 DataAddons\Loaders\Files.xml
+
+Tests\Files.xml

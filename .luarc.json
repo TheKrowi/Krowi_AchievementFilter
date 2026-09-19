@@ -168,6 +168,7 @@
         "RAID_FRAME_SORT_LABEL",
         "REPUTATION",
         "REPUTATION_SORT_TYPE_ACCOUNT",
+        "RegisterGameMenuEscHandler",
         "SCENARIOS",
         "SECONDS_ABBR",
         "SETTINGS_KEYBINDINGS_LABEL",

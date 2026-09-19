@@ -1,3 +1,4 @@
+---@diagnostic disable: lowercase-global, undefined-global, need-check-nil
 -- Reads BugGrabber's saved variables file (WTF\Account\<account>\SavedVariables\!BugGrabber.lua),
 -- which is plain Lua assigning BugGrabberDB, and prints the errors that mention this addon.
 --
@@ -23,21 +24,31 @@ if type(db) ~= "table" or type(db.errors) ~= "table" then
     os.exit(0)
 end
 
+-- Retail BugGrabber stores a unix time; the Classic build a "YYYY/MM/DD HH:MM:SS" string
+local function Time(e)
+    if type(e.time) == "number" then return e.time end
+    if type(e.time) == "string" then
+        local y, mo, d, h, mi, s = e.time:match("(%d+)/(%d+)/(%d+) (%d+):(%d+):(%d+)")
+        if y then return os.time({ year = tonumber(y), month = tonumber(mo), day = tonumber(d), hour = tonumber(h), min = tonumber(mi), sec = tonumber(s) }) end
+    end
+    return 0
+end
+
 local matches = {}
 for _, e in ipairs(db.errors) do
     local text = (e.message or "") .. "\n" .. (e.stack or "")
-    if (e.time or 0) >= since and (not filter or text:find(filter, 1, true)) then
+    if Time(e) >= since and (not filter or text:find(filter, 1, true)) then
         matches[#matches + 1] = e
     end
 end
-table.sort(matches, function(a, b) return (a.time or 0) > (b.time or 0) end)
+table.sort(matches, function(a, b) return Time(a) > Time(b) end)
 
 io.stdout:write(string.format("%d of %d errors match (%s, since %s); most recent first\n\n", #matches, #db.errors,
     filter and ("containing '" .. filter .. "'") or "unfiltered", since > 0 and os.date("%Y-%m-%d %H:%M", since) or "the beginning"))
 
 for i = 1, math.min(#matches, maxShown) do
     local e = matches[i]
-    io.stdout:write(string.format("[%d] %s  x%d  session %s\n", i, os.date("%Y-%m-%d %H:%M:%S", e.time or 0), e.counter or 1, tostring(e.session)))
+    io.stdout:write(string.format("[%d] %s  x%d  session %s\n", i, os.date("%Y-%m-%d %H:%M:%S", Time(e)), e.counter or 1, tostring(e.session)))
     io.stdout:write("    ", (e.message or ""):gsub("\n", "\n    "), "\n")
     if e.stack and e.stack ~= "" then
         local shown = 0

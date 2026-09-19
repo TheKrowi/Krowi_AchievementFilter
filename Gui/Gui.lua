@@ -411,12 +411,6 @@ function gui:RefreshViewAfterPlayerLogin()
     KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow()
 end
 
-function gui:RegisterFrameForClosing(frame)
-    frame:HookScript("OnShow", function()
-        KrowiAF_SpecialFrame:Show()
-    end)
-end
-
 local function AdjustQueuedAnchors(self, relativeAlert)
 	for alertFrame in self.alertFramePool:EnumerateActive() do
 		alertFrame:ClearAllPoints()

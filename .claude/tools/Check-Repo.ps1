@@ -24,6 +24,9 @@
                                  (headless/load-data.lua: builder args, patch keys, duplicate and
                                  AutoFactionSplit registrations, category/zone/tooltip references
                                  to achievements no data file registers)
+      unit-tests       [Error]   the headless suites (headless/run-tests.lua, scenarios shared with the
+                                 in-game /kaftest runner) behave as the scenarios' Recorded fields
+                                 say; a deliberate behaviour change updates those fields in Tests/
       lookup-placeholders [Warning] _lookup_*.ps1 skill scripts are committed with empty @() placeholders
       bom              [Warning] no UTF-8 byte order mark (.editorconfig: utf-8)
       line-endings     [Warning] CRLF only (.editorconfig: crlf)
@@ -421,6 +424,19 @@ if ((Test-Path $lua) -and (Test-Path $loader)) {
 }
 Write-Timing 'data-load'
 
+# --- unit-tests: every headless suite behaves as its scenarios' Recorded fields say ---------------
+$runner = Join-Path $root '.claude\tools\headless\run-tests.lua'
+if ((Test-Path $lua) -and (Test-Path $runner)) {
+    $ErrorActionPreference = 'Continue'
+    $out = & $lua $runner $root -check 2>&1 | ForEach-Object { "$_" }
+    $ErrorActionPreference = 'Stop'
+    foreach ($line in $out) {
+        $m = [regex]::Match($line, '^(.*?):(\d+): (.*)$')
+        if ($m.Success) { Add-Finding 'unit-tests' 'Error' $m.Groups[1].Value ([int]$m.Groups[2].Value) $m.Groups[3].Value }
+    }
+}
+Write-Timing 'unit-tests'
+
 # --- lookup-placeholders: designated DB lookup scripts must be left with empty placeholders -----
 foreach ($script in Get-ChildItem -Path (Join-Path $root '.claude\skills') -Recurse -Filter '_lookup_*.ps1') {
     $rel = ConvertTo-RelativePath $script.FullName
@@ -532,7 +548,7 @@ if (Test-Path $ignoreFile) {
         if ($t -match '^(\S+)\s+(\S+)$') { $ignore += @{ Rule = $Matches[1]; Path = $Matches[2] } }
     }
 }
-$alwaysOn = @('dup-id', 'saved-variables', 'lua-syntax', 'globals', 'luarc', 'data-load', 'zone-decisions', 'mapverifier', 'changelog')
+$alwaysOn = @('dup-id', 'saved-variables', 'lua-syntax', 'globals', 'luarc', 'data-load', 'unit-tests', 'zone-decisions', 'mapverifier', 'changelog')
 $report = $findings | Where-Object {
     $f = $_
     -not ($ignore | Where-Object { ($_.Rule -eq '*' -or $_.Rule -eq $f.Rule) -and $f.Path -like $_.Path })

@@ -1,0 +1,4 @@
+<Ui>
+    <Script file="Tests.lua" />
+    <Script file="Escape.lua" />
+</Ui>

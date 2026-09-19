@@ -1,5 +1,6 @@
 <Ui>
     <Script file="Gui.lua"/>
+    <Script file="FramesForClosing.lua"/>
     <Include file="Gui.xml"/>
     <Include file="WorldMapButton\WorldMapButton.xml"/>
     <Include file="FloatingAchievementTooltip\FloatingAchievementTooltip.xml"/>
