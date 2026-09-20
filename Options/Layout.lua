@@ -38,31 +38,37 @@ function layout.OnProfileReset(db)
 end
 
 -- [[ InjectDynamicFixedWatchListOptions ]]
-local function DrawSubCategories(categories)
+local function DrawSubCategories(reset, load) -- Rebuilds a special category tree from its saved achievements
     if addon.Gui.SelectedTab == nil then
         return
     end
 
     -- Reset all
-    for i = 1, #categories do
-        categories[i].Achievements = nil
-        categories[i].Children = nil
-    end
+    reset()
     KrowiAF_CategoriesFrame:Update(true)
     KrowiAF_AchievementsFrame:ForceUpdate()
 
     -- Draw again
-    addon.Data.LoadWatchedAchievements()
+    load()
+end
+
+local function DrawWatchListSubCategories()
+    DrawSubCategories(addon.ResetWatchListCategories, addon.Data.SavedData.AchievementData.LoadWatchedAchievements)
+end
+
+local function DrawExcludedSubCategories()
+    DrawSubCategories(addon.ResetExcludedCategories, addon.SpecialCategories.LoadExcludedAchievements)
+end
+
+local function DrawTrackingAchievementsSubCategories()
+    DrawSubCategories(addon.ResetTrackingAchievementsCategories, addon.SpecialCategories.LoadTrackingAchievements)
 end
 
 local function WatchListClearAllFunc()
     if not addon.SpecialCategories.WatchList then
         C_AddOns.LoadAddOn("Blizzard_AchievementUI")
     end
-    for i = 1, #addon.SpecialCategories.WatchList do
-        addon.SpecialCategories.WatchList[i].Achievements = nil
-        addon.SpecialCategories.WatchList[i].Children = nil
-    end
+    addon.ResetWatchListCategories()
     if addon.Gui.SelectedTab ~= nil then -- If nil, not yet loaded
         KrowiAF_CategoriesFrame:Update(true)
         KrowiAF_AchievementsFrame:ForceUpdate()
@@ -82,7 +88,7 @@ local function InjectDynamicFixedWatchListOptions()
         get = function() return addon.Options.db.profile.Categories.WatchList.ShowSubCategories; end,
         set = function(_, value)
             addon.Options.db.profile.Categories.WatchList.ShowSubCategories = value
-            DrawSubCategories(addon.SpecialCategories.WatchList)
+            DrawWatchListSubCategories()
         end
     })
     addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "Blank1", {
@@ -101,7 +107,7 @@ local function InjectDynamicFixedWatchListOptions()
         get = function() return addon.Options.db.profile.Categories.WatchList.IgnoreFilters; end,
         set = function(_, value)
             addon.Options.db.profile.Categories.WatchList.IgnoreFilters = value
-            DrawSubCategories(addon.SpecialCategories.WatchList)
+            DrawWatchListSubCategories()
         end
     })
     addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "Blank2", {
@@ -150,7 +156,7 @@ local function InjectMoreDynamicTrackingAchievementsOptions()
         get = function() return addon.Options.db.profile.Categories.TrackingAchievements.ShowSubCategories; end,
         set = function(_, value)
             addon.Options.db.profile.Categories.TrackingAchievements.ShowSubCategories = value
-            DrawSubCategories(addon.SpecialCategories.TrackingAchievements)
+            DrawTrackingAchievementsSubCategories()
         end
     })
 end
@@ -161,15 +167,12 @@ local function ShowExcludedCategory()
         return
     end
     if addon.Options.db.profile.Categories.Excluded.Show then
-        addon.Data.LoadExcludedAchievements()
+        addon.SpecialCategories.LoadExcludedAchievements()
     else
-        for i = 1, #addon.SpecialCategories.Excluded do
-            addon.SpecialCategories.Excluded[i].Achievements = nil
-            addon.SpecialCategories.Excluded[i].Children = nil
-        end
-        KrowiAF_CategoriesFrame:Update(true)
-        KrowiAF_AchievementsFrame:ForceUpdate()
+        addon.ResetExcludedCategories()
     end
+    KrowiAF_CategoriesFrame:Update(true)
+    KrowiAF_AchievementsFrame:ForceUpdate()
 end
 
 local function ExcludedIncludeAllFunc()
@@ -177,10 +180,7 @@ local function ExcludedIncludeAllFunc()
         C_AddOns.LoadAddOn("Blizzard_AchievementUI")
     end
 
-    for i = 1, #addon.SpecialCategories.Excluded do
-        addon.SpecialCategories.Excluded[i].Achievements = nil
-        addon.SpecialCategories.Excluded[i].Children = nil
-    end
+    addon.ResetExcludedCategories()
     if addon.Gui.SelectedTab == nil then -- If nil, not yet loaded
         KrowiAF_SavedData.ExcludedAchievements = nil
         return
@@ -226,7 +226,7 @@ local function InjectMoreDynamicExcludedOptions()
         get = function() return addon.Options.db.profile.Categories.Excluded.ShowSubCategories; end,
         set = function()
             addon.Options.db.profile.Categories.Excluded.ShowSubCategories = not addon.Options.db.profile.Categories.Excluded.ShowSubCategories
-            DrawSubCategories(addon.SpecialCategories.Excluded)
+            DrawExcludedSubCategories()
         end,
         disabled = function() return not addon.Options.db.profile.Categories.Excluded.Show; end
     })
@@ -1961,10 +1961,9 @@ function RefreshOptions()
     SetCategoryIndentation(_, profile.Categories.Indentation)
     SetCategoriesMouseWheelPanScalar(_, profile.Categories.MouseWheelPanScalar)
     MergeMergeSmallCategoriesThresholdSet(_, profile.Window.MergeSmallCategoriesThreshold)
-    DrawSubCategories(addon.SpecialCategories.WatchList)
-    DrawSubCategories(addon.SpecialCategories.TrackingAchievements)
-    ShowExcludedCategory()
-    DrawSubCategories(addon.SpecialCategories.Excluded)
+    DrawWatchListSubCategories()
+    DrawTrackingAchievementsSubCategories()
+    ShowExcludedCategory() -- Resets or reloads the Excluded tree for the new profile, so no separate redraw is needed
     SetAchievementsMouseWheelPanScalar(_, profile.Achievements.MouseWheelPanScalar)
     StartTimeAndEndTimeCustomSet(_, profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime)
     SetCalendarMouseWheelPanScalar(_, profile.Calendar.MouseWheelPanScalar)

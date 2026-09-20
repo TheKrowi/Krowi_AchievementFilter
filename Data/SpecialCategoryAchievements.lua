@@ -1,7 +1,9 @@
 local _, addon = ...
 
-local function AddCategoriesTree(category, achievement, extraFunc)
-    local categories = achievement.Category:GetTree()
+-- Mirrors sourceCategory's chain (tab category down to the achievement's own category) under the special
+-- category and returns the leaf, reusing nodes of the same name that are already there
+local function AddCategoriesTree(category, sourceCategory, extraFunc)
+    local categories = sourceCategory:GetTree()
     for _, cat in next, categories do
         local alreadyAdded
         if category.Children then
@@ -30,16 +32,19 @@ local function AddWatchListCategoriesTree(watchListCategory, achievement)
     if not addon.Options.db.profile.Categories.WatchList.ShowSubCategories then
         return watchListCategory
     end
-    return AddCategoriesTree(watchListCategory, achievement, function(newCategory)
+    return AddCategoriesTree(watchListCategory, achievement.Category, function(newCategory)
         newCategory.IsWatchList = true
     end)
 end
 
-local function AddTrackingAchievementsCategoriesTree(trackingAchievementsCategory, achievement)
-    if not addon.Options.db.profile.Categories.TrackingAchievements.ShowSubCategories or achievement.Category == nil then
+-- category: the achievement's data category, or nil for an uncategorized tracking achievement. Passed in
+-- rather than read from the achievement because AddAchievement on the first root makes that root the
+-- Category of an uncategorized one, and the next root would then mirror the first root's chain under itself
+local function AddTrackingAchievementsCategoriesTree(trackingAchievementsCategory, category)
+    if not addon.Options.db.profile.Categories.TrackingAchievements.ShowSubCategories or category == nil then
         return trackingAchievementsCategory
     end
-    return AddCategoriesTree(trackingAchievementsCategory, achievement, function(newCategory)
+    return AddCategoriesTree(trackingAchievementsCategory, category, function(newCategory)
         newCategory.IsTracking = true
     end)
 end
@@ -48,7 +53,7 @@ local function AddExcludedCategoriesTree(excludedCategory, achievement)
     if not addon.Options.db.profile.Categories.Excluded.ShowSubCategories then
         return excludedCategory
     end
-    return AddCategoriesTree(excludedCategory, achievement, function(newCategory)
+    return AddCategoriesTree(excludedCategory, achievement.Category, function(newCategory)
         newCategory.Excluded = true
     end)
 end
@@ -62,6 +67,70 @@ local function ClearTree(categories)
                 end
             end
         end
+    end
+end
+
+-- The Watch List and Excluded trees are rebuilt from the saved variables when a layout option changes. A rebuild
+-- drops the roots' achievements and mirrored sub-categories, so the lists each achievement keeps of the mirror
+-- nodes it was added to are dropped with them; a later unwatch or include would otherwise walk an orphaned tree
+local function ClearAchievementCategoryLists(category, listName)
+    if category.Achievements then
+        for _, achievement in next, category.Achievements do
+            achievement[listName] = nil
+        end
+    end
+    if category.Children then
+        for _, child in next, category.Children do
+            ClearAchievementCategoryLists(child, listName)
+        end
+    end
+end
+
+local function ResetCategories(categories, listName)
+    for i = 1, #categories do
+        ClearAchievementCategoryLists(categories[i], listName)
+        categories[i].Achievements = nil
+        categories[i].Children = nil
+    end
+end
+
+function addon.ResetWatchListCategories()
+    ResetCategories(addon.SpecialCategories.WatchList, "WatchListCategories")
+end
+
+function addon.ResetExcludedCategories()
+    ResetCategories(addon.SpecialCategories.Excluded, "ExcludedCategories")
+end
+
+-- Tracking achievements are added with the plain AddAchievement, which registers the node as the achievement's
+-- Category or in its MoreCategories, so a rebuild unlinks those before the roots are dropped
+local function UnlinkTrackingCategories(category)
+    if category.Achievements then
+        for _, achievement in next, category.Achievements do
+            if achievement.Category == category then
+                achievement.Category = nil
+            elseif achievement.MoreCategories then
+                for i = #achievement.MoreCategories, 1, -1 do
+                    if achievement.MoreCategories[i] == category then
+                        tremove(achievement.MoreCategories, i)
+                    end
+                end
+            end
+        end
+    end
+    if category.Children then
+        for _, child in next, category.Children do
+            UnlinkTrackingCategories(child)
+        end
+    end
+end
+
+function addon.ResetTrackingAchievementsCategories()
+    local categories = addon.SpecialCategories.TrackingAchievements
+    for i = 1, #categories do
+        UnlinkTrackingCategories(categories[i])
+        categories[i].Achievements = nil
+        categories[i].Children = nil
     end
 end
 
@@ -104,9 +173,10 @@ function addon.WatchAchievement(achievement, update)
 end
 
 function addon.AddToTrackingAchievementsCategories(achievement, update)
+    local category = achievement.Category -- before the first root's AddAchievement can claim it, see AddTrackingAchievementsCategoriesTree
     for i = 1, #addon.SpecialCategories.TrackingAchievements do
         if addon.Options.db.profile.AdjustableCategories.TrackingAchievements[i] then
-            local trackingAchievementsCategory = AddTrackingAchievementsCategoriesTree(addon.SpecialCategories.TrackingAchievements[i], achievement)
+            local trackingAchievementsCategory = AddTrackingAchievementsCategoriesTree(addon.SpecialCategories.TrackingAchievements[i], category)
             trackingAchievementsCategory:AddAchievement(achievement)
             trackingAchievementsCategory.CountsDirty = true
         end

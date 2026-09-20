@@ -17,6 +17,15 @@ local function LoadAchievements(sourceTable, func)
     end
 end
 
+-- Also the reload half of the rebuilds in Options/Layout.lua; the reset half is in SpecialCategoryAchievements.lua
+function specialCategories.LoadTrackingAchievements()
+    LoadAchievements(addon.TrackingAchievements, addon.AddToTrackingAchievementsCategories)
+end
+
+function specialCategories.LoadExcludedAchievements()
+    LoadAchievements(KrowiAF_SavedData.ExcludedAchievements, addon.ExcludeAchievement)
+end
+
 local specialCategoriesMatrix = { -- Order of this list is important
     {
         CategoryType = "Summary",
@@ -77,7 +86,7 @@ local specialCategoriesMatrix = { -- Order of this list is important
             category.IsTracking = true
         end,
         LoadData = function()
-            LoadAchievements(addon.TrackingAchievements, addon.AddToTrackingAchievementsCategories)
+            specialCategories.LoadTrackingAchievements()
             addon.Diagnostics.Trace("Tracking achievements loaded")
         end
     },
@@ -89,7 +98,7 @@ local specialCategoriesMatrix = { -- Order of this list is important
             category:SetFlexibleData(true)
         end,
         LoadData = function()
-            LoadAchievements(KrowiAF_SavedData.ExcludedAchievements, addon.ExcludeAchievement)
+            specialCategories.LoadExcludedAchievements()
             addon.Diagnostics.Trace("Excluded achievements loaded")
         end
     },

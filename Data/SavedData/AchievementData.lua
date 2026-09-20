@@ -215,6 +215,9 @@ end
 
 function achievementData.CopyAccountWideToCharacter()
     local characterGuid = UnitGUID("player")
+    if not characterGuid then
+        return
+    end
     for achievementId, _ in next, KrowiAF_Achievements.Watched do
         KrowiAF_Achievements.Watched[achievementId][characterGuid] = true
     end
@@ -287,10 +290,7 @@ function achievementData.ReloadWatchedAchievements()
     if not addon.SpecialCategories.WatchList then
         C_AddOns.LoadAddOn("Blizzard_AchievementUI")
     end
-    for i = 1, #addon.SpecialCategories.WatchList do
-        addon.SpecialCategories.WatchList[i].Achievements = nil
-        addon.SpecialCategories.WatchList[i].Children = nil
-    end
+    addon.ResetWatchListCategories()
     if addon.Gui.SelectedTab ~= nil then -- If nil, not yet loaded
         KrowiAF_CategoriesFrame:Update(true)
         KrowiAF_AchievementsFrame:ForceUpdate()
