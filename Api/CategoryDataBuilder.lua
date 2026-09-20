@@ -40,6 +40,26 @@ function CategoryBuilder:Merge()
     return self
 end
 
+-- A declared category id. This is the plugin-facing handle: Api/ApiDocumentation.lua documents
+-- KrowiAF.NewInjection(<id>) against first-party ids, so a declared id must never be changed.
+-- Without one a node draws from the auto allocator, whose ids are parse positions that shift
+-- whenever a data file is reordered and must not be relied on or persisted.
+function CategoryBuilder:WithId(id)
+    self.Id = id
+    return self
+end
+
+-- A stable, addressable name for a node that another data file has to attach to - a per-client or
+-- per-expansion subtree hanging off a Shared category, which is how a third client family adds its
+-- own content without touching the other families' files. It costs no number from the id space that
+-- Blizzard's categories, the auto allocator and GetNextFreeCategoryId all share, and it cannot be
+-- mistaken for an achievement id. See docs/how-to/migrate-category-data.md 0.1.
+-- The field is CategoryKey, not Key, so a node can be keyed without shadowing this method.
+function CategoryBuilder:Key(key)
+    self.CategoryKey = key
+    return self
+end
+
 function CategoryBuilder:Named(label, ids)
     local child = setmetatable(NewNode(label, ids), CategoryBuilder)
     tinsert(self.Children, child)
@@ -261,10 +281,20 @@ function KrowiAF.NewRootCategory(tab, name, ids, id, canMerge)
     return BuildRootCategory(CategoryBuilder, tab, name, ids, id, canMerge)
 end
 
+-- The category that IS a tab's root, assigned to KrowiAF.CategoryData.<key> rather than inserted
+-- into anything. KrowiAF.CreateCategories parses those five in a fixed order, each with no parent;
+-- ParseCategoryV2 then wires the tab through SetCategoryRootForTab, exactly as the V1
+-- { TabName = "..." } child did. The id is always declared, because these are the ids plugins
+-- inject into.
+function KrowiAF.NewTabCategory(tabName, name, id, ids)
+    return setmetatable({ _v2 = true, TabName = tabName, Name = name, Id = id, Achievements = ids, Children = {} }, CategoryBuilder)
+end
+
 function KrowiAF.NewExpansion(name, ids)
     return BuildRootCategory(ExpansionBuilder, KrowiAF.CategoryData.Expansions, name, ids)
 end
 
-function KrowiAF.NewInjection(id)
-    return setmetatable({ _v2 = true, _injection = true, TargetId = id, Children = {} }, InjectionBuilder)
+-- target is a declared category id, or a string key declared with :Key() on the target node.
+function KrowiAF.NewInjection(target)
+    return setmetatable({ _v2 = true, _injection = true, TargetId = target, Children = {} }, InjectionBuilder)
 end
