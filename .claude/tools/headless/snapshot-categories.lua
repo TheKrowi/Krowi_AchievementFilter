@@ -81,6 +81,11 @@ end
 -- difference the game cannot observe.
 local function flagsOf(cat)
     local parts = {}
+    -- A DECLARED id is part of the plugin contract - Api/ApiDocumentation.lua shows plugins
+    -- addressing first-party categories as KrowiAF.NewInjection(971) - so it must survive a
+    -- refactor unchanged and is recorded. An auto-allocated id (>= AUTO_ID_BASE) is a parse
+    -- position that shifts legitimately and is deliberately not recorded.
+    if (cat.Id or 0) < AUTO_ID_BASE then parts[#parts + 1] = "id=" .. tostring(cat.Id) end
     if cat.CanMerge then parts[#parts + 1] = "merge" end
     if cat.TabName then parts[#parts + 1] = "tab=" .. escape(cat.TabName) end
     if cat.IgnoreFilters then

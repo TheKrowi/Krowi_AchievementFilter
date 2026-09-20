@@ -6,11 +6,11 @@
 # "MapName 424" records uiMapId 424 and is locale-independent.
 
 == Tree ==
-CAT Achievements  | tab=Achievements
-CAT Events  | tab=Events
+CAT Achievements  | id=1100 tab=Achievements
+CAT Events  | id=884 tab=Events
 CAT Events > Holidays
 ACH Events > Holidays # 2144
-CAT Events > Holidays > Lunar Festival
+CAT Events > Holidays > Lunar Festival  | id=885
 ACH Events > Holidays > Lunar Festival # 605
 ACH Events > Holidays > Lunar Festival # 606
 ACH Events > Holidays > Lunar Festival # 607
@@ -28,7 +28,7 @@ ACH Events > Holidays > Lunar Festival # 1396
 ACH Events > Holidays > Lunar Festival # 6006
 ACH Events > Holidays > Lunar Festival # 910
 ACH Events > Holidays > Lunar Festival # 913
-CAT Events > Holidays > Love is in the Air
+CAT Events > Holidays > Love is in the Air  | id=910
 ACH Events > Holidays > Love is in the Air # 1701
 ACH Events > Holidays > Love is in the Air # 260
 ACH Events > Holidays > Love is in the Air # 1695
@@ -47,7 +47,7 @@ ACH Events > Holidays > Love is in the Air # 1188
 ACH Events > Holidays > Love is in the Air # 1702
 ACH Events > Holidays > Love is in the Air # 4624
 ACH Events > Holidays > Love is in the Air # 1693
-CAT Events > Holidays > Noblegarden
+CAT Events > Holidays > Noblegarden  | id=911
 ACH Events > Holidays > Noblegarden # 2676
 ACH Events > Holidays > Noblegarden # 2417
 ACH Events > Holidays > Noblegarden # 2418
@@ -62,7 +62,7 @@ ACH Events > Holidays > Noblegarden # 2422
 ACH Events > Holidays > Noblegarden # 2436
 ACH Events > Holidays > Noblegarden # 2576
 ACH Events > Holidays > Noblegarden # 2798
-CAT Events > Holidays > Children's Week
+CAT Events > Holidays > Children's Week  | id=912
 ACH Events > Holidays > Children's Week # 1791
 ACH Events > Holidays > Children's Week # 1788
 ACH Events > Holidays > Children's Week # 1789
@@ -71,7 +71,7 @@ ACH Events > Holidays > Children's Week # 1786
 ACH Events > Holidays > Children's Week # 1790
 ACH Events > Holidays > Children's Week # 275
 ACH Events > Holidays > Children's Week # 1793
-CAT Events > Holidays > Midsummer
+CAT Events > Holidays > Midsummer  | id=913
 ACH Events > Holidays > Midsummer # 263
 ACH Events > Holidays > Midsummer # 271
 ACH Events > Holidays > Midsummer # 1145
@@ -106,9 +106,9 @@ ACH Events > Holidays > Midsummer # 8042
 ACH Events > Holidays > Midsummer # 8043
 ACH Events > Holidays > Midsummer # 1038
 ACH Events > Holidays > Midsummer # 1039
-CAT Events > Holidays > Pirates' Day
+CAT Events > Holidays > Pirates' Day  | id=919
 ACH Events > Holidays > Pirates' Day # 3457
-CAT Events > Holidays > Brewfest
+CAT Events > Holidays > Brewfest  | id=914
 ACH Events > Holidays > Brewfest # 1184
 ACH Events > Holidays > Brewfest # 1203
 ACH Events > Holidays > Brewfest # 1936
@@ -124,7 +124,7 @@ ACH Events > Holidays > Brewfest # 1292
 ACH Events > Holidays > Brewfest # 1293
 ACH Events > Holidays > Brewfest # 4782
 ACH Events > Holidays > Brewfest # 1186
-CAT Events > Holidays > Hallow's End
+CAT Events > Holidays > Hallow's End  | id=915
 ACH Events > Holidays > Hallow's End # 972
 ACH Events > Holidays > Hallow's End # 288
 ACH Events > Holidays > Hallow's End # 255
@@ -153,9 +153,9 @@ ACH Events > Holidays > Hallow's End # 7601
 ACH Events > Holidays > Hallow's End # 7602
 ACH Events > Holidays > Hallow's End # 1656
 ACH Events > Holidays > Hallow's End # 980
-CAT Events > Holidays > Day of the Dead
+CAT Events > Holidays > Day of the Dead  | id=920
 ACH Events > Holidays > Day of the Dead # 3456
-CAT Events > Holidays > Pilgrim's Bounty
+CAT Events > Holidays > Pilgrim's Bounty  | id=916
 ACH Events > Holidays > Pilgrim's Bounty # 3579
 ACH Events > Holidays > Pilgrim's Bounty # 3576
 ACH Events > Holidays > Pilgrim's Bounty # 3577
@@ -170,7 +170,7 @@ ACH Events > Holidays > Pilgrim's Bounty # 3582
 ACH Events > Holidays > Pilgrim's Bounty # 3578
 ACH Events > Holidays > Pilgrim's Bounty # 3559
 ACH Events > Holidays > Pilgrim's Bounty # 3478
-CAT Events > Holidays > Winter Veil
+CAT Events > Holidays > Winter Veil  | id=917
 ACH Events > Holidays > Winter Veil # 273
 ACH Events > Holidays > Winter Veil # 252
 ACH Events > Holidays > Winter Veil # 259
@@ -208,7 +208,7 @@ ACH Events > WoW's Anniversary # 6131
 ACH Events > WoW's Anniversary # 7853
 CAT Events > WoW's Anniversary > WoW's 20th Anniversary
 ACH Events > WoW's Anniversary > WoW's 20th Anniversary # 957
-CAT Events > Darkmoon Faire
+CAT Events > Darkmoon Faire  | id=925
 ACH Events > Darkmoon Faire # 6019
 ACH Events > Darkmoon Faire # 6021
 ACH Events > Darkmoon Faire # 6023
@@ -231,7 +231,7 @@ ACH Events > Miscellaneous # 1636
 ACH Events > Miscellaneous # 1637
 ACH Events > Miscellaneous # 2079
 ACH Events > Miscellaneous # 2116
-CAT Expansions  | tab=Expansions
+CAT Expansions  | id=883 tab=Expansions
 CAT Expansions > Cross-Expansion
 CAT Expansions > Cross-Expansion > Zones
 CAT Expansions > Cross-Expansion > Zones > AchievmentName 14222
@@ -2913,7 +2913,7 @@ ACH Expansions > Mists of Pandaria > Proving Grounds # 8503
 ACH Expansions > Mists of Pandaria > Proving Grounds # 8506
 ACH Expansions > Mists of Pandaria > Proving Grounds # 8509
 ACH Expansions > Mists of Pandaria > Proving Grounds # 8697
-CAT Player vs. Player  | tab=PvP
+CAT Player vs. Player  | id=955 tab=PvP
 CAT Player vs. Player > Player vs. Player
 ACH Player vs. Player > Player vs. Player # 238
 ACH Player vs. Player > Player vs. Player # 513
@@ -3334,7 +3334,7 @@ ACH Player vs. Player > Mists of Pandaria # 8642
 ACH Player vs. Player > Mists of Pandaria # 8641
 ACH Player vs. Player > Mists of Pandaria # 8451
 ACH Player vs. Player > Mists of Pandaria # 8450
-CAT Specials  | tab=Specials
+CAT Specials  | id=971 tab=Specials
 CAT Specials > The Entitled Player
 CAT Specials > The Entitled Player > Classic
 CAT Specials > The Entitled Player > Classic > Reputation  | merge

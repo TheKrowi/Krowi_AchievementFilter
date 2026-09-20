@@ -6,11 +6,11 @@
 # "MapName 424" records uiMapId 424 and is locale-independent.
 
 == Tree ==
-CAT Achievements  | tab=Achievements
-CAT Events  | tab=Events
+CAT Achievements  | id=1100 tab=Achievements
+CAT Events  | id=884 tab=Events
 CAT Events > Holidays
 ACH Events > Holidays # 2144
-CAT Events > Holidays > Lunar Festival
+CAT Events > Holidays > Lunar Festival  | id=885
 ACH Events > Holidays > Lunar Festival # 605
 ACH Events > Holidays > Lunar Festival # 606
 ACH Events > Holidays > Lunar Festival # 607
@@ -30,7 +30,7 @@ ACH Events > Holidays > Lunar Festival # 17321
 ACH Events > Holidays > Lunar Festival # 41130
 ACH Events > Holidays > Lunar Festival # 910
 ACH Events > Holidays > Lunar Festival # 913
-CAT Events > Holidays > Love is in the Air
+CAT Events > Holidays > Love is in the Air  | id=910
 ACH Events > Holidays > Love is in the Air # 1701
 ACH Events > Holidays > Love is in the Air # 260
 ACH Events > Holidays > Love is in the Air # 1695
@@ -55,7 +55,7 @@ ACH Events > Holidays > Love is in the Air # 9394
 ACH Events > Holidays > Love is in the Air # 1693
 ACH Events > Holidays > Love is in the Air # 19400
 ACH Events > Holidays > Love is in the Air # 19508
-CAT Events > Holidays > Noblegarden
+CAT Events > Holidays > Noblegarden  | id=911
 ACH Events > Holidays > Noblegarden # 2676
 ACH Events > Holidays > Noblegarden # 2417
 ACH Events > Holidays > Noblegarden # 2418
@@ -71,7 +71,7 @@ ACH Events > Holidays > Noblegarden # 2436
 ACH Events > Holidays > Noblegarden # 2576
 ACH Events > Holidays > Noblegarden # 2798
 ACH Events > Holidays > Noblegarden # 20209
-CAT Events > Holidays > Children's Week
+CAT Events > Holidays > Children's Week  | id=912
 ACH Events > Holidays > Children's Week # 1791
 ACH Events > Holidays > Children's Week # 1788
 ACH Events > Holidays > Children's Week # 1789
@@ -80,7 +80,7 @@ ACH Events > Holidays > Children's Week # 1786
 ACH Events > Holidays > Children's Week # 1790
 ACH Events > Holidays > Children's Week # 275
 ACH Events > Holidays > Children's Week # 1793
-CAT Events > Holidays > Midsummer
+CAT Events > Holidays > Midsummer  | id=913
 ACH Events > Holidays > Midsummer # 263
 ACH Events > Holidays > Midsummer # 271
 ACH Events > Holidays > Midsummer # 1145
@@ -133,9 +133,9 @@ ACH Events > Holidays > Midsummer # 41631
 ACH Events > Holidays > Midsummer # 41632
 ACH Events > Holidays > Midsummer # 61336
 ACH Events > Holidays > Midsummer # 61335
-CAT Events > Holidays > Pirates' Day
+CAT Events > Holidays > Pirates' Day  | id=919
 ACH Events > Holidays > Pirates' Day # 3457
-CAT Events > Holidays > Brewfest
+CAT Events > Holidays > Brewfest  | id=914
 ACH Events > Holidays > Brewfest # 1184
 ACH Events > Holidays > Brewfest # 1203
 ACH Events > Holidays > Brewfest # 1936
@@ -154,7 +154,7 @@ ACH Events > Holidays > Brewfest # 1186
 ACH Events > Holidays > Brewfest # 18579
 ACH Events > Holidays > Brewfest # 41212
 ACH Events > Holidays > Brewfest # 63253
-CAT Events > Holidays > Hallow's End
+CAT Events > Holidays > Hallow's End  | id=915
 ACH Events > Holidays > Hallow's End # 972
 ACH Events > Holidays > Hallow's End # 288
 ACH Events > Holidays > Hallow's End # 255
@@ -191,12 +191,12 @@ ACH Events > Holidays > Hallow's End # 10365
 ACH Events > Holidays > Hallow's End # 1656
 ACH Events > Holidays > Hallow's End # 980
 ACH Events > Holidays > Hallow's End # 17547
-CAT Events > Holidays > Day of the Dead
+CAT Events > Holidays > Day of the Dead  | id=920
 ACH Events > Holidays > Day of the Dead # 3456
 ACH Events > Holidays > Day of the Dead # 9426
 ACH Events > Holidays > Day of the Dead # 9427
 ACH Events > Holidays > Day of the Dead # 9428
-CAT Events > Holidays > Pilgrim's Bounty
+CAT Events > Holidays > Pilgrim's Bounty  | id=916
 ACH Events > Holidays > Pilgrim's Bounty # 3579
 ACH Events > Holidays > Pilgrim's Bounty # 3576
 ACH Events > Holidays > Pilgrim's Bounty # 3577
@@ -211,7 +211,7 @@ ACH Events > Holidays > Pilgrim's Bounty # 3582
 ACH Events > Holidays > Pilgrim's Bounty # 3578
 ACH Events > Holidays > Pilgrim's Bounty # 3559
 ACH Events > Holidays > Pilgrim's Bounty # 3478
-CAT Events > Holidays > Winter Veil
+CAT Events > Holidays > Winter Veil  | id=917
 ACH Events > Holidays > Winter Veil # 273
 ACH Events > Holidays > Winter Veil # 252
 ACH Events > Holidays > Winter Veil # 259
@@ -257,9 +257,9 @@ ACH Events > Holidays > Winter Veil > Gifts # 19130
 ACH Events > Holidays > Winter Veil > Gifts # 20510
 ACH Events > Holidays > Winter Veil > Gifts # 20511
 ACH Events > Holidays > Winter Veil > Gifts # 42192
-CAT Events > Holidays > Winds of Mysterious Fortune
+CAT Events > Holidays > Winds of Mysterious Fortune  | id=2570
 ACH Events > Holidays > Winds of Mysterious Fortune # 64140
-CAT Events > WoW's Anniversary
+CAT Events > WoW's Anniversary  | id=1173
 ACH Events > WoW's Anniversary # 2398
 ACH Events > WoW's Anniversary # 4400
 ACH Events > WoW's Anniversary # 5512
@@ -313,7 +313,7 @@ ACH Events > WoW's Anniversary > WoW's 20th Anniversary # 40967
 ACH Events > WoW's Anniversary > WoW's 20th Anniversary # 40988
 ACH Events > WoW's Anniversary > WoW's 20th Anniversary # 957
 ACH Events > WoW's Anniversary > WoW's 20th Anniversary # 41220
-CAT Events > Darkmoon Faire
+CAT Events > Darkmoon Faire  | id=925
 ACH Events > Darkmoon Faire # 6019
 ACH Events > Darkmoon Faire # 6021
 ACH Events > Darkmoon Faire # 6023
@@ -386,7 +386,7 @@ ACH Events > Darkmoon Faire # 15221
 CAT Events > Darkmoon Faire > Reputation  | merge
 ACH Events > Darkmoon Faire > Reputation # 2336
 CAT Events > Skyriding Races
-CAT Events > Skyriding Races > Kalimdor Cup
+CAT Events > Skyriding Races > Kalimdor Cup  | id=1453
 ACH Events > Skyriding Races > Kalimdor Cup # 17712
 ACH Events > Skyriding Races > Kalimdor Cup # 17713
 ACH Events > Skyriding Races > Kalimdor Cup # 17714
@@ -399,7 +399,7 @@ ACH Events > Skyriding Races > Kalimdor Cup # 17720
 ACH Events > Skyriding Races > Kalimdor Cup # 17721
 ACH Events > Skyriding Races > Kalimdor Cup # 17722
 ACH Events > Skyriding Races > Kalimdor Cup # 17723
-CAT Events > Skyriding Races > Eastern Kingdoms Cup
+CAT Events > Skyriding Races > Eastern Kingdoms Cup  | id=1531
 ACH Events > Skyriding Races > Eastern Kingdoms Cup # 18566
 ACH Events > Skyriding Races > Eastern Kingdoms Cup # 18567
 ACH Events > Skyriding Races > Eastern Kingdoms Cup # 18568
@@ -412,7 +412,7 @@ ACH Events > Skyriding Races > Eastern Kingdoms Cup # 18574
 ACH Events > Skyriding Races > Eastern Kingdoms Cup # 18939
 ACH Events > Skyriding Races > Eastern Kingdoms Cup # 18940
 ACH Events > Skyriding Races > Eastern Kingdoms Cup # 18942
-CAT Events > Skyriding Races > Outland Cup
+CAT Events > Skyriding Races > Outland Cup  | id=1535
 ACH Events > Skyriding Races > Outland Cup # 19092
 ACH Events > Skyriding Races > Outland Cup # 19097
 ACH Events > Skyriding Races > Outland Cup # 19098
@@ -425,7 +425,7 @@ ACH Events > Skyriding Races > Outland Cup # 19104
 ACH Events > Skyriding Races > Outland Cup # 19105
 ACH Events > Skyriding Races > Outland Cup # 19106
 ACH Events > Skyriding Races > Outland Cup # 19107
-CAT Events > Skyriding Races > Northrend Cup
+CAT Events > Skyriding Races > Northrend Cup  | id=1559
 ACH Events > Skyriding Races > Northrend Cup # 19674
 ACH Events > Skyriding Races > Northrend Cup # 19675
 ACH Events > Skyriding Races > Northrend Cup # 19676
@@ -438,7 +438,7 @@ ACH Events > Skyriding Races > Northrend Cup # 19684
 ACH Events > Skyriding Races > Northrend Cup # 19721
 ACH Events > Skyriding Races > Northrend Cup # 19722
 ACH Events > Skyriding Races > Northrend Cup # 19723
-CAT Events > Secrets of Azeroth
+CAT Events > Secrets of Azeroth  | id=1452
 ACH Events > Secrets of Azeroth # 18642
 ACH Events > Secrets of Azeroth # 18643
 ACH Events > Secrets of Azeroth # 18644
@@ -446,7 +446,7 @@ ACH Events > Secrets of Azeroth # 18645
 ACH Events > Secrets of Azeroth # 18646
 ACH Events > Secrets of Azeroth # 19080
 ACH Events > Secrets of Azeroth # 62189
-CAT Events > Remix: Mists of Pandaria
+CAT Events > Remix: Mists of Pandaria  | id=1578
 ACH Events > Remix: Mists of Pandaria # 19871
 ACH Events > Remix: Mists of Pandaria # 20527
 ACH Events > Remix: Mists of Pandaria # 20528
@@ -623,7 +623,7 @@ ACH Events > Remix: Mists of Pandaria > Raids > InstanceInfoName 369 # 19958
 ACH Events > Remix: Mists of Pandaria > Raids > InstanceInfoName 369 # 19959
 ACH Events > Remix: Mists of Pandaria > Raids > InstanceInfoName 369 # 19960
 ACH Events > Remix: Mists of Pandaria > Raids > InstanceInfoName 369 # 19961
-CAT Events > Legion Remix
+CAT Events > Legion Remix  | id=2569
 ACH Events > Legion Remix # 42314
 ACH Events > Legion Remix # 42315
 ACH Events > Legion Remix # 42505
@@ -943,7 +943,7 @@ ACH Events > Decor Duel # 61882
 ACH Events > Decor Duel # 61883
 ACH Events > Decor Duel # 61886
 ACH Events > Decor Duel # 61887
-CAT Events > Dastardly Duos
+CAT Events > Dastardly Duos  | id=1681
 ACH Events > Dastardly Duos # 41706
 ACH Events > Dastardly Duos # 41707
 ACH Events > Dastardly Duos # 41715
@@ -971,18 +971,18 @@ CAT Events > Timewalking > Legion
 ACH Events > Timewalking > Legion # 15309
 ACH Events > Timewalking > Legion # 15310
 ACH Events > Timewalking > Legion # 15308
-CAT Events > Timewalking > Turbulent Timeways
+CAT Events > Timewalking > Turbulent Timeways  | id=1538
 ACH Events > Timewalking > Turbulent Timeways # 19079
 ACH Events > Timewalking > Turbulent Timeways # 41056
 ACH Events > Timewalking > Turbulent Timeways # 41779
 ACH Events > Timewalking > Turbulent Timeways # 61394
 ACH Events > Timewalking > Turbulent Timeways # 61463
 CAT Events > Legion
-CAT Events > Legion > Legion Assaults
+CAT Events > Legion > Legion Assaults  | id=948
 ACH Events > Legion > Legion Assaults # 11544
 CAT Events > Battle for Azeroth
 CAT Events > Battle for Azeroth > Faction Assaults
-CAT Events > Battle for Azeroth > Faction Assaults > Assault on Tiragarde Sound
+CAT Events > Battle for Azeroth > Faction Assaults > Assault on Tiragarde Sound  | id=935
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Tiragarde Sound # 13285
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Tiragarde Sound # 13317
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Tiragarde Sound # 13283
@@ -991,7 +991,7 @@ ACH Events > Battle for Azeroth > Faction Assaults > Assault on Tiragarde Sound 
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Tiragarde Sound # 13388
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Tiragarde Sound # 13402
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Tiragarde Sound # 13403
-CAT Events > Battle for Azeroth > Faction Assaults > Assault on Drustvar
+CAT Events > Battle for Azeroth > Faction Assaults > Assault on Drustvar  | id=936
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Drustvar # 13435
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Drustvar # 13317
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Drustvar # 13283
@@ -1000,7 +1000,7 @@ ACH Events > Battle for Azeroth > Faction Assaults > Assault on Drustvar # 13387
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Drustvar # 13388
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Drustvar # 13402
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Drustvar # 13403
-CAT Events > Battle for Azeroth > Faction Assaults > Assault on Stormsong Valley
+CAT Events > Battle for Azeroth > Faction Assaults > Assault on Stormsong Valley  | id=937
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Stormsong Valley # 13317
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Stormsong Valley # 13283
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Stormsong Valley # 13284
@@ -1008,7 +1008,7 @@ ACH Events > Battle for Azeroth > Faction Assaults > Assault on Stormsong Valley
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Stormsong Valley # 13388
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Stormsong Valley # 13402
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Stormsong Valley # 13403
-CAT Events > Battle for Azeroth > Faction Assaults > Assault on Zuldazar
+CAT Events > Battle for Azeroth > Faction Assaults > Assault on Zuldazar  | id=934
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Zuldazar # 13440
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Zuldazar # 13441
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Zuldazar # 13439
@@ -1019,7 +1019,7 @@ ACH Events > Battle for Azeroth > Faction Assaults > Assault on Zuldazar # 13387
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Zuldazar # 13388
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Zuldazar # 13402
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Zuldazar # 13403
-CAT Events > Battle for Azeroth > Faction Assaults > Assault on Nazmir
+CAT Events > Battle for Azeroth > Faction Assaults > Assault on Nazmir  | id=938
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Nazmir # 13426
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Nazmir # 13317
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Nazmir # 13283
@@ -1028,7 +1028,7 @@ ACH Events > Battle for Azeroth > Faction Assaults > Assault on Nazmir # 13387
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Nazmir # 13388
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Nazmir # 13402
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Nazmir # 13403
-CAT Events > Battle for Azeroth > Faction Assaults > Assault on Vol'dun
+CAT Events > Battle for Azeroth > Faction Assaults > Assault on Vol'dun  | id=939
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Vol'dun # 13437
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Vol'dun # 13317
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Vol'dun # 13283
@@ -1038,7 +1038,7 @@ ACH Events > Battle for Azeroth > Faction Assaults > Assault on Vol'dun # 13388
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Vol'dun # 13402
 ACH Events > Battle for Azeroth > Faction Assaults > Assault on Vol'dun # 13403
 CAT Events > Battle for Azeroth > N'Zoth Assaults
-CAT Events > Battle for Azeroth > N'Zoth Assaults > MapName 1530
+CAT Events > Battle for Azeroth > N'Zoth Assaults > MapName 1530  | id=941
 ACH Events > Battle for Azeroth > N'Zoth Assaults > MapName 1530 # 14154
 ACH Events > Battle for Azeroth > N'Zoth Assaults > MapName 1530 # 14161
 ACH Events > Battle for Azeroth > N'Zoth Assaults > MapName 1530 # 14160
@@ -1046,7 +1046,7 @@ ACH Events > Battle for Azeroth > N'Zoth Assaults > MapName 1530 # 14159
 ACH Events > Battle for Azeroth > N'Zoth Assaults > MapName 1530 # 14158
 ACH Events > Battle for Azeroth > N'Zoth Assaults > MapName 1530 # 14156
 ACH Events > Battle for Azeroth > N'Zoth Assaults > MapName 1530 # 40959
-CAT Events > Battle for Azeroth > N'Zoth Assaults > MapName 1527
+CAT Events > Battle for Azeroth > N'Zoth Assaults > MapName 1527  | id=942
 ACH Events > Battle for Azeroth > N'Zoth Assaults > MapName 1527 # 14153
 ACH Events > Battle for Azeroth > N'Zoth Assaults > MapName 1527 # 14161
 ACH Events > Battle for Azeroth > N'Zoth Assaults > MapName 1527 # 14160
@@ -1056,19 +1056,19 @@ ACH Events > Battle for Azeroth > N'Zoth Assaults > MapName 1527 # 14155
 ACH Events > Battle for Azeroth > N'Zoth Assaults > MapName 1527 # 40959
 CAT Events > Shadowlands
 CAT Events > Shadowlands > Covenant Assaults
-CAT Events > Shadowlands > Covenant Assaults > Kyrian Assault
+CAT Events > Shadowlands > Covenant Assaults > Kyrian Assault  | id=928
 ACH Events > Shadowlands > Covenant Assaults > Kyrian Assault # 15041
 ACH Events > Shadowlands > Covenant Assaults > Kyrian Assault # 15034
 ACH Events > Shadowlands > Covenant Assaults > Kyrian Assault # 15004
-CAT Events > Shadowlands > Covenant Assaults > Necrolords Assault
+CAT Events > Shadowlands > Covenant Assaults > Necrolords Assault  | id=929
 ACH Events > Shadowlands > Covenant Assaults > Necrolords Assault # 15037
 ACH Events > Shadowlands > Covenant Assaults > Necrolords Assault # 15039
 ACH Events > Shadowlands > Covenant Assaults > Necrolords Assault # 15032
-CAT Events > Shadowlands > Covenant Assaults > Night Fae Assault
+CAT Events > Shadowlands > Covenant Assaults > Night Fae Assault  | id=930
 ACH Events > Shadowlands > Covenant Assaults > Night Fae Assault # 15001
 ACH Events > Shadowlands > Covenant Assaults > Night Fae Assault # 15044
 ACH Events > Shadowlands > Covenant Assaults > Night Fae Assault # 15036
-CAT Events > Shadowlands > Covenant Assaults > Venthyr Assault
+CAT Events > Shadowlands > Covenant Assaults > Venthyr Assault  | id=931
 ACH Events > Shadowlands > Covenant Assaults > Venthyr Assault # 15043
 ACH Events > Shadowlands > Covenant Assaults > Venthyr Assault # 15042
 ACH Events > Shadowlands > Covenant Assaults > Venthyr Assault # 15033
@@ -1089,26 +1089,26 @@ ACH Events > Shadowlands > Fated Raids > InstanceInfoName 1195 # 15681
 ACH Events > Shadowlands > Fated Raids > InstanceInfoName 1195 # 15682
 ACH Events > Shadowlands > Fated Raids > InstanceInfoName 1195 # 15683
 CAT Events > Dragonflight
-CAT Events > Dragonflight > Siege on Dragonbane Keep
+CAT Events > Dragonflight > Siege on Dragonbane Keep  | id=1394
 ACH Events > Dragonflight > Siege on Dragonbane Keep # 16411
 ACH Events > Dragonflight > Siege on Dragonbane Keep # 16412
 ACH Events > Dragonflight > Siege on Dragonbane Keep # 16410
-CAT Events > Dragonflight > AchievmentName 16544
+CAT Events > Dragonflight > AchievmentName 16544  | id=1392
 ACH Events > Dragonflight > AchievmentName 16544 # 16544
 ACH Events > Dragonflight > AchievmentName 16544 # 16540
 ACH Events > Dragonflight > AchievmentName 16544 # 16545
 ACH Events > Dragonflight > AchievmentName 16544 # 16541
 ACH Events > Dragonflight > AchievmentName 16544 # 16542
 ACH Events > Dragonflight > AchievmentName 16544 # 16543
-CAT Events > Dragonflight > Community Feast
+CAT Events > Dragonflight > Community Feast  | id=1393
 ACH Events > Dragonflight > Community Feast # 16444
 ACH Events > Dragonflight > Community Feast # 16443
-CAT Events > Dragonflight > Fyrakk Assault
+CAT Events > Dragonflight > Fyrakk Assault  | id=1425
 ACH Events > Dragonflight > Fyrakk Assault # 17506
 ACH Events > Dragonflight > Fyrakk Assault # 17735
 ACH Events > Dragonflight > Fyrakk Assault # 18867
 CAT Events > Dragonflight > Researchers Under Fire
-CAT Events > Dragonflight > Researchers Under Fire > Zaqali Ruin Investigation
+CAT Events > Dragonflight > Researchers Under Fire > Zaqali Ruin Investigation  | id=1429
 ACH Events > Dragonflight > Researchers Under Fire > Zaqali Ruin Investigation # 18200
 ACH Events > Dragonflight > Researchers Under Fire > Zaqali Ruin Investigation # 18207
 ACH Events > Dragonflight > Researchers Under Fire > Zaqali Ruin Investigation # 18209
@@ -1117,7 +1117,7 @@ ACH Events > Dragonflight > Researchers Under Fire > Zaqali Ruin Investigation #
 ACH Events > Dragonflight > Researchers Under Fire > Zaqali Ruin Investigation # 18204
 ACH Events > Dragonflight > Researchers Under Fire > Zaqali Ruin Investigation # 18208
 ACH Events > Dragonflight > Researchers Under Fire > Zaqali Ruin Investigation # 18199
-CAT Events > Dragonflight > Researchers Under Fire > Titan Lockdown
+CAT Events > Dragonflight > Researchers Under Fire > Titan Lockdown  | id=1430
 ACH Events > Dragonflight > Researchers Under Fire > Titan Lockdown # 18200
 ACH Events > Dragonflight > Researchers Under Fire > Titan Lockdown # 18207
 ACH Events > Dragonflight > Researchers Under Fire > Titan Lockdown # 18209
@@ -1125,7 +1125,7 @@ ACH Events > Dragonflight > Researchers Under Fire > Titan Lockdown # 18203
 ACH Events > Dragonflight > Researchers Under Fire > Titan Lockdown # 18174
 ACH Events > Dragonflight > Researchers Under Fire > Titan Lockdown # 18201
 ACH Events > Dragonflight > Researchers Under Fire > Titan Lockdown # 18202
-CAT Events > Dragonflight > Time Rifts
+CAT Events > Dragonflight > Time Rifts  | id=1454
 ACH Events > Dragonflight > Time Rifts # 18554
 ACH Events > Dragonflight > Time Rifts # 18615
 ACH Events > Dragonflight > Time Rifts # 18635
@@ -1136,14 +1136,14 @@ ACH Events > Dragonflight > Time Rifts # 18639
 ACH Events > Dragonflight > Time Rifts # 18640
 ACH Events > Dragonflight > Time Rifts # 18641
 ACH Events > Dragonflight > Time Rifts # 19485
-CAT Events > Dragonflight > Dreamsurge
+CAT Events > Dragonflight > Dreamsurge  | id=1537
 ACH Events > Dragonflight > Dreamsurge # 19008
-CAT Events > Dragonflight > Superbloom
+CAT Events > Dragonflight > Superbloom  | id=1552
 ACH Events > Dragonflight > Superbloom # 19310
 ACH Events > Dragonflight > Superbloom # 19312
 ACH Events > Dragonflight > Superbloom # 19313
 ACH Events > Dragonflight > Superbloom # 19315
-CAT Events > Dragonflight > Azerothian Archives
+CAT Events > Dragonflight > Azerothian Archives  | id=1564
 ACH Events > Dragonflight > Azerothian Archives # 19685
 ACH Events > Dragonflight > Azerothian Archives # 19786
 ACH Events > Dragonflight > Azerothian Archives # 19791
@@ -1172,7 +1172,7 @@ ACH Events > Dragonflight > Awakened Raids > InstanceInfoName 1207 # 19572
 CAT Events > The War Within
 CAT Events > The War Within > Pre-Patch Event
 ACH Events > The War Within > Pre-Patch Event # 40796
-CAT Events > The War Within > Theater Troupe
+CAT Events > The War Within > Theater Troupe  | id=1676
 ACH Events > The War Within > Theater Troupe # 40859
 ACH Events > The War Within > Theater Troupe # 40860
 CAT Events > The War Within > Nightfall
@@ -1186,7 +1186,7 @@ ACH Events > Miscellaneous # 1637
 ACH Events > Miscellaneous # 2079
 ACH Events > Miscellaneous # 2116
 ACH Events > Miscellaneous # 61516
-CAT Expansions  | tab=Expansions
+CAT Expansions  | id=883 tab=Expansions
 CAT Expansions > Cross-Expansion
 CAT Expansions > Cross-Expansion > Zones
 CAT Expansions > Cross-Expansion > Zones > AchievmentName 14222
@@ -7002,7 +7002,7 @@ ACH Expansions > Dragonflight > Zones > MapName 2022 > Dragonriding Races # 1719
 ACH Expansions > Dragonflight > Zones > MapName 2022 > Dragonriding Races # 18748
 ACH Expansions > Dragonflight > Zones > MapName 2022 > Dragonriding Races # 18749
 ACH Expansions > Dragonflight > Zones > MapName 2022 > Dragonriding Races # 18750
-CAT Expansions > Dragonflight > Zones > MapName 2022 > Primal Storms  | merge
+CAT Expansions > Dragonflight > Zones > MapName 2022 > Primal Storms  | id=1363 merge
 ACH Expansions > Dragonflight > Zones > MapName 2022 > Primal Storms # 16463
 ACH Expansions > Dragonflight > Zones > MapName 2022 > Primal Storms # 16465
 ACH Expansions > Dragonflight > Zones > MapName 2022 > Primal Storms # 16466
@@ -7065,7 +7065,7 @@ ACH Expansions > Dragonflight > Zones > MapName 2023 > Dragonriding Races # 1720
 ACH Expansions > Dragonflight > Zones > MapName 2023 > Dragonriding Races # 18754
 ACH Expansions > Dragonflight > Zones > MapName 2023 > Dragonriding Races # 18755
 ACH Expansions > Dragonflight > Zones > MapName 2023 > Dragonriding Races # 18756
-CAT Expansions > Dragonflight > Zones > MapName 2023 > Primal Storms  | merge
+CAT Expansions > Dragonflight > Zones > MapName 2023 > Primal Storms  | id=1364 merge
 ACH Expansions > Dragonflight > Zones > MapName 2023 > Primal Storms # 16475
 ACH Expansions > Dragonflight > Zones > MapName 2023 > Primal Storms # 16477
 ACH Expansions > Dragonflight > Zones > MapName 2023 > Primal Storms # 16478
@@ -7145,7 +7145,7 @@ ACH Expansions > Dragonflight > Zones > MapName 2024 > Dragonriding Races # 1720
 ACH Expansions > Dragonflight > Zones > MapName 2024 > Dragonriding Races # 18757
 ACH Expansions > Dragonflight > Zones > MapName 2024 > Dragonriding Races # 18758
 ACH Expansions > Dragonflight > Zones > MapName 2024 > Dragonriding Races # 18759
-CAT Expansions > Dragonflight > Zones > MapName 2024 > Primal Storms  | merge
+CAT Expansions > Dragonflight > Zones > MapName 2024 > Primal Storms  | id=1365 merge
 ACH Expansions > Dragonflight > Zones > MapName 2024 > Primal Storms # 16480
 ACH Expansions > Dragonflight > Zones > MapName 2024 > Primal Storms # 16481
 ACH Expansions > Dragonflight > Zones > MapName 2024 > Primal Storms # 16482
@@ -7194,7 +7194,7 @@ ACH Expansions > Dragonflight > Zones > MapName 2025 > Dragonriding Races # 1720
 ACH Expansions > Dragonflight > Zones > MapName 2025 > Dragonriding Races # 18760
 ACH Expansions > Dragonflight > Zones > MapName 2025 > Dragonriding Races # 18761
 ACH Expansions > Dragonflight > Zones > MapName 2025 > Dragonriding Races # 18762
-CAT Expansions > Dragonflight > Zones > MapName 2025 > Primal Storms  | merge
+CAT Expansions > Dragonflight > Zones > MapName 2025 > Primal Storms  | id=1366 merge
 ACH Expansions > Dragonflight > Zones > MapName 2025 > Primal Storms # 16485
 ACH Expansions > Dragonflight > Zones > MapName 2025 > Primal Storms # 16486
 ACH Expansions > Dragonflight > Zones > MapName 2025 > Primal Storms # 16487
@@ -9564,7 +9564,7 @@ ACH Expansions > Midnight > Void Assaults > Omnium Folio # 63325
 CAT Expansions > Midnight > Curse Surges
 ACH Expansions > Midnight > Curse Surges # 63390
 ACH Expansions > Midnight > Curse Surges # 63381
-CAT Player vs. Player  | tab=PvP
+CAT Player vs. Player  | id=955 tab=PvP
 CAT Player vs. Player > Training Grounds
 ACH Player vs. Player > Training Grounds # 61953
 ACH Player vs. Player > Training Grounds # 61954
@@ -10545,7 +10545,7 @@ ACH Player vs. Player > Midnight > Season 2 # 62497
 ACH Player vs. Player > Midnight > Season 2 # 62955
 ACH Player vs. Player > Midnight > Season 2 # 62872
 ACH Player vs. Player > Midnight > Season 2 # 63473
-CAT Specials  | tab=Specials
+CAT Specials  | id=971 tab=Specials
 CAT Specials > The Entitled Player
 CAT Specials > The Entitled Player > Classic
 ACH Specials > The Entitled Player > Classic # 15579
@@ -11094,7 +11094,7 @@ ACH Specials > Promotions > StarCraft II # 12454
 CAT Specials > Promotions > Hearthstone
 ACH Specials > Promotions > Hearthstone # 8345
 ACH Specials > Promotions > Hearthstone # 15323
-CAT Specials > Promotions > Hearthstone > 10th Anniversary  | merge
+CAT Specials > Promotions > Hearthstone > 10th Anniversary  | id=1563 merge
 ACH Specials > Promotions > Hearthstone > 10th Anniversary # 20033
 ACH Specials > Promotions > Hearthstone > 10th Anniversary # 19724
 ACH Specials > Promotions > Hearthstone > 10th Anniversary # 19866
