@@ -80,10 +80,14 @@ function CategoryBuilder:InstanceNamed(journalId, ids)
     return child
 end
 
--- ZoneBuilder — inherits CategoryBuilder; created by ZonesBuilder:Zone. All sub-methods auto-set CanMerge=true.
+-- ZoneBuilder — created by ZonesBuilder:Zone. Its own sub-methods auto-set CanMerge=true.
+-- It inherits ZonesBuilder rather than CategoryBuilder so a zone can hold zones: the Vanilla tree
+-- nests Stormwind City under Eastern Kingdoms, and the nested zone needs :Zone (no implicit merge,
+-- returns a ZoneBuilder) rather than :Named, which merges.
 local ZoneBuilder = {}
 ZoneBuilder.__index = ZoneBuilder
-setmetatable(ZoneBuilder, { __index = CategoryBuilder })
+local ZonesBuilder = {}
+setmetatable(ZoneBuilder, { __index = ZonesBuilder })
 
 local function AddZoneSub(self, name, ids)
     local child = setmetatable(NewNode(name, ids), CategoryBuilder)
@@ -97,15 +101,12 @@ function ZoneBuilder:Exploration(ids) return AddZoneSub(self, CT.Exploration, id
 function ZoneBuilder:PvP(ids)         return AddZoneSub(self, CT.PvP, ids) end
 function ZoneBuilder:Reputation(ids)  return AddZoneSub(self, CT.Reputation, ids) end
 
-function ZoneBuilder:Named(label, ids)
-    local child = setmetatable(NewNode(label, ids), CategoryBuilder)
-    child.CanMerge = true
-    tinsert(self.Children, child)
-    return child
-end
+-- ZoneBuilder deliberately does NOT override :Named. It used to, setting CanMerge implicitly, which
+-- made :Named mean one thing under a zone and another everywhere else - and left a non-merging child
+-- of a zone, such as the Vanilla Hillsbrad Foothills PvP node, impossible to express. :Named now
+-- never merges anywhere; the four helpers below are the merging shorthands.
 
 -- ZonesBuilder — inherits CategoryBuilder; Zone returns a ZoneBuilder child.
-local ZonesBuilder = {}
 ZonesBuilder.__index = ZonesBuilder
 setmetatable(ZonesBuilder, { __index = CategoryBuilder })
 

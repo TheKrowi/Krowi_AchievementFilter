@@ -84,7 +84,12 @@ Under that rule the current seven stay, unchanged, and nothing is added:
 
 Legion's Class Halls, Artifacts, Invasions and Suramar; Draenor's Garrisons; Pandaria's Scenarios are one-offs with no child vocabulary, so they become `:Named(CT.ClassHalls, { ... })`. For those a typed method would buy only `AssertUniqueContainer` and a canonical name, while the builder grows one method per expansion forever for shapes that never recur.
 
-> **Migration hazard, and the reason the snapshot records `CanMerge` per node.** `:Named()` is **not** a uniform translation of a V1 node. `ZoneBuilder:Named` and every `ProfessionsBuilder` helper set `CanMerge = true` implicitly; `CategoryBuilder:Named` does not. So the migrator must match the V1 flag per node and add `:Merge()` where the V1 table had `true` under a parent that does not auto-merge. The sampled V1 zone subtrees do carry `true` on every `Quests`/`Exploration`/`Reputation` child, so the implicit merge matches the data — but that is a fact to verify per file, not to assume.
+> **Migration hazard — resolved 2026-09-20 by removing it from the API.** `:Named()` was **not** a uniform translation of a V1 node: `ZoneBuilder` overrode it to set `CanMerge = true`, so `:Named` meant one thing under a zone and another everywhere else. That also left a non-merging child of a zone — the Vanilla Hillsbrad Foothills `CT.PvP` node — impossible to express at all. The override is gone: **`:Named` never merges, on any builder**, and the merging shorthands are the typed helpers (`:Quests`, `:Exploration`, `:PvP`, `:Reputation` on a zone; the 13 profession helpers). Nothing in the tree called it, so the snapshot was unchanged.
+>
+> Two things this left standing, both found by the snapshot rather than by reading:
+>
+> - `ProfessionsBuilder` never overrode `:Named`. Only its 13 named helpers merge, so `CT.Archaeology`, which has no helper, needs an explicit `:Merge()` like any other node. The first Cataclysm attempt dropped that flag and the check caught it.
+> - A zone can hold zones — Vanilla nests Stormwind City under Eastern Kingdoms — so `ZoneBuilder` now inherits `ZonesBuilder` and a nested zone is `easternKingdoms:Zone(84, { … })`, which neither merges nor flattens.
 
 ### 0.3 What happens to V1
 
