@@ -349,7 +349,6 @@ KrowiAF.AchievementData["05_00_04_S"] = {
 	Ach(7312), -- Amber is the Color of My Energy
 	Ach(7313), -- Stay Klaxxi
 	Ach(7314), -- Test Drive
-	Ach(7315):Obtainable("Before", "Version", {5, 4, 0}), -- Eternally in the Vale
 	Ach(7316), -- Over Their Heads
 	Ach(7317), -- One Many Army
 	Ach(7318), -- A Taste of History
@@ -594,12 +593,9 @@ KrowiAF.AchievementData["05_02_00_S"] = {
 	Ach(8233), -- Collector: Pollen Collectors
 	Ach(8234), -- Collector: Kypari Sap Containers
 	Ach(8235), -- Collector: Kypari Sap Containers
-	Ach(8238):Obtainable("Before", "Version", {5, 4, 0}), -- Cutting Edge: Lei Shen
 	Ach(8243):PvP(12):AutoFactionSplit(faction.Alliance, 8244), -- Hero of the Alliance / Horde: Malevolent
 	Ach(8246):Obtainable("Before", "Version", {5, 2, 0}), -- Ahead of the Curve: Grand Empress Shek'zeer
 	Ach(8248):Obtainable("Before", "Version", {5, 2, 0}), -- Ahead of the Curve: Sha of Fear
-	Ach(8249):Obtainable("Before", "Version", {5, 4, 0}), -- Ahead of the Curve: Lei Shen
-	Ach(8260):Obtainable("Before", "Version", {5, 4, 0}), -- Cutting Edge: Ra-den
 }
 
 KrowiAF.AchievementData["05_03_00_S"] = {
@@ -611,7 +607,6 @@ KrowiAF.AchievementData["05_03_00_S"] = {
 	Ach(8300):Pet(1184):IsPvP(), -- Brutal Pet Brawler
 	Ach(8301):Title():IsPvP(), -- Deadly Pet Brawler
 	Ach(8302):Mount(548):AutoFactionSplit(faction.Horde, 8304), -- Mount Parade
-	Ach(8306):Title():AutoFactionSplit(faction.Alliance, 8307):Obtainable("Before", "Version", {5, 4, 0}), -- Hordebreaker / Darkspear Revolutionary
 	Ach(8310), -- Heroic: A Brewing Storm
 	Ach(8311), -- Heroic: Crypt of Forgotten Kings
 	Ach(8312), -- Heroic: Blood in the Snow

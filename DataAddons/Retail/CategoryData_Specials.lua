@@ -430,9 +430,8 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             { -- PvP
                 CT.PvP,
                 { -- Honor
-                true,
-                        CT.Honor,
-                true,
+                    CT.Honor,
+                    true,
                     {
                         12901, -- Honor Level 25
                         12904, -- Honor Level 50
@@ -759,16 +758,16 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             },
         },
         { -- Reputation
-            true,
             CT.Reputation,
+            true,
             {
                 1463, -- Realm First! Northrend Vanguard
                 6829, -- Realm First! Pandaren Ambassador
             },
         },
         { -- Dungeons
-            true,
             CT.Dungeons,
+            true,
             {
                 6433, -- Realm First! Challenge Conqueror: Gold
                 11224, -- Realm First! Legion Keystone Master
@@ -778,8 +777,8 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             },
         },
         { -- Raids
-            true,
             CT.Raids,
+            true,
             {
                 1402, -- Realm First! Conqueror of Naxxramas
                 456, -- Realm First! Obsidian Slayer
@@ -794,8 +793,8 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
     { -- Promotions
         CT.Promotions,
         { -- BlizzCon
-            true,
             addon.L["BlizzCon"],
+            true,
             {
                 411, -- Murky
                 412, -- Murloc Costume
@@ -815,8 +814,8 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             },
         },
         { -- Collector's Edition
-            true,
             addon.L["Collector's Edition"],
+            true,
             {
                 662, -- Collector's Edition: Mini-Diablo
                 663, -- Collector's Edition: Panda
@@ -868,15 +867,15 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             },
         },
         { -- Overwatch
-            true,
             addon.L["Overwatch"],
+            true,
             {
                 11064, -- Collector's Edition: Baby Winston
             },
         },
         { -- StarCraft II
-            true,
             addon.L["StarCraft II"],
+            true,
             {
                 4824, -- Collector's Edition: Mini Thor
                 7842, -- Collector's Edition: Baneling
@@ -902,23 +901,23 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             },
         },
         { -- Heroes of the Storm
-            true,
             addon.L["Heroes of the Storm"],
+            true,
             {
                 9926, -- Hero of the Storm
                 11425, -- Herald of Flames
             },
         },
         { -- Warcraft III: Reforged
-            true,
             addon.L["Warcraft III: Reforged"],
+            true,
             {
                 13196, -- Meat Marauder
             },
         },
         { -- Warcraft Rumble
-            true,
             addon.L["Warcraft Rumble"],
+            true,
             {
                 17346, -- Warcraft Rumble Minis, Maiev's New Look
                 17353, -- Warcraft Rumble Minis, Maiev's Newer Look

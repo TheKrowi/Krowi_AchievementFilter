@@ -168,9 +168,8 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             { -- PvP
                 CT.PvP,
                 { -- Honor
-                true,
-                        CT.Honor,
-                true,
+                    CT.Honor,
+                    true,
                     {
                         12901, -- Honor Level 25
                         12904, -- Honor Level 50
@@ -332,16 +331,16 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             },
         },
         { -- Reputation
-            true,
             CT.Reputation,
+            true,
             {
                 1463, -- Realm First! Northrend Vanguard
                 6829, -- Realm First! Pandaren Ambassador
             },
         },
         { -- Raids
-            true,
             CT.Raids,
+            true,
             {
                 1402, -- Realm First! Conqueror of Naxxramas
                 456, -- Realm First! Obsidian Slayer
@@ -356,8 +355,8 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
     { -- Promotions
         CT.Promotions,
         { -- BlizzCon
-            true,
             addon.L["BlizzCon"],
+            true,
             {
                 411, -- Murky
                 412, -- Murloc Costume
@@ -377,8 +376,8 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             },
         },
         { -- Collector's Edition
-            true,
             addon.L["Collector's Edition"],
+            true,
             {
                 662, -- Collector's Edition: Mini-Diablo
                 663, -- Collector's Edition: Panda
@@ -406,8 +405,8 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             },
         },
         { -- StarCraft II
-            true,
             addon.L["StarCraft II"],
+            true,
             {
                 4824, -- Collector's Edition: Mini Thor
                 7842, -- Collector's Edition: Baneling

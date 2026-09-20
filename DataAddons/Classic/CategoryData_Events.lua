@@ -376,8 +376,8 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         925,
         CT.DarkmoonFaire,
         { -- Reputation
-            true,
             CT.Reputation,
+            true,
             {
                 2336, -- Insane in the Membrane
             },
