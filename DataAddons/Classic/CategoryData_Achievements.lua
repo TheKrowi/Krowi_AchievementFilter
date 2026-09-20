@@ -1,9 +1,3 @@
 local _, addon = ...
 
-KrowiAF.CategoryData.Achievements = { -- TAB - Achievements
-    1100,
-    addon.L["Achievements"],
-    {
-        TabName = "Achievements",
-    },
-}
+KrowiAF.CategoryData.Achievements = KrowiAF.NewTabCategory("Achievements", addon.L["Achievements"], 1100)
