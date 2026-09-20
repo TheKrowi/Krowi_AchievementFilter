@@ -2,961 +2,658 @@ local _, addon = ...
 local shared = addon.Data.CategoryData.Shared
 local CT = shared.CT
 
+KrowiAF.CategoryData.Specials = KrowiAF.NewTabCategory("Specials", addon.L["Specials"], 971)
+local specials = KrowiAF.CategoryData.Specials
 
-KrowiAF.CategoryData.Specials = { -- TAB - Specials
-    971,
-    addon.L["Specials"],
-    {
-        TabName = "Specials",
-    },
-    { -- The Entitled Player
-        addon.L["The Entitled"] .. " " .. (UnitName("player")),
-        { -- Classic
-            CT.Classic,
-            { -- Reputation
-                CT.Reputation,
-                true,
-                {
-                    948, -- Ambassador of the Alliance
-                    762, -- Ambassador of the Horde
-                    871, -- Avast Ye, Admiral!
-                    2336, -- Insane in the Membrane
-                },
-            },
-            {
-                15579, -- Return to Lordaeron
-            },
-        },
-        { -- Wrath of the Lich King
-            CT.WrathOfTheLichKing,
-            { -- Reputation
-                CT.Reputation,
-                true,
-                {
-                    942, -- The Diplomat
-                    943, -- The Diplomat
-                    4598, -- The Ashen Verdict
-                    953, -- Guardian of Cenarius
-                    945, -- The Argent Champion
-                    2764, -- Exalted Champion of Stormwind
-                    2765, -- Exalted Champion of Orgrimmar
-                    2763, -- Exalted Champion of Ironforge
-                    2769, -- Exalted Champion of the Undercity
-                    2760, -- Exalted Champion of Darnassus
-                    2768, -- Exalted Champion of Thunder Bluff
-                    2761, -- Exalted Champion of the Exodar
-                    2767, -- Exalted Champion of Silvermoon City
-                    2762, -- Exalted Champion of Gnomeregan
-                    2766, -- Exalted Champion of Sen'jin
-                    2817, -- Exalted Argent Champion of the Alliance
-                    2816, -- Exalted Argent Champion of the Horde
-                },
-            },
-            { -- Dungeons
-                CT.Dungeons,
-                true,
-                {
-                    9058, -- Leeeeeeeeeeeeeroy...?
-                },
-            },
-            { -- Raids
-                CT.Raids,
-                true,
-                {
-                    2051, -- The Twilight Zone (10 player)
-                    2054, -- The Twilight Zone (25 player)
-                    1658, -- Champion of the Frozen Wastes
-                    3316, -- Herald of the Titans
-                    3036, -- Observed (10 player)
-                    3037, -- Observed (25 player)
-                    4583, -- Bane of the Fallen King
-                    4597, -- The Frozen Throne (25 player)
-                    4584, -- The Light of Dawn
-                },
-            },
-        },
-        { -- Cataclysm
-            CT.Cataclysm,
-            { -- Exploration
-                CT.Exploration,
-                true,
-                {
-                    5879, -- Veteran of the Molten Front
-                },
-            },
-            { -- Reputation
-                CT.Reputation,
-                true,
-                {
-                    5827, -- Avengers of Hyjal
-                },
-            },
-            { -- Raids
-                CT.Raids,
-                true,
-                {
-                    5116, -- Heroic: Nefarian
-                    5121, -- Heroic: Sinestra
-                    5123, -- Heroic: Al'Akir
-                    5506, -- Defender of a Shattered World
-                    5803, -- Heroic: Ragnaros
-                    6177, -- Destroyer's End
-                    6116, -- Heroic: Madness of Deathwing
-                },
-            },
-            {
-                5767, -- Scourer of the Eternal Sands
-            },
-        },
-        { -- Mists of Pandaria
-            CT.MistsOfPandaria,
-            { -- Exploration
-                CT.Exploration,
-                true,
-                {
-                    7284, -- Is Another Man's Treasure
-                    7479, -- The Shado-Master
-                    8121, -- Stormbreaker
-                },
-            },
-            { -- Reputation
-                CT.Reputation,
-                true,
-                {
-                    6544, -- The Tillers
-                    8023, -- Wakener
-                },
-            },
-            { -- Raids
-                CT.Raids,
-                true,
-                {
-                    6926, -- Tranquil Master
-                    6724, -- Heroic: Will of the Emperor
-                    6734, -- Heroic: Sha of Fear
-                    8067, -- Heroic: Lei Shen
-                    8679, -- Conqueror of Orgrimmar
-                    8680, -- Liberator of Orgrimmar
-                    8482, -- Mythic: Garrosh Hellscream
-                },
-            },
-            { -- Scenarios
-                addon.L["Scenarios"],
-                true,
-                {
-                    6874, -- Scenaturday
-                    7509, -- Scenaturday
-                    9577, -- Proving Yourself: Endless Damage (Wave 30)
-                    9583, -- Proving Yourself: Endless Tank (Wave 30)
-                    9589, -- Proving Yourself: Endless Healer (Wave 30)
-                },
-            },
-        },
-        { -- Warlords of Dreanor
-            CT.WarlordsOfDraenor,
-            { -- Exploration
-                CT.Exploration,
-                true,
-                {
-                    10072, -- Rumble in the Jungle
-                    10265, -- Rumble in the Jungle
-                    10334, -- Predator
-                },
-            },
-            { -- Reputation
-                CT.Reputation,
-                true,
-                {
-                    9470, -- Council of Exarchs
-                    9471, -- Frostwolf Orcs
-                    9476, -- Sha'tari Defense
-                    9475, -- Laughing Skull Orcs
-                    9072, -- Mantle of the Talon King
-                    9474, -- Wrynn's Vanguard
-                    9473, -- Vol'jin's Spear
-                    9472, -- Steamwheedle Preservation Society
-                },
-            },
-            { -- Raids
-                CT.Raids,
-                true,
-                {
-                    9619, -- Savage Hero
-                    8965, -- Mythic: Imperator's Fall
-                    8973, -- Mythic: Blackhand's Crucible
-                    10043, -- Mythic: Archimonde
-                },
-            },
-            { -- Garrison
-                addon.L["Garrison"],
-                true,
-                {
-                    9540, -- The Stable Master
-                    9706, -- The Stable Master
-                    9094, -- Garrison Architect
-                    9077, -- Choppin' Some More Logs
-                    9078, -- Choppin' Even More Logs
-                    9080, -- Choppin' Even More Logs
-                    10164, -- Master of the Seas
-                    9725, -- The Last of Us
-                    9517, -- Nemesis: Death Stalker
-                    9513, -- Nemesis: Scourge of the Kaldorei
-                    9516, -- Nemesis: Slayer of Sin'dorei
-                    9509, -- Nemesis: Draenei Destroyer
-                    9521, -- Nemesis: The Butcher
-                    9511, -- Nemesis: Gnomebane
-                    9522, -- Nemesis: Troll Hunter
-                    9510, -- Nemesis: Dwarfstalker
-                    9519, -- Nemesis: Orcslayer
-                    9512, -- Nemesis: Manslayer
-                    9518, -- Nemesis: Killer of Kezan
-                    9515, -- Nemesis: Worgen Hunter
-                    9520, -- Nemesis: Huojin's Fall
-                    9514, -- Nemesis: Terror of the Tushui
-                    9738, -- Warlord of Draenor
-                    9508, -- Warlord of Draenor
-                },
-            },
-        },
-        { -- Legion
-            CT.Legion,
-            { -- Quests
-                CT.Quests,
-                true,
-                {
-                    11232, -- Lock, Stock and Two Smoking Goblins
-                },
-            },
-            { -- Exploration
-                CT.Exploration,
-                true,
-                {
-                    12104, -- And We're All Out of Mana Buns
-                    12083, -- Paragon of Argus
-                },
-            },
-            { -- Reputation
-                CT.Reputation,
-                true,
-                {
-                    11941, -- Chromie Homie
-                },
-            },
-            { -- Raids
-                CT.Raids,
-                true,
-                {
-                    10827, -- Mythic: Xavius
-                    10850, -- Mythic: Gul'dan
-                    11781, -- Mythic: Kil'jaeden
-                    12002, -- Mythic: Argus the Unmaker
-                    11763, -- Glory of the Tomb Raider
-                    11387, -- The Chosen
-                },
-            },
-        },
-        { -- Battle for Azeroth
-            CT.BattleForAzeroth,
-            { -- Quests
-                CT.Quests,
-                true,
-                {
-                    13925, -- The Fourth War
-                    13924, -- The Fourth War
-                    12497, -- Drust Do It.
-                },
-            },
-            { -- Exploration
-                CT.Exploration,
-                true,
-                {
-                    13134, -- Expedition Leader
-                    13638, -- Undersea Usurper
-                    13555, -- Junkyard Tinkmaster
-                },
-            },
-            { -- Raids
-                CT.Raids,
-                true,
-                {
-                    12533, -- Mythic: G'huun
-                    13314, -- Mythic: Lady Jaina Proudmoore
-                    13733, -- Mythic: Queen Azshara
-                    14055, -- Mythic: N'Zoth the Corruptor
-                },
-            },
-            { -- Heart of Azeroth
-                CT.HeartOfAzeroth,
-                true,
-                {
-                    13779, -- Phenomenal Cosmic Power
-                },
-            },
-            { -- Visions of N'Zoth
-                CT.VisionsOfNZoth,
-                true,
-                {
-                    14140, -- Mad World
-                },
-            },
-        },
-        { -- Shadowlands
-            CT.Shadowlands,
-            { -- Exploration
-                CT.Exploration,
-                true,
-                {
-                    14277, -- The Accuser's Avowed
-                },
-            },
-            { -- Raids
-                CT.Raids,
-                true,
-                {
-                    14365, -- Mythic: Sire Denathrius
-                    15121, -- Mythic: Sylvanas Windrunner
-                    15489, -- Mythic: The Jailer
-                },
-            },
-            { -- Torghast
-                CT.Torghast,
-                true,
-                {
-                    14568, -- Twisting Corridors: Layer 6
-                },
-            },
-            { -- Covenant Sanctums
-                CT.CovenantSanctums,
-                true,
-                {
-                    14752, -- Things To Do When You're Dead
-                    14682, -- The Party Herald
-                },
-            },
-        },
-        { -- Other
-            addon.L["Other"],
-            { -- Quests
-                CT.Quests,
-                true,
-                {
-                    978, -- 3000 Quests Completed
-                    7520, -- The Loremaster
-                },
-            },
-            { -- Exploration
-                CT.Exploration,
-                true,
-                {
-                    46, -- Universal Explorer
-                    9924, -- Field Photographer
-                    12439, -- Priority Mail
-                },
-            },
-            { -- Reputation
-                CT.Reputation,
-                true,
-                {
-                    1015, -- 40 Exalted Reputations
-                    6742, -- 60 Exalted Reputations
-                    12864, -- 80 Exalted Reputations
-                    12866, -- 100 Exalted Reputations
-                },
-            },
-            { -- Dungeons
-                CT.Dungeons,
-                true,
-                {
-                    4477, -- Looking For Many
-                },
-            },
-            { -- Pet Battles
-                CT.PetBattles,
-                true,
-                {
-                    6607, -- Taming Azeroth
-                    14020, -- Pet Battle Challenge: Blackrock Depths
-                    8301, -- Deadly Pet Brawler
-                },
-            },
-            { -- Brawler's Guild
-                addon.L["Brawler's Guild"] .. CT.Legacy,
-                true,
-                {
-                    13191, -- Brawler for Azeroth
-                },
-            },
-            { -- Collections
-                CT.Collections,
-                true,
-                {
-                    6590, -- World Safari
-                    8397, -- Crazy for Cats
-                    10356, -- Lord of the Reins
-                    10355, -- Lord of the Reins
-                    10354, -- Crashin' Thrashin' Commander
-                    10694, -- Fabulous
-                    11761, -- Azeroth's Next Top Model
-                },
-            },
-            { -- Professions
-                CT.Professions,
-                true,
-                {
-                    1516, -- Accomplished Angler
-                    7306, -- Master of Pandaren Cooking
-                    9464, -- Professional Draenor Master
-                    4855, -- What was Briefly Yours is Now Mine
-                    4856, -- It Belongs in a Museum!
-                    1563, -- Hail to the Chef
-                },
-            },
-            { -- Events
-                addon.L["Events"],
-                true,
-                {
-                    913, -- To Honor One's Elders
-                    1693, -- Fool For Love
-                    2798, -- Noble Gardener
-                    1793, -- For the Children
-                    1038, -- The Flame Warden
-                    1039, -- The Flame Keeper
-                    1683, -- Brewmaster
-                    1656, -- Hallowed Be Thy Name
-                    3478, -- Pilgrim
-                    1691, -- Merrymaker
-                },
-            },
-            { -- PvP
-                CT.PvP,
-                { -- Honor
-                    CT.Honor,
-                    true,
-                    {
-                        12901, -- Honor Level 25
-                        12904, -- Honor Level 50
-                        12907, -- Honor Level 80
-                        12909, -- Honor Level 100
-                        12913, -- Honor Level 200
-                        12915, -- Honor Level 300
-                        870, -- 100000 Honorable Kills
-                        5363, -- 250000 Honorable Kills
-                    },
-                },
-                { -- World
-                        CT.World,
-                true,
-                    {
-                        8721, -- Fire-Watcher
-                        14191, -- Servant of N'Zoth
-                        12605, -- Conqueror of Azeroth
-                        12604, -- Conqueror of Azeroth
-                    },
-                },
-                { -- Dueler's Guild
-                        addon.L["Dueler's Guild"],
-                true,
-                    {
-                        12861, -- Master of Duels
-                    },
-                },
-                { -- Battlegrounds
-                        CT.Battlegrounds,
-                true,
-                    {
-                        907, -- The Justicar
-                        714, -- The Conqueror
-                        8360, -- Master of Deepwind Gorge
-                        12412, -- Master of Seething Shore
-                        230, -- Battlemaster
-                        1175, -- Battlemaster
-                        8052, -- Khan
-                        8055, -- Khan
-                    },
-                },
-                { -- Rated
-                        addon.L["Rated"],
-                true,
-                    {
-                        5328, -- Veteran of the Alliance
-                        5325, -- Veteran of the Horde
-                        5329, -- Warbound Veteran of the Alliance
-                        5326, -- Warbringer of the Horde
-                        5330, -- Private
-                        5345, -- Scout
-                        5331, -- Corporal
-                        5346, -- Grunt
-                        5332, -- Sergeant
-                        5347, -- Sergeant
-                        5333, -- Master Sergeant
-                        5348, -- Senior Sergeant
-                        5334, -- Sergeant Major
-                        5349, -- First Sergeant
-                        5335, -- Knight
-                        5350, -- Stone Guard
-                        5336, -- Knight-Lieutenant
-                        5351, -- Blood Guard
-                        5337, -- Knight-Captain
-                        5352, -- Legionnaire
-                        5359, -- Knight-Champion
-                        5338, -- Centurion
-                        5339, -- Lieutenant Commander
-                        5353, -- Champion
-                        5340, -- Commander
-                        5354, -- Lieutenant General
-                        5341, -- Marshal
-                        5355, -- General
-                        5357, -- Field Marshal
-                        5342, -- Warlord
-                        5343, -- Grand Marshal
-                        5356, -- High Warlord
-                    },
-                },
-            },
-        },
-    },
-    { -- Player the Fabulous
-        (UnitName("player")) .. " " .. (GetTitleName(334)),
-        { -- Collections
-            CT.Collections,
-            {
-                10681, -- Fashionista: Head
-                10682, -- Fashionista: Chest
-                10684, -- Fashionista: Legs
-                10685, -- Fashionista: Feet
-                10686, -- Fashionista: Waist
-                10687, -- Fashionista: Back
-                10688, -- Fashionista: Wrist
-                10690, -- Fashionista: Tabard
-                10691, -- Fashionista: Shirt
-                10692, -- Fashionista: Shoulder
-                10693, -- Fashionista: Hand
-                10689, -- Fashionista: Weapon & Off-Hand
-                10694, -- Fabulous
-                16502, -- Storming the Runway
-            },
-        },
-        { -- Raids
-            CT.Raids,
-            {
-                11741, -- So Hot Right Now
-                11742, -- Dress in Lairs
-                11743, -- Accessor-Eyes
-                11744, -- Drop Dead, Gorgeous
-                11746, -- Outlandish Style
-                11747, -- Merely a Set
-                11748, -- Black is the New Black
-                11749, -- Suns Out, Thori'dals Out
-                11750, -- Undying Aesthetic
-                11751, -- Mogg-Saron
-                11752, -- Style of the Crusader
-                11753, -- Winter Catalog
-                11754, -- Glamour of Twilight
-                11755, -- Hot Couture
-                11756, -- Wardrobe of the Old Gods
-                11757, -- Sha of Fabulous
-                11758, -- Thunderwear
-                11759, -- Yaass'shaarj
-                11740, -- Make it W-orc W-orc
-                11631, -- Extreme Makeover: Fel Edition
-                11628, -- That's So Last Millennium
-                11762, -- Can I Get A Helya
-                11760, -- Retro Trend
-                12020, -- Argussy Up
-                12991, -- New Mog, G'huun This?
-                13385, -- Daz'aling Attire
-                13571, -- Under the Seams
-                14058, -- All Eyes On Me
-                14614, -- Castle Vain
-                15110, -- Dominating the Catwalk
-                15409, -- First Wonders
-                16395, -- Vaulternative Fashion
-                17765, -- What We Wear In The Shadowflame
-                19442, -- Fire Catwalk With Me
-                40469, -- I'm Bringing Nerub-ack
-                41525, -- Can You Please Spell "Gobanna?"
-            },
-        },
-        { -- Player vs. Player
-            CT.PvP,
-            {
-                11706, -- The Original
-                11707, -- No Mercy
-                11708, -- With a Vengeance
-                11709, -- Tough Threads
-                11710, -- Lethal Looks
-                11711, -- The Fierce and the Furious
-                11712, -- Relentlessly Good Looking
-                11713, -- Wrath of the Stitch King
-                11714, -- Viciously Vintage
-                11715, -- (Ruth)less is More
-                11716, -- Cataclysmic Catwalk
-                11717, -- Why Male(volent) Models?
-                11718, -- Dressed to Oppress
-                11719, -- It's Not Fashion Unless It Hurts
-                11720, -- Wear It With Pride
-                11629, -- Untamed Beauty
-                11721, -- Wild Style
-                11722, -- War-Mog-ering
-                11630, -- More Like Win-dictive
-                11723, -- Cruel Intentions
-                12021, -- Claws Out
-                12993, -- Don't Warfront Me
-                13433, -- Tall, Dark, and Sinister
-                13585, -- Never Lose, Never Choose To
-                14059, -- The Eyes Have It
-                14831, -- I Live, I Die, I Queue Again
-                15102, -- It's Off the Chain!
-                15408, -- Cosmic Chic
-                16764, -- Crimson Carpet Fashion
-                18249, -- Obsidian Tie Event
-                19276, -- Verdant Vogue
-                40728, -- Forged Finery
-                41595, -- Prized Guise
-                42800, -- Astral Attire
-                61586, -- Galactic Gala
-                63608, -- Venomous Vestments
-            },
-        },
-        {
-            11761, -- Azeroth's Next Top Model
-            17119, -- Deep Cuts From the Vault
-            18380, -- Dragonflight Season 2 Hero
-        },
-    },
-    { -- Realm First!
-        addon.L["Realm First!"],
-        { -- Leveling
-            addon.L["Leveling"],
-            { -- Level 80
-                addon.L["Level 80"],
-                true,
-                {
-                    457, -- Realm First! Level 80 (Legacy)
-                    459, -- Realm First! Level 80 Warrior (Legacy)
-                    465, -- Realm First! Level 80 Paladin (Legacy)
-                    462, -- Realm First! Level 80 Hunter (Legacy)
-                    458, -- Realm First! Level 80 Rogue (Legacy)
-                    464, -- Realm First! Level 80 Priest (Legacy)
-                    461, -- Realm First! Level 80 Death Knight (Legacy)
-                    467, -- Realm First! Level 80 Shaman (Legacy)
-                    460, -- Realm First! Level 80 Mage (Legacy)
-                    463, -- Realm First! Level 80 Warlock (Legacy)
-                    466, -- Realm First! Level 80 Druid (Legacy)
-                    1408, -- Realm First! Level 80 Human (Legacy)
-                    1410, -- Realm First! Level 80 Orc (Legacy)
-                    1407, -- Realm First! Level 80 Dwarf (Legacy)
-                    1409, -- Realm First! Level 80 Night Elf (Legacy)
-                    1413, -- Realm First! Level 80 Forsaken (Legacy)
-                    1411, -- Realm First! Level 80 Tauren (Legacy)
-                    1404, -- Realm First! Level 80 Gnome (Legacy)
-                    1412, -- Realm First! Level 80 Troll (Legacy)
-                    1405, -- Realm First! Level 80 Blood Elf (Legacy)
-                    1406, -- Realm First! Level 80 Draenei (Legacy)
-                },
-            },
-            { -- Level 85
-                addon.L["Level 85"],
-                true,
-                {
-                    4999, -- Realm First! Level 85 (Legacy)
-                    5007, -- Realm First! Level 85 Warrior (Legacy)
-                    5001, -- Realm First! Level 85 Paladin (Legacy)
-                    5004, -- Realm First! Level 85 Hunter (Legacy)
-                    5008, -- Realm First! Level 85 Rogue (Legacy)
-                    5002, -- Realm First! Level 85 Priest (Legacy)
-                    5005, -- Realm First! Level 85 Death Knight (Legacy)
-                    4998, -- Realm First! Level 85 Shaman (Legacy)
-                    5006, -- Realm First! Level 85 Mage (Legacy)
-                    5003, -- Realm First! Level 85 Warlock (Legacy)
-                    5000, -- Realm First! Level 85 Druid (Legacy)
-                },
-            },
-            { -- Level 90
-                addon.L["Level 90"],
-                true,
-                {
-                    6524, -- Realm First! Level 90 (Legacy)
-                    6750, -- Realm First! Level 90 Warrior (Legacy)
-                    6744, -- Realm First! Level 90 Paladin (Legacy)
-                    6747, -- Realm First! Level 90 Hunter (Legacy)
-                    6751, -- Realm First! Level 90 Rogue (Legacy)
-                    6745, -- Realm First! Level 90 Priest (Legacy)
-                    6748, -- Realm First! Level 90 Death Knight (Legacy)
-                    6523, -- Realm First! Level 90 Shaman (Legacy)
-                    6749, -- Realm First! Level 90 Mage (Legacy)
-                    6746, -- Realm First! Level 90 Warlock (Legacy)
-                    6752, -- Realm First! Level 90 Monk (Legacy)
-                    6743, -- Realm First! Level 90 Druid (Legacy)
-                },
-            },
-        },
-        { -- Professions
-            CT.Professions,
-            { -- 450 skill
-                addon.L["450 skill"],
-                true,
-                {
-                    1415, -- Realm First! Grand Master Alchemist
-                    1420, -- Realm First! Grand Master Angler
-                    5395, -- Realm First! Grand Master Archaeologist
-                    1414, -- Realm First! Grand Master Blacksmith
-                    1416, -- Realm First! Grand Master Cook
-                    1417, -- Realm First! Grand Master Enchanter
-                    1418, -- Realm First! Grand Master Engineer
-                    1421, -- Realm First! Grand Master Herbalist
-                    1423, -- Realm First! Grand Master Jewelcrafter
-                    1424, -- Realm First! Grand Master Leatherworker
-                    1419, -- Realm First! Grand Master Medic
-                    1425, -- Realm First! Grand Master Miner
-                    1422, -- Realm First! Grand Master Scribe
-                    1426, -- Realm First! Grand Master Skinner
-                    1427, -- Realm First! Grand Master Tailor
-                },
-            },
-            { -- 525 skill
-                addon.L["525 skill"],
-                true,
-                {
-                    5381, -- Realm First! Illustrious Alchemist
-                    5387, -- Realm First! Illustrious Angler
-                    5396, -- Realm First! Illustrious Archaeologist
-                    5382, -- Realm First! Illustrious Blacksmith
-                    5383, -- Realm First! Illustrious Cook
-                    5384, -- Realm First! Illustrious Enchanter
-                    5385, -- Realm First! Illustrious Engineer
-                    5388, -- Realm First! Illustrious Herbalist
-                    5390, -- Realm First! Illustrious Jewelcrafter
-                    5391, -- Realm First! Illustrious Leatherworker
-                    5386, -- Realm First! Illustrious Medic
-                    5392, -- Realm First! Illustrious Miner
-                    5389, -- Realm First! Illustrious Scribe
-                    5393, -- Realm First! Illustrious Skinner
-                    5394, -- Realm First! Illustrious Tailor
-                },
-            },
-            { -- 600 skill
-                addon.L["600 skill"],
-                true,
-                {
-                    6859, -- Realm First! Zen Master Alchemist
-                    6865, -- Realm First! Zen Master Angler
-                    6873, -- Realm First! Zen Master Archaeologist
-                    6860, -- Realm First! Zen Master Blacksmith
-                    6861, -- Realm First! Zen Master Cook
-                    6862, -- Realm First! Zen Master Enchanter
-                    6863, -- Realm First! Zen Master Engineer
-                    6866, -- Realm First! Zen Master Herbalist
-                    6868, -- Realm First! Zen Master Jewelcrafter
-                    6869, -- Realm First! Zen Master Leatherworker
-                    6864, -- Realm First! Zen Master Medic
-                    6870, -- Realm First! Zen Master Miner
-                    6867, -- Realm First! Zen Master Scribe
-                    6871, -- Realm First! Zen Master Skinner
-                    6872, -- Realm First! Zen Master Tailor
-                },
-            },
-        },
-        { -- Reputation
-            CT.Reputation,
-            true,
-            {
-                1463, -- Realm First! Northrend Vanguard
-                6829, -- Realm First! Pandaren Ambassador
-            },
-        },
-        { -- Dungeons
-            CT.Dungeons,
-            true,
-            {
-                6433, -- Realm First! Challenge Conqueror: Gold
-                11224, -- Realm First! Legion Keystone Master
-                13078, -- Realm First! Battle for Azeroth Keystone Master
-                14662, -- Realm First! Shadowlands Keystone Master
-                16801, -- Realm First! Dragonflight Keystone Hero
-            },
-        },
-        { -- Raids
-            CT.Raids,
-            true,
-            {
-                1402, -- Realm First! Conqueror of Naxxramas
-                456, -- Realm First! Obsidian Slayer
-                1400, -- Realm First! Magic Seeker
-                3117, -- Realm First! Death's Demise
-                3259, -- Realm First! Celestial Defender
-                4078, -- Realm First! Grand Crusader
-                4576, -- Realm First! Fall of the Lich King
-            },
-        },
-    },
-    { -- Promotions
-        CT.Promotions,
-        { -- BlizzCon
-            addon.L["BlizzCon"],
-            true,
-            {
-                411, -- Murky
-                412, -- Murloc Costume
-                415, -- Big Blizzard Bear
-                3536, -- The Marine Marine
-                5378, -- Deathy
-                6185, -- Murkablo
-                8793, -- Murkalot
-                9763, -- Grommloc
-                10322, -- Murkidan
-                11294, -- Murloc Battlemasters
-                11931, -- Rides of War
-                13138, -- Flying Colors
-                14027, -- Battle for Mrrglroth
-                14904, -- Netherwhelp Online
-                18250, -- Ysergle The Dreamurk
-            },
-        },
-        { -- Collector's Edition
-            addon.L["Collector's Edition"],
-            true,
-            {
-                662, -- Collector's Edition: Mini-Diablo
-                663, -- Collector's Edition: Panda
-                664, -- Collector's Edition: Zergling
-                665, -- Collector's Edition: Netherwhelp
-                683, -- Collector's Edition: Frost Wyrm Whelp
-                5377, -- Collector's Edition: Lil' Deathwing
-                6849, -- Collector's Edition: Imperial Quilen
-                6848, -- Collector's Edition: Lucky Quilen Cub
-                8916, -- Collector's Edition: Dread Raven
-                8917, -- Collector's Edition: Dread Hatchling
-                10320, -- Collector's Edition: Illidari Felstalker
-                10321, -- Collector's Edition: Nibbles
-                12229, -- Collector's Edition: Seabraid Stallion
-                12230, -- Collector's Edition: Gilded Ravasaur
-                12232, -- Collector's Edition: Tottle
-                14283, -- Heroic Edition: Ensorcelled Everwyrm
-                16332, -- The Perfect Pebble
-                17314, -- Heroic Edition: Tangled Dreamweaver
-                19027, -- Heroic Edition: Algarian Stormrider
-                18928, -- Storm Rider: Bronze
-                18929, -- Storm Rider: Silver
-                18931, -- Storm Rider: Gold
-                19030, -- Squally
-                61401, -- Heroic Edition: Lightwing Dragonhawk
-                61402, -- Epic Edition: Voidlight Surger
-            },
-        },
-        { -- Diablo
-            addon.L["Diablo"],
-            { -- Diablo III
-                addon.L["Diablo III"],
-                true,
-                {
-                    7412, -- Collector's Edition: Fetish Shaman
-                    8795, -- Collector's Edition: Treasure Goblin
-                },
-            },
-            { -- Diablo IV
-                addon.L["Diablo IV"],
-                true,
-                {
-                    15640, -- Return to Darkness
-                    18258, -- Little Lord of Lies
-                },
-            },
-            {
-                11395, -- Diablo's 20th Anniversary
-            },
-        },
-        { -- Overwatch
-            addon.L["Overwatch"],
-            true,
-            {
-                11064, -- Collector's Edition: Baby Winston
-            },
-        },
-        { -- StarCraft II
-            addon.L["StarCraft II"],
-            true,
-            {
-                4824, -- Collector's Edition: Mini Thor
-                7842, -- Collector's Edition: Baneling
-                10309, -- Collector's Edition: Zeradar
-                12454, -- Salute to StarCraft
-            },
-        },
-        { -- Hearthstone
-            addon.L["Hearthstone"],
-            { -- 10th Anniversary
-                1563,
-                addon.L["10th Anniversary"],
-                true,
-                {
-                    20033, -- Hearthstone Beginner
-                    19724, -- Hearthstone Card Collection
-                    19866, -- Hearthstoned: Fiery Edition
-                },
-            },
-            {
-                8345, -- Hearthstoned
-                15323, -- Sarge's Tale
-            },
-        },
-        { -- Heroes of the Storm
-            addon.L["Heroes of the Storm"],
-            true,
-            {
-                9926, -- Hero of the Storm
-                11425, -- Herald of Flames
-            },
-        },
-        { -- Warcraft III: Reforged
-            addon.L["Warcraft III: Reforged"],
-            true,
-            {
-                13196, -- Meat Marauder
-            },
-        },
-        { -- Warcraft Rumble
-            addon.L["Warcraft Rumble"],
-            true,
-            {
-                17346, -- Warcraft Rumble Minis, Maiev's New Look
-                17353, -- Warcraft Rumble Minis, Maiev's Newer Look
-                17347, -- Warcraft Rumble Minis, Sneed's New Look
-                17354, -- Warcraft Rumble Minis, Sneed's Newer Look
-                17348, -- Warcraft Rumble Minis, Huntress' New Look
-                17355, -- Warcraft Rumble Minis, Huntress' Newer Look
-                17349, -- Warcraft Rumble Minis, Tauren's New Look
-                17356, -- Warcraft Rumble Minis, Tauren's Newer Look
-                17350, -- Warcraft Rumble Minis, Ghoul's New Look
-                17357, -- Warcraft Rumble Minis, Ghoul's Newer Look
-                17351, -- Warcraft Rumble Minis, Murloc's New Look
-                17358, -- Warcraft Rumble Minis, Murloc's Newer Look
-                17352, -- Warcraft Rumble Minis, Whelp Egg's New Look
-                17359, -- Warcraft Rumble Minis, Whelp Egg's Newer Look
-                17344, -- Warcraft Rumble Minis, Get 'Em All!
-                17360, -- Warcraft Rumble Minis, New Looks!
-                17361, -- Rumble Minis, All the Looks!
-                15344, -- "S.A.F.E"" Pilot"
-            },
-        },
-        {
-            414, -- Tyrael's Hilt
-            10537, -- Patron of War
-            10657, -- Fledgling Hero of Warcraft
-            11210, -- Fight for the Alliance
-            11211, -- Fight for the Horde
-            15594, -- Fearless Spectator
-            17305, -- Trading Post: Dragonflight
-            19029, -- Lil' Maggz
-            19031, -- Fyrn
-            62400, -- Craft Your World
-        },
-    },
-    { -- Mythic+
-        addon.L["Mythic+"],
-        shared.GetShadowlandsMythicPlus(CT.Shadowlands),
-        shared.GetDragonflightMythicPlus(CT.Dragonflight),
-        shared.GetTheWarWithinMythicPlus(CT.TheWarWithin),
-        shared.GetMidnightMythicPlus(CT.Midnight),
-    },
-}
+local theEntitledPlayer = specials:Named(addon.L["The Entitled"] .. " " .. (UnitName("player")))
+local classic = theEntitledPlayer:Named(CT.Classic, {
+    15579, -- Return to Lordaeron
+})
+classic:Named(CT.Reputation, {
+    948, -- Ambassador of the Alliance
+    762, -- Ambassador of the Horde
+    871, -- Avast Ye, Admiral!
+    2336, -- Insane in the Membrane
+}):Merge()
+local wrathOfTheLichKing = theEntitledPlayer:Named(CT.WrathOfTheLichKing)
+wrathOfTheLichKing:Named(CT.Reputation, {
+    942, -- The Diplomat
+    943, -- The Diplomat
+    4598, -- The Ashen Verdict
+    953, -- Guardian of Cenarius
+    945, -- The Argent Champion
+    2764, -- Exalted Champion of Stormwind
+    2765, -- Exalted Champion of Orgrimmar
+    2763, -- Exalted Champion of Ironforge
+    2769, -- Exalted Champion of the Undercity
+    2760, -- Exalted Champion of Darnassus
+    2768, -- Exalted Champion of Thunder Bluff
+    2761, -- Exalted Champion of the Exodar
+    2767, -- Exalted Champion of Silvermoon City
+    2762, -- Exalted Champion of Gnomeregan
+    2766, -- Exalted Champion of Sen'jin
+    2817, -- Exalted Argent Champion of the Alliance
+    2816, -- Exalted Argent Champion of the Horde
+}):Merge()
+wrathOfTheLichKing:Named(CT.Dungeons, {
+    9058, -- Leeeeeeeeeeeeeroy...?
+}):Merge()
+wrathOfTheLichKing:Named(CT.Raids, {
+    2051, -- The Twilight Zone (10 player)
+    2054, -- The Twilight Zone (25 player)
+    1658, -- Champion of the Frozen Wastes
+    3316, -- Herald of the Titans
+    3036, -- Observed (10 player)
+    3037, -- Observed (25 player)
+    4583, -- Bane of the Fallen King
+    4597, -- The Frozen Throne (25 player)
+    4584, -- The Light of Dawn
+}):Merge()
+local cataclysm = theEntitledPlayer:Named(CT.Cataclysm, {
+    5767, -- Scourer of the Eternal Sands
+})
+cataclysm:Named(CT.Exploration, {
+    5879, -- Veteran of the Molten Front
+}):Merge()
+cataclysm:Named(CT.Reputation, {
+    5827, -- Avengers of Hyjal
+}):Merge()
+cataclysm:Named(CT.Raids, {
+    5116, -- Heroic: Nefarian
+    5121, -- Heroic: Sinestra
+    5123, -- Heroic: Al'Akir
+    5506, -- Defender of a Shattered World
+    5803, -- Heroic: Ragnaros
+    6177, -- Destroyer's End
+    6116, -- Heroic: Madness of Deathwing
+}):Merge()
+local mistsOfPandaria = theEntitledPlayer:Named(CT.MistsOfPandaria)
+mistsOfPandaria:Named(CT.Exploration, {
+    7284, -- Is Another Man's Treasure
+    7479, -- The Shado-Master
+    8121, -- Stormbreaker
+}):Merge()
+mistsOfPandaria:Named(CT.Reputation, {
+    6544, -- The Tillers
+    8023, -- Wakener
+}):Merge()
+mistsOfPandaria:Named(CT.Raids, {
+    6926, -- Tranquil Master
+    6724, -- Heroic: Will of the Emperor
+    6734, -- Heroic: Sha of Fear
+    8067, -- Heroic: Lei Shen
+    8679, -- Conqueror of Orgrimmar
+    8680, -- Liberator of Orgrimmar
+    8482, -- Mythic: Garrosh Hellscream
+}):Merge()
+mistsOfPandaria:Named(addon.L["Scenarios"], {
+    6874, -- Scenaturday
+    7509, -- Scenaturday
+    9577, -- Proving Yourself: Endless Damage (Wave 30)
+    9583, -- Proving Yourself: Endless Tank (Wave 30)
+    9589, -- Proving Yourself: Endless Healer (Wave 30)
+}):Merge()
+local warlordsOfDreanor = theEntitledPlayer:Named(CT.WarlordsOfDraenor)
+warlordsOfDreanor:Named(CT.Exploration, {
+    10072, -- Rumble in the Jungle
+    10265, -- Rumble in the Jungle
+    10334, -- Predator
+}):Merge()
+warlordsOfDreanor:Named(CT.Reputation, {
+    9470, -- Council of Exarchs
+    9471, -- Frostwolf Orcs
+    9476, -- Sha'tari Defense
+    9475, -- Laughing Skull Orcs
+    9072, -- Mantle of the Talon King
+    9474, -- Wrynn's Vanguard
+    9473, -- Vol'jin's Spear
+    9472, -- Steamwheedle Preservation Society
+}):Merge()
+warlordsOfDreanor:Named(CT.Raids, {
+    9619, -- Savage Hero
+    8965, -- Mythic: Imperator's Fall
+    8973, -- Mythic: Blackhand's Crucible
+    10043, -- Mythic: Archimonde
+}):Merge()
+warlordsOfDreanor:Named(addon.L["Garrison"], {
+    9540, -- The Stable Master
+    9706, -- The Stable Master
+    9094, -- Garrison Architect
+    9077, -- Choppin' Some More Logs
+    9078, -- Choppin' Even More Logs
+    9080, -- Choppin' Even More Logs
+    10164, -- Master of the Seas
+    9725, -- The Last of Us
+    9517, -- Nemesis: Death Stalker
+    9513, -- Nemesis: Scourge of the Kaldorei
+    9516, -- Nemesis: Slayer of Sin'dorei
+    9509, -- Nemesis: Draenei Destroyer
+    9521, -- Nemesis: The Butcher
+    9511, -- Nemesis: Gnomebane
+    9522, -- Nemesis: Troll Hunter
+    9510, -- Nemesis: Dwarfstalker
+    9519, -- Nemesis: Orcslayer
+    9512, -- Nemesis: Manslayer
+    9518, -- Nemesis: Killer of Kezan
+    9515, -- Nemesis: Worgen Hunter
+    9520, -- Nemesis: Huojin's Fall
+    9514, -- Nemesis: Terror of the Tushui
+    9738, -- Warlord of Draenor
+    9508, -- Warlord of Draenor
+}):Merge()
+local legion = theEntitledPlayer:Named(CT.Legion)
+legion:Named(CT.Quests, {
+    11232, -- Lock, Stock and Two Smoking Goblins
+}):Merge()
+legion:Named(CT.Exploration, {
+    12104, -- And We're All Out of Mana Buns
+    12083, -- Paragon of Argus
+}):Merge()
+legion:Named(CT.Reputation, {
+    11941, -- Chromie Homie
+}):Merge()
+legion:Named(CT.Raids, {
+    10827, -- Mythic: Xavius
+    10850, -- Mythic: Gul'dan
+    11781, -- Mythic: Kil'jaeden
+    12002, -- Mythic: Argus the Unmaker
+    11763, -- Glory of the Tomb Raider
+    11387, -- The Chosen
+}):Merge()
+local battleForAzeroth = theEntitledPlayer:Named(CT.BattleForAzeroth)
+battleForAzeroth:Named(CT.Quests, {
+    13925, -- The Fourth War
+    13924, -- The Fourth War
+    12497, -- Drust Do It.
+}):Merge()
+battleForAzeroth:Named(CT.Exploration, {
+    13134, -- Expedition Leader
+    13638, -- Undersea Usurper
+    13555, -- Junkyard Tinkmaster
+}):Merge()
+battleForAzeroth:Named(CT.Raids, {
+    12533, -- Mythic: G'huun
+    13314, -- Mythic: Lady Jaina Proudmoore
+    13733, -- Mythic: Queen Azshara
+    14055, -- Mythic: N'Zoth the Corruptor
+}):Merge()
+battleForAzeroth:Named(CT.HeartOfAzeroth, {
+    13779, -- Phenomenal Cosmic Power
+}):Merge()
+battleForAzeroth:Named(CT.VisionsOfNZoth, {
+    14140, -- Mad World
+}):Merge()
+local shadowlands = theEntitledPlayer:Named(CT.Shadowlands)
+shadowlands:Named(CT.Exploration, {
+    14277, -- The Accuser's Avowed
+}):Merge()
+shadowlands:Named(CT.Raids, {
+    14365, -- Mythic: Sire Denathrius
+    15121, -- Mythic: Sylvanas Windrunner
+    15489, -- Mythic: The Jailer
+}):Merge()
+shadowlands:Named(CT.Torghast, {
+    14568, -- Twisting Corridors: Layer 6
+}):Merge()
+shadowlands:Named(CT.CovenantSanctums, {
+    14752, -- Things To Do When You're Dead
+    14682, -- The Party Herald
+}):Merge()
+local other = theEntitledPlayer:Named(addon.L["Other"])
+other:Named(CT.Quests, {
+    978, -- 3000 Quests Completed
+    7520, -- The Loremaster
+}):Merge()
+other:Named(CT.Exploration, {
+    46, -- Universal Explorer
+    9924, -- Field Photographer
+    12439, -- Priority Mail
+}):Merge()
+other:Named(CT.Reputation, {
+    1015, -- 40 Exalted Reputations
+    6742, -- 60 Exalted Reputations
+    12864, -- 80 Exalted Reputations
+    12866, -- 100 Exalted Reputations
+}):Merge()
+other:Named(CT.Dungeons, {
+    4477, -- Looking For Many
+}):Merge()
+other:Named(CT.PetBattles, {
+    6607, -- Taming Azeroth
+    14020, -- Pet Battle Challenge: Blackrock Depths
+    8301, -- Deadly Pet Brawler
+}):Merge()
+other:Named(addon.L["Brawler's Guild"] .. CT.Legacy, {
+    13191, -- Brawler for Azeroth
+}):Merge()
+other:Named(CT.Collections, {
+    6590, -- World Safari
+    8397, -- Crazy for Cats
+    10356, -- Lord of the Reins
+    10355, -- Lord of the Reins
+    10354, -- Crashin' Thrashin' Commander
+    10694, -- Fabulous
+    11761, -- Azeroth's Next Top Model
+}):Merge()
+other:Named(CT.Professions, {
+    1516, -- Accomplished Angler
+    7306, -- Master of Pandaren Cooking
+    9464, -- Professional Draenor Master
+    4855, -- What was Briefly Yours is Now Mine
+    4856, -- It Belongs in a Museum!
+    1563, -- Hail to the Chef
+}):Merge()
+other:Named(addon.L["Events"], {
+    913, -- To Honor One's Elders
+    1693, -- Fool For Love
+    2798, -- Noble Gardener
+    1793, -- For the Children
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1683, -- Brewmaster
+    1656, -- Hallowed Be Thy Name
+    3478, -- Pilgrim
+    1691, -- Merrymaker
+}):Merge()
+local pvp = other:Named(CT.PvP)
+pvp:Named(CT.Honor, {
+    12901, -- Honor Level 25
+    12904, -- Honor Level 50
+    12907, -- Honor Level 80
+    12909, -- Honor Level 100
+    12913, -- Honor Level 200
+    12915, -- Honor Level 300
+    870, -- 100000 Honorable Kills
+    5363, -- 250000 Honorable Kills
+}):Merge()
+pvp:Named(CT.World, {
+    8721, -- Fire-Watcher
+    14191, -- Servant of N'Zoth
+    12605, -- Conqueror of Azeroth
+    12604, -- Conqueror of Azeroth
+}):Merge()
+pvp:Named(addon.L["Dueler's Guild"], {
+    12861, -- Master of Duels
+}):Merge()
+pvp:Named(CT.Battlegrounds, {
+    907, -- The Justicar
+    714, -- The Conqueror
+    8360, -- Master of Deepwind Gorge
+    12412, -- Master of Seething Shore
+    230, -- Battlemaster
+    1175, -- Battlemaster
+    8052, -- Khan
+    8055, -- Khan
+}):Merge()
+pvp:Named(addon.L["Rated"], {
+    5328, -- Veteran of the Alliance
+    5325, -- Veteran of the Horde
+    5329, -- Warbound Veteran of the Alliance
+    5326, -- Warbringer of the Horde
+    5330, -- Private
+    5345, -- Scout
+    5331, -- Corporal
+    5346, -- Grunt
+    5332, -- Sergeant
+    5347, -- Sergeant
+    5333, -- Master Sergeant
+    5348, -- Senior Sergeant
+    5334, -- Sergeant Major
+    5349, -- First Sergeant
+    5335, -- Knight
+    5350, -- Stone Guard
+    5336, -- Knight-Lieutenant
+    5351, -- Blood Guard
+    5337, -- Knight-Captain
+    5352, -- Legionnaire
+    5359, -- Knight-Champion
+    5338, -- Centurion
+    5339, -- Lieutenant Commander
+    5353, -- Champion
+    5340, -- Commander
+    5354, -- Lieutenant General
+    5341, -- Marshal
+    5355, -- General
+    5357, -- Field Marshal
+    5342, -- Warlord
+    5343, -- Grand Marshal
+    5356, -- High Warlord
+}):Merge()
+local playerTheFabulous = specials:Named((UnitName("player")) .. " " .. (GetTitleName(334)), {
+    11761, -- Azeroth's Next Top Model
+    17119, -- Deep Cuts From the Vault
+    18380, -- Dragonflight Season 2 Hero
+})
+playerTheFabulous:Named(CT.Collections, {
+    10681, -- Fashionista: Head
+    10682, -- Fashionista: Chest
+    10684, -- Fashionista: Legs
+    10685, -- Fashionista: Feet
+    10686, -- Fashionista: Waist
+    10687, -- Fashionista: Back
+    10688, -- Fashionista: Wrist
+    10690, -- Fashionista: Tabard
+    10691, -- Fashionista: Shirt
+    10692, -- Fashionista: Shoulder
+    10693, -- Fashionista: Hand
+    10689, -- Fashionista: Weapon & Off-Hand
+    10694, -- Fabulous
+    16502, -- Storming the Runway
+})
+playerTheFabulous:Named(CT.Raids, {
+    11741, -- So Hot Right Now
+    11742, -- Dress in Lairs
+    11743, -- Accessor-Eyes
+    11744, -- Drop Dead, Gorgeous
+    11746, -- Outlandish Style
+    11747, -- Merely a Set
+    11748, -- Black is the New Black
+    11749, -- Suns Out, Thori'dals Out
+    11750, -- Undying Aesthetic
+    11751, -- Mogg-Saron
+    11752, -- Style of the Crusader
+    11753, -- Winter Catalog
+    11754, -- Glamour of Twilight
+    11755, -- Hot Couture
+    11756, -- Wardrobe of the Old Gods
+    11757, -- Sha of Fabulous
+    11758, -- Thunderwear
+    11759, -- Yaass'shaarj
+    11740, -- Make it W-orc W-orc
+    11631, -- Extreme Makeover: Fel Edition
+    11628, -- That's So Last Millennium
+    11762, -- Can I Get A Helya
+    11760, -- Retro Trend
+    12020, -- Argussy Up
+    12991, -- New Mog, G'huun This?
+    13385, -- Daz'aling Attire
+    13571, -- Under the Seams
+    14058, -- All Eyes On Me
+    14614, -- Castle Vain
+    15110, -- Dominating the Catwalk
+    15409, -- First Wonders
+    16395, -- Vaulternative Fashion
+    17765, -- What We Wear In The Shadowflame
+    19442, -- Fire Catwalk With Me
+    40469, -- I'm Bringing Nerub-ack
+    41525, -- Can You Please Spell "Gobanna?"
+})
+playerTheFabulous:Named(CT.PvP, {
+    11706, -- The Original
+    11707, -- No Mercy
+    11708, -- With a Vengeance
+    11709, -- Tough Threads
+    11710, -- Lethal Looks
+    11711, -- The Fierce and the Furious
+    11712, -- Relentlessly Good Looking
+    11713, -- Wrath of the Stitch King
+    11714, -- Viciously Vintage
+    11715, -- (Ruth)less is More
+    11716, -- Cataclysmic Catwalk
+    11717, -- Why Male(volent) Models?
+    11718, -- Dressed to Oppress
+    11719, -- It's Not Fashion Unless It Hurts
+    11720, -- Wear It With Pride
+    11629, -- Untamed Beauty
+    11721, -- Wild Style
+    11722, -- War-Mog-ering
+    11630, -- More Like Win-dictive
+    11723, -- Cruel Intentions
+    12021, -- Claws Out
+    12993, -- Don't Warfront Me
+    13433, -- Tall, Dark, and Sinister
+    13585, -- Never Lose, Never Choose To
+    14059, -- The Eyes Have It
+    14831, -- I Live, I Die, I Queue Again
+    15102, -- It's Off the Chain!
+    15408, -- Cosmic Chic
+    16764, -- Crimson Carpet Fashion
+    18249, -- Obsidian Tie Event
+    19276, -- Verdant Vogue
+    40728, -- Forged Finery
+    41595, -- Prized Guise
+    42800, -- Astral Attire
+    61586, -- Galactic Gala
+    63608, -- Venomous Vestments
+})
+local realmFirst = specials:Named(addon.L["Realm First!"])
+local leveling = realmFirst:Named(addon.L["Leveling"])
+leveling:Named(addon.L["Level 80"], {
+    457, -- Realm First! Level 80 (Legacy)
+    459, -- Realm First! Level 80 Warrior (Legacy)
+    465, -- Realm First! Level 80 Paladin (Legacy)
+    462, -- Realm First! Level 80 Hunter (Legacy)
+    458, -- Realm First! Level 80 Rogue (Legacy)
+    464, -- Realm First! Level 80 Priest (Legacy)
+    461, -- Realm First! Level 80 Death Knight (Legacy)
+    467, -- Realm First! Level 80 Shaman (Legacy)
+    460, -- Realm First! Level 80 Mage (Legacy)
+    463, -- Realm First! Level 80 Warlock (Legacy)
+    466, -- Realm First! Level 80 Druid (Legacy)
+    1408, -- Realm First! Level 80 Human (Legacy)
+    1410, -- Realm First! Level 80 Orc (Legacy)
+    1407, -- Realm First! Level 80 Dwarf (Legacy)
+    1409, -- Realm First! Level 80 Night Elf (Legacy)
+    1413, -- Realm First! Level 80 Forsaken (Legacy)
+    1411, -- Realm First! Level 80 Tauren (Legacy)
+    1404, -- Realm First! Level 80 Gnome (Legacy)
+    1412, -- Realm First! Level 80 Troll (Legacy)
+    1405, -- Realm First! Level 80 Blood Elf (Legacy)
+    1406, -- Realm First! Level 80 Draenei (Legacy)
+}):Merge()
+leveling:Named(addon.L["Level 85"], {
+    4999, -- Realm First! Level 85 (Legacy)
+    5007, -- Realm First! Level 85 Warrior (Legacy)
+    5001, -- Realm First! Level 85 Paladin (Legacy)
+    5004, -- Realm First! Level 85 Hunter (Legacy)
+    5008, -- Realm First! Level 85 Rogue (Legacy)
+    5002, -- Realm First! Level 85 Priest (Legacy)
+    5005, -- Realm First! Level 85 Death Knight (Legacy)
+    4998, -- Realm First! Level 85 Shaman (Legacy)
+    5006, -- Realm First! Level 85 Mage (Legacy)
+    5003, -- Realm First! Level 85 Warlock (Legacy)
+    5000, -- Realm First! Level 85 Druid (Legacy)
+}):Merge()
+leveling:Named(addon.L["Level 90"], {
+    6524, -- Realm First! Level 90 (Legacy)
+    6750, -- Realm First! Level 90 Warrior (Legacy)
+    6744, -- Realm First! Level 90 Paladin (Legacy)
+    6747, -- Realm First! Level 90 Hunter (Legacy)
+    6751, -- Realm First! Level 90 Rogue (Legacy)
+    6745, -- Realm First! Level 90 Priest (Legacy)
+    6748, -- Realm First! Level 90 Death Knight (Legacy)
+    6523, -- Realm First! Level 90 Shaman (Legacy)
+    6749, -- Realm First! Level 90 Mage (Legacy)
+    6746, -- Realm First! Level 90 Warlock (Legacy)
+    6752, -- Realm First! Level 90 Monk (Legacy)
+    6743, -- Realm First! Level 90 Druid (Legacy)
+}):Merge()
+local professions = realmFirst:Named(CT.Professions)
+professions:Named(addon.L["450 skill"], {
+    1415, -- Realm First! Grand Master Alchemist
+    1420, -- Realm First! Grand Master Angler
+    5395, -- Realm First! Grand Master Archaeologist
+    1414, -- Realm First! Grand Master Blacksmith
+    1416, -- Realm First! Grand Master Cook
+    1417, -- Realm First! Grand Master Enchanter
+    1418, -- Realm First! Grand Master Engineer
+    1421, -- Realm First! Grand Master Herbalist
+    1423, -- Realm First! Grand Master Jewelcrafter
+    1424, -- Realm First! Grand Master Leatherworker
+    1419, -- Realm First! Grand Master Medic
+    1425, -- Realm First! Grand Master Miner
+    1422, -- Realm First! Grand Master Scribe
+    1426, -- Realm First! Grand Master Skinner
+    1427, -- Realm First! Grand Master Tailor
+}):Merge()
+professions:Named(addon.L["525 skill"], {
+    5381, -- Realm First! Illustrious Alchemist
+    5387, -- Realm First! Illustrious Angler
+    5396, -- Realm First! Illustrious Archaeologist
+    5382, -- Realm First! Illustrious Blacksmith
+    5383, -- Realm First! Illustrious Cook
+    5384, -- Realm First! Illustrious Enchanter
+    5385, -- Realm First! Illustrious Engineer
+    5388, -- Realm First! Illustrious Herbalist
+    5390, -- Realm First! Illustrious Jewelcrafter
+    5391, -- Realm First! Illustrious Leatherworker
+    5386, -- Realm First! Illustrious Medic
+    5392, -- Realm First! Illustrious Miner
+    5389, -- Realm First! Illustrious Scribe
+    5393, -- Realm First! Illustrious Skinner
+    5394, -- Realm First! Illustrious Tailor
+}):Merge()
+professions:Named(addon.L["600 skill"], {
+    6859, -- Realm First! Zen Master Alchemist
+    6865, -- Realm First! Zen Master Angler
+    6873, -- Realm First! Zen Master Archaeologist
+    6860, -- Realm First! Zen Master Blacksmith
+    6861, -- Realm First! Zen Master Cook
+    6862, -- Realm First! Zen Master Enchanter
+    6863, -- Realm First! Zen Master Engineer
+    6866, -- Realm First! Zen Master Herbalist
+    6868, -- Realm First! Zen Master Jewelcrafter
+    6869, -- Realm First! Zen Master Leatherworker
+    6864, -- Realm First! Zen Master Medic
+    6870, -- Realm First! Zen Master Miner
+    6867, -- Realm First! Zen Master Scribe
+    6871, -- Realm First! Zen Master Skinner
+    6872, -- Realm First! Zen Master Tailor
+}):Merge()
+realmFirst:Named(CT.Reputation, {
+    1463, -- Realm First! Northrend Vanguard
+    6829, -- Realm First! Pandaren Ambassador
+}):Merge()
+realmFirst:Named(CT.Dungeons, {
+    6433, -- Realm First! Challenge Conqueror: Gold
+    11224, -- Realm First! Legion Keystone Master
+    13078, -- Realm First! Battle for Azeroth Keystone Master
+    14662, -- Realm First! Shadowlands Keystone Master
+    16801, -- Realm First! Dragonflight Keystone Hero
+}):Merge()
+realmFirst:Named(CT.Raids, {
+    1402, -- Realm First! Conqueror of Naxxramas
+    456, -- Realm First! Obsidian Slayer
+    1400, -- Realm First! Magic Seeker
+    3117, -- Realm First! Death's Demise
+    3259, -- Realm First! Celestial Defender
+    4078, -- Realm First! Grand Crusader
+    4576, -- Realm First! Fall of the Lich King
+}):Merge()
+local promotions = specials:Named(CT.Promotions, {
+    414, -- Tyrael's Hilt
+    10537, -- Patron of War
+    10657, -- Fledgling Hero of Warcraft
+    11210, -- Fight for the Alliance
+    11211, -- Fight for the Horde
+    15594, -- Fearless Spectator
+    17305, -- Trading Post: Dragonflight
+    19029, -- Lil' Maggz
+    19031, -- Fyrn
+    62400, -- Craft Your World
+})
+promotions:Named(addon.L["BlizzCon"], {
+    411, -- Murky
+    412, -- Murloc Costume
+    415, -- Big Blizzard Bear
+    3536, -- The Marine Marine
+    5378, -- Deathy
+    6185, -- Murkablo
+    8793, -- Murkalot
+    9763, -- Grommloc
+    10322, -- Murkidan
+    11294, -- Murloc Battlemasters
+    11931, -- Rides of War
+    13138, -- Flying Colors
+    14027, -- Battle for Mrrglroth
+    14904, -- Netherwhelp Online
+    18250, -- Ysergle The Dreamurk
+}):Merge()
+promotions:Named(addon.L["Collector's Edition"], {
+    662, -- Collector's Edition: Mini-Diablo
+    663, -- Collector's Edition: Panda
+    664, -- Collector's Edition: Zergling
+    665, -- Collector's Edition: Netherwhelp
+    683, -- Collector's Edition: Frost Wyrm Whelp
+    5377, -- Collector's Edition: Lil' Deathwing
+    6849, -- Collector's Edition: Imperial Quilen
+    6848, -- Collector's Edition: Lucky Quilen Cub
+    8916, -- Collector's Edition: Dread Raven
+    8917, -- Collector's Edition: Dread Hatchling
+    10320, -- Collector's Edition: Illidari Felstalker
+    10321, -- Collector's Edition: Nibbles
+    12229, -- Collector's Edition: Seabraid Stallion
+    12230, -- Collector's Edition: Gilded Ravasaur
+    12232, -- Collector's Edition: Tottle
+    14283, -- Heroic Edition: Ensorcelled Everwyrm
+    16332, -- The Perfect Pebble
+    17314, -- Heroic Edition: Tangled Dreamweaver
+    19027, -- Heroic Edition: Algarian Stormrider
+    18928, -- Storm Rider: Bronze
+    18929, -- Storm Rider: Silver
+    18931, -- Storm Rider: Gold
+    19030, -- Squally
+    61401, -- Heroic Edition: Lightwing Dragonhawk
+    61402, -- Epic Edition: Voidlight Surger
+}):Merge()
+local diablo = promotions:Named(addon.L["Diablo"], {
+    11395, -- Diablo's 20th Anniversary
+})
+diablo:Named(addon.L["Diablo III"], {
+    7412, -- Collector's Edition: Fetish Shaman
+    8795, -- Collector's Edition: Treasure Goblin
+}):Merge()
+diablo:Named(addon.L["Diablo IV"], {
+    15640, -- Return to Darkness
+    18258, -- Little Lord of Lies
+}):Merge()
+promotions:Named(addon.L["Overwatch"], {
+    11064, -- Collector's Edition: Baby Winston
+}):Merge()
+promotions:Named(addon.L["StarCraft II"], {
+    4824, -- Collector's Edition: Mini Thor
+    7842, -- Collector's Edition: Baneling
+    10309, -- Collector's Edition: Zeradar
+    12454, -- Salute to StarCraft
+}):Merge()
+local hearthstone = promotions:Named(addon.L["Hearthstone"], {
+    8345, -- Hearthstoned
+    15323, -- Sarge's Tale
+})
+hearthstone:Named(addon.L["10th Anniversary"], {
+    20033, -- Hearthstone Beginner
+    19724, -- Hearthstone Card Collection
+    19866, -- Hearthstoned: Fiery Edition
+}):Merge():WithId(1563)
+promotions:Named(addon.L["Heroes of the Storm"], {
+    9926, -- Hero of the Storm
+    11425, -- Herald of Flames
+}):Merge()
+promotions:Named(addon.L["Warcraft III: Reforged"], {
+    13196, -- Meat Marauder
+}):Merge()
+promotions:Named(addon.L["Warcraft Rumble"], {
+    17346, -- Warcraft Rumble Minis, Maiev's New Look
+    17353, -- Warcraft Rumble Minis, Maiev's Newer Look
+    17347, -- Warcraft Rumble Minis, Sneed's New Look
+    17354, -- Warcraft Rumble Minis, Sneed's Newer Look
+    17348, -- Warcraft Rumble Minis, Huntress' New Look
+    17355, -- Warcraft Rumble Minis, Huntress' Newer Look
+    17349, -- Warcraft Rumble Minis, Tauren's New Look
+    17356, -- Warcraft Rumble Minis, Tauren's Newer Look
+    17350, -- Warcraft Rumble Minis, Ghoul's New Look
+    17357, -- Warcraft Rumble Minis, Ghoul's Newer Look
+    17351, -- Warcraft Rumble Minis, Murloc's New Look
+    17358, -- Warcraft Rumble Minis, Murloc's Newer Look
+    17352, -- Warcraft Rumble Minis, Whelp Egg's New Look
+    17359, -- Warcraft Rumble Minis, Whelp Egg's Newer Look
+    17344, -- Warcraft Rumble Minis, Get 'Em All!
+    17360, -- Warcraft Rumble Minis, New Looks!
+    17361, -- Rumble Minis, All the Looks!
+    15344, -- "S.A.F.E"" Pilot"
+}):Merge()
+local mythic = specials:Named(addon.L["Mythic+"])
+mythic:Insert(shared.GetShadowlandsMythicPlus(CT.Shadowlands))
+mythic:Insert(shared.GetDragonflightMythicPlus(CT.Dragonflight))
+mythic:Insert(shared.GetTheWarWithinMythicPlus(CT.TheWarWithin))
+mythic:Insert(shared.GetMidnightMythicPlus(CT.Midnight))
