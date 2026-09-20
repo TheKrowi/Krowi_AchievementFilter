@@ -27,6 +27,11 @@
       unit-tests       [Error]   the headless suites (headless/run-tests.lua, scenarios shared with the
                                  in-game /kaftest runner) behave as the scenarios' Recorded fields
                                  say; a deliberate behaviour change updates those fields in Tests/
+      category-snapshot [Error]  the category tree each client builds still matches the recorded
+                                 baseline in headless/snapshots/ (headless/snapshot-categories.lua:
+                                 node paths, sibling order, flags, achievement placement, orphans);
+                                 an intended change is regenerated with -write and committed with
+                                 the code that caused it, never absorbed silently
       lookup-placeholders [Warning] _lookup_*.ps1 skill scripts are committed with empty @() placeholders
       bom              [Warning] no UTF-8 byte order mark (.editorconfig: utf-8)
       line-endings     [Warning] CRLF only (.editorconfig: crlf)
@@ -453,6 +458,23 @@ if ((Test-Path $lua) -and (Test-Path $runner)) {
 }
 Write-Timing 'unit-tests'
 
+# --- category-snapshot: the category tree still matches the recorded baseline ---------------------
+# The data load reports success for a category node it silently drops - that is how nineteen
+# subtrees vanished on 2026-09-20 with load-data at 0 problems. This rule compares the whole parsed
+# tree, per client, against a committed baseline, so a structural change has to be looked at.
+$snapshot = Join-Path $root '.claude\tools\headless\snapshot-categories.lua'
+if ((Test-Path $lua) -and (Test-Path $snapshot)) {
+    $ErrorActionPreference = 'Continue'
+    $out = & $lua $snapshot $root Both -check 2>&1 | ForEach-Object { "$_" }
+    $ErrorActionPreference = 'Stop'
+    foreach ($line in $out) {
+        $m = [regex]::Match($line, '^(.*?):(\d+): (.*)$')
+        if ($m.Success) { Add-Finding 'category-snapshot' 'Error' $m.Groups[1].Value ([int]$m.Groups[2].Value) $m.Groups[3].Value }
+    }
+}
+
+Write-Timing 'category-snapshot'
+
 # --- lookup-placeholders: designated DB lookup scripts must be left with empty placeholders -----
 foreach ($script in Get-ChildItem -Path (Join-Path $root '.claude\skills') -Recurse -Filter '_lookup_*.ps1') {
     $rel = ConvertTo-RelativePath $script.FullName
@@ -605,7 +627,7 @@ if (Test-Path $ignoreFile) {
         if ($t -match '^(\S+)\s+(\S+)$') { $ignore += @{ Rule = $Matches[1]; Path = $Matches[2] } }
     }
 }
-$alwaysOn = @('dup-id', 'saved-variables', 'lua-syntax', 'globals', 'luarc', 'data-load', 'unit-tests', 'zone-decisions', 'mapverifier', 'changelog')
+$alwaysOn = @('dup-id', 'saved-variables', 'lua-syntax', 'globals', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'zone-decisions', 'mapverifier', 'changelog')
 $report = $findings | Where-Object {
     $f = $_
     -not ($ignore | Where-Object { ($_.Rule -eq '*' -or $_.Rule -eq $f.Rule) -and $f.Path -like $_.Path })
