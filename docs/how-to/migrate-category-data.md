@@ -157,6 +157,16 @@ On a scratch branch, re-introduce one of the nineteen broken nodes (swap a `{ na
 
 A verifier that has never failed is not a verifier. **This is the gate for leaving Phase 1.** Discard the scratch branch afterwards.
 
+> **Passed 2026-09-20**, on `scratch/verify-the-verifier`, against the BlizzCon node in `DataAddons/Retail/CategoryData_Specials.lua`. Three separate breaks were injected and each was reverted to green afterwards.
+>
+> | Injected break | `load-data Both` | `snapshot-categories -check` |
+> |---|---|---|
+> | `{ true, name, … }` — the original slip | **0 problems** (reproduces the blind spot) | fails: `- CAT Specials > Promotions > BlizzCon \| merge`, its 15 `ACH` lines gone, **Orphans 88 → 103** with `ORPHAN 411`, `ORPHAN 412`, … |
+> | two achievement ids swapped | 0 problems | fails: *the same 2 lines in a different order*, naming line 11039 `was "… # 411", now "… # 412"` |
+> | `canMerge` removed | 0 problems | fails: `- CAT … \| merge` / `+ CAT …` |
+>
+> The second and third are the migration's own risks rather than the original bug: `:Named()` reorders nothing by itself, but a hand-migrated chain can, and `ZoneBuilder:Named` sets `CanMerge` implicitly (see 0.2). The ordering case originally reported "0 lines gone, 0 new" — true but useless — and the reporting was fixed to name the moved positions before the gate was called passed.
+
 ---
 
 ## Phase 2 — Migrate

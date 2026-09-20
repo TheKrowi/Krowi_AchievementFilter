@@ -250,7 +250,8 @@ local function splitLines(s)
 end
 
 -- Compared as a multiset of lines plus their order. A structural change shows as removed and added
--- lines, which is the review signal; a pure reordering shows as the first differing position.
+-- lines; a change that only moves lines about - a reordered sibling, which is user-visible in the
+-- category list - has an identical multiset, so the positional differences are reported instead.
 local function compare(baseline, current)
     local was, now = splitLines(baseline), splitLines(current)
     local counts = {}
@@ -263,11 +264,13 @@ local function compare(baseline, current)
     end
     table.sort(removed)
     table.sort(added)
-    local firstDiff
+    local moved = {}
     for i = 1, math.max(#was, #now) do
-        if was[i] ~= now[i] then firstDiff = i break end
+        if was[i] ~= now[i] then
+            moved[#moved + 1] = { Line = i, Was = was[i], Now = now[i] }
+        end
     end
-    return removed, added, firstDiff
+    return removed, added, moved
 end
 
 local clients = clientArg == "Both" and { "Retail", "Classic" } or { clientArg }
@@ -293,16 +296,27 @@ for _, client in ipairs(clients) do
         elseif baseline == text then
             io.stdout:write(string.format("snapshot-categories %s: matches the baseline\n", client))
         else
-            local removed, added, firstDiff = compare(baseline, text)
-            io.stderr:write(string.format("%s:%d: the %s category tree no longer matches the recorded baseline: %d line(s) gone, %d new. Review the change; if it is intended, regenerate with -write and commit the diff with the code that caused it\n",
-                rel, firstDiff or 1, client, #removed, #added))
-            local function dump(label, list)
-                local shown = math.min(#list, 40)
-                for i = 1, shown do io.stderr:write(string.format("%s:%d:   %s %s\n", rel, firstDiff or 1, label, list[i])) end
-                if #list > shown then io.stderr:write(string.format("%s:%d:   %s ... and %d more\n", rel, firstDiff or 1, label, #list - shown)) end
+            local removed, added, moved = compare(baseline, text)
+            local at = moved[1] and moved[1].Line or 1
+            local what
+            if #removed == 0 and #added == 0 then
+                what = string.format("the same %d lines in a different order, so a sibling or an achievement moved - that is visible in the category list", #moved)
+            else
+                what = string.format("%d line(s) gone, %d new", #removed, #added)
             end
-            dump("-", removed)
-            dump("+", added)
+            io.stderr:write(string.format("%s:%d: the %s category tree no longer matches the recorded baseline: %s. Review the change; if it is intended, regenerate with -write and commit the diff with the code that caused it\n",
+                rel, at, client, what))
+            local function dump(label, list, render)
+                local shown = math.min(#list, 40)
+                for i = 1, shown do io.stderr:write(string.format("%s:%d:   %s\n", rel, at, render(label, list[i]))) end
+                if #list > shown then io.stderr:write(string.format("%s:%d:   %s ... and %d more\n", rel, at, label, #list - shown)) end
+            end
+            if #removed == 0 and #added == 0 then
+                dump("~", moved, function(l, m) return string.format("%s line %d: was %q, now %q", l, m.Line, tostring(m.Was), tostring(m.Now)) end)
+            else
+                dump("-", removed, function(l, v) return l .. " " .. v end)
+                dump("+", added, function(l, v) return l .. " " .. v end)
+            end
             problems = problems + 1
         end
     end
