@@ -9,7 +9,9 @@
 --   (no flag)  print every scenario line and a summary, for both clients unless -client is given
 --   -check     print only "<file>:<line>: <message>" per scenario that does not pass (what Check-Repo.ps1
 --              runs as the unit-tests rule); exit 1 when any scenario fails or is skipped
--- Suites: escape (Gui/FramesForClosing.lua)
+-- Suites: escape (Gui/FramesForClosing.lua), special (Data/SpecialCategoryAchievements.lua, Data/SpecialCategories.lua,
+--         Data/SavedData/AchievementData.lua: Watch List, Excluded and Tracking membership and the rebuilds the
+--         layout options trigger; the option setters themselves live in Options/Layout.lua and only run in game)
 --
 -- Retail model is 12.1: the Blizzard_GameMenuEsc handler registry, the UI panel manager (its slots stay
 -- empty because the addon shows the achievement window with a plain Show), UISpecialFrames, static
@@ -170,7 +172,7 @@ local function BuildClient(client)
         L = setmetatable({}, { __index = function(_, k) return k end }),
         Diagnostics = { DebugEnabled = function() return true end, TraceEnabled = function() return false end, Trace = function() end, Debug = function() end },
         Util = { IsMainline = isRetail, IsClassicWithAchievements = not isRetail },
-        Tests = { Suites = {} },
+        Tests = { Suites = {}, Ready = {} },
     }
     setmetatable(addon, { __index = function(t, k) local s = Stub("addon." .. tostring(k)) rawset(t, k, s) return s end })
 
@@ -312,6 +314,77 @@ suites.escape = function(c)
         env.KrowiAF_SpecialFrame:Hide()
     end
     return escape.Run(headless), "Tests/Escape.lua", observations
+end
+
+-- The real object, special-category and saved-data code with the frames and options stubbed; two tabs, so
+-- every special category has two roots. The rebuild is what Options/Layout.lua's DrawSubCategories does
+-- (reset, reload) without the frame updates, since the option tables need AceConfig and the whole GUI.
+suites.special = function(c)
+    local env, addon = c.env, c.addon
+    env.UnitGUID = function() return "Player-Test" end
+    env.KrowiAF_Achievements = { Watched = {} }
+    env.KrowiAF_SavedData = {}
+    local noop = function() end
+    env.KrowiAF_CategoriesFrame = { Update = noop }
+    env.KrowiAF_AchievementsFrame = { ForceUpdate = noop, ScrollBox = { GetScrollPercentage = function() return 0 end, SetScrollPercentage = noop } }
+    env.KrowiAF_SummaryFrame = { UpdateAchievementsOnNextShow = noop }
+    addon.Objects = {}
+    addon.Gui = { SelectedTab = {}, RefreshView = noop, RefreshViewAfterPlayerLogin = noop }
+    local profile = {
+        Categories = {
+            WatchList = { ShowSubCategories = false, IgnoreFilters = true, CharacterSpecific = false },
+            TrackingAchievements = { ShowSubCategories = false, DoLoad = true },
+            Excluded = { Show = true, ShowSubCategories = false },
+        },
+        AdjustableCategories = { Summary = { true, true }, WatchList = { true, true }, TrackingAchievements = { true, true }, Excluded = { true, true }, Uncategorized = { true, true } },
+    }
+    addon.Options = { db = { profile = profile } }
+    local nextCategoryId = 9000
+    addon.Data = { Achievements = {}, Categories = {}, AchievementIds = {}, SavedData = {}, GetNextFreeCategoryId = function()
+        nextCategoryId = nextCategoryId + 1
+        return nextCategoryId
+    end }
+    addon.TrackingAchievements, addon.UncategorizedAchievements = {}, {} -- Data/AchievementCache.lua's tables
+    c.loadAddonFile("Objects/Achievement.lua")
+    c.loadAddonFile("Objects/Category.lua")
+    c.loadAddonFile("Objects/Tab.lua")
+    c.loadAddonFile("Data/SavedData/AchievementData.lua")
+    c.loadAddonFile("Data/SpecialCategories.lua")
+    c.loadAddonFile("Data/SpecialCategoryAchievements.lua")
+    addon.Tabs, addon.TabsOrder = {}, { "Achievements", "Expansions" }
+    for _, name in ipairs(addon.TabsOrder) do
+        local tab = addon.Objects.Tab:New(name, name)
+        tab.Category = addon.Objects.Category:New(addon.Data.GetNextFreeCategoryId(), name)
+        tab.Category:SetTabName(name)
+        addon.Data.Categories[tab.Category.Id] = tab.Category
+        addon.Tabs[name] = tab
+    end
+    addon.SpecialCategories:Load()
+    c.loadAddonFile("Tests/SpecialCategories.lua")
+    local special = addon.Tests.SpecialCategories
+
+    local resets = { WatchList = addon.ResetWatchListCategories, Excluded = addon.ResetExcludedCategories, TrackingAchievements = addon.ResetTrackingAchievementsCategories }
+    local loaders = {
+        WatchList = function() addon.Data.SavedData.AchievementData.LoadWatchedAchievements() end,
+        Excluded = addon.SpecialCategories.LoadExcludedAchievements,
+        TrackingAchievements = addon.SpecialCategories.LoadTrackingAchievements,
+    }
+    local headless = {}
+    function headless.Setup() return true end
+    function headless.Teardown() end
+    function headless.Rebuild(kind)
+        resets[kind]()
+        loaders[kind]()
+    end
+    function headless.SetSubCategories(kind, on)
+        profile.Categories[kind].ShowSubCategories = on
+        headless.Rebuild(kind)
+    end
+    function headless.SetExcludedShown(on) -- Options/Layout.lua's ShowExcludedCategory
+        profile.Categories.Excluded.Show = on
+        if on then addon.SpecialCategories.LoadExcludedAchievements() else addon.ResetExcludedCategories() end
+    end
+    return special.Run(headless), "Tests/SpecialCategories.lua", {}
 end
 
 -------------------------------------------------------------------------------------------------

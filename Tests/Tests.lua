@@ -1,6 +1,7 @@
 local _, addon = ...
 addon.Tests = {
-    Suites = {}
+    Suites = {},
+    Ready = {} -- optional per suite: function() -> ok[, reason]; a login run waits for it, a manual run reports the reason
 }
 local tests = addon.Tests
 
@@ -15,7 +16,9 @@ local tests = addon.Tests
 -- headless run. Needs debug mode (Options > General > Debug) and refuses to run in combat.
 
 local prefix = "|cFF88CCFFKrowiAF Tests:|r "
-local loginDelay = 5 -- seconds after PLAYER_ENTERING_WORLD; the data load may still be running, the suites do not need it
+local loginDelay = 5 -- seconds after PLAYER_ENTERING_WORLD before the first attempt
+local loginWait = 120 -- seconds a login run keeps waiting for a suite's Ready check (the data load can take a while on a cold cache)
+local retryDelay = 2
 
 local function GetDb()
     KrowiAF_DebugTable = KrowiAF_DebugTable or {}
@@ -38,7 +41,8 @@ local statusColors = {
     SKIP = "|cFFFFFF00"
 }
 
-function tests.Run(name)
+-- waitSeconds: how long to keep retrying the suite's Ready check (login runs); nil runs once
+function tests.Run(name, waitSeconds)
     local suite = tests.Suites[name]
     if not suite then
         print(prefix .. "unknown suite '" .. tostring(name) .. "'; available: " .. tests.List())
@@ -51,6 +55,22 @@ function tests.Run(name)
     if not addon.Diagnostics.DebugEnabled() then
         print(prefix .. "enable debug mode first (Options > General > Debug)")
         return
+    end
+    if tests.Ready[name] then
+        local ready, reason = tests.Ready[name]()
+        if not ready then
+            if waitSeconds and waitSeconds > 0 then
+                if waitSeconds == loginWait then
+                    print(prefix .. "waiting for '" .. name .. "': " .. tostring(reason))
+                end
+                C_Timer.After(retryDelay, function()
+                    tests.Run(name, waitSeconds - retryDelay)
+                end)
+            else
+                print(prefix .. "cannot run '" .. name .. "': " .. tostring(reason))
+            end
+            return
+        end
     end
 
     local results, observations = suite()
@@ -120,6 +140,6 @@ addon.Event:RegisterEvent("PLAYER_ENTERING_WORLD", function(_, isLogin, isReload
         return
     end
     C_Timer.After(loginDelay, function()
-        tests.Run(name)
+        tests.Run(name, loginWait)
     end)
 end)

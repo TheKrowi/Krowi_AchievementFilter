@@ -119,6 +119,7 @@ local function PostLoadOnPlayerLogin(self, start)
 
     local function PostBuildCache()
         addon.SpecialCategories.LoadData()
+        self.IsLoaded = true -- every achievement object exists and the special categories are filled; the test runner waits for this
 
         if AchievementFrame and AchievementFrame:IsShown() then
             addon.Gui:RefreshViewAfterPlayerLogin()

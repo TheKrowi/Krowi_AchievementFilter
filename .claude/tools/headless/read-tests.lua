@@ -30,8 +30,8 @@ local f = headlessPath and io.open(headlessPath, "rb")
 if f then
     headless = {}
     for line in f:read("*a"):gmatch("[^\r\n]+") do
-        local scenario = line:match("^([%w_%-]+/[%w_%-]+): ") -- "<suite>/<scenario>: ..."; summary and observation lines do not match
-        if scenario then headless[scenario] = line end
+        local scenario, suite = line:match("^(([%w_%-]+)/[%w_%-]+): ") -- "<suite>/<scenario>: ..."; summary and observation lines do not match
+        if scenario and suite == tostring(run.Suite) then headless[scenario] = line end -- the headless file holds every suite, the game run one
     end
     f:close()
 end
