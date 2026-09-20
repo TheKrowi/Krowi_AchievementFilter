@@ -176,6 +176,21 @@ A verifier that has never failed is not a verifier. **This is the gate for leavi
 
 ## Phase 2 — Migrate
 
+> **Done 2026-09-21.** All 21 first-party category files are V2, one per commit, each with a zero snapshot diff on both clients. 19,164 lines became 13,748. No V1 category data is left in `DataAddons/`; V1 itself is untouched and still supported for plugins.
+>
+> The files were produced by a text-level transpiler rather than retyped — 19,000 lines of hand transcription would have been the least reliable part of the whole exercise — and the snapshot is what makes that safe: the transpiler proposes, the zero-diff gate disposes. It is text-level because evaluating the tables as data would discard the inline `-- Achievement Name` comments, which are the data files' only documentation. The script is not committed; it is a one-off and the result is the deliverable.
+>
+> Four things the gate caught that review would not have, each fixed before the file was committed:
+>
+> | Caught | What was wrong |
+> |---|---|
+> | `CT.Archaeology` lost its `merge` flag | `ProfessionsBuilder` does not override `:Named`; only its 13 named helpers merge, and Archaeology has no helper |
+> | ~700 Vanilla achievements became orphans | `addon.GetInstanceInfoName(559) .. (IsMainline and CT.Legacy or "")` was read as a plain instance call, because its parentheses balance even though the call closes early |
+> | Three expansions failed to load | `local <var> = tmp:Named(...)` was missed by a substitution anchored to the start of the line |
+> | The whole Midnight subtree vanished | a V2 tab root ignores its array part, so `NewExpansion` had to insert into `Children` — which is why the Expansions root was migrated last |
+>
+> Two API gaps surfaced and were closed first: a zone could not hold a zone (Vanilla nests Stormwind City under Eastern Kingdoms), and `ZoneBuilder:Named` merged implicitly, which made a non-merging child of a zone inexpressible. See 0.2.
+
 One file per commit, smallest first, so the harness is proven on low-risk files.
 
 1. `DataAddons/Classic/CategoryData_Events.lua` — smallest
@@ -202,6 +217,10 @@ Shared files must be snapshotted for **both** clients: they resolve differently 
 ---
 
 ## Phase 3 — Verify again
+
+> **Steps 1, 2, 4 and 5 done 2026-09-21. Step 3, the in-game pass, is the one thing left and cannot be done from the repo.**
+>
+> Offline state after the migration, unchanged from before it: snapshot zero diff on both clients, `load-data … Both` 0 problems (8637 Retail / 2752 Classic achievements), `Check-Repo` 0 errors with the same 6 pre-existing warnings, `escape` 23/23, `special` 27/27.
 
 1. **Snapshot diff is zero** across both clients.
 2. **`load-data ... Both` reports 0 problems.**

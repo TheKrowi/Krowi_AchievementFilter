@@ -17,8 +17,8 @@ Three defects ship today, none of which any check catches:
 | # | Defect | Scale | Status |
 |---|---|---|---|
 | 1 | Achievements mislabelled **Time Limited** on MoP Classic | **306** | live |
-| 2 | Category subtrees that **never load** | **19** (12 Retail, 7 Classic) | live |
-| 3 | Shared version cutoffs resolving wrong on MoP Classic | **5** of 12 | live |
+| 2 | Category subtrees that **never load** | **19** (12 Retail, 7 Classic) | fixed 2026-09-20 |
+| 3 | Shared version cutoffs resolving wrong on MoP Classic | **5** of 12 | fixed 2026-09-20 |
 
 And one dated, certain breakage: `IsClassicWithAchievements` is `majorVersion == '5'`. **The day the Classic line ships major 6, every Classic gate in the addon flips to the Retail path.**
 
@@ -202,7 +202,7 @@ Stages 1 and 2 are worth doing whether or not Forever ever ships.
 
 ## 8. Corrections owed to the instruction files
 
-- **`.github/copilot-instructions.md` is wrong about the category format.** It states "All first-party data is V2; the V1 positional parser in `Api/CategoryDataApi.lua` remains only for plugins." In fact `KrowiAF.NewExpansion` appears **once** in the entire tree ([DataAddons/Retail/12_Midnight/CategoryData.lua:5](../DataAddons/Retail/12_Midnight/CategoryData.lua#L5)). All 11 other Retail expansions, all 5 Classic and all Shared category files are V1 positional tables. The 269-line V2 builder hierarchy serves one file. Either finish the migration or stop describing it as finished — but do not delete V1.
+- ~~**`.github/copilot-instructions.md` is wrong about the category format.**~~ **Resolved 2026-09-21: the migration was finished rather than the claim weakened.** At review time `KrowiAF.NewExpansion` appeared **once** in the entire tree ([DataAddons/Retail/12_Midnight/CategoryData.lua:5](../DataAddons/Retail/12_Midnight/CategoryData.lua#L5)) while all 11 other Retail expansions, all Classic and all Shared category files were V1 positional tables, so the 269-line V2 builder hierarchy served one file. All 21 first-party category files are now V2, each migrated behind a zero-diff category-tree snapshot, and the instruction file documents the V2 category format. V1 is untouched and still supported for plugins. See [`how-to/migrate-category-data.md`](how-to/migrate-category-data.md).
 - **The stated support matrix is wrong.** `CLAUDE.md` and the instructions say Classic means "Wrath, Cata, Mists". The TOC ships `## Interface: 120100, 50504` — Retail 12.1 and MoP Classic only. The `[AllowLoadGameType wrath, cata, mists]` directives are vestigial.
 - **`docs/category-data-reference.md:87`** contradicts the invariant that [BrowsingHistory.lua:5-13](../BrowsingHistory.lua#L5-L13) documents — that runtime-minted category ids must never reach a saved variable. BrowsingHistory is right; that comment is the clearest statement of the rule in the tree and should be promoted, not contradicted.
 

@@ -195,7 +195,7 @@ Declared in the `.toc` `## SavedVariables` line: `KrowiAF_DebugTable`, `KrowiAF_
 
 ### Achievement data format — V2 (current standard)
 
-All achievement entries use `KrowiAF.AchievementData` with the fluent `Ach()` builder, on every expansion and both clients, including new patches added to old expansion files. All first-party data is V2; the V1 positional parser in `Api/CategoryDataApi.lua` remains only for plugins.
+All achievement entries use `KrowiAF.AchievementData` with the fluent `Ach()` builder, on every expansion and both clients, including new patches added to old expansion files. All first-party data is V2 — achievement data and, since 2026-09-21, category data too; the V1 positional parser in `Api/CategoryDataApi.lua` remains only for plugins and must not be removed, because it is the documented plugin entry point (`Api/ApiDocumentation.lua`).
 
 File header (add `local _, addon = ...` only if `addon` is actually used):
 
@@ -215,10 +215,29 @@ KrowiAF.AchievementData["11_01_00"] = {
 }
 ```
 
+### Category data format — V2 (current standard)
+
+Every first-party `CategoryData*.lua` is V2 (migrated 2026-09-21). A category is built with the fluent builder, never as a positional table:
+
+```lua
+local expansion = KrowiAF.NewExpansion(CT.Midnight, { 62387 })   -- an expansion, in DataAddons/*/XX_*/CategoryData.lua
+KrowiAF.CategoryData.Events = KrowiAF.NewTabCategory("Events", addon.L["Events"], 884)   -- a tab root
+
+local zones = expansion:Zones{ 62386 }      -- typed containers: :Character :Zones :Delves :Dungeons :Raids :Professions :PetBattles
+local quelThalas = zones:Zone(2537)         -- :Zone(uiMapId), :Raid/:Dungeon(journalId), :Delve(areaPoiId) — a zone may hold zones
+quelThalas:Quests{ 62110, 42045 }           -- zone sub-containers :Quests :Exploration :PvP :Reputation, which merge
+expansion:Named(CT.Prey, { 62191 }):Merge():WithId(2570)   -- anything else; :Named NEVER merges, :Merge() is explicit
+```
+
+- `:Merge()` is always written out. The only implicit merges are the zone sub-containers and the 13 profession helpers.
+- `:WithId(n)` declares a category id. Declared ids are the plugin contract (`KrowiAF.NewInjection(971)`) and must never change; without one a category draws an auto-allocated id that is a parse position and must not be relied on or persisted.
+- `:Key("Name")` gives a category a stable string handle for `KrowiAF.NewInjection` to target instead — preferred for anything new that another file must attach to.
+- **Any change to a category file must leave `.claude/tools/headless/snapshots/` unchanged**, or the diff must be reviewed and committed with it. The `category-snapshot` lint rule enforces this; see `docs/how-to/migrate-category-data.md`.
+
 ### Steps for adding new achievements
 
 1. Add the achievement data to the appropriate `DataAddons/<Retail|Classic|Shared>/XX_ExpansionName/AchievementData.lua`. Canonical references: `DataAddons/Retail/11_TheWarWithin/`, `Api/ApiDocumentation.lua`, `wiki/achievement-data/achievement-data-format.md`.
-2. Add category data in the corresponding `CategoryData.lua` (`wiki/achievement-data/category-data-format.md`, `docs/category-data-reference.md`).
+2. Add category data in the corresponding `CategoryData.lua`, in the V2 form above (`wiki/achievement-data/category-data-format.md`, `docs/category-data-reference.md`).
 3. If achievements have zone associations, update the expansion's `ZoneData.lua` (`wiki/achievement-data/zone-data-format.md`, `raw/ZoneDataDecisions.md`).
 4. If achievements have tooltip extras, update `TooltipData.lua`.
 5. Update `BuildVersionData.lua` if a new patch version is introduced.
