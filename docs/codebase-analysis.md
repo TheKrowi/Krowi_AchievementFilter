@@ -359,9 +359,9 @@ tinsert(KrowiAF.AchievementData[k1][k2], 1, KrowiAF.AddAchievementData);
 
 **No file documents this contract.** A new contributor reading any data file sees bare tables of IDs with no indication how they become function calls. The `ApiDocumentation.lua` shows the data format but says nothing about the loader mechanism. The `CONTRIBUTING.md` or a `docs/how-to/` file should explain the chunk execution model.
 
-### 3. `Globals.lua` is a 800+ Line Grab-Bag
+### 3. `Globals.lua` is a 800+ Line Grab-Bag ✅ FIXED (2026-09-19, see row 14)
 
-`Globals.lua` contains, without structural separation:
+`Globals.lua` contained, without structural separation:
 - Achievement chain traversal helpers (`GetPreviousAchievement`, `GetFirstAchievementId`)
 - UI state helpers (`InGuildView`, `GetActiveCovenant`)
 - Zone/map achievement lookups (`GetAchievementsInZone`)
@@ -654,7 +654,7 @@ The `DataAddons/Retail/` tree spans 12 expansions. `11_TheWarWithin/CategoryData
 | 11 | ✅ FIXED | Undocumented `ignoreAchievementIds` entries | `Data/SavedData/AchievementData.lua` | Fixed 2026-09-14: 7268, 7269, 7270 are the Temple of Kotmogu scenario achievements from the Mists of Pandaria beta (never released, no faction, no reward), now commented; 40910/40821 already carried a comment and a Retail/Classic split; 42114 had been removed in 98.2. |
 | 12 | ✅ FIXED | Dead code: `GetTopMostParentCategory` + debug branch for `120005` | `Globals.lua` | Fixed 2026-09-09: both removed |
 | 13 | ✅ FIXED | `Plugins/Plugins.lua` entirely commented out | `Plugins/Plugins.lua` | Fixed 2026-09-09: file and its commented-out `Files.xml` line deleted |
-| 14 | 🟡 LOW | `Globals.lua` is too large / does too much | `Globals.lua` | Refactor: split cache, compat, and window management |
+| 14 | ✅ FIXED | `Globals.lua` is too large / does too much | `Globals.lua` | Fixed 2026-09-19: five regions moved out verbatim, `addon.*` names kept so no caller changed. `Data/SpecialCategoryAchievements.lua` (Watch List, Excluded, Tracking and Uncategorized membership and the mirrored sub-category trees), `Data/AchievementCache.lua` (`BuildCacheAsync`, `ResetCache`, `OnAchievementEarned` and the `Handle*` family), `Gui/BlizzardOverrides.lua` (`OverwriteFunctions`, `LoadBlizzardApiChanges`, `HookFunctions`; the `Check-Repo.globals` allowlist lines moved with it, the rule is per file), `Gui/MovableFrames.lua` (`MakeMovable`, `MakeWindowMovable`, `MakeWindowStatic`), `Data/TaskRunner.lua` (`StartTasksGroups`; the 50-line commented-out `StartWork` predecessor was dropped). `Globals.lua` keeps the achievement chain helpers, the `GetAchievementInfo` wrappers, the custom-criteria wrappers, zone lookup, filter counting, transmog set checks, modifier keys and the month and weekday names (312 lines, down from 1058). Load order: the moved code only defines functions called from boot phase 2 or later, so moving it from right after the bootstrap to the `Gui/` and `Data/` manifests changes nothing at load. |
 | 15 | ✅ FIXED | Mixed indentation and semicolons throughout codebase | All files | `.editorconfig` exists; the style rules live in `.github/copilot-instructions.md`. Semicolons stripped tree-wide 2026-09-11 by `.claude/tools/Strip-Semicolons.ps1` (7593 in 221 files, bytecode-verified); the `semicolon` lint rule guards added lines. |
 | 16 | ✅ FIXED | `AchBuilder` reward consumer guards: `IsTable` check + temp table alloc on every filter/render pass | `Filters.lua` validation #6, `Gui/AchievementTooltip/Rewards.lua` | Fixed 2026-04-26: `IsTable` guards removed from both consumers. `RewardType` is always a table or nil. |
 | 17 | ✅ FIXED | `shared.Ach` reference in docs/skills diverged from actual `KrowiAF.Ach` factory | `copilot-instructions.md`, `ApiDocumentation.lua`, `docs/how-to/`, skill files | Fixed 2026-06-21; two stragglers in the wiki and the add-achievement-data skill fixed 2026-09-09. |

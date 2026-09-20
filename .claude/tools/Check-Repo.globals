@@ -3,29 +3,29 @@
 # need a line. Everything else the rule finds is an accidental global until it is listed here with
 # the reason, so an addition to this file is a review item, not a formality.
 
-# --- addon.OverwriteFunctions (Globals.lua): the FrameXML achievement UI functions the addon
-#     replaces on purpose. This is the whole point of the addon; it reshapes AchievementFrame.
+# --- addon.OverwriteFunctions (Gui/BlizzardOverrides.lua): the FrameXML achievement UI functions the
+#     addon replaces on purpose. This is the whole point of the addon; it reshapes AchievementFrame.
 #     Blizzard *API* functions (GetAchievementCriteriaInfo, ...) are never allowed here.
-#     Not visible to this rule, listed for the review trail: Globals.lua also replaces the table field
+#     Not visible to this rule, listed for the review trail: the same file also replaces the table field
 #     AchievementTemplateMixin.ProcessClick (same reason as AchievementFrameSummaryAchievement_OnClick below).
-Globals.lua AchievementFrame_ToggleAchievementFrame
-Globals.lua AchievementFrame_DisplayComparison
-Globals.lua AchievementFrame_SelectAchievement
-Globals.lua AchievementFrame_SetTabs
-Globals.lua AchievementFrameSummaryAchievement_OnClick    # wrapped: inserts the chat link itself, skipping the protected C_AchievementTelemetry call
-Globals.lua AchievementFrameTab_OnClick
+Gui/BlizzardOverrides.lua AchievementFrame_ToggleAchievementFrame
+Gui/BlizzardOverrides.lua AchievementFrame_DisplayComparison
+Gui/BlizzardOverrides.lua AchievementFrame_SelectAchievement
+Gui/BlizzardOverrides.lua AchievementFrame_SetTabs
+Gui/BlizzardOverrides.lua AchievementFrameSummaryAchievement_OnClick    # wrapped: inserts the chat link itself, skipping the protected C_AchievementTelemetry call
+Gui/BlizzardOverrides.lua AchievementFrameTab_OnClick
 Gui/Gui.lua AchievementFrameTab_OnClick
 Gui/WindowFrames/AchievementFrameTabButtonFactory/AchievementFrameTabButtonFactory.lua AchievementFrameTab_OnClick
 
-# --- addon.LoadBlizzardApiChanges (Globals.lua): polyfills for globals Blizzard removed in
-#     10.1.5, defined only when the game no longer provides them (`if not X then X = ... end`)
-Globals.lua IsTrackedAchievement
-Globals.lua RemoveTrackedAchievement
-Globals.lua GetNumTrackedAchievements
-Globals.lua AddTrackedAchievement
-Globals.lua MAX_TRACKED_ACHIEVEMENTS
-Globals.lua WatchFrame_Update
-Globals.lua SetFocusedAchievement
+# --- addon.LoadBlizzardApiChanges (Gui/BlizzardOverrides.lua): polyfills for globals Blizzard removed
+#     in 10.1.5, defined only when the game no longer provides them (`if not X then X = ... end`)
+Gui/BlizzardOverrides.lua IsTrackedAchievement
+Gui/BlizzardOverrides.lua RemoveTrackedAchievement
+Gui/BlizzardOverrides.lua GetNumTrackedAchievements
+Gui/BlizzardOverrides.lua AddTrackedAchievement
+Gui/BlizzardOverrides.lua MAX_TRACKED_ACHIEVEMENTS
+Gui/BlizzardOverrides.lua WatchFrame_Update
+Gui/BlizzardOverrides.lua SetFocusedAchievement
 
 # --- Blizzard frame aliases and constants the classic/retail GUI code adjusts
 Gui/Gui.lua AchievementFrameFilterDropdown                                         # alias: the frame is AchievementFrameFilterDropDown on Classic, Filters.FilterDropdown on Retail

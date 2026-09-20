@@ -1,6 +1,8 @@
 <Ui>
     <Script file="Gui.lua"/>
     <Script file="FramesForClosing.lua"/>
+    <Script file="BlizzardOverrides.lua"/>
+    <Script file="MovableFrames.lua"/>
     <Include file="Gui.xml"/>
     <Include file="WorldMapButton\WorldMapButton.xml"/>
     <Include file="FloatingAchievementTooltip\FloatingAchievementTooltip.xml"/>
