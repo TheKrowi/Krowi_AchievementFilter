@@ -645,388 +645,295 @@ crossExpansion:Named(CT.FeatsOfStrength, {
 })
 
 
-shared.Shadowlands = {}
-local shadowlands = shared.Shadowlands
-
-shadowlands.MythicPlus = {
-    { -- Season 1
-        -- 1567,
-        addon.L["Season"] .. " " .. 1,
-        true,
-        {
-            14938, -- Shadowlands Keystone Explorer: Season One
-            14531, -- Shadowlands Keystone Conqueror: Season One
-            14532, -- Shadowlands Keystone Master: Season One
-        },
-    },
-    { -- Season 2
-        -- 1568,
-        addon.L["Season"] .. " " .. 2,
-        true,
-        {
-            15051, -- Keystone Hero: De Other Side
-            15048, -- Keystone Hero: Halls of Atonement
-            15047, -- Keystone Hero: Mists of Tirna Scithe
-            15045, -- Keystone Hero: The Necrotic Wake
-            15046, -- Keystone Hero: Plaguefall
-            15052, -- Keystone Hero: Sanguine Depths
-            15049, -- Keystone Hero: Spires of Ascension
-            15050, -- Keystone Hero: Theater of Pain
-            15073, -- Shadowlands Keystone Explorer: Season Two
-            15077, -- Shadowlands Keystone Conqueror: Season Two
-            15078, -- Shadowlands Keystone Master: Season Two
-            15327, -- Tormented Hero: Shadowlands Season 2
-        },
-    },
-    { -- Season 3
-        -- 1569,
-        addon.L["Season"] .. " " .. 3,
-        true,
-        {
-            15051, -- Keystone Hero: De Other Side
-            15048, -- Keystone Hero: Halls of Atonement
-            15047, -- Keystone Hero: Mists of Tirna Scithe
-            15045, -- Keystone Hero: The Necrotic Wake
-            15046, -- Keystone Hero: Plaguefall
-            15052, -- Keystone Hero: Sanguine Depths
-            15049, -- Keystone Hero: Spires of Ascension
-            15500, -- Keystone Hero: Tazavesh, the Veiled Market
-            15050, -- Keystone Hero: Theater of Pain
-            15496, -- Shadowlands Keystone Explorer: Season Three
-            15498, -- Shadowlands Keystone Conqueror: Season Three
-            15499, -- Shadowlands Keystone Master: Season Three
-            15506, -- Shadowlands Keystone Hero: Season Three
-            15691, -- Cryptic Hero: Shadowlands Season 3
-        },
-    },
-    { -- Season 4
-        -- 1572,
-        addon.L["Season"] .. " " .. 4,
-        true,
-        {
-            15500, -- Keystone Hero: Tazavesh, the Veiled Market
-            15693, -- Keystone Hero: Operation: Mechagon
-            15692, -- Keystone Hero: Return to Karazhan
-            15695, -- Keystone Hero: Grimrail Depot
-            15694, -- Keystone Hero: Iron Docks
-            15688, -- Shadowlands Keystone Explorer: Season Four
-            15689, -- Shadowlands Keystone Conqueror: Season Four
-            15690, -- Shadowlands Keystone Master: Season Four
-            15756, -- Shrouded Hero: Shadowlands Season 4
-        },
-    },
-}
-
 shared.GetShadowlandsMythicPlus = function(categoryName)
-    return {
-        categoryName,
-        unpack(shadowlands.MythicPlus)
-    }
+    local category = KrowiAF.NewCategory(categoryName)
+    -- 1567,
+    category:Named(addon.L["Season"] .. " " .. 1, {
+        14938, -- Shadowlands Keystone Explorer: Season One
+        14531, -- Shadowlands Keystone Conqueror: Season One
+        14532, -- Shadowlands Keystone Master: Season One
+    }):Merge()
+    -- 1568,
+    category:Named(addon.L["Season"] .. " " .. 2, {
+        15051, -- Keystone Hero: De Other Side
+        15048, -- Keystone Hero: Halls of Atonement
+        15047, -- Keystone Hero: Mists of Tirna Scithe
+        15045, -- Keystone Hero: The Necrotic Wake
+        15046, -- Keystone Hero: Plaguefall
+        15052, -- Keystone Hero: Sanguine Depths
+        15049, -- Keystone Hero: Spires of Ascension
+        15050, -- Keystone Hero: Theater of Pain
+        15073, -- Shadowlands Keystone Explorer: Season Two
+        15077, -- Shadowlands Keystone Conqueror: Season Two
+        15078, -- Shadowlands Keystone Master: Season Two
+        15327, -- Tormented Hero: Shadowlands Season 2
+    }):Merge()
+    -- 1569,
+    category:Named(addon.L["Season"] .. " " .. 3, {
+        15051, -- Keystone Hero: De Other Side
+        15048, -- Keystone Hero: Halls of Atonement
+        15047, -- Keystone Hero: Mists of Tirna Scithe
+        15045, -- Keystone Hero: The Necrotic Wake
+        15046, -- Keystone Hero: Plaguefall
+        15052, -- Keystone Hero: Sanguine Depths
+        15049, -- Keystone Hero: Spires of Ascension
+        15500, -- Keystone Hero: Tazavesh, the Veiled Market
+        15050, -- Keystone Hero: Theater of Pain
+        15496, -- Shadowlands Keystone Explorer: Season Three
+        15498, -- Shadowlands Keystone Conqueror: Season Three
+        15499, -- Shadowlands Keystone Master: Season Three
+        15506, -- Shadowlands Keystone Hero: Season Three
+        15691, -- Cryptic Hero: Shadowlands Season 3
+    }):Merge()
+    -- 1572,
+    category:Named(addon.L["Season"] .. " " .. 4, {
+        15500, -- Keystone Hero: Tazavesh, the Veiled Market
+        15693, -- Keystone Hero: Operation: Mechagon
+        15692, -- Keystone Hero: Return to Karazhan
+        15695, -- Keystone Hero: Grimrail Depot
+        15694, -- Keystone Hero: Iron Docks
+        15688, -- Shadowlands Keystone Explorer: Season Four
+        15689, -- Shadowlands Keystone Conqueror: Season Four
+        15690, -- Shadowlands Keystone Master: Season Four
+        15756, -- Shrouded Hero: Shadowlands Season 4
+    }):Merge()
+    return category
 end
-
-shared.Dragonflight = {}
-local dragonflight = shared.Dragonflight
-
-dragonflight.MythicPlus = {
-    { -- Season 1
-        addon.L["Season"] .. " " .. 1,
-        true,
-        {
-            16643, -- Keystone Hero: Algeth'ar Academy
-            16645, -- Keystone Hero: The Azure Vault
-            16641, -- Keystone Hero: The Nokhud Offensive
-            16640, -- Keystone Hero: Ruby Life Pools
-            16658, -- Keystone Hero: Court of Stars
-            16659, -- Keystone Hero: Halls of Valor
-            16660, -- Keystone Hero: Shadowmoon Burial Grounds
-            16661, -- Keystone Hero: Temple of the Jade Serpent
-            16647, -- Dragonflight Keystone Explorer: Season One
-            16648, -- Dragonflight Keystone Conqueror: Season One
-            16649, -- Dragonflight Keystone Master: Season One
-            16650, -- Dragonflight Keystone Hero: Season One
-            16429, -- Thundering Hero: Dragonflight Season 1
-            17119, -- Deep Cuts From the Vault
-        },
-    },
-    { -- Season 2
-        addon.L["Season"] .. " " .. 2,
-        true,
-        {
-            16642, -- Keystone Hero: Brackenhide Hollow
-            16646, -- Keystone Hero: Halls of Infusion
-            16644, -- Keystone Hero: Neltharus
-            16639, -- Keystone Hero: Uldaman: Legacy of Tyr
-            17848, -- Keystone Hero: Freehold
-            17849, -- Keystone Hero: The Underrot
-            17850, -- Keystone Hero: Neltharion's Lair
-            17847, -- Keystone Hero: The Vortex Pinnacle
-            17842, -- Dragonflight Keystone Explorer: Season Two
-            17843, -- Dragonflight Keystone Conqueror: Season Two
-            17844, -- Dragonflight Keystone Master: Season Two
-            17845, -- Dragonflight Keystone Hero: Season Two
-            18542, -- Dragonflight Keystone Master: Season Two
-            17846, -- Smoldering Hero: Dragonflight Season 2
-            18027, -- Dragonflight Season 2 Master
-            18380, -- Dragonflight Season 2 Hero
-        },
-    },
-    { -- Season 3
-        addon.L["Season"] .. " " .. 3,
-        true,
-        {
-            19088, -- Keystone Hero: Dawn of the Infinite
-            19087, -- Keystone Hero: Atal'Dazar
-            19086, -- Keystone Hero: Waycrest Manor
-            19084, -- Keystone Hero: Black Rook Hold
-            19085, -- Keystone Hero: Darkheart Thicket
-            19083, -- Keystone Hero: The Everbloom
-            19082, -- Keystone Hero: Throne of the Tides
-            19009, -- Dragonflight Keystone Explorer: Season Three
-            19010, -- Dragonflight Keystone Conqueror: Season Three
-            19011, -- Dragonflight Keystone Master: Season Three
-            19012, -- Dragonflight Keystone Hero: Season Three
-            19396, -- Dragonflight Season 3 Master
-            19420, -- Dragonflight Season 3 Hero
-        },
-    },
-    { -- Season 4
-        addon.L["Season"] .. " " .. 4,
-        true,
-        {
-            16643, -- Keystone Hero: Algeth'ar Academy
-            16642, -- Keystone Hero: Brackenhide Hollow
-            16646, -- Keystone Hero: Halls of Infusion
-            16644, -- Keystone Hero: Neltharus
-            16640, -- Keystone Hero: Ruby Life Pools
-            16645, -- Keystone Hero: The Azure Vault
-            16641, -- Keystone Hero: The Nokhud Offensive
-            16639, -- Keystone Hero: Uldaman: Legacy of Tyr
-            19780, -- Dragonflight Keystone Explorer: Season Four
-            19781, -- Dragonflight Keystone Conqueror: Season Four
-            19782, -- Dragonflight Keystone Master: Season Four
-            19783, -- Dragonflight Keystone Hero: Season Four
-            20481, -- Dragonflight Season 4 Master
-        },
-    },
-}
 
 shared.GetDragonflightMythicPlus = function(categoryName)
-    return {
-        categoryName,
-        unpack(dragonflight.MythicPlus)
-    }
+    local category = KrowiAF.NewCategory(categoryName)
+    category:Named(addon.L["Season"] .. " " .. 1, {
+        16643, -- Keystone Hero: Algeth'ar Academy
+        16645, -- Keystone Hero: The Azure Vault
+        16641, -- Keystone Hero: The Nokhud Offensive
+        16640, -- Keystone Hero: Ruby Life Pools
+        16658, -- Keystone Hero: Court of Stars
+        16659, -- Keystone Hero: Halls of Valor
+        16660, -- Keystone Hero: Shadowmoon Burial Grounds
+        16661, -- Keystone Hero: Temple of the Jade Serpent
+        16647, -- Dragonflight Keystone Explorer: Season One
+        16648, -- Dragonflight Keystone Conqueror: Season One
+        16649, -- Dragonflight Keystone Master: Season One
+        16650, -- Dragonflight Keystone Hero: Season One
+        16429, -- Thundering Hero: Dragonflight Season 1
+        17119, -- Deep Cuts From the Vault
+    }):Merge()
+    category:Named(addon.L["Season"] .. " " .. 2, {
+        16642, -- Keystone Hero: Brackenhide Hollow
+        16646, -- Keystone Hero: Halls of Infusion
+        16644, -- Keystone Hero: Neltharus
+        16639, -- Keystone Hero: Uldaman: Legacy of Tyr
+        17848, -- Keystone Hero: Freehold
+        17849, -- Keystone Hero: The Underrot
+        17850, -- Keystone Hero: Neltharion's Lair
+        17847, -- Keystone Hero: The Vortex Pinnacle
+        17842, -- Dragonflight Keystone Explorer: Season Two
+        17843, -- Dragonflight Keystone Conqueror: Season Two
+        17844, -- Dragonflight Keystone Master: Season Two
+        17845, -- Dragonflight Keystone Hero: Season Two
+        18542, -- Dragonflight Keystone Master: Season Two
+        17846, -- Smoldering Hero: Dragonflight Season 2
+        18027, -- Dragonflight Season 2 Master
+        18380, -- Dragonflight Season 2 Hero
+    }):Merge()
+    category:Named(addon.L["Season"] .. " " .. 3, {
+        19088, -- Keystone Hero: Dawn of the Infinite
+        19087, -- Keystone Hero: Atal'Dazar
+        19086, -- Keystone Hero: Waycrest Manor
+        19084, -- Keystone Hero: Black Rook Hold
+        19085, -- Keystone Hero: Darkheart Thicket
+        19083, -- Keystone Hero: The Everbloom
+        19082, -- Keystone Hero: Throne of the Tides
+        19009, -- Dragonflight Keystone Explorer: Season Three
+        19010, -- Dragonflight Keystone Conqueror: Season Three
+        19011, -- Dragonflight Keystone Master: Season Three
+        19012, -- Dragonflight Keystone Hero: Season Three
+        19396, -- Dragonflight Season 3 Master
+        19420, -- Dragonflight Season 3 Hero
+    }):Merge()
+    category:Named(addon.L["Season"] .. " " .. 4, {
+        16643, -- Keystone Hero: Algeth'ar Academy
+        16642, -- Keystone Hero: Brackenhide Hollow
+        16646, -- Keystone Hero: Halls of Infusion
+        16644, -- Keystone Hero: Neltharus
+        16640, -- Keystone Hero: Ruby Life Pools
+        16645, -- Keystone Hero: The Azure Vault
+        16641, -- Keystone Hero: The Nokhud Offensive
+        16639, -- Keystone Hero: Uldaman: Legacy of Tyr
+        19780, -- Dragonflight Keystone Explorer: Season Four
+        19781, -- Dragonflight Keystone Conqueror: Season Four
+        19782, -- Dragonflight Keystone Master: Season Four
+        19783, -- Dragonflight Keystone Hero: Season Four
+        20481, -- Dragonflight Season 4 Master
+    }):Merge()
+    return category
 end
 
-shared.TheWarWithin = {}
-local theWarWithin = shared.TheWarWithin
-
-theWarWithin.MythicPlus = {
-    { -- Season 1
-        addon.L["Season"] .. " " .. 1,
-        true,
-        {
-            20586, -- Keystone Hero: Ara-Kara, City of Echoes
-            20582, -- Keystone Hero: City of Threads
-            20585, -- Keystone Hero: The Dawnbreaker
-            20580, -- Keystone Hero: The Stonevault
-            15047, -- Keystone Hero: Mists of Tirna Scithe
-            15045, -- Keystone Hero: The Necrotic Wake
-            20587, -- Keystone Hero: Siege of Boralus
-            20588, -- Keystone Hero: Grim Batol
-            20523, -- The War Within Keystone Explorer: Season One
-            20524, -- The War Within Keystone Conqueror: Season One
-            20525, -- The War Within Keystone Master: Season One
-            20526, -- The War Within Keystone Hero: Season One
-            20589, -- Tempered Hero: The War Within Season 1
-        },
-    },
-    { -- Season 2
-        addon.L["Season"] .. " " .. 2,
-        true,
-        {
-            20583, -- Keystone Hero: Cinderbrew Meadery
-            20584, -- Keystone Hero: Darkflame Cleft
-            20581, -- Keystone Hero: Priory of the Sacred Flame
-            20579, -- Keystone Hero: The Rookery
-            41348, -- Keystone Hero: Operation: Floodgate
-            15050, -- Keystone Hero: Theater of Pain
-            40966, -- Keystone Hero: Operation: Mechagon - Workshop
-            40965, -- Keystone Hero: The MOTHERLODE!!
-            40949, -- The War Within Keystone Explorer: Season Two
-            40950, -- The War Within Keystone Conqueror: Season Two
-            41533, -- The War Within Keystone Master: Season Two
-            40952, -- The War Within Keystone Hero: Season Two
-            40951, -- The War Within Keystone Legend: Season Two
-            42139, -- The Enterprising Tank
-            42141, -- The Enterprising Healer
-            42144, -- The Enterprising Damage Dealer
-            42148, -- The Enterprising Dungeon Master
-            40954, -- Enterprising Hero: The War Within Season Two
-        },
-    },
-    { -- Season 3
-        addon.L["Season"] .. " " .. 3,
-        {
-            addon.L["KeystoneResilience"],
-            true,
-            {
-                42149, -- The War Within Season 3: Resilient Keystone 12
-                42150, -- The War Within Season 3: Resilient Keystone 13
-                42151, -- The War Within Season 3: Resilient Keystone 14
-                42152, -- The War Within Season 3: Resilient Keystone 15
-                42153, -- The War Within Season 3: Resilient Keystone 16
-                42154, -- The War Within Season 3: Resilient Keystone 17
-                42155, -- The War Within Season 3: Resilient Keystone 18
-                42156, -- The War Within Season 3: Resilient Keystone 19
-                42157, -- The War Within Season 3: Resilient Keystone 20
-                42158, -- The War Within Season 3: Resilient Keystone 21
-                42159, -- The War Within Season 3: Resilient Keystone 22
-                42160, -- The War Within Season 3: Resilient Keystone 23
-                42161, -- The War Within Season 3: Resilient Keystone 24
-                42162, -- The War Within Season 3: Resilient Keystone 25
-                42802, -- The War Within Season 3: Resilient Keystone 26
-                42803, -- The War Within Season 3: Resilient Keystone 27
-                42804, -- The War Within Season 3: Resilient Keystone 28
-                42805, -- The War Within Season 3: Resilient Keystone 29
-                42806, -- The War Within Season 3: Resilient Keystone 30
-            }
-        },
-        {
-            20586, -- Keystone Hero: Ara-Kara, City of Echoes
-            20585, -- Keystone Hero: The Dawnbreaker
-            20581, -- Keystone Hero: Priory of the Sacred Flame
-            41348, -- Keystone Hero: Operation: Floodgate
-            42173, -- Keystone Hero: Eco-Dome Al'dani
-            15048, -- Keystone Hero: Halls of Atonement
-            15500, -- Keystone Hero: Tazavesh, the Veiled Market
-            42169, -- The War Within Keystone Explorer: Season Three
-            42170, -- The War Within Keystone Conqueror: Season Three
-            41973, -- The War Within Keystone Master: Season Three
-            42171, -- The War Within Keystone Hero: Season Three
-            42172, -- The War Within Keystone Legend: Season Three
-            61874, -- The Unbound Tank
-            61875, -- The Unbound Healer
-            61876, -- The Unbound Damage Dealer
-            61877, -- The Unbound Dungeon Master
-            42174, -- Unbound Hero: The War Within Season Three
-        },
-    },
-    {
+shared.GetTheWarWithinMythicPlus = function(categoryName)
+    local category = KrowiAF.NewCategory(categoryName)
+    category:Ids{
         40660, -- The War Within Season 1: Spelunker Supreme
         40723, -- Web-Wrapped in the Finest Silks
         40911, -- The War Within Season 2: Master Blaster
         41665, -- Dressed to the Mines
         41937, -- The War Within Season 3: Voidborne Victor
         42325, -- Void Wear Prohibited
-    },
-}
-
-shared.GetTheWarWithinMythicPlus = function(categoryName)
-    return {
-        categoryName,
-        unpack(theWarWithin.MythicPlus)
     }
+    category:Named(addon.L["Season"] .. " " .. 1, {
+        20586, -- Keystone Hero: Ara-Kara, City of Echoes
+        20582, -- Keystone Hero: City of Threads
+        20585, -- Keystone Hero: The Dawnbreaker
+        20580, -- Keystone Hero: The Stonevault
+        15047, -- Keystone Hero: Mists of Tirna Scithe
+        15045, -- Keystone Hero: The Necrotic Wake
+        20587, -- Keystone Hero: Siege of Boralus
+        20588, -- Keystone Hero: Grim Batol
+        20523, -- The War Within Keystone Explorer: Season One
+        20524, -- The War Within Keystone Conqueror: Season One
+        20525, -- The War Within Keystone Master: Season One
+        20526, -- The War Within Keystone Hero: Season One
+        20589, -- Tempered Hero: The War Within Season 1
+    }):Merge()
+    category:Named(addon.L["Season"] .. " " .. 2, {
+        20583, -- Keystone Hero: Cinderbrew Meadery
+        20584, -- Keystone Hero: Darkflame Cleft
+        20581, -- Keystone Hero: Priory of the Sacred Flame
+        20579, -- Keystone Hero: The Rookery
+        41348, -- Keystone Hero: Operation: Floodgate
+        15050, -- Keystone Hero: Theater of Pain
+        40966, -- Keystone Hero: Operation: Mechagon - Workshop
+        40965, -- Keystone Hero: The MOTHERLODE!!
+        40949, -- The War Within Keystone Explorer: Season Two
+        40950, -- The War Within Keystone Conqueror: Season Two
+        41533, -- The War Within Keystone Master: Season Two
+        40952, -- The War Within Keystone Hero: Season Two
+        40951, -- The War Within Keystone Legend: Season Two
+        42139, -- The Enterprising Tank
+        42141, -- The Enterprising Healer
+        42144, -- The Enterprising Damage Dealer
+        42148, -- The Enterprising Dungeon Master
+        40954, -- Enterprising Hero: The War Within Season Two
+    }):Merge()
+    local season3 = category:Named(addon.L["Season"] .. " " .. 3, {
+        20586, -- Keystone Hero: Ara-Kara, City of Echoes
+        20585, -- Keystone Hero: The Dawnbreaker
+        20581, -- Keystone Hero: Priory of the Sacred Flame
+        41348, -- Keystone Hero: Operation: Floodgate
+        42173, -- Keystone Hero: Eco-Dome Al'dani
+        15048, -- Keystone Hero: Halls of Atonement
+        15500, -- Keystone Hero: Tazavesh, the Veiled Market
+        42169, -- The War Within Keystone Explorer: Season Three
+        42170, -- The War Within Keystone Conqueror: Season Three
+        41973, -- The War Within Keystone Master: Season Three
+        42171, -- The War Within Keystone Hero: Season Three
+        42172, -- The War Within Keystone Legend: Season Three
+        61874, -- The Unbound Tank
+        61875, -- The Unbound Healer
+        61876, -- The Unbound Damage Dealer
+        61877, -- The Unbound Dungeon Master
+        42174, -- Unbound Hero: The War Within Season Three
+    })
+    season3:Named(addon.L["KeystoneResilience"], {
+        42149, -- The War Within Season 3: Resilient Keystone 12
+        42150, -- The War Within Season 3: Resilient Keystone 13
+        42151, -- The War Within Season 3: Resilient Keystone 14
+        42152, -- The War Within Season 3: Resilient Keystone 15
+        42153, -- The War Within Season 3: Resilient Keystone 16
+        42154, -- The War Within Season 3: Resilient Keystone 17
+        42155, -- The War Within Season 3: Resilient Keystone 18
+        42156, -- The War Within Season 3: Resilient Keystone 19
+        42157, -- The War Within Season 3: Resilient Keystone 20
+        42158, -- The War Within Season 3: Resilient Keystone 21
+        42159, -- The War Within Season 3: Resilient Keystone 22
+        42160, -- The War Within Season 3: Resilient Keystone 23
+        42161, -- The War Within Season 3: Resilient Keystone 24
+        42162, -- The War Within Season 3: Resilient Keystone 25
+        42802, -- The War Within Season 3: Resilient Keystone 26
+        42803, -- The War Within Season 3: Resilient Keystone 27
+        42804, -- The War Within Season 3: Resilient Keystone 28
+        42805, -- The War Within Season 3: Resilient Keystone 29
+        42806, -- The War Within Season 3: Resilient Keystone 30
+    }):Merge()
+    return category
 end
 
-shared.Midnight = {}
-local midnight = shared.Midnight
-
-midnight.MythicPlus = {
-    { -- Season 1
-        addon.L["Season"] .. " " .. 1,
-        {
-            addon.L["KeystoneResilience"],
-            true,
-            {
-                61233, -- Midnight Season 1: Resilient Keystone 12
-                61235, -- Midnight Season 1: Resilient Keystone 13
-                61236, -- Midnight Season 1: Resilient Keystone 14
-                61237, -- Midnight Season 1: Resilient Keystone 15
-                61239, -- Midnight Season 1: Resilient Keystone 16
-                61240, -- Midnight Season 1: Resilient Keystone 17
-                61241, -- Midnight Season 1: Resilient Keystone 18
-                61242, -- Midnight Season 1: Resilient Keystone 19
-                61243, -- Midnight Season 1: Resilient Keystone 20
-                61244, -- Midnight Season 1: Resilient Keystone 21
-                61245, -- Midnight Season 1: Resilient Keystone 22
-                61246, -- Midnight Season 1: Resilient Keystone 23
-                61247, -- Midnight Season 1: Resilient Keystone 24
-                61248, -- Midnight Season 1: Resilient Keystone 25
-                61249, -- Midnight Season 1: Resilient Keystone 26
-                61250, -- Midnight Season 1: Resilient Keystone 27
-                61251, -- Midnight Season 1: Resilient Keystone 28
-                61252, -- Midnight Season 1: Resilient Keystone 29
-                61253, -- Midnight Season 1: Resilient Keystone 30
-            }
-        },
-        {
-            61267, -- Keystone Hero: Magisters' Terrace
-            61269, -- Keystone Hero: Maisara Caverns
-            61268, -- Keystone Hero: Nexus-Point Xenas
-            61262, -- Keystone Hero: Windrunner Spire
-            16643, -- Keystone Hero: Algeth'ar Academy
-            61270, -- Keystone Hero: Seat of the Triumvirate
-            61272, -- Keystone Hero: Skyreach
-            61271, -- Keystone Hero: Pit of Saron
-            61254, -- Midnight Keystone Explorer: Season One
-            61255, -- Midnight Keystone Conqueror: Season One
-            61256, -- Midnight Keystone Master: Season One
-            61257, -- Midnight Keystone Hero: Season One
-            61258, -- Midnight Keystone Legend: Season One
-            63097, -- Midnight Keystone Myth: Season One
-            61259, -- Umbral Hero: Midnight Season One
-            63104, -- Umbral Champion: Midnight Season 1
-        },
-    },
-    { -- Season 2
-        addon.L["Season"] .. " " .. 2,
-        {
-            addon.L["KeystoneResilience"],
-            true,
-            {
-                62417, -- Midnight Season 2: Resilient Keystone 12
-                62418, -- Midnight Season 2: Resilient Keystone 13
-                62419, -- Midnight Season 2: Resilient Keystone 14
-                62420, -- Midnight Season 2: Resilient Keystone 15
-                62421, -- Midnight Season 2: Resilient Keystone 16
-                62422, -- Midnight Season 2: Resilient Keystone 17
-                62423, -- Midnight Season 2: Resilient Keystone 18
-                62424, -- Midnight Season 2: Resilient Keystone 19
-                62425, -- Midnight Season 2: Resilient Keystone 20
-                62426, -- Midnight Season 2: Resilient Keystone 21
-                62427, -- Midnight Season 2: Resilient Keystone 22
-                62428, -- Midnight Season 2: Resilient Keystone 23
-                62429, -- Midnight Season 2: Resilient Keystone 24
-                62430, -- Midnight Season 2: Resilient Keystone 25
-                62431, -- Midnight Season 2: Resilient Keystone 26
-                62432, -- Midnight Season 2: Resilient Keystone 27
-                62433, -- Midnight Season 2: Resilient Keystone 28
-                62434, -- Midnight Season 2: Resilient Keystone 29
-                62435, -- Midnight Season 2: Resilient Keystone 30
-            }
-        },
-        {
-            62441, -- Keystone Hero: Altar of Fangs
-            62439, -- Keystone Hero: Den of Nalorakk
-            62440, -- Keystone Hero: Murder Row
-            62437, -- Keystone Hero: The Blinding Vale
-            62438, -- Keystone Hero: Voidscar Arena
-            62444, -- Keystone Hero: Kings' Rest
-            62443, -- Keystone Hero: Temple of Sethraliss
-            62442, -- Keystone Hero: Ruby Life Pools (Midnight Season 2)
-            62445, -- Midnight Keystone Explorer: Season 2
-            62446, -- Midnight Keystone Conqueror: Season 2
-            62447, -- Midnight Keystone Master: Season 2
-            62448, -- Midnight Keystone Hero: Season 2
-            62449, -- Midnight Keystone Legend: Season 2
-            62436, -- Venomous Hero: Midnight Season 2
-        },
-    },
-}
-
 shared.GetMidnightMythicPlus = function(categoryName)
-    return {
-        categoryName,
-        unpack(midnight.MythicPlus),
-    }
+    local category = KrowiAF.NewCategory(categoryName)
+    local season1 = category:Named(addon.L["Season"] .. " " .. 1, {
+        61267, -- Keystone Hero: Magisters' Terrace
+        61269, -- Keystone Hero: Maisara Caverns
+        61268, -- Keystone Hero: Nexus-Point Xenas
+        61262, -- Keystone Hero: Windrunner Spire
+        16643, -- Keystone Hero: Algeth'ar Academy
+        61270, -- Keystone Hero: Seat of the Triumvirate
+        61272, -- Keystone Hero: Skyreach
+        61271, -- Keystone Hero: Pit of Saron
+        61254, -- Midnight Keystone Explorer: Season One
+        61255, -- Midnight Keystone Conqueror: Season One
+        61256, -- Midnight Keystone Master: Season One
+        61257, -- Midnight Keystone Hero: Season One
+        61258, -- Midnight Keystone Legend: Season One
+        63097, -- Midnight Keystone Myth: Season One
+        61259, -- Umbral Hero: Midnight Season One
+        63104, -- Umbral Champion: Midnight Season 1
+    })
+    season1:Named(addon.L["KeystoneResilience"], {
+        61233, -- Midnight Season 1: Resilient Keystone 12
+        61235, -- Midnight Season 1: Resilient Keystone 13
+        61236, -- Midnight Season 1: Resilient Keystone 14
+        61237, -- Midnight Season 1: Resilient Keystone 15
+        61239, -- Midnight Season 1: Resilient Keystone 16
+        61240, -- Midnight Season 1: Resilient Keystone 17
+        61241, -- Midnight Season 1: Resilient Keystone 18
+        61242, -- Midnight Season 1: Resilient Keystone 19
+        61243, -- Midnight Season 1: Resilient Keystone 20
+        61244, -- Midnight Season 1: Resilient Keystone 21
+        61245, -- Midnight Season 1: Resilient Keystone 22
+        61246, -- Midnight Season 1: Resilient Keystone 23
+        61247, -- Midnight Season 1: Resilient Keystone 24
+        61248, -- Midnight Season 1: Resilient Keystone 25
+        61249, -- Midnight Season 1: Resilient Keystone 26
+        61250, -- Midnight Season 1: Resilient Keystone 27
+        61251, -- Midnight Season 1: Resilient Keystone 28
+        61252, -- Midnight Season 1: Resilient Keystone 29
+        61253, -- Midnight Season 1: Resilient Keystone 30
+    }):Merge()
+    local season2 = category:Named(addon.L["Season"] .. " " .. 2, {
+        62441, -- Keystone Hero: Altar of Fangs
+        62439, -- Keystone Hero: Den of Nalorakk
+        62440, -- Keystone Hero: Murder Row
+        62437, -- Keystone Hero: The Blinding Vale
+        62438, -- Keystone Hero: Voidscar Arena
+        62444, -- Keystone Hero: Kings' Rest
+        62443, -- Keystone Hero: Temple of Sethraliss
+        62442, -- Keystone Hero: Ruby Life Pools (Midnight Season 2)
+        62445, -- Midnight Keystone Explorer: Season 2
+        62446, -- Midnight Keystone Conqueror: Season 2
+        62447, -- Midnight Keystone Master: Season 2
+        62448, -- Midnight Keystone Hero: Season 2
+        62449, -- Midnight Keystone Legend: Season 2
+        62436, -- Venomous Hero: Midnight Season 2
+    })
+    season2:Named(addon.L["KeystoneResilience"], {
+        62417, -- Midnight Season 2: Resilient Keystone 12
+        62418, -- Midnight Season 2: Resilient Keystone 13
+        62419, -- Midnight Season 2: Resilient Keystone 14
+        62420, -- Midnight Season 2: Resilient Keystone 15
+        62421, -- Midnight Season 2: Resilient Keystone 16
+        62422, -- Midnight Season 2: Resilient Keystone 17
+        62423, -- Midnight Season 2: Resilient Keystone 18
+        62424, -- Midnight Season 2: Resilient Keystone 19
+        62425, -- Midnight Season 2: Resilient Keystone 20
+        62426, -- Midnight Season 2: Resilient Keystone 21
+        62427, -- Midnight Season 2: Resilient Keystone 22
+        62428, -- Midnight Season 2: Resilient Keystone 23
+        62429, -- Midnight Season 2: Resilient Keystone 24
+        62430, -- Midnight Season 2: Resilient Keystone 25
+        62431, -- Midnight Season 2: Resilient Keystone 26
+        62432, -- Midnight Season 2: Resilient Keystone 27
+        62433, -- Midnight Season 2: Resilient Keystone 28
+        62434, -- Midnight Season 2: Resilient Keystone 29
+        62435, -- Midnight Season 2: Resilient Keystone 30
+    }):Merge()
+    return category
 end

@@ -285,6 +285,13 @@ function KrowiAF.NewRootCategory(tab, name, ids, id, canMerge)
     return BuildRootCategory(CategoryBuilder, tab, name, ids, id, canMerge)
 end
 
+-- A category attached to nothing yet, for a subtree built once and handed to more than one parent -
+-- the Mythic+ seasons appear both under their expansion's Dungeons and under the Specials tab.
+-- Give it to a parent with :Insert(node), or to DungeonsBuilder:MythicPlus(fn).
+function KrowiAF.NewCategory(name, ids, canMerge)
+    return setmetatable({ _v2 = true, Name = name, Achievements = ids, CanMerge = canMerge, Children = {} }, CategoryBuilder)
+end
+
 -- The category that IS a tab's root, assigned to KrowiAF.CategoryData.<key> rather than inserted
 -- into anything. KrowiAF.CreateCategories parses those five in a fixed order, each with no parent;
 -- ParseCategoryV2 then wires the tab through SetCategoryRootForTab, exactly as the V1
