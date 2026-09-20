@@ -37,24 +37,60 @@ The `category-node-shape` lint rule added on 2026-09-20 catches that one specifi
 
 **Blocking.** If ids or container shapes change after the migration starts, every file gets rewritten twice.
 
-### 0.1 Stable ids, or keep auto-allocation?
+### 0.1 Stable ids — auto-allocation stays; addressability is opt-in, by string key
 
-Today most nodes have no declared `Id`; they draw from `nextCategoryId = 9000` in parse order. Two facts matter:
+**Decided 2026-09-20. Numeric category ids stay auto-allocated and unstable. A node that something else needs to address declares a string `Key`; nothing else changes.**
 
-- **Churn is safe.** Nothing persists a category id. [`BrowsingHistory.lua:5-13`](../../BrowsingHistory.lua#L5-L13) documents this and actively deletes the pre-100.4 saved table. That comment is the clearest statement of the invariant in the tree.
-- **But a per-client node needs a handle.** A Classic-only or Forever-only category cannot be attached into the Expansions tree by `tinsert`, `NewInjection` or deferral, because no node inside it has an addressable id. The 2026-09-20 audit called this the binding obstacle for per-client category content.
+Two measured facts set this up:
 
-Decide whether V2 nodes take a declared, stable key. If Forever or Classic-specific categories are wanted, the answer is yes.
+- **Churn is safe.** Nothing persists a category id. [`BrowsingHistory.lua:5-13`](../../BrowsingHistory.lua#L5-L13) keeps its records in a session-local table and actively deletes the pre-100.4 saved entry, documenting the invariant. Re-checked across `Data/SavedData/`, every `KrowiAF_SavedData` write and every `Options.db.profile` read: no other code path stores a category id.
+- **But a per-client node needs a handle.** A Classic-only or Forever-only category cannot be attached into a tree a Shared file builds — by `tinsert`, `NewInjection` or deferral — because no node inside it has an addressable id.
 
-### 0.2 Container vocabulary for legacy expansions
+So the requirement is addressability for *some* nodes, not stable ids for all ~1200. Hand-assigning a number to every node buys nothing that the migration needs and costs a second full rewrite; that is exactly the double-rewrite this phase exists to prevent.
 
-`ExpansionBuilder` provides `:Character :Zones :Delves :Dungeons :Raids :Professions :PetBattles`, each callable once (`AssertUniqueContainer`). Legacy expansions need shapes it does not model — Legion's Class Halls, Artifacts, Invasions and Suramar; Draenor's Garrisons; Pandaria's Scenarios.
+```lua
+local zones = expansion:Zones{ ... }:Key("MoP.Zones")
 
-Either extend the typed containers, or accept generic `:Named()` chains for those. Pick one and apply it uniformly, so the files stay comparable.
+-- elsewhere, in a per-client file
+KrowiAF.NewInjection("MoP.Zones"):Named(CT.Scenarios, { ... }):Register()
+```
+
+- `:Key(name)` records `node.Key`. `ParseCategoryV2` registers `addon.Data.CategoryKeys[name] = categoryId` and asserts the key is not already taken.
+- `KrowiAF.NewInjection(target)` accepts a number — today's behaviour, unchanged for V1 and for plugins — or a string key.
+- The numeric id remains auto-allocated, so [`BrowsingHistory.lua`](../../BrowsingHistory.lua)'s invariant is untouched and no saved variable changes. No `DataIntegrityManager` solution is needed.
+
+**Why a string and not a hand-assigned number.** The numeric space is already shared by Blizzard's own category ids, the `nextCategoryId = 9000` auto range and `addon.Data.GetNextFreeCategoryId`. Assigning into it by hand needs a central registry nobody maintains, and a collision only surfaces as an `assert` at load. A string needs no registry, is self-documenting at the injection site, and cannot be mistaken for an achievement id in a positional V1 table.
+
+**Why not path addressing** (`"Expansions > Mists of Pandaria > Zones"`). Category names are localized at runtime — `CT.*`, `addon.L[...]`, `GetMapName(uiMapId)`, `GetInstanceInfoName(journalId)`. A runtime key built from display names resolves differently per locale and breaks for every non-enUS player. Paths are still the right key for the **snapshot** in Phase 1, where the headless stubs are deterministic and locale-free — same word, different problem, different answer.
+
+**Checked against Forever.** Adding `DataAddons/Forever/` then costs one `:Key()` on each Shared node Forever extends, plus Forever-side injections. It touches no Retail or Classic data and no other family's files, which is the O(1)-per-family property [`../data-design-review.md`](../data-design-review.md) §5.1 asks for.
+
+**Migration impact: none.** A key is a one-line addition to an existing chain, added when something needs it. Phase 2 does not have to place keys, so this decision cannot force a rewrite.
+
+### 0.2 Container vocabulary — the typed set is closed; one-offs use `:Named()`
+
+**Decided 2026-09-20.** A typed `ExpansionBuilder` container exists when the container **(a)** recurs across expansions **and (b)** has a distinct child vocabulary the builder can express. Everything else is a generic `:Named()` chain.
+
+Under that rule the current seven stay, unchanged, and nothing is added:
+
+| Typed container | Child vocabulary that earns it |
+|---|---|
+| `:Zones` | `:Zone(uiMapId)` → `:Quests :Exploration :PvP :Reputation` |
+| `:Raids` | `:Raid(journalId)` → `:Glory :Mythic` |
+| `:Dungeons` | `:Dungeon(journalId)`, `:MythicPlus` |
+| `:Delves` | `:Delve(areaPoiId)`, `:Seasonal` |
+| `:Professions` | 13 named professions |
+| `:Character`, `:PetBattles` | recur everywhere; plain nodes, but `AssertUniqueContainer` is worth having |
+
+Legion's Class Halls, Artifacts, Invasions and Suramar; Draenor's Garrisons; Pandaria's Scenarios are one-offs with no child vocabulary, so they become `:Named(CT.ClassHalls, { ... })`. For those a typed method would buy only `AssertUniqueContainer` and a canonical name, while the builder grows one method per expansion forever for shapes that never recur.
+
+> **Migration hazard, and the reason the snapshot records `CanMerge` per node.** `:Named()` is **not** a uniform translation of a V1 node. `ZoneBuilder:Named` and every `ProfessionsBuilder` helper set `CanMerge = true` implicitly; `CategoryBuilder:Named` does not. So the migrator must match the V1 flag per node and add `:Merge()` where the V1 table had `true` under a parent that does not auto-merge. The sampled V1 zone subtrees do carry `true` on every `Quests`/`Exploration`/`Reputation` child, so the implicit merge matches the data — but that is a fact to verify per file, not to assume.
 
 ### 0.3 What happens to V1
 
-V1 stays. `Api/CategoryDataApi.lua` is the documented plugin entry point and third-party addons depend on it. The end state is *V1 supported, unused by first-party* — which is what the instruction file already wrongly claims today.
+V1 stays, per the maintainer's standing constraint. `Api/CategoryDataApi.lua` is the documented plugin entry point and third-party addons depend on it. The end state is *V1 supported, unused by first-party* — which is what the instruction file already wrongly claims today.
+
+Concretely: the V1 branches of `ParseChildData` and `ParseCategory` are not removed or narrowed, `KrowiAF.NewInjection` keeps accepting a numeric target, and the `category-node-shape` lint rule stays — it guards the positional form for plugin authors and for any V1 node still in the tree. V1 already supports a declared numeric id in slot 1, so a plugin category is addressable without needing 0.1's string key.
 
 ---
 
