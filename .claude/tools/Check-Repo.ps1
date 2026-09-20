@@ -211,6 +211,22 @@ foreach ($kv in $idOccurrences.GetEnumerator()) {
 
 Write-Timing 'dup-id'
 
+# --- category-node-shape -----------------------------------------------------------------------
+# A V1 category node is { [id,] <name>, [canMerge,] <children...> }. A boolean in the first slot
+# matches no branch of ParseChildData (Api/CategoryDataApi.lua) and there is no else, so the node
+# and every achievement under it is dropped in silence, with the data load still reporting success.
+foreach ($rel in ($ownLuaFiles | Where-Object { $_ -like 'DataAddons/*' -and [IO.Path]::GetFileName($_) -like 'CategoryData*.lua' })) {
+    $lines = [Text.Encoding]::UTF8.GetString($fileBytes[$rel]) -split "`r?`n"
+    for ($i = 1; $i -lt $lines.Count; $i++) {
+        if ($lines[$i] -notmatch '^\s*(true|false),\s*$') { continue }
+        if ($lines[$i - 1] -match '\{\s*(--.*)?$') {
+            Add-Finding 'category-node-shape' 'Error' $rel ($i + 1) 'category node starts with a boolean; canMerge comes after the name ({ name, true, ... }). As written ParseChildData matches no branch and drops the node and every achievement under it'
+        }
+    }
+}
+
+Write-Timing 'category-node-shape'
+
 # --- saved-variables ---------------------------------------------------------------------------
 $tocText = [Text.Encoding]::UTF8.GetString($fileBytes[$tocRel])
 $declared = @{}
@@ -509,6 +525,47 @@ foreach ($rel in @($changed.Keys | Where-Object { $_ -like '*.lua' -and $_ -notl
 }
 
 Write-Timing 'diff rules'
+
+# --- shared-version-anchor ---------------------------------------------------------------------
+# A Version anchor resolves by comparing GetBuildInfo() against it as a plain string
+# (Data/TemporaryObtainable.lua). When both client families register the same major, that major
+# names two different real timelines, and an anchor on it in a Shared file resolves against a
+# different one per client - usually wrong on at least one. Classic re-releases always number above
+# the original expansion they replay, so the cutoff reads as already past from their launch day.
+# A newly added one is an error; the existing set is tracked debt, reported once.
+# See docs/data-design-review.md.
+$familyMajors = @{ Retail = @{}; Classic = @{} }
+foreach ($rel in ($ownLuaFiles | Where-Object { $_ -like 'DataAddons/*' -and [IO.Path]::GetFileName($_) -eq 'BuildVersionData.lua' })) {
+    $fam = if ($rel -like 'DataAddons/Retail/*') { 'Retail' } elseif ($rel -like 'DataAddons/Classic/*') { 'Classic' } else { '' }
+    if (-not $fam) { continue }
+    foreach ($m in [regex]::Matches([Text.Encoding]::UTF8.GetString($fileBytes[$rel]), 'NewBuildVersion\(\s*"[^"]*"\s*,\s*(\d+)\s*\)')) {
+        $familyMajors[$fam][[int]$m.Groups[1].Value] = $true
+    }
+}
+$ambiguousMajors = @{}
+foreach ($k in $familyMajors['Retail'].Keys) { if ($familyMajors['Classic'].ContainsKey($k)) { $ambiguousMajors[$k] = $true } }
+$preExistingAnchors = 0
+foreach ($rel in ($ownLuaFiles | Where-Object { $_ -like 'DataAddons/Shared/*' })) {
+    $addedLines = @{}
+    if ($changed.ContainsKey($rel)) { foreach ($a in (Get-AddedLines $rel)) { $addedLines[$a.Line] = $true } }
+    $lines = [Text.Encoding]::UTF8.GetString($fileBytes[$rel]) -split "`r?`n"
+    for ($i = 0; $i -lt $lines.Count; $i++) {
+        foreach ($m in [regex]::Matches($lines[$i], '"Version"\s*,\s*\{\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\}')) {
+            $major = [int]$m.Groups[1].Value
+            if (-not $ambiguousMajors.ContainsKey($major)) { continue }
+            if ($addedLines.ContainsKey($i + 1)) {
+                $ver = "$major.$($m.Groups[2].Value).$($m.Groups[3].Value)"
+                Add-Finding 'shared-version-anchor' 'Error' $rel ($i + 1) "Version anchor $ver added to a Shared file; major $major is registered by both client families, so this resolves against a different timeline on each. Put the entry in the per-client files instead"
+            }
+            else { $preExistingAnchors++ }
+        }
+    }
+}
+if ($preExistingAnchors -gt 0) {
+    Add-Finding 'shared-version-anchor' 'Warning' 'DataAddons/Shared' 1 "$preExistingAnchors existing Version anchor(s) in Shared files sit on a major both client families register, so they resolve against a different timeline per client; scheduled for migration to milestones (docs/data-design-review.md)"
+}
+
+Write-Timing 'shared-version-anchor'
 
 # --- zone-decisions: raw/ZoneDataDecisions.md must agree with the ZoneData.lua files (offline checks) --
 $zoneEval = Join-Path $root 'raw\Evaluate-ZoneDataDecisions.ps1'
