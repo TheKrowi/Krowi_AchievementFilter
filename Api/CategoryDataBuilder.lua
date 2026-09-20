@@ -274,7 +274,10 @@ end
 
 local function BuildRootCategory(builder, tab, name, ids, id, canMerge)
     local cat = setmetatable({ _v2 = true, Name = name, Achievements = ids, Id = id, CanMerge = canMerge or false, Children = {} }, builder)
-    tinsert(tab, cat)
+    -- A V1 tab root is a positional table whose array part holds its children; a V2 one keeps them
+    -- in Children and ignores its array part entirely, so inserting into the table itself would
+    -- silently drop the category. Plugins may still pass a V1 table, so both are handled.
+    tinsert(tab._v2 and tab.Children or tab, cat)
     return cat
 end
 
