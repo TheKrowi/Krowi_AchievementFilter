@@ -218,9 +218,13 @@ Shared files must be snapshotted for **both** clients: they resolve differently 
 
 ## Phase 3 — Verify again
 
-> **Steps 1, 2, 4 and 5 done 2026-09-21. Step 3, the in-game pass, is the one thing left and cannot be done from the repo.**
+> **Steps 1, 2, 4 and 5 done 2026-09-21. Step 3, the in-game pass, is done on Retail and still outstanding on Classic.**
 >
 > Offline state after the migration, unchanged from before it: snapshot zero diff on both clients, `load-data … Both` 0 problems (8637 Retail / 2752 Classic achievements), `Check-Repo` 0 errors with the same 6 pre-existing warnings, `escape` 23/23, `special` 27/27.
+>
+> **Retail, 2026-09-21:** deployed and reloaded, the restored Promotions / Realm First! / Darkmoon Faire nodes render and the tree looks right; `Read-GameErrors.ps1` reports 0 addon errors out of the 4 recorded.
+>
+> **Classic: not yet run.** Worth doing on its own rather than treating it as a repeat of Retail — 10 of the 21 migrated files load there (4 `DataAddons/Classic/*` and 6 `Shared/*`), Shared resolves against a different achievement set, and Vanilla's nested zones and the Cataclysm profession flags — the two cases that forced builder changes — are both Shared. Check `Read-GameErrors.ps1 -Client Classic` reports a log written *after* the reload; an older timestamp means the pass did not happen and a clean result means nothing.
 
 1. **Snapshot diff is zero** across both clients.
 2. **`load-data ... Both` reports 0 problems.**
