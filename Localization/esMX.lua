@@ -7,6 +7,8 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-08-14 12-07-54 ]] --
+L["5th Anniversary Celebration"] = "Celebración del 5.º aniversario"
+L["Defense of the Ruby Sanctum"] = "Defensa del Sagrario Rubí"
 L["Alchemy"] = "Alquimia"
 L["Alterac Valley"] = "Valle de Alterac"
 L["Arathi Basin"] = "Cuenca de Arathi"

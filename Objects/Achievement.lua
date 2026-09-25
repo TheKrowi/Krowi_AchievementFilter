@@ -9,7 +9,9 @@ function achievement:New(id, buildVersion, faction, otherFactionAchievementId, r
     local instance = setmetatable({}, achievement)
     instance.Id = id or 0
     instance.BuildVersion = buildVersion
-    -- buildVersion:SetInUse();
+    if buildVersion then
+        buildVersion:SetInUse() -- the build-version filter lists only patches some achievement was added in
+    end
     instance.Faction = faction
     instance.OtherFactionAchievementId = otherFactionAchievementId
     instance.RewardType = rewardType
@@ -157,11 +159,27 @@ function achievement:GetObtainableState()
     return addon.Data.TemporaryObtainable:GetObtainableState(self)
 end
 
-local function GetStartValue(startFunction, startValue)
+local function ReportObtainable(self, kind, detail)
+    addon.Data.LoadDiagnostics:Report(addon.Data.LoadDiagnostics.Kind[kind], self.Id, detail)
+end
+
+local function GetStartValue(self, startFunction, startValue)
     if startFunction == "Version" and addon.Util.IsTable(startValue) then
-        return KrowiAF.GetBuildVersionId(unpack(startValue))
+        local buildVersionId = KrowiAF.GetBuildVersionId(unpack(startValue))
+        if not KrowiAF.ResolveVersionAnchor(buildVersionId) then
+            ReportObtainable(self, "UnscheduledVersion", "Version " .. table.concat(startValue, ".") .. " names a patch this game version has not reached")
+        end
+        return buildVersionId
     end
     return startValue
+end
+
+-- The words Data/TemporaryObtainable.lua resolves; anything else is stored and never resolves
+local anchorFunctions = { ["PvE Season"] = true, ["PvP Season"] = true, Version = true, Event = true, Date = true, Reset = true }
+local function CheckAnchorFunction(self, anchorFunction)
+    if not anchorFunctions[anchorFunction] then
+        ReportObtainable(self, "UnknownAnchorFunction", "Obtainable() uses " .. tostring(anchorFunction) .. " where PvE Season, PvP Season, Version, Event, Date or Reset is expected")
+    end
 end
 
 function achievement:SetTemporaryObtainableStart(record, startInclusion, startFunction, startValue)
@@ -188,8 +206,8 @@ end
 
 function achievement:SetTemporaryObtainableDuring(startFunction, startValue, isObtainable)
     local record = {}
-    self:SetTemporaryObtainableStart(record, "From", startFunction, GetStartValue(startFunction, startValue))
-    self:SetTemporaryObtainableEnd(record, "Until", startFunction, GetStartValue(startFunction, startValue))
+    self:SetTemporaryObtainableStart(record, "From", startFunction, GetStartValue(self, startFunction, startValue))
+    self:SetTemporaryObtainableEnd(record, "Until", startFunction, GetStartValue(self, startFunction, startValue))
     if isObtainable == false then
         record.IsNotObtainable = true
     end
@@ -199,21 +217,22 @@ end
 function achievement:SetTemporaryObtainableFromVersionToEnd(startInclusion, startFunction, startValue)
     local record = {}
     self:SetTemporaryObtainableStart(record, "From", "Version", self.BuildVersion.Id)
-    self:SetTemporaryObtainableEnd(record, startInclusion, startFunction, GetStartValue(startFunction, startValue))
+    record.Start.Implicit = true -- the achievement's own patch, past wherever the achievement is registered
+    self:SetTemporaryObtainableEnd(record, startInclusion, startFunction, GetStartValue(self, startFunction, startValue))
     tinsert(self.TemporaryObtainable, record)
 end
 
 function achievement:SetTemporaryObtainableStartOnly(startInclusion, startFunction, startValue)
     local record = {}
-    self:SetTemporaryObtainableStart(record, startInclusion, startFunction, GetStartValue(startFunction, startValue))
-    self:SetTemporaryObtainableEnd(record, "Until", "Date", GetStartValue("Date", {2100, 1, 1}))
+    self:SetTemporaryObtainableStart(record, startInclusion, startFunction, GetStartValue(self, startFunction, startValue))
+    self:SetTemporaryObtainableEnd(record, "Until", "Date", GetStartValue(self, "Date", {2100, 1, 1}))
     tinsert(self.TemporaryObtainable, record)
 end
 
 function achievement:SetTemporaryObtainableFull(startInclusion, startFunction, startValue, endInclusion, endFunction, endValue)
     local record = {}
-    self:SetTemporaryObtainableStart(record, startInclusion, startFunction, GetStartValue(startFunction, startValue))
-    self:SetTemporaryObtainableEnd(record, endInclusion, endFunction, GetStartValue(endFunction, endValue))
+    self:SetTemporaryObtainableStart(record, startInclusion, startFunction, GetStartValue(self, startFunction, startValue))
+    self:SetTemporaryObtainableEnd(record, endInclusion, endFunction, GetStartValue(self, endFunction, endValue))
     tinsert(self.TemporaryObtainable, record)
 end
 
@@ -231,29 +250,41 @@ function achievement:SetTemporaryObtainable(startInclusion, startFunction, start
         return
     end
 
-    -- Case 2: During - [startInclusion, startFunction]
+    -- Case 2: During - [startInclusion, startFunction]; here the first word is the anchor function and the second its value
     if startInclusion and startFunction and not startValue then
+        CheckAnchorFunction(self, startInclusion)
         self:SetTemporaryObtainableDuring(startInclusion, startFunction, startValue)
         return
     end
 
     -- Case 3: Only handle "Before" cutoff (temporary until a future version) - [Before, startFunction, startValue]
     if startInclusion == "Before" and startFunction and startValue and not endInclusion then
+        CheckAnchorFunction(self, startFunction)
         self:SetTemporaryObtainableFromVersionToEnd(startInclusion, startFunction, startValue)
         return
     end
 
     -- Case 4: Open-ended start only - [startInclusion, startFunction, startValue]
     if startInclusion and startFunction and startValue and not endInclusion then
+        CheckAnchorFunction(self, startFunction)
         self:SetTemporaryObtainableStartOnly(startInclusion, startFunction, startValue)
         return
     end
 
     -- Case 5: Everything defined - [startInclusion, startFunction, startValue, endInclusion, endFunction, endValue]
     if startInclusion and startFunction and startValue and endInclusion and endFunction and endValue then
+        CheckAnchorFunction(self, startFunction)
+        CheckAnchorFunction(self, endFunction)
         self:SetTemporaryObtainableFull(startInclusion, startFunction, startValue, endInclusion, endFunction, endValue)
         return
     end
+
+    -- None of the forms matched, so nothing was recorded; say so instead of staying silent
+    local words = {}
+    for _, word in next, { startInclusion, startFunction, startValue, endInclusion, endFunction, endValue } do
+        tinsert(words, addon.Util.IsTable(word) and ("{" .. table.concat(word, ", ") .. "}") or tostring(word))
+    end
+    ReportObtainable(self, "MalformedObtainable", "Obtainable(" .. table.concat(words, ", ") .. ") matches none of the forms SetTemporaryObtainable knows")
 end
 
 function achievement:SetTemporaryObtainableWeeks(weeks)

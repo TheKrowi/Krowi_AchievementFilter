@@ -152,9 +152,14 @@ function KrowiAF.AddEventData(eventIds, eventType, categoryId, icon, eventName, 
         eventName = eventName[1] .. ": " .. eventName[2]
     end
 
+    local category = addon.Data.Categories[categoryId]
+    if categoryId and not category then
+        addon.Data.LoadDiagnostics:Report(addon.Data.LoadDiagnostics.Kind.UnregisteredCategory, categoryId, "event " .. tostring(eventName) .. " binds to a category no category file declares")
+    end
+
     if addon.Util.IsTable(eventIds) then
         for _, eventId in next, eventIds do
-            addon.Data.Events[eventType][eventId] = addon.Objects.Event:New(eventId, eventIds, addon.Data.Categories[categoryId], eventType, icon, eventName, mapId)
+            addon.Data.Events[eventType][eventId] = addon.Objects.Event:New(eventId, eventIds, category, eventType, icon, eventName, mapId)
         end
     end
 end

@@ -7,6 +7,8 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-08-14 12-08-03 ]] --
+L["5th Anniversary Celebration"] = "5주년 기념 축제"
+L["Defense of the Ruby Sanctum"] = "루비 성소 수호"
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true

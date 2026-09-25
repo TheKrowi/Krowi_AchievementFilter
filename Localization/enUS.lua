@@ -3,11 +3,15 @@ local L = addon.Localization.NewDefaultLocale()
 
 KrowiAF.PluginsApi:LoadPluginLocalization(L)
 
-L["Winds of Mysterious Fortune"] = true
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-08-14 12-07-42 ]] --
+L["Winds of Mysterious Fortune"] = true
+L["Return to Karazhan"] = true
+L["not yet on this game version"] = true
+L["5th Anniversary Celebration"] = true
+L["Defense of the Ruby Sanctum"] = true
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -285,7 +289,6 @@ L["Deepwind Gorge"] = true
 L["Default Width"] = true
 L["Default Width Desc"] = "The default width of a newly opened {popout}."
 L["Defending Azeroth Assaults"] = true
-L["Defending the Ruby Sanctum"] = true
 L["Delves"] = true
 L["Deselect All"] = true
 L["Diablo"] = true

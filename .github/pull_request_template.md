@@ -16,7 +16,7 @@
 ## Checklist
 - [ ] New Lua files are registered in the appropriate `Files.xml` manifest
 - [ ] New SavedVariables are declared in `Krowi_AchievementFilter.toc`
-- [ ] New localization strings are added to `Localization/enUS.lua` **above** the `AUTOGENTOKEN` marker
+- [ ] New localization strings are added to `Localization/enUS.lua` directly **below** the `-- [[ Exported at ... ]] --` line under the `AUTOGENTOKEN` marker
 - [ ] `_Packaging/Changelog.md` is updated
 - [ ] Tested in Retail (if applicable)
 - [ ] Tested in Classic (if applicable)

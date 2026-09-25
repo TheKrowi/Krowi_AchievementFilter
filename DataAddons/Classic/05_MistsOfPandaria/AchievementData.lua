@@ -8,7 +8,6 @@ local faction = KrowiAF.Enum.Faction
 -- BuildVersionData.lua. See docs/data-design-review.md.
 KrowiAF.AchievementData["05_00_04"] = {
 	Ach(6981):IsPvP(), -- Master of Temple of Kotmogu
-	Ach(7315), -- Eternally in the Vale
 }
 
 KrowiAF.AchievementData["05_01_00"] = {
@@ -18,14 +17,10 @@ KrowiAF.AchievementData["05_01_00"] = {
 
 KrowiAF.AchievementData["05_02_00"] = {
 	Ach(8214):Title():PvP(12), -- Malevolent Gladiator: Season 12 (3v3)
-	Ach(8238), -- Cutting Edge: Lei Shen
-	Ach(8249), -- Ahead of the Curve: Lei Shen
-	Ach(8260), -- Cutting Edge: Ra-den
 }
 
 KrowiAF.AchievementData["05_03_00"] = {
 	Ach(8316), -- Blood in the Snow
-	Ach(8306):Title():AutoFactionSplit(faction.Alliance, 8307), -- Hordebreaker / Darkspear Revolutionary
 }
 
 KrowiAF.AchievementData["05_04_00"] = {

@@ -3,6 +3,7 @@ local _, addon = ...
 local expansion = KrowiAF.NewBuildVersion("MistsOfPandaria", 5)
 local minor = expansion:Minor(0)
 minor:Patch(4, addon.L["Mists of Pandaria (pre-patch)"])
+minor:Patch(5, addon.L["Mists of Pandaria"])
 minor = expansion:Minor(1)
 minor:Patch(0, addon.L["Landfall"])
 minor = expansion:Minor(2)

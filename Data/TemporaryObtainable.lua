@@ -157,6 +157,10 @@ function temporaryObtainable:GetObtainableState(achievement)
         return "Past"
     end
 
+    if _end == "Unscheduled" then
+        return -- obtainable here with no end known on this game version, so not temporarily obtainable as far as this client is concerned
+    end
+
     -- print(achievement.Id, startState, endState)
     return "Current"
 end
@@ -222,7 +226,7 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
 
         -- print(startFunction, start, endFunction, _end)
         local isWillBeWas, color
-        if start == "Past" and _end == "Future" then
+        if start == "Past" and (_end == "Future" or _end == "Unscheduled") then
             isWillBeWas = addon.L["is"]
             color = addon.Util.Colors.GreenRGB
         elseif start == "Future" then
@@ -283,6 +287,22 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
 
     local function FormatTime(timestamp)
         return tostring(date(addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime, timestamp))
+    end
+
+    -- The patch a Version anchor reaches on this game version; when none has, the patch as Retail shipped it
+    -- (named if it is registered here for provenance) and a note that it has not happened here. The start an
+    -- achievement gets from its own patch is shown as that patch, which is always registered
+    local function GetVersionDetail(buildVersionId, implicit)
+        local buildVersion = addon.Data.BuildVersions[buildVersionId]
+        if implicit and buildVersion then
+            return buildVersion.Description .. " (" .. buildVersion.Name .. ")"
+        end
+        local target = KrowiAF.ResolveVersionAnchor(buildVersionId)
+        if target then
+            return target.Description .. " (" .. target.Name .. ")"
+        end
+        local detail = buildVersion and (buildVersion.Description .. " (" .. buildVersion.Name .. ")") or (addon.Util.L["Version"] .. " " .. KrowiAF.FormatBuildVersionId(buildVersionId))
+        return detail .. " (" .. addon.L["not yet on this game version"] .. ")"
     end
 
     function temporaryObtainable:GetSeasonDetail(record, seasonDetail)
@@ -360,10 +380,7 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
         startDetail = startDetail .. " " .. tostring(record.Start.Value)
 
         if record.Start.Function == "Version" then
-            local buildVersion = addon.Data.BuildVersions[record.Start.Value]
-            if buildVersion then
-                startDetail = buildVersion.Description .. " (" .. buildVersion.Name .. ")"
-            end
+            startDetail = GetVersionDetail(record.Start.Value, record.Start.Implicit)
         end
 
         if record.Start.Function == "PvE Season" or record.Start.Function == "PvP Season" then
@@ -423,10 +440,7 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
         endDetail = endDetail .. " " .. tostring(record.End.Value)
 
         if record.End.Function == "Version" then
-            local buildVersion = addon.Data.BuildVersions[record.End.Value]
-            if buildVersion then
-                endDetail = buildVersion.Description .. " (" .. buildVersion.Name .. ")"
-            end
+            endDetail = GetVersionDetail(record.End.Value)
         end
 
         if record.End.Function == "Reset" then
@@ -507,11 +521,18 @@ do -- Get Start Sate
         end
     end
 
+    -- A Version anchor names the patch as Retail shipped it and resolves to the patch where this client reached
+    -- that content (KrowiAF.ResolveVersionAnchor). None yet: that content has not happened here
     function temporaryObtainable:GetVersionStartState(record)
+        local target = KrowiAF.ResolveVersionAnchor(record.Start.Value)
+        if not target then
+            -- the start an achievement gets from its own patch is past wherever the achievement is registered
+            return record.Start.Implicit and "Past" or "Future"
+        end
         if record.Start.Inclusion == "From" then
-            return self:GetCurrentVersionString() >= record.Start.Value and "Past" or "Future"
+            return self:GetCurrentVersionString() >= target.Id and "Past" or "Future"
         elseif record.Start.Inclusion == "After" then
-            return self:GetCurrentVersionString() > record.Start.Value and "Past" or "Future"
+            return self:GetCurrentVersionString() > target.Id and "Past" or "Future"
         end
     end
 
@@ -583,11 +604,15 @@ do -- Get End State
         end
     end
 
-    function temporaryObtainable:GetVersionEndState(record) -- ok
+    function temporaryObtainable:GetVersionEndState(record)
+        local target = KrowiAF.ResolveVersionAnchor(record.End.Value)
+        if not target then
+            return "Unscheduled" -- the content that ends this has not happened on this game version, so no end is known here
+        end
         if record.End.Inclusion == "Until" then
-            return self:GetCurrentVersionString() > record.End.Value and "Past" or "Future"
+            return self:GetCurrentVersionString() > target.Id and "Past" or "Future"
         elseif record.End.Inclusion == "Before" then
-            return self:GetCurrentVersionString() >= record.End.Value and "Past" or "Future"
+            return self:GetCurrentVersionString() >= target.Id and "Past" or "Future"
         end
     end
 

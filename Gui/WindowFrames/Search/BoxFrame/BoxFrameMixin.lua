@@ -33,10 +33,7 @@ local function LoadPreviewContainer(self)
     showFullSearchResultsButton:SetPoint("RIGHT", container.Buttons[numButtons])
 
 	self.HasStickyFocus = function()
-		if addon.Util.IsMainline then
-			return DoesAncestryIncludeAny(container, GetMouseFoci())
-		end
-		return DoesAncestryInclude(container, GetMouseFocus())
+		return DoesAncestryIncludeAny(container, GetMouseFoci())
     end
 end
 

@@ -31,6 +31,9 @@ function KrowiAF.AddPetBattleLinkDatum(achievementId, criteriaIndex, link)
 end
 
 local function AddPetBattleLinkData(achievementId, link, criteria)
+    if not addon.Data.Achievements[achievementId] then -- stored anyway; the link is looked up by id at tooltip time
+        addon.Data.LoadDiagnostics:Report(addon.Data.LoadDiagnostics.Kind.UnregisteredAchievement, achievementId, "pet battle link")
+    end
     addon.Data.PetBattleLinkData[achievementId] = addon.Data.PetBattleLinkData[achievementId] or {
         Criteria = {},
         Link = link

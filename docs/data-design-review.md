@@ -16,7 +16,7 @@ Three defects ship today, none of which any check catches:
 
 | # | Defect | Scale | Status |
 |---|---|---|---|
-| 1 | Achievements mislabelled **Time Limited** on MoP Classic | **306** | live |
+| 1 | Achievements mislabelled **Time Limited** on MoP Classic | **306** | fixed 2026-09-23 (Stage 3) |
 | 2 | Category subtrees that **never load** | **19** (12 Retail, 7 Classic) | fixed 2026-09-20 |
 | 3 | Shared version cutoffs resolving wrong on MoP Classic | **5** of 12 | fixed 2026-09-20 |
 
@@ -141,6 +141,22 @@ Resolution: look the milestone up in **this client's** registered build versions
 
 **Why a new key rather than reusing the patch name.** Classic's `BuildVersionData` registers *both* the historical Retail MoP patches and its own 5.5.x re-release, so the display name "Landfall" occurs twice within one client. The milestone key must be explicit and unique per client.
 
+**Decision 2026-09-23, before implementing: the beat key is the Retail patch number, not a new name.** Every first-party anchor was written with a Retail patch in mind, so a `Version` anchor *already is* a beat name: "the content state Retail shipped as 6.0.2". What was missing is the other half, a declaration per client of which of its own patches reach that state.
+
+**Revised 2026-09-25, before commit: the declaration is a flat table, not a flag on the patch registration.** The first implementation put it on `BuildVersionData` as `:Live()` (bare on every Retail expansion, `:Live({5, 4, 0})` on each Classic re-release patch). It worked but read backwards: you look up an anchor and ask "which patch here?", while the declaration sat on the answer and listed the questions; one word meant both "shipped on this client" and "stands for these Retail patches"; and the patch registry, which also drives provenance and the build-version filter, carried two kinds of patch told apart only by the flag. The same information now lives in one table per client, read in the direction you look it up, and `BuildVersionData` is back to registering patches only:
+
+```lua
+-- DataAddons/Classic/ContentTimeline.lua: Retail patch -> the patch where this client reached that content
+KrowiAF.ContentTimeline = {
+    ["5.2.0"] = "5.5.3", -- The Thunder King
+    ["5.4.0"] = "5.5.4", -- Siege of Orgrimmar
+}
+-- Retail has no table: an anchor is its own patch
+```
+
+Resolution: `KrowiAF.ResolveVersionAnchor` returns the anchor's own registered patch when the client has no `ContentTimeline`, and otherwise the patch the table maps it to; every patch on the right-hand side also maps to itself, for Classic-only data that anchors on a Classic patch directly (`{3, 4, 3}`). `CreateBuildVersions` builds `addon.Data.ContentTimeline` from the table and asserts that every right-hand patch is registered. A hit compares the client's version against the resolved patch, as before. A miss means that content has not happened on this client: a start anchor reads "Future", an end anchor reads **"Unscheduled"**, and an achievement whose end is unscheduled is simply obtainable here with no end known, so it is not temporarily obtainable, not Time Limited, and its tooltip says so. The start an achievement gets implicitly from its own patch is "Past" on a miss, because the file placement already says the achievement exists on this client. The headless pipeline gave byte-identical output before and after the revision (Retail 0, Classic 330 anchors / 321 achievements with no end here). A Forever Realms client adds its own table and touches no other file.
+Why this instead of the milestone names sketched above: the same O(patches per family) mapping table, no new vocabulary to invent for 31 distinct anchors, **no migration of the 330 data lines**, `"Version"` keeps its documented meaning for plugins, and the correspondence Classic's data already implied by reusing patch names ("Secrets of Ulduar" on 3.1.0 and again on 3.4.1) becomes an explicit, checkable declaration. The metric changed with it: an anchor that resolves on Retail but not on Classic is not debt, it is a beat Classic has not reached, so the loader reports it as information; an anchor that fails to resolve on Retail is an error, since Retail is the reference timeline the keys are drawn from. The `shared-version-anchor` lint rule from Stage 1 is retired, because the hazard it guarded against no longer exists: a Shared anchor on a major both families register now resolves per client through the declarations.
+
 **Precedent in this repo.** [DataAddons/Classic/SeasonData.lua](../DataAddons/Classic/SeasonData.lua) already states the rule for seasons — *"Classic reuses Retail's season numbers for completely different real dates, so its anchors must be registered here and never in Retail's, even for achievements that live in a Shared data file."* The pattern is documented and structurally present, though it currently carries only one registration. This extends a proven shape rather than inventing one.
 
 ### 5.2 Fail loudly — a diagnostic channel
@@ -150,6 +166,8 @@ The data layer today has only silent skip or fatal `assert`. Every resolution si
 Add a single collector — `addon.Data.LoadDiagnostics` — that every drop site writes to with file/line context, surfaced in debug mode and asserted on by the offline lint. The rule: **a drop is a data defect until proven intentional**, and an intentional drop is declared, not implied.
 
 This is the highest-value change per line of code in the whole review. It is what would have caught defects 2.1, 2.2 and 2.3 on the day they were introduced.
+
+**Done 2026-09-23.** `Data/LoadDiagnostics.lua` is the collector; every task group starts with a `SetSource` task so a report names its data file. Wired drop sites: category achievement lists and the V1 `ParseChildData` fall-through, zone lists, transmog set, custom criteria, tooltip and pet battle link data, event category binding, and `Achievement:SetTemporaryObtainable` (unknown anchor word, arguments matching no form, `Version` anchor on a build version this client never registers). The headless loader reads the table, keeps its registry proxy as a cross-check that fails on any unreported lookup (removing one `Report` call produces 537 findings), and counts the unregistered `Version` anchors per client as a warning: at first **7 on Retail, 331 on Classic**. The 7 Retail ones were anchors on patches no achievement was added in (5.0.5, 6.0.3, 7.1.5, 12.0.1), which had therefore never been registered; they are registered now, and the build-version filter lists only patches some achievement was added in (`BuildVersion.InUse`) so registering for an anchor alone adds no empty checkbox. **Retail is at 0, Classic at 330.** With Stage 3 the Classic number stopped being debt: those 330 anchors name Warlords-and-later beats Classic has not reached, and the loader now reports them as information, together with the count that matters, the achievements obtainable there with no end scheduled (321), which were the Time Limited mislabels. Debug mode prints the summary after login, splitting unregistered achievement references by whether the client knows the id.
 
 ### 5.3 Client family as a first-class value
 
@@ -185,14 +203,14 @@ Sized from the measurement: ~15 entries of the 61 divergent pairs differ in one 
 
 ## 7. Plan
 
-**Stage 1 — stop the bleeding (no API change, no migration).**
+**Stage 1 — stop the bleeding (no API change, no migration). Done 2026-09-20.**
 1. Fix the 19 `{ true, <name>, … }` nodes to `{ <name>, true, … }`.
 2. Move the 5 wrong Shared cutoffs into per-client files; the Classic copy carries no SoO anchor until Classic's SoO patch is known.
 3. Add lint rules: (a) a category node whose first element is a boolean; (b) a `Version` anchor in a Shared file whose major is registered by more than one family.
 
-**Stage 2 — the diagnostic channel (§5.2).** Add the collector, wire the five known drop sites, make the lint fail on an undeclared drop. Re-run and triage whatever it surfaces.
+**Stage 2 — the diagnostic channel (§5.2). Done 2026-09-23.** Add the collector, wire the five known drop sites, make the lint fail on an undeclared drop. Re-run and triage whatever it surfaces. Surfaced: 7 Retail anchors on patches Retail never registered because no achievement was added in them (5.0.5, 6.0.3, 7.1.5 twice, 12.0.1 three times), fixed the same day by registering the patches, and the 330 Classic anchors that are the timeline problem itself.
 
-**Stage 3 — milestone anchors (§5.1).** Add the milestone key to `BuildVersionData`, add `"Milestone"` as an anchor function, migrate the ~320 `Version` anchors, keep `"Version"` parsing for compatibility.
+**Stage 3 — milestone anchors (§5.1). Done 2026-09-23, in the amended form; declaration revised 2026-09-25.** `DataAddons/Classic/ContentTimeline.lua` maps the Retail patches Classic's 3.4.x, 4.4.x and 5.5.x reached (first done as `:Live()` flags on the patch registrations), 5.5.4 registered as Classic's Siege of Orgrimmar (the build adds only 18 hidden Challenge Mode rating trackers), the five Siege entries back in Shared, `KrowiAF.ResolveVersionAnchor` behind the state, tooltip and diagnostic code, no data line migrated.
 
 **Stage 4 — client family (§5.3) and per-entry scoping (§5.4).** Prerequisite for the Forever tree.
 

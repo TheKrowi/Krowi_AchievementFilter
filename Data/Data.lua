@@ -13,6 +13,7 @@ data.TransmogSets = {}
 
 data.BuildVersions = {}
 data.BuildVersionsGrouped = {}
+data.ContentTimeline = nil -- Retail patch id -> the patch where this client reached it, nil on Retail; see Api/BuildVersionDataApi.lua
 
 data.Achievements = {}
 data.AchievementIds = {}
@@ -45,6 +46,7 @@ function data:RegisterAchievementDataTasks()
         local minor = tonumber(k:sub(4, 5))
         local patch = tonumber(k:sub(7, 8))
         tinsert(v, 1, {KrowiAF.SetAchievementPatch, major, minor, patch})
+        tinsert(v, 1, {self.LoadDiagnostics.SetSource, "AchievementData", k})
         self.InjectLoadingDebug(v, name .. k)
         tinsert(self.TasksGroups, 1, v)
     end
@@ -53,6 +55,7 @@ end
 function data:RegisterCustomCriteriaDataTasks()
     local name = "Custom Criteria Data: "
     for k, v in next, KrowiAF.CustomCriteriaData do
+        tinsert(v, 1, {self.LoadDiagnostics.SetSource, "CustomCriteriaData", k})
         self.InjectLoadingDebug(v, name .. k)
         tinsert(self.TasksGroups, 1, v)
     end
@@ -60,7 +63,7 @@ end
 
 function data:RegisterCategoryDataTasks()
     local name = "Category Data: "
-    local v = {KrowiAF.CreateCategories}
+    local v = {{self.LoadDiagnostics.SetSource, "CategoryData"}, KrowiAF.CreateCategories}
     self.InjectLoadingDebug(v, name .. 1)
     tinsert(self.TasksGroups, 1, v)
 end
@@ -68,6 +71,7 @@ end
 function data:RegisterEventDataTasks()
     local name = "Event Data: "
     for k, v in next, KrowiAF.EventData do
+        tinsert(v, 1, {self.LoadDiagnostics.SetSource, "EventData", k})
         self.InjectLoadingDebug(v, name .. k)
         tinsert(self.TasksGroups, 1, v)
     end
@@ -76,6 +80,7 @@ end
 function data:RegisterPetBattleLinkDataTasks()
     local name = "Pet Battle Link Data: "
     for k, v in next, KrowiAF.PetBattleLinkData do
+        tinsert(v, 1, {self.LoadDiagnostics.SetSource, "PetBattleLinkData", k})
         self.InjectLoadingDebug(v, name .. k)
         tinsert(self.TasksGroups, 1, v)
     end
@@ -84,6 +89,7 @@ end
 function data:RegisterTooltipDataTasks()
     local name = "Additional Tooltip Data: "
     for k, v in next, KrowiAF.TooltipData do
+        tinsert(v, 1, {self.LoadDiagnostics.SetSource, "TooltipData", k})
         self.InjectLoadingDebug(v, name .. k)
         tinsert(self.TasksGroups, 1, v)
     end
@@ -92,6 +98,7 @@ end
 function data:RegisterTransmogSetDataTasks()
     local name = "Transmog Set Data: "
     for k, v in next, KrowiAF.TransmogSetData do
+        tinsert(v, 1, {self.LoadDiagnostics.SetSource, "TransmogSetData", k})
         self.InjectLoadingDebug(v, name .. k)
         tinsert(self.TasksGroups, 1, v)
     end
@@ -100,13 +107,16 @@ end
 function data:RegisterZoneDataTasks()
     local name = "Zone Data: "
     for k, v in next, KrowiAF.ZoneData do
+        tinsert(v, 1, {self.LoadDiagnostics.SetSource, "ZoneData", k})
         self.InjectLoadingDebug(v, name .. k)
         tinsert(self.TasksGroups, 1, v)
     end
 end
 
 local function PostLoadOnPlayerLogin(self, start)
-    local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Prefix .. "_Layout", "cmd", "KROWIAF-0.0").args.Summary.args.Summary.args.NumAchievements -- cmd and KROWIAF-0.0 are just to make the function work
+    self.LoadDiagnostics:Print()
+
+    local custom =LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Prefix .. "_Layout", "cmd", "KROWIAF-0.0").args.Summary.args.Summary.args.NumAchievements -- cmd and KROWIAF-0.0 are just to make the function work
     custom.max = #self.AchievementIds
 
     -- self:LoadZoneAchievements();

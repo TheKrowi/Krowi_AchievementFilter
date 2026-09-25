@@ -45,7 +45,7 @@ local registries = { "AchievementData", "CustomCriteriaData", "EventData", "Tool
 -- One client
 -------------------------------------------------------------------------------------------------
 local function runClient(client)
-    local result = { client = client, registered = {}, missing = {}, files = 0, achievements = 0, keys = 0, tasks = 0 }
+    local result = { client = client, registered = {}, missing = {}, probed = {}, unscheduled = 0, noEndHere = 0, files = 0, achievements = 0, keys = 0, tasks = 0 }
     local prefix = "[" .. client .. "] "
     local ctx = clientEnv.New(root, client)
 
@@ -186,7 +186,9 @@ local function runClient(client)
         end
     end
 
-    -- Once the achievement groups have run, record every lookup of an unregistered id
+    -- Once the achievement groups have run, record every lookup of an unregistered id. The drop sites
+    -- themselves report to addon.Data.LoadDiagnostics (read below); this proxy is the cross-check that
+    -- no lookup of a missing id went unreported, so a new drop site cannot be silent
     local proxyInstalled = false
     local function installMissingProxy()
         proxyInstalled = true
@@ -195,8 +197,8 @@ local function runClient(client)
                 local info = ctx.CurrentGroup and groupInfo[ctx.CurrentGroup]
                 local label = info and (info.Registry .. " " .. info.Key) or "CategoryData"
                 local file = info and info.File or nil
-                result.missing[id] = result.missing[id] or {}
-                result.missing[id][label] = file or true
+                result.probed[id] = result.probed[id] or {}
+                result.probed[id][label] = file or true
             end
             return nil
         end })
@@ -226,19 +228,59 @@ local function runClient(client)
     result.tasks = ctx.TasksRun
     if not proxyInstalled then installMissingProxy() end
 
-    -- Tooltip data stores achievement ids without looking them up, so check those explicitly
-    for _, entries in pairs(data.TooltipData or {}) do
-        if type(entries) == "table" then
-            for _, e in ipairs(entries) do
-                if type(e) == "table" and type(e.AchievementId) == "number" and rawget(data.Achievements, e.AchievementId) == nil then
-                    result.missing[e.AchievementId] = result.missing[e.AchievementId] or {}
-                    result.missing[e.AchievementId]["TooltipData"] = true
-                end
+    -- --- what the drop sites reported (Data/LoadDiagnostics.lua) -------------------------------
+    local diagnostics = data.LoadDiagnostics
+    if type(diagnostics) ~= "table" or type(diagnostics.Entries) ~= "table" then
+        report("Data/LoadDiagnostics.lua", 1, prefix .. "addon.Data.LoadDiagnostics did not load; the drop sites have nowhere to report")
+        diagnostics = { Entries = {}, Kind = {} }
+    end
+    local Kind = diagnostics.Kind
+    local reportedMissing = {}
+    local function sourceOf(entry)
+        local src = entry.Source
+        if not src then return "?", nil end
+        local label = src.Registry .. (src.Key ~= nil and (" " .. tostring(src.Key)) or "")
+        local file = origin[src.Registry] and origin[src.Registry][src.Key] or nil
+        return label, file
+    end
+    for _, entry in ipairs(diagnostics.Entries) do
+        local label, file = sourceOf(entry)
+        if entry.Kind == Kind.UnregisteredAchievement then
+            -- resolved below against the other client: a Shared file naming the other client's id is by design
+            result.missing[entry.Id] = result.missing[entry.Id] or {}
+            result.missing[entry.Id][label] = file or true
+            reportedMissing[entry.Id] = true
+        elseif entry.Kind == Kind.UnscheduledVersion then
+            -- a Version anchor names the patch as Retail shipped it; Retail is the reference timeline, so every
+            -- anchor must resolve there, while a re-release client not having reached that content yet (no ContentTimeline entry) is the expected case
+            result.unscheduled = result.unscheduled + 1
+            if client == "Retail" then
+                report(file or "DataAddons", file and findIdLine(file, entry.Id) or 1, prefix .. string.format("achievement %s: %s; Retail registers every patch it shipped, so register it in its BuildVersionData.lua or fix the anchor", tostring(entry.Id), entry.Detail))
+            elseif verbose then
+                io.stderr:write(string.format("%s:%s: %sachievement %s: %s\n", file or "?", file and findIdLine(file, entry.Id) or 1, prefix, tostring(entry.Id), entry.Detail))
             end
+        else
+            report(file or "DataAddons", file and findIdLine(file, entry.Id) or 1, prefix .. string.format("%s (%s): %s: %s", entry.Kind, label, tostring(entry.Id), entry.Detail))
         end
     end
+    -- every lookup of an unregistered id the proxy saw must have been reported by the code that made it;
+    -- reported below, where the category files can be searched for the line
+    result.silent = {}
+    for id, labels in pairs(result.probed) do
+        if not reportedMissing[id] then result.silent[id] = labels end
+    end
 
-    for id in pairs(data.Achievements) do result.registered[id] = true; result.achievements = result.achievements + 1 end
+    -- the Stage 3 metric (docs/data-design-review.md §5.1): achievements whose last obtainable record ends at a
+    -- patch whose content this client has not reached; they are obtainable here with no end scheduled and no longer Time Limited
+    for id, achievement in pairs(data.Achievements) do
+        result.registered[id] = true
+        result.achievements = result.achievements + 1
+        local records = type(achievement) == "table" and achievement.TemporaryObtainable
+        local last = records and records[#records]
+        if last and last.End and last.End.Function == "Version" and type(KrowiAF.ResolveVersionAnchor) == "function" and not KrowiAF.ResolveVersionAnchor(last.End.Value) then
+            result.noEndHere = result.noEndHere + 1
+        end
+    end
 
     if verbose then
         io.stdout:write(prefix .. "stubbed globals: ", table.concat(ctx:SortedStubbedGlobals(), ", "), "\n")
@@ -275,10 +317,21 @@ end
 
 for _, c in ipairs(clients) do
     local r = results[c]
+    local catFiles
+    -- where a reference to an id lives: the source file when the group is known, else the category file naming the id
+    local function locate(file, id)
+        if type(file) == "string" then return file, findIdLine(file, id) end
+        catFiles = catFiles or categoryFiles(c)
+        for _, cf in ipairs(catFiles) do
+            local line = findIdLine(cf, id)
+            if line then return cf, line end
+        end
+        return "DataAddons/" .. c .. "/CategoryData.lua", nil
+    end
+
     local ids = {}
     for id in pairs(r.missing) do ids[#ids + 1] = id end
     table.sort(ids)
-    local catFiles
     for _, id in ipairs(ids) do
         local everywhere = not registeredAnywhere(id)
         for label, file in pairs(r.missing[id]) do
@@ -286,20 +339,17 @@ for _, c in ipairs(clients) do
             -- an id that exists on the other client and is referenced from a Shared file is skipped by design;
             -- report only ids no client registers, or client-specific files referencing ids that client lacks
             if everywhere or clientSpecific then
-                local where, line = file, nil
-                if type(file) == "string" then
-                    line = findIdLine(file, id)
-                else
-                    catFiles = catFiles or categoryFiles(c)
-                    for _, cf in ipairs(catFiles) do
-                        line = findIdLine(cf, id)
-                        if line then where = cf break end
-                    end
-                    if not where or where == true then where = "DataAddons/" .. c .. "/CategoryData.lua" end
-                end
+                local where, line = locate(file, id)
                 local why = everywhere and "no AchievementData file registers it on any client" or ("it is not registered for " .. c)
                 report(where, line, string.format("[%s] %s references achievement %d but %s", c, label, id, why))
             end
+        end
+    end
+
+    for id, labels in pairs(r.silent) do
+        for label, file in pairs(labels) do
+            local where, line = locate(file, id)
+            report(where, line, string.format("[%s] %s looked up unregistered achievement %d and dropped it without reporting to addon.Data.LoadDiagnostics (silent drop site)", c, label, id))
         end
     end
 end
@@ -308,7 +358,7 @@ table.sort(problems)
 for _, p in ipairs(problems) do io.stderr:write(p, "\n") end
 for _, c in ipairs(clients) do
     local r = results[c]
-    io.stdout:write(string.format("load-data %s: %d files, %d patch keys, %d achievements registered, %d tasks run\n", c, r.files, r.keys, r.achievements, r.tasks))
+    io.stdout:write(string.format("load-data %s: %d files, %d patch keys, %d achievements registered, %d tasks run, %d version anchor(s) on content not reached here (%d achievements obtainable with no end scheduled)\n", c, r.files, r.keys, r.achievements, r.tasks, r.unscheduled, r.noEndHere))
 end
 io.stdout:write(string.format("load-data: %d problem(s)\n", #problems))
 os.exit(#problems == 0 and 0 or 1)

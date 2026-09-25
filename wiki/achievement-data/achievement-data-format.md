@@ -117,6 +117,8 @@ All dynamically generated from `KrowiAF.Enum.RewardType`. Chain multiple for ach
 
 > **Note:** For both cutoff patterns the start of the window is **not** the argument you write — it is silently set to the achievement's own `BuildVersion.Id`. You only specify the cutoff end.
 
+> **Note:** A `"Version"` value names the patch **as Retail shipped it**, on every client. Retail resolves it to that patch; Classic looks it up in `DataAddons/Classic/ContentTimeline.lua`, which maps each Retail patch to the patch where Classic reached the same content (`["5.4.0"] = "5.5.4"`). On a client that has not reached the patch, an end anchor leaves the achievement obtainable with no end scheduled, and a start anchor reads as future. Never write a Classic version number in a Shared file; write the Retail patch and let Classic's `ContentTimeline` map it.
+
 #### During patterns (single event / season)
 
 | Pattern | Example | Description |

@@ -16,6 +16,9 @@ function KrowiAF.AddTooltipDatum(achievementId, criteriaIndex, objectType, objec
     if not addon.Util.IsTable(objectIds) then
         objectIds = {objectIds}
     end
+    if not addon.Data.Achievements[achievementId] then -- stored anyway; the tooltip code falls back to the game's own info
+        addon.Data.LoadDiagnostics:Report(addon.Data.LoadDiagnostics.Kind.UnregisteredAchievement, achievementId, "tooltip data for " .. tostring(objectType) .. " " .. tostring(objectIds[1]))
+    end
 
     for _, objectId in next, objectIds do
         AddTooltipDatum(objectId, objectType, achievementId, criteriaIndex, faction)

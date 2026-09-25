@@ -7,6 +7,8 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-08-14 12-08-05 ]] --
+L["5th Anniversary Celebration"] = "Celebração de 5º Aniversário"
+L["Defense of the Ruby Sanctum"] = "Defesa do Santuário Rubi"
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -135,7 +137,6 @@ L["Decor Duel"] = "Duelo de Decoração"
 L["Deephaul Ravine"] = "Ravina Cargafunda"
 L["Deepwind Gorge"] = "Desfiladeiro do Vendaval"
 L["Defending Azeroth Assaults"] = "Defendendo Ataques a Azeroth"
-L["Defending the Ruby Sanctum"] = "Defendendo o Santuário Rubi"
 L["Delves"] = "Imersões"
 L["Diablo"] = true
 L["Diablo III"] = true

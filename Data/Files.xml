@@ -1,6 +1,7 @@
 <Ui>
     <Script file="TaskRunner.lua" />
     <Script file="Data.lua" />
+    <Script file="LoadDiagnostics.lua" />
     <Script file="AchievementCache.lua" />
     <Script file="TemporaryObtainable.lua" />
     <Script file="CustomWidgetEventTimers.lua" />

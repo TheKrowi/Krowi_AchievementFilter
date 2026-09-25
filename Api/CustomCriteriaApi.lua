@@ -4,6 +4,7 @@ KrowiAF.CustomCriteriaData = {}
 
 function KrowiAF.AddCustomCriteriaData(achievementId, customCriteria)
     if not addon.Data.Achievements[achievementId] then
+        addon.Data.LoadDiagnostics:Report(addon.Data.LoadDiagnostics.Kind.UnregisteredAchievement, achievementId, "custom criteria")
         return
     end
 

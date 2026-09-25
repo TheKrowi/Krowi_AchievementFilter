@@ -116,7 +116,7 @@ function M.New(root, client)
     env.GetDifficultyInfo = function(id) return "Difficulty " .. tostring(id), "raid", false, false, false, false, id end
     env.GetTitleName = function(id) return "Title " .. tostring(id) end
     env.UnitName = function() return "Player" end
-    env.GetBuildInfo = function() return client == "Retail" and "12.1.0" or "5.5.3", "69587", "Sep 4 2026", client == "Retail" and 120100 or 50503 end
+    env.GetBuildInfo = function() return client == "Retail" and "12.1.0" or "5.5.4", "69933", "Sep 23 2026", client == "Retail" and 120100 or 50504 end
     env.EnumUtil = {
         MakeEnum = function(...)
             local e = {}
@@ -220,7 +220,7 @@ function M.New(root, client)
     end
     local selected = {}
     for _, rel in ipairs(files) do
-        if rel:match("^Api/") or rel:match("^Objects/") or rel == "Data/Data.lua" or rel:match("^DataAddons/") then
+        if rel:match("^Api/") or rel:match("^Objects/") or rel == "Data/Data.lua" or rel == "Data/LoadDiagnostics.lua" or rel:match("^DataAddons/") then
             selected[#selected + 1] = rel
         end
     end

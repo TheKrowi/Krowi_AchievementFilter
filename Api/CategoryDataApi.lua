@@ -9,9 +9,13 @@ local function SetCategoryRootForTab(id, tabName)
 end
 
 local function AddAchievements(categoryId, achievementIds)
+    local category = addon.Data.Categories[categoryId]
     for _, achievementId in next, achievementIds do
-        if addon.Data.Achievements[achievementId] then
-            addon.Data.Categories[categoryId]:AddAchievement(addon.Data.Achievements[achievementId])
+        local achievement = addon.Data.Achievements[achievementId]
+        if achievement then
+            category:AddAchievement(achievement)
+        else
+            addon.Data.LoadDiagnostics:Report(addon.Data.LoadDiagnostics.Kind.UnregisteredAchievement, achievementId, "category " .. tostring(category.Name))
         end
     end
 end
@@ -77,6 +81,10 @@ local function ParseChildData(categoryId, childData)
         AddAchievements(categoryId, childData)
         return
     end
+
+    -- No branch took the node, so it and everything under it is gone; say so instead of staying silent
+    addon.Data.LoadDiagnostics:Report(addon.Data.LoadDiagnostics.Kind.UnparsedCategoryNode, categoryId,
+        "node under category " .. tostring(addon.Data.Categories[categoryId].Name) .. " starts with " .. type(childData[1]) .. " " .. tostring(childData[1]) .. "; a V1 node is { [id,] name, [canMerge,] children... }")
 end
 
 local deferredCategories = {}

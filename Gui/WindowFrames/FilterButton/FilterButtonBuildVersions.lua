@@ -7,10 +7,18 @@ local majorLabelFormat = "%s.x.x"
 local minorLabelFormat = "%s.%s.x"
 local patchLabelFormat = "%s.%s.%s"
 
+-- A patch is registered whenever data refers to it, as an achievement's patch or as an obtainable anchor,
+-- so the tooltip can name it. The menu lists only the patches some achievement was added in (BuildVersion.InUse),
+-- so a patch that exists for an anchor alone does not add an empty checkbox
+local function IsInUse(patch)
+    local buildVersion = addon.Data.BuildVersions[patch.BuildVersionId]
+    return buildVersion and buildVersion.InUse
+end
+
 local function BuildNodes()
     versionNodes = {
         majors = {},
-        hasMultipleMajors = addon.Data.BuildVersionsGrouped and #addon.Data.BuildVersionsGrouped > 1 or false
+        hasMultipleMajors = false
     }
 
     if not addon.Data.BuildVersionsGrouped then
@@ -30,22 +38,32 @@ local function BuildNodes()
             }
 
             for _, patch in next, minor.Patches do
-                table.insert(minorNode.patches, {
-                    id = patch.BuildVersionId,
-                    label = string.format(patchLabelFormat, major.Major, minor.Minor, patch.Patch)
-                })
+                if IsInUse(patch) then
+                    table.insert(minorNode.patches, {
+                        id = patch.BuildVersionId,
+                        label = string.format(patchLabelFormat, major.Major, minor.Minor, patch.Patch)
+                    })
+                end
             end
 
-            table.insert(majorNode.minors, minorNode)
+            if #minorNode.patches > 0 then
+                table.insert(majorNode.minors, minorNode)
+            end
         end
 
-        table.insert(versionNodes.majors, majorNode)
+        if #majorNode.minors > 0 then
+            table.insert(versionNodes.majors, majorNode)
+        end
     end
+
+    versionNodes.hasMultipleMajors = #versionNodes.majors > 1
 end
 
 local function GetNodes()
-    if not versionNodes or (#versionNodes.majors == 0 and addon.Data.BuildVersionsGrouped and #addon.Data.BuildVersionsGrouped > 0) then
+    -- InUse is set while the achievements load, so nodes built before the load finished are rebuilt on the next open
+    if not versionNodes or not versionNodes.complete then
         BuildNodes()
+        versionNodes.complete = addon.Data.IsLoaded
     end
     return versionNodes
 end

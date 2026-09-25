@@ -103,7 +103,7 @@ Open `DataAddons/Retail/CategoryData_Events.lua` and add the event category foll
 
 ## 6. Add Localization Strings
 
-Add the event name string to `Localization/enUS.lua` (above the `AUTOGENTOKEN` marker):
+Add the event name string to `Localization/enUS.lua` (directly below the `Exported at` line under the `AUTOGENTOKEN` marker):
 
 ```lua
 L["My Event Name"] = true

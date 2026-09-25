@@ -235,13 +235,11 @@ function KrowiAF_AchievementPopoutMixin:OnLeave()
 end
 
 -- self:IsMouseOver() is a geometric rect check that ignores stacking, so it would report "hovered"
--- even when an unrelated frame on top actually has focus. GetMouseFocus(Foci) is WoW's real hit-test
+-- even when an unrelated frame on top actually has focus. GetMouseFoci is WoW's real hit-test
 -- result, so checking ancestry against it is immune to that false positive - see BoxFrameMixin.lua
+-- GetMouseFoci exists on every shipped client; GetMouseFocus was removed from all of them
 local function IsHovered(popout)
-	if addon.Util.IsMainline then
-		return DoesAncestryIncludeAny(popout, GetMouseFoci())
-	end
-	return DoesAncestryInclude(popout, GetMouseFocus())
+	return DoesAncestryIncludeAny(popout, GetMouseFoci())
 end
 
 -- Called after a chrome-related option changes, so already-open popouts update immediately

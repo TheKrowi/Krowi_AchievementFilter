@@ -2,16 +2,21 @@ local _, addon = ...
 
 KrowiAF.ZoneData = {}
 
-local function AddAchievements(zoneAchievements, achievementIds)
+local function AddAchievements(zoneAchievements, achievementIds, zoneId)
     if not achievementIds then
         return
     end
 
     for _, achievementId in next, achievementIds do
         if addon.Util.IsTable(achievementId) then
-            AddAchievements(zoneAchievements, achievementId)
+            AddAchievements(zoneAchievements, achievementId, zoneId)
         else
-            tinsert(zoneAchievements, addon.Data.Achievements[achievementId])
+            local achievement = addon.Data.Achievements[achievementId]
+            if achievement then
+                tinsert(zoneAchievements, achievement)
+            else
+                addon.Data.LoadDiagnostics:Report(addon.Data.LoadDiagnostics.Kind.UnregisteredAchievement, achievementId, "zone " .. tostring(zoneId))
+            end
         end
     end
 end
@@ -37,8 +42,8 @@ function KrowiAF.AddZoneData(zoneIds, achievementIds, achievement10Ids, achievem
         addon.Data.Maps[zoneId].Achievements10 = addon.Data.Maps[zoneId].Achievements10 or ((achievement10Ids and #achievement10Ids > 0) and {} or nil)
         addon.Data.Maps[zoneId].Achievements25 = addon.Data.Maps[zoneId].Achievements25 or ((achievement25Ids and #achievement25Ids > 0) and {} or nil)
 
-        AddAchievements(zone.Achievements, achievementIds)
-        AddAchievements(zone.Achievements10, achievement10Ids)
-        AddAchievements(zone.Achievements25, achievement25Ids)
+        AddAchievements(zone.Achievements, achievementIds, zoneId)
+        AddAchievements(zone.Achievements10, achievement10Ids, zoneId)
+        AddAchievements(zone.Achievements25, achievement25Ids, zoneId)
     end
 end

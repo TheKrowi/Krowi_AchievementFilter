@@ -125,30 +125,18 @@ If any new achievement is tied to unlocking a transmog set (e.g. a raid set), ad
 
 Open `DataAddons/Retail/11_TheWarWithin/BuildVersionData.lua`.
 
-If `11.1.0` is a new patch that doesn't have an entry yet, add it to `Minors`:
+If `11.1.0` is a new patch that doesn't have an entry yet, add it in order (minors and patches must ascend):
 
 ```lua
-KrowiAF.BuildVersionData.TheWarWithin = { -- 11
-    Major = 11,
-    Minors = {
-        { -- 11.0
-            Minor = 0,
-            Patches = {
-                { Patch = 0, BuildVersionId = "110000", Name = addon.L["The War Within"] },
-                { Patch = 1, BuildVersionId = "110001", Name = addon.L["The War Within"] },
-            },
-        },
-        { -- 11.1
-            Minor = 1,
-            Patches = {
-                { Patch = 0, BuildVersionId = "110100", Name = addon.L["The War Within"] },
-            },
-        },
-    },
-}
+local expansion = KrowiAF.NewBuildVersion("TheWarWithin", 11)
+local minor = expansion:Minor(0)
+minor:Patch(0, addon.L["The War Within"])
+minor:Patch(1, addon.L["The War Within"])
+minor = expansion:Minor(1)
+minor:Patch(0, addon.L["Undermine(d)"])
 ```
 
-Skip this step if the patch already has an entry.
+Skip this step if the patch already has an entry. Register a patch also when an `Obtainable()` anchor names it and no achievement was added in it; the build-version filter lists only patches with achievements, so an anchor-only patch adds no empty entry.
 
 ---
 
