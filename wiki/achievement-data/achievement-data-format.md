@@ -14,8 +14,7 @@ Every file using V2 requires this header. Include `faction` only when using `Fac
 
 ```lua
 local _, addon = ...
-local shared = addon.Data.AchievementData.Shared
-local Ach = shared.Ach
+local Ach = KrowiAF.Ach
 local faction = KrowiAF.Enum.Faction  -- include only if needed
 ```
 
@@ -117,6 +116,8 @@ All dynamically generated from `KrowiAF.Enum.RewardType`. Chain multiple for ach
 | `"Before", "Date", {Y, M, D}` | `Obtainable("Before", "Date", {2019, 6, 11})` | Available from the achievement's own patch until a specific calendar date. |
 
 > **Note:** For both cutoff patterns the start of the window is **not** the argument you write — it is silently set to the achievement's own `BuildVersion.Id`. You only specify the cutoff end.
+
+> **Note:** A `"Version"` value names the patch **as Retail shipped it**, on every client. Retail resolves it to that patch; Classic looks it up in `DataAddons/Classic/ContentTimeline.lua`, which maps each Retail patch to the patch where Classic reached the same content (`["5.4.0"] = "5.5.4"`). On a client that has not reached the patch, an end anchor leaves the achievement obtainable with no end scheduled, and a start anchor reads as future. Never write a Classic version number in a Shared file; write the Retail patch and let Classic's `ContentTimeline` map it.
 
 #### During patterns (single event / season)
 
@@ -264,7 +265,7 @@ Ach(7944):Obtainable("From", "Version", {6, 0, 3}, "Before", "Version", {7, 0, 3
 
 | File | Role |
 |---|---|
-| `DataAddons/Shared/AchievementData.lua` | `AchBuilder` metatable + `shared.Ach()` factory |
+| `Api/AchievementDataBuilder.lua` | `AchBuilder` metatable + `KrowiAF.Ach()` factory |
 | `Api/AchievementDataApi.lua` | `KrowiAF.AddAchievementData`, `KrowiAF.SetAchievementPatch` |
 | `Api/ApiDocumentation.lua` | Canonical annotated examples |
 | `DataAddons/Retail/11_TheWarWithin/AchievementData.lua` | Primary real-world V2 reference |

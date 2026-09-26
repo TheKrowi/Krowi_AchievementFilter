@@ -1,49 +1,49 @@
-local addonName, addon = ...;
+local addonName, addon = ...
 addon.Gui = {
     Tabs = {},
     SubFrames = {}
-};
-local gui = addon.Gui;
+}
+local gui = addon.Gui
 
-local eventReminderSideButtonSystemIsLoaded;
+local eventReminderSideButtonSystemIsLoaded
 function gui:LoadWithAddon()
-    self:OverwriteAdjustAnchors();
-    self.WorldMapButton:Load();
-    self.EventReminderAlertSystem:Load();
-    eventReminderSideButtonSystemIsLoaded = self.EventReminderSideButtonSystem:Load();
-    self.FloatingAchievementTooltip:Load();
+    self:OverwriteAdjustAnchors()
+    self.WorldMapButton:Load()
+    self.EventReminderAlertSystem:Load()
+    eventReminderSideButtonSystemIsLoaded = self.EventReminderSideButtonSystem:Load()
+    self.FloatingAchievementTooltip:Load()
 end
 
 local function ResetAchievementWindowPosition()
-    KrowiAF_SavedData.RememberLastPosition = KrowiAF_SavedData.RememberLastPosition or {};
+    KrowiAF_SavedData.RememberLastPosition = KrowiAF_SavedData.RememberLastPosition or {}
     KrowiAF_SavedData.RememberLastPosition["AchievementWindow"] = {
         X = 96,
         Y = -116
-    };
-	addon.Gui:SetFrameToLastPosition(AchievementFrame, "AchievementWindow");
+    }
+	addon.Gui:SetFrameToLastPosition(AchievementFrame, "AchievementWindow")
 end
 
 local function AddDataToBlizzardTabs()
     KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Achievements", AchievementFrameTab1, function()
-        AchievementFrameTab_OnClick(1);
-    end);
+        AchievementFrameTab_OnClick(1)
+    end)
     if not addon.Util.IsWrathClassic then
         KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Guild", AchievementFrameTab2, function()
-            AchievementFrameTab_OnClick(2);
-        end);
+            AchievementFrameTab_OnClick(2)
+        end)
     end
     KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Statistics", addon.Util.IsWrathClassic and AchievementFrameTab2 or AchievementFrameTab3, function()
-        AchievementFrameTab_OnClick(addon.Util.IsWrathClassic and 2 or 3);
-    end);
+        AchievementFrameTab_OnClick(addon.Util.IsWrathClassic and 2 or 3)
+    end)
 end
 
 local function LoadOldAchievementFrameTabsCompatibility()
     if not addon.Util.IsClassicWithAchievements then
-        return;
+        return
     end
 
     for _, t in next, addon.TabsOrder do
-        addon.Tabs[t].Button.Text = addon.Tabs[t].Button.text;
+        addon.Tabs[t].Button.Text = addon.Tabs[t].Button.text
     end
 end
 
@@ -52,192 +52,192 @@ local function LoadOldGuiCompatibility()
     local newFilters = AchievementFrame.HeaderDetails and AchievementFrame.HeaderDetails.Filters
 
     if not AchievementFrameFilterDropdown then
-        AchievementFrameFilterDropdown = AchievementFrameFilterDropDown or (newFilters and newFilters.FilterDropdown);
+        AchievementFrameFilterDropdown = AchievementFrameFilterDropDown or (newFilters and newFilters.FilterDropdown)
     end
     if not AchievementFrame.SearchBox then
-        AchievementFrame.SearchBox = newFilters and newFilters.SearchBox;
+        AchievementFrame.SearchBox = newFilters and newFilters.SearchBox
     end
 end
 
 local function ShowSubFrame(self, ...)
-    local show;
+    local show
 	for _, subFrame in ipairs(self.SubFrames) do
-		show = false;
+		show = false
 		for i = 1, select("#", ...) do
 			if subFrame == select(i, ...) then
-				show = true;
-				break;
+				show = true
+				break
 			end
 		end
-		subFrame:SetShown(show);
+		subFrame:SetShown(show)
 	end
 end
 
 local function LoadHooks(self)
     hooksecurefunc("AchievementFrame_ShowSubFrame", function(...)
-        ShowSubFrame(self, ...);
-    end);
+        ShowSubFrame(self, ...)
+    end)
 
     AchievementFrameComparison:HookScript("OnHide", function()
         if gui.SelectedTab then
-            gui:SetAchievementFrameWidth();
-            gui:SetAchievementFrameHeight();
+            gui:SetAchievementFrameWidth()
+            gui:SetAchievementFrameHeight()
         else
-            gui:ResetAchievementFrameWidth();
-            gui:ResetAchievementFrameHeight();
+            gui:ResetAchievementFrameWidth()
+            gui:ResetAchievementFrameHeight()
         end
-    end);
+    end)
 end
 
-local defaultAchievementFrameWidth;
-local defaultAchievementFrameHeight;
-local defaultAchievementFrameMetalBorderHeight;
+local defaultAchievementFrameWidth
+local defaultAchievementFrameHeight
+local defaultAchievementFrameMetalBorderHeight
 function gui:LoadWithBlizzard_AchievementUI()
-    LoadOldGuiCompatibility();
+    LoadOldGuiCompatibility()
 
-    defaultAchievementFrameWidth = AchievementFrame:GetWidth();
-    defaultAchievementFrameHeight = AchievementFrame:GetHeight();
-    defaultAchievementFrameMetalBorderHeight = AchievementFrameMetalBorderLeft:GetHeight();
-    self:SetAchievementFrameHeight(); -- Do this in order to create the correct amount of buttons based on our settings
+    defaultAchievementFrameWidth = AchievementFrame:GetWidth()
+    defaultAchievementFrameHeight = AchievementFrame:GetHeight()
+    defaultAchievementFrameMetalBorderHeight = AchievementFrameMetalBorderLeft:GetHeight()
+    self:SetAchievementFrameHeight() -- Do this in order to create the correct amount of buttons based on our settings
 
-    self.AchievementFrameHeader:Load();
-    self.AchievementsObjectives:Load();
-    self.CategoriesFrame:Load();
-    self.AchievementsFrame:Load();
-    self.SummaryFrame:Load();
-    self.FilterButton:Load();
+    self.AchievementFrameHeader:Load()
+    self.AchievementsObjectives:Load()
+    self.CategoriesFrame:Load()
+    self.AchievementsFrame:Load()
+    self.SummaryFrame:Load()
+    self.FilterButton:Load()
     if not eventReminderSideButtonSystemIsLoaded then
-        self.EventReminderSideButtonSystem:Load();
+        self.EventReminderSideButtonSystem:Load()
     end
 
-    self.Search:Load();
-    self.Calendar:Load();
-    self.DataManager:Load();
-    self.BrowsingHistory:Load();
+    self.Search:Load()
+    self.Calendar:Load()
+    self.DataManager:Load()
+    self.BrowsingHistory:Load()
 
-    AchievementFrame.ResetPosition = ResetAchievementWindowPosition;
-	self:SetFrameToLastPosition(AchievementFrame, "AchievementWindow");
+    AchievementFrame.ResetPosition = ResetAchievementWindowPosition
+	self:SetFrameToLastPosition(AchievementFrame, "AchievementWindow")
 
-    AddDataToBlizzardTabs();
+    AddDataToBlizzardTabs()
 
-    local media = "Interface/AddOns/Krowi_AchievementFilter/Media/";
+    local media = "Interface/AddOns/Krowi_AchievementFilter/Media/"
     local waterMarks = {
         media .. "kaf_achievements",
         media .. "kaf_expansions",
         media .. "kaf_events",
         media .. "kaf_pvp",
         media .. "kaf_special"
-    };
+    }
     for i, t in next, addon.TabsOrder do
-        addon.Tabs[t].Button = self.AchievementFrameTabButtonFactory:GetNew(t, addon.Tabs[t].Text, {KrowiAF_AchievementFrameFilterButton, KrowiAF_SearchBoxFrame, KrowiAF_CategoriesFrame}, addon.Tabs[t].Categories, addon.Tabs[t].Filters, waterMarks[i]);
-        KrowiAF_RegisterTabButton(addonName, addon.Tabs[t].Name, addon.Tabs[t].Button);
+        addon.Tabs[t].Button = self.AchievementFrameTabButtonFactory:GetNew(t, addon.Tabs[t].Text, {KrowiAF_AchievementFrameFilterButton, KrowiAF_SearchBoxFrame, KrowiAF_CategoriesFrame}, addon.Tabs[t].Categories, addon.Tabs[t].Filters, waterMarks[i])
+        KrowiAF_RegisterTabButton(addonName, addon.Tabs[t].Name, addon.Tabs[t].Button)
     end
-    LoadOldAchievementFrameTabsCompatibility();
+    LoadOldAchievementFrameTabsCompatibility()
 
-    self:ResetAchievementFrameHeight();
+    self:ResetAchievementFrameHeight()
 
-    self:RegisterFrameForClosing(AchievementFrame);
-    LoadHooks(self);
+    self:RegisterFrameForClosing(AchievementFrame)
+    LoadHooks(self)
 end
 
 function gui:SetAchievementFrameWidth()
-    AchievementFrame:SetWidth(defaultAchievementFrameWidth + addon.Options.db.profile.Window.CategoriesFrameWidthOffset + addon.Options.db.profile.Window.AchievementsFrameWidthOffset);
-    KrowiAF_CategoriesFrame:SetRightPoint();
+    AchievementFrame:SetWidth(defaultAchievementFrameWidth + addon.Options.db.profile.Window.CategoriesFrameWidthOffset + addon.Options.db.profile.Window.AchievementsFrameWidthOffset)
+    KrowiAF_CategoriesFrame:SetRightPoint()
 end
 
 function gui:ResetAchievementFrameWidth()
-    AchievementFrame:SetWidth(defaultAchievementFrameWidth);
+    AchievementFrame:SetWidth(defaultAchievementFrameWidth)
 end
 
 function gui:SetAchievementFrameHeight()
-    local offset = addon.Options.db.profile.Window.AchievementFrameHeightOffset;
-    AchievementFrame:SetHeight(defaultAchievementFrameHeight + offset);
-    AchievementFrameMetalBorderLeft:SetHeight(defaultAchievementFrameMetalBorderHeight + offset);
-    AchievementFrameMetalBorderRight:SetHeight(defaultAchievementFrameMetalBorderHeight + offset);
+    local offset = addon.Options.db.profile.Window.AchievementFrameHeightOffset
+    AchievementFrame:SetHeight(defaultAchievementFrameHeight + offset)
+    AchievementFrameMetalBorderLeft:SetHeight(defaultAchievementFrameMetalBorderHeight + offset)
+    AchievementFrameMetalBorderRight:SetHeight(defaultAchievementFrameMetalBorderHeight + offset)
 end
 
 function gui:ResetAchievementFrameHeight()
-    AchievementFrame:SetHeight(defaultAchievementFrameHeight);
-    AchievementFrameMetalBorderLeft:SetHeight(defaultAchievementFrameMetalBorderHeight);
-    AchievementFrameMetalBorderRight:SetHeight(defaultAchievementFrameMetalBorderHeight);
+    AchievementFrame:SetHeight(defaultAchievementFrameHeight)
+    AchievementFrameMetalBorderLeft:SetHeight(defaultAchievementFrameMetalBorderHeight)
+    AchievementFrameMetalBorderRight:SetHeight(defaultAchievementFrameMetalBorderHeight)
 end
 
 local function SelectTab(self, _addonName, tabName)
-    local button = self.Tabs[_addonName][tabName];
+    local button = self.Tabs[_addonName][tabName]
     if button then
         if button.Select then
-            button:Select(); -- Addon tabs
+            button:Select() -- Addon tabs
         else
-            button:Click(); -- Other tabs
+            button:Click() -- Other tabs
         end
     end
 end
 
-local resetViewLock;
+local resetViewLock
 local function ResetView()
     if resetViewLock then
-        return;
+        return
     end
-    resetViewLock = true;
+    resetViewLock = true
 
     if gui.SelectedTab and gui.SelectedTab:GetCategories() then
-        local category = gui.SelectedTab.Categories[1];
-        KrowiAF_SelectCategory(category, true);
+        local category = gui.SelectedTab.Categories[1]
+        KrowiAF_SelectCategory(category, true)
     end
 
     if KrowiAF_SearchBoxFrame then
-        KrowiAF_SearchBoxFrame:SetText("");
+        KrowiAF_SearchBoxFrame:SetText("")
     end
 
-    resetViewLock = nil;
+    resetViewLock = nil
 end
 
-local firstTimeLatch = true;
+local firstTimeLatch = true
 function gui:ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -- Issue #26 Broken, Fix
     if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
-        C_AddOns.LoadAddOn("Blizzard_AchievementUI");
+        C_AddOns.LoadAddOn("Blizzard_AchievementUI")
     end
 
-    AchievementFrameComparison:Hide();
-    AchievementFrameTab_OnClick = AchievementFrameBaseTab_OnClick;
+    AchievementFrameComparison:Hide()
+    AchievementFrameTab_OnClick = AchievementFrameBaseTab_OnClick
 
-    local tabIsSelected;
+    local tabIsSelected
     if self.SelectedTab then
         if self.SelectedTab == self.Tabs[_addonName][tabName] then
-            tabIsSelected = true;
+            tabIsSelected = true
         end
     end
 
     if (AchievementFrame:IsShown() and ((not addon.Options.db.profile.ResetViewOnOpen and addon.Options.db.profile.ToggleWindow) or tabIsSelected)) and not resetView and not forceOpen then
-        AchievementFrame:Hide();
-        return;
+        AchievementFrame:Hide()
+        return
     end
 
-    AchievementFrame_SetTabs();
-    AchievementFrame:Show();
+    AchievementFrame_SetTabs()
+    AchievementFrame:Show()
     if not addon.Util.IsClassicWithAchievements then
-        AchievementFrame_HideSearchPreview();
+        AchievementFrame_HideSearchPreview()
     end
     if firstTimeLatch or not (not addon.Options.db.profile.ResetViewOnOpen and addon.Options.db.profile.ToggleWindow) or resetView or forceOpen then
-        SelectTab(self, _addonName, tabName);
+        SelectTab(self, _addonName, tabName)
     end
     if addon.Options.db.profile.ResetViewOnOpen or resetView then
-        ResetView();
+        ResetView()
     end
-    firstTimeLatch = nil;
+    firstTimeLatch = nil
 end
 
 function gui:UpdateTabsLayout(tabsOrder)
-    local prevTab;
+    local prevTab
     for _, btn in next, tabsOrder do
         if btn and btn:IsShown() then
-            btn:ClearAllPoints();
+            btn:ClearAllPoints()
             if prevTab == nil then
-                btn:SetPoint("BOTTOMLEFT", AchievementFrame, 11, -30);
+                btn:SetPoint("BOTTOMLEFT", AchievementFrame, 11, -30)
             else
-                btn:SetPoint("LEFT", prevTab, "RIGHT", -5 + addon.Options.db.profile.TabsGeneral.Spacing, 0);
+                btn:SetPoint("LEFT", prevTab, "RIGHT", -5 + addon.Options.db.profile.TabsGeneral.Spacing, 0)
             end
-            prevTab = btn;
+            prevTab = btn
         end
     end
 end
@@ -245,35 +245,35 @@ end
 function gui:ShowHideTabs(_addonName, tabName)
     if _addonName and tabName then
         if not addon.Options.db.profile.Tabs[_addonName] or not addon.Options.db.profile.Tabs[_addonName][tabName] then
-            return;
+            return
         end
-        addon.Options.db.profile.Tabs[_addonName][tabName].Show = not addon.Options.db.profile.Tabs[_addonName][tabName].Show;
+        addon.Options.db.profile.Tabs[_addonName][tabName].Show = not addon.Options.db.profile.Tabs[_addonName][tabName].Show
         if not C_AddOns.IsAddOnLoaded(_addonName) or not addon.Gui.Tabs[_addonName] or not addon.Gui.Tabs[_addonName][tabName] then
-            return;
+            return
         end
     end
 
-    self:TabsOrderGetActiveKeys(); -- Cleanup unused tabs
+    self:TabsOrderGetActiveKeys() -- Cleanup unused tabs
 
-    local tabsOrder = {};
-    local button;
+    local tabsOrder = {}
+    local button
     for addonName2, tabs in next, addon.Options.db.profile.Tabs do
         for tabName2, tab in next, tabs do
             if addon.Gui.Tabs[addonName2] then
-                button = addon.Gui.Tabs[addonName2][tabName2];
+                button = addon.Gui.Tabs[addonName2][tabName2]
                 if button then
-                    tabsOrder[tab.Order] = button;
+                    tabsOrder[tab.Order] = button
                     if tab.Show then
-                        button:Show();
+                        button:Show()
                     else
-                        button:Hide();
+                        button:Hide()
                     end
                 end
             end
         end
     end
 
-    self:UpdateTabsLayout(tabsOrder);
+    self:UpdateTabsLayout(tabsOrder)
 end
 
 function gui.ShowStatusBarTooltip(frame, anchor, extraText, color) -- . instead of : because it needs to work for the frame
@@ -298,7 +298,7 @@ function gui.ShowStatusBarTooltip(frame, anchor, extraText, color) -- . instead 
 end
 
 local function AssignProperTabsOrder()
-    local tabsOrder = {};
+    local tabsOrder = {}
     for tabsAddonName, tabs in next, addon.Options.db.profile.Tabs do
         if tabsAddonName == "Blizzard_AchievementUI" or C_AddOns.IsAddOnLoaded(tabsAddonName) then
             for tabName, tab in next, tabs do
@@ -306,115 +306,109 @@ local function AssignProperTabsOrder()
                     AddonName = tabsAddonName,
                     TabName = tabName,
                     Order = tab.Order
-                });
+                })
             end
         else
-            addon.Options.db.profile.Tabs[tabsAddonName] = nil;
+            addon.Options.db.profile.Tabs[tabsAddonName] = nil
             for i = #KrowiAF_SavedData.Tabs, 1, -1 do
                 if KrowiAF_SavedData.Tabs[i].AddonName == tabsAddonName then
-                    tremove(KrowiAF_SavedData.Tabs, i);
-                    tremove(KrowiAF_SavedData.TabKeys, i);
+                    tremove(KrowiAF_SavedData.Tabs, i)
+                    tremove(KrowiAF_SavedData.TabKeys, i)
                 end
             end
         end
     end
 
     sort(tabsOrder, function(a, b)
-        return a.Order < b.Order;
-    end);
+        return a.Order < b.Order
+    end)
 
-    local properIndex = 1;
+    local properIndex = 1
     for _, order in next, tabsOrder do
-        addon.Options.db.profile.Tabs[order.AddonName][order.TabName].Order = properIndex;
-        properIndex = properIndex + 1;
+        addon.Options.db.profile.Tabs[order.AddonName][order.TabName].Order = properIndex
+        properIndex = properIndex + 1
     end
 
-    return tabsOrder;
+    return tabsOrder
 end
 
 local function SwitchAchievementTabs()
-    local blizzAchId, addonAchId = 1, 1;
+    local blizzAchId, addonAchId = 1, 1
     for i, _ in next, KrowiAF_SavedData.Tabs do
         if KrowiAF_SavedData.Tabs[i].AddonName == "Blizzard_AchievementUI" and KrowiAF_SavedData.Tabs[i].Name == "Achievements" then
-            blizzAchId = i;
+            blizzAchId = i
         end
         if KrowiAF_SavedData.Tabs[i].AddonName == addonName and KrowiAF_SavedData.Tabs[i].Name == "Achievements" then
-            addonAchId = i;
+            addonAchId = i
         end
     end
-    addon.Options.db.profile.Tabs["Blizzard_AchievementUI"]["Achievements"].Order = addonAchId;
-    addon.Options.db.profile.Tabs[addonName]["Achievements"].Order = blizzAchId;
-    addon.Options.db.profile.MicroButtonTab = addonAchId;
-    local binding = GetBindingByKey("Y");
+    addon.Options.db.profile.Tabs["Blizzard_AchievementUI"]["Achievements"].Order = addonAchId
+    addon.Options.db.profile.Tabs[addonName]["Achievements"].Order = blizzAchId
+    addon.Options.db.profile.MicroButtonTab = addonAchId
+    local binding = GetBindingByKey("Y")
     if binding == KrowiAF_SavedData.Tabs[blizzAchId].BindingName then
-        SetBinding("Y", KrowiAF_SavedData.Tabs[addonAchId].BindingName);
-        SaveBindings(GetCurrentBindingSet());
+        SetBinding("Y", KrowiAF_SavedData.Tabs[addonAchId].BindingName)
+        SaveBindings(GetCurrentBindingSet())
     end
 end
 
 local function SafeSwitchAchievementTabs()
-    local success, err = pcall(SwitchAchievementTabs);
+    local success, err = pcall(SwitchAchievementTabs)
     if not success then
-        print("Error switching achievement tabs: " .. err);
+        print("Error switching achievement tabs: " .. err)
     end
 end
 
-local needsCleanup = true;
+local needsCleanup = true
 function gui:TabsOrderGetActiveKeys()
     if not needsCleanup then
-        return KrowiAF_SavedData.TabKeys;
+        return KrowiAF_SavedData.TabKeys
     end
 
-    AssignProperTabsOrder();
+    AssignProperTabsOrder()
 
-    KrowiAF_SavedData.FirstTimeSetUp = KrowiAF_SavedData.FirstTimeSetUp or {};
+    KrowiAF_SavedData.FirstTimeSetUp = KrowiAF_SavedData.FirstTimeSetUp or {}
 
     if not KrowiAF_SavedData.FirstTimeSetUp.AchievementTabsSwitched then
-        SafeSwitchAchievementTabs();
-        KrowiAF_SavedData.FirstTimeSetUp.AchievementTabsSwitched = true;
+        SafeSwitchAchievementTabs()
+        KrowiAF_SavedData.FirstTimeSetUp.AchievementTabsSwitched = true
     end
 
-    needsCleanup = nil;
-    return KrowiAF_SavedData.TabKeys;
+    needsCleanup = nil
+    return KrowiAF_SavedData.TabKeys
 end
 
 function gui:SetFrameToLastPosition(frame, rememberLastPositionOption)
     if not frame or not frame.ClearAllPoints then -- frame does not exist yet
-        return;
+        return
     end
 
-    KrowiAF_SavedData.RememberLastPosition = KrowiAF_SavedData.RememberLastPosition or {};
+    KrowiAF_SavedData.RememberLastPosition = KrowiAF_SavedData.RememberLastPosition or {}
     if not KrowiAF_SavedData.RememberLastPosition[rememberLastPositionOption] then
-        frame:ResetPosition();
-        return;
+        frame:ResetPosition()
+        return
     end
 
-    local pos = KrowiAF_SavedData.RememberLastPosition[rememberLastPositionOption];
-	frame:ClearAllPoints();
-	frame:SetPoint(pos.Point or "TOPLEFT", pos.X, pos.Y);
+    local pos = KrowiAF_SavedData.RememberLastPosition[rememberLastPositionOption]
+	frame:ClearAllPoints()
+	frame:SetPoint(pos.Point or "TOPLEFT", pos.X, pos.Y)
 end
 
 function gui:RefreshView()
     for t, _ in next, addon.Tabs do
-        addon.Tabs[t].Filters.Refresh = true;
+        addon.Tabs[t].Filters.Refresh = true
     end
-    KrowiAF_CategoriesFrame:Update();
-    KrowiAF_AchievementsFrame:ForceUpdate();
-    KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow();
+    KrowiAF_CategoriesFrame:Update()
+    KrowiAF_AchievementsFrame:ForceUpdate()
+    KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow()
 end
 
 function gui:RefreshViewAfterPlayerLogin()
-    AchievementFrame.Header.Points:SetText();
-    local selectedTab = addon.Gui.SelectedTab;
-    selectedTab.SelectedCategory = nil;
-    selectedTab:ShowSubFrames();
-    KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow();
-end
-
-function gui:RegisterFrameForClosing(frame)
-    frame:HookScript("OnShow", function()
-        KrowiAF_SpecialFrame:Show();
-    end);
+    AchievementFrame.Header.Points:SetText()
+    local selectedTab = addon.Gui.SelectedTab
+    selectedTab.SelectedCategory = nil
+    selectedTab:ShowSubFrames()
+    KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow()
 end
 
 local function AdjustQueuedAnchors(self, relativeAlert)
@@ -429,7 +423,7 @@ end
 -- Credits to ElvUI
 local function OverwriteAdjustAnchors(alertFrameSubSystem)
 	if alertFrameSubSystem.alertFramePool then -- Queued alert system
-		alertFrameSubSystem.AdjustAnchors = AdjustQueuedAnchors;
+		alertFrameSubSystem.AdjustAnchors = AdjustQueuedAnchors
 	end
 end
 
@@ -443,6 +437,6 @@ function gui:OverwriteAdjustAnchors()
     -- Credits to ElvUI for this hook
 	-- This should catch any alert systems that are created by other addons.
 	hooksecurefunc(AlertFrame, 'AddAlertFrameSubSystem', function(_, alertFrameSubSystem)
-		OverwriteAdjustAnchors(alertFrameSubSystem);
-	end);
+		OverwriteAdjustAnchors(alertFrameSubSystem)
+	end)
 end

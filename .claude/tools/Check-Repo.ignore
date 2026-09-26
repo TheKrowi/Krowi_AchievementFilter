@@ -1,0 +1,7 @@
+# Deliberate exceptions for Check-Repo.ps1: "<rule or *> <path glob>", # comments
+# Files that are intentionally never loaded by the game
+files-xml Benchmark.lua                  # dev tool, added to the .toc by hand while benchmarking
+files-xml Api/ApiDocumentation.lua       # documentation only
+# Line endings owned by external tools
+line-endings Localization/*.lua          # CurseForge exports these with LF
+line-endings Krowi_AchievementFilter.toc # written by the addon manager with LF

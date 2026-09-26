@@ -1,8 +1,8 @@
-local _, addon = ...;
-local extraIconFactory = addon.Gui.AchievementButtonExtraIconFactory;
-local saturationStyle = addon.Objects.SaturationStyle;
+local _, addon = ...
+local extraIconFactory = addon.Gui.AchievementButtonExtraIconFactory
+local saturationStyle = addon.Objects.SaturationStyle
 
-local media = "Interface/AddOns/Krowi_AchievementFilter/Media/";
+local media = "Interface/AddOns/Krowi_AchievementFilter/Media/"
 local notObtainableSaturationStyle = saturationStyle:New(
 	function(state) return state == "Past"; end,
 	"NotObtainable",
@@ -10,7 +10,7 @@ local notObtainableSaturationStyle = saturationStyle:New(
 	nil,
 	nil,
 	function() return ACHIEVEMENT_RED_BORDER_COLOR; end
-);
+)
 local tempObtainableSaturationStyle = saturationStyle:New(
 	function(state) return state == "Current"; end,
 	"TempObtainable",
@@ -18,7 +18,7 @@ local tempObtainableSaturationStyle = saturationStyle:New(
 	nil,
 	nil,
 	function() return CreateColor(0, 0.67, 0); end -- Green
-);
+)
 local tempObtainableFutureSaturationStyle = saturationStyle:New(
 	function(state) return state == "Future"; end,
 	"TempObtainableFuture",
@@ -26,7 +26,7 @@ local tempObtainableFutureSaturationStyle = saturationStyle:New(
 	nil,
 	nil,
 	function() return ACHIEVEMENT_RED_BORDER_COLOR; end
-);
+)
 local accountSaturationStyle = saturationStyle:New(
 	function(_, isAccountWide) return addon.Options.db.profile.Achievements.WarbandHeaderColor and isAccountWide; end,
 	"account",
@@ -37,403 +37,403 @@ local accountSaturationStyle = saturationStyle:New(
 		Desaturated = {0, 1, 0.40625, 0.78125}
 	},
 	function() return ACHIEVEMENT_BLUE_BORDER_COLOR; end
-);
+)
 local newSaturationStyles = {
 	notObtainableSaturationStyle,
 	tempObtainableSaturationStyle,
 	tempObtainableFutureSaturationStyle
-};
+}
 local saturationStyles = {
 	accountSaturationStyle,
 	saturationStyle:New()
-};
+}
 
 local function GetSaturationStyle(state, isAccountWide)
 	if addon.Options.db.profile.Achievements.TemporarilyObtainableHeaderColors then
 		for _, _saturationStyle in next, newSaturationStyles do
 			if _saturationStyle.UseThis(state, isAccountWide) then
-				return _saturationStyle;
+				return _saturationStyle
 			end
 		end
 	end
 	for _, _saturationStyle in next, saturationStyles do
 		if _saturationStyle.UseThis(state, isAccountWide) then
-			return _saturationStyle;
+			return _saturationStyle
 		end
 	end
 end
 
-KrowiAF_AchievementButtonTrackedMixin = {};
+KrowiAF_AchievementButtonTrackedMixin = {}
 
 function KrowiAF_AchievementButtonTrackedMixin:OnShow()
 	if self:GetParent().Achievement then
-		self:SetChecked(IsTrackedAchievement(self:GetParent().Achievement.Id));
+		self:SetChecked(IsTrackedAchievement(self:GetParent().Achievement.Id))
 	end
 end
 
 function KrowiAF_AchievementButtonTrackedMixin:OnEnter()
-	Krowi_Tooltip:SetOwner(self, "ANCHOR_RIGHT");
-	Krowi_Tooltip:SetText(self:GetChecked() and UNTRACK_ACHIEVEMENT_TOOLTIP or TRACK_ACHIEVEMENT_TOOLTIP, nil, nil, nil, nil, true);
+	Krowi_Tooltip:SetOwner(self, "ANCHOR_RIGHT")
+	Krowi_Tooltip:SetText(self:GetChecked() and UNTRACK_ACHIEVEMENT_TOOLTIP or TRACK_ACHIEVEMENT_TOOLTIP, nil, nil, nil, nil, true)
 end
 
 function KrowiAF_AchievementButtonTrackedMixin:OnLeave()
-	Krowi_Tooltip:Hide();
+	Krowi_Tooltip:Hide()
 end
 
 function KrowiAF_AchievementButtonTrackedMixin:OnClick()
-	PlaySound(self:GetChecked() and SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON or SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_OFF);
-	local tracked = self:GetParent():ToggleTracking();
+	PlaySound(self:GetChecked() and SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON or SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_OFF)
+	local tracked = self:GetParent():ToggleTracking()
 	if not tracked then
-		self:SetChecked(false);
+		self:SetChecked(false)
 	end
 end
 
-KrowiAF_AchievementButtonLightMixin = {};
+KrowiAF_AchievementButtonLightMixin = {}
 
 function KrowiAF_AchievementButtonLightMixin:OnEnter()
-	self.Highlight:Show();
+	self.Highlight:Show()
 	if self.Achievement == nil then
-		return;
+		return
 	end
-	addon.Gui.AchievementTooltip:ShowTooltip(self, self.Achievement);
+	addon.Gui.AchievementTooltip:ShowTooltip(self, self.Achievement)
 end
 
 function KrowiAF_AchievementButtonLightMixin:OnLeave()
-	self.Highlight:Hide();
-	Krowi_Tooltip:Hide();
+	self.Highlight:Hide()
+	Krowi_Tooltip:Hide()
 end
 
-addon.Gui.AchievementButton = addon.Gui.AchievementButton or {};
-local achievementButton = addon.Gui.AchievementButton;
+addon.Gui.AchievementButton = addon.Gui.AchievementButton or {}
+local achievementButton = addon.Gui.AchievementButton
 
 -- Exposed on the module table so other button clones (e.g. the popout) can reuse the same
 -- shift-click-to-track/paste-to-chat/watch/exclude/pop-out modifier behavior.
 function achievementButton.ProcessModifiers(self, ignoreModifiers)
 	if not IsModifierKeyDown() or ignoreModifiers then
-		return;
+		return
 	end
 
 	if addon.IsCustomModifierKeyDown(addon.Options.db.profile.Achievements.Modifiers.PasteToChat) then
-		local achievementLink = GetAchievementLink(self.Achievement.Id);
+		local achievementLink = GetAchievementLink(self.Achievement.Id)
 		if achievementLink then
 			if ChatEdit_InsertLink(achievementLink) then
-				return true;
+				return true
 			end
 			if SocialPostFrame and Social_IsShown() then
-				Social_InsertLink(achievementLink);
-				return true;
+				Social_InsertLink(achievementLink)
+				return true
 			end
 		end
 	end
 	if addon.IsCustomModifierKeyDown(addon.Options.db.profile.Achievements.Modifiers.ToggleTracking) then
-		self:ToggleTracking();
-		return true;
+		self:ToggleTracking()
+		return true
 	end
 	if addon.IsCustomModifierKeyDown(addon.Options.db.profile.Achievements.Modifiers.ToggleWatchList) then
 		if self.Achievement.IsWatched then
-			addon.ClearWatchAchievement(self.Achievement);
+			addon.ClearWatchAchievement(self.Achievement)
 		else
-			addon.WatchAchievement(self.Achievement);
+			addon.WatchAchievement(self.Achievement)
 		end
-		return true;
+		return true
 	end
 	if addon.IsCustomModifierKeyDown(addon.Options.db.profile.Achievements.Modifiers.ToggleExcluded) then
 		if self.Achievement.IsExcluded then
-			addon.IncludeAchievement(self.Achievement);
+			addon.IncludeAchievement(self.Achievement)
 		else
-			addon.ExcludeAchievement(self.Achievement);
+			addon.ExcludeAchievement(self.Achievement)
 		end
-		return true;
+		return true
 	end
 	if addon.IsCustomModifierKeyDown(addon.Options.db.profile.Achievements.Modifiers.PopOut) then
-		addon.Gui.AchievementPopout:Open(self.Achievement);
-		return true;
+		addon.Gui.AchievementPopout:Open(self.Achievement)
+		return true
 	end
-	return true;
+	return true
 end
 
 local function Select(self, ignoreModifiers)
 	if achievementButton.ProcessModifiers(self, ignoreModifiers) then
-		return;
+		return
 	end
 
-	KrowiAF_AchievementsFrame.SelectionBehavior:ToggleSelect(self);
-	KrowiAF_AchievementsFrame:ScrollToNearest(self.Achievement);
+	KrowiAF_AchievementsFrame.SelectionBehavior:ToggleSelect(self)
+	KrowiAF_AchievementsFrame:ScrollToNearest(self.Achievement)
 end
 
 local function Click(self, button, ignoreModifiers)
 	if button == "LeftButton" then
-		Select(self, ignoreModifiers);
+		Select(self, ignoreModifiers)
 	elseif button == "RightButton" then
-		addon.Gui.RightClickMenu.AchievementMenu:Open(self, self.Achievement);
+		addon.Gui.RightClickMenu.AchievementMenu:Open(self, self.Achievement)
 	end
 end
 
 function KrowiAF_AchievementButtonLightMixin:OnClick(button, _, ignoreModifiers)
 	if button ~= "LeftButton" then
-		Click(self, button, ignoreModifiers);
-		return;
+		Click(self, button, ignoreModifiers)
+		return
 	end
 	if achievementButton.ProcessModifiers(self, ignoreModifiers) then
-		return;
+		return
 	end
-	KrowiAF_SelectAchievementFromID(self.Achievement.Id);
+	KrowiAF_SelectAchievementFromID(self.Achievement.Id)
 end
 
-KrowiAF_AchievementButtonMixin = {};
+KrowiAF_AchievementButtonMixin = {}
 
 local function SetAsTracked(self, isTracked)
-	self.Achievement.IsTracked = nil;
+	self.Achievement.IsTracked = nil
 	if isTracked then
-		self.Achievement.IsTracked = true;
+		self.Achievement.IsTracked = true
 	end
 	if isTracked and not self.Compact then
-		self.Tracked:Show();
+		self.Tracked:Show()
 	else
-		local selectedTab = addon.Gui.SelectedTab;
+		local selectedTab = addon.Gui.SelectedTab
 		if selectedTab and selectedTab.SelectedAchievement ~= self.Achievement then
-			self.Tracked:Hide();
+			self.Tracked:Hide()
 		end
 	end
-	self.Check:SetShown(isTracked);
-	self.Tracked:SetChecked(isTracked);
+	self.Check:SetShown(isTracked)
+	self.Tracked:SetChecked(isTracked)
 	-- This +4 here is to fudge around any string width issues that arize from resizing a string set to its string width. See bug 144418 for an example.
-	self.Header:SetWidth(isTracked and self.Header:GetStringWidth() + 4 or ACHIEVEMENTBUTTON_LABELWIDTH);
-	WatchFrame_Update(); -- Needed for Wrath Classic, does nothing for Retail
+	self.Header:SetWidth(isTracked and self.Header:GetStringWidth() + 4 or ACHIEVEMENTBUTTON_LABELWIDTH)
+	WatchFrame_Update() -- Needed for Wrath Classic, does nothing for Retail
 end
 
 function KrowiAF_AchievementButtonMixin:OnEvent(event, ...)
 	if event ~= "ACHIEVEMENT_EARNED" and event ~= "TRACKED_ACHIEVEMENT_LIST_CHANGED" then
-		return;
+		return
 	end
 	if not self.Achievement then
-		return;
+		return
 	end
-	local achievementId = ...;
+	local achievementId = ...
 	if achievementId ~= self.Achievement.Id then
-		return;
+		return
 	end
 
-	local achievement = self.Achievement;
+	local achievement = self.Achievement
 	if event == "ACHIEVEMENT_EARNED" then
-		self.Achievement = nil;
-		self:Update(achievement);
+		self.Achievement = nil
+		self:Update(achievement)
 	elseif event == "TRACKED_ACHIEVEMENT_LIST_CHANGED" then
-		SetAsTracked(self, IsTrackedAchievement(achievement.Id));
+		SetAsTracked(self, IsTrackedAchievement(achievement.Id))
 	end
 end
 
 function KrowiAF_AchievementButtonMixin:OnShow()
-	self:RegisterEvent("ACHIEVEMENT_EARNED");
-	self:RegisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED");
+	self:RegisterEvent("ACHIEVEMENT_EARNED")
+	self:RegisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED")
 end
 
 function KrowiAF_AchievementButtonMixin:OnHide()
-	self:UnregisterEvent("ACHIEVEMENT_EARNED");
-	self:UnregisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED");
+	self:UnregisterEvent("ACHIEVEMENT_EARNED")
+	self:UnregisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED")
 end
 
 function KrowiAF_AchievementButtonMixin:OnEnter()
-	KrowiAF_AchievementsFrame:SetHighlightedButton(self);
-	self:ShowTooltip();
-	self.Highlight:Show();
+	KrowiAF_AchievementsFrame:SetHighlightedButton(self)
+	self:ShowTooltip()
+	self.Highlight:Show()
 end
 
 function KrowiAF_AchievementButtonMixin:OnLeave()
-	KrowiAF_AchievementsFrame:ClearHighlightedButton();
-	Krowi_Tooltip:Hide();
-	local selectedTab = addon.Gui.SelectedTab;
+	KrowiAF_AchievementsFrame:ClearHighlightedButton()
+	Krowi_Tooltip:Hide()
+	local selectedTab = addon.Gui.SelectedTab
 	if selectedTab and self.Achievement ~= selectedTab.SelectedAchievement then
-		self.Highlight:Hide();
+		self.Highlight:Hide()
 	end
 end
 
 function KrowiAF_AchievementButtonMixin:OnClick(button, _, ignoreModifiers)
-	Click(self, button, ignoreModifiers);
+	Click(self, button, ignoreModifiers)
 end
 
 function KrowiAF_AchievementButtonMixin:OnSizeChanged(width)
-	local selectedTab = addon.Gui.SelectedTab;
+	local selectedTab = addon.Gui.SelectedTab
 	if not selectedTab or not self.Achievement or selectedTab.SelectedAchievement ~= self.Achievement then
-		return;
+		return
 	end
 	if self.CachedWidthOnSizeChanged and self.CachedWidthOnSizeChanged ~= width then
 		-- Delay here to give the previous OnSizeChanged to finish
 		addon.Util.DelayFunction("KrowiAF_AchievementButton_OnSizeChanged", 0.01, function()
-			self.ForceDisplayObjectives = true;
-			KrowiAF_AchievementsFrame.SelectionBehavior:TriggerEvent(SelectionBehaviorMixin.Event.OnSelectionChanged, self.Achievement, true);
-			KrowiAF_AchievementsFrame:ScrollToNearest(self.Achievement);
-			self.ForceDisplayObjectives = nil;
-		end);
+			self.ForceDisplayObjectives = true
+			KrowiAF_AchievementsFrame.SelectionBehavior:TriggerEvent(SelectionBehaviorMixin.Event.OnSelectionChanged, self.Achievement, true)
+			KrowiAF_AchievementsFrame:ScrollToNearest(self.Achievement)
+			self.ForceDisplayObjectives = nil
+		end)
 	end
-	self.CachedWidthOnSizeChanged = width;
+	self.CachedWidthOnSizeChanged = width
 end
 
-local cachedWidthDisplayObjectives;
+local cachedWidthDisplayObjectives
 function KrowiAF_AchievementButtonMixin:DisplayObjectives(forced)
-	local objectives = self.Objectives or KrowiAF_AchievementsObjectives;
+	local objectives = self.Objectives or KrowiAF_AchievementsObjectives
 	if objectives.IsDisplaying then
 		-- Reentrancy guard: GetWidth()/GetTop()/etc. below can synchronously flush a pending resize
 		-- and re-trigger DisplayObjectives (e.g. via the popout's OnSizeChanged) on this same frame.
-		return objectives.LastHeight or self.MinExpandedHeight;
+		return objectives.LastHeight or self.MinExpandedHeight
 	end
-	objectives.IsDisplaying = true;
-	objectives:SetParent(self);
-	objectives:SetPoint("TOP", self.HiddenDescription, "BOTTOM", 0, -8);
-	objectives:SetPoint("LEFT", self.ObjectivesLeftAnchor, "RIGHT", 0, 0);
-	objectives:SetPoint("RIGHT", self.Shield, "LEFT", 0, 0);
-	objectives.Completed = self.Completed;
-	objectives.FontHeight = self.FontHeight;
-	local height = self.MinExpandedHeight; -- Compact or not, we need this height
-	local id = self.Achievement.Id;
+	objectives.IsDisplaying = true
+	objectives:SetParent(self)
+	objectives:SetPoint("TOP", self.HiddenDescription, "BOTTOM", 0, -8)
+	objectives:SetPoint("LEFT", self.ObjectivesLeftAnchor, "RIGHT", 0, 0)
+	objectives:SetPoint("RIGHT", self.Shield, "LEFT", 0, 0)
+	objectives.Completed = self.Completed
+	objectives.FontHeight = self.FontHeight
+	local height = self.MinExpandedHeight -- Compact or not, we need this height
+	local id = self.Achievement.Id
 	if objectives.Id == id and cachedWidthDisplayObjectives == objectives:GetWidth() and not forced then
 		-- Cached, nothing to do
 	elseif self.Completed and addon.GetPreviousAchievement(id) then
-		objectives:SetHeight(1);
-		objectives:ResetAll();
-		objectives:DisplayProgressiveAchievement(id);
+		objectives:SetHeight(1)
+		objectives:ResetAll()
+		objectives:DisplayProgressiveAchievement(id)
 	else
-		objectives:SetHeight(1);
-		objectives:ResetAll();
-		objectives:DisplayCriteria(id);
-		cachedWidthDisplayObjectives = objectives:GetWidth();
+		objectives:SetHeight(1)
+		objectives:ResetAll()
+		objectives:DisplayCriteria(id)
+		cachedWidthDisplayObjectives = objectives:GetWidth()
 	end
-	objectives:Show();
-	height = height + objectives:GetHeight() - 1;
+	objectives:Show()
+	height = height + objectives:GetHeight() - 1
 	if height ~= self.CollapsedHeight or self.numLines > self.MaxDescriptionLinesCollapsed then
-		local descriptionHeight = self.HiddenDescription:GetHeight();
-		height = height + descriptionHeight - ACHIEVEMENTBUTTON_DESCRIPTIONHEIGHT;
+		local descriptionHeight = self.HiddenDescription:GetHeight()
+		height = height + descriptionHeight - ACHIEVEMENTBUTTON_DESCRIPTIONHEIGHT
 		if self.Reward:IsShown() then
-			height = height + 4;
+			height = height + 4
 		end
 	end
-	objectives.Id = id;
-	height = max(self.MinExpandedHeight, height);
-	objectives.IsDisplaying = nil;
-	objectives.LastHeight = height;
-	return height;
+	objectives.Id = id
+	height = max(self.MinExpandedHeight, height)
+	objectives.IsDisplaying = nil
+	objectives.LastHeight = height
+	return height
 end
 
 local function GetSaturatedStyle(self, achievement, flags)
-	local state = achievement:GetObtainableState();
+	local state = achievement:GetObtainableState()
 
-	self.accountWide = nil;
+	self.accountWide = nil
 	if flags.IsAccountWide then
-		self.accountWide = true;
+		self.accountWide = true
 	end
-	local _saturationStyle = GetSaturationStyle(state, self.accountWide);
-	return _saturationStyle.Style;
+	local _saturationStyle = GetSaturationStyle(state, self.accountWide)
+	return _saturationStyle.Style
 end
 
 local function SetShield(self, id, points)
 	if addon.GetPreviousAchievement(id) and points > 0 then
-		points = AchievementButton_GetProgressivePoints(id);
+		points = AchievementButton_GetProgressivePoints(id)
 	end
-	local normalFont = self.Compact and GameFontHighlight or AchievementPointsFontHighlight;
-	local smallFont = self.Compact and GameFontHighlightSmall or AchievementPointsFontHighlightSmall;
-	AchievementShield_SetPoints(points, self.Shield.Points, normalFont, smallFont);
+	local normalFont = self.Compact and GameFontHighlight or AchievementPointsFontHighlight
+	local smallFont = self.Compact and GameFontHighlightSmall or AchievementPointsFontHighlightSmall
+	AchievementShield_SetPoints(points, self.Shield.Points, normalFont, smallFont)
 
-	local texture = points > 0 and "Interface/AchievementFrame/UI-Achievement-Shields" or "Interface/AchievementFrame/UI-Achievement-Shields-NoPoints";
-	self.Shield.Icon:SetTexture(texture);
+	local texture = points > 0 and "Interface/AchievementFrame/UI-Achievement-Shields" or "Interface/AchievementFrame/UI-Achievement-Shields-NoPoints"
+	self.Shield.Icon:SetTexture(texture)
 end
 
 local function UpdatePlusMinusTexture(self)
 	if self.Achievement == nil then
-		return; -- This happens when we create buttons
+		return -- This happens when we create buttons
 	end
 
-	local id = self.Achievement.Id;
-	local display = self.Compact or addon.GetAchievementNumCriteria(id) ~= 0 or (self.Completed and addon.GetPreviousAchievement(id));
+	local id = self.Achievement.Id
+	local display = self.Compact or addon.GetAchievementNumCriteria(id) ~= 0 or (self.Completed and addon.GetPreviousAchievement(id))
 	if not display then
-		self.PlusMinus:Hide();
-		return;
+		self.PlusMinus:Hide()
+		return
 	end
 
-	self.PlusMinus:Show();
+	self.PlusMinus:Show()
 	if self.collapsed and self.saturatedStyle then
-		self.PlusMinus:SetTexCoord(0, 0.5, 0, addon.Util.IsWrathClassic and 0.5 or 0.25);
+		self.PlusMinus:SetTexCoord(0, 0.5, 0, addon.Util.IsWrathClassic and 0.5 or 0.25)
 	elseif self.collapsed then
-		self.PlusMinus:SetTexCoord(0.5, 1, 0, addon.Util.IsWrathClassic and 0.5 or 0.25);
+		self.PlusMinus:SetTexCoord(0.5, 1, 0, addon.Util.IsWrathClassic and 0.5 or 0.25)
 	elseif self.saturatedStyle then
-		self.PlusMinus:SetTexCoord(0, 0.5, addon.Util.IsWrathClassic and 0.5 or 0.25, addon.Util.IsWrathClassic and 1 or 0.5);
+		self.PlusMinus:SetTexCoord(0, 0.5, addon.Util.IsWrathClassic and 0.5 or 0.25, addon.Util.IsWrathClassic and 1 or 0.5)
 	else
-		self.PlusMinus:SetTexCoord(0.5, 1, addon.Util.IsWrathClassic and 0.5 or 0.25, addon.Util.IsWrathClassic and 1 or 0.5);
+		self.PlusMinus:SetTexCoord(0.5, 1, addon.Util.IsWrathClassic and 0.5 or 0.25, addon.Util.IsWrathClassic and 1 or 0.5)
 	end
 end
 
 local function SetTsunamis(self)
 	if self.Compact then
-		return;
+		return
 	end
-	local achievement = self.Achievement;
-	local state = achievement:GetObtainableState();
+	local achievement = self.Achievement
+	local state = achievement:GetObtainableState()
 
-	local _saturationStyle = GetSaturationStyle(state);
-	local texture = _saturationStyle.BordersTexture;
+	local _saturationStyle = GetSaturationStyle(state)
+	local texture = _saturationStyle.BordersTexture
 
-	self.BottomTsunami:SetTexture(texture);
-	self.BottomTsunami:SetAlpha(0.35);
-	self.TopTsunami:SetTexture(texture);
-	self.TopTsunami:SetAlpha(0.3);
-	self.BottomTsunami:SetTexCoord(0, 0.72265, 0.51953125, 0.58203125);
-	self.TopTsunami:SetTexCoord(0.72265, 0, 0.58203125, 0.51953125);
+	self.BottomTsunami:SetTexture(texture)
+	self.BottomTsunami:SetAlpha(0.35)
+	self.TopTsunami:SetTexture(texture)
+	self.TopTsunami:SetAlpha(0.3)
+	self.BottomTsunami:SetTexCoord(0, 0.72265, 0.51953125, 0.58203125)
+	self.TopTsunami:SetTexCoord(0.72265, 0, 0.58203125, 0.51953125)
 end
 
 local function Saturate(self)
-	local achievement = self.Achievement;
-	local state = achievement:GetObtainableState();
-	local _saturationStyle = GetSaturationStyle(state, self.accountWide);
-	self.saturatedStyle = _saturationStyle.Style;
-	self.HeaderBackground:SetTexture(_saturationStyle.HeaderBackgroundTexture);
-	self.HeaderBackground:SetTexCoord(unpack(_saturationStyle.HeaderBackgroundCoords.Saturated));
-	local backdropBorderColor =_saturationStyle.GetBackdropBorderColor();
-	self:SetBackdropBorderColor(backdropBorderColor:GetRGB());
-	self.Background:SetTexture("Interface/AchievementFrame/UI-Achievement-Parchment-Horizontal");
-	self.Glow:SetVertexColor(1, 1, 1);
-	self.Icon.Texture:SetVertexColor(1, 1, 1, 1);
-	self.Icon.Border:SetVertexColor(1, 1, 1, 1);
-	self.Shield.Icon:SetTexCoord(0, 0.5, 0, addon.Util.IsWrathClassic and 1 or 0.5);
-	self.Shield.Points:SetVertexColor(1, 1, 1);
-	self.Reward:SetVertexColor(1, 0.82, 0);
-	self.Header:SetVertexColor(1, 1, 1);
-	self.Description:SetTextColor(0, 0, 0, 1);
-	self.Description:SetShadowOffset(0, 0);
-	UpdatePlusMinusTexture(self);
-	SetTsunamis(self);
+	local achievement = self.Achievement
+	local state = achievement:GetObtainableState()
+	local _saturationStyle = GetSaturationStyle(state, self.accountWide)
+	self.saturatedStyle = _saturationStyle.Style
+	self.HeaderBackground:SetTexture(_saturationStyle.HeaderBackgroundTexture)
+	self.HeaderBackground:SetTexCoord(unpack(_saturationStyle.HeaderBackgroundCoords.Saturated))
+	local backdropBorderColor =_saturationStyle.GetBackdropBorderColor()
+	self:SetBackdropBorderColor(backdropBorderColor:GetRGB())
+	self.Background:SetTexture("Interface/AchievementFrame/UI-Achievement-Parchment-Horizontal")
+	self.Glow:SetVertexColor(1, 1, 1)
+	self.Icon.Texture:SetVertexColor(1, 1, 1, 1)
+	self.Icon.Border:SetVertexColor(1, 1, 1, 1)
+	self.Shield.Icon:SetTexCoord(0, 0.5, 0, addon.Util.IsWrathClassic and 1 or 0.5)
+	self.Shield.Points:SetVertexColor(1, 1, 1)
+	self.Reward:SetVertexColor(1, 0.82, 0)
+	self.Header:SetVertexColor(1, 1, 1)
+	self.Description:SetTextColor(0, 0, 0, 1)
+	self.Description:SetShadowOffset(0, 0)
+	UpdatePlusMinusTexture(self)
+	SetTsunamis(self)
 end
 
 local function Desaturate(self)
-	local achievement = self.Achievement;
-	local state = achievement:GetObtainableState();
-	local _saturationStyle = GetSaturationStyle(state, self.accountWide);
-	self.saturatedStyle = nil;
-	self.HeaderBackground:SetTexture(_saturationStyle.HeaderBackgroundTexture);
-	self.HeaderBackground:SetTexCoord(unpack(_saturationStyle.HeaderBackgroundCoords.Desaturated));
-	self:SetBackdropBorderColor(0.5, 0.5, 0.5);
-	self.Background:SetTexture("Interface/AchievementFrame/UI-Achievement-Parchment-Horizontal-Desaturated");
-	self.Glow:SetVertexColor(0.22, 0.17, 0.13);
-	self.Icon.Texture:SetVertexColor(0.55, 0.55, 0.55, 1);
-	self.Icon.Border:SetVertexColor(0.75, 0.75, 0.75, 1);
-	self.Shield.Icon:SetTexCoord(0.5, 1, 0, addon.Util.IsWrathClassic and 1 or 0.5);
-	self.Shield.Points:SetVertexColor(0.65, 0.65, 0.65);
-	self.Reward:SetVertexColor(0.8, 0.8, 0.8);
-	self.Header:SetVertexColor(0.65, 0.65, 0.65);
-	self.Description:SetTextColor(1, 1, 1, 1);
-	self.Description:SetShadowOffset(1, -1);
-	UpdatePlusMinusTexture(self);
-	SetTsunamis(self);
+	local achievement = self.Achievement
+	local state = achievement:GetObtainableState()
+	local _saturationStyle = GetSaturationStyle(state, self.accountWide)
+	self.saturatedStyle = nil
+	self.HeaderBackground:SetTexture(_saturationStyle.HeaderBackgroundTexture)
+	self.HeaderBackground:SetTexCoord(unpack(_saturationStyle.HeaderBackgroundCoords.Desaturated))
+	self:SetBackdropBorderColor(0.5, 0.5, 0.5)
+	self.Background:SetTexture("Interface/AchievementFrame/UI-Achievement-Parchment-Horizontal-Desaturated")
+	self.Glow:SetVertexColor(0.22, 0.17, 0.13)
+	self.Icon.Texture:SetVertexColor(0.55, 0.55, 0.55, 1)
+	self.Icon.Border:SetVertexColor(0.75, 0.75, 0.75, 1)
+	self.Shield.Icon:SetTexCoord(0.5, 1, 0, addon.Util.IsWrathClassic and 1 or 0.5)
+	self.Shield.Points:SetVertexColor(0.65, 0.65, 0.65)
+	self.Reward:SetVertexColor(0.8, 0.8, 0.8)
+	self.Header:SetVertexColor(0.65, 0.65, 0.65)
+	self.Description:SetTextColor(1, 1, 1, 1)
+	self.Description:SetShadowOffset(1, -1)
+	UpdatePlusMinusTexture(self)
+	SetTsunamis(self)
 end
 
 local function SaturatePartial(self)
-	Desaturate(self);
-	self.HeaderBackground:SetTexture("Interface/AchievementFrame/UI-Achievement-Borders");
-	self.HeaderBackground:SetTexCoord(0, 1, 0.66015625, 0.73828125);
-	self.Icon.Texture:SetVertexColor(1, 1, 1, 1);
-	self.Icon.Border:SetVertexColor(1, 1, 1, 1);
-	self.Shield.Icon:SetTexCoord(0, 0.5, 0, addon.Util.IsWrathClassic and 1 or 0.5);
-	self.Shield.Points:SetVertexColor(1, 1, 1);
-	self.Glow:SetVertexColor(0.1, 0.1, 0.1);
-	SetTsunamis(self);
+	Desaturate(self)
+	self.HeaderBackground:SetTexture("Interface/AchievementFrame/UI-Achievement-Borders")
+	self.HeaderBackground:SetTexCoord(0, 1, 0.66015625, 0.73828125)
+	self.Icon.Texture:SetVertexColor(1, 1, 1, 1)
+	self.Icon.Border:SetVertexColor(1, 1, 1, 1)
+	self.Shield.Icon:SetTexCoord(0, 0.5, 0, addon.Util.IsWrathClassic and 1 or 0.5)
+	self.Shield.Points:SetVertexColor(1, 1, 1)
+	self.Glow:SetVertexColor(0.1, 0.1, 0.1)
+	SetTsunamis(self)
 end
 
 local function SetCompletionState(self, achievement, completed, month, day, year, wasEarnedByMe, saturatedStyle)
@@ -448,234 +448,234 @@ local function SetCompletionState(self, achievement, completed, month, day, year
 	-- 	end
 	-- end
 
-	local earnedByFilter = addon.Filters.db.profile.EarnedBy;
+	local earnedByFilter = addon.Filters.db.profile.EarnedBy
 	if (earnedByFilter == 'Account' and completed or wasEarnedByMe) or (earnedByFilter == 'CharacterAccount' and completed and wasEarnedByMe) then
-		self.Completed = true;
-		achievement.IsCompleted = true;
-		self.DateCompleted:SetText(FormatShortDate(day, month, year));
+		self.Completed = true
+		achievement.IsCompleted = true
+		self.DateCompleted:SetText(FormatShortDate(day, month, year))
 		if not addon.Options.db.profile.Achievements.HideDateCompleted then
-			self.DateCompleted:Show();
+			self.DateCompleted:Show()
 		end
 		if self.saturatedStyle ~= saturatedStyle then
-			Saturate(self);
+			Saturate(self)
 		end
-		return;
+		return
 	end
 	if (earnedByFilter == 'CharacterAccount' and completed and not wasEarnedByMe) then
-		self.Completed = true;
-		achievement.IsCompleted = true;
-		self.DateCompleted:SetText(FormatShortDate(day, month, year));
+		self.Completed = true
+		achievement.IsCompleted = true
+		self.DateCompleted:SetText(FormatShortDate(day, month, year))
 		if not addon.Options.db.profile.Achievements.HideDateCompleted then
-			self.DateCompleted:Show();
+			self.DateCompleted:Show()
 		end
-		SaturatePartial(self);
-		return;
+		SaturatePartial(self)
+		return
 	end
-	self.Completed = nil;
-	achievement.IsCompleted = nil;
-	self.DateCompleted:Hide();
-	Desaturate(self);
+	self.Completed = nil
+	achievement.IsCompleted = nil
+	self.DateCompleted:Hide()
+	Desaturate(self)
 end
 
 local function SetRewardText(self, rewardText)
 	if rewardText == "" then
 		if self.Compact then
-			self.Reward:SetText(nil);
-			self.Description:Show();
+			self.Reward:SetText(nil)
+			self.Description:Show()
 		end
-		self.Reward:Hide();
-		self.RewardBackground:Hide();
-		return;
+		self.Reward:Hide()
+		self.RewardBackground:Hide()
+		return
 	end
 
-	self.Reward:SetText(rewardText);
-	self.Reward:Show();
-	self.RewardBackground:Show();
+	self.Reward:SetText(rewardText)
+	self.Reward:Show()
+	self.RewardBackground:Show()
 	if self.Completed then
-		self.RewardBackground:SetVertexColor(1, 1, 1);
+		self.RewardBackground:SetVertexColor(1, 1, 1)
 	else
-		self.RewardBackground:SetVertexColor(0.35, 0.35, 0.35);
+		self.RewardBackground:SetVertexColor(0.35, 0.35, 0.35)
 	end
 	if self.Compact then
-		self.Description:Hide();
+		self.Description:Hide()
 	end
 end
 
 local function SetFaction(self, achievement)
 	if not achievement.Faction then
-		self.FactionIcon:Hide();
-		return;
+		self.FactionIcon:Hide()
+		return
 	end
-	self.FactionIcon:SetAlpha(addon.Options.db.profile.Achievements.FactionIconAlpha);
+	self.FactionIcon:SetAlpha(addon.Options.db.profile.Achievements.FactionIconAlpha)
 	if achievement.Faction == KrowiAF.Enum.Faction.Alliance and addon.Options.db.profile.Achievements.ShowAllianceFactionIcon then
-		self.FactionIcon:SetTexCoord(0.65966796875, 0.74951171875, 0.150879, self.Compact and 0.19961 or 0.22412109375);
-		self.FactionIcon:Show();
-		return;
+		self.FactionIcon:SetTexCoord(0.65966796875, 0.74951171875, 0.150879, self.Compact and 0.19961 or 0.22412109375)
+		self.FactionIcon:Show()
+		return
 	end
 	if achievement.Faction == KrowiAF.Enum.Faction.Horde and addon.Options.db.profile.Achievements.ShowHordeFactionIcon then
-		self.FactionIcon:SetTexCoord(0.75048828125, 0.84033203125, 0.150879, self.Compact and 0.19961 or 0.22412109375);
-		self.FactionIcon:Show();
-		return;
+		self.FactionIcon:SetTexCoord(0.75048828125, 0.84033203125, 0.150879, self.Compact and 0.19961 or 0.22412109375)
+		self.FactionIcon:Show()
+		return
 	end
-	self.FactionIcon:Hide();
+	self.FactionIcon:Hide()
 end
 
 function KrowiAF_AchievementButtonMixin:SetAchievementData(achievement, id, name, points, completed, month, day, year, description, flags, icon, rewardText, wasEarnedByMe)
-	self.Achievement = achievement;
+	self.Achievement = achievement
 
-	local saturatedStyle = GetSaturatedStyle(self, achievement, flags);
+	local saturatedStyle = GetSaturatedStyle(self, achievement, flags)
 
 	if flags.IsAccountWide then
-		achievement.IsAccountWide = true;
+		achievement.IsAccountWide = true
 	else
-		achievement.IsAccountWide = nil;
+		achievement.IsAccountWide = nil
 	end
 
-	self.Header:SetText(name);
-	self.Icon.Texture:SetTexture(icon);
-	self.Description:SetText(description);
-	self.HiddenDescription:SetText(description);
-	self.numLines = ceil(self.HiddenDescription:GetHeight() / self.FontHeight);
-	SetShield(self, id, points);
-	SetCompletionState(self, achievement, completed, month, day, year, wasEarnedByMe, saturatedStyle);
-	SetRewardText(self, rewardText);
-	SetFaction(self, achievement);
-	extraIconFactory.SetExtraIcons(self, achievement);
+	self.Header:SetText(name)
+	self.Icon.Texture:SetTexture(icon)
+	self.Description:SetText(description)
+	self.HiddenDescription:SetText(description)
+	self.numLines = ceil(self.HiddenDescription:GetHeight() / self.FontHeight)
+	SetShield(self, id, points)
+	SetCompletionState(self, achievement, completed, month, day, year, wasEarnedByMe, saturatedStyle)
+	SetRewardText(self, rewardText)
+	SetFaction(self, achievement)
+	extraIconFactory.SetExtraIcons(self, achievement)
 end
 
 function KrowiAF_AchievementButtonMixin:SetAchievement(achievement, refresh)
 	if not achievement then
-		self.Achievement = nil;
-		return;
+		self.Achievement = nil
+		return
 	end
 
 	if self.Achievement ~= achievement or refresh then
-		local id, name, points, completed, month, day, year, description, flags, icon, rewardText, _, wasEarnedByMe = addon.GetAchievementInfo(achievement.Id);
-		self:SetAchievementData(achievement, id, name, points, completed, month, day, year, description, flags, icon, rewardText, wasEarnedByMe);
+		local id, name, points, completed, month, day, year, description, flags, icon, rewardText, _, wasEarnedByMe = addon.GetAchievementInfo(achievement.Id)
+		self:SetAchievementData(achievement, id, name, points, completed, month, day, year, description, flags, icon, rewardText, wasEarnedByMe)
 	end
 
-	SetAsTracked(self, IsTrackedAchievement(achievement.Id));
-	UpdatePlusMinusTexture(self);
+	SetAsTracked(self, IsTrackedAchievement(achievement.Id))
+	UpdatePlusMinusTexture(self)
 end
 
 function KrowiAF_AchievementButtonMixin:Update(achievement, refresh, notSelectable)
-	local _, _, _, completed, _, _, _, _, _, _, _, _, wasEarnedByMe = addon.GetAchievementInfo(achievement.Id);
-	self:SetAchievement(achievement, refresh);
+	local _, _, _, completed, _, _, _, _, _, _, _, _, wasEarnedByMe = addon.GetAchievementInfo(achievement.Id)
+	self:SetAchievement(achievement, refresh)
 
-	local selectedTab = addon.Gui.SelectedTab;
-	local objectives = KrowiAF_AchievementsObjectives;
-	local objectivesParent = objectives:GetParent();
+	local selectedTab = addon.Gui.SelectedTab
+	local objectives = KrowiAF_AchievementsObjectives
+	local objectivesParent = objectives:GetParent()
 	if (objectivesParent and objectivesParent.Achievement and objectivesParent.Achievement.Id ~= objectives.Id) or (selectedTab and selectedTab.SelectedAchievement == nil) then
-		objectives:Hide();
+		objectives:Hide()
 	end
 
 	-- print(achievement and achievement.Id, selectedTab and achievement == selectedTab.SelectedAchievement)
 	if selectedTab and achievement == selectedTab.SelectedAchievement and not notSelectable then
-		self.Highlight:Show();
-		local height = self:DisplayObjectives(self.ForceDisplayObjectives);
-		self:Expand(height);
+		self.Highlight:Show()
+		local height = self:DisplayObjectives(self.ForceDisplayObjectives)
+		self:Expand(height)
 		if not completed or not wasEarnedByMe then
-			self.Tracked:Show();
+			self.Tracked:Show()
 		end
 	else
-		self:Collapse();
+		self:Collapse()
 	end
 
 	if not self.Compact then
-		return;
+		return
 	end
 
 	if not self.collapsed then
-		self.Glow:Show();
-		self.Glow:SetHeight(64);
-		self.Glow:SetTexCoord(0, 1, 1 / 256, (self.Glow:GetHeight() + 1) / 256); -- Add 1 to height since top starts at 1
+		self.Glow:Show()
+		self.Glow:SetHeight(64)
+		self.Glow:SetTexCoord(0, 1, 1 / 256, (self.Glow:GetHeight() + 1) / 256) -- Add 1 to height since top starts at 1
 	else
 		if self.Reward:GetText() ~= nil then
-			self.Glow:Hide();
+			self.Glow:Hide()
 		else
-			self.Glow:Show();
-			self.Glow:SetHeight(24);
-			self.Glow:SetTexCoord(0, 1, 1 / 256, (self.Glow:GetHeight() + 1) / 256); -- Add 1 to height since top starts at 1
+			self.Glow:Show()
+			self.Glow:SetHeight(24)
+			self.Glow:SetTexCoord(0, 1, 1 / 256, (self.Glow:GetHeight() + 1) / 256) -- Add 1 to height since top starts at 1
 		end
 	end
 end
 
 function KrowiAF_AchievementButtonMixin:Collapse()
 	if self.collapsed then
-		return;
+		return
 	end
 
-	self.collapsed = true;
-	UpdatePlusMinusTexture(self);
-	self:SetHeight(self.CollapsedHeight);
-	self.NewHeight = self.CollapsedHeight;
-	self.Background:SetTexCoord(0, 1, 1 - (self.CollapsedHeight / 256), 1);
+	self.collapsed = true
+	UpdatePlusMinusTexture(self)
+	self:SetHeight(self.CollapsedHeight)
+	self.NewHeight = self.CollapsedHeight
+	self.Background:SetTexCoord(0, 1, 1 - (self.CollapsedHeight / 256), 1)
 	if not self:IsMouseOver() then
-		self.Highlight:Hide();
+		self.Highlight:Hide()
 	end
 	if not self.Tracked:GetChecked() or self.Compact then
-		self.Tracked:Hide();
+		self.Tracked:Hide()
 	end
 	if self.Compact and self.Reward:GetText() ~= nil then
-		self.Description:Hide();
+		self.Description:Hide()
 	else
-		self.Description:Show();
+		self.Description:Show()
 	end
-	self.HiddenDescription:Hide();
+	self.HiddenDescription:Hide()
 end
 
 function KrowiAF_AchievementButtonMixin:Expand(height)
 	if not self.collapsed and self:GetHeight() == height then
-		return;
+		return
 	end
 
-	self.collapsed = nil;
-	UpdatePlusMinusTexture(self);
-	self:SetHeight(height);
-	self.NewHeight = height;
-	self.Background:SetTexCoord(0, 1, max(0, 1 - (height / 256)), 1);
-	self.HiddenDescription:Show();
-	self.Description:Hide();
+	self.collapsed = nil
+	UpdatePlusMinusTexture(self)
+	self:SetHeight(height)
+	self.NewHeight = height
+	self.Background:SetTexCoord(0, 1, max(0, 1 - (height / 256)), 1)
+	self.HiddenDescription:Show()
+	self.Description:Hide()
 end
 
 function KrowiAF_AchievementButtonMixin:ShowTooltip()
 	if not self.Achievement then
-		return;
+		return
 	end
-	addon.Gui.AchievementTooltip:ShowTooltip(self, self.Achievement);
+	addon.Gui.AchievementTooltip:ShowTooltip(self, self.Achievement)
 end
 
 function KrowiAF_AchievementButtonMixin:ToggleTracking()
-	self:UnregisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED");
+	self:UnregisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED")
 
-	local id = self.Achievement.Id;
+	local id = self.Achievement.Id
 	if self.Achievement.IsTracked then
-		RemoveTrackedAchievement(id);
-		SetAsTracked(self, false);
-		return;
+		RemoveTrackedAchievement(id)
+		SetAsTracked(self, false)
+		return
 	end
 
-	local count = GetNumTrackedAchievements();
+	local count = GetNumTrackedAchievements()
 	if count >= MAX_TRACKED_ACHIEVEMENTS then
-		UIErrorsFrame:AddMessage(format(ACHIEVEMENT_WATCH_TOO_MANY, MAX_TRACKED_ACHIEVEMENTS), 1.0, 0.1, 0.1, 1.0);
-		return;
+		UIErrorsFrame:AddMessage(format(ACHIEVEMENT_WATCH_TOO_MANY, MAX_TRACKED_ACHIEVEMENTS), 1.0, 0.1, 0.1, 1.0)
+		return
 	end
 
-	local _, _, _, completed, _, _, _, _, _, _, _, _, wasEarnedByMe = GetAchievementInfo(id);
-	local earnedByFilter = addon.Filters.db.profile.EarnedBy;
+	local _, _, _, completed, _, _, _, _, _, _, _, _, wasEarnedByMe = GetAchievementInfo(id)
+	local earnedByFilter = addon.Filters.db.profile.EarnedBy
 	if (earnedByFilter == 'Account' and completed or wasEarnedByMe) or (earnedByFilter == 'CharacterAccount' and completed and wasEarnedByMe) then
-		UIErrorsFrame:AddMessage(ERR_ACHIEVEMENT_WATCH_COMPLETED, 1.0, 0.1, 0.1, 1.0);
-		SetAsTracked(self, false);
-		return;
+		UIErrorsFrame:AddMessage(ERR_ACHIEVEMENT_WATCH_COMPLETED, 1.0, 0.1, 0.1, 1.0)
+		SetAsTracked(self, false)
+		return
 	end
 
-	local trackingError = AddTrackedAchievement(id);
-	SetAsTracked(self, true);
+	local trackingError = AddTrackedAchievement(id)
+	SetAsTracked(self, true)
 	if trackingError then
-		ContentTrackingUtil.DisplayTrackingError(trackingError);
+		ContentTrackingUtil.DisplayTrackingError(trackingError)
 	end
 
-	self:RegisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED");
+	self:RegisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED")
 
-	return true;
+	return true
 end

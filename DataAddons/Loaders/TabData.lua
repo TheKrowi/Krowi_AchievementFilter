@@ -1,4 +1,4 @@
-local _, addon = ...;
+local _, addon = ...
 
 -- for k1, v1 in next, KrowiAF.TabData do
 --     for k2, v2 in next, v1 do

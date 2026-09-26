@@ -1,6 +1,6 @@
-local _, addon = ...;
-local shared = addon.Data.TooltipData.Shared;
-local type = Enum.TooltipDataType;
+local _, addon = ...
+local shared = addon.Data.TooltipData.Shared
+local type = Enum.TooltipDataType
 
 KrowiAF.TooltipData.WrathOfTheLichKing = {
     { -- To All The Squirrels I've Loved Before
@@ -240,4 +240,4 @@ KrowiAF.TooltipData.WrathOfTheLichKing = {
             {12, {28440, 62835}}, -- Tundra Penguin
         }
     },
-};
+}

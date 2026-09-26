@@ -1,94 +1,94 @@
-local _, addon = ...;
-local section = {};
-tinsert(addon.Gui.AchievementTooltip.Sections, section);
+local _, addon = ...
+local section = {}
+tinsert(addon.Gui.AchievementTooltip.Sections, section)
 
-local numCriteria;
+local numCriteria
 function section:CheckAdd(achievement)
 	if achievement.IsCompleted or achievement.IsAccountWide or achievement.TransmogSets or addon.Options.db.profile.Tooltip.Achievements.MostProgress.Characters <= 0 then
-		return;
+		return
 	end
-	local state = achievement:GetObtainableState();
+	local state = achievement:GetObtainableState()
 	if not addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.Show or state == "Past" then
-		return;
+		return
 	end
-	numCriteria = GetAchievementNumCriteria(achievement.Id);
-	return numCriteria > 0;
+	numCriteria = GetAchievementNumCriteria(achievement.Id)
+	return numCriteria > 0
 end
 
 local function GetProgressScore(character, guid, achievementId)
 	if character.ExcludeFromMostProgressAchievementTooltip then
-		return;
+		return
 	end
 	if not KrowiAF_Achievements.NotCompleted[achievementId] or not KrowiAF_Achievements.NotCompleted[achievementId][guid] then
-		return;
+		return
 	end
-	local achievementProgress = KrowiAF_Achievements.NotCompleted[achievementId][guid];
+	local achievementProgress = KrowiAF_Achievements.NotCompleted[achievementId][guid]
 	if not achievementProgress then
-		return;
+		return
 	end
 
-	local score = 0;
+	local score = 0
 	for _, progress in next, achievementProgress do
 		if type(progress) == "boolean" and progress then
-			score = score + 1;
+			score = score + 1
 		elseif type(progress) == "number" then
-			score = score + progress;
+			score = score + progress
 		end
 	end
-	return score;
+	return score
 end
 
 local function GetAchievementData(guid, achievementId)
 	if not KrowiAF_Achievements.NotCompleted[achievementId] or not KrowiAF_Achievements.NotCompleted[achievementId][guid] then
-		return;
+		return
 	end
-	local achievementProgress = KrowiAF_Achievements.NotCompleted[achievementId][guid];
+	local achievementProgress = KrowiAF_Achievements.NotCompleted[achievementId][guid]
 	if not achievementProgress then
-		return;
+		return
 	end
-	local achievementNumCriteria = GetAchievementNumCriteria(achievementId);
-	local details = {};
+	local achievementNumCriteria = GetAchievementNumCriteria(achievementId)
+	local details = {}
 	for i = 1, achievementNumCriteria do
-		local criteriaString, _, completed, quantity, reqQuantity = GetAchievementCriteriaInfo(achievementId, i);
-		local progress = achievementProgress[i];
+		local criteriaString, _, completed, quantity, reqQuantity = GetAchievementCriteriaInfo(achievementId, i)
+		local progress = achievementProgress[i]
 		if type(progress) == "boolean" and progress then
-			completed = true;
-			quantity = reqQuantity;
+			completed = true
+			quantity = reqQuantity
 		elseif type(progress) == "number" then
-			completed = progress >= reqQuantity;
-			quantity = progress;
+			completed = progress >= reqQuantity
+			quantity = progress
 		end
-		tinsert(details, {criteriaString, completed, quantity, reqQuantity});
+		tinsert(details, {criteriaString, completed, quantity, reqQuantity})
 	end
-	return details;
+	return details
 end
 
 local sortFuncs = {
-    addon.Objects.CompareFunc:New("number", "Score");
-    addon.Objects.CompareFunc:New("string", "Name");
-    addon.Objects.CompareFunc:New("string", "Realm");
-    addon.Objects.CompareFunc:New("number", "Faction");
-    addon.Objects.CompareFunc:New("string", "Class");
-};
+    addon.Objects.CompareFunc:New("number", "Score"),
+    addon.Objects.CompareFunc:New("string", "Name"),
+    addon.Objects.CompareFunc:New("string", "Realm"),
+    addon.Objects.CompareFunc:New("number", "Faction"),
+    addon.Objects.CompareFunc:New("string", "Class"),
+}
 
 local function Sort(characters)
-	sortFuncs[1].Reverse = true;
+	sortFuncs[1].Reverse = true
 
-    local sortFunc = sortFuncs[1];
+    local sortFunc = sortFuncs[1]
     for i = 1, #sortFuncs - 1 do
-        sortFuncs[i].Fallback = sortFuncs[i + 1];
+        sortFuncs[i].Fallback = sortFuncs[i + 1]
     end
-    sortFuncs[#sortFuncs]:SetDefaultFallback();
+    sortFuncs[#sortFuncs]:SetDefaultFallback()
 
     table.sort(characters, function(a, b)
-        return sortFunc:Compare(a, b);
-    end);
+        return sortFunc:Compare(a, b)
+    end)
 end
 
 local function BuildCharacterList(achievement)
-	local characters = {};
+	local characters = {}
 	for guid, character in next, KrowiAF_SavedData.CharacterList do
-		local score = GetProgressScore(character, guid, achievement.Id);
+		local score = GetProgressScore(character, guid, achievement.Id)
 		if score then
 			tinsert(characters, {
 				Name = character.Name,
@@ -97,60 +97,60 @@ local function BuildCharacterList(achievement)
 				Faction = character.Faction,
 				Guid = guid,
 				Score = score
-			});
+			})
 		end
 	end
-    Sort(characters);
-	return characters;
+    Sort(characters)
+	return characters
 end
 
 local function AddName(character, achievement, thisRealm, names, numberOfNames)
-	local _, _, _, argbHex = GetClassColor(character.Class);
-	local name = "|c" .. argbHex .. character.Name;
+	local _, _, _, argbHex = GetClassColor(character.Class)
+	local name = "|c" .. argbHex .. character.Name
 	if achievement.OtherFactionAchievementId and character.Faction and character.Faction ~= achievement.Faction then
-		name = name .. " (" .. addon.L[character.Faction] .. ")";
+		name = name .. " (" .. addon.L[character.Faction] .. ")"
 	end
 	if addon.Options.db.profile.Tooltip.Achievements.MostProgress.AlwaysShowRealm or character.Realm ~= thisRealm then
-		name = name .. " - " .. character.Realm;
+		name = name .. " - " .. character.Realm
 	end
-	name = name .. "|r";
-	name = name .. " (" .. character.Score .. ")";
-	names = names == "" and name or names .. ", " .. name;
-	numberOfNames = numberOfNames + 1;
-	return names, numberOfNames;
+	name = name .. "|r"
+	name = name .. " (" .. character.Score .. ")"
+	names = names == "" and name or names .. ", " .. name
+	numberOfNames = numberOfNames + 1
+	return names, numberOfNames
 end
 
 local function GetNames(characters, achievement)
-	local thisGuid = UnitGUID("player");
-	local thisCharacter = KrowiAF_SavedData.CharacterList[thisGuid];
-	local thisRealm = thisCharacter.Realm;
-	local names = "";
-	local numberOfNames = 0;
+	local thisGuid = UnitGUID("player")
+	local thisCharacter = KrowiAF_SavedData.CharacterList[thisGuid]
+	local thisRealm = thisCharacter.Realm
+	local names = ""
+	local numberOfNames = 0
 	for _, character in next, characters do
 		if numberOfNames >= addon.Options.db.profile.Tooltip.Achievements.MostProgress.Characters then
-			return names;
+			return names
 		end
-		names, numberOfNames = AddName(character, achievement, thisRealm, names, numberOfNames);
+		names, numberOfNames = AddName(character, achievement, thisRealm, names, numberOfNames)
 	end
-	return names;
+	return names
 end
 
 function section:Add(achievement)
-	Krowi_Tooltip:AddLine(addon.L["Most progress"]);
+	Krowi_Tooltip:AddLine(addon.L["Most progress"])
 
-	local characters = BuildCharacterList(achievement);
+	local characters = BuildCharacterList(achievement)
 	if not characters or #characters == 0 then
-		Krowi_Tooltip:AddLine(addon.L["No characters found"]:SetColorRed());
-		return;
+		Krowi_Tooltip:AddLine(addon.L["No characters found"]:SetColorRed())
+		return
 	end
 
-	local achievementData = GetAchievementData(characters[1].Guid, achievement.Id);
+	local achievementData = GetAchievementData(characters[1].Guid, achievement.Id)
 	if not achievementData then
-		Krowi_Tooltip:AddLine(addon.L["No data found"]:SetColorRed());
-		return;
+		Krowi_Tooltip:AddLine(addon.L["No data found"]:SetColorRed())
+		return
 	end
 
-	local names = GetNames(characters, achievement);
-	Krowi_Tooltip:AddLine(names);
-	addon.Gui.AchievementTooltip:AddCriteria(achievement.Id, achievementData, numCriteria);
+	local names = GetNames(characters, achievement)
+	Krowi_Tooltip:AddLine(names)
+	addon.Gui.AchievementTooltip:AddCriteria(achievement.Id, achievementData, numCriteria)
 end

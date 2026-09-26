@@ -1,24 +1,24 @@
-local _, addon = ...;
-local section = {};
-tinsert(addon.Gui.AchievementTooltip.Sections, section);
+local _, addon = ...
+local section = {}
+tinsert(addon.Gui.AchievementTooltip.Sections, section)
 
-local numCriteria;
+local numCriteria
 function section:CheckAdd(achievement)
 	if achievement.TransmogSetIds then
-		return;
+		return
 	end
-	local state = achievement:GetObtainableState();
+	local state = achievement:GetObtainableState()
 	if not addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.Show or state == "Past" then
-		return;
+		return
 	end
 	if achievement.IsCompleted and not addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.ShowWhenAchievementCompleted then
-		return;
+		return
 	end
-	numCriteria = addon.GetAchievementNumCriteria(achievement.Id);
-	return numCriteria > 0;
+	numCriteria = addon.GetAchievementNumCriteria(achievement.Id)
+	return numCriteria > 0
 end
 
 function section:Add(achievement)
-	Krowi_Tooltip:AddLine(addon.L["Objectives progress"]);
-	addon.Gui.AchievementTooltip:AddCriteria(achievement.Id, achievement.Id, numCriteria);
+	Krowi_Tooltip:AddLine(addon.L["Objectives progress"])
+	addon.Gui.AchievementTooltip:AddCriteria(achievement.Id, achievement.Id, numCriteria)
 end

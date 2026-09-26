@@ -1,2 +1,2 @@
-local _, addon = ...;
-addon.Gui.RightClickMenu = {};
+local _, addon = ...
+addon.Gui.RightClickMenu = {}

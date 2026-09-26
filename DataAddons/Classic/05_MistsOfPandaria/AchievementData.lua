@@ -1,6 +1,11 @@
 local Ach = KrowiAF.Ach
 local faction = KrowiAF.Enum.Faction
 
+-- The five entries below end at Siege of Orgrimmar on Retail (5.4.0). MoP Classic replays that
+-- content on its own 5.5.x timeline and has not reached it, so the Retail anchor must not apply
+-- here: a shared entry carrying it resolves as already past, because 5.5.4 sorts above 5.4.0.
+-- Anchor them to Classic's own Siege of Orgrimmar patch once it ships and is registered in
+-- BuildVersionData.lua. See docs/data-design-review.md.
 KrowiAF.AchievementData["05_00_04"] = {
 	Ach(6981):IsPvP(), -- Master of Temple of Kotmogu
 }
@@ -74,8 +79,8 @@ KrowiAF.AchievementData["05_05_01"] = {
 }
 
 KrowiAF.AchievementData["05_05_03"] = {
-	Ach(61962):Title(), -- Realm First! Challenge Conqueror: Platinum (Season 2)
-	Ach(61963):Title(), -- Realm First! Challenge Conqueror: Platinum (Season 3)
+	Ach(61962):Title():Obtainable("Before", "Version", {5, 5, 4}), -- Realm First! Challenge Conqueror: Platinum (Season 2)
+	Ach(61963):Title():Obtainable("Until", "Version", {5, 5, 4}), -- Realm First! Challenge Conqueror: Platinum (Season 3)
 	Ach(61967):Toy(), -- Temple of the Jade Serpent: Platinum
 	Ach(61968):Toy(), -- Stormstout Brewery: Platinum
 	Ach(61969):Toy(), -- Mogu'shan Palace: Platinum
@@ -85,9 +90,9 @@ KrowiAF.AchievementData["05_05_03"] = {
 	Ach(61973):Toy(), -- Scarlet Monastery: Platinum
 	Ach(61974):Toy(), -- Scholomance: Platinum
 	Ach(61975):Toy(), -- Siege of Niuzao Temple: Platinum
-	Ach(61987):Other(), -- Challenge Conqueror: Platinum (Season 1)
-	Ach(61990):Other(), -- Challenge Conqueror: Platinum (Season 2)
-	Ach(61991):Other(), -- Challenge Conqueror: Platinum (Season 3)
+	Ach(61987):Other():Obtainable("Never"), -- Challenge Conqueror: Platinum (Season 1)
+	Ach(61990):Other():Obtainable("Before", "Version", {5, 5, 4}), -- Challenge Conqueror: Platinum (Season 2)
+	Ach(61991):Other():Obtainable("Until", "Version", {5, 5, 4}), -- Challenge Conqueror: Platinum (Season 3)
 	Ach(62055):Mount(2638), -- The Mistwalker
 	Ach(62059):Title(), -- Mistborne
 	Ach(62060):Title(), -- Heir to the Mist

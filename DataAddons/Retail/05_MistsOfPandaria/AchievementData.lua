@@ -1,5 +1,4 @@
 local Ach = KrowiAF.Ach
-local faction = KrowiAF.Enum.Faction
 
 KrowiAF.AchievementData["05_00_04"] = {
 	Ach(6981):HousingDecor(3880):IsPvP(), -- Master of Temple of Kotmogu

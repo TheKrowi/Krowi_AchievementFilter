@@ -22,3 +22,13 @@
 - Added: chaining mechanics (last record governs filter state; all records in tooltip)
 - Added: note on implicit start for cutoff patterns (BuildVersion.Id substitution)
 - Added: new Common Patterns examples for all new patterns
+## [2026-09-05] rewrite | Zone Data Format — builder syntax replaces the V1 table format; placement model (achievements now, criteria later); twelve placement rules with rationale; decision record D1 to D9; validation tooling incl. new raw/Evaluate-ZoneCriteria.ps1
+- Raw: raw/ZoneDataDecisions.md (Reconciliation sweep backlog), .claude/skills/add-zone-data/SKILL.md (binding rule text)
+
+## [2026-09-09] lint | Achievement Data Format — file header and Key Files table now name `KrowiAF.Ach` and `Api/AchievementDataBuilder.lua`; the last two `shared.Ach` stragglers (also in add-achievement-data SKILL.md) are gone
+
+## [2026-09-23] update | Achievement Data Format — a `"Version"` anchor names the patch as Retail shipped it and resolves per client through the live patches its `BuildVersionData` declares with `:Live({...})`; unreached beat = obtainable with no end scheduled. Never write a Classic version in a Shared file
+- Raw: docs/data-design-review.md §5.1 (decision and rationale), .github/copilot-instructions.md (BuildVersionData `:Live` format)
+
+## [2026-09-25] update | Achievement Data Format — the per-client declaration is now `DataAddons/Classic/ContentTimeline.lua` (Retail patch -> Classic patch), replacing `:Live({...})` on the BuildVersionData registrations; Retail needs no table
+- Raw: docs/data-design-review.md §5.1 (revision 2026-09-25)

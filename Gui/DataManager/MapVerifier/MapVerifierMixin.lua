@@ -43,9 +43,7 @@ local mapTypeNames = {
 }
 
 local skipLike    = { Skip = true, TaxiAndAdventure = true, Error = true, StartingZone = true }
-local inactiveLike = { TaxiAndAdventure = true, Error = true, StartingZone = true }
 
-local verdictList = { "Zone", "StartingZone", "City", "Continent", "Dungeon", "Raid", "Delve", "ClassHall", "Battleground", "Scenario", "Error", "TaxiAndAdventure", "Skip" }
 local verdictRows = {
     { "Zone", "City", "Continent", "Dungeon", "Raid" },
     { "Delve", "ClassHall", "Battleground", "Scenario", "Error" },
@@ -372,10 +370,12 @@ local function SetExpansion(e)
     end
 end
 
--- [[ Export ]] --
+-- [[ Export / Import ]] --
+-- The Map Verifier state round-trips through one file, raw/MapVerifier.csv
+-- (see .claude/skills/sync-mapverifier/SKILL.md). Export writes every map id the client or the
+-- saved variable knows; Import validates the pasted file and replaces the saved variable with it.
 
-local CSV_HEADER_MAPS   = "id,name,type,expansion,link,parentOverride,nameOverride,comment"
-local CSV_HEADER_GROUPS = "primaryId,primaryName,ids"
+local CSV_COLUMNS = { "id", "name", "mapType", "parentMapID", "verdict", "expansion", "link", "parentOverride", "nameOverride", "comment" }
 
 local function EscapeCSV(v)
     local s = tostring(v or "")
@@ -393,258 +393,258 @@ local function CSVRow(...)
     return table.concat(parts, ",")
 end
 
-local function BuildExportCSV_Active()
+local function BuildExportCSV()
     local d = GetData()
     BuildValidIdsCache()
-    local lines = { CSV_HEADER_MAPS }
-
     local ids = {}
-    for id, verdict in next, d.Maps do
-        if not skipLike[verdict] then
-            ids[id] = true
-        end
-    end
-    for id, primaryId in next, d.Links do
-        local primaryVerdict = d.Maps[primaryId]
-        if primaryVerdict and not skipLike[primaryVerdict] then
-            ids[id] = true
-        end
-    end
-
-    local sortedIds = {}
-    for id in next, ids do tinsert(sortedIds, id) end
-    table.sort(sortedIds)
-
-    for _, id in next, sortedIds do
-        local info     = C_Map.GetMapInfo(id)
-        local name     = info and info.name or "?"
-        local type_    = d.Maps[id] or ""
-        local primId   = d.Links[id]
-        local expansion = d.Expansions[id] or (primId and d.Expansions[primId]) or ""
-        local override = d.ParentOverrides[id] or ""
-        local nameOverride = d.NameOverrides[id] or ""
-        local comment = d.Comments[id] or ""
-        tinsert(lines, CSVRow(id, name, type_, expansion, primId or "", override, nameOverride, comment))
-    end
-
-    return table.concat(lines, "\n")
-end
-
-local function BuildExportCSV_Skip()
-    local d = GetData()
-    BuildValidIdsCache()
-    local lines = { CSV_HEADER_MAPS }
-
-    local ids = {}
-    for id, verdict in next, d.Maps do
-        if verdict == "Skip" then
-            ids[id] = true
-        end
-    end
-    for id, primaryId in next, d.Links do
-        if d.Maps[primaryId] == "Skip" then
-            ids[id] = true
-        end
-    end
     for _, id in next, validIds do
-        if not d.Maps[id] and not d.Links[id] then
+        ids[id] = true
+    end
+    for _, tbl in next, { d.Maps, d.Links, d.Expansions, d.ParentOverrides, d.NameOverrides, d.Comments } do
+        for id in next, tbl do
             ids[id] = true
         end
     end
-
     local sortedIds = {}
     for id in next, ids do tinsert(sortedIds, id) end
     table.sort(sortedIds)
 
+    local lines = { table.concat(CSV_COLUMNS, ",") }
     for _, id in next, sortedIds do
-        local info     = C_Map.GetMapInfo(id)
-        local name     = info and info.name or "?"
-        local type_    = d.Maps[id] or "Unknown"
-        local primId   = d.Links[id]
-        local expansion = d.Expansions[id] or (primId and d.Expansions[primId]) or ""
-        local override = d.ParentOverrides[id] or ""
-        local nameOverride = d.NameOverrides[id] or ""
-        local comment = d.Comments[id] or ""
-        tinsert(lines, CSVRow(id, name, type_, expansion, primId or "", override, nameOverride, comment))
+        local info = C_Map.GetMapInfo(id)
+        local primId = d.Links[id]
+        tinsert(lines, CSVRow(
+            id,
+            info and info.name or "?",
+            info and info.mapType or "",
+            info and info.parentMapID or "",
+            d.Maps[id] or "",
+            d.Expansions[id] or (primId and d.Expansions[primId]) or "",
+            primId or "",
+            d.ParentOverrides[id] or "",
+            d.NameOverrides[id] or "",
+            d.Comments[id] or ""
+        ))
     end
-
     return table.concat(lines, "\n")
 end
 
-local function BuildExportCSV_Inactive()
-    local d = GetData()
-    BuildValidIdsCache()
-    local lines = { CSV_HEADER_MAPS }
-
-    local ids = {}
-    for id, verdict in next, d.Maps do
-        if inactiveLike[verdict] then
-            ids[id] = true
-        end
-    end
-    for id, primaryId in next, d.Links do
-        if inactiveLike[d.Maps[primaryId]] then
-            ids[id] = true
-        end
-    end
-
-    local sortedIds = {}
-    for id in next, ids do tinsert(sortedIds, id) end
-    table.sort(sortedIds)
-
-    for _, id in next, sortedIds do
-        local info     = C_Map.GetMapInfo(id)
-        local name     = info and info.name or "?"
-        local type_    = d.Maps[id] or ""
-        local primId   = d.Links[id]
-        local expansion = d.Expansions[id] or (primId and d.Expansions[primId]) or ""
-        local override = d.ParentOverrides[id] or ""
-        local nameOverride = d.NameOverrides[id] or ""
-        local comment = d.Comments[id] or ""
-        tinsert(lines, CSVRow(id, name, type_, expansion, primId or "", override, nameOverride, comment))
-    end
-
-    return table.concat(lines, "\n")
-end
-
-local function BuildExportCSV_LinkGroups()
-    local d = GetData()
-    local lines = { CSV_HEADER_GROUPS }
-
-    local groups = {}
-    for secId, primId in next, d.Links do
-        groups[primId] = groups[primId] or {}
-        tinsert(groups[primId], secId)
-    end
-
-    local groupPrimaries = {}
-    for primId in next, groups do tinsert(groupPrimaries, primId) end
-    table.sort(groupPrimaries)
-
-    for _, primId in next, groupPrimaries do
-        local secs = groups[primId]
-        table.sort(secs)
-        local pinfo = C_Map.GetMapInfo(primId)
-        local pname = pinfo and pinfo.name or "?"
-        local ids = { primId }
-        for _, secId in next, secs do
-            tinsert(ids, secId)
-        end
-        tinsert(lines, CSVRow(primId, pname, table.concat(ids, ", ")))
-    end
-
-    return table.concat(lines, "\n")
-end
-
-local function BuildExportCSV_AchievementZones()
-    local d = GetData()
-    local lines = { "achievementId,zones" }
-
-    local achToMaps = {}
-
-    local primaryIds = {}
-    for id, verdict in next, d.Maps do
-        if not skipLike[verdict] and not d.Links[id] then
-            tinsert(primaryIds, id)
-        end
-    end
-    table.sort(primaryIds)
-
-    for _, primId in next, primaryIds do
-        local groupIds = { primId }
-        for otherId, pId in next, d.Links do
-            if pId == primId then
-                tinsert(groupIds, otherId)
+local function ParseCSVLine(line)
+    local fields, buf, inQuotes = {}, {}, false
+    local i, n = 1, #line
+    while i <= n do
+        local c = line:sub(i, i)
+        if inQuotes then
+            if c == '"' then
+                if line:sub(i + 1, i + 1) == '"' then
+                    tinsert(buf, '"')
+                    i = i + 1
+                else
+                    inQuotes = false
+                end
+            else
+                tinsert(buf, c)
             end
+        elseif c == '"' then
+            inQuotes = true
+        elseif c == "," then
+            tinsert(fields, table.concat(buf))
+            buf = {}
+        else
+            tinsert(buf, c)
         end
+        i = i + 1
+    end
+    tinsert(fields, table.concat(buf))
+    return fields
+end
 
-        for _, mapId in next, groupIds do
-            local mapData = addon.Data.Maps[mapId]
-            if mapData then
-                for _, achList in next, { mapData.Achievements, mapData.Achievements10, mapData.Achievements25 } do
-                    if achList then
-                        for _, ach in next, achList do
-                            if ach then
-                                local achId = ach.Id
-                                achToMaps[achId] = achToMaps[achId] or {}
-                                local found = false
-                                for _, existingId in next, achToMaps[achId] do
-                                    if existingId == primId then
-                                        found = true
-                                        break
-                                    end
-                                end
-                                if not found then
-                                    tinsert(achToMaps[achId], primId)
-                                end
-                            end
-                        end
-                    end
+-- Returns the rows sorted by id and a by-id lookup, or nil and a list of errors.
+-- Same rules as Sync-MapVerifier.ps1 in the repo.
+local function ParseImportCSV(text)
+    local errors, rows, byId = {}, {}, {}
+    local lineNo, columnIndex = 0, nil
+    for line in (text .. "\n"):gmatch("([^\n]*)\n") do
+        lineNo = lineNo + 1
+        line = line:gsub("\r$", "")
+        if line:match("^%s*$") then
+            -- blank line, typically the trailing newline of the paste
+        elseif not columnIndex then
+            columnIndex = {}
+            for i, name in next, ParseCSVLine(line) do
+                columnIndex[name] = i
+            end
+            for _, name in next, CSV_COLUMNS do
+                if not columnIndex[name] then
+                    tinsert(errors, "line 1: header lacks column '" .. name .. "'")
                 end
             end
-        end
-    end
-
-    local sortedAchs = {}
-    for achId in next, achToMaps do tinsert(sortedAchs, achId) end
-    table.sort(sortedAchs)
-
-    for _, achId in next, sortedAchs do
-        local mapIds = achToMaps[achId]
-        table.sort(mapIds)
-        tinsert(lines, CSVRow(achId, table.concat(mapIds, ", ")))
-    end
-
-    return table.concat(lines, "\n")
-end
-
-local function BuildExportCSV_AchievementCount()
-    local d = GetData()
-    local lines = { "primaryId,primaryName,achievementCount" }
-
-    local primaryIds = {}
-    for id, verdict in next, d.Maps do
-        if not skipLike[verdict] and not d.Links[id] then
-            tinsert(primaryIds, id)
-        end
-    end
-    table.sort(primaryIds)
-
-    for _, primId in next, primaryIds do
-        local info = C_Map.GetMapInfo(primId)
-        local name = info and info.name or "?"
-
-        local groupIds = { primId }
-        for otherId, pId in next, d.Links do
-            if pId == primId then
-                tinsert(groupIds, otherId)
+            if #errors > 0 then
+                return nil, errors
             end
-        end
-
-        local seen = {}
-        local count = 0
-        for _, mapId in next, groupIds do
-            local mapData = addon.Data.Maps[mapId]
-            if mapData then
-                for _, achList in next, { mapData.Achievements, mapData.Achievements10, mapData.Achievements25 } do
-                    if achList then
-                        for _, ach in next, achList do
-                            if ach and not seen[ach] then
-                                seen[ach] = true
-                                count = count + 1
-                            end
-                        end
+        else
+            local f = ParseCSVLine(line)
+            local function field(name) return f[columnIndex[name]] or "" end
+            local id = tonumber(field("id"))
+            if not id or id <= 0 or id % 1 ~= 0 then
+                tinsert(errors, "line " .. lineNo .. ": id '" .. field("id") .. "' is not a positive integer")
+            elseif byId[id] then
+                tinsert(errors, "line " .. lineNo .. ": id " .. id .. " appears twice")
+            else
+                local row = {
+                    id = id,
+                    verdict = field("verdict"),
+                    expansion = field("expansion"),
+                    link = field("link"),
+                    parentOverride = field("parentOverride"),
+                    nameOverride = field("nameOverride"),
+                    comment = field("comment"),
+                    line = lineNo,
+                }
+                if row.verdict ~= "" and (not verdictColors[row.verdict] or row.verdict == "Unknown") then
+                    tinsert(errors, "line " .. lineNo .. ": unknown verdict '" .. row.verdict .. "'")
+                end
+                if row.expansion ~= "" and not expansionColors[row.expansion] then
+                    tinsert(errors, "line " .. lineNo .. ": unknown expansion '" .. row.expansion .. "'")
+                end
+                for _, name in next, { "link", "parentOverride" } do
+                    if row[name] ~= "" and not tonumber(row[name]) then
+                        tinsert(errors, "line " .. lineNo .. ": " .. name .. " '" .. row[name] .. "' is not a number")
                     end
                 end
+                byId[id] = row
+                tinsert(rows, row)
             end
         end
-
-        tinsert(lines, CSVRow(primId, name, count))
     end
-
-    return table.concat(lines, "\n")
+    if not columnIndex then
+        tinsert(errors, "nothing to import")
+    end
+    for _, row in next, rows do
+        local target = tonumber(row.link)
+        if target then
+            if target == row.id then
+                tinsert(errors, "line " .. row.line .. ": id " .. row.id .. " links to itself")
+            elseif not byId[target] then
+                tinsert(errors, "line " .. row.line .. ": id " .. row.id .. " links to " .. target .. ", which has no row")
+            elseif byId[target].link ~= "" then
+                tinsert(errors, "line " .. row.line .. ": id " .. row.id .. " links to " .. target .. ", which is itself linked to " .. byId[target].link)
+            end
+        end
+    end
+    if #errors > 0 then
+        return nil, errors
+    end
+    table.sort(rows, function(a, b) return a.id < b.id end)
+    return rows, byId
 end
 
+local function BuildImportTables(rows, byId)
+    local t = { Maps = {}, Links = {}, Expansions = {}, ParentOverrides = {}, NameOverrides = {}, Comments = {} }
+    for _, row in next, rows do
+        if row.verdict ~= "" then
+            t.Maps[row.id] = row.verdict
+        end
+        local link = tonumber(row.link)
+        if link then
+            t.Links[row.id] = link
+        end
+        -- the export writes the primary's expansion on linked rows; only keep an own value when it differs
+        if row.expansion ~= "" and (not link or byId[link].expansion ~= row.expansion) then
+            t.Expansions[row.id] = row.expansion
+        end
+        if row.parentOverride ~= "" then
+            t.ParentOverrides[row.id] = tonumber(row.parentOverride)
+        end
+        if row.nameOverride ~= "" then
+            t.NameOverrides[row.id] = row.nameOverride
+        end
+        if row.comment ~= "" then
+            t.Comments[row.id] = row.comment
+        end
+    end
+    return t
+end
+
+local function CountChanges(current, incoming)
+    local added, changed, removed = 0, 0, 0
+    for id, value in next, incoming do
+        if current[id] == nil then
+            added = added + 1
+        elseif current[id] ~= value then
+            changed = changed + 1
+        end
+    end
+    for id in next, current do
+        if incoming[id] == nil then
+            removed = removed + 1
+        end
+    end
+    return string.format("%d added, %d changed, %d removed", added, changed, removed)
+end
+
+local function Print(msg)
+    print("|cFF88CCFFKrowiAF Map Verifier:|r " .. msg)
+end
+
+local function ConfirmImport(text, callback)
+    if addon.Util.IsClassicWithAchievements then
+        StaticPopupDialogs["KrowiAF_ConfirmMapVerifierImport"] = {
+            text = text,
+            button1 = YES,
+            button2 = NO,
+            OnAccept = callback,
+            hideOnEscape = 1,
+            timeout = 0,
+            whileDead = 1,
+            wide = 1,
+        }
+        StaticPopup_Show("KrowiAF_ConfirmMapVerifierImport")
+    else
+        StaticPopup_ShowCustomGenericConfirmation{
+            text = text,
+            callback = callback,
+            referenceKey = "KrowiAF_ConfirmMapVerifierImport",
+        }
+    end
+end
+
+local function ImportCSV(text)
+    local rows, byIdOrErrors = ParseImportCSV(text)
+    if not rows then
+        Print("Import aborted, nothing written:")
+        for i = 1, math.min(#byIdOrErrors, 20) do
+            print("  " .. byIdOrErrors[i])
+        end
+        if #byIdOrErrors > 20 then
+            print("  ... " .. (#byIdOrErrors - 20) .. " more")
+        end
+        return
+    end
+    local d = GetData()
+    local t = BuildImportTables(rows, byIdOrErrors)
+    local summary = string.format(
+        "%d rows. Verdicts: %s. Links: %s. Expansions: %s. Parent overrides: %s. Name overrides: %s. Comments: %s.",
+        #rows,
+        CountChanges(d.Maps, t.Maps),
+        CountChanges(d.Links, t.Links),
+        CountChanges(d.Expansions, t.Expansions),
+        CountChanges(d.ParentOverrides, t.ParentOverrides),
+        CountChanges(d.NameOverrides, t.NameOverrides),
+        CountChanges(d.Comments, t.Comments)
+    )
+    Print(summary)
+    ConfirmImport("Replace the Map Verifier data with the pasted file?\n\n" .. summary, function()
+        for name, tbl in next, t do
+            wipe(d[name])
+            for id, value in next, tbl do
+                d[name][id] = value
+            end
+        end
+        UpdateDisplay()
+        Print("Import applied. Cursor and range were kept.")
+    end)
+end
 -- [[ OnLoad ]] --
 
 function KrowiAF_MapVerifierMixin:OnLoad()
@@ -1215,7 +1215,7 @@ function KrowiAF_MapVerifierMixin:OnLoad()
     div3:SetSize(472, 1)
     y = y - 10
 
-    -- Bottom row 1: Reset Range (left) + Exp Active / Skip / Inactive (right)
+    -- Bottom row: Reset Range (left) + Export / Import (right)
     local resetBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
     resetBtn:SetSize(110, 22)
     resetBtn:SetText("Reset Range")
@@ -1231,76 +1231,28 @@ function KrowiAF_MapVerifierMixin:OnLoad()
         UpdateDisplay()
     end)
 
-    local exportInactiveBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
-    exportInactiveBtn:SetSize(82, 22)
-    exportInactiveBtn:SetText("Exp Inactive")
-    exportInactiveBtn:SetPoint("TOPRIGHT", inset, "TOPRIGHT", -padLeft, y)
-    exportInactiveBtn:SetScript("OnClick", function()
+    local importBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
+    importBtn:SetSize(82, 22)
+    importBtn:SetText("Import")
+    importBtn:SetPoint("TOPRIGHT", inset, "TOPRIGHT", -padLeft, y)
+    importBtn:SetScript("OnClick", function()
         local textFrame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template")
-        textFrame:Init("Map Verifier Export — Inactive")
-        textFrame.Input:SetText(BuildExportCSV_Inactive())
+        textFrame:Init("Map Verifier Import — paste raw/MapVerifier.csv", "Import (replace)", ImportCSV)
+        textFrame.Input:SetText("")
         textFrame:Show()
     end)
 
-    local exportSkipBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
-    exportSkipBtn:SetSize(82, 22)
-    exportSkipBtn:SetText("Exp Skip")
-    exportSkipBtn:SetPoint("RIGHT", exportInactiveBtn, "LEFT", -4, 0)
-    exportSkipBtn:SetScript("OnClick", function()
+    local exportBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
+    exportBtn:SetSize(82, 22)
+    exportBtn:SetText("Export")
+    exportBtn:SetPoint("RIGHT", importBtn, "LEFT", -4, 0)
+    exportBtn:SetScript("OnClick", function()
         local textFrame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template")
-        textFrame:Init("Map Verifier Export — Skip / Unknown")
-        textFrame.Input:SetText(BuildExportCSV_Skip())
-        textFrame:Show()
-    end)
-
-    local exportActiveBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
-    exportActiveBtn:SetSize(82, 22)
-    exportActiveBtn:SetText("Exp Active")
-    exportActiveBtn:SetPoint("RIGHT", exportSkipBtn, "LEFT", -4, 0)
-    exportActiveBtn:SetScript("OnClick", function()
-        local textFrame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template")
-        textFrame:Init("Map Verifier Export — Active Maps")
-        textFrame.Input:SetText(BuildExportCSV_Active())
-        textFrame:Show()
-    end)
-
-    y = y - 28
-
-    -- Bottom row 2: Exp Groups / AchCount / AchZones (left)
-    local exportGroupsBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
-    exportGroupsBtn:SetSize(82, 22)
-    exportGroupsBtn:SetText("Exp Groups")
-    exportGroupsBtn:SetPoint("TOPLEFT", inset, "TOPLEFT", padLeft, y)
-    exportGroupsBtn:SetScript("OnClick", function()
-        local textFrame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template")
-        textFrame:Init("Map Verifier Export — Link Groups")
-        textFrame.Input:SetText(BuildExportCSV_LinkGroups())
-        textFrame:Show()
-    end)
-
-    local exportAchCountBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
-    exportAchCountBtn:SetSize(82, 22)
-    exportAchCountBtn:SetText("Exp AchCnt")
-    exportAchCountBtn:SetPoint("LEFT", exportGroupsBtn, "RIGHT", 4, 0)
-    exportAchCountBtn:SetScript("OnClick", function()
-        local textFrame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template")
-        textFrame:Init("Map Verifier Export — Achievement Counts")
-        textFrame.Input:SetText(BuildExportCSV_AchievementCount())
-        textFrame:Show()
-    end)
-
-    local exportAchZonesBtn = CreateFrame("Button", nil, inset, "UIPanelButtonTemplate")
-    exportAchZonesBtn:SetSize(110, 22)
-    exportAchZonesBtn:SetText("Exp AchZones")
-    exportAchZonesBtn:SetPoint("LEFT", exportAchCountBtn, "RIGHT", 4, 0)
-    exportAchZonesBtn:SetScript("OnClick", function()
-        local textFrame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template")
-        textFrame:Init("Map Verifier Export — Achievement Zones")
-        textFrame.Input:SetText(BuildExportCSV_AchievementZones())
+        textFrame:Init("Map Verifier Export — paste over raw/MapVerifier.csv")
+        textFrame.Input:SetText(BuildExportCSV())
         textFrame:Show()
     end)
 end
-
 -- [[ OnShow / ResetPosition ]] --
 
 function KrowiAF_MapVerifierMixin:OnShow()

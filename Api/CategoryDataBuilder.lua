@@ -40,6 +40,26 @@ function CategoryBuilder:Merge()
     return self
 end
 
+-- A declared category id. This is the plugin-facing handle: Api/ApiDocumentation.lua documents
+-- KrowiAF.NewInjection(<id>) against first-party ids, so a declared id must never be changed.
+-- Without one a node draws from the auto allocator, whose ids are parse positions that shift
+-- whenever a data file is reordered and must not be relied on or persisted.
+function CategoryBuilder:WithId(id)
+    self.Id = id
+    return self
+end
+
+-- A stable, addressable name for a node that another data file has to attach to - a per-client or
+-- per-expansion subtree hanging off a Shared category, which is how a third client family adds its
+-- own content without touching the other families' files. It costs no number from the id space that
+-- Blizzard's categories, the auto allocator and GetNextFreeCategoryId all share, and it cannot be
+-- mistaken for an achievement id. See docs/how-to/migrate-category-data.md 0.1.
+-- The field is CategoryKey, not Key, so a node can be keyed without shadowing this method.
+function CategoryBuilder:Key(key)
+    self.CategoryKey = key
+    return self
+end
+
 function CategoryBuilder:Named(label, ids)
     local child = setmetatable(NewNode(label, ids), CategoryBuilder)
     tinsert(self.Children, child)
@@ -60,10 +80,14 @@ function CategoryBuilder:InstanceNamed(journalId, ids)
     return child
 end
 
--- ZoneBuilder — inherits CategoryBuilder; created by ZonesBuilder:Zone. All sub-methods auto-set CanMerge=true.
+-- ZoneBuilder — created by ZonesBuilder:Zone. Its own sub-methods auto-set CanMerge=true.
+-- It inherits ZonesBuilder rather than CategoryBuilder so a zone can hold zones: the Vanilla tree
+-- nests Stormwind City under Eastern Kingdoms, and the nested zone needs :Zone (no implicit merge,
+-- returns a ZoneBuilder) rather than :Named, which merges.
 local ZoneBuilder = {}
 ZoneBuilder.__index = ZoneBuilder
-setmetatable(ZoneBuilder, { __index = CategoryBuilder })
+local ZonesBuilder = {}
+setmetatable(ZoneBuilder, { __index = ZonesBuilder })
 
 local function AddZoneSub(self, name, ids)
     local child = setmetatable(NewNode(name, ids), CategoryBuilder)
@@ -77,15 +101,12 @@ function ZoneBuilder:Exploration(ids) return AddZoneSub(self, CT.Exploration, id
 function ZoneBuilder:PvP(ids)         return AddZoneSub(self, CT.PvP, ids) end
 function ZoneBuilder:Reputation(ids)  return AddZoneSub(self, CT.Reputation, ids) end
 
-function ZoneBuilder:Named(label, ids)
-    local child = setmetatable(NewNode(label, ids), CategoryBuilder)
-    child.CanMerge = true
-    tinsert(self.Children, child)
-    return child
-end
+-- ZoneBuilder deliberately does NOT override :Named. It used to, setting CanMerge implicitly, which
+-- made :Named mean one thing under a zone and another everywhere else - and left a non-merging child
+-- of a zone, such as the Vanilla Hillsbrad Foothills PvP node, impossible to express. :Named now
+-- never merges anywhere; the four helpers below are the merging shorthands.
 
 -- ZonesBuilder — inherits CategoryBuilder; Zone returns a ZoneBuilder child.
-local ZonesBuilder = {}
 ZonesBuilder.__index = ZonesBuilder
 setmetatable(ZonesBuilder, { __index = CategoryBuilder })
 
@@ -253,7 +274,10 @@ end
 
 local function BuildRootCategory(builder, tab, name, ids, id, canMerge)
     local cat = setmetatable({ _v2 = true, Name = name, Achievements = ids, Id = id, CanMerge = canMerge or false, Children = {} }, builder)
-    tinsert(tab, cat)
+    -- A V1 tab root is a positional table whose array part holds its children; a V2 one keeps them
+    -- in Children and ignores its array part entirely, so inserting into the table itself would
+    -- silently drop the category. Plugins may still pass a V1 table, so both are handled.
+    tinsert(tab._v2 and tab.Children or tab, cat)
     return cat
 end
 
@@ -261,10 +285,27 @@ function KrowiAF.NewRootCategory(tab, name, ids, id, canMerge)
     return BuildRootCategory(CategoryBuilder, tab, name, ids, id, canMerge)
 end
 
+-- A category attached to nothing yet, for a subtree built once and handed to more than one parent -
+-- the Mythic+ seasons appear both under their expansion's Dungeons and under the Specials tab.
+-- Give it to a parent with :Insert(node), or to DungeonsBuilder:MythicPlus(fn).
+function KrowiAF.NewCategory(name, ids, canMerge)
+    return setmetatable({ _v2 = true, Name = name, Achievements = ids, CanMerge = canMerge, Children = {} }, CategoryBuilder)
+end
+
+-- The category that IS a tab's root, assigned to KrowiAF.CategoryData.<key> rather than inserted
+-- into anything. KrowiAF.CreateCategories parses those five in a fixed order, each with no parent;
+-- ParseCategoryV2 then wires the tab through SetCategoryRootForTab, exactly as the V1
+-- { TabName = "..." } child did. The id is always declared, because these are the ids plugins
+-- inject into.
+function KrowiAF.NewTabCategory(tabName, name, id, ids)
+    return setmetatable({ _v2 = true, TabName = tabName, Name = name, Id = id, Achievements = ids, Children = {} }, CategoryBuilder)
+end
+
 function KrowiAF.NewExpansion(name, ids)
     return BuildRootCategory(ExpansionBuilder, KrowiAF.CategoryData.Expansions, name, ids)
 end
 
-function KrowiAF.NewInjection(id)
-    return setmetatable({ _v2 = true, _injection = true, TargetId = id, Children = {} }, InjectionBuilder)
+-- target is a declared category id, or a string key declared with :Key() on the target node.
+function KrowiAF.NewInjection(target)
+    return setmetatable({ _v2 = true, _injection = true, TargetId = target, Children = {} }, InjectionBuilder)
 end

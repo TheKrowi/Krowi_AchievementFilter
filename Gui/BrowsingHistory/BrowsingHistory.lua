@@ -1,65 +1,65 @@
-local _, addon = ...;
-addon.Gui.BrowsingHistory = {};
-local browsingHistory = addon.Gui.BrowsingHistory;
+local _, addon = ...
+addon.Gui.BrowsingHistory = {}
+local browsingHistory = addon.Gui.BrowsingHistory
 
-KrowiAF_AchievementFrameBrowsingHistoryPrevNextAchievementButtonMixin = {};
+KrowiAF_AchievementFrameBrowsingHistoryPrevNextAchievementButtonMixin = {}
 
 function KrowiAF_AchievementFrameBrowsingHistoryPrevNextAchievementButtonMixin:OnEnter()
 
 end
 
 function KrowiAF_AchievementFrameBrowsingHistoryPrevNextAchievementButtonMixin:OnLeave()
-    Krowi_Tooltip:Hide();
+    Krowi_Tooltip:Hide()
 end
 
 function KrowiAF_AchievementFrameBrowsingHistoryPrevNextAchievementButtonMixin:Click()
-    addon.BrowsingHistory:SetIndexOffset(self.HistoryOffset);
-    browsingHistory:Update();
-    local record = addon.BrowsingHistory:GetCurrentRecord();
+    addon.BrowsingHistory:SetIndexOffset(self.HistoryOffset)
+    browsingHistory:Update()
+    local record = addon.BrowsingHistory:GetCurrentRecord()
     if not record then
-        addon.BrowsingHistory:Unlock();
-        return;
+        addon.BrowsingHistory:Unlock()
+        return
     end
-    local category = addon.Data.Categories[record.CategoryId];
-    local achievement = addon.Data.Achievements[record.AchievementId];
-    KrowiAF_SelectAchievementWithCategory(achievement, category);
+    local category = addon.Data.Categories[record.CategoryId]
+    local achievement = addon.Data.Achievements[record.AchievementId]
+    KrowiAF_SelectAchievementWithCategory(achievement, category)
 
     if Krowi_Tooltip:GetOwner() == self then
-        self:OnEnter();
+        self:OnEnter()
     end
 end
 
 function KrowiAF_AchievementFrameBrowsingHistoryPrevNextAchievementButtonMixin:OnClick()
-    self:Click();
+    self:Click()
 end
 
 local function GetCategoryPath(categoryId)
-    local category = addon.Data.Categories[categoryId];
-    local categoriesTree = category:GetTree();
-    local path = categoriesTree[1].Name;
+    local category = addon.Data.Categories[categoryId]
+    local categoriesTree = category:GetTree()
+    local path = categoriesTree[1].Name
     for j = 2, #categoriesTree do
-        path = path .. " > " .. categoriesTree[j].Name;
+        path = path .. " > " .. categoriesTree[j].Name
     end
-    return path;
+    return path
 end
 
 local function SetTooltipHistory()
-    local records = addon.BrowsingHistory:GetAllRecords();
-    GameTooltip_AddBlankLineToTooltip(Krowi_Tooltip);
+    local records = addon.BrowsingHistory:GetAllRecords()
+    GameTooltip_AddBlankLineToTooltip(Krowi_Tooltip)
     if #records < 1 then
-        local color = addon.Util.Colors.LightGreyRGB;
-        Krowi_Tooltip:AddLine(addon.L["Select achievements to see your browsing history"], color.R, color.G, color.B);
-        Krowi_Tooltip:Show();
-        return;
+        local color = addon.Util.Colors.LightGreyRGB
+        Krowi_Tooltip:AddLine(addon.L["Select achievements to see your browsing history"], color.R, color.G, color.B)
+        Krowi_Tooltip:Show()
+        return
     end
 
-    local currentIndex = addon.BrowsingHistory:GetCurrentIndex();
-    local firstIndex = max(addon.BrowsingHistory:GetMinIndex(), currentIndex - 10);
-    local lastIndex = min(currentIndex + 10, addon.BrowsingHistory:GetMaxIndex());
+    local currentIndex = addon.BrowsingHistory:GetCurrentIndex()
+    local firstIndex = max(addon.BrowsingHistory:GetMinIndex(), currentIndex - 10)
+    local lastIndex = min(currentIndex + 10, addon.BrowsingHistory:GetMaxIndex())
     for i = firstIndex, lastIndex do
-        local color = i == currentIndex and addon.Util.Colors.LightGreenRGB or addon.Util.Colors.LightGreyRGB;
-        local path = GetCategoryPath(records[i].CategoryId);
-        Krowi_Tooltip:AddLine(path .. " > " .. addon.GetAchievmentName(records[i].AchievementId), color.R, color.G, color.B);
+        local color = i == currentIndex and addon.Util.Colors.LightGreenRGB or addon.Util.Colors.LightGreyRGB
+        local path = GetCategoryPath(records[i].CategoryId)
+        Krowi_Tooltip:AddLine(path .. " > " .. addon.GetAchievmentName(records[i].AchievementId), color.R, color.G, color.B)
     end
     -- for index, record in next, records do
     --     local color = index == currentIndex and addon.Util.Colors.LightGreenRGB or addon.Util.Colors.LightGreyRGB;
@@ -67,65 +67,65 @@ local function SetTooltipHistory()
     --     local _, name = addon.GetAchievementInfo(record.AchievementId);
     --     GameTooltip:AddLine(path .. " > " .. name, color.R, color.G, color.B);
     -- end
-    Krowi_Tooltip:Show();
+    Krowi_Tooltip:Show()
 end
 
-KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButtonMixin = CreateFromMixins(KrowiAF_AchievementFrameBrowsingHistoryPrevNextAchievementButtonMixin);
+KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButtonMixin = CreateFromMixins(KrowiAF_AchievementFrameBrowsingHistoryPrevNextAchievementButtonMixin)
 
 function KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButtonMixin:OnEnter()
-    Krowi_Tooltip:SetOwner(self, "ANCHOR_BOTTOMLEFT", 0, self:GetHeight());
-    Krowi_Tooltip:SetText(addon.L["Go back one achievement"]);
-    SetTooltipHistory();
+    Krowi_Tooltip:SetOwner(self, "ANCHOR_BOTTOMLEFT", 0, self:GetHeight())
+    Krowi_Tooltip:SetText(addon.L["Go back one achievement"])
+    SetTooltipHistory()
 end
 
-KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButtonMixin = CreateFromMixins(KrowiAF_AchievementFrameBrowsingHistoryPrevNextAchievementButtonMixin);
+KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButtonMixin = CreateFromMixins(KrowiAF_AchievementFrameBrowsingHistoryPrevNextAchievementButtonMixin)
 
 function KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButtonMixin:OnEnter()
-    Krowi_Tooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT", 0, self:GetHeight());
-    Krowi_Tooltip:SetText(addon.L["Go forward one achievement"]);
-    SetTooltipHistory();
+    Krowi_Tooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT", 0, self:GetHeight())
+    Krowi_Tooltip:SetText(addon.L["Go forward one achievement"])
+    SetTooltipHistory()
 end
 
 function browsingHistory:Load()
     if not addon.Options.db.profile.TrackAchievementBrowserHistory then
-        return;
+        return
     end
     if AchievementFrame.HeaderDetails then
-        self.PrevAchievementButton = CreateFrame("Button", "KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton", AchievementFrame.HeaderDetails, "KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton_Template");
+        self.PrevAchievementButton = CreateFrame("Button", "KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton", AchievementFrame.HeaderDetails, "KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton_Template")
         -- self.PrevAchievementButton:SetPoint("RIGHT", AchievementFrame.Header.PointBorder, "LEFT", 10, -1);
-        self.PrevAchievementButton:SetPoint("LEFT", AchievementFrame.HeaderDetails, "LEFT", 30, 0);
-        self.NextAchievementButton = CreateFrame("Button", "KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton", AchievementFrame.HeaderDetails, "KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton_Template");
-        self.NextAchievementButton:SetPoint("LEFT", self.PrevAchievementButton, "RIGHT", -5, 0);
+        self.PrevAchievementButton:SetPoint("LEFT", AchievementFrame.HeaderDetails, "LEFT", 30, 0)
+        self.NextAchievementButton = CreateFrame("Button", "KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton", AchievementFrame.HeaderDetails, "KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton_Template")
+        self.NextAchievementButton:SetPoint("LEFT", self.PrevAchievementButton, "RIGHT", -5, 0)
         -- self.NextAchievementButton:SetPoint("LEFT", AchievementFrame.Header.PointBorder, "RIGHT", -10, -1);
     else
-        self.NextAchievementButton = CreateFrame("Button", "KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton", AchievementFrame.Header, "KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton_Template");
-        self.NextAchievementButton:SetPoint("RIGHT", AchievementFrame.Header.PointBorder, "LEFT", 10, -1);
+        self.NextAchievementButton = CreateFrame("Button", "KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton", AchievementFrame.Header, "KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton_Template")
+        self.NextAchievementButton:SetPoint("RIGHT", AchievementFrame.Header.PointBorder, "LEFT", 10, -1)
         -- self.NextAchievementButton:SetPoint("LEFT", AchievementFrame.Header.PointBorder, "RIGHT", -10, -1);
-        self.PrevAchievementButton = CreateFrame("Button", "KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton", AchievementFrame.Header, "KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton_Template");
+        self.PrevAchievementButton = CreateFrame("Button", "KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton", AchievementFrame.Header, "KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton_Template")
         -- self.PrevAchievementButton:SetPoint("RIGHT", AchievementFrame.Header.PointBorder, "LEFT", 10, -1);
-        self.PrevAchievementButton:SetPoint("RIGHT", self.NextAchievementButton, "LEFT", 5, 0);
+        self.PrevAchievementButton:SetPoint("RIGHT", self.NextAchievementButton, "LEFT", 5, 0)
     end
 
-    self:Update();
+    self:Update()
 end
 
 local function UpdatePrevAchievementButton(self)
 	if addon.BrowsingHistory:GetCurrentIndex() <= addon.BrowsingHistory:GetMinIndex() then
-		self.PrevAchievementButton:Disable();
-		return;
+		self.PrevAchievementButton:Disable()
+		return
 	end
-	self.PrevAchievementButton:Enable();
+	self.PrevAchievementButton:Enable()
 end
 
 local function UpdateNextAchievementButton(self)
 	if addon.BrowsingHistory:GetCurrentIndex() >= addon.BrowsingHistory:GetMaxIndex() then
-		self.NextAchievementButton:Disable();
-		return;
+		self.NextAchievementButton:Disable()
+		return
 	end
-	self.NextAchievementButton:Enable();
+	self.NextAchievementButton:Enable()
 end
 
 function browsingHistory:Update()
-    UpdatePrevAchievementButton(self);
-    UpdateNextAchievementButton(self);
+    UpdatePrevAchievementButton(self)
+    UpdateNextAchievementButton(self)
 end

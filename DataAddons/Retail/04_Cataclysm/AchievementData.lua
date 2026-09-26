@@ -19,11 +19,11 @@ KrowiAF.AchievementData["04_00_03"] = {
 	Ach(5245):HousingDecor(11296):IsPvP(), -- Battle for Gilneas Victory
 	Ach(5344):AutoFactionSplit(faction.Alliance, 5358):PvP(9), -- Hero of the Alliance / Horde: Vicious
 	Ach(5442):HousingDecor(4813), -- Full Caravan
-	Ach(5533):Obtainable("Before", "Version", {4, 0, 3}), -- Veteran of the Shifting Sands
+	Ach(5533):Obtainable("Never"), -- Veteran of the Shifting Sands
 }
 
 KrowiAF.AchievementData["04_01_00"] = {
-	Ach(5788):Obtainable("Before", "Version", {4, 0, 3}), -- Agent of the Shen'dralar
+	Ach(5788):Obtainable("Never"), -- Agent of the Shen'dralar
 }
 
 KrowiAF.AchievementData["04_02_00"] = {

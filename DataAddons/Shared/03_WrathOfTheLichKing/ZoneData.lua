@@ -4,7 +4,7 @@ local shared = addon.Data.ZoneData.Shared
 
 local zoneData = KrowiAF.NewZoneData("WrathOfTheLichKing")
 
-zoneData:Zone(125, { -- Dalaran (city)
+zoneData:Zone({125, 126}, { -- Dalaran (city), The Underbelly
     1008, -- The Kirin Tor
     1010, -- Northrend Vanguard
     1956, -- Higher Learning
@@ -19,22 +19,14 @@ zoneData:Zone(125, { -- Dalaran (city)
     2096, -- The Coin Master
     272, -- Torch Juggler
     293, -- Disturbing the Peace
-})
-
-zoneData:Zone(126, { -- Dalaran - The Underbelly
-    1008, -- The Kirin Tor
-    1010, -- Northrend Vanguard
     2556, -- Pest Control
-    1956, -- Higher Learning
-    2084, -- Ring of the Kirin Tor
-    2076, -- Armored Brown Bear
-    2077, -- Wooly Mammoth
-    2078, -- Traveler's Tundra Mammoth
-    2094, -- A Penny For Your Thoughts
-    2095, -- Silver in the City
-    1957, -- There's Gold In That There Fountain
-    1958, -- I Smell A Giant Rat
-    2096, -- The Coin Master
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1516, -- Accomplished Angler
+    2144, -- What a Long, Strange Trip It's Been
+    6030, -- Taking the Show on the Road
+    6031, -- Taking the Show on the Road
+    9924, -- Field Photographer
 })
 
 zoneData:Zone(128, { -- Strand of the Ancients (battleground)
@@ -51,6 +43,8 @@ zoneData:Zone(141, nil, { -- The Eye of Eternity (raid)
     1875, -- You Don't Have an Eternity (25 player)
     1870, -- A Poke in the Eye (25 player)
     623, -- The Spellweaver's Downfall (25 player)
+    2137, -- Glory of the Raider (10 player)
+    2138, -- Glory of the Raider (25 player)
 })
 
 zoneData:Zone(155, nil, { -- The Obsidian Sanctum (raid)
@@ -68,6 +62,8 @@ zoneData:Zone(155, nil, { -- The Obsidian Sanctum (raid)
     2054, -- The Twilight Zone (25 player)
     1877, -- Less Is More (25 player)
     625, -- Besting the Black Dragonflight (25 player)
+    2137, -- Glory of the Raider (10 player)
+    2138, -- Glory of the Raider (25 player)
 })
 
 zoneData:Zone(156, { -- Vault of Archavon (raid)
@@ -84,6 +80,7 @@ zoneData:Zone(156, { -- Vault of Archavon (raid)
     3137, -- Emalon the Storm Watcher (25 player)
     3837, -- Koralon the Flame Watcher (25 player)
     4586, -- Toravon the Ice Watcher (25 player)
+    1752, -- Master of Wintergrasp
 })
 
 zoneData:Zone(169, { -- Isle of Conquest (battleground)
@@ -107,6 +104,8 @@ zoneData:Zone(169, { -- Isle of Conquest (battleground)
     3845, -- Isle of Conquest All-Star
     3846, -- Resource Glut
     4176, -- Resource Glut
+    8052, -- Khan
+    8055, -- Khan
 })
 
 zoneData:Zone(183, { -- The Forge of Souls (dungeon)
@@ -130,31 +129,6 @@ zoneData:Zone(200, nil, { -- The Ruby Sanctum (raid)
     4816, -- Heroic: The Twilight Destroyer (25 player)
 })
 
-zoneData:Zone(113, { -- Northrend (continent)
-    7520, -- The Loremaster
-    shared.OldWorldPetAchievements,
-    41, -- Loremaster of Northrend
-    2256, -- Northern Exposure
-    2257, -- Frostbitten
-    2557, -- To All The Squirrels Who Shared My Life
-    45, -- Northrend Explorer
-    6588, -- Northrend Safari
-    6615, -- Northrend Tamer
-    46, -- Universal Explorer
-    6607, -- Taming Azeroth
-    6601, -- Taming the Wild
-    7498, -- Taming the Great Outdoors
-    7499, -- Taming the World
-    8348, -- The Longest Day
-    1008, -- The Kirin Tor
-    1009, -- Knights of the Ebon Blade
-    1010, -- Northrend Vanguard
-    1011, -- The Winds of the North
-    1012, -- The Winds of the North
-    2556, -- Pest Control
-    6605, -- Taming Northrend
-})
-
 zoneData:Zone(114, { -- Borean Tundra (zone)
     7520, -- The Loremaster
     shared.OldWorldPetAchievements,
@@ -172,7 +146,6 @@ zoneData:Zone(114, { -- Borean Tundra (zone)
     1012, -- The Winds of the North
     33, -- Nothing Boring About Borean
     1358, -- Nothing Boring About Borean
-    174, -- Nothing Boring About Borean
     561, -- D.E.H.T.A's Little P.I.T.A.
     61910, -- Mrglgrgl of Grglmrgl
     1264, -- Explore Borean Tundra
@@ -433,6 +406,11 @@ zoneData:Zone(129, { -- The Nexus (dungeon)
     478, -- The Nexus
     490, -- Heroic: The Nexus
     910, -- Elders of the Dungeons
+    913, -- To Honor One's Elders
+    1288, -- Northrend Dungeonmaster
+    1289, -- Northrend Dungeon Hero
+    2136, -- Glory of the Hero
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone({130, 131}, { -- The Culling of Stratholme (dungeon)
@@ -443,6 +421,9 @@ zoneData:Zone({130, 131}, { -- The Culling of Stratholme (dungeon)
     1817, -- The Culling of Time
     479, -- The Culling of Stratholme
     500, -- Heroic: The Culling of Stratholme
+    1288, -- Northrend Dungeonmaster
+    1289, -- Northrend Dungeon Hero
+    2136, -- Glory of the Hero
 })
 
 zoneData:Zone(132, { -- Ahn'kahet: The Old Kingdom (dungeon)
@@ -454,6 +435,9 @@ zoneData:Zone(132, { -- Ahn'kahet: The Old Kingdom (dungeon)
     1862, -- Volazj's Quick Demise
     481, -- Ahn'kahet: The Old Kingdom
     492, -- Heroic: Ahn'kahet: The Old Kingdom
+    1288, -- Northrend Dungeonmaster
+    1289, -- Northrend Dungeon Hero
+    2136, -- Glory of the Hero
 })
 
 zoneData:Zone({133, 134, 135}, { -- Utgarde Keep (dungeon)
@@ -464,6 +448,11 @@ zoneData:Zone({133, 134, 135}, { -- Utgarde Keep (dungeon)
     477, -- Utgarde Keep
     489, -- Heroic: Utgarde Keep
     910, -- Elders of the Dungeons
+    913, -- To Honor One's Elders
+    1288, -- Northrend Dungeonmaster
+    1289, -- Northrend Dungeon Hero
+    2136, -- Glory of the Hero
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone({136, 137}, { -- Utgarde Pinnacle (dungeon)
@@ -477,6 +466,11 @@ zoneData:Zone({136, 137}, { -- Utgarde Pinnacle (dungeon)
     488, -- Utgarde Pinnacle
     499, -- Heroic: Utgarde Pinnacle
     910, -- Elders of the Dungeons
+    913, -- To Honor One's Elders
+    1288, -- Northrend Dungeonmaster
+    1289, -- Northrend Dungeon Hero
+    2136, -- Glory of the Hero
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone({138, 139}, { -- Halls of Lightning (dungeon)
@@ -488,6 +482,9 @@ zoneData:Zone({138, 139}, { -- Halls of Lightning (dungeon)
     1867, -- Timely Death
     486, -- Halls of Lightning
     497, -- Heroic: Halls of Lightning
+    1288, -- Northrend Dungeonmaster
+    1289, -- Northrend Dungeon Hero
+    2136, -- Glory of the Hero
 })
 
 zoneData:Zone(140, { -- Halls of Stone (dungeon)
@@ -500,6 +497,11 @@ zoneData:Zone(140, { -- Halls of Stone (dungeon)
     485, -- Halls of Stone
     496, -- Heroic: Halls of Stone
     910, -- Elders of the Dungeons
+    913, -- To Honor One's Elders
+    1288, -- Northrend Dungeonmaster
+    1289, -- Northrend Dungeon Hero
+    2136, -- Glory of the Hero
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone({143, 144, 145, 146}, { -- The Oculus (dungeon)
@@ -513,6 +515,9 @@ zoneData:Zone({143, 144, 145, 146}, { -- The Oculus (dungeon)
     1871, -- Experienced Drake Rider
     487, -- The Oculus
     498, -- Heroic: The Oculus
+    1288, -- Northrend Dungeonmaster
+    1289, -- Northrend Dungeon Hero
+    2136, -- Glory of the Hero
 })
 
 zoneData:Zone(154, { -- Gundrak (dungeon)
@@ -526,6 +531,11 @@ zoneData:Zone(154, { -- Gundrak (dungeon)
     484, -- Gundrak
     495, -- Heroic: Gundrak
     910, -- Elders of the Dungeons
+    913, -- To Honor One's Elders
+    1288, -- Northrend Dungeonmaster
+    1289, -- Northrend Dungeon Hero
+    2136, -- Glory of the Hero
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone({157, 158, 159}, { -- Azjol-Nerub (dungeon)
@@ -538,6 +548,11 @@ zoneData:Zone({157, 158, 159}, { -- Azjol-Nerub (dungeon)
     480, -- Azjol-Nerub
     491, -- Heroic: Azjol-Nerub
     910, -- Elders of the Dungeons
+    913, -- To Honor One's Elders
+    1288, -- Northrend Dungeonmaster
+    1289, -- Northrend Dungeon Hero
+    2136, -- Glory of the Hero
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone({160, 161}, { -- Drak'Tharon Keep (dungeon)
@@ -550,6 +565,11 @@ zoneData:Zone({160, 161}, { -- Drak'Tharon Keep (dungeon)
     482, -- Drak'Tharon Keep
     493, -- Heroic: Drak'Tharon Keep
     910, -- Elders of the Dungeons
+    913, -- To Honor One's Elders
+    1288, -- Northrend Dungeonmaster
+    1289, -- Northrend Dungeon Hero
+    2136, -- Glory of the Hero
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(168, { -- The Violet Hold (dungeon)
@@ -562,6 +582,9 @@ zoneData:Zone(168, { -- The Violet Hold (dungeon)
     1816, -- Defenseless
     483, -- The Violet Hold
     494, -- Heroic: The Violet Hold
+    1288, -- Northrend Dungeonmaster
+    1289, -- Northrend Dungeon Hero
+    2136, -- Glory of the Hero
 })
 
 zoneData:Zone(171, { -- Trial of the Champion (dungeon)
@@ -585,6 +608,34 @@ zoneData:Zone(184, { -- Pit of Saron (dungeon)
     4520, -- Heroic: The Pit of Saron
     61271, -- Keystone Hero: Pit of Saron
     61592, -- Keystone Victor: Pit of Saron
+    61233, -- Midnight Season 1: Resilient Keystone 12
+    61235, -- Midnight Season 1: Resilient Keystone 13
+    61236, -- Midnight Season 1: Resilient Keystone 14
+    61237, -- Midnight Season 1: Resilient Keystone 15
+    61239, -- Midnight Season 1: Resilient Keystone 16
+    61240, -- Midnight Season 1: Resilient Keystone 17
+    61241, -- Midnight Season 1: Resilient Keystone 18
+    61242, -- Midnight Season 1: Resilient Keystone 19
+    61243, -- Midnight Season 1: Resilient Keystone 20
+    61244, -- Midnight Season 1: Resilient Keystone 21
+    61245, -- Midnight Season 1: Resilient Keystone 22
+    61246, -- Midnight Season 1: Resilient Keystone 23
+    61247, -- Midnight Season 1: Resilient Keystone 24
+    61248, -- Midnight Season 1: Resilient Keystone 25
+    61249, -- Midnight Season 1: Resilient Keystone 26
+    61250, -- Midnight Season 1: Resilient Keystone 27
+    61251, -- Midnight Season 1: Resilient Keystone 28
+    61252, -- Midnight Season 1: Resilient Keystone 29
+    61253, -- Midnight Season 1: Resilient Keystone 30
+    61254, -- Midnight Keystone Explorer: Season 1
+    61255, -- Midnight Keystone Conqueror: Season 1
+    61256, -- Midnight Keystone Master: Season 1
+    61257, -- Midnight Keystone Hero: Season 1
+    61258, -- Midnight Keystone Legend: Season 1
+    63097, -- Midnight Keystone Myth: Season 1
+    61259, -- Umbral Hero: Midnight Season 1
+    63104, -- Umbral Champion: Midnight Season 1
+    61858, -- Light of the Party
 })
 
 zoneData:Zone({147, 148, 149, 150, 151, 152}, { -- Ulduar (raid)
@@ -805,6 +856,10 @@ zoneData:Zone({147, 148, 149, 150, 151, 152}, { -- Ulduar (raid)
     3037, -- Observed (25 player)
     3005, -- He Feeds On Your Tears (25 player)
     2904, -- Conqueror of Ulduar
+    2957, -- Glory of the Ulduar Raider (10 player)
+    2958, -- Glory of the Ulduar Raider (25 player)
+    11761, -- Azeroth's Next Top Model
+    12401, -- Glory of the Ulduar Raider
 })
 
 zoneData:Zone({162, 163, 164, 165, 166, 167}, { -- Naxxramas (raid)
@@ -851,6 +906,9 @@ zoneData:Zone({162, 163, 164, 165, 166, 167}, { -- Naxxramas (raid)
     575, -- Kel'Thuzad's Defeat (25 player)
     577, -- The Fall of Naxxramas (25 player)
     2186, -- The Immortal
+    2137, -- Glory of the Raider (10 player)
+    2138, -- Glory of the Raider (25 player)
+    11761, -- Azeroth's Next Top Model
 })
 
 zoneData:Zone({172, 173}, { -- Trial of the Crusader (raid)
@@ -882,6 +940,7 @@ zoneData:Zone({172, 173}, { -- Trial of the Crusader (raid)
     3819, -- A Tribute to Insanity (25 player)
     4156, -- A Tribute to Immortality
     4079, -- A Tribute to Immortality
+    11761, -- Azeroth's Next Top Model
 })
 
 zoneData:Zone({186, 187, 188, 189, 190, 191, 192, 193}, { -- Icecrown Citadel (raid)
@@ -943,6 +1002,9 @@ zoneData:Zone({186, 187, 188, 189, 190, 191, 192, 193}, { -- Icecrown Citadel (r
     4635, -- Heroic: The Frostwing Halls (25 player)
     4584, -- The Light of Dawn
     4637, -- Heroic: Fall of the Lich King (25 player)
+    4602, -- Glory of the Icecrown Raider (10 player)
+    4603, -- Glory of the Icecrown Raider (25 player)
+    11761, -- Azeroth's Next Top Model
 })
 
 zoneData:Zone(248, { -- Onyxia's Lair (raid)

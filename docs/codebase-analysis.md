@@ -141,21 +141,24 @@ The codebase mixes 4-space indentation (most files), tab indentation, and occasi
 
 **Impact:** Low-severity but causes diff noise and makes code review harder.
 
-### 2. Inconsistent Semicolon Usage
+### 2. Inconsistent Semicolon Usage ✅ FIXED (2026-09-11)
 
-Per the project's own instructions, semicolons should not be used. Many newer files omit them. However, almost every file in `Api/`, `Options/`, `DataAddons/`, and `Gui/WindowFrames/` uses semicolons consistently at end-of-statement. Files like `Data/TemporaryObtainable.lua` and `Data/EventData.lua` (newer code) omit them entirely. The inconsistency is project-wide.
+Per the project's own instructions, semicolons should not be used, yet almost every file in `Api/`, `Options/`, `DataAddons/` and `Gui/WindowFrames/` ended statements with them while newer files such as `Data/TemporaryObtainable.lua` did not. The tree was stripped in one pass by `.claude/tools/Strip-Semicolons.ps1`: 7572 statement semicolons removed and 21 table-field separators turned into commas across 221 files, each file accepted only after `luac -s` produced byte-identical bytecode before and after. The `semicolon` lint rule keeps them from coming back on added lines.
 
-### 3. Inconsistent Data Entry Style in `DataAddons/Retail/`
+### 3. Inconsistent Data Entry Style in `DataAddons/Retail/` ✅ FIXED (verified 2026-09-09)
 
-The V2 `Ach()` builder (defined in `Api/AchievementDataBuilder.lua` as `KrowiAF.Ach`) is the current standard. All new data files and new patch tables must use:
+The V2 `Ach()` builder (defined in `Api/AchievementDataBuilder.lua` as `KrowiAF.Ach`) is the only style in use. All new data files and new patch tables must use:
 
 ```lua
 local Ach = KrowiAF.Ach
 ```
 
-However, all legacy expansion data files (`01_Vanilla` through `10_Dragonflight` and `12_Midnight`) still use the old verbose V1 style (bare positional arguments). This creates a maintenance split: any maintainer editing an old expansion file must use the V1 style; any new expansion file (11+) uses V2. Migration of old files to V2 is tracked as a future task.
+<details>
+<summary>Original issue (resolved before 2026-05-29, verified 2026-09-09)</summary>
 
-**Note:** An earlier iteration of the V2 API exposed the builder via `shared.Ach` (`addon.Data.AchievementData.Shared.Ach`). This was superseded by `KrowiAF.Ach` in `Api/AchievementDataBuilder.lua`. All documentation and skill files have been updated to reflect this. Any remaining `shared.Ach` references in data files or docs are outdated and should be changed to `KrowiAF.Ach`.
+The legacy expansion data files used the old verbose V1 style (bare positional arguments) next to V2 files, splitting maintenance between two formats. As of 2026-09-09 all 17 `AchievementData*.lua` files under `DataAddons/` contain V2 entries only (grep for `^\s*\{\s*\d+\s*,` finds zero V1 rows). The interim `shared.Ach` factory was superseded by `KrowiAF.Ach`; the last two stale references (`wiki/achievement-data/achievement-data-format.md`, `.claude/skills/add-achievement-data/SKILL.md`) were fixed 2026-09-09.
+
+</details>
 
 ### 4. Duplicate Achievement Registration — Bug in `11_TheWarWithin` ✅ FIXED (2026-04-19)
 
@@ -356,9 +359,9 @@ tinsert(KrowiAF.AchievementData[k1][k2], 1, KrowiAF.AddAchievementData);
 
 **No file documents this contract.** A new contributor reading any data file sees bare tables of IDs with no indication how they become function calls. The `ApiDocumentation.lua` shows the data format but says nothing about the loader mechanism. The `CONTRIBUTING.md` or a `docs/how-to/` file should explain the chunk execution model.
 
-### 3. `Globals.lua` is a 800+ Line Grab-Bag
+### 3. `Globals.lua` is a 800+ Line Grab-Bag ✅ FIXED (2026-09-19, see row 14)
 
-`Globals.lua` contains, without structural separation:
+`Globals.lua` contained, without structural separation:
 - Achievement chain traversal helpers (`GetPreviousAchievement`, `GetFirstAchievementId`)
 - UI state helpers (`InGuildView`, `GetActiveCovenant`)
 - Zone/map achievement lookups (`GetAchievementsInZone`)
@@ -642,22 +645,27 @@ The `DataAddons/Retail/` tree spans 12 expansions. `11_TheWarWithin/CategoryData
 | 2 | ✅ FIXED | Duplicate achievement 20524 registered twice | `DataAddons/Retail/11_TheWarWithin/AchievementData.lua` | Fixed 2026-04-19 |
 | 3 | ✅ FIXED | String comparison for version numbers breaks at `x.10` | `Data/DataIntegrityManager.lua` | Fixed 2026-04-19: `Resolve` now uses `tonumber()` comparisons on Build and Version separately; legacy solutions removed. |
 | 4 | ✅ FIXED | DEBUG flag in TemporaryObtainable can ship accidentally | `Data/TemporaryObtainable.lua` | Fixed 2026-04-19: `DEBUG` flag and all four `if DEBUG then` blocks removed entirely |
-| 5 | 🟠 MEDIUM | `RemoveCategory` matches by Name+Level, not identity | `Objects/Category.lua` | Use reference equality |
-| 6 | 🟠 MEDIUM | `ToggleGameMenu` hook block 2 is dead code | `Krowi_AchievementFilter.lua` | Fix ESC key visibility logic |
-| 7 | 🟠 MEDIUM | Magic number `9999` for synthetic category ID offsets | `Globals.lua` | Named constant + collision assertion |
+| 5 | ✅ FIXED | `RemoveCategory` matches by Name+Level, not identity | `Objects/Category.lua` | Fixed 2026-09-11: reference equality. The only caller is `ClearTree` in `Globals.lua`; the Watch List and Excluded tree rebuilds (`Options/Layout.lua`, `ReloadWatchedAchievements`) reset the special root's `Children` without clearing the per-achievement `WatchListCategories`/`ExcludedCategories`, so an unwatch afterwards walked the orphaned chain and the name match removed the live node of the same name, which could empty the root and trigger `ClearWatchedAchievements`. Follow-up done 2026-09-19 with row 14: every rebuild path goes through `addon.ResetWatchListCategories`/`ResetExcludedCategories` (`Data/SpecialCategoryAchievements.lua`), which clear those lists as well. The same pass found that `Options/Layout.lua` still called `addon.Data.LoadWatchedAchievements` and `addon.Data.LoadExcludedAchievements`, removed from `Data/Data.lua` in 8457029 (2024-12-19, released in 81.0), so the Show Sub Categories and Ignore Filters toggles of the Watch List, Show Sub Categories of the Excluded category and Show Excluded Category had raised a nil-call error after emptying the tree ever since. Covered by the `special` suite in `Tests/` (27 scenarios on fake achievements, in game through `/kaftest special` via the real option setters, headlessly in the `unit-tests` lint rule); writing it found and fixed a third defect, an uncategorized tracking achievement mirrored as a copy of the first tab's root into the other tabs when sub-categories are on. |
+| 6 | ✅ FIXED | `ToggleGameMenu` hook block 2 is dead code | `Krowi_AchievementFilter.lua` | Fixed 2026-09-19, the finding itself was wrong: block 2 re-armed the `KrowiAF_SpecialFrame` proxy in `UISpecialFrames` so the next Escape closed the next frame. The real defects, all verified by the `escape` suite in `Tests/` (in game through `/kaftest`, headlessly through the `unit-tests` lint rule): the hook ran after every branch of Blizzard's handling, so it hid a frame even when a popup, menu or spell cast had consumed the press; the Map Verifier was missing from its list; and the proxy stayed shown after a close button, which swallowed one Escape. Replaced by `Gui/FramesForClosing.lua`: an ordered list of shown registered frames, closed one per press from the proxy's `OnHide` inside Blizzard's `CloseSpecialWindows` on both clients (Retail 12.1's `RegisterGameMenuEscHandler` taints Blizzard's handler table when an addon registers, so every Escape then ran tainted; rejected). The achievement window takes its turn in the list on both clients because the addon's toggle shows it with a plain `Show`, so the panel manager never holds it; a panel registered through `ShowUIPanel` by another path is closed through `HideUIPanel`, because a plain `Hide` leaves it registered and `CloseWindows` then swallows every following Escape (`HideUIPanel` returns early for a hidden frame). |
+| 7 | ✅ FIXED | Magic number `9999` for synthetic category ID offsets | `Globals.lua` | Fixed 2026-09-14: the mirror nodes take `addon.Data.GetNextFreeCategoryId()` instead. The offset was worse than a missing constant: explicit ids (57 on Retail, highest 2570) plus 9999 landed inside the auto-generated range (9000 to 10474 on Retail, growing about 150 per expansion) and the Blizzard tab range that follows it, and the same id was written for every tab and every special tree, so the registry entry never identified one node. No collision existed on 2026-09-14 only because no explicit id below 476 exists. |
 | 8 | ✅ FIXED | Missing solution #24 in migration chain | `Data/DataIntegrityManager.lua` | Fixed 2026-04-19: entire legacy solutions list removed |
 | 9 | ✅ FIXED | "varify" typos in debug messages | `Data/DataIntegrityManager.lua` | Fixed 2026-04-19 |
-| 10 | 🟡 LOW | BrowsingHistory stored to SavedData but never restored | `BrowsingHistory.lua` | Decide: restore or use session-local table |
-| 11 | 🟡 LOW | Undocumented `ignoreAchievementIds` entries | `Data/SavedData/AchievementData.lua` | Add per-entry comments |
-| 12 | 🟡 LOW | Dead code: `GetTopMostParentCategory` + debug branch for `120005` | `Globals.lua` | Remove before next release |
-| 13 | 🟡 LOW | `Plugins/Plugins.lua` entirely commented out | `Plugins/Plugins.lua` | Delete file; update `Files.xml` |
-| 14 | 🟡 LOW | `Globals.lua` is too large / does too much | `Globals.lua` | Refactor: split cache, compat, and window management |
-| 15 | 🔄 ONGOING | Mixed indentation and semicolons throughout codebase | All files | `.editorconfig` + `docs/styleguide.md` created 2026-04-19. Apply incrementally as files are touched. |
+| 10 | ✅ FIXED | BrowsingHistory stored to SavedData but never restored | `BrowsingHistory.lua` | Fixed 2026-09-14: session-local `records` table; `Load` removes the stale `KrowiAF_SavedData.BrowsingHistory` once. The restore was commented out in the feature's first commit (5c64807, 2024-05-03), so session-only was the design; restoring would be wrong anyway because auto-generated and mirror category ids shift between releases. |
+| 11 | ✅ FIXED | Undocumented `ignoreAchievementIds` entries | `Data/SavedData/AchievementData.lua` | Fixed 2026-09-14: 7268, 7269, 7270 are the Temple of Kotmogu scenario achievements from the Mists of Pandaria beta (never released, no faction, no reward), now commented; 40910/40821 already carried a comment and a Retail/Classic split; 42114 had been removed in 98.2. |
+| 12 | ✅ FIXED | Dead code: `GetTopMostParentCategory` + debug branch for `120005` | `Globals.lua` | Fixed 2026-09-09: both removed |
+| 13 | ✅ FIXED | `Plugins/Plugins.lua` entirely commented out | `Plugins/Plugins.lua` | Fixed 2026-09-09: file and its commented-out `Files.xml` line deleted |
+| 14 | ✅ FIXED | `Globals.lua` is too large / does too much | `Globals.lua` | Fixed 2026-09-19: five regions moved out verbatim, `addon.*` names kept so no caller changed. `Data/SpecialCategoryAchievements.lua` (Watch List, Excluded, Tracking and Uncategorized membership and the mirrored sub-category trees), `Data/AchievementCache.lua` (`BuildCacheAsync`, `ResetCache`, `OnAchievementEarned` and the `Handle*` family), `Gui/BlizzardOverrides.lua` (`OverwriteFunctions`, `LoadBlizzardApiChanges`, `HookFunctions`; the `Check-Repo.globals` allowlist lines moved with it, the rule is per file), `Gui/MovableFrames.lua` (`MakeMovable`, `MakeWindowMovable`, `MakeWindowStatic`), `Data/TaskRunner.lua` (`StartTasksGroups`; the 50-line commented-out `StartWork` predecessor was dropped). `Globals.lua` keeps the achievement chain helpers, the `GetAchievementInfo` wrappers, the custom-criteria wrappers, zone lookup, filter counting, transmog set checks, modifier keys and the month and weekday names (312 lines, down from 1058). Load order: the moved code only defines functions called from boot phase 2 or later, so moving it from right after the bootstrap to the `Gui/` and `Data/` manifests changes nothing at load. |
+| 15 | ✅ FIXED | Mixed indentation and semicolons throughout codebase | All files | `.editorconfig` exists; the style rules live in `.github/copilot-instructions.md`. Semicolons stripped tree-wide 2026-09-11 by `.claude/tools/Strip-Semicolons.ps1` (7593 in 221 files, bytecode-verified); the `semicolon` lint rule guards added lines. |
 | 16 | ✅ FIXED | `AchBuilder` reward consumer guards: `IsTable` check + temp table alloc on every filter/render pass | `Filters.lua` validation #6, `Gui/AchievementTooltip/Rewards.lua` | Fixed 2026-04-26: `IsTable` guards removed from both consumers. `RewardType` is always a table or nil. |
-| 17 | ✅ FIXED | `shared.Ach` reference in docs/skills diverged from actual `KrowiAF.Ach` factory | `copilot-instructions.md`, `ApiDocumentation.lua`, `docs/how-to/`, skill files | Fixed 2026-06-21: all docs updated to `local Ach = KrowiAF.Ach`. |
+| 17 | ✅ FIXED | `shared.Ach` reference in docs/skills diverged from actual `KrowiAF.Ach` factory | `copilot-instructions.md`, `ApiDocumentation.lua`, `docs/how-to/`, skill files | Fixed 2026-06-21; two stragglers in the wiki and the add-achievement-data skill fixed 2026-09-09. |
 | 18 | 🟡 LOW | `achievementPatch` implicit mutable state (see THE BAD §12) | `Api/AchievementDataApi.lua` | By design; no code change. Documented as constraint. |
 | 19 | 🟡 LOW | Mixed positional+field extras table in AchBuilder (see THE BAD §13) | `Api/AchievementDataBuilder.lua` | No change today; documented as structural constraint. |
 | 20 | 🔄 FUTURE | V1 category parser maintained alongside V2 (see THE BAD §14) | `Api/CategoryDataApi.lua` | Migrate all first-party data to V2, then deprecate V1. Plugin authors must stay on V1 until notified. |
+| 21 | ✅ FIXED | Accidental globals: `GetActiveCalendarEvents`, `AddNestedCriterium`, `HandleScrollBar`, `DebugTable` declared without `local` | `Data/EventData.lua`, `Gui/RightClickMenu/AchievementMenu/PetBattleLinks.lua`, `Plugins/GW2_UI/GW2_UI.lua`, `Options/General.lua` | Fixed 2026-09-09; guarded by the new `globals` rule in `.claude/tools/Check-Repo.ps1` (allowlist `Check-Repo.globals`) |
+| 22 | ⛔ WON'T FIX | `TooltipData.Load()` commented out as an Issue #300 diagnostic in 99.6 and shipped that way through 100.3, although 99.9 found the taint cause elsewhere | `Krowi_AchievementFilter.lua` | Decided 2026-09-09: stays disabled by design. It was switched off for taint problems, the feature has not been maintained for a long time and is not a priority. Do not re-enable; the only remaining cleanup would be removing the dead call and data, and only on request. |
+| 23 | ✅ FIXED | Calendar wrapper globals `C_CalendarSetMonth`, `C_CalendarSetAbsMonth`, `C_CalendarResetAbsMonth`, `C_CalendarGetMonthInfo` mimicked Blizzard API names in `_G` | `Gui/AchievementCalendar/MonthCursor.lua` | Fixed 2026-09-11: file renamed from `C_Calendar.lua`, functions moved to `addon.Gui.Calendar.MonthCursor` (`SetMonth`, `SetAbsMonth`, `ResetAbsMonth`, `GetMonthInfo`), the four allowlist lines in `Check-Repo.globals` deleted. The `Check-Repo.globals` allowlist now holds only the deliberate FrameXML overrides and API polyfills. |
+| 24 | ✅ FIXED | Two overlapping instruction files (`CLAUDE.md` and `.github/copilot-instructions.md`) drifted apart: V2 header and patch record, `Plugins/Plugins.lua`, `Data/Retail`, "dev merges to main" | `CLAUDE.md`, `.github/copilot-instructions.md`, `CONTRIBUTING.md` | Fixed 2026-09-09: `copilot-instructions.md` is the single canonical file (merged and corrected); `CLAUDE.md` imports it with `@` and keeps only the Claude Code wiring; lint messages, the release skill and `CONTRIBUTING.md` point at the canonical file |
+| 25 | ✅ FIXED | Lua language-server config was a 600-line hand-grown `Lua.diagnostics.globals` block in `.vscode/settings.json` (auto-appended by `ketho.wow-api` while its annotation library pointed at a long-uninstalled extension version, so every WoW global was "unknown"), with `deprecated` and `undefined-field` switched off | `.luarc.json`, `.vscode/settings.json`, `.claude/tools/Check-Repo.ps1` | Fixed 2026-09-11: editor-neutral `.luarc.json` (Lua 5.1, `Libs/` and non-addon folders ignored, 166 globals no annotation covers, `deprecated` back on); the extension's FrameXML annotations on and its auto-globals off in `.vscode/settings.json`; new lint rules `luarc` (list stays exact) and `luals` (language server tree-wide, 6 pre-existing warnings: 2 `need-check-nil`, 4 `invisible`). `undefined-field` stays off: 56 findings, almost all fields the addon injects into Blizzard frames (`HeaderDetails`, `KAF_AddDefaultValueText`, ElvUI `Point`/`backdrop`); typing those is a follow-up. |
 
 ---
 
@@ -673,3 +681,15 @@ When resuming work in a new chat, paste this report as context and reference the
 ---
 
 *End of report.*
+
+## Follow-ups from the zone-data sweep (2026-09-06)
+
+Two code changes fell out of the zone placement rules work (rules in `.claude/skills/add-zone-data/SKILL.md`, decision record in `wiki/achievement-data/zone-data-format.md`). Both are runtime changes, not data. **Both applied 2026-09-06** on the `chore/zone-sweep-followups` branch: item 1 removed the file, the now empty `Data/Retail/Files.xml` and its `.toc` line, the `Data.lua` call and the skill; item 2 added a `GetAchievementsForMap` helper in the mixin that unions the Zone-type descendants (`C_Map.GetMapChildrenInfo(mapID, Enum.UIMapType.Zone, true)`) for Continent and World maps. The text below is kept as the record of what was asked.
+
+### 1. Retire the ExportedUiMaps fallback mechanism
+
+Every fallback entry of `Data/Retail/ExportedUiMaps.lua` has been migrated into `DataAddons/*/ZoneData.lua`; the file's `tasks` table is empty but the file is still registered in `Data/Retail/Files.xml` and `Data/Data.lua` (around line 146) still calls `self.ExportedUiMaps.RegisterTasks(self.Maps, self.Achievements)` when the table exists. Remove the file, its Files.xml line, the two Data.lua lines, the `A`/`C`/`A10`/`A25` helpers and the `.claude/skills/migrate-zone-fallbacks` skill (obsolete), then run `.claude/tools/Check-Repo.ps1` and the headless pipeline for both clients. There is no Classic counterpart file. Low risk, no Blizzard API involved.
+
+### 2. World Map button on continent maps
+
+Continent maps no longer carry zone data (placement Rule 1, decision D2), so `KrowiAF_WorldMapButtonMixin:Refresh` in `Gui/WorldMapButton/WorldMapButtonMixin.lua` finds nothing for Kalimdor, Khaz Algar and the other continents and disables the button. Intended fix: when `C_Map.GetMapInfo(mapID).mapType` is `Enum.UIMapType.Continent` (or World), union the achievements of the child maps from `C_Map.GetMapChildrenInfo(mapID)` (zones and their link groups; de-duplicate, the same meta sits on many zones) before counting. `addon.GetAchievementsInZone` itself stays a flat lookup so the Current Zone category is unaffected. Read-only map API, no Blizzard frame hooks, but it is GUI code: run the `taint-reviewer` subagent on the diff and test the button on a continent map, a zone and inside a dungeon (10/25-player difficulty branch). Add a changelog line under the next version.

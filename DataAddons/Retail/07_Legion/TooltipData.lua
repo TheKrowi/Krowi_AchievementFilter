@@ -1,6 +1,6 @@
-local _, addon = ...;
-local shared = addon.Data.TooltipData.Shared;
-local type = Enum.TooltipDataType;
+local _, addon = ...
+local shared = addon.Data.TooltipData.Shared
+local type = Enum.TooltipDataType
 
 KrowiAF.TooltipData.Legion = {
     { -- The Legion Menu
@@ -131,4 +131,4 @@ KrowiAF.TooltipData.Legion = {
             {16, 115152, type.Item}, -- Wicked Soul
         }
     },
-};
+}

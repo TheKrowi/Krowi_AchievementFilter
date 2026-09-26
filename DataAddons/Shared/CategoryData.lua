@@ -110,1030 +110,830 @@ shared.CT = {
 }
 local CT = shared.CT
 
-local crossExpansion = { -- Cross-Expansion
-    addon.L["Cross-Expansion"],
-    { -- Zones
-        addon.L["Zones"],
-        { -- Exile's Reach
-            addon.GetAchievmentName(14222),
-            {
-                14222, -- Exile's Reach
-            },
-        },
-    },
-    { -- Character
-        CT.Character,
-        {
-            6, -- Level 10
-            7, -- Level 20
-            8, -- Level 30
-            9, -- Level 40
-            14782, -- Level 50
-            14783, -- Level 60
-            15805, -- Level 70
-            19459, -- Level 80
-            10, -- Level 50 (Legacy)
-            11, -- Level 60 (Legacy)
-            12, -- Level 70 (Legacy)
-            13, -- Level 80 (Legacy)
-            4826, -- Level 85 (Legacy)
-            6193, -- Level 90 (Legacy)
-            9060, -- Level 100 (Legacy)
-            10671, -- Level 110 (Legacy)
-            12544, -- Level 120 (Legacy)
-            16433, -- Soul of Iron (Season of Mastery)
-            7382, -- Dynamic Duo
-            7383, -- Terrific Trio
-            7384, -- Quintessential Quintet
-            7380, -- Double Agent
-            19489, -- Class Connoisseur
-            546, -- Safe Deposit
-            42191, -- Safer Deposit
-            40142, -- Learning to Share
-            40145, -- So Much Sharing
-            1176, -- Got My Mind On My Money
-            1177, -- Got My Mind On My Money
-            1178, -- Got My Mind On My Money
-            1180, -- Got My Mind On My Money
-            1181, -- Got My Mind On My Money
-            5455, -- Got My Mind On My Money
-            5456, -- Got My Mind On My Money
-            6753, -- Got My Mind On My Money
-            558, -- Greedy
-            559, -- Needy
-            891, -- Giddy Up!
-            889, -- Fast and Furious
-            890, -- Into the Wild Blue Yonder
-            5180, -- Breaking the Sound Barrier
-            892, -- The Right Stuff
-            2357, -- Dreadsteed of Xoroth
-            2358, -- Charger
-            2359, -- Swift Flight Form
-            545, -- Shave and a Haircut
-            557, -- Superior
-            556, -- Epic
-            5373, -- Cataclysmically Superior
-            5372, -- Cataclysmically Epic
-            6348, -- Mystically Superior
-            6349, -- Mystically Epic
-            9707, -- Savagely Superior
-            9708, -- Savagely Epic
-            10764, -- Brokenly Superior
-            10765, -- Brokenly Epic
-            12546, -- Superior (Battle)
-            12547, -- Epic (Battle)
-            14796, -- Superior (Shadowlands)
-            14797, -- Epic (Shadowlands)
-            705, -- Master of Arms
-            16, -- Did Somebody Order a Knuckle Sandwich?
-            2716, -- Dual Talent Specialization
-            1187, -- The Keymaster
-            17334, -- Trading Post Enthusiast
-        },
-    },
-    { -- Quests
-        CT.Quests,
-        {
-            503, -- 50 Quests Completed
-            504, -- 100 Quests Completed
-            505, -- 250 Quests Completed
-            506, -- 500 Quests Completed
-            507, -- 1000 Quests Completed
-            508, -- 1500 Quests Completed
-            32, -- 2000 Quests Completed
-            978, -- 3000 Quests Completed
-            973, -- 5 Daily Quests Completed
-            974, -- 50 Daily Quests Completed
-            975, -- 200 Daily Quests Completed
-            976, -- 500 Daily Quests Completed
-            977, -- 1000 Daily Quests Completed
-            5751, -- 2500 Daily Quests Completed
-            7410, -- 5000 Daily Quests Completed
-            7411, -- 10000 Daily Quests Completed
-            31, -- A Simple Re-Quest
-            11126, -- 50 World Quests Completed
-            11127, -- 200 World Quests Completed
-            11128, -- 500 World Quests Completed
-            11129, -- 1000 World Quests Completed
-            11130, -- 2500 World Quests Completed
-            11131, -- 5000 World Quests Completed
-            11132, -- 10,000 World Quests Completed
-            4956, -- 5 Dungeon Quests Completed
-            4957, -- 20 Dungeon Quests Completed
-            1182, -- The Bread Winner
-            5752, -- Justly Rewarded
-        },
-    },
-    { -- Exploration
-        CT.Exploration,
-        {
-            964, -- Going Down?
-            1244, -- Well Read
-            1832, -- Tastes Like Chicken
-            1833, -- It's Happy Hour Somewhere
-            16789, -- Lucky Penny
-            16790, -- Curious Coin
-        },
-    },
-    { -- Delves
-        CT.Delves,
-        {
-            40436, -- You're Getting a Delve!
-            40460, -- Delve Deep
-            40462, -- Delve Deeper
-            40463, -- Delve Deepest
-            41095, -- Delve Beyond
-            41096, -- Delve Infinite
-            40819, -- Ready to Turn
-            40788, -- I Got the Keys
-            40882, -- Copious Coffers
-            40885, -- The Key to Madness
-            40817, -- A Delver's Bounty
-            40863, -- Perplexing Puzzle
-            40864, -- Plentiful Perplexing Puzzles
-            41105, -- Prodigious Plentiful Perplexing Puzzles
-        },
-    },
-    { -- Dungeons & Raids
-        CT.DungeonsAndRaids,
-        {
-            4476, -- Looking For More
-            4477, -- Looking For Many
-            4478, -- Looking For Multitudes
-        },
-    },
-    { -- Professions
-        CT.Professions,
-        { -- Alchemy
-            CT.Alchemy,
-            {
-                18726, -- A Cure for All Ails I
-                18731, -- A Cure for All Ails II
-                18732, -- A Cure for All Ails III
-                18733, -- A Cure for All Ails IV
-                18734, -- Powerful Concoctions I
-                18735, -- Powerful Concoctions II
-                18736, -- Powerful Concoctions III
-                18737, -- Powerful Concoctions IV
-                18934, -- Excessive Experimentation
-                18723, -- Look, You're Specialized!
-                18904, -- Iron to Vendor Gold
-                18963, -- Burst Damage
-            },
-        },
-        { -- Archaeology
-            CT.Archaeology,
-            {
-                5315, -- Digger
-                5469, -- Diggerer
-                5470, -- Diggerest
-                4854, -- I Had It in My Hand
-                4855, -- What was Briefly Yours is Now Mine
-                4856, -- It Belongs in a Museum!
-                9422, -- The Search For Fact, Not Truth
-                5511, -- It's Always in the Last Place You Look
-            },
-        },
-        { -- Blacksmithing
-            CT.Blacksmithing,
-            {
-                18862, -- Anvil Mastery I
-                18864, -- Anvil Mastery II
-                18865, -- Anvil Mastery III
-                18866, -- Anvil Mastery IV
-                18851, -- Skeletons in the Lockbox
-                18852, -- Weaponsmithing, Reborn
-                17496, -- Renowned Weaponsmith
-                17497, -- Renowned Armorsmith
-            },
-        },
-        { -- Cooking
-            CT.Cooking,
-            {
-                1998, -- Cooking Award
-                1999, -- 10 Cooking Awards
-                2000, -- 25 Cooking Awards
-                2001, -- 50 Cooking Awards
-                2002, -- 100 Cooking Awards
-                1785, -- Dinner Impossible
-                1795, -- Lunch Lady
-                1796, -- Short Order Cook
-                1797, -- Chef de Partie
-                1798, -- Sous Chef
-                1799, -- Chef de Cuisine
-                5471, -- Iron Chef
-                7328, -- Ironpaw Chef
-                18816, -- Serious Chef
-                18817, -- Showoff Chef
-                3296, -- Cooking with Style
-                1563, -- Hail to the Chef
-                17736, -- The Gift of Cheese
-            },
-        },
-        { -- Enchanting
-            CT.Enchanting,
-            {
-                18766, -- Disenchantment I
-                18767, -- Disenchantment II
-                18768, -- Disenchantment III
-                18769, -- Disenchantment IV
-                18868, -- Enchantment I
-                18869, -- Enchantment II
-                18870, -- Enchantment III
-                18871, -- Enchantment IV
-                18785, -- Shattered Expectations
-                18789, -- Simply Enchanting
-            },
-        },
-        { -- Engineering
-            CT.Engineering,
-            {
-                18872, -- Dangerous Devices I
-                18873, -- Dangerous Devices II
-                18874, -- Dangerous Devices III
-                18875, -- Dangerous Devices IV
-                18730, -- Goblins vs Gnomes
-                18855, -- Portal to Everywhere
-                18895, -- You Had it Coming
-                18901, -- Chromatic Calibration: Holo-Gogs
-                18908, -- Chromatic Calibration: Bio-Optic Killshades
-                18905, -- Chromatic Calibration: Retinal Armor
-                18906, -- Chromatic Calibration: Cranial Cannons
-                18907, -- Chromatic Calibration: Ectoplasmic Specs
-            },
-        },
-        { -- Fishing
-            CT.Fishing,
-            {
-                153, -- The Old Gnome and the Sea
-                1257, -- The Scavenger
-                5478, -- The Limnologist
-                5479, -- The Oceanographer
-                1243, -- Fish Don't Leave Footprints
-                3218, -- Turtles All the Way Down
-                1556, -- 25 Fish
-                1557, -- 50 Fish
-                1558, -- 100 Fish
-                1559, -- 250 Fish
-                1560, -- 500 Fish
-                1561, -- 1000 Fish
-                1516, -- Accomplished Angler
-                13502, -- Secret Fish and Where to Find Them
-                17207, -- Discombobberlated
-            },
-        },
-        { -- Inscription
-            CT.Inscription,
-            {
-                18876, -- Ink and Quill I
-                18877, -- Ink and Quill II
-                18878, -- Ink and Quill III
-                18879, -- Ink and Quill IV
-                18892, -- Massive Mills
-                18724, -- Gaining an Advantus
-                18738, -- Population In-Crease
-                18858, -- Forge and Befuddle
-                18859, -- Forge and Befuddle
-            },
-        },
-        { -- Jewelcrafting
-            CT.Jewelcrafting,
-            {
-                18880, -- Generations of Gemstones I
-                18889, -- Generations of Gemstones II
-                18890, -- Generations of Gemstones III
-                18891, -- Generations of Gemstones IV
-                18893, -- Plentiful Prospects
-                18897, -- Can't Crush These
-                18909, -- Fantastic Figurines
-            },
-        },
-        { -- Leatherworking
-            CT.Leatherworking,
-            {
-                18881, -- A Test of Scale I
-                18882, -- A Test of Scale II
-                18883, -- A Test of Scale III
-                18884, -- A Test of Scale IV
-                18793, -- Always Be Camping
-                18898, -- That's Just Cruel
-                18900, -- Budget Bard
-                17498, -- Renowned Leatherworking Specialist
-            },
-        },
-        { -- Tailoring
-            CT.Tailoring,
-            {
-                18885, -- Quite the Quilt I
-                18886, -- Quite the Quilt II
-                18887, -- Quite the Quilt III
-                18888, -- Quite the Quilt IV
-                141, -- Ultimate Triage
-                17499, -- Renowned Tailoring Specialist
-            },
-        },
-        {
-            16799, -- Personal Crafter
-            16791, -- Merchant Artisan
-            17410, -- Craftsman of the Zandalar Tribe
-            17412, -- Craftsman of the Argent Dawn
-        },
-    },
-    { -- Reputation
-        CT.Reputation,
-        {
-            522, -- Somebody Likes Me
-            523, -- 5 Exalted Reputations
-            524, -- 10 Exalted Reputations
-            521, -- 15 Exalted Reputations
-            520, -- 20 Exalted Reputations
-            519, -- 25 Exalted Reputations
-            518, -- 30 Exalted Reputations
-            1014, -- 35 Exalted Reputations
-            5374, -- 45 Exalted Reputations
-            5723, -- 50 Exalted Reputations
-            6826, -- 55 Exalted Reputations
-            6742, -- 60 Exalted Reputations
-            11177, -- 70 Exalted Reputations
-            12864, -- 80 Exalted Reputations
-            12865, -- 90 Exalted Reputations
-            12866, -- 100 Exalted Reputations
-            18471, -- 110 Exalted Reputations
-            5794, -- Time Flies When You're Having Fun
-            12243, -- Allied Races: Lightforged Draenei
-            12414, -- Heritage of the Lightforged
-            14013, -- Allied Races: Mechagnome
-            14014, -- Heritage of the Mechagnome
-            12242, -- Allied Races: Void Elf
-            12291, -- Heritage of the Void
-            12515, -- Allied Races: Dark Iron Dwarf
-            13076, -- Heritage of the Dark Iron
-            13163, -- Allied Races: Kul Tiran
-            13504, -- Heritage of the Kul Tirans
-            12245, -- Allied Races: Highmountain Tauren
-            12415, -- Heritage of Highmountain
-            12244, -- Allied Races: Nightborne
-            12413, -- Heritage of the Nightborne
-            12518, -- Allied Races: Mag'har Orc
-            13077, -- Heritage of the Mag'har
-            13161, -- Allied Races: Zandalari Troll
-            13503, -- Heritage of the Zandalari
-            13206, -- Allied Races: Vulpera
-            14002, -- Heritage of the Vulpera
-            40307, -- Allied Races: Earthen
-            40309, -- Heritage of the Earthen
-            61506, -- Allied Race: Haranir (Reward: Haranir Race Unlocked)
-            61942, -- Heritage of the Haranir (Reward: Haranir Heritage Armor)
-        },
-    },
-    { -- Pet Battles
-        CT.PetBattles,
-        { -- Collect
-            CT.Collect,
-            true,
-            {
-                7482, -- Trainer Extraordinaire
-                7483, -- Battle Master
-                6600, -- Ultimate Trainer
-                7521, -- Time to Open a Pet Store
-                9712, -- Shiny Pet Charmer
-                12927, -- Polished Pet Charmer
-                1017, -- Can I Keep Him?
-                15, -- Plenty of Pets
-                1248, -- Plethora of Pets
-                1250, -- Shop Smart, Shop Pet...Smart
-                2516, -- Lil' Game Hunter
-                5876, -- Petting Zoo
-                5877, -- Menagerie
-                5875, -- Littlest Pet Shop
-                7500, -- Going to Need More Leashes
-                7501, -- That's a Lot of Pet Food
-                9643, -- So. Many. Pets.
-                12992, -- Pet Emporium
-                12958, -- Master of Minions
-                15641, -- Many More Mini Minions
-                15642, -- Proven Pet Parent
-                15643, -- What Can I Say? They Love Me.
-                15644, -- Good Things Come in Small Packages
-                6554, -- He's Mine!
-                6555, -- Building a Team
-                6556, -- Going to Need More Traps
-                6557, -- Master Pet Hunter
-                7436, -- Zen Pet Hunter
-                7465, -- An Uncommon Find
-                7462, -- A Rare Catch
-                7463, -- Lots of Rarity
-                7464, -- Quality & Quantity
-                6608, -- Family Reunion
-                6571, -- That Was Close!
-                16731, -- Court is Now in Session
-            },
-        },
-        { -- Battle
-            CT.Battle,
-            true,
-            {
-                6594, -- Cat Fight!
-                6593, -- Experienced Pet Battler
-                6462, -- Master Pet Battler
-                6591, -- Grand Master Pet Battler
-                6592, -- Legendary Pet Battler
-                6851, -- Take 'Em All On!
-                6595, -- Pet Brawler
-                6596, -- Experienced Pet Brawler
-                6597, -- Master Pet Brawler
-                6598, -- Grand Master Pet Brawler
-                6599, -- Legendary Pet Brawler
-                8297, -- Merciless Pet Brawler
-                8298, -- Vengeful Pet Brawler
-                8300, -- Brutal Pet Brawler
-                8301, -- Deadly Pet Brawler
-                12279, -- Mechanical Brawler
-                12280, -- Aquatic Brawler
-                12281, -- Beast Brawler
-                12282, -- Elemental Brawler
-                12283, -- Magic Brawler
-                12284, -- Critter Brawler
-                12285, -- Undead Brawler
-                12286, -- Flying Brawler
-                12287, -- Dragonkin Brawler
-                12289, -- Humanoid Brawler
-                12290, -- Family Brawler
-                6618, -- On A Roll
-                6619, -- Win Streak
-                6620, -- No Time To Heal
-            },
-        },
-        { -- Level
-            CT.Level,
-            true,
-            {
-                7433, -- Newbie
-                6566, -- Just a Pup
-                6567, -- Growing Up
-                6568, -- Time for a Leash
-                6569, -- Old Timer
-                6570, -- All Growns Up!
-                6579, -- Rookie Pet Group
-                6580, -- Rookie Pet Crew
-                6583, -- Rookie Pet Mob
-                6578, -- Pro Pet Group
-                6581, -- Pro Pet Crew
-                6582, -- Pro Pet Mob
-                6609, -- No Favorites
-                6610, -- All Pets Allowed
-                9070, -- Overstuffed
-            },
-        },
-    },
-    { -- Brawler's Guild
-        addon.L["Brawler's Guild"],
-        { -- Season 1
-            addon.L["Season"] .. " " .. 1 .. (addon.Util.IsMainline and CT.Legacy or ""),
-            {
-                7947, -- The First Rule of Brawler's Guild (Season 1 or 2)
-                7948, -- The First Rule of Brawler's Guild (Season 1 or 2)
-                7937, -- You Are Not Your $#*@! Legplates (Season 1)
-                8020, -- You Are Not Your $#*@! Legplates (Season 1)
-                7940, -- The Second Rule of Brawler's Guild (Season 1)
-                7939, -- The Second Rule of Brawler's Guild (Season 1)
-                7941, -- Brawlin' and Shot Callin' (Season 1)
-                7942, -- Brawlin' and Shot Callin' (Season 1)
-                8335, -- Having a Brawl (Season 1)
-                8337, -- Having a Brawl (Season 1)
-                8336, -- I've Got the Biggest Brawls of Them All (Season 1)
-                8338, -- I've Got the Biggest Brawls of Them All (Season 1)
-                7946, -- Now You're Just Showing Off (Season 1)
-                8022, -- Now You're Just Showing Off (Season 1)
-                8340, -- Deck Your Collection (Season 1)
-                8343, -- Deck Your Collection (Season 1)
-            }
-        },
-        { -- Season 2
-            addon.L["Season"] .. " " .. 2 .. (addon.Util.IsMainline and CT.Legacy or ""),
-            {
-                7947, -- The First Rule of Brawler's Guild (Season 1 or 2)
-                7948, -- The First Rule of Brawler's Guild (Season 1 or 2)
-                9168, -- You Are Not Your $#*@! Legplates (Season 2)
-                9172, -- You Are Not Your $#*@! Legplates (Season 2)
-                9169, -- The Second Rule of Brawler's Guild (Season 2)
-                9173, -- The Second Rule of Brawler's Guild (Season 2)
-                9170, -- Brawlin' and Shot Callin' (Season 2)
-                9174, -- Brawlin' and Shot Callin' (Season 2)
-                9171, -- Now You're Just Showing Off (Season 2)
-                9175, -- Now You're Just Showing Off (Season 2)
-                8339, -- Collect Your Deck (Season 2)
-                8342, -- Collect Your Deck (Season 2)
-                9176, -- Deck Your Collection (Season 2)
-                9177, -- Deck Your Collection (Season 2)
-                7949, -- Rabble Rabble Rabble (Season 2)
-                7950, -- Rabble Rabble Rabble (Season 2)
-                7943, -- I'm Your Number One Fan (Season 2)
-                7945, -- Haters Gonna Hate (Season 2)
-                7944, -- Bottle Service (Season 2)
-            },
-        },
-        { -- Season 3
-            addon.L["Season"] .. " " .. 3 .. (addon.Util.IsMainline and CT.Legacy or ""),
-            {
-                11558, -- The First Rule of Brawler's Guild
-                11559, -- The First Rule of Brawler's Guild
-                11560, -- You Are Not Your $#*@! Legplates (Season 3)
-                11561, -- You Are Not Your $#*@! Legplates (Season 3)
-                11563, -- The Second Rule of Brawler's Guild (Season 3)
-                11564, -- The Second Rule of Brawler's Guild (Season 3)
-                11565, -- King of the Guild (Season 3)
-                11566, -- King of the Guild (Season 3)
-                11572, -- I Am Thrall's Complete Lack Of Surprise (Season 3)
-            },
-        },
-        { -- Season 4
-            addon.L["Season"] .. " " .. 4 .. (addon.Util.IsMainline and CT.Legacy or ""),
-            {
-                11558, -- The First Rule of Brawler's Guild
-                11559, -- The First Rule of Brawler's Guild
-                13186, -- You Are Not Your $#*@! Legplates
-                13188, -- You Are Not Your $#*@! Legplates
-                13189, -- The Second Rule of Brawler's Guild
-                13190, -- The Second Rule of Brawler's Guild
-                13191, -- Brawler for Azeroth
-                13192, -- Brawler for Azeroth
-                13194, -- I Am Thrall's Complete Lack Of Surprise
-                11573, -- Rumble Club
-                11567, -- You Are Not The Contents Of Your Wallet
-                11570, -- Educated Guesser
-            },
-        },
-        { -- Season 5
-            addon.L["Season"] .. " " .. 5,
-            {
-                61413, -- The First Rule of Brawler's Guild
-                61414, -- The First Rule of Brawler's Guild
-                61466, -- The Best There Is
-                61419, -- Brawler's Chilled
-                61420, -- Let Me Solo It
-                61421, -- A Prime Ordeal
-                61422, -- Audience Participation
-                61423, -- Featherweight Brawler
-                61424, -- Brawlzilla
-                61425, -- Hot Footed
-                61426, -- Bare Knuckle Brawl
-                61429, -- Brawl Star
-            },
-        },
-    },
-    { -- Collections
-        CT.Collections,
-        {
-            621, -- Represent
-            1020, -- Ten Tabards
-            1021, -- Twenty-Five Tabards
-            5755, -- Thirty Tabards
-            9911, -- Where's the Mailbox?
-            9906, -- Alt-ernative Lifestyle
-            9908, -- Ready for Powerleveling
-            9670, -- Toying Around
-            9671, -- Having a Ball
-            9672, -- Tons of Toys
-            9673, -- The Toymaster
-            11176, -- Remember to Share
-            12996, -- Toybox Tycoon
-            15781, -- The Joy of Toy
-            61211, -- Welcome Home
-            61308, -- Score a Decor
-            61309, -- Amateur Antiquarian
-            61310, -- Casual Collector
-            61311, -- Ready to Remodel
-            61312, -- Center Stager
-            61313, -- Well-Travelled Collection
-            61314, -- Furniture Historian
-            61315, -- Array of Antiquities
-            61316, -- Custom Cabinets
-            61317, -- Domicile Designer
-            61318, -- Fully Furnished
-            62371, -- Couponing for Beginners
-            62373, -- Coupon Collector
-            62374, -- You Get The Best Deals Anywhere
-            62375, -- Buying in Bulk
-            62376, -- Extreme Couponing
-            62377, -- A Fist Full of Coupons
-            62378, -- A Few Coupons More
-            63441, -- Souvenir Seeker, Razorwind Shores
-            63605, -- Souvenir Seeker, Founder's Point
-            63606, -- Superlative Souvenir Seeker
-        },
-    },
-    { -- Lorewalking
-        addon.L["Lorewalking"],
-        {
-            42187, -- Lorewalking: Ethereal Wisdom
-            42188, -- Lorewalking: Blade's Bane
-            42189, -- Lorewalking: The Lich Kingdoms
-            61467, -- Lorewalking: The Elves of Quel'thalas
-            61442, -- Lorewalking: The Loa
-        },
-    },
-    { -- Feats of Strength
-        CT.FeatsOfStrength,
-        {
-            4496, -- It's Over Nine Thousand!
-            3636, -- Jade Tiger
-            3896, -- Onyx Panther
-        },
-    },
-};
+KrowiAF.CategoryData.Expansions = KrowiAF.NewTabCategory("Expansions", addon.L["Expansions"], 883)
+local expansions = KrowiAF.CategoryData.Expansions
 
-KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
-    883,
-    addon.L["Expansions"],
-    {
-        TabName = "Expansions",
-    },
-    crossExpansion,
-};
+local crossExpansion = expansions:Named(addon.L["Cross-Expansion"])
+local zones = crossExpansion:Named(addon.L["Zones"])
+zones:Named(addon.GetAchievmentName(14222), {
+    14222, -- Exile's Reach
+})
+crossExpansion:Named(CT.Character, {
+    6, -- Level 10
+    7, -- Level 20
+    8, -- Level 30
+    9, -- Level 40
+    14782, -- Level 50
+    14783, -- Level 60
+    15805, -- Level 70
+    19459, -- Level 80
+    10, -- Level 50 (Legacy)
+    11, -- Level 60 (Legacy)
+    12, -- Level 70 (Legacy)
+    13, -- Level 80 (Legacy)
+    4826, -- Level 85 (Legacy)
+    6193, -- Level 90 (Legacy)
+    9060, -- Level 100 (Legacy)
+    10671, -- Level 110 (Legacy)
+    12544, -- Level 120 (Legacy)
+    16433, -- Soul of Iron (Season of Mastery)
+    7382, -- Dynamic Duo
+    7383, -- Terrific Trio
+    7384, -- Quintessential Quintet
+    7380, -- Double Agent
+    19489, -- Class Connoisseur
+    546, -- Safe Deposit
+    42191, -- Safer Deposit
+    40142, -- Learning to Share
+    40145, -- So Much Sharing
+    1176, -- Got My Mind On My Money
+    1177, -- Got My Mind On My Money
+    1178, -- Got My Mind On My Money
+    1180, -- Got My Mind On My Money
+    1181, -- Got My Mind On My Money
+    5455, -- Got My Mind On My Money
+    5456, -- Got My Mind On My Money
+    6753, -- Got My Mind On My Money
+    558, -- Greedy
+    559, -- Needy
+    891, -- Giddy Up!
+    889, -- Fast and Furious
+    890, -- Into the Wild Blue Yonder
+    5180, -- Breaking the Sound Barrier
+    892, -- The Right Stuff
+    2357, -- Dreadsteed of Xoroth
+    2358, -- Charger
+    2359, -- Swift Flight Form
+    545, -- Shave and a Haircut
+    557, -- Superior
+    556, -- Epic
+    5373, -- Cataclysmically Superior
+    5372, -- Cataclysmically Epic
+    6348, -- Mystically Superior
+    6349, -- Mystically Epic
+    9707, -- Savagely Superior
+    9708, -- Savagely Epic
+    10764, -- Brokenly Superior
+    10765, -- Brokenly Epic
+    12546, -- Superior (Battle)
+    12547, -- Epic (Battle)
+    14796, -- Superior (Shadowlands)
+    14797, -- Epic (Shadowlands)
+    705, -- Master of Arms
+    16, -- Did Somebody Order a Knuckle Sandwich?
+    2716, -- Dual Talent Specialization
+    17334, -- Trading Post Enthusiast
+})
+crossExpansion:Named(CT.Quests, {
+    503, -- 50 Quests Completed
+    504, -- 100 Quests Completed
+    505, -- 250 Quests Completed
+    506, -- 500 Quests Completed
+    507, -- 1000 Quests Completed
+    508, -- 1500 Quests Completed
+    32, -- 2000 Quests Completed
+    978, -- 3000 Quests Completed
+    973, -- 5 Daily Quests Completed
+    974, -- 50 Daily Quests Completed
+    975, -- 200 Daily Quests Completed
+    976, -- 500 Daily Quests Completed
+    977, -- 1000 Daily Quests Completed
+    5751, -- 2500 Daily Quests Completed
+    7410, -- 5000 Daily Quests Completed
+    7411, -- 10000 Daily Quests Completed
+    31, -- A Simple Re-Quest
+    11126, -- 50 World Quests Completed
+    11127, -- 200 World Quests Completed
+    11128, -- 500 World Quests Completed
+    11129, -- 1000 World Quests Completed
+    11130, -- 2500 World Quests Completed
+    11131, -- 5000 World Quests Completed
+    11132, -- 10,000 World Quests Completed
+    4956, -- 5 Dungeon Quests Completed
+    4957, -- 20 Dungeon Quests Completed
+    1182, -- The Bread Winner
+    5752, -- Justly Rewarded
+})
+crossExpansion:Named(CT.Exploration, {
+    964, -- Going Down?
+    1244, -- Well Read
+    1832, -- Tastes Like Chicken
+    1833, -- It's Happy Hour Somewhere
+    16789, -- Lucky Penny
+    16790, -- Curious Coin
+})
+crossExpansion:Named(CT.Delves, {
+    40436, -- You're Getting a Delve!
+    40460, -- Delve Deep
+    40462, -- Delve Deeper
+    40463, -- Delve Deepest
+    41095, -- Delve Beyond
+    41096, -- Delve Infinite
+    40819, -- Ready to Turn
+    40788, -- I Got the Keys
+    40882, -- Copious Coffers
+    40885, -- The Key to Madness
+    40817, -- A Delver's Bounty
+    40863, -- Perplexing Puzzle
+    40864, -- Plentiful Perplexing Puzzles
+    41105, -- Prodigious Plentiful Perplexing Puzzles
+})
+crossExpansion:Named(CT.DungeonsAndRaids, {
+    4476, -- Looking For More
+    4477, -- Looking For Many
+    4478, -- Looking For Multitudes
+})
+local professions = crossExpansion:Named(CT.Professions, {
+    16799, -- Personal Crafter
+    16791, -- Merchant Artisan
+    17410, -- Craftsman of the Zandalar Tribe
+    17412, -- Craftsman of the Argent Dawn
+})
+professions:Named(CT.Alchemy, {
+    18726, -- A Cure for All Ails I
+    18731, -- A Cure for All Ails II
+    18732, -- A Cure for All Ails III
+    18733, -- A Cure for All Ails IV
+    18734, -- Powerful Concoctions I
+    18735, -- Powerful Concoctions II
+    18736, -- Powerful Concoctions III
+    18737, -- Powerful Concoctions IV
+    18934, -- Excessive Experimentation
+    18723, -- Look, You're Specialized!
+    18904, -- Iron to Vendor Gold
+    18963, -- Burst Damage
+})
+professions:Named(CT.Archaeology, {
+    5315, -- Digger
+    5469, -- Diggerer
+    5470, -- Diggerest
+    4854, -- I Had It in My Hand
+    4855, -- What was Briefly Yours is Now Mine
+    4856, -- It Belongs in a Museum!
+    9422, -- The Search For Fact, Not Truth
+    5511, -- It's Always in the Last Place You Look
+})
+professions:Named(CT.Blacksmithing, {
+    18862, -- Anvil Mastery I
+    18864, -- Anvil Mastery II
+    18865, -- Anvil Mastery III
+    18866, -- Anvil Mastery IV
+    18851, -- Skeletons in the Lockbox
+    18852, -- Weaponsmithing, Reborn
+    17496, -- Renowned Weaponsmith
+    17497, -- Renowned Armorsmith
+})
+professions:Named(CT.Cooking, {
+    1998, -- Cooking Award
+    1999, -- 10 Cooking Awards
+    2000, -- 25 Cooking Awards
+    2001, -- 50 Cooking Awards
+    2002, -- 100 Cooking Awards
+    1785, -- Dinner Impossible
+    1795, -- Lunch Lady
+    1796, -- Short Order Cook
+    1797, -- Chef de Partie
+    1798, -- Sous Chef
+    1799, -- Chef de Cuisine
+    5471, -- Iron Chef
+    7328, -- Ironpaw Chef
+    18816, -- Serious Chef
+    18817, -- Showoff Chef
+    3296, -- Cooking with Style
+    1563, -- Hail to the Chef
+    17736, -- The Gift of Cheese
+})
+professions:Named(CT.Enchanting, {
+    18766, -- Disenchantment I
+    18767, -- Disenchantment II
+    18768, -- Disenchantment III
+    18769, -- Disenchantment IV
+    18868, -- Enchantment I
+    18869, -- Enchantment II
+    18870, -- Enchantment III
+    18871, -- Enchantment IV
+    18785, -- Shattered Expectations
+    18789, -- Simply Enchanting
+})
+professions:Named(CT.Engineering, {
+    18872, -- Dangerous Devices I
+    18873, -- Dangerous Devices II
+    18874, -- Dangerous Devices III
+    18875, -- Dangerous Devices IV
+    18730, -- Goblins vs Gnomes
+    18855, -- Portal to Everywhere
+    18895, -- You Had it Coming
+    18901, -- Chromatic Calibration: Holo-Gogs
+    18908, -- Chromatic Calibration: Bio-Optic Killshades
+    18905, -- Chromatic Calibration: Retinal Armor
+    18906, -- Chromatic Calibration: Cranial Cannons
+    18907, -- Chromatic Calibration: Ectoplasmic Specs
+})
+professions:Named(CT.Fishing, {
+    153, -- The Old Gnome and the Sea
+    1257, -- The Scavenger
+    5478, -- The Limnologist
+    5479, -- The Oceanographer
+    1243, -- Fish Don't Leave Footprints
+    3218, -- Turtles All the Way Down
+    1556, -- 25 Fish
+    1557, -- 50 Fish
+    1558, -- 100 Fish
+    1559, -- 250 Fish
+    1560, -- 500 Fish
+    1561, -- 1000 Fish
+    1516, -- Accomplished Angler
+    13502, -- Secret Fish and Where to Find Them
+    17207, -- Discombobberlated
+})
+professions:Named(CT.Inscription, {
+    18876, -- Ink and Quill I
+    18877, -- Ink and Quill II
+    18878, -- Ink and Quill III
+    18879, -- Ink and Quill IV
+    18892, -- Massive Mills
+    18724, -- Gaining an Advantus
+    18738, -- Population In-Crease
+    18858, -- Forge and Befuddle
+    18859, -- Forge and Befuddle
+})
+professions:Named(CT.Jewelcrafting, {
+    18880, -- Generations of Gemstones I
+    18889, -- Generations of Gemstones II
+    18890, -- Generations of Gemstones III
+    18891, -- Generations of Gemstones IV
+    18893, -- Plentiful Prospects
+    18897, -- Can't Crush These
+    18909, -- Fantastic Figurines
+})
+professions:Named(CT.Leatherworking, {
+    18881, -- A Test of Scale I
+    18882, -- A Test of Scale II
+    18883, -- A Test of Scale III
+    18884, -- A Test of Scale IV
+    18793, -- Always Be Camping
+    18898, -- That's Just Cruel
+    18900, -- Budget Bard
+    17498, -- Renowned Leatherworking Specialist
+})
+professions:Named(CT.Tailoring, {
+    18885, -- Quite the Quilt I
+    18886, -- Quite the Quilt II
+    18887, -- Quite the Quilt III
+    18888, -- Quite the Quilt IV
+    141, -- Ultimate Triage
+    17499, -- Renowned Tailoring Specialist
+})
+crossExpansion:Named(CT.Reputation, {
+    522, -- Somebody Likes Me
+    523, -- 5 Exalted Reputations
+    524, -- 10 Exalted Reputations
+    521, -- 15 Exalted Reputations
+    520, -- 20 Exalted Reputations
+    519, -- 25 Exalted Reputations
+    518, -- 30 Exalted Reputations
+    1014, -- 35 Exalted Reputations
+    5374, -- 45 Exalted Reputations
+    5723, -- 50 Exalted Reputations
+    6826, -- 55 Exalted Reputations
+    6742, -- 60 Exalted Reputations
+    11177, -- 70 Exalted Reputations
+    12864, -- 80 Exalted Reputations
+    12865, -- 90 Exalted Reputations
+    12866, -- 100 Exalted Reputations
+    18471, -- 110 Exalted Reputations
+    5794, -- Time Flies When You're Having Fun
+    12243, -- Allied Races: Lightforged Draenei
+    12414, -- Heritage of the Lightforged
+    14013, -- Allied Races: Mechagnome
+    14014, -- Heritage of the Mechagnome
+    12242, -- Allied Races: Void Elf
+    12291, -- Heritage of the Void
+    12515, -- Allied Races: Dark Iron Dwarf
+    13076, -- Heritage of the Dark Iron
+    13163, -- Allied Races: Kul Tiran
+    13504, -- Heritage of the Kul Tirans
+    12245, -- Allied Races: Highmountain Tauren
+    12415, -- Heritage of Highmountain
+    12244, -- Allied Races: Nightborne
+    12413, -- Heritage of the Nightborne
+    12518, -- Allied Races: Mag'har Orc
+    13077, -- Heritage of the Mag'har
+    13161, -- Allied Races: Zandalari Troll
+    13503, -- Heritage of the Zandalari
+    13206, -- Allied Races: Vulpera
+    14002, -- Heritage of the Vulpera
+    40307, -- Allied Races: Earthen
+    40309, -- Heritage of the Earthen
+    61506, -- Allied Race: Haranir (Reward: Haranir Race Unlocked)
+    61942, -- Heritage of the Haranir (Reward: Haranir Heritage Armor)
+})
+local petBattles = crossExpansion:Named(CT.PetBattles)
+petBattles:Named(CT.Collect, {
+    7482, -- Trainer Extraordinaire
+    7483, -- Battle Master
+    6600, -- Ultimate Trainer
+    7521, -- Time to Open a Pet Store
+    9712, -- Shiny Pet Charmer
+    12927, -- Polished Pet Charmer
+    1017, -- Can I Keep Him?
+    15, -- Plenty of Pets
+    1248, -- Plethora of Pets
+    1250, -- Shop Smart, Shop Pet...Smart
+    2516, -- Lil' Game Hunter
+    5876, -- Petting Zoo
+    5877, -- Menagerie
+    5875, -- Littlest Pet Shop
+    7500, -- Going to Need More Leashes
+    7501, -- That's a Lot of Pet Food
+    9643, -- So. Many. Pets.
+    12992, -- Pet Emporium
+    12958, -- Master of Minions
+    15641, -- Many More Mini Minions
+    15642, -- Proven Pet Parent
+    15643, -- What Can I Say? They Love Me.
+    15644, -- Good Things Come in Small Packages
+    6554, -- He's Mine!
+    6555, -- Building a Team
+    6556, -- Going to Need More Traps
+    6557, -- Master Pet Hunter
+    7436, -- Zen Pet Hunter
+    7465, -- An Uncommon Find
+    7462, -- A Rare Catch
+    7463, -- Lots of Rarity
+    7464, -- Quality & Quantity
+    6608, -- Family Reunion
+    6571, -- That Was Close!
+    16731, -- Court is Now in Session
+}):Merge()
+petBattles:Named(CT.Battle, {
+    6594, -- Cat Fight!
+    6593, -- Experienced Pet Battler
+    6462, -- Master Pet Battler
+    6591, -- Grand Master Pet Battler
+    6592, -- Legendary Pet Battler
+    6851, -- Take 'Em All On!
+    6595, -- Pet Brawler
+    6596, -- Experienced Pet Brawler
+    6597, -- Master Pet Brawler
+    6598, -- Grand Master Pet Brawler
+    6599, -- Legendary Pet Brawler
+    8297, -- Merciless Pet Brawler
+    8298, -- Vengeful Pet Brawler
+    8300, -- Brutal Pet Brawler
+    8301, -- Deadly Pet Brawler
+    12279, -- Mechanical Brawler
+    12280, -- Aquatic Brawler
+    12281, -- Beast Brawler
+    12282, -- Elemental Brawler
+    12283, -- Magic Brawler
+    12284, -- Critter Brawler
+    12285, -- Undead Brawler
+    12286, -- Flying Brawler
+    12287, -- Dragonkin Brawler
+    12289, -- Humanoid Brawler
+    12290, -- Family Brawler
+    6618, -- On A Roll
+    6619, -- Win Streak
+    6620, -- No Time To Heal
+}):Merge()
+petBattles:Named(CT.Level, {
+    7433, -- Newbie
+    6566, -- Just a Pup
+    6567, -- Growing Up
+    6568, -- Time for a Leash
+    6569, -- Old Timer
+    6570, -- All Growns Up!
+    6579, -- Rookie Pet Group
+    6580, -- Rookie Pet Crew
+    6583, -- Rookie Pet Mob
+    6578, -- Pro Pet Group
+    6581, -- Pro Pet Crew
+    6582, -- Pro Pet Mob
+    6609, -- No Favorites
+    6610, -- All Pets Allowed
+    9070, -- Overstuffed
+}):Merge()
+local brawlersGuild = crossExpansion:Named(addon.L["Brawler's Guild"])
+brawlersGuild:Named(addon.L["Season"] .. " " .. 1 .. (addon.Util.IsMainline and CT.Legacy or ""), {
+    7947, -- The First Rule of Brawler's Guild (Season 1 or 2)
+    7948, -- The First Rule of Brawler's Guild (Season 1 or 2)
+    7937, -- You Are Not Your $#*@! Legplates (Season 1)
+    8020, -- You Are Not Your $#*@! Legplates (Season 1)
+    7940, -- The Second Rule of Brawler's Guild (Season 1)
+    7939, -- The Second Rule of Brawler's Guild (Season 1)
+    7941, -- Brawlin' and Shot Callin' (Season 1)
+    7942, -- Brawlin' and Shot Callin' (Season 1)
+    8335, -- Having a Brawl (Season 1)
+    8337, -- Having a Brawl (Season 1)
+    8336, -- I've Got the Biggest Brawls of Them All (Season 1)
+    8338, -- I've Got the Biggest Brawls of Them All (Season 1)
+    7946, -- Now You're Just Showing Off (Season 1)
+    8022, -- Now You're Just Showing Off (Season 1)
+    8340, -- Deck Your Collection (Season 1)
+    8343, -- Deck Your Collection (Season 1)
+})
+brawlersGuild:Named(addon.L["Season"] .. " " .. 2 .. (addon.Util.IsMainline and CT.Legacy or ""), {
+    7947, -- The First Rule of Brawler's Guild (Season 1 or 2)
+    7948, -- The First Rule of Brawler's Guild (Season 1 or 2)
+    9168, -- You Are Not Your $#*@! Legplates (Season 2)
+    9172, -- You Are Not Your $#*@! Legplates (Season 2)
+    9169, -- The Second Rule of Brawler's Guild (Season 2)
+    9173, -- The Second Rule of Brawler's Guild (Season 2)
+    9170, -- Brawlin' and Shot Callin' (Season 2)
+    9174, -- Brawlin' and Shot Callin' (Season 2)
+    9171, -- Now You're Just Showing Off (Season 2)
+    9175, -- Now You're Just Showing Off (Season 2)
+    8339, -- Collect Your Deck (Season 2)
+    8342, -- Collect Your Deck (Season 2)
+    9176, -- Deck Your Collection (Season 2)
+    9177, -- Deck Your Collection (Season 2)
+    7949, -- Rabble Rabble Rabble (Season 2)
+    7950, -- Rabble Rabble Rabble (Season 2)
+    7943, -- I'm Your Number One Fan (Season 2)
+    7945, -- Haters Gonna Hate (Season 2)
+    7944, -- Bottle Service (Season 2)
+})
+brawlersGuild:Named(addon.L["Season"] .. " " .. 3 .. (addon.Util.IsMainline and CT.Legacy or ""), {
+    11558, -- The First Rule of Brawler's Guild
+    11559, -- The First Rule of Brawler's Guild
+    11560, -- You Are Not Your $#*@! Legplates (Season 3)
+    11561, -- You Are Not Your $#*@! Legplates (Season 3)
+    11563, -- The Second Rule of Brawler's Guild (Season 3)
+    11564, -- The Second Rule of Brawler's Guild (Season 3)
+    11565, -- King of the Guild (Season 3)
+    11566, -- King of the Guild (Season 3)
+    11572, -- I Am Thrall's Complete Lack Of Surprise (Season 3)
+})
+brawlersGuild:Named(addon.L["Season"] .. " " .. 4 .. (addon.Util.IsMainline and CT.Legacy or ""), {
+    11558, -- The First Rule of Brawler's Guild
+    11559, -- The First Rule of Brawler's Guild
+    13186, -- You Are Not Your $#*@! Legplates
+    13188, -- You Are Not Your $#*@! Legplates
+    13189, -- The Second Rule of Brawler's Guild
+    13190, -- The Second Rule of Brawler's Guild
+    13191, -- Brawler for Azeroth
+    13192, -- Brawler for Azeroth
+    13194, -- I Am Thrall's Complete Lack Of Surprise
+    11573, -- Rumble Club
+    11567, -- You Are Not The Contents Of Your Wallet
+    11570, -- Educated Guesser
+})
+brawlersGuild:Named(addon.L["Season"] .. " " .. 5, {
+    61413, -- The First Rule of Brawler's Guild
+    61414, -- The First Rule of Brawler's Guild
+    61466, -- The Best There Is
+    61419, -- Brawler's Chilled
+    61420, -- Let Me Solo It
+    61421, -- A Prime Ordeal
+    61422, -- Audience Participation
+    61423, -- Featherweight Brawler
+    61424, -- Brawlzilla
+    61425, -- Hot Footed
+    61426, -- Bare Knuckle Brawl
+    61429, -- Brawl Star
+})
+crossExpansion:Named(CT.Collections, {
+    621, -- Represent
+    1020, -- Ten Tabards
+    1021, -- Twenty-Five Tabards
+    5755, -- Thirty Tabards
+    9911, -- Where's the Mailbox?
+    9906, -- Alt-ernative Lifestyle
+    9908, -- Ready for Powerleveling
+    9670, -- Toying Around
+    9671, -- Having a Ball
+    9672, -- Tons of Toys
+    9673, -- The Toymaster
+    11176, -- Remember to Share
+    12996, -- Toybox Tycoon
+    15781, -- The Joy of Toy
+    61211, -- Welcome Home
+    61308, -- Score a Decor
+    61309, -- Amateur Antiquarian
+    61310, -- Casual Collector
+    61311, -- Ready to Remodel
+    61312, -- Center Stager
+    61313, -- Well-Travelled Collection
+    61314, -- Furniture Historian
+    61315, -- Array of Antiquities
+    61316, -- Custom Cabinets
+    61317, -- Domicile Designer
+    61318, -- Fully Furnished
+    62371, -- Couponing for Beginners
+    62373, -- Coupon Collector
+    62374, -- You Get The Best Deals Anywhere
+    62375, -- Buying in Bulk
+    62376, -- Extreme Couponing
+    62377, -- A Fist Full of Coupons
+    62378, -- A Few Coupons More
+    63441, -- Souvenir Seeker, Razorwind Shores
+    63605, -- Souvenir Seeker, Founder's Point
+    63606, -- Superlative Souvenir Seeker
+})
+crossExpansion:Named(addon.L["Lorewalking"], {
+    42187, -- Lorewalking: Ethereal Wisdom
+    42188, -- Lorewalking: Blade's Bane
+    42189, -- Lorewalking: The Lich Kingdoms
+    61467, -- Lorewalking: The Elves of Quel'thalas
+    61442, -- Lorewalking: The Loa
+})
+crossExpansion:Named(CT.FeatsOfStrength, {
+    4496, -- It's Over Nine Thousand!
+    3636, -- Jade Tiger
+    3896, -- Onyx Panther
+})
 
-shared.Shadowlands = {}
-local shadowlands = shared.Shadowlands
-
-shadowlands.MythicPlus = {
-    { -- Season 1
-        -- 1567,
-        addon.L["Season"] .. " " .. 1,
-        true,
-        {
-            14938, -- Shadowlands Keystone Explorer: Season One
-            14531, -- Shadowlands Keystone Conqueror: Season One
-            14532, -- Shadowlands Keystone Master: Season One
-        },
-    },
-    { -- Season 2
-        -- 1568,
-        addon.L["Season"] .. " " .. 2,
-        true,
-        {
-            15051, -- Keystone Hero: De Other Side
-            15048, -- Keystone Hero: Halls of Atonement
-            15047, -- Keystone Hero: Mists of Tirna Scithe
-            15045, -- Keystone Hero: The Necrotic Wake
-            15046, -- Keystone Hero: Plaguefall
-            15052, -- Keystone Hero: Sanguine Depths
-            15049, -- Keystone Hero: Spires of Ascension
-            15050, -- Keystone Hero: Theater of Pain
-            15073, -- Shadowlands Keystone Explorer: Season Two
-            15077, -- Shadowlands Keystone Conqueror: Season Two
-            15078, -- Shadowlands Keystone Master: Season Two
-            15327, -- Tormented Hero: Shadowlands Season 2
-        },
-    },
-    { -- Season 3
-        -- 1569,
-        addon.L["Season"] .. " " .. 3,
-        true,
-        {
-            15051, -- Keystone Hero: De Other Side
-            15048, -- Keystone Hero: Halls of Atonement
-            15047, -- Keystone Hero: Mists of Tirna Scithe
-            15045, -- Keystone Hero: The Necrotic Wake
-            15046, -- Keystone Hero: Plaguefall
-            15052, -- Keystone Hero: Sanguine Depths
-            15049, -- Keystone Hero: Spires of Ascension
-            15500, -- Keystone Hero: Tazavesh, the Veiled Market
-            15050, -- Keystone Hero: Theater of Pain
-            15496, -- Shadowlands Keystone Explorer: Season Three
-            15498, -- Shadowlands Keystone Conqueror: Season Three
-            15499, -- Shadowlands Keystone Master: Season Three
-            15506, -- Shadowlands Keystone Hero: Season Three
-            15691, -- Cryptic Hero: Shadowlands Season 3
-        },
-    },
-    { -- Season 4
-        -- 1572,
-        addon.L["Season"] .. " " .. 4,
-        true,
-        {
-            15500, -- Keystone Hero: Tazavesh, the Veiled Market
-            15693, -- Keystone Hero: Operation: Mechagon
-            15692, -- Keystone Hero: Return to Karazhan
-            15695, -- Keystone Hero: Grimrail Depot
-            15694, -- Keystone Hero: Iron Docks
-            15688, -- Shadowlands Keystone Explorer: Season Four
-            15689, -- Shadowlands Keystone Conqueror: Season Four
-            15690, -- Shadowlands Keystone Master: Season Four
-            15756, -- Shrouded Hero: Shadowlands Season 4
-        },
-    },
-}
 
 shared.GetShadowlandsMythicPlus = function(categoryName)
-    return {
-        categoryName,
-        unpack(shadowlands.MythicPlus)
-    }
+    local category = KrowiAF.NewCategory(categoryName)
+    -- 1567,
+    category:Named(addon.L["Season"] .. " " .. 1, {
+        14938, -- Shadowlands Keystone Explorer: Season One
+        14531, -- Shadowlands Keystone Conqueror: Season One
+        14532, -- Shadowlands Keystone Master: Season One
+    }):Merge()
+    -- 1568,
+    category:Named(addon.L["Season"] .. " " .. 2, {
+        15051, -- Keystone Hero: De Other Side
+        15048, -- Keystone Hero: Halls of Atonement
+        15047, -- Keystone Hero: Mists of Tirna Scithe
+        15045, -- Keystone Hero: The Necrotic Wake
+        15046, -- Keystone Hero: Plaguefall
+        15052, -- Keystone Hero: Sanguine Depths
+        15049, -- Keystone Hero: Spires of Ascension
+        15050, -- Keystone Hero: Theater of Pain
+        15073, -- Shadowlands Keystone Explorer: Season Two
+        15077, -- Shadowlands Keystone Conqueror: Season Two
+        15078, -- Shadowlands Keystone Master: Season Two
+        15327, -- Tormented Hero: Shadowlands Season 2
+    }):Merge()
+    -- 1569,
+    category:Named(addon.L["Season"] .. " " .. 3, {
+        15051, -- Keystone Hero: De Other Side
+        15048, -- Keystone Hero: Halls of Atonement
+        15047, -- Keystone Hero: Mists of Tirna Scithe
+        15045, -- Keystone Hero: The Necrotic Wake
+        15046, -- Keystone Hero: Plaguefall
+        15052, -- Keystone Hero: Sanguine Depths
+        15049, -- Keystone Hero: Spires of Ascension
+        15500, -- Keystone Hero: Tazavesh, the Veiled Market
+        15050, -- Keystone Hero: Theater of Pain
+        15496, -- Shadowlands Keystone Explorer: Season Three
+        15498, -- Shadowlands Keystone Conqueror: Season Three
+        15499, -- Shadowlands Keystone Master: Season Three
+        15506, -- Shadowlands Keystone Hero: Season Three
+        15691, -- Cryptic Hero: Shadowlands Season 3
+    }):Merge()
+    -- 1572,
+    category:Named(addon.L["Season"] .. " " .. 4, {
+        15500, -- Keystone Hero: Tazavesh, the Veiled Market
+        15693, -- Keystone Hero: Operation: Mechagon
+        15692, -- Keystone Hero: Return to Karazhan
+        15695, -- Keystone Hero: Grimrail Depot
+        15694, -- Keystone Hero: Iron Docks
+        15688, -- Shadowlands Keystone Explorer: Season Four
+        15689, -- Shadowlands Keystone Conqueror: Season Four
+        15690, -- Shadowlands Keystone Master: Season Four
+        15756, -- Shrouded Hero: Shadowlands Season 4
+    }):Merge()
+    return category
 end
-
-shared.Dragonflight = {}
-local dragonflight = shared.Dragonflight
-
-dragonflight.MythicPlus = {
-    { -- Season 1
-        addon.L["Season"] .. " " .. 1,
-        true,
-        {
-            16643, -- Keystone Hero: Algeth'ar Academy
-            16645, -- Keystone Hero: The Azure Vault
-            16641, -- Keystone Hero: The Nokhud Offensive
-            16640, -- Keystone Hero: Ruby Life Pools
-            16658, -- Keystone Hero: Court of Stars
-            16659, -- Keystone Hero: Halls of Valor
-            16660, -- Keystone Hero: Shadowmoon Burial Grounds
-            16661, -- Keystone Hero: Temple of the Jade Serpent
-            16647, -- Dragonflight Keystone Explorer: Season One
-            16648, -- Dragonflight Keystone Conqueror: Season One
-            16649, -- Dragonflight Keystone Master: Season One
-            16650, -- Dragonflight Keystone Hero: Season One
-            16429, -- Thundering Hero: Dragonflight Season 1
-            17119, -- Deep Cuts From the Vault
-        },
-    },
-    { -- Season 2
-        addon.L["Season"] .. " " .. 2,
-        true,
-        {
-            16642, -- Keystone Hero: Brackenhide Hollow
-            16646, -- Keystone Hero: Halls of Infusion
-            16644, -- Keystone Hero: Neltharus
-            16639, -- Keystone Hero: Uldaman: Legacy of Tyr
-            17848, -- Keystone Hero: Freehold
-            17849, -- Keystone Hero: The Underrot
-            17850, -- Keystone Hero: Neltharion's Lair
-            17847, -- Keystone Hero: The Vortex Pinnacle
-            17842, -- Dragonflight Keystone Explorer: Season Two
-            17843, -- Dragonflight Keystone Conqueror: Season Two
-            17844, -- Dragonflight Keystone Master: Season Two
-            17845, -- Dragonflight Keystone Hero: Season Two
-            18542, -- Dragonflight Keystone Master: Season Two
-            17846, -- Smoldering Hero: Dragonflight Season 2
-            18027, -- Dragonflight Season 2 Master
-            18380, -- Dragonflight Season 2 Hero
-        },
-    },
-    { -- Season 3
-        addon.L["Season"] .. " " .. 3,
-        true,
-        {
-            19088, -- Keystone Hero: Dawn of the Infinite
-            19087, -- Keystone Hero: Atal'Dazar
-            19086, -- Keystone Hero: Waycrest Manor
-            19084, -- Keystone Hero: Black Rook Hold
-            19085, -- Keystone Hero: Darkheart Thicket
-            19083, -- Keystone Hero: The Everbloom
-            19082, -- Keystone Hero: Throne of the Tides
-            19009, -- Dragonflight Keystone Explorer: Season Three
-            19010, -- Dragonflight Keystone Conqueror: Season Three
-            19011, -- Dragonflight Keystone Master: Season Three
-            19012, -- Dragonflight Keystone Hero: Season Three
-            19396, -- Dragonflight Season 3 Master
-            19420, -- Dragonflight Season 3 Hero
-        },
-    },
-    { -- Season 4
-        addon.L["Season"] .. " " .. 4,
-        true,
-        {
-            16643, -- Keystone Hero: Algeth'ar Academy
-            16642, -- Keystone Hero: Brackenhide Hollow
-            16646, -- Keystone Hero: Halls of Infusion
-            16644, -- Keystone Hero: Neltharus
-            16640, -- Keystone Hero: Ruby Life Pools
-            16645, -- Keystone Hero: The Azure Vault
-            16641, -- Keystone Hero: The Nokhud Offensive
-            16639, -- Keystone Hero: Uldaman: Legacy of Tyr
-            19780, -- Dragonflight Keystone Explorer: Season Four
-            19781, -- Dragonflight Keystone Conqueror: Season Four
-            19782, -- Dragonflight Keystone Master: Season Four
-            19783, -- Dragonflight Keystone Hero: Season Four
-            20481, -- Dragonflight Season 4 Master
-        },
-    },
-}
 
 shared.GetDragonflightMythicPlus = function(categoryName)
-    return {
-        categoryName,
-        unpack(dragonflight.MythicPlus)
-    }
+    local category = KrowiAF.NewCategory(categoryName)
+    category:Named(addon.L["Season"] .. " " .. 1, {
+        16643, -- Keystone Hero: Algeth'ar Academy
+        16645, -- Keystone Hero: The Azure Vault
+        16641, -- Keystone Hero: The Nokhud Offensive
+        16640, -- Keystone Hero: Ruby Life Pools
+        16658, -- Keystone Hero: Court of Stars
+        16659, -- Keystone Hero: Halls of Valor
+        16660, -- Keystone Hero: Shadowmoon Burial Grounds
+        16661, -- Keystone Hero: Temple of the Jade Serpent
+        16647, -- Dragonflight Keystone Explorer: Season One
+        16648, -- Dragonflight Keystone Conqueror: Season One
+        16649, -- Dragonflight Keystone Master: Season One
+        16650, -- Dragonflight Keystone Hero: Season One
+        16429, -- Thundering Hero: Dragonflight Season 1
+        17119, -- Deep Cuts From the Vault
+    }):Merge()
+    category:Named(addon.L["Season"] .. " " .. 2, {
+        16642, -- Keystone Hero: Brackenhide Hollow
+        16646, -- Keystone Hero: Halls of Infusion
+        16644, -- Keystone Hero: Neltharus
+        16639, -- Keystone Hero: Uldaman: Legacy of Tyr
+        17848, -- Keystone Hero: Freehold
+        17849, -- Keystone Hero: The Underrot
+        17850, -- Keystone Hero: Neltharion's Lair
+        17847, -- Keystone Hero: The Vortex Pinnacle
+        17842, -- Dragonflight Keystone Explorer: Season Two
+        17843, -- Dragonflight Keystone Conqueror: Season Two
+        17844, -- Dragonflight Keystone Master: Season Two
+        17845, -- Dragonflight Keystone Hero: Season Two
+        18542, -- Dragonflight Keystone Master: Season Two
+        17846, -- Smoldering Hero: Dragonflight Season 2
+        18027, -- Dragonflight Season 2 Master
+        18380, -- Dragonflight Season 2 Hero
+    }):Merge()
+    category:Named(addon.L["Season"] .. " " .. 3, {
+        19088, -- Keystone Hero: Dawn of the Infinite
+        19087, -- Keystone Hero: Atal'Dazar
+        19086, -- Keystone Hero: Waycrest Manor
+        19084, -- Keystone Hero: Black Rook Hold
+        19085, -- Keystone Hero: Darkheart Thicket
+        19083, -- Keystone Hero: The Everbloom
+        19082, -- Keystone Hero: Throne of the Tides
+        19009, -- Dragonflight Keystone Explorer: Season Three
+        19010, -- Dragonflight Keystone Conqueror: Season Three
+        19011, -- Dragonflight Keystone Master: Season Three
+        19012, -- Dragonflight Keystone Hero: Season Three
+        19396, -- Dragonflight Season 3 Master
+        19420, -- Dragonflight Season 3 Hero
+    }):Merge()
+    category:Named(addon.L["Season"] .. " " .. 4, {
+        16643, -- Keystone Hero: Algeth'ar Academy
+        16642, -- Keystone Hero: Brackenhide Hollow
+        16646, -- Keystone Hero: Halls of Infusion
+        16644, -- Keystone Hero: Neltharus
+        16640, -- Keystone Hero: Ruby Life Pools
+        16645, -- Keystone Hero: The Azure Vault
+        16641, -- Keystone Hero: The Nokhud Offensive
+        16639, -- Keystone Hero: Uldaman: Legacy of Tyr
+        19780, -- Dragonflight Keystone Explorer: Season Four
+        19781, -- Dragonflight Keystone Conqueror: Season Four
+        19782, -- Dragonflight Keystone Master: Season Four
+        19783, -- Dragonflight Keystone Hero: Season Four
+        20481, -- Dragonflight Season 4 Master
+    }):Merge()
+    return category
 end
 
-shared.TheWarWithin = {}
-local theWarWithin = shared.TheWarWithin
-
-theWarWithin.MythicPlus = {
-    { -- Season 1
-        addon.L["Season"] .. " " .. 1,
-        true,
-        {
-            20586, -- Keystone Hero: Ara-Kara, City of Echoes
-            20582, -- Keystone Hero: City of Threads
-            20585, -- Keystone Hero: The Dawnbreaker
-            20580, -- Keystone Hero: The Stonevault
-            15047, -- Keystone Hero: Mists of Tirna Scithe
-            15045, -- Keystone Hero: The Necrotic Wake
-            20587, -- Keystone Hero: Siege of Boralus
-            20588, -- Keystone Hero: Grim Batol
-            20523, -- The War Within Keystone Explorer: Season One
-            20524, -- The War Within Keystone Conqueror: Season One
-            20525, -- The War Within Keystone Master: Season One
-            20526, -- The War Within Keystone Hero: Season One
-            20589, -- Tempered Hero: The War Within Season 1
-        },
-    },
-    { -- Season 2
-        addon.L["Season"] .. " " .. 2,
-        true,
-        {
-            20583, -- Keystone Hero: Cinderbrew Meadery
-            20584, -- Keystone Hero: Darkflame Cleft
-            20581, -- Keystone Hero: Priory of the Sacred Flame
-            20579, -- Keystone Hero: The Rookery
-            41348, -- Keystone Hero: Operation: Floodgate
-            15050, -- Keystone Hero: Theater of Pain
-            40966, -- Keystone Hero: Operation: Mechagon - Workshop
-            40965, -- Keystone Hero: The MOTHERLODE!!
-            40949, -- The War Within Keystone Explorer: Season Two
-            40950, -- The War Within Keystone Conqueror: Season Two
-            41533, -- The War Within Keystone Master: Season Two
-            40952, -- The War Within Keystone Hero: Season Two
-            40951, -- The War Within Keystone Legend: Season Two
-            42139, -- The Enterprising Tank
-            42141, -- The Enterprising Healer
-            42144, -- The Enterprising Damage Dealer
-            42148, -- The Enterprising Dungeon Master
-            40954, -- Enterprising Hero: The War Within Season Two
-        },
-    },
-    { -- Season 3
-        addon.L["Season"] .. " " .. 3,
-        {
-            addon.L["KeystoneResilience"],
-            true,
-            {
-                42149, -- The War Within Season 3: Resilient Keystone 12
-                42150, -- The War Within Season 3: Resilient Keystone 13
-                42151, -- The War Within Season 3: Resilient Keystone 14
-                42152, -- The War Within Season 3: Resilient Keystone 15
-                42153, -- The War Within Season 3: Resilient Keystone 16
-                42154, -- The War Within Season 3: Resilient Keystone 17
-                42155, -- The War Within Season 3: Resilient Keystone 18
-                42156, -- The War Within Season 3: Resilient Keystone 19
-                42157, -- The War Within Season 3: Resilient Keystone 20
-                42158, -- The War Within Season 3: Resilient Keystone 21
-                42159, -- The War Within Season 3: Resilient Keystone 22
-                42160, -- The War Within Season 3: Resilient Keystone 23
-                42161, -- The War Within Season 3: Resilient Keystone 24
-                42162, -- The War Within Season 3: Resilient Keystone 25
-                42802, -- The War Within Season 3: Resilient Keystone 26
-                42803, -- The War Within Season 3: Resilient Keystone 27
-                42804, -- The War Within Season 3: Resilient Keystone 28
-                42805, -- The War Within Season 3: Resilient Keystone 29
-                42806, -- The War Within Season 3: Resilient Keystone 30
-            }
-        },
-        {
-            20586, -- Keystone Hero: Ara-Kara, City of Echoes
-            20585, -- Keystone Hero: The Dawnbreaker
-            20581, -- Keystone Hero: Priory of the Sacred Flame
-            41348, -- Keystone Hero: Operation: Floodgate
-            42173, -- Keystone Hero: Eco-Dome Al'dani
-            15048, -- Keystone Hero: Halls of Atonement
-            15500, -- Keystone Hero: Tazavesh, the Veiled Market
-            42169, -- The War Within Keystone Explorer: Season Three
-            42170, -- The War Within Keystone Conqueror: Season Three
-            41973, -- The War Within Keystone Master: Season Three
-            42171, -- The War Within Keystone Hero: Season Three
-            42172, -- The War Within Keystone Legend: Season Three
-            61874, -- The Unbound Tank
-            61875, -- The Unbound Healer
-            61876, -- The Unbound Damage Dealer
-            61877, -- The Unbound Dungeon Master
-            42174, -- Unbound Hero: The War Within Season Three
-        },
-    },
-    {
+shared.GetTheWarWithinMythicPlus = function(categoryName)
+    local category = KrowiAF.NewCategory(categoryName)
+    category:Ids{
         40660, -- The War Within Season 1: Spelunker Supreme
         40723, -- Web-Wrapped in the Finest Silks
         40911, -- The War Within Season 2: Master Blaster
         41665, -- Dressed to the Mines
         41937, -- The War Within Season 3: Voidborne Victor
         42325, -- Void Wear Prohibited
-    },
-}
-
-shared.GetTheWarWithinMythicPlus = function(categoryName)
-    return {
-        categoryName,
-        unpack(theWarWithin.MythicPlus)
     }
+    category:Named(addon.L["Season"] .. " " .. 1, {
+        20586, -- Keystone Hero: Ara-Kara, City of Echoes
+        20582, -- Keystone Hero: City of Threads
+        20585, -- Keystone Hero: The Dawnbreaker
+        20580, -- Keystone Hero: The Stonevault
+        15047, -- Keystone Hero: Mists of Tirna Scithe
+        15045, -- Keystone Hero: The Necrotic Wake
+        20587, -- Keystone Hero: Siege of Boralus
+        20588, -- Keystone Hero: Grim Batol
+        20523, -- The War Within Keystone Explorer: Season One
+        20524, -- The War Within Keystone Conqueror: Season One
+        20525, -- The War Within Keystone Master: Season One
+        20526, -- The War Within Keystone Hero: Season One
+        20589, -- Tempered Hero: The War Within Season 1
+    }):Merge()
+    category:Named(addon.L["Season"] .. " " .. 2, {
+        20583, -- Keystone Hero: Cinderbrew Meadery
+        20584, -- Keystone Hero: Darkflame Cleft
+        20581, -- Keystone Hero: Priory of the Sacred Flame
+        20579, -- Keystone Hero: The Rookery
+        41348, -- Keystone Hero: Operation: Floodgate
+        15050, -- Keystone Hero: Theater of Pain
+        40966, -- Keystone Hero: Operation: Mechagon - Workshop
+        40965, -- Keystone Hero: The MOTHERLODE!!
+        40949, -- The War Within Keystone Explorer: Season Two
+        40950, -- The War Within Keystone Conqueror: Season Two
+        41533, -- The War Within Keystone Master: Season Two
+        40952, -- The War Within Keystone Hero: Season Two
+        40951, -- The War Within Keystone Legend: Season Two
+        42139, -- The Enterprising Tank
+        42141, -- The Enterprising Healer
+        42144, -- The Enterprising Damage Dealer
+        42148, -- The Enterprising Dungeon Master
+        40954, -- Enterprising Hero: The War Within Season Two
+    }):Merge()
+    local season3 = category:Named(addon.L["Season"] .. " " .. 3, {
+        20586, -- Keystone Hero: Ara-Kara, City of Echoes
+        20585, -- Keystone Hero: The Dawnbreaker
+        20581, -- Keystone Hero: Priory of the Sacred Flame
+        41348, -- Keystone Hero: Operation: Floodgate
+        42173, -- Keystone Hero: Eco-Dome Al'dani
+        15048, -- Keystone Hero: Halls of Atonement
+        15500, -- Keystone Hero: Tazavesh, the Veiled Market
+        42169, -- The War Within Keystone Explorer: Season Three
+        42170, -- The War Within Keystone Conqueror: Season Three
+        41973, -- The War Within Keystone Master: Season Three
+        42171, -- The War Within Keystone Hero: Season Three
+        42172, -- The War Within Keystone Legend: Season Three
+        61874, -- The Unbound Tank
+        61875, -- The Unbound Healer
+        61876, -- The Unbound Damage Dealer
+        61877, -- The Unbound Dungeon Master
+        42174, -- Unbound Hero: The War Within Season Three
+    })
+    season3:Named(addon.L["KeystoneResilience"], {
+        42149, -- The War Within Season 3: Resilient Keystone 12
+        42150, -- The War Within Season 3: Resilient Keystone 13
+        42151, -- The War Within Season 3: Resilient Keystone 14
+        42152, -- The War Within Season 3: Resilient Keystone 15
+        42153, -- The War Within Season 3: Resilient Keystone 16
+        42154, -- The War Within Season 3: Resilient Keystone 17
+        42155, -- The War Within Season 3: Resilient Keystone 18
+        42156, -- The War Within Season 3: Resilient Keystone 19
+        42157, -- The War Within Season 3: Resilient Keystone 20
+        42158, -- The War Within Season 3: Resilient Keystone 21
+        42159, -- The War Within Season 3: Resilient Keystone 22
+        42160, -- The War Within Season 3: Resilient Keystone 23
+        42161, -- The War Within Season 3: Resilient Keystone 24
+        42162, -- The War Within Season 3: Resilient Keystone 25
+        42802, -- The War Within Season 3: Resilient Keystone 26
+        42803, -- The War Within Season 3: Resilient Keystone 27
+        42804, -- The War Within Season 3: Resilient Keystone 28
+        42805, -- The War Within Season 3: Resilient Keystone 29
+        42806, -- The War Within Season 3: Resilient Keystone 30
+    }):Merge()
+    return category
 end
 
-shared.Midnight = {}
-local midnight = shared.Midnight
-
-midnight.MythicPlus = {
-    { -- Season 1
-        addon.L["Season"] .. " " .. 1,
-        {
-            addon.L["KeystoneResilience"],
-            true,
-            {
-                61233, -- Midnight Season 1: Resilient Keystone 12
-                61235, -- Midnight Season 1: Resilient Keystone 13
-                61236, -- Midnight Season 1: Resilient Keystone 14
-                61237, -- Midnight Season 1: Resilient Keystone 15
-                61239, -- Midnight Season 1: Resilient Keystone 16
-                61240, -- Midnight Season 1: Resilient Keystone 17
-                61241, -- Midnight Season 1: Resilient Keystone 18
-                61242, -- Midnight Season 1: Resilient Keystone 19
-                61243, -- Midnight Season 1: Resilient Keystone 20
-                61244, -- Midnight Season 1: Resilient Keystone 21
-                61245, -- Midnight Season 1: Resilient Keystone 22
-                61246, -- Midnight Season 1: Resilient Keystone 23
-                61247, -- Midnight Season 1: Resilient Keystone 24
-                61248, -- Midnight Season 1: Resilient Keystone 25
-                61249, -- Midnight Season 1: Resilient Keystone 26
-                61250, -- Midnight Season 1: Resilient Keystone 27
-                61251, -- Midnight Season 1: Resilient Keystone 28
-                61252, -- Midnight Season 1: Resilient Keystone 29
-                61253, -- Midnight Season 1: Resilient Keystone 30
-            }
-        },
-        {
-            61267, -- Keystone Hero: Magisters' Terrace
-            61269, -- Keystone Hero: Maisara Caverns
-            61268, -- Keystone Hero: Nexus-Point Xenas
-            61262, -- Keystone Hero: Windrunner Spire
-            16643, -- Keystone Hero: Algeth'ar Academy
-            61270, -- Keystone Hero: Seat of the Triumvirate
-            61272, -- Keystone Hero: Skyreach
-            61271, -- Keystone Hero: Pit of Saron
-            61254, -- Midnight Keystone Explorer: Season One
-            61255, -- Midnight Keystone Conqueror: Season One
-            61256, -- Midnight Keystone Master: Season One
-            61257, -- Midnight Keystone Hero: Season One
-            61258, -- Midnight Keystone Legend: Season One
-            63097, -- Midnight Keystone Myth: Season One
-            61259, -- Umbral Hero: Midnight Season One
-            63104, -- Umbral Champion: Midnight Season 1
-        },
-    },
-    { -- Season 2
-        addon.L["Season"] .. " " .. 2,
-        {
-            addon.L["KeystoneResilience"],
-            true,
-            {
-                62417, -- Midnight Season 2: Resilient Keystone 12
-                62418, -- Midnight Season 2: Resilient Keystone 13
-                62419, -- Midnight Season 2: Resilient Keystone 14
-                62420, -- Midnight Season 2: Resilient Keystone 15
-                62421, -- Midnight Season 2: Resilient Keystone 16
-                62422, -- Midnight Season 2: Resilient Keystone 17
-                62423, -- Midnight Season 2: Resilient Keystone 18
-                62424, -- Midnight Season 2: Resilient Keystone 19
-                62425, -- Midnight Season 2: Resilient Keystone 20
-                62426, -- Midnight Season 2: Resilient Keystone 21
-                62427, -- Midnight Season 2: Resilient Keystone 22
-                62428, -- Midnight Season 2: Resilient Keystone 23
-                62429, -- Midnight Season 2: Resilient Keystone 24
-                62430, -- Midnight Season 2: Resilient Keystone 25
-                62431, -- Midnight Season 2: Resilient Keystone 26
-                62432, -- Midnight Season 2: Resilient Keystone 27
-                62433, -- Midnight Season 2: Resilient Keystone 28
-                62434, -- Midnight Season 2: Resilient Keystone 29
-                62435, -- Midnight Season 2: Resilient Keystone 30
-            }
-        },
-        {
-            62441, -- Keystone Hero: Altar of Fangs
-            62439, -- Keystone Hero: Den of Nalorakk
-            62440, -- Keystone Hero: Murder Row
-            62437, -- Keystone Hero: The Blinding Vale
-            62438, -- Keystone Hero: Voidscar Arena
-            62444, -- Keystone Hero: Kings' Rest
-            62443, -- Keystone Hero: Temple of Sethraliss
-            62442, -- Keystone Hero: Ruby Life Pools (Midnight Season 2)
-            62445, -- Midnight Keystone Explorer: Season 2
-            62446, -- Midnight Keystone Conqueror: Season 2
-            62447, -- Midnight Keystone Master: Season 2
-            62448, -- Midnight Keystone Hero: Season 2
-            62449, -- Midnight Keystone Legend: Season 2
-            62436, -- Venomous Hero: Midnight Season 2
-        },
-    },
-}
-
 shared.GetMidnightMythicPlus = function(categoryName)
-    return {
-        categoryName,
-        unpack(midnight.MythicPlus),
-    }
+    local category = KrowiAF.NewCategory(categoryName)
+    local season1 = category:Named(addon.L["Season"] .. " " .. 1, {
+        61267, -- Keystone Hero: Magisters' Terrace
+        61269, -- Keystone Hero: Maisara Caverns
+        61268, -- Keystone Hero: Nexus-Point Xenas
+        61262, -- Keystone Hero: Windrunner Spire
+        16643, -- Keystone Hero: Algeth'ar Academy
+        61270, -- Keystone Hero: Seat of the Triumvirate
+        61272, -- Keystone Hero: Skyreach
+        61271, -- Keystone Hero: Pit of Saron
+        61254, -- Midnight Keystone Explorer: Season One
+        61255, -- Midnight Keystone Conqueror: Season One
+        61256, -- Midnight Keystone Master: Season One
+        61257, -- Midnight Keystone Hero: Season One
+        61258, -- Midnight Keystone Legend: Season One
+        63097, -- Midnight Keystone Myth: Season One
+        61259, -- Umbral Hero: Midnight Season One
+        63104, -- Umbral Champion: Midnight Season 1
+    })
+    season1:Named(addon.L["KeystoneResilience"], {
+        61233, -- Midnight Season 1: Resilient Keystone 12
+        61235, -- Midnight Season 1: Resilient Keystone 13
+        61236, -- Midnight Season 1: Resilient Keystone 14
+        61237, -- Midnight Season 1: Resilient Keystone 15
+        61239, -- Midnight Season 1: Resilient Keystone 16
+        61240, -- Midnight Season 1: Resilient Keystone 17
+        61241, -- Midnight Season 1: Resilient Keystone 18
+        61242, -- Midnight Season 1: Resilient Keystone 19
+        61243, -- Midnight Season 1: Resilient Keystone 20
+        61244, -- Midnight Season 1: Resilient Keystone 21
+        61245, -- Midnight Season 1: Resilient Keystone 22
+        61246, -- Midnight Season 1: Resilient Keystone 23
+        61247, -- Midnight Season 1: Resilient Keystone 24
+        61248, -- Midnight Season 1: Resilient Keystone 25
+        61249, -- Midnight Season 1: Resilient Keystone 26
+        61250, -- Midnight Season 1: Resilient Keystone 27
+        61251, -- Midnight Season 1: Resilient Keystone 28
+        61252, -- Midnight Season 1: Resilient Keystone 29
+        61253, -- Midnight Season 1: Resilient Keystone 30
+    }):Merge()
+    local season2 = category:Named(addon.L["Season"] .. " " .. 2, {
+        62441, -- Keystone Hero: Altar of Fangs
+        62439, -- Keystone Hero: Den of Nalorakk
+        62440, -- Keystone Hero: Murder Row
+        62437, -- Keystone Hero: The Blinding Vale
+        62438, -- Keystone Hero: Voidscar Arena
+        62444, -- Keystone Hero: Kings' Rest
+        62443, -- Keystone Hero: Temple of Sethraliss
+        62442, -- Keystone Hero: Ruby Life Pools (Midnight Season 2)
+        62445, -- Midnight Keystone Explorer: Season 2
+        62446, -- Midnight Keystone Conqueror: Season 2
+        62447, -- Midnight Keystone Master: Season 2
+        62448, -- Midnight Keystone Hero: Season 2
+        62449, -- Midnight Keystone Legend: Season 2
+        62436, -- Venomous Hero: Midnight Season 2
+    })
+    season2:Named(addon.L["KeystoneResilience"], {
+        62417, -- Midnight Season 2: Resilient Keystone 12
+        62418, -- Midnight Season 2: Resilient Keystone 13
+        62419, -- Midnight Season 2: Resilient Keystone 14
+        62420, -- Midnight Season 2: Resilient Keystone 15
+        62421, -- Midnight Season 2: Resilient Keystone 16
+        62422, -- Midnight Season 2: Resilient Keystone 17
+        62423, -- Midnight Season 2: Resilient Keystone 18
+        62424, -- Midnight Season 2: Resilient Keystone 19
+        62425, -- Midnight Season 2: Resilient Keystone 20
+        62426, -- Midnight Season 2: Resilient Keystone 21
+        62427, -- Midnight Season 2: Resilient Keystone 22
+        62428, -- Midnight Season 2: Resilient Keystone 23
+        62429, -- Midnight Season 2: Resilient Keystone 24
+        62430, -- Midnight Season 2: Resilient Keystone 25
+        62431, -- Midnight Season 2: Resilient Keystone 26
+        62432, -- Midnight Season 2: Resilient Keystone 27
+        62433, -- Midnight Season 2: Resilient Keystone 28
+        62434, -- Midnight Season 2: Resilient Keystone 29
+        62435, -- Midnight Season 2: Resilient Keystone 30
+    }):Merge()
+    return category
 end

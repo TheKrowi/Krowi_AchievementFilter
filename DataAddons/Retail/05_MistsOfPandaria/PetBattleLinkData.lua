@@ -1,6 +1,6 @@
-local _, addon = ...;
-local shared = addon.Data.PetBattleLinkData.Shared;
-local sec, enc = shared.Section, shared.Encounter;
+local _, addon = ...
+local shared = addon.Data.PetBattleLinkData.Shared
+local sec, enc = shared.Section, shared.Encounter
 
 KrowiAF.PetBattleLinkData.MistsOfPandaria = {
     { -- Taming Pandaria
@@ -69,4 +69,4 @@ KrowiAF.PetBattleLinkData.MistsOfPandaria = {
             {13, enc .. "50"}, -- Yu'la, Broodling of Yu'lon
         }
     },
-};
+}

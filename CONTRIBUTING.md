@@ -1,6 +1,6 @@
 # Contributing to Krowi's Achievement Filter
 
-For a full technical overview of the addon's architecture, load order, data patterns, and code conventions, see [`.github/copilot-instructions.md`](.github/copilot-instructions.md). This file covers the contributor workflow.
+The canonical technical reference for the addon (architecture, load order, offline tooling, data formats and code conventions) is [`.github/copilot-instructions.md`](.github/copilot-instructions.md). This file covers the contributor workflow only.
 
 ---
 
@@ -8,11 +8,11 @@ For a full technical overview of the addon's architecture, load order, data patt
 
 | Branch | Purpose |
 |--------|---------|
-| `main` | Release-ready. Only merge completed, tested work here. |
+| `main` | Historical. Not updated by the release flow; releases are tagged on `dev`. |
 | `dev` | Active development. All feature branches target this. |
 | `feature/<description>` | Optional short-lived branches off `dev` for larger features. |
 
-PRs go to `dev`. `dev` is merged to `main` at release time.
+PRs go to `dev`. Releases are cut on `dev`: the Krowi Addon Manager makes the `Release X.Y` commit and tag there. `main` is not updated as part of the release flow.
 
 ---
 
@@ -93,9 +93,8 @@ There is no automated test suite — the WoW client is the runtime.
 
 ## Localization Notes
 
-- All new localization strings must be added to `Localization/enUS.lua` **above** the `AUTOGENTOKEN` comment marker.
-- **Never edit the auto-generated section below `AUTOGENTOKEN`** — it is overwritten by the CurseForge platform.
-- Other locale files (`deDE.lua`, `frFR.lua`, etc.) are managed through the CurseForge localization platform; do not manually add strings to them.
+- All new localization strings go in `Localization/enUS.lua` directly **below** the `-- [[ Exported at ... ]] --` line under the `AUTOGENTOKEN` marker, never above the marker.
+- A string that is added or renamed is updated in every locale file (`deDE.lua`, `frFR.lua`, etc.) the same way, directly below its `Exported at` line: carry an existing translation over to a renamed key, and translate a new one.
 - For plugin-related strings: use `Localization/enUS.Plugins.lua`.
 - For Wrath Classic-specific strings: use `Localization/enUS.WrathClassic.lua`.
 - See [`docs/how-to/update-localization.md`](docs/how-to/update-localization.md) for the full guide.

@@ -1,6 +1,6 @@
-local _, addon = ...;
-local shared = addon.Data.PetBattleLinkData.Shared;
-local sec, enc = shared.Section, shared.Encounter;
+local _, addon = ...
+local shared = addon.Data.PetBattleLinkData.Shared
+local sec, enc = shared.Section, shared.Encounter
 
 KrowiAF.PetBattleLinkData.WarlordsOfDaenor = {
     { -- An Awfully Big Adventure
@@ -86,4 +86,4 @@ KrowiAF.PetBattleLinkData.WarlordsOfDaenor = {
             {15, enc .. "53"}, -- Defiled Earth
         }
     },
-};
+}

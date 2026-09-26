@@ -1,5 +1,5 @@
-local _, addon = ...;
-local shared = addon.Data.TransmogSetData.Shared;
+local _, addon = ...
+local shared = addon.Data.TransmogSetData.Shared
 
 KrowiAF.TransmogSetData.Legion = {
     { -- That's So Last Millennium
@@ -838,4 +838,4 @@ KrowiAF.TransmogSetData.Legion = {
             1402, 1403, 1358, 1359, -- Fierce Gladiator's Felskin Armor (Gladiator, Elite)
         }
     },
-};
+}

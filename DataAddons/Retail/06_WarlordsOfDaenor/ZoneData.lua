@@ -1,4 +1,4 @@
-﻿local _, addon = ...
+local _, addon = ...
 local shared = addon.Data.ZoneData.Shared
 
 local zoneData = KrowiAF.NewZoneData("WarlordsOfDaenor")
@@ -18,6 +18,36 @@ zoneData:Zone({601, 602}, { -- Skyreach (dungeon)
     8873, -- Skyreach: Silver
     8874, -- Skyreach: Gold
     9623, -- Challenge Master: Skyreach
+    9391, -- Draenor Dungeon Hero
+    9396, -- Glory of the Draenor Hero
+    61233, -- Midnight Season 1: Resilient Keystone 12
+    61235, -- Midnight Season 1: Resilient Keystone 13
+    61236, -- Midnight Season 1: Resilient Keystone 14
+    61237, -- Midnight Season 1: Resilient Keystone 15
+    61239, -- Midnight Season 1: Resilient Keystone 16
+    61240, -- Midnight Season 1: Resilient Keystone 17
+    61241, -- Midnight Season 1: Resilient Keystone 18
+    61242, -- Midnight Season 1: Resilient Keystone 19
+    61243, -- Midnight Season 1: Resilient Keystone 20
+    61244, -- Midnight Season 1: Resilient Keystone 21
+    61245, -- Midnight Season 1: Resilient Keystone 22
+    61246, -- Midnight Season 1: Resilient Keystone 23
+    61247, -- Midnight Season 1: Resilient Keystone 24
+    61248, -- Midnight Season 1: Resilient Keystone 25
+    61249, -- Midnight Season 1: Resilient Keystone 26
+    61250, -- Midnight Season 1: Resilient Keystone 27
+    61251, -- Midnight Season 1: Resilient Keystone 28
+    61252, -- Midnight Season 1: Resilient Keystone 29
+    61253, -- Midnight Season 1: Resilient Keystone 30
+    61254, -- Midnight Keystone Explorer: Season 1
+    61255, -- Midnight Keystone Conqueror: Season 1
+    61256, -- Midnight Keystone Master: Season 1
+    61257, -- Midnight Keystone Hero: Season 1
+    61258, -- Midnight Keystone Legend: Season 1
+    63097, -- Midnight Keystone Myth: Season 1
+    61259, -- Umbral Hero: Midnight Season 1
+    63104, -- Umbral Champion: Midnight Season 1
+    61858, -- Light of the Party
 })
 
 zoneData:Zone({616, 617, 618}, { -- Upper Blackrock Spire (dungeon)
@@ -35,6 +65,8 @@ zoneData:Zone({616, 617, 618}, { -- Upper Blackrock Spire (dungeon)
     8893, -- Upper Blackrock Spire: Silver
     8894, -- Upper Blackrock Spire: Gold
     9627, -- Challenge Master: Upper Blackrock Spire
+    9391, -- Draenor Dungeon Hero
+    9396, -- Glory of the Draenor Hero
 })
 
 zoneData:Zone({525, 526, 527, 528, 529, 530, 531, 532, 533}, { -- Frostfire Ridge (zone)
@@ -91,6 +123,12 @@ zoneData:Zone(534, { -- Tanaan Jungle (zone)
     10334, -- Predator
     10349, -- Tanaan Diplomat
     10350, -- Tanaan Diplomat
+    10018, -- Draenor Pathfinder
+})
+
+zoneData:Zone({577, 578}, { -- Tanaan Jungle (starting zone, the Assault on the Dark Portal intro)
+    8921, -- Welcome to Draenor
+    8922, -- Welcome to Draenor
 })
 
 zoneData:Zone({535, 536, 537, 538}, { -- Talador (zone)
@@ -274,29 +312,6 @@ zoneData:Zone({550, 551, 552, 553}, { -- Nagrand (zone)
     46, -- Universal Explorer
 })
 
-zoneData:Zone(572, { -- Draenor (continent)
-    7520, -- The Loremaster
-    10018, -- Draenor Pathfinder
-    10053, -- I Found Pepe!
-    8921, -- Welcome to Draenor
-    8922, -- Welcome to Draenor
-    9491, -- The Garrison Campaign
-    9492, -- The Garrison Campaign
-    9564, -- Securing Draenor
-    9562, -- Securing Draenor
-    9833, -- Loremaster of Draenor
-    9923, -- Loremaster of Draenor
-    9726, -- Treasure Hunter
-    9727, -- Expert Treasure Hunter
-    10348, -- Master Treasure Hunter
-    9728, -- Grand Treasure Hunter
-    14728, -- To All the Squirrels Through Time and Space
-    8935, -- Draenor Explorer
-    9477, -- Savage Friends
-    9478, -- Savage Friends
-    46, -- Universal Explorer
-})
-
 zoneData:Zone(573, { -- Bloodmaul Slag Mines (dungeon)
     9005, -- Come With Me If You Want to Live
     8993, -- A Gift of Earth and Fire
@@ -309,6 +324,8 @@ zoneData:Zone(573, { -- Bloodmaul Slag Mines (dungeon)
     8877, -- Bloodmaul Slag Mines: Silver
     8878, -- Bloodmaul Slag Mines: Gold
     9620, -- Challenge Master: Bloodmaul Slag Mines
+    9391, -- Draenor Dungeon Hero
+    9396, -- Glory of the Draenor Hero
 })
 
 zoneData:Zone({574, 575, 576}, { -- Shadowmoon Burial Grounds (dungeon)
@@ -324,6 +341,14 @@ zoneData:Zone({574, 575, 576}, { -- Shadowmoon Burial Grounds (dungeon)
     8886, -- Shadowmoon Burial Grounds: Gold
     9626, -- Challenge Master: Shadowmoon Burial Grounds
     16660, -- Keystone Hero: Shadowmoon Burial Grounds
+    9391, -- Draenor Dungeon Hero
+    9396, -- Glory of the Draenor Hero
+    16647, -- Dragonflight Keystone Explorer: Season One
+    16648, -- Dragonflight Keystone Conqueror: Season One
+    16649, -- Dragonflight Keystone Master: Season One
+    16650, -- Dragonflight Keystone Hero: Season One
+    16429, -- Thundering Hero: Dragonflight Season 1
+    17119, -- Deep Cuts From the Vault
 })
 
 zoneData:Zone({588, 589}, { -- Ashran (battleground)
@@ -370,6 +395,8 @@ zoneData:Zone(593, { -- Auchindoun (dungeon)
     8882, -- Auchindoun: Gold
     9622, -- Challenge Master: Auchindoun
     9924, -- Field Photographer
+    9391, -- Draenor Dungeon Hero
+    9396, -- Glory of the Draenor Hero
 })
 
 zoneData:Zone(595, { -- Iron Docks (dungeon)
@@ -388,6 +415,9 @@ zoneData:Zone(595, { -- Iron Docks (dungeon)
     15688, -- Shadowlands Keystone Explorer: Season Four
     15689, -- Shadowlands Keystone Conqueror: Season Four
     15690, -- Shadowlands Keystone Master: Season Four
+    9391, -- Draenor Dungeon Hero
+    9396, -- Glory of the Draenor Hero
+    15756, -- Shrouded Hero: Shadowlands Season 4
 })
 
 zoneData:Zone({596, 597, 598, 599, 600}, { -- Blackrock Foundry (raid)
@@ -418,6 +448,10 @@ zoneData:Zone({596, 597, 598, 599, 600}, { -- Blackrock Foundry (raid)
     8969, -- Mythic: Operator Thogar
     8972, -- Mythic: Iron Maidens
     8973, -- Mythic: Blackhand's Crucible
+    8985, -- Glory of the Draenor Raider
+    9255, -- Mythic Draenor Raider
+    9631, -- Mythic Draenor Raider
+    11761, -- Azeroth's Next Top Model
 })
 
 zoneData:Zone({606, 607, 608, 609}, { -- Grimrail Depot (dungeon)
@@ -435,6 +469,9 @@ zoneData:Zone({606, 607, 608, 609}, { -- Grimrail Depot (dungeon)
     15688, -- Shadowlands Keystone Explorer: Season Four
     15689, -- Shadowlands Keystone Conqueror: Season Four
     15690, -- Shadowlands Keystone Master: Season Four
+    9391, -- Draenor Dungeon Hero
+    9396, -- Glory of the Draenor Hero
+    15756, -- Shrouded Hero: Shadowlands Season 4
 })
 
 zoneData:Zone({610, 611, 612, 613, 614, 615}, { -- Highmaul (raid)
@@ -457,6 +494,9 @@ zoneData:Zone({610, 611, 612, 613, 614, 615}, { -- Highmaul (raid)
     8963, -- Mythic: Twin Ogron
     8964, -- Mythic: Ko'ragh
     8965, -- Mythic: Imperator's Fall
+    8985, -- Glory of the Draenor Raider
+    9255, -- Mythic Draenor Raider
+    9631, -- Mythic Draenor Raider
 })
 
 zoneData:Zone({620, 621}, { -- The Everbloom (dungeon)
@@ -472,6 +512,14 @@ zoneData:Zone({620, 621}, { -- The Everbloom (dungeon)
     9004, -- The Everbloom: Gold
     9624, -- Challenge Master: The Everbloom
     19083, -- Keystone Hero: The Everbloom
+    9391, -- Draenor Dungeon Hero
+    9396, -- Glory of the Draenor Hero
+    19009, -- Dragonflight Keystone Explorer: Season Three
+    19010, -- Dragonflight Keystone Conqueror: Season Three
+    19011, -- Dragonflight Keystone Master: Season Three
+    19012, -- Dragonflight Keystone Hero: Season Three
+    19396, -- Dragonflight Season 3 Master
+    19420, -- Dragonflight Season 3 Hero
 })
 
 zoneData:Zone({661, 662, 663, 664, 665, 666, 667, 668, 669, 670}, { -- Hellfire Citadel (raid)
@@ -510,4 +558,6 @@ zoneData:Zone({661, 662, 663, 664, 665, 666, 667, 668, 669, 670}, { -- Hellfire 
     10039, -- Mythic: Xhul'horac
     10042, -- Mythic: Mannoroth
     10043, -- Mythic: Archimonde
+    10149, -- Glory of the Hellfire Raider
+    11761, -- Azeroth's Next Top Model
 })

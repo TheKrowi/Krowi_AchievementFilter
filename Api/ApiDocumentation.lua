@@ -30,7 +30,7 @@ KrowiAF.CategoryData.Example1 = {
         2003, -- Achievement Id [Required]
         2005, -- Achievement Id [Required]
     },
-};
+}
 
 -- V2 Category Data Injection (current standard for plugins)
 -- Use KrowiAF.NewInjection to add named subcategories under an existing KrowiAF category.
@@ -78,6 +78,18 @@ mergedInjection:Register()
 local directInjection = KrowiAF.NewInjection(971)
 directInjection:Ids{ 14808, 14814, 14821 } -- Added directly to category 971 [Optional, repeatable]
 directInjection:Register()
+
+-- Injecting by key instead of by Id.
+-- Only a category with a DECLARED Id can be injected into by number; most categories draw an
+-- auto-allocated Id that is a parse position and shifts whenever a data file is reordered, so it
+-- must never be relied on. A category can instead declare a stable string key with :Key(), and
+-- NewInjection takes either form:
+local keyedTarget = KrowiAF.NewRootCategory(KrowiAF.CategoryData.Specials, addon.L["My Category"])
+keyedTarget:Key("MyAddon.MyCategory") -- Stable name for this category [Optional]
+
+local keyedInjection = KrowiAF.NewInjection("MyAddon.MyCategory") -- Declared Id or :Key() name [Required]
+keyedInjection:Named(addon.L["My Subcategory"], { 14808, 14814 })
+keyedInjection:Register()
 
 -- V2 Achievement Data (current standard)
 -- Use KrowiAF.AchievementData with the Ach() fluent builder.

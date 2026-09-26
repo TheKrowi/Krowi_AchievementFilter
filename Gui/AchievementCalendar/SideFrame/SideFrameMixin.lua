@@ -1,48 +1,48 @@
-local _, addon = ...;
+local _, addon = ...
 
-KrowiAF_AchievementCalendarSideFrameCloseButtonMixin = {};
+KrowiAF_AchievementCalendarSideFrameCloseButtonMixin = {}
 
 function KrowiAF_AchievementCalendarSideFrameCloseButtonMixin:OnLoad()
-    self:SetFrameLevel(self:GetParent():GetFrameLevel() + 6);
+    self:SetFrameLevel(self:GetParent():GetFrameLevel() + 6)
 end
 
 function KrowiAF_AchievementCalendarSideFrameCloseButtonMixin:OnClick()
-    self:GetParent():Hide();
+    self:GetParent():Hide()
 end
 
-KrowiAF_AchievementCalendarSideFrameMixin = {};
+KrowiAF_AchievementCalendarSideFrameMixin = {}
 
 local function OnAchievementsFrameViewAcquiredFrame(sideFrame, frame)
-    local calendarFrame = sideFrame:GetParent();
+    local calendarFrame = sideFrame:GetParent()
     frame:HookScript("OnClick", function(_, button)
         if button ~= "LeftButton" then
-            return;
+            return
         end
-        calendarFrame.LockMonth = addon.Options.db.profile.Calendar.LockAchievementMonth;
-        calendarFrame:Hide();
-    end);
+        calendarFrame.LockMonth = addon.Options.db.profile.Calendar.LockAchievementMonth
+        calendarFrame:Hide()
+    end)
 end
 
 function KrowiAF_AchievementCalendarSideFrameMixin:OnLoad()
-    addon.Gui:RegisterFrameForClosing(self);
+    addon.Gui:RegisterFrameForClosing(self)
 
-    self.AchievementsFrame.ScrollBox.wheelPanScalar = addon.Options.db.profile.Calendar.MouseWheelPanScalar;
-	self.AchievementsFrame.ScrollBar.wheelPanScalar = addon.Options.db.profile.Calendar.MouseWheelPanScalar;
-    self.AchievementsFrame:AlwaysHideBorder();
-    ScrollUtil.AddAcquiredFrameCallback(self.AchievementsFrame.ScrollView, OnAchievementsFrameViewAcquiredFrame, self);
+    self.AchievementsFrame.ScrollBox.wheelPanScalar = addon.Options.db.profile.Calendar.MouseWheelPanScalar
+	self.AchievementsFrame.ScrollBar.wheelPanScalar = addon.Options.db.profile.Calendar.MouseWheelPanScalar
+    self.AchievementsFrame:AlwaysHideBorder()
+    ScrollUtil.AddAcquiredFrameCallback(self.AchievementsFrame.ScrollView, OnAchievementsFrameViewAcquiredFrame, self)
 end
 
 function KrowiAF_AchievementCalendarSideFrameMixin:OnShow()
-    self:Update();
+    self:Update()
 end
 
 function KrowiAF_AchievementCalendarSideFrameMixin:OnHide()
-	PlaySound(SOUNDKIT.IG_MAINMENU_QUIT);
+	PlaySound(SOUNDKIT.IG_MAINMENU_QUIT)
 end
 
 function KrowiAF_AchievementCalendarSideFrameMixin:Update()
-    local parent = self:GetParent();
-    local day, month, year = parent.HighlightedDay, parent.HighlightedMonth, parent.HighlightedYear;
-    self.AchievementsFrame:Update(parent.HighlightedAchievements);
-    self.Header:Setup(FormatShortDate(day, month, year) .. " (" .. #parent.HighlightedAchievements .. " " .. addon.L["Achievements"] .. " - " .. parent.HighlightedPoints .. " " .. addon.L["Points"] .. ")");
+    local parent = self:GetParent()
+    local day, month, year = parent.HighlightedDay, parent.HighlightedMonth, parent.HighlightedYear
+    self.AchievementsFrame:Update(parent.HighlightedAchievements)
+    self.Header:Setup(FormatShortDate(day, month, year) .. " (" .. #parent.HighlightedAchievements .. " " .. addon.L["Achievements"] .. " - " .. parent.HighlightedPoints .. " " .. addon.L["Points"] .. ")")
 end

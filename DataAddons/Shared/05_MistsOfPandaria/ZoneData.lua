@@ -4,118 +4,6 @@ local shared = addon.Data.ZoneData.Shared
 
 local zoneData = KrowiAF.NewZoneData("MistsOfPandaria")
 
-zoneData:Zone(424, { -- Pandaria (continent)
-    7520, -- The Loremaster
-    6558, -- Local Pet Mauler
-    6559, -- Traveling Pet Mauler
-    6560, -- World Pet Mauler
-    6607, -- Taming Azeroth
-    6601, -- Taming the Wild
-    7498, -- Taming the Great Outdoors
-    7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
-    8348, -- The Longest Day
-    6541, -- Loremaster of Pandaria
-    7285, -- Every Day I'm Pand-a-ren
-    6716, -- Between a Saurok and a Hard Place
-    6754, -- The Dark Heart of the Mogu
-    6846, -- Fish Tales
-    6850, -- Hozen in the Mist
-    6847, -- The Song of the Yaungol
-    6855, -- The Seven Burdens of Shaohao
-    6856, -- Ballad of Liu Lang
-    6858, -- What Is Worth Fighting For
-    7230, -- Legend of the Brewfathers
-    7994, -- Treasure of Pandaria
-    7995, -- Fortune of Pandaria
-    7996, -- Bounty of Pandaria
-    7997, -- Riches of Pandaria
-    7281, -- Lost and Found
-    7282, -- Finders Keepers
-    7283, -- One Man's Trash...
-    7284, -- Is Another Man's Treasure
-    7437, -- A Worthy Opponent
-    7438, -- Could We Find More Like That?
-    7439, -- Glorious!
-    8078, -- Zul'Again
-    6350, -- To All the Squirrels I Once Caressed?
-    6974, -- Pandaria Explorer
-    7479, -- The Shado-Master
-    6543, -- The August Celestials
-    6547, -- The Anglers
-    6548, -- The Lorewalkers
-    6827, -- Pandaren Ambassador
-    6828, -- Pandaren Ambassador
-    7331, -- The Three Brew Fathers
-    7332, -- The Broken Hearted
-    7333, -- The Four Celestials
-    7338, -- Collector: Pandaren Tea Sets
-    7358, -- Collector: Pandaren Tea Sets
-    7339, -- Collector: Pandaren Game Boards
-    7359, -- Collector: Pandaren Game Boards
-    7340, -- Collector: Twin Stein Sets of Brewfather Quan Tou Kuo
-    7360, -- Collector: Twin Stein Sets of Brewfather Quan Tou Kuo
-    7341, -- Collector: Walking Canes of Brewfather Ren Yun
-    7361, -- Collector: Walking Canes of Brewfather Ren Yun
-    7342, -- Collector: Empty Kegs of Brewfather Xin Wo Yin
-    7362, -- Collector: Empty Kegs of Brewfather Xin Wo Yin
-    7343, -- Collector: Carved Bronze Mirrors
-    7363, -- Collector: Carved Bronze Mirrors
-    7344, -- Collector: Gold-Inlaid Porcelain Funerary Figurines
-    7364, -- Collector: Gold-Inlaid Porcelain Funerary Figurines
-    7345, -- Collector: Apothecary Tins
-    7365, -- Collector: Apothecary Tins
-    7346, -- Collector: Pearls of Yu'lon
-    7366, -- Collector: Pearls of Yu'lon
-    7347, -- Collector: Standards of Niuzao
-    7367, -- Collector: Standards of Niuzao
-    7334, -- Instruments of Cruelty
-    7335, -- Symbols of Strength
-    7337, -- Documents of a Dark History
-    7336, -- Stone Servants
-    7348, -- Collector: Manacles of Rebellion
-    7368, -- Collector: Manacles of Rebellion
-    7349, -- Collector: Cracked Mogu Runestones
-    7369, -- Collector: Cracked Mogu Runestones
-    7350, -- Collector: Terracotta Arms
-    7370, -- Collector: Terracotta Arms
-    7351, -- Collector: Petrified Bone Whips
-    7371, -- Collector: Petrified Bone Whips
-    7352, -- Collector: Thunder King Insignias
-    7372, -- Collector: Thunder King Insignias
-    7373, -- Collector: Edicts of the Thunder King
-    7353, -- Collector: Edicts of the Thunder King
-    7354, -- Collector: Iron Amulets
-    7374, -- Collector: Iron Amulets
-    7355, -- Collector: Warlord's Branding Irons
-    7375, -- Collector: Warlord's Branding Irons
-    7356, -- Collector: Mogu Coins
-    7376, -- Collector: Mogu Coins
-    7357, -- Collector: Worn Monument Ledgers
-    7377, -- Collector: Worn Monument Ledgers
-    8220, -- Collector: Banners of the Mantid Empire
-    8221, -- Collector: Banners of the Mantid Empire
-    8222, -- Collector: Ancient Sap Feeders
-    8223, -- Collector: Ancient Sap Feeders
-    8224, -- Collector: Praying Mantids
-    8225, -- Collector: Praying Mantids
-    8226, -- Collector: Inert Sound Beacons
-    8227, -- Collector: Inert Sound Beacons
-    8228, -- Collector: Remains of Paragons
-    8229, -- Collector: Remains of Paragons
-    8230, -- Collector: Mantid Lamps
-    8231, -- Collector: Mantid Lamps
-    8232, -- Collector: Pollen Collectors
-    8233, -- Collector: Pollen Collectors
-    8234, -- Collector: Kypari Sap Containers
-    8235, -- Collector: Kypari Sap Containers
-    6616, -- Pandaria Tamer
-    6589, -- Pandaria Safari
-    6606, -- Taming Pandaria
-    46, -- Universal Explorer
-})
-
 zoneData:Zone(417, { -- Temple of Kotmogu (battleground)
     shared.GenericBattleground,
     6740, -- Temple of Kotmogu Victory
@@ -128,6 +16,8 @@ zoneData:Zone(417, { -- Temple of Kotmogu (battleground)
     6972, -- What is Best in Life?
     6980, -- Temple of Kotmogu All-Star
     6981, -- Master of Temple of Kotmogu
+    8052, -- Khan
+    8055, -- Khan
 })
 
 zoneData:Zone(423, { -- Silvershard Mines (battleground)
@@ -143,6 +33,8 @@ zoneData:Zone(423, { -- Silvershard Mines (battleground)
     7102, -- Escort Service
     7103, -- Greed is Good
     7106, -- Master of Silvershard Mines
+    8052, -- Khan
+    8055, -- Khan
 })
 
 zoneData:Zone({433, 434}, { -- The Veiled Stair (zone)
@@ -198,19 +90,16 @@ zoneData:Zone({520, 521}, { -- Dark Heart of Pandaria (scenario)
     8319, -- Accelerated Archaeology
     19942, -- Dark Heart of Pandaria
     19943, -- Heroic: Dark Heart of Pandaria
+    19881, -- Escalation
+    20004, -- Heroic: Pandaria Scenarios
 })
 
 zoneData:Zone({371, 372, 373, 374, 375}, { -- The Jade Forest (zone)
     7520, -- The Loremaster
-    6558, -- Local Pet Mauler
-    6559, -- Traveling Pet Mauler
-    6560, -- World Pet Mauler
     6607, -- Taming Azeroth
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     6541, -- Loremaster of Pandaria
     7285, -- Every Day I'm Pand-a-ren
@@ -309,19 +198,15 @@ zoneData:Zone({371, 372, 373, 374, 375}, { -- The Jade Forest (zone)
     19962, -- Tour The Jade Forest
     20008, -- Looking For Group: The Jade Forest
     19872, -- The Jade Forest
+    shared.OldWorldPetAchievements,
 })
 
 zoneData:Zone({376, 377}, { -- Valley of the Four Winds (zone)
     7520, -- The Loremaster
-    6558, -- Local Pet Mauler
-    6559, -- Traveling Pet Mauler
-    6560, -- World Pet Mauler
     6607, -- Taming Azeroth
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     6541, -- Loremaster of Pandaria
     7285, -- Every Day I'm Pand-a-ren
@@ -428,19 +313,15 @@ zoneData:Zone({376, 377}, { -- Valley of the Four Winds (zone)
     20017, -- Salyis's Warband
     20009, -- Looking For Group: Valley of the Four Winds
     19873, -- Valley of the Four Winds
+    shared.OldWorldPetAchievements,
 })
 
 zoneData:Zone({379, 380, 381, 382, 383, 384, 385, 386, 387}, { -- Kun-Lai Summit (zone)
     7520, -- The Loremaster
-    6558, -- Local Pet Mauler
-    6559, -- Traveling Pet Mauler
-    6560, -- World Pet Mauler
     6607, -- Taming Azeroth
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     6541, -- Loremaster of Pandaria
     7285, -- Every Day I'm Pand-a-ren
@@ -538,19 +419,15 @@ zoneData:Zone({379, 380, 381, 382, 383, 384, 385, 386, 387}, { -- Kun-Lai Summit
     20018, -- Sha of Anger
     20011, -- Looking For Group: Kun-Lai Summit
     19875, -- Kun-Lai Summit
+    shared.OldWorldPetAchievements,
 })
 
 zoneData:Zone({388, 389}, { -- Townlong Steppes (zone)
     7520, -- The Loremaster
-    6558, -- Local Pet Mauler
-    6559, -- Traveling Pet Mauler
-    6560, -- World Pet Mauler
     6607, -- Taming Azeroth
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     6541, -- Loremaster of Pandaria
     7285, -- Every Day I'm Pand-a-ren
@@ -661,18 +538,14 @@ zoneData:Zone({388, 389}, { -- Townlong Steppes (zone)
     19966, -- Tour Townlong Steppes
     20012, -- Looking For Group: Townlong Steppes
     19877, -- Townlong Steppes
+    shared.OldWorldPetAchievements,
 })
 
 zoneData:Zone({390, 395, 396}, { -- Vale of Eternal Blossoms (zone)
-    6558, -- Local Pet Mauler
-    6559, -- Traveling Pet Mauler
-    6560, -- World Pet Mauler
     6607, -- Taming Azeroth
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     7285, -- Every Day I'm Pand-a-ren
     6754, -- The Dark Heart of the Mogu
@@ -756,6 +629,7 @@ zoneData:Zone({390, 395, 396}, { -- Vale of Eternal Blossoms (zone)
     20069, -- Elusive Foes: Vale of Eternal Blossoms
     20014, -- Looking For Group: Vale of Eternal Blossoms
     19876, -- Vale of Eternal Blossoms
+    shared.OldWorldPetAchievements,
 })
 
 zoneData:Zone({416, 483}, { -- Theramore's Fall (scenario)
@@ -769,19 +643,15 @@ zoneData:Zone({416, 483}, { -- Theramore's Fall (scenario)
     7468, -- Theramore's Fall
     19938, -- Theramore's Fall
     19939, -- Theramore's Fall
+    19881, -- Escalation
 })
 
 zoneData:Zone({418, 419, 420, 421}, { -- Krasarang Wilds (zone)
     7520, -- The Loremaster
-    6558, -- Local Pet Mauler
-    6559, -- Traveling Pet Mauler
-    6560, -- World Pet Mauler
     6607, -- Taming Azeroth
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     6541, -- Loremaster of Pandaria
     7285, -- Every Day I'm Pand-a-ren
@@ -883,19 +753,15 @@ zoneData:Zone({418, 419, 420, 421}, { -- Krasarang Wilds (zone)
     19918, -- Dominance Offensive
     19999, -- Elusive Foes: Krasarang Wilds
     19879, -- Krasarang Wilds
+    shared.OldWorldPetAchievements,
 })
 
 zoneData:Zone(422, { -- Dread Wastes (zone)
     7520, -- The Loremaster
-    6558, -- Local Pet Mauler
-    6559, -- Traveling Pet Mauler
-    6560, -- World Pet Mauler
     6607, -- Taming Azeroth
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     6541, -- Loremaster of Pandaria
     7285, -- Every Day I'm Pand-a-ren
@@ -995,6 +861,7 @@ zoneData:Zone(422, { -- Dread Wastes (zone)
     19998, -- Elusive Foes: Dread Wastes
     19967, -- Tour Dread Wastes
     19878, -- Dread Wastes
+    shared.OldWorldPetAchievements,
 })
 
 zoneData:Zone({429, 430}, { -- Temple of the Jade Serpent (dungeon)
@@ -1011,6 +878,17 @@ zoneData:Zone({429, 430}, { -- Temple of the Jade Serpent (dungeon)
     16661, -- Keystone Hero: Temple of the Jade Serpent
     19894, -- Temple of the Jade Serpent
     19895, -- Heroic: Temple of the Jade Serpent
+    20008, -- Looking For Group: The Jade Forest
+    6925, -- Pandaria Dungeon Hero
+    6927, -- Glory of the Pandaria Hero
+    19872, -- The Jade Forest
+    20005, -- Heroic: Pandaria Dungeons
+    16647, -- Dragonflight Keystone Explorer: Season One
+    16648, -- Dragonflight Keystone Conqueror: Season One
+    16649, -- Dragonflight Keystone Master: Season One
+    16650, -- Dragonflight Keystone Hero: Season One
+    16429, -- Thundering Hero: Dragonflight Season 1
+    17119, -- Deep Cuts From the Vault
 })
 
 zoneData:Zone({431, 432}, { -- Scarlet Halls (dungeon)
@@ -1025,6 +903,11 @@ zoneData:Zone({431, 432}, { -- Scarlet Halls (dungeon)
     8436, -- Challenge Master: Scarlet Halls
     19906, -- Scarlet Halls
     19907, -- Heroic: Scarlet Halls
+    20014, -- Looking For Group: Vale of Eternal Blossoms
+    6925, -- Pandaria Dungeon Hero
+    6927, -- Glory of the Pandaria Hero
+    19876, -- Vale of Eternal Blossoms
+    20005, -- Heroic: Pandaria Dungeons
 })
 
 zoneData:Zone({435, 436}, { -- Scarlet Monastery (dungeon)
@@ -1042,6 +925,15 @@ zoneData:Zone({435, 436}, { -- Scarlet Monastery (dungeon)
     980, -- The Horseman's Reins
     19908, -- Scarlet Monastery
     19909, -- Heroic: Scarlet Monastery
+    20014, -- Looking For Group: Vale of Eternal Blossoms
+    1283, -- Classic Dungeonmaster
+    6925, -- Pandaria Dungeon Hero
+    6927, -- Glory of the Pandaria Hero
+    18959, -- Don't Lose Your Head, Man
+    19876, -- Vale of Eternal Blossoms
+    20005, -- Heroic: Pandaria Dungeons
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone({437, 438}, { -- Gate of the Setting Sun (dungeon)
@@ -1057,6 +949,9 @@ zoneData:Zone({437, 438}, { -- Gate of the Setting Sun (dungeon)
     8434, -- Challenge Master: Gate of the Setting Sun
     19902, -- Gate of the Setting Sun
     19903, -- Heroic: Gate of the Setting Sun
+    6925, -- Pandaria Dungeon Hero
+    6927, -- Glory of the Pandaria Hero
+    20005, -- Heroic: Pandaria Dungeons
 })
 
 zoneData:Zone({439, 440, 441, 442}, { -- Stormstout Brewery (dungeon)
@@ -1073,6 +968,11 @@ zoneData:Zone({439, 440, 441, 442}, { -- Stormstout Brewery (dungeon)
     8431, -- Challenge Master: Stormstout Brewery
     19896, -- Stormstout Brewery
     19897, -- Heroic: Stormstout Brewery
+    6925, -- Pandaria Dungeon Hero
+    6927, -- Glory of the Pandaria Hero
+    20005, -- Heroic: Pandaria Dungeons
+    20009, -- Looking For Group: Valley of the Four Winds
+    19873, -- Valley of the Four Winds
 })
 
 zoneData:Zone({443, 444, 445, 446}, { -- Shado-Pan Monastery (dungeon)
@@ -1089,6 +989,11 @@ zoneData:Zone({443, 444, 445, 446}, { -- Shado-Pan Monastery (dungeon)
     8432, -- Challenge Master: Shado-Pan Monastery
     19898, -- Shado-Pan Monastery
     19899, -- Heroic: Shado-Pan Monastery
+    6925, -- Pandaria Dungeon Hero
+    6927, -- Glory of the Pandaria Hero
+    20005, -- Heroic: Pandaria Dungeons
+    20011, -- Looking For Group: Kun-Lai Summit
+    19875, -- Kun-Lai Summit
 })
 
 zoneData:Zone(447, { -- A Brewing Storm (scenario)
@@ -1099,6 +1004,10 @@ zoneData:Zone(447, { -- A Brewing Storm (scenario)
     7258, -- Party of Six
     19893, -- A Brewing Storm
     19924, -- Heroic: A Brewing Storm
+    20008, -- Looking For Group: The Jade Forest
+    7385, -- Pub Crawl
+    19872, -- The Jade Forest
+    20004, -- Heroic: Pandaria Scenarios
 })
 
 zoneData:Zone(448, { -- Greenstone Village (scenario)
@@ -1106,6 +1015,9 @@ zoneData:Zone(448, { -- Greenstone Village (scenario)
     7267, -- Perfect Delivery
     7266, -- Save it for Later
     19923, -- Greenstone Village
+    20008, -- Looking For Group: The Jade Forest
+    7385, -- Pub Crawl
+    19872, -- The Jade Forest
 })
 
 zoneData:Zone(450, { -- Unga Ingoo (scenario)
@@ -1115,12 +1027,15 @@ zoneData:Zone(450, { -- Unga Ingoo (scenario)
     7248, -- Monkey See, Monkey Kill
     7231, -- Spill No Evil
     19925, -- Unga Ingoo
+    7385, -- Pub Crawl
 })
 
 zoneData:Zone(451, { -- Assault on Zan'vess (scenario)
     8016, -- Assault on Zan'vess
     8017, -- For the Swarm
     19930, -- Assault on Zan'vess
+    20012, -- Looking For Group: Townlong Steppes
+    19877, -- Townlong Steppes
 })
 
 zoneData:Zone(452, { -- Brewmoon Festival (scenario)
@@ -1128,6 +1043,9 @@ zoneData:Zone(452, { -- Brewmoon Festival (scenario)
     6931, -- Binan Village All-Star
     6930, -- Yaungolian Barbecue
     19926, -- Brewmoon Festival
+    7385, -- Pub Crawl
+    20011, -- Looking For Group: Kun-Lai Summit
+    19875, -- Kun-Lai Summit
 })
 
 zoneData:Zone({453, 454, 455}, { -- Mogu'shan Palace (dungeon)
@@ -1143,6 +1061,11 @@ zoneData:Zone({453, 454, 455}, { -- Mogu'shan Palace (dungeon)
     8433, -- Challenge Master: Mogu'shan Palace
     19904, -- Mogu'shan Palace
     19905, -- Heroic: Mogu'shan Palace
+    20014, -- Looking For Group: Vale of Eternal Blossoms
+    6925, -- Pandaria Dungeon Hero
+    6927, -- Glory of the Pandaria Hero
+    19876, -- Vale of Eternal Blossoms
+    20005, -- Heroic: Pandaria Dungeons
 })
 
 zoneData:Zone(456, { -- Terrace of Endless Spring (raid)
@@ -1161,6 +1084,12 @@ zoneData:Zone(456, { -- Terrace of Endless Spring (raid)
     19952, -- Raid Finder: Terrace of Endless Spring
     19953, -- Terrace of Endless Spring
     19954, -- Heroic: Terrace of Endless Spring
+    20014, -- Looking For Group: Vale of Eternal Blossoms
+    6932, -- Glory of the Pandaria Raider
+    11761, -- Azeroth's Next Top Model
+    19876, -- Vale of Eternal Blossoms
+    20006, -- Pandaria Raids
+    20007, -- Heroic: Pandaria Raids
 })
 
 zoneData:Zone({457, 458, 459}, { -- Siege of Niuzao Temple (dungeon)
@@ -1176,6 +1105,11 @@ zoneData:Zone({457, 458, 459}, { -- Siege of Niuzao Temple (dungeon)
     8439, -- Challenge Master: Siege of Niuzao Temple
     19900, -- Siege of Niuzao Temple
     19901, -- Heroic: Siege of Niuzao Temple
+    20012, -- Looking For Group: Townlong Steppes
+    6925, -- Pandaria Dungeon Hero
+    6927, -- Glory of the Pandaria Hero
+    19877, -- Townlong Steppes
+    20005, -- Heroic: Pandaria Dungeons
 })
 
 zoneData:Zone({471, 472, 473}, { -- Mogu'shan Vaults (raid)
@@ -1199,6 +1133,11 @@ zoneData:Zone({471, 472, 473}, { -- Mogu'shan Vaults (raid)
     19946, -- Raid Finder: Mogu'shan Vaults
     19947, -- Mogu'shan Vaults
     19948, -- Heroic: Mogu'shan Vaults
+    6932, -- Glory of the Pandaria Raider
+    20006, -- Pandaria Raids
+    20007, -- Heroic: Pandaria Raids
+    20011, -- Looking For Group: Kun-Lai Summit
+    19875, -- Kun-Lai Summit
 })
 
 zoneData:Zone({474, 475}, { -- Heart of Fear (raid)
@@ -1222,6 +1161,10 @@ zoneData:Zone({474, 475}, { -- Heart of Fear (raid)
     19949, -- Raid Finder: Heart of Fear
     19950, -- Heart of Fear
     19951, -- Heroic: Heart of Fear
+    6932, -- Glory of the Pandaria Raider
+    11761, -- Azeroth's Next Top Model
+    20006, -- Pandaria Raids
+    20007, -- Heroic: Pandaria Raids
 })
 
 zoneData:Zone({476, 477, 478, 479}, { -- Scholomance (dungeon)
@@ -1242,6 +1185,14 @@ zoneData:Zone({476, 477, 478, 479}, { -- Scholomance (dungeon)
     19910, -- Scholomance
     19911, -- Heroic: Scholomance
     912, -- Elders of Eastern Kingdoms
+    20014, -- Looking For Group: Vale of Eternal Blossoms
+    913, -- To Honor One's Elders
+    1283, -- Classic Dungeonmaster
+    6925, -- Pandaria Dungeon Hero
+    6927, -- Glory of the Pandaria Hero
+    19876, -- Vale of Eternal Blossoms
+    20005, -- Heroic: Pandaria Dungeons
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(480, { -- Arena of Annihilation (scenario)
@@ -1289,6 +1240,8 @@ zoneData:Zone(480, { -- Arena of Annihilation (scenario)
     8697, -- You're Doing it Wrong (Level 90)
     8812, -- You're Really Doing It Wrong (Level 90)
     19927, -- Arena of Annihilation
+    20011, -- Looking For Group: Kun-Lai Summit
+    19875, -- Kun-Lai Summit
 })
 
 zoneData:Zone({481, 482}, { -- Crypt of Forgotten Kings (scenario)
@@ -1299,6 +1252,9 @@ zoneData:Zone({481, 482}, { -- Crypt of Forgotten Kings (scenario)
     8368, -- Fight Anger with Anger
     19928, -- Crypt of Forgotten Kings
     19929, -- Heroic: Crypt of Forgotten Kings
+    20004, -- Heroic: Pandaria Scenarios
+    20011, -- Looking For Group: Kun-Lai Summit
+    19875, -- Kun-Lai Summit
 })
 
 zoneData:Zone(486, { -- Lion's Landing (scenario)
@@ -1381,6 +1337,8 @@ zoneData:Zone(507, { -- Isle of Giants (zone)
     8123, -- Millions of Years of Evolution vs. My Fist
     8092, -- I've Got 9999 Problems but a Bone-White Primal Raptor Ain't One
     20020, -- Oondasta
+    20015, -- Looking For Group: Isle of Thunder
+    19880, -- Isle of Thunder
 })
 
 zoneData:Zone({508, 509, 510, 511, 512, 513, 514, 515}, { -- Throne of Thunder (raid)
@@ -1421,6 +1379,12 @@ zoneData:Zone({508, 509, 510, 511, 512, 513, 514, 515}, { -- Throne of Thunder (
     19955, -- Raid Finder: Throne of Thunder
     19956, -- Throne of Thunder
     19957, -- Heroic: Throne of Thunder
+    8124, -- Glory of the Thundering Raider
+    11761, -- Azeroth's Next Top Model
+    20006, -- Pandaria Raids
+    20007, -- Heroic: Pandaria Raids
+    20015, -- Looking For Group: Isle of Thunder
+    19880, -- Isle of Thunder
 })
 
 zoneData:Zone({519, 1576}, { -- Deepwind Gorge (battleground)
@@ -1444,6 +1408,8 @@ zoneData:Zone({519, 1576}, { -- Deepwind Gorge (battleground)
 zoneData:Zone(523, { -- Blood in the Snow (scenario)
     19940, -- Blood in the Snow
     19941, -- Heroic: Blood in the Snow
+    19881, -- Escalation
+    20004, -- Heroic: Pandaria Scenarios
 })
 
 zoneData:Zone(524, { -- Battle on the High Seas (scenario)
@@ -1456,6 +1422,8 @@ zoneData:Zone(524, { -- Battle on the High Seas (scenario)
     19935, -- Heroic: Battle on the High Seas
     19936, -- Battle on the High Seas
     19937, -- Heroic: Battle on the High Seas
+    19881, -- Escalation
+    20004, -- Heroic: Pandaria Scenarios
 })
 
 zoneData:Zone({554, 555}, { -- Timeless Isle (zone)
@@ -1521,4 +1489,9 @@ zoneData:Zone({556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568, 
     19959, -- Siege of Orgrimmar
     19960, -- Heroic: Siege of Orgrimmar
     19961, -- Mythic Remix: Siege of Orgrimmar
+    8454, -- Glory of the Orgrimmar Raider
+    11761, -- Azeroth's Next Top Model
+    19881, -- Escalation
+    20006, -- Pandaria Raids
+    20007, -- Heroic: Pandaria Raids
 })

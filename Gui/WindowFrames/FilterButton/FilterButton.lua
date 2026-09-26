@@ -1,25 +1,25 @@
-local _, addon = ...;
-addon.Gui.FilterButton = {};
-local filterButton = addon.Gui.FilterButton;
+local _, addon = ...
+addon.Gui.FilterButton = {}
+local filterButton = addon.Gui.FilterButton
 
 local function CreateModern()
-    local button = CreateFrame("DropdownButton", "KrowiAF_AchievementFrameFilterButton", AchievementFrame, "KrowiAF_AchievementFrameFilterButton_Modern_Template");
+    local button = CreateFrame("DropdownButton", "KrowiAF_AchievementFrameFilterButton", AchievementFrame, "KrowiAF_AchievementFrameFilterButton_Modern_Template")
     if AchievementFrame.HeaderDetails then
-        button:SetPoint("RIGHT", AchievementFrame.HeaderDetails, "RIGHT", -8, 0);
+        button:SetPoint("RIGHT", AchievementFrame.HeaderDetails, "RIGHT", -8, 0)
     else
-        button:SetPoint("BOTTOMLEFT", AchievementFrame.Header, "BOTTOMLEFT", 118, 28);
+        button:SetPoint("BOTTOMLEFT", AchievementFrame.Header, "BOTTOMLEFT", 118, 28)
     end
-    return button;
+    return button
 end
 
 local function CreateClassic()
-    local button = CreateFrame("DropDownToggleButton", "KrowiAF_AchievementFrameFilterButton", AchievementFrame, "KrowiAF_AchievementFrameFilterButton_Template");
-    button:SetPoint("BOTTOMLEFT", AchievementFrame.Header, "BOTTOMLEFT", 116, 26);
-    return button;
+    local button = CreateFrame("DropDownToggleButton", "KrowiAF_AchievementFrameFilterButton", AchievementFrame, "KrowiAF_AchievementFrameFilterButton_Template")
+    button:SetPoint("BOTTOMLEFT", AchievementFrame.Header, "BOTTOMLEFT", 116, 26)
+    return button
 end
 
 function filterButton:Load()
-    addon.Filters:ResetFilters();
-	tinsert(addon.Gui.SubFrames, addon.Util.IsMainline and CreateModern() or CreateClassic());
-	addon.Gui.FilterButton = nil;
+    addon.Filters:ResetFilters()
+	tinsert(addon.Gui.SubFrames, addon.Util.IsMainline and CreateModern() or CreateClassic())
+	addon.Gui.FilterButton = nil
 end

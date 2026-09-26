@@ -1,5 +1,5 @@
-local _, addon = ...;
-local shared = addon.Data.TransmogSetData.Shared;
+local _, addon = ...
+local shared = addon.Data.TransmogSetData.Shared
 
 KrowiAF.TransmogSetData.Shadowlands = {
     { -- Castle Vain
@@ -80,4 +80,4 @@ KrowiAF.TransmogSetData.Shadowlands = {
             2355, 2354, 2356, 2357, -- Mercurial Punisher's Painweave (Raid Finder, Normal, Heroic, Mythic)
         }
     },
-};
+}

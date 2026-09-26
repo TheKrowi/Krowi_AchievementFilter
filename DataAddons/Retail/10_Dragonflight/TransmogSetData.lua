@@ -1,5 +1,5 @@
-local _, addon = ...;
-local shared = addon.Data.TransmogSetData.Shared;
+local _, addon = ...
+local shared = addon.Data.TransmogSetData.Shared
 
 KrowiAF.TransmogSetData.Dragonflight = {
     { -- Vaulternative Fashion
@@ -95,4 +95,4 @@ KrowiAF.TransmogSetData.Dragonflight = {
             3160, 3157, 3158, 3159, -- Werynkeeper’s Timeless Vigil (Raid Finder, Normal, Heroic, Mythic)
         }
     },
-};
+}

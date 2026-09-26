@@ -1,5 +1,5 @@
-local _, addon = ...;
-local shared = addon.Data.TransmogSetData.Shared;
+local _, addon = ...
+local shared = addon.Data.TransmogSetData.Shared
 
 KrowiAF.TransmogSetData.BattleForAzeroth = {
     { -- New Mog, G'huun This?
@@ -102,4 +102,4 @@ KrowiAF.TransmogSetData.BattleForAzeroth = {
             1969, 1968, 1975, -- Corrupted Gladiator's Vestment (Gladiator, Elite)
         }
     },
-};
+}

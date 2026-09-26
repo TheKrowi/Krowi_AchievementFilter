@@ -109,6 +109,13 @@ local zoneData = KrowiAF.NewZoneData("Midnight")
 zoneData:Zone(2393, { -- Silvermoon City (city)
     63343, -- Goal!
     275, -- Veteran Nanny
+    41805, -- Arator's Journey
+    60891, -- The Crimson Rogue
+    62191, -- Call of the Light
+    42117, -- The War of Light and Shadow
+    61839, -- Midnight Pathfinder
+    42045, -- Midnight
+    62110, -- Loremaster of Midnight
 })
 
 zoneData:Zone({2395, 2579}, { -- Eversong Woods (zone)
@@ -129,9 +136,13 @@ zoneData:Zone({2395, 2579}, { -- Eversong Woods (zone)
     62190, -- Life of the Party
     62262, -- Silvermoon Court Champion
     quelThalas,
+    61446, -- Slayer's Mastery
+    61453, -- Making an Amani Out of You
+    61839, -- Midnight Pathfinder
+    60891, -- The Crimson Rogue
 })
 
-zoneData:Zone(2405, { -- Voidstorm (zone)
+zoneData:Zone({2405, 2526, 2527, 2581, 2582}, { -- Voidstorm (zone), Lair of Predaxas, Voidburrow
     41806, -- Breaching the Voidstorm
     61864, -- Sojourner of Voidstorm
     62105, -- Lysikas Would Be Proud
@@ -149,6 +160,10 @@ zoneData:Zone(2405, { -- Voidstorm (zone)
     62265, -- The Singularity Champion
     62256, -- Yelling into the Voidstorm
     quelThalas,
+    61446, -- Slayer's Mastery
+    61453, -- Making an Amani Out of You
+    61839, -- Midnight Pathfinder
+    42117, -- The War of Light and Shadow
 })
 
 zoneData:Zone({2413, 2522, 2523, 2576}, { -- Harandar (zone)
@@ -171,6 +186,14 @@ zoneData:Zone({2413, 2522, 2523, 2576}, { -- Harandar (zone)
     62264, -- Hara'ti Champion
     62260, -- That's Aln, Folks!
     quelThalas,
+    61446, -- Slayer's Mastery
+    61453, -- Making an Amani Out of You
+    61839, -- Midnight Pathfinder
+})
+
+zoneData:Zone({2424, 2649}, { -- Isle of Quel'Danas (zone)
+    62191, -- Call of the Light
+    42117, -- The War of Light and Shadow
 })
 
 zoneData:Zone(2427, { -- Sporefall (raid)
@@ -185,6 +208,34 @@ zoneData:Zone({2433, 2434, 2435}, { -- Murder Row (dungeon)
     41962, -- Mythic: Murder Row
     62440, -- Keystone Hero: Murder Row
     63623, -- Keystone Victor: Murder Row
+    61567, -- Midnight Dungeon Hero
+    61568, -- Glory of the Midnight Hero
+    62417, -- Midnight Season 2: Resilient Keystone 12
+    62418, -- Midnight Season 2: Resilient Keystone 13
+    62419, -- Midnight Season 2: Resilient Keystone 14
+    62420, -- Midnight Season 2: Resilient Keystone 15
+    62421, -- Midnight Season 2: Resilient Keystone 16
+    62422, -- Midnight Season 2: Resilient Keystone 17
+    62423, -- Midnight Season 2: Resilient Keystone 18
+    62424, -- Midnight Season 2: Resilient Keystone 19
+    62425, -- Midnight Season 2: Resilient Keystone 20
+    62426, -- Midnight Season 2: Resilient Keystone 21
+    62427, -- Midnight Season 2: Resilient Keystone 22
+    62428, -- Midnight Season 2: Resilient Keystone 23
+    62429, -- Midnight Season 2: Resilient Keystone 24
+    62430, -- Midnight Season 2: Resilient Keystone 25
+    62431, -- Midnight Season 2: Resilient Keystone 26
+    62432, -- Midnight Season 2: Resilient Keystone 27
+    62433, -- Midnight Season 2: Resilient Keystone 28
+    62434, -- Midnight Season 2: Resilient Keystone 29
+    62435, -- Midnight Season 2: Resilient Keystone 30
+    62445, -- Midnight Keystone Explorer: Season 2
+    62446, -- Midnight Keystone Conqueror: Season 2
+    62447, -- Midnight Keystone Master: Season 2
+    62448, -- Midnight Keystone Hero: Season 2
+    62449, -- Midnight Keystone Legend: Season 2
+    62436, -- Venomous Hero: Midnight Season 2
+    63473, -- Sssensational!
 })
 
 zoneData:Zone({2437, 2536, 2580, 2583, 2584}, { -- Zul'Aman (zone)
@@ -211,6 +262,10 @@ zoneData:Zone({2437, 2536, 2580, 2583, 2584}, { -- Zul'Aman (zone)
     62263, -- Amani Tribe Champion
     61453, -- Making an Amani Out of You
     quelThalas,
+    61446, -- Slayer's Mastery
+    61839, -- Midnight Pathfinder
+    63639, -- Ula'tek Uncoiled
+    60891, -- The Crimson Rogue
 })
 
 zoneData:Zone(2444, { -- Slayer's Rise (zone)
@@ -226,6 +281,11 @@ zoneData:Zone(2444, { -- Slayer's Rise (zone)
     61448, -- Frequent the Rise
     61449, -- Customary Rise
     61446, -- Slayer's Mastery
+    61857, -- Explore Voidstorm
+    61854, -- The Midnight Explorer
+    62256, -- Yelling into the Voidstorm
+    61839, -- Midnight Pathfinder
+    62386, -- Light Up the Night
 })
 
 zoneData:Zone(2397, { -- Slayer's Rise (battleground)
@@ -238,6 +298,36 @@ zoneData:Zone({2492, 2493, 2494, 2496, 2497, 2498, 2499}, { -- Windrunner Spire 
     41291, -- Mythic: Windrunner Spire
     61262, -- Keystone Hero: Windrunner Spire
     61590, -- Keystone Victor: Windrunner Spire
+    61567, -- Midnight Dungeon Hero
+    61568, -- Glory of the Midnight Hero
+    61233, -- Midnight Season 1: Resilient Keystone 12
+    61235, -- Midnight Season 1: Resilient Keystone 13
+    61236, -- Midnight Season 1: Resilient Keystone 14
+    61237, -- Midnight Season 1: Resilient Keystone 15
+    61239, -- Midnight Season 1: Resilient Keystone 16
+    61240, -- Midnight Season 1: Resilient Keystone 17
+    61241, -- Midnight Season 1: Resilient Keystone 18
+    61242, -- Midnight Season 1: Resilient Keystone 19
+    61243, -- Midnight Season 1: Resilient Keystone 20
+    61244, -- Midnight Season 1: Resilient Keystone 21
+    61245, -- Midnight Season 1: Resilient Keystone 22
+    61246, -- Midnight Season 1: Resilient Keystone 23
+    61247, -- Midnight Season 1: Resilient Keystone 24
+    61248, -- Midnight Season 1: Resilient Keystone 25
+    61249, -- Midnight Season 1: Resilient Keystone 26
+    61250, -- Midnight Season 1: Resilient Keystone 27
+    61251, -- Midnight Season 1: Resilient Keystone 28
+    61252, -- Midnight Season 1: Resilient Keystone 29
+    61253, -- Midnight Season 1: Resilient Keystone 30
+    61254, -- Midnight Keystone Explorer: Season 1
+    61255, -- Midnight Keystone Conqueror: Season 1
+    61256, -- Midnight Keystone Master: Season 1
+    61257, -- Midnight Keystone Hero: Season 1
+    61258, -- Midnight Keystone Legend: Season 1
+    63097, -- Midnight Keystone Myth: Season 1
+    61259, -- Umbral Hero: Midnight Season 1
+    63104, -- Umbral Champion: Midnight Season 1
+    61858, -- Light of the Party
 })
 
 zoneData:Zone(2500, { -- The Blinding Vale (dungeon)
@@ -246,6 +336,34 @@ zoneData:Zone(2500, { -- The Blinding Vale (dungeon)
     61649, -- Mythic: The Blinding Vale
     62437, -- Keystone Hero: The Blinding Vale
     63624, -- Keystone Victor: The Blinding Vale
+    61567, -- Midnight Dungeon Hero
+    61568, -- Glory of the Midnight Hero
+    62417, -- Midnight Season 2: Resilient Keystone 12
+    62418, -- Midnight Season 2: Resilient Keystone 13
+    62419, -- Midnight Season 2: Resilient Keystone 14
+    62420, -- Midnight Season 2: Resilient Keystone 15
+    62421, -- Midnight Season 2: Resilient Keystone 16
+    62422, -- Midnight Season 2: Resilient Keystone 17
+    62423, -- Midnight Season 2: Resilient Keystone 18
+    62424, -- Midnight Season 2: Resilient Keystone 19
+    62425, -- Midnight Season 2: Resilient Keystone 20
+    62426, -- Midnight Season 2: Resilient Keystone 21
+    62427, -- Midnight Season 2: Resilient Keystone 22
+    62428, -- Midnight Season 2: Resilient Keystone 23
+    62429, -- Midnight Season 2: Resilient Keystone 24
+    62430, -- Midnight Season 2: Resilient Keystone 25
+    62431, -- Midnight Season 2: Resilient Keystone 26
+    62432, -- Midnight Season 2: Resilient Keystone 27
+    62433, -- Midnight Season 2: Resilient Keystone 28
+    62434, -- Midnight Season 2: Resilient Keystone 29
+    62435, -- Midnight Season 2: Resilient Keystone 30
+    62445, -- Midnight Keystone Explorer: Season 2
+    62446, -- Midnight Keystone Conqueror: Season 2
+    62447, -- Midnight Keystone Master: Season 2
+    62448, -- Midnight Keystone Hero: Season 2
+    62449, -- Midnight Keystone Legend: Season 2
+    62436, -- Venomous Hero: Midnight Season 2
+    63473, -- Sssensational!
 })
 
 zoneData:Zone(2501, { -- Maisara Caverns (dungeon)
@@ -254,6 +372,36 @@ zoneData:Zone(2501, { -- Maisara Caverns (dungeon)
     61645, -- Mythic: Maisara Caverns
     61269, -- Keystone Hero: Maisara Caverns
     61588, -- Keystone Victor: Maisara Caverns
+    61567, -- Midnight Dungeon Hero
+    61568, -- Glory of the Midnight Hero
+    61233, -- Midnight Season 1: Resilient Keystone 12
+    61235, -- Midnight Season 1: Resilient Keystone 13
+    61236, -- Midnight Season 1: Resilient Keystone 14
+    61237, -- Midnight Season 1: Resilient Keystone 15
+    61239, -- Midnight Season 1: Resilient Keystone 16
+    61240, -- Midnight Season 1: Resilient Keystone 17
+    61241, -- Midnight Season 1: Resilient Keystone 18
+    61242, -- Midnight Season 1: Resilient Keystone 19
+    61243, -- Midnight Season 1: Resilient Keystone 20
+    61244, -- Midnight Season 1: Resilient Keystone 21
+    61245, -- Midnight Season 1: Resilient Keystone 22
+    61246, -- Midnight Season 1: Resilient Keystone 23
+    61247, -- Midnight Season 1: Resilient Keystone 24
+    61248, -- Midnight Season 1: Resilient Keystone 25
+    61249, -- Midnight Season 1: Resilient Keystone 26
+    61250, -- Midnight Season 1: Resilient Keystone 27
+    61251, -- Midnight Season 1: Resilient Keystone 28
+    61252, -- Midnight Season 1: Resilient Keystone 29
+    61253, -- Midnight Season 1: Resilient Keystone 30
+    61254, -- Midnight Keystone Explorer: Season 1
+    61255, -- Midnight Keystone Conqueror: Season 1
+    61256, -- Midnight Keystone Master: Season 1
+    61257, -- Midnight Keystone Hero: Season 1
+    61258, -- Midnight Keystone Legend: Season 1
+    63097, -- Midnight Keystone Myth: Season 1
+    61259, -- Umbral Hero: Midnight Season 1
+    63104, -- Umbral Champion: Midnight Season 1
+    61858, -- Light of the Party
 })
 
 zoneData:Zone(2502, { -- The Shadow Enclave (delve)
@@ -290,6 +438,7 @@ zoneData:Zone(2507, { -- Torment's Rise (delve)
     61798, -- Lighting the Dark
     61799, -- Let Me Solo Him: Nullaeus
     61808, -- Fabled Let Me Solo Him: Nullaeus
+    61906, -- Glory of the Midnight Delver
 })
 
 zoneData:Zone(2510, { -- The Grudge Pit (delve)
@@ -305,6 +454,36 @@ zoneData:Zone({2511, 2515, 2516, 2517, 2518, 2519, 2520}, { -- Magisters' Terrac
     61214, -- Mythic: Magisters' Terrace
     61267, -- Keystone Hero: Magisters' Terrace
     61587, -- Keystone Victor: Magisters' Terrace (Midnight)
+    61567, -- Midnight Dungeon Hero
+    61568, -- Glory of the Midnight Hero
+    61233, -- Midnight Season 1: Resilient Keystone 12
+    61235, -- Midnight Season 1: Resilient Keystone 13
+    61236, -- Midnight Season 1: Resilient Keystone 14
+    61237, -- Midnight Season 1: Resilient Keystone 15
+    61239, -- Midnight Season 1: Resilient Keystone 16
+    61240, -- Midnight Season 1: Resilient Keystone 17
+    61241, -- Midnight Season 1: Resilient Keystone 18
+    61242, -- Midnight Season 1: Resilient Keystone 19
+    61243, -- Midnight Season 1: Resilient Keystone 20
+    61244, -- Midnight Season 1: Resilient Keystone 21
+    61245, -- Midnight Season 1: Resilient Keystone 22
+    61246, -- Midnight Season 1: Resilient Keystone 23
+    61247, -- Midnight Season 1: Resilient Keystone 24
+    61248, -- Midnight Season 1: Resilient Keystone 25
+    61249, -- Midnight Season 1: Resilient Keystone 26
+    61250, -- Midnight Season 1: Resilient Keystone 27
+    61251, -- Midnight Season 1: Resilient Keystone 28
+    61252, -- Midnight Season 1: Resilient Keystone 29
+    61253, -- Midnight Season 1: Resilient Keystone 30
+    61254, -- Midnight Keystone Explorer: Season 1
+    61255, -- Midnight Keystone Conqueror: Season 1
+    61256, -- Midnight Keystone Master: Season 1
+    61257, -- Midnight Keystone Hero: Season 1
+    61258, -- Midnight Keystone Legend: Season 1
+    63097, -- Midnight Keystone Myth: Season 1
+    61259, -- Umbral Hero: Midnight Season 1
+    63104, -- Umbral Champion: Midnight Season 1
+    61858, -- Light of the Party
 })
 
 zoneData:Zone({2513, 2514, 2564}, { -- Den of Nalorakk (dungeon)
@@ -313,6 +492,34 @@ zoneData:Zone({2513, 2514, 2564}, { -- Den of Nalorakk (dungeon)
     61643, -- Mythic: Den of Nalorakk
     62439, -- Keystone Hero: Den of Nalorakk
     63622, -- Keystone Victor: Den of Nalorakk
+    61567, -- Midnight Dungeon Hero
+    61568, -- Glory of the Midnight Hero
+    62417, -- Midnight Season 2: Resilient Keystone 12
+    62418, -- Midnight Season 2: Resilient Keystone 13
+    62419, -- Midnight Season 2: Resilient Keystone 14
+    62420, -- Midnight Season 2: Resilient Keystone 15
+    62421, -- Midnight Season 2: Resilient Keystone 16
+    62422, -- Midnight Season 2: Resilient Keystone 17
+    62423, -- Midnight Season 2: Resilient Keystone 18
+    62424, -- Midnight Season 2: Resilient Keystone 19
+    62425, -- Midnight Season 2: Resilient Keystone 20
+    62426, -- Midnight Season 2: Resilient Keystone 21
+    62427, -- Midnight Season 2: Resilient Keystone 22
+    62428, -- Midnight Season 2: Resilient Keystone 23
+    62429, -- Midnight Season 2: Resilient Keystone 24
+    62430, -- Midnight Season 2: Resilient Keystone 25
+    62431, -- Midnight Season 2: Resilient Keystone 26
+    62432, -- Midnight Season 2: Resilient Keystone 27
+    62433, -- Midnight Season 2: Resilient Keystone 28
+    62434, -- Midnight Season 2: Resilient Keystone 29
+    62435, -- Midnight Season 2: Resilient Keystone 30
+    62445, -- Midnight Keystone Explorer: Season 2
+    62446, -- Midnight Keystone Conqueror: Season 2
+    62447, -- Midnight Keystone Master: Season 2
+    62448, -- Midnight Keystone Hero: Season 2
+    62449, -- Midnight Keystone Legend: Season 2
+    62436, -- Venomous Hero: Midnight Season 2
+    63473, -- Sssensational!
 })
 
 zoneData:Zone(2525, { -- The Darkway (delve)
@@ -353,6 +560,7 @@ zoneData:Zone({2529, 2530}, { -- The Voidspire (raid)
     61376, -- Mythic: Lightblinded Vanguard
     61377, -- Mythic: Crown of the Cosmos
     61843, -- Quel'Dressed
+    11761, -- Azeroth's Next Top Model
 })
 
 zoneData:Zone({2531, 2532}, { -- The Dreamrift (raid)
@@ -364,6 +572,7 @@ zoneData:Zone({2531, 2532}, { -- The Dreamrift (raid)
     61454, -- Falling Between The Quacks
     61380, -- Glory of the Midnight Raider
     61843, -- Quel'Dressed
+    11761, -- Azeroth's Next Top Model
 })
 
 zoneData:Zone({2533, 2534}, { -- March on Quel'Danas (raid)
@@ -379,6 +588,8 @@ zoneData:Zone({2533, 2534}, { -- March on Quel'Danas (raid)
     61378, -- Mythic: Belo'ren, Child of Al'ar
     61379, -- Mythic: Midnight Falls
     61843, -- Quel'Dressed
+    11761, -- Azeroth's Next Top Model
+    61858, -- Light of the Party
 })
 
 zoneData:Zone(2535, { -- Atal'Aman (delve)
@@ -388,20 +599,16 @@ zoneData:Zone(2535, { -- Atal'Aman (delve)
     delvesS2Progress,
 })
 
-zoneData:Zone(2537, { -- Quel'Thalas (zone)
-    41805, -- Arator's Journey
-    42117, -- The War of Light and Shadow
-    60891, -- The Crimson Rogue
-    62191, -- Call of the Light
-    61839, -- Midnight Pathfinder (Reward: Steady Flight unlocked within Midnight, Finery Funds)
-})
-
 zoneData:Zone(2541, { -- Arcantina
     61081, -- Share a Drink
     61082, -- Old Soldiers
     61083, -- Highly Decorated
     63619, -- New Friends
     63620, -- Well Decorated
+    41805, -- Arator's Journey
+    61839, -- Midnight Pathfinder
+    42045, -- Midnight
+    62110, -- Loremaster of Midnight
 })
 
 zoneData:Zone(2545, { -- Parhelion Plaza (delve)
@@ -425,6 +632,36 @@ zoneData:Zone(2556, { -- Nexus-Point Xenas (dungeon)
     61647, -- Mythic: Nexus-Point Xenas
     61268, -- Keystone Hero: Nexus-Point Xenas
     61589, -- Keystone Victor: Nexus-Point Xenas
+    61567, -- Midnight Dungeon Hero
+    61568, -- Glory of the Midnight Hero
+    61233, -- Midnight Season 1: Resilient Keystone 12
+    61235, -- Midnight Season 1: Resilient Keystone 13
+    61236, -- Midnight Season 1: Resilient Keystone 14
+    61237, -- Midnight Season 1: Resilient Keystone 15
+    61239, -- Midnight Season 1: Resilient Keystone 16
+    61240, -- Midnight Season 1: Resilient Keystone 17
+    61241, -- Midnight Season 1: Resilient Keystone 18
+    61242, -- Midnight Season 1: Resilient Keystone 19
+    61243, -- Midnight Season 1: Resilient Keystone 20
+    61244, -- Midnight Season 1: Resilient Keystone 21
+    61245, -- Midnight Season 1: Resilient Keystone 22
+    61246, -- Midnight Season 1: Resilient Keystone 23
+    61247, -- Midnight Season 1: Resilient Keystone 24
+    61248, -- Midnight Season 1: Resilient Keystone 25
+    61249, -- Midnight Season 1: Resilient Keystone 26
+    61250, -- Midnight Season 1: Resilient Keystone 27
+    61251, -- Midnight Season 1: Resilient Keystone 28
+    61252, -- Midnight Season 1: Resilient Keystone 29
+    61253, -- Midnight Season 1: Resilient Keystone 30
+    61254, -- Midnight Keystone Explorer: Season 1
+    61255, -- Midnight Keystone Conqueror: Season 1
+    61256, -- Midnight Keystone Master: Season 1
+    61257, -- Midnight Keystone Hero: Season 1
+    61258, -- Midnight Keystone Legend: Season 1
+    63097, -- Midnight Keystone Myth: Season 1
+    61259, -- Umbral Hero: Midnight Season 1
+    63104, -- Umbral Champion: Midnight Season 1
+    61858, -- Light of the Party
 })
 
 zoneData:Zone({2572, 2573, 2574}, { -- Voidscar Arena (dungeon)
@@ -433,6 +670,34 @@ zoneData:Zone({2572, 2573, 2574}, { -- Voidscar Arena (dungeon)
     61510, -- Mythic: Voidscar Arena
     62438, -- Keystone Hero: Voidscar Arena
     63625, -- Keystone Victor: Voidscar Arena
+    61567, -- Midnight Dungeon Hero
+    61568, -- Glory of the Midnight Hero
+    62417, -- Midnight Season 2: Resilient Keystone 12
+    62418, -- Midnight Season 2: Resilient Keystone 13
+    62419, -- Midnight Season 2: Resilient Keystone 14
+    62420, -- Midnight Season 2: Resilient Keystone 15
+    62421, -- Midnight Season 2: Resilient Keystone 16
+    62422, -- Midnight Season 2: Resilient Keystone 17
+    62423, -- Midnight Season 2: Resilient Keystone 18
+    62424, -- Midnight Season 2: Resilient Keystone 19
+    62425, -- Midnight Season 2: Resilient Keystone 20
+    62426, -- Midnight Season 2: Resilient Keystone 21
+    62427, -- Midnight Season 2: Resilient Keystone 22
+    62428, -- Midnight Season 2: Resilient Keystone 23
+    62429, -- Midnight Season 2: Resilient Keystone 24
+    62430, -- Midnight Season 2: Resilient Keystone 25
+    62431, -- Midnight Season 2: Resilient Keystone 26
+    62432, -- Midnight Season 2: Resilient Keystone 27
+    62433, -- Midnight Season 2: Resilient Keystone 28
+    62434, -- Midnight Season 2: Resilient Keystone 29
+    62435, -- Midnight Season 2: Resilient Keystone 30
+    62445, -- Midnight Keystone Explorer: Season 2
+    62446, -- Midnight Keystone Conqueror: Season 2
+    62447, -- Midnight Keystone Master: Season 2
+    62448, -- Midnight Keystone Hero: Season 2
+    62449, -- Midnight Keystone Legend: Season 2
+    62436, -- Venomous Hero: Midnight Season 2
+    63473, -- Sssensational!
 })
 
 zoneData:Zone({2588, 2589, 2590}, { -- Altar of Fangs (dungeon)
@@ -442,6 +707,32 @@ zoneData:Zone({2588, 2589, 2590}, { -- Altar of Fangs (dungeon)
     62284, -- Mythic: Altar of Fangs
     62441, -- Keystone Hero: Altar of Fangs
     63621, -- Keystone Victor: Altar of Fangs
+    62417, -- Midnight Season 2: Resilient Keystone 12
+    62418, -- Midnight Season 2: Resilient Keystone 13
+    62419, -- Midnight Season 2: Resilient Keystone 14
+    62420, -- Midnight Season 2: Resilient Keystone 15
+    62421, -- Midnight Season 2: Resilient Keystone 16
+    62422, -- Midnight Season 2: Resilient Keystone 17
+    62423, -- Midnight Season 2: Resilient Keystone 18
+    62424, -- Midnight Season 2: Resilient Keystone 19
+    62425, -- Midnight Season 2: Resilient Keystone 20
+    62426, -- Midnight Season 2: Resilient Keystone 21
+    62427, -- Midnight Season 2: Resilient Keystone 22
+    62428, -- Midnight Season 2: Resilient Keystone 23
+    62429, -- Midnight Season 2: Resilient Keystone 24
+    62430, -- Midnight Season 2: Resilient Keystone 25
+    62431, -- Midnight Season 2: Resilient Keystone 26
+    62432, -- Midnight Season 2: Resilient Keystone 27
+    62433, -- Midnight Season 2: Resilient Keystone 28
+    62434, -- Midnight Season 2: Resilient Keystone 29
+    62435, -- Midnight Season 2: Resilient Keystone 30
+    62445, -- Midnight Keystone Explorer: Season 2
+    62446, -- Midnight Keystone Conqueror: Season 2
+    62447, -- Midnight Keystone Master: Season 2
+    62448, -- Midnight Keystone Hero: Season 2
+    62449, -- Midnight Keystone Legend: Season 2
+    62436, -- Venomous Hero: Midnight Season 2
+    63473, -- Sssensational!
 })
 
 local valAndNaigtal = {
@@ -465,6 +756,7 @@ zoneData:Zone({2599, 2617, 2618, 2619, 2620, 2621}, { -- Val (zone)
     62873, -- A Trip Around the Stars
     62842, -- A Celestial Pain
     63349, -- Ultradon Carnage
+    62874, -- A Trip Through the Stars
 })
 
 zoneData:Zone({2600, 2646}, { -- Naigtal (zone)
@@ -475,6 +767,7 @@ zoneData:Zone({2600, 2646}, { -- Naigtal (zone)
     62883, -- Showdown Slugger: Naigtal
     62882, -- Showdown Success: Naigtal
     62874, -- A Trip Through the Stars
+    62873, -- A Trip Around the Stars
 })
 
 zoneData:Zone({2512, 2639, 2640, 2641, 2642, 2643, 2644, 2645}, { -- The Coiled Isle (zone)
@@ -491,6 +784,7 @@ zoneData:Zone({2512, 2639, 2640, 2641, 2642, 2643, 2644, 2645}, { -- The Coiled 
     63432, -- Mysterious Mix Master
     63167, -- Tour of Duty: The Coiled Isle
     63631, -- Captain Tokka's Crew
+    63635, -- Tokka's Terrible Trials
 })
 
 zoneData:Zone({2509, 2613, 2636, 2637, 2638}, { -- Vaults of Atal'Utek (zone)
@@ -527,6 +821,7 @@ zoneData:Zone(2634, { -- Venomfall Deeps (delve)
     63332, -- Purging the Poison
     63333, -- Let Me Solo Him: Azta'rec
     63334, -- Fabled Let Me Solo Him: Azta'rec
+    61906, -- Glory of the Midnight Delver
 })
 
 zoneData:Zone({2606, 2607, 2608, 2609, 2610}, { -- The Venomous Abyss (raid)
@@ -560,6 +855,8 @@ zoneData:Zone({2606, 2607, 2608, 2609, 2610}, { -- The Venomous Abyss (raid)
     63529, -- Mythic: The Coiled Altar
     63476, -- Mythic: Ula'tek
     61843, -- Quel'Dressed
+    11761, -- Azeroth's Next Top Model
+    63473, -- Sssensational!
 })
 
 zoneData:Zone(2632, { -- The Tidebound Grotto (raid)

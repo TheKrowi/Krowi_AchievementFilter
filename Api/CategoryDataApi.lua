@@ -9,9 +9,13 @@ local function SetCategoryRootForTab(id, tabName)
 end
 
 local function AddAchievements(categoryId, achievementIds)
+    local category = addon.Data.Categories[categoryId]
     for _, achievementId in next, achievementIds do
-        if addon.Data.Achievements[achievementId] then
-            addon.Data.Categories[categoryId]:AddAchievement(addon.Data.Achievements[achievementId])
+        local achievement = addon.Data.Achievements[achievementId]
+        if achievement then
+            category:AddAchievement(achievement)
+        else
+            addon.Data.LoadDiagnostics:Report(addon.Data.LoadDiagnostics.Kind.UnregisteredAchievement, achievementId, "category " .. tostring(category.Name))
         end
     end
 end
@@ -77,16 +81,25 @@ local function ParseChildData(categoryId, childData)
         AddAchievements(categoryId, childData)
         return
     end
+
+    -- No branch took the node, so it and everything under it is gone; say so instead of staying silent
+    addon.Data.LoadDiagnostics:Report(addon.Data.LoadDiagnostics.Kind.UnparsedCategoryNode, categoryId,
+        "node under category " .. tostring(addon.Data.Categories[categoryId].Name) .. " starts with " .. type(childData[1]) .. " " .. tostring(childData[1]) .. "; a V1 node is { [id,] name, [canMerge,] children... }")
 end
 
 local deferredCategories = {}
 function ParseCategoryV2(node, parent)
     if node._injection then
-        local targetCat = addon.Data.Categories[node.TargetId]
+        local targetId = node.TargetId
+        if addon.Util.IsString(targetId) then
+            targetId = addon.Data.CategoryKeys and addon.Data.CategoryKeys[targetId]
+            assert(targetId, "Injection target category key '" .. tostring(node.TargetId) .. "' not found. Ensure the category declaring that key is loaded before the injection.")
+        end
+        local targetCat = addon.Data.Categories[targetId]
         assert(targetCat, "Injection target category " .. tostring(node.TargetId) .. " not found. Ensure the target category is loaded before the injection.")
         if node.Children then
             for _, child in next, node.Children do
-                ParseChildData(node.TargetId, child)
+                ParseChildData(targetId, child)
             end
         end
         return
@@ -102,6 +115,14 @@ function ParseCategoryV2(node, parent)
     end
 
     KrowiAF.AddIfNewCategoryData(categoryId, node.Name, parent, node.CanMerge)
+
+    -- A node another data file has to attach to declares a string key instead of spending a number
+    -- from the shared id space; KrowiAF.NewInjection takes either. See Api/CategoryDataBuilder.lua.
+    if node.CategoryKey then
+        addon.Data.CategoryKeys = addon.Data.CategoryKeys or {}
+        assert(not addon.Data.CategoryKeys[node.CategoryKey], "Category key '" .. tostring(node.CategoryKey) .. "' is already taken by category " .. tostring(addon.Data.CategoryKeys[node.CategoryKey]) .. ". Each key names exactly one category.")
+        addon.Data.CategoryKeys[node.CategoryKey] = categoryId
+    end
 
     if node.TabName then
         SetCategoryRootForTab(categoryId, node.TabName)

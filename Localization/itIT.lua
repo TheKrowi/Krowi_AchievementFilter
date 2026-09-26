@@ -2,11 +2,12 @@ local _, addon = ...
 local L = addon.Localization.NewLocale("itIT")
 if not L then return end
 
-KrowiAF.PluginsApi:LoadPluginLocalization(L);
+KrowiAF.PluginsApi:LoadPluginLocalization(L)
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-08-14 12-08-00 ]] --
+-- [[ Exported at 2026-09-26 13-35-54 ]] --
+L["5th Anniversary Celebration"] = "Celebrazione del 5° anniversario"
 L["Alchemy"] = "Alchimia"
 L["Alterac Valley"] = "Valle d'Alterac"
 L["Arathi Basin"] = "Bacino d'Arathi"
@@ -20,6 +21,7 @@ L["Covenant Sanctums"] = "Santuari delle Congreghe"
 L["Decor Duel"] = "Duello di Decorazioni"
 L["Deephaul Ravine"] = "Gola Cavafonda"
 L["Deepwind Gorge"] = "Scavi di Ventotetro"
+L["Defense of the Ruby Sanctum"] = "Difesa del Santuario di Rubino"
 L["Delves"] = "Scorribande"
 L["Dragon Isle Drake Cosmetics"] = "Oggetti cosmetici dei Drachi delle Isole dei Draghi"
 L["Dragon Isles"] = "Isole dei Draghi"

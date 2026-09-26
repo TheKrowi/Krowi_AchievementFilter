@@ -64,27 +64,14 @@ See [`add-patch-achievements.md`](add-patch-achievements.md) for the full method
 ## 4. Create `BuildVersionData.lua`
 
 ```lua
-local _, addon = ...;
-local shared = addon.Data.BuildVersionData.Shared;
+local _, addon = ...
 
-KrowiAF.BuildVersionData.TheNextExpansion = { -- 13
-    Major = 13,
-    Minors = {
-        { -- 13.0
-            Minor = 0,
-            Patches = {
-                { -- 13.0.0
-                    Patch = 0,
-                    BuildVersionId = "130000",
-                    Name = addon.L["The Next Expansion"]
-                },
-            },
-        },
-    },
-};
+local expansion = KrowiAF.NewBuildVersion("TheNextExpansion", 13)
+local minor = expansion:Minor(0)
+minor:Patch(0, addon.L["The Next Expansion"])
 ```
 
-The `Name` value is a localization key — add the English string to `Localization/enUS.lua` above the `AUTOGENTOKEN` marker (see [`update-localization.md`](update-localization.md)).
+A Classic re-release of an expansion registers the original patches for provenance plus its own line, and maps each original patch to the re-release patch that reached its content in `DataAddons/Classic/ContentTimeline.lua` (`["5.4.0"] = "5.5.4"`); see the project instructions. The `Name` value is a localization key — add the English string to `Localization/enUS.lua` directly below the `Exported at` line under the `AUTOGENTOKEN` marker (see [`update-localization.md`](update-localization.md)).
 
 ---
 

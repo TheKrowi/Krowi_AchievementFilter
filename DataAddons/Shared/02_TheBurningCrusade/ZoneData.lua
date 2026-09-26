@@ -4,7 +4,7 @@ local shared = addon.Data.ZoneData.Shared
 
 local zoneData = KrowiAF.NewZoneData("TheBurningCrusade")
 
-zoneData:Zone(112, { -- Eye of the Storm (battleground)
+zoneData:Zone({112, 397}, { -- Eye of the Storm (battleground)
     shared.GenericBattleground,
     208, -- Eye of the Storm
     209, -- Eye of the Storm Victory
@@ -20,6 +20,7 @@ zoneData:Zone(112, { -- Eye of the Storm (battleground)
     1258, -- Stormy Assassin
     211, -- Veteran of the Eye of the Storm
     230, -- Battlemaster
+    1175, -- Battlemaster
 })
 
 zoneData:Zone(122, { -- Isle of Quel'Danas (zone)
@@ -34,6 +35,8 @@ zoneData:Zone(347, { -- Hellfire Ramparts
     764, -- The Burning Crusader
     647, -- Hellfire Ramparts
     667, -- Heroic: Hellfire Ramparts
+    1284, -- Outland Dungeonmaster
+    1287, -- Outland Dungeon Hero
 })
 
 zoneData:Zone(261, { -- The Blood Furnace
@@ -41,6 +44,8 @@ zoneData:Zone(261, { -- The Blood Furnace
     764, -- The Burning Crusader
     648, -- The Blood Furnace
     668, -- Heroic: The Blood Furnace
+    1284, -- Outland Dungeonmaster
+    1287, -- Outland Dungeon Hero
 })
 
 zoneData:Zone(246, { -- The Shattered Halls
@@ -48,6 +53,8 @@ zoneData:Zone(246, { -- The Shattered Halls
     764, -- The Burning Crusader
     657, -- The Shattered Halls
     678, -- Heroic: The Shattered Halls
+    1284, -- Outland Dungeonmaster
+    1287, -- Outland Dungeon Hero
 })
 
 zoneData:Zone(265, { -- The Slave Pens
@@ -56,6 +63,11 @@ zoneData:Zone(265, { -- The Slave Pens
     649, -- The Slave Pens
     669, -- Heroic: The Slave Pens
     263, -- Ice the Frost Lord
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1284, -- Outland Dungeonmaster
+    1287, -- Outland Dungeon Hero
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(262, { -- The Underbog
@@ -63,6 +75,8 @@ zoneData:Zone(262, { -- The Underbog
     764, -- The Burning Crusader
     650, -- The Underbog
     670, -- Heroic: The Underbog
+    1284, -- Outland Dungeonmaster
+    1287, -- Outland Dungeon Hero
 })
 
 zoneData:Zone({263, 264}, { -- The Steamvault
@@ -70,6 +84,8 @@ zoneData:Zone({263, 264}, { -- The Steamvault
     764, -- The Burning Crusader
     656, -- The Steamvault
     677, -- Heroic: The Steamvault
+    1284, -- Outland Dungeonmaster
+    1287, -- Outland Dungeon Hero
 })
 
 zoneData:Zone(272, { -- Mana-Tombs
@@ -78,6 +94,8 @@ zoneData:Zone(272, { -- Mana-Tombs
     902, -- Chief Exalted Officer
     651, -- Mana-Tombs
     671, -- Heroic: Mana-Tombs
+    1284, -- Outland Dungeonmaster
+    1287, -- Outland Dungeon Hero
 })
 
 zoneData:Zone({256, 257}, { -- Auchenai Crypts
@@ -85,6 +103,8 @@ zoneData:Zone({256, 257}, { -- Auchenai Crypts
     764, -- The Burning Crusader
     666, -- Auchenai Crypts
     672, -- Heroic: Auchenai Crypts
+    1284, -- Outland Dungeonmaster
+    1287, -- Outland Dungeon Hero
 })
 
 zoneData:Zone({258, 259}, { -- Sethekk Halls
@@ -93,6 +113,8 @@ zoneData:Zone({258, 259}, { -- Sethekk Halls
     653, -- Sethekk Halls
     674, -- Heroic: Sethekk Halls
     883, -- Reins of the Raven Lord
+    1284, -- Outland Dungeonmaster
+    1287, -- Outland Dungeon Hero
 })
 
 zoneData:Zone(260, { -- Shadow Labyrinth
@@ -100,6 +122,8 @@ zoneData:Zone(260, { -- Shadow Labyrinth
     764, -- The Burning Crusader
     654, -- Shadow Labyrinth
     675, -- Heroic: Shadow Labyrinth
+    1284, -- Outland Dungeonmaster
+    1287, -- Outland Dungeon Hero
 })
 
 zoneData:Zone(274, { -- Old Hillsbrad Foothills
@@ -107,6 +131,8 @@ zoneData:Zone(274, { -- Old Hillsbrad Foothills
     764, -- The Burning Crusader
     652, -- The Escape From Durnholde
     673, -- Heroic: The Escape From Durnholde
+    1284, -- Outland Dungeonmaster
+    1287, -- Outland Dungeon Hero
 })
 
 zoneData:Zone(273, { -- The Black Morass
@@ -114,6 +140,8 @@ zoneData:Zone(273, { -- The Black Morass
     764, -- The Burning Crusader
     655, -- Opening of the Dark Portal
     676, -- Heroic: Opening of the Dark Portal
+    1284, -- Outland Dungeonmaster
+    1287, -- Outland Dungeon Hero
 })
 
 zoneData:Zone({267, 268}, { -- The Mechanar
@@ -121,6 +149,8 @@ zoneData:Zone({267, 268}, { -- The Mechanar
     764, -- The Burning Crusader
     658, -- The Mechanar
     679, -- Heroic: The Mechanar
+    1284, -- Outland Dungeonmaster
+    1287, -- Outland Dungeon Hero
 })
 
 zoneData:Zone(266, { -- The Botanica
@@ -128,6 +158,8 @@ zoneData:Zone(266, { -- The Botanica
     764, -- The Burning Crusader
     659, -- The Botanica
     680, -- Heroic: The Botanica
+    1284, -- Outland Dungeonmaster
+    1287, -- Outland Dungeon Hero
 })
 
 zoneData:Zone({269, 270, 271}, { -- The Arcatraz
@@ -135,13 +167,16 @@ zoneData:Zone({269, 270, 271}, { -- The Arcatraz
     764, -- The Burning Crusader
     660, -- The Arcatraz
     681, -- Heroic: The Arcatraz
+    1284, -- Outland Dungeonmaster
+    1287, -- Outland Dungeon Hero
 })
 
 zoneData:Zone({348, 349}, { -- Magisters' Terrace
-    897, -- You're So Offensive
     661, -- Magister's Terrace
     682, -- Heroic: Magister's Terrace
     884, -- Swift White Hawkstrider
+    1284, -- Outland Dungeonmaster
+    1287, -- Outland Dungeon Hero
 })
 
 zoneData:Zone(333, { -- Zul'Aman
@@ -167,6 +202,13 @@ zoneData:Zone(94, { -- Eversong Woods (zone)
     967, -- Tricks and Treats of Eastern Kingdoms
     1025, -- Flame Keeper of Eastern Kingdoms
     1028, -- Extinguishing Eastern Kingdoms
+    971, -- Tricks and Treats of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone({95, 96}, { -- Ghostlands (zone)
@@ -182,9 +224,18 @@ zoneData:Zone({95, 96}, { -- Ghostlands (zone)
     967, -- Tricks and Treats of Eastern Kingdoms
     1025, -- Flame Keeper of Eastern Kingdoms
     1028, -- Extinguishing Eastern Kingdoms
+    971, -- Tricks and Treats of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1676, -- Loremaster of Eastern Kingdoms
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    7520, -- The Loremaster
+    2144, -- What a Long, Strange Trip It's Been
 })
 
-zoneData:Zone({97, 98, 99, 106}, { -- Azuremyst Isle (zone)
+zoneData:Zone({97, 98, 99}, { -- Azuremyst Isle (zone)
     43, -- Kalimdor Explorer
     6585, -- Kalimdor Safari
     6612, -- Kalimdor Tamer
@@ -197,6 +248,13 @@ zoneData:Zone({97, 98, 99, 106}, { -- Azuremyst Isle (zone)
     963, -- Tricks and Treats of Kalimdor
     1023, -- Flame Warden of Kalimdor
     1032, -- Extinguishing Kalimdor
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(106, { -- Bloodmyst Isle (zone)
@@ -212,41 +270,12 @@ zoneData:Zone(106, { -- Bloodmyst Isle (zone)
     2556, -- Pest Control
     46, -- Universal Explorer
     1032, -- Extinguishing Kalimdor
-})
-
-zoneData:Zone(101, { -- Outland (continent)
-    942, -- The Diplomat
-    943, -- The Diplomat
-    7520, -- The Loremaster
-    shared.OldWorldPetAchievements,
-    6607, -- Taming Azeroth
-    6601, -- Taming the Wild
-    7498, -- Taming the Great Outdoors
-    7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
-    8348, -- The Longest Day
-    1262, -- Loremaster of Outland
-    1311, -- Medium Rare
-    1312, -- Bloody Rare
-    44, -- Outland Explorer
-    763, -- The Burning Crusader
-    764, -- The Burning Crusader
-    6587, -- Outland Safari
-    6614, -- Outland Tamer
-    6604, -- Taming Outland
-    46, -- Universal Explorer
-    971, -- Tricks and Treats of Azeroth
-    968, -- Tricks and Treats of Outland
-    969, -- Tricks and Treats of Outland
-    1024, -- Flame Warden of Outland
-    1027, -- Flame Keeper of Outland
-    1030, -- Extinguishing Outland
-    1033, -- Extinguishing Outland
-    1034, -- The Fires of Azeroth
-    1035, -- Desecration of the Horde
-    1036, -- The Fires of Azeroth
     1037, -- Desecration of the Alliance
+    1023, -- Flame Warden of Kalimdor
+    1034, -- The Fires of Azeroth
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(100, { -- Hellfire Peninsula (zone)
@@ -256,8 +285,6 @@ zoneData:Zone(100, { -- Hellfire Peninsula (zone)
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     1262, -- Loremaster of Outland
     1311, -- Medium Rare
@@ -282,6 +309,15 @@ zoneData:Zone(100, { -- Hellfire Peninsula (zone)
     1027, -- Flame Keeper of Outland
     1030, -- Extinguishing Outland
     1033, -- Extinguishing Outland
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(102, { -- Zangarmarsh (zone)
@@ -293,8 +329,6 @@ zoneData:Zone(102, { -- Zangarmarsh (zone)
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     1262, -- Loremaster of Outland
     1311, -- Medium Rare
@@ -320,6 +354,15 @@ zoneData:Zone(102, { -- Zangarmarsh (zone)
     1027, -- Flame Keeper of Outland
     1030, -- Extinguishing Outland
     1033, -- Extinguishing Outland
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(103, { -- The Exodar (city)
@@ -332,6 +375,11 @@ zoneData:Zone(103, { -- The Exodar (city)
     915, -- Elders of the Alliance
     2556, -- Pest Control
     963, -- Tricks and Treats of Kalimdor
+    971, -- Tricks and Treats of Azeroth
+    913, -- To Honor One's Elders
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
+    6030, -- Taking the Show on the Road
 })
 
 zoneData:Zone(104, { -- Shadowmoon Valley (zone)
@@ -341,8 +389,6 @@ zoneData:Zone(104, { -- Shadowmoon Valley (zone)
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     1262, -- Loremaster of Outland
     1311, -- Medium Rare
@@ -364,13 +410,20 @@ zoneData:Zone(104, { -- Shadowmoon Valley (zone)
     1027, -- Flame Keeper of Outland
     1030, -- Extinguishing Outland
     1033, -- Extinguishing Outland
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(105, { -- Blade's Edge Mountains (zone)
     7520, -- The Loremaster
     shared.OldWorldPetAchievements,
-    6611, -- Continental Tamer
-    6590, -- World Safari
     1262, -- Loremaster of Outland
     1311, -- Medium Rare
     1312, -- Bloody Rare
@@ -390,6 +443,15 @@ zoneData:Zone(105, { -- Blade's Edge Mountains (zone)
     1027, -- Flame Keeper of Outland
     1030, -- Extinguishing Outland
     1033, -- Extinguishing Outland
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(107, { -- Nagrand (zone)
@@ -401,8 +463,6 @@ zoneData:Zone(107, { -- Nagrand (zone)
     6601, -- Taming the Wild
     7498, -- Taming the Great Outdoors
     7499, -- Taming the World
-    6611, -- Continental Tamer
-    6590, -- World Safari
     8348, -- The Longest Day
     1262, -- Loremaster of Outland
     1311, -- Medium Rare
@@ -429,13 +489,20 @@ zoneData:Zone(107, { -- Nagrand (zone)
     1027, -- Flame Keeper of Outland
     1030, -- Extinguishing Outland
     1033, -- Extinguishing Outland
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(108, { -- Terokkar Forest (zone)
     7520, -- The Loremaster
     shared.OldWorldPetAchievements,
-    6611, -- Continental Tamer
-    6590, -- World Safari
     1262, -- Loremaster of Outland
     1311, -- Medium Rare
     1312, -- Bloody Rare
@@ -461,13 +528,21 @@ zoneData:Zone(108, { -- Terokkar Forest (zone)
     1027, -- Flame Keeper of Outland
     1030, -- Extinguishing Outland
     1033, -- Extinguishing Outland
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1516, -- Accomplished Angler
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(109, { -- Netherstorm (zone)
     7520, -- The Loremaster
     shared.OldWorldPetAchievements,
-    6611, -- Continental Tamer
-    6590, -- World Safari
     1262, -- Loremaster of Outland
     1311, -- Medium Rare
     1312, -- Bloody Rare
@@ -487,6 +562,15 @@ zoneData:Zone(109, { -- Netherstorm (zone)
     1027, -- Flame Keeper of Outland
     1030, -- Extinguishing Outland
     1033, -- Extinguishing Outland
+    971, -- Tricks and Treats of Azeroth
+    1034, -- The Fires of Azeroth
+    1035, -- Desecration of the Horde
+    1036, -- The Fires of Azeroth
+    1037, -- Desecration of the Alliance
+    1038, -- The Flame Warden
+    1039, -- The Flame Keeper
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
 })
 
 zoneData:Zone(110, { -- Silvermoon City (city)
@@ -499,6 +583,11 @@ zoneData:Zone(110, { -- Silvermoon City (city)
     914, -- Elders of the Horde
     2556, -- Pest Control
     967, -- Tricks and Treats of Eastern Kingdoms
+    971, -- Tricks and Treats of Azeroth
+    913, -- To Honor One's Elders
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
+    6031, -- Taking the Show on the Road
 })
 
 zoneData:Zone(111, { -- Shattrath City (city)
@@ -515,6 +604,12 @@ zoneData:Zone(111, { -- Shattrath City (city)
     275, -- Veteran Nanny
     968, -- Tricks and Treats of Outland
     969, -- Tricks and Treats of Outland
+    971, -- Tricks and Treats of Azeroth
+    1563, -- Hail to the Chef
+    1656, -- Hallowed Be Thy Name
+    2144, -- What a Long, Strange Trip It's Been
+    6030, -- Taking the Show on the Road
+    6031, -- Taking the Show on the Road
 })
 
 zoneData:Zone({350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366}, { -- Karazhan
@@ -525,16 +620,22 @@ zoneData:Zone({350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 
     11746, -- Outlandish Style
     8293, -- Raiding with Leashes II: Attunement Edition
     9924, -- Field Photographer
+    1286, -- Outland Raider
+    11761, -- Azeroth's Next Top Model
 })
 
 zoneData:Zone(330, { -- Gruul's Lair
     692, -- Gruul's Lair
     11746, -- Outlandish Style
+    1286, -- Outland Raider
+    11761, -- Azeroth's Next Top Model
 })
 
 zoneData:Zone(331, { -- Magtheridon's Lair
     693, -- Magtheridon's Lair
     11746, -- Outlandish Style
+    1286, -- Outland Raider
+    11761, -- Azeroth's Next Top Model
 })
 
 zoneData:Zone(332, { -- Serpentshrine Cavern
@@ -542,6 +643,9 @@ zoneData:Zone(332, { -- Serpentshrine Cavern
     144, -- The Lurker Above
     11747, -- Merely a Set
     8293, -- Raiding with Leashes II: Attunement Edition
+    1286, -- Outland Raider
+    1516, -- Accomplished Angler
+    11761, -- Azeroth's Next Top Model
 })
 
 zoneData:Zone(334, { -- The Eye (Tempest Keep)
@@ -550,12 +654,14 @@ zoneData:Zone(334, { -- The Eye (Tempest Keep)
     696, -- Tempest Keep
     885, -- Ashes of Al'ar
     8293, -- Raiding with Leashes II: Attunement Edition
+    1286, -- Outland Raider
 })
 
 zoneData:Zone(329, { -- The Battle for Mount Hyjal
     695, -- The Battle for Mount Hyjal
     959, -- The Scale of the Sands
     9824, -- Raiding with Leashes III: Drinkin' From the Sunwell
+    1286, -- Outland Raider
 })
 
 zoneData:Zone({339, 340, 341, 342, 343, 344, 345, 346}, { -- Black Temple
@@ -566,6 +672,8 @@ zoneData:Zone({339, 340, 341, 342, 343, 344, 345, 346}, { -- Black Temple
     9016, -- Breaker of the Black Harvest
     11869, -- I'll Hold These For You Until You Get Out
     9824, -- Raiding with Leashes III: Drinkin' From the Sunwell
+    1286, -- Outland Raider
+    11761, -- Azeroth's Next Top Model
 })
 
 zoneData:Zone({335, 336}, { -- Sunwell Plateau
@@ -573,4 +681,6 @@ zoneData:Zone({335, 336}, { -- Sunwell Plateau
     725, -- Thori'dal, the Stars' Fury
     11749, -- Suns Out, Thori'dals Out
     9824, -- Raiding with Leashes III: Drinkin' From the Sunwell
+    1286, -- Outland Raider
+    11761, -- Azeroth's Next Top Model
 })

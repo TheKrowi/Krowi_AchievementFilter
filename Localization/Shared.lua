@@ -1,56 +1,56 @@
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 
-local _, addon = ...;
-local L = addon.L;
+local _, addon = ...
+local L = addon.L
 
 function addon.GetCovenantName(covenantID)
-    return C_Covenants and C_Covenants.GetCovenantData(covenantID).name or tostring(covenantID);
+    return C_Covenants and C_Covenants.GetCovenantData(covenantID).name or tostring(covenantID)
 end
 
 local instanceInfoNames = {}
 function addon.GetInstanceInfoName(journalInstanceId)
     if instanceInfoNames[journalInstanceId] then
-        return instanceInfoNames[journalInstanceId];
+        return instanceInfoNames[journalInstanceId]
     end
-    local name = EJ_GetInstanceInfo and (EJ_GetInstanceInfo(journalInstanceId)) or nil;
+    local name = EJ_GetInstanceInfo and (EJ_GetInstanceInfo(journalInstanceId)) or nil
     if name then
-        instanceInfoNames[journalInstanceId] = name;
-        return name;
+        instanceInfoNames[journalInstanceId] = name
+        return name
     end
-    name = addon.L["EJ_GetInstanceInfo" .. journalInstanceId];
+    name = addon.L["EJ_GetInstanceInfo" .. journalInstanceId]
     if name then
-        instanceInfoNames[journalInstanceId] = name;
-        return name;
+        instanceInfoNames[journalInstanceId] = name
+        return name
     end
-    return tostring(journalInstanceId);
+    return tostring(journalInstanceId)
 end
 
 local categoryInfoTitles = {}
 function addon.GetCategoryInfoTitle(categoryId)
     if categoryInfoTitles[categoryId] then
-        return categoryInfoTitles[categoryId];
+        return categoryInfoTitles[categoryId]
     end
-    local title = (GetCategoryInfo(categoryId));
+    local title = (GetCategoryInfo(categoryId))
     if title then
-        categoryInfoTitles[categoryId] = title;
-        return title;
+        categoryInfoTitles[categoryId] = title
+        return title
     end
-    title = addon.L["GetCategoryInfo" .. categoryId];
+    title = addon.L["GetCategoryInfo" .. categoryId]
     if title then
-        categoryInfoTitles[categoryId] = title;
-        return title;
+        categoryInfoTitles[categoryId] = title
+        return title
     end
-    return tostring(categoryId);
+    return tostring(categoryId)
 end
 KrowiAF_GetCategoryInfoTitle = addon.GetCategoryInfoTitle
 
 function addon.GetLFGDungeonInfo(dungeonId)
-    return GetLFGDungeonInfo and GetLFGDungeonInfo(dungeonId) or tostring(dungeonId);
+    return GetLFGDungeonInfo and GetLFGDungeonInfo(dungeonId) or tostring(dungeonId)
 end
 
 function addon.GetMapName(uiMapId)
-    local mapInfo = C_Map.GetMapInfo(uiMapId);
-    return mapInfo and mapInfo.name or tostring(uiMapId);
+    local mapInfo = C_Map.GetMapInfo(uiMapId)
+    return mapInfo and mapInfo.name or tostring(uiMapId)
 end
 
 function addon.GetAreaPoiNameName(areaPoiId)
@@ -59,91 +59,91 @@ function addon.GetAreaPoiNameName(areaPoiId)
 end
 
 function addon.GetLFGActivityFullName(activityId)
-    local activityInfo = C_LFGList.GetActivityInfoTable(activityId);
-    return activityInfo and activityInfo.fullName or tostring(activityId);
+    local activityInfo = C_LFGList.GetActivityInfoTable(activityId)
+    return activityInfo and activityInfo.fullName or tostring(activityId)
 end
 
 function addon.GetLFGActivityShortName(activityId)
-    local activityInfo = C_LFGList.GetActivityInfoTable(activityId);
-    return activityInfo and activityInfo.shortName or tostring(activityId);
+    local activityInfo = C_LFGList.GetActivityInfoTable(activityId)
+    return activityInfo and activityInfo.shortName or tostring(activityId)
 end
 
 if not addon.Util.IsClassicWithAchievements then -- Wrath Classic does not have these and no fallback exists
-    L["Completed"] = CRITERIA_COMPLETED;
-    L["Not Completed"] = CRITERIA_NOT_COMPLETED;
+    L["Completed"] = CRITERIA_COMPLETED
+    L["Not Completed"] = CRITERIA_NOT_COMPLETED
 end
 
-L["Expansion"] = EXPANSION_FILTER_TEXT;
-L["Classic"] = EXPANSION_NAME0;
-L["The Burning Crusade"] = EXPANSION_NAME1;
-L["Wrath of the Lich King"] = EXPANSION_NAME2;
-L["Cataclysm"] = EXPANSION_NAME3;
-L["Mists of Pandaria"] = EXPANSION_NAME4;
-L["Warlords of Draenor"] = EXPANSION_NAME5;
-L["Legion"] = EXPANSION_NAME6;
-L["Battle for Azeroth"] = EXPANSION_NAME7;
-L["Shadowlands"] = EXPANSION_NAME8;
-L["Dragonflight"] = EXPANSION_NAME9;
-L["The War Within"] = EXPANSION_NAME10;
-L["Midnight"] = EXPANSION_NAME11;
-L["Scenarios"] = SCENARIOS;
-L["Garrison"] = GARRISON_LOCATION_TOOLTIP;
-L["Cities"] = BUG_CATEGORY4;
-L["Mythic"] = PLAYER_DIFFICULTY6;
-L["Heroic"] = PLAYER_DIFFICULTY2;
-L["Faction"] = FACTION;
-L["Neutral"] = FACTION_NEUTRAL or FACTION_STANDING_LABEL4; -- Wrath Classic fallback FACTION_STANDING_LABEL4
-L["Alliance"] = FACTION_ALLIANCE;
-L["Horde"] = FACTION_HORDE;
-L["Kyrian"] = addon.GetCovenantName(1);
-L["Venthyr"] = addon.GetCovenantName(2);
-L["Night Fae"] = addon.GetCovenantName(3);
-L["Necrolord"] = addon.GetCovenantName(4);
-L["Sort By"] = RAID_FRAME_SORT_LABEL;
-L["Default"] = CHAT_DEFAULT;
-L["Name"] = NAME;
-L["Achievements"] = ACHIEVEMENTS;
-L["Guild"] = ACHIEVEMENTS_GUILD_TAB;
-L["Statistics"] = STATISTICS;
-L["Categories"] = CATEGORIES;
-L["Help"] = GAMEMENU_HELP;
-L["Missing"] = ADDON_MISSING;
-L["Key Binding"] = KEY_BINDING;
-L["Achievement Points"] = ACHIEVEMENT_POINTS;
-L["Enabled"] = PVP_WAR_MODE_ENABLED or VIDEO_OPTIONS_ENABLED;
-L["Disabled"] = ADDON_DISABLED;
-L["Show All %d Results"] = ENCOUNTER_JOURNAL_SHOW_SEARCH_RESULTS;
-L["Miscellaneous"] = AUCTION_CATEGORY_MISCELLANEOUS;
-L["Close"] = CLOSE;
-L["Summary"] = ACHIEVEMENT_SUMMARY_CATEGORY;
-L["Achievements Earned"] = ACHIEVEMENTS_COMPLETED;
-L["Key Bindings"] = KEY_BINDINGS;
-L["Keybindings"] = SETTINGS_KEYBINDINGS_LABEL or KEY_BINDINGS; -- Wrath Classic fallback KEY_BINDINGS
-L["Bindings"] = KEY_BINDINGS_MAC;
-L["January"] = MONTH_JANUARY;
-L["February"] = MONTH_FEBRUARY;
-L["March"] = MONTH_MARCH;
-L["April"] = MONTH_APRIL;
-L["May"] = MONTH_MAY;
-L["June"] = MONTH_JUNE;
-L["July"] = MONTH_JULY;
-L["August"] = MONTH_AUGUST;
-L["September"] = MONTH_SEPTEMBER;
-L["October"] = MONTH_OCTOBER;
-L["November"] = MONTH_NOVEMBER;
-L["December"] = MONTH_DECEMBER;
-L["Weekdays"] = GUILD_AVAILABILITY_WEEKDAYS;
-L["Class"] = CLASS;
-L["Category"] = CATEGORY;
-L["World Map"] = WORLDMAP_BUTTON;
-L["Delete"] = DELETE;
-L["Sunday"] = WEEKDAY_SUNDAY;
-L["Monday"] = WEEKDAY_MONDAY;
-L["Tuesday"] = WEEKDAY_TUESDAY;
-L["Wednesday"] = WEEKDAY_WEDNESDAY;
-L["Thursday"] = WEEKDAY_THURSDAY;
-L["Friday"] = WEEKDAY_FRIDAY;
-L["Saturday"] = WEEKDAY_SATURDAY;
+L["Expansion"] = EXPANSION_FILTER_TEXT
+L["Classic"] = EXPANSION_NAME0
+L["The Burning Crusade"] = EXPANSION_NAME1
+L["Wrath of the Lich King"] = EXPANSION_NAME2
+L["Cataclysm"] = EXPANSION_NAME3
+L["Mists of Pandaria"] = EXPANSION_NAME4
+L["Warlords of Draenor"] = EXPANSION_NAME5
+L["Legion"] = EXPANSION_NAME6
+L["Battle for Azeroth"] = EXPANSION_NAME7
+L["Shadowlands"] = EXPANSION_NAME8
+L["Dragonflight"] = EXPANSION_NAME9
+L["The War Within"] = EXPANSION_NAME10
+L["Midnight"] = EXPANSION_NAME11
+L["Scenarios"] = SCENARIOS
+L["Garrison"] = GARRISON_LOCATION_TOOLTIP
+L["Cities"] = BUG_CATEGORY4
+L["Mythic"] = PLAYER_DIFFICULTY6
+L["Heroic"] = PLAYER_DIFFICULTY2
+L["Faction"] = FACTION
+L["Neutral"] = FACTION_NEUTRAL or FACTION_STANDING_LABEL4 -- Wrath Classic fallback FACTION_STANDING_LABEL4
+L["Alliance"] = FACTION_ALLIANCE
+L["Horde"] = FACTION_HORDE
+L["Kyrian"] = addon.GetCovenantName(1)
+L["Venthyr"] = addon.GetCovenantName(2)
+L["Night Fae"] = addon.GetCovenantName(3)
+L["Necrolord"] = addon.GetCovenantName(4)
+L["Sort By"] = RAID_FRAME_SORT_LABEL
+L["Default"] = CHAT_DEFAULT
+L["Name"] = NAME
+L["Achievements"] = ACHIEVEMENTS
+L["Guild"] = ACHIEVEMENTS_GUILD_TAB
+L["Statistics"] = STATISTICS
+L["Categories"] = CATEGORIES
+L["Help"] = GAMEMENU_HELP
+L["Missing"] = ADDON_MISSING
+L["Key Binding"] = KEY_BINDING
+L["Achievement Points"] = ACHIEVEMENT_POINTS
+L["Enabled"] = PVP_WAR_MODE_ENABLED or VIDEO_OPTIONS_ENABLED
+L["Disabled"] = ADDON_DISABLED
+L["Show All %d Results"] = ENCOUNTER_JOURNAL_SHOW_SEARCH_RESULTS
+L["Miscellaneous"] = AUCTION_CATEGORY_MISCELLANEOUS
+L["Close"] = CLOSE
+L["Summary"] = ACHIEVEMENT_SUMMARY_CATEGORY
+L["Achievements Earned"] = ACHIEVEMENTS_COMPLETED
+L["Key Bindings"] = KEY_BINDINGS
+L["Keybindings"] = SETTINGS_KEYBINDINGS_LABEL or KEY_BINDINGS -- Wrath Classic fallback KEY_BINDINGS
+L["Bindings"] = KEY_BINDINGS_MAC
+L["January"] = MONTH_JANUARY
+L["February"] = MONTH_FEBRUARY
+L["March"] = MONTH_MARCH
+L["April"] = MONTH_APRIL
+L["May"] = MONTH_MAY
+L["June"] = MONTH_JUNE
+L["July"] = MONTH_JULY
+L["August"] = MONTH_AUGUST
+L["September"] = MONTH_SEPTEMBER
+L["October"] = MONTH_OCTOBER
+L["November"] = MONTH_NOVEMBER
+L["December"] = MONTH_DECEMBER
+L["Weekdays"] = GUILD_AVAILABILITY_WEEKDAYS
+L["Class"] = CLASS
+L["Category"] = CATEGORY
+L["World Map"] = WORLDMAP_BUTTON
+L["Delete"] = DELETE
+L["Sunday"] = WEEKDAY_SUNDAY
+L["Monday"] = WEEKDAY_MONDAY
+L["Tuesday"] = WEEKDAY_TUESDAY
+L["Wednesday"] = WEEKDAY_WEDNESDAY
+L["Thursday"] = WEEKDAY_THURSDAY
+L["Friday"] = WEEKDAY_FRIDAY
+L["Saturday"] = WEEKDAY_SATURDAY
 L["Warband"] = REPUTATION_SORT_TYPE_ACCOUNT or ""
 L["Yes"] = YES
 L["No"] = NO
@@ -173,6 +173,6 @@ L["Timewalking"] = PLAYER_DIFFICULTY_TIMEWALKER
 L["Legacy"] = LFG_LIST_LEGACY
 
 local l = addon.Localization.GetLocale(addon)
-L["Not earned by:"] = l["Not earned by:"]:SetColorRed() .. " %s";
+L["Not earned by:"] = l["Not earned by:"]:SetColorRed() .. " %s"
 
 addon.L = addon.Localization.GetLocale(addon)

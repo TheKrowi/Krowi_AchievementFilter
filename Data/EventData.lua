@@ -152,7 +152,7 @@ end
 
 local activeEvents
 
-function GetActiveCalendarEvents()
+local function GetActiveCalendarEvents()
     if stopCalendarEventsRefresh then
         return
     end
@@ -220,9 +220,9 @@ function eventData.GetWorldEventDetails(event)
         return
     end
 
-    local poiInfo = C_AreaPoiInfo.GetAreaPOIInfo(event.MapId, event.Id);
+    local poiInfo = C_AreaPoiInfo.GetAreaPOIInfo(event.MapId, event.Id)
     if not poiInfo then -- The event is not active
-        return;
+        return
     end
 
     local endTime

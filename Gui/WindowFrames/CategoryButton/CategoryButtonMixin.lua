@@ -1,18 +1,18 @@
-local _, addon = ...;
+local _, addon = ...
 
-KrowiAF_CategoryButtonMixin = {};
+KrowiAF_CategoryButtonMixin = {}
 
 function KrowiAF_CategoryButtonMixin:OnEnter()
 	if self.showTooltipFunc then
-		local extraText = self.Category.Tooltip;
+		local extraText = self.Category.Tooltip
 		if addon.Diagnostics.DebugEnabled() then
 			if extraText then
-				extraText = extraText .. "\r\n\r\n" ..  self.Category.Id;
+				extraText = extraText .. "\r\n\r\n" ..  self.Category.Id
 			else
-				extraText = self.Category.Id;
+				extraText = self.Category.Id
 			end
 		end
-		self.showTooltipFunc(self, nil, extraText);
+		self.showTooltipFunc(self, nil, extraText)
 	end
 end
 
@@ -21,66 +21,66 @@ function KrowiAF_CategoryButtonMixin:OnLeave()
 end
 
 function KrowiAF_CategoryButtonMixin:OnClick()
-    KrowiAF_CategoriesFrame:SelectCategory(self.Category);
+    KrowiAF_CategoriesFrame:SelectCategory(self.Category)
 end
 
 local function SetType(self, category)
 	if category.Parent.TabName ~= nil then
-		self.Label:SetFontObject("GameFontNormal");
-		self.BackgroundLeft:SetVertexColor(1, 1, 1);
-		self.BackgroundMid:SetVertexColor(1, 1, 1);
-		self.BackgroundRight:SetVertexColor(1, 1, 1);
-		return;
+		self.Label:SetFontObject("GameFontNormal")
+		self.BackgroundLeft:SetVertexColor(1, 1, 1)
+		self.BackgroundMid:SetVertexColor(1, 1, 1)
+		self.BackgroundRight:SetVertexColor(1, 1, 1)
+		return
 	end
 	-- Not top level category
-	self.Label:SetFontObject("GameFontHighlight");
-	self.BackgroundLeft:SetVertexColor(0.6, 0.6, 0.6);
-	self.BackgroundMid:SetVertexColor(0.6, 0.6, 0.6);
-	self.BackgroundRight:SetVertexColor(0.6, 0.6, 0.6);
+	self.Label:SetFontObject("GameFontHighlight")
+	self.BackgroundLeft:SetVertexColor(0.6, 0.6, 0.6)
+	self.BackgroundMid:SetVertexColor(0.6, 0.6, 0.6)
+	self.BackgroundRight:SetVertexColor(0.6, 0.6, 0.6)
 end
 
 local function SetLabel(self, category)
-	local children = category.Children;
-	local name = category.Name;
+	local children = category.Children
+	local name = category.Name
 	if children and #children > 0 and (category.ShowCollapseIcon or category.IsSummary) then
 		if category.NotCollapsed then
-			name = "- " .. name;
+			name = "- " .. name
 		else
-			name = "+ " .. name;
+			name = "+ " .. name
 		end
 	end
-	self.Label:SetText(name);
+	self.Label:SetText(name)
 end
 
 local function SetTooltipData(self, category)
-	self.Text = category.Name;
-	self.NumOfAch, self.NumOfCompAch, self.NumOfNotObtAch = category.NumOfAch, category.NumOfCompAch, category.NumOfNotObtAch;
+	self.Text = category.Name
+	self.NumOfAch, self.NumOfCompAch, self.NumOfNotObtAch = category.NumOfAch, category.NumOfCompAch, category.NumOfNotObtAch
 	if category.IsSummary then
-		self.showTooltipFunc = nil;
+		self.showTooltipFunc = nil
 	else
-		self.showTooltipFunc = addon.Gui.ShowStatusBarTooltip;
+		self.showTooltipFunc = addon.Gui.ShowStatusBarTooltip
 	end
 end
 
 function KrowiAF_CategoryButtonMixin:SetCategory(category)
 	if not category then
-		self.Category = nil;
-		return;
+		self.Category = nil
+		return
 	end
 
-	self.Category = category;
-	SetType(self, category);
-	SetLabel(self, category);
-	SetTooltipData(self, category);
+	self.Category = category
+	SetType(self, category)
+	SetLabel(self, category)
+	SetTooltipData(self, category)
 
-	local selectedTab = addon.Gui.SelectedTab;
+	local selectedTab = addon.Gui.SelectedTab
 	if not selectedTab then
-		return;
+		return
 	end
 
 	if category == selectedTab.SelectedCategory then
-		self:LockHighlight();
+		self:LockHighlight()
 	else
-		self:UnlockHighlight();
+		self:UnlockHighlight()
 	end
 end

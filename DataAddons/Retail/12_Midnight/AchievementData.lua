@@ -693,7 +693,6 @@ KrowiAF.AchievementData["12_00_07"] = {
 }
 
 KrowiAF.AchievementData["12_01_00"] = {
-	{KrowiAF.SetAchievementPatch, 12, 1, 0},
 	Ach(62282), -- Altar of Fangs
 	Ach(62283), -- Heroic: Altar of Fangs
 	Ach(62284), -- Mythic: Altar of Fangs
@@ -796,7 +795,7 @@ KrowiAF.AchievementData["12_01_00"] = {
 	Ach(63170), -- Gnarldor Isle Discoveries
 	Ach(63171), -- The Ring of Glory Discoveries
 	Ach(63250), -- Is Venom Stasis A Joke To You?
-	Ach(63253), -- A Round on the House in Midnight
+	Ach(63253):Obtainable("Event", 372), -- A Round on the House in Midnight
 	Ach(63254):Mount(3021), -- Glory of the Venomous Raider
 	Ach(63326):Transmog():PvE(18), -- My Venomous Nemesis
 	Ach(63332):Title(), -- Purging the Poison
@@ -897,4 +896,5 @@ KrowiAF.AchievementData["12_01_00"] = {
 	Ach(63698):IsPvP(), -- Arena Exercise
 	Ach(63699):IsPvP(), -- World Wide Trainer
 	Ach(63838), -- Zul'jarra's Forces Champion
+	Ach(64140):TradersTender():Obtainable("Event", 1636), -- Winds of Particularly Mysterious Fortune
 }

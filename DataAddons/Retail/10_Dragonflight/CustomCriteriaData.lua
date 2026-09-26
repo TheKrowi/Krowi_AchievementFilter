@@ -1,5 +1,5 @@
-local _, addon = ...;
-local shared = addon.Data.CustomCriteriaData.Shared;
+local _, addon = ...
+local shared = addon.Data.CustomCriteriaData.Shared
 
 KrowiAF.CustomCriteriaData.Dragonflight = {
     { -- Plunderkind
@@ -7,9 +7,9 @@ KrowiAF.CustomCriteriaData.Dragonflight = {
         {
             NumCriteria = 1,
             QuantityFunc = function()
-                return tonumber(C_CurrencyInfo.GetCurrencyInfo(2922).quantity);
+                return tonumber(C_CurrencyInfo.GetCurrencyInfo(2922).quantity)
             end,
             ReqQuantity = 1000000,
         }
     },
-};
+}

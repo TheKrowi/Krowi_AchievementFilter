@@ -1,6 +1,6 @@
-local _, addon = ...;
-local shared = addon.Data.PetBattleLinkData.Shared;
-local sec, enc = shared.Section, shared.Encounter;
+local _, addon = ...
+local shared = addon.Data.PetBattleLinkData.Shared
+local sec, enc = shared.Section, shared.Encounter
 
 KrowiAF.PetBattleLinkData.Legion = {
     { -- Aquatic Acquiescence
@@ -557,4 +557,4 @@ KrowiAF.PetBattleLinkData.Legion = {
             {10, 12099}, -- Unstoppable Undead
         }
     },
-};
+}

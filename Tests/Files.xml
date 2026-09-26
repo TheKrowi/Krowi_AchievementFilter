@@ -1,0 +1,5 @@
+<Ui>
+    <Script file="Tests.lua" />
+    <Script file="Escape.lua" />
+    <Script file="SpecialCategories.lua" />
+</Ui>

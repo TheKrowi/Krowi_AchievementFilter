@@ -1,143 +1,143 @@
 -- [[ Namespaces ]] --
-local _, addon = ...;
-local options = addon.Options;
-options.General = {};
-local general = options.General;
-tinsert(options.OptionsTables, general);
+local _, addon = ...
+local options = addon.Options
+options.General = {}
+local general = options.General
+tinsert(options.OptionsTables, general)
 
-local OrderPP = addon.InjectOptions.AutoOrderPlusPlus;
-local AdjustedWidth = addon.InjectOptions.AdjustedWidth;
+local OrderPP = addon.InjectOptions.AutoOrderPlusPlus
+local AdjustedWidth = addon.InjectOptions.AdjustedWidth
 
 function general.RegisterOptionsTable()
-    LibStub("AceConfig-3.0"):RegisterOptionsTable(addon.Metadata.Title, options.OptionsTable.args.General);
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addon.Metadata.Title, addon.Metadata.Title, nil);
+    LibStub("AceConfig-3.0"):RegisterOptionsTable(addon.Metadata.Title, options.OptionsTable.args.General)
+    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addon.Metadata.Title, addon.Metadata.Title, nil)
 end
 
-local openCurrentZoneCategoryName;
+local openCurrentZoneCategoryName
 function general.PostLoad()
-    local rebindMicroButton = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Title, "cmd", "KROWIAF-0.0").args.KeyBinding.args.General.args.MicroButton.args.Rebind;
-    rebindMicroButton.desc = rebindMicroButton.desc:KAF_AddDefaultValueText("MicroButtonTab", addon.Gui:TabsOrderGetActiveKeys());
+    local rebindMicroButton = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Title, "cmd", "KROWIAF-0.0").args.KeyBinding.args.General.args.MicroButton.args.Rebind
+    rebindMicroButton.desc = rebindMicroButton.desc:KAF_AddDefaultValueText("MicroButtonTab", addon.Gui:TabsOrderGetActiveKeys())
 
-    openCurrentZoneCategoryName = addon.L["Open"] .. " " .. addon.L["Current Zone"] .. " "  .. addon.L["Category"];
-    _G["BINDING_NAME_" .. "KrowiAF_OPEN_CAT_Current_Zone"] = openCurrentZoneCategoryName;
+    openCurrentZoneCategoryName = addon.L["Open"] .. " " .. addon.L["Current Zone"] .. " "  .. addon.L["Category"]
+    _G["BINDING_NAME_" .. "KrowiAF_OPEN_CAT_Current_Zone"] = openCurrentZoneCategoryName
 end
 
-local RefreshOptions; -- Assigned at the end of the file
+local RefreshOptions -- Assigned at the end of the file
 function general.OnProfileChanged(db, newProfile)
-    RefreshOptions();
+    RefreshOptions()
 end
 
 function general.OnProfileCopied(db, sourceProfile)
-    RefreshOptions();
+    RefreshOptions()
 end
 
 function general.OnProfileReset(db)
-    RefreshOptions();
+    RefreshOptions()
 end
 
 local function CreateTutorialMenuFunc(builder)
-    local menu = builder:GetMenu();
-    local pages = addon.Tutorials.FeaturesTutorial.Pages;
+    local menu = builder:GetMenu()
+    local pages = addon.Tutorials.FeaturesTutorial.Pages
 
-    builder:CreateTitle(menu, addon.L["View Tutorial"]);
+    builder:CreateTitle(menu, addon.L["View Tutorial"])
     for i, _ in next, pages do
         builder:CreateButtonAndAdd(
             menu,
             (pages[i].IsViewed and "" or "|T132049:0|t") .. string.format(addon.Util.Colors.White, addon.Util.Colors.RemoveColor(pages[i].SubTitle)),
             function()
                 if addon.Util.IsWrathClassic then
-                    InterfaceOptionsFrame:Hide();
+                    InterfaceOptionsFrame:Hide()
                 else
-                    SettingsPanel:Close();
+                    SettingsPanel:Close()
                 end
-                addon.Tutorials.FeaturesTutorial:ShowTutorial(i);
+                addon.Tutorials.FeaturesTutorial:ShowTutorial(i)
             end
-        );
+        )
     end
 end
 
-local tutorialMenuBuilder;
+local tutorialMenuBuilder
 local function GeneralTutorialFunc()
     if not tutorialMenuBuilder then
-        local MenuBuilder = LibStub("Krowi_MenuBuilder-1.0");
-        tutorialMenuBuilder = MenuBuilder:New({});
+        local MenuBuilder = LibStub("Krowi_MenuBuilder-1.0")
+        tutorialMenuBuilder = MenuBuilder:New({})
     end
 
-    tutorialMenuBuilder:ShowPopup(CreateTutorialMenuFunc);
+    tutorialMenuBuilder:ShowPopup(CreateTutorialMenuFunc)
 end
 
 local function MinimapShowMinimapIconSet(_, value)
     if addon.Options.db.profile.ShowMinimapIcon == value then return; end
-    addon.Options.db.profile.ShowMinimapIcon = value;
+    addon.Options.db.profile.ShowMinimapIcon = value
     if addon.Options.db.profile.ShowMinimapIcon then
-        addon.Icon:Show();
+        addon.Icon:Show()
     else
-        addon.Icon:Hide();
+        addon.Icon:Hide()
     end
 end
 
 local function WorldMapShowWorldMapIconSet(_, value)
     if addon.Options.db.profile.ShowWorldmapIcon == value then return; end
-    addon.Options.db.profile.ShowWorldmapIcon = value;
-    addon.Gui.WorldMapButton:Refresh();
-    LibStub("Krowi_WorldMapButtons-1.4").SetPoints();
+    addon.Options.db.profile.ShowWorldmapIcon = value
+    addon.Gui.WorldMapButton:Refresh()
+    LibStub("Krowi_WorldMapButtons-1.4").SetPoints()
 end
 
 local function MicroButtonSetKeybindFunc()
-    local tab = KrowiAF_SavedData.Tabs[addon.Options.db.profile.MicroButtonTab];
+    local tab = KrowiAF_SavedData.Tabs[addon.Options.db.profile.MicroButtonTab]
     if tab.BindingName then
-        SetBinding("Y", tab.BindingName);
-        SaveBindings(GetCurrentBindingSet());
+        SetBinding("Y", tab.BindingName)
+        SaveBindings(GetCurrentBindingSet())
     end
 end
 
 local function SetBindingKeybind(value, command, index)
-	local key = select(index, GetBindingKey(command));
+	local key = select(index, GetBindingKey(command))
 	if key then
-		SetBinding(key);
+		SetBinding(key)
 	end
-	SetBinding(value, command, index);
-	SaveBindings(GetCurrentBindingSet());
+	SetBinding(value, command, index)
+	SaveBindings(GetCurrentBindingSet())
 end
 
-local screenshotModeFrame, screenshotModeCloseButton;
+local screenshotModeFrame, screenshotModeCloseButton
 local function HandleScreenshotMode()
     if addon.Util.IsWrathClassic then
-        InterfaceOptionsFrame:Hide();
+        InterfaceOptionsFrame:Hide()
     else
-        SettingsPanel:Close(); -- Causes "blocked from an action" message
+        SettingsPanel:Close() -- Causes "blocked from an action" message
     end
     if screenshotModeFrame == nil then
-        screenshotModeFrame = CreateFrame("Frame", nil, UIParent);
-        screenshotModeFrame:SetPoint("CENTER");
-        screenshotModeFrame:SetAllPoints();
+        screenshotModeFrame = CreateFrame("Frame", nil, UIParent)
+        screenshotModeFrame:SetPoint("CENTER")
+        screenshotModeFrame:SetAllPoints()
 
-        screenshotModeFrame.tex = screenshotModeFrame:CreateTexture();
-        screenshotModeFrame.tex:SetAllPoints();
-        screenshotModeFrame.tex:SetTexture("Interface/AddOns/Krowi_AchievementFilter/Media/Black");
-        screenshotModeFrame.tex:SetTexCoord(0, 0.390625, 0, 0.78125);
-        screenshotModeCloseButton = CreateFrame("Button", nil, UIParent, "UIPanelButtonTemplate");
-        screenshotModeCloseButton:SetPoint("TOPRIGHT");
-        screenshotModeCloseButton:SetSize(200, 22);
-        screenshotModeCloseButton:SetText("Close Screenshot Mode");
+        screenshotModeFrame.tex = screenshotModeFrame:CreateTexture()
+        screenshotModeFrame.tex:SetAllPoints()
+        screenshotModeFrame.tex:SetTexture("Interface/AddOns/Krowi_AchievementFilter/Media/Black")
+        screenshotModeFrame.tex:SetTexCoord(0, 0.390625, 0, 0.78125)
+        screenshotModeCloseButton = CreateFrame("Button", nil, UIParent, "UIPanelButtonTemplate")
+        screenshotModeCloseButton:SetPoint("TOPRIGHT")
+        screenshotModeCloseButton:SetSize(200, 22)
+        screenshotModeCloseButton:SetText("Close Screenshot Mode")
         screenshotModeCloseButton:SetScript("OnClick", function(self)
-            screenshotModeFrame:Hide();
-            self:Hide();
-        end);
-        screenshotModeCloseButton:Show();
+            screenshotModeFrame:Hide()
+            self:Hide()
+        end)
+        screenshotModeCloseButton:Show()
     else
-        screenshotModeFrame:Show();
-        screenshotModeCloseButton:Show();
+        screenshotModeFrame:Show()
+        screenshotModeCloseButton:Show()
     end
 end
 
 local function ExportCriteria()
-    local criteriaCache = {};
+    local criteriaCache = {}
     for _, id in next, addon.Data.AchievementIds do
-        local numCriteria = GetAchievementNumCriteria(id);
+        local numCriteria = GetAchievementNumCriteria(id)
         if numCriteria > 0 then
             for i = 1, numCriteria do
-                local criteriaString, criteriaType, _, _, _, _, flags, assetId, _, criteriaId, _ = GetAchievementCriteriaInfo(id, i);
+                local criteriaString, criteriaType, _, _, _, _, flags, assetId, _, criteriaId, _ = GetAchievementCriteriaInfo(id, i)
                 tinsert(criteriaCache, {
                     AchievementId = id,
                     CriteriaIndex = i,
@@ -146,142 +146,142 @@ local function ExportCriteria()
                     Flags = flags,
                     AssetId = assetId,
                     CriteriaId = criteriaId
-                });
+                })
             end
         end
     end
-    DebugTable = criteriaCache;
+    KrowiAF_ExportedCriteria = criteriaCache -- inspect in game with /dump KrowiAF_ExportedCriteria
 end
 
 local function ExportMissingAchievements()
-    local frame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template");
-	frame:Init(addon.L["Export Missing Achievements"]);
-    local numMissingAchievements = 0;
-    local exportString = "\r\n";
+    local frame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template")
+	frame:Init(addon.L["Export Missing Achievements"])
+    local numMissingAchievements = 0
+    local exportString = "\r\n"
     for _, achievementId in next, addon.Data.AchievementIds do
         if addon.Data.Achievements[achievementId].Uncategorized then
-            local achievementInfo = addon.GetAchievementInfoTable(achievementId);
-            numMissingAchievements = numMissingAchievements + 1;
+            local achievementInfo = addon.GetAchievementInfoTable(achievementId)
+            numMissingAchievements = numMissingAchievements + 1
             -- exportString = exportString .. "    { -- " .. achievementInfo.Name .. "\r\n";
             -- exportString = exportString .. "        " .. achievementInfo.Id .. "," .. "\r\n";
-            local rewardText = tostring(achievementInfo.RewardText or ""):gsub("[\r\n]+", " ");
-            local rewardSuffix = rewardText ~= "" and (" (" .. rewardText .. ")") or "";
-            local rewardTypes = {};
+            local rewardText = tostring(achievementInfo.RewardText or ""):gsub("[\r\n]+", " ")
+            local rewardSuffix = rewardText ~= "" and (" (" .. rewardText .. ")") or ""
+            local rewardTypes = {}
             if rewardText:find("Title:", 1, true) then
-                tinsert(rewardTypes, "rewardType.Title");
+                tinsert(rewardTypes, "rewardType.Title")
             end
             if rewardText:find("Mount:", 1, true) then
-                tinsert(rewardTypes, "rewardType.Mount");
+                tinsert(rewardTypes, "rewardType.Mount")
             end
             if rewardText:find("Pet:", 1, true) then
-                tinsert(rewardTypes, "rewardType.Pet");
+                tinsert(rewardTypes, "rewardType.Pet")
             end
             if rewardText:find("Toy:", 1, true) then
-                tinsert(rewardTypes, "rewardType.Toy");
+                tinsert(rewardTypes, "rewardType.Toy")
             end
             if rewardText:find("Tabard:", 1, true) then
-                tinsert(rewardTypes, "rewardType.Tabard");
+                tinsert(rewardTypes, "rewardType.Tabard")
             end
             if rewardText:find("Teleport:", 1, true) then
-                tinsert(rewardTypes, "rewardType.Teleport");
+                tinsert(rewardTypes, "rewardType.Teleport")
             end
             if rewardText:find("Transmog:", 1, true) then
-                tinsert(rewardTypes, "rewardType.Transmog");
+                tinsert(rewardTypes, "rewardType.Transmog")
             end
             if rewardText:find("Trader's Tender:", 1, true) then
-                tinsert(rewardTypes, "rewardType.TradersTender");
+                tinsert(rewardTypes, "rewardType.TradersTender")
             end
             if rewardText:find("Decor Reward:", 1, true) then
-                tinsert(rewardTypes, "rewardType.HousingDecor");
+                tinsert(rewardTypes, "rewardType.HousingDecor")
             end
             if rewardText:find("Keystones will no longer deplete below level", 1, true) then
-                tinsert(rewardTypes, "rewardType.KeystoneResilience");
+                tinsert(rewardTypes, "rewardType.KeystoneResilience")
             end
 
             if #rewardTypes == 0 then
                 if rewardText == "" then
-                    exportString = exportString .. "    {" .. achievementInfo.Id .. "}, -- " .. achievementInfo.Name .. "\r\n";
+                    exportString = exportString .. "    {" .. achievementInfo.Id .. "}, -- " .. achievementInfo.Name .. "\r\n"
                 else
-                    exportString = exportString .. "    { -- " .. achievementInfo.Name .. rewardSuffix .. "\r\n";
-                    exportString = exportString .. "        " .. achievementInfo.Id .. ",\r\n";
-                    exportString = exportString .. "        {\r\n";
-                    exportString = exportString .. "            RewardType = rewardType.NotCategorized,\r\n";
-                    exportString = exportString .. "        },\r\n";
-                    exportString = exportString .. "    },\r\n";
+                    exportString = exportString .. "    { -- " .. achievementInfo.Name .. rewardSuffix .. "\r\n"
+                    exportString = exportString .. "        " .. achievementInfo.Id .. ",\r\n"
+                    exportString = exportString .. "        {\r\n"
+                    exportString = exportString .. "            RewardType = rewardType.NotCategorized,\r\n"
+                    exportString = exportString .. "        },\r\n"
+                    exportString = exportString .. "    },\r\n"
                 end
             else
-                local rewardTypeValue = #rewardTypes == 1 and rewardTypes[1] or ("{" .. table.concat(rewardTypes, ", ") .. "}");
-                exportString = exportString .. "    { -- " .. achievementInfo.Name .. rewardSuffix .. "\r\n";
-                exportString = exportString .. "        " .. achievementInfo.Id .. ",\r\n";
-                exportString = exportString .. "        {\r\n";
-                exportString = exportString .. "            RewardType = " .. rewardTypeValue .. ",\r\n";
-                exportString = exportString .. "        },\r\n";
-                exportString = exportString .. "    },\r\n";
+                local rewardTypeValue = #rewardTypes == 1 and rewardTypes[1] or ("{" .. table.concat(rewardTypes, ", ") .. "}")
+                exportString = exportString .. "    { -- " .. achievementInfo.Name .. rewardSuffix .. "\r\n"
+                exportString = exportString .. "        " .. achievementInfo.Id .. ",\r\n"
+                exportString = exportString .. "        {\r\n"
+                exportString = exportString .. "            RewardType = " .. rewardTypeValue .. ",\r\n"
+                exportString = exportString .. "        },\r\n"
+                exportString = exportString .. "    },\r\n"
             end
         end
     end
 
-    print("Missing achievements found:", numMissingAchievements);
-    frame.Input:SetText(exportString);
-    frame:Show();
+    print("Missing achievements found:", numMissingAchievements)
+    frame.Input:SetText(exportString)
+    frame:Show()
 end
 
 local function ExportRemovedAchievements()
-    local frame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template");
-	frame:Init(addon.L["Export Removed Achievements"]);
-    local numRemovedAchievements = 0;
-    local exportString = "\r\n";
+    local frame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template")
+	frame:Init(addon.L["Export Removed Achievements"])
+    local numRemovedAchievements = 0
+    local exportString = "\r\n"
     for _, achievementId in next, addon.Data.AchievementIds do
-        local achievementInfo = addon.GetAchievementInfoTable(achievementId);
+        local achievementInfo = addon.GetAchievementInfoTable(achievementId)
         if not achievementInfo.Exists then
-            numRemovedAchievements = numRemovedAchievements + 1;
-            exportString = exportString .. "    { -- " .. (addon.Data.Achievements[achievementId].Category and addon.Data.Achievements[achievementId].Category:GetPath() or "") .. "\r\n";
-            exportString = exportString .. "        " .. achievementInfo.Id .. "," .. "\r\n";
-            exportString = exportString .. "    }," .. "\r\n";
+            numRemovedAchievements = numRemovedAchievements + 1
+            exportString = exportString .. "    { -- " .. (addon.Data.Achievements[achievementId].Category and addon.Data.Achievements[achievementId].Category:GetPath() or "") .. "\r\n"
+            exportString = exportString .. "        " .. achievementInfo.Id .. "," .. "\r\n"
+            exportString = exportString .. "    }," .. "\r\n"
         end
     end
 
-    print("Missing achievements found:", numRemovedAchievements);
-    frame.Input:SetText(exportString);
-    frame:Show();
+    print("Missing achievements found:", numRemovedAchievements)
+    frame.Input:SetText(exportString)
+    frame:Show()
 end
 
 local function PrintMapInfoWithoutReload()
     if addon.Diagnostics.DebugEnabled() then
-        return;
+        return
     end
 
     hooksecurefunc(WorldMapFrame, "OnMapChanged", function()
-        local mapID = WorldMapFrame.mapID;
-        print(mapID, addon.GetMapName(mapID));
-    end);
+        local mapID = WorldMapFrame.mapID
+        print(mapID, addon.GetMapName(mapID))
+    end)
 
-    addon.Options.db.profile.PrintMapInfo = true;
+    addon.Options.db.profile.PrintMapInfo = true
 end
 
 local function ExportTaintDiagnostics()
-    local frame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template");
-	frame:Init(addon.L["Export Taint Diagnostics"]);
-    local sessions = KrowiAF_DebugTable and KrowiAF_DebugTable.TaintDiagnostics and KrowiAF_DebugTable.TaintDiagnostics.Sessions;
-    frame.Input:SetText(sessions and TableToString(sessions, 100) or "");
-    frame:Show();
+    local frame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template")
+	frame:Init(addon.L["Export Taint Diagnostics"])
+    local sessions = KrowiAF_DebugTable and KrowiAF_DebugTable.TaintDiagnostics and KrowiAF_DebugTable.TaintDiagnostics.Sessions
+    frame.Input:SetText(sessions and TableToString(sessions, 100) or "")
+    frame:Show()
 end
 
 local function ExportToCsv()
-    local frame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template");
-	frame:Init(addon.L["Export to CSV"]);
-    local exportString = "Id;Name;Description;Obtainable;Completed;Points;Rewards\r\n";
-    local data = addon.Data;
-    local temp = addon.Data.TemporaryObtainable;
+    local frame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template")
+	frame:Init(addon.L["Export to CSV"])
+    local exportString = "Id;Name;Description;Obtainable;Completed;Points;Rewards\r\n"
+    local data = addon.Data
+    local temp = addon.Data.TemporaryObtainable
     for _, achievementId in next, data.AchievementIds do
-        local achievementInfo = addon.GetAchievementInfoTable(achievementId);
+        local achievementInfo = addon.GetAchievementInfoTable(achievementId)
         if achievementInfo.Exists and not achievementInfo.IsGuild and not achievementInfo.IsStatistic then
-            exportString = exportString .. achievementInfo.Id .. ";" .. achievementInfo.Name .. ";" .. achievementInfo.Description .. ";" .. (temp:GetObtainableState(data.Achievements[achievementId]) or "") .. ";" .. tostring(achievementInfo.IsCompleted) .. ";" .. achievementInfo.Points .. ";" .. achievementInfo.RewardText .. "\r\n";
+            exportString = exportString .. achievementInfo.Id .. ";" .. achievementInfo.Name .. ";" .. achievementInfo.Description .. ";" .. (temp:GetObtainableState(data.Achievements[achievementId]) or "") .. ";" .. tostring(achievementInfo.IsCompleted) .. ";" .. achievementInfo.Points .. ";" .. achievementInfo.RewardText .. "\r\n"
         end
     end
 
-    frame.Input:SetText(exportString);
-    frame:Show();
+    frame.Input:SetText(exportString)
+    frame:Show()
 end
 
 local infoOptions = {
@@ -337,7 +337,7 @@ local infoOptions = {
             }
         }
     }
-};
+}
 
 local iconOptions = {
     order = OrderPP(), type = "group",
@@ -378,7 +378,7 @@ local iconOptions = {
             }
         }
     }
-};
+}
 
 local keyBindingOptions = {
     order = OrderPP(), type = "group", childGroups = "tab",
@@ -420,8 +420,8 @@ local keyBindingOptions = {
                             values = function() return addon.Gui:TabsOrderGetActiveKeys(); end,
                             get = function() return addon.Options.db.profile.MicroButtonTab; end,
                             set = function(_, value)
-                                addon.Options.db.profile.MicroButtonTab = value;
-                                addon.ChangeAchievementMicroButtonOnClick();
+                                addon.Options.db.profile.MicroButtonTab = value
+                                addon.ChangeAchievementMicroButtonOnClick()
                             end
                         },
                         SetKeybind = {
@@ -514,7 +514,7 @@ local keyBindingOptions = {
             }
         }
     }
-};
+}
 
 local filtersOptions = {
     order = OrderPP(), type = "group",
@@ -538,7 +538,7 @@ local filtersOptions = {
             }
         }
     }
-};
+}
 
 local experimentalOptions = {
     order = OrderPP(), type = "group",
@@ -558,7 +558,7 @@ local experimentalOptions = {
             }
         }
     }
-};
+}
 
 local debugOptions = {
     order = OrderPP(), type = "group",
@@ -668,7 +668,7 @@ local debugOptions = {
             }
         }
     }
-};
+}
 
 options.OptionsTable.args["General"] = {
     type = "group", childGroups = "tab",
@@ -681,11 +681,11 @@ options.OptionsTable.args["General"] = {
         Experimental = experimentalOptions,
         Debug = debugOptions
     }
-};
+}
 
 function RefreshOptions()
-    local profile = addon.Options.db.profile;
-    MinimapShowMinimapIconSet(nil, profile.ShowMinimapIcon);
-    WorldMapShowWorldMapIconSet(nil, profile.ShowWorldmapIcon);
-    addon.ChangeAchievementMicroButtonOnClick();
+    local profile = addon.Options.db.profile
+    MinimapShowMinimapIconSet(nil, profile.ShowMinimapIcon)
+    WorldMapShowWorldMapIconSet(nil, profile.ShowWorldmapIcon)
+    addon.ChangeAchievementMicroButtonOnClick()
 end

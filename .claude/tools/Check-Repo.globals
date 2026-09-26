@@ -1,0 +1,33 @@
+# Deliberate writes to the global environment, for the Check-Repo.ps1 `globals` rule.
+# One "<path glob> <name glob>" per line, # comments. KrowiAF*, BINDING_* and SLASH_* names never
+# need a line. Everything else the rule finds is an accidental global until it is listed here with
+# the reason, so an addition to this file is a review item, not a formality.
+
+# --- addon.OverwriteFunctions (Gui/BlizzardOverrides.lua): the FrameXML achievement UI functions the
+#     addon replaces on purpose. This is the whole point of the addon; it reshapes AchievementFrame.
+#     Blizzard *API* functions (GetAchievementCriteriaInfo, ...) are never allowed here.
+#     Not visible to this rule, listed for the review trail: the same file also replaces the table field
+#     AchievementTemplateMixin.ProcessClick (same reason as AchievementFrameSummaryAchievement_OnClick below).
+Gui/BlizzardOverrides.lua AchievementFrame_ToggleAchievementFrame
+Gui/BlizzardOverrides.lua AchievementFrame_DisplayComparison
+Gui/BlizzardOverrides.lua AchievementFrame_SelectAchievement
+Gui/BlizzardOverrides.lua AchievementFrame_SetTabs
+Gui/BlizzardOverrides.lua AchievementFrameSummaryAchievement_OnClick    # wrapped: inserts the chat link itself, skipping the protected C_AchievementTelemetry call
+Gui/BlizzardOverrides.lua AchievementFrameTab_OnClick
+Gui/Gui.lua AchievementFrameTab_OnClick
+Gui/WindowFrames/AchievementFrameTabButtonFactory/AchievementFrameTabButtonFactory.lua AchievementFrameTab_OnClick
+
+# --- addon.LoadBlizzardApiChanges (Gui/BlizzardOverrides.lua): polyfills for globals Blizzard removed
+#     in 10.1.5, defined only when the game no longer provides them (`if not X then X = ... end`)
+Gui/BlizzardOverrides.lua IsTrackedAchievement
+Gui/BlizzardOverrides.lua RemoveTrackedAchievement
+Gui/BlizzardOverrides.lua GetNumTrackedAchievements
+Gui/BlizzardOverrides.lua AddTrackedAchievement
+Gui/BlizzardOverrides.lua MAX_TRACKED_ACHIEVEMENTS
+Gui/BlizzardOverrides.lua WatchFrame_Update
+Gui/BlizzardOverrides.lua SetFocusedAchievement
+
+# --- Blizzard frame aliases and constants the classic/retail GUI code adjusts
+Gui/Gui.lua AchievementFrameFilterDropdown                                         # alias: the frame is AchievementFrameFilterDropDown on Classic, Filters.FilterDropdown on Retail
+Gui/WindowFrames/AchievementFrameHeader.lua AchievementFrameHeaderLeftDDLInset     # named texture other GUI files and skins reach by global name
+Gui/WindowFrames/AchievementsObjectives/AchievementsObjectives.lua ACHIEVEMENTBUTTON_METAROWHEIGHT   # Blizzard layout constant, set to 28 on Classic at load

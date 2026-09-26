@@ -1,5 +1,5 @@
-local _, addon = ...;
-local shared = addon.Data.TransmogSetData.Shared;
+local _, addon = ...
+local shared = addon.Data.TransmogSetData.Shared
 
 KrowiAF.TransmogSetData.TheWarWithin = {
     { -- I'm Bringing Nerub-ack
@@ -95,4 +95,4 @@ KrowiAF.TransmogSetData.TheWarWithin = {
             4107, 4120, 4104, 4117, 4111, 4123, -- Astral Gladiator's Silk Armor (Gladiator, Elite)
         }
     },
-};
+}

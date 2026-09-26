@@ -4,6 +4,7 @@
     <Include file="03_WrathOfTheLichKing\Files.xml" />
     <Include file="04_Cataclysm\Files.xml" />
     <Include file="05_MistsOfPandaria\Files.xml" />
+    <Script file="ContentTimeline.lua" />
     <Script file="CategoryData_Achievements.lua" />
     <Script file="CategoryData_Events.lua" />
     <Script file="CategoryData_PvP.lua" />

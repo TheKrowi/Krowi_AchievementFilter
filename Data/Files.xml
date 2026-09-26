@@ -1,5 +1,8 @@
 <Ui>
+    <Script file="TaskRunner.lua" />
     <Script file="Data.lua" />
+    <Script file="LoadDiagnostics.lua" />
+    <Script file="AchievementCache.lua" />
     <Script file="TemporaryObtainable.lua" />
     <Script file="CustomWidgetEventTimers.lua" />
     <Script file="CustomWorldEventTimers.lua" />
@@ -9,4 +12,5 @@
     <Script file="DataIntegrityManager.lua" />
     <Include file="SavedData\Files.xml"/>
     <Script file="SpecialCategories.lua" />
+    <Script file="SpecialCategoryAchievements.lua" />
 </Ui>

@@ -1,6 +1,6 @@
-local _, addon = ...;
-local shared = addon.Data.EventData.Shared;
-local type = KrowiAF.Enum.EventType;
+local _, addon = ...
+local shared = addon.Data.EventData.Shared
+local type = KrowiAF.Enum.EventType
 
 KrowiAF.EventData.Legion = {
     { -- Legion Assaults: Azsuna
@@ -47,4 +47,4 @@ KrowiAF.EventData.Legion = {
         false,
         619
     },
-};
+}

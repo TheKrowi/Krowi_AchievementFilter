@@ -1,20 +1,22 @@
 local _, addon = ...
 local L = addon.Localization.NewDefaultLocale()
 
-KrowiAF.PluginsApi:LoadPluginLocalization(L);
+KrowiAF.PluginsApi:LoadPluginLocalization(L)
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-08-14 12-07-42 ]] --
+-- [[ Exported at 2026-09-26 13-35-35 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
 L["%m/%d/%Y %R"] = true
 L["%Y/%m/%d %I:%M %p"] = true
 L["%Y/%m/%d %R"] = true
+L["(pre-patch)"] = true
 L["10th Anniversary"] = true
 L["450 skill"] = true
 L["525 skill"] = true
+L["5th Anniversary Celebration"] = true
 L["600 skill"] = true
 L["Abyss Anglers"] = true
 L["Academy Ascent"] = true
@@ -283,7 +285,7 @@ L["Deepwind Gorge"] = true
 L["Default Width"] = true
 L["Default Width Desc"] = "The default width of a newly opened {popout}."
 L["Defending Azeroth Assaults"] = true
-L["Defending the Ruby Sanctum"] = true
+L["Defense of the Ruby Sanctum"] = true
 L["Delves"] = true
 L["Deselect All"] = true
 L["Diablo"] = true
@@ -746,6 +748,7 @@ L["Not earned by:"] = true
 L["Not loaded"] = true
 L["Not Obtainable"] = true
 L["Not part of set"] = true
+L["not yet on this game version"] = true
 L["NotCategorized"] = "Not Categorized"
 L["Number of Earned By characters"] = "Number of {earnedBy} characters"
 L["Number of Earned By characters Desc"] = [=[The number of characters that will be displayed that have earned the achievement.
@@ -881,6 +884,7 @@ L["Reset position Desc"] = "Reset the {frame} to it's default position."
 L["Reset view"] = true
 L["Reset view on open"] = true
 L["Reset view on open Desc"] = "Collapse all categories and select the summary."
+L["Return to Karazhan"] = true
 L["Return to the Forbidden Reach"] = true
 L["Revelations"] = true
 L["Reverse Sort"] = true
@@ -1250,6 +1254,7 @@ L["Wild Preserve Circuit"] = true
 L["Wild Preserve Slalom"] = true
 L["will be"] = true
 L["Window"] = true
+L["Winds of Mysterious Fortune"] = true
 L["Wingrest Roundabout"] = true
 L["Winter Veil"] = true
 L["Wintergrasp"] = true

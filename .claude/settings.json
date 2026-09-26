@@ -1,0 +1,34 @@
+{
+    "hooks": {
+        "PostToolUse": [
+            {
+                "matcher": "Edit|Write",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "pwsh -NoProfile -NonInteractive -File \"$CLAUDE_PROJECT_DIR/.claude/hooks/Check-LuaSyntax.ps1\"",
+                        "timeout": 30
+                    }
+                ]
+            }
+        ],
+        "Stop": [
+            {
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "pwsh -NoProfile -NonInteractive -File \"$CLAUDE_PROJECT_DIR/.claude/hooks/Check-RepoOnStop.ps1\"",
+                        "timeout": 60
+                    }
+                ]
+            }
+        ]
+    },
+    "permissions": {
+        "allow": [
+            "Bash(pwsh -NoProfile -NonInteractive -File .claude/tools/Check-Repo.ps1)",
+            "Bash(pwsh -NoProfile -NonInteractive -File .claude/tools/Check-Repo.ps1 *)",
+            "Bash(pwsh -NoProfile -NonInteractive -File .claude/hooks/Check-LuaSyntax.ps1)"
+        ]
+    }
+}

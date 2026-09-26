@@ -2,11 +2,11 @@ local _, addon = ...
 local L = addon.Localization.NewLocale("koKR")
 if not L then return end
 
-KrowiAF.PluginsApi:LoadPluginLocalization(L);
+KrowiAF.PluginsApi:LoadPluginLocalization(L)
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-08-14 12-08-03 ]] --
+-- [[ Exported at 2026-09-26 13-35-57 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -16,6 +16,7 @@ L["%Y/%m/%d %R"] = true
 L["10th Anniversary"] = "10주년"
 L["450 skill"] = "숙련도 450"
 L["525 skill"] = "숙련도 525"
+L["5th Anniversary Celebration"] = "5주년 기념 축제"
 L["600 skill"] = "숙련도 600"
 L["Abyss Anglers"] = "심연 강태공"
 L["Account"] = "계정"
@@ -165,6 +166,7 @@ L["Debug"] = "디버그"
 L["Decor Duel"] = "하우징 장식 결투"
 L["Deephaul Ravine"] = "깊은광혈 협곡"
 L["Deepwind Gorge"] = "깊은바람 협곡"
+L["Defense of the Ruby Sanctum"] = "루비 성소 수호"
 L["Delves"] = "구렁"
 L["Diablo"] = "디아블로"
 L["Diablo III"] = "디아블로 3"
