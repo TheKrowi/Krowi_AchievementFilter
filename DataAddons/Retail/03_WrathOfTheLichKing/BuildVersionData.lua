@@ -2,7 +2,7 @@ local _, addon = ...
 
 local expansion = KrowiAF.NewBuildVersion("WrathOfTheLichKing", 3)
 local minor = expansion:Minor(0)
-minor:Patch(2, addon.L["Wrath of the Lich King"])
+minor:Patch(2, addon.L["Wrath of the Lich King"] .. " " .. addon.L["(pre-patch)"])
 minor = expansion:Minor(1)
 minor:Patch(0, addon.L["Secrets of Ulduar"])
 minor = expansion:Minor(2)

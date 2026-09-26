@@ -795,7 +795,7 @@ KrowiAF.AchievementData["12_01_00"] = {
 	Ach(63170), -- Gnarldor Isle Discoveries
 	Ach(63171), -- The Ring of Glory Discoveries
 	Ach(63250), -- Is Venom Stasis A Joke To You?
-	Ach(63253), -- A Round on the House in Midnight
+	Ach(63253):Obtainable("Event", 372), -- A Round on the House in Midnight
 	Ach(63254):Mount(3021), -- Glory of the Venomous Raider
 	Ach(63326):Transmog():PvE(18), -- My Venomous Nemesis
 	Ach(63332):Title(), -- Purging the Poison

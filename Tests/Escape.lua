@@ -36,7 +36,7 @@ local escape = addon.Tests.Escape
 -- handlers, so PressEscape below runs the chain as far as an addon may: every handler that touches a
 -- frame this suite uses, in Blizzard's order, minus the protected ones, and instead of showing the game
 -- menu (its OnShow builds Blizzard's menu buttons, which must not happen in addon execution) it records
--- that the press would have shown it. The first in-game run (2026-09-19, before the 100.5 fix) went
+-- that the press would have shown it. The first in-game run (2026-09-19, before the 101.0 fix) went
 -- through the real ToggleGameMenu (with those errors) and matched the model line for line, which is
 -- what justifies the emulation.
 
@@ -66,9 +66,9 @@ escape.Scenarios = {
     {Name = "text-over-data-manager", Shown = {"DataManager", "Text"}, Recorded = {"DataManager"}, Target = {"DataManager"}},
     {Name = "text-over-data-manager-twice", Shown = {"DataManager", "Text"}, Presses = 2, Recorded = {}, Target = {}},
     {Name = "text-over-data-manager-thrice", Shown = {"DataManager", "Text"}, Presses = 3, Recorded = {"GameMenu"}, Target = {"GameMenu"}},
-    {Name = "map-verifier-over-achievements", Shown = {"Achievements", "MapVerifier"}, Recorded = {"Achievements"}, Target = {"Achievements"}}, -- before 100.5 the Map Verifier never closed: the old hook's frame list did not know it
+    {Name = "map-verifier-over-achievements", Shown = {"Achievements", "MapVerifier"}, Recorded = {"Achievements"}, Target = {"Achievements"}}, -- before 101.0 the Map Verifier never closed: the old hook's frame list did not know it
     {Name = "map-verifier-alone", Shown = {"MapVerifier"}, Recorded = {}, Target = {}},
-    {Name = "popup-over-achievements", Shown = {"Achievements"}, Branch = "popup", Recorded = {"Achievements"}, Target = {"Achievements"}}, -- before 100.5 the old hook hid a frame although the popup had consumed the press
+    {Name = "popup-over-achievements", Shown = {"Achievements"}, Branch = "popup", Recorded = {"Achievements"}, Target = {"Achievements"}}, -- before 101.0 the old hook hid a frame although the popup had consumed the press
     {Name = "popup-over-achievements-thrice", Shown = {"Achievements"}, Branch = "popup", Presses = 3, Recorded = {"GameMenu"}, Target = {"GameMenu"}},
     {Name = "popup-over-calendar", Shown = {"Achievements", "Calendar"}, Branch = "popup", Recorded = {"Achievements", "Calendar"}, Target = {"Achievements", "Calendar"}},
     {Name = "menu-over-achievements", Shown = {"Achievements"}, Branch = "menu", Recorded = {"Achievements"}, Target = {"Achievements"}},
@@ -76,7 +76,7 @@ escape.Scenarios = {
     {Name = "menu-over-data-manager", Shown = {"DataManager"}, Branch = "menu", Recorded = {"DataManager"}, Target = {"DataManager"}},
     {Name = "dropdown-over-data-manager", Shown = {"DataManager"}, Branch = "dropdown", Recorded = {}, Target = {}}, -- Blizzard closes a legacy dropdown without consuming Escape (CloseMenus returns nothing), so the frame under it closes in the same press on both clients
     {Name = "nothing", Shown = {}, Recorded = {"GameMenu"}, Target = {"GameMenu"}},
-    {Name = "closed-with-button", Shown = {"DataManager"}, CloseFirst = {"DataManager"}, Recorded = {"GameMenu"}, Target = {"GameMenu"}}, -- before 100.5 the proxy stayed shown after the close button, so the next Escape was eaten
+    {Name = "closed-with-button", Shown = {"DataManager"}, CloseFirst = {"DataManager"}, Recorded = {"GameMenu"}, Target = {"GameMenu"}}, -- before 101.0 the proxy stayed shown after the close button, so the next Escape was eaten
     {Name = "closed-with-button-over-achievements", Shown = {"Achievements", "DataManager"}, CloseFirst = {"DataManager"}, Recorded = {}, Target = {}}
 }
 

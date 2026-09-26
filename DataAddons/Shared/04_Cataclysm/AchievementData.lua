@@ -192,7 +192,7 @@ KrowiAF.AchievementData["04_00_03_S"] = {
 	Ach(5310), -- Aberrant Behavior
 	Ach(5311), -- Elementary
 	Ach(5312), -- The Abyss Will Gaze Back Into You
-	Ach(5313):Obtainable("Before", "Version", {5, 0, 5}), -- I Can't Hear You Over the Sound of How Awesome I Am
+	Ach(5313):Obtainable("Until", "Version", {5, 0, 4}), -- I Can't Hear You Over the Sound of How Awesome I Am
 	Ach(5315), -- Digger
 	Ach(5317), -- Help the Bombardier! I'm the Bombardier!
 	Ach(5318):AutoFactionSplit(faction.Alliance, 5319), -- 20,000 Leagues Under the Sea

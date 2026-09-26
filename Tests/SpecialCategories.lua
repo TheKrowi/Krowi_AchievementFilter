@@ -25,7 +25,7 @@ local special = addon.Tests.SpecialCategories
 -- player's own state changes. The observation only looks at the fakes, so the player's own watched,
 -- excluded and tracking achievements do not show up in the lines.
 --
--- Until 100.5 the option setters called two functions that no longer existed (see the changelog), so the
+-- Until 101.0 the option setters called two functions that no longer existed (see the changelog), so the
 -- in-game side of every rebuild scenario raised a Lua error after emptying the tree. With the reset
 -- functions doing only what the old inline loops did (roots emptied, nothing else), 15 of these scenarios
 -- fail headlessly with stale or doubled back references (links=stale:N, links=4/2, refs=4/2; checked
@@ -97,7 +97,7 @@ special.Scenarios = {
     {Kind = "TrackingAchievements", Name = "tracking-uncategorized-tree", Steps = {"sub:on", "add:N"}, Observe = "N",
         Recorded = "placed=[.] roots=all perroot=1 testnodes=0 category=root refs=1/root nested=no"}, -- no category, so nothing to mirror: it stays on the root
     {Kind = "TrackingAchievements", Name = "tracking-rebuild-uncategorized-tree", Steps = {"sub:on", "add:N", "rebuild"}, Observe = "N",
-        Recorded = "placed=[.] roots=all perroot=1 testnodes=0 category=root refs=1/root nested=no"}, -- before 100.5 the root, now the achievement's Category, was mirrored under itself
+        Recorded = "placed=[.] roots=all perroot=1 testnodes=0 category=root refs=1/root nested=no"}, -- before 101.0 the root, now the achievement's Category, was mirrored under itself
     {Kind = "TrackingAchievements", Name = "tracking-sub-off", Steps = {"sub:on", "add:A", "sub:off"},
         Recorded = "placed=[.] roots=all perroot=1 testnodes=0 category=own refs=1/root nested=no"}
 }

@@ -6,9 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-08-14 12-08-18 ]] --
-L["5th Anniversary Celebration"] = "五周年庆典"
-L["Defense of the Ruby Sanctum"] = "保卫红玉圣殿"
+-- [[ Exported at 2026-09-26 13-36-07 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -18,6 +16,7 @@ L["%Y/%m/%d %R"] = true
 L["10th Anniversary"] = "10周年"
 L["450 skill"] = "450点技能"
 L["525 skill"] = "525点技能"
+L["5th Anniversary Celebration"] = "五周年庆典"
 L["600 skill"] = "600点技能"
 L["Abyss Anglers"] = "深渊钓客"
 L["Academy Ascent"] = "学院爬升赛"
@@ -286,6 +285,7 @@ L["Deepwind Gorge"] = "深风峡谷"
 L["Default Width"] = "默认宽度"
 L["Default Width Desc"] = "设置新{popout}的默认宽度。"
 L["Defending Azeroth Assaults"] = "黑暗帝国突袭"
+L["Defense of the Ruby Sanctum"] = "保卫红玉圣殿"
 L["Delves"] = "地下堡"
 L["Deselect All"] = "全部取消"
 L["Diablo"] = "暗黑破坏神"

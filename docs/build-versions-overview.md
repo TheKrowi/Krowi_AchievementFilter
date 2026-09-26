@@ -38,7 +38,7 @@ Generated 2026-09-25. The counts come from the data files, and the totals match 
 | Patch | Date (NA) | Official name | Type | Addon label | Retail: added | Retail: anchors | Retail status | Classic: added | Classic: anchors | Classic status | Classic reached at | Notes |
 |---|---|---|---|---|--:|--:|---|--:|--:|---|---|---|
 | **3.x** | | **Wrath of the Lich King** | | | | | | | | | | |
-| 3.0.2 | 2008-10-14 | Echoes of Doom | PP | Wrath of the Lich King | 908 |  | added | 908 |  | added | 3.4.0 | Achievement system introduced; WotLK launched 2008-11-13 on 3.0.3 |
+| 3.0.2 | 2008-10-14 | Echoes of Doom | PP | Wrath of the Lich King (pre-patch) | 908 |  | added | 908 |  | added | 3.4.0 | Achievement system introduced; WotLK launched 2008-11-13 on 3.0.3 |
 | 3.1.0 | 2009-04-14 | Secrets of Ulduar | C | Secrets of Ulduar | 203 |  | added | 203 |  | added | 3.4.1 | Ulduar, dual spec, Argent Tournament |
 | 3.2.0 | 2009-08-04 | Call of the Crusade | C | Call of the Crusade | 79 |  | added | 79 |  | added | 3.4.2 | Trial of the Crusader, Isle of Conquest |
 | 3.2.2 | 2009-09-22 | - (5th Anniversary Celebration) | m | 5th Anniversary Celebration | 17 |  | added | 17 |  | added | 3.4.2 | Level-80 Onyxia's Lair (5th anniversary) |
@@ -53,17 +53,17 @@ Generated 2026-09-25. The counts come from the data files, and the totals match 
 | 4.0.1 | 2010-10-12 | Cataclysm Systems | PP | Cataclysm (pre-patch) | 9 | 14 | added | 9 | 15 | added | 4.4.0 | Talent revamp, guild system |
 | 4.0.3 | 2010-11-23 | The Shattering | PP+L | Cataclysm (pre-patch) | 335 | 20 | added | 337 | 18 | added | 4.4.0 | **Label:** labelled pre-patch; it is the Shattering and the launch line. Old-world revamp; Cataclysm launched 2010-12-07 on 4.0.3a |
 | 4.0.6 | 2011-02-08 | - | m | Cataclysm | 3 |  | added | 3 |  | added | 4.4.0 | Class changes |
-| 4.1.0 | 2011-04-26 | Rise of the Zandalari | C | Rise of the Zandalari | 19 |  | added | 19 |  | added | *(missing)* | Zul'Aman and Zul'Gurub heroics |
+| 4.1.0 | 2011-04-26 | Rise of the Zandalari | C | Rise of the Zandalari | 19 |  | added | 19 |  | added | 4.4.0 | Zul'Aman and Zul'Gurub heroics |
 | 4.2.0 | 2011-06-28 | Rage of the Firelands | C | Rage of the Firelands | 56 |  | added | 56 |  | added | 4.4.1 | Firelands, Molten Front |
 | 4.2.2 | 2011-08-30 | - | m | Rage of the Firelands | 1 |  | added | 1 |  | added | 4.4.1 | Minor |
-| 4.3.0 | 2011-11-29 | Hour of Twilight | C | Hour of Twilight | 63 |  | added | 63 |  | added | *(missing)* | Dragon Soul, End Time dungeons, transmog, LFR, Darkmoon Island |
-| 4.3.2 | 2012-01-31 | - | m | Hour of Twilight | 3 |  | added | 3 |  | added | *(missing)* | Minor |
+| 4.3.0 | 2011-11-29 | Hour of Twilight | C | Hour of Twilight | 63 |  | added | 63 |  | added | 4.4.2 | Dragon Soul, End Time dungeons, transmog, LFR, Darkmoon Island |
+| 4.3.2 | 2012-01-31 | - | m | Hour of Twilight | 3 |  | added | 3 |  | added | 4.4.2 | Minor |
 | 4.4.0 | 2024-04-30 / 05-20 | Cata Classic Phase 1 | CL | Cataclysm |  |  |  | 4 |  | added |  | Pre-patch and launch (original 4.0.x); ZA/ZG (original 4.1.0) unlocked 2024-07-30 with no patch change; no guild leveling |
 | 4.4.1 | 2024-10-29 | Phase 3: Rage of the Firelands | CL | Rage of the Firelands |  |  |  | 14 |  | added |  | Firelands (original 4.2.0); Elemental Rune dungeons are Classic-only |
-| 4.4.2 | 2025-02-18 | Phase 4: Hour of Twilight | CL | *(not registered)* |  |  |  | 0 |  |  |  | Dragon Soul (original 4.3.0), no Raid Finder. Not registered: no achievements added |
+| 4.4.2 | 2025-02-18 | Phase 4: Hour of Twilight | CL | Hour of Twilight |  |  |  | 0 |  | timeline target |  | Dragon Soul (original 4.3.0), no Raid Finder. Registered only as the target of 4.3.0 and 4.3.2 |
 | **5.x** | | **Mists of Pandaria** | | | | | | | | | | |
-| 5.0.4 | 2012-08-28 | MoP pre-patch | PP | Mists of Pandaria (pre-patch) | 475 |  | added | 475 |  | added | 5.5.0 | Talents, Monks, pet battles |
-| 5.0.5 | 2012-09-11 | - | m/L | Mists of Pandaria | 0 | 1 | anchor-only | 0 | 1 | anchor-only | 5.5.0 | MoP launched 2012-09-25 on the 5.0.5 line |
+| 5.0.4 | 2012-08-28 | MoP pre-patch | PP | Mists of Pandaria (pre-patch) | 475 | 1 (1 U) | added | 475 | 1 (1 U) | added | 5.5.0 | Talents, Monks, pet battles |
+| 5.0.5 | 2012-09-11 | - | m/L | *(not registered)* | 0 |  |  | 0 |  |  |  | MoP launched 2012-09-25 on the 5.0.5 line. Unregistered 2026-09-25: its one anchor became `Until` 5.0.4 |
 | 5.1.0 | 2012-11-27 | Landfall | C | Landfall | 51 |  | added | 51 |  | added | 5.5.1 | Pandaria campaign, Brawler's Guild |
 | 5.2.0 | 2013-03-05 | The Thunder King | C | The Thunder King | 102 | 6 | added | 102 | 6 | added | 5.5.3 | Isle of Thunder, Throne of Thunder |
 | 5.3.0 | 2013-05-21 | Escalation | C | Escalation | 50 |  | added | 50 |  | added | *(missing)* | Battlefield: Barrens, heroic scenarios |
@@ -73,7 +73,7 @@ Generated 2026-09-25. The counts come from the data files, and the totals match 
 | 5.5.0 | 2025-07-01 / 07-21 | MoP Classic Phase 1 | CL | Mists of Pandaria |  |  |  | 20 |  | added |  | Pre-patch and launch (original 5.0.x); MSV, HoF, ToES unlocked in stages with no patch change; no Raid Finder |
 | 5.5.1 | 2025-09-23 | Phase 2: Landfall | CL | Landfall |  |  |  | 26 |  | added |  | Original 5.1.0 |
 | 5.5.3 | 2025-12-09 | Phase 3: Rise of the Thunder King | CL | The Thunder King |  |  |  | 18 |  | added |  | Original 5.2.0. 5.5.2 (2025-10-28) was maintenance only; 5.5.3a (2026-03-31) delivered original 5.3.0 Escalation |
-| 5.5.4 | 2026-06-02 | Phase 5: Siege of Orgrimmar | CL | Siege of Orgrimmar |  |  |  | 0 |  | timeline target |  | Original 5.4.0 (+ Celestial Tournament, 5.4.2, unconfirmed); final phase, current live Classic |
+| 5.5.4 | 2026-06-02 | Phase 5: Siege of Orgrimmar | CL | Siege of Orgrimmar |  |  |  | 0 | 4 (2 B, 2 U) | anchor-only, timeline target |  | Original 5.4.0 (+ Celestial Tournament, 5.4.2, unconfirmed); final phase, current live Classic |
 | **6.x** | | **Warlords of Draenor** | | | | | | | | | | |
 | 6.0.2 | 2014-10-14 | The Iron Tide | PP | Warlords of Draenor | 471 | 102 (98 B, 4 F) | added |  | 101 (96 B, 5 F) | - | not reached | **Label:** pre-patch labelled as the launch. Stat squish, Iron Horde invasion |
 | 6.0.3 | 2014-10-28 | - | m/L | Warlords of Draenor | 0 | 1 (1 F) | anchor-only |  |  |  |  | WoD launched 2014-11-13 on it |
@@ -147,14 +147,14 @@ Generated 2026-09-25. The counts come from the data files, and the totals match 
 ### Where anchors land
 
 - Five patches take 401 of Retail's 508 anchors: 7.3.5 (140), 6.0.2 (102), 7.0.3 (69), 8.0.1 (63) and 9.0.1 (27). All five are system overhauls (level scaling, stat and level squishes, a new expansion's systems) that ended old content. Anchors cluster on patches that *removed* things, while achievements cluster on patches that *added* things. The two sets overlap, but they are not the same set.
-- Four Retail patches exist only for anchors: 5.0.5, 6.0.3, 7.1.5 and 12.0.1. All four are launch or follow-up patches with no achievements of their own.
+- Three Retail patches exist only for anchors: 6.0.3, 7.1.5 and 12.0.1 (5.0.5 was the fourth until its one anchor became `Until` 5.0.4). All three are launch or follow-up patches with no achievements of their own.
 - On Classic, 312 anchors name Retail patches from 6.0.2 on, which Classic has not reached; the loader's 330 also counts the copies on faction-split mirrors. Classic's own data anchors on 3.4.3 twice, and on Retail patches 4.0.1, 6.0.2, 7.0.3 and 11.2.0.
 
 ### Classic timeline
 
 - Classic re-releases replay one original content patch per phase: 3.4.0-3.4.3, 4.4.0-4.4.2 and 5.5.0-5.5.4. Blizzard regularly opens content **without a patch change**: Ruby Sanctum came inside 3.4.3, Zul'Aman and Zul'Gurub inside 4.4.0, and the first three MoP raids were staggered inside 5.5.0. MoP Classic 5.5.2 was maintenance only, and original 5.3.0 shipped as **5.5.3a**, which the build-version id cannot express. The Classic side therefore needs a lookup table; it cannot be derived from the patch number.
-- `ContentTimeline.lua` has no entry for 4.1.0, 4.3.0, 4.3.2, 5.3.0, 5.4.1 and 5.4.2, although the content shipped (4.4.0, 4.4.2, 5.5.3a, 5.5.4). Nothing anchors on them today, so there is no visible effect; the table only matters for anchors.
-- Classic phases that added no achievements are not registered (4.4.2, 5.5.2, 5.5.3a), while 5.5.4 is registered only as a timeline target.
+- `ContentTimeline.lua` has no entry for 5.3.0, 5.4.1 and 5.4.2, although the content shipped (5.5.3a, 5.5.4). The Cataclysm gaps (4.1.0, 4.3.0, 4.3.2) were filled on 2026-09-25, with 4.4.2 registered as their target. Nothing anchors on them today, so there is no visible effect; the table only matters for anchors.
+- Classic phases that added no achievements are not registered (5.5.2, 5.5.3a), unless they are a timeline target (4.4.2, 5.5.4).
 - The current Classic client is MoP Classic 5.5.4, the final phase (`.toc` interface 50504). Wrath and Cata Classic are gone in the West. China still runs Wrath 3.4.5 and "Titan Reforged" on client 3.80.x, which would sort after 3.4.x and 4.4.x on the single version axis. WoW: Forever launches 2026-11-04 on its own 1.x numbering.
 
 ### Label fixes independent of any design choice

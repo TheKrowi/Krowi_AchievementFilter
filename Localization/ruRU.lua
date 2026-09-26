@@ -6,9 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-08-14 12-08-11 ]] --
-L["5th Anniversary Celebration"] = "Празднование 5-летия"
-L["Defense of the Ruby Sanctum"] = "Защита Рубинового святилища"
+-- [[ Exported at 2026-09-26 13-36-03 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -18,6 +16,7 @@ L["%Y/%m/%d %R"] = true
 L["10th Anniversary"] = "10я Годовщина "
 L["450 skill"] = "Уровень навыка 450"
 L["525 skill"] = "Уровень навыка  525"
+L["5th Anniversary Celebration"] = "Празднование 5-летия"
 L["600 skill"] = "Уровень навыка  600"
 L["Abyss Anglers"] = "Глубинные рыболовы (РН)"
 L["Academy Ascent"] = "Подъем до академии"
@@ -220,6 +219,7 @@ L["Deepwind Gorge"] = "Каньон Суровых Ветров"
 L["Default Width"] = "Стандартная Ширина"
 L["Default Width Desc"] = "Стандартная ширина для вновь открытого {popout}"
 L["Defending Azeroth Assaults"] = "Защита от нападений Азерота"
+L["Defense of the Ruby Sanctum"] = "Защита Рубинового святилища"
 L["Delves"] = "Вылазки"
 L["Deselect All"] = "Снять выделения все"
 L["Diablo"] = true

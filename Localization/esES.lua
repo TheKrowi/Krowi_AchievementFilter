@@ -6,9 +6,8 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-08-14 12-07-51 ]] --
+-- [[ Exported at 2026-09-26 13-35-43 ]] --
 L["5th Anniversary Celebration"] = "Celebración del 5.º aniversario"
-L["Defense of the Ruby Sanctum"] = "Defensa del Sagrario Rubí"
 L["Alchemy"] = "Alquimia"
 L["Alterac Valley"] = "Valle de Alterac"
 L["Arathi Basin"] = "Cuenca de Arathi"
@@ -22,6 +21,7 @@ L["Covenant Sanctums"] = "Sagrarios de la curia"
 L["Decor Duel"] = "Duelo de adornos"
 L["Deephaul Ravine"] = "Barranco de Cargahonda"
 L["Deepwind Gorge"] = "Cañón del Céfiro"
+L["Defense of the Ruby Sanctum"] = "Defensa del Sagrario Rubí"
 L["Delves"] = "Profundidades"
 L["Dragon Isle Drake Cosmetics"] = "Cosméticos de draco de las Islas Dragón"
 L["Dragon Isles"] = "Islas Dragón"

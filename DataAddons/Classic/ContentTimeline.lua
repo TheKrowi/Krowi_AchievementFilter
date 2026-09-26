@@ -19,12 +19,14 @@ KrowiAF.ContentTimeline = {
     ["4.0.1"] = "4.4.0", -- Cataclysm
     ["4.0.3"] = "4.4.0",
     ["4.0.6"] = "4.4.0",
+    ["4.1.0"] = "4.4.0", -- Rise of the Zandalari, opened inside 4.4.0 without a patch change
     ["4.2.0"] = "4.4.1", -- Rage of the Firelands
     ["4.2.2"] = "4.4.1",
+    ["4.3.0"] = "4.4.2", -- Hour of Twilight
+    ["4.3.2"] = "4.4.2",
 
     -- Mists of Pandaria Classic
     ["5.0.4"] = "5.5.0", -- Mists of Pandaria
-    ["5.0.5"] = "5.5.0",
     ["5.1.0"] = "5.5.1", -- Landfall
     ["5.2.0"] = "5.5.3", -- The Thunder King
     ["5.4.0"] = "5.5.4", -- Siege of Orgrimmar
