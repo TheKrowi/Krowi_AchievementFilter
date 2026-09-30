@@ -82,12 +82,15 @@ There is no automated test suite — the WoW client is the runtime.
 
 ## How to Contribute
 
+Every issue, feature and fix follows the work-item lifecycle in [`docs/sdlc-playbook.md`](docs/sdlc-playbook.md): intent, spec and plan in `docs/work/<issue>-<slug>/`, a test-first build, and a PR reviewed against [`REVIEW.md`](REVIEW.md).
+
 1. Fork the repository.
-2. Create a branch from `dev`: `git checkout -b feature/my-change dev`
-3. Make your changes following the patterns in [`.github/copilot-instructions.md`](.github/copilot-instructions.md).
-4. Add new Lua files to the appropriate `Files.xml` manifest.
-5. Update `_Packaging/Changelog.md` with a brief description of your change.
-6. Open a PR targeting `dev` and fill out the PR template.
+2. Create a branch from `dev`: `git checkout -b feature/my-change dev` (`fix/<issue>-<slug>` or `feature/<issue>-<slug>` for a work item).
+3. Copy `docs/work/_template/` to `docs/work/<issue>-<slug>/` and write the intent, then the spec, then the plan.
+4. Make your changes following the patterns in [`.github/copilot-instructions.md`](.github/copilot-instructions.md); for a bug, add the scenario that reproduces it before fixing it.
+5. Add new Lua files to the appropriate `Files.xml` manifest.
+6. Update `_Packaging/Changelog.md` with a brief description of your change.
+7. Open a PR targeting `dev` and fill out the PR template.
 
 ---
 

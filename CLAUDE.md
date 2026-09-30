@@ -19,3 +19,5 @@ The imported file is the canonical instruction file for this repository: project
 ## Skills (`.claude/skills/`)
 
 `add-achievement-data`, `add-category-data`, `add-zone-data`, `verify-achievement-data`, `migrate-to-shared`, `sync-mapverifier` and `release` each carry a `SKILL.md` with the workflow and the designated scripts. Use them for data work instead of improvising; the release skill is the only way to cut a version.
+
+`process-issue` runs the work-item lifecycle (`docs/sdlc-playbook.md`) and is invoked before any work on an issue, bug report or feature. Its gates use AskUserQuestion with the recommended option first, and `plan.md` is written in plan mode.

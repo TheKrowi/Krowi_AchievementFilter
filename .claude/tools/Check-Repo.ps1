@@ -33,7 +33,10 @@
                                  an intended change is regenerated with -write and committed with
                                  the code that caused it, never absorbed silently
       lookup-placeholders [Warning] _lookup_*.ps1 skill scripts are committed with empty @() placeholders
-      bom              [Warning] no UTF-8 byte order mark (.editorconfig: utf-8)
+      work-items       [Warning] docs/work/<issue>-<slug>/ folders follow docs/sdlc-playbook.md: folder
+                                 name, an intent.md, no plan.md without a spec.md, and in each file the
+                                 template's title, a Status: draft|accepted|done line and its headings
+      bom            [Warning] no UTF-8 byte order mark (.editorconfig: utf-8)
       line-endings     [Warning] CRLF only (.editorconfig: crlf)
       semicolon        [Error]   no trailing semicolons on added .lua lines (changed files only)
       enus-autogen     [Error]   no L[...] string added above the AUTOGENTOKEN marker in any locale file;
@@ -491,6 +494,48 @@ foreach ($script in Get-ChildItem -Path (Join-Path $root '.claude\skills') -Recu
     }
 }
 Write-Timing 'lookup-placeholders'
+
+# --- work-items: docs/work/<issue>-<slug>/ folders have the shape docs/sdlc-playbook.md gives them --
+$workRoot = Join-Path $root 'docs\work'
+$workShape = [ordered]@{
+    'intent.md' = @{ Title = '# Intent: '; Headings = @('Problem', 'Proposed outcome', 'Affected users and systems', 'Constraints', 'Open questions') }
+    'spec.md'   = @{ Title = '# Spec: '; Headings = @('Requirements', 'Design', 'Areas of concern', 'Verification', 'Decision') }
+    'plan.md'   = @{ Title = '# Plan: '; Headings = @('Files that change', 'Order of work', 'Risks', 'Proof') }
+}
+if (Test-Path $workRoot) {
+    foreach ($dir in Get-ChildItem -Path $workRoot -Directory | Where-Object { -not $_.Name.StartsWith('_') }) {   # _template holds the blanks
+        $dirRel = "docs/work/$($dir.Name)"
+        $present = @($workShape.Keys | Where-Object { Test-Path (Join-Path $dir.FullName $_) })
+        $anchor = if ($present.Count) { "$dirRel/$($present[0])" } else { $dirRel }
+        $sev = if (@($changed.Keys | Where-Object { $_ -like "$dirRel/*" }).Count) { 'Error' } else { 'Warning' }
+        if ($dir.Name -cnotmatch '^(\d+|\d{4}-\d{2}-\d{2})-[a-z0-9]+(-[a-z0-9]+)*$') {
+            Add-Finding 'work-items' $sev $anchor 1 "work folder '$($dir.Name)' is not named <issue>-<slug> or <yyyy-mm-dd>-<slug> with a lower-case slug"
+        }
+        if ($present -notcontains 'intent.md') {
+            Add-Finding 'work-items' $sev $anchor 1 'work folder has no intent.md; every work item starts with one (docs/sdlc-playbook.md)'
+        }
+        if ($present -contains 'plan.md' -and $present -notcontains 'spec.md') {
+            Add-Finding 'work-items' $sev "$dirRel/plan.md" 1 'plan.md without a spec.md; the design stage comes before the plan'
+        }
+        foreach ($name in $present) {
+            $rel = "$dirRel/$name"
+            $lines = @(Get-Content -LiteralPath (Join-Path $dir.FullName $name) -Encoding UTF8)
+            $shape = $workShape[$name]
+            if (-not $lines.Count -or -not $lines[0].StartsWith($shape.Title)) {
+                Add-Finding 'work-items' $sev $rel 1 "first line must start with '$($shape.Title.Trim())' (template: docs/work/_template/$name)"
+            }
+            if (-not @($lines | Where-Object { $_ -cmatch 'Status: (draft|accepted|done)\b' }).Count) {
+                Add-Finding 'work-items' $sev $rel 2 "no 'Status: draft', 'Status: accepted' or 'Status: done' line"
+            }
+            foreach ($heading in $shape.Headings) {
+                if ($lines -cnotcontains "## $heading") {
+                    Add-Finding 'work-items' $sev $rel 1 "missing heading '## $heading' (template: docs/work/_template/$name)"
+                }
+            }
+        }
+    }
+}
+Write-Timing 'work-items'
 
 # --- mapverifier: raw/MapVerifier.csv must be valid and in canonical form (Sync-MapVerifier.ps1 -Verify) --
 $mvSync = Join-Path $root '.claude\skills\sync-mapverifier\Sync-MapVerifier.ps1'
