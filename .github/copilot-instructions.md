@@ -348,6 +348,7 @@ KrowiAF_SavedData.Fixes = KrowiAF_SavedData.Fixes or {}
 - Conventional Commits with a custom `data:` type: `data(midnight): add 12.1.0 achievements (23)`, `fix(retail): ...`, `feat(classic): ...`, `locale(enUS): ...`, `chore:`, `refactor(gui):`, `docs:`. The full type and scope tables are in `CONTRIBUTING.md`.
 - Every user-visible change gets a line in `_Packaging/Changelog.md` under the next version's `### Added` / `### Fixed`. Non-obvious fixes carry a `(dev note: ...)` explaining the root cause, following the existing entries. `ReleaseNotes.md` is generated from it at release time; do not edit it by hand. The version header needs a date (`## 100.2 - 2026-09-04`) before release or the generator skips it.
 - PR checklist (`.github/pull_request_template.md`): `Files.xml` registration, SavedVariables, enUS strings below the `Exported at` line, changelog, tested Retail/Classic.
+- GitHub issues and PRs: `gh` calls may be executed without asking first, reads and writes alike (view, comment, close, label, create a PR against `TheKrowi/Krowi_AchievementFilter`). When a commit fixes a reported issue, push it, then close the issue as completed with a one-line comment naming the commit and when it ships, the way the maintainer's own closing comments read. `gh` is the portable install in `%LOCALAPPDATA%\Programs\gh\bin` on the user PATH, logged in as `TheKrowi`; a shell started before 2026-09-30 may need that full path.
 
 ## Where Non-Code Material Lives
 
