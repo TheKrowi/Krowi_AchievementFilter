@@ -890,6 +890,7 @@ KrowiAF.AchievementData["12_01_00"] = {
 	Ach(63681), -- Heroic: Nymrissa Wavecaller
 	Ach(63682), -- Mythic: Nymrissa Wavecaller
 	Ach(63683), -- Nymrissa Wavecaller
+	Ach(63685):HousingDecor():Obtainable("From", "Date", {2026, 9, 12}, "Until", "Date", {2026, 9, 13}), -- BlizzCon 2026
 	Ach(63695):IsPvP(), -- Arena Exercise
 	Ach(63696):IsPvP(), -- Arena Exercise
 	Ach(63697):IsPvP(), -- Arena Exercise

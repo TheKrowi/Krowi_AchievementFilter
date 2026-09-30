@@ -11051,6 +11051,7 @@ ACH Specials > Promotions > BlizzCon # 13138
 ACH Specials > Promotions > BlizzCon # 14027
 ACH Specials > Promotions > BlizzCon # 14904
 ACH Specials > Promotions > BlizzCon # 18250
+ACH Specials > Promotions > BlizzCon # 63685
 CAT Specials > Promotions > Collector's Edition  | merge
 ACH Specials > Promotions > Collector's Edition # 662
 ACH Specials > Promotions > Collector's Edition # 663
@@ -12345,8 +12346,8 @@ categories        1544
   declared id     57
   auto id         1487   (>= 9000, allocated in parse order)
 roots             5
-achievements      8637
-  in a category   8549
+achievements      8638
+  in a category   8550
   orphaned        88
-placement lines   9828
+placement lines   9829
   multi-placed    863

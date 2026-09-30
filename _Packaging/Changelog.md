@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 101.1
+### Added
+- BlizzCon 2026 feat of strength, with the BlizzCon Doormat decor reward
+
 ## 101.0 - 2026-09-26
 ### Changed
 - The "Added in" tooltip names Wrath of the Lich King patches more precisely: 3.0.2 is Wrath of the Lich King (pre-patch), 3.2.2 is 5th Anniversary Celebration instead of Call of the Crusade, and 3.3.5 is Defense of the Ruby Sanctum instead of Defending the Ruby Sanctum
