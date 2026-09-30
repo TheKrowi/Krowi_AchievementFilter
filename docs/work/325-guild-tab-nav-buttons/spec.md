@@ -18,7 +18,7 @@ Intent: [intent.md](intent.md). Status: done
 ## Design
 Recommended (option A): on the 12.1 layout, the arrows become one of the addon's tab sub frames, the same mechanism that already swaps the addon's filter button, search box and category list with Blizzard's on every tab change.
 
-- In the `HeaderDetails` branch of `browsingHistory:Load`, create a plain container frame `KrowiAF_AchievementFrameBrowsingHistoryFrame` over the strip (`SetAllPoints` on `HeaderDetails`, no mouse), parent both arrows to it and keep their anchors exactly as they are, add the container to `addon.Gui.SubFrames`, and expose it as `addon.Gui.BrowsingHistory.Frame`.
+- In the `HeaderDetails` branch of `browsingHistory:Load`, create a plain, unnamed container frame over the strip (`SetAllPoints` on `HeaderDetails`, no mouse, hidden until an addon tab shows it). It gets no name, so no new global is added: the skins address the two buttons, whose names do not change. Parent both arrows to it and keep their anchors exactly as they are, add the container to `addon.Gui.SubFrames`, and expose it as `addon.Gui.BrowsingHistory.Frame`.
 - In `Gui/Gui.lua`, append that container to each addon tab's frames-to-show list when it exists.
 - The existing hook then shows the container on the addon's tabs and hides it on every Blizzard tab. The option setter keeps showing and hiding the two buttons themselves, so while the container is hidden a toggle cannot bring them back on a Blizzard tab.
 - The old `AchievementFrame.Header` branch (Classic, and Retail before 12.1) is left untouched.

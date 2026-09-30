@@ -159,11 +159,16 @@ function gameEnv.Setup()
     if not addon.InjectOptions:GetTable(optionPath) then
         return false, "layout option " .. optionPath .. " is not injected"
     end
-    snapshot = {
-        Shown = AchievementFrame:IsShown(),
-        Tab = PanelTemplates_GetSelectedTab(AchievementFrame)
-    }
-    tinsert(observations, "window was " .. (snapshot.Shown and ("open on tab " .. tostring(snapshot.Tab)) or "closed"))
+    snapshot = {Shown = AchievementFrame:IsShown()}
+    local selectedButton = _G["AchievementFrameTab" .. tostring(PanelTemplates_GetSelectedTab(AchievementFrame))]
+    for addonName, tabs in next, addon.Gui.Tabs do
+        for tabName, button in next, tabs do
+            if button == selectedButton then
+                snapshot.Tab = {addonName, tabName} -- restored through the same toggle the scenarios use
+            end
+        end
+    end
+    tinsert(observations, "window was " .. (snapshot.Shown and ("open on " .. (snapshot.Tab and table.concat(snapshot.Tab, " ") or "an unregistered tab")) or "closed"))
     return true
 end
 
@@ -188,13 +193,17 @@ end
 
 function gameEnv.ToggleOption()
     local option = addon.InjectOptions:GetTable(optionPath)
-    option.set(nil, false)
-    option.set(nil, true)
+    local ok, err = pcall(option.set, nil, false)
+    option.set(nil, true) -- whatever happened, the player's option ends up on again
+    if not ok then
+        error(err)
+    end
 end
 
 function gameEnv.IsVisible(key)
     if key == "Back" then
-        return AchievementFrame.HeaderDetails ~= nil and AchievementFrame.HeaderDetails.Back:IsVisible()
+        local details = AchievementFrame.HeaderDetails
+        return details ~= nil and details.Back ~= nil and details.Back:IsVisible()
     end
     local prevButton, nextButton = Arrows()
     return prevButton:IsVisible() or nextButton:IsVisible()
@@ -204,12 +213,7 @@ function gameEnv.Teardown()
     if not snapshot.Shown then
         gameEnv.Reset()
     elseif snapshot.Tab then
-        local ourTab = addon.Gui.AchievementFrameTabButtonFactory:GetTabs()[snapshot.Tab]
-        if ourTab then
-            ourTab:Select()
-        else
-            AchievementFrameTab_OnClick(snapshot.Tab) -- what the addon's registered select functions for Blizzard's tabs call
-        end
+        KrowiAF_ToggleAchievementFrame(snapshot.Tab[1], snapshot.Tab[2], nil, true) -- reopens the window when the last scenario left it closed
     end
     snapshot = nil
 end

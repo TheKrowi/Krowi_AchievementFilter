@@ -54,7 +54,8 @@ local function findLine(rel, needle)
 end
 
 -------------------------------------------------------------------------------------------------
--- Frame model: Show/Hide with OnShow/OnHide scripts and hooks, like the game's, nothing more
+-- Frame model: Show/Hide with OnShow/OnHide scripts and hooks, like the game's, nothing more. Unlike the game, the
+-- scripts run only when the frame's own Show/Hide changes its flag, not when a parent's visibility changes it.
 -------------------------------------------------------------------------------------------------
 local Frame = {}
 local frameMt = {
@@ -157,7 +158,9 @@ local function BuildClient(client)
             hooks[a] = hooks[a] or {}
             table.insert(hooks[a], b)
             local original = rawget(env, a)
-            if type(original) == "function" then -- a modelled Blizzard function: the hook runs after it with its arguments, as in the game
+            -- A modelled Blizzard function: the hook runs after it with its arguments, as in the game. A hook on a function
+            -- the model does not define is only recorded (the game would error); the escape suite runs those itself
+            if type(original) == "function" then
                 rawset(env, a, function(...)
                     local results = { original(...) }
                     b(...)

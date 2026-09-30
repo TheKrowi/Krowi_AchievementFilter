@@ -36,7 +36,7 @@
       work-items       [Warning] docs/work/<issue>-<slug>/ folders follow docs/sdlc-playbook.md: folder
                                  name, an intent.md, no plan.md without a spec.md, and in each file the
                                  template's title, a Status: draft|accepted|done line and its headings
-      bom            [Warning] no UTF-8 byte order mark (.editorconfig: utf-8)
+      bom              [Warning] no UTF-8 byte order mark (.editorconfig: utf-8)
       line-endings     [Warning] CRLF only (.editorconfig: crlf)
       semicolon        [Error]   no trailing semicolons on added .lua lines (changed files only)
       enus-autogen     [Error]   no L[...] string added above the AUTOGENTOKEN marker in any locale file;

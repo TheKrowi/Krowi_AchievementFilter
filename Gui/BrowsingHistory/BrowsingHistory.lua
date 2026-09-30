@@ -95,6 +95,7 @@ function browsingHistory:Load()
         -- and give way to Back on Blizzard's tabs (#325)
         self.Frame = CreateFrame("Frame", nil, AchievementFrame.HeaderDetails)
         self.Frame:SetAllPoints()
+        self.Frame:Hide() -- Like the other sub frames, shown once one of the addon's tabs is selected
         tinsert(addon.Gui.SubFrames, self.Frame)
         self.PrevAchievementButton = CreateFrame("Button", "KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton", self.Frame, "KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton_Template")
         -- self.PrevAchievementButton:SetPoint("RIGHT", AchievementFrame.Header.PointBorder, "LEFT", 10, -1);

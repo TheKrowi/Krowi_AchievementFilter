@@ -91,4 +91,13 @@ Retail 12.1 added a Blizzard `Back` button to `AchievementFrame.HeaderDetails`. 
 - **Fix:** headless Retail went from 5 open to 0 open, with the five changed scenarios exactly the open ones; Classic was unchanged. `Check-Repo` was clean.
 - **Taint review:** nothing Important. It pointed out a consequence the spec had not named: the comparison view now hides the arrows too. That is recorded in the spec's areas of concern, and it is flagged in the PR.
 - **After-run, Retail 12.1.0 (2026-09-30):** 7 PASS, the same SKIP, 0 open, every other line matching headless, and no addon errors.
+- **Code review (`REVIEW.md` passes, 2026-09-30), fixed:**
+  - the container now starts hidden, like the other sub frames;
+  - the in-game teardown restores the tab through the same toggle the scenarios use, so the window reopens;
+  - `IsVisible` guards a missing `Back`;
+  - the option toggle always switches the option back on;
+  - the spec now names the container as unnamed;
+  - the two limits of the headless model are documented;
+  - the lint help text is realigned.
+- **Code review, declined:** keeping Back hidden on the addon's tabs stays with the search box's `OnShow`, as before the fix. No Blizzard path was found that shows Back on an addon tab without a tab switch.
 - **Classic:** not run in game; its saved variables were last written 2026-09-23. Headless Classic is unchanged at 8 PASS and 0 open, and the fix only touches the `HeaderDetails` branch, which Classic never takes.
