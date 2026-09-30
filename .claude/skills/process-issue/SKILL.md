@@ -54,11 +54,11 @@ Then, in this order:
 
 Set every work file to `Status: done`, commit (`fix(<scope>): <what> (#<n>)`), push the branch and open the PR against `dev` with `.github/pull_request_template.md` filled in. `Why` links the issue and the work folder. `Closes #<n>` does not fire, because `dev` is not the default branch. Run the passes in `REVIEW.md` (`/code-review`, plus `taint-reviewer` where it applies) and fix or list the findings in the PR.
 
-**Gate:** the maintainer approves and merges. Never merge, never push the work to `dev` directly, and never release.
+**Gate:** the maintainer approves the merge. Merge only when they say so, and then with a merge commit, never squash, so each stage's commit stays in the history: `gh pr merge <n> --repo TheKrowi/Krowi_AchievementFilter --merge`. Never push the work to `dev` directly, and never release.
 
 ## 6. Maintain
 
-After the maintainer merges, close the issue with the closing routine in the instruction file: one line naming the merge commit and the version it ships in. Then write back what the work taught, as `docs/sdlc-playbook.md` stage 6 lists it:
+After the merge, `git switch dev` and `git pull --ff-only origin dev`, then close the issue with the closing routine in the instruction file: one line naming the merge commit and the version it ships in. Then write back what the work taught, as `docs/sdlc-playbook.md` stage 6 lists it:
 
 - a correction needed twice goes into the instruction file;
 - an inconsistently applied policy becomes a skill;

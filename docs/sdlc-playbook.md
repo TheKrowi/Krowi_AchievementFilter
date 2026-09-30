@@ -6,7 +6,7 @@ This file adapts the playbook to a repository with one maintainer, two game clie
 
 ## Roles
 
-- **Maintainer** (TheKrowi): holds every human gate. Acts as product owner (accepts the intent, approves the spec), engineer (approves the plan, runs the in-game checks), reviewer (approves and merges the PR) and release manager (the `release` skill runs only on their go-ahead).
+- **Maintainer** (TheKrowi): holds every human gate. Acts as product owner (accepts the intent, approves the spec), engineer (approves the plan, runs the in-game checks), reviewer (approves the PR and merges it, or tells the agent to) and release manager (the `release` skill runs only on their go-ahead).
 - **Agent** (Claude Code, Copilot): drafts every artifact and does the work up to each gate, never past it. It stops at a gate, puts the decision to the maintainer with a recommendation, and records the answer in the artifact.
 - **Reporter**: whoever filed the issue. The issue is their record; the agent comments on it only through the closing routine or when the maintainer asks.
 
@@ -76,7 +76,7 @@ The in-game after-run closes the loop on both clients: `Deploy.ps1 -WhatIf`, dep
 
 The agent pushes the work branch and opens a PR against `dev` with the PR template filled in and the work folder linked. Before asking for review, it runs the review passes in `REVIEW.md` (`/code-review`, and the `taint-reviewer` where it applies), fixes what they find, and lists what it deferred. It sets the work files to `Status: done` in the PR's last commit.
 
-Gate: the maintainer reviews, approves and merges. The agent never merges its own PR and never pushes work-item commits straight to `dev`. A release is a separate, later gate: the `release` skill, on the maintainer's go-ahead.
+Gate: the maintainer reviews and approves the merge. The gate is their decision, not who presses the button: the agent never merges on its own initiative, but when the maintainer tells it to merge, it merges with a merge commit (`gh pr merge <n> --merge`, like the earlier PRs into `dev`), so each stage's commit stays in the history. It never pushes work-item commits straight to `dev`. A release is a separate, later gate: the `release` skill, on the maintainer's go-ahead.
 
 ### 6. Maintain: close the loop
 

@@ -25,4 +25,4 @@ A finding is **Important** when it would cause a Lua error, taint, `ADDON_ACTION
 
 ## Gate
 
-Findings never approve or block a PR by themselves: the maintainer approves and merges. A finding the author accepts but defers goes into `docs/codebase-analysis.md`. A finding that comes back across PRs is a correction for `.github/copilot-instructions.md`.
+Findings never approve or block a PR by themselves: the maintainer approves the merge, and either merges it or tells the agent to. A finding the author accepts but defers goes into `docs/codebase-analysis.md`. A finding that comes back across PRs is a correction for `.github/copilot-instructions.md`.
