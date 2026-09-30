@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 ### Added
 - BlizzCon 2026 feat of strength, with the BlizzCon Doormat decor reward
 
+### Fixed
+- The Guild tab no longer shows the browsing history's back and forward buttons on top of Blizzard's Back button: the addon's buttons now show on the addon's own tabs, and Blizzard's tabs keep Blizzard's own navigation (dev note: 12.1 put a Back button in `AchievementFrame.HeaderDetails`, on the spot the browsing-history buttons use. The addon hid it on its own tabs but left its buttons shown on Blizzard's, so on that layout the buttons are now a sub frame of the addon's tabs. Classic is unchanged. Issue #325)
+
 ## 101.0 - 2026-09-26
 ### Changed
 - The "Added in" tooltip names Wrath of the Lich King patches more precisely: 3.0.2 is Wrath of the Lich King (pre-patch), 3.2.2 is 5th Anniversary Celebration instead of Call of the Crusade, and 3.3.5 is Defense of the Ruby Sanctum instead of Defending the Ruby Sanctum
