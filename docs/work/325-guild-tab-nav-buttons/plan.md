@@ -1,5 +1,5 @@
 # Plan: Guild tab shows two sets of navigation buttons
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 Approved by the maintainer on 2026-09-30 (plan mode).
 
@@ -84,3 +84,11 @@ Retail 12.1 added a Blizzard `Back` button to `AchievementFrame.HeaderDetails`. 
   - the before-run on Retail matches the headless lines;
   - the after-run on Retail and Classic is all PASS, and `Read-GameErrors.ps1` shows nothing new;
   - on the Guild tab only Blizzard's Back shows, and the addon's tabs show the arrows.
+
+## Departures and results
+- **No guild check in the in-game test.** The in-game test skips a tab only when its button is hidden. There is no check for a character without a guild, because the Guild tab path runs either way and which buttons are visible does not depend on membership.
+- **Before-run, Retail 12.1.0 (2026-09-30):** 7 PASS and 1 SKIP. The SKIP is Blizzard's Achievements tab, hidden by default. Every line matched headless and BugGrabber showed no addon errors. Committed as `12c9ee9`.
+- **Fix:** headless Retail went from 5 open to 0 open, with the five changed scenarios exactly the open ones; Classic was unchanged. `Check-Repo` was clean.
+- **Taint review:** nothing Important. It pointed out a consequence the spec had not named: the comparison view now hides the arrows too. That is recorded in the spec's areas of concern, and it is flagged in the PR.
+- **After-run, Retail 12.1.0 (2026-09-30):** 7 PASS, the same SKIP, 0 open, every other line matching headless, and no addon errors.
+- **Classic:** not run in game; its saved variables were last written 2026-09-23. Headless Classic is unchanged at 8 PASS and 0 open, and the fix only touches the `HeaderDetails` branch, which Classic never takes.

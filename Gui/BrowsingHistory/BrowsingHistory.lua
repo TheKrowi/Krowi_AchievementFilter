@@ -91,10 +91,15 @@ function browsingHistory:Load()
         return
     end
     if AchievementFrame.HeaderDetails then
-        self.PrevAchievementButton = CreateFrame("Button", "KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton", AchievementFrame.HeaderDetails, "KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton_Template")
+        -- Blizzard's Back button sits on the same spot of this strip, so the buttons live in a sub frame of the addon's tabs
+        -- and give way to Back on Blizzard's tabs (#325)
+        self.Frame = CreateFrame("Frame", nil, AchievementFrame.HeaderDetails)
+        self.Frame:SetAllPoints()
+        tinsert(addon.Gui.SubFrames, self.Frame)
+        self.PrevAchievementButton = CreateFrame("Button", "KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton", self.Frame, "KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton_Template")
         -- self.PrevAchievementButton:SetPoint("RIGHT", AchievementFrame.Header.PointBorder, "LEFT", 10, -1);
         self.PrevAchievementButton:SetPoint("LEFT", AchievementFrame.HeaderDetails, "LEFT", 30, 0)
-        self.NextAchievementButton = CreateFrame("Button", "KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton", AchievementFrame.HeaderDetails, "KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton_Template")
+        self.NextAchievementButton = CreateFrame("Button", "KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton", self.Frame, "KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton_Template")
         self.NextAchievementButton:SetPoint("LEFT", self.PrevAchievementButton, "RIGHT", -5, 0)
         -- self.NextAchievementButton:SetPoint("LEFT", AchievementFrame.Header.PointBorder, "RIGHT", -10, -1);
     else

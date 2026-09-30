@@ -1,5 +1,5 @@
 # Spec: Guild tab shows two sets of navigation buttons
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. On every tab of the achievement window, at most one set of navigation buttons is visible in the header strip, and it overlaps nothing.
@@ -38,6 +38,7 @@ On the Guild tab the player then sees Blizzard's Back button, and on Statistics 
 - Localization: none, no new strings.
 - Data snapshots: none, no data touched.
 - Classic plugin paths: `Plugins/EllesmereUI.lua:665` and `Plugins/GW2_UI/GW2_UI.lua:895` branch on `HeaderDetails` for the filter dropdown only, not the arrows, so they are unaffected.
+- Comparison view (added after the taint review, 2026-09-30): the addon's comparison override shows Blizzard's comparison frames through `AchievementFrame_ShowSubFrame` (`Gui/BlizzardOverrides.lua:48-50`). The sub-frame hook therefore hides the arrows there as well, as it already hides the addon's search box, filter button and category list. Blizzard hides Back in comparison mode (`AchievementFrame_SetComparisonMode`), so the comparison view shows no navigation; before the fix the arrows stayed shown over it. This follows the decision: the arrows belong to the addon's tabs.
 
 ## Verification
 - A new suite `navigation` (`Tests/Navigation.lua`, run by `/kaftest navigation` and by `run-tests.lua`) selects tabs and records which navigation is visible: `Back` for Blizzard's button, `Arrows` for the addon's. Recorded before the fix, Retail:

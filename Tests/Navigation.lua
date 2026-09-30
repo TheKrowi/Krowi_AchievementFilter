@@ -41,12 +41,12 @@ navigation.Tabs = {
 -- tabs, Blizzard's tabs keep Blizzard's own Back; Classic unchanged.
 navigation.Scenarios = {
     {Name = "addon-tab", Tabs = {"Addon"}, Recorded = {"Arrows"}, Target = {"Arrows"}},
-    {Name = "guild-tab", Tabs = {"Guild"}, Recorded = {"Back", "Arrows"}, Target = {"Back"}, RecordedClassic = {"Arrows"}, TargetClassic = {"Arrows"}}, -- #325: both drawn on the same spot
-    {Name = "statistics-tab", Tabs = {"Statistics"}, Recorded = {"Arrows"}, Target = {}, RecordedClassic = {"Arrows"}, TargetClassic = {"Arrows"}},
-    {Name = "blizzard-achievements-tab", Tabs = {"BlizzardAchievements"}, Recorded = {"Back", "Arrows"}, Target = {"Back"}, RecordedClassic = {"Arrows"}, TargetClassic = {"Arrows"}},
-    {Name = "addon-then-guild", Tabs = {"Addon", "Guild"}, Recorded = {"Back", "Arrows"}, Target = {"Back"}, RecordedClassic = {"Arrows"}, TargetClassic = {"Arrows"}},
+    {Name = "guild-tab", Tabs = {"Guild"}, Recorded = {"Back"}, Target = {"Back"}, RecordedClassic = {"Arrows"}, TargetClassic = {"Arrows"}}, -- before the #325 fix (101.1) Back and the arrows were drawn on the same spot
+    {Name = "statistics-tab", Tabs = {"Statistics"}, Recorded = {}, Target = {}, RecordedClassic = {"Arrows"}, TargetClassic = {"Arrows"}}, -- before 101.1 the arrows showed here too
+    {Name = "blizzard-achievements-tab", Tabs = {"BlizzardAchievements"}, Recorded = {"Back"}, Target = {"Back"}, RecordedClassic = {"Arrows"}, TargetClassic = {"Arrows"}},
+    {Name = "addon-then-guild", Tabs = {"Addon", "Guild"}, Recorded = {"Back"}, Target = {"Back"}, RecordedClassic = {"Arrows"}, TargetClassic = {"Arrows"}},
     {Name = "guild-then-addon", Tabs = {"Guild", "Addon"}, Recorded = {"Arrows"}, Target = {"Arrows"}},
-    {Name = "guild-tab-option-toggled", Tabs = {"Guild"}, Toggle = true, Recorded = {"Back", "Arrows"}, Target = {"Back"}, RecordedClassic = {"Arrows"}, TargetClassic = {"Arrows"}},
+    {Name = "guild-tab-option-toggled", Tabs = {"Guild"}, Toggle = true, Recorded = {"Back"}, Target = {"Back"}, RecordedClassic = {"Arrows"}, TargetClassic = {"Arrows"}}, -- the setter shows the buttons again; their hidden parent keeps them out of sight
     {Name = "addon-tab-option-toggled", Tabs = {"Addon"}, Toggle = true, Recorded = {"Arrows"}, Target = {"Arrows"}}
 }
 
