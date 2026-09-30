@@ -2,4 +2,5 @@
     <Script file="Tests.lua" />
     <Script file="Escape.lua" />
     <Script file="SpecialCategories.lua" />
+    <Script file="Navigation.lua" />
 </Ui>

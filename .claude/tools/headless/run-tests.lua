@@ -11,7 +11,9 @@
 --              runs as the unit-tests rule); exit 1 when any scenario fails or is skipped
 -- Suites: escape (Gui/FramesForClosing.lua), special (Data/SpecialCategoryAchievements.lua, Data/SpecialCategories.lua,
 --         Data/SavedData/AchievementData.lua: Watch List, Excluded and Tracking membership and the rebuilds the
---         layout options trigger; the option setters themselves live in Options/Layout.lua and only run in game)
+--         layout options trigger; the option setters themselves live in Options/Layout.lua and only run in game),
+--         navigation (Gui/Gui.lua's tab sub frames, the search box and Gui/BrowsingHistory/BrowsingHistory.lua: which
+--         navigation buttons each tab of the achievement window shows, issue #325)
 --
 -- Retail model is 12.1: the Blizzard_GameMenuEsc handler registry, the UI panel manager (its slots stay
 -- empty because the addon shows the achievement window with a plain Show), UISpecialFrames, static
@@ -62,8 +64,9 @@ local frameMt = {
         return method
     end,
 }
-local function NewFrame(name, parent)
-    return setmetatable({ name = name, parent = parent, shown = false, scripts = {}, hooks = {} }, frameMt)
+local lenientMt = { __index = Frame } -- for suites whose addon code reads frame fields that are still nil, as the game allows
+local function NewFrame(name, parent, lenient)
+    return setmetatable({ name = name, parent = parent, shown = false, scripts = {}, hooks = {} }, lenient and lenientMt or frameMt)
 end
 function Frame:RunScript(kind, ...)
     if self.scripts[kind] then self.scripts[kind](self, ...) end
@@ -99,7 +102,28 @@ function Frame:GetParent() return rawget(self, "parent") end
 function Frame:RegisterEvent() end
 function Frame:UnregisterEvent() end
 function Frame:SetOwner() end
-function Frame:SetText() end
+function Frame:SetText(text) rawset(self, "_text", text) end
+function Frame:GetText() return rawget(self, "_text") end
+function Frame:SetShown(shown) if shown then self:Show() else self:Hide() end end
+-- Layout and state the suites never assert on: stored where a getter needs it, otherwise ignored
+function Frame:SetPoint() end
+function Frame:ClearAllPoints() end
+function Frame:SetAllPoints() end
+function Frame:SetSize(width, height) rawset(self, "_width", width) rawset(self, "_height", height) end
+function Frame:SetWidth(width) rawset(self, "_width", width) end
+function Frame:SetHeight(height) rawset(self, "_height", height) end
+function Frame:GetWidth() return rawget(self, "_width") or 0 end
+function Frame:GetHeight() return rawget(self, "_height") or 0 end
+function Frame:SetFrameLevel(level) rawset(self, "_level", level) end
+function Frame:GetFrameLevel() return rawget(self, "_level") or 0 end
+function Frame:SetID(id) rawset(self, "_id", id) end
+function Frame:GetID() return rawget(self, "_id") or 0 end
+function Frame:Enable() rawset(self, "_disabled", false) end
+function Frame:Disable() rawset(self, "_disabled", true) end
+function Frame:IsEnabled() return not rawget(self, "_disabled") end
+function Frame:EnableMouse() end
+function Frame:SetTexture() end
+function Frame:SetMaxLetters() end
 
 local function Stub(name)
     local mt = {}
@@ -132,6 +156,14 @@ local function BuildClient(client)
         if type(a) == "string" then
             hooks[a] = hooks[a] or {}
             table.insert(hooks[a], b)
+            local original = rawget(env, a)
+            if type(original) == "function" then -- a modelled Blizzard function: the hook runs after it with its arguments, as in the game
+                rawset(env, a, function(...)
+                    local results = { original(...) }
+                    b(...)
+                    return unpack(results)
+                end)
+            end
         end
     end
     env.securecall = function(f, ...)
@@ -139,9 +171,16 @@ local function BuildClient(client)
         return f(...)
     end
     env.securecallfunction = function(f, ...) return f(...) end
-    env.CreateFrame = function(_, name, parent)
-        local frame = NewFrame(name, parent)
+    -- A suite that loads GUI code sets lenient (fields read while nil return nil), createShown (a new frame is shown,
+    -- as in the game; the escape and special suites keep frames hidden until shown) and templates (name -> function
+    -- applying the mixin, scripts and children of an XML template the code under test depends on)
+    local frameOptions = { lenient = false, createShown = false, templates = {} }
+    env.CreateFrame = function(_, name, parent, template)
+        local frame = NewFrame(name, parent, frameOptions.lenient)
+        frame.shown = frameOptions.createShown
         if name then rawset(env, name, frame) end
+        local apply = template and frameOptions.templates[template]
+        if apply then apply(frame) end
         return frame
     end
     env.UISpecialFrames = {}
@@ -255,7 +294,7 @@ local function BuildClient(client)
 
     return {
         client = client, isRetail = isRetail, env = env, addon = addon, hooks = hooks, state = state,
-        escHandlers = escHandlers, loadAddonFile = loadAddonFile,
+        escHandlers = escHandlers, loadAddonFile = loadAddonFile, frames = frameOptions,
     }
 end
 
@@ -385,6 +424,164 @@ suites.special = function(c)
         if on then addon.SpecialCategories.LoadExcludedAchievements() else addon.ResetExcludedCategories() end
     end
     return special.Run(headless), "Tests/SpecialCategories.lua", {}
+end
+
+-- The real Gui.lua load (gui:LoadWithBlizzard_AchievementUI with its sub-frame hook), tab factory and tab mixin, search
+-- box and browsing-history buttons, against a model of Blizzard_AchievementUI's tab switching (sources in
+-- Tests/Navigation.lua). Only the loaders that build frames this suite never looks at are faked; the tabs are
+-- selected through the real gui:ToggleAchievementFrame, the path the key bindings and /kaftest use.
+suites.navigation = function(c)
+    local env, addon, isRetail = c.env, c.addon, c.isRetail
+    c.frames.lenient, c.frames.createShown = true, true
+    local noop = function() end
+    env.PlaySound = noop
+    env.CreateFromMixins = function(...)
+        local mixed = {}
+        for n = 1, select("#", ...) do
+            for k, v in pairs((select(n, ...))) do mixed[k] = v end
+        end
+        return mixed
+    end
+    rawset(env, "GUILD_ACHIEVEMENTS_TITLE", "Guild Achievements")
+    rawset(env, "ACHIEVEMENT_TITLE", "Achievements")
+
+    -- --- Blizzard_AchievementUI model -------------------------------------------------------
+    local function NewBlizzardFrame(name, parent) return env.CreateFrame("Frame", name, parent) end
+    local achievementFrame = NewBlizzardFrame("AchievementFrame", env.UIParent)
+    achievementFrame:Hide() -- hidden="true" until the addon's toggle shows it
+    achievementFrame:SetSize(768, 500)
+    achievementFrame.numTabs = 3
+    achievementFrame.Header = NewBlizzardFrame(nil, achievementFrame)
+    achievementFrame.Header.Title = NewBlizzardFrame(nil, achievementFrame.Header)
+    achievementFrame.Header.Title:SetText(env.ACHIEVEMENT_TITLE)
+    if isRetail then -- 12.1: the HeaderDetails strip with Back and the Filters frame
+        local details = NewBlizzardFrame(nil, achievementFrame)
+        achievementFrame.HeaderDetails = details
+        details.Back = env.CreateFrame("Button", nil, details)
+        details.Filters = NewBlizzardFrame(nil, details)
+        details.Filters.FilterDropdown = NewBlizzardFrame(nil, details.Filters)
+        details.Filters.SearchBox = env.CreateFrame("EditBox", nil, details.Filters)
+    else -- the old header: points border, the inset the search box sits in, the global filter dropdown
+        achievementFrame.Header.PointBorder = NewBlizzardFrame(nil, achievementFrame.Header)
+        achievementFrame.Header.RightDDLInset = NewBlizzardFrame(nil, achievementFrame.Header)
+        NewBlizzardFrame("AchievementFrameFilterDropDown", achievementFrame)
+    end
+    for _, name in ipairs({ "AchievementFrameWaterMark", "AchievementFrameMetalBorderLeft", "AchievementFrameMetalBorderRight" }) do
+        NewBlizzardFrame(name, achievementFrame)
+    end
+    local pages = {}
+    for _, name in ipairs({ "AchievementFrameSummary", "AchievementFrameAchievements", "AchievementFrameStats", "AchievementFrameComparison" }) do
+        pages[#pages + 1] = NewBlizzardFrame(name, achievementFrame)
+        if name ~= "AchievementFrameAchievements" then pages[#pages]:Hide() end
+    end
+    for tabIndex = 1, 3 do env.CreateFrame("Button", "AchievementFrameTab" .. tabIndex, achievementFrame) end
+
+    env.AchievementFrame_ShowSubFrame = function(...)
+        for _, page in ipairs(pages) do
+            local show = false
+            for n = 1, select("#", ...) do
+                if page == select(n, ...) then show = true break end
+            end
+            page:SetShown(show)
+        end
+    end
+    local guildView = false -- achievementFunctions == GUILD_ACHIEVEMENT_FUNCTIONS
+    env.AchievementFrame_RefreshView = function()
+        achievementFrame.Header.Title:SetText(guildView and env.GUILD_ACHIEVEMENTS_TITLE or env.ACHIEVEMENT_TITLE)
+    end
+    env.AchievementFrame_UpdateTabs = noop -- PanelTemplates_Tab_OnClick and the tab text offsets; the addon hooks it
+    env.AchievementFrameBaseTab_OnClick = function(tabIndex)
+        env.AchievementFrame_UpdateTabs(tabIndex)
+        guildView = tabIndex == 2
+        if tabIndex == 3 then
+            env.AchievementFrame_ShowSubFrame(env.AchievementFrameStats)
+        else -- InitAchievementPage, a category selected rather than the summary
+            env.AchievementFrame_ShowSubFrame(env.AchievementFrameAchievements)
+            env.AchievementFrame_RefreshView()
+        end
+        if isRetail then -- AchievementFrame_RefreshBackButton(tabIndex ~= StatisticsCategoryIndex)
+            achievementFrame.HeaderDetails.Back:SetShown(tabIndex ~= 3)
+        end
+    end
+    env.AchievementFrameTab_OnClick = env.AchievementFrameBaseTab_OnClick
+    env.PanelTemplates_SetNumTabs = function(frame, numTabs) frame.numTabs = numTabs end
+    env.AchievementFrame_SetTabs = noop
+    env.AchievementFrame_HideSearchPreview = noop
+
+    -- XML templates of the code under test: mixin, scripts, start state and the children the mixins touch
+    c.frames.templates.KrowiAF_AchievementFrameTab_Template = function(frame)
+        for k, v in pairs(env.KrowiAF_AchievementFrameTabMixin) do rawset(frame, k, v) end
+        rawset(frame, isRetail and "Text" or "text", NewBlizzardFrame(nil, frame)) -- AchievementFrameTabButtonTemplate's label
+    end
+    c.frames.templates.KrowiAF_SearchBoxFrame_Template = function(frame)
+        for k, v in pairs(env.KrowiAF_SearchBoxFrameMixin) do rawset(frame, k, v) end
+        frame:SetScript("OnShow", frame.OnShow)
+        frame:SetScript("OnHide", frame.OnHide)
+        frame.shown = false -- hidden="true"
+        for _, key in ipairs({ "OptionsMenuButton", "PreviewContainer", "ResultsFrame" }) do -- built by its OnLoad, which is not run
+            rawset(frame, key, env.CreateFrame("Frame", nil, frame))
+        end
+    end
+
+    -- --- The addon ---------------------------------------------------------------------------
+    local profile = { TrackAchievementBrowserHistory = true, ResetViewOnOpen = false, ToggleWindow = true,
+        Window = { AchievementFrameHeightOffset = 0, CategoriesFrameWidthOffset = 0, AchievementsFrameWidthOffset = 0 } }
+    addon.Options = { db = { profile = profile } }
+    addon.Tabs, addon.TabsOrder = { Achievements = { Name = "Achievements", Text = "Achievements", Categories = { {} }, Filters = {} } }, { "Achievements" }
+    for _, rel in ipairs({ "Globals.lua", "Api/API.lua", "BrowsingHistory.lua", "Gui/Gui.lua",
+        "Gui/WindowFrames/AchievementFrameTabButtonFactory/AchievementFrameTabButtonMixin.lua",
+        "Gui/WindowFrames/AchievementFrameTabButtonFactory/AchievementFrameTabButtonFactory.lua",
+        "Gui/WindowFrames/Search/BoxFrame/BoxFrameMixin.lua", "Gui/WindowFrames/Search/Search.lua",
+        "Gui/BrowsingHistory/BrowsingHistory.lua" }) do
+        c.loadAddonFile(rel)
+    end
+    local gui = addon.Gui
+    local function FakeSubFrame(name)
+        local frame = env.CreateFrame("Frame", name, achievementFrame)
+        table.insert(gui.SubFrames, frame)
+        return frame
+    end
+    for _, key in ipairs({ "AchievementFrameHeader", "AchievementsObjectives", "EventReminderSideButtonSystem", "Calendar", "DataManager" }) do
+        gui[key] = { Load = noop }
+    end
+    gui.CategoriesFrame = { Load = function() FakeSubFrame("KrowiAF_CategoriesFrame").SetRightPoint = noop end }
+    gui.AchievementsFrame = { Load = function() FakeSubFrame("KrowiAF_AchievementsFrame").Update = noop end }
+    gui.SummaryFrame = { Load = function() FakeSubFrame("KrowiAF_SummaryFrame") end }
+    gui.FilterButton = { Load = function() FakeSubFrame("KrowiAF_AchievementFrameFilterButton") end }
+    gui.SetFrameToLastPosition, gui.RegisterFrameForClosing = noop, noop -- Gui/MovableFrames.lua, Gui/FramesForClosing.lua
+    addon.BrowsingHistory:Load() -- the bootstrap does this in phase 1
+    gui:LoadWithBlizzard_AchievementUI()
+
+    c.loadAddonFile("Tests/Navigation.lua")
+    local navigation = addon.Tests.Navigation
+    local headless = {}
+    function headless.IsRetail() return isRetail end
+    function headless.Setup() return true end
+    function headless.Teardown() end
+    function headless.Reset() achievementFrame:Hide() end
+    function headless.SelectTab(tabKey)
+        local addonName, tabName = unpack(navigation.Tabs[tabKey])
+        if not (gui.Tabs[addonName] and gui.Tabs[addonName][tabName]) then return false, "no such tab on this client" end
+        gui:ToggleAchievementFrame(addonName, tabName, nil, true)
+        return true
+    end
+    function headless.ToggleOption() -- what Options/Layout.lua's BrowserHistoryTrackSet does for off, then on
+        local prevButton, nextButton = env.KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton, env.KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton
+        for _, on in ipairs({ false, true }) do
+            profile.TrackAchievementBrowserHistory = on
+            prevButton:Hide()
+            nextButton:Hide()
+            if on then
+                prevButton:Show()
+                nextButton:Show()
+            end
+        end
+    end
+    function headless.IsVisible(key)
+        if key == "Back" then return achievementFrame.HeaderDetails ~= nil and achievementFrame.HeaderDetails.Back:IsVisible() end
+        return env.KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton:IsVisible() or env.KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton:IsVisible()
+    end
+    return navigation.Run(headless), "Tests/Navigation.lua", {}
 end
 
 -------------------------------------------------------------------------------------------------
