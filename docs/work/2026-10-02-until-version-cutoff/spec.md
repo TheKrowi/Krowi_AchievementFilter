@@ -1,0 +1,51 @@
+# Spec: An "Until" version cutoff reads as obtainable until 2100
+Intent: [intent.md](intent.md). Status: accepted
+
+## Requirements
+1. `Obtainable("Until", <function>, <value>)` with three arguments records an end-only cutoff, the inclusive counterpart of `Obtainable("Before", <function>, <value>)`. The start is the achievement's own patch, set implicitly as for `Before`. The end is `Until <function> <value>`: the achievement is obtainable through the end of that point.
+2. I Can't Hear You Over the Sound of How Awesome I Am (5313, Shared) is no longer obtainable on either client. On Retail its tooltip reads "This achievement was temporarily obtainable from the start of Cataclysm (pre-patch) (4.0.3) until the end of Mists of Pandaria (pre-patch) (5.0.4)." On Mists Classic the end resolves through `ContentTimeline` to Mists of Pandaria (5.5.0). It is not in Time Limited on either client.
+3. On Mists Classic 5.5.4, Challenge Conqueror: Platinum (Season 3) (61991) and its Realm First! (61963) stay Time Limited, as 101.0 intended, and their tooltips read "This achievement is temporarily obtainable from the start of The Thunder King (5.5.3) until the end of Siege of Orgrimmar (5.5.4)."
+4. It All Makes Sense Now (11065, Retail) shows its first record as "was temporarily obtainable during Legion (7.0.3)". Its state is still decided by its last record, Legion Remix.
+5. Every other `Obtainable()` form produces exactly the record it produces today: the two-argument During form, `Never` and `Once`, three-argument `Before`, `From` and `After`, and the six-argument windows. This holds for first-party and plugin data on both clients.
+6. The data load reports `MalformedObtainable` when an inclusion word is in a place where it has no meaning: a three-argument form that does not start with `From`, `After`, `Before` or `Until`, or a six-argument form whose start is not `From`/`After` or whose end is not `Until`/`Before`. The record is still stored as today, which is how an unknown anchor function is already handled (`CheckAnchorFunction`). The headless pipeline then fails on such an entry in first-party data, and plugin data keeps loading.
+7. The wiki's data-format page lists the three-argument `Until` cutoff next to `Before`.
+
+## Root cause
+- `achievement:SetTemporaryObtainable` (`Objects/Achievement.lua:239-288`) picks a form by the number and position of its arguments. Case 3 (`:260-265`), the end-only cutoff with the implicit start, only matches `startInclusion == "Before"`. A three-argument `"Until"` falls through to Case 4 (`:267-272`), the open-ended start. There the first word becomes the start's inclusion, and `SetTemporaryObtainableStartOnly` (`:225-230`) adds an end of `Until Date 2100-01-01`.
+- The stored record is `Start = {Until, Version, 050004}`, `End = {Until, Date, {2100, 1, 1}}`. `GetVersionStartState` (`Data/TemporaryObtainable.lua:526-537`) only knows the start words `From` and `After` and returns nil for `Until`. `GetObtainableState` (`:100-166`) therefore never sees a past end and returns `"Current"`, so the achievement is listed in Time Limited (`Data/SpecialCategories.lua:149-150`) and passes the obtainable filters (`Filters.lua:143-161`).
+- In the tooltip, `GetStart` (`:246-255`) has no text for a start word of `Until`, so the sentence has no "from the start of". `GetWasIsWillBe` (`:190-244`) gets a nil start and falls through to its red "was". This produces the sentence in the screenshot.
+- Nothing reports the misparse. `CheckAnchorFunction` (`Objects/Achievement.lua:177-183`) checks the anchor function, and no check exists for the inclusion word. The wiki lists only `Before` as a cutoff (`wiki/achievement-data/achievement-data-format.md`, "Cutoff patterns").
+- History: 11065 has used this form since the V1 data (`{"Until", "Version", {7, 0, 3}}`). `raw/achievement-data/2026-06-12-obtainable-patterns-full-analysis.md:180-189` noted the Case 4 dispatch, and the entry went unnoticed because its last record decides its state. Release 101.0 (`5396c70`) added 5313, 61963 and 61991 in the same form, with the changelog intent "ends with 5.0.4 (`Until`)" and "Time Limited until the patch after 5.5.4".
+
+## Design
+Recommended (option A): teach the parser the form the data uses, and make it report misplaced words.
+
+- In `achievement:SetTemporaryObtainable`, Case 3 matches `"Before"` or `"Until"`. `SetTemporaryObtainableFromVersionToEnd` already stores the first word as the end's inclusion, so it needs no change. `GetVersionEndState` and the other end-state functions already handle an end word of `Until`.
+- A `CheckInclusion` helper next to `CheckAnchorFunction` reports `MalformedObtainable` for a start word other than `From`/`After` in Case 4 and Case 5, and for an end word other than `Until`/`Before` in Case 5. Like `CheckAnchorFunction`, it only reports and leaves the record as it is.
+- The data files do not change. The tooltip strings already exist ("from the start of", "until the end of", "during").
+- A new scenario suite, `obtainable`, builds fake achievements on real build versions, feeds them `Obtainable()` arguments, and records the stored record, the obtainable state and the number of load reports. It serves as the test-first reproduction and stays behind as the regression check for the parser.
+
+## Options considered
+- **A. The addon learns the three-argument `Until` cutoff (recommended).** The four entries work as written, and players see the ranges in requirements 2 to 4. Data authors get a matching inclusive form for `Before`. Misplaced words are reported, which closes the gap that let this ship twice. The cost is a few lines in the data API, a new suite and a documentation row.
+- **B. A without the word check.** Players see the same as under A, with a smaller diff. A misplaced or unknown inclusion word stays silent, which is how this shipped twice.
+- **C. Rewrite the four entries as six-argument windows.** For example, `Obtainable("From", "Version", {4, 0, 3}, "Until", "Version", {5, 0, 4})`. This needs no code change, and players see the same ranges as under A. The start must then be written by hand and kept in step with the block the entry sits in, and the parser keeps accepting `Until` as a start word without a report, so the next entry can repeat the mistake.
+- **D. Rewrite them as `Before` the next patch.** For 5313 that is `Before 5.0.5`, which re-registers the patch 101.0 removed. For 61963 and 61991 there is no next Mists Classic patch to name. Rejected, and not put to the maintainer.
+
+## Areas of concern
+- Taint and secret values: none. The change is data-load code that runs inside the login task groups. It touches no frame or Blizzard function and reads no protected API.
+- Retail and Classic: 5313 is Shared. On Classic, `Until 5.0.4` resolves to 5.5.0 and is past on 5.5.4. Before 101.0, `Before 5.0.5` also resolved to 5.5.0, so the fix restores the old state on both clients. 61963 and 61991 are Classic-only and stay Time Limited until a Classic patch after 5.5.4 ships.
+- Plugins and skins: plugin data goes through the same `SetTemporaryObtainable`. A plugin that already writes a three-argument `Until` gets the intended cutoff instead of the misparse. One with a misplaced word gets a report in debug mode and loads as today. The V1 parser is not touched. The ElvUI and GW2_UI skins read the state and show 5313 as no longer obtainable again.
+- Saved variables and migrations: none. Obtainable records are rebuilt on every login.
+- Localization: none, no new strings.
+- Data snapshots and the headless pipeline: no category file changes, so the snapshots are unchanged. Every first-party `Obtainable()` was checked: the three-argument forms start with `From` (85), `Before` (500) or `Until` (4), and the six-argument forms are `From`→`Until` (72) or `From`→`Before` (8). The new report therefore adds no finding to the pipeline. `docs/build-versions-overview.md` already counts `Until` anchors.
+
+## Verification
+- Suite `obtainable` (new: `Tests/Obtainable.lua`, `suites.obtainable` in `.claude/tools/headless/run-tests.lua`). Each scenario uses a fake achievement added in 4.0.3, a patch both clients register:
+  - `until-version` (the 5313 shape, `Until Version 5.0.4`). Recorded: `start=Until Version 5.0.4 end=Until Date 2100-1-1 state=Current reports=0`. Target: `start=From Version 4.0.3 (own) end=Until Version 5.0.4 state=Past reports=0`. Open until the fix.
+  - `before-version` (`Before Version 5.1.0`), `from-version` (`From Version 5.0.4`), `window-version` (`From 4.0.3, Until 5.0.4`) and `never`: controls where Recorded equals Target, which guard requirement 5.
+  - `unknown-start-word` (`Through Version 5.0.4`) and `swapped-window` (`Until … From …`). Recorded: `reports=0`. Target: one report per misplaced word (`reports=1` and `reports=2`). Both are open until the fix.
+- `Check-Repo.ps1 -ChangedOnly`, which includes the `unit-tests` rule and the headless pipeline (`data-load`), shows no new findings on either client.
+- In game, on Retail and Mists Classic: `/kaftest obtainable` is green and matches the headless lines. The tooltips of 5313 (both clients) and 61963 (Classic) read as in requirements 2 and 3. 5313 is not in Time Limited.
+
+## Decision
+Option A, the parser learns the three-argument `Until` cutoff and reports misplaced inclusion words. Chosen by Krowi (maintainer) on 2026-10-02. The first time the question was asked, the maintainer sent it back for more background. The second time, it explained the parser's argument forms, the history of the four entries, and the before and after tooltips. It also explained that players see the same result under A, B and C. The answer also accepts the intent.
