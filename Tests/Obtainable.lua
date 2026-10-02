@@ -17,7 +17,7 @@ local obtainable = addon.Tests.Obtainable
 -- Every anchor is 5.1.0 or older, so the states are the same on Retail and on Mists Classic, where 5.0.4
 -- resolves to 5.5.0 and 5.1.0 to 5.5.1 through DataAddons/Classic/ContentTimeline.lua.
 --
--- A three-argument "Until" was read as an open-ended start until 2100 (until-version, data-5313): the
+-- Before 101.1 a three-argument "Until" was read as an open-ended start until 2100 (until-version, data-5313): the
 -- reported tooltip "was temporarily obtainable Mists of Pandaria (pre-patch) (5.0.4) until the end of
 -- 2100/01/01", and the achievement listed as Time Limited. Inclusion words in the wrong place were taken
 -- without a report (unknown-start-word, swapped-window). See docs/work/2026-10-02-until-version-cutoff/.
@@ -28,7 +28,7 @@ local fakePatch = "040003"
 -- Args: the Obtainable() arguments given to a fake; Id: a real achievement whose records are read instead
 obtainable.Scenarios = {
     {Name = "until-version", Args = {"Until", "Version", {5, 0, 4}},
-        Recorded = "Until Version 5.0.4 .. Until Date 2100-1-1; state=Current; reports=0",
+        Recorded = "From Version 4.0.3 own .. Until Version 5.0.4; state=Past; reports=0",
         Target = "From Version 4.0.3 own .. Until Version 5.0.4; state=Past; reports=0"},
     {Name = "before-version", Args = {"Before", "Version", {5, 1, 0}},
         Recorded = "From Version 4.0.3 own .. Before Version 5.1.0; state=Past; reports=0",
@@ -43,13 +43,13 @@ obtainable.Scenarios = {
         Recorded = "Never; state=Past; reports=0",
         Target = "Never; state=Past; reports=0"},
     {Name = "unknown-start-word", Args = {"Through", "Version", {5, 0, 4}},
-        Recorded = "Through Version 5.0.4 .. Until Date 2100-1-1; state=Current; reports=0",
+        Recorded = "Through Version 5.0.4 .. Until Date 2100-1-1; state=Current; reports=1",
         Target = "Through Version 5.0.4 .. Until Date 2100-1-1; state=Current; reports=1"},
     {Name = "swapped-window", Args = {"Until", "Version", {5, 0, 4}, "From", "Version", {4, 0, 3}},
-        Recorded = "Until Version 5.0.4 .. From Version 4.0.3; state=Current; reports=0",
+        Recorded = "Until Version 5.0.4 .. From Version 4.0.3; state=Current; reports=2",
         Target = "Until Version 5.0.4 .. From Version 4.0.3; state=Current; reports=2"},
     {Name = "data-5313", Id = 5313, -- I Can't Hear You Over the Sound of How Awesome I Am, DataAddons/Shared/04_Cataclysm/AchievementData.lua
-        Recorded = "Until Version 5.0.4 .. Until Date 2100-1-1; state=Current",
+        Recorded = "From Version 4.0.3 own .. Until Version 5.0.4; state=Past",
         Target = "From Version 4.0.3 own .. Until Version 5.0.4; state=Past"}
 }
 

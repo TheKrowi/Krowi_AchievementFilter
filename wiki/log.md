@@ -32,3 +32,6 @@
 
 ## [2026-09-25] update | Achievement Data Format — the per-client declaration is now `DataAddons/Classic/ContentTimeline.lua` (Retail patch -> Classic patch), replacing `:Live({...})` on the BuildVersionData registrations; Retail needs no table
 - Raw: docs/data-design-review.md §5.1 (revision 2026-09-25)
+
+## [2026-10-02] update | Achievement Data Format — the three-argument `Until` cutoff (inclusive end, from the achievement's own patch) is a documented pattern; misplaced inclusion words are reported by the data load
+- Raw: docs/work/2026-10-02-until-version-cutoff/spec.md (root cause and decision), raw/achievement-data/2026-06-12-obtainable-patterns-full-analysis.md (Case 4 dispatch of 11065)

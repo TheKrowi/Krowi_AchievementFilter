@@ -114,8 +114,9 @@ All dynamically generated from `KrowiAF.Enum.RewardType`. Chain multiple for ach
 |---|---|---|
 | `"Before", "Version", {M, m, p}` | `Obtainable("Before", "Version", {9, 0, 1})` | Available from the achievement's own patch until the named game version. |
 | `"Before", "Date", {Y, M, D}` | `Obtainable("Before", "Date", {2019, 6, 11})` | Available from the achievement's own patch until a specific calendar date. |
+| `"Until", "Version", {M, m, p}` | `Obtainable("Until", "Version", {5, 0, 4})` | Available from the achievement's own patch **through the end of** the named game version (inclusive). Use it when the patch after the cutoff is not registered or not known yet (Mists Classic after 5.5.4). |
 
-> **Note:** For both cutoff patterns the start of the window is **not** the argument you write — it is silently set to the achievement's own `BuildVersion.Id`. You only specify the cutoff end.
+> **Note:** For every cutoff pattern the start of the window is **not** the argument you write — it is silently set to the achievement's own `BuildVersion.Id`. You only specify the cutoff end. `Before` and `Until` are the only words a three-argument cutoff takes; `From` and `After` start an open-ended window. Any other word, or a six-argument window that does not run `From`/`After` → `Until`/`Before`, is reported by the data load (`MalformedObtainable`) and fails the headless pipeline. Until 101.1 a three-argument `Until` was silently read as an open-ended start that ran until 2100.
 
 > **Note:** A `"Version"` value names the patch **as Retail shipped it**, on every client. Retail resolves it to that patch; Classic looks it up in `DataAddons/Classic/ContentTimeline.lua`, which maps each Retail patch to the patch where Classic reached the same content (`["5.4.0"] = "5.5.4"`). On a client that has not reached the patch, an end anchor leaves the achievement obtainable with no end scheduled, and a start anchor reads as future. Never write a Classic version number in a Shared file; write the Retail patch and let Classic's `ContentTimeline` map it.
 
