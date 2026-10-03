@@ -20,8 +20,11 @@ local worldMap = addon.Tests.WorldMap
 -- not change the size, so the button looks fine until the first resize. ElvUI's smaller world map and GW2_UI set the
 -- map to HIGH, Leatrix Maps to MEDIUM. Retail's map never sets its own strata, so the suite has no Retail scenarios.
 --
--- The in-game run drives Blizzard's map from addon code (ToggleWorldMap, MaximizeMinimizeFrame), which taints the
--- map's display state until the /reload that writes the results; it refuses to run while a map addon is loaded.
+-- The in-game run drives Blizzard's map and UI panels from addon code (ToggleWorldMap, MaximizeMinimizeFrame,
+-- ShowUIPanel), which taints the map, the UI panel manager and the map's pin pools until the next /reload: opening
+-- the map or a panel in combat before that reload can raise ADDON_ACTION_BLOCKED blamed on this addon, which is an
+-- artefact of the test, so reload before entering combat and do not leave this suite on /kaftest login. It refuses to
+-- run while a map addon is loaded, and it puts the miniWorldMap CVar, which the game saves, back even after an error.
 
 worldMap.StrataOrder = {"BACKGROUND", "LOW", "MEDIUM", "HIGH", "DIALOG", "FULLSCREEN", "FULLSCREEN_DIALOG", "TOOLTIP"}
 
@@ -91,11 +94,16 @@ function worldMap.Run(env, observations)
     end
     local ready, reason = env.Setup(observations)
     local setupProblem = not ready and (reason or "setup failed") or nil
-    for _, scenario in ipairs(worldMap.Scenarios) do
-        tinsert(results, RunScenario(env, scenario, setupProblem))
-    end
+    local ok, err = pcall(function()
+        for _, scenario in ipairs(worldMap.Scenarios) do
+            tinsert(results, RunScenario(env, scenario, setupProblem))
+        end
+    end)
     if ready then
-        env.Teardown()
+        env.Teardown() -- after an error too: it puts the player's map and CVar back
+    end
+    if not ok then
+        error(err, 0)
     end
     return results
 end
@@ -117,14 +125,14 @@ function gameEnv.Setup(observations)
         return false, "Show world map icon is off (Options > General)"
     end
     if addon.Gui.WorldMapButton:GetParent() ~= WorldMapFrame then
-        return false, "the button is not a child of WorldMapFrame (another addon set the library's HasNoOverlay first)"
+        return false, "the button is a child of the canvas container, where the map's strata does not cover it (the library's choice on Wrath, or another addon set its HasNoOverlay first)"
     end
     for _, name in ipairs(mapAddons) do
         if C_AddOns.IsAddOnLoaded(name) then
             return false, name .. " is loaded and changes the map itself"
         end
     end
-    snapshot = {Shown = WorldMapFrame:IsShown(), Maximized = WorldMapFrame:IsMaximized(), MiniWorldMap = GetCVar("miniWorldMap")}
+    snapshot = {Shown = WorldMapFrame:IsShown(), Maximized = WorldMapFrame:IsMaximized(), Strata = WorldMapFrame:GetFrameStrata(), MiniWorldMap = GetCVar("miniWorldMap")}
     tinsert(observations, ("map was %s and %s, miniWorldMap=%s"):format(snapshot.Shown and "open" or "closed", snapshot.Maximized and "maximized" or "small", tostring(snapshot.MiniWorldMap)))
     return true
 end
@@ -184,20 +192,26 @@ function gameEnv.CanvasStrata()
 end
 
 function gameEnv.Teardown()
+    SetCVar("miniWorldMap", snapshot.MiniWorldMap) -- first, in case what follows errors: the game saves it
     gameEnv.Reset()
     if snapshot.Maximized then
-        WorldMapFrame.MaximizeMinimizeFrame:Maximize() -- opens the map at full size
+        WorldMapFrame.MaximizeMinimizeFrame:Maximize() -- opens the map at full size and sets the CVar again
     end
     if snapshot.Shown then
         ShowUIPanel(WorldMapFrame)
     else
         HideUIPanel(WorldMapFrame)
     end
+    WorldMapFrame:SetFrameStrata(snapshot.Strata)
     SetCVar("miniWorldMap", snapshot.MiniWorldMap)
     snapshot = nil
 end
 
 addon.Tests.Suites.worldmap = function()
     local observations = {}
-    return worldMap.Run(gameEnv, observations), observations
+    local results = worldMap.Run(gameEnv, observations)
+    if #results > 0 then
+        tinsert(observations, "the run tainted the world map until the next /reload: reload before entering combat")
+    end
+    return results, observations
 end

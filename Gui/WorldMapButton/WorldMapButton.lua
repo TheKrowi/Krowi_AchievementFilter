@@ -8,15 +8,13 @@ addon.WorldMapButtons = LibStub("Krowi_WorldMapButtons-1.4") -- Global world map
 -- (FULLSCREEN maximized, MEDIUM small); ElvUI, GW2_UI and Leatrix Maps set it too. The game moves the button along with
 -- the map, where the map's canvas covers it, so the button is kept one strata above the map: HIGH over the default
 -- MEDIUM map, as its template has it
-local strataOrder = {"BACKGROUND", "LOW", "MEDIUM", "HIGH", "DIALOG", "FULLSCREEN", "FULLSCREEN_DIALOG", "TOOLTIP"}
+local strataAbove = {BACKGROUND = "LOW", LOW = "MEDIUM", MEDIUM = "HIGH", HIGH = "DIALOG", DIALOG = "FULLSCREEN",
+    FULLSCREEN = "FULLSCREEN_DIALOG", FULLSCREEN_DIALOG = "TOOLTIP", TOOLTIP = "TOOLTIP"}
 
 local function KeepAboveMap(button)
-    local mapStrata = WorldMapFrame:GetFrameStrata()
-    for i, strata in ipairs(strataOrder) do
-        if strata == mapStrata then
-            button:SetFrameStrata(strataOrder[i + 1] or strata)
-            return
-        end
+    local strata = strataAbove[WorldMapFrame:GetFrameStrata()]
+    if strata then
+        button:SetFrameStrata(strata)
     end
 end
 
