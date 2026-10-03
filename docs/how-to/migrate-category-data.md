@@ -239,7 +239,7 @@ Shared files must be snapshotted for **both** clients: they resolve differently 
 ```
 
 4. **Correct `.github/copilot-instructions.md`** to describe the real state of the category format.
-5. **Changelog.** The migration should be user-invisible; if the snapshot revealed and fixed a real tree defect, that part gets its own entry with a dev note.
+5. **Changelog.** The migration should be user-invisible; if the snapshot revealed and fixed a real tree defect, that part gets its own entry.
 
 ---
 

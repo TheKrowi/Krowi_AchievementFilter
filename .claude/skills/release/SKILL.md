@@ -51,7 +51,7 @@ Fix what it reports. Typical fixes, in order of likelihood:
 - Add ` - <today>` to the top changelog header.
 - Remove, ignore, or deliberately stage stray untracked files.
 
-Read the top changelog entry and sanity-check it against `git log <last tag>..HEAD --oneline`. If a merged PR or fix is missing from the changelog, add it before releasing. Follow the existing style: past-tense bullets under `### Added`, `### Changed`, `### Fixed`, with an optional `(dev note: ...)` for technical detail.
+Read the top changelog entry and sanity-check it against `git log <last tag>..HEAD --oneline`. If a merged PR or fix is missing from the changelog, add it before releasing. Follow the existing style: past-tense bullets under `### Added`, `### Changed`, `### Fixed`, with an optional `(dev note: ...)`, the maintainer's own aside to players, never technical detail.
 
 Also glance at `## Interface:` in the TOC. If a new game build went live since the last release, the interface numbers need updating first, because the badges and the upload game-version list come from them.
 

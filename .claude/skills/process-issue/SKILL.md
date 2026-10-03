@@ -42,7 +42,7 @@ Then, in this order:
 1. **Scenario first.** Add it to the matching suite in `Tests/` and to its model in `.claude/tools/headless/run-tests.lua`, or create a new suite: a `Tests/<Suite>.lua` registered in `Tests/Files.xml`, a `suites.<name>` in the runner, and the suite named in the instruction file. `Recorded` is today's behaviour and `Target` the spec's. Run `& ".claude\tools\lua51\lua.exe" ".claude\tools\headless\run-tests.lua" "$PWD" <suite>` and confirm the new scenario PASSes and is open against its target.
 2. **In-game before-run (GUI work).** Run `Deploy.ps1 -WhatIf`, then deploy. Ask the maintainer for `/kaftest <suite>` and a second `/reload` (the game writes the log only on reload), then read the result with `Read-GameTests.ps1`. It must be green, with no FAIL and no unexplained difference from headless, before the fix starts. Commit the scenario: `test: reproduce #<n> in the <suite> suite`.
 3. **Fix only the code.** Then set `Recorded` to `Target` and rerun the suite. Never loosen a scenario, a lint rule or `Check-Repo.ignore` to get green.
-4. Add a changelog line under the next version with a dev note for the root cause, and update `plan.md` wherever the implementation departed from it.
+4. Add a changelog line under the next version, written for players and without a dev note (that is the maintainer's own aside; the root cause stays in `spec.md`), and update `plan.md` wherever the implementation departed from it.
 
 ## 4. Test: the feedback loop
 
