@@ -26,13 +26,14 @@ local worldMap = addon.Tests.WorldMap
 worldMap.StrataOrder = {"BACKGROUND", "LOW", "MEDIUM", "HIGH", "DIALOG", "FULLSCREEN", "FULLSCREEN_DIALOG", "TOOLTIP"}
 
 -- Steps: run in that order after the reset. Recorded / Target: "above" or "covered"
--- Target (decided 2026-10-03, docs/work/2026-10-02-classic-world-map-button/spec.md): above after every step
+-- Target (decided 2026-10-03, docs/work/2026-10-02-classic-world-map-button/spec.md): above after every step. Before
+-- 101.1 the button was covered after every step but the first, which the in-game run on 5.5.4 confirmed on 2026-10-03
 worldMap.Scenarios = {
     {Name = "small-map-opened", Steps = {"OpenSmall"}, Recorded = "above", Target = "above"},
-    {Name = "large-map-opened", Steps = {"OpenLarge"}, Recorded = "covered", Target = "above"},
-    {Name = "maximized", Steps = {"OpenSmall", "Maximize"}, Recorded = "covered", Target = "above"},
-    {Name = "maximized-and-minimized", Steps = {"OpenSmall", "Maximize", "Minimize"}, Recorded = "covered", Target = "above"},
-    {Name = "addon-sets-map-strata", Steps = {"OpenSmall", "AddonStrata"}, Recorded = "covered", Target = "above"} -- what ElvUI's smaller world map and GW2_UI do
+    {Name = "large-map-opened", Steps = {"OpenLarge"}, Recorded = "above", Target = "above"},
+    {Name = "maximized", Steps = {"OpenSmall", "Maximize"}, Recorded = "above", Target = "above"},
+    {Name = "maximized-and-minimized", Steps = {"OpenSmall", "Maximize", "Minimize"}, Recorded = "above", Target = "above"},
+    {Name = "addon-sets-map-strata", Steps = {"OpenSmall", "AddonStrata"}, Recorded = "above", Target = "above"} -- what ElvUI's smaller world map and GW2_UI do
 }
 
 local function Rank(strata)
