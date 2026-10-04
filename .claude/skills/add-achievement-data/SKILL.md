@@ -326,12 +326,17 @@ Ach(40976):Mount():Anniv20(), -- A Cool Twenty Years
 | Pattern | Example |
 |---------|---------|
 | No longer obtainable from version | `Obtainable("Before", "Version", {11, 1, 0})` |
+| Obtainable through the end of a version (inclusive) | `Obtainable("Until", "Version", {5, 0, 4})` |
+| Obtainable during one version only | `Obtainable("Version", {12, 0, 7})` |
 | Version window | `Obtainable("From", "Version", {6, 0, 3}, "Before", "Version", {7, 0, 3})` |
 | Available from version (open-ended) | `Obtainable("From", "Version", {11, 2, 7})` |
 | Date window | `Obtainable("From", "Date", {2024, 7, 30}, "Until", "Date", {2024, 8, 26})` |
 | In-game event | `Obtainable("Event", eventId)` |
 | PvP season range | `Obtainable("From", "PvP Season", 9, "Until", "PvP Season", 18)` |
 | One-time (Realm First) | `Obtainable("Once")` |
+
+- **A cutoff starts at the achievement's own patch.** The three-argument `Before` and `Until` forms take the patch block the entry sits in as their start. If the achievement can only be earned from a later patch, use the During form or a window instead. For example, a season achievement added one patch ahead of its season: the Mists Classic Season 3 Challenge Mode achievements were added in 5.5.3, but Season 3 started with 5.5.4, so they use `Obtainable("Version", {5, 5, 4})`.
+- **A range that differs per client cannot stay in Shared.** Give the achievement an entry in both the Retail and the Classic file. Write the anchors as Retail patches; Classic maps them through `DataAddons/Classic/ContentTimeline.lua`. For example, 5313 is `Until 5.0.4` on Retail and `Before 5.0.4` on Classic.
 
 ## Patch Version Determination
 
