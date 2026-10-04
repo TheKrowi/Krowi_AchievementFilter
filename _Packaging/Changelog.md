@@ -1,9 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 101.1
+## 101.1 - 2026-10-04
 ### Added
 - BlizzCon 2026 feat of strength, with the BlizzCon Doormat decor reward
+- Additional zhCN localization
 
 ### Fixed
 - The Guild tab no longer shows the browsing history's back and forward buttons on top of Blizzard's Back button: the addon's buttons now show on the addon's own tabs, and Blizzard's tabs keep Blizzard's own navigation
