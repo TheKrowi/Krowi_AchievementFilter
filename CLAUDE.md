@@ -13,7 +13,7 @@ The imported file is the canonical instruction file for this repository: project
 ## Subagents (`.claude/agents/`)
 
 - `data-verifier` checks achievement ids against both game builds through the designated lookup scripts and runs the headless pipeline. Delegate to it before calling any data line dead.
-- `taint-reviewer` reviews a diff for taint and secret-value hazards using the changelog's dev notes as case law. Delegate to it after GUI or Blizzard-API changes.
+- `taint-reviewer` reviews a diff for taint and secret-value hazards using the changelog's dev notes and the work folders' root causes as case law. Delegate to it after GUI or Blizzard-API changes.
 - `Explore` subagents cannot reach `localhost:5000`; do game-database lookups from the main agent.
 
 ## Skills (`.claude/skills/`)

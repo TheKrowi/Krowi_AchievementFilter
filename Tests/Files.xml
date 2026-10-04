@@ -3,4 +3,5 @@
     <Script file="Escape.lua" />
     <Script file="SpecialCategories.lua" />
     <Script file="Navigation.lua" />
+    <Script file="WorldMap.lua" />
 </Ui>

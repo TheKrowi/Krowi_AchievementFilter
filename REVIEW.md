@@ -8,10 +8,10 @@ Run each pass separately and rank the findings by severity.
 
 1. **Intent.** The change does what the work folder's `spec.md` and `plan.md` say (`docs/work/<id>-<slug>/`) and nothing beyond them; the root cause is fixed rather than its symptom; a departure from the plan is recorded in `plan.md`.
 2. **Correctness.** Nil paths, load order (`Files.xml` and the `.toc`), boot phase (anything touching Blizzard's achievement frame runs in phase 2; `addon.Data.Achievements` is empty until `PostBuildCache`), both clients (`addon.Util.IsMainline`, the Classic layouts without `AchievementFrame.HeaderDetails`), option defaults and option setters that change the same frames at runtime.
-3. **Taint and secret values.** Delegate to the `taint-reviewer` subagent for any change to GUI code, hooks on Blizzard frames or functions, event handlers, writes to globals, or reads of lockdown-protected APIs. The changelog's dev notes are the case law.
+3. **Taint and secret values.** Delegate to the `taint-reviewer` subagent for any change to GUI code, hooks on Blizzard frames or functions, event handlers, writes to globals, or reads of lockdown-protected APIs. The changelog's dev notes and the `## Root cause` sections of `docs/work/*/spec.md` are the case law.
 4. **Data.** Achievement ids exist on the client that registers them (`data-verifier`), each id is registered once, the category snapshot is unchanged or its diff is part of the change, and zone decisions still agree with the ZoneData files.
 5. **Plugins and skins.** ElvUI, GW2_UI, EllesmereUI and the other integrations under `Plugins/` address the addon's frames by global name and anchor; a renamed, reparented or re-anchored frame is checked against them.
-6. **Proof.** A bug fix comes with a scenario that reproduced it (`Recorded` before the fix differs from `Target`, and equals it after), the lint is clean, the changelog has a line with a dev note for a non-obvious fix, and the in-game checks listed in the PR were run on the clients it touches.
+6. **Proof.** A bug fix comes with a scenario that reproduced it (`Recorded` before the fix differs from `Target`, and equals it after), the lint is clean, the changelog has a line written for players (a dev note is the maintainer's own aside, never a technical root cause; that lives in `spec.md`), and the in-game checks listed in the PR were run on the clients it touches.
 
 ## Important versus minor
 

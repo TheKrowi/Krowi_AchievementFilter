@@ -12,7 +12,7 @@ Everything an addon runs is insecure. Taint spreads when insecure code writes a 
 
 Secret values are separate. Some APIs return values flagged `SecretInChatMessagingLockdown` (and similar): while the player is under communication, encounter, Mythic+ or PvP match restrictions, every field of the result is secret. Reading a secret is fine; comparing it, doing arithmetic on it, indexing with it, concatenating it or storing it for later use errors with "a secret ... value, while execution tainted by 'Krowi_AchievementFilter'".
 
-## Case law from this repo (see `_Packaging/Changelog.md` dev notes)
+## Case law from this repo (see `_Packaging/Changelog.md` dev notes and the `## Root cause` sections of `docs/work/*/spec.md`)
 
 - **Never override Blizzard globals.** The old `GetAchievementCriteriaInfo` / `GetAchievementNumCriteria` overrides tainted everything that read them and were removed; leftovers of that approach still surface as bugs (100.1). A change that assigns to a global Blizzard function or writes into a Blizzard table is a finding.
 - **Do not trigger Blizzard refreshes from our own context.** Untracking and retracking achievements on login marked the objective tracker dirty from insecure code, so its whole deferred update ran tainted and poisoned the scenario spell frame pool for the session (99.9). Calling a Blizzard function that schedules or performs UI updates counts.

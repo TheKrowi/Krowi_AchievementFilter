@@ -13,7 +13,8 @@
 --         Data/SavedData/AchievementData.lua: Watch List, Excluded and Tracking membership and the rebuilds the
 --         layout options trigger; the option setters themselves live in Options/Layout.lua and only run in game),
 --         navigation (Gui/Gui.lua's tab sub frames, the search box and Gui/BrowsingHistory/BrowsingHistory.lua: which
---         navigation buttons each tab of the achievement window shows, issue #325)
+--         navigation buttons each tab of the achievement window shows, issue #325), worldmap (Gui/WorldMapButton/ with
+--         the Krowi_WorldMapButtons library: whether the button stays in front of the Classic map when it resizes)
 --
 -- Retail model is 12.1: the Blizzard_GameMenuEsc handler registry, the UI panel manager (its slots stay
 -- empty because the addon shows the achievement window with a plain Show), UISpecialFrames, static
@@ -56,6 +57,8 @@ end
 -------------------------------------------------------------------------------------------------
 -- Frame model: Show/Hide with OnShow/OnHide scripts and hooks, like the game's, nothing more. Unlike the game, the
 -- scripts run only when the frame's own Show/Hide changes its flag, not when a parent's visibility changes it.
+-- Strata as the game has it: a frame that never set one has its parent's, and setting one moves every descendant
+-- along (SetFixedFrameStrata, which opts a frame out, is not modelled; levels are not modelled at all).
 -------------------------------------------------------------------------------------------------
 local Frame = {}
 local frameMt = {
@@ -67,7 +70,10 @@ local frameMt = {
 }
 local lenientMt = { __index = Frame } -- for suites whose addon code reads frame fields that are still nil, as the game allows
 local function NewFrame(name, parent, lenient)
-    return setmetatable({ name = name, parent = parent, shown = false, scripts = {}, hooks = {} }, lenient and lenientMt or frameMt)
+    local frame = setmetatable({ name = name, parent = parent, shown = false, scripts = {}, hooks = {}, children = {} }, lenient and lenientMt or frameMt)
+    local siblings = parent and rawget(parent, "children")
+    if siblings then table.insert(siblings, frame) end
+    return frame
 end
 function Frame:RunScript(kind, ...)
     if self.scripts[kind] then self.scripts[kind](self, ...) end
@@ -115,6 +121,15 @@ function Frame:SetWidth(width) rawset(self, "_width", width) end
 function Frame:SetHeight(height) rawset(self, "_height", height) end
 function Frame:GetWidth() return rawget(self, "_width") or 0 end
 function Frame:GetHeight() return rawget(self, "_height") or 0 end
+function Frame:SetFrameStrata(strata)
+    rawset(self, "_strata", strata)
+    for _, child in ipairs(rawget(self, "children")) do Frame.SetFrameStrata(child, strata) end -- the engine's move, which runs no Lua hook on the children
+end
+function Frame:GetFrameStrata()
+    local strata, parent = rawget(self, "_strata"), rawget(self, "parent")
+    if strata then return strata end
+    return parent and parent:GetFrameStrata() or "MEDIUM"
+end
 function Frame:SetFrameLevel(level) rawset(self, "_level", level) end
 function Frame:GetFrameLevel() return rawget(self, "_level") or 0 end
 function Frame:SetID(id) rawset(self, "_id", id) end
@@ -585,6 +600,112 @@ suites.navigation = function(c)
         return env.KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton:IsVisible() or env.KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton:IsVisible()
     end
     return navigation.Run(headless), "Tests/Navigation.lua", {}
+end
+
+-- The real Krowi_WorldMapButtons library, button mixin and Gui/WorldMapButton/WorldMapButton.lua against a model of the
+-- Mists Classic world map (sources in Tests/WorldMap.lua); the suite's own environment then drives the model through
+-- the same globals it uses in game. Levels follow the in-game probe of 2026-10-02: map 1, ScrollContainer 2, canvas 3.
+suites.worldmap = function(c)
+    local env, addon = c.env, c.addon
+    c.loadAddonFile("Tests/WorldMap.lua")
+    local worldMap = addon.Tests.WorldMap
+    local observations = {}
+    if c.isRetail then
+        return worldMap.Run(worldMap.GameEnv, observations), "Tests/WorldMap.lua", observations
+    end
+    c.frames.lenient = true -- the library reads WorldMapFrame.overlayFrames, which Mists does have but the model leaves nil
+
+    -- hooksecurefunc on a table method, as the library (OnMapChanged) and the button (SetFrameStrata) use it: the hook
+    -- runs after the original with its arguments; kept to this suite so the others keep their model
+    local hookGlobal = env.hooksecurefunc
+    env.hooksecurefunc = function(target, name, hook)
+        if type(target) ~= "table" then return hookGlobal(target, name) end
+        local original = target[name]
+        assert(type(original) == "function", "hooksecurefunc(): " .. tostring(name) .. " is not a function")
+        rawset(target, name, function(...)
+            local results = { original(...) }
+            hook(...)
+            return unpack(results)
+        end)
+    end
+    local libraries = {}
+    rawset(env, "LibStub", setmetatable({ NewLibrary = function(_, major)
+        libraries[major] = {}
+        return libraries[major]
+    end }, { __call = function(_, major) return libraries[major] end }))
+    local cvars = { miniWorldMap = "1" }
+    env.GetCVar = function(name) return cvars[name] end
+    env.GetCVarBool = function(name) return cvars[name] == "1" end
+    env.SetCVar = function(name, value) cvars[name] = tostring(value) end
+    env.C_AddOns = { IsAddOnLoaded = function() return false end }
+
+    -- --- Blizzard_WorldMap model (Cata/Blizzard_WorldMap.lua and Wrath/QuestLogOwnerMixin.lua, classic branch) ---------
+    local map = env.CreateFrame("Frame", "WorldMapFrame", env.UIParent)
+    map:SetFrameStrata("MEDIUM") -- MapCanvasFrameTemplate
+    map:SetFrameLevel(1)
+    map.ScrollContainer = env.CreateFrame("ScrollFrame", nil, map)
+    map.ScrollContainer:SetFrameLevel(2)
+    map.ScrollContainer.Child = env.CreateFrame("Frame", nil, map.ScrollContainer)
+    map.ScrollContainer.Child:SetFrameLevel(3)
+    function map:GetCanvasContainer() return self.ScrollContainer end
+    function map:OnMapChanged() end -- the library hooks it; opening the map in the model sets no map
+    function map:IsMaximized() return rawget(self, "isMaximized") end
+    function map:SynchronizeDisplayState() self:SetFrameStrata(self:IsMaximized() and "FULLSCREEN" or "MEDIUM") end
+    function map:Maximize()
+        self.isMaximized = true
+        self:SynchronizeDisplayState()
+    end
+    function map:Minimize()
+        self.isMaximized = false
+        self:SynchronizeDisplayState()
+    end
+    function map:SetDisplayState(maximized) -- only a size change calls Maximize or Minimize
+        env.ShowUIPanel(self)
+        if maximized and not self:IsMaximized() then
+            self:Maximize()
+        elseif not maximized and self:IsMaximized() then
+            self:Minimize()
+        end
+    end
+    function map:HandleUserActionMaximizeSelf()
+        env.SetCVar("miniWorldMap", 0)
+        self:SetDisplayState(true)
+    end
+    function map:HandleUserActionMinimizeSelf()
+        env.SetCVar("miniWorldMap", 1)
+        self:SetDisplayState(false)
+    end
+    function map:HandleUserActionToggleSelf()
+        if self:IsShown() then
+            env.HideUIPanel(self) -- closing a maximized map that should be small reopens it small; the suite never does that
+        else
+            self:SetDisplayState(not env.GetCVarBool("miniWorldMap"))
+        end
+    end
+    map.MaximizeMinimizeFrame = {
+        Maximize = function() map:HandleUserActionMaximizeSelf() end,
+        Minimize = function() map:HandleUserActionMinimizeSelf() end,
+    }
+    map:SetScript("OnShow", function(self) -- WorldMapMixin:OnShow brings the size in line with the CVar
+        local miniWorldMap = env.GetCVarBool("miniWorldMap")
+        if miniWorldMap ~= self:IsMaximized() then
+            if miniWorldMap then self.MaximizeMinimizeFrame.Minimize() else self.MaximizeMinimizeFrame.Maximize() end
+        end
+    end)
+    env.ToggleWorldMap = function() map:HandleUserActionToggleSelf() end
+
+    -- --- The addon ---------------------------------------------------------------------------
+    c.frames.templates.KrowiAF_WorldMapButton_Template = function(frame)
+        for k, v in pairs(env.KrowiAF_WorldMapButtonMixin) do rawset(frame, k, v) end
+        frame:SetFrameStrata("HIGH")
+    end
+    addon.Gui = {}
+    addon.Options = { db = { profile = { ShowWorldmapIcon = true } } }
+    c.loadAddonFile("Libs/Krowi_WorldMapButtons/Krowi_WorldMapButtons.lua")
+    c.loadAddonFile("Gui/WorldMapButton/WorldMapButtonMixin.lua")
+    c.loadAddonFile("Gui/WorldMapButton/WorldMapButton.lua")
+    addon.Gui.WorldMapButton:Load() -- Gui/Gui.lua's LoadWithAddon, phase 1
+    return worldMap.Run(worldMap.GameEnv, observations), "Tests/WorldMap.lua", observations
 end
 
 -------------------------------------------------------------------------------------------------
