@@ -5,7 +5,8 @@
 
 .DESCRIPTION
     Copies every *.lua, *.blp, *.tga and *.xml file (plus LICENSE and the .toc at the root) that is
-    not under .git, .github, .vscode, .claude, _Packaging, raw, wiki or docs, and deletes files in
+    not under a .git, .github, .vscode, .claude, _Packaging, raw, wiki or docs folder at any depth
+    (fsdeploy's **/{...}/** pattern, which also skips a library's own _Packaging), and deletes files in
     the destination that no longer exist in the repo. Only files whose size or timestamp differ are
     copied. Nothing outside the destination folder is touched.
 
@@ -53,7 +54,10 @@ foreach ($f in Get-ChildItem -LiteralPath $root -File) {
 }
 foreach ($d in Get-ChildItem -LiteralPath $root -Directory | Where-Object { $excludedDirs -notcontains $_.Name }) {
     foreach ($f in Get-ChildItem -LiteralPath $d.FullName -Recurse -File | Where-Object { $extensions -contains $_.Extension }) {
-        $source[(Get-Relative $root $f.FullName)] = $f
+        $rel = Get-Relative $root $f.FullName
+        $folders = $rel.Split('\') | Select-Object -SkipLast 1
+        if ($folders | Where-Object { $excludedDirs -contains $_ }) { continue } # fsdeploy excludes these at any depth
+        $source[$rel] = $f
     }
 }
 
