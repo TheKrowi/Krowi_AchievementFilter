@@ -16,6 +16,7 @@ local obtainable = addon.Tests.Obtainable
 -- (.claude/tools/headless/run-tests.lua) against the data load of .claude/tools/headless/client-env.lua.
 -- Every anchor is 5.1.0 or older, so the states are the same on Retail and on Mists Classic, where 5.0.4
 -- resolves to 5.5.0 and 5.1.0 to 5.5.1 through DataAddons/Classic/ContentTimeline.lua.
+-- RecordedClassic / TargetClassic: Classic values where the clients differ (data-5313, whose data differs).
 --
 -- Before 101.1 a three-argument "Until" was read as an open-ended start until 2100 (until-version, data-5313): the
 -- reported tooltip "was temporarily obtainable Mists of Pandaria (pre-patch) (5.0.4) until the end of
@@ -50,7 +51,9 @@ obtainable.Scenarios = {
         Target = "Until Version 5.0.4 .. From Version 4.0.3; state=Current; reports=2"},
     {Name = "data-5313", Id = 5313, -- I Can't Hear You Over the Sound of How Awesome I Am, DataAddons/Shared/04_Cataclysm/AchievementData.lua
         Recorded = "From Version 4.0.3 own .. Until Version 5.0.4; state=Past",
-        Target = "From Version 4.0.3 own .. Until Version 5.0.4; state=Past"}
+        Target = "From Version 4.0.3 own .. Until Version 5.0.4; state=Past",
+        RecordedClassic = "From Version 4.0.3 own .. Until Version 5.0.4; state=Past",
+        TargetClassic = "From Version 4.0.3 own .. Before Version 5.0.4; state=Past"} -- Classic removed it when Mists of Pandaria Classic started
 }
 
 local function DescribeValue(side)
@@ -154,13 +157,16 @@ local function RunScenario(scenario, index)
         got = ObserveFake(index, scenario.Args)
     end
 
+    local isRetail = addon.Util.IsMainline
+    local recorded = (not isRetail and scenario.RecordedClassic) or scenario.Recorded
+    local target = (not isRetail and scenario.TargetClassic) or scenario.Target
     local status, targetMet, tail
     if blocked then
         status, tail = "SKIP", blocked
     else
-        status = got == scenario.Recorded and "PASS" or "FAIL"
-        targetMet = got == scenario.Target
-        tail = ("got=[%s] target=[%s] %s"):format(got, scenario.Target, targetMet and "met" or "open")
+        status = got == recorded and "PASS" or "FAIL"
+        targetMet = got == target
+        tail = ("got=[%s] target=[%s] %s"):format(got, target, targetMet and "met" or "open")
     end
     return {
         Name = scenario.Name,
