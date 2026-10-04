@@ -1094,8 +1094,8 @@ KrowiAF.AchievementData["03_03_00_S"] = {
 	Ach(4521), -- Heroic: The Halls of Reflection
 	Ach(4522), -- Soul Power
 	Ach(4523), -- Three Faced
-	Ach(4524), -- Doesn't Go to Eleven
-	Ach(4525), -- Don't Look Up
+	Ach(4524):Obtainable("Before", "Version", {12, 0, 1}), -- Doesn't Go to Eleven
+	Ach(4525):Obtainable("Before", "Version", {12, 0, 1}), -- Don't Look Up
 	Ach(4526), -- We're Not Retreating; We're Advancing in a Different Direction.
 	Ach(4527), -- The Frostwing Halls (10 player)
 	Ach(4528), -- The Plagueworks (10 player)

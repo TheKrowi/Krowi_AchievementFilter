@@ -112,10 +112,10 @@ KrowiAF.AchievementData["06_00_02"] = {
 	Ach(9024), -- This Is Why We Can't Have Nice Things
 	Ach(9025), -- Icky Ichors
 	Ach(9026), -- Souls of the Lost
-	Ach(9033), -- Ready for Raiding IV
-	Ach(9034), -- Magnify... Enhance
-	Ach(9035), -- I Saw Solis
-	Ach(9036), -- Monomania
+	Ach(9033):Obtainable("Before", "Version", {12, 0, 1}), -- Ready for Raiding IV
+	Ach(9034):Obtainable("Before", "Version", {12, 0, 1}), -- Magnify... Enhance
+	Ach(9035):Obtainable("Before", "Version", {12, 0, 1}), -- I Saw Solis
+	Ach(9036):Obtainable("Before", "Version", {12, 0, 1}), -- Monomania
 	Ach(9037), -- Bloodmaul Slag Mines
 	Ach(9038), -- Iron Docks
 	Ach(9039), -- Auchindoun

@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - The Guild tab no longer shows the browsing history's back and forward buttons on top of Blizzard's Back button: the addon's buttons now show on the addon's own tabs, and Blizzard's tabs keep Blizzard's own navigation (dev note: 12.1 put a Back button in `AchievementFrame.HeaderDetails`, on the spot the browsing-history buttons use. The addon hid it on its own tabs but left its buttons shown on Blizzard's, so on that layout the buttons are now a sub frame of the addon's tabs. Classic is unchanged. Issue #325)
 - On Classic, the world map button no longer disappears once the map is switched between its small and full size, after which it stayed hidden until a reload; it also stays in front of the map with GW2_UI's map skin and Leatrix Maps
+- The heroic dungeon achievements that became feats of strength when Skyreach, Pit of Saron and Seat of the Triumvirate were reworked for Midnight are now marked no longer obtainable since 12.0.1: Ready for Raiding IV, Magnify... Enhance, I Saw Solis, Monomania, Doesn't Go to Eleven, Don't Look Up, Welcome the Void, Let it All Out and Darker Side. On Classic, Doesn't Go to Eleven and Don't Look Up stay obtainable
 
 ## 101.0 - 2026-09-26
 ### Changed
