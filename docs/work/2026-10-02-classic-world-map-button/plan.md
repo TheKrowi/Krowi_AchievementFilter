@@ -1,5 +1,5 @@
 # Plan: The world map button disappears on Classic after resizing the map
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 Approved by Krowi (maintainer) on 2026-10-03 in plan mode. It adds a hook on a Blizzard frame, so it waited for that gate.
 
@@ -27,7 +27,7 @@ On Mists Classic the library parents our button to `WorldMapFrame` at level 2, w
   - The header's suite list names the suite.
 - `.github/copilot-instructions.md`: name the `worldmap` suite in the headless suites paragraph.
 - `Gui/WorldMapButton/WorldMapButton.lua`: `KeepAboveMap(button)` takes the strata after `WorldMapFrame:GetFrameStrata()` in the order BACKGROUND, LOW, MEDIUM, HIGH, DIALOG, FULLSCREEN, FULLSCREEN_DIALOG, TOOLTIP. `Load` keeps the `Add` call and returns early on Retail or when the parent is not `WorldMapFrame`. Otherwise it calls `KeepAboveMap` and `hooksecurefunc(WorldMapFrame, "SetFrameStrata", ...)`.
-- `_Packaging/Changelog.md`: one line under 101.1 `### Fixed`, without a dev note, matching the other 101.1 entries after the maintainer's edit; the root cause stays in `spec.md`.
+- `_Packaging/Changelog.md`: one line under 101.1 `### Fixed`, without a dev note (a dev note is the maintainer's own aside, see the departures); the root cause stays in `spec.md`.
 - `docs/codebase-analysis.md`, at stage 6: the library's `HookDefaultButtons` nil == nil finding on Mists, deferred upstream.
 
 ## Order of work
@@ -62,3 +62,14 @@ On Mists Classic the library parents our button to `WorldMapFrame` at level 2, w
 - In-game after-run on Classic: deploy, `/reload`, `/kaftest worldmap`, `/reload`. `Read-GameTests.ps1 -Client Classic` shows 5 PASS and 0 open, and `Read-GameErrors.ps1 -Client Classic` shows nothing new.
 - Manual check on Classic with RareScanner enabled: the button is visible and clickable in both sizes after several switches.
 - Retail: deploy and `/reload`; the button looks and works as before, and `Read-GameErrors.ps1` shows nothing new.
+
+## Departures from the plan
+- **No separate headless environment.** The runner drives the suite's own `gameEnv` against the Mists map model, so the in-game steps are the code the headless run tests. Retail goes through `Run(env, observations)` and returns no scenarios.
+- **First fix check.** The maintainer's first check of the fix ran the old code, because fsdeploy had not mirrored `WorldMapButton.lua`. Every in-game check since then followed a `Deploy.ps1` run, as the instruction file asks.
+- **Review round 1** (`/code-review` and `taint-reviewer`, 2026-10-03):
+  - **Production code:** `KeepAboveMap` reads a lookup table instead of scanning the ordered list.
+  - **Test:** the suite always tears down, puts the saved `miniWorldMap` CVar back first and restores the map's strata. It gives a truthful reason for a button under the canvas container (Wrath) and says in chat that the run taints the map until the next reload.
+  - **Changelog:** the line drops ElvUI's smaller map (unverified `SetParent` path).
+  - **Not changed:** the reset that puts the button back at HIGH (`maximized-and-minimized` already covers the hook's MEDIUM result); a TOOLTIP or WORLD map (nothing above TOOLTIP exists); the strata list repeated in the test (an independent oracle).
+  - **Deferred** to `docs/codebase-analysis.md` rows 26 to 29: the library's default-button detection, a library-level fix for every consumer, the ElvUI check, and the dead `IsWrathClassic` branches.
+- **Dev note rule.** The maintainer ruled that a dev note is their own aside to players ("this is the change and this is my insight"), never a technical root cause. The changelog line has none. The instruction file, `REVIEW.md`, `CLAUDE.md`, the process-issue and release skills, the taint reviewer and the category migration how-to were corrected in this PR.

@@ -1,5 +1,5 @@
 # Intent: The world map button disappears on Classic after resizing the map
-Author: Krowi (maintainer), captured by Claude. Source: error report (in game, Mists of Pandaria Classic, 2026-10-02). Status: accepted
+Author: Krowi (maintainer), captured by Claude. Source: error report (in game, Mists of Pandaria Classic, 2026-10-02). Status: done
 
 ## Problem
 On Classic, the addon's achievement button at the top right of the world map disappears as soon as the player switches the map between its small and its full-screen size with the maximize/minimize button. Switching back does not bring it back; only a `/reload` does. Until then the player has no way to open the achievements of the map's zone from the map. RareScanner puts a button in the same corner through the same library (Krowi_WorldMapButtons), and its button survives the size change, so the library is not the cause; the way this addon uses it is.

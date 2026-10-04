@@ -1,5 +1,5 @@
 # Spec: The world map button disappears on Classic after resizing the map
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. On Classic, the world map button draws above the map canvas and its pins when the map opens, after it is maximized, after it is minimized again, and after any number of further switches.
