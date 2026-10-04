@@ -114,8 +114,9 @@ All dynamically generated from `KrowiAF.Enum.RewardType`. Chain multiple for ach
 |---|---|---|
 | `"Before", "Version", {M, m, p}` | `Obtainable("Before", "Version", {9, 0, 1})` | Available from the achievement's own patch until the named game version. |
 | `"Before", "Date", {Y, M, D}` | `Obtainable("Before", "Date", {2019, 6, 11})` | Available from the achievement's own patch until a specific calendar date. |
+| `"Until", "Version", {M, m, p}` | `Obtainable("Until", "Version", {5, 0, 4})` | Available from the achievement's own patch **through the end of** the named game version (inclusive). Use it when the patch after the cutoff is not registered (5313 ends with 5.0.4, and 5.0.5 is not registered). |
 
-> **Note:** For both cutoff patterns the start of the window is **not** the argument you write — it is silently set to the achievement's own `BuildVersion.Id`. You only specify the cutoff end.
+> **Note:** For every cutoff pattern the start of the window is **not** the argument you write — it is silently set to the achievement's own `BuildVersion.Id`. You only specify the cutoff end. `Before` and `Until` are the only words a three-argument cutoff takes; `From` and `After` start an open-ended window. Any other word, or a six-argument window that does not run `From`/`After` → `Until`/`Before`, is reported by the data load (`MalformedObtainable`) and fails the headless pipeline. Until 101.1 a three-argument `Until` was silently read as an open-ended start that ran until 2100. When the window opens later than the patch that added the achievement (a season achievement added one patch ahead of its season), a cutoff names the wrong start: use a During or Range pattern.
 
 > **Note:** A `"Version"` value names the patch **as Retail shipped it**, on every client. Retail resolves it to that patch; Classic looks it up in `DataAddons/Classic/ContentTimeline.lua`, which maps each Retail patch to the patch where Classic reached the same content (`["5.4.0"] = "5.5.4"`). On a client that has not reached the patch, an end anchor leaves the achievement obtainable with no end scheduled, and a start anchor reads as future. Never write a Classic version number in a Shared file; write the Retail patch and let Classic's `ContentTimeline` map it.
 
@@ -123,6 +124,7 @@ All dynamically generated from `KrowiAF.Enum.RewardType`. Chain multiple for ach
 
 | Pattern | Example | Description |
 |---|---|---|
+| `"Version", {M, m, p}` | `Obtainable("Version", {5, 5, 4})` | Available during one game version only, from its start through its end. The Mists Classic Season 3 Challenge Mode achievements were added in 5.5.3 but can only be earned from 5.5.4, so a cutoff would name the wrong start. |
 | `"Event", eventId` | `Obtainable("Event", 324)` | Available during each occurrence of a calendar event. |
 | `"Event", eventId, false` | `Obtainable("Event", 1425, false)` | Tied to a calendar event but no longer obtainable in future occurrences. The `false` argument sets `IsNotObtainable = true` on the record. |
 | `"PvP Season", N` | `Obtainable("PvP Season", 38)` | Available while PvP season N is active. |

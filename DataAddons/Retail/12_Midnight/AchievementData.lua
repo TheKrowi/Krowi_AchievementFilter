@@ -683,7 +683,7 @@ KrowiAF.AchievementData["12_00_07"] = {
 	Ach(63241), -- Mythic: Rotmire
 	Ach(63264), -- Heroic Showdowns
 	Ach(63325):HousingDecor(25307), -- Omnium Folio Studies
-	Ach(63343):HousingDecor(23706, 24193, 24194), -- Goal!
+	Ach(63343):HousingDecor(23706, 24193, 24194):Obtainable("Version", {12, 0, 7}), -- Goal!
 	Ach(63348), -- Heroic Slugger
 	Ach(63349):Pet(5073), -- Ultradon Carnage
 	Ach(63383), -- Into the Stars

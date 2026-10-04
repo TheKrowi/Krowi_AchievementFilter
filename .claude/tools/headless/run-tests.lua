@@ -14,7 +14,9 @@
 --         layout options trigger; the option setters themselves live in Options/Layout.lua and only run in game),
 --         navigation (Gui/Gui.lua's tab sub frames, the search box and Gui/BrowsingHistory/BrowsingHistory.lua: which
 --         navigation buttons each tab of the achievement window shows, issue #325), worldmap (Gui/WorldMapButton/ with
---         the Krowi_WorldMapButtons library: whether the button stays in front of the Classic map when it resizes)
+--         the Krowi_WorldMapButtons library: whether the button stays in front of the Classic map when it resizes),
+--         obtainable (Objects/Achievement.lua's SetTemporaryObtainable and Data/TemporaryObtainable.lua: the record an
+--         Obtainable() call stores and the state it gives, on the real data load of client-env.lua)
 --
 -- Retail model is 12.1: the Blizzard_GameMenuEsc handler registry, the UI panel manager (its slots stay
 -- empty because the addon shows the achievement window with a plain Show), UISpecialFrames, static
@@ -706,6 +708,30 @@ suites.worldmap = function(c)
     c.loadAddonFile("Gui/WorldMapButton/WorldMapButton.lua")
     addon.Gui.WorldMapButton:Load() -- Gui/Gui.lua's LoadWithAddon, phase 1
     return worldMap.Run(worldMap.GameEnv, observations), "Tests/WorldMap.lua", observations
+end
+
+-- The real data load of client-env.lua (the one load-data.lua checks), then Data/TemporaryObtainable.lua on top,
+-- which the load itself does not need. The suite drives the addon's own objects, so the game and this run share
+-- every line of it; only the clock is set here, which client-env leaves as a stub because nothing reads it at load.
+suites.obtainable = function(c)
+    local scriptDir = ((arg and arg[0]) or ""):gsub("\\", "/"):match("^(.*)/") or "."
+    local clientEnv = assert(loadfile(scriptDir .. "/client-env.lua"))()
+    local ctx = clientEnv.New(root, c.client)
+    local failures = {}
+    local function fail(label) return function(_, err) failures[#failures + 1] = label .. ": " .. tostring(type(err) == "table" and err.msg or err) end end
+    ctx:LoadFiles{ ParseError = fail("parse"), RuntimeError = fail("load") }
+    ctx:RunPipeline{ StepError = fail("step"), TaskError = fail("task") }
+    assert(#failures == 0, "data load failed (run load-data.lua): " .. tostring(failures[1]))
+    local env, addon = ctx.env, ctx.addon
+    env.time = os.time
+    env.KrowiAF_GetUtcOffsetSeconds = function() return 0 end
+    addon.Tests = { Suites = {}, Ready = {} }
+    for _, rel in ipairs({ "Data/TemporaryObtainable.lua", "Tests/Obtainable.lua" }) do
+        local chunk = assert(loadstring(readFile(root .. "/" .. rel), "@" .. rel))
+        setfenv(chunk, env)
+        chunk("Krowi_AchievementFilter", addon)
+    end
+    return addon.Tests.Obtainable.Run(), "Tests/Obtainable.lua", {}
 end
 
 -------------------------------------------------------------------------------------------------
