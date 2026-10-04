@@ -49,10 +49,10 @@ obtainable.Scenarios = {
     {Name = "swapped-window", Args = {"Until", "Version", {5, 0, 4}, "From", "Version", {4, 0, 3}},
         Recorded = "Until Version 5.0.4 .. From Version 4.0.3; state=Current; reports=2",
         Target = "Until Version 5.0.4 .. From Version 4.0.3; state=Current; reports=2"},
-    {Name = "data-5313", Id = 5313, -- I Can't Hear You Over the Sound of How Awesome I Am, DataAddons/Shared/04_Cataclysm/AchievementData.lua
+    {Name = "data-5313", Id = 5313, -- I Can't Hear You Over the Sound of How Awesome I Am, DataAddons/<Retail|Classic>/04_Cataclysm/AchievementData.lua
         Recorded = "From Version 4.0.3 own .. Until Version 5.0.4; state=Past",
         Target = "From Version 4.0.3 own .. Until Version 5.0.4; state=Past",
-        RecordedClassic = "From Version 4.0.3 own .. Until Version 5.0.4; state=Past",
+        RecordedClassic = "From Version 4.0.3 own .. Before Version 5.0.4; state=Past",
         TargetClassic = "From Version 4.0.3 own .. Before Version 5.0.4; state=Past"} -- Classic removed it when Mists of Pandaria Classic started
 }
 
