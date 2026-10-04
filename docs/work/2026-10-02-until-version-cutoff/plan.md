@@ -72,3 +72,9 @@ The records print the anchor as written, so both clients give the same lines. On
   - the test commit still gives 8 PASS and 4 open per client, and the fix commit 8 PASS and 0 open;
   - every suite passes on both clients with 0 open: escape 23, special 27, navigation 8, obtainable 8, and worldmap 5 on Classic (none on Retail);
   - `load-data … Both` reports 0 problems. Classic's count of version anchors on content it has not reached went from 330 to 332, because of `dev`'s two Shared `12.0.1` anchors (4524, 4525), not this work.
+- **In-game after-run, 2026-10-04:**
+  - Retail 12.1.0 and Mists Classic 5.5.4: `/kaftest obtainable` gave 8 PASS, 0 skipped and 0 open. `Read-GameTests.ps1` marked no line that differs from headless, and `Read-GameErrors.ps1` showed no addon errors.
+  - The Classic tooltips showed three data defects, which the spec's Decision records. Season 3 (61963, 61991) started at 5.5.3 and now uses the During form on 5.5.4. The maintainer aligned Season 2 (61962, 61990) to the During form on 5.5.3. 5313 ended at the end of 5.5.0 on Classic and now has an entry per client, with `Before 5.0.4` on Classic.
+  - No scenario was added for the seasonal achievements. The suite only runs on both clients, and a Retail SKIP fails the lint. Their state would also change from Current to Past when Classic's next patch ships. The 5313 split was recorded test first in `data-5313` (`RecordedClassic`/`TargetClassic`), with 1 open on Classic before the move and 0 after it.
+  - Headless after the corrections: 8 PASS and 0 open on both clients. `load-data … Both` reports 0 problems with the same achievement counts, and `Check-Repo.ps1 -ChangedOnly` is clean.
+- **Not in this work item:** the maintainer's own edits to Goal! (63343) in `DataAddons/Retail/12_Midnight/AchievementData.lua` and its changelog line were made during the after-run. They stay uncommitted and out of this branch.
