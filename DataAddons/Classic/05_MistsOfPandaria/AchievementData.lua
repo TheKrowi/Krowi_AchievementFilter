@@ -80,7 +80,7 @@ KrowiAF.AchievementData["05_05_01"] = {
 
 KrowiAF.AchievementData["05_05_03"] = {
 	Ach(61962):Title():Obtainable("Before", "Version", {5, 5, 4}), -- Realm First! Challenge Conqueror: Platinum (Season 2)
-	Ach(61963):Title():Obtainable("Until", "Version", {5, 5, 4}), -- Realm First! Challenge Conqueror: Platinum (Season 3)
+	Ach(61963):Title():Obtainable("Version", {5, 5, 4}), -- Realm First! Challenge Conqueror: Platinum (Season 3)
 	Ach(61967):Toy(), -- Temple of the Jade Serpent: Platinum
 	Ach(61968):Toy(), -- Stormstout Brewery: Platinum
 	Ach(61969):Toy(), -- Mogu'shan Palace: Platinum
@@ -92,7 +92,7 @@ KrowiAF.AchievementData["05_05_03"] = {
 	Ach(61975):Toy(), -- Siege of Niuzao Temple: Platinum
 	Ach(61987):Other():Obtainable("Never"), -- Challenge Conqueror: Platinum (Season 1)
 	Ach(61990):Other():Obtainable("Before", "Version", {5, 5, 4}), -- Challenge Conqueror: Platinum (Season 2)
-	Ach(61991):Other():Obtainable("Until", "Version", {5, 5, 4}), -- Challenge Conqueror: Platinum (Season 3)
+	Ach(61991):Other():Obtainable("Version", {5, 5, 4}), -- Challenge Conqueror: Platinum (Season 3)
 	Ach(62055):Mount(2638), -- The Mistwalker
 	Ach(62059):Title(), -- Mistborne
 	Ach(62060):Title(), -- Heir to the Mist
