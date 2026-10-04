@@ -80,4 +80,8 @@ The records print the anchor as written, so both clients give the same lines. On
 - **Second in-game after-run, 2026-10-04,** after the corrections:
   - Retail 12.1.0 and Mists Classic 5.5.4: `/kaftest obtainable` gave 8 PASS, 0 skipped and 0 open, with `data-5313` on Classic now `Before Version 5.0.4`. No line differed from headless, and neither client logged addon errors.
   - The maintainer confirmed the tooltips. 5313 reads "until the end of Mists of Pandaria (pre-patch) (5.0.4)" on Retail and "up until the start of Mists of Pandaria (5.5.0)" on Classic. On Classic, 61963 and 61991 read "is temporarily obtainable during Siege of Orgrimmar (5.5.4)", and 61962 and 61990 read "during The Thunder King (5.5.3)".
+- **Review round (`REVIEW.md` passes on PR #333, 2026-10-04):** no findings.
+  - `/code-review` (medium) checked the Case 3 change, `CheckInclusion`, the per-client 5313 entries and the suite's helpers. It noted that `swapped-window` keeps a reversed window Current with 2 reports, which is deliberate: requirement 6 stores the record as before.
+  - The `data-verifier` (pass 4) found every id on the client that registers it (5313 on both builds, the four seasonal ids on Mists Classic 5.5.4). Each id is registered once per client, no reward or title was dropped, and the category snapshot and zone decisions are unchanged.
+  - The taint pass does not apply: the change is data-load code plus one language-server annotation.
 - **Not in this work item:** the maintainer's own edits to Goal! (63343) in `DataAddons/Retail/12_Midnight/AchievementData.lua` and its changelog line were made during the after-run. They stay uncommitted and out of this branch.
