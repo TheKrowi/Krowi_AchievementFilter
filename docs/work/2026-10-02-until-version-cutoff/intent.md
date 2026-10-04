@@ -1,5 +1,5 @@
 # Intent: An "Until" version cutoff reads as obtainable until 2100
-Author: Krowi (maintainer), captured by Claude. Source: error report (in-game screenshot, 2026-10-02). Status: accepted
+Author: Krowi (maintainer), captured by Claude. Source: error report (in-game screenshot, 2026-10-02). Status: done
 
 ## Problem
 On Retail, the tooltip of I Can't Hear You Over the Sound of How Awesome I Am (5313, Bastion of Twilight, Cataclysm) reads "This achievement was temporarily obtainable Mists of Pandaria (pre-patch) (5.0.4) until the end of 2100/01/01 00:00." The range is wrong twice over: the achievement was obtainable from Cataclysm until the end of 5.0.4, and it is not obtainable now, but the sentence names 5.0.4 as a start and 2100 as an end. Release 101.0 changed this achievement's cutoff from `Before 5.0.5` to `Until 5.0.4`. Besides the tooltip, the achievement counts as currently obtainable again, so it shows in the Time Limited category and passes the obtainable filters, and the plugin skins colour it that way.

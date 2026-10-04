@@ -1,5 +1,5 @@
 # Plan: An "Until" version cutoff reads as obtainable until 2100
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 Approved by Krowi (maintainer) on 2026-10-02 in plan mode; it touches the data API, so it waited for that gate.
 
@@ -77,4 +77,7 @@ The records print the anchor as written, so both clients give the same lines. On
   - The Classic tooltips showed three data defects, which the spec's Decision records. Season 3 (61963, 61991) started at 5.5.3 and now uses the During form on 5.5.4. The maintainer aligned Season 2 (61962, 61990) to the During form on 5.5.3. 5313 ended at the end of 5.5.0 on Classic and now has an entry per client, with `Before 5.0.4` on Classic.
   - No scenario was added for the seasonal achievements. The suite only runs on both clients, and a Retail SKIP fails the lint. Their state would also change from Current to Past when Classic's next patch ships. The 5313 split was recorded test first in `data-5313` (`RecordedClassic`/`TargetClassic`), with 1 open on Classic before the move and 0 after it.
   - Headless after the corrections: 8 PASS and 0 open on both clients. `load-data … Both` reports 0 problems with the same achievement counts, and `Check-Repo.ps1 -ChangedOnly` is clean.
+- **Second in-game after-run, 2026-10-04,** after the corrections:
+  - Retail 12.1.0 and Mists Classic 5.5.4: `/kaftest obtainable` gave 8 PASS, 0 skipped and 0 open, with `data-5313` on Classic now `Before Version 5.0.4`. No line differed from headless, and neither client logged addon errors.
+  - The maintainer confirmed the tooltips. 5313 reads "until the end of Mists of Pandaria (pre-patch) (5.0.4)" on Retail and "up until the start of Mists of Pandaria (5.5.0)" on Classic. On Classic, 61963 and 61991 read "is temporarily obtainable during Siege of Orgrimmar (5.5.4)", and 61962 and 61990 read "during The Thunder King (5.5.3)".
 - **Not in this work item:** the maintainer's own edits to Goal! (63343) in `DataAddons/Retail/12_Midnight/AchievementData.lua` and its changelog line were made during the after-run. They stay uncommitted and out of this branch.

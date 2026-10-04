@@ -1,5 +1,5 @@
 # Spec: An "Until" version cutoff reads as obtainable until 2100
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. `Obtainable("Until", <function>, <value>)` with three arguments records an end-only cutoff, the inclusive counterpart of `Obtainable("Before", <function>, <value>)`. The start is the achievement's own patch, set implicitly as for `Before`. The end is `Until <function> <value>`: the achievement is obtainable through the end of that point.
