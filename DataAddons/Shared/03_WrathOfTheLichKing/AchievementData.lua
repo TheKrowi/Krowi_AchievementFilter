@@ -1148,7 +1148,7 @@ KrowiAF.AchievementData["03_03_00_S"] = {
 	Ach(4624):Obtainable("Event", 423), -- Tough Love
 	Ach(4625), -- Invincible's Reins
 	Ach(4626), -- And I'll Form the Head!
-	Ach(4627), -- X-45 Heartbreaker
+	Ach(4627):Obtainable("Event", 423), -- X-45 Heartbreaker
 	Ach(4628), -- Heroic: Storming the Citadel (10 player)
 	Ach(4629), -- Heroic: The Plagueworks (10 player)
 	Ach(4630), -- Heroic: The Crimson Hall (10 player)

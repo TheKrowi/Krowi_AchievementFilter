@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 101.2 - 2026-10-07
+### Added
+- Additional deDE, frFR, ruRU and zhCN localization
+
+### Fixed
+- X-45 Heartbreaker is now marked as obtainable only during Love is in the Air, like Tough Love
+
 ## 101.1 - 2026-10-04
 ### Added
 - BlizzCon 2026 feat of strength, with the BlizzCon Doormat decor reward

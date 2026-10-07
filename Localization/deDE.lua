@@ -6,13 +6,14 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-09-26 13-35-41 ]] --
+-- [[ Exported at 2026-10-07 18-18-32 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
 L["%m/%d/%Y %R"] = "%d.%m.%Y %R"
 L["%Y/%m/%d %I:%M %p"] = true
 L["%Y/%m/%d %R"] = "%d.%m.%Y %R Uhr"
+L["(pre-patch)"] = true
 L["10th Anniversary"] = "10-jähriges Jubiläum"
 L["450 skill"] = "Fertigkeit 450"
 L["525 skill"] = "Fertigkeit 525"
@@ -330,6 +331,8 @@ L["Enable Snapping"] = "Ausrichten aktivieren"
 L["Enable Snapping Desc"] = "Wenn ein geöffnetes Erfolgsfenster in die Nähe eines anderen gezogen wird, wird es unter diesem in einem Stapel fixiert. Durch Verschieben oder Ändern der Größe des obersten Fensters im Stapel wird der gesamte Stapel verschoben bzw. in der Größe angepasst; durch Verschieben oder Ändern der Größe eines beliebigen anderen Fensters im Stapel wird dieser aufgelöst."
 L["Enable Tab Priority"] = "Tab-Priorität aktivieren"
 L["Enable Tab Priority Desc"] = "Aktiviere die Tab-Prioritäts-Option"
+L["Enable taint diagnostics"] = "Fehlerdiagnose aktivieren"
+L["Enable taint diagnostics Desc"] = "Führe in den „Saved Variables“ ein kleines, begrenztes Diagnoseprotokoll aus, um seltene Lua Fehlermeldungen, in denen der Name dieses Add-ons erwähnt wird, leichter aufspüren zu können. Das Protokoll ist schreibgeschützt und hat keinerlei Auswirkungen auf das Spielverhalten."
 L["Enable trace info"] = "Trace-Informationen einschalten"
 L["Enable trace info Desc"] = "Trace-Informationen einschalten/ausschalten"
 L["Enable Upcoming Calendar Events"] = "Aktiviere Anstehende Kalender-Ereignisse"
@@ -484,6 +487,8 @@ L["Export Missing Achievements"] = "Fehlende Erfolge exportieren"
 L["Export Missing Achievements Desc"] = "Exportiere die fehlenden Erfolge. Dies ist eine Debug-Funktion und sollte nicht verwendet werden."
 L["Export Removed Achievements"] = "Entfernte Erfolge exportieren"
 L["Export Removed Achievements Desc"] = "Exportiere die entfernten Erfolge. Dies ist eine Debug-Funktion und sollte nicht verwendet werden."
+L["Export Taint Diagnostics"] = "Fehlerdiagnose exportieren"
+L["Export Taint Diagnostics Desc"] = "Kopiere das Diagnoseprotokoll, das mit den Fehlermeldungen und dem Namen dieses Add-ons erstellt wurde. Gib dieses Protokoll weiter, wenn du bei der Meldung eines Fehlers dazu aufgefordert wirst."
 L["Export to CSV"] = "Als CSV exportieren"
 L["Export to CSV Desc"] = "Als CSV exportieren – Beschreibung"
 L["Eye of the Storm"] = "Auge des Sturms"
@@ -734,6 +739,7 @@ L["Not earned by:"] = "Nicht erzielt durch:"
 L["Not loaded"] = "Nicht Geladen"
 L["Not Obtainable"] = "Nicht Verfügbar"
 L["Not part of set"] = "Nicht Teil des Transmog-Sets"
+L["not yet on this game version"] = "in dieser Spielversion noch nicht verfügbar"
 L["NotCategorized"] = "Nicht kategorisiert"
 L["Number of Earned By characters"] = "Anzahl der {earnedBy} Charaktere"
 L["Number of Earned By characters Desc"] = [=[Die Anzahl der Charaktere, die angezeigt werden, die den Erfolg erlangt haben.
@@ -865,6 +871,7 @@ L["Reset position Desc"] = "Setzt das {frame} auf seine Standardposition zurück
 L["Reset view"] = "Ansicht zurücksetzen"
 L["Reset view on open"] = "Zurücksetzen der Ansicht beim Öffnen"
 L["Reset view on open Desc"] = "Alle geöffneten Kategorien schliessen und die erste Kategorie auswählen."
+L["Return to Karazhan"] = "Rückkehr nach Karazhan"
 L["Return to the Forbidden Reach"] = "Rückkehr auf die Verbotene Insel"
 L["Revelations"] = "Enthüllungen"
 L["Reverse Sort"] = "Umgekehrte Sortierung"
@@ -925,6 +932,9 @@ L["Search Results"] = "Suchergebnisse"
 L["Search Rewards"] = "Suche: Belohnungen"
 L["Searing Gorge"] = "Sengende Schlucht"
 L["Season"] = "Saison"
+L["season from startDate"] = "{season} (von {startDate})"
+L["season from startDate until endDate"] = "{season} ({startDate} - {endDate})"
+L["season until endDate"] = "{season} (bis {endDate})"
 L["Seasonal"] = "Saisonal"
 L["Second column threshold"] = "Zweite Spalte: Schwellenwert"
 L["Second column threshold Desc"] = "Erfolge mit mehr Teilaufgaben als dieser Zahl werden in zwei Spalten statt in einer angezeigt."
@@ -1195,6 +1205,8 @@ L["Warcraft Rumble"] = true
 L["Warsong Gulch"] = "Kriegshymnenschlucht"
 L["was"] = "war"
 L["Watch List"] = "Beobachtungsliste"
+L["week weekNumber of season"] = "Woche {weekNumber} der {season}"
+L["weeks firstWeek to lastWeek of season"] = "{firstWeek} Wochen von {lastWeek} Wochen in {season}"
 L["When achievement completed"] = "Wenn Erfolg abgeschlossen"
 L["When achievement completed Desc"] = [=[Zeigt / verbirgt {objectivesProgress}, wenn die Erfolge abgeschlossen sind.
 
@@ -1205,6 +1217,7 @@ L["Wild Preserve Circuit"] = "Wildreservat-Parcours"
 L["Wild Preserve Slalom"] = "Wildreservat-Slalom"
 L["will be"] = "wird"
 L["Window"] = "Fenster"
+L["Winds of Mysterious Fortune"] = "Winde des mysteriösen Glücks"
 L["Wingrest Roundabout"] = "Schwingenrastkreisel"
 L["Winter Veil"] = "Winterhauch"
 L["Wintergrasp"] = "Tausendwinter"

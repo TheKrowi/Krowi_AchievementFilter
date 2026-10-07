@@ -27,3 +27,9 @@
 - The heroic dungeon achievements that became feats of strength when Skyreach, Pit of Saron and Seat of the Triumvirate were reworked for Midnight are now marked no longer obtainable since 12.0.1: Ready for Raiding IV, Magnify... Enhance, I Saw Solis, Monomania, Doesn't Go to Eleven, Don't Look Up, Welcome the Void, Let it All Out and Darker Side. On Classic, Doesn't Go to Eleven and Don't Look Up stay obtainable
 - I Can't Hear You Over the Sound of How Awesome I Am is no longer listed as Time Limited, and its tooltip reads "temporarily obtainable from the start of Cataclysm (pre-patch) (4.0.3) until the end of Mists of Pandaria (pre-patch) (5.0.4)" instead of naming 5.0.4 as the start and 2100/01/01 as the end; on Mists of Pandaria Classic it ends "up until the start of Mists of Pandaria (5.5.0)". It All Makes Sense Now showed the same wrong sentence. On Mists of Pandaria Classic, so did Challenge Conqueror: Platinum (Season 3) and its Realm First!; they now read "temporarily obtainable during Siege of Orgrimmar (5.5.4)", the patch their season started in, and the Season 2 ones read "during The Thunder King (5.5.3)" to match
 - Goal! is now marked as no longer obtainable: it could only be earned while Richmond was in Silvermoon, during Revelations (12.0.7)
+
+### Added (101.2)
+- Additional deDE, frFR, ruRU and zhCN localization
+
+### Fixed (101.2)
+- X-45 Heartbreaker is now marked as obtainable only during Love is in the Air, like Tough Love
