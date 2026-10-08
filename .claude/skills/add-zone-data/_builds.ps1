@@ -5,9 +5,13 @@
 # Picks the newest build of product `wow` (Retail) and `wow_classic` (Classic). The local list is
 # tried first; if either product is missing there the remote list is used, because the DBC endpoint
 # fetches any build on demand. Never conclude "no Classic build" from the local list alone.
+# To prepare a patch that is still on the PTR, set $env:KAF_RETAIL_PRODUCT = "wowxptr" (or "wowt")
+# before running a script: Retail then resolves to the newest build of that product instead of `wow`.
 # Pre-requisite: the server is running (_start_server.ps1).
 function Get-WowBuilds {
     param([string] $BaseUrl = "http://localhost:5000")
+
+    $retailProduct = if ($env:KAF_RETAIL_PRODUCT) { $env:KAF_RETAIL_PRODUCT } else { 'wow' }
 
     function Read-Builds([string] $url) {
         $resp = Invoke-WebRequest $url -Method POST -Body "draw=1&start=0&length=500" `
@@ -23,11 +27,11 @@ function Get-WowBuilds {
     }
 
     $rows = @(Read-Builds "$BaseUrl/casc/builds")
-    $retail = Pick $rows 'wow'
+    $retail = Pick $rows $retailProduct
     $classic = Pick $rows 'wow_classic'
     if (-not $retail -or -not $classic) {
         $rows = @(Read-Builds "$BaseUrl/casc/builds?remote=true")
-        if (-not $retail) { $retail = Pick $rows 'wow' }
+        if (-not $retail) { $retail = Pick $rows $retailProduct }
         if (-not $classic) { $classic = Pick $rows 'wow_classic' }
     }
     if (-not $retail -or -not $classic) {

@@ -134,8 +134,8 @@ Write-Host "    Agent claimed IDs: $($agentSet.Count)"
 Write-Host ""
 Write-Host "[3] Diffing agent set against authoritative set ..."
 
-$missed = $authoritative | Where-Object { -not $agentSet.Contains($_) } | Sort-Object
-$extra  = $agentSet      | Where-Object { -not $authoritative.Contains($_) } | Sort-Object
+$missed = @($authoritative | Where-Object { -not $agentSet.Contains($_) } | Sort-Object)
+$extra  = @($agentSet      | Where-Object { -not $authoritative.Contains($_) } | Sort-Object)
 
 if ($missed) {
     Add-Error "Agent MISSED $($missed.Count) achievement(s) that should be added: $($missed -join ', ')"
@@ -154,7 +154,7 @@ if ($LuaFile -and (Test-Path $LuaFile)) {
         $m = [regex]::Matches($line, "Ach\((\d+)\)")
         foreach ($match in $m) { [void]$existingIds.Add([int]$match.Groups[1].Value) }
     }
-    $dupes = $agentSet | Where-Object { $existingIds.Contains($_) } | Sort-Object
+    $dupes = @($agentSet | Where-Object { $existingIds.Contains($_) } | Sort-Object)
     if ($dupes) {
         Add-Error "Agent included $($dupes.Count) ID(s) already present in the Lua file (duplicate): $($dupes -join ', ')"
     } else {
