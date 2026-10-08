@@ -14,7 +14,7 @@
     written on /reload or logout, so: Deploy -> /reload in game -> Read-GameErrors.ps1.
 
 .PARAMETER Client
-    Retail (_retail_), Classic (_classic_) or Ptr (_ptr_). Default Retail.
+    Retail (_retail_), Classic (_classic_), Ptr (_ptr_, the wowt test realm) or Xptr (_xptr_, the second test realm, wowxptr). Default Retail.
 
 .PARAMETER Destination
     Overrides the destination folder entirely.
@@ -28,7 +28,7 @@
 #>
 [CmdletBinding()]
 param(
-    [ValidateSet('Retail', 'Classic', 'Ptr')][string]$Client = 'Retail',
+    [ValidateSet('Retail', 'Classic', 'Ptr', 'Xptr')][string]$Client = 'Retail',
     [string]$Destination,
     [switch]$WhatIf
 )
@@ -36,7 +36,7 @@ param(
 $ErrorActionPreference = 'Stop'
 $root = Split-Path (Split-Path $PSScriptRoot -Parent) -Parent   # .claude\tools -> repo root
 $addonName = 'Krowi_AchievementFilter'
-$flavor = @{ Retail = '_retail_'; Classic = '_classic_'; Ptr = '_ptr_' }[$Client]
+$flavor = @{ Retail = '_retail_'; Classic = '_classic_'; Ptr = '_ptr_'; Xptr = '_xptr_' }[$Client]
 if (-not $Destination) { $Destination = "H:\World of Warcraft\$flavor\Interface\AddOns\$addonName" }
 
 $addOnsFolder = Split-Path $Destination -Parent

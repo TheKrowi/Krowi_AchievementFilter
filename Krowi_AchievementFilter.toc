@@ -1,4 +1,4 @@
-## Interface: 120100, 50504, 38002
+## Interface: 120105, 120100, 50504, 38002
 ## Title: Krowi's |cFF1D92C2Achievement Filter|r
 ## X-Prefix: KrowiAF
 ## X-Acronym: KAF

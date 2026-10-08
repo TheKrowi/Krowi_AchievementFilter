@@ -22,7 +22,7 @@ Given a list of achievement IDs, the parent agent does everything itself; there 
    ```powershell
    & ".claude\skills\add-zone-data\_start_server.ps1"
    ```
-   The script starts wow.tools.local if needed and waits up to 60 s (the first start can take longer; rerun once). If it is still unreachable, **stop**; every lookup would return NOT_FOUND. Build strings are never typed by hand: every script dot-sources `_builds.ps1`, which picks the newest `wow` (Retail) and `wow_classic` (Classic) build from `/casc/builds` (falling back to `?remote=true`).
+   The script starts wow.tools.local if needed and waits up to 60 s (the first start can take longer; rerun once). If it is still unreachable, **stop**; every lookup would return NOT_FOUND. Build strings are never typed by hand: every script dot-sources `_builds.ps1`, which picks the newest `wow` (Retail) and `wow_classic` (Classic) build from `/casc/builds` (falling back to `?remote=true`). To prepare a patch that is still on the PTR, set `$env:KAF_RETAIL_PRODUCT = "wowxptr"` (or `"wowt"`) in the shell first: Retail then resolves to the newest build of that product, so the new ids and their criteria are found. New maps of such a patch are not in `raw/MapVerifier.csv` until they are verdicted in game (`sync-mapverifier`); their entries wait for that.
 1. **Look up every id** with `_lookup_ids.ps1` (both builds; `builds=` in the output says where the id exists). Then apply the Skip rules and, for the rest, `_check_zonedata.ps1` (already placed?), `_zone_search.ps1` / `_linkgroups_search.ps1` (which map, which link group), and `_lookup_criteria.ps1` (the game's own list of zones, NPCs or bosses behind the achievement; this is the fact Rules 2, 3 and 9 demand).
 2. **Edit the ZoneData.lua files** (one per expansion, see below) following the Entry Type Rules.
 3. **Validate** (Step 3).
@@ -46,7 +46,8 @@ DataAddons/Shared/ZoneData.lua                     ← cross-expansion (shared.*
 | Script | Placeholder | Purpose | Output |
 |---|---|---|---|
 | `_lookup_ids.ps1` | `$ids = @()` | DB lookup on both builds (exact id match) | `id\|Title\|Description\|builds=retail,classic` or `id\|NOT_FOUND\|\|builds=` |
-| `_lookup_criteria.ps1` | `$ids = @()` | Criteria tree: the zone/NPC/boss names the game uses per criterion | header line per id, indented criteria |
+| `_lookup_criteria.ps1` | `$ids = @()` | Criteria tree: the zone/NPC/boss names the game uses per criterion, with each criterion's type and asset (8 achievement, 27 quest, 46 faction) | header line per id, indented criteria |
+| `_lookup_quest_maps.ps1` | `$ids = @()` | Quest ids (a type 27 asset) → the maps of their quest POIs (`questpoiblob`); objective -1 is the turn-in | `quest\|objective=N\|uiMap=id name (verdict)` or `quest\|NO_POI` |
 | `_check_zonedata.ps1` | `$ids = @()` | Is the id already in a `Zone()` entry, on which primaries, in which files (parses the Lua) | `id\|PRESENT\|primaries=...\|maps=...\|files=...` or `id\|NOT_PRESENT` |
 | `_zone_search.ps1` | `$terms = @()` | Search `raw/MapVerifier.csv` by map name (partial, case-insensitive regex) | `term\|id\|name\|verdict\|expansion\|link` |
 | `_linkgroups_search.ps1` | `$ids = @()` | Link group (primary map id) for any map id | `id\|primary=N\|primaryName=...\|ids=...` |
@@ -141,7 +142,7 @@ cd "e:\World of Warcraft Addon Development\Krowi_AchievementFilter"
 & ".claude\skills\add-zone-data\_check_scripts_reset.ps1"
 ```
 
-`Evaluate-ZoneCriteria.ps1` is the Rule 2/3 fact-checker: its `[R2 ]` and `[R3 ]` lines are placement errors, `[R2? ]` (inner map, decision D8) and `[R3+ ]` (meta on a map no child is on) are information. For a batch of edits, write a plan file (`map,token,op` lines) and apply it with `_apply_zone_plan.ps1 -PlanFile <path>` (`-WhatIf` first): it inserts `N, -- Title` lines (titles from the cached export) or table references into the right `Zone()` block by primary map id, or removes them, and keeps CRLF. Quest-chain facts (Rule 5) come from the `questpoiblob` export in the same cache: quest id → UiMapID.
+`Evaluate-ZoneCriteria.ps1` is the Rule 2/3 fact-checker: its `[R2 ]` and `[R3 ]` lines are placement errors, `[R2? ]` (inner map, decision D8) and `[R3+ ]` (meta on a map no child is on) are information. For a batch of edits, write a plan file (`map,token,op` lines) and apply it with `_apply_zone_plan.ps1 -PlanFile <path>` (`-WhatIf` first): it inserts `N, -- Title` lines (titles from the cached export) or table references into the right `Zone()` block by primary map id, or removes them, and keeps CRLF. Quest-chain facts (Rule 5) come from `_lookup_quest_maps.ps1` (`questpoiblob`: quest id → UiMapID); a quest with no POI there needs Warcraft Wiki or Wowhead.
 
 Both evaluators resolve the builds themselves. `Evaluate-ZoneDataDecisions.ps1` prints `[ERROR]`, `[WARN ]`, `[INFO ]` lines with a check id (S-* structure, L-* log vs ZoneData, D-* log vs DB) and exits 1 on any ERROR. Its offline subset also runs from `Check-Repo.ps1` (rule `zone-decisions`) whenever the log or a ZoneData file changed.
 

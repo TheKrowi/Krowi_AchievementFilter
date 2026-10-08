@@ -247,8 +247,9 @@ foreach ($line in $lines) {
         ID          = $eId
         Comment     = $eComment
         HasTitle    = [bool]($eChain -match ':Title\(\)')
-        HasMount    = [bool]($eChain -match ':Mount\(\)')
-        HasPet      = [bool]($eChain -match ':Pet\(\)')
+        # :Mount, :Pet and :HousingDecor take optional reward-preview ids (mount id, species id, decor record ids)
+        HasMount    = [bool]($eChain -match ':Mount\([\d,\s]*\)')
+        HasPet      = [bool]($eChain -match ':Pet\([\d,\s]*\)')
         HasItem     = [bool]($eChain -match ':Item\(\)')
         HasToy      = [bool]($eChain -match ':Toy\(\)')
         HasTransmog   = [bool]($eChain -match ':Transmog\(\)')
@@ -257,7 +258,7 @@ foreach ($line in $lines) {
         HasTabard     = [bool]($eChain -match ':Tabard\(\)')
         HasGarrison   = [bool]($eChain -match ':Garrison\(\)')
         HasAlliedRace = [bool]($eChain -match ':AlliedRace\(\)')
-        HasHousingDecor   = [bool]($eChain -match ':HousingDecor\(\)')
+        HasHousingDecor   = [bool]($eChain -match ':HousingDecor\([\d,\s]*\)')
         HasTradersTender  = [bool]($eChain -match ':TradersTender\(\)')
         HasRemixBronze    = [bool]($eChain -match ':RemixBronze\(\)')
         HasKeystoneResilience = [bool]($eChain -match ':KeystoneResilience\(\)')

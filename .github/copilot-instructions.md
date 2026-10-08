@@ -54,9 +54,9 @@ Get-ChildItem -Recurse -Filter *.lua | Where-Object FullName -notlike '*\.claude
 - **Closing the loop with the game**: `Deploy.ps1` mirrors the addon into the client's AddOns folder (incremental, `-WhatIf` to preview), you `/reload` in game, then `Read-GameErrors.ps1` prints the errors BugGrabber recorded for this addon and `Read-GameTests.ps1` prints the last `/kaftest` run with every line that differs from the headless run marked. Saved variables are written only on `/reload` or logout, so both readers show when the file was last written.
 
 ```powershell
-& ".claude\tools\Deploy.ps1" -WhatIf                    # -Client Classic|Ptr
-& ".claude\tools\Read-GameErrors.ps1"                   # -Hours 0 -All -Client Classic
-& ".claude\tools\Read-GameTests.ps1"                    # -Client Classic
+& ".claude\tools\Deploy.ps1" -WhatIf                    # -Client Classic|Ptr|Xptr (Xptr = _xptr_, the second test realm)
+& ".claude\tools\Read-GameErrors.ps1"                   # -Hours 0 -All -Client Classic|Ptr|Xptr
+& ".claude\tools\Read-GameTests.ps1"                    # -Client Classic|Ptr|Xptr
 ```
 
 - **Semicolon strip** `Strip-Semicolons.ps1`: removes trailing statement semicolons (a field separator inside a table constructor becomes a comma) through the lexer-aware `lua51/strip-semicolons.lua`, and replaces a file only when `luac -s` produces byte-identical bytecode before and after. Scope is every tracked `.lua` outside `Libs/` and the non-addon folders; `-DryRun` reports without writing, `-Path` limits it to given files.

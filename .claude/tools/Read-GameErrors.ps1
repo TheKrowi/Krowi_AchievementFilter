@@ -12,7 +12,7 @@
     not in the file until the next /reload. The header shows when the file was last written.
 
 .PARAMETER Client
-    Retail (_retail_), Classic (_classic_) or Ptr (_ptr_). Default Retail.
+    Retail (_retail_), Classic (_classic_), Ptr (_ptr_, the wowt test realm) or Xptr (_xptr_, the second test realm, wowxptr). Default Retail.
 
 .PARAMETER Hours
     Only errors from the last N hours. Default 24. Use 0 for everything.
@@ -32,7 +32,7 @@
 #>
 [CmdletBinding()]
 param(
-    [ValidateSet('Retail', 'Classic', 'Ptr')][string]$Client = 'Retail',
+    [ValidateSet('Retail', 'Classic', 'Ptr', 'Xptr')][string]$Client = 'Retail',
     [double]$Hours = 24,
     [switch]$All,
     [string]$Account,
@@ -41,7 +41,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $root = Split-Path (Split-Path $PSScriptRoot -Parent) -Parent   # .claude\tools -> repo root
-$flavor = @{ Retail = '_retail_'; Classic = '_classic_'; Ptr = '_ptr_' }[$Client]
+$flavor = @{ Retail = '_retail_'; Classic = '_classic_'; Ptr = '_ptr_'; Xptr = '_xptr_' }[$Client]
 $wtf = "H:\World of Warcraft\$flavor\WTF\Account"
 if (-not (Test-Path -LiteralPath $wtf)) { throw "No WTF\Account folder for $Client at $wtf" }
 

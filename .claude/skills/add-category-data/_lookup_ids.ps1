@@ -1,6 +1,4 @@
 # Overwrite $ids before running. wow.tools.local must already be running.
-# Overwrite $ids before running. wow.tools.local must already be running.
-# Overwrite $ids before running. wow.tools.local must already be running.
 $ids = @()
 $build = "12.1.0.68914"
 $baseUrl = "http://localhost:5000"
@@ -17,7 +15,7 @@ foreach ($id in $ids) {
     $key = "$id"
     if ($byId.ContainsKey($key)) {
         $row = $byId[$key]
-        Write-Host "$id|$($row[1])|$($row[2])|$($row[5])|$($row[7])|$($row[0])"  # id|Title_lang|Reward_lang|Faction|Category|Description_lang
+        Write-Host "$id|$($row[1])|$($row[2])|$($row[5])|$($row[7])|$($row[0])|flags=0x$(([int]$row[10]).ToString('X'))"  # id|Title_lang|Reward_lang|Faction|Category|Description_lang|Flags (0x100000 = hidden)
     } else {
         Write-Host "$id|NOTFOUND"
     }

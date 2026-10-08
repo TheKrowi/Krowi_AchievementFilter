@@ -116,6 +116,9 @@ zoneData:Zone(2393, { -- Silvermoon City (city)
     61839, -- Midnight Pathfinder
     42045, -- Midnight
     62110, -- Loremaster of Midnight
+    63657, -- Aqir Research Associate
+    63659, -- Bane of the Swarm
+    63519, -- The Promise of Tomorrow
 })
 
 zoneData:Zone({2395, 2579}, { -- Eversong Woods (zone)
@@ -140,6 +143,25 @@ zoneData:Zone({2395, 2579}, { -- Eversong Woods (zone)
     61453, -- Making an Amani Out of You
     61839, -- Midnight Pathfinder
     60891, -- The Crimson Rogue
+    62498, -- Void Assault: Eversong
+    62507, -- Void Smasher: Eversong
+    62508, -- Void Eradicator: Eversong
+    62509, -- Void Bane: Eversong
+    62513, -- Outstanding in the Field
+    62518, -- Cosmic Exterminator
+    62563, -- Void Response Team
+    62568, -- Void Shmoid
+    62569, -- Traces in the Dark
+    62570, -- Cosmic Slayer
+    62571, -- Everybody Gets One
+    62572, -- Battery Bombardment
+    62573, -- Air Traffic Controller
+    62574, -- Accolade to Rest
+    63680, -- Driving Back the Swarm
+    63658, -- No Hives Left Standing
+    63657, -- Aqir Research Associate
+    63659, -- Bane of the Swarm
+    63519, -- The Promise of Tomorrow
 })
 
 zoneData:Zone({2405, 2526, 2527, 2581, 2582}, { -- Voidstorm (zone), Lair of Predaxas, Voidburrow
@@ -194,6 +216,8 @@ zoneData:Zone({2413, 2522, 2523, 2576}, { -- Harandar (zone)
 zoneData:Zone({2424, 2649}, { -- Isle of Quel'Danas (zone)
     62191, -- Call of the Light
     42117, -- The War of Light and Shadow
+    62606, -- The Sunstrider Omnium
+    63325, -- Omnium Folio Studies
 })
 
 zoneData:Zone(2427, { -- Sporefall (raid)
@@ -236,6 +260,7 @@ zoneData:Zone({2433, 2434, 2435}, { -- Murder Row (dungeon)
     62449, -- Midnight Keystone Legend: Season 2
     62436, -- Venomous Hero: Midnight Season 2
     63473, -- Sssensational!
+    63690, -- Midnight Keystone Myth: Season 2
 })
 
 zoneData:Zone({2437, 2536, 2580, 2583, 2584}, { -- Zul'Aman (zone)
@@ -266,6 +291,25 @@ zoneData:Zone({2437, 2536, 2580, 2583, 2584}, { -- Zul'Aman (zone)
     61839, -- Midnight Pathfinder
     63639, -- Ula'tek Uncoiled
     60891, -- The Crimson Rogue
+    62499, -- Void Assault: Zul'Aman
+    62510, -- Void Smasher: Zul'Aman
+    62511, -- Void Eradicator: Zul'Aman
+    62512, -- Void Bane: Zul'Aman
+    62513, -- Outstanding in the Field
+    62518, -- Cosmic Exterminator
+    62563, -- Void Response Team
+    62568, -- Void Shmoid
+    62569, -- Traces in the Dark
+    62570, -- Cosmic Slayer
+    62571, -- Everybody Gets One
+    62572, -- Battery Bombardment
+    62573, -- Air Traffic Controller
+    62574, -- Accolade to Rest
+    63680, -- Driving Back the Swarm
+    63658, -- No Hives Left Standing
+    63657, -- Aqir Research Associate
+    63659, -- Bane of the Swarm
+    63519, -- The Promise of Tomorrow
 })
 
 zoneData:Zone(2444, { -- Slayer's Rise (zone)
@@ -364,6 +408,7 @@ zoneData:Zone(2500, { -- The Blinding Vale (dungeon)
     62449, -- Midnight Keystone Legend: Season 2
     62436, -- Venomous Hero: Midnight Season 2
     63473, -- Sssensational!
+    63690, -- Midnight Keystone Myth: Season 2
 })
 
 zoneData:Zone(2501, { -- Maisara Caverns (dungeon)
@@ -520,6 +565,7 @@ zoneData:Zone({2513, 2514, 2564}, { -- Den of Nalorakk (dungeon)
     62449, -- Midnight Keystone Legend: Season 2
     62436, -- Venomous Hero: Midnight Season 2
     63473, -- Sssensational!
+    63690, -- Midnight Keystone Myth: Season 2
 })
 
 zoneData:Zone(2525, { -- The Darkway (delve)
@@ -698,6 +744,7 @@ zoneData:Zone({2572, 2573, 2574}, { -- Voidscar Arena (dungeon)
     62449, -- Midnight Keystone Legend: Season 2
     62436, -- Venomous Hero: Midnight Season 2
     63473, -- Sssensational!
+    63690, -- Midnight Keystone Myth: Season 2
 })
 
 zoneData:Zone({2588, 2589, 2590}, { -- Altar of Fangs (dungeon)
@@ -733,6 +780,7 @@ zoneData:Zone({2588, 2589, 2590}, { -- Altar of Fangs (dungeon)
     62449, -- Midnight Keystone Legend: Season 2
     62436, -- Venomous Hero: Midnight Season 2
     63473, -- Sssensational!
+    63690, -- Midnight Keystone Myth: Season 2
 })
 
 local valAndNaigtal = {
@@ -785,6 +833,7 @@ zoneData:Zone({2512, 2639, 2640, 2641, 2642, 2643, 2644, 2645}, { -- The Coiled 
     63167, -- Tour of Duty: The Coiled Isle
     63631, -- Captain Tokka's Crew
     63635, -- Tokka's Terrible Trials
+    63519, -- The Promise of Tomorrow
 })
 
 zoneData:Zone({2509, 2613, 2636, 2637, 2638}, { -- Vaults of Atal'Utek (zone)
@@ -801,6 +850,7 @@ zoneData:Zone({2509, 2613, 2636, 2637, 2638}, { -- Vaults of Atal'Utek (zone)
     63630, -- Assault the Vault
     63636, -- Fully Corroded
     63653, -- Pro Poison Patroller
+    63519, -- The Promise of Tomorrow
 })
 
 zoneData:Zone(2635, { -- Gnarldor Isle (delve)
@@ -834,7 +884,7 @@ zoneData:Zone({2606, 2607, 2608, 2609, 2610}, { -- The Venomous Abyss (raid)
     63650, -- Ahead of the Curve: Ula'tek
     63651, -- Cutting Edge: Ula'tek
     62352, -- Nothing to See Here
-    63670, -- Comforting Da Spirits
+    63670, -- Comforting De Spirits
     63472, -- Fang Fatale
     63418, -- Well, Well, Little Sky
     63250, -- Is Venom Stasis A Joke To You?
