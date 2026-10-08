@@ -809,7 +809,7 @@ KrowiAF.AchievementData["12_01_00"] = {
 	Ach(63391), -- Jumping Through Hoops
 	Ach(63395), -- The Coiled Isles Glyph Hunter
 	Ach(63397), -- Kept You Waiting Huh?
-	Ach(63400), -- Tricks and Treats of Midnight
+	Ach(63400):Obtainable("Event", 324), -- Tricks and Treats of Midnight
 	Ach(63415), -- Prey: Coiled Nightmares
 	Ach(63416), -- That's a Wrap
 	Ach(63418), -- Well, Well, Little Sky
@@ -885,7 +885,7 @@ KrowiAF.AchievementData["12_01_00"] = {
 	Ach(63656), -- Taking a Bite out of Slime
 	Ach(63662):Toy(), -- Student of Hissstory
 	Ach(63669), -- Watch Out Behind You
-	Ach(63670), -- Comforting Da Spirits
+	Ach(63670), -- Comforting De Spirits
 	Ach(63679), -- In Case Of Emergency
 	Ach(63681), -- Heroic: Nymrissa Wavecaller
 	Ach(63682), -- Mythic: Nymrissa Wavecaller
@@ -898,4 +898,38 @@ KrowiAF.AchievementData["12_01_00"] = {
 	Ach(63699):IsPvP(), -- World Wide Trainer
 	Ach(63838), -- Zul'jarra's Forces Champion
 	Ach(64140):TradersTender():Obtainable("Event", 1636), -- Winds of Particularly Mysterious Fortune
+}
+
+KrowiAF.AchievementData["12_01_05"] = {
+	Ach(62500):Obtainable("Event", 324), -- Sweet Tooth
+	Ach(62501):Obtainable("Event", 324), -- I Ain't Afraid of no Ghost
+	Ach(62502):Obtainable("Event", 141), -- Master of Merry Mayhem
+	Ach(63519):Title(), -- The Promise of Tomorrow
+	Ach(63657), -- Aqir Research Associate
+	Ach(63658), -- No Hives Left Standing
+	Ach(63659):Title(), -- Bane of the Swarm
+	Ach(63680), -- Driving Back the Swarm
+	Ach(63690):Mount():Title():PvE(18), -- Midnight Keystone Myth: Season 2
+	Ach(63692), -- Kith'ix
+	Ach(63693), -- Heroic: Kith'ix
+	Ach(63694), -- Mythic: Kith'ix
+	Ach(63714):Obtainable("From", "Date", {2026, 11, 17}, "Until", "Date", {2026, 12, 8}), -- WoW's 22nd Anniversary
+	Ach(63715):Mount(3144):PvE(18), -- Let Me Solo Him: Kindo'jan
+	Ach(63716):Title(), -- The First Hash'ey
+	Ach(63717):Title(), -- Kindo'jan's Labyrinth Discoveries
+	Ach(63718), -- Lock and Key
+	Ach(63719):Title(), -- Lock and Key Master
+	Ach(63720), -- Happy Hexmask Collector
+	Ach(63721), -- The Labyrinth of Kindo'jan
+	Ach(63722):Title(), -- Whose Labyrinth?
+	Ach(63723), -- My Labyrinth
+	Ach(63724), -- Knock Knock
+	Ach(63727), -- Treasures Upon Treasures
+	Ach(63728), -- A Few More Can't Hurt
+	Ach(63830), -- Fungal Not Frugal
+	Ach(64039):Title():PvE(18):Weeks(9), -- Fabled Let Me Solo Him: Kindo'jan
+	Ach(64118):Title():PvE(18), -- The Labyrinth of Kindo'jan: One-Champion Army
+	Ach(64160):Obtainable("Event", 324), -- Duskwood Caramel Crafter
+	Ach(64161):Obtainable("Event", 324), -- Felwood Fudge Bite Former
+	Ach(64162):Obtainable("Event", 324), -- Drustvar Choc-O-Drop Designer
 }

@@ -7,6 +7,8 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-07 18-18-36 ]] --
+L["Aqir Invasions"] = "Invasiones aqir"
+L["The Promise of Tomorrow"] = "La promesa del mañana"
 L["5th Anniversary Celebration"] = "Celebración del 5.º aniversario"
 L["Alchemy"] = "Alquimia"
 L["Alterac Valley"] = "Valle de Alterac"

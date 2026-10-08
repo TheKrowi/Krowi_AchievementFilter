@@ -100,6 +100,41 @@ if ($Version -and $clVersion -and $clVersion -ne $Version) { Fail "Expected vers
 $interface = (Select-String -Path $toc -Pattern '^## Interface:\s*(.+)$').Matches[0].Groups[1].Value
 Warn "TOC Interface: $interface  (confirm this matches the live game builds)"
 
+# --- In-game suites on the newest Retail client ------------------------------
+# Suites that model Blizzard UI code a patch can change. Their last in-game run (/kaftest <suite>, then /reload) must be
+# green on the newest Retail version the TOC claims, on live or a test realm, before that version ships.
+$suitesOnNewestClient = @('escape')
+$retailInterface = @($interface -split '[,\s]+' | Where-Object { $_ -match '^\d+$' -and [int]$_ -ge 100000 } | ForEach-Object { [int]$_ } | Sort-Object -Descending | Select-Object -First 1)
+if ($retailInterface) {
+    $i = $retailInterface[0]
+    $newest = [version]("{0}.{1}.{2}" -f [math]::Floor($i / 10000), ([math]::Floor($i / 100) % 100), ($i % 100))
+    $lua = Join-Path $repo '.claude\tools\lua51\lua.exe'
+    $reader = Join-Path $repo '.claude\tools\headless\read-runs.lua'
+    $runs = foreach ($flavor in '_retail_', '_ptr_', '_xptr_') {
+        $wtf = "H:\World of Warcraft\$flavor\WTF\Account"
+        if (-not (Test-Path -LiteralPath $wtf)) { continue }
+        foreach ($sv in Get-ChildItem -LiteralPath $wtf -Directory | ForEach-Object { Join-Path $_.FullName 'SavedVariables\Krowi_AchievementFilter.lua' } | Where-Object { Test-Path -LiteralPath $_ }) {
+            foreach ($line in @(& $lua $reader $sv 2>$null)) {
+                $f = "$line" -split '\|'
+                if ($f.Count -lt 6) { continue }
+                $build = $null; [void][version]::TryParse($f[1], [ref]$build)
+                [pscustomobject]@{ Suite = $f[0]; Build = $build; Failed = [int]$f[3]; Time = $f[5]; Flavor = $flavor }
+            }
+        }
+    }
+    foreach ($suite in $suitesOnNewestClient) {
+        $mine = @($runs | Where-Object { $_.Suite -eq $suite -and $_.Build })
+        $green = @($mine | Where-Object { $_.Build -ge $newest -and $_.Failed -eq 0 })
+        if ($green.Count -gt 0) {
+            $g = $green | Sort-Object Build, Time -Descending | Select-Object -First 1
+            Pass "In-game '$suite' suite green on $($g.Build) ($($g.Flavor), $($g.Time))"
+        } else {
+            $seen = if ($mine.Count -gt 0) { ($mine | Sort-Object Build, Time -Descending | ForEach-Object { "$($_.Build) $($_.Flavor) failed=$($_.Failed)" }) -join '; ' } else { 'no run found' }
+            Fail "In-game '$suite' suite has no green run on $newest or later (TOC Interface $i): run /kaftest $suite on that client and /reload. Seen: $seen"
+        }
+    }
+}
+
 # --- Tag --------------------------------------------------------------------
 $tag = $tocVersion
 if (git -C $repo tag -l $tag) { Fail "Tag $tag already exists locally" }

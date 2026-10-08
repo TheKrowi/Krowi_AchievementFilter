@@ -44,6 +44,7 @@ It checks:
 - Top `Changelog.md` entry has a version and a date, and the date equals the day the script runs. A stale date blocks the release; update it to today before packaging.
 - TOC `## Version:` equals the changelog version.
 - Tag does not already exist locally or on origin. The tool would force-overwrite it.
+- The `escape` suite, which models Blizzard's Escape chain, has a green in-game run (`/kaftest escape`, then `/reload`) on the newest Retail version the TOC's `## Interface:` claims, read from the live, PTR and second-PTR (`_xptr_`) saved variables. A new interface number therefore blocks the release until the suite has run on that client; when it differs from the headless model, update the model in `.claude/tools/headless/run-tests.lua` before releasing. Not something to bypass: run the suite.
 - The addon manager and its venv exist.
 
 Fix what it reports. Typical fixes, in order of likelihood:

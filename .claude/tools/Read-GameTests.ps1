@@ -16,7 +16,7 @@
     the file until the next /reload. The header shows when the file was last written.
 
 .PARAMETER Client
-    Retail (_retail_), Classic (_classic_) or Ptr (_ptr_). Default Retail.
+    Retail (_retail_), Classic (_classic_), Ptr (_ptr_, the wowt test realm) or Xptr (_xptr_, the second test realm, wowxptr). Default Retail.
 
 .PARAMETER Account
     Account folder name (e.g. 133658957#1) instead of the most recently written file.
@@ -27,13 +27,13 @@
 #>
 [CmdletBinding()]
 param(
-    [ValidateSet('Retail', 'Classic', 'Ptr')][string]$Client = 'Retail',
+    [ValidateSet('Retail', 'Classic', 'Ptr', 'Xptr')][string]$Client = 'Retail',
     [string]$Account
 )
 
 $ErrorActionPreference = 'Stop'
 $root = Split-Path (Split-Path $PSScriptRoot -Parent) -Parent   # .claude\tools -> repo root
-$flavor = @{ Retail = '_retail_'; Classic = '_classic_'; Ptr = '_ptr_' }[$Client]
+$flavor = @{ Retail = '_retail_'; Classic = '_classic_'; Ptr = '_ptr_'; Xptr = '_xptr_' }[$Client]
 $wtf = "H:\World of Warcraft\$flavor\WTF\Account"
 if (-not (Test-Path -LiteralPath $wtf)) { throw "No WTF\Account folder for $Client at $wtf" }
 
@@ -58,7 +58,8 @@ $age = (Get-Date) - $file.LastWriteTime
 # the headless lines for every suite, so the game's lines can be marked against the model's
 $headless = Join-Path ([IO.Path]::GetTempPath()) 'KrowiAF-headless-tests.txt'
 $ErrorActionPreference = 'Continue'
-& $lua $runner $root -client $Client 2>&1 | ForEach-Object { "$_" } | Set-Content -LiteralPath $headless
+$model = if ($Client -eq 'Classic') { 'Classic' } else { 'Retail' }   # the test realms run the Retail client
+& $lua $runner $root -client $model 2>&1 | ForEach-Object { "$_" } | Set-Content -LiteralPath $headless
 $ErrorActionPreference = 'Stop'
 & $lua $reader $file.FullName $headless
 $code = $LASTEXITCODE

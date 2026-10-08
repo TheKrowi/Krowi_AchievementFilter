@@ -109,6 +109,9 @@ function tests.Run(name, waitSeconds)
         Notes = notes, -- index = line index; only lines where Blizzard state outside the scenario could have consumed a press
         Observations = observations and CopyTable(observations) or nil
     }
+    -- the latest run of every suite, for the release preflight (.claude/skills/release/Check-ReleaseReady.ps1)
+    GetDb().Runs = GetDb().Runs or {}
+    GetDb().Runs[name] = GetDb().LastRun
 end
 
 SLASH_KAFTEST1 = "/kaftest"
