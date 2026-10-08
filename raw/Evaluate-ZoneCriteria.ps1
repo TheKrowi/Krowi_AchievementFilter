@@ -72,7 +72,8 @@ $noPropagate = @()
 $skipMetas = @(1463, 6829,
     12445, 12446, 12447, 12448, 13089, 13092, 13159, 13160, 13991, 13993, 13258, 13259, 16414, 20480, 40024, 40028, 41085,
     40193, 40315,   # Into the Storm (copy), [HIDDEN] Now THIS is Dragon Racing!: hidden copies, not registered
-    63263)          # [DNT]Midnight Keystone Myth: Season 1 Personal Achievement: hidden, not registered
+    63263,          # [DNT]Midnight Keystone Myth: Season 1 Personal Achievement: hidden, not registered
+    63689)          # [DNT]Midnight Keystone Myth: Season 2 Personal Achievement: hidden, not registered
 
 # --- 1. tables ---------------------------------------------------------------------------------------
 if (-not $Build) { $Build = (Get-WowBuilds -BaseUrl $baseUrl).Retail }
