@@ -1,5 +1,5 @@
 # Spec: Transmog set progress in the achievement tooltip stops working on 12.1.5
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. On Retail 12.1.5 and later, hovering an achievement with transmog set data (for example 40469 I'm Bringing Nerub-ack, or 16395 Vaulternative Fashion) shows the transmog set progress lines under "Objectives progress", not a "Collecting data" that never resolves. This holds whether or not the client loads Blizzard's deprecated API fallbacks.

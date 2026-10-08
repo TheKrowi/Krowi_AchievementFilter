@@ -1,5 +1,5 @@
 # Plan: Transmog set progress in the achievement tooltip stops working on 12.1.5
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 Approved by Krowi (maintainer) on 2026-10-08. The reproduction (steps 1 and 2) is built that day. The in-game before-run (step 3) and the after-run happen the same evening, because the maintainer cannot play earlier, so the fix (step 5) waits for the before-run.
 
@@ -7,6 +7,11 @@ Departures, 2026-10-08:
 - **`removed-api` checks every addon file, also with `-ChangedOnly`, and counts as always-on.** A removed API breaks files nobody touched, and the Stop hook only lints changed files. The step 1 proof is therefore `-ChangedOnly` as planned, and it shows all three findings.
 - **The in-game scenario builds the whole tooltip** through `addon.Gui.AchievementTooltip:ShowTooltip`, instead of calling the section's `CheckAdd` and `Add`. The section is a file local, and the tooltip finds it only by load order. Inspect therefore looks for "Collecting data" anywhere in the tooltip.
 - **The reproduction is committed before the in-game before-run.** The run happens the same evening; if it is not green, the scenario is corrected before the fix.
+- **The before-run ran on the 12.1.5 PTR (12.1.5.70077),** where the global is really gone, not on live 12.1.0. #335 (the reproduction) was not merged yet, so the PTR got a local merge of `dev` (with #334) into this branch. Result, 0 differences from headless: `tooltip/transmog-set-progress: PASS id=40469 recorded=stuck got=stuck target=done open`, observed "global GetItemInfo absent before the run".
+- **The taint review of the fix found nothing.** `C_Item.GetItemInfo` has no secret returns on 12.1.5 or Classic. The reviewer noted two older Classic-only items outside the diff and left them as they are:
+  - in `Data/TooltipData.lua:186-190` the item link reaches `strfind` before the `issecretvalue` check in `ProcessItem`;
+  - `:179` stores the addon's `isFirstTime` key on `GameTooltip` and `ItemRefTooltip`.
+- **The changelog line goes in the fix commit,** under the `## 102.0` section #334 already brought to `dev`, so no second header and no merge conflict.
 
 ## Files that change
 - `.claude/tools/Check-Repo.removed-api` (new): one global per line, `<name> <build that removed it>`, for every global the ten deleted 12.1.5 deprecation addons assigned in 12.1.0, sorted.
