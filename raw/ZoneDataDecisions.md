@@ -631,6 +631,9 @@ Last full validation: 2026-09-04 against Retail 12.1.0.69587 and Classic 5.5.4.6
 | 62488 | Undead Battler of Cataclysm | ⏭ skipped | — | — | Pet battle achievement; no ZoneData precedent | 2026-08-06 |
 | 62492 | The Coiled Isle Safari | ⏭ skipped | — | — | Pet battle safari achievement; no ZoneData precedent (Midnight Safari 61091 also absent) | 2026-08-06 |
 | 62497 | Venomous Weapons of Conquest | ⏭ skipped | — | — | PvP season transmog set; no ZoneData precedent (Galactic Weapons of Conquest 61443 also absent) | 2026-08-06 |
+| 62500 | Sweet Tooth | ⏭ skipped | — | — | Hallow's End holiday meta of the neighbourhood candy achievements (Housing); belongs in CategoryData_Events.lua, no ZoneData precedent | 2026-10-08 |
+| 62501 | I Ain't Afraid of no Ghost | ⏭ skipped | — | — | Hallow's End holiday achievement in any neighbourhood (Housing); belongs in CategoryData_Events.lua, no ZoneData precedent | 2026-10-08 |
+| 62502 | Master of Merry Mayhem | ⏭ skipped | — | — | Winter Veil holiday achievement in the neighbourhood tree defense activity (Housing); belongs in CategoryData_Events.lua, no ZoneData precedent | 2026-10-08 |
 | 62600 | Ritual Behavior | ✅ added | 2509 | Vaults of Atal'Utek | Own zone, distinct from The Coiled Isle (2512) | 2026-08-06 |
 | 62601 | Soft Underbelly | ✅ added | 2509 | Vaults of Atal'Utek | Own zone, distinct from The Coiled Isle | 2026-08-06 |
 | 62604 | Dance While Everyone Watches | ✅ added | 2509 | Vaults of Atal'Utek | Own zone, distinct from The Coiled Isle | 2026-08-06 |
@@ -759,16 +762,22 @@ Last full validation: 2026-09-04 against Retail 12.1.0.69587 and Classic 5.5.4.6
 | 63656 | Taking a Bite out of Slime | ✅ added | 2606 | The Venomous Abyss | Glory-analog achievement | 2026-08-06 |
 | 63662 | Student of Hissstory | ✅ added | 2512 | The Coiled Isle | Zone exploration | 2026-08-06 |
 | 63669 | Watch Out Behind You | ✅ added | 2606 | The Venomous Abyss | Glory-analog achievement | 2026-08-06 |
-| 63670 | Comforting Da Spirits | ✅ added | 2606 | The Venomous Abyss | Raid lore achievement | 2026-08-06 |
+| 63670 | Comforting De Spirits | ✅ added | 2606 | The Venomous Abyss | Raid lore achievement | 2026-08-06 |
 | 63679 | In Case Of Emergency | ✅ added | 2588 | Altar of Fangs | Dungeon lore achievement, listed first per convention | 2026-08-06 |
 | 63681 | Heroic: Nymrissa Wavecaller | ✅ added | 2632 | The Tidebound Grotto | New Season 2 single-boss raid | 2026-08-06 |
 | 63682 | Mythic: Nymrissa Wavecaller | ✅ added | 2632 | The Tidebound Grotto | New Season 2 single-boss raid | 2026-08-06 |
 | 63683 | Nymrissa Wavecaller | ✅ added | 2632 | The Tidebound Grotto | New Season 2 single-boss raid | 2026-08-06 |
+| 63690 | Midnight Keystone Myth: Season 2 | ✅ added | 1004, 1038, 2094, 2433, 2500, 2513, 2572, 2588 | — | M+ season meta achievement; season-wide Mythic+ achievement on every dungeon of its season pool (decision D11), the same dungeons as 62449 | 2026-10-08 |
 | 63695 | Arena Exercise | ⏭ skipped | — | — | PvP Training Grounds achievement; no ZoneData precedent | 2026-08-06 |
 | 63696 | Arena Exercise | ⏭ skipped | — | — | PvP Training Grounds achievement; no ZoneData precedent | 2026-08-06 |
 | 63697 | Arena Exercise | ⏭ skipped | — | — | PvP Training Grounds achievement; no ZoneData precedent | 2026-08-06 |
 | 63698 | Arena Exercise | ⏭ skipped | — | — | PvP Training Grounds achievement; no ZoneData precedent | 2026-08-06 |
 | 63699 | World Wide Trainer | ⏭ skipped | — | — | PvP Training Grounds meta; no ZoneData precedent | 2026-08-06 |
+| 63714 | WoW's 22nd Anniversary | ⏭ skipped | — | — | Feat of Strength for logging in during a real-world event; no geographic association | 2026-10-08 |
+| 63830 | Fungal Not Frugal | ⏭ skipped | — | — | Mount collection Feat of Strength (owning the Sporebearer Fungal Strider); no geographic association | 2026-10-08 |
+| 64160 | Duskwood Caramel Crafter | ⏭ skipped | — | — | Hallow's End candy quests from a Duskwood themed neighbourhood (Housing), not the Duskwood zone; no ZoneData precedent | 2026-10-08 |
+| 64161 | Felwood Fudge Bite Former | ⏭ skipped | — | — | Hallow's End candy quests from a Felwood themed neighbourhood (Housing), not the Felwood zone; no ZoneData precedent | 2026-10-08 |
+| 64162 | Drustvar Choc-O-Drop Designer | ⏭ skipped | — | — | Hallow's End candy quests from a Drustvar themed neighbourhood (Housing), not the Drustvar zone; no ZoneData precedent | 2026-10-08 |
 <!-- END_MAIN_LOG -->
 
 ## Statistics-Tracking Achievements (Skipped)

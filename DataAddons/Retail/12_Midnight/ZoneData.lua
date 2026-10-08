@@ -236,6 +236,7 @@ zoneData:Zone({2433, 2434, 2435}, { -- Murder Row (dungeon)
     62449, -- Midnight Keystone Legend: Season 2
     62436, -- Venomous Hero: Midnight Season 2
     63473, -- Sssensational!
+    63690, -- Midnight Keystone Myth: Season 2
 })
 
 zoneData:Zone({2437, 2536, 2580, 2583, 2584}, { -- Zul'Aman (zone)
@@ -364,6 +365,7 @@ zoneData:Zone(2500, { -- The Blinding Vale (dungeon)
     62449, -- Midnight Keystone Legend: Season 2
     62436, -- Venomous Hero: Midnight Season 2
     63473, -- Sssensational!
+    63690, -- Midnight Keystone Myth: Season 2
 })
 
 zoneData:Zone(2501, { -- Maisara Caverns (dungeon)
@@ -520,6 +522,7 @@ zoneData:Zone({2513, 2514, 2564}, { -- Den of Nalorakk (dungeon)
     62449, -- Midnight Keystone Legend: Season 2
     62436, -- Venomous Hero: Midnight Season 2
     63473, -- Sssensational!
+    63690, -- Midnight Keystone Myth: Season 2
 })
 
 zoneData:Zone(2525, { -- The Darkway (delve)
@@ -698,6 +701,7 @@ zoneData:Zone({2572, 2573, 2574}, { -- Voidscar Arena (dungeon)
     62449, -- Midnight Keystone Legend: Season 2
     62436, -- Venomous Hero: Midnight Season 2
     63473, -- Sssensational!
+    63690, -- Midnight Keystone Myth: Season 2
 })
 
 zoneData:Zone({2588, 2589, 2590}, { -- Altar of Fangs (dungeon)
@@ -733,6 +737,7 @@ zoneData:Zone({2588, 2589, 2590}, { -- Altar of Fangs (dungeon)
     62449, -- Midnight Keystone Legend: Season 2
     62436, -- Venomous Hero: Midnight Season 2
     63473, -- Sssensational!
+    63690, -- Midnight Keystone Myth: Season 2
 })
 
 local valAndNaigtal = {
@@ -834,7 +839,7 @@ zoneData:Zone({2606, 2607, 2608, 2609, 2610}, { -- The Venomous Abyss (raid)
     63650, -- Ahead of the Curve: Ula'tek
     63651, -- Cutting Edge: Ula'tek
     62352, -- Nothing to See Here
-    63670, -- Comforting Da Spirits
+    63670, -- Comforting De Spirits
     63472, -- Fang Fatale
     63418, -- Well, Well, Little Sky
     63250, -- Is Venom Stasis A Joke To You?

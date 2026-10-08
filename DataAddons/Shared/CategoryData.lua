@@ -912,6 +912,7 @@ shared.GetMidnightMythicPlus = function(categoryName)
         62447, -- Midnight Keystone Master: Season 2
         62448, -- Midnight Keystone Hero: Season 2
         62449, -- Midnight Keystone Legend: Season 2
+        63690, -- Midnight Keystone Myth: Season 2
         62436, -- Venomous Hero: Midnight Season 2
     })
     season2:Named(addon.L["KeystoneResilience"], {

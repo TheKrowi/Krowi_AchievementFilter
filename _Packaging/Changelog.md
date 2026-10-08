@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 102.0
+### Added
+- 12.1.5 "The Promise of Tomorrow" patch data
+    - The Unbinding of Kith'ix raid: Normal, Heroic and Mythic
+    - The Labyrinth of Kindo'jan, listed with the Midnight Delves: Knock Knock, chamber runs, Discoveries, Lock and Key, Hexmasks, Mislaid Oddities, The First Hash'ey, Let Me Solo Him, Fabled Let Me Solo Him and One-Champion Army
+    - Aqir Invasions, a new Midnight category for the invasions in Eversong Woods and Zul'Aman and the Aqir Research Enclave
+    - The Promise of Tomorrow campaign achievement
+    - Midnight Keystone Myth: Season 2
+    - Hallow's End neighborhood candy achievements and Sweet Tooth, I Ain't Afraid of no Ghost, the Winter Veil Master of Merry Mayhem, and WoW's 22nd Anniversary
+    - Fungal Not Frugal feat of strength
+
 ## 101.2 - 2026-10-07
 ### Added
 - Additional deDE, frFR, ruRU and zhCN localization

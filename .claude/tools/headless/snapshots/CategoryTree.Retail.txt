@@ -191,6 +191,11 @@ ACH Events > Holidays > Hallow's End # 10365
 ACH Events > Holidays > Hallow's End # 1656
 ACH Events > Holidays > Hallow's End # 980
 ACH Events > Holidays > Hallow's End # 17547
+ACH Events > Holidays > Hallow's End # 64160
+ACH Events > Holidays > Hallow's End # 64161
+ACH Events > Holidays > Hallow's End # 64162
+ACH Events > Holidays > Hallow's End # 62500
+ACH Events > Holidays > Hallow's End # 62501
 CAT Events > Holidays > Day of the Dead  | id=920
 ACH Events > Holidays > Day of the Dead # 3456
 ACH Events > Holidays > Day of the Dead # 9426
@@ -233,6 +238,7 @@ ACH Events > Holidays > Winter Veil # 5854
 ACH Events > Holidays > Winter Veil # 8699
 ACH Events > Holidays > Winter Veil # 15181
 ACH Events > Holidays > Winter Veil # 10353
+ACH Events > Holidays > Winter Veil # 62502
 ACH Events > Holidays > Winter Veil # 1691
 CAT Events > Holidays > Winter Veil > Gifts  | merge
 ACH Events > Holidays > Winter Veil > Gifts # 1705
@@ -278,6 +284,7 @@ ACH Events > WoW's Anniversary # 15218
 ACH Events > WoW's Anniversary # 18702
 ACH Events > WoW's Anniversary # 41220
 ACH Events > WoW's Anniversary # 61406
+ACH Events > WoW's Anniversary # 63714
 ACH Events > WoW's Anniversary # 10335
 ACH Events > WoW's Anniversary # 19192
 CAT Events > WoW's Anniversary > WoW's 20th Anniversary
@@ -8853,6 +8860,7 @@ ACH Expansions > Midnight > Zones > MapName 2437 > Quests # 41803
 ACH Expansions > Midnight > Zones > MapName 2437 > Quests # 61452
 ACH Expansions > Midnight > Zones > MapName 2437 > Quests # 61910
 ACH Expansions > Midnight > Zones > MapName 2437 > Quests # 62297
+ACH Expansions > Midnight > Zones > MapName 2437 > Quests # 63519
 CAT Expansions > Midnight > Zones > MapName 2437 > Exploration  | merge
 ACH Expansions > Midnight > Zones > MapName 2437 > Exploration # 61856
 ACH Expansions > Midnight > Zones > MapName 2437 > Exploration # 62125
@@ -9087,6 +9095,21 @@ ACH Expansions > Midnight > Delves > AreaPoiNameName 8779 # 63326
 ACH Expansions > Midnight > Delves > AreaPoiNameName 8779 # 63332
 ACH Expansions > Midnight > Delves > AreaPoiNameName 8779 # 63333
 ACH Expansions > Midnight > Delves > AreaPoiNameName 8779 # 63334
+CAT Expansions > Midnight > Delves > AreaPoiNameName 9036
+ACH Expansions > Midnight > Delves > AreaPoiNameName 9036 # 63724
+ACH Expansions > Midnight > Delves > AreaPoiNameName 9036 # 63721
+ACH Expansions > Midnight > Delves > AreaPoiNameName 9036 # 63722
+ACH Expansions > Midnight > Delves > AreaPoiNameName 9036 # 63723
+ACH Expansions > Midnight > Delves > AreaPoiNameName 9036 # 63717
+ACH Expansions > Midnight > Delves > AreaPoiNameName 9036 # 63718
+ACH Expansions > Midnight > Delves > AreaPoiNameName 9036 # 63719
+ACH Expansions > Midnight > Delves > AreaPoiNameName 9036 # 63720
+ACH Expansions > Midnight > Delves > AreaPoiNameName 9036 # 63727
+ACH Expansions > Midnight > Delves > AreaPoiNameName 9036 # 63728
+ACH Expansions > Midnight > Delves > AreaPoiNameName 9036 # 63716
+ACH Expansions > Midnight > Delves > AreaPoiNameName 9036 # 63715
+ACH Expansions > Midnight > Delves > AreaPoiNameName 9036 # 64039
+ACH Expansions > Midnight > Delves > AreaPoiNameName 9036 # 64118
 CAT Expansions > Midnight > Dungeons
 ACH Expansions > Midnight > Dungeons # 61567
 ACH Expansions > Midnight > Dungeons # 61568
@@ -9147,6 +9170,7 @@ ACH Expansions > Midnight > Dungeons > Mythic+ > Season 2 # 62446
 ACH Expansions > Midnight > Dungeons > Mythic+ > Season 2 # 62447
 ACH Expansions > Midnight > Dungeons > Mythic+ > Season 2 # 62448
 ACH Expansions > Midnight > Dungeons > Mythic+ > Season 2 # 62449
+ACH Expansions > Midnight > Dungeons > Mythic+ > Season 2 # 63690
 ACH Expansions > Midnight > Dungeons > Mythic+ > Season 2 # 62436
 CAT Expansions > Midnight > Dungeons > Mythic+ > Season 2 > KeystoneResilience  | merge
 ACH Expansions > Midnight > Dungeons > Mythic+ > Season 2 > KeystoneResilience # 62417
@@ -9309,6 +9333,10 @@ CAT Expansions > Midnight > Raids > InstanceInfoName 1317
 ACH Expansions > Midnight > Raids > InstanceInfoName 1317 # 63683
 ACH Expansions > Midnight > Raids > InstanceInfoName 1317 # 63681
 ACH Expansions > Midnight > Raids > InstanceInfoName 1317 # 63682
+CAT Expansions > Midnight > Raids > InstanceInfoName 1324
+ACH Expansions > Midnight > Raids > InstanceInfoName 1324 # 63692
+ACH Expansions > Midnight > Raids > InstanceInfoName 1324 # 63693
+ACH Expansions > Midnight > Raids > InstanceInfoName 1324 # 63694
 CAT Expansions > Midnight > Professions
 ACH Expansions > Midnight > Professions # 61438
 ACH Expansions > Midnight > Professions # 61439
@@ -9564,6 +9592,11 @@ ACH Expansions > Midnight > Void Assaults > Omnium Folio # 63325
 CAT Expansions > Midnight > Curse Surges
 ACH Expansions > Midnight > Curse Surges # 63390
 ACH Expansions > Midnight > Curse Surges # 63381
+CAT Expansions > Midnight > Aqir Invasions
+ACH Expansions > Midnight > Aqir Invasions # 63680
+ACH Expansions > Midnight > Aqir Invasions # 63658
+ACH Expansions > Midnight > Aqir Invasions # 63659
+ACH Expansions > Midnight > Aqir Invasions # 63657
 CAT Player vs. Player  | id=955 tab=PvP
 CAT Player vs. Player > Training Grounds
 ACH Player vs. Player > Training Grounds # 61953
@@ -11358,6 +11391,7 @@ ACH Specials > Mythic+ > Midnight > Season 2 # 62446
 ACH Specials > Mythic+ > Midnight > Season 2 # 62447
 ACH Specials > Mythic+ > Midnight > Season 2 # 62448
 ACH Specials > Mythic+ > Midnight > Season 2 # 62449
+ACH Specials > Mythic+ > Midnight > Season 2 # 63690
 ACH Specials > Mythic+ > Midnight > Season 2 # 62436
 CAT Specials > Mythic+ > Midnight > Season 2 > KeystoneResilience  | merge
 ACH Specials > Mythic+ > Midnight > Season 2 > KeystoneResilience # 62417
@@ -11474,6 +11508,7 @@ ORPHAN 61188
 ORPHAN 61450
 ORPHAN 62096
 ORPHAN 62103
+ORPHAN 63830
 
 == Placements ==
 # every achievement placed in other than exactly one category; the rest are in exactly one
@@ -12340,14 +12375,15 @@ PLACED 62448 x2
 PLACED 62449 x2
 PLACED 63097 x2
 PLACED 63104 x2
+PLACED 63690 x2
 
 == Summary ==
-categories        1544
+categories        1547
   declared id     57
-  auto id         1487   (>= 9000, allocated in parse order)
+  auto id         1490   (>= 9000, allocated in parse order)
 roots             5
-achievements      8638
-  in a category   8550
-  orphaned        88
-placement lines   9829
-  multi-placed    863
+achievements      8669
+  in a category   8580
+  orphaned        89
+placement lines   9860
+  multi-placed    864
