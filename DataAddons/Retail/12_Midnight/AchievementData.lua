@@ -809,7 +809,7 @@ KrowiAF.AchievementData["12_01_00"] = {
 	Ach(63391), -- Jumping Through Hoops
 	Ach(63395), -- The Coiled Isles Glyph Hunter
 	Ach(63397), -- Kept You Waiting Huh?
-	Ach(63400), -- Tricks and Treats of Midnight
+	Ach(63400):Obtainable("Event", 324), -- Tricks and Treats of Midnight
 	Ach(63415), -- Prey: Coiled Nightmares
 	Ach(63416), -- That's a Wrap
 	Ach(63418), -- Well, Well, Little Sky

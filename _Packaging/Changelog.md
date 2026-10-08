@@ -12,6 +12,9 @@ All notable changes to this project will be documented in this file.
     - Hallow's End neighborhood candy achievements and Sweet Tooth, I Ain't Afraid of no Ghost, the Winter Veil Master of Merry Mayhem, and WoW's 22nd Anniversary
     - Fungal Not Frugal feat of strength
 
+### Fixed
+- Tricks and Treats of Midnight is now marked as obtainable only during Hallow's End, like the other Tricks and Treats achievements
+
 ## 101.2 - 2026-10-07
 ### Added
 - Additional deDE, frFR, ruRU and zhCN localization
