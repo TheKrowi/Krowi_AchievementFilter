@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Tricks and Treats of Midnight is now marked as obtainable only during Hallow's End, like the other Tricks and Treats achievements
+- The transmog set progress in the achievement tooltip, for example on I'm Bringing Nerub-ack, no longer stays on "Collecting data" with patch 12.1.5
 
 ## 101.2 - 2026-10-07
 ### Added

@@ -23,10 +23,11 @@ local tooltip = addon.Tests.Tooltip
 
 -- Id: the achievement whose tooltip is built (one with TransmogSetIds; the headless model uses a fake with this id)
 -- Recorded / Target: "done" or "stuck"
--- Before the fix the section never finished on 12.1.5: Recorded "stuck" until the fix in the same work item
+-- Before the fix the section never finished on 12.1.5 ("stuck", verified in game on the 12.1.5 PTR on 2026-10-08); it now
+-- reads the item through C_Item.GetItemInfo
 tooltip.Scenarios = {
     {Name = "transmog-set-progress", Id = 40469, -- I'm Bringing Nerub-ack, DataAddons/Retail/11_TheWarWithin/TransmogSetData.lua
-        Recorded = "stuck", Target = "done"}
+        Recorded = "done", Target = "done"}
 }
 
 -- env: IsRetail(), Setup(scenario, observations) -> ok[, reason], Show(scenario) -> ok[, reason], Lines() -> list of the
