@@ -124,8 +124,11 @@ local function GetSetItems(achievementId)
     end
     local items = {}
     for _, setId in ipairs(setIds) do
-        for _, appearance in ipairs(C_TransmogSets.GetSetPrimaryAppearances(setId)) do
-            tinsert(items, C_TransmogCollection.GetSourceInfo(appearance.appearanceID).itemID)
+        for _, appearance in ipairs(C_TransmogSets.GetSetPrimaryAppearances(setId) or {}) do -- MayReturnNothing
+            local sourceInfo = C_TransmogCollection.GetSourceInfo(appearance.appearanceID)
+            if sourceInfo and sourceInfo.itemID then
+                tinsert(items, sourceInfo.itemID)
+            end
         end
     end
     return items
@@ -150,7 +153,7 @@ addon.Tests.Ready.tooltip = function()
     return true
 end
 
-local anchor, savedGetItemInfo, cleared
+local anchor, savedGetItemInfo, cleared, touchedGlobal
 function gameEnv.Setup(scenario, observations)
     if not addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.Show then
         return false, "Objectives progress is off in the tooltip options"
@@ -159,13 +162,17 @@ function gameEnv.Setup(scenario, observations)
     if not items then
         return false, reason
     end
-    savedGetItemInfo = _G["GetItemInfo"] -- by string: the removed-api lint rule bans reading the name, which is the point
-    tinsert(observations, ("global GetItemInfo %s before the run (12.1.5 removes it; 12.1.0 has it with loadDeprecationFallbacks on)"):format(savedGetItemInfo and "present" or "absent"))
-    _G["GetItemInfo"] = nil
-    cleared = true
     anchor = anchor or CreateFrame("Frame", nil, UIParent)
     anchor:SetSize(100, 20)
     anchor:SetPoint("CENTER")
+    -- Last, so nothing that can error runs between clearing the global and RunScenario's pcall around Show and Teardown.
+    -- Only a client that still has the global gets a write (12.1.0 with loadDeprecationFallbacks on); 12.1.5 gets none.
+    savedGetItemInfo = _G["GetItemInfo"] -- by string: the removed-api lint rule bans reading the name, which is the point
+    tinsert(observations, ("global GetItemInfo %s before the run (12.1.5 removes it; 12.1.0 has it with loadDeprecationFallbacks on)"):format(savedGetItemInfo and "present" or "absent"))
+    if savedGetItemInfo ~= nil then
+        _G["GetItemInfo"] = nil
+        cleared, touchedGlobal = true, true
+    end
     return true
 end
 
@@ -198,8 +205,9 @@ end
 
 addon.Tests.Suites.tooltip = function()
     local observations = {}
+    touchedGlobal = nil
     local results = tooltip.Run(gameEnv, observations)
-    if #results > 0 then
+    if touchedGlobal then
         tinsert(observations, "the run cleared and restored the global GetItemInfo, which stays tainted until the next /reload")
     end
     return results, observations
