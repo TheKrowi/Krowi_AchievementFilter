@@ -116,6 +116,8 @@ zoneData:Zone(2393, { -- Silvermoon City (city)
     61839, -- Midnight Pathfinder
     42045, -- Midnight
     62110, -- Loremaster of Midnight
+    63657, -- Aqir Research Associate
+    63659, -- Bane of the Swarm
 })
 
 zoneData:Zone({2395, 2579}, { -- Eversong Woods (zone)
@@ -140,6 +142,24 @@ zoneData:Zone({2395, 2579}, { -- Eversong Woods (zone)
     61453, -- Making an Amani Out of You
     61839, -- Midnight Pathfinder
     60891, -- The Crimson Rogue
+    62498, -- Void Assault: Eversong
+    62507, -- Void Smasher: Eversong
+    62508, -- Void Eradicator: Eversong
+    62509, -- Void Bane: Eversong
+    62513, -- Outstanding in the Field
+    62518, -- Cosmic Exterminator
+    62563, -- Void Response Team
+    62568, -- Void Shmoid
+    62569, -- Traces in the Dark
+    62570, -- Cosmic Slayer
+    62571, -- Everybody Gets One
+    62572, -- Battery Bombardment
+    62573, -- Air Traffic Controller
+    62574, -- Accolade to Rest
+    63680, -- Driving Back the Swarm
+    63658, -- No Hives Left Standing
+    63657, -- Aqir Research Associate
+    63659, -- Bane of the Swarm
 })
 
 zoneData:Zone({2405, 2526, 2527, 2581, 2582}, { -- Voidstorm (zone), Lair of Predaxas, Voidburrow
@@ -194,6 +214,8 @@ zoneData:Zone({2413, 2522, 2523, 2576}, { -- Harandar (zone)
 zoneData:Zone({2424, 2649}, { -- Isle of Quel'Danas (zone)
     62191, -- Call of the Light
     42117, -- The War of Light and Shadow
+    62606, -- The Sunstrider Omnium
+    63325, -- Omnium Folio Studies
 })
 
 zoneData:Zone(2427, { -- Sporefall (raid)
@@ -267,6 +289,24 @@ zoneData:Zone({2437, 2536, 2580, 2583, 2584}, { -- Zul'Aman (zone)
     61839, -- Midnight Pathfinder
     63639, -- Ula'tek Uncoiled
     60891, -- The Crimson Rogue
+    62499, -- Void Assault: Zul'Aman
+    62510, -- Void Smasher: Zul'Aman
+    62511, -- Void Eradicator: Zul'Aman
+    62512, -- Void Bane: Zul'Aman
+    62513, -- Outstanding in the Field
+    62518, -- Cosmic Exterminator
+    62563, -- Void Response Team
+    62568, -- Void Shmoid
+    62569, -- Traces in the Dark
+    62570, -- Cosmic Slayer
+    62571, -- Everybody Gets One
+    62572, -- Battery Bombardment
+    62573, -- Air Traffic Controller
+    62574, -- Accolade to Rest
+    63680, -- Driving Back the Swarm
+    63658, -- No Hives Left Standing
+    63657, -- Aqir Research Associate
+    63659, -- Bane of the Swarm
 })
 
 zoneData:Zone(2444, { -- Slayer's Rise (zone)

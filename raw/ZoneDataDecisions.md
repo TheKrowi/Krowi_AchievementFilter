@@ -631,12 +631,31 @@ Last full validation: 2026-09-04 against Retail 12.1.0.69587 and Classic 5.5.4.6
 | 62488 | Undead Battler of Cataclysm | ⏭ skipped | — | — | Pet battle achievement; no ZoneData precedent | 2026-08-06 |
 | 62492 | The Coiled Isle Safari | ⏭ skipped | — | — | Pet battle safari achievement; no ZoneData precedent (Midnight Safari 61091 also absent) | 2026-08-06 |
 | 62497 | Venomous Weapons of Conquest | ⏭ skipped | — | — | PvP season transmog set; no ZoneData precedent (Galactic Weapons of Conquest 61443 also absent) | 2026-08-06 |
+| 62498 | Void Assault: Eversong | ✅ added | 2395 | Eversong Woods | Criteria 113510 count Void Strikes in Eversong only; zoned on user decision 2026-10-08 | 2026-10-08 |
+| 62499 | Void Assault: Zul'Aman | ✅ added | 2437 | Zul'Aman | Criteria 113512 count Void Strikes in Zul'Aman only; zoned on user decision 2026-10-08 | 2026-10-08 |
 | 62500 | Sweet Tooth | ⏭ skipped | — | — | Hallow's End holiday meta of the neighbourhood candy achievements (Housing); belongs in CategoryData_Events.lua, no ZoneData precedent | 2026-10-08 |
 | 62501 | I Ain't Afraid of no Ghost | ⏭ skipped | — | — | Hallow's End holiday achievement in any neighbourhood (Housing); belongs in CategoryData_Events.lua, no ZoneData precedent | 2026-10-08 |
 | 62502 | Master of Merry Mayhem | ⏭ skipped | — | — | Winter Veil holiday achievement in the neighbourhood tree defense activity (Housing); belongs in CategoryData_Events.lua, no ZoneData precedent | 2026-10-08 |
+| 62507 | Void Smasher: Eversong | ✅ added | 2395 | Eversong Woods | Criteria 113510 count Void Strikes in Eversong only; zoned on user decision 2026-10-08 | 2026-10-08 |
+| 62508 | Void Eradicator: Eversong | ✅ added | 2395 | Eversong Woods | Criteria 113510 count Void Strikes in Eversong only; zoned on user decision 2026-10-08 | 2026-10-08 |
+| 62509 | Void Bane: Eversong | ✅ added | 2395 | Eversong Woods | Criteria 113510 count Void Strikes in Eversong only; zoned on user decision 2026-10-08 | 2026-10-08 |
+| 62510 | Void Smasher: Zul'Aman | ✅ added | 2437 | Zul'Aman | Criteria 113512 count Void Strikes in Zul'Aman only; zoned on user decision 2026-10-08 | 2026-10-08 |
+| 62511 | Void Eradicator: Zul'Aman | ✅ added | 2437 | Zul'Aman | Criteria 113512 count Void Strikes in Zul'Aman only; zoned on user decision 2026-10-08 | 2026-10-08 |
+| 62512 | Void Bane: Zul'Aman | ✅ added | 2437 | Zul'Aman | Criteria 113512 count Void Strikes in Zul'Aman only; zoned on user decision 2026-10-08 | 2026-10-08 |
+| 62513 | Outstanding in the Field | ✅ added | 2395, 2437 | Eversong Woods, Zul'Aman | Field Accolades (currency 3405) come from Void Assaults and the Ritual Sites Daggerspine Point (Eversong) and Broken Throne (Zul'Aman); zoned on user decision 2026-10-08 | 2026-10-08 |
+| 62518 | Cosmic Exterminator | ✅ added | 2395, 2437 | Eversong Woods, Zul'Aman | Void Strikes and Incursions run in Eversong and Zul'Aman only; zoned on user decision 2026-10-08 | 2026-10-08 |
+| 62563 | Void Response Team | ✅ added | 2395, 2437 | Eversong Woods, Zul'Aman | Meta of 62498, 62499, 62508, 62511, 62513, 62518 (Rule 3); zoned on user decision 2026-10-08 | 2026-10-08 |
+| 62568 | Void Shmoid | ✅ added | 2395, 2437 | Eversong Woods, Zul'Aman | Void Strikes and Incursions run in Eversong and Zul'Aman only; zoned on user decision 2026-10-08 | 2026-10-08 |
+| 62569 | Traces in the Dark | ✅ added | 2395, 2437 | Eversong Woods, Zul'Aman | Items found during Void Strikes and Incursions; the four consult quests (94920, 95069, 95070, 95071) have no quest POI; zoned on user decision 2026-10-08 | 2026-10-08 |
+| 62570 | Cosmic Slayer | ✅ added | 2395, 2437 | Eversong Woods, Zul'Aman | Void Strikes and Incursions run in Eversong and Zul'Aman only; zoned on user decision 2026-10-08 | 2026-10-08 |
+| 62571 | Everybody Gets One | ✅ added | 2395, 2437 | Eversong Woods, Zul'Aman | Void Strikes and Incursions run in Eversong and Zul'Aman only; zoned on user decision 2026-10-08 | 2026-10-08 |
+| 62572 | Battery Bombardment | ✅ added | 2395, 2437 | Eversong Woods, Zul'Aman | Void Strikes and Incursions run in Eversong and Zul'Aman only; zoned on user decision 2026-10-08 | 2026-10-08 |
+| 62573 | Air Traffic Controller | ✅ added | 2395, 2437 | Eversong Woods, Zul'Aman | Void Strikes and Incursions run in Eversong and Zul'Aman only; zoned on user decision 2026-10-08 | 2026-10-08 |
+| 62574 | Accolade to Rest | ✅ added | 2395, 2437 | Eversong Woods, Zul'Aman | Field Accolades (currency 3405) come from Void Assaults and the Ritual Sites Daggerspine Point (Eversong) and Broken Throne (Zul'Aman); zoned on user decision 2026-10-08 | 2026-10-08 |
 | 62600 | Ritual Behavior | ✅ added | 2509 | Vaults of Atal'Utek | Own zone, distinct from The Coiled Isle (2512) | 2026-08-06 |
 | 62601 | Soft Underbelly | ✅ added | 2509 | Vaults of Atal'Utek | Own zone, distinct from The Coiled Isle | 2026-08-06 |
 | 62604 | Dance While Everyone Watches | ✅ added | 2509 | Vaults of Atal'Utek | Own zone, distinct from The Coiled Isle | 2026-08-06 |
+| 62606 | The Sunstrider Omnium | ✅ added | 2424 | Isle of Quel'Danas | Quest 96233 The Omnium Reawakens is turned in on Isle of Quel'Danas (questpoiblob); zoned on user decision 2026-10-08 | 2026-10-08 |
 | 62649 | A Lone Wanderer | ✅ added | 2509 | Vaults of Atal'Utek | Own zone, distinct from The Coiled Isle | 2026-08-06 |
 | 62871 | Midnight Season 2: Catalyst Unbound | ⏭ skipped | — | — | Character catalyst achievement; no geographic association (Season 1 equivalent 61519 also absent) | 2026-08-06 |
 | 62872 | Midnight Season 2: Serpent Scion | ⏭ skipped | — | — | NotCategorized PvP/raid combo achievement; no geographic association | 2026-08-06 |
@@ -674,6 +693,7 @@ Last full validation: 2026-09-04 against Retail 12.1.0.69587 and Classic 5.5.4.6
 | 63250 | Is Venom Stasis A Joke To You? | ✅ added | 2606 | The Venomous Abyss | New Season 2 raid, Glory-analog achievement | 2026-08-06 |
 | 63253 | A Round on the House in Midnight | ⏭ skipped | — | — | Brewfest holiday achievement; belongs in CategoryData_Events.lua, no ZoneData precedent | 2026-08-06 |
 | 63254 | Glory of the Venomous Raider | ✅ added | 2606 | The Venomous Abyss | Season 2 raid glory meta (Tidebound Grotto excluded — single-boss mini-raid, matches Sporefall precedent of no shared meta) | 2026-08-06 |
+| 63325 | Omnium Folio Studies | ✅ added | 2424 | Isle of Quel'Danas | Meta of 62606 (placed) and 62607-62610 (not registered) (Rule 3); zoned on user decision 2026-10-08 | 2026-10-08 |
 | 63326 | My Venomous Nemesis | ✅ added | 2634 | Venomfall Deeps | New Season 2 boss-lair delve | 2026-08-06 |
 | 63332 | Purging the Poison | ✅ added | 2634 | Venomfall Deeps | New Season 2 boss-lair delve | 2026-08-06 |
 | 63333 | Let Me Solo Him: Azta'rec | ✅ added | 2634 | Venomfall Deeps | New Season 2 boss-lair delve | 2026-08-06 |
@@ -760,10 +780,14 @@ Last full validation: 2026-09-04 against Retail 12.1.0.69587 and Classic 5.5.4.6
 | 63651 | Cutting Edge: Ula'tek | ✅ added | 2606 | The Venomous Abyss | Raid CE | 2026-08-06 |
 | 63653 | Pro Poison Patroller | ✅ added | 2509 | Vaults of Atal'Utek | Own zone, distinct from The Coiled Isle | 2026-08-06 |
 | 63656 | Taking a Bite out of Slime | ✅ added | 2606 | The Venomous Abyss | Glory-analog achievement | 2026-08-06 |
+| 63657 | Aqir Research Associate | ✅ added | 2393, 2395, 2437 | Silvermoon City, Eversong Woods, Zul'Aman | Faction 2838 Aqir Research Enclave: reputation from the Aqir Invasions in Eversong and Zul'Aman, quartermasters in Silvermoon City (Rule 4); zoned on user decision 2026-10-08 | 2026-10-08 |
+| 63658 | No Hives Left Standing | ✅ added | 2395, 2437 | Eversong Woods, Zul'Aman | Aqir Invasion scenarios alternate weekly between Eversong and Zul'Aman; zoned on user decision 2026-10-08 | 2026-10-08 |
+| 63659 | Bane of the Swarm | ✅ added | 2393, 2395, 2437 | Silvermoon City, Eversong Woods, Zul'Aman | Meta of 63657, 63658, 63680 (Rule 3); zoned on user decision 2026-10-08 | 2026-10-08 |
 | 63662 | Student of Hissstory | ✅ added | 2512 | The Coiled Isle | Zone exploration | 2026-08-06 |
 | 63669 | Watch Out Behind You | ✅ added | 2606 | The Venomous Abyss | Glory-analog achievement | 2026-08-06 |
 | 63670 | Comforting De Spirits | ✅ added | 2606 | The Venomous Abyss | Raid lore achievement | 2026-08-06 |
 | 63679 | In Case Of Emergency | ✅ added | 2588 | Altar of Fangs | Dungeon lore achievement, listed first per convention | 2026-08-06 |
+| 63680 | Driving Back the Swarm | ✅ added | 2395, 2437 | Eversong Woods, Zul'Aman | Aqir Invasions alternate weekly between Eversong and Zul'Aman; zoned on user decision 2026-10-08 | 2026-10-08 |
 | 63681 | Heroic: Nymrissa Wavecaller | ✅ added | 2632 | The Tidebound Grotto | New Season 2 single-boss raid | 2026-08-06 |
 | 63682 | Mythic: Nymrissa Wavecaller | ✅ added | 2632 | The Tidebound Grotto | New Season 2 single-boss raid | 2026-08-06 |
 | 63683 | Nymrissa Wavecaller | ✅ added | 2632 | The Tidebound Grotto | New Season 2 single-boss raid | 2026-08-06 |
