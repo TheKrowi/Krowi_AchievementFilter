@@ -335,6 +335,7 @@ Ach(40976):Mount():Anniv20(), -- A Cool Twenty Years
 | PvP season range | `Obtainable("From", "PvP Season", 9, "Until", "PvP Season", 18)` |
 | One-time (Realm First) | `Obtainable("Once")` |
 
+- **A date window comes from the game's calendar.** For an anniversary or other dated event, set `$terms` (a holiday name fragment such as `"Anniversary"`) and `$build` in `.claude/skills/add-achievement-data/_lookup_holidays.ps1`, run it and reset `$terms`: it prints each holiday's decoded start, duration and end, also for events still on the PTR. A window taken from a PTR build is provisional; recheck it once the event is on the live calendar.
 - **A cutoff starts at the achievement's own patch.** The three-argument `Before` and `Until` forms take the patch block the entry sits in as their start. If the achievement can only be earned from a later patch, use the During form or a window instead. For example, a season achievement added one patch ahead of its season: the Mists Classic Season 3 Challenge Mode achievements were added in 5.5.3, but Season 3 started with 5.5.4, so they use `Obtainable("Version", {5, 5, 4})`.
 - **A range that differs per client cannot stay in Shared.** Give the achievement an entry in both the Retail and the Classic file. Write the anchors as Retail patches; Classic maps them through `DataAddons/Classic/ContentTimeline.lua`. For example, 5313 is `Until 5.0.4` on Retail and `Before 5.0.4` on Classic.
 
