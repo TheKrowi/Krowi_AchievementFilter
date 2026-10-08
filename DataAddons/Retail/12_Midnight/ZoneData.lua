@@ -118,6 +118,7 @@ zoneData:Zone(2393, { -- Silvermoon City (city)
     62110, -- Loremaster of Midnight
     63657, -- Aqir Research Associate
     63659, -- Bane of the Swarm
+    63519, -- The Promise of Tomorrow
 })
 
 zoneData:Zone({2395, 2579}, { -- Eversong Woods (zone)
@@ -160,6 +161,7 @@ zoneData:Zone({2395, 2579}, { -- Eversong Woods (zone)
     63658, -- No Hives Left Standing
     63657, -- Aqir Research Associate
     63659, -- Bane of the Swarm
+    63519, -- The Promise of Tomorrow
 })
 
 zoneData:Zone({2405, 2526, 2527, 2581, 2582}, { -- Voidstorm (zone), Lair of Predaxas, Voidburrow
@@ -307,6 +309,7 @@ zoneData:Zone({2437, 2536, 2580, 2583, 2584}, { -- Zul'Aman (zone)
     63658, -- No Hives Left Standing
     63657, -- Aqir Research Associate
     63659, -- Bane of the Swarm
+    63519, -- The Promise of Tomorrow
 })
 
 zoneData:Zone(2444, { -- Slayer's Rise (zone)
@@ -830,6 +833,7 @@ zoneData:Zone({2512, 2639, 2640, 2641, 2642, 2643, 2644, 2645}, { -- The Coiled 
     63167, -- Tour of Duty: The Coiled Isle
     63631, -- Captain Tokka's Crew
     63635, -- Tokka's Terrible Trials
+    63519, -- The Promise of Tomorrow
 })
 
 zoneData:Zone({2509, 2613, 2636, 2637, 2638}, { -- Vaults of Atal'Utek (zone)
@@ -846,6 +850,7 @@ zoneData:Zone({2509, 2613, 2636, 2637, 2638}, { -- Vaults of Atal'Utek (zone)
     63630, -- Assault the Vault
     63636, -- Fully Corroded
     63653, -- Pro Poison Patroller
+    63519, -- The Promise of Tomorrow
 })
 
 zoneData:Zone(2635, { -- Gnarldor Isle (delve)

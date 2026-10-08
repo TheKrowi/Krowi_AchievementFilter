@@ -727,6 +727,7 @@ Last full validation: 2026-09-04 against Retail 12.1.0.69587 and Classic 5.5.4.6
 | 63476 | Mythic: Ula'tek | ✅ added | 2606 | The Venomous Abyss | Final boss, end of Mythic boss-kill list | 2026-08-06 |
 | 63510 | The Briny Best | ⏭ skipped | — | — | Fishing profession achievement; no ZoneData precedent for professions | 2026-08-06 |
 | 63512 | Treasures of the Damned | ⏭ skipped | — | — | Fishing profession achievement; no ZoneData precedent | 2026-08-06 |
+| 63519 | The Promise of Tomorrow | ✅ added | 2393, 2395, 2437, 2509, 2512 | Silvermoon City, Eversong Woods, Zul'Aman, Vaults of Atal'Utek, The Coiled Isle | Rule 5: criteria are quests 95211 (end of questline 6221 Sins of the Past) and 95813 (end of 6245 To the Faithful); the chapters' quests are turned in on these maps (questpoiblob, 12.1.5.70077); 95211's turn-in POI on the raid map 2669 is filtered out by the Raid verdict | 2026-10-08 |
 | 63520 | Heroic: The Venomous Abyss | ✅ added | 2606 | The Venomous Abyss | Base raid clear | 2026-08-06 |
 | 63521 | The Venomous Abyss | ✅ added | 2606 | The Venomous Abyss | Base raid clear | 2026-08-06 |
 | 63522 | Mythic: The Venomous Abyss | ✅ added | 2606 | The Venomous Abyss | Base raid clear | 2026-08-06 |

@@ -42,6 +42,7 @@ local quelThalas = zones:Zone(2537)
 quelThalas:Quests{
     62110, -- Loremaster of Midnight
     42045, -- Midnight
+    63519, -- The Promise of Tomorrow
 }
 quelThalas:Exploration{
     61859, -- Midnight Flight Master
@@ -118,7 +119,6 @@ zulaman:Quests{
     61452, -- Sojourner of Zul'Aman
     61910, -- Mrglgrgl of Grglmrgl
     62297, -- The Curse of Ula'tek
-    63519, -- The Promise of Tomorrow
 }
 zulaman:Exploration{
     61856, -- Explore Zul'Aman
