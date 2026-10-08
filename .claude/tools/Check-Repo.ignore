@@ -5,3 +5,6 @@ files-xml Api/ApiDocumentation.lua       # documentation only
 # Line endings owned by external tools
 line-endings Localization/*.lua          # CurseForge exports these with LF
 line-endings Krowi_AchievementFilter.toc # written by the addon manager with LF
+# Known reads of removed Blizzard globals, the reproduction of docs/work/2026-10-08-getiteminfo-removed; its fix removes these lines
+removed-api Gui/AchievementTooltip/TransmogObjectives.lua
+removed-api Data/TooltipData.lua

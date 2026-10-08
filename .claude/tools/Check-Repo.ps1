@@ -14,6 +14,9 @@
       globals          [Error]   no assignment to an undeclared global (luac -l SETGLOBAL) other than
                                  KrowiAF*/BINDING_*/SLASH_* names and the deliberate Blizzard
                                  FrameXML overrides and API polyfills listed in Check-Repo.globals
+      removed-api      [Error]   no addon file reads a Blizzard global the Retail client no longer has (luac -l
+                                 GETGLOBAL against Check-Repo.removed-api); always tree-wide, because a
+                                 removal breaks files nobody touched
       luarc            [Error]   .luarc.json diagnostics.globals holds exactly what the language server
                                  cannot see on its own: every entry is read by an addon file (luac -l
                                  GETGLOBAL), none is assigned by one, no duplicates, sorted ordinally
@@ -293,6 +296,16 @@ if (Test-Path $luac) {
     $targetSet = @{}
     foreach ($rel in @(if ($ChangedOnly) { $ownLuaFiles | Where-Object { $changed.ContainsKey($_) } } else { $ownLuaFiles })) { $targetSet[$rel] = $true }
     # Lua names are case-sensitive (AchievementFrameFilterDropdown and ...DropDown are two globals), PowerShell hashtables are not
+    # removed-api: Blizzard globals the Retail client no longer has ("<name> <version>" in Check-Repo.removed-api).
+    # Checked in every addon file even with -ChangedOnly: a removal breaks files nobody touched.
+    $removedApi = [hashtable]::new([StringComparer]::Ordinal)
+    $removedFile = Join-Path $PSScriptRoot 'Check-Repo.removed-api'
+    if (Test-Path $removedFile) {
+        foreach ($line in Get-Content $removedFile) {
+            $t = ($line -replace '#.*$', '').Trim()
+            if ($t -match '^(\S+)\s+(\S+)$') { $removedApi[$Matches[1]] = $Matches[2] }
+        }
+    }
     $readGlobals = [hashtable]::new([StringComparer]::Ordinal)   # name -> $true when an addon file reads it (GETGLOBAL)
     $setGlobals = [hashtable]::new([StringComparer]::Ordinal)    # name -> $true when an addon file assigns it (SETGLOBAL)
     $bomMap = @{}     # temp copy path -> repo path, for files whose BOM stock luac would reject
@@ -332,7 +345,13 @@ if (Test-Path $luac) {
             }
             if (-not $current) { continue }
             $name = $m.Groups['name'].Value
-            if ($m.Groups['op'].Value -eq 'GETGLOBAL') { $readGlobals[$name] = $true; continue }
+            if ($m.Groups['op'].Value -eq 'GETGLOBAL') {
+                $readGlobals[$name] = $true
+                if ($removedApi.ContainsKey($name)) {
+                    Add-Finding 'removed-api' 'Error' $current ([int]$m.Groups['line'].Value) "reads global '$name', which the Retail client no longer has since $($removedApi[$name]); call the C_ namespace function instead (.claude/tools/Check-Repo.removed-api)"
+                }
+                continue
+            }
             $setGlobals[$name] = $true
             if (-not $targetSet.ContainsKey($current)) { continue }
             if ($name -like 'KrowiAF*' -or $name -like 'BINDING_*' -or $name -like 'SLASH_*') { continue }
@@ -630,7 +649,7 @@ if (Test-Path $ignoreFile) {
         if ($t -match '^(\S+)\s+(\S+)$') { $ignore += @{ Rule = $Matches[1]; Path = $Matches[2] } }
     }
 }
-$alwaysOn = @('dup-id', 'saved-variables', 'lua-syntax', 'globals', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'zone-decisions', 'mapverifier', 'changelog')
+$alwaysOn = @('dup-id', 'saved-variables', 'lua-syntax', 'globals', 'removed-api', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'zone-decisions', 'mapverifier', 'changelog')
 $report = $findings | Where-Object {
     $f = $_
     -not ($ignore | Where-Object { ($_.Rule -eq '*' -or $_.Rule -eq $f.Rule) -and $f.Path -like $_.Path })

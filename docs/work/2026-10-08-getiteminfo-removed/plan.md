@@ -3,6 +3,11 @@ Spec: [spec.md](spec.md). Status: accepted
 
 Approved by Krowi (maintainer) on 2026-10-08. The reproduction (steps 1 and 2) is built that day. The in-game before-run (step 3) and the after-run happen the same evening, because the maintainer cannot play earlier, so the fix (step 5) waits for the before-run.
 
+Departures, 2026-10-08:
+- **`removed-api` checks every addon file, also with `-ChangedOnly`, and counts as always-on.** A removed API breaks files nobody touched, and the Stop hook only lints changed files. The step 1 proof is therefore `-ChangedOnly` as planned, and it shows all three findings.
+- **The in-game scenario builds the whole tooltip** through `addon.Gui.AchievementTooltip:ShowTooltip`, instead of calling the section's `CheckAdd` and `Add`. The section is a file local, and the tooltip finds it only by load order. Inspect therefore looks for "Collecting data" anywhere in the tooltip.
+- **The reproduction is committed before the in-game before-run.** The run happens the same evening; if it is not green, the scenario is corrected before the fix.
+
 ## Files that change
 - `.claude/tools/Check-Repo.removed-api` (new): one global per line, `<name> <build that removed it>`, for every global the ten deleted 12.1.5 deprecation addons assigned in 12.1.0, sorted.
 - `.claude/tools/Check-Repo.ps1`: rule `removed-api` in the header table, and a pass over the `luac -l` output the `globals` rule already collects. Every `GETGLOBAL` of a listed name, in an addon file outside `Libs/` and `.claude/`, is an error with file and line.
