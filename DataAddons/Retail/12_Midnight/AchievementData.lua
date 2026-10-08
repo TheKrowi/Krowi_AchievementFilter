@@ -913,7 +913,7 @@ KrowiAF.AchievementData["12_01_05"] = {
 	Ach(63692), -- Kith'ix
 	Ach(63693), -- Heroic: Kith'ix
 	Ach(63694), -- Mythic: Kith'ix
-	Ach(63714), -- WoW's 22nd Anniversary
+	Ach(63714):Obtainable("From", "Date", {2026, 11, 17}, "Until", "Date", {2026, 12, 8}), -- WoW's 22nd Anniversary
 	Ach(63715):Mount(3144):PvE(18), -- Let Me Solo Him: Kindo'jan
 	Ach(63716):Title(), -- The First Hash'ey
 	Ach(63717):Title(), -- Kindo'jan's Labyrinth Discoveries
