@@ -914,3 +914,26 @@ zoneData:Zone(2632, { -- The Tidebound Grotto (raid)
     63681, -- Heroic: Nymrissa Wavecaller
     63682, -- Mythic: Nymrissa Wavecaller
 })
+
+zoneData:Zone({2647, 2648}, { -- The Labyrinth of Kindo'jan (delve)
+    63724, -- Knock Knock
+    63721, -- The Labyrinth of Kindo'jan
+    63722, -- Whose Labyrinth?
+    63723, -- My Labyrinth
+    63717, -- Kindo'jan's Labyrinth Discoveries
+    63718, -- Lock and Key
+    63719, -- Lock and Key Master
+    63720, -- Happy Hexmask Collector
+    63727, -- Treasures Upon Treasures
+    63728, -- A Few More Can't Hurt
+    63716, -- The First Hash'ey
+    63715, -- Let Me Solo Him: Kindo'jan
+    64039, -- Fabled Let Me Solo Him: Kindo'jan
+    64118, -- The Labyrinth of Kindo'jan: One-Champion Army
+})
+
+zoneData:Zone({2669, 2670}, { -- The Unbinding of Kith'ix (raid)
+    63692, -- Kith'ix
+    63693, -- Heroic: Kith'ix
+    63694, -- Mythic: Kith'ix
+})

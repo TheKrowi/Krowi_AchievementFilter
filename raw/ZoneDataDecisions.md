@@ -793,13 +793,30 @@ Last full validation: 2026-09-04 against Retail 12.1.0.69587 and Classic 5.5.4.6
 | 63682 | Mythic: Nymrissa Wavecaller | ✅ added | 2632 | The Tidebound Grotto | New Season 2 single-boss raid | 2026-08-06 |
 | 63683 | Nymrissa Wavecaller | ✅ added | 2632 | The Tidebound Grotto | New Season 2 single-boss raid | 2026-08-06 |
 | 63690 | Midnight Keystone Myth: Season 2 | ✅ added | 1004, 1038, 2094, 2433, 2500, 2513, 2572, 2588 | — | M+ season meta achievement; season-wide Mythic+ achievement on every dungeon of its season pool (decision D11), the same dungeons as 62449 | 2026-10-08 |
+| 63692 | Kith'ix | ✅ added | 2669 | The Unbinding of Kith'ix | Criterion: kill Kith'ix (encounter 3513) in the raid; new 12.1.5 single-boss raid, maps 2669/2670 verdicted in game 2026-10-08 | 2026-10-08 |
+| 63693 | Heroic: Kith'ix | ✅ added | 2669 | The Unbinding of Kith'ix | Criterion: kill Kith'ix (encounter 3513) on Heroic | 2026-10-08 |
+| 63694 | Mythic: Kith'ix | ✅ added | 2669 | The Unbinding of Kith'ix | Criterion: kill Kith'ix (encounter 3513) on Mythic | 2026-10-08 |
 | 63695 | Arena Exercise | ⏭ skipped | — | — | PvP Training Grounds achievement; no ZoneData precedent | 2026-08-06 |
 | 63696 | Arena Exercise | ⏭ skipped | — | — | PvP Training Grounds achievement; no ZoneData precedent | 2026-08-06 |
 | 63697 | Arena Exercise | ⏭ skipped | — | — | PvP Training Grounds achievement; no ZoneData precedent | 2026-08-06 |
 | 63698 | Arena Exercise | ⏭ skipped | — | — | PvP Training Grounds achievement; no ZoneData precedent | 2026-08-06 |
 | 63699 | World Wide Trainer | ⏭ skipped | — | — | PvP Training Grounds meta; no ZoneData precedent | 2026-08-06 |
 | 63714 | WoW's 22nd Anniversary | ⏭ skipped | — | — | Feat of Strength for logging in during a real-world event; no geographic association | 2026-10-08 |
+| 63715 | Let Me Solo Him: Kindo'jan | ✅ added | 2647 | The Labyrinth of Kindo'jan | Criterion: defeat Kindo'jan in the Labyrinth; maps 2647/2648 verdicted Delve in game 2026-10-08 (2671 is TaxiAndAdventure); boss-delve feats only, no delvesS2 (user decision 2026-10-08: the Season 2 tier achievements count event 91886, the Labyrinth raises its own 106953), as Venomfall Deeps | 2026-10-08 |
+| 63716 | The First Hash'ey | ✅ added | 2647 | The Labyrinth of Kindo'jan | Criterion: defeat Kindo'jan in the Labyrinth | 2026-10-08 |
+| 63717 | Kindo'jan's Labyrinth Discoveries | ✅ added | 2647 | The Labyrinth of Kindo'jan | Criteria: 44 chest quests inside the Labyrinth (the delve Discoveries analogue) | 2026-10-08 |
+| 63718 | Lock and Key | ✅ added | 2647 | The Labyrinth of Kindo'jan | Criterion: open the locked door inside the Labyrinth | 2026-10-08 |
+| 63719 | Lock and Key Master | ✅ added | 2647 | The Labyrinth of Kindo'jan | Criterion: open the locked door inside the Labyrinth 20 times | 2026-10-08 |
+| 63720 | Happy Hexmask Collector | ✅ added | 2647 | The Labyrinth of Kindo'jan | Criteria: gather 3 Elemental Hexmasks inside the Labyrinth | 2026-10-08 |
+| 63721 | The Labyrinth of Kindo'jan | ✅ added | 2647 | The Labyrinth of Kindo'jan | Criterion: complete 9 chambers in one Labyrinth run | 2026-10-08 |
+| 63722 | Whose Labyrinth? | ✅ added | 2647 | The Labyrinth of Kindo'jan | Criterion: complete 9 chambers in one Labyrinth run on Tier 11 | 2026-10-08 |
+| 63723 | My Labyrinth | ✅ added | 2647 | The Labyrinth of Kindo'jan | Criterion: complete 100 Labyrinth chambers | 2026-10-08 |
+| 63724 | Knock Knock | ✅ added | 2647 | The Labyrinth of Kindo'jan | Criterion: enter the Labyrinth | 2026-10-08 |
+| 63727 | Treasures Upon Treasures | ✅ added | 2647 | The Labyrinth of Kindo'jan | Criterion: loot 10 Mislaid Oddities inside the Labyrinth | 2026-10-08 |
+| 63728 | A Few More Can't Hurt | ✅ added | 2647 | The Labyrinth of Kindo'jan | Criterion: loot 50 Mislaid Oddities inside the Labyrinth | 2026-10-08 |
 | 63830 | Fungal Not Frugal | ⏭ skipped | — | — | Mount collection Feat of Strength (owning the Sporebearer Fungal Strider); no geographic association | 2026-10-08 |
+| 64039 | Fabled Let Me Solo Him: Kindo'jan | ✅ added | 2647 | The Labyrinth of Kindo'jan | Criterion: defeat Kindo'jan in the Labyrinth on Tier 11 solo | 2026-10-08 |
+| 64118 | The Labyrinth of Kindo'jan: One-Champion Army | ✅ added | 2647 | The Labyrinth of Kindo'jan | Criterion: defeat Kindo'jan in the Labyrinth on Tier 11 solo without losing a life | 2026-10-08 |
 | 64160 | Duskwood Caramel Crafter | ⏭ skipped | — | — | Hallow's End candy quests from a Duskwood themed neighbourhood (Housing), not the Duskwood zone; no ZoneData precedent | 2026-10-08 |
 | 64161 | Felwood Fudge Bite Former | ⏭ skipped | — | — | Hallow's End candy quests from a Felwood themed neighbourhood (Housing), not the Felwood zone; no ZoneData precedent | 2026-10-08 |
 | 64162 | Drustvar Choc-O-Drop Designer | ⏭ skipped | — | — | Hallow's End candy quests from a Drustvar themed neighbourhood (Housing), not the Drustvar zone; no ZoneData precedent | 2026-10-08 |
