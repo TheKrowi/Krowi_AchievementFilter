@@ -137,7 +137,7 @@ function M.New(root, client)
         GetAchievementInfo = true, GetAchievementNumCriteria = true, GetAchievementCriteriaInfo = true, GetAchievementCriteriaInfoByID = true,
         GetCategoryInfo = true, GetCategoryList = true, UnitFactionGroup = true, UnitLevel = true, UnitGUID = true, GetRealmName = true,
         IsAddOnLoaded = true, GetAddOnMetadata = true, GetTime = true, GetServerTime = true, InCombatLockdown = true, GetCurrentArenaSeason = true,
-        GetLFGDungeonInfo = true, GetRealZoneText = true, EJ_GetInstanceInfo = true, GetItemInfo = true, GetSpellInfo = true, GetCurrentRegion = true,
+        GetLFGDungeonInfo = true, GetRealZoneText = true, EJ_GetInstanceInfo = true, GetSpellInfo = true, GetCurrentRegion = true,
         ScrollBoxConstants = true, MenuUtil = true, MenuResponse = true, Settings = true, EventRegistry = true, ChatFrame1 = true, DEFAULT_CHAT_FRAME = true,
         TooltipDataProcessor = true, GameTooltip_AddBlankLineToTooltip = true, GameTooltip_AddNormalLine = true, GameTooltip_AddHighlightLine = true,
         GetCVar = true, SetCVar = true, GetFrameRate = true, debugprofilestop = true, CreateColor = true, CreateColorFromHexString = true,

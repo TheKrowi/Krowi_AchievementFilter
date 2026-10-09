@@ -16,7 +16,9 @@
 --         navigation buttons each tab of the achievement window shows, issue #325), worldmap (Gui/WorldMapButton/ with
 --         the Krowi_WorldMapButtons library: whether the button stays in front of the Classic map when it resizes),
 --         obtainable (Objects/Achievement.lua's SetTemporaryObtainable and Data/TemporaryObtainable.lua: the record an
---         Obtainable() call stores and the state it gives, on the real data load of client-env.lua)
+--         Obtainable() call stores and the state it gives, on the real data load of client-env.lua), tooltip
+--         (Gui/AchievementTooltip/TransmogObjectives.lua: whether the transmog set progress section of the achievement
+--         tooltip finishes in a 12.1.5 environment without the global GetItemInfo)
 --
 -- Retail model is 12.1: the Blizzard_GameMenuEsc handler registry, the UI panel manager (its slots stay
 -- empty because the addon shows the achievement window with a plain Show), UISpecialFrames, static
@@ -708,6 +710,90 @@ suites.worldmap = function(c)
     c.loadAddonFile("Gui/WorldMapButton/WorldMapButton.lua")
     addon.Gui.WorldMapButton:Load() -- Gui/Gui.lua's LoadWithAddon, phase 1
     return worldMap.Run(worldMap.GameEnv, observations), "Tests/WorldMap.lua", observations
+end
+
+-- The real Gui/AchievementTooltip/TransmogObjectives.lua behind a copy of AchievementTooltip:ShowTooltip, against a model of
+-- Krowi_Tooltip and the transmog and item APIs: one fake set of two items, both in the item cache, so the section runs
+-- without yielding. Like 12.1.5 the environment has no global GetItemInfo, only C_Item.GetItemInfo (sources in
+-- Tests/Tooltip.lua).
+suites.tooltip = function(c)
+    local env, addon = c.env, c.addon
+    c.loadAddonFile("Tests/Tooltip.lua")
+    local suite = addon.Tests.Tooltip
+    local observations = {}
+    local headless = {}
+    function headless.IsRetail() return c.isRetail end
+    if not c.isRetail then
+        return suite.Run(headless, observations), "Tests/Tooltip.lua", observations
+    end
+
+    -- --- Krowi_Tooltip: lines, owner, and the Krowi_TooltipTextLeft/Right<n> font strings the section copies ---------
+    local lines, owner = {}, nil
+    local function FontString(text, r, g, b)
+        return { GetText = function() return text end, GetTextColor = function() return r or 1, g or 1, b or 1 end }
+    end
+    local function AddRow(left, right, lr, lg, lb, rr, rg, rb)
+        lines[#lines + 1] = left
+        rawset(env, "Krowi_TooltipTextLeft" .. #lines, FontString(left, lr, lg, lb))
+        rawset(env, "Krowi_TooltipTextRight" .. #lines, FontString(right, rr, rg, rb))
+    end
+    local krowiTooltip = {}
+    function krowiTooltip:SetOwner(frame) owner = frame; lines = {} end -- like GameTooltip:SetOwner, it clears the lines
+    function krowiTooltip:GetOwner() return owner end
+    function krowiTooltip:AddLine(text, r, g, b) AddRow(text, nil, r, g, b) end
+    function krowiTooltip:AddDoubleLine(left, right, lr, lg, lb, rr, rg, rb) AddRow(left, right, lr, lg, lb, rr, rg, rb) end
+    function krowiTooltip:NumLines() return #lines end
+    function krowiTooltip:Show() end
+    function krowiTooltip:Hide() end
+    rawset(env, "Krowi_Tooltip", krowiTooltip)
+
+    -- --- Transmog and item APIs (C_TransmogSets, C_TransmogCollection, C_Item on 12.1.5) ---------------------------------
+    local items = { [101] = "INVTYPE_HEAD", [102] = "INVTYPE_CHEST" } -- item id -> equip slot
+    rawset(env, "C_TransmogSets", {
+        GetSetInfo = function() return { description = "Normal" } end,
+        GetSetPrimaryAppearances = function() return { { appearanceID = 1, collected = true }, { appearanceID = 2, collected = false } } end,
+    })
+    rawset(env, "C_TransmogCollection", {
+        GetSourceInfo = function(sourceId) return { itemID = 100 + sourceId, invType = sourceId } end,
+    })
+    rawset(env, "C_Item", {
+        GetItemInfo = function(itemId)
+            local equipLoc = items[itemId]
+            if not equipLoc then return nil end
+            return "Item " .. itemId, nil, 4, 600, 80, "Armor", "Cloth", 1, equipLoc, 0, 0, 4, 1, 1, 11, nil, false
+        end,
+    })
+    env.INVTYPE_HEAD, env.INVTYPE_CHEST = "Head", "Chest"
+
+    -- --- The addon -------------------------------------------------------------------------------------------------
+    addon.Gui = { AchievementTooltip = { Sections = {} } }
+    addon.Options = { db = { profile = { Tooltip = { Achievements = { ObjectivesProgress = { Show = true, ShowWhenAchievementCompleted = true } } } } } }
+    addon.GetUsableSets = function(setIds) return setIds end
+    addon.Util.Colors = setmetatable({}, { __index = function() return "%s" end })
+    c.loadAddonFile("Gui/AchievementTooltip/TransmogObjectives.lua")
+    function addon.Gui.AchievementTooltip:ShowTooltip(anchor, achievement) -- Gui/AchievementTooltip/AchievementTooltip.lua
+        krowiTooltip:SetOwner(anchor, "ANCHOR_BOTTOMRIGHT", 0, anchor:GetHeight())
+        for _, section in next, self.Sections do
+            if section:CheckAdd(achievement) then
+                section:Add(achievement)
+            end
+        end
+        krowiTooltip:Show()
+    end
+
+    local anchor = env.CreateFrame("Frame", nil, env.UIParent)
+    function headless.Setup() return true end
+    function headless.CollectingText() return addon.L["Collecting data"] end
+    function headless.ProgressText() return addon.L["Objectives progress"] end
+    function headless.Show(scenario)
+        local achievement = { Id = scenario.Id, TransmogSetIds = { 1 }, IsCompleted = false, GetObtainableState = function() return nil end }
+        rawset(anchor, "Achievement", achievement)
+        addon.Gui.AchievementTooltip:ShowTooltip(anchor, achievement)
+        return true
+    end
+    function headless.Lines() return lines end
+    function headless.Teardown() end
+    return suite.Run(headless, observations), "Tests/Tooltip.lua", observations
 end
 
 -- The real data load of client-env.lua (the one load-data.lua checks), then Data/TemporaryObtainable.lua on top,

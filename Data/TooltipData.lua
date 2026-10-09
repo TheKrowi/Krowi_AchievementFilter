@@ -174,7 +174,7 @@ local function DoProcessItem(tooltip, itemId)
     if not itemId then
         return
     end
-    local classId = (select(12, GetItemInfo(itemId)))
+    local classId = (select(12, C_Item.GetItemInfo(itemId)))
     if classId == Enum.ItemClass.Recipe then
         tooltip.isFirstTime = not tooltip.isFirstTime
         return not tooltip.isFirstTime

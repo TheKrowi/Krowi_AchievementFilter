@@ -1,0 +1,85 @@
+# Blizzard globals the Retail client no longer has, for the Check-Repo.ps1 `removed-api` rule.
+# One "<name> <Retail version that removed it>" per line, # comments, sorted ordinally. A read (luac -l GETGLOBAL)
+# of a listed name in an addon file is an error: the call fails with "attempt to call a nil value", and inside a
+# coroutine or pcall nobody sees it (docs/work/2026-10-08-getiteminfo-removed). Use the C_ namespace function.
+#
+# 12.1.5: the ten deprecation addons Blizzard_Deprecated{CurrencyScript,Glue,ItemScript,ItemSocketInfo,LFG,PetInfo,
+# PvpScript,SoundScript,TradeInfo,WorldElapsedTimerTypes} are deleted (Gethe/wow-ui-source ptr2, 12.1.5.70077). Every
+# global they assigned in 12.1.0 (live, 69933; only with the loadDeprecationFallbacks CVar on) is listed; none is
+# defined anywhere else in the 12.1.5 source, and the API documentation lists each only under its C_ namespace.
+
+AcceptSockets 12.1.5
+ActionBindsItem 12.1.5
+BindEnchant 12.1.5
+ClickSocketButton 12.1.5
+CloseSocketInfo 12.1.5
+ConfirmBindOnUse 12.1.5
+ConfirmNoRefundOnUse 12.1.5
+ConfirmOnUse 12.1.5
+DoesItemContainSpec 12.1.5
+DropItemOnUnit 12.1.5
+EndBoundTradeable 12.1.5
+EndRefund 12.1.5
+EquipItemByName 12.1.5
+GetCoinIcon 12.1.5
+GetCoinText 12.1.5
+GetCoinTextureString 12.1.5
+GetDetailedItemLevelInfo 12.1.5
+GetExistingSocketInfo 12.1.5
+GetExistingSocketLink 12.1.5
+GetItemChildInfo 12.1.5
+GetItemClassInfo 12.1.5
+GetItemCooldown 12.1.5
+GetItemCount 12.1.5
+GetItemCreationContext 12.1.5
+GetItemFamily 12.1.5
+GetItemGem 12.1.5
+GetItemIcon 12.1.5
+GetItemInfo 12.1.5
+GetItemInfoInstant 12.1.5
+GetItemInventorySlotInfo 12.1.5
+GetItemQualityColor 12.1.5
+GetItemSetInfo 12.1.5
+GetItemSpecInfo 12.1.5
+GetItemSpell 12.1.5
+GetItemSubClassInfo 12.1.5
+GetItemUniqueness 12.1.5
+GetNewSocketInfo 12.1.5
+GetNewSocketLink 12.1.5
+GetNumSockets 12.1.5
+GetPetTalentTree 12.1.5
+GetSocketItemBoundTradeable 12.1.5
+GetSocketItemInfo 12.1.5
+GetSocketItemRefundable 12.1.5
+GetSocketTypes 12.1.5
+GetZonePVPInfo 12.1.5
+HasBoundGemProposed 12.1.5
+IsArtifactPowerItem 12.1.5
+IsConsumableItem 12.1.5
+IsCorruptedItem 12.1.5
+IsCosmeticItem 12.1.5
+IsCurrentItem 12.1.5
+IsDressableItem 12.1.5
+IsEquippableItem 12.1.5
+IsEquippedItem 12.1.5
+IsEquippedItemType 12.1.5
+IsHarmfulItem 12.1.5
+IsHelpfulItem 12.1.5
+IsItemInRange 12.1.5
+IsOnGlueScreen 12.1.5
+IsSubZonePVPPOI 12.1.5
+IsUsableItem 12.1.5
+ItemHasRange 12.1.5
+LE_WORLD_ELAPSED_TIMER_TYPE_CHALLENGE_MODE 12.1.5
+LE_WORLD_ELAPSED_TIMER_TYPE_NONE 12.1.5
+LE_WORLD_ELAPSED_TIMER_TYPE_PROVING_GROUND 12.1.5
+PetAssistMode 12.1.5
+PickupItem 12.1.5
+PickupTradeMoney 12.1.5
+PlayVocalErrorSoundID 12.1.5
+ReplaceEnchant 12.1.5
+ReplaceTradeEnchant 12.1.5
+ReplaceTradeskillEnchant 12.1.5
+SetPVP 12.1.5
+TogglePVP 12.1.5
+UseItemByName 12.1.5
