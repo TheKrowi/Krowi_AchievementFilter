@@ -38,3 +38,7 @@
 
 ## [2026-10-04] update | Achievement Data Format — the two-argument `"Version"` During pattern is documented; a cutoff names the achievement's own patch as its start, so a window that opens later uses a During or Range pattern (Mists Classic Season 3)
 - Raw: docs/work/2026-10-02-until-version-cutoff/spec.md (Decision, correction of requirement 3)
+
+## [2026-10-09] update | Achievement Data Format — the Version-anchor note now carries the resolution detail moved out of the instruction file (BuildVersionData registers only, ContentTimeline right-hand patches stand for themselves, `KrowiAF.ResolveVersionAnchor`, Retail as the reference timeline, never round an anchor); the patch record is derived from the table key by `Data/Data.lua`, not written in the patch table
+- Raw: .github/copilot-instructions.md before its 2026-10-09 trim (Data pipeline), Data/Data.lua (RegisterAchievementDataTasks)
+- Updated: Category Data Format — marked as the V1 positional format kept for plugins

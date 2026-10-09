@@ -4,6 +4,8 @@
 > Raw: [DataAddons Category Data Format](../../raw/achievement-data/2026-05-29-category-data-format.md); [add-category-data Skill Reference](../../raw/achievement-data/2026-06-19-add-category-data-skill-reference.md)
 > Updated: 2026-06-19
 
+> **Format note:** the table syntax on this page is the V1 positional format, which remains only as the documented plugin entry point. Every first-party `CategoryData*.lua` uses the V2 builder (`KrowiAF.NewExpansion`, `:Zones`, `:Named`, `:Merge`, `:WithId`, `:Key`); see `.github/copilot-instructions.md` (Category data format) and `docs/how-to/migrate-category-data.md` §0. The tab roots, category ids, `canMerge` and ordering conventions below carry over to V2.
+
 ## Overview
 
 Category data defines the entire category tree displayed across the addon's five tabs. It is declared as nested Lua tables in `DataAddons/` files and parsed at runtime by `KrowiAF.CreateCategories()` into live `Category` objects. Unlike achievement data, categories do not use patch-keyed tables — all categories for an expansion live in a single nested structure appended to the appropriate tab root.

@@ -1,6 +1,6 @@
 # Contributing to Krowi's Achievement Filter
 
-The canonical technical reference for the addon (architecture, load order, offline tooling, data formats and code conventions) is [`.github/copilot-instructions.md`](.github/copilot-instructions.md). This file covers the contributor workflow only.
+The canonical technical reference for the addon (architecture, load order, offline tooling, data formats and code conventions) is [`.github/copilot-instructions.md`](.github/copilot-instructions.md); it holds the rules and links the detailed references ([`.claude/tools/README.md`](.claude/tools/README.md), [`Tests/README.md`](Tests/README.md), [`docs/architecture.md`](docs/architecture.md), the [`wiki/`](wiki/index.md)). This file covers the contributor workflow only.
 
 ---
 
@@ -71,7 +71,7 @@ Breaking changes (rare): append `!` after the type/scope, e.g. `feat!: remove le
 
 ## How to Test
 
-There is no automated test suite — the WoW client is the runtime.
+There is no CI — the WoW client is the runtime. Before testing in game, run the offline checks and the scenario suites ([`.claude/tools/README.md`](.claude/tools/README.md), [`Tests/README.md`](Tests/README.md)).
 
 - Enable Lua error reporting: run `/luaerror on` in WoW chat, or use an addon like [BugSack](https://www.curseforge.com/wow/addons/bugsack) + [BugGrabber](https://www.curseforge.com/wow/addons/bug-grabber).
 - Test the specific feature or data that was changed by navigating to the relevant tab/category.

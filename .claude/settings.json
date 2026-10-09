@@ -25,10 +25,45 @@
         ]
     },
     "permissions": {
+        "additionalDirectories": [
+            "../wow-ui-source/"
+        ],
         "allow": [
             "Bash(pwsh -NoProfile -NonInteractive -File .claude/tools/Check-Repo.ps1)",
             "Bash(pwsh -NoProfile -NonInteractive -File .claude/tools/Check-Repo.ps1 *)",
-            "Bash(pwsh -NoProfile -NonInteractive -File .claude/hooks/Check-LuaSyntax.ps1)"
+            "Bash(pwsh -NoProfile -NonInteractive -File .claude/hooks/Check-LuaSyntax.ps1)",
+            "PowerShell(& \".claude\\tools\\Check-Repo.ps1\")",
+            "PowerShell(& \".claude\\tools\\Check-Repo.ps1\" *)",
+            "PowerShell(& \".claude\\tools\\lua51\\lua.exe\" \".claude\\tools\\headless\\load-data.lua\" \"$PWD\" *)",
+            "Bash(./.claude/tools/lua51/lua.exe .claude/tools/headless/load-data.lua \"$PWD\" *)",
+            "PowerShell(& \".claude\\tools\\lua51\\lua.exe\" \".claude\\tools\\headless\\run-tests.lua\" \"$PWD\" *)",
+            "Bash(./.claude/tools/lua51/lua.exe .claude/tools/headless/run-tests.lua \"$PWD\" *)",
+            "PowerShell(& \".claude\\tools\\lua51\\lua.exe\" \".claude\\tools\\lua51\\check-syntax.lua\" *)",
+            "PowerShell(& \".claude\\tools\\Read-GameTests.ps1\")",
+            "PowerShell(& \".claude\\tools\\Read-GameTests.ps1\" *)",
+            "PowerShell(& \".claude\\tools\\Read-GameErrors.ps1\")",
+            "PowerShell(& \".claude\\tools\\Read-GameErrors.ps1\" *)",
+            "PowerShell(& \".claude\\tools\\Read-GameScreenshot.ps1\")",
+            "PowerShell(& \".claude\\tools\\Read-GameScreenshot.ps1\" *)",
+            "PowerShell(& \".claude\\tools\\Deploy.ps1\" -WhatIf)",
+            "PowerShell(& \".claude\\tools\\Deploy.ps1\" -WhatIf *)",
+            "PowerShell(gh pr view *)",
+            "PowerShell(gh pr list *)",
+            "PowerShell(gh pr diff *)",
+            "PowerShell(gh pr checks *)",
+            "PowerShell(gh issue view *)",
+            "PowerShell(gh issue list *)",
+            "PowerShell(gh release view *)",
+            "PowerShell(& \".claude\\skills\\release\\Check-ReleaseReady.ps1\")",
+            "PowerShell(& \".claude\\skills\\release\\Check-ReleaseReady.ps1\" *)",
+            "PowerShell(& \".claude\\skills\\add-achievement-data\\_lookup_ids.ps1\")",
+            "PowerShell(& \".claude\\skills\\add-achievement-data\\_lookup_ids.ps1\" *)",
+            "PowerShell(& \".claude\\skills\\add-category-data\\_lookup_ids.ps1\")",
+            "PowerShell(& \".claude\\skills\\add-category-data\\_lookup_ids.ps1\" *)",
+            "PowerShell(& \".claude\\skills\\add-zone-data\\_lookup_criteria.ps1\")",
+            "PowerShell(& \".claude\\skills\\add-zone-data\\_lookup_criteria.ps1\" *)",
+            "PowerShell(& \"raw\\Evaluate-ZoneData.ps1\")",
+            "PowerShell(& \"raw\\Evaluate-ZoneData.ps1\" *)"
         ]
     }
 }

@@ -2,6 +2,8 @@
 
 This document describes how the category tree for the Retail Expansions, Events, PvP, and Specials tabs is defined, parsed, and wired into the addon at runtime. It is the primary reference for anyone editing or extending `CategoryData.lua` files.
 
+> **Format note:** the table syntax in sections 3 to 7 is the V1 positional format, which remains only as the documented plugin entry point. Every first-party `CategoryData*.lua` uses the V2 builder; see `.github/copilot-instructions.md` (Category data format) and [`how-to/migrate-category-data.md`](how-to/migrate-category-data.md) §0. The tab roots, category ids and the runtime behaviour in sections 8 and 9 apply to both.
+
 For step-by-step task guides see:
 - [`how-to/add-patch-achievements.md`](how-to/add-patch-achievements.md) — adding achievements to a new patch
 - [`how-to/add-expansion.md`](how-to/add-expansion.md) — creating a new expansion folder

@@ -71,7 +71,7 @@ local minor = expansion:Minor(0)
 minor:Patch(0, addon.L["The Next Expansion"])
 ```
 
-A Classic re-release of an expansion registers the original patches for provenance plus its own line, and maps each original patch to the re-release patch that reached its content in `DataAddons/Classic/ContentTimeline.lua` (`["5.4.0"] = "5.5.4"`); see the project instructions. The `Name` value is a localization key — add the English string to `Localization/enUS.lua` directly below the `Exported at` line under the `AUTOGENTOKEN` marker (see [`update-localization.md`](update-localization.md)).
+A Classic re-release of an expansion registers the original patches for provenance plus its own line, and maps each original patch to the re-release patch that reached its content in `DataAddons/Classic/ContentTimeline.lua` (`["5.4.0"] = "5.5.4"`); see the Version-anchor note in [`wiki/achievement-data/achievement-data-format.md`](../../wiki/achievement-data/achievement-data-format.md). The `Name` value is a localization key — add the English string to `Localization/enUS.lua` directly below the `Exported at` line under the `AUTOGENTOKEN` marker (see [`update-localization.md`](update-localization.md)).
 
 ---
 

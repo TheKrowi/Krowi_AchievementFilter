@@ -2,15 +2,15 @@
 
 > Sources: Krowi_AchievementFilter codebase exploration, 2026-05-29; Krowi_AchievementFilter codebase exploration, 2026-06-12
 > Raw: [DataAddons Achievement Data Format](../../raw/achievement-data/2026-05-29-dataddons-achievement-data-format.md); [Obtainable Patterns Full Analysis](../../raw/achievement-data/2026-06-12-obtainable-patterns-full-analysis.md)
-> Updated: 2026-06-14
+> Updated: 2026-10-09
 
 ## Overview
 
-Achievement data in Krowi's Achievement Filter is registered via `KrowiAF.AchievementData` patch tables using the **V2 fluent builder**. Each patch table begins with `{KrowiAF.SetAchievementPatch, major, minor, patch}` followed by individual achievement entries.
+Achievement data in Krowi's Achievement Filter is registered via `KrowiAF.AchievementData` patch tables using the **V2 fluent builder**. A patch table holds only the achievement entries: `Data/Data.lua` derives the patch record `{KrowiAF.SetAchievementPatch, major, minor, patch}` from the table key and inserts it at load, so first-party data files never write it.
 
 ## File Header
 
-Every file using V2 requires this header. Include `faction` only when using `FactionSplit` or `AutoFactionSplit`.
+Every file using V2 requires this header. Include `local _, addon = ...` only when the file uses `addon`, and `faction` only when using `FactionSplit` or `AutoFactionSplit`.
 
 ```lua
 local _, addon = ...
@@ -23,8 +23,7 @@ local faction = KrowiAF.Enum.Faction  -- include only if needed
 Format: `"XX_YY_ZZ"` with zero-padded components matching the WoW patch version.
 
 ```lua
-KrowiAF.AchievementData["11_01_00"] = {
-    {KrowiAF.SetAchievementPatch, 11, 1, 0},  -- mandatory first entry
+KrowiAF.AchievementData["11_01_00"] = {   -- Data/Data.lua inserts {KrowiAF.SetAchievementPatch, 11, 1, 0} from the key
     Ach(12345),
     -- ...
 }
@@ -118,7 +117,7 @@ All dynamically generated from `KrowiAF.Enum.RewardType`. Chain multiple for ach
 
 > **Note:** For every cutoff pattern the start of the window is **not** the argument you write — it is silently set to the achievement's own `BuildVersion.Id`. You only specify the cutoff end. `Before` and `Until` are the only words a three-argument cutoff takes; `From` and `After` start an open-ended window. Any other word, or a six-argument window that does not run `From`/`After` → `Until`/`Before`, is reported by the data load (`MalformedObtainable`) and fails the headless pipeline. Until 101.1 a three-argument `Until` was silently read as an open-ended start that ran until 2100. When the window opens later than the patch that added the achievement (a season achievement added one patch ahead of its season), a cutoff names the wrong start: use a During or Range pattern.
 
-> **Note:** A `"Version"` value names the patch **as Retail shipped it**, on every client. Retail resolves it to that patch; Classic looks it up in `DataAddons/Classic/ContentTimeline.lua`, which maps each Retail patch to the patch where Classic reached the same content (`["5.4.0"] = "5.5.4"`). On a client that has not reached the patch, an end anchor leaves the achievement obtainable with no end scheduled, and a start anchor reads as future. Never write a Classic version number in a Shared file; write the Retail patch and let Classic's `ContentTimeline` map it.
+> **Note:** A `"Version"` value names the patch **as Retail shipped it**, on every client. `BuildVersionData.lua` only registers patches (provenance and the build-version filter); when each client reached a patch's content is a separate table. Retail has none: an anchor is its own patch. Classic looks it up in `DataAddons/Classic/ContentTimeline.lua`, which maps each Retail patch to the patch where Classic reached the same content (`["5.4.0"] = "5.5.4", -- Siege of Orgrimmar`), and every patch it maps to also stands for itself. `KrowiAF.ResolveVersionAnchor` does the lookup. A Retail patch missing from the table means that content has not happened on this client: an end anchor leaves the achievement obtainable with no end scheduled (so not Time Limited), and a start anchor reads as future. Every anchor must resolve on Retail, the reference timeline; the headless pipeline fails otherwise and counts the unresolved ones on Classic as information. Never write a Classic version number in a Shared file; write the Retail patch and let Classic's `ContentTimeline` map it. Never round an anchor to a nearby patch either: register the patch the data refers to (the build-version filter lists only patches some achievement was added in, so an anchor-only patch adds no empty entry). The design and its rationale are in `docs/data-design-review.md` §5.1.
 
 #### During patterns (single event / season)
 
@@ -258,7 +257,7 @@ Ach(7944):Obtainable("From", "Version", {6, 0, 3}, "Before", "Version", {7, 0, 3
 
 ## Registration Pipeline
 
-1. `{KrowiAF.SetAchievementPatch, M, m, p}` — sets the current patch on the private `achievementPatch` variable in `AchievementDataApi.lua`
+1. `{KrowiAF.SetAchievementPatch, M, m, p}`, inserted by `Data/Data.lua` from the table key — sets the current patch on the private `achievementPatch` variable in `AchievementDataApi.lua`
 2. Each `Ach(id)` entry holds `{KrowiAF.AddAchievementData, id, extras}` as its metatable base
 3. The loader iterates the patch table and calls each entry, which resolves to `KrowiAF.AddAchievementData(id, extras)`
 4. `KrowiAF.AddAchievementData` unpacks extras, calls the private `AddAchievementData`, and if `AutoPair` is set calls it again for the mirrored faction

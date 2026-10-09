@@ -5,12 +5,12 @@ description: Take a GitHub issue, bug report, error report or feature idea for K
 
 Drive one work item through `docs/sdlc-playbook.md`. That file is the process and this skill is the checklist for running it in Claude Code. Rules live in `.github/copilot-instructions.md`. Stop at every gate and do not act past it.
 
-`gh` is `& "$env:LOCALAPPDATA\Programs\gh\bin\gh.exe"` in PowerShell, because Git Bash does not have it on PATH. Reads and writes need no confirmation, as the instruction file allows.
+Call `gh` by its plain name (it is on PATH in both shells); Claude Code's permission rules match only that form. Reads and writes need no confirmation, as the instruction file allows.
 
 ## 0. Read the item
 
 ```powershell
-& "$env:LOCALAPPDATA\Programs\gh\bin\gh.exe" issue view <n> --repo TheKrowi/Krowi_AchievementFilter --json number,title,state,author,labels,body,comments,createdAt
+gh issue view <n> --repo TheKrowi/Krowi_AchievementFilter --json number,title,state,author,labels,body,comments,createdAt
 ```
 
 Download every screenshot into the scratchpad with `curl -sSL -o <file> <url>` (user-attachments URLs are webp) and look at it with Read. The picture often shows what the text does not.
@@ -39,7 +39,7 @@ Write `plan.md` read-only: plan mode (EnterPlanMode) when the session is not alr
 
 Then, in this order:
 
-1. **Scenario first.** Add it to the matching suite in `Tests/` and to its model in `.claude/tools/headless/run-tests.lua`, or create a new suite: a `Tests/<Suite>.lua` registered in `Tests/Files.xml`, a `suites.<name>` in the runner, and the suite named in the instruction file. `Recorded` is today's behaviour and `Target` the spec's. Run `& ".claude\tools\lua51\lua.exe" ".claude\tools\headless\run-tests.lua" "$PWD" <suite>` and confirm the new scenario PASSes and is open against its target.
+1. **Scenario first.** Add it to the matching suite in `Tests/` and to its model in `.claude/tools/headless/run-tests.lua`, or create a new suite: a `Tests/<Suite>.lua` registered in `Tests/Files.xml`, a `suites.<name>` in the runner, the suite named in the instruction file's suite list and described in `Tests/README.md`. `Recorded` is today's behaviour and `Target` the spec's. Run `& ".claude\tools\lua51\lua.exe" ".claude\tools\headless\run-tests.lua" "$PWD" <suite>` and confirm the new scenario PASSes and is open against its target.
 2. **In-game before-run (GUI work).** Run `Deploy.ps1 -WhatIf`, then deploy. Ask the maintainer for `/kaftest <suite>` and a second `/reload` (the game writes the log only on reload), then read the result with `Read-GameTests.ps1`. It must be green, with no FAIL and no unexplained difference from headless, before the fix starts. Commit the scenario: `test: reproduce #<n> in the <suite> suite`.
 3. **Fix only the code.** Then set `Recorded` to `Target` and rerun the suite. Never loosen a scenario, a lint rule or `Check-Repo.ignore` to get green.
 4. Add a changelog line under the next version, written for players and without a dev note (that is the maintainer's own aside; the root cause stays in `spec.md`), and update `plan.md` wherever the implementation departed from it.
