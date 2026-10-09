@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 102.0
+## 102.0 - 2026-10-09
 ### Added
 - 12.1.5 "The Promise of Tomorrow" patch data
     - The Unbinding of Kith'ix raid: Normal, Heroic and Mythic
