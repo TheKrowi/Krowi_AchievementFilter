@@ -834,6 +834,8 @@ zoneData:Zone({2512, 2639, 2640, 2641, 2642, 2643, 2644, 2645}, { -- The Coiled 
     63631, -- Captain Tokka's Crew
     63635, -- Tokka's Terrible Trials
     63519, -- The Promise of Tomorrow
+    63390, -- Turn the Surge
+    63381, -- Cursebreaker
 })
 
 zoneData:Zone({2509, 2613, 2636, 2637, 2638}, { -- Vaults of Atal'Utek (zone)

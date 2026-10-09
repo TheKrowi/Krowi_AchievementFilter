@@ -700,9 +700,9 @@ Last full validation: 2026-09-04 against Retail 12.1.0.69587 and Classic 5.5.4.6
 | 63334 | Fabled Let Me Solo Him: Azta'rec | ✅ added | 2634 | Venomfall Deeps | New Season 2 boss-lair delve | 2026-08-06 |
 | 63358 | Coiled to Strike | ✅ added | 2512 | The Coiled Isle | Zone exploration | 2026-08-06 |
 | 63359 | Treasures of the Coiled Isle | ✅ added | 2512 | The Coiled Isle | Zone exploration | 2026-08-06 |
-| 63381 | Cursebreaker | ⏭ skipped | — | — | Curse Surges expansion-wide rotating mechanic; no ZoneData precedent (matches Ritual Sites/Void Assaults) | 2026-08-06 |
+| 63381 | Cursebreaker | ✅ added | 2512 | The Coiled Isle | Criteria 115475 counts 150 Curse Surges; the description names the Coiled Isle, where all five Curse Surges of 63390 spawn; zoned on user decision 2026-10-09 | 2026-10-09 |
 | 63382 | It's Definitely Something | ✅ added | 2512 | The Coiled Isle | Zone exploration | 2026-08-06 |
-| 63390 | Turn the Surge | ⏭ skipped | — | — | Curse Surges expansion-wide rotating mechanic; no ZoneData precedent | 2026-08-06 |
+| 63390 | Turn the Surge | ✅ added | 2512 | The Coiled Isle | Rule 2: criteria are the five Curse Surge NPCs (Looming Mutagenitor, Vassti, Ss'akrithos, Venom Lancer Ori'kassi, Malformed Leviathan), all spawning on The Coiled Isle (Wowhead waypoints); zoned on user decision 2026-10-09 | 2026-10-09 |
 | 63391 | Jumping Through Hoops | ✅ added | 2606 | The Venomous Abyss | Glory-analog achievement | 2026-08-06 |
 | 63395 | The Coiled Isles Glyph Hunter | ✅ added | 2512 | The Coiled Isle | Zone exploration | 2026-08-06 |
 | 63397 | Kept You Waiting Huh? | ✅ added | 2606 | The Venomous Abyss | Glory-analog achievement | 2026-08-06 |
