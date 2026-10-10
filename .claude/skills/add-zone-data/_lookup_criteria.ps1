@@ -1,11 +1,13 @@
 # Print the criteria tree of achievements: the zone, NPC or boss names the game itself uses.
 # This is the "checkable fact" Zone Placement Rule 4 asks for before assigning a zone.
-# Overwrite $ids before running. Parent agent uses replace_string_in_file to set the IDs, then resets to @().
+# Pass the ids as -Ids 12345,12346, or set the $Ids placeholder below, run, and reset it to @().
 # Pre-requisite: wow.tools.local must already be running (_start_server.ps1 in Step 0).
 # Output: one header line per achievement, then its criteria indented (tree id, criteria id, amount, and the
 # criteria's type and asset: 8 = achievement id, 27 = quest id, 46 = faction id, 43 = explore area, 0 = creature id).
-$ids = @()
-. "$PSScriptRoot\_builds.ps1"
+param(
+    [string[]] $Ids = @()
+)
+. "$PSScriptRoot\..\..\tools\Get-WowBuilds.ps1"
 $baseUrl = "http://localhost:5000"
 $build = (Get-WowBuilds -BaseUrl $baseUrl).Retail   # criteria trees are the same on both clients for shared ids
 
@@ -30,7 +32,7 @@ function Write-Children([int]$parent, [int]$depth) {
     }
 }
 
-if ($ids.Count -eq 0) { Write-Host "Set `$ids first."; return }
+if ($Ids.Count -eq 0) { Write-Host "Pass -Ids or set the `$Ids placeholder first."; return }
 $pat = '^(' + ($ids -join '|') + ')$'
 # achievement columns: 0=Description_lang 1=Title_lang 3=ID 14=Criteria_tree
 $ach = Invoke-Dbc 'achievement' "draw=1&start=0&length=$($ids.Count + 10)&columns[3][search][value]=$pat&columns[3][search][regex]=true"

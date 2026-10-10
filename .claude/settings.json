@@ -1,5 +1,17 @@
 {
     "hooks": {
+        "PreToolUse": [
+            {
+                "matcher": "Bash|PowerShell|Edit|Write|MultiEdit",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "pwsh -NoProfile -NonInteractive -File \"$CLAUDE_PROJECT_DIR/.claude/hooks/Guard-ToolUse.ps1\"",
+                        "timeout": 15
+                    }
+                ]
+            }
+        ],
         "PostToolUse": [
             {
                 "matcher": "Edit|Write",
@@ -62,6 +74,25 @@
             "PowerShell(& \".claude\\skills\\add-category-data\\_lookup_ids.ps1\" *)",
             "PowerShell(& \".claude\\skills\\add-zone-data\\_lookup_criteria.ps1\")",
             "PowerShell(& \".claude\\skills\\add-zone-data\\_lookup_criteria.ps1\" *)",
+            "PowerShell(& \".claude\\tools\\Get-WowBuilds.ps1\")",
+            "PowerShell(& \".claude\\tools\\Find-Symbol.ps1\" *)",
+            "PowerShell(& \".claude\\tools\\lua51\\lua.exe\" \".claude\\tools\\headless\\snapshot-data.lua\" \"$PWD\" *)",
+            "PowerShell(& \".claude\\tools\\lua51\\lua.exe\" \".claude\\tools\\headless\\snapshot-categories.lua\" \"$PWD\" *)",
+            "PowerShell(& \".claude\\skills\\add-achievement-data\\_lookup_holidays.ps1\" *)",
+            "PowerShell(& \".claude\\skills\\add-achievement-data\\_lookup_mount_id.ps1\" *)",
+            "PowerShell(& \".claude\\skills\\add-achievement-data\\_lookup_pet_speciesid.ps1\" *)",
+            "PowerShell(& \".claude\\skills\\add-achievement-data\\_lookup_housingdecor_id.ps1\" *)",
+            "PowerShell(& \".claude\\skills\\add-category-data\\_lookup_category_names.ps1\" *)",
+            "PowerShell(& \".claude\\skills\\add-category-data\\_lookup_name.ps1\" *)",
+            "PowerShell(& \".claude\\skills\\add-category-data\\_evaluate_coverage.ps1\" *)",
+            "PowerShell(& \".claude\\skills\\add-zone-data\\_lookup_ids.ps1\" *)",
+            "PowerShell(& \".claude\\skills\\add-zone-data\\_lookup_quest_maps.ps1\" *)",
+            "PowerShell(& \".claude\\skills\\add-zone-data\\_check_zonedata.ps1\" *)",
+            "PowerShell(& \".claude\\skills\\add-zone-data\\_zone_search.ps1\" *)",
+            "PowerShell(& \".claude\\skills\\add-zone-data\\_linkgroups_search.ps1\" *)",
+            "PowerShell(& \".claude\\skills\\add-zone-data\\_find_zonefile.ps1\" *)",
+            "PowerShell(& \".claude\\skills\\add-zone-data\\_check_scripts_reset.ps1\")",
+            "PowerShell(& \".claude\\skills\\sync-mapverifier\\_new_maps.ps1\")",
             "PowerShell(& \"raw\\Evaluate-ZoneData.ps1\")",
             "PowerShell(& \"raw\\Evaluate-ZoneData.ps1\" *)"
         ]

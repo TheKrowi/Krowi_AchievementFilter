@@ -35,7 +35,7 @@ $ErrorActionPreference = "Stop"
 $baseUrl = "http://localhost:5000"
 $skillDir = Join-Path $RootDir '.claude\skills\add-zone-data'
 . (Join-Path $skillDir '_zonedata_parser.ps1')
-. (Join-Path $skillDir '_builds.ps1')
+. (Join-Path $RootDir '.claude\tools\Get-WowBuilds.ps1')
 
 $findings = [System.Collections.Generic.List[object]]::new()
 function Add-Finding([string]$Check, [string]$Severity, [string]$Message) {

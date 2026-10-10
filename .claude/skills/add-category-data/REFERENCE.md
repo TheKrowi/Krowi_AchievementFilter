@@ -2,10 +2,12 @@
 
 ## DB Queries
 
+The query shapes behind the designated scripts (`_lookup_ids.ps1 -Ids ...`, `_lookup_name.ps1 -Table ... -Name ...`); run those, not these snippets. `$build` comes from the server: `. .claude\tools\Get-WowBuilds.ps1; $build = (Get-WowBuilds).Retail`.
+
 ### Batch achievement lookup
 ```powershell
 $ids   = @(61864, 61865, 61866)   # IDs from patch block
-$build = "12.0.7.67808"           # retail build
+$build = (Get-WowBuilds).Retail   # never a typed build string
 $pat   = "^(" + ($ids -join "|") + ")$"
 $body  = "draw=1&start=0&length=$($ids.Count + 10)&columns[3][search][value]=$pat&columns[3][search][regex]=true"
 $resp  = Invoke-WebRequest "http://localhost:5000/dbc/data/achievement/?build=$build" `

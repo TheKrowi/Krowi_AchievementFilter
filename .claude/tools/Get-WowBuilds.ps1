@@ -1,13 +1,25 @@
-# Resolve the current game builds from wow.tools.local instead of hard-coding them.
-# Dot-source, then call Get-WowBuilds:
-#   . "$PSScriptRoot\_builds.ps1"
-#   $builds = Get-WowBuilds          # @{ Retail = "12.1.0.69587"; Classic = "5.5.4.69585" }
-# Picks the newest build of product `wow` (Retail) and `wow_classic` (Classic). The local list is
-# tried first; if either product is missing there the remote list is used, because the DBC endpoint
-# fetches any build on demand. Never conclude "no Classic build" from the local list alone.
-# To prepare a patch that is still on the PTR, set $env:KAF_RETAIL_PRODUCT = "wowxptr" (or "wowt")
-# before running a script: Retail then resolves to the newest build of that product instead of `wow`.
-# Pre-requisite: the server is running (_start_server.ps1).
+<#
+.SYNOPSIS
+    Resolves the current Retail and Classic game builds from wow.tools.local, so no lookup script
+    hard-codes a build that goes stale with the next patch.
+
+.DESCRIPTION
+    Dot-source it from a script and call Get-WowBuilds:
+        . "$PSScriptRoot\..\..\tools\Get-WowBuilds.ps1"
+        $builds = Get-WowBuilds          # @{ Retail = "12.1.0.69587"; Classic = "5.5.4.69585" }
+        $build = $builds[$Client]        # a script's -Client Retail|Classic picks one
+    or run it on its own to print both.
+
+    Picks the newest build of product `wow` (Retail) and `wow_classic` (Classic). The local list is
+    tried first; if either product is missing there the remote list is used, because the DBC endpoint
+    fetches any build on demand. Never conclude "no Classic build" from the local list alone.
+    To prepare a patch that is still on the PTR, set $env:KAF_RETAIL_PRODUCT = "wowxptr" (or "wowt")
+    before running a script: Retail then resolves to the newest build of that product instead of `wow`.
+    Pre-requisite: the server is running (.claude\skills\add-zone-data\_start_server.ps1).
+
+.EXAMPLE
+    & ".claude\tools\Get-WowBuilds.ps1"
+#>
 function Get-WowBuilds {
     param([string] $BaseUrl = "http://localhost:5000")
 
@@ -38,4 +50,10 @@ function Get-WowBuilds {
         throw "Could not resolve both builds from $BaseUrl (retail='$retail', classic='$classic')."
     }
     return @{ Retail = $retail; Classic = $classic }
+}
+
+if ($MyInvocation.InvocationName -ne '.') {
+    $builds = Get-WowBuilds
+    "Retail  $($builds.Retail)$(if ($env:KAF_RETAIL_PRODUCT) { " ($env:KAF_RETAIL_PRODUCT)" })"
+    "Classic $($builds.Classic)"
 }

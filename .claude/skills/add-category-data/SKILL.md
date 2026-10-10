@@ -50,8 +50,8 @@ Follow exact formatting from existing entries (see REFERENCE.md § Code Style). 
 After writing the Lua edits, run the feedback loop below. Do not stop until both checks pass
 or you have exhausted 4 attempts — on each attempt, state what you changed and why.
 
-1. Run `.claude/skills/add-category-data/_evaluate_coverage.ps1` (overwrite `$patchKey`,
-   `$achievementFile`, `$build` for the current patch first). This is a fast, deterministic,
+1. Run `.claude/skills/add-category-data/_evaluate_coverage.ps1 -PatchKey <EE_PP_SS> -AchievementFile
+   <DataAddons\...\AchievementData.lua>` (the build resolves itself). This is a fast, deterministic,
    DB-backed check that every achievement ID from the patch is placed somewhere in
    `DataAddons/**/CategoryData*.lua`, or is confirmed out-of-scope (`:NotCategorized()` tag or
    a known-excluded `achievement_category`). If it FAILs, place the missing IDs or, if genuinely
@@ -61,5 +61,8 @@ or you have exhausted 4 attempts — on each attempt, state what you changed and
    Keystone Hero+Victor pairing, zone-vs-expansion-scoped world events) and ordering (season
    MythicPlus lists, raid root/Glory/Mythic order, Prey tier blocks, zone patch-chronology).
    Report which items you checked and fix any "no" before presenting your result.
+3. Regenerate the category snapshot with `& ".claude\tools\lua51\lua.exe" ".claude\tools\headless\snapshot-categories.lua" "$PWD" Both -write`
+   and read the `git diff` of `.claude/tools/headless/snapshots/CategoryTree.*.txt`: it must show the new
+   placements and nothing else. The diff is committed with the category change (lint rule `category-snapshot`).
 
 See [REFERENCE.md](REFERENCE.md) for all lookup queries, classification tables, insertion rules, and code examples.

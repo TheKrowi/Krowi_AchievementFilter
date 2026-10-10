@@ -6,9 +6,9 @@
 -- the order the .toc and the nested Files.xml manifests give, and drives the real task groups the
 -- way Data.lua:LoadOnPlayerLogin does.
 --
--- load-data.lua and snapshot-categories.lua both build on this, so the stub surface lives in one
--- place and cannot drift between them. Extend the stubs in New() when a new WoW global is used at
--- load time.
+-- load-data.lua, snapshot-categories.lua and snapshot-data.lua build on this, so the stub surface
+-- lives in one place and cannot drift between them. Extend the stubs in New() when a new WoW global
+-- is used at load time.
 --
 --   local clientEnv = assert(loadfile(dir .. "/client-env.lua"))()
 --   local ctx = clientEnv.New(root, "Retail")
@@ -143,6 +143,19 @@ function M.New(root, client)
         GetCVar = true, SetCVar = true, GetFrameRate = true, debugprofilestop = true, CreateColor = true, CreateColorFromHexString = true,
         WrapTextInColorCode = true, GetAchievementCategory = true, GetPreviousAchievement = true, GetNextAchievement = true, GetAchievementLink = true,
         time = true, date = true, GetCurrentBindingSet = true, GetBindingKey = true, SetBinding = true, SaveBindings = true }
+    -- Blizzard enum members a data file passes as data get the game's real values (Retail and Classic agree,
+    -- Blizzard_APIDocumentationGenerated/TooltipInfoSharedDocumentation.lua) rather than a stub: a stub is a
+    -- table, so KrowiAF.AddTooltipData took Enum.TooltipDataType.Unit for its properties table and stored a stub
+    -- ObjectType and a truthy stub Faction where the game stores 2 and nil. The rest of Enum stays a stub.
+    local stubSeeds = {
+        Enum = {
+            TooltipDataType = { Item = 0, Spell = 1, Unit = 2, Corpse = 3, Object = 4, Currency = 5, BattlePet = 6, UnitAura = 7,
+                AzeriteEssence = 8, CompanionPet = 9, Mount = 10, PetAction = 11, Achievement = 12, EnhancedConduit = 13,
+                EquipmentSet = 14, InstanceLock = 15, PvPBrawl = 16, RecipeRankInfo = 17, Totem = 18, Toy = 19,
+                CorruptionCleanser = 20, MinimapMouseover = 21, Flyout = 22, Quest = 23, QuestPartyProgress = 24, Macro = 25,
+                Debug = 26, Outfit = 27 },
+        },
+    }
     setmetatable(env, {
         __index = function(t, k)
             local base = rawget(_G, k)
@@ -150,6 +163,7 @@ function M.New(root, client)
             if type(k) ~= "string" then return nil end
             if knownGlobals[k] or k:match("^C_%u") or k:match("^LE_") or k:match("^KrowiAF_") or k:match("^[A-Z][A-Z0-9_]+$") or k:match("^Blizzard_") then
                 local s = Stub(k)
+                for child, value in pairs(stubSeeds[k] or {}) do rawset(s, child, value) end
                 rawset(t, k, s)
                 stubbedGlobals[#stubbedGlobals + 1] = k
                 return s

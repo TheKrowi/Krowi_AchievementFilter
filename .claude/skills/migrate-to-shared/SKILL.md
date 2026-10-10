@@ -129,6 +129,13 @@ Get-Content $classicPath -Encoding UTF8 | Select-Object -First 50
 
 Confirm for each file: tabs (not spaces) for indentation, closing `}` present on last table, blank line between tables, Classic-only patches untouched.
 
+Then prove the migration changed nothing either client builds. A move to Shared builds the same objects, so both snapshots must report 0 mismatches; any difference is a migration error to fix, never a baseline to regenerate:
+
+```powershell
+& ".claude\tools\lua51\lua.exe" ".claude\tools\headless\snapshot-data.lua" "$PWD" Both -check
+& ".claude\tools\lua51\lua.exe" ".claude\tools\headless\snapshot-categories.lua" "$PWD" Both -check
+```
+
 ## Shared file prerequisites
 
 If `DataAddons/Shared/EE_ExpansionName/` does not yet exist:

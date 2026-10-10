@@ -35,7 +35,16 @@
                                  node paths, sibling order, flags, achievement placement, orphans);
                                  an intended change is regenerated with -write and committed with
                                  the code that caused it, never absorbed silently
-      lookup-placeholders [Warning] _lookup_*.ps1 skill scripts are committed with empty @() placeholders
+      data-snapshot    [Error]   the data each client builds still matches the recorded baselines in
+                                 headless/snapshots/ (headless/snapshot-data.lua: per achievement the
+                                 patch, faction, rewards, flags, obtainable anchors, previews, events,
+                                 tooltip/transmog/pet battle entries; every zone placement; build
+                                 versions, content timeline, seasons, events); an intended change is
+                                 regenerated with -write and committed with the data that caused it
+      lookup-placeholders [Warning] the _*.ps1 skill scripts are committed with their placeholders empty
+                                 ($Ids/$Terms/$Names = @(), $Table/$Name = ""), param() defaults included
+      pinned-build     [Warning] no skill or raw/ script types a game build ($build = "12..."); builds come
+                                 from .claude/tools/Get-WowBuilds.ps1
       work-items       [Warning] docs/work/<issue>-<slug>/ folders follow docs/sdlc-playbook.md: folder
                                  name, an intent.md, no plan.md without a spec.md, and in each file the
                                  template's title, a Status: draft|accepted|done line and its headings
@@ -500,19 +509,57 @@ if ((Test-Path $lua) -and (Test-Path $snapshot)) {
 
 Write-Timing 'category-snapshot'
 
+# --- data-snapshot: achievement, zone and registry data still match the recorded baseline ---------
+# The data load proves the data loads, not that it builds what it did before: a changed faction,
+# anchor, reward type, patch or zone placement loads cleanly either way. This rule compares every
+# data-derived achievement property, every zone placement and the registries they resolve against,
+# per client, with committed baselines, so such a change is a reviewed diff (headless/snapshot-data.lua).
+$dataSnapshot = Join-Path $root '.claude\tools\headless\snapshot-data.lua'
+if ((Test-Path $lua) -and (Test-Path $dataSnapshot)) {
+    $ErrorActionPreference = 'Continue'
+    $out = & $lua $dataSnapshot $root Both -check 2>&1 | ForEach-Object { "$_" }
+    $ErrorActionPreference = 'Stop'
+    foreach ($line in $out) {
+        $m = [regex]::Match($line, '^(.*?):(\d+): (.*)$')
+        if ($m.Success) { Add-Finding 'data-snapshot' 'Error' $m.Groups[1].Value ([int]$m.Groups[2].Value) $m.Groups[3].Value }
+    }
+}
+Write-Timing 'data-snapshot'
+
 # --- lookup-placeholders: designated DB lookup scripts must be left with empty placeholders -----
-foreach ($script in Get-ChildItem -Path (Join-Path $root '.claude\skills') -Recurse -Filter '_lookup_*.ps1') {
+# The placeholder is the parameter's default in the script's param() block ([string[]] $Ids = @()), so passing
+# -Ids needs no edit; an edited default must be reset. A multi-line @( on its own counts as filled.
+$typePrefix = '^\s*(\[[\w.\[\]]+\]\s*)*'
+foreach ($script in Get-ChildItem -Path (Join-Path $root '.claude\skills') -Recurse -Filter '_*.ps1') {
     $rel = ConvertTo-RelativePath $script.FullName
     $n = 0
     foreach ($line in Get-Content -LiteralPath $script.FullName) {
         $n++
-        if ($line -match '^\s*\$(ids|terms)\s*=\s*@\(\s*[^)\s]') {
+        $filled = ($line -match ($typePrefix + '\$(ids|terms|names)\s*=\s*@\(') -and $line -notmatch '@\(\s*\)') -or
+            $line -match ($typePrefix + '\$(table|name)\s*=\s*"[^"]')
+        if ($filled) {
             $sev = if ($changed.ContainsKey($rel)) { 'Error' } else { 'Warning' }
-            Add-Finding 'lookup-placeholders' $sev $rel $n 'lookup script committed with ids in its placeholder; reset it to @() after running (.github/copilot-instructions.md rule)'
+            Add-Finding 'lookup-placeholders' $sev $rel $n 'lookup script committed with values in its placeholder; pass them as parameters (-Ids, -Terms, -Names) or reset the default to @() / "" after running (.github/copilot-instructions.md rule)'
         }
     }
 }
 Write-Timing 'lookup-placeholders'
+
+# --- pinned-build: a typed build string goes stale with the next patch ---------------------------
+# The lookups returned NOTFOUND for new ids because ten scripts each pinned a different build, some two
+# patches old. Get-WowBuilds.ps1 resolves the current ones from the server.
+foreach ($script in @(Get-ChildItem -Path (Join-Path $root '.claude\skills') -Recurse -Filter '*.ps1') + @(Get-ChildItem -Path (Join-Path $root 'raw') -Filter '*.ps1')) {
+    $rel = ConvertTo-RelativePath $script.FullName
+    $n = 0
+    foreach ($line in Get-Content -LiteralPath $script.FullName) {
+        $n++
+        if ($line -match '^\s*\$build\s*=\s*["'']\d') {
+            $sev = if ($changed.ContainsKey($rel)) { 'Error' } else { 'Warning' }
+            Add-Finding 'pinned-build' $sev $rel $n 'hard-coded game build; dot-source .claude\tools\Get-WowBuilds.ps1 and take (Get-WowBuilds)[$Client] (KAF_RETAIL_PRODUCT=wowxptr for the PTR)'
+        }
+    }
+}
+Write-Timing 'pinned-build'
 
 # --- work-items: docs/work/<issue>-<slug>/ folders have the shape docs/sdlc-playbook.md gives them --
 $workRoot = Join-Path $root 'docs\work'
@@ -649,7 +696,7 @@ if (Test-Path $ignoreFile) {
         if ($t -match '^(\S+)\s+(\S+)$') { $ignore += @{ Rule = $Matches[1]; Path = $Matches[2] } }
     }
 }
-$alwaysOn = @('dup-id', 'saved-variables', 'lua-syntax', 'globals', 'removed-api', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'zone-decisions', 'mapverifier', 'changelog')
+$alwaysOn = @('dup-id', 'saved-variables', 'lua-syntax', 'globals', 'removed-api', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'data-snapshot', 'zone-decisions', 'mapverifier', 'changelog')
 $report = $findings | Where-Object {
     $f = $_
     -not ($ignore | Where-Object { ($_.Rule -eq '*' -or $_.Rule -eq $f.Rule) -and $f.Path -like $_.Path })

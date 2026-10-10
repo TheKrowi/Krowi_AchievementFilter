@@ -1,10 +1,11 @@
 # Evaluator: verify all designated lookup scripts are properly reset to their empty-placeholder state.
 # Exits 0 (pass) when all scripts have @() or no values. Exits 1 (fail) listing dirty scripts.
-$skillDir = "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\.claude\skills\add-zone-data"
+$skillDir = $PSScriptRoot
 
 $scripts = @{
     "_lookup_ids.ps1"        = '\$ids\s*=\s*@\((?!\s*\))'    # matches $ids = @( with content
     "_lookup_criteria.ps1"   = '\$ids\s*=\s*@\((?!\s*\))'
+    "_lookup_quest_maps.ps1" = '\$ids\s*=\s*@\((?!\s*\))'
     "_check_zonedata.ps1"    = '\$ids\s*=\s*@\((?!\s*\))'
     "_zone_search.ps1"       = '\$terms\s*=\s*@\((?!\s*\))'
     "_linkgroups_search.ps1" = '\$ids\s*=\s*@\((?!\s*\))'

@@ -2,9 +2,11 @@
 
 ## Query a Single Achievement by ID
 
+The designated scripts wrap these queries; this file documents their shape and the column maps. `$build` always comes from the server through `.claude\tools\Get-WowBuilds.ps1` (dot-source it, then `(Get-WowBuilds).Retail` or `.Classic`), never a typed string that goes stale with the next patch.
+
 ```powershell
 $id    = 12345
-$build = "12.0.5.67602"
+$build = (Get-WowBuilds).Retail
 $body  = "draw=1&start=0&length=1&columns[3][search][value]=^$id`$&columns[3][search][regex]=true"
 $resp  = Invoke-WebRequest "http://localhost:5000/dbc/data/achievement/?build=$build" `
              -Method POST -Body $body -ContentType "application/x-www-form-urlencoded" -UseBasicParsing

@@ -12,12 +12,15 @@ The everyday commands and the rules these tools enforce are in `.github/copilot-
 | `headless/load-data.lua` | the data load for both clients, headless |
 | `headless/run-tests.lua` | the scenario suites in `Tests/`, headless |
 | `headless/snapshot-categories.lua` | the category tree baselines in `headless/snapshots/` |
-| `headless/client-env.lua` | the sandboxed client environment `load-data.lua` and `snapshot-categories.lua` share |
+| `headless/snapshot-data.lua` | the achievement, zone and registry baselines in `headless/snapshots/` |
+| `headless/client-env.lua` | the sandboxed client environment `load-data.lua` and both snapshots share |
 | `Deploy.ps1` | mirrors the addon into a client's AddOns folder |
 | `Read-GameErrors.ps1`, `Read-GameTests.ps1` | read BugGrabber's errors and the last `/kaftest` run from the client's saved variables |
 | `Read-GameScreenshot.ps1` | lists the newest screenshots the client took, to open with the Read tool |
 | `Update-UiSource.ps1` | clones or updates the local copy of Blizzard's UI source next to the repo |
 | `Strip-Semicolons.ps1` | removes trailing statement semicolons, verified through bytecode |
+| `Get-WowBuilds.ps1` | the current Retail and Classic builds from the game-database server; dot-sourced by every lookup script |
+| `Find-Symbol.ps1`, `lua51/find-symbol.lua` | where a namespaced name is defined and used, through the local aliases |
 
 ## Lua 5.1.5
 
@@ -58,12 +61,14 @@ Get-ChildItem -Recurse -Filter *.lua | Where-Object FullName -notlike '*\.claude
 | `bom`, `line-endings` | no UTF-8 byte order mark, CRLF only (`.editorconfig`) |
 | `semicolon` | no trailing semicolon on an added line (changed files only) |
 | `enus-autogen` | no locale string added above the `AUTOGENTOKEN` marker in any locale file |
-| `lookup-placeholders` | the `_lookup_*.ps1` skill scripts are committed with their placeholders reset to `@()` |
+| `lookup-placeholders` | the `_*.ps1` skill scripts are committed with their placeholders empty (`$Ids`/`$Terms`/`$Names` = `@()`, `$Table`/`$Name` = `""`), `param()` defaults included |
+| `pinned-build` | no skill or `raw/` script types a game build; builds come from `Get-WowBuilds.ps1` |
 | `zone-decisions` | the zone-decisions log `raw/ZoneDataDecisions.md` agrees with the ZoneData files |
 | `mapverifier` | the Map Verifier CSV `raw/MapVerifier.csv` is valid and in canonical form |
 | `work-items` | the work-item folders under `docs/work/`: folder name, titles, status line, required headings |
 | `category-node-shape` | no V1 category node starts with a boolean (`{ name, true, ... }`, never `{ true, name, ... }`) |
 | `category-snapshot` | the category tree each client builds matches the baseline in `headless/snapshots/` |
+| `data-snapshot` | the achievements, zone placements and registries each client builds match their baselines in `headless/snapshots/` |
 | `data-load` | the headless data pipeline (below) |
 | `unit-tests` | the headless test suites behave as their scenarios' `Recorded` fields say |
 | `changelog` | a reminder when addon code changed without a `_Packaging/Changelog.md` line |
@@ -93,6 +98,22 @@ The background of the collector and the anchor timeline is `docs/data-design-rev
 
 Writes the category tree each client builds (node paths, sibling order, flags, achievement placement, orphans) to `headless/snapshots/CategoryTree.<client>.txt`. The `category-snapshot` lint rule regenerates it and fails on any difference; an intended change is regenerated with `-write` (the default mode; `-check` and `-stdout` also exist) and committed with the code that caused it, never absorbed silently. Design and history: `docs/how-to/migrate-category-data.md`.
 
+## Data snapshot (`headless/snapshot-data.lua`)
+
+The sibling of the category snapshot, for everything else the pipeline builds, as three files per client under `headless/snapshots/`:
+
+- **`Achievements.<client>.txt`**: one line per achievement with its patch, faction and the other faction's id, reward types, PvP and realm-first flags, its `Obtainable()` records as declared, its reward previews, custom criteria and events. `=>` shows where a Version anchor lands on that client. The achievement's tooltip, transmog set and pet battle link entries follow it.
+- **`Zones.<client>.txt`**: one line per zone placement.
+- **`Registries.<client>.txt`**: build versions, the content timeline, season anchors and events.
+
+A baseline changes only when the data does. Anchors are never resolved against today's date, and names from `addon.L` are left out. A refactor that builds the same objects, such as moving a block to Shared or rewriting an AutoFactionSplit as two FactionSplits, gives a zero diff.
+
+The `data-snapshot` lint rule runs it with `-check` (about 0.3 s). It reports each difference as `<file>:<line>: achievement 33: faction Alliance -> Horde` or `zone 616: gone 9045`. An intended change is regenerated with `-write` and committed with the data that caused it.
+
+```powershell
+& ".claude\tools\lua51\lua.exe" ".claude\tools\headless\snapshot-data.lua" "$PWD" Both -check   # -write regenerates, -stdout prints
+```
+
 ## Headless test suites (`headless/run-tests.lua`)
 
 Runs the scenario suites from `Tests/` against modelled WoW frames and FrameXML; `-check` is the `unit-tests` lint form. Everything about the suites, the scenarios and the in-game runner is in `Tests/README.md`.
@@ -117,6 +138,32 @@ The `ketho.wow-api` VS Code extension carries the same API in LuaLS form under `
 & ".claude\tools\Update-UiSource.ps1"                   # -Branch ptr2 (or live, classic, classic_titan)
 ```
 
+## Symbol finder (`Find-Symbol.ps1`)
+
+Prints where a namespaced name is defined and used, one `<path>:<line>: <kind>: <line>` per hit, over the addon's own `.lua` and `.xml`. The file list comes from the file system, and `Libs/` and the non-addon folders are skipped. It answers in about 0.2 s what otherwise takes several greps, because the code reaches the same function through per-file aliases.
+
+How it reads a file:
+
+1. It blanks comments and strings, keeping every position.
+2. It resolves the file's aliases in source order, with block scoping: `local gui = addon.Gui`, chained aliases, the OOP reverse alias `addon.Objects.Category = category`, and `local Ach = KrowiAF.Ach`.
+3. In XML, it counts `mixin=`, `function=` and `name=`, plus `method=` when the element carries or inherits the mixin, and it reads inline scripts as Lua.
+
+The kinds:
+
+- **`def`, `ref`, `xml`**: resolved hits.
+- **`self?`**: `self` inside `function owner:Method()`, read as the owner.
+- **`call?` and `def?`**: a member on a value it cannot resolve, such as a parameter, a local or a call result. Bare-member queries only.
+- **`dyn?`**: `parent[expr]`.
+
+A name inside a string (`hooksecurefunc(addon.Gui, "Name", ...)`) is never reported. A bare member (`GetMergedCategory`) matches every resolved name ending in it. `-List` prints the members defined directly under a name, and `-Defs` prints definitions only. The exit code is 1 when nothing was found.
+
+```powershell
+& ".claude\tools\Find-Symbol.ps1" addon.Gui.Search                        # a full path; a colon reads as a dot
+& ".claude\tools\Find-Symbol.ps1" GetMergedCategory                       # a bare member: every class that defines it, plus unresolved calls
+& ".claude\tools\Find-Symbol.ps1" KrowiAF_AchievementPopoutMixin.OnLoad   # a mixin method, XML handlers included
+& ".claude\tools\Find-Symbol.ps1" addon.Data -List                        # what is defined directly under a namespace
+```
+
 ## Semicolon strip (`Strip-Semicolons.ps1`)
 
 Removes trailing statement semicolons (a field separator inside a table constructor becomes a comma) through the lexer-aware `lua51/strip-semicolons.lua`, and replaces a file only when `luac -s` produces byte-identical bytecode before and after. Scope is every tracked `.lua` outside `Libs/` and the non-addon folders; `-DryRun` reports without writing, `-Path` limits it to given files. Its first run stripped the whole tree (the record is in `docs/codebase-analysis.md`); it exists for the next batch that comes back, such as a CurseForge locale export or an upstream merge.
@@ -127,11 +174,16 @@ Removes trailing statement semicolons (a field separator inside a table construc
 
 ## Data-verification scripts (online)
 
-Not offline tools, but listed here so the instruction file can stay short. These PowerShell scripts under `.claude/skills/` and `raw/` query the local game-database server (wow.tools.local at `http://localhost:5000`). Each `SKILL.md` documents the workflow; `.claude/skills/verify-achievement-data/API.md` is the query reference, and the rule for the lookup scripts' placeholders is in the instruction file.
+Not offline tools, but listed here so the instruction file can stay short. These PowerShell scripts under `.claude/skills/` and `raw/` query the local game-database server (wow.tools.local at `http://localhost:5000`). Each `SKILL.md` documents the workflow; `.claude/skills/verify-achievement-data/API.md` is the query reference, and the rule for the lookup scripts is in the instruction file.
+
+No script types a build. `Get-WowBuilds.ps1` (in this folder) picks the newest `wow` and `wow_classic` build from the server's local list, falling back to the remote list, and every lookup script dot-sources it; `-Client Classic` selects the Classic build where a script serves both, and `$env:KAF_RETAIL_PRODUCT = "wowxptr"` (or `"wowt"`) points Retail at a patch still on the PTR. Each lookup script takes its values as parameters (`-Ids`, `-Terms`, `-Names`, `-Table`/`-Name`); the parameter's default in the `param()` block is the placeholder, which can still be edited instead and must be reset afterwards (the `lookup-placeholders` rule).
 
 ```powershell
 # Start the DB server if it is not running (waits up to 60 s)
 & ".claude\skills\add-zone-data\_start_server.ps1"
+
+# The builds every lookup resolves to
+& ".claude\tools\Get-WowBuilds.ps1"
 
 # Zone data: every Zone() entry (duplicates, map ids, ids exist on Retail or Classic) and the decisions log
 # raw/ZoneDataDecisions.md against the files and the DB. Builds are resolved from the server, never typed.
@@ -143,8 +195,16 @@ Not offline tools, but listed here so the instruction file can stay short. These
 & ".claude\skills\verify-achievement-data\Verify-AchievementData.ps1" "<file>" -Checks id-exists,faction,title-reward,description-lang
 
 # Check every achievement in a patch block is placed in some CategoryData.lua
-& ".claude\skills\add-category-data\_evaluate_coverage.ps1"   # set $patchKey/$achievementFile/$build inside first
+& ".claude\skills\add-category-data\_evaluate_coverage.ps1" -PatchKey 12_01_00 -AchievementFile "DataAddons\Retail\12_Midnight\AchievementData.lua"
 
-# Batch ID lookup: id|Title|Reward|Faction|RewardItemID
-& ".claude\skills\add-achievement-data\_lookup_ids.ps1"        # set $ids (and $build) inside first
+# Batch ID lookup: id|Title|Reward|Faction|RewardItemID on one build, or id|Title|Description|builds= on both
+& ".claude\skills\add-achievement-data\_lookup_ids.ps1" -Ids 6,62387                  # -Client Classic
+& ".claude\skills\add-zone-data\_lookup_ids.ps1" -Ids 6,62387
+
+# Reward ids for :Mount(), :Pet(), :HousingDecor(); holiday dates for Obtainable() windows; any table by name
+& ".claude\skills\add-achievement-data\_lookup_mount_id.ps1" -Names "Kor'kron War Wolf"
+& ".claude\skills\add-achievement-data\_lookup_pet_speciesid.ps1" -Names "Zesty"
+& ".claude\skills\add-achievement-data\_lookup_housingdecor_id.ps1" -Names "Amani Forge"
+& ".claude\skills\add-achievement-data\_lookup_holidays.ps1" -Terms "Brewfest"
+& ".claude\skills\add-category-data\_lookup_name.ps1" -Table uimap -Name "Stormwind City"
 ```

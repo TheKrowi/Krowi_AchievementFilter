@@ -1,11 +1,17 @@
-# Overwrite $names and $build before running. Parent agent uses replace_string_in_file to set the names.
+# Pass the pet names as -Names "Lil'Kruul","Zesty", or set the $Names placeholder below, run, and reset it to @().
+# -Client Classic queries the Classic build; the build itself is resolved from the server (.claude\tools\Get-WowBuilds.ps1).
 # Chains creature (by exact Name_lang) -> battlepetspecies (by CreatureID) to get the SpeciesID
 # passed to :Pet(speciesId) -- the game resolves name/displayId from this at runtime via GetPetInfoBySpeciesID.
 # Pre-requisite: wow.tools.local must already be running.
-$names = @("Lil'Kruul", "Furiostraza", "Zesty", "Ula'took", "Ki'clak")
-$build = "12.1.0.69273"
+param(
+    [string[]] $Names = @(),
+    [ValidateSet('Retail', 'Classic')] [string] $Client = 'Retail'
+)
+. "$PSScriptRoot\..\..\tools\Get-WowBuilds.ps1"
 $baseUrl = "http://localhost:5000"
-foreach ($name in $names) {
+$build = (Get-WowBuilds -BaseUrl $baseUrl)[$Client]
+if ($Names.Count -eq 0) { Write-Host "Pass -Names or set the `$Names placeholder first."; return }
+foreach ($name in $Names) {
     $body = "draw=1&start=0&length=10&search[value]=$name"
     $resp = Invoke-WebRequest "$baseUrl/dbc/data/creature/?build=$build" `
         -Method POST -Body $body -ContentType "application/x-www-form-urlencoded" -UseBasicParsing

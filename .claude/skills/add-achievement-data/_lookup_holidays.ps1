@@ -1,11 +1,17 @@
 # Print the calendar dates of in-game holidays (holidays + holidaynames), decoded: the fact behind an
 # Obtainable("From", "Date", ..., "Until", "Date", ...) window for an anniversary or other dated event.
-# Overwrite $terms (holiday name fragments, matched case-insensitively) and $build before running, then reset $terms to @().
+# Pass holiday name fragments (matched case-insensitively) as -Terms "Anniversary","Brewfest", or set the $Terms
+# placeholder below, run, and reset it to @(). -Client Classic reads the Classic build. The build is resolved from
+# the server (.claude\tools\Get-WowBuilds.ps1); for a patch still on the PTR set $env:KAF_RETAIL_PRODUCT = "wowxptr" first.
 # Pre-requisite: wow.tools.local must already be running.
 # Output: holiday id|name|region|start (server time)|duration hours|end   one line per filled Date slot
-$terms = @()
-$build = "12.1.5.70077"
+param(
+    [string[]] $Terms = @(),
+    [ValidateSet('Retail', 'Classic')] [string] $Client = 'Retail'
+)
+. "$PSScriptRoot\..\..\tools\Get-WowBuilds.ps1"
 $baseUrl = "http://localhost:5000"
+$build = (Get-WowBuilds -BaseUrl $baseUrl)[$Client]
 
 function Get-Rows([string]$table) {
     $resp = Invoke-WebRequest "$baseUrl/dbc/data/$table/?build=$build" -Method POST -Body "draw=1&start=0&length=5000" `
@@ -23,7 +29,8 @@ function ConvertFrom-WowTime([long]$v) {
     try { return Get-Date -Year $year -Month $month -Day $day -Hour $hour -Minute $minute -Second 0 } catch { return $null }
 }
 
-if ($terms.Count -eq 0) { Write-Host "Set `$terms first."; return }
+if ($Terms.Count -eq 0) { Write-Host "Pass -Terms or set the `$Terms placeholder first."; return }
+Write-Host "build: $Client $build"
 $names = @{}
 foreach ($r in Get-Rows 'holidaynames') { $names[[int]$r[0]] = [System.Net.WebUtility]::HtmlDecode($r[1]) }
 $cols = Get-Columns 'holidays'

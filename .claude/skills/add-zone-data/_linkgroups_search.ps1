@@ -1,8 +1,11 @@
 # Find the link group (primary map id and all its sub-zones) for any map id, from raw\MapVerifier.csv.
-# Overwrite $ids before running. Parent agent uses replace_string_in_file to set IDs, then resets to @().
+# Pass the map ids as -Ids 2537,2538, or set the $Ids placeholder below, run, and reset it to @().
 # Output: id|primary=N|primaryName=...|ids=N, N, N   or   id|NOT_IN_ANY_GROUP
-$ids = @()
-$root = "e:\World of Warcraft Addon Development\Krowi_AchievementFilter"
+param(
+    [string[]] $Ids = @()
+)
+if ($Ids.Count -eq 0) { Write-Host "Pass -Ids or set the `$Ids placeholder first."; return }
+$root = (Resolve-Path "$PSScriptRoot\..\..\..").Path
 . "$root\.claude\skills\sync-mapverifier\_mapverifier_io.ps1"
 $rows = (Read-MapVerifierCsv "$root\raw\MapVerifier.csv").Rows
 $byId = @{}; $members = @{}

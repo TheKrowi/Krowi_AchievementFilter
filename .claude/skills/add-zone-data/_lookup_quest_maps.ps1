@@ -1,15 +1,17 @@
 # Print the maps a quest's points of interest sit on (questpoiblob), with the map names from raw/MapVerifier.csv:
 # the Rule 5 fact for a quest criterion (_lookup_criteria.ps1 prints its quest id as "type 27 asset <quest id>").
 # ObjectiveIndex -1 is the turn-in point, the map where the quest is completed.
-# Overwrite $ids before running. Parent agent uses replace_string_in_file to set the IDs, then resets to @().
+# Pass the quest ids as -Ids 12345,12346, or set the $Ids placeholder below, run, and reset it to @().
 # Pre-requisite: wow.tools.local must already be running (_start_server.ps1 in Step 0).
 # Output: quest|objective=<index>|uiMap=<id> <name> (<verdict>)   or   quest|NO_POI on <build>
-$ids = @()
-. "$PSScriptRoot\_builds.ps1"
+param(
+    [string[]] $Ids = @()
+)
+. "$PSScriptRoot\..\..\tools\Get-WowBuilds.ps1"
 $baseUrl = "http://localhost:5000"
 $build = (Get-WowBuilds -BaseUrl $baseUrl).Retail
 
-if ($ids.Count -eq 0) { Write-Host "Set `$ids first."; return }
+if ($Ids.Count -eq 0) { Write-Host "Pass -Ids or set the `$Ids placeholder first."; return }
 $header = (Invoke-WebRequest "$baseUrl/dbc/header/questpoiblob/?build=$build" -UseBasicParsing).Content | ConvertFrom-Json
 $cols = @($header.headers)
 $questCol = [array]::IndexOf($cols, 'QuestID')

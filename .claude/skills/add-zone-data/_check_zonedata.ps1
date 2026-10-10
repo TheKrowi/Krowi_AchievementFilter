@@ -1,10 +1,13 @@
 # Check which achievement IDs are already present in a ZoneData.lua Zone() entry, straight from the Lua.
 # Replaces _check_csv.ps1, which read MapVerifier_ZonesPerAchievement.csv — a stale export that drifted
 # from the real files (24 ids missing, 175 with different maps on 2026-09-04).
-# Overwrite $ids before running. Parent agent uses replace_string_in_file to set the IDs, then resets to @().
+# Pass the achievement ids as -Ids 12345,12346, or set the $Ids placeholder below, run, and reset it to @().
 # Output: id|PRESENT|primaries=<primary map ids>|maps=<all map ids>|files=<relative paths>   or   id|NOT_PRESENT
-$ids = @()
-$root = "e:\World of Warcraft Addon Development\Krowi_AchievementFilter"
+param(
+    [string[]] $Ids = @()
+)
+if ($Ids.Count -eq 0) { Write-Host "Pass -Ids or set the `$Ids placeholder first."; return }
+$root = (Resolve-Path "$PSScriptRoot\..\..\..").Path
 . "$PSScriptRoot\_zonedata_parser.ps1"
 $zd = Get-ZoneDataIndex -RootDir $root
 $mapRef = Get-MapReference -RootDir $root

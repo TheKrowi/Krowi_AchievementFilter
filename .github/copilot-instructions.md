@@ -31,9 +31,11 @@ The repo carries its own Lua 5.1.5 (`.claude/tools/lua51/`), the exact interpret
 & ".claude\tools\lua51\lua.exe" ".claude\tools\headless\load-data.lua" "$PWD" Both                      # headless data load
 & ".claude\tools\lua51\lua.exe" ".claude\tools\headless\run-tests.lua" "$PWD" escape                    # one scenario suite; -check for the lint form
 & ".claude\tools\Strip-Semicolons.ps1" -DryRun                                                           # verified semicolon strip; -Path to limit
+& ".claude\tools\Find-Symbol.ps1" addon.Gui.Search                                                       # defs and refs through the local aliases; a bare member, -List, -Defs
 ```
 
-- **Repo lint** `Check-Repo.ps1`: a rule per mechanical convention in this file, plus the zone, Map Verifier, work-item, category-snapshot, data-load and scenario checks. A deliberate exception goes in `Check-Repo.ignore` with a comment.
+- **Repo lint** `Check-Repo.ps1`: a rule per mechanical convention in this file, plus the zone, Map Verifier, work-item, category-snapshot, data-snapshot, data-load and scenario checks. A deliberate exception goes in `Check-Repo.ignore` with a comment.
+- **Data snapshots** `snapshot-categories.lua` and `snapshot-data.lua`: what each client builds (category tree; achievements, zone placements, registries) recorded under `.claude/tools/headless/snapshots/`. A data change shows there as a reviewable diff; regenerate with `-write` and commit the diff with the change that caused it.
 - **Headless data pipeline** `load-data.lua`: the real data load for both clients with WoW globals stubbed; reports every builder error, duplicate registration and `LoadDiagnostics` drop with file and line. Only `Both` cross-checks Shared references. Extend the stubs in `runClient` when a new WoW global is used at load time.
 - **Scenario suites** in `Tests/` (`escape`, `special`, `navigation`, `worldmap`, `obtainable`, `tooltip`) run headlessly through `run-tests.lua` and in game through `/kaftest <suite>` (debug mode on, out of combat). A scenario carries `Recorded`, the behaviour of the current code verified in game, and `Target`, the desired behaviour; it passes while the code behaves as recorded, so a behaviour change is a reviewable diff and the open targets stay visible without failing anything. Each suite and the in-game runner: `Tests/README.md`.
 - **Closing the loop with the game**: `Deploy.ps1` mirrors the addon into the client's AddOns folder (incremental, `-WhatIf` to preview), you `/reload` in game, then `Read-GameErrors.ps1` prints the errors BugGrabber recorded for this addon and `Read-GameTests.ps1` prints the last `/kaftest` run with every line that differs from the headless run marked. Saved variables are written only on `/reload` or logout, so both readers show when the file was last written. For a layout bug, ask for a screenshot (Print Screen in game, written at once): `Read-GameScreenshot.ps1` prints the newest one's path to open with the Read tool, and warns when the client saves tga, which the Read tool cannot display.
@@ -50,7 +52,7 @@ The repo carries its own Lua 5.1.5 (`.claude/tools/lua51/`), the exact interpret
 
 The data skills query a local game-database server (wow.tools.local at `http://localhost:5000`; start it with `& ".claude\skills\add-zone-data\_start_server.ps1"`) through designated scripts. Each `SKILL.md` documents its workflow, `.claude/tools/README.md` lists every script with its command, and `.claude/skills/verify-achievement-data/API.md` is the query reference.
 
-**Rule for lookup scripts**: edit the placeholder variable (`$ids = @()`, `$terms = @()`) inside the designated script, run it with the same unchanged command, then reset the placeholder. Never write ad-hoc inline `Invoke-RestMethod`/`curl` commands with IDs embedded; the maintainer rejects them, and the `lookup-placeholders` lint rule catches a placeholder left filled in.
+**Rule for lookup scripts**: pass the values as parameters (`-Ids 1,2,3`, `-Terms "x"`, `-Names "x"`), or edit the placeholder (the parameter's default in the script's `param()` block, `[string[]] $Ids = @()`), run the script, and reset the placeholder. A build is never typed: every script resolves it through `.claude/tools/Get-WowBuilds.ps1`, `-Client Classic` picks the Classic build, and `$env:KAF_RETAIL_PRODUCT = "wowxptr"` points Retail at a patch still on the PTR. Never write ad-hoc inline `Invoke-RestMethod`/`curl` commands with IDs embedded; the maintainer rejects them, the `lookup-placeholders` lint rule catches a placeholder left filled in, and in Claude Code a pre-tool hook (`.claude/hooks/Guard-ToolUse.ps1`) blocks an inline query to the server.
 
 ## Project Layout
 
@@ -193,7 +195,7 @@ expansion:Named(CT.Prey, { 62191 }):Merge():WithId(2570)   -- anything else; :Na
 2. Category data in the corresponding `CategoryData.lua`, in the V2 form above (`wiki/achievement-data/category-data-format.md`, `docs/category-data-reference.md`).
 3. Zone associations in the expansion's `ZoneData.lua` (`wiki/achievement-data/zone-data-format.md`, `raw/ZoneDataDecisions.md`); tooltip extras in `TooltipData.lua`.
 4. `BuildVersionData.lua` when a new patch version is introduced, or when an `Obtainable()` anchor names a patch not yet registered (`minor:Patch(n, addon.L["Name"])`); when a Classic re-release reaches new content, add its Retail patches to `DataAddons/Classic/ContentTimeline.lua`.
-5. No manual wiring: the `DataAddons/Loaders/` scripts process the tables. Run the headless pipeline (or the repo lint) and the data-verification scripts.
+5. No manual wiring: the `DataAddons/Loaders/` scripts process the tables. Run the headless pipeline (or the repo lint) and the data-verification scripts, then regenerate the snapshots (`snapshot-data.lua` and, for category changes, `snapshot-categories.lua`, both with `-write`), read their diff as the review of what the data change did, and commit it with the data.
 
 Step-by-step guides in `docs/how-to/`: `add-patch-achievements.md`, `add-expansion.md`, `add-event.md`, `update-localization.md`.
 
@@ -202,7 +204,7 @@ Step-by-step guides in `docs/how-to/`: `add-patch-achievements.md`, `add-expansi
 These rules apply to **all** new and edited code. Follow them without being asked.
 
 - **Files**: UTF-8 without BOM, CRLF line endings, 4-space indent, no final newline (`.editorconfig`). The `bom` and `line-endings` lint rules enforce the first two.
-- **Editing tools**: edit with an editor, the Edit/Write tools, or PowerShell. Git Bash `sed -i` and `awk` on this machine rewrite the whole file with LF endings (and `awk` adds a final newline) even when the pattern does not match, so a "no-op" `sed` silently breaks the `line-endings` rule on every file it touched. Use Bash only for read-only work: grep, diff, git, running the vendored Lua.
+- **Editing tools**: edit with an editor, the Edit/Write tools, or PowerShell. Git Bash `sed -i` and `awk` on this machine rewrite the whole file with LF endings (and `awk` adds a final newline) even when the pattern does not match, so a "no-op" `sed` silently breaks the `line-endings` rule on every file it touched. Use Bash only for read-only work: grep, diff, git, running the vendored Lua. In Claude Code a pre-tool hook denies in-place `sed`/`awk`/`perl` and Bash redirects into repo files.
 
 ### File header
 

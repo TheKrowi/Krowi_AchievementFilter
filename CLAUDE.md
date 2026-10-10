@@ -6,6 +6,7 @@ The imported file is the canonical instruction file for this repository: project
 
 ## How Claude Code is wired to the tooling
 
+- **Pre-tool guard hook**: `.claude/hooks/Guard-ToolUse.ps1` runs before every Bash, PowerShell, Edit, Write and MultiEdit call and denies the ones that have broken the repo before: `sed -i`/`perl -i`/`awk -i inplace` and Bash redirects or `tee` into a repo file (Git Bash writes LF), an inline `Invoke-WebRequest`/`curl` to `localhost:5000` (use the lookup scripts' parameters), and an `L[...]` string added above `AUTOGENTOKEN`. An edit under `Libs/` asks the user instead. The denial reason says what to do instead; scratch output goes to the scratchpad or `/tmp`, which it allows. It fails open.
 - **Post-edit syntax hook**: `.claude/hooks/Check-LuaSyntax.ps1` runs after every Edit/Write of a `.lua` file (wired in `.claude/settings.json`) and feeds parse errors back. It fails open if the tooling is missing.
 - **Stop hook**: `.claude/hooks/Check-RepoOnStop.ps1` runs `Check-Repo.ps1 -ChangedOnly` when a turn ends and hands errors back. Fix them, or add a deliberate exception to `.claude/tools/Check-Repo.ignore` with a comment.
 - **Extend the harness, do not add dependencies**: new checks go under `.claude/tools/` and reuse the vendored Lua 5.1.5; never ask for winget, pip or npm installs.
