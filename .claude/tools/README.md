@@ -58,6 +58,7 @@ Get-ChildItem -Recurse -Filter *.lua | Where-Object FullName -notlike '*\.claude
 | `lua-syntax` | every `.lua` parses under Lua 5.1 |
 | `globals` | no assignment to an undeclared global (from `luac -l`); the deliberate FrameXML overrides and API polyfills are allowlisted per file in `Check-Repo.globals` |
 | `removed-api` | no addon file reads a Blizzard global the Retail client no longer has (listed in `Check-Repo.removed-api`); always tree-wide |
+| `library-names` | every library name addon code passes to `LibStub(` or `KROWI_LIBMAN:GetLibrary(` is registered by a `NewLibrary(` call in `Libs/` (a literal, or a local set to one in the same file); always tree-wide, because a library rename breaks call sites nobody touched |
 | `luarc` | the `.luarc.json` globals list against what the code reads and assigns |
 | `luals` | the Lua language server's own diagnostics tree-wide; only on full runs or with `-Luals`, and only when the VS Code extensions `sumneko.lua` and `ketho.wow-api` are installed; pre-existing findings are warnings, findings in changed files errors |
 | `bom`, `line-endings` | no UTF-8 byte order mark, CRLF only (`.editorconfig`) |

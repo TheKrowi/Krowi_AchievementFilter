@@ -5,3 +5,6 @@ files-xml Api/ApiDocumentation.lua       # documentation only
 # Line endings owned by external tools
 line-endings Localization/*.lua          # CurseForge exports these with LF
 line-endings Krowi_AchievementFilter.toc # written by the addon manager with LF
+# Known defects held until their fix lands (docs/work/2026-10-11-latent-bugs: stale library names since Release 92.0)
+library-names Gui/RightClickMenu/AchievementMenu/PetBattleLinks.lua # Krowi_PopupDialog-1.0 at :25, :36, :70; the fix removes this line
+library-names Options/General.lua        # Krowi_MenuBuilder-1.0 at :62; the fix removes this line

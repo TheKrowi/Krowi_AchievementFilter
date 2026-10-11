@@ -19,6 +19,9 @@
       removed-api      [Error]   no addon file reads a Blizzard global the Retail client no longer has (luac -l
                                  GETGLOBAL against Check-Repo.removed-api); always tree-wide, because a
                                  removal breaks files nobody touched
+      library-names    [Error]   every library name addon code passes to LibStub( or KROWI_LIBMAN:GetLibrary(
+                                 is one a NewLibrary( call in Libs/ registers; always tree-wide, because a
+                                 library rename breaks call sites nobody touched
       luarc            [Error]   .luarc.json diagnostics.globals holds exactly what the language server
                                  cannot see on its own: every entry is read by an addon file (luac -l
                                  GETGLOBAL), none is assigned by one, no duplicates, sorted ordinally
@@ -404,6 +407,38 @@ if (Test-Path $luac) {
 }
 Write-Timing 'globals'
 
+# --- library-names: addon code asks LibStub only for libraries Libs/ registers -------------------
+# A library rename in Libs/ (Krowi_PopupDialog-1.0 became Krowi_PopupDialog_2 in Release 92.0) leaves call
+# sites behind that fail only when clicked, so every addon file is checked, also with -ChangedOnly. The
+# registered names come from each NewLibrary( call in Libs/: a literal, or a local set to a literal in the
+# same file (local MAJOR, MINOR = "AceDB-3.0", 27). Function definitions and arguments that resolve to no
+# literal (LibMan's generic wrapper) are skipped. -FollowSymlink: a worktree may link its submodules in.
+$libraryNames = [hashtable]::new([StringComparer]::Ordinal)
+foreach ($file in Get-ChildItem -Path (Join-Path $root 'Libs') -Recurse -File -Filter *.lua -FollowSymlink) {
+    $text = [IO.File]::ReadAllText($file.FullName)
+    foreach ($m in [regex]::Matches($text, '(?m)^(?!\s*(?:local\s+)?function\b).*?NewLibrary\(\s*(?:nil\s*,\s*)?([^,\)\s]+)')) {
+        $arg = $m.Groups[1].Value
+        if ($arg -match '^["''](.+)["'']$') { $libraryNames[$Matches[1]] = $true; continue }
+        if ($arg -notmatch '^[A-Za-z_]\w*$') { continue }
+        $definition = [regex]::Match($text, '(?m)^\s*(?:local\s+)?' + [regex]::Escape($arg) + '\s*(?:,\s*[A-Za-z_]\w*\s*)*=\s*["'']([^"'']+)["'']')
+        if ($definition.Success) { $libraryNames[$definition.Groups[1].Value] = $true }
+    }
+}
+$libraryCallRx = [regex]'(?:\bLibStub\s*(?::\s*GetLibrary\s*)?\(|\bKROWI_LIBMAN\s*:\s*GetLibrary\s*\()\s*["'']([^"'']+)["'']'
+foreach ($rel in $ownLuaFiles) {
+    $lineNo = 0
+    foreach ($line in ([Text.Encoding]::UTF8.GetString($fileBytes[$rel]) -split "`r?`n")) {
+        $lineNo++
+        foreach ($m in $libraryCallRx.Matches($line)) {
+            $name = $m.Groups[1].Value
+            if (-not $libraryNames.ContainsKey($name)) {
+                Add-Finding 'library-names' 'Error' $rel $lineNo "asks for library '$name', which no NewLibrary call in Libs/ registers, so the call raises 'Cannot find a library instance'; use the registered name (Krowi_PopupDialog_2, addon.MenuBuilder for Krowi_Menu_2)"
+            }
+        }
+    }
+}
+Write-Timing 'library-names'
+
 # --- luarc: .luarc.json diagnostics.globals stays exact ------------------------------------------
 # The language server resolves the WoW API and FrameXML (ketho.wow-api annotations) and every global
 # an addon file assigns by itself, so the list holds only what it cannot see: global strings,
@@ -728,7 +763,7 @@ if (Test-Path $ignoreFile) {
         if ($t -match '^(\S+)\s+(\S+)$') { $ignore += @{ Rule = $Matches[1]; Path = $Matches[2] } }
     }
 }
-$alwaysOn = @('section-order', 'dup-id', 'saved-variables', 'lua-syntax', 'globals', 'removed-api', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'data-snapshot', 'zone-decisions', 'mapverifier', 'changelog')
+$alwaysOn = @('section-order', 'dup-id', 'saved-variables', 'lua-syntax', 'globals', 'removed-api', 'library-names', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'data-snapshot', 'zone-decisions', 'mapverifier', 'changelog')
 $report = $findings | Where-Object {
     $f = $_
     -not ($ignore | Where-Object { ($_.Rule -eq '*' -or $_.Rule -eq $f.Rule) -and $f.Path -like $_.Path })

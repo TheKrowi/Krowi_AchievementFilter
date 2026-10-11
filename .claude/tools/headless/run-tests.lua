@@ -18,8 +18,11 @@
 --         obtainable (Objects/Achievement.lua's SetTemporaryObtainable and Data/TemporaryObtainable.lua: the record an
 --         Obtainable() call stores and the state it gives, on the real data load of client-env.lua), tooltip
 --         (Gui/AchievementTooltip/TransmogObjectives.lua: whether the transmog set progress section of the achievement
---         tooltip finishes in a 12.1.5 environment without the global GetItemInfo), guide (Gui/Guide/, the guide's
---         tooltip and right-click menu sections: achievement guides and their waypoints, once their files exist)
+--         tooltip finishes in a 12.1.5 environment without the global GetItemInfo; MostProgress.lua: whether the Most
+--         progress section shows on an achievement with transmog set data), guide (Gui/Guide/, the guide's tooltip and
+--         right-click menu sections: achievement guides and their waypoints, once their files exist), menu
+--         (Gui/RightClickMenu/AchievementMenu/AchievementMenu.lua: whether a "go to" entry for an achievement the addon
+--         does not register is greyed out)
 --
 -- Retail model is 12.1: the Blizzard_GameMenuEsc handler registry, the UI panel manager (its slots stay
 -- empty because the addon shows the achievement window with a plain Show), UISpecialFrames, static
@@ -815,20 +818,31 @@ suites.tooltip = function(c)
     })
     env.INVTYPE_HEAD, env.INVTYPE_CHEST = "Head", "Chest"
 
+    -- --- Most progress: no characters saved, so the section writes its header and "No characters found" -------------
+    rawset(env, "GetAchievementNumCriteria", function() return 2 end)
+    rawset(env, "KrowiAF_SavedData", { CharacterList = {} })
+    rawset(env, "KrowiAF_Achievements", { NotCompleted = {} })
+    string.SetColorRed = string.SetColorRed or function(text) return text end -- Libs/Krowi_Util/Colors.lua adds these to string
+
     -- --- The addon -------------------------------------------------------------------------------------------------
     addon.Gui = { AchievementTooltip = { Sections = {} } }
-    addon.Options = { db = { profile = { Tooltip = { Achievements = { ObjectivesProgress = { Show = true, ShowWhenAchievementCompleted = true } } } } } }
+    addon.Options = { db = { profile = { Tooltip = { Achievements = {
+        ObjectivesProgress = { Show = true, ShowWhenAchievementCompleted = true },
+        MostProgress = { Characters = 1, AlwaysShowRealm = false },
+    } } } } }
     addon.GetUsableSets = function(setIds) return setIds end
     addon.Util.Colors = setmetatable({}, { __index = function() return "%s" end })
-    c.loadAddonFile("Gui/AchievementTooltip/TransmogObjectives.lua")
+    c.loadAddonFile("Gui/AchievementTooltip/TransmogObjectives.lua") -- in the order of Gui/AchievementTooltip/Files.xml
+    c.loadAddonFile("Gui/AchievementTooltip/MostProgress.lua")
     ModelShowTooltip(addon, krowiTooltip)
 
     local anchor = env.CreateFrame("Frame", nil, env.UIParent)
     function headless.Setup() return true end
     function headless.CollectingText() return addon.L["Collecting data"] end
     function headless.ProgressText() return addon.L["Objectives progress"] end
+    function headless.MostProgressText() return addon.L["Most progress"] end
     function headless.Show(scenario)
-        local achievement = { Id = scenario.Id, TransmogSetIds = { 1 }, IsCompleted = false, GetObtainableState = function() return nil end }
+        local achievement = { Id = scenario.Id, TransmogSetIds = { 1 }, IsCompleted = false, IsAccountWide = false, GetObtainableState = function() return nil end }
         rawset(anchor, "Achievement", achievement)
         addon.Gui.AchievementTooltip:ShowTooltip(anchor, achievement)
         return true
@@ -998,6 +1012,49 @@ suites.guide = function(c)
         savedOptions = nil
     end
     return suite.Run(headless, observations), "Tests/Guide.lua", observations
+end
+
+-- The real Gui/RightClickMenu/AchievementMenu/AchievementMenu.lua against a model of addon.MenuBuilder that keeps the one
+-- rule this suite is about: CreateButtonAndAdd disables an entry only when its fourth argument, isEnabled, is false
+-- (Libs/Krowi_Menu/Krowi_MenuBuilder.lua, CreateSubmenuButton on Retail and on Classic). Achievement 6 is registered; the
+-- missing id is a fake the model's data does not hold (sources in Tests/Menu.lua).
+suites.menu = function(c)
+    local addon = c.addon
+    c.loadAddonFile("Tests/Menu.lua")
+    local suite = addon.Tests.Menu
+    local observations = {}
+
+    local builder = {}
+    function builder:New() return self end
+    function builder:Close() end
+    function builder:CreateButtonAndAdd(menu, text, func, isEnabled)
+        local entry = { Text = text, Func = func, Enabled = isEnabled ~= false }
+        menu.Entries[#menu.Entries + 1] = entry
+        return entry
+    end
+    addon.MenuBuilder = builder
+    addon.Gui = { RightClickMenu = {} }
+    addon.Data = { Achievements = { [6] = { Id = 6 } } }
+    addon.GetAchievmentName = function(id) return "Achievement " .. id end
+    c.loadAddonFile("Gui/RightClickMenu/AchievementMenu/AchievementMenu.lua")
+
+    local missingId = 999999
+    local headless = {}
+    function headless.MissingId(obs)
+        obs[#obs + 1] = ("missing-achievement-entry links to %d, a fake id the model's data does not hold"):format(missingId)
+        return missingId
+    end
+    function headless.Build(id)
+        local rootMenu = { Entries = {} }
+        addon.Gui.RightClickMenu.AchievementMenu:AddGoToAchievementLine(rootMenu, id)
+        return rootMenu
+    end
+    function headless.IsEntryEnabled(rootMenu)
+        local entry = rootMenu.Entries[1]
+        if not entry then return nil, "the root menu got no entry" end
+        return entry.Enabled
+    end
+    return suite.Run(headless, observations), "Tests/Menu.lua", observations
 end
 
 -- The real data load of client-env.lua (the one load-data.lua checks), then Data/TemporaryObtainable.lua on top,

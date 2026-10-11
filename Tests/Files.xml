@@ -7,4 +7,5 @@
     <Script file="Obtainable.lua" />
     <Script file="Tooltip.lua" />
     <Script file="Guide.lua" />
+    <Script file="Menu.lua" />
 </Ui>
