@@ -20,6 +20,8 @@ The `category-node-shape` lint rule added on 2026-09-20 catches that one specifi
 
 ## Current state (verified 2026-09-20)
 
+The migration finished in September 2026 and every first-party category file is now V2. The table below records the state on 2026-09-20, during the migration.
+
 | Fact | Value |
 |---|---|
 | `KrowiAF.NewExpansion` call sites in the whole tree | **1** — `DataAddons/Retail/12_Midnight/CategoryData.lua:5` |
@@ -55,7 +57,7 @@ local zones = expansion:Zones{ ... }:Key("MoP.Zones")
 KrowiAF.NewInjection("MoP.Zones"):Named(CT.Scenarios, { ... }):Register()
 ```
 
-- `:Key(name)` records `node.Key`. `ParseCategoryV2` registers `addon.Data.CategoryKeys[name] = categoryId` and asserts the key is not already taken.
+- `:Key(name)` records `node.CategoryKey` (not `Key`, so the field does not shadow the method). `ParseCategoryV2` registers `addon.Data.CategoryKeys[name] = categoryId` and asserts the key is not already taken.
 - `KrowiAF.NewInjection(target)` accepts a number — today's behaviour, unchanged for V1 and for plugins — or a string key.
 - The numeric id remains auto-allocated, so [`BrowsingHistory.lua`](../../BrowsingHistory.lua)'s invariant is untouched and no saved variable changes. No `DataIntegrityManager` solution is needed.
 

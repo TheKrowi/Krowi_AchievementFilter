@@ -1,21 +1,25 @@
 # Evaluate-ZoneCriteria.ps1
 # Checks ZoneData placements against the game's own criteria trees (Zone Placement Rules 2 and 3 in
-# .claude\skills\add-zone-data\SKILL.md; rationale and decision record in wiki\achievement-data\zone-data-format.md).
+# .claude\skills\add-zone-data\SKILL.md; the reasons and decisions D1 to D14 are in docs\zone-decisions.md).
 #
 #   R2   a placed achievement whose criteria name a zone or city must be on (one of) the map(s) carrying that
 #        name. Only location-bound criteria count: explore (43), kill (0), quest (27), cast-at (29), pet battle
 #        in zone (158, 161). Reputation (46) and achievement (8) criteria never do, even when the faction is
 #        named after a city. Names match link-group primaries of any verdict except Continent and Skip-like,
 #        exactly, or as an "... in <Map>" tail (Elder Highpeak in The Hinterlands). A name that exists in
-#        several expansions (Nagrand, Uldum, Dalaran, ...) passes when the id is on any candidate.
-#        Achievements placed only on instance maps (Dungeon, Raid, Delve, Scenario, Battleground, ClassHall)
-#        are not checked: their criteria name the instance by its area (Keystone Master: "Boralus").
-#   R2?  informational: the only missing candidates are City maps or maps whose parent is a map the id is
-#        already on (Explore Dun Morogh names Ironforge; Explore Tanaris names Caverns of Time). Whether a
-#        zone achievement is also listed on such an inner map is decision D8 in the wiki (open).
+#        several expansions (Nagrand, Uldum, Dalaran, ...) passes when the id is on any candidate. Instance and
+#        Battleground candidates are never expected (Explore Ghostlands names "Windrunner Spire").
+#        Achievements placed only on instance maps (Dungeon, Raid, Delve, Scenario, ClassHall) are not
+#        checked: their criteria name the instance by its area (Keystone Master: "Boralus").
+#   D8   informational, decision D8 (resolved 2026-09-05, per map): an explore criterion naming a City inside
+#        the zone never puts the zone's achievement on the city (Explore Durotar names Orgrimmar); a criterion
+#        naming an outdoor sub-map follows the yes/no table $d8SubMaps below. "[D8  ]" lines are decided
+#        cases that stay off the inner map; "[D8? ]" names a sub-map not in the table yet: ask the user, then
+#        add it. A sub-map decided yes is an ordinary R2 candidate.
 #   R3   a meta (criteria of type 8) must be on every primary map one of its child achievements is placed on,
-#        transitively. The verdict boundary applies: an open-world meta is not pushed into instance maps; an
-#        instance meta (all placed children on instance maps) is. Continent maps are never expected.
+#        transitively, instances included (Rule 3 is literal: The Flame Warden in the Slave Pens, Master of
+#        Wintergrasp in Vault of Archavon). Continent maps are never expected; children in $noPropagate are
+#        not followed and metas in $skipMetas are not checked.
 #   R3+  informational: the meta is on a map no child is on (children not placed anywhere are listed).
 #
 # The three DBC tables (achievement, criteriatree, criteria) are exported once per build from wow.tools.local
@@ -27,7 +31,7 @@
 #   .\Evaluate-ZoneCriteria.ps1                    # every id placed in ZoneData
 #   .\Evaluate-ZoneCriteria.ps1 -Ids 6558,2136     # specific ids (placed or not)
 #   .\Evaluate-ZoneCriteria.ps1 -Refresh           # re-export the tables
-#   .\Evaluate-ZoneCriteria.ps1 -Quiet             # findings only, no R2?/R3+ information
+#   .\Evaluate-ZoneCriteria.ps1 -Quiet             # findings only, no D8/R3+ information
 # Exit code 0 = no R2/R3 findings; 1 = findings.
 
 param(

@@ -64,4 +64,4 @@ KrowiAF.AchievementData["11_01_00"] = {   -- key = EE_PP_SS (expansion, major, m
 - For achievements, `Data.lua` also inserts `{KrowiAF.SetAchievementPatch, major, minor, patch}` derived from the table key (first-party data files never write that line themselves), and `Ach()` entries resolve to `KrowiAF.AddAchievementData`, which constructs `addon.Objects.Achievement`.
 - The task groups run at `PLAYER_LOGIN` (boot phase 3), yielding on a per-frame time budget.
 
-`wiki/achievement-data/achievement-data-format.md` (Registration Pipeline) follows one achievement through these steps.
+Shared and client files write into the same `KrowiAF.AchievementData` table, so the same key in both would make the later file overwrite the earlier one's entries; that is why a Shared file adds `_S` to its keys. The suffix has no meaning at runtime: `Data.lua` reads the patch from the first three parts of the key.

@@ -22,13 +22,13 @@ Resolve expansion folder from patch string (e.g. `12.1.0 for Midnight` → `Data
 Collect all `Ach(id)` entries from the target patch block (keyed by patch version). Preserve inline `-- Comment` names as classification hints.
 
 ### 3. Batch DB lookup
-Query all IDs in one request against the `achievement` table (build = retail, e.g. `12.0.7.67808`). See [REFERENCE.md](REFERENCE.md) § DB Queries for the PowerShell snippet. Capture per-ID: `Title_lang` [col 1], `Reward_lang` [col 2], `Faction` [col 5].
+Look up all IDs in one call: `& ".claude\skills\add-category-data\_lookup_ids.ps1" -Ids <ids>` (the build resolves from the server; see [REFERENCE.md](REFERENCE.md) § DB Queries). Capture per ID: `Title_lang`, `Reward_lang`, `Faction`, `Category` and `Description_lang`.
 
 ### 4. Classify each achievement
 For each ID determine:
 1. **Section** — Zones / Delves / Dungeons / Raids (see REFERENCE.md § Section Rules)
 2. **Zone or instance** — derived from achievement name/description + DB lookup
-3. **Subcategory** — name-pattern rules first → description → WoW DB category in browser UI → flag to user if still unclear (see REFERENCE.md § Subcategory Rules)
+3. **Subcategory** — name-pattern rules first → description → WoW achievement category (`_lookup_category_names.ps1`) → flag to user if still unclear (see REFERENCE.md § Subcategory Rules)
 
 ### 5. Resolve map/instance IDs
 - **New zone**: query `uimap` table by name; when multiple records exist pick the non-taxi playable zone record (see REFERENCE.md § uiMapId Lookup)
@@ -38,7 +38,7 @@ For each ID determine:
 Read existing CategoryData.lua to decide: zone/instance already exists → insert into it; does not exist → create new node. Apply ordering rules (see REFERENCE.md § Insertion Rules).
 
 ### 7. Generate and insert Lua
-Follow exact formatting from existing entries (see REFERENCE.md § Code Style). Write using `replace_string_in_file` or `multi_replace_string_in_file`.
+Write V2 builder calls only, following the existing chains in the file (see REFERENCE.md § Code Style). Never write the V1 positional format. Write with the Edit tool, which keeps the file's CRLF line endings.
 
 ### 8. Edge cases — stop and report before inserting
 - Subcategory still ambiguous after all classification steps

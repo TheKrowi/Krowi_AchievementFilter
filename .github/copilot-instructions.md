@@ -104,7 +104,7 @@ Game-version-conditional loading uses `[AllowLoadGameType mainline]` and `[Allow
 | `Media/` | Texture assets (`.blp`) |
 | `Tests/` | The `/kaftest` runner and the scenario suites it shares with the headless runner; loaded last, only active in debug mode |
 | `_Packaging/` | Changelog, release notes, CurseForge description. Not loaded by the game |
-| `docs/`, `wiki/`, `raw/`, `.claude/` | Non-code material (see Where Non-Code Material Lives); offline tooling, skills, subagents and hooks. Not loaded by the game, not shipped |
+| `docs/`, `raw/`, `.claude/` | Non-code material (see Where Non-Code Material Lives); offline tooling, skills, subagents and hooks. Not loaded by the game, not shipped |
 
 The file map of `Api/`, `Gui/`, `Data/`, `Options/` and `Libs/` is in `docs/architecture.md`.
 
@@ -124,7 +124,7 @@ Every file starts `local _, addon = ...` (or `local addonName, addon = ...`). `a
 
 Data files declare bare tables and never call processing functions; the loaders and `Data/Data.lua` turn each table into tasks at login (chunk execution model: `docs/architecture.md`). Registering the same ID twice hits an `assert`, so each achievement lives in exactly one place: Shared (`DataAddons/Shared/EE_.../`, identical on both clients) or the Retail/Classic file (client-specific entries only). Classic-only patches are never migrated to Shared.
 
-A `"Version"` anchor in an `Obtainable()` names the patch **as Retail shipped it**; Classic maps it to its own patch through `DataAddons/Classic/ContentTimeline.lua`, and every anchor must resolve on Retail. Never round an anchor to a nearby patch: register the patch the data refers to. How anchors resolve per client: `wiki/achievement-data/achievement-data-format.md`.
+A `"Version"` anchor in an `Obtainable()` names the patch **as Retail shipped it**; Classic maps it to its own patch through `DataAddons/Classic/ContentTimeline.lua`, and every anchor must resolve on Retail. Never round an anchor to a nearby patch: register the patch the data refers to. How anchors resolve per client, and every `Obtainable()` form with its boundaries: `docs/obtainability.md`.
 
 A drop is a data defect until proven intentional: every place in the data API that skips or drops an entry reports it to `addon.Data.LoadDiagnostics` (`Data/LoadDiagnostics.lua`) with one of its `Kind`s instead of returning silently, and the headless pipeline fails on an unreported one. Add the `Report` call with any new drop site.
 
@@ -181,7 +181,7 @@ KrowiAF.CategoryData.Events = KrowiAF.NewTabCategory("Events", addon.L["Events"]
 local zones = expansion:Zones{ 62386 }      -- typed containers: :Character :Zones :Delves :Dungeons :Raids :Professions :PetBattles
 local quelThalas = zones:Zone(2537)         -- :Zone(uiMapId), :Raid/:Dungeon(journalId), :Delve(areaPoiId) — a zone may hold zones
 quelThalas:Quests{ 62110, 42045 }           -- zone sub-containers :Quests :Exploration :PvP :Reputation, which merge
-expansion:Named(CT.Prey, { 62191 }):Merge():WithId(2570)   -- anything else; :Named NEVER merges, :Merge() is explicit
+theWakingShores:Named(addon.L["Primal Storms"], { 16463 }):Merge():WithId(1363)   -- anything else (Dragonflight); :Named NEVER merges, :Merge() is explicit
 ```
 
 - `:Merge()` is always written out; the only implicit merges are the zone sub-containers and the 13 profession helpers.
@@ -191,9 +191,9 @@ expansion:Named(CT.Prey, { 62191 }):Merge():WithId(2570)   -- anything else; :Na
 
 ### Steps for adding new achievements
 
-1. Achievement data in `DataAddons/<Retail|Classic|Shared>/XX_ExpansionName/AchievementData.lua` (references: `DataAddons/Retail/11_TheWarWithin/`, `Api/ApiDocumentation.lua`, `wiki/achievement-data/achievement-data-format.md`).
-2. Category data in the corresponding `CategoryData.lua`, in the V2 form above (`wiki/achievement-data/category-data-format.md`, `docs/category-data-reference.md`).
-3. Zone associations in the expansion's `ZoneData.lua` (`wiki/achievement-data/zone-data-format.md`, `raw/ZoneDataDecisions.md`); tooltip extras in `TooltipData.lua`.
+1. Achievement data in `DataAddons/<Retail|Classic|Shared>/XX_ExpansionName/AchievementData.lua` (the `add-achievement-data` skill; `docs/obtainability.md` for `Obtainable()` windows).
+2. Category data in the corresponding `CategoryData.lua`, in the V2 form above (`Api/CategoryDataBuilder.lua`; the `add-category-data` skill and its `REFERENCE.md`).
+3. Zone associations in the expansion's `ZoneData.lua` (the `add-zone-data` skill holds the rules, `docs/zone-decisions.md` the reasons behind them, `raw/ZoneDataDecisions.md` the per-achievement log); tooltip extras in `TooltipData.lua`.
 4. `BuildVersionData.lua` when a new patch version is introduced, or when an `Obtainable()` anchor names a patch not yet registered (`minor:Patch(n, addon.L["Name"])`); when a Classic re-release reaches new content, add its Retail patches to `DataAddons/Classic/ContentTimeline.lua`.
 5. No manual wiring: the `DataAddons/Loaders/` scripts process the tables. Run the headless pipeline (or the repo lint) and the data-verification scripts, then regenerate the snapshots (`snapshot-data.lua` and, for category changes, `snapshot-categories.lua`, both with `-write`), read their diff as the review of what the data change did, and commit it with the data.
 
@@ -310,9 +310,9 @@ Work moves through the six stages of Anthropic's AI-native SDLC Playbook, adapte
 
 ## Where Non-Code Material Lives
 
-- Reference read on demand: `.claude/tools/README.md` (every tool and lint rule, the headless pipeline, deploy targets, the data-verification scripts), `Tests/README.md` (each scenario suite, the in-game runner), `docs/architecture.md` (file map, data chunk execution model), `wiki/` (data formats, with `index.md` and a `log.md` of changes), `docs/how-to/` (step-by-step guides), `docs/category-data-reference.md` (the category tree).
+- Reference read on demand: `.claude/tools/README.md` (every tool and lint rule, the headless pipeline, deploy targets, the data-verification scripts), `Tests/README.md` (each scenario suite, the in-game runner), `docs/architecture.md` (file map, data chunk execution model), `docs/obtainability.md` (every `Obtainable()` form, its boundaries and how it resolves per client), `docs/zone-decisions.md` (the reasons behind the zone placement rules, decisions D1 to D14), `docs/how-to/` (step-by-step guides). The data formats themselves are in the data skills under `.claude/skills/`.
 - `docs/sdlc-playbook.md` the work-item lifecycle; `docs/work/<issue>-<slug>/` one folder per work item, templates in `docs/work/_template/`; `REVIEW.md` at the root the review policy every review pass reads. None of it ships: the release zip skips `docs/` and every `.md` file.
-- `docs/codebase-analysis.md` a quality review listing known debt (O(n^2) `GetMergedCategory`, the V1 category parser kept for plugins) and the fixed items with their root causes; its priority table carries the status of each item, so check it before trusting the prose above it.
+- `docs/codebase-analysis.md` a quality review listing known debt (O(n^2) `GetMergedCategory`, the V1 category parser kept for plugins) and the fixed items with their root causes; its priority table carries the status of each item, so check it before trusting the prose above it. `docs/harness-roadmap.md` is the same for the tooling: the harness steps done, planned and decided against.
 - `raw/` scratch reports and zone-data PowerShell tooling; `raw/MapVerifier.csv` is the canonical Map Verifier state (`sync-mapverifier` skill, `mapverifier` lint rule); `raw/ZoneDataDecisions.md` tracks the highest achievement ID analysed for zone coverage.
 
 ## External Resources

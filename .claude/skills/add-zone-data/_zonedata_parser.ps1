@@ -162,8 +162,8 @@ function Get-ZoneDataIndex {
 # Reads raw\MapVerifier.csv (the canonical Map Verifier state, see .claude\skills\sync-mapverifier\SKILL.md).
 #   Names        map id -> name                      Types      map id -> verdict ('' when unreviewed; a linked
 #   SubToPrimary sub map id -> primary map id                     sub-zone reports its primary's verdict)
-#   Inactive     HashSet of map ids whose verdict is TaxiAndAdventure, Error or StartingZone (must not be in ZoneData)
-#   SkipLike     HashSet of map ids never shown on the world map (Inactive plus Skip)
+#   Inactive     HashSet of map ids whose verdict is TaxiAndAdventure or Error (must not be in ZoneData)
+#   SkipLike     HashSet of map ids never shown on the world map (Inactive plus Skip and StartingZone)
 #   MapType      map id -> numeric C_Map type, Parent map id -> parentMapID (game-derived, may be empty)
 function Get-MapReference {
     param([Parameter(Mandatory)] [string] $RootDir)

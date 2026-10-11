@@ -159,7 +159,8 @@ function DelvesBuilder:Delve(areaPoiId, ids)
     return child
 end
 
--- DungeonsBuilder — inherits CategoryBuilder. MythicPlus(fn) inserts a V1 node (bridge; fn produces V1, not a builder).
+-- DungeonsBuilder — inherits CategoryBuilder. MythicPlus(fn) inserts fn(addon.L["Mythic+"]) as a child: fn is a
+-- shared.Get<Expansion>MythicPlus helper that returns a detached KrowiAF.NewCategory node.
 local DungeonsBuilder = {}
 DungeonsBuilder.__index = DungeonsBuilder
 setmetatable(DungeonsBuilder, { __index = CategoryBuilder })

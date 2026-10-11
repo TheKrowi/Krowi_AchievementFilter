@@ -1,6 +1,6 @@
 # Contributing to Krowi's Achievement Filter
 
-The canonical technical reference for the addon (architecture, load order, offline tooling, data formats and code conventions) is [`.github/copilot-instructions.md`](.github/copilot-instructions.md); it holds the rules and links the detailed references ([`.claude/tools/README.md`](.claude/tools/README.md), [`Tests/README.md`](Tests/README.md), [`docs/architecture.md`](docs/architecture.md), the [`wiki/`](wiki/index.md)). This file covers the contributor workflow only.
+The canonical technical reference for the addon (architecture, load order, offline tooling, data formats and code conventions) is [`.github/copilot-instructions.md`](.github/copilot-instructions.md); it holds the rules and links the detailed references ([`.claude/tools/README.md`](.claude/tools/README.md), [`Tests/README.md`](Tests/README.md), [`docs/architecture.md`](docs/architecture.md), [`docs/obtainability.md`](docs/obtainability.md)). This file covers the contributor workflow only.
 
 ---
 

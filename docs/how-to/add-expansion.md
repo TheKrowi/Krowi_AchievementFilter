@@ -71,31 +71,34 @@ local minor = expansion:Minor(0)
 minor:Patch(0, addon.L["The Next Expansion"])
 ```
 
-A Classic re-release of an expansion registers the original patches for provenance plus its own line, and maps each original patch to the re-release patch that reached its content in `DataAddons/Classic/ContentTimeline.lua` (`["5.4.0"] = "5.5.4"`); see the Version-anchor note in [`wiki/achievement-data/achievement-data-format.md`](../../wiki/achievement-data/achievement-data-format.md). The `Name` value is a localization key — add the English string to `Localization/enUS.lua` directly below the `Exported at` line under the `AUTOGENTOKEN` marker (see [`update-localization.md`](update-localization.md)).
+A Classic re-release of an expansion registers the original patches for provenance plus its own line, and maps each original patch to the re-release patch that reached its content in `DataAddons/Classic/ContentTimeline.lua` (`["5.4.0"] = "5.5.4"`); see Versions per client in [`docs/obtainability.md`](../obtainability.md). The `Name` value is a localization key — add the English string to `Localization/enUS.lua` directly below the `Exported at` line under the `AUTOGENTOKEN` marker (see [`update-localization.md`](update-localization.md)).
 
 ---
 
 ## 5. Create `CategoryData.lua`
 
-Mirror the structure from `DataAddons/Retail/12_Midnight/CategoryData.lua`. The outer wrapper is:
+Mirror the structure from `DataAddons/Retail/12_Midnight/CategoryData.lua`, written with the V2 builder (`Api/CategoryDataBuilder.lua`; never the V1 positional table). First add the expansion's name to the `CT` table in `DataAddons/Shared/CategoryData.lua` (`TheNextExpansion = addon.L["The Next Expansion"],`, with the string in every locale). The file then starts:
 
 ```lua
 local _, addon = ...
 local shared = addon.Data.CategoryData.Shared
+local CT = shared.CT
 
-tinsert(KrowiAF.CategoryData.Expansions, { -- The Next Expansion
-    addon.GetCategoryInfoTitle(<expansion_category_id>),
-    { -- Character
-        ...
-    },
-    { -- Zones
-        ...
-    },
-    -- etc.
+local expansion = KrowiAF.NewExpansion(CT.TheNextExpansion, {
+    -- expansion-wide achievements
 })
+
+expansion:Character{
+    ...
+}
+
+local zones = expansion:Zones{
+    ...
+}
+-- then :Delves, :Dungeons, :Raids, :Professions, :PetBattles, then the expansion:Named(...) blocks
 ```
 
-The category IDs passed to `addon.GetCategoryInfoTitle()` are WoW's internal achievement category IDs, found via the WoW achievement API or Wowhead.
+`KrowiAF.NewExpansion` appends the expansion to the Expansions tab. The containers, their order and the rules for each are in `.claude/skills/add-category-data/REFERENCE.md`.
 
 ---
 
@@ -111,7 +114,7 @@ local shared = addon.Data.ZoneData.Shared
 -- Each zone is a local table, then referenced in KrowiAF.ZoneData
 ```
 
-Use `DataAddons/Retail/12_Midnight/ZoneData.lua` as the reference.
+Use `DataAddons/Retail/12_Midnight/ZoneData.lua` as the reference; the `Zone()` shapes and the placement rules are in `.claude/skills/add-zone-data/SKILL.md`.
 
 ---
 
@@ -127,7 +130,7 @@ Open `DataAddons/Retail/Files.xml` and add the new expansion's `Files.xml` at th
 
 ## 8. Add the Tab/Root Category (if this is a brand new tab)
 
-For expansions, the category is appended to `KrowiAF.CategoryData.Expansions` via `tinsert` in `CategoryData.lua` (step 5) — no additional wiring is needed.
+For expansions, `KrowiAF.NewExpansion` in `CategoryData.lua` (step 5) appends the category to the Expansions tab; no additional wiring is needed.
 
 If this is an entirely new **tab** (not just a new expansion category under the Expansions tab), see `Api/TabDataApi.lua` and `DataAddons/Loaders/TabData.lua` for how tabs are registered.
 

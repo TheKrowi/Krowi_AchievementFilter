@@ -69,7 +69,8 @@ groupedInjection:Named(addon.L["Dragonflight"],       { 16462, 16463, 16464 })
 groupedInjection:Named(addon.L["The War Within"],     { 19763, 19764, 19765 })
 groupedInjection:Register()
 
--- :Named with canMerge = true — allows same-named subcategories from different plugins to be merged:
+-- :Merge() — sets the merge-small-categories flag: when the player turns on the Merge Small Categories filter, this
+-- subcategory is folded into its parent (which then shows its achievements) while it holds fewer achievements than the threshold:
 local mergedInjection = KrowiAF.NewInjection(971)
 mergedInjection:Named(addon.L["My Shared Category"], { 14808, 14814 }):Merge() -- Merge [Optional, default false]
 mergedInjection:Register()
@@ -93,9 +94,10 @@ keyedInjection:Register()
 
 -- V2 Achievement Data (current standard)
 -- Use KrowiAF.AchievementData with the Ach() fluent builder.
+-- The table key starts with the patch as EE_PP_SS (here 3.0.2). Data/Data.lua derives the patch record that shows
+-- the "Added in patch" info from the key, so the table never contains one.
 local Ach = KrowiAF.Ach
-KrowiAF.AchievementData["03_00_02_Example1"] = {
-    {KrowiAF.SetAchievementPatch, 3, 0, 2}, -- Patch settings, used to show the "Added in patch" info [Required]
+KrowiAF.AchievementData["03_00_02_Example1"] = { -- Patch key [Required]
     Ach(6), -- A simple achievement with only its Id [Optional]
     Ach(19408):HousingDecor(), -- Achievement with a reward type [Optional]
     Ach(20523):PvE(13), -- Achievement tied to a PvE season [Optional]
