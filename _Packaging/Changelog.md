@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 ### Added
 - The class-specific Campaign, Hidden Potential, Raise an Army and Legendary Research achievements are now tied to their class hall, so they show in the Current Zone and Selected Zone categories and on the world map
 
+### Fixed
+- In Wrath of the Lich King raids, the 10-player Glory of the Raider achievements now show in the Current Zone category at 10-player difficulty instead of 25-player, and Master of Wintergrasp, Azeroth's Next Top Model and Glory of the Ulduar Raider show at both raid sizes
+
 ## 102.0 - 2026-10-09
 ### Added
 - 12.1.5 "The Promise of Tomorrow" patch data

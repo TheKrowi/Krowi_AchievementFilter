@@ -38,12 +38,12 @@ zoneData:Zone(141, nil, { -- The Eye of Eternity (raid)
     1874, -- You Don't Have an Eternity (10 player)
     1869, -- A Poke in the Eye (10 player)
     622, -- The Spellweaver's Downfall (10 player)
+    2137, -- Glory of the Raider (10 player)
 }, {
     2149, -- Denyin' the Scion (25 player)
     1875, -- You Don't Have an Eternity (25 player)
     1870, -- A Poke in the Eye (25 player)
     623, -- The Spellweaver's Downfall (25 player)
-    2137, -- Glory of the Raider (10 player)
     2138, -- Glory of the Raider (25 player)
 })
 
@@ -54,6 +54,7 @@ zoneData:Zone(155, nil, { -- The Obsidian Sanctum (raid)
     2051, -- The Twilight Zone (10 player)
     624, -- Less Is More (10 player)
     1876, -- Besting the Black Dragonflight (10 player)
+    2137, -- Glory of the Raider (10 player)
 }, {
     456, -- Realm First! Obsidian Slayer
     2048, -- Gonna Go When the Volcano Blows (25 player)
@@ -62,12 +63,12 @@ zoneData:Zone(155, nil, { -- The Obsidian Sanctum (raid)
     2054, -- The Twilight Zone (25 player)
     1877, -- Less Is More (25 player)
     625, -- Besting the Black Dragonflight (25 player)
-    2137, -- Glory of the Raider (10 player)
     2138, -- Glory of the Raider (25 player)
 })
 
 zoneData:Zone(156, { -- Vault of Archavon (raid)
     2081, -- Grand Black War Mammoth
+    1752, -- Master of Wintergrasp
 }, {
     4016, -- Earth, Wind & Fire (10 player)
     1722, -- Archavon the Stone Watcher (10 player)
@@ -80,7 +81,6 @@ zoneData:Zone(156, { -- Vault of Archavon (raid)
     3137, -- Emalon the Storm Watcher (25 player)
     3837, -- Koralon the Flame Watcher (25 player)
     4586, -- Toravon the Ice Watcher (25 player)
-    1752, -- Master of Wintergrasp
 })
 
 zoneData:Zone(169, { -- Isle of Conquest (battleground)
@@ -714,6 +714,8 @@ zoneData:Zone({147, 148, 149, 150, 151, 152}, { -- Ulduar (raid)
     11320, -- Raiding with Leashes IV: Wrath of the Lick King
     17340, -- Ahead of the Curve: Yogg-Saron
     17341, -- Cutting Edge: Ulduar
+    11761, -- Azeroth's Next Top Model
+    12401, -- Glory of the Ulduar Raider
 }, {
     3097, -- Dwarfageddon (10 player)
     2907, -- Three Car Garage (10 player)
@@ -785,6 +787,7 @@ zoneData:Zone({147, 148, 149, 150, 151, 152}, { -- Ulduar (raid)
     3036, -- Observed (10 player)
     3004, -- He Feeds On Your Tears (10 player)
     2903, -- Champion of Ulduar
+    2957, -- Glory of the Ulduar Raider (10 player)
 }, {
     3098, -- Dwarfageddon (25 player)
     2908, -- Three Car Garage (25 player)
@@ -856,16 +859,14 @@ zoneData:Zone({147, 148, 149, 150, 151, 152}, { -- Ulduar (raid)
     3037, -- Observed (25 player)
     3005, -- He Feeds On Your Tears (25 player)
     2904, -- Conqueror of Ulduar
-    2957, -- Glory of the Ulduar Raider (10 player)
     2958, -- Glory of the Ulduar Raider (25 player)
-    11761, -- Azeroth's Next Top Model
-    12401, -- Glory of the Ulduar Raider
 })
 
 zoneData:Zone({162, 163, 164, 165, 166, 167}, { -- Naxxramas (raid)
     11750, -- Undying Aesthetic
     7934, -- Raiding with Leashes
     9924, -- Field Photographer
+    11761, -- Azeroth's Next Top Model
 }, {
     1997, -- Momma Said Knock You Out (10 player)
     1858, -- Arachnophobia (10 player)
@@ -886,6 +887,7 @@ zoneData:Zone({162, 163, 164, 165, 166, 167}, { -- Naxxramas (raid)
     574, -- Kel'Thuzad's Defeat (10 player)
     576, -- The Fall of Naxxramas (10 player)
     2187, -- The Undying
+    2137, -- Glory of the Raider (10 player)
 }, {
     2140, -- Momma Said Knock You Out (25 player)
     1859, -- Arachnophobia (25 player)
@@ -906,14 +908,13 @@ zoneData:Zone({162, 163, 164, 165, 166, 167}, { -- Naxxramas (raid)
     575, -- Kel'Thuzad's Defeat (25 player)
     577, -- The Fall of Naxxramas (25 player)
     2186, -- The Immortal
-    2137, -- Glory of the Raider (10 player)
     2138, -- Glory of the Raider (25 player)
-    11761, -- Azeroth's Next Top Model
 })
 
 zoneData:Zone({172, 173}, { -- Trial of the Crusader (raid)
     11752, -- Style of the Crusader
     11320, -- Raiding with Leashes IV: Wrath of the Lick King
+    11761, -- Azeroth's Next Top Model
 }, {
     3797, -- Upper Back Pain (10 player)
     3936, -- Not One, But Two Jormungars (10 player)
@@ -940,7 +941,6 @@ zoneData:Zone({172, 173}, { -- Trial of the Crusader (raid)
     3819, -- A Tribute to Insanity (25 player)
     4156, -- A Tribute to Immortality
     4079, -- A Tribute to Immortality
-    11761, -- Azeroth's Next Top Model
 })
 
 zoneData:Zone({186, 187, 188, 189, 190, 191, 192, 193}, { -- Icecrown Citadel (raid)
@@ -950,6 +950,7 @@ zoneData:Zone({186, 187, 188, 189, 190, 191, 192, 193}, { -- Icecrown Citadel (r
     11320, -- Raiding with Leashes IV: Wrath of the Lick King
     9924, -- Field Photographer
     4598, -- The Ashen Verdict
+    11761, -- Azeroth's Next Top Model
 }, {
     4534, -- Boned (10 player)
     4535, -- Full House (10 player)
@@ -976,6 +977,7 @@ zoneData:Zone({186, 187, 188, 189, 190, 191, 192, 193}, { -- Icecrown Citadel (r
     4631, -- Heroic: The Frostwing Halls (10 player)
     4583, -- Bane of the Fallen King
     4636, -- Heroic: Fall of the Lich King (10 player)
+    4602, -- Glory of the Icecrown Raider (10 player)
 }, {
     4610, -- Boned (25 player)
     4611, -- Full House (25 player)
@@ -1002,9 +1004,7 @@ zoneData:Zone({186, 187, 188, 189, 190, 191, 192, 193}, { -- Icecrown Citadel (r
     4635, -- Heroic: The Frostwing Halls (25 player)
     4584, -- The Light of Dawn
     4637, -- Heroic: Fall of the Lich King (25 player)
-    4602, -- Glory of the Icecrown Raider (10 player)
     4603, -- Glory of the Icecrown Raider (25 player)
-    11761, -- Azeroth's Next Top Model
 })
 
 zoneData:Zone(248, { -- Onyxia's Lair (raid)
