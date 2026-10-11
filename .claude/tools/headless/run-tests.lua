@@ -18,7 +18,8 @@
 --         obtainable (Objects/Achievement.lua's SetTemporaryObtainable and Data/TemporaryObtainable.lua: the record an
 --         Obtainable() call stores and the state it gives, on the real data load of client-env.lua), tooltip
 --         (Gui/AchievementTooltip/TransmogObjectives.lua: whether the transmog set progress section of the achievement
---         tooltip finishes in a 12.1.5 environment without the global GetItemInfo)
+--         tooltip finishes in a 12.1.5 environment without the global GetItemInfo), guide (Gui/Guide/, the guide's
+--         tooltip and right-click menu sections: achievement guides and their waypoints, once their files exist)
 --
 -- Retail model is 12.1: the Blizzard_GameMenuEsc handler registry, the UI panel manager (its slots stay
 -- empty because the addon shows the achievement window with a plain Show), UISpecialFrames, static
@@ -712,22 +713,9 @@ suites.worldmap = function(c)
     return worldMap.Run(worldMap.GameEnv, observations), "Tests/WorldMap.lua", observations
 end
 
--- The real Gui/AchievementTooltip/TransmogObjectives.lua behind a copy of AchievementTooltip:ShowTooltip, against a model of
--- Krowi_Tooltip and the transmog and item APIs: one fake set of two items, both in the item cache, so the section runs
--- without yielding. Like 12.1.5 the environment has no global GetItemInfo, only C_Item.GetItemInfo (sources in
--- Tests/Tooltip.lua).
-suites.tooltip = function(c)
-    local env, addon = c.env, c.addon
-    c.loadAddonFile("Tests/Tooltip.lua")
-    local suite = addon.Tests.Tooltip
-    local observations = {}
-    local headless = {}
-    function headless.IsRetail() return c.isRetail end
-    if not c.isRetail then
-        return suite.Run(headless, observations), "Tests/Tooltip.lua", observations
-    end
-
-    -- --- Krowi_Tooltip: lines, owner, and the Krowi_TooltipTextLeft/Right<n> font strings the section copies ---------
+-- Krowi_Tooltip as the tooltip sections use it: lines, owner, and the Krowi_TooltipTextLeft/Right<n> font strings a section
+-- may copy. Returns the tooltip and a function giving its left texts.
+local function ModelKrowiTooltip(env)
     local lines, owner = {}, nil
     local function FontString(text, r, g, b)
         return { GetText = function() return text end, GetTextColor = function() return r or 1, g or 1, b or 1 end }
@@ -746,6 +734,38 @@ suites.tooltip = function(c)
     function krowiTooltip:Show() end
     function krowiTooltip:Hide() end
     rawset(env, "Krowi_Tooltip", krowiTooltip)
+    return krowiTooltip, function() return lines end
+end
+
+-- A copy of AchievementTooltip:ShowTooltip (Gui/AchievementTooltip/AchievementTooltip.lua): every registered section that
+-- wants the achievement adds its lines
+local function ModelShowTooltip(addon, krowiTooltip)
+    function addon.Gui.AchievementTooltip:ShowTooltip(anchor, achievement)
+        krowiTooltip:SetOwner(anchor, "ANCHOR_BOTTOMRIGHT", 0, anchor:GetHeight())
+        for _, section in next, self.Sections do
+            if section:CheckAdd(achievement) then
+                section:Add(achievement)
+            end
+        end
+        krowiTooltip:Show()
+    end
+end
+
+-- The real Gui/AchievementTooltip/TransmogObjectives.lua behind a copy of AchievementTooltip:ShowTooltip, against a model of
+-- Krowi_Tooltip and the transmog and item APIs: one fake set of two items, both in the item cache, so the section runs
+-- without yielding. Like 12.1.5 the environment has no global GetItemInfo, only C_Item.GetItemInfo (sources in
+-- Tests/Tooltip.lua).
+suites.tooltip = function(c)
+    local env, addon = c.env, c.addon
+    c.loadAddonFile("Tests/Tooltip.lua")
+    local suite = addon.Tests.Tooltip
+    local observations = {}
+    local headless = {}
+    function headless.IsRetail() return c.isRetail end
+    if not c.isRetail then
+        return suite.Run(headless, observations), "Tests/Tooltip.lua", observations
+    end
+    local krowiTooltip, getLines = ModelKrowiTooltip(env)
 
     -- --- Transmog and item APIs (C_TransmogSets, C_TransmogCollection, C_Item on 12.1.5) ---------------------------------
     local items = { [101] = "INVTYPE_HEAD", [102] = "INVTYPE_CHEST" } -- item id -> equip slot
@@ -771,15 +791,7 @@ suites.tooltip = function(c)
     addon.GetUsableSets = function(setIds) return setIds end
     addon.Util.Colors = setmetatable({}, { __index = function() return "%s" end })
     c.loadAddonFile("Gui/AchievementTooltip/TransmogObjectives.lua")
-    function addon.Gui.AchievementTooltip:ShowTooltip(anchor, achievement) -- Gui/AchievementTooltip/AchievementTooltip.lua
-        krowiTooltip:SetOwner(anchor, "ANCHOR_BOTTOMRIGHT", 0, anchor:GetHeight())
-        for _, section in next, self.Sections do
-            if section:CheckAdd(achievement) then
-                section:Add(achievement)
-            end
-        end
-        krowiTooltip:Show()
-    end
+    ModelShowTooltip(addon, krowiTooltip)
 
     local anchor = env.CreateFrame("Frame", nil, env.UIParent)
     function headless.Setup() return true end
@@ -791,9 +803,125 @@ suites.tooltip = function(c)
         addon.Gui.AchievementTooltip:ShowTooltip(anchor, achievement)
         return true
     end
-    function headless.Lines() return lines end
+    function headless.Lines() return getLines() end
     function headless.Teardown() end
     return suite.Run(headless, observations), "Tests/Tooltip.lua", observations
+end
+
+-- Achievement guides (docs/work/2026-10-11-achievement-guides): the guide renderer, the waypoint actions and the tooltip
+-- and right-click menu sections, each loaded once its file exists, against a model of what they read on a Death Knight
+-- in Acherus on Retail. The model holds:
+--   - the 60962 guide as the data registers it, and its two hidden type-198 criteria, 486 Frost and Death and
+--     487 Roster of Champions, with Tier VII locked, as on the step-0 Death Knight;
+--   - the maps the user waypoint allows (Acherus yes, Dalaran no) and the Alliance Paladin portal's POI;
+--   - no TomTom.
+-- Until the feature exists no file loads, and every scenario gets "none". Classic runs the faction and waypoint scenarios
+-- only, which read nothing from the game.
+suites.guide = function(c)
+    local env, addon = c.env, c.addon
+    c.loadAddonFile("Tests/Guide.lua")
+    local suite = addon.Tests.Guide
+    local observations = {}
+    local headless = {}
+    function headless.IsRetail() return c.isRetail end
+    function headless.Text(key) return addon.L[key] end
+    function headless.Faction(name) return ({ Alliance = 1, Horde = 2 })[name] end -- KrowiAF.Enum.Faction, Api/AchievementDataApi.lua
+
+    if c.isRetail then
+        -- --- Garrison talents, hidden criteria, currency (values read in game in step 0 of the plan) --------------------
+        env.Enum = {
+            GarrisonType = { Type_7_0_Garrison = 3 },
+            GarrisonTalentAvailability = { Available = 0, Unavailable = 1, UnavailableAnotherIsResearching = 2, UnavailableNotEnoughResources = 3,
+                UnavailableNotEnoughGold = 4, UnavailableTierUnavailable = 5, UnavailablePlayerCondition = 6, UnavailableAlreadyHave = 7,
+                UnavailableRequiresPrerequisiteTalent = 8 },
+            SuperTrackingMapPinType = { AreaPOI = 0, QuestOffer = 1, TaxiNode = 2, DigSite = 3, HousingPlot = 4 },
+        }
+        local function Talent(id, name)
+            return { id = id, name = name, treeID = 128, tier = 6, researched = false, isBeingResearched = false, talentAvailability = 5,
+                researchDuration = 86400, researchCurrencyCosts = { { currencyType = 1220, currencyQuantity = 10000 } } }
+        end
+        local talents = { [486] = Talent(486, "Frost and Death"), [487] = Talent(487, "Roster of Champions") }
+        env.C_Garrison = {
+            GetTalentInfo = function(id) return talents[id] end,
+            GetTalentTreeIDsByClassID = function(_, classId) return classId == 6 and { 128 } or {} end,
+        }
+        env.UnitClass = function() return "Death Knight", "DEATHKNIGHT", 6 end
+        env.UnitFactionGroup = function() return "Alliance", "Alliance" end
+        -- 60962's criteria are hidden: only countHidden returns them, and one index past the last raises an error
+        local hiddenCriteria = { [60962] = { 486, 487 } }
+        env.GetAchievementNumCriteria = function() return 0 end
+        env.GetAchievementCriteriaInfo = function(id, index, countHidden)
+            local assets = countHidden and hiddenCriteria[id]
+            if not assets or not assets[index] then error("criteria not found", 2) end
+            return "", 198, false, 0, 1, nil, 0, assets[index], "0/1", 0, false
+        end
+        env.C_CurrencyInfo = { GetCurrencyInfo = function(id) return id == 1220 and { name = "Order Resources" } or nil end }
+        env.BreakUpLargeNumbers = function(n) return (tostring(n):reverse():gsub("(%d%d%d)", "%1,"):reverse():gsub("^,", "")) end
+
+        -- --- Spells, maps, waypoints, POIs, TomTom ------------------------------------------------------------------------
+        env.C_Spell = { GetSpellName = function(id) return ({ [50977] = "Death Gate" })[id] end }
+        local mapNames = { [627] = "Dalaran", [647] = "Acherus: The Ebon Hold", [648] = "Acherus: The Ebon Hold" }
+        local userWaypointMaps = { [647] = true, [648] = true } -- /kafwhere, step 0: Acherus allows the map pin, Dalaran refuses it
+        env.C_Map = {
+            GetMapInfo = function(id) return mapNames[id] and { mapID = id, name = mapNames[id] } or nil end,
+            CanSetUserWaypointOnMap = function(id) return userWaypointMaps[id] == true end,
+            SetUserWaypoint = function() end,
+        }
+        env.UiMapPoint = { CreateFromCoordinates = function(id, x, y) return { uiMapID = id, position = { x = x, y = y } } end }
+        env.C_SuperTrack = { SetSuperTrackedUserWaypoint = function() end, SetSuperTrackedMapPin = function() end }
+        local pois = { [5057] = { areaPoiID = 5057, name = "Sanctum of Light", description = "Portal to the Sanctum of Light, Home of the Silver Hand",
+            position = { x = 0.327, y = 0.698 } } } -- a Death Knight would not see it in game; the model keeps one POI to read
+        env.C_AreaPoiInfo = { GetAreaPOIInfo = function(mapId, id) return mapId == 627 and pois[id] or nil end }
+        env.C_AddOns = { IsAddOnLoaded = function() return false end }
+    end
+
+    -- --- The addon -------------------------------------------------------------------------------------------------
+    addon.Gui = { AchievementTooltip = { Sections = {} }, RightClickMenu = { AchievementMenu = { Sections = {} } } }
+    addon.Options = { db = { profile = { Achievements = { Guide = { Tooltip = true, RightClickMenu = true, Icon = true, ExpandedRow = false, WaypointProvider = 1 } } } } }
+    local loaded = {}
+    for _, rel in ipairs({ "Gui/Guide/Guide.lua", "Gui/Guide/Waypoint.lua", "Gui/AchievementTooltip/Guide.lua", "Gui/RightClickMenu/AchievementMenu/Guide.lua" }) do
+        local f = io.open(root .. "/" .. rel, "rb")
+        if f then
+            f:close()
+            c.loadAddonFile(rel)
+            loaded[#loaded + 1] = rel
+        end
+    end
+    if #loaded == 0 then table.insert(observations, "none of the guide files exists yet") end
+    local krowiTooltip, getLines = ModelKrowiTooltip(env)
+    ModelShowTooltip(addon, krowiTooltip)
+
+    local achievements = {
+        [60962] = { Id = 60962, IsCompleted = false, Guide = { -- as DataAddons/Retail/07_Legion/GuideData.lua registers it
+            { Type = "Travel", SpellId = 50977 },
+            { Type = "Npc", NpcId = 97485, Name = "Archivist Zubashi", MapId = 648, X = 47.7, Y = 53.8 },
+            { Type = "Criteria" },
+            { Type = "Tip", Text = "Either Tier VII upgrade completes it." },
+        } },
+        [11223] = { Id = 11223, IsCompleted = true },
+    }
+    function headless.Achievement(id) return achievements[id] end
+    local savedOptions
+    function headless.SetOptions(options)
+        local guideOptions = addon.Options.db.profile.Achievements.Guide
+        savedOptions = {}
+        for key, value in pairs(options or {}) do
+            savedOptions[key] = { Value = guideOptions[key] }
+            guideOptions[key] = value
+        end
+    end
+    local anchor = env.CreateFrame("Frame", nil, env.UIParent)
+    function headless.TooltipLines(achievement)
+        rawset(anchor, "Achievement", achievement)
+        addon.Gui.AchievementTooltip:ShowTooltip(anchor, achievement)
+        return getLines()
+    end
+    function headless.Teardown()
+        local guideOptions = addon.Options.db.profile.Achievements.Guide
+        for key, saved in pairs(savedOptions or {}) do guideOptions[key] = saved.Value end
+        savedOptions = nil
+    end
+    return suite.Run(headless, observations), "Tests/Guide.lua", observations
 end
 
 -- The real data load of client-env.lua (the one load-data.lua checks), then Data/TemporaryObtainable.lua on top,

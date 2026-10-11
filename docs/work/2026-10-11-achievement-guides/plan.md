@@ -262,22 +262,20 @@ Players have to leave the game to learn how to do an achievement. For 60962 "Leg
 - New `Tests/Guide.lua`, registered in `Tests/Files.xml`. Add `suites.guide` in `run-tests.lua`, with stubs modelled on the tooltip suite (`:719-797`): `C_Spell`, `C_Map`, `GetAchievementCriteriaInfo` (type 198, assets 486 and 487), `C_Garrison` (with `GetTalentTreeIDsByClassID` returning tree 128 or not), `UnitClass`, `TomTom` present or absent, and the options. Add the suite to `Tests/README.md` and to the instruction file's suite list (line 40).
 
 ## Order of work
-1. **Scenarios first.** Write `Tests/Guide.lua` and `suites.guide`, with Recorded set to today's behaviour ("none"):
-   - `tooltip-60962`
-   - `tooltip-60962-other-class` (talent names without a state)
-   - `tooltip-60962-locked` (Tier VII not unlocked, as on the step-0 Death Knight)
-   - `tooltip-60962-cost` (Tier VII open but unaffordable, as on the Priest)
-   - `menu-60962`
-   - `waypoint-both-without-tomtom`
-   - `waypoint-both-with-tomtom`
-   - `waypoint-tomtom-missing`
-   - `waypoint-map-pin-disallowed`
-   - `waypoint-poi` (a Poi step on 627, where the map pin is refused: the Blizzard action super-tracks the POI)
-   - `faction-alliance` and `faction-horde` (a guide with a Paladin portal per faction: each faction sees only its own)
-   - `options-off`
-   - `no-guide-11223` (Recorded and Target both "none")
+1. **Scenarios first.** Write `Tests/Guide.lua` and `suites.guide`, with Recorded set to today's behaviour ("none"). *As built on 2026-10-11:* 23 scenarios in five kinds; the list planned at the gate is split finer.
+   - **Surface**, the real tooltip and right-click menu: `tooltip-60962` (Target "shown"), `tooltip-options-off`, `tooltip-no-guide-11223`, `menu-60962` (Target "Guide:2/2": Open guide and the map pin), `menu-options-off`, `menu-no-guide-11223`. The menu runs only the guide section, into a recording menu builder, so no real menu opens in game.
+   - **Talent**, one per research state: `talent-not-yet`, `talent-researching`, `talent-locked`, `talent-cost`, `talent-researched`, `talent-swapped` (the Paladin case: the criterion stays done), `talent-other-class` (name only). These replace the planned `tooltip-60962-other-class`, `-locked` and `-cost`. They run on talent tables written in the suite, because in game the state of the character running the test would decide the outcome.
+   - **Faction**: `faction-alliance`, `faction-horde`, on a Paladin guide written in the suite.
+   - **Waypoint**, the actions per provider and what can place the point: `waypoint-both-without-tomtom`, `waypoint-both-with-tomtom`, `waypoint-tomtom-missing`, `waypoint-map-pin-disallowed`, `waypoint-both-nothing-places` (the map pin, disabled with its reason), `waypoint-poi`, `waypoint-poi-hidden` (another class: TomTom only).
+   - **Availability**, live: `waypoint-availability`, Acherus 648 allows the map pin and Dalaran 627 refuses it.
+   - Surface, Talent and Availability are Retail only; Classic runs 9.
 
-   The Poi and faction scenarios use guide tables written in the suite, since 60962 has neither.
+   The interfaces the code must provide are listed in the header of `Tests/Guide.lua`. These are added to what this plan already names:
+   - `GetLines` items carry `Kind` and `State`.
+   - `GetSteps(achievement, faction)`.
+   - `GetTalentState(info, isOwnClass, isCriterionCompleted)`.
+   - `Waypoint.GetActions(waypoint, provider, available)`, with `Waypoint.GetAvailability(waypoint)` reading `available` from the game.
+   - The menu section is reachable as `AchievementMenu.GuideSection`.
 
    Run the headless suite and confirm everything passes and is open. Deploy, then you run `/kaftest guide`, and `Read-GameTests.ps1` must be green. Commit `test: guide suite for achievement guides`.
 2. **Data.** The API, builder, registration, headless registries and the 60962 guide with the step-0 coordinates, plus its strings in every locale. Run `load-data.lua Both` (no drops), then `snapshot-data.lua -write`; the diff must show 60962's guide and nothing else. Commit `feat(data): guide data and the 60962 guide`.
