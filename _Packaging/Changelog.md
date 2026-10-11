@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - In Wrath of the Lich King raids, the 10-player Glory of the Raider achievements now show in the Current Zone category at 10-player difficulty instead of 25-player, and Master of Wintergrasp, Azeroth's Next Top Model and Glory of the Ulduar Raider show at both raid sizes
+- Hero of the Zandalar Tribe now lists both times it could be earned in its tooltip: before Cataclysm, and again during WoW's 20th Anniversary
 
 ## 102.0 - 2026-10-09
 ### Added

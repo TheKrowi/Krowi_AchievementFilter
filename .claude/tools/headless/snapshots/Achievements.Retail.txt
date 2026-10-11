@@ -502,7 +502,7 @@ ACH 952 | patch=3.0.2
 ACH 953 | patch=3.0.2 | reward=Title
 ACH 955 | patch=3.0.2
 ACH 956 | patch=3.0.2
-ACH 957 | patch=3.0.2 | obtainable=[From Event 1592=>none .. Until Event 1592=>none] | events=Calendar 514
+ACH 957 | patch=3.0.2 | obtainable=[From Version 3.0.2 (own patch) .. Before Version 4.0.1] [From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 514
 ACH 958 | patch=3.0.2
 ACH 959 | patch=3.0.2
 ACH 960 | patch=3.0.2
@@ -15595,7 +15595,7 @@ GUIDE 60962 # 3 Criteria Operator=Any
 achievements           8669
   with a faction       976
   with a reward type   2135
-  temporarily obtain.  2458   (2494 records)
+  temporarily obtain.  2458   (2495 records)
   with a preview       510
   with custom criteria 19
   in an event          980
