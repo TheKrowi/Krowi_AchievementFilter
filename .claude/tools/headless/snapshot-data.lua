@@ -25,8 +25,9 @@
 --                 the other faction's id, reward types, PvP and realm-first flags, the temporary-
 --                 obtainable records, reward previews, custom criteria, the events whose category
 --                 holds it, and any field a future loader hangs on it; then the stores keyed by
---                 achievement id, one line per entry: tooltip entries, transmog sets, pet battle links
---   Zones         one ZONE line per placement, per uiMapId in stored order - an id added to or dropped
+--                 achievement id, one line per entry: tooltip entries, transmog sets, pet battle links,
+--                 guide steps
+--   Zones        one ZONE line per placement, per uiMapId in stored order - an id added to or dropped
 --                 from a zone, a zone gained or lost, a reordering within a ZoneData file
 --   Registries    build versions, the content timeline, season anchors and events: what the
 --                 achievement data resolves against, so a change there shows at its source
@@ -330,10 +331,10 @@ local function buildSnapshot(client)
     end
 
     -- --- achievements -----------------------------------------------------------------------------
-    -- Category and MoreCategories are snapshot-categories.lua's; TransmogSetIds has its own section
+    -- Category and MoreCategories are snapshot-categories.lua's; TransmogSetIds and Guide have their own sections
     local achievementFields = { Id = true, BuildVersion = true, Faction = true, OtherFactionAchievementId = true, RewardType = true,
         IsPvP = true, IsRealmFirst = true, TemporaryObtainable = true, GetCustomCriteria = true, TransmogSetIds = true,
-        Category = true, MoreCategories = true }
+        Guide = true, Category = true, MoreCategories = true }
     local previews = type(data.RewardPreviewData) == "table" and data.RewardPreviewData or {}
 
     local function achievementLine(id, ach)
@@ -503,6 +504,23 @@ local function buildSnapshot(client)
     end
     emit("")
 
+    emit("== Guides ==")
+    emit("# per achievement, the steps in stored order; an NPC name and a tip are locale strings, left out")
+    local guideAchievements, guideSteps = 0, 0
+    for _, id in ipairs(achievementIds) do
+        local steps = data.Achievements[id].Guide
+        if steps ~= nil then
+            guideAchievements = guideAchievements + 1
+            for i, step in ipairs(type(steps) == "table" and steps or { steps }) do
+                local stepType = type(step) == "table" and step.Type or step
+                local fields = type(step) == "table" and extras(step, { Type = true, Name = true, Text = true }) or ""
+                emit("GUIDE " .. serialize(id) .. " # " .. i .. " " .. serialize(stepType) .. fields)
+                guideSteps = guideSteps + 1
+            end
+        end
+    end
+    emit("")
+
     emit("== Summary ==")
     emit("achievements           " .. #achievementIds)
     emit("  with a faction       " .. counts.Faction)
@@ -514,6 +532,7 @@ local function buildSnapshot(client)
     emit("tooltip entries        " .. tooltipEntries .. "   (" .. #tooltipIds .. " achievements)")
     emit("transmog sets          " .. transmogSets .. "   (" .. transmogAchievements .. " achievements)")
     emit("pet battle links       " .. #petBattleLinks .. "   (" .. petBattleCriteria .. " criteria)")
+    emit("guides                 " .. guideAchievements .. "   (" .. guideSteps .. " steps)")
     texts.Achievements = table.concat(lines, "\r\n")
 
     -- --- Zones file ----------------------------------------------------------------------------------

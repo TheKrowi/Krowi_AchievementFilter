@@ -311,7 +311,7 @@ function Context:RunPipeline(hooks)
     runStep("LoadTabs", "Api/TabDataApi.lua", KrowiAF.LoadTabs)
     runStep("CreateBuildVersions", "Api/BuildVersionDataApi.lua", KrowiAF.CreateBuildVersions)
     for _, fn in ipairs({ "RegisterAchievementDataTasks", "RegisterCustomCriteriaDataTasks", "RegisterCategoryDataTasks", "RegisterEventDataTasks",
-        "RegisterTooltipDataTasks", "RegisterPetBattleLinkDataTasks", "RegisterTransmogSetDataTasks", "RegisterZoneDataTasks" }) do
+        "RegisterTooltipDataTasks", "RegisterPetBattleLinkDataTasks", "RegisterTransmogSetDataTasks", "RegisterGuideDataTasks", "RegisterZoneDataTasks" }) do
         if type(data[fn]) == "function" then runStep(fn, "Data/Data.lua", data[fn], data) end
     end
 

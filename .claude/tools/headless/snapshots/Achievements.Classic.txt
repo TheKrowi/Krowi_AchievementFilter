@@ -4329,6 +4329,9 @@ PETBATTLE 8518 # criteria 11: https://www.wow-petguide.com/Encounter/51
 PETBATTLE 8518 # criteria 12: https://www.wow-petguide.com/Encounter/52
 PETBATTLE 8518 # criteria 13: https://www.wow-petguide.com/Encounter/50
 
+== Guides ==
+# per achievement, the steps in stored order; an NPC name and a tip are locale strings, left out
+
 == Summary ==
 achievements           2752
   with a faction       438
@@ -4340,3 +4343,4 @@ achievements           2752
 tooltip entries        1521   (36 achievements)
 transmog sets          0   (0 achievements)
 pet battle links       6   (34 criteria)
+guides                 0   (0 steps)

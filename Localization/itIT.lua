@@ -7,6 +7,8 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-07 18-18-49 ]] --
+L["Archivist Zubashi"] = true
+L["Either Tier VII upgrade completes it."] = "Basta una qualsiasi delle due migliorie di livello VII."
 L["Aqir Invasions"] = "Invasioni aqir"
 L["The Promise of Tomorrow"] = "La promessa del domani"
 L["5th Anniversary Celebration"] = "Celebrazione del 5° anniversario"
