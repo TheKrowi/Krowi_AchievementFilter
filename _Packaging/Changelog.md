@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 102.1
+### Added
+- The class-specific Campaign, Hidden Potential, Raise an Army and Legendary Research achievements are now tied to their class hall, so they show in the Current Zone and Selected Zone categories and on the world map
+
 ## 102.0 - 2026-10-09
 ### Added
 - 12.1.5 "The Promise of Tomorrow" patch data
