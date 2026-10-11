@@ -103,9 +103,9 @@ After each release, `Read-GameErrors.ps1` on both clients and new issues are the
 | Skills as institutional knowledge | `.claude/skills/*/SKILL.md`; `process-issue` drives this lifecycle |
 | Parallel sessions and subagents | `.claude/agents/` (`data-verifier`, `taint-reviewer`); one worktree per session |
 | Give Claude a feedback loop | `Check-Repo.ps1`, the post-edit and Stop hooks, the headless pipeline and suites, `Deploy.ps1` with the `Read-Game*` readers |
-| Continuous evals in CI | the `Tests/` scenario suites through the `unit-tests` rule on every turn; CI itself is not built yet (harness roadmap step 4) |
+| Continuous evals in CI | the `Tests/` scenario suites through the `unit-tests` rule on every turn; CI itself is parked (step 4 in `docs/harness-roadmap.md`) |
 | AI in the PR review loop | `REVIEW.md`, `/code-review`, `taint-reviewer`; the maintainer approves |
-| Hooks as approval gates | `.claude/hooks/` (syntax and lint); PreToolUse gates are not built yet (harness roadmap step 5) |
+| Hooks as approval gates | `.claude/hooks/`: the PreToolUse guard `Guard-ToolUse.ps1` denies the edits and commands that have broken the repo before, the post-edit hook checks syntax and the Stop hook lints |
 | CI/CD integration and deployment | the `release` skill driving the Krowi Addon Manager; production is the maintainer's go-ahead |
 | Closing the loop on metrics | `Read-GameErrors.ps1` after a release, the issue tracker; not automated |
 
