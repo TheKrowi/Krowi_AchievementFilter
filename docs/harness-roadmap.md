@@ -13,6 +13,7 @@ The harness is the self-contained toolchain under `.claude/`: the lint, the hook
 | 2b | Achievement, zone and registry snapshots and the `data-snapshot` rule | dd81ef2d (2026-10-10) |
 | 5 | PreToolUse guard `Guard-ToolUse.ps1` | dd81ef2d |
 | | `Get-WowBuilds.ps1` and the `pinned-build` rule, parameters on the lookup scripts, `Find-Symbol.ps1` | dd81ef2d |
+| | `Evaluate-ZoneCriteria.ps1` reports a missed zone as `[R2]` instead of hiding it as an undecided sub-map | 50fae1ee (2026-10-11) |
 
 ## Open, in priority order
 
@@ -27,6 +28,7 @@ Measured on 2026-10-10 from the Claude Code transcripts of this repo: 49 session
 | 10 | `Find-Symbol.ps1 -Outline` | 54 outline greps | small |
 | 11 | A check for a map in two `Zone()` blocks | a zone rule nothing enforces, broken twice | small |
 | 12 | Narrow the guard hook's inline-query check | a read-only grep whose pattern names the server is denied | small |
+| 13 | Raid-size lists: a check, and a list-aware zone plan | 51 placements sat in the wrong list for a month, unflagged | small |
 
 ### Step 6: fix line endings after Write
 
@@ -102,6 +104,14 @@ The `bom` and `line-endings` lint rules read only `.lua`, `.xml` and `.toc` file
 **Design.** Deny only when the command actually calls the server: the address as an argument of `Invoke-WebRequest`, `Invoke-RestMethod`, `iwr`, `irm`, `curl` or `wget`, not inside the search pattern of `grep`, `rg`, `Select-String` or `git grep`.
 
 **Done when.** `grep -n "localhost:5000" .claude/skills` runs, and an inline `Invoke-WebRequest` to the server is still denied.
+
+### Step 13: raid-size lists
+
+**Problem.** A Wrath raid's `Zone()` block has a general, a 10-player and a 25-player list, and the last two show only at their raid size. `_apply_zone_plan.ps1` inserts every line before the block's closing `})`, so the 2026-09-06 sweep put three 10-player Glory metas and three difficulty-neutral metas into 25-player lists: 51 placements, shown at the wrong raid size for a month, until fixed by hand in bd4fe838. No check looked at which list an id is in; the zone snapshot recorded the wrong lists as its baseline.
+
+**Design.** Two parts. A check in `Evaluate-ZoneData.ps1`: an id whose title ends in "(10 player)" or "(25 player)" must sit in that list. Titles without a size (The Undying, Conqueror of Ulduar, The Light of Dawn) cannot be checked this way, so for those `_apply_zone_plan.ps1` learns a list column (`general`, `10`, `25`) and refuses a plan line for a raid block without one.
+
+**Done when.** Moving 2137 back into a 25-player list fails the check, and a plan line for a raid block without a list column is refused.
 
 ## Parked
 
