@@ -4,6 +4,8 @@
 # Pre-requisite: wow.tools.local must already be running (_start_server.ps1 in Step 0).
 # Output: one header line per achievement, then its criteria indented (tree id, criteria id, amount, and the
 # criteria's type and asset: 8 = achievement id, 27 = quest id, 46 = faction id, 43 = explore area, 0 = creature id).
+# The header gives the root tree's operator and amount, which say how many children complete it: 4 = all children,
+# 8 = any child, 7 = <amount> of the children, 5 = the children's quantities summed to <amount>.
 param(
     [string[]] $Ids = @()
 )
@@ -39,7 +41,9 @@ $ach = Invoke-Dbc 'achievement' "draw=1&start=0&length=$($ids.Count + 10)&column
 $found = @{}
 foreach ($row in $ach.data) {
     $found["$($row[3])"] = $true
-    Write-Host "== $($row[3]) $(Decode-Html $row[1]) — $(Decode-Html $row[0]) [criteria tree $($row[14]), build $build] =="
+    $root = @((Invoke-Dbc 'criteriatree' "draw=1&start=0&length=1&columns[0][search][value]=^$($row[14])`$&columns[0][search][regex]=true").data)
+    $rootText = if ($root.Count -gt 0) { ", operator $($root[0][4]) amount $($root[0][3])" } else { "" }
+    Write-Host "== $($row[3]) $(Decode-Html $row[1]) — $(Decode-Html $row[0]) [criteria tree $($row[14])$rootText, build $build] =="
     Write-Children ([int]$row[14]) 1
 }
 foreach ($id in $ids) { if (-not $found.ContainsKey("$id")) { Write-Host "== $id NOT_FOUND on $build ==" } }

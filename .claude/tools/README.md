@@ -52,6 +52,7 @@ Get-ChildItem -Recurse -Filter *.lua | Where-Object FullName -notlike '*\.claude
 | Rule | What it checks |
 |---|---|
 | `files-xml` | every `.lua` is registered in the `.toc` or a `Files.xml` chain, and every registered file exists; a file whose registration is commented out in an XML is treated as intentionally disabled |
+| `section-order` | a right-click menu sub-section registers with `GetLastSection().Sections`, so in its `Files.xml` it loads directly after its parent section (one with a `Sections` table) or after its sibling sub-sections; anything in between becomes the "last section" and the sub-section fails to load (always on) |
 | `dup-id` | an achievement id is registered once per client (Shared counts for both) |
 | `saved-variables` | every saved variable the code initialises is declared in the `.toc` |
 | `lua-syntax` | every `.lua` parses under Lua 5.1 |

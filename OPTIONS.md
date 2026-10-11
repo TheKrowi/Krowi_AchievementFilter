@@ -76,6 +76,13 @@ Below is a comprehensive table of all user-facing options. Each entry includes t
 | Temporarily Obtainable Header Colors | Change header color for temporarily obtainable achievements. | N/A | Default | N/A | Achievements > Style |
 | Show Warband Icon | Show warband icon. | N/A | Off | N/A | Achievements > Style |
 | Warband Header Color | Change header color for warband achievements. | N/A | Default | N/A | Achievements > Style |
+| Guide: Show in Tooltip | Show an achievement's guide in its tooltip. | N/A | On | N/A | Achievements > Style > Guide |
+| Guide: Show in Right Click Menu | Add a Guide submenu with Open guide and a waypoint for every place the guide names. | N/A | On | N/A | Achievements > Style > Guide |
+| Guide: Show Icon | Show a map pin icon on achievements with a guide; clicking it opens the guide in a panel next to the achievement. | N/A | On | N/A | Achievements > Style > Guide |
+| Guide: Show on Mouseover | Show the guide panel while the mouse is over the icon; a click pins it. | N/A | On | N/A | Achievements > Style > Guide |
+| Guide: Show in Selected Achievement | Show the guide under the objectives of the selected achievement (makes it taller). | N/A | Off | N/A | Achievements > Style > Guide |
+| Guide: Waypoint Buttons | How the guide panel and the selected achievement show a step's waypoints: small icons at the right of the step, or text links under it. | N/A | Icons | N/A | Achievements > Style > Guide |
+| Guide: Waypoint | Which waypoint a guide offers: Map pin and TomTom (every one that can place the point), Map pin, or TomTom. | N/A | Map pin and TomTom | N/A | Achievements > Style > Guide |
 | Mouse Wheel Scroll Speed (Achievements) | Adjust scroll speed in achievements. | 1 | 10 | 50 | Achievements > Mouse Wheel Scroll Speed |
 
 ---
@@ -159,6 +166,7 @@ Customize achievement display and tooltips.
 - **Temporarily Obtainable Header Colors**: Change header color for temporarily obtainable achievements.
 - **Show Warband Icon**: Show warband icon.
 - **Warband Header Color**: Change header color for warband achievements.
+- **Guide**: Where an achievement's guide shows (tooltip, right-click menu, a map pin icon whose side panel shows on mouseover and pins on click, next to a reward preview open for the same achievement, under the selected achievement), whether its waypoints show as icons or text links, and which waypoint it sets (Map pin, TomTom or both). The map pin is not offered in combat.
 - **Mouse Wheel Scroll Speed**: Adjust scroll speed in achievements.
 
 ---

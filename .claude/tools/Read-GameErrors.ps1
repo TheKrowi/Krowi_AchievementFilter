@@ -6,7 +6,10 @@
 .DESCRIPTION
     Finds the most recently written !BugGrabber.lua under the client's WTF\Account\*\SavedVariables
     and parses it with the vendored Lua 5.1 (the file is plain Lua). Only errors whose message or
-    stack mentions Krowi_AchievementFilter are shown unless -All is given.
+    stack mentions Krowi_AchievementFilter are shown unless -All is given. The game shortens long
+    paths from the front ("...r/Gui/RightClickMenu/..."), dropping the folder name, so an error that
+    names the tail of one of the addon's own .lua or .xml files counts as this addon's too (outside
+    Libs, whose libraries other addons embed as well).
 
     The game writes saved variables on /reload and logout only, so an error that just happened is
     not in the file until the next /reload. The header shows when the file was last written.
@@ -64,4 +67,16 @@ $age = (Get-Date) - $file.LastWriteTime
 "BugGrabber log: $($file.FullName)"
 "  last written $($file.LastWriteTime) ($([int]$age.TotalMinutes) min ago; the game only writes it on /reload or logout)"
 ""
-& $lua $reader $file.FullName $since $filter $Max
+if ($All) {
+    & $lua $reader $file.FullName $since $filter $Max
+    return
+}
+# The addon's own files, relative and with forward slashes, for matching a shortened path. Only its own top-level folders
+# are walked: .claude holds whole worktree checkouts. Libs is left out because other addons embed the same libraries, so
+# a shortened Libs path names no addon.
+$excluded = @('.git', '.github', '.vscode', '.claude', '_Packaging', 'raw', 'wiki', 'docs', 'Libs')
+$folders = Get-ChildItem -LiteralPath $root -Directory | Where-Object { $excluded -notcontains $_.Name }
+$ownFiles = @(Get-ChildItem -LiteralPath $root -File) + @($folders | Get-ChildItem -Recurse -File) |
+    Where-Object { $_.Extension -eq '.lua' -or $_.Extension -eq '.xml' } |
+    ForEach-Object { $_.FullName.Substring($root.Length).TrimStart('\') -replace '\\', '/' }
+$ownFiles | & $lua $reader $file.FullName $since $filter $Max '-'

@@ -8,6 +8,8 @@
     <Script file="CategoryDataApi.lua" />
     <Script file="CustomCriteriaApi.lua" />
     <Script file="EventDataApi.lua" />
+    <Script file="GuideDataApi.lua" />
+    <Script file="GuideDataBuilder.lua" />
     <Script file="PetBattleLinkDataApi.lua" />
     <Script file="PluginsApi.lua" />
     <Script file="RewardPreviewDataApi.lua" />

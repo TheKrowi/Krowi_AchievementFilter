@@ -1,9 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 102.1
+## 103.0
 ### Added
 - The class-specific Campaign, Hidden Potential, Raise an Army and Legendary Research achievements are now tied to their class hall, so they show in the Current Zone and Selected Zone categories and on the world map
+- Achievement guides: Legendary Research of the Ebon Blade now comes with numbered steps (how to get there, whom to talk to, which class hall upgrades you still have to research and what they cost), in its tooltip, its right-click menu and a side panel that shows when you hover the new map pin icon on the achievement and stays when you click it (next to the reward preview if that is open too), or under the selected achievement if you turn that on. A place in a guide gets a map pin or a TomTom waypoint in one click. Choose where guides show and which waypoint they use under Achievements > Style > Guide
 
 ### Fixed
 - In Wrath of the Lich King raids, the 10-player Glory of the Raider achievements now show in the Current Zone category at 10-player difficulty instead of 25-player, and Master of Wintergrasp, Azeroth's Next Top Model and Glory of the Ulduar Raider show at both raid sizes

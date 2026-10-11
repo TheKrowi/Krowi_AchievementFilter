@@ -7,6 +7,8 @@
     Rules (severity in brackets; "changed" means modified vs HEAD or untracked):
       files-xml        [Error]   every .lua under the addon tree is registered in the .toc or a
                                  Files.xml chain; every registered file exists on disk
+      section-order    [Error]   a menu sub-section that attaches to GetLastSection() loads directly after its
+                                 parent section (one with a Sections table) or its sibling sub-sections
       dup-id           [Error]   an achievement ID is registered once per client
                                  (Shared counts for both Retail and Classic)
       saved-variables  [Error]   every `KrowiAF_X = KrowiAF_X or` saved variable is declared in the .toc
@@ -203,6 +205,36 @@ foreach ($rel in $allFiles) {
 }
 
 Write-Timing 'bom/line-endings'
+
+# --- section-order: a sub-section attaches to whatever section loaded just before it ---------------
+# A menu sub-section registers with tinsert(<menu>:GetLastSection().Sections, section), so the section loaded right before
+# it in its Files.xml, or before a run of such sub-sections, must be the parent that owns a Sections table. Anything
+# loaded in between becomes the "last section" and the sub-section fails to load (docs/work/2026-10-11-achievement-guides).
+$scriptPattern = '<Script\s+file\s*=\s*["' + "'" + ']([^"' + "'" + ']+\.lua)["' + "'" + ']'
+$relByLower = @{}
+foreach ($rel in $fileBytes.Keys) { $relByLower[$rel.ToLower()] = $rel }
+foreach ($xmlRel in ($allFiles | Where-Object { $_ -like '*.xml' -and $_ -notlike 'Libs/*' })) {
+    $content = [regex]::Replace([Text.Encoding]::UTF8.GetString($fileBytes[$xmlRel]), '<!--.*?-->', { param($m) ' ' * $m.Length }, 'Singleline')
+    $xmlDir = [IO.Path]::GetDirectoryName($xmlRel).Replace('\', '/')
+    $parent = $null   # the last script loaded that is not itself a sub-section
+    foreach ($m in [regex]::Matches($content, $scriptPattern)) {
+        $luaRel = if ($xmlDir) { "$xmlDir/$($m.Groups[1].Value.Replace('\', '/'))" } else { $m.Groups[1].Value }
+        $luaKey = $relByLower[$luaRel.ToLower()]
+        if (-not $luaKey) { continue }   # files-xml reports a missing file
+        $luaText = [Text.Encoding]::UTF8.GetString($fileBytes[$luaKey])
+        if ($luaText -notmatch ':GetLastSection\(\)\.Sections') {   # the call, not the menu's own definition
+            $parent = @{ Rel = $luaKey; HasSections = $luaText -match '\bSections\s*=\s*\{' }
+            continue
+        }
+        if (-not $parent -or -not $parent.HasSections) {
+            $line = ($content.Substring(0, $m.Index) -split "`n").Count
+            $what = if ($parent) { "$($parent.Rel), which has no Sections table" } else { 'nothing' }
+            Add-Finding 'section-order' 'Error' $xmlRel $line "$luaKey attaches to GetLastSection(), but the script loaded before it is $what; keep a sub-section directly after its parent section (or after its sibling sub-sections), or it fails to load"
+        }
+    }
+}
+
+Write-Timing 'section-order'
 
 # --- dup-id ------------------------------------------------------------------------------------
 $idOccurrences = @{}   # id -> list of @{Client; Path; Line}
@@ -696,7 +728,7 @@ if (Test-Path $ignoreFile) {
         if ($t -match '^(\S+)\s+(\S+)$') { $ignore += @{ Rule = $Matches[1]; Path = $Matches[2] } }
     }
 }
-$alwaysOn = @('dup-id', 'saved-variables', 'lua-syntax', 'globals', 'removed-api', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'data-snapshot', 'zone-decisions', 'mapverifier', 'changelog')
+$alwaysOn = @('section-order', 'dup-id', 'saved-variables', 'lua-syntax', 'globals', 'removed-api', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'data-snapshot', 'zone-decisions', 'mapverifier', 'changelog')
 $report = $findings | Where-Object {
     $f = $_
     -not ($ignore | Where-Object { ($_.Rule -eq '*' -or $_.Rule -eq $f.Rule) -and $f.Path -like $_.Path })

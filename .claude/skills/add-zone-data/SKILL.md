@@ -61,7 +61,7 @@ DataAddons/Shared/ZoneData.lua                     ← cross-expansion (shared.*
 | Script | Parameter (placeholder) | Purpose | Output |
 |---|---|---|---|
 | `_lookup_ids.ps1` | `-Ids` | DB lookup on both builds (exact id match) | `id\|Title\|Description\|builds=retail,classic` or `id\|NOT_FOUND\|\|builds=` |
-| `_lookup_criteria.ps1` | `-Ids` | Criteria tree: the zone/NPC/boss names the game uses per criterion, with each criterion's type and asset (8 achievement, 27 quest, 46 faction) | header line per id, indented criteria |
+| `_lookup_criteria.ps1` | `-Ids` | Criteria tree: the zone/NPC/boss names the game uses per criterion, with each criterion's type and asset (8 achievement, 27 quest, 46 faction) | header line per id with the root operator and amount (4 all, 8 any, 7 amount of the children), indented criteria |
 | `_lookup_quest_maps.ps1` | `-Ids` | Quest ids (a type 27 asset) → the maps of their quest POIs (`questpoiblob`); objective -1 is the turn-in | `quest\|objective=N\|uiMap=id name (verdict)` or `quest\|NO_POI` |
 | `_check_zonedata.ps1` | `-Ids` | Is the id already in a `Zone()` entry, on which primaries, in which files (parses the Lua) | `id\|PRESENT\|primaries=...\|maps=...\|files=...` or `id\|NOT_PRESENT` |
 | `_zone_search.ps1` | `-Terms` | Search `raw/MapVerifier.csv` by map name (partial, case-insensitive regex) | `term\|id\|name\|verdict\|expansion\|link` |

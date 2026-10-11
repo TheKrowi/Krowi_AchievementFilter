@@ -104,6 +104,15 @@ function data:RegisterTransmogSetDataTasks()
     end
 end
 
+function data:RegisterGuideDataTasks()
+    local name = "Guide Data: "
+    for k, v in next, KrowiAF.GuideData do
+        tinsert(v, 1, {self.LoadDiagnostics.SetSource, "GuideData", k})
+        self.InjectLoadingDebug(v, name .. k)
+        tinsert(self.TasksGroups, 1, v)
+    end
+end
+
 function data:RegisterZoneDataTasks()
     local name = "Zone Data: "
     for k, v in next, KrowiAF.ZoneData do
@@ -157,6 +166,7 @@ function data:LoadOnPlayerLogin()
     self:RegisterTooltipDataTasks()
     self:RegisterPetBattleLinkDataTasks()
     self:RegisterTransmogSetDataTasks()
+    self:RegisterGuideDataTasks()
     self:RegisterZoneDataTasks()
 
     local overallStart = debugprofilestop()

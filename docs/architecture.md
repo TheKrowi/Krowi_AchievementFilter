@@ -20,6 +20,7 @@ All UI code, split into `FilesModern.xml` (Retail) and `FilesClassic.xml` (Class
 | `MovableFrames.lua` | `addon.MakeMovable`, `MakeWindowMovable`, `MakeWindowStatic` |
 | `WindowFrames/` | AchievementsFrame, CategoriesFrame, FilterButton, Search, SummaryFrame, AchievementButton, ... |
 | `AchievementTooltip/`, `AchievementCalendar/`, `AchievementPopout/`, `EventReminder/`, `RightClickMenu/`, `DataManager/`, `WorldMapButton/`, `FloatingAchievementTooltip/`, `BrowsingHistory/`, `Collections/`, `RewardPreview/`, `SnapFrame/` | one folder per feature |
+| `Guide/` | achievement guides (data in `KrowiAF.GuideData`, `Api/GuideDataBuilder.lua`): `Guide.lua` renders the steps for every surface, `Waypoint.lua` places a map pin, super-tracked POI or TomTom waypoint, `Content.lua` lays out lines and buttons for the side panel (`Panel.lua`) and the block under an expanded row; the tooltip and right-click menu sections live with their own folders |
 
 ### `Data/`
 
