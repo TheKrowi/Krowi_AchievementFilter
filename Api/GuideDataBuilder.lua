@@ -1,7 +1,7 @@
 -- An achievement guide is a short list of typed steps that Gui/Guide/ renders from ids, so the data holds only what the
 -- game does not know: where to go, whom to talk to and one tip. Coordinates are percent (0-100) on the uiMap, measured in
 -- game with /kafwhere or read from the area POI table, never copied from a website.
---   Guide(60962):Travel(50977):Npc(97485, addon.L["Archivist Zubashi"], 648, 47.7, 53.8):Criteria():Tip(addon.L["..."])
+--   Guide(60962):Travel(50977):Npc(97485, addon.L["Archivist Zubashi"], 648, 47.7, 53.8):Criteria("Any")
 local GuideBuilder = {}
 GuideBuilder.__index = GuideBuilder
 
@@ -25,9 +25,12 @@ function GuideBuilder:Poi(areaPoiId, uiMapId, x, y)
     return AddStep(self, {Type = "Poi", PoiId = areaPoiId, MapId = uiMapId, X = x, Y = y})
 end
 
--- The achievement's garrison talent criteria (type 198) with their live research state
-function GuideBuilder:Criteria()
-    return AddStep(self, {Type = "Criteria"})
+-- The achievement's garrison talent criteria (type 198) as what is left to research, from the player's own talent tree.
+-- operator "Any" when one criterion completes the achievement (the criteria tree's root operator 8, which the game API
+-- does not expose; .claude/skills/add-zone-data/_lookup_criteria.ps1 prints it), otherwise every criterion is needed.
+function GuideBuilder:Criteria(operator)
+    assert(operator == nil or operator == "Any", "Criteria() takes nothing or \"Any\"")
+    return AddStep(self, {Type = "Criteria", Operator = operator})
 end
 
 -- One line of hand-written advice

@@ -172,6 +172,32 @@ local function SetExtraIconWarband(self, achievement)
 	extraIcon.Text = addon.L["Warband Achievement"]
 end
 
+local function GuideOnClick(icon)
+	addon.Gui.Guide.Panel:TogglePin(icon:GetParent(), addon.Data.Achievements[icon.AchievementId])
+end
+
+local function SetExtraIconGuide(self, achievement)
+	if achievement.Guide == nil or not addon.Options.db.profile.Achievements.Guide.Icon then
+		return
+	end
+
+	local extraIcon = factory.Get(self)
+	if not extraIcon then
+		return
+	end
+
+	extraIcon.Texture:SetAtlas("Waypoint-MapPin-Untracked")
+	if not addon.Util.IsMainline then
+		extraIcon.Texture:SetAtlas("flightpath") -- Classic has no Waypoint-MapPin atlas; it has no guide data either
+	end
+	extraIcon.Lines = {
+		addon.L["Guide"],
+		addon.L["Guide Icon Click"]
+	}
+	extraIcon.AchievementId = achievement.Id
+	extraIcon.OnClickCallback = GuideOnClick
+end
+
 local function RewardPreviewOnEnter(icon)
 	if not addon.Options.db.profile.Achievements.RewardPreviewMouseoverShow then
 		return
@@ -267,5 +293,6 @@ function factory.SetExtraIcons(self, achievement)
 	SetExtraIconAlwaysVisible(self, achievement)
 	SetExtraIconIsWatched(self, achievement)
 	SetExtraIconIsExcluded(self, achievement)
+	SetExtraIconGuide(self, achievement)
 	SetExtraIconRewardPreview(self, achievement) -- Always last
 end

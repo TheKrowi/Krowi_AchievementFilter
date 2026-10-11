@@ -145,6 +145,27 @@ function Frame:IsEnabled() return not rawget(self, "_disabled") end
 function Frame:EnableMouse() end
 function Frame:SetTexture() end
 function Frame:SetMaxLetters() end
+function Frame:SetEnabled(enabled) rawset(self, "_disabled", not enabled) end
+function Frame:SetMotionScriptsWhileDisabled() end
+function Frame:SetClampedToScreen() end
+function Frame:SetMovable() end
+function Frame:StartMoving() end
+function Frame:StopMovingOrSizing() end
+-- Font strings: one line of 12 pixels and 6 pixels per character, enough for layout code to stack them
+function Frame:CreateFontString() local fontString = NewFrame(nil, self, true) fontString.shown = true return fontString end
+function Frame:SetJustifyH() end
+function Frame:SetWordWrap() end
+function Frame:GetStringHeight() return 12 end
+function Frame:GetTextWidth() return #(tostring(rawget(self, "_text") or "")) * 6 end
+function Frame:GetStringWidth() return self:GetTextWidth() end
+function Frame:CreateTexture() local texture = NewFrame(nil, self, true) texture.shown = true return texture end
+function Frame:SetAtlas() end
+function Frame:SetDesaturated() end
+function Frame:SetAlpha(alpha) rawset(self, "_alpha", alpha) end
+function Frame:SetHighlightTexture() end
+function Frame:SetNormalFontObject() end
+function Frame:SetHighlightFontObject() end
+function Frame:SetDisabledFontObject() end
 
 local function Stub(name)
     local mt = {}
@@ -855,10 +876,17 @@ suites.guide = function(c)
                 researchDuration = 86400, researchCurrencyCosts = { { currencyType = 1220, currencyQuantity = 10000 } } }
         end
         local talents = { [486] = Talent(486, "Frost and Death"), [487] = Talent(487, "Roster of Champions") }
+        -- The Death Knight tree 128 with Tier I researched, as on Krowi's Death Knight (screenshot, 2026-10-11)
+        local tree = { talents = { { id = 1, tier = 0, researched = true }, { id = 2, tier = 0, researched = false } } }
+        for tier = 1, 5 do table.insert(tree.talents, { id = 10 + tier, tier = tier, researched = false }) end
+        table.insert(tree.talents, talents[486])
+        table.insert(tree.talents, talents[487])
         env.C_Garrison = {
             GetTalentInfo = function(id) return talents[id] end,
             GetTalentTreeIDsByClassID = function(_, classId) return classId == 6 and { 128 } or {} end,
+            GetTalentTreeInfo = function(treeId) return treeId == 128 and tree or nil end,
         }
+        env.SecondsToTime = function(seconds) return seconds == 86400 and "1 Day" or (seconds .. " Sec") end
         env.UnitClass = function() return "Death Knight", "DEATHKNIGHT", 6 end
         env.UnitFactionGroup = function() return "Alliance", "Alliance" end
         -- 60962's criteria are hidden: only countHidden returns them, and one index past the last raises an error
@@ -901,10 +929,14 @@ suites.guide = function(c)
     env.KrowiAF.PluginsApi = { LoadPluginLocalization = function() end }
     c.loadAddonFile("Localization/enUS.lua")
     addon.L = strings
-    addon.Gui = { AchievementTooltip = { Sections = {} }, RightClickMenu = { AchievementMenu = { Sections = {} } } }
-    addon.Options = { db = { profile = { Achievements = { Guide = { Tooltip = true, RightClickMenu = true, Icon = true, ExpandedRow = false, WaypointProvider = 1 } } } } }
+    c.frames.lenient = true -- the guide frames keep their pools in fields that start out nil, as the game allows
+    addon.Gui = { AchievementTooltip = { Sections = {} }, RightClickMenu = { AchievementMenu = { Sections = {} } },
+        RegisterFrameForClosing = function() end } -- Gui/FramesForClosing.lua, which the escape suite covers
+    addon.Options = { db = { profile = { Achievements = { Guide = { Tooltip = true, RightClickMenu = true, Icon = true, ExpandedRow = false,
+        ActionStyle = 1, WaypointProvider = 1 } } } } } -- Options/Defaults.lua
     local loaded = {}
-    for _, rel in ipairs({ "Gui/Guide/Guide.lua", "Gui/Guide/Waypoint.lua", "Gui/AchievementTooltip/Guide.lua", "Gui/RightClickMenu/AchievementMenu/Guide.lua" }) do
+    for _, rel in ipairs({ "Gui/Guide/Guide.lua", "Gui/Guide/Waypoint.lua", "Gui/Guide/Content.lua", "Gui/Guide/Panel.lua",
+        "Gui/AchievementTooltip/Guide.lua", "Gui/RightClickMenu/AchievementMenu/Guide.lua" }) do
         local f = io.open(root .. "/" .. rel, "rb")
         if f then
             f:close()
@@ -920,8 +952,7 @@ suites.guide = function(c)
         [60962] = { Id = 60962, IsCompleted = false, Guide = { -- as DataAddons/Retail/07_Legion/GuideData.lua registers it
             { Type = "Travel", SpellId = 50977 },
             { Type = "Npc", NpcId = 97485, Name = "Archivist Zubashi", MapId = 648, X = 47.7, Y = 53.8 },
-            { Type = "Criteria" },
-            { Type = "Tip", Text = "Either Tier VII upgrade completes it." },
+            { Type = "Criteria", Operator = "Any" },
         } },
         [11223] = { Id = 11223, IsCompleted = true },
     }
@@ -936,6 +967,11 @@ suites.guide = function(c)
         end
     end
     local anchor = env.CreateFrame("Frame", nil, env.UIParent)
+    local objectives = env.CreateFrame("Frame", nil, env.UIParent)
+    objectives:SetSize(400, 20)
+    local row = env.CreateFrame("Frame") -- no parent: the panel walks up to the row's window, and the model's UIParent is strict
+    function headless.Anchor() return row end
+    function headless.Objectives() return objectives end
     function headless.TooltipLines(achievement)
         rawset(anchor, "Achievement", achievement)
         addon.Gui.AchievementTooltip:ShowTooltip(anchor, achievement)

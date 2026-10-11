@@ -103,6 +103,9 @@ addon.Options.Defaults = {
             Guide = {
                 Tooltip = true,
                 RightClickMenu = true,
+                Icon = true, -- the row icon and the side panel it opens
+                ExpandedRow = false, -- off: it makes the selected row taller
+                ActionStyle = 1, -- 1 Icons, 2 Text links (addon.Gui.Guide.Content.ActionStyle)
                 WaypointProvider = 1 -- 1 Map pin and TomTom, 2 Map pin, 3 TomTom (addon.Gui.Guide.Waypoint.Provider)
             }
             -- ShowOtherFactionWarbandAsCompleted = true

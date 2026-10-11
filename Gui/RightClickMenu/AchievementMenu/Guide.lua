@@ -7,7 +7,8 @@ achievementMenu.GuideSection = section -- Tests/Guide.lua runs this section on i
 -- The waypoint actions of every step that names a place, kept from CheckAdd for Add
 local actions
 function section:CheckAdd(achievement)
-    if achievement.Guide == nil or not addon.Options.db.profile.Achievements.Guide.RightClickMenu then
+    local options = addon.Options.db.profile.Achievements.Guide
+    if achievement.Guide == nil or not options.RightClickMenu then
         return
     end
     actions = {}
@@ -18,11 +19,21 @@ function section:CheckAdd(achievement)
             end
         end
     end
-    return #actions > 0
+    return options.Icon or #actions > 0 -- the panel comes with the icon option
 end
 
-function section:Add(menu, achievement, menuBuilder)
+function section:Add(menu, achievement, menuBuilder, caller)
     local guideMenu = menuBuilder:CreateSubmenuButton(menu, addon.L["Guide"])
+    if addon.Options.db.profile.Achievements.Guide.Icon then
+        menuBuilder:CreateButtonAndAdd(
+            guideMenu,
+            addon.L["Guide Open"],
+            function()
+                addon.Gui.Guide.Panel:TogglePin(caller, achievement)
+                achievementMenu:CloseMenu()
+            end
+        )
+    end
     for _, action in ipairs(actions) do
         menuBuilder:CreateButtonAndAdd(
             guideMenu,

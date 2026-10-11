@@ -15589,8 +15589,7 @@ PETBATTLE 41551 # criteria 10: 41550
 # per achievement, the steps in stored order; an NPC name and a tip are locale strings, left out
 GUIDE 60962 # 1 Travel SpellId=50977
 GUIDE 60962 # 2 Npc MapId=648 NpcId=97485 X=47.7 Y=53.8
-GUIDE 60962 # 3 Criteria
-GUIDE 60962 # 4 Tip
+GUIDE 60962 # 3 Criteria Operator=Any
 
 == Summary ==
 achievements           8669
@@ -15603,4 +15602,4 @@ achievements           8669
 tooltip entries        3515   (220 achievements)
 transmog sets          2107   (71 achievements)
 pet battle links       110   (1166 criteria)
-guides                 1   (4 steps)
+guides                 1   (3 steps)

@@ -6,6 +6,8 @@ local guide = addon.Gui.Guide
 -- reads the same in the tooltip and the right-click menu. Names come from the game in the player's language; only an
 -- NPC's name and the tip come from the data. Tests/Guide.lua holds this file to its contract.
 
+guide.DetailSeparator = " \194\183 " -- a middle dot between the parts of a detail line
+
 local criteriaTypeGarrisonTalent = 198
 local maxHiddenCriteria = 32 -- a guard for the read loop below; Legendary Research has two
 
@@ -46,21 +48,43 @@ function guide.GetTalentState(info, isOwnClass, isCriterionCompleted)
     return "not-yet"
 end
 
+-- Order hall tiers are shown as roman numerals in every locale
+local tierNames = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"}
+local function GetTierName(tier) -- tier is the 0-based index C_Garrison returns
+    return tierNames[tier + 1] or tostring(tier + 1)
+end
+
+-- "a or b", "a, b or c"; "and" for criteria that are all needed
+local function JoinNames(names, isAny)
+    if #names == 1 then
+        return names[1]
+    end
+    local word = addon.L[isAny and "Guide Or" or "Guide And"]
+    return table.concat(names, ", ", 1, #names - 1) .. " " .. word .. " " .. names[#names]
+end
+
+-- The talent's state in brackets after the step: done, being researched, the cost still missing, or else (not yet, or
+-- locked behind the tiers step) what it will take
 local function GetStateText(state, info)
     if state == "researched" then
-        return addon.L["Guide Researched"]
+        return addon.L["Guide Done"]
     elseif state == "researching" then
-        return addon.L["Guide Researching"]
-    elseif state == "locked" then
-        return addon.L["Guide Locked"]
-    elseif state == "cost" then
-        local cost = info.researchCurrencyCosts and info.researchCurrencyCosts[1]
-        local currency = cost and C_CurrencyInfo and C_CurrencyInfo.GetCurrencyInfo(cost.currencyType)
-        if currency then
-            return addon.L["Guide Needs Cost"]:K_ReplaceVars{amount = BreakUpLargeNumbers(cost.currencyQuantity), currency = currency.name}
-        end
+        return addon.L["Guide Researching Talent"]:K_ReplaceVars{talent = info.name}
     end
-    return addon.L["Guide Not Yet"]
+    local cost = info.researchCurrencyCosts and info.researchCurrencyCosts[1]
+    local currency = cost and C_CurrencyInfo and C_CurrencyInfo.GetCurrencyInfo(cost.currencyType)
+    if not currency then
+        return nil
+    end
+    local amount = BreakUpLargeNumbers(cost.currencyQuantity)
+    if state == "cost" then
+        return addon.L["Guide Needs Cost"]:K_ReplaceVars{amount = amount, currency = currency.name}
+    end
+    local time = info.researchDuration and info.researchDuration > 0 and SecondsToTime(info.researchDuration) or nil
+    if not time then
+        return ("%s %s"):format(amount, currency.name)
+    end
+    return addon.L["Guide Cost And Time"]:K_ReplaceVars{amount = amount, currency = currency.name, time = time}
 end
 
 local function IsOwnClassTree(treeId, classId)
@@ -75,28 +99,97 @@ local function IsOwnClassTree(treeId, classId)
     return false
 end
 
--- Legendary Research hides its criteria (GetAchievementNumCriteria returns 0), so they are read with countHidden. One
--- index past the last raises "criteria not found" instead of returning nil, so each read is guarded and the first
--- error ends the list.
-local function AddCriteriaLines(lines, achievement, classId)
-    if not C_Garrison or not C_Garrison.GetTalentInfo then
+-- The first tier below the target tier with no talent researched, and whether it is being researched; nil when every
+-- tier below is done. Tiers are researched in order, so everything from that tier up to the target is still to do.
+local function GetFirstMissingTier(treeId, targetTier)
+    local treeInfo = C_Garrison.GetTalentTreeInfo and C_Garrison.GetTalentTreeInfo(treeId)
+    if not treeInfo then
         return
     end
+    local researched, researching = {}, {}
+    for _, talent in ipairs(treeInfo.talents or {}) do
+        if talent.researched then
+            researched[talent.tier] = true
+        end
+        if talent.isBeingResearched then
+            researching[talent.tier] = true
+        end
+    end
+    for tier = 0, targetTier - 1 do
+        if not researched[tier] then
+            return tier, researching[tier]
+        end
+    end
+end
+
+-- The garrison talents the achievement's criteria ask for (type 198) and whether each criterion is done. Legendary
+-- Research hides its criteria (GetAchievementNumCriteria returns 0), so they are read with countHidden. One index past
+-- the last raises "criteria not found" instead of returning nil, so each read is guarded and the first error ends it.
+local function GetCriteriaTalents(achievementId)
+    local talents = {}
     for i = 1, maxHiddenCriteria do
-        local ok, _, criteriaType, completed, _, _, _, _, assetId = pcall(GetAchievementCriteriaInfo, achievement.Id, i, true)
+        local ok, _, criteriaType, completed, _, _, _, _, assetId = pcall(GetAchievementCriteriaInfo, achievementId, i, true)
         if not ok or criteriaType == nil then
-            return
+            break
         end
         local info = criteriaType == criteriaTypeGarrisonTalent and C_Garrison.GetTalentInfo(assetId)
         if info then
-            local state = guide.GetTalentState(info, IsOwnClassTree(info.treeID, classId), completed)
-            local text = info.name
-            if state then
-                text = addon.L["Guide Talent State"]:K_ReplaceVars{talent = info.name, state = GetStateText(state, info)}
-            end
-            tinsert(lines, {Kind = "Criteria", Text = text, State = state})
+            tinsert(talents, {Info = info, Completed = completed})
         end
     end
+    return talents
+end
+
+-- The research as what is left to do: the tiers still missing below the target tier (own class only), then the target
+-- talents with what stands in their way. step.Operator "Any" means one criterion completes the achievement.
+local function AddResearchLines(lines, achievement, classId, step)
+    if not C_Garrison or not C_Garrison.GetTalentInfo then
+        return
+    end
+    local talents = GetCriteriaTalents(achievement.Id)
+    if #talents == 0 then
+        return
+    end
+    local isAny = step.Operator == "Any"
+    local numCompleted, names = 0, {}
+    for _, talent in ipairs(talents) do
+        numCompleted = numCompleted + (talent.Completed and 1 or 0)
+        tinsert(names, talent.Info.name)
+    end
+    local target = talents[1].Info -- a tier's talents share their tier, cost and lock
+    local isDone = achievement.IsCompleted or (isAny and numCompleted > 0) or numCompleted == #talents
+    local isOwnClass = IsOwnClassTree(target.treeID, classId)
+
+    if isOwnClass and not isDone then
+        local missing, isResearching = GetFirstMissingTier(target.treeID, target.tier)
+        if missing then
+            local text = missing == target.tier - 1 and addon.L["Guide Research Tier"]:K_ReplaceVars{tier = GetTierName(missing)}
+                or addon.L["Guide Research Tiers"]:K_ReplaceVars{from = GetTierName(missing), to = GetTierName(target.tier - 1)}
+            local details = isResearching and {addon.L["Guide Tier Researching"]:K_ReplaceVars{tier = GetTierName(missing)}} or nil
+            tinsert(lines, {Kind = "Tiers", Text = text, Details = details})
+        end
+    end
+
+    local text = addon.L[isAny and "Guide Research Any" or "Guide Research All"]:K_ReplaceVars{tier = GetTierName(target.tier)}
+    local details = {JoinNames(names, isAny)}
+    local state, stateInfo
+    if isDone then
+        state, stateInfo = "researched", target
+    elseif isOwnClass then
+        for _, talent in ipairs(talents) do
+            if talent.Info.isBeingResearched then
+                state, stateInfo = "researching", talent.Info
+            end
+        end
+        if not state then
+            state, stateInfo = guide.GetTalentState(target, true, false), target
+        end
+    end
+    local stateText = state and GetStateText(state, stateInfo)
+    if stateText then
+        tinsert(details, stateText)
+    end
+    tinsert(lines, {Kind = "Criteria", Text = text, Details = details, State = state})
 end
 
 local function GetMapName(mapId)
@@ -104,9 +197,10 @@ local function GetMapName(mapId)
     return info and info.name or tostring(mapId)
 end
 
--- Percent, as /way and the world map's coordinates show them, so a player can follow a step without any waypoint
-local function WithCoordinates(text, step)
-    return ("%s (%.1f, %.1f)"):format(text, step.X, step.Y)
+-- The detail under a step that names a place: the map and the coordinates in percent, as /way and the world map show
+-- them, so a player can follow the step without any waypoint
+local function GetPlace(step)
+    return ("%s%s%.1f, %.1f"):format(GetMapName(step.MapId), guide.DetailSeparator, step.X, step.Y)
 end
 
 local function GetSpellName(spellId)
@@ -115,7 +209,10 @@ local function GetSpellName(spellId)
     end
 end
 
--- One line per step the player sees: {Kind, Text, State, Waypoint}, where Waypoint is {MapId, X, Y, PoiId, Title}
+-- One line per step the player sees, in order: {Kind, Number, Text, Details, State, Waypoint}. Text is the step's short
+-- headline, Details the smaller lines under it (place, talents, cost), Waypoint {MapId, X, Y, PoiId, Title}. Each
+-- surface lays out the number, headline and details itself. A research step can give two lines: the tiers still
+-- missing, then the target talents.
 function guide.GetLines(achievement)
     local lines = {}
     local _, _, classId = UnitClass("player")
@@ -125,22 +222,22 @@ function guide.GetLines(achievement)
             local spellName = GetSpellName(step.SpellId) or tostring(step.SpellId)
             tinsert(lines, {Kind = "Travel", Text = addon.L["Guide Travel"]:K_ReplaceVars{spell = spellName}})
         elseif step.Type == "Npc" then
-            local text = addon.L["Guide Talk To"]:K_ReplaceVars{npc = step.Name, map = GetMapName(step.MapId)}
-            tinsert(lines, {Kind = "Npc", Text = WithCoordinates(text, step),
+            tinsert(lines, {Kind = "Npc", Text = addon.L["Guide Talk To"]:K_ReplaceVars{npc = step.Name}, Details = {GetPlace(step)},
                 Waypoint = {MapId = step.MapId, X = step.X, Y = step.Y, Title = step.Name}})
         elseif step.Type == "Poi" then
             -- Another class does not see a class portal's POI; the step then names the map only
             local info = C_AreaPoiInfo and C_AreaPoiInfo.GetAreaPOIInfo(step.MapId, step.PoiId)
-            local mapName = GetMapName(step.MapId)
-            local text = info and addon.L["Guide Go To"]:K_ReplaceVars{poi = info.name, map = mapName}
-                or addon.L["Guide Go To Spot"]:K_ReplaceVars{map = mapName}
-            tinsert(lines, {Kind = "Poi", Text = WithCoordinates(text, step),
-                Waypoint = {MapId = step.MapId, X = step.X, Y = step.Y, PoiId = step.PoiId, Title = info and info.name or mapName}})
+            local text = info and addon.L["Guide Go To"]:K_ReplaceVars{poi = info.name} or addon.L["Guide Go To Spot"]
+            tinsert(lines, {Kind = "Poi", Text = text, Details = {GetPlace(step)},
+                Waypoint = {MapId = step.MapId, X = step.X, Y = step.Y, PoiId = step.PoiId, Title = info and info.name or GetMapName(step.MapId)}})
         elseif step.Type == "Criteria" then
-            AddCriteriaLines(lines, achievement, classId)
+            AddResearchLines(lines, achievement, classId, step)
         elseif step.Type == "Tip" then
             tinsert(lines, {Kind = "Tip", Text = step.Text})
         end
+    end
+    for i, line in ipairs(lines) do
+        line.Number = i
     end
     return lines
 end

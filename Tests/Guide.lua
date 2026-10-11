@@ -5,8 +5,8 @@ local guide = addon.Tests.Guide
 -- Achievement guides and waypoints (docs/work/2026-10-11-achievement-guides). Recorded is the behaviour of the current
 -- code, Target the desired one; the same scenarios run in game (/kaftest guide) and headlessly
 -- (.claude/tools/headless/run-tests.lua), where a model of the garrison, map, spell and POI APIs stands in for the game.
--- Recorded was "none" everywhere before the feature (verified in game on 2026-10-11); since milestone A of the plan only
--- the menu's Open guide entry, which comes with the side panel, is still open. Five kinds:
+-- Recorded was "none" everywhere before the feature (verified in game on 2026-10-11). Milestone A met every target but the
+-- menu's Open guide entry, which came with the side panel in milestone B. Seven kinds:
 --   Surface: the tooltip or the right-click menu of a real achievement (60962 has a guide, 11223 none), with the guide
 --     options set for the run and restored after. The tooltip gives "shown" when its Guide header is followed by the
 --     first rendered line, "header-only" when it is not, "none" without a header. The menu runs only the guide section,
@@ -17,7 +17,11 @@ local guide = addon.Tests.Guide
 --   Faction: the steps of a guide written here, a Paladin portal per faction (step 0 of the plan), shown to one faction.
 --   Waypoint: the waypoint actions for a waypoint, the provider option and what can place the point.
 --   Availability: what can place a waypoint on two real maps: Acherus 648 allows the map pin, Dalaran 627 refuses it.
--- Surface, Talent and Availability are Retail only: Classic has no guide data, no garrison and none of these maps.
+--   Panel: the side panel opened next to a stand-in row (and toggled closed), "icons:<n> links:<n>" or "hidden".
+--   Row: the guide block under a stand-in objectives frame, as an expanded row shows it, "icons:<n> links:<n>" or
+--     "none". The row's real height sum stays an in-game check.
+-- Surface, Talent, Availability, Panel and Row are Retail only: Classic has no guide data, no garrison and none of these
+-- maps.
 --
 -- The code these scenarios hold the feature to (plan, Files that change):
 --   addon.Gui.Guide.GetLines(achievement) -> list of {Kind, Text, State, Waypoint}, the steps as every surface shows them
@@ -30,9 +34,14 @@ local guide = addon.Tests.Guide
 --     MapPin is whether the map allows one, Combat whether the player is in combat
 --   addon.Gui.Guide.Waypoint.GetAvailability(waypoint) -> that available table, read from the game
 --   addon.Gui.RightClickMenu.AchievementMenu.GuideSection, the menu section (CheckAdd, Add)
+--   addon.Gui.Guide.Panel:TogglePin(row, achievement) and :Close(), with .Frame.Content holding NumGuideLines and
+--     NumGuideButtons
+--   addon.Gui.Guide.Content.DisplayUnderObjectives(objectives, achievement) -> the height the row grows by, the block as
+--     objectives.GuideBlock with NumGuideLines and NumGuideButtons
 --   addon.Options.db.profile.Achievements.Guide: Tooltip, RightClickMenu, Icon, ExpandedRow, WaypointProvider
 
 local provider = {Both = 1, MapPin = 2, TomTom = 3} -- Achievements.Guide.WaypointProvider
+local actionStyle = {Icons = 1, Links = 2} -- Achievements.Guide.ActionStyle
 local zubashi = {MapId = 648, X = 47.7, Y = 53.8} -- Archivist Zubashi, Acherus: the map pin is allowed there
 local dalaran = {MapId = 627, X = 32.7, Y = 69.8} -- a spot in Dalaran, which refuses the map pin
 local paladinPortal = {PoiId = 5057, MapId = 627, X = 32.7, Y = 69.8} -- the Alliance Paladin portal, Dalaran
@@ -47,7 +56,7 @@ guide.Scenarios = {
     -- Open guide (the side panel, with the icon option on) and the map pin for Zubashi
     {Name = "menu-60962", Kind = "Surface", Surface = "Menu", Id = 60962,
         Options = {RightClickMenu = true, Icon = true, WaypointProvider = provider.MapPin},
-        Recorded = "Guide:1/1", Target = "Guide:2/2"},
+        Recorded = "Guide:2/2", Target = "Guide:2/2"},
     {Name = "menu-options-off", Kind = "Surface", Surface = "Menu", Id = 60962, Options = {RightClickMenu = false},
         Recorded = "none", Target = "none"},
     {Name = "menu-no-guide-11223", Kind = "Surface", Surface = "Menu", Id = 11223, Options = {RightClickMenu = true},
@@ -113,6 +122,20 @@ guide.Scenarios = {
         Available = {MapPin = false, Poi = false, TomTom = true},
         Recorded = "TomTom:on", Target = "TomTom:on"},
 
+    -- The side panel the row icon opens, and the block under an expanded row: with the map pin provider, 60962 has one
+    -- waypoint action, for Zubashi, shown as an icon or a text link (Achievements.Guide.ActionStyle). Its number of lines
+    -- depends on the character (the tiers still to research), so it is not counted
+    {Name = "panel-60962", Kind = "Panel", Id = 60962, Options = {WaypointProvider = provider.MapPin, ActionStyle = actionStyle.Icons},
+        Recorded = "icons:1 links:0", Target = "icons:1 links:0"},
+    {Name = "panel-60962-links", Kind = "Panel", Id = 60962, Options = {WaypointProvider = provider.MapPin, ActionStyle = actionStyle.Links},
+        Recorded = "icons:0 links:1", Target = "icons:0 links:1"},
+    {Name = "panel-toggle-closes", Kind = "Panel", Id = 60962, Toggles = 2, Options = {WaypointProvider = provider.MapPin},
+        Recorded = "hidden", Target = "hidden"},
+    {Name = "row-60962", Kind = "Row", Id = 60962, Options = {ExpandedRow = true, WaypointProvider = provider.MapPin, ActionStyle = actionStyle.Icons},
+        Recorded = "icons:1 links:0", Target = "icons:1 links:0"},
+    {Name = "row-option-off", Kind = "Row", Id = 60962, Options = {ExpandedRow = false},
+        Recorded = "none", Target = "none"},
+
     {Name = "waypoint-availability", Kind = "Availability", Maps = {648, 627},
         Recorded = "648:on,627:off", Target = "648:on,627:off"},
 }
@@ -163,7 +186,8 @@ local function InspectTooltip(env, achievement)
         if text == header then
             local module = GetModule()
             local first = module and module.GetLines and module.GetLines(achievement)[1]
-            return first and lines[i + 1] == first.Text and "shown" or "header-only"
+            local next = lines[i + 1]
+            return first and next and next:find(first.Text, 1, true) and "shown" or "header-only" -- the line adds the step number
         end
     end
     return "none"
@@ -258,15 +282,82 @@ local function RunAvailability(_, scenario)
     return table.concat(parts, ",")
 end
 
+-- The waypoint controls a guide frame shows, by kind: Gui/Guide/Content.lua pools icons and text links separately
+local function CountControls(frame)
+    local icons, links = frame.GuideIcons, frame.GuideLinks
+    return ("icons:%d links:%d"):format(icons and icons.Used or 0, links and links.Used or 0)
+end
+
+-- Opens the panel next to a stand-in row (Toggles times) and reads what it laid out
+local function RunPanel(env, scenario, observations)
+    local module = GetModule()
+    local panel = module and module.Panel
+    if not panel then
+        return "none"
+    end
+    local achievement, reason = env.Achievement(scenario.Id)
+    if not achievement then
+        return nil, reason
+    end
+    env.SetOptions(scenario.Options, observations)
+    local ok, got = pcall(function()
+        local anchor = env.Anchor()
+        for _ = 1, scenario.Toggles or 1 do
+            panel:TogglePin(anchor, achievement)
+        end
+        local frame = panel.Frame
+        if not frame or not frame:IsShown() then
+            return "hidden"
+        end
+        return CountControls(frame.Content)
+    end)
+    panel:Close()
+    env.Teardown()
+    if not ok then
+        error(got, 0)
+    end
+    return got
+end
+
+-- Displays the block under a stand-in objectives frame, as an expanded row does, and reads what it laid out
+local function RunRow(env, scenario, observations)
+    local module = GetModule()
+    local content = module and module.Content
+    if not content or not content.DisplayUnderObjectives then
+        return "none"
+    end
+    local achievement, reason = env.Achievement(scenario.Id)
+    if not achievement then
+        return nil, reason
+    end
+    env.SetOptions(scenario.Options, observations)
+    local ok, got = pcall(function()
+        local objectives = env.Objectives()
+        local height = content.DisplayUnderObjectives(objectives, achievement)
+        local block = objectives.GuideBlock
+        if height == 0 or not block or not block:IsShown() then
+            return "none"
+        end
+        return CountControls(block)
+    end)
+    env.Teardown()
+    if not ok then
+        error(got, 0)
+    end
+    return got
+end
+
 local runners = {
     Surface = RunSurface,
     Talent = RunTalent,
     Faction = RunFaction,
     Waypoint = RunWaypoint,
-    Availability = RunAvailability
+    Availability = RunAvailability,
+    Panel = RunPanel,
+    Row = RunRow
 }
 
-local retailOnly = {Surface = true, Talent = true, Availability = true}
+local retailOnly = {Surface = true, Talent = true, Availability = true, Panel = true, Row = true}
 
 local function RunScenario(env, scenario, observations)
     local got, reason = runners[scenario.Kind](env, scenario, observations)
@@ -297,14 +388,16 @@ function guide.Run(env, observations)
         end
     end
     if skipped > 0 then
-        tinsert(observations, ("%d surface, talent and availability scenarios are Retail only: Classic has no guide data, no garrison and none of their maps"):format(skipped))
+        tinsert(observations, ("%d surface, talent, panel, row and availability scenarios are Retail only: Classic has no guide data, no garrison and none of their maps"):format(skipped))
     end
-    -- What 60962's guide reads for the character running the suite; the scenarios above check its shape, this its words
+    -- What 60962's guide reads for the character running the suite: the scenarios above check its shape, this its words,
+    -- which depend on the character's class and talent tree
     local module = GetModule()
     local achievement = env.IsRetail() and module and module.GetLines and env.Achievement(60962)
     if achievement then
-        for i, line in ipairs(module.GetLines(achievement)) do
-            tinsert(observations, ("60962 line %d (%s%s): %s"):format(i, line.Kind, line.State and ", " .. line.State or "", line.Text))
+        for _, line in ipairs(module.GetLines(achievement)) do
+            local details = line.Details and #line.Details > 0 and " | " .. table.concat(line.Details, " | ") or ""
+            tinsert(observations, ("60962 step %d (%s%s): %s%s"):format(line.Number or 0, line.Kind, line.State and ", " .. line.State or "", line.Text, details))
         end
     end
     return results
@@ -343,7 +436,26 @@ addon.Tests.Ready.guide = function()
     return true
 end
 
-local savedOptions, anchor
+local savedOptions, anchor, objectivesStandIn
+
+-- A stand-in for an achievement row: the panel anchors to it
+function gameEnv.Anchor()
+    anchor = anchor or CreateFrame("Frame", nil, UIParent)
+    anchor:SetSize(100, 20)
+    anchor:SetPoint("CENTER")
+    return anchor
+end
+
+-- A stand-in for the objectives frame of an expanded row, hidden: the block only needs its width
+function gameEnv.Objectives()
+    if not objectivesStandIn then
+        objectivesStandIn = CreateFrame("Frame", nil, UIParent)
+        objectivesStandIn:Hide()
+    end
+    objectivesStandIn:SetSize(400, 20)
+    return objectivesStandIn
+end
+
 function gameEnv.SetOptions(options)
     local achievements = addon.Options.db.profile.Achievements
     local guideOptions = achievements and achievements.Guide -- absent until the feature exists: nothing to set

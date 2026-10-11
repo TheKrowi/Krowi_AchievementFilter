@@ -46,6 +46,14 @@ Option 1's content model, with the surfaces of options 1 and 3 and the expanded 
 
 The plan's step 0 holds the measurements behind all three.
 
+*Amended again on 2026-10-11, in milestone B (Krowi, from a screenshot of the panel on a Death Knight):*
+- **The guide reads as numbered steps.** The two talent lines and the tip were hard to place. "Locked, finish the previous tier first" was wrong for a character several tiers short, and the tip repeated the lines above it.
+- **The Criteria step renders what is left to do, from the player's own talent tree.**
+  - First, "Research Tiers III to VI" while lower tiers are missing.
+  - Then "Research either Tier VII upgrade: Frost and Death or Roster of Champions", with the state in brackets: done, researching, the missing cost, or the cost and time.
+- **"Either" comes from the data:** `:Criteria("Any")` follows the criteria tree's root operator, which the game API does not expose.
+- **60962 has no tip any more.**
+
 The NPC name is the only name the game API cannot return reliably (creature names come from the server cache), so it goes through `addon.L` as the pet-battle data already does for NPC names. The Criteria step is generic: every achievement with type-198 criteria gets it from the criteria themselves, so the guide data holds only what the game does not know (the NPC, its spot, the travel hint, the tip).
 
 A sketch of the data, illustrative only (the builder's final shape is the plan's job):

@@ -295,6 +295,11 @@ local guideWaypointProviders = { -- addon.Gui.Guide.Waypoint.Provider
     "TomTom"
 }
 
+local guideActionStyles = { -- addon.Gui.Guide.Content.ActionStyle
+    addon.L["Icons"],
+    addon.L["Text links"]
+}
+
 local wowheadRelatedTabs = {
     addon.L["None"],
     addon.L["Criteria of"],
@@ -538,6 +543,35 @@ local function ShowRewardPreviewIconSet(_, value)
     end
     KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow()
     KrowiAF_AchievementsFrame:ForceUpdate()
+end
+
+local function GuideIconSet(_, value)
+    addon.Options.db.profile.Achievements.Guide.Icon = value
+    if not KrowiAF_AchievementsFrame then
+        return
+    end
+    KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow()
+    KrowiAF_AchievementsFrame:ForceUpdate()
+end
+
+local function GuideExpandedRowSet(_, value)
+    addon.Options.db.profile.Achievements.Guide.ExpandedRow = value
+    if not KrowiAF_AchievementsFrame then
+        return
+    end
+    KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow()
+    KrowiAF_AchievementsFrame:ForceUpdate()
+end
+
+local function GuideActionStyleSet(_, value)
+    addon.Options.db.profile.Achievements.Guide.ActionStyle = value
+    local panel = addon.Gui.Guide.Panel
+    if panel.Frame and panel.Frame:IsShown() then
+        panel:Render()
+    end
+    if KrowiAF_AchievementsFrame then
+        KrowiAF_AchievementsFrame:ForceUpdate() -- the guide block under the selected achievement
+    end
 end
 
 local function RewardPreviewMouseoverShowSet(_, value)
@@ -1267,6 +1301,28 @@ local achievementsOptions = {
                             desc = addon.L["Show Guide in Right Click Menu Desc"]:KAF_AddDefaultValueText("Achievements.Guide.RightClickMenu"),
                             get = function() return addon.Options.db.profile.Achievements.Guide.RightClickMenu end,
                             set = function(_, value) addon.Options.db.profile.Achievements.Guide.RightClickMenu = value end
+                        },
+                        GuideIcon = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
+                            name = addon.L["Show Guide Icon"],
+                            desc = addon.L["Show Guide Icon Desc"]:KAF_AddDefaultValueText("Achievements.Guide.Icon"),
+                            get = function() return addon.Options.db.profile.Achievements.Guide.Icon end,
+                            set = GuideIconSet
+                        },
+                        GuideExpandedRow = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
+                            name = addon.L["Show Guide in Expanded Achievement"],
+                            desc = addon.L["Show Guide in Expanded Achievement Desc"]:KAF_AddDefaultValueText("Achievements.Guide.ExpandedRow"),
+                            get = function() return addon.Options.db.profile.Achievements.Guide.ExpandedRow end,
+                            set = GuideExpandedRowSet
+                        },
+                        GuideActionStyle = {
+                            order = OrderPP(), type = "select", width = AdjustedWidth(1.35),
+                            name = addon.L["Guide Action Style"],
+                            desc = addon.L["Guide Action Style Desc"]:KAF_AddDefaultValueText("Achievements.Guide.ActionStyle", guideActionStyles),
+                            values = guideActionStyles,
+                            get = function() return addon.Options.db.profile.Achievements.Guide.ActionStyle end,
+                            set = GuideActionStyleSet
                         },
                         GuideWaypointProvider = {
                             order = OrderPP(), type = "select", width = AdjustedWidth(1.35),

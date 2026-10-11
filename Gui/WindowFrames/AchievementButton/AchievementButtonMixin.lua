@@ -307,6 +307,7 @@ function KrowiAF_AchievementButtonMixin:DisplayObjectives(forced)
 			height = height + 4
 		end
 	end
+	height = height + addon.Gui.Guide.Content.DisplayUnderObjectives(objectives, self.Achievement) -- 0 without a guide or with the option off
 	objectives.Id = id
 	height = max(self.MinExpandedHeight, height)
 	objectives.IsDisplaying = nil

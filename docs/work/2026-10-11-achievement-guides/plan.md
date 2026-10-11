@@ -292,7 +292,24 @@ Players have to leave the game to learn how to do an achievement. For 60962 "Leg
      - On a character that is not a Death Knight, the talents show their names only.
      - No new errors.
      - `taintLog 2` shows nothing from the guide code: the waypoint path, the world map and super-tracking are all absent, and nothing was blocked.
-4. **Milestone B: row icon and side panel, then the expanded row.** Check the row heights with and without objectives, and under GW2_UI if available. In game again. Commit.
+   - **Krowi decided after A (2026-10-11):**
+     - Milestone B goes ahead.
+     - At wrap-up, a `Check-Repo` rule guards the manifest order behind the first bug: every file that calls `GetLastSection()` must follow, in its `Files.xml`, a section with its own `Sections` table or another such file.
+4. **Milestone B: row icon and side panel, then the expanded row.**
+   *As built, 2026-10-11:*
+   - **The panel is built in Lua** (`Gui/Guide/Panel.lua`) instead of XML plus a mixin, so the headless suite creates the same frame.
+   - **One renderer for panel and row.** `Gui/Guide/Content.lua` lays out lines and buttons for both. The row's block is a child of the objectives frame, so it moves and hides with them, and no collapse code was needed.
+   - **The taint review of B** led to three fixes (see Risks).
+   - **Krowi's screenshot of the panel** led to the numbered research steps (spec, second amendment).
+   - **The panel and row scenarios count waypoint controls only,** because the number of lines depends on the character's talent tree.
+   - **Refinement after a second screenshot.** Krowi found the first panel unrefined. Each step is now:
+     - a number in its own column;
+     - a short white headline;
+     - smaller grey detail lines (place and coordinates, the talents, the cost);
+     - more spacing.
+
+     `GetLines` items carry `Number`, `Text` (the headline) and `Details`, and every surface formats them itself. The tooltip shows the details as grey indented lines.
+   - **Two layouts for the waypoint actions,** built as a proof of concept and compared in game: small icons at the right of the headline (the game's map pin, a navigation arrow for TomTom), or gold text links under the details. Krowi found the icons more refined and asked for both as an option: `Achievements.Guide.ActionStyle`, "Waypoint Buttons", 1 Icons (default) or 2 Text links. The scenario `panel-60962-links` covers the links. Check the row heights with and without objectives, and under GW2_UI if available. In game again. Commit.
 5. **Wrap up.** Changelog, `OPTIONS.md`, architecture, `.luarc.json`. Run the `taint-reviewer` on the diff, `/code-review`, the in-game after-run on Retail and a `/reload` on Classic with `Read-GameErrors.ps1` on both. Set the work files to `done`, open the PR against `dev`, and wait for the merge gate.
 
 ## Risks
@@ -305,6 +322,11 @@ Players have to leave the game to learn how to do an achievement. For 60962 "Leg
     - **How to check both.** `/console taintLog 2`, set a pin from the menu, open the map and ctrl-click a pin of your own. Then search `Logs\taint.log` for `isActive`, `toggleActive`, `currentScale` and `navFrame`.
     - **If the taint outlives the click,** the fallback is to stop calling `SetUserWaypoint` from addon code: a Blizzard `worldmap` chat link the player clicks, or `/mappin` on a secure macro button.
     - **Source checked.** The flags are as above in every published export (live 12.1.0.69933, ptr 12.1.0.69587). Gethe has no 12.1.5 export yet.
+  - *Taint review of milestone B, 2026-10-11, all three fixed before the in-game check:*
+    - **High: the panel's buttons used `GameTooltip` for their hover text.** That runs Blizzard's `GameTooltip_OnShow`/`OnHide` in the addon's taint, so a later secret-valued tooltip fails: the 96.0-99.6 bug class. They now use `Krowi_Tooltip`, like every other addon tooltip.
+    - **Low: the combat re-render ran too early.** It ran on `PLAYER_REGEN_DISABLED`, before lockdown begins, so the map pin stayed enabled during the fight; the click-time guard still held. That render now waits a frame. The expanded-row block does not re-render on combat; it relies on the click-time guard.
+    - **Low: the close button hid the panel through `HideUIPanel`.** It is now `UIPanelCloseButtonNoScripts` and closes the panel itself, as the reward preview does.
+    - **Clean:** the named frame `KrowiAF_GuidePanel`, the Escape registration, the owner `OnHide` hook, the Blizzard Menu entry, the render path on secret values, and the block inside the row's ScrollBox.
 - **Expanded-row height.** It is off by default, the block is anchored to the objectives frame (so GW2_UI's re-anchoring still holds), and its height is added after the description and reward adjustments, so the `CollapsedHeight` test at `:303` is unchanged.
 - **Icon pool.** An icon field not cleared in `ResetExtraIcons` leaks to a recycled row. It is added there, and a no-guide scenario covers it.
 - **Classic.** `C_Garrison`, `C_Spell`, `UiMapPoint` and the map pin may be missing. Every call is guarded by an existence check, and no Classic guide data is written; the Classic `/reload` checks this.
