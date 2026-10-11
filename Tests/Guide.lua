@@ -117,6 +117,11 @@ guide.Scenarios = {
     {Name = "waypoint-poi", Kind = "Waypoint", Waypoint = paladinPortal, Provider = provider.MapPin,
         Available = {MapPin = false, Poi = true, TomTom = false},
         Recorded = "Poi:on", Target = "Poi:on"},
+    -- Super-tracking a POI can create the navigation frame (NAVIGATION_FRAME_CREATED is synchronous), so the portal is
+    -- not super-tracked from the addon in combat either (code review of the branch)
+    {Name = "waypoint-poi-in-combat", Kind = "Waypoint", Waypoint = paladinPortal, Provider = provider.MapPin,
+        Available = {MapPin = false, Poi = true, TomTom = false, Combat = true},
+        Recorded = "Poi:off", Target = "Poi:off"},
     -- Another class cannot see the Paladin portal's POI, so only TomTom can place it
     {Name = "waypoint-poi-hidden", Kind = "Waypoint", Waypoint = paladinPortal, Provider = provider.Both,
         Available = {MapPin = false, Poi = false, TomTom = true},

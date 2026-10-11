@@ -206,10 +206,12 @@ end
 
 -- The guide block under an expanded row's objectives (Achievements.Guide.ExpandedRow). It is a child of the objectives
 -- frame, so it follows the objectives when they move to another row or the popout and hides with them. Returns the
--- height the row grows by.
-function content.DisplayUnderObjectives(objectives, achievement)
+-- height the row grows by. The selected row redisplays its objectives on every list update, so the block renders again
+-- only when what it shows can have changed: another achievement or width, a guide option, combat, TomTom, or forced.
+function content.DisplayUnderObjectives(objectives, achievement, forced)
+    local options = addon.Options.db.profile.Achievements.Guide
     local block = objectives.GuideBlock
-    if achievement.Guide == nil or not addon.Options.db.profile.Achievements.Guide.ExpandedRow then
+    if achievement.Guide == nil or not options.ExpandedRow then
         if block then
             block:Hide()
         end
@@ -222,8 +224,14 @@ function content.DisplayUnderObjectives(objectives, achievement)
     block:ClearAllPoints()
     block:SetPoint("TOPLEFT", objectives, "BOTTOMLEFT", 0, -stepGap)
     block:SetPoint("TOPRIGHT", objectives, "BOTTOMRIGHT", 0, -stepGap)
-    local height = content.Render(block, achievement, objectives:GetWidth())
-    block:SetHeight(max(height, 1))
+    local width = objectives:GetWidth()
+    local key = table.concat({achievement.Id, tostring(width), tostring(options.ActionStyle), tostring(options.WaypointProvider),
+        tostring(InCombatLockdown()), tostring(TomTom ~= nil)}, ":")
+    if forced or block.CacheKey ~= key then
+        block.CachedHeight = content.Render(block, achievement, width)
+        block.CacheKey = key
+    end
+    block:SetHeight(max(block.CachedHeight, 1))
     block:Show()
-    return height + stepGap
+    return block.CachedHeight + stepGap
 end

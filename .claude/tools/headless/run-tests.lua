@@ -892,6 +892,7 @@ suites.guide = function(c)
         -- 60962's criteria are hidden: only countHidden returns them, and one index past the last raises an error
         local hiddenCriteria = { [60962] = { 486, 487 } }
         env.GetAchievementNumCriteria = function() return 0 end
+        env.GetAchievementInfo = function(id) return id, "Achievement " .. id, 5, false end -- not completed
         env.GetAchievementCriteriaInfo = function(id, index, countHidden)
             local assets = countHidden and hiddenCriteria[id]
             if not assets or not assets[index] then error("criteria not found", 2) end

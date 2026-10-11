@@ -58,6 +58,15 @@ local function CloseButtonOnClick()
     panel:Close()
 end
 
+-- The row the panel is pinned to is a recycled list button: once it scrolls out of view or shows another achievement,
+-- the panel would point at the wrong row, so it closes
+local function OnUpdate(frame)
+    local owner = frame.OwnerButton
+    if owner and (not owner:IsVisible() or (owner.Achievement and owner.Achievement ~= frame.Achievement)) then
+        panel:Close()
+    end
+end
+
 local function Create()
     local frame = CreateFrame("Frame", "KrowiAF_GuidePanel", UIParent, "TooltipBackdropTemplate")
     frame:SetFrameStrata("HIGH")
@@ -69,6 +78,7 @@ local function Create()
     frame:SetScript("OnMouseUp", frame.StopMovingOrSizing)
     frame:SetScript("OnHide", frame.StopMovingOrSizing)
     frame:SetScript("OnEvent", OnEvent)
+    frame:SetScript("OnUpdate", OnUpdate) -- runs only while the panel is shown
     frame:RegisterEvent("PLAYER_REGEN_DISABLED")
     frame:RegisterEvent("PLAYER_REGEN_ENABLED")
 

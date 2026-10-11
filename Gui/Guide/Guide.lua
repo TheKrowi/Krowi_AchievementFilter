@@ -157,7 +157,10 @@ local function AddResearchLines(lines, achievement, classId, step)
         tinsert(names, talent.Info.name)
     end
     local target = talents[1].Info -- a tier's talents share their tier, cost and lock
-    local isDone = achievement.IsCompleted or (isAny and numCompleted > 0) or numCompleted == #talents
+    -- The game's completion, not achievement.IsCompleted: that is the list's display cache, unset until a row is drawn and
+    -- following the EarnedBy filter
+    local _, _, _, isCompleted = GetAchievementInfo(achievement.Id)
+    local isDone = isCompleted or (isAny and numCompleted > 0) or numCompleted == #talents
     local isOwnClass = IsOwnClassTree(target.treeID, classId)
 
     if isOwnClass and not isDone then

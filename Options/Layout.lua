@@ -545,32 +545,20 @@ local function ShowRewardPreviewIconSet(_, value)
     KrowiAF_AchievementsFrame:ForceUpdate()
 end
 
-local function GuideIconSet(_, value)
-    addon.Options.db.profile.Achievements.Guide.Icon = value
-    if not KrowiAF_AchievementsFrame then
-        return
-    end
-    KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow()
-    KrowiAF_AchievementsFrame:ForceUpdate()
-end
-
-local function GuideExpandedRowSet(_, value)
-    addon.Options.db.profile.Achievements.Guide.ExpandedRow = value
-    if not KrowiAF_AchievementsFrame then
-        return
-    end
-    KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow()
-    KrowiAF_AchievementsFrame:ForceUpdate()
-end
-
-local function GuideActionStyleSet(_, value)
-    addon.Options.db.profile.Achievements.Guide.ActionStyle = value
-    local panel = addon.Gui.Guide.Panel
-    if panel.Frame and panel.Frame:IsShown() then
-        panel:Render()
-    end
-    if KrowiAF_AchievementsFrame then
-        KrowiAF_AchievementsFrame:ForceUpdate() -- the guide block under the selected achievement
+-- A guide option that changes what is drawn: the setter redraws an open guide panel and the achievement list (the row
+-- icon and the block under the selected achievement)
+local function GuideOptionSetter(key)
+    return function(_, value)
+        addon.Options.db.profile.Achievements.Guide[key] = value
+        local panel = addon.Gui.Guide.Panel
+        if panel.Frame and panel.Frame:IsShown() then
+            panel:Render()
+        end
+        if not KrowiAF_AchievementsFrame then
+            return
+        end
+        KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow()
+        KrowiAF_AchievementsFrame:ForceUpdate()
     end
 end
 
@@ -1307,14 +1295,14 @@ local achievementsOptions = {
                             name = addon.L["Show Guide Icon"],
                             desc = addon.L["Show Guide Icon Desc"]:KAF_AddDefaultValueText("Achievements.Guide.Icon"),
                             get = function() return addon.Options.db.profile.Achievements.Guide.Icon end,
-                            set = GuideIconSet
+                            set = GuideOptionSetter("Icon")
                         },
                         GuideExpandedRow = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Guide in Expanded Achievement"],
                             desc = addon.L["Show Guide in Expanded Achievement Desc"]:KAF_AddDefaultValueText("Achievements.Guide.ExpandedRow"),
                             get = function() return addon.Options.db.profile.Achievements.Guide.ExpandedRow end,
-                            set = GuideExpandedRowSet
+                            set = GuideOptionSetter("ExpandedRow")
                         },
                         GuideActionStyle = {
                             order = OrderPP(), type = "select", width = AdjustedWidth(1.35),
@@ -1322,7 +1310,7 @@ local achievementsOptions = {
                             desc = addon.L["Guide Action Style Desc"]:KAF_AddDefaultValueText("Achievements.Guide.ActionStyle", guideActionStyles),
                             values = guideActionStyles,
                             get = function() return addon.Options.db.profile.Achievements.Guide.ActionStyle end,
-                            set = GuideActionStyleSet
+                            set = GuideOptionSetter("ActionStyle")
                         },
                         GuideWaypointProvider = {
                             order = OrderPP(), type = "select", width = AdjustedWidth(1.35),
@@ -1330,7 +1318,7 @@ local achievementsOptions = {
                             desc = addon.L["Guide Waypoint Desc"]:KAF_AddDefaultValueText("Achievements.Guide.WaypointProvider", guideWaypointProviders),
                             values = guideWaypointProviders,
                             get = function() return addon.Options.db.profile.Achievements.Guide.WaypointProvider end,
-                            set = function(_, value) addon.Options.db.profile.Achievements.Guide.WaypointProvider = value end
+                            set = GuideOptionSetter("WaypointProvider")
                         },
                         Objectives = {
                             order = OrderPP(), type = "header",

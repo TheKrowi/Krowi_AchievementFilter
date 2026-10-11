@@ -35,7 +35,13 @@ local function SetMapPin(point)
     end
 end
 
+-- SUPER_TRACKING_CHANGED is a UniqueEvent, dispatched later from a clean context, but super-tracking can create the
+-- navigation frame and NAVIGATION_FRAME_CREATED is synchronous (InGameNavigationDocumentation.lua), so in combat the
+-- portal is left alone like the map pin
 local function SuperTrackPoi(point)
+    if InCombatLockdown() then
+        return
+    end
     C_SuperTrack.SetSuperTrackedMapPin(Enum.SuperTrackingMapPinType.AreaPOI, point.PoiId)
 end
 
@@ -56,6 +62,9 @@ end
 local function BlizzardAction(point, available)
     local text = addon.L["Guide Map Pin"]:K_ReplaceVars{target = GetTitle(point)}
     if point.PoiId and available.Poi then
+        if available.Combat then
+            return {Kind = "Poi", Text = addon.L["Guide Map Pin In Combat"]:K_ReplaceVars{action = text}, Enabled = false}
+        end
         return {Kind = "Poi", Text = text, Enabled = true, Func = function() SuperTrackPoi(point) end}
     end
     if available.MapPin and not available.Combat then
