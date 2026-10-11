@@ -1,6 +1,6 @@
 # Zone placement decisions
 
-This file records why the zone placement rules are what they are. The binding rule text is in `.claude/skills/add-zone-data/SKILL.md` (Zone Placement Rules 1 to 12 and the Entry Type Rules); this file holds the reason behind each rule and the decisions D1 to D14 taken during the reconciliation sweep of 2026-09. Decisions about single achievements live in `raw/ZoneDataDecisions.md`.
+This file records why the zone placement rules are what they are. The binding rule text is in `.claude/skills/add-zone-data/SKILL.md` (Zone Placement Rules 1 to 12 and the Entry Type Rules); this file holds the reason behind each rule and the decisions D1 to D15 (D1 to D14 taken during the reconciliation sweep of 2026-09). Decisions about single achievements live in `raw/ZoneDataDecisions.md`.
 
 ## Placement model
 
@@ -25,7 +25,7 @@ Numbers and short names follow the Zone Placement Rules in SKILL.md, which hold 
 | 5 | Quest chains | A zone counts where a quest of the chain is completed: the player progresses the chain there and stands there when the achievement completes. Picking up a breadcrumb is not progress (D10). |
 | 6 | Cities | Inside the walls `GetBestMapForUnit` returns the city map; mirroring city content on the surrounding zone would double every capital's list on its zone (D5). |
 | 7 | Zone revamps: no backfill | Old achievements were designed for the old map; the revamp patch's own achievements use the new id (D9 applies it to Dalaran). |
-| 8 | The zone's expansion chooses the file | One place to look per map. Retail-only ids in a Shared file are skipped by the game on Classic, so the client does not need to choose the file. |
+| 8 | The zone's expansion chooses the file | One place to look per map. Retail-only ids in a Shared file are skipped by the game on Classic, so the client does not need to choose the file. The exception is an id whose content sits on a different map per client: a Shared file cannot tell the clients apart, so the ids that differ go in a client-specific file (D15). |
 | 9 | Ambiguous test | "The title sounds like it" produced the wrong placements the 2026-09-04 validation found. |
 | 10 | Backfill | Grandfathering old data would keep two conventions alive forever (D7). |
 | 11 | Verify zone names and file paths | Prose derived from memory was wrong in six Zone ID cells and eight file paths of the log (validation of 2026-09-04). |
@@ -88,3 +88,7 @@ Welcome to Draenor (8921/8922) has its only quest on the intro Tanaan Jungle map
 ### D14 (2026-09-05, corrected 2026-09-06) The Corruptor's End
 
 Where does 14157 The Corruptor's End go? Decision: Uldum 1527, Vale of Eternal Blossoms 1530 and Chamber of Heart 1473; War Stories (40955) follows as its parent (Rule 3). Its one criterion, the quest "Ny'alotha, the Waking City: The Corruptor's End" (58632), has quest POI rows on exactly those three maps, so the decision rests on game data.
+
+### D15 (2026-10-11) One achievement, a different map per client
+
+1307 Upper Blackrock Spire (Classic) and 2188 Leeeeeeeeeeeeeroy! sat on Upper Blackrock Spire 616 to 618 twice on Retail, from a Shared Vanilla block and from the Retail Warlords of Draenor block. The Classic build has no map 616 (its uimap table stops at 536 maps): Classic keeps Upper Blackrock Spire inside Blackrock Spire 250 to 255, so on Classic the two showed nowhere. On Retail, 250 is Lower Blackrock Spire only; Drakkisath and the Rookery moved to 616 in 6.0.2, so the Rule 7 answer (old map only) would point Retail players at a dungeon that no longer holds either. Decision: each client gets the map where the content is. The Shared 616 block was removed, Retail keeps 616 in its Warlords of Draenor file, and a new `DataAddons/Classic/01_Vanilla/ZoneData.lua` adds the two ids to Blackrock Spire 250 next to the Shared block, which the runtime merges on Classic. Consequence: Rule 8 gains the exception that a client-specific `ZoneData.lua` holds only the ids whose map differs per client; the snapshot line `lists fed by >1 key` counts these merges per map (six on Classic for this case, one per Blackrock Spire map).
