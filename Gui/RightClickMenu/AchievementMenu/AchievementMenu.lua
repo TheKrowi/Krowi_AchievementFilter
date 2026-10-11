@@ -12,10 +12,10 @@ end
 function achievementMenu:AddGoToAchievementLine(menu, id, nameSuffix)
 	nameSuffix = nameSuffix or ""
 	local name = addon.GetAchievmentName(id)
-	local disabled
+	local isEnabled
 	if not addon.Data.Achievements[id] then -- Catch missing achievements from the addon to prevent errors
 		name = name .. " (" .. addon.L["Missing"] .. ")"
-		disabled = true
+		isEnabled = false
 	end
 	menuBuilder:CreateButtonAndAdd(
 		menu,
@@ -24,7 +24,7 @@ function achievementMenu:AddGoToAchievementLine(menu, id, nameSuffix)
 			KrowiAF_SelectAchievementFromID(id)
 			menuBuilder:Close()
 		end,
-		disabled
+		isEnabled
 	)
 end
 

@@ -16,9 +16,11 @@ local menu = addon.Tests.Menu
 --   headlessly; it is reported as an observation, so the lines of both runs stay comparable); otherwise Id is an
 --   achievement every client registers
 -- Recorded / Target: "enabled" or "disabled"
+-- Before the fix the "(Missing)" entry stayed enabled (verified in game on Retail 12.1.0 and Classic 5.5.4 on 2026-10-11,
+-- linking to 49); it now passes isEnabled = false
 menu.Scenarios = {
     {Name = "missing-achievement-entry", Missing = true,
-        Recorded = "enabled", Target = "disabled"},
+        Recorded = "disabled", Target = "disabled"},
     {Name = "registered-achievement-entry", Id = 6, -- Level 10, DataAddons/Shared/03_WrathOfTheLichKing/AchievementData.lua
         Recorded = "enabled", Target = "enabled"}
 }
