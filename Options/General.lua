@@ -59,8 +59,7 @@ end
 local tutorialMenuBuilder
 local function GeneralTutorialFunc()
     if not tutorialMenuBuilder then
-        local MenuBuilder = LibStub("Krowi_MenuBuilder-1.0")
-        tutorialMenuBuilder = MenuBuilder:New({})
+        tutorialMenuBuilder = addon.MenuBuilder:New({})
     end
 
     tutorialMenuBuilder:ShowPopup(CreateTutorialMenuFunc)
