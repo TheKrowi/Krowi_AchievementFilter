@@ -164,7 +164,8 @@ function Get-ZoneDataIndex {
 #   SubToPrimary sub map id -> primary map id                     sub-zone reports its primary's verdict)
 #   Inactive     HashSet of map ids whose verdict is TaxiAndAdventure or Error (must not be in ZoneData)
 #   SkipLike     HashSet of map ids never shown on the world map (Inactive plus Skip and StartingZone)
-#   MapType      map id -> numeric C_Map type, Parent map id -> parentMapID (game-derived, may be empty)
+#   MapType      map id -> numeric C_Map type, Parent map id -> parent map id: the Map Verifier's parentOverride when set,
+#                else the game's parentMapID (may be empty)
 function Get-MapReference {
     param([Parameter(Mandatory)] [string] $RootDir)
     . (Join-Path $RootDir '.claude\skills\sync-mapverifier\_mapverifier_io.ps1')
@@ -174,7 +175,8 @@ function Get-MapReference {
     $inactive = [System.Collections.Generic.HashSet[int]]::new(); $skipLike = [System.Collections.Generic.HashSet[int]]::new()
     foreach ($r in $read.Rows) {
         $id = [int]$r.id
-        $names[$id] = $r.name; $types[$id] = $r.verdict; $mapType[$id] = $r.mapType; $parent[$id] = $r.parentMapID
+        $names[$id] = $r.name; $types[$id] = $r.verdict; $mapType[$id] = $r.mapType
+        $parent[$id] = if ($r.parentOverride -ne '') { $r.parentOverride } else { $r.parentMapID }
         if ($r.link -ne '') { $subToPrimary[$id] = [int]$r.link }
     }
     foreach ($r in $read.Rows) {

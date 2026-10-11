@@ -14,8 +14,9 @@
 #   D8   informational, decision D8 (resolved 2026-09-05, per map): an explore criterion naming a City inside
 #        the zone never puts the zone's achievement on the city (Explore Durotar names Orgrimmar); a criterion
 #        naming an outdoor sub-map follows the yes/no table $d8SubMaps below. "[D8  ]" lines are decided
-#        cases that stay off the inner map; "[D8? ]" names a sub-map not in the table yet: ask the user, then
-#        add it. A sub-map decided yes is an ordinary R2 candidate.
+#        cases that stay off the inner map; "[D8? ]" names a sub-map not in the table yet, a map whose parent
+#        chain in raw\MapVerifier.csv reaches a map the id is on: ask the user, then add it. A sub-map decided
+#        yes, and any missed map that is not inside a map the id is on, is an ordinary R2 finding.
 #   R3   a meta (criteria of type 8) must be on every primary map one of its child achievements is placed on,
 #        transitively, instances included (Rule 3 is literal: The Flame Warden in the Slave Pens, Master of
 #        Wintergrasp in Vault of Archavon). Continent maps are never expected; children in $noPropagate are
@@ -50,7 +51,7 @@ $skillDir = Join-Path $RootDir '.claude\skills\add-zone-data'
 
 $nameAliases = @{ 'Sholozar Basin' = 'Sholazar Basin'; 'Karasang Wilds' = 'Krasarang Wilds' }   # DB spellings
 $locationTypes = @(0, 27, 29, 43, 158, 161)
-# Battlegrounds are open-world-like for the verdict boundary: a battleground meta is not pushed into a raid (Master of Wintergrasp / Vault of Archavon)
+# R2: an id placed only on these maps is not checked, and these maps are never expected (Battleground is filtered on its own)
 $instanceVerdicts = @('Dungeon', 'Raid', 'Delve', 'Scenario', 'ClassHall')
 # criterion descriptions that coincide with a map name but are not a place (quest titles); reviewed by hand
 $notALocation = @{ 14353 = @('Azshara') }   # Ardenweald's a Stage: quest "Azshara" (the queen), not the zone
@@ -150,6 +151,17 @@ function Get-Leaves([int] $Tree, [int] $Depth) {
     return ,$out
 }
 function Format-Maps($Maps) { ($Maps | Sort-Object | ForEach-Object { "$_ $($mapRef.Names[$_])" }) -join '; ' }
+# true when the map's parent chain in raw\MapVerifier.csv (parentOverride first) reaches one of the given primary maps
+function Test-InsideMaps([int] $MapId, $Primaries) {
+    $cur = $MapId
+    for ($depth = 0; $depth -lt 6; $depth++) {
+        $p = $mapRef.Parent[$cur]
+        if (-not $p) { return $false }
+        $cur = [int]$p
+        if ($Primaries.Contains((ConvertTo-PrimaryMap $mapRef $cur))) { return $true }
+    }
+    return $false
+}
 
 # --- 3. checks ---------------------------------------------------------------------------------------
 $findings = [System.Collections.Generic.List[string]]::new()
@@ -199,17 +211,22 @@ foreach ($id in $scope) {
             if ($cands.Count -eq 0) { continue }
             $candText = ($cands | ForEach-Object { "$_ $($mapRef.Names[$_]) ($($mapRef.Types[$_]))" }) -join ' | '
             # D8 (decided 2026-09-05): an explore criterion that names a City inside the zone does not put the zone's achievement on the
-            # city (Explore Durotar: Orgrimmar); one that names an outdoor sub-map does (Caverns of Time, Blackrock Mountain, Amirdrassil,
-            # the covenant sanctums). Criteria of other types performed in a city (perform, photograph, quest) are Rule 6 content: a finding.
+            # city (Explore Durotar: Orgrimmar); an outdoor sub-map follows the yes/no table $d8SubMaps. Criteria of other types performed
+            # in a city (perform, photograph, quest) are Rule 6 content: a finding.
             if ($mine.Count -gt 0) {
                 $allCity = @($cands | Where-Object { $mapRef.Types[$_] -ne 'City' }).Count -eq 0
                 # a city named by an explore criterion: no (D8). Named by any other criterion type (perform, photograph, quest): Rule 6, a finding
                 if ($allCity -and $kv.Value.Explore) { $infos.Add("[D8  ] $id $($a.Title) — explore criterion names city $candText; stays on $placedStr"); continue }
                 if (-not $allCity) {
-                    # outdoor sub-maps: per-map decisions in $d8SubMaps for every criterion type (the user wants no general rule); undecided ones are [D8? ]
-                    $undecided = @($cands | Where-Object { $mapRef.Types[$_] -ne 'City' -and -not $d8SubMaps.ContainsKey($_) })
-                    if ($undecided.Count -gt 0) { $infos.Add("[D8? ] $id $($a.Title) — criterion names undecided sub-map $candText; stays on $placedStr until decided"); continue }
-                    if (@($cands | Where-Object { $mapRef.Types[$_] -ne 'City' -and $d8SubMaps[$_] }).Count -eq 0) { $infos.Add("[D8  ] $id $($a.Title) — criterion names sub-map $candText, decided no; stays on $placedStr"); continue }
+                    # outdoor maps, for every criterion type (the user wants no general rule): a map decided yes, or a missed map that is not
+                    # inside a map the id is on (Elwynn Forest for a pet battle achievement placed on the other zones), is a finding below. The
+                    # table goes first because two decided maps have other parents (Blackrock Mountain: Burning Steppes; Amirdrassil: Dragon Isles).
+                    $outdoor = @($cands | Where-Object { $mapRef.Types[$_] -ne 'City' })
+                    $decidedYes = @($outdoor | Where-Object { $d8SubMaps.ContainsKey($_) -and $d8SubMaps[$_] })
+                    $undecided = @($outdoor | Where-Object { -not $d8SubMaps.ContainsKey($_) })
+                    $subMaps = @($undecided | Where-Object { Test-InsideMaps $_ $mine })
+                    if ($decidedYes.Count -eq 0 -and $undecided.Count -gt 0 -and $subMaps.Count -eq $undecided.Count) { $infos.Add("[D8? ] $id $($a.Title) — criterion names undecided sub-map $candText; stays on $placedStr until decided"); continue }
+                    if ($decidedYes.Count -eq 0 -and $undecided.Count -eq 0) { $infos.Add("[D8  ] $id $($a.Title) — criterion names sub-map $candText, decided no; stays on $placedStr"); continue }
                 }
             }
             $findings.Add("[R2  ] $id $($a.Title) — criterion names '$($kv.Key)' but the id is not on $candText (placed on: $placedStr)")
