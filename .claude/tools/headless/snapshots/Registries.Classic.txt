@@ -67,7 +67,10 @@ TIMELINE 4.4.2 | target=4.4.2
 TIMELINE 5.0.4 | target=5.5.0
 TIMELINE 5.1.0 | target=5.5.1
 TIMELINE 5.2.0 | target=5.5.3
+TIMELINE 5.3.0 | target=5.5.3
 TIMELINE 5.4.0 | target=5.5.4
+TIMELINE 5.4.1 | target=5.5.4
+TIMELINE 5.4.2 | target=5.5.4
 TIMELINE 5.5.0 | target=5.5.0
 TIMELINE 5.5.1 | target=5.5.1
 TIMELINE 5.5.3 | target=5.5.3
@@ -94,6 +97,6 @@ EVENT Calendar 479 | category=925 | icon=134481 | linked=374
 
 == Summary ==
 build versions         33   (31 used)
-content timeline       30
+content timeline       33
 season anchors         0
 events Calendar        13

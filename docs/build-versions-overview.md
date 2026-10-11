@@ -66,10 +66,10 @@ Generated 2026-09-25. The counts come from the data files, and the totals match 
 | 5.0.5 | 2012-09-11 | - | m/L | *(not registered)* | 0 |  |  | 0 |  |  |  | MoP launched 2012-09-25 on the 5.0.5 line. Unregistered 2026-09-25: its one anchor became `Until` 5.0.4 |
 | 5.1.0 | 2012-11-27 | Landfall | C | Landfall | 51 |  | added | 51 |  | added | 5.5.1 | Pandaria campaign, Brawler's Guild |
 | 5.2.0 | 2013-03-05 | The Thunder King | C | The Thunder King | 102 | 6 | added | 102 | 6 | added | 5.5.3 | Isle of Thunder, Throne of Thunder |
-| 5.3.0 | 2013-05-21 | Escalation | C | Escalation | 50 |  | added | 50 |  | added | *(missing)* | Battlefield: Barrens, heroic scenarios |
+| 5.3.0 | 2013-05-21 | Escalation | C | Escalation | 50 |  | added | 50 |  | added | 5.5.3 | Battlefield: Barrens, heroic scenarios |
 | 5.4.0 | 2013-09-10 | Siege of Orgrimmar | C | Siege of Orgrimmar | 123 | 5 | added | 123 | 5 | added | 5.5.4 | Siege of Orgrimmar, Timeless Isle, Flex raids |
-| 5.4.1 | 2013-10-29 | - | m | Siege of Orgrimmar | 2 |  | added | 2 |  | added | *(missing)* | Bug fixes, built-in Recruit-A-Friend |
-| 5.4.2 | 2013-12-10 | - | m | Siege of Orgrimmar | 1 |  | added | 1 |  | added | *(missing)* | Minor (Celestial Tournament) |
+| 5.4.1 | 2013-10-29 | - | m | Siege of Orgrimmar | 2 |  | added | 2 |  | added | 5.5.4 | Bug fixes, built-in Recruit-A-Friend |
+| 5.4.2 | 2013-12-10 | - | m | Siege of Orgrimmar | 1 |  | added | 1 |  | added | 5.5.4 | Minor (Celestial Tournament) |
 | 5.5.0 | 2025-07-01 / 07-21 | MoP Classic Phase 1 | CL | Mists of Pandaria |  |  |  | 20 |  | added |  | Pre-patch and launch (original 5.0.x); MSV, HoF, ToES unlocked in stages with no patch change; no Raid Finder |
 | 5.5.1 | 2025-09-23 | Phase 2: Landfall | CL | Landfall |  |  |  | 26 |  | added |  | Original 5.1.0 |
 | 5.5.3 | 2025-12-09 | Phase 3: Rise of the Thunder King | CL | The Thunder King |  |  |  | 18 |  | added |  | Original 5.2.0. 5.5.2 (2025-10-28) was maintenance only; 5.5.3a (2026-03-31) delivered original 5.3.0 Escalation |
@@ -153,7 +153,7 @@ Generated 2026-09-25. The counts come from the data files, and the totals match 
 ### Classic timeline
 
 - Classic re-releases replay one original content patch per phase: 3.4.0-3.4.3, 4.4.0-4.4.2 and 5.5.0-5.5.4. Blizzard regularly opens content **without a patch change**: Ruby Sanctum came inside 3.4.3, Zul'Aman and Zul'Gurub inside 4.4.0, and the first three MoP raids were staggered inside 5.5.0. MoP Classic 5.5.2 was maintenance only, and original 5.3.0 shipped as **5.5.3a**, which the build-version id cannot express. The Classic side therefore needs a lookup table; it cannot be derived from the patch number.
-- `ContentTimeline.lua` has no entry for 5.3.0, 5.4.1 and 5.4.2, although the content shipped (5.5.3a, 5.5.4). The Cataclysm gaps (4.1.0, 4.3.0, 4.3.2) were filled on 2026-09-25, with 4.4.2 registered as their target. Nothing anchors on them today, so there is no visible effect; the table only matters for anchors.
+- `ContentTimeline.lua` covers every Retail patch Classic has reached. The Cataclysm gaps (4.1.0, 4.3.0, 4.3.2) were filled on 2026-09-25, with 4.4.2 registered as their target, and the Mists gaps on 2026-10-11: 5.3.0 to 5.5.3 (it shipped as 5.5.3a), 5.4.1 and 5.4.2 to 5.5.4. No explicit anchor named those three, but 17 cutoffs take one as their implicit start (the achievement's own patch); an unresolved implicit start already counted as past and the tooltip names the own patch, so filling them changed only the snapshot.
 - Classic phases that added no achievements are not registered (5.5.2, 5.5.3a), unless they are a timeline target (4.4.2, 5.5.4).
 - The current Classic client is MoP Classic 5.5.4, the final phase (`.toc` interface 50504). Wrath and Cata Classic are gone in the West. China still runs Wrath 3.4.5 and "Titan Reforged" on client 3.80.x, which would sort after 3.4.x and 4.4.x on the single version axis. WoW: Forever launches 2026-11-04 on its own 1.x numbering.
 

@@ -2422,8 +2422,8 @@ ACH 8300 | patch=5.3.0 | reward=Pet | pvp | preview=PetSpeciesId 1184
 ACH 8301 | patch=5.3.0 | reward=Title | pvp
 ACH 8302 | patch=5.3.0 | faction=Horde | otherFaction=8304 | reward=Mount | preview=MountId 548
 ACH 8304 | patch=5.3.0 | faction=Alliance | otherFaction=8302 | reward=Mount
-ACH 8306 | patch=5.3.0 | faction=Alliance | otherFaction=8307 | reward=Title | obtainable=[From Version 5.3.0=>none (own patch) .. Before Version 5.4.0=>5.5.4]
-ACH 8307 | patch=5.3.0 | faction=Horde | otherFaction=8306 | reward=Title | obtainable=[From Version 5.3.0=>none (own patch) .. Before Version 5.4.0=>5.5.4]
+ACH 8306 | patch=5.3.0 | faction=Alliance | otherFaction=8307 | reward=Title | obtainable=[From Version 5.3.0=>5.5.3 (own patch) .. Before Version 5.4.0=>5.5.4]
+ACH 8307 | patch=5.3.0 | faction=Horde | otherFaction=8306 | reward=Title | obtainable=[From Version 5.3.0=>5.5.3 (own patch) .. Before Version 5.4.0=>5.5.4]
 ACH 8310 | patch=5.3.0
 ACH 8311 | patch=5.3.0
 ACH 8312 | patch=5.3.0
@@ -2433,31 +2433,31 @@ ACH 8316 | patch=5.3.0
 ACH 8317 | patch=5.3.0
 ACH 8318 | patch=5.3.0
 ACH 8319 | patch=5.3.0
-ACH 8325 | patch=5.3.0 | reward=Title | obtainable=[From Version 5.3.0=>none (own patch) .. Before Version 6.0.2=>none]
+ACH 8325 | patch=5.3.0 | reward=Title | obtainable=[From Version 5.3.0=>5.5.3 (own patch) .. Before Version 6.0.2=>none]
 ACH 8327 | patch=5.3.0
 ACH 8329 | patch=5.3.0
 ACH 8330 | patch=5.3.0
 ACH 8331 | patch=5.3.0 | pvp
 ACH 8332 | patch=5.3.0 | pvp
 ACH 8333 | patch=5.3.0 | pvp
-ACH 8335 | patch=5.3.0 | faction=Alliance | otherFaction=8337 | obtainable=[From Version 5.3.0=>none (own patch) .. Before Version 6.0.2=>none]
-ACH 8336 | patch=5.3.0 | faction=Alliance | otherFaction=8338 | obtainable=[From Version 5.3.0=>none (own patch) .. Before Version 6.0.2=>none]
-ACH 8337 | patch=5.3.0 | faction=Horde | otherFaction=8335 | obtainable=[From Version 5.3.0=>none (own patch) .. Before Version 6.0.2=>none]
-ACH 8338 | patch=5.3.0 | faction=Horde | otherFaction=8336 | obtainable=[From Version 5.3.0=>none (own patch) .. Before Version 6.0.2=>none]
+ACH 8335 | patch=5.3.0 | faction=Alliance | otherFaction=8337 | obtainable=[From Version 5.3.0=>5.5.3 (own patch) .. Before Version 6.0.2=>none]
+ACH 8336 | patch=5.3.0 | faction=Alliance | otherFaction=8338 | obtainable=[From Version 5.3.0=>5.5.3 (own patch) .. Before Version 6.0.2=>none]
+ACH 8337 | patch=5.3.0 | faction=Horde | otherFaction=8335 | obtainable=[From Version 5.3.0=>5.5.3 (own patch) .. Before Version 6.0.2=>none]
+ACH 8338 | patch=5.3.0 | faction=Horde | otherFaction=8336 | obtainable=[From Version 5.3.0=>5.5.3 (own patch) .. Before Version 6.0.2=>none]
 ACH 8339 | patch=5.3.0 | faction=Alliance | otherFaction=8342 | obtainable=[From Version 6.0.2=>none .. Before Version 7.0.3=>none]
-ACH 8340 | patch=5.3.0 | faction=Alliance | otherFaction=8343 | obtainable=[From Version 5.3.0=>none (own patch) .. Before Version 6.0.2=>none]
+ACH 8340 | patch=5.3.0 | faction=Alliance | otherFaction=8343 | obtainable=[From Version 5.3.0=>5.5.3 (own patch) .. Before Version 6.0.2=>none]
 ACH 8342 | patch=5.3.0 | faction=Horde | otherFaction=8339 | obtainable=[From Version 6.0.2=>none .. Before Version 7.0.3=>none]
-ACH 8343 | patch=5.3.0 | faction=Horde | otherFaction=8340 | obtainable=[From Version 5.3.0=>none (own patch) .. Before Version 6.0.2=>none]
+ACH 8343 | patch=5.3.0 | faction=Horde | otherFaction=8340 | obtainable=[From Version 5.3.0=>5.5.3 (own patch) .. Before Version 6.0.2=>none]
 ACH 8345 | patch=5.3.0
 ACH 8347 | patch=5.3.0
 ACH 8348 | patch=5.3.0 | reward=Pet
-ACH 8350 | patch=5.3.0 | pvp | obtainable=[From Version 5.3.0=>none (own patch) .. Before Version 8.3.0=>none]
-ACH 8351 | patch=5.3.0 | pvp | obtainable=[From Version 5.3.0=>none (own patch) .. Before Version 8.3.0=>none]
-ACH 8354 | patch=5.3.0 | pvp | obtainable=[From Version 5.3.0=>none (own patch) .. Before Version 8.3.0=>none]
-ACH 8355 | patch=5.3.0 | pvp | obtainable=[From Version 5.3.0=>none (own patch) .. Before Version 8.3.0=>none]
-ACH 8358 | patch=5.3.0 | pvp | obtainable=[From Version 5.3.0=>none (own patch) .. Before Version 8.3.0=>none]
-ACH 8359 | patch=5.3.0 | pvp | obtainable=[From Version 5.3.0=>none (own patch) .. Before Version 8.3.0=>none]
-ACH 8360 | patch=5.3.0 | reward=Title | pvp | obtainable=[From Version 5.3.0=>none (own patch) .. Before Version 8.3.0=>none]
+ACH 8350 | patch=5.3.0 | pvp | obtainable=[From Version 5.3.0=>5.5.3 (own patch) .. Before Version 8.3.0=>none]
+ACH 8351 | patch=5.3.0 | pvp | obtainable=[From Version 5.3.0=>5.5.3 (own patch) .. Before Version 8.3.0=>none]
+ACH 8354 | patch=5.3.0 | pvp | obtainable=[From Version 5.3.0=>5.5.3 (own patch) .. Before Version 8.3.0=>none]
+ACH 8355 | patch=5.3.0 | pvp | obtainable=[From Version 5.3.0=>5.5.3 (own patch) .. Before Version 8.3.0=>none]
+ACH 8358 | patch=5.3.0 | pvp | obtainable=[From Version 5.3.0=>5.5.3 (own patch) .. Before Version 8.3.0=>none]
+ACH 8359 | patch=5.3.0 | pvp | obtainable=[From Version 5.3.0=>5.5.3 (own patch) .. Before Version 8.3.0=>none]
+ACH 8360 | patch=5.3.0 | reward=Title | pvp | obtainable=[From Version 5.3.0=>5.5.3 (own patch) .. Before Version 8.3.0=>none]
 ACH 8364 | patch=5.3.0 | faction=Alliance | otherFaction=8366
 ACH 8366 | patch=5.3.0 | faction=Horde | otherFaction=8364
 ACH 8368 | patch=5.3.0
@@ -2587,7 +2587,7 @@ ACH 8743 | patch=5.4.0
 ACH 8784 | patch=5.4.0
 ACH 8791 | patch=5.4.0 | reward=Title | pvp | obtainable=[From PvP Season 13 .. Until PvP Season 13]
 ACH 8793 | patch=5.4.1
-ACH 8794 | patch=5.4.1 | obtainable=[From Version 5.4.1=>none (own patch) .. Before Date 2019-06-11]
+ACH 8794 | patch=5.4.1 | obtainable=[From Version 5.4.1=>5.5.4 (own patch) .. Before Date 2019-06-11]
 ACH 8795 | patch=5.4.2
 ACH 8913 | patch=5.5.0
 ACH 8915 | patch=5.5.0
