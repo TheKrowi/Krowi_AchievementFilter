@@ -96,5 +96,8 @@
             "PowerShell(& \"raw\\Evaluate-ZoneData.ps1\")",
             "PowerShell(& \"raw\\Evaluate-ZoneData.ps1\" *)"
         ]
+    },
+    "worktree": {
+        "baseRef": "head"
     }
 }

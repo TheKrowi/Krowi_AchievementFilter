@@ -1,58 +1,60 @@
 {
+    // fsdeploy resolves a relative source against the folder the window has open, so a window on a worktree
+    // under .claude/worktrees/ deploys that worktree; whichever window saves last owns the game's AddOns folder
     "fsdeploy.nodes": [
         {
-            "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
+            "source":".",
             "target":"H:\\World of Warcraft\\_retail_\\Interface\\AddOns\\Krowi_AchievementFilter",
             "include":"**/*.{lua,blp,tga,xml}",
             "exclude":"**/{.github,.vscode,.claude,_Packaging,raw,wiki,docs}/**",
             "deleteTargetOnDeploy": true
         },
         {
-            "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
+            "source":".",
             "target":"H:\\World of Warcraft\\_retail_\\Interface\\AddOns\\Krowi_AchievementFilter",
             "include":"LICENSE",
             "deleteTargetOnDeploy": false
         },
         {
-            "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
+            "source":".",
             "target":"H:\\World of Warcraft\\_retail_\\Interface\\AddOns\\Krowi_AchievementFilter",
             "include":"*.toc",
             "deleteTargetOnDeploy": false
         },
         {
-            "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
+            "source":".",
             "target":"H:\\World of Warcraft\\_classic_\\Interface\\AddOns\\Krowi_AchievementFilter",
             "include":"**/*.{lua,blp,tga,xml}",
             "exclude":"**/{.github,.vscode,.claude,_Packaging,raw,wiki,docs}/**",
             "deleteTargetOnDeploy": true
         },
         {
-            "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
+            "source":".",
             "target":"H:\\World of Warcraft\\_classic_\\Interface\\AddOns\\Krowi_AchievementFilter",
             "include":"LICENSE",
             "deleteTargetOnDeploy": false
         },
         {
-            "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
+            "source":".",
             "target":"H:\\World of Warcraft\\_classic_\\Interface\\AddOns\\Krowi_AchievementFilter",
             "include":"*.toc",
             "deleteTargetOnDeploy": false
         },
         // {
-        //     "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
+        //     "source":".",
         //     "target":"H:\\World of Warcraft\\_ptr_\\Interface\\AddOns\\Krowi_AchievementFilter",
         //     "include":"**/*.{lua,blp,tga,xml}",
         //     "exclude":"**/{.github,.vscode,.claude,_Packaging,raw,wiki,docs}/**",
         //     "deleteTargetOnDeploy": true
         // },
         // {
-        //     "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
+        //     "source":".",
         //     "target":"H:\\World of Warcraft\\_ptr_\\Interface\\AddOns\\Krowi_AchievementFilter",
         //     "include":"LICENSE",
         //     "deleteTargetOnDeploy": false
         // },
         // {
-        //     "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
+        //     "source":".",
         //     "target":"H:\\World of Warcraft\\_ptr_\\Interface\\AddOns\\Krowi_AchievementFilter",
         //     "include":"*.toc",
         //     "deleteTargetOnDeploy": false

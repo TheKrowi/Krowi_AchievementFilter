@@ -14,6 +14,7 @@ The harness is the self-contained toolchain under `.claude/`: the lint, the hook
 | 5 | PreToolUse guard `Guard-ToolUse.ps1` | dd81ef2d |
 | | `Get-WowBuilds.ps1` and the `pinned-build` rule, parameters on the lookup scripts, `Find-Symbol.ps1` | dd81ef2d |
 | | `Evaluate-ZoneCriteria.ps1` reports a missed zone as `[R2]` instead of hiding it as an undecided sub-map | 50fae1ee (2026-10-11) |
+| | Parallel sessions: `New-Worktree.ps1` and `Remove-Worktree.ps1`, `worktree.baseRef` set to `head`, fsdeploy deploys the window's own folder, the Stop hook lints the session's own checkout | 2026-10-11 |
 
 ## Open, in priority order
 

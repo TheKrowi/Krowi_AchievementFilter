@@ -32,6 +32,7 @@ The repo carries its own Lua 5.1.5 (`.claude/tools/lua51/`), the exact interpret
 & ".claude\tools\lua51\lua.exe" ".claude\tools\headless\run-tests.lua" "$PWD" escape                    # one scenario suite; -check for the lint form
 & ".claude\tools\Strip-Semicolons.ps1" -DryRun                                                           # verified semicolon strip; -Path to limit
 & ".claude\tools\Find-Symbol.ps1" addon.Gui.Search                                                       # defs and refs through the local aliases; a bare member, -List, -Defs
+& ".claude\tools\New-Worktree.ps1" feature/2026-10-11-thing                                              # a parallel session's own checkout; Remove-Worktree.ps1 once merged
 ```
 
 - **Repo lint** `Check-Repo.ps1`: a rule per mechanical convention in this file, plus the zone, Map Verifier, work-item, category-snapshot, data-snapshot, data-load and scenario checks. A deliberate exception goes in `Check-Repo.ignore` with a comment.
@@ -302,6 +303,7 @@ Work moves through the six stages of Anthropic's AI-native SDLC Playbook, adapte
 
 ## Git Workflow
 
+- Parallel sessions never share a checkout: each works in its own worktree under `.claude/worktrees/`, made by `.claude/tools/New-Worktree.ps1` (from `dev`, submodules included), and is merged back through its own PR; never switch the branch of a checkout another session works in. The game is not isolated: the last deploy wins. Right before a commit, check `git branch --show-current` and `git status`, and commit by explicit path. Detail: `.claude/tools/README.md`, Parallel sessions.
 - Branch from `dev`; PRs target `dev`. Releases are cut on `dev`: the addon manager makes a `Release X.Y` commit and tag there and uploads to Wago, CurseForge and GitHub. `main` is not updated as part of the release flow.
 - Conventional Commits with a custom `data:` type: `data(midnight): add 12.1.0 achievements (23)`, `fix(retail): ...`, `feat(classic): ...`, `locale(enUS): ...`, `chore:`, `refactor(gui):`, `docs:`. The full type and scope tables are in `CONTRIBUTING.md`.
 - Every user-visible change gets a line in `_Packaging/Changelog.md` under the next version's `### Added` / `### Fixed`, written for players. A `(dev note: ...)` is the maintainer's own aside to players (this is the change, and this is my insight into it), not a technical explanation: an agent does not write one, and the root cause of a fix lives in its work folder's `spec.md`. `ReleaseNotes.md` is generated from it at release time; do not edit it by hand. The version header needs a date (`## 100.2 - 2026-09-04`) before release or the generator skips it.

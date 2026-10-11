@@ -15,6 +15,7 @@ The everyday commands and the rules these tools enforce are in `.github/copilot-
 | `headless/snapshot-data.lua` | the achievement, zone and registry baselines in `headless/snapshots/` |
 | `headless/client-env.lua` | the sandboxed client environment `load-data.lua` and both snapshots share |
 | `Deploy.ps1` | mirrors the addon into a client's AddOns folder |
+| `New-Worktree.ps1`, `Remove-Worktree.ps1` | a parallel session's own checkout under `.claude/worktrees/`, submodules included, and its safe removal |
 | `Read-GameErrors.ps1`, `Read-GameTests.ps1` | read BugGrabber's errors and the last `/kaftest` run from the client's saved variables |
 | `Read-GameScreenshot.ps1` | lists the newest screenshots the client took, to open with the Read tool |
 | `Update-UiSource.ps1` | clones or updates the local copy of Blizzard's UI source next to the repo |
@@ -120,11 +121,26 @@ Runs the scenario suites from `Tests/` against modelled WoW frames and FrameXML;
 
 ## Deploy and the game loop
 
-The VS Code `fsdeploy` config in `.vscode/settings.json` mirrors `**/*.{lua,blp,tga,xml}` (excluding `.github`, `.vscode`, `.claude`, `_Packaging`, `raw`, `wiki`, `docs`), plus `LICENSE` and the `.toc`, into `H:\World of Warcraft\_retail_\Interface\AddOns\Krowi_AchievementFilter` and into the `_classic_` sibling on every save; the PTR target is commented out there. `Deploy.ps1` does the same from a terminal and is the way to be sure a client's folder is current: run it with `-WhatIf` before asking for an in-game check, since a reload on a stale install proves nothing. It copies only files whose size or timestamp differ, deletes what no longer exists in the repo, and takes `-Client Retail|Classic|Ptr|Xptr` (`_xptr_` is the second test realm).
+The VS Code `fsdeploy` config in `.vscode/settings.json` mirrors `**/*.{lua,blp,tga,xml}` (excluding `.github`, `.vscode`, `.claude`, `_Packaging`, `raw`, `wiki`, `docs`), plus `LICENSE` and the `.toc`, from the folder the window has open into `H:\World of Warcraft\_retail_\Interface\AddOns\Krowi_AchievementFilter` and into the `_classic_` sibling on every save; the PTR target is commented out there. `Deploy.ps1` does the same from a terminal and is the way to be sure a client's folder is current: run it with `-WhatIf` before asking for an in-game check, since a reload on a stale install proves nothing. It copies only files whose size or timestamp differ, deletes what no longer exists in the repo, and takes `-Client Retail|Classic|Ptr|Xptr` (`_xptr_` is the second test realm).
 
 `Read-GameErrors.ps1` prints the Lua errors BugGrabber recorded for this addon and `Read-GameTests.ps1` the last `/kaftest` run, marking every line that differs from the headless run. Both parse the saved variables with the vendored Lua; the game writes those only on `/reload` or logout, so both show when the file was last written. The commands are in the instruction file under Closing the loop with the game.
 
 `Read-GameScreenshot.ps1` lists the newest files in the client's `Screenshots` folder (`-Count`, default 1; `-Minutes`, default 1440, 0 for all) with the full path, when each was taken, its pixel size and file size; open the path with the Read tool. A screenshot is written the moment Print Screen is pressed, so no `/reload` is needed. It also reads the screenshot CVars from the client's `WTF\Config.wtf`: the Read tool displays jpg and png but not tga, so `screenshotFormat tga` (or a newest file in `.tga`) prints a warning with `/console screenshotFormat jpg`. The Read tool shows a wide screenshot scaled down (3440x1440 at 2000x837), so a `screenshotQuality` below 8 (the default is 3) prints a note with `/console screenshotQuality 10`, since small UI text does not survive both.
+
+## Parallel sessions (`New-Worktree.ps1`, `Remove-Worktree.ps1`)
+
+Sessions in one checkout share one HEAD and one index: a branch switch in one moves every other, and one session's uncommitted files show up as another's Stop-hook lint errors. A parallel session works in its own worktree instead: a second checkout of the same repository under `.claude/worktrees/<name>/`, on its own branch. Worktrees share every commit and branch, so another session sees a commit without a push, and git refuses to check out one branch in two of them.
+
+```powershell
+& ".claude\tools\New-Worktree.ps1" feature/2026-10-11-thing                     # new branch from dev; -Base, -Name
+& ".claude\tools\Remove-Worktree.ps1" feature-2026-10-11-thing -DeleteBranch     # -WhatIf, -Force
+```
+
+`New-Worktree.ps1` starts a new branch from `dev` without tracking it, or checks out an existing local or origin branch. It clones the `Libs/` submodules from the main checkout's `.git/modules` (offline, under a second each) and points them back at GitHub, fetching from GitHub only a submodule commit the main checkout never fetched, and copies the untracked `.claude/settings.local.json`. `Remove-Worktree.ps1` refuses a worktree with uncommitted or untracked changes, submodules included, unless `-Force`, and the one the current directory is in. It unlinks any directory junction first, since a recursive delete through one wipes its target, then runs `git worktree remove --force` (git refuses a worktree with submodules without it) and `git worktree prune`. `-DeleteBranch` deletes the branch only once it is merged into the local `dev`. Neither can see an editor or a Claude session that still has the folder open.
+
+A worktree does not isolate the game: each client has one AddOns folder, so the last deploy wins. Run the worktree's own `Deploy.ps1` before an in-game check. fsdeploy's source is `.`, which it resolves against the folder the VS Code window has open, so saving in a window on a worktree deploys that worktree. Everything else already skips `.claude/worktrees/`: the lint, the language server (`.luarc.json`), `Deploy.ps1`, fsdeploy's excludes and the release zip.
+
+Each branch is merged through its own PR against `dev`. Once one is merged, `git pull` in the main checkout, where `dev` is checked out, then `git rebase dev` in each remaining worktree before its PR. Regenerate a conflicting snapshot with `-write` instead of merging it by hand, and keep both sides of a `Changelog.md` conflict.
 
 ## Blizzard UI source (`Update-UiSource.ps1`)
 
