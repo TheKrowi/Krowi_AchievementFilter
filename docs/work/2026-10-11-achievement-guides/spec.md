@@ -1,5 +1,5 @@
 # Spec: Achievement guides and waypoints
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. An achievement can carry a guide: a few short steps that say where to go, whom to talk to or what to do, and what it takes. 60962 Legendary Research of the Ebon Blade is the first and only one in this work item.

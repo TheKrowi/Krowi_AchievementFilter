@@ -1,5 +1,5 @@
 # Intent: Achievement guides and waypoints
-Author: Krowi (maintainer), captured by Claude. Source: idea. Status: accepted
+Author: Krowi (maintainer), captured by Claude. Source: idea. Status: done
 
 ## Problem
 The addon tells the player which achievements exist, where they belong and whether they are still obtainable, but not how to do them. For "Legendary Research of the Ebon Blade" (60962, "Research all Death Knight Class Hall Upgrades.", reward the Replica Libram of the Dead decor) the maintainer knew the work happens at an NPC in the Death Knight class hall, but still had to look up on Wowhead which NPC it is and where it stands. A player who is new to Legion class halls also lacks the rest: how to reach Acherus, that the NPC appears only after the first class campaign steps, that there are seven tiers to research one after another, what each tier costs in Order Resources and how long it takes. Every such lookup takes the player out of the game into a browser, and the addon's own data (zone, category, reward) stops short of the step that gets the achievement done.

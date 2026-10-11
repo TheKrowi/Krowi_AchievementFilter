@@ -1,5 +1,5 @@
 # Plan: Achievement guides and waypoints
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 Approved by Krowi (maintainer) on 2026-10-11 in plan mode, with the option defaults and the waypoint-provider rule under "Settled in this plan". It touches shared GUI code, the data API and the options, so it waited for that gate.
 
@@ -310,6 +310,17 @@ Players have to leave the game to learn how to do an achievement. For 60962 "Leg
 
      `GetLines` items carry `Number`, `Text` (the headline) and `Details`, and every surface formats them itself. The tooltip shows the details as grey indented lines.
    - **Two layouts for the waypoint actions,** built as a proof of concept and compared in game: small icons at the right of the headline (the game's map pin, a navigation arrow for TomTom), or gold text links under the details. Krowi found the icons more refined and asked for both as an option: `Achievements.Guide.ActionStyle`, "Waypoint Buttons", 1 Icons (default) or 2 Text links. The scenario `panel-60962-links` covers the links. Check the row heights with and without objectives, and under GW2_UI if available. In game again. Commit.
+   - **Code review of the branch (`/code-review`, 2026-10-11).**
+     - *Fixed:*
+       - The portal is not super-tracked in combat either, because `NAVIGATION_FRAME_CREATED` is synchronous. Scenario `waypoint-poi-in-combat`, test first.
+       - The block under the selected achievement re-renders only when its achievement, width, guide options, combat state or TomTom changes, or when forced.
+       - The pinned panel closes once its recycled row scrolls away or shows another achievement.
+       - "Done" reads the game's completion instead of the list's `IsCompleted` cache.
+       - Every guide option that changes what is drawn uses one setter, which redraws the panel and the list. That includes the waypoint provider, which redrew nothing before.
+       - `Read-GameErrors.ps1` walks only the addon's own folders, no worktrees, and leaves `Libs/` out of the shortened-path match.
+     - *Not changed:*
+       - Archivist Zubashi stays English outside enUS (`= true`). No reliable source for the official translations exists, so it is listed as open in the PR.
+       - The owner-window helper duplicated from `RewardPreview.lua` is a follow-up, since sharing it means changing the reward preview.
 5. **Wrap up.** Changelog, `OPTIONS.md`, architecture, `.luarc.json`. Run the `taint-reviewer` on the diff, `/code-review`, the in-game after-run on Retail and a `/reload` on Classic with `Read-GameErrors.ps1` on both. Set the work files to `done`, open the PR against `dev`, and wait for the merge gate.
 
 ## Risks
