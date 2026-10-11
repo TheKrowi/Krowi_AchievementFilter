@@ -193,6 +193,163 @@ SlashCmdList["KAFAIT"] = function(msg)
     end
 end
 
+-- Debug only: records where the player stands, their target, their class's Legion class hall talents and the Legendary
+-- Research achievements in KrowiAF_DebugTable.Where, for guide data (docs/work/2026-10-11-achievement-guides). Stand
+-- next to the NPC with it targeted. The game writes the table to disk on the next /reload or logout.
+local function Plain(value)
+    if issecretvalue and issecretvalue(value) then
+        return "<secret>"
+    end
+    return value
+end
+
+local function Percent(value)
+    return floor(value * 1000 + 0.5) / 10
+end
+
+local function TalentRecord(info)
+    local cost = info.researchCurrencyCosts and info.researchCurrencyCosts[1]
+    return {
+        Id = info.id,
+        Name = info.name,
+        Tree = info.treeID,
+        Tier = info.tier,
+        Researched = info.researched,
+        Researching = info.isBeingResearched,
+        Availability = info.talentAvailability,
+        Duration = info.researchDuration,
+        Currency = cost and cost.currencyType,
+        Cost = cost and cost.currencyQuantity
+    }
+end
+
+local function GetClassHallTalents(classId)
+    local trees = {}
+    for _, treeId in ipairs(C_Garrison.GetTalentTreeIDsByClassID(Enum.GarrisonType.Type_7_0_Garrison, classId) or {}) do
+        local treeInfo = C_Garrison.GetTalentTreeInfo(treeId)
+        local talents = {}
+        for _, info in ipairs(treeInfo and treeInfo.talents or {}) do
+            tinsert(talents, TalentRecord(info))
+        end
+        tinsert(trees, {TreeId = treeId, Title = treeInfo and treeInfo.title, Talents = talents})
+    end
+    return trees
+end
+
+-- The map's area POIs (the class hall portals in Dalaran are some): a guide can super-track one by id, and its position
+-- is exact, unlike a spot measured by standing on it
+local function GetAreaPois(mapId)
+    local pois = {}
+    for _, poiId in ipairs(C_AreaPoiInfo.GetAreaPOIForMap(mapId) or {}) do
+        local info = C_AreaPoiInfo.GetAreaPOIInfo(mapId, poiId)
+        if info then
+            tinsert(pois, {
+                Id = poiId,
+                Name = info.name,
+                Description = info.description,
+                X = info.position and Percent(info.position.x),
+                Y = info.position and Percent(info.position.y),
+                Atlas = info.atlasName,
+                LinkedMapId = info.linkedUiMapID
+            })
+        end
+    end
+    return pois
+end
+
+local classHallAchievementIds = {
+    11223, 60962, 60963, 60964, 60965, 60966, 60967, 60968, 60969, 60970, 60971, 60972, 60973, -- Legendary Research
+    60981, 60982, 60983, 60984, 60985, 60986, 60987, 60988, 60989, 60990, 60991, 60992 -- Raise an Army
+}
+local function GetClassHallAchievements()
+    local records = {}
+    for _, id in ipairs(classHallAchievementIds) do
+        local achievementId, _, _, completed, _, _, _, _, _, _, _, _, earnedByMe = GetAchievementInfo(id)
+        if achievementId then
+            local criteria = {}
+            local numCriteria = GetAchievementNumCriteria(id)
+            local countHidden = numCriteria == 0 or nil -- Legendary Research reports no criteria: try the hidden ones
+            for i = 1, countHidden and 4 or numCriteria do
+                local ok, criteriaString, criteriaType, criteriaCompleted, quantity, reqQuantity, _, _, assetId = pcall(GetAchievementCriteriaInfo, id, i, countHidden)
+                if not ok then
+                    tinsert(criteria, {Error = tostring(criteriaString), Index = i}) -- pcall's error message
+                    break
+                end
+                if criteriaType == nil then
+                    break
+                end
+                local record = {Type = criteriaType, Asset = assetId, Completed = criteriaCompleted, Quantity = quantity, Required = reqQuantity, Hidden = countHidden}
+                if criteriaType == 198 then
+                    local info = C_Garrison.GetTalentInfo(assetId)
+                    record.Talent = info and TalentRecord(info)
+                end
+                tinsert(criteria, record)
+            end
+            records[id] = {Completed = completed, EarnedByMe = earnedByMe, Criteria = criteria}
+        end
+    end
+    return records
+end
+
+SLASH_KAFWHERE1 = "/kafwhere"
+SlashCmdList["KAFWHERE"] = function(msg)
+    if not addon.Diagnostics.DebugEnabled() then
+        print("/kafwhere needs debug mode (Options > General > Debug)")
+        return
+    end
+    local _, classFile, classId = UnitClass("player")
+    local note = strtrim(msg or "")
+    local record = {
+        Note = note ~= "" and note or nil, -- what the spot is: an object cannot be targeted
+        Time = date("%Y-%m-%d %H:%M:%S"),
+        Build = (select(2, GetBuildInfo())),
+        Name = Plain(UnitName("player")),
+        Realm = Plain(GetRealmName()),
+        Class = classFile,
+        ClassId = classId,
+        Faction = (UnitFactionGroup("player")) -- some class hall entrances in Dalaran differ per faction
+    }
+    local mapId = C_Map.GetBestMapForUnit("player")
+    if mapId then
+        local mapInfo = C_Map.GetMapInfo(mapId)
+        record.MapId = mapId
+        record.MapName = mapInfo and mapInfo.name
+        record.ParentMapId = mapInfo and mapInfo.parentMapID
+        record.CanSetUserWaypoint = C_Map.CanSetUserWaypointOnMap and C_Map.CanSetUserWaypointOnMap(mapId)
+        if C_Map.GetMapWorldSize then
+            record.MapWidthYards, record.MapHeightYards = C_Map.GetMapWorldSize(mapId)
+        end
+        local position = C_Map.GetPlayerMapPosition(mapId, "player")
+        if position then
+            record.X, record.Y = Percent(position.x), Percent(position.y)
+        end
+    end
+    if UnitExists("target") then
+        local guid = Plain(UnitGUID("target"))
+        record.Target = {
+            Name = Plain(UnitName("target")),
+            NpcId = guid ~= "<secret>" and tonumber((select(6, strsplit("-", guid)))) or nil
+        }
+    end
+    record.AreaPois = {}
+    for _, poiMapId in ipairs({627, mapId}) do -- 627 Dalaran (Broken Isles), where the class hall portals stand; mapId can be nil
+        local ok, result = pcall(GetAreaPois, poiMapId)
+        record.AreaPois[poiMapId] = ok and result or ("error: " .. tostring(result))
+    end
+    local ok, result = pcall(GetClassHallTalents, classId)
+    record.ClassHall = ok and result or ("error: " .. tostring(result))
+    ok, result = pcall(GetClassHallAchievements)
+    record.Achievements = ok and result or ("error: " .. tostring(result))
+
+    KrowiAF_DebugTable = KrowiAF_DebugTable or {}
+    KrowiAF_DebugTable.Where = KrowiAF_DebugTable.Where or {}
+    tinsert(KrowiAF_DebugTable.Where, record)
+    local target = record.Target or {}
+    print(("KrowiAF: %s (%s): map %s (%s) at %s, %s, map pin %s; target %s (%s). Stored as entry %d, written to disk on the next /reload or logout."):format(
+        record.Note or "no label", tostring(record.Faction), tostring(record.MapId), tostring(record.MapName), tostring(record.X), tostring(record.Y),
+        record.CanSetUserWaypoint and "allowed" or "not allowed", tostring(target.Name), tostring(target.NpcId), #KrowiAF_DebugTable.Where))
+end
+
 function addon.GetNextAchievement(achievement)
     if achievement.NextAchievements then
         for _, nextAchievement in next, achievement.NextAchievements do
