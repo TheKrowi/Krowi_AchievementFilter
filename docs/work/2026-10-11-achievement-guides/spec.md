@@ -13,7 +13,7 @@ Intent: [intent.md](intent.md). Status: accepted
 9. Adding the guides of the eleven sibling "Legendary Research of ..." achievements later is a data-only change.
 
 ## Facts behind 60962
-- **What it really asks.** The description says "Research all Death Knight Class Hall Upgrades.", but the criteria tree (221770, build 12.1.0.69933, `_lookup_criteria.ps1`) has only two criteria, both type 198 (garrison talent researched): asset 486 "Frost and Death" and asset 487 "Roster of Champions". Both are tier index 6 (Tier VII) of the Death Knight class hall tree 128 (`garrtalent` table), and a tier holds only one researched talent at a time. So the player researches Tiers I to VI, then one Tier VII talent, then swaps to the other. The criteria names are empty strings, so the achievement window shows nothing useful for them today. The generic 11223 Legendary Research only asks for the 6th tier (criteria type 197).
+- **What it really asks.** The description says "Research all Death Knight Class Hall Upgrades.", but the criteria tree (221770, build 12.1.0.69933, `_lookup_criteria.ps1`) has only two criteria, both type 198 (garrison talent researched): asset 486 "Frost and Death" and asset 487 "Roster of Champions". Both are tier index 6 (Tier VII) of the Death Knight class hall tree 128 (`garrtalent` table), and a tier holds only one researched talent at a time. The root tree has operator 8 (any child) with amount 1, so **either Tier VII talent completes the achievement**: the player researches Tiers I to VI, then one Tier VII talent. *Corrected on 2026-10-11:* this spec first said the player had to research one Tier VII talent and then swap to the other. That came from reading the two criteria without the root operator, which `_lookup_criteria.ps1` did not print until then. Krowi's Paladin confirms the correction: 60968 is complete with 481 researched and 480 at 0/1. The criteria are hidden: `GetAchievementNumCriteria` returns 0, and only `GetAchievementCriteriaInfo(id, i, true)` returns them (plan, Step 0). So the achievement window shows none of them today. The generic 11223 Legendary Research only asks for the 6th tier (criteria type 197).
 - **Where.** Archivist Zubashi (NPC 97485) offers the Class Hall Upgrades in Acherus: The Ebon Hold (Warcraft Wiki). Acherus is uiMap 647 and 648, both micro maps (type 5) under Broken Isles 619. That is why Wowhead lists him under "Broken Shore" without coordinates. NPC spawns are server-side and not in the client database, so his floor and coordinates must be measured in game.
 - **Unlock.** Zubashi appears after the class-campaign mission "Troops in the Field" and the quest "Tech It Up A Notch" (Warcraft Wiki, Archivist Zubashi and Order Advancement). Tier costs and research times run from 50 Order Resources and 2 hours (Tier I) to 10,000 and 1 day (Tier VII). The wiki was last edited in March 2024, so the numbers are not quoted in the guide. `C_Garrison.GetTalentInfo` returns the live cost and duration instead.
 - **Data placement.** The achievement is registered in `DataAddons/Retail/11_TheWarWithin/AchievementData.lua:1160` (patch block 11_02_07, the housing-decor rewards) and placed on Acherus in `DataAddons/Retail/07_Legion/ZoneData.lua:138` (uncommitted zone work on `dev`). Its category is in `DataAddons/Retail/07_Legion/CategoryData.lua:576`.
@@ -35,8 +35,16 @@ Option 1's content model, with the surfaces of options 1 and 3 and the expanded 
 |------|------|--------------------|
 | Travel | spell id | "Travel: Death Gate", spell name from `C_Spell.GetSpellName` |
 | Npc | NPC name key, uiMapID, x, y | "Talk to Archivist Zubashi, Acherus: The Ebon Hold", with a waypoint; map name from `C_Map.GetMapInfo` |
-| Criteria | none: derived | for each criterion of type 198, its talent name from `C_Garrison.GetTalentInfo(assetID)` with researched / researching / not yet |
-| Tip | one `addon.L` string | "Research one Tier VII upgrade, then switch to the other." |
+| Criteria | none: derived | for each criterion of type 198, its talent name from `C_Garrison.GetTalentInfo(assetID)` with researched / researching / locked / needs the cost / not yet |
+| Poi | area POI id, uiMapID, x, y | "Take the portal: Sanctum of Light, Dalaran", name from `C_AreaPoiInfo.GetAreaPOIInfo`, with a waypoint that super-tracks the POI |
+| Tip | one `addon.L` string | "Either Tier VII upgrade completes it." (was "then switch to the other", wrong: see Facts) |
+
+*Amended on 2026-10-11 after the plan's step 0 (Krowi):*
+- The Poi step was added, because Dalaran and most class halls refuse the user waypoint while a POI can still be super-tracked.
+- Any step can carry a faction, because the Paladin and Priest portals in Dalaran differ per faction.
+- The Criteria step has two more states: locked (the tier is not open yet) and the cost still missing (the tier is open, but the Order Resources are not there yet).
+
+The plan's step 0 holds the measurements behind all three.
 
 The NPC name is the only name the game API cannot return reliably (creature names come from the server cache), so it goes through `addon.L` as the pet-battle data already does for NPC names. The Criteria step is generic: every achievement with type-198 criteria gets it from the criteria themselves, so the guide data holds only what the game does not know (the NPC, its spot, the travel hint, the tip).
 
@@ -48,7 +56,7 @@ KrowiAF.GuideData["07_Legion"] = {
         :Travel(50977) -- Death Gate
         :Npc(addon.L["Archivist Zubashi"], 648, 0.00, 0.00) -- coordinates measured in game
         :Criteria() -- Frost and Death, Roster of Champions (type 198)
-        :Tip(addon.L["Research one Tier VII upgrade, then switch to the other."]),
+        :Tip(addon.L["Either Tier VII upgrade completes it."]),
 }
 ```
 
