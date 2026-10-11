@@ -280,11 +280,31 @@ Players have to leave the game to learn how to do an achievement. For 60962 "Leg
    Run the headless suite and confirm everything passes and is open. Deploy, then you run `/kaftest guide`, and `Read-GameTests.ps1` must be green. Commit `test: guide suite for achievement guides`.
 2. **Data.** The API, builder, registration, headless registries and the 60962 guide with the step-0 coordinates, plus its strings in every locale. Run `load-data.lua Both` (no drops), then `snapshot-data.lua -write`; the diff must show 60962's guide and nothing else. Commit `feat(data): guide data and the 60962 guide`.
 3. **Milestone A: renderer, waypoints, options, tooltip and right-click menu.** Add `/kafwhere`. Set Recorded to Target for these scenarios, then run the suite and `Check-Repo -ChangedOnly -Luals`. In game on Retail, with and without TomTom: hover, right-click, set the waypoint. Commit.
+   *As built, 2026-10-11:*
+   - **The options.** Only Tooltip, RightClickMenu and WaypointProvider exist; Icon and ExpandedRow come with milestone B. `/kafwhere` is trimmed to the player's spot, the target and the map's area POIs, and prints a ready `:Npc(...)`.
+   - **The taint review added the combat guard** (see Risks). The scenarios `waypoint-map-pin-in-combat` and `waypoint-both-in-combat` record the change, test first.
+   - **Two bugs found in game, both fixed:**
+     - The menu section first loaded right after `GoTo.lua`. Go to's own five sections attach to `GetLastSection()`, so they failed to register and the Go to submenu lost its entries. The section now loads after `FirstCategory.lua`, and the manifest says why.
+     - `K_ReplaceVars(nil)` reads the string as its `{str, vars}` table form and fails. Waypoint texts now always pass a table with a title. The headless `K_ReplaceVars` is now a line-for-line copy of Krowi_Util's, so this fails headlessly too.
+   - **`Read-GameErrors.ps1` had hidden the menu errors.** The game shortens long paths from the front, dropping the folder name. The reader now also matches a shortened path that ends one of the addon's own files.
+   - **In game, Retail, 18:56:**
+     - `/kaftest guide` gave 25 passed and 1 open (Open guide, milestone B), with 0 differences from headless.
+     - On a character that is not a Death Knight, the talents show their names only.
+     - No new errors.
+     - `taintLog 2` shows nothing from the guide code: the waypoint path, the world map and super-tracking are all absent, and nothing was blocked.
 4. **Milestone B: row icon and side panel, then the expanded row.** Check the row heights with and without objectives, and under GW2_UI if available. In game again. Commit.
 5. **Wrap up.** Changelog, `OPTIONS.md`, architecture, `.luarc.json`. Run the `taint-reviewer` on the diff, `/code-review`, the in-game after-run on Retail and a `/reload` on Classic with `Read-GameErrors.ps1` on both. Set the work files to `done`, open the PR against `dev`, and wait for the merge gate.
 
 ## Risks
 - **Taint from super-tracking.** A user waypoint changes what the objective tracker and the map show. Mitigation: a click-only call path, the `taint-reviewer`, and an in-game check that sets a waypoint and then enters combat with no errors.
+  - *Taint review of milestone A, 2026-10-11:*
+    - **Map pin, found.** `C_Map.SetUserWaypoint` fires `USER_WAYPOINT_UPDATED`, a `SynchronousEvent` (`MapDocumentation.lua`). Blizzard's world map handlers therefore run in the addon's taint: `WorldMapTrackingPinButtonMixin` and, with the map open, `WaypointLocationDataProvider:RefreshAllData`. That reaches the protected `SetPassThroughButtons`, so in combat it can be blocked and blamed on this addon. TomTom and HereBeDragons guard the same call.
+    - **Fix.** The menu offers no map pin in combat; the entry is disabled with "(not in combat)". `SetMapPin` checks again at click time. Covered by the scenarios `waypoint-map-pin-in-combat` and `waypoint-both-in-combat`.
+    - **Super-tracking, clean in source.** `SUPER_TRACKING_CHANGED` and `SUPER_TRACKING_PATH_UPDATED` are `UniqueEvent`, dispatched later from a clean context.
+    - **Open, an in-game check.** `NAVIGATION_FRAME_CREATED` and `_DESTROYED` are synchronous. If the engine fires them inside the call, `SuperTrackedFrame.navFrame` would be written tainted.
+    - **How to check both.** `/console taintLog 2`, set a pin from the menu, open the map and ctrl-click a pin of your own. Then search `Logs\taint.log` for `isActive`, `toggleActive`, `currentScale` and `navFrame`.
+    - **If the taint outlives the click,** the fallback is to stop calling `SetUserWaypoint` from addon code: a Blizzard `worldmap` chat link the player clicks, or `/mappin` on a secure macro button.
+    - **Source checked.** The flags are as above in every published export (live 12.1.0.69933, ptr 12.1.0.69587). Gethe has no 12.1.5 export yet.
 - **Expanded-row height.** It is off by default, the block is anchored to the objectives frame (so GW2_UI's re-anchoring still holds), and its height is added after the description and reward adjustments, so the `CollapsedHeight` test at `:303` is unchanged.
 - **Icon pool.** An icon field not cleared in `ResetExtraIcons` leaks to a recycled row. It is added there, and a no-guide scenario covers it.
 - **Classic.** `C_Garrison`, `C_Spell`, `UiMapPoint` and the map pin may be missing. Every call is guarded by an existence check, and no Classic guide data is written; the Classic `/reload` checks this.

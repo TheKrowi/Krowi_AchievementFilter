@@ -825,7 +825,21 @@ suites.guide = function(c)
     local headless = {}
     function headless.IsRetail() return c.isRetail end
     function headless.Text(key) return addon.L[key] end
-    function headless.Faction(name) return ({ Alliance = 1, Horde = 2 })[name] end -- KrowiAF.Enum.Faction, Api/AchievementDataApi.lua
+    local factions = { Alliance = 1, Horde = 2 } -- KrowiAF.Enum.Faction, Api/AchievementDataApi.lua
+    function headless.Faction(name) return factions[name] end
+    env.KrowiAF = { Enum = { Faction = factions } }
+    -- Libs/Krowi_Util/Strings.lua's ReplaceVars, line for line: "{name}" placeholders from a table, or every placeholder
+    -- from one value; a nil value makes it read the string as its {str, vars} table form and fail, as in the game
+    string.K_ReplaceVars = function(str, vars)
+        if not vars then
+            vars = str
+            str = vars[1]
+        end
+        if type(vars) == "table" then
+            return (string.gsub(str, "({([^}]+)})", function(whole, key) return vars[key] or whole end))
+        end
+        return (string.gsub(str, "({([^}]+)})", function() return vars end))
+    end
 
     if c.isRetail then
         -- --- Garrison talents, hidden criteria, currency (values read in game in step 0 of the plan) --------------------
@@ -873,9 +887,20 @@ suites.guide = function(c)
             position = { x = 0.327, y = 0.698 } } } -- a Death Knight would not see it in game; the model keeps one POI to read
         env.C_AreaPoiInfo = { GetAreaPOIInfo = function(mapId, id) return mapId == 627 and pois[id] or nil end }
         env.C_AddOns = { IsAddOnLoaded = function() return false end }
+    else
+        env.C_Map = { GetMapInfo = function() return nil end } -- Classic has none of the Legion maps the scenarios name
     end
 
     -- --- The addon -------------------------------------------------------------------------------------------------
+    -- The real enUS strings, written the way AceLocale's default locale stores them (true is the key itself), so the
+    -- observed lines read as the game shows them
+    local strings = setmetatable({}, { __index = function(_, key) return key end })
+    addon.Localization = { NewDefaultLocale = function()
+        return setmetatable({}, { __newindex = function(_, key, value) rawset(strings, key, value == true and key or value) end })
+    end }
+    env.KrowiAF.PluginsApi = { LoadPluginLocalization = function() end }
+    c.loadAddonFile("Localization/enUS.lua")
+    addon.L = strings
     addon.Gui = { AchievementTooltip = { Sections = {} }, RightClickMenu = { AchievementMenu = { Sections = {} } } }
     addon.Options = { db = { profile = { Achievements = { Guide = { Tooltip = true, RightClickMenu = true, Icon = true, ExpandedRow = false, WaypointProvider = 1 } } } } }
     local loaded = {}

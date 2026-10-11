@@ -5,7 +5,8 @@ local guide = addon.Tests.Guide
 -- Achievement guides and waypoints (docs/work/2026-10-11-achievement-guides). Recorded is the behaviour of the current
 -- code, Target the desired one; the same scenarios run in game (/kaftest guide) and headlessly
 -- (.claude/tools/headless/run-tests.lua), where a model of the garrison, map, spell and POI APIs stands in for the game.
--- Every scenario records "none" until the feature exists. Five kinds:
+-- Recorded was "none" everywhere before the feature (verified in game on 2026-10-11); since milestone A of the plan only
+-- the menu's Open guide entry, which comes with the side panel, is still open. Five kinds:
 --   Surface: the tooltip or the right-click menu of a real achievement (60962 has a guide, 11223 none), with the guide
 --     options set for the run and restored after. The tooltip gives "shown" when its Guide header is followed by the
 --     first rendered line, "header-only" when it is not, "none" without a header. The menu runs only the guide section,
@@ -25,7 +26,8 @@ local guide = addon.Tests.Guide
 --   addon.Gui.Guide.GetTalentState(info, isOwnClass, isCriterionCompleted) -> "researched", "researching", "locked",
 --     "cost" or "not-yet"; nil for another class, which sees the talent's name only
 --   addon.Gui.Guide.Waypoint.GetActions(waypoint, provider, available) -> list of {Kind = "MapPin"|"Poi"|"TomTom", Text,
---     Enabled, Func}, where provider is Achievements.Guide.WaypointProvider and available is {MapPin, Poi, TomTom}
+--     Enabled, Func}, where provider is Achievements.Guide.WaypointProvider and available is {MapPin, Poi, TomTom, Combat}:
+--     MapPin is whether the map allows one, Combat whether the player is in combat
 --   addon.Gui.Guide.Waypoint.GetAvailability(waypoint) -> that available table, read from the game
 --   addon.Gui.RightClickMenu.AchievementMenu.GuideSection, the menu section (CheckAdd, Add)
 --   addon.Options.db.profile.Achievements.Guide: Tooltip, RightClickMenu, Icon, ExpandedRow, WaypointProvider
@@ -37,7 +39,7 @@ local paladinPortal = {PoiId = 5057, MapId = 627, X = 32.7, Y = 69.8} -- the All
 
 guide.Scenarios = {
     {Name = "tooltip-60962", Kind = "Surface", Surface = "Tooltip", Id = 60962, Options = {Tooltip = true},
-        Recorded = "none", Target = "shown"},
+        Recorded = "shown", Target = "shown"},
     {Name = "tooltip-options-off", Kind = "Surface", Surface = "Tooltip", Id = 60962, Options = {Tooltip = false},
         Recorded = "none", Target = "none"},
     {Name = "tooltip-no-guide-11223", Kind = "Surface", Surface = "Tooltip", Id = 11223, Options = {Tooltip = true},
@@ -45,7 +47,7 @@ guide.Scenarios = {
     -- Open guide (the side panel, with the icon option on) and the map pin for Zubashi
     {Name = "menu-60962", Kind = "Surface", Surface = "Menu", Id = 60962,
         Options = {RightClickMenu = true, Icon = true, WaypointProvider = provider.MapPin},
-        Recorded = "none", Target = "Guide:2/2"},
+        Recorded = "Guide:1/1", Target = "Guide:2/2"},
     {Name = "menu-options-off", Kind = "Surface", Surface = "Menu", Id = 60962, Options = {RightClickMenu = false},
         Recorded = "none", Target = "none"},
     {Name = "menu-no-guide-11223", Kind = "Surface", Surface = "Menu", Id = 11223, Options = {RightClickMenu = true},
@@ -53,58 +55,66 @@ guide.Scenarios = {
 
     {Name = "talent-not-yet", Kind = "Talent", OwnClass = true, -- Available
         Talent = {researched = false, isBeingResearched = false, talentAvailability = 0},
-        Recorded = "none", Target = "not-yet"},
+        Recorded = "not-yet", Target = "not-yet"},
     {Name = "talent-researching", Kind = "Talent", OwnClass = true, -- the Mage's Teleportation Nexus
         Talent = {researched = false, isBeingResearched = true, talentAvailability = 2},
-        Recorded = "none", Target = "researching"},
+        Recorded = "researching", Target = "researching"},
     {Name = "talent-locked", Kind = "Talent", OwnClass = true, -- UnavailableTierUnavailable, the step-0 Death Knight
         Talent = {researched = false, isBeingResearched = false, talentAvailability = 5},
-        Recorded = "none", Target = "locked"},
+        Recorded = "locked", Target = "locked"},
     {Name = "talent-cost", Kind = "Talent", OwnClass = true, -- UnavailableNotEnoughResources, the Priest's Tier VII
         Talent = {researched = false, isBeingResearched = false, talentAvailability = 3},
-        Recorded = "none", Target = "cost"},
+        Recorded = "cost", Target = "cost"},
     {Name = "talent-researched", Kind = "Talent", OwnClass = true, -- UnavailableAlreadyHave
         Talent = {researched = true, isBeingResearched = false, talentAvailability = 7},
-        Recorded = "none", Target = "researched"},
+        Recorded = "researched", Target = "researched"},
     -- The Paladin completed 60968 with one Tier VII talent, then swapped to the other: the criterion stays done
     {Name = "talent-swapped", Kind = "Talent", OwnClass = true, CriterionCompleted = true,
         Talent = {researched = false, isBeingResearched = false, talentAvailability = 0},
-        Recorded = "none", Target = "researched"},
+        Recorded = "researched", Target = "researched"},
     {Name = "talent-other-class", Kind = "Talent", OwnClass = false, -- the Paladin reading a Death Knight talent
         Talent = {researched = false, isBeingResearched = false, talentAvailability = 5},
-        Recorded = "none", Target = "name-only"},
+        Recorded = "name-only", Target = "name-only"},
 
     {Name = "faction-alliance", Kind = "Faction", Faction = "Alliance",
-        Recorded = "none", Target = "Poi:5057,Criteria"},
+        Recorded = "Poi:5057,Criteria", Target = "Poi:5057,Criteria"},
     {Name = "faction-horde", Kind = "Faction", Faction = "Horde",
-        Recorded = "none", Target = "Poi:5058,Criteria"},
+        Recorded = "Poi:5058,Criteria", Target = "Poi:5058,Criteria"},
 
     {Name = "waypoint-both-without-tomtom", Kind = "Waypoint", Waypoint = zubashi, Provider = provider.Both,
         Available = {MapPin = true, TomTom = false},
-        Recorded = "none", Target = "MapPin:on"},
+        Recorded = "MapPin:on", Target = "MapPin:on"},
     {Name = "waypoint-both-with-tomtom", Kind = "Waypoint", Waypoint = zubashi, Provider = provider.Both,
         Available = {MapPin = true, TomTom = true},
-        Recorded = "none", Target = "MapPin:on,TomTom:on"},
+        Recorded = "MapPin:on,TomTom:on", Target = "MapPin:on,TomTom:on"},
     {Name = "waypoint-tomtom-missing", Kind = "Waypoint", Waypoint = zubashi, Provider = provider.TomTom,
         Available = {MapPin = true, TomTom = false},
-        Recorded = "none", Target = "TomTom:off"},
+        Recorded = "TomTom:off", Target = "TomTom:off"},
     {Name = "waypoint-map-pin-disallowed", Kind = "Waypoint", Waypoint = dalaran, Provider = provider.MapPin,
         Available = {MapPin = false, TomTom = false},
-        Recorded = "none", Target = "MapPin:off"},
+        Recorded = "MapPin:off", Target = "MapPin:off"},
     -- "Both" with nothing that can place the point still offers the map pin, disabled with its reason
     {Name = "waypoint-both-nothing-places", Kind = "Waypoint", Waypoint = dalaran, Provider = provider.Both,
         Available = {MapPin = false, TomTom = false},
-        Recorded = "none", Target = "MapPin:off"},
+        Recorded = "MapPin:off", Target = "MapPin:off"},
+    -- C_Map.SetUserWaypoint fires USER_WAYPOINT_UPDATED synchronously, so Blizzard's world map handlers run in the
+    -- addon's taint and can be blocked in combat (taint review of milestone A): no map pin from the addon in combat
+    {Name = "waypoint-map-pin-in-combat", Kind = "Waypoint", Waypoint = zubashi, Provider = provider.MapPin,
+        Available = {MapPin = true, Combat = true, TomTom = false},
+        Recorded = "MapPin:off", Target = "MapPin:off"},
+    {Name = "waypoint-both-in-combat", Kind = "Waypoint", Waypoint = zubashi, Provider = provider.Both,
+        Available = {MapPin = true, Combat = true, TomTom = true},
+        Recorded = "TomTom:on", Target = "TomTom:on"},
     {Name = "waypoint-poi", Kind = "Waypoint", Waypoint = paladinPortal, Provider = provider.MapPin,
         Available = {MapPin = false, Poi = true, TomTom = false},
-        Recorded = "none", Target = "Poi:on"},
+        Recorded = "Poi:on", Target = "Poi:on"},
     -- Another class cannot see the Paladin portal's POI, so only TomTom can place it
     {Name = "waypoint-poi-hidden", Kind = "Waypoint", Waypoint = paladinPortal, Provider = provider.Both,
         Available = {MapPin = false, Poi = false, TomTom = true},
-        Recorded = "none", Target = "TomTom:on"},
+        Recorded = "TomTom:on", Target = "TomTom:on"},
 
     {Name = "waypoint-availability", Kind = "Availability", Maps = {648, 627},
-        Recorded = "none", Target = "648:on,627:off"},
+        Recorded = "648:on,627:off", Target = "648:on,627:off"},
 }
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
@@ -288,6 +298,14 @@ function guide.Run(env, observations)
     end
     if skipped > 0 then
         tinsert(observations, ("%d surface, talent and availability scenarios are Retail only: Classic has no guide data, no garrison and none of their maps"):format(skipped))
+    end
+    -- What 60962's guide reads for the character running the suite; the scenarios above check its shape, this its words
+    local module = GetModule()
+    local achievement = env.IsRetail() and module and module.GetLines and env.Achievement(60962)
+    if achievement then
+        for i, line in ipairs(module.GetLines(achievement)) do
+            tinsert(observations, ("60962 line %d (%s%s): %s"):format(i, line.Kind, line.State and ", " .. line.State or "", line.Text))
+        end
     end
     return results
 end

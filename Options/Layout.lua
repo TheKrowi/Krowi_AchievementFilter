@@ -289,6 +289,12 @@ local criteriaBehaviour = {
     -- addon.L["Wrap"]
 }
 
+local guideWaypointProviders = { -- addon.Gui.Guide.Waypoint.Provider
+    addon.L["Map pin and TomTom"],
+    addon.L["Map pin"],
+    "TomTom"
+}
+
 local wowheadRelatedTabs = {
     addon.L["None"],
     addon.L["Criteria of"],
@@ -1243,6 +1249,32 @@ local achievementsOptions = {
                             get = function() return addon.Options.db.profile.Achievements.RewardPreviewDefaultHeight end,
                             set = RewardPreviewDefaultHeightSet,
                             disabled = function() return not addon.Options.db.profile.Achievements.ShowRewardPreviewIcon end
+                        },
+                        Guide = {
+                            order = OrderPP(), type = "header",
+                            name = addon.L["Guide"]
+                        },
+                        GuideTooltip = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
+                            name = addon.L["Show Guide in Tooltip"],
+                            desc = addon.L["Show Guide in Tooltip Desc"]:KAF_AddDefaultValueText("Achievements.Guide.Tooltip"),
+                            get = function() return addon.Options.db.profile.Achievements.Guide.Tooltip end,
+                            set = function(_, value) addon.Options.db.profile.Achievements.Guide.Tooltip = value end
+                        },
+                        GuideRightClickMenu = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
+                            name = addon.L["Show Guide in Right Click Menu"],
+                            desc = addon.L["Show Guide in Right Click Menu Desc"]:KAF_AddDefaultValueText("Achievements.Guide.RightClickMenu"),
+                            get = function() return addon.Options.db.profile.Achievements.Guide.RightClickMenu end,
+                            set = function(_, value) addon.Options.db.profile.Achievements.Guide.RightClickMenu = value end
+                        },
+                        GuideWaypointProvider = {
+                            order = OrderPP(), type = "select", width = AdjustedWidth(1.35),
+                            name = addon.L["Guide Waypoint"],
+                            desc = addon.L["Guide Waypoint Desc"]:KAF_AddDefaultValueText("Achievements.Guide.WaypointProvider", guideWaypointProviders),
+                            values = guideWaypointProviders,
+                            get = function() return addon.Options.db.profile.Achievements.Guide.WaypointProvider end,
+                            set = function(_, value) addon.Options.db.profile.Achievements.Guide.WaypointProvider = value end
                         },
                         Objectives = {
                             order = OrderPP(), type = "header",

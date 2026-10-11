@@ -100,6 +100,11 @@ addon.Options.Defaults = {
             RewardPreviewMaxIndividualIcons = 3,
             RewardPreviewDefaultWidth = 280,
             RewardPreviewDefaultHeight = 360,
+            Guide = {
+                Tooltip = true,
+                RightClickMenu = true,
+                WaypointProvider = 1 -- 1 Map pin and TomTom, 2 Map pin, 3 TomTom (addon.Gui.Guide.Waypoint.Provider)
+            }
             -- ShowOtherFactionWarbandAsCompleted = true
         },
         RightClickMenu = {

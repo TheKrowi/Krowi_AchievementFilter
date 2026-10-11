@@ -1,0 +1,4 @@
+<Ui>
+    <Script file="Guide.lua" />
+    <Script file="Waypoint.lua" />
+</Ui>
