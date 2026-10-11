@@ -31,7 +31,13 @@ Players have to leave the game to learn how to do an achievement. For 60962 "Leg
    - the NPC's map and coordinates;
    - whether the map pin works in Acherus (if not, it shows its reason there);
    - whether the talent state can be shown on other classes (if not, they get the name only).
-2. **Commit the class-hall zone work on `dev` first.** `ZoneData.lua`, `Changelog.md`, `ZoneDataDecisions.md` and the zones snapshot are uncommitted and ride along on this branch. Then `git rebase dev` this branch. Otherwise the guide's changelog line can't be committed apart from them.
+
+   **Results, Death Knight, Retail, 2026-10-11:**
+   - Zubashi stands on uiMap 648, the second Acherus floor (parent 647 in `raw/MapVerifier.csv`), at x 0.4774, y 0.5376. In percent rounded to 0.1 that is `:Npc(97485, addon.L["Archivist Zubashi"], 648, 47.7, 53.8)`.
+   - `CanSetUserWaypointOnMap` is true on 647 and on 648, so the map pin serves 60962. `waypoint-map-pin-disallowed` stays as a stubbed scenario.
+   - `GetTalentInfo(486)` returns everything the renderer needs: name "Frost and Death", tier 6, tree 128, `researched` false, `isBeingResearched` false, `researchDuration` 86400 (1 day), and a cost of 10000 in currency 1220 (Order Resources). `talentAvailability` is 5, `UnavailableTierUnavailable` (`Blizzard_APIDocumentationGenerated/GarrisonConstantsDocumentation.lua:367`), so this character has not unlocked Tier VII yet.
+   - A Paladin in their own class hall gets the same table back, `talentAvailability` 5 included. The name and cost resolve on any class, but the state is meaningless there: a Paladin can never research a Death Knight talent, and the game reports it as "tier unavailable", not as "wrong class". So the renderer shows the state only when tree 128 belongs to the player's class (see `Guide.lua` below), and every other class gets the name only.
+2. **Commit the class-hall zone work on `dev` first.** Done: the zone work is committed on `dev` (37308b5a, 60962 at `07_Legion/ZoneData.lua:144`), and this branch starts at `dev`'s head (e76b27ed), so it needs no rebase.
 
 ## Files that change
 **Data**
@@ -54,7 +60,8 @@ Players have to leave the game to learn how to do an achievement. For 60962 "Leg
 - `Guide.lua` (`addon.Gui.Guide`) renders one achievement's guide for every surface: `GetLines(achievement)` returns `{Text, Waypoint = {MapId, X, Y, Title}}`.
   - Travel: the spell name.
   - Npc: "Talk to <name>, <map name>", the map name through `C_Map.GetMapInfo`.
-  - Criteria: for each criterion of type 198, `GetAchievementCriteriaInfo` gives the asset, and `C_Garrison.GetTalentInfo(asset)` gives the name and researched / researching / not yet. It is guarded when the API is missing.
+  - Criteria: for each criterion of type 198, `GetAchievementCriteriaInfo` gives the asset, and `C_Garrison.GetTalentInfo(asset)` gives the name and one of four states: researched, researching, locked (`talentAvailability` is `Enum.GarrisonTalentAvailability.UnavailableTierUnavailable`, shown as "locked, finish the previous tier first"), or not yet. Krowi added the locked state on 2026-10-11 after the step-0 probe. It is guarded when the API is missing.
+    - The state shows only when the talent's `treeID` is among `C_Garrison.GetTalentTreeIDsByClassID(Enum.GarrisonType.Type_7_0_Garrison, classId)`, with `classId` the third return of `UnitClass("player")` (not secret; `Globals.lua:222` already reads it, and Blizzard does the same at `Blizzard_OrderHallUI/Blizzard_OrderHallTalents.lua:670-671`). Any other class gets the name only.
   - Tip.
 - `Waypoint.lua`:
   - Providers:
@@ -83,7 +90,7 @@ Players have to leave the game to learn how to do an achievement. For 60962 "Leg
 - `Options/Defaults.lua`: add `Achievements.Guide`.
 - `Options/Layout.lua`: a "Guide" group with four toggles and a select, modelled on `:1782-1789`, using `KAF_AddDefaultValueText`. The row-option setters call `KrowiAF_AchievementsFrame:ForceUpdate()`, as at `:510-517`.
 - `OPTIONS.md`: document the new group.
-- `Localization/*.lua`, 11 locales: new keys below `Exported at` (Guide, the option names with their Desc, Set waypoint, Open guide, Talk to, Travel, the three research states, the disabled reasons, Map pin, "Archivist Zubashi" and the tip).
+- `Localization/*.lua`, 11 locales: new keys below `Exported at` (Guide, the option names with their Desc, Set waypoint, Open guide, Talk to, Travel, the four research states, the disabled reasons, Map pin, "Archivist Zubashi" and the tip).
   - A Blizzard global string is used wherever an exact one exists.
   - Translations are drafted by the agent and flagged to the maintainer.
 - `Globals.lua`: a debug-only `/kafwhere`, next to `/kafait` (`:172`). It prints the player's map id and percent coordinates as a ready `:Npc(...)` argument list. It reads no unit identity, so no secret values.
@@ -92,11 +99,13 @@ Players have to leave the game to learn how to do an achievement. For 60962 "Leg
 - `docs/architecture.md`: add `Gui/Guide/` to the file map.
 
 **Tests**
-- New `Tests/Guide.lua`, registered in `Tests/Files.xml`. Add `suites.guide` in `run-tests.lua`, with stubs modelled on the tooltip suite (`:719-797`): `C_Spell`, `C_Map`, `GetAchievementCriteriaInfo` (type 198, assets 486 and 487), `C_Garrison`, `TomTom` present or absent, and the options. Add the suite to `Tests/README.md` and to the instruction file's suite list (line 40).
+- New `Tests/Guide.lua`, registered in `Tests/Files.xml`. Add `suites.guide` in `run-tests.lua`, with stubs modelled on the tooltip suite (`:719-797`): `C_Spell`, `C_Map`, `GetAchievementCriteriaInfo` (type 198, assets 486 and 487), `C_Garrison` (with `GetTalentTreeIDsByClassID` returning tree 128 or not), `UnitClass`, `TomTom` present or absent, and the options. Add the suite to `Tests/README.md` and to the instruction file's suite list (line 40).
 
 ## Order of work
 1. **Scenarios first.** Write `Tests/Guide.lua` and `suites.guide`, with Recorded set to today's behaviour ("none"):
    - `tooltip-60962`
+   - `tooltip-60962-other-class` (talent names without a state)
+   - `tooltip-60962-locked` (Tier VII not unlocked, as on the step-0 Death Knight)
    - `menu-60962`
    - `waypoint-both-without-tomtom`
    - `waypoint-both-with-tomtom`
@@ -123,7 +132,7 @@ Players have to leave the game to learn how to do an achievement. For 60962 "Leg
 - `& ".claude\tools\lua51\lua.exe" ".claude\tools\headless\run-tests.lua" "$PWD" guide`: every scenario PASS, none open.
 - `load-data.lua "$PWD" Both`: no errors or drops. The snapshot diff is limited to 60962.
 - `Check-Repo.ps1 -ChangedOnly -Luals`: 0 errors.
-- In game on Retail: `/kaftest guide` is green in `Read-GameTests.ps1`. Hovering 60962 shows the Guide section with the live talent state. Right-click → Guide → Set waypoint puts the pin or TomTom arrow on Zubashi. The icon opens the panel and Escape closes it. The expanded-row option adds the block. `Read-GameErrors.ps1` is clean.
+- In game on Retail: `/kaftest guide` is green in `Read-GameTests.ps1`. Hovering 60962 on a Death Knight shows the Guide section with the live talent state, and on another class the talent names without a state. Right-click → Guide → Set waypoint puts the pin or TomTom arrow on Zubashi. The icon opens the panel and Escape closes it. The expanded-row option adds the block. `Read-GameErrors.ps1` is clean.
 - On Classic: `/reload`, open the window and hover an achievement. Nothing new appears, and `Read-GameErrors.ps1 -Client Classic` is clean.
 
 ## Found on the way (separate work items, not in this one)
