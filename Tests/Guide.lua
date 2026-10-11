@@ -136,6 +136,18 @@ guide.Scenarios = {
         Recorded = "icons:0 links:1", Target = "icons:0 links:1"},
     {Name = "panel-toggle-closes", Kind = "Panel", Id = 60962, Toggles = 2, Options = {WaypointProvider = provider.MapPin},
         Recorded = "hidden", Target = "hidden"},
+    -- Hovering the row's guide icon shows the panel and leaving hides it, unless a click pinned it, like the reward
+    -- preview. A panel opened while another side panel is open for the same row sits next to that one, and moves back
+    -- next to the row when it closes; one open for another row is left alone (Krowi, 2026-10-11, Gui/SidePanels.lua).
+    -- The other side panel is a stand-in frame registered in the chain.
+    {Name = "panel-hover", Kind = "Chain", Mode = "hover", Id = 60962,
+        Recorded = "hidden", Target = "hidden"},
+    {Name = "panel-hover-then-click", Kind = "Chain", Mode = "hover-click", Id = 60962,
+        Recorded = "shown", Target = "shown"},
+    {Name = "chain-same-row", Kind = "Chain", Mode = "same-row", Id = 60962,
+        Recorded = "stand-in>row", Target = "stand-in>row"},
+    {Name = "chain-other-row", Kind = "Chain", Mode = "other-row", Id = 60962,
+        Recorded = "row", Target = "row"},
     {Name = "row-60962", Kind = "Row", Id = 60962, Options = {ExpandedRow = true, WaypointProvider = provider.MapPin, ActionStyle = actionStyle.Icons},
         Recorded = "icons:1 links:0", Target = "icons:1 links:0"},
     {Name = "row-option-off", Kind = "Row", Id = 60962, Options = {ExpandedRow = false},
@@ -324,6 +336,59 @@ local function RunPanel(env, scenario, observations)
     return got
 end
 
+-- What the panel is anchored to: the stand-in row, the stand-in side panel or anything else
+local function GetAnchorName(env, frame)
+    local _, relativeTo = frame:GetPoint(1)
+    if relativeTo == env.Anchor() then
+        return "row"
+    end
+    if relativeTo == env.StandIn() then
+        return "stand-in"
+    end
+    return "other"
+end
+
+-- Hover and pin (Mode "hover", "hover-click"), or open the panel while a stand-in side panel is open for the same row or
+-- another one and read the anchor before and after the stand-in closes (Mode "same-row", "other-row")
+local function RunChain(env, scenario, observations)
+    local module = GetModule()
+    local panel = module and module.Panel
+    if not panel or not panel.ShowUnpinned or not addon.Gui.RegisterSidePanel then
+        return "none"
+    end
+    local achievement, reason = env.Achievement(scenario.Id)
+    if not achievement then
+        return nil, reason
+    end
+    env.SetOptions(scenario.Options, observations)
+    local row, standIn = env.Anchor(), env.StandIn()
+    addon.Gui.RegisterSidePanel(standIn)
+    local ok, got = pcall(function()
+        if scenario.Mode == "hover" or scenario.Mode == "hover-click" then
+            panel:ShowUnpinned(row, achievement)
+            if scenario.Mode == "hover-click" then
+                panel:TogglePin(row, achievement)
+            end
+            panel:HideIfUnpinned(row)
+            return panel.Frame:IsShown() and "shown" or "hidden"
+        end
+        standIn.OwnerButton = scenario.Mode == "same-row" and row or env.OtherRow()
+        standIn:Show()
+        panel:TogglePin(row, achievement)
+        local first = GetAnchorName(env, panel.Frame)
+        standIn:Hide()
+        local second = GetAnchorName(env, panel.Frame)
+        return first == second and first or first .. ">" .. second
+    end)
+    standIn:Hide()
+    panel:Close()
+    env.Teardown()
+    if not ok then
+        error(got, 0)
+    end
+    return got
+end
+
 -- Displays the block under a stand-in objectives frame, as an expanded row does, and reads what it laid out
 local function RunRow(env, scenario, observations)
     local module = GetModule()
@@ -359,10 +424,11 @@ local runners = {
     Waypoint = RunWaypoint,
     Availability = RunAvailability,
     Panel = RunPanel,
+    Chain = RunChain,
     Row = RunRow
 }
 
-local retailOnly = {Surface = true, Talent = true, Availability = true, Panel = true, Row = true}
+local retailOnly = {Surface = true, Talent = true, Availability = true, Panel = true, Chain = true, Row = true}
 
 local function RunScenario(env, scenario, observations)
     local got, reason = runners[scenario.Kind](env, scenario, observations)
@@ -441,7 +507,23 @@ addon.Tests.Ready.guide = function()
     return true
 end
 
-local savedOptions, anchor, objectivesStandIn
+local savedOptions, anchor, objectivesStandIn, otherRow, sidePanelStandIn
+
+-- A second stand-in row, for a side panel that belongs to another achievement
+function gameEnv.OtherRow()
+    otherRow = otherRow or CreateFrame("Frame", nil, UIParent)
+    return otherRow
+end
+
+-- A stand-in for the reward preview: an empty frame the side panel chain treats as another panel; hidden between runs
+function gameEnv.StandIn()
+    if not sidePanelStandIn then
+        sidePanelStandIn = CreateFrame("Frame", nil, UIParent)
+        sidePanelStandIn:SetSize(10, 10)
+        sidePanelStandIn:Hide()
+    end
+    return sidePanelStandIn
+end
 
 -- A stand-in for an achievement row: the panel anchors to it
 function gameEnv.Anchor()

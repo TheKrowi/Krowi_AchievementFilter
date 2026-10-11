@@ -320,7 +320,19 @@ Players have to leave the game to learn how to do an achievement. For 60962 "Leg
        - `Read-GameErrors.ps1` walks only the addon's own folders, no worktrees, and leaves `Libs/` out of the shortened-path match.
      - *Not changed:*
        - Archivist Zubashi stays English outside enUS (`= true`). No reliable source for the official translations exists, so it is listed as open in the PR.
-       - The owner-window helper duplicated from `RewardPreview.lua` is a follow-up, since sharing it means changing the reward preview.
+     - *Also done in this PR, at Krowi's request:*
+       - The owner-window helper the panel had copied from `RewardPreview.lua` is now shared. `Gui/SidePanels.lua` holds `GetOwnerWindow` and `HookOwnerWindowHide`, and both panels use it.
+       - **Krowi's in-game check of that, first round.** It showed the guide panel and the reward preview open at once on the same row, the guide covering the preview's title.
+       - **"One at a time" was tried first:** opening one closed the other.
+       - **The second screenshot showed the preview's hover still overlapping**, and Krowi asked for:
+         - the guide to open on hover too, like the preview: its own option "Show Guide on Mouseover", `Achievements.Guide.MouseoverShow`, on by default;
+         - a panel that opens while the other is open for the same row to sit next to that one;
+         - that panel to move back next to the row when the one in the middle closes.
+       - **How it was built:**
+         - `Gui/SidePanels.lua` keeps that chain (`RegisterSidePanel`, `AnchorSidePanel`).
+         - A panel open for another row is left alone (Krowi's choice), so it always sits by its own row.
+         - Both panels show unpinned on hover, pin on click, and move only when pinned.
+         - Covered by the scenarios `panel-hover`, `panel-hover-then-click`, `chain-same-row` and `chain-other-row`.
 5. **Wrap up.** Changelog, `OPTIONS.md`, architecture, `.luarc.json`. Run the `taint-reviewer` on the diff, `/code-review`, the in-game after-run on Retail and a `/reload` on Classic with `Read-GameErrors.ps1` on both. Set the work files to `done`, open the PR against `dev`, and wait for the merge gate.
 
 ## Risks

@@ -118,8 +118,17 @@ function Frame:SetText(text) rawset(self, "_text", text) end
 function Frame:GetText() return rawget(self, "_text") end
 function Frame:SetShown(shown) if shown then self:Show() else self:Hide() end end
 -- Layout and state the suites never assert on: stored where a getter needs it, otherwise ignored
-function Frame:SetPoint() end
-function Frame:ClearAllPoints() end
+-- Points are recorded, so a suite can read an anchor back the way GetPoint gives it in the game
+function Frame:SetPoint(point, relativeTo, ...)
+    local points = rawget(self, "_points") or {}
+    rawset(self, "_points", points)
+    points[#points + 1] = { point, relativeTo, ... }
+end
+function Frame:ClearAllPoints() rawset(self, "_points", nil) end
+function Frame:GetPoint(index)
+    local point = (rawget(self, "_points") or {})[index or 1]
+    if point then return unpack(point) end
+end
 function Frame:SetAllPoints() end
 function Frame:SetSize(width, height) rawset(self, "_width", width) rawset(self, "_height", height) end
 function Frame:SetWidth(width) rawset(self, "_width", width) end
@@ -932,11 +941,13 @@ suites.guide = function(c)
     addon.L = strings
     c.frames.lenient = true -- the guide frames keep their pools in fields that start out nil, as the game allows
     addon.Gui = { AchievementTooltip = { Sections = {} }, RightClickMenu = { AchievementMenu = { Sections = {} } },
-        RegisterFrameForClosing = function() end } -- Gui/FramesForClosing.lua, which the escape suite covers
+        RegisterFrameForClosing = function() end, -- Gui/FramesForClosing.lua, which the escape suite covers
+        RewardPreview = { Close = function() end } } -- the guide panel closes it on open (Gui/RewardPreview/RewardPreview.lua)
     addon.Options = { db = { profile = { Achievements = { Guide = { Tooltip = true, RightClickMenu = true, Icon = true, ExpandedRow = false,
         ActionStyle = 1, WaypointProvider = 1 } } } } } -- Options/Defaults.lua
     local loaded = {}
-    for _, rel in ipairs({ "Gui/Guide/Guide.lua", "Gui/Guide/Waypoint.lua", "Gui/Guide/Content.lua", "Gui/Guide/Panel.lua",
+    -- Gui/SidePanels.lua first: the side panel chain the panel scenarios read
+    for _, rel in ipairs({ "Gui/SidePanels.lua", "Gui/Guide/Guide.lua", "Gui/Guide/Waypoint.lua", "Gui/Guide/Content.lua", "Gui/Guide/Panel.lua",
         "Gui/AchievementTooltip/Guide.lua", "Gui/RightClickMenu/AchievementMenu/Guide.lua" }) do
         local f = io.open(root .. "/" .. rel, "rb")
         if f then
@@ -971,7 +982,10 @@ suites.guide = function(c)
     local objectives = env.CreateFrame("Frame", nil, env.UIParent)
     objectives:SetSize(400, 20)
     local row = env.CreateFrame("Frame") -- no parent: the panel walks up to the row's window, and the model's UIParent is strict
+    local otherRow, standIn = env.CreateFrame("Frame"), env.CreateFrame("Frame")
     function headless.Anchor() return row end
+    function headless.OtherRow() return otherRow end
+    function headless.StandIn() return standIn end
     function headless.Objectives() return objectives end
     function headless.TooltipLines(achievement)
         rawset(anchor, "Achievement", achievement)

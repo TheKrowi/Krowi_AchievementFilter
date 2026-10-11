@@ -2,39 +2,21 @@ local _, addon = ...
 addon.Gui.Guide.Panel = {}
 local panel = addon.Gui.Guide.Panel
 
--- A pinned side panel with an achievement's guide, opened from the row's guide icon or the right-click menu and anchored
--- to the row, like the reward preview (Gui/RewardPreview/RewardPreview.lua). Escape closes it, and so does hiding the
--- window the row belongs to. It is built in Lua on first use, so the headless guide suite builds the same frame.
+-- A side panel with an achievement's guide, like the reward preview (Gui/RewardPreview/RewardPreview.lua): hovering the
+-- row's guide icon shows it (Achievements.Guide.MouseoverShow), clicking the icon or Open guide in the right-click menu
+-- pins it, and only a pinned panel can be moved. It shares the spot next to the row with the reward preview
+-- (Gui/SidePanels.lua). Escape closes it, and so does hiding the window the row belongs to. It is built in Lua on first
+-- use, so the headless guide suite builds the same frame.
 
 local width = 320
 local padding = 12
 local titleGap = 10
-local hookedOwners = {}
 
--- The top-level window the row belongs to: the main achievements frame or a popout
-local function GetOwnerWindow(button)
-    local frame = button
-    while frame do
-        if frame == KrowiAF_AchievementsFrame then
-            return frame
-        end
-        if frame.AchievementId and frame.Button then -- looks like a KrowiAF_AchievementPopout instance
-            return frame
-        end
-        frame = frame.GetParent and frame:GetParent()
+-- The panel closes with the window its row belongs to (Gui/SidePanels.lua)
+local function OnOwnerWindowHide(ownerWindow)
+    if panel.Frame and panel.Frame.OwnerWindow == ownerWindow then
+        panel:Close()
     end
-end
-
-local function HookOwner(ownerWindow)
-    if not ownerWindow or hookedOwners[ownerWindow] then
-        return
-    end
-    hookedOwners[ownerWindow] = true
-    ownerWindow:HookScript("OnHide", function()
-        if panel.Frame and panel.Frame.OwnerWindow == ownerWindow then
-            panel:Close()
-        end
-    end)
 end
 
 -- Entering or leaving combat changes which waypoint actions are enabled. Lockdown starts only after the
@@ -58,6 +40,12 @@ local function CloseButtonOnClick()
     panel:Close()
 end
 
+local function OnMouseDown(frame)
+    if frame.Pinned then
+        frame:StartMoving()
+    end
+end
+
 -- The row the panel is pinned to is a recycled list button: once it scrolls out of view or shows another achievement,
 -- the panel would point at the wrong row, so it closes
 local function OnUpdate(frame)
@@ -74,7 +62,7 @@ local function Create()
     frame:SetClampedToScreen(true)
     frame:EnableMouse(true)
     frame:SetMovable(true)
-    frame:SetScript("OnMouseDown", frame.StartMoving)
+    frame:SetScript("OnMouseDown", OnMouseDown)
     frame:SetScript("OnMouseUp", frame.StopMovingOrSizing)
     frame:SetScript("OnHide", frame.StopMovingOrSizing)
     frame:SetScript("OnEvent", OnEvent)
@@ -99,6 +87,7 @@ local function Create()
 
     frame:Hide()
     addon.Gui:RegisterFrameForClosing(frame)
+    addon.Gui.RegisterSidePanel(frame)
     return frame
 end
 
@@ -110,22 +99,37 @@ function panel:Render()
     frame:SetHeight(padding + frame.Title:GetStringHeight() + titleGap + height + padding)
 end
 
--- Opens the panel for the achievement next to the row; the same row and achievement again closes it
-function panel:TogglePin(button, achievement)
+-- Shows the panel for the achievement next to the row (or next to the reward preview open for it) without pinning it
+function panel:ShowUnpinned(button, achievement)
     self.Frame = self.Frame or Create()
     local frame = self.Frame
-    if frame:IsShown() and frame.OwnerButton == button and frame.Achievement == achievement then
+    frame.OwnerButton = button
+    frame.Achievement = achievement
+    frame.OwnerWindow = addon.Gui.GetOwnerWindow(button)
+    addon.Gui.HookOwnerWindowHide(frame.OwnerWindow, OnOwnerWindowHide)
+    addon.Gui.AnchorSidePanel(frame, button)
+    self:Render()
+    frame.Pinned = nil
+    frame:Show()
+end
+
+-- Pins the panel for the achievement; the same row and achievement again, while pinned, closes it
+function panel:TogglePin(button, achievement)
+    local frame = self.Frame
+    if frame and frame:IsShown() and frame.Pinned and frame.OwnerButton == button and frame.Achievement == achievement then
         self:Close()
         return
     end
-    frame.OwnerButton = button
-    frame.Achievement = achievement
-    frame.OwnerWindow = GetOwnerWindow(button)
-    HookOwner(frame.OwnerWindow)
-    frame:ClearAllPoints()
-    frame:SetPoint("TOPLEFT", button, "TOPRIGHT", 0, 0)
-    self:Render()
-    frame:Show()
+    self:ShowUnpinned(button, achievement)
+    self.Frame.Pinned = true
+end
+
+-- Called when the mouse leaves the row's guide icon; a pinned panel, or one shown for another row, stays
+function panel:HideIfUnpinned(button)
+    local frame = self.Frame
+    if frame and not frame.Pinned and frame.OwnerButton == button then
+        frame:Hide()
+    end
 end
 
 function panel:Close()

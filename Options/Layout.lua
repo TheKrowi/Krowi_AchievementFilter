@@ -1297,6 +1297,14 @@ local achievementsOptions = {
                             get = function() return addon.Options.db.profile.Achievements.Guide.Icon end,
                             set = GuideOptionSetter("Icon")
                         },
+                        GuideMouseoverShow = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
+                            name = addon.L["Show Guide on Mouseover"],
+                            desc = addon.L["Show Guide on Mouseover Desc"]:KAF_AddDefaultValueText("Achievements.Guide.MouseoverShow"),
+                            get = function() return addon.Options.db.profile.Achievements.Guide.MouseoverShow end,
+                            set = function(_, value) addon.Options.db.profile.Achievements.Guide.MouseoverShow = value end,
+                            disabled = function() return not addon.Options.db.profile.Achievements.Guide.Icon end
+                        },
                         GuideExpandedRow = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Guide in Expanded Achievement"],

@@ -172,6 +172,24 @@ local function SetExtraIconWarband(self, achievement)
 	extraIcon.Text = addon.L["Warband Achievement"]
 end
 
+local function GuideOnEnter(icon)
+	if not addon.Options.db.profile.Achievements.Guide.MouseoverShow then
+		return
+	end
+	local frame = addon.Gui.Guide.Panel.Frame
+	if frame and frame:IsShown() and frame.Pinned then
+		return -- pinned here already, or pinned for another row; ignore hover
+	end
+	addon.Gui.Guide.Panel:ShowUnpinned(icon:GetParent(), addon.Data.Achievements[icon.AchievementId])
+end
+
+local function GuideOnLeave(icon)
+	if not addon.Options.db.profile.Achievements.Guide.MouseoverShow then
+		return
+	end
+	addon.Gui.Guide.Panel:HideIfUnpinned(icon:GetParent())
+end
+
 local function GuideOnClick(icon)
 	addon.Gui.Guide.Panel:TogglePin(icon:GetParent(), addon.Data.Achievements[icon.AchievementId])
 end
@@ -195,6 +213,8 @@ local function SetExtraIconGuide(self, achievement)
 		addon.L["Guide Icon Click"]
 	}
 	extraIcon.AchievementId = achievement.Id
+	extraIcon.OnEnterCallback = GuideOnEnter
+	extraIcon.OnLeaveCallback = GuideOnLeave
 	extraIcon.OnClickCallback = GuideOnClick
 end
 
