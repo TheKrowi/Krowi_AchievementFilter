@@ -2,15 +2,40 @@
 -- Reads BugGrabber's saved variables file (WTF\Account\<account>\SavedVariables\!BugGrabber.lua),
 -- which is plain Lua assigning BugGrabberDB, and prints the errors that mention this addon.
 --
--- Usage: lua.exe read-errors.lua <path to !BugGrabber.lua> <since unix time> <filter | all> [max]
+-- Usage: lua.exe read-errors.lua <path to !BugGrabber.lua> <since unix time> <filter | all> [max] [-]
 --   since   only errors at or after this time (0 for all)
 --   filter  substring the message or stack must contain; "all" disables the filter
+--   -       read the addon's own file paths from stdin, one per line: an error also matches when it names a
+--           shortened path ("...r/Gui/RightClickMenu/AchievementMenu/FirstCategory.lua:3") that ends one of them, because
+--           the game cuts long paths from the front and the addon's folder name is the first thing to go
 -- Exit code 0 always; the caller decides what to do with the count.
 
-local path, since, filter, maxShown = ...
+local path, since, filter, maxShown, ownFiles = ...
 since = tonumber(since) or 0
 maxShown = tonumber(maxShown) or 20
 if filter == "all" then filter = nil end
+
+-- Each own file as the game names it, under the addon's folder (the filter), because the cut can fall inside the folder
+-- name itself ("...r/Gui/...")
+local paths = {}
+if ownFiles == "-" then
+    for line in io.stdin:lines() do
+        line = line:gsub("\r$", ""):gsub("\\", "/")
+        if line ~= "" then paths[#paths + 1] = (filter or "") .. "/" .. line end
+    end
+end
+
+-- A shortened path of one of the addon's own files; the tail must keep a folder so a bare file name cannot match
+local function NamesOwnFile(text)
+    for tail in text:gmatch("%.%.%.([^%s:%[%]\"']+%.[lx][um][al])") do
+        if tail:find("/", 1, true) then
+            for _, own in ipairs(paths) do
+                if #own >= #tail and own:sub(-#tail) == tail then return true end
+            end
+        end
+    end
+    return false
+end
 
 local chunk, err = loadfile(path)
 if not chunk then
@@ -37,7 +62,7 @@ end
 local matches = {}
 for _, e in ipairs(db.errors) do
     local text = (e.message or "") .. "\n" .. (e.stack or "")
-    if Time(e) >= since and (not filter or text:find(filter, 1, true)) then
+    if Time(e) >= since and (not filter or text:find(filter, 1, true) or NamesOwnFile(text)) then
         matches[#matches + 1] = e
     end
 end
