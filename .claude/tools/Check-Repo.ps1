@@ -22,7 +22,10 @@
       library-names    [Error]   every library name addon code (and Libs/Libs.lua) passes to LibStub( or
                                  KROWI_LIBMAN:GetLibrary( is one a NewLibrary( call in Libs/ registers; always
                                  tree-wide, because a library rename breaks call sites nobody touched
-      luarc            [Error]   .luarc.json diagnostics.globals holds exactly what the language server
+      settings-close   [Error]   addon code closes the settings panel with SettingsPanel:Close(true): without the
+                                 argument it reopens the game menu through ToggleGameMenu, whose SpellStopCasting
+                                 call is forbidden from addon code
+      luarc           [Error]   .luarc.json diagnostics.globals holds exactly what the language server
                                  cannot see on its own: every entry is read by an addon file (luac -l
                                  GETGLOBAL), none is assigned by one, no duplicates, sorted ordinally
       luals            [Warning] the Lua language server reports nothing on a tree-wide check, using the
@@ -457,6 +460,24 @@ if ($emptySubmodules) {
     }
 }
 Write-Timing 'library-names'
+
+# --- settings-close: addon code closes the settings panel without Blizzard's way back to the game menu -----------
+# SettingsPanel:Close() returns to the panel the settings were opened from through ToggleGameMenu(). Called from
+# addon code that runs tainted, and ToggleGameMenu calls the protected SpellStopCasting: ADDON_ACTION_FORBIDDEN on
+# Mists Classic (docs/work/2026-10-11-latent-bugs, verified in game 2026-10-13). It also reopens the game menu
+# behind whatever the addon shows next. Close(true) commits and hides the panel without that step.
+foreach ($rel in $ownLuaFiles) {
+    $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
+    if (-not $text.Contains('SettingsPanel')) { continue }
+    $lineNo = 0
+    foreach ($line in ($text -split "`r?`n")) {
+        $lineNo++
+        if (($line -replace '--.*$', '') -match '\bSettingsPanel\s*:\s*Close\s*\(\s*\)') {
+            Add-Finding 'settings-close' 'Error' $rel $lineNo "SettingsPanel:Close() goes back to the game menu through ToggleGameMenu, whose SpellStopCasting call is forbidden from addon code; call SettingsPanel:Close(true)"
+        }
+    }
+}
+Write-Timing 'settings-close'
 
 # --- luarc: .luarc.json diagnostics.globals stays exact ------------------------------------------
 # The language server resolves the WoW API and FrameXML (ketho.wow-api annotations) and every global

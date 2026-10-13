@@ -819,7 +819,7 @@ suites.tooltip = function(c)
     env.INVTYPE_HEAD, env.INVTYPE_CHEST = "Head", "Chest"
 
     -- --- Most progress: no characters saved, so the section writes its header and "No characters found" -------------
-    rawset(env, "GetAchievementNumCriteria", function() return 2 end)
+    rawset(env, "GetAchievementNumCriteria", function() return 0 end) -- what the in-game run of 2026-10-13 implies for 40469; its observation line shows the count
     rawset(env, "KrowiAF_SavedData", { CharacterList = {} })
     rawset(env, "KrowiAF_Achievements", { NotCompleted = {} })
     -- Libs/Krowi_Util/Colors.lua adds SetColorRed to string. A method call on a string resolves through the host's string
