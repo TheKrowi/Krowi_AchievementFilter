@@ -4,9 +4,9 @@ local menu = addon.Tests.Menu
 
 -- Whether the right-click menu greys out a "go to" entry for an achievement the addon does not register
 -- (docs/work/2026-10-11-latent-bugs, defect B). AchievementMenu:AddGoToAchievementLine labels such an entry "(Missing)"
--- and means to disable it, but passes its disabled flag where the menu builder takes isEnabled. The builder disables an
--- entry only when that argument is false (Libs/Krowi_Menu/Krowi_MenuBuilder.lua: CreateSubmenuButton, Retail and
--- Classic), so true leaves it enabled. A scenario builds the entry the way the related-achievement sections do (chain,
+-- and means to disable it, but until 2026-10-13 passed its disabled flag where the menu builder takes isEnabled. The
+-- builder disables an entry only when that argument is false (Libs/Krowi_Menu/Krowi_MenuBuilder.lua:
+-- CreateSubmenuButton, Retail and Classic), so true left it enabled. A scenario builds the entry the way the related-achievement sections do (chain,
 -- required for, other faction, first category) and records "enabled" or "disabled". In game (/kaftest menu) the entry
 -- goes into a real root menu, a Blizzard menu description on Retail read back with IsEnabled and a Krowi_Menu_2 menu item
 -- on Classic read back through its Disabled field; headlessly (.claude/tools/headless/run-tests.lua) into a model of the
@@ -108,8 +108,10 @@ function gameEnv.IsEntryEnabled(root)
 end
 
 addon.Tests.Ready.menu = function()
-    if not addon.Data.Achievements[menu.Scenarios[2].Id] then
-        return false, "the achievement data is not loaded yet"
+    for _, scenario in ipairs(menu.Scenarios) do
+        if scenario.Id and not addon.Data.Achievements[scenario.Id] then
+            return false, "the achievement data is not loaded yet"
+        end
     end
     return true
 end

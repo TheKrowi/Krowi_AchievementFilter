@@ -822,7 +822,9 @@ suites.tooltip = function(c)
     rawset(env, "GetAchievementNumCriteria", function() return 2 end)
     rawset(env, "KrowiAF_SavedData", { CharacterList = {} })
     rawset(env, "KrowiAF_Achievements", { NotCompleted = {} })
-    string.SetColorRed = string.SetColorRed or function(text) return text end -- Libs/Krowi_Util/Colors.lua adds these to string
+    -- Libs/Krowi_Util/Colors.lua adds SetColorRed to string. A method call on a string resolves through the host's string
+    -- table, not env's, so Setup puts the stub there for one scenario and Teardown takes it out, keeping later suites clean
+    local hostSetColorRed
 
     -- --- The addon -------------------------------------------------------------------------------------------------
     addon.Gui = { AchievementTooltip = { Sections = {} } }
@@ -837,7 +839,11 @@ suites.tooltip = function(c)
     ModelShowTooltip(addon, krowiTooltip)
 
     local anchor = env.CreateFrame("Frame", nil, env.UIParent)
-    function headless.Setup() return true end
+    function headless.Setup()
+        hostSetColorRed = string.SetColorRed
+        string.SetColorRed = hostSetColorRed or function(text) return text end
+        return true
+    end
     function headless.CollectingText() return addon.L["Collecting data"] end
     function headless.ProgressText() return addon.L["Objectives progress"] end
     function headless.MostProgressText() return addon.L["Most progress"] end
@@ -848,7 +854,7 @@ suites.tooltip = function(c)
         return true
     end
     function headless.Lines() return getLines() end
-    function headless.Teardown() end
+    function headless.Teardown() string.SetColorRed = hostSetColorRed end
     return suite.Run(headless, observations), "Tests/Tooltip.lua", observations
 end
 
