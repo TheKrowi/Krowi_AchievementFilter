@@ -14,6 +14,10 @@ Results and departures:
   - **To the backlog:**
     - Blizzard's bulk closes (death, loss of control, loading screens) close only the topmost addon frame. That is old behaviour for every registered frame.
     - Re-pinning a side panel that is already shown does not move it to the top of the Escape order.
+  - **In game, 2026-10-13**, after a redeploy, because a VS Code save at 17:22 had put `dev` back over the first deploy:
+    - **Retail 12.1.0:** `/kaftest escape` 27 passed, with 0 differences from headless.
+    - **Classic 5.5.4:** 26 passed and 1 skipped (`calendar-side`: no day with achievements in the viewed month on that character).
+    - All four reward-preview scenarios met their target on both clients, and there are no addon errors.
   - **Not changed:** headless cannot see whether the real code registers the preview, because the suite mirrors registrations by design (`escape.RegisteredKeys`). The in-game run checks the real code.
 
 ## Files that change
