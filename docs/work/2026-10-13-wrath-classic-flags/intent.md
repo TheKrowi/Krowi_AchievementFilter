@@ -1,10 +1,10 @@
 # Intent: The Wrath Classic client gets its Classic behaviour back
-Author: Krowi (maintainer). Source: the taint review of 2026-10-11-latent-bugs, 2026-10-13. Status: accepted
+Author: Krowi (maintainer). Source: the taint review of 2026-10-11-latent-bugs, 2026-10-13. Status: done
 
 ## Problem
 Since November 2025 the addon has treated the Wrath Classic client (interface 38002) as neither Wrath nor a Classic client with achievements.
 - A Krowi_Util update removed `IsWrathClassic` and `IsCataClassic` and narrowed `IsClassicWithAchievements` to Mists (Krowi_Util `6ee1198`).
-- The addon still reads those flags: 22 reads of `IsWrathClassic`, 2 of `IsCataClassic` and 36 of `IsClassicWithAchievements`.
+- The addon still reads those flags: 20 reads of `IsWrathClassic` (22 before 2026-10-11-latent-bugs removed two), 2 of `IsCataClassic` and 36 of `IsClassicWithAchievements`.
 - So on 38002 every one of those branches takes its other side. That affects:
   - the achievement tabs and their indices, the Guild tab and the Statistics tab;
   - the header and the search box;

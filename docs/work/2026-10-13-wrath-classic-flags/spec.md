@@ -1,5 +1,5 @@
 # Spec: The Wrath Classic client gets its Classic behaviour back
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. On a client whose build starts with 3, `addon.Util.IsWrathClassic` and `addon.Util.IsClassicWithAchievements` are true. On 4, `IsCataClassic` and `IsClassicWithAchievements` are. On 5, `IsMistsClassic` and `IsClassicWithAchievements` are, as now. On Retail all four are false.
@@ -16,6 +16,7 @@ Intent: [intent.md](intent.md). Status: accepted
   - restores both flags and the old `IsClassicWithAchievements = IsWrathClassic or IsCataClassic or IsMistsClassic`;
   - raises the minor version to 4, so this copy wins over an embedded minor 3;
   - adds a 2.7 changelog entry. Krowi releases it separately.
+- **Krowi_Util `3d1abef`:** `Options:Open` takes the old Interface Options path only where `Settings.OpenToCategory` is missing, a check on the API rather than the version flag. Otherwise the restored flag would switch 38002 from the settings panel it has used since November 2025 back to the old path.
 - **This addon:**
   - `Libs/Krowi_Util` moves to `7ae5bc4`;
   - a new always-on `Check-Repo` rule, `util-flags`, collects `lib.IsX =` and `function lib.IsX(` from `Libs/Krowi_Util` and fails on any `addon.Util.Is*` the addon reads that is not among them.
@@ -36,7 +37,7 @@ Intent: [intent.md](intent.md). Status: accepted
 - **Saved variables, localization, data snapshots:** none. The Wrath strings files load on the flag, as before.
 
 ## Verification
-- `util-flags`, test first: before the bump it flagged the 24 reads, 22 of `IsWrathClassic` and 2 of `IsCataClassic`. After the bump it is quiet.
+- `util-flags`, test first: before the bump it flagged the 22 reads, 20 of `IsWrathClassic` and 2 of `IsCataClassic`, in seven files. After the bump it is quiet.
 - Headless: every suite, both clients. The headless clients are Retail 12.x and Classic 5.x, so they show the flags unchanged there.
 - In game: Retail and Mists Classic `/reload` with no new errors. 38002 has no client to test on.
 
