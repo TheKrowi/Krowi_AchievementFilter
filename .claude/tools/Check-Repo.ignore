@@ -5,5 +5,3 @@ files-xml Api/ApiDocumentation.lua       # documentation only
 # Line endings owned by external tools
 line-endings Localization/*.lua          # CurseForge exports these with LF
 line-endings Krowi_AchievementFilter.toc # written by the addon manager with LF
-# Known defects held until their fix lands (docs/work/2026-10-11-latent-bugs: the Tutorial and screenshot mode close the settings panel through the game menu)
-settings-close Options/General.lua       # SettingsPanel:Close() at :51 and :107; the fix removes this line

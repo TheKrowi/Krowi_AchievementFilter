@@ -35,6 +35,17 @@ function general.OnProfileReset(db)
     RefreshOptions()
 end
 
+-- Closes the settings panel before the addon shows a page over the game. Close(true) commits and hides it without
+-- Blizzard's way back to the game menu, whose ToggleGameMenu calls the protected SpellStopCasting
+-- (docs/work/2026-10-11-latent-bugs). With unapplied settings Close asks through a popup whose buttons would then take
+-- that way tainted, and in combat HideUIPanel refuses addon code, so the panel then stays open for the player to close.
+local function CloseSettingsPanel()
+    if InCombatLockdown() or SettingsPanel:HasUnappliedSettings() then
+        return
+    end
+    SettingsPanel:Close(true)
+end
+
 local function CreateTutorialMenuFunc(builder)
     local menu = builder:GetMenu()
     local pages = addon.Tutorials.FeaturesTutorial.Pages
@@ -45,11 +56,7 @@ local function CreateTutorialMenuFunc(builder)
             menu,
             (pages[i].IsViewed and "" or "|T132049:0|t") .. string.format(addon.Util.Colors.White, addon.Util.Colors.RemoveColor(pages[i].SubTitle)),
             function()
-                if addon.Util.IsWrathClassic then
-                    InterfaceOptionsFrame:Hide()
-                else
-                    SettingsPanel:Close()
-                end
+                CloseSettingsPanel()
                 addon.Tutorials.FeaturesTutorial:ShowTutorial(i)
             end
         )
@@ -101,11 +108,7 @@ end
 
 local screenshotModeFrame, screenshotModeCloseButton
 local function HandleScreenshotMode()
-    if addon.Util.IsWrathClassic then
-        InterfaceOptionsFrame:Hide()
-    else
-        SettingsPanel:Close() -- Causes "blocked from an action" message
-    end
+    CloseSettingsPanel()
     if screenshotModeFrame == nil then
         screenshotModeFrame = CreateFrame("Frame", nil, UIParent)
         screenshotModeFrame:SetPoint("CENTER")
