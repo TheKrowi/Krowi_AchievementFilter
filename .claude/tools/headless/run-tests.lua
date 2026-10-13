@@ -368,6 +368,9 @@ suites.escape = function(c)
     end
     frames.CalendarSide = env.CreateFrame("Frame", nil, frames.Calendar)
     frames.Calendar.SideFrame = frames.CalendarSide
+    -- The reward preview closes with the window its row belongs to (Gui/RewardPreview/RewardPreview.lua, OnOwnerWindowHide)
+    frames.RewardPreview = env.CreateFrame("Frame", "KrowiAF_RewardPreview", env.UIParent)
+    frames.Achievements:HookScript("OnHide", function() frames.RewardPreview:Hide() end)
 
     c.loadAddonFile("Krowi_AchievementFilter.lua") -- creates KrowiAF_SpecialFrame
     c.loadAddonFile("Gui/Gui.lua")

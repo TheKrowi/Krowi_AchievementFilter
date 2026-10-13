@@ -52,13 +52,16 @@ function gui.AnchorSidePanel(frame, button)
     frame:SetPoint("TOPLEFT", anchor, "TOPRIGHT", 0, 0)
 end
 
--- Adds a panel to the chain once; when it hides, a panel that sat next to it moves back next to its own row
+-- Adds a panel to the chain once; when it hides, a panel that sat next to it moves back next to its own row. Escape
+-- closes a side panel before the window it belongs to (Gui/FramesForClosing.lua); a panel registers before its first
+-- Show, so the OnShow hook sees that Show
 function gui.RegisterSidePanel(frame)
     if frame.IsSidePanel then
         return
     end
     frame.IsSidePanel = true
     tinsert(sidePanels, frame)
+    gui:RegisterFrameForClosing(frame)
     frame:HookScript("OnHide", function(self)
         self.SidePanelAnchor = nil
         for _, other in ipairs(sidePanels) do
