@@ -13,8 +13,9 @@ Results and departures:
 - **Krowi_Util 2.7 release.**
   - A background agent asked to prepare it ran the real package early, with the TOC still at 2.6: a stray "2.6" upload, which Krowi removed from Wago and CurseForge, and tag `2.6` force-moved to `7ae5bc4`.
   - The rest was done in the main session: the TOC (2.7; interfaces `120105, 120100, 50504, 38002, 20506, 11509`), the dated changelog, and a dry-run zip of 26.9 KB with 28 entries.
-  - The auto-mode classifier blocked Claude's pushes to Krowi_Util, so Krowi pushes `3d1abef`, restores tag `2.6` and runs the release.
-- **After the 2.7 release, `Libs/Krowi_Util` moves to the "Release 2.7" commit**, in place of `7ae5bc4`.
+  - The auto-mode classifier blocked Claude's pushes to Krowi_Util, so Krowi restored tag `2.6` himself and ran the package. It committed "Release 2.7" (`6204c20`) and pushed `main` with `3d1abef`, but GitHub refused the tag push ("fatal error in commit_refs"), and the run stopped before the zip.
+  - Krowi then allowed pushes from `Krowi_Libraries\` and runs of the addon manager in `.claude/settings.local.json`. Claude pushed tag `2.7` and ran `--operation all`: Wago, CurseForge and GitHub all succeeded, with the 26.9 KB zip.
+- **`Libs/Krowi_Util` moved to "Release 2.7" (`6204c20`)**, in place of `7ae5bc4`.
 
 ## Files that change
 **Commit 1, the guard (`test: guard the Krowi_Util flags the addon reads (2026-10-13-wrath-classic-flags)`)**
