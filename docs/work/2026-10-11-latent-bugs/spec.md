@@ -26,6 +26,9 @@ Intent: [intent.md](intent.md). Status: done
 - `Gui/AchievementTooltip/MostProgress.lua:7` hides the section when `achievement.TransmogSets` is set. That field was filled by `achievement:AddTransmogSet` (`Objects/Achievement.lua:152-156`) from the old `Data/Retail/ExportedTransmogSets.lua`.
 - 9681ae57 (2024-10-31, "Transmog sets are now moved to the new API system") replaced that export with `KrowiAF.TransmogSetData`. That stores the ids as `achievement.TransmogSetIds` (`Api/TransmogSetDataApi.lua:10`). The same commit moved `Objectives.lua:7` to `TransmogSetIds`, so the plain objectives still give way to the transmog set progress section (`TransmogObjectives.lua:16`). `MostProgress.lua:7` was not moved.
 - Since then `AddTransmogSet` has no caller, `data.TransmogSets = {}` (`Data/Data.lua:12`) is unused, and the condition is always false. The section shows on transmog set achievements that are neither completed nor account-wide.
+- **Correction, 2026-10-13, from the first in-game run:** the section stays hidden on 40469 all the same, even with the achievement seen as neither completed nor account-wide.
+  - `CheckAdd` also needs at least one criterion (`MostProgress.lua:14-15`), and a collect-a-set achievement most likely has none that `GetAchievementNumCriteria` counts. The scenario now records the count in game.
+  - So the dead check never changed anything on 40469, and removing it changes nothing either. Options C1 and C2 below lead to the same tooltip there.
 
 ## Design
 - **A.**

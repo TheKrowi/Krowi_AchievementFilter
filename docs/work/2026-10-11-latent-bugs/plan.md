@@ -28,6 +28,34 @@ Results and departures:
     - `NewSubmodule` names are not collected, because no call site asks for one by name.
     - The tooltip suite's `Kind` branches follow the approved plan.
     - `most-progress-transmog-set` is not yet verified in game; this afternoon's run does that.
+- **After-run, 2026-10-13, from 166ecebf** (Retail 12.1.0, Classic 5.5.4).
+  - **Retail.**
+    - `/kaftest escape`: 23 passed, 0 differences from headless.
+    - `/kaftest menu`: the missing entry gave got=disabled.
+    - `/kaftest tooltip`: `transmog-set-progress` done. `most-progress-transmog-set` gave got=**hidden** where the headless model said shown.
+    - The Xu-Fu link and the Tutorial button raised no error.
+  - **Classic.**
+    - `/kaftest menu`: 2 passed, 0 differences from headless.
+    - The Tutorial page raised `ADDON_ACTION_FORBIDDEN` for `SpellStopCasting()`: `General.lua:51` → `SettingsPanel:Close` → `ExitWithCommit` → `TransitionBackOpeningPanel` → `ToggleGameMenu` (`Blizzard_UIParent/Mists/UIParent.lua:1460`).
+    - The `Krowi_MenuBuilder-1.0` error BugSack still listed dates from the before-run (2026-10-11 11:31); the deployed `General.lua` matched the branch.
+  - **Reward preview on Classic:** Escape closes it together with the achievement window. It never registered for Escape (`Gui/FramesForClosing.lua`), unlike the guide panel since #338, on both clients. Put to Krowi as a separate question.
+- **The tooltip scenario after the run.**
+  - Recorded and Target are now "hidden", the verified behaviour; Krowi's C2 decision was to keep today's behaviour.
+  - The headless model's criteria count went from 2 to 0, and the in-game run now records the count as an observation.
+  - The spec's root cause C carries the correction.
+- **Fix D, found by the after-run: the Tutorial and Screenshot Mode close the settings panel through the game menu.**
+  - Cause: `SettingsPanel:Close()` without an argument goes back to the panel it was opened from through `ToggleGameMenu()` (`Blizzard_SettingsPanel.lua:250-268`, both clients).
+  - On Mists Classic, `ToggleGameMenu()` calls the protected `SpellStopCasting` from the addon's tainted path. On Retail it runs the Escape handlers securely, then shows the game menu, so a click acted like an extra Escape press.
+  - Fix A made the Tutorial reachable for every player, and `HandleScreenshotMode` already carried a comment about a "blocked" message.
+  - The fix is `SettingsPanel:Close(true)`: it still commits and hides the panel, without the transition.
+  - **The `taint-reviewer` confirmed it on both clients:** `Close(true)` runs a strict subset of the old path. It added two cases the old code also had wrong, now covered by one helper, `CloseSettingsPanel`:
+    - with unapplied settings, `Close` shows Blizzard's discard popup from addon code, and its buttons would then take the forbidden way tainted;
+    - in combat, `HideUIPanel` refuses addon code.
+
+    In both cases the helper leaves the panel open for the player to close.
+  - The reviewer also found that `addon.Util.IsWrathClassic` is never defined. The helper replaces the two dead `InterfaceOptionsFrame:Hide()` branches; the other 18 reads went to `docs/backlog.md`, and the instruction file no longer names the flag.
+  - Guard: the `settings-close` lint rule, test first (it flagged `:51` and `:107`, held in the ignore file for one commit), on the same footing as A's `library-names`.
+  - A changelog line was added under 103.0.
 
 ## Context
 While exploring achievement guides, three bugs turned up, each left behind by a rework:
