@@ -41,7 +41,7 @@ local escape = addon.Tests.Escape
 -- what justifies the emulation.
 
 -- Order of the keys is the order frames are listed in the results
-escape.FrameKeys = {"Tooltip", "Text", "MapVerifier", "DataManager", "CalendarSide", "Calendar", "Achievements", "GameMenu"}
+escape.FrameKeys = {"Tooltip", "Text", "MapVerifier", "DataManager", "CalendarSide", "Calendar", "RewardPreview", "Achievements", "GameMenu"}
 
 -- Frames whose OnLoad calls addon.Gui:RegisterFrameForClosing (Gui/FramesForClosing.lua; Achievements
 -- is registered in Gui.lua, LoadWithBlizzard_AchievementUI). The headless runner does not load the
@@ -77,7 +77,12 @@ escape.Scenarios = {
     {Name = "dropdown-over-data-manager", Shown = {"DataManager"}, Branch = "dropdown", Recorded = {}, Target = {}}, -- Blizzard closes a legacy dropdown without consuming Escape (CloseMenus returns nothing), so the frame under it closes in the same press on both clients
     {Name = "nothing", Shown = {}, Recorded = {"GameMenu"}, Target = {"GameMenu"}},
     {Name = "closed-with-button", Shown = {"DataManager"}, CloseFirst = {"DataManager"}, Recorded = {"GameMenu"}, Target = {"GameMenu"}}, -- before 101.0 the proxy stayed shown after the close button, so the next Escape was eaten
-    {Name = "closed-with-button-over-achievements", Shown = {"Achievements", "DataManager"}, CloseFirst = {"DataManager"}, Recorded = {}, Target = {}}
+    {Name = "closed-with-button-over-achievements", Shown = {"Achievements", "DataManager"}, CloseFirst = {"DataManager"}, Recorded = {}, Target = {}},
+    -- The reward preview pinned next to a row (docs/work/2026-10-13-reward-preview-escape). It closes with its window
+    -- (Gui/RewardPreview/RewardPreview.lua) but never registered for Escape, so one press closed the window and the preview
+    -- went with it (seen in game on Classic 5.5.4 on 2026-10-13); the guide panel next to it closes on its own first
+    {Name = "reward-preview-over-achievements", Shown = {"Achievements", "RewardPreview"}, Recorded = {}, Target = {"Achievements"}},
+    {Name = "reward-preview-over-achievements-twice", Shown = {"Achievements", "RewardPreview"}, Presses = 2, Recorded = {"GameMenu"}, Target = {}}
 }
 
 -- The game menu is never shown by the suite; the emulated chain records that a press would have shown
@@ -237,8 +242,37 @@ local getters = {
     DataManager = function() return KrowiAF_DataManagerFrame end,
     CalendarSide = function() return KrowiAF_AchievementCalendarFrame and KrowiAF_AchievementCalendarFrame.SideFrame end,
     Calendar = function() return KrowiAF_AchievementCalendarFrame end,
-    Achievements = function() return AchievementFrame end
+    Achievements = function() return AchievementFrame end,
+    RewardPreview = function() return KrowiAF_RewardPreview end
 }
+
+-- A stand-in window inside the achievement window with a stand-in row: Gui/SidePanels.lua's GetOwnerWindow takes a
+-- frame with AchievementId and Button for a popout, so the preview closes with the achievement window like a real one,
+-- whichever category the window shows
+local previewOwner
+local function PinRewardPreview()
+    local achievementId
+    for _, id in ipairs(addon.Data.AchievementIds) do
+        if addon.RewardPreviewData.GetPreviewableEntries(id) then
+            achievementId = id
+            break
+        end
+    end
+    if not achievementId then
+        return false, "no achievement has a reward preview on this client"
+    end
+    if not previewOwner then
+        previewOwner = CreateFrame("Frame", nil, AchievementFrame)
+        previewOwner:SetSize(10, 10)
+        previewOwner:SetPoint("TOPLEFT")
+        previewOwner.Button = CreateFrame("Button", nil, previewOwner)
+        previewOwner.Button:SetSize(10, 10)
+        previewOwner.Button:SetPoint("TOPLEFT")
+    end
+    previewOwner.AchievementId = achievementId
+    addon.Gui.RewardPreview:TogglePin(previewOwner.Button, achievementId)
+    return true
+end
 
 local gameEnv = {}
 escape.GameEnv = gameEnv
@@ -285,6 +319,11 @@ function gameEnv.Show(key)
     elseif key == "CalendarSide" then
         local clicked, reason = ClickDayWithAchievements()
         if not clicked then
+            return false, reason
+        end
+    elseif key == "RewardPreview" then
+        local pinned, reason = PinRewardPreview()
+        if not pinned then
             return false, reason
         end
     else
