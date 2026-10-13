@@ -46,7 +46,7 @@ escape.FrameKeys = {"Tooltip", "Text", "MapVerifier", "DataManager", "CalendarSi
 -- Frames whose OnLoad calls addon.Gui:RegisterFrameForClosing (Gui/FramesForClosing.lua; Achievements
 -- is registered in Gui.lua, LoadWithBlizzard_AchievementUI). The headless runner does not load the
 -- mixins, so it registers these itself; keep this in step with the code.
-escape.RegisteredKeys = {"Tooltip", "Text", "MapVerifier", "DataManager", "CalendarSide", "Calendar", "Achievements"}
+escape.RegisteredKeys = {"Tooltip", "Text", "MapVerifier", "DataManager", "CalendarSide", "Calendar", "RewardPreview", "Achievements"}
 
 -- Shown: frames to show, in that order. Branch: popup | menu | dropdown. Presses: Escape presses.
 -- CloseFirst: frames hidden through their own Hide (the close button) before Escape is pressed.
@@ -79,10 +79,11 @@ escape.Scenarios = {
     {Name = "closed-with-button", Shown = {"DataManager"}, CloseFirst = {"DataManager"}, Recorded = {"GameMenu"}, Target = {"GameMenu"}}, -- before 101.0 the proxy stayed shown after the close button, so the next Escape was eaten
     {Name = "closed-with-button-over-achievements", Shown = {"Achievements", "DataManager"}, CloseFirst = {"DataManager"}, Recorded = {}, Target = {}},
     -- The reward preview pinned next to a row (docs/work/2026-10-13-reward-preview-escape). It closes with its window
-    -- (Gui/RewardPreview/RewardPreview.lua) but never registered for Escape, so one press closed the window and the preview
-    -- went with it (seen in game on Classic 5.5.4 on 2026-10-13); the guide panel next to it closes on its own first
-    {Name = "reward-preview-over-achievements", Shown = {"Achievements", "RewardPreview"}, Recorded = {}, Target = {"Achievements"}},
-    {Name = "reward-preview-over-achievements-twice", Shown = {"Achievements", "RewardPreview"}, Presses = 2, Recorded = {"GameMenu"}, Target = {}}
+    -- (Gui/RewardPreview/RewardPreview.lua). Before 103.0 it never registered for Escape, so one press closed the window and
+    -- the preview went with it (seen in game on Classic 5.5.4 on 2026-10-13); now it closes on its own first, like the
+    -- guide panel next to it
+    {Name = "reward-preview-over-achievements", Shown = {"Achievements", "RewardPreview"}, Recorded = {"Achievements"}, Target = {"Achievements"}},
+    {Name = "reward-preview-over-achievements-twice", Shown = {"Achievements", "RewardPreview"}, Presses = 2, Recorded = {}, Target = {}}
 }
 
 -- The game menu is never shown by the suite; the emulated chain records that a press would have shown

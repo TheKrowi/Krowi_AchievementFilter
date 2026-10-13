@@ -154,6 +154,7 @@ end
 function KrowiAF_RewardPreviewMixin:OnLoad()
     TooltipBackdropTemplateMixin.TooltipBackdropOnLoad(self)
     self:SetClampedToScreen(true)
+    addon.Gui:RegisterFrameForClosing(self) -- Escape closes it before its window, like the guide panel next to it
     if self.SetResizeBounds then
         self:SetResizeBounds(200, 220)
     else

@@ -1,5 +1,5 @@
 # Spec: Escape closes the reward preview before the achievement window
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. With the reward preview shown over the achievement window, one Escape closes the preview and leaves the window open.

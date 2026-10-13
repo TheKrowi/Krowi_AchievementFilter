@@ -1,5 +1,5 @@
 # Plan: Escape closes the reward preview before the achievement window
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 A one-line change in shared GUI code. Krowi's decision on 2026-10-13 covers the approach.
 
@@ -18,7 +18,7 @@ Results and departures:
 - `Gui/RewardPreview/RewardPreviewMixin.lua`: `OnLoad` calls `addon.Gui:RegisterFrameForClosing(self)`.
 - `Tests/Escape.lua`: `RewardPreview` joins `escape.RegisteredKeys`, and both scenarios' Recorded become their Target.
 - `_Packaging/Changelog.md`: a Fixed line under 103.0.
-- `Tests/README.md`: the escape row mentions the reward preview.
+- `Tests/README.md` stays as it is: its escape row already reads "the addon's frames".
 
 ## Order of work
 1. Commit 1. Headless: both scenarios PASS and are open, on both clients.

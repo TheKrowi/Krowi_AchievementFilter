@@ -1,5 +1,5 @@
 # Intent: Escape closes the reward preview before the achievement window
-Author: Krowi (maintainer). Source: found in the in-game check of 2026-10-11-latent-bugs on Classic, 2026-10-13. Status: accepted
+Author: Krowi (maintainer). Source: found in the in-game check of 2026-10-11-latent-bugs on Classic, 2026-10-13. Status: done
 
 ## Problem
 With the reward preview pinned next to an achievement row, Escape closes the whole achievement window, and the preview closes with it. The guide panel, which shares the spot next to the row since 103.0 (PR #338), closes on its own first. So the two side panels behave differently on the same key. Seen on Classic; the reward preview code is the same on Retail.
