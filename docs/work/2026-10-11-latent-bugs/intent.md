@@ -1,5 +1,5 @@
 # Intent: Three latent bugs found while exploring achievement guides
-Author: Krowi (maintainer), captured by Claude. Source: found during the exploration of `docs/work/2026-10-11-achievement-guides` (its spec and plan list them under "Found on the way"). Status: accepted
+Author: Krowi (maintainer), captured by Claude. Source: found during the exploration of `docs/work/2026-10-11-achievement-guides` (its spec and plan list them under "Found on the way"). Status: done
 
 ## Problem
 Three small defects that no player has reported. Each was introduced by a rework that left one call site behind.

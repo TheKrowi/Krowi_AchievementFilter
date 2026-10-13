@@ -1,5 +1,5 @@
 # Spec: Three latent bugs found while exploring achievement guides
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. A: every library name the addon's own code asks for (`LibStub("...")`, `KROWI_LIBMAN:GetLibrary("...")`) is one that `Libs/` registers. Clicking a pet guide link opens the copy-link popup, and the General options' Tutorial button opens the tutorial menu, whether or not another Krowi addon is installed.

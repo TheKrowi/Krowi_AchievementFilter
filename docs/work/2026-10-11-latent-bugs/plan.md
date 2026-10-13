@@ -1,8 +1,15 @@
 # Plan: Three latent bugs found while exploring achievement guides
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 Approved by Krowi (maintainer) on 2026-10-11 in plan mode. It touches shared GUI code (the right-click menu, the tooltip, the options), so it waited for that gate.
 
+Results and departures:
+- **Before-run, 2026-10-11, from bf0eb2f5 (Retail 12.1.0, Classic 5.5.4).** `/kaftest menu` matched the headless run with 0 differences on both clients. The missing entry linked to 49 and gave got=enabled. The Xu-Fu link raised "Cannot find a library instance of "Krowi_PopupDialog-1.0"" at `PetBattleLinks.lua:36` (Retail), and the Tutorial button raised it for "Krowi_MenuBuilder-1.0" at `General.lua:62` on both clients. `/kaftest tooltip` recorded no run, because its Ready check waits for the set items on a first manual run. Fixes A and B went ahead; C waits for that before-run.
+- **A deploy from another worktree** (the guide feature's) replaced this branch's Retail deploy and deleted `Tests/Menu.lua` before the first in-game run. Deploys now wait for the maintainer's approval while other sessions are active.
+- **The worktree first linked `Libs/` with junctions.** That made `git diff` fail, so `Check-Repo.ps1 -ChangedOnly` silently missed modified files. It was converted to offline clones of the submodules, the way `New-Worktree.ps1` makes them.
+- **Fix C before its before-run, 2026-10-13, at Krowi's word** ("In game test we will run later today. This should not stop you for now."). C changes no behaviour: `tooltip/most-progress-transmog-set` is "shown" before and after. So one in-game tooltip run from the branch head shows the recorded behaviour, and it doubles as the after-run. On the same word, the branch is pushed and the PR opened before the after-run; the merge waits for it.
+- **The changelog lines went under 103.0**, the next version once 102.0 had shipped, in A's and B's commits.
+- **Rebased onto `dev` 01979513** on 2026-10-13, without conflicts.
 
 ## Context
 While exploring achievement guides, three bugs turned up, each left behind by a rework:
