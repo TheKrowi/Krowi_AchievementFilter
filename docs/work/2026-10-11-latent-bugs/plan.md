@@ -10,6 +10,24 @@ Results and departures:
 - **Fix C before its before-run, 2026-10-13, at Krowi's word** ("In game test we will run later today. This should not stop you for now."). C changes no behaviour: `tooltip/most-progress-transmog-set` is "shown" before and after. So one in-game tooltip run from the branch head shows the recorded behaviour, and it doubles as the after-run. On the same word, the branch is pushed and the PR opened before the after-run; the merge waits for it.
 - **The changelog lines went under 103.0**, the next version once 102.0 had shipped, in A's and B's commits.
 - **Rebased onto `dev` 01979513** on 2026-10-13, without conflicts.
+- **`/code-review` (medium) on PR #339: 14 findings.**
+  - **Fixed, `library-names`:**
+    - it now also checks `Libs/Libs.lua`, the addon's own bootstrap, which asks for `Krowi_ProgressBar_2` and `Krowi_Tutorials_3`;
+    - it skips silent lookups (`, true`) and calls in comments;
+    - it warns and skips when a submodule has no Lua files, instead of failing every correct call site;
+    - its advice no longer names libraries;
+    - it reads `Libs/` from the lint's file cache and only splits files that mention a library. That took it from 780 ms to 111 ms per Stop hook.
+  - **Fixed, tests:**
+    - the tooltip suite's `string.SetColorRed` stub now lives only for its scenarios, so it no longer leaks into later suites;
+    - `Ready.menu` finds its id by field, not by position;
+    - the `Tests/Menu.lua` header reads as history.
+  - **To the backlog:** `AddGoToAchievementLine` concatenates a nil name when the game does not know the linked id, so the whole menu errors. It predates this work and needs its own scenario and before-run.
+  - **To the in-game run:** the Tutorial handler calls `SettingsPanel:Close()`, which a comment in the same file blames for a "blocked from an action" message. Fix A makes that handler reachable for every player. The after-run watches for the message.
+  - **Not changed:**
+    - `PetBattleLinks.lua` looks the dialog up after inserting its section, as `WowheadLink.lua` does; the lint now catches the rename that would break it.
+    - `NewSubmodule` names are not collected, because no call site asks for one by name.
+    - The tooltip suite's `Kind` branches follow the approved plan.
+    - `most-progress-transmog-set` is not yet verified in game; this afternoon's run does that.
 
 ## Context
 While exploring achievement guides, three bugs turned up, each left behind by a rework:

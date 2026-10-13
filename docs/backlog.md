@@ -16,3 +16,9 @@ Follow-ups that are not a work item yet. When one is taken up, it gets its own w
   - both factions' Dalaran portals as area POIs.
 
   The Paladin and Priest portals differ per faction, so their guides take one `:Poi(...):Faction(...)` step per faction.
+
+## From the latent-bugs review (2026-10-13, PR #339)
+
+- **A "go to" entry for an id the game does not know breaks the whole right-click menu.** `AchievementMenu:AddGoToAchievementLine` concatenates the name `addon.GetAchievmentName(id)` returns. That is nil when `GetAchievementInfo` does not know the id, so both `name .. " (Missing)"` and `name .. nameSuffix` raise "attempt to concatenate a nil value".
+  - The callers pass ids from the data: `OtherFaction.lua`, `RequiredFor.lua`, `PartOfAChain.lua` and `FirstCategory.lua`. An id one client lacks, or a removed achievement still in the data, is enough.
+  - The menu suite (`Tests/Menu.lua`) takes a third scenario for an id the game does not know, recorded "error". Its in-game before-run comes before the fix.
