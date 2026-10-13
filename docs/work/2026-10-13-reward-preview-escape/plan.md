@@ -5,6 +5,16 @@ A one-line change in shared GUI code. Krowi's decision on 2026-10-13 covers the 
 
 Results and departures:
 - **Before-run:** Krowi saw the behaviour in game on Classic 5.5.4 on 2026-10-13, during the 2026-10-11-latent-bugs check. The escape scenarios, written next, model it on both clients.
+- **`/code-review` (low) on #340: 9 findings.**
+  - **Taken:**
+    - the registration moved from the preview's `OnLoad` into `gui.RegisterSidePanel`, and the guide panel's own call went;
+    - two scenarios added, `-thrice` and `reward-preview-closed-with-window`. The latter expects `[GameMenu]`: the press after the close button finds nothing left;
+    - the test's stand-in window is hidden in `Reset`, its row takes no mouse input, it needs `AchievementFrame`, and the found achievement is cached through `HasPreviewableEntries`;
+    - the spec's plugin line is corrected: no plugin skins the preview.
+  - **To the backlog:**
+    - Blizzard's bulk closes (death, loss of control, loading screens) close only the topmost addon frame. That is old behaviour for every registered frame.
+    - Re-pinning a side panel that is already shown does not move it to the top of the Escape order.
+  - **Not changed:** headless cannot see whether the real code registers the preview, because the suite mirrors registrations by design (`escape.RegisteredKeys`). The in-game run checks the real code.
 
 ## Files that change
 **Commit 1, the scenarios (`test: reproduce 2026-10-13-reward-preview-escape in the escape suite`)**
@@ -15,7 +25,7 @@ Results and departures:
 - `.claude/tools/headless/run-tests.lua` (`suites.escape`): a `KrowiAF_RewardPreview` model frame that hides with the achievement window.
 
 **Commit 2, the fix (`fix: Escape closes the reward preview before the achievement window (2026-10-13-reward-preview-escape)`)**
-- `Gui/RewardPreview/RewardPreviewMixin.lua`: `OnLoad` calls `addon.Gui:RegisterFrameForClosing(self)`.
+- `Gui/SidePanels.lua`: `RegisterSidePanel` calls `gui:RegisterFrameForClosing(frame)` once per panel, and `Gui/Guide/Panel.lua` drops its own call. The first version put the call in `RewardPreviewMixin:OnLoad`; the review moved it here.
 - `Tests/Escape.lua`: `RewardPreview` joins `escape.RegisteredKeys`, and both scenarios' Recorded become their Target.
 - `_Packaging/Changelog.md`: a Fixed line under 103.0.
 - `Tests/README.md` stays as it is: its escape row already reads "the addon's frames".

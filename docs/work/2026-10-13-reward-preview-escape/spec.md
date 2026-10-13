@@ -12,7 +12,13 @@ Intent: [intent.md](intent.md). Status: done
 - So the topmost registered frame is the achievement window. Escape closes it, and the preview's owner-window hook (`Gui/RewardPreview/RewardPreview.lua:9-13`) closes the preview along with it.
 
 ## Design
-`KrowiAF_RewardPreviewMixin:OnLoad` calls `addon.Gui:RegisterFrameForClosing(self)`, as the guide panel does. `Gui/FramesForClosing.lua` loads before `RewardPreview.xml` in both manifests, so the function exists when `OnLoad` runs. The owner-window hook stays.
+`gui.RegisterSidePanel` (`Gui/SidePanels.lua`) registers each side panel for Escape, once.
+- Both panels call it before their first `Show`: the reward preview in `ShowUnpinned`, the guide panel when it is built. So the `OnShow` hook sees that `Show`.
+- The guide panel's own call (`Gui/Guide/Panel.lua:89`) goes.
+- Escape handling becomes part of the side-panel contract, next to the anchoring and the hide chain, so a later side panel cannot miss it. The first version registered only the preview, in its `OnLoad`; the code review proposed this.
+- The owner-window hook stays.
+
+**Known limitation, unchanged by this work.** Blizzard's bulk closes call `CloseAllWindows`: on death, on loss of control, at a loading screen. Each call closes only the addon's topmost registered frame (`Gui/FramesForClosing.lua`). With a preview open, that is now the preview rather than the window. Every registered frame has behaved this way since 101.0, so it is in `docs/backlog.md`.
 
 ## Options considered
 - **Register the preview for Escape (chosen).** It behaves like the guide panel and every other addon frame.
@@ -21,13 +27,15 @@ Intent: [intent.md](intent.md). Status: done
 ## Areas of concern
 - **Taint and secret values:** none new. The preview is the addon's own frame; registering hooks its `OnShow` and `OnHide` with the addon's handlers, as for the other frames. There is no `UISpecialFrames` write beyond the existing `KrowiAF_SpecialFrame` proxy.
 - **Retail and Classic:** the same code and the same manifest order on both.
-- **Plugins and skins:** ElvUI and GW2_UI skin the preview but do not touch its Escape handling.
+- **Plugins and skins:** none. No plugin references `KrowiAF_RewardPreview` (searched `Plugins/`).
 - **Saved variables and migrations, localization, data snapshots:** none.
 
 ## Verification
 - **Escape suite:**
-  - `reward-preview-over-achievements`: Recorded `[]` (both closed), Target `[Achievements]`.
+  - `reward-preview-over-achievements`: Recorded `[]` (both closed), Target `[Achievements]` (requirement 1).
   - `reward-preview-over-achievements-twice`: Recorded `[GameMenu]`, Target `[]`.
+  - `reward-preview-over-achievements-thrice`: Recorded and Target `[GameMenu]`, so no press is eaten (requirement 2).
+  - `reward-preview-closed-with-window`: the window's close button first. Recorded and Target `[GameMenu]`: the preview went with the window, and the next press reaches the game menu (requirement 3).
 
   In game, the preview is pinned next to a stand-in row inside the achievement window. Headlessly, a model frame closes with the window.
 - **In game, both clients:** `/kaftest escape`, `/reload`, `Read-GameTests.ps1`. Then pin a real reward preview and press Escape twice.
