@@ -30,8 +30,8 @@ local tooltip = addon.Tests.Tooltip
 --
 -- most-progress-transmog-set (docs/work/2026-10-11-latent-bugs, C): MostProgress.lua hid its section on achievements with
 -- transmog set data through achievement.TransmogSets, a field nothing has filled since transmog sets moved to
--- TransmogSetIds in 2024, so the section shows. The maintainer chose to keep it showing (2026-10-11); the scenario records
--- that decision. The achievement is seen as neither completed nor account-wide, so only a transmog check could hide it.
+-- TransmogSetIds in 2024, so the section shows. The maintainer chose to keep it showing (2026-10-11) and the dead check is
+-- gone; the scenario records that decision. The achievement is seen as neither completed nor account-wide, so only a transmog check could hide it.
 tooltip.Scenarios = {
     {Name = "transmog-set-progress", Id = 40469, -- I'm Bringing Nerub-ack, DataAddons/Retail/11_TheWarWithin/TransmogSetData.lua
         Recorded = "done", Target = "done"},
