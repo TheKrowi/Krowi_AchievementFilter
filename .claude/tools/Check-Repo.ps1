@@ -28,6 +28,8 @@
       luarc           [Error]   .luarc.json diagnostics.globals holds exactly what the language server
                                  cannot see on its own: every entry is read by an addon file (luac -l
                                  GETGLOBAL), none is assigned by one, no duplicates, sorted ordinally
+      util-flags       [Error]   every addon.Util.Is* flag or check the addon reads is defined in Libs/Krowi_Util;
+                                 always tree-wide, because a removal there breaks files nobody touched
       luals            [Warning] the Lua language server reports nothing on a tree-wide check, using the
                                  VS Code extensions sumneko.lua and ketho.wow-api when installed
                                  (about 30 s; full runs only, or -Luals; skipped when they are absent)
@@ -479,6 +481,39 @@ foreach ($rel in $ownLuaFiles) {
 }
 Write-Timing 'settings-close'
 
+# --- util-flags: every addon.Util.Is* the addon reads is one Krowi_Util defines ----------------------------------
+# Krowi_Util dropped IsWrathClassic and IsCataClassic (its 6ee1198, 2025-11-22) and nothing noticed: reading an
+# undefined flag gives nil, so every branch on it took its other side on the 38002 Wrath client
+# (docs/work/2026-10-13-wrath-classic-flags). The names come from Libs/Krowi_Util: `lib.IsX =` and
+# `function lib.IsX(`. Always tree-wide, because a removal there breaks files nobody touched; a warning and no check
+# when the submodule has no Is* names (a checkout made without it).
+$utilFlags = [hashtable]::new([StringComparer]::Ordinal)
+foreach ($rel in $luaFiles) {
+    if (-not $rel.StartsWith('Libs/Krowi_Util/')) { continue }
+    $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
+    foreach ($m in [regex]::Matches($text, '\blib\s*[.:]\s*(Is\w+)\s*=|\bfunction\s+lib\s*[.:]\s*(Is\w+)')) {
+        $utilFlags[$m.Groups[1].Value + $m.Groups[2].Value] = $true
+    }
+}
+if ($utilFlags.Count -eq 0) {
+    Add-Finding 'util-flags' 'Warning' 'Libs/Krowi_Util' 1 "skipped: no Is* names in Libs/Krowi_Util, so the defined flags are unknown; make the checkout with New-Worktree.ps1"
+} else {
+    foreach ($rel in $ownLuaFiles) {
+        $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
+        if (-not $text.Contains('Util.Is')) { continue }
+        $lineNo = 0
+        foreach ($line in ($text -split "`r?`n")) {
+            $lineNo++
+            foreach ($m in [regex]::Matches(($line -replace '--.*$', ''), '\baddon\.Util\.(Is\w+)')) {
+                if (-not $utilFlags.ContainsKey($m.Groups[1].Value)) {
+                    Add-Finding 'util-flags' 'Error' $rel $lineNo "reads addon.Util.$($m.Groups[1].Value), which Libs/Krowi_Util does not define, so it is always nil and the branch on it never runs"
+                }
+            }
+        }
+    }
+}
+Write-Timing 'util-flags'
+
 # --- luarc: .luarc.json diagnostics.globals stays exact ------------------------------------------
 # The language server resolves the WoW API and FrameXML (ketho.wow-api annotations) and every global
 # an addon file assigns by itself, so the list holds only what it cannot see: global strings,
@@ -803,7 +838,7 @@ if (Test-Path $ignoreFile) {
         if ($t -match '^(\S+)\s+(\S+)$') { $ignore += @{ Rule = $Matches[1]; Path = $Matches[2] } }
     }
 }
-$alwaysOn = @('section-order', 'dup-id', 'saved-variables', 'lua-syntax', 'globals', 'removed-api', 'library-names', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'data-snapshot', 'zone-decisions', 'mapverifier', 'changelog')
+$alwaysOn = @('section-order', 'dup-id', 'saved-variables', 'lua-syntax', 'globals', 'removed-api', 'library-names', 'util-flags', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'data-snapshot', 'zone-decisions', 'mapverifier', 'changelog')
 $report = $findings | Where-Object {
     $f = $_
     -not ($ignore | Where-Object { ($_.Rule -eq '*' -or $_.Rule -eq $f.Rule) -and $f.Path -like $_.Path })
