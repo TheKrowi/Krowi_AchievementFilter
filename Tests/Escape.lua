@@ -44,8 +44,9 @@ local escape = addon.Tests.Escape
 escape.FrameKeys = {"Tooltip", "Text", "MapVerifier", "DataManager", "CalendarSide", "Calendar", "RewardPreview", "Achievements", "GameMenu"}
 
 -- Frames whose OnLoad calls addon.Gui:RegisterFrameForClosing (Gui/FramesForClosing.lua; Achievements
--- is registered in Gui.lua, LoadWithBlizzard_AchievementUI). The headless runner does not load the
--- mixins, so it registers these itself; keep this in step with the code.
+-- is registered in Gui.lua, LoadWithBlizzard_AchievementUI, and the side panels such as the reward
+-- preview in Gui/SidePanels.lua, RegisterSidePanel). The headless runner does not load the mixins, so
+-- it registers these itself; keep this in step with the code.
 escape.RegisteredKeys = {"Tooltip", "Text", "MapVerifier", "DataManager", "CalendarSide", "Calendar", "RewardPreview", "Achievements"}
 
 -- Shown: frames to show, in that order. Branch: popup | menu | dropdown. Presses: Escape presses.
@@ -83,7 +84,10 @@ escape.Scenarios = {
     -- the preview went with it (seen in game on Classic 5.5.4 on 2026-10-13); now it closes on its own first, like the
     -- guide panel next to it
     {Name = "reward-preview-over-achievements", Shown = {"Achievements", "RewardPreview"}, Recorded = {"Achievements"}, Target = {"Achievements"}},
-    {Name = "reward-preview-over-achievements-twice", Shown = {"Achievements", "RewardPreview"}, Presses = 2, Recorded = {}, Target = {}}
+    {Name = "reward-preview-over-achievements-twice", Shown = {"Achievements", "RewardPreview"}, Presses = 2, Recorded = {}, Target = {}},
+    {Name = "reward-preview-over-achievements-thrice", Shown = {"Achievements", "RewardPreview"}, Presses = 3, Recorded = {"GameMenu"}, Target = {"GameMenu"}},
+    -- The window's close button takes the preview with it, so the press after it finds nothing of the addon's left
+    {Name = "reward-preview-closed-with-window", Shown = {"Achievements", "RewardPreview"}, CloseFirst = {"Achievements"}, Recorded = {"GameMenu"}, Target = {"GameMenu"}}
 }
 
 -- The game menu is never shown by the suite; the emulated chain records that a press would have shown
@@ -249,18 +253,22 @@ local getters = {
 
 -- A stand-in window inside the achievement window with a stand-in row: Gui/SidePanels.lua's GetOwnerWindow takes a
 -- frame with AchievementId and Button for a popout, so the preview closes with the achievement window like a real one,
--- whichever category the window shows
-local previewOwner
+-- whichever category the window shows. Hidden again by Reset, and its row takes no mouse input
+local previewOwner, previewAchievementId
 local function PinRewardPreview()
-    local achievementId
-    for _, id in ipairs(addon.Data.AchievementIds) do
-        if addon.RewardPreviewData.GetPreviewableEntries(id) then
-            achievementId = id
-            break
-        end
+    if not AchievementFrame then
+        return false, "the achievement window is not loaded; show Achievements first"
     end
-    if not achievementId then
-        return false, "no achievement has a reward preview on this client"
+    if not previewAchievementId then
+        for _, id in ipairs(addon.Data.AchievementIds) do
+            if addon.RewardPreviewData.HasPreviewableEntries(id) then
+                previewAchievementId = id
+                break
+            end
+        end
+        if not previewAchievementId then
+            return false, "no achievement has a reward preview on this client"
+        end
     end
     if not previewOwner then
         previewOwner = CreateFrame("Frame", nil, AchievementFrame)
@@ -269,9 +277,11 @@ local function PinRewardPreview()
         previewOwner.Button = CreateFrame("Button", nil, previewOwner)
         previewOwner.Button:SetSize(10, 10)
         previewOwner.Button:SetPoint("TOPLEFT")
+        previewOwner.Button:EnableMouse(false)
     end
-    previewOwner.AchievementId = achievementId
-    addon.Gui.RewardPreview:TogglePin(previewOwner.Button, achievementId)
+    previewOwner.AchievementId = previewAchievementId
+    previewOwner:Show()
+    addon.Gui.RewardPreview:TogglePin(previewOwner.Button, previewAchievementId)
     return true
 end
 
@@ -489,6 +499,9 @@ function gameEnv.Reset()
         if frame and frame:IsShown() then
             frame:Hide() -- the addon's own close path for every frame, the achievement window included
         end
+    end
+    if previewOwner then
+        previewOwner:Hide()
     end
     if KrowiAF_SpecialFrame:IsShown() then
         KrowiAF_SpecialFrame:Hide()

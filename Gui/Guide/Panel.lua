@@ -86,8 +86,7 @@ local function Create()
     frame.Content:SetWidth(width - 2 * padding)
 
     frame:Hide()
-    addon.Gui:RegisterFrameForClosing(frame)
-    addon.Gui.RegisterSidePanel(frame)
+    addon.Gui.RegisterSidePanel(frame) -- also registers it for Escape
     return frame
 end
 
