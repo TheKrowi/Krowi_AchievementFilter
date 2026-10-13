@@ -67,7 +67,7 @@ function category:AddCategory(cat)
 end
 ```
 
-With 1200+ categories and 6400+ achievements, this meaningfully reduces memory allocation. The same pattern appears for `MoreCategories`, `WatchListCategories`, `ExcludedCategories`, `TransmogSets`, etc.
+With 1200+ categories and 6400+ achievements, this meaningfully reduces memory allocation. The same pattern appears for `MoreCategories`, `WatchListCategories`, `ExcludedCategories`, etc.
 
 ### 5. Coroutine-Based Async Cache Build
 

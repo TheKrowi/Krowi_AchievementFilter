@@ -149,12 +149,6 @@ function achievement:AddNext(ach, addBack)
     end
 end
 
-function achievement:AddTransmogSet(transmogSet)
-    self.TransmogSets = self.TransmogSets or {}
-    tinsert(self.TransmogSets, transmogSet)
-    return transmogSet
-end
-
 function achievement:GetObtainableState()
     return addon.Data.TemporaryObtainable:GetObtainableState(self)
 end

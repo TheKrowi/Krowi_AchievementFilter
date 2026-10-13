@@ -9,8 +9,6 @@ data.TabsOrder = {}
 
 data.TasksGroups = {}
 
-data.TransmogSets = {}
-
 data.BuildVersions = {}
 data.BuildVersionsGrouped = {}
 data.ContentTimeline = nil -- Retail patch id -> the patch where this client reached it, nil on Retail; see Api/BuildVersionDataApi.lua

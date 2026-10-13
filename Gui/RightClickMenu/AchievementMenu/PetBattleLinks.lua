@@ -2,6 +2,8 @@ local _, addon = ...
 local section = {}
 tinsert(addon.Gui.RightClickMenu.AchievementMenu.Sections, section)
 
+local popupDialog = LibStub("Krowi_PopupDialog_2")
+
 function section:CheckAdd(achievement)
     return addon.Data.PetBattleLinkData and addon.Data.PetBattleLinkData[achievement.Id]
 end
@@ -22,7 +24,7 @@ local function AddCriteriumChildren(menu, children)
             menu,
             child.Text,
             function()
-                LibStub("Krowi_PopupDialog-1.0").ShowExternalLink(child.Link)
+                popupDialog.ShowExternalLink(child.Link)
             end
         )
     end
@@ -33,7 +35,7 @@ local function AddCriterium(menu, achievement, criterium)
     local criteriumFunc
     if criterium.Link then
         criteriumFunc = function()
-            LibStub("Krowi_PopupDialog-1.0").ShowExternalLink(criterium.Link)
+            popupDialog.ShowExternalLink(criterium.Link)
         end
     end
     local criteriumLink = menuBuilder:CreateSubmenuButton(
@@ -67,7 +69,7 @@ function AddData(menu, achievement, linkText)
     local petBattleLinkFunc
     if petBattleLinkData.Link then
         petBattleLinkFunc = function()
-            LibStub("Krowi_PopupDialog-1.0").ShowExternalLink(petBattleLinkData.Link)
+            popupDialog.ShowExternalLink(petBattleLinkData.Link)
         end
     end
     local petBattleLink = menuBuilder:CreateSubmenuButton(

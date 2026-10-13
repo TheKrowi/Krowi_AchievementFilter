@@ -19,7 +19,13 @@
       removed-api      [Error]   no addon file reads a Blizzard global the Retail client no longer has (luac -l
                                  GETGLOBAL against Check-Repo.removed-api); always tree-wide, because a
                                  removal breaks files nobody touched
-      luarc            [Error]   .luarc.json diagnostics.globals holds exactly what the language server
+      library-names    [Error]   every library name addon code (and Libs/Libs.lua) passes to LibStub( or
+                                 KROWI_LIBMAN:GetLibrary( is one a NewLibrary( call in Libs/ registers; always
+                                 tree-wide, because a library rename breaks call sites nobody touched
+      settings-close   [Error]   addon code closes the settings panel with SettingsPanel:Close(true): without the
+                                 argument it reopens the game menu through ToggleGameMenu, whose SpellStopCasting
+                                 call is forbidden from addon code
+      luarc           [Error]   .luarc.json diagnostics.globals holds exactly what the language server
                                  cannot see on its own: every entry is read by an addon file (luac -l
                                  GETGLOBAL), none is assigned by one, no duplicates, sorted ordinally
       luals            [Warning] the Lua language server reports nothing on a tree-wide check, using the
@@ -404,6 +410,75 @@ if (Test-Path $luac) {
 }
 Write-Timing 'globals'
 
+# --- library-names: addon code asks LibStub only for libraries Libs/ registers -------------------
+# A library rename in Libs/ (Krowi_PopupDialog-1.0 became Krowi_PopupDialog_2 in Release 92.0) leaves call
+# sites behind that fail only when clicked, so every addon file is checked, also with -ChangedOnly. The
+# registered names come from each NewLibrary( call in Libs/: a literal, or a local set to a literal in the
+# same file (local MAJOR, MINOR = "AceDB-3.0", 27). Function definitions and arguments that resolve to no
+# literal (LibMan's generic wrapper) are skipped.
+# - Checked: addon code and Libs/Libs.lua, the addon's own bootstrap next to the submodules.
+# - Left alone: a silent lookup (LibStub("X", true) returns nil instead of raising) and a call in a comment.
+# - A submodule without Lua files (a worktree made without its submodules) would turn every call site into
+#   an error, so the rule then warns once and skips.
+$luaFolders = [Collections.Generic.HashSet[string]]::new()
+foreach ($rel in $luaFiles) { $parts = $rel.Split('/'); if ($parts.Count -gt 2) { [void]$luaFolders.Add($parts[0] + '/' + $parts[1]) } }
+$gitmodules = Join-Path $root '.gitmodules'
+$emptySubmodules = @(if (Test-Path $gitmodules) {
+    [regex]::Matches([IO.File]::ReadAllText($gitmodules), '(?m)^\s*path\s*=\s*(\S+)') |
+        ForEach-Object { $_.Groups[1].Value } | Where-Object { -not $luaFolders.Contains($_) }
+})
+if ($emptySubmodules) {
+    Add-Finding 'library-names' 'Warning' '.gitmodules' 1 "skipped: no Lua files in $($emptySubmodules -join ', '), so the registered library names are unknown; make the checkout with New-Worktree.ps1"
+} else {
+    $libraryNames = [hashtable]::new([StringComparer]::Ordinal)
+    foreach ($rel in $luaFiles) {
+        if (-not $rel.StartsWith('Libs/')) { continue }
+        $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
+        if (-not $text.Contains('NewLibrary(')) { continue }
+        foreach ($m in [regex]::Matches($text, '(?m)^(?!\s*(?:local\s+)?function\b).*?NewLibrary\(\s*(?:nil\s*,\s*)?([^,\)\s]+)')) {
+            $arg = $m.Groups[1].Value
+            if ($arg -match '^["''](.+)["'']$') { $libraryNames[$Matches[1]] = $true; continue }
+            if ($arg -notmatch '^[A-Za-z_]\w*$') { continue }
+            $definition = [regex]::Match($text, '(?m)^\s*(?:local\s+)?' + [regex]::Escape($arg) + '\s*(?:,\s*[A-Za-z_]\w*\s*)*=\s*["'']([^"'']+)["'']')
+            if ($definition.Success) { $libraryNames[$definition.Groups[1].Value] = $true }
+        }
+    }
+    $libraryCallRx = [regex]'(?:\bLibStub\s*(?::\s*GetLibrary\s*)?\(|\bKROWI_LIBMAN\s*:\s*GetLibrary\s*\()\s*["'']([^"'']+)["'']\s*(,\s*true\b)?'
+    foreach ($rel in @($ownLuaFiles) + @('Libs/Libs.lua')) {
+        if (-not $fileBytes.ContainsKey($rel)) { continue }
+        $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
+        if (-not ($text.Contains('LibStub') -or $text.Contains('GetLibrary'))) { continue }   # most files ask for no library
+        $lineNo = 0
+        foreach ($line in ($text -split "`r?`n")) {
+            $lineNo++
+            foreach ($m in $libraryCallRx.Matches(($line -replace '--.*$', ''))) {
+                $name = $m.Groups[1].Value
+                if ($m.Groups[2].Success -or $libraryNames.ContainsKey($name)) { continue }
+                Add-Finding 'library-names' 'Error' $rel $lineNo "asks for library '$name', which no NewLibrary call in Libs/ registers, so the call raises 'Cannot find a library instance'; use the name a NewLibrary call in Libs/ registers"
+            }
+        }
+    }
+}
+Write-Timing 'library-names'
+
+# --- settings-close: addon code closes the settings panel without Blizzard's way back to the game menu -----------
+# SettingsPanel:Close() returns to the panel the settings were opened from through ToggleGameMenu(). Called from
+# addon code that runs tainted, and ToggleGameMenu calls the protected SpellStopCasting: ADDON_ACTION_FORBIDDEN on
+# Mists Classic (docs/work/2026-10-11-latent-bugs, verified in game 2026-10-13). It also reopens the game menu
+# behind whatever the addon shows next. Close(true) commits and hides the panel without that step.
+foreach ($rel in $ownLuaFiles) {
+    $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
+    if (-not $text.Contains('SettingsPanel')) { continue }
+    $lineNo = 0
+    foreach ($line in ($text -split "`r?`n")) {
+        $lineNo++
+        if (($line -replace '--.*$', '') -match '\bSettingsPanel\s*:\s*Close\s*\(\s*\)') {
+            Add-Finding 'settings-close' 'Error' $rel $lineNo "SettingsPanel:Close() goes back to the game menu through ToggleGameMenu, whose SpellStopCasting call is forbidden from addon code; call SettingsPanel:Close(true)"
+        }
+    }
+}
+Write-Timing 'settings-close'
+
 # --- luarc: .luarc.json diagnostics.globals stays exact ------------------------------------------
 # The language server resolves the WoW API and FrameXML (ketho.wow-api annotations) and every global
 # an addon file assigns by itself, so the list holds only what it cannot see: global strings,
@@ -728,7 +803,7 @@ if (Test-Path $ignoreFile) {
         if ($t -match '^(\S+)\s+(\S+)$') { $ignore += @{ Rule = $Matches[1]; Path = $Matches[2] } }
     }
 }
-$alwaysOn = @('section-order', 'dup-id', 'saved-variables', 'lua-syntax', 'globals', 'removed-api', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'data-snapshot', 'zone-decisions', 'mapverifier', 'changelog')
+$alwaysOn = @('section-order', 'dup-id', 'saved-variables', 'lua-syntax', 'globals', 'removed-api', 'library-names', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'data-snapshot', 'zone-decisions', 'mapverifier', 'changelog')
 $report = $findings | Where-Object {
     $f = $_
     -not ($ignore | Where-Object { ($_.Rule -eq '*' -or $_.Rule -eq $f.Rule) -and $f.Path -like $_.Path })

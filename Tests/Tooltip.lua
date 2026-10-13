@@ -2,7 +2,8 @@ local _, addon = ...
 addon.Tests.Tooltip = {}
 local tooltip = addon.Tests.Tooltip
 
--- Whether the achievement tooltip's transmog set progress section finishes (docs/work/2026-10-08-getiteminfo-removed).
+-- Whether the achievement tooltip's transmog set progress section finishes (docs/work/2026-10-08-getiteminfo-removed),
+-- and whether the Most progress section shows on an achievement with transmog set data (docs/work/2026-10-11-latent-bugs).
 -- A scenario builds the tooltip of an achievement with transmog set data the way hovering it does
 -- (addon.Gui.AchievementTooltip:ShowTooltip) and records "done" when the section replaced its "Collecting data" line
 -- with the set progress lines, or "stuck" when "Collecting data" is still there. Recorded is the behaviour of the
@@ -21,20 +22,38 @@ local tooltip = addon.Tests.Tooltip
 -- GET_ITEM_INFO_RECEIVED. The suite's Ready check requests the items and waits until the cache has them, so the line can
 -- be read right after the tooltip is built. Retail only: no Classic achievement has transmog set data.
 
+-- Kind: nil for the transmog set progress section above; "most-progress" for whether the Most progress section shows
 -- Id: the achievement whose tooltip is built (one with TransmogSetIds; the headless model uses a fake with this id)
--- Recorded / Target: "done" or "stuck"
+-- Recorded / Target: "done" or "stuck"; for "most-progress", "shown" or "hidden"
 -- Before the fix the section never finished on 12.1.5 ("stuck", verified in game on the 12.1.5 PTR on 2026-10-08); it now
 -- reads the item through C_Item.GetItemInfo
+--
+-- most-progress-transmog-set (docs/work/2026-10-11-latent-bugs, C): MostProgress.lua hid its section on achievements with
+-- transmog set data through achievement.TransmogSets, a field nothing has filled since transmog sets moved to
+-- TransmogSetIds in 2024; that dead check is gone. The section stays hidden all the same (verified in game on Retail
+-- 12.1.0 on 2026-10-13), with the achievement seen as neither completed nor account-wide. The criteria count, which the
+-- run records as an observation, is the only gate left that hides it. The maintainer chose to keep today's behaviour
+-- (2026-10-11); the scenario records it.
 tooltip.Scenarios = {
     {Name = "transmog-set-progress", Id = 40469, -- I'm Bringing Nerub-ack, DataAddons/Retail/11_TheWarWithin/TransmogSetData.lua
-        Recorded = "done", Target = "done"}
+        Recorded = "done", Target = "done"},
+    {Name = "most-progress-transmog-set", Kind = "most-progress", Id = 40469,
+        Recorded = "hidden", Target = "hidden"}
 }
 
 -- env: IsRetail(), Setup(scenario, observations) -> ok[, reason], Show(scenario) -> ok[, reason], Lines() -> list of the
--- tooltip's left texts, CollectingText(), ProgressText(), Teardown()
+-- tooltip's left texts, CollectingText(), ProgressText(), MostProgressText(), Teardown()
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
-local function Inspect(env)
+local function Inspect(env, scenario)
     local lines = env.Lines()
+    if scenario.Kind == "most-progress" then
+        for _, text in ipairs(lines) do
+            if text == env.MostProgressText() then
+                return "shown"
+            end
+        end
+        return "hidden"
+    end
     local progressAt
     for i, text in ipairs(lines) do
         if text == env.CollectingText() then
@@ -57,7 +76,7 @@ local function RunScenario(env, scenario, observations)
         local ok, err = pcall(function()
             local shown, why = env.Show(scenario)
             if shown then
-                got = Inspect(env)
+                got = Inspect(env, scenario)
             else
                 reason = why or "cannot show the tooltip"
             end
@@ -113,6 +132,10 @@ function gameEnv.ProgressText()
     return addon.L["Objectives progress"]
 end
 
+function gameEnv.MostProgressText()
+    return addon.L["Most progress"]
+end
+
 -- The item ids of the achievement's usable transmog sets; nil and a reason when the scenario cannot run here
 local function GetSetItems(achievementId)
     local achievement = addon.Data.Achievements[achievementId]
@@ -143,7 +166,7 @@ addon.Tests.Ready.tooltip = function()
         return false, "the achievement data is not loaded yet"
     end
     for _, scenario in ipairs(tooltip.Scenarios) do
-        local items = GetSetItems(scenario.Id)
+        local items = not scenario.Kind and GetSetItems(scenario.Id) -- only the transmog set progress reads the set items
         for _, itemId in ipairs(items or {}) do
             if not select(9, C_Item.GetItemInfo(itemId)) then
                 C_Item.RequestLoadItemDataByID(itemId)
@@ -155,17 +178,32 @@ addon.Tests.Ready.tooltip = function()
 end
 
 local anchor, savedGetItemInfo, cleared, touchedGlobal
+local function PlaceAnchor()
+    anchor = anchor or CreateFrame("Frame", nil, UIParent)
+    anchor:SetSize(100, 20)
+    anchor:SetPoint("CENTER")
+end
+
 function gameEnv.Setup(scenario, observations)
     if not addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.Show then
         return false, "Objectives progress is off in the tooltip options"
+    end
+    if scenario.Kind == "most-progress" then -- leaves the global GetItemInfo alone: only the transmog scenario needs it gone
+        if addon.Options.db.profile.Tooltip.Achievements.MostProgress.Characters <= 0 then
+            return false, "Most progress is set to 0 characters in the tooltip options"
+        end
+        if not addon.Data.Achievements[scenario.Id] then
+            return false, "achievement " .. scenario.Id .. " is not registered"
+        end
+        tinsert(observations, ("achievement %d has %d criteria (GetAchievementNumCriteria)"):format(scenario.Id, GetAchievementNumCriteria(scenario.Id)))
+        PlaceAnchor()
+        return true
     end
     local items, reason = GetSetItems(scenario.Id)
     if not items then
         return false, reason
     end
-    anchor = anchor or CreateFrame("Frame", nil, UIParent)
-    anchor:SetSize(100, 20)
-    anchor:SetPoint("CENTER")
+    PlaceAnchor()
     -- Last, so nothing that can error runs between clearing the global and RunScenario's pcall around Show and Teardown.
     -- Only a client that still has the global gets a write (12.1.0 with loadDeprecationFallbacks on); 12.1.5 gets none.
     savedGetItemInfo = _G["GetItemInfo"] -- by string: the removed-api lint rule bans reading the name, which is the point
@@ -179,6 +217,11 @@ end
 
 function gameEnv.Show(scenario)
     local achievement = addon.Data.Achievements[scenario.Id]
+    if scenario.Kind == "most-progress" then
+        -- Seen as neither completed nor account-wide, whatever this character has done, so only a transmog check could
+        -- hide the section; fields and methods fall through to the real achievement
+        achievement = setmetatable({IsCompleted = false, IsAccountWide = false}, {__index = achievement})
+    end
     anchor.Achievement = achievement -- the section checks the tooltip owner's achievement before it writes
     addon.Gui.AchievementTooltip:ShowTooltip(anchor, achievement)
     return true
