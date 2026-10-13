@@ -53,6 +53,9 @@ Results and departures:
     - in combat, `HideUIPanel` refuses addon code.
 
     In both cases the helper leaves the panel open for the player to close.
+  - **Recheck in game, 2026-10-13, from 54051603:**
+    - Classic: Krowi reports the Tutorial and Screenshot Mode work, and BugGrabber has nothing after the 15:22 error.
+    - Retail: `/kaftest tooltip` gave 2 passed with 0 differences, and observed "achievement 40469 has 0 criteria", which confirms the correction to C. There are no errors.
   - The reviewer also found that `addon.Util.IsWrathClassic` is never defined. The helper replaces the two dead `InterfaceOptionsFrame:Hide()` branches; the other 18 reads went to `docs/backlog.md`, and the instruction file no longer names the flag.
   - Guard: the `settings-close` lint rule, test first (it flagged `:51` and `:107`, held in the ignore file for one commit), on the same footing as A's `library-names`.
   - A changelog line was added under 103.0.
