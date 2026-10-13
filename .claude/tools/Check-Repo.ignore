@@ -5,11 +5,3 @@ files-xml Api/ApiDocumentation.lua       # documentation only
 # Line endings owned by external tools
 line-endings Localization/*.lua          # CurseForge exports these with LF
 line-endings Krowi_AchievementFilter.toc # written by the addon manager with LF
-# Known defects held until their fix lands (docs/work/2026-10-13-wrath-classic-flags: Krowi_Util dropped IsWrathClassic and IsCataClassic)
-util-flags Gui/BlizzardOverrides.lua     # the submodule bump removes these seven lines
-util-flags Gui/Gui.lua
-util-flags Gui/RightClickMenu/AchievementMenu/WowheadLink.lua
-util-flags Gui/WindowFrames/AchievementButton/AchievementButtonMixin.lua
-util-flags Gui/WindowFrames/AchievementFrameTabButtonFactory/AchievementFrameTabButtonFactory.lua
-util-flags Gui/WindowFrames/FilterButton/FilterButtonMixin.lua
-util-flags Plugins/ElvUI.lua
