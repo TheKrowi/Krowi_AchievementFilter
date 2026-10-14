@@ -116,7 +116,7 @@ function achievementButton.ProcessModifiers(self, ignoreModifiers)
 	if addon.IsCustomModifierKeyDown(addon.Options.db.profile.Achievements.Modifiers.PasteToChat) then
 		local achievementLink = GetAchievementLink(self.Achievement.Id)
 		if achievementLink then
-			if ChatEdit_InsertLink(achievementLink) then
+			if ChatFrameUtil.InsertLink(achievementLink) then
 				return true
 			end
 			if SocialPostFrame and Social_IsShown() then

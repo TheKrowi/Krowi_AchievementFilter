@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Achievement guides now name the people to talk to in your game's language
 
+### Fixed
+- Pasting an achievement link into chat with the paste-to-chat modifier no longer gives an error when the game's deprecated API fallbacks are turned off
+
 ## 103.0 - 2026-10-14
 ### Added
 - The class-specific Campaign, Hidden Potential, Raise an Army and Legendary Research achievements are now tied to their class hall, so they show in the Current Zone and Selected Zone categories and on the world map
