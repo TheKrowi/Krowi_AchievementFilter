@@ -181,11 +181,11 @@ guide.Scenarios = {
     -- A name the client gave once is kept for the session, so a secret value later on (an encounter) does not switch
     -- the step back to the data's English name (docs/work/2026-10-14-guide-row-npc-name). Headless only, like the above
     {Name = "npc-name-kept", Kind = "NpcName", NpcId = 424246, Kept = true,
-        Recorded = "fallback", Target = "game"},
+        Recorded = "game", Target = "game"},
     -- The block under an expanded row picks the NPC's name up at the next list update once the client has it, instead
     -- of keeping the English name it was first drawn with. Headless only: the game cannot fill its cache on demand
     {Name = "row-npc-name-arrives", Kind = "RowName", NpcId = 424245, Options = {ExpandedRow = true, WaypointProvider = provider.MapPin},
-        Recorded = "fallback", Target = "game"},
+        Recorded = "game", Target = "game"},
     -- At login the addon asks the client once for every guide NPC, so the name is cached before a guide shows
     {Name = "npc-names-requested", Kind = "NpcRequest",
         Recorded = "97485", Target = "97485"},
