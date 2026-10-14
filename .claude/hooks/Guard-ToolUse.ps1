@@ -4,8 +4,9 @@
     leaving them to the Stop-hook lint and a repair. Fails open: any problem in the hook lets the call through.
 
     Bash, PowerShell
-      in-place stream edits    sed -i / --in-place, perl -i, awk -i inplace: MSYS rewrites the whole file with
-                               LF endings (and awk adds a final newline), even when the pattern does not match
+      in-place stream edits    sed -i / --in-place, perl -i, awk -i inplace run as a command (not merely mentioned
+                               in a string): MSYS rewrites the whole file with LF endings (and awk adds a final
+                               newline), even when the pattern does not match
       Bash file writes         >, >>, &> and tee into a repo file: same LF problem; Bash is for read-only work
       inline DB queries        Invoke-WebRequest / Invoke-RestMethod / curl / wget at localhost:5000; the
                                maintainer rejects them, the designated lookup scripts take -Ids/-Terms/-Names
@@ -36,7 +37,8 @@ function Get-RepoPath([string]$Path) {
 # A checkout's own path inside an agent worktree counts the same as in the main tree
 function Get-CheckoutPath([string]$Rel) { $Rel -replace '^\.claude/worktrees/[^/]+/', '' }
 
-# Bash: blank out heredoc bodies and quoted strings, so a '>' in Lua code or a message is not a redirect
+# Blank out heredoc bodies and the operators, brackets and line breaks inside quoted strings, so a '>' or a 'sed -i'
+# in Lua code, a message or a test payload is not taken for a redirect or a command
 function Get-ShellSkeleton([string]$Command) {
     $lines = $Command -split "`n"
     $out = [System.Collections.Generic.List[string]]::new()
@@ -50,8 +52,8 @@ function Get-ShellSkeleton([string]$Command) {
         if ($line -match "<<-?\s*['""]?(\w+)['""]?") { $delimiter = $Matches[1] }
     }
     $s = $out -join "`n"
-    $s = [regex]::Replace($s, "'[^']*'", { param($m) "'" + ($m.Value.Substring(1, $m.Value.Length - 2) -replace '[>|;&]', '_') + "'" })
-    $s = [regex]::Replace($s, '"(?:[^"\\]|\\.)*"', { param($m) '"' + ($m.Value.Substring(1, $m.Value.Length - 2) -replace '[>|;&]', '_') + '"' })
+    $s = [regex]::Replace($s, "'[^']*'", { param($m) "'" + ($m.Value.Substring(1, $m.Value.Length - 2) -replace '[>|;&(){}`\r\n]', '_') + "'" })
+    $s = [regex]::Replace($s, '"(?:[^"\\]|\\.)*"', { param($m) '"' + ($m.Value.Substring(1, $m.Value.Length - 2) -replace '[>|;&(){}`\r\n]', '_') + '"' })
     return $s
 }
 function Test-ScratchTarget([string]$Target) {
@@ -71,9 +73,12 @@ try {
     if ($tool -eq 'Bash' -or $tool -eq 'PowerShell') {
         $command = [string]$in.command
         if (-not $command) { exit 0 }
-        $skeleton = if ($tool -eq 'Bash') { Get-ShellSkeleton $command } else { $command }
+        $skeleton = Get-ShellSkeleton $command
 
-        $inPlace = '(?<![\w-])(sed\s+(?:[^|;&\n]*\s)?(?:-[a-zA-Z]*i[a-zA-Z.]*|--in-place)(?=\s|$)|g?awk\s+(?:[^|;&\n]*\s)?-i\s*inplace|perl\s+(?:[^|;&\n]*\s)?-[a-zA-Z]*i)'
+        # Command position: line start, after ; & | ( { or a backtick, after xargs, -exec, then/do/else, or opening the
+        # quoted script of bash/sh/pwsh -c; an unquoted path prefix (/usr/bin/sed) is allowed
+        $atCommand = '(?:^|[;&|({`]|\bxargs\b[^;&|\n]*?\s|-exec\s+|\b(?:then|do|else)\s+|\b(?:bash|sh|zsh|dash|pwsh|powershell)(?:\.exe)?\s+(?:-\S+\s+)*?-c(?:ommand)?\s+[''"])\s*(?:[^\s;&|(){}''"]*[\\/])?'
+        $inPlace = '(?m)' + $atCommand + '(sed\s+(?:[^|;&\n]*\s)?(?:-[a-zA-Z]*i[a-zA-Z.]*|--in-place)(?=\s|$)|g?awk\s+(?:[^|;&\n]*\s)?-i\s*inplace|perl\s+(?:[^|;&\n]*\s)?-[a-zA-Z]*i)'
         if ($skeleton -match $inPlace) {
             Write-Decision 'deny' "Blocked '$($Matches[1].Trim())': on this machine sed/awk/perl in-place edits rewrite the whole file with LF line endings (awk also adds a final newline), even when nothing matches, which breaks the line-endings lint on every file touched. Edit files with the Edit/Write tools or PowerShell; keep Bash for read-only work."
         }
