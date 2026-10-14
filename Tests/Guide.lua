@@ -167,9 +167,11 @@ guide.Scenarios = {
         Recorded = "game", Target = "game"},
     {Name = "npc-name-unknown", Kind = "NpcName", NpcId = 999999, -- no such creature (Wowhead 404 on 2026-10-14)
         Recorded = "fallback", Target = "fallback"},
-    -- A name that is a secret value (encounter and other restrictions) is never compared or shown. Only the headless
-    -- model can make one, so the game skips this scenario
-    {Name = "npc-name-secret", Kind = "NpcName", Secret = true,
+    -- A name that is a secret value, or tooltip data that is a secret table (encounter and other restrictions), is never
+    -- indexed, compared or shown. Only the headless model can make them, so the game skips these scenarios
+    {Name = "npc-name-secret", Kind = "NpcName", Secret = "value",
+        Recorded = "fallback", Target = "fallback"},
+    {Name = "npc-name-secret-table", Kind = "NpcName", Secret = "table", -- the taint review of the branch
         Recorded = "fallback", Target = "fallback"},
     -- At login the addon asks the client once for every guide NPC, so the name is cached before a guide shows
     {Name = "npc-names-requested", Kind = "NpcRequest",
@@ -449,10 +451,14 @@ local function RunNpcName(env, scenario)
         if not env.SecretNpcId then
             return nil, "the game cannot make a secret name on demand"
         end
-        npcId = env.SecretNpcId()
+        npcId = env.SecretNpcId(scenario.Secret)
     end
     local achievement = {Guide = {{Type = "Npc", NpcId = npcId, Name = fallbackName, MapId = zubashi.MapId, X = zubashi.X, Y = zubashi.Y}}}
-    local line = module.GetLines(achievement)[1]
+    local ok, lines = pcall(module.GetLines, achievement)
+    if not ok then
+        return "error" -- reading the name broke the whole guide
+    end
+    local line = lines[1]
     local title = line and line.Waypoint and line.Waypoint.Title
     if type(title) ~= "string" or title == "" or not line.Text:find(title, 1, true) then
         return "mixed" -- the headline and the waypoint disagree, or there is no name

@@ -23,7 +23,9 @@ The 60962 guide names Archivist Zubashi through `addon.L["Archivist Zubashi"]`, 
   - a local `GetNpcName(step)`, which lines 228-229 use for the text and the waypoint title (built as a local, not `guide.GetNpcName` as the spec says: nothing outside the file needs it, and the scenarios read it through `GetLines`);
   - `guide.RequestNpcNames(achievements)`: `pairs` over the achievements, each distinct Npc step's id asked once, the ids returned sorted;
   - the header comment (lines 5-7) updated.
-- `Data/Data.lua`, `PostLoadOnPlayerLogin`: after `addon.Gui.AchievementPopout:Load()`, call `addon.Gui.Guide.RequestNpcNames(self.Achievements)`, with a comment on why.
+- `Data/Data.lua`, `PostLoadOnPlayerLogin`: call `addon.Gui.Guide.RequestNpcNames(self.Achievements)` last, after `addon.BuildCacheAsync` is started, with a comment on why. The taint review moved it there from right after `AchievementPopout:Load()`: an error in the warm-up must not stop the cache build, `SpecialCategories.LoadData` or `IsLoaded`.
+- `Gui/Guide/Guide.lua`, `GetCreatureName`, after the taint review: every table on the way to the name (`data`, `data.lines`, the line) is checked with `type` and `canaccesstable` before it is indexed, since 12.x can return secret tables and the tooltip data's shape is not documented. The name is checked with `type` first, then `canaccessvalue`, then compared. A fifth NpcName scenario, `npc-name-secret-table`, recorded "error" against the first version of the code (headless, 2026-10-14) and "fallback" after; the game skips it like `npc-name-secret`.
+- Not changed: the expanded row's render cache key (`Gui/Guide/Content.lua:228-229`) does not include the NPC's name, so a row first drawn with the English fallback keeps it until the key changes. With the warm-up that needs a first draw within a moment of logging in, with the NPC never cached; selecting another achievement and back redraws it.
 - `DataAddons/Retail/07_Legion/GuideData.lua`: `:Npc(97485, "Archivist Zubashi", 648, 47.7, 53.8)`; the unused `local _, addon = ...` goes.
 - `Api/GuideDataBuilder.lua`: the comment on line 4 and the `:Npc` comment on line 18 say the name is the English fallback, as the enUS client shows it, and that the game supplies the player's own.
 - `Globals.lua:283` (`/kafwhere`): `(':Npc(%d, "%s", %s)')`.
@@ -60,7 +62,7 @@ The 60962 guide names Archivist Zubashi through `addon.L["Archivist Zubashi"]`, 
 - Headless `guide` on Retail: `npc-name-from-game` PASS, target met (got=game); `npc-name-unknown` and `npc-name-secret` PASS (got=fallback); `npc-names-requested` PASS, target met (got=97485). Every other suite is unchanged on both clients.
 - `load-data.lua Both` is clean, and `Check-Repo.ps1 -ChangedOnly` reports 0 errors.
 - In game on Retail:
-  - `Read-GameTests.ps1` shows guide green, every target met, and `npc-name-secret` a SKIP with its reason;
+  - `Read-GameTests.ps1` shows guide green, every target met, and `npc-name-secret` and `npc-name-secret-table` SKIPs with their reason;
   - the 60962 tooltip and the menu's waypoint entry read "Archivist Zubashi";
   - `Read-GameErrors.ps1` reports no new errors.
 - In game on Classic: `Read-GameErrors.ps1 -Client Classic` reports no new errors.

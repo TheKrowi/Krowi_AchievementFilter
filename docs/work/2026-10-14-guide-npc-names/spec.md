@@ -36,7 +36,7 @@ Intent: [intent.md](intent.md). Status: accepted
   - The returned text is checked with `canaccessvalue` before it is compared or concatenated.
   - The `taint-reviewer` runs on the diff.
 - **Retail and Classic:**
-  - The Classic UI export has no `TooltipInfoDocumentation.lua`, so the API may be missing there; `GetCreatureName` checks for it.
+  - The Classic UI export's `TooltipInfoDocumentation.lua` (5.5.4) documents only events, no `Get*` function, so the API may be missing there; `GetCreatureName` checks for it. (Corrected after the taint review, which found the file.)
   - Classic has no guide data, so the warm-up finds no NPCs.
   - `Gui/Guide/Guide.lua` loads on both clients (`Gui/FilesClassic.xml:17`).
 - **Plugins and skins:** none. No frame changes.

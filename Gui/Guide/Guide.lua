@@ -213,22 +213,28 @@ local function GetSpellName(spellId)
     end
 end
 
+-- Whether a value is a table this code may index: indexing a secret table raises an error
+local function CanIndex(value)
+    return type(value) == "table" and (not canaccesstable or canaccesstable(value))
+end
+
 -- An NPC's name as the player's client has it, in its language, from its creature cache through a unit link. Nil while
 -- the client has not cached the NPC (the call queries the server and the answer is cached a moment later), for an NPC
--- the game does not know, for a secret value, and on a client without C_TooltipInfo
+-- the game does not know, for a secret table or value, and on a client without C_TooltipInfo
 local function GetCreatureName(npcId)
     if not C_TooltipInfo or not C_TooltipInfo.GetHyperlink then
         return
     end
     local data = C_TooltipInfo.GetHyperlink(("unit:Creature-0-0-0-0-%d-0000000000"):format(npcId))
-    local line = data and data.lines and data.lines[1]
-    local name = line and line.leftText
-    if canaccessvalue and not canaccessvalue(name) then
-        return -- comparing or showing a secret value raises an error
+    if not CanIndex(data) or not CanIndex(data.lines) or not CanIndex(data.lines[1]) then
+        return
     end
-    if type(name) == "string" and name ~= "" then
-        return name
+    local name = data.lines[1].leftText
+    -- type() is safe on a secret value; comparing or showing one raises an error
+    if type(name) ~= "string" or canaccessvalue and not canaccessvalue(name) or name == "" then
+        return
     end
+    return name
 end
 
 -- The data's name is the English one
