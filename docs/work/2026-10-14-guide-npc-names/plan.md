@@ -12,7 +12,7 @@ The 60962 guide names Archivist Zubashi through `addon.L["Archivist Zubashi"]`, 
     - `npc-name-secret`, `Secret = true`: the runner asks `env.SecretNpcId()`, and the game env has none, so in game it is a SKIP with the reason "the game cannot make a secret name on demand". Recorded "fallback", Target "fallback".
   - `NpcRequest`: `npc-names-requested` returns the ids `guide.RequestNpcNames(env.Achievements())` gives, joined with ",", or "none" without the function. Recorded "none", Target "97485".
   - `gameEnv.Achievements()` returns `addon.Data.Achievements`.
-  - The header comment lists the two kinds and the module functions (`GetNpcName`, `RequestNpcNames`). The Retail-only observation line is reworded to cover them.
+  - The header comment lists the two kinds and `RequestNpcNames` among the module functions. The Retail-only observation line is reworded to cover them.
 - `.claude/tools/headless/run-tests.lua`, `suites.guide`, Retail branch:
   - `env.C_TooltipInfo.GetHyperlink(link)` parses the creature id from `unit:Creature-0-0-0-0-<id>-...` and returns `{lines = {{leftText = name}}}` for 97485 "Archivist Zubashi", a secret marker for the secret id, and `{lines = {}}` otherwise.
   - `env.canaccessvalue(v)` returns `v ~= marker`, where the marker is a unique table.
@@ -20,7 +20,7 @@ The 60962 guide names Archivist Zubashi through `addon.L["Archivist Zubashi"]`, 
   - The header comment of the suite names the creature-name model.
 - `Gui/Guide/Guide.lua`:
   - a local `GetCreatureName(npcId)` (API guard; `canaccessvalue` before any comparison; empty means nil);
-  - `guide.GetNpcName(step)`, which lines 228-229 use for the text and the waypoint title;
+  - a local `GetNpcName(step)`, which lines 228-229 use for the text and the waypoint title (built as a local, not `guide.GetNpcName` as the spec says: nothing outside the file needs it, and the scenarios read it through `GetLines`);
   - `guide.RequestNpcNames(achievements)`: `pairs` over the achievements, each distinct Npc step's id asked once, the ids returned sorted;
   - the header comment (lines 5-7) updated.
 - `Data/Data.lua`, `PostLoadOnPlayerLogin`: after `addon.Gui.AchievementPopout:Load()`, call `addon.Gui.Guide.RequestNpcNames(self.Achievements)`, with a comment on why.

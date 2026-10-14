@@ -164,7 +164,7 @@ guide.Scenarios = {
     -- An NPC step names the NPC as the player's client does, in its language (C_TooltipInfo on a unit link); the English
     -- name in the data is the fallback while the client has none
     {Name = "npc-name-from-game", Kind = "NpcName", NpcId = 97485, -- Archivist Zubashi, in the client's cache
-        Recorded = "fallback", Target = "game"},
+        Recorded = "game", Target = "game"},
     {Name = "npc-name-unknown", Kind = "NpcName", NpcId = 999999, -- no such creature (Wowhead 404 on 2026-10-14)
         Recorded = "fallback", Target = "fallback"},
     -- A name that is a secret value (encounter and other restrictions) is never compared or shown. Only the headless
@@ -173,7 +173,7 @@ guide.Scenarios = {
         Recorded = "fallback", Target = "fallback"},
     -- At login the addon asks the client once for every guide NPC, so the name is cached before a guide shows
     {Name = "npc-names-requested", Kind = "NpcRequest",
-        Recorded = "none", Target = "97485"},
+        Recorded = "97485", Target = "97485"},
 }
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line

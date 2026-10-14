@@ -134,6 +134,8 @@ local function PostLoadOnPlayerLogin(self, start)
 
     addon.Gui.AchievementPopout:Load() -- Achievement lookups need self.Achievements populated, so this can't run at ADDON_LOADED
 
+    addon.Gui.Guide.RequestNpcNames(self.Achievements) -- the client caches the guide NPCs' names before a guide shows them
+
     local function PostBuildCache()
         addon.SpecialCategories.LoadData()
         self.IsLoaded = true -- every achievement object exists and the special categories are filled; the test runner waits for this

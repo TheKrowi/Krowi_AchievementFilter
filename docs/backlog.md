@@ -12,7 +12,6 @@ Follow-ups that are not a work item yet. When one is taken up, it gets its own w
 
 ## From the achievement guides (2026-10-11, PR #338)
 
-- **Archivist Zubashi's name in other locales.** The 60962 guide names the NPC through `addon.L["Archivist Zubashi"]`, which is `= true` (the English name) in all ten other locales. The game API cannot return creature names, and the official translations are not known yet. Source each locale's name from a client in that locale or a trusted database, and fill it in `Localization/*.lua`.
 - **About 50 draft translations to review.** Every guide string in the ten non-English locale files is an agent draft:
   - the `Guide ...` and `Show Guide ...` keys;
   - `Map pin`, `Map pin and TomTom`, `Icons` and `Text links`.
@@ -23,7 +22,7 @@ Follow-ups that are not a work item yet. When one is taken up, it gets its own w
   - the travel spell or entrance;
   - both factions' Dalaran portals as area POIs.
 
-  The Paladin and Priest portals differ per faction, so their guides take one `:Poi(...):Faction(...)` step per faction.
+  The Paladin and Priest portals differ per faction, so their guides take one `:Poi(...):Faction(...)` step per faction. Each NPC is named in English only; the guide shows the player's client's own name (`docs/work/2026-10-14-guide-npc-names`).
 
 ## From the latent-bugs review (2026-10-13, PR #339)
 
