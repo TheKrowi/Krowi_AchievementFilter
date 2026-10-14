@@ -1,5 +1,5 @@
 # Intent: The repo lint catches deprecated Blizzard globals
-Author: Krowi (maintainer). Source: `docs/codebase-analysis.md` row 32, deferred from the code review of 2026-10-14-chat-insert-link; Krowi asked for it on 2026-10-14. Status: accepted
+Author: Krowi (maintainer). Source: `docs/codebase-analysis.md` row 32, deferred from the code review of 2026-10-14-chat-insert-link; Krowi asked for it on 2026-10-14. Status: done
 
 ## Problem
 Blizzard keeps old global names alive for a while as aliases in its `Blizzard_Deprecated*` addons. Those load only while the `loadDeprecationFallbacks` CVar is on, and a later patch deletes them; 12.1.5 deleted ten. A read of such a name works on the maintainer's client and errors for players who turned the CVar off, and for everyone once the file is gone.

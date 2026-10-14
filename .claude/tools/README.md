@@ -165,10 +165,21 @@ The `ketho.wow-api` VS Code extension carries the same API in LuaLS form under `
 Blizzard keeps old global names alive as aliases in its `Blizzard_Deprecated*` addons, which load only while the `loadDeprecationFallbacks` CVar is on and which a later patch deletes. The `deprecated-api` rule reports any read of such a name, from the committed list `Check-Repo.deprecated-api`, so it runs offline for everyone.
 - The script rebuilds the list from the clones.
 - It maps each version on the `.toc`'s Interface line to a branch: 12 `live`, 5 `classic`, 3 `classic_titan`, 2 `classic_anniversary`, 1 `classic_era`.
-- It reads the aliases from every clone present. For each listed client, it keeps the names that client defines only in a deprecated file ("deprecated") or not at all ("removed"), and skips a name that is a real API there.
+- It reads each listed client's clone once:
+  - A deprecation file is one under a `Blizzard_Deprecated*` or `Deprecated_*` addon, or one whose code checks the CVar.
+  - A per-game variant (`Deprecated_Specialization_Mists.lua`) counts only for its own game.
+  - Every other file shows what the client has for real: top-level definitions, documented global functions, and functions its own code calls.
+- A name is "deprecated" on a client that has it only as an alias, "removed" on a client that has it nowhere, and skipped where it is real.
+- A name a deleted file took with it stays listed, as removed, while no listed client has it.
+- Names `Check-Repo.removed-api` lists are left to that rule.
 - After `Update-UiSource.ps1 -Branch live, classic, classic_titan` on a patch day, run it and commit the diff. A run on unchanged clones writes the same bytes, and a missing clone stops it with the `Update-UiSource.ps1` command to run.
 - The classification is a port of Krowi_ClaudeKit's `tools\Find-DeprecatedApi.ps1`, the cross-addon scanner; keep the two in step.
-- A deliberate exception, such as a guarded fallback for a client without the new API, goes in `Check-Repo.ignore` with a comment.
+- A deliberate exception goes in `Check-Repo.ignore` with a comment, narrowed to the one global with the optional third field (`deprecated-api <path glob> <name>`), so it does not hide a later read in the same file. Typical cases are a guarded fallback for a client without the new API, or a file only a client that has the name loads.
+
+Known limits:
+- The rule does not know which client loads a file, so a Classic-only file reading a name only Retail deprecated is an Error; give it a named ignore entry.
+- A clone's `Mainline/` and `Classic/` subfolders are all read as that client's own code.
+- A replacement Blizzard wrote as an expression, or only in a comment, shows as `-`.
 
 ```powershell
 & ".claude\tools\Update-DeprecatedApi.ps1"              # -UiSource <folder> to read clones elsewhere

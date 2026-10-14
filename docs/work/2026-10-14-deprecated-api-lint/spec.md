@@ -1,5 +1,5 @@
 # Spec: The repo lint catches deprecated Blizzard globals
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. A read (`luac -l` GETGLOBAL) of a listed global in an addon file outside `Libs/` and `.claude/` is an Error. It names the clients where the name is only deprecated or missing, and the replacement when Blizzard's alias names one.

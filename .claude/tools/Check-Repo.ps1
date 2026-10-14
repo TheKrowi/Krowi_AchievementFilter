@@ -370,7 +370,7 @@ if (Test-Path $luac) {
             if ($t -match '^(\S+)\s+(\S+)\s+(\S+)$') { $deprecatedApi[$Matches[1]] = @{ Replacement = $Matches[2]; States = $Matches[3] } }
         }
     }
-    $readGlobals =[hashtable]::new([StringComparer]::Ordinal)   # name -> $true when an addon file reads it (GETGLOBAL)
+    $readGlobals = [hashtable]::new([StringComparer]::Ordinal)   # name -> $true when an addon file reads it (GETGLOBAL)
     $setGlobals = [hashtable]::new([StringComparer]::Ordinal)    # name -> $true when an addon file assigns it (SETGLOBAL)
     $bomMap = @{}     # temp copy path -> repo path, for files whose BOM stock luac would reject
     $tmpDir = $null
@@ -849,19 +849,21 @@ if ($codeChanged.Count -gt 0 -and -not $changed.ContainsKey('_Packaging/Changelo
 }
 
 # --- Report ------------------------------------------------------------------------------------
-# Check-Repo.ignore: one "<rule or *> <path glob>" per line, # comments; for deliberate exceptions
+# Check-Repo.ignore: one "<rule or *> <path glob> [<name>]" per line, # comments; for deliberate exceptions
 $ignore = @()
 $ignoreFile = Join-Path $PSScriptRoot 'Check-Repo.ignore'
 if (Test-Path $ignoreFile) {
     foreach ($line in Get-Content $ignoreFile) {
         $t = ($line -replace '#.*$', '').Trim()
-        if ($t -match '^(\S+)\s+(\S+)$') { $ignore += @{ Rule = $Matches[1]; Path = $Matches[2] } }
+        # an optional third field narrows the exception to findings about that name ('<name>' in the message), so one
+        # deliberate read does not hide every other finding of the rule in the file
+        if ($t -match '^(\S+)\s+(\S+)(?:\s+(\S+))?$') { $ignore += @{ Rule = $Matches[1]; Path = $Matches[2]; Name = $Matches[3] } }
     }
 }
 $alwaysOn = @('section-order', 'dup-id', 'saved-variables', 'lua-syntax', 'globals', 'removed-api', 'deprecated-api', 'library-names', 'util-flags', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'data-snapshot', 'zone-decisions', 'mapverifier', 'changelog')
 $report = $findings | Where-Object {
     $f = $_
-    -not ($ignore | Where-Object { ($_.Rule -eq '*' -or $_.Rule -eq $f.Rule) -and $f.Path -like $_.Path })
+    -not ($ignore | Where-Object { ($_.Rule -eq '*' -or $_.Rule -eq $f.Rule) -and $f.Path -like $_.Path -and (-not $_.Name -or $f.Message.Contains("'$($_.Name)'")) })
 }
 if ($ChangedOnly) {
     $report = $report | Where-Object { $changed.ContainsKey($_.Path) -or ($alwaysOn -contains $_.Rule) -or ($_.Rule -eq 'files-xml' -and $_.Message -like 'registered file does not exist*') }

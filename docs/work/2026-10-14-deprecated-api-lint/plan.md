@@ -1,5 +1,5 @@
 # Plan: The repo lint catches deprecated Blizzard globals
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 Approved by Krowi on 2026-10-14, together with the plan for 2026-10-14-guide-row-npc-name. This item is built, merged and its worktree removed before that one's in-game run.
 
@@ -53,3 +53,24 @@ Approved by Krowi on 2026-10-14, together with the plan for 2026-10-14-guide-row
 - `Update-DeprecatedApi.ps1`: 401 names for live, classic and classic_titan, read from six clones, in about 3 s. A second run is byte-identical. An empty `-UiSource` folder stops it with "No wow-ui-source clone 'live' in ...; run .claude\tools\Update-UiSource.ps1 -Branch live", and the list stays untouched.
 - Reproduction: with the pre-#343 line put back, `Check-Repo.ps1 -ChangedOnly` gave exactly one Error, `AchievementButtonMixin.lua:119: [deprecated-api] ... 'ChatEdit_InsertLink' (live=deprecated, classic=deprecated, classic_titan=deprecated) ... call ChatFrameUtil.InsertLink instead`. The restored file is byte-identical.
 - A full `Check-Repo.ps1` run: 0 errors, 45 s with the language server. Krowi_ClaudeKit's `Find-DeprecatedApi.ps1` agrees on the same tree ("No uses found.").
+- `/code-review` (medium) found the ported classification inaccurate in ways the kit tool shared. The list went from 401 to 327 names.
+- Fixed here (second commit), and ported to the kit (`350571a`) where they apply:
+  - Deprecation files include `Deprecated_*` addons and any file that checks the CVar; live's `Deprecated_PaperDoll` had made `GetInventorySlotInfo` look like a real global.
+  - A per-game variant counts only for its own game; `GetSpecialization` was marked deprecated on Mists, where the global does not exist.
+  - A function a client's own code calls is real there; Mists' undocumented `GetInspectSpecialization` and six others had been marked removed.
+  - Aliases are matched on comment-stripped lines, and long comments are skipped.
+  - The list is read only from the clones the `.toc` lists, so stale `ptr`, `classic_era` or `classic_anniversary` clones no longer change it.
+  - A name a deleted deprecation file took with it stays listed as removed while no listed client has it, so a regeneration cannot quietly drop protection.
+  - Names `Check-Repo.removed-api` lists are left out (75 were dead weight behind the `elseif`).
+  - `-UiSource` takes a relative path.
+  - 1.60+ maps to `forever`, not `classic_era`.
+  - A whitespace slip in `Check-Repo.ps1` is reverted.
+- Also from the review: `Check-Repo.ignore` takes an optional third field, the global's name, so a deliberate exception covers that read only and not every later finding in the file. With the pre-#343 line put back: no entry gives 1 finding, an entry naming `ChatEdit_InsertLink` gives 0, and one naming another global gives 1.
+- Not changed, recorded as limits in the README:
+  - The rule does not know which client loads a file. A Classic-only file reading a name only Retail deprecated needs a named ignore entry.
+  - `Mainline/` and `Classic/` folders inside a clone are all read as that client's code.
+  - A replacement written as an expression or in a comment shows as `-`.
+- Declined:
+  - A shared helper for the worktree-to-main-checkout lookup, now in four scripts.
+  - A shared loader for the two list files.
+  - Both are out of scope.
