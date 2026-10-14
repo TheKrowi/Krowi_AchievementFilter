@@ -469,6 +469,11 @@ local function RunNpcName(env, scenario)
     if scenario.Kept and not env.HideNpcName then
         return nil, "the game cannot make a name secret on demand"
     end
+    -- Under PvP, encounter and similar restrictions the client hands addons its NPC names as secret values, and the
+    -- guide shows the data's name by design (seen in game on 2026-10-14): a readable name cannot be checked there
+    if not scenario.Secret and not scenario.Kept and env.NpcNameIsSecret and env.NpcNameIsSecret(npcId) then
+        return nil, "the client's NPC names are secret values here (PvP, encounter or similar restrictions); run it elsewhere"
+    end
     local achievement = {Guide = {{Type = "Npc", NpcId = npcId, Name = fallbackName, MapId = zubashi.MapId, X = zubashi.X, Y = zubashi.Y}}}
     if scenario.Kept then
         module.GetLines(achievement) -- the client gives the name once
@@ -622,6 +627,32 @@ end
 
 function gameEnv.Achievements()
     return addon.Data.Achievements
+end
+
+-- Whether the client hands addons the NPC's name as a secret value where the player is now. Every step is checked
+-- before it is indexed or compared, as Gui/Guide/Guide.lua does; no data at all is not secret, just unknown
+function gameEnv.NpcNameIsSecret(npcId)
+    if not C_TooltipInfo or not C_TooltipInfo.GetHyperlink or not canaccessvalue then
+        return false
+    end
+    local data = C_TooltipInfo.GetHyperlink(("unit:Creature-0-0-0-0-%d-0000000000"):format(npcId))
+    for _, key in ipairs({"lines", 1}) do
+        if type(data) ~= "table" then
+            return false
+        end
+        if canaccesstable and not canaccesstable(data) then
+            return true
+        end
+        data = data[key]
+    end
+    if type(data) ~= "table" then
+        return false
+    end
+    if canaccesstable and not canaccesstable(data) then
+        return true
+    end
+    local text = data.leftText
+    return type(text) == "string" and not canaccessvalue(text)
 end
 
 addon.Tests.Ready.guide = function()
