@@ -49,3 +49,9 @@ Approved by Krowi on 2026-10-14, together with the plan for the other follow-up 
 ## Proof
 - Headless guide on Retail: `row-npc-name-arrives` and `npc-name-kept` PASS with got=game, and every earlier scenario is unchanged; the mutation runs fail them.
 - In game on Retail: guide green, with the four headless-only scenarios as SKIPs, and no new errors.
+
+## How it went (2026-10-14)
+- Built after 2026-10-14-deprecated-api-lint was merged (#344), on a rebase made before any code change (see the top).
+- Scenarios first (`74027d2b`): `npc-name-kept` and `row-npc-name-arrives` recorded "fallback" against the old code, both open against "game"; every other suite was unchanged on both clients.
+- The fix (`b08e57c9`): both scenarios meet their targets. Each of two mutation runs removed one half of the fix and failed exactly its scenario: the key without the names failed `row-npc-name-arrives`, and `GetNpcName` without the kept table failed `npc-name-kept`.
+- Departure: the suite header does not list `GetNpcNames` among the module functions, because the scenarios reach it through `DisplayUnderObjectives` and never call it directly.
