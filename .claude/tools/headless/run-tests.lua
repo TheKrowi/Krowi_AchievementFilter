@@ -867,8 +867,8 @@ end
 --   - the 60962 guide as the data registers it, and its two hidden type-198 criteria, 486 Frost and Death and
 --     487 Roster of Champions, with Tier VII locked, as on the step-0 Death Knight;
 --   - the maps the user waypoint allows (Acherus yes, Dalaran no) and the Alliance Paladin portal's POI;
---   - the client's creature cache: Archivist Zubashi (97485) known, one NPC whose name is a secret value, one whose
---     tooltip data is a secret table, no other;
+--   - the client's creature cache: Archivist Zubashi (97485) and one more NPC known, one NPC whose name is a secret
+--     value, one whose tooltip data is a secret table, no other; a scenario can teach it a name or turn one secret;
 --   - no TomTom.
 -- Until the feature exists no file loads, and every scenario gets "none". Classic runs the faction and waypoint scenarios
 -- only, which read nothing from the game.
@@ -959,7 +959,7 @@ suites.guide = function(c)
         local secretName, secretNpcId = "<secret name>", 424242
         local secretData = setmetatable({}, { __index = function() error("attempt to index a secret table", 2) end })
         local secretTableNpcId = 424243
-        local creatureNames = { [97485] = "Archivist Zubashi", [secretNpcId] = secretName }
+        local creatureNames = { [97485] = "Archivist Zubashi", [secretNpcId] = secretName, [424246] = "Kept Name" }
         local queries
         env.C_TooltipInfo = { GetHyperlink = function(link)
             local id = tonumber(link:match("^unit:Creature%-0%-0%-0%-0%-(%d+)%-"))
@@ -971,6 +971,10 @@ suites.guide = function(c)
         env.canaccessvalue = function(value) return value ~= secretName end
         env.canaccesstable = function(t) return t ~= secretData end
         function headless.SecretNpcId(kind) return kind == "table" and secretTableNpcId or secretNpcId end
+        -- The cache changing under the addon (docs/work/2026-10-14-guide-row-npc-name): the client learns a name, or a
+        -- name it gave turns into a secret value
+        function headless.TeachNpcName(npcId, name) creatureNames[npcId] = name end
+        function headless.HideNpcName(npcId) creatureNames[npcId] = secretName end
         -- Starts logging the client's creature queries; the function it returns stops and gives the ids asked, sorted
         function headless.LogNpcQueries()
             queries = {}
