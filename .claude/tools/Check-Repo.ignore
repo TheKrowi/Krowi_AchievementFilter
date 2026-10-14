@@ -1,4 +1,5 @@
-# Deliberate exceptions for Check-Repo.ps1: "<rule or *> <path glob>", # comments
+# Deliberate exceptions for Check-Repo.ps1: "<rule or *> <path glob> [<name>]", # comments. The optional name limits the
+# exception to findings about that global, e.g. "deprecated-api Gui/Foo.lua GetOldThing" for one guarded fallback
 # Files that are intentionally never loaded by the game
 files-xml Benchmark.lua                  # dev tool, added to the .toc by hand while benchmarking
 files-xml Api/ApiDocumentation.lua       # documentation only
