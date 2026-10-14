@@ -47,3 +47,9 @@ Approved by Krowi on 2026-10-14, together with the plan for 2026-10-14-guide-row
 - The reproduction gives one Error at `:119`, and the restored file is clean.
 - A full `Check-Repo.ps1` run has 0 errors.
 - The second script run leaves the list unchanged.
+
+## How it went (2026-10-14)
+- Built before row 31 (2026-10-14-guide-row-npc-name) rather than after its headless build: this item needs no game, and row 31 then starts from the `dev` this one lands in, without a rebase.
+- `Update-DeprecatedApi.ps1`: 401 names for live, classic and classic_titan, read from six clones, in about 3 s. A second run is byte-identical. An empty `-UiSource` folder stops it with "No wow-ui-source clone 'live' in ...; run .claude\tools\Update-UiSource.ps1 -Branch live", and the list stays untouched.
+- Reproduction: with the pre-#343 line put back, `Check-Repo.ps1 -ChangedOnly` gave exactly one Error, `AchievementButtonMixin.lua:119: [deprecated-api] ... 'ChatEdit_InsertLink' (live=deprecated, classic=deprecated, classic_titan=deprecated) ... call ChatFrameUtil.InsertLink instead`. The restored file is byte-identical.
+- A full `Check-Repo.ps1` run: 0 errors, 45 s with the language server. Krowi_ClaudeKit's `Find-DeprecatedApi.ps1` agrees on the same tree ("No uses found.").

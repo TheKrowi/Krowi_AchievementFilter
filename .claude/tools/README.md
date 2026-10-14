@@ -8,7 +8,7 @@ The everyday commands and the rules these tools enforce are in `.github/copilot-
 |---|---|
 | `lua51/lua.exe`, `lua51/luac.exe` | Lua 5.1.5, the interpreter WoW embeds |
 | `lua51/check-syntax.lua` | Lua 5.1 syntax check |
-| `Check-Repo.ps1` | the repo lint; `Check-Repo.globals`, `Check-Repo.ignore` and `Check-Repo.removed-api` are its data files |
+| `Check-Repo.ps1` | the repo lint; `Check-Repo.globals`, `Check-Repo.ignore`, `Check-Repo.removed-api` and `Check-Repo.deprecated-api` are its data files |
 | `headless/load-data.lua` | the data load for both clients, headless |
 | `headless/run-tests.lua` | the scenario suites in `Tests/`, headless |
 | `headless/snapshot-categories.lua` | the category tree baselines in `headless/snapshots/` |
@@ -19,6 +19,7 @@ The everyday commands and the rules these tools enforce are in `.github/copilot-
 | `Read-GameErrors.ps1`, `Read-GameTests.ps1` | read BugGrabber's errors and the last `/kaftest` run from the client's saved variables |
 | `Read-GameScreenshot.ps1` | lists the newest screenshots the client took, to open with the Read tool |
 | `Update-UiSource.ps1` | clones or updates the local copy of Blizzard's UI source next to the repo |
+| `Update-DeprecatedApi.ps1` | rebuilds `Check-Repo.deprecated-api` from those clones, for the clients the `.toc` lists |
 | `Strip-Semicolons.ps1` | removes trailing statement semicolons, verified through bytecode |
 | `Get-WowBuilds.ps1` | the current Retail and Classic builds from the game-database server; dot-sourced by every lookup script |
 | `Find-Symbol.ps1`, `lua51/find-symbol.lua` | where a namespaced name is defined and used, through the local aliases |
@@ -58,6 +59,7 @@ Get-ChildItem -Recurse -Filter *.lua | Where-Object FullName -notlike '*\.claude
 | `lua-syntax` | every `.lua` parses under Lua 5.1 |
 | `globals` | no assignment to an undeclared global (from `luac -l`); the deliberate FrameXML overrides and API polyfills are allowlisted per file in `Check-Repo.globals` |
 | `removed-api` | no addon file reads a Blizzard global the Retail client no longer has (listed in `Check-Repo.removed-api`); always tree-wide |
+| `deprecated-api` | no addon file reads a Blizzard global that a client the `.toc` lists has only as a `Blizzard_Deprecated*` alias, or not at all (generated list `Check-Repo.deprecated-api`); names the replacement; always tree-wide; a name `removed-api` lists is reported there only |
 | `library-names` | every library name addon code and `Libs/Libs.lua` pass to `LibStub(` or `KROWI_LIBMAN:GetLibrary(` is registered by a `NewLibrary(` call in `Libs/` (a literal, or a local set to one in the same file); a silent lookup (`, true`) and a call in a comment are left alone; always tree-wide, because a library rename breaks call sites nobody touched; a warning and no check when a submodule has no Lua files (a checkout made without them) |
 | `settings-close` | addon code closes the settings panel with `SettingsPanel:Close(true)`; without the argument it goes back to the game menu through `ToggleGameMenu`, whose `SpellStopCasting` call is forbidden from addon code (`ADDON_ACTION_FORBIDDEN` on Mists Classic) |
 | `luarc` | the `.luarc.json` globals list against what the code reads and assigns |
@@ -156,6 +158,20 @@ The `ketho.wow-api` VS Code extension carries the same API in LuaLS form under `
 
 ```powershell
 & ".claude\tools\Update-UiSource.ps1"                   # -Branch ptr2 (or live, classic, classic_titan)
+```
+
+### Deprecated globals (`Update-DeprecatedApi.ps1`)
+
+Blizzard keeps old global names alive as aliases in its `Blizzard_Deprecated*` addons, which load only while the `loadDeprecationFallbacks` CVar is on and which a later patch deletes. The `deprecated-api` rule reports any read of such a name, from the committed list `Check-Repo.deprecated-api`, so it runs offline for everyone.
+- The script rebuilds the list from the clones.
+- It maps each version on the `.toc`'s Interface line to a branch: 12 `live`, 5 `classic`, 3 `classic_titan`, 2 `classic_anniversary`, 1 `classic_era`.
+- It reads the aliases from every clone present. For each listed client, it keeps the names that client defines only in a deprecated file ("deprecated") or not at all ("removed"), and skips a name that is a real API there.
+- After `Update-UiSource.ps1 -Branch live, classic, classic_titan` on a patch day, run it and commit the diff. A run on unchanged clones writes the same bytes, and a missing clone stops it with the `Update-UiSource.ps1` command to run.
+- The classification is a port of Krowi_ClaudeKit's `tools\Find-DeprecatedApi.ps1`, the cross-addon scanner; keep the two in step.
+- A deliberate exception, such as a guarded fallback for a client without the new API, goes in `Check-Repo.ignore` with a comment.
+
+```powershell
+& ".claude\tools\Update-DeprecatedApi.ps1"              # -UiSource <folder> to read clones elsewhere
 ```
 
 ## Symbol finder (`Find-Symbol.ps1`)
