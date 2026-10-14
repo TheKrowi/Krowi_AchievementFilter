@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 103.0
+## 103.0 - 2026-10-14
 ### Added
 - The class-specific Campaign, Hidden Potential, Raise an Army and Legendary Research achievements are now tied to their class hall, so they show in the Current Zone and Selected Zone categories and on the world map
 - Achievement guides: Legendary Research of the Ebon Blade now comes with numbered steps (how to get there, whom to talk to, which class hall upgrades you still have to research and what they cost), in its tooltip, its right-click menu and a side panel that shows when you hover the new map pin icon on the achievement and stays when you click it (next to the reward preview if that is open too), or under the selected achievement if you turn that on. A place in a guide gets a map pin or a TomTom waypoint in one click. Choose where guides show and which waypoint they use under Achievements > Style > Guide
