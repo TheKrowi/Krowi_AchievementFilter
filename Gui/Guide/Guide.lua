@@ -3,8 +3,9 @@ addon.Gui.Guide = {}
 local guide = addon.Gui.Guide
 
 -- Renders an achievement's guide (achievement.Guide, built by Api/GuideDataBuilder.lua) for every surface, so a step
--- reads the same in the tooltip and the right-click menu. Names come from the game in the player's language; only an
--- NPC's name and the tip come from the data. Tests/Guide.lua holds this file to its contract.
+-- reads the same in the tooltip and the right-click menu. Names come from the game in the player's language, an NPC's
+-- too (the data's English name stands in while the client has none); only the tip comes from the data. Tests/Guide.lua
+-- holds this file to its contract.
 
 guide.DetailSeparator = " \194\183 " -- a middle dot between the parts of a detail line
 
@@ -212,6 +213,54 @@ local function GetSpellName(spellId)
     end
 end
 
+-- Whether a value is a table this code may index: indexing a secret table raises an error
+local function CanIndex(value)
+    return type(value) == "table" and (not canaccesstable or canaccesstable(value))
+end
+
+-- An NPC's name as the player's client has it, in its language, from its creature cache through a unit link. Nil while
+-- the client has not cached the NPC (the call queries the server and the answer is cached a moment later), for an NPC
+-- the game does not know, for a secret table or value, and on a client without C_TooltipInfo
+local function GetCreatureName(npcId)
+    if not C_TooltipInfo or not C_TooltipInfo.GetHyperlink then
+        return
+    end
+    local data = C_TooltipInfo.GetHyperlink(("unit:Creature-0-0-0-0-%d-0000000000"):format(npcId))
+    if not CanIndex(data) or not CanIndex(data.lines) or not CanIndex(data.lines[1]) then
+        return
+    end
+    local name = data.lines[1].leftText
+    -- type() is safe on a secret value; comparing or showing one raises an error
+    if type(name) ~= "string" or canaccessvalue and not canaccessvalue(name) or name == "" then
+        return
+    end
+    return name
+end
+
+-- The data's name is the English one
+local function GetNpcName(step)
+    return GetCreatureName(step.NpcId) or step.Name
+end
+
+-- Asks the client once for the name of every NPC the achievements' guides send the player to, so the name is in its
+-- creature cache before a guide shows (Data/Data.lua, at login). Returns the NPC ids, sorted.
+function guide.RequestNpcNames(achievements)
+    local ids, asked = {}, {}
+    for _, achievement in next, achievements do
+        if achievement.Guide then
+            for _, step in ipairs(achievement.Guide) do
+                if step.Type == "Npc" and not asked[step.NpcId] then
+                    asked[step.NpcId] = true
+                    GetCreatureName(step.NpcId)
+                    tinsert(ids, step.NpcId)
+                end
+            end
+        end
+    end
+    table.sort(ids)
+    return ids
+end
+
 -- One line per step the player sees, in order: {Kind, Number, Text, Details, State, Waypoint}. Text is the step's short
 -- headline, Details the smaller lines under it (place, talents, cost), Waypoint {MapId, X, Y, PoiId, Title}. Each
 -- surface lays out the number, headline and details itself. A research step can give two lines: the tiers still
@@ -225,8 +274,9 @@ function guide.GetLines(achievement)
             local spellName = GetSpellName(step.SpellId) or tostring(step.SpellId)
             tinsert(lines, {Kind = "Travel", Text = addon.L["Guide Travel"]:K_ReplaceVars{spell = spellName}})
         elseif step.Type == "Npc" then
-            tinsert(lines, {Kind = "Npc", Text = addon.L["Guide Talk To"]:K_ReplaceVars{npc = step.Name}, Details = {GetPlace(step)},
-                Waypoint = {MapId = step.MapId, X = step.X, Y = step.Y, Title = step.Name}})
+            local npcName = GetNpcName(step)
+            tinsert(lines, {Kind = "Npc", Text = addon.L["Guide Talk To"]:K_ReplaceVars{npc = npcName}, Details = {GetPlace(step)},
+                Waypoint = {MapId = step.MapId, X = step.X, Y = step.Y, Title = npcName}})
         elseif step.Type == "Poi" then
             -- Another class does not see a class portal's POI; the step then names the map only
             local info = C_AreaPoiInfo and C_AreaPoiInfo.GetAreaPOIInfo(step.MapId, step.PoiId)

@@ -148,6 +148,9 @@ local function PostLoadOnPlayerLogin(self, start)
     addon.BuildCacheAsync(PostBuildCache, function(numOfWork)
         addon.Diagnostics.Trace(numOfWork .. " remaining after " .. ("%.2d"):format(debugprofilestop() - start) / 1000)
     end)
+
+    -- The client caches the guide NPCs' names before a guide shows them. Last, so nothing in it can stop the load
+    addon.Gui.Guide.RequestNpcNames(self.Achievements)
 end
 
 function data:LoadOnPlayerLogin()

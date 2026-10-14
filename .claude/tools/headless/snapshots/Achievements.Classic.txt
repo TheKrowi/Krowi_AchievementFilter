@@ -4330,7 +4330,7 @@ PETBATTLE 8518 # criteria 12: https://www.wow-petguide.com/Encounter/52
 PETBATTLE 8518 # criteria 13: https://www.wow-petguide.com/Encounter/50
 
 == Guides ==
-# per achievement, the steps in stored order; an NPC name and a tip are locale strings, left out
+# per achievement, the steps in stored order; an NPC's name is the data's English one, a tip a locale string, left out
 
 == Summary ==
 achievements           2752

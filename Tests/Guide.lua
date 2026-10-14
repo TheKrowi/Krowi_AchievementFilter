@@ -6,7 +6,7 @@ local guide = addon.Tests.Guide
 -- code, Target the desired one; the same scenarios run in game (/kaftest guide) and headlessly
 -- (.claude/tools/headless/run-tests.lua), where a model of the garrison, map, spell and POI APIs stands in for the game.
 -- Recorded was "none" everywhere before the feature (verified in game on 2026-10-11). Milestone A met every target but the
--- menu's Open guide entry, which came with the side panel in milestone B. Seven kinds:
+-- menu's Open guide entry, which came with the side panel in milestone B. Ten kinds:
 --   Surface: the tooltip or the right-click menu of a real achievement (60962 has a guide, 11223 none), with the guide
 --     options set for the run and restored after. The tooltip gives "shown" when its Guide header is followed by the
 --     first rendered line, "header-only" when it is not, "none" without a header. The menu runs only the guide section,
@@ -18,10 +18,16 @@ local guide = addon.Tests.Guide
 --   Waypoint: the waypoint actions for a waypoint, the provider option and what can place the point.
 --   Availability: what can place a waypoint on two real maps: Acherus 648 allows the map pin, Dalaran 627 refuses it.
 --   Panel: the side panel opened next to a stand-in row (and toggled closed), "icons:<n> links:<n>" or "hidden".
+--   Chain: the panel shown by a hover and pinned by a click, "shown" or "hidden", or opened while a stand-in side panel
+--     is open for the same row or another, what it is anchored to before and after the stand-in closes.
 --   Row: the guide block under a stand-in objectives frame, as an expanded row shows it, "icons:<n> links:<n>" or
 --     "none". The row's real height sum stays an in-game check.
--- Surface, Talent, Availability, Panel and Row are Retail only: Classic has no guide data, no garrison and none of these
--- maps.
+--   NpcName: the name a one-step NPC guide shows, whose data name is a marker no NPC has: "game" when the headline and
+--     the waypoint title carry the player's client's name for the NPC, "fallback" when they carry the data's
+--     (docs/work/2026-10-14-guide-npc-names).
+--   NpcRequest: the NPC ids the login warm-up asks the client for, over the loaded data.
+-- Surface, Talent, Availability, Panel, Chain, Row, NpcName and NpcRequest are Retail only: Classic has no guide data,
+-- no garrison and none of these maps.
 --
 -- The code these scenarios hold the feature to (plan, Files that change):
 --   addon.Gui.Guide.GetLines(achievement) -> list of {Kind, Text, State, Waypoint}, the steps as every surface shows them
@@ -38,6 +44,7 @@ local guide = addon.Tests.Guide
 --     NumGuideButtons
 --   addon.Gui.Guide.Content.DisplayUnderObjectives(objectives, achievement) -> the height the row grows by, the block as
 --     objectives.GuideBlock with NumGuideLines and NumGuideButtons
+--   addon.Gui.Guide.RequestNpcNames(achievements) -> the sorted NPC ids of their guides, each asked of the client once
 --   addon.Options.db.profile.Achievements.Guide: Tooltip, RightClickMenu, Icon, ExpandedRow, WaypointProvider
 
 local provider = {Both = 1, MapPin = 2, TomTom = 3} -- Achievements.Guide.WaypointProvider
@@ -155,6 +162,22 @@ guide.Scenarios = {
 
     {Name = "waypoint-availability", Kind = "Availability", Maps = {648, 627},
         Recorded = "648:on,627:off", Target = "648:on,627:off"},
+
+    -- An NPC step names the NPC as the player's client does, in its language (C_TooltipInfo on a unit link); the English
+    -- name in the data is the fallback while the client has none
+    {Name = "npc-name-from-game", Kind = "NpcName", NpcId = 97485, -- Archivist Zubashi, in the client's cache
+        Recorded = "game", Target = "game"},
+    {Name = "npc-name-unknown", Kind = "NpcName", NpcId = 999999, -- no such creature (Wowhead 404 on 2026-10-14)
+        Recorded = "fallback", Target = "fallback"},
+    -- A name that is a secret value, or tooltip data that is a secret table (encounter and other restrictions), is never
+    -- indexed, compared or shown. Only the headless model can make them, so the game skips these scenarios
+    {Name = "npc-name-secret", Kind = "NpcName", Secret = "value",
+        Recorded = "fallback", Target = "fallback"},
+    {Name = "npc-name-secret-table", Kind = "NpcName", Secret = "table", -- the taint review of the branch
+        Recorded = "fallback", Target = "fallback"},
+    -- At login the addon asks the client once for every guide NPC, so the name is cached before a guide shows
+    {Name = "npc-names-requested", Kind = "NpcRequest",
+        Recorded = "97485", Target = "97485"},
 }
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
@@ -417,6 +440,49 @@ local function RunRow(env, scenario, observations)
     return got
 end
 
+local fallbackName = "Fallback name" -- a data name no NPC has, so a step that shows it shows the data's name
+
+-- The line GetLines gives for a one-step guide that sends the player to the NPC
+local function RunNpcName(env, scenario)
+    local module = GetModule()
+    if not module or not module.GetLines then
+        return "none"
+    end
+    local npcId = scenario.NpcId
+    if scenario.Secret then
+        if not env.SecretNpcId then
+            return nil, "the game cannot make a secret name on demand"
+        end
+        npcId = env.SecretNpcId(scenario.Secret)
+    end
+    local achievement = {Guide = {{Type = "Npc", NpcId = npcId, Name = fallbackName, MapId = zubashi.MapId, X = zubashi.X, Y = zubashi.Y}}}
+    local ok, lines = pcall(module.GetLines, achievement)
+    if not ok then
+        return "error" -- reading the name broke the whole guide
+    end
+    local line = lines[1]
+    local title = line and line.Waypoint and line.Waypoint.Title
+    if type(title) ~= "string" or title == "" or not line.Text:find(title, 1, true) then
+        return "mixed" -- the headline and the waypoint disagree, or there is no name
+    end
+    return title == fallbackName and "fallback" or "game"
+end
+
+-- Headlessly the model logs which NPCs the client was asked for; the game cannot, so there the ids the warm-up returns
+-- stand in
+local function RunNpcRequest(env)
+    local module = GetModule()
+    if not module or not module.RequestNpcNames then
+        return "none"
+    end
+    local stopLog = env.LogNpcQueries and env.LogNpcQueries()
+    local ids = module.RequestNpcNames(env.Achievements())
+    if stopLog then
+        ids = stopLog()
+    end
+    return #ids > 0 and table.concat(ids, ",") or "empty"
+end
+
 local runners = {
     Surface = RunSurface,
     Talent = RunTalent,
@@ -425,10 +491,13 @@ local runners = {
     Availability = RunAvailability,
     Panel = RunPanel,
     Chain = RunChain,
-    Row = RunRow
+    Row = RunRow,
+    NpcName = RunNpcName,
+    NpcRequest = RunNpcRequest
 }
 
-local retailOnly = {Surface = true, Talent = true, Availability = true, Panel = true, Chain = true, Row = true}
+local retailOnly = {Surface = true, Talent = true, Availability = true, Panel = true, Chain = true, Row = true, NpcName = true,
+    NpcRequest = true}
 
 local function RunScenario(env, scenario, observations)
     local got, reason = runners[scenario.Kind](env, scenario, observations)
@@ -459,7 +528,7 @@ function guide.Run(env, observations)
         end
     end
     if skipped > 0 then
-        tinsert(observations, ("%d surface, talent, panel, row and availability scenarios are Retail only: Classic has no guide data, no garrison and none of their maps"):format(skipped))
+        tinsert(observations, ("%d surface, talent, panel, chain, row, availability and NPC scenarios are Retail only: Classic has no guide data, no garrison and none of their maps"):format(skipped))
     end
     -- What 60962's guide reads for the character running the suite: the scenarios above check its shape, this its words,
     -- which depend on the character's class and talent tree
@@ -498,6 +567,10 @@ function gameEnv.Achievement(id)
         return nil, "achievement " .. id .. " is not loaded"
     end
     return achievement
+end
+
+function gameEnv.Achievements()
+    return addon.Data.Achievements
 end
 
 addon.Tests.Ready.guide = function()

@@ -7,7 +7,6 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-07 18-18-32 ]] --
-L["Archivist Zubashi"] = true
 L["Guide"] = "Leitfaden"
 L["Guide Travel"] = "Reise mit {spell}"
 L["Guide Talk To"] = "Sprich mit {npc}"

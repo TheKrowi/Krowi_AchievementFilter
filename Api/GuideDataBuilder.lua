@@ -1,7 +1,7 @@
 -- An achievement guide is a short list of typed steps that Gui/Guide/ renders from ids, so the data holds only what the
 -- game does not know: where to go, whom to talk to and one tip. Coordinates are percent (0-100) on the uiMap, measured in
 -- game with /kafwhere or read from the area POI table, never copied from a website.
---   Guide(60962):Travel(50977):Npc(97485, addon.L["Archivist Zubashi"], 648, 47.7, 53.8):Criteria("Any")
+--   Guide(60962):Travel(50977):Npc(97485, "Archivist Zubashi", 648, 47.7, 53.8):Criteria("Any")
 local GuideBuilder = {}
 GuideBuilder.__index = GuideBuilder
 
@@ -15,8 +15,11 @@ function GuideBuilder:Travel(spellId)
     return AddStep(self, {Type = "Travel", SpellId = spellId})
 end
 
--- Talk to an NPC; the name goes through addon.L because creature names come from the server cache
+-- Talk to an NPC. The name is the English one, as the enUS client shows it: the guide shows the player's client's own
+-- name from its creature cache, and this one only while the client has none
 function GuideBuilder:Npc(npcId, name, uiMapId, x, y)
+    assert(type(npcId) == "number" and type(name) == "string",
+        "Npc() takes the NPC id, then its English name, e.g. :Npc(97485, \"Archivist Zubashi\", 648, 47.7, 53.8)")
     return AddStep(self, {Type = "Npc", NpcId = npcId, Name = name, MapId = uiMapId, X = x, Y = y})
 end
 

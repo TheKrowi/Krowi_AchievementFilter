@@ -867,6 +867,8 @@ end
 --   - the 60962 guide as the data registers it, and its two hidden type-198 criteria, 486 Frost and Death and
 --     487 Roster of Champions, with Tier VII locked, as on the step-0 Death Knight;
 --   - the maps the user waypoint allows (Acherus yes, Dalaran no) and the Alliance Paladin portal's POI;
+--   - the client's creature cache: Archivist Zubashi (97485) known, one NPC whose name is a secret value, one whose
+--     tooltip data is a secret table, no other;
 --   - no TomTom.
 -- Until the feature exists no file loads, and every scenario gets "none". Classic runs the faction and waypoint scenarios
 -- only, which read nothing from the game.
@@ -948,6 +950,37 @@ suites.guide = function(c)
             position = { x = 0.327, y = 0.698 } } } -- a Death Knight would not see it in game; the model keeps one POI to read
         env.C_AreaPoiInfo = { GetAreaPOIInfo = function(mapId, id) return mapId == 627 and pois[id] or nil end }
         env.C_AddOns = { IsAddOnLoaded = function() return false end }
+
+        -- --- Creature names (docs/work/2026-10-14-guide-npc-names) -------------------------------------------------------
+        -- C_TooltipInfo on a unit link answers from the client's creature cache, as Krowi's enUS client did on 2026-10-14:
+        -- 97485 is cached, any other id is not (no lines). One id answers with a name canaccessvalue rejects (a string, as
+        -- a secret name is, so only that guard stops it), another with tooltip data canaccesstable rejects and that errors
+        -- when indexed, as a secret table does. The ids the client is asked for can be logged.
+        local secretName, secretNpcId = "<secret name>", 424242
+        local secretData = setmetatable({}, { __index = function() error("attempt to index a secret table", 2) end })
+        local secretTableNpcId = 424243
+        local creatureNames = { [97485] = "Archivist Zubashi", [secretNpcId] = secretName }
+        local queries
+        env.C_TooltipInfo = { GetHyperlink = function(link)
+            local id = tonumber(link:match("^unit:Creature%-0%-0%-0%-0%-(%d+)%-"))
+            if queries and id then queries[#queries + 1] = id end
+            if id == secretTableNpcId then return secretData end
+            local name = creatureNames[id]
+            return { lines = name and { { leftText = name } } or {} }
+        end }
+        env.canaccessvalue = function(value) return value ~= secretName end
+        env.canaccesstable = function(t) return t ~= secretData end
+        function headless.SecretNpcId(kind) return kind == "table" and secretTableNpcId or secretNpcId end
+        -- Starts logging the client's creature queries; the function it returns stops and gives the ids asked, sorted
+        function headless.LogNpcQueries()
+            queries = {}
+            return function()
+                local ids = queries
+                queries = nil
+                table.sort(ids)
+                return ids
+            end
+        end
     else
         env.C_Map = { GetMapInfo = function() return nil end } -- Classic has none of the Legion maps the scenarios name
     end
@@ -992,6 +1025,7 @@ suites.guide = function(c)
         [11223] = { Id = 11223, IsCompleted = true },
     }
     function headless.Achievement(id) return achievements[id] end
+    function headless.Achievements() return achievements end
     local savedOptions
     function headless.SetOptions(options)
         local guideOptions = addon.Options.db.profile.Achievements.Guide
