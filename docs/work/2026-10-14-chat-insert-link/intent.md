@@ -1,8 +1,8 @@
 # Intent: Paste-to-chat calls a deprecated global
-Author: Krowi (maintainer), captured by Claude. Source: idea (deprecated-API scan across Krowi's addons, 2026-10-14). Status: accepted
+Author: Krowi (maintainer), captured by Claude. Source: idea (deprecated-API scan across Krowi's addons, 2026-10-14). Status: done
 
 ## Problem
-Nothing is broken for players today. Pasting an achievement link into chat with the paste-to-chat modifier in the addon's window calls `ChatEdit_InsertLink`, which every client the addon supports now keeps only as a deprecated alias. When Blizzard deletes that alias, as 12.1.5 just did with the item globals, the modifier click errors and no link is pasted.
+Pasting an achievement link into chat with the paste-to-chat modifier in the addon's window calls `ChatEdit_InsertLink`, which every client the addon supports now keeps only as a deprecated alias. When Blizzard deletes that alias, as 12.1.5 just did with the item globals, the modifier click errors and no link is pasted. (Corrected after the code review: players who turned the `loadDeprecationFallbacks` CVar off already get that error today, because the alias is then never defined. See spec.md, Root cause.)
 
 ## Proposed outcome
 Paste-to-chat keeps working after Blizzard removes the old chat globals, on every client.
