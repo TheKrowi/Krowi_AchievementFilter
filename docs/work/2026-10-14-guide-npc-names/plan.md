@@ -1,5 +1,5 @@
 # Plan: Guide NPC names in the player's language, from the game
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 ## Context
 The 60962 guide names Archivist Zubashi through `addon.L["Archivist Zubashi"]`, which is English in all ten other locales. Krowi decided on 2026-10-14 (spec, option A) that NPC names are game data, not translations. The guide reads the name from the client (`C_TooltipInfo.GetHyperlink` on a unit link), falls back to the English name in the data, and asks the client for every guide NPC once at login so the name is cached before a guide shows. The work happens in the worktree `.claude/worktrees/feature-2026-10-14-guide-npc-names` on `feature/2026-10-14-guide-npc-names`; the intent and spec are committed (`17522e57`).
@@ -25,7 +25,13 @@ The 60962 guide names Archivist Zubashi through `addon.L["Archivist Zubashi"]`, 
   - the header comment (lines 5-7) updated.
 - `Data/Data.lua`, `PostLoadOnPlayerLogin`: call `addon.Gui.Guide.RequestNpcNames(self.Achievements)` last, after `addon.BuildCacheAsync` is started, with a comment on why. The taint review moved it there from right after `AchievementPopout:Load()`: an error in the warm-up must not stop the cache build, `SpecialCategories.LoadData` or `IsLoaded`.
 - `Gui/Guide/Guide.lua`, `GetCreatureName`, after the taint review: every table on the way to the name (`data`, `data.lines`, the line) is checked with `type` and `canaccesstable` before it is indexed, since 12.x can return secret tables and the tooltip data's shape is not documented. The name is checked with `type` first, then `canaccessvalue`, then compared. A fifth NpcName scenario, `npc-name-secret-table`, recorded "error" against the first version of the code (headless, 2026-10-14) and "fallback" after; the game skips it like `npc-name-secret`.
-- Not changed: the expanded row's render cache key (`Gui/Guide/Content.lua:228-229`) does not include the NPC's name, so a row first drawn with the English fallback keeps it until the key changes. With the warm-up that needs a first draw within a moment of logging in, with the NPC never cached; selecting another achievement and back redraws it.
+- Not changed: the expanded row's render cache key (`Gui/Guide/Content.lua:228-229`) does not include the NPC's name, so a row first drawn with the English fallback keeps it until the key changes. With the warm-up that needs a first draw within a moment of logging in, with the NPC never cached; selecting another achievement and back redraws it. Deferred as row 31 of `docs/codebase-analysis.md`.
+- After the code review:
+  - `Api/GuideDataBuilder.lua`: `:Npc` asserts a numeric id and a string name, like the builder's other argument checks, since a step without an id would now break the guide on every surface.
+  - `Globals.lua`: `/kafwhere` quotes the name with `%q`.
+  - `.claude/tools/headless/snapshot-data.lua`: the NPC's name is now data, not a locale string, so the snapshot records it; the regenerated snapshots differ only in that field and the heading comment.
+  - The headless model: the secret name is a string, so only the `canaccessvalue` guard stops it, and the model logs the client's creature queries, which `npc-names-requested` reads headlessly. A mutation run (both guards removed) failed both scenarios, where it had passed them before.
+  - `Tests/Guide.lua`: the header documents the Chain kind and its Retail-only status, which it had missed since the side panel work.
 - `DataAddons/Retail/07_Legion/GuideData.lua`: `:Npc(97485, "Archivist Zubashi", 648, 47.7, 53.8)`; the unused `local _, addon = ...` goes.
 - `Api/GuideDataBuilder.lua`: the comment on line 4 and the `:Npc` comment on line 18 say the name is the English fallback, as the enUS client shows it, and that the game supplies the player's own.
 - `Globals.lua:283` (`/kafwhere`): `(':Npc(%d, "%s", %s)')`.

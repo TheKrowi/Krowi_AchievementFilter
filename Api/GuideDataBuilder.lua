@@ -18,6 +18,8 @@ end
 -- Talk to an NPC. The name is the English one, as the enUS client shows it: the guide shows the player's client's own
 -- name from its creature cache, and this one only while the client has none
 function GuideBuilder:Npc(npcId, name, uiMapId, x, y)
+    assert(type(npcId) == "number" and type(name) == "string",
+        "Npc() takes the NPC id, then its English name, e.g. :Npc(97485, \"Archivist Zubashi\", 648, 47.7, 53.8)")
     return AddStep(self, {Type = "Npc", NpcId = npcId, Name = name, MapId = uiMapId, X = x, Y = y})
 end
 

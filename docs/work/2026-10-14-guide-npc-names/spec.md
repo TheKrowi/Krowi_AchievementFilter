@@ -1,5 +1,5 @@
 # Spec: Guide NPC names in the player's language, from the game
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. A guide's NPC step shows the name the player's client has for that NPC, in the step's headline and in its waypoint title, on every surface: tooltip, right-click menu, side panel, expanded row, map pin and TomTom.

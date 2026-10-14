@@ -1,5 +1,5 @@
 # Intent: Guide NPC names in the player's language, from the game
-Author: Krowi (maintainer). Source: idea, `docs/backlog.md` "Archivist Zubashi's name in other locales" (from PR #338), discussed on 2026-10-14. Status: accepted
+Author: Krowi (maintainer). Source: idea, `docs/backlog.md` "Archivist Zubashi's name in other locales" (from PR #338), discussed on 2026-10-14. Status: done
 
 ## Problem
 The guide for 60962 "Legendary Research of the Ebon Blade" tells the player to talk to Archivist Zubashi. The name comes from `addon.L["Archivist Zubashi"]`, which is `= true` in all ten other locales, so a German, French, Korean or Chinese player reads the English name in a step that is otherwise in their language, and in the waypoint title (map pin, TomTom).

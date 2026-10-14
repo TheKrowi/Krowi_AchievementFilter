@@ -280,7 +280,7 @@ SlashCmdList["KAFWHERE"] = function(msg)
     local target = record.Target or {}
     local step = ("%s, %s, %s"):format(tostring(record.MapId), tostring(record.X), tostring(record.Y))
     if target.NpcId then
-        step = (':Npc(%d, "%s", %s)'):format(target.NpcId, tostring(target.Name), step)
+        step = (':Npc(%d, %q, %s)'):format(target.NpcId, tostring(target.Name), step) -- the data takes the English name
     end
     print(("KrowiAF: %s (%s): %s; map pin %s. Stored as entry %d, written to disk on the next /reload or logout."):format(
         record.Note or "no label", tostring(record.Faction), step, record.CanSetUserWaypoint and "allowed" or "not allowed", #KrowiAF_DebugTable.Where))

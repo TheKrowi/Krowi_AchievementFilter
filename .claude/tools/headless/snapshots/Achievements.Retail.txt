@@ -15586,9 +15586,9 @@ PETBATTLE 41551 # criteria 9: 41549
 PETBATTLE 41551 # criteria 10: 41550
 
 == Guides ==
-# per achievement, the steps in stored order; an NPC name and a tip are locale strings, left out
+# per achievement, the steps in stored order; an NPC's name is the data's English one, a tip a locale string, left out
 GUIDE 60962 # 1 Travel SpellId=50977
-GUIDE 60962 # 2 Npc MapId=648 NpcId=97485 X=47.7 Y=53.8
+GUIDE 60962 # 2 Npc MapId=648 Name=Archivist Zubashi NpcId=97485 X=47.7 Y=53.8
 GUIDE 60962 # 3 Criteria Operator=Any
 
 == Summary ==

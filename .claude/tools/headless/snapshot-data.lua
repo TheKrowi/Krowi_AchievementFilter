@@ -505,7 +505,7 @@ local function buildSnapshot(client)
     emit("")
 
     emit("== Guides ==")
-    emit("# per achievement, the steps in stored order; an NPC name and a tip are locale strings, left out")
+    emit("# per achievement, the steps in stored order; an NPC's name is the data's English one, a tip a locale string, left out")
     local guideAchievements, guideSteps = 0, 0
     for _, id in ipairs(achievementIds) do
         local steps = data.Achievements[id].Guide
@@ -513,7 +513,7 @@ local function buildSnapshot(client)
             guideAchievements = guideAchievements + 1
             for i, step in ipairs(type(steps) == "table" and steps or { steps }) do
                 local stepType = type(step) == "table" and step.Type or step
-                local fields = type(step) == "table" and extras(step, { Type = true, Name = true, Text = true }) or ""
+                local fields = type(step) == "table" and extras(step, { Type = true, Text = true }) or ""
                 emit("GUIDE " .. serialize(id) .. " # " .. i .. " " .. serialize(stepType) .. fields)
                 guideSteps = guideSteps + 1
             end
