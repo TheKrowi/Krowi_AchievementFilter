@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 - Hero of the Zandalar Tribe now lists both times it could be earned in its tooltip: before Cataclysm, and again during WoW's 20th Anniversary
 - Upper Blackrock Spire (Classic) and Leeeeeeeeeeeeeroy! no longer show twice in Upper Blackrock Spire on Retail, and on Classic they now show in Blackrock Spire, in the Current Zone category and on the world map
 - Escape now closes the reward preview first, like the guide panel, instead of closing the achievement window along with it
+- The addon recognises the Wrath Classic client again, for its achievement tabs, search box, tooltips and Wowhead links among others; a shared library update in November 2025 had stopped that
 
 ## 102.0 - 2026-10-09
 ### Added

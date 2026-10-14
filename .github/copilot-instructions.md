@@ -75,7 +75,7 @@ The WoW client reads `Krowi_AchievementFilter.toc`, which defines the **exact lo
 12. `DataAddons/Loaders/Files.xml` — post-processing loaders that wire the data tables to their processors
 13. `Tests/Files.xml`
 
-Game-version-conditional loading uses `[AllowLoadGameType mainline]` and `[AllowLoadGameType wrath, cata, mists]` directives in the `.toc`. In code, use `addon.Util.IsMainline`, `addon.Util.IsClassicWithAchievements`, `addon.Util.IsMistsClassic` (from `Libs/Krowi_Util`). `addon.Util.IsWrathClassic` no longer exists there, so the code that still reads it always takes its non-Wrath branch (`docs/backlog.md`).
+Game-version-conditional loading uses `[AllowLoadGameType mainline]` and `[AllowLoadGameType wrath, cata, mists]` directives in the `.toc`. In code, use `addon.Util.IsMainline`, `addon.Util.IsClassicWithAchievements`, `addon.Util.IsWrathClassic`, `addon.Util.IsMistsClassic` (from `Libs/Krowi_Util`); the `util-flags` lint rule fails on one that Krowi_Util does not define.
 
 ### Root Files
 

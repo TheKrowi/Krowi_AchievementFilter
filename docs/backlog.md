@@ -30,9 +30,3 @@ Follow-ups that are not a work item yet. When one is taken up, it gets its own w
 - **A "go to" entry for an id the game does not know breaks the whole right-click menu.** `AchievementMenu:AddGoToAchievementLine` concatenates the name `addon.GetAchievmentName(id)` returns. That is nil when `GetAchievementInfo` does not know the id, so both `name .. " (Missing)"` and `name .. nameSuffix` raise "attempt to concatenate a nil value".
   - The callers pass ids from the data: `OtherFaction.lua`, `RequiredFor.lua`, `PartOfAChain.lua` and `FirstCategory.lua`. An id one client lacks, or a removed achievement still in the data, is enough.
   - The menu suite (`Tests/Menu.lua`) takes a third scenario for an id the game does not know, recorded "error". Its in-game before-run comes before the fix.
-- **`addon.Util.IsWrathClassic` is never defined.** Krowi_Util defines `IsClassicEra`, `IsBCCClassic`, `IsMistsClassic`, `IsClassicWithAchievements`, `IsTheWarWithin`, `IsMidnight` and `IsMainline` (`Libs/Krowi_Util/Krowi_Util.lua:18-24`).
-  - 18 reads in the addon's own code therefore always take their non-Wrath branch: the achievement tab indices and tab buttons, the Guild tab, the Wowhead link, the plus/minus and shield textures, and the ElvUI world map fix. `Libs/Krowi_Util/Options/Options.lua:83` has the same dead branch.
-  - The `.toc` still lists 38002, a Wrath client. Decide whether that client is still supported:
-    - if it is, restore the flag in Krowi_Util and check those branches in game;
-    - if it isn't, remove the branches and the interface version.
-  - The taint review of the 2026-10-11-latent-bugs work found it, while that fix dropped the two branches in `Options/General.lua`.
