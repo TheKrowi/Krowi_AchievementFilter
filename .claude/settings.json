@@ -1,29 +1,16 @@
 {
+    "extraKnownMarketplaces": {
+        "krowi-claudekit": {
+            "source": {
+                "source": "directory",
+                "path": "E:/World of Warcraft Addon Development/Krowi_ClaudeKit"
+            }
+        }
+    },
+    "enabledPlugins": {
+        "krowi@krowi-claudekit": true
+    },
     "hooks": {
-        "PreToolUse": [
-            {
-                "matcher": "Bash|PowerShell|Edit|Write|MultiEdit",
-                "hooks": [
-                    {
-                        "type": "command",
-                        "command": "pwsh -NoProfile -NonInteractive -File \"$CLAUDE_PROJECT_DIR/.claude/hooks/Guard-ToolUse.ps1\"",
-                        "timeout": 15
-                    }
-                ]
-            }
-        ],
-        "PostToolUse": [
-            {
-                "matcher": "Edit|Write",
-                "hooks": [
-                    {
-                        "type": "command",
-                        "command": "pwsh -NoProfile -NonInteractive -File \"$CLAUDE_PROJECT_DIR/.claude/hooks/Check-LuaSyntax.ps1\"",
-                        "timeout": 30
-                    }
-                ]
-            }
-        ],
         "Stop": [
             {
                 "hooks": [
@@ -38,27 +25,31 @@
     },
     "permissions": {
         "additionalDirectories": [
-            "../wow-ui-source/"
+            "E:/World of Warcraft Addon Development/wow-ui-source/",
+            "E:/World of Warcraft Addon Development/Krowi_ClaudeKit/"
         ],
         "allow": [
             "Bash(pwsh -NoProfile -NonInteractive -File .claude/tools/Check-Repo.ps1)",
             "Bash(pwsh -NoProfile -NonInteractive -File .claude/tools/Check-Repo.ps1 *)",
-            "Bash(pwsh -NoProfile -NonInteractive -File .claude/hooks/Check-LuaSyntax.ps1)",
             "PowerShell(& \".claude\\tools\\Check-Repo.ps1\")",
             "PowerShell(& \".claude\\tools\\Check-Repo.ps1\" *)",
-            "PowerShell(& \".claude\\tools\\lua51\\lua.exe\" \".claude\\tools\\headless\\load-data.lua\" \"$PWD\" *)",
-            "Bash(./.claude/tools/lua51/lua.exe .claude/tools/headless/load-data.lua \"$PWD\" *)",
-            "PowerShell(& \".claude\\tools\\lua51\\lua.exe\" \".claude\\tools\\headless\\run-tests.lua\" \"$PWD\" *)",
-            "Bash(./.claude/tools/lua51/lua.exe .claude/tools/headless/run-tests.lua \"$PWD\" *)",
-            "PowerShell(& \".claude\\tools\\lua51\\lua.exe\" \".claude\\tools\\lua51\\check-syntax.lua\" *)",
+            "PowerShell(& \"E:\\World of Warcraft Addon Development\\Krowi_ClaudeKit\\tools\\lua51\\lua.exe\" \".claude\\tools\\headless\\load-data.lua\" \"$PWD\" *)",
+            "PowerShell(& \"E:\\World of Warcraft Addon Development\\Krowi_ClaudeKit\\tools\\lua51\\lua.exe\" \".claude\\tools\\headless\\run-tests.lua\" \"$PWD\" *)",
+            "PowerShell(& \"E:\\World of Warcraft Addon Development\\Krowi_ClaudeKit\\tools\\lua51\\lua.exe\" \".claude\\tools\\headless\\snapshot-data.lua\" \"$PWD\" *)",
+            "PowerShell(& \"E:\\World of Warcraft Addon Development\\Krowi_ClaudeKit\\tools\\lua51\\lua.exe\" \".claude\\tools\\headless\\snapshot-categories.lua\" \"$PWD\" *)",
+            "PowerShell(& \"E:\\World of Warcraft Addon Development\\Krowi_ClaudeKit\\tools\\lua51\\lua.exe\" \"E:\\World of Warcraft Addon Development\\Krowi_ClaudeKit\\tools\\lua51\\check-syntax.lua\" *)",
             "PowerShell(& \".claude\\tools\\Read-GameTests.ps1\")",
             "PowerShell(& \".claude\\tools\\Read-GameTests.ps1\" *)",
-            "PowerShell(& \".claude\\tools\\Read-GameErrors.ps1\")",
-            "PowerShell(& \".claude\\tools\\Read-GameErrors.ps1\" *)",
-            "PowerShell(& \".claude\\tools\\Read-GameScreenshot.ps1\")",
-            "PowerShell(& \".claude\\tools\\Read-GameScreenshot.ps1\" *)",
-            "PowerShell(& \".claude\\tools\\Deploy.ps1\" -WhatIf)",
-            "PowerShell(& \".claude\\tools\\Deploy.ps1\" -WhatIf *)",
+            "PowerShell(& \"E:\\World of Warcraft Addon Development\\Krowi_ClaudeKit\\tools\\Read-GameErrors.ps1\")",
+            "PowerShell(& \"E:\\World of Warcraft Addon Development\\Krowi_ClaudeKit\\tools\\Read-GameErrors.ps1\" *)",
+            "PowerShell(& \"E:\\World of Warcraft Addon Development\\Krowi_ClaudeKit\\tools\\Read-GameScreenshot.ps1\")",
+            "PowerShell(& \"E:\\World of Warcraft Addon Development\\Krowi_ClaudeKit\\tools\\Read-GameScreenshot.ps1\" *)",
+            "PowerShell(& \"E:\\World of Warcraft Addon Development\\Krowi_ClaudeKit\\tools\\Deploy.ps1\" -WhatIf)",
+            "PowerShell(& \"E:\\World of Warcraft Addon Development\\Krowi_ClaudeKit\\tools\\Deploy.ps1\" -WhatIf *)",
+            "PowerShell(& \"E:\\World of Warcraft Addon Development\\Krowi_ClaudeKit\\tools\\Get-WowBuilds.ps1\")",
+            "PowerShell(& \"E:\\World of Warcraft Addon Development\\Krowi_ClaudeKit\\tools\\Find-Symbol.ps1\" *)",
+            "PowerShell(& \"E:\\World of Warcraft Addon Development\\Krowi_ClaudeKit\\skills\\release\\Check-ReleaseReady.ps1\")",
+            "PowerShell(& \"E:\\World of Warcraft Addon Development\\Krowi_ClaudeKit\\skills\\release\\Check-ReleaseReady.ps1\" *)",
             "PowerShell(gh pr view *)",
             "PowerShell(gh pr list *)",
             "PowerShell(gh pr diff *)",
@@ -66,18 +57,12 @@
             "PowerShell(gh issue view *)",
             "PowerShell(gh issue list *)",
             "PowerShell(gh release view *)",
-            "PowerShell(& \".claude\\skills\\release\\Check-ReleaseReady.ps1\")",
-            "PowerShell(& \".claude\\skills\\release\\Check-ReleaseReady.ps1\" *)",
             "PowerShell(& \".claude\\skills\\add-achievement-data\\_lookup_ids.ps1\")",
             "PowerShell(& \".claude\\skills\\add-achievement-data\\_lookup_ids.ps1\" *)",
             "PowerShell(& \".claude\\skills\\add-category-data\\_lookup_ids.ps1\")",
             "PowerShell(& \".claude\\skills\\add-category-data\\_lookup_ids.ps1\" *)",
             "PowerShell(& \".claude\\skills\\add-zone-data\\_lookup_criteria.ps1\")",
             "PowerShell(& \".claude\\skills\\add-zone-data\\_lookup_criteria.ps1\" *)",
-            "PowerShell(& \".claude\\tools\\Get-WowBuilds.ps1\")",
-            "PowerShell(& \".claude\\tools\\Find-Symbol.ps1\" *)",
-            "PowerShell(& \".claude\\tools\\lua51\\lua.exe\" \".claude\\tools\\headless\\snapshot-data.lua\" \"$PWD\" *)",
-            "PowerShell(& \".claude\\tools\\lua51\\lua.exe\" \".claude\\tools\\headless\\snapshot-categories.lua\" \"$PWD\" *)",
             "PowerShell(& \".claude\\skills\\add-achievement-data\\_lookup_holidays.ps1\" *)",
             "PowerShell(& \".claude\\skills\\add-achievement-data\\_lookup_mount_id.ps1\" *)",
             "PowerShell(& \".claude\\skills\\add-achievement-data\\_lookup_pet_speciesid.ps1\" *)",
