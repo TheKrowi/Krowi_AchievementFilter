@@ -40,7 +40,7 @@ What Claude Code allows (docs read 2026-10-16: plugins/loading, marketplace-refe
 
 **This repo's remaining tools reach the kit through one helper.**
 - `.claude/tools/KitPath.ps1` (new, a few lines) is dot-sourced by `Check-Repo.ps1`, `Read-GameTests.ps1`, `Update-DeprecatedApi.ps1`, the data skills' scripts and `raw/` tooling.
-- It finds the kit as `Krowi_ClaudeKit` next to this repo's main checkout (the parent of `git rev-parse --git-common-dir`), so it works from a worktree too.
+- It finds the kit as `Krowi_ClaudeKit` next to this repo's main checkout (the parent of `git rev-parse --git-common-dir`), so it works from a worktree too. `$env:KROWI_CLAUDEKIT`, when set, points it at another kit checkout, for testing a kit worktree.
 - It stops with one clear message when the kit is missing.
 - Commands in the documents use `$kit`, as the workspace rules already do.
 
@@ -56,7 +56,7 @@ What Claude Code allows (docs read 2026-10-16: plugins/loading, marketplace-refe
 | `agents/taint-reviewer.md`, `skills/release/`, `skills/process-issue/` | the kit's | merged |
 | the escape-suite gate in `skills/release/Check-ReleaseReady.ps1` | `.claude/release-gate.ps1` here | the kit's preflight runs `<repo>/.claude/release-gate.ps1` when a repo has one |
 | `docs/work/_template/` | the kit's `skills/process-issue/templates/` | the union of both areas-of-concern lists |
-| `skills/grill-me/` | removed | Krowi's personal `grill-me` skill covers it |
+| `skills/grill-me/` | removed | `anthropic-skills:grill-me`, synced from Krowi's claude.ai skills, has the same text |
 | `tools/headless/read-errors.lua` | removed | identical to the kit's `lua51/read-errors.lua` |
 
 **Process documents.**
