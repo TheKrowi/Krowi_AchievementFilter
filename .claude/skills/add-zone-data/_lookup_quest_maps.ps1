@@ -7,7 +7,8 @@
 param(
     [string[]] $Ids = @()
 )
-. "$PSScriptRoot\..\..\tools\Get-WowBuilds.ps1"
+. "$PSScriptRoot\..\..\tools\KitPath.ps1"
+. "$KitTools\Get-WowBuilds.ps1"
 $baseUrl = "http://localhost:5000"
 $build = (Get-WowBuilds -BaseUrl $baseUrl).Retail
 

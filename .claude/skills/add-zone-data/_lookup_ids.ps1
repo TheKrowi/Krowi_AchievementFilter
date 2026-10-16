@@ -1,6 +1,6 @@
 # Pass the ids as -Ids 12345,12346, or set the $Ids placeholder below, run, and reset it to @().
 # Uses exact-ID column-3 regex match — never a text search — to avoid wrong results on small IDs.
-# Queries BOTH current builds (resolved from the server by .claude\tools\Get-WowBuilds.ps1): Shared ZoneData serves
+# Queries BOTH current builds (resolved from the server by the kit's tools\Get-WowBuilds.ps1): Shared ZoneData serves
 # Classic too, so an id is only "not in the game DB" when neither build has it.
 # Pre-requisite: wow.tools.local must already be running (_start_server.ps1 in Step 0).
 # Output: id|Title_lang|Description_lang|builds=retail,classic   (builds= lists where the id exists)
@@ -9,7 +9,8 @@ param(
     [string[]] $Ids = @()
 )
 if ($Ids.Count -eq 0) { Write-Host "Pass -Ids or set the `$Ids placeholder first."; return }
-. "$PSScriptRoot\..\..\tools\Get-WowBuilds.ps1"
+. "$PSScriptRoot\..\..\tools\KitPath.ps1"
+. "$KitTools\Get-WowBuilds.ps1"
 $baseUrl = "http://localhost:5000"
 $builds = Get-WowBuilds -BaseUrl $baseUrl
 $pat  = "^(" + ($ids -join "|") + ")$"

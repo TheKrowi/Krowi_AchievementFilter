@@ -2,14 +2,15 @@
 # Obtainable("From", "Date", ..., "Until", "Date", ...) window for an anniversary or other dated event.
 # Pass holiday name fragments (matched case-insensitively) as -Terms "Anniversary","Brewfest", or set the $Terms
 # placeholder below, run, and reset it to @(). -Client Classic reads the Classic build. The build is resolved from
-# the server (.claude\tools\Get-WowBuilds.ps1); for a patch still on the PTR set $env:KAF_RETAIL_PRODUCT = "wowxptr" first.
+# the server (the kit's tools\Get-WowBuilds.ps1); for a patch still on the PTR set $env:KAF_RETAIL_PRODUCT = "wowxptr" first.
 # Pre-requisite: wow.tools.local must already be running.
 # Output: holiday id|name|region|start (server time)|duration hours|end   one line per filled Date slot
 param(
     [string[]] $Terms = @(),
     [ValidateSet('Retail', 'Classic')] [string] $Client = 'Retail'
 )
-. "$PSScriptRoot\..\..\tools\Get-WowBuilds.ps1"
+. "$PSScriptRoot\..\..\tools\KitPath.ps1"
+. "$KitTools\Get-WowBuilds.ps1"
 $baseUrl = "http://localhost:5000"
 $build = (Get-WowBuilds -BaseUrl $baseUrl)[$Client]
 

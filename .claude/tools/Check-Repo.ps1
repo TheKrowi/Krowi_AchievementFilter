@@ -58,10 +58,11 @@
       lookup-placeholders [Warning] the _*.ps1 skill scripts are committed with their placeholders empty
                                  ($Ids/$Terms/$Names = @(), $Table/$Name = ""), param() defaults included
       pinned-build     [Warning] no skill or raw/ script types a game build ($build = "12..."); builds come
-                                 from .claude/tools/Get-WowBuilds.ps1
+                                 from Krowi_ClaudeKit's tools/Get-WowBuilds.ps1
       work-items       [Warning] docs/work/<issue>-<slug>/ folders follow docs/sdlc-playbook.md: folder
                                  name, an intent.md, no plan.md without a spec.md, and in each file the
-                                 template's title, a Status: draft|accepted|done line and its headings
+                                 template's title (Krowi_ClaudeKit's skills/process-issue/templates/), a
+                                 Status: draft|accepted|done line and its headings
       bom              [Warning] no UTF-8 byte order mark (.editorconfig: utf-8)
       line-endings     [Warning] CRLF only (.editorconfig: crlf)
       semicolon        [Error]   no trailing semicolons on added .lua lines (changed files only)
@@ -71,6 +72,9 @@
 
     Warnings on changed files are promoted to Error so pre-existing debt does not block work
     while new debt does.
+
+    The vendored Lua 5.1.5 comes from Krowi_ClaudeKit (KitPath.ps1). Without the kit the lint stops with exit code 1
+    and says so, rather than passing with the Lua rules skipped.
 
 .PARAMETER ChangedOnly
     Report only findings that involve changed files (plus the always-on structural errors).
@@ -96,6 +100,13 @@ param(
 $ErrorActionPreference = 'Stop'
 $root = Split-Path (Split-Path $PSScriptRoot -Parent) -Parent   # .claude\tools -> repo root
 Set-Location $root
+
+# The Lua rules need the kit's interpreter; stop loudly without it (the Stop hook hands exit 1 back to Claude)
+try { . (Join-Path $PSScriptRoot 'KitPath.ps1') }
+catch {
+    Write-Output "Check-Repo: $($_.Exception.Message)"
+    exit 1
+}
 
 $nonAddonDirs = @('.claude', '.git', '.github', '.vscode', '_Packaging', 'raw', 'wiki', 'docs')
 $findings = [System.Collections.Generic.List[object]]::new()
@@ -310,8 +321,8 @@ foreach ($rel in $ownLuaFiles) {
 Write-Timing 'saved-variables'
 
 # --- lua-syntax --------------------------------------------------------------------------------
-$lua = Join-Path $root '.claude\tools\lua51\lua.exe'
-$checker = Join-Path $root '.claude\tools\lua51\check-syntax.lua'
+$lua = $KitLua
+$checker = Join-Path $KitTools 'lua51\check-syntax.lua'
 if ((Test-Path $lua) -and (Test-Path $checker)) {
     $targets = @(if ($ChangedOnly) { $luaFiles | Where-Object { $changed.ContainsKey($_) } } else { $luaFiles })
     if ($targets.Count -gt 0) {
@@ -325,7 +336,7 @@ if ((Test-Path $lua) -and (Test-Path $checker)) {
     }
 }
 else {
-    Add-Finding 'lua-syntax' 'Warning' '.claude/tools/lua51' 1 'vendored Lua missing, syntax not checked (run Build-Lua51.ps1)'
+    Add-Finding 'lua-syntax' 'Error' '.claude/tools/KitPath.ps1' 1 "the kit's lua51\check-syntax.lua is missing under $KitTools, syntax not checked"
 }
 
 Write-Timing 'lua-syntax'
@@ -334,7 +345,7 @@ Write-Timing 'lua-syntax'
 # luac -l lists one SETGLOBAL per assignment to an undeclared name. Anything that is not a KrowiAF*/
 # BINDING_*/SLASH_* name and not listed in Check-Repo.globals ("<path glob> <name glob>") is a leak,
 # or a Blizzard override nobody has owned up to. Vendored Libs are not ours to lint.
-$luac = Join-Path $root '.claude\tools\lua51\luac.exe'
+$luac = $KitLuac
 if (Test-Path $luac) {
     $allowGlobals = @()
     $allowFile = Join-Path $PSScriptRoot 'Check-Repo.globals'
@@ -450,7 +461,7 @@ $emptySubmodules = @(if (Test-Path $gitmodules) {
         ForEach-Object { $_.Groups[1].Value } | Where-Object { -not $luaFolders.Contains($_) }
 })
 if ($emptySubmodules) {
-    Add-Finding 'library-names' 'Warning' '.gitmodules' 1 "skipped: no Lua files in $($emptySubmodules -join ', '), so the registered library names are unknown; make the checkout with New-Worktree.ps1"
+    Add-Finding 'library-names' 'Warning' '.gitmodules' 1 "skipped: no Lua files in $($emptySubmodules -join ', '), so the registered library names are unknown; make the checkout with the kit's New-Worktree.ps1"
 } else {
     $libraryNames = [hashtable]::new([StringComparer]::Ordinal)
     foreach ($rel in $luaFiles) {
@@ -516,7 +527,7 @@ foreach ($rel in $luaFiles) {
     }
 }
 if ($utilFlags.Count -eq 0) {
-    Add-Finding 'util-flags' 'Warning' 'Libs/Krowi_Util' 1 "skipped: no Is* names in Libs/Krowi_Util, so the defined flags are unknown; make the checkout with New-Worktree.ps1"
+    Add-Finding 'util-flags' 'Warning' 'Libs/Krowi_Util' 1 "skipped: no Is* names in Libs/Krowi_Util, so the defined flags are unknown; make the checkout with the kit's New-Worktree.ps1"
 } else {
     foreach ($rel in $ownLuaFiles) {
         $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
@@ -709,7 +720,7 @@ Write-Timing 'lookup-placeholders'
 
 # --- pinned-build: a typed build string goes stale with the next patch ---------------------------
 # The lookups returned NOTFOUND for new ids because ten scripts each pinned a different build, some two
-# patches old. Get-WowBuilds.ps1 resolves the current ones from the server.
+# patches old. The kit's Get-WowBuilds.ps1 resolves the current ones from the server.
 foreach ($script in @(Get-ChildItem -Path (Join-Path $root '.claude\skills') -Recurse -Filter '*.ps1') + @(Get-ChildItem -Path (Join-Path $root 'raw') -Filter '*.ps1')) {
     $rel = ConvertTo-RelativePath $script.FullName
     $n = 0
@@ -717,7 +728,7 @@ foreach ($script in @(Get-ChildItem -Path (Join-Path $root '.claude\skills') -Re
         $n++
         if ($line -match '^\s*\$build\s*=\s*["'']\d') {
             $sev = if ($changed.ContainsKey($rel)) { 'Error' } else { 'Warning' }
-            Add-Finding 'pinned-build' $sev $rel $n 'hard-coded game build; dot-source .claude\tools\Get-WowBuilds.ps1 and take (Get-WowBuilds)[$Client] (KAF_RETAIL_PRODUCT=wowxptr for the PTR)'
+            Add-Finding 'pinned-build' $sev $rel $n 'hard-coded game build; dot-source .claude\tools\KitPath.ps1 and "$KitTools\Get-WowBuilds.ps1", then take (Get-WowBuilds)[$Client] (KAF_RETAIL_PRODUCT=wowxptr for the PTR)'
         }
     }
 }
@@ -731,7 +742,7 @@ $workShape = [ordered]@{
     'plan.md'   = @{ Title = '# Plan: '; Headings = @('Files that change', 'Order of work', 'Risks', 'Proof') }
 }
 if (Test-Path $workRoot) {
-    foreach ($dir in Get-ChildItem -Path $workRoot -Directory | Where-Object { -not $_.Name.StartsWith('_') }) {   # _template holds the blanks
+    foreach ($dir in Get-ChildItem -Path $workRoot -Directory | Where-Object { -not $_.Name.StartsWith('_') }) {   # an _-prefixed folder is not a work item
         $dirRel = "docs/work/$($dir.Name)"
         $present = @($workShape.Keys | Where-Object { Test-Path (Join-Path $dir.FullName $_) })
         $anchor = if ($present.Count) { "$dirRel/$($present[0])" } else { $dirRel }
@@ -750,14 +761,14 @@ if (Test-Path $workRoot) {
             $lines = @(Get-Content -LiteralPath (Join-Path $dir.FullName $name) -Encoding UTF8)
             $shape = $workShape[$name]
             if (-not $lines.Count -or -not $lines[0].StartsWith($shape.Title)) {
-                Add-Finding 'work-items' $sev $rel 1 "first line must start with '$($shape.Title.Trim())' (template: docs/work/_template/$name)"
+                Add-Finding 'work-items' $sev $rel 1 "first line must start with '$($shape.Title.Trim())' (template: Krowi_ClaudeKit\skills\process-issue\templates\$name)"
             }
             if (-not @($lines | Where-Object { $_ -cmatch 'Status: (draft|accepted|done)\b' }).Count) {
                 Add-Finding 'work-items' $sev $rel 2 "no 'Status: draft', 'Status: accepted' or 'Status: done' line"
             }
             foreach ($heading in $shape.Headings) {
                 if ($lines -cnotcontains "## $heading") {
-                    Add-Finding 'work-items' $sev $rel 1 "missing heading '## $heading' (template: docs/work/_template/$name)"
+                    Add-Finding 'work-items' $sev $rel 1 "missing heading '## $heading' (template: Krowi_ClaudeKit\skills\process-issue\templates\$name)"
                 }
             }
         }

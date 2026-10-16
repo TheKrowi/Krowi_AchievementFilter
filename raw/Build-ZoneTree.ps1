@@ -4,11 +4,11 @@
 # reference Lua file that can be used to structure ZoneData files.
 
 param(
-    [string]$Build,   # default: newest Retail build on the server (.claude\tools\Get-WowBuilds.ps1)
+    [string]$Build,   # default: newest Retail build on the server (the kit's tools\Get-WowBuilds.ps1)
     [string]$OutputFile = "$PSScriptRoot\ZoneTree.md"
 )
 
-if (-not $Build) { . "$PSScriptRoot\..\.claude\tools\Get-WowBuilds.ps1"; $Build = (Get-WowBuilds).Retail }
+if (-not $Build) { . "$PSScriptRoot\..\.claude\tools\KitPath.ps1"; . "$KitTools\Get-WowBuilds.ps1"; $Build = (Get-WowBuilds).Retail }
 Write-Host "Fetching UiMap data for build $Build..."
 $resp = Invoke-WebRequest "http://localhost:5000/dbc/data/uimap/?build=$Build" `
     -Method POST `

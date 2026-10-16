@@ -1,11 +1,12 @@
 # Pass the ids as -Ids 12345,12346, or set the $Ids placeholder below, run, and reset it to @().
-# -Client Classic queries the Classic build; the build itself is resolved from the server (.claude\tools\Get-WowBuilds.ps1).
+# -Client Classic queries the Classic build; the build itself is resolved from the server (the kit's tools\Get-WowBuilds.ps1).
 # wow.tools.local must already be running.
 param(
     [string[]] $Ids = @(),
     [ValidateSet('Retail', 'Classic')] [string] $Client = 'Retail'
 )
-. "$PSScriptRoot\..\..\tools\Get-WowBuilds.ps1"
+. "$PSScriptRoot\..\..\tools\KitPath.ps1"
+. "$KitTools\Get-WowBuilds.ps1"
 $baseUrl = "http://localhost:5000"
 $build = (Get-WowBuilds -BaseUrl $baseUrl)[$Client]
 if ($Ids.Count -eq 0) { Write-Host "Pass -Ids or set the `$Ids placeholder first."; return }

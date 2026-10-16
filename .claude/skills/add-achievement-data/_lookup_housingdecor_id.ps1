@@ -1,11 +1,12 @@
 # Pass the decor names as -Names "Amani Forge","Mysterious Voodoo Mask", or set the $Names placeholder below, run, and
-# reset it to @(). Housing is Retail-only; the build is resolved from the server (.claude\tools\Get-WowBuilds.ps1).
+# reset it to @(). Housing is Retail-only; the build is resolved from the server (the kit's tools\Get-WowBuilds.ps1).
 # Looks up housedecor table ID by exact Name_lang match -- this is the id passed to :HousingDecor(recordId).
 # Pre-requisite: wow.tools.local must already be running.
 param(
     [string[]] $Names = @()
 )
-. "$PSScriptRoot\..\..\tools\Get-WowBuilds.ps1"
+. "$PSScriptRoot\..\..\tools\KitPath.ps1"
+. "$KitTools\Get-WowBuilds.ps1"
 $baseUrl = "http://localhost:5000"
 $build = (Get-WowBuilds -BaseUrl $baseUrl).Retail
 if ($Names.Count -eq 0) { Write-Host "Pass -Names or set the `$Names placeholder first."; return }

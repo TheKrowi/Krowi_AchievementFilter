@@ -47,7 +47,8 @@ $ErrorActionPreference = "Stop"
 $baseUrl = "http://localhost:5000"
 $skillDir = Join-Path $RootDir '.claude\skills\add-zone-data'
 . (Join-Path $skillDir '_zonedata_parser.ps1')
-. (Join-Path $RootDir '.claude\tools\Get-WowBuilds.ps1')
+. (Join-Path $RootDir '.claude\tools\KitPath.ps1')
+. (Join-Path $KitTools 'Get-WowBuilds.ps1')
 
 $nameAliases = @{ 'Sholozar Basin' = 'Sholazar Basin'; 'Karasang Wilds' = 'Krasarang Wilds' }   # DB spellings
 $locationTypes = @(0, 27, 29, 43, 158, 161)

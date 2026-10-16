@@ -4,7 +4,8 @@ param(
 )
 Add-Type -AssemblyName System.Web
 
-. "$PSScriptRoot\..\..\tools\Get-WowBuilds.ps1"
+. "$PSScriptRoot\..\..\tools\KitPath.ps1"
+. "$KitTools\Get-WowBuilds.ps1"
 $build = (Get-WowBuilds)[$Client]
 $content = Get-Content $LuaFile -Raw
 
