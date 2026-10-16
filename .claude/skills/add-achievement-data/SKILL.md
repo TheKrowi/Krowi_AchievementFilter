@@ -50,7 +50,7 @@ Before applying comment-based heuristics, query authoritative sources. The DB is
 
 Query all IDs in a single batch using the **designated script** `.claude/skills/add-achievement-data/_lookup_ids.ps1` — never write a new inline/ad-hoc PowerShell snippet. Full API reference: `.claude/skills/verify-achievement-data/API.md`.
 
-**Rule:** Never create new throwaway `.ps1` files for one-off lookups. Pass the values as parameters, or edit the `$Ids` placeholder default inside the designated script, run it, and reset it to `@()`. The build is never typed: every lookup script resolves it from the server through `.claude/tools/Get-WowBuilds.ps1`; `-Client Classic` queries the Classic build, and `$env:KAF_RETAIL_PRODUCT = "wowxptr"` (or `"wowt"`) points Retail at the PTR for a patch that is not live yet.
+**Rule:** Never create new throwaway `.ps1` files for one-off lookups. Pass the values as parameters, or edit the `$Ids` placeholder default inside the designated script, run it, and reset it to `@()`. The build is never typed: every lookup script resolves it from the server through the kit's `Get-WowBuilds.ps1` (after `.claude/tools/KitPath.ps1`); `-Client Classic` queries the Classic build, and `$env:KAF_RETAIL_PRODUCT = "wowxptr"` (or `"wowt"`) points Retail at the PTR for a patch that is not live yet.
 
 ```powershell
 & ".claude\skills\add-achievement-data\_lookup_ids.ps1" -Ids 12345,12346
@@ -418,7 +418,7 @@ Before returning output, verify:
 - [ ] No duplicate entries
 - [ ] File header includes `local Ach = KrowiAF.Ach` (add if missing)
 - [ ] `local faction = KrowiAF.Enum.Faction` is present if any `:AutoFactionSplit()` or `:FactionSplit()` is used
-- [ ] `& ".claude\tools\lua51\lua.exe" ".claude\tools\headless\snapshot-data.lua" "$PWD" Both -write` was run and the `git diff` of `.claude/tools/headless/snapshots/Achievements.*.txt` shows exactly the new ids, each with the intended patch, faction, rewards and `obtainable=` records; the diff is committed with the data (lint rule `data-snapshot`)
+- [ ] `& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\lua.exe" ".claude\tools\headless\snapshot-data.lua" "$PWD" Both -write` was run and the `git diff` of `.claude/tools/headless/snapshots/Achievements.*.txt` shows exactly the new ids, each with the intended patch, faction, rewards and `obtainable=` records; the diff is committed with the data (lint rule `data-snapshot`)
 
 ## Clarification Questions
 

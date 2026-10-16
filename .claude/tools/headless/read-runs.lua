@@ -2,7 +2,7 @@
 -- Prints the latest in-game run (/kaftest) of every suite stored in the addon's saved variables file
 -- (KrowiAF_DebugTable.Tests.Runs, and LastRun for files written before Runs existed), one line per suite:
 --   <suite>|<build>|<passed>|<failed>|<skipped>|<time>
--- Used by .claude/skills/release/Check-ReleaseReady.ps1 to require a green run on the newest client.
+-- Used by .claude/release-gate.ps1, which the kit's release preflight runs, to require a green run on the newest client.
 --
 -- Usage: lua.exe read-runs.lua <path to Krowi_AchievementFilter.lua>
 -- Exit code 0, or 2 when the file cannot be loaded.

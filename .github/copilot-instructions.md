@@ -13,47 +13,49 @@ This is the canonical instruction file for every assistant and contributor worki
 
 ## Build & Validation
 
-**There is no build step, no external linter or test framework, and no CI.** The WoW client loads the addon directly from the `.toc` file and is the only full validator. Do not run or invent `luacheck`, `busted`, a Makefile or GitHub Actions; the offline checks under `.claude/tools/` install nothing. Packaging and publishing are done by the sibling Krowi Addon Manager project (`.claude/skills/release/SKILL.md` documents how to drive it).
+**There is no build step, no external linter or test framework, and no CI.** The WoW client loads the addon directly from the `.toc` file and is the only full validator. Do not run or invent `luacheck`, `busted`, a Makefile or GitHub Actions; the offline checks install nothing. Packaging and publishing are done by the sibling Krowi Addon Manager project, driven by the `krowi:release` skill (see Git Workflow).
 
-- **Deploy to the game**: `.claude/tools/Deploy.ps1` (and the VS Code `fsdeploy` config in `.vscode/settings.json`, on save) mirrors the addon into the Retail and Classic AddOns folders. Run `Deploy.ps1 -WhatIf` before asking for an in-game check, since a reload on a stale install proves nothing.
+**The maintainer's tooling lives in Krowi_ClaudeKit**, a private repo next to this one (`E:\World of Warcraft Addon Development\Krowi_ClaudeKit`). It holds every tool, hook, skill and agent the Krowi repos share: the vendored Lua 5.1.5, `Deploy`, the game readers, the worktree tools, the release and work-item skills, and the taint reviewer. This repo keeps what is its own: the repo lint, the headless pipeline and its snapshots, the scenario suites, the data skills and their lookup scripts. Those reach the kit through `.claude/tools/KitPath.ps1` and stop with a message when it is missing. A contributor without the kit follows the rules in this file; the maintainer runs the checks before merging.
+
+- **Deploy to the game**: the kit's `Deploy.ps1` (and the VS Code `fsdeploy` config in `.vscode/settings.json`, on save) mirrors the addon into the Retail and Classic AddOns folders. Run it with `-WhatIf` before asking for an in-game check, since a reload on a stale install proves nothing.
 - **Reload in game**: `/reload`. Enable errors with `/luaerror on` or BugSack + BugGrabber.
 - **Static checks**: the Lua language server runs on `.luarc.json` plus the WoW API and FrameXML annotations of the VS Code extension `ketho.wow-api`, so `diagnostics.globals` lists only what no annotation covers: global strings, Classic-only frames and API, third-party addon globals, and the frames the addon creates by name in Lua or XML. Do not add a name the language server already resolves; add a new global string or third-party global sorted, or the `luarc` lint rule tells you.
 - **Validation without the client**: follow existing patterns exactly; register every new Lua file in the right `Files.xml`; declare every new saved variable in the `.toc`; keep XML template names and Lua frame references in sync; run the offline checks below.
 
-### Offline tooling under `.claude/tools/` (self-contained, installs nothing)
+### Offline tooling (installs nothing)
 
-The repo carries its own Lua 5.1.5 (`.claude/tools/lua51/`), the exact interpreter WoW embeds; prefer it over any Lua on PATH, because Lua 5.4 and LuaJIT accept syntax the game rejects. `.claude/tools/README.md` documents every tool and lint rule in detail.
+The kit carries Lua 5.1.5 (`Krowi_ClaudeKit\tools\lua51\`), the exact interpreter WoW embeds; prefer it over any Lua on PATH, because Lua 5.4 and LuaJIT accept syntax the game rejects. `.claude/tools/README.md` documents this repo's tools and lint rules in detail, the kit's `README.md` and `WowAddons.md` the shared ones.
 
 ```powershell
 & ".claude\tools\Check-Repo.ps1" -ChangedOnly  # lint the changed files, errors instead of warnings; -Luals adds the language server
 & ".claude\tools\Check-Repo.ps1"               # whole tree, about 12 s plus 30 s for the language server
-& ".claude\tools\lua51\lua.exe" ".claude\tools\lua51\check-syntax.lua" "Globals.lua" "Data\Data.lua"   # syntax only
-& ".claude\tools\lua51\lua.exe" ".claude\tools\headless\load-data.lua" "$PWD" Both                      # headless data load
-& ".claude\tools\lua51\lua.exe" ".claude\tools\headless\run-tests.lua" "$PWD" escape                    # one scenario suite; -check for the lint form
-& ".claude\tools\Strip-Semicolons.ps1" -DryRun                                                           # verified semicolon strip; -Path to limit
-& ".claude\tools\Find-Symbol.ps1" addon.Gui.Search                                                       # defs and refs through the local aliases; a bare member, -List, -Defs
-& ".claude\tools\New-Worktree.ps1" feature/2026-10-11-thing                                              # a parallel session's own checkout; Remove-Worktree.ps1 once merged
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\lua.exe" ".claude\tools\headless\load-data.lua" "$PWD" Both     # headless data load
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\lua.exe" ".claude\tools\headless\run-tests.lua" "$PWD" escape   # one scenario suite; -check for the lint form
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\lua.exe" "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\check-syntax.lua" "Globals.lua"   # syntax only
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\Strip-Semicolons.ps1" -DryRun                 # verified semicolon strip; -Path to limit
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\Find-Symbol.ps1" addon.Gui.Search             # defs and refs through the local aliases; a bare member, -List, -Defs
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\New-Worktree.ps1" feature/2026-10-11-thing    # a parallel session's own checkout; Remove-Worktree.ps1 once merged
 ```
 
 - **Repo lint** `Check-Repo.ps1`: a rule per mechanical convention in this file, plus the zone, Map Verifier, work-item, category-snapshot, data-snapshot, data-load and scenario checks. A deliberate exception goes in `Check-Repo.ignore` with a comment.
 - **Data snapshots** `snapshot-categories.lua` and `snapshot-data.lua`: what each client builds (category tree; achievements, zone placements, registries) recorded under `.claude/tools/headless/snapshots/`. A data change shows there as a reviewable diff; regenerate with `-write` and commit the diff with the change that caused it.
 - **Headless data pipeline** `load-data.lua`: the real data load for both clients with WoW globals stubbed; reports every builder error, duplicate registration and `LoadDiagnostics` drop with file and line. Only `Both` cross-checks Shared references. Extend the stubs in `runClient` when a new WoW global is used at load time.
 - **Scenario suites** in `Tests/` (`escape`, `special`, `navigation`, `worldmap`, `obtainable`, `tooltip`, `guide`, `menu`) run headlessly through `run-tests.lua` and in game through `/kaftest <suite>` (debug mode on, out of combat). A scenario carries `Recorded`, the behaviour of the current code verified in game, and `Target`, the desired behaviour; it passes while the code behaves as recorded, so a behaviour change is a reviewable diff and the open targets stay visible without failing anything. Each suite and the in-game runner: `Tests/README.md`.
-- **Closing the loop with the game**: `Deploy.ps1` mirrors the addon into the client's AddOns folder (incremental, `-WhatIf` to preview), you `/reload` in game, then `Read-GameErrors.ps1` prints the errors BugGrabber recorded for this addon and `Read-GameTests.ps1` prints the last `/kaftest` run with every line that differs from the headless run marked. Saved variables are written only on `/reload` or logout, so both readers show when the file was last written. For a layout bug, ask for a screenshot (Print Screen in game, written at once): `Read-GameScreenshot.ps1` prints the newest one's path to open with the Read tool, and warns when the client saves tga, which the Read tool cannot display.
+- **Closing the loop with the game**: the kit's `Deploy.ps1` mirrors the addon into the client's AddOns folder (incremental, `-WhatIf` to preview), you `/reload` in game, then the kit's `Read-GameErrors.ps1` prints the errors BugGrabber recorded for this addon and this repo's `Read-GameTests.ps1` prints the last `/kaftest` run with every line that differs from the headless run marked. Saved variables are written only on `/reload` or logout, so both readers show when the file was last written. For a layout bug, ask for a screenshot (Print Screen in game, written at once): the kit's `Read-GameScreenshot.ps1` prints the newest one's path to open with the Read tool, and warns when the client saves tga, which the Read tool cannot display.
 
 ```powershell
-& ".claude\tools\Deploy.ps1" -WhatIf                    # -Client Classic|Ptr|Xptr (Xptr = _xptr_, the second test realm)
-& ".claude\tools\Read-GameErrors.ps1"                   # -Hours 0 -All -Client Classic|Ptr|Xptr
-& ".claude\tools\Read-GameTests.ps1"                    # -Client Classic|Ptr|Xptr
-& ".claude\tools\Read-GameScreenshot.ps1"               # -Count 3 -Minutes 0 -Client Classic|Ptr|Xptr
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\Deploy.ps1" -WhatIf            # -Client Classic|Ptr|Xptr|... (Xptr = _xptr_, the second test realm)
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\Read-GameErrors.ps1"           # -Hours 0 -All -Client Classic|Ptr|Xptr|...
+& ".claude\tools\Read-GameTests.ps1"                                                           # -Client Classic|Ptr|Xptr
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\Read-GameScreenshot.ps1"       # -Count 3 -Minutes 0 -Client Classic|Ptr|Xptr|...
 ```
-- **Blizzard UI source**: `Update-UiSource.ps1` keeps read-only shallow clones of Gethe/wow-ui-source in `..\wow-ui-source\live` and `..\wow-ui-source\classic` next to the repo (`-Branch ptr2` and others on request). Grep them for FrameXML, secure templates and `Blizzard_APIDocumentationGenerated` (signatures and secret-value flags) instead of fetching from the web, and never run anything from them. The export can lag a live patch; the layout and the `ketho.wow-api` annotations are in `.claude/tools/README.md`.
+- **Blizzard UI source**: the kit's `Update-UiSource.ps1` keeps read-only shallow clones of Gethe/wow-ui-source in `..\wow-ui-source\live` and `..\wow-ui-source\classic` next to the repo (`-Branch ptr2` and others on request). Grep them for FrameXML, secure templates and `Blizzard_APIDocumentationGenerated` (signatures and secret-value flags) instead of fetching from the web, and never run anything from them. The export can lag a live patch; the layout and the `ketho.wow-api` annotations are in `.claude/tools/README.md`.
 
 ### Data-verification scripts
 
 The data skills query a local game-database server (wow.tools.local at `http://localhost:5000`; start it with `& ".claude\skills\add-zone-data\_start_server.ps1"`) through designated scripts. Each `SKILL.md` documents its workflow, `.claude/tools/README.md` lists every script with its command, and `.claude/skills/verify-achievement-data/API.md` is the query reference.
 
-**Rule for lookup scripts**: pass the values as parameters (`-Ids 1,2,3`, `-Terms "x"`, `-Names "x"`), or edit the placeholder (the parameter's default in the script's `param()` block, `[string[]] $Ids = @()`), run the script, and reset the placeholder. A build is never typed: every script resolves it through `.claude/tools/Get-WowBuilds.ps1`, `-Client Classic` picks the Classic build, and `$env:KAF_RETAIL_PRODUCT = "wowxptr"` points Retail at a patch still on the PTR. Never write ad-hoc inline `Invoke-RestMethod`/`curl` commands with IDs embedded; the maintainer rejects them, the `lookup-placeholders` lint rule catches a placeholder left filled in, and in Claude Code a pre-tool hook (`.claude/hooks/Guard-ToolUse.ps1`) blocks an inline query to the server.
+**Rule for lookup scripts**: pass the values as parameters (`-Ids 1,2,3`, `-Terms "x"`, `-Names "x"`), or edit the placeholder (the parameter's default in the script's `param()` block, `[string[]] $Ids = @()`), run the script, and reset the placeholder. A build is never typed: every script resolves it through the kit's `Get-WowBuilds.ps1` (dot-sourced after `.claude/tools/KitPath.ps1`), `-Client Classic` picks the Classic build, and `$env:KAF_RETAIL_PRODUCT = "wowxptr"` points Retail at a patch still on the PTR. Never write ad-hoc inline `Invoke-RestMethod`/`curl` commands with IDs embedded; the maintainer rejects them, the `lookup-placeholders` lint rule catches a placeholder left filled in, and in Claude Code the kit's pre-tool guard hook blocks an inline query to the server.
 
 ## Project Layout
 
@@ -221,7 +223,7 @@ local addonName, addon = ...
 
 ### Semicolons
 
-Do **not** end statements with semicolons. The whole tree has been stripped of them, so any trailing semicolon is new. The `semicolon` lint rule fails on one on an added line; `.claude/tools/Strip-Semicolons.ps1` re-runs the same verified strip if a batch of them ever comes back (a CurseForge locale export, an upstream merge).
+Do **not** end statements with semicolons. The whole tree has been stripped of them, so any trailing semicolon is new. The `semicolon` lint rule fails on one on an added line; the kit's `Strip-Semicolons.ps1` re-runs the same verified strip if a batch of them ever comes back (a CurseForge locale export, an upstream merge).
 
 ### Naming
 
@@ -294,16 +296,16 @@ KrowiAF_SavedData.Fixes = KrowiAF_SavedData.Fixes or {}
 
 ## Work-Item Lifecycle
 
-Work moves through the six stages of Anthropic's AI-native SDLC Playbook, adapted in `docs/sdlc-playbook.md`: Plan, Design, Build, Test, Deploy and Maintain. The `process-issue` skill runs it in Claude Code.
+Work moves through the six stages of Anthropic's AI-native SDLC Playbook, adapted in `docs/sdlc-playbook.md`: Plan, Design, Build, Test, Deploy and Maintain. The kit's `krowi:process-issue` skill runs it in Claude Code, with this repo's steps from the playbook.
 
-- Each GitHub issue, feature or fix gets a folder `docs/work/<issue>-<slug>/` (templates in `docs/work/_template/`). It holds `intent.md` (what is wanted and why), `spec.md` (requirements, root cause, design, options, areas of concern, the decision) and `plan.md` (files that change, order of work, risks, proof). They are committed on the work branch, and each is the next stage's input. Routine data work under a data skill, documentation-only changes and releases need no folder.
+- Each GitHub issue, feature or fix gets a folder `docs/work/<issue>-<slug>/` (templates in the kit's `skills/process-issue/templates/`). It holds `intent.md` (what is wanted and why), `spec.md` (requirements, root cause, design, options, areas of concern, the decision) and `plan.md` (files that change, order of work, risks, proof). They are committed on the work branch, and each is the next stage's input. Routine data work under a data skill, documentation-only changes and releases need no folder.
 - The maintainer holds every gate: accepting the intent, approving the spec's design choice, approving a non-routine plan, the in-game before-run for GUI work, approving the merge of the PR, and the release. An agent stops at each gate with a recommendation and records the answer in the artifact. It merges a PR only when the maintainer tells it to, and then with a merge commit (`gh pr merge <n> --merge`). It never pushes work-item commits straight to `dev` and never releases.
 - A bug fix is built test first. A scenario in `Tests/` records the buggy behaviour as `Recorded` and the spec's behaviour as `Target`; then only the code is fixed, and `Recorded` is set to `Target`. Every fixed bug leaves its scenario behind.
 - Review passes, severity and exclusions are in `REVIEW.md`. What a work item taught goes back into this file, a skill, a lint rule or a scenario (`docs/sdlc-playbook.md`, stage 6).
 
 ## Git Workflow
 
-- Parallel sessions never share a checkout: each works in its own worktree under `.claude/worktrees/`, made by `.claude/tools/New-Worktree.ps1` (from `dev`, submodules included), and is merged back through its own PR; never switch the branch of a checkout another session works in. The game is not isolated: the last deploy wins. Right before a commit, check `git branch --show-current` and `git status`, and commit by explicit path. Detail: `.claude/tools/README.md`, Parallel sessions.
+- Parallel sessions never share a checkout: each works in its own worktree under `.claude/worktrees/`, made by the kit's `New-Worktree.ps1` (from `dev`, submodules included), and is merged back through its own PR; never switch the branch of a checkout another session works in. The game is not isolated: the last deploy wins. Right before a commit, check `git branch --show-current` and `git status`, and commit by explicit path. Detail: the workspace rules in the kit's `WowAddons.md`, Parallel sessions and git.
 - Branch from `dev`; PRs target `dev`. Releases are cut on `dev`: the addon manager makes a `Release X.Y` commit and tag there and uploads to Wago, CurseForge and GitHub. `main` is not updated as part of the release flow.
 - Conventional Commits with a custom `data:` type: `data(midnight): add 12.1.0 achievements (23)`, `fix(retail): ...`, `feat(classic): ...`, `locale(enUS): ...`, `chore:`, `refactor(gui):`, `docs:`. The full type and scope tables are in `CONTRIBUTING.md`.
 - Every user-visible change gets a line in `_Packaging/Changelog.md` under the next version's `### Added` / `### Fixed`, written for players. A `(dev note: ...)` is the maintainer's own aside to players (this is the change, and this is my insight into it), not a technical explanation: an agent does not write one, and the root cause of a fix lives in its work folder's `spec.md`. `ReleaseNotes.md` is generated from it at release time; do not edit it by hand. The version header needs a date (`## 100.2 - 2026-09-04`) before release or the generator skips it.
@@ -313,7 +315,7 @@ Work moves through the six stages of Anthropic's AI-native SDLC Playbook, adapte
 ## Where Non-Code Material Lives
 
 - Reference read on demand: `.claude/tools/README.md` (every tool and lint rule, the headless pipeline, deploy targets, the data-verification scripts), `Tests/README.md` (each scenario suite, the in-game runner), `docs/architecture.md` (file map, data chunk execution model), `docs/obtainability.md` (every `Obtainable()` form, its boundaries and how it resolves per client), `docs/zone-decisions.md` (the reasons behind the zone placement rules, decisions D1 to D15), `docs/how-to/` (step-by-step guides). The data formats themselves are in the data skills under `.claude/skills/`.
-- `docs/sdlc-playbook.md` the work-item lifecycle; `docs/work/<issue>-<slug>/` one folder per work item, templates in `docs/work/_template/`; `docs/backlog.md` the follow-ups that are not a work item yet; `REVIEW.md` at the root the review policy every review pass reads. None of it ships: the release zip skips `docs/` and every `.md` file.
+- `docs/sdlc-playbook.md` the work-item lifecycle; `docs/work/<issue>-<slug>/` one folder per work item, templates in the kit's `skills/process-issue/templates/`; `docs/backlog.md` the follow-ups that are not a work item yet; `REVIEW.md` at the root the review policy every review pass reads. None of it ships: the release zip skips `docs/` and every `.md` file.
 - `docs/codebase-analysis.md` a quality review listing known debt (O(n^2) `GetMergedCategory`, the V1 category parser kept for plugins) and the fixed items with their root causes; its priority table carries the status of each item, so check it before trusting the prose above it. `docs/harness-roadmap.md` is the same for the tooling: the harness steps done, planned and decided against.
 - `raw/` scratch reports and zone-data PowerShell tooling; `raw/MapVerifier.csv` is the canonical Map Verifier state (`sync-mapverifier` skill, `mapverifier` lint rule); `raw/ZoneDataDecisions.md` tracks the highest achievement ID analysed for zone coverage.
 
@@ -323,7 +325,7 @@ Use these references when looking up WoW API, UI source code, frame definitions,
 
 | Resource | URL |
 |----------|-----|
-| WoW UI source (local clone) — Retail / Classic | `../wow-ui-source/live`, `../wow-ui-source/classic` (`Update-UiSource.ps1`); grep here first, the web rows below are the fallback |
+| WoW UI source (local clone) — Retail / Classic | `../wow-ui-source/live`, `../wow-ui-source/classic` (the kit's `Update-UiSource.ps1`); grep here first, the web rows below are the fallback |
 | Warcraft Wiki (API reference) | https://warcraft.wiki.gg/wiki/Warcraft_Wiki |
 | FrameXML browser — Retail | https://www.townlong-yak.com/framexml/live |
 | FrameXML browser — Classic | https://www.townlong-yak.com/framexml/classic |

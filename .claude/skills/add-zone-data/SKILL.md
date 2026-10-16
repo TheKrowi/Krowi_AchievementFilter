@@ -37,7 +37,7 @@ Given a list of achievement IDs, the parent agent does everything itself; there 
    ```powershell
    & ".claude\skills\add-zone-data\_start_server.ps1"
    ```
-   The script starts wow.tools.local if needed and waits up to 60 s (the first start can take longer; rerun once). If it is still unreachable, **stop**; every lookup would return NOT_FOUND. Build strings are never typed by hand: every script dot-sources `.claude/tools/Get-WowBuilds.ps1`, which picks the newest `wow` (Retail) and `wow_classic` (Classic) build from `/casc/builds` (falling back to `?remote=true`). To prepare a patch that is still on the PTR, set `$env:KAF_RETAIL_PRODUCT = "wowxptr"` (or `"wowt"`) in the shell first: Retail then resolves to the newest build of that product, so the new ids and their criteria are found. New maps of such a patch are not in `raw/MapVerifier.csv` until they are verdicted in game (`sync-mapverifier`); their entries wait for that.
+   The script starts wow.tools.local if needed and waits up to 60 s (the first start can take longer; rerun once). If it is still unreachable, **stop**; every lookup would return NOT_FOUND. Build strings are never typed by hand: every script dot-sources the kit's `Get-WowBuilds.ps1` (after `.claude/tools/KitPath.ps1`), which picks the newest `wow` (Retail) and `wow_classic` (Classic) build from `/casc/builds` (falling back to `?remote=true`). To prepare a patch that is still on the PTR, set `$env:KAF_RETAIL_PRODUCT = "wowxptr"` (or `"wowt"`) in the shell first: Retail then resolves to the newest build of that product, so the new ids and their criteria are found. New maps of such a patch are not in `raw/MapVerifier.csv` until they are verdicted in game (`sync-mapverifier`); their entries wait for that.
 1. **Look up every id** with `_lookup_ids.ps1` (both builds; `builds=` in the output says where the id exists). Then apply the Skip rules and, for the rest, `_check_zonedata.ps1` (already placed?), `_zone_search.ps1` / `_linkgroups_search.ps1` (which map, which link group), and `_lookup_criteria.ps1` (the game's own list of zones, NPCs or bosses behind the achievement; this is the fact Rules 2, 3 and 9 demand).
 2. **Edit the ZoneData.lua files** (one per expansion, see below) following the Entry Type Rules.
 3. **Validate** (Step 3).
@@ -68,7 +68,7 @@ DataAddons/Shared/ZoneData.lua                     ← cross-expansion (shared.*
 | `_linkgroups_search.ps1` | `-Ids` | Link group (primary map id) for any map id | `id\|primary=N\|primaryName=...\|ids=...` |
 | `_find_zonefile.ps1` | `-Ids` | Text search for a MAP id in ZoneData files (also hits achievement ids and comments) | `file\|line N: ...` |
 
-Support files (not run directly): `_zonedata_parser.ps1` (shared Zone() parser used by `_check_zonedata.ps1` and both evaluators). Build resolution is `.claude/tools/Get-WowBuilds.ps1`, shared by every skill.
+Support files (not run directly): `_zonedata_parser.ps1` (shared Zone() parser used by `_check_zonedata.ps1` and both evaluators). Build resolution is the kit's `Get-WowBuilds.ps1`, shared by every skill.
 
 **Usage pattern for every script:** pass the values as the parameter, from the repo root:
 
@@ -156,7 +156,7 @@ cd "e:\World of Warcraft Addon Development\Krowi_AchievementFilter"
 & "raw\Evaluate-ZoneCriteria.ps1"                # R2: criteria-named zones covered; R3: metas cover their children's maps. Exports 3 DBC tables once per build into .claude\cache\dbc\ (git-ignored), then offline
 & "raw\Evaluate-ZoneDataDecisions.ps1"           # the log vs the files vs the DB; -SkipDb for the offline subset
 & ".claude\skills\add-zone-data\_check_scripts_reset.ps1"
-& ".claude\tools\lua51\lua.exe" ".claude\tools\headless\snapshot-data.lua" "$PWD" Both -write   # then read git diff of headless/snapshots/Zones.*.txt
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\lua.exe" ".claude\tools\headless\snapshot-data.lua" "$PWD" Both -write   # then read git diff of headless/snapshots/Zones.*.txt
 ```
 
 The `Zones.<client>.txt` diff is the review of the edit: one `ZONE <map> # <id>` line per placement added or removed. It must show exactly the placements the batch intended, and it is committed with the ZoneData change (lint rule `data-snapshot`).

@@ -1,40 +1,31 @@
 # Offline tooling
 
-Everything under `.claude/tools/` runs offline and installs nothing: PowerShell plus the vendored Lua 5.1.5 in `lua51/`. A new check goes here and reuses that interpreter; it never adds a dependency (winget, pip, npm). `.claude/` is excluded from the release zip (any dot-directory is) and from fsdeploy and `Deploy.ps1`, so nothing in it reaches players or the game folder.
+The tooling every Krowi repo shares lives in Krowi_ClaudeKit (`E:\World of Warcraft Addon Development\Krowi_ClaudeKit`, private): the vendored Lua 5.1.5, the guard and syntax hooks, `Deploy`, the game readers, the worktree tools, `Update-UiSource`, `Find-Symbol`, `Strip-Semicolons`, `Get-WowBuilds`, the deprecated-API classifier, and the release and work-item skills. Its `README.md` and `WowAddons.md` ("The kit's tools") describe them, and each script documents its parameters in its comment header. This repo enables the kit's `krowi` plugin and keeps here only what is its own, listed below.
 
-The everyday commands and the rules these tools enforce are in `.github/copilot-instructions.md` (Build & Validation); this file is the reference behind them. Each PowerShell script also documents its parameters in its comment header (`Get-Help .claude\tools\<script>.ps1 -Detailed`).
+Everything runs offline and installs nothing: PowerShell plus the kit's Lua. A new check that only this repo needs goes here and uses that interpreter; anything another repo could use goes into the kit. `.claude/` is excluded from the release zip (any dot-directory is) and from fsdeploy and `Deploy.ps1`, so nothing in it reaches players or the game folder.
+
+The everyday commands and the rules these tools enforce are in `.github/copilot-instructions.md` (Build & Validation); this file is the reference behind them. Below, `$kit` stands for `E:\World of Warcraft Addon Development\Krowi_ClaudeKit`; Claude Code's permission rules match the commands only with that path written out.
 
 | Tool | What it does |
 |---|---|
-| `lua51/lua.exe`, `lua51/luac.exe` | Lua 5.1.5, the interpreter WoW embeds |
-| `lua51/check-syntax.lua` | Lua 5.1 syntax check |
+| `KitPath.ps1` | finds the kit for the scripts below (next to the main checkout, or `$env:KROWI_CLAUDEKIT` to test a kit worktree) and fails when it is missing |
 | `Check-Repo.ps1` | the repo lint; `Check-Repo.globals`, `Check-Repo.ignore`, `Check-Repo.removed-api` and `Check-Repo.deprecated-api` are its data files |
 | `headless/load-data.lua` | the data load for both clients, headless |
 | `headless/run-tests.lua` | the scenario suites in `Tests/`, headless |
 | `headless/snapshot-categories.lua` | the category tree baselines in `headless/snapshots/` |
 | `headless/snapshot-data.lua` | the achievement, zone and registry baselines in `headless/snapshots/` |
 | `headless/client-env.lua` | the sandboxed client environment `load-data.lua` and both snapshots share |
-| `Deploy.ps1` | mirrors the addon into a client's AddOns folder |
-| `New-Worktree.ps1`, `Remove-Worktree.ps1` | a parallel session's own checkout under `.claude/worktrees/`, submodules included, and its safe removal |
-| `Read-GameErrors.ps1`, `Read-GameTests.ps1` | read BugGrabber's errors and the last `/kaftest` run from the client's saved variables |
-| `Read-GameScreenshot.ps1` | lists the newest screenshots the client took, to open with the Read tool |
-| `Update-UiSource.ps1` | clones or updates the local copy of Blizzard's UI source next to the repo |
-| `Update-DeprecatedApi.ps1` | rebuilds `Check-Repo.deprecated-api` from those clones, for the clients the `.toc` lists |
-| `Strip-Semicolons.ps1` | removes trailing statement semicolons, verified through bytecode |
-| `Get-WowBuilds.ps1` | the current Retail and Classic builds from the game-database server; dot-sourced by every lookup script |
-| `Find-Symbol.ps1`, `lua51/find-symbol.lua` | where a namespaced name is defined and used, through the local aliases |
+| `headless/read-tests.lua`, `headless/read-runs.lua` | read the `/kaftest` results from the saved variables, for `Read-GameTests.ps1` and the release gate |
+| `Read-GameTests.ps1` | the last `/kaftest` run from the client's saved variables, against the headless run |
+| `Update-DeprecatedApi.ps1` | rebuilds `Check-Repo.deprecated-api` from the wow-ui-source clones, for the clients the `.toc` lists |
+| `../release-gate.ps1` | this repo's release check, which the kit's release preflight runs: a green in-game `escape` run on the newest Retail client |
 
 ## Lua 5.1.5
 
-The repo carries its own Lua 5.1.5 (`lua51/lua.exe`, `luac.exe`), the exact interpreter WoW embeds, built from the official lua.org source by `lua51/Build-Lua51.ps1`; `lua51/README.md` documents the provenance. Prefer it over any Lua on PATH: Lua 5.4 and LuaJIT accept syntax the game rejects.
-
-## Syntax check
-
-Checks one file, several, or the whole tree (about 0.4 s for 400 files). It strips the UTF-8 BOM first because WoW tolerates one and stock Lua 5.1 does not.
+The kit carries Lua 5.1.5 (`$kit\tools\lua51\lua.exe`, `luac.exe`), the exact interpreter WoW embeds; its `lua51/README.md` documents the provenance. Prefer it over any Lua on PATH: Lua 5.4 and LuaJIT accept syntax the game rejects. A syntax check of one file, several, or the whole tree (about 0.4 s for 400 files; it strips the UTF-8 BOM first because WoW tolerates one and stock Lua 5.1 does not):
 
 ```powershell
-& ".claude\tools\lua51\lua.exe" ".claude\tools\lua51\check-syntax.lua" "Globals.lua" "Data\Data.lua"
-Get-ChildItem -Recurse -Filter *.lua | Where-Object FullName -notlike '*\.claude\*' | ForEach-Object FullName | & '.claude\tools\lua51\lua.exe' '.claude\tools\lua51\check-syntax.lua' -
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\lua.exe" "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\check-syntax.lua" "Globals.lua" "Data\Data.lua"
 ```
 
 ## Language server (`.luarc.json`)
@@ -48,7 +39,7 @@ Get-ChildItem -Recurse -Filter *.lua | Where-Object FullName -notlike '*\.claude
 & ".claude\tools\Check-Repo.ps1" -ChangedOnly  # only files changed against HEAD, errors instead of warnings; -Luals adds the language-server run
 ```
 
-`-ChangedOnly` is what the Claude Code Stop hook runs. Warnings on changed files are promoted to errors, so pre-existing debt does not block work while new debt does. Each finding prints as `<path>:<line>: [<rule>] <severity>: <message>`, and the exit code is 1 when any error was found. The script's comment header gives each rule's severity.
+`-ChangedOnly` is what the Claude Code Stop hook runs. Warnings on changed files are promoted to errors, so pre-existing debt does not block work while new debt does. Each finding prints as `<path>:<line>: [<rule>] <severity>: <message>`, and the exit code is 1 when any error was found. Without the kit the lint prints `KitPath.ps1`'s message and exits 1, rather than passing with its Lua rules skipped. The script's comment header gives each rule's severity.
 
 | Rule | What it checks |
 |---|---|
@@ -69,10 +60,10 @@ Get-ChildItem -Recurse -Filter *.lua | Where-Object FullName -notlike '*\.claude
 | `semicolon` | no trailing semicolon on an added line (changed files only) |
 | `enus-autogen` | no locale string added above the `AUTOGENTOKEN` marker in any locale file |
 | `lookup-placeholders` | the `_*.ps1` skill scripts are committed with their placeholders empty (`$Ids`/`$Terms`/`$Names` = `@()`, `$Table`/`$Name` = `""`), `param()` defaults included |
-| `pinned-build` | no skill or `raw/` script types a game build; builds come from `Get-WowBuilds.ps1` |
+| `pinned-build` | no skill or `raw/` script types a game build; builds come from the kit's `Get-WowBuilds.ps1` |
 | `zone-decisions` | the zone-decisions log `raw/ZoneDataDecisions.md` agrees with the ZoneData files |
 | `mapverifier` | the Map Verifier CSV `raw/MapVerifier.csv` is valid and in canonical form |
-| `work-items` | the work-item folders under `docs/work/`: folder name, titles, status line, required headings |
+| `work-items` | the work-item folders under `docs/work/`: folder name, titles, status line, required headings (the kit's `skills/process-issue/templates/`) |
 | `category-node-shape` | no V1 category node starts with a boolean (`{ name, true, ... }`, never `{ true, name, ... }`) |
 | `category-snapshot` | the category tree each client builds matches the baseline in `headless/snapshots/` |
 | `data-snapshot` | the achievements, zone placements and registries each client builds match their baselines in `headless/snapshots/` |
@@ -84,7 +75,7 @@ A deliberate exception goes in `Check-Repo.ignore` (one `<rule or *> <path glob>
 
 ## Headless data pipeline (`headless/load-data.lua`)
 
-`load-data.lua` runs the data load for both clients in the vendored Lua with WoW globals stubbed: it loads `Api/`, `Objects/`, `Data/Data.lua` and `DataAddons/` in toc order inside a sandboxed environment per client (built by `client-env.lua`), then drives the real task groups the way `LoadOnPlayerLogin` does. In about 0.5 s it reports, with file and line:
+`load-data.lua` runs the data load for both clients in the kit's Lua with WoW globals stubbed: it loads `Api/`, `Objects/`, `Data/Data.lua` and `DataAddons/` in toc order inside a sandboxed environment per client (built by `client-env.lua`), then drives the real task groups the way `LoadOnPlayerLogin` does. In about 0.5 s it reports, with file and line:
 
 - unknown builder methods, misspelled enum members, non-numeric ids and seasons, malformed or mis-suffixed patch keys;
 - duplicate registrations (including AutoFactionSplit mirrors), unregistered build versions, missing injection targets;
@@ -95,7 +86,7 @@ An id that exists only on the other client and is referenced from a Shared file 
 A `Version` anchor that does not resolve is an error on Retail, the reference timeline, where every patch Retail shipped is registered. On Classic it is content the client has not reached yet: the summary line per client counts those anchors and the achievements they leave obtainable with no end scheduled, and `-v` lists them. Extend the stubs in `runClient` when a new WoW global is used at load time.
 
 ```powershell
-& ".claude\tools\lua51\lua.exe" ".claude\tools\headless\load-data.lua" "$PWD" Both     # what the lint runs; -v lists stubbed globals
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\lua.exe" ".claude\tools\headless\load-data.lua" "$PWD" Both     # what the lint runs; -v lists stubbed globals
 # Retail or Classic alone also works, but then every Shared reference to an id that only the other client registers is reported (about 1200 lines on Classic); only Both cross-checks
 ```
 
@@ -118,7 +109,7 @@ A baseline changes only when the data does. Anchors are never resolved against t
 The `data-snapshot` lint rule runs it with `-check` (about 0.3 s). It reports each difference as `<file>:<line>: achievement 33: faction Alliance -> Horde` or `zone 616: gone 9045`. An intended change is regenerated with `-write` and committed with the data that caused it.
 
 ```powershell
-& ".claude\tools\lua51\lua.exe" ".claude\tools\headless\snapshot-data.lua" "$PWD" Both -check   # -write regenerates, -stdout prints
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\lua.exe" ".claude\tools\headless\snapshot-data.lua" "$PWD" Both -check   # -write regenerates, -stdout prints
 ```
 
 ## Headless test suites (`headless/run-tests.lua`)
@@ -127,53 +118,23 @@ Runs the scenario suites from `Tests/` against modelled WoW frames and FrameXML;
 
 ## Deploy and the game loop
 
-The VS Code `fsdeploy` config in `.vscode/settings.json` mirrors `**/*.{lua,blp,tga,xml}` (excluding `.github`, `.vscode`, `.claude`, `_Packaging`, `raw`, `wiki`, `docs`), plus `LICENSE` and the `.toc`, from the folder the window has open into `H:\World of Warcraft\_retail_\Interface\AddOns\Krowi_AchievementFilter` and into the `_classic_` sibling on every save; the PTR target is commented out there. `Deploy.ps1` does the same from a terminal and is the way to be sure a client's folder is current: run it with `-WhatIf` before asking for an in-game check, since a reload on a stale install proves nothing. It copies only files whose size or timestamp differ, deletes what no longer exists in the repo, and takes `-Client Retail|Classic|Ptr|Xptr` (`_xptr_` is the second test realm).
+The VS Code `fsdeploy` config in `.vscode/settings.json` mirrors `**/*.{lua,blp,tga,xml}` (excluding `.github`, `.vscode`, `.claude`, `_Packaging`, `raw`, `wiki`, `docs`), plus `LICENSE` and the `.toc`, from the folder the window has open into `H:\World of Warcraft\_retail_\Interface\AddOns\Krowi_AchievementFilter` and into the `_classic_` sibling on every save; the PTR target is commented out there. The kit's `Deploy.ps1` does the same from a terminal and is the way to be sure a client's folder is current: run it with `-WhatIf` before asking for an in-game check, since a reload on a stale install proves nothing.
 
-`Read-GameErrors.ps1` prints the Lua errors BugGrabber recorded for this addon and `Read-GameTests.ps1` the last `/kaftest` run, marking every line that differs from the headless run. Both parse the saved variables with the vendored Lua; the game writes those only on `/reload` or logout, so both show when the file was last written. The commands are in the instruction file under Closing the loop with the game.
+The kit's `Read-GameErrors.ps1` prints the Lua errors BugGrabber recorded for this addon and this repo's `Read-GameTests.ps1` the last `/kaftest` run, marking every line that differs from the headless run. The game writes saved variables only on `/reload` or logout, so both show when the file was last written. The kit's `Read-GameScreenshot.ps1` lists the newest screenshots to open with the Read tool. The commands are in the instruction file under Closing the loop with the game.
 
-`Read-GameScreenshot.ps1` lists the newest files in the client's `Screenshots` folder (`-Count`, default 1; `-Minutes`, default 1440, 0 for all) with the full path, when each was taken, its pixel size and file size; open the path with the Read tool. A screenshot is written the moment Print Screen is pressed, so no `/reload` is needed. It also reads the screenshot CVars from the client's `WTF\Config.wtf`: the Read tool displays jpg and png but not tga, so `screenshotFormat tga` (or a newest file in `.tga`) prints a warning with `/console screenshotFormat jpg`. The Read tool shows a wide screenshot scaled down (3440x1440 at 2000x837), so a `screenshotQuality` below 8 (the default is 3) prints a note with `/console screenshotQuality 10`, since small UI text does not survive both.
+## Parallel sessions
 
-## Parallel sessions (`New-Worktree.ps1`, `Remove-Worktree.ps1`)
+A parallel session works in its own worktree under `.claude/worktrees/<name>/`, made by the kit's `New-Worktree.ps1` and removed by its `Remove-Worktree.ps1` (the workspace rules in the kit's `WowAddons.md` say why and how). In this repo: each branch is merged through its own PR against `dev`; once one is merged, `git pull` in the main checkout, where `dev` is checked out, then `git rebase dev` in each remaining worktree before its PR. Regenerate a conflicting snapshot with `-write` instead of merging it by hand, and keep both sides of a `Changelog.md` conflict.
 
-Sessions in one checkout share one HEAD and one index: a branch switch in one moves every other, and one session's uncommitted files show up as another's Stop-hook lint errors. A parallel session works in its own worktree instead: a second checkout of the same repository under `.claude/worktrees/<name>/`, on its own branch. Worktrees share every commit and branch, so another session sees a commit without a push, and git refuses to check out one branch in two of them.
+## Blizzard UI source and deprecated globals (`Update-DeprecatedApi.ps1`)
 
-```powershell
-& ".claude\tools\New-Worktree.ps1" feature/2026-10-11-thing                     # new branch from dev; -Base, -Name
-& ".claude\tools\Remove-Worktree.ps1" feature-2026-10-11-thing -DeleteBranch     # -WhatIf, -Force
-```
+The kit's `Update-UiSource.ps1` keeps read-only shallow clones of Gethe/wow-ui-source in `..\wow-ui-source\<branch>` next to the main checkout; the kit's `agents/taint-reviewer.md` describes their layout and the `ketho.wow-api` annotations. In this repo's code: Mists loads the `Cata/` variant of the achievement UI. `.claude/settings.json` grants Claude Code read access to the clones and the kit through `additionalDirectories`.
 
-`New-Worktree.ps1` starts a new branch from `dev` without tracking it, or checks out an existing local or origin branch. It clones the `Libs/` submodules from the main checkout's `.git/modules` (offline, under a second each) and points them back at GitHub, fetching from GitHub only a submodule commit the main checkout never fetched, and copies the untracked `.claude/settings.local.json`. `Remove-Worktree.ps1` refuses a worktree with uncommitted or untracked changes, submodules included, unless `-Force`, and the one the current directory is in. It unlinks any directory junction first, since a recursive delete through one wipes its target, then runs `git worktree remove --force` (git refuses a worktree with submodules without it) and `git worktree prune`. `-DeleteBranch` deletes the branch only once it is merged into the local `dev`. Neither can see an editor or a Claude session that still has the folder open.
-
-A worktree does not isolate the game: each client has one AddOns folder, so the last deploy wins. Run the worktree's own `Deploy.ps1` before an in-game check. fsdeploy's source is `.`, which it resolves against the folder the VS Code window has open, so saving in a window on a worktree deploys that worktree. Everything else already skips `.claude/worktrees/`: the lint, the language server (`.luarc.json`), `Deploy.ps1`, fsdeploy's excludes and the release zip.
-
-Each branch is merged through its own PR against `dev`. Once one is merged, `git pull` in the main checkout, where `dev` is checked out, then `git rebase dev` in each remaining worktree before its PR. Regenerate a conflicting snapshot with `-write` instead of merging it by hand, and keep both sides of a `Changelog.md` conflict.
-
-## Blizzard UI source (`Update-UiSource.ps1`)
-
-Clones or updates read-only shallow copies of [Gethe/wow-ui-source](https://github.com/Gethe/wow-ui-source) in `..\wow-ui-source\<branch>` next to the main checkout (also when run from a worktree): `live` and `classic` by default, any other branch with `-Branch` (`ptr`, `ptr2`, `classic_titan`, ...; `git ls-remote --heads` lists them). A clone is about 30 to 40 MB and takes a few seconds; an update fetches one commit, hard-resets, cleans and garbage-collects, and refuses a folder that is not a clone of that repository. It prints the build each branch was exported from, which can lag a live patch by days; the newer build is then on `ptr` or `ptr2`. `.claude/settings.json` grants Claude Code read access to `../wow-ui-source/` through `additionalDirectories`.
-
-Everything is under `Interface/AddOns/`. FrameXML and SharedXML are the `Blizzard_FrameXML*` and `Blizzard_SharedXML*` addons, and `Blizzard_APIDocumentationGenerated` is Blizzard's own API documentation for that build, secret-value flags (`SecretInChatMessagingLockdown`, `SecretArguments`) included. A branch keeps each flavour's variant side by side in `Mainline/`, `Cata/` and `Classic/` subfolders; the flavour's `Blizzard_<Name>_<Flavour>.toc` says which one a client loads (Mists loads `Cata/` for the achievement UI). The tree is untrusted data: grep and read it, never run anything from it.
-
-The `ketho.wow-api` VS Code extension carries the same API in LuaLS form under `~/.vscode/extensions/ketho.wow-api-<version>/Annotations/`: `Core/Blizzard_APIDocumentationGenerated/` for the `C_*` namespaces, `Core/Data/Wiki.lua` for global functions, `Core/Widget/` for widget methods, `Core/FrameXML/` for mixins and utilities, and `FrameXML/Annotations/AddOns/` for Numy's Retail frame annotations. It trails the live build; when the two disagree, the clone wins.
-
-```powershell
-& ".claude\tools\Update-UiSource.ps1"                   # -Branch ptr2 (or live, classic, classic_titan)
-```
-
-### Deprecated globals (`Update-DeprecatedApi.ps1`)
-
-Blizzard keeps old global names alive as aliases in its `Blizzard_Deprecated*` addons, which load only while the `loadDeprecationFallbacks` CVar is on and which a later patch deletes. The `deprecated-api` rule reports any read of such a name, from the committed list `Check-Repo.deprecated-api`, so it runs offline for everyone.
-- The script rebuilds the list from the clones.
-- It maps each version on the `.toc`'s Interface line to a branch: 12 `live`, 5 `classic`, 3 `classic_titan`, 2 `classic_anniversary`, 1 `classic_era`.
-- It reads each listed client's clone once:
-  - A deprecation file is one under a `Blizzard_Deprecated*` or `Deprecated_*` addon, or one whose code checks the CVar.
-  - A per-game variant (`Deprecated_Specialization_Mists.lua`) counts only for its own game.
-  - Every other file shows what the client has for real: top-level definitions, documented global functions, and functions its own code calls.
-- A name is "deprecated" on a client that has it only as an alias, "removed" on a client that has it nowhere, and skipped where it is real.
-- A name a deleted file took with it stays listed, as removed, while no listed client has it.
-- Names `Check-Repo.removed-api` lists are left to that rule.
-- After `Update-UiSource.ps1 -Branch live, classic, classic_titan` on a patch day, run it and commit the diff. A run on unchanged clones writes the same bytes, and a missing clone stops it with the `Update-UiSource.ps1` command to run.
-- The classification is a port of Krowi_ClaudeKit's `tools\Find-DeprecatedApi.ps1`, the cross-addon scanner; keep the two in step.
+Blizzard keeps old global names alive as aliases in its `Blizzard_Deprecated*` addons, which load only while the `loadDeprecationFallbacks` CVar is on and which a later patch deletes. The `deprecated-api` rule reports any read of such a name, from the committed list `Check-Repo.deprecated-api`, so it runs offline.
+- `Update-DeprecatedApi.ps1` rebuilds the list from the clones of the clients the `.toc`'s Interface line lists (12 `live`, 5 `classic`, 3 `classic_titan`, 2 `classic_anniversary`, 1 `classic_era`).
+- The classification is the kit's `tools\DeprecatedApi.ps1`, which the kit's `Find-DeprecatedApi.ps1` uses too: a deprecation file is one under a `Blizzard_Deprecated*` or `Deprecated_*` addon or one whose code checks the CVar, a per-game variant counts only for its own game, and every other file shows what the client has for real. A name is "deprecated" on a client that has it only as an alias, "removed" on a client that has it nowhere, and skipped where it is real.
+- A name a deleted file took with it stays listed, as removed, while no listed client has it. Names `Check-Repo.removed-api` lists are left to that rule.
+- After `Update-UiSource.ps1 -Branch live, classic, classic_titan` on a patch day, run it and commit the diff. A run on unchanged clones writes the same bytes, and a missing clone stops it with the command to run.
 - A deliberate exception goes in `Check-Repo.ignore` with a comment, narrowed to the one global with the optional third field (`deprecated-api <path glob> <name>`), so it does not hide a later read in the same file. Typical cases are a guarded fallback for a client without the new API, or a file only a client that has the name loads.
 
 Known limits:
@@ -185,52 +146,18 @@ Known limits:
 & ".claude\tools\Update-DeprecatedApi.ps1"              # -UiSource <folder> to read clones elsewhere
 ```
 
-## Symbol finder (`Find-Symbol.ps1`)
-
-Prints where a namespaced name is defined and used, one `<path>:<line>: <kind>: <line>` per hit, over the addon's own `.lua` and `.xml`. The file list comes from the file system, and `Libs/` and the non-addon folders are skipped. It answers in about 0.2 s what otherwise takes several greps, because the code reaches the same function through per-file aliases.
-
-How it reads a file:
-
-1. It blanks comments and strings, keeping every position.
-2. It resolves the file's aliases in source order, with block scoping: `local gui = addon.Gui`, chained aliases, the OOP reverse alias `addon.Objects.Category = category`, and `local Ach = KrowiAF.Ach`.
-3. In XML, it counts `mixin=`, `function=` and `name=`, plus `method=` when the element carries or inherits the mixin, and it reads inline scripts as Lua.
-
-The kinds:
-
-- **`def`, `ref`, `xml`**: resolved hits.
-- **`self?`**: `self` inside `function owner:Method()`, read as the owner.
-- **`call?` and `def?`**: a member on a value it cannot resolve, such as a parameter, a local or a call result. Bare-member queries only.
-- **`dyn?`**: `parent[expr]`.
-
-A name inside a string (`hooksecurefunc(addon.Gui, "Name", ...)`) is never reported. A bare member (`GetMergedCategory`) matches every resolved name ending in it. `-List` prints the members defined directly under a name, and `-Defs` prints definitions only. The exit code is 1 when nothing was found.
-
-```powershell
-& ".claude\tools\Find-Symbol.ps1" addon.Gui.Search                        # a full path; a colon reads as a dot
-& ".claude\tools\Find-Symbol.ps1" GetMergedCategory                       # a bare member: every class that defines it, plus unresolved calls
-& ".claude\tools\Find-Symbol.ps1" KrowiAF_AchievementPopoutMixin.OnLoad   # a mixin method, XML handlers included
-& ".claude\tools\Find-Symbol.ps1" addon.Data -List                        # what is defined directly under a namespace
-```
-
-## Semicolon strip (`Strip-Semicolons.ps1`)
-
-Removes trailing statement semicolons (a field separator inside a table constructor becomes a comma) through the lexer-aware `lua51/strip-semicolons.lua`, and replaces a file only when `luac -s` produces byte-identical bytecode before and after. Scope is every tracked `.lua` outside `Libs/` and the non-addon folders; `-DryRun` reports without writing, `-Path` limits it to given files. Its first run stripped the whole tree (the record is in `docs/codebase-analysis.md`); it exists for the next batch that comes back, such as a CurseForge locale export or an upstream merge.
-
-```powershell
-& ".claude\tools\Strip-Semicolons.ps1" -DryRun          # -Path Globals.lua, Filters.lua
-```
-
 ## Data-verification scripts (online)
 
 Not offline tools, but listed here so the instruction file can stay short. These PowerShell scripts under `.claude/skills/` and `raw/` query the local game-database server (wow.tools.local at `http://localhost:5000`). Each `SKILL.md` documents the workflow; `.claude/skills/verify-achievement-data/API.md` is the query reference, and the rule for the lookup scripts is in the instruction file.
 
-No script types a build. `Get-WowBuilds.ps1` (in this folder) picks the newest `wow` and `wow_classic` build from the server's local list, falling back to the remote list, and every lookup script dot-sources it; `-Client Classic` selects the Classic build where a script serves both, and `$env:KAF_RETAIL_PRODUCT = "wowxptr"` (or `"wowt"`) points Retail at a patch still on the PTR. Each lookup script takes its values as parameters (`-Ids`, `-Terms`, `-Names`, `-Table`/`-Name`); the parameter's default in the `param()` block is the placeholder, which can still be edited instead and must be reset afterwards (the `lookup-placeholders` rule).
+No script types a build. The kit's `Get-WowBuilds.ps1` picks the newest `wow` and `wow_classic` build from the server's local list, falling back to the remote list, and every lookup script dot-sources it after `.claude\tools\KitPath.ps1`; `-Client Classic` selects the Classic build where a script serves both, and `$env:KAF_RETAIL_PRODUCT = "wowxptr"` (or `"wowt"`) points Retail at a patch still on the PTR. Each lookup script takes its values as parameters (`-Ids`, `-Terms`, `-Names`, `-Table`/`-Name`); the parameter's default in the `param()` block is the placeholder, which can still be edited instead and must be reset afterwards (the `lookup-placeholders` rule).
 
 ```powershell
 # Start the DB server if it is not running (waits up to 60 s)
 & ".claude\skills\add-zone-data\_start_server.ps1"
 
 # The builds every lookup resolves to
-& ".claude\tools\Get-WowBuilds.ps1"
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\Get-WowBuilds.ps1"
 
 # Zone data: every Zone() entry (duplicates, map ids, ids exist on Retail or Classic) and the decisions log
 # raw/ZoneDataDecisions.md against the files and the DB. Builds are resolved from the server, never typed.

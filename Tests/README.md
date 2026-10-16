@@ -2,7 +2,7 @@
 
 `Tests/` holds the in-game test runner (`Tests.lua`, the `/kaftest` command) and the scenario suites it shares with the headless runner `.claude/tools/headless/run-tests.lua`. `Tests/Files.xml` is the last entry in the `.toc`, so the suites ship with the addon and load after everything else, but the runner is only active in debug mode (Options > General > Debug). This README neither ships nor deploys: the release zip skips every `.md` file, and deploy copies only `.lua`, `.blp`, `.tga` and `.xml` files.
 
-The rules that lean on these suites (a bug fix is built test first; every fixed bug leaves its scenario behind) are in `.github/copilot-instructions.md` under Work-Item Lifecycle, and `.claude/skills/process-issue/SKILL.md` has the steps.
+The rules that lean on these suites (a bug fix is built test first; every fixed bug leaves its scenario behind) are in `.github/copilot-instructions.md` under Work-Item Lifecycle, and the kit's `krowi:process-issue` skill, with `docs/sdlc-playbook.md`, has the steps.
 
 ## Recorded and Target
 
@@ -13,8 +13,8 @@ Each scenario carries `Recorded`, the behaviour of the current code verified in 
 `run-tests.lua` runs a suite in the vendored Lua 5.1 with WoW frames and the relevant FrameXML functions modelled from Blizzard's source. The model implements the same primitives for both clients (`-client Retail|Classic`, both by default) and provides only globals the game really has, so a call to a Blizzard local fails there too. The runner's header names the addon files each suite exercises.
 
 ```powershell
-& ".claude\tools\lua51\lua.exe" ".claude\tools\headless\run-tests.lua" "$PWD" escape           # every scenario line and a summary
-& ".claude\tools\lua51\lua.exe" ".claude\tools\headless\run-tests.lua" "$PWD" escape -check    # only the failures
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\lua.exe" ".claude\tools\headless\run-tests.lua" "$PWD" escape           # every scenario line and a summary
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\lua.exe" ".claude\tools\headless\run-tests.lua" "$PWD" escape -check    # only the failures
 ```
 
 `-check` prints a `<file>:<line>:` finding per failing scenario; it is what the `unit-tests` rule of `Check-Repo.ps1` runs.

@@ -208,7 +208,7 @@ For each file:
 # 2. regenerate both snapshots
 # 3. require a ZERO diff
 & ".claude\tools\Check-Repo.ps1" -ChangedOnly
-& ".claude\tools\lua51\lua.exe" ".claude\tools\headless\load-data.lua" "$PWD" Both
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\lua.exe" ".claude\tools\headless\load-data.lua" "$PWD" Both
 # 4. commit
 ```
 
@@ -236,8 +236,8 @@ Shared files must be snapshotted for **both** clients: they resolve differently 
 3. **In-game pass** on one Retail and one Classic character. Deploy, `/reload`, and spot-check the Specials and Events tabs plus two migrated expansions. Then `Read-GameErrors.ps1`.
 
 ```powershell
-& ".claude\tools\Deploy.ps1"
-& ".claude\tools\Read-GameErrors.ps1"
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\Deploy.ps1"
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\Read-GameErrors.ps1"
 ```
 
 4. **Correct `.github/copilot-instructions.md`** to describe the real state of the category format.
