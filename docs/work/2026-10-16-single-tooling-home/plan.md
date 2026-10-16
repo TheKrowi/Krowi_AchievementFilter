@@ -210,3 +210,34 @@ Facts the plan rests on (read 2026-10-16):
 - the kit templates' headings still equal `Check-Repo.ps1:728-732`.
 
 **No in-game check:** the addon does not change.
+
+## Departures and results (2026-10-17)
+**Departures from the plan:**
+- **`docs/sdlc-playbook.md` stays whole.** It is the contributors' description of the lifecycle, not tooling, so only its tool and skill references changed. Folding its generic stages into the kit's skill is left for a later decision.
+- **`.claude/settings.json`:**
+  - `../wow-ui-source/` also became absolute, for the same reason as the kit path;
+  - the Bash forms of the `lua51` allow rules were dropped rather than rewritten.
+- **The kit's `Find-DeprecatedApi.ps1`** now reads every clone in full through the shared reader (about 6 s for six clones), because a file can count as deprecated by its text.
+- **Tests:** `Tests/Tests.lua` changed one comment (the release gate's path). The `changelog` rule therefore warns on this branch; there is no player-visible change, so there is no changelog line.
+- **Kit `main` moved before the branch:** another session's docs commit `063c571`. The branch starts from it, and `main` had not moved again at the gate.
+
+**Results** against the baseline taken before any change:
+- **Identical:**
+  - the headless `Both`, all eight suites and both snapshots;
+  - `Strip-Semicolons -DryRun`;
+  - `Find-DeprecatedApi` live and classic on this repo, Krowi_Vendorer and Krowi_ExtendedVendorUI;
+  - Vendorer's `Deploy -WhatIf`;
+  - `Check-Repo` (the same 24 sections, timings within noise, 0 findings).
+- **Expected differences:**
+  - `Deploy -WhatIf` now prints the repo path, and the one extra file to copy is the changed `Tests/Tests.lua`;
+  - the game readers differ only in relative times;
+  - `Find-Symbol` differs only in run time;
+  - the preflight adds the kit's checks and `Upload stability: stable (from CLAUDE.md)`, and the escape-gate line is unchanged;
+  - Vendorer's preflight adds `Repo gate: none`;
+  - `Update-DeprecatedApi` differs in header line 3 only.
+- **Hooks:**
+  - the guard tests pass 51/51 (8 new Edit/Write cases);
+  - piped at this repo, `sed -i` is denied, a `Libs/` edit asks, a string above `AUTOGENTOKEN` in the real `enUS.lua` is denied, and a planted syntax error is reported (exit 2).
+- **Without the kit:** Check-Repo exits 1 with the kit message and the Stop hook exits 2.
+- **Listing:** the headless run lists `krowi:release`, `krowi:process-issue` and `krowi:taint-reviewer` once each, the data skills and `data-verifier` bare, and none of the removed names. The release description is the worktree's.
+- **Not proven:** a lookup script reached `Get-WowBuilds`' HTTP call, but the game-database server was not running.
