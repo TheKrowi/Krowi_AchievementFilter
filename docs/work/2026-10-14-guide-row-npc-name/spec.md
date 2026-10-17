@@ -1,5 +1,5 @@
 # Spec: The expanded row's guide shows the NPC's name once the game has it
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. A guide block under an expanded row that was drawn with the data's English NPC name shows the client's name at the first list update after the client has it, with no other change on screen.

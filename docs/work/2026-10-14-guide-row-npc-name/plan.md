@@ -1,5 +1,5 @@
 # Plan: The expanded row's guide shows the NPC's name once the game has it
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 Approved by Krowi on 2026-10-14, together with the plan for the other follow-up of the day (2026-10-14-deprecated-api-lint). That item was built and merged first (#344), and this branch was rebased onto `dev` before any code change. That avoids the adjacent-row conflict in `docs/codebase-analysis.md` the plan expected, and puts this item under the new `deprecated-api` rule from the start.
 
@@ -52,7 +52,13 @@ Approved by Krowi on 2026-10-14, together with the plan for the other follow-up 
 
 ## How it went (2026-10-14)
 - Built after 2026-10-14-deprecated-api-lint was merged (#344), on a rebase made before any code change (see the top).
-- Scenarios first (`74027d2b`): `npc-name-kept` and `row-npc-name-arrives` recorded "fallback" against the old code, both open against "game"; every other suite was unchanged on both clients.
-- The fix (`b08e57c9`): both scenarios meet their targets. Each of two mutation runs removed one half of the fix and failed exactly its scenario: the key without the names failed `row-npc-name-arrives`, and `GetNpcName` without the kept table failed `npc-name-kept`.
+- Scenarios first (`de1d42d1`): `npc-name-kept` and `row-npc-name-arrives` recorded "fallback" against the old code, both open against "game"; every other suite was unchanged on both clients.
+- The fix (`afcd3fc7`): both scenarios meet their targets. Each of two mutation runs removed one half of the fix and failed exactly its scenario: the key without the names failed `row-npc-name-arrives`, and `GetNpcName` without the kept table failed `npc-name-kept`.
 - Departure: the suite header does not list `GetNpcNames` among the module functions, because the scenarios reach it through `DisplayUnderObjectives` and never call it directly.
 - In-game run (Retail, 2026-10-14 20:45, character in a raid): `npc-name-from-game` failed with got=fallback; there were no Lua errors, and the four headless-only scenarios were SKIPs. A probe of `C_TooltipInfo.GetHyperlink` for 97485 printed `table true 4 string false false`: the line's text was a secret value. Raid restrictions hand addons NPC names as secrets, so the guard returned nil and the guide fell back to English as designed. This is the first real-game proof of the secret path. The scenario now SKIPs in game when the name is secret where the player is (`gameEnv.NpcNameIsSecret`), as the escape suite skips under outside state. Its readable-name check has to run outside such restrictions.
+
+## How it went (2026-10-17)
+- Rebased onto `dev` at `30f3fdef` (the move of the shared tooling to the kit) without conflicts; the commit ids above are the rebased ones. Every suite on both clients, `load-data.lua Both` and `Check-Repo.ps1 -Luals` were clean afterwards.
+- `krowi:taint-reviewer` on the branch: no findings. Its one low, unverified point, that a readable placeholder for an uncached NPC would now be kept for the session, is answered by the probe in the intent of 2026-10-14-guide-npc-names: an uncached NPC's first read returns nothing.
+- In-game run (Retail 12.1.5, 09:31, in a scenario instance): green, but `npc-name-from-game` was a SKIP again. A probe showed the Map addon restriction (`Enum.AddOnRestrictionType.Map`) active there, and the name secret: restrictions on a map secret NPC names too, not only encounters and PvP.
+- In-game run (Retail 12.1.5, 21:05, open world): guide 38 passed, 0 failed, 4 skipped (the headless-only scenarios); `npc-name-from-game` passed with got=game. `Read-GameErrors.ps1` reported no error from this addon.

@@ -1,5 +1,5 @@
 # Intent: The expanded row's guide shows the NPC's name once the game has it
-Author: Krowi (maintainer). Source: `docs/codebase-analysis.md` row 31, deferred from the code review of 2026-10-14-guide-npc-names; Krowi asked for it on 2026-10-14. Status: accepted
+Author: Krowi (maintainer). Source: `docs/codebase-analysis.md` row 31, deferred from the code review of 2026-10-14-guide-npc-names; Krowi asked for it on 2026-10-14. Status: done
 
 ## Problem
 With "show the guide under the selected achievement" on, the guide block under an expanded row can keep the English NPC name ("Talk to Archivist Zubashi") on a German, French or other client. That happens when the block is first drawn before the client has the NPC's name: within a moment of logging in with the NPC never seen, or while the name is a secret value. The block keeps it until the player selects another achievement and comes back, or resizes the window. The tooltip, the right-click menu and the side panel read the name on every show and are fine.
