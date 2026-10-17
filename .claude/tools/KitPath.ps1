@@ -8,7 +8,9 @@
     Lua is missing, so the lint fails loudly instead of skipping the rules that need Lua.
 
     The kit is Krowi_ClaudeKit next to this repo's main checkout; a worktree resolves to the same folder.
-    $env:KROWI_CLAUDEKIT, when set, names another kit checkout instead, for testing a kit worktree.
+    $env:KROWI_CLAUDEKIT, when set, names another kit checkout instead, for testing a kit worktree. It moves only
+    this repo's scripts: the plugin's hooks, skills and agent still load from the kit's main checkout, so test those
+    with `claude -p --plugin-dir <kit worktree>`, and clear the variable after the test.
     The kit is private: a contributor's clone has none, and this repo's Claude Code tooling is the maintainer's.
 
 .EXAMPLE

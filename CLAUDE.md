@@ -16,7 +16,7 @@ The tooling every Krowi repo shares lives once, in Krowi_ClaudeKit (`E:\World of
 - **Stop hook** (this repo's): `.claude/hooks/Check-RepoOnStop.ps1` runs `Check-Repo.ps1 -ChangedOnly` when a turn ends and hands errors back. Fix them, or add a deliberate exception to `.claude/tools/Check-Repo.ignore` with a comment.
 - **Kit helpers**:
   - this repo's own scripts reach the kit's Lua 5.1.5, `Get-WowBuilds.ps1` and the deprecated-API classifier through `.claude/tools/KitPath.ps1`;
-  - without the kit, the lint stops with that message instead of skipping its Lua rules;
+  - without the kit, the lint runs its other rules and a `kit` Warning names the ones that need Lua and did not run;
   - `$env:KROWI_CLAUDEKIT` points them at a kit worktree for testing.
 - **Worktrees**:
   - `.claude/settings.json` sets `worktree.baseRef` to `head`, so EnterWorktree with a name, `claude --worktree` and subagent `isolation: "worktree"` branch from the session's HEAD instead of `origin/main`, the months-old GitHub default branch.

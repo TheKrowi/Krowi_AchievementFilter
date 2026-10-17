@@ -12,7 +12,7 @@ This file adapts the playbook to a repository with one maintainer, two game clie
 
 ## The work folder
 
-`docs/work/<id>-<slug>/`, where `<id>` is the GitHub issue number, or the date (`2026-09-30`) for work with no issue. Copy the templates from the kit's `skills/process-issue/templates/`.
+`docs/work/<id>-<slug>/`, where `<id>` is the GitHub issue number, or the date (`2026-09-30`) for work with no issue. Copy the templates from the kit's `skills/process-issue/templates/`; without the kit (a contributor), copy the shape of an existing work folder.
 
 | File | Stage | Written from | Ends when |
 |------|-------|--------------|-----------|
@@ -55,11 +55,11 @@ Gate: the maintainer approves the design and picks between the options. The agen
 
 The agent writes `plan.md` in plan mode (read the code, change nothing). It covers the files that change, the order of work, the risks and the proof, and is complete enough that someone who never saw the conversation could carry it out. Then it builds in the order the plan gives:
 
-1. **Test first, for a bug fix.** Add a scenario to the matching suite in `Tests/` (or a new suite shared by `/kaftest` and `.claude/tools/headless/run-tests.lua`). Set `Recorded` to the current, buggy behaviour and `Target` to the desired behaviour, so the headless run reproduces the bug as one scenario that is open against its target. For GUI behaviour, the in-game run of the suite must be green before the fix starts (maintainer rule): deploy, `/kaftest <suite>`, `Read-GameTests.ps1`. Commit the scenario. A data bug is reproduced by the headless data pipeline or a data-verifier finding instead.
+1. **Test first, for a bug fix.** Add a scenario to the matching suite in `Tests/` and to its model in `.claude/tools/headless/run-tests.lua`. A new suite is a `Tests/<Suite>.lua` registered in `Tests/Files.xml`, a `suites.<name>` in the runner, its name in the instruction file's suite list and a section in `Tests/README.md`. Set `Recorded` to the current, buggy behaviour and `Target` to the desired behaviour, then run the suite headless: the new scenario passes and is open against its target. For GUI behaviour, the in-game run of the suite must be green before the fix starts (maintainer rule): `Deploy.ps1 -WhatIf`, deploy, ask the maintainer for `/kaftest <suite>` and a second `/reload` (the game writes the log only on reload), then `Read-GameTests.ps1`: no FAIL and no unexplained difference from headless. Commit the scenario (`test: reproduce #<n> in the <suite> suite`). A data bug is reproduced by the headless data pipeline or a data-verifier finding instead.
 2. **Fix only the code.** Never weaken a scenario, a lint rule or an ignore entry to make a check pass. After the fix, `Recorded` is set to the new behaviour (equal to `Target`), so the diff of the scenario file is the behaviour change under review.
 3. Update `plan.md` when the implementation departs from it.
 
-Gate: the maintainer approves `plan.md` for anything that is not routine. The in-game before-run is the second gate for GUI work.
+Gate: the maintainer approves `plan.md` for anything that is not routine: shared GUI code, hooks on Blizzard frames or functions, saved variables, or the data API. The in-game before-run is the second gate for GUI work.
 
 ### 4. Test: the feedback loop
 
@@ -70,11 +70,11 @@ The agent checks its own work before the maintainer sees it:
 - the `data-verifier` subagent for data changes;
 - the `krowi:taint-reviewer` subagent for any change to GUI code, hooks on Blizzard frames, event handlers or lockdown-protected APIs.
 
-The in-game after-run closes the loop on both clients: `Deploy.ps1 -WhatIf`, deploy, `/reload`, `/kaftest`, `Read-GameTests.ps1`, `Read-GameErrors.ps1`. The scenario suites are this repository's regression evals. Every fixed bug leaves a scenario behind, so the defect cannot come back unnoticed, and the `unit-tests` lint rule runs them on every turn.
+The in-game after-run closes the loop on each client the change touches: `Deploy.ps1 -WhatIf`, deploy, `/reload`, `/kaftest <suite>`, a second `/reload`, then `Read-GameTests.ps1` and `Read-GameErrors.ps1`. The scenario suites are this repository's regression evals. Every fixed bug leaves a scenario behind, so the defect cannot come back unnoticed, and the `unit-tests` lint rule runs them on every turn.
 
 ### 5. Deploy: review, then the human gate
 
-The agent pushes the work branch and opens a PR against `dev` with the PR template filled in and the work folder linked. Before asking for review, it runs the review passes in `REVIEW.md` (`/code-review`, and `krowi:taint-reviewer` where it applies), fixes what they find, and lists what it deferred. It sets the work files to `Status: done` in the PR's last commit.
+The agent commits (`fix(<scope>): <what> (#<n>)`), pushes the work branch and opens a PR against `dev` with the PR template filled in; its `Why` links the issue and the work folder. Before asking for review, it runs the review passes in `REVIEW.md` (`/code-review`, and `krowi:taint-reviewer` where it applies), fixes what they find, and lists what it deferred. It sets the work files to `Status: done` in the PR's last commit.
 
 Gate: the maintainer reviews and approves the merge. The gate is their decision, not who presses the button: the agent never merges on its own initiative, but when the maintainer tells it to merge, it merges with a merge commit (`gh pr merge <n> --merge`, like the earlier PRs into `dev`), so each stage's commit stays in the history. It never pushes work-item commits straight to `dev`. A release is a separate, later gate: `krowi:release`, on the maintainer's go-ahead.
 

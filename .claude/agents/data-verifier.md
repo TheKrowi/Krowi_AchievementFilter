@@ -25,6 +25,8 @@ Run the DB lookups through the designated scripts, passing the values as paramet
 & "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\lua.exe" ".claude\tools\headless\load-data.lua" "$PWD" Both          # offline pipeline: duplicates, bad keys, dangling references, in 0.5 s
 ```
 
+Your shell is Bash, so run the pipeline as `"/e/World of Warcraft Addon Development/Krowi_ClaudeKit/tools/lua51/lua.exe" .claude/tools/headless/load-data.lua "$PWD" Both` (the form the permission rules allow) and a script as `pwsh -NoProfile -File <script> <parameters>`.
+
 Builds resolve from the server (`/casc/builds`, then `?remote=true`), so never type one; for content still on the PTR, set `$env:KAF_RETAIL_PRODUCT = "wowxptr"` first. Include one control id you know exists (for example 6, "Level 10", exists on both builds) so a run of NOTFOUND results is proven to be real and not a failed query.
 
 ## Procedure

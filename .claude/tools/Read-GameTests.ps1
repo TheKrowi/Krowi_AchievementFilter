@@ -33,8 +33,9 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $root = Split-Path (Split-Path $PSScriptRoot -Parent) -Parent   # .claude\tools -> repo root
-$flavor = @{ Retail = '_retail_'; Classic = '_classic_'; Ptr = '_ptr_'; Xptr = '_xptr_' }[$Client]
-$wtf = "H:\World of Warcraft\$flavor\WTF\Account"
+. (Join-Path $PSScriptRoot 'KitPath.ps1')
+. (Join-Path $KitTools 'AddonContext.ps1')   # the kit's client map: Get-ClientFolder
+$wtf = Join-Path (Get-ClientFolder $Client) 'WTF\Account'
 if (-not (Test-Path -LiteralPath $wtf)) { throw "No WTF\Account folder for $Client at $wtf" }
 
 $candidates = if ($Account) {
@@ -46,7 +47,6 @@ $candidates = if ($Account) {
 $file = $candidates | Select-Object -First 1
 if (-not $file) { throw "No Krowi_AchievementFilter.lua found under $wtf; has the client been reloaded since the addon was installed?" }
 
-. (Join-Path $PSScriptRoot 'KitPath.ps1')
 $lua = $KitLua
 $reader = Join-Path $root '.claude\tools\headless\read-tests.lua'
 $runner = Join-Path $root '.claude\tools\headless\run-tests.lua'

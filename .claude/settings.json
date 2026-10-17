@@ -35,6 +35,8 @@
             "PowerShell(& \".claude\\tools\\Check-Repo.ps1\" *)",
             "PowerShell(& \"E:\\World of Warcraft Addon Development\\Krowi_ClaudeKit\\tools\\lua51\\lua.exe\" \".claude\\tools\\headless\\load-data.lua\" \"$PWD\" *)",
             "PowerShell(& \"E:\\World of Warcraft Addon Development\\Krowi_ClaudeKit\\tools\\lua51\\lua.exe\" \".claude\\tools\\headless\\run-tests.lua\" \"$PWD\" *)",
+            "Bash(\"/e/World of Warcraft Addon Development/Krowi_ClaudeKit/tools/lua51/lua.exe\" .claude/tools/headless/load-data.lua \"$PWD\" *)",
+            "Bash(\"/e/World of Warcraft Addon Development/Krowi_ClaudeKit/tools/lua51/lua.exe\" .claude/tools/headless/run-tests.lua \"$PWD\" *)",
             "PowerShell(& \"E:\\World of Warcraft Addon Development\\Krowi_ClaudeKit\\tools\\lua51\\lua.exe\" \".claude\\tools\\headless\\snapshot-data.lua\" \"$PWD\" *)",
             "PowerShell(& \"E:\\World of Warcraft Addon Development\\Krowi_ClaudeKit\\tools\\lua51\\lua.exe\" \".claude\\tools\\headless\\snapshot-categories.lua\" \"$PWD\" *)",
             "PowerShell(& \"E:\\World of Warcraft Addon Development\\Krowi_ClaudeKit\\tools\\lua51\\lua.exe\" \"E:\\World of Warcraft Addon Development\\Krowi_ClaudeKit\\tools\\lua51\\check-syntax.lua\" *)",

@@ -8,7 +8,7 @@ The everyday commands and the rules these tools enforce are in `.github/copilot-
 
 | Tool | What it does |
 |---|---|
-| `KitPath.ps1` | finds the kit for the scripts below (next to the main checkout, or `$env:KROWI_CLAUDEKIT` to test a kit worktree) and fails when it is missing |
+| `KitPath.ps1` | finds the kit for the scripts below (next to the main checkout, or `$env:KROWI_CLAUDEKIT` to test a kit worktree) and throws when it is missing |
 | `Check-Repo.ps1` | the repo lint; `Check-Repo.globals`, `Check-Repo.ignore`, `Check-Repo.removed-api` and `Check-Repo.deprecated-api` are its data files |
 | `headless/load-data.lua` | the data load for both clients, headless |
 | `headless/run-tests.lua` | the scenario suites in `Tests/`, headless |
@@ -39,7 +39,7 @@ The kit carries Lua 5.1.5 (`$kit\tools\lua51\lua.exe`, `luac.exe`), the exact in
 & ".claude\tools\Check-Repo.ps1" -ChangedOnly  # only files changed against HEAD, errors instead of warnings; -Luals adds the language-server run
 ```
 
-`-ChangedOnly` is what the Claude Code Stop hook runs. Warnings on changed files are promoted to errors, so pre-existing debt does not block work while new debt does. Each finding prints as `<path>:<line>: [<rule>] <severity>: <message>`, and the exit code is 1 when any error was found. Without the kit the lint prints `KitPath.ps1`'s message and exits 1, rather than passing with its Lua rules skipped. The script's comment header gives each rule's severity.
+`-ChangedOnly` is what the Claude Code Stop hook runs. Warnings on changed files are promoted to errors, so pre-existing debt does not block work while new debt does. Each finding prints as `<path>:<line>: [<rule>] <severity>: <message>`, and the exit code is 1 when any error was found. Without the kit (a contributor's clone) the rules that need no Lua still run, and the `kit` rule names the ones that did not. The script's comment header gives each rule's severity.
 
 | Rule | What it checks |
 |---|---|
@@ -70,6 +70,7 @@ The kit carries Lua 5.1.5 (`$kit\tools\lua51\lua.exe`, `luac.exe`), the exact in
 | `data-load` | the headless data pipeline (below) |
 | `unit-tests` | the headless test suites behave as their scenarios' `Recorded` fields say |
 | `changelog` | a reminder when addon code changed without a `_Packaging/Changelog.md` line |
+| `kit` | a warning when Krowi_ClaudeKit is missing, naming the rules that need its Lua and did not run |
 
 A deliberate exception goes in `Check-Repo.ignore` (one `<rule or *> <path glob>` per line) with a comment.
 

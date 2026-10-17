@@ -1,6 +1,6 @@
 # Harness roadmap
 
-The harness is the self-contained toolchain under `.claude/`: the lint, the hooks, the headless pipeline and snapshots, the scenario suites, the game readers, the lookup scripts, the subagents and the skills. `.claude/tools/README.md` documents what exists. This file holds what is planned, what is done and what was decided against. A step keeps its number once it has one, because `docs/sdlc-playbook.md` refers to steps by number.
+The harness is the toolchain this repo's Claude Code sessions use. Since 2026-10-16 the part every Krowi repo shares lives in Krowi_ClaudeKit (the hooks, Lua 5.1.5, `Deploy`, the game readers, the worktree tools, `Find-Symbol`, `Strip-Semicolons`, `Get-WowBuilds`, the release and work-item skills, the taint reviewer), and the rest under `.claude/`: the lint, the headless pipeline and snapshots, the scenario suites, the lookup scripts, `data-verifier` and the data skills. `.claude/tools/README.md` and the kit's `README.md` document what exists. This file holds what is planned, what is done and what was decided against. A step keeps its number once it has one, because `docs/sdlc-playbook.md` refers to steps by number.
 
 ## Done
 
@@ -15,6 +15,7 @@ The harness is the self-contained toolchain under `.claude/`: the lint, the hook
 | | `Get-WowBuilds.ps1` and the `pinned-build` rule, parameters on the lookup scripts, `Find-Symbol.ps1` | dd81ef2d |
 | | `Evaluate-ZoneCriteria.ps1` reports a missed zone as `[R2]` instead of hiding it as an undecided sub-map | 50fae1ee (2026-10-11) |
 | | Parallel sessions: `New-Worktree.ps1` and `Remove-Worktree.ps1`, `worktree.baseRef` set to `head`, fsdeploy deploys the window's own folder, the Stop hook lints the session's own checkout | 2026-10-11 |
+| | The shared tooling moves to Krowi_ClaudeKit; this repo enables its `krowi` plugin and keeps only its own (`docs/work/2026-10-16-single-tooling-home/`) | 2026-10-17 |
 
 ## Open, in priority order
 
@@ -30,6 +31,8 @@ Measured on 2026-10-10 from the Claude Code transcripts of this repo: 49 session
 | 11 | A check for a map in two `Zone()` blocks | a zone rule nothing enforces, broken twice | small |
 | 12 | Narrow the guard hook's inline-query check | a read-only grep whose pattern names the server is denied | small |
 | 13 | Raid-size lists: a check, and a list-aware zone plan | 51 placements sat in the wrong list for a month, unflagged | small |
+
+Steps 6, 10 and 12 change files that now live in Krowi_ClaudeKit (`hooks/Check-LuaSyntax.ps1`, `tools/Find-Symbol.ps1`, `hooks/Guard-ToolUse.ps1`). They are built there, in a kit worktree, and serve every Krowi repo; this repo only picks them up. Step 8 is mostly generic (git state, PRs, issues, the changelog) apart from its lint run; where it lives is decided when it is built.
 
 ### Step 6: fix line endings after Write
 

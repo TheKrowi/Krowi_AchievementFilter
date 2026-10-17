@@ -69,12 +69,13 @@
       enus-autogen     [Error]   no L[...] string added above the AUTOGENTOKEN marker in any locale file;
                                  new strings go directly below its "Exported at" line
       changelog        [Warning] addon code changed without a Changelog.md entry
+      kit              [Warning] Krowi_ClaudeKit was not found, so the rules that need its Lua did not run
 
     Warnings on changed files are promoted to Error so pre-existing debt does not block work
     while new debt does.
 
-    The vendored Lua 5.1.5 comes from Krowi_ClaudeKit (KitPath.ps1). Without the kit the lint stops with exit code 1
-    and says so, rather than passing with the Lua rules skipped.
+    The vendored Lua 5.1.5 comes from Krowi_ClaudeKit (KitPath.ps1). Without the kit (a contributor's clone) the
+    rules that need no Lua still run, and the kit rule names the ones that did not.
 
 .PARAMETER ChangedOnly
     Report only findings that involve changed files (plus the always-on structural errors).
@@ -101,12 +102,11 @@ $ErrorActionPreference = 'Stop'
 $root = Split-Path (Split-Path $PSScriptRoot -Parent) -Parent   # .claude\tools -> repo root
 Set-Location $root
 
-# The Lua rules need the kit's interpreter; stop loudly without it (the Stop hook hands exit 1 back to Claude)
+# The Lua rules need the kit's interpreter. Without the kit (a contributor's clone) the other rules still run, and the
+# kit rule reports which did not, so a missing kit is visible without blocking every turn through the Stop hook
+$kitMissing = $null
 try { . (Join-Path $PSScriptRoot 'KitPath.ps1') }
-catch {
-    Write-Output "Check-Repo: $($_.Exception.Message)"
-    exit 1
-}
+catch { $kitMissing = $_.Exception.Message; $KitLua = ''; $KitLuac = ''; $KitTools = '' }
 
 $nonAddonDirs = @('.claude', '.git', '.github', '.vscode', '_Packaging', 'raw', 'wiki', 'docs')
 $findings = [System.Collections.Generic.List[object]]::new()
@@ -322,8 +322,8 @@ Write-Timing 'saved-variables'
 
 # --- lua-syntax --------------------------------------------------------------------------------
 $lua = $KitLua
-$checker = Join-Path $KitTools 'lua51\check-syntax.lua'
-if ((Test-Path $lua) -and (Test-Path $checker)) {
+$checker = if ($KitTools) { Join-Path $KitTools 'lua51\check-syntax.lua' } else { '' }
+if ($lua -and $checker -and (Test-Path $lua) -and (Test-Path $checker)) {
     $targets = @(if ($ChangedOnly) { $luaFiles | Where-Object { $changed.ContainsKey($_) } } else { $luaFiles })
     if ($targets.Count -gt 0) {
         $ErrorActionPreference = 'Continue'
@@ -335,7 +335,7 @@ if ((Test-Path $lua) -and (Test-Path $checker)) {
         }
     }
 }
-else {
+elseif (-not $kitMissing) {
     Add-Finding 'lua-syntax' 'Error' '.claude/tools/KitPath.ps1' 1 "the kit's lua51\check-syntax.lua is missing under $KitTools, syntax not checked"
 }
 
@@ -346,7 +346,7 @@ Write-Timing 'lua-syntax'
 # BINDING_*/SLASH_* name and not listed in Check-Repo.globals ("<path glob> <name glob>") is a leak,
 # or a Blizzard override nobody has owned up to. Vendored Libs are not ours to lint.
 $luac = $KitLuac
-if (Test-Path $luac) {
+if ($luac -and (Test-Path $luac)) {
     $allowGlobals = @()
     $allowFile = Join-Path $PSScriptRoot 'Check-Repo.globals'
     if (Test-Path $allowFile) {
@@ -638,7 +638,7 @@ Write-Timing 'luals'
 
 # --- data-load: evaluate Api + DataAddons headlessly for each client -----------------------------
 $loader = Join-Path $root '.claude\tools\headless\load-data.lua'
-if ((Test-Path $lua) -and (Test-Path $loader)) {
+if ($lua -and (Test-Path $lua) -and (Test-Path $loader)) {
     $ErrorActionPreference = 'Continue'
     $out = & $lua $loader $root Both 2>&1 | ForEach-Object { "$_" }   # runs Retail and Classic, cross-checks references
     $ErrorActionPreference = 'Stop'
@@ -654,7 +654,7 @@ Write-Timing 'data-load'
 
 # --- unit-tests: every headless suite behaves as its scenarios' Recorded fields say ---------------
 $runner = Join-Path $root '.claude\tools\headless\run-tests.lua'
-if ((Test-Path $lua) -and (Test-Path $runner)) {
+if ($lua -and (Test-Path $lua) -and (Test-Path $runner)) {
     $ErrorActionPreference = 'Continue'
     $out = & $lua $runner $root -check 2>&1 | ForEach-Object { "$_" }
     $ErrorActionPreference = 'Stop'
@@ -670,7 +670,7 @@ Write-Timing 'unit-tests'
 # subtrees vanished on 2026-09-20 with load-data at 0 problems. This rule compares the whole parsed
 # tree, per client, against a committed baseline, so a structural change has to be looked at.
 $snapshot = Join-Path $root '.claude\tools\headless\snapshot-categories.lua'
-if ((Test-Path $lua) -and (Test-Path $snapshot)) {
+if ($lua -and (Test-Path $lua) -and (Test-Path $snapshot)) {
     $ErrorActionPreference = 'Continue'
     $out = & $lua $snapshot $root Both -check 2>&1 | ForEach-Object { "$_" }
     $ErrorActionPreference = 'Stop'
@@ -688,7 +688,7 @@ Write-Timing 'category-snapshot'
 # data-derived achievement property, every zone placement and the registries they resolve against,
 # per client, with committed baselines, so such a change is a reviewed diff (headless/snapshot-data.lua).
 $dataSnapshot = Join-Path $root '.claude\tools\headless\snapshot-data.lua'
-if ((Test-Path $lua) -and (Test-Path $dataSnapshot)) {
+if ($lua -and (Test-Path $lua) -and (Test-Path $dataSnapshot)) {
     $ErrorActionPreference = 'Continue'
     $out = & $lua $dataSnapshot $root Both -check 2>&1 | ForEach-Object { "$_" }
     $ErrorActionPreference = 'Stop'
@@ -834,7 +834,7 @@ Write-Timing 'diff rules'
 # --- zone-decisions: raw/ZoneDataDecisions.md must agree with the ZoneData.lua files (offline checks) --
 $zoneEval = Join-Path $root 'raw\Evaluate-ZoneDataDecisions.ps1'
 $zoneTouched = $changed.Keys | Where-Object { $_ -eq 'raw/ZoneDataDecisions.md' -or $_ -like '*/ZoneData.lua' }
-if ((Test-Path $zoneEval) -and (-not $ChangedOnly -or $zoneTouched)) {
+if (-not $kitMissing -and (Test-Path $zoneEval) -and (-not $ChangedOnly -or $zoneTouched)) {   # the evaluator dot-sources the kit's Get-WowBuilds
     $ErrorActionPreference = 'Continue'
     $out = & $zoneEval -SkipDb *>&1 | ForEach-Object { "$_" }   # *> : the evaluator reports through Write-Host (information stream)
     $ErrorActionPreference = 'Stop'
@@ -859,6 +859,11 @@ if ($codeChanged.Count -gt 0 -and -not $changed.ContainsKey('_Packaging/Changelo
     Add-Finding 'changelog' 'Warning' '_Packaging/Changelog.md' 1 "addon files changed ($($codeChanged.Count)) but the changelog was not; every user-visible change needs a line under the next version"
 }
 
+# --- kit: without Krowi_ClaudeKit the rules that need its Lua did not run ------------------------------
+if ($kitMissing) {
+    Add-Finding 'kit' 'Warning' '.claude/tools/KitPath.ps1' 1 "$kitMissing Not run: lua-syntax, globals, removed-api, deprecated-api, luarc, data-load, unit-tests, category-snapshot, data-snapshot, zone-decisions."
+}
+
 # --- Report ------------------------------------------------------------------------------------
 # Check-Repo.ignore: one "<rule or *> <path glob> [<name>]" per line, # comments; for deliberate exceptions
 $ignore = @()
@@ -871,7 +876,7 @@ if (Test-Path $ignoreFile) {
         if ($t -match '^(\S+)\s+(\S+)(?:\s+(\S+))?$') { $ignore += @{ Rule = $Matches[1]; Path = $Matches[2]; Name = $Matches[3] } }
     }
 }
-$alwaysOn = @('section-order', 'dup-id', 'saved-variables', 'lua-syntax', 'globals', 'removed-api', 'deprecated-api', 'library-names', 'util-flags', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'data-snapshot', 'zone-decisions', 'mapverifier', 'changelog')
+$alwaysOn = @('section-order', 'dup-id', 'saved-variables', 'lua-syntax', 'globals', 'removed-api', 'deprecated-api', 'library-names', 'util-flags', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'data-snapshot', 'zone-decisions', 'mapverifier', 'changelog', 'kit')
 $report = $findings | Where-Object {
     $f = $_
     -not ($ignore | Where-Object { ($_.Rule -eq '*' -or $_.Rule -eq $f.Rule) -and $f.Path -like $_.Path -and (-not $_.Name -or $f.Message.Contains("'$($_.Name)'")) })
