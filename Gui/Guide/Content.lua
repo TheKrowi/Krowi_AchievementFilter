@@ -207,7 +207,8 @@ end
 -- The guide block under an expanded row's objectives (Achievements.Guide.ExpandedRow). It is a child of the objectives
 -- frame, so it follows the objectives when they move to another row or the popout and hides with them. Returns the
 -- height the row grows by. The selected row redisplays its objectives on every list update, so the block renders again
--- only when what it shows can have changed: another achievement or width, a guide option, combat, TomTom, or forced.
+-- only when what it shows can have changed: another achievement or width, a guide option, combat, TomTom, an NPC's name
+-- the client has learned since, or forced.
 function content.DisplayUnderObjectives(objectives, achievement, forced)
     local options = addon.Options.db.profile.Achievements.Guide
     local block = objectives.GuideBlock
@@ -226,7 +227,7 @@ function content.DisplayUnderObjectives(objectives, achievement, forced)
     block:SetPoint("TOPRIGHT", objectives, "BOTTOMRIGHT", 0, -stepGap)
     local width = objectives:GetWidth()
     local key = table.concat({achievement.Id, tostring(width), tostring(options.ActionStyle), tostring(options.WaypointProvider),
-        tostring(InCombatLockdown()), tostring(TomTom ~= nil)}, ":")
+        tostring(InCombatLockdown()), tostring(TomTom ~= nil), guide.GetNpcNames(achievement)}, ":")
     if forced or block.CacheKey ~= key then
         block.CachedHeight = content.Render(block, achievement, width)
         block.CacheKey = key
