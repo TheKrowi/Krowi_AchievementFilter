@@ -1,5 +1,5 @@
 # Intent: The kit is the one home of the addon tooling
-Author: Krowi (maintainer). Source: idea, asked on 2026-10-16 after a look at what Krowi_ClaudeKit does. Status: accepted
+Author: Krowi (maintainer). Source: idea, asked on 2026-10-16 after a look at what Krowi_ClaudeKit does. Status: done
 
 ## Problem
 The Claude Code tooling for Krowi's addons exists twice, once in this repo's `.claude/` and once in the private Krowi_ClaudeKit:

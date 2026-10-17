@@ -1,5 +1,5 @@
 # Plan: The kit is the one home of the addon tooling
-Intent: [intent.md](intent.md), spec: [spec.md](spec.md). Status: accepted
+Intent: [intent.md](intent.md), spec: [spec.md](spec.md). Status: done
 
 ## Context
 - Krowi_AchievementFilter (AF) and Krowi_ClaudeKit each carry a copy of the same Claude Code tooling, and the shared files have drifted since the split on 2026-10-14.
@@ -219,6 +219,17 @@ Facts the plan rests on (read 2026-10-16):
   - the Bash forms of the `lua51` allow rules were dropped rather than rewritten.
 - **The kit's `Find-DeprecatedApi.ps1`** now reads every clone in full through the shared reader (about 6 s for six clones), because a file can count as deprecated by its text.
 - **Tests:** `Tests/Tests.lua` changed one comment (the release gate's path). The `changelog` rule therefore warns on this branch; there is no player-visible change, so there is no changelog line.
+- **Lint without the kit:**
+  - The plan made `Check-Repo` exit 1 without the kit. The code review showed that in a contributor's clone the Stop hook would then send every turn back with an error nobody can fix.
+  - The lint now runs the rules that need no Lua, and one `kit` Warning names the ones that did not. On Krowi's machine a missing kit also breaks the plugin itself, so it cannot go unnoticed.
+  - The review's other fixes:
+    - Bash allow rules for `data-verifier`;
+    - the playbook's own checklist steps, ported from the deleted `process-issue`;
+    - contributor wording in the playbook and the PR template;
+    - the roadmap note;
+    - `Read-GameTests` on the kit's client map;
+    - `.gitattributes` removed.
+  - Two kit changes land with the docs flip after the merge: the preflight fails when a repo's `CLAUDE.md` names `release-gate.ps1` and the file is missing, and the guard's blocked-query message points at where a repo lists its lookup scripts.
 - **Kit `main` moved before the branch:** another session's docs commit `063c571`. The branch starts from it, and `main` had not moved again at the gate.
 
 **Results** against the baseline taken before any change:

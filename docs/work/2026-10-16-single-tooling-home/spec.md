@@ -1,5 +1,5 @@
 # Spec: The kit is the one home of the addon tooling
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. Every reusable hook, tool, skill and agent exists once, in Krowi_ClaudeKit, and this repo keeps no copy of one.
