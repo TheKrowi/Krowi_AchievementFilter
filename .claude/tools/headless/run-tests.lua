@@ -953,9 +953,11 @@ suites.guide = function(c)
 
         -- --- Creature names (docs/work/2026-10-14-guide-npc-names) -------------------------------------------------------
         -- C_TooltipInfo on a unit link answers from the client's creature cache, as Krowi's enUS client did on 2026-10-14:
-        -- 97485 is cached, any other id is not (no lines). One id answers with a name canaccessvalue rejects (a string, as
-        -- a secret name is, so only that guard stops it), another with tooltip data canaccesstable rejects and that errors
-        -- when indexed, as a secret table does. The ids the client is asked for can be logged.
+        -- 97485 is cached, and so is 424246 for npc-name-kept; any other id is not (no lines) until a scenario teaches it
+        -- (TeachNpcName below, 424245 for row-npc-name-arrives). One id answers with a name canaccessvalue rejects (a
+        -- string, as a secret name is, so only that guard stops it), another with tooltip data canaccesstable rejects and
+        -- that errors when indexed, as a secret table does. The ids the client is asked for can be logged. Taught and
+        -- hidden names are not undone by Teardown, so each scenario that changes the cache uses an id of its own.
         local secretName, secretNpcId = "<secret name>", 424242
         local secretData = setmetatable({}, { __index = function() error("attempt to index a secret table", 2) end })
         local secretTableNpcId = 424243

@@ -23,6 +23,11 @@ function guide.GetSteps(achievement, faction)
     return steps
 end
 
+-- Nil for a neutral Pandaren: steps with a faction stay hidden
+local function GetPlayerFaction()
+    return KrowiAF.Enum.Faction[(UnitFactionGroup("player"))]
+end
+
 -- The research state of a garrison talent (C_Garrison.GetTalentInfo): "researched", "researching", "locked", "cost" or
 -- "not-yet"; nil for another class's talent, which the game reports as "tier unavailable" rather than "wrong class".
 -- A completed criterion wins over the talent's own flag: the player may have swapped to the other talent of the tier.
@@ -250,11 +255,11 @@ local function GetNpcName(step)
     return name or step.Name
 end
 
--- The names the achievement's NPC steps show, joined: part of the expanded row's cache key, so a name the client
+-- The names the NPC steps the player sees show, joined: part of the expanded row's cache key, so a name the client
 -- learns after the row was drawn makes it render again
 function guide.GetNpcNames(achievement)
     local names = {}
-    for _, step in ipairs(achievement.Guide or {}) do
+    for _, step in ipairs(guide.GetSteps(achievement, GetPlayerFaction())) do
         if step.Type == "Npc" then
             tinsert(names, GetNpcName(step))
         end
@@ -288,8 +293,7 @@ end
 function guide.GetLines(achievement)
     local lines = {}
     local _, _, classId = UnitClass("player")
-    local faction = KrowiAF.Enum.Faction[(UnitFactionGroup("player"))] -- nil for a neutral Pandaren: steps with a faction stay hidden
-    for _, step in ipairs(guide.GetSteps(achievement, faction)) do
+    for _, step in ipairs(guide.GetSteps(achievement, GetPlayerFaction())) do
         if step.Type == "Travel" then
             local spellName = GetSpellName(step.SpellId) or tostring(step.SpellId)
             tinsert(lines, {Kind = "Travel", Text = addon.L["Guide Travel"]:K_ReplaceVars{spell = spellName}})
