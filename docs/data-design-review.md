@@ -232,7 +232,7 @@ Noted at the maintainer's request, not analysed. `Gui/FilesModern.xml` is bound 
 
 | Number | Method |
 |---|---|
-| 8637 / 2752 achievements, 0 problems | `.claude/tools/lua51/lua.exe .claude/tools/headless/load-data.lua . Both` |
+| 8637 / 2752 achievements, 0 problems | `Krowi_ClaudeKit/tools/lua51/lua.exe .claude/tools/headless/load-data.lua . Both` |
 | 2313 Shared / 5887 Retail / 230 Classic entries; 63 dual, 2 identical | chain extraction over every `AchievementData.lua`, compared per id |
 | 320 anchors at unregistered versions; 306 Time Limited; 49 Past / 312 Future | `Version` anchor scan against each client's registered `BuildVersionData` ids |
 | 19 dropped category subtrees | scan for `^\s*true,\s*$` followed by a name line in `CategoryData*.lua` |

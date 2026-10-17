@@ -1,10 +1,11 @@
 # List the maps a game build has that raw/MapVerifier.csv does not, plus the rows the CSV has without a verdict:
 # the to-do list of a Map Verifier session before or after a patch. Read-only.
-# The build comes from .claude\tools\Get-WowBuilds.ps1: the newest live Retail build, or with
+# The build comes from the kit's tools\Get-WowBuilds.ps1: the newest live Retail build, or with
 # $env:KAF_RETAIL_PRODUCT = "wowxptr" the newest PTR build.
 # Pre-requisite: wow.tools.local must already be running.
 # Output: NEW|id|name|type|parent id parent name   and   UNREVIEWED|id|name|type|parent (no verdict and no link)
-. "$PSScriptRoot\..\..\tools\Get-WowBuilds.ps1"
+. "$PSScriptRoot\..\..\tools\KitPath.ps1"
+. "$KitTools\Get-WowBuilds.ps1"
 . "$PSScriptRoot\_mapverifier_io.ps1"
 $baseUrl = "http://localhost:5000"
 $build = (Get-WowBuilds -BaseUrl $baseUrl).Retail

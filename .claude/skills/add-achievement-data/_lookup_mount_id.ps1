@@ -1,12 +1,13 @@
 # Pass the mount names as -Names "Ancestral Phoenix","Galakras", or set the $Names placeholder below, run, and reset it to @().
-# -Client Classic queries the Classic build; the build itself is resolved from the server (.claude\tools\Get-WowBuilds.ps1).
+# -Client Classic queries the Classic build; the build itself is resolved from the server (the kit's tools\Get-WowBuilds.ps1).
 # Looks up mount table ID by exact Name_lang match -- this is the id passed to :Mount(mountId).
 # Pre-requisite: wow.tools.local must already be running.
 param(
     [string[]] $Names = @(),
     [ValidateSet('Retail', 'Classic')] [string] $Client = 'Retail'
 )
-. "$PSScriptRoot\..\..\tools\Get-WowBuilds.ps1"
+. "$PSScriptRoot\..\..\tools\KitPath.ps1"
+. "$KitTools\Get-WowBuilds.ps1"
 $baseUrl = "http://localhost:5000"
 $build = (Get-WowBuilds -BaseUrl $baseUrl)[$Client]
 if ($Names.Count -eq 0) { Write-Host "Pass -Names or set the `$Names placeholder first."; return }

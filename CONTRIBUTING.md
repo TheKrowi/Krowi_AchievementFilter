@@ -71,7 +71,7 @@ Breaking changes (rare): append `!` after the type/scope, e.g. `feat!: remove le
 
 ## How to Test
 
-There is no CI — the WoW client is the runtime. Before testing in game, run the offline checks and the scenario suites ([`.claude/tools/README.md`](.claude/tools/README.md), [`Tests/README.md`](Tests/README.md)).
+There is no CI — the WoW client is the runtime. The offline checks and the headless scenario suites ([`.claude/tools/README.md`](.claude/tools/README.md), [`Tests/README.md`](Tests/README.md)) run on the maintainer's machine: they use tooling in a private repo (Krowi_ClaudeKit), so a fork cannot run them, and the maintainer runs them on every PR before merging. Test your change in game, and run `/kaftest <suite>` there (debug mode on) when you touch code a suite covers.
 
 - Enable Lua error reporting: run `/luaerror on` in WoW chat, or use an addon like [BugSack](https://www.curseforge.com/wow/addons/bugsack) + [BugGrabber](https://www.curseforge.com/wow/addons/bug-grabber).
 - Test the specific feature or data that was changed by navigating to the relevant tab/category.
@@ -86,7 +86,7 @@ Every issue, feature and fix follows the work-item lifecycle in [`docs/sdlc-play
 
 1. Fork the repository.
 2. Create a branch from `dev`: `git checkout -b feature/my-change dev` (`fix/<issue>-<slug>` or `feature/<issue>-<slug>` for a work item).
-3. Copy `docs/work/_template/` to `docs/work/<issue>-<slug>/` and write the intent, then the spec, then the plan.
+3. Create `docs/work/<issue>-<slug>/` and write the intent, then the spec, then the plan, shaped like the existing work folders (`intent.md`, `spec.md` and `plan.md`, each with its title, a `Status:` line and the same headings).
 4. Make your changes following the patterns in [`.github/copilot-instructions.md`](.github/copilot-instructions.md); for a bug, add the scenario that reproduces it before fixing it.
 5. Add new Lua files to the appropriate `Files.xml` manifest.
 6. Update `_Packaging/Changelog.md` with a brief description of your change.

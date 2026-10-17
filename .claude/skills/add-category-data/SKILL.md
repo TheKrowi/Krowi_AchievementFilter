@@ -61,7 +61,7 @@ or you have exhausted 4 attempts — on each attempt, state what you changed and
    Keystone Hero+Victor pairing, zone-vs-expansion-scoped world events) and ordering (season
    MythicPlus lists, raid root/Glory/Mythic order, Prey tier blocks, zone patch-chronology).
    Report which items you checked and fix any "no" before presenting your result.
-3. Regenerate the category snapshot with `& ".claude\tools\lua51\lua.exe" ".claude\tools\headless\snapshot-categories.lua" "$PWD" Both -write`
+3. Regenerate the category snapshot with `& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\lua.exe" ".claude\tools\headless\snapshot-categories.lua" "$PWD" Both -write`
    and read the `git diff` of `.claude/tools/headless/snapshots/CategoryTree.*.txt`: it must show the new
    placements and nothing else. The diff is committed with the category change (lint rule `category-snapshot`).
 

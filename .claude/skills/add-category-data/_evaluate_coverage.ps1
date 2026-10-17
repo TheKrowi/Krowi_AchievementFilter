@@ -1,7 +1,7 @@
 # Objective coverage gate for add-category-data.
 # Pass -PatchKey 12_01_00 -AchievementFile DataAddons\Retail\12_Midnight\AchievementData.lua (path relative to the
 # repo root), or edit the defaults below; -Client Classic queries the Classic build. The build is resolved from
-# the server (.claude\tools\Get-WowBuilds.ps1), never typed.
+# the server (the kit's tools\Get-WowBuilds.ps1), never typed.
 #
 # What it checks (fast, deterministic, one batched DB call):
 #   1. Every achievement ID declared in the target AchievementData.lua patch block
@@ -38,7 +38,8 @@ param(
 $root = (Resolve-Path "$PSScriptRoot\..\..\..").Path
 if (-not [IO.Path]::IsPathRooted($AchievementFile)) { $AchievementFile = Join-Path $root $AchievementFile }
 $dataAddonsRoot = Join-Path $root "DataAddons"
-. "$root\.claude\tools\Get-WowBuilds.ps1"
+. "$root\.claude\tools\KitPath.ps1"
+. "$KitTools\Get-WowBuilds.ps1"
 $build = (Get-WowBuilds)[$Client]
 
 # Confirmed out-of-scope achievement_category IDs (grows over time - add new ones here

@@ -6,13 +6,13 @@ This file adapts the playbook to a repository with one maintainer, two game clie
 
 ## Roles
 
-- **Maintainer** (TheKrowi): holds every human gate. Acts as product owner (accepts the intent, approves the spec), engineer (approves the plan, runs the in-game checks), reviewer (approves the PR and merges it, or tells the agent to) and release manager (the `release` skill runs only on their go-ahead).
+- **Maintainer** (TheKrowi): holds every human gate. Acts as product owner (accepts the intent, approves the spec), engineer (approves the plan, runs the in-game checks), reviewer (approves the PR and merges it, or tells the agent to) and release manager (`krowi:release` runs only on their go-ahead).
 - **Agent** (Claude Code, Copilot): drafts every artifact and does the work up to each gate, never past it. It stops at a gate, puts the decision to the maintainer with a recommendation, and records the answer in the artifact.
 - **Reporter**: whoever filed the issue. The issue is their record; the agent comments on it only through the closing routine or when the maintainer asks.
 
 ## The work folder
 
-`docs/work/<id>-<slug>/`, where `<id>` is the GitHub issue number, or the date (`2026-09-30`) for work with no issue. Copy the templates from `docs/work/_template/`.
+`docs/work/<id>-<slug>/`, where `<id>` is the GitHub issue number, or the date (`2026-09-30`) for work with no issue. Copy the templates from the kit's `skills/process-issue/templates/`; without the kit (a contributor), copy the shape of an existing work folder.
 
 | File | Stage | Written from | Ends when |
 |------|-------|--------------|-----------|
@@ -26,7 +26,7 @@ Scale the documents to the change: a one-line fix can have a five-line spec. A s
 
 - Routine data work driven by a data skill (`add-achievement-data`, `add-category-data`, `add-zone-data`, `migrate-to-shared`, `verify-achievement-data`, `sync-mapverifier`) runs under that skill, which acts as its standing spec and plan. It needs a work folder only when it comes from an issue or needs a decision.
 - Documentation-only changes need no work folder.
-- Releases go through the `release` skill, not a work folder.
+- Releases go through `krowi:release`, not a work folder.
 
 ## The stages
 
@@ -55,11 +55,11 @@ Gate: the maintainer approves the design and picks between the options. The agen
 
 The agent writes `plan.md` in plan mode (read the code, change nothing). It covers the files that change, the order of work, the risks and the proof, and is complete enough that someone who never saw the conversation could carry it out. Then it builds in the order the plan gives:
 
-1. **Test first, for a bug fix.** Add a scenario to the matching suite in `Tests/` (or a new suite shared by `/kaftest` and `.claude/tools/headless/run-tests.lua`). Set `Recorded` to the current, buggy behaviour and `Target` to the desired behaviour, so the headless run reproduces the bug as one scenario that is open against its target. For GUI behaviour, the in-game run of the suite must be green before the fix starts (maintainer rule): deploy, `/kaftest <suite>`, `Read-GameTests.ps1`. Commit the scenario. A data bug is reproduced by the headless data pipeline or a data-verifier finding instead.
+1. **Test first, for a bug fix.** Add a scenario to the matching suite in `Tests/` and to its model in `.claude/tools/headless/run-tests.lua`. A new suite is a `Tests/<Suite>.lua` registered in `Tests/Files.xml`, a `suites.<name>` in the runner, its name in the instruction file's suite list and a section in `Tests/README.md`. Set `Recorded` to the current, buggy behaviour and `Target` to the desired behaviour, then run the suite headless: the new scenario passes and is open against its target. For GUI behaviour, the in-game run of the suite must be green before the fix starts (maintainer rule): `Deploy.ps1 -WhatIf`, deploy, ask the maintainer for `/kaftest <suite>` and a second `/reload` (the game writes the log only on reload), then `Read-GameTests.ps1`: no FAIL and no unexplained difference from headless. Commit the scenario (`test: reproduce #<n> in the <suite> suite`). A data bug is reproduced by the headless data pipeline or a data-verifier finding instead.
 2. **Fix only the code.** Never weaken a scenario, a lint rule or an ignore entry to make a check pass. After the fix, `Recorded` is set to the new behaviour (equal to `Target`), so the diff of the scenario file is the behaviour change under review.
 3. Update `plan.md` when the implementation departs from it.
 
-Gate: the maintainer approves `plan.md` for anything that is not routine. The in-game before-run is the second gate for GUI work.
+Gate: the maintainer approves `plan.md` for anything that is not routine: shared GUI code, hooks on Blizzard frames or functions, saved variables, or the data API. The in-game before-run is the second gate for GUI work.
 
 ### 4. Test: the feedback loop
 
@@ -68,15 +68,15 @@ The agent checks its own work before the maintainer sees it:
 - `Check-Repo.ps1`, which the Stop hook runs on every turn;
 - the headless data pipeline and the scenario suites;
 - the `data-verifier` subagent for data changes;
-- the `taint-reviewer` subagent for any change to GUI code, hooks on Blizzard frames, event handlers or lockdown-protected APIs.
+- the `krowi:taint-reviewer` subagent for any change to GUI code, hooks on Blizzard frames, event handlers or lockdown-protected APIs.
 
-The in-game after-run closes the loop on both clients: `Deploy.ps1 -WhatIf`, deploy, `/reload`, `/kaftest`, `Read-GameTests.ps1`, `Read-GameErrors.ps1`. The scenario suites are this repository's regression evals. Every fixed bug leaves a scenario behind, so the defect cannot come back unnoticed, and the `unit-tests` lint rule runs them on every turn.
+The in-game after-run closes the loop on each client the change touches: `Deploy.ps1 -WhatIf`, deploy, `/reload`, `/kaftest <suite>`, a second `/reload`, then `Read-GameTests.ps1` and `Read-GameErrors.ps1`. The scenario suites are this repository's regression evals. Every fixed bug leaves a scenario behind, so the defect cannot come back unnoticed, and the `unit-tests` lint rule runs them on every turn.
 
 ### 5. Deploy: review, then the human gate
 
-The agent pushes the work branch and opens a PR against `dev` with the PR template filled in and the work folder linked. Before asking for review, it runs the review passes in `REVIEW.md` (`/code-review`, and the `taint-reviewer` where it applies), fixes what they find, and lists what it deferred. It sets the work files to `Status: done` in the PR's last commit.
+The agent commits (`fix(<scope>): <what> (#<n>)`), pushes the work branch and opens a PR against `dev` with the PR template filled in; its `Why` links the issue and the work folder. Before asking for review, it runs the review passes in `REVIEW.md` (`/code-review`, and `krowi:taint-reviewer` where it applies), fixes what they find, and lists what it deferred. It sets the work files to `Status: done` in the PR's last commit.
 
-Gate: the maintainer reviews and approves the merge. The gate is their decision, not who presses the button: the agent never merges on its own initiative, but when the maintainer tells it to merge, it merges with a merge commit (`gh pr merge <n> --merge`, like the earlier PRs into `dev`), so each stage's commit stays in the history. It never pushes work-item commits straight to `dev`. A release is a separate, later gate: the `release` skill, on the maintainer's go-ahead.
+Gate: the maintainer reviews and approves the merge. The gate is their decision, not who presses the button: the agent never merges on its own initiative, but when the maintainer tells it to merge, it merges with a merge commit (`gh pr merge <n> --merge`, like the earlier PRs into `dev`), so each stage's commit stays in the history. It never pushes work-item commits straight to `dev`. A release is a separate, later gate: `krowi:release`, on the maintainer's go-ahead.
 
 ### 6. Maintain: close the loop
 
@@ -96,17 +96,17 @@ After each release, `Read-GameErrors.ps1` on both clients and new issues are the
 
 | Playbook play | Here |
 |---------------|------|
-| Capture as `intent.md` | `docs/work/<id>-<slug>/intent.md`, template in `docs/work/_template/` |
+| Capture as `intent.md` | `docs/work/<id>-<slug>/intent.md`, templates in the kit's `skills/process-issue/templates/` |
 | Requirements and design | `spec.md` in the same folder |
 | Plan mode | `plan.md`; Claude Code plan mode or an equivalent read-only pass |
 | The CLAUDE.md | `.github/copilot-instructions.md` (canonical) imported by `CLAUDE.md`; a correction needed twice is written there |
-| Skills as institutional knowledge | `.claude/skills/*/SKILL.md`; `process-issue` drives this lifecycle |
-| Parallel sessions and subagents | `.claude/agents/` (`data-verifier`, `taint-reviewer`); one worktree per session |
+| Skills as institutional knowledge | `.claude/skills/*/SKILL.md` and the kit's skills; `krowi:process-issue` drives this lifecycle |
+| Parallel sessions and subagents | `.claude/agents/` (`data-verifier`) and the kit's `krowi:taint-reviewer`; one worktree per session |
 | Give Claude a feedback loop | `Check-Repo.ps1`, the post-edit and Stop hooks, the headless pipeline and suites, `Deploy.ps1` with the `Read-Game*` readers |
 | Continuous evals in CI | the `Tests/` scenario suites through the `unit-tests` rule on every turn; CI itself is parked (step 4 in `docs/harness-roadmap.md`) |
-| AI in the PR review loop | `REVIEW.md`, `/code-review`, `taint-reviewer`; the maintainer approves |
-| Hooks as approval gates | `.claude/hooks/`: the PreToolUse guard `Guard-ToolUse.ps1` denies the edits and commands that have broken the repo before, the post-edit hook checks syntax and the Stop hook lints |
-| CI/CD integration and deployment | the `release` skill driving the Krowi Addon Manager; production is the maintainer's go-ahead |
+| AI in the PR review loop | `REVIEW.md`, `/code-review`, `krowi:taint-reviewer`; the maintainer approves |
+| Hooks as approval gates | the kit's PreToolUse guard denies the edits and commands that have broken the repo before and its post-edit hook checks syntax; this repo's Stop hook (`.claude/hooks/`) lints |
+| CI/CD integration and deployment | `krowi:release` driving the Krowi Addon Manager; production is the maintainer's go-ahead |
 | Closing the loop on metrics | `Read-GameErrors.ps1` after a release, the issue tracker; not automated |
 
 The playbook's enterprise controls (managed settings, OpenTelemetry, compliance API) do not apply to a single-maintainer repository and are left out.

@@ -1,3 +1,0 @@
-# Vendored tool binaries are never text
-*.exe binary
-*.dll binary

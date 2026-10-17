@@ -2,7 +2,7 @@
 
 ## Query a Single Achievement by ID
 
-The designated scripts wrap these queries; this file documents their shape and the column maps. `$build` always comes from the server through `.claude\tools\Get-WowBuilds.ps1` (dot-source it, then `(Get-WowBuilds).Retail` or `.Classic`), never a typed string that goes stale with the next patch.
+The designated scripts wrap these queries; this file documents their shape and the column maps. `$build` always comes from the server through the kit's `tools\Get-WowBuilds.ps1` (dot-source `.claude\tools\KitPath.ps1` and `$KitTools\Get-WowBuilds.ps1`, then `(Get-WowBuilds).Retail` or `.Classic`), never a typed string that goes stale with the next patch.
 
 ```powershell
 $id    = 12345

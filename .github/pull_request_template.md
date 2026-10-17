@@ -23,6 +23,6 @@
 - [ ] New SavedVariables are declared in `Krowi_AchievementFilter.toc`
 - [ ] New localization strings are added to `Localization/enUS.lua` directly **below** the `-- [[ Exported at ... ]] --` line under the `AUTOGENTOKEN` marker
 - [ ] `_Packaging/Changelog.md` is updated
-- [ ] `Check-Repo.ps1` is clean and the `REVIEW.md` passes are done
+- [ ] `Check-Repo.ps1` is clean and the `REVIEW.md` passes are done (the full lint needs the maintainer's private kit; without it, say so and the maintainer runs it)
 - [ ] Tested in Retail (if applicable)
 - [ ] Tested in Classic (if applicable)
