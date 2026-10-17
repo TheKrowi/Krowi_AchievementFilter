@@ -4,8 +4,8 @@ local guide = addon.Gui.Guide
 
 -- Renders an achievement's guide (achievement.Guide, built by Api/GuideDataBuilder.lua) for every surface, so a step
 -- reads the same in the tooltip and the right-click menu. Names come from the game in the player's language, an NPC's
--- too (the data's English name stands in while the client has none); only the tip comes from the data. Tests/Guide.lua
--- holds this file to its contract.
+-- too (the data's English name stands in while the client has none, and a name the client gave is kept for the
+-- session); only the tip comes from the data. Tests/Guide.lua holds this file to its contract.
 
 guide.DetailSeparator = " \194\183 " -- a middle dot between the parts of a detail line
 
@@ -21,6 +21,11 @@ function guide.GetSteps(achievement, faction)
         end
     end
     return steps
+end
+
+-- Nil for a neutral Pandaren: steps with a faction stay hidden
+local function GetPlayerFaction()
+    return KrowiAF.Enum.Faction[(UnitFactionGroup("player"))]
 end
 
 -- The research state of a garrison talent (C_Garrison.GetTalentInfo): "researched", "researching", "locked", "cost" or
@@ -237,9 +242,29 @@ local function GetCreatureName(npcId)
     return name
 end
 
+-- The names the client has given, by NPC id, kept for the session: a later read can come back empty or as a secret
+-- value (an encounter), and the expanded row's cache key reads them on every list update (Content.lua)
+local npcNames = {}
+
 -- The data's name is the English one
 local function GetNpcName(step)
-    return GetCreatureName(step.NpcId) or step.Name
+    local name = npcNames[step.NpcId] or GetCreatureName(step.NpcId)
+    if name then
+        npcNames[step.NpcId] = name
+    end
+    return name or step.Name
+end
+
+-- The names the NPC steps the player sees show, joined: part of the expanded row's cache key, so a name the client
+-- learns after the row was drawn makes it render again
+function guide.GetNpcNames(achievement)
+    local names = {}
+    for _, step in ipairs(guide.GetSteps(achievement, GetPlayerFaction())) do
+        if step.Type == "Npc" then
+            tinsert(names, GetNpcName(step))
+        end
+    end
+    return table.concat(names, ",")
 end
 
 -- Asks the client once for the name of every NPC the achievements' guides send the player to, so the name is in its
@@ -251,7 +276,7 @@ function guide.RequestNpcNames(achievements)
             for _, step in ipairs(achievement.Guide) do
                 if step.Type == "Npc" and not asked[step.NpcId] then
                     asked[step.NpcId] = true
-                    GetCreatureName(step.NpcId)
+                    npcNames[step.NpcId] = GetCreatureName(step.NpcId) or npcNames[step.NpcId] -- always asks the client
                     tinsert(ids, step.NpcId)
                 end
             end
@@ -268,8 +293,7 @@ end
 function guide.GetLines(achievement)
     local lines = {}
     local _, _, classId = UnitClass("player")
-    local faction = KrowiAF.Enum.Faction[(UnitFactionGroup("player"))] -- nil for a neutral Pandaren: steps with a faction stay hidden
-    for _, step in ipairs(guide.GetSteps(achievement, faction)) do
+    for _, step in ipairs(guide.GetSteps(achievement, GetPlayerFaction())) do
         if step.Type == "Travel" then
             local spellName = GetSpellName(step.SpellId) or tostring(step.SpellId)
             tinsert(lines, {Kind = "Travel", Text = addon.L["Guide Travel"]:K_ReplaceVars{spell = spellName}})

@@ -6,7 +6,7 @@ local guide = addon.Tests.Guide
 -- code, Target the desired one; the same scenarios run in game (/kaftest guide) and headlessly
 -- (.claude/tools/headless/run-tests.lua), where a model of the garrison, map, spell and POI APIs stands in for the game.
 -- Recorded was "none" everywhere before the feature (verified in game on 2026-10-11). Milestone A met every target but the
--- menu's Open guide entry, which came with the side panel in milestone B. Ten kinds:
+-- menu's Open guide entry, which came with the side panel in milestone B. Eleven kinds:
 --   Surface: the tooltip or the right-click menu of a real achievement (60962 has a guide, 11223 none), with the guide
 --     options set for the run and restored after. The tooltip gives "shown" when its Guide header is followed by the
 --     first rendered line, "header-only" when it is not, "none" without a header. The menu runs only the guide section,
@@ -26,7 +26,10 @@ local guide = addon.Tests.Guide
 --     the waypoint title carry the player's client's name for the NPC, "fallback" when they carry the data's
 --     (docs/work/2026-10-14-guide-npc-names).
 --   NpcRequest: the NPC ids the login warm-up asks the client for, over the loaded data.
--- Surface, Talent, Availability, Panel, Chain, Row, NpcName and NpcRequest are Retail only: Classic has no guide data,
+--   RowName: the NPC name in the guide block under a stand-in expanded row, displayed once while the client has no
+--     name, then again, not forced, after it learned one: "game" or "fallback", as NpcName
+--     (docs/work/2026-10-14-guide-row-npc-name).
+-- Surface, Talent, Availability, Panel, Chain, Row, NpcName, NpcRequest and RowName are Retail only: Classic has no guide data,
 -- no garrison and none of these maps.
 --
 -- The code these scenarios hold the feature to (plan, Files that change):
@@ -175,6 +178,14 @@ guide.Scenarios = {
         Recorded = "fallback", Target = "fallback"},
     {Name = "npc-name-secret-table", Kind = "NpcName", Secret = "table", -- the taint review of the branch
         Recorded = "fallback", Target = "fallback"},
+    -- A name the client gave once is kept for the session, so a secret value later on (an encounter) does not switch
+    -- the step back to the data's English name (docs/work/2026-10-14-guide-row-npc-name). Headless only, like the above
+    {Name = "npc-name-kept", Kind = "NpcName", NpcId = 424246, Kept = true,
+        Recorded = "game", Target = "game"},
+    -- The block under an expanded row picks the NPC's name up at the next list update once the client has it, instead
+    -- of keeping the English name it was first drawn with. Headless only: the game cannot fill its cache on demand
+    {Name = "row-npc-name-arrives", Kind = "RowName", NpcId = 424245, Options = {ExpandedRow = true, WaypointProvider = provider.MapPin},
+        Recorded = "game", Target = "game"},
     -- At login the addon asks the client once for every guide NPC, so the name is cached before a guide shows
     {Name = "npc-names-requested", Kind = "NpcRequest",
         Recorded = "97485", Target = "97485"},
@@ -455,7 +466,22 @@ local function RunNpcName(env, scenario)
         end
         npcId = env.SecretNpcId(scenario.Secret)
     end
+    if scenario.Kept and not env.HideNpcName then
+        return nil, "the game cannot make a name secret on demand"
+    end
+    -- Under encounter, PvP, map and similar restrictions the client hands addons its NPC names as secret values (seen
+    -- in game in a raid on 2026-10-14 and in a scenario on 2026-10-17), and the guide shows a name kept from earlier in
+    -- the session or else the data's: whether the client's name is read cannot be checked there
+    if not scenario.Secret and not scenario.Kept and env.NpcNameIsSecret and env.NpcNameIsSecret(npcId) then
+        return nil, "the client's NPC names are secret values here (encounter, PvP, map or similar restrictions); run it elsewhere"
+    end
     local achievement = {Guide = {{Type = "Npc", NpcId = npcId, Name = fallbackName, MapId = zubashi.MapId, X = zubashi.X, Y = zubashi.Y}}}
+    if scenario.Kept then
+        if not pcall(module.GetLines, achievement) then -- the client gives the name once
+            return "error"
+        end
+        env.HideNpcName(npcId) -- and a secret value from then on
+    end
     local ok, lines = pcall(module.GetLines, achievement)
     if not ok then
         return "error" -- reading the name broke the whole guide
@@ -483,6 +509,45 @@ local function RunNpcRequest(env)
     return #ids > 0 and table.concat(ids, ",") or "empty"
 end
 
+-- A one-step NPC guide under the stand-in objectives: displayed while the client has no name for the NPC, then the
+-- client learns one and the block is displayed again the way the next list update does, without forcing a render
+local function RunRowName(env, scenario, observations)
+    local module = GetModule()
+    local content = module and module.Content
+    if not content or not content.DisplayUnderObjectives then
+        return "none"
+    end
+    if not env.TeachNpcName then
+        return nil, "the game cannot add a name to its creature cache on demand"
+    end
+    env.SetOptions(scenario.Options, observations)
+    local ok, got = pcall(function()
+        local objectives = env.Objectives()
+        local achievement = {Id = 1, Guide = {{Type = "Npc", NpcId = scenario.NpcId, Name = fallbackName, MapId = zubashi.MapId, X = zubashi.X, Y = zubashi.Y}}}
+        local function Headline()
+            local headlines = objectives.GuideBlock and objectives.GuideBlock.GuideHeadlines
+            local text = headlines and headlines[1] and headlines[1]:GetText() or ""
+            if text:find("Learned Name", 1, true) then
+                return "game"
+            end
+            return text:find(fallbackName, 1, true) and "fallback" or "mixed"
+        end
+        content.DisplayUnderObjectives(objectives, achievement)
+        local first = Headline()
+        if first ~= "fallback" then
+            return "first:" .. first -- the client knew the name already, so the second display proves nothing
+        end
+        env.TeachNpcName(scenario.NpcId, "Learned Name")
+        content.DisplayUnderObjectives(objectives, achievement)
+        return Headline()
+    end)
+    env.Teardown()
+    if not ok then
+        error(got, 0)
+    end
+    return got
+end
+
 local runners = {
     Surface = RunSurface,
     Talent = RunTalent,
@@ -493,11 +558,12 @@ local runners = {
     Chain = RunChain,
     Row = RunRow,
     NpcName = RunNpcName,
-    NpcRequest = RunNpcRequest
+    NpcRequest = RunNpcRequest,
+    RowName = RunRowName
 }
 
 local retailOnly = {Surface = true, Talent = true, Availability = true, Panel = true, Chain = true, Row = true, NpcName = true,
-    NpcRequest = true}
+    NpcRequest = true, RowName = true}
 
 local function RunScenario(env, scenario, observations)
     local got, reason = runners[scenario.Kind](env, scenario, observations)
@@ -571,6 +637,32 @@ end
 
 function gameEnv.Achievements()
     return addon.Data.Achievements
+end
+
+-- Whether the client hands addons the NPC's name as a secret value where the player is now. Every step is checked
+-- before it is indexed or compared, as Gui/Guide/Guide.lua does; no data at all is not secret, just unknown
+function gameEnv.NpcNameIsSecret(npcId)
+    if not C_TooltipInfo or not C_TooltipInfo.GetHyperlink or not canaccessvalue then
+        return false
+    end
+    local data = C_TooltipInfo.GetHyperlink(("unit:Creature-0-0-0-0-%d-0000000000"):format(npcId))
+    for _, key in ipairs({"lines", 1}) do
+        if type(data) ~= "table" then
+            return false
+        end
+        if canaccesstable and not canaccesstable(data) then
+            return true
+        end
+        data = data[key]
+    end
+    if type(data) ~= "table" then
+        return false
+    end
+    if canaccesstable and not canaccesstable(data) then
+        return true
+    end
+    local text = data.leftText
+    return type(text) == "string" and not canaccessvalue(text)
 end
 
 addon.Tests.Ready.guide = function()
