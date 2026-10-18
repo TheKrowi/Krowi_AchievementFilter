@@ -125,7 +125,7 @@ The kit's `Read-GameErrors.ps1` prints the Lua errors BugGrabber recorded for th
 
 ## Parallel sessions
 
-A parallel session works in its own worktree under `.claude/worktrees/<name>/`, made by the kit's `New-Worktree.ps1` and removed by its `Remove-Worktree.ps1` (the workspace rules in the kit's `WowAddons.md` say why and how). In this repo: each branch is merged through its own PR against `dev`; once one is merged, `git pull` in the main checkout, where `dev` is checked out, then `git rebase dev` in each remaining worktree before its PR. Regenerate a conflicting snapshot with `-write` instead of merging it by hand, and keep both sides of a `Changelog.md` conflict.
+A parallel session works in its own worktree under `.claude/worktrees/<name>/`, made by the kit's `New-Worktree.ps1` and removed by its `Remove-Worktree.ps1` (the workspace rules in the kit's `WowAddons.md` say why and how). In this repo: each branch is merged through its own PR against `main`; once one is merged, `git pull` in the main checkout, where `main` is checked out, then `git rebase main` in each remaining worktree before its PR. Regenerate a conflicting snapshot with `-write` instead of merging it by hand, and keep both sides of a `Changelog.md` conflict.
 
 ## Blizzard UI source and deprecated globals (`Update-DeprecatedApi.ps1`)
 

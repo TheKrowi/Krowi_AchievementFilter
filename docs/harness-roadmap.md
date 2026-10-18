@@ -65,12 +65,12 @@ The `bom` and `line-endings` lint rules read only `.lua`, `.xml` and `.toc` file
 
 **Design.** One read-only script that prints:
 
-- the branch, and the commits ahead of or behind `origin/dev`;
+- the branch, and the commits ahead of or behind `origin/main`;
 - uncommitted files, grouped as code, data, harness and docs;
 - open PRs and the newest open issues;
 - the last release tag and the changelog section not yet released;
 - work folders whose status is not done;
-- worktrees, and local branches already merged into `dev`;
+- worktrees, and local branches already merged into `main`;
 - how far each client's AddOns folder is behind the repo (`Deploy.ps1 -WhatIf`).
 
 `-Lint` adds the summary line of `Check-Repo.ps1 -ChangedOnly`.
@@ -120,7 +120,7 @@ The `bom` and `line-endings` lint rules read only `.lua`, `.xml` and `.toc` file
 ## Parked
 
 - **Step 3, a `temporary-toggle` lint rule** for `-- Temporarily` comments and commented-out `addon.X()` calls. Only two such lines are left in addon code, and one is deliberate (`addon.TooltipData.Load()` stays disabled), so the rule would have nothing to catch today.
-- **Step 4, CI** (GitHub Actions running `Check-Repo.ps1` on pull requests to `dev`). It would help review, not an agent's speed; the Stop hook already runs the lint every turn, and the instruction file says the repo has no CI. This is the maintainer's call.
+- **Step 4, CI** (GitHub Actions running `Check-Repo.ps1` on pull requests to `main`). It would help review, not an agent's speed; the Stop hook already runs the lint every turn, and the instruction file says the repo has no CI. This is the maintainer's call.
 
 ## Decided against
 

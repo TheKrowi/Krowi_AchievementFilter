@@ -19,7 +19,7 @@ The tooling every Krowi repo shares lives once, in Krowi_ClaudeKit (`E:\World of
   - without the kit, the lint runs its other rules and a `kit` Warning names the ones that need Lua and did not run;
   - `$env:KROWI_CLAUDEKIT` points them at a kit worktree for testing.
 - **Worktrees**:
-  - `.claude/settings.json` sets `worktree.baseRef` to `head`, so EnterWorktree with a name, `claude --worktree` and subagent `isolation: "worktree"` branch from the session's HEAD instead of `origin/main`, the months-old GitHub default branch.
+  - `.claude/settings.json` sets `worktree.baseRef` to `head`, so EnterWorktree with a name, `claude --worktree` and subagent `isolation: "worktree"` branch from the session's HEAD instead of `origin/main`, which lags every commit not yet pushed.
   - Those worktrees have no `Libs/` submodules, so the headless pipeline fails in them. For real work, run the kit's `New-Worktree.ps1` and switch with EnterWorktree and its `path`.
   - After the switch, the Stop hook still runs from the checkout the session started in (`$CLAUDE_PROJECT_DIR` stays put) and lints the checkout the session's `cwd` is in. The guard maps worktree paths onto the checkout's own.
 - **Extend the harness, do not add dependencies**: a check only this repo needs goes under `.claude/tools/`, anything another repo could use goes into the kit, and both use the kit's Lua 5.1.5. Never ask for winget, pip or npm installs.
@@ -39,7 +39,7 @@ The tooling every Krowi repo shares lives once, in Krowi_ClaudeKit (`E:\World of
 ## Releasing
 
 `krowi:release` is the only way to cut a version. This repo's facts for it:
-- the release branch is `dev`;
+- the release branch is `main`;
 - uploads are `--stability stable`;
 - the addon manager's release commit includes `.vscode/settings.json`, which is accepted here.
 

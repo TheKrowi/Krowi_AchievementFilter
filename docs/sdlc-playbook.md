@@ -32,7 +32,7 @@ Scale the documents to the change: a one-line fix can have a five-line spec. A s
 
 ### 1. Plan: capture the intent
 
-The agent restates the issue in the template, in plain language: the problem and its impact, the proposed outcome, the affected users and systems (which client, which tab or window, which plugins and saved variables), the constraints, and the open questions. It reads the issue's screenshots and error text first. Commit `intent.md` on a work branch off `dev`, named `fix/<id>-<slug>` or `feature/<id>-<slug>`.
+The agent restates the issue in the template, in plain language: the problem and its impact, the proposed outcome, the affected users and systems (which client, which tab or window, which plugins and saved variables), the constraints, and the open questions. It reads the issue's screenshots and error text first. Commit `intent.md` on a work branch off `main`, named `fix/<id>-<slug>` or `feature/<id>-<slug>`.
 
 Gate: the maintainer accepts the intent, or sends it back.
 
@@ -74,9 +74,9 @@ The in-game after-run closes the loop on each client the change touches: `Deploy
 
 ### 5. Deploy: review, then the human gate
 
-The agent commits (`fix(<scope>): <what> (#<n>)`), pushes the work branch and opens a PR against `dev` with the PR template filled in; its `Why` links the issue and the work folder. Before asking for review, it runs the review passes in `REVIEW.md` (`/code-review`, and `krowi:taint-reviewer` where it applies), fixes what they find, and lists what it deferred. It sets the work files to `Status: done` in the PR's last commit.
+The agent commits (`fix(<scope>): <what> (#<n>)`), pushes the work branch and opens a PR against `main` with the PR template filled in; its `Why` links the issue and the work folder. Before asking for review, it runs the review passes in `REVIEW.md` (`/code-review`, and `krowi:taint-reviewer` where it applies), fixes what they find, and lists what it deferred. It sets the work files to `Status: done` in the PR's last commit.
 
-Gate: the maintainer reviews and approves the merge. The gate is their decision, not who presses the button: the agent never merges on its own initiative, but when the maintainer tells it to merge, it merges with a merge commit (`gh pr merge <n> --merge`, like the earlier PRs into `dev`), so each stage's commit stays in the history. It never pushes work-item commits straight to `dev`. A release is a separate, later gate: `krowi:release`, on the maintainer's go-ahead.
+Gate: the maintainer reviews and approves the merge. The gate is their decision, not who presses the button: the agent never merges on its own initiative, but when the maintainer tells it to merge, it merges with a merge commit (`gh pr merge <n> --merge`), so each stage's commit stays in the history. It never pushes work-item commits straight to `main`. A release is a separate, later gate: `krowi:release`, on the maintainer's go-ahead.
 
 ### 6. Maintain: close the loop
 
