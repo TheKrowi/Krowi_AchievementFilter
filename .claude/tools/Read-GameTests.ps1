@@ -1,12 +1,12 @@
 <#
 .SYNOPSIS
     Shows the last in-game test run (/kaftest) and diffs it against the headless run, so a
-    change can be checked without watching the client: Deploy.ps1 -> /reload in game (with
+    change can be checked without watching the client: the kit's Deploy.ps1 -> /reload in game (with
     "/kaftest login <suite>" set once) -> Read-GameTests.ps1.
 
 .DESCRIPTION
     Finds the most recently written Krowi_AchievementFilter.lua under the client's
-    WTF\Account\*\SavedVariables and parses it with the vendored Lua 5.1 (the file is plain Lua).
+    WTF\Account\*\SavedVariables and parses it with the kit's Lua 5.1 (the file is plain Lua).
     Prints KrowiAF_DebugTable.Tests.LastRun and marks every line that differs from what
     .claude\tools\headless\run-tests.lua produces for the same scenario, so the game and the model
     can be compared line by line. Scenarios skipped in game carry the outside state that made them
@@ -16,7 +16,7 @@
     the file until the next /reload. The header shows when the file was last written.
 
 .PARAMETER Client
-    Retail (_retail_), Classic (_classic_) or Ptr (_ptr_). Default Retail.
+    Retail (_retail_), Classic (_classic_), Ptr (_ptr_, the wowt test realm) or Xptr (_xptr_, the second test realm, wowxptr). Default Retail.
 
 .PARAMETER Account
     Account folder name (e.g. 133658957#1) instead of the most recently written file.
@@ -27,14 +27,15 @@
 #>
 [CmdletBinding()]
 param(
-    [ValidateSet('Retail', 'Classic', 'Ptr')][string]$Client = 'Retail',
+    [ValidateSet('Retail', 'Classic', 'Ptr', 'Xptr')][string]$Client = 'Retail',
     [string]$Account
 )
 
 $ErrorActionPreference = 'Stop'
 $root = Split-Path (Split-Path $PSScriptRoot -Parent) -Parent   # .claude\tools -> repo root
-$flavor = @{ Retail = '_retail_'; Classic = '_classic_'; Ptr = '_ptr_' }[$Client]
-$wtf = "H:\World of Warcraft\$flavor\WTF\Account"
+. (Join-Path $PSScriptRoot 'KitPath.ps1')
+. (Join-Path $KitTools 'AddonContext.ps1')   # the kit's client map: Get-ClientFolder
+$wtf = Join-Path (Get-ClientFolder $Client) 'WTF\Account'
 if (-not (Test-Path -LiteralPath $wtf)) { throw "No WTF\Account folder for $Client at $wtf" }
 
 $candidates = if ($Account) {
@@ -46,10 +47,9 @@ $candidates = if ($Account) {
 $file = $candidates | Select-Object -First 1
 if (-not $file) { throw "No Krowi_AchievementFilter.lua found under $wtf; has the client been reloaded since the addon was installed?" }
 
-$lua = Join-Path $root '.claude\tools\lua51\lua.exe'
+$lua = $KitLua
 $reader = Join-Path $root '.claude\tools\headless\read-tests.lua'
 $runner = Join-Path $root '.claude\tools\headless\run-tests.lua'
-if (-not (Test-Path $lua)) { throw "Vendored Lua missing at $lua (run .claude\tools\lua51\Build-Lua51.ps1)" }
 
 $age = (Get-Date) - $file.LastWriteTime
 "Saved variables: $($file.FullName)"
@@ -58,7 +58,8 @@ $age = (Get-Date) - $file.LastWriteTime
 # the headless lines for every suite, so the game's lines can be marked against the model's
 $headless = Join-Path ([IO.Path]::GetTempPath()) 'KrowiAF-headless-tests.txt'
 $ErrorActionPreference = 'Continue'
-& $lua $runner $root -client $Client 2>&1 | ForEach-Object { "$_" } | Set-Content -LiteralPath $headless
+$model = if ($Client -eq 'Classic') { 'Classic' } else { 'Retail' }   # the test realms run the Retail client
+& $lua $runner $root -client $model 2>&1 | ForEach-Object { "$_" } | Set-Content -LiteralPath $headless
 $ErrorActionPreference = 'Stop'
 & $lua $reader $file.FullName $headless
 $code = $LASTEXITCODE

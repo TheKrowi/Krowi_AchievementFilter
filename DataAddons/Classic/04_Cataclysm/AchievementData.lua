@@ -15,6 +15,7 @@ KrowiAF.AchievementData["04_00_03"] = {
 	Ach(4908):AutoFactionSplit(faction.Horde, 4899), -- Ghostlands / Loch Modan and Wetlands Quests
 	Ach(5223):IsPvP(), -- Master of Twin Peaks
 	Ach(5245):IsPvP(), -- Battle for Gilneas Victory
+	Ach(5313):Obtainable("Before", "Version", {5, 0, 4}), -- I Can't Hear You Over the Sound of How Awesome I Am
 	Ach(5344):AutoFactionSplit(faction.Alliance, 5358):Title():PvP(9), -- Hero of the Alliance / Horde: Vicious
 	Ach(5364):Obtainable("Before", "Version", {6, 0, 2}), -- Don't Want No Zombies on My Lawn
 	Ach(5365):Obtainable("Before", "Version", {6, 0, 2}), -- Bloom and Doom

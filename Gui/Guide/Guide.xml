@@ -1,0 +1,6 @@
+<Ui>
+    <Script file="Guide.lua" />
+    <Script file="Waypoint.lua" />
+    <Script file="Content.lua" />
+    <Script file="Panel.lua" />
+</Ui>

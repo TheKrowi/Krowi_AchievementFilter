@@ -2,35 +2,14 @@ local _, addon = ...
 addon.Gui.RewardPreview = {}
 local rewardPreview = addon.Gui.RewardPreview
 
-local hookedOwners = {}
 local menuBuilder = addon.MenuBuilder:New({})
 
--- Walks up from the triggering button to the top-level window that owns it (main
--- Achievements frame or a specific Popout), so auto-close and anchoring stay per-button/per-window
-local function GetOwnerWindow(button)
-    local frame = button
-    while frame do
-        if frame == KrowiAF_AchievementsFrame then
-            return frame
-        end
-        if frame.AchievementId and frame.Button then -- looks like a KrowiAF_AchievementPopout instance
-            return frame
-        end
-        frame = frame.GetParent and frame:GetParent()
+-- The preview closes with the window its button belongs to, and shares the spot next to the row with the guide panel
+-- (Gui/SidePanels.lua)
+local function OnOwnerWindowHide(ownerWindow)
+    if KrowiAF_RewardPreview.OwnerWindow == ownerWindow then
+        rewardPreview:Close()
     end
-    return nil
-end
-
-local function HookOwner(ownerWindow)
-    if not ownerWindow or hookedOwners[ownerWindow] then
-        return
-    end
-    hookedOwners[ownerWindow] = true
-    ownerWindow:HookScript("OnHide", function()
-        if KrowiAF_RewardPreview.OwnerWindow == ownerWindow then
-            rewardPreview:Close()
-        end
-    end)
 end
 
 -- Shows the preview anchored to button, without pinning it (hover/tooltip-like).
@@ -46,15 +25,15 @@ function rewardPreview:ShowUnpinned(button, achievementId, entry, entryList)
     frame.OwnerButton = button
     frame.OwnerEntry = entry
     frame.OwnerAchievementId = achievementId
-    frame.OwnerWindow = GetOwnerWindow(button)
+    frame.OwnerWindow = addon.Gui.GetOwnerWindow(button)
     frame.EntryList = entryList
-    HookOwner(frame.OwnerWindow)
+    addon.Gui.HookOwnerWindowHide(frame.OwnerWindow, OnOwnerWindowHide)
 
     local achievementsOptions = addon.Options.db.profile.Achievements
     frame:SetSize(achievementsOptions.RewardPreviewDefaultWidth, achievementsOptions.RewardPreviewDefaultHeight)
 
-    frame:ClearAllPoints()
-    frame:SetPoint("TOPLEFT", button, "TOPRIGHT", 0, 0)
+    addon.Gui.RegisterSidePanel(frame)
+    addon.Gui.AnchorSidePanel(frame, button) -- next to the row, or next to the guide panel when that is open for it
     frame:ShowEntry(entry)
     frame.Title:SetText(addon.RewardPreviewData.GetLabel(entry))
     local icon, iconAtlas = addon.RewardPreviewData.GetIcon(entry)

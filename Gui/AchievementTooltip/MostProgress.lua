@@ -4,7 +4,7 @@ tinsert(addon.Gui.AchievementTooltip.Sections, section)
 
 local numCriteria
 function section:CheckAdd(achievement)
-	if achievement.IsCompleted or achievement.IsAccountWide or achievement.TransmogSets or addon.Options.db.profile.Tooltip.Achievements.MostProgress.Characters <= 0 then
+	if achievement.IsCompleted or achievement.IsAccountWide or addon.Options.db.profile.Tooltip.Achievements.MostProgress.Characters <= 0 then
 		return
 	end
 	local state = achievement:GetObtainableState()

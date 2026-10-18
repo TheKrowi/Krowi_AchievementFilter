@@ -39,7 +39,7 @@ local function findIdLine(rel, id) return clientEnv.FindIdLine(root, rel, id) en
 local obtainableWords = { From = true, Until = true, Date = true, Event = true, Patch = true, Version = true, Before = true, After = true, Once = true, Never = true, Reset = true, ["PvP Season"] = true, ["PvE Season"] = true }
 
 -- registries whose KrowiAF.<name>[key] tables become task groups, and the loaders that process them
-local registries = { "AchievementData", "CustomCriteriaData", "EventData", "TooltipData", "PetBattleLinkData", "TransmogSetData", "ZoneData" }
+local registries = { "AchievementData", "CustomCriteriaData", "EventData", "TooltipData", "PetBattleLinkData", "TransmogSetData", "GuideData", "ZoneData" }
 
 -------------------------------------------------------------------------------------------------
 -- One client

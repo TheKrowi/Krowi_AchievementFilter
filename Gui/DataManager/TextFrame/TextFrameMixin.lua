@@ -1,3 +1,4 @@
+---@diagnostic disable: invisible
 local _, addon = ...
 
 KrowiAF_TextFrameButton1Mixin = {}

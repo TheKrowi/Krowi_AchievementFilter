@@ -116,7 +116,7 @@ function achievementButton.ProcessModifiers(self, ignoreModifiers)
 	if addon.IsCustomModifierKeyDown(addon.Options.db.profile.Achievements.Modifiers.PasteToChat) then
 		local achievementLink = GetAchievementLink(self.Achievement.Id)
 		if achievementLink then
-			if ChatEdit_InsertLink(achievementLink) then
+			if ChatFrameUtil.InsertLink(achievementLink) then
 				return true
 			end
 			if SocialPostFrame and Social_IsShown() then
@@ -307,6 +307,7 @@ function KrowiAF_AchievementButtonMixin:DisplayObjectives(forced)
 			height = height + 4
 		end
 	end
+	height = height + addon.Gui.Guide.Content.DisplayUnderObjectives(objectives, self.Achievement, forced) -- 0 without a guide or with the option off
 	objectives.Id = id
 	height = max(self.MinExpandedHeight, height)
 	objectives.IsDisplaying = nil

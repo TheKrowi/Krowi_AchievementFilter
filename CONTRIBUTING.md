@@ -1,6 +1,6 @@
 # Contributing to Krowi's Achievement Filter
 
-The canonical technical reference for the addon (architecture, load order, offline tooling, data formats and code conventions) is [`.github/copilot-instructions.md`](.github/copilot-instructions.md). This file covers the contributor workflow only.
+The canonical technical reference for the addon (architecture, load order, offline tooling, data formats and code conventions) is [`.github/copilot-instructions.md`](.github/copilot-instructions.md); it holds the rules and links the detailed references ([`.claude/tools/README.md`](.claude/tools/README.md), [`Tests/README.md`](Tests/README.md), [`docs/architecture.md`](docs/architecture.md), [`docs/obtainability.md`](docs/obtainability.md)). This file covers the contributor workflow only.
 
 ---
 
@@ -8,11 +8,10 @@ The canonical technical reference for the addon (architecture, load order, offli
 
 | Branch | Purpose |
 |--------|---------|
-| `main` | Historical. Not updated by the release flow; releases are tagged on `dev`. |
-| `dev` | Active development. All feature branches target this. |
-| `feature/<description>` | Optional short-lived branches off `dev` for larger features. |
+| `main` | The only long-lived branch. All PRs target this, and releases are cut on it. |
+| `feature/<description>`, `fix/<issue>-<slug>` | Short-lived branches off `main`, one per change, merged back through a PR. |
 
-PRs go to `dev`. Releases are cut on `dev`: the Krowi Addon Manager makes the `Release X.Y` commit and tag there. `main` is not updated as part of the release flow.
+PRs go to `main`. Releases are cut on `main`: the Krowi Addon Manager makes the `Release X.Y` commit and tag there.
 
 ---
 
@@ -71,7 +70,7 @@ Breaking changes (rare): append `!` after the type/scope, e.g. `feat!: remove le
 
 ## How to Test
 
-There is no automated test suite — the WoW client is the runtime.
+There is no CI — the WoW client is the runtime. The offline checks and the headless scenario suites ([`.claude/tools/README.md`](.claude/tools/README.md), [`Tests/README.md`](Tests/README.md)) run on the maintainer's machine: they use tooling in a private repo (Krowi_ClaudeKit), so a fork cannot run them, and the maintainer runs them on every PR before merging. Test your change in game, and run `/kaftest <suite>` there (debug mode on) when you touch code a suite covers.
 
 - Enable Lua error reporting: run `/luaerror on` in WoW chat, or use an addon like [BugSack](https://www.curseforge.com/wow/addons/bugsack) + [BugGrabber](https://www.curseforge.com/wow/addons/bug-grabber).
 - Test the specific feature or data that was changed by navigating to the relevant tab/category.
@@ -82,12 +81,15 @@ There is no automated test suite — the WoW client is the runtime.
 
 ## How to Contribute
 
+Every issue, feature and fix follows the work-item lifecycle in [`docs/sdlc-playbook.md`](docs/sdlc-playbook.md): intent, spec and plan in `docs/work/<issue>-<slug>/`, a test-first build, and a PR reviewed against [`REVIEW.md`](REVIEW.md).
+
 1. Fork the repository.
-2. Create a branch from `dev`: `git checkout -b feature/my-change dev`
-3. Make your changes following the patterns in [`.github/copilot-instructions.md`](.github/copilot-instructions.md).
-4. Add new Lua files to the appropriate `Files.xml` manifest.
-5. Update `_Packaging/Changelog.md` with a brief description of your change.
-6. Open a PR targeting `dev` and fill out the PR template.
+2. Create a branch from `main`: `git checkout -b feature/my-change main` (`fix/<issue>-<slug>` or `feature/<issue>-<slug>` for a work item).
+3. Create `docs/work/<issue>-<slug>/` and write the intent, then the spec, then the plan, shaped like the existing work folders (`intent.md`, `spec.md` and `plan.md`, each with its title, a `Status:` line and the same headings).
+4. Make your changes following the patterns in [`.github/copilot-instructions.md`](.github/copilot-instructions.md); for a bug, add the scenario that reproduces it before fixing it.
+5. Add new Lua files to the appropriate `Files.xml` manifest.
+6. Update `_Packaging/Changelog.md` with a brief description of your change.
+7. Open a PR targeting `main` and fill out the PR template.
 
 ---
 

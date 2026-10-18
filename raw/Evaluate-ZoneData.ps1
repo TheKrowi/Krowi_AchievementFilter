@@ -31,7 +31,8 @@ $ErrorActionPreference = "Stop"
 $baseUrl = "http://localhost:5000"
 $skillDir = Join-Path $RootDir '.claude\skills\add-zone-data'
 . (Join-Path $skillDir '_zonedata_parser.ps1')
-. (Join-Path $skillDir '_builds.ps1')
+. (Join-Path $RootDir '.claude\tools\KitPath.ps1')
+. (Join-Path $KitTools 'Get-WowBuilds.ps1')
 
 $issues = [System.Collections.Generic.List[string]]::new()
 function Add-Issue([string]$File, [string]$Message) { $issues.Add("[ISSUE] $File — $Message") }

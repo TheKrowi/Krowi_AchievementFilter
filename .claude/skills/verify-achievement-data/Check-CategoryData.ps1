@@ -1,7 +1,12 @@
-param([string]$LuaFile = "DataAddons\Retail\12_Midnight\CategoryData.lua")
+param(
+    [string]$LuaFile = "DataAddons\Retail\12_Midnight\CategoryData.lua",
+    [ValidateSet('Retail', 'Classic')] [string]$Client = 'Retail'   # the build is resolved from the server, never typed
+)
 Add-Type -AssemblyName System.Web
 
-$build = "12.0.7.68275"
+. "$PSScriptRoot\..\..\tools\KitPath.ps1"
+. "$KitTools\Get-WowBuilds.ps1"
+$build = (Get-WowBuilds)[$Client]
 $content = Get-Content $LuaFile -Raw
 
 # Extract all "    number, -- Comment" entries

@@ -149,12 +149,6 @@ function achievement:AddNext(ach, addBack)
     end
 end
 
-function achievement:AddTransmogSet(transmogSet)
-    self.TransmogSets = self.TransmogSets or {}
-    tinsert(self.TransmogSets, transmogSet)
-    return transmogSet
-end
-
 function achievement:GetObtainableState()
     return addon.Data.TemporaryObtainable:GetObtainableState(self)
 end
@@ -179,6 +173,17 @@ local anchorFunctions = { ["PvE Season"] = true, ["PvP Season"] = true, Version 
 local function CheckAnchorFunction(self, anchorFunction)
     if not anchorFunctions[anchorFunction] then
         ReportObtainable(self, "UnknownAnchorFunction", "Obtainable() uses " .. tostring(anchorFunction) .. " where PvE Season, PvP Season, Version, Event, Date or Reset is expected")
+    end
+end
+
+-- The words Data/TemporaryObtainable.lua resolves on each side of a window; any other word is stored and never resolves
+local inclusions = {
+    Start = { Words = { From = true, After = true }, Text = "starts a window with %s where From or After is expected" },
+    End = { Words = { Until = true, Before = true }, Text = "ends a window with %s where Until or Before is expected" }
+}
+local function CheckInclusion(self, side, inclusion)
+    if not inclusions[side].Words[inclusion] then
+        ReportObtainable(self, "MalformedObtainable", "Obtainable() " .. inclusions[side].Text:format(tostring(inclusion)))
     end
 end
 
@@ -257,8 +262,8 @@ function achievement:SetTemporaryObtainable(startInclusion, startFunction, start
         return
     end
 
-    -- Case 3: Only handle "Before" cutoff (temporary until a future version) - [Before, startFunction, startValue]
-    if startInclusion == "Before" and startFunction and startValue and not endInclusion then
+    -- Case 3: End-only cutoff from the achievement's own patch, Before (exclusive) or Until (inclusive) - [Before|Until, startFunction, startValue]
+    if (startInclusion == "Before" or startInclusion == "Until") and startFunction and startValue and not endInclusion then
         CheckAnchorFunction(self, startFunction)
         self:SetTemporaryObtainableFromVersionToEnd(startInclusion, startFunction, startValue)
         return
@@ -266,6 +271,7 @@ function achievement:SetTemporaryObtainable(startInclusion, startFunction, start
 
     -- Case 4: Open-ended start only - [startInclusion, startFunction, startValue]
     if startInclusion and startFunction and startValue and not endInclusion then
+        CheckInclusion(self, "Start", startInclusion)
         CheckAnchorFunction(self, startFunction)
         self:SetTemporaryObtainableStartOnly(startInclusion, startFunction, startValue)
         return
@@ -273,6 +279,8 @@ function achievement:SetTemporaryObtainable(startInclusion, startFunction, start
 
     -- Case 5: Everything defined - [startInclusion, startFunction, startValue, endInclusion, endFunction, endValue]
     if startInclusion and startFunction and startValue and endInclusion and endFunction and endValue then
+        CheckInclusion(self, "Start", startInclusion)
+        CheckInclusion(self, "End", endInclusion)
         CheckAnchorFunction(self, startFunction)
         CheckAnchorFunction(self, endFunction)
         self:SetTemporaryObtainableFull(startInclusion, startFunction, startValue, endInclusion, endFunction, endValue)

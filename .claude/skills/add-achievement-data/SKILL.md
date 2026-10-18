@@ -50,11 +50,11 @@ Before applying comment-based heuristics, query authoritative sources. The DB is
 
 Query all IDs in a single batch using the **designated script** `.claude/skills/add-achievement-data/_lookup_ids.ps1` — never write a new inline/ad-hoc PowerShell snippet. Full API reference: `.claude/skills/verify-achievement-data/API.md`.
 
-**Rule:** Never create new throwaway `.ps1` files for one-off lookups. Edit the `$ids` (and `$build` if needed) line in the designated script via `replace_string_in_file`, then run it with the same terminal command every time. This keeps the terminal command identical across runs so it isn't re-flagged for approval after the first run.
+**Rule:** Never create new throwaway `.ps1` files for one-off lookups. Pass the values as parameters, or edit the `$Ids` placeholder default inside the designated script, run it, and reset it to `@()`. The build is never typed: every lookup script resolves it from the server through the kit's `Get-WowBuilds.ps1` (after `.claude/tools/KitPath.ps1`); `-Client Classic` queries the Classic build, and `$env:KAF_RETAIL_PRODUCT = "wowxptr"` (or `"wowt"`) points Retail at the PTR for a patch that is not live yet.
 
 ```powershell
-# Edit $ids and $build inside _lookup_ids.ps1 first, then:
-.\.claude\skills\add-achievement-data\_lookup_ids.ps1
+& ".claude\skills\add-achievement-data\_lookup_ids.ps1" -Ids 12345,12346
+& ".claude\skills\add-achievement-data\_lookup_ids.ps1" -Ids 12345 -Client Classic
 ```
 
 Output format per line: `id|Title_lang|Reward_lang|Faction|RewardItemID` (or `id|NOTFOUND`).
@@ -142,10 +142,10 @@ Map comment text to `AchBuilder` method names:
 `:NotCategorized()` `:Other()` `:AlliedRace()` `:Garrison()` `:Mount()` `:Pet()` `:RemixBronze()` `:Tabard()` `:Teleport()` `:Title()` `:Toy()` `:TradersTender()` `:Transmog()` `:WarbandCampsite()` `:RemixInfiniteKnowledge()` `:HousingDecor()` `:KeystoneResilience()`
 
 **Additional (non-reward) methods:**
-`:IsPvP()` `:PvP(N)` `:PvE(N)` `:IsRealmFirst()` `:Obtainable(...)` `:Anniv20()` `:FactionSplit(faction, altId)` `:AutoFactionSplit(faction, altId)`
+`:IsPvP()` `:PvP(N)` `:PvE(N)` `:Weeks(first[, last])` `:IsRealmFirst()` `:Obtainable(...)` `:Anniv20()` `:FactionSplit(faction, altId)` `:AutoFactionSplit(faction, altId)` `:CreatureDisplay(displayId, spellId)`
 
 **Rules:**
-- If multiple reward types apply (e.g., "Title and Mount"), chain both: `Ach(id):Title():Mount()`
+- If multiple reward types apply (e.g., "Title and Mount"), chain both in alphabetical order, the order every multi-reward line in the data uses: `Ach(id):Mount(mountId):Title()`
 - If comment contains "Reward:" but no recognizable keyword, ask user for clarification
 - If no reward hint in comment, use simple form: `Ach(id), -- Comment`
 
@@ -154,7 +154,7 @@ Map comment text to `AchBuilder` method names:
 `:Pet()` optionally takes a battle pet **SpeciesID** — this is the only way to deterministically render the correct pet model in the reward preview (there's no reliable spell/item → species API). At runtime the game resolves name + display model from this id via `C_PetJournal.GetPetInfoBySpeciesID(speciesId)`. Always look this up when the achievement grants a battle pet.
 
 1. Get the achievement's `Reward_lang` from the DB (already fetched in step 0.5 via `_lookup_ids.ps1`), e.g. `"Pet: Fledgling Warden's Companion"`. Strip the `"Pet: "` prefix to get the creature name.
-2. Look up that creature name's SpeciesID using the designated script `.claude/skills/add-achievement-data/_lookup_pet_speciesid.ps1` — set `$names = @("Fledgling Warden's Companion")` (and `$build` if needed) via `replace_string_in_file`, then run it. Never write a new ad-hoc query for this. The script chains two DB tables: `creature` (find the creature's `ID` by exact `Name_lang` match) → `battlepetspecies` (filter `CreatureID` column by that id, read its `ID` column — the SpeciesID).
+2. Look up that creature name's SpeciesID using the designated script `.claude/skills/add-achievement-data/_lookup_pet_speciesid.ps1` — run it with `-Names "Fledgling Warden's Companion"` (add `-Client Classic` for a Classic entry). Never write a new ad-hoc query for this. The script chains two DB tables: `creature` (find the creature's `ID` by exact `Name_lang` match) → `battlepetspecies` (filter `CreatureID` column by that id, read its `ID` column — the SpeciesID).
    ```powershell
    .\.claude\skills\add-achievement-data\_lookup_pet_speciesid.ps1
    ```
@@ -168,7 +168,7 @@ Map comment text to `AchBuilder` method names:
 `:Mount()` optionally takes a **mount id** (the `mount` DBC table's own `ID`, NOT the summoning spell id) — needed to deterministically render the correct mount model in the reward preview. At runtime the game resolves name/display via `C_MountJournal.GetMountInfoByID(mountId)` (name) and `C_MountJournal.GetMountInfoExtraByID(mountId)` (display/scene id). Always look this up when the achievement grants a mount.
 
 1. Get the achievement's `Reward_lang` from the DB, e.g. `"Mount: Stormtouched Bruffalon"`. Strip the `"Mount: "` prefix to get the mount name.
-2. Look up that mount name's id using the designated script `.claude/skills/add-achievement-data/_lookup_mount_id.ps1` — set `$names = @("Stormtouched Bruffalon")` (and `$build` if needed) via `replace_string_in_file`, then run it. Never write a new ad-hoc query for this.
+2. Look up that mount name's id using the designated script `.claude/skills/add-achievement-data/_lookup_mount_id.ps1` — run it with `-Names "Stormtouched Bruffalon"` (add `-Client Classic` for a Classic entry). Never write a new ad-hoc query for this.
    ```powershell
    .\.claude\skills\add-achievement-data\_lookup_mount_id.ps1
    ```
@@ -182,7 +182,7 @@ Map comment text to `AchBuilder` method names:
 `:HousingDecor()` optionally takes a **record id** (the `housedecor` DBC table's own `ID`) — needed to deterministically render the correct model in the reward preview. At runtime the game resolves the asset/scene via `C_HousingCatalog.GetCatalogEntryInfoByRecordID(Enum.HousingCatalogEntryType.Decor, recordId)`. Always look this up when the achievement grants a housing decoration.
 
 1. Get the achievement's `Reward_lang` from the DB, e.g. `"Reward: Preyseeker's Twilight Effigy"`. Strip the `"Reward: "` prefix to get the decor item name.
-2. Look up that decor name's id using the designated script `.claude/skills/add-achievement-data/_lookup_housingdecor_id.ps1` — set `$names = @("Preyseeker's Twilight Effigy")` (and `$build` if needed) via `replace_string_in_file`, then run it. Never write a new ad-hoc query for this.
+2. Look up that decor name's id using the designated script `.claude/skills/add-achievement-data/_lookup_housingdecor_id.ps1` — run it with `-Names "Preyseeker's Twilight Effigy"`. Never write a new ad-hoc query for this.
    ```powershell
    .\.claude\skills\add-achievement-data\_lookup_housingdecor_id.ps1
    ```
@@ -200,7 +200,7 @@ Extract from comment text:
 | "PvE Season", "Keystone", "Raid", "Dungeon" | Use `:PvE(X)` where X is the **game season number** (e.g., 13 for TWW S1) |
 | "PvP Season", "Gladiator", "Duelist", "Rival", "Combatant", "Challenger" | Use `:PvP(X)` where X is the **arena season number** |
 | PvP context but **no season number** (e.g., "Battleground", "Tour of Duty") | Use `:IsPvP()` (sets PvP flag only, no season reference) |
-| "Realm First!" in name | Use `:IsRealmFirst():Obtainable("Once")` |
+| "Realm First!" in name | Use `:IsRealmFirst()`; it adds `Obtainable("Once")` itself, so never write that |
 | Event name (e.g., "Remix Event", "Anniversary") | Try to find matching event ID in codebase or ask user |
 
 **`:IsPvP()` vs `:PvP(N)`:**
@@ -236,7 +236,7 @@ Ach(LOWER_ID):AutoFactionSplit(faction.X, HIGHER_ID), -- Lower-ID Name / Higher-
 -- Shared prefix and/or suffix — merge them, keep only the unique parts in the middle:
 Ach(40234):AutoFactionSplit(faction.Horde, 40235):Title():PvP(38), -- Forged Warlord / Marshal: The War Within Season 1
 ```
-Use `:FactionSplit()` (two explicit lines) only when the two achievements have **different reward types** (e.g., one faction gets a reward the other doesn't).
+`:AutoFactionSplit()` copies the reward types, seasons, `Obtainable()` records and the PvP and realm-first flags to the mirrored id (the reward preview ids stay on the written id only). Use `:FactionSplit()` (two explicit lines) when anything in the chain differs between the two achievements: a reward one faction gets and the other doesn't, a different obtainable window, a different season.
 
 ### 6. Generate Lua Entry
 Build the `Ach()` call based on detected properties:
@@ -249,10 +249,10 @@ If (no extra properties)
 If (has reward type)
   → Ach(id):RewardMethod(), -- Comment
 
-If (has faction split, symmetric reward types)
+If (has faction split, identical chains)
   → Ach(lowerid):AutoFactionSplit(faction.X, altId), -- Lower-ID Name / Higher-ID Name (or just Name if identical; merge shared suffix)
 
-If (has faction split, asymmetric reward types)
+If (has faction split, chains differ)
   → Ach(id):FactionSplit(faction.X, altId), -- Comment
   → Ach(altId):FactionSplit(faction.Y, id), -- Comment
 ```
@@ -271,7 +271,7 @@ Ach(id):Method():Method(), -- Achievement Name
 
 **File header** (ensure present when V2 entries are added to a file):
 ```lua
-local _, addon = ...
+local _, addon = ... -- only if the file uses addon
 local Ach = KrowiAF.Ach
 local faction = KrowiAF.Enum.Faction -- only if AutoFactionSplit or FactionSplit is used
 ```
@@ -280,7 +280,7 @@ local faction = KrowiAF.Enum.Faction -- only if AutoFactionSplit or FactionSplit
 
 ### Multiple Reward Types
 ```lua
-Ach(42300):Title():Mount(), -- Two Minutes to Midnight (Title: Thorn of Twilight and Mount: Light-Forged Mechsuit)
+Ach(42300):Mount(2608):Title():Obtainable("Before", "Version", {12, 0, 1}), -- Two Minutes to Midnight
 ```
 
 ### Temporary Availability
@@ -298,10 +298,11 @@ Ach(40234):AutoFactionSplit(faction.Horde, 40235):Title():PvP(38), -- Forged War
 Ach(40233):Title():Toy():PvP(38), -- Strategist: The War Within Season 1
 ```
 
-### Keystone Hero with Multiple Seasons (available in both)
+### Keystone Hero with Multiple Seasons
 ```lua
 Ach(20581):Teleport():PvE(14):PvE(15), -- Keystone Hero: Priory of the Sacred Flame
 ```
+Each season is a record; the tooltip lists both, but only the last one (season 15) decides whether the achievement is Time Limited, past or future.
 
 ### Standalone PvP Flag (no season)
 ```lua
@@ -311,8 +312,9 @@ Ach(40088):Pet():IsPvP(), -- A Champion's Tour: The War Within
 
 ### Realm First
 ```lua
-Ach(6523):IsRealmFirst():Obtainable("Once"), -- Realm First! Level 90 Shaman (Legacy)
+Ach(6523):IsRealmFirst(), -- Realm First! Level 90 Shaman (Legacy)
 ```
+`:IsRealmFirst()` adds the `Obtainable("Once")` record itself; none of the realm-first lines in the data write it.
 
 ### Anniversary Shorthand
 ```lua
@@ -321,17 +323,25 @@ Ach(40976):Mount():Anniv20(), -- A Cool Twenty Years
 ```
 `:Anniv20()` expands to `Obtainable("From", "Date", {2024, 11, 4}, "Until", "Date", {2025, 1, 7})`.
 
-### Full Obtainable Patterns
+### Obtainable Patterns
+
+The common forms; every form, what each one includes and excludes, and how a record becomes Past, Current or Future are in `docs/obtainability.md`.
 
 | Pattern | Example |
 |---------|---------|
 | No longer obtainable from version | `Obtainable("Before", "Version", {11, 1, 0})` |
+| Obtainable through the end of a version (inclusive) | `Obtainable("Until", "Version", {5, 0, 4})` |
+| Obtainable during one version only | `Obtainable("Version", {12, 0, 7})` |
 | Version window | `Obtainable("From", "Version", {6, 0, 3}, "Before", "Version", {7, 0, 3})` |
 | Available from version (open-ended) | `Obtainable("From", "Version", {11, 2, 7})` |
 | Date window | `Obtainable("From", "Date", {2024, 7, 30}, "Until", "Date", {2024, 8, 26})` |
 | In-game event | `Obtainable("Event", eventId)` |
 | PvP season range | `Obtainable("From", "PvP Season", 9, "Until", "PvP Season", 18)` |
-| One-time (Realm First) | `Obtainable("Once")` |
+| Never obtainable | `Obtainable("Never")` |
+
+- **A date window comes from the game's calendar.** For an anniversary or other dated event, run `.claude/skills/add-achievement-data/_lookup_holidays.ps1 -Terms "Anniversary"` (a holiday name fragment): it prints each holiday's decoded start, duration and end. For an event still on the PTR, set `$env:KAF_RETAIL_PRODUCT = "wowxptr"` (or `"wowt"`) first so the build resolves to the PTR. A window taken from a PTR build is provisional; recheck it once the event is on the live calendar.
+- **A cutoff starts at the achievement's own patch.** The three-argument `Before` and `Until` forms take the patch block the entry sits in as their start. If the achievement can only be earned from a later patch, use the During form or a window instead. For example, a season achievement added one patch ahead of its season: the Mists Classic Season 3 Challenge Mode achievements were added in 5.5.3, but Season 3 started with 5.5.4, so they use `Obtainable("Version", {5, 5, 4})`.
+- **A range that differs per client cannot stay in Shared.** Give the achievement an entry in both the Retail and the Classic file. Write the anchors as Retail patches; Classic maps them through `DataAddons/Classic/ContentTimeline.lua`. For example, 5313 is `Until 5.0.4` on Retail and `Before 5.0.4` on Classic.
 
 ## Patch Version Determination
 
@@ -372,15 +382,15 @@ B) Create new patch 11.2.5 (achievements in a new patch section)
 C) Specify custom patch version (e.g., 11.3.0)
 ```
 
-### Step 4: Output Patch Marker
-- If appending to existing patch: **no new patch marker needed**, just append entries
-- If creating new patch: **insert new patch section** with marker:
+### Step 4: Output the Patch Table
+- If appending to an existing patch: just append the entries.
+- If creating a new patch: insert a new patch table. `Data/Data.lua` derives the patch record from the key, so the table holds only the entries; never write a `{KrowiAF.SetAchievementPatch, ...}` line. A Shared file adds the `_S` suffix to the key (`"11_02_05_S"`).
   ```lua
   KrowiAF.AchievementData["11_02_05"] = {
-      {KrowiAF.SetAchievementPatch, 11, 2, 5},
-      -- new achievement entries...
+  	-- new achievement entries...
   }
   ```
+- A new patch also needs its registration in the expansion's `BuildVersionData.lua` (`minor:Patch(n, addon.L["Name"])`) if it is not there yet; the headless data load reports an unregistered one.
 
 ## Output Options
 
@@ -401,12 +411,14 @@ Before returning output, verify:
 - [ ] All reward method names are valid (see reward type list above)
 - [ ] Season/Event references use correct method (`:PvE(n)` vs `:PvP(n)`) with correct game season number
 - [ ] PvP achievements without a season use `:IsPvP()` not `:PvP(N)` (never invent a season number)
-- [ ] "Realm First!" achievements use `:IsRealmFirst():Obtainable("Once")`
+- [ ] "Realm First!" achievements use `:IsRealmFirst()` alone, without `Obtainable("Once")`
+- [ ] Multiple reward types are chained in alphabetical order (`:Mount(id):Title()`)
 - [ ] Lua syntax is valid (no missing commas, balanced parentheses)
 - [ ] Indentation is consistent (tabs, matching file style)
 - [ ] No duplicate entries
 - [ ] File header includes `local Ach = KrowiAF.Ach` (add if missing)
 - [ ] `local faction = KrowiAF.Enum.Faction` is present if any `:AutoFactionSplit()` or `:FactionSplit()` is used
+- [ ] `& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\lua.exe" ".claude\tools\headless\snapshot-data.lua" "$PWD" Both -write` was run and the `git diff` of `.claude/tools/headless/snapshots/Achievements.*.txt` shows exactly the new ids, each with the intended patch, faction, rewards and `obtainable=` records; the diff is committed with the data (lint rule `data-snapshot`)
 
 ## Clarification Questions
 
@@ -464,8 +476,9 @@ Ach(40083):IsPvP(), -- Tour of Duty: Isle of Dorn
 ## Related Files
 - `DataAddons/Retail/12_Midnight/AchievementData.lua` — Newest V2 reference
 - `DataAddons/Retail/11_TheWarWithin/AchievementData.lua` — Canonical V2 reference
-- `DataAddons/Shared/AchievementData.lua` — `AchBuilder` definition (see `Api/AchievementDataBuilder.lua` for `KrowiAF.Ach`)
+- `Api/AchievementDataBuilder.lua` — the `Ach()` builder and every method on it
 - `Api/AchievementDataApi.lua` — `KrowiAF.AddAchievementData` and `KrowiAF.SetAchievementPatch`
+- `docs/obtainability.md` — every `Obtainable()` form and how it resolves per client
 - `Api/ApiDocumentation.lua` — Annotated examples of all data patterns
 
 ## Autolearn Feedback Loop

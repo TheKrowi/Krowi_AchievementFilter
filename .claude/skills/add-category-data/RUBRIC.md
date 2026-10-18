@@ -8,10 +8,10 @@ place or *order*).
 
 ## Placement
 
-- [ ] **Code style matches the target file.** Did you check whether the file already uses the
-      V2 fluent builder API (`expansion:Zones()`, `zone:Quests{}`, `delves:Delve()`, etc. — see
-      `Api/CategoryDataBuilder.lua`) or the older V1 raw-table style (`tinsert(..., {CT.X, true, {ids}})`)
-      before writing new code? Never assume REFERENCE.md's example is the only valid style.
+- [ ] **Every edit uses the V2 fluent builder** (`expansion:Zones()`, `zone:Quests{}`,
+      `delves:Delve()`, etc. — see `Api/CategoryDataBuilder.lua` and REFERENCE.md § Code Style),
+      matching the chains around it. No positional V1 table and no `tinsert(KrowiAF.CategoryData...)`:
+      every first-party CategoryData file is V2.
 - [ ] **Cross-expansion achievements are NOT in the current expansion's file.** For every new ID,
       does its comment/name reference an OLD expansion or zone by name (e.g. "Family Battler of
       Outland", "... in Khaz Algar")? If so, it very likely belongs in THAT expansion's own

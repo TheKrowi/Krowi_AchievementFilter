@@ -1,5 +1,7 @@
 # Objective coverage gate for add-category-data.
-# Overwrite $patchKey, $achievementFile and $build before running; no other params should be needed.
+# Pass -PatchKey 12_01_00 -AchievementFile DataAddons\Retail\12_Midnight\AchievementData.lua (path relative to the
+# repo root), or edit the defaults below; -Client Classic queries the Classic build. The build is resolved from
+# the server (the kit's tools\Get-WowBuilds.ps1), never typed.
 #
 # What it checks (fast, deterministic, one batched DB call):
 #   1. Every achievement ID declared in the target AchievementData.lua patch block
@@ -27,11 +29,18 @@
 # Exit code 0 = pass (nothing missing besides confirmed skips). Exit code 1 = fail.
 # This script does NOT check ordering, placement judgment, or Keystone Hero/Victor
 # pairing - see RUBRIC.md for the LLM-as-judge pass that covers those.
+param(
+    [string] $PatchKey = "12_01_00",
+    [string] $AchievementFile = "DataAddons\Retail\12_Midnight\AchievementData.lua",
+    [ValidateSet('Retail', 'Classic')] [string] $Client = 'Retail'
+)
 
-$patchKey = "12_01_00"
-$achievementFile = "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\DataAddons\Retail\12_Midnight\AchievementData.lua"
-$dataAddonsRoot = "e:\World of Warcraft Addon Development\Krowi_AchievementFilter\DataAddons"
-$build = "12.1.0.68914"
+$root = (Resolve-Path "$PSScriptRoot\..\..\..").Path
+if (-not [IO.Path]::IsPathRooted($AchievementFile)) { $AchievementFile = Join-Path $root $AchievementFile }
+$dataAddonsRoot = Join-Path $root "DataAddons"
+. "$root\.claude\tools\KitPath.ps1"
+. "$KitTools\Get-WowBuilds.ps1"
+$build = (Get-WowBuilds)[$Client]
 
 # Confirmed out-of-scope achievement_category IDs (grows over time - add new ones here
 # once you and the user confirm a whole category is never tracked in CategoryData.lua).

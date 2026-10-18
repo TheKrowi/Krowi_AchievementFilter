@@ -542,6 +542,7 @@ zoneData:Zone(1004, { -- Kings' Rest (dungeon)
     62449, -- Midnight Keystone Legend: Season 2
     62436, -- Venomous Hero: Midnight Season 2
     63473, -- Sssensational!
+    63690, -- Midnight Keystone Myth: Season 2
 })
 
 zoneData:Zone(1010, { -- The MOTHERLODE!! (dungeon)
@@ -651,6 +652,7 @@ zoneData:Zone({1038, 1043}, { -- Temple of Sethraliss (dungeon)
     62449, -- Midnight Keystone Legend: Season 2
     62436, -- Venomous Hero: Midnight Season 2
     63473, -- Sssensational!
+    63690, -- Midnight Keystone Myth: Season 2
 })
 
 zoneData:Zone({1039, 1040}, { -- Shrine of the Storm (dungeon)

@@ -196,6 +196,11 @@ holidays:Named(CT.HallowsEnd, {
     1656, -- Hallowed Be Thy Name
     980, -- The Horseman's Reins
     17547, -- The Lick King
+    64160, -- Duskwood Caramel Crafter
+    64161, -- Felwood Fudge Bite Former
+    64162, -- Drustvar Choc-O-Drop Designer
+    62500, -- Sweet Tooth
+    62501, -- I Ain't Afraid of no Ghost
 }):WithId(915)
 holidays:Named(addon.L["Day of the Dead"], {
     3456, -- Dead Man's Party
@@ -241,6 +246,7 @@ local winterVeil = holidays:Named(CT.WinterVeil, {
     8699, -- The Danger Zone
     15181, -- Rock n' Roll
     10353, -- Iron Armada
+    62502, -- Master of Merry Mayhem
     1691, -- Merrymaker
 }):WithId(917)
 winterVeil:Named(addon.L["Gifts"], {
@@ -289,6 +295,7 @@ local wowsAnniversary = events:Named(addon.L["WoW's Anniversary"], {
     18702, -- WoW's 19th Anniversary
     41220, -- WoW's 20th Anniversary
     61406, -- WoW's 21st Anniversary
+    63714, -- WoW's 22nd Anniversary
     10335, -- Did Someone Say...?
     19192, -- Lil' Frostwing
 }):WithId(1173)

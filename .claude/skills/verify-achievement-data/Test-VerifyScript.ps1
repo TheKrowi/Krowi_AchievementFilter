@@ -180,10 +180,10 @@ Assert ($r5.Text -notmatch "\[FAIL\]")                           "No [FAIL] line
 if ($ptrBuild) {
     # The fixture's second id must still be missing from the live build for the fallback pass to trigger.
     # Achievements move from PTR to live every patch, so probe before asserting.
-    $probeBody = "draw=1&start=0&length=1&columns[3][search][value]=^62282`$&columns[3][search][regex]=true"
+    $probeBody = "draw=1&start=0&length=1&columns[3][search][value]=^63692`$&columns[3][search][regex]=true"
     $onLive = (Invoke-RestMethod "$BaseUrl/dbc/data/achievement/?build=$retailBuild" -Method POST -Body $probeBody -ContentType "application/x-www-form-urlencoded").recordsFiltered -gt 0
     if ($onLive) {
-        Write-Warning "Fixture known_good_ptr_fallback.lua no longer exercises the fallback pass: Ach(62282) now exists on the live build $retailBuild. Replace it with an id that only exists on a PTR build (wowt/wowxptr) to re-arm this assertion."
+        Write-Warning "Fixture known_good_ptr_fallback.lua no longer exercises the fallback pass: Ach(63692) now exists on the live build $retailBuild. Replace it with an id that only exists on a PTR build (wowt/wowxptr) to re-arm this assertion."
     } else {
         Assert ($r5.Text -match "Resolved \d+ additional ID\(s\) from fallback build") "Fallback build resolution message printed"
     }

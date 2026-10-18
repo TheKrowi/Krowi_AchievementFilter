@@ -9,8 +9,6 @@ data.TabsOrder = {}
 
 data.TasksGroups = {}
 
-data.TransmogSets = {}
-
 data.BuildVersions = {}
 data.BuildVersionsGrouped = {}
 data.ContentTimeline = nil -- Retail patch id -> the patch where this client reached it, nil on Retail; see Api/BuildVersionDataApi.lua
@@ -104,6 +102,15 @@ function data:RegisterTransmogSetDataTasks()
     end
 end
 
+function data:RegisterGuideDataTasks()
+    local name = "Guide Data: "
+    for k, v in next, KrowiAF.GuideData do
+        tinsert(v, 1, {self.LoadDiagnostics.SetSource, "GuideData", k})
+        self.InjectLoadingDebug(v, name .. k)
+        tinsert(self.TasksGroups, 1, v)
+    end
+end
+
 function data:RegisterZoneDataTasks()
     local name = "Zone Data: "
     for k, v in next, KrowiAF.ZoneData do
@@ -141,6 +148,9 @@ local function PostLoadOnPlayerLogin(self, start)
     addon.BuildCacheAsync(PostBuildCache, function(numOfWork)
         addon.Diagnostics.Trace(numOfWork .. " remaining after " .. ("%.2d"):format(debugprofilestop() - start) / 1000)
     end)
+
+    -- The client caches the guide NPCs' names before a guide shows them. Last, so nothing in it can stop the load
+    addon.Gui.Guide.RequestNpcNames(self.Achievements)
 end
 
 function data:LoadOnPlayerLogin()
@@ -157,6 +167,7 @@ function data:LoadOnPlayerLogin()
     self:RegisterTooltipDataTasks()
     self:RegisterPetBattleLinkDataTasks()
     self:RegisterTransmogSetDataTasks()
+    self:RegisterGuideDataTasks()
     self:RegisterZoneDataTasks()
 
     local overallStart = debugprofilestop()

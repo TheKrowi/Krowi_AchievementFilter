@@ -1610,8 +1610,3 @@ zoneData:Zone({319, 320, 321}, { -- Ahn'Qiraj (raid)
     1285, -- Classic Raider
     11761, -- Azeroth's Next Top Model
 })
-
-zoneData:Zone({616, 617, 618}, { -- Upper Blackrock Spire (dungeon)
-    1307, -- Upper Blackrock Spire (Classic)
-    2188, -- Leeeeeeeeeeeeeroy!
-})

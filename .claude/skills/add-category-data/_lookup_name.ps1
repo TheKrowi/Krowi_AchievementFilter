@@ -1,9 +1,18 @@
 # Generic name-search lookup against wow.tools.local /dbc/data/<table>/ endpoint.
-# Overwrite $table and $name before running. wow.tools.local must already be running.
+# Pass -Table uimap -Name "Venomfall Deeps", or set the $Table and $Name placeholders below, run, and reset them to "".
 # table options used by add-category-data: uimap | journalinstance | areapoi
-$table = "areapoi"
-$name = "Venomfall Deeps"
-$build = "12.1.0.68914"
-$body = "draw=1&start=0&length=20&search[value]=$name"
-$resp = Invoke-WebRequest "http://localhost:5000/dbc/data/$table/?build=$build" -Method POST -Body $body -ContentType "application/x-www-form-urlencoded" -UseBasicParsing
+# -Client Classic queries the Classic build; the build itself is resolved from the server (the kit's tools\Get-WowBuilds.ps1).
+# wow.tools.local must already be running.
+param(
+    [string] $Table = "",
+    [string] $Name = "",
+    [ValidateSet('Retail', 'Classic')] [string] $Client = 'Retail'
+)
+. "$PSScriptRoot\..\..\tools\KitPath.ps1"
+. "$KitTools\Get-WowBuilds.ps1"
+$baseUrl = "http://localhost:5000"
+$build = (Get-WowBuilds -BaseUrl $baseUrl)[$Client]
+if (-not $Table -or -not $Name) { Write-Host "Pass -Table and -Name or set the placeholders first."; return }
+$body = "draw=1&start=0&length=20&search[value]=$Name"
+$resp = Invoke-WebRequest "$baseUrl/dbc/data/$Table/?build=$build" -Method POST -Body $body -ContentType "application/x-www-form-urlencoded" -UseBasicParsing
 $resp.Content

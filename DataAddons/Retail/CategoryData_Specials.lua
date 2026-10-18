@@ -568,6 +568,7 @@ promotions:Named(addon.L["BlizzCon"], {
     14027, -- Battle for Mrrglroth
     14904, -- Netherwhelp Online
     18250, -- Ysergle The Dreamurk
+    63685, -- BlizzCon 2026
 }):Merge()
 promotions:Named(addon.L["Collector's Edition"], {
     662, -- Collector's Edition: Mini-Diablo

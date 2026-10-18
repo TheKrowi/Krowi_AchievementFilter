@@ -743,6 +743,7 @@ zoneData:Zone({2094, 2095}, { -- Ruby Life Pools (dungeon)
     17119, -- Deep Cuts From the Vault
     20481, -- Dragonflight Season 4 Master
     63473, -- Sssensational!
+    63690, -- Midnight Keystone Myth: Season 2
 })
 
 zoneData:Zone({2096, 2106}, { -- Brackenhide Hollow (dungeon)

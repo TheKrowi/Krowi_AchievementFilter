@@ -1,9 +1,13 @@
 # Search raw\MapVerifier.csv by map name (partial, case-insensitive regex).
-# Overwrite $terms before running. Parent agent uses replace_string_in_file to set terms, then resets to @().
-# Output: term|id|name|verdict|expansion|link   (verdict is the primary's for linked sub-zones; skip-like verdicts are
+# Pass the terms as -Terms "Quel'Thalas","Zul'Aman", or set the $Terms placeholder below, run, and reset it to @().
+# Output: term|id|name|verdict|expansion|link   (verdict is the primary's for linked sub-zones; 
+
 #         Skip, TaxiAndAdventure, Error, StartingZone — never use those maps in ZoneData)
-$terms = @()
-$root = "e:\World of Warcraft Addon Development\Krowi_AchievementFilter"
+param(
+    [string[]] $Terms = @()
+)
+if ($Terms.Count -eq 0) { Write-Host "Pass -Terms or set the `$Terms placeholder first."; return }
+$root = (Resolve-Path "$PSScriptRoot\..\..\..").Path
 . "$root\.claude\skills\sync-mapverifier\_mapverifier_io.ps1"
 $rows = (Read-MapVerifierCsv "$root\raw\MapVerifier.csv").Rows
 $byId = @{}; foreach ($r in $rows) { $byId[[int]$r.id] = $r }

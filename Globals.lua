@@ -193,6 +193,99 @@ SlashCmdList["KAFAIT"] = function(msg)
     end
 end
 
+-- Debug only, for guide data (Api/GuideDataBuilder.lua): prints where the player stands as the arguments of a guide
+-- step and records it with the target and the map's area POIs in KrowiAF_DebugTable.Where, which the game writes to disk
+-- on the next /reload or logout. Stand on the NPC with it targeted; for an object, stand next to it and label the spot,
+-- e.g. /kafwhere portal.
+local function Plain(value)
+    if issecretvalue and issecretvalue(value) then
+        return "<secret>"
+    end
+    return value
+end
+
+local function Percent(value)
+    return floor(value * 1000 + 0.5) / 10
+end
+
+-- The map's area POIs (the class hall portals in Dalaran are some): a guide's :Poi step super-tracks one by id, and its
+-- position is exact, unlike a spot measured by standing on it. A character sees only its own class's portal.
+local function GetAreaPois(mapId)
+    local pois = {}
+    for _, poiId in ipairs(C_AreaPoiInfo.GetAreaPOIForMap(mapId) or {}) do
+        local info = C_AreaPoiInfo.GetAreaPOIInfo(mapId, poiId)
+        if info then
+            tinsert(pois, {
+                Id = poiId,
+                Name = info.name,
+                Description = info.description,
+                X = info.position and Percent(info.position.x),
+                Y = info.position and Percent(info.position.y),
+                Atlas = info.atlasName,
+                LinkedMapId = info.linkedUiMapID
+            })
+        end
+    end
+    return pois
+end
+
+SLASH_KAFWHERE1 = "/kafwhere"
+SlashCmdList["KAFWHERE"] = function(msg)
+    if not addon.Diagnostics.DebugEnabled() then
+        print("/kafwhere needs debug mode (Options > General > Debug)")
+        return
+    end
+    local _, classFile, classId = UnitClass("player")
+    local note = strtrim(msg or "")
+    local record = {
+        Note = note ~= "" and note or nil, -- what the spot is: an object cannot be targeted
+        Time = date("%Y-%m-%d %H:%M:%S"),
+        Build = (select(2, GetBuildInfo())),
+        Name = Plain(UnitName("player")),
+        Realm = Plain(GetRealmName()),
+        Class = classFile,
+        ClassId = classId,
+        Faction = (UnitFactionGroup("player")) -- some class hall entrances in Dalaran differ per faction
+    }
+    local mapId = C_Map.GetBestMapForUnit("player")
+    if mapId then
+        local mapInfo = C_Map.GetMapInfo(mapId)
+        record.MapId = mapId
+        record.MapName = mapInfo and mapInfo.name
+        record.ParentMapId = mapInfo and mapInfo.parentMapID
+        record.CanSetUserWaypoint = C_Map.CanSetUserWaypointOnMap and C_Map.CanSetUserWaypointOnMap(mapId)
+        if C_Map.GetMapWorldSize then
+            record.MapWidthYards, record.MapHeightYards = C_Map.GetMapWorldSize(mapId)
+        end
+        local position = C_Map.GetPlayerMapPosition(mapId, "player")
+        if position then
+            record.X, record.Y = Percent(position.x), Percent(position.y)
+        end
+    end
+    if UnitExists("target") then
+        local guid = Plain(UnitGUID("target"))
+        record.Target = {
+            Name = Plain(UnitName("target")),
+            NpcId = guid ~= "<secret>" and tonumber((select(6, strsplit("-", guid)))) or nil
+        }
+    end
+    if mapId then
+        local ok, result = pcall(GetAreaPois, mapId)
+        record.AreaPois = ok and result or ("error: " .. tostring(result))
+    end
+
+    KrowiAF_DebugTable = KrowiAF_DebugTable or {}
+    KrowiAF_DebugTable.Where = KrowiAF_DebugTable.Where or {}
+    tinsert(KrowiAF_DebugTable.Where, record)
+    local target = record.Target or {}
+    local step = ("%s, %s, %s"):format(tostring(record.MapId), tostring(record.X), tostring(record.Y))
+    if target.NpcId then
+        step = (':Npc(%d, %q, %s)'):format(target.NpcId, tostring(target.Name), step) -- the data takes the English name
+    end
+    print(("KrowiAF: %s (%s): %s; map pin %s. Stored as entry %d, written to disk on the next /reload or logout."):format(
+        record.Note or "no label", tostring(record.Faction), step, record.CanSetUserWaypoint and "allowed" or "not allowed", #KrowiAF_DebugTable.Where))
+end
+
 function addon.GetNextAchievement(achievement)
     if achievement.NextAchievements then
         for _, nextAchievement in next, achievement.NextAchievements do

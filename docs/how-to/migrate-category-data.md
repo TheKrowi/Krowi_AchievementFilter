@@ -20,6 +20,8 @@ The `category-node-shape` lint rule added on 2026-09-20 catches that one specifi
 
 ## Current state (verified 2026-09-20)
 
+The migration finished in September 2026 and every first-party category file is now V2. The table below records the state on 2026-09-20, during the migration.
+
 | Fact | Value |
 |---|---|
 | `KrowiAF.NewExpansion` call sites in the whole tree | **1** — `DataAddons/Retail/12_Midnight/CategoryData.lua:5` |
@@ -55,7 +57,7 @@ local zones = expansion:Zones{ ... }:Key("MoP.Zones")
 KrowiAF.NewInjection("MoP.Zones"):Named(CT.Scenarios, { ... }):Register()
 ```
 
-- `:Key(name)` records `node.Key`. `ParseCategoryV2` registers `addon.Data.CategoryKeys[name] = categoryId` and asserts the key is not already taken.
+- `:Key(name)` records `node.CategoryKey` (not `Key`, so the field does not shadow the method). `ParseCategoryV2` registers `addon.Data.CategoryKeys[name] = categoryId` and asserts the key is not already taken.
 - `KrowiAF.NewInjection(target)` accepts a number — today's behaviour, unchanged for V1 and for plugins — or a string key.
 - The numeric id remains auto-allocated, so [`BrowsingHistory.lua`](../../BrowsingHistory.lua)'s invariant is untouched and no saved variable changes. No `DataIntegrityManager` solution is needed.
 
@@ -206,7 +208,7 @@ For each file:
 # 2. regenerate both snapshots
 # 3. require a ZERO diff
 & ".claude\tools\Check-Repo.ps1" -ChangedOnly
-& ".claude\tools\lua51\lua.exe" ".claude\tools\headless\load-data.lua" "$PWD" Both
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\lua.exe" ".claude\tools\headless\load-data.lua" "$PWD" Both
 # 4. commit
 ```
 
@@ -234,12 +236,12 @@ Shared files must be snapshotted for **both** clients: they resolve differently 
 3. **In-game pass** on one Retail and one Classic character. Deploy, `/reload`, and spot-check the Specials and Events tabs plus two migrated expansions. Then `Read-GameErrors.ps1`.
 
 ```powershell
-& ".claude\tools\Deploy.ps1"
-& ".claude\tools\Read-GameErrors.ps1"
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\Deploy.ps1"
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\Read-GameErrors.ps1"
 ```
 
 4. **Correct `.github/copilot-instructions.md`** to describe the real state of the category format.
-5. **Changelog.** The migration should be user-invisible; if the snapshot revealed and fixed a real tree defect, that part gets its own entry with a dev note.
+5. **Changelog.** The migration should be user-invisible; if the snapshot revealed and fixed a real tree defect, that part gets its own entry.
 
 ---
 

@@ -100,6 +100,15 @@ addon.Options.Defaults = {
             RewardPreviewMaxIndividualIcons = 3,
             RewardPreviewDefaultWidth = 280,
             RewardPreviewDefaultHeight = 360,
+            Guide = {
+                Tooltip = true,
+                RightClickMenu = true,
+                Icon = true, -- the row icon and the side panel it opens
+                MouseoverShow = true, -- hovering the row icon shows the panel; a click pins it
+                ExpandedRow = false, -- off: it makes the selected row taller
+                ActionStyle = 1, -- 1 Icons, 2 Text links (addon.Gui.Guide.Content.ActionStyle)
+                WaypointProvider = 1 -- 1 Map pin and TomTom, 2 Map pin, 3 TomTom (addon.Gui.Guide.Waypoint.Provider)
+            }
             -- ShowOtherFactionWarbandAsCompleted = true
         },
         RightClickMenu = {

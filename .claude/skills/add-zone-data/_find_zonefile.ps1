@@ -1,10 +1,13 @@
 # Find which ZoneData.lua files reference any of the given MAP IDs (word-boundary match).
-# Overwrite $ids before running. Parent agent uses replace_string_in_file to set IDs, then resets to @().
+# Pass the map ids as -Ids 84,2537, or set the $Ids placeholder below, run, and reset it to @().
 # Caveat: this is a text search. It also hits achievement ids, comments and table values that happen to
 # equal the number (searching map 84 Stormwind also returns achievement 84 lines). To check whether an
 # ACHIEVEMENT id is placed, and on which maps, use _check_zonedata.ps1 instead — it parses the Zone() entries.
-$ids = @()
-$root = "e:\World of Warcraft Addon Development\Krowi_AchievementFilter"
+param(
+    [string[]] $Ids = @()
+)
+if ($Ids.Count -eq 0) { Write-Host "Pass -Ids or set the `$Ids placeholder first."; return }
+$root = (Resolve-Path "$PSScriptRoot\..\..\..").Path
 $pattern = "\b(" + ($ids -join "|") + ")\b"
 Get-ChildItem "$root\DataAddons" -Recurse -Filter "ZoneData.lua" | ForEach-Object {
     $file = $_

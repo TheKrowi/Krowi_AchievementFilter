@@ -7,6 +7,8 @@
     Rules (severity in brackets; "changed" means modified vs HEAD or untracked):
       files-xml        [Error]   every .lua under the addon tree is registered in the .toc or a
                                  Files.xml chain; every registered file exists on disk
+      section-order    [Error]   a menu sub-section that attaches to GetLastSection() loads directly after its
+                                 parent section (one with a Sections table) or its sibling sub-sections
       dup-id           [Error]   an achievement ID is registered once per client
                                  (Shared counts for both Retail and Classic)
       saved-variables  [Error]   every `KrowiAF_X = KrowiAF_X or` saved variable is declared in the .toc
@@ -14,9 +16,24 @@
       globals          [Error]   no assignment to an undeclared global (luac -l SETGLOBAL) other than
                                  KrowiAF*/BINDING_*/SLASH_* names and the deliberate Blizzard
                                  FrameXML overrides and API polyfills listed in Check-Repo.globals
-      luarc            [Error]   .luarc.json diagnostics.globals holds exactly what the language server
+      removed-api      [Error]   no addon file reads a Blizzard global the Retail client no longer has (luac -l
+                                 GETGLOBAL against Check-Repo.removed-api); always tree-wide, because a
+                                 removal breaks files nobody touched
+      deprecated-api   [Error]   no addon file reads a Blizzard global that a client the .toc lists has only as a
+                                 Blizzard_Deprecated* alias, or not at all (luac -l GETGLOBAL against
+                                 Check-Repo.deprecated-api, which Update-DeprecatedApi.ps1 rebuilds from the
+                                 wow-ui-source clones); always tree-wide; a name in removed-api is reported there only
+      library-names    [Error]   every library name addon code (and Libs/Libs.lua) passes to LibStub( or
+                                 KROWI_LIBMAN:GetLibrary( is one a NewLibrary( call in Libs/ registers; always
+                                 tree-wide, because a library rename breaks call sites nobody touched
+      settings-close   [Error]   addon code closes the settings panel with SettingsPanel:Close(true): without the
+                                 argument it reopens the game menu through ToggleGameMenu, whose SpellStopCasting
+                                 call is forbidden from addon code
+      luarc           [Error]   .luarc.json diagnostics.globals holds exactly what the language server
                                  cannot see on its own: every entry is read by an addon file (luac -l
                                  GETGLOBAL), none is assigned by one, no duplicates, sorted ordinally
+      util-flags       [Error]   every addon.Util.Is* flag or check the addon reads is defined in Libs/Krowi_Util;
+                                 always tree-wide, because a removal there breaks files nobody touched
       luals            [Warning] the Lua language server reports nothing on a tree-wide check, using the
                                  VS Code extensions sumneko.lua and ketho.wow-api when installed
                                  (about 30 s; full runs only, or -Luals; skipped when they are absent)
@@ -32,16 +49,33 @@
                                  node paths, sibling order, flags, achievement placement, orphans);
                                  an intended change is regenerated with -write and committed with
                                  the code that caused it, never absorbed silently
-      lookup-placeholders [Warning] _lookup_*.ps1 skill scripts are committed with empty @() placeholders
+      data-snapshot    [Error]   the data each client builds still matches the recorded baselines in
+                                 headless/snapshots/ (headless/snapshot-data.lua: per achievement the
+                                 patch, faction, rewards, flags, obtainable anchors, previews, events,
+                                 tooltip/transmog/pet battle entries; every zone placement; build
+                                 versions, content timeline, seasons, events); an intended change is
+                                 regenerated with -write and committed with the data that caused it
+      lookup-placeholders [Warning] the _*.ps1 skill scripts are committed with their placeholders empty
+                                 ($Ids/$Terms/$Names = @(), $Table/$Name = ""), param() defaults included
+      pinned-build     [Warning] no skill or raw/ script types a game build ($build = "12..."); builds come
+                                 from Krowi_ClaudeKit's tools/Get-WowBuilds.ps1
+      work-items       [Warning] docs/work/<issue>-<slug>/ folders follow docs/sdlc-playbook.md: folder
+                                 name, an intent.md, no plan.md without a spec.md, and in each file the
+                                 template's title (Krowi_ClaudeKit's skills/process-issue/templates/), a
+                                 Status: draft|accepted|done line and its headings
       bom              [Warning] no UTF-8 byte order mark (.editorconfig: utf-8)
       line-endings     [Warning] CRLF only (.editorconfig: crlf)
       semicolon        [Error]   no trailing semicolons on added .lua lines (changed files only)
       enus-autogen     [Error]   no L[...] string added above the AUTOGENTOKEN marker in any locale file;
                                  new strings go directly below its "Exported at" line
       changelog        [Warning] addon code changed without a Changelog.md entry
+      kit              [Warning] Krowi_ClaudeKit was not found, so the rules that need its Lua did not run
 
     Warnings on changed files are promoted to Error so pre-existing debt does not block work
     while new debt does.
+
+    The vendored Lua 5.1.5 comes from Krowi_ClaudeKit (KitPath.ps1). Without the kit (a contributor's clone) the
+    rules that need no Lua still run, and the kit rule names the ones that did not.
 
 .PARAMETER ChangedOnly
     Report only findings that involve changed files (plus the always-on structural errors).
@@ -67,6 +101,12 @@ param(
 $ErrorActionPreference = 'Stop'
 $root = Split-Path (Split-Path $PSScriptRoot -Parent) -Parent   # .claude\tools -> repo root
 Set-Location $root
+
+# The Lua rules need the kit's interpreter. Without the kit (a contributor's clone) the other rules still run, and the
+# kit rule reports which did not, so a missing kit is visible without blocking every turn through the Stop hook
+$kitMissing = $null
+try { . (Join-Path $PSScriptRoot 'KitPath.ps1') }
+catch { $kitMissing = $_.Exception.Message; $KitLua = ''; $KitLuac = ''; $KitTools = '' }
 
 $nonAddonDirs = @('.claude', '.git', '.github', '.vscode', '_Packaging', 'raw', 'wiki', 'docs')
 $findings = [System.Collections.Generic.List[object]]::new()
@@ -189,6 +229,36 @@ foreach ($rel in $allFiles) {
 
 Write-Timing 'bom/line-endings'
 
+# --- section-order: a sub-section attaches to whatever section loaded just before it ---------------
+# A menu sub-section registers with tinsert(<menu>:GetLastSection().Sections, section), so the section loaded right before
+# it in its Files.xml, or before a run of such sub-sections, must be the parent that owns a Sections table. Anything
+# loaded in between becomes the "last section" and the sub-section fails to load (docs/work/2026-10-11-achievement-guides).
+$scriptPattern = '<Script\s+file\s*=\s*["' + "'" + ']([^"' + "'" + ']+\.lua)["' + "'" + ']'
+$relByLower = @{}
+foreach ($rel in $fileBytes.Keys) { $relByLower[$rel.ToLower()] = $rel }
+foreach ($xmlRel in ($allFiles | Where-Object { $_ -like '*.xml' -and $_ -notlike 'Libs/*' })) {
+    $content = [regex]::Replace([Text.Encoding]::UTF8.GetString($fileBytes[$xmlRel]), '<!--.*?-->', { param($m) ' ' * $m.Length }, 'Singleline')
+    $xmlDir = [IO.Path]::GetDirectoryName($xmlRel).Replace('\', '/')
+    $parent = $null   # the last script loaded that is not itself a sub-section
+    foreach ($m in [regex]::Matches($content, $scriptPattern)) {
+        $luaRel = if ($xmlDir) { "$xmlDir/$($m.Groups[1].Value.Replace('\', '/'))" } else { $m.Groups[1].Value }
+        $luaKey = $relByLower[$luaRel.ToLower()]
+        if (-not $luaKey) { continue }   # files-xml reports a missing file
+        $luaText = [Text.Encoding]::UTF8.GetString($fileBytes[$luaKey])
+        if ($luaText -notmatch ':GetLastSection\(\)\.Sections') {   # the call, not the menu's own definition
+            $parent = @{ Rel = $luaKey; HasSections = $luaText -match '\bSections\s*=\s*\{' }
+            continue
+        }
+        if (-not $parent -or -not $parent.HasSections) {
+            $line = ($content.Substring(0, $m.Index) -split "`n").Count
+            $what = if ($parent) { "$($parent.Rel), which has no Sections table" } else { 'nothing' }
+            Add-Finding 'section-order' 'Error' $xmlRel $line "$luaKey attaches to GetLastSection(), but the script loaded before it is $what; keep a sub-section directly after its parent section (or after its sibling sub-sections), or it fails to load"
+        }
+    }
+}
+
+Write-Timing 'section-order'
+
 # --- dup-id ------------------------------------------------------------------------------------
 $idOccurrences = @{}   # id -> list of @{Client; Path; Line}
 foreach ($rel in ($ownLuaFiles | Where-Object { $_ -like 'DataAddons/*' -and [IO.Path]::GetFileName($_) -like 'AchievementData*.lua' })) {
@@ -251,9 +321,9 @@ foreach ($rel in $ownLuaFiles) {
 Write-Timing 'saved-variables'
 
 # --- lua-syntax --------------------------------------------------------------------------------
-$lua = Join-Path $root '.claude\tools\lua51\lua.exe'
-$checker = Join-Path $root '.claude\tools\lua51\check-syntax.lua'
-if ((Test-Path $lua) -and (Test-Path $checker)) {
+$lua = $KitLua
+$checker = if ($KitTools) { Join-Path $KitTools 'lua51\check-syntax.lua' } else { '' }
+if ($lua -and $checker -and (Test-Path $lua) -and (Test-Path $checker)) {
     $targets = @(if ($ChangedOnly) { $luaFiles | Where-Object { $changed.ContainsKey($_) } } else { $luaFiles })
     if ($targets.Count -gt 0) {
         $ErrorActionPreference = 'Continue'
@@ -265,8 +335,8 @@ if ((Test-Path $lua) -and (Test-Path $checker)) {
         }
     }
 }
-else {
-    Add-Finding 'lua-syntax' 'Warning' '.claude/tools/lua51' 1 'vendored Lua missing, syntax not checked (run Build-Lua51.ps1)'
+elseif (-not $kitMissing) {
+    Add-Finding 'lua-syntax' 'Error' '.claude/tools/KitPath.ps1' 1 "the kit's lua51\check-syntax.lua is missing under $KitTools, syntax not checked"
 }
 
 Write-Timing 'lua-syntax'
@@ -275,8 +345,8 @@ Write-Timing 'lua-syntax'
 # luac -l lists one SETGLOBAL per assignment to an undeclared name. Anything that is not a KrowiAF*/
 # BINDING_*/SLASH_* name and not listed in Check-Repo.globals ("<path glob> <name glob>") is a leak,
 # or a Blizzard override nobody has owned up to. Vendored Libs are not ours to lint.
-$luac = Join-Path $root '.claude\tools\lua51\luac.exe'
-if (Test-Path $luac) {
+$luac = $KitLuac
+if ($luac -and (Test-Path $luac)) {
     $allowGlobals = @()
     $allowFile = Join-Path $PSScriptRoot 'Check-Repo.globals'
     if (Test-Path $allowFile) {
@@ -290,6 +360,27 @@ if (Test-Path $luac) {
     $targetSet = @{}
     foreach ($rel in @(if ($ChangedOnly) { $ownLuaFiles | Where-Object { $changed.ContainsKey($_) } } else { $ownLuaFiles })) { $targetSet[$rel] = $true }
     # Lua names are case-sensitive (AchievementFrameFilterDropdown and ...DropDown are two globals), PowerShell hashtables are not
+    # removed-api: Blizzard globals the Retail client no longer has ("<name> <version>" in Check-Repo.removed-api).
+    # Checked in every addon file even with -ChangedOnly: a removal breaks files nobody touched.
+    $removedApi = [hashtable]::new([StringComparer]::Ordinal)
+    $removedFile = Join-Path $PSScriptRoot 'Check-Repo.removed-api'
+    if (Test-Path $removedFile) {
+        foreach ($line in Get-Content $removedFile) {
+            $t = ($line -replace '#.*$', '').Trim()
+            if ($t -match '^(\S+)\s+(\S+)$') { $removedApi[$Matches[1]] = $Matches[2] }
+        }
+    }
+    # deprecated-api: Blizzard globals a client the .toc lists has only as a deprecated alias, or not at all
+    # ("<name> <replacement or -> <client>=<state>,..." in Check-Repo.deprecated-api, generated by
+    # Update-DeprecatedApi.ps1). Checked in every addon file even with -ChangedOnly, like removed-api.
+    $deprecatedApi = [hashtable]::new([StringComparer]::Ordinal)
+    $deprecatedFile = Join-Path $PSScriptRoot 'Check-Repo.deprecated-api'
+    if (Test-Path $deprecatedFile) {
+        foreach ($line in Get-Content $deprecatedFile) {
+            $t = ($line -replace '#.*$', '').Trim()
+            if ($t -match '^(\S+)\s+(\S+)\s+(\S+)$') { $deprecatedApi[$Matches[1]] = @{ Replacement = $Matches[2]; States = $Matches[3] } }
+        }
+    }
     $readGlobals = [hashtable]::new([StringComparer]::Ordinal)   # name -> $true when an addon file reads it (GETGLOBAL)
     $setGlobals = [hashtable]::new([StringComparer]::Ordinal)    # name -> $true when an addon file assigns it (SETGLOBAL)
     $bomMap = @{}     # temp copy path -> repo path, for files whose BOM stock luac would reject
@@ -329,7 +420,18 @@ if (Test-Path $luac) {
             }
             if (-not $current) { continue }
             $name = $m.Groups['name'].Value
-            if ($m.Groups['op'].Value -eq 'GETGLOBAL') { $readGlobals[$name] = $true; continue }
+            if ($m.Groups['op'].Value -eq 'GETGLOBAL') {
+                $readGlobals[$name] = $true
+                if ($removedApi.ContainsKey($name)) {
+                    Add-Finding 'removed-api' 'Error' $current ([int]$m.Groups['line'].Value) "reads global '$name', which the Retail client no longer has since $($removedApi[$name]); call the C_ namespace function instead (.claude/tools/Check-Repo.removed-api)"
+                }
+                elseif ($deprecatedApi.ContainsKey($name)) {
+                    $entry = $deprecatedApi[$name]
+                    $use = if ($entry.Replacement -ne '-') { "call $($entry.Replacement) instead" } else { 'use the API that replaced it' }
+                    Add-Finding 'deprecated-api' 'Error' $current ([int]$m.Groups['line'].Value) "reads global '$name' ($($entry.States -replace ',', ', ')): a deprecated alias is nil with the loadDeprecationFallbacks CVar off and gone once Blizzard deletes it, a removed one is nil already; $use (.claude/tools/Check-Repo.deprecated-api)"
+                }
+                continue
+            }
             $setGlobals[$name] = $true
             if (-not $targetSet.ContainsKey($current)) { continue }
             if ($name -like 'KrowiAF*' -or $name -like 'BINDING_*' -or $name -like 'SLASH_*') { continue }
@@ -340,6 +442,108 @@ if (Test-Path $luac) {
     if ($tmpDir) { Remove-Item -Recurse -Force $tmpDir -ErrorAction SilentlyContinue }
 }
 Write-Timing 'globals'
+
+# --- library-names: addon code asks LibStub only for libraries Libs/ registers -------------------
+# A library rename in Libs/ (Krowi_PopupDialog-1.0 became Krowi_PopupDialog_2 in Release 92.0) leaves call
+# sites behind that fail only when clicked, so every addon file is checked, also with -ChangedOnly. The
+# registered names come from each NewLibrary( call in Libs/: a literal, or a local set to a literal in the
+# same file (local MAJOR, MINOR = "AceDB-3.0", 27). Function definitions and arguments that resolve to no
+# literal (LibMan's generic wrapper) are skipped.
+# - Checked: addon code and Libs/Libs.lua, the addon's own bootstrap next to the submodules.
+# - Left alone: a silent lookup (LibStub("X", true) returns nil instead of raising) and a call in a comment.
+# - A submodule without Lua files (a worktree made without its submodules) would turn every call site into
+#   an error, so the rule then warns once and skips.
+$luaFolders = [Collections.Generic.HashSet[string]]::new()
+foreach ($rel in $luaFiles) { $parts = $rel.Split('/'); if ($parts.Count -gt 2) { [void]$luaFolders.Add($parts[0] + '/' + $parts[1]) } }
+$gitmodules = Join-Path $root '.gitmodules'
+$emptySubmodules = @(if (Test-Path $gitmodules) {
+    [regex]::Matches([IO.File]::ReadAllText($gitmodules), '(?m)^\s*path\s*=\s*(\S+)') |
+        ForEach-Object { $_.Groups[1].Value } | Where-Object { -not $luaFolders.Contains($_) }
+})
+if ($emptySubmodules) {
+    Add-Finding 'library-names' 'Warning' '.gitmodules' 1 "skipped: no Lua files in $($emptySubmodules -join ', '), so the registered library names are unknown; make the checkout with the kit's New-Worktree.ps1"
+} else {
+    $libraryNames = [hashtable]::new([StringComparer]::Ordinal)
+    foreach ($rel in $luaFiles) {
+        if (-not $rel.StartsWith('Libs/')) { continue }
+        $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
+        if (-not $text.Contains('NewLibrary(')) { continue }
+        foreach ($m in [regex]::Matches($text, '(?m)^(?!\s*(?:local\s+)?function\b).*?NewLibrary\(\s*(?:nil\s*,\s*)?([^,\)\s]+)')) {
+            $arg = $m.Groups[1].Value
+            if ($arg -match '^["''](.+)["'']$') { $libraryNames[$Matches[1]] = $true; continue }
+            if ($arg -notmatch '^[A-Za-z_]\w*$') { continue }
+            $definition = [regex]::Match($text, '(?m)^\s*(?:local\s+)?' + [regex]::Escape($arg) + '\s*(?:,\s*[A-Za-z_]\w*\s*)*=\s*["'']([^"'']+)["'']')
+            if ($definition.Success) { $libraryNames[$definition.Groups[1].Value] = $true }
+        }
+    }
+    $libraryCallRx = [regex]'(?:\bLibStub\s*(?::\s*GetLibrary\s*)?\(|\bKROWI_LIBMAN\s*:\s*GetLibrary\s*\()\s*["'']([^"'']+)["'']\s*(,\s*true\b)?'
+    foreach ($rel in @($ownLuaFiles) + @('Libs/Libs.lua')) {
+        if (-not $fileBytes.ContainsKey($rel)) { continue }
+        $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
+        if (-not ($text.Contains('LibStub') -or $text.Contains('GetLibrary'))) { continue }   # most files ask for no library
+        $lineNo = 0
+        foreach ($line in ($text -split "`r?`n")) {
+            $lineNo++
+            foreach ($m in $libraryCallRx.Matches(($line -replace '--.*$', ''))) {
+                $name = $m.Groups[1].Value
+                if ($m.Groups[2].Success -or $libraryNames.ContainsKey($name)) { continue }
+                Add-Finding 'library-names' 'Error' $rel $lineNo "asks for library '$name', which no NewLibrary call in Libs/ registers, so the call raises 'Cannot find a library instance'; use the name a NewLibrary call in Libs/ registers"
+            }
+        }
+    }
+}
+Write-Timing 'library-names'
+
+# --- settings-close: addon code closes the settings panel without Blizzard's way back to the game menu -----------
+# SettingsPanel:Close() returns to the panel the settings were opened from through ToggleGameMenu(). Called from
+# addon code that runs tainted, and ToggleGameMenu calls the protected SpellStopCasting: ADDON_ACTION_FORBIDDEN on
+# Mists Classic (docs/work/2026-10-11-latent-bugs, verified in game 2026-10-13). It also reopens the game menu
+# behind whatever the addon shows next. Close(true) commits and hides the panel without that step.
+foreach ($rel in $ownLuaFiles) {
+    $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
+    if (-not $text.Contains('SettingsPanel')) { continue }
+    $lineNo = 0
+    foreach ($line in ($text -split "`r?`n")) {
+        $lineNo++
+        if (($line -replace '--.*$', '') -match '\bSettingsPanel\s*:\s*Close\s*\(\s*\)') {
+            Add-Finding 'settings-close' 'Error' $rel $lineNo "SettingsPanel:Close() goes back to the game menu through ToggleGameMenu, whose SpellStopCasting call is forbidden from addon code; call SettingsPanel:Close(true)"
+        }
+    }
+}
+Write-Timing 'settings-close'
+
+# --- util-flags: every addon.Util.Is* the addon reads is one Krowi_Util defines ----------------------------------
+# Krowi_Util dropped IsWrathClassic and IsCataClassic (its 6ee1198, 2025-11-22) and nothing noticed: reading an
+# undefined flag gives nil, so every branch on it took its other side on the 38002 Wrath client
+# (docs/work/2026-10-13-wrath-classic-flags). The names come from Libs/Krowi_Util: `lib.IsX =` and
+# `function lib.IsX(`. Always tree-wide, because a removal there breaks files nobody touched; a warning and no check
+# when the submodule has no Is* names (a checkout made without it).
+$utilFlags = [hashtable]::new([StringComparer]::Ordinal)
+foreach ($rel in $luaFiles) {
+    if (-not $rel.StartsWith('Libs/Krowi_Util/')) { continue }
+    $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
+    foreach ($m in [regex]::Matches($text, '\blib\s*[.:]\s*(Is\w+)\s*=|\bfunction\s+lib\s*[.:]\s*(Is\w+)')) {
+        $utilFlags[$m.Groups[1].Value + $m.Groups[2].Value] = $true
+    }
+}
+if ($utilFlags.Count -eq 0) {
+    Add-Finding 'util-flags' 'Warning' 'Libs/Krowi_Util' 1 "skipped: no Is* names in Libs/Krowi_Util, so the defined flags are unknown; make the checkout with the kit's New-Worktree.ps1"
+} else {
+    foreach ($rel in $ownLuaFiles) {
+        $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
+        if (-not $text.Contains('Util.Is')) { continue }
+        $lineNo = 0
+        foreach ($line in ($text -split "`r?`n")) {
+            $lineNo++
+            foreach ($m in [regex]::Matches(($line -replace '--.*$', ''), '\baddon\.Util\.(Is\w+)')) {
+                if (-not $utilFlags.ContainsKey($m.Groups[1].Value)) {
+                    Add-Finding 'util-flags' 'Error' $rel $lineNo "reads addon.Util.$($m.Groups[1].Value), which Libs/Krowi_Util does not define, so it is always nil and the branch on it never runs"
+                }
+            }
+        }
+    }
+}
+Write-Timing 'util-flags'
 
 # --- luarc: .luarc.json diagnostics.globals stays exact ------------------------------------------
 # The language server resolves the WoW API and FrameXML (ketho.wow-api annotations) and every global
@@ -434,7 +638,7 @@ Write-Timing 'luals'
 
 # --- data-load: evaluate Api + DataAddons headlessly for each client -----------------------------
 $loader = Join-Path $root '.claude\tools\headless\load-data.lua'
-if ((Test-Path $lua) -and (Test-Path $loader)) {
+if ($lua -and (Test-Path $lua) -and (Test-Path $loader)) {
     $ErrorActionPreference = 'Continue'
     $out = & $lua $loader $root Both 2>&1 | ForEach-Object { "$_" }   # runs Retail and Classic, cross-checks references
     $ErrorActionPreference = 'Stop'
@@ -450,7 +654,7 @@ Write-Timing 'data-load'
 
 # --- unit-tests: every headless suite behaves as its scenarios' Recorded fields say ---------------
 $runner = Join-Path $root '.claude\tools\headless\run-tests.lua'
-if ((Test-Path $lua) -and (Test-Path $runner)) {
+if ($lua -and (Test-Path $lua) -and (Test-Path $runner)) {
     $ErrorActionPreference = 'Continue'
     $out = & $lua $runner $root -check 2>&1 | ForEach-Object { "$_" }
     $ErrorActionPreference = 'Stop'
@@ -466,7 +670,7 @@ Write-Timing 'unit-tests'
 # subtrees vanished on 2026-09-20 with load-data at 0 problems. This rule compares the whole parsed
 # tree, per client, against a committed baseline, so a structural change has to be looked at.
 $snapshot = Join-Path $root '.claude\tools\headless\snapshot-categories.lua'
-if ((Test-Path $lua) -and (Test-Path $snapshot)) {
+if ($lua -and (Test-Path $lua) -and (Test-Path $snapshot)) {
     $ErrorActionPreference = 'Continue'
     $out = & $lua $snapshot $root Both -check 2>&1 | ForEach-Object { "$_" }
     $ErrorActionPreference = 'Stop'
@@ -478,19 +682,99 @@ if ((Test-Path $lua) -and (Test-Path $snapshot)) {
 
 Write-Timing 'category-snapshot'
 
+# --- data-snapshot: achievement, zone and registry data still match the recorded baseline ---------
+# The data load proves the data loads, not that it builds what it did before: a changed faction,
+# anchor, reward type, patch or zone placement loads cleanly either way. This rule compares every
+# data-derived achievement property, every zone placement and the registries they resolve against,
+# per client, with committed baselines, so such a change is a reviewed diff (headless/snapshot-data.lua).
+$dataSnapshot = Join-Path $root '.claude\tools\headless\snapshot-data.lua'
+if ($lua -and (Test-Path $lua) -and (Test-Path $dataSnapshot)) {
+    $ErrorActionPreference = 'Continue'
+    $out = & $lua $dataSnapshot $root Both -check 2>&1 | ForEach-Object { "$_" }
+    $ErrorActionPreference = 'Stop'
+    foreach ($line in $out) {
+        $m = [regex]::Match($line, '^(.*?):(\d+): (.*)$')
+        if ($m.Success) { Add-Finding 'data-snapshot' 'Error' $m.Groups[1].Value ([int]$m.Groups[2].Value) $m.Groups[3].Value }
+    }
+}
+Write-Timing 'data-snapshot'
+
 # --- lookup-placeholders: designated DB lookup scripts must be left with empty placeholders -----
-foreach ($script in Get-ChildItem -Path (Join-Path $root '.claude\skills') -Recurse -Filter '_lookup_*.ps1') {
+# The placeholder is the parameter's default in the script's param() block ([string[]] $Ids = @()), so passing
+# -Ids needs no edit; an edited default must be reset. A multi-line @( on its own counts as filled.
+$typePrefix = '^\s*(\[[\w.\[\]]+\]\s*)*'
+foreach ($script in Get-ChildItem -Path (Join-Path $root '.claude\skills') -Recurse -Filter '_*.ps1') {
     $rel = ConvertTo-RelativePath $script.FullName
     $n = 0
     foreach ($line in Get-Content -LiteralPath $script.FullName) {
         $n++
-        if ($line -match '^\s*\$(ids|terms)\s*=\s*@\(\s*[^)\s]') {
+        $filled = ($line -match ($typePrefix + '\$(ids|terms|names)\s*=\s*@\(') -and $line -notmatch '@\(\s*\)') -or
+            $line -match ($typePrefix + '\$(table|name)\s*=\s*"[^"]')
+        if ($filled) {
             $sev = if ($changed.ContainsKey($rel)) { 'Error' } else { 'Warning' }
-            Add-Finding 'lookup-placeholders' $sev $rel $n 'lookup script committed with ids in its placeholder; reset it to @() after running (.github/copilot-instructions.md rule)'
+            Add-Finding 'lookup-placeholders' $sev $rel $n 'lookup script committed with values in its placeholder; pass them as parameters (-Ids, -Terms, -Names) or reset the default to @() / "" after running (.github/copilot-instructions.md rule)'
         }
     }
 }
 Write-Timing 'lookup-placeholders'
+
+# --- pinned-build: a typed build string goes stale with the next patch ---------------------------
+# The lookups returned NOTFOUND for new ids because ten scripts each pinned a different build, some two
+# patches old. The kit's Get-WowBuilds.ps1 resolves the current ones from the server.
+foreach ($script in @(Get-ChildItem -Path (Join-Path $root '.claude\skills') -Recurse -Filter '*.ps1') + @(Get-ChildItem -Path (Join-Path $root 'raw') -Filter '*.ps1')) {
+    $rel = ConvertTo-RelativePath $script.FullName
+    $n = 0
+    foreach ($line in Get-Content -LiteralPath $script.FullName) {
+        $n++
+        if ($line -match '^\s*\$build\s*=\s*["'']\d') {
+            $sev = if ($changed.ContainsKey($rel)) { 'Error' } else { 'Warning' }
+            Add-Finding 'pinned-build' $sev $rel $n 'hard-coded game build; dot-source .claude\tools\KitPath.ps1 and "$KitTools\Get-WowBuilds.ps1", then take (Get-WowBuilds)[$Client] (KAF_RETAIL_PRODUCT=wowxptr for the PTR)'
+        }
+    }
+}
+Write-Timing 'pinned-build'
+
+# --- work-items: docs/work/<issue>-<slug>/ folders have the shape docs/sdlc-playbook.md gives them --
+$workRoot = Join-Path $root 'docs\work'
+$workShape = [ordered]@{
+    'intent.md' = @{ Title = '# Intent: '; Headings = @('Problem', 'Proposed outcome', 'Affected users and systems', 'Constraints', 'Open questions') }
+    'spec.md'   = @{ Title = '# Spec: '; Headings = @('Requirements', 'Design', 'Areas of concern', 'Verification', 'Decision') }
+    'plan.md'   = @{ Title = '# Plan: '; Headings = @('Files that change', 'Order of work', 'Risks', 'Proof') }
+}
+if (Test-Path $workRoot) {
+    foreach ($dir in Get-ChildItem -Path $workRoot -Directory | Where-Object { -not $_.Name.StartsWith('_') }) {   # an _-prefixed folder is not a work item
+        $dirRel = "docs/work/$($dir.Name)"
+        $present = @($workShape.Keys | Where-Object { Test-Path (Join-Path $dir.FullName $_) })
+        $anchor = if ($present.Count) { "$dirRel/$($present[0])" } else { $dirRel }
+        $sev = if (@($changed.Keys | Where-Object { $_ -like "$dirRel/*" }).Count) { 'Error' } else { 'Warning' }
+        if ($dir.Name -cnotmatch '^(\d+|\d{4}-\d{2}-\d{2})-[a-z0-9]+(-[a-z0-9]+)*$') {
+            Add-Finding 'work-items' $sev $anchor 1 "work folder '$($dir.Name)' is not named <issue>-<slug> or <yyyy-mm-dd>-<slug> with a lower-case slug"
+        }
+        if ($present -notcontains 'intent.md') {
+            Add-Finding 'work-items' $sev $anchor 1 'work folder has no intent.md; every work item starts with one (docs/sdlc-playbook.md)'
+        }
+        if ($present -contains 'plan.md' -and $present -notcontains 'spec.md') {
+            Add-Finding 'work-items' $sev "$dirRel/plan.md" 1 'plan.md without a spec.md; the design stage comes before the plan'
+        }
+        foreach ($name in $present) {
+            $rel = "$dirRel/$name"
+            $lines = @(Get-Content -LiteralPath (Join-Path $dir.FullName $name) -Encoding UTF8)
+            $shape = $workShape[$name]
+            if (-not $lines.Count -or -not $lines[0].StartsWith($shape.Title)) {
+                Add-Finding 'work-items' $sev $rel 1 "first line must start with '$($shape.Title.Trim())' (template: Krowi_ClaudeKit\skills\process-issue\templates\$name)"
+            }
+            if (-not @($lines | Where-Object { $_ -cmatch 'Status: (draft|accepted|done)\b' }).Count) {
+                Add-Finding 'work-items' $sev $rel 2 "no 'Status: draft', 'Status: accepted' or 'Status: done' line"
+            }
+            foreach ($heading in $shape.Headings) {
+                if ($lines -cnotcontains "## $heading") {
+                    Add-Finding 'work-items' $sev $rel 1 "missing heading '## $heading' (template: Krowi_ClaudeKit\skills\process-issue\templates\$name)"
+                }
+            }
+        }
+    }
+}
+Write-Timing 'work-items'
 
 # --- mapverifier: raw/MapVerifier.csv must be valid and in canonical form (Sync-MapVerifier.ps1 -Verify) --
 $mvSync = Join-Path $root '.claude\skills\sync-mapverifier\Sync-MapVerifier.ps1'
@@ -550,7 +834,7 @@ Write-Timing 'diff rules'
 # --- zone-decisions: raw/ZoneDataDecisions.md must agree with the ZoneData.lua files (offline checks) --
 $zoneEval = Join-Path $root 'raw\Evaluate-ZoneDataDecisions.ps1'
 $zoneTouched = $changed.Keys | Where-Object { $_ -eq 'raw/ZoneDataDecisions.md' -or $_ -like '*/ZoneData.lua' }
-if ((Test-Path $zoneEval) -and (-not $ChangedOnly -or $zoneTouched)) {
+if (-not $kitMissing -and (Test-Path $zoneEval) -and (-not $ChangedOnly -or $zoneTouched)) {   # the evaluator dot-sources the kit's Get-WowBuilds
     $ErrorActionPreference = 'Continue'
     $out = & $zoneEval -SkipDb *>&1 | ForEach-Object { "$_" }   # *> : the evaluator reports through Write-Host (information stream)
     $ErrorActionPreference = 'Stop'
@@ -575,20 +859,27 @@ if ($codeChanged.Count -gt 0 -and -not $changed.ContainsKey('_Packaging/Changelo
     Add-Finding 'changelog' 'Warning' '_Packaging/Changelog.md' 1 "addon files changed ($($codeChanged.Count)) but the changelog was not; every user-visible change needs a line under the next version"
 }
 
+# --- kit: without Krowi_ClaudeKit the rules that need its Lua did not run ------------------------------
+if ($kitMissing) {
+    Add-Finding 'kit' 'Warning' '.claude/tools/KitPath.ps1' 1 "$kitMissing Not run: lua-syntax, globals, removed-api, deprecated-api, luarc, data-load, unit-tests, category-snapshot, data-snapshot, zone-decisions."
+}
+
 # --- Report ------------------------------------------------------------------------------------
-# Check-Repo.ignore: one "<rule or *> <path glob>" per line, # comments; for deliberate exceptions
+# Check-Repo.ignore: one "<rule or *> <path glob> [<name>]" per line, # comments; for deliberate exceptions
 $ignore = @()
 $ignoreFile = Join-Path $PSScriptRoot 'Check-Repo.ignore'
 if (Test-Path $ignoreFile) {
     foreach ($line in Get-Content $ignoreFile) {
         $t = ($line -replace '#.*$', '').Trim()
-        if ($t -match '^(\S+)\s+(\S+)$') { $ignore += @{ Rule = $Matches[1]; Path = $Matches[2] } }
+        # an optional third field narrows the exception to findings about that name ('<name>' in the message), so one
+        # deliberate read does not hide every other finding of the rule in the file
+        if ($t -match '^(\S+)\s+(\S+)(?:\s+(\S+))?$') { $ignore += @{ Rule = $Matches[1]; Path = $Matches[2]; Name = $Matches[3] } }
     }
 }
-$alwaysOn = @('dup-id', 'saved-variables', 'lua-syntax', 'globals', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'zone-decisions', 'mapverifier', 'changelog')
+$alwaysOn = @('section-order', 'dup-id', 'saved-variables', 'lua-syntax', 'globals', 'removed-api', 'deprecated-api', 'library-names', 'util-flags', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'data-snapshot', 'zone-decisions', 'mapverifier', 'changelog', 'kit')
 $report = $findings | Where-Object {
     $f = $_
-    -not ($ignore | Where-Object { ($_.Rule -eq '*' -or $_.Rule -eq $f.Rule) -and $f.Path -like $_.Path })
+    -not ($ignore | Where-Object { ($_.Rule -eq '*' -or $_.Rule -eq $f.Rule) -and $f.Path -like $_.Path -and (-not $_.Name -or $f.Message.Contains("'$($_.Name)'")) })
 }
 if ($ChangedOnly) {
     $report = $report | Where-Object { $changed.ContainsKey($_.Path) -or ($alwaysOn -contains $_.Rule) -or ($_.Rule -eq 'files-xml' -and $_.Message -like 'registered file does not exist*') }

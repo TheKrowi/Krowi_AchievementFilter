@@ -42,6 +42,7 @@ local quelThalas = zones:Zone(2537)
 quelThalas:Quests{
     62110, -- Loremaster of Midnight
     42045, -- Midnight
+    63519, -- The Promise of Tomorrow
 }
 quelThalas:Exploration{
     61859, -- Midnight Flight Master
@@ -398,6 +399,22 @@ delves:Delve(8779, { -- Venomfall Deeps
     63333, -- Let Me Solo Him: Azta'rec
     63334, -- Fabled Let Me Solo Him: Azta'rec
 })
+delves:Delve(9036, { -- The Labyrinth of Kindo'jan
+    63724, -- Knock Knock
+    63721, -- The Labyrinth of Kindo'jan
+    63722, -- Whose Labyrinth?
+    63723, -- My Labyrinth
+    63717, -- Kindo'jan's Labyrinth Discoveries
+    63718, -- Lock and Key
+    63719, -- Lock and Key Master
+    63720, -- Happy Hexmask Collector
+    63727, -- Treasures Upon Treasures
+    63728, -- A Few More Can't Hurt
+    63716, -- The First Hash'ey
+    63715, -- Let Me Solo Him: Kindo'jan
+    64039, -- Fabled Let Me Solo Him: Kindo'jan
+    64118, -- The Labyrinth of Kindo'jan: One-Champion Army
+})
 
 local dungeons = expansion:Dungeons{
     61567, -- Midnight Dungeon Hero
@@ -551,7 +568,7 @@ local venomousAbyss = raids:Raid(1320, { -- The Venomous Abyss
     63522, -- Mythic: The Venomous Abyss
     63650, -- Ahead of the Curve: Ula'tek
     63651, -- Cutting Edge: Ula'tek
-    63670, -- Comforting Da Spirits
+    63670, -- Comforting De Spirits
     63472, -- Fang Fatale
 })
 venomousAbyss:Glory{
@@ -579,6 +596,12 @@ raids:Raid(1317, { -- The Tidebound Grotto
     63683, -- Nymrissa Wavecaller
     63681, -- Heroic: Nymrissa Wavecaller
     63682, -- Mythic: Nymrissa Wavecaller
+})
+
+raids:Raid(1324, { -- The Unbinding of Kith'ix
+    63692, -- Kith'ix
+    63693, -- Heroic: Kith'ix
+    63694, -- Mythic: Kith'ix
 })
 
 local professions = expansion:Professions{
@@ -870,4 +893,11 @@ voidAssaults:Named(addon.L["Omnium Folio"], {
 expansion:Named(addon.L["Curse Surges"], { -- Curse Surges
     63390, -- Turn the Surge
     63381, -- Cursebreaker
+})
+
+expansion:Named(addon.L["Aqir Invasions"], { -- Aqir Invasions
+    63680, -- Driving Back the Swarm
+    63658, -- No Hives Left Standing
+    63659, -- Bane of the Swarm
+    63657, -- Aqir Research Associate
 })

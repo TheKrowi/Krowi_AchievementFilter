@@ -1,6 +1,64 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 104.0
+### Changed
+- Achievement guides now name the people to talk to in your game's language
+
+### Fixed
+- Pasting an achievement link into chat with the paste-to-chat modifier no longer gives an error when the game's deprecated API fallbacks are turned off
+
+## 103.0 - 2026-10-14
+### Added
+- The class-specific Campaign, Hidden Potential, Raise an Army and Legendary Research achievements are now tied to their class hall, so they show in the Current Zone and Selected Zone categories and on the world map
+- Achievement guides: Legendary Research of the Ebon Blade now comes with numbered steps (how to get there, whom to talk to, which class hall upgrades you still have to research and what they cost), in its tooltip, its right-click menu and a side panel that shows when you hover the new map pin icon on the achievement and stays when you click it (next to the reward preview if that is open too), or under the selected achievement if you turn that on. A place in a guide gets a map pin or a TomTom waypoint in one click. Choose where guides show and which waypoint they use under Achievements > Style > Guide
+
+### Fixed
+- Clicking a Xu-Fu's Pet Guides link in the right-click menu of a pet battle achievement, or the Tutorial button in the General options, no longer gives an error
+- Right-click menu entries for related achievements the addon does not know, marked "(Missing)", are greyed out again
+- Opening a tutorial page or Screenshot Mode from the options no longer acts like an extra Escape press (opening the game menu, or clearing your target), which Mists Classic also reported as the addon being blocked from an action
+- In Wrath of the Lich King raids, the 10-player Glory of the Raider achievements now show in the Current Zone category at 10-player difficulty instead of 25-player, and Master of Wintergrasp, Azeroth's Next Top Model and Glory of the Ulduar Raider show at both raid sizes
+- Hero of the Zandalar Tribe now lists both times it could be earned in its tooltip: before Cataclysm, and again during WoW's 20th Anniversary
+- Upper Blackrock Spire (Classic) and Leeeeeeeeeeeeeroy! no longer show twice in Upper Blackrock Spire on Retail, and on Classic they now show in Blackrock Spire, in the Current Zone category and on the world map
+- Escape now closes the reward preview first, like the guide panel, instead of closing the achievement window along with it
+- The addon recognises the Wrath Classic client again, for its achievement tabs, search box, tooltips and Wowhead links among others; a shared library update in November 2025 had stopped that
+
+## 102.0 - 2026-10-09
+### Added
+- 12.1.5 "The Promise of Tomorrow" patch data
+    - The Unbinding of Kith'ix raid: Normal, Heroic and Mythic
+    - The Labyrinth of Kindo'jan, listed with the Midnight Delves: Knock Knock, chamber runs, Discoveries, Lock and Key, Hexmasks, Mislaid Oddities, The First Hash'ey, Let Me Solo Him, Fabled Let Me Solo Him and One-Champion Army
+    - Aqir Invasions, a new Midnight category for the invasions in Eversong Woods and Zul'Aman and the Aqir Research Enclave
+    - The Promise of Tomorrow campaign achievement
+    - Midnight Keystone Myth: Season 2
+    - Hallow's End neighborhood candy achievements and Sweet Tooth, I Ain't Afraid of no Ghost, the Winter Veil Master of Merry Mayhem, and WoW's 22nd Anniversary
+    - Fungal Not Frugal feat of strength
+- The Void Assaults achievements are now tied to the zones they are earned in (Eversong Woods, Zul'Aman and, for the Omnium Folio, Isle of Quel'Danas), so they show in the Current Zone and Selected Zone categories and on the world map
+- The Curse Surges achievements Turn the Surge and Cursebreaker are now tied to The Coiled Isle, so they show in the Current Zone and Selected Zone categories and on the world map
+
+### Fixed
+- Tricks and Treats of Midnight is now marked as obtainable only during Hallow's End, like the other Tricks and Treats achievements
+- The transmog set progress in the achievement tooltip, for example on I'm Bringing Nerub-ack, no longer stays on "Collecting data"
+
+## 101.2 - 2026-10-07
+### Added
+- Additional deDE, frFR, ruRU and zhCN localization
+
+### Fixed
+- X-45 Heartbreaker is now marked as obtainable only during Love is in the Air, like Tough Love
+
+## 101.1 - 2026-10-04
+### Added
+- BlizzCon 2026 feat of strength, with the BlizzCon Doormat decor reward
+- Additional zhCN localization
+
+### Fixed
+- The Guild tab no longer shows the browsing history's back and forward buttons on top of Blizzard's Back button: the addon's buttons now show on the addon's own tabs, and Blizzard's tabs keep Blizzard's own navigation
+- On Classic, the world map button no longer disappears once the map is switched between its small and full size, after which it stayed hidden until a reload; it also stays in front of the map with GW2_UI's map skin and Leatrix Maps
+- The heroic dungeon achievements that became feats of strength when Skyreach, Pit of Saron and Seat of the Triumvirate were reworked for Midnight are now marked no longer obtainable since 12.0.1: Ready for Raiding IV, Magnify... Enhance, I Saw Solis, Monomania, Doesn't Go to Eleven, Don't Look Up, Welcome the Void, Let it All Out and Darker Side. On Classic, Doesn't Go to Eleven and Don't Look Up stay obtainable
+- I Can't Hear You Over the Sound of How Awesome I Am is no longer listed as Time Limited, and its tooltip reads "temporarily obtainable from the start of Cataclysm (pre-patch) (4.0.3) until the end of Mists of Pandaria (pre-patch) (5.0.4)" instead of naming 5.0.4 as the start and 2100/01/01 as the end; on Mists of Pandaria Classic it ends "up until the start of Mists of Pandaria (5.5.0)". It All Makes Sense Now showed the same wrong sentence. On Mists of Pandaria Classic, so did Challenge Conqueror: Platinum (Season 3) and its Realm First!; they now read "temporarily obtainable during Siege of Orgrimmar (5.5.4)", the patch their season started in, and the Season 2 ones read "during The Thunder King (5.5.3)" to match
+- Goal! is now marked as no longer obtainable: it could only be earned while Richmond was in Silvermoon, during Revelations (12.0.7)
+
 ## 101.0 - 2026-09-26
 ### Changed
 - The "Added in" tooltip names Wrath of the Lich King patches more precisely: 3.0.2 is Wrath of the Lich King (pre-patch), 3.2.2 is 5th Anniversary Celebration instead of Call of the Crusade, and 3.3.5 is Defense of the Ruby Sanctum instead of Defending the Ruby Sanctum

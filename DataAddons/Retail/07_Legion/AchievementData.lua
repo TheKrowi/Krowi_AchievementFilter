@@ -523,11 +523,11 @@ KrowiAF.AchievementData["07_03_00"] = {
 	Ach(12000), -- Mythic: The Coven of Shivarra
 	Ach(12001), -- Mythic: Aggramar
 	Ach(12002):Title(), -- Mythic: Argus the Unmaker
-	Ach(12004), -- Welcome the Void
-	Ach(12005), -- Let it All Out
+	Ach(12004):Obtainable("Before", "Version", {12, 0, 1}), -- Welcome the Void
+	Ach(12005):Obtainable("Before", "Version", {12, 0, 1}), -- Let it All Out
 	Ach(12007), -- Heroic: Seat of the Triumvirate
 	Ach(12008), -- Mythic: Seat of the Triumvirate
-	Ach(12009), -- Darker Side
+	Ach(12009):Obtainable("Before", "Version", {12, 0, 1}), -- Darker Side
 	Ach(12010):Title():PvP(23), -- Fierce Gladiator: Legion Season 5
 	Ach(12020), -- Argussy Up
 	Ach(12021), -- Claws Out

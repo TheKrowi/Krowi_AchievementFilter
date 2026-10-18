@@ -38,10 +38,10 @@ local function AnalyzeTransmogSets()
         for _, primaryAppearance in ipairs(primaryAppearances) do
             local sourceId = primaryAppearance.appearanceID
             local sourceInfo = C_TransmogCollection.GetSourceInfo(sourceId)
-            local equipLoc = select(9, GetItemInfo(sourceInfo.itemID))
+            local equipLoc = select(9, C_Item.GetItemInfo(sourceInfo.itemID))
             while equipLoc == nil do
                 coroutine.yield()
-                equipLoc = select(9, GetItemInfo(sourceInfo.itemID))
+                equipLoc = select(9, C_Item.GetItemInfo(sourceInfo.itemID))
             end
 
             if equipLoc ~= nil then

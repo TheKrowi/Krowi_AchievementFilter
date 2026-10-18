@@ -17,6 +17,14 @@ L["Better Wardrobe Desc"] = [=[修复{betterWardrobe}破坏的外观链接。
 
 没有选项]=]
 L["Calendar Button Position Overwrite Desc"] = "{addon}启用时位置设置不生效。"
+L["EllesmereUI"] = true
+L["EllesmereUI Desc"] = [=[下列所有选项仅提供信息，均由EllesmereUI进行控制。
+
+如需更改这些选项，请前往 游戏菜单 -> EllesmereUI -> Blizz UI Enhanced -> Blizzard Window Skins -> Third-Party Addons，然后切换所需选项。
+]=]
+L["EllesmereUI Skin Achievements"] = "美化成就"
+L["EllesmereUI Skin Achievements Desc"] = [=[将EllesmereUI外观应用于成就窗口。
+-> Blizz UI Enhanced -> Blizzard Window Skins -> Third-Party Addons]=]
 L["ElvUI"] = true
 L["ElvUI Desc"] = [=[下列所有选项仅提供信息，均由ElvUI进行控制。
 

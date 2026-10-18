@@ -4,11 +4,13 @@
 
     <Script file="WowheadLink.lua" />
     <Script file="GoTo.lua" />
+    <!-- PartOfAChain to FirstCategory are Go to's own sections: each attaches to GetLastSection(), so nothing goes between them and GoTo.lua -->
     <Script file="PartOfAChain.lua" />
     <Script file="RequiredFor.lua" />
     <Script file="OtherFaction.lua" />
     <Script file="OtherLocations.lua" />
     <Script file="FirstCategory.lua" />
+    <Script file="Guide.lua" />
     <Script file="PopOut.lua" />
     <Script file="RewardPreview.lua" />
     <Script file="TransmogSets.lua" />

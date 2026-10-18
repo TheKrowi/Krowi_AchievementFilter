@@ -14,16 +14,20 @@ You verify Krowi_AchievementFilter achievement data against the game. You return
 
 ## Tools you use, and the one rule about them
 
-Run the DB lookups through the designated scripts. Edit the placeholder variable inside the script, run the script with its normal command, then reset the placeholder to `@()` and confirm with `git status` that the script is unchanged. Never write ad-hoc `Invoke-RestMethod` or `curl` commands with ids embedded; the user rejects them.
+Run the DB lookups through the designated scripts, passing the values as parameters. Never write ad-hoc `Invoke-RestMethod` or `curl` commands with ids embedded; the user rejects them.
 
 ```powershell
 & ".claude\skills\add-zone-data\_start_server.ps1"                       # start the DB server if needed (can take more than 60 s the first time)
-& ".claude\skills\add-achievement-data\_lookup_ids.ps1"                  # set $ids = @(...) and $build = "<build>" inside first; output id|Title|Reward|Faction|RewardItemID
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\Get-WowBuilds.ps1"                                      # the current Retail and Classic build strings
+& ".claude\skills\add-zone-data\_lookup_ids.ps1" -Ids 6,12345            # both builds at once; output id|Title|Description|builds=retail,classic
+& ".claude\skills\add-achievement-data\_lookup_ids.ps1" -Ids 6,12345 -Client Classic   # one build with reward and faction; output id|Title|Reward|Faction|RewardItemID
 & ".claude\skills\verify-achievement-data\Verify-AchievementData.ps1" "<DataAddons file>"   # full entry verification with build auto-detection and fallback
-& ".claude\tools\lua51\lua.exe" ".claude\tools\headless\load-data.lua" "$PWD" Both          # offline pipeline: duplicates, bad keys, dangling references, in 0.5 s
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\lua.exe" ".claude\tools\headless\load-data.lua" "$PWD" Both          # offline pipeline: duplicates, bad keys, dangling references, in 0.5 s
 ```
 
-Get the current build strings from `/casc/builds` and `/casc/builds?remote=true` (the `Test-VerifyScript.ps1` in the verify skill shows the exact request). Include one control id you know exists (for example 6, "Level 10", exists on both builds) so a run of NOTFOUND results is proven to be real and not a failed query.
+Your shell is Bash, so run the pipeline as `"/e/World of Warcraft Addon Development/Krowi_ClaudeKit/tools/lua51/lua.exe" .claude/tools/headless/load-data.lua "$PWD" Both` (the form the permission rules allow) and a script as `pwsh -NoProfile -File <script> <parameters>`.
+
+Builds resolve from the server (`/casc/builds`, then `?remote=true`), so never type one; for content still on the PTR, set `$env:KAF_RETAIL_PRODUCT = "wowxptr"` first. Include one control id you know exists (for example 6, "Level 10", exists on both builds) so a run of NOTFOUND results is proven to be real and not a failed query.
 
 ## Procedure
 

@@ -17,6 +17,7 @@ KrowiAF.AchievementData["04_00_03"] = {
 	Ach(4908):FactionSplit(faction.Horde, 12456), -- Ghostlands Quests
 	Ach(5223):HousingDecor(3867):IsPvP(), -- Master of Twin Peaks
 	Ach(5245):HousingDecor(11296):IsPvP(), -- Battle for Gilneas Victory
+	Ach(5313):Obtainable("Until", "Version", {5, 0, 4}), -- I Can't Hear You Over the Sound of How Awesome I Am
 	Ach(5344):AutoFactionSplit(faction.Alliance, 5358):PvP(9), -- Hero of the Alliance / Horde: Vicious
 	Ach(5442):HousingDecor(4813), -- Full Caravan
 	Ach(5533):Obtainable("Never"), -- Veteran of the Shifting Sands

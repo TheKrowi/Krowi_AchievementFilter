@@ -121,18 +121,101 @@ local classHalls = {
     11218, -- There's a Boss In There
 }
 
-zoneData:Zone(24, classHalls) -- Light's Hope Chapel (Paladin)
-zoneData:Zone(626, classHalls) -- Dalaran (Rogue — Hall of Shadows)
-zoneData:Zone({647, 648}, classHalls) -- Acherus: The Ebon Hold (Death Knight)
-zoneData:Zone(695, classHalls) -- Skyhold (Warrior)
-zoneData:Zone(702, classHalls) -- Netherlight Temple (Priest)
-zoneData:Zone(709, classHalls) -- The Wandering Isle (Monk)
-zoneData:Zone(717, classHalls) -- Dreadscar Rift (Warlock)
-zoneData:Zone({719, 720, 721}, classHalls) -- Mardum, the Shattered Abyss (Demon Hunter)
-zoneData:Zone(726, classHalls) -- The Maelstrom (Shaman)
-zoneData:Zone({734, 735}, classHalls) -- Hall of the Guardian (Mage)
-zoneData:Zone(739, classHalls) -- Trueshot Lodge (Hunter)
-zoneData:Zone({715, 747}, classHalls) -- The Dreamgrove (Druid), Emerald Dreamway
+zoneData:Zone(24, { -- Light's Hope Chapel (Paladin)
+    classHalls,
+    42276, -- The Highlord's Campaign
+    42293, -- Hidden Potential of the Highlord
+    60968, -- Legendary Research of the Silver Hand
+    60987, -- Raise an Army for the Sanctum of Light
+})
+
+zoneData:Zone(626, { -- Dalaran (Rogue — Hall of Shadows)
+    classHalls,
+    42279, -- The Shadowblade's Campaign
+    42295, -- Hidden Potential of the Shadowblade
+    60970, -- Legendary Research of the Uncrowned
+    60989, -- Raise an Army for the Hall of Shadows
+})
+
+zoneData:Zone({647, 648}, { -- Acherus: The Ebon Hold (Death Knight)
+    classHalls,
+    42270, -- The Deathlord's Campaign
+    42287, -- Hidden Potential of the Deathlord
+    60962, -- Legendary Research of the Ebon Blade
+    60981, -- Raise an Army for Acherus
+})
+
+zoneData:Zone(695, { -- Skyhold (Warrior)
+    classHalls,
+    42282, -- The Battlelord's Campaign
+    42298, -- Hidden Potential of the Battlelord
+    60973, -- Legendary Research of the Valarjar
+    60992, -- Raise an Army for Skyhold
+})
+
+zoneData:Zone(702, { -- Netherlight Temple (Priest)
+    classHalls,
+    42277, -- The High Priest's Campaign
+    42294, -- Hidden Potential of the High Priest
+    60969, -- Legendary Research of the Netherlight Conclave
+    60988, -- Raise an Army for the Netherlight Temple
+})
+
+zoneData:Zone(709, { -- The Wandering Isle (Monk)
+    classHalls,
+    42275, -- The Grandmaster's Campaign
+    42292, -- Hidden Potential of the Grandmaster
+    60967, -- Legendary Research of Five Dawns
+    60986, -- Raise an Army for the Temple of Five Dawns
+})
+
+zoneData:Zone(717, { -- Dreadscar Rift (Warlock)
+    classHalls,
+    42281, -- The Netherlord's Campaign
+    42297, -- Hidden Potential of the Netherlord
+    60972, -- Legendary Research of the Black Harvest
+    60991, -- Raise an Army for the Dreadscar Rift
+})
+
+zoneData:Zone({719, 720, 721}, { -- Mardum, the Shattered Abyss (Demon Hunter)
+    classHalls,
+    42271, -- The Slayer's Campaign
+    42288, -- Hidden Potential of the Slayer
+    60963, -- Legendary Research of the Illidari
+    60982, -- Raise an Army for the Fel Hammer
+})
+
+zoneData:Zone(726, { -- The Maelstrom (Shaman)
+    classHalls,
+    42280, -- The Farseer's Campaign
+    42296, -- Hidden Potential of the Farseer
+    60971, -- Legendary Research of the Maelstrom
+    60990, -- Raise an Army for the Maelstrom
+})
+
+zoneData:Zone({734, 735}, { -- Hall of the Guardian (Mage)
+    classHalls,
+    42274, -- The Archmage's Campaign
+    42291, -- Hidden Potential of the Archmage
+    60966, -- Legendary Research of the Tirisgarde
+    60985, -- Raise an Army for the Hall of the Guardian
+})
+
+zoneData:Zone(739, { -- Trueshot Lodge (Hunter)
+    classHalls,
+    42273, -- The Huntmaster's Campaign
+    42290, -- Hidden Potential of the Huntmaster
+    60965, -- Legendary Research of the Unseen Path
+    60984, -- Raise an Army for the Trueshot Lodge
+})
+
+zoneData:Zone({715, 747}, { -- The Dreamgrove (Druid), Emerald Dreamway
+    classHalls,
+    42272, -- The Archdruid's Campaign
+    42289, -- Hidden Potential of the Archdruid
+    60964, -- Legendary Research of the Dreamgrove
+    60983, -- Raise an Army for the Dreamgrove
+})
 
 zoneData:Zone({627, 628, 629}, { -- Dalaran (city)
     10770, -- The Tangerine Traveler

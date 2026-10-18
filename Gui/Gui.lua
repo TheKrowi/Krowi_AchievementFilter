@@ -129,7 +129,11 @@ function gui:LoadWithBlizzard_AchievementUI()
         media .. "kaf_special"
     }
     for i, t in next, addon.TabsOrder do
-        addon.Tabs[t].Button = self.AchievementFrameTabButtonFactory:GetNew(t, addon.Tabs[t].Text, {KrowiAF_AchievementFrameFilterButton, KrowiAF_SearchBoxFrame, KrowiAF_CategoriesFrame}, addon.Tabs[t].Categories, addon.Tabs[t].Filters, waterMarks[i])
+        local framesToShow = {KrowiAF_AchievementFrameFilterButton, KrowiAF_SearchBoxFrame, KrowiAF_CategoriesFrame}
+        if self.BrowsingHistory.Frame then -- Only on layouts where Blizzard's own Back button shares the strip
+            tinsert(framesToShow, self.BrowsingHistory.Frame)
+        end
+        addon.Tabs[t].Button = self.AchievementFrameTabButtonFactory:GetNew(t, addon.Tabs[t].Text, framesToShow, addon.Tabs[t].Categories, addon.Tabs[t].Filters, waterMarks[i])
         KrowiAF_RegisterTabButton(addonName, addon.Tabs[t].Name, addon.Tabs[t].Button)
     end
     LoadOldAchievementFrameTabsCompatibility()

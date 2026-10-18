@@ -28,7 +28,7 @@ KrowiAF.AchievementData["03_00_02"] = {
 	Ach(762):Title():AutoFactionSplit(faction.Horde, 948), -- Ambassador of the Horde / Alliance
 	Ach(938):HousingDecor(4839), -- The Snows of Northrend
 	Ach(940):HousingDecor(4841), -- The Green Hills of Stranglethorn
-	Ach(957):Obtainable("Event", 1592), -- Hero of the Zandalar Tribe
+	Ach(957):Obtainable("Before", "Version", {4, 0, 1}):Anniv20(), -- Hero of the Zandalar Tribe
 	Ach(1153):HousingDecor(3896):IsPvP(), -- Overly Defensive
 	Ach(1157):HousingDecor(3893):IsPvP(), -- Duel-icious
 	Ach(1436):Obtainable("Before", "Date", {2019, 6, 11}), -- Friends In High Places

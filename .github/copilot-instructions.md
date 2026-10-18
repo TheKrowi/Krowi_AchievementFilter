@@ -1,6 +1,6 @@
 # Project Instructions — Krowi's Achievement Filter
 
-This is the canonical instruction file for every assistant and contributor working in this repository. `CLAUDE.md` imports it and adds only what is specific to Claude Code; `CONTRIBUTING.md` covers the contributor workflow and points here. When this file and another document disagree, fix the other document.
+This is the canonical instruction file for every assistant and contributor working in this repository. `CLAUDE.md` imports it and adds only what is specific to Claude Code; `CONTRIBUTING.md` covers the contributor workflow and points here. When this file and another document disagree, fix the other document. Every issue, feature and fix follows the work-item lifecycle in `docs/sdlc-playbook.md` (see Work-Item Lifecycle below). This file holds the rules; the detail behind them is in the references listed under Where Non-Code Material Lives, read when a task needs it.
 
 ## Project Summary
 
@@ -13,85 +13,49 @@ This is the canonical instruction file for every assistant and contributor worki
 
 ## Build & Validation
 
-**There is no build step, test suite, external linter or CI in this repository.** The WoW client loads the addon directly from the `.toc` file and is the only full validator. Do not run or invent `luacheck`, `busted`, a Makefile or GitHub Actions; the offline checks that exist live under `.claude/tools/` and install nothing (see below). Packaging and publishing are done by the sibling Krowi Addon Manager project (`.claude/skills/release/SKILL.md` documents how to drive it).
+**There is no build step, no external linter or test framework, and no CI.** The WoW client loads the addon directly from the `.toc` file and is the only full validator. Do not run or invent `luacheck`, `busted`, a Makefile or GitHub Actions; the offline checks install nothing. Packaging and publishing are done by the sibling Krowi Addon Manager project, driven by the `krowi:release` skill (see Git Workflow).
 
-- **Deploy to the game**: the VS Code `fsdeploy` config in `.vscode/settings.json` mirrors `**/*.{lua,blp,tga,xml}` (excluding `.github`, `.vscode`, `_Packaging`, `raw`, `wiki`, `docs`) into `H:\World of Warcraft\_retail_\Interface\AddOns\Krowi_AchievementFilter` and, since 2026-09-23, into the `_classic_` sibling too; the PTR target is commented out there. `.claude/tools/Deploy.ps1` does the same from a terminal and is the way to be sure a client's folder is current: run it with `-WhatIf` before asking for an in-game check, since a reload on a stale install proves nothing.
+**The maintainer's tooling lives in Krowi_ClaudeKit**, a private repo next to this one (`E:\World of Warcraft Addon Development\Krowi_ClaudeKit`). It holds every tool, hook, skill and agent the Krowi repos share: the vendored Lua 5.1.5, `Deploy`, the game readers, the worktree tools, the release and work-item skills, and the taint reviewer. This repo keeps what is its own: the repo lint, the headless pipeline and its snapshots, the scenario suites, the data skills and their lookup scripts. Those reach the kit through `.claude/tools/KitPath.ps1`. Without the kit, `Check-Repo.ps1` runs the rules that need no Lua and warns about the rest. A contributor without the kit follows the rules in this file, and the maintainer runs the full checks before merging.
+
+- **Deploy to the game**: the kit's `Deploy.ps1` (and the VS Code `fsdeploy` config in `.vscode/settings.json`, on save) mirrors the addon into the Retail and Classic AddOns folders. Run it with `-WhatIf` before asking for an in-game check, since a reload on a stale install proves nothing.
 - **Reload in game**: `/reload`. Enable errors with `/luaerror on` or BugSack + BugGrabber.
-- **Static checks**: `.luarc.json` at the repo root configures the Lua language server for any editor: Lua 5.1, the non-addon folders and `Libs/` ignored, the checks that stay off (`undefined-field` and the type-mismatch family; the code has no type annotations), and `diagnostics.globals`. The WoW API, `C_*` namespaces, widget API and the Blizzard FrameXML frames come from the VS Code extension `ketho.wow-api` (with Numy's FrameXML annotations switched on in `.vscode/settings.json`; the extension writes its library path into the user settings so nothing machine-specific lives in the repo), so `diagnostics.globals` holds only what no annotation covers: global strings, Classic-only frames and API, third-party addon globals, and the frames the addon creates by name in Lua or XML. The `luarc` lint rule keeps that list exact (every entry read by an addon file, none assigned by one, sorted), and the `luals` rule runs the language server tree-wide in a full lint. Do not add a name the language server already resolves; if a new global string or third-party global is used, add it sorted or the lint tells you.
+- **Static checks**: the Lua language server runs on `.luarc.json` plus the WoW API and FrameXML annotations of the VS Code extension `ketho.wow-api`, so `diagnostics.globals` lists only what no annotation covers: global strings, Classic-only frames and API, third-party addon globals, and the frames the addon creates by name in Lua or XML. Do not add a name the language server already resolves; add a new global string or third-party global sorted, or the `luarc` lint rule tells you.
 - **Validation without the client**: follow existing patterns exactly; register every new Lua file in the right `Files.xml`; declare every new saved variable in the `.toc`; keep XML template names and Lua frame references in sync; run the offline checks below.
 
-### Offline tooling under `.claude/tools/` (self-contained, installs nothing)
+### Offline tooling (installs nothing)
 
-The repo carries its own Lua 5.1.5 (`.claude/tools/lua51/lua.exe`, `luac.exe`), the exact interpreter WoW embeds, built from the official lua.org source by `Build-Lua51.ps1` in that folder (its README documents provenance). Prefer it over any Lua on PATH: Lua 5.4 and LuaJIT accept syntax the game rejects.
-
-- **Syntax check** one file, several, or the whole tree (about 0.4 s for 400 files). It strips the UTF-8 BOM first because WoW tolerates one and stock Lua 5.1 does not.
+The kit carries Lua 5.1.5 (`Krowi_ClaudeKit\tools\lua51\`), the exact interpreter WoW embeds; prefer it over any Lua on PATH, because Lua 5.4 and LuaJIT accept syntax the game rejects. `.claude/tools/README.md` documents this repo's tools and lint rules in detail, the kit's `README.md` and `WowAddons.md` the shared ones.
 
 ```powershell
-& ".claude\tools\lua51\lua.exe" ".claude\tools\lua51\check-syntax.lua" "Globals.lua" "Data\Data.lua"
-Get-ChildItem -Recurse -Filter *.lua | Where-Object FullName -notlike '*\.claude\*' | ForEach-Object FullName | & '.claude\tools\lua51\lua.exe' '.claude\tools\lua51\check-syntax.lua' -
+& ".claude\tools\Check-Repo.ps1" -ChangedOnly  # lint the changed files, errors instead of warnings; -Luals adds the language server
+& ".claude\tools\Check-Repo.ps1"               # whole tree, about 12 s plus 30 s for the language server
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\lua.exe" ".claude\tools\headless\load-data.lua" "$PWD" Both     # headless data load
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\lua.exe" ".claude\tools\headless\run-tests.lua" "$PWD" escape   # one scenario suite; -check for the lint form
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\lua.exe" "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\check-syntax.lua" "Globals.lua"   # syntax only
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\Strip-Semicolons.ps1" -DryRun                 # verified semicolon strip; -Path to limit
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\Find-Symbol.ps1" addon.Gui.Search             # defs and refs through the local aliases; a bare member, -List, -Defs
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\New-Worktree.ps1" feature/2026-10-11-thing    # a parallel session's own checkout; Remove-Worktree.ps1 once merged
 ```
 
-- **Repo lint** `.claude/tools/Check-Repo.ps1`: unregistered or missing `Files.xml` entries, duplicate achievement IDs per client, saved variables missing from the `.toc`, Lua syntax, assignments to undeclared globals (rule `globals`, from `luac -l`; the deliberate FrameXML overrides and API polyfills are allowlisted per file in `Check-Repo.globals`), the `.luarc.json` globals list against what the code reads and assigns (rule `luarc`), the Lua language server's own diagnostics tree-wide (rule `luals`, only on full runs or with `-Luals`, only when the VS Code extensions `sumneko.lua` and `ketho.wow-api` are installed; pre-existing findings are warnings, findings in changed files errors), BOM and line endings, trailing semicolons and locale strings added above the `AUTOGENTOKEN` marker on changed lines, lookup-script placeholders left filled in, the zone-decisions log against the ZoneData files (rule `zone-decisions`), the Map Verifier CSV (rule `mapverifier`), the headless data pipeline (rule `data-load`), the headless test suites against their recorded behaviour (rule `unit-tests`), and a changelog reminder. A deliberate exception goes in `Check-Repo.ignore` with a comment; a file whose registration is commented out in an XML is already treated as intentionally disabled.
+- **Repo lint** `Check-Repo.ps1`: a rule per mechanical convention in this file, plus the zone, Map Verifier, work-item, category-snapshot, data-snapshot, data-load and scenario checks. A deliberate exception goes in `Check-Repo.ignore` with a comment.
+- **Data snapshots** `snapshot-categories.lua` and `snapshot-data.lua`: what each client builds (category tree; achievements, zone placements, registries) recorded under `.claude/tools/headless/snapshots/`. A data change shows there as a reviewable diff; regenerate with `-write` and commit the diff with the change that caused it.
+- **Headless data pipeline** `load-data.lua`: the real data load for both clients with WoW globals stubbed; reports every builder error, duplicate registration and `LoadDiagnostics` drop with file and line. Only `Both` cross-checks Shared references. Extend the stubs in `runClient` when a new WoW global is used at load time.
+- **Scenario suites** in `Tests/` (`escape`, `special`, `navigation`, `worldmap`, `obtainable`, `tooltip`, `guide`, `menu`) run headlessly through `run-tests.lua` and in game through `/kaftest <suite>` (debug mode on, out of combat). A scenario carries `Recorded`, the behaviour of the current code verified in game, and `Target`, the desired behaviour; it passes while the code behaves as recorded, so a behaviour change is a reviewable diff and the open targets stay visible without failing anything. Each suite and the in-game runner: `Tests/README.md`.
+- **Closing the loop with the game**: the kit's `Deploy.ps1` mirrors the addon into the client's AddOns folder (incremental, `-WhatIf` to preview), you `/reload` in game, then the kit's `Read-GameErrors.ps1` prints the errors BugGrabber recorded for this addon and this repo's `Read-GameTests.ps1` prints the last `/kaftest` run with every line that differs from the headless run marked. Saved variables are written only on `/reload` or logout, so both readers show when the file was last written. For a layout bug, ask for a screenshot (Print Screen in game, written at once): the kit's `Read-GameScreenshot.ps1` prints the newest one's path to open with the Read tool, and warns when the client saves tga, which the Read tool cannot display.
 
 ```powershell
-& ".claude\tools\Check-Repo.ps1"               # whole tree, about 12 s plus 30 s for luals (zone-decisions and mapverifier are 7 s); -Verbose prints per-rule timings
-& ".claude\tools\Check-Repo.ps1" -ChangedOnly  # only files changed against HEAD, errors instead of warnings; -Luals adds the language-server run
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\Deploy.ps1" -WhatIf            # -Client Classic|Ptr|Xptr|... (Xptr = _xptr_, the second test realm)
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\Read-GameErrors.ps1"           # -Hours 0 -All -Client Classic|Ptr|Xptr|...
+& ".claude\tools\Read-GameTests.ps1"                                                           # -Client Classic|Ptr|Xptr
+& "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\Read-GameScreenshot.ps1"       # -Count 3 -Minutes 0 -Client Classic|Ptr|Xptr|...
 ```
+- **Blizzard UI source**: the kit's `Update-UiSource.ps1` keeps read-only shallow clones of Gethe/wow-ui-source in `..\wow-ui-source\live` and `..\wow-ui-source\classic` next to the repo (`-Branch ptr2` and others on request). Grep them for FrameXML, secure templates and `Blizzard_APIDocumentationGenerated` (signatures and secret-value flags) instead of fetching from the web, and never run anything from them. The export can lag a live patch; the layout and the `ketho.wow-api` annotations are in `.claude/tools/README.md`.
 
-- **Headless data pipeline** `.claude/tools/headless/load-data.lua` runs the data load for both clients in the vendored Lua with WoW globals stubbed: it loads `Api/`, `Objects/`, `Data/Data.lua` and `DataAddons/` in toc order inside a sandboxed environment per client, then drives the real task groups the way `LoadOnPlayerLogin` does. Unknown builder methods, misspelled enum members, non-numeric ids and seasons, malformed or mis-suffixed patch keys, duplicate registrations (including AutoFactionSplit mirrors), unregistered build versions, missing injection targets, and every drop the data API reports to `addon.Data.LoadDiagnostics` (references to achievements no data file registers, an event bound to a missing category, a V1 category node no parser branch takes, an `Obtainable()` that matches no form or uses an unknown anchor word) all surface with file and line, in about 0.5 s. An id that exists only on the other client and is referenced from a Shared file is skipped by design, as the game does. A metatable proxy on the achievement registry cross-checks the collector: a lookup of an unregistered id that no drop site reported fails as a "silent drop site", so a new skip cannot go quiet. `Version` anchors on a build version the client never registers are counted per client and printed as a `warning:` line (tracked debt until milestone anchors; `-v` lists them). Extend the stubs in `runClient` when a new WoW global is used at load time.
+### Data-verification scripts
 
-```powershell
-& ".claude\tools\lua51\lua.exe" ".claude\tools\headless\load-data.lua" "$PWD" Both     # what the lint runs; -v lists stubbed globals
-# Retail or Classic alone also works, but then every Shared reference to an id that only the other client registers is reported (about 1200 lines on Classic); only Both cross-checks
-```
+The data skills query a local game-database server (wow.tools.local at `http://localhost:5000`; start it with `& ".claude\skills\add-zone-data\_start_server.ps1"`) through designated scripts. Each `SKILL.md` documents its workflow, `.claude/tools/README.md` lists every script with its command, and `.claude/skills/verify-achievement-data/API.md` is the query reference.
 
-- **Headless test suites** `.claude/tools/headless/run-tests.lua`: runs scenario suites from `Tests/` (shipped in the addon, loaded last) in the vendored Lua with WoW frames and the relevant FrameXML functions modelled from Blizzard's source. Each scenario carries `Recorded`, the behaviour of the current code verified in game, and `Target`, the desired behaviour; a scenario passes when the code still behaves as recorded, and the scenarios whose target is still open are counted separately, so a behaviour change is a reviewable diff of the scenario file and the open defects stay visible without failing anything. `-check` (what the `unit-tests` lint rule runs) prints a `<file>:<line>:` finding per failing scenario. The same scenarios run in game against the real frames: `/kaftest <suite>` (debug mode on, not in combat), or `/kaftest login <suite>` once to re-run after every `/reload` until `/kaftest login off`; a scenario is skipped there, with the reason stored, when state outside the scenario (a target, a foreign popup, an open menu, a UI panel) could have consumed a press. An addon cannot call `ToggleGameMenu` without `ADDON_ACTION_FORBIDDEN` from Blizzard's protected handlers, so the in-game press runs Blizzard's Escape chain as far as an addon may (the 12.1 handler registry on Retail, the legacy chain on Classic; the scenario file documents both and their sources) and the headless model implements the same primitives for both clients (`-client Retail|Classic`, both by default), providing only globals the game really has so a call to a Blizzard local fails there too. Scenarios can carry `RecordedClassic`/`TargetClassic` where the clients differ. The in-game press never shows the game menu itself (its OnShow builds Blizzard's menu buttons in addon execution) and is not made at all when outside state could consume it. A suite can register a readiness check (`addon.Tests.Ready[<suite>]`); a login run waits for it, a manual run reports why it cannot run. Suites: `escape` (Escape-key handling of the addon's frames), `special` (Watch List, Excluded and Tracking membership and the rebuilds their layout options trigger, driven through the real option setters in game and through the reset-and-reload functions headlessly, on fake achievements; the player's own watched and excluded achievements are snapshotted and restored).
-
-```powershell
-& ".claude\tools\lua51\lua.exe" ".claude\tools\headless\run-tests.lua" "$PWD" escape           # -check for the lint form
-```
-
-- **Closing the loop with the game**: `Deploy.ps1` mirrors the addon into the client's AddOns folder (incremental, `-WhatIf` to preview), you `/reload` in game, then `Read-GameErrors.ps1` prints the errors BugGrabber recorded for this addon and `Read-GameTests.ps1` prints the last `/kaftest` run with every line that differs from the headless run marked. Saved variables are written only on `/reload` or logout, so both readers show when the file was last written.
-
-```powershell
-& ".claude\tools\Deploy.ps1" -WhatIf                    # -Client Classic|Ptr
-& ".claude\tools\Read-GameErrors.ps1"                   # -Hours 0 -All -Client Classic
-& ".claude\tools\Read-GameTests.ps1"                    # -Client Classic
-```
-
-- **Semicolon strip** `Strip-Semicolons.ps1`: removes trailing statement semicolons (a field separator inside a table constructor becomes a comma) through the lexer-aware `lua51/strip-semicolons.lua`, and replaces a file only when `luac -s` produces byte-identical bytecode before and after. Scope is every tracked `.lua` outside `Libs/` and the non-addon folders; `-DryRun` reports without writing, `-Path` limits it to given files.
-
-```powershell
-& ".claude\tools\Strip-Semicolons.ps1" -DryRun          # -Path Globals.lua, Filters.lua
-```
-
-`.claude/` is excluded from the release zip (any dot-directory is) and from fsdeploy, so nothing in it reaches players or the game folder.
-
-### Data-verification scripts (the only "commands" in the repo)
-
-These PowerShell scripts under `.claude/skills/` query a local game-database server (wow.tools.local at `http://localhost:5000`). Each `SKILL.md` documents the workflow; `.claude/skills/verify-achievement-data/API.md` is the query reference.
-
-```powershell
-# Start the DB server if it is not running (waits up to 60 s)
-& ".claude\skills\add-zone-data\_start_server.ps1"
-
-# Zone data: every Zone() entry (duplicates, map ids, ids exist on Retail or Classic) and the decisions log
-# raw/ZoneDataDecisions.md against the files and the DB. Builds are resolved from the server, never typed.
-& "raw\Evaluate-ZoneData.ps1"                                  # -SkipDbCheck for the offline part
-& "raw\Evaluate-ZoneDataDecisions.ps1"                         # -SkipDb for the offline part (what Check-Repo runs)
-
-# Verify a data file against the game DB (ids exist, faction splits, title rewards, comments)
-& ".claude\skills\verify-achievement-data\Verify-AchievementData.ps1" "DataAddons\Retail\11_TheWarWithin\AchievementData.lua"
-& ".claude\skills\verify-achievement-data\Verify-AchievementData.ps1" "<file>" -Checks id-exists,faction,title-reward,description-lang
-
-# Check every achievement in a patch block is placed in some CategoryData.lua
-& ".claude\skills\add-category-data\_evaluate_coverage.ps1"   # set $patchKey/$achievementFile/$build inside first
-
-# Batch ID lookup: id|Title|Reward|Faction|RewardItemID
-& ".claude\skills\add-achievement-data\_lookup_ids.ps1"        # set $ids (and $build) inside first
-```
-
-**Rule for lookup scripts**: edit the placeholder variable (`$ids = @()`, `$terms = @()`) inside the designated script, run it with the same unchanged command, then reset the placeholder. Never write ad-hoc inline `Invoke-RestMethod`/`curl` commands with IDs embedded; the maintainer rejects them, and the `lookup-placeholders` lint rule catches a placeholder left filled in.
+**Rule for lookup scripts**: pass the values as parameters (`-Ids 1,2,3`, `-Terms "x"`, `-Names "x"`), or edit the placeholder (the parameter's default in the script's `param()` block, `[string[]] $Ids = @()`), run the script, and reset the placeholder. A build is never typed: every script resolves it through the kit's `Get-WowBuilds.ps1` (dot-sourced after `.claude/tools/KitPath.ps1`), `-Client Classic` picks the Classic build, and `$env:KAF_RETAIL_PRODUCT = "wowxptr"` points Retail at a patch still on the PTR. Never write ad-hoc inline `Invoke-RestMethod`/`curl` commands with IDs embedded; the maintainer rejects them, the `lookup-placeholders` lint rule catches a placeholder left filled in, and in Claude Code the kit's pre-tool guard hook blocks an inline query to the server.
 
 ## Project Layout
 
@@ -99,55 +63,53 @@ These PowerShell scripts under `.claude/skills/` query a local game-database ser
 
 The WoW client reads `Krowi_AchievementFilter.toc`, which defines the **exact load order**. Files load sequentially in the order listed in the `.toc` and the nested `Files.xml` manifests, and a file can only use what earlier files defined. Every new `.lua` file must be added to the right `Files.xml` or it silently never loads. The order is:
 
-1. `Libs/Files.xml` — bundled libraries (Ace3, LibStub, TaintLess, MetaLua, Krowi_* libs)
+1. `Libs/Files.xml` — bundled libraries
 2. `Api/Files.xml` — public API (`KrowiAF`), enums, data registration functions and builders
 3. `Plugins/Files.xml` — plugin integrations (BetterWardrobe, ElvUI, GW2_UI, InstanceAchievementTracker, ZygorGuidesViewer, AchievementsTabFixes, EllesmereUI)
-4. `Localization/Files.xml` — locale strings (enUS first, then the other locales, then `Shared.lua`)
-5. `Krowi_AchievementFilter.lua` — bootstrap, event handling, load orchestration
-6. `Globals.lua` — shared utility functions (achievement chain helpers, achievement info wrappers, zone lookup, filter counting, transmog set checks, modifier keys, month and weekday names)
-7. `Diagnostics.lua`, `TaintDiagnostics.lua`, `Options/Files.xml`, `Libs/Krowi_Util/Icon.lua`, `Icon.lua`, `Tutorials.lua`, `BrowsingHistory.lua`
-8. `Objects/Files.xml` — core objects (Achievement, Category, Event, Tab, CompareFunc, Flags, BuildVersion, SaturationStyle)
-9. `Filters.lua`, `SearchOptions.lua`
-10. `Gui/FilesModern.xml` (Retail) or `Gui/FilesClassic.xml` (Classic) — all UI frames and widgets
-11. `Data/Files.xml` — runtime data management, event timers, tooltip data, saved data
-12. `DataAddons/Shared/Files.xml`, then `DataAddons/Retail/Files.xml` or `DataAddons/Classic/Files.xml` — achievement/category/zone/event data per expansion
-13. `DataAddons/Loaders/Files.xml` — post-processing loaders that wire the data tables to their processors
+4. `Localization/Files.xml` — enUS first, then the other locales, then `Shared.lua`
+5. `Krowi_AchievementFilter.lua`, `Globals.lua`
+6. `Diagnostics.lua`, `TaintDiagnostics.lua`, `Options/Files.xml`, `Libs/Krowi_Util/Icon.lua`, `Icon.lua`, `Tutorials.lua`, `BrowsingHistory.lua`
+7. `Objects/Files.xml`
+8. `Filters.lua`, `SearchOptions.lua`
+9. `Gui/FilesModern.xml` (Retail) or `Gui/FilesClassic.xml` (Classic)
+10. `Data/Files.xml`
+11. `DataAddons/Shared/Files.xml`, then `DataAddons/Retail/Files.xml` or `DataAddons/Classic/Files.xml`
+12. `DataAddons/Loaders/Files.xml` — post-processing loaders that wire the data tables to their processors
+13. `Tests/Files.xml`
 
-Game-version-conditional loading uses `[AllowLoadGameType mainline]` and `[AllowLoadGameType wrath, cata, mists]` directives in the `.toc`. In code, use `addon.Util.IsMainline`, `addon.Util.IsClassicWithAchievements`, `addon.Util.IsWrathClassic` (from `Libs/Krowi_Util`).
+Game-version-conditional loading uses `[AllowLoadGameType mainline]` and `[AllowLoadGameType wrath, cata, mists]` directives in the `.toc`. In code, use `addon.Util.IsMainline`, `addon.Util.IsClassicWithAchievements`, `addon.Util.IsWrathClassic`, `addon.Util.IsMistsClassic` (from `Libs/Krowi_Util`); the `util-flags` lint rule fails on one that Krowi_Util does not define.
 
 ### Root Files
 
 | File | Purpose |
 |------|---------|
-| `Krowi_AchievementFilter.toc` | Addon metadata + load manifest (Interface versions, SavedVariables, OptionalDeps) |
-| `Krowi_AchievementFilter.lua` | Main entry: event handling (`ADDON_LOADED`, `PLAYER_LOGIN`), load orchestration |
-| `Globals.lua` | Shared utility functions used across the addon: achievement chain helpers, `addon.GetAchievementInfo`/`GetAchievementInfoTable`, the custom-criteria wrappers, zone lookup, filter counting, transmog set checks, modifier keys, month and weekday names. The cache build, the special category trees, the task runner, the Blizzard overrides and the movable-window helpers used to live here too and were split out on 2026-09-19 (see `Data/` and `Gui/` below) |
-| `Bindings.xml` | Key binding definitions for tab toggles and browsing history |
-| `Filters.lua` | Filter definitions (completion, faction, reward type, sort, build version) |
-| `SearchOptions.lua` | Search configuration (which fields to search: IDs, names, descriptions, etc.) |
+| `Krowi_AchievementFilter.toc` | Metadata and load manifest (Interface versions, SavedVariables, OptionalDeps) |
+| `Krowi_AchievementFilter.lua` | Entry point: event handling (`ADDON_LOADED`, `PLAYER_LOGIN`), load orchestration |
+| `Globals.lua` | Shared utilities: achievement chain helpers, `addon.GetAchievementInfo`/`GetAchievementInfoTable`, custom-criteria wrappers, zone lookup, filter counting, transmog set checks, modifier keys, month and weekday names |
+| `Bindings.xml` | Key bindings for tab toggles and browsing history |
+| `Filters.lua`, `SearchOptions.lua` | Filter definitions (completion, faction, reward type, sort, build version); which fields a search covers (IDs, names, descriptions, ...) |
 | `Diagnostics.lua`, `TaintDiagnostics.lua` | Debug/trace logging controlled by options; taint probing helpers |
-| `Icon.lua` | Minimap / data broker icon behaviour |
-| `Tutorials.lua` | In-game tutorial system |
-| `BrowsingHistory.lua` | Achievement navigation history (back/forward) |
+| `Icon.lua`, `Tutorials.lua`, `BrowsingHistory.lua` | Minimap / data broker icon; in-game tutorials; achievement navigation history (back/forward) |
 
 ### Key Directories
 
 | Directory | Purpose |
 |-----------|---------|
-| `Api/` | Public API surface (`KrowiAF` global, created in `Api/API.lua`): enums, data registration functions (`AchievementDataApi`, `CategoryDataApi`, ...), the fluent builders (`AchievementDataBuilder`, `CategoryDataBuilder`, `ZoneDataBuilder`, `BuildVersionDataBuilder`) and `PluginsApi`. `ApiDocumentation.lua` holds example data structures. |
-| `Objects/` | Metatable classes (`x.__index = x; function x:New()`): `Achievement`, `Category`, `Event`, `Tab`, `BuildVersion`, `Flags`, `CompareFunc`, `SaturationStyle`. |
-| `Gui/` | All UI code, split into `FilesModern.xml` (Retail) and `FilesClassic.xml` (Classic). Root files: `Gui.lua` (tabs, sub-frames, the reshaping of `AchievementFrame`), `FramesForClosing.lua` (Escape handling), `BlizzardOverrides.lua` (`addon.OverwriteFunctions`, `addon.LoadBlizzardApiChanges`, `addon.HookFunctions`: the FrameXML functions the addon replaces, the polyfills for removed API and the hooks on Blizzard's achievement frame, all run in boot phase 2), `MovableFrames.lua` (`addon.MakeMovable`, `MakeWindowMovable`, `MakeWindowStatic`). Sub-folders: `WindowFrames/` (AchievementsFrame, CategoriesFrame, FilterButton, Search, SummaryFrame, AchievementButton, ...), `AchievementTooltip/`, `AchievementCalendar/`, `AchievementPopout/`, `EventReminder/`, `RightClickMenu/`, `DataManager/`, `WorldMapButton/`, `FloatingAchievementTooltip/`, `BrowsingHistory/`, `Collections/`, `RewardPreview/`, `SnapFrame/`. |
-| `Data/` | Runtime data management: `TaskRunner.lua` (`addon.StartTasksGroups`, the frame-budgeted task-group runner), `Data.lua` (central registry, registers the data chunks as task groups), `LoadDiagnostics.lua` (`addon.Data.LoadDiagnostics`, the collector every drop site in the data API reports to; each task group starts with a `SetSource` task so a report names its data file, and the summary prints in debug mode after login), `AchievementCache.lua` (`addon.BuildCacheAsync`, the coroutine that walks every achievement id after the data load, plus `ResetCache` and `OnAchievementEarned`), `TemporaryObtainable.lua`, `EventData.lua`, `CustomWidgetEventTimers.lua`, `CustomWorldEventTimers.lua`, `TooltipData.lua`, `RewardPreviewData.lua`, `SpecialCategories.lua` (the special category matrix: Summary, Watch List, Excluded, ...), `SpecialCategoryAchievements.lua` (`addon.WatchAchievement`, `ExcludeAchievement`, `IncludeAchievement`, ...: adding achievements to the special categories and building their mirrored sub-category trees), `DataIntegrityManager.lua` (saved-variable migrations), `SavedData/` (persistence). |
-| `DataAddons/` | All achievement, category, zone, tooltip, transmog set, pet battle link, build version, event and custom criteria **data definitions**, organised per expansion (`01_Vanilla/` through `12_Midnight/`). `Shared/` holds data identical on both clients, `Retail/` and `Classic/` the client-specific entries, `Loaders/` the post-processing that wires raw tables into the runtime. |
-| `Options/` | AceConfig-based options panels: `Defaults.lua`, `General.lua`, `Layout.lua`, `EventReminders.lua`, `Profiles.lua`, `Plugins.lua`, `Credits.lua`. |
-| `Plugins/` | Third-party addon integrations (see load order step 3). The plugin API itself is `Api/PluginsApi.lua` (`KrowiAF.PluginsApi`). |
-| `Localization/` | One file per locale (`enUS`, `deDE`, `esES`, `esMX`, `frFR`, `itIT`, `koKR`, `ptBR`, `ruRU`, `zhCN`, `zhTW`) plus `.Plugins.lua` and `.WrathClassic.lua` variants and `Shared.lua` helpers. See Localization below for the editing rules. |
-| `Libs/` | Vendored libraries: Ace3 suite, LibStub, CallbackHandler, LibDataBroker, LibDBIcon, LibDeflate, LibSerialize, MetaLua, TaintLess, and the `Krowi_*` libraries. `Krowi_Menu`, `Krowi_ProgressBar`, `Krowi_WorldMapButtons`, `Krowi_Tutorials`, `Krowi_Util`, `Krowi_PopupDialog` are git submodules pointing at `TheKrowi/*` repos. **Do not edit `Libs/` unless asked**; fixes belong upstream. |
-| `Media/` | Texture assets (`.blp`). |
-| `Tests/` | In-game test runner (`/kaftest`) and the scenario suites it shares with the headless runner under `.claude/tools/headless/`. Loaded last; only active in debug mode. |
-| `_Packaging/` | Changelog, release notes and CurseForge description. Not loaded by the game. |
-| `docs/`, `wiki/`, `raw/` | Non-code material, see Where Non-Code Material Lives. Not loaded by the game. |
-| `.claude/` | Offline tooling (vendored Lua, lint, headless pipeline, deploy and error readers), skills, subagents and hooks. Not loaded by the game, not shipped. |
+| `Api/` | Public API (`KrowiAF`, created in `API.lua`): enums, data registration functions, fluent builders, `PluginsApi`; `ApiDocumentation.lua` holds example data structures |
+| `Objects/` | Metatable classes: `Achievement`, `Category`, `Event`, `Tab`, `BuildVersion`, `Flags`, `CompareFunc`, `SaturationStyle` |
+| `Gui/` | All UI code (`FilesModern.xml` Retail, `FilesClassic.xml` Classic), one sub-folder per feature; `BlizzardOverrides.lua` holds every FrameXML override, API polyfill and hook on Blizzard's frame |
+| `Data/` | Runtime data: task runner, registry (`Data.lua`), `LoadDiagnostics`, achievement cache, temporary obtainability, events, tooltips, special categories, migrations (`DataIntegrityManager.lua`), `SavedData/` |
+| `DataAddons/` | All **data definitions** (achievement, category, zone, tooltip, transmog set, pet battle link, guide, build version, event, custom criteria) per expansion (`01_Vanilla/` to `12_Midnight/`): `Shared/` identical on both clients, `Retail/` and `Classic/` client-specific, `Loaders/` the post-processing that wires them into the runtime |
+| `Options/` | AceConfig options panels |
+| `Plugins/` | Third-party addon integrations; the plugin API is `Api/PluginsApi.lua` (`KrowiAF.PluginsApi`) |
+| `Localization/` | One file per locale (`enUS`, `deDE`, `esES`, `esMX`, `frFR`, `itIT`, `koKR`, `ptBR`, `ruRU`, `zhCN`, `zhTW`), `.Plugins.lua` and `.WrathClassic.lua` variants, `Shared.lua` helpers |
+| `Libs/` | Vendored libraries, several of them git submodules of `TheKrowi/*` repos. **Do not edit `Libs/` unless asked**; fixes belong upstream |
+| `Media/` | Texture assets (`.blp`) |
+| `Tests/` | The `/kaftest` runner and the scenario suites it shares with the headless runner; loaded last, only active in debug mode |
+| `_Packaging/` | Changelog, release notes, CurseForge description. Not loaded by the game |
+| `docs/`, `raw/`, `.claude/` | Non-code material (see Where Non-Code Material Lives); offline tooling, skills, subagents and hooks. Not loaded by the game, not shipped |
+
+The file map of `Api/`, `Gui/`, `Data/`, `Options/` and `Libs/` is in `docs/architecture.md`.
 
 ## Architecture
 
@@ -161,31 +123,23 @@ Every file starts `local _, addon = ...` (or `local addonName, addon = ...`). `a
 2. `ADDON_LOADED` for `Blizzard_AchievementUI` (load-on-demand): `addon.Gui:LoadWithBlizzard_AchievementUI()` hooks and reshapes `AchievementFrame`. Anything touching Blizzard achievement frames goes here, not in phase 1.
 3. `PLAYER_LOGIN`: `addon.Data:LoadOnPlayerLogin()` builds all achievement/category/zone objects, then `addon.BuildCacheAsync` (in `Data/AchievementCache.lua`) walks every achievement ID. Both run as coroutine-style task groups yielding on a per-frame time budget. **`addon.Data.Achievements` is empty until phase 3 completes**; code that needs populated data must hook into `PostLoadOnPlayerLogin` / `PostBuildCache` in `Data/Data.lua`.
 
-### Data pipeline (the "invisible magic")
+### Data pipeline
 
-Data files declare bare tables and never call processing functions:
+Data files declare bare tables and never call processing functions; the loaders and `Data/Data.lua` turn each table into tasks at login (chunk execution model: `docs/architecture.md`). Registering the same ID twice hits an `assert`, so each achievement lives in exactly one place: Shared (`DataAddons/Shared/EE_.../`, identical on both clients) or the Retail/Classic file (client-specific entries only). Classic-only patches are never migrated to Shared.
 
-```lua
-KrowiAF.AchievementData["11_01_00"] = {   -- key = EE_PP_SS (expansion, major, minor); "_S" suffix = Shared
-    Ach(41234):Mount(),                    -- V2 fluent builder, Api/AchievementDataBuilder.lua
-}
-```
+A `"Version"` anchor in an `Obtainable()` names the patch **as Retail shipped it**; Classic maps it to its own patch through `DataAddons/Classic/ContentTimeline.lua`, and every anchor must resolve on Retail. Never round an anchor to a nearby patch: register the patch the data refers to. How anchors resolve per client, and every `Obtainable()` form with its boundaries: `docs/obtainability.md`.
 
-`DataAddons/Loaders/*.lua` (loaded last) prepend the processor function at index 1 of each chunk (e.g. `KrowiAF.AddEventData`). `Data/Data.lua`'s `Register*DataTasks` push each chunk into `TasksGroups`; the runner (`addon.StartTasksGroups`, `Data/TaskRunner.lua`) calls `chunk[1](unpack(rest))`. For achievements, `Data.lua` also inserts `{KrowiAF.SetAchievementPatch, major, minor, patch}` derived from the table key (first-party data files never write that line themselves), and `Ach()` entries resolve to `KrowiAF.AddAchievementData`, which constructs `addon.Objects.Achievement`. Registering the same ID twice hits an `assert`, so each achievement lives in exactly one place: Shared (`DataAddons/Shared/EE_.../`, identical on both clients) or the Retail/Classic file (client-specific entries only). Classic-only patches are never migrated to Shared.
+A drop is a data defect until proven intentional: every place in the data API that skips or drops an entry reports it to `addon.Data.LoadDiagnostics` (`Data/LoadDiagnostics.lua`) with one of its `Kind`s instead of returning silently, and the headless pipeline fails on an unreported one. Add the `Report` call with any new drop site.
 
-A `"Version"` anchor in an `Obtainable()` names the patch **as Retail shipped it**. `BuildVersionData.lua` only registers patches (provenance and the build-version filter); when each client reached a patch's content is a separate table. Retail has none: an anchor is its own patch. Classic's `DataAddons/Classic/ContentTimeline.lua` maps the Retail patch to the patch where Classic reached that content, `["5.4.0"] = "5.5.4", -- Siege of Orgrimmar`, and every patch it maps to also stands for itself. `KrowiAF.ResolveVersionAnchor` does the lookup; a Retail patch missing from the table means that content has not happened on this client, so an end anchor leaves the achievement obtainable with no end scheduled (not Time Limited) and a start anchor reads as future. Every anchor must resolve on Retail, the reference timeline; the headless pipeline fails otherwise and counts the unresolved ones on Classic as information. Never round an anchor to a nearby patch: register the patch the data refers to, the build-version filter lists only patches some achievement was added in.
-
-A drop is a data defect until proven intentional. Any place in the data API that skips or drops an entry reports it to `addon.Data.LoadDiagnostics` (`Data/LoadDiagnostics.lua`) with one of its `Kind`s instead of returning silently; the headless pipeline reads that table and fails on a lookup of an unregistered id that nothing reported. When adding a new drop site, add the `Report` call with it.
-
-Per-expansion folder contents: `AchievementData`, `CategoryData`, `ZoneData` (one per expansion, never per patch), `TooltipData`, `TransmogSetData`, `PetBattleLinkData`, `CustomCriteriaData`, `EventData`, `BuildVersionData`.
+Per-expansion folder contents: `AchievementData`, `CategoryData`, `ZoneData` (one per expansion, never per patch), `TooltipData`, `TransmogSetData`, `PetBattleLinkData`, `GuideData` (the `KrowiAF.Guide` builder, `Api/GuideDataBuilder.lua`; coordinates measured in game with the debug `/kafwhere`), `CustomCriteriaData`, `EventData`, `BuildVersionData`.
 
 ### Objects and filters
 
-`Objects/*.lua` are metatable classes. `Achievement` carries patch, faction, reward type, PvP/season flags, and a list of temporary-obtainable records; `Data/TemporaryObtainable.lua` resolves those to Past/Current/Future using season anchors registered via `KrowiAF.AddSeasonData`. `Filters.Validate` returns a signed integer (negative = rejected by rule `i`, `1` = show, `2` = always visible), not a boolean.
+`Achievement` carries patch, faction, reward type, PvP/season flags, and a list of temporary-obtainable records; `Data/TemporaryObtainable.lua` resolves those to Past/Current/Future using season anchors registered via `KrowiAF.AddSeasonData`. `Filters.Validate` returns a signed integer (negative = rejected by rule `i`, `1` = show, `2` = always visible), not a boolean.
 
 ### Taint is the recurring bug class
 
-Most recent fixes (see the dev notes in `_Packaging/Changelog.md`) are taint or secret-value errors. Never override Blizzard API functions (`GetAchievementCriteriaInfo`, `GetAchievementNumCriteria` and the like); that approach was removed years ago and its leftovers still cause bugs. The only globals the addon writes on purpose are the FrameXML UI functions it replaces in `addon.OverwriteFunctions` and the polyfills for removed API in `addon.LoadBlizzardApiChanges` (both in `Gui/BlizzardOverrides.lua`); they are listed in `.claude/tools/Check-Repo.globals` and the `globals` lint rule fails on any other write to the global environment. Do not compare or do arithmetic on values from `C_Calendar`, aura, or objective-tracker APIs without considering `SecretInChatMessagingLockdown`. `TaintDiagnostics.lua` and `Diagnostics.lua` exist for probing this; `addon.Diagnostics.DebugEnabled()` gates debug paths.
+Most recent fixes (see the dev notes in `_Packaging/Changelog.md` and the root causes in `docs/work/*/spec.md`) are taint or secret-value errors. Never override Blizzard API functions (`GetAchievementCriteriaInfo`, `GetAchievementNumCriteria` and the like); that approach was removed years ago and its leftovers still cause bugs. The only globals the addon writes on purpose are the FrameXML UI functions it replaces in `addon.OverwriteFunctions` and the polyfills for removed API in `addon.LoadBlizzardApiChanges` (both in `Gui/BlizzardOverrides.lua`); they are listed in `.claude/tools/Check-Repo.globals` and the `globals` lint rule fails on any other write to the global environment. Do not compare or do arithmetic on values from `C_Calendar`, aura, or objective-tracker APIs without considering `SecretInChatMessagingLockdown`. `TaintDiagnostics.lua` and `Diagnostics.lua` exist for probing this; `addon.Diagnostics.DebugEnabled()` gates debug paths.
 
 ### Saved variables and migrations
 
@@ -199,7 +153,7 @@ Declared in the `.toc` `## SavedVariables` line: `KrowiAF_DebugTable`, `KrowiAF_
 
 ### Achievement data format — V2 (current standard)
 
-All achievement entries use `KrowiAF.AchievementData` with the fluent `Ach()` builder, on every expansion and both clients, including new patches added to old expansion files. All first-party data is V2 — achievement data and, since 2026-09-21, category data too; the V1 positional parser in `Api/CategoryDataApi.lua` remains only for plugins and must not be removed, because it is the documented plugin entry point (`Api/ApiDocumentation.lua`).
+All achievement entries use `KrowiAF.AchievementData` with the fluent `Ach()` builder (`Api/AchievementDataBuilder.lua`), on every expansion and both clients, including new patches added to old expansion files. All first-party data is V2, achievement and category data alike; the V1 positional parser in `Api/CategoryDataApi.lua` remains only for plugins and must not be removed, because it is the documented plugin entry point (`Api/ApiDocumentation.lua`).
 
 File header (add `local _, addon = ...` only if `addon` is actually used):
 
@@ -208,7 +162,7 @@ local Ach = KrowiAF.Ach
 local faction = KrowiAF.Enum.Faction -- only if FactionSplit is used
 ```
 
-New patch table (the patch record is derived from the key by `Data/Data.lua`; do not write it):
+New patch table, keyed `EE_PP_SS` (expansion, major, minor; Shared files add the suffix `_S`). The patch record is derived from the key by `Data/Data.lua`; do not write it:
 
 ```lua
 KrowiAF.AchievementData["11_01_00"] = {
@@ -221,7 +175,7 @@ KrowiAF.AchievementData["11_01_00"] = {
 
 ### Category data format — V2 (current standard)
 
-Every first-party `CategoryData*.lua` is V2 (migrated 2026-09-21). A category is built with the fluent builder, never as a positional table:
+Every first-party `CategoryData*.lua` is V2. A category is built with the fluent builder, never as a positional table:
 
 ```lua
 local expansion = KrowiAF.NewExpansion(CT.Midnight, { 62387 })   -- an expansion, in DataAddons/*/XX_*/CategoryData.lua
@@ -230,23 +184,21 @@ KrowiAF.CategoryData.Events = KrowiAF.NewTabCategory("Events", addon.L["Events"]
 local zones = expansion:Zones{ 62386 }      -- typed containers: :Character :Zones :Delves :Dungeons :Raids :Professions :PetBattles
 local quelThalas = zones:Zone(2537)         -- :Zone(uiMapId), :Raid/:Dungeon(journalId), :Delve(areaPoiId) — a zone may hold zones
 quelThalas:Quests{ 62110, 42045 }           -- zone sub-containers :Quests :Exploration :PvP :Reputation, which merge
-expansion:Named(CT.Prey, { 62191 }):Merge():WithId(2570)   -- anything else; :Named NEVER merges, :Merge() is explicit
+theWakingShores:Named(addon.L["Primal Storms"], { 16463 }):Merge():WithId(1363)   -- anything else (Dragonflight); :Named NEVER merges, :Merge() is explicit
 ```
 
-- `:Merge()` is always written out. The only implicit merges are the zone sub-containers and the 13 profession helpers.
-- `:WithId(n)` declares a category id. Declared ids are the plugin contract (`KrowiAF.NewInjection(971)`) and must never change; without one a category draws an auto-allocated id that is a parse position and must not be relied on or persisted.
-- `:Key("Name")` gives a category a stable string handle for `KrowiAF.NewInjection` to target instead — preferred for anything new that another file must attach to.
-- **Any change to a category file must leave `.claude/tools/headless/snapshots/` unchanged**, or the diff must be reviewed and committed with it. The `category-snapshot` lint rule enforces this; see `docs/how-to/migrate-category-data.md`.
+- `:Merge()` is always written out; the only implicit merges are the zone sub-containers and the 13 profession helpers.
+- `:WithId(n)` ids are the plugin contract (`KrowiAF.NewInjection(971)`) and never change; without one a category draws an auto-allocated id, a parse position that must not be relied on or persisted.
+- `:Key("Name")` gives a category a stable string handle for `KrowiAF.NewInjection`, preferred for anything new that another file must attach to.
+- **A change to a category file must leave `.claude/tools/headless/snapshots/` unchanged**, or its reviewed diff is committed with it (`category-snapshot` lint rule; the builder's design is in `docs/how-to/migrate-category-data.md`).
 
 ### Steps for adding new achievements
 
-1. Add the achievement data to the appropriate `DataAddons/<Retail|Classic|Shared>/XX_ExpansionName/AchievementData.lua`. Canonical references: `DataAddons/Retail/11_TheWarWithin/`, `Api/ApiDocumentation.lua`, `wiki/achievement-data/achievement-data-format.md`.
-2. Add category data in the corresponding `CategoryData.lua`, in the V2 form above (`wiki/achievement-data/category-data-format.md`, `docs/category-data-reference.md`).
-3. If achievements have zone associations, update the expansion's `ZoneData.lua` (`wiki/achievement-data/zone-data-format.md`, `raw/ZoneDataDecisions.md`).
-4. If achievements have tooltip extras, update `TooltipData.lua`.
-5. Update `BuildVersionData.lua` if a new patch version is introduced, or if an `Obtainable()` anchor names a patch not yet registered (`minor:Patch(n, addon.L["Name"])`; when a Classic re-release reaches new content, add its Retail patches to `DataAddons/Classic/ContentTimeline.lua`).
-6. The `DataAddons/Loaders/` scripts process the tables automatically; no manual wiring is needed.
-7. Run the headless pipeline (or the repo lint) and the data-verification scripts above.
+1. Achievement data in `DataAddons/<Retail|Classic|Shared>/XX_ExpansionName/AchievementData.lua` (the `add-achievement-data` skill; `docs/obtainability.md` for `Obtainable()` windows).
+2. Category data in the corresponding `CategoryData.lua`, in the V2 form above (`Api/CategoryDataBuilder.lua`; the `add-category-data` skill and its `REFERENCE.md`).
+3. Zone associations in the expansion's `ZoneData.lua` (the `add-zone-data` skill holds the rules, `docs/zone-decisions.md` the reasons behind them, `raw/ZoneDataDecisions.md` the per-achievement log); tooltip extras in `TooltipData.lua`.
+4. `BuildVersionData.lua` when a new patch version is introduced, or when an `Obtainable()` anchor names a patch not yet registered (`minor:Patch(n, addon.L["Name"])`); when a Classic re-release reaches new content, add its Retail patches to `DataAddons/Classic/ContentTimeline.lua`.
+5. No manual wiring: the `DataAddons/Loaders/` scripts process the tables. Run the headless pipeline (or the repo lint) and the data-verification scripts, then regenerate the snapshots (`snapshot-data.lua` and, for category changes, `snapshot-categories.lua`, both with `-write`), read their diff as the review of what the data change did, and commit it with the data.
 
 Step-by-step guides in `docs/how-to/`: `add-patch-achievements.md`, `add-expansion.md`, `add-event.md`, `update-localization.md`.
 
@@ -255,7 +207,7 @@ Step-by-step guides in `docs/how-to/`: `add-patch-achievements.md`, `add-expansi
 These rules apply to **all** new and edited code. Follow them without being asked.
 
 - **Files**: UTF-8 without BOM, CRLF line endings, 4-space indent, no final newline (`.editorconfig`). The `bom` and `line-endings` lint rules enforce the first two.
-- **Editing tools**: edit with an editor, the Edit/Write tools, or PowerShell. Git Bash `sed -i` and `awk` on this machine rewrite the whole file with LF endings (and `awk` adds a final newline) even when the pattern does not match, so a "no-op" `sed` silently breaks the `line-endings` rule on every file it touched. Use Bash only for read-only work: grep, diff, git, running the vendored Lua.
+- **Editing tools**: edit with an editor, the Edit/Write tools, or PowerShell. Git Bash `sed -i` and `awk` on this machine rewrite the whole file with LF endings (and `awk` adds a final newline) even when the pattern does not match, so a "no-op" `sed` silently breaks the `line-endings` rule on every file it touched. Use Bash only for read-only work: grep, diff, git, running the vendored Lua. In Claude Code a pre-tool hook denies in-place `sed`/`awk`/`perl` and Bash redirects into repo files.
 
 ### File header
 
@@ -271,7 +223,7 @@ local addonName, addon = ...
 
 ### Semicolons
 
-Do **not** end statements with semicolons. The whole tree was stripped on 2026-09-11 (7593 semicolons in 221 files, proven identical through `luac -s` bytecode), so any trailing semicolon is new. The `semicolon` lint rule fails on one on an added line; `.claude/tools/Strip-Semicolons.ps1` re-runs the same verified strip if a batch of them ever comes back (a CurseForge locale export, an upstream merge).
+Do **not** end statements with semicolons. The whole tree has been stripped of them, so any trailing semicolon is new. The `semicolon` lint rule fails on one on an added line; the kit's `Strip-Semicolons.ps1` re-runs the same verified strip if a batch of them ever comes back (a CurseForge locale export, an upstream merge).
 
 ### Naming
 
@@ -342,19 +294,30 @@ KrowiAF_SavedData.Fixes = KrowiAF_SavedData.Fixes or {}
 - WoW API calls are used directly (no wrappers unless specifically needed), and never overridden (see Taint above).
 - Never write to the global environment except through `addon.OverwriteFunctions` / `addon.LoadBlizzardApiChanges`; every new global must be allowlisted in `.claude/tools/Check-Repo.globals` with a reason, and needing one is a design smell.
 
+## Work-Item Lifecycle
+
+Work moves through the six stages of Anthropic's AI-native SDLC Playbook, adapted in `docs/sdlc-playbook.md`: Plan, Design, Build, Test, Deploy and Maintain. The kit's `krowi:process-issue` skill runs it in Claude Code, with this repo's steps from the playbook.
+
+- Each GitHub issue, feature or fix gets a folder `docs/work/<issue>-<slug>/` (templates in the kit's `skills/process-issue/templates/`; without the kit, copy the shape of an existing work folder). It holds `intent.md` (what is wanted and why), `spec.md` (requirements, root cause, design, options, areas of concern, the decision) and `plan.md` (files that change, order of work, risks, proof). They are committed on the work branch, and each is the next stage's input. Routine data work under a data skill, documentation-only changes and releases need no folder.
+- The maintainer holds every gate: accepting the intent, approving the spec's design choice, approving a non-routine plan, the in-game before-run for GUI work, approving the merge of the PR, and the release. An agent stops at each gate with a recommendation and records the answer in the artifact. It merges a PR only when the maintainer tells it to, and then with a merge commit (`gh pr merge <n> --merge`). It never pushes work-item commits straight to `main` and never releases.
+- A bug fix is built test first. A scenario in `Tests/` records the buggy behaviour as `Recorded` and the spec's behaviour as `Target`; then only the code is fixed, and `Recorded` is set to `Target`. Every fixed bug leaves its scenario behind.
+- Review passes, severity and exclusions are in `REVIEW.md`. What a work item taught goes back into this file, a skill, a lint rule or a scenario (`docs/sdlc-playbook.md`, stage 6).
+
 ## Git Workflow
 
-- Branch from `dev`; PRs target `dev`. Releases are cut on `dev`: the addon manager makes a `Release X.Y` commit and tag there and uploads to Wago, CurseForge and GitHub. `main` is not updated as part of the release flow.
+- Parallel sessions never share a checkout: each works in its own worktree under `.claude/worktrees/`, made by the kit's `New-Worktree.ps1` (from `main`, submodules included), and is merged back through its own PR; never switch the branch of a checkout another session works in. The game is not isolated: the last deploy wins. Right before a commit, check `git branch --show-current` and `git status`, and commit by explicit path. Detail: the workspace rules in the kit's `WowAddons.md`, Parallel sessions and git.
+- `main` is the only long-lived branch. Every change is a short-lived branch off `main` with a PR back into it. Releases are cut on `main`: the addon manager makes a `Release X.Y` commit and tag there and uploads to Wago, CurseForge and GitHub.
 - Conventional Commits with a custom `data:` type: `data(midnight): add 12.1.0 achievements (23)`, `fix(retail): ...`, `feat(classic): ...`, `locale(enUS): ...`, `chore:`, `refactor(gui):`, `docs:`. The full type and scope tables are in `CONTRIBUTING.md`.
-- Every user-visible change gets a line in `_Packaging/Changelog.md` under the next version's `### Added` / `### Fixed`. Non-obvious fixes carry a `(dev note: ...)` explaining the root cause, following the existing entries. `ReleaseNotes.md` is generated from it at release time; do not edit it by hand. The version header needs a date (`## 100.2 - 2026-09-04`) before release or the generator skips it.
-- PR checklist (`.github/pull_request_template.md`): `Files.xml` registration, SavedVariables, enUS strings below the `Exported at` line, changelog, tested Retail/Classic.
+- Every user-visible change gets a line in `_Packaging/Changelog.md` under the next version's `### Added` / `### Fixed`, written for players. A `(dev note: ...)` is the maintainer's own aside to players (this is the change, and this is my insight into it), not a technical explanation: an agent does not write one, and the root cause of a fix lives in its work folder's `spec.md`. `ReleaseNotes.md` is generated from it at release time; do not edit it by hand. The version header needs a date (`## 100.2 - 2026-09-04`) before release or the generator skips it.
+- PR checklist (`.github/pull_request_template.md`): work folder, a reproducing scenario for a bug fix, `Files.xml` registration, SavedVariables, enUS strings below the `Exported at` line, changelog, lint and the `REVIEW.md` passes, tested Retail/Classic.
+- GitHub issues and PRs: `gh` calls may be executed without asking first, reads and writes alike (view, comment, close, label, create a PR against `TheKrowi/Krowi_AchievementFilter`). When the fix for a reported issue is on `main` (the maintainer merged its PR, or committed it there themselves), close the issue as completed with a one-line comment naming the commit and when it ships, the way the maintainer's own closing comments read; when a PR's `Closes #N` already closed it, add only the comment. `gh` resolves on PATH from both PowerShell and Git Bash (`C:\Program Files\GitHub CLI`), logged in as `TheKrowi`; call it as plain `gh`, because Claude Code's permission rules match only that form, not a full path. Merging a PR is not among the calls made without asking; see Work-Item Lifecycle.
 
 ## Where Non-Code Material Lives
 
-- `docs/how-to/` step-by-step guides; `docs/category-data-reference.md` the category tree reference; `docs/codebase-analysis.md` a quality review listing known debt (O(n^2) `GetMergedCategory`, the V1 category parser kept for plugins, and the fixed items with their root causes). Its priority table carries the status of each item; check it before trusting the prose above it.
-- `wiki/` knowledge base on data formats with `index.md` and a `log.md` of changes.
-- `raw/` scratch reports and zone-data PowerShell tooling; `raw/MapVerifier.csv` is the canonical Map Verifier state (map verdicts, link groups, expansions; round-tripped with the in-game tool through the `sync-mapverifier` skill, validated by the `mapverifier` lint rule); `raw/ZoneDataDecisions.md` tracks the highest achievement ID analysed for zone coverage.
-- `_Packaging/` changelog, release notes, CurseForge description.
+- Reference read on demand: `.claude/tools/README.md` (every tool and lint rule, the headless pipeline, deploy targets, the data-verification scripts), `Tests/README.md` (each scenario suite, the in-game runner), `docs/architecture.md` (file map, data chunk execution model), `docs/obtainability.md` (every `Obtainable()` form, its boundaries and how it resolves per client), `docs/zone-decisions.md` (the reasons behind the zone placement rules, decisions D1 to D15), `docs/how-to/` (step-by-step guides). The data formats themselves are in the data skills under `.claude/skills/`.
+- `docs/sdlc-playbook.md` the work-item lifecycle; `docs/work/<issue>-<slug>/` one folder per work item, templates in the kit's `skills/process-issue/templates/`; `docs/backlog.md` the follow-ups that are not a work item yet; `REVIEW.md` at the root the review policy every review pass reads. None of it ships: the release zip skips `docs/` and every `.md` file.
+- `docs/codebase-analysis.md` a quality review listing known debt (O(n^2) `GetMergedCategory`, the V1 category parser kept for plugins) and the fixed items with their root causes; its priority table carries the status of each item, so check it before trusting the prose above it. `docs/harness-roadmap.md` is the same for the tooling: the harness steps done, planned and decided against.
+- `raw/` scratch reports and zone-data PowerShell tooling; `raw/MapVerifier.csv` is the canonical Map Verifier state (`sync-mapverifier` skill, `mapverifier` lint rule); `raw/ZoneDataDecisions.md` tracks the highest achievement ID analysed for zone coverage.
 
 ## External Resources
 
@@ -362,6 +325,7 @@ Use these references when looking up WoW API, UI source code, frame definitions,
 
 | Resource | URL |
 |----------|-----|
+| WoW UI source (local clone) — Retail / Classic | `../wow-ui-source/live`, `../wow-ui-source/classic` (the kit's `Update-UiSource.ps1`); grep here first, the web rows below are the fallback |
 | Warcraft Wiki (API reference) | https://warcraft.wiki.gg/wiki/Warcraft_Wiki |
 | FrameXML browser — Retail | https://www.townlong-yak.com/framexml/live |
 | FrameXML browser — Classic | https://www.townlong-yak.com/framexml/classic |

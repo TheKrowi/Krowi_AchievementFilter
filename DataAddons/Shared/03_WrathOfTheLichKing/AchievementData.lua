@@ -1094,8 +1094,8 @@ KrowiAF.AchievementData["03_03_00_S"] = {
 	Ach(4521), -- Heroic: The Halls of Reflection
 	Ach(4522), -- Soul Power
 	Ach(4523), -- Three Faced
-	Ach(4524), -- Doesn't Go to Eleven
-	Ach(4525), -- Don't Look Up
+	Ach(4524):Obtainable("Before", "Version", {12, 0, 1}), -- Doesn't Go to Eleven
+	Ach(4525):Obtainable("Before", "Version", {12, 0, 1}), -- Don't Look Up
 	Ach(4526), -- We're Not Retreating; We're Advancing in a Different Direction.
 	Ach(4527), -- The Frostwing Halls (10 player)
 	Ach(4528), -- The Plagueworks (10 player)
@@ -1148,7 +1148,7 @@ KrowiAF.AchievementData["03_03_00_S"] = {
 	Ach(4624):Obtainable("Event", 423), -- Tough Love
 	Ach(4625), -- Invincible's Reins
 	Ach(4626), -- And I'll Form the Head!
-	Ach(4627), -- X-45 Heartbreaker
+	Ach(4627):Obtainable("Event", 423), -- X-45 Heartbreaker
 	Ach(4628), -- Heroic: Storming the Citadel (10 player)
 	Ach(4629), -- Heroic: The Plagueworks (10 player)
 	Ach(4630), -- Heroic: The Crimson Hall (10 player)

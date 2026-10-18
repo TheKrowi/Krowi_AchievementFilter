@@ -29,5 +29,8 @@ KrowiAF.ContentTimeline = {
     ["5.0.4"] = "5.5.0", -- Mists of Pandaria
     ["5.1.0"] = "5.5.1", -- Landfall
     ["5.2.0"] = "5.5.3", -- The Thunder King
+    ["5.3.0"] = "5.5.3", -- Escalation, shipped as 5.5.3a, which a build version id cannot express
     ["5.4.0"] = "5.5.4", -- Siege of Orgrimmar
+    ["5.4.1"] = "5.5.4",
+    ["5.4.2"] = "5.5.4",
 }

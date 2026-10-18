@@ -1,21 +1,26 @@
 # Evaluate-ZoneCriteria.ps1
 # Checks ZoneData placements against the game's own criteria trees (Zone Placement Rules 2 and 3 in
-# .claude\skills\add-zone-data\SKILL.md; rationale and decision record in wiki\achievement-data\zone-data-format.md).
+# .claude\skills\add-zone-data\SKILL.md; the reasons and decisions D1 to D14 are in docs\zone-decisions.md).
 #
 #   R2   a placed achievement whose criteria name a zone or city must be on (one of) the map(s) carrying that
 #        name. Only location-bound criteria count: explore (43), kill (0), quest (27), cast-at (29), pet battle
 #        in zone (158, 161). Reputation (46) and achievement (8) criteria never do, even when the faction is
 #        named after a city. Names match link-group primaries of any verdict except Continent and Skip-like,
 #        exactly, or as an "... in <Map>" tail (Elder Highpeak in The Hinterlands). A name that exists in
-#        several expansions (Nagrand, Uldum, Dalaran, ...) passes when the id is on any candidate.
-#        Achievements placed only on instance maps (Dungeon, Raid, Delve, Scenario, Battleground, ClassHall)
-#        are not checked: their criteria name the instance by its area (Keystone Master: "Boralus").
-#   R2?  informational: the only missing candidates are City maps or maps whose parent is a map the id is
-#        already on (Explore Dun Morogh names Ironforge; Explore Tanaris names Caverns of Time). Whether a
-#        zone achievement is also listed on such an inner map is decision D8 in the wiki (open).
+#        several expansions (Nagrand, Uldum, Dalaran, ...) passes when the id is on any candidate. Instance and
+#        Battleground candidates are never expected (Explore Ghostlands names "Windrunner Spire").
+#        Achievements placed only on instance maps (Dungeon, Raid, Delve, Scenario, ClassHall) are not
+#        checked: their criteria name the instance by its area (Keystone Master: "Boralus").
+#   D8   informational, decision D8 (resolved 2026-09-05, per map): an explore criterion naming a City inside
+#        the zone never puts the zone's achievement on the city (Explore Durotar names Orgrimmar); a criterion
+#        naming an outdoor sub-map follows the yes/no table $d8SubMaps below. "[D8  ]" lines are decided
+#        cases that stay off the inner map; "[D8? ]" names a sub-map not in the table yet, a map whose parent
+#        chain in raw\MapVerifier.csv reaches a map the id is on: ask the user, then add it. A sub-map decided
+#        yes, and any missed map that is not inside a map the id is on, is an ordinary R2 finding.
 #   R3   a meta (criteria of type 8) must be on every primary map one of its child achievements is placed on,
-#        transitively. The verdict boundary applies: an open-world meta is not pushed into instance maps; an
-#        instance meta (all placed children on instance maps) is. Continent maps are never expected.
+#        transitively, instances included (Rule 3 is literal: The Flame Warden in the Slave Pens, Master of
+#        Wintergrasp in Vault of Archavon). Continent maps are never expected; children in $noPropagate are
+#        not followed and metas in $skipMetas are not checked.
 #   R3+  informational: the meta is on a map no child is on (children not placed anywhere are listed).
 #
 # The three DBC tables (achievement, criteriatree, criteria) are exported once per build from wow.tools.local
@@ -27,7 +32,7 @@
 #   .\Evaluate-ZoneCriteria.ps1                    # every id placed in ZoneData
 #   .\Evaluate-ZoneCriteria.ps1 -Ids 6558,2136     # specific ids (placed or not)
 #   .\Evaluate-ZoneCriteria.ps1 -Refresh           # re-export the tables
-#   .\Evaluate-ZoneCriteria.ps1 -Quiet             # findings only, no R2?/R3+ information
+#   .\Evaluate-ZoneCriteria.ps1 -Quiet             # findings only, no D8/R3+ information
 # Exit code 0 = no R2/R3 findings; 1 = findings.
 
 param(
@@ -42,11 +47,12 @@ $ErrorActionPreference = "Stop"
 $baseUrl = "http://localhost:5000"
 $skillDir = Join-Path $RootDir '.claude\skills\add-zone-data'
 . (Join-Path $skillDir '_zonedata_parser.ps1')
-. (Join-Path $skillDir '_builds.ps1')
+. (Join-Path $RootDir '.claude\tools\KitPath.ps1')
+. (Join-Path $KitTools 'Get-WowBuilds.ps1')
 
 $nameAliases = @{ 'Sholozar Basin' = 'Sholazar Basin'; 'Karasang Wilds' = 'Krasarang Wilds' }   # DB spellings
 $locationTypes = @(0, 27, 29, 43, 158, 161)
-# Battlegrounds are open-world-like for the verdict boundary: a battleground meta is not pushed into a raid (Master of Wintergrasp / Vault of Archavon)
+# R2: an id placed only on these maps is not checked, and these maps are never expected (Battleground is filtered on its own)
 $instanceVerdicts = @('Dungeon', 'Raid', 'Delve', 'Scenario', 'ClassHall')
 # criterion descriptions that coincide with a map name but are not a place (quest titles); reviewed by hand
 $notALocation = @{ 14353 = @('Azshara') }   # Ardenweald's a Stage: quest "Azshara" (the queen), not the zone
@@ -72,7 +78,8 @@ $noPropagate = @()
 $skipMetas = @(1463, 6829,
     12445, 12446, 12447, 12448, 13089, 13092, 13159, 13160, 13991, 13993, 13258, 13259, 16414, 20480, 40024, 40028, 41085,
     40193, 40315,   # Into the Storm (copy), [HIDDEN] Now THIS is Dragon Racing!: hidden copies, not registered
-    63263)          # [DNT]Midnight Keystone Myth: Season 1 Personal Achievement: hidden, not registered
+    63263,          # [DNT]Midnight Keystone Myth: Season 1 Personal Achievement: hidden, not registered
+    63689)          # [DNT]Midnight Keystone Myth: Season 2 Personal Achievement: hidden, not registered
 
 # --- 1. tables ---------------------------------------------------------------------------------------
 if (-not $Build) { $Build = (Get-WowBuilds -BaseUrl $baseUrl).Retail }
@@ -145,6 +152,17 @@ function Get-Leaves([int] $Tree, [int] $Depth) {
     return ,$out
 }
 function Format-Maps($Maps) { ($Maps | Sort-Object | ForEach-Object { "$_ $($mapRef.Names[$_])" }) -join '; ' }
+# true when the map's parent chain in raw\MapVerifier.csv (parentOverride first) reaches one of the given primary maps
+function Test-InsideMaps([int] $MapId, $Primaries) {
+    $cur = $MapId
+    for ($depth = 0; $depth -lt 6; $depth++) {
+        $p = $mapRef.Parent[$cur]
+        if (-not $p) { return $false }
+        $cur = [int]$p
+        if ($Primaries.Contains((ConvertTo-PrimaryMap $mapRef $cur))) { return $true }
+    }
+    return $false
+}
 
 # --- 3. checks ---------------------------------------------------------------------------------------
 $findings = [System.Collections.Generic.List[string]]::new()
@@ -194,17 +212,22 @@ foreach ($id in $scope) {
             if ($cands.Count -eq 0) { continue }
             $candText = ($cands | ForEach-Object { "$_ $($mapRef.Names[$_]) ($($mapRef.Types[$_]))" }) -join ' | '
             # D8 (decided 2026-09-05): an explore criterion that names a City inside the zone does not put the zone's achievement on the
-            # city (Explore Durotar: Orgrimmar); one that names an outdoor sub-map does (Caverns of Time, Blackrock Mountain, Amirdrassil,
-            # the covenant sanctums). Criteria of other types performed in a city (perform, photograph, quest) are Rule 6 content: a finding.
+            # city (Explore Durotar: Orgrimmar); an outdoor sub-map follows the yes/no table $d8SubMaps. Criteria of other types performed
+            # in a city (perform, photograph, quest) are Rule 6 content: a finding.
             if ($mine.Count -gt 0) {
                 $allCity = @($cands | Where-Object { $mapRef.Types[$_] -ne 'City' }).Count -eq 0
                 # a city named by an explore criterion: no (D8). Named by any other criterion type (perform, photograph, quest): Rule 6, a finding
                 if ($allCity -and $kv.Value.Explore) { $infos.Add("[D8  ] $id $($a.Title) — explore criterion names city $candText; stays on $placedStr"); continue }
                 if (-not $allCity) {
-                    # outdoor sub-maps: per-map decisions in $d8SubMaps for every criterion type (the user wants no general rule); undecided ones are [D8? ]
-                    $undecided = @($cands | Where-Object { $mapRef.Types[$_] -ne 'City' -and -not $d8SubMaps.ContainsKey($_) })
-                    if ($undecided.Count -gt 0) { $infos.Add("[D8? ] $id $($a.Title) — criterion names undecided sub-map $candText; stays on $placedStr until decided"); continue }
-                    if (@($cands | Where-Object { $mapRef.Types[$_] -ne 'City' -and $d8SubMaps[$_] }).Count -eq 0) { $infos.Add("[D8  ] $id $($a.Title) — criterion names sub-map $candText, decided no; stays on $placedStr"); continue }
+                    # outdoor maps, for every criterion type (the user wants no general rule): a map decided yes, or a missed map that is not
+                    # inside a map the id is on (Elwynn Forest for a pet battle achievement placed on the other zones), is a finding below. The
+                    # table goes first because two decided maps have other parents (Blackrock Mountain: Burning Steppes; Amirdrassil: Dragon Isles).
+                    $outdoor = @($cands | Where-Object { $mapRef.Types[$_] -ne 'City' })
+                    $decidedYes = @($outdoor | Where-Object { $d8SubMaps.ContainsKey($_) -and $d8SubMaps[$_] })
+                    $undecided = @($outdoor | Where-Object { -not $d8SubMaps.ContainsKey($_) })
+                    $subMaps = @($undecided | Where-Object { Test-InsideMaps $_ $mine })
+                    if ($decidedYes.Count -eq 0 -and $undecided.Count -gt 0 -and $subMaps.Count -eq $undecided.Count) { $infos.Add("[D8? ] $id $($a.Title) — criterion names undecided sub-map $candText; stays on $placedStr until decided"); continue }
+                    if ($decidedYes.Count -eq 0 -and $undecided.Count -eq 0) { $infos.Add("[D8  ] $id $($a.Title) — criterion names sub-map $candText, decided no; stays on $placedStr"); continue }
                 }
             }
             $findings.Add("[R2  ] $id $($a.Title) — criterion names '$($kv.Key)' but the id is not on $candText (placed on: $placedStr)")

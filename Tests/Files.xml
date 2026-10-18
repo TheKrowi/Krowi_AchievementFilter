@@ -2,4 +2,10 @@
     <Script file="Tests.lua" />
     <Script file="Escape.lua" />
     <Script file="SpecialCategories.lua" />
+    <Script file="Navigation.lua" />
+    <Script file="WorldMap.lua" />
+    <Script file="Obtainable.lua" />
+    <Script file="Tooltip.lua" />
+    <Script file="Guide.lua" />
+    <Script file="Menu.lua" />
 </Ui>

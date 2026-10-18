@@ -2,7 +2,8 @@
 # shared.OldWorldPetAchievements) inside existing Zone() blocks, located by link-group primary map id.
 #
 # Plan file: one instruction per line, `map,token,op`
-#   map    a map id; the entry whose map list contains it (or its link-group primary) is edited
+#   map    a map id; the entry whose map list contains it (or its link-group primary) is edited; with blocks in two
+#          files (D15) a remove edits the block holding the id and an add the Shared block, reported as a NOTE
 #   token  an achievement id, or a table reference text (shared.X, delvesS1, ...)
 #   op     add | remove
 #   lines starting with # are comments; blank lines are ignored
@@ -43,17 +44,25 @@ foreach ($line in Get-Content $PlanFile) {
     if ($parts.Count -ne 3) { throw "Bad plan line: $line" }
     $plan.Add(@{ Map = [int]$parts[0].Trim(); Token = $parts[1].Trim(); Op = $parts[2].Trim().ToLowerInvariant() })
 }
-function Find-Entry([int] $Map) {
+$notes = [System.Collections.Generic.List[string]]::new()
+# A map can have a block in two files: a Shared block plus a client-specific one holding only the ids whose map differs
+# per client (decision D15). A remove goes to the block that holds the id, an add to the Shared block; the client-specific
+# block is edited by hand.
+function Find-Entry([int] $Map, [string] $Token, [string] $Op) {
     $p = ConvertTo-PrimaryMap $mapRef $Map
-    foreach ($e in $zd.Entries) {
-        foreach ($m in $e.MapIds) { if ((ConvertTo-PrimaryMap $mapRef $m) -eq $p) { return $e } }
-    }
-    return $null
+    $found = @($zd.Entries | Where-Object { @($_.MapIds | Where-Object { (ConvertTo-PrimaryMap $mapRef $_) -eq $p }).Count -gt 0 })
+    if ($found.Count -le 1) { return ($found.Count -eq 1 ? $found[0] : $null) }
+    $pick = $null
+    if ($Op -eq 'remove' -and $Token -match '^\d+$') { $pick = $found | Where-Object { $_.DirectIds.Contains([int]$Token) } | Select-Object -First 1 }
+    if (-not $pick) { $pick = $found | Where-Object { $_.File -like 'DataAddons\Shared\*' } | Select-Object -First 1 }
+    if (-not $pick) { $pick = $found[0] }
+    $others = @($found | Where-Object { $_ -ne $pick } | ForEach-Object { "$($_.File) line $($_.Line)" })
+    $notes.Add("map $Map has blocks in several files; $Op $Token went to $($pick.File) line $($pick.Line), not $($others -join ', ')")
+    return $pick
 }
 $byFile = @{}
-$notes = [System.Collections.Generic.List[string]]::new()
 foreach ($p in $plan) {
-    $e = Find-Entry $p.Map
+    $e = Find-Entry $p.Map $p.Token $p.Op
     if (-not $e) { $notes.Add("NO ENTRY for map $($p.Map) $($mapRef.Names[$p.Map]) — $($p.Op) $($p.Token) skipped"); continue }
     if (-not $byFile.ContainsKey($e.File)) { $byFile[$e.File] = @{} }
     $key = "$($e.Line)"

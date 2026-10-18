@@ -32,18 +32,17 @@ Open `DataAddons/Retail/11_TheWarWithin/AchievementData.lua`.
 New expansion files and any new file you create must use this header:
 
 ```lua
-local _, addon = ...
+local _, addon = ... -- only needed if the file uses addon
 local Ach = KrowiAF.Ach
 local faction = KrowiAF.Enum.Faction -- only needed if AutoFactionSplit or FactionSplit is used
 ```
 
 ### Adding a new patch table
 
-Add a new table keyed by `"<major>_<minor>_<patch>"` (zero-padded two digits):
+Add a new table keyed by `"<major>_<minor>_<patch>"` (zero-padded two digits; a Shared file adds `_S`). `Data/Data.lua` derives the patch from the key, so the table holds only the entries:
 
 ```lua
 KrowiAF.AchievementData["11_01_00"] = {
-    {KrowiAF.SetAchievementPatch, 11, 1, 0},  -- Required: identifies the patch
     Ach(41234),                                -- Simple achievement: just the ID
     Ach(41235):Mount(),                        -- Achievement with a reward type
     Ach(41236):AutoFactionSplit(faction.Alliance, 41237):Title(), -- Lower-ID Name / Higher-ID Name
@@ -64,15 +63,16 @@ KrowiAF.AchievementData["11_01_00"] = {
 | `:WarbandCampsite()` `:RemixInfiniteKnowledge()` `:KeystoneResilience()` | More reward types |
 | `:PvE(season)` | Ties achievement to a PvE season number |
 | `:PvP(season)` | Marks as PvP and ties to a PvP season number |
+| `:Weeks(first[, last])` | Narrows the season before it to a week range |
 | `:IsPvP()` | Marks as PvP without a season |
-| `:IsRealmFirst()` | Marks as a Realm First achievement |
-| `:AutoFactionSplit(faction, altId)` | Collapses a symmetric faction pair into one entry; auto-registers the mirror |
-| `:FactionSplit(faction, altId)` | Explicit faction link — use only when the two sides have different reward types |
+| `:IsRealmFirst()` | Marks as a Realm First achievement; adds `Obtainable("Once")` itself |
+| `:AutoFactionSplit(faction, altId)` | Collapses a faction pair whose chains are identical into one entry; auto-registers the mirror |
+| `:FactionSplit(faction, altId)` | Explicit faction link: use when anything in the chain differs between the two sides, or with `nil` when there is no counterpart |
 | `:Obtainable(...)` | Adds a temporary availability window |
 
-Multiple methods can be chained: `Ach(id):Title():PvE(13):IsPvP()`
+Multiple methods can be chained: `Ach(id):Title():PvE(13):IsPvP()`; several reward types go in alphabetical order (`:Mount(id):Title()`).
 
-**Reference:** `Api/ApiDocumentation.lua` for annotated examples of all patterns.
+**Reference:** `.claude/skills/add-achievement-data/SKILL.md` for the full workflow, `docs/obtainability.md` for every `Obtainable()` form and how it resolves.
 
 ---
 
