@@ -1,0 +1,33 @@
+# Background jobs, for the Check-Repo.ps1 `background-jobs` rule: everything addon code starts that can run without the
+# player opening anything (an OnUpdate script, a C_Timer.NewTicker, an event registration). A job that allocates on
+# every run makes the addon's memory climb in every memory display for as long as the game runs
+# (docs/work/2026-10-18-memory-growth), so each one is measured by a Tests/Memory.lua scenario, or says why it does not
+# run on its own. One "<path glob> <OnUpdate | NewTicker | RegisterEvent:<EVENT>> <memory/<scenario> | ->  # reason" per
+# line. A new line here is a review item: a job that runs on its own allocates nothing on a run where nothing changed
+# (.github/copilot-instructions.md, Architecture).
+
+# --- Measured: they run all session
+TaintDiagnostics.lua OnUpdate memory/taint-sweep                                       # twice a second while taint diagnostics are on, the default
+Gui/EventReminder/AlertSystem.lua NewTicker memory/event-refresh                       # every Refresh interval while event reminders are on, the default
+
+# --- Not background jobs: they run once, rarely, or only while something the player opened is shown
+Data/AchievementCache.lua OnUpdate -                                                   # the login data load; removed when it finishes
+Gui/Guide/Panel.lua OnUpdate -                                                         # only while the guide panel is shown
+Gui/Guide/Panel.lua RegisterEvent:PLAYER_REGEN_DISABLED -                              # entering combat, once the guide panel was used
+Gui/Guide/Panel.lua RegisterEvent:PLAYER_REGEN_ENABLED -                               # leaving combat, once the guide panel was used
+Gui/SnapFrame/SnapFrameMixin.lua OnUpdate -                                            # only while a popout is dragged
+Gui/EventReminder/AlertFrame/AlertFrame.xml OnUpdate -                                 # only while an event pop-up or side button is shown
+Gui/AchievementCalendar/Frame/Frame.xml OnUpdate -                                     # only while the achievement calendar is shown
+Krowi_AchievementFilter.lua RegisterEvent:ADDON_LOADED -                               # once per addon that loads
+Krowi_AchievementFilter.lua RegisterEvent:PLAYER_LOGIN -                               # once
+Krowi_AchievementFilter.lua RegisterEvent:PLAYER_ENTERING_WORLD -                      # loading screens
+Krowi_AchievementFilter.lua RegisterEvent:ACHIEVEMENT_EARNED -                         # an achievement earned
+Gui/*Mixin.lua RegisterEvent:ACHIEVEMENT_EARNED -                                      # an achievement earned; the window frames only refresh while shown
+Gui/WindowFrames/AchievementButton/AchievementButtonMixin.lua RegisterEvent:TRACKED_ACHIEVEMENT_LIST_CHANGED - # tracking or untracking an achievement
+Gui/WindowFrames/AchievementsObjectives/AchievementsObjectivesMixin.lua RegisterEvent:CRITERIA_UPDATE - # frequent, but a hidden objectives frame only marks itself for its next show; a shown one redraws, open popouts included (deferred in docs/work/2026-10-18-memory-growth)
+Gui/AchievementTooltip/TransmogObjectives.lua RegisterEvent:GET_ITEM_INFO_RECEIVED -   # only while an achievement tooltip waits for item data
+Gui/AchievementPopout/AchievementPopout.lua RegisterEvent:PLAYER_LOGOUT -              # once
+Gui/Collections/Collections.lua RegisterEvent:ADDON_LOADED -                           # once per addon that loads
+Plugins/*.lua RegisterEvent:ADDON_LOADED -                                             # once per addon that loads
+Plugins/*.lua RegisterEvent:PLAYER_LOGIN -                                             # once
+Benchmark.lua OnUpdate -                                                               # not loaded: a dev tool added to the .toc by hand

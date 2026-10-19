@@ -9,7 +9,7 @@ The everyday commands and the rules these tools enforce are in `.github/copilot-
 | Tool | What it does |
 |---|---|
 | `KitPath.ps1` | finds the kit for the scripts below (next to the main checkout, or `$env:KROWI_CLAUDEKIT` to test a kit worktree) and throws when it is missing |
-| `Check-Repo.ps1` | the repo lint; `Check-Repo.globals`, `Check-Repo.ignore`, `Check-Repo.removed-api` and `Check-Repo.deprecated-api` are its data files |
+| `Check-Repo.ps1` | the repo lint; `Check-Repo.globals`, `Check-Repo.jobs`, `Check-Repo.ignore`, `Check-Repo.removed-api` and `Check-Repo.deprecated-api` are its data files |
 | `headless/load-data.lua` | the data load for both clients, headless |
 | `headless/run-tests.lua` | the scenario suites in `Tests/`, headless |
 | `headless/snapshot-categories.lua` | the category tree baselines in `headless/snapshots/` |
@@ -53,6 +53,7 @@ The kit carries Lua 5.1.5 (`$kit\tools\lua51\lua.exe`, `luac.exe`), the exact in
 | `deprecated-api` | no addon file reads a Blizzard global that a client the `.toc` lists has only as a `Blizzard_Deprecated*` alias, or not at all (generated list `Check-Repo.deprecated-api`); names the replacement; always tree-wide; a name `removed-api` lists is reported there only |
 | `library-names` | every library name addon code and `Libs/Libs.lua` pass to `LibStub(` or `KROWI_LIBMAN:GetLibrary(` is registered by a `NewLibrary(` call in `Libs/` (a literal, or a local set to one in the same file); a silent lookup (`, true`) and a call in a comment are left alone; always tree-wide, because a library rename breaks call sites nobody touched; a warning and no check when a submodule has no Lua files (a checkout made without them) |
 | `settings-close` | addon code closes the settings panel with `SettingsPanel:Close(true)`; without the argument it goes back to the game menu through `ToggleGameMenu`, whose `SpellStopCasting` call is forbidden from addon code (`ADDON_ACTION_FORBIDDEN` on Mists Classic) |
+| `background-jobs` | every job addon code starts that can run with every window closed (an `OnUpdate` script set or hooked in Lua or XML, a `C_Timer.NewTicker`, an event registration) is listed in `Check-Repo.jobs` with the `Tests/Memory.lua` scenario that measures what it allocates, or `-` and a comment saying why it does not run on its own (once, rarely, only while shown); the rule also reports a line naming an unknown scenario, a `-` without a reason and a line that matches no job any more; `Tests/` and `Libs/` are left out, comments are not code; always tree-wide (docs/work/2026-10-18-memory-growth) |
 | `luarc` | the `.luarc.json` globals list against what the code reads and assigns |
 | `util-flags` | every `addon.Util.Is*` flag or check the addon reads is defined in `Libs/Krowi_Util` (`lib.IsX =` or `function lib.IsX(`); a missing one reads as nil and silently takes the other branch; always tree-wide; a warning and no check when the submodule is empty |
 | `luals` | the Lua language server's own diagnostics tree-wide; only on full runs or with `-Luals`, and only when the VS Code extensions `sumneko.lua` and `ketho.wow-api` are installed; pre-existing findings are warnings, findings in changed files errors |
