@@ -19,20 +19,11 @@ local MAX_ERRORS = 15
 local MAX_SESSIONS = 5
 
 local session, sweepElapsed = {Baseline = {}, Detections = {}, Errors = {}}, 0
-local knownInsecure = {}
+local knownInsecure = {} -- [label][key] = true once reported
 local seenErrors = {}
 local baselineDone = false
 
 local globalWatch = {"GameTooltip", "UIWidgetManager"}
-
-local function GetTableWatch()
-    local tooltip = GameTooltip
-    local ok, widgetContainer = pcall(function() return tooltip and tooltip.widgetContainer end)
-    return {
-        {Label = "GameTooltip", Table = tooltip},
-        {Label = "GameTooltip.widgetContainer", Table = ok and widgetContainer or nil}
-    }
-end
 
 local function Snapshot()
     local snapshot = {WallClock = date("%Y-%m-%d %H:%M:%S")}
@@ -44,11 +35,15 @@ local function Snapshot()
 end
 
 local function Report(label, key, source)
-    local id = label .. "||" .. tostring(key)
-    if knownInsecure[id] then
+    local known = knownInsecure[label]
+    if not known then
+        known = {}
+        knownInsecure[label] = known
+    end
+    if known[key] then
         return
     end
-    knownInsecure[id] = true
+    known[key] = true
 
     if not baselineDone then -- Already tainted before our own sweep ever ran - not caused this session
         tinsert(session.Baseline, {Target = label, Key = key, TaintedBy = source or "<unknown>"})
@@ -66,6 +61,21 @@ local function Report(label, key, source)
     tinsert(session.Detections, entry)
 end
 
+-- Runs twice a second for the whole session, so it allocates nothing unless it reports something new: the table is
+-- walked in place and a key already reported is not checked again (docs/work/2026-10-18-memory-growth)
+local function SweepTable(label, t)
+    local known = knownInsecure[label]
+    for key in next, t do
+        if type(key) == "string" and not (known and known[key]) then
+            local ok, isSecure, source = pcall(issecurevariable, t, key)
+            if ok and isSecure == false then
+                Report(label, key, source)
+                known = knownInsecure[label]
+            end
+        end
+    end
+end
+
 local function Sweep()
     for _, name in next, globalWatch do
         local ok, isSecure, source = pcall(issecurevariable, name)
@@ -74,26 +84,14 @@ local function Sweep()
         end
     end
 
-    for _, target in next, GetTableWatch() do
-        if type(target.Table) == "table" then
-            local ok, keys = pcall(function()
-                local list = {}
-                for key in next, target.Table do
-                    if type(key) == "string" then
-                        tinsert(list, key)
-                    end
-                end
-                return list
-            end)
-            if ok then
-                for _, key in next, keys do
-                    local ok2, isSecure, source = pcall(issecurevariable, target.Table, key)
-                    if ok2 and isSecure == false then
-                        Report(target.Label, key, source)
-                    end
-                end
-            end
-        end
+    local tooltip = GameTooltip
+    if type(tooltip) ~= "table" then
+        return
+    end
+    pcall(SweepTable, "GameTooltip", tooltip) -- each table on its own, so an error in one still lets the other be swept
+    local widgetContainer = rawget(tooltip, "widgetContainer")
+    if type(widgetContainer) == "table" then
+        pcall(SweepTable, "GameTooltip.widgetContainer", widgetContainer)
     end
 end
 
@@ -102,8 +100,8 @@ local function RecordError(msg)
         return
     end
 
-    local lowered = msg:lower()
-    if not (lowered:find("secret", 1, true) or lowered:find("tainted", 1, true)) then
+    -- Every error of every addon passes here, so the test copies nothing
+    if not (strfind(msg, "[Ss][Ee][Cc][Rr][Ee][Tt]") or strfind(msg, "[Tt][Aa][Ii][Nn][Tt][Ee][Dd]")) then
         return
     end
 

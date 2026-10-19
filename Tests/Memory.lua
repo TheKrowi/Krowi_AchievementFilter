@@ -12,6 +12,7 @@ local memory = addon.Tests.Memory
 --   PerMinute: the bytes one run allocates times the runs a minute; "none" below 1 KB a minute, "small" below
 --     64 KB a minute, "large" from there. In game C_AddOnProfiler.MeasureCall counts the bytes (Retail and Classic
 --     have it), headlessly (.claude/tools/headless/run-tests.lua) the garbage counter with the collector stopped.
+--     The first run is not counted, so what a job fills once is not a cost of every run.
 --   Kept: what the heap still holds after a full collection, after Minutes' worth of runs; "none" below 1 KB,
 --     "grows" from there. The first run is not counted, so a cache the job fills once is not growth.
 -- The bytes themselves go to the observations, so the lines of the game and of the headless run stay comparable.
@@ -21,7 +22,7 @@ local memory = addon.Tests.Memory
 -- Every full collection is a short freeze in game.
 
 -- Job: a key of env.Jobs
--- Before 2026-10-19:
+-- Until 2026-10-19 (both now allocate nothing on a run where nothing changed):
 -- - the taint probe's sweep (TaintDiagnostics.lua) built a list of every string key of GameTooltip and its widget
 --   container, plus a few tables and closures, on every run, twice a second (3872 bytes a run in game on 12.1.5);
 -- - the event-reminder refresh (Data/EventData.lua) read the widget of a widget-timed world event before checking its
@@ -32,11 +33,11 @@ local memory = addon.Tests.Memory
 -- (docs/backlog.md)
 memory.Scenarios = {
     {Name = "taint-sweep", Kind = "PerMinute", Job = "TaintSweep",
-        Recorded = "large", Target = "none"},
+        Recorded = "none", Target = "none"},
     {Name = "taint-sweep-kept", Kind = "Kept", Job = "TaintSweep", Minutes = 5,
         Recorded = "none", Target = "none"},
     {Name = "event-refresh", Kind = "PerMinute", Job = "EventRefresh", RetailOnly = true,
-        Recorded = "large", Target = "none"},
+        Recorded = "none", Target = "none"},
     {Name = "event-refresh-kept", Kind = "Kept", Job = "EventRefresh", Minutes = 5, RetailOnly = true,
         Recorded = "none", Target = "none"},
     {Name = "event-refresh-widget-active", Kind = "PerMinute", Job = "ActiveWidgetTimers", RetailOnly = true,
@@ -66,18 +67,25 @@ local function HeapBytes()
     return collectgarbage("count") * kilobyte
 end
 
+local function RunCalls(call, calls)
+    for _ = 1, calls do
+        call()
+    end
+end
+
 -- Bytes one call of call() allocates, over calls calls, with the collector stopped where the client allows it, so no
--- collection step frees anything in between
+-- collection step frees anything in between; an error still restarts it before it is raised again
 function memory.AllocatedByCounting(call, calls)
     collectgarbage("collect")
     local stopped = pcall(collectgarbage, "stop")
     local before = HeapBytes()
-    for _ = 1, calls do
-        call()
-    end
+    local ok, err = pcall(RunCalls, call, calls)
     local after = HeapBytes()
     if stopped then
         collectgarbage("restart")
+    end
+    if not ok then
+        error(err, 0)
     end
     return (after - before) / calls, stopped and "garbage counter" or "garbage counter, collector running"
 end
@@ -102,6 +110,7 @@ local function RunScenario(env, scenario, observations)
     if job then
         if scenario.Kind == "PerMinute" then
             local calls = math.max(1, math.floor(job.PerMinute))
+            job.Call() -- not counted: what a job fills once (a POI it confirms, a key it reports) is not a cost of every run
             local perCall, method = env.Allocated(job.Call, calls)
             local perMinute = perCall * job.PerMinute
             got = PerMinuteBucket(perMinute)

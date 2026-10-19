@@ -9,6 +9,8 @@
 # --- Measured: they run all session
 TaintDiagnostics.lua OnUpdate memory/taint-sweep                                       # twice a second while taint diagnostics are on, the default
 Gui/EventReminder/AlertSystem.lua NewTicker memory/event-refresh                       # every Refresh interval while event reminders are on, the default
+Data/EventData.lua RegisterEvent:AREA_POIS_UPDATED memory/event-refresh                # moves the refresh's POI confirmations on; the handler allocates nothing
+Data/EventData.lua RegisterEvent:PLAYER_ENTERING_WORLD memory/event-refresh            # the same, on loading screens
 
 # --- Not background jobs: they run once, rarely, or only while something the player opened is shown
 Data/AchievementCache.lua OnUpdate -                                                   # the login data load; removed when it finishes

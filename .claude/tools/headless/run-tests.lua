@@ -1118,7 +1118,9 @@ end
 -- table of the size of the real one (AreaPOIInfo, TextWithStateWidgetVisualizationInfo, 20-odd fields), one that is not
 -- returns nothing. The world and widget events are real ids, so their real custom timers apply. Two states:
 --   "refresh", what the game run of 2026-10-19 found: Theater Troupe's widget 6264 there with the POIs of its five
---     events (7943, 8076-8079) not on their map; one event on the POI's own timer active (9001, a fake id); the rest absent
+--     events (7943, 8076-8079) not on their map; one event on the POI's own timer active (9001, a fake id); plus a
+--     widget-timed event outside its zone, its POI on the map and its widget not there (Community Feast 7553, widget 4993:
+--     the taint review of 2026-10-19 found it re-confirming its POI on every refresh); the rest absent
 --   "widget-active": one widget-timed event active in its zone, Researchers Under Fire 7459, its POI and widget 4814 there
 -- The bytes are counted with the collector stopped (sources in Tests/Memory.lua).
 suites.memory = function(c)
@@ -1167,6 +1169,7 @@ suites.memory = function(c)
     end
     for _, id in ipairs({ 7943, 8076, 8077, 8078, 8079 }) do AddEvent(worldEvents, enabledWorld, id, "Theater Troupe") end
     AddEvent(worldEvents, enabledWorld, 7459, "Researchers Under Fire")
+    AddEvent(worldEvents, enabledWorld, 7553, "Community Feast")
     AddEvent(worldEvents, enabledWorld, 9001, "a world event on the POI's own timer")
     AddEvent(widgetEvents, enabledWidget, 4729, "Community Feast")
     addon.Data = { Events = { [1] = {}, [2] = widgetEvents, [3] = worldEvents } }
@@ -1177,6 +1180,7 @@ suites.memory = function(c)
         if state == "refresh" then
             widgetPresent[6264] = true
             poiPresent[9001], poiSecondsLeft[9001] = true, 1800
+            poiPresent[7553] = true
         elseif state == "widget-active" then
             poiPresent[7459], widgetPresent[4814] = true, true
         end

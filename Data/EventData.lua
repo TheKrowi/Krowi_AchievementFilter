@@ -208,20 +208,51 @@ local function GetActiveWidgetEvents()
     end
 end
 
+-- The refresh only needs to know a world event's POI is on its map, and GetAreaPOIInfo returns a new table on every call,
+-- so a POI it found is not asked for again until the POIs change: AREA_POIS_UPDATED (what Blizzard's own POI map pins
+-- refresh on) or a loading screen moves the generation on (docs/work/2026-10-18-memory-growth)
+local poiGeneration = 1
+local poiChangeListener = CreateFrame("Frame")
+poiChangeListener:RegisterEvent("AREA_POIS_UPDATED")
+poiChangeListener:RegisterEvent("PLAYER_ENTERING_WORLD")
+poiChangeListener:SetScript("OnEvent", function()
+    poiGeneration = poiGeneration + 1
+end)
+
+local function IsPoiOnMap(event)
+    if event._PoiGeneration == poiGeneration then
+        return true
+    end
+    if not C_AreaPoiInfo.GetAreaPOIInfo(event.MapId, event.Id) then
+        return false
+    end
+    event._PoiGeneration = poiGeneration
+    return true
+end
+
 function eventData.GetWorldEventDetails(event)
     if not addon.Options.db.profile.EventReminders.WorldEvents[event.Id] then
         event.EventDetails = nil
         return
     end
 
-    local secondsLeft = addon.Data.CustomWorldEventTimers.GetSecondsLeft(event.Id)
+    local timers = addon.Data.CustomWorldEventTimers
+    -- A widget-timed event checks its POI first: an absent POI returns nothing and allocates nothing, while its widget
+    -- returns a new table on every read
+    if timers.HasCustomTimer(event.Id) and not IsPoiOnMap(event) then -- The event is not active
+        return
+    end
+
+    local secondsLeft = timers.GetSecondsLeft(event.Id)
     if not secondsLeft then -- The event is not active
+        if not timers.HasCustomTimer(event.Id) then -- a widget-timed event's POI stays confirmed: its widget is only there in its zone
+            event._PoiGeneration = nil
+        end
         event.EventDetails = nil
         return
     end
 
-    local poiInfo = C_AreaPoiInfo.GetAreaPOIInfo(event.MapId, event.Id)
-    if not poiInfo then -- The event is not active
+    if not IsPoiOnMap(event) then -- The event is not active
         return
     end
 
