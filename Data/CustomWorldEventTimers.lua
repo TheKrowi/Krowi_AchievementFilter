@@ -15,6 +15,11 @@ function customWorldEventTimers.GetSecondsLeft(id)
     return timers[id]()
 end
 
+-- Whether the event's time comes from a widget's text instead of the POI's own timer
+function customWorldEventTimers.HasCustomTimer(id)
+    return timers[id] ~= nil
+end
+
 local function GetSecondsLeft(text, minutesPattern, secondsPattern)
     local minutes = string.match(text, minutesPattern) or 0
     local seconds = string.match(text, secondsPattern) or 0

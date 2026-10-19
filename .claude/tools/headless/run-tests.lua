@@ -22,7 +22,9 @@
 --         progress section shows on an achievement with transmog set data), guide (Gui/Guide/, the guide's tooltip and
 --         right-click menu sections: achievement guides and their waypoints, once their files exist), menu
 --         (Gui/RightClickMenu/AchievementMenu/AchievementMenu.lua: whether a "go to" entry for an achievement the addon
---         does not register is greyed out)
+--         does not register is greyed out), memory (TaintDiagnostics.lua and Data/EventData.lua with the custom event
+--         timers: what the addon's background jobs, the taint probe's sweep and the event-reminder refresh, allocate a
+--         minute and keep)
 --
 -- Retail model is 12.1: the Blizzard_GameMenuEsc handler registry, the UI panel manager (its slots stay
 -- empty because the addon shows the achievement window with a plain Show), UISpecialFrames, static
@@ -267,7 +269,7 @@ local function BuildClient(client)
         L = setmetatable({}, { __index = function(_, k) return k end }),
         Diagnostics = { DebugEnabled = function() return true end, TraceEnabled = function() return false end, Trace = function() end, Debug = function() end },
         Util = { IsMainline = isRetail, IsClassicWithAchievements = not isRetail },
-        Tests = { Suites = {}, Ready = {} },
+        Tests = { Suites = {}, Ready = {}, Async = {} },
     }
     setmetatable(addon, { __index = function(t, k) local s = Stub("addon." .. tostring(k)) rawset(t, k, s) return s end })
 
@@ -1104,6 +1106,106 @@ suites.menu = function(c)
         return entry.Enabled
     end
     return suite.Run(headless, observations), "Tests/Menu.lua", observations
+end
+
+-- The real TaintDiagnostics.lua against a model of what its sweep reads: a GameTooltip with about as many string keys as
+-- the 12.1 tooltip carries (16 TooltipDataHandlerMixin methods, about 80 tooltip data accessors from
+-- Blizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua, the template's fields and children), a widget container with
+-- about as many as UIWidgetContainerMixin's, and issecurevariable reporting three of them insecure, so the sweep also
+-- takes its report path on every run as it does once anything has tainted the tooltip.
+-- And the real Data/CustomWidgetEventTimers.lua, Data/CustomWorldEventTimers.lua and Data/EventData.lua, the reads of
+-- the event-reminder refresh, against a model of the POI and widget APIs: a POI or widget that is there returns a new
+-- table of the size of the real one (AreaPOIInfo, TextWithStateWidgetVisualizationInfo, 20-odd fields), one that is not
+-- returns nothing. The world and widget events are real ids, so their real custom timers apply. Two states:
+--   "refresh", what the game run of 2026-10-19 found: Theater Troupe's widget 6264 there with the POIs of its five
+--     events (7943, 8076-8079) not on their map; one event on the POI's own timer active (9001, a fake id); the rest absent
+--   "widget-active": one widget-timed event active in its zone, Researchers Under Fire 7459, its POI and widget 4814 there
+-- The bytes are counted with the collector stopped (sources in Tests/Memory.lua).
+suites.memory = function(c)
+    local env, addon = c.env, c.addon
+    local tooltip, widgetContainer = {}, {}
+    for n = 1, 120 do tooltip["Method" .. n] = function() end end
+    for n = 1, 20 do tooltip["Field" .. n] = n end
+    for n = 1, 50 do widgetContainer["Widget" .. n] = function() end end
+    tooltip.widgetContainer = widgetContainer
+    env.GameTooltip = tooltip
+    local insecure = { Field1 = true, Field2 = true, Widget1 = true }
+    env.issecurevariable = function(_, key)
+        if key == nil then return true end -- a global name: GameTooltip, UIWidgetManager
+        if insecure[key] then return false, "SomeAddOn" end
+        return true
+    end
+
+    local poiPresent, poiSecondsLeft, widgetPresent = {}, {}, {}
+    local function NewPoiInfo(id)
+        return { areaPoiID = id, position = { x = 0.5, y = 0.5 }, name = "POI " .. id, description = "", textureIndex = 0,
+            widgetSetID = 0, atlasName = "", uiTextureKit = "", shouldGlow = false, factionID = 0, isPrimaryMapForPOI = true,
+            isAlwaysOnFlightmap = false, addPaddingAboveTooltipWidgets = false, highlightWorldQuestsOnHover = false,
+            highlightVignettesOnHover = false, isCurrentEvent = true, linkedUiMapID = 0, tooltipWidgetSet = 0, iconWidgetSet = 0 }
+    end
+    local function NewTextWithStateInfo()
+        return { shownState = 1, enabledState = 1, text = "12 min 30 sec", tooltip = "", textSizeType = 0, fontType = 0,
+            bottomPadding = 0, tooltipLoc = 0, hAlign = 0, widgetSizeSetting = 0, textureKit = "", frameTextureKit = "",
+            hasTimer = true, orderIndex = 0, widgetTag = "", inAnimType = 0, outAnimType = 0, widgetScale = 0,
+            layoutDirection = 0, modelSceneLayer = 0, scriptedAnimationEffectID = 0 }
+    end
+    env.C_AreaPoiInfo = {
+        GetAreaPOISecondsLeft = function(id) return poiSecondsLeft[id] end,
+        GetAreaPOIInfo = function(_, id) if poiPresent[id] then return NewPoiInfo(id) end end,
+    }
+    env.C_UIWidgetManager = {
+        GetTextWithStateWidgetVisualizationInfo = function(id) if widgetPresent[id] then return NewTextWithStateInfo() end end,
+    }
+    env.MINUTES_ABBR, env.SECONDS_ABBR = "%d min", "%d sec"
+    env.D_MINUTES, env.D_SECONDS = "%d |4minute:minutes;", "%d |4second:seconds;"
+    env.GetServerTime, env.time = os.time, os.time
+    env.KrowiAF = { Enum = { EventType = { Calendar = 1, Widget = 2, World = 3 } } }
+    local worldEvents, widgetEvents, enabledWorld, enabledWidget = {}, {}, {}, {}
+    local function AddEvent(events, enabled, id, name)
+        events[id] = { Id = id, Name = name, MapId = 2248 }
+        enabled[id] = true
+    end
+    for _, id in ipairs({ 7943, 8076, 8077, 8078, 8079 }) do AddEvent(worldEvents, enabledWorld, id, "Theater Troupe") end
+    AddEvent(worldEvents, enabledWorld, 7459, "Researchers Under Fire")
+    AddEvent(worldEvents, enabledWorld, 9001, "a world event on the POI's own timer")
+    AddEvent(widgetEvents, enabledWidget, 4729, "Community Feast")
+    addon.Data = { Events = { [1] = {}, [2] = widgetEvents, [3] = worldEvents } }
+    addon.Options = { db = { profile = { EnableTaintDiagnostics = true, EventReminders = { Enabled = true, RefreshInterval = 60,
+        CalendarEvents = {}, WidgetEvents = enabledWidget, WorldEvents = enabledWorld, UpcomingCalendarEvents = { Enabled = true, Days = 7 } } } } }
+    local function SetState(state)
+        poiPresent, poiSecondsLeft, widgetPresent = {}, {}, {}
+        if state == "refresh" then
+            widgetPresent[6264] = true
+            poiPresent[9001], poiSecondsLeft[9001] = true, 1800
+        elseif state == "widget-active" then
+            poiPresent[7459], widgetPresent[4814] = true, true
+        end
+    end
+
+    for _, rel in ipairs({ "TaintDiagnostics.lua", "Data/CustomWidgetEventTimers.lua", "Data/CustomWorldEventTimers.lua", "Data/EventData.lua", "Tests/Memory.lua" }) do
+        c.loadAddonFile(rel)
+    end
+    local suite = addon.Tests.Memory
+    local probe = addon.Diagnostics.TaintProbe
+
+    local headless = {}
+    function headless.IsRetail() return c.isRetail end
+    function headless.Jobs(name)
+        if name == "TaintSweep" then
+            return { Call = probe.SweepOnce, PerMinute = probe.SweepsPerMinute }
+        elseif name == "EventRefresh" then
+            SetState("refresh")
+            return { Call = suite.RefreshEvents, PerMinute = 60 }
+        elseif name == "ActiveWidgetTimers" then
+            SetState("widget-active")
+            local event = worldEvents[7459]
+            return { Call = function() addon.EventData.GetWorldEventDetails(event) end, PerMinute = 60 }
+        end
+        return nil, "no job " .. tostring(name)
+    end
+    headless.Allocated = suite.AllocatedByCounting
+    local observations = {}
+    return suite.Run(headless, observations), "Tests/Memory.lua", observations
 end
 
 -- The real data load of client-env.lua (the one load-data.lua checks), then Data/TemporaryObtainable.lua on top,

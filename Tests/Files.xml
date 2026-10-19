@@ -8,4 +8,5 @@
     <Script file="Tooltip.lua" />
     <Script file="Guide.lua" />
     <Script file="Menu.lua" />
+    <Script file="Memory.lua" />
 </Ui>

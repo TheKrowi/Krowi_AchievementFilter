@@ -193,6 +193,12 @@ function taintProbe.Load()
     frame:SetScript("OnUpdate", OnUpdate)
 end
 
+-- One sweep as the OnUpdate runs it, and how often it runs; for the memory suite (Tests/Memory.lua)
+taintProbe.SweepsPerMinute = 60 / SWEEP_INTERVAL
+function taintProbe.SweepOnce()
+    pcall(Sweep)
+end
+
 function taintProbe.HasData() -- Used by the options panel to decide whether to enable the export button
     local sessions = KrowiAF_DebugTable and KrowiAF_DebugTable.TaintDiagnostics and KrowiAF_DebugTable.TaintDiagnostics.Sessions
     return sessions ~= nil and #sessions > 0
