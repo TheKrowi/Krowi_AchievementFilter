@@ -2,6 +2,23 @@
 
 Follow-ups that are not a work item yet. When one is taken up, it gets its own work folder under `docs/work/` (`docs/sdlc-playbook.md`) and leaves this list.
 
+## From the memory growth work (2026-10-19, docs/work/2026-10-18-memory-growth)
+
+- **Widget-timed events need fixed timers.** Community Feast, Time Rift, Superbloom, Azerothian Archives, Researchers Under Fire, Fyrakk Assaults, Theater Troupe and the widget events take their time from a widget's text (`Data/CustomWorldEventTimers.lua`, `Data/CustomWidgetEventTimers.lua`).
+  - So they only appear while the player is in their zone.
+  - While one is active, each refresh reads its widget again, about 1.3 KB of garbage a refresh.
+  - A rework computes them from fixed schedules (Krowi, 2026-10-19), which also closes the open target of `memory/event-refresh-widget-active`.
+- **During-play garbage, measured the same way next:**
+  - The world map button recounts the shown map's achievements on every map change: about 100 KB for a zone, 1-3 MB for a continent (`Gui/WorldMapButton/WorldMapButtonMixin.lua:95-119`).
+  - Every open popout redraws all its criteria on every `CRITERIA_UPDATE` (`Gui/WindowFrames/AchievementsObjectives/AchievementsObjectivesMixin.lua:48-64`).
+  - The login data load builds a few tables per achievement id (`Data/AchievementCache.lua:104-125`).
+- **Small growth on player actions:**
+  - `ACHIEVEMENT_EARNED` appends the earned achievement's meta criteria to `criteriaCache` again (`Data/AchievementCache.lua:53, 188`).
+  - `newAchievementsEarned` never shrinks (`Data/SavedData/AchievementData.lua:197-199`).
+  - `SideButtonSystem:Load` adds two more Show/Hide hooks each time it runs again (`Gui/EventReminder/SideButtonSystem.lua:92-98`).
+  - `KrowiAF_SavedData.PopoutHideDebug` keeps a stack per achievement ever popped out (`Gui/AchievementPopout/AchievementPopout.lua:213-214`).
+- **Saved data no code reads any more** stays in the file and in memory: `KrowiAF_SavedData.CalendarEventsCacheTest`, `VerifyHash` and `DFHashVerify` (about 1 MB on the maintainer's account). A `DataIntegrityManager` solution can drop them.
+
 ## From the 103.0 release (2026-10-14)
 
 - **`Benchmark.lua` ships but nothing loads it.** The file is tracked and goes into every release zip, yet no `.toc` line or `Files.xml` names it; it has been so since 97.2. Remove it, or register it behind `addon.Diagnostics.DebugEnabled()` if it is still wanted.

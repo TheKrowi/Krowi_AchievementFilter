@@ -141,6 +141,21 @@ Per-expansion folder contents: `AchievementData`, `CategoryData`, `ZoneData` (on
 
 Most recent fixes (see the dev notes in `_Packaging/Changelog.md` and the root causes in `docs/work/*/spec.md`) are taint or secret-value errors. Never override Blizzard API functions (`GetAchievementCriteriaInfo`, `GetAchievementNumCriteria` and the like); that approach was removed years ago and its leftovers still cause bugs. The only globals the addon writes on purpose are the FrameXML UI functions it replaces in `addon.OverwriteFunctions` and the polyfills for removed API in `addon.LoadBlizzardApiChanges` (both in `Gui/BlizzardOverrides.lua`); they are listed in `.claude/tools/Check-Repo.globals` and the `globals` lint rule fails on any other write to the global environment. Do not compare or do arithmetic on values from `C_Calendar`, aura, or objective-tracker APIs without considering `SecretInChatMessagingLockdown`. `TaintDiagnostics.lua` and `Diagnostics.lua` exist for probing this; `addon.Diagnostics.DebugEnabled()` gates debug paths.
 
+### Background jobs allocate nothing when nothing changed
+
+**A background job** is code that can run with every addon window closed: an OnUpdate script, a `C_Timer.NewTicker`, an event handler.
+
+**Why it matters:** memory displays (`GetAddOnMemoryUsage`) count garbage until the game collects it, and the game can go an hour without collecting. So a job that allocates on every run makes the addon's memory climb for as long as the game runs, even though it keeps nothing (docs/work/2026-10-18-memory-growth).
+
+**The rules:**
+- **No allocation on a run where nothing it reports changed:**
+  - walk tables in place instead of building key lists;
+  - pass functions and arguments to `pcall` instead of closures;
+  - do not call an API that returns a new table when its answer cannot have changed;
+  - check the cheap condition before the call that allocates.
+- **Measured:** each job has a scenario in the `memory` suite (`Tests/Memory.lua`).
+- **Listed:** each job is listed in `.claude/tools/Check-Repo.jobs`, enforced by the `background-jobs` lint rule. A job that only runs once, rarely or while something the player opened is shown is listed with that reason instead of a scenario.
+
 ### Saved variables and migrations
 
 Declared in the `.toc` `## SavedVariables` line: `KrowiAF_DebugTable`, `KrowiAF_Options`, `KrowiAF_SavedData`, `KrowiAF_Filters`, `KrowiAF_SearchOptions`, `KrowiAF_Achievements`, `KrowiAF_MapVerifier`. A new one that is not listed there is lost on logout. Schema changes go through numbered solutions in `Data/DataIntegrityManager.lua`, which run in order on version upgrade.

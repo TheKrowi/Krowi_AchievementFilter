@@ -105,6 +105,12 @@ Decisions (Krowi, 2026-10-19):
 - **The idle minute needs Krowi to stay idle.** It is an observation, never a pass/fail line.
 - **Classic:** both events exist there. The world and widget event lists are Retail-only data, so the confirmations never fill on Classic.
 
+## Where the build departed from the plan
+- **PerMinute warm-up:** PerMinute scenarios now skip their first run, as Kept ones do, so what a job fills once (a POI it confirms, a key it reports) does not count as a cost of every run. Without it, the fixed jobs showed 9 and 32 bytes a run headlessly.
+- **POI confirmation (taint review, 2026-10-19):** a widget-timed event keeps its POI confirmation while its widget is absent. Dropping it re-asked `GetAreaPOIInfo` on every refresh for an event whose POI is on the map outside its zone. The `event-refresh` model has that state (Community Feast 7553), and a mutation run confirmed it fails without the fix.
+- **Collector restart:** the garbage-counter fallback runs the measured calls under `pcall`, so an error cannot leave the collector stopped.
+- **The idle minute's comparison** ("the jobs above account for") warms each job up first. Without the warm-up it showed 1866 KB a minute against a measured 990.
+
 ## Proof
 - **Headless:**
   - `lua.exe .claude\tools\headless\run-tests.lua "$PWD"`: every suite PASS. Before the fix: `memory/taint-sweep` and `memory/event-refresh` "got=large target=none open". After: "got=none target=none met"; `event-refresh-widget-active` "got=large target=none open".

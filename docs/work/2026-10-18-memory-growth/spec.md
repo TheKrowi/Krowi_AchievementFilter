@@ -56,7 +56,7 @@ The two read-only sweeps of the code and libraries (2026-10-18) found no other c
 - **A POI is confirmed once:**
   - `GetAreaPOIInfo` is only asked whether an event's POI is on its map; the table it returns is never read. A POI it finds is marked confirmed with the current value of a file-level generation counter, and while the mark holds, the call is not made again.
   - The counter moves on with `AREA_POIS_UPDATED`, the event Blizzard's own POI map pins refresh on, and with `PLAYER_ENTERING_WORLD`. So the confirmation follows what the world map shows.
-  - An event that stops reporting time drops its confirmation.
+  - An event on the POI's own timer that stops reporting time drops its confirmation. A widget-timed event keeps its confirmation: its widget is only there in its zone, and dropping it would ask for the POI again on every refresh. The taint review of 2026-10-19 found that, and the `event-refresh` model has that state.
 - **Normal events** take their time from `GetAreaPOISecondsLeft`. That is asked every refresh as today, and it returns a number, so the end time and the countdown stay exactly as now.
 - **Widget-timed events:** the POI is checked first, through the confirmation or through `GetAreaPOIInfo`, which allocates nothing when the POI is absent. The widget is read only for an event whose POI is there, and then on every refresh as today, so the countdown is unchanged.
 - **Unchanged:** widget events and calendar events. A widget that is absent allocates nothing; calendar events are cache lookups. The refresh still runs at the option's interval, and the alert system, side buttons and their texts are as before.
@@ -109,6 +109,19 @@ The two read-only sweeps of the code and libraries (2026-10-18) found no other c
   - a Theater Troupe group stays absent while its POI is not on the map;
   - the event's end still removes it.
 - **Lint:** `Check-Repo.ps1` is clean with the `background-jobs` rule, and an unlisted OnUpdate added to a scratch file fails it. `krowi:taint-reviewer` runs on both changed areas.
+
+**Results so far:**
+- **Headless:** every suite passes on both clients. `taint-sweep` and `event-refresh` are at "none" and met; `event-refresh-widget-active` is open.
+- **In game on Retail 12.1.5, 2026-10-19 23:35:**
+  - Lines identical to headless, except `event-refresh-widget-active`, which SKIPs outside the event zones.
+  - The sweep and the refresh are at 0 bytes a run.
+  - The idle minute shows 52 KB, down from 990 KB. KAF's own jobs account for 0 of it. What is left is most likely the one `AREA_POIS_UPDATED` re-confirmation that minute, plus other addons calling the shared libraries KAF loaded first.
+  - The probe still records AllTheThings and CanIMogIt writing into GameTooltip.
+  - `Read-GameErrors.ps1` is clean.
+- **Classic:**
+  - The fixed build loaded without errors (2026-10-19 23:20).
+  - The memory suite's in-game run is still to do.
+  - Separately, and before this build: `Plugins/ElvUI.lua:443` "attempt to index field 'backdrop'" at 23:07, not caused by this work.
 
 ## Deferred
 Found during the search; none runs on its own or keeps much:
