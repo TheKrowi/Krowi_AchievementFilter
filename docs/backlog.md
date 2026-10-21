@@ -47,12 +47,13 @@ Follow-ups that are not a work item yet. When one is taken up, it gets its own w
   - `Map pin`, `Map pin and TomTom`, `Icons` and `Text links`.
 
   A native speaker checks them, with the game's own terms first: tier, class hall upgrade, Order Resources, waypoint, map pin.
-- **The eleven sibling Legendary Research guides.** 60963 to 60973, one per class, as data only in `DataAddons/Retail/07_Legion/GuideData.lua`. Step 0 of `docs/work/2026-10-11-achievement-guides/plan.md` holds everything they need:
-  - every class hall's research NPC with its id, map and spot;
-  - the travel spell or entrance;
-  - both factions' Dalaran portals as area POIs.
+- **The twelve Raise an Army guides.** 60981 to 60992, one per class hall: recruit 20 troops. The same class hall round in step 0 of `docs/work/2026-10-11-achievement-guides/plan.md` measured, in every hall:
+  - both troop recruiters with their NPC id, map and spot;
+  - the mission table (the Scouting Map, the Priest's Command Map, the Warrior's Eye of Odyn, the Warlock's Dreadscar Battle Plans), because missions wear troops out and free their slots.
 
-  The Paladin and Priest portals differ per faction, so their guides take one `:Poi(...):Faction(...)` step per faction. Each NPC is named in English only; the guide shows the player's client's own name (`docs/work/2026-10-14-guide-npc-names`).
+  The way into each hall is the first step of its Legendary Research guide (`DataAddons/Retail/07_Legion/GuideData.lua`, `docs/work/2026-10-21-legendary-research-guides`). Unlike those guides this needs a short design look before the data. The builder's steps (`:Travel`, `:Npc`, `:Poi`, `:Area`, `:Criteria`, `:Tip`) have nothing for recruiting: `:Criteria` reads type-198 garrison talents, and these criteria are type 200 (`raw/ZoneDataDecisions.md`). Two things seen in game shape what the guide says: only recruitments since 11.2.7 count (the Paladin showed 1/20 on 60987 despite Legion-era troops), and progress is account-wide (the Paladin saw 7/20 on the Priest's 60988).
+  - Saying either is free text, which only a translator can put into the other languages, and Krowi wants no new strings for the CurseForge translators (the analysis in that work item's `spec.md`).
+  - The mission tables are server-side objects, so the game names them in no file.
 
 ## From the latent-bugs review (2026-10-13, PR #339)
 
