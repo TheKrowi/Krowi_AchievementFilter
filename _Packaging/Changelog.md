@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## 104.0
+### Added
+- Achievement guides for the other eleven Legendary Research achievements, one per class hall
+
 ### Changed
 - Achievement guides now name the people to talk to in your game's language
 

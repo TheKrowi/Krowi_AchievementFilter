@@ -190,8 +190,9 @@ guide.Scenarios = {
     {Name = "row-npc-name-arrives", Kind = "RowName", NpcId = 424245, Options = {ExpandedRow = true, WaypointProvider = provider.MapPin},
         Recorded = "game", Target = "game"},
     -- At login the addon asks the client once for every guide NPC, so the name is cached before a guide shows
-    {Name = "npc-names-requested", Kind = "NpcRequest",
-        Recorded = "97485", Target = "97485"},
+    {Name = "npc-names-requested", Kind = "NpcRequest", -- the twelve Legendary Research NPCs
+        Recorded = "97485,97989,98939,105998,107994,108018,108050,108331,108527,109901,110725,112199",
+        Target = "97485,97989,98939,105998,107994,108018,108050,108331,108527,109901,110725,112199"},
 
     -- An area step names the place as the game does, in the player's language, and points at the spot where the player
     -- walks in (the Illidari Gateway in Dalaran for The Fel Hammer)
