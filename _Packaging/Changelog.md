@@ -2,8 +2,12 @@
 All notable changes to this project will be documented in this file.
 
 ## 104.0
+### Added
+- Achievement guides for the other eleven Legendary Research achievements, one per class hall
+
 ### Changed
 - Achievement guides now name the people to talk to in your game's language
+- The Legendary Research of the Ebon Blade guide now starts with where to go, with Death Gate under it
 
 ### Fixed
 - Pasting an achievement link into chat with the paste-to-chat modifier no longer gives an error when the game's deprecated API fallbacks are turned off

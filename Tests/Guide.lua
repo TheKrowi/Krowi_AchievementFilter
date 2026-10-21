@@ -6,7 +6,7 @@ local guide = addon.Tests.Guide
 -- code, Target the desired one; the same scenarios run in game (/kaftest guide) and headlessly
 -- (.claude/tools/headless/run-tests.lua), where a model of the garrison, map, spell and POI APIs stands in for the game.
 -- Recorded was "none" everywhere before the feature (verified in game on 2026-10-11). Milestone A met every target but the
--- menu's Open guide entry, which came with the side panel in milestone B. Eleven kinds:
+-- menu's Open guide entry, which came with the side panel in milestone B. Twelve kinds:
 --   Surface: the tooltip or the right-click menu of a real achievement (60962 has a guide, 11223 none), with the guide
 --     options set for the run and restored after. The tooltip gives "shown" when its Guide header is followed by the
 --     first rendered line, "header-only" when it is not, "none" without a header. The menu runs only the guide section,
@@ -29,8 +29,13 @@ local guide = addon.Tests.Guide
 --   RowName: the NPC name in the guide block under a stand-in expanded row, displayed once while the client has no
 --     name, then again, not forced, after it learned one: "game" or "fallback", as NpcName
 --     (docs/work/2026-10-14-guide-row-npc-name).
--- Surface, Talent, Availability, Panel, Chain, Row, NpcName, NpcRequest and RowName are Retail only: Classic has no guide data,
--- no garrison and none of these maps.
+--   AreaName: the headline of a one-step area guide (docs/work/2026-10-21-legendary-research-guides): "game" when the
+--     headline and the waypoint title carry the area's name as C_Map.GetAreaInfo gives it on this client, "spot" when the
+--     game has no name for the area and the headline sends the player to the marked spot, either with its place line.
+--     With Step = "Travel", a one-step travel guide to an area: "game" when the headline carries the area's name and the
+--     line under it the spell's, "spell" when the headline travels with the spell.
+-- Surface, Talent, Availability, Panel, Chain, Row, NpcName, NpcRequest, RowName and AreaName are Retail only: Classic has
+-- no guide data, no garrison and none of these maps.
 --
 -- The code these scenarios hold the feature to (plan, Files that change):
 --   addon.Gui.Guide.GetLines(achievement) -> list of {Kind, Text, State, Waypoint}, the steps as every surface shows them
@@ -187,8 +192,22 @@ guide.Scenarios = {
     {Name = "row-npc-name-arrives", Kind = "RowName", NpcId = 424245, Options = {ExpandedRow = true, WaypointProvider = provider.MapPin},
         Recorded = "game", Target = "game"},
     -- At login the addon asks the client once for every guide NPC, so the name is cached before a guide shows
-    {Name = "npc-names-requested", Kind = "NpcRequest",
-        Recorded = "97485", Target = "97485"},
+    {Name = "npc-names-requested", Kind = "NpcRequest", -- the twelve Legendary Research NPCs
+        Recorded = "97485,97989,98939,105998,107994,108018,108050,108331,108527,109901,110725,112199",
+        Target = "97485,97989,98939,105998,107994,108018,108050,108331,108527,109901,110725,112199"},
+
+    -- An area step names the place as the game does, in the player's language, and points at the spot where the player
+    -- walks in (the Illidari Gateway in Dalaran for The Fel Hammer)
+    {Name = "area-name-from-game", Kind = "AreaName", AreaId = 8023, -- The Fel Hammer, the Demon Hunter hall's area
+        Recorded = "game", Target = "game"},
+    {Name = "area-name-unknown", Kind = "AreaName", AreaId = 999999, -- no such area in AreaTable
+        Recorded = "spot", Target = "spot"},
+    -- A hall reached only by a class spell reads "Go to <hall>" like the others, with the spell under it (Krowi, in game
+    -- on 2026-10-21: "Travel with" felt off next to the other guides' "Go to")
+    {Name = "travel-area-from-game", Kind = "AreaName", Step = "Travel", SpellId = 50977, AreaId = 7679, -- Death Gate, Acherus
+        Recorded = "game", Target = "game"},
+    {Name = "travel-area-unknown", Kind = "AreaName", Step = "Travel", SpellId = 50977, AreaId = 999999,
+        Recorded = "spell", Target = "spell"},
 }
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
@@ -548,6 +567,55 @@ local function RunRowName(env, scenario, observations)
     return got
 end
 
+-- The area's name as this client has it, in its language; nil when the game has none
+local function GetGameAreaName(areaId)
+    local name = C_Map.GetAreaInfo and C_Map.GetAreaInfo(areaId)
+    if type(name) == "string" and name ~= "" then
+        return name
+    end
+end
+
+-- A travel step to an area names the area and puts the spell under it; without a name it travels with the spell
+local function ReadTravelLine(env, scenario, line)
+    local name = GetGameAreaName(scenario.AreaId)
+    local spellName = C_Spell.GetSpellName(scenario.SpellId)
+    local detail = line.Details and line.Details[1]
+    if name and line.Text:find(name, 1, true) and type(detail) == "string" and detail:find(spellName, 1, true) then
+        return "game"
+    end
+    return line.Text == env.Text("Guide Travel"):K_ReplaceVars{spell = spellName} and "spell" or "mixed"
+end
+
+-- A one-step area guide on a spot in Dalaran, or a one-step travel guide, read the way every surface reads it
+local function RunAreaName(env, scenario)
+    local module = GetModule()
+    if not module or not module.GetLines then
+        return "none"
+    end
+    local step = scenario.Step == "Travel" and {Type = "Travel", SpellId = scenario.SpellId, AreaId = scenario.AreaId}
+        or {Type = "Area", AreaId = scenario.AreaId, MapId = dalaran.MapId, X = dalaran.X, Y = dalaran.Y}
+    local ok, lines = pcall(module.GetLines, {Guide = {step}})
+    if not ok then
+        return "error"
+    end
+    local line = lines[1]
+    if not line then
+        return "none" -- the renderer skips a step type it does not know
+    end
+    if step.Type == "Travel" then
+        return ReadTravelLine(env, scenario, line)
+    end
+    if not line.Details or not line.Details[1] then
+        return "no-place"
+    end
+    local name = GetGameAreaName(scenario.AreaId)
+    if name then
+        local title = line.Waypoint and line.Waypoint.Title
+        return title == name and line.Text:find(name, 1, true) and "game" or "mixed"
+    end
+    return line.Text == env.Text("Guide Go To Spot") and "spot" or "mixed"
+end
+
 local runners = {
     Surface = RunSurface,
     Talent = RunTalent,
@@ -559,11 +627,12 @@ local runners = {
     Row = RunRow,
     NpcName = RunNpcName,
     NpcRequest = RunNpcRequest,
-    RowName = RunRowName
+    RowName = RunRowName,
+    AreaName = RunAreaName
 }
 
 local retailOnly = {Surface = true, Talent = true, Availability = true, Panel = true, Chain = true, Row = true, NpcName = true,
-    NpcRequest = true, RowName = true}
+    NpcRequest = true, RowName = true, AreaName = true}
 
 local function RunScenario(env, scenario, observations)
     local got, reason = runners[scenario.Kind](env, scenario, observations)
@@ -594,7 +663,7 @@ function guide.Run(env, observations)
         end
     end
     if skipped > 0 then
-        tinsert(observations, ("%d surface, talent, panel, chain, row, availability and NPC scenarios are Retail only: Classic has no guide data, no garrison and none of their maps"):format(skipped))
+        tinsert(observations, ("%d surface, talent, panel, chain, row, availability, NPC and area scenarios are Retail only: Classic has no guide data, no garrison and none of their maps"):format(skipped))
     end
     -- What 60962's guide reads for the character running the suite: the scenarios above check its shape, this its words,
     -- which depend on the character's class and talent tree

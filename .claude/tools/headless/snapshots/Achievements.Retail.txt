@@ -15587,9 +15587,45 @@ PETBATTLE 41551 # criteria 10: 41550
 
 == Guides ==
 # per achievement, the steps in stored order; an NPC's name is the data's English one, a tip a locale string, left out
-GUIDE 60962 # 1 Travel SpellId=50977
+GUIDE 60962 # 1 Travel AreaId=7679 SpellId=50977
 GUIDE 60962 # 2 Npc MapId=648 Name=Archivist Zubashi NpcId=97485 X=47.7 Y=53.8
 GUIDE 60962 # 3 Criteria Operator=Any
+GUIDE 60963 # 1 Area AreaId=8023 MapId=627 X=98 Y=69.3
+GUIDE 60963 # 2 Npc MapId=721 Name=Loramus Thalipedes NpcId=108527 X=55.3 Y=62.7
+GUIDE 60963 # 3 Criteria Operator=Any
+GUIDE 60964 # 1 Travel AreaId=7979 SpellId=193753
+GUIDE 60964 # 2 Area AreaId=7846 MapId=715 X=45.2 Y=26.4
+GUIDE 60964 # 3 Npc MapId=747 Name=Leafbeard the Storied NpcId=97989 X=32.7 Y=29.4
+GUIDE 60964 # 4 Criteria Operator=Any
+GUIDE 60965 # 1 Area AreaId=7877 MapId=627 X=72.9 Y=41.2
+GUIDE 60965 # 2 Npc MapId=739 Name=Survivalist Bahn NpcId=108050 X=58.7 Y=51.1
+GUIDE 60965 # 3 Criteria Operator=Any
+GUIDE 60966 # 1 Travel AreaId=7879 SpellId=193759
+GUIDE 60966 # 2 Npc MapId=734 Name=Chronicler Elrianne NpcId=108331 X=74.9 Y=28.9
+GUIDE 60966 # 3 Criteria Operator=Any
+GUIDE 60967 # 1 Travel AreaId=7903 SpellId=126892
+GUIDE 60967 # 2 Npc MapId=709 Name=Number Nine Jia NpcId=98939 X=53 Y=59.8
+GUIDE 60967 # 3 Criteria Operator=Any
+GUIDE 60968 # 1 Poi Faction=1 MapId=627 PoiId=5057 X=32.7 Y=69.8
+GUIDE 60968 # 2 Poi Faction=2 MapId=627 PoiId=5058 X=61.9 Y=13.5
+GUIDE 60968 # 3 Npc MapId=24 Name=Sir Alamande Graythorn NpcId=109901 X=39.9 Y=56.5
+GUIDE 60968 # 4 Criteria Operator=Any
+GUIDE 60969 # 1 Poi Faction=1 MapId=627 PoiId=5062 X=39.6 Y=57.3
+GUIDE 60969 # 2 Poi Faction=2 MapId=627 PoiId=5063 X=62.9 Y=17.6
+GUIDE 60969 # 3 Npc MapId=702 Name=Archon Torias NpcId=110725 X=56 Y=40.7
+GUIDE 60969 # 4 Criteria Operator=Any
+GUIDE 60970 # 1 Poi MapId=627 PoiId=5102 X=52.7 Y=70.3
+GUIDE 60970 # 2 Npc MapId=626 Name=Winstone Wolfe NpcId=105998 X=46 Y=69.2
+GUIDE 60970 # 3 Criteria Operator=Any
+GUIDE 60971 # 1 Poi MapId=627 PoiId=5059 X=67.1 Y=48.1
+GUIDE 60971 # 2 Npc MapId=726 Name=Journeyman Goldmine NpcId=112199 X=33.4 Y=58.2
+GUIDE 60971 # 3 Criteria Operator=Any
+GUIDE 60972 # 1 Poi MapId=628 PoiId=5061 X=27.7 Y=44.3
+GUIDE 60972 # 2 Npc MapId=717 Name=Archivist Melinda NpcId=108018 X=55.3 Y=41
+GUIDE 60972 # 3 Criteria Operator=Any
+GUIDE 60973 # 1 Poi MapId=627 PoiId=5060 X=75 Y=47.5
+GUIDE 60973 # 2 Npc MapId=695 Name=Einar the Runecaster NpcId=107994 X=46.5 Y=29
+GUIDE 60973 # 3 Criteria Operator=Any
 
 == Summary ==
 achievements           8669
@@ -15602,4 +15638,4 @@ achievements           8669
 tooltip entries        3515   (220 achievements)
 transmog sets          2107   (71 achievements)
 pet battle links       110   (1166 criteria)
-guides                 1   (3 steps)
+guides                 12   (39 steps)
