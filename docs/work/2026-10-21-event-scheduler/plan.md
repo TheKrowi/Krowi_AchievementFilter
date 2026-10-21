@@ -1,5 +1,5 @@
 # Plan: Event reminders come from Blizzard's event scheduler and fixed schedules, not from POI checks
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 ## Context
 KAF's event reminders find world events by asking every refresh whether a POI is on its map, and the widget events by parsing a widget that only exists in its zone. So the soup (Community Feast) only shows in the Azure Span, and no Midnight world event is reminded of at all.
@@ -134,3 +134,14 @@ Krowi chose the proof of concept as normal reminders: the Curse Surges from the 
   - the memory and scheduler suites stay green and secure;
   - no errors.
 - **Classic:** green, and no visible change.
+
+## Results (2026-10-21)
+- **Headless:** every suite passes on both clients; `events` meets all 20 targets; `memory` has `event-refresh` and `scheduler-update-ignored` at "none". `Check-Repo.ps1` is clean.
+- **Retail 12.1.5:**
+  - `/kaftest events`: 20 of 20, the same lines as headless, the nine scheduler stories included.
+  - `/kaftest memory`: a refresh allocates nothing over 99 events; one scheduler read is about 360 KB, at login and when the kept times run low; the idle minute 11 KB, as before the change.
+  - `/kaftest scheduler`: the reminder manager stays secure, and no update fires inside the addon's calls.
+  - A live Curse Surge popped up at its start with the game's name and its exact end (16:00:28); the options list the five variants with the game's names.
+  - The soup counts down outside the Azure Span, and matches the Azure Span map within a minute.
+  - BugGrabber: no error from the build, only from test code fixed on the way (a `false` map, Classic's missing toggle tables).
+- **Classic 5.5.4:** `/kaftest events` 3 of 3 and `/kaftest memory` 5 of 5, both the same as headless; the idle minute under 1 KB.

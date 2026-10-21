@@ -1,5 +1,5 @@
 # Intent: Event reminders come from Blizzard's event scheduler and fixed schedules, not from POI checks
-Author: Krowi (maintainer). Source: idea, 2026-10-21, from the review of docs/work/2026-10-18-memory-growth. Accepted by Krowi on 2026-10-21. Status: accepted
+Author: Krowi (maintainer). Source: idea, 2026-10-21, from the review of docs/work/2026-10-18-memory-growth. Accepted by Krowi on 2026-10-21. Status: done
 
 ## Problem
 The event reminders (pop-ups, chat messages and side buttons for events that are going on or coming up) were built in Shadowlands, when timed world events were random. They find a world event by asking every refresh whether its POI is on its map and how long it has left, and some events by parsing a widget's text.

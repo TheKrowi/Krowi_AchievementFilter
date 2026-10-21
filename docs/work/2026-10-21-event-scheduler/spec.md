@@ -1,5 +1,5 @@
 # Spec: Event reminders come from Blizzard's event scheduler and fixed schedules, not from POI checks
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. **Curse Surges (Retail):** when a Curse Surge starts, wherever the player is and with the world map closed, the reminders treat it like any other world event:
