@@ -4,7 +4,7 @@ Intent: [intent.md](intent.md). Status: accepted
 ## Requirements
 1. 60963 to 60973 each have a guide on Retail, registered in `DataAddons/Retail/07_Legion/GuideData.lua`, ending in `:Criteria("Any")`: every one of them has root criteria operator 8 with amount 1 (`_lookup_criteria.ps1`, build 12.1.5.70448, 2026-10-21), so either Tier VII talent completes it.
 2. Each guide sends the player to the hall's research NPC with that NPC's id, English name, map and spot as measured in game (step 0 of `docs/work/2026-10-11-achievement-guides/plan.md`).
-3. Each guide starts with the way into the hall, without telling how each class gets in: "Go to <hall>" with a waypoint on the spot where the player walks in. Only halls reached solely by a class spell (Death Knight, Mage, Monk, and the Druid's way into the Emerald Dreamway) name that spell instead, as 60962 does.
+3. Each guide starts with the way into the hall, without telling how each class gets in: "Go to <hall>" with a waypoint on the spot where the player walks in. Halls reached only by a class spell (Death Knight, Mage, Monk, and the Druid's way into the Emerald Dreamway) read "Go to <hall>" too, with the spell under it (decision 4).
 4. A new guide step, `:Area(areaId, uiMapId, x, y)`, reads "Go to <area>" with the area's name from the game (`C_Map.GetAreaInfo`) in the player's language, the place line and a waypoint; "Go to the marked spot" when the game has no name for the area.
 5. No new strings in any locale file, inside or outside the CurseForge part.
 6. The headless data load, the snapshots and every scenario suite stay green; the snapshot diff shows only the eleven new guides.
@@ -15,10 +15,10 @@ One `Guide(...)` per achievement, in id order after 60962, each with a comment n
 | Id | Class | Way in | Research NPC (id, map, spot) |
 |---|---|---|---|
 | 60963 | Demon Hunter | `:Area(8023, 627, 98.0, 69.3)` The Fel Hammer, at the Illidari Gateway | Loramus Thalipedes (108527), 721, 55.3, 62.7 |
-| 60964 | Druid | `:Travel(193753)` Dreamwalk, then `:Area(7846, 715, 45.2, 26.4)` The Dreamgrove, at its portal in the Emerald Dreamway | Leafbeard the Storied (97989), 747, 32.7, 29.4 |
+| 60964 | Druid | `:Travel(193753, 7979)` Dreamwalk to the Emerald Dreamway, then `:Area(7846, 715, 45.2, 26.4)` The Dreamgrove, at its portal there | Leafbeard the Storied (97989), 747, 32.7, 29.4 |
 | 60965 | Hunter | `:Area(7877, 627, 72.9, 41.2)` Trueshot Lodge, at Talua's eagle | Survivalist Bahn (108050), 739, 58.7, 51.1 |
-| 60966 | Mage | `:Travel(193759)` Teleport: Hall of the Guardian | Chronicler Elrianne (108331), 734, 74.9, 28.9 |
-| 60967 | Monk | `:Travel(126892)` Zen Pilgrimage | Number Nine Jia (98939), 709, 53.0, 59.8 |
+| 60966 | Mage | `:Travel(193759, 7879)` Teleport: Hall of the Guardian | Chronicler Elrianne (108331), 734, 74.9, 28.9 |
+| 60967 | Monk | `:Travel(126892, 7903)` Zen Pilgrimage, to the Temple of Five Dawns | Number Nine Jia (98939), 709, 53.0, 59.8 |
 | 60968 | Paladin | `:Poi(5057, 627, 32.7, 69.8)` Alliance, `:Poi(5058, 627, 61.9, 13.5)` Horde | Sir Alamande Graythorn (109901), 24, 39.9, 56.5 |
 | 60969 | Priest | `:Poi(5062, 627, 39.6, 57.3)` Alliance, `:Poi(5063, 627, 62.9, 17.6)` Horde | Archon Torias (110725), 702, 56.0, 40.7 |
 | 60970 | Rogue | `:Poi(5102, 627, 52.7, 70.3)` Hall of Shadows | Winstone Wolfe (105998), 626, 46.0, 69.2 |
@@ -82,5 +82,7 @@ Krowi, 2026-10-21, in three answers:
 1. An entrance step over shipping without one, but kept out of CurseForge while still translated in every supported language; analyse how (see Analysis).
 2. Consistent with the other steps: "Go to <location>" with a coordinate, not how each class gets into its hall.
 3. Halls reached only by a class spell (Death Knight, Mage, Monk) keep "Travel with <spell>"; 60962 stays as shipped.
+
+4. In game on the first build, 2026-10-21: "Travel with" felt off next to the other guides' "Go to". A travel step now takes the area it leads to, `:Travel(spellId, areaId)`, and reads "Go to <area>" with the spell's icon and name on the line under it (areas 7679 Acherus: The Ebon Hold, 7879 Hall of the Guardian, 7903 Temple of Five Dawns, 7979 Emerald Dreamway); without an area, or a name for it, it still reads "Travel with <spell>". 60962 changes with it. Scenarios `travel-area-from-game` and `travel-area-unknown`.
 
 The agent's reading for the two cases the answers did not name: the Druid keeps Dreamwalk (the only way into the Emerald Dreamway) before "Go to The Dreamgrove"; the Hunter's "Go to Trueshot Lodge" at Talua's spot replaces "Talk to Talua".

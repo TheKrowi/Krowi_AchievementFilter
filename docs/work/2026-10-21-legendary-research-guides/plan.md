@@ -43,6 +43,10 @@ Non-routine: it adds a step to the data API (`Api/GuideDataBuilder.lua`) and tou
    - Then `Read-GameTests.ps1` and `Read-GameErrors.ps1`.
 6. **PR.** Work files to `done`, push, PR against `main` with the template filled in (work folder, scenarios, changelog, lint, review passes, Retail tested; Classic not touched). Merge only on Krowi's word, `gh pr merge <n> -R TheKrowi/Krowi_AchievementFilter --merge`.
 
+## Departures from the plan
+- **Review fixes** (step 4): `GetAreaName` checks the name with `canaccessvalue`; the Poi and Area steps share `AddPlaceLine`; `_lookup_name.ps1` always sends a locale, enUS by default; the data header names its sources. Deferred findings are listed in the PR.
+- **Travel steps to an area** (after the first in-game run, spec decision 4): `:Travel(spellId, areaId)` reads "Go to <area>" with the spell under it, tested first by `travel-area-from-game` and `travel-area-unknown`; a second changelog line for 60962, whose guide changes with it.
+
 ## Risks
 - **An area name nobody expects.** `C_Map.GetAreaInfo` reads AreaTable. 8023, 7846 and 7877 are the halls' Legion areas (`areatable`, 12.1.5.70448), and the in-game after-run shows the real text. The scenario compares against the API, so it holds in every client language.
 - **The headless model drifting from the game.** Loading the real `GuideData.lua` removes the hand-written copy of 60962. `GuideData.lua` must then load headlessly: it reads `KrowiAF.Guide` and `KrowiAF.Enum.Faction`, both present in the model.
