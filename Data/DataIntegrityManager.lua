@@ -66,13 +66,37 @@ function Verify(verifications)
     diagnostics.Debug("Verified all")
 end
 
+local MergeLegionAssaultToggles
 function LoadSolutions()
     local solutions = {
         -- Add new solutions here
+        function() MergeLegionAssaultToggles(addon.Options.db and addon.Options.db.profiles) end, -- 1: every profile, as AceDB keeps them
     }
 
     return solutions
 end
+
+-- Legion Assaults became one reminder on 5175 (docs/work/2026-10-21-fixed-event-schedules). AceDB saves a toggle only
+-- when it differs from its default, on, so in each profile the one toggle is on if any of the four zones' was, and the
+-- other three ids go. Running it again changes nothing.
+local legionAssaultZones = {5177, 5178, 5210} -- Highmountain, Stormheim, Val'sharah; 5175 Azsuna is the one kept
+function MergeLegionAssaultToggles(profiles)
+    for _, profile in next, profiles or {} do
+        local world = type(profile) == "table" and profile.EventReminders and profile.EventReminders.WorldEvents
+        if world then
+            local anyOn = world[5175] ~= false
+            for _, id in ipairs(legionAssaultZones) do
+                anyOn = anyOn or world[id] ~= false
+                world[id] = nil
+            end
+            if anyOn then
+                world[5175] = nil -- the default, on
+            end
+        end
+    end
+    diagnostics.Debug("Merged the Legion Assault toggles")
+end
+dataIntegrityManager.MergeLegionAssaultToggles = function(profiles) MergeLegionAssaultToggles(profiles) end -- Tests/Schedules.lua
 
 function Resolve(solutions, prevBuild, currBuild, prevVersion, currVersion, firstTime)
     if not IsNewerThan(prevBuild, currBuild, prevVersion, currVersion) then

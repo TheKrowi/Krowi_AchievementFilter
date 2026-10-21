@@ -80,11 +80,11 @@ schedules.Scenarios = {
     -- Legion Assaults: 6 hours every 14.5 hours, one reminder without the zone (confirmed in game on 2026-10-21: the
     -- Stormheim assault ended at 00:00:33 UTC, the cycle's 00:00:00); the four zones' toggles become one
     {Name = "legion-assault-eu", Kind = "Family", Ids = {5175}, At = legionT0 + 100, Region = "EU", RetailOnly = true,
-        Recorded = "none", Target = "5175 ends in 21500"},
+        Recorded = "5175 ends in 21500", Target = "5175 ends in 21500"},
     {Name = "legion-assault-between", Kind = "Family", Ids = {5175}, At = legionT0 + 21600 + 100, Region = "EU", RetailOnly = true,
         Recorded = "none", Target = "none"},
     {Name = "legion-toggles-merge", Kind = "Merge", RetailOnly = true,
-        Recorded = "no merge", Target = "AllOff off; Azsuna on; Others on; Untouched on"},
+        Recorded = "AllOff off; Azsuna on; Others on; Untouched on", Target = "AllOff off; Azsuna on; Others on; Untouched on"},
     -- Researchers Under Fire stays on its POI and widget, in its zone; its POI reports time but is not on map 2133
     {Name = "researchers-in-zone", Kind = "PoiState", Event = 7461, Pois = {[7461] = 600}, Widgets = {[4826] = "10 min"}, RetailOnly = true,
         Recorded = "ends in 600", Target = "ends in 600"},

@@ -143,10 +143,7 @@ EVENT Widget 5323 | category=1552 | icon=3939983 Source=2
 EVENT Widget 5584 | category=1564 | icon=5341597 Source=2
 EVENT Widget 5585 | category=1564 | icon=5341597 Source=2
 EVENT Widget 5592 | category=1564 | icon=5341597 Source=2
-EVENT World 5175 | category=948 | icon=1408998 | map=619
-EVENT World 5177 | category=948 | icon=1409000 | map=619
-EVENT World 5178 | category=948 | icon=1409001 | map=619
-EVENT World 5210 | category=948 | icon=1409010 | map=619
+EVENT World 5175 | category=948 | icon=1408998 | map=619 Source=2
 EVENT World 5896 | category=935 | icon=2065630 | map=876 Source=2
 EVENT World 5964 | category=936 | icon=2065567 | map=876 Source=2
 EVENT World 5966 | category=937 | icon=2065627 | map=876 Source=2
@@ -243,7 +240,7 @@ SCHEDULE Dreamsurges | cycle=Weekly | observed | window={0,604800} | variants=75
 SCHEDULE FactionAssaults | cycle=68400 | fixed | observed | window={0,25200} | rotation=5964,5973,5896,5969,5966,5970 | anchors=1:1548032400,3:1548000000,5:1546743600
 SCHEDULE FyrakkAssaults | cycle=Weekly | observed | window={0,604800} | variants=7433,7471
 SCHEDULE GrandHunts | cycle=7200 | observed | window={0,7200} | variants=7342,7343,7344,7345
-SCHEDULE LegionAssaults | cycle=52200 | observed | window={0,21600} | variants=5175,5177,5178,5210 | anchors=1:1762421400,3:1762434000,5:1762450200
+SCHEDULE LegionAssaults | cycle=52200 | fixed | observed | window={0,21600} | windows=5175:{0,21600} | variants=5175,5177,5178,5210 | anchors=1:1762421400,3:1762434000,5:1762450200
 SCHEDULE NzothMajorAssaults | cycle=Weekly | observed | window={0,604800} | variants=6486,6489
 SCHEDULE NzothMinorAssaults | cycle=HalfWeekly | observed | window={0,302400} | variants=6487,6488,6490,6491
 SCHEDULE PrimalStorms | cycle=10800 | observed (debug for POIs without time) | window={0,7200} | variants=7221,7222,7223,7224,7225,7226,7227,7228,7229,7230,7231,7232,7233,7234,7235,7236,7237,7238,7239,7240,7245,7246,7247,7248,7249,7250,7251,7252,7253,7254,7255,7256,7257,7258,7259,7260,7298,7299,7300,7301
@@ -259,5 +256,5 @@ content timeline       0
 season anchors         1
 events Calendar        43
 events Widget          9
-events World           90
+events World           87
 event schedules        15

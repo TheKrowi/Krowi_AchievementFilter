@@ -3655,7 +3655,7 @@ ACH 11476 | patch=7.2.0
 ACH 11477 | patch=7.2.0
 ACH 11478 | patch=7.2.0
 ACH 11543 | patch=7.2.0
-ACH 11544 | patch=7.2.0 | events=World 5175,5177,5178,5210
+ACH 11544 | patch=7.2.0 | events=World 5175
 ACH 11545 | patch=7.2.0
 ACH 11546 | patch=7.2.0
 ACH 11558 | patch=7.2.0 | faction=Alliance | otherFaction=11559 | obtainable=[From Version 7.2.0 (own patch) .. Before Version 9.0.1]

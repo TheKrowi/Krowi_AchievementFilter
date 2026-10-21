@@ -48,7 +48,12 @@ local function Watched()
     end
     watched = {}
     local worldEvents = addon.Data.Events[KrowiAF.Enum.EventType.World] or {}
+    local ids = {} -- an id in a family's Windows and its Variants (Legion's 5175) is watched once
     local function Watch(family, id, window)
+        if ids[id] then
+            return
+        end
+        ids[id] = true
         local event = worldEvents[id]
         tinsert(watched, {Family = family, Id = id, From = window[1], To = window[2], MapId = family.MapId or (event and event.MapId)})
     end
