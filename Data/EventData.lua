@@ -208,26 +208,11 @@ local function GetActiveWidgetEvents()
     end
 end
 
--- The refresh only needs to know a world event's POI is on its map, and GetAreaPOIInfo returns a new table on every call,
--- so a POI it found is not asked for again until the POIs change: AREA_POIS_UPDATED (what Blizzard's own POI map pins
--- refresh on) or a loading screen moves the generation on (docs/work/2026-10-18-memory-growth)
-local poiGeneration = 1
-local poiChangeListener = CreateFrame("Frame")
-poiChangeListener:RegisterEvent("AREA_POIS_UPDATED")
-poiChangeListener:RegisterEvent("PLAYER_ENTERING_WORLD")
-poiChangeListener:SetScript("OnEvent", function()
-    poiGeneration = poiGeneration + 1
-end)
-
+-- A world event is active while its POI is on its map and it reports time left. The POI is asked on every refresh: an
+-- event sharing its widget with its siblings (the four Dreamsurges, the five Theater Troupe shows, Titan Lockdown and
+-- Zaqali Ruin) is told apart from them only by its POI (docs/work/2026-10-18-memory-growth).
 local function IsPoiOnMap(event)
-    if event._PoiGeneration == poiGeneration then
-        return true
-    end
-    if not C_AreaPoiInfo.GetAreaPOIInfo(event.MapId, event.Id) then
-        return false
-    end
-    event._PoiGeneration = poiGeneration
-    return true
+    return C_AreaPoiInfo.GetAreaPOIInfo(event.MapId, event.Id) ~= nil
 end
 
 function eventData.GetWorldEventDetails(event)
@@ -237,23 +222,28 @@ function eventData.GetWorldEventDetails(event)
     end
 
     local timers = addon.Data.CustomWorldEventTimers
-    -- A widget-timed event checks its POI first: an absent POI returns nothing and allocates nothing, while its widget
-    -- returns a new table on every read
-    if timers.HasCustomTimer(event.Id) and not IsPoiOnMap(event) then -- The event is not active
-        return
-    end
-
-    local secondsLeft = timers.GetSecondsLeft(event.Id)
-    if not secondsLeft then -- The event is not active
-        if not timers.HasCustomTimer(event.Id) then -- a widget-timed event's POI stays confirmed: its widget is only there in its zone
-            event._PoiGeneration = nil
+    local secondsLeft
+    if timers.HasCustomTimer(event.Id) then
+        -- The POI first: an absent one returns nothing and allocates nothing, while the widget returns a new table on
+        -- every read, also for the events whose POI is not there (Theater Troupe's widget is there everywhere)
+        if not IsPoiOnMap(event) then -- The event is not active
+            return
         end
-        event.EventDetails = nil
-        return
-    end
-
-    if not IsPoiOnMap(event) then -- The event is not active
-        return
+        secondsLeft = timers.GetSecondsLeft(event.Id)
+        if not secondsLeft then -- The event is not active
+            event.EventDetails = nil
+            return
+        end
+    else
+        -- The seconds left first: a number, and nothing for an event that is not running
+        secondsLeft = timers.GetSecondsLeft(event.Id)
+        if not secondsLeft then -- The event is not active
+            event.EventDetails = nil
+            return
+        end
+        if not IsPoiOnMap(event) then -- The event is not active
+            return
+        end
     end
 
     local endTime

@@ -2,16 +2,13 @@
 # player opening anything (an OnUpdate script, a C_Timer.NewTicker, an event registration). A job that allocates on
 # every run makes the addon's memory climb in every memory display for as long as the game runs
 # (docs/work/2026-10-18-memory-growth), so each one is measured by a Tests/Memory.lua scenario, or says why it does not
-# run on its own. One "<path glob> <OnUpdate | NewTicker | RegisterEvent:<EVENT>> <memory/<scenario> | ->  # reason" per
-# line. A new line here is a review item: a job that runs on its own allocates nothing on a run where nothing changed
-# (.github/copilot-instructions.md, Architecture).
+# run on its own. One "<path glob> <OnUpdate | NewTicker | TooltipPostCall | RegisterEvent:<EVENT or *>> <memory/<scenario> | ->
+# # reason" per line; RegisterEvent:* is a registration whose event is not a literal. A new line here is a review item: a
+# job that runs on its own allocates nothing on a run where nothing changed (.github/copilot-instructions.md, Architecture).
 
 # --- Measured: they run all session
 TaintDiagnostics.lua OnUpdate memory/taint-sweep                                       # twice a second while taint diagnostics are on, the default
-Gui/EventReminder/AlertSystem.lua NewTicker memory/event-refresh                       # every Refresh interval while event reminders are on, the default
-Data/EventData.lua RegisterEvent:AREA_POIS_UPDATED memory/event-refresh                # moves the refresh's POI confirmations on; the handler allocates nothing
-Data/EventData.lua RegisterEvent:PLAYER_ENTERING_WORLD memory/event-refresh            # the same, on loading screens
-
+Gui/EventReminder/AlertSystem.lua NewTicker memory/event-refresh                       # every Refresh interval while event reminders are on, the default; the scenarios measure the reads each tick makes (calendar, widget and world events), the rest of a tick walks tables and adds nothing
 # --- Not background jobs: they run once, rarely, or only while something the player opened is shown
 Data/AchievementCache.lua OnUpdate -                                                   # the login data load; removed when it finishes
 Gui/Guide/Panel.lua OnUpdate -                                                         # only while the guide panel is shown
@@ -32,4 +29,6 @@ Gui/AchievementPopout/AchievementPopout.lua RegisterEvent:PLAYER_LOGOUT -       
 Gui/Collections/Collections.lua RegisterEvent:ADDON_LOADED -                           # once per addon that loads
 Plugins/*.lua RegisterEvent:ADDON_LOADED -                                             # once per addon that loads
 Plugins/*.lua RegisterEvent:PLAYER_LOGIN -                                             # once
+Api/PluginsApi.lua RegisterEvent:* -                                                   # the plugins' registrations go through it; each is listed under Plugins/
+Data/TooltipData.lua TooltipPostCall -                                                 # not loaded: Krowi_AchievementFilter.lua keeps TooltipData.Load commented out while issue #300 is investigated; on every tooltip once it is back
 Benchmark.lua OnUpdate -                                                               # not loaded: a dev tool added to the .toc by hand

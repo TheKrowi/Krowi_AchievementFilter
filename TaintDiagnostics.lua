@@ -19,7 +19,8 @@ local MAX_ERRORS = 15
 local MAX_SESSIONS = 5
 
 local session, sweepElapsed = {Baseline = {}, Detections = {}, Errors = {}}, 0
-local knownInsecure = {} -- [label][key] = true once reported
+local knownInsecure = {_G = {}, GameTooltip = {}, ["GameTooltip.widgetContainer"] = {}} -- [label][key] = true once reported
+local pendingKeys, pendingSources = {}, {} -- what a walk found, reported after it; reused by every sweep
 local seenErrors = {}
 local baselineDone = false
 
@@ -36,10 +37,6 @@ end
 
 local function Report(label, key, source)
     local known = knownInsecure[label]
-    if not known then
-        known = {}
-        knownInsecure[label] = known
-    end
     if known[key] then
         return
     end
@@ -61,18 +58,25 @@ local function Report(label, key, source)
     tinsert(session.Detections, entry)
 end
 
--- Runs twice a second for the whole session, so it allocates nothing unless it reports something new: the table is
--- walked in place and a key already reported is not checked again (docs/work/2026-10-18-memory-growth)
+-- Runs twice a second for the whole session, so it allocates nothing unless it finds something new: the table is
+-- walked in place and a key already reported is not checked again (docs/work/2026-10-18-memory-growth). What a walk
+-- finds is reported after it: the report calls functions other addons may hook, and a hook that adds a field to the
+-- table during the walk would break the walk.
 local function SweepTable(label, t)
     local known = knownInsecure[label]
+    local found = 0
     for key in next, t do
-        if type(key) == "string" and not (known and known[key]) then
+        if type(key) == "string" and not known[key] then
             local ok, isSecure, source = pcall(issecurevariable, t, key)
             if ok and isSecure == false then
-                Report(label, key, source)
-                known = knownInsecure[label]
+                found = found + 1
+                pendingKeys[found], pendingSources[found] = key, source or false
             end
         end
+    end
+    for i = 1, found do
+        Report(label, pendingKeys[i], pendingSources[i] or nil)
+        pendingKeys[i], pendingSources[i] = nil, nil
     end
 end
 

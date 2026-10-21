@@ -21,25 +21,31 @@ local memory = addon.Tests.Memory
 -- idle minute: what the whole addon allocated in 60 s with nothing touched, next to what the jobs above account for.
 -- Every full collection is a short freeze in game.
 
--- Job: a key of env.Jobs
--- Until 2026-10-19 (both now allocate nothing on a run where nothing changed):
+-- Job: a key of env.Jobs. The event-reminder jobs are the reads the refresh ticker makes on every tick (memory.RefreshEvents),
+-- in the state the job's name says; in game a job SKIPs when the session is not in that state.
+-- Until 2026-10-19:
 -- - the taint probe's sweep (TaintDiagnostics.lua) built a list of every string key of GameTooltip and its widget
 --   container, plus a few tables and closures, on every run, twice a second (3872 bytes a run in game on 12.1.5);
 -- - the event-reminder refresh (Data/EventData.lua) read the widget of a widget-timed world event before checking its
---   POI was there, so five inactive Theater Troupe events read widget 6264 on every refresh (9320 bytes a run), and an
---   active event's POI info table was fetched again on every refresh only to see it was there
--- event-refresh-widget-active is what a widget-timed event costs while it is active in its zone: its widget is read on
--- every refresh so its countdown stays as it was (Krowi, 2026-10-19); open until the widget events get fixed timers
--- (docs/backlog.md)
+--   POI was there, so five inactive Theater Troupe events read widget 6264 on every refresh (9320 bytes a run)
+-- Both now allocate nothing on a run where no world event's POI is on its map. Two costs stay, as open targets for the
+-- event reminders' move to Blizzard's event scheduler and fixed schedules (docs/backlog.md), because players should see
+-- no change before then (Krowi, 2026-10-19 and 2026-10-21):
+-- - event-refresh-poi-on-map: a world event whose POI is on its map has the POI asked on every refresh, a new table each
+--   time, since only the POI tells events apart that share a widget (the Dreamsurges, the Theater Troupe shows);
+-- - event-refresh-widget-active: a widget-timed event active in its zone has its widget read on every refresh, so its
+--   countdown stays as it was
 memory.Scenarios = {
     {Name = "taint-sweep", Kind = "PerMinute", Job = "TaintSweep",
         Recorded = "none", Target = "none"},
     {Name = "taint-sweep-kept", Kind = "Kept", Job = "TaintSweep", Minutes = 5,
         Recorded = "none", Target = "none"},
-    {Name = "event-refresh", Kind = "PerMinute", Job = "EventRefresh", RetailOnly = true,
+    {Name = "event-refresh", Kind = "PerMinute", Job = "EventRefreshNoPoiOnMap",
         Recorded = "none", Target = "none"},
-    {Name = "event-refresh-kept", Kind = "Kept", Job = "EventRefresh", Minutes = 5, RetailOnly = true,
+    {Name = "event-refresh-kept", Kind = "Kept", Job = "EventRefresh", Minutes = 5,
         Recorded = "none", Target = "none"},
+    {Name = "event-refresh-poi-on-map", Kind = "PerMinute", Job = "EventRefreshPoiOnMap", RetailOnly = true,
+        Recorded = "large", Target = "none"},
     {Name = "event-refresh-widget-active", Kind = "PerMinute", Job = "ActiveWidgetTimers", RetailOnly = true,
         Recorded = "large", Target = "none"}
 }
@@ -172,6 +178,20 @@ local function EventRemindersNote()
     return ("the player's Refresh interval is %g s"):format(addon.Options.db.profile.EventReminders.RefreshInterval or 0)
 end
 
+-- How many world event POIs the refresh asks for and finds on their maps in this session, asked directly: a widget-timed
+-- event's POI on every refresh, another event's once it reports time left (Data/EventData.lua: GetWorldEventDetails)
+local function AskedPoisOnMap()
+    local count = 0
+    local enabled = addon.Options.db.profile.EventReminders.WorldEvents
+    for _, event in next, addon.Data.Events[KrowiAF.Enum.EventType.World] or {} do
+        local asked = addon.Data.CustomWorldEventTimers.HasCustomTimer(event.Id) or C_AreaPoiInfo.GetAreaPOISecondsLeft(event.Id) ~= nil
+        if enabled[event.Id] and asked and C_AreaPoiInfo.GetAreaPOIInfo(event.MapId, event.Id) then
+            count = count + 1
+        end
+    end
+    return count
+end
+
 -- The widget-timed world events whose POI is there and the widget events whose widget is there, read as the refresh
 -- reads them; nil when none is, which is anywhere outside those events' zones
 local function ActiveWidgetTimerReads()
@@ -206,12 +226,19 @@ function gameEnv.Jobs(name)
             Note = not addon.Options.db.profile.EnableTaintDiagnostics and "taint diagnostics are off, so the sweep does not run in this session" or nil
         }
     end
-    if name == "EventRefresh" or name == "ActiveWidgetTimers" then
+    if name == "EventRefresh" or name == "EventRefreshNoPoiOnMap" or name == "EventRefreshPoiOnMap" or name == "ActiveWidgetTimers" then
         if not addon.Options.db.profile.EventReminders.Enabled then
             return nil, "event reminders are off"
         end
         local call = memory.RefreshEvents
-        if name == "ActiveWidgetTimers" then
+        if name == "EventRefreshNoPoiOnMap" or name == "EventRefreshPoiOnMap" then
+            local poisOnMap = AskedPoisOnMap()
+            if name == "EventRefreshNoPoiOnMap" and poisOnMap > 0 then
+                return nil, ("%d world event POIs the refresh asks for are on their maps here; that cost is event-refresh-poi-on-map"):format(poisOnMap)
+            elseif name == "EventRefreshPoiOnMap" and poisOnMap == 0 then
+                return nil, "no world event POI the refresh asks for is on its map here"
+            end
+        elseif name == "ActiveWidgetTimers" then
             call = ActiveWidgetTimerReads()
             if not call then
                 return nil, "no widget-timed event is active here; they only are in their own zones"
@@ -365,12 +392,26 @@ local function ObserveIdleMinute(observations, finish)
     end)
 end
 
+local measuring -- a run's idle minute is going on; a second run would share its frame and disturb its numbers
+
+addon.Tests.Ready.memory = function()
+    if measuring then
+        return false, "the previous memory run is still measuring its idle minute"
+    end
+    if not addon.Data.IsLoaded then -- the login load's garbage would swamp the idle minute
+        return false, "the data load has not finished"
+    end
+    return true
+end
+
 addon.Tests.Async.memory = true
 addon.Tests.Suites.memory = function(done)
     local observations = {}
     ObserveSession(observations)
     local results = memory.Run(gameEnv, observations)
+    measuring = true -- only the idle minute can overlap another run; what comes before it runs in one go
     ObserveIdleMinute(observations, function()
+        measuring = nil
         done(results, observations)
     end)
 end

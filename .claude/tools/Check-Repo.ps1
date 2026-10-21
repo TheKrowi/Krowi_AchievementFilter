@@ -30,9 +30,10 @@
                                  argument it reopens the game menu through ToggleGameMenu, whose SpellStopCasting
                                  call is forbidden from addon code
       background-jobs  [Error]   every job addon code starts that can run with every window closed (an OnUpdate script,
-                                 a C_Timer.NewTicker, an event registration) is listed in Check-Repo.jobs with the
-                                 Tests/Memory.lua scenario that measures what it allocates, or '-' and why it does not
-                                 run on its own; no stale lines; always tree-wide
+                                 a C_Timer.NewTicker, a tooltip post-call or OnTooltipSet* hook, an event registration)
+                                 is listed in Check-Repo.jobs with the Tests/Memory.lua scenario that measures what it
+                                 allocates, or '-' and why it does not run on its own; no stale lines; always tree-wide.
+                                 Not seen: other hooksecurefunc/HookScript hooks, self-rescheduling C_Timer.After
       luarc          [Error]   .luarc.json diagnostics.globals holds exactly what the language server
                                  cannot see on its own: every entry is read by an addon file (luac -l
                                  GETGLOBAL), none is assigned by one, no duplicates, sorted ordinally
@@ -532,8 +533,8 @@ if (Test-Path -LiteralPath $jobsFile) {
         $code = ($line -replace '#.*$', '').Trim()
         if (-not $code) { continue }
         $reason = if ($line -match '#\s*(\S.*)$') { $Matches[1] } else { '' }
-        if ($code -notmatch '^(\S+)\s+(OnUpdate|NewTicker|RegisterEvent:[A-Z0-9_]+)\s+(\S+)$') {
-            Add-Finding 'background-jobs' 'Error' $jobsRel $lineNo "expected '<path glob> <OnUpdate | NewTicker | RegisterEvent:<EVENT>> <memory/<scenario> | ->  # reason'"
+        if ($code -notmatch '^(\S+)\s+(OnUpdate|NewTicker|TooltipPostCall|RegisterEvent:(?:[A-Z0-9_]+|\*))\s+(\S+)$') {
+            Add-Finding 'background-jobs' 'Error' $jobsRel $lineNo "expected '<path glob> <OnUpdate | NewTicker | TooltipPostCall | RegisterEvent:<EVENT or *>> <memory/<scenario> | ->  # reason'"
             continue
         }
         $jobEntries.Add([pscustomobject]@{ Path = $Matches[1]; Kind = $Matches[2]; Measure = $Matches[3]; Reason = $reason; Line = $lineNo; Used = $false })
@@ -565,18 +566,25 @@ function Test-Job([string]$rel, [string]$kind, [int]$lineNo) {
         Add-Finding 'background-jobs' 'Error' $rel $lineNo "starts a background job ($kind), code that can run with every addon window closed; list it in $jobsRel with the Tests/Memory.lua scenario that measures what it allocates, or '-' and why it does not run on its own"
     }
 }
+# What it does not see, so a review still has to: hooksecurefunc and HookScript on Blizzard functions other than the
+# tooltip hooks (WorldMapFrame's OnMapChanged runs on every map change), and C_Timer.After or NewTimer callbacks that
+# schedule themselves again. A RegisterEvent whose event is not a literal is RegisterEvent:* and is listed as such.
 # Comments are blanked, newlines kept, so line numbers stay true
-$luaJobRx = [regex]'\b(?:SetScript\s*\(\s*["'']OnUpdate["'']\s*,(?!\s*nil\b)(?<onupdate>)|HookScript\s*\(\s*["'']OnUpdate["''](?<onupdate>)|C_Timer\s*\.\s*NewTicker\s*\((?<ticker>)|Register(?:Unit)?Event\s*\(\s*["''](?<event>[A-Z0-9_]+)["''])'
+$luaJobRx = [regex]'\b(?:SetScript\s*\(\s*["'']OnUpdate["'']\s*,(?!\s*nil\b)(?<onupdate>)|HookScript\s*\(\s*["'']OnUpdate["''](?<onupdate>)|C_Timer\s*\.\s*NewTicker\s*\((?<ticker>)|TooltipDataProcessor\s*\.\s*AddTooltipPostCall\s*\((?<tooltip>)|HookScript\s*\(\s*["'']OnTooltipSet\w*["''](?<tooltip>)|(?<!function\s+[\w.:]*)Register(?:Unit)?Event\s*\(\s*(?:["''](?<event>[A-Z0-9_]+)["'']|(?<anyevent>[^"''\s)])))'
 foreach ($rel in $ownLuaFiles) {
     if ($rel -like 'Tests/*') { continue }
     $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
-    if (-not ($text.Contains('OnUpdate') -or $text.Contains('NewTicker') -or $text.Contains('Event('))) { continue }
+    if (-not ($text.Contains('OnUpdate') -or $text.Contains('NewTicker') -or $text.Contains('Tooltip') -or $text.Contains('Event'))) { continue }
     $text = [regex]::Replace($text, '--\[(=*)\[.*?\]\1\]', { param($m) $m.Value -replace '[^\n]', ' ' }, 'Singleline')
     $lineNo = 0
     foreach ($line in ($text -split "`n")) {
         $lineNo++
         foreach ($m in $luaJobRx.Matches(($line -replace '--.*$', ''))) {
-            $kind = if ($m.Groups['event'].Success) { 'RegisterEvent:' + $m.Groups['event'].Value } elseif ($m.Groups['ticker'].Success) { 'NewTicker' } else { 'OnUpdate' }
+            $kind = if ($m.Groups['event'].Success) { 'RegisterEvent:' + $m.Groups['event'].Value }
+                elseif ($m.Groups['anyevent'].Success) { 'RegisterEvent:*' }
+                elseif ($m.Groups['ticker'].Success) { 'NewTicker' }
+                elseif ($m.Groups['tooltip'].Success) { 'TooltipPostCall' }
+                else { 'OnUpdate' }
             Test-Job $rel $kind $lineNo
         }
     }
