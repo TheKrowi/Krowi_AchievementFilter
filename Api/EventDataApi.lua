@@ -6,6 +6,11 @@ KrowiAF.Enum.EventType = EnumUtil.MakeEnum(
     "Widget",
     "World"
 )
+-- Where a World event's times come from when not from its POI: Scheduler is Blizzard's event scheduler
+-- (C_EventScheduler, Data/EventScheduler.lua), which names the event too
+KrowiAF.Enum.EventSource = EnumUtil.MakeEnum(
+    "Scheduler"
+)
 
 KrowiAF.EventData = {}
 
@@ -122,12 +127,23 @@ function KrowiAF.InjectEventDataDynamicOptions()
     end
 end
 
-function KrowiAF.RegisterEventDataOptions(eventIds, eventType, categoryId, icon, eventName, eventGroup, groupOrder, expansionId, hideByDefault, mapId)
+-- A scheduler event's toggle shows the game's name for its POI, which the game knows before the event is on
+local function GetSchedulerEventDisplayName(eventId, fallback)
+    return function()
+        local poi = C_AreaPoiInfo.GetAreaPOIInfo(nil, eventId)
+        return poi and poi.name or fallback
+    end
+end
+
+function KrowiAF.RegisterEventDataOptions(eventIds, eventType, categoryId, icon, eventName, eventGroup, groupOrder, expansionId, hideByDefault, mapId, source)
     if not addon.Util.IsTable(eventIds) then
         eventIds = {eventIds}
     end
     if addon.Util.IsTable(eventName) then
         eventName = eventName[2]
+    end
+    if source == KrowiAF.Enum.EventSource.Scheduler then
+        eventName = GetSchedulerEventDisplayName(eventIds[1], eventName)
     end
 
     local eventTypeGroup
@@ -144,7 +160,7 @@ function KrowiAF.RegisterEventDataOptions(eventIds, eventType, categoryId, icon,
     RegisterDynamicDeSelectAllEventOptions(eventTypeGroup or eventType, eventGroup, expansionId)
 end
 
-function KrowiAF.AddEventData(eventIds, eventType, categoryId, icon, eventName, eventGroup, groupOrder, expansionId, hideByDefault, mapId)
+function KrowiAF.AddEventData(eventIds, eventType, categoryId, icon, eventName, eventGroup, groupOrder, expansionId, hideByDefault, mapId, source)
     if not addon.Util.IsTable(eventIds) then
         eventIds = {eventIds}
     end
@@ -159,7 +175,7 @@ function KrowiAF.AddEventData(eventIds, eventType, categoryId, icon, eventName, 
 
     if addon.Util.IsTable(eventIds) then
         for _, eventId in next, eventIds do
-            addon.Data.Events[eventType][eventId] = addon.Objects.Event:New(eventId, eventIds, category, eventType, icon, eventName, mapId)
+            addon.Data.Events[eventType][eventId] = addon.Objects.Event:New(eventId, eventIds, category, eventType, icon, eventName, mapId, source)
         end
     end
 end

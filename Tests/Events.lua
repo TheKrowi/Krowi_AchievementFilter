@@ -18,8 +18,8 @@ local events = addon.Tests.Events
 --   Duplicates: how many occurrences the scheduler cache keeps for Poi after the fixture
 --   Soup: GetWidgetEventDetails of Event at At; "not shown", or "ends in <seconds>"
 --   FeastTimes: the soup schedule of Region at At: "next start in <seconds>, active <seconds> left | not active"
--- Before 2026-10-21 no Curse Surge event existed, nothing kept scheduler data, and the soup was only shown while its
--- widget was there, in its zone.
+-- Until 2026-10-21 no Curse Surge event existed, nothing kept scheduler data, and the soup was only shown while its
+-- widget was there, in its zone (the Recorded values of the before-run, verified in game on Retail 12.1.5).
 
 local surgeOrder = {8938, 8936, 8939, 8937, 8940}
 local surgeT0 = 1800000000 -- 2027-01-15 08:00:00 UTC, on the half hour
@@ -28,23 +28,23 @@ local duplicatedIndex = 3 -- the third occurrence is listed twice, as the game l
 local soupAt = 1800000000 -- 08:00 UTC: Europe's soups start at 01:00 and every 90 minutes, so the next at 08:30
 events.Scenarios = {
     {Name = "curse-surge-active", Kind = "Surge", Event = 8938, At = 100, RetailOnly = true,
-        Recorded = "no event", Target = "ends at T0+1828, game name"},
+        Recorded = "ends at T0+1828, game name", Target = "ends at T0+1828, game name"},
     {Name = "curse-surge-rotation", Kind = "Surges", At = 1840, RetailOnly = true, -- past the first one's end, start plus its 28 s
-        Recorded = "none", Target = "8936"},
+        Recorded = "8936", Target = "8936"},
     {Name = "curse-surge-after-last", Kind = "Surges", At = surgeCount * surgeLength + 100, RetailOnly = true,
         Recorded = "none", Target = "none"},
     {Name = "curse-surge-duplicate-key", Kind = "Duplicates", Poi = 8939, RetailOnly = true,
-        Recorded = "no scheduler", Target = "2"},
+        Recorded = "2", Target = "2"},
     {Name = "soup-next-eu", Kind = "Soup", Event = 4729, At = soupAt, RetailOnly = true,
-        Recorded = "not shown", Target = "ends in 1800"},
+        Recorded = "ends in 1800", Target = "ends in 1800"},
     {Name = "soup-active-eu", Kind = "Soup", Event = 4731, At = soupAt + 1800 + 300, RetailOnly = true,
-        Recorded = "not shown", Target = "ends in 600"},
+        Recorded = "ends in 600", Target = "ends in 600"},
     {Name = "soup-between-eu", Kind = "Soup", Event = 4731, At = soupAt, RetailOnly = true,
         Recorded = "not shown", Target = "not shown"},
     {Name = "feast-times-na", Kind = "FeastTimes", Region = 1, At = soupAt,
-        Recorded = "no schedule", Target = "next start in 3600, not active"},
+        Recorded = "next start in 3600, not active", Target = "next start in 3600, not active"},
     {Name = "feast-times-kr", Kind = "FeastTimes", Region = 2, At = soupAt + 60, -- Korea's soups start at 00:30 and every 90 minutes: 08:00 here
-        Recorded = "no schedule", Target = "next start in 5340, active 840 left"},
+        Recorded = "next start in 5340, active 840 left", Target = "next start in 5340, active 840 left"},
     {Name = "feast-times-unknown-region", Kind = "FeastTimes", Region = 99, At = soupAt,
         Recorded = "no schedule", Target = "no schedule"}
 }

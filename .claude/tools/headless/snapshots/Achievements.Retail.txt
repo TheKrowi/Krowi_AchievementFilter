@@ -8548,13 +8548,13 @@ ACH 63348 | patch=12.0.7
 ACH 63349 | patch=12.0.7 | reward=Pet | preview=PetSpeciesId 5073
 ACH 63358 | patch=12.1.0 | reward=HousingDecor | preview=HousingDecorId 15283
 ACH 63359 | patch=12.1.0 | reward=Mount | preview=MountId 3023
-ACH 63381 | patch=12.1.0 | reward=Title
+ACH 63381 | patch=12.1.0 | reward=Title | events=World 8936,8937,8938,8939,8940
 ACH 63382 | patch=12.1.0
 ACH 63383 | patch=12.0.7
 ACH 63384 | patch=12.0.7
 ACH 63385 | patch=12.0.7
 ACH 63386 | patch=12.0.7
-ACH 63390 | patch=12.1.0
+ACH 63390 | patch=12.1.0 | events=World 8936,8937,8938,8939,8940
 ACH 63391 | patch=12.1.0
 ACH 63395 | patch=12.1.0
 ACH 63397 | patch=12.1.0
@@ -15634,7 +15634,7 @@ achievements           8669
   temporarily obtain.  2458   (2495 records)
   with a preview       510
   with custom criteria 19
-  in an event          980
+  in an event          982
 tooltip entries        3515   (220 achievements)
 transmog sets          2107   (71 achievements)
 pet battle links       110   (1166 criteria)

@@ -47,7 +47,10 @@ memory.Scenarios = {
     {Name = "event-refresh-poi-on-map", Kind = "PerMinute", Job = "EventRefreshPoiOnMap", RetailOnly = true,
         Recorded = "large", Target = "none"},
     {Name = "event-refresh-widget-active", Kind = "PerMinute", Job = "ActiveWidgetTimers", RetailOnly = true,
-        Recorded = "large", Target = "none"}
+        Recorded = "large", Target = "none"},
+    -- Blizzard's event scheduler (Data/EventScheduler.lua): an update the addon did not ask for returns at once
+    {Name = "scheduler-update-ignored", Kind = "PerMinute", Job = "SchedulerUpdate",
+        Recorded = "none", Target = "none"}
 }
 -- RetailOnly: left out on Classic, whose event data has calendar events only (the world and widget events are
 -- DataAddons/Retail data), so the lines of the game match the headless Classic run
@@ -184,7 +187,9 @@ local function AskedPoisOnMap()
     local count = 0
     local enabled = addon.Options.db.profile.EventReminders.WorldEvents
     for _, event in next, addon.Data.Events[KrowiAF.Enum.EventType.World] or {} do
-        local asked = addon.Data.CustomWorldEventTimers.HasCustomTimer(event.Id) or C_AreaPoiInfo.GetAreaPOISecondsLeft(event.Id) ~= nil
+        -- an event from Blizzard's event scheduler is never asked (Data/EventScheduler.lua)
+        local asked = event.Source ~= KrowiAF.Enum.EventSource.Scheduler
+            and (addon.Data.CustomWorldEventTimers.HasCustomTimer(event.Id) or C_AreaPoiInfo.GetAreaPOISecondsLeft(event.Id) ~= nil)
         if enabled[event.Id] and asked and C_AreaPoiInfo.GetAreaPOIInfo(event.MapId, event.Id) then
             count = count + 1
         end
@@ -218,6 +223,9 @@ local function ActiveWidgetTimerReads()
 end
 
 function gameEnv.Jobs(name)
+    if name == "SchedulerUpdate" then
+        return {Call = addon.Data.EventScheduler.OnSchedulerUpdate, PerMinute = refreshesPerMinute}
+    end
     if name == "TaintSweep" then
         local probe = addon.Diagnostics.TaintProbe
         return {
@@ -237,6 +245,10 @@ function gameEnv.Jobs(name)
                 return nil, ("%d world event POIs the refresh asks for are on their maps here; that cost is event-refresh-poi-on-map"):format(poisOnMap)
             elseif name == "EventRefreshPoiOnMap" and poisOnMap == 0 then
                 return nil, "no world event POI the refresh asks for is on its map here"
+            end
+            -- nor where a widget is read: seen in the Dragon Isles with the Azerothian Archives' widgets (2026-10-21)
+            if name == "EventRefreshNoPoiOnMap" and ActiveWidgetTimerReads() then
+                return nil, "a widget-timed event is active here; that cost is event-refresh-widget-active"
             end
         elseif name == "ActiveWidgetTimers" then
             call = ActiveWidgetTimerReads()
@@ -311,6 +323,16 @@ local function ObserveSession(observations)
         local interval = math.max(1, eventReminders.RefreshInterval or 1)
         tinsert(observations, ("event-reminder refresh: %.0f bytes a run, every %g s, %.1f KB a minute (%s)"):format(perCall, interval, perCall * 60 / interval / kilobyte, method))
         ObserveEventParts(observations)
+        if addon.Util.IsMainline and C_EventScheduler and WorldMapFrame and WorldMapFrame:IsShown() then
+            -- the addon never reads the scheduler while the map, whose Events tab listens to it, is shown
+            tinsert(observations, "event scheduler: not read, the world map is open")
+        elseif addon.Util.IsMainline and C_EventScheduler then
+            local scheduler = addon.Data.EventScheduler
+            local rebuild, rebuildMethod = AllocatedWarm(function()
+                scheduler.Fill(C_EventScheduler.GetScheduledEvents() or {})
+            end, 3)
+            tinsert(observations, ("event scheduler: %.0f bytes a read, after login and when its times run low (%s)"):format(rebuild, rebuildMethod))
+        end
     else
         tinsert(observations, "event-reminder refresh: event reminders are off")
     end
@@ -346,7 +368,7 @@ local function JobsPerMinute()
 end
 
 local idleSeconds = 60
-local idleEvents = {"AREA_POIS_UPDATED", "PLAYER_ENTERING_WORLD", "UPDATE_ALL_UI_WIDGETS", "ZONE_CHANGED_NEW_AREA", "CRITERIA_UPDATE"}
+local idleEvents = {"AREA_POIS_UPDATED", "PLAYER_ENTERING_WORLD", "UPDATE_ALL_UI_WIDGETS", "ZONE_CHANGED_NEW_AREA", "CRITERIA_UPDATE", "EVENT_SCHEDULER_UPDATE"}
 local idleFrame -- one frame for every run, so a repeated run adds none
 
 -- What the whole addon allocates in a minute with nothing touched: a full collection, then the addon's memory again

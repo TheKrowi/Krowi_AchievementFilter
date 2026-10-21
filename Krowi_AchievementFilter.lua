@@ -122,6 +122,7 @@ function loadHelper:OnEvent(event, arg1, arg2)
         if arg1 or arg2 then -- Required cause event also is called when zoning in an instance for example
             C_Timer.After(0, function()
                 C_Timer.After(addon.Options.db.profile.EventReminders.OnLoginDelay, function()
+                    addon.Data.EventScheduler.EnsureData() -- the times of the events from Blizzard's event scheduler, for the reminders below
                     addon.Gui.EventReminderAlertSystem:ShowActiveEventsOnPlayerEnteringWorld(popUpsOptions, chatMessagesOptions)
                 end)
             end)

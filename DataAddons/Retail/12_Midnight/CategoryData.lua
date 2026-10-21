@@ -893,7 +893,7 @@ voidAssaults:Named(addon.L["Omnium Folio"], {
 expansion:Named(addon.L["Curse Surges"], { -- Curse Surges
     63390, -- Turn the Surge
     63381, -- Cursebreaker
-})
+}):WithId(2571) -- the Curse Surge event reminders open it (EventData.lua)
 
 expansion:Named(addon.L["Aqir Invasions"], { -- Aqir Invasions
     63680, -- Driving Back the Swarm

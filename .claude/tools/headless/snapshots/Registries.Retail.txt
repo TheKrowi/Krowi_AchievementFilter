@@ -228,6 +228,11 @@ EVENT World 8076 | category=1676 | icon=134927 | map=2248
 EVENT World 8077 | category=1676 | icon=134927 | map=2248
 EVENT World 8078 | category=1676 | icon=134927 | map=2248
 EVENT World 8079 | category=1676 | icon=134927 | map=2248
+EVENT World 8936 | category=2571 | icon=5764921 Source=1
+EVENT World 8937 | category=2571 | icon=5764921 Source=1
+EVENT World 8938 | category=2571 | icon=5764921 Source=1
+EVENT World 8939 | category=2571 | icon=5764921 Source=1
+EVENT World 8940 | category=2571 | icon=5764921 Source=1
 
 == Summary ==
 build versions         75   (72 used)
@@ -235,4 +240,4 @@ content timeline       0
 season anchors         1
 events Calendar        43
 events Widget          9
-events World           85
+events World           90

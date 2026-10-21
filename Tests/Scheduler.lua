@@ -10,8 +10,9 @@ local _, addon = ...
 -- addon's own call, Blizzard's handler runs tainted: its chat announcements, ClearReminder and the timer it keeps. The
 -- probe therefore records, for each call, whether its own frame got EVENT_SCHEDULER_UPDATE during the call, and whether
 -- the reminder manager's fields are still secure after it.
--- Run it with the world map closed (the Events tab registers the same event while shown), out of combat, then /reload,
--- since a tainted manager stays tainted. A reminder set on one event in the Events tab beforehand (right-click, Set
+-- Run it with the world map closed (the Events tab registers the same event while shown), out of combat, as the first
+-- suite after a /reload, never after /kaftest worldmap, which opens the map, and /reload after it, since a tainted
+-- manager stays tainted. A reminder set on one event in the Events tab beforehand (right-click, Set
 -- Reminder) makes Blizzard's handler go past its early return, so the field check means more.
 
 local waitSeconds = 10

@@ -9589,7 +9589,7 @@ ACH Expansions > Midnight > Void Assaults # 62574
 CAT Expansions > Midnight > Void Assaults > Omnium Folio
 ACH Expansions > Midnight > Void Assaults > Omnium Folio # 62606
 ACH Expansions > Midnight > Void Assaults > Omnium Folio # 63325
-CAT Expansions > Midnight > Curse Surges
+CAT Expansions > Midnight > Curse Surges  | id=2571
 ACH Expansions > Midnight > Curse Surges # 63390
 ACH Expansions > Midnight > Curse Surges # 63381
 CAT Expansions > Midnight > Aqir Invasions
@@ -12379,8 +12379,8 @@ PLACED 63690 x2
 
 == Summary ==
 categories        1547
-  declared id     57
-  auto id         1490   (>= 9000, allocated in parse order)
+  declared id     58
+  auto id         1489   (>= 9000, allocated in parse order)
 roots             5
 achievements      8669
   in a category   8580

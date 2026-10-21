@@ -25,22 +25,29 @@ The event ID is WoW's internal `C_Calendar` event ID. You can find it by:
 
 ## 2. Add the Event Definition to `EventData.lua`
 
-Open the relevant expansion's `DataAddons/Retail/<expansion>/EventData.lua` (e.g. `DataAddons/Retail/12_Midnight/EventData.lua`).
+Open the relevant expansion's `DataAddons/Retail/<expansion>/EventData.lua` (e.g. `DataAddons/Retail/12_Midnight/EventData.lua`). Each event is a positional row, read by `KrowiAF.AddEventData` and `KrowiAF.RegisterEventDataOptions` (`Api/EventDataApi.lua`):
 
 ```lua
-local _, addon = ...;
-local shared = addon.Data.EventData.Shared;
-local type = KrowiAF.Enum.EventType;
+local _, addon = ...
+local type = KrowiAF.Enum.EventType
 
 KrowiAF.EventData.Midnight = {
-    {
-        Id = 1234,                        -- WoW calendar event ID
-        Type = type.WorldEvent,           -- See KrowiAF.Enum.EventType for all types
-        Name = addon.L["My Event Name"],  -- Localization key (add to enUS.lua)
+    { -- My Event Name
+        1234, type.Calendar,           -- the id (a table of ids links them), then the type: Calendar, Widget or World
+        2570,                          -- the category its reminder opens: a :WithId(n) id from a CategoryData file
+        6439633,                       -- icon file id
+        addon.L["My Event Name"],      -- name; {group, sub} reads "group: sub"
+        addon.L["Holidays"],           -- the options group it is listed under
+        1,                             -- the group's order
+        -- then, all optional: the expansion (its World Events tab), hidden by default, the uiMapID of a World event's
+        -- POI, and the source (KrowiAF.Enum.EventSource); write false, never nil, for a field you skip before a later one
     },
-    -- ... other events
-};
+}
 ```
+
+### World events from Blizzard's event scheduler
+
+Current content's timed events are listed by Blizzard's event scheduler (`C_EventScheduler`, the world map's Events tab), with their exact start and end times. Such an event needs no timer and no POI check: give its row the area POI as its id, `type.World`, no map (`false`) and `KrowiAF.Enum.EventSource.Scheduler` as the source. `Data/EventScheduler.lua` keeps its times, and the reminders and the option toggle show the game's own name for the POI, so it needs no new localization string. The Curse Surges in `DataAddons/Retail/12_Midnight/EventData.lua` are the example; `/kaftest scheduler` lists every event the scheduler gives, with its area POI, name, zone and times (`Tests/README.md`).
 
 If the `EventData.lua` for this expansion exists but is commented out in `Files.xml`, uncomment it:
 

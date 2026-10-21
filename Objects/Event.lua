@@ -11,7 +11,8 @@ local function SetLinkedEventIds(instance, linkedEventIds)
 end
 
 event.__index = event
-function event:New(id, linkedEventIds, category, type, icon, name, mapId)
+-- source: a KrowiAF.Enum.EventSource where the event's times come from something other than its type's own reads
+function event:New(id, linkedEventIds, category, type, icon, name, mapId, source)
     local instance = setmetatable({}, event)
     instance.Id = id or 0
     SetLinkedEventIds(instance, linkedEventIds)
@@ -19,6 +20,7 @@ function event:New(id, linkedEventIds, category, type, icon, name, mapId)
     instance.Type = type
     instance.Icon = icon or 0
     instance.Name = name
-    instance.MapId = mapId
+    instance.MapId = mapId or nil -- a data row writes false for a map it skips before its source; the game rejects false as a map
+    instance.Source = source
     return instance
 end

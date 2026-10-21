@@ -357,6 +357,17 @@ local function BuildClient(client)
     }
 end
 
+-- C_AreaPoiInfo.GetAreaPOIInfo([uiMapID], areaPoiID) checks its arguments as the game does: a map that is neither a
+-- number nor nil raises "bad argument #1" (a data row's false map did in game, 2026-10-21), so every model of it calls this
+local function CheckAreaPoiArgs(mapId, areaPoiId)
+    if mapId ~= nil and type(mapId) ~= "number" then
+        error("bad argument #1 to 'GetAreaPOIInfo' (number or nil expected, got " .. type(mapId) .. ")", 3)
+    end
+    if type(areaPoiId) ~= "number" then
+        error("bad argument #2 to 'GetAreaPOIInfo' (number expected, got " .. type(areaPoiId) .. ")", 3)
+    end
+end
+
 -------------------------------------------------------------------------------------------------
 -- Suites: each takes a built client and returns results, the scenario file and observations
 -------------------------------------------------------------------------------------------------
@@ -958,7 +969,7 @@ suites.guide = function(c)
         env.C_SuperTrack = { SetSuperTrackedUserWaypoint = function() end, SetSuperTrackedMapPin = function() end }
         local pois = { [5057] = { areaPoiID = 5057, name = "Sanctum of Light", description = "Portal to the Sanctum of Light, Home of the Silver Hand",
             position = { x = 0.327, y = 0.698 } } } -- a Death Knight would not see it in game; the model keeps one POI to read
-        env.C_AreaPoiInfo = { GetAreaPOIInfo = function(mapId, id) return mapId == 627 and pois[id] or nil end }
+        env.C_AreaPoiInfo = { GetAreaPOIInfo = function(mapId, id) CheckAreaPoiArgs(mapId, id) return mapId == 627 and pois[id] or nil end }
         env.C_AddOns = { IsAddOnLoaded = function() return false end }
 
         -- --- Creature names (docs/work/2026-10-14-guide-npc-names) -------------------------------------------------------
@@ -1128,7 +1139,8 @@ end
 -- one that is not returns nothing; the calendar holds one holiday going on and one starting in three days. The world and
 -- widget events are real ids, so their real custom timers apply. Three states:
 --   "refresh", what the game run of 2026-10-19 found: Theater Troupe's widget 6264 there with the POIs of its five
---     events (7943, 8076-8079) not on their map; no other POI or widget there
+--     events (7943, 8076-8079) not on their map; no other POI or widget there; plus a Curse Surge going on, from a model
+--     of Blizzard's event scheduler (Data/EventScheduler.lua), and the soup on its fixed schedule
 --   "poi-on-map": a world event on the POI's own timer going on (9001, a fake id), and Dreamsurges: Thaldraszus (7553,
 --     widget 4993) outside its zone, its POI on the map and its widget not there; both POIs asked on every refresh
 --   "widget-active": a widget-timed event going on in its zone, Researchers Under Fire: Titan Lockdown (7459), its POI and
@@ -1164,7 +1176,7 @@ suites.memory = function(c)
     end
     env.C_AreaPoiInfo = {
         GetAreaPOISecondsLeft = function(id) return poiSecondsLeft[id] end,
-        GetAreaPOIInfo = function(_, id) if poiPresent[id] then return NewPoiInfo(id) end end,
+        GetAreaPOIInfo = function(mapId, id) CheckAreaPoiArgs(mapId, id) if poiPresent[id] then return NewPoiInfo(id) end end,
     }
     env.C_UIWidgetManager = {
         GetTextWithStateWidgetVisualizationInfo = function(id) if widgetPresent[id] then return NewTextWithStateInfo() end end,
@@ -1172,11 +1184,28 @@ suites.memory = function(c)
     env.MINUTES_ABBR, env.SECONDS_ABBR = "%d min", "%d sec"
     env.D_MINUTES, env.D_SECONDS = "%d |4minute:minutes;", "%d |4second:seconds;"
     env.GetServerTime, env.time = os.time, os.time
-    env.KrowiAF = { Enum = { EventType = { Calendar = 1, Widget = 2, World = 3 } } }
+    env.KrowiAF = { Enum = { EventType = { Calendar = 1, Widget = 2, World = 3 }, EventSource = { Scheduler = 1 } } }
+    env.GetCurrentRegion = function() return 3 end
+    env.InCombatLockdown = function() return false end
+    local now = os.time()
+
+    -- Blizzard's event scheduler: a Curse Surge going on now and one every 2.5 hours for three days, as the game lists
+    -- them (Tests/Scheduler.lua); Data/EventScheduler.lua reads it on the run the scenarios do not count
+    env.C_EventScheduler = {
+        HasData = function() return true end,
+        RequestEvents = function() end,
+        GetScheduledEvents = function()
+            local list = {}
+            for n = 0, 28 do
+                local start = now - 100 + n * 9000
+                list[#list + 1] = { areaPoiID = 8938, eventID = 45, eventKey = "model" .. n, startTime = start, endTime = start + 1828, duration = 1800 }
+            end
+            return list
+        end,
+    }
 
     -- The calendar: today's month view holds a holiday that started yesterday and ends tomorrow, and one that starts in
     -- three days; the cache Data/EventData.lua builds from it is filled on the run the scenarios do not count
-    local now = os.time()
     local function CalendarTime(t)
         local d = os.date("*t", t)
         return { year = d.year, month = d.month, monthDay = d.day, weekday = d.wday, hour = d.hour, minute = d.min }
@@ -1216,7 +1245,9 @@ suites.memory = function(c)
     AddEvent(worldEvents, enabledWorld, 7553, "Dreamsurges: Thaldraszus")
     AddEvent(worldEvents, enabledWorld, 9001, "a world event on the POI's own timer")
     AddEvent(widgetEvents, enabledWidget, 4729, "Community Feast")
-    addon.Data = { Events = { [1] = calendarEvents, [2] = widgetEvents, [3] = worldEvents } }
+    worldEvents[8938] = { Id = 8938, Name = "Curse Surges", Source = 1 } -- from the event scheduler model above; Event:New makes a row's false map nil
+    enabledWorld[8938] = true
+    addon.Data = { Events = { [1] = calendarEvents, [2] = widgetEvents, [3] = worldEvents }, IsLoaded = true }
     addon.Options = { db = { profile = { EnableTaintDiagnostics = true, EventReminders = { Enabled = true, RefreshInterval = 60,
         CalendarEvents = enabledCalendar, WidgetEvents = enabledWidget, WorldEvents = enabledWorld, UpcomingCalendarEvents = { Enabled = true, Days = 7 } } } } }
     local function SetState(state)
@@ -1231,7 +1262,7 @@ suites.memory = function(c)
         end
     end
 
-    for _, rel in ipairs({ "TaintDiagnostics.lua", "Data/CustomWidgetEventTimers.lua", "Data/CustomWorldEventTimers.lua", "Data/EventData.lua", "Tests/Memory.lua" }) do
+    for _, rel in ipairs({ "TaintDiagnostics.lua", "Data/CustomWidgetEventTimers.lua", "Data/CustomWorldEventTimers.lua", "Data/EventScheduler.lua", "Data/EventData.lua", "Tests/Memory.lua" }) do
         c.loadAddonFile(rel)
     end
     local suite = addon.Tests.Memory
@@ -1240,7 +1271,9 @@ suites.memory = function(c)
     local headless = {}
     function headless.IsRetail() return c.isRetail end
     function headless.Jobs(name)
-        if name == "TaintSweep" then
+        if name == "SchedulerUpdate" then
+            return { Call = addon.Data.EventScheduler.OnSchedulerUpdate, PerMinute = 60 }
+        elseif name == "TaintSweep" then
             return { Call = probe.SweepOnce, PerMinute = probe.SweepsPerMinute }
         elseif name == "EventRefresh" or name == "EventRefreshNoPoiOnMap" then
             SetState("refresh")
@@ -1278,7 +1311,7 @@ suites.events = function(c)
     local poiNames = { [8936] = "Curse Surge: The Looming Mutagenitor", [8937] = "Curse Surge: Siege at the Whispering Marsh",
         [8938] = "Curse Surge: The Broodmother's Nest", [8939] = "Curse Surge: Mlurkkr Massacre", [8940] = "Curse Surge: The Malformed Leviathan" }
     env.C_AreaPoiInfo = {
-        GetAreaPOIInfo = function(mapId, id) if mapId == nil and poiNames[id] then return { areaPoiID = id, name = poiNames[id] } end end,
+        GetAreaPOIInfo = function(mapId, id) CheckAreaPoiArgs(mapId, id) if mapId == nil and poiNames[id] then return { areaPoiID = id, name = poiNames[id] } end end,
         GetAreaPOISecondsLeft = function() return nil end,
     }
     env.C_UIWidgetManager = { GetTextWithStateWidgetVisualizationInfo = function() return nil end }
