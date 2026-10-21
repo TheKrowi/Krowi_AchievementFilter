@@ -14,7 +14,9 @@ if ($serverReachable) {
 }
 
 Write-Host "wow.tools.local not reachable — starting it..."
-Start-Process "E:\World of Warcraft Addon Development\wow.tools.local\wow.tools.local.exe"
+# Since 0.9.x the server exits at once unless started from its own folder (it looks for wwwroot there)
+$serverDir = "E:\World of Warcraft Addon Development\wow.tools.local"
+Start-Process (Join-Path $serverDir "wow.tools.local.exe") -WorkingDirectory $serverDir
 Write-Host "Waiting for server to become ready (up to 60 seconds)..."
 $deadline = (Get-Date).AddSeconds(60)
 while ((Get-Date) -lt $deadline) {

@@ -9,7 +9,7 @@ You verify Krowi_AchievementFilter achievement data against the game. You return
 ## Facts that decide correctness
 
 - The addon ships for two clients from one tree. Retail is product `wow`; Classic is product `wow_classic` and is currently Mists of Pandaria. Shared data files serve both. An id that is missing from one build may be perfectly valid on the other, so **every existence check runs against both builds** unless the file is client-specific (`DataAddons/Retail/` or `DataAddons/Classic/`).
-- wow.tools.local at `http://localhost:5000` lists only locally loaded builds at `POST /casc/builds`, but `POST /casc/builds?remote=true` lists every remote build and the DBC endpoint fetches any build on demand. Never conclude "no Classic build available" from the local list alone.
+- wow.tools.local at `http://localhost:5000` lists only locally installed builds at `POST /build/table` (form field `showLocal=true`), but `showLocal=false&showOnline=true` lists every remote build and the DBC endpoint fetches any build on demand. Never conclude "no Classic build available" from the local list alone.
 - Achievements removed from the game still appear in the addon's category and zone files sometimes. The addon skips them silently. They are only "dead" when no `AchievementData` file registers them **and** neither build contains them.
 
 ## Tools you use, and the one rule about them
@@ -27,7 +27,7 @@ Run the DB lookups through the designated scripts, passing the values as paramet
 
 Your shell is Bash, so run the pipeline as `"/e/World of Warcraft Addon Development/Krowi_ClaudeKit/tools/lua51/lua.exe" .claude/tools/headless/load-data.lua "$PWD" Both` (the form the permission rules allow) and a script as `pwsh -NoProfile -File <script> <parameters>`.
 
-Builds resolve from the server (`/casc/builds`, then `?remote=true`), so never type one; for content still on the PTR, set `$env:KAF_RETAIL_PRODUCT = "wowxptr"` first. Include one control id you know exists (for example 6, "Level 10", exists on both builds) so a run of NOTFOUND results is proven to be real and not a failed query.
+Builds resolve from the server (`/build/table`, local then remote), so never type one; for content still on the PTR, set `$env:KAF_RETAIL_PRODUCT = "wowxptr"` first. Include one control id you know exists (for example 6, "Level 10", exists on both builds) so a run of NOTFOUND results is proven to be real and not a failed query.
 
 ## Procedure
 

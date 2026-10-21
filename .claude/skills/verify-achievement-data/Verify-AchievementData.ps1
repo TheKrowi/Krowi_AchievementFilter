@@ -168,8 +168,8 @@ $candidates = if ($norm -match '/DataAddons/Retail/') {
 # so a Classic (wow_classic) build answers queries even when only Retail is loaded locally.
 $buildsBody = "draw=1&start=0&length=200"
 $availableBuilds = @(
-    (Invoke-RestMethod "$BaseUrl/casc/builds" -Method POST -Body $buildsBody -ContentType "application/x-www-form-urlencoded").data
-    (Invoke-RestMethod "$BaseUrl/casc/builds?remote=true" -Method POST -Body $buildsBody -ContentType "application/x-www-form-urlencoded").data
+    (Invoke-RestMethod "$BaseUrl/build/table" -Method POST -Body "$buildsBody&showLocal=true" -ContentType "application/x-www-form-urlencoded").data
+    (Invoke-RestMethod "$BaseUrl/build/table" -Method POST -Body "$buildsBody&showLocal=false&showOnline=true" -ContentType "application/x-www-form-urlencoded").data
 ) | ForEach-Object { [PSCustomObject]@{ Build = "$($_[0]).$($_[1])"; Type = $_[2] } }
 
 if (-not $Build) {
