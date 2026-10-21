@@ -1,5 +1,5 @@
 # Plan: The addon's memory no longer climbs while the player does nothing with it
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 ## Context
 Krowi's System broker shows KAF's memory climbing during play. The in-game `memory` suite showed it is not a leak but garbage the game collects late. In the second run, 122 MB of 187 MB was garbage after about 55 minutes. Two background jobs make it:

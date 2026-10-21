@@ -15,6 +15,8 @@ Follow-ups that are not a work item yet. When one is taken up, it gets its own w
     - the soup, Community Feast, on a fixed schedule;
     - research whether the soup belongs in Blizzard's world-map Events tab (a taint question) or in a separate addon.
   - **It closes** the open targets `memory/event-refresh-poi-on-map` and `memory/event-refresh-widget-active`.
+  - **Midnight is missing:** KAF reminds of no Midnight world event today. `DataAddons/Retail/12_Midnight/EventData.lua` has only Winds of Mysterious Fortune, while Blizzard's Events tab listed Saltheril's Soiree, Stormarion Assault, Legends of the Haranir, Vaults of Atal'Utek, Abundance, Aqir Invasion, Void Assaults and the Curse Surges (2026-10-21).
+- **PvP Season 42 has no season data.** In debug mode the chat shows "No season data for PvP Season 42" (`Data/TemporaryObtainable.lua:62`): an achievement points at a season that `KrowiAF.AddSeasonData` never registers (seen 2026-10-21).
 - **During-play garbage, measured the same way next:**
   - The world map button recounts the shown map's achievements on every map change: about 100 KB for a zone, 1-3 MB for a continent (`Gui/WorldMapButton/WorldMapButtonMixin.lua:95-119`).
   - Every open popout redraws all its criteria on every `CRITERIA_UPDATE` (`Gui/WindowFrames/AchievementsObjectives/AchievementsObjectivesMixin.lua:48-64`).

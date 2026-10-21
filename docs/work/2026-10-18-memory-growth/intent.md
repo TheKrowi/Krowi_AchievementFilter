@@ -1,5 +1,5 @@
 # Intent: The addon's memory no longer climbs while the player does nothing with it
-Author: Krowi (maintainer). Source: observation in game, 2026-10-18 ("KAF seems to have a memory leak; the System broker shows ever increasing memory usage"). Status: accepted
+Author: Krowi (maintainer). Source: observation in game, 2026-10-18 ("KAF seems to have a memory leak; the System broker shows ever increasing memory usage"). Status: done
 
 ## Problem
 The Krowi System broker (Krowi_Brokers_System, its addon list sorted by memory or memory increase) shows Krowi's Achievement Filter's memory going up and up during a play session, also with the achievement window closed. A player who watches an addon memory display sees the addon as leaking. Whether it is a real leak (memory the addon keeps) or garbage the addon keeps making (memory the game frees again later, at the cost of extra garbage collection work and frame time) is not known yet.

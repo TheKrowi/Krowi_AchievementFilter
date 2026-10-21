@@ -1,5 +1,5 @@
 # Spec: The addon's memory no longer climbs while the player does nothing with it
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. **Principle:** a background job, code that runs on its own with every addon window closed, allocates nothing on a run where nothing it reports has changed. It allocates only when something changed: a new insecure key, an event starting or ending.
@@ -133,7 +133,13 @@ The two read-only sweeps of the code and libraries (2026-10-18) found no other c
   - The event-refresh scenarios run on Classic too, and the model covers the calendar.
   - The lint rule also finds tooltip post-calls, `OnTooltipSet*` hooks and registrations of a non-literal event, and names what it does not see.
   - Smaller code and documentation fixes.
-  - The Retail and Classic runs above were made before these changes, and are run again on the final build.
+- **The final build, in game on 2026-10-21 12:02 (Retail 12.1.5) and 12:05 (Classic 5.5.4):**
+  - Both clients have the sweep and the refresh at 0 bytes a run, and an idle minute of 10 KB (Retail was 990 KB before the fix).
+  - On Retail, `event-refresh-poi-on-map` and `event-refresh-widget-active` SKIP: no world event POI was on its map and no widget-timed event was going on there.
+  - `Read-GameErrors.ps1` is clean on both.
+  - The achievement window's side buttons show Hallow's End and the upcoming Darkmoon Faire and Day of the Dead, counting down as before.
+  - Blizzard's world-map Events tab listed four ongoing Midnight events and a schedule that includes two Curse Surges with their start times. KAF reminds of none of the Midnight world events, because `DataAddons/Retail/12_Midnight/EventData.lua` has only Winds of Mysterious Fortune: one more reason for the move to the event scheduler (`docs/backlog.md`).
+- **Seen in chat and not part of this work:** the debug message "No season data for PvP Season 42" (`Data/TemporaryObtainable.lua:62`), an achievement pointing at a PvP season no season data registers.
 
 ## Deferred
 Found during the search; none runs on its own or keeps much:
