@@ -196,9 +196,9 @@ guide.Scenarios = {
     -- An area step names the place as the game does, in the player's language, and points at the spot where the player
     -- walks in (the Illidari Gateway in Dalaran for The Fel Hammer)
     {Name = "area-name-from-game", Kind = "AreaName", AreaId = 8023, -- The Fel Hammer, the Demon Hunter hall's area
-        Recorded = "none", Target = "game"},
+        Recorded = "game", Target = "game"},
     {Name = "area-name-unknown", Kind = "AreaName", AreaId = 999999, -- no such area in AreaTable
-        Recorded = "none", Target = "spot"},
+        Recorded = "spot", Target = "spot"},
 }
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line

@@ -3,9 +3,10 @@ addon.Gui.Guide = {}
 local guide = addon.Gui.Guide
 
 -- Renders an achievement's guide (achievement.Guide, built by Api/GuideDataBuilder.lua) for every surface, so a step
--- reads the same in the tooltip and the right-click menu. Names come from the game in the player's language, an NPC's
--- too (the data's English name stands in while the client has none, and a name the client gave is kept for the
--- session); only the tip comes from the data. Tests/Guide.lua holds this file to its contract.
+-- reads the same in the tooltip and the right-click menu. Names come from the game in the player's language (spells,
+-- areas, maps, POIs, talents), an NPC's too (the data's English name stands in while the client has none, and a name
+-- the client gave is kept for the session); only the tip comes from the data. Tests/Guide.lua holds this file to its
+-- contract.
 
 guide.DetailSeparator = " \194\183 " -- a middle dot between the parts of a detail line
 
@@ -218,6 +219,14 @@ local function GetSpellName(spellId)
     end
 end
 
+-- Nil for an area the game has no name for
+local function GetAreaName(areaId)
+    local name = C_Map.GetAreaInfo and C_Map.GetAreaInfo(areaId)
+    if type(name) == "string" and name ~= "" then
+        return name
+    end
+end
+
 -- Whether a value is a table this code may index: indexing a secret table raises an error
 local function CanIndex(value)
     return type(value) == "table" and (not canaccesstable or canaccesstable(value))
@@ -307,6 +316,11 @@ function guide.GetLines(achievement)
             local text = info and addon.L["Guide Go To"]:K_ReplaceVars{poi = info.name} or addon.L["Guide Go To Spot"]
             tinsert(lines, {Kind = "Poi", Text = text, Details = {GetPlace(step)},
                 Waypoint = {MapId = step.MapId, X = step.X, Y = step.Y, PoiId = step.PoiId, Title = info and info.name or GetMapName(step.MapId)}})
+        elseif step.Type == "Area" then
+            local areaName = GetAreaName(step.AreaId)
+            local text = areaName and addon.L["Guide Go To"]:K_ReplaceVars{poi = areaName} or addon.L["Guide Go To Spot"]
+            tinsert(lines, {Kind = "Area", Text = text, Details = {GetPlace(step)},
+                Waypoint = {MapId = step.MapId, X = step.X, Y = step.Y, Title = areaName or GetMapName(step.MapId)}})
         elseif step.Type == "Criteria" then
             AddResearchLines(lines, achievement, classId, step)
         elseif step.Type == "Tip" then

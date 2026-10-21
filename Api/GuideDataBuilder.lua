@@ -28,6 +28,12 @@ function GuideBuilder:Poi(areaPoiId, uiMapId, x, y)
     return AddStep(self, {Type = "Poi", PoiId = areaPoiId, MapId = uiMapId, X = x, Y = y})
 end
 
+-- Go to a place the game names by its area (AreaTable id), e.g. a class hall; the map and coordinates mark the spot
+-- where the player walks in
+function GuideBuilder:Area(areaId, uiMapId, x, y)
+    return AddStep(self, {Type = "Area", AreaId = areaId, MapId = uiMapId, X = x, Y = y})
+end
+
 -- The achievement's garrison talent criteria (type 198) as what is left to research, from the player's own talent tree.
 -- operator "Any" when one criterion completes the achievement (the criteria tree's root operator 8, which the game API
 -- does not expose; .claude/skills/add-zone-data/_lookup_criteria.ps1 prints it), otherwise every criterion is needed.
