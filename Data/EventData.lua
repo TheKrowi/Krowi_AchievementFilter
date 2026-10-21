@@ -176,13 +176,15 @@ local function GetActiveCalendarEvents()
     end
 end
 
-function eventData.GetWidgetEventDetails(event)
+-- now: the server time to read the event at, GetServerTime() unless a test gives one (Tests/Events.lua)
+function eventData.GetWidgetEventDetails(event, now)
     if not addon.Options.db.profile.EventReminders.WidgetEvents[event.Id] then
         event.EventDetails = nil
         return
     end
 
-    local secondsLeft = addon.Data.CustomWidgetEventTimers.GetSecondsLeft(event.Id)
+    now = now or GetServerTime()
+    local secondsLeft = addon.Data.CustomWidgetEventTimers.GetSecondsLeft(event.Id, now)
     if not secondsLeft then -- The event is not available or not active
         event.EventDetails = nil
         return
@@ -190,7 +192,7 @@ function eventData.GetWidgetEventDetails(event)
 
     local endTime
     if secondsLeft ~= nil and secondsLeft ~= 0 then
-        endTime = GetServerTime() + secondsLeft
+        endTime = now + secondsLeft
     end
 
     local details = GetOrCreateEventDetails(event)
@@ -215,10 +217,31 @@ local function IsPoiOnMap(event)
     return C_AreaPoiInfo.GetAreaPOIInfo(event.MapId, event.Id) ~= nil
 end
 
-function eventData.GetWorldEventDetails(event)
+-- An event from Blizzard's event scheduler: its occurrence going on now and the game's name, with no POI read
+local function GetSchedulerEventDetails(event, now)
+    local scheduler = addon.Data.EventScheduler
+    local startTime, endTime = scheduler.GetOccurrence(event.Id, now)
+    if not startTime then -- The event is not active
+        event.EventDetails = nil
+        return
+    end
+    local details = GetOrCreateEventDetails(event)
+    details.StartTime = startTime
+    details.EndTime = endTime
+    details.Name = scheduler.GetName(event.Id) or event.Name
+    return details
+end
+
+-- now: the server time to read the event at, GetServerTime() unless a test gives one (Tests/Events.lua)
+function eventData.GetWorldEventDetails(event, now)
     if not addon.Options.db.profile.EventReminders.WorldEvents[event.Id] then
         event.EventDetails = nil
         return
+    end
+
+    now = now or GetServerTime()
+    if event.Source == KrowiAF.Enum.EventSource.Scheduler then
+        return GetSchedulerEventDetails(event, now)
     end
 
     local timers = addon.Data.CustomWorldEventTimers
@@ -248,7 +271,7 @@ function eventData.GetWorldEventDetails(event)
 
     local endTime
     if secondsLeft ~= nil and secondsLeft ~= 0 then
-        endTime = GetServerTime() + secondsLeft
+        endTime = now + secondsLeft
     end
 
     local details = GetOrCreateEventDetails(event)

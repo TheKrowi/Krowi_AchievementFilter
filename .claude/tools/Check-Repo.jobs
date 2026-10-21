@@ -9,7 +9,10 @@
 # --- Measured: they run all session
 TaintDiagnostics.lua OnUpdate memory/taint-sweep                                       # twice a second while taint diagnostics are on, the default
 Gui/EventReminder/AlertSystem.lua NewTicker memory/event-refresh                       # every Refresh interval while event reminders are on, the default; the scenarios measure the reads each tick makes (calendar, widget and world events), the rest of a tick walks tables and adds nothing
+Data/EventScheduler.lua RegisterEvent:EVENT_SCHEDULER_UPDATE memory/scheduler-update-ignored # Blizzard's event scheduler; read only when the addon asked, a few times a session
+
 # --- Not background jobs: they run once, rarely, or only while something the player opened is shown
+Data/EventScheduler.lua RegisterEvent:PLAYER_REGEN_ENABLED -                           # only while a scheduler read waits for combat to end; unregistered on its first run
 Data/AchievementCache.lua OnUpdate -                                                   # the login data load; removed when it finishes
 Gui/Guide/Panel.lua OnUpdate -                                                         # only while the guide panel is shown
 Gui/Guide/Panel.lua RegisterEvent:PLAYER_REGEN_DISABLED -                              # entering combat, once the guide panel was used

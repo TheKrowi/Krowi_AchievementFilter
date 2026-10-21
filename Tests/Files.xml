@@ -9,4 +9,6 @@
     <Script file="Guide.lua" />
     <Script file="Menu.lua" />
     <Script file="Memory.lua" />
+    <Script file="Scheduler.lua" />
+    <Script file="Events.lua" />
 </Ui>
