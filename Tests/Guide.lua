@@ -205,7 +205,7 @@ guide.Scenarios = {
     -- A hall reached only by a class spell reads "Go to <hall>" like the others, with the spell under it (Krowi, in game
     -- on 2026-10-21: "Travel with" felt off next to the other guides' "Go to")
     {Name = "travel-area-from-game", Kind = "AreaName", Step = "Travel", SpellId = 50977, AreaId = 7679, -- Death Gate, Acherus
-        Recorded = "spell", Target = "game"},
+        Recorded = "game", Target = "game"},
     {Name = "travel-area-unknown", Kind = "AreaName", Step = "Travel", SpellId = 50977, AreaId = 999999,
         Recorded = "spell", Target = "spell"},
 }

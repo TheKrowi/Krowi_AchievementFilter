@@ -219,6 +219,12 @@ local function GetSpellName(spellId)
     end
 end
 
+-- The spell with its icon in front, as the detail under a travel step
+local function GetSpellText(spellId, spellName)
+    local icon = C_Spell and C_Spell.GetSpellTexture and C_Spell.GetSpellTexture(spellId)
+    return icon and ("|T%d:0|t %s"):format(icon, spellName) or spellName
+end
+
 -- Nil for an area the game has no name for. The name is not flagged secret (MapDocumentation.lua, GetAreaInfo), but
 -- it is checked before the comparison as an NPC's name is, since comparing a secret value raises an error
 local function GetAreaName(areaId)
@@ -314,7 +320,13 @@ function guide.GetLines(achievement)
     for _, step in ipairs(guide.GetSteps(achievement, GetPlayerFaction())) do
         if step.Type == "Travel" then
             local spellName = GetSpellName(step.SpellId) or tostring(step.SpellId)
-            tinsert(lines, {Kind = "Travel", Text = addon.L["Guide Travel"]:K_ReplaceVars{spell = spellName}})
+            local areaName = step.AreaId and GetAreaName(step.AreaId)
+            if areaName then
+                tinsert(lines, {Kind = "Travel", Text = addon.L["Guide Go To"]:K_ReplaceVars{poi = areaName},
+                    Details = {GetSpellText(step.SpellId, spellName)}})
+            else
+                tinsert(lines, {Kind = "Travel", Text = addon.L["Guide Travel"]:K_ReplaceVars{spell = spellName}})
+            end
         elseif step.Type == "Npc" then
             local npcName = GetNpcName(step)
             tinsert(lines, {Kind = "Npc", Text = addon.L["Guide Talk To"]:K_ReplaceVars{npc = npcName}, Details = {GetPlace(step)},

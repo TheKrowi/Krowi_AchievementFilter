@@ -10,9 +10,10 @@ local function AddStep(self, step)
     return self
 end
 
--- Travel by a spell, e.g. Death Gate (50977); the spell name comes from the game
-function GuideBuilder:Travel(spellId)
-    return AddStep(self, {Type = "Travel", SpellId = spellId})
+-- Travel by a spell to an area (AreaTable id), e.g. Death Gate (50977) to Acherus (7679): reads "Go to <area>" with the
+-- spell under it, names from the game; without an area, or a name for it, "Travel with <spell>"
+function GuideBuilder:Travel(spellId, areaId)
+    return AddStep(self, {Type = "Travel", SpellId = spellId, AreaId = areaId})
 end
 
 -- Talk to an NPC. The name is the English one, as the enUS client shows it: the guide shows the player's client's own

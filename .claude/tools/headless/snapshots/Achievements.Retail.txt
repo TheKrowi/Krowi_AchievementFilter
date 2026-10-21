@@ -15587,23 +15587,23 @@ PETBATTLE 41551 # criteria 10: 41550
 
 == Guides ==
 # per achievement, the steps in stored order; an NPC's name is the data's English one, a tip a locale string, left out
-GUIDE 60962 # 1 Travel SpellId=50977
+GUIDE 60962 # 1 Travel AreaId=7679 SpellId=50977
 GUIDE 60962 # 2 Npc MapId=648 Name=Archivist Zubashi NpcId=97485 X=47.7 Y=53.8
 GUIDE 60962 # 3 Criteria Operator=Any
 GUIDE 60963 # 1 Area AreaId=8023 MapId=627 X=98 Y=69.3
 GUIDE 60963 # 2 Npc MapId=721 Name=Loramus Thalipedes NpcId=108527 X=55.3 Y=62.7
 GUIDE 60963 # 3 Criteria Operator=Any
-GUIDE 60964 # 1 Travel SpellId=193753
+GUIDE 60964 # 1 Travel AreaId=7979 SpellId=193753
 GUIDE 60964 # 2 Area AreaId=7846 MapId=715 X=45.2 Y=26.4
 GUIDE 60964 # 3 Npc MapId=747 Name=Leafbeard the Storied NpcId=97989 X=32.7 Y=29.4
 GUIDE 60964 # 4 Criteria Operator=Any
 GUIDE 60965 # 1 Area AreaId=7877 MapId=627 X=72.9 Y=41.2
 GUIDE 60965 # 2 Npc MapId=739 Name=Survivalist Bahn NpcId=108050 X=58.7 Y=51.1
 GUIDE 60965 # 3 Criteria Operator=Any
-GUIDE 60966 # 1 Travel SpellId=193759
+GUIDE 60966 # 1 Travel AreaId=7879 SpellId=193759
 GUIDE 60966 # 2 Npc MapId=734 Name=Chronicler Elrianne NpcId=108331 X=74.9 Y=28.9
 GUIDE 60966 # 3 Criteria Operator=Any
-GUIDE 60967 # 1 Travel SpellId=126892
+GUIDE 60967 # 1 Travel AreaId=7903 SpellId=126892
 GUIDE 60967 # 2 Npc MapId=709 Name=Number Nine Jia NpcId=98939 X=53 Y=59.8
 GUIDE 60967 # 3 Criteria Operator=Any
 GUIDE 60968 # 1 Poi Faction=1 MapId=627 PoiId=5057 X=32.7 Y=69.8

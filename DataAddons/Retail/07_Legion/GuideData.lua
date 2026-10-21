@@ -5,11 +5,11 @@ local faction = KrowiAF.Enum.Faction
 -- docs/work/2026-10-11-achievement-guides/plan.md); a portal's spot is its area POI's position, as the game reported it
 -- or, for the Alliance Priest portal, as the game database gives it. Spell and area ids come from the game database
 -- (docs/work/2026-10-21-legendary-research-guides). Every Legendary Research achievement has root operator 8: either
--- Tier VII talent completes it. A hall reached only by a class spell names the spell, any other the hall, at the spot
--- where the player walks in.
+-- Tier VII talent completes it. Every guide starts with "Go to" the hall: at the spot where the player walks in, or,
+-- for a hall reached only by a class spell, with that spell under it.
 KrowiAF.GuideData.Legion = {
     Guide(60962) -- Legendary Research of the Ebon Blade
-        :Travel(50977) -- Death Gate
+        :Travel(50977, 7679) -- Death Gate, to Acherus: The Ebon Hold
         :Npc(97485, "Archivist Zubashi", 648, 47.7, 53.8) -- Acherus, upper floor; /kafwhere on 2026-10-11
         :Criteria("Any"), -- Frost and Death or Roster of Champions: the root operator is 8, either one completes it
     Guide(60963) -- Legendary Research of the Illidari
@@ -17,7 +17,7 @@ KrowiAF.GuideData.Legion = {
         :Npc(108527, "Loramus Thalipedes", 721, 55.3, 62.7) -- the Fel Hammer's other floor
         :Criteria("Any"),
     Guide(60964) -- Legendary Research of the Dreamgrove
-        :Travel(193753) -- Dreamwalk, into the Emerald Dreamway
+        :Travel(193753, 7979) -- Dreamwalk, to the Emerald Dreamway
         :Area(7846, 715, 45.2, 26.4) -- The Dreamgrove, through its portal in the Emerald Dreamway
         :Npc(97989, "Leafbeard the Storied", 747, 32.7, 29.4)
         :Criteria("Any"),
@@ -26,11 +26,11 @@ KrowiAF.GuideData.Legion = {
         :Npc(108050, "Survivalist Bahn", 739, 58.7, 51.1)
         :Criteria("Any"),
     Guide(60966) -- Legendary Research of the Tirisgarde
-        :Travel(193759) -- Teleport: Hall of the Guardian
+        :Travel(193759, 7879) -- Teleport: Hall of the Guardian
         :Npc(108331, "Chronicler Elrianne", 734, 74.9, 28.9)
         :Criteria("Any"),
     Guide(60967) -- Legendary Research of Five Dawns
-        :Travel(126892) -- Zen Pilgrimage
+        :Travel(126892, 7903) -- Zen Pilgrimage, to the Temple of Five Dawns
         :Npc(98939, "Number Nine Jia", 709, 53.0, 59.8)
         :Criteria("Any"),
     Guide(60968) -- Legendary Research of the Silver Hand
