@@ -107,3 +107,7 @@ Why the reminders miss these events today:
 Krowi, 2026-10-21:
 - **Option A:** the Curse Surges from the scheduler and the soup on a fixed schedule, shipped as normal reminders.
 - **Scope:** the Curse Surges and the soup only. Aqir Invasion, Abundance, Void Assaults and the older widget events follow as data in a next item, once this model has run in game.
+
+Krowi, 2026-10-21, after the code review found that the schedule makes Community Feast: Next active everywhere at all times (a pop-up and chat line on every login and reload, a new pop-up every 90 minutes, for every Retail player):
+- **The soup's Next shows only in the 15 minutes of preparation before each cooking**, then Active for the 15 minutes of cooking; nothing between feasts. Chosen over keeping Next all the time and over limiting the soup to the Dragon Isles.
+- **Checked in game** on the Azure Span map the same day: the eating phase (60 minutes) ended 60 minutes after the cooking the schedule counts, within a minute, so Europe's offset holds.

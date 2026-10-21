@@ -12,7 +12,6 @@ local eventScheduler = addon.Data.EventScheduler
 
 local lowWater = 6 * 3600 -- ask for more when a watched event has less than this left in its kept times
 local requestEvery = 300 -- at most one request for more in this many seconds
-local quietAfterShortRead = 3600 -- after a read that still leaves an event short (the game stopped listing it), ask again only after this
 
 -- What the cache reads from the game. The events suite swaps in a model of it (Tests/Events.lua, UseSourceForTest), so
 -- the read logic runs the same steps in game and headlessly; these functions are made once, at load.
@@ -35,8 +34,9 @@ local source = game
 local watched -- [areaPoiID] = true for each scheduler event, gathered once the data load has made them
 local starts, ends, cursors, names = {}, {}, {}, {} -- [areaPoiID]: occurrences sorted by start, the first one not ended yet at the last lookup, the game's name
 local seenKeys = {} -- eventKey = true: the game lists some occurrences twice under one key
+local unlisted = {} -- [areaPoiID] = true when the last read left it short: the game does not list it that far, so its lookups ask for nothing
 local pendingSince -- when the addon asked for data; its answer is read on EVENT_SCHEDULER_UPDATE until requestEvery has passed
-local lastAttempt, quietUntil
+local lastAttempt
 local inSchedulerCall -- an addon call into C_EventScheduler is running
 local stopped -- EVENT_SCHEDULER_UPDATE fired inside such a call, so the scheduler is left alone for the session
 local testing -- the events suite has its fixture in the cache; nothing refills it until Reset
@@ -46,7 +46,7 @@ local function Watched()
     if watched then
         return watched
     end
-    if not addon.Data.IsLoaded then
+    if not addon.Data.EventsLoaded then
         return
     end
     watched = {}
@@ -127,18 +127,14 @@ local function Read(now)
     end
     eventScheduler.Fill(scheduled)
     for areaPoiId in next, watched do
-        if IsShort(areaPoiId, now) then
-            quietUntil = now + quietAfterShortRead
-            break
-        end
+        unlisted[areaPoiId] = IsShort(areaPoiId, now) or nil
     end
     return true
 end
 
--- Reads what the scheduler has, or asks it for data when it has none; at most once in requestEvery seconds, and not
--- at all for an hour after a read that left an event short
+-- Reads what the scheduler has, or asks it for data when it has none; at most once in requestEvery seconds
 local function Refill(now)
-    if not CanAsk() or (lastAttempt and now - lastAttempt < requestEvery) or (quietUntil and now < quietUntil) then
+    if not CanAsk() or (lastAttempt and now - lastAttempt < requestEvery) then
         return
     end
     lastAttempt = now
@@ -149,10 +145,24 @@ local function Refill(now)
     CallScheduler(source.RequestEvents)
 end
 
+-- Whether a reminder can show a watched event: event reminders on and at least one of their toggles on
+local function IsWanted()
+    local eventReminders = addon.Options.db.profile.EventReminders
+    if not eventReminders.Enabled then
+        return false
+    end
+    for areaPoiId in next, watched do
+        if eventReminders.WorldEvents[areaPoiId] then
+            return true
+        end
+    end
+    return false
+end
+
 -- At login, after combat and when a lookup finds the kept times running low
 function eventScheduler.EnsureData()
     local watching = Watched()
-    if not watching or not next(watching) or not source.Available() or stopped then
+    if not watching or not next(watching) or not source.Available() or stopped or not IsWanted() then
         return
     end
     listener:RegisterEvent("EVENT_SCHEDULER_UPDATE")
@@ -215,6 +225,10 @@ function eventScheduler.GetOccurrence(areaPoiId, now)
             return
         end
     end
+    -- Before the walk: a read refills these same tables and puts the cursor back at the first occurrence
+    if not unlisted[areaPoiId] and IsShort(areaPoiId, now) and not IsPending(now) then
+        Refill(now)
+    end
     local i = cursors[areaPoiId]
     if i > 1 and e[i - 1] and e[i - 1] > now then
         i = 1
@@ -223,22 +237,19 @@ function eventScheduler.GetOccurrence(areaPoiId, now)
         i = i + 1
     end
     cursors[areaPoiId] = i
-    if IsShort(areaPoiId, now) and not IsPending(now) then
-        Refill(now)
-    end
     if s[i] and s[i] <= now then
         return s[i], e[i]
     end
 end
 
--- The game's name for the event's area POI, read once
+-- The game's name for the event's area POI, read until the game knows it; also the label of its option toggle
 function eventScheduler.GetName(areaPoiId)
     local name = names[areaPoiId]
-    if name == nil then
-        name = source.PoiName(areaPoiId) or false
+    if not name then
+        name = source.PoiName(areaPoiId)
         names[areaPoiId] = name
     end
-    return name or nil
+    return name
 end
 
 function eventScheduler.CountOccurrences(areaPoiId)
@@ -261,7 +272,8 @@ function eventScheduler.Reset()
         wipe(ends[areaPoiId])
         cursors[areaPoiId] = 1
     end
-    pendingSince, lastAttempt, quietUntil, testing = nil, nil, nil, nil
+    wipe(unlisted)
+    pendingSince, lastAttempt, testing = nil, nil, nil
     listener:UnregisterEvent("PLAYER_REGEN_ENABLED")
 end
 

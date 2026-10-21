@@ -42,7 +42,7 @@ events.Scenarios = {
     {Name = "curse-surge-duplicate-key", Kind = "Duplicates", Poi = 8939, RetailOnly = true,
         Recorded = "2", Target = "2"},
     {Name = "soup-next-eu", Kind = "Soup", Event = 4729, At = soupAt, RetailOnly = true, -- 30 minutes before a cooking
-        Recorded = "ends in 1800", Target = "not shown"},
+        Recorded = "not shown", Target = "not shown"},
     {Name = "soup-next-soon-eu", Kind = "Soup", Event = 4729, At = soupAt + 1200, RetailOnly = true, -- 10 minutes before
         Recorded = "ends in 600", Target = "ends in 600"},
     {Name = "soup-active-eu", Kind = "Soup", Event = 4731, At = soupAt + 1800 + 300, RetailOnly = true,
@@ -60,7 +60,7 @@ events.Scenarios = {
     {Name = "scheduler-refill", Kind = "Scheduler", Story = "Refill", RetailOnly = true,
         Recorded = "reads 1; times short: reads 2; a lookup after: reads 2", Target = "reads 1; times short: reads 2; a lookup after: reads 2"},
     {Name = "scheduler-refill-mid-lookup", Kind = "Scheduler", Story = "RefillMidLookup", RetailOnly = true,
-        Recorded = "not active", Target = "going on"},
+        Recorded = "going on", Target = "going on"},
     {Name = "scheduler-pending-lapses", Kind = "Scheduler", Story = "PendingLapses", RetailOnly = true,
         Recorded = "answer with the map open: read 0; while pending: calls 0; 301 s after asking: read 1", Target = "answer with the map open: read 0; while pending: calls 0; 301 s after asking: read 1"},
     {Name = "scheduler-combat", Kind = "Scheduler", Story = "Combat", RetailOnly = true,
@@ -68,11 +68,11 @@ events.Scenarios = {
     {Name = "scheduler-fired-inside", Kind = "Scheduler", Story = "FiredInside", RetailOnly = true,
         Recorded = "reported; calls after 0", Target = "reported; calls after 0"},
     {Name = "scheduler-unlisted-variant", Kind = "Scheduler", Story = "Unlisted", RetailOnly = true,
-        Recorded = "reads in six hours 7", Target = "reads in six hours 1"},
+        Recorded = "reads in six hours 1", Target = "reads in six hours 1"},
     {Name = "scheduler-reminders-off", Kind = "Scheduler", Story = "RemindersOff", RetailOnly = true,
-        Recorded = "calls 1", Target = "calls 0"},
+        Recorded = "calls 0", Target = "calls 0"},
     {Name = "scheduler-name-arrives", Kind = "Scheduler", Story = "NameArrives", RetailOnly = true,
-        Recorded = "before: none; after: none", Target = "before: none; after: game"}
+        Recorded = "before: none; after: game", Target = "before: none; after: game"}
 }
 -- RetailOnly: the Curse Surges and the soup are DataAddons/Retail events; FeastTimes runs on every client
 local europe = 3 -- GetCurrentRegion

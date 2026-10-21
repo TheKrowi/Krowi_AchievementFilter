@@ -21,8 +21,9 @@ end
 -- (from maintained addons' data): Americas 00:00, Korea, Taiwan and China 00:30, Europe 01:00, and every 90 minutes
 -- from there. Europe's was checked on the Azure Span map on 2026-10-21: the eating ended 60 minutes after the cooking
 -- counted here, within a minute.
-local feastInterval, feastLength = 5400, 900
+local feastInterval, feastLength, feastPreparation = 5400, 900, 900
 local feastOffsets = {[1] = 0, [2] = 1800, [3] = 3600, [4] = 1800, [5] = 1800} -- by GetCurrentRegion(): US, KR, EU, TW, CN
+local computed = {[4729] = true, [4731] = true} -- the timers below that compute their times and read no widget
 
 -- Seconds until the next start, and the seconds left while one is going on; nothing for a region without a schedule
 function customWidgetEventTimers.FeastTimes(now, region)
@@ -41,8 +42,16 @@ local function GetSecondsLeft(text, minutesPattern, secondsPattern)
     return minutes * 60 + seconds
 end
 
-timers[4729] = function(now) -- Community Feast: Next, the time to the next start
-    return (customWidgetEventTimers.FeastTimes(now, GetCurrentRegion()))
+-- Whether a widget event's timer computes its times instead of reading its widget (Tests/Memory.lua)
+function customWidgetEventTimers.IsComputed(id)
+    return computed[id] == true
+end
+
+timers[4729] = function(now) -- Community Feast: Next, the time to the next start, only in the preparation before it (Krowi, 2026-10-21)
+    local secondsToNext = customWidgetEventTimers.FeastTimes(now, GetCurrentRegion())
+    if secondsToNext and secondsToNext <= feastPreparation then
+        return secondsToNext
+    end
 end
 
 timers[4731] = function(now) -- Community Feast: Active, the time left while one is going on

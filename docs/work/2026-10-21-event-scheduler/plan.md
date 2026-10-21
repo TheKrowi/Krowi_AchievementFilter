@@ -99,6 +99,23 @@ Krowi chose the proof of concept as normal reminders: the Curse Surges from the 
    7. Classic: `/kaftest memory` and `/kaftest events` (the Curse Surge scenarios are Retail only) are green, and nothing new shows in the options.
 6. **Docs, changelog, status done, PR.**
 
+## Departures from the plan (build, reviews and in-game runs, 2026-10-21)
+- **The cache is module state, not pure functions on a cache table:** `Fill(scheduledEvents)` and `GetOccurrence(poi, now)` replace `Fill(cache, ...)` and `Find(cache, ...)`. The tests reach it through `LoadForTest` (the fixture) and `UseSourceForTest`, which swaps the game for a model of it (C_EventScheduler, combat, the world map, the clock, POI names), so the scheduler stories run the same steps in game and headlessly.
+- **Scenario values:** `curse-surge-duplicate-key` counts the occurrences kept for the POI whose key is listed twice: "2", its two occurrences, the duplicate dropped (the plan's "1" counted the key). `curse-surge-active` ends at T0+1828: the game's ends run 28 s past start plus 1800.
+- **Not done, with the reason:** `Api/ApiDocumentation.lua` has no event-data section, so the `source` field is documented in `docs/how-to/add-event.md`. No `PLAYER_ENTERING_WORLD` jobs line: `Krowi_AchievementFilter.lua`'s existing one covers the new call.
+- **After the taint review:** every call into the scheduler goes through `CallScheduler`, and an `EVENT_SCHEDULER_UPDATE` fired inside one stops the cache reading the scheduler for the session; a request's answer is waited for 300 s at most; the events suite's fixture blocks refills (`testing`).
+- **After the first in-game memory run:** a data row's `false` map became `nil` in `Event:New` (the game rejects `false` as a map), and the headless `GetAreaPOIInfo` models check their arguments as the game does.
+- **After the code review:**
+  - the low-water refill runs before the cursor walk, so the lookup that refills finds the occurrence going on;
+  - a POI the last read left short is not listed by the game, and asks for nothing more (was: every hour);
+  - no scheduler call at login with event reminders off or every Curse Surge toggle off;
+  - a POI name the game does not know yet is asked again next time, and the toggle's label comes from the same `GetName`;
+  - the cache waits for `addon.Data.EventsLoaded` (set when every event object exists), not for the cache build;
+  - the memory suite reads the scheduler through `ReadForTest`, under the cache's guards, and does not count the soup as a widget read (`IsComputed`);
+  - the events suite turns on the toggles it reads and puts the player's own back, with the events' live details.
+- **Krowi's decision after the code review:** the soup's Next shows only in the 15 minutes before each cooking (spec, Decision).
+- **Declined:** a widget fallback for a region without an offset, since every live region is 1 to 5. The Korean, Taiwanese and Chinese offsets are not checked in game (`docs/backlog.md`).
+
 ## Risks
 - **The soup's region offsets come from addons' data.** The in-zone observation and the map timer check them, and the offsets are constants in one place.
 - **Which phase "Active" means** (cooking, 900 s) is from the same sources. The map check settles it; if it is wrong, only the constants change.

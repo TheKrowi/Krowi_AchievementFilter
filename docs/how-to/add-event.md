@@ -47,7 +47,7 @@ KrowiAF.EventData.Midnight = {
 
 ### World events from Blizzard's event scheduler
 
-Current content's timed events are listed by Blizzard's event scheduler (`C_EventScheduler`, the world map's Events tab), with their exact start and end times. Such an event needs no timer and no POI check: give its row the area POI as its id, `type.World`, no map (`false`) and `KrowiAF.Enum.EventSource.Scheduler` as the source. `Data/EventScheduler.lua` keeps its times, and the reminders and the option toggle show the game's own name for the POI, so it needs no new localization string. The Curse Surges in `DataAddons/Retail/12_Midnight/EventData.lua` are the example; `/kaftest scheduler` lists every event the scheduler gives, with its area POI, name, zone and times (`Tests/README.md`).
+Current content's timed events are listed by Blizzard's event scheduler (`C_EventScheduler`, the world map's Events tab), with their exact start and end times. Such an event needs no timer and no POI check: give its row the area POI as its id, `type.World`, no map (`false`) and `KrowiAF.Enum.EventSource.Scheduler` as the source. `Data/EventScheduler.lua` keeps its times, and the reminders and the option toggle show the game's own name for the POI. The row's name, the fallback when the game does not know the POI yet, and its options group are still `addon.L` strings: use one every locale file already has, or add it to every locale file (step 6). The Curse Surges in `DataAddons/Retail/12_Midnight/EventData.lua` are the example; `/kaftest scheduler` lists every event the scheduler gives, with its area POI, name, zone and times (`Tests/README.md`).
 
 If the `EventData.lua` for this expansion exists but is commented out in `Files.xml`, uncomment it:
 

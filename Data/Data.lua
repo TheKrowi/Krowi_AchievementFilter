@@ -121,6 +121,7 @@ function data:RegisterZoneDataTasks()
 end
 
 local function PostLoadOnPlayerLogin(self, start)
+    self.EventsLoaded = true -- every event object exists; Data/EventScheduler.lua waits for this, not for the cache build
     self.LoadDiagnostics:Print()
 
     local custom =LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Prefix .. "_Layout", "cmd", "KROWIAF-0.0").args.Summary.args.Summary.args.NumAchievements -- cmd and KROWIAF-0.0 are just to make the function work

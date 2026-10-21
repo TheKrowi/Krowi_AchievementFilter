@@ -208,7 +208,8 @@ local function ActiveWidgetTimerReads()
         end
     end
     for _, event in next, addon.Data.Events[eventType.Widget] or {} do
-        if addon.EventData.GetWidgetEventDetails(event) then
+        -- a timer that computes its times reads no widget (the soup's), so it is not this cost
+        if not addon.Data.CustomWidgetEventTimers.IsComputed(event.Id) and addon.EventData.GetWidgetEventDetails(event) then
             tinsert(reads, function() addon.EventData.GetWidgetEventDetails(event) end)
         end
     end
@@ -327,11 +328,14 @@ local function ObserveSession(observations)
             -- the addon never reads the scheduler while the map, whose Events tab listens to it, is shown
             tinsert(observations, "event scheduler: not read, the world map is open")
         elseif addon.Util.IsMainline and C_EventScheduler then
-            local scheduler = addon.Data.EventScheduler
-            local rebuild, rebuildMethod = AllocatedWarm(function()
-                scheduler.Fill(C_EventScheduler.GetScheduledEvents() or {})
-            end, 3)
-            tinsert(observations, ("event scheduler: %.0f bytes a read, after login and when its times run low (%s)"):format(rebuild, rebuildMethod))
+            -- through the cache's own read, under its guards; it leaves the real times in the cache
+            local read = addon.Data.EventScheduler.ReadForTest
+            if read() then
+                local rebuild, rebuildMethod = gameEnv.Allocated(read, 3)
+                tinsert(observations, ("event scheduler: %.0f bytes a read, after login and when its times run low (%s)"):format(rebuild, rebuildMethod))
+            else
+                tinsert(observations, "event scheduler: not read, the cache cannot ask it now")
+            end
         end
     else
         tinsert(observations, "event-reminder refresh: event reminders are off")

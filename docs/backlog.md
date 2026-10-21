@@ -9,6 +9,7 @@ Follow-ups that are not a work item yet. When one is taken up, it gets its own w
   - **Ongoing events:** Saltheril's Soiree, Stormarion Assault, Legends of the Haranir and Vaults of Atal'Utek have no times; the scheduler lists them under `GetOngoingEvents`.
 - **Upcoming reminders for scheduled events.** The upcoming path is calendar-only (`Data/EventData.lua` `GetUpcomingCalendarEvents`, `GetNextEventOccurance`), while the scheduler knows every next start.
 - **The older widget events on fixed schedules,** as the soup now is (`Data/CustomWidgetEventTimers.lua` `FeastTimes`): Time Rift, Superbloom, Azerothian Archives, Researchers Under Fire, Dreamsurges, Theater Troupe.
+- **The soup's Korean, Taiwanese and Chinese offsets are not checked in game.** They come from other addons' data (`Data/CustomWidgetEventTimers.lua` `feastOffsets`); Europe's was checked on the Azure Span map on 2026-10-21. A report from a player there, or the map timer seen on such a realm, settles them.
 - **Superbloom: Active (5323) shows all the time while its toggle is on.** Its timer returns 0, which counts as going on with no time data (`Data/CustomWidgetEventTimers.lua`).
 - **Upcoming reminders error on a non-English client whose date format names the day or month** (`%a`, `%A`, `%b`, `%B`). `LocalizeDateFormat` reads the end time an upcoming event does not have (`Gui/EventReminder/AlertSystem.lua:49`, from `:129`). The default format is not affected.
 

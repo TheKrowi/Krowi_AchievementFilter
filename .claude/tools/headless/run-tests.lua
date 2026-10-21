@@ -1247,7 +1247,7 @@ suites.memory = function(c)
     AddEvent(widgetEvents, enabledWidget, 4729, "Community Feast")
     worldEvents[8938] = { Id = 8938, Name = "Curse Surges", Source = 1 } -- from the event scheduler model above; Event:New makes a row's false map nil
     enabledWorld[8938] = true
-    addon.Data = { Events = { [1] = calendarEvents, [2] = widgetEvents, [3] = worldEvents }, IsLoaded = true }
+    addon.Data = { Events = { [1] = calendarEvents, [2] = widgetEvents, [3] = worldEvents }, IsLoaded = true, EventsLoaded = true }
     addon.Options = { db = { profile = { EnableTaintDiagnostics = true, EventReminders = { Enabled = true, RefreshInterval = 60,
         CalendarEvents = enabledCalendar, WidgetEvents = enabledWidget, WorldEvents = enabledWorld, UpcomingCalendarEvents = { Enabled = true, Days = 7 } } } } }
     local function SetState(state)
@@ -1330,6 +1330,7 @@ suites.events = function(c)
         UpcomingCalendarEvents = { Enabled = true, Days = 14 } } } } }
     addon.Tests = { Suites = {}, Ready = {}, Async = {} }
     addon.Data.IsLoaded = true -- the game sets it once the data load and the cache build are done (Data/Data.lua)
+    addon.Data.EventsLoaded = true -- and this one when every event object exists, before the cache build
     for _, rel in ipairs({ "Data/CustomWidgetEventTimers.lua", "Data/CustomWorldEventTimers.lua", "Data/EventScheduler.lua", "Data/EventData.lua", "Tests/Events.lua" }) do
         local file = io.open(root .. "/" .. rel, "rb")
         if file then

@@ -127,11 +127,11 @@ function KrowiAF.InjectEventDataDynamicOptions()
     end
 end
 
--- A scheduler event's toggle shows the game's name for its POI, which the game knows before the event is on
+-- A scheduler event's toggle shows the game's name for its POI, which the game knows before the event is on; the same
+-- name its reminders show (Data/EventScheduler.lua)
 local function GetSchedulerEventDisplayName(eventId, fallback)
     return function()
-        local poi = C_AreaPoiInfo.GetAreaPOIInfo(nil, eventId)
-        return poi and poi.name or fallback
+        return addon.Data.EventScheduler.GetName(eventId) or fallback
     end
 end
 
