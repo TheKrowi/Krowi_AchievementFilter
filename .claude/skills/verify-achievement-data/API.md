@@ -73,8 +73,8 @@ For manual queries, use this table as a starting point, but **always verify by p
 
 Get all locally available builds:
 ```powershell
-$body = "draw=1&start=0&length=50"
-$resp = Invoke-WebRequest "http://localhost:5000/casc/builds" -Method POST -Body $body -ContentType "application/x-www-form-urlencoded" -UseBasicParsing
+$body = "draw=1&start=0&length=50&showLocal=true"   # remote builds: showLocal=false&showOnline=true
+$resp = Invoke-WebRequest "http://localhost:5000/build/table" -Method POST -Body $body -ContentType "application/x-www-form-urlencoded" -UseBasicParsing
 ($resp.Content | ConvertFrom-Json).data | ForEach-Object { "$($_[0]).$($_[1]) | $($_[2])" }
 ```
 
@@ -109,4 +109,4 @@ $url
 - `Faction` field: `-1` = no restriction (both factions), `0` = Horde only, `1` = Alliance only.
 - `RewardItemID` is **not a reliable indicator** for tangible rewards in Classic builds — it is non-zero for virtually all achievements regardless of whether they give a mount, pet, or item. Use `Reward_lang` instead.
 - `Reward_lang` title formats: `"Title Reward: X"` (Cataclysm+ expansions) **and** `"Title: X"` (WotLK-era achievements) both signal a title reward that should have `:Title()` in the Lua. The `"Reward: X"` prefix (without "Title") signals a tangible item/mount/pet reward.
-- Always verify the active build with `/casc/buildname`; the tool only holds one build in memory at a time. Use the build string from `/casc/builds` for the query URL — it does **not** require switching the active build.
+- Always verify the active build with `/casc/buildname`; the tool only holds one build in memory at a time. Use the build string from `/build/table` for the query URL — it does **not** require switching the active build.

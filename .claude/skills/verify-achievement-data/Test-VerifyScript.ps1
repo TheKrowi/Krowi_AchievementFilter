@@ -60,8 +60,8 @@ try {
 # Local builds first, then remote ones: the DBC endpoint fetches any build on demand
 $buildsBody = "draw=1&start=0&length=200"
 $builds = @(
-    (Invoke-RestMethod "$BaseUrl/casc/builds" -Method POST -Body $buildsBody -ContentType "application/x-www-form-urlencoded").data
-    (Invoke-RestMethod "$BaseUrl/casc/builds?remote=true" -Method POST -Body $buildsBody -ContentType "application/x-www-form-urlencoded").data
+    (Invoke-RestMethod "$BaseUrl/build/table" -Method POST -Body "$buildsBody&showLocal=true" -ContentType "application/x-www-form-urlencoded").data
+    (Invoke-RestMethod "$BaseUrl/build/table" -Method POST -Body "$buildsBody&showLocal=false&showOnline=true" -ContentType "application/x-www-form-urlencoded").data
 )
 $classicBuild = $builds | Where-Object { $_[2] -eq "wow_classic" } |
     Select-Object -First 1 | ForEach-Object { "$($_[0]).$($_[1])" }
