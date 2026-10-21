@@ -1400,7 +1400,7 @@ suites.schedules = function(c)
     addon.Tests = { Suites = {}, Ready = {}, Async = {} }
     addon.Data.IsLoaded, addon.Data.EventsLoaded = true, true
     for _, rel in ipairs({ "Data/CustomWidgetEventTimers.lua", "Data/CustomWorldEventTimers.lua", "Data/EventScheduler.lua", "Data/EventSchedules.lua",
-        "Data/EventObserver.lua", "Data/EventData.lua", "Tests/Schedules.lua" }) do
+        "Data/EventObserver.lua", "Data/EventData.lua", "Data/DataIntegrityManager.lua", "Tests/Schedules.lua" }) do
         local file = io.open(root .. "/" .. rel, "rb")
         if file then
             file:close()

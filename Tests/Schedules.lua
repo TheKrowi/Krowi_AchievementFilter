@@ -14,6 +14,8 @@ local schedules = addon.Tests.Schedules
 --   PoiState: the reminders' details of Event with the POIs and widgets of Pois and Widgets (headless only: the game
 --     cannot set them)
 --   Learn: what the watcher learns in the story Story
+--   Merge: what the saved-data solution makes of the Legion Assault toggles of four model profiles: per profile whether
+--     the one toggle left is on, and how many of the other three ids remain
 -- Until 2026-10-21 these families came from their POIs (read live, so a scenario SKIPs in game while its family's POI
 -- is up) or their widgets (only in their zone); the Recorded values are that code's answers with them absent.
 
@@ -25,6 +27,7 @@ local mawReset = 1792555200 -- EU's weekly reset of 2026-10-21 04:00 UTC, when K
 local mawUsReset = 1792508400 -- US's weekly reset of 2026-10-20 15:00 UTC
 local mawIds = {6991, 6990, 6992, 6989} -- Kyrian, Venthyr, Night Fae, Necrolord
 local hour = 1800000000 -- 2027-01-15 08:00:00 UTC: an even hour, on the hour
+local legionT0 = 1800018000 -- a Legion Assault start on EU realms: 1762434000 + 720 cycles of 52200 s
 local week, halfWeek = 604800, 302400
 
 schedules.Scenarios = {
@@ -74,6 +77,14 @@ schedules.Scenarios = {
         Recorded = "ends in 100", Target = "ends in 100"},
     {Name = "big-dig-active", Kind = "Window", Widget = true, Event = 5592, At = hour + 1800 + 100, Region = "EU", RetailOnly = true,
         Recorded = "ends in 800", Target = "ends in 800"},
+    -- Legion Assaults: 6 hours every 14.5 hours, one reminder without the zone (confirmed in game on 2026-10-21: the
+    -- Stormheim assault ended at 00:00:33 UTC, the cycle's 00:00:00); the four zones' toggles become one
+    {Name = "legion-assault-eu", Kind = "Family", Ids = {5175}, At = legionT0 + 100, Region = "EU", RetailOnly = true,
+        Recorded = "none", Target = "5175 ends in 21500"},
+    {Name = "legion-assault-between", Kind = "Family", Ids = {5175}, At = legionT0 + 21600 + 100, Region = "EU", RetailOnly = true,
+        Recorded = "none", Target = "none"},
+    {Name = "legion-toggles-merge", Kind = "Merge", RetailOnly = true,
+        Recorded = "no merge", Target = "AllOff off; Azsuna on; Others on; Untouched on"},
     -- Researchers Under Fire stays on its POI and widget, in its zone; its POI reports time but is not on map 2133
     {Name = "researchers-in-zone", Kind = "PoiState", Event = 7461, Pois = {[7461] = 600}, Widgets = {[4826] = "10 min"}, RetailOnly = true,
         Recorded = "ends in 600", Target = "ends in 600"},
@@ -178,6 +189,33 @@ local function DescribeFamily(scenario)
         end
         return #found > 0 and table.concat(found, ", ") or "none"
     end)
+end
+
+-- Model profiles, as AceDB keeps them in KrowiAF_Options.profiles: a toggle is only saved when it differs from the default
+local function DescribeMerge()
+    local manager = addon.Data.DataIntegrityManager
+    if not manager or not manager.MergeLegionAssaultToggles then
+        return "no merge"
+    end
+    local profiles = {
+        AllOff = {EventReminders = {WorldEvents = {[5175] = false, [5177] = false, [5178] = false, [5210] = false}}},
+        Azsuna = {EventReminders = {WorldEvents = {[5175] = false}}}, -- only Azsuna off: the others were on
+        Others = {EventReminders = {WorldEvents = {[5177] = false}}}, -- Azsuna on, Highmountain off
+        Untouched = {},
+    }
+    manager.MergeLegionAssaultToggles(profiles)
+    local parts = {}
+    for _, name in ipairs({"AllOff", "Azsuna", "Others", "Untouched"}) do
+        local world = profiles[name].EventReminders and profiles[name].EventReminders.WorldEvents or {}
+        local left = 0
+        for _, id in ipairs({5177, 5178, 5210}) do
+            if world[id] ~= nil then
+                left = left + 1
+            end
+        end
+        tinsert(parts, ("%s %s%s"):format(name, world[5175] == false and "off" or "on", left > 0 and (", " .. left .. " left") or ""))
+    end
+    return table.concat(parts, "; ")
 end
 
 -- [[ The learning stories: Data/EventObserver.lua told a sequence of POIs through a model of the POI API ]] --
@@ -331,6 +369,8 @@ local function RunScenario(env, scenario)
         end
     elseif scenario.Kind == "Learn" then
         got = TellStory(scenario)
+    elseif scenario.Kind == "Merge" then
+        got = DescribeMerge()
     else
         blocked = "unknown kind " .. tostring(scenario.Kind)
     end
