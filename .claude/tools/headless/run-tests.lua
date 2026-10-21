@@ -864,9 +864,10 @@ end
 -- Achievement guides (docs/work/2026-10-11-achievement-guides): the guide renderer, the waypoint actions and the tooltip
 -- and right-click menu sections, each loaded once its file exists, against a model of what they read on a Death Knight
 -- in Acherus on Retail. The model holds:
---   - the 60962 guide as the data registers it, and its two hidden type-198 criteria, 486 Frost and Death and
---     487 Roster of Champions, with Tier VII locked, as on the step-0 Death Knight;
---   - the maps the user waypoint allows (Acherus yes, Dalaran no) and the Alliance Paladin portal's POI;
+--   - the guides of DataAddons/Retail/07_Legion/GuideData.lua, loaded through the real builder, and 60962's two hidden
+--     type-198 criteria, 486 Frost and Death and 487 Roster of Champions, with Tier VII locked, as on the step-0 Death Knight;
+--   - the maps the user waypoint allows (Acherus yes, Dalaran no), the Alliance Paladin portal's POI and the names of the
+--     three class hall areas the guides name;
 --   - the client's creature cache: Archivist Zubashi (97485) and one more NPC known, one NPC whose name is a secret
 --     value, one whose tooltip data is a secret table, no other; a scenario can teach it a name or turn one secret;
 --   - no TomTom.
@@ -939,8 +940,11 @@ suites.guide = function(c)
         env.C_Spell = { GetSpellName = function(id) return ({ [50977] = "Death Gate" })[id] end }
         local mapNames = { [627] = "Dalaran", [647] = "Acherus: The Ebon Hold", [648] = "Acherus: The Ebon Hold" }
         local userWaypointMaps = { [647] = true, [648] = true } -- /kafwhere, step 0: Acherus allows the map pin, Dalaran refuses it
+        -- AreaTable, build 12.1.5.70448 (docs/work/2026-10-21-legendary-research-guides); any other id has no name
+        local areaNames = { [7846] = "The Dreamgrove", [7877] = "Trueshot Lodge", [8023] = "The Fel Hammer" }
         env.C_Map = {
             GetMapInfo = function(id) return mapNames[id] and { mapID = id, name = mapNames[id] } or nil end,
+            GetAreaInfo = function(id) return areaNames[id] end,
             CanSetUserWaypointOnMap = function(id) return userWaypointMaps[id] == true end,
             SetUserWaypoint = function() end,
         }
@@ -1022,14 +1026,15 @@ suites.guide = function(c)
     local krowiTooltip, getLines = ModelKrowiTooltip(env)
     ModelShowTooltip(addon, krowiTooltip)
 
-    local achievements = {
-        [60962] = { Id = 60962, IsCompleted = false, Guide = { -- as DataAddons/Retail/07_Legion/GuideData.lua registers it
-            { Type = "Travel", SpellId = 50977 },
-            { Type = "Npc", NpcId = 97485, Name = "Archivist Zubashi", MapId = 648, X = 47.7, Y = 53.8 },
-            { Type = "Criteria", Operator = "Any" },
-        } },
-        [11223] = { Id = 11223, IsCompleted = true },
-    }
+    -- The guides as the data registers them, so the login warm-up reads the same NPCs here as in game. Each builder entry
+    -- is {KrowiAF.AddGuideData, id, steps}, which Data/Data.lua's load calls; the model takes the id and steps directly
+    for _, rel in ipairs({ "Api/GuideDataApi.lua", "Api/GuideDataBuilder.lua", "DataAddons/Retail/07_Legion/GuideData.lua" }) do
+        c.loadAddonFile(rel)
+    end
+    local achievements = { [11223] = { Id = 11223, IsCompleted = true } }
+    for _, entry in ipairs(env.KrowiAF.GuideData.Legion) do
+        achievements[entry[2]] = { Id = entry[2], IsCompleted = false, Guide = entry[3] }
+    end
     function headless.Achievement(id) return achievements[id] end
     function headless.Achievements() return achievements end
     local savedOptions
