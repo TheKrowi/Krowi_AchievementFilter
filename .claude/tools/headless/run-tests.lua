@@ -24,7 +24,8 @@
 --         (Gui/RightClickMenu/AchievementMenu/AchievementMenu.lua: whether a "go to" entry for an achievement the addon
 --         does not register is greyed out), memory (TaintDiagnostics.lua and Data/EventData.lua with the custom event
 --         timers: what the addon's background jobs, the taint probe's sweep and the event-reminder refresh, allocate a
---         minute and keep)
+--         minute and keep), events (Data/EventData.lua with Data/EventScheduler.lua and the custom timers, on the real
+--         data load: the Curse Surges from Blizzard's event scheduler and the soup on its fixed schedule)
 --
 -- Retail model is 12.1: the Blizzard_GameMenuEsc handler registry, the UI panel manager (its slots stay
 -- empty because the addon shows the achievement window with a plain Show), UISpecialFrames, static
@@ -1257,6 +1258,65 @@ suites.memory = function(c)
     headless.Allocated = suite.AllocatedByCounting
     local observations = {}
     return suite.Run(headless, observations), "Tests/Memory.lua", observations
+end
+
+-- The real data load of client-env.lua, then the event runtime on top (Data/CustomWidgetEventTimers.lua,
+-- Data/CustomWorldEventTimers.lua, Data/EventScheduler.lua once it exists, Data/EventData.lua) against a model of what it
+-- reads: C_EventScheduler returning the suite's own fixture, C_AreaPoiInfo knowing the Curse Surges' English names and
+-- no POI on a map, no widget anywhere (as outside the Azure Span), the region Europe and every event toggle on. The
+-- scenarios pass their own times, so the clock is not modelled (sources in Tests/Events.lua).
+suites.events = function(c)
+    local scriptDir = ((arg and arg[0]) or ""):gsub("\\", "/"):match("^(.*)/") or "."
+    local clientEnv = assert(loadfile(scriptDir .. "/client-env.lua"))()
+    local ctx = clientEnv.New(root, c.client)
+    local failures = {}
+    local function fail(label) return function(_, err) failures[#failures + 1] = label .. ": " .. tostring(type(err) == "table" and err.msg or err) end end
+    ctx:LoadFiles{ ParseError = fail("parse"), RuntimeError = fail("load") }
+    ctx:RunPipeline{ StepError = fail("step"), TaskError = fail("task") }
+    assert(#failures == 0, "data load failed (run load-data.lua): " .. tostring(failures[1]))
+    local env, addon = ctx.env, ctx.addon
+    local poiNames = { [8936] = "Curse Surge: The Looming Mutagenitor", [8937] = "Curse Surge: Siege at the Whispering Marsh",
+        [8938] = "Curse Surge: The Broodmother's Nest", [8939] = "Curse Surge: Mlurkkr Massacre", [8940] = "Curse Surge: The Malformed Leviathan" }
+    env.C_AreaPoiInfo = {
+        GetAreaPOIInfo = function(mapId, id) if mapId == nil and poiNames[id] then return { areaPoiID = id, name = poiNames[id] } end end,
+        GetAreaPOISecondsLeft = function() return nil end,
+    }
+    env.C_UIWidgetManager = { GetTextWithStateWidgetVisualizationInfo = function() return nil end }
+    env.C_EventScheduler = {
+        HasData = function() return true end,
+        RequestEvents = function() end,
+        GetScheduledEvents = function() return addon.Tests.Events.Fixture() end,
+    }
+    env.GetServerTime, env.time = os.time, os.time
+    env.GetCurrentRegion = function() return 3 end
+    env.InCombatLockdown = function() return false end
+    env.MINUTES_ABBR, env.SECONDS_ABBR = "%d min", "%d sec"
+    env.D_MINUTES, env.D_SECONDS = "%d |4minute:minutes;", "%d |4second:seconds;"
+    local allOn = setmetatable({}, { __index = function() return true end })
+    addon.Options = { db = { profile = { EventReminders = { Enabled = true, RefreshInterval = 60, CalendarEvents = allOn, WidgetEvents = allOn, WorldEvents = allOn,
+        UpcomingCalendarEvents = { Enabled = true, Days = 14 } } } } }
+    addon.Tests = { Suites = {}, Ready = {}, Async = {} }
+    addon.Data.IsLoaded = true -- the game sets it once the data load and the cache build are done (Data/Data.lua)
+    for _, rel in ipairs({ "Data/CustomWidgetEventTimers.lua", "Data/CustomWorldEventTimers.lua", "Data/EventScheduler.lua", "Data/EventData.lua", "Tests/Events.lua" }) do
+        local file = io.open(root .. "/" .. rel, "rb")
+        if file then
+            file:close()
+            local chunk = assert(loadstring(readFile(root .. "/" .. rel), "@" .. rel))
+            setfenv(chunk, env)
+            chunk("Krowi_AchievementFilter", addon)
+        end
+    end
+    local suite = addon.Tests.Events
+    local headless = {}
+    function headless.IsRetail() return c.isRetail end
+    function headless.Region() return env.GetCurrentRegion() end
+    function headless.PoiName(id) return poiNames[id] end
+    function headless.Restore()
+        addon.Data.EventScheduler.Reset()
+        addon.Data.EventScheduler.EnsureData()
+    end
+    local observations = {}
+    return suite.Run(headless, observations), "Tests/Events.lua", observations
 end
 
 -- The real data load of client-env.lua (the one load-data.lua checks), then Data/TemporaryObtainable.lua on top,
