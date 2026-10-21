@@ -1,5 +1,5 @@
 # Spec: Guides for the other eleven Legendary Research achievements
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. 60963 to 60973 each have a guide on Retail, registered in `DataAddons/Retail/07_Legion/GuideData.lua`, ending in `:Criteria("Any")`: every one of them has root criteria operator 8 with amount 1 (`_lookup_criteria.ps1`, build 12.1.5.70448, 2026-10-21), so either Tier VII talent completes it.

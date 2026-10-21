@@ -1,5 +1,5 @@
 # Plan: Guides for the other eleven Legendary Research achievements
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 Non-routine: it adds a step to the data API (`Api/GuideDataBuilder.lua`) and touches shared GUI code (`Gui/Guide/Guide.lua`). Approved by Krowi (maintainer) on 2026-10-21 in plan mode, with the proposed departure in step 1 (no in-game before-run). Worktree `.claude/worktrees/feature-2026-10-21-legendary-research-guides`, branch `feature/2026-10-21-legendary-research-guides`, off `main` at b48f29e1; intent and spec are committed there as accepted (defad1ea), with the lookup script's `-Locale` (ea1d122f).
 

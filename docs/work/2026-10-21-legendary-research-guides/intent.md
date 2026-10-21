@@ -1,5 +1,5 @@
 # Intent: Guides for the other eleven Legendary Research achievements
-Author: Krowi (maintainer). Source: idea, `docs/backlog.md` (From the achievement guides, 2026-10-11, PR #338). Status: accepted
+Author: Krowi (maintainer). Source: idea, `docs/backlog.md` (From the achievement guides, 2026-10-11, PR #338). Status: done
 
 ## Problem
 Since 103.0 only Legendary Research of the Ebon Blade (60962, Death Knight) has a guide. The other eleven classes' Legendary Research achievements (60963 to 60973) show none, although their descriptions ("Research all ... Class Hall Upgrades") hide the same facts: either of the two Tier VII talents completes them, and the research NPC stands somewhere in the class hall that no in-game text names.
