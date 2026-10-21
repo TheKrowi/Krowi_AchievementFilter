@@ -5,9 +5,11 @@ Intent: [intent.md](intent.md). Status: accepted
 1. **Principle:** a background job, code that runs on its own with every addon window closed, allocates nothing on a run where nothing it reports has changed. It allocates only when something changed: a new insecure key, an event starting or ending.
 2. **Taint probe:** a sweep that finds no new insecure key allocates nothing (`memory/taint-sweep` "none"). An error that is not about secrets or taint allocates nothing in its error handler. The probe records what it recorded before: same baseline, detections, errors, caps, 0.5 s interval and export, and it stays on by default while issue #300 is open. It still never hooks, scripts or writes a Blizzard frame.
 3. **Event-reminder refresh:**
-   - A refresh in which no event starts or ends allocates nothing, at any interval the option allows (`memory/event-refresh` "none").
-   - The one exception is a widget-timed event while it is active in its zone. Its widget is still read on every refresh, so its countdown stays as today. That cost stays an open target (`memory/event-refresh-widget-active`) until the widget rework (see Decision).
-   - Players see no change on any client: reminders, pop-ups, chat messages, side buttons and time left show what they show today, and the Refresh interval option keeps its meaning.
+   - A refresh in which no event starts or ends, and no world event's POI is on its map, allocates nothing, at any interval the option allows (`memory/event-refresh` "none").
+   - Two costs stay, because players must see no change on any client before the event reminders move to Blizzard's event scheduler and fixed schedules (see Decision). Both are open targets for that move:
+     - a world event's POI that is on its map is asked on every refresh (`memory/event-refresh-poi-on-map`);
+     - a widget-timed world event active in its zone has its widget read on every refresh (`memory/event-refresh-widget-active`).
+   - Reminders, pop-ups, chat messages, side buttons and time left show what they show today, and the Refresh interval option keeps its meaning.
 4. **Nothing kept:** neither job keeps memory beyond one entry per event or insecure key (the `-kept` scenarios "none").
 5. **Prevention:** the `memory` suite holds a scenario for every background job. A new OnUpdate, ticker or load-time event registration in addon code fails the lint until it is listed with its memory scenario, or with the reason it is not a background job.
 6. **Proof:** an idle minute measured in game shows what the addon allocates with all windows closed, before and after.
@@ -53,18 +55,20 @@ The two read-only sweeps of the code and libraries (2026-10-18) found no other c
 - **Unchanged:** `Report`, the snapshot, the caps, the session data and the export.
 
 **Event-reminder refresh, `Data/EventData.lua` (`GetWorldEventDetails`) and `Data/CustomWorldEventTimers.lua` (`HasCustomTimer`):**
-- **A POI is confirmed once:**
-  - `GetAreaPOIInfo` is only asked whether an event's POI is on its map; the table it returns is never read. A POI it finds is marked confirmed with the current value of a file-level generation counter, and while the mark holds, the call is not made again.
-  - The counter moves on with `AREA_POIS_UPDATED`, the event Blizzard's own POI map pins refresh on, and with `PLAYER_ENTERING_WORLD`. So the confirmation follows what the world map shows.
-  - An event on the POI's own timer that stops reporting time drops its confirmation. A widget-timed event keeps its confirmation: its widget is only there in its zone, and dropping it would ask for the POI again on every refresh. The taint review of 2026-10-19 found that, and the `event-refresh` model has that state.
-- **Normal events** take their time from `GetAreaPOISecondsLeft`. That is asked every refresh as today, and it returns a number, so the end time and the countdown stay exactly as now.
-- **Widget-timed events:** the POI is checked first, through the confirmation or through `GetAreaPOIInfo`, which allocates nothing when the POI is absent. The widget is read only for an event whose POI is there, and then on every refresh as today, so the countdown is unchanged.
+- **The POI is asked on every refresh, as today.** Events that share a widget are told apart only by their POI: the four Dreamsurges (widget 4993), the five Theater Troupe shows (6264), and Titan Lockdown and Zaqali Ruin (4814, 4826).
+  - Keeping a confirmed POI until Blizzard's `AREA_POIS_UPDATED`, as first built, could show a variant that moved on as still active whenever the client does not announce the change (the code review of 2026-10-21).
+  - Krowi chose today's check (2026-10-21).
+- **Normal events** take their time from `GetAreaPOISecondsLeft`, asked first: it returns a number, and nothing for an event that is not running. Their POI is asked only after that, as today.
+- **Widget-timed world events check their POI first.** An absent POI returns nothing and allocates nothing. The widget is read only for an event whose POI is there, so Theater Troupe's widget, which is there everywhere, is no longer read five times a refresh for shows that are not on. Which events count as active is unchanged, because both checks still have to pass.
 - **Unchanged:** widget events and calendar events. A widget that is absent allocates nothing; calendar events are cache lookups. The refresh still runs at the option's interval, and the alert system, side buttons and their texts are as before.
 
 **Prevention:**
-- **`memory` suite:** `event-refresh` (PerMinute at the option's minimum interval, 1 s, the worst case), `event-refresh-kept`, and `event-refresh-widget-active` (the open remainder).
-  - Headlessly they run against a model of the POI and widget APIs that reproduces what the game run found: five events sharing a present widget with an absent POI, one active POI with an end time, the rest absent. A second state has one widget-timed event with its POI and widget present.
-  - In game they run on the real events. `event-refresh-widget-active` SKIPs when no widget-timed event is active, which is anywhere outside those zones.
+- **`memory` suite:** `event-refresh` (PerMinute at the option's minimum interval, 1 s, the worst case), `event-refresh-kept`, and the open targets `event-refresh-poi-on-map` and `event-refresh-widget-active`.
+  - Headlessly they run against a model of the calendar, POI and widget APIs, in three states:
+    - what the game run found: Theater Troupe's widget there with its five POIs absent;
+    - a normal event going on plus Dreamsurges: Thaldraszus (7553) with its POI on the map and its widget absent;
+    - Researchers Under Fire: Titan Lockdown (7459) going on in its zone.
+  - In game they run on the real events, and a scenario SKIPs when the session is not in its state.
 - **The idle minute:** the suite's game run ends with a minute of nothing. It collects first, then reads the addon's memory again after 60 s, and asks the player not to touch anything. The runner (`Tests/Tests.lua`) gets asynchronous suites for this.
 - **A `background-jobs` lint rule** in `Check-Repo.ps1`, with an allowlist `.claude/tools/Check-Repo.jobs`, in the shape of `globals` and `Check-Repo.globals`.
   - **What it finds:** every `SetScript("OnUpdate"`, XML `<OnUpdate`, `C_Timer.NewTicker`, and every `RegisterEvent` outside a mixin's OnLoad/OnShow, in addon code outside `Libs/` and `Tests/`.
@@ -86,7 +90,7 @@ The two read-only sweeps of the code and libraries (2026-10-18) found no other c
 ## Areas of concern
 - **Taint and secret values:**
   - **The probe** still only reads (`next`, `issecurevariable`, `rawget`, which cannot invoke a metamethod).
-  - **The refresh** registers `AREA_POIS_UPDATED` and `PLAYER_ENTERING_WORLD` on the addon's own frame, only to move its POI confirmations on.
+  - **The refresh** only reorders two reads it already made; it registers nothing new.
   - **The values it compares** are numbers and nil from APIs not flagged secret. `GetDayEvent` keeps its existing `canaccessvalue` guard.
 - **Clients:**
   - **The probe** runs on every client.
@@ -118,10 +122,18 @@ The two read-only sweeps of the code and libraries (2026-10-18) found no other c
   - The idle minute shows 52 KB, down from 990 KB. KAF's own jobs account for 0 of it. What is left is most likely the one `AREA_POIS_UPDATED` re-confirmation that minute, plus other addons calling the shared libraries KAF loaded first.
   - The probe still records AllTheThings and CanIMogIt writing into GameTooltip.
   - `Read-GameErrors.ps1` is clean.
-- **Classic:**
-  - The fixed build loaded without errors (2026-10-19 23:20).
-  - The memory suite's in-game run is still to do.
-  - Separately, and before this build: `Plugins/ElvUI.lua:443` "attempt to index field 'backdrop'" at 23:07, not caused by this work.
+- **In game on Classic (Mists 5.5.4), 2026-10-21 08:57:**
+  - Lines identical to headless.
+  - The sweep is at 0 bytes a run, and the idle minute shows 1.9 KB.
+  - No new errors. Separately, and before this build: `Plugins/ElvUI.lua:443` "attempt to index field 'backdrop'" on 2026-10-19 23:07, not caused by this work.
+- **The code review of 2026-10-21** found ten things. Its answers:
+  - POIs are asked on every refresh again (Decision).
+  - The probe reports what a walk found after the walk, so a hook that writes to the tooltip during a report cannot break the walk.
+  - The memory suite waits for the data load and refuses a second run during an idle minute.
+  - The event-refresh scenarios run on Classic too, and the model covers the calendar.
+  - The lint rule also finds tooltip post-calls, `OnTooltipSet*` hooks and registrations of a non-literal event, and names what it does not see.
+  - Smaller code and documentation fixes.
+  - The Retail and Classic runs above were made before these changes, and are run again on the final build.
 
 ## Deferred
 Found during the search; none runs on its own or keeps much:
@@ -140,8 +152,16 @@ Found during the search; none runs on its own or keeps much:
 ## Decision
 Krowi, 2026-10-19:
 - **Option A:** an allocation-free steady state for both jobs, polling kept, with the `event-refresh` scenarios, the idle minute and the `background-jobs` lint rule.
-- **Widget-timed events:** Community Feast, Time Rift, Superbloom, Azerothian Archives, Researchers Under Fire, Fyrakk Assaults and Theater Troupe, plus the widget events.
+- **The events whose time comes from a widget's text:** the widget events (Community Feast, Time Rift, Superbloom, Azerothian Archives) and the widget-timed world events (Researchers Under Fire, Dreamsurges, Theater Troupe).
   - They are broken anyway: they only appear while the player is in their zone. They need a rework with fixed timers, which goes to `docs/backlog.md`.
   - Asked at plan review whether anything changes for players: nothing should, on any client. So these keep being read on every refresh once their POI is there, and their countdown stays as today.
   - What that still allocates while one is active in its zone is the open target `memory/event-refresh-widget-active`, which the rework closes.
 - **The countdown:** each frame's own once-a-second text, computed from the event's end time; the refresh only supplies that end time.
+
+Krowi, 2026-10-21, after the code review found that keeping a confirmed POI can show a moved Dreamsurge or Theater Troupe show as still active:
+- **POIs are asked on every refresh again, as today.** The Theater Troupe fix (the POI before the widget) stays. What a POI on its map still costs is the open target `memory/event-refresh-poi-on-map`.
+- **Direction for the event reminders:** drop POI checking and move to fixed schedules.
+  - Use Blizzard's event scheduler (`C_EventScheduler`) for current content, starting with a proof of concept on the Curse Surges (area POIs 8936-8940), which KAF does not remind of yet.
+  - Put KAF's own fixed schedules (the soup, Community Feast, first) beside it.
+  - Whether the soup belongs in Blizzard's world-map Events tab, or in a separate addon, is researched first.
+  - All of this is its own work item (`docs/backlog.md`), and closes both open targets.

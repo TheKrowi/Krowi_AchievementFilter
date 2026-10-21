@@ -107,7 +107,17 @@ Decisions (Krowi, 2026-10-19):
 
 ## Where the build departed from the plan
 - **PerMinute warm-up:** PerMinute scenarios now skip their first run, as Kept ones do, so what a job fills once (a POI it confirms, a key it reports) does not count as a cost of every run. Without it, the fixed jobs showed 9 and 32 bytes a run headlessly.
-- **POI confirmation (taint review, 2026-10-19):** a widget-timed event keeps its POI confirmation while its widget is absent. Dropping it re-asked `GetAreaPOIInfo` on every refresh for an event whose POI is on the map outside its zone. The `event-refresh` model has that state (Community Feast 7553), and a mutation run confirmed it fails without the fix.
+- **POI confirmation dropped (2026-10-21):**
+  - The taint review of 2026-10-19 had a widget-timed event keep its confirmation while its widget was absent.
+  - The code review of 2026-10-21 then showed that keeping a confirmed POI until `AREA_POIS_UPDATED` can show a moved Dreamsurge or Theater Troupe show as still active. Krowi chose today's per-refresh POI check.
+  - So `EventData.lua` registers no events and keeps no generation. Only the POI-before-widget order for widget-timed world events stays.
+  - The suite splits the refresh into `event-refresh` ("none", nothing on the map) and the open target `event-refresh-poi-on-map`. In game, each SKIPs outside its state.
+- **Code review of 2026-10-21, the other findings:**
+  - The probe reports after its walk, from pending buffers it reuses, and its known-key tables exist from load.
+  - The memory suite gets a Ready gate (`addon.Data.IsLoaded`, and no idle minute already running).
+  - The event-refresh scenarios run on Classic too, and the headless model covers the calendar (a holiday going on, one in three days).
+  - The `background-jobs` rule also finds `AddTooltipPostCall`, `OnTooltipSet*` hooks and `RegisterEvent:*`, and documents its blind spots.
+  - The `Tests/README.md` table row is fixed, and the model's event names corrected (7553 is Dreamsurges: Thaldraszus).
 - **Collector restart:** the garbage-counter fallback runs the measured calls under `pcall`, so an error cannot leave the collector stopped.
 - **The idle minute's comparison** ("the jobs above account for") warms each job up first. Without the warm-up it showed 1866 KB a minute against a measured 990.
 

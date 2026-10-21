@@ -4,10 +4,17 @@ Follow-ups that are not a work item yet. When one is taken up, it gets its own w
 
 ## From the memory growth work (2026-10-19, docs/work/2026-10-18-memory-growth)
 
-- **Widget-timed events need fixed timers.** Community Feast, Time Rift, Superbloom, Azerothian Archives, Researchers Under Fire, Fyrakk Assaults, Theater Troupe and the widget events take their time from a widget's text (`Data/CustomWorldEventTimers.lua`, `Data/CustomWidgetEventTimers.lua`).
-  - So they only appear while the player is in their zone.
-  - While one is active, each refresh reads its widget again, about 1.3 KB of garbage a refresh.
-  - A rework computes them from fixed schedules (Krowi, 2026-10-19), which also closes the open target of `memory/event-refresh-widget-active`.
+- **Event reminders on Blizzard's event scheduler and fixed schedules, without POI checks** (Krowi, 2026-10-21). Today world events need their POI on the map, asked on every refresh, and the widget-timed ones also need their widget's text.
+  - **Which events:** the widget events (Community Feast, Time Rift, Superbloom, Azerothian Archives) and the widget-timed world events (Researchers Under Fire, Dreamsurges, Theater Troupe), in `Data/CustomWidgetEventTimers.lua` and `Data/CustomWorldEventTimers.lua`.
+  - **What goes wrong today:** they only appear while the player is in their zone, and they cost about 1.3 KB of garbage per refresh while a POI is on its map or an event is going on.
+  - **The direction:**
+    - current content from `C_EventScheduler`, which has scheduled and ongoing events with start and end times and an `EVENT_SCHEDULER_UPDATE` event;
+    - older content from KAF's own fixed schedules (anchor per region, interval, duration).
+  - **First steps:**
+    - a proof of concept with the Curse Surges (area POIs 8936-8940), which KAF does not remind of yet;
+    - the soup, Community Feast, on a fixed schedule;
+    - research whether the soup belongs in Blizzard's world-map Events tab (a taint question) or in a separate addon.
+  - **It closes** the open targets `memory/event-refresh-poi-on-map` and `memory/event-refresh-widget-active`.
 - **During-play garbage, measured the same way next:**
   - The world map button recounts the shown map's achievements on every map change: about 100 KB for a zone, 1-3 MB for a continent (`Gui/WorldMapButton/WorldMapButtonMixin.lua:95-119`).
   - Every open popout redraws all its criteria on every `CRITERIA_UPDATE` (`Gui/WindowFrames/AchievementsObjectives/AchievementsObjectivesMixin.lua:48-64`).
