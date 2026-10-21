@@ -363,18 +363,23 @@ local function RunScenario(env, scenario)
     }
 end
 
--- The toggles the scenarios read, on for the run whatever the player chose, and put back after it
+-- The toggles the scenarios read, on for the run whatever the player chose, and put back after it. A client has a
+-- type's toggles only when it has events of that type: Classic has neither world nor widget event toggles.
 local function ForceToggles()
     local eventReminders = addon.Options.db.profile.EventReminders
     local saved = {Enabled = eventReminders.Enabled, World = {}, Widget = {}}
     eventReminders.Enabled = true
-    for _, poi in ipairs(surgeOrder) do
-        saved.World[poi] = eventReminders.WorldEvents[poi]
-        eventReminders.WorldEvents[poi] = true
+    if eventReminders.WorldEvents then
+        for _, poi in ipairs(surgeOrder) do
+            saved.World[poi] = eventReminders.WorldEvents[poi]
+            eventReminders.WorldEvents[poi] = true
+        end
     end
-    for _, id in ipairs({4729, 4731}) do
-        saved.Widget[id] = eventReminders.WidgetEvents[id]
-        eventReminders.WidgetEvents[id] = true
+    if eventReminders.WidgetEvents then
+        for _, id in ipairs({4729, 4731}) do
+            saved.Widget[id] = eventReminders.WidgetEvents[id]
+            eventReminders.WidgetEvents[id] = true
+        end
     end
     return saved
 end
@@ -402,10 +407,10 @@ end
 -- The fixture goes into the scheduler cache for the run; Restore() puts the real data back after it
 function events.Run(env, observations)
     local scheduler = addon.Data.EventScheduler
+    local saved = ForceToggles()
     if scheduler then
         scheduler.LoadForTest(events.Fixture())
     end
-    local saved = ForceToggles()
     local results = {}
     local isRetail = env.IsRetail()
     local ok, err = pcall(function()

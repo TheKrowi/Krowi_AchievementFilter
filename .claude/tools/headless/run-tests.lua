@@ -1325,8 +1325,11 @@ suites.events = function(c)
     env.InCombatLockdown = function() return false end
     env.MINUTES_ABBR, env.SECONDS_ABBR = "%d min", "%d sec"
     env.D_MINUTES, env.D_SECONDS = "%d |4minute:minutes;", "%d |4second:seconds;"
+    -- a client has a type's toggles only when it has events of that type, as the game's option defaults do: Classic has
+    -- neither world nor widget event toggles
     local allOn = setmetatable({}, { __index = function() return true end })
-    addon.Options = { db = { profile = { EventReminders = { Enabled = true, RefreshInterval = 60, CalendarEvents = allOn, WidgetEvents = allOn, WorldEvents = allOn,
+    addon.Options = { db = { profile = { EventReminders = { Enabled = true, RefreshInterval = 60, CalendarEvents = allOn,
+        WidgetEvents = c.isRetail and allOn or nil, WorldEvents = c.isRetail and allOn or nil,
         UpcomingCalendarEvents = { Enabled = true, Days = 14 } } } } }
     addon.Tests = { Suites = {}, Ready = {}, Async = {} }
     addon.Data.IsLoaded = true -- the game sets it once the data load and the cache build are done (Data/Data.lua)
