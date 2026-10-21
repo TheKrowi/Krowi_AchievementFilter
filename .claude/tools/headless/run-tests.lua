@@ -937,11 +937,14 @@ suites.guide = function(c)
         env.BreakUpLargeNumbers = function(n) return (tostring(n):reverse():gsub("(%d%d%d)", "%1,"):reverse():gsub("^,", "")) end
 
         -- --- Spells, maps, waypoints, POIs, TomTom ------------------------------------------------------------------------
-        env.C_Spell = { GetSpellName = function(id) return ({ [50977] = "Death Gate" })[id] end }
+        env.C_Spell = {
+            GetSpellName = function(id) return ({ [50977] = "Death Gate" })[id] end,
+            GetSpellTexture = function(id) return ({ [50977] = 135766 })[id] end, -- Death Gate's icon file
+        }
         local mapNames = { [627] = "Dalaran", [647] = "Acherus: The Ebon Hold", [648] = "Acherus: The Ebon Hold" }
         local userWaypointMaps = { [647] = true, [648] = true } -- /kafwhere, step 0: Acherus allows the map pin, Dalaran refuses it
         -- AreaTable, build 12.1.5.70448 (docs/work/2026-10-21-legendary-research-guides); any other id has no name
-        local areaNames = { [7846] = "The Dreamgrove", [7877] = "Trueshot Lodge", [8023] = "The Fel Hammer" }
+        local areaNames = { [7679] = "Acherus: The Ebon Hold", [7846] = "The Dreamgrove", [7877] = "Trueshot Lodge", [8023] = "The Fel Hammer" }
         env.C_Map = {
             GetMapInfo = function(id) return mapNames[id] and { mapID = id, name = mapNames[id] } or nil end,
             GetAreaInfo = function(id) return areaNames[id] end,

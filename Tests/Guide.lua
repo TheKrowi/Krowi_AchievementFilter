@@ -32,6 +32,8 @@ local guide = addon.Tests.Guide
 --   AreaName: the headline of a one-step area guide (docs/work/2026-10-21-legendary-research-guides): "game" when the
 --     headline and the waypoint title carry the area's name as C_Map.GetAreaInfo gives it on this client, "spot" when the
 --     game has no name for the area and the headline sends the player to the marked spot, either with its place line.
+--     With Step = "Travel", a one-step travel guide to an area: "game" when the headline carries the area's name and the
+--     line under it the spell's, "spell" when the headline travels with the spell.
 -- Surface, Talent, Availability, Panel, Chain, Row, NpcName, NpcRequest, RowName and AreaName are Retail only: Classic has
 -- no guide data, no garrison and none of these maps.
 --
@@ -200,6 +202,12 @@ guide.Scenarios = {
         Recorded = "game", Target = "game"},
     {Name = "area-name-unknown", Kind = "AreaName", AreaId = 999999, -- no such area in AreaTable
         Recorded = "spot", Target = "spot"},
+    -- A hall reached only by a class spell reads "Go to <hall>" like the others, with the spell under it (Krowi, in game
+    -- on 2026-10-21: "Travel with" felt off next to the other guides' "Go to")
+    {Name = "travel-area-from-game", Kind = "AreaName", Step = "Travel", SpellId = 50977, AreaId = 7679, -- Death Gate, Acherus
+        Recorded = "spell", Target = "game"},
+    {Name = "travel-area-unknown", Kind = "AreaName", Step = "Travel", SpellId = 50977, AreaId = 999999,
+        Recorded = "spell", Target = "spell"},
 }
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
@@ -567,20 +575,35 @@ local function GetGameAreaName(areaId)
     end
 end
 
--- A one-step area guide on a spot in Dalaran, read the way every surface reads it
+-- A travel step to an area names the area and puts the spell under it; without a name it travels with the spell
+local function ReadTravelLine(env, scenario, line)
+    local name = GetGameAreaName(scenario.AreaId)
+    local spellName = C_Spell.GetSpellName(scenario.SpellId)
+    local detail = line.Details and line.Details[1]
+    if name and line.Text:find(name, 1, true) and type(detail) == "string" and detail:find(spellName, 1, true) then
+        return "game"
+    end
+    return line.Text == env.Text("Guide Travel"):K_ReplaceVars{spell = spellName} and "spell" or "mixed"
+end
+
+-- A one-step area guide on a spot in Dalaran, or a one-step travel guide, read the way every surface reads it
 local function RunAreaName(env, scenario)
     local module = GetModule()
     if not module or not module.GetLines then
         return "none"
     end
-    local achievement = {Guide = {{Type = "Area", AreaId = scenario.AreaId, MapId = dalaran.MapId, X = dalaran.X, Y = dalaran.Y}}}
-    local ok, lines = pcall(module.GetLines, achievement)
+    local step = scenario.Step == "Travel" and {Type = "Travel", SpellId = scenario.SpellId, AreaId = scenario.AreaId}
+        or {Type = "Area", AreaId = scenario.AreaId, MapId = dalaran.MapId, X = dalaran.X, Y = dalaran.Y}
+    local ok, lines = pcall(module.GetLines, {Guide = {step}})
     if not ok then
         return "error"
     end
     local line = lines[1]
     if not line then
         return "none" -- the renderer skips a step type it does not know
+    end
+    if step.Type == "Travel" then
+        return ReadTravelLine(env, scenario, line)
     end
     if not line.Details or not line.Details[1] then
         return "no-place"
