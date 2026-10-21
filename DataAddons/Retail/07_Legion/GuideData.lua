@@ -1,10 +1,12 @@
 local Guide = KrowiAF.Guide
 local faction = KrowiAF.Enum.Faction
 
--- The NPCs and entrances were measured in each class hall with /kafwhere on 2026-10-11 (step 0 of
--- docs/work/2026-10-11-achievement-guides/plan.md); a portal's spot is its area POI's position. Every Legendary Research
--- achievement has root operator 8: either Tier VII talent completes it. A hall reached only by a class spell names the
--- spell, any other the hall, at the spot where the player walks in (docs/work/2026-10-21-legendary-research-guides).
+-- The NPCs and the entrances were measured in game with /kafwhere on 2026-10-11 (step 0 of
+-- docs/work/2026-10-11-achievement-guides/plan.md); a portal's spot is its area POI's position, as the game reported it
+-- or, for the Alliance Priest portal, as the game database gives it. Spell and area ids come from the game database
+-- (docs/work/2026-10-21-legendary-research-guides). Every Legendary Research achievement has root operator 8: either
+-- Tier VII talent completes it. A hall reached only by a class spell names the spell, any other the hall, at the spot
+-- where the player walks in.
 KrowiAF.GuideData.Legion = {
     Guide(60962) -- Legendary Research of the Ebon Blade
         :Travel(50977) -- Death Gate

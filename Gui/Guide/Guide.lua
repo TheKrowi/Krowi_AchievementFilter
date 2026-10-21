@@ -219,12 +219,21 @@ local function GetSpellName(spellId)
     end
 end
 
--- Nil for an area the game has no name for
+-- Nil for an area the game has no name for. The name is not flagged secret (MapDocumentation.lua, GetAreaInfo), but
+-- it is checked before the comparison as an NPC's name is, since comparing a secret value raises an error
 local function GetAreaName(areaId)
     local name = C_Map.GetAreaInfo and C_Map.GetAreaInfo(areaId)
-    if type(name) == "string" and name ~= "" then
-        return name
+    if type(name) ~= "string" or canaccessvalue and not canaccessvalue(name) or name == "" then
+        return
     end
+    return name
+end
+
+-- A step that sends the player to a place: "Go to <name>", or to the marked spot when the game gives no name
+local function AddPlaceLine(lines, kind, step, name, poiId)
+    local text = name and addon.L["Guide Go To"]:K_ReplaceVars{poi = name} or addon.L["Guide Go To Spot"]
+    tinsert(lines, {Kind = kind, Text = text, Details = {GetPlace(step)},
+        Waypoint = {MapId = step.MapId, X = step.X, Y = step.Y, PoiId = poiId, Title = name or GetMapName(step.MapId)}})
 end
 
 -- Whether a value is a table this code may index: indexing a secret table raises an error
@@ -313,14 +322,9 @@ function guide.GetLines(achievement)
         elseif step.Type == "Poi" then
             -- Another class does not see a class portal's POI; the step then names the map only
             local info = C_AreaPoiInfo and C_AreaPoiInfo.GetAreaPOIInfo(step.MapId, step.PoiId)
-            local text = info and addon.L["Guide Go To"]:K_ReplaceVars{poi = info.name} or addon.L["Guide Go To Spot"]
-            tinsert(lines, {Kind = "Poi", Text = text, Details = {GetPlace(step)},
-                Waypoint = {MapId = step.MapId, X = step.X, Y = step.Y, PoiId = step.PoiId, Title = info and info.name or GetMapName(step.MapId)}})
+            AddPlaceLine(lines, "Poi", step, info and info.name, step.PoiId)
         elseif step.Type == "Area" then
-            local areaName = GetAreaName(step.AreaId)
-            local text = areaName and addon.L["Guide Go To"]:K_ReplaceVars{poi = areaName} or addon.L["Guide Go To Spot"]
-            tinsert(lines, {Kind = "Area", Text = text, Details = {GetPlace(step)},
-                Waypoint = {MapId = step.MapId, X = step.X, Y = step.Y, Title = areaName or GetMapName(step.MapId)}})
+            AddPlaceLine(lines, "Area", step, GetAreaName(step.AreaId))
         elseif step.Type == "Criteria" then
             AddResearchLines(lines, achievement, classId, step)
         elseif step.Type == "Tip" then
