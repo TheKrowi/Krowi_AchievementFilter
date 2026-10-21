@@ -1,7 +1,8 @@
 local _, addon = ...
 addon.Tests = {
     Suites = {},
-    Ready = {} -- optional per suite: function() -> ok[, reason]; a login run waits for it, a manual run reports the reason
+    Ready = {}, -- optional per suite: function() -> ok[, reason]; a login run waits for it, a manual run reports the reason
+    Async = {} -- optional per suite: true when the suite takes done(results, observations) and reports later (a measured wait)
 }
 local tests = addon.Tests
 
@@ -41,39 +42,7 @@ local statusColors = {
     SKIP = "|cFFFFFF00"
 }
 
--- waitSeconds: how long to keep retrying the suite's Ready check (login runs); nil runs once
-function tests.Run(name, waitSeconds)
-    local suite = tests.Suites[name]
-    if not suite then
-        print(prefix .. "unknown suite '" .. tostring(name) .. "'; available: " .. tests.List())
-        return
-    end
-    if InCombatLockdown() then
-        print(prefix .. "not while in combat")
-        return
-    end
-    if not addon.Diagnostics.DebugEnabled() then
-        print(prefix .. "enable debug mode first (Options > General > Debug)")
-        return
-    end
-    if tests.Ready[name] then
-        local ready, reason = tests.Ready[name]()
-        if not ready then
-            if waitSeconds and waitSeconds > 0 then
-                if waitSeconds == loginWait then
-                    print(prefix .. "waiting for '" .. name .. "': " .. tostring(reason))
-                end
-                C_Timer.After(retryDelay, function()
-                    tests.Run(name, waitSeconds - retryDelay)
-                end)
-            else
-                print(prefix .. "cannot run '" .. name .. "': " .. tostring(reason))
-            end
-            return
-        end
-    end
-
-    local results, observations = suite()
+local function Report(name, results, observations)
     local counts = {PASS = 0, FAIL = 0, SKIP = 0}
     local open = 0
     local lines, notes = {}, {}
@@ -112,6 +81,47 @@ function tests.Run(name, waitSeconds)
     -- the latest run of every suite, for the release preflight (.claude/release-gate.ps1)
     GetDb().Runs = GetDb().Runs or {}
     GetDb().Runs[name] = GetDb().LastRun
+end
+
+-- waitSeconds: how long to keep retrying the suite's Ready check (login runs); nil runs once
+function tests.Run(name, waitSeconds)
+    local suite = tests.Suites[name]
+    if not suite then
+        print(prefix .. "unknown suite '" .. tostring(name) .. "'; available: " .. tests.List())
+        return
+    end
+    if InCombatLockdown() then
+        print(prefix .. "not while in combat")
+        return
+    end
+    if not addon.Diagnostics.DebugEnabled() then
+        print(prefix .. "enable debug mode first (Options > General > Debug)")
+        return
+    end
+    if tests.Ready[name] then
+        local ready, reason = tests.Ready[name]()
+        if not ready then
+            if waitSeconds and waitSeconds > 0 then
+                if waitSeconds == loginWait then
+                    print(prefix .. "waiting for '" .. name .. "': " .. tostring(reason))
+                end
+                C_Timer.After(retryDelay, function()
+                    tests.Run(name, waitSeconds - retryDelay)
+                end)
+            else
+                print(prefix .. "cannot run '" .. name .. "': " .. tostring(reason))
+            end
+            return
+        end
+    end
+
+    if tests.Async[name] then
+        suite(function(results, observations)
+            Report(name, results, observations)
+        end)
+        return
+    end
+    Report(name, suite())
 end
 
 SLASH_KAFTEST1 = "/kaftest"

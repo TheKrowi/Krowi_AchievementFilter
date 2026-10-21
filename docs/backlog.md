@@ -2,6 +2,32 @@
 
 Follow-ups that are not a work item yet. When one is taken up, it gets its own work folder under `docs/work/` (`docs/sdlc-playbook.md`) and leaves this list.
 
+## From the memory growth work (2026-10-19, docs/work/2026-10-18-memory-growth)
+
+- **Event reminders on Blizzard's event scheduler and fixed schedules, without POI checks** (Krowi, 2026-10-21). Today world events need their POI on the map, asked on every refresh, and the widget-timed ones also need their widget's text.
+  - **Which events:** the widget events (Community Feast, Time Rift, Superbloom, Azerothian Archives) and the widget-timed world events (Researchers Under Fire, Dreamsurges, Theater Troupe), in `Data/CustomWidgetEventTimers.lua` and `Data/CustomWorldEventTimers.lua`.
+  - **What goes wrong today:** they only appear while the player is in their zone, and they cost about 1.3 KB of garbage per refresh while a POI is on its map or an event is going on.
+  - **The direction:**
+    - current content from `C_EventScheduler`, which has scheduled and ongoing events with start and end times and an `EVENT_SCHEDULER_UPDATE` event;
+    - older content from KAF's own fixed schedules (anchor per region, interval, duration).
+  - **First steps:**
+    - a proof of concept with the Curse Surges (area POIs 8936-8940), which KAF does not remind of yet;
+    - the soup, Community Feast, on a fixed schedule;
+    - research whether the soup belongs in Blizzard's world-map Events tab (a taint question) or in a separate addon.
+  - **It closes** the open targets `memory/event-refresh-poi-on-map` and `memory/event-refresh-widget-active`.
+  - **Midnight is missing:** KAF reminds of no Midnight world event today. `DataAddons/Retail/12_Midnight/EventData.lua` has only Winds of Mysterious Fortune, while Blizzard's Events tab listed Saltheril's Soiree, Stormarion Assault, Legends of the Haranir, Vaults of Atal'Utek, Abundance, Aqir Invasion, Void Assaults and the Curse Surges (2026-10-21).
+- **PvP Season 42 has no season data.** In debug mode the chat shows "No season data for PvP Season 42" (`Data/TemporaryObtainable.lua:62`): an achievement points at a season that `KrowiAF.AddSeasonData` never registers (seen 2026-10-21).
+- **During-play garbage, measured the same way next:**
+  - The world map button recounts the shown map's achievements on every map change: about 100 KB for a zone, 1-3 MB for a continent (`Gui/WorldMapButton/WorldMapButtonMixin.lua:95-119`).
+  - Every open popout redraws all its criteria on every `CRITERIA_UPDATE` (`Gui/WindowFrames/AchievementsObjectives/AchievementsObjectivesMixin.lua:48-64`).
+  - The login data load builds a few tables per achievement id (`Data/AchievementCache.lua:104-125`).
+- **Small growth on player actions:**
+  - `ACHIEVEMENT_EARNED` appends the earned achievement's meta criteria to `criteriaCache` again (`Data/AchievementCache.lua:53, 188`).
+  - `newAchievementsEarned` never shrinks (`Data/SavedData/AchievementData.lua:197-199`).
+  - `SideButtonSystem:Load` adds two more Show/Hide hooks each time it runs again (`Gui/EventReminder/SideButtonSystem.lua:92-98`).
+  - `KrowiAF_SavedData.PopoutHideDebug` keeps a stack per achievement ever popped out (`Gui/AchievementPopout/AchievementPopout.lua:213-214`).
+- **Saved data no code reads any more** stays in the file and in memory: `KrowiAF_SavedData.CalendarEventsCacheTest`, `VerifyHash` and `DFHashVerify` (about 1 MB on the maintainer's account). A `DataIntegrityManager` solution can drop them.
+
 ## From the 103.0 release (2026-10-14)
 
 - **`Benchmark.lua` ships but nothing loads it.** The file is tracked and goes into every release zip, yet no `.toc` line or `Files.xml` names it; it has been so since 97.2. Remove it, or register it behind `addon.Diagnostics.DebugEnabled()` if it is still wanted.

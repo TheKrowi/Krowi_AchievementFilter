@@ -208,21 +208,42 @@ local function GetActiveWidgetEvents()
     end
 end
 
+-- A world event is active while its POI is on its map and it reports time left. The POI is asked on every refresh: an
+-- event sharing its widget with its siblings (the four Dreamsurges, the five Theater Troupe shows, Titan Lockdown and
+-- Zaqali Ruin) is told apart from them only by its POI (docs/work/2026-10-18-memory-growth).
+local function IsPoiOnMap(event)
+    return C_AreaPoiInfo.GetAreaPOIInfo(event.MapId, event.Id) ~= nil
+end
+
 function eventData.GetWorldEventDetails(event)
     if not addon.Options.db.profile.EventReminders.WorldEvents[event.Id] then
         event.EventDetails = nil
         return
     end
 
-    local secondsLeft = addon.Data.CustomWorldEventTimers.GetSecondsLeft(event.Id)
-    if not secondsLeft then -- The event is not active
-        event.EventDetails = nil
-        return
-    end
-
-    local poiInfo = C_AreaPoiInfo.GetAreaPOIInfo(event.MapId, event.Id)
-    if not poiInfo then -- The event is not active
-        return
+    local timers = addon.Data.CustomWorldEventTimers
+    local secondsLeft
+    if timers.HasCustomTimer(event.Id) then
+        -- The POI first: an absent one returns nothing and allocates nothing, while the widget returns a new table on
+        -- every read, also for the events whose POI is not there (Theater Troupe's widget is there everywhere)
+        if not IsPoiOnMap(event) then -- The event is not active
+            return
+        end
+        secondsLeft = timers.GetSecondsLeft(event.Id)
+        if not secondsLeft then -- The event is not active
+            event.EventDetails = nil
+            return
+        end
+    else
+        -- The seconds left first: a number, and nothing for an event that is not running
+        secondsLeft = timers.GetSecondsLeft(event.Id)
+        if not secondsLeft then -- The event is not active
+            event.EventDetails = nil
+            return
+        end
+        if not IsPoiOnMap(event) then -- The event is not active
+            return
+        end
     end
 
     local endTime

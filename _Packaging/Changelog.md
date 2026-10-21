@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Pasting an achievement link into chat with the paste-to-chat modifier no longer gives an error when the game's deprecated API fallbacks are turned off
+- The addon's memory no longer keeps climbing in addon memory displays while you play: the taint diagnostics no longer create garbage in the background, and the event reminders create far less
 
 ## 103.0 - 2026-10-14
 ### Added

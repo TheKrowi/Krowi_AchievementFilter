@@ -29,7 +29,12 @@
       settings-close   [Error]   addon code closes the settings panel with SettingsPanel:Close(true): without the
                                  argument it reopens the game menu through ToggleGameMenu, whose SpellStopCasting
                                  call is forbidden from addon code
-      luarc           [Error]   .luarc.json diagnostics.globals holds exactly what the language server
+      background-jobs  [Error]   every job addon code starts that can run with every window closed (an OnUpdate script,
+                                 a C_Timer.NewTicker, a tooltip post-call or OnTooltipSet* hook, an event registration)
+                                 is listed in Check-Repo.jobs with the Tests/Memory.lua scenario that measures what it
+                                 allocates, or '-' and why it does not run on its own; no stale lines; always tree-wide.
+                                 Not seen: other hooksecurefunc/HookScript hooks, self-rescheduling C_Timer.After
+      luarc          [Error]   .luarc.json diagnostics.globals holds exactly what the language server
                                  cannot see on its own: every entry is read by an addon file (luac -l
                                  GETGLOBAL), none is assigned by one, no duplicates, sorted ordinally
       util-flags       [Error]   every addon.Util.Is* flag or check the addon reads is defined in Libs/Krowi_Util;
@@ -512,6 +517,93 @@ foreach ($rel in $ownLuaFiles) {
 }
 Write-Timing 'settings-close'
 
+# --- background-jobs: every job that runs on its own is measured, or says why it does not run on its own ---------
+# Code that runs with every addon window closed (an OnUpdate script, a ticker, an event handler) makes the addon's memory
+# climb in every memory display when it allocates on each run, and the game can go an hour without collecting
+# (docs/work/2026-10-18-memory-growth). Each one is listed in Check-Repo.jobs, "<path glob> <kind> <memory/<scenario> | ->
+# # reason", with the Tests/Memory.lua scenario that measures it, or "-" and why it is not a background job, so a new one
+# is a review item. Tests/ is test code and Libs/ is not ours; comments are not code.
+$jobsRel = '.claude/tools/Check-Repo.jobs'
+$jobEntries = [System.Collections.Generic.List[object]]::new()
+$jobsFile = Join-Path $root $jobsRel
+if (Test-Path -LiteralPath $jobsFile) {
+    $lineNo = 0
+    foreach ($line in Get-Content -LiteralPath $jobsFile) {
+        $lineNo++
+        $code = ($line -replace '#.*$', '').Trim()
+        if (-not $code) { continue }
+        $reason = if ($line -match '#\s*(\S.*)$') { $Matches[1] } else { '' }
+        if ($code -notmatch '^(\S+)\s+(OnUpdate|NewTicker|TooltipPostCall|RegisterEvent:(?:[A-Z0-9_]+|\*))\s+(\S+)$') {
+            Add-Finding 'background-jobs' 'Error' $jobsRel $lineNo "expected '<path glob> <OnUpdate | NewTicker | TooltipPostCall | RegisterEvent:<EVENT or *>> <memory/<scenario> | ->  # reason'"
+            continue
+        }
+        $jobEntries.Add([pscustomobject]@{ Path = $Matches[1]; Kind = $Matches[2]; Measure = $Matches[3]; Reason = $reason; Line = $lineNo; Used = $false })
+    }
+}
+$memoryScenarios = @{}
+if ($fileBytes.ContainsKey('Tests/Memory.lua')) {
+    foreach ($m in [regex]::Matches([Text.Encoding]::UTF8.GetString($fileBytes['Tests/Memory.lua']), 'Name\s*=\s*"([\w-]+)"')) { $memoryScenarios[$m.Groups[1].Value] = $true }
+}
+foreach ($entry in $jobEntries) {
+    if ($entry.Measure -like 'memory/*') {
+        if (-not $memoryScenarios.ContainsKey($entry.Measure.Substring(7))) {
+            Add-Finding 'background-jobs' 'Error' $jobsRel $entry.Line "names $($entry.Measure), but Tests/Memory.lua has no scenario of that name"
+        }
+    }
+    elseif ($entry.Measure -ne '-') {
+        Add-Finding 'background-jobs' 'Error' $jobsRel $entry.Line "the third field is memory/<scenario> or '-', not '$($entry.Measure)'"
+    }
+    elseif (-not $entry.Reason) {
+        Add-Finding 'background-jobs' 'Error' $jobsRel $entry.Line "a '-' line needs a # comment saying why the job does not run on its own (once, rarely, only while shown)"
+    }
+}
+function Test-Job([string]$rel, [string]$kind, [int]$lineNo) {
+    $matched = $false
+    foreach ($entry in $jobEntries) {
+        if ($entry.Kind -ceq $kind -and $rel -like $entry.Path) { $entry.Used = $true; $matched = $true }
+    }
+    if (-not $matched) {
+        Add-Finding 'background-jobs' 'Error' $rel $lineNo "starts a background job ($kind), code that can run with every addon window closed; list it in $jobsRel with the Tests/Memory.lua scenario that measures what it allocates, or '-' and why it does not run on its own"
+    }
+}
+# What it does not see, so a review still has to: hooksecurefunc and HookScript on Blizzard functions other than the
+# tooltip hooks (WorldMapFrame's OnMapChanged runs on every map change), and C_Timer.After or NewTimer callbacks that
+# schedule themselves again. A RegisterEvent whose event is not a literal is RegisterEvent:* and is listed as such.
+# Comments are blanked, newlines kept, so line numbers stay true
+$luaJobRx = [regex]'\b(?:SetScript\s*\(\s*["'']OnUpdate["'']\s*,(?!\s*nil\b)(?<onupdate>)|HookScript\s*\(\s*["'']OnUpdate["''](?<onupdate>)|C_Timer\s*\.\s*NewTicker\s*\((?<ticker>)|TooltipDataProcessor\s*\.\s*AddTooltipPostCall\s*\((?<tooltip>)|HookScript\s*\(\s*["'']OnTooltipSet\w*["''](?<tooltip>)|(?<!function\s+[\w.:]*)Register(?:Unit)?Event\s*\(\s*(?:["''](?<event>[A-Z0-9_]+)["'']|(?<anyevent>[^"''\s)])))'
+foreach ($rel in $ownLuaFiles) {
+    if ($rel -like 'Tests/*') { continue }
+    $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
+    if (-not ($text.Contains('OnUpdate') -or $text.Contains('NewTicker') -or $text.Contains('Tooltip') -or $text.Contains('Event'))) { continue }
+    $text = [regex]::Replace($text, '--\[(=*)\[.*?\]\1\]', { param($m) $m.Value -replace '[^\n]', ' ' }, 'Singleline')
+    $lineNo = 0
+    foreach ($line in ($text -split "`n")) {
+        $lineNo++
+        foreach ($m in $luaJobRx.Matches(($line -replace '--.*$', ''))) {
+            $kind = if ($m.Groups['event'].Success) { 'RegisterEvent:' + $m.Groups['event'].Value }
+                elseif ($m.Groups['anyevent'].Success) { 'RegisterEvent:*' }
+                elseif ($m.Groups['ticker'].Success) { 'NewTicker' }
+                elseif ($m.Groups['tooltip'].Success) { 'TooltipPostCall' }
+                else { 'OnUpdate' }
+            Test-Job $rel $kind $lineNo
+        }
+    }
+}
+foreach ($rel in @($allFiles | Where-Object { $_ -like '*.xml' -and $_ -notlike 'Libs/*' -and $_ -notlike 'Tests/*' })) {
+    $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
+    if (-not $text.Contains('<OnUpdate')) { continue }
+    $text = [regex]::Replace($text, '<!--.*?-->', { param($m) $m.Value -replace '[^\n]', ' ' }, 'Singleline')
+    $lineNo = 0
+    foreach ($line in ($text -split "`n")) {
+        $lineNo++
+        if ($line -match '<OnUpdate\b') { Test-Job $rel 'OnUpdate' $lineNo }
+    }
+}
+foreach ($entry in $jobEntries) {
+    if (-not $entry.Used) { Add-Finding 'background-jobs' 'Error' $jobsRel $entry.Line "'$($entry.Path) $($entry.Kind)' matches no job in the code any more; remove the line" }
+}
+Write-Timing 'background-jobs'
+
 # --- util-flags: every addon.Util.Is* the addon reads is one Krowi_Util defines ----------------------------------
 # Krowi_Util dropped IsWrathClassic and IsCataClassic (its 6ee1198, 2025-11-22) and nothing noticed: reading an
 # undefined flag gives nil, so every branch on it took its other side on the 38002 Wrath client
@@ -876,7 +968,7 @@ if (Test-Path $ignoreFile) {
         if ($t -match '^(\S+)\s+(\S+)(?:\s+(\S+))?$') { $ignore += @{ Rule = $Matches[1]; Path = $Matches[2]; Name = $Matches[3] } }
     }
 }
-$alwaysOn = @('section-order', 'dup-id', 'saved-variables', 'lua-syntax', 'globals', 'removed-api', 'deprecated-api', 'library-names', 'util-flags', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'data-snapshot', 'zone-decisions', 'mapverifier', 'changelog', 'kit')
+$alwaysOn = @('section-order', 'dup-id', 'saved-variables', 'lua-syntax', 'globals', 'removed-api', 'deprecated-api', 'library-names', 'util-flags', 'background-jobs', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'data-snapshot', 'zone-decisions', 'mapverifier', 'changelog', 'kit')
 $report = $findings | Where-Object {
     $f = $_
     -not ($ignore | Where-Object { ($_.Rule -eq '*' -or $_.Rule -eq $f.Rule) -and $f.Path -like $_.Path -and (-not $_.Name -or $f.Message.Contains("'$($_.Name)'")) })
