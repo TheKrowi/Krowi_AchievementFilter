@@ -14,6 +14,24 @@ local lowWater = 6 * 3600 -- ask for more when a watched event has less than thi
 local requestEvery = 300 -- at most one request for more in this many seconds
 local quietAfterShortRead = 3600 -- after a read that still leaves an event short (the game stopped listing it), ask again only after this
 
+-- What the cache reads from the game. The events suite swaps in a model of it (Tests/Events.lua, UseSourceForTest), so
+-- the read logic runs the same steps in game and headlessly; these functions are made once, at load.
+local game = {
+    Available = function() return C_EventScheduler ~= nil end,
+    HasData = function() return C_EventScheduler.HasData() end,
+    GetScheduledEvents = function() return C_EventScheduler.GetScheduledEvents() end,
+    RequestEvents = function() C_EventScheduler.RequestEvents() end,
+    InCombat = function() return InCombatLockdown() end,
+    MapShown = function() return WorldMapFrame and WorldMapFrame:IsShown() end,
+    Now = function() return GetServerTime() end,
+    PoiName = function(areaPoiId)
+        local poi = C_AreaPoiInfo.GetAreaPOIInfo(nil, areaPoiId)
+        return poi and poi.name
+    end,
+    Report = function(message) addon.Diagnostics.Debug(message, true) end,
+}
+local source = game
+
 local watched -- [areaPoiID] = true for each scheduler event, gathered once the data load has made them
 local starts, ends, cursors, names = {}, {}, {}, {} -- [areaPoiID]: occurrences sorted by start, the first one not ended yet at the last lookup, the game's name
 local seenKeys = {} -- eventKey = true: the game lists some occurrences twice under one key
@@ -78,7 +96,7 @@ function eventScheduler.Fill(scheduledEvents)
 end
 
 local function CanAsk()
-    return C_EventScheduler and not stopped and not testing and not InCombatLockdown() and not (WorldMapFrame and WorldMapFrame:IsShown())
+    return source.Available() and not stopped and not testing and not source.InCombat() and not source.MapShown()
 end
 
 local function WaitForCombat()
@@ -103,7 +121,7 @@ local function CallScheduler(func)
 end
 
 local function Read(now)
-    local scheduled = CallScheduler(C_EventScheduler.GetScheduledEvents)
+    local scheduled = CallScheduler(source.GetScheduledEvents)
     if not scheduled then
         return false
     end
@@ -124,34 +142,34 @@ local function Refill(now)
         return
     end
     lastAttempt = now
-    if CallScheduler(C_EventScheduler.HasData) and Read(now) then
+    if CallScheduler(source.HasData) and Read(now) then
         return
     end
     pendingSince = now
-    CallScheduler(C_EventScheduler.RequestEvents)
+    CallScheduler(source.RequestEvents)
 end
 
 -- At login, after combat and when a lookup finds the kept times running low
 function eventScheduler.EnsureData()
     local watching = Watched()
-    if not watching or not next(watching) or not C_EventScheduler or stopped then
+    if not watching or not next(watching) or not source.Available() or stopped then
         return
     end
     listener:RegisterEvent("EVENT_SCHEDULER_UPDATE")
-    if InCombatLockdown() then
+    if source.InCombat() then
         WaitForCombat()
         return
     end
-    Refill(GetServerTime()) -- with the world map open it does nothing; the next lookup that finds the times short asks again
+    Refill(source.Now()) -- with the world map open it does nothing; the next lookup that finds the times short asks again
 end
 
 -- Only the answer to a request of the addon's own is read; any other update returns at once and allocates nothing
 function eventScheduler.OnSchedulerUpdate()
-    local now = GetServerTime()
+    local now = source.Now()
     if not IsPending(now) then
         return
     end
-    if InCombatLockdown() then
+    if source.InCombat() then
         WaitForCombat()
         return
     end
@@ -162,25 +180,26 @@ function eventScheduler.OnSchedulerUpdate()
     Read(now)
 end
 
-listener:SetScript("OnEvent", function(_, event)
+local function OnEvent(_, event)
     if event == "EVENT_SCHEDULER_UPDATE" then
         if inSchedulerCall then
             -- Fired inside the addon's own call: Blizzard's reminder manager, which handles it too, ran on the addon's
             -- stack. Never seen (Tests/Scheduler.lua), so the scheduler is left alone for the rest of the session.
             stopped = true
-            addon.Diagnostics.Debug("Event scheduler: EVENT_SCHEDULER_UPDATE fired inside the addon's own call; the scheduler is not read again this session", true)
+            source.Report("Event scheduler: EVENT_SCHEDULER_UPDATE fired inside the addon's own call; the scheduler is not read again this session")
             return
         end
         eventScheduler.OnSchedulerUpdate()
     elseif event == "PLAYER_REGEN_ENABLED" then
         listener:UnregisterEvent("PLAYER_REGEN_ENABLED")
-        if IsPending(GetServerTime()) then
+        if IsPending(source.Now()) then
             eventScheduler.OnSchedulerUpdate()
         else
             eventScheduler.EnsureData()
         end
     end
-end)
+end
+listener:SetScript("OnEvent", OnEvent)
 
 -- The occurrence of the event going on at now: its start and end, or nothing. The cursor moves forward with time and
 -- starts again from the first occurrence when now is before it (a test, the clock set back).
@@ -216,8 +235,7 @@ end
 function eventScheduler.GetName(areaPoiId)
     local name = names[areaPoiId]
     if name == nil then
-        local poi = C_AreaPoiInfo.GetAreaPOIInfo(nil, areaPoiId)
-        name = poi and poi.name or false
+        name = source.PoiName(areaPoiId) or false
         names[areaPoiId] = name
     end
     return name or nil
@@ -227,7 +245,9 @@ function eventScheduler.CountOccurrences(areaPoiId)
     return starts[areaPoiId] and #starts[areaPoiId] or 0
 end
 
--- For the events suite (Tests/Events.lua): a fixture in place of the scheduler's data, and the way back to the real one
+-- [[ For the suites ]] --
+
+-- The events suite (Tests/Events.lua): a fixture in place of the scheduler's data, and the way back to the real one
 function eventScheduler.LoadForTest(scheduledEvents)
     testing = true
     return eventScheduler.Fill(scheduledEvents)
@@ -242,4 +262,36 @@ function eventScheduler.Reset()
         cursors[areaPoiId] = 1
     end
     pendingSince, lastAttempt, quietUntil, testing = nil, nil, nil, nil
+    listener:UnregisterEvent("PLAYER_REGEN_ENABLED")
+end
+
+-- The events suite's scheduler stories: a model of the game in place of the game, nil for the game again. Either way the
+-- cache starts empty and unasked; the game's stopped is kept aside while a model runs.
+local gameStopped
+function eventScheduler.UseSourceForTest(model)
+    if source == game then
+        gameStopped = stopped
+    end
+    source = model or game
+    if source == game then
+        stopped = gameStopped
+    else
+        stopped = nil
+    end
+    wipe(names)
+    eventScheduler.Reset()
+end
+
+-- An event as the listener gets it, for the stories' model to fire
+function eventScheduler.HandleEventForTest(event)
+    OnEvent(listener, event)
+end
+
+-- The memory suite (Tests/Memory.lua): one read as the login makes it, under the same guards; false when the scheduler
+-- cannot be asked now (combat, the world map open)
+function eventScheduler.ReadForTest()
+    if not Watched() or not CanAsk() then
+        return false
+    end
+    return Read(source.Now())
 end
