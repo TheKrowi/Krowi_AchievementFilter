@@ -47,7 +47,7 @@ From maintained addons that compute these timers (WindTools, GW2_UI, NDui, Invas
 | | Maw covenant assaults (4) | Every 302400 s back to back from the weekly reset, in the fixed order Kyrian, Venthyr, Night Fae, Necrolord. Where the cycle stands now: to see in game. The POI only shows after Chains of Domination chapter 2. |
 | | Fyrakk Assaults (2 zones) | The zone changes at the weekly reset; within the week the bosses come from player contribution. |
 | **Fixed start, end set by players** | Time Rift, Superbloom, Azerothian Archives (the Big Dig) | Start every 3600 s: Time Rift and Superbloom at :00, the Big Dig at :30. They end on a boss kill or the event's progress, so a schedule gives the Next and Soon phases exactly and only an upper bound for Active. |
-| **Fixed window, random content** | Primal Storms (44 rows: 4 storm types at 11 places) | A 7200 s window every 10800 s; the place and the element are chosen by the server. |
+| **Fixed window, random content** | Primal Storms (40 rows: 4 storm types at 10 places) | A 7200 s window every 10800 s; the place and the element are chosen by the server. |
 | **No reliable clock** | Legion Assaults (4 zones) | Blizzard changed the cycle in November 2025 (Legion Remix): 52200 s by one addon, 66600 s by older code, 18 h by the wiki. The zone looks random. |
 
 None of these is in Blizzard's event scheduler.

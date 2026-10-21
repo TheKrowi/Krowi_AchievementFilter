@@ -7,6 +7,8 @@ local _, addon = ...
 -- Per world event: the seconds left the POI API reports from here, whether the POI is on the event's map, whether a
 -- widget times it, and what the reminders get. Per widget event: what the reminders get. A world event with nothing to
 -- report is counted, not listed. The events from Blizzard's event scheduler (Midnight) are not this probe's subject.
+-- Per fixed schedule (Data/EventSchedules.lua): what the schedule and the POIs each say is going on, and what the
+-- watcher learned for the player's region (Data/EventObserver.lua).
 
 local function Where()
     local mapId = C_Map.GetBestMapForUnit("player")
@@ -69,6 +71,45 @@ local function ObserveWidgetEvents(observations)
     end
 end
 
+-- Per schedule (KrowiAF.EventSchedules): what the schedule says is going on, what the POIs say, and what the watcher
+-- learned for this region (Data/EventObserver.lua); where the first two differ, the schedule or the game has moved
+local function ObserveSchedules(observations)
+    local engine, observer = addon.Data.EventSchedules, addon.Data.EventObserver
+    if not engine or not KrowiAF.EventSchedules then
+        return
+    end
+    local now, region = GetServerTime(), GetCurrentRegion()
+    local regions = KrowiAF_SavedData.EventObservations
+    for _, key in ipairs(SortedIds(KrowiAF.EventSchedules)) do
+        local family = KrowiAF.EventSchedules[key]
+        local ids = {}
+        for _, id in ipairs(family.Rotation or family.Variants or {}) do
+            tinsert(ids, id)
+        end
+        for id in next, family.Windows or {} do
+            tinsert(ids, id)
+        end
+        sort(ids)
+        local says, pois = {}, {}
+        for _, id in ipairs(ids) do
+            local _, endTime = engine.GetWindow(id, now)
+            if endTime then
+                tinsert(says, ("%d until %s"):format(id, date("!%H:%M:%S", endTime)))
+            end
+            local secondsLeft = (C_AreaPoiInfo.GetAreaPOISecondsLeft(id))
+            if secondsLeft then
+                tinsert(pois, ("%d until %s"):format(id, date("!%H:%M:%S", now + secondsLeft)))
+            end
+        end
+        local learned = observer.GetLearned(key, region)
+        local entry = regions and regions[region] and regions[region][key]
+        tinsert(observations, ("schedule %s: %s; POIs: %s; learned: %s, %d seen"):format(key,
+            family.Fixed and (#says > 0 and table.concat(says, ", ") or "nothing going on") or "watched only",
+            #pois > 0 and table.concat(pois, ", ") or "none up",
+            learned and (date("!%Y-%m-%d %H:%M", learned.Anchor) .. " UTC") or "nothing", entry and #entry.Seen or 0))
+    end
+end
+
 addon.Tests.Ready.sources = function()
     if not addon.Util.IsMainline then
         return false, "Retail only: Classic has no world or widget events"
@@ -83,5 +124,6 @@ addon.Tests.Suites.sources = function()
     local observations = {"standing in " .. Where() .. " at " .. date("!%Y-%m-%d %H:%M:%S", GetServerTime()) .. " UTC"}
     ObserveWorldEvents(observations)
     ObserveWidgetEvents(observations)
+    ObserveSchedules(observations)
     return {}, observations
 end

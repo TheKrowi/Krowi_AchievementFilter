@@ -646,6 +646,40 @@ local function buildSnapshot(client)
     end
     emit("")
 
+    emit("== Event schedules ==")
+    emit("# KrowiAF.EventSchedules (Data/EventSchedules.lua): the cycle, the window per event relative to a cycle's start,")
+    emit("# the rotation, the start per GetCurrentRegion(); fixed families run the reminders, observed ones are watched")
+    local schedules = type(KrowiAF.EventSchedules) == "table" and KrowiAF.EventSchedules or {}
+    local scheduleCount = 0
+    local function pairsList(t)
+        local parts = {}
+        for _, k in ipairs(sortedKeys(t or {})) do
+            local v = t[k]
+            parts[#parts + 1] = serialize(k) .. ":" .. (type(v) == "table" and ("{" .. serialize(v[1]) .. "," .. serialize(v[2]) .. "}") or serialize(v))
+        end
+        return table.concat(parts, ",")
+    end
+    local function idList(t)
+        local parts = {}
+        for i, id in ipairs(t or {}) do parts[i] = serialize(id) end
+        return table.concat(parts, ",")
+    end
+    for _, key in ipairs(sortedKeys(schedules)) do
+        local family = schedules[key]
+        local fields = { "cycle=" .. (family.Reset or serialize(family.Interval)) }
+        if family.Fixed then fields[#fields + 1] = "fixed" end
+        if family.Observe then fields[#fields + 1] = family.ByInfo and "observed (debug for POIs without time)" or "observed" end
+        if family.Window then fields[#fields + 1] = "window={" .. serialize(family.Window[1]) .. "," .. serialize(family.Window[2]) .. "}" end
+        if family.Windows then fields[#fields + 1] = "windows=" .. pairsList(family.Windows) end
+        if family.Rotation then fields[#fields + 1] = "rotation=" .. idList(family.Rotation) end
+        if family.Variants then fields[#fields + 1] = "variants=" .. idList(family.Variants) end
+        if family.Anchors then fields[#fields + 1] = "anchors=" .. pairsList(family.Anchors) end
+        if family.RotationAnchors then fields[#fields + 1] = "rotation anchors=" .. pairsList(family.RotationAnchors) end
+        emit("SCHEDULE " .. escape(key) .. " | " .. table.concat(fields, " | "))
+        scheduleCount = scheduleCount + 1
+    end
+    emit("")
+
     emit("== Summary ==")
     emit("build versions         " .. #buildVersionIds .. "   (" .. used .. " used)")
     emit("content timeline       " .. #timelineIds)
@@ -653,6 +687,7 @@ local function buildSnapshot(client)
     for _, typeName in ipairs(sortedKeys(eventCounts)) do
         emit(string.format("%-22s %d", "events " .. typeName, eventCounts[typeName]))
     end
+    emit(string.format("%-22s %d", "event schedules", scheduleCount))
     texts.Registries = table.concat(lines, "\r\n")
 
     return texts
@@ -708,7 +743,7 @@ end
 
 local labels = { ACH = "achievement %s", TIP = "achievement %s tooltip", TRANSMOG = "achievement %s transmog sets",
     PETBATTLE = "achievement %s pet battle link", ZONE = "zone %s", VERSION = "build version %s", TIMELINE = "content timeline %s",
-    SEASON = "season %s", EVENT = "event %s", FAIL = "load failure %s" }
+    SEASON = "season %s", EVENT = "event %s", SCHEDULE = "event schedule %s", FAIL = "load failure %s" }
 
 local function label(key)
     local kind, rest = key:match("^(%u+) (.*)$")

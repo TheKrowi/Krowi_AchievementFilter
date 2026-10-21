@@ -176,7 +176,21 @@ local function GetActiveCalendarEvents()
     end
 end
 
--- now: the server time to read the event at, GetServerTime() unless a test gives one (Tests/Events.lua)
+-- An event on one of KAF's fixed schedules: its window going on now, with no POI or widget read
+local function GetFixedScheduleEventDetails(event, now)
+    local startTime, endTime = addon.Data.EventSchedules.GetWindow(event.Id, now)
+    if not startTime then -- The event is not active
+        event.EventDetails = nil
+        return
+    end
+    local details = GetOrCreateEventDetails(event)
+    details.StartTime = startTime
+    details.EndTime = endTime
+    details.Name = event.Name
+    return details
+end
+
+-- now: the server time to read the event at, GetServerTime() unless a test gives one (Tests/Events.lua, Tests/Schedules.lua)
 function eventData.GetWidgetEventDetails(event, now)
     if not addon.Options.db.profile.EventReminders.WidgetEvents[event.Id] then
         event.EventDetails = nil
@@ -184,6 +198,9 @@ function eventData.GetWidgetEventDetails(event, now)
     end
 
     now = now or GetServerTime()
+    if event.Source == KrowiAF.Enum.EventSource.FixedSchedule then
+        return GetFixedScheduleEventDetails(event, now)
+    end
     local secondsLeft = addon.Data.CustomWidgetEventTimers.GetSecondsLeft(event.Id, now)
     if not secondsLeft then -- The event is not available or not active
         event.EventDetails = nil
@@ -210,11 +227,13 @@ local function GetActiveWidgetEvents()
     end
 end
 
--- A world event is active while its POI is on its map and it reports time left. The POI is asked on every refresh: an
--- event sharing its widget with its siblings (the four Dreamsurges, the five Theater Troupe shows, Titan Lockdown and
--- Zaqali Ruin) is told apart from them only by its POI (docs/work/2026-10-18-memory-growth).
-local function IsPoiOnMap(event)
-    return C_AreaPoiInfo.GetAreaPOIInfo(event.MapId, event.Id) ~= nil
+-- A world event is active while its POI is up and it reports time left. The POI is asked on every refresh: an event
+-- sharing its widget with its siblings (the four Dreamsurges, the five Theater Troupe shows, Titan Lockdown and Zaqali
+-- Ruin) is told apart from them only by its POI (docs/work/2026-10-18-memory-growth). A POI that reports seconds left is
+-- up, a number and no table; only one that reports none is looked for on its map. Researchers Under Fire's and the
+-- Dreamsurges' POIs report time but are not on their events' maps (/kaftest sources, 2026-10-21).
+local function IsPoiPresent(event)
+    return C_AreaPoiInfo.GetAreaPOISecondsLeft(event.Id) ~= nil or C_AreaPoiInfo.GetAreaPOIInfo(event.MapId, event.Id) ~= nil
 end
 
 -- An event from Blizzard's event scheduler: its occurrence going on now and the game's name, with no POI read
@@ -242,6 +261,8 @@ function eventData.GetWorldEventDetails(event, now)
     now = now or GetServerTime()
     if event.Source == KrowiAF.Enum.EventSource.Scheduler then
         return GetSchedulerEventDetails(event, now)
+    elseif event.Source == KrowiAF.Enum.EventSource.FixedSchedule then
+        return GetFixedScheduleEventDetails(event, now)
     end
 
     local timers = addon.Data.CustomWorldEventTimers
@@ -249,7 +270,7 @@ function eventData.GetWorldEventDetails(event, now)
     if timers.HasCustomTimer(event.Id) then
         -- The POI first: an absent one returns nothing and allocates nothing, while the widget returns a new table on
         -- every read, also for the events whose POI is not there (Theater Troupe's widget is there everywhere)
-        if not IsPoiOnMap(event) then -- The event is not active
+        if not IsPoiPresent(event) then -- The event is not active
             return
         end
         secondsLeft = timers.GetSecondsLeft(event.Id)
@@ -264,7 +285,7 @@ function eventData.GetWorldEventDetails(event, now)
             event.EventDetails = nil
             return
         end
-        if not IsPoiOnMap(event) then -- The event is not active
+        if not IsPoiPresent(event) then -- The event is not active
             return
         end
     end

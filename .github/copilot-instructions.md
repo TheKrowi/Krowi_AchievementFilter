@@ -137,6 +137,16 @@ Per-expansion folder contents: `AchievementData`, `CategoryData`, `ZoneData` (on
 
 `Achievement` carries patch, faction, reward type, PvP/season flags, and a list of temporary-obtainable records; `Data/TemporaryObtainable.lua` resolves those to Past/Current/Future using season anchors registered via `KrowiAF.AddSeasonData`. `Filters.Validate` returns a signed integer (negative = rejected by rule `i`, `1` = show, `2` = always visible), not a boolean.
 
+### Event reminders: where an event's times come from
+
+Krowi's policy (2026-10-21):
+- **The current expansion's events** come from Blizzard's event scheduler, `C_EventScheduler` (rows with `KrowiAF.Enum.EventSource.Scheduler`, `Data/EventScheduler.lua`), because Blizzard updates their times without an addon change.
+- **Older expansions' events** run on KAF's fixed schedules: `KrowiAF.EventSchedules` in `DataAddons/Retail/<expansion>/EventSchedules.lua`, read by `Data/EventSchedules.lua`, for rows with `EventSource.FixedSchedule`. A reminder on a fixed schedule makes no POI or widget read.
+- **Families whose zone, show or storm order is not known yet** keep their POI and widget reads and are only watched.
+- **When an expansion ends,** its scheduler events move to fixed schedules, from the times recorded while the scheduler still listed them (`/kaftest scheduler`).
+- **The watcher** (`Data/EventObserver.lua`) learns each region's starts and rotations from the POIs it sees, every 300 s, for every player. Debug mode prints its findings: new starts, disagreements with the shipped schedules, and the order of the watched families, which is how a family's rotation gets confirmed before it is made fixed.
+- The work items: `docs/work/2026-10-21-event-scheduler` and `docs/work/2026-10-21-fixed-event-schedules`.
+
 ### Taint is the recurring bug class
 
 Most recent fixes (see the dev notes in `_Packaging/Changelog.md` and the root causes in `docs/work/*/spec.md`) are taint or secret-value errors. Never override Blizzard API functions (`GetAchievementCriteriaInfo`, `GetAchievementNumCriteria` and the like); that approach was removed years ago and its leftovers still cause bugs. The only globals the addon writes on purpose are the FrameXML UI functions it replaces in `addon.OverwriteFunctions` and the polyfills for removed API in `addon.LoadBlizzardApiChanges` (both in `Gui/BlizzardOverrides.lua`); they are listed in `.claude/tools/Check-Repo.globals` and the `globals` lint rule fails on any other write to the global environment. Do not compare or do arithmetic on values from `C_Calendar`, aura, or objective-tracker APIs without considering `SecretInChatMessagingLockdown`. `TaintDiagnostics.lua` and `Diagnostics.lua` exist for probing this; `addon.Diagnostics.DebugEnabled()` gates debug paths.

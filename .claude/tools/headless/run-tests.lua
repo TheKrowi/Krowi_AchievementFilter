@@ -1186,7 +1186,10 @@ suites.memory = function(c)
     env.MINUTES_ABBR, env.SECONDS_ABBR = "%d min", "%d sec"
     env.D_MINUTES, env.D_SECONDS = "%d |4minute:minutes;", "%d |4second:seconds;"
     env.GetServerTime, env.time = os.time, os.time
-    env.KrowiAF = { Enum = { EventType = { Calendar = 1, Widget = 2, World = 3 }, EventSource = { Scheduler = 1 } } }
+    -- one watched family for Data/EventObserver.lua: the model's POIs 9001 and 7553, on their own state for each job
+    env.KrowiAF = { Enum = { EventType = { Calendar = 1, Widget = 2, World = 3 }, EventSource = { Scheduler = 1, FixedSchedule = 2 } },
+        EventSchedules = { Watched = { Interval = 7200, Window = { 0, 7200 }, Variants = { 9001, 7553 }, Observe = true } } }
+    env.KrowiAF_SavedData = {}
     env.GetCurrentRegion = function() return 3 end
     env.InCombatLockdown = function() return false end
     local now = os.time()
@@ -1264,7 +1267,8 @@ suites.memory = function(c)
         end
     end
 
-    for _, rel in ipairs({ "TaintDiagnostics.lua", "Data/CustomWidgetEventTimers.lua", "Data/CustomWorldEventTimers.lua", "Data/EventScheduler.lua", "Data/EventData.lua", "Tests/Memory.lua" }) do
+    for _, rel in ipairs({ "TaintDiagnostics.lua", "Data/CustomWidgetEventTimers.lua", "Data/CustomWorldEventTimers.lua", "Data/EventScheduler.lua",
+        "Data/EventSchedules.lua", "Data/EventObserver.lua", "Data/EventData.lua", "Tests/Memory.lua" }) do
         c.loadAddonFile(rel)
     end
     local suite = addon.Tests.Memory
@@ -1275,6 +1279,9 @@ suites.memory = function(c)
     function headless.Jobs(name)
         if name == "SchedulerUpdate" then
             return { Call = addon.Data.EventScheduler.OnSchedulerUpdate, PerMinute = 60 }
+        elseif name == "ObserverRun" then
+            SetState("poi-on-map") -- a watched POI up, which the uncounted first run takes in
+            return { Call = addon.Data.EventObserver.RunOnce, PerMinute = 60 / 300 }
         elseif name == "TaintSweep" then
             return { Call = probe.SweepOnce, PerMinute = probe.SweepsPerMinute }
         elseif name == "EventRefresh" or name == "EventRefreshNoPoiOnMap" then

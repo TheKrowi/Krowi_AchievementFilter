@@ -6,13 +6,16 @@ KrowiAF.Enum.EventType = EnumUtil.MakeEnum(
     "Widget",
     "World"
 )
--- Where a World event's times come from when not from its POI: Scheduler is Blizzard's event scheduler
--- (C_EventScheduler, Data/EventScheduler.lua), which names the event too
+-- Where an event's times come from when not from its POI or widget: Scheduler is Blizzard's event scheduler
+-- (C_EventScheduler, Data/EventScheduler.lua), which names the event too, for the current expansion; FixedSchedule is
+-- one of KAF's own schedules (KrowiAF.EventSchedules, Data/EventSchedules.lua), for the older expansions
 KrowiAF.Enum.EventSource = EnumUtil.MakeEnum(
-    "Scheduler"
+    "Scheduler",
+    "FixedSchedule"
 )
 
 KrowiAF.EventData = {}
+KrowiAF.EventSchedules = {} -- [key] = a family's schedule, from DataAddons/Retail/*/EventSchedules.lua
 
 local function InjectOptionsDefaults(eventType, eventIds, hideByDefault)
     if hideByDefault == nil then
