@@ -1,5 +1,5 @@
 # Plan: The older expansions' event reminders run on fixed schedules
-Spec: [spec.md](spec.md). Approved by Krowi on 2026-10-21. Status: accepted
+Spec: [spec.md](spec.md). Approved by Krowi on 2026-10-21. Status: done
 
 Worktree `.claude/worktrees/feature-2026-10-21-fixed-event-schedules`, branch `feature/2026-10-21-fixed-event-schedules`. Copied to `docs/work/2026-10-21-fixed-event-schedules/plan.md` once approved. **Non-routine** (new saved data `KrowiAF_SavedData.EventObservations`, a new background job): waits for Krowi.
 
@@ -168,3 +168,13 @@ KAF finds the older expansions' world events by reading their POI (and the POI's
   - the watcher reports its first findings;
   - no errors.
 - **Classic:** green, no change.
+
+## Results (2026-10-22)
+- **Headless:** every suite passes on both clients; `schedules` meets all 43 targets; `memory` has `event-refresh`, `observer-run` and `scheduler-update-ignored` at "none", with `event-refresh-poi-on-map` and `event-refresh-widget-active` still open for the watched families.
+- **Retail 12.1.5, in Silvermoon and in Zaralek Cavern:**
+  - `/kaftest schedules` 40 of 41 (the one SKIP is headless only), `/kaftest memory` green with a 6 KB idle minute;
+  - `/kaftest sources`: the schedules and the POIs agree (Maw 18 s, Siege, Researchers, Legion and the Faction Assaults within a minute); the Dreamsurge POI is on its zone's map; Researchers Under Fire shows in Zaralek Cavern;
+  - the Data Manager's Event Reminders tab shows the log; the watcher learned the Siege (20:00), Researchers Under Fire (:30) and Theater Troupe (:45) starts;
+  - BugGrabber: no error from the addon.
+- **Classic 5.5.4:** `/kaftest schedules` reports Retail only, `/kaftest memory` 5 of 5, the same as headless; no error.
+- **Reviews:** two taint reviews (no taint; three bugs and one tooltip note, fixed) and a code review (14 findings: fixed, one reverted, one kept as backlog).

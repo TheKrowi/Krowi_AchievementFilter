@@ -1,5 +1,5 @@
 # Intent: The older expansions' event reminders run on fixed schedules
-Author: Krowi (maintainer). Source: idea, 2026-10-21, after docs/work/2026-10-21-event-scheduler (PR #352). Accepted by Krowi on 2026-10-21 with the design question. Status: accepted
+Author: Krowi (maintainer). Source: idea, 2026-10-21, after docs/work/2026-10-21-event-scheduler (PR #352). Accepted by Krowi on 2026-10-21 with the design question. Status: done
 
 ## Problem
 KAF's world and widget event reminders for Legion to The War Within find their events the way they did when they were built:

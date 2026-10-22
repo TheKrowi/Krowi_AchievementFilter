@@ -1,5 +1,5 @@
 # Spec: The older expansions' event reminders run on fixed schedules
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. **Fixed now** (Krowi's decision below): BfA Faction Assaults, the Maw covenant assaults, Siege on Dragonbane Keep, Time Rift, Superbloom, Azerothian Archives (the Big Dig) and the soup.
