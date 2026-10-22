@@ -107,6 +107,9 @@ local function Agrees(family, interval, earlier, later)
     end
     if family.Rotation then
         local earlierTurn, laterTurn = TurnOf(family, earlier.Id), TurnOf(family, later.Id)
+        if not earlierTurn or not laterTurn then
+            return false -- saved by a release whose rotation had other ids
+        end
         return (earlierTurn - 1 + cycles) % #family.Rotation + 1 == laterTurn
     end
     return true
@@ -137,8 +140,8 @@ local function Confirm(family, entry, region, observation, interval)
         changed = not entry.RotationAnchor or math.abs(Circular(rotationAnchor - entry.RotationAnchor, interval * #family.Rotation)) > tolerance
     end
     entry.Anchor, entry.RotationAnchor = anchor, rotationAnchor
-    if not changed then
-        return
+    if not changed or not source.Debug() then
+        return -- learned and kept either way; only debug mode prints it
     end
     local offset = OffsetFromShipped(family, region, entry, interval)
     if offset and math.abs(offset) > tolerance then

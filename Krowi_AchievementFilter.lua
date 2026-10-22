@@ -123,8 +123,8 @@ function loadHelper:OnEvent(event, arg1, arg2)
             C_Timer.After(0, function()
                 C_Timer.After(addon.Options.db.profile.EventReminders.OnLoginDelay, function()
                     addon.Data.EventScheduler.EnsureData() -- the times of the events from Blizzard's event scheduler, for the reminders below
-                    addon.Data.EventObserver.Start() -- learns the older events' starts from their POIs, once a session
                     addon.Gui.EventReminderAlertSystem:ShowActiveEventsOnPlayerEnteringWorld(popUpsOptions, chatMessagesOptions)
+                    addon.Data.EventObserver.Start() -- after the reminders, so nothing it does can stop them; learns the older events' starts, once a session
                 end)
             end)
             C_Timer.After(0, function()

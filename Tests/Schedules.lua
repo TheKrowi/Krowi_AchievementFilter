@@ -90,11 +90,11 @@ schedules.Scenarios = {
     -- The taint review of 2026-10-21: the merge ran on every update, turning a Legion toggle the player had turned off
     -- back on, and left the active profile's toggle nil, which AceDB's copied defaults read as off
     {Name = "legion-toggles-merge-again", Kind = "MergeCase", Case = "Again", RetailOnly = true, -- turned off after the first merge, then an update
-        Recorded = "on", Target = "off"},
+        Recorded = "off", Target = "off"},
     {Name = "legion-toggles-active-profile", Kind = "MergeCase", Case = "ActiveProfile", RetailOnly = true, -- the value 5175 holds after the merge
-        Recorded = "nil", Target = "true"},
+        Recorded = "true", Target = "true"},
     {Name = "legion-toggles-first-install", Kind = "MergeCase", Case = "FirstInstall", RetailOnly = true,
-        Recorded = "not marked, changed", Target = "marked, untouched"},
+        Recorded = "marked, untouched", Target = "marked, untouched"},
     -- Researchers Under Fire stays on its POI and widget, in its zone; its POI reports time but is not on map 2133
     {Name = "researchers-in-zone", Kind = "PoiState", Event = 7461, Pois = {[7461] = 600}, Widgets = {[4826] = "10 min"}, RetailOnly = true,
         Recorded = "ends in 600", Target = "ends in 600"},
@@ -113,9 +113,9 @@ schedules.Scenarios = {
         Recorded = "observations 1", Target = "observations 1"},
     -- The taint review of 2026-10-21: the findings printed for every player, and a saved id no longer in a rotation errored
     {Name = "learn-quiet-without-debug", Kind = "Learn", Story = "QuietWithoutDebug", RetailOnly = true,
-        Recorded = "reports 1; learned", Target = "reports 0; learned"},
+        Recorded = "reports 0; learned", Target = "reports 0; learned"},
     {Name = "learn-old-id", Kind = "Learn", Story = "OldId", RetailOnly = true,
-        Recorded = "error", Target = "no error"}
+        Recorded = "no error", Target = "no error"}
 }
 -- RetailOnly: every family is DataAddons/Retail data; Classic has no world or widget events
 
@@ -218,7 +218,7 @@ local function DescribeMerge()
         Others = {EventReminders = {WorldEvents = {[5177] = false}}}, -- Azsuna on, Highmountain off
         Untouched = {},
     }
-    manager.MergeLegionAssaultToggles(profiles)
+    manager.MergeLegionAssaultToggles(profiles, {}, false)
     local parts = {}
     for _, name in ipairs({"AllOff", "Azsuna", "Others", "Untouched"}) do
         local world = profiles[name].EventReminders and profiles[name].EventReminders.WorldEvents or {}
