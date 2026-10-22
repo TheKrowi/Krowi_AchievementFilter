@@ -1380,9 +1380,10 @@ suites.schedules = function(c)
     ctx:RunPipeline{ StepError = fail("step"), TaskError = fail("task") }
     assert(#failures == 0, "data load failed (run load-data.lua): " .. tostring(failures[1]))
     local env, addon = ctx.env, ctx.addon
-    local poiLeft, widgetText = {}, {}
+    local poiLeft, widgetText, poiMap = {}, {}, {}
     env.C_AreaPoiInfo = {
-        GetAreaPOIInfo = function(mapId, id) CheckAreaPoiArgs(mapId, id) return nil end, -- on no map: Researchers Under Fire's POI is not on 2133
+        -- a POI is on the map a scenario gives it, and on no other: Researchers Under Fire's is not on 2133
+        GetAreaPOIInfo = function(mapId, id) CheckAreaPoiArgs(mapId, id) if mapId ~= nil and poiMap[id] == mapId then return { areaPoiID = id } end end,
         GetAreaPOISecondsLeft = function(id) return poiLeft[id] end,
     }
     env.C_UIWidgetManager = { GetTextWithStateWidgetVisualizationInfo = function(id) return widgetText[id] and { text = widgetText[id] } or nil end }
@@ -1413,8 +1414,8 @@ suites.schedules = function(c)
     local headless = {}
     function headless.IsRetail() return c.isRetail end
     function headless.PoiUp() return false end
-    function headless.SetPoiState(pois, widgets)
-        poiLeft, widgetText = pois or {}, widgets or {}
+    function headless.SetPoiState(pois, widgets, maps)
+        poiLeft, widgetText, poiMap = pois or {}, widgets or {}, maps or {}
         return true
     end
     local observations = {}

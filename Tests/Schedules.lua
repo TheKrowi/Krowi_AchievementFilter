@@ -11,8 +11,8 @@ local schedules = addon.Tests.Schedules
 --   Window: GetWorldEventDetails or GetWidgetEventDetails of Event at At in Region: "ends in <seconds>", "no time" or
 --     "not shown"
 --   Family: which of Ids is going on at At in Region and until when: "<id> ends in <seconds>", or "none"
---   PoiState: the reminders' details of Event with the POIs and widgets of Pois and Widgets (headless only: the game
---     cannot set them)
+--   PoiState: the reminders' details of Event with the POIs, POI maps and widgets of Pois, PoiMaps and Widgets
+--     (headless only: the game cannot set them)
 --   Learn: what the watcher learns in the story Story
 --   Merge: what the saved-data solution makes of the Legion Assault toggles of four model profiles: per profile whether
 --     the one toggle left is on, and how many of the other three ids remain
@@ -108,6 +108,10 @@ schedules.Scenarios = {
     -- review of 2026-10-22), so the target waits for the right map, which /kaftest sources looks for
     {Name = "researchers-in-zone", Kind = "PoiState", Event = 7461, Pois = {[7461] = 600}, Widgets = {[4826] = "10 min"}, RetailOnly = true,
         Recorded = "not shown", Target = "ends in 600"},
+    -- A Dreamsurge in its zone: its POI is on the zone's map (7602 on 2025, Thaldraszus; /kaftest sources, 2026-10-22), not
+    -- on the Dragon Isles' 1978 its row gave
+    {Name = "dreamsurge-in-zone", Kind = "PoiState", Event = 7602, Pois = {[7602] = 462000}, PoiMaps = {[7602] = 2025}, Widgets = {[4993] = "12 min"}, RetailOnly = true,
+        Recorded = "not shown", Target = "ends in 720"},
     -- What every player's addon learns from the POIs it sees
     {Name = "learn-kr-faction-assault", Kind = "Learn", Story = "KoreaLearns", RetailOnly = true,
         Recorded = "after one: none; after two: 5973 ends in 25000", Target = "after one: none; after two: 5973 ends in 25000"},
@@ -501,7 +505,7 @@ local function RunScenario(env, scenario)
             got = scenario.Kind == "Window" and DescribeWindow(scenario) or DescribeFamily(scenario)
         end
     elseif scenario.Kind == "PoiState" then
-        if not env.SetPoiState(scenario.Pois, scenario.Widgets) then
+        if not env.SetPoiState(scenario.Pois, scenario.Widgets, scenario.PoiMaps) then
             blocked = "the game cannot set POIs and widgets; checked in the event's zone instead"
         else
             local at = GetServerTime()
