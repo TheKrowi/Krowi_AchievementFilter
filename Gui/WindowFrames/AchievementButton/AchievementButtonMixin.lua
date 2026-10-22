@@ -203,23 +203,30 @@ local function SetAsTracked(self, isTracked)
 	WatchFrame_Update() -- Needed for Wrath Classic, does nothing for Retail
 end
 
+-- The achievement a tracking event is about, or nil when it is about something else. Retail tracks through
+-- C_ContentTracking and fires CONTENT_TRACKING_UPDATE, also for appearances, mounts and decor;
+-- TRACKED_ACHIEVEMENT_LIST_CHANGED no longer fires there (Tests/Tracking.lua, 12.1.5, 2026-10-22). Classic fires the latter.
+function achievementButton.TrackingEventAchievementId(event, ...)
+	if event == "CONTENT_TRACKING_UPDATE" then
+		local trackableType, trackableId = ...
+		return trackableType == Enum.ContentTrackingType.Achievement and trackableId or nil
+	elseif event == "TRACKED_ACHIEVEMENT_LIST_CHANGED" then
+		return (...)
+	end
+end
+
 function KrowiAF_AchievementButtonMixin:OnEvent(event, ...)
-	if event ~= "ACHIEVEMENT_EARNED" and event ~= "TRACKED_ACHIEVEMENT_LIST_CHANGED" then
-		return
-	end
 	if not self.Achievement then
-		return
-	end
-	local achievementId = ...
-	if achievementId ~= self.Achievement.Id then
 		return
 	end
 
 	local achievement = self.Achievement
 	if event == "ACHIEVEMENT_EARNED" then
-		self.Achievement = nil
-		self:Update(achievement)
-	elseif event == "TRACKED_ACHIEVEMENT_LIST_CHANGED" then
+		if ... == achievement.Id then
+			self.Achievement = nil
+			self:Update(achievement)
+		end
+	elseif achievementButton.TrackingEventAchievementId(event, ...) == achievement.Id then
 		SetAsTracked(self, IsTrackedAchievement(achievement.Id))
 	end
 end
@@ -227,11 +234,17 @@ end
 function KrowiAF_AchievementButtonMixin:OnShow()
 	self:RegisterEvent("ACHIEVEMENT_EARNED")
 	self:RegisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED")
+	if addon.Util.IsMainline then
+		self:RegisterEvent("CONTENT_TRACKING_UPDATE")
+	end
 end
 
 function KrowiAF_AchievementButtonMixin:OnHide()
 	self:UnregisterEvent("ACHIEVEMENT_EARNED")
 	self:UnregisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED")
+	if addon.Util.IsMainline then
+		self:UnregisterEvent("CONTENT_TRACKING_UPDATE")
+	end
 end
 
 function KrowiAF_AchievementButtonMixin:OnEnter()
