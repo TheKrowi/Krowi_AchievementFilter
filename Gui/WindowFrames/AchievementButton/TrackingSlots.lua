@@ -11,10 +11,11 @@ local trackingSlots = addon.Gui.TrackingSlots
 -- UseSourceForTest), so the same steps run in game and headlessly; these functions are made once, at load.
 local game = {
     GetTrackedIds = function()
-        if C_ContentTracking then
-            return C_ContentTracking.GetTrackedIDs(Enum.ContentTrackingType.Achievement)
+        -- Classic's own list first: its Blizzard code calls C_ContentTracking too, for appearances (CollectionsUtil.lua)
+        if GetTrackedAchievements then
+            return {GetTrackedAchievements()}
         end
-        return {GetTrackedAchievements()}
+        return C_ContentTracking.GetTrackedIDs(Enum.ContentTrackingType.Achievement)
     end,
     GetNumTracked = function() return GetNumTrackedAchievements() end,
     GetMaxTracked = function() return MAX_TRACKED_ACHIEVEMENTS end,
