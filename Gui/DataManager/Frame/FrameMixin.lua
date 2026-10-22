@@ -1,3 +1,4 @@
+---@diagnostic disable: invisible
 local _, addon = ...
 
 KrowiAF_DataManagerFrameImportMixin = {}
@@ -53,6 +54,38 @@ end
 
 KrowiAF_DataManagerFrameMixin = {}
 
+-- The second tab, Retail only: the log of what the event schedules' watcher saw and learned (Data/EventObserver.lua;
+-- docs/work/2026-10-21-fixed-event-schedules). Read-only and selectable, so it can be copied; shown in debug mode.
+local function CreateTabs(self)
+	self.Tabs = {}
+	for id, text in ipairs({addon.L["Characters"], addon.L["Event Reminders"]}) do
+		local tab = CreateFrame("Button", nil, self, "PanelTabButtonTemplate")
+		tab:SetID(id)
+		tab:SetText(text)
+		tab:SetScript("OnClick", function(button)
+			PlaySound(SOUNDKIT.IG_CHARACTER_INFO_TAB)
+			self:SelectTab(button:GetID())
+		end)
+		PanelTemplates_TabResize(tab, 0)
+		self.Tabs[id] = tab
+	end
+	self.Tabs[1]:SetPoint("TOPLEFT", self, "BOTTOMLEFT", 11, 2)
+	PanelTemplates_SetNumTabs(self, #self.Tabs)
+
+	local log = LibStub("AceGUI-3.0"):Create("MultiLineEditBox")
+	log.frame:SetParent(self)
+	log:DisableButton(true)
+	log:SetLabel("")
+	log.frame:SetPoint("TOPLEFT", self.Inset, "TOPLEFT", 0, 4)
+	log.frame:SetPoint("BOTTOMRIGHT", self.Inset, "BOTTOMRIGHT", -3, -5)
+	log:SetCallback("OnTextChanged", function(widget) -- typing undone: the log is read-only
+		widget:SetText(self.LogText or "")
+	end)
+	log.frame:Hide()
+	self.Log = log
+	PanelTemplates_SetTab(self, 1)
+end
+
 function KrowiAF_DataManagerFrameMixin:OnLoad()
     addon.Gui:RegisterFrameForClosing(self)
 
@@ -68,10 +101,36 @@ function KrowiAF_DataManagerFrameMixin:OnLoad()
 	self.Import:SetText(addon.L["Import"])
 
 	ButtonFrameTemplate_HidePortrait(self)
+
+	if addon.Util.IsMainline then
+		CreateTabs(self)
+	end
+end
+
+-- 1 the characters, 2 the event schedules' log, read again each time it is shown
+function KrowiAF_DataManagerFrameMixin:SelectTab(id)
+	PanelTemplates_SetTab(self, id)
+	local characters = id == 1
+	self.CharacterList:SetShown(characters)
+	self.Import:SetShown(characters)
+	if characters then
+		self.Log.frame:Hide()
+		return
+	end
+	self.LogText = addon.Data.EventObserver.GetLog()
+	self.Log:SetText(self.LogText)
+	self.Log.frame:Show()
 end
 
 function KrowiAF_DataManagerFrameMixin:OnShow()
 	PlaySound(SOUNDKIT.IG_CHARACTER_INFO_OPEN)
+	if self.Tabs then -- the log's tab is a debug view: without debug mode the frame shows only the characters
+		local debug = addon.Diagnostics.DebugEnabled()
+		for _, tab in ipairs(self.Tabs) do
+			tab:SetShown(debug)
+		end
+		self:SelectTab(debug and PanelTemplates_GetSelectedTab(self) or 1)
+	end
 end
 
 function KrowiAF_DataManagerFrameMixin:OnHide()

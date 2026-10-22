@@ -1387,7 +1387,8 @@ suites.schedules = function(c)
     }
     env.C_UIWidgetManager = { GetTextWithStateWidgetVisualizationInfo = function(id) return widgetText[id] and { text = widgetText[id] } or nil end }
     env.C_DateAndTime = { GetSecondsUntilWeeklyReset = function() return 302400 end }
-    env.GetServerTime, env.time = os.time, os.time
+    env.GetServerTime, env.time, env.date = os.time, os.time, os.date -- client-env stubs date for the load; the watcher's log formats it
+    env.C_QuestLog = { IsQuestFlaggedCompleted = function() return true end }
     env.GetCurrentRegion = function() return 3 end
     env.InCombatLockdown = function() return false end
     env.MINUTES_ABBR, env.SECONDS_ABBR = "%d min", "%d sec"

@@ -235,6 +235,62 @@ function eventObserver.Start()
     eventObserver.RunOnce()
 end
 
+-- [[ The log on the Data Manager's second tab (Gui/DataManager/Frame/FrameMixin.lua) ]] --
+
+local regionNames = {[1] = "the US", [2] = "Korea and Taiwan", [3] = "Europe", [4] = "Taiwan", [5] = "China"}
+local shownPerFamily = 12 -- the newest observations listed per family; all 64 stay in the saved data
+
+local function LearnedStatus(family, entry, region)
+    if not family.Fixed then
+        return ("watched only, %d seen"):format(#entry.Seen)
+    end
+    if not entry.Anchor or entry.Definition ~= addon.Data.EventSchedules.GetDefinition(family) then
+        return ("not learned yet, %d seen"):format(#entry.Seen)
+    end
+    local offset = OffsetFromShipped(family, region, entry, addon.Data.EventSchedules.GetInterval(family))
+    local shipped = not offset and "the addon ships none for this region"
+        or math.abs(offset) <= tolerance and "the same as the addon's schedule"
+        or ("%d s off the addon's schedule"):format(offset)
+    return ("learned, cycle start %s, %s"):format(date("!%Y-%m-%d %H:%M", entry.Anchor), shipped)
+end
+
+-- Per watched family: what was learned for the region, then what was seen, newest first; English, like the rest of the
+-- debug output. regions: KrowiAF_SavedData.EventObservations, or a test's model of it.
+function eventObserver.FormatLog(regions, region)
+    local lines = {("Event schedules: what this account's addon saw and learned in %s (times in UTC; it looks every %d minutes)"):format(
+        regionNames[region] or ("region " .. tostring(region)), runEvery / 60)}
+    local entries = regions and regions[region] or {}
+    local keys, unseen = {}, {}
+    for key, family in next, KrowiAF.EventSchedules do
+        family.Key = key
+        if family.Observe then
+            if entries[key] and #entries[key].Seen > 0 then
+                tinsert(keys, key)
+            else
+                tinsert(unseen, family.Name or key)
+            end
+        end
+    end
+    sort(keys)
+    sort(unseen)
+    for _, key in ipairs(keys) do
+        local family, entry = KrowiAF.EventSchedules[key], entries[key]
+        tinsert(lines, ("%s: %s"):format(family.Name or key, LearnedStatus(family, entry, region)))
+        for i = #entry.Seen, math.max(1, #entry.Seen - shownPerFamily + 1), -1 do
+            local observation = entry.Seen[i]
+            tinsert(lines, ("    %s  %s"):format(date("!%Y-%m-%d %H:%M", observation.Start), NameOf(observation.Id)))
+        end
+    end
+    if #unseen > 0 then
+        tinsert(lines, "Nothing seen yet: " .. table.concat(unseen, ", "))
+    end
+    return table.concat(lines, "\n")
+end
+
+function eventObserver.GetLog()
+    return eventObserver.FormatLog(Store(), source.Region())
+end
+
 -- [[ For the suites ]] --
 
 -- A model of the game and of the saved data in place of them (Tests/Schedules.lua), nil for the game again; the game's

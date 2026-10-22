@@ -135,7 +135,7 @@ schedules.Scenarios = {
     -- The watcher's log on the Data Manager's second tab (Krowi, 2026-10-22): one line per family with what was learned,
     -- then what was seen, newest first
     {Name = "log-text", Kind = "Learn", Story = "LogText", RetailOnly = true,
-        Recorded = "no log", Target = "Faction Assaults: learned, cycle start 2027-01-20 17:00, the same as the addon's schedule / Grand Hunts: watched only, 1 seen"}
+        Recorded = "Faction Assaults: learned, cycle start 2027-01-20 17:00, the same as the addon's schedule / Grand Hunts: watched only, 1 seen", Target = "Faction Assaults: learned, cycle start 2027-01-20 17:00, the same as the addon's schedule / Grand Hunts: watched only, 1 seen"}
 }
 -- RetailOnly: every family is DataAddons/Retail data; Classic has no world or widget events
 
