@@ -60,6 +60,10 @@ local function CreateTabs(self)
 	self.Tabs = {}
 	for id, text in ipairs({addon.L["Characters"], addon.L["Event Reminders"]}) do
 		local tab = CreateFrame("Button", nil, self, "PanelTabButtonTemplate")
+		-- The template's OnEnter and OnLeave hide GameTooltip whoever owns it, tainted on a tab of ours: the #300 path. The
+		-- tooltip they would show is for a truncated label, which TabResize without a maximum never makes.
+		tab:SetScript("OnEnter", nil)
+		tab:SetScript("OnLeave", nil)
 		tab:SetID(id)
 		tab:SetText(text)
 		tab:SetScript("OnClick", function(button)
