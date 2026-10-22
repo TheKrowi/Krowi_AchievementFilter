@@ -212,14 +212,14 @@ EVENT World 7460 | category=1429 | icon=4237659 | map=2133
 EVENT World 7461 | category=1430 | icon=254117 | map=2133
 EVENT World 7462 | category=1429 | icon=4237659 | map=2133
 EVENT World 7471 | category=1425 | icon=4914672 | map=2023
-EVENT World 7553 | category=1537 | icon=1394953 | linked=7602 | map=1978
-EVENT World 7554 | category=1537 | icon=1394953 | linked=7605 | map=1978
-EVENT World 7555 | category=1537 | icon=1394953 | linked=7604 | map=1978
-EVENT World 7556 | category=1537 | icon=1394953 | linked=7603 | map=1978
-EVENT World 7602 | category=1537 | icon=1394953 | linked=7553 | map=1978
-EVENT World 7603 | category=1537 | icon=1394953 | linked=7556 | map=1978
-EVENT World 7604 | category=1537 | icon=1394953 | linked=7555 | map=1978
-EVENT World 7605 | category=1537 | icon=1394953 | linked=7554 | map=1978
+EVENT World 7553 | category=1537 | icon=1394953 | linked=7602 | map=2025
+EVENT World 7554 | category=1537 | icon=1394953 | linked=7605 | map=2024
+EVENT World 7555 | category=1537 | icon=1394953 | linked=7604 | map=2023
+EVENT World 7556 | category=1537 | icon=1394953 | linked=7603 | map=2022
+EVENT World 7602 | category=1537 | icon=1394953 | linked=7553 | map=2025
+EVENT World 7603 | category=1537 | icon=1394953 | linked=7556 | map=2022
+EVENT World 7604 | category=1537 | icon=1394953 | linked=7555 | map=2023
+EVENT World 7605 | category=1537 | icon=1394953 | linked=7554 | map=2024
 EVENT World 7943 | category=1676 | icon=134927 | map=2248
 EVENT World 8076 | category=1676 | icon=134927 | map=2248
 EVENT World 8077 | category=1676 | icon=134927 | map=2248

@@ -18,6 +18,7 @@ All notable changes to this project will be documented in this file.
 - Community Feast reminders now show wherever you are, not only in the Azure Span: Next in the 15 minutes before the cooking starts, Active while it cooks
 - Time Rift, Superbloom and Azerothian Archives reminders now show wherever you are, not only in their zones, each with a Next shortly before it starts
 - Superbloom: Active now shows its time left instead of "No time data available"
+- Dreamsurge reminders show in their zones again
 
 ## 103.0 - 2026-10-14
 ### Added

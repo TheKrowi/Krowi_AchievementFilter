@@ -111,7 +111,7 @@ schedules.Scenarios = {
     -- A Dreamsurge in its zone: its POI is on the zone's map (7602 on 2025, Thaldraszus; /kaftest sources, 2026-10-22), not
     -- on the Dragon Isles' 1978 its row gave
     {Name = "dreamsurge-in-zone", Kind = "PoiState", Event = 7602, Pois = {[7602] = 462000}, PoiMaps = {[7602] = 2025}, Widgets = {[4993] = "12 min"}, RetailOnly = true,
-        Recorded = "not shown", Target = "ends in 720"},
+        Recorded = "ends in 720", Target = "ends in 720"},
     -- What every player's addon learns from the POIs it sees
     {Name = "learn-kr-faction-assault", Kind = "Learn", Story = "KoreaLearns", RetailOnly = true,
         Recorded = "after one: none; after two: 5973 ends in 25000", Target = "after one: none; after two: 5973 ends in 25000"},

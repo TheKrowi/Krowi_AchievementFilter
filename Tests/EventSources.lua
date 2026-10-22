@@ -38,8 +38,9 @@ local function RemindersGet(details, enabled)
     return ("the event, %d s left"):format(details.EndTime - GetServerTime())
 end
 
--- The map a POI is on when it is not on the one its row gives: the row's continent and every map below it
+-- The map a POI is on when it is not on the one its row gives: none given, then the row's continent and every map below it
 local function FindPoiMap(event)
+    local noMap = C_AreaPoiInfo.GetAreaPOIInfo(nil, event.Id) ~= nil and "found with no map given" or "not found with no map given"
     local continent = event.MapId
     local info = continent and C_Map.GetMapInfo(continent)
     while info and info.mapType and info.mapType > Enum.UIMapType.Continent and info.parentMapID and info.parentMapID ~= 0 do
@@ -47,17 +48,17 @@ local function FindPoiMap(event)
         info = C_Map.GetMapInfo(continent)
     end
     if not continent then
-        return "no map to search from"
+        return noMap .. ", no map to search from"
     end
     if C_AreaPoiInfo.GetAreaPOIInfo(continent, event.Id) then
-        return ("found on map %d (%s)"):format(continent, tostring(info and info.name))
+        return ("%s, found on map %d (%s)"):format(noMap, continent, tostring(info and info.name))
     end
     for _, child in ipairs(C_Map.GetMapChildrenInfo(continent, nil, true) or {}) do
         if C_AreaPoiInfo.GetAreaPOIInfo(child.mapID, event.Id) then
-            return ("found on map %d (%s)"):format(child.mapID, tostring(child.name))
+            return ("%s, found on map %d (%s)"):format(noMap, child.mapID, tostring(child.name))
         end
     end
-    return ("on no map of continent %d"):format(continent)
+    return ("%s, on no map of continent %d"):format(noMap, continent)
 end
 
 local function TimedBy(event, widgetTimed)

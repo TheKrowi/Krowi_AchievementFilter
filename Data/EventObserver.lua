@@ -94,9 +94,11 @@ local function Utc(t)
     return date("!%Y-%m-%d %H:%M", t) .. " UTC"
 end
 
-local function NameOf(id)
-    local event = addon.Data.Events[KrowiAF.Enum.EventType.World][id]
-    return event and event.Name or tostring(id)
+-- An observation's event: its row's name, else the game's name kept when it was seen (the Theater Troupe shows have no
+-- rows), else its id
+local function NameOf(observation)
+    local event = addon.Data.Events[KrowiAF.Enum.EventType.World][observation.Id]
+    return event and event.Name or observation.Name or tostring(observation.Id)
 end
 
 -- Two starts agree when they are a whole number of cycles apart, and, in a rotation, the ids are that many turns apart
@@ -149,11 +151,11 @@ local function Confirm(family, entry, region, observation, interval)
     if offset and math.abs(offset) > tolerance then
         -- a reset-tied family's times come from the weekly reset; only which zone's turn it is can differ
         source.Report(("Event schedules: %s: the game started %s at %s, %d s off the addon's schedule; the game's %s is used from now on"):format(
-            family.Name or family.Key, NameOf(observation.Id), Utc(observation.Start), offset, family.Reset and "rotation" or "time"))
+            family.Name or family.Key, NameOf(observation), Utc(observation.Start), offset, family.Reset and "rotation" or "time"))
     elseif offset then
-        source.Report(("Event schedules: %s: the game confirms the addon's schedule (%s at %s)"):format(family.Name or family.Key, NameOf(observation.Id), Utc(observation.Start)))
+        source.Report(("Event schedules: %s: the game confirms the addon's schedule (%s at %s)"):format(family.Name or family.Key, NameOf(observation), Utc(observation.Start)))
     else
-        source.Report(("Event schedules: %s learned for this region: %s at %s"):format(family.Name or family.Key, NameOf(observation.Id), Utc(observation.Start)))
+        source.Report(("Event schedules: %s learned for this region: %s at %s"):format(family.Name or family.Key, NameOf(observation), Utc(observation.Start)))
     end
 end
 
@@ -170,14 +172,18 @@ local function Observe(item, now, secondsLeft)
         end
     end
     local observation = {Start = start, Id = item.Id}
+    if not addon.Data.Events[KrowiAF.Enum.EventType.World][item.Id] then -- no row to name it: keep the game's name while it is up
+        local poi = source.PoiInfo(item.MapId, item.Id) or source.PoiInfo(nil, item.Id)
+        observation.Name = poi and poi.name
+    end
     local previous = seen[#seen]
     if #seen >= keep then
         tremove(seen, 1)
     end
     tinsert(seen, observation)
     if not family.Fixed and source.Debug() then
-        source.Report(("Event schedules: %s: %s at %s%s"):format(family.Name or family.Key, NameOf(observation.Id), Utc(observation.Start),
-            previous and (", after " .. NameOf(previous.Id) .. " at " .. Utc(previous.Start)) or ""))
+        source.Report(("Event schedules: %s: %s at %s%s"):format(family.Name or family.Key, NameOf(observation), Utc(observation.Start),
+            previous and (", after " .. NameOf(previous) .. " at " .. Utc(previous.Start)) or ""))
     end
     if not secondsLeft then
         return -- a start seen to within one run only; kept for the order, not used for a start
@@ -278,7 +284,7 @@ function eventObserver.FormatLog(regions, region)
         tinsert(lines, ("%s: %s"):format(family.Name or key, LearnedStatus(family, entry, region)))
         for i = #entry.Seen, math.max(1, #entry.Seen - shownPerFamily + 1), -1 do
             local observation = entry.Seen[i]
-            tinsert(lines, ("    %s  %s"):format(date("!%Y-%m-%d %H:%M", observation.Start), NameOf(observation.Id)))
+            tinsert(lines, ("    %s  %s"):format(date("!%Y-%m-%d %H:%M", observation.Start), NameOf(observation)))
         end
     end
     if #unseen > 0 then

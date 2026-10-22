@@ -753,7 +753,7 @@ KrowiAF.EventData.Dragonflight = {
 		11,
 		9,
 		false,
-		1978,
+		2025, -- the zone's map: the POI is not on the Dragon Isles' 1978 (/kaftest sources, 2026-10-22)
 	},
 	{ -- Dreamsurges: Azure Span: Next
 		{7554, 7605}, type.World,
@@ -764,7 +764,7 @@ KrowiAF.EventData.Dragonflight = {
 		11,
 		9,
 		false,
-		1978,
+		2024, -- the zone's map: the POI is not on the Dragon Isles' 1978 (/kaftest sources, 2026-10-22)
 	},
 	{ -- Dreamsurges: Ohn'ahran Plains: Next
 		{7555, 7604}, type.World,
@@ -775,7 +775,7 @@ KrowiAF.EventData.Dragonflight = {
 		11,
 		9,
 		false,
-		1978,
+		2023, -- the zone's map: the POI is not on the Dragon Isles' 1978 (/kaftest sources, 2026-10-22)
 	},
 	{ -- Dreamsurges: Waking Shores: Next
 		{7556, 7603}, type.World,
@@ -786,6 +786,6 @@ KrowiAF.EventData.Dragonflight = {
 		11,
 		9,
 		false,
-		1978,
+		2022, -- the zone's map: the POI is not on the Dragon Isles' 1978 (/kaftest sources, 2026-10-22)
 	},
 }
