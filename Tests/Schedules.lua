@@ -103,11 +103,11 @@ schedules.Scenarios = {
         Recorded = "true", Target = "true"},
     {Name = "legion-toggles-first-install", Kind = "MergeCase", Case = "FirstInstall", RetailOnly = true,
         Recorded = "marked, untouched", Target = "marked, untouched"},
-    -- Researchers Under Fire stays on its POI and widget, in its zone; its POI reports time but is not on map 2133, the one
-    -- its row gives. Counting a POI that reports time without its map would show two siblings sharing a widget (the code
-    -- review of 2026-10-22), so the target waits for the right map, which /kaftest sources looks for
-    {Name = "researchers-in-zone", Kind = "PoiState", Event = 7461, Pois = {[7461] = 600}, Widgets = {[4826] = "10 min"}, RetailOnly = true,
-        Recorded = "not shown", Target = "ends in 600"},
+    -- Researchers Under Fire stays on its POI and widget, in its zone. Its POI is on Zaralek Cavern's map (2133) only while
+    -- the player is in the cavern; from Silvermoon it reports time but is on no map (/kaftest sources, 2026-10-22), which
+    -- read as a defect until Krowi checked in the cavern
+    {Name = "researchers-in-zone", Kind = "PoiState", Event = 7461, Pois = {[7461] = 600}, PoiMaps = {[7461] = 2133}, Widgets = {[4826] = "10 min"}, RetailOnly = true,
+        Recorded = "ends in 600", Target = "ends in 600"},
     -- A Dreamsurge in its zone: its POI is on the zone's map (7602 on 2025, Thaldraszus; /kaftest sources, 2026-10-22), not
     -- on the Dragon Isles' 1978 its row gave
     {Name = "dreamsurge-in-zone", Kind = "PoiState", Event = 7602, Pois = {[7602] = 462000}, PoiMaps = {[7602] = 2025}, Widgets = {[4993] = "12 min"}, RetailOnly = true,
@@ -136,6 +136,10 @@ schedules.Scenarios = {
         Recorded = "5964 ends in 25100", Target = "5964 ends in 25100"},
     {Name = "learn-relog", Kind = "Learn", Story = "Relog", RetailOnly = true,
         Recorded = "observations 1", Target = "observations 1"},
+    -- In game on 2026-10-22: a storm, whose POI reports no time, seen at 19:37 and again after a /reload at 19:49, was
+    -- recorded twice; its start is only when it was first seen, so the same storm within its window is one occurrence
+    {Name = "learn-untimed-relog", Kind = "Learn", Story = "UntimedRelog", RetailOnly = true,
+        Recorded = "observations 2", Target = "observations 1"},
     -- The watcher's log on the Data Manager's second tab (Krowi, 2026-10-22): one line per family with what was learned,
     -- then what was seen, newest first
     {Name = "log-text", Kind = "Learn", Story = "LogText", RetailOnly = true,
@@ -304,7 +308,7 @@ local function NewPoiModel(region, now)
         Region = function() return model.Region end,
         Now = function() return model.Now end,
         SecondsLeft = function(id) return model.Left[id] end,
-        PoiInfo = function() return nil end,
+        PoiInfo = function(_, id) return model.Info and model.Info[id] end,
         Debug = function() return model.Debug end,
         Report = function(message) tinsert(model.Reports, message) end,
     }
@@ -455,6 +459,19 @@ function stories.LogText(model, observer)
         end
     end
     return table.concat(lines, " / ")
+end
+
+-- A Firestorm at Nokhudon Hold, a POI with no time seen in debug mode, then again 12 minutes later after a /reload
+function stories.UntimedRelog(model, observer)
+    model.Region = regions.EU
+    model.Info = {[7223] = {name = "Firestorm"}}
+    model.Now = hour + 600
+    observer.RunOnce()
+    observer.UseSourceForTest(model.Source, model.Store) -- a new session: nothing is known to be up yet
+    model.Now = hour + 600 + 720
+    observer.RunOnce()
+    local seen = observer.GetObservationsForTest(model.Store, regions.EU, "PrimalStorms") or {}
+    return ("observations %d"):format(#seen)
 end
 
 -- The same POI seen on two runs in a row is one observation
