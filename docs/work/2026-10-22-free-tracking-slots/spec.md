@@ -50,7 +50,7 @@ Rejected earlier (exploration, 2026-10-22): a scan at login or every loading scr
 - **Player-facing text.** The chat line, and a changelog line under the next version's `### Added`.
 
 ## Verification
-- A new suite `tracking` (`Tests/Tracking.lua`, `/kaftest tracking`, and `suites.tracking` in `run-tests.lua`) runs the real `ToggleTracking` and the new function on a model of the tracking API with a fixture of tracked achievements. Each scenario records what is untracked, what is printed, and whether the clicked achievement ends up tracked or which error shows:
+- A new suite `tracking` (`Tests/Tracking.lua`, `/kaftest tracking`, and `suites.tracking` in `run-tests.lua`) runs the real decision code of the Track button, moved out of `ToggleTracking` into the new module (plan.md), on a model of the tracking API with a fixture of tracked achievements. Each scenario records what is untracked, what is printed, and whether the clicked achievement ends up tracked or which error shows:
 
   | Scenario | Recorded (today) | Target |
   |---|---|---|
