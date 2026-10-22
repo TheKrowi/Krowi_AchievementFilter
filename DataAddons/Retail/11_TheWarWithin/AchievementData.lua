@@ -852,7 +852,7 @@ KrowiAF.AchievementData["11_02_00"] = {
 	Ach(42780), -- Eco-Dome Al'dani
 	Ach(42781), -- Heroic: Eco-Dome Al'dani
 	Ach(42782), -- Mythic: Eco-Dome Al'dani
-	Ach(42799):PvE(15), -- Let Her Solo Me
+	Ach(42799), -- Let Her Solo Me
 	Ach(42800), -- Astral Attire
 	Ach(42801):PvE(15), -- The War Within: Journey's End (Season 3)
 	Ach(42802):KeystoneResilience():PvE(15), -- The War Within Season 3: Resilient Keystone 26
