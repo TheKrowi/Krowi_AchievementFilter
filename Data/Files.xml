@@ -7,6 +7,8 @@
     <Script file="CustomWidgetEventTimers.lua" />
     <Script file="CustomWorldEventTimers.lua" />
     <Script file="EventScheduler.lua" />
+    <Script file="EventSchedules.lua" />
+    <Script file="EventObserver.lua" />
     <Script file="EventData.lua" />
     <Script file="TooltipData.lua" />
     <Script file="RewardPreviewData.lua" />

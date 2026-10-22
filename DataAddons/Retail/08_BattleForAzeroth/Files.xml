@@ -4,6 +4,7 @@
     <Script file="ZoneData.lua" />
     <Script file="CategoryData.lua" />
     <Script file="EventData.lua" />
+    <Script file="EventSchedules.lua" />
     <Script file="PetBattleLinkData.lua" />
     <Script file="TooltipData.lua" />
     <Script file="TransmogSetData.lua" />

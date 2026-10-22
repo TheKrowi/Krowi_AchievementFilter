@@ -7,10 +7,14 @@ Follow-ups that are not a work item yet. When one is taken up, it gets its own w
 - **The rest of Midnight from Blizzard's event scheduler, as data.** With `KrowiAF.Enum.EventSource.Scheduler` a scheduled world event is one row (`docs/how-to/add-event.md`).
   - **Next:** Aqir Invasion (POI 9045, listed twice per occurrence under one key, which the cache drops), the three Abundance sites (8525, 8527, 8528) and Void Assaults (8698). Their achievement categories exist and need `:WithId` like Curse Surges' 2571.
   - **Ongoing events:** Saltheril's Soiree, Stormarion Assault, Legends of the Haranir and Vaults of Atal'Utek have no times; the scheduler lists them under `GetOngoingEvents`.
-- **Upcoming reminders for scheduled events.** The upcoming path is calendar-only (`Data/EventData.lua` `GetUpcomingCalendarEvents`, `GetNextEventOccurance`), while the scheduler knows every next start.
-- **The older widget events on fixed schedules,** as the soup now is (`Data/CustomWidgetEventTimers.lua` `FeastTimes`): Time Rift, Superbloom, Azerothian Archives, Researchers Under Fire, Dreamsurges, Theater Troupe.
-- **The soup's Korean, Taiwanese and Chinese offsets are not checked in game.** They come from other addons' data (`Data/CustomWidgetEventTimers.lua` `feastOffsets`); Europe's was checked on the Azure Span map on 2026-10-21. A report from a player there, or the map timer seen on such a realm, settles them.
-- **Superbloom: Active (5323) shows all the time while its toggle is on.** Its timer returns 0, which counts as going on with no time data (`Data/CustomWidgetEventTimers.lua`).
+- **Upcoming reminders for scheduled events.** The upcoming path is calendar-only (`Data/EventData.lua` `GetUpcomingCalendarEvents`, `GetNextEventOccurance`), while the scheduler and the fixed schedules (`Data/EventSchedules.lua`, whose arithmetic gives every next start as easily as the window going on) know them.
+
+## From the fixed schedules work (2026-10-21, docs/work/2026-10-21-fixed-event-schedules)
+
+- **The watched families go fixed once their rotation is confirmed** (Krowi, 2026-10-21): Theater Troupe, Grand Hunts, Researchers Under Fire, Dreamsurges, the N'Zoth assaults, Fyrakk Assaults, the Primal Storms (one "Primal Storms" reminder if confirmed random), and Legion Assaults (one reminder without the zone).
+  - The watcher (`Data/EventObserver.lua`) prints the order it sees in debug mode, and keeps it per region in `KrowiAF_SavedData.EventObservations`.
+  - `/kaftest sources` lists what it learned.
+- **The soup moves into `KrowiAF.EventSchedules`,** out of `Data/CustomWidgetEventTimers.lua`, with the events suite's feast-times scenarios moved to the schedules suite.
 - **Upcoming reminders error on a non-English client whose date format names the day or month** (`%a`, `%A`, `%b`, `%B`). `LocalizeDateFormat` reads the end time an upcoming event does not have (`Gui/EventReminder/AlertSystem.lua:49`, from `:129`). The default format is not affected.
 
 ## From the memory growth work (2026-10-19, docs/work/2026-10-18-memory-growth)

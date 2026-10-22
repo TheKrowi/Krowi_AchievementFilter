@@ -1,6 +1,7 @@
 local _, addon = ...
 local shared = addon.Data.EventData.Shared
 local type = KrowiAF.Enum.EventType
+local source = KrowiAF.Enum.EventSource
 
 KrowiAF.EventData.Shadowlands = {
     { -- Covenant assaults: Necrolord
@@ -12,7 +13,8 @@ KrowiAF.EventData.Shadowlands = {
         1,
         8,
         false,
-        1550
+        1550,
+        source.FixedSchedule,
     },
     { -- Covenant assaults: Venthyr
         6990, type.World,
@@ -23,7 +25,8 @@ KrowiAF.EventData.Shadowlands = {
         1,
         8,
         false,
-        1550
+        1550,
+        source.FixedSchedule,
     },
     { -- Covenant assaults: Kyrian
         6991, type.World,
@@ -34,7 +37,8 @@ KrowiAF.EventData.Shadowlands = {
         1,
         8,
         false,
-        1550
+        1550,
+        source.FixedSchedule,
     },
     { -- Covenant assaults: Night Fae
         6992, type.World,
@@ -45,6 +49,7 @@ KrowiAF.EventData.Shadowlands = {
         1,
         8,
         false,
-        1550
+        1550,
+        source.FixedSchedule,
     },
 }

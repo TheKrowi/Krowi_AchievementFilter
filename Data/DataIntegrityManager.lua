@@ -66,13 +66,48 @@ function Verify(verifications)
     diagnostics.Debug("Verified all")
 end
 
+local MergeLegionAssaultToggles
 function LoadSolutions()
     local solutions = {
         -- Add new solutions here
+        function(_, _, _, _, firstTime) -- 1: every profile, as AceDB keeps them
+            MergeLegionAssaultToggles(addon.Options.db and addon.Options.db.profiles, KrowiAF_SavedData.Fixes, firstTime)
+        end,
     }
 
     return solutions
 end
+
+-- Legion Assaults became one reminder on 5175 (docs/work/2026-10-21-fixed-event-schedules). It runs once, marked in
+-- KrowiAF_SavedData.Fixes, since every update runs the solutions again; a first install has nothing to merge. AceDB saves
+-- a toggle only when it differs from its default, on, so in each profile the one toggle is on if any of the four zones'
+-- was, and the other three ids go. On is written as true, not nil: the active profile holds AceDB's copied defaults,
+-- where nil reads as off, and AceDB drops a value equal to its default at logout.
+local legionAssaultZones = {5177, 5178, 5210} -- Highmountain, Stormheim, Val'sharah; 5175 Azsuna is the one kept
+function MergeLegionAssaultToggles(profiles, fixes, firstTime)
+    if fixes.MergeLegionAssaultToggles then
+        return
+    end
+    fixes.MergeLegionAssaultToggles = true
+    if firstTime then
+        return
+    end
+    for _, profile in next, profiles or {} do
+        local world = type(profile) == "table" and profile.EventReminders and profile.EventReminders.WorldEvents
+        if world then
+            local anyOn = world[5175] ~= false
+            for _, id in ipairs(legionAssaultZones) do
+                anyOn = anyOn or world[id] ~= false
+                world[id] = nil
+            end
+            if anyOn then
+                world[5175] = true
+            end
+        end
+    end
+    diagnostics.Debug("Merged the Legion Assault toggles")
+end
+dataIntegrityManager.MergeLegionAssaultToggles = function(profiles, fixes, firstTime) MergeLegionAssaultToggles(profiles, fixes, firstTime) end -- Tests/Schedules.lua
 
 function Resolve(solutions, prevBuild, currBuild, prevVersion, currVersion, firstTime)
     if not IsNewerThan(prevBuild, currBuild, prevVersion, currVersion) then

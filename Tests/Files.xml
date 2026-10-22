@@ -10,5 +10,7 @@
     <Script file="Menu.lua" />
     <Script file="Memory.lua" />
     <Script file="Scheduler.lua" />
+    <Script file="EventSources.lua" />
+    <Script file="Schedules.lua" />
     <Script file="Events.lua" />
 </Ui>

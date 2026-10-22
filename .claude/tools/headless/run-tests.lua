@@ -25,7 +25,9 @@
 --         does not register is greyed out), memory (TaintDiagnostics.lua and Data/EventData.lua with the custom event
 --         timers: what the addon's background jobs, the taint probe's sweep and the event-reminder refresh, allocate a
 --         minute and keep), events (Data/EventData.lua with Data/EventScheduler.lua and the custom timers, on the real
---         data load: the Curse Surges from Blizzard's event scheduler and the soup on its fixed schedule)
+--         data load: the Curse Surges from Blizzard's event scheduler and the soup on its fixed schedule), schedules
+--         (Data/EventSchedules.lua and Data/EventObserver.lua on the real data load: the older expansions' events on
+--         their fixed schedules, and what the watcher learns from the POIs)
 --
 -- Retail model is 12.1: the Blizzard_GameMenuEsc handler registry, the UI panel manager (its slots stay
 -- empty because the addon shows the achievement window with a plain Show), UISpecialFrames, static
@@ -1184,7 +1186,10 @@ suites.memory = function(c)
     env.MINUTES_ABBR, env.SECONDS_ABBR = "%d min", "%d sec"
     env.D_MINUTES, env.D_SECONDS = "%d |4minute:minutes;", "%d |4second:seconds;"
     env.GetServerTime, env.time = os.time, os.time
-    env.KrowiAF = { Enum = { EventType = { Calendar = 1, Widget = 2, World = 3 }, EventSource = { Scheduler = 1 } } }
+    -- one watched family for Data/EventObserver.lua: the model's POIs 9001 and 7553, on their own state for each job
+    env.KrowiAF = { Enum = { EventType = { Calendar = 1, Widget = 2, World = 3 }, EventSource = { Scheduler = 1, FixedSchedule = 2 } },
+        EventSchedules = { Watched = { Interval = 7200, Window = { 0, 7200 }, Variants = { 9001, 7553 }, Observe = true } } }
+    env.KrowiAF_SavedData = {}
     env.GetCurrentRegion = function() return 3 end
     env.InCombatLockdown = function() return false end
     local now = os.time()
@@ -1262,7 +1267,8 @@ suites.memory = function(c)
         end
     end
 
-    for _, rel in ipairs({ "TaintDiagnostics.lua", "Data/CustomWidgetEventTimers.lua", "Data/CustomWorldEventTimers.lua", "Data/EventScheduler.lua", "Data/EventData.lua", "Tests/Memory.lua" }) do
+    for _, rel in ipairs({ "TaintDiagnostics.lua", "Data/CustomWidgetEventTimers.lua", "Data/CustomWorldEventTimers.lua", "Data/EventScheduler.lua",
+        "Data/EventSchedules.lua", "Data/EventObserver.lua", "Data/EventData.lua", "Tests/Memory.lua" }) do
         c.loadAddonFile(rel)
     end
     local suite = addon.Tests.Memory
@@ -1273,6 +1279,9 @@ suites.memory = function(c)
     function headless.Jobs(name)
         if name == "SchedulerUpdate" then
             return { Call = addon.Data.EventScheduler.OnSchedulerUpdate, PerMinute = 60 }
+        elseif name == "ObserverRun" then
+            SetState("poi-on-map") -- a watched POI up, which the uncounted first run takes in
+            return { Call = addon.Data.EventObserver.RunOnce, PerMinute = 60 / 300 }
         elseif name == "TaintSweep" then
             return { Call = probe.SweepOnce, PerMinute = probe.SweepsPerMinute }
         elseif name == "EventRefresh" or name == "EventRefreshNoPoiOnMap" then
@@ -1354,6 +1363,63 @@ suites.events = function(c)
     end
     local observations = {}
     return suite.Run(headless, observations), "Tests/Events.lua", observations
+end
+
+-- The real data load of client-env.lua, then the event runtime with the fixed schedules on top
+-- (Data/CustomWidgetEventTimers.lua, Data/CustomWorldEventTimers.lua, Data/EventSchedules.lua and Data/EventObserver.lua
+-- once they exist, Data/EventData.lua) against a model of what it reads: no POI and no widget unless a scenario sets
+-- them (SetPoiState), no POI on any map, the region Europe and every event toggle on. The scenarios swap their own clock,
+-- region and weekly reset into the schedules, and their own POI model into the watcher (sources in Tests/Schedules.lua).
+suites.schedules = function(c)
+    local scriptDir = ((arg and arg[0]) or ""):gsub("\\", "/"):match("^(.*)/") or "."
+    local clientEnv = assert(loadfile(scriptDir .. "/client-env.lua"))()
+    local ctx = clientEnv.New(root, c.client)
+    local failures = {}
+    local function fail(label) return function(_, err) failures[#failures + 1] = label .. ": " .. tostring(type(err) == "table" and err.msg or err) end end
+    ctx:LoadFiles{ ParseError = fail("parse"), RuntimeError = fail("load") }
+    ctx:RunPipeline{ StepError = fail("step"), TaskError = fail("task") }
+    assert(#failures == 0, "data load failed (run load-data.lua): " .. tostring(failures[1]))
+    local env, addon = ctx.env, ctx.addon
+    local poiLeft, widgetText, poiMap = {}, {}, {}
+    env.C_AreaPoiInfo = {
+        -- a POI is on the map a scenario gives it, and on no other: Researchers Under Fire's is not on 2133
+        GetAreaPOIInfo = function(mapId, id) CheckAreaPoiArgs(mapId, id) if mapId ~= nil and poiMap[id] == mapId then return { areaPoiID = id } end end,
+        GetAreaPOISecondsLeft = function(id) return poiLeft[id] end,
+    }
+    env.C_UIWidgetManager = { GetTextWithStateWidgetVisualizationInfo = function(id) return widgetText[id] and { text = widgetText[id] } or nil end }
+    env.C_DateAndTime = { GetSecondsUntilWeeklyReset = function() return 302400 end }
+    env.GetServerTime, env.time, env.date = os.time, os.time, os.date -- client-env stubs date for the load; the watcher's log formats it
+    env.C_QuestLog = { IsQuestFlaggedCompleted = function() return true end }
+    env.GetCurrentRegion = function() return 3 end
+    env.InCombatLockdown = function() return false end
+    env.MINUTES_ABBR, env.SECONDS_ABBR = "%d min", "%d sec"
+    env.D_MINUTES, env.D_SECONDS = "%d |4minute:minutes;", "%d |4second:seconds;"
+    env.KrowiAF_SavedData = {}
+    local allOn = setmetatable({}, { __index = function() return true end })
+    addon.Options = { db = { profile = { EventReminders = { Enabled = true, RefreshInterval = 60, CalendarEvents = allOn,
+        WidgetEvents = c.isRetail and allOn or nil, WorldEvents = c.isRetail and allOn or nil,
+        UpcomingCalendarEvents = { Enabled = true, Days = 14 } } } } }
+    addon.Tests = { Suites = {}, Ready = {}, Async = {} }
+    addon.Data.IsLoaded, addon.Data.EventsLoaded = true, true
+    for _, rel in ipairs({ "Data/CustomWidgetEventTimers.lua", "Data/CustomWorldEventTimers.lua", "Data/EventScheduler.lua", "Data/EventSchedules.lua",
+        "Data/EventObserver.lua", "Data/EventData.lua", "Data/DataIntegrityManager.lua", "Tests/Schedules.lua" }) do
+        local file = io.open(root .. "/" .. rel, "rb")
+        if file then
+            file:close()
+            local chunk = assert(loadstring(readFile(root .. "/" .. rel), "@" .. rel))
+            setfenv(chunk, env)
+            chunk("Krowi_AchievementFilter", addon)
+        end
+    end
+    local headless = {}
+    function headless.IsRetail() return c.isRetail end
+    function headless.PoiUp() return false end
+    function headless.SetPoiState(pois, widgets, maps)
+        poiLeft, widgetText, poiMap = pois or {}, widgets or {}, maps or {}
+        return true
+    end
+    local observations = {}
+    return addon.Tests.Schedules.Run(headless, observations), "Tests/Schedules.lua", observations
 end
 
 -- The real data load of client-env.lua (the one load-data.lua checks), then Data/TemporaryObtainable.lua on top,

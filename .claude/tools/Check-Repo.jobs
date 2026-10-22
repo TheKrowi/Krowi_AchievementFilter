@@ -10,6 +10,7 @@
 TaintDiagnostics.lua OnUpdate memory/taint-sweep                                       # twice a second while taint diagnostics are on, the default
 Gui/EventReminder/AlertSystem.lua NewTicker memory/event-refresh                       # every Refresh interval while event reminders are on, the default; the scenarios measure the reads each tick makes (calendar, widget and world events), the rest of a tick walks tables and adds nothing
 Data/EventScheduler.lua RegisterEvent:EVENT_SCHEDULER_UPDATE memory/scheduler-update-ignored # Blizzard's event scheduler; read only when the addon asked, a few times a session
+Data/EventObserver.lua NewTicker memory/observer-run                                   # every 300 s while event reminders are on (Retail): a number per watched POI, a table only when one appears, and in debug mode the storms' and Theater Troupe's POI info
 
 # --- Not background jobs: they run once, rarely, or only while something the player opened is shown
 Data/EventScheduler.lua RegisterEvent:PLAYER_REGEN_ENABLED -                           # only while a scheduler read waits for combat to end; unregistered on its first run

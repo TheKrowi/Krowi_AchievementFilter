@@ -49,6 +49,27 @@ KrowiAF.EventData.Midnight = {
 
 Current content's timed events are listed by Blizzard's event scheduler (`C_EventScheduler`, the world map's Events tab), with their exact start and end times. Such an event needs no timer and no POI check: give its row the area POI as its id, `type.World`, no map (`false`) and `KrowiAF.Enum.EventSource.Scheduler` as the source. `Data/EventScheduler.lua` keeps its times, and the reminders and the option toggle show the game's own name for the POI. The row's name, the fallback when the game does not know the POI yet, and its options group are still `addon.L` strings: use one every locale file already has, or add it to every locale file (step 6). The Curse Surges in `DataAddons/Retail/12_Midnight/EventData.lua` are the example; `/kaftest scheduler` lists every event the scheduler gives, with its area POI, name, zone and times (`Tests/README.md`).
 
+### Older expansions' events on a fixed schedule
+
+An event of an older expansion that repeats on a fixed clock runs on a schedule KAF carries, with no POI or widget read (`.github/copilot-instructions.md`, Event reminders). Its row gets `KrowiAF.Enum.EventSource.FixedSchedule` as the source, and its family a table in the expansion's `EventSchedules.lua` (`DataAddons/Retail/10_Dragonflight/EventSchedules.lua` is the example):
+
+```lua
+KrowiAF.EventSchedules.SiegeOnDragonbaneKeep = {
+    Name = "Siege on Dragonbane Keep",                      -- for the watcher's debug-mode findings only
+    Interval = 7200,                                        -- or Reset = "Weekly" / "HalfWeekly", from the weekly reset
+    Windows = {[7267] = {-3600, 0}, [7104] = {0, 3600}},    -- each event's window, relative to a cycle's start
+    Anchors = {[1] = 3600, [2] = 3600, [3] = 0, [5] = 3600}, -- a cycle start per GetCurrentRegion(): US, KR/TW, EU, CN
+    Fixed = true,                                           -- the reminders run on it
+    Observe = true,                                         -- the watcher learns it from the POIs
+}
+```
+
+- **A rotating family** (one zone further each cycle) has one `Window`, a `Rotation` of its ids in order, and `Anchors` (or `RotationAnchors` for a reset-tied family) that name a start of `Rotation[1]`.
+- **A family whose order is not known yet** gets only `Variants` and `Observe`: its rows keep their POI and widget reads, and the watcher prints the order it sees in debug mode.
+- **A POI that reports no time** (the Primal Storms) needs `ByInfo`; the watcher then looks it up on its map, in debug mode only.
+- **Regions:** leave out one whose start nobody has confirmed; the watcher learns it for players there.
+- **Review:** `/kaftest sources` shows, per family, what the schedule and the POIs each say is going on; the Registries snapshot shows each schedule as a `SCHEDULE` line.
+
 If the `EventData.lua` for this expansion exists but is commented out in `Files.xml`, uncomment it:
 
 ```xml

@@ -1,6 +1,7 @@
 local _, addon = ...
 local shared = addon.Data.EventData.Shared
 local type = KrowiAF.Enum.EventType
+local source = KrowiAF.Enum.EventSource
 
 KrowiAF.EventData.BattleForAzeroth = {
     { -- Faction Assaults: Tiragarde Sound
@@ -12,7 +13,8 @@ KrowiAF.EventData.BattleForAzeroth = {
         1,
         7,
         false,
-        876
+        876,
+        source.FixedSchedule,
     },
     { -- Faction Assaults: Drustvar
         5964, type.World,
@@ -23,7 +25,8 @@ KrowiAF.EventData.BattleForAzeroth = {
         1,
         7,
         false,
-        876
+        876,
+        source.FixedSchedule,
     },
     { -- Faction Assaults: Stormsong Valley
         5966, type.World,
@@ -34,7 +37,8 @@ KrowiAF.EventData.BattleForAzeroth = {
         1,
         7,
         false,
-        876
+        876,
+        source.FixedSchedule,
     },
     { -- Faction Assaults: Nazmir
         5969, type.World,
@@ -45,7 +49,8 @@ KrowiAF.EventData.BattleForAzeroth = {
         1,
         7,
         false,
-        875
+        875,
+        source.FixedSchedule,
     },
     { -- Faction Assaults: Vol'dun
         5970, type.World,
@@ -56,7 +61,8 @@ KrowiAF.EventData.BattleForAzeroth = {
         1,
         7,
         false,
-        875
+        875,
+        source.FixedSchedule,
     },
     { -- Faction Assaults: Zuldazar
         5973, type.World,
@@ -67,7 +73,8 @@ KrowiAF.EventData.BattleForAzeroth = {
         1,
         7,
         false,
-        875
+        875,
+        source.FixedSchedule,
     },
     { -- Defending Azeroth Assaults: N'Zoth (Uldum)
         6486, type.World,

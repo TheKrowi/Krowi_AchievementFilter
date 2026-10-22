@@ -40,7 +40,7 @@ The kit carries Lua 5.1.5 (`Krowi_ClaudeKit\tools\lua51\`), the exact interprete
 - **Repo lint** `Check-Repo.ps1`: a rule per mechanical convention in this file, plus the zone, Map Verifier, work-item, category-snapshot, data-snapshot, data-load and scenario checks. A deliberate exception goes in `Check-Repo.ignore` with a comment.
 - **Data snapshots** `snapshot-categories.lua` and `snapshot-data.lua`: what each client builds (category tree; achievements, zone placements, registries) recorded under `.claude/tools/headless/snapshots/`. A data change shows there as a reviewable diff; regenerate with `-write` and commit the diff with the change that caused it.
 - **Headless data pipeline** `load-data.lua`: the real data load for both clients with WoW globals stubbed; reports every builder error, duplicate registration and `LoadDiagnostics` drop with file and line. Only `Both` cross-checks Shared references. Extend the stubs in `runClient` when a new WoW global is used at load time.
-- **Scenario suites** in `Tests/` (`escape`, `special`, `navigation`, `worldmap`, `obtainable`, `tooltip`, `guide`, `menu`, `memory`, `events`; `scheduler` is a game-only probe) run headlessly through `run-tests.lua` and in game through `/kaftest <suite>` (debug mode on, out of combat). A scenario carries `Recorded`, the behaviour of the current code verified in game, and `Target`, the desired behaviour; it passes while the code behaves as recorded, so a behaviour change is a reviewable diff and the open targets stay visible without failing anything. Each suite and the in-game runner: `Tests/README.md`.
+- **Scenario suites** in `Tests/` (`escape`, `special`, `navigation`, `worldmap`, `obtainable`, `tooltip`, `guide`, `menu`, `memory`, `events`, `schedules`; `scheduler` and `sources` are game-only probes) run headlessly through `run-tests.lua` and in game through `/kaftest <suite>` (debug mode on, out of combat). A scenario carries `Recorded`, the behaviour of the current code verified in game, and `Target`, the desired behaviour; it passes while the code behaves as recorded, so a behaviour change is a reviewable diff and the open targets stay visible without failing anything. Each suite and the in-game runner: `Tests/README.md`.
 - **Closing the loop with the game**: the kit's `Deploy.ps1` mirrors the addon into the client's AddOns folder (incremental, `-WhatIf` to preview), you `/reload` in game, then the kit's `Read-GameErrors.ps1` prints the errors BugGrabber recorded for this addon and this repo's `Read-GameTests.ps1` prints the last `/kaftest` run with every line that differs from the headless run marked. Saved variables are written only on `/reload` or logout, so both readers show when the file was last written. For a layout bug, ask for a screenshot (Print Screen in game, written at once): the kit's `Read-GameScreenshot.ps1` prints the newest one's path to open with the Read tool, and warns when the client saves tga, which the Read tool cannot display.
 
 ```powershell
@@ -136,6 +136,16 @@ Per-expansion folder contents: `AchievementData`, `CategoryData`, `ZoneData` (on
 ### Objects and filters
 
 `Achievement` carries patch, faction, reward type, PvP/season flags, and a list of temporary-obtainable records; `Data/TemporaryObtainable.lua` resolves those to Past/Current/Future using season anchors registered via `KrowiAF.AddSeasonData`. `Filters.Validate` returns a signed integer (negative = rejected by rule `i`, `1` = show, `2` = always visible), not a boolean.
+
+### Event reminders: where an event's times come from
+
+Krowi's policy (2026-10-21):
+- **The current expansion's events** come from Blizzard's event scheduler, `C_EventScheduler` (rows with `KrowiAF.Enum.EventSource.Scheduler`, `Data/EventScheduler.lua`), because Blizzard updates their times without an addon change.
+- **Older expansions' events** run on KAF's fixed schedules: `KrowiAF.EventSchedules` in `DataAddons/Retail/<expansion>/EventSchedules.lua`, read by `Data/EventSchedules.lua`, for rows with `EventSource.FixedSchedule`. A reminder on a fixed schedule makes no POI or widget read.
+- **Families whose zone, show or storm order is not known yet** keep their POI and widget reads and are only watched.
+- **When an expansion ends,** its scheduler events move to fixed schedules, from the times recorded while the scheduler still listed them (`/kaftest scheduler`).
+- **The watcher** (`Data/EventObserver.lua`) learns each region's starts and rotations from the POIs it sees, every 300 s, for every player. Debug mode prints its findings: new starts, disagreements with the shipped schedules, and the order of the watched families, which is how a family's rotation gets confirmed before it is made fixed.
+- The work items: `docs/work/2026-10-21-event-scheduler` and `docs/work/2026-10-21-fixed-event-schedules`.
 
 ### Taint is the recurring bug class
 

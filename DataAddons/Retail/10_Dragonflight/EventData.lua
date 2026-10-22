@@ -1,6 +1,7 @@
 local _, addon = ...
 local shared = addon.Data.EventData.Shared
 local type = KrowiAF.Enum.EventType
+local source = KrowiAF.Enum.EventSource
 
 KrowiAF.EventData.Dragonflight = {
     { -- Kalimdor Cup
@@ -92,7 +93,10 @@ KrowiAF.EventData.Dragonflight = {
 		{addon.L["Time Rift"], addon.L["Active"]},
         addon.L["Time Rift"],
         10,
-        9
+        9,
+        false,
+        false,
+        source.FixedSchedule,
     },
     { -- Time Rift: Next
         4992, type.Widget,
@@ -101,7 +105,10 @@ KrowiAF.EventData.Dragonflight = {
 		{addon.L["Time Rift"], addon.L["Next"]},
         addon.L["Time Rift"],
         10,
-        9
+        9,
+        false,
+        false,
+        source.FixedSchedule,
     },
     { -- Superbloom: Next
         5157, type.Widget,
@@ -110,7 +117,10 @@ KrowiAF.EventData.Dragonflight = {
 		{addon.L["Superbloom"], addon.L["Next"]},
         addon.L["Superbloom"],
         12,
-        9
+        9,
+        false,
+        false,
+        source.FixedSchedule,
     },
     { -- Superbloom: Active
         5323, type.Widget,
@@ -119,7 +129,10 @@ KrowiAF.EventData.Dragonflight = {
 		{addon.L["Superbloom"], addon.L["Active"]},
         addon.L["Superbloom"],
         12,
-        9
+        9,
+        false,
+        false,
+        source.FixedSchedule,
     },
     { -- Azerothian Archives: Next
         5584, type.Widget,
@@ -128,7 +141,10 @@ KrowiAF.EventData.Dragonflight = {
 		{addon.L["Azerothian Archives"], addon.L["Next"]},
         addon.L["Azerothian Archives"],
         13,
-        9
+        9,
+        false,
+        false,
+        source.FixedSchedule,
     },
     { -- Azerothian Archives: Soon
         5585, type.Widget,
@@ -137,7 +153,10 @@ KrowiAF.EventData.Dragonflight = {
 		{addon.L["Azerothian Archives"], addon.L["Soon"]},
         addon.L["Azerothian Archives"],
         13,
-        9
+        9,
+        false,
+        false,
+        source.FixedSchedule,
     },
     { -- Azerothian Archives: Active
         5592, type.Widget,
@@ -146,7 +165,10 @@ KrowiAF.EventData.Dragonflight = {
 		{addon.L["Azerothian Archives"], addon.L["Active"]},
         addon.L["Azerothian Archives"],
         13,
-        9
+        9,
+        false,
+        false,
+        source.FixedSchedule,
     },
     { -- Siege on Dragonbane Keep: Active
         7104, type.World,
@@ -158,6 +180,7 @@ KrowiAF.EventData.Dragonflight = {
         9,
         false,
         2057,
+        source.FixedSchedule,
     },
     { -- Thunderstorms: Nokhudon Hold
         7221, type.World,
@@ -565,6 +588,7 @@ KrowiAF.EventData.Dragonflight = {
         9,
         false,
         2057,
+        source.FixedSchedule,
     },
     { -- Thunderstorms: Primalist Tomorrow
         7298, type.World,
@@ -729,7 +753,7 @@ KrowiAF.EventData.Dragonflight = {
 		11,
 		9,
 		false,
-		1978,
+		2025, -- the zone's map: the POI is not on the Dragon Isles' 1978 (/kaftest sources, 2026-10-22)
 	},
 	{ -- Dreamsurges: Azure Span: Next
 		{7554, 7605}, type.World,
@@ -740,7 +764,7 @@ KrowiAF.EventData.Dragonflight = {
 		11,
 		9,
 		false,
-		1978,
+		2024, -- the zone's map: the POI is not on the Dragon Isles' 1978 (/kaftest sources, 2026-10-22)
 	},
 	{ -- Dreamsurges: Ohn'ahran Plains: Next
 		{7555, 7604}, type.World,
@@ -751,7 +775,7 @@ KrowiAF.EventData.Dragonflight = {
 		11,
 		9,
 		false,
-		1978,
+		2023, -- the zone's map: the POI is not on the Dragon Isles' 1978 (/kaftest sources, 2026-10-22)
 	},
 	{ -- Dreamsurges: Waking Shores: Next
 		{7556, 7603}, type.World,
@@ -762,6 +786,6 @@ KrowiAF.EventData.Dragonflight = {
 		11,
 		9,
 		false,
-		1978,
+		2022, -- the zone's map: the POI is not on the Dragon Isles' 1978 (/kaftest sources, 2026-10-22)
 	},
 }

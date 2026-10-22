@@ -50,6 +50,10 @@ memory.Scenarios = {
         Recorded = "large", Target = "none"},
     -- Blizzard's event scheduler (Data/EventScheduler.lua): an update the addon did not ask for returns at once
     {Name = "scheduler-update-ignored", Kind = "PerMinute", Job = "SchedulerUpdate",
+        Recorded = "none", Target = "none"},
+    -- The watcher that learns the older events' starts from their POIs (Data/EventObserver.lua): a run in which no POI
+    -- appeared or went
+    {Name = "observer-run", Kind = "PerMinute", Job = "ObserverRun", RetailOnly = true,
         Recorded = "none", Target = "none"}
 }
 -- RetailOnly: left out on Classic, whose event data has calendar events only (the world and widget events are
@@ -187,8 +191,9 @@ local function AskedPoisOnMap()
     local count = 0
     local enabled = addon.Options.db.profile.EventReminders.WorldEvents
     for _, event in next, addon.Data.Events[KrowiAF.Enum.EventType.World] or {} do
-        -- an event from Blizzard's event scheduler is never asked (Data/EventScheduler.lua)
-        local asked = event.Source ~= KrowiAF.Enum.EventSource.Scheduler
+        -- an event from Blizzard's event scheduler or on a fixed schedule is never asked (Data/EventScheduler.lua,
+        -- Data/EventSchedules.lua)
+        local asked = event.Source == nil
             and (addon.Data.CustomWorldEventTimers.HasCustomTimer(event.Id) or C_AreaPoiInfo.GetAreaPOISecondsLeft(event.Id) ~= nil)
         if enabled[event.Id] and asked and C_AreaPoiInfo.GetAreaPOIInfo(event.MapId, event.Id) then
             count = count + 1
@@ -208,8 +213,8 @@ local function ActiveWidgetTimerReads()
         end
     end
     for _, event in next, addon.Data.Events[eventType.Widget] or {} do
-        -- a timer that computes its times reads no widget (the soup's), so it is not this cost
-        if not addon.Data.CustomWidgetEventTimers.IsComputed(event.Id) and addon.EventData.GetWidgetEventDetails(event) then
+        -- a timer that computes its times reads no widget (the soup's, those on a fixed schedule), so it is not this cost
+        if event.Source == nil and not addon.Data.CustomWidgetEventTimers.IsComputed(event.Id) and addon.EventData.GetWidgetEventDetails(event) then
             tinsert(reads, function() addon.EventData.GetWidgetEventDetails(event) end)
         end
     end
@@ -226,6 +231,9 @@ end
 function gameEnv.Jobs(name)
     if name == "SchedulerUpdate" then
         return {Call = addon.Data.EventScheduler.OnSchedulerUpdate, PerMinute = refreshesPerMinute}
+    end
+    if name == "ObserverRun" then
+        return {Call = addon.Data.EventObserver.RunOnce, PerMinute = 60 / 300, Note = "every 300 s while event reminders are on"}
     end
     if name == "TaintSweep" then
         local probe = addon.Diagnostics.TaintProbe

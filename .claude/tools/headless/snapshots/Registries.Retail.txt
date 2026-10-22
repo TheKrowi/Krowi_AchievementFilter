@@ -136,34 +136,31 @@ EVENT Calendar 1689 | category=1681 | icon=6740278 | linked=1599
 EVENT Calendar 1697 | category=2569 | icon=4622478 | linked=1640,1641,1642,1643,1644
 EVENT Widget 4729 | category=1393 | icon=4240492
 EVENT Widget 4731 | category=1393 | icon=4240492
-EVENT Widget 4987 | category=1454 | icon=236387
-EVENT Widget 4992 | category=1454 | icon=236387
-EVENT Widget 5157 | category=1552 | icon=3939983
-EVENT Widget 5323 | category=1552 | icon=3939983
-EVENT Widget 5584 | category=1564 | icon=5341597
-EVENT Widget 5585 | category=1564 | icon=5341597
-EVENT Widget 5592 | category=1564 | icon=5341597
-EVENT World 5175 | category=948 | icon=1408998 | map=619
-EVENT World 5177 | category=948 | icon=1409000 | map=619
-EVENT World 5178 | category=948 | icon=1409001 | map=619
-EVENT World 5210 | category=948 | icon=1409010 | map=619
-EVENT World 5896 | category=935 | icon=2065630 | map=876
-EVENT World 5964 | category=936 | icon=2065567 | map=876
-EVENT World 5966 | category=937 | icon=2065627 | map=876
-EVENT World 5969 | category=938 | icon=2032229 | map=875
-EVENT World 5970 | category=939 | icon=2065632 | map=875
-EVENT World 5973 | category=934 | icon=2065640 | map=875
+EVENT Widget 4987 | category=1454 | icon=236387 Source=2
+EVENT Widget 4992 | category=1454 | icon=236387 Source=2
+EVENT Widget 5157 | category=1552 | icon=3939983 Source=2
+EVENT Widget 5323 | category=1552 | icon=3939983 Source=2
+EVENT Widget 5584 | category=1564 | icon=5341597 Source=2
+EVENT Widget 5585 | category=1564 | icon=5341597 Source=2
+EVENT Widget 5592 | category=1564 | icon=5341597 Source=2
+EVENT World 5175 | category=948 | icon=1408998 | map=619 Source=2
+EVENT World 5896 | category=935 | icon=2065630 | map=876 Source=2
+EVENT World 5964 | category=936 | icon=2065567 | map=876 Source=2
+EVENT World 5966 | category=937 | icon=2065627 | map=876 Source=2
+EVENT World 5969 | category=938 | icon=2032229 | map=875 Source=2
+EVENT World 5970 | category=939 | icon=2065632 | map=875 Source=2
+EVENT World 5973 | category=934 | icon=2065640 | map=875 Source=2
 EVENT World 6486 | category=942 | icon=3196264 | map=12
 EVENT World 6487 | category=942 | icon=415054 | map=12
 EVENT World 6488 | category=942 | icon=458247 | map=12
 EVENT World 6489 | category=941 | icon=3196265 | map=424
 EVENT World 6490 | category=941 | icon=801016 | map=424
 EVENT World 6491 | category=941 | icon=615301 | map=424
-EVENT World 6989 | category=929 | icon=3257749 | map=1550
-EVENT World 6990 | category=931 | icon=3257751 | map=1550
-EVENT World 6991 | category=928 | icon=3257748 | map=1550
-EVENT World 6992 | category=930 | icon=3257750 | map=1550
-EVENT World 7104 | category=1394 | icon=1394891 | map=2057
+EVENT World 6989 | category=929 | icon=3257749 | map=1550 Source=2
+EVENT World 6990 | category=931 | icon=3257751 | map=1550 Source=2
+EVENT World 6991 | category=928 | icon=3257748 | map=1550 Source=2
+EVENT World 6992 | category=930 | icon=3257750 | map=1550 Source=2
+EVENT World 7104 | category=1394 | icon=1394891 | map=2057 Source=2
 EVENT World 7221 | category=1364 | icon=132845 | map=2023
 EVENT World 7222 | category=1364 | icon=451165 | map=2023
 EVENT World 7223 | category=1364 | icon=460952 | map=2023
@@ -200,7 +197,7 @@ EVENT World 7257 | category=1363 | icon=132845 | map=2022
 EVENT World 7258 | category=1363 | icon=451165 | map=2022
 EVENT World 7259 | category=1363 | icon=460952 | map=2022
 EVENT World 7260 | category=1363 | icon=135783 | map=2022
-EVENT World 7267 | category=1394 | icon=1394891 | map=2057
+EVENT World 7267 | category=1394 | icon=1394891 | map=2057 Source=2
 EVENT World 7298 | category=1366 | icon=132845 | map=2025
 EVENT World 7299 | category=1366 | icon=451165 | map=2025
 EVENT World 7300 | category=1366 | icon=460952 | map=2025
@@ -215,14 +212,14 @@ EVENT World 7460 | category=1429 | icon=4237659 | map=2133
 EVENT World 7461 | category=1430 | icon=254117 | map=2133
 EVENT World 7462 | category=1429 | icon=4237659 | map=2133
 EVENT World 7471 | category=1425 | icon=4914672 | map=2023
-EVENT World 7553 | category=1537 | icon=1394953 | linked=7602 | map=1978
-EVENT World 7554 | category=1537 | icon=1394953 | linked=7605 | map=1978
-EVENT World 7555 | category=1537 | icon=1394953 | linked=7604 | map=1978
-EVENT World 7556 | category=1537 | icon=1394953 | linked=7603 | map=1978
-EVENT World 7602 | category=1537 | icon=1394953 | linked=7553 | map=1978
-EVENT World 7603 | category=1537 | icon=1394953 | linked=7556 | map=1978
-EVENT World 7604 | category=1537 | icon=1394953 | linked=7555 | map=1978
-EVENT World 7605 | category=1537 | icon=1394953 | linked=7554 | map=1978
+EVENT World 7553 | category=1537 | icon=1394953 | linked=7602 | map=2025
+EVENT World 7554 | category=1537 | icon=1394953 | linked=7605 | map=2024
+EVENT World 7555 | category=1537 | icon=1394953 | linked=7604 | map=2023
+EVENT World 7556 | category=1537 | icon=1394953 | linked=7603 | map=2022
+EVENT World 7602 | category=1537 | icon=1394953 | linked=7553 | map=2025
+EVENT World 7603 | category=1537 | icon=1394953 | linked=7556 | map=2022
+EVENT World 7604 | category=1537 | icon=1394953 | linked=7555 | map=2023
+EVENT World 7605 | category=1537 | icon=1394953 | linked=7554 | map=2024
 EVENT World 7943 | category=1676 | icon=134927 | map=2248
 EVENT World 8076 | category=1676 | icon=134927 | map=2248
 EVENT World 8077 | category=1676 | icon=134927 | map=2248
@@ -234,10 +231,30 @@ EVENT World 8938 | category=2571 | icon=5764921 Source=1
 EVENT World 8939 | category=2571 | icon=5764921 Source=1
 EVENT World 8940 | category=2571 | icon=5764921 Source=1
 
+== Event schedules ==
+# KrowiAF.EventSchedules (Data/EventSchedules.lua): the cycle, the window per event relative to a cycle's start,
+# the rotation, the start per GetCurrentRegion(); fixed families run the reminders, observed ones are watched
+SCHEDULE BigDig | cycle=3600 | fixed | windows=5584:{-900,-300},5585:{-300,0},5592:{0,900} | anchor elsewhere=1800
+SCHEDULE CovenantAssaults | cycle=HalfWeekly | fixed | observed | window={0,302400} | rotation=6991,6990,6992,6989 | requires quest=64556 | rotation anchors=3:1792555200
+SCHEDULE Dreamsurges | cycle=Weekly | observed | window={0,604800} | variants=7553,7554,7555,7556,7602,7603,7604,7605
+SCHEDULE FactionAssaults | cycle=68400 | fixed | observed | window={0,25200} | rotation=5964,5973,5896,5969,5966,5970 | anchors=1:1548032400,3:1548000000,5:1546743600
+SCHEDULE FyrakkAssaults | cycle=Weekly | observed | window={0,604800} | variants=7433,7471
+SCHEDULE GrandHunts | cycle=7200 | observed | window={0,7200} | variants=7342,7343,7344,7345
+SCHEDULE LegionAssaults | cycle=52200 | fixed | observed | window={0,21600} | windows=5175:{0,21600} | variants=5175,5177,5178,5210 | anchors=1:1762421400,3:1762434000,5:1762450200
+SCHEDULE NzothMajorAssaults | cycle=Weekly | observed | window={0,604800} | variants=6486,6489
+SCHEDULE NzothMinorAssaults | cycle=HalfWeekly | observed | window={0,302400} | variants=6487,6488,6490,6491
+SCHEDULE PrimalStorms | cycle=10800 | observed (debug for POIs without time) | window={0,7200} | variants=7221,7222,7223,7224,7225,7226,7227,7228,7229,7230,7231,7232,7233,7234,7235,7236,7237,7238,7239,7240,7245,7246,7247,7248,7249,7250,7251,7252,7253,7254,7255,7256,7257,7258,7259,7260,7298,7299,7300,7301
+SCHEDULE ResearchersUnderFire | cycle=3600 | observed | window={0,1500} | variants=7461,7462
+SCHEDULE SiegeOnDragonbaneKeep | cycle=7200 | fixed | observed | windows=7104:{0,3600},7267:{-3600,0} | anchors=3:0 | anchor elsewhere=3600
+SCHEDULE Superbloom | cycle=3600 | fixed | windows=5157:{-900,0},5323:{0,1320} | anchor elsewhere=0
+SCHEDULE TheaterTroupe | cycle=3600 | observed (debug for POIs without time) | window={0,600} | variants=7943,8076,8077,8078,8079,7654,7899,7900,7901,7902
+SCHEDULE TimeRift | cycle=3600 | fixed | windows=4987:{0,900},4992:{-300,0} | anchor elsewhere=0
+
 == Summary ==
 build versions         75   (72 used)
 content timeline       0
 season anchors         1
 events Calendar        43
 events Widget          9
-events World           90
+events World           87
+event schedules        15

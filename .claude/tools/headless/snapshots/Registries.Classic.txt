@@ -95,8 +95,13 @@ EVENT Calendar 409 | category=920 | icon=237272
 EVENT Calendar 423 | category=910 | icon=236709
 EVENT Calendar 479 | category=925 | icon=134481 | linked=374
 
+== Event schedules ==
+# KrowiAF.EventSchedules (Data/EventSchedules.lua): the cycle, the window per event relative to a cycle's start,
+# the rotation, the start per GetCurrentRegion(); fixed families run the reminders, observed ones are watched
+
 == Summary ==
 build versions         33   (31 used)
 content timeline       33
 season anchors         0
 events Calendar        13
+event schedules        0

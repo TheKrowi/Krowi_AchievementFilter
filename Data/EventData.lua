@@ -176,7 +176,21 @@ local function GetActiveCalendarEvents()
     end
 end
 
--- now: the server time to read the event at, GetServerTime() unless a test gives one (Tests/Events.lua)
+-- An event on one of KAF's fixed schedules: its window going on now, with no POI or widget read
+local function GetFixedScheduleEventDetails(event, now)
+    local startTime, endTime = addon.Data.EventSchedules.GetWindow(event.Id, now)
+    if not startTime then -- The event is not active
+        event.EventDetails = nil
+        return
+    end
+    local details = GetOrCreateEventDetails(event)
+    details.StartTime = startTime
+    details.EndTime = endTime
+    details.Name = event.Name
+    return details
+end
+
+-- now: the server time to read the event at, GetServerTime() unless a test gives one (Tests/Events.lua, Tests/Schedules.lua)
 function eventData.GetWidgetEventDetails(event, now)
     if not addon.Options.db.profile.EventReminders.WidgetEvents[event.Id] then
         event.EventDetails = nil
@@ -184,6 +198,9 @@ function eventData.GetWidgetEventDetails(event, now)
     end
 
     now = now or GetServerTime()
+    if event.Source == KrowiAF.Enum.EventSource.FixedSchedule then
+        return GetFixedScheduleEventDetails(event, now)
+    end
     local secondsLeft = addon.Data.CustomWidgetEventTimers.GetSecondsLeft(event.Id, now)
     if not secondsLeft then -- The event is not available or not active
         event.EventDetails = nil
@@ -212,7 +229,9 @@ end
 
 -- A world event is active while its POI is on its map and it reports time left. The POI is asked on every refresh: an
 -- event sharing its widget with its siblings (the four Dreamsurges, the five Theater Troupe shows, Titan Lockdown and
--- Zaqali Ruin) is told apart from them only by its POI (docs/work/2026-10-18-memory-growth).
+-- Zaqali Ruin) is told apart from them only by its POI (docs/work/2026-10-18-memory-growth), so a POI that reports
+-- seconds left does not count without its map: two siblings would both pass. Researchers Under Fire's and the
+-- Dreamsurges' POIs are not on the maps their rows give (/kaftest sources, 2026-10-21), which the probe now finds.
 local function IsPoiOnMap(event)
     return C_AreaPoiInfo.GetAreaPOIInfo(event.MapId, event.Id) ~= nil
 end
@@ -242,6 +261,8 @@ function eventData.GetWorldEventDetails(event, now)
     now = now or GetServerTime()
     if event.Source == KrowiAF.Enum.EventSource.Scheduler then
         return GetSchedulerEventDetails(event, now)
+    elseif event.Source == KrowiAF.Enum.EventSource.FixedSchedule then
+        return GetFixedScheduleEventDetails(event, now)
     end
 
     local timers = addon.Data.CustomWorldEventTimers
