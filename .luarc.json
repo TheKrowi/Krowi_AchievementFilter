@@ -100,6 +100,7 @@
         "GW2_ADDON",
         "GetBindingByKey",
         "GetFrameRate",
+        "GetTrackedAchievements",
         "HEIRLOOMS_PROGRESS_FORMAT",
         "HONOR",
         "HOURS_ABBR",

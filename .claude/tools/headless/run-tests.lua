@@ -27,7 +27,8 @@
 --         minute and keep), events (Data/EventData.lua with Data/EventScheduler.lua and the custom timers, on the real
 --         data load: the Curse Surges from Blizzard's event scheduler and the soup on its fixed schedule), schedules
 --         (Data/EventSchedules.lua and Data/EventObserver.lua on the real data load: the older expansions' events on
---         their fixed schedules, and what the watcher learns from the POIs)
+--         their fixed schedules, and what the watcher learns from the POIs), tracking
+--         (Gui/WindowFrames/AchievementButton/TrackingSlots.lua: what the Track button does at the tracking cap)
 --
 -- Retail model is 12.1: the Blizzard_GameMenuEsc handler registry, the UI panel manager (its slots stay
 -- empty because the addon shows the achievement window with a plain Show), UISpecialFrames, static
@@ -1128,6 +1129,31 @@ suites.menu = function(c)
         return entry.Enabled
     end
     return suite.Run(headless, observations), "Tests/Menu.lua", observations
+end
+
+-- The real Gui/WindowFrames/AchievementButton/TrackingSlots.lua with Objects/Flags.lua, against the model of the game's
+-- tracking that Tests/Tracking.lua swaps in, the same model in game, so the lines of both runs match. The vendored Lua
+-- has no bit library, so bit.band is modelled; the error texts are plain strings, which the lines never show.
+suites.tracking = function(c)
+    local addon, env = c.addon, c.env
+    env.bit = { band = function(a, b)
+        local result, place = 0, 1
+        while a > 0 and b > 0 do
+            if a % 2 == 1 and b % 2 == 1 then result = result + place end
+            a, b, place = math.floor(a / 2), math.floor(b / 2), place * 2
+        end
+        return result
+    end }
+    env.ERR_ACHIEVEMENT_WATCH_COMPLETED = "This achievement has already been completed."
+    env.ACHIEVEMENT_WATCH_TOO_MANY = "You may only track %d achievements at a time."
+    addon.Gui = {}
+    addon.Objects = {}
+    addon.Metadata = { Title = "Krowi's Achievement Filter" }
+    addon.L = setmetatable({}, { __index = function(_, key) return key end })
+    c.loadAddonFile("Objects/Flags.lua")
+    c.loadAddonFile("Gui/WindowFrames/AchievementButton/TrackingSlots.lua")
+    c.loadAddonFile("Tests/Tracking.lua")
+    return addon.Tests.Tracking.Run(), "Tests/Tracking.lua", {}
 end
 
 -- The real TaintDiagnostics.lua against a model of what its sweep reads: a GameTooltip with about as many string keys as
