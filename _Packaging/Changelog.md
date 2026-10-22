@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Achievement guides for the other eleven Legendary Research achievements, one per class hall
 - Curse Surge event reminders, wherever you are, with the surge's name and time left; each surge can be turned off under Event Reminders > World Events > Midnight
+- Tracking an achievement while 10 are tracked now first stops tracking the ones you already completed, and names them in chat
 
 ### Changed
 - Achievement guides now name the people to talk to in your game's language

@@ -29,22 +29,23 @@ local fixture = {
 -- Tracked: ids tracked before the click, topped up with achievements nobody completed (21, 22, ...) to Count (default
 --   the cap); Click: the achievement the player tracks (default an achievement nobody completed)
 -- Recorded / Target: "result=<room|full|completed> untracked=[ids] printed=[links or ids] error=<yes|no>"
--- Recorded is the button before the change: the cap checked first, nothing freed
+-- Before the change (verified in game on Retail 12.1.5, 2026-10-22) the button checked the cap first and freed nothing:
+-- every scenario at the cap gave result=full untracked=[] printed=[] error=yes, a completed click at the cap too
 tracking.Scenarios = {
     {Name = "two-earned", Tracked = {3, 7},
-        Recorded = "result=full untracked=[] printed=[] error=yes",
+        Recorded = "result=room untracked=[3,7] printed=[A3,A7] error=no",
         Target = "result=room untracked=[3,7] printed=[A3,A7] error=no"},
     {Name = "account-wide-done", Tracked = {11},
-        Recorded = "result=full untracked=[] printed=[] error=yes",
+        Recorded = "result=room untracked=[11] printed=[A11] error=no",
         Target = "result=room untracked=[11] printed=[A11] error=no"},
     {Name = "guild-done", Tracked = {12},
-        Recorded = "result=full untracked=[] printed=[] error=yes",
+        Recorded = "result=room untracked=[12] printed=[A12] error=no",
         Target = "result=room untracked=[12] printed=[A12] error=no"},
     {Name = "character-done-elsewhere", Tracked = {13},
         Recorded = "result=full untracked=[] printed=[] error=yes",
         Target = "result=full untracked=[] printed=[] error=yes"},
     {Name = "unknown-id", Tracked = {unknownId},
-        Recorded = "result=full untracked=[] printed=[] error=yes",
+        Recorded = "result=room untracked=[999999] printed=[999999] error=no",
         Target = "result=room untracked=[999999] printed=[999999] error=no"},
     {Name = "none-done", Tracked = {},
         Recorded = "result=full untracked=[] printed=[] error=yes",
@@ -53,7 +54,7 @@ tracking.Scenarios = {
         Recorded = "result=room untracked=[] printed=[] error=no",
         Target = "result=room untracked=[] printed=[] error=no"},
     {Name = "click-completed-at-cap", Tracked = {3}, Click = 200,
-        Recorded = "result=full untracked=[] printed=[] error=yes",
+        Recorded = "result=completed untracked=[] printed=[] error=yes",
         Target = "result=completed untracked=[] printed=[] error=yes"},
     {Name = "click-completed-below-cap", Tracked = {}, Count = 9, Click = 200,
         Recorded = "result=completed untracked=[] printed=[] error=yes",
