@@ -156,12 +156,15 @@ end
 -- whether TRACKED_ACHIEVEMENT_LIST_CHANGED fires (the rows of the achievement window redraw their Track check from it),
 -- and on Retail whether the objective tracker's dirty flags stay secure: the untrack fires CONTENT_TRACKING_UPDATE inside
 -- the addon's call, and the tracker marks itself dirty from there (Blizzard_SharedXML/MixinUtil.lua, DirtiableMixin).
+-- The container clears its dirty flag to nil, which can read as secure whoever cleared it, so the modules' isDirty, which
+-- each layout sets to false (Blizzard_ObjectiveTrackerModule.lua BeginLayout), shows whether the layout after the call ran
+-- tainted: the quest and scenario modules are laid out with the achievement module, dirty or not.
 
 local function TrackedIds()
-    if C_ContentTracking then
-        return C_ContentTracking.GetTrackedIDs(Enum.ContentTrackingType.Achievement)
+    if GetTrackedAchievements then -- as TrackingSlots.lua: Classic's own list first
+        return {GetTrackedAchievements()}
     end
-    return {GetTrackedAchievements()}
+    return C_ContentTracking.GetTrackedIDs(Enum.ContentTrackingType.Achievement)
 end
 
 -- C completed, E earned by this character, G guild, A account-wide, ? unknown to the game
@@ -207,7 +210,8 @@ local function ObserveTracker(observations, label)
         return
     end
     local parts = {}
-    for _, probe in ipairs({{ObjectiveTrackerFrame, "ObjectiveTrackerFrame", "dirty"}, {AchievementObjectiveTracker, "AchievementObjectiveTracker", "isDirty"}}) do
+    for _, probe in ipairs({{ObjectiveTrackerFrame, "ObjectiveTrackerFrame", "dirty"}, {AchievementObjectiveTracker, "AchievementObjectiveTracker", "isDirty"},
+        {QuestObjectiveTracker, "QuestObjectiveTracker", "isDirty"}, {ScenarioObjectiveTracker, "ScenarioObjectiveTracker", "isDirty"}}) do
         local frame, name, field = probe[1], probe[2], probe[3]
         if type(frame) ~= "table" then
             tinsert(parts, name .. " does not exist")
@@ -301,6 +305,11 @@ addon.Tests.Suites.tracking = function(done)
     if not ok then -- reported, not raised, so the frame stops listening and what was observed is kept
         StopListening()
         tinsert(observations, "the probe errored: " .. tostring(err))
+        if IsTrackedAchievement(id) then -- the track call may have run before the error
+            pcall(RemoveTrackedAchievement, id)
+            tinsert(observations, ("probe achievement %d untracked after the error: %s"):format(id, tostring(not IsTrackedAchievement(id))))
+        end
+        tinsert(observations, "the probe called the game's tracking from addon code: /reload before entering combat")
         done(results, observations)
         return
     end
