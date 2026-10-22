@@ -112,6 +112,20 @@ KAF finds the older expansions' world events by reading their POI (and the POI's
    3. **Classic:** `/kaftest events`, `/kaftest memory`.
 7. Docs, changelog, status done, PR.
 
+## Departures from the plan (build and reviews, 2026-10-21 and 22)
+- **The soup stays in `Data/CustomWidgetEventTimers.lua`** for now: moving it would churn the events suite PR #352 had just merged. It is a backlog item.
+- **`memory/event-refresh-widget-active` stays open:** the watched families (Researchers Under Fire, the Dreamsurges, Theater Troupe) still read their widgets in their zones. It closes when they go fixed.
+- **`IsPoiPresent` side effect:** a POI that reports its time no longer needs the map read, so `event-refresh-poi-on-map` dropped from 2978 to 1500 bytes a refresh in the headless model. Still "large", still open.
+- **A separate `schedules` suite,** not more scenarios in `events`, which is about Blizzard's scheduler.
+- **The run before the change, in game (2026-10-21, 23:38):**
+  - the POI families SKIPped as designed, their POIs being up;
+  - `superbloom-next` FAILed because Superbloom's Next widget can be read from anywhere, not only in the Emerald Dream (21:39 to 22:00 UTC, the schedule's start). A before-run only; the built code reads no widget.
+- **Legion:** the 52200 s cycle was confirmed in game (the Stormheim assault ended at 00:00:33 UTC, the schedule's 00:00:00), so Legion became one reminder on 5175, keeping Azsuna's icon (1408998), with a `DataIntegrityManager` solution merging the four toggles.
+- **The taint review** found no taint or secret-value problem, and three bugs, each reproduced by a scenario first:
+  - the toggle merge ran on every update and on a first install, and wrote nil where AceDB's copied defaults made nil read as off; it now runs once (`KrowiAF_SavedData.Fixes`) and writes true;
+  - the watcher's findings printed for every player; now in debug mode only;
+  - a saved id no longer in a rotation made the watcher error; such observations are now skipped, and the watcher starts after the login reminders.
+
 ## Risks
 - **Wrong anchors** show an event at the wrong time. For the families with POIs, the watcher reports a disagreement and corrects it per player once it has seen two. The widget families have no POI to learn from: their times rest on the research, and Krowi's in-game check covers EU.
 - **`GetCurrentRegion` returns 2 for both Korea and Taiwan,** so they share learned anchors. If their clocks differ, the learning keeps disagreeing; that is reported in debug mode.
