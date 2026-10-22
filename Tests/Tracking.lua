@@ -192,12 +192,13 @@ local function ProbeCandidate()
     end
     for id in pairs(addon.Data.Achievements) do
         local knownId, _, _, completed, _, _, _, _, _, _, _, isGuild, wasEarnedByMe, _, isStatistic = GetAchievementInfo(id)
-        if knownId and not completed and not wasEarnedByMe and not isGuild and not isStatistic and not IsTrackedAchievement(id)
-            and (not C_ContentTracking or C_ContentTracking.IsTrackable(Enum.ContentTrackingType.Achievement, id)) then
+        -- No C_ContentTracking.IsTrackable here: with it no achievement passed on Retail 12.1.5 (2026-10-22), so it
+        -- answers for collectables only; whether the game takes the candidate shows in what the track call returns
+        if knownId and not completed and not wasEarnedByMe and not isGuild and not isStatistic and not IsTrackedAchievement(id) then
             return id
         end
     end
-    return nil, "no trackable achievement nobody completed"
+    return nil, "no achievement nobody completed"
 end
 
 local function ObserveTracker(observations, label)
