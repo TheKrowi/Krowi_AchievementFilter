@@ -21,7 +21,7 @@ local schedules = addon.Tests.Schedules
 -- Until 2026-10-21 these families came from their POIs (read live, so a scenario SKIPs in game while its family's POI
 -- is up) or their widgets (only in their zone); the Recorded values are that code's answers with them absent.
 
-local regions = {US = 1, KR = 2, EU = 3, CN = 5}
+local regions = {US = 1, KR = 2, EU = 3, TW = 4, CN = 5}
 local factionT0 = 1800396000 -- a Drustvar start on EU realms: 1548000000 + 3690 cycles of 68400 s
 local factionUsT0 = 1800428400 -- the same cycle's Drustvar start on US realms
 local factionIds = {5964, 5973, 5896, 5969, 5966, 5970} -- Drustvar, Zuldazar, Tiragarde Sound, Nazmir, Stormsong Valley, Vol'dun
@@ -53,6 +53,9 @@ schedules.Scenarios = {
         Recorded = "6992 ends in 301400", Target = "6992 ends in 301400"},
     {Name = "covenant-assault-us", Kind = "Family", Ids = mawIds, At = mawUsReset + 1000, Region = "US", RetailOnly = true, -- no phase known there
         Recorded = "none", Target = "none"},
+    -- A character who has not finished Chains of Domination chapter 2 (quest 64556) has no Maw assaults (Krowi, 2026-10-22)
+    {Name = "covenant-assault-locked", Kind = "Family", Ids = mawIds, At = mawReset + 1000, Region = "EU", Locked = true, RetailOnly = true,
+        Recorded = "6991 ends in 301400", Target = "none"},
     -- Siege on Dragonbane Keep: every two hours, EU on even hours, the others on odd ones
     {Name = "siege-active-eu", Kind = "Window", Event = 7104, At = hour + 100, Region = "EU", RetailOnly = true,
         Recorded = "ends in 3500", Target = "ends in 3500"},
@@ -60,6 +63,11 @@ schedules.Scenarios = {
         Recorded = "ends in 1000", Target = "ends in 1000"},
     {Name = "siege-gathering-us", Kind = "Window", Event = 7267, At = hour + 100, Region = "US", RetailOnly = true,
         Recorded = "ends in 3500", Target = "ends in 3500"},
+    -- GetCurrentRegion() 4, Taiwan, which no family names: the families with one start everywhere, or one outside EU, show
+    {Name = "siege-gathering-tw", Kind = "Window", Event = 7267, At = hour + 100, Region = "TW", RetailOnly = true,
+        Recorded = "not shown", Target = "ends in 3500"},
+    {Name = "time-rift-tw", Kind = "Window", Widget = true, Event = 4987, At = hour + 100, Region = "TW", RetailOnly = true,
+        Recorded = "not shown", Target = "ends in 800"},
     -- Time Rift: every hour at :00; Next in the 5 minutes before, Active up to 15 minutes
     {Name = "time-rift-next", Kind = "Window", Widget = true, Event = 4992, At = hour - 200, Region = "EU", RetailOnly = true,
         Recorded = "ends in 200", Target = "ends in 200"},
@@ -70,8 +78,8 @@ schedules.Scenarios = {
     -- Superbloom: every hour at :00; Next in the 15 minutes before, Active up to 20 minutes
     {Name = "superbloom-next", Kind = "Window", Widget = true, Event = 5157, At = hour - 600, Region = "EU", RetailOnly = true,
         Recorded = "ends in 600", Target = "ends in 600"},
-    {Name = "superbloom-active", Kind = "Window", Widget = true, Event = 5323, At = hour + 100, Region = "EU", RetailOnly = true,
-        Recorded = "ends in 1100", Target = "ends in 1100"},
+    {Name = "superbloom-active", Kind = "Window", Widget = true, Event = 5323, At = hour + 100, Region = "EU", RetailOnly = true, -- up to 22 minutes
+        Recorded = "ends in 1100", Target = "ends in 1220"},
     -- The Big Dig (Azerothian Archives): every hour at :30; Next, then Soon in the last 5 minutes, Active up to 15 minutes
     {Name = "big-dig-next", Kind = "Window", Widget = true, Event = 5584, At = hour + 1800 - 600, Region = "EU", RetailOnly = true,
         Recorded = "ends in 300", Target = "ends in 300"},
@@ -115,7 +123,13 @@ schedules.Scenarios = {
     {Name = "learn-quiet-without-debug", Kind = "Learn", Story = "QuietWithoutDebug", RetailOnly = true,
         Recorded = "reports 0; learned", Target = "reports 0; learned"},
     {Name = "learn-old-id", Kind = "Learn", Story = "OldId", RetailOnly = true,
-        Recorded = "no error", Target = "no error"}
+        Recorded = "no error", Target = "no error"},
+    -- The code review of 2026-10-22: a start learned under an older schedule outlived the schedule's correction, and a
+    -- relog recorded the occurrence going on again
+    {Name = "learn-schedule-changed", Kind = "Learn", Story = "ScheduleChanged", RetailOnly = true,
+        Recorded = "none", Target = "5964 ends in 25100"},
+    {Name = "learn-relog", Kind = "Learn", Story = "Relog", RetailOnly = true,
+        Recorded = "observations 2", Target = "observations 1"}
 }
 -- RetailOnly: every family is DataAddons/Retail data; Classic has no world or widget events
 
@@ -130,10 +144,12 @@ end
 -- The schedules' view of the game at the scenario's time and region; the weekly reset is the region's from its last
 -- known one (EU Wednesday 04:00 UTC, US Tuesday 15:00 UTC)
 local resets = {[regions.EU] = mawReset, [regions.US] = mawUsReset, [regions.KR] = mawReset + 19 * 3600, [regions.CN] = mawReset + 19 * 3600}
--- learned: whether the schedules may use what the watcher learned (the learning stories), or only the shipped starts
-local function NewClock(region, now, learned)
+-- learned: whether the schedules may use what the watcher learned (the learning stories), or only the shipped starts;
+-- locked: the character has not done the quest a family requires
+local function NewClock(region, now, learned, locked)
     local clock = {Region = region, Now = now}
     clock.Source = {
+        QuestDone = function() return not locked end,
         Region = function() return clock.Region end,
         Now = function() return clock.Now end,
         SecondsUntilWeeklyReset = function()
@@ -151,12 +167,12 @@ end
 local learning -- a learning story is being told: the schedules read what the story's watcher learned
 
 -- Runs read at the scenario's time and region; before Data/EventSchedules.lua exists it runs on today's code
-local function WithClock(region, at, read)
+local function WithClock(region, at, read, locked)
     local engine = addon.Data.EventSchedules
     if not engine then
         return read()
     end
-    engine.UseSourceForTest(NewClock(region, at, learning).Source)
+    engine.UseSourceForTest(NewClock(region, at, learning, locked).Source)
     local ok, result = pcall(read)
     engine.UseSourceForTest(nil)
     if not ok then
@@ -203,7 +219,7 @@ local function DescribeFamily(scenario)
             end
         end
         return #found > 0 and table.concat(found, ", ") or "none"
-    end)
+    end, scenario.Locked)
 end
 
 -- Model profiles, as AceDB keeps them in KrowiAF_Options.profiles: a toggle is only saved when it differs from the default
@@ -388,6 +404,28 @@ function stories.OldId(model, observer)
     model.Left[5964] = 25100
     local ok = pcall(observer.RunOnce)
     return ok and "no error" or "error"
+end
+
+-- EU's Faction Assaults start learned under an older schedule, 30 minutes off; the shipped schedule has been corrected
+-- since, so the start learned under the old one is not used
+function stories.ScheduleChanged(model)
+    model.Store[regions.EU] = {FactionAssaults = {Seen = {}, Anchor = factionT0 + 1800, RotationAnchor = factionT0 + 1800, Definition = "an older schedule"}}
+    local at = factionT0 + 100
+    return WithClock(regions.EU, at, function() return DescribeFamily({Ids = factionIds, At = at, Region = "EU"}) end)
+end
+
+-- The Drustvar assault seen, then a /reload during it: the occurrence is the same, so it is one observation
+function stories.Relog(model, observer)
+    model.Region = regions.EU
+    model.Now = factionT0 + 100
+    model.Left[5964] = 25100
+    observer.RunOnce()
+    observer.UseSourceForTest(model.Source, model.Store) -- a new session: nothing is known to be up yet
+    model.Now = factionT0 + 400
+    model.Left[5964] = 24800
+    observer.RunOnce()
+    local seen = observer.GetObservationsForTest(model.Store, regions.EU, "FactionAssaults") or {}
+    return ("observations %d"):format(#seen)
 end
 
 -- The same POI seen on two runs in a row is one observation
