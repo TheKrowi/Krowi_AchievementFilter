@@ -125,10 +125,10 @@ end
 -- the addon ships none for the region
 local function OffsetFromShipped(family, region, entry, interval)
     if family.Rotation then
-        local shipped = (family.RotationAnchors or family.Anchors or {})[region]
+        local shipped = family.RotationAnchors and family.RotationAnchors[region] or addon.Data.EventSchedules.GetShippedAnchor(family, region)
         return shipped and Circular(entry.RotationAnchor - shipped, interval * #family.Rotation)
     end
-    local shipped = family.Anchors and family.Anchors[region]
+    local shipped = addon.Data.EventSchedules.GetShippedAnchor(family, region)
     return shipped and Circular(entry.Anchor - shipped, interval)
 end
 
@@ -139,14 +139,17 @@ local function Confirm(family, entry, region, observation, interval)
     if not changed and family.Rotation then
         changed = not entry.RotationAnchor or math.abs(Circular(rotationAnchor - entry.RotationAnchor, interval * #family.Rotation)) > tolerance
     end
-    entry.Anchor, entry.RotationAnchor = anchor, rotationAnchor
+    local definition = addon.Data.EventSchedules.GetDefinition(family)
+    changed = changed or entry.Definition ~= definition
+    entry.Anchor, entry.RotationAnchor, entry.Definition = anchor, rotationAnchor, definition
     if not changed or not source.Debug() then
         return -- learned and kept either way; only debug mode prints it
     end
     local offset = OffsetFromShipped(family, region, entry, interval)
     if offset and math.abs(offset) > tolerance then
-        source.Report(("Event schedules: %s: the game started %s at %s, %d s off the addon's schedule; the game's time is used from now on"):format(
-            family.Name or family.Key, NameOf(observation.Id), Utc(observation.Start), offset))
+        -- a reset-tied family's times come from the weekly reset; only which zone's turn it is can differ
+        source.Report(("Event schedules: %s: the game started %s at %s, %d s off the addon's schedule; the game's %s is used from now on"):format(
+            family.Name or family.Key, NameOf(observation.Id), Utc(observation.Start), offset, family.Reset and "rotation" or "time"))
     elseif offset then
         source.Report(("Event schedules: %s: the game confirms the addon's schedule (%s at %s)"):format(family.Name or family.Key, NameOf(observation.Id), Utc(observation.Start)))
     else
@@ -159,7 +162,14 @@ local function Observe(item, now, secondsLeft)
     local region = source.Region()
     local entry = Entry(region, family.Key)
     local seen = entry.Seen
-    local observation = {Start = secondsLeft and now + secondsLeft - item.To or now - item.From, Id = item.Id}
+    local start = secondsLeft and now + secondsLeft - item.To or now - item.From
+    local margin = secondsLeft and tolerance or runEvery + tolerance
+    for i = #seen, math.max(1, #seen - 7), -1 do
+        if seen[i].Id == item.Id and math.abs(seen[i].Start - start) <= margin then
+            return -- the occurrence seen in an earlier session (a /reload, another character)
+        end
+    end
+    local observation = {Start = start, Id = item.Id}
     local previous = seen[#seen]
     if #seen >= keep then
         tremove(seen, 1)
@@ -184,8 +194,8 @@ end
 -- One look at every watched POI: a POI that appeared is observed; one that went is forgotten until it is back
 function eventObserver.RunOnce()
     local items = Watched()
-    if not items then
-        return
+    if not items or not addon.Options.db.profile.EventReminders.Enabled then
+        return -- reminders turned off in the session: nothing is read until they are back on
     end
     local now = source.Now()
     local debug = source.Debug()
@@ -205,11 +215,13 @@ function eventObserver.RunOnce()
     end
 end
 
--- The confirmed start of a family in a region, for Data/EventSchedules.lua: {Anchor, RotationAnchor}, or nil
+-- The confirmed start of a family in a region, for Data/EventSchedules.lua: {Anchor, RotationAnchor}, or nil; only one
+-- learned under the family's current schedule counts, so a release that corrects a schedule is not overruled
 function eventObserver.GetLearned(key, region)
     local regions = store or (KrowiAF_SavedData and KrowiAF_SavedData.EventObservations)
     local entry = regions and regions[region] and regions[region][key]
-    if entry and entry.Anchor then
+    local family = KrowiAF.EventSchedules[key]
+    if entry and entry.Anchor and family and entry.Definition == addon.Data.EventSchedules.GetDefinition(family) then
         return entry
     end
 end

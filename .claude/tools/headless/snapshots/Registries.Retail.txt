@@ -234,8 +234,8 @@ EVENT World 8940 | category=2571 | icon=5764921 Source=1
 == Event schedules ==
 # KrowiAF.EventSchedules (Data/EventSchedules.lua): the cycle, the window per event relative to a cycle's start,
 # the rotation, the start per GetCurrentRegion(); fixed families run the reminders, observed ones are watched
-SCHEDULE BigDig | cycle=3600 | fixed | windows=5584:{-900,-300},5585:{-300,0},5592:{0,900} | anchors=1:1800,2:1800,3:1800,5:1800
-SCHEDULE CovenantAssaults | cycle=HalfWeekly | fixed | observed | window={0,302400} | rotation=6991,6990,6992,6989 | rotation anchors=3:1792555200
+SCHEDULE BigDig | cycle=3600 | fixed | windows=5584:{-900,-300},5585:{-300,0},5592:{0,900} | anchor elsewhere=1800
+SCHEDULE CovenantAssaults | cycle=HalfWeekly | fixed | observed | window={0,302400} | rotation=6991,6990,6992,6989 | requires quest=64556 | rotation anchors=3:1792555200
 SCHEDULE Dreamsurges | cycle=Weekly | observed | window={0,604800} | variants=7553,7554,7555,7556,7602,7603,7604,7605
 SCHEDULE FactionAssaults | cycle=68400 | fixed | observed | window={0,25200} | rotation=5964,5973,5896,5969,5966,5970 | anchors=1:1548032400,3:1548000000,5:1546743600
 SCHEDULE FyrakkAssaults | cycle=Weekly | observed | window={0,604800} | variants=7433,7471
@@ -245,10 +245,10 @@ SCHEDULE NzothMajorAssaults | cycle=Weekly | observed | window={0,604800} | vari
 SCHEDULE NzothMinorAssaults | cycle=HalfWeekly | observed | window={0,302400} | variants=6487,6488,6490,6491
 SCHEDULE PrimalStorms | cycle=10800 | observed (debug for POIs without time) | window={0,7200} | variants=7221,7222,7223,7224,7225,7226,7227,7228,7229,7230,7231,7232,7233,7234,7235,7236,7237,7238,7239,7240,7245,7246,7247,7248,7249,7250,7251,7252,7253,7254,7255,7256,7257,7258,7259,7260,7298,7299,7300,7301
 SCHEDULE ResearchersUnderFire | cycle=3600 | observed | window={0,1500} | variants=7461,7462
-SCHEDULE SiegeOnDragonbaneKeep | cycle=7200 | fixed | observed | windows=7104:{0,3600},7267:{-3600,0} | anchors=1:3600,2:3600,3:0,5:3600
-SCHEDULE Superbloom | cycle=3600 | fixed | windows=5157:{-900,0},5323:{0,1200} | anchors=1:0,2:0,3:0,5:0
+SCHEDULE SiegeOnDragonbaneKeep | cycle=7200 | fixed | observed | windows=7104:{0,3600},7267:{-3600,0} | anchors=3:0 | anchor elsewhere=3600
+SCHEDULE Superbloom | cycle=3600 | fixed | windows=5157:{-900,0},5323:{0,1320} | anchor elsewhere=0
 SCHEDULE TheaterTroupe | cycle=3600 | observed (debug for POIs without time) | window={0,600} | variants=7943,8076,8077,8078,8079,7654,7899,7900,7901,7902
-SCHEDULE TimeRift | cycle=3600 | fixed | windows=4987:{0,900},4992:{-300,0} | anchors=1:0,2:0,3:0,5:0
+SCHEDULE TimeRift | cycle=3600 | fixed | windows=4987:{0,900},4992:{-300,0} | anchor elsewhere=0
 
 == Summary ==
 build versions         75   (72 used)

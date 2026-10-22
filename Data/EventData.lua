@@ -227,13 +227,13 @@ local function GetActiveWidgetEvents()
     end
 end
 
--- A world event is active while its POI is up and it reports time left. The POI is asked on every refresh: an event
--- sharing its widget with its siblings (the four Dreamsurges, the five Theater Troupe shows, Titan Lockdown and Zaqali
--- Ruin) is told apart from them only by its POI (docs/work/2026-10-18-memory-growth). A POI that reports seconds left is
--- up, a number and no table; only one that reports none is looked for on its map. Researchers Under Fire's and the
--- Dreamsurges' POIs report time but are not on their events' maps (/kaftest sources, 2026-10-21).
-local function IsPoiPresent(event)
-    return C_AreaPoiInfo.GetAreaPOISecondsLeft(event.Id) ~= nil or C_AreaPoiInfo.GetAreaPOIInfo(event.MapId, event.Id) ~= nil
+-- A world event is active while its POI is on its map and it reports time left. The POI is asked on every refresh: an
+-- event sharing its widget with its siblings (the four Dreamsurges, the five Theater Troupe shows, Titan Lockdown and
+-- Zaqali Ruin) is told apart from them only by its POI (docs/work/2026-10-18-memory-growth), so a POI that reports
+-- seconds left does not count without its map: two siblings would both pass. Researchers Under Fire's and the
+-- Dreamsurges' POIs are not on the maps their rows give (/kaftest sources, 2026-10-21), which the probe now finds.
+local function IsPoiOnMap(event)
+    return C_AreaPoiInfo.GetAreaPOIInfo(event.MapId, event.Id) ~= nil
 end
 
 -- An event from Blizzard's event scheduler: its occurrence going on now and the game's name, with no POI read
@@ -270,7 +270,7 @@ function eventData.GetWorldEventDetails(event, now)
     if timers.HasCustomTimer(event.Id) then
         -- The POI first: an absent one returns nothing and allocates nothing, while the widget returns a new table on
         -- every read, also for the events whose POI is not there (Theater Troupe's widget is there everywhere)
-        if not IsPoiPresent(event) then -- The event is not active
+        if not IsPoiOnMap(event) then -- The event is not active
             return
         end
         secondsLeft = timers.GetSecondsLeft(event.Id)
@@ -285,7 +285,7 @@ function eventData.GetWorldEventDetails(event, now)
             event.EventDetails = nil
             return
         end
-        if not IsPoiPresent(event) then -- The event is not active
+        if not IsPoiOnMap(event) then -- The event is not active
             return
         end
     end

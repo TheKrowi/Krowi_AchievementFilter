@@ -38,6 +38,35 @@ local function RemindersGet(details, enabled)
     return ("the event, %d s left"):format(details.EndTime - GetServerTime())
 end
 
+-- The map a POI is on when it is not on the one its row gives: the row's continent and every map below it
+local function FindPoiMap(event)
+    local continent = event.MapId
+    local info = continent and C_Map.GetMapInfo(continent)
+    while info and info.mapType and info.mapType > Enum.UIMapType.Continent and info.parentMapID and info.parentMapID ~= 0 do
+        continent = info.parentMapID
+        info = C_Map.GetMapInfo(continent)
+    end
+    if not continent then
+        return "no map to search from"
+    end
+    if C_AreaPoiInfo.GetAreaPOIInfo(continent, event.Id) then
+        return ("found on map %d (%s)"):format(continent, tostring(info and info.name))
+    end
+    for _, child in ipairs(C_Map.GetMapChildrenInfo(continent, nil, true) or {}) do
+        if C_AreaPoiInfo.GetAreaPOIInfo(child.mapID, event.Id) then
+            return ("found on map %d (%s)"):format(child.mapID, tostring(child.name))
+        end
+    end
+    return ("on no map of continent %d"):format(continent)
+end
+
+local function TimedBy(event, widgetTimed)
+    if event.Source == KrowiAF.Enum.EventSource.FixedSchedule then
+        return "a fixed schedule"
+    end
+    return widgetTimed and "a widget" or "the POI"
+end
+
 local function ObserveWorldEvents(observations)
     local eventReminders = addon.Options.db.profile.EventReminders
     local events = addon.Data.Events[KrowiAF.Enum.EventType.World]
@@ -49,15 +78,17 @@ local function ObserveWorldEvents(observations)
             local onMap = C_AreaPoiInfo.GetAreaPOIInfo(event.MapId, id) ~= nil
             local details = addon.EventData.GetWorldEventDetails(event)
             if secondsLeft or onMap or details then
-                tinsert(observations, ("world %d %q, map %s: POI seconds left %s, POI on its map %s, timed by %s; reminders get %s"):format(id, tostring(event.Name),
-                    tostring(event.MapId), tostring(secondsLeft), tostring(onMap), addon.Data.CustomWorldEventTimers.HasCustomTimer(id) and "a widget" or "the POI",
-                    RemindersGet(details, eventReminders.WorldEvents[id])))
+                tinsert(observations, ("world %d %q, map %s: POI seconds left %s, POI on its map %s%s, timed by %s; reminders get %s"):format(id, tostring(event.Name),
+                    tostring(event.MapId), tostring(secondsLeft), tostring(onMap), (secondsLeft and not onMap) and (", " .. FindPoiMap(event)) or "",
+                    TimedBy(event, addon.Data.CustomWorldEventTimers.HasCustomTimer(id)), RemindersGet(details, eventReminders.WorldEvents[id])))
             else
                 quiet = quiet + 1
             end
         end
     end
     tinsert(observations, ("world: %d more events with no POI time, no POI on their map and nothing for the reminders"):format(quiet))
+    tinsert(observations, ("Maw unlock: quest 64556 (In Need of Assistance, the end of Chains of Domination chapter 2) %s, quest 64106 (A Unified Effort) %s"):format(
+        tostring(C_QuestLog.IsQuestFlaggedCompleted(64556)), tostring(C_QuestLog.IsQuestFlaggedCompleted(64106))))
 end
 
 local function ObserveWidgetEvents(observations)
@@ -66,8 +97,9 @@ local function ObserveWidgetEvents(observations)
     for _, id in ipairs(SortedIds(events)) do
         local event = events[id]
         local details = addon.EventData.GetWidgetEventDetails(event)
-        tinsert(observations, ("widget %d %q: timed by %s; reminders get %s"):format(id, tostring(event.Name),
-            addon.Data.CustomWidgetEventTimers.IsComputed(id) and "a schedule" or "its widget", RemindersGet(details, eventReminders.WidgetEvents[id])))
+        local timedBy = event.Source == KrowiAF.Enum.EventSource.FixedSchedule and "a fixed schedule"
+            or addon.Data.CustomWidgetEventTimers.IsComputed(id) and "a schedule" or "its widget"
+        tinsert(observations, ("widget %d %q: timed by %s; reminders get %s"):format(id, tostring(event.Name), timedBy, RemindersGet(details, eventReminders.WidgetEvents[id])))
     end
 end
 

@@ -6,7 +6,8 @@ local eventSchedules = addon.Data.EventSchedules
 -- EventSchedules.lua; docs/work/2026-10-21-fixed-event-schedules). The current expansion's events come from Blizzard's
 -- event scheduler instead (Data/EventScheduler.lua), and move here when their expansion ends.
 -- A family is a cycle (Interval, or the weekly reset for Reset = "Weekly" / "HalfWeekly") with a start per region
--- (Anchors, by GetCurrentRegion()), and the window each of its events is shown in, relative to a cycle's start
+-- (Anchors, by GetCurrentRegion(); Anchor for the regions it does not name), and the window each of its events is
+-- shown in, relative to a cycle's start
 -- (Windows, or one Window for every id of a Rotation, whose zone moves one step per cycle). Where the addon ships no
 -- start for the player's region, or the game shows another one, the start the watcher learned from the POIs is used
 -- (Data/EventObserver.lua). A lookup is arithmetic: no POI or widget read, no allocation.
@@ -19,6 +20,7 @@ local game = {
     Region = function() return GetCurrentRegion() end,
     SecondsUntilWeeklyReset = function() return C_DateAndTime.GetSecondsUntilWeeklyReset() end,
     Learned = function(key, region) return addon.Data.EventObserver.GetLearned(key, region) end,
+    QuestDone = function(questId) return C_QuestLog.IsQuestFlaggedCompleted(questId) end,
 }
 local source = game
 
@@ -52,6 +54,36 @@ function eventSchedules.GetInterval(family)
     return family.Interval
 end
 
+-- What a start learned for the family depends on: its cycle, rotation and windows. A start learned under another one
+-- (a later release corrected the schedule) is not used (Data/EventObserver.lua GetLearned). Made once per family.
+function eventSchedules.GetDefinition(family)
+    if family.Definition then
+        return family.Definition
+    end
+    local parts = {tostring(eventSchedules.GetInterval(family))}
+    for _, id in ipairs(family.Rotation or {}) do
+        tinsert(parts, tostring(id))
+    end
+    if family.Window then
+        tinsert(parts, family.Window[1] .. ":" .. family.Window[2])
+    end
+    local ids = {}
+    for id in next, family.Windows or {} do
+        tinsert(ids, id)
+    end
+    sort(ids)
+    for _, id in ipairs(ids) do
+        tinsert(parts, id .. "=" .. family.Windows[id][1] .. ":" .. family.Windows[id][2])
+    end
+    family.Definition = table.concat(parts, ",")
+    return family.Definition
+end
+
+-- The start the addon ships for the region: the region's own, else the one for every region (Anchor)
+function eventSchedules.GetShippedAnchor(family, region)
+    return family.Anchors and family.Anchors[region] or family.Anchor
+end
+
 -- The start of the cycle now is in, and the interval; nothing without a start for the region
 local function CycleStart(family, region, now)
     local interval = eventSchedules.GetInterval(family)
@@ -64,7 +96,7 @@ local function CycleStart(family, region, now)
         anchor = now + untilReset - week
     else
         local learned = source.Learned(family.Key, region)
-        anchor = learned and learned.Anchor or (family.Anchors and family.Anchors[region])
+        anchor = learned and learned.Anchor or eventSchedules.GetShippedAnchor(family, region)
     end
     if not anchor then
         return
@@ -95,10 +127,11 @@ local function IsTurn(entry, region, cycleStart, interval)
 end
 
 -- The start and end of the event's window going on at now, or nothing: not a fixed event, not its window, not its
--- turn in the rotation, or no start known for the player's region
+-- turn in the rotation, no start known for the player's region, or a quest the character has not done (Requires: the
+-- Maw's covenant assaults need Chains of Domination chapter 2)
 function eventSchedules.GetWindow(eventId, now)
     local entry = Index()[eventId]
-    if not entry then
+    if not entry or (entry.Family.Requires and not source.QuestDone(entry.Family.Requires)) then
         return
     end
     local region = source.Region()
@@ -115,30 +148,6 @@ function eventSchedules.GetWindow(eventId, now)
             return
         end
     end
-end
-
--- When the event's next window starts after now, within one turn of its rotation; for upcoming reminders and the probe
-function eventSchedules.GetNextStart(eventId, now)
-    local entry = Index()[eventId]
-    if not entry then
-        return
-    end
-    local region = source.Region()
-    local cycleStart, interval = CycleStart(entry.Family, region, now)
-    if not cycleStart then
-        return
-    end
-    local turns = entry.Family.Rotation and #entry.Family.Rotation or 1
-    for step = 0, turns do
-        local start = cycleStart + step * interval
-        if start + entry.From > now and IsTurn(entry, region, start, interval) then
-            return start + entry.From
-        end
-    end
-end
-
-function eventSchedules.IsFixed(eventId)
-    return Index()[eventId] ~= nil
 end
 
 -- For the schedules suite: a model of the game in place of the game, nil for the game again

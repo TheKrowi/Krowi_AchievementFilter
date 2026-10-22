@@ -674,6 +674,8 @@ local function buildSnapshot(client)
         if family.Rotation then fields[#fields + 1] = "rotation=" .. idList(family.Rotation) end
         if family.Variants then fields[#fields + 1] = "variants=" .. idList(family.Variants) end
         if family.Anchors then fields[#fields + 1] = "anchors=" .. pairsList(family.Anchors) end
+        if family.Anchor then fields[#fields + 1] = "anchor elsewhere=" .. serialize(family.Anchor) end
+        if family.Requires then fields[#fields + 1] = "requires quest=" .. serialize(family.Requires) end
         if family.RotationAnchors then fields[#fields + 1] = "rotation anchors=" .. pairsList(family.RotationAnchors) end
         emit("SCHEDULE " .. escape(key) .. " | " .. table.concat(fields, " | "))
         scheduleCount = scheduleCount + 1

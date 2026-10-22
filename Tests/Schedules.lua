@@ -55,7 +55,7 @@ schedules.Scenarios = {
         Recorded = "none", Target = "none"},
     -- A character who has not finished Chains of Domination chapter 2 (quest 64556) has no Maw assaults (Krowi, 2026-10-22)
     {Name = "covenant-assault-locked", Kind = "Family", Ids = mawIds, At = mawReset + 1000, Region = "EU", Locked = true, RetailOnly = true,
-        Recorded = "6991 ends in 301400", Target = "none"},
+        Recorded = "none", Target = "none"},
     -- Siege on Dragonbane Keep: every two hours, EU on even hours, the others on odd ones
     {Name = "siege-active-eu", Kind = "Window", Event = 7104, At = hour + 100, Region = "EU", RetailOnly = true,
         Recorded = "ends in 3500", Target = "ends in 3500"},
@@ -65,9 +65,9 @@ schedules.Scenarios = {
         Recorded = "ends in 3500", Target = "ends in 3500"},
     -- GetCurrentRegion() 4, Taiwan, which no family names: the families with one start everywhere, or one outside EU, show
     {Name = "siege-gathering-tw", Kind = "Window", Event = 7267, At = hour + 100, Region = "TW", RetailOnly = true,
-        Recorded = "not shown", Target = "ends in 3500"},
+        Recorded = "ends in 3500", Target = "ends in 3500"},
     {Name = "time-rift-tw", Kind = "Window", Widget = true, Event = 4987, At = hour + 100, Region = "TW", RetailOnly = true,
-        Recorded = "not shown", Target = "ends in 800"},
+        Recorded = "ends in 800", Target = "ends in 800"},
     -- Time Rift: every hour at :00; Next in the 5 minutes before, Active up to 15 minutes
     {Name = "time-rift-next", Kind = "Window", Widget = true, Event = 4992, At = hour - 200, Region = "EU", RetailOnly = true,
         Recorded = "ends in 200", Target = "ends in 200"},
@@ -79,7 +79,7 @@ schedules.Scenarios = {
     {Name = "superbloom-next", Kind = "Window", Widget = true, Event = 5157, At = hour - 600, Region = "EU", RetailOnly = true,
         Recorded = "ends in 600", Target = "ends in 600"},
     {Name = "superbloom-active", Kind = "Window", Widget = true, Event = 5323, At = hour + 100, Region = "EU", RetailOnly = true, -- up to 22 minutes
-        Recorded = "ends in 1100", Target = "ends in 1220"},
+        Recorded = "ends in 1220", Target = "ends in 1220"},
     -- The Big Dig (Azerothian Archives): every hour at :30; Next, then Soon in the last 5 minutes, Active up to 15 minutes
     {Name = "big-dig-next", Kind = "Window", Widget = true, Event = 5584, At = hour + 1800 - 600, Region = "EU", RetailOnly = true,
         Recorded = "ends in 300", Target = "ends in 300"},
@@ -103,9 +103,11 @@ schedules.Scenarios = {
         Recorded = "true", Target = "true"},
     {Name = "legion-toggles-first-install", Kind = "MergeCase", Case = "FirstInstall", RetailOnly = true,
         Recorded = "marked, untouched", Target = "marked, untouched"},
-    -- Researchers Under Fire stays on its POI and widget, in its zone; its POI reports time but is not on map 2133
+    -- Researchers Under Fire stays on its POI and widget, in its zone; its POI reports time but is not on map 2133, the one
+    -- its row gives. Counting a POI that reports time without its map would show two siblings sharing a widget (the code
+    -- review of 2026-10-22), so the target waits for the right map, which /kaftest sources looks for
     {Name = "researchers-in-zone", Kind = "PoiState", Event = 7461, Pois = {[7461] = 600}, Widgets = {[4826] = "10 min"}, RetailOnly = true,
-        Recorded = "ends in 600", Target = "ends in 600"},
+        Recorded = "not shown", Target = "ends in 600"},
     -- What every player's addon learns from the POIs it sees
     {Name = "learn-kr-faction-assault", Kind = "Learn", Story = "KoreaLearns", RetailOnly = true,
         Recorded = "after one: none; after two: 5973 ends in 25000", Target = "after one: none; after two: 5973 ends in 25000"},
@@ -127,9 +129,9 @@ schedules.Scenarios = {
     -- The code review of 2026-10-22: a start learned under an older schedule outlived the schedule's correction, and a
     -- relog recorded the occurrence going on again
     {Name = "learn-schedule-changed", Kind = "Learn", Story = "ScheduleChanged", RetailOnly = true,
-        Recorded = "none", Target = "5964 ends in 25100"},
+        Recorded = "5964 ends in 25100", Target = "5964 ends in 25100"},
     {Name = "learn-relog", Kind = "Learn", Story = "Relog", RetailOnly = true,
-        Recorded = "observations 2", Target = "observations 1"}
+        Recorded = "observations 1", Target = "observations 1"}
 }
 -- RetailOnly: every family is DataAddons/Retail data; Classic has no world or widget events
 

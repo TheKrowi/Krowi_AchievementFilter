@@ -7,7 +7,7 @@ Follow-ups that are not a work item yet. When one is taken up, it gets its own w
 - **The rest of Midnight from Blizzard's event scheduler, as data.** With `KrowiAF.Enum.EventSource.Scheduler` a scheduled world event is one row (`docs/how-to/add-event.md`).
   - **Next:** Aqir Invasion (POI 9045, listed twice per occurrence under one key, which the cache drops), the three Abundance sites (8525, 8527, 8528) and Void Assaults (8698). Their achievement categories exist and need `:WithId` like Curse Surges' 2571.
   - **Ongoing events:** Saltheril's Soiree, Stormarion Assault, Legends of the Haranir and Vaults of Atal'Utek have no times; the scheduler lists them under `GetOngoingEvents`.
-- **Upcoming reminders for scheduled events.** The upcoming path is calendar-only (`Data/EventData.lua` `GetUpcomingCalendarEvents`, `GetNextEventOccurance`), while the scheduler and the fixed schedules (`Data/EventSchedules.lua` `GetNextStart`) know every next start.
+- **Upcoming reminders for scheduled events.** The upcoming path is calendar-only (`Data/EventData.lua` `GetUpcomingCalendarEvents`, `GetNextEventOccurance`), while the scheduler and the fixed schedules (`Data/EventSchedules.lua`, whose arithmetic gives every next start as easily as the window going on) know them.
 
 ## From the fixed schedules work (2026-10-21, docs/work/2026-10-21-fixed-event-schedules)
 

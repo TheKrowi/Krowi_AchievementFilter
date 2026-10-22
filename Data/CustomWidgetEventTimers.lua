@@ -3,8 +3,8 @@ addon.Data.CustomWidgetEventTimers = {}
 local customWidgetEventTimers = addon.Data.CustomWidgetEventTimers
 local timers = {}
 
-local minutesAbbr = MINUTES_ABBR:gsub("%%d", "(%%d+)")
-local secondsAbbr = SECONDS_ABBR:gsub("%%d", "(%%d+)")
+-- The widget events' timers. Only the soup's are left here: Time Rift, Superbloom and the Azerothian Archives run on
+-- fixed schedules (Data/EventSchedules.lua, DataAddons/Retail/10_Dragonflight/EventSchedules.lua) and read no widget.
 
 -- now: the server time, passed to the timers that compute their times instead of reading a widget
 function customWidgetEventTimers.GetSecondsLeft(id, now)
@@ -35,13 +35,6 @@ function customWidgetEventTimers.FeastTimes(now, region)
     return feastInterval - sinceStart, sinceStart < feastLength and feastLength - sinceStart or nil
 end
 
-local function GetSecondsLeft(text, minutesPattern, secondsPattern)
-    local minutes = string.match(text, minutesPattern) or 0
-    local seconds = string.match(text, secondsPattern) or 0
-    -- print(minutes, seconds, minutes * 60 + seconds)
-    return minutes * 60 + seconds
-end
-
 -- Whether a widget event's timer computes its times instead of reading its widget (Tests/Memory.lua)
 function customWidgetEventTimers.IsComputed(id)
     return computed[id] == true
@@ -57,62 +50,4 @@ end
 timers[4731] = function(now) -- Community Feast: Active, the time left while one is going on
     local _, secondsLeft = customWidgetEventTimers.FeastTimes(now, GetCurrentRegion())
     return secondsLeft
-end
-
-timers[4987] = function()
-    local widgetInfo = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(4978)
-    if not widgetInfo or not widgetInfo.text then
-        return nil
-    end
-
-    return GetSecondsLeft(widgetInfo.text, minutesAbbr, secondsAbbr)
-end
-
-timers[4992] = function()
-    local widgetInfo = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(4924)
-    if not widgetInfo or not widgetInfo.text then
-        return nil
-    end
-
-    return GetSecondsLeft(widgetInfo.text, minutesAbbr, secondsAbbr)
-end
-
-timers[5157] = function()
-    local widgetInfo = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(5157)
-    if not widgetInfo or not widgetInfo.text then
-        return nil
-    end
-
-    return GetSecondsLeft(widgetInfo.text, minutesAbbr, secondsAbbr)
-end
-
-timers[5323] = function()
-    return 0 -- 17-22 minutes but ends when the boss is killed, do not track this time for now and show no time data available
-end
-
-timers[5584] = function()
-    local widgetInfo = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(5584)
-    if not widgetInfo or not widgetInfo.text then
-        return nil
-    end
-
-    return GetSecondsLeft(widgetInfo.text, minutesAbbr, secondsAbbr)
-end
-
-timers[5585] = function()
-    local widgetInfo = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(5585)
-    if not widgetInfo or not widgetInfo.text then
-        return nil
-    end
-
-    return GetSecondsLeft(widgetInfo.text, minutesAbbr, secondsAbbr)
-end
-
-timers[5592] = function()
-    local widgetInfo = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(5587)
-    if not widgetInfo or not widgetInfo.text then
-        return nil
-    end
-
-    return GetSecondsLeft(widgetInfo.text, minutesAbbr, secondsAbbr)
 end

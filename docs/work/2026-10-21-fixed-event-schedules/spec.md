@@ -7,7 +7,9 @@ Intent: [intent.md](intent.md). Status: accepted
    - **The schedule:** a cycle; a start per region, or the weekly reset for the reset-tied ones; for each event, the window it is shown in, relative to the cycle's start; and for a rotating family, the order of its zones.
 2. **Their reminders show wherever the player is,** with exact times. An Active phase that ends on a boss kill or the event's progress (Time Rift, Superbloom, the Big Dig) shows until an upper bound.
 3. **Legion Assaults** become one "Legion Assaults" reminder without the zone, on a 52200 s cycle, if the in-game check of 2026-10-21 confirms that cycle; otherwise they stay as today.
-4. **The families whose order is not known stay as today** until their rotation is confirmed in game: Theater Troupe, Grand Hunts, Researchers Under Fire, Dreamsurges, the N'Zoth assaults, Fyrakk Assaults and the Primal Storms. Their map check is fixed so that Researchers Under Fire and the Dreamsurges show in their zones again.
+4. **The families whose order is not known stay as today** until their rotation is confirmed in game: Theater Troupe, Grand Hunts, Researchers Under Fire, Dreamsurges, the N'Zoth assaults, Fyrakk Assaults and the Primal Storms. Researchers Under Fire and the Dreamsurges show nowhere today because their rows name a map their POIs are not on; `/kaftest sources` finds the right maps, and the rows get them.
+9. **The Maw's covenant assaults** show only for characters who finished Chains of Domination chapter 2 (quest 64556), as their POIs do (Krowi, 2026-10-22).
+10. **The watcher's log in game:** a second tab in the Data Manager lists, per family and region, what the watcher saw and learned (Krowi, 2026-10-22).
 5. **The addon learns from what it sees, for every Retail player:**
    - **The watcher:** every 5 minutes it reads the time left of the POIs of the families above: a number, no table.
    - **What it records:** when each zone, show or storm started, per region, saved per account.
@@ -80,7 +82,7 @@ The soup's `FeastTimes` moves into this form.
 - **Embedded libraries:** none.
 - **Data snapshots:** the Registries snapshot shows the rows' new source and the schedules; regenerated and reviewed.
 - **Memory:** the watcher is a new background job, so it gets a `memory` scenario ("none") and a `Check-Repo.jobs` line. A refresh with the fixed families going on stays at "none", and `event-refresh-widget-active` moves to "none" for the widget events made fixed.
-- **Player-facing text:** changelog lines for the events that now show anywhere, the two that show in their zones again, Superbloom's time and Legion's single reminder.
+- **Player-facing text:** changelog lines for the events that now show anywhere, Superbloom's time, Legion's single reminder and the Maw's unlock.
 
 ## Verification
 - **Before the change, as `Recorded` with `Target` set** (`events` suite, headless and in game):
@@ -103,4 +105,8 @@ Krowi, 2026-10-21:
 - **Fixed now:** BfA Faction Assaults, the Maw covenant assaults, Siege on Dragonbane Keep, Time Rift, Superbloom, the Big Dig, the soup.
 - **Legion Assaults:** one reminder without the zone on the 52200 s cycle if the in-game check confirms it, otherwise as today.
 - **Learning for everyone** (Krowi asked whether the addon can learn from what it sees, with new findings reported in debug mode): every Retail player's addon learns its region's starts and rotations from the POIs, saved per account, and uses them once seen twice. Debug mode prints every finding.
-- **Added by Claude, for Krowi to object to:** the not-yet-fixed families' map check is fixed in the meantime, so Researchers Under Fire and the Dreamsurges show in their zones again.
+- **Added by Claude, for Krowi to object to:** the not-yet-fixed families' map check is fixed in the meantime, so Researchers Under Fire and the Dreamsurges show in their zones again. **Withdrawn after the code review of 2026-10-22:** counting a POI that reports time without its map shows siblings that share a widget twice (the two Dreamsurge ids of a zone, the Theater Troupe shows). The map check stays; the rows get the maps their POIs are on, which `/kaftest sources` finds.
+
+Krowi, 2026-10-22, after the code review:
+- **The Maw's covenant assaults only for characters who unlocked them** (Chains of Domination chapter 2, quest 64556), as today; one quest check, no map read. Chosen over showing them to every character.
+- **The watcher's log on a second tab of the Data Manager.** Chosen over a chat command, the `/kaftest sources` output, or a window of its own.

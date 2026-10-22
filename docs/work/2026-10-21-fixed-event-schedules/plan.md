@@ -126,6 +126,24 @@ KAF finds the older expansions' world events by reading their POI (and the POI's
   - the watcher's findings printed for every player; now in debug mode only;
   - a saved id no longer in a rotation made the watcher error; such observations are now skipped, and the watcher starts after the login reminders.
 
+- **The code review (2026-10-22),** 14 findings:
+  - **Fixed, each reproduced by a scenario first:**
+    - Taiwan (`GetCurrentRegion()` 4) had no Siege, Time Rift, Superbloom or Big Dig: a family now has an `Anchor` for the regions it does not name;
+    - Superbloom's Active bound is 22 minutes, not 20;
+    - the Maw is gated on quest 64556 (Krowi's decision);
+    - a start learned under an older schedule outlived its correction: a learned start now carries the schedule's definition and counts only under it;
+    - a /reload recorded the occurrence going on again: the last observations are checked first.
+  - **Fixed:**
+    - the weekly families' debug message no longer claims the game's time is used (only their rotation is);
+    - the watcher reads nothing while reminders are off;
+    - the widget timers the schedules replaced are removed;
+    - `GetNextStart` and `IsFixed`, unused, are removed;
+    - the sources probe names fixed schedules and finds a POI's real map;
+    - the Legion and Maw changelog lines are under Changed.
+  - **Reverted:** the map-check change (`IsPoiPresent`), which would show siblings that share a widget twice. `memory/event-refresh-poi-on-map` is back at 2978 bytes, and `schedules/researchers-in-zone` is open again until the rows get the right maps.
+  - **Kept as found:** the soup's own schedule code (backlog).
+- **The watcher's log in the Data Manager** (Krowi, 2026-10-22): a second tab, built after the review fixes.
+
 ## Risks
 - **Wrong anchors** show an event at the wrong time. For the families with POIs, the watcher reports a disagreement and corrects it per player once it has seen two. The widget families have no POI to learn from: their times rest on the research, and Krowi's in-game check covers EU.
 - **`GetCurrentRegion` returns 2 for both Korea and Taiwan,** so they share learned anchors. If their clocks differ, the learning keeps disagreeing; that is reported in debug mode.

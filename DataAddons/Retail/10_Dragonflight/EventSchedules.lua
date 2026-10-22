@@ -4,11 +4,13 @@
 
 -- Siege on Dragonbane Keep: every two hours, an hour of gathering then the siege. EU starts on even UTC hours, the other
 -- regions on odd ones (WindTools, GW2_UI, BtWTodo, MasterCollector); EU checked against the POI on 2026-10-21.
+-- Time Rift, Superbloom and the Big Dig start at the same minute in every region, so they have one Anchor.
 KrowiAF.EventSchedules.SiegeOnDragonbaneKeep = {
     Name = "Siege on Dragonbane Keep",
     Interval = 7200,
     Windows = {[7267] = {-3600, 0}, [7104] = {0, 3600}}, -- Gathering, Active
-    Anchors = {[1] = 3600, [2] = 3600, [3] = 0, [5] = 3600},
+    Anchors = {[3] = 0},
+    Anchor = 3600, -- every other region, Taiwan (4) and test realms included
     Fixed = true,
     Observe = true,
 }
@@ -19,17 +21,17 @@ KrowiAF.EventSchedules.TimeRift = {
     Name = "Time Rift",
     Interval = 3600,
     Windows = {[4992] = {-300, 0}, [4987] = {0, 900}}, -- Next, Active
-    Anchors = {[1] = 0, [2] = 0, [3] = 0, [5] = 0},
+    Anchor = 0,
     Fixed = true,
 }
 
 -- Superbloom, every hour on the hour in every region (Blizzard). Next in the 15 minutes before, as the soup's (Krowi,
--- 2026-10-21); Active ends with the event's progress, so 20 minutes is its upper bound.
+-- 2026-10-21); Active ends with the event's progress, 17 to 22 minutes, so 22 is its upper bound.
 KrowiAF.EventSchedules.Superbloom = {
     Name = "Superbloom",
     Interval = 3600,
-    Windows = {[5157] = {-900, 0}, [5323] = {0, 1200}}, -- Next, Active
-    Anchors = {[1] = 0, [2] = 0, [3] = 0, [5] = 0},
+    Windows = {[5157] = {-900, 0}, [5323] = {0, 1320}}, -- Next, Active
+    Anchor = 0,
     Fixed = true,
 }
 
@@ -39,7 +41,7 @@ KrowiAF.EventSchedules.BigDig = {
     Name = "Azerothian Archives",
     Interval = 3600,
     Windows = {[5584] = {-900, -300}, [5585] = {-300, 0}, [5592] = {0, 900}}, -- Next, Soon, Active
-    Anchors = {[1] = 1800, [2] = 1800, [3] = 1800, [5] = 1800},
+    Anchor = 1800,
     Fixed = true,
 }
 
