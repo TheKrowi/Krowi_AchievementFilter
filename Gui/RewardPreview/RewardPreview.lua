@@ -2,7 +2,7 @@ local _, addon = ...
 addon.Gui.RewardPreview = {}
 local rewardPreview = addon.Gui.RewardPreview
 
-local menuBuilder = addon.MenuBuilder:New({})
+local menuBuilder = addon.MenuBuilder:New({modern = addon.Util.IsModern})
 
 -- The preview closes with the window its button belongs to, and shares the spot next to the row with the guide panel
 -- (Gui/SidePanels.lua)

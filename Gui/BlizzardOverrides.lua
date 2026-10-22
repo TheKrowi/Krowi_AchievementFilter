@@ -57,13 +57,13 @@ function addon.OverwriteFunctions()
     end
 
     AchievementFrame_DisplayComparison = function(unit)
-        if not addon.Util.IsMainline then
+        if not addon.Util.IsModern then
             AchievementFrame.wasShown = nil
         end
 
         AchievementFrameTab_OnClick = AchievementFrameComparisonTab_OnClick
         AchievementFrameTab_OnClick(1)
-        if addon.Util.IsMainline then
+        if addon.Util.IsModern then
             -- Clear addon's custom tab anchoring to avoid circular dependency with Blizzard's comparison tab setup
             for i = 1, 3 do
                 local tab = _G["AchievementFrameTab" .. i]
@@ -74,7 +74,7 @@ function addon.OverwriteFunctions()
             AchievementFrame_SetComparisonTabs()
         end
         AchievementFrame:Show()
-        if addon.Util.IsMainline then
+        if addon.Util.IsModern then
             AchievementFrame_ShowSubFrame(AchievementFrameComparison, AchievementFrameComparison.AchievementContainer)
         end
         AchievementFrameComparison_SetUnit(unit)
@@ -101,9 +101,10 @@ function addon.OverwriteFunctions()
     -- so that call raises ADDON_ACTION_FORBIDDEN (WoWUIBugs #780 is the same error through a chat filter). The
     -- link itself is not protected, so insert it ourselves and skip the telemetry; everything else falls through
     -- to Blizzard's handler. The helper is a file local in Blizzard_AchievementUI.lua, so its callers are wrapped.
-    -- Retail only: Mists exports C_AchievementTelemetry too, but its Cata-era handlers never call it and its summary
-    -- handler only selects the achievement, so wrapping there would add behaviour Blizzard does not have.
-    if addon.Util.IsMainline and C_AchievementTelemetry and ChatFrameUtil and ChatFrameUtil.InsertLink then
+    -- Retail's interface only (Forever loads the same Mainline handlers): Mists exports C_AchievementTelemetry too, but
+    -- its Cata-era handlers never call it and its summary handler only selects the achievement, so wrapping there would
+    -- add behaviour Blizzard does not have.
+    if addon.Util.IsModern and C_AchievementTelemetry and ChatFrameUtil and ChatFrameUtil.InsertLink then
         local function InsertAchievementLink(id)
             if not id or not IsModifiedClick("CHATLINK") then
                 return false
@@ -189,7 +190,7 @@ function addon.HookFunctions()
         hooksecurefunc("PanelTemplates_SetTab", AchievementFrame_SetTabs)
     end
 
-    if addon.Util.IsMainline then
+    if addon.Util.IsModern then
         hooksecurefunc("AchievementFrame_SetComparisonTabs", function()
             addon.Gui:ShowHideTabs()
         end)

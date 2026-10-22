@@ -21,7 +21,7 @@ end
 function worldMapButton:Load()
     local button = LibStub("Krowi_WorldMapButtons-1.4"):Add("KrowiAF_WorldMapButton_Template", "BUTTON")
     addon.Gui.WorldMapButton = button
-    if addon.Util.IsMainline or button:GetParent() ~= WorldMapFrame then
+    if addon.Util.IsModern or button:GetParent() ~= WorldMapFrame then
         return
     end
     KeepAboveMap(button)

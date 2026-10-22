@@ -1,5 +1,5 @@
 # Spec: Interface code branches on Krowi_Util's IsModern, not IsMainline
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. Every `addon.Util.IsMainline` that chooses between Retail's and Classic's interface reads `addon.Util.IsModern` (list under Design).
@@ -19,7 +19,6 @@ The test per site is the question it asks: "does this client run Retail's interf
 - `Gui/WindowFrames/Search/OptionsMenuButton/OptionsMenuButtonMixin.lua:34` the click sound the modern button plays itself.
 - `Gui/WindowFrames/AchievementButton/AchievementButtonExtraIconFactory.lua:74, 208, 278, 291` atlases.
 - `Gui/RewardPreview/RewardPreviewMixin.lua:162` an atlas.
-- `Gui/DataManager/Frame/FrameMixin.lua:109` tabs on Retail's button frame template.
 - `Plugins/ElvUI.lua:677`, `Plugins/GW2_UI/GW2_UI.lua:1018` an anchor offset against Retail's achievement frame; `GW2_UI.lua:16, 1110` and `Plugins/EllesmereUI.lua:15, 1047` the skin's Retail build. Each plugin also checks that its addon is loaded, so `IsModern` only says which build of the skin applies.
 - `Tests/Menu.lua:87, 97` build the root menu the way the builder does, so they follow requirement 3.
 
@@ -27,6 +26,7 @@ The test per site is the question it asks: "does this client run Retail's interf
 - `DataAddons/Shared/CategoryData.lua:518-568`, `01_Vanilla/CategoryData.lua:37, 589`, `03_WrathOfTheLichKing/CategoryData.lua:494, 566`: Retail's "Legacy" suffixes and map ids.
 - `Api/CustomCriteriaApi.lua:39`, `Data/SavedData/AchievementData.lua:12`, `Data/DataIntegrityManager.lua:144`: Retail achievement data and its saved copy.
 - `Data/EventObserver.lua:239`: Retail world events.
+- `Gui/DataManager/Frame/FrameMixin.lua:109`: the data manager's tabs exist only to hold the event watcher's log, so they follow the watcher's gate (moved here from the interface list after the taint review: `PanelTabButtonTemplate` exists on Classic too, so the gate was never about the interface).
 - `Plugins/AchievementsTabFixes.lua:50, 55`: renames the Dragon Isles exploration category.
 - The suites' `gameEnv.IsRetail()` and their Retail-only guards (`Tests/Escape, Events, EventSources, Guide, Memory, Navigation, Obtainable, Schedules, Tooltip, WorldMap`): they pick which client's recorded results apply. Forever will need its own recorded results, decided with Forever support.
 
