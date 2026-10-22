@@ -131,7 +131,11 @@ schedules.Scenarios = {
     {Name = "learn-schedule-changed", Kind = "Learn", Story = "ScheduleChanged", RetailOnly = true,
         Recorded = "5964 ends in 25100", Target = "5964 ends in 25100"},
     {Name = "learn-relog", Kind = "Learn", Story = "Relog", RetailOnly = true,
-        Recorded = "observations 1", Target = "observations 1"}
+        Recorded = "observations 1", Target = "observations 1"},
+    -- The watcher's log on the Data Manager's second tab (Krowi, 2026-10-22): one line per family with what was learned,
+    -- then what was seen, newest first
+    {Name = "log-text", Kind = "Learn", Story = "LogText", RetailOnly = true,
+        Recorded = "no log", Target = "Faction Assaults: learned, cycle start 2027-01-20 17:00, the same as the addon's schedule / Grand Hunts: watched only, 1 seen"}
 }
 -- RetailOnly: every family is DataAddons/Retail data; Classic has no world or widget events
 
@@ -428,6 +432,25 @@ function stories.Relog(model, observer)
     observer.RunOnce()
     local seen = observer.GetObservationsForTest(model.Store, regions.EU, "FactionAssaults") or {}
     return ("observations %d"):format(#seen)
+end
+
+-- The log of an EU account that learned the Faction Assaults (as shipped) and saw one Grand Hunt: its family lines
+function stories.LogText(model, observer)
+    if not observer.FormatLog then
+        return "no log"
+    end
+    model.Store[regions.EU] = {
+        FactionAssaults = {Seen = {{Start = factionT0, Id = 5964}, {Start = factionT0 + 68400, Id = 5973}}, Anchor = factionT0 + 68400,
+            RotationAnchor = factionT0, Definition = addon.Data.EventSchedules.GetDefinition(KrowiAF.EventSchedules.FactionAssaults)},
+        GrandHunts = {Seen = {{Start = hour, Id = 7343}}},
+    }
+    local lines = {}
+    for line in observer.FormatLog(model.Store, regions.EU):gmatch("[^\n]+") do
+        if line:match("^%S") and not line:match("^Event schedules") and not line:match("^Nothing seen") then
+            tinsert(lines, line)
+        end
+    end
+    return table.concat(lines, " / ")
 end
 
 -- The same POI seen on two runs in a row is one observation
