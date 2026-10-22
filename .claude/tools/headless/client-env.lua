@@ -180,6 +180,8 @@ function M.New(root, client)
     addon.Diagnostics = { TraceEnabled = function() return false end, DebugEnabled = function() return false end, Trace = function() end, Debug = function() end }
     addon.Util = {
         IsMainline = client == "Retail",
+        IsModern = client == "Retail" or client == "Forever", -- as Krowi_Util: IsMainline or IsForever
+        IsForever = client == "Forever",
         IsClassicWithAchievements = client == "Classic",
         IsMistsClassic = client == "Classic",
         IsWrathClassic = false,

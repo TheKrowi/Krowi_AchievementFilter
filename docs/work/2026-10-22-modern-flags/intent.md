@@ -1,5 +1,5 @@
 # Intent: Interface code branches on Krowi_Util's IsModern, not IsMainline
-Author: Krowi (maintainer). Source: idea, 2026-10-22, after the update to Krowi_Util 2.8 and Krowi_Menu 2.2 (PR #355). Accepted by Krowi on 2026-10-22. Status: accepted
+Author: Krowi (maintainer). Source: idea, 2026-10-22, after the update to Krowi_Util 2.8 and Krowi_Menu 2.2 (PR #355). Accepted by Krowi on 2026-10-22. Status: done
 
 ## Problem
 KAF picks between Retail's and Classic's interface with `addon.Util.IsMainline`, the same flag it uses for Retail-only content. WoW Forever (16001, launching 2026-11-04) runs Retail's interface on a 1.x build, so there the two questions get different answers. Krowi_Util 2.8 added `IsModern` (Retail's interface: Retail and Forever) and `IsForever`, and Krowi_Menu 2.2 lets a menu builder use Blizzard's menus on any client with `config.modern`. KAF does not use them yet, so every interface branch would take the Classic path on Forever, and new code has no rule for which flag to use.

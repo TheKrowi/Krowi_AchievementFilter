@@ -271,7 +271,7 @@ local function BuildClient(client)
         Metadata = { Title = "Krowi's Achievement Filter", Version = "0.0", Prefix = "KrowiAF" },
         L = setmetatable({}, { __index = function(_, k) return k end }),
         Diagnostics = { DebugEnabled = function() return true end, TraceEnabled = function() return false end, Trace = function() end, Debug = function() end },
-        Util = { IsMainline = isRetail, IsClassicWithAchievements = not isRetail },
+        Util = { IsMainline = isRetail, IsModern = isRetail, IsForever = false, IsClassicWithAchievements = not isRetail },
         Tests = { Suites = {}, Ready = {}, Async = {} },
     }
     setmetatable(addon, { __index = function(t, k) local s = Stub("addon." .. tostring(k)) rawset(t, k, s) return s end })

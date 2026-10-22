@@ -1,5 +1,5 @@
 # Plan: Interface code branches on Krowi_Util's IsModern, not IsMainline
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 Approved by Krowi on 2026-10-22. Branch `refactor/2026-10-22-modern-flags`, stacked on PR #355 (Krowi_Util 2.8, Krowi_Menu 2.2).
 
@@ -10,13 +10,13 @@ Approved by Krowi on 2026-10-22. Branch `refactor/2026-10-22-modern-flags`, stac
   - `Gui/WindowFrames/FilterButton/FilterButton.lua:23`, `FilterButtonMixin.lua:3` (`local isModern`)
   - `Gui/WindowFrames/Search/OptionsMenuButton/OptionsMenuButtonMixin.lua:34`
   - `Gui/WindowFrames/AchievementButton/AchievementButtonExtraIconFactory.lua` (74, 208, 278, 291)
-  - `Gui/RewardPreview/RewardPreviewMixin.lua:162`, `Gui/DataManager/Frame/FrameMixin.lua:109`
+  - `Gui/RewardPreview/RewardPreviewMixin.lua:162`
   - `Plugins/ElvUI.lua:677`, `Plugins/GW2_UI/GW2_UI.lua` (16, 1018, 1110), `Plugins/EllesmereUI.lua` (15, 1047)
   - `Tests/Menu.lua` (87, 97), which mirror the builder
 - **`modern = addon.Util.IsModern` on every `addon.MenuBuilder:New`**: `Options/General.lua:69`, `Gui/RewardPreview/RewardPreview.lua:5`, `Gui/RightClickMenu/EventReminderMenu/EventReminderMenu.lua:6`, `Gui/RightClickMenu/AchievementMenu/AchievementMenu.lua:6`, `Gui/WindowFrames/Search/OptionsMenuButton/OptionsMenuButtonMixin.lua:8`, `Gui/WindowFrames/FilterButton/FilterButtonMixin.lua:17` (the `config` table).
 - **Headless stubs**: `.claude/tools/headless/client-env.lua:182` and `.claude/tools/headless/run-tests.lua:274` add `IsModern` (same value as `IsMainline`) and `IsForever = false`.
 - **Instruction file**: `.github/copilot-instructions.md:80` names `addon.Util.IsModern` for Blizzard's interface and `addon.Util.IsMainline` for Retail content.
-- **Left on `IsMainline`** (content): category data, `Api/CustomCriteriaApi.lua`, `Data/SavedData/AchievementData.lua`, `Data/DataIntegrityManager.lua`, `Data/EventObserver.lua`, `Plugins/AchievementsTabFixes.lua`, and the suites' `gameEnv.IsRetail()` and Retail-only guards.
+- **Left on `IsMainline`** (content): category data, `Api/CustomCriteriaApi.lua`, `Data/SavedData/AchievementData.lua`, `Data/DataIntegrityManager.lua`, `Data/EventObserver.lua`, `Gui/DataManager/Frame/FrameMixin.lua` (the tabs hold the watcher's log), `Plugins/AchievementsTabFixes.lua`, and the suites' `gameEnv.IsRetail()` and Retail-only guards.
 - No changelog line: players see nothing.
 
 ## Order of work
@@ -38,3 +38,8 @@ Approved by Krowi on 2026-10-22. Branch `refactor/2026-10-22-modern-flags`, stac
 - `load-data.lua "$PWD" Both`: 0 problems.
 - No `IsMainline` left under `Gui/`; every `MenuBuilder:New` passes `modern`.
 - In game, Retail and Classic: after `/reload`, `Read-GameErrors.ps1` shows no new KAF error; the achievement window, filter dropdown, search options and a right-click menu open as before.
+
+## Build notes
+- **Review passes changed four things.** `krowi:taint-reviewer` found no taint or secret-value path and showed every changed line evaluates as before on Retail, Mists and Wrath 3.8. It moved `Gui/DataManager/Frame/FrameMixin.lua:109` back to `IsMainline` (the tabs hold the event watcher's log; spec updated). `/code-review` led to two corrected comments (`Gui/BlizzardOverrides.lua:76`, `Plugins/GW2_UI/GW2_UI.lua:16`), the headless `IsModern` derived as Krowi_Util does (`client-env.lua`), and an instruction-file line on the older `not IsClassicWithAchievements` interface branches, which agree with `IsModern` on every client with achievements.
+- **Deferred:** a default or lint rule that makes a new `MenuBuilder:New` pass `modern`; the instruction file states the rule for now.
+- **Proof as run, 2026-10-22:** `Check-Repo.ps1` 0 errors (one changelog warning, intended: nothing for players); `load-data` Both 0 problems; suites pass headless. Retail: `/reload` at 22:39 after the deploy at 22:34, Krowi checked the windows and menus, BugGrabber 0 KAF errors. Classic: not reloaded on this build (BugGrabber last written 21:52); there both flags are false and a nil reads the same, so no changed line can take another branch.

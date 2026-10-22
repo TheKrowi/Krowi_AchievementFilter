@@ -77,7 +77,7 @@ The WoW client reads `Krowi_AchievementFilter.toc`, which defines the **exact lo
 12. `DataAddons/Loaders/Files.xml` — post-processing loaders that wire the data tables to their processors
 13. `Tests/Files.xml`
 
-Game-version-conditional loading uses `[AllowLoadGameType mainline]` and `[AllowLoadGameType wrath, cata, mists]` directives in the `.toc`. In code, use `addon.Util.IsMainline`, `addon.Util.IsClassicWithAchievements`, `addon.Util.IsWrathClassic`, `addon.Util.IsMistsClassic` (from `Libs/Krowi_Util`); the `util-flags` lint rule fails on one that Krowi_Util does not define.
+Game-version-conditional loading uses `[AllowLoadGameType mainline]` and `[AllowLoadGameType wrath, cata, mists]` directives in the `.toc`. In code, use `addon.Util.IsModern`, `addon.Util.IsMainline`, `addon.Util.IsClassicWithAchievements`, `addon.Util.IsWrathClassic`, `addon.Util.IsMistsClassic` (from `Libs/Krowi_Util`); the `util-flags` lint rule fails on one that Krowi_Util does not define. `IsModern` (Retail and WoW Forever) answers "does this client run Retail's interface?": frames, templates, atlases, skins; every `addon.MenuBuilder:New` passes `modern = addon.Util.IsModern`. Older interface code that branches on `not IsClassicWithAchievements` agrees with `IsModern` on every client with achievements, Forever included; new code uses `IsModern`. `IsMainline` (Retail only) answers "is this Retail's content?": achievement data, categories, maps, saved data, world events. KAF does not load on Forever yet (no 16001 in the `.toc`).
 
 ### Root Files
 
