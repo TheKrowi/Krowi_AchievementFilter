@@ -7602,7 +7602,7 @@ ACH 42795 | patch=12.0.0 | reward=HousingDecor | preview=HousingDecorId 15404
 ACH 42796 | patch=12.0.0 | reward=HousingDecor | preview=HousingDecorId 15409
 ACH 42797 | patch=12.0.0 | reward=HousingDecor | preview=HousingDecorId 15407
 ACH 42798 | patch=12.0.0 | reward=HousingDecor | preview=HousingDecorId 15406
-ACH 42799 | patch=11.2.0 | obtainable=[From PvE Season 15 .. Until PvE Season 15]
+ACH 42799 | patch=11.2.0
 ACH 42800 | patch=11.2.0
 ACH 42801 | patch=11.2.0 | obtainable=[From PvE Season 15 .. Until PvE Season 15]
 ACH 42802 | patch=11.2.0 | reward=KeystoneResilience | obtainable=[From PvE Season 15 .. Until PvE Season 15]
@@ -15631,7 +15631,7 @@ GUIDE 60973 # 3 Criteria Operator=Any
 achievements           8669
   with a faction       976
   with a reward type   2135
-  temporarily obtain.  2458   (2495 records)
+  temporarily obtain.  2457   (2494 records)
   with a preview       510
   with custom criteria 19
   in an event          982

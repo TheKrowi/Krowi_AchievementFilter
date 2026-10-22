@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 - Covenant assault reminders now only show for characters who finished chapter 2 of Chains of Domination
 
 ### Fixed
+- Let Her Solo Me shows as obtainable again, since it can still be earned
 - Pasting an achievement link into chat with the paste-to-chat modifier no longer gives an error when the game's deprecated API fallbacks are turned off
 - The addon's memory no longer keeps climbing in addon memory displays while you play: the taint diagnostics no longer create garbage in the background, and the event reminders create far less
 - Community Feast reminders now show wherever you are, not only in the Azure Span: Next in the 15 minutes before the cooking starts, Active while it cooks
