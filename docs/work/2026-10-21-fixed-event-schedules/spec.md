@@ -7,7 +7,7 @@ Intent: [intent.md](intent.md). Status: accepted
    - **The schedule:** a cycle; a start per region, or the weekly reset for the reset-tied ones; for each event, the window it is shown in, relative to the cycle's start; and for a rotating family, the order of its zones.
 2. **Their reminders show wherever the player is,** with exact times. An Active phase that ends on a boss kill or the event's progress (Time Rift, Superbloom, the Big Dig) shows until an upper bound.
 3. **Legion Assaults** become one "Legion Assaults" reminder without the zone, on a 52200 s cycle, if the in-game check of 2026-10-21 confirms that cycle; otherwise they stay as today.
-4. **The families whose order is not known stay as today** until their rotation is confirmed in game: Theater Troupe, Grand Hunts, Researchers Under Fire, Dreamsurges, the N'Zoth assaults, Fyrakk Assaults and the Primal Storms. Researchers Under Fire and the Dreamsurges show nowhere today because their rows name a map their POIs are not on; `/kaftest sources` finds the right maps, and the rows get them.
+4. **The families whose order is not known stay as today** until their rotation is confirmed in game: Theater Troupe, Grand Hunts, Researchers Under Fire, Dreamsurges, the N'Zoth assaults, Fyrakk Assaults and the Primal Storms. The Dreamsurges show nowhere today because their rows name the Dragon Isles' map, which their POIs are not on; the rows get their zones' maps (2022 to 2025), found by `/kaftest sources`. Researchers Under Fire works in its zone: its POI is on Zaralek Cavern's map while the player is there (checked in game, 2026-10-22).
 9. **The Maw's covenant assaults** show only for characters who finished Chains of Domination chapter 2 (quest 64556), as their POIs do (Krowi, 2026-10-22).
 10. **The watcher's log in game:** a second tab in the Data Manager lists, per family and region, what the watcher saw and learned (Krowi, 2026-10-22).
 5. **The addon learns from what it sees, for every Retail player:**
@@ -27,8 +27,8 @@ Intent: [intent.md](intent.md). Status: accepted
 ## Root cause
 - **One path for every world event** (`Data/EventData.lua:236-281`): the POI's seconds left, then whether the POI is on the event's map (`IsPoiOnMap`, a new table on every refresh while it is up), or a widget's text for the widget-timed ones (`Data/CustomWorldEventTimers.lua`), and the widget events' widgets (`Data/CustomWidgetEventTimers.lua`).
 - **The widgets exist only in their zone,** so Time Rift, Superbloom, Azerothian Archives, Researchers Under Fire, Dreamsurges and Theater Troupe show only there.
-- **Three families never show:**
-  - **Researchers Under Fire and the Dreamsurges:** `IsPoiOnMap` asks the POI on the event's `MapId`, and the POIs are not on those maps (7461 not on 2133, 7602 not on 1978; `/kaftest sources`, 2026-10-21).
+- **Two families never show:**
+  - **The Dreamsurges:** `IsPoiOnMap` asks the POI on the event's `MapId`, the Dragon Isles' 1978, and the POI is on its zone's map (7602 on 2025, Thaldraszus; `/kaftest sources`, 2026-10-22). Researchers Under Fire's POI looked the same from Silvermoon (7461 not on 2133), but is on 2133 inside Zaralek Cavern, so it was never broken there.
   - **Primal Storms:** a storm's POI reports no seconds left (`EventData.lua:262-266` returns before anything else).
 - **Superbloom: Active** returns 0 seconds, which reads as "No time data available" all the time (`CustomWidgetEventTimers.lua`, `timers[5323]`).
 - **The POI-timed families** are read from anywhere today (the POI API answered in Silvermoon); only the map check's table costs anything.

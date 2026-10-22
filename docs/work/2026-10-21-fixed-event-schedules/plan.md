@@ -143,6 +143,13 @@ KAF finds the older expansions' world events by reading their POI (and the POI's
   - **Reverted:** the map-check change (`IsPoiPresent`), which would show siblings that share a widget twice. `memory/event-refresh-poi-on-map` is back at 2978 bytes, and `schedules/researchers-in-zone` is open again until the rows get the right maps.
   - **Kept as found:** the soup's own schedule code (backlog).
 - **The watcher's log in the Data Manager** (Krowi, 2026-10-22): a second tab, built after the review fixes.
+- **The in-game runs of 2026-10-22:**
+  - the Dreamsurges' POIs are on their zones' maps, so the rows got 2022 to 2025 and show in the zone;
+  - Researchers Under Fire's POI is on Zaralek Cavern's map only while the player is in the cavern (Krowi), so it was never broken there; its scenario now records it working;
+  - inside Zaralek Cavern no POI reports seconds left, and a storm's POI never does, so the watcher counts a POI without time as the same occurrence while it is within its window (a storm was recorded twice across a /reload);
+  - the watcher already shows what the research missed: Theater Troupe's shows at :45, not :00, and the Siege, Researchers and Faction Assault starts as shipped;
+  - the watcher keeps the game's name of a POI without a row (the Theater Troupe shows) for the log.
+- **The log tab's taint review** found no taint; the tabs' tooltip handlers are removed, since on the addon's own tabs they hid GameTooltip tainted (the #300 path).
 
 ## Risks
 - **Wrong anchors** show an event at the wrong time. For the families with POIs, the watcher reports a disagreement and corrects it per player once it has seen two. The widget families have no POI to learn from: their times rest on the research, and Krowi's in-game check covers EU.

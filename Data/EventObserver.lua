@@ -165,7 +165,9 @@ local function Observe(item, now, secondsLeft)
     local entry = Entry(region, family.Key)
     local seen = entry.Seen
     local start = secondsLeft and now + secondsLeft - item.To or now - item.From
-    local margin = secondsLeft and tolerance or runEvery + tolerance
+    -- a POI without time has only when it was first seen as its start, so the same POI within its window is the same
+    -- occurrence (a storm seen again after a /reload, or after Zaralek Cavern, where no POI reports time)
+    local margin = secondsLeft and tolerance or item.To - item.From
     for i = #seen, math.max(1, #seen - 7), -1 do
         if seen[i].Id == item.Id and math.abs(seen[i].Start - start) <= margin then
             return -- the occurrence seen in an earlier session (a /reload, another character)

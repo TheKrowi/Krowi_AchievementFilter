@@ -139,7 +139,7 @@ schedules.Scenarios = {
     -- In game on 2026-10-22: a storm, whose POI reports no time, seen at 19:37 and again after a /reload at 19:49, was
     -- recorded twice; its start is only when it was first seen, so the same storm within its window is one occurrence
     {Name = "learn-untimed-relog", Kind = "Learn", Story = "UntimedRelog", RetailOnly = true,
-        Recorded = "observations 2", Target = "observations 1"},
+        Recorded = "observations 1", Target = "observations 1"},
     -- The watcher's log on the Data Manager's second tab (Krowi, 2026-10-22): one line per family with what was learned,
     -- then what was seen, newest first
     {Name = "log-text", Kind = "Learn", Story = "LogText", RetailOnly = true,
