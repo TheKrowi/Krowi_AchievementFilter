@@ -16,6 +16,8 @@ local schedules = addon.Tests.Schedules
 --   Learn: what the watcher learns in the story Story
 --   Merge: what the saved-data solution makes of the Legion Assault toggles of four model profiles: per profile whether
 --     the one toggle left is on, and how many of the other three ids remain
+--   MergeCase: the solution in the case Case: run again after the player changed the toggle, on a profile holding
+--     AceDB's copied defaults, or on a first install
 -- Until 2026-10-21 these families came from their POIs (read live, so a scenario SKIPs in game while its family's POI
 -- is up) or their widgets (only in their zone); the Recorded values are that code's answers with them absent.
 
@@ -85,6 +87,14 @@ schedules.Scenarios = {
         Recorded = "none", Target = "none"},
     {Name = "legion-toggles-merge", Kind = "Merge", RetailOnly = true,
         Recorded = "AllOff off; Azsuna on; Others on; Untouched on", Target = "AllOff off; Azsuna on; Others on; Untouched on"},
+    -- The taint review of 2026-10-21: the merge ran on every update, turning a Legion toggle the player had turned off
+    -- back on, and left the active profile's toggle nil, which AceDB's copied defaults read as off
+    {Name = "legion-toggles-merge-again", Kind = "MergeCase", Case = "Again", RetailOnly = true, -- turned off after the first merge, then an update
+        Recorded = "on", Target = "off"},
+    {Name = "legion-toggles-active-profile", Kind = "MergeCase", Case = "ActiveProfile", RetailOnly = true, -- the value 5175 holds after the merge
+        Recorded = "nil", Target = "true"},
+    {Name = "legion-toggles-first-install", Kind = "MergeCase", Case = "FirstInstall", RetailOnly = true,
+        Recorded = "not marked, changed", Target = "marked, untouched"},
     -- Researchers Under Fire stays on its POI and widget, in its zone; its POI reports time but is not on map 2133
     {Name = "researchers-in-zone", Kind = "PoiState", Event = 7461, Pois = {[7461] = 600}, Widgets = {[4826] = "10 min"}, RetailOnly = true,
         Recorded = "ends in 600", Target = "ends in 600"},
@@ -100,7 +110,12 @@ schedules.Scenarios = {
     {Name = "learn-hunt-order", Kind = "Learn", Story = "HuntOrder", RetailOnly = true,
         Recorded = "7343,7344,7342", Target = "7343,7344,7342"},
     {Name = "learn-nothing-changed", Kind = "Learn", Story = "NothingChanged", RetailOnly = true,
-        Recorded = "observations 1", Target = "observations 1"}
+        Recorded = "observations 1", Target = "observations 1"},
+    -- The taint review of 2026-10-21: the findings printed for every player, and a saved id no longer in a rotation errored
+    {Name = "learn-quiet-without-debug", Kind = "Learn", Story = "QuietWithoutDebug", RetailOnly = true,
+        Recorded = "reports 1; learned", Target = "reports 0; learned"},
+    {Name = "learn-old-id", Kind = "Learn", Story = "OldId", RetailOnly = true,
+        Recorded = "error", Target = "no error"}
 }
 -- RetailOnly: every family is DataAddons/Retail data; Classic has no world or widget events
 
@@ -218,16 +233,53 @@ local function DescribeMerge()
     return table.concat(parts, "; ")
 end
 
+-- The solution as DataIntegrityManager runs it, on model profiles and a model of KrowiAF_SavedData.Fixes
+local mergeCases = {}
+
+-- Merged on one update; the player turns Legion Assaults off; the next update must leave it off
+function mergeCases.Again(merge)
+    local fixes = {}
+    local profiles = {Default = {EventReminders = {WorldEvents = {[5175] = false}}}}
+    merge(profiles, fixes, false)
+    profiles.Default.EventReminders.WorldEvents[5175] = false
+    merge(profiles, fixes, false)
+    return profiles.Default.EventReminders.WorldEvents[5175] == false and "off" or "on"
+end
+
+-- The active profile: AceDB copied the defaults into it raw, so a nil reads as off; Val'sharah was turned off
+function mergeCases.ActiveProfile(merge)
+    local profiles = {Default = {EventReminders = {WorldEvents = {[5175] = true, [5177] = true, [5178] = true, [5210] = false}}}}
+    merge(profiles, {}, false)
+    return tostring(profiles.Default.EventReminders.WorldEvents[5175])
+end
+
+-- A first install has nothing to merge: the solution is marked done and touches nothing
+function mergeCases.FirstInstall(merge)
+    local fixes = {}
+    local profiles = {Default = {EventReminders = {WorldEvents = {[5175] = false}}}}
+    merge(profiles, fixes, true)
+    return ("%s, %s"):format(fixes.MergeLegionAssaultToggles and "marked" or "not marked",
+        profiles.Default.EventReminders.WorldEvents[5175] == false and "untouched" or "changed")
+end
+
+local function DescribeMergeCase(scenario)
+    local manager = addon.Data.DataIntegrityManager
+    if not manager or not manager.MergeLegionAssaultToggles then
+        return "no merge"
+    end
+    return mergeCases[scenario.Case](manager.MergeLegionAssaultToggles)
+end
+
 -- [[ The learning stories: Data/EventObserver.lua told a sequence of POIs through a model of the POI API ]] --
 
 local function NewPoiModel(region, now)
-    local model = {Region = region, Now = now, Left = {}, Reports = {}}
+    local model = {Region = region, Now = now, Left = {}, Reports = {}, Debug = true}
     model.Source = {
         Region = function() return model.Region end,
         Now = function() return model.Now end,
         SecondsLeft = function(id) return model.Left[id] end,
         PoiInfo = function() return nil end,
-        Debug = function() return true end,
+        Debug = function() return model.Debug end,
         Report = function(message) tinsert(model.Reports, message) end,
     }
     model.Store = {}
@@ -312,6 +364,32 @@ function stories.HuntOrder(model, observer)
     return table.concat(ids, ",")
 end
 
+-- A Korean player without debug mode: the watcher learns, and prints nothing
+function stories.QuietWithoutDebug(model, observer)
+    model.Debug = false
+    model.Region = regions.KR
+    model.Now = factionT0 + 100
+    model.Left[5964] = 25100
+    observer.RunOnce()
+    model.Left[5964] = nil
+    observer.RunOnce()
+    model.Now = factionT0 + 68400 + 100
+    model.Left[5973] = 25100
+    observer.RunOnce()
+    local learned = observer.GetLearned("FactionAssaults", regions.KR)
+    return ("reports %d; %s"):format(#model.Reports, learned and "learned" or "not learned")
+end
+
+-- An observation saved by an older release, of an id no longer in the Faction Assaults' rotation, then a new one
+function stories.OldId(model, observer)
+    model.Region = regions.EU
+    model.Store[regions.EU] = {FactionAssaults = {Seen = {{Start = factionT0 - 68400, Id = 1}}}}
+    model.Now = factionT0 + 100
+    model.Left[5964] = 25100
+    local ok = pcall(observer.RunOnce)
+    return ok and "no error" or "error"
+end
+
 -- The same POI seen on two runs in a row is one observation
 function stories.NothingChanged(model, observer)
     model.Region = regions.EU
@@ -371,6 +449,8 @@ local function RunScenario(env, scenario)
         got = TellStory(scenario)
     elseif scenario.Kind == "Merge" then
         got = DescribeMerge()
+    elseif scenario.Kind == "MergeCase" then
+        got = DescribeMergeCase(scenario)
     else
         blocked = "unknown kind " .. tostring(scenario.Kind)
     end
