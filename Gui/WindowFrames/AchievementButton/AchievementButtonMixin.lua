@@ -1,5 +1,6 @@
 local _, addon = ...
 local extraIconFactory = addon.Gui.AchievementButtonExtraIconFactory
+local trackingSlots = addon.Gui.TrackingSlots
 local saturationStyle = addon.Objects.SaturationStyle
 
 local media = "Interface/AddOns/Krowi_AchievementFilter/Media/"
@@ -656,17 +657,11 @@ function KrowiAF_AchievementButtonMixin:ToggleTracking()
 		return
 	end
 
-	local count = GetNumTrackedAchievements()
-	if count >= MAX_TRACKED_ACHIEVEMENTS then
-		UIErrorsFrame:AddMessage(format(ACHIEVEMENT_WATCH_TOO_MANY, MAX_TRACKED_ACHIEVEMENTS), 1.0, 0.1, 0.1, 1.0)
-		return
-	end
-
-	local _, _, _, completed, _, _, _, _, _, _, _, _, wasEarnedByMe = GetAchievementInfo(id)
-	local earnedByFilter = addon.Filters.db.profile.EarnedBy
-	if (earnedByFilter == 'Account' and completed or wasEarnedByMe) or (earnedByFilter == 'CharacterAccount' and completed and wasEarnedByMe) then
-		UIErrorsFrame:AddMessage(ERR_ACHIEVEMENT_WATCH_COMPLETED, 1.0, 0.1, 0.1, 1.0)
+	local refused = trackingSlots.MakeRoom(id)
+	if refused == "completed" then
 		SetAsTracked(self, false)
+		return
+	elseif refused then
 		return
 	end
 
