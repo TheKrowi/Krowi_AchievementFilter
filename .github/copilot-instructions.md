@@ -47,7 +47,7 @@ The kit carries Lua 5.1.5 (`Krowi_ClaudeKit\tools\lua51\`), the exact interprete
 & "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\Deploy.ps1" -WhatIf            # -Client Classic|Ptr|Xptr|... (Xptr = _xptr_, the second test realm)
 & "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\Read-GameErrors.ps1"           # -Hours 0 -All -Client Classic|Ptr|Xptr|...
 & ".claude\tools\Read-GameTests.ps1"                                                           # -Client Classic|Ptr|Xptr, -Run <n>
-& ".claude\tools\Request-GameTests.ps1" tracking                                               # only on the maintainer's request, client closed: run suites at the next login (Retail)
+& ".claude\tools\Request-GameTests.ps1" tracking                                               # only on the maintainer's request, client closed: run suites at the next login; -Client Classic
 & "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\Read-GameScreenshot.ps1"       # -Count 3 -Minutes 0 -Client Classic|Ptr|Xptr|...
 ```
 - **Blizzard UI source**: the kit's `Update-UiSource.ps1` keeps read-only shallow clones of Gethe/wow-ui-source in `..\wow-ui-source\live` and `..\wow-ui-source\classic` next to the repo (`-Branch ptr2` and others on request). Grep them for FrameXML, secure templates and `Blizzard_APIDocumentationGenerated` (signatures and secret-value flags) instead of fetching from the web, and never run anything from them. The export can lag a live patch; the layout and the `ketho.wow-api` annotations are in `.claude/tools/README.md`.

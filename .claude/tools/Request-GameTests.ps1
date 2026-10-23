@@ -9,9 +9,9 @@
 
     Writes KrowiAF_DebugTable.TestRequest = {Suites = {...}, NotAfter = <unix time>} as the last field of the addon's
     saved variables (a Lua table; the last copy of a key wins, so an old request a crash left behind cannot override
-    it), checks with the kit's Lua 5.1 that the file still loads and holds the request, then starts the client through
-    the Battle.net app's own command line. Entering the world stays the maintainer's: a script that sends input to the
-    client is what Blizzard's EULA forbids.
+    it), checks with the kit's Lua 5.1 that the file still loads and holds the request, then starts the client with the
+    kit's Start-Game.ps1, through the Battle.net app's own command line. Entering the world stays the maintainer's: a
+    script that sends input to the client is what Blizzard's EULA forbids.
 
     At that login Tests/Tests.lua clears the request before anything runs, runs the suites without needing debug mode,
     and when they are done shows a panel with each suite's counts and failing lines and takes a screenshot:
@@ -22,7 +22,7 @@
     The /kaftest suites to run, in order.
 
 .PARAMETER Client
-    Retail (default). The Battle.net product code of the other clients is not known yet, so they are refused.
+    Retail (default), Ptr, Xptr, Beta, Classic or ClassicPtr: the clients the addon loads on.
 
 .PARAMETER Account
     Account folder name (e.g. 133658957#1) instead of the one whose saved variables were written last.
@@ -40,7 +40,7 @@
 [CmdletBinding()]
 param(
     [Parameter(Mandatory, Position = 0)][string[]]$Suites,
-    [ValidateSet('Retail')][string]$Client = 'Retail',
+    [ValidateSet('Retail', 'Ptr', 'Xptr', 'Beta', 'Classic', 'ClassicPtr')][string]$Client = 'Retail',
     [string]$Account,
     [int]$Minutes = 15,
     [switch]$NoLaunch
@@ -49,7 +49,6 @@ param(
 $ErrorActionPreference = 'Stop'
 . (Join-Path $PSScriptRoot 'KitPath.ps1')
 . (Join-Path $KitTools 'AddonContext.ps1')   # the kit's client map: Get-ClientFolder
-$productCodes = @{ Retail = 'WoW' }   # Battle.net.exe --exec="launch <code>"
 
 foreach ($suite in $Suites) {
     if ($suite -notmatch '^[a-z]+$') { throw "Not a suite name: '$suite'" }
@@ -107,8 +106,5 @@ if ($LASTEXITCODE -ne 0 -or "$got" -ne "$($Suites -join ',')|$notAfter") {
 "  valid until $([DateTimeOffset]::FromUnixTimeSeconds($notAfter).LocalDateTime); the original is kept at $backup"
 
 if ($NoLaunch) { return }
-$battleNet = (Get-Process -Name 'Battle.net' -ErrorAction SilentlyContinue | Where-Object Path | Select-Object -First 1).Path
-if (-not $battleNet) { $battleNet = Join-Path ${env:ProgramFiles(x86)} 'Battle.net\Battle.net.exe' }
-if (-not (Test-Path -LiteralPath $battleNet)) { throw "Battle.net.exe not found; start the $Client client by hand." }
-Start-Process -FilePath $battleNet -ArgumentList "--exec=`"launch $($productCodes[$Client])`""
-"Started the $Client client through ${battleNet}: enter the world, the suites start 5 s after it; then Read-GameScreenshot.ps1 for the summary"
+& (Join-Path $KitTools 'Start-Game.ps1') -Client $Client
+"Enter the world: the suites start 5 s after it; then Read-GameScreenshot.ps1 -Client $Client for the summary"
