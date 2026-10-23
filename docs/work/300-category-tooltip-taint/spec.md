@@ -1,0 +1,72 @@
+# Spec: Secret number errors when a tooltip closes after using the achievement window
+Intent: [intent.md](intent.md). Status: accepted
+
+## Requirements
+1. On Retail, hovering a category on Blizzard's Guild tab or Blizzard's Achievements tab in KAF's window shows no tooltip on `GameTooltip`, so no KAF-tainted execution writes a Lua field of `GameTooltip` or its widget container. The taint probe records no `statusBarPool` or `GameTooltip.widgetContainer` detection by KAF for that hover and a widget tooltip after it.
+2. The tooltip still shows the category's name and its completed and total count as a bar with the `completed/total` text, next to the button, and hides when the mouse leaves the button or the window closes.
+3. Feat of Strength categories and the Statistics tab keep Blizzard's tooltips.
+4. Mists Classic and Titan Reforged are unchanged.
+5. With the ElvUI, GW2_UI or EllesmereUI plugin, the tooltip is skinned like KAF's own category tooltips.
+6. Whatever runs to hide the tooltip runs only while it is shown and allocates nothing per frame.
+7. A scenario records which tooltip a Blizzard category button shows, before and after the fix.
+
+## Root cause
+The error is Blizzard's widget layout comparing a secret value while running tainted. KAF taints it in three steps:
+
+1. **KAF runs Blizzard's tab code.** KAF registers Blizzard's tab buttons with its own click functions (Gui/Gui.lua:27-37). It also writes the global `AchievementFrameTab_OnClick` (Gui/Gui.lua:206, Gui/BlizzardOverrides.lua:6 and 36), replaces `AchievementFrame_ToggleAchievementFrame` (Gui/BlizzardOverrides.lua:4) and sets the micro button's click (Globals.lua:340). So `AchievementFrameBaseTab_OnClick(1 or 2)` → `InitAchievementPage` runs tainted (Blizzard_AchievementUI.lua:441-457, wow-ui-source live). Its category list initializer stores `self.Button.showTooltipFunc = AchievementFrameCategory_StatusBarTooltip` as a tainted value on every category button of those two tabs (line 589-594). Gui/BlizzardOverrides.lua:69-72 already notes that Blizzard's achievement frame runs tainted this way.
+2. **The hover creates a tainted pool on `GameTooltip`.** The button's `OnEnter` reads that field (line 612-616), so `AchievementFrameCategory_StatusBarTooltip` runs tainted (line 777-783). Its `GameTooltip_ShowStatusBar` creates `GameTooltip.statusBarPool` on first use (GameTooltip.lua:521-528). This is the only caller of that function in live FrameXML, and KAF calls neither function itself. A pool that already exists gets its frames acquired tainted instead.
+3. **Every later hide runs tainted.** `GameTooltip_OnHide` reads `self.statusBarPool` (GameTooltip.lua:409) two lines before `GameTooltip_ClearWidgetSet` (line 411). Most tooltips have no widget set and nothing shows. The first that has one, such as a map POI or a vignette, runs `UnregisterForWidgetSet` → `UpdateWidgetLayout` (Blizzard_UIWidgetManager.lua:287-295) → `ResizeLayoutMixin:Layout`, whose `self:GetNumPoints() == 0` (LayoutFrame.lua:493) errors when that number is secret. The error comes before `self.widgetSetID = nil` (Blizzard_UIWidgetManager.lua:298), so every later hide repeats it.
+
+Why the number is secret is game state, not KAF. `GetNumPoints` lists no secret aspect in the API docs, so the secret comes from what the tooltip anchored the container to. The original report has it start in combat. Any addon that taints a field `GameTooltip_OnHide` reads before line 411 produces the same stack (CraftSim's `infoList`, read at line 398, in formigao's export), which is why the error is blamed on many addons.
+
+Blizzard's other achievement tooltips call only C methods (`SetOwner`, `SetText`, `AddLine`, `Show`). Both exports confirm that: the tainted category tooltip ran those as well, and the only `GameTooltip` field the probe found tainted was `statusBarPool`.
+
+**Reproduction:**
+- Sinrath's export (issue comment, 2026-10-20; KAF 103.0, client 12.1.5.70448, only KAF, BugGrabber and BugSack): `statusBarPool` tainted by KAF at 21:46:48 with the achievement window and the map open, then the widget container's `widgetFrames`, `shownWidgetCount`, `numWidgetsShowing` and `timerWidgets` at 21:46:54.
+- The maintainer's own probe session of 2026-10-23 19:57:05 (Krowi-Frostmane, 12.1.5.70529): `statusBarPool` tainted by KAF at 19:57:31 with the window open and the map closed, the same four widget container keys at 19:57:52 with the map open. No error followed, out of combat.
+
+## Design
+KAF provides its own `AchievementFrameCategory_StatusBarTooltip` on Retail, set in `addon.OverwriteFunctions` (Gui/BlizzardOverrides.lua) before Blizzard's category list first fills. It draws the tooltip on KAF's progress-bar tooltip (`addon.ProgressBarLib.GameTooltipWithProgressBar`, the library's own `Krowi_ProgressBarTooltip`), the same one KAF's own category buttons use (Gui/Gui.lua:283-302). It shows the button's `name` as the title, and a bar from 0 to `numAchievements` filled to `numCompleted`, with `numCompletedText` as its text. All three are fields Blizzard's initializer already sets on the button (Blizzard_AchievementUI.lua:581, 591-593).
+
+- **Nothing touches `GameTooltip`,** so its fields stay as secure Blizzard code left them, whatever else in the window runs tainted. That meets requirement 1 without changing how KAF drives Blizzard's tabs.
+- **Hiding.** Blizzard's `OnLeave` hides only `GameTooltip` (Blizzard_AchievementUI.lua:618-621). A KAF-owned frame hides KAF's tooltip once the mouse leaves the button that owns it. It runs an `OnUpdate` that is set when the tooltip shows and cleared when the tooltip hides or changes owner. A tooltip also hides with its owner, so closing the window hides it.
+- **Skins** reach it through the plugins' existing code for that tooltip (Plugins/ElvUI.lua:54, Plugins/GW2_UI/GW2_UI.lua:241, Plugins/EllesmereUI.lua:312).
+- **Not touched:** Feat of Strength categories keep `AchievementFrameCategory_FeatOfStrengthTooltip` (line 585-588). The Statistics tab has no category tooltip (line 595-596). Classic keeps Blizzard's function.
+
+## Options considered
+1. **KAF's progress-bar tooltip (recommended).** Category tooltips look the same on every tab, KAF's and Blizzard's, and the skins already cover it. `GameTooltip` is never used. Costs a small hide-on-leave watcher.
+2. **A text-only tooltip on `GameTooltip`.** The replacement shows the name and the `completed/total` text with C methods only (`SetOwner`, `SetText`, `AddLine`, `Show`) and no status bar. Smallest code, no watcher, and Blizzard's `OnLeave` hides it. It still runs tainted code on `GameTooltip`, which the two exports show leaves no Lua field behind but which does not rule out a future patch adding one, and the bar is gone.
+3. **Stop running Blizzard's tab code from KAF.** Blizzard's tab buttons keep their own click, KAF stops writing `AchievementFrameTab_OnClick` and follows tab changes with `hooksecurefunc`. The tooltip looks unchanged and the cause is removed at its root, which could also retire the chat-link workaround (Gui/BlizzardOverrides.lua:69-108). But other tainted writes into Blizzard's frame remain (the summary buttons' ids, the list's element data, same comment), so the frame may still not run secure; it touches the toggle, the micro button and the tab system. Offered as separate work.
+4. **Leave it to Blizzard.** The error stack is generic (WoWUIBugs #811), but KAF alone reproduces it, so it stays KAF's to fix.
+
+## Areas of concern
+- **Taint and secret values.**
+  - The replacement is a new global write of a FrameXML UI function, listed in `.claude/tools/Check-Repo.globals`. Blizzard's initializer reads the global at line 594, so an initializer pass that ran secure, such as one from an achievement event, now runs tainted from that line on. That only reaches the category buttons of the window, which already run tainted in every KAF path.
+  - The achievement window has no protected call besides the chat-link telemetry, which is already handled.
+  - No secret values are read: the counts come from `AchievementFrame_GetCategoryTotalNumAchievements` and `GetNumCompletedAchievements`.
+  - `krowi:taint-reviewer` runs on the diff.
+- **Clients.** Retail only, behind `addon.Util.IsMainline`. Mists Classic and Titan Reforged have no secret values and keep Blizzard's tooltip.
+- **Blizzard API changes.** `AchievementFrameCategory_StatusBarTooltip` is a global in live; `Find-DeprecatedApi.ps1` runs on the diff. If Blizzard renames it, the override writes a global nothing reads and Blizzard's tooltip returns, together with the bug.
+- **Other addons, plugins and skins.** KAF's plugins skin the progress-bar tooltip already. An addon that hooks `AchievementFrameCategory_StatusBarTooltip` itself loses its hook if it hooked before KAF replaced it. ElvUI's own tooltip skin hooks `GameTooltip_ShowStatusBar`, which these buttons no longer call.
+- **Saved variables and migrations.** None.
+- **Localization.** None: the name and the count text come from Blizzard's button.
+- **Embedded libraries.** None changed; Krowi_ProgressBar is used as it is.
+- **Data snapshots.** None, no data touched.
+- **Background jobs.** The hide watcher is an `OnUpdate`. It runs only while this tooltip is shown and is listed in `.claude/tools/Check-Repo.jobs` with that reason.
+- **Player-facing text.** A changelog line under the next version's `### Fixed`.
+- **Other entry points.** Older reports may have had others (code before 99.6, other addons tainting `GameTooltip`). The probe stays on and would show one by its key.
+
+## Verification
+- **Scenario** in the `tooltip` suite (Retail only), in game and headlessly. Blizzard's Achievements tab is opened through KAF's own tab function, and its first category button with a status-bar tooltip has its tooltip shown. The scenario records which tooltip shows for that button:
+
+  | Scenario | Recorded (today) | Target |
+  |---|---|---|
+  | Category on Blizzard's Achievements tab | `GameTooltip`, with a status bar | KAF's progress-bar tooltip; `GameTooltip` not shown |
+
+  Headlessly the real `addon.OverwriteFunctions` runs against a model of the category initializer, which reads the global as line 594 does, and a model of both tooltips. In game the run calls the tooltip from addon code, which today taints `GameTooltip.statusBarPool` for the session, so reload before combat. The window and its selected tab are restored.
+- **Hide on leave.** The headless model has the mouse leave the owner and checks that the tooltip hides. In game, at the after-run, the maintainer hovers a Guild tab category and moves off, with a screenshot.
+- **The probe, in game.** After `/reload`, the maintainer hovers a Guild tab category (or Blizzard's Achievements tab), then a map POI with a widget. After the next `/reload`, the probe's last session in the saved variables shows no `statusBarPool` and no `GameTooltip.widgetContainer` detection by KAF, against the two reproductions above.
+- **The rest.** `Check-Repo.ps1`, the `escape`, `navigation` and `tooltip` suites headless and in game, `Read-GameErrors.ps1` after the reload, a Mists Classic check that the Guild tab tooltip is Blizzard's, and `krowi:taint-reviewer`.
+
+## Decision
+Option 1, KAF's progress-bar tooltip on Retail, chosen by the maintainer (Krowi) on 2026-10-23. The intent was accepted with it: the item was unambiguous, so its gate was folded into this one. Option 3 stays open as separate work.
