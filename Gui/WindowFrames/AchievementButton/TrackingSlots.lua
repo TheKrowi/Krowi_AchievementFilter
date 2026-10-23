@@ -43,17 +43,14 @@ function trackingSlots.IsDone(id)
     return isGuild or addon.Objects.Flags:New(flags).IsAccountWide
 end
 
--- Stops tracking the done achievements and names each in chat; returns how many it stopped tracking
+-- Stops tracking the done achievements and names each in chat
 local function FreeDone()
-    local freed = 0
     for _, id in ipairs(source.GetTrackedIds()) do -- a new table on both clients, so untracking while walking it is safe
         if trackingSlots.IsDone(id) then
             source.Untrack(id)
             source.Print(addon.Metadata.Title, "-", addon.L["Stopped tracking completed achievement"] .. ":", source.GetAchievementLink(id) or id)
-            freed = freed + 1
         end
     end
-    return freed
 end
 
 -- nil when the achievement may be tracked; otherwise why not, "completed" or "full", after the error is shown. The
@@ -67,15 +64,23 @@ function trackingSlots.MakeRoom(id)
     end
 
     local max = source.GetMaxTracked()
-    local count = source.GetNumTracked()
-    -- Counted before freeing, so the answer does not depend on when the game's own count drops
-    if count >= max and count - FreeDone() >= max then
-        source.ShowError(format(ACHIEVEMENT_WATCH_TOO_MANY, max))
-        return "full"
+    if source.GetNumTracked() >= max then
+        FreeDone()
+        -- Counted again: the game's count drops inside the untrack call (Tests/Tracking.lua, Retail 12.1.5), and one the
+        -- game would not untrack still counts
+        if source.GetNumTracked() >= max then
+            source.ShowError(format(ACHIEVEMENT_WATCH_TOO_MANY, max))
+            return "full"
+        end
     end
 end
 
 -- [[ For the suites ]] --
+
+-- The tracked achievements as the game lists them, whatever source the checks use now
+function trackingSlots.GetTrackedIds()
+    return game.GetTrackedIds()
+end
 
 -- For the tracking suite: a model of the game in place of the game, nil for the game again
 function trackingSlots.UseSourceForTest(model)

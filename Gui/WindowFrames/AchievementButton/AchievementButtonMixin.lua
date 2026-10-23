@@ -660,9 +660,8 @@ function KrowiAF_AchievementButtonMixin:ShowTooltip()
 	addon.Gui.AchievementTooltip:ShowTooltip(self, self.Achievement)
 end
 
+-- The row keeps listening to the tracking events while it tracks or untracks: its handler redraws the check from the game
 function KrowiAF_AchievementButtonMixin:ToggleTracking()
-	self:UnregisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED")
-
 	local id = self.Achievement.Id
 	if self.Achievement.IsTracked then
 		RemoveTrackedAchievement(id)
@@ -683,8 +682,6 @@ function KrowiAF_AchievementButtonMixin:ToggleTracking()
 	if trackingError then
 		ContentTrackingUtil.DisplayTrackingError(trackingError)
 	end
-
-	self:RegisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED")
 
 	return true
 end
