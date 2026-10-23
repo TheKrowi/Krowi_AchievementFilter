@@ -24,6 +24,9 @@
 .PARAMETER Account
     Account folder name (e.g. 133658957#1) instead of the most recently written file.
 
+.PARAMETER Run
+    Shows the nth newest of the kept runs (1 = the newest) instead of the last one; the reader lists them all.
+
 .EXAMPLE
     & ".claude\tools\Read-GameTests.ps1"
     & ".claude\tools\Read-GameTests.ps1" -Client Classic
@@ -31,7 +34,8 @@
 [CmdletBinding()]
 param(
     [ValidateSet('Retail', 'Classic', 'Ptr', 'Xptr')][string]$Client = 'Retail',
-    [string]$Account
+    [string]$Account,
+    [int]$Run
 )
 
 $ErrorActionPreference = 'Stop'
@@ -80,7 +84,8 @@ $shots = @(if (Test-Path -LiteralPath $shotDir) {
 $encoding = [Console]::OutputEncoding
 [Console]::OutputEncoding = [Text.Encoding]::UTF8
 try {
-    $output = & $lua $reader $file.FullName $headless
+    $readerArgs = @($file.FullName, $headless) + @(if ($Run -gt 0) { "$Run" })
+    $output = & $lua $reader @readerArgs
     $code = $LASTEXITCODE
 } finally {
     [Console]::OutputEncoding = $encoding

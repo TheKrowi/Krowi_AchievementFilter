@@ -161,7 +161,7 @@ end
 --     on Retail (Blizzard_AchievementObjectiveTracker.lua UntrackAchievement), RemoveTrackedAchievement on Classic
 --     (WatchFrame.lua WatchFrame_StopTrackingAchievement): its row's Track check clears
 -- At the end the tracked achievements are put back as they were, as far as the game takes completed ones back, and the
--- addon's Lua errors of the session are reported from BugGrabber. Combat stops the run and puts them back. On Retail the
+-- addon's Lua errors of the session are reported from BugGrabber. Combat stops the run; they are put back once it ends. On Retail the
 -- steps also record whether the objective tracker's dirty flags stay secure: the tracking calls fire
 -- CONTENT_TRACKING_UPDATE inside the addon's call and the tracker marks itself dirty from there; the container clears its
 -- own flag to nil, which reads as secure whoever cleared it, so the modules' isDirty, which each layout sets to false
@@ -177,10 +177,7 @@ local banner
 local steps, SetBanner
 
 local function TrackedIds()
-    if GetTrackedAchievements then -- as TrackingSlots.lua: Classic's own list first
-        return {GetTrackedAchievements()}
-    end
-    return C_ContentTracking.GetTrackedIDs(Enum.ContentTrackingType.Achievement)
+    return addon.Gui.TrackingSlots.GetTrackedIds()
 end
 
 -- C completed, E earned by this character, G guild, A account-wide, ? unknown to the game
@@ -190,7 +187,7 @@ local function DescribeAchievement(id)
         return id .. "?"
     end
     return id .. (completed and "C" or "") .. (wasEarnedByMe and "E" or "") .. (isGuild and "G" or "")
-        .. (bit.band(flags, accountWideFlag) == accountWideFlag and "A" or "")
+        .. (addon.Objects.Flags:New(flags).IsAccountWide and "A" or "")
 end
 
 local function ObserveTracker(label)
@@ -230,11 +227,15 @@ local function After(seconds, func)
     end)
 end
 
--- Achievements nobody completed that the window can show, not tracked yet
+-- Achievements nobody completed that the window can show as themselves, not tracked yet: with Collapse Series the window
+-- selects the series' next achievement instead when that one is completed (Filters.lua GetHighestAchievementWhenCollapseSeries)
 local function Candidates(count)
     local found = {}
+    if count <= 0 then
+        return found
+    end
     for id, achievement in next, addon.Data.Achievements do
-        if achievement.Category and not achievement.IsTracking and not IsTrackedAchievement(id) then
+        if achievement.Category and not achievement.IsTracking and not IsTrackedAchievement(id) and not select(2, addon.GetNextAchievement(achievement)) then
             local knownId, _, _, completed, _, _, _, _, _, _, _, isGuild, wasEarnedByMe, _, isStatistic = GetAchievementInfo(id)
             if knownId and not completed and not wasEarnedByMe and not isGuild and not isStatistic then
                 tinsert(found, id)
@@ -302,6 +303,9 @@ steps = {
                 SetBanner(("%d tracked, none done: the game would not track a completed one"):format(live.Target))
             end
             local room = live.Target - #TrackedIds()
+            if room < 0 then
+                return ("%d tracked and none done: untrack one to run the steps"):format(#TrackedIds())
+            end
             local picked = Candidates(room + 1)
             if #picked <= room then
                 return "not enough achievements nobody completed to fill the tracker"
@@ -419,14 +423,9 @@ local function CheckErrors()
     end
 end
 
-local function Stop(reason)
-    runToken = runToken + 1
+-- Puts the tracked achievements back, reports the Lua errors and hands the results to the runner
+local function Finish()
     banner:UnregisterAllEvents()
-    banner:Hide()
-    if reason then
-        tinsert(live.Observations, "stopped: " .. reason)
-    end
-
     live.StepName = "restore"
     local ok, refused = pcall(Restore)
     if not ok then
@@ -456,6 +455,23 @@ local function Stop(reason)
     finish(results, observations)
 end
 
+-- Ends the steps. In combat the tracked achievements are put back only once it ends: every tracking call from addon code
+-- marks the objective tracker dirty from the addon's execution, and its next layout would run tainted in the fight.
+local function Stop(reason, combatStarted)
+    runToken = runToken + 1
+    banner:Hide()
+    if reason then
+        tinsert(live.Observations, "stopped: " .. reason)
+    end
+    if combatStarted or InCombatLockdown() then
+        banner:UnregisterAllEvents()
+        banner:RegisterEvent("PLAYER_REGEN_ENABLED")
+        print("|cFF88CCFFKrowiAF Tests:|r tracking: stopped for combat; your tracked achievements are put back when it ends")
+        return
+    end
+    Finish()
+end
+
 local RunStep
 
 local function Capture()
@@ -463,7 +479,7 @@ local function Capture()
     if not ok then
         Add("FAIL", "test error: " .. tostring(err))
     end
-    live.Shot = {Time = date("%H:%M:%S")}
+    live.Shot = {Time = date("%Y-%m-%d %H:%M:%S")}
     live.Results[#live.Results].Screenshot = live.Shot
     Screenshot()
     After(afterShot, function()
@@ -509,7 +525,9 @@ local function CreateBanner()
         if event == "SCREENSHOT_FAILED" and live.Shot then
             live.Shot.Failed = true
         elseif event == "PLAYER_REGEN_DISABLED" then
-            Stop("combat started")
+            Stop("combat started", true)
+        elseif event == "PLAYER_REGEN_ENABLED" then
+            Finish()
         end
     end)
     banner:Hide()

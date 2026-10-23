@@ -24,7 +24,7 @@ A model of a secret value keeps the type the real value has: a secret name is a 
 ## Running in game
 
 - `/kaftest <suite>` runs a suite against the real frames (debug mode on, not in combat). `/kaftest login <suite>`, typed once, re-runs it after every `/reload` until `/kaftest login off`.
-- Results go to chat and to `KrowiAF_DebugTable.Tests.LastRun`, which the game writes to disk on the next `/reload` or logout. `.claude/tools/Read-GameTests.ps1` prints that run with every line that differs from the headless run marked.
+- Results go to chat and to `KrowiAF_DebugTable.Tests.LastRun`, which the game writes to disk on the next `/reload` or logout. `.claude/tools/Read-GameTests.ps1` prints that run with every line that differs from the headless run marked. The last 10 runs are kept in `KrowiAF_DebugTable.Tests.History`, so several runs in a row can be read after one `/reload`: the reader lists them, and `-Run <n>` shows the nth newest. Lines of steps only the game runs are marked `g` and not diffed, and a step's screenshot is paired with its file.
 - A scenario is skipped there, with the reason stored, when state outside the scenario (a target, a foreign popup, an open menu, a UI panel) could have consumed a press.
 - An addon cannot call `ToggleGameMenu` without `ADDON_ACTION_FORBIDDEN` from Blizzard's protected handlers, so the in-game press runs Blizzard's Escape chain as far as an addon may: the 12.1 handler registry on Retail, the legacy chain on Classic. `Tests/Escape.lua` documents both and their sources, and the headless model implements the same primitives.
 - The in-game press never shows the game menu itself (its OnShow builds Blizzard's menu buttons in addon execution) and is not made at all when outside state could consume it.

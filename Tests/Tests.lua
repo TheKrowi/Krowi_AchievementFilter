@@ -16,13 +16,15 @@ local tests = addon.Tests
 -- next /reload or logout; .claude/tools/Read-GameTests.ps1 prints them and diffs them against the
 -- headless run. Needs debug mode (Options > General > Debug) and refuses to run in combat.
 -- A result with GameOnly set is a step only the game runs (the /kevutest way of Krowi_ExtendedVendorUI):
--- the reader shows it without diffing it. One with Screenshot = {Time = "HH:MM:SS", Failed = true|nil}
--- names the screenshot its step took, which the reader pairs with the file.
+-- the reader shows it without diffing it. One with Screenshot = {Time = "YYYY-MM-DD HH:MM:SS", Failed = true|nil}
+-- names the screenshot its step took, which the reader pairs with the file. The last runs of every suite are kept
+-- in History, oldest first, so several runs in a row can be read after one /reload (Read-GameTests.ps1 -Run).
 
 local prefix = "|cFF88CCFFKrowiAF Tests:|r "
 local loginDelay = 5 -- seconds after PLAYER_ENTERING_WORLD before the first attempt
 local loginWait = 120 -- seconds a login run keeps waiting for a suite's Ready check (the data load can take a while on a cold cache)
 local retryDelay = 2
+local keepRuns = 10 -- runs kept in History
 
 local function GetDb()
     KrowiAF_DebugTable = KrowiAF_DebugTable or {}
@@ -88,6 +90,11 @@ local function Report(name, results, observations)
     -- the latest run of every suite, for the release preflight (.claude/release-gate.ps1)
     GetDb().Runs = GetDb().Runs or {}
     GetDb().Runs[name] = GetDb().LastRun
+    GetDb().History = GetDb().History or {}
+    tinsert(GetDb().History, GetDb().LastRun)
+    while #GetDb().History > keepRuns do
+        tremove(GetDb().History, 1)
+    end
 end
 
 -- waitSeconds: how long to keep retrying the suite's Ready check (login runs); nil runs once
