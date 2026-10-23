@@ -174,7 +174,7 @@ local afterShot = 1 -- a screenshot -> the next step
 local live -- the run in progress
 local runToken = 0 -- bumped by every stop, so a stopped run's timers do nothing
 local banner
-local steps
+local steps, SetBanner
 
 local function TrackedIds()
     if GetTrackedAchievements then -- as TrackingSlots.lua: Classic's own list first
@@ -286,20 +286,24 @@ steps = {
             if #done == 0 then
                 local id = EarnedCandidate()
                 if id then
-                    AddTrackedAchievement(id)
-                    tinsert(live.Observations, ("none of the tracked achievements was done; tracked %d, earned: %s"):format(id,
-                        IsTrackedAchievement(id) and "the game took it" or "the game refused it"))
+                    local ok, err = pcall(AddTrackedAchievement, id) -- Classic 5.5.4 raises a usage error for an earned one
+                    tinsert(live.Observations, ("none of the tracked achievements was done; tracking %d, earned: %s"):format(id,
+                        IsTrackedAchievement(id) and "the game took it" or ("the game refused it" .. (ok and "" or (": " .. tostring(err))))))
                     if IsTrackedAchievement(id) then
                         tinsert(done, id)
                     end
                 end
             end
-            if #done == 0 then
-                return "no completed achievement is tracked and the game would not track one"
-            end
             live.Done = done
-            local picked = Candidates(MAX_TRACKED_ACHIEVEMENTS - #TrackedIds() + 1)
-            if #picked <= MAX_TRACKED_ACHIEVEMENTS - #TrackedIds() then
+            -- Without a done achievement the button is pressed below the cap: it frees nothing then, and the row's Track
+            -- check is still checked; the freeing itself is the scenarios' then
+            live.Target = #done > 0 and MAX_TRACKED_ACHIEVEMENTS or MAX_TRACKED_ACHIEVEMENTS - 1
+            if #done == 0 then
+                SetBanner(("%d tracked, none done: the game would not track a completed one"):format(live.Target))
+            end
+            local room = live.Target - #TrackedIds()
+            local picked = Candidates(room + 1)
+            if #picked <= room then
                 return "not enough achievements nobody completed to fill the tracker"
             end
             live.Clicked = tremove(picked)
@@ -310,7 +314,7 @@ steps = {
         end,
         Check = function()
             local count = #TrackedIds()
-            Add(count == MAX_TRACKED_ACHIEVEMENTS and "PASS" or "FAIL", ("%d of %d tracked, done among them: [%s]"):format(count, MAX_TRACKED_ACHIEVEMENTS, Join(live.Done)))
+            Add(count == live.Target and "PASS" or "FAIL", ("%d of %d tracked, done among them: [%s]"):format(count, MAX_TRACKED_ACHIEVEMENTS, Join(live.Done)))
             local row = Row()
             if not row then
                 Add("FAIL", ("the row of %d, the achievement to track, is not on screen"):format(live.Clicked))
@@ -336,8 +340,10 @@ steps = {
                     tinsert(stillTracked, id)
                 end
             end
-            Add(#stillTracked == 0 and "PASS" or "FAIL", ("the done ones untracked: [%s]%s"):format(Join(live.Done),
-                #stillTracked > 0 and (", still tracked: [" .. Join(stillTracked) .. "]") or ""))
+            if #live.Done > 0 then
+                Add(#stillTracked == 0 and "PASS" or "FAIL", ("the done ones untracked: [%s]%s"):format(Join(live.Done),
+                    #stillTracked > 0 and (", still tracked: [" .. Join(stillTracked) .. "]") or ""))
+            end
             Add(IsTrackedAchievement(live.Clicked) and "PASS" or "FAIL", ("%d tracked"):format(live.Clicked))
             local row = Row()
             Add(row and RowShowsTracked(row) and "PASS" or "FAIL", ("the row of %d shows it tracked"):format(live.Clicked))
@@ -365,7 +371,7 @@ steps = {
     }
 }
 
-local function SetBanner(text)
+function SetBanner(text)
     banner.Text:SetText(("Krowi's Achievement Filter test %d/%d: %s"):format(live.StepIndex, #steps, text))
 end
 
@@ -384,7 +390,7 @@ local function Restore()
     local refused = {}
     for _, id in ipairs(live.Before) do
         if not IsTrackedAchievement(id) then
-            AddTrackedAchievement(id)
+            pcall(AddTrackedAchievement, id) -- Classic raises an error for an earned one
             if not IsTrackedAchievement(id) then
                 tinsert(refused, id)
             end
