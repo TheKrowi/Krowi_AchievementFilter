@@ -200,7 +200,6 @@ local function SetAsTracked(self, isTracked)
 	self.Tracked:SetChecked(isTracked)
 	-- This +4 here is to fudge around any string width issues that arize from resizing a string set to its string width. See bug 144418 for an example.
 	self.Header:SetWidth(isTracked and self.Header:GetStringWidth() + 4 or ACHIEVEMENTBUTTON_LABELWIDTH)
-	WatchFrame_Update() -- Needed for Wrath Classic, does nothing for Retail
 end
 
 -- The achievement a tracking event is about, or nil when it is about something else. Retail tracks through
@@ -660,12 +659,16 @@ function KrowiAF_AchievementButtonMixin:ShowTooltip()
 	addon.Gui.AchievementTooltip:ShowTooltip(self, self.Achievement)
 end
 
--- The row keeps listening to the tracking events while it tracks or untracks: its handler redraws the check from the game
+-- The row keeps listening to the tracking events while it tracks or untracks: its handler redraws the check from the game.
+-- Classic's watch frame does not listen to them; whoever changes the tracking redraws it, as Blizzard's own Track button
+-- does, so this does once per change of its own, and never from an event handler, which can run inside Blizzard's call.
+-- WatchFrame_Update does nothing on Retail (Gui/BlizzardOverrides.lua).
 function KrowiAF_AchievementButtonMixin:ToggleTracking()
 	local id = self.Achievement.Id
 	if self.Achievement.IsTracked then
 		RemoveTrackedAchievement(id)
 		SetAsTracked(self, false)
+		WatchFrame_Update()
 		return
 	end
 
@@ -674,11 +677,13 @@ function KrowiAF_AchievementButtonMixin:ToggleTracking()
 		SetAsTracked(self, false)
 		return
 	elseif refused then
+		WatchFrame_Update() -- the checks may have freed slots before they found the tracker still full
 		return
 	end
 
 	local trackingError = AddTrackedAchievement(id)
 	SetAsTracked(self, true)
+	WatchFrame_Update()
 	if trackingError then
 		ContentTrackingUtil.DisplayTrackingError(trackingError)
 	end
