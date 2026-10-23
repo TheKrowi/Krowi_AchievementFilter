@@ -7,6 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-14 19-23-08 ]] --
+L["Stopped tracking completed achievement"] = "Se ha dejado de seguir un logro completado"
 L["5th Anniversary Celebration"] = "Celebración del 5.º aniversario"
 L["Alchemy"] = "Alquimia"
 L["Alterac Valley"] = "Valle de Alterac"

@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Achievement guides for the other eleven Legendary Research achievements, one per class hall
 - Curse Surge event reminders, wherever you are, with the surge's name and time left; each surge can be turned off under Event Reminders > World Events > Midnight
+- Tracking an achievement while 10 are tracked now first stops tracking the ones you already completed, and names them in chat
 
 ### Changed
 - Achievement guides now name the people to talk to in your game's language
@@ -14,6 +15,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Let Her Solo Me shows as obtainable again, since it can still be earned
+- The Track check in the achievement window and in popped-out achievements now updates when an achievement is tracked or untracked elsewhere, such as from the objective tracker
 - Pasting an achievement link into chat with the paste-to-chat modifier no longer gives an error when the game's deprecated API fallbacks are turned off
 - The addon's memory no longer keeps climbing in addon memory displays while you play: the taint diagnostics no longer create garbage in the background, and the event reminders create far less
 - Community Feast reminders now show wherever you are, not only in the Azure Span: Next in the 15 minutes before the cooking starts, Active while it cooks

@@ -98,13 +98,15 @@ local function OnButtonClick(button, mouseButton)
 end
 
 local function OnButtonEvent(button, event, ...)
-	if event ~= "ACHIEVEMENT_EARNED" and event ~= "TRACKED_ACHIEVEMENT_LIST_CHANGED" then
-		return
-	end
 	if not button.Achievement then
 		return
 	end
-	local achievementId = ...
+	local achievementId
+	if event == "ACHIEVEMENT_EARNED" then
+		achievementId = ...
+	else -- a tracking event, on Retail also about appearances, mounts and decor
+		achievementId = addon.Gui.AchievementButton.TrackingEventAchievementId(event, ...)
+	end
 	if achievementId ~= button.Achievement.Id then
 		return
 	end
@@ -118,6 +120,8 @@ local function OnButtonEvent(button, event, ...)
 		local achievement = button.Achievement
 		button.Achievement = nil
 		button:SetAchievement(achievement, true)
+	else
+		button:SetAchievement(button.Achievement) -- redraws the Track check from the game
 	end
 	RefreshButton(button)
 

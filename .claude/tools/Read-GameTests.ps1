@@ -15,11 +15,17 @@
     The game writes saved variables on /reload and logout only, so a run that just finished is not in
     the file until the next /reload. The header shows when the file was last written.
 
+    Steps only the game runs are marked g and not diffed. A step that took a screenshot gets the path of
+    the file from the client's Screenshots folder, to open with the Read tool.
+
 .PARAMETER Client
     Retail (_retail_), Classic (_classic_), Ptr (_ptr_, the wowt test realm) or Xptr (_xptr_, the second test realm, wowxptr). Default Retail.
 
 .PARAMETER Account
     Account folder name (e.g. 133658957#1) instead of the most recently written file.
+
+.PARAMETER Run
+    Shows the nth newest of the kept runs (1 = the newest) instead of the last one; the reader lists them all.
 
 .EXAMPLE
     & ".claude\tools\Read-GameTests.ps1"
@@ -28,7 +34,8 @@
 [CmdletBinding()]
 param(
     [ValidateSet('Retail', 'Classic', 'Ptr', 'Xptr')][string]$Client = 'Retail',
-    [string]$Account
+    [string]$Account,
+    [int]$Run
 )
 
 $ErrorActionPreference = 'Stop'
@@ -61,7 +68,38 @@ $ErrorActionPreference = 'Continue'
 $model = if ($Client -eq 'Classic') { 'Classic' } else { 'Retail' }   # the test realms run the Retail client
 & $lua $runner $root -client $model 2>&1 | ForEach-Object { "$_" } | Set-Content -LiteralPath $headless
 $ErrorActionPreference = 'Stop'
-& $lua $reader $file.FullName $headless
-$code = $LASTEXITCODE
+
+# A step that took a screenshot prints its time; the game names the file after the second it was written, the same
+# second or the next (WoWScrnShot_MMddyy_HHmmss), and the steps are seconds apart, so the nearest file within 2 s is it
+$shotDir = Join-Path (Get-ClientFolder $Client) 'Screenshots'
+$shots = @(if (Test-Path -LiteralPath $shotDir) {
+    Get-ChildItem -LiteralPath $shotDir -File -Filter 'WoWScrnShot_*' | ForEach-Object {
+        $t = [datetime]::MinValue
+        if ($_.BaseName -match '^WoWScrnShot_(\d{6})_(\d{6})$' -and
+            [datetime]::TryParseExact($Matches[1] + $Matches[2], 'MMddyyHHmmss', [Globalization.CultureInfo]::InvariantCulture, 'None', [ref]$t)) {
+            [pscustomobject]@{ Time = $t; Path = $_.FullName }
+        }
+    }
+})
+$encoding = [Console]::OutputEncoding
+[Console]::OutputEncoding = [Text.Encoding]::UTF8
+try {
+    $readerArgs = @($file.FullName, $headless) + @(if ($Run -gt 0) { "$Run" })
+    $output = & $lua $reader @readerArgs
+    $code = $LASTEXITCODE
+} finally {
+    [Console]::OutputEncoding = $encoding
+}
+foreach ($line in $output) {
+    if ("$line" -match '^(\s+)screenshot at (\d{4}-\d\d-\d\d \d\d:\d\d:\d\d)(.*)$') {
+        $at = [datetime]::ParseExact($Matches[2], 'yyyy-MM-dd HH:mm:ss', [Globalization.CultureInfo]::InvariantCulture)
+        $indent, $tail = $Matches[1], $Matches[3]
+        $best = $shots | Where-Object { ($_.Time - $at).TotalSeconds -ge -1 -and ($_.Time - $at).TotalSeconds -le 2 } |
+            Sort-Object { [math]::Abs(($_.Time - $at).TotalSeconds) } | Select-Object -First 1
+        "${indent}screenshot at $($at.ToString('HH:mm:ss')): $(if ($best) { $best.Path } else { 'none found' })$tail"
+    } else {
+        "$line"
+    }
+}
 Remove-Item -LiteralPath $headless -ErrorAction SilentlyContinue
 exit $code

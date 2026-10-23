@@ -1,5 +1,6 @@
 local _, addon = ...
 local extraIconFactory = addon.Gui.AchievementButtonExtraIconFactory
+local trackingSlots = addon.Gui.TrackingSlots
 local saturationStyle = addon.Objects.SaturationStyle
 
 local media = "Interface/AddOns/Krowi_AchievementFilter/Media/"
@@ -199,26 +200,32 @@ local function SetAsTracked(self, isTracked)
 	self.Tracked:SetChecked(isTracked)
 	-- This +4 here is to fudge around any string width issues that arize from resizing a string set to its string width. See bug 144418 for an example.
 	self.Header:SetWidth(isTracked and self.Header:GetStringWidth() + 4 or ACHIEVEMENTBUTTON_LABELWIDTH)
-	WatchFrame_Update() -- Needed for Wrath Classic, does nothing for Retail
+end
+
+-- The achievement a tracking event is about, or nil when it is about something else. Retail tracks through
+-- C_ContentTracking and fires CONTENT_TRACKING_UPDATE, also for appearances, mounts and decor;
+-- TRACKED_ACHIEVEMENT_LIST_CHANGED no longer fires there (Tests/Tracking.lua, 12.1.5, 2026-10-22). Classic fires the latter.
+function achievementButton.TrackingEventAchievementId(event, ...)
+	if event == "CONTENT_TRACKING_UPDATE" then
+		local trackableType, trackableId = ...
+		return trackableType == Enum.ContentTrackingType.Achievement and trackableId or nil
+	elseif event == "TRACKED_ACHIEVEMENT_LIST_CHANGED" then
+		return (...)
+	end
 end
 
 function KrowiAF_AchievementButtonMixin:OnEvent(event, ...)
-	if event ~= "ACHIEVEMENT_EARNED" and event ~= "TRACKED_ACHIEVEMENT_LIST_CHANGED" then
-		return
-	end
 	if not self.Achievement then
-		return
-	end
-	local achievementId = ...
-	if achievementId ~= self.Achievement.Id then
 		return
 	end
 
 	local achievement = self.Achievement
 	if event == "ACHIEVEMENT_EARNED" then
-		self.Achievement = nil
-		self:Update(achievement)
-	elseif event == "TRACKED_ACHIEVEMENT_LIST_CHANGED" then
+		if ... == achievement.Id then
+			self.Achievement = nil
+			self:Update(achievement)
+		end
+	elseif achievementButton.TrackingEventAchievementId(event, ...) == achievement.Id then
 		SetAsTracked(self, IsTrackedAchievement(achievement.Id))
 	end
 end
@@ -226,11 +233,17 @@ end
 function KrowiAF_AchievementButtonMixin:OnShow()
 	self:RegisterEvent("ACHIEVEMENT_EARNED")
 	self:RegisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED")
+	if addon.Util.IsMainline then
+		self:RegisterEvent("CONTENT_TRACKING_UPDATE")
+	end
 end
 
 function KrowiAF_AchievementButtonMixin:OnHide()
 	self:UnregisterEvent("ACHIEVEMENT_EARNED")
 	self:UnregisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED")
+	if addon.Util.IsMainline then
+		self:UnregisterEvent("CONTENT_TRACKING_UPDATE")
+	end
 end
 
 function KrowiAF_AchievementButtonMixin:OnEnter()
@@ -646,37 +659,34 @@ function KrowiAF_AchievementButtonMixin:ShowTooltip()
 	addon.Gui.AchievementTooltip:ShowTooltip(self, self.Achievement)
 end
 
+-- The row keeps listening to the tracking events while it tracks or untracks: its handler redraws the check from the game.
+-- Classic's watch frame does not listen to them; whoever changes the tracking redraws it, as Blizzard's own Track button
+-- does, so this does once per change of its own, and never from an event handler, which can run inside Blizzard's call.
+-- WatchFrame_Update does nothing on Retail (Gui/BlizzardOverrides.lua).
 function KrowiAF_AchievementButtonMixin:ToggleTracking()
-	self:UnregisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED")
-
 	local id = self.Achievement.Id
 	if self.Achievement.IsTracked then
 		RemoveTrackedAchievement(id)
 		SetAsTracked(self, false)
+		WatchFrame_Update()
 		return
 	end
 
-	local count = GetNumTrackedAchievements()
-	if count >= MAX_TRACKED_ACHIEVEMENTS then
-		UIErrorsFrame:AddMessage(format(ACHIEVEMENT_WATCH_TOO_MANY, MAX_TRACKED_ACHIEVEMENTS), 1.0, 0.1, 0.1, 1.0)
-		return
-	end
-
-	local _, _, _, completed, _, _, _, _, _, _, _, _, wasEarnedByMe = GetAchievementInfo(id)
-	local earnedByFilter = addon.Filters.db.profile.EarnedBy
-	if (earnedByFilter == 'Account' and completed or wasEarnedByMe) or (earnedByFilter == 'CharacterAccount' and completed and wasEarnedByMe) then
-		UIErrorsFrame:AddMessage(ERR_ACHIEVEMENT_WATCH_COMPLETED, 1.0, 0.1, 0.1, 1.0)
+	local refused = trackingSlots.MakeRoom(id)
+	if refused == "completed" then
 		SetAsTracked(self, false)
+		return
+	elseif refused then
+		WatchFrame_Update() -- the checks may have freed slots before they found the tracker still full
 		return
 	end
 
 	local trackingError = AddTrackedAchievement(id)
 	SetAsTracked(self, true)
+	WatchFrame_Update()
 	if trackingError then
 		ContentTrackingUtil.DisplayTrackingError(trackingError)
 	end
-
-	self:RegisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED")
 
 	return true
 end
