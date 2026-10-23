@@ -191,16 +191,20 @@ end
 
 local function RunRequest(suites)
     local lines = {("Krowi's Achievement Filter test request, %s, build %s"):format(date("%Y-%m-%d %H:%M:%S"), (GetBuildInfo()))}
-    local index = 0
+    local index, ranAny = 0, false
     local function Next()
         index = index + 1
         local name = suites[index]
         if not name then
+            if ranAny then -- the suites drive Blizzard's frames and API from addon code, some of it taints until a reload
+                tinsert(lines, "/reload before entering combat")
+            end
             ShowSummary(lines)
             return
         end
         tests.Run(name, loginWait, function(ran, reason)
             local run = GetDb().LastRun
+            ranAny = ranAny or ran
             if ran and run and run.Suite == name then
                 tinsert(lines, ("%s: %d passed, %d failed, %d skipped; %d open"):format(name, run.Passed, run.Failed, run.Skipped, run.Open))
                 for _, line in ipairs(run.Lines) do
