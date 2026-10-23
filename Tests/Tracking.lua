@@ -335,6 +335,9 @@ steps = {
             if not row then
                 return "the row of the achievement to track is not on screen"
             end
+            if #live.Done == 0 then
+                SetBanner(("Track pressed with %d tracked: tracked, nothing done to free"):format(#TrackedIds()))
+            end
             row:ToggleTracking()
         end,
         Check = function()
