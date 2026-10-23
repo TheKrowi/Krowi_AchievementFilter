@@ -1,7 +1,8 @@
 ---@diagnostic disable: lowercase-global, undefined-global, need-check-nil
 -- Reads the addon's saved variables file (WTF\Account\<account>\SavedVariables\Krowi_AchievementFilter.lua),
 -- plain Lua assigning KrowiAF_DebugTable and the other saved tables, and prints the last in-game
--- test run (/kaftest) next to the lines the headless runner produced for the same suite.
+-- test run (/kaftest) next to the lines the headless runner produced for the same suite. Lines of steps only
+-- the game runs are marked g and not diffed; a step's screenshot time is printed for Read-GameTests.ps1 to pair.
 --
 -- Usage: lua.exe read-tests.lua <path to Krowi_AchievementFilter.lua> [<file with the headless lines>]
 -- Exit code 0 when the game run has no FAIL and matches the headless lines, 1 otherwise, 2 when unreadable.
@@ -39,9 +40,12 @@ end
 local differences, seen = 0, {}
 for i, line in ipairs(run.Lines or {}) do
     local scenario = line:match("^(.-): ")
-    seen[scenario] = true
+    local gameOnly = run.GameOnly and run.GameOnly[i]
     local mark = "   "
-    if headless then
+    if gameOnly then
+        mark = " g " -- a step only the game runs; the headless runner has no line for it
+    elseif headless then
+        seen[scenario] = true
         if headless[scenario] == line then
             mark = " = "
         else
@@ -52,6 +56,11 @@ for i, line in ipairs(run.Lines or {}) do
     io.stdout:write(mark, line, "\n")
     if mark == " ! " and headless[scenario] then io.stdout:write("     headless: ", headless[scenario], "\n") end
     if run.Notes and run.Notes[i] then io.stdout:write("     outside state before the press: ", run.Notes[i], "\n") end
+    local shot = run.Screenshots and run.Screenshots[i]
+    if type(shot) == "table" and shot.Time then -- Read-GameTests.ps1 puts the file's path on this line
+        io.stdout:write(("     screenshot at %s %s%s\n"):format(tostring(run.Time):sub(1, 10), shot.Time,
+            shot.Failed and " (the game reported the screenshot failed)" or ""))
+    end
 end
 for _, observation in ipairs(run.Observations or {}) do
     io.stdout:write("observed in game: ", observation, "\n")
@@ -63,6 +72,6 @@ if headless then
             io.stdout:write(" ! not run in game: ", line, "\n")
         end
     end
-    io.stdout:write(("\n%d difference(s) between the game and the headless run (= same, ! differs)\n"):format(differences))
+    io.stdout:write(("\n%d difference(s) between the game and the headless run (= same, ! differs, g game only)\n"):format(differences))
 end
 os.exit((differences > 0 or (run.Failed or 0) > 0) and 1 or 0)

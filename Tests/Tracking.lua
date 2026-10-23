@@ -1,4 +1,4 @@
-local _, addon = ...
+local addonName, addon = ...
 addon.Tests.Tracking = {}
 local tracking = addon.Tests.Tracking
 
@@ -148,17 +148,33 @@ function tracking.Run()
     return results
 end
 
--- [[ Game only: the real tracking ]] --
+-- [[ Game only: the steps ]] --
 
--- Observations, no scenarios: the player's real tracked achievements and which of them the checks call done, then a
--- probe that tracks and untracks one achievement nobody completed through the calls the Track button makes. The probe
--- records whether the tracked count changes inside the call (the checks count again right after they free slots),
--- whether TRACKED_ACHIEVEMENT_LIST_CHANGED fires (the rows of the achievement window redraw their Track check from it),
--- and on Retail whether the objective tracker's dirty flags stay secure: the untrack fires CONTENT_TRACKING_UPDATE inside
--- the addon's call, and the tracker marks itself dirty from there (Blizzard_SharedXML/MixinUtil.lua, DirtiableMixin).
--- The container clears its dirty flag to nil, which can read as secure whoever cleared it, so the modules' isDirty, which
--- each layout sets to false (Blizzard_ObjectiveTrackerModule.lua BeginLayout), shows whether the layout after the call ran
--- tainted: the quest and scenario modules are laid out with the achievement module, dirty or not.
+-- After the scenarios the suite presses the Track button for real, the /kevutest way (Krowi_ExtendedVendorUI): each step
+-- sets a state through the addon's own functions, names itself in a banner over the achievement window, checks what the
+-- window shows and takes a screenshot, which Read-GameTests.ps1 pairs with its file.
+--   at-the-cap: 10 tracked with completed ones among them, the player's own or one the run tracks; the achievement to
+--     track is selected in the window
+--   track-at-the-cap: its row's Track pressed through ToggleTracking: the completed ones are untracked and named in chat,
+--     the clicked one is tracked and its row checked
+--   untracked-elsewhere: the clicked one untracked the way Blizzard's own tracker does it, C_ContentTracking.StopTracking
+--     on Retail (Blizzard_AchievementObjectiveTracker.lua UntrackAchievement), RemoveTrackedAchievement on Classic
+--     (WatchFrame.lua WatchFrame_StopTrackingAchievement): its row's Track check clears
+-- At the end the tracked achievements are put back as they were, as far as the game takes completed ones back, and the
+-- addon's Lua errors of the session are reported from BugGrabber. Combat stops the run and puts them back. On Retail the
+-- steps also record whether the objective tracker's dirty flags stay secure: the tracking calls fire
+-- CONTENT_TRACKING_UPDATE inside the addon's call and the tracker marks itself dirty from there; the container clears its
+-- own flag to nil, which reads as secure whoever cleared it, so the modules' isDirty, which each layout sets to false
+-- (Blizzard_ObjectiveTrackerModule.lua BeginLayout), shows whether the layout after the call ran tainted. The run calls
+-- the game's tracking from addon code: /reload before combat, and do not leave this suite on /kaftest login.
+
+local settle = 1.5 -- a state change -> its check and screenshot
+local afterShot = 1 -- a screenshot -> the next step
+
+local live -- the run in progress
+local runToken = 0 -- bumped by every stop, so a stopped run's timers do nothing
+local banner
+local steps
 
 local function TrackedIds()
     if GetTrackedAchievements then -- as TrackingSlots.lua: Classic's own list first
@@ -177,35 +193,7 @@ local function DescribeAchievement(id)
         .. (bit.band(flags, accountWideFlag) == accountWideFlag and "A" or "")
 end
 
-local function ObserveTracked(observations)
-    local described, done = {}, {}
-    local isDone = addon.Gui.TrackingSlots.IsDone
-    for _, id in ipairs(TrackedIds()) do
-        tinsert(described, DescribeAchievement(id))
-        if isDone and isDone(id) then
-            tinsert(done, id)
-        end
-    end
-    tinsert(observations, ("tracked %d of %d: [%s]; done by the checks: %s"):format(#described, MAX_TRACKED_ACHIEVEMENTS, table.concat(described, ","),
-        isDone and ("[" .. table.concat(done, ",") .. "]") or "no rule yet"))
-end
-
-local function ProbeCandidate()
-    if #TrackedIds() >= MAX_TRACKED_ACHIEVEMENTS then
-        return nil, "at the tracking cap; untrack one achievement to run the probe"
-    end
-    for id in pairs(addon.Data.Achievements) do
-        local knownId, _, _, completed, _, _, _, _, _, _, _, isGuild, wasEarnedByMe, _, isStatistic = GetAchievementInfo(id)
-        -- No C_ContentTracking.IsTrackable here: with it no achievement passed on Retail 12.1.5 (2026-10-22), so it
-        -- answers for collectables only; whether the game takes the candidate shows in what the track call returns
-        if knownId and not completed and not wasEarnedByMe and not isGuild and not isStatistic and not IsTrackedAchievement(id) then
-            return id
-        end
-    end
-    return nil, "no achievement nobody completed"
-end
-
-local function ObserveTracker(observations, label)
+local function ObserveTracker(label)
     if not addon.Util.IsMainline then
         return
     end
@@ -221,106 +209,336 @@ local function ObserveTracker(observations, label)
             tinsert(parts, ("%s.%s %s %s"):format(name, field, tostring(rawget(frame, field)), security))
         end
     end
-    tinsert(observations, label .. ": " .. table.concat(parts, ", "))
+    tinsert(live.Observations, label .. ": " .. table.concat(parts, ", "))
 end
 
-local probeEvents = {"TRACKED_ACHIEVEMENT_LIST_CHANGED", "CONTENT_TRACKING_UPDATE"}
-local probeFrame -- one frame for every run
-local calling -- a probed call is running, so an event fired inside it is counted
-local firedDuring
+local function Add(status, text)
+    tinsert(live.Results, {
+        Name = "live-" .. live.StepName,
+        Status = status,
+        GameOnly = true,
+        Line = ("tracking/live-%s: %s %s"):format(live.StepName, status, text)
+    })
+end
 
-local function Call(observations, label, func, id)
-    local before = #TrackedIds()
-    for _, event in ipairs(probeEvents) do
-        firedDuring[event] = 0
+local function After(seconds, func)
+    local token = runToken
+    C_Timer.After(seconds, function()
+        if live and token == runToken then
+            func()
+        end
+    end)
+end
+
+-- Achievements nobody completed that the window can show, not tracked yet
+local function Candidates(count)
+    local found = {}
+    for id, achievement in next, addon.Data.Achievements do
+        if achievement.Category and not achievement.IsTracking and not IsTrackedAchievement(id) then
+            local knownId, _, _, completed, _, _, _, _, _, _, _, isGuild, wasEarnedByMe, _, isStatistic = GetAchievementInfo(id)
+            if knownId and not completed and not wasEarnedByMe and not isGuild and not isStatistic then
+                tinsert(found, id)
+                if #found == count then
+                    break
+                end
+            end
+        end
     end
-    calling = true
-    local ok, result = pcall(func, id)
-    calling = nil
-    local fired = {}
-    for _, event in ipairs(probeEvents) do
-        tinsert(fired, ("%s %d"):format(event, firedDuring[event]))
+    return found
+end
+
+-- An achievement this character earned and does not track, to leave tracked as a crash would
+local function EarnedCandidate()
+    for id in next, addon.Data.Achievements do
+        if not IsTrackedAchievement(id) then
+            local knownId, _, _, _, _, _, _, _, _, _, _, isGuild, wasEarnedByMe, _, isStatistic = GetAchievementInfo(id)
+            if knownId and wasEarnedByMe and not isGuild and not isStatistic then
+                return id
+            end
+        end
     end
-    tinsert(observations, ("%s %d: %s; tracked %d -> %d inside the call; fired during it: %s"):format(label, id,
-        ok and ("returned " .. tostring(result)) or ("errored: " .. tostring(result)), before, #TrackedIds(), table.concat(fired, ", ")))
 end
 
-local function StopListening()
-    probeFrame:SetScript("OnEvent", nil)
-    probeFrame:UnregisterAllEvents()
+local function Row()
+    local achievement = addon.Data.Achievements[live.Clicked]
+    return achievement and KrowiAF_AchievementsFrame.ScrollBox:FindFrame(achievement)
 end
 
-local running -- a run waits for the tracker's next redraw
+local function RowShowsTracked(row)
+    return row.Tracked:GetChecked() and row.Check:IsShown() and true or false
+end
 
-local function Probe(observations, id)
-    ObserveTracker(observations, "before")
-    Call(observations, "track", AddTrackedAchievement, id)
-    ObserveTracker(observations, "after track")
-    Call(observations, "untrack", RemoveTrackedAchievement, id)
-    ObserveTracker(observations, "after untrack")
+local function Join(ids)
+    return table.concat(ids, ",")
+end
+
+steps = {
+    {
+        Name = "at-the-cap",
+        Text = "10 tracked, completed ones among them",
+        Run = function()
+            local done = {}
+            for _, id in ipairs(TrackedIds()) do
+                if addon.Gui.TrackingSlots.IsDone(id) then
+                    tinsert(done, id)
+                end
+            end
+            if #done == 0 then
+                local id = EarnedCandidate()
+                if id then
+                    AddTrackedAchievement(id)
+                    tinsert(live.Observations, ("none of the tracked achievements was done; tracked %d, earned: %s"):format(id,
+                        IsTrackedAchievement(id) and "the game took it" or "the game refused it"))
+                    if IsTrackedAchievement(id) then
+                        tinsert(done, id)
+                    end
+                end
+            end
+            if #done == 0 then
+                return "no completed achievement is tracked and the game would not track one"
+            end
+            live.Done = done
+            local picked = Candidates(MAX_TRACKED_ACHIEVEMENTS - #TrackedIds() + 1)
+            if #picked <= MAX_TRACKED_ACHIEVEMENTS - #TrackedIds() then
+                return "not enough achievements nobody completed to fill the tracker"
+            end
+            live.Clicked = tremove(picked)
+            for _, id in ipairs(picked) do
+                AddTrackedAchievement(id)
+            end
+            KrowiAF_SelectAchievementFromID(live.Clicked)
+        end,
+        Check = function()
+            local count = #TrackedIds()
+            Add(count == MAX_TRACKED_ACHIEVEMENTS and "PASS" or "FAIL", ("%d of %d tracked, done among them: [%s]"):format(count, MAX_TRACKED_ACHIEVEMENTS, Join(live.Done)))
+            local row = Row()
+            if not row then
+                Add("FAIL", ("the row of %d, the achievement to track, is not on screen"):format(live.Clicked))
+                return
+            end
+            Add(not RowShowsTracked(row) and "PASS" or "FAIL", ("the row of %d shows it untracked"):format(live.Clicked))
+        end
+    },
+    {
+        Name = "track-at-the-cap",
+        Text = "Track pressed with 10 tracked: the completed ones untracked and named in chat",
+        Run = function()
+            local row = Row()
+            if not row then
+                return "the row of the achievement to track is not on screen"
+            end
+            row:ToggleTracking()
+        end,
+        Check = function()
+            local stillTracked = {}
+            for _, id in ipairs(live.Done) do
+                if IsTrackedAchievement(id) then
+                    tinsert(stillTracked, id)
+                end
+            end
+            Add(#stillTracked == 0 and "PASS" or "FAIL", ("the done ones untracked: [%s]%s"):format(Join(live.Done),
+                #stillTracked > 0 and (", still tracked: [" .. Join(stillTracked) .. "]") or ""))
+            Add(IsTrackedAchievement(live.Clicked) and "PASS" or "FAIL", ("%d tracked"):format(live.Clicked))
+            local row = Row()
+            Add(row and RowShowsTracked(row) and "PASS" or "FAIL", ("the row of %d shows it tracked"):format(live.Clicked))
+            ObserveTracker("after the press")
+        end
+    },
+    {
+        Name = "untracked-elsewhere",
+        Text = "untracked the way Blizzard's tracker does: the Track check clears",
+        Run = function()
+            if not IsTrackedAchievement(live.Clicked) then
+                return "the clicked achievement is not tracked"
+            end
+            if GetTrackedAchievements then
+                RemoveTrackedAchievement(live.Clicked)
+            else
+                C_ContentTracking.StopTracking(Enum.ContentTrackingType.Achievement, live.Clicked, Enum.ContentTrackingStopType.Manual)
+            end
+        end,
+        Check = function()
+            local row = Row()
+            Add(row and not RowShowsTracked(row) and "PASS" or "FAIL", ("the row of %d shows it untracked"):format(live.Clicked))
+            ObserveTracker("after the untrack")
+        end
+    }
+}
+
+local function SetBanner(text)
+    banner.Text:SetText(("Krowi's Achievement Filter test %d/%d: %s"):format(live.StepIndex, #steps, text))
+end
+
+-- Every achievement the run tracked is untracked, and every one the player tracked before is tracked again; returns the
+-- ones the game would not take back
+local function Restore()
+    local before = {}
+    for _, id in ipairs(live.Before) do
+        before[id] = true
+    end
+    for _, id in ipairs(TrackedIds()) do
+        if not before[id] then
+            RemoveTrackedAchievement(id)
+        end
+    end
+    local refused = {}
+    for _, id in ipairs(live.Before) do
+        if not IsTrackedAchievement(id) then
+            AddTrackedAchievement(id)
+            if not IsTrackedAchievement(id) then
+                tinsert(refused, id)
+            end
+        end
+    end
+    return refused
+end
+
+-- This addon's Lua errors in this session, also from before the run, as BugGrabber caught them
+local function CheckErrors()
+    if not (BugGrabber and type(BugGrabber.GetDB) == "function" and type(BugGrabber.GetSessionId) == "function") then
+        tinsert(live.Observations, "no BugGrabber, so Lua errors are not checked")
+        return
+    end
+    local session = BugGrabber:GetSessionId()
+    local found = 0
+    for _, err in ipairs(BugGrabber:GetDB()) do
+        if err.session == session and ((type(err.message) == "string" and err.message:find(addonName, 1, true))
+            or (type(err.stack) == "string" and err.stack:find(addonName, 1, true))) then
+            found = found + 1
+            Add("FAIL", ("Lua error x%d: %s"):format(err.counter or 1, tostring(err.message):sub(1, 300)))
+        end
+    end
+    if found == 0 then
+        Add("PASS", "no Lua error from this addon this session (BugGrabber)")
+    end
+end
+
+local function Stop(reason)
+    runToken = runToken + 1
+    banner:UnregisterAllEvents()
+    banner:Hide()
+    if reason then
+        tinsert(live.Observations, "stopped: " .. reason)
+    end
+
+    live.StepName = "restore"
+    local ok, refused = pcall(Restore)
+    if not ok then
+        Add("FAIL", "could not put the tracked achievements back: " .. tostring(refused))
+    else
+        local notBack = {}
+        for _, id in ipairs(refused) do
+            if addon.Gui.TrackingSlots.IsDone(id) then
+                tinsert(live.Observations, ("%d, done, stays untracked: the game would not track it again"):format(id))
+            else
+                tinsert(notBack, id)
+            end
+        end
+        Add(#notBack == 0 and "PASS" or "FAIL", "the tracked achievements are as before the run"
+            .. (#notBack > 0 and (", except [" .. Join(notBack) .. "]") or ""))
+    end
+
+    live.StepName = "lua-errors"
+    local checked, err = pcall(CheckErrors)
+    if not checked then
+        Add("FAIL", "test error: " .. tostring(err))
+    end
+    tinsert(live.Observations, "the run called the game's tracking from addon code: /reload before entering combat")
+
+    local finish, results, observations = live.Finish, live.Results, live.Observations
+    live = nil
+    finish(results, observations)
+end
+
+local RunStep
+
+local function Capture()
+    local ok, err = pcall(steps[live.StepIndex].Check)
+    if not ok then
+        Add("FAIL", "test error: " .. tostring(err))
+    end
+    live.Shot = {Time = date("%H:%M:%S")}
+    live.Results[#live.Results].Screenshot = live.Shot
+    Screenshot()
+    After(afterShot, function()
+        RunStep(live.StepIndex + 1)
+    end)
+end
+
+RunStep = function(n)
+    local step = steps[n]
+    if not step then
+        Stop()
+        return
+    end
+    live.StepIndex, live.StepName = n, step.Name
+    SetBanner(step.Text)
+    local ok, skip = pcall(step.Run)
+    if not ok then
+        Add("FAIL", "test error: " .. tostring(skip))
+        Stop("step " .. step.Name .. " errored")
+        return
+    end
+    if skip then -- every later step builds on this one
+        Add("SKIP", skip)
+        Stop()
+        return
+    end
+    After(settle, Capture)
+end
+
+local function CreateBanner()
+    banner = CreateFrame("Frame", nil, UIParent)
+    banner:SetFrameStrata("DIALOG")
+    banner:SetSize(620, 26)
+    local background = banner:CreateTexture(nil, "BACKGROUND")
+    background:SetAllPoints()
+    background:SetColorTexture(0, 0, 0, 0.85)
+    banner.Text = banner:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+    banner.Text:SetPoint("CENTER")
+    banner:SetScript("OnEvent", function(_, event)
+        if not live then
+            return
+        end
+        if event == "SCREENSHOT_FAILED" and live.Shot then
+            live.Shot.Failed = true
+        elseif event == "PLAYER_REGEN_DISABLED" then
+            Stop("combat started")
+        end
+    end)
+    banner:Hide()
 end
 
 addon.Tests.Ready.tracking = function()
-    if running then
-        return false, "the previous tracking run is still waiting"
+    if live then
+        return false, "the previous tracking run is still going"
     end
     if not addon.Data.Achievements[6] then -- Level 10, registered on every client
         return false, "the achievement data is not loaded yet"
-    end
-    if not AddTrackedAchievement or not MAX_TRACKED_ACHIEVEMENTS then
-        return false, "open the achievement window once first: the tracking calls load with it"
     end
     return true
 end
 
 addon.Tests.Async.tracking = true
 addon.Tests.Suites.tracking = function(done)
-    local results = tracking.Run()
-    local observations = {}
-    local ok, err = pcall(ObserveTracked, observations)
-    if not ok then
-        tinsert(observations, "the tracked achievements could not be read: " .. tostring(err))
+    if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then -- the tracking calls and the window load with it
+        C_AddOns.LoadAddOn("Blizzard_AchievementUI")
     end
-
-    local id, reason = ProbeCandidate()
-    if not id then
-        tinsert(observations, "probe skipped: " .. reason)
-        done(results, observations)
-        return
+    live = {Results = tracking.Run(), Observations = {}, Finish = done, Before = TrackedIds()}
+    local described = {}
+    for _, id in ipairs(live.Before) do
+        tinsert(described, DescribeAchievement(id))
     end
+    tinsert(live.Observations, ("tracked before the run, %d of %d: [%s]"):format(#described, MAX_TRACKED_ACHIEVEMENTS, table.concat(described, ",")))
 
-    probeFrame = probeFrame or CreateFrame("Frame")
-    firedDuring = {}
-    for _, event in ipairs(probeEvents) do
-        pcall(probeFrame.RegisterEvent, probeFrame, event) -- Classic has no CONTENT_TRACKING_UPDATE
+    if not banner then
+        CreateBanner()
     end
-    probeFrame:SetScript("OnEvent", function(_, event)
-        if calling then
-            firedDuring[event] = firedDuring[event] + 1
-        end
-    end)
-
-    ok, err = pcall(Probe, observations, id)
-    calling = nil
-    if not ok then -- reported, not raised, so the frame stops listening and what was observed is kept
-        StopListening()
-        tinsert(observations, "the probe errored: " .. tostring(err))
-        if IsTrackedAchievement(id) then -- the track call may have run before the error
-            pcall(RemoveTrackedAchievement, id)
-            tinsert(observations, ("probe achievement %d untracked after the error: %s"):format(id, tostring(not IsTrackedAchievement(id))))
-        end
-        tinsert(observations, "the probe called the game's tracking from addon code: /reload before entering combat")
-        done(results, observations)
-        return
-    end
-
-    running = true
-    C_Timer.After(1, function()
-        StopListening()
-        ObserveTracker(observations, "1 s later")
-        tinsert(observations, ("probe achievement %d still tracked at the end: %s"):format(id, tostring(IsTrackedAchievement(id))))
-        tinsert(observations, "the probe called the game's tracking from addon code: /reload before entering combat")
-        running = nil
-        done(results, observations)
-    end)
+    banner:ClearAllPoints()
+    banner:SetPoint("BOTTOM", AchievementFrame, "TOP", 0, 6)
+    banner:RegisterEvent("SCREENSHOT_FAILED")
+    banner:RegisterEvent("PLAYER_REGEN_DISABLED")
+    banner:Show()
+    print(("|cFF88CCFFKrowiAF Tests:|r tracking: %d steps, about 10 s; it tracks up to %d achievements and puts them back"):format(#steps, MAX_TRACKED_ACHIEVEMENTS))
+    RunStep(1)
 end

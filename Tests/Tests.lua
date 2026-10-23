@@ -15,6 +15,9 @@ local tests = addon.Tests
 -- Results go to chat and to KrowiAF_DebugTable.Tests.LastRun, which the game writes to disk on the
 -- next /reload or logout; .claude/tools/Read-GameTests.ps1 prints them and diffs them against the
 -- headless run. Needs debug mode (Options > General > Debug) and refuses to run in combat.
+-- A result with GameOnly set is a step only the game runs (the /kevutest way of Krowi_ExtendedVendorUI):
+-- the reader shows it without diffing it. One with Screenshot = {Time = "HH:MM:SS", Failed = true|nil}
+-- names the screenshot its step took, which the reader pairs with the file.
 
 local prefix = "|cFF88CCFFKrowiAF Tests:|r "
 local loginDelay = 5 -- seconds after PLAYER_ENTERING_WORLD before the first attempt
@@ -45,13 +48,15 @@ local statusColors = {
 local function Report(name, results, observations)
     local counts = {PASS = 0, FAIL = 0, SKIP = 0}
     local open = 0
-    local lines, notes = {}, {}
+    local lines, notes, gameOnly, screenshots = {}, {}, {}, {}
     for i, result in ipairs(results) do
         counts[result.Status] = counts[result.Status] + 1
         if result.TargetMet == false then
             open = open + 1
         end
         lines[i] = result.Line
+        gameOnly[i] = result.GameOnly
+        screenshots[i] = result.Screenshot
         print(prefix .. (statusColors[result.Status] or "") .. result.Line .. "|r")
         if result.Notes then
             notes[i] = result.Notes
@@ -76,6 +81,8 @@ local function Report(name, results, observations)
         Open = open,
         Lines = lines,
         Notes = notes, -- index = line index; only lines where Blizzard state outside the scenario could have consumed a press
+        GameOnly = gameOnly, -- index = line index; steps the headless runner does not model
+        Screenshots = screenshots, -- index = line index; the screenshot taken after that line's check
         Observations = observations and CopyTable(observations) or nil
     }
     -- the latest run of every suite, for the release preflight (.claude/release-gate.ps1)
