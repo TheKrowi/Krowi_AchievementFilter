@@ -537,7 +537,7 @@ addon.Tests.Ready.tracking = function()
     if live then
         return false, "the previous tracking run is still going"
     end
-    if not addon.Data.Achievements[6] then -- Level 10, registered on every client
+    if not addon.Data.IsLoaded then -- categories and series are set only at the end of the login data load (Data/Data.lua)
         return false, "the achievement data is not loaded yet"
     end
     return true

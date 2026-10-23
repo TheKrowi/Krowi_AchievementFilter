@@ -158,7 +158,7 @@ end
 -- into the saved variables while the client is closed, then starts the client; the maintainer only enters the world.
 -- The login that reads the request clears it before anything runs, so the next save drops it and it never runs again
 -- while the player plays; one past NotAfter (a crash kept it on disk) is dropped unrun. The saved variables reach disk
--- only at the next /reload or logout, so when the suites are done a panel shows each one's counts and failing lines and
+-- only at the next /reload or logout, so when the suites are done a panel shows each one's counts and its failed and skipped lines and
 -- a screenshot is taken, which Read-GameScreenshot.ps1 finds while the game still runs.
 
 local summaryPanel
@@ -204,7 +204,7 @@ local function RunRequest(suites)
             if ran and run and run.Suite == name then
                 tinsert(lines, ("%s: %d passed, %d failed, %d skipped; %d open"):format(name, run.Passed, run.Failed, run.Skipped, run.Open))
                 for _, line in ipairs(run.Lines) do
-                    if line:find(": FAIL ", 1, true) then
+                    if line:find(": FAIL ", 1, true) or line:find(": SKIP ", 1, true) then
                         tinsert(lines, "    " .. line:sub(1, 180))
                     end
                 end
