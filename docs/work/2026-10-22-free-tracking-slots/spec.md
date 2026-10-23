@@ -1,5 +1,5 @@
 # Spec: Free tracking slots held by completed achievements
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. When the player tracks an achievement in KAF while `MAX_TRACKED_ACHIEVEMENTS` (10) achievements are tracked, KAF first untracks every tracked achievement that is done (requirement 2), then tracks the clicked one when a slot is free.

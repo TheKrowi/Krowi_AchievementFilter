@@ -1,5 +1,5 @@
 # Intent: Free tracking slots held by completed achievements
-Author: Krowi (maintainer), captured by Claude. Source: idea, after the CurseForge addon Untrack Completed Achieves (https://www.curseforge.com/wow/addons/untrack-completed-achieves). Status: accepted
+Author: Krowi (maintainer), captured by Claude. Source: idea, after the CurseForge addon Untrack Completed Achieves (https://www.curseforge.com/wow/addons/untrack-completed-achieves). Status: done
 
 ## Problem
 The game lets a character track 10 achievements. An achievement that stays tracked after the character earned it still takes one of those slots, but the tracker hides it: Blizzard's objective tracker on Retail and its watch frame on Classic both skip what the character earned. It happens after a crash before the game saved, or when an achievement is tracked on one character and completed on another. The player then clicks Track in KAF and gets "You may only track 10 achievements at a time." with fewer than 10 on the tracker, and nothing in the game shows which achievements hold the hidden slots. Today the only way out is to find each one in the achievement window and untrack it there.

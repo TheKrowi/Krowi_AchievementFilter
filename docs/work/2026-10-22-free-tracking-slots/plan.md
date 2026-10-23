@@ -1,5 +1,5 @@
 # Plan: Free tracking slots held by completed achievements
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 ## Context
 The spec's decision (2026-10-22): only when the player tracks in KAF while all 10 slots are taken, KAF first untracks the done achievements (earned by this character; completed and guild or account-wide; or an id the game no longer knows), prints `Krowi's Achievement Filter - Stopped tracking completed achievement: [link]` per achievement (a new localized string), then tracks the clicked one. Retail, Mists Classic, Titan Reforged. The maintainer approved this plan on 2026-10-22.
@@ -58,3 +58,11 @@ One commit per step, by explicit path.
 - `Check-Repo.ps1` (the Stop hook runs `-ChangedOnly`; one full run before the PR), `Find-DeprecatedApi.ps1`.
 - In game per client (Retail, then Mists Classic): `Deploy.ps1 -WhatIf`, deploy, `/kaftest tracking`, `/reload`, `Read-GameTests.ps1` (no FAIL, no line differing from headless), `Read-GameErrors.ps1` clean.
 - `krowi:taint-reviewer` and `/code-review` on the diff before the PR.
+
+## Changes during the build
+- **The probe's answers** (Retail 12.1.5, 2026-10-22): the tracked count drops inside the untrack call, and `TRACKED_ACHIEVEMENT_LIST_CHANGED` never fires on Retail, only `CONTENT_TRACKING_UPDATE`. The maintainer chose that rows and popouts follow `CONTENT_TRACKING_UPDATE` on Retail (spec, Decision), which also fixes the stale check after untracking from the objective tracker; that got its own `### Fixed` line. The probe was then replaced by the live steps below.
+- **The taint review** (first pass): the tracked list is read from Classic's own `GetTrackedAchievements` first, because Mists' Blizzard code calls `C_ContentTracking` too; the suite reads the quest and scenario modules' `isDirty`, and cleans up after a failed probe.
+- **The in-game check became steps** (maintainer, 2026-10-23), the `/kevutest` way: the suite fills the tracker, presses Track through the row's `ToggleTracking` and untracks the way Blizzard's tracker does, each step with a banner, a check and a screenshot, then restores the tracked list and reports BugGrabber's errors. For it the runner gained game-only lines and screenshot times, and `Read-GameTests.ps1` pairs each with its file. Classic 5.5.4 raises an error when asked to track an earned achievement, so there the button is pressed below the cap and the freeing is the scenarios' alone.
+- **The code review**: `MakeRoom` counts again after freeing instead of subtracting what it untracked; `ToggleTracking` no longer unregisters its row's tracking event, which left the row deaf after an untrack or a refusal; the steps restore only after combat ends, skip a full tracker with nothing done, pick achievements the window shows as themselves and wait for the data load; the runner keeps the last 10 runs (`Read-GameTests.ps1 -Run`) with dated screenshot times.
+- **Requested runs** (maintainer, 2026-10-23): `Request-GameTests.ps1` writes a one-shot request into the saved variables while the client is closed and starts Retail through Battle.net; the maintainer only enters the world, and a summary panel's screenshot gives the verdict before any `/reload`. Tried on Retail the same day: the client started, the request ran once and was cleared.
+- **Left as they were, listed in the PR**: a refused track (`DisplayTrackingError`) still marks the row tracked; the Earned By check's second clause is dead; popouts rebuild their objectives on a tracking event; restored hidden achievements come back at the end of the tracked list; Classic rows call `WatchFrame_Update` from addon code; a Track click in restricted content runs the tracker's next layout tainted, which every Track click already did.
