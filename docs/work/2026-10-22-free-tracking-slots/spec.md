@@ -20,6 +20,8 @@ Recommended rule for requirement 2 (option 1 below): untrack when `wasEarnedByMe
 - **`ToggleTracking`** (Gui/WindowFrames/AchievementButton/AchievementButtonMixin.lua:649): the completed refusal (lines 665-671) moves above the cap check (lines 659-663), so a refused click frees nothing (requirement 6). At the cap it calls the function, counts again and shows today's error only when the count is still at the cap.
 - **When it runs.** `ToggleTracking` runs only from a click in the achievement window or a popout, and both load Blizzard_AchievementUI first (Gui/Gui.lua:201, Gui/AchievementPopout/AchievementPopout.lua:271), so KAF's Retail shims `RemoveTrackedAchievement` and `GetNumTrackedAchievements` (Gui/BlizzardOverrides.lua:119-130) exist by then.
 - **Freed rows.** The achievement rows listen to `TRACKED_ACHIEVEMENT_LIST_CHANGED` (AchievementButtonMixin.lua:221-222) and redraw their Track check from it. Whether `C_ContentTracking.StopTracking` fires that event on Retail is checked in game; if not, the function refreshes the freed achievements' rows itself.
+  - Found in game (Retail 12.1.5, 2026-10-22, the suite's probe): it does not fire; only `CONTENT_TRACKING_UPDATE` does, and the tracked count changes inside the call. So on Retail no row has followed a tracking change made elsewhere since 10.1.5. Decided with the maintainer (see Decision): rows and popouts follow `CONTENT_TRACKING_UPDATE` on Retail, Blizzard's own mechanism (ContentTrackingManager.lua), instead of a refresh of the freed rows only; that also fixes untracking from the objective tracker. Popouts, which drew only their objectives on a tracking event, now redraw their Track check too, on both clients.
+  - The cap check counts before freeing and subtracts what it freed, so it does not depend on when the game's own count drops.
 
 - **The chat line** follows the addon's other chat output (`print(addon.Metadata.Title, "-", ...)`, Gui/EventReminder/AlertSystem.lua:191): `Krowi's Achievement Filter - Stopped tracking completed achievement: [Loremaster of Outland]`.
 
@@ -63,9 +65,13 @@ Rejected earlier (exploration, 2026-10-22): a scan at login or every loading scr
   | 10 tracked with 1 earned, click a completed one | too many | already completed; nothing untracked |
 
   The same scenarios on Classic through the Classic API model.
-- Game-only observations in the same suite: which of the player's real tracked achievements the rule would free, without freeing them; and, after tracking and untracking one not-yet-earned achievement through `ToggleTracking` (the player's tracking restored after), whether `TRACKED_ACHIEVEMENT_LIST_CHANGED` fired and whether `ObjectiveTrackerFrame`'s `dirty` field is still secure (`issecurevariable`).
+- Game-only steps in the same suite, the `/kevutest` way (each with a banner, a check and a screenshot; Tests/README.md): the tracker filled to 10 with done achievements among them, the Track button pressed through the row's `ToggleTracking` (the done ones untracked, the clicked one tracked and checked), then the clicked one untracked the way Blizzard's tracker does it (its row's check clears, requirement 8). The tracked achievements are put back after the run, and the addon's Lua errors of the session are read from BugGrabber. On Retail the steps record whether the objective tracker's dirty flags stay secure (`issecurevariable`). They replace a first probe, whose findings are under Design, Freed rows.
 - The in-game before-run on Retail is green before the change; after it `Recorded` equals `Target`, and the after-run on Retail and Mists Classic is green, with `Read-GameErrors.ps1` clean.
 - `Check-Repo.ps1`, `Find-DeprecatedApi.ps1`, `krowi:taint-reviewer` and `/code-review` on the diff.
 
 ## Decision
 Chosen by the maintainer on 2026-10-22: free slots only when the player tracks at the cap (option A of the exploration, not a login scan); untrack what this character earned, completed account-wide or guild achievements, and ids the game no longer knows (option 1); the chat line is a new KAF string (option B), `Stopped tracking completed achievement`.
+
+Chosen by the maintainer on 2026-10-22, after the probe showed Retail no longer fires `TRACKED_ACHIEVEMENT_LIST_CHANGED`: rows in the achievement window and popouts follow every tracking change on Retail (`CONTENT_TRACKING_UPDATE`), over refreshing only the freed rows or leaving them until the list redraws.
+
+Asked by the maintainer on 2026-10-23: the in-game check of the button runs as steps of the `tracking` suite, the `/kevutest` way, instead of clicks described to the maintainer.
