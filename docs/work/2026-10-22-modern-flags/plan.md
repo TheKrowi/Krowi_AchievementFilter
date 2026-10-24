@@ -5,14 +5,15 @@ Approved by Krowi on 2026-10-22. Branch `refactor/2026-10-22-modern-flags`, stac
 
 ## Files that change
 - **`addon.Util.IsMainline` → `addon.Util.IsModern`** (interface sites, reasons in the spec):
-  - `Gui/BlizzardOverrides.lua` (lines 32, 38, 49, 78, 159)
+  - `Gui/BlizzardOverrides.lua` (lines 61, 67, 78, 108, 141, 194 after the rebase on 104.0)
+  - `Gui/WindowFrames/AchievementButton/AchievementButtonMixin.lua` (236, 244), from #357
   - `Gui/WorldMapButton/WorldMapButton.lua:24`
   - `Gui/WindowFrames/FilterButton/FilterButton.lua:23`, `FilterButtonMixin.lua:3` (`local isModern`)
   - `Gui/WindowFrames/Search/OptionsMenuButton/OptionsMenuButtonMixin.lua:34`
   - `Gui/WindowFrames/AchievementButton/AchievementButtonExtraIconFactory.lua` (74, 208, 278, 291)
   - `Gui/RewardPreview/RewardPreviewMixin.lua:162`
   - `Plugins/ElvUI.lua:677`, `Plugins/GW2_UI/GW2_UI.lua` (16, 1018, 1110), `Plugins/EllesmereUI.lua` (15, 1047)
-  - `Tests/Menu.lua` (87, 97), which mirror the builder
+  - `Tests/Menu.lua` (87, 97), which mirror the builder; `Tests/Tracking.lua:194`, from #357, which reads Retail's tracker frames
 - **`modern = addon.Util.IsModern` on every `addon.MenuBuilder:New`**: `Options/General.lua:69`, `Gui/RewardPreview/RewardPreview.lua:5`, `Gui/RightClickMenu/EventReminderMenu/EventReminderMenu.lua:6`, `Gui/RightClickMenu/AchievementMenu/AchievementMenu.lua:6`, `Gui/WindowFrames/Search/OptionsMenuButton/OptionsMenuButtonMixin.lua:8`, `Gui/WindowFrames/FilterButton/FilterButtonMixin.lua:17` (the `config` table).
 - **Headless stubs**: `.claude/tools/headless/client-env.lua:182` and `.claude/tools/headless/run-tests.lua:274` add `IsModern` (same value as `IsMainline`) and `IsForever = false`.
 - **Instruction file**: `.github/copilot-instructions.md:80` names `addon.Util.IsModern` for Blizzard's interface and `addon.Util.IsMainline` for Retail content.

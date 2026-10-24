@@ -4,8 +4,9 @@ local _, addon = ...
 -- AchievementFrameCategory_StatusBarTooltip on GameTooltip. With this addon loaded, Blizzard's tab code runs tainted, so
 -- that tooltip does too, and its status bar leaves GameTooltip.statusBarPool tainted. GameTooltip_OnHide reads the pool
 -- before it clears a widget set, so every later map POI or vignette tooltip clears tainted and can error on a secret
--- value (issue #300, docs/work/300-category-tooltip-taint). On Retail those buttons get the addon's own progress-bar
--- tooltip instead, the one its own category buttons use, and GameTooltip is never touched.
+-- value (issue #300, docs/work/300-category-tooltip-taint). On Retail's interface (Forever loads the same Mainline list)
+-- those buttons get the addon's own progress-bar tooltip instead, the one its own category buttons use, and GameTooltip
+-- is never touched.
 addon.Gui.BlizzardCategoryTooltip = {}
 local blizzardCategoryTooltip = addon.Gui.BlizzardCategoryTooltip
 
@@ -137,7 +138,7 @@ function addon.OverwriteFunctions()
     end
 
     -- Blizzard's category list reads it into each button when it fills, which is after this runs (see the top of this file)
-    if addon.Util.IsMainline then
+    if addon.Util.IsModern then
         AchievementFrameCategory_StatusBarTooltip = blizzardCategoryTooltip.Show
     end
 end

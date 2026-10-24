@@ -13,14 +13,16 @@ Intent: [intent.md](intent.md). Status: done
 The test per site is the question it asks: "does this client run Retail's interface?" (frames, templates, atlases, Blizzard's menus, a skin's look) or "is this Retail's game content?" (achievement ids, categories, maps, saved data, world events).
 
 **To `IsModern`** (interface):
-- `Gui/BlizzardOverrides.lua:32, 38, 49` comparison tabs and sub frame; `:78` chat-link wrapper around Retail's achievement buttons; `:159` hooks on `AchievementFrame_SetComparisonTabs` and `AchievementFrame_SetRestrictedMode`. Forever loads the `Mainline` Blizzard_AchievementUI (`wow-ui-source/forever/.../Blizzard_AchievementUI.toc`).
+- `Gui/BlizzardOverrides.lua:61, 67, 78` comparison tabs and sub frame; `:108` chat-link wrapper around Retail's achievement buttons; `:141` the category tooltip replacement from #300, which Forever's `Mainline/Blizzard_AchievementUI.lua:614` reads too; `:194` hooks on `AchievementFrame_SetComparisonTabs` and `AchievementFrame_SetRestrictedMode`. Forever loads the `Mainline` Blizzard_AchievementUI (`wow-ui-source/forever/.../Blizzard_AchievementUI.toc`).
+- `Gui/WindowFrames/AchievementButton/AchievementButtonMixin.lua:236, 244` register `CONTENT_TRACKING_UPDATE` (from #357), the event Retail's tracker sends instead of `TRACKED_ACHIEVEMENT_LIST_CHANGED`. Forever has it (`ContentTrackingDocumentation.lua`, used by its `Blizzard_AchievementObjectiveTracker.lua`), and registering an event a client lacks errors, so the gate follows the interface.
 - `Gui/WorldMapButton/WorldMapButton.lua:24` Retail's world map frame.
 - `Gui/WindowFrames/FilterButton/FilterButton.lua:23`, `FilterButtonMixin.lua:3` the modern dropdown mixins and Blizzard's menus.
-- `Gui/WindowFrames/Search/OptionsMenuButton/OptionsMenuButtonMixin.lua:34` the click sound the modern button plays itself.
+- `Gui/WindowFrames/Search/OptionsMenuButton/OptionsMenuButtonMixin.lua:35` the click sound the modern button plays itself.
 - `Gui/WindowFrames/AchievementButton/AchievementButtonExtraIconFactory.lua:74, 208, 278, 291` atlases.
 - `Gui/RewardPreview/RewardPreviewMixin.lua:162` an atlas.
 - `Plugins/ElvUI.lua:677`, `Plugins/GW2_UI/GW2_UI.lua:1018` an anchor offset against Retail's achievement frame; `GW2_UI.lua:16, 1110` and `Plugins/EllesmereUI.lua:15, 1047` the skin's Retail build. Each plugin also checks that its addon is loaded, so `IsModern` only says which build of the skin applies.
 - `Tests/Menu.lua:87, 97` build the root menu the way the builder does, so they follow requirement 3.
+- `Tests/Tracking.lua:194` (from #357) reads the dirty flags of Retail's objective tracker frames, which Forever's `Blizzard_ObjectiveTracker` has too. It only adds an observation and picks no recorded result, so it is not one of the suites' Retail guards below.
 
 **Stays `IsMainline`** (content):
 - `DataAddons/Shared/CategoryData.lua:518-568`, `01_Vanilla/CategoryData.lua:37, 589`, `03_WrathOfTheLichKing/CategoryData.lua:494, 566`: Retail's "Legacy" suffixes and map ids.

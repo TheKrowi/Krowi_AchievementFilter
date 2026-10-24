@@ -233,7 +233,7 @@ end
 function KrowiAF_AchievementButtonMixin:OnShow()
 	self:RegisterEvent("ACHIEVEMENT_EARNED")
 	self:RegisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED")
-	if addon.Util.IsMainline then
+	if addon.Util.IsModern then
 		self:RegisterEvent("CONTENT_TRACKING_UPDATE")
 	end
 end
@@ -241,7 +241,7 @@ end
 function KrowiAF_AchievementButtonMixin:OnHide()
 	self:UnregisterEvent("ACHIEVEMENT_EARNED")
 	self:UnregisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED")
-	if addon.Util.IsMainline then
+	if addon.Util.IsModern then
 		self:UnregisterEvent("CONTENT_TRACKING_UPDATE")
 	end
 end

@@ -191,7 +191,7 @@ local function DescribeAchievement(id)
 end
 
 local function ObserveTracker(label)
-    if not addon.Util.IsMainline then
+    if not addon.Util.IsModern then
         return
     end
     local parts = {}
