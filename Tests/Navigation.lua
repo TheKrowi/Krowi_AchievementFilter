@@ -112,6 +112,58 @@ local function RunScenario(env, scenario, isRetail, setupProblem)
     }
 end
 
+-- The back arrow's tooltip lists the browsing history (docs/work/2026-10-24-menu-unknown-achievement). A scenario pushes a
+-- record for an achievement the game does not know onto the history, builds the tooltip and reads back its last line.
+-- The line took the achievement's name from addon.GetAchievmentName, which is nil for such an id, so building the tooltip
+-- raised "attempt to concatenate a nil value". Recorded / Target: "error" when building the tooltip raises,
+-- "placeholder" when the line ends with the placeholder name addon.GetAchievementInfo gives the id, otherwise "name".
+navigation.HistoryScenarios = {
+    {Name = "history-tooltip-unknown-achievement", Recorded = "error", Target = "placeholder"}
+}
+
+-- "raised at <file> line <n>: <message>": an observation in the "<file>:<n>: " form would read as a failing scenario to
+-- the unit-tests lint rule, which parses run-tests.lua -check output
+function navigation.DescribeError(problem)
+    local file, line, message = tostring(problem):match("^(.-):(%d+): (.*)$")
+    if not file then
+        return "raised: " .. tostring(problem)
+    end
+    return ("raised at %s line %s: %s"):format(file, line, message)
+end
+
+-- env: HistoryTooltipLine() -> true, line, id when the tooltip was built; false, error when building it raised; nil, reason
+-- when the scenario could not run
+local function RunHistoryScenario(env, scenario, setupProblem)
+    local blocked = setupProblem
+    local got
+    if not blocked then
+        local built, line, id = env.HistoryTooltipLine()
+        if built == nil then
+            blocked = line
+        elseif not built then
+            got = "error"
+        else
+            local _, placeholder = addon.GetAchievementInfo(id)
+            got = (type(line) == "string" and line:sub(-#placeholder) == placeholder) and "placeholder" or "name"
+        end
+    end
+
+    local status, targetMet, tail
+    if blocked then
+        status, tail = "SKIP", blocked
+    else
+        status = got == scenario.Recorded and "PASS" or "FAIL"
+        targetMet = got == scenario.Target
+        tail = ("got=%s target=%s %s"):format(got, scenario.Target, targetMet and "met" or "open")
+    end
+    return {
+        Name = scenario.Name,
+        Status = status,
+        TargetMet = targetMet,
+        Line = ("navigation/%s: %s recorded=%s %s"):format(scenario.Name, status, scenario.Recorded, tail)
+    }
+end
+
 function navigation.Run(env)
     local results = {}
     local isRetail = env.IsRetail()
@@ -119,6 +171,9 @@ function navigation.Run(env)
     local setupProblem = not ready and (reason or "setup failed") or nil
     for _, scenario in ipairs(navigation.Scenarios) do
         tinsert(results, RunScenario(env, scenario, isRetail, setupProblem))
+    end
+    for _, scenario in ipairs(navigation.HistoryScenarios) do
+        tinsert(results, RunHistoryScenario(env, scenario, setupProblem))
     end
     if ready then
         env.Teardown()
@@ -207,6 +262,40 @@ function gameEnv.IsVisible(key)
     end
     local prevButton, nextButton = Arrows()
     return prevButton:IsVisible() or nextButton:IsVisible()
+end
+
+-- The first id from 1 up that neither the game nor the addon knows, in a record on any category; the record and the
+-- history's index are put back and the tooltip hidden before returning. The history lives for the session only
+-- (BrowsingHistory.lua), so nothing is saved.
+function gameEnv.HistoryTooltipLine()
+    local id
+    for candidate = 1, 100000 do
+        if not addon.Data.Achievements[candidate] and not GetAchievementInfo(candidate) then
+            id = candidate
+            break
+        end
+    end
+    local categoryId = next(addon.Data.Categories)
+    if not id or not categoryId then
+        return nil, "no unknown achievement id or no category to put in the history"
+    end
+    tinsert(observations, "history-tooltip-unknown-achievement lists " .. id .. ", which neither the game nor the addon knows")
+    local history = addon.BrowsingHistory
+    local records, index = history:GetAllRecords(), history:GetCurrentIndex()
+    tinsert(records, {CategoryId = categoryId, AchievementId = id})
+    history.Index = #records
+    local prevButton = Arrows()
+    local built, problem = pcall(KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButtonMixin.OnEnter, prevButton)
+    local line = _G["Krowi_TooltipTextLeft" .. Krowi_Tooltip:NumLines()]
+    line = line and line:GetText()
+    Krowi_Tooltip:Hide()
+    tremove(records)
+    history.Index = index
+    if not built then
+        tinsert(observations, "history-tooltip-unknown-achievement " .. navigation.DescribeError(problem))
+        return false, problem
+    end
+    return true, line, id
 end
 
 function gameEnv.Teardown()

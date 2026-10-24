@@ -39,7 +39,8 @@ function achievementMenu:AddGoToAchievementWithCategoryLine(menu, achievement, c
 	)
 end
 
-local function CreateMenu(menuObj, achievement, caller)
+-- Builds the menu into menuObj without showing it, so the menu suite (Tests/Menu.lua) can build one into a root of its own
+function achievementMenu:CreateMenu(menuObj, achievement, caller)
 	menuBuilder:CreateTitle(menuObj, addon.GetAchievmentName(achievement.Id))
 
 	for _, section in next, achievementMenu.Sections do
@@ -54,7 +55,7 @@ end
 function achievementMenu:Open(caller, achievement, anchor, offsetX, offsetY, point, relativePoint, frameStrata, frameLevel)
 	menuBuilder:ShowPopup(function()
 		local menuObj = menuBuilder:GetMenu()
-		CreateMenu(menuObj, achievement, caller)
+		achievementMenu:CreateMenu(menuObj, achievement, caller)
 	end)
 end
 
