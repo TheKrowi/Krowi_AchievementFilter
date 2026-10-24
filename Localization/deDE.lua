@@ -436,7 +436,7 @@ L["Event Reminder Desc"] = [=[{events} werden zum neuen Tab {events} hinzugefüg
 
 Die Ereigniserinnerung hat den Namen des Ereignisses und bis zu 2 Zeilen Zeitanzeige (Endzeit des Ereignisses) (1).
 Das Format der Zeitanzeige kann aus vordefinierten Vorgaben oder auch Benutzerdefiniert ausgewählt werden (1).
-Es existiert auch eine kompakte Version mit einer einzigen Zeile für die Zeitanzeige (compactEnabled) (1). 
+Es existiert auch eine kompakte Version mit einer einzigen Zeile für die Zeitanzeige ({compactEnabled}) (1). 
 
 Ein Klick auf die Ereigniserinnerung öffnet die dazugehörige Kategorie mit den noch erreichbaren Erfolgen, solange das Ereignis aktiv ist.
 Die Ereigniserinnerung verschwindet, wenn mit der rechten Maustaste auf die Erinnerung geklickt wird oder nach {eventAlertFadeDelay} Sekunden, wenn die Erinnerung ignoriert wird (1). 
@@ -888,7 +888,7 @@ L["Remember Last Position Desc"] = "Merkt sich die letzte Position, an die ein {
 L["Remember Size"] = "Größe merken"
 L["Remember Size Desc"] = "Die Größe eines {Popouts}s über einen /reload und eine erneute Anmeldung hinweg speichern."
 L["Remix: Mists of Pandaria"] = "Remix: Mists of Pandaria "
-L["RemixBronze"] = true
+L["RemixBronze"] = "Remix Bronze"
 L["RemixInfiniteKnowledge"] = "Remix Ewige Forschung"
 L["Remove from Watch List"] = "Von {watchList} löschen"
 L["Required for"] = "Wird benötigt für..."
