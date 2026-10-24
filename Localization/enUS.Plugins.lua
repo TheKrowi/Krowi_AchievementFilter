@@ -1,12 +1,10 @@
 local _, addon = ...
 local L = addon.Localization.NewDefaultLocale(true)
 
--- [[ Added here until it is exported from CurseForge into the block below ]] --
-L["Tab Spacing Overwrite Desc"] = "The spacing setting is not active when {addon} is enabled. All tabs are seated 1 pixel apart to match the rest of the {addon} skin."
-
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-05-26 20-53-58 ]] --
+L["Tab Spacing Overwrite Desc"] = "The spacing setting is not active when {addon} is enabled. All tabs are seated 1 pixel apart to match the rest of the {addon} skin."
 L["AchievementsTabFixes"] = "Achievements Tab Fixes"
 L["AchievementsTabFixes Desc"] = "This plugin provides some fixes for the Achievements Tab, toggleable below."
 L["Add To Right Click Menu"] = true
