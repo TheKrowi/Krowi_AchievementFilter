@@ -2,7 +2,7 @@
 Intent: [intent.md](intent.md). Status: accepted
 
 ## Requirements
-1. On Retail, hovering a category on Blizzard's Guild tab or Blizzard's Achievements tab in KAF's window shows no tooltip on `GameTooltip`, so the hover no longer has KAF-tainted execution write a Lua field of `GameTooltip` or its widget container. The taint probe records no `statusBarPool` or `GameTooltip.widgetContainer` detection by KAF for that hover and a widget tooltip after it. (Narrowed to the hover on 2026-10-24 after the taint review. Blizzard's leave handler on those buttons may still run tainted and hide `GameTooltip` whoever owns it, a path that predates this change and is in `docs/backlog.md`.)
+1. On Retail, hovering a category on Blizzard's Guild tab or Blizzard's Achievements tab in KAF's window shows no tooltip on `GameTooltip`, so the hover no longer has KAF-tainted execution write a Lua field of `GameTooltip` or its widget container. The taint probe records no `statusBarPool` or `GameTooltip.widgetContainer` detection by KAF for that hover and a widget tooltip after it. (Narrowed to the hover on 2026-10-24 after the taint review. The review thought Blizzard's leave handler on those buttons might still run tainted; the in-game observation found their `OnLeave` secure. The window's other leave handlers are in `docs/backlog.md`.)
 2. The tooltip still shows the category's name and its completed and total count as a bar with the `completed/total` text, next to the button, and hides when the mouse leaves the button or the window closes.
 3. Feat of Strength categories and the Statistics tab keep Blizzard's tooltips.
 4. Mists Classic and Titan Reforged are unchanged.
@@ -62,7 +62,9 @@ KAF provides its own `AchievementFrameCategory_StatusBarTooltip` on Retail, set 
 - **Player-facing text.** A changelog line under the next version's `### Fixed`.
 - **Other entry points.**
   - Older reports may have had others (code before 99.6, other addons tainting `GameTooltip`).
-  - Blizzard's leave handlers in the window (category buttons, Feat of Strength, achievement and summary buttons) probably run tainted. If `GameTooltip` still shows another owner's widget tooltip when one fires, they hide it tainted. That is low likelihood, since that owner hides it first. The in-game observation reads whether a real button's `OnLeave` is tainted, and the case is in `docs/backlog.md`.
+  - A Blizzard leave handler in the window that runs tainted would hide `GameTooltip` tainted while it still shows another owner's widget tooltip. That is low likelihood, since that owner hides it first.
+    - The category buttons' `OnLeave`, Feat of Strength ones included, was secure in game (2026-10-24).
+    - The achievement, summary and shield buttons are not measured; that case is in `docs/backlog.md`.
   - The probe stays on and would show a key that tainted code sets to a new value. It does not see a key set to nil, or a value written again unchanged.
 
 ## Verification

@@ -70,6 +70,16 @@ This plan is not routine: it replaces a Blizzard FrameXML function. The maintain
 - The probe's last session after the POI hover has no `statusBarPool` and no `GameTooltip.widgetContainer` detection with `TaintedBy = "Krowi_AchievementFilter"`, against the 2026-10-23 19:57 session that had both.
 - `Read-GameErrors.ps1`: no new `LayoutFrame.lua` row and no bumped count.
 
+## Results
+- **Before-run, Retail 12.1.5, 2026-10-24 13:26:** `tooltip` 4 passed, `blizzard-category-tooltip` got `GameTooltip` (target open); 0 differences from headless; no errors.
+- **After-run, Retail 12.1.5, 2026-10-24 14:19:**
+  - `tooltip` 4 passed with every target met; `escape` 27 passed; `navigation` 7 passed and 1 skipped. The skip is that suite's own rule for a hidden tab (Blizzard's Achievements tab is off).
+  - Observations: the global is replaced by the addon. A real Guild tab category button's `showTooltipFunc` is the addon's (tainted, as expected), and its `OnLeave` is secure.
+  - Hand check: hovering "Professions" on the Guild tab shows the addon's progress-bar tooltip with 19/23 (WoWScrnShot_102426_141911.jpg), and it hides when the mouse leaves.
+  - The probe's session of 14:18:47 (category hover, then a map POI) has no detections, against `statusBarPool` and four widget container keys in the 2026-10-23 19:57 session.
+  - BugGrabber: no errors.
+- **Mists Classic:** pending.
+
 ## Departures
 - **2026-10-24, the hide.** The taint review found two flaws in the `OnUpdate` watcher:
   - it hid one frame late, so it could close a battle pet tooltip that had just opened;
