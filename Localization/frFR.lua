@@ -6,8 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-10-14 19-23-22 ]] --
-L["Stopped tracking completed achievement"] = "Suivi arrêté pour un haut fait obtenu"
+-- [[ Exported at 2026-10-24 16-43-33 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -38,14 +37,14 @@ L["Achievement Window"] = "Fenêtre des Hauts faits"
 L["Achievement window height offset"] = "Décalage de la hauteur de la fenêtre des Hauts faits"
 L["Achievement window height offset Desc"] = [=[Ajoute ou soustrait de la hauteur à la hauteur par défaut de la fenêtre des Hauts faits.
 
-Cette valeur peut être modifiée pendant que la fenêtre des Hauts faits est ouverte et que l'un des onglets ajoutés par {AddonName} est sélectionné. Cela peut avoir un impact sur le jeu.
+Cette valeur peut être modifiée pendant que la fenêtre des Hauts faits est ouverte et que l'un des onglets ajoutés par {addonName} est sélectionné. Cela peut avoir un impact sur le jeu.
 
 Les FPS chutent pendant l'ajustement de la valeur, mais PAS pendant l'utilisation normale de l'addon.]=]
 L["Achievements"] = "Hauts faits"
 L["Achievements width offset"] = "Décalage largeur de la fenêtre des Hauts faits"
 L["Achievements width offset Desc"] = [=[Ajoute ou soustrait de la largeur à la largeur par défaut de la fenêtre des Hauts faits.
 
-Cette valeur peut être modifiée pendant que la fenêtre des Hauts faits est ouverte et que l'un des onglets ajoutés par {AddonName} est sélectionné. Cela peut avoir un impact sur le jeu.
+Cette valeur peut être modifiée pendant que la fenêtre des Hauts faits est ouverte et que l'un des onglets ajoutés par {addonName} est sélectionné. Cela peut avoir un impact sur le jeu.
 
 Les FPS chutent pendant l'ajustement de la valeur, mais PAS pendant l'utilisation normale de l'addon.]=]
 L["Active"] = "Actif"
@@ -148,11 +147,9 @@ L["Categories not loaded"] = "{addonName} n'est pas encore complètement chargé
 L["Categories width offset"] = "Largeur des catégories"
 L["Categories width offset Desc"] = [=[Ajoute ou soustrait de la largeur à la largeur de catégorie par défaut.
 
-Cette valeur peut être modifiée pendant que la fenêtre de haut fait est ouverte et que l'un des onglets ajoutés par {AddonName} est sélectionné. Cela peut avoir un impact sur le jeu.
+Cette valeur peut être modifiée pendant que la fenêtre de haut fait est ouverte et que l'un des onglets ajoutés par {addonName} est sélectionné. Cela peut avoir un impact sur le jeu.
 
-Les FPS chutent pendant l'ajustement de la valeur non PAS pendant l'utilisation normale de l'addon
-
-{reloadRequired}]=]
+Les FPS chutent pendant l'ajustement de la valeur non PAS pendant l'utilisation normale de l'addon]=]
 L["Category shown temporarily"] = "Cette catégorie a été sélectionnée en cliquant sur le rappel d'événement {eventName} et est affichée temporairement car elle ne contient aucun haut fait correspondant aux filtres définis."
 L["Caverns Criss-Cross"] = "Réseau des grottes"
 L["Center Header"] = "En-tête centré"
@@ -412,8 +409,8 @@ Icônes :
 |T:1:8|t- {notready} : Le Haut fait n'est plus disponible.
 
 Couleurs :
-|T:1:8|t- {vert} : Le Haut fait ou l'objectif est terminé.
-|T:1:8|t- {gris} : Le Haut fait ou l'objectif n'est pas terminé.
+|T:1:8|t- {green} : Le Haut fait ou l'objectif est terminé.
+|T:1:8|t- {grey} : Le Haut fait ou l'objectif n'est pas terminé.
 |T:1:8|t- {red} : Le Haut fait n'est plus disponible.
 |T:1:8|t- les couleurs pâles {lightGreen}, {lightGrey} ou {lightRed} : Le Haut fait est ignoré.
 
@@ -712,9 +709,7 @@ L["Merge small categories threshold Desc"] = [=[Les catégories avec un nombre d
 
 Seules les catégories prédéfinies peuvent être fusionnées (principalement les catégories dépendant des zones). Cela peut avoir un impact sur le jeu.
 
-Les FPS chutent pendant l'ajustement de la valeur non PAS pendant l'utilisation normale de l'addon
-
-{reloadRequired}]=]
+Les FPS chutent pendant l'ajustement de la valeur non PAS pendant l'utilisation normale de l'addon]=]
 L["Micro Button"] = "Micro bouton"
 L["Midsummer"] = "Solstice d'été"
 L["Midsummer Fire Festival"] = "Fête du Feu du solstice d'été"
@@ -905,7 +900,7 @@ L["Required for"] = "Requis pour"
 L["Requires"] = "Requiert"
 L["Researchers Under Fire"] = "Des chercheurs sous le feu"
 L["Reset Faction Filters"] = "Réinitialiser les filtres de faction"
-L["Reset Faction Filters Desc"] = "Réinitialiser ou conserver les filtres de faction. Cela signifie que si vous vous connectez avec un personnage {Alliance} et que l'un des filtres de faction {Neutre}, {Alliance} ou {Horden} est activé, seuls les filtres de faction {neutre} et {alliance} seront visible. Cette option est à prioriser lorsque vous basculez souvent entre {Alliance} et {Horde}."
+L["Reset Faction Filters Desc"] = "Réinitialiser ou conserver les filtres de faction. Cela signifie que si vous vous connectez avec un personnage {alliance} et que l'un des filtres de faction {neutral}, {alliance} ou {horde} est activé, seuls les filtres de faction {neutral} et {alliance} seront visible. Cette option est à prioriser lorsque vous basculez souvent entre {alliance} et {horde}."
 L["Reset filters"] = "Réinitialiser les filtres"
 L["Reset position"] = "Réinitialiser la position"
 L["Reset position Desc"] = "Réinitialiser la {frame} à sa position par défaut."
@@ -936,7 +931,7 @@ Caractéristiques :
 |T:1:8|t- Le menu {xuFuPetGuides} est disponible si le Haut-faits est liée aux {petBattles} et si le {xuFuPetGuides} contient des informations pertinentes à ce sujet.
 |T:1:8|t- Lien vers les ensembles de transmogrification si l'objectif du succès est d'en collecter un.
 {pluginText}
-|T:1:8|t- {add} : groupes divers éléments pour ne pas encombrer le menu principal.
+|T:1:8|t- {more} : groupes divers éléments pour ne pas encombrer le menu principal.
 |T:1:8|t|T:1:8|t- {addToWatch} : ajoutez le Haut-fait à la catégorie {watchList}. (Uniquement disponible sur les Haut-fait non suivis).
 |T:1:8|t|T:1:8|t- {removeFromWatch} : Supprimez le Haut-fait de la catégorie {watchList}. (Uniquement disponible sur les Hauts-fait suivies).
 |T:1:8|t|T:1:8|t- {include} : Le Haut-fait n'est plus masqué. (Uniquement disponible sur les Hauts-faits masqué).
@@ -1011,7 +1006,7 @@ L["Show alertSystem on reload only when time data is available Desc"] = "Affiche
 L["Show All Results in Category"] = "Afficher tous les résultats de la catégorie"
 L["Show All Results in Category Desc"] = "Afficher tous les résultats de recherche dans une catégorie qui persistera pendant cette session."
 L["Show Criteria"] = "Afficher les critères"
-L["Show Criteria Desc"] = "Afficher les critères du haut fait sur les unités requises pour une réalisation (par exemple, /love {critère} pour {réalisation})."
+L["Show Criteria Desc"] = "Afficher les critères du haut fait sur les unités requises pour une réalisation (par exemple, /love {criteria} pour {achievement})."
 L["Show Criteria If"] = "Afficher les critères si..."
 L["Show current character icons"] = "Afficher les icônes du personnage actuel"
 L["Show current character icons Desc"] = [=[Affiche ou masque les icônes du personnage actuel.
@@ -1133,6 +1128,7 @@ L["Stables"] = "Écuries"
 L["StarCraft II"] = true
 L["Start Time"] = "Heure de début"
 L["Stop tracking"] = "Arrêter le suivis"
+L["Stopped tracking completed achievement"] = "Suivi arrêté pour un haut fait obtenu"
 L["Stormheim"] = "Tornheim"
 L["Stormsong Valley"] = "Vallée Chantorage"
 L["Strand of the Ancients"] = "Rivage des Anciens"

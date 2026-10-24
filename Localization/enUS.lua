@@ -5,8 +5,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-10-14 19-22-57 ]] --
-L["Stopped tracking completed achievement"] = true
+-- [[ Exported at 2026-10-24 16-43-33 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -445,17 +444,17 @@ L["Event Reminder Desc"] = [=[{events} are added to the new {events} tab and a r
 
 The event reminder has the name of the event and up to 2 lines of time display (end time of the event) (1).
 The format of the time display can be chosen from presets or custom made (1).
-A compact version exists with a single line for time display (compactEnabled) (1).
+A compact version exists with a single line for time display ({compactEnabled}) (1).
 
 Clicking it will open the category with the obtainable achievements while the event is active.
-It will dissapear when right clicked or after {eventAlertFadeDelay} seconds when ignored (1).
+It will disappear when right clicked or after {eventAlertFadeDelay} seconds when ignored (1).
 
 The reminder is also present on the right side of the achievement window.
 
 Event types:
-|T:1:8|t- calendarEvents (e.g.: Holidays).
-|T:1:8|t- widgetEvents (e.g.: Torghast).
-|T:1:8|t- worldEvents (e.g.: Assaults).
+|T:1:8|t- {calendarEvents} (e.g.: Holidays).
+|T:1:8|t- {widgetEvents} (e.g.: Torghast).
+|T:1:8|t- {worldEvents} (e.g.: Assaults).
 
 (1) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {eventReminders}]=]
 L["Event Reminders"] = true
@@ -1146,6 +1145,7 @@ L["Stables"] = true
 L["StarCraft II"] = true
 L["Start Time"] = true
 L["Stop tracking"] = true
+L["Stopped tracking completed achievement"] = true
 L["Stormheim"] = true
 L["Stormsong Valley"] = true
 L["Strand of the Ancients"] = true

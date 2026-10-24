@@ -6,8 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-10-14 19-23-52 ]] --
-L["Stopped tracking completed achievement"] = "已取消追踪已完成的成就"
+-- [[ Exported at 2026-10-24 16-43-33 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -1147,6 +1146,7 @@ L["Stables"] = "兽栏"
 L["StarCraft II"] = "星际争霸II"
 L["Start Time"] = "开始时间"
 L["Stop tracking"] = "停止追踪"
+L["Stopped tracking completed achievement"] = "已取消追踪已完成的成就"
 L["Stormheim"] = "风暴峡湾"
 L["Stormsong Valley"] = "斯托颂谷地"
 L["Strand of the Ancients"] = "远古海滩"

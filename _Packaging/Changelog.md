@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 - Covenant assault reminders now only show for characters who finished chapter 2 of Chains of Domination
 - Krowi_Menu library updated to 2.2
 - Krowi_Util library updated to 2.8
+- Krowi_WorldMapButtons library updated to 1.4.12
 
 ### Fixed
 - Let Her Solo Me shows as obtainable again, since it can still be earned
@@ -25,6 +26,8 @@ All notable changes to this project will be documented in this file.
 - Superbloom: Active now shows its time left instead of "No time data available"
 - Dreamsurge reminders show in their zones again
 - Tooltips no longer keep giving "secret number value" errors after you hover a category on the Guild tab or on Blizzard's own Achievements tab; on Retail those categories now show the addon's progress tooltip
+- The Event Reminders tutorial page now shows whether the compact reminder is turned on, and names the event types
+- Some tutorial and option texts in German, French, Russian and Korean no longer show a placeholder such as {addon} instead of the text, and the Remix Bronze reward filter no longer reads "RemixBronze" in German
 
 ## 103.0 - 2026-10-14
 ### Added
