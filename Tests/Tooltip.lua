@@ -22,9 +22,11 @@ local tooltip = addon.Tests.Tooltip
 -- GET_ITEM_INFO_RECEIVED. The suite's Ready check requests the items and waits until the cache has them, so the line can
 -- be read right after the tooltip is built. Retail only: no Classic achievement has transmog set data.
 
--- Kind: nil for the transmog set progress section above; "most-progress" for whether the Most progress section shows
+-- Kind: nil for the transmog set progress section above; "most-progress" for whether the Most progress section shows;
+-- "category" and "category-leave" for Blizzard's category tooltip (below)
 -- Id: the achievement whose tooltip is built (one with TransmogSetIds; the headless model uses a fake with this id)
--- Recorded / Target: "done" or "stuck"; for "most-progress", "shown" or "hidden"
+-- Recorded / Target: "done" or "stuck"; for "most-progress", "shown" or "hidden"; for "category", the tooltip the button
+-- owns, "GameTooltip", "progress bar" (the addon's own) or "none"; for "category-leave", "shown" or "hidden"
 -- Before the fix the section never finished on 12.1.5 ("stuck", verified in game on the 12.1.5 PTR on 2026-10-08); it now
 -- reads the item through C_Item.GetItemInfo
 --
@@ -34,15 +36,80 @@ local tooltip = addon.Tests.Tooltip
 -- 12.1.0 on 2026-10-13), with the achievement seen as neither completed nor account-wide. The criteria count, which the
 -- run records as an observation, is the only gate left that hides it. The maintainer chose to keep today's behaviour
 -- (2026-10-11); the scenario records it.
+--
+-- blizzard-category-tooltip (issue #300, docs/work/300-category-tooltip-taint): the tooltip of a category button on
+-- Blizzard's Achievements and Guild tabs. Blizzard's list gives each such button AchievementFrameCategory_StatusBarTooltip
+-- as its showTooltipFunc, which the button's OnEnter calls (Blizzard_AchievementUI.lua:594, 612-616). With this addon
+-- loaded that runs tainted, and on GameTooltip it leaves GameTooltip.statusBarPool tainted. GameTooltip_OnHide reads that
+-- pool before it clears a widget set, so every later map POI or vignette tooltip clears tainted and can error on a secret
+-- value. The scenario gives a stand-in button the fields Blizzard's list sets, calls the global the way OnEnter does and
+-- records which tooltip the button owns. The -leave scenario then fires the button's OnLeave as the game does, with
+-- Blizzard's handler as the stand-in's script and whatever hooks the addon added, and records whether a tooltip the
+-- button owns is still shown. In game the stand-in sits away from the cursor, and an observation reads a real category
+-- button of Blizzard's list when one exists: whether its showTooltipFunc is the addon's, and whether its OnLeave runs
+-- tainted (the taint review of the fix). Before the fix the button showed GameTooltip ("GameTooltip", verified in game
+-- on Retail 12.1.5 on 2026-10-24), and that in-game run, which shows Blizzard's tooltip from addon code, left
+-- GameTooltip.statusBarPool tainted until the next /reload. The addon now gives these buttons its own progress-bar
+-- tooltip on Retail and hides it from their OnLeave (Gui/BlizzardOverrides.lua), so the run no longer touches
+-- GameTooltip.
 tooltip.Scenarios = {
     {Name = "transmog-set-progress", Id = 40469, -- I'm Bringing Nerub-ack, DataAddons/Retail/11_TheWarWithin/TransmogSetData.lua
         Recorded = "done", Target = "done"},
     {Name = "most-progress-transmog-set", Kind = "most-progress", Id = 40469,
+        Recorded = "hidden", Target = "hidden"},
+    {Name = "blizzard-category-tooltip", Kind = "category",
+        Recorded = "progress bar", Target = "progress bar"},
+    {Name = "blizzard-category-tooltip-leave", Kind = "category-leave",
         Recorded = "hidden", Target = "hidden"}
 }
 
+local function IsCategoryKind(scenario)
+    return scenario.Kind == "category" or scenario.Kind == "category-leave"
+end
+
+-- The shown tooltip the category button owns
+local function CategoryOwner(button)
+    if GameTooltip:IsShown() and GameTooltip:IsOwned(button) then
+        return "GameTooltip"
+    end
+    local progressTooltip = addon.ProgressBarLib.GameTooltipWithProgressBar.Tooltip
+    if progressTooltip:IsShown() and progressTooltip:IsOwned(button) then
+        return "progress bar"
+    end
+    return "none"
+end
+
+-- The stand-in's OnLeave script: Blizzard's leave handler of a category button (Blizzard_AchievementUI.lua:618-621),
+-- which hides GameTooltip, run only while GameTooltip is the button's so a run of the fixed code never touches it. The
+-- environments set it once, when they create the stand-in: SetScript would drop the hook the addon adds.
+function tooltip.CategoryStandInOnLeave(button)
+    if GameTooltip:IsOwned(button) then
+        AchievementCategoryTemplateButtonMixin.OnLeave(button)
+    end
+end
+
+local function InspectCategory(button, scenario)
+    AchievementFrameCategory_StatusBarTooltip(button) -- what the button's OnEnter does through its showTooltipFunc
+    if scenario.Kind == "category" then
+        return CategoryOwner(button)
+    end
+    ExecuteFrameScript(button, "OnLeave") -- the mouse leaving: the button's script and the hooks on it
+    return CategoryOwner(button) == "none" and "hidden" or "shown"
+end
+
+local function HideCategoryTooltips(button)
+    local progressTooltip = addon.ProgressBarLib.GameTooltipWithProgressBar.Tooltip
+    if progressTooltip:IsOwned(button) then
+        progressTooltip:Hide()
+    end
+    if GameTooltip:IsOwned(button) then
+        GameTooltip:Hide()
+    end
+end
+
 -- env: IsRetail(), Setup(scenario, observations) -> ok[, reason], Show(scenario) -> ok[, reason], Lines() -> list of the
--- tooltip's left texts, CollectingText(), ProgressText(), MostProgressText(), Teardown()
+-- tooltip's left texts, CollectingText(), ProgressText(), MostProgressText(), CategoryButton() -> the stand-in category
+-- button, Teardown(); optionally ObserveCategoryTooltip(observations)
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
 local function Inspect(env, scenario)
     local lines = env.Lines()
@@ -74,6 +141,10 @@ local function RunScenario(env, scenario, observations)
     local got
     if ready then
         local ok, err = pcall(function()
+            if IsCategoryKind(scenario) then
+                got = InspectCategory(env.CategoryButton(), scenario)
+                return
+            end
             local shown, why = env.Show(scenario)
             if shown then
                 got = Inspect(env, scenario)
@@ -81,6 +152,9 @@ local function RunScenario(env, scenario, observations)
                 reason = why or "cannot show the tooltip"
             end
         end)
+        if IsCategoryKind(scenario) then
+            HideCategoryTooltips(env.CategoryButton())
+        end
         env.Teardown() -- after an error too: it puts the global and the tooltip back
         if not ok then
             error(err, 0)
@@ -99,14 +173,17 @@ local function RunScenario(env, scenario, observations)
         Name = scenario.Name,
         Status = status,
         TargetMet = targetMet,
-        Line = ("tooltip/%s: %s id=%d recorded=%s %s"):format(scenario.Name, status, scenario.Id, scenario.Recorded, tail)
+        Line = ("tooltip/%s: %s%s recorded=%s %s"):format(scenario.Name, status, scenario.Id and (" id=" .. scenario.Id) or "", scenario.Recorded, tail)
     }
 end
 
 function tooltip.Run(env, observations)
     local results = {}
+    if env.ObserveCategoryTooltip then
+        env.ObserveCategoryTooltip(observations)
+    end
     if not env.IsRetail() then
-        tinsert(observations, "no scenarios on Classic: no achievement there has transmog set data")
+        tinsert(observations, "no scenarios on Classic: no achievement there has transmog set data, and Blizzard's category tooltip stays Blizzard's")
         return results
     end
     for _, scenario in ipairs(tooltip.Scenarios) do
@@ -184,7 +261,90 @@ local function PlaceAnchor()
     anchor:SetPoint("CENTER")
 end
 
+local function LoadAchievementUI()
+    if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
+        C_AddOns.LoadAddOn("Blizzard_AchievementUI")
+    end
+end
+
+-- A stand-in for a category button of Blizzard's list, with the fields the list sets (Blizzard_AchievementUI.lua:581,
+-- 591-593), in the screen corner furthest from the cursor so the mouse is not over it
+local categoryButton
+local function PlaceCategoryButton()
+    if not categoryButton then
+        categoryButton = CreateFrame("Button", nil, UIParent)
+        categoryButton:SetScript("OnLeave", tooltip.CategoryStandInOnLeave)
+    end
+    categoryButton:SetSize(20, 20)
+    categoryButton:ClearAllPoints()
+    local x, y = GetCursorPosition()
+    local scale = UIParent:GetEffectiveScale()
+    local vertical = y / scale > UIParent:GetHeight() / 2 and "BOTTOM" or "TOP"
+    local horizontal = x / scale > UIParent:GetWidth() / 2 and "LEFT" or "RIGHT"
+    categoryButton:SetPoint(vertical .. horizontal)
+    categoryButton:Show()
+    categoryButton.name = "Kaftest category"
+    categoryButton.numAchievements, categoryButton.numCompleted, categoryButton.numCompletedText = 10, 4, "4/10"
+end
+
+function gameEnv.CategoryButton()
+    return categoryButton
+end
+
+local function SecurityText(isSecure, taintedBy)
+    return isSecure and "secure" or "tainted by " .. tostring(taintedBy)
+end
+
+-- The first category button of Blizzard's list with a progress tooltip, read only: a tooltip function and no Feat of
+-- Strength text (Blizzard_AchievementUI.lua:582-597). Nil until the list was last filled on Blizzard's Achievements or
+-- Guild tab (Retail's ScrollBox list; Classic's list is built differently).
+local function RealCategoryButton()
+    local scrollBox = AchievementFrameCategories and AchievementFrameCategories.ScrollBox
+    if not scrollBox then
+        return nil
+    end
+    local found
+    scrollBox:ForEachFrame(function(frame)
+        local button = frame.Button
+        if not found and button and button.showTooltipFunc and not button.text then
+            found = button
+        end
+    end)
+    return found
+end
+
+function gameEnv.ObserveCategoryTooltip(observations)
+    LoadAchievementUI()
+    local state = AchievementFrameCategory_StatusBarTooltip == nil and "absent"
+        or issecurevariable("AchievementFrameCategory_StatusBarTooltip") and "Blizzard's"
+        or "replaced by " .. tostring(select(2, issecurevariable("AchievementFrameCategory_StatusBarTooltip")))
+    tinsert(observations, "global AchievementFrameCategory_StatusBarTooltip: " .. state)
+
+    if not (AchievementFrameCategories and AchievementFrameCategories.ScrollBox) then
+        tinsert(observations, "Blizzard's category list is not read on this client (no ScrollBox list)")
+        return
+    end
+    local button = RealCategoryButton()
+    if not button then
+        tinsert(observations, "no category button of Blizzard's list to read: open the Guild tab (or Blizzard's Achievements tab) once before the run")
+        return
+    end
+    local addonShow = addon.Gui.BlizzardCategoryTooltip and addon.Gui.BlizzardCategoryTooltip.Show
+    tinsert(observations, ("a category button of Blizzard's list: showTooltipFunc %s (%s), OnLeave %s"):format(
+        button.showTooltipFunc == addonShow and "is the addon's" or "is not the addon's",
+        SecurityText(issecurevariable(button, "showTooltipFunc")),
+        SecurityText(issecurevariable(button, "OnLeave"))))
+end
+
 function gameEnv.Setup(scenario, observations)
+    if IsCategoryKind(scenario) then
+        LoadAchievementUI()
+        if not AchievementFrameCategory_StatusBarTooltip then
+            return false, "Blizzard's category tooltip function does not exist on this client"
+        end
+        PlaceCategoryButton()
+        return true
+    end
     if not addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.Show then
         return false, "Objectives progress is off in the tooltip options"
     end
@@ -244,6 +404,9 @@ function gameEnv.Teardown()
     Krowi_Tooltip:Hide()
     if anchor then
         anchor.Achievement = nil
+    end
+    if categoryButton then
+        categoryButton:Hide()
     end
 end
 

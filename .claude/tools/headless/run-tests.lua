@@ -19,7 +19,8 @@
 --         Obtainable() call stores and the state it gives, on the real data load of client-env.lua), tooltip
 --         (Gui/AchievementTooltip/TransmogObjectives.lua: whether the transmog set progress section of the achievement
 --         tooltip finishes in a 12.1.5 environment without the global GetItemInfo; MostProgress.lua: whether the Most
---         progress section shows on an achievement with transmog set data), guide (Gui/Guide/, the guide's tooltip and
+--         progress section shows on an achievement with transmog set data; Gui/BlizzardOverrides.lua: which tooltip a
+--         category button of Blizzard's Achievements and Guild tabs shows, issue #300), guide (Gui/Guide/, the guide's tooltip and
 --         right-click menu sections: achievement guides and their waypoints, once their files exist), menu
 --         (Gui/RightClickMenu/AchievementMenu/AchievementMenu.lua: whether a "go to" entry for an achievement the addon
 --         does not register is greyed out), memory (TaintDiagnostics.lua and Data/EventData.lua with the custom event
@@ -806,8 +807,9 @@ end
 
 -- The real Gui/AchievementTooltip/TransmogObjectives.lua behind a copy of AchievementTooltip:ShowTooltip, against a model of
 -- Krowi_Tooltip and the transmog and item APIs: one fake set of two items, both in the item cache, so the section runs
--- without yielding. Like 12.1.5 the environment has no global GetItemInfo, only C_Item.GetItemInfo (sources in
--- Tests/Tooltip.lua).
+-- without yielding. Like 12.1.5 the environment has no global GetItemInfo, only C_Item.GetItemInfo. And the real
+-- Gui/BlizzardOverrides.lua against a model of GameTooltip, the addon's progress-bar tooltip and Blizzard's category
+-- tooltip (sources in Tests/Tooltip.lua).
 suites.tooltip = function(c)
     local env, addon = c.env, c.addon
     c.loadAddonFile("Tests/Tooltip.lua")
@@ -857,6 +859,47 @@ suites.tooltip = function(c)
     c.loadAddonFile("Gui/AchievementTooltip/TransmogObjectives.lua") -- in the order of Gui/AchievementTooltip/Files.xml
     c.loadAddonFile("Gui/AchievementTooltip/MostProgress.lua")
     ModelShowTooltip(addon, krowiTooltip)
+
+    -- --- Blizzard's category tooltip (issue #300): GameTooltip, the addon's progress-bar tooltip, and Blizzard's tooltip
+    -- and leave handler of a category button, copied from Blizzard_AchievementUI.lua:777-783 and 618-621. The real
+    -- Gui/BlizzardOverrides.lua decides which tooltip a category button's OnEnter reaches.
+    local function ModelTooltip()
+        local tooltip, owner, shown = {}, nil, false
+        function tooltip:SetOwner(frame) owner = frame end
+        function tooltip:GetOwner() return owner end
+        function tooltip:IsOwned(frame) return owner ~= nil and owner == frame end
+        function tooltip:SetMinimumWidth() end
+        function tooltip:SetText() end
+        function tooltip:Show() shown = true end
+        function tooltip:Hide() shown = false end
+        function tooltip:IsShown() return shown end
+        return tooltip
+    end
+    local gameTooltip, progressTooltip = ModelTooltip(), ModelTooltip()
+    rawset(env, "GameTooltip", gameTooltip)
+    rawset(env, "GameTooltip_ShowStatusBar", function() end) -- the bar itself is not looked at
+    rawset(env, "AchievementFrameCategory_StatusBarTooltip", function(self)
+        gameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+        gameTooltip:SetMinimumWidth(128, true)
+        gameTooltip:SetText(self.name, 1, 1, 1, nil, true)
+        env.GameTooltip_ShowStatusBar(gameTooltip, 0, self.numAchievements, self.numCompleted, self.numCompletedText)
+        gameTooltip:Show()
+    end)
+    rawset(env, "AchievementCategoryTemplateButtonMixin", { OnLeave = function()
+        gameTooltip:SetMinimumWidth(0, false)
+        gameTooltip:Hide()
+    end })
+    addon.ProgressBarLib = { GameTooltipWithProgressBar = { Tooltip = progressTooltip,
+        Show = function(_, ownerFrame) progressTooltip:SetOwner(ownerFrame) progressTooltip:Show() end,
+        Hide = function() progressTooltip:Hide() end } }
+    rawset(env, "ExecuteFrameScript", function(frame, kind, ...) frame:RunScript(kind, ...) end) -- the script, then its hooks
+    c.loadAddonFile("Gui/BlizzardOverrides.lua")
+    addon.OverwriteFunctions() -- in game at Blizzard_AchievementUI's ADDON_LOADED, before its category list first fills
+    local categoryButton = env.CreateFrame("Button", nil, env.UIParent)
+    categoryButton:Show()
+    categoryButton:SetScript("OnLeave", suite.CategoryStandInOnLeave)
+    categoryButton.name, categoryButton.numAchievements, categoryButton.numCompleted, categoryButton.numCompletedText = "Test category", 10, 4, "4/10"
+    function headless.CategoryButton() return categoryButton end
 
     local anchor = env.CreateFrame("Frame", nil, env.UIParent)
     function headless.Setup()

@@ -22,6 +22,7 @@ All notable changes to this project will be documented in this file.
 - Time Rift, Superbloom and Azerothian Archives reminders now show wherever you are, not only in their zones, each with a Next shortly before it starts
 - Superbloom: Active now shows its time left instead of "No time data available"
 - Dreamsurge reminders show in their zones again
+- Tooltips no longer keep giving "secret number value" errors after you hover a category on the Guild tab or on Blizzard's own Achievements tab; on Retail those categories now show the addon's progress tooltip
 
 ## 103.0 - 2026-10-14
 ### Added

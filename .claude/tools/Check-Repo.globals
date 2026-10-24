@@ -14,6 +14,7 @@ Gui/BlizzardOverrides.lua AchievementFrame_SelectAchievement
 Gui/BlizzardOverrides.lua AchievementFrame_SetTabs
 Gui/BlizzardOverrides.lua AchievementFrameSummaryAchievement_OnClick    # wrapped: inserts the chat link itself, skipping the protected C_AchievementTelemetry call
 Gui/BlizzardOverrides.lua AchievementFrameTab_OnClick
+Gui/BlizzardOverrides.lua AchievementFrameCategory_StatusBarTooltip     # Retail: Blizzard's category buttons show the addon's progress-bar tooltip; Blizzard's, run tainted, left GameTooltip.statusBarPool tainted (issue #300)
 Gui/Gui.lua AchievementFrameTab_OnClick
 Gui/WindowFrames/AchievementFrameTabButtonFactory/AchievementFrameTabButtonFactory.lua AchievementFrameTab_OnClick
 

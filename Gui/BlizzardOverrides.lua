@@ -1,5 +1,33 @@
 local _, addon = ...
 
+-- Blizzard's category buttons on its Achievements and Guild tabs show their progress through
+-- AchievementFrameCategory_StatusBarTooltip on GameTooltip. With this addon loaded, Blizzard's tab code runs tainted, so
+-- that tooltip does too, and its status bar leaves GameTooltip.statusBarPool tainted. GameTooltip_OnHide reads the pool
+-- before it clears a widget set, so every later map POI or vignette tooltip clears tainted and can error on a secret
+-- value (issue #300, docs/work/300-category-tooltip-taint). On Retail those buttons get the addon's own progress-bar
+-- tooltip instead, the one its own category buttons use, and GameTooltip is never touched.
+addon.Gui.BlizzardCategoryTooltip = {}
+local blizzardCategoryTooltip = addon.Gui.BlizzardCategoryTooltip
+
+-- Blizzard's OnLeave only hides GameTooltip, so each button this tooltip shows for also hides it on leave, at the same
+-- moment. HookScript writes nothing on the button; the buttons are pooled, so each is hooked once.
+local hookedButtons = {}
+
+local function HideOnLeave(button)
+    local tooltip = addon.ProgressBarLib.GameTooltipWithProgressBar.Tooltip
+    if tooltip:IsOwned(button) then
+        tooltip:Hide()
+    end
+end
+
+function blizzardCategoryTooltip.Show(button) -- the button's showTooltipFunc; Blizzard's list sets these fields on it
+    addon.ProgressBarLib.GameTooltipWithProgressBar:Show(button, "ANCHOR_RIGHT", button.name, 0, button.numAchievements, button.numCompleted, 0, 0, 0, addon.Util.Colors.GreenRGB, nil, nil, nil, button.numCompletedText)
+    if not hookedButtons[button] then
+        button:HookScript("OnLeave", HideOnLeave)
+        hookedButtons[button] = true
+    end
+end
+
 function addon.OverwriteFunctions()
     AchievementFrame_ToggleAchievementFrame = function(toggleStatFrame, toggleGuildView)
         AchievementFrameComparison:Hide()
@@ -105,6 +133,11 @@ function addon.OverwriteFunctions()
                 origProcessClick(self, ...)
             end
         end
+    end
+
+    -- Blizzard's category list reads it into each button when it fills, which is after this runs (see the top of this file)
+    if addon.Util.IsMainline then
+        AchievementFrameCategory_StatusBarTooltip = blizzardCategoryTooltip.Show
     end
 end
 
