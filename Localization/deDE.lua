@@ -145,11 +145,9 @@ L["Categories not loaded"] = "{addonName} ist noch nicht vollständig geladen. S
 L["Categories width offset"] = "Kategorien Fensterbreite"
 L["Categories width offset Desc"] = [=[Die zusätzliche Breite, die zur Standardkategorienbreite addiert oder von ihr subtrahiert wird.
 
-Dieser Wert kann geändert werden, während das Erfolgsfenster geöffnet ist und eine der von {AddonName} hinzugefügten Tabs ausgewählt wurde. Dies kann Auswirkungen (1) auf das Spiel haben.
+Dieser Wert kann geändert werden, während das Erfolgsfenster geöffnet ist und eine der von {addonName} hinzugefügten Tabs ausgewählt wurde. Dies kann Auswirkungen (1) auf das Spiel haben.
 
-(1) FPS-Einbrüche und Stottern während der Anpassung des Wertes, NICHT während der normalen Addon-Nutzung.
-
-{reloadRequired}]=]
+(1) FPS-Einbrüche und Stottern während der Anpassung des Wertes, NICHT während der normalen Addon-Nutzung.]=]
 L["Category shown temporarily"] = "Diese Kategorie wurde durch Klicken auf die {eventName} Event Erinnerung ausgewählt und wird nur vorübergehend angezeigt, da sie keine Erfolge enthält, die den eingestellten Filtern entsprechen."
 L["Caverns Criss-Cross"] = "Kreuz und quer durch die Höhlen"
 L["Center Header"] = "Erfolgs-Überschrift zentrieren"
@@ -318,7 +316,7 @@ Tooltip
 |T:1:8|t- {earnedBy}: Zeigt {earnedByNumber} Charaktere an, die den Erfolg verdient haben (2). Fraktions-exklusive Errungenschaften mit einem verknüpften Gegenstück werden berücksichtigt. D.h. Allianz-Charaktere können für Horden-Erfolge auftauchen. Zeigt den Realm des Charakters an, wenn er unterschiedlich ist. Kann über die Optionen (2) erzwungen werden, immer anzuzeigen: Zeigt {notEarnedByNumber} Charaktere an, die diese Errungenschaft noch nicht verdient haben (2). Fraktions-exklusive Errungenschaften mit einem verknüpften Gegenstück werden berücksichtigt. D.h. Allianz-Charaktere können für Horden-Errungenschaften auftauchen.  Zeigt den Realm des Charakters an, wenn er sich unterscheidet. Die Anzeige kann in den Optionen (2) erzwungen werden.
 
 (1) Die Optionen befinden sich unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {header}
-(2) Optionen finden Sie unter {gameMenu} {Pfeil} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {achievements}]=]
+(2) Optionen finden Sie unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {achievements}]=]
 L["Eastern Kingdoms Cup"] = "Östliche Königreiche Pokal"
 L["Echoes of Doom"] = "Die Vorboten des Unheils"
 L["Emberflow Flight"] = "Glutstrom-Flug"
@@ -826,7 +824,7 @@ L["Past Obtainable"] = "Erreichbarkeit in der Vergangenheit"
 L["Paste to Chat"] = "Kopiere in das Chat Fenster"
 L["Patch"] = true
 L["Persist Across Sessions"] = "Über Sitzungen hinweg beibehalten"
-L["Persist Across Sessions Desc"] = "Die angezeigten {popout} Erfolgsfenster (und ihre Position) über /reload und erneuten Anmelden speichern."
+L["Persist Across Sessions Desc"] = "Die angezeigten Pop-Out-Erfolgsfenster (und ihre Position) über /reload und erneuten Anmelden speichern."
 L["Pet Battles"] = "Haustierkämpfe"
 L["Pilgrim's Bounty"] = "Die Pilgerfreuden"
 L["Pirates' Day"] = "Piratentag"
@@ -895,7 +893,7 @@ L["Required for"] = "Wird benötigt für..."
 L["Requires"] = "Voraussetzung"
 L["Researchers Under Fire"] = "Forscher unter Feuer"
 L["Reset Faction Filters"] = "Fraktions Filter zurücksetzen"
-L["Reset Faction Filters Desc"] = "Die Fraktions-Filter zurücksetzen / beibehalten. Das bedeutet, dass, wenn du dich z.B. mit einem {Allianz}-Charakter anmeldest und einer der {neutralen}, {Allianz}- oder {Horden} Fraktions-Filter aktiviert/deaktiviert ist, werden nur die {neutral} und {alliance} Fraktions-Filter aktiviert. Diese Option wird bevorzugt, wenn viel zwischen {Allianz} und {Horde} gewechselt wird."
+L["Reset Faction Filters Desc"] = "Die Fraktions-Filter zurücksetzen / beibehalten. Das bedeutet, dass, wenn du dich z.B. mit einem {alliance}-Charakter anmeldest und einer der {neutral}, {alliance}- oder {horde} Fraktions-Filter aktiviert/deaktiviert ist, werden nur die {neutral} und {alliance} Fraktions-Filter aktiviert. Diese Option wird bevorzugt, wenn viel zwischen {alliance} und {horde} gewechselt wird."
 L["Reset filters"] = "Filter zurücksetzen"
 L["Reset position"] = "Position zurücksetzen"
 L["Reset position Desc"] = "Setzt das {frame} auf seine Standardposition zurück."
@@ -1066,7 +1064,7 @@ L["Show Right Click Menu Desc"] = [=[Zeigt / Versteckt den {rightClickMenu} Butt
 
 Dies dient als Alternative für einen Rechtsklick auf den Erfolg. ]=]
 L["Show Start Time & End Time"] = "Zeige {startTime} & {endTime}"
-L["Show Start Time & End Time Desc"] = "{StartZeit} & {EndeZeit} anzeigen/ausblenden. Wenn diese Option aktiviert ist und die Erfolge {temporarilyObtainable} sind, wird die Start- und Endzeit des Zeitraums, in dem der Erfolg erhältlich ist, im Tooltip angezeigt. Dies gilt nur für Erfolge, die aufgrund von Kalenderereignissen {temporarilyObtainable} sind."
+L["Show Start Time & End Time Desc"] = "{startTime} & {endTime} anzeigen/ausblenden. Wenn diese Option aktiviert ist und die Erfolge {temporarilyObtainable} sind, wird die Start- und Endzeit des Zeitraums, in dem der Erfolg erhältlich ist, im Tooltip angezeigt. Dies gilt nur für Erfolge, die aufgrund von Kalenderereignissen {temporarilyObtainable} sind."
 L["Show Sub Categories"] = "Unterkategorien anzeigen"
 L["Show Sub Categories Desc"] = [=[Unterkategorien anzeigen/ausblenden.
 
