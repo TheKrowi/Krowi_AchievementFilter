@@ -13,7 +13,7 @@ local function IsLoaded()
     if not C_AddOns.IsAddOnLoaded("GW2_UI") then
         return false
     end
-    if not addon.Util.IsMainline then -- No Wrath Classic support for now
+    if not addon.Util.IsModern then -- Only GW2_UI's Retail skin is supported; no Classic support for now
         return false
     end
     if C_AddOns.GetAddOnMetadata("GW2_UI", "Version") == "@project-version@" then
@@ -1015,7 +1015,7 @@ local function SkinSideButton(button, prevButton)
     end
     if not prevButton then
         button:ClearAllPoints()
-        button:SetPoint("TOPLEFT", AchievementFrame, "TOPRIGHT", 5, addon.Util.IsMainline and 6 or 13) -- Make the 2nd button anchor like the 1st one
+        button:SetPoint("TOPLEFT", AchievementFrame, "TOPRIGHT", 5, addon.Util.IsModern and 6 or 13) -- Make the 2nd button anchor like the 1st one
     else
         button:ClearAllPoints()
         button:SetPoint("TOPLEFT", prevButton, "BOTTOMLEFT", 0, 9) -- Make the 2nd button anchor like the 1st one
@@ -1107,7 +1107,7 @@ function gw2.InjectOptions()
     KrowiAF.UtilApi.InjectOptions:AddTable(pluginTable, "Unsupported", {
         order = KrowiAF.UtilApi.InjectOptions.AutoOrderPlusPlus(), type = "description", width = "full",
         name = (addon.L["Unsupported GW2_UI Desc"]:K_ReplaceVars(C_AddOns.IsAddOnLoaded("GW2_UI") and C_AddOns.GetAddOnMetadata("GW2_UI", "Version") or "") ..
-        (addon.Util.IsMainline and (" " .. addon.L["At least version is required"]:K_ReplaceVars("6.6.1")) or "\n")):SetColorRed(),
+        (addon.Util.IsModern and (" " .. addon.L["At least version is required"]:K_ReplaceVars("6.6.1")) or "\n")):SetColorRed(),
         fontSize = "medium",
         hidden = GW2_ADDON == nil or IsLoaded()
     })

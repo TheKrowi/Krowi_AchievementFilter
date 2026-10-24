@@ -12,7 +12,7 @@ local compatibility = {}
 KrowiAF.PluginsApi:RegisterPlugin("EllesmereUI", compatibility)
 
 local function IsLoaded()
-    return addon.Util.IsMainline and EllesmereUI ~= nil and EllesmereUI.RegisterSkin ~= nil
+    return addon.Util.IsModern and EllesmereUI ~= nil and EllesmereUI.RegisterSkin ~= nil
 end
 
 local skin
@@ -1044,7 +1044,7 @@ function compatibility:InjectOptions()
             return IsLoaded()
         end
     )
-    KrowiAF.UtilApi.InjectOptions:AddTable(pluginTable, "SkinAchievement", AddInfo("Skin Achievements", function() return skin ~= nil and skin.IsEnabled() end, not addon.Util.IsMainline))
+    KrowiAF.UtilApi.InjectOptions:AddTable(pluginTable, "SkinAchievement", AddInfo("Skin Achievements", function() return skin ~= nil and skin.IsEnabled() end, not addon.Util.IsModern))
 end
 
 local function DisableOptions()

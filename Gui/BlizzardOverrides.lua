@@ -4,8 +4,9 @@ local _, addon = ...
 -- AchievementFrameCategory_StatusBarTooltip on GameTooltip. With this addon loaded, Blizzard's tab code runs tainted, so
 -- that tooltip does too, and its status bar leaves GameTooltip.statusBarPool tainted. GameTooltip_OnHide reads the pool
 -- before it clears a widget set, so every later map POI or vignette tooltip clears tainted and can error on a secret
--- value (issue #300, docs/work/300-category-tooltip-taint). On Retail those buttons get the addon's own progress-bar
--- tooltip instead, the one its own category buttons use, and GameTooltip is never touched.
+-- value (issue #300, docs/work/300-category-tooltip-taint). On Retail's interface (Forever loads the same Mainline list)
+-- those buttons get the addon's own progress-bar tooltip instead, the one its own category buttons use, and GameTooltip
+-- is never touched.
 addon.Gui.BlizzardCategoryTooltip = {}
 local blizzardCategoryTooltip = addon.Gui.BlizzardCategoryTooltip
 
@@ -57,13 +58,13 @@ function addon.OverwriteFunctions()
     end
 
     AchievementFrame_DisplayComparison = function(unit)
-        if not addon.Util.IsMainline then
+        if not addon.Util.IsModern then
             AchievementFrame.wasShown = nil
         end
 
         AchievementFrameTab_OnClick = AchievementFrameComparisonTab_OnClick
         AchievementFrameTab_OnClick(1)
-        if addon.Util.IsMainline then
+        if addon.Util.IsModern then
             -- Clear addon's custom tab anchoring to avoid circular dependency with Blizzard's comparison tab setup
             for i = 1, 3 do
                 local tab = _G["AchievementFrameTab" .. i]
@@ -74,7 +75,7 @@ function addon.OverwriteFunctions()
             AchievementFrame_SetComparisonTabs()
         end
         AchievementFrame:Show()
-        if addon.Util.IsMainline then
+        if addon.Util.IsModern then
             AchievementFrame_ShowSubFrame(AchievementFrameComparison, AchievementFrameComparison.AchievementContainer)
         end
         AchievementFrameComparison_SetUnit(unit)
@@ -101,9 +102,10 @@ function addon.OverwriteFunctions()
     -- so that call raises ADDON_ACTION_FORBIDDEN (WoWUIBugs #780 is the same error through a chat filter). The
     -- link itself is not protected, so insert it ourselves and skip the telemetry; everything else falls through
     -- to Blizzard's handler. The helper is a file local in Blizzard_AchievementUI.lua, so its callers are wrapped.
-    -- Retail only: Mists exports C_AchievementTelemetry too, but its Cata-era handlers never call it and its summary
-    -- handler only selects the achievement, so wrapping there would add behaviour Blizzard does not have.
-    if addon.Util.IsMainline and C_AchievementTelemetry and ChatFrameUtil and ChatFrameUtil.InsertLink then
+    -- Retail's interface only (Forever loads the same Mainline handlers): Mists exports C_AchievementTelemetry too, but
+    -- its Cata-era handlers never call it and its summary handler only selects the achievement, so wrapping there would
+    -- add behaviour Blizzard does not have.
+    if addon.Util.IsModern and C_AchievementTelemetry and ChatFrameUtil and ChatFrameUtil.InsertLink then
         local function InsertAchievementLink(id)
             if not id or not IsModifiedClick("CHATLINK") then
                 return false
@@ -136,7 +138,7 @@ function addon.OverwriteFunctions()
     end
 
     -- Blizzard's category list reads it into each button when it fills, which is after this runs (see the top of this file)
-    if addon.Util.IsMainline then
+    if addon.Util.IsModern then
         AchievementFrameCategory_StatusBarTooltip = blizzardCategoryTooltip.Show
     end
 end
@@ -189,7 +191,7 @@ function addon.HookFunctions()
         hooksecurefunc("PanelTemplates_SetTab", AchievementFrame_SetTabs)
     end
 
-    if addon.Util.IsMainline then
+    if addon.Util.IsModern then
         hooksecurefunc("AchievementFrame_SetComparisonTabs", function()
             addon.Gui:ShowHideTabs()
         end)

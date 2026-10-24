@@ -1,6 +1,6 @@
 local _, addon = ...
 
-local isModern = addon.Util.IsMainline
+local isModern = addon.Util.IsModern
 
 KrowiAF_AchievementFrameFilterButtonMixin = {}
 
@@ -16,6 +16,7 @@ do -- Mixin
         -- Initialize MenuBuilder with callbacks
         local config = {
 		    uniqueTag = "KAF_FILTERS",
+            modern = isModern,
             callbacks = addon.MenuBuilder.BindCallbacks(self, {
                 GetCheckBoxStateText = "GetCheckBoxStateText",
                 OnCheckboxSelect = "OnCheckboxSelect",

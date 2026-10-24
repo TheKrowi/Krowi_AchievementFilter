@@ -71,7 +71,7 @@ local function SetExtraIconAlwaysVisible(self, achievement)
 	end
 
 	extraIcon.Texture:SetAtlas("poi-traveldirections-arrow")
-	if not addon.Util.IsMainline then
+	if not addon.Util.IsModern then
 		extraIcon.Texture:SetAtlas("flightpath")
 	end
 	extraIcon.Text = addon.L["Achievement shown temporarily"]
@@ -205,7 +205,7 @@ local function SetExtraIconGuide(self, achievement)
 	end
 
 	extraIcon.Texture:SetAtlas("Waypoint-MapPin-Untracked")
-	if not addon.Util.IsMainline then
+	if not addon.Util.IsModern then
 		extraIcon.Texture:SetAtlas("flightpath") -- Classic has no Waypoint-MapPin atlas; it has no guide data either
 	end
 	extraIcon.Lines = {
@@ -275,7 +275,7 @@ local function SetExtraIconRewardPreview(self, achievement)
 
 		if group.IsGroup then
 			extraIcon.Texture:SetAtlas("crosshair_inspect_32")
-			if not addon.Util.IsMainline then
+			if not addon.Util.IsModern then
 				extraIcon.Texture:SetAtlas("common-search-magnifyingglass")
 			end
 			extraIcon.Lines = {
@@ -288,7 +288,7 @@ local function SetExtraIconRewardPreview(self, achievement)
 		else
 			local entry = group.Entries[1]
 			extraIcon.Texture:SetAtlas("crosshair_inspect_32")
-			if not addon.Util.IsMainline then
+			if not addon.Util.IsModern then
 				extraIcon.Texture:SetAtlas("common-search-magnifyingglass")
 			end
 			extraIcon.Lines = {

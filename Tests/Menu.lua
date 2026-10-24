@@ -84,7 +84,7 @@ end
 
 function gameEnv.Build(id)
     local root
-    if addon.Util.IsMainline then
+    if addon.Util.IsModern then
         root = MenuUtil.CreateRootMenuDescription(MenuVariants.GetDefaultContextMenuMixin())
     else
         root = LibStub("Krowi_Menu_2").MenuItem:New({Text = "root"})
@@ -94,7 +94,7 @@ function gameEnv.Build(id)
 end
 
 function gameEnv.IsEntryEnabled(root)
-    if addon.Util.IsMainline then
+    if addon.Util.IsModern then
         for _, description in root:EnumerateElementDescriptions() do
             return description:IsEnabled()
         end

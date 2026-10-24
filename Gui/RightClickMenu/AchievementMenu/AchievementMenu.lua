@@ -3,7 +3,7 @@ addon.Gui.RightClickMenu.AchievementMenu = {
 	Sections = {}
 }
 local achievementMenu = addon.Gui.RightClickMenu.AchievementMenu
-local menuBuilder = addon.MenuBuilder:New({})
+local menuBuilder = addon.MenuBuilder:New({modern = addon.Util.IsModern})
 
 function achievementMenu:CloseMenu()
 	menuBuilder:Close()

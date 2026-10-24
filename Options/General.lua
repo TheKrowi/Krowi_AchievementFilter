@@ -66,7 +66,7 @@ end
 local tutorialMenuBuilder
 local function GeneralTutorialFunc()
     if not tutorialMenuBuilder then
-        tutorialMenuBuilder = addon.MenuBuilder:New({})
+        tutorialMenuBuilder = addon.MenuBuilder:New({modern = addon.Util.IsModern})
     end
 
     tutorialMenuBuilder:ShowPopup(CreateTutorialMenuFunc)

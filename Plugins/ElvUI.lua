@@ -674,7 +674,7 @@ local function SkinSideButton(button, prevButton)
     end
     if not prevButton then
         button:ClearAllPoints()
-        button:SetPoint("TOPLEFT", AchievementFrame, "TOPRIGHT", 5, addon.Util.IsMainline and 6 or 13) -- Make the 2nd button anchor like the 1st one
+        button:SetPoint("TOPLEFT", AchievementFrame, "TOPRIGHT", 5, addon.Util.IsModern and 6 or 13) -- Make the 2nd button anchor like the 1st one
     else
         button:ClearAllPoints()
         button:SetPoint("TOPLEFT", prevButton, "BOTTOMLEFT", 0, 9) -- Make the 2nd button anchor like the 1st one
