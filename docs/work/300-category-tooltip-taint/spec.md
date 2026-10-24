@@ -1,5 +1,5 @@
 # Spec: Secret number errors when a tooltip closes after using the achievement window
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. On Retail, hovering a category on Blizzard's Guild tab or Blizzard's Achievements tab in KAF's window shows no tooltip on `GameTooltip`, so the hover no longer has KAF-tainted execution write a Lua field of `GameTooltip` or its widget container. The taint probe records no `statusBarPool` or `GameTooltip.widgetContainer` detection by KAF for that hover and a widget tooltip after it. (Narrowed to the hover on 2026-10-24 after the taint review. The review thought Blizzard's leave handler on those buttons might still run tainted; the in-game observation found their `OnLeave` secure. The window's other leave handlers are in `docs/backlog.md`.)

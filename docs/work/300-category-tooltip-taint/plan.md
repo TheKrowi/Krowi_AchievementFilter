@@ -1,5 +1,5 @@
 # Plan: Secret number errors when a tooltip closes after using the achievement window
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 ## Context
 Issue #300: on Retail, after a player hovers a category on Blizzard's Guild tab (or Blizzard's Achievements tab) in KAF's window, every later tooltip with a widget set (map POI, vignette) can error on close with `LayoutFrame.lua:493 ... secret number value (execution tainted by 'Krowi_AchievementFilter')`, repeating until `/reload`. The hover runs Blizzard's `AchievementFrameCategory_StatusBarTooltip` tainted, which creates `GameTooltip.statusBarPool` tainted, and `GameTooltip_OnHide` reads that pool before clearing the widget set (spec.md, Root cause). The maintainer chose option 1 on 2026-10-23: on Retail, KAF draws that tooltip on its own progress-bar tooltip, so `GameTooltip` is never touched.
@@ -78,7 +78,7 @@ This plan is not routine: it replaces a Blizzard FrameXML function. The maintain
   - Hand check: hovering "Professions" on the Guild tab shows the addon's progress-bar tooltip with 19/23 (WoWScrnShot_102426_141911.jpg), and it hides when the mouse leaves.
   - The probe's session of 14:18:47 (category hover, then a map POI) has no detections, against `statusBarPool` and four widget container keys in the 2026-10-23 19:57 session.
   - BugGrabber: no errors.
-- **Mists Classic:** pending.
+- **Mists Classic 5.5.4, 2026-10-24 14:23:** `tooltip` has no scenarios there, as expected; the observation says the global is Blizzard's. BugGrabber: no errors. The real-button observation does not apply on Classic, whose list has no ScrollBox, so its message now says so.
 
 ## Departures
 - **2026-10-24, the hide.** The taint review found two flaws in the `OnUpdate` watcher:

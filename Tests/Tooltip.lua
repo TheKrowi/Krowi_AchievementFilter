@@ -320,6 +320,10 @@ function gameEnv.ObserveCategoryTooltip(observations)
         or "replaced by " .. tostring(select(2, issecurevariable("AchievementFrameCategory_StatusBarTooltip")))
     tinsert(observations, "global AchievementFrameCategory_StatusBarTooltip: " .. state)
 
+    if not (AchievementFrameCategories and AchievementFrameCategories.ScrollBox) then
+        tinsert(observations, "Blizzard's category list is not read on this client (no ScrollBox list)")
+        return
+    end
     local button = RealCategoryButton()
     if not button then
         tinsert(observations, "no category button of Blizzard's list to read: open the Guild tab (or Blizzard's Achievements tab) once before the run")

@@ -1,5 +1,5 @@
 # Intent: Secret number errors when a tooltip closes after using the achievement window
-Author: Ookami313 (reporter), with formigao, Dhampir113, qianjhust and Sinrath; captured by Claude. Source: GitHub issue #300. Status: accepted
+Author: Ookami313 (reporter), with formigao, Dhampir113, qianjhust and Sinrath; captured by Claude. Source: GitHub issue #300. Status: done
 
 ## Problem
 On Retail, BugSack fills with `Blizzard_SharedXML/LayoutFrame.lua:491` (`:493` on 12.1.5) `attempt to compare a secret number value (execution tainted by 'Krowi_AchievementFilter')`, raised through `GameTooltip_ClearWidgetSet` when a tooltip closes. Once it starts it repeats on every tooltip close, also while the player does nothing, until `/reload`: reports count from 15 to over 34000 per session. Reporters see it start in combat or when hovering a world map POI. It has been open since 12.0.5 and KAF 95.0 (2026-05-11); the attempts in 96.0 to 99.9 did not stop it, and Sinrath still had it on 103.0 (2026-10-18).
