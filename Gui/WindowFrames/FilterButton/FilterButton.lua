@@ -20,6 +20,6 @@ end
 
 function filterButton:Load()
     addon.Filters:ResetFilters()
-	tinsert(addon.Gui.SubFrames, addon.Util.IsMainline and CreateModern() or CreateClassic())
+	tinsert(addon.Gui.SubFrames, addon.Util.IsModern and CreateModern() or CreateClassic())
 	addon.Gui.FilterButton = nil
 end

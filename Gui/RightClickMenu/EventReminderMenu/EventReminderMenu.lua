@@ -3,7 +3,7 @@ addon.Gui.RightClickMenu.EventReminderMenu = {
 	Sections = {}
 }
 local eventReminderMenu = addon.Gui.RightClickMenu.EventReminderMenu
-local menuBuilder = addon.MenuBuilder:New({})
+local menuBuilder = addon.MenuBuilder:New({modern = addon.Util.IsModern})
 
 local function CreateMenu(menuObj, event)
 	menuBuilder:CreateTitle(menuObj, event.EventDetails and event.EventDetails.Name or addon.L["Unknown"])

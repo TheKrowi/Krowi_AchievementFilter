@@ -159,7 +159,7 @@ function KrowiAF_RewardPreviewMixin:OnLoad()
     else
         self:SetMinResize(200, 220)
     end
-    if addon.Util.IsMainline then
+    if addon.Util.IsModern then
         self.ModelBackground:SetAtlas("catalog-list-preview-bg")
     else
         self.ModelBackground:SetTexture("Interface/AchievementFrame/UI-Achievement-AchievementBackground")

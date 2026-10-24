@@ -7,6 +7,7 @@ local menuBuilder
 function KrowiAF_SearchOptionsMenuButtonMixin:OnLoad()
 	menuBuilder = addon.MenuBuilder:New{
 		uniqueTag = "KAF_SEARCH_OPTIONS",
+		modern = addon.Util.IsModern,
         callbacks = {
             OnCheckboxSelect = function(options, keys)
                 addon.Util.WriteNestedKeys(options, keys, not menuBuilder:KeyIsTrue(options, keys))
@@ -31,7 +32,7 @@ local function CreateMenu(menuObj)
 end
 
 function KrowiAF_SearchOptionsMenuButtonMixin:OnMouseDown()
-    if not addon.Util.IsMainline then
+    if not addon.Util.IsModern then
 		PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
 	end
     UIMenuButtonStretchMixin.OnMouseDown(self)
