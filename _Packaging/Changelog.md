@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 104.0
+## 104.0 - 2026-10-24
 ### Added
 - Achievement guides for the other eleven Legendary Research achievements, one per class hall
 - Curse Surge event reminders, wherever you are, with the surge's name and time left; each surge can be turned off under Event Reminders > World Events > Midnight
