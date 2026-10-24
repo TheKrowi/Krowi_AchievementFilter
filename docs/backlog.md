@@ -2,6 +2,16 @@
 
 Follow-ups that are not a work item yet. When one is taken up, it gets its own work folder under `docs/work/` (`docs/sdlc-playbook.md`) and leaves this list.
 
+## From the category tooltip taint fix (2026-10-23, issue #300, docs/work/300-category-tooltip-taint)
+
+- **Blizzard's tab code still runs tainted** (spec option 3, left for later by Krowi). A click on a Blizzard tab reads two values KAF wrote: the global `AchievementFrameTab_OnClick` (`Gui/Gui.lua:206`) and `AchievementFrame.numTabs`, which KAF raised when it added its own tabs (`Gui/WindowFrames/AchievementFrameTabButtonFactory/AchievementFrameTabButtonFactory.lua:47-62`). So everything Blizzard's Achievements and Guild tabs build is tainted.
+  - The fix for #300 only keeps that taint off `GameTooltip`.
+  - Removing it means KAF's tabs leave Blizzard's tab strip and KAF stops writing the global. Other tainted writes into Blizzard's frame may remain (`Gui/BlizzardOverrides.lua`, the comment above the chat-link wrappers).
+  - That work also drops #300's replacement of `AchievementFrameCategory_StatusBarTooltip`. Blizzard's list reads that global on every fill (`Blizzard_AchievementUI.lua:594`), so while KAF writes it, each fill runs tainted from that line on (the code review of the #300 fix).
+  - A third route option 3 as written would not remove: `KrowiAF_CategoriesFrameMixin` shows Blizzard's category list again from KAF's own code when KAF's list hides (`Gui/WindowFrames/CategoriesFrame/CategoriesFrameMixin.lua:66, 75`). Blizzard's `AchievementFrameCategories_OnShow` then fills the list and creates its buttons in KAF's execution (the taint review of the #300 fix).
+  - **What it still risks:** Blizzard's leave handlers in that window probably run tainted: the category buttons (Blizzard_AchievementUI.lua:618-621), Feat of Strength, achievement, summary and shield buttons. When the mouse leaves one while `GameTooltip` still shows another owner's widget tooltip (a map POI, a vignette), that tooltip hides tainted and #300's error can come back once. That is low likelihood, since that owner hides it on its own leave first. `/kaftest tooltip` reports whether a real category button's `OnLeave` is tainted.
+- **`addon.TooltipData.Load` stays disabled** (`Krowi_AchievementFilter.lua:51`). It was turned off in 99.6 while #300 was investigated, and #300 turned out not to come from it. Turning it back on is its own work item: its `HookScript` calls on `GameTooltip` run addon code inside Blizzard's tooltip building, which needs a taint review first.
+
 ## From the event scheduler work (2026-10-21, docs/work/2026-10-21-event-scheduler)
 
 - **The rest of Midnight from Blizzard's event scheduler, as data.** With `KrowiAF.Enum.EventSource.Scheduler` a scheduled world event is one row (`docs/how-to/add-event.md`).

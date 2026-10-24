@@ -892,11 +892,12 @@ suites.tooltip = function(c)
     addon.ProgressBarLib = { GameTooltipWithProgressBar = { Tooltip = progressTooltip,
         Show = function(_, ownerFrame) progressTooltip:SetOwner(ownerFrame) progressTooltip:Show() end,
         Hide = function() progressTooltip:Hide() end } }
+    rawset(env, "ExecuteFrameScript", function(frame, kind, ...) frame:RunScript(kind, ...) end) -- the script, then its hooks
     c.loadAddonFile("Gui/BlizzardOverrides.lua")
     addon.OverwriteFunctions() -- in game at Blizzard_AchievementUI's ADDON_LOADED, before its category list first fills
     local categoryButton = env.CreateFrame("Button", nil, env.UIParent)
     categoryButton:Show()
-    rawset(categoryButton, "IsMouseOver", function() return false end) -- the stand-in is away from the cursor
+    categoryButton:SetScript("OnLeave", suite.CategoryStandInOnLeave)
     categoryButton.name, categoryButton.numAchievements, categoryButton.numCompleted, categoryButton.numCompletedText = "Test category", 10, 4, "4/10"
     function headless.CategoryButton() return categoryButton end
 
