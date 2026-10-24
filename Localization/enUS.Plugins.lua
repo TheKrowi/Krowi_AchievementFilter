@@ -3,8 +3,7 @@ local L = addon.Localization.NewDefaultLocale(true)
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-05-26 20-53-58 ]] --
-L["Tab Spacing Overwrite Desc"] = "The spacing setting is not active when {addon} is enabled. All tabs are seated 1 pixel apart to match the rest of the {addon} skin."
+-- [[ Exported at 2026-10-24 16-43-33 ]] --
 L["AchievementsTabFixes"] = "Achievements Tab Fixes"
 L["AchievementsTabFixes Desc"] = "This plugin provides some fixes for the Achievements Tab, toggleable below."
 L["Add To Right Click Menu"] = true
@@ -88,6 +87,7 @@ L["Instance Achievement Tracker PluginText"] = [=[|T:1:8|t- Shortcut to {plugin_
 ]=]
 L["RenameExplorationDragonIslesCategory"] = "Rename Exploration -> Dragon Isles Category to Dragonflight"
 L["RenameExplorationDragonIslesCategory Desc"] = "Renames the Exploration -> Dragon Isles Category to Dragonflight."
+L["Tab Spacing Overwrite Desc"] = "The spacing setting is not active when {addon} is enabled. All tabs are seated 1 pixel apart to match the rest of the {addon} skin."
 L["Unsupported GW2_UI Desc"] = "The current version '{version}' of GW 2 UI is not supported."
 L["Zygor Guides Viewer"] = true
 L["Zygor Guides Viewer Desc"] = [=[This plugin adds a magnifying glass icon to achievements with guides available in the new tabs {kaf} and 3rd party plugins add.

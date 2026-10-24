@@ -6,8 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-10-14 19-23-46 ]] --
-L["Stopped tracking completed achievement"] = "Прекращено отслеживание полученного достижения"
+-- [[ Exported at 2026-10-24 16-43-33 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -843,6 +842,7 @@ L["Stables"] = "Стойла"
 L["StarCraft II"] = true
 L["Start Time"] = "Начальное время"
 L["Stop tracking"] = "Прекратить отслеживание"
+L["Stopped tracking completed achievement"] = "Прекращено отслеживание полученного достижения"
 L["Stormheim"] = "Штормхейм"
 L["Stormsong Valley"] = "Долина Штормов"
 L["Strand of the Ancients"] = "Берег Древних"

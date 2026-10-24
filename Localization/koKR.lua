@@ -6,8 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-10-14 19-23-35 ]] --
-L["Stopped tracking completed achievement"] = "완료한 업적 추적 해제"
+-- [[ Exported at 2026-10-24 16-43-33 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -267,6 +266,7 @@ L["Show Guide on Mouseover Desc"] = "아이콘 위에 마우스를 올리면 가
 L["Silvershard Mines"] = "은빛수정 광산"
 L["Skinning"] = "무두질"
 L["Slayer's Rise"] = "학살자의 오름길"
+L["Stopped tracking completed achievement"] = "완료한 업적 추적 해제"
 L["Tabs"] = "하단 탭"
 L["Tailoring"] = "재봉술"
 L["Temple of Kotmogu"] = "코트모구의 사원"
