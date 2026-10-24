@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 - Covenant assault reminders now only show for characters who finished chapter 2 of Chains of Domination
 - Krowi_Menu library updated to 2.2
 - Krowi_Util library updated to 2.8
+- Krowi_WorldMapButtons library updated to 1.4.12
 
 ### Fixed
 - Let Her Solo Me shows as obtainable again, since it can still be earned
