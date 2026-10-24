@@ -83,8 +83,7 @@ Follow-ups that are not a work item yet. When one is taken up, it gets its own w
   - Saying either is free text, which only a translator can put into the other languages, and Krowi wants no new strings for the CurseForge translators (the analysis in that work item's `spec.md`).
   - The mission tables are server-side objects, so the game names them in no file.
 
-## From the latent-bugs review (2026-10-13, PR #339)
+## From the right-click menu fix (2026-10-25, docs/work/2026-10-24-menu-unknown-achievement)
 
-- **A "go to" entry for an id the game does not know breaks the whole right-click menu.** `AchievementMenu:AddGoToAchievementLine` concatenates the name `addon.GetAchievmentName(id)` returns. That is nil when `GetAchievementInfo` does not know the id, so both `name .. " (Missing)"` and `name .. nameSuffix` raise "attempt to concatenate a nil value".
-  - The callers pass ids from the data: `OtherFaction.lua`, `RequiredFor.lua`, `PartOfAChain.lua` and `FirstCategory.lua`. An id one client lacks, or a removed achievement still in the data, is enough.
-  - The menu suite (`Tests/Menu.lua`) takes a third scenario for an id the game does not know, recorded "error". Its in-game before-run comes before the fix.
+- **7295 (Listen to the Drunk Fish) is in the Shared Mists file but not in the Classic 5.5.4 build** (`DataAddons/Shared/05_MistsOfPandaria/AchievementData.lua:333`; build 5.5.4.70579, looked up 2026-10-25). Shared holds only achievements identical on both clients, so it is a placeholder on Mists and may belong in the Retail file. Check the Classic client's hotfix cache first (`H:\World of Warcraft\_classic_\Cache\ADB\`), then let the `data-verifier` confirm before moving the line.
+- **`Verify-AchievementData.ps1` cannot tell which client lacks an id.** For an id the first build lacks it falls back to other builds and products (wowt, wowxptr, wow_beta, every wow_classic*), and `-Build` does not turn that off. It also never reports a missing `:FactionSplit` counterpart, and has no `-Client`. The sweep in that work item's spec went through `.claude/skills/add-zone-data/_lookup_ids.ps1` in 500-id batches instead. A `-Client` switch that checks one client's live build only would answer "is anything in the data missing from this client" directly.
