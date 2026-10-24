@@ -12,6 +12,8 @@ All notable changes to this project will be documented in this file.
 - The Legendary Research of the Ebon Blade guide now starts with where to go, with Death Gate under it
 - Legion Assaults are now one reminder with one toggle, instead of one per zone
 - Covenant assault reminders now only show for characters who finished chapter 2 of Chains of Domination
+- Krowi_Menu library updated to 2.2
+- Krowi_Util library updated to 2.8
 
 ### Fixed
 - Let Her Solo Me shows as obtainable again, since it can still be earned
