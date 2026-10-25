@@ -1,3 +1,4 @@
 <Ui>
     <Script file="Help.lua" />
+    <Script file="ShowMe.lua" />
 </Ui>

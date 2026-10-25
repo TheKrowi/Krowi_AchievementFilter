@@ -127,7 +127,8 @@ help.Scenarios = {
             end
             return Join(ids)
         end,
-        Recorded = "none",
+        Recorded = "achievements,calendar,categories,eventlist,events,filters,guides,maps,popout,rewards,rightclick,search,summary,tabs,tooltips,window",
+        RecordedClassic = "achievements,calendar,categories,eventlist,events,filters,maps,popout,rewards,rightclick,search,summary,tabs,tooltips,window",
         Target = "achievements,calendar,categories,eventlist,events,filters,guides,maps,popout,rewards,rightclick,search,summary,tabs,tooltips,window",
         TargetClassic = "achievements,calendar,categories,eventlist,events,filters,maps,popout,rewards,rightclick,search,summary,tabs,tooltips,window"},
     {Name = "map-agrees",
