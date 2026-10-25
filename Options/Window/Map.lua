@@ -133,16 +133,16 @@ addon.Options.Window.Map = {
             } },
             { Header = L["Achievement points tooltip"], Entries = {
                 { Group = "Layout.args.Header.args.Tooltip" },
-                { Path = "Layout.args.Header.args.Tooltip.args.SortPriority.args.Priority1", Label = L["Sort 1"] },
-                { Path = "Layout.args.Header.args.Tooltip.args.SortPriority.args.Reverse1", Label = L["Reverse"], Indent = 1 },
-                { Path = "Layout.args.Header.args.Tooltip.args.SortPriority.args.Priority2", Label = L["Sort 2"] },
-                { Path = "Layout.args.Header.args.Tooltip.args.SortPriority.args.Reverse2", Label = L["Reverse"], Indent = 1 },
-                { Path = "Layout.args.Header.args.Tooltip.args.SortPriority.args.Priority3", Label = L["Sort 3"] },
-                { Path = "Layout.args.Header.args.Tooltip.args.SortPriority.args.Reverse3", Label = L["Reverse"], Indent = 1 },
-                { Path = "Layout.args.Header.args.Tooltip.args.SortPriority.args.Priority4", Label = L["Sort 4"] },
-                { Path = "Layout.args.Header.args.Tooltip.args.SortPriority.args.Reverse4", Label = L["Reverse"], Indent = 1 },
-                { Path = "Layout.args.Header.args.Tooltip.args.SortPriority.args.Priority5", Label = L["Sort 5"] },
-                { Path = "Layout.args.Header.args.Tooltip.args.SortPriority.args.Reverse5", Label = L["Reverse"], Indent = 1 },
+                { Path = "Layout.args.Header.args.Tooltip.args.SortPriority.args.Priority1", Label = L["Sort priority"] .. " 1" },
+                { Path = "Layout.args.Header.args.Tooltip.args.SortPriority.args.Reverse1", Label = L["Reverse Sort"], Indent = 1 },
+                { Path = "Layout.args.Header.args.Tooltip.args.SortPriority.args.Priority2", Label = L["Sort priority"] .. " 2" },
+                { Path = "Layout.args.Header.args.Tooltip.args.SortPriority.args.Reverse2", Label = L["Reverse Sort"], Indent = 1 },
+                { Path = "Layout.args.Header.args.Tooltip.args.SortPriority.args.Priority3", Label = L["Sort priority"] .. " 3" },
+                { Path = "Layout.args.Header.args.Tooltip.args.SortPriority.args.Reverse3", Label = L["Reverse Sort"], Indent = 1 },
+                { Path = "Layout.args.Header.args.Tooltip.args.SortPriority.args.Priority4", Label = L["Sort priority"] .. " 4" },
+                { Path = "Layout.args.Header.args.Tooltip.args.SortPriority.args.Reverse4", Label = L["Reverse Sort"], Indent = 1 },
+                { Path = "Layout.args.Header.args.Tooltip.args.SortPriority.args.Priority5", Label = L["Sort priority"] .. " 5" },
+                { Path = "Layout.args.Header.args.Tooltip.args.SortPriority.args.Reverse5", Label = L["Reverse Sort"], Indent = 1 },
             } },
         } },
         { Id = "rightclick", Name = L["Right-click menu"], Tile = "RightClickMenu", Groups = {
@@ -244,22 +244,22 @@ addon.Options.Window.Map = {
             { Header = L["Other calendar events"], AllNone = L["All other calendar events"], Entries = {
                 { Group = "EventReminders.args.CalendarEvents.args.Other", Retail = true },
             } },
-            { Header = L["World events: Midnight"], Entries = {
+            { Header = L["World Events"] .. ": " .. L["Midnight"], Entries = {
                 { Families = "EventReminders.args.WorldEvents.args.EXPANSION_NAME11", Retail = true },
             } },
-            { Header = L["World events: The War Within"], Entries = {
+            { Header = L["World Events"] .. ": " .. L["The War Within"], Entries = {
                 { Families = "EventReminders.args.WorldEvents.args.EXPANSION_NAME10", Retail = true },
             } },
-            { Header = L["World events: Dragonflight"], Entries = {
+            { Header = L["World Events"] .. ": " .. L["Dragonflight"], Entries = {
                 { Families = "EventReminders.args.WorldEvents.args.EXPANSION_NAME9", Retail = true },
             } },
-            { Header = L["World events: Shadowlands"], Entries = {
+            { Header = L["World Events"] .. ": " .. L["Shadowlands"], Entries = {
                 { Families = "EventReminders.args.WorldEvents.args.EXPANSION_NAME8", Retail = true },
             } },
-            { Header = L["World events: Battle for Azeroth"], Entries = {
+            { Header = L["World Events"] .. ": " .. L["Battle for Azeroth"], Entries = {
                 { Families = "EventReminders.args.WorldEvents.args.EXPANSION_NAME7", Retail = true },
             } },
-            { Header = L["World events: Legion"], Entries = {
+            { Header = L["World Events"] .. ": " .. L["Legion"], Entries = {
                 { Families = "EventReminders.args.WorldEvents.args.EXPANSION_NAME6", Retail = true },
             } },
         } },
@@ -280,7 +280,7 @@ addon.Options.Window.Map = {
         { Id = "plugins", Name = L["Other addons"], Groups = {
             { Kind = "EachChild", Group = "Plugins" },
         } },
-        { Id = "profiles", Name = L["Profiles"], Groups = {
+        { Id = "profiles", Name = addon.Util.L["Profiles"], Groups = {
             { Header = L["Settings profile"], Kind = "Profiles", Database = "Options" },
             { Header = L["Filters profile"], Kind = "Profiles", Database = "Filters" },
         } },
@@ -306,9 +306,9 @@ addon.Options.Window.Map = {
         } },
         { Id = "about", Name = L["About"], Groups = {
             { Header = L["Links"], Entries = {
-                { Path = "General.args.Info.args.General.args.Discord", Button = L["Discord"] },
-                { Path = "General.args.Info.args.Sources.args.CurseForge", Button = L["CurseForge"] },
-                { Path = "General.args.Info.args.Sources.args.Wago", Button = L["Wago"] },
+                { Path = "General.args.Info.args.General.args.Discord", Button = addon.Util.L["Discord"] },
+                { Path = "General.args.Info.args.Sources.args.CurseForge", Button = addon.Util.L["CurseForge"] },
+                { Path = "General.args.Info.args.Sources.args.Wago", Button = addon.Util.L["Wago"] },
             } },
             { Header = L["Special thanks"], Entries = {
                 { Group = "Credits.args.SpecialThanks" },
@@ -316,7 +316,7 @@ addon.Options.Window.Map = {
             { Header = L["Donations"], Entries = {
                 { Group = "Credits.args.Donations" },
             } },
-            { Header = L["Translations"], Entries = {
+            { Header = addon.Util.L["Localizations"], Entries = {
                 { Group = "Credits.args.Localizations" },
             } },
         } },
