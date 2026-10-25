@@ -22,10 +22,17 @@ local earned = addon.Tests.Earned
 earned.Achievement = 862 -- Explore Hellfire Peninsula: Expansions > The Burning Crusade > Zones on both clients
 earned.EventsAchievement = 605 -- a Lunar Festival achievement: Events > Holidays on both clients
 
--- Recorded / Target, RecordedClassic / TargetClassic where the clients differ
+-- Recorded / Target, RecordedClassic / TargetClassic where the clients differ. Each scenario starts with the tabs it uses
+-- recounted and showing the earned achievement's top-level category, not the Summary: a shown Summary refreshes on an
+-- earn too (KrowiAF_SummaryFrameMixin:OnShow), which earn-select-summary covers. GameOnly: the headless model has no
+-- Summary frame, so only the game runs it.
 earned.Scenarios = {
     -- Expansions drawn, window closed, 862 earned, then selected as the toast does
     {Name = "earn-select-closed", Recorded = "whole tab, selected", Target = "earned only, selected"},
+    -- the same with the Expansions Summary selected when the window closed; the first in-game run (Retail 12.1.5,
+    -- 2026-10-25) validated 20686 rows in 276 ms here, out of combat: the Summary's earn refresh recounted the tab a second
+    -- time (Update(true) in SummaryFrameMixin.lua)
+    {Name = "earn-select-summary", GameOnly = true, Recorded = "whole tab, selected", Target = "earned only, selected"},
     -- the window open on Expansions when 862 is earned: the categories frame's refresh one second later
     {Name = "earn-window-open", Recorded = "whole tab", Target = "earned only"},
     -- Events and Expansions drawn, window closed, 605 earned, opened on Expansions, then switched to Events: is the
@@ -132,10 +139,21 @@ local function OpenTab(tabName)
     KrowiAF_ToggleAchievementFrame(addonName, tabName, nil, true)
 end
 
--- The tab shown with every top-level category counted and no earn pending
-local function Fresh(tabName)
-    OpenTab(tabName)
+-- The tab shown on the given category (the earned achievement's top-level one unless told otherwise), with every
+-- top-level category counted and no earn pending
+local function Fresh(achievementId, category)
+    local achievement = addon.Data.Achievements[achievementId]
+    KrowiAF_SelectCategory(category or TopLevel(achievement.Category))
     KrowiAF_CategoriesFrame:Update(true)
+    return achievement
+end
+
+local function Summary(tabName)
+    for _, category in next, addon.Tabs[tabName].Categories do
+        if category.IsSummary then
+            return category
+        end
+    end
 end
 
 local function Selected(achievement)
@@ -150,36 +168,42 @@ local function Selected(achievement)
     return false
 end
 
--- env: IsRetail(), Setup() -> ok[, reason], CloseWindow(), Select(id) (the toast's call), Clock() (game only), Teardown()
+-- env: IsRetail(), Setup() -> ok[, reason], CloseWindow(), Select(id) (the toast's call), Teardown(); in game only InGame
+-- and Clock()
 local steps = {}
 
-steps["earn-select-closed"] = function(env, notes)
-    local achievement = addon.Data.Achievements[earned.Achievement]
-    Fresh("Expansions")
+-- The window closed on the tab as Fresh left it, the achievement earned, then selected as its toast does
+local function SelectAfterEarn(env, notes, name, achievement)
     env.CloseWindow()
     addon.MarkEarnedInWindow(achievement.Id)
     local started = env.Clock and env.Clock()
     Count(env.Select, achievement.Id)
-    tinsert(notes, ("earn-select-closed: the select validated %d achievement rows"):format(rows))
+    tinsert(notes, ("%s: the select validated %d achievement rows"):format(name, rows))
     if started then
-        tinsert(notes, ("earn-select-closed: the select took %.1f ms"):format(env.Clock() - started))
+        tinsert(notes, ("%s: the select took %.1f ms"):format(name, env.Clock() - started))
     end
     local recount = RecountLabel("Expansions", EarnSet(achievement), TopLevel(achievement.Category))
     return recount .. ", " .. (Selected(achievement) and "selected" or "not selected")
 end
 
+steps["earn-select-closed"] = function(env, notes)
+    return SelectAfterEarn(env, notes, "earn-select-closed", Fresh(earned.Achievement))
+end
+
+steps["earn-select-summary"] = function(env, notes)
+    return SelectAfterEarn(env, notes, "earn-select-summary", Fresh(earned.Achievement, Summary("Expansions")))
+end
+
 steps["earn-window-open"] = function()
-    local achievement = addon.Data.Achievements[earned.Achievement]
-    Fresh("Expansions")
+    local achievement = Fresh(earned.Achievement)
     addon.MarkEarnedInWindow(achievement.Id)
     Count(KrowiAF_CategoriesFrame.OnAchievementEarned, KrowiAF_CategoriesFrame)
     return RecountLabel("Expansions", EarnSet(achievement), TopLevel(achievement.Category))
 end
 
 steps["earn-other-tab"] = function(env)
-    local achievement = addon.Data.Achievements[earned.EventsAchievement]
-    Fresh("Events")
-    Fresh("Expansions")
+    local achievement = Fresh(earned.EventsAchievement)
+    Fresh(earned.Achievement)
     env.CloseWindow()
     addon.MarkEarnedInWindow(achievement.Id)
     OpenTab("Expansions")
@@ -188,7 +212,7 @@ steps["earn-other-tab"] = function(env)
 end
 
 steps["expand-path-state"] = function(env, notes)
-    Fresh("Expansions")
+    Fresh(earned.Achievement)
     env.Select(earned.Achievement)
     local path = {}
     local tree = addon.Gui.SelectedTab.SelectedCategory:GetTree()
@@ -214,8 +238,7 @@ steps["expand-path-state"] = function(env, notes)
 end
 
 steps["select-empty-category"] = function()
-    local achievement = addon.Data.Achievements[earned.Achievement]
-    Fresh("Expansions")
+    local achievement = Fresh(earned.Achievement)
     local completion = addon.Gui.SelectedTab.Filters.Completion
     local completed, notCompleted = completion.Completed, completion.NotCompleted
     completion.Completed, completion.NotCompleted = false, false
@@ -236,34 +259,42 @@ steps["select-empty-category"] = function()
     return result
 end
 
--- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
+-- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line, GameOnly
+local function RunScenario(env, observations, scenario, isRetail, ready, reason)
+    local recorded = (not isRetail and scenario.RecordedClassic) or scenario.Recorded
+    local target = (not isRetail and scenario.TargetClassic) or scenario.Target
+    local status, targetMet, tail
+    if not ready then
+        status, tail = "SKIP", reason or "setup failed"
+    else
+        -- no earn left over from the scenario before
+        addon.AchievementEarnedUpdateCategoriesFrameOnNextShow, addon.AchievementEarnedUpdateSummaryFrameOnNextShow, addon.AchievementEarnedUpdateAchievementsFrameOnNextShow = nil, nil, nil
+        local ok, got = pcall(steps[scenario.Name], env, observations)
+        if not ok then
+            tinsert(observations, scenario.Name .. " " .. DescribeError(got))
+            got = "error"
+        end
+        status = got == recorded and "PASS" or "FAIL"
+        targetMet = got == target
+        tail = ("got=[%s] target=[%s] %s"):format(got, target, targetMet and "met" or "open")
+    end
+    return {
+        Name = scenario.Name,
+        Status = status,
+        TargetMet = targetMet,
+        GameOnly = scenario.GameOnly,
+        Line = ("earned/%s: %s recorded=[%s] %s"):format(scenario.Name, status, recorded, tail)
+    }
+end
+
 function earned.Run(env, observations)
     local results = {}
     local isRetail = env.IsRetail()
     local ready, reason = env.Setup()
     for _, scenario in ipairs(earned.Scenarios) do
-        local recorded = (not isRetail and scenario.RecordedClassic) or scenario.Recorded
-        local target = (not isRetail and scenario.TargetClassic) or scenario.Target
-        local status, targetMet, tail
-        if not ready then
-            status, tail = "SKIP", reason or "setup failed"
-        else
-            addon.AchievementEarnedUpdateCategoriesFrameOnNextShow = nil -- no earn left over from the scenario before
-            local ok, got = pcall(steps[scenario.Name], env, observations)
-            if not ok then
-                tinsert(observations, scenario.Name .. " " .. DescribeError(got))
-                got = "error"
-            end
-            status = got == recorded and "PASS" or "FAIL"
-            targetMet = got == target
-            tail = ("got=[%s] target=[%s] %s"):format(got, target, targetMet and "met" or "open")
+        if env.InGame or not scenario.GameOnly then
+            tinsert(results, RunScenario(env, observations, scenario, isRetail, ready, reason))
         end
-        tinsert(results, {
-            Name = scenario.Name,
-            Status = status,
-            TargetMet = targetMet,
-            Line = ("earned/%s: %s recorded=[%s] %s"):format(scenario.Name, status, recorded, tail)
-        })
     end
     if ready then
         env.Teardown()
@@ -273,7 +304,7 @@ end
 
 -- [[ In-game environment: the real window, tabs and toast call ]] --
 
-local gameEnv = {}
+local gameEnv = {InGame = true}
 earned.GameEnv = gameEnv
 local observations = {}
 
