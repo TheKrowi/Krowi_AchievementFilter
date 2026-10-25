@@ -1,0 +1,19 @@
+{
+  "v": 3,
+  "createdOnFiles": {"v": 1, "at": "2026-10-25T12:00:00Z"},
+  "title": "KAF Options Revamp",
+  "launch": {"view": "canvas"},
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {"x": 0, "y": 0, "w": 1400, "h": 860, "title": "A · Middle ground (Retail)", "is_interactive": true},
+    "Tutorial.dc.html": {"x": 1480, "y": 0, "w": 1400, "h": 860, "title": "A · Close to the tutorial (Retail)", "is_interactive": true},
+    "Mists.dc.html": {"x": 0, "y": 980, "w": 1400, "h": 860, "title": "A · Mists, middle ground", "is_interactive": true},
+    "ElvUI.dc.html": {"x": 1480, "y": 980, "w": 1400, "h": 860, "title": "A · ElvUI skin", "is_interactive": true},
+    "SettingsStub.dc.html": {"x": 0, "y": 1960, "w": 1400, "h": 860, "title": "Settings › AddOns: the stub page", "is_interactive": true}
+  },
+  "order": ["Main.dc.html", "Tutorial.dc.html", "Mists.dc.html", "ElvUI.dc.html", "SettingsStub.dc.html"],
+  "notes": {
+    "title": {"x": 0, "y": -300, "text": "KAF options revamp: iteration 2", "kind": "title1", "maxW": 2880}
+  },
+  "designSystems": []
+}

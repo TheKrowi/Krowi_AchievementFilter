@@ -1,0 +1,787 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAF options: own window</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./kaf-options.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&amp;family=PT+Sans+Narrow:wght@400;700&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div class="{{stageClass}}" style="width: 1400px; height: 860px">
+<sc-if value="{{isOpen}}" hint-placeholder-val="{{true}}">
+<div class="win" style="width: {{winW}}px; height: {{winH}}px">
+<div class="titlebar">
+<div class="portrait" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 3l11 4v8c0 7-5 11.5-11 14C10 26.5 5 22 5 15V7z"></path><path d="M16 10l1.9 3.9 4.3.6-3.1 3 .7 4.3-3.8-2-3.8 2 .7-4.3-3.1-3 4.3-.6z" fill="currentColor" stroke="none"></path></svg></div>
+<span class="title">Krowi's Achievement Filter</span>
+<span class="ver">104.0</span>
+<button class="close" aria-label="Close" onClick="{{closeWin}}"><svg width="12" height="12" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M2 2l8 8M10 2l-8 8"></path></svg></button>
+</div>
+<div class="body">
+<nav class="nav" aria-label="Sections">
+<div class="search">
+<svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="7" cy="7" r="5"></circle><path d="M11 11l4 4"></path></svg>
+<input type="search" aria-label="Search options and help" placeholder="Search options and help" value="{{q}}" onChange="{{onSearch}}">
+</div>
+<div class="navscroll">
+<button class="{{overviewCls}}" onClick="{{goOverview}}"><span>Overview</span></button>
+<sc-for list="{{navGroups}}" as="ng" hint-placeholder-count="3">
+<div class="navhead">{{ng.name}}</div>
+<sc-for list="{{ng.items}}" as="it" hint-placeholder-count="4">
+<button class="{{it.cls}}" onClick="{{it.go}}"><span>{{it.name}}</span><sc-if value="{{it.isNew}}" hint-placeholder-val="{{false}}"><span class="newtag">New</span></sc-if></button>
+</sc-for>
+</sc-for>
+</div>
+</nav>
+<main class="page">
+<div class="pagehead">
+<div class="pagetitle"><h1>{{pageTitle}}</h1></div>
+<div class="divider"></div>
+</div>
+<div class="scroll" id="{{scrollId}}">
+<sc-if value="{{showOverview}}" hint-placeholder-val="{{true}}">
+<p class="intro">{{intro}}</p>
+<sc-if value="{{hasNew}}" hint-placeholder-val="{{true}}">
+<div class="news">
+<h2>New since you last looked</h2>
+<div class="newlinks">
+<sc-for list="{{newLinks}}" as="nl" hint-placeholder-count="2"><button class="chip" onClick="{{nl.go}}">{{nl.name}}</button></sc-for>
+</div>
+</div>
+</sc-if>
+<div class="news clog">
+<h2>Changes in {{clog.version}}</h2>
+<sc-for list="{{clog.groups}}" as="cg" hint-placeholder-count="3">
+<h3>{{cg.name}}</h3>
+<sc-for list="{{cg.lines}}" as="cl" hint-placeholder-count="3"><p class="htext li">{{cl.text}}</p></sc-for>
+</sc-for>
+</div>
+<sc-for list="{{tileGroups}}" as="tg" hint-placeholder-count="2">
+<h2 class="tilegroup">{{tg.name}}</h2>
+<div class="tiles">
+<sc-for list="{{tg.tiles}}" as="t" hint-placeholder-count="6">
+<button class="tile" onClick="{{t.go}}">
+<sc-if value="{{t.hasImg}}" hint-placeholder-val="{{true}}"><img class="thumb" src="{{t.img}}" alt=""></sc-if>
+<sc-if value="{{t.noImg}}" hint-placeholder-val="{{false}}"><span class="thumb noimg">Picture to make</span></sc-if>
+<span class="tname"><span>{{t.name}}</span><sc-if value="{{t.isNew}}" hint-placeholder-val="{{false}}"><span class="newtag">New</span></sc-if></span>
+<span class="tsum">{{t.summary}}</span>
+</button>
+</sc-for>
+</div>
+</sc-for>
+</sc-if>
+<sc-if value="{{showResults}}" hint-placeholder-val="{{false}}">
+<sc-for list="{{results}}" as="r" hint-placeholder-count="5">
+<button class="res" onClick="{{r.go}}"><span class="rpath">{{r.path}}</span><span class="rlabel">{{r.label}}</span><span class="rsnip">{{r.snip}}</span></button>
+</sc-for>
+<sc-if value="{{noResults}}" hint-placeholder-val="{{false}}"><p class="empty">Nothing matches “{{q}}”.</p></sc-if>
+</sc-if>
+<sc-if value="{{showSection}}" hint-placeholder-val="{{false}}">
+<div onMouseLeave="{{leaveList}}">
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="2">
+<h2 class="sechead">{{g.header}}</h2>
+<sc-if value="{{g.hasNote}}" hint-placeholder-val="{{false}}"><p class="note gnote">{{g.note}}</p></sc-if>
+<sc-if value="{{g.isMatrix}}" hint-placeholder-val="{{false}}">
+<div class="matrix">
+<div class="mrow mhead" style="grid-template-columns: 172px repeat({{g.ncols}}, 72px)"><span></span><sc-for list="{{g.cols}}" as="c" hint-placeholder-count="3"><span class="mcol">{{c.text}}</span></sc-for></div>
+<sc-for list="{{g.mrows}}" as="mr" hint-placeholder-count="3">
+<div class="mrow" style="grid-template-columns: 172px repeat({{g.ncols}}, 72px)" onMouseEnter="{{mr.enter}}" onMouseLeave="{{mr.leave}}">
+<span class="lcell"><sc-if value="{{mr.changed}}" hint-placeholder-val="{{false}}"><button class="dot" aria-label="Changed. Right-click to reset this row" title="Changed. Right-click to reset." onContextMenu="{{mr.reset}}"></button></sc-if><span class="label">{{mr.label}}</span></span>
+<sc-for list="{{mr.cells}}" as="mc" hint-placeholder-count="3"><span class="mcell"><span class="cb"><input type="checkbox" aria-label="{{mc.aria}}" checked="{{mc.on}}" disabled="{{mc.off}}" onChange="{{mc.toggle}}"><span class="box"></span></span></span></sc-for>
+</div>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{g.isOrder}}" hint-placeholder-val="{{false}}">
+<div class="order">
+<sc-for list="{{g.items}}" as="it" hint-placeholder-count="8">
+<div class="orow" onMouseEnter="{{it.enter}}" onMouseLeave="{{it.leave}}">
+<span class="onum">{{it.num}}</span>
+<span class="cb"><input type="checkbox" aria-label="{{it.aria}}" checked="{{it.on}}" onChange="{{it.toggle}}"><span class="box"></span></span>
+<span class="{{it.labelCls}}">{{it.label}}</span>
+<span class="osrc">{{it.src}}</span>
+<button class="step" aria-label="Move up" disabled="{{it.first}}" onClick="{{it.up}}"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 7l4-5 4 5z" fill="currentColor"></path></svg></button>
+<button class="step" aria-label="Move down" disabled="{{it.last}}" onClick="{{it.down}}"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 5 4-5z" fill="currentColor"></path></svg></button>
+</div>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{g.isRows}}" hint-placeholder-val="{{true}}">
+<sc-for list="{{g.rows}}" as="o" hint-placeholder-count="5">
+<sc-if value="{{o.isSub}}" hint-placeholder-val="{{false}}">
+<div class="subrow"><span class="sublabel">{{o.label}}</span><button class="linkbtn" onClick="{{o.all}}">All</button><button class="linkbtn" onClick="{{o.none}}">None</button></div>
+</sc-if>
+<sc-if value="{{o.isCtl}}" hint-placeholder-val="{{true}}">
+<div class="{{o.cls}}" id="{{o.rowId}}" onMouseEnter="{{o.enter}}" onMouseLeave="{{o.leave}}">
+<span class="lcell">
+<sc-if value="{{o.changed}}" hint-placeholder-val="{{false}}"><button class="dot" aria-label="Changed. Right-click to reset" title="Changed. Right-click to reset." onContextMenu="{{o.reset}}"></button></sc-if>
+<label class="label" for="{{o.domId}}">{{o.label}}</label>
+<sc-if value="{{o.isReload}}" hint-placeholder-val="{{false}}"><svg class="ricon" width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-label="Needs a reload"><path d="M13 8a5 5 0 1 1-1.5-3.5"></path><path d="M13 2v3.5H9.5"></path></svg></sc-if>
+</span>
+<div class="ctl">
+<sc-if value="{{o.isToggle}}" hint-placeholder-val="{{true}}"><span class="cb"><input type="checkbox" id="{{o.domId}}" checked="{{o.on}}" disabled="{{o.off}}" onChange="{{o.toggle}}"><span class="box"></span></span></sc-if>
+<sc-if value="{{o.isRange}}" hint-placeholder-val="{{false}}"><div class="slider"><button class="step" aria-label="Decrease" disabled="{{o.off}}" onClick="{{o.dec}}"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M7 1L2 5l5 4z" fill="currentColor"></path></svg></button><input type="range" class="range" id="{{o.domId}}" min="{{o.min}}" max="{{o.max}}" step="{{o.step}}" value="{{o.v}}" disabled="{{o.off}}" onChange="{{o.slide}}"><button class="step" aria-label="Increase" disabled="{{o.off}}" onClick="{{o.inc}}"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M3 1l5 4-5 4z" fill="currentColor"></path></svg></button><span class="val">{{o.valText}}</span></div></sc-if>
+<sc-if value="{{o.isSelect}}" hint-placeholder-val="{{false}}"><button class="dd" id="{{o.domId}}" aria-haspopup="listbox" disabled="{{o.off}}" onClick="{{o.openDD}}"><span class="ddtext">{{o.selText}}</span><svg class="chev" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 4l4 4 4-4"></path></svg></button></sc-if>
+<sc-if value="{{o.isButton}}" hint-placeholder-val="{{false}}"><button class="btn" id="{{o.domId}}" disabled="{{o.off}}" onClick="{{o.run}}">{{o.btnText}}</button></sc-if>
+<sc-if value="{{o.isKey}}" hint-placeholder-val="{{false}}"><sc-for list="{{o.keys}}" as="k" hint-placeholder-count="2"><button class="{{k.cls}}" id="{{k.domId}}" aria-label="{{k.aria}}" onClick="{{k.click}}" onKeyDown="{{k.down}}" onBlur="{{k.blur}}">{{k.text}}</button></sc-for></sc-if>
+<sc-if value="{{o.isInput}}" hint-placeholder-val="{{false}}"><input class="edit" id="{{o.domId}}" value="{{o.v}}" disabled="{{o.off}}" onChange="{{o.input}}"></sc-if>
+</div>
+</div>
+</sc-if>
+</sc-for>
+</sc-if>
+</sc-for>
+</div>
+</sc-if>
+</div>
+<sc-if value="{{showSection}}" hint-placeholder-val="{{false}}">
+<div class="pagefoot"><span class="note">{{changedText}}</span><button class="btn" disabled="{{noChanges}}" onClick="{{askDefaults}}">Defaults</button></div>
+</sc-if>
+<sc-if value="{{toastOn}}" hint-placeholder-val="{{false}}"><div class="toast" role="status">{{toastText}}</div></sc-if>
+</main>
+<sc-if value="{{paneOpen}}" hint-placeholder-val="{{true}}">
+<aside class="help" aria-label="Help" style="width: {{paneW}}px">
+<div class="helphead"><span class="kicker">{{paneKicker}}</span><button class="iconbtn" aria-label="Hide the help pane" title="Hide the help pane" onClick="{{togglePane}}"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 2l4 4-4 4M7 2l4 4-4 4"></path></svg></button></div>
+<div class="helpscroll">
+<sc-if value="{{hasHover}}" hint-placeholder-val="{{false}}">
+<h3 class="htitle">{{hv.label}}</h3>
+<p class="htext pre">{{hv.desc}}</p>
+<div class="meta">
+<sc-if value="{{hv.hasDef}}" hint-placeholder-val="{{true}}"><div>Default: {{hv.def}}</div></sc-if>
+<sc-if value="{{hv.hasNeeds}}" hint-placeholder-val="{{false}}"><div>{{hv.needs}}</div></sc-if>
+<sc-for list="{{hv.extras}}" as="x" hint-placeholder-count="1"><div>{{x.text}}</div></sc-for>
+</div>
+</sc-if>
+<sc-if value="{{paneExplain}}" hint-placeholder-val="{{true}}">
+<h3 class="htitle">{{ex.title}}</h3>
+<sc-for list="{{ex.blocks}}" as="b" hint-placeholder-count="5">
+<sc-if value="{{b.isH}}" hint-placeholder-val="{{false}}"><h4 class="hh">{{b.text}}</h4></sc-if>
+<sc-if value="{{b.isP}}" hint-placeholder-val="{{true}}"><p class="htext">{{b.text}}</p></sc-if>
+<sc-if value="{{b.isLi}}" hint-placeholder-val="{{false}}"><p class="{{b.cls}}"><span class="term">{{b.term}}</span>{{b.sep}}{{b.text}}</p></sc-if>
+<sc-if value="{{b.isImg}}" hint-placeholder-val="{{false}}"><button class="{{b.shotCls}}" aria-label="Enlarge picture" onClick="{{b.zoom}}"><img src="{{b.src}}" alt="{{b.alt}}"></button></sc-if>
+<sc-if value="{{b.isNoImg}}" hint-placeholder-val="{{false}}"><div class="shot noimg">Picture to make</div></sc-if>
+</sc-for>
+</sc-if>
+</div>
+<sc-if value="{{showMeOn}}" hint-placeholder-val="{{false}}">
+<div class="helpfoot">
+<button class="btn" onClick="{{showMeRun}}">Show me</button>
+<sc-if value="{{hasShowMeNote}}" hint-placeholder-val="{{false}}"><span class="note">{{showMeNote}}</span></sc-if>
+</div>
+</sc-if>
+</aside>
+</sc-if>
+<sc-if value="{{paneClosed}}" hint-placeholder-val="{{false}}">
+<aside class="helpstrip" aria-label="Help">
+<button class="iconbtn" aria-label="Show the help pane" title="Show the help pane" onClick="{{togglePane}}"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 2L5 6l4 4M5 2L1 6l4 4"></path></svg></button>
+<span class="vlabel">How it works</span>
+</aside>
+</sc-if>
+</div>
+<sc-if value="{{reloadOn}}" hint-placeholder-val="{{false}}">
+<div class="reloadbar" role="status"><span>Some changes take effect after a reload.</span><button class="btn" onClick="{{reloadNow}}">Reload now</button></div>
+</sc-if>
+<button class="grip" aria-label="Resize the window" onPointerDown="{{gripDown}}" onPointerMove="{{gripMove}}" onPointerUp="{{gripUp}}"><svg width="12" height="12" viewBox="0 0 12 12" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M11 3L3 11M11 7l-4 4"></path></svg></button>
+</div>
+</sc-if>
+<sc-if value="{{isClosed}}" hint-placeholder-val="{{false}}">
+<div class="reopen">
+<button class="btn" onClick="{{reopen}}">Open the options (/kaf)</button>
+<p class="note">It opens on Overview while a section is New, otherwise on the section you had open.</p>
+</div>
+</sc-if>
+<sc-if value="{{tipAbove}}" hint-placeholder-val="{{false}}">
+<div class="tip" style="left: {{tip.x}}px; bottom: {{tip.b}}px"><div class="tt">{{tip.label}}</div><div class="td">{{tip.desc}}</div><sc-if value="{{tip.hasFoot}}" hint-placeholder-val="{{true}}"><div class="tdef">{{tip.foot}}</div></sc-if></div>
+</sc-if>
+<sc-if value="{{tipBelow}}" hint-placeholder-val="{{false}}">
+<div class="tip" style="left: {{tip.x}}px; top: {{tip.t}}px"><div class="tt">{{tip.label}}</div><div class="td">{{tip.desc}}</div><sc-if value="{{tip.hasFoot}}" hint-placeholder-val="{{true}}"><div class="tdef">{{tip.foot}}</div></sc-if></div>
+</sc-if>
+<sc-if value="{{ddOpen}}" hint-placeholder-val="{{false}}">
+<button class="scrim" aria-label="Close menu" onClick="{{closeDD}}"></button>
+<div class="menu" role="listbox" style="left: {{dd.x}}px; top: {{dd.y}}px; min-width: {{dd.w}}px">
+<sc-for list="{{ddItems}}" as="mi" hint-placeholder-count="3">
+<button role="option" aria-selected="{{mi.on}}" onClick="{{mi.pick}}"><span class="{{mi.cls}}"></span><span>{{mi.text}}</span></button>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{confirmOn}}" hint-placeholder-val="{{false}}">
+<div class="modalscrim"></div>
+<div class="popup" role="dialog" aria-label="Confirm"><p>{{confirmText}}</p><div class="popbtns"><button class="btn" onClick="{{confirmYes}}">Yes</button><button class="btn" onClick="{{confirmNo}}">No</button></div></div>
+</sc-if>
+<sc-if value="{{zoomOn}}" hint-placeholder-val="{{false}}">
+<button class="lightbox" aria-label="Close picture" onClick="{{unzoom}}"><img src="{{zoom.src}}" alt="{{zoom.alt}}"></button>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"skin":{"editor":"enum","options":["blizzard","elvui"],"default":"blizzard","section":"Variant"},"depth":{"editor":"enum","options":["middle","full"],"default":"middle","section":"Variant"},"client":{"editor":"enum","options":["retail","mists"],"default":"retail","section":"Variant"},"$preview":{"width":1400,"height":860}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.uid = 'k' + Math.random().toString(36).slice(2, 8);
+    this.state = { open: true, section: 'overview', last: 'overview', values: {}, baseline: {}, tabOrder: null, hover: null, q: '', flash: null, dd: null, tip: null, zoom: null, seen: {}, keyWait: null, toast: null, paneClosed: false, size: null, confirm: null };
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this._toastTimer);
+    clearTimeout(this._flashTimer);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const s = this.state;
+    const el = document.getElementById(this.uid + '-scroll');
+    if (el && (prevState.section !== s.section || prevState.open !== s.open || (prevState.q === '') !== (s.q === ''))) el.scrollTop = 0;
+    if (s.flash && s.flash !== prevState.flash) {
+      const row = document.getElementById(this.uid + '-row-' + s.flash);
+      if (el && row) el.scrollTop = Math.max(0, row.offsetTop - el.clientHeight / 2);
+      clearTimeout(this._flashTimer);
+      this._flashTimer = setTimeout(() => this.setState({ flash: null }), 1700);
+    }
+  }
+
+  data() {
+    if (this._d) return this._d;
+    const IMG = {
+      TabButton: '/_blob/3f8b37db677983cda391001039aff275',
+      Categories: '/_blob/ea6deb9526885ff6d47d59d01aaabb57',
+      FilteringSorting: '/_blob/38eaf475af669fe550eefe37e9ab950f',
+      QuickSearch: '/_blob/afcf57ad8f45904cce4049f1007aa8d9',
+      FullSearch: '/_blob/22e206278252cb1903a111302ba871ee',
+      NewAchievementColors: '/_blob/729d120ad6449f3b0d0500985246dfc2',
+      EarnedBy: '/_blob/751bfbcbecdb5e5803f6ffea163d8405',
+      CompactAchievements: '/_blob/063d1dd2d1d404f22ee17e04a1738c7e',
+      TooltipCategories: '/_blob/0acb0e16e9f54abab7a3aca10785a7b6',
+      TooltipAchievements: '/_blob/c92bcd9714d11612ed093c16e53bbde5',
+      WorldMapButton: '/_blob/fce3830e7e66943e003d4d7ee9a83790',
+      RightClickMenu: '/_blob/df8b960f19d51574cf09b30862244745',
+      EventReminder: '/_blob/cbc39b8a8ab896d97424671ce98dd4c2',
+      Summary: '/_blob/6ca0d8557042be2668ec637906cfc81c',
+      Calendar: '/_blob/b1cbd0135664f4f9a6f64c8713ce1838'
+    };
+    const d = /*DATA*/ {};
+    d.img = Object.assign({}, IMG, d.img || {});
+    d.byId = {};
+    d.optById = {};
+    d.sections.forEach((sec) => {
+      d.byId[sec.id] = sec;
+      (sec.groups || []).forEach((g) => {
+        const reg = (o) => {
+          o.sectionId = sec.id;
+          o.groupHeader = g.header;
+          d.optById[o.id] = o;
+        };
+        if (g.kind === 'matrix') {
+          g.rows.forEach((r) => {
+            r.type = 'info';
+            reg(r);
+            r.cells.forEach(reg);
+          });
+        } else if (g.kind === 'order') {
+          g.items.forEach((it) => reg(it.show));
+        } else {
+          (g.options || []).forEach(reg);
+        }
+      });
+    });
+    this._d = d;
+    return d;
+  }
+
+  isMists() {
+    return this.props.client === 'mists';
+  }
+
+  isFull() {
+    return this.props.depth === 'full';
+  }
+
+  winW() {
+    return this.state.size ? this.state.size.w : (this.isFull() ? 1320 : 1200);
+  }
+
+  winH() {
+    return this.state.size ? this.state.size.h : 780;
+  }
+
+  val(o) {
+    const v = this.state.values;
+    return Object.prototype.hasOwnProperty.call(v, o.id) ? v[o.id] : o.def;
+  }
+
+  setVal(id, value) {
+    this.setState({ values: Object.assign({}, this.state.values, { [id]: value }) });
+  }
+
+  setMany(ids, value) {
+    const values = Object.assign({}, this.state.values);
+    ids.forEach((id) => { values[id] = value; });
+    this.setState({ values: values });
+  }
+
+  visible(o) {
+    if (o.retail && this.isMists()) return false;
+    if (o.showIf) {
+      const sw = this.data().optById[o.showIf];
+      if (sw && !this.val(sw)) return false;
+    }
+    return true;
+  }
+
+  isOff(o) {
+    const d = this.data();
+    let cur = o;
+    while (cur && cur.parent) {
+      const po = d.optById[cur.parent];
+      if (!po) break;
+      const on = !!this.val(po);
+      if (cur.inv ? on : !on) return true;
+      cur = po;
+    }
+    return false;
+  }
+
+  isChanged(o) {
+    const v = this.state.values;
+    if (Object.prototype.hasOwnProperty.call(v, o.id) && v[o.id] !== o.def) return true;
+    if (o.keys === 2 && v[o.id + '#2']) return true;
+    return false;
+  }
+
+  sectionOpts(sec) {
+    const out = [];
+    (sec.groups || []).forEach((g) => {
+      if (g.kind === 'matrix') g.rows.forEach((r) => r.cells.forEach((c) => out.push(c)));
+      else if (g.kind === 'order') g.items.forEach((it) => out.push(it.show));
+      else (g.options || []).forEach((o) => { if (o.type !== 'sub') out.push(o); });
+    });
+    return out;
+  }
+
+  orderChanged() {
+    const cur = this.state.tabOrder;
+    return !!cur && cur.join() !== this.data().tabOrder.join();
+  }
+
+  resetIds(ids) {
+    const values = Object.assign({}, this.state.values);
+    ids.forEach((id) => { delete values[id]; delete values[id + '#2']; });
+    return values;
+  }
+
+  resetSection(sec) {
+    const values = this.resetIds(this.sectionOpts(sec).map((o) => o.id));
+    const patch = { values: values, confirm: null };
+    if (sec.id === 'tabs') patch.tabOrder = null;
+    this.setState(patch);
+    this.toast(sec.name + ' is back to its defaults.');
+  }
+
+  fmt(o, v) {
+    if (o.pct) return Math.round(v * 100) + '%';
+    return String(v) + (o.unit || '');
+  }
+
+  selText(o, v) {
+    const hit = (o.values || []).find((x) => x[0] === v);
+    return hit ? hit[1] : (o.placeholder || String(v));
+  }
+
+  hasDef(o) {
+    return o.type === 'toggle' || o.type === 'range' || o.type === 'select' || o.type === 'key' || o.type === 'input';
+  }
+
+  defText(o) {
+    if (o.type === 'toggle') return o.def ? 'On' : 'Off';
+    if (o.type === 'range') return this.fmt(o, o.def);
+    if (o.type === 'select') return this.selText(o, o.def);
+    if (o.type === 'key') return o.def || 'Not Bound';
+    if (o.type === 'input') return o.def || '(empty)';
+    return '';
+  }
+
+  extras(o) {
+    const out = [];
+    if (o.reload) out.push('Needs a reload.');
+    if (o.locked && o.label !== 'Loaded') out.push('Set in the other addon.');
+    if (this.isChanged(o)) out.push('Changed. Right-click the dot to reset it.');
+    return out;
+  }
+
+  needsText(o) {
+    if (!o.parent) return '';
+    const p = this.data().optById[o.parent];
+    if (!p) return '';
+    return o.inv ? 'Only used while “' + p.label + '” is off.' : 'Needs “' + p.label + '” turned on.';
+  }
+
+  anyNew() {
+    const s = this.state;
+    return this.data().sections.some((sec) => sec.isNew && !s.seen[sec.id]);
+  }
+
+  go(id, flash) {
+    this.setState({ section: id, last: id, hover: null, q: '', dd: null, tip: null, keyWait: null, flash: flash || null, seen: Object.assign({}, this.state.seen, { [id]: true }) });
+  }
+
+  toast(text) {
+    this.setState({ toast: text });
+    clearTimeout(this._toastTimer);
+    this._toastTimer = setTimeout(() => this.setState({ toast: null }), 2600);
+  }
+
+  pos(e) {
+    const el = e.currentTarget;
+    const stage = el && el.closest ? el.closest('.stage') : null;
+    if (!stage) return null;
+    const sr = stage.getBoundingClientRect();
+    const k = sr.width / 1400 || 1;
+    const r = el.getBoundingClientRect();
+    return { x: (r.left - sr.left) / k, y: (r.top - sr.top) / k, w: r.width / k, h: r.height / k };
+  }
+
+  enter(o, tipMode, e) {
+    if (!tipMode) {
+      if (this.state.hover !== o.id) this.setState({ hover: o.id });
+      return;
+    }
+    const p = this.pos(e);
+    if (!p) return;
+    const x = Math.min(1400 - 326, Math.max(10, p.x + p.w - 360));
+    this.setState({ tip: { id: o.id, x: Math.round(x), above: p.y > 190, b: Math.round(860 - p.y + 2), t: Math.round(p.y + p.h + 2) } });
+  }
+
+  leaveRow(tipMode) {
+    if (tipMode && this.state.tip) this.setState({ tip: null });
+  }
+
+  openDD(o, e) {
+    const p = this.pos(e);
+    if (!p) return;
+    const h = (o.values || []).length * 24 + 14;
+    let y = p.y + p.h + 2;
+    if (y + h > 850) y = Math.max(10, p.y - h - 2);
+    this.setState({ dd: { id: o.id, x: Math.round(p.x), y: Math.round(y), w: Math.round(p.w) }, tip: null });
+  }
+
+  keyDown(id, e) {
+    if (this.state.keyWait !== id) return;
+    const k = e.key;
+    if (k === 'Shift' || k === 'Control' || k === 'Alt' || k === 'Meta') return;
+    e.preventDefault();
+    if (k === 'Escape') {
+      this.setState({ keyWait: null });
+      return;
+    }
+    const name = (e.altKey ? 'ALT-' : '') + (e.ctrlKey ? 'CTRL-' : '') + (e.shiftKey ? 'SHIFT-' : '') + (k === ' ' ? 'SPACE' : k.toUpperCase());
+    this.setState({ keyWait: null, values: Object.assign({}, this.state.values, { [id]: name }) });
+  }
+
+  step(o, dir) {
+    const st = o.step || 1;
+    const decimals = (String(st).split('.')[1] || '').length;
+    const next = Math.min(o.max, Math.max(o.min, this.val(o) + dir * st));
+    this.setVal(o.id, Number(next.toFixed(decimals)));
+  }
+
+  move(i, dir) {
+    const order = (this.state.tabOrder || this.data().tabOrder).slice();
+    const j = i + dir;
+    if (j < 0 || j >= order.length) return;
+    const t = order[i];
+    order[i] = order[j];
+    order[j] = t;
+    this.setState({ tabOrder: order });
+  }
+
+  gripDown(e) {
+    e.preventDefault();
+    const el = e.currentTarget;
+    if (el.setPointerCapture) el.setPointerCapture(e.pointerId);
+    const stage = el.closest ? el.closest('.stage') : null;
+    const k = stage ? stage.getBoundingClientRect().width / 1400 || 1 : 1;
+    this._drag = { x: e.clientX, y: e.clientY, w: this.winW(), h: this.winH(), k: k };
+  }
+
+  gripMove(e) {
+    const d = this._drag;
+    if (!d) return;
+    const w = Math.min(1350, Math.max(1080, d.w + (e.clientX - d.x) / d.k));
+    const h = Math.min(814, Math.max(560, d.h + (e.clientY - d.y) / d.k));
+    this.setState({ size: { w: Math.round(w), h: Math.round(h) } });
+  }
+
+  gripUp(e) {
+    this._drag = null;
+    const el = e.currentTarget;
+    if (el.releasePointerCapture) el.releasePointerCapture(e.pointerId);
+  }
+
+  row(o, tipMode) {
+    const s = this.state;
+    const t = o.type;
+    if (t === 'sub') {
+      return { isSub: true, isCtl: false, label: o.label, all: () => this.setMany(o.members, true), none: () => this.setMany(o.members, false) };
+    }
+    const v = this.val(o);
+    const off = this.isOff(o) || !!o.locked;
+    const r = {
+      isSub: false, isCtl: true,
+      label: o.label,
+      domId: this.uid + '-' + o.id.replace(/[^A-Za-z0-9]/g, '_'),
+      rowId: this.uid + '-row-' + o.id,
+      cls: 'row' + (o.indent ? ' ind' + o.indent : '') + (off ? ' off' : '') + (s.flash === o.id ? ' flash' : ''),
+      isToggle: t === 'toggle', isRange: t === 'range', isSelect: t === 'select', isButton: t === 'execute', isKey: t === 'key', isInput: t === 'input',
+      isReload: !!o.reload,
+      changed: this.isChanged(o),
+      reset: (e) => { e.preventDefault(); this.setState({ values: this.resetIds([o.id]) }); },
+      on: !!v, off: off, v: v,
+      enter: (e) => this.enter(o, tipMode, e),
+      leave: () => this.leaveRow(tipMode)
+    };
+    if (t === 'toggle') r.toggle = () => this.setVal(o.id, !this.val(o));
+    if (t === 'range') {
+      r.min = o.min; r.max = o.max; r.step = o.step || 1;
+      r.valText = this.fmt(o, v);
+      r.slide = (e) => this.setVal(o.id, Number(e.target.value));
+      r.dec = () => this.step(o, -1);
+      r.inc = () => this.step(o, 1);
+    }
+    if (t === 'select') {
+      r.selText = this.selText(o, v);
+      r.openDD = (e) => this.openDD(o, e);
+    }
+    if (t === 'execute') {
+      r.btnText = o.btn || o.label;
+      r.run = () => this.toast(o.does || ('In game: ' + o.label));
+    }
+    if (t === 'key') {
+      r.keys = [1, 2].slice(0, o.keys || 1).map((slot) => {
+        const id = slot === 1 ? o.id : o.id + '#2';
+        const waiting = s.keyWait === id;
+        const kv = Object.prototype.hasOwnProperty.call(s.values, id) ? s.values[id] : (slot === 1 ? o.def : '');
+        return {
+          domId: slot === 1 ? r.domId : r.domId + '-2',
+          aria: o.label + (slot === 2 ? ', second key' : ''),
+          cls: 'btn key' + (waiting ? ' wait' : ''),
+          text: waiting ? 'Press a key' : (kv || 'Not Bound'),
+          click: () => this.setState({ keyWait: waiting ? null : id }),
+          down: (e) => this.keyDown(id, e),
+          blur: () => { if (this.state.keyWait === id) this.setState({ keyWait: null }); }
+        };
+      });
+    }
+    if (t === 'input') r.input = (e) => this.setVal(o.id, e.target.value);
+    return r;
+  }
+
+  group(g, tipMode) {
+    const out = { header: g.header, hasNote: !!g.note, note: g.note || '', isRows: !g.kind, isMatrix: g.kind === 'matrix', isOrder: g.kind === 'order' };
+    if (g.kind === 'matrix') {
+      out.ncols = g.cols.length;
+      out.cols = g.cols.map((text) => ({ text: text }));
+      out.mrows = g.rows.map((r) => ({
+        label: r.label,
+        changed: r.cells.some((c) => this.isChanged(c)),
+        reset: (e) => { e.preventDefault(); this.setState({ values: this.resetIds(r.cells.map((c) => c.id)) }); },
+        enter: (e) => this.enter(r, tipMode, e),
+        leave: () => this.leaveRow(tipMode),
+        cells: r.cells.map((c) => ({ aria: c.label, on: !!this.val(c), off: this.isOff(c), toggle: () => this.setVal(c.id, !this.val(c)) }))
+      }));
+      return out;
+    }
+    if (g.kind === 'order') {
+      const order = this.state.tabOrder || this.data().tabOrder;
+      const byKey = {};
+      g.items.forEach((it) => { byKey[it.key] = it; });
+      out.items = order.map((key, i) => {
+        const it = byKey[key];
+        const o = it.show;
+        const on = !!this.val(o);
+        return {
+          num: i + 1, label: o.label, src: it.src || '', on: on,
+          aria: 'Show ' + o.label + (it.src ? ' (' + it.src + ')' : ''),
+          labelCls: 'olabel' + (on ? '' : ' dim'),
+          toggle: () => this.setVal(o.id, !this.val(o)),
+          first: i === 0, last: i === order.length - 1,
+          up: () => this.move(i, -1), down: () => this.move(i, 1),
+          enter: (e) => this.enter(o, tipMode, e), leave: () => this.leaveRow(tipMode)
+        };
+      });
+      return out;
+    }
+    const opts = g.options.filter((o) => (o.type === 'sub' ? o.members.some((id) => this.visible(this.data().optById[id])) : this.visible(o)));
+    if (!opts.some((o) => o.type !== 'sub')) return null;
+    out.rows = opts.map((o) => this.row(o, tipMode));
+    return out;
+  }
+
+  block(raw, sec) {
+    const d = this.data();
+    const i = raw.indexOf(':');
+    const kind = raw.slice(0, i);
+    const rest = raw.slice(i + 1);
+    if (kind === 'img') {
+      if (!rest || !d.img[rest]) return { isNoImg: true };
+      const alt = (sec.alt && sec.alt[rest]) || ('Picture: ' + sec.name);
+      const src = d.img[rest];
+      return { isImg: true, src: src, alt: alt, shotCls: 'shot' + (this.isFull() ? ' wide' : ' fit'), zoom: () => this.setState({ zoom: { src: src, alt: alt } }) };
+    }
+    if (kind === 'li' || kind === 'li2') {
+      const j = rest.indexOf('|');
+      const term = j >= 0 ? rest.slice(0, j) : '';
+      const text = j >= 0 ? rest.slice(j + 1) : rest;
+      return { isLi: true, cls: 'htext li' + (kind === 'li2' ? ' l2' : ''), term: term, sep: term && text ? ': ' : '', text: text };
+    }
+    return { isH: kind === 'h', isP: kind === 'p', text: rest };
+  }
+
+  explainFor(sec) {
+    const ex = (this.isFull() && sec.explainFull) || sec.explain;
+    if (!ex) return null;
+    return { title: ex.title, blocks: ex.blocks.map((b) => this.block(b, sec)) };
+  }
+
+  plain(raw) {
+    const i = raw.indexOf(':');
+    return raw.slice(i + 1).replace('|', ': ');
+  }
+
+  groupOpts(g) {
+    if (g.kind === 'matrix') return g.rows;
+    if (g.kind === 'order') return g.items.map((it) => it.show);
+    return (g.options || []).filter((o) => o.type !== 'sub' && this.visible(o));
+  }
+
+  search(q) {
+    const d = this.data();
+    const t = q.toLowerCase();
+    const out = [];
+    d.sections.forEach((sec) => {
+      const ex = (this.isFull() && sec.explainFull) || sec.explain;
+      if (ex && sec.id !== 'overview') {
+        const texts = ex.blocks.filter((b) => b.indexOf('img:') !== 0).map((b) => this.plain(b));
+        const hit = texts.find((x) => x.toLowerCase().indexOf(t) >= 0);
+        if (hit || sec.name.toLowerCase().indexOf(t) >= 0 || ex.title.toLowerCase().indexOf(t) >= 0) {
+          out.push({ path: sec.name + ' · How it works', label: ex.title, snip: hit || texts[0] || '', go: () => this.go(sec.id) });
+        }
+      }
+      (sec.groups || []).forEach((g) => this.groupOpts(g).forEach((o) => {
+        if ((o.label + ' ' + (o.desc || '') + ' ' + g.header).toLowerCase().indexOf(t) >= 0) {
+          out.push({ path: sec.name + ' · ' + g.header, label: o.label, snip: o.desc || '', go: () => this.go(sec.id, o.id) });
+        }
+      }));
+    });
+    return out.slice(0, 80);
+  }
+
+  renderVals() {
+    const d = this.data();
+    const s = this.state;
+    const skin = this.props.skin || 'blizzard';
+    const client = this.isMists() ? 'mists' : 'retail';
+    const paneOpen = !s.paneClosed;
+    const tipMode = !paneOpen;
+    const q = s.q.trim();
+    const searching = q.length >= 2;
+    const sec = d.byId[s.section] || d.byId.overview;
+    const isOverview = sec.id === 'overview';
+    const showSection = !searching && !isOverview;
+
+    const navItem = (id) => {
+      const x = d.byId[id];
+      return { name: x.name, isNew: !!x.isNew && !s.seen[id], cls: 'navitem' + (s.section === id && !searching ? ' sel' : ''), go: () => this.go(id) };
+    };
+    const navGroups = d.nav.map((g) => ({ name: g.name, items: g.ids.map(navItem) }));
+
+    const ex = this.explainFor(sec) || { title: '', blocks: [] };
+    const groups = showSection ? (sec.groups || []).map((g) => this.group(g, tipMode)).filter((g) => g) : [];
+
+    const hoverOpt = paneOpen && s.hover ? d.optById[s.hover] : null;
+    const hv = hoverOpt ? {
+      label: hoverOpt.label,
+      desc: hoverOpt.desc || 'No description yet.',
+      hasDef: this.hasDef(hoverOpt), def: this.defText(hoverOpt),
+      hasNeeds: !!this.needsText(hoverOpt), needs: this.needsText(hoverOpt),
+      extras: this.extras(hoverOpt).map((x) => ({ text: x }))
+    } : {};
+
+    const tipOpt = tipMode && s.tip ? d.optById[s.tip.id] : null;
+    const tipFoot = tipOpt ? [this.hasDef(tipOpt) ? 'Default: ' + this.defText(tipOpt) : '', this.needsText(tipOpt)].concat(this.extras(tipOpt)).filter((x) => x).join(' ') : '';
+    const tip = tipOpt ? { x: s.tip.x, b: s.tip.b, t: s.tip.t, label: tipOpt.label, desc: tipOpt.desc || 'No description yet.', hasFoot: !!tipFoot, foot: tipFoot } : {};
+
+    const ddOpt = s.dd ? d.optById[s.dd.id] : null;
+    const ddItems = ddOpt ? ddOpt.values.map((pair) => ({
+      text: pair[1], on: this.val(ddOpt) === pair[0], cls: 'radio' + (this.val(ddOpt) === pair[0] ? ' on' : ''),
+      pick: () => this.setState({ dd: null, values: Object.assign({}, this.state.values, { [ddOpt.id]: pair[0] }) })
+    })) : [];
+
+    const results = searching ? this.search(q) : [];
+    const tileGroups = d.nav.filter((g) => g.tiles).map((g) => ({
+      name: g.name,
+      tiles: g.ids.map((id) => {
+        const x = d.byId[id];
+        const img = x.tile && d.img[x.tile];
+        return { name: x.name, summary: x.summary || '', hasImg: !!img, noImg: !img, img: img || '', isNew: !!x.isNew && !s.seen[id], go: () => this.go(id) };
+      })
+    }));
+    const newLinks = d.sections.filter((x) => x.isNew && !s.seen[x.id]).map((x) => ({ name: x.name, go: () => this.go(x.id) }));
+    const clog = { version: d.changelog.version, groups: d.changelog.groups.map((g) => ({ name: g.name, lines: g.lines.map((l) => ({ text: l })) })) };
+
+    const changedCount = showSection ? this.sectionOpts(sec).filter((o) => this.isChanged(o)).length + (sec.id === 'tabs' && this.orderChanged() ? 1 : 0) : 0;
+    const reloadOn = d.sections.some((x) => this.sectionOpts(x).some((o) => o.reload && this.val(o) !== (Object.prototype.hasOwnProperty.call(s.baseline, o.id) ? s.baseline[o.id] : o.def)));
+    const confirmSec = s.confirm ? d.byId[s.confirm] : null;
+
+    let pageTitle = isOverview ? 'Overview' : sec.name;
+    if (searching) pageTitle = 'Search results';
+
+    return {
+      stageClass: 'stage skin-' + skin + ' client-' + client + ' depth-' + (this.isFull() ? 'full' : 'middle'),
+      isOpen: s.open, isClosed: !s.open,
+      winW: this.winW(), winH: this.winH(),
+      closeWin: () => this.setState({ open: false, last: this.state.section, dd: null, tip: null, hover: null, confirm: null }),
+      reopen: () => this.setState({ open: true, section: this.anyNew() ? 'overview' : this.state.last, q: '' }),
+      q: s.q,
+      onSearch: (e) => this.setState({ q: e.target.value, hover: null, tip: null, dd: null }),
+      navGroups: navGroups,
+      overviewCls: 'navitem top' + (isOverview && !searching ? ' sel' : ''),
+      goOverview: () => this.go('overview'),
+      pageTitle: pageTitle,
+      scrollId: this.uid + '-scroll',
+      showOverview: isOverview && !searching, showResults: searching, showSection: showSection,
+      intro: d.intro, hasNew: newLinks.length > 0, newLinks: newLinks, clog: clog, tileGroups: tileGroups,
+      results: results, noResults: searching && results.length === 0,
+      ex: ex,
+      groups: groups,
+      leaveList: () => { if (this.state.hover) this.setState({ hover: null }); },
+      changedText: changedCount ? changedCount + (changedCount === 1 ? ' option changed' : ' options changed') : '',
+      noChanges: changedCount === 0,
+      askDefaults: () => this.setState({ confirm: sec.id }),
+      confirmOn: !!confirmSec, confirmText: confirmSec ? 'Reset ' + confirmSec.name + ' to its defaults?' : '',
+      confirmYes: () => { if (confirmSec) this.resetSection(confirmSec); },
+      confirmNo: () => this.setState({ confirm: null }),
+      paneOpen: paneOpen, paneClosed: !paneOpen, paneW: this.isFull() ? 480 : 380,
+      togglePane: () => this.setState({ paneClosed: !this.state.paneClosed, hover: null, tip: null }),
+      paneKicker: hoverOpt ? d.byId[hoverOpt.sectionId].name + ' · ' + hoverOpt.groupHeader : 'How it works',
+      hasHover: !!hoverOpt, hv: hv,
+      paneExplain: !hoverOpt && ex.blocks.length > 0,
+      showMeOn: !!sec.showMe && !searching && !hoverOpt,
+      showMeRun: () => this.toast('In game this ' + sec.showMe + '.'),
+      hasShowMeNote: !!sec.showMeNote, showMeNote: sec.showMeNote || '',
+      reloadOn: reloadOn,
+      reloadNow: () => { this.setState({ baseline: Object.assign({}, this.state.values) }); this.toast('Reloads the interface.'); },
+      gripDown: (e) => this.gripDown(e), gripMove: (e) => this.gripMove(e), gripUp: (e) => this.gripUp(e),
+      tipAbove: !!tipOpt && s.tip.above, tipBelow: !!tipOpt && !s.tip.above, tip: tip,
+      ddOpen: !!ddOpt, dd: s.dd || {}, ddItems: ddItems, closeDD: () => this.setState({ dd: null }),
+      zoomOn: !!s.zoom, zoom: s.zoom || {}, unzoom: () => this.setState({ zoom: null }),
+      toastOn: !!s.toast, toastText: s.toast || ''
+    };
+  }
+}
+</script>
+</body>
+</html>
