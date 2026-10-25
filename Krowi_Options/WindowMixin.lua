@@ -69,6 +69,7 @@ local function InitList(window, scrollBox, scrollBar, templates, extent)
     end)
     view:SetElementExtentCalculator(function(_, element) return extent(element) end)
     ScrollUtil.InitScrollBoxListWithScrollBar(scrollBox, scrollBar, view)
+    ScrollUtil.AddManagedScrollBarVisibilityBehavior(scrollBox, scrollBar)
 end
 
 function Krowi_OptionsWindowMixin:OnLoad()
@@ -333,8 +334,19 @@ function Krowi_OptionsWindowMixin:ShowSection(id, optionId)
     if optionId then self:ScrollToOption(optionId) end
 end
 
-function Krowi_OptionsWindowMixin:FillPage(scrollPosition)
-    self.Elements = Flatten(self.Config.GetElements(self.SectionId))
+-- The rows a page shows, to tell after a change whether the same rows stay
+local function Signature(elements)
+    local parts = {}
+    for i, element in ipairs(elements) do
+        local option = element.Option or (element.Item and element.Item.Show)
+        parts[i] = element.Kind .. ":" .. (option and ((option.Id or "") .. "|" .. option:GetLabel()) or tostring(element.Text or element.Label or ""))
+    end
+    return table.concat(parts, "\n")
+end
+
+function Krowi_OptionsWindowMixin:FillPage(scrollPosition, elements)
+    self.Elements = elements or Flatten(self.Config.GetElements(self.SectionId))
+    self.Signature = Signature(self.Elements)
     self.PageScrollBox:SetDataProvider(CreateDataProvider(self.Elements), scrollPosition)
     self:RefreshFooter()
 end
@@ -369,10 +381,21 @@ function Krowi_OptionsWindowMixin:RefreshFooter()
     self.ReloadButton:SetEnabled(not self:InCombat())
 end
 
+-- The rows refresh in place while the page keeps the same rows: rebuilding it re-initialises every row, which ends the
+-- drag of a slider that changes its option on every step. Only a change that shows or hides rows rebuilds the page.
 function Krowi_OptionsWindowMixin:OnOptionChanged(option)
     if option and option.GetNeedsReload and option:GetNeedsReload() then self.ReloadPending = true end
-    self:ReloadSection()
-    self:RefreshNav()
+    if self.Searching or not self.SectionId then
+        self:Refresh()
+        return
+    end
+    local elements = Flatten(self.Config.GetElements(self.SectionId))
+    if Signature(elements) ~= self.Signature then
+        self:FillPage(ScrollBoxConstants.RetainScrollPosition, elements)
+        self:UpdateShowMe()
+    else
+        self:Refresh()
+    end
 end
 
 function Krowi_OptionsWindowMixin:ScrollToOption(optionId)

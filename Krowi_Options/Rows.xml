@@ -69,7 +69,7 @@
                 </Texture>
             </Layer>
             <Layer level="ARTWORK">
-                <FontString parentKey="Label" inherits="GameFontNormal" justifyH="LEFT" wordwrap="false">
+                <FontString parentKey="Label" inherits="GameFontNormal" justifyH="LEFT" wordwrap="true" maxLines="2">
                     <Anchors>
                         <Anchor point="LEFT" x="16"/>
                     </Anchors>
