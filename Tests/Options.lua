@@ -35,7 +35,7 @@ options.Scenarios = {
             local stub = addon.Options.Window and addon.Options.Window.StubCategory and "yes" or "no"
             return ("pages=%d stub=%s"):format(CountKafPages(), stub)
         end,
-        Recorded = "pages=6 stub=no",
+        Recorded = "pages=0 stub=yes",
         Target = "pages=0 stub=yes"},
     {Name = "options-registered",
         Observe = function()

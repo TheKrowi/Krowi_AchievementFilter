@@ -10,7 +10,6 @@ local AdjustedWidth = addon.InjectOptions.AdjustedWidth
 
 function general.RegisterOptionsTable()
     LibStub("AceConfig-3.0"):RegisterOptionsTable(addon.Metadata.Title, options.OptionsTable.args.General)
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addon.Metadata.Title, addon.Metadata.Title, nil)
 end
 
 local openCurrentZoneCategoryName
@@ -35,16 +34,7 @@ function general.OnProfileReset(db)
     RefreshOptions()
 end
 
--- Closes the settings panel before the addon shows a page over the game. Close(true) commits and hides it without
--- Blizzard's way back to the game menu, whose ToggleGameMenu calls the protected SpellStopCasting
--- (docs/work/2026-10-11-latent-bugs). With unapplied settings Close asks through a popup whose buttons would then take
--- that way tainted, and in combat HideUIPanel refuses addon code, so the panel then stays open for the player to close.
-local function CloseSettingsPanel()
-    if InCombatLockdown() or SettingsPanel:HasUnappliedSettings() then
-        return
-    end
-    SettingsPanel:Close(true)
-end
+local CloseSettingsPanel = options.CloseSettingsPanel
 
 local function CreateTutorialMenuFunc(builder)
     local menu = builder:GetMenu()

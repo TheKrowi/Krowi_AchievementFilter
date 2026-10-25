@@ -10,7 +10,6 @@ local AdjustedWidth = addon.InjectOptions.AdjustedWidth
 
 function layout.RegisterOptionsTable()
     LibStub("AceConfig-3.0"):RegisterOptionsTable(addon.Metadata.Prefix .. "_Layout", options.OptionsTable.args.Layout)
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addon.Metadata.Prefix .. "_Layout", addon.L["Layout"], addon.Metadata.Title)
 end
 
 function layout.PostLoad()

@@ -71,7 +71,7 @@
         </Layers>
     </Button>
 
-    <Frame name="Krowi_OptionsWindowTemplate" mixin="Krowi_OptionsWindowMixin" inherits="ButtonFrameTemplate" toplevel="true" enableMouse="true" movable="true" resizable="true" clampedToScreen="true" hidden="true" virtual="true">
+    <Frame name="Krowi_OptionsWindowTemplate" mixin="Krowi_OptionsWindowMixin" inherits="ButtonFrameTemplate" frameStrata="HIGH" toplevel="true" enableMouse="true" movable="true" resizable="true" clampedToScreen="true" hidden="true" virtual="true">
         <Size x="1180" y="720"/>
         <Anchors>
             <Anchor point="CENTER"/>

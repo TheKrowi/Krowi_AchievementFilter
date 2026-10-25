@@ -3,4 +3,5 @@
     <Script file="Source.lua" />
     <Script file="Model.lua" />
     <Script file="Window.lua" />
+    <Script file="Stub.lua" />
 </Ui>
