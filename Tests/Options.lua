@@ -263,7 +263,14 @@ local function CheckDrawnRows()
         if option.Type == "toggle" then
             shows = (row.Toggle:GetChecked() and true or false) == (value and true or false)
         elseif option.Type == "range" then
-            shows = value == nil or math.abs(row.Range.Slider:GetValue() - value) < 0.001
+            -- the slider moves in whole steps: a value saved between them (the reward preview's size after a resize
+            -- of the preview) shows on the nearest step
+            local min, max, step = option:GetRange()
+            local expected = value
+            if expected and step and step > 0 then
+                expected = math.min(math.max(min + math.floor((expected - min) / step + 0.5) * step, min), max)
+            end
+            shows = expected == nil or math.abs(row.Range.Slider:GetValue() - expected) < 0.001
         elseif option.Type == "input" then
             shows = row.Input:HasFocus() or row.Input:GetText() == tostring(value or "")
         else
