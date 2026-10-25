@@ -11,7 +11,7 @@ end
 
 function achievementMenu:AddGoToAchievementLine(menu, id, nameSuffix)
 	nameSuffix = nameSuffix or ""
-	local name = addon.GetAchievmentName(id)
+	local _, name = addon.GetAchievementInfo(id) -- The placeholder name for an id the game does not know, never nil
 	local isEnabled
 	if not addon.Data.Achievements[id] then -- Catch missing achievements from the addon to prevent errors
 		name = name .. " (" .. addon.L["Missing"] .. ")"
@@ -41,7 +41,8 @@ end
 
 -- Builds the menu into menuObj without showing it, so the menu suite (Tests/Menu.lua) can build one into a root of its own
 function achievementMenu:CreateMenu(menuObj, achievement, caller)
-	menuBuilder:CreateTitle(menuObj, addon.GetAchievmentName(achievement.Id))
+	local _, name = addon.GetAchievementInfo(achievement.Id)
+	menuBuilder:CreateTitle(menuObj, name)
 
 	for _, section in next, achievementMenu.Sections do
 		if section:CheckAdd(achievement) then

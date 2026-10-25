@@ -117,8 +117,10 @@ end
 -- The line took the achievement's name from addon.GetAchievmentName, which is nil for such an id, so building the tooltip
 -- raised "attempt to concatenate a nil value". Recorded / Target: "error" when building the tooltip raises,
 -- "placeholder" when the line ends with the placeholder name addon.GetAchievementInfo gives the id, otherwise "name".
+-- Before the 2026-10-25 fix it raised (verified in game on Retail 12.1.5 and Mists 5.5.4 on 2026-10-25, listing id 1); the
+-- line now takes the name from addon.GetAchievementInfo
 navigation.HistoryScenarios = {
-    {Name = "history-tooltip-unknown-achievement", Recorded = "error", Target = "placeholder"}
+    {Name = "history-tooltip-unknown-achievement", Recorded = "placeholder", Target = "placeholder"}
 }
 
 -- "raised at <file> line <n>: <message>": an observation in the "<file>:<n>: " form would read as a failing scenario to

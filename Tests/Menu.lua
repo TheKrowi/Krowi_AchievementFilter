@@ -28,17 +28,20 @@ local menu = addon.Tests.Menu
 --   addon.GetAchievementInfo gives it; a menu's title "untitled", "placeholder" or "name"
 -- The "(Missing)" entry stayed enabled before the 2026-10-13 fix (verified in game on Retail 12.1.0 and Classic 5.5.4 on
 -- 2026-10-11, linking to 49); it now passes isEnabled = false
+-- Before the 2026-10-25 fix both entries for an id the game does not know raised and the placeholder's menu had no title
+-- (verified in game on Retail 12.1.5 and Mists 5.5.4 on 2026-10-25, linking to 1 and to 7295 on Mists); they now take
+-- the name from addon.GetAchievementInfo
 menu.Scenarios = {
     {Name = "missing-achievement-entry", Find = "missing",
         Recorded = "disabled", Target = "disabled"},
     {Name = "registered-achievement-entry", Id = 6, -- Level 10, DataAddons/Shared/03_WrathOfTheLichKing/AchievementData.lua
         Recorded = "enabled", Target = "enabled"},
     {Name = "unknown-achievement-entry", Find = "unknown",
-        Recorded = "error", Target = "disabled placeholder"},
+        Recorded = "disabled placeholder", Target = "disabled placeholder"},
     {Name = "placeholder-entry", Find = "placeholder",
-        Recorded = "error", Target = "enabled placeholder"},
+        Recorded = "enabled placeholder", Target = "enabled placeholder"},
     {Name = "placeholder-menu", Find = "placeholder", Menu = true,
-        Recorded = "untitled", Target = "placeholder"}
+        Recorded = "placeholder", Target = "placeholder"}
 }
 
 -- The name addon.GetAchievementInfo gives an id the game does not know, or nil when the game knows it

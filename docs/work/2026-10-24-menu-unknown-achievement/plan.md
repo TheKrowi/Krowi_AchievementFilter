@@ -3,6 +3,15 @@ Spec: [spec.md](spec.md). Status: accepted
 
 Approved by Krowi (maintainer) on 2026-10-25 in plan mode. It touches shared GUI code (the right-click menu, the browsing-history tooltip), so it waited for that gate. The in-game before-run is the second gate.
 
+Results and departures:
+- **Before-run, 2026-10-25, from 5d19ef86 (Retail 12.1.5, Mists 5.5.4).**
+  - `/kaftest menu`: 5 passed on both clients, 0 differences from headless. The unknown id was 1 on both clients, and the "(Missing)" entry linked to 49. The placeholder was 7295 on Mists, a real registered one; on Retail it was a stand-in under id 1, since Retail registers no placeholder.
+  - The entries raised at `AchievementMenu.lua` lines 17 and 22. 7295's whole menu built through every real section and plugin without an error, with an empty title.
+  - `/kaftest navigation`: the history scenario raised at `BrowsingHistory.lua` line 62 on both clients. Mists matched headless with 9 passed. Retail had 8 passed and 1 skipped: Blizzard's own Achievements tab is hidden in the maintainer's options, as in the suite's earlier runs.
+  - BugGrabber held no KAF error on either client.
+- **Headless model gaps found on the way:** the first headless history run raised at `BrowsingHistory.lua` lines 48 and 60 instead of 62. The model of the `navigation` suite had neither `GameTooltip_AddBlankLineToTooltip` nor `addon.Util.Colors`, so both were added. The suites now observe the error each scenario raised.
+- **Observations quote errors as "raised at <file> line <n>":** the `unit-tests` lint rule reads any "<file>:<n>: " line in `run-tests.lua -check` output as a failing scenario, observations included.
+
 ## Context
 The achievement right-click menu and the browsing-history tooltip take an achievement's name from `GetAchievementInfo`, which is nil for an id the client does not know. That raises "attempt to concatenate a nil value" in the "go to" entries (`Gui/RightClickMenu/AchievementMenu/AchievementMenu.lua:14,17,22`) and in the history line (`Gui/BrowsingHistory/BrowsingHistory.lua:62`). A placeholder's menu also gets an empty title (`AchievementMenu.lua:43`). The decision (spec, option 1): use the placeholder name `addon.GetAchievementInfo` already gives (`Globals.lua:100-106`) and keep the enabled rule; the history tooltip is in scope.
 

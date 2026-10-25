@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 104.1
+### Fixed
+- The right-click menu no longer gives an error or stops short when it links to an achievement your game does not have yet
+- Hovering the back or forward arrow no longer gives an error when a placeholder is in your browsing history
+
 ## 104.0 - 2026-10-24
 ### Added
 - Achievement guides for the other eleven Legendary Research achievements, one per class hall
