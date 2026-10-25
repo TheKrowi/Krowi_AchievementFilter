@@ -28,7 +28,6 @@ Follow-ups that are not a work item yet. When one is taken up, it gets its own w
   - The watcher (`Data/EventObserver.lua`) prints the order it sees in debug mode, and keeps it per region in `KrowiAF_SavedData.EventObservations`.
   - `/kaftest sources` lists what it learned.
 - **The soup moves into `KrowiAF.EventSchedules`,** out of `Data/CustomWidgetEventTimers.lua`, with the events suite's feast-times scenarios moved to the schedules suite.
-- **Upcoming reminders error on a non-English client whose date format names the day or month** (`%a`, `%A`, `%b`, `%B`). `LocalizeDateFormat` reads the end time an upcoming event does not have (`Gui/EventReminder/AlertSystem.lua:49`, from `:129`). The default format is not affected.
 
 ## From the memory growth work (2026-10-19, docs/work/2026-10-18-memory-growth)
 
@@ -90,3 +89,7 @@ Follow-ups that are not a work item yet. When one is taken up, it gets its own w
 - **The right-click menu of an achievement the addon does not register errors** (the code review of that work item). `FloatingAchievementTooltipMixin:OnMouseUp` (`Gui/FloatingAchievementTooltip/FloatingAchievementTooltipMixin.lua:46`) and the objectives' other-achievement link (`Gui/WindowFrames/AchievementsObjectives/AchievementsObjectivesMixin.lua:27`) pass `addon.Data.Achievements[id]`. That is nil for a guild achievement or a statistic the cache never registers (`Data/SavedData/AchievementData.lua:88`), and `AchievementMenu:CreateMenu` indexes it. The case to check first: right-clicking a guild achievement someone linked in chat. On Retail the menu opens empty, on Classic not at all.
 - **`KrowiAF_SelectAchievement` errors for a registered achievement with no category** (`Api/API.lua:54`, `category:GetTree()` with no nil check). Clicking a "go to" entry for one gets there. No current data has a placeholder without a category, and in game every other achievement has one from Blizzard's tree.
 - **A Shared category has no name on Mists.** `DataAddons/Shared/CategoryData.lua:118` names "Cross-Expansion > Zones > Exile's Reach" through `addon.GetAchievmentName(14222)`. That is nil on Mists, which neither knows nor registers 14222, and the Classic category snapshot holds the category. Check whether Mists draws it or skips it as empty, then decide whether it belongs in the Retail tree.
+
+## From the upcoming reminder date fix (2026-10-25, docs/work/2026-10-25-upcoming-reminder-date)
+
+- **The `%c` date format preset prints English day and month names on every client.** `%c` is the C library's own date, and `LocalizeDateFormat` (`Gui/EventReminder/AlertSystem.lua`) only replaces `%a %A %b %B` with the addon's translated names.
