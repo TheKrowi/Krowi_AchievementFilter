@@ -1770,6 +1770,7 @@ suites.earned = function(c)
         categoriesFrame:Hide()
     end
     function headless.Select(id) env.KrowiAF_SelectAchievementFromID(id) end -- what the addon's AchievementFrame_SelectAchievement calls for a known achievement
+    function headless.SetCompleted(id, done) completed[id] = done end -- a real earn, which the game cannot fake
     function headless.Teardown() end
     local observations = {}
     return addon.Tests.Earned.Run(headless, observations), "Tests/Earned.lua", observations

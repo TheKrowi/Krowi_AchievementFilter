@@ -46,7 +46,17 @@ earned.Scenarios = {
     {Name = "expand-path-state", Recorded = "matches path rule", Target = "matches path rule"},
     -- every Expansions achievement filtered out, then 862's category selected: is it listed and selected, and what was
     -- recounted on the way?
-    {Name = "select-empty-category", Recorded = "selected, none", Target = "selected, none"}
+    {Name = "select-empty-category", Recorded = "selected, none", Target = "selected, none"},
+    -- 862 earned with the window closed, then selected: every Expansions top-level category's counts match a full
+    -- recount afterwards. Headlessly the earn really completes 862 (env.SetCompleted), so a place the earn does not mark
+    -- shows as a difference; the game cannot complete it, so there the counts only have to stay as they were
+    {Name = "earn-counts-match", Recorded = "match", Target = "match"},
+    -- the window open on Expansions, its counts made before every achievement was filtered out, as an earn leaves the
+    -- counts of a category whose last shown achievement it was; 862 then earned and selected within the second before
+    -- the window's earn refresh (code review of 2026-10-25). KrowiAF_SelectCategory read the stale count, then the
+    -- recount of the marked top-level category in between changed it, and resetting the always visible marks raised
+    -- "attempt to index local 'alwaysVisibleCache'"
+    {Name = "earn-select-open-hidden", Recorded = "error", Target = "selected"}
 }
 
 -- "raised at <file> line <n>: <message>": an observation in the "<file>:<n>: " form would read as a failing scenario to
@@ -60,10 +70,7 @@ local function DescribeError(problem)
 end
 
 local function TopLevel(category)
-    while category.Parent and not category.Parent.TabName do
-        category = category.Parent
-    end
-    return category
+    return category:GetTopLevel()
 end
 
 -- Runs call(...) with both counters on and puts the real functions back, also when the call raises
@@ -159,6 +166,28 @@ local function Summary(tabName)
     end
 end
 
+-- With every achievement filtered out, an always visible Summary keeps the tab's list from coming out empty, which makes
+-- the categories frame redraw itself until the stack overflows (spec.md, Found on the way)
+local noSummary = "the Expansions tab's Summary is off (Options > Layout > Summary), and the list would come out empty"
+local function SummaryShown(tabName)
+    local summary = Summary(tabName)
+    return summary ~= nil and summary.AlwaysVisible
+end
+
+-- Runs call() with every achievement of the selected tab filtered out, then puts the filters back and recounts
+local function AllFilteredOut(call)
+    local completion = addon.Gui.SelectedTab.Filters.Completion
+    local completed, notCompleted = completion.Completed, completion.NotCompleted
+    completion.Completed, completion.NotCompleted = false, false
+    local ok, result = pcall(call)
+    completion.Completed, completion.NotCompleted = completed, notCompleted
+    KrowiAF_CategoriesFrame:Update(true)
+    if not ok then
+        error(result, 0)
+    end
+    return result
+end
+
 local function Selected(achievement)
     local category = addon.Gui.SelectedTab and addon.Gui.SelectedTab.SelectedCategory
     for _, key in next, {"Achievements", "MergedAchievements"} do
@@ -172,7 +201,8 @@ local function Selected(achievement)
 end
 
 -- env: IsRetail(), Setup() -> ok[, reason], CloseWindow(), Select(id) (the toast's call), Teardown(); in game only InGame
--- and Clock()
+-- and Clock(), headlessly only SetCompleted(id, completed)
+-- A step returns the line's result, or nil and why it could not run
 local steps = {}
 
 -- The window closed on the tab as Fresh left it, the achievement earned, then selected as its toast does
@@ -194,7 +224,11 @@ steps["earn-select-closed"] = function(env, notes)
 end
 
 steps["earn-select-summary"] = function(env, notes)
-    return SelectAfterEarn(env, notes, "earn-select-summary", Fresh(earned.Achievement, Summary("Expansions")))
+    local summary = Summary("Expansions")
+    if not (summary and summary.AlwaysVisible) then
+        return nil, "the Expansions tab's Summary is off (Options > Layout > Summary)"
+    end
+    return SelectAfterEarn(env, notes, "earn-select-summary", Fresh(earned.Achievement, summary))
 end
 
 steps["earn-window-open"] = function()
@@ -241,11 +275,11 @@ steps["expand-path-state"] = function(env, notes)
 end
 
 steps["select-empty-category"] = function()
+    if not SummaryShown("Expansions") then
+        return nil, noSummary
+    end
     local achievement = Fresh(earned.Achievement)
-    local completion = addon.Gui.SelectedTab.Filters.Completion
-    local completed, notCompleted = completion.Completed, completion.NotCompleted
-    completion.Completed, completion.NotCompleted = false, false
-    local ok, result = pcall(function()
+    return AllFilteredOut(function()
         KrowiAF_CategoriesFrame:Update(true)
         local category = Count(KrowiAF_SelectCategory, achievement.Category)
         local dataProvider = KrowiAF_CategoriesFrame.ScrollBox:GetDataProvider()
@@ -254,12 +288,47 @@ steps["select-empty-category"] = function()
         local state = (shown and selected) and "selected" or (shown and "shown, not selected" or "not shown")
         return state .. ", " .. RecountLabel("Expansions", {}, nil)
     end)
-    completion.Completed, completion.NotCompleted = completed, notCompleted
-    KrowiAF_CategoriesFrame:Update(true)
-    if not ok then
-        error(result, 0)
+end
+
+steps["earn-select-open-hidden"] = function(env)
+    if not SummaryShown("Expansions") then
+        return nil, noSummary
     end
-    return result
+    local achievement = Fresh(earned.Achievement)
+    return AllFilteredOut(function()
+        addon.MarkEarnedInWindow(achievement.Id)
+        env.Select(achievement.Id)
+        return Selected(achievement) and "selected" or "not selected"
+    end)
+end
+
+steps["earn-counts-match"] = function(env, notes)
+    local achievement = addon.Data.Achievements[earned.Achievement]
+    local topLevel = TopLevel(achievement.Category)
+    if env.SetCompleted then
+        env.SetCompleted(achievement.Id, false)
+    end
+    Fresh(achievement.Id)
+    local completedBefore = topLevel.NumOfCompAch
+    env.CloseWindow()
+    if env.SetCompleted then
+        env.SetCompleted(achievement.Id, true)
+    end
+    addon.MarkEarnedInWindow(achievement.Id)
+    env.Select(achievement.Id)
+    local counts = {}
+    for _, category in next, addon.Tabs.Expansions.Categories do
+        counts[category] = {category.NumOfAch, category.NumOfCompAch, category.NumOfNotObtAch}
+    end
+    tinsert(notes, ("earn-counts-match: %s went from %s to %s completed"):format(tostring(topLevel.Name), tostring(completedBefore), tostring(topLevel.NumOfCompAch)))
+    KrowiAF_CategoriesFrame:Update(true)
+    local differ = 0
+    for category, before in next, counts do
+        if before[1] ~= category.NumOfAch or before[2] ~= category.NumOfCompAch or before[3] ~= category.NumOfNotObtAch then
+            differ = differ + 1
+        end
+    end
+    return differ == 0 and "match" or ("differ in %d"):format(differ)
 end
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line, GameOnly
@@ -270,16 +339,23 @@ local function RunScenario(env, observations, scenario, isRetail, ready, reason)
     if not ready then
         status, tail = "SKIP", reason or "setup failed"
     else
-        -- no earn left over from the scenario before
+        -- no earn left over from the scenario before, nor a forced show from a select that raised
         addon.AchievementEarnedUpdateSummaryFrameOnNextShow, addon.AchievementEarnedUpdateAchievementsFrameOnNextShow = nil, nil
-        local ok, got = pcall(steps[scenario.Name], env, observations)
+        for _, id in next, {earned.Achievement, earned.EventsAchievement} do
+            addon.Data.Achievements[id].AlwaysVisible = nil
+        end
+        local ok, got, skipped = pcall(steps[scenario.Name], env, observations)
         if not ok then
             tinsert(observations, scenario.Name .. " " .. DescribeError(got))
             got = "error"
         end
-        status = got == recorded and "PASS" or "FAIL"
-        targetMet = got == target
-        tail = ("got=[%s] target=[%s] %s"):format(got, target, targetMet and "met" or "open")
+        if got == nil then
+            status, tail = "SKIP", skipped
+        else
+            status = got == recorded and "PASS" or "FAIL"
+            targetMet = got == target
+            tail = ("got=[%s] target=[%s] %s"):format(got, target, targetMet and "met" or "open")
+        end
     end
     return {
         Name = scenario.Name,

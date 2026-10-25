@@ -208,13 +208,17 @@ function category:GetAchievementNumbers()
 	return numOfAch, numOfCompAch, numOfNotObtAch -- , numOfIncompAch
 end
 
--- The categories frame recounts per top-level category (GetDisplayCategories), so a change is marked on the one above self
+-- The child of the tab root above self: the categories frame counts per top-level category (GetDisplayCategories)
+function category:GetTopLevel()
+    local topLevel = self
+    while topLevel.Parent and not topLevel.Parent.TabName do
+        topLevel = topLevel.Parent
+    end
+    return topLevel
+end
+
 function category:MarkCountsDirty()
-	local topLevel = self
-	while topLevel.Parent and not topLevel.Parent.TabName do
-		topLevel = topLevel.Parent
-	end
-	topLevel.CountsDirty = true
+    self:GetTopLevel().CountsDirty = true
 end
 
 function category:GetMergedCategory()
