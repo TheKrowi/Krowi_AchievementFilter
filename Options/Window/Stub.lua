@@ -23,7 +23,7 @@ local function CreateStub()
     text:SetJustifyH("LEFT")
     text:SetText(L["The options and how each feature works are in the addon's own window."])
 
-    local button = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
+    local button = CreateFrame("Button", nil, frame, "UIPanelButtonNoTooltipTemplate")
     button:SetSize(180, 26)
     button:SetPoint("TOPLEFT", text, "BOTTOMLEFT", 0, -16)
     button:SetText(L["Open options"])

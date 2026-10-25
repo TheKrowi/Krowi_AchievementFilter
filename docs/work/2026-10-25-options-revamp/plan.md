@@ -126,6 +126,9 @@ Covers stage 1 (the window over today's AceConfig tables, with the tests that be
 - **Show me's secure route:** `ShowMeSecure(button, close)` runs only while the maps section's own help is drawn, and `ShowMeSecure(nil)` releases the help track's button as soon as the pane draws anything else or the window hides (agreed with the help track).
 - **The filter menu's Help entry opens Overview now,** not after the help track merges (requirement 1); the tutorial code it called goes with the tutorial.
 - **The Overview's changelog lines leave out the "(dev note: ...)" asides and code marks,** so the list stays short; the changelog keeps them.
+- **Defaults confirms inside the window, not through Krowi_PopupDialog** (taint review, 2026-10-25). Krowi_PopupDialog and a StaticPopup both write the dialog into Blizzard's shared popup frames and list. A Blizzard dialog shown at the same time (deleting an item, a summon, Mists' battleground port) would then run its protected accept tainted. The button turns into Yes, with No and the question beside it.
+- **Every button inherits `UIPanelButtonNoTooltipTemplate`.** On Retail, `UIPanelButtonTemplate`'s OnLeave hides GameTooltip whoever owns it, which runs the widget-set cleanup tainted (the #811 family).
+- **For the extraction:** `Window.xml` and `Rows.xml` define the `Krowi_Options*Mixin` globals and the templates unconditionally, so a second embedded copy would overwrite them even when `NewLibrary` returns nil; the extraction guards them or loads the XML only for the copy that wins.
 
 ## Risks
 - **Unused templates.** `WowStyle1DropdownTemplate` and `MinimalSliderWithSteppersTemplate` are new to KAF. They load at startup on `classic` and `classic_titan` (`Blizzard_Menu/Classic/MenuTemplates.xml:3`, `Shared/Slider/MinimalSlider.xml:34`). The smoke test in step 2 proves them in game; the fallbacks are Krowi_Menu and a plain `Slider`.

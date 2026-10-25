@@ -109,7 +109,7 @@
                     <Anchor point="LEFT" relativePoint="RIGHT" x="-300"/>
                 </Anchors>
             </DropdownButton>
-            <Button parentKey="Execute" inherits="UIPanelButtonTemplate" hidden="true">
+            <Button parentKey="Execute" inherits="UIPanelButtonNoTooltipTemplate" hidden="true">
                 <Size x="160" y="22"/>
                 <Anchors>
                     <Anchor point="LEFT" relativePoint="RIGHT" x="-300"/>
@@ -121,13 +121,13 @@
                     <Anchor point="LEFT" relativePoint="RIGHT" x="-294"/>
                 </Anchors>
             </EditBox>
-            <Button parentKey="Key1" inherits="UIPanelButtonTemplate" hidden="true">
+            <Button parentKey="Key1" inherits="UIPanelButtonNoTooltipTemplate" hidden="true">
                 <Size x="124" y="22"/>
                 <Anchors>
                     <Anchor point="LEFT" relativePoint="RIGHT" x="-300"/>
                 </Anchors>
             </Button>
-            <Button parentKey="Key2" inherits="UIPanelButtonTemplate" hidden="true">
+            <Button parentKey="Key2" inherits="UIPanelButtonNoTooltipTemplate" hidden="true">
                 <Size x="124" y="22"/>
                 <Anchors>
                     <Anchor point="LEFT" relativeKey="$parent.Key1" relativePoint="RIGHT" x="6"/>
@@ -153,13 +153,13 @@
             </Layer>
         </Layers>
         <Frames>
-            <Button parentKey="All" inherits="UIPanelButtonTemplate">
+            <Button parentKey="All" inherits="UIPanelButtonNoTooltipTemplate">
                 <Size x="70" y="20"/>
                 <Anchors>
                     <Anchor point="LEFT" relativePoint="RIGHT" x="-300"/>
                 </Anchors>
             </Button>
-            <Button parentKey="None" inherits="UIPanelButtonTemplate">
+            <Button parentKey="None" inherits="UIPanelButtonNoTooltipTemplate">
                 <Size x="70" y="20"/>
                 <Anchors>
                     <Anchor point="LEFT" relativeKey="$parent.All" relativePoint="RIGHT" x="6"/>

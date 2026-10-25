@@ -110,6 +110,7 @@ function Krowi_OptionsWindowMixin:OnLoad()
         help.ShowMe()
     end)
     self.DefaultsButton:SetScript("OnClick", function() self:AskDefaults() end)
+    self.CancelButton:SetScript("OnClick", function() self:CancelDefaults() end)
     self.ReloadButton:SetScript("OnClick", function() if not InCombatLockdown() then ReloadUI() end end)
     self.ResizeButton:SetScript("OnMouseDown", function() self:StartSizing("BOTTOMRIGHT") end)
     self.ResizeButton:SetScript("OnMouseUp", function()
@@ -134,6 +135,7 @@ function Krowi_OptionsWindowMixin:Init(config)
     self.ReloadButton:SetText(self.Strings.ReloadNow)
     self.ReloadText:SetText(self.Strings.ReloadText)
     self.ShowMeButton:SetText(self.Strings.ShowMe)
+    self.CancelButton:SetText(self.Strings.No or NO)
 
     local saved = self.Saved
     if saved.Size then self:SetSize(math.max(saved.Size[1], minWidth), math.max(saved.Size[2], minHeight)) end
@@ -142,16 +144,6 @@ function Krowi_OptionsWindowMixin:Init(config)
         self:SetPoint(saved.Point[1], UIParent, saved.Point[2], saved.Point[3], saved.Point[4])
     end
     self.PaneCollapsed = saved.PaneCollapsed and true or false
-
-    StaticPopupDialogs["KROWI_OPTIONS_DEFAULTS"] = StaticPopupDialogs["KROWI_OPTIONS_DEFAULTS"] or {
-        text = "%s",
-        button1 = YES,
-        button2 = NO,
-        OnAccept = function(_, data) data.Window:ResetSection(data.Id) end,
-        timeout = 0,
-        whileDead = true,
-        hideOnEscape = true,
-    }
     self:Layout()
 end
 
@@ -218,8 +210,8 @@ function Krowi_OptionsWindowMixin:Layout()
     self.PageTitle:SetPoint("RIGHT", self.HelpBackground, "LEFT", -130, 0)
     self.DefaultsButton:ClearAllPoints()
     self.DefaultsButton:SetPoint("TOPRIGHT", self.HelpBackground, "TOPLEFT", -14, -8)
-    self.ChangedText:ClearAllPoints()
-    self.ChangedText:SetPoint("RIGHT", self.DefaultsButton, "LEFT", -8, 0)
+    self.CancelButton:ClearAllPoints()
+    self.CancelButton:SetPoint("RIGHT", self.DefaultsButton, "LEFT", -6, 0)
     self.PageScrollBox:ClearAllPoints()
     self.PageScrollBox:SetPoint("TOPLEFT", inset, "TOPLEFT", navWidth + 8, -40)
     self.PageScrollBox:SetPoint("BOTTOMRIGHT", self.HelpBackground, "BOTTOMLEFT", -20, 0)
@@ -243,23 +235,39 @@ function Krowi_OptionsWindowMixin:SetPaneCollapsed(collapsed)
     self:ReloadSection()
 end
 
+-- Events only while shown: combat greys what cannot run in it, a scale or resolution change moves a secure Show me
+-- button laid over ours along
+local shownEvents = { "PLAYER_REGEN_DISABLED", "PLAYER_REGEN_ENABLED", "UI_SCALE_CHANGED", "DISPLAY_SIZE_CHANGED" }
+
 function Krowi_OptionsWindowMixin:OnShow()
     PlaySound(SOUNDKIT.IG_CHARACTER_INFO_OPEN)
-    self:RegisterEvent("PLAYER_REGEN_DISABLED")
-    self:RegisterEvent("PLAYER_REGEN_ENABLED")
+    for _, event in ipairs(shownEvents) do self:RegisterEvent(event) end
+end
+
+-- A key capture ends with the window, at the start of combat and when its row is reused
+local function EndKeyCaptures(window)
+    window.PageScrollBox:ForEachFrame(function(frame)
+        if frame.EndKeyCapture then frame:EndKeyCapture() end
+    end)
 end
 
 function Krowi_OptionsWindowMixin:OnHide()
     PlaySound(SOUNDKIT.IG_CHARACTER_INFO_CLOSE)
-    self:UnregisterEvent("PLAYER_REGEN_DISABLED")
-    self:UnregisterEvent("PLAYER_REGEN_ENABLED")
+    for _, event in ipairs(shownEvents) do self:UnregisterEvent(event) end
+    EndKeyCaptures(self)
+    self.ConfirmingDefaults = nil
     self:HideTooltip()
     self:ReleaseShowMe()
 end
 
 -- PLAYER_REGEN_DISABLED runs just before the lockdown starts, so InCombatLockdown() is still false inside it
 function Krowi_OptionsWindowMixin:OnEvent(event)
+    if event == "UI_SCALE_CHANGED" or event == "DISPLAY_SIZE_CHANGED" then
+        self:UpdateShowMe()
+        return
+    end
     self.CombatStarting = event == "PLAYER_REGEN_DISABLED"
+    if self.CombatStarting then EndKeyCaptures(self) end
     self:Refresh()
     self.CombatStarting = nil
 end
@@ -268,7 +276,9 @@ function Krowi_OptionsWindowMixin:InCombat()
     return self.CombatStarting or InCombatLockdown()
 end
 
-function Krowi_OptionsWindowMixin:OnSizeChanged() end
+function Krowi_OptionsWindowMixin:OnSizeChanged()
+    if self:IsShown() then self:UpdateShowMe() end -- also when the screen clamps the window
+end
 
 function Krowi_OptionsWindowMixin:OnDragStart()
     self:StartMoving()
@@ -325,6 +335,7 @@ function Krowi_OptionsWindowMixin:ShowSection(id, optionId)
     local config = self.Config
     self.SectionId = id
     self.Searching = nil
+    self.ConfirmingDefaults = nil
     self.Saved.LastSection = id
     if self.SearchBox:GetText() ~= "" then self.SearchBox:SetText("") end
     config.OnSectionShown(id)
@@ -372,10 +383,27 @@ function Krowi_OptionsWindowMixin:Refresh()
     self:UpdateShowMe()
 end
 
+-- The page's header: the section's changed count and Defaults, or while Defaults asks, the question with Yes and No
 function Krowi_OptionsWindowMixin:RefreshFooter()
-    local count = (not self.Searching and self.SectionId ~= "overview") and self.Config.ChangedCount(self.SectionId) or 0
-    self.ChangedText:SetText(count > 0 and self.Strings.ChangedCount:format(count) or "")
-    self.DefaultsButton:SetEnabled(count > 0)
+    local confirming = self.ConfirmingDefaults ~= nil and self.ConfirmingDefaults == self.SectionId and not self.Searching
+    if not confirming then self.ConfirmingDefaults = nil end
+    self.CancelButton:SetShown(confirming)
+    self.PageTitle:SetShown(not confirming)
+    self.ChangedText:ClearAllPoints()
+    self.ChangedText:SetPoint("RIGHT", confirming and self.CancelButton or self.DefaultsButton, "LEFT", -8, 0)
+    if confirming then
+        self.ChangedText:SetPoint("LEFT", self.PageTitle, "LEFT")
+        self.ChangedText:SetFontObject("GameFontHighlight")
+        self.ChangedText:SetText(self.Strings.ResetSection:format(self.Config.SectionName(self.SectionId)))
+        self.DefaultsButton:SetText(self.Strings.Yes or YES)
+        self.DefaultsButton:SetEnabled(true)
+    else
+        local count = (not self.Searching and self.SectionId ~= "overview") and self.Config.ChangedCount(self.SectionId) or 0
+        self.ChangedText:SetFontObject("GameFontDisableSmall")
+        self.ChangedText:SetText(count > 0 and self.Strings.ChangedCount:format(count) or "")
+        self.DefaultsButton:SetText(self.Strings.Defaults)
+        self.DefaultsButton:SetEnabled(count > 0)
+    end
     local reload = self.ReloadPending and true or false
     self.ReloadBackground:SetShown(reload)
     self.ReloadText:SetShown(reload)
@@ -409,10 +437,24 @@ function Krowi_OptionsWindowMixin:ScrollToOption(optionId)
     end
 end
 
+-- Defaults asks inside the window: the button turns into Yes, with No and the question beside it. A StaticPopup would
+-- write this dialog into Blizzard's shared popup frames and list, where a Blizzard dialog shown at the same time
+-- (deleting an item, a summon, a battleground port) reads it and then runs its protected accept tainted.
 function Krowi_OptionsWindowMixin:AskDefaults()
     local id = self.SectionId
-    if not id or id == "overview" then return end
-    StaticPopup_Show("KROWI_OPTIONS_DEFAULTS", self.Strings.ResetSection:format(self.Config.SectionName(id)), nil, { Window = self, Id = id })
+    if not id or id == "overview" or self.Searching then return end
+    if self.ConfirmingDefaults == id then
+        self.ConfirmingDefaults = nil
+        self:ResetSection(id)
+        return
+    end
+    self.ConfirmingDefaults = id
+    self:RefreshFooter()
+end
+
+function Krowi_OptionsWindowMixin:CancelDefaults()
+    self.ConfirmingDefaults = nil
+    self:RefreshFooter()
 end
 
 function Krowi_OptionsWindowMixin:ResetSection(id)
@@ -428,8 +470,11 @@ function Krowi_OptionsWindowMixin:OnSearch(text)
         return
     end
     self.Searching = true
+    self.ConfirmingDefaults = nil
     self.PageTitle:SetText(self.Strings.SearchResults)
+    self.PageTitle:Show()
     self.DefaultsButton:Hide()
+    self.CancelButton:Hide()
     self.ChangedText:SetText("")
     local list = {}
     for _, result in ipairs(self.Config.Search(text)) do
@@ -540,7 +585,7 @@ function Krowi_OptionsWindowMixin:OnRowEnter(option, row)
     if not option then return end
     local desc, lines = OptionHelpLines(self, option)
     if self.PaneCollapsed then
-        local tooltip = Krowi_Tooltip or GameTooltip
+        local tooltip = Krowi_Tooltip -- the addon's own tooltip, never GameTooltip (Krowi_Util creates it wherever KROWI_LIBMAN exists)
         tooltip:SetOwner(row, "ANCHOR_RIGHT")
         tooltip:AddLine(option:GetLabel(), 1, 1, 1)
         if desc ~= "" then tooltip:AddLine(desc, nil, nil, nil, true) end

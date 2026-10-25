@@ -21,8 +21,7 @@ Gui/Guide/Panel.lua RegisterEvent:PLAYER_REGEN_ENABLED -                        
 Gui/SnapFrame/SnapFrameMixin.lua OnUpdate -                                            # only while a popout is dragged
 Gui/EventReminder/AlertFrame/AlertFrame.xml OnUpdate -                                 # only while an event pop-up or side button is shown
 Gui/AchievementCalendar/Frame/Frame.xml OnUpdate -                                     # only while the achievement calendar is shown
-Krowi_Options/WindowMixin.lua RegisterEvent:PLAYER_REGEN_DISABLED -                    # only while the options window is shown; registered in OnShow, unregistered in OnHide
-Krowi_Options/WindowMixin.lua RegisterEvent:PLAYER_REGEN_ENABLED -                     # only while the options window is shown; registered in OnShow, unregistered in OnHide
+Krowi_Options/WindowMixin.lua RegisterEvent:* -                                        # the options window's shownEvents (combat start and end, UI scale, display size): registered in OnShow, unregistered in OnHide
 Krowi_AchievementFilter.lua RegisterEvent:ADDON_LOADED -                               # once per addon that loads
 Krowi_AchievementFilter.lua RegisterEvent:PLAYER_LOGIN -                               # once
 Krowi_AchievementFilter.lua RegisterEvent:PLAYER_ENTERING_WORLD -                      # loading screens

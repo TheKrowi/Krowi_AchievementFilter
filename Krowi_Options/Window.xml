@@ -118,13 +118,16 @@
                 <PushedTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Down"/>
                 <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
             </Button>
-            <Button parentKey="ShowMeButton" inherits="UIPanelButtonTemplate" hidden="true">
+            <Button parentKey="ShowMeButton" inherits="UIPanelButtonNoTooltipTemplate" hidden="true">
                 <Size x="120" y="22"/>
             </Button>
-            <Button parentKey="DefaultsButton" inherits="UIPanelButtonTemplate">
+            <Button parentKey="DefaultsButton" inherits="UIPanelButtonNoTooltipTemplate">
                 <Size x="110" y="22"/>
             </Button>
-            <Button parentKey="ReloadButton" inherits="UIPanelButtonTemplate" hidden="true">
+            <Button parentKey="CancelButton" inherits="UIPanelButtonNoTooltipTemplate" hidden="true">
+                <Size x="80" y="22"/>
+            </Button>
+            <Button parentKey="ReloadButton" inherits="UIPanelButtonNoTooltipTemplate" hidden="true">
                 <Size x="110" y="22"/>
             </Button>
             <Button parentKey="ResizeButton">

@@ -74,6 +74,7 @@ function Krowi_OptionsOptionRowMixin:OnLoad()
 end
 
 function Krowi_OptionsOptionRowMixin:Init(element, window)
+    self:EndKeyCapture() -- a recycled row must not bind the next key to its new option
     self.Element, self.Window, self.Option = element, window, element.Option
     local option = self.Option
     for _, control in ipairs({ self.Toggle, self.Range, self.Select, self.Execute, self.Input, self.Key1, self.Key2 }) do
@@ -171,6 +172,12 @@ function Krowi_OptionsOptionRowMixin:StartKeyCapture(slot)
     local button = slot == 1 and self.Key1 or self.Key2
     button:EnableKeyboard(true)
     self:Refresh()
+end
+
+function Krowi_OptionsOptionRowMixin:EndKeyCapture()
+    self.Capturing = nil
+    self.Key1:EnableKeyboard(false)
+    self.Key2:EnableKeyboard(false)
 end
 
 local modifierKeys = { LSHIFT = true, RSHIFT = true, LCTRL = true, RCTRL = true, LALT = true, RALT = true }
