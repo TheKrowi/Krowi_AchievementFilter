@@ -33,35 +33,48 @@ if gameLocale == "enGB" then
 	gameLocale = "enUS"
 end
 
-local LocalizeDateFormat
-if gameLocale == "enUS" then
-    function LocalizeDateFormat()
-        return addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime
-    end
-else
-    function LocalizeDateFormat(event)
-        local dateFormat = addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime
-        local hasB = dateFormat:find("%B", 1, true) ~= nil
-        local hasb = dateFormat:find("%b", 1, true) ~= nil
-        local hasA = dateFormat:find("%A", 1, true) ~= nil
-        local hasa = dateFormat:find("%a", 1, true) ~= nil
-        if hasB or hasb or hasA or hasa then
-            local dateTable = date("*t", event.EventDetails.EndTime)
-            if hasB then
-                dateFormat = dateFormat:gsub("%%B", addon.MonthNames[dateTable.month])
-            end
-            if hasb then
-                dateFormat = dateFormat:gsub("%%b", string.sub(addon.MonthNames[dateTable.month], 1, 3))
-            end
-            if hasA then
-                dateFormat = dateFormat:gsub("%%A", addon.WeekdayNames[dateTable.wday])
-            end
-            if hasa then
-                dateFormat = dateFormat:gsub("%%a", string.sub(addon.WeekdayNames[dateTable.wday], 1, 3))
-            end
-        end
+-- The C library's date names the days and months in English, so other clients get the addon's own names; a field read
+-- on every call, so the events suite (Tests/Events.lua) can run that path on an English client
+eventReminderAlertSystem.LocalizeDateNames = gameLocale ~= "enUS"
+
+-- The first three characters of a name, as %a and %b write them; string.sub counts bytes and would cut a two-byte letter
+-- of a Cyrillic, Spanish or French name in half. A shorter name, such as koKR's months, stays whole
+local firstThreeCharacters = "^" .. ("[%z\1-\127\194-\244][\128-\191]*"):rep(3)
+local function Abbreviate(name)
+    return name:match(firstThreeCharacters) or name
+end
+
+-- time: the moment the line shows, whose day and month the names are
+local function LocalizeDateFormat(time)
+    local dateFormat = addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime
+    if not eventReminderAlertSystem.LocalizeDateNames then
         return dateFormat
     end
+    local hasB = dateFormat:find("%B", 1, true) ~= nil
+    local hasb = dateFormat:find("%b", 1, true) ~= nil
+    local hasA = dateFormat:find("%A", 1, true) ~= nil
+    local hasa = dateFormat:find("%a", 1, true) ~= nil
+    if hasB or hasb or hasA or hasa then
+        local dateTable = date("*t", time)
+        if hasB then
+            dateFormat = dateFormat:gsub("%%B", addon.MonthNames[dateTable.month])
+        end
+        if hasb then
+            dateFormat = dateFormat:gsub("%%b", Abbreviate(addon.MonthNames[dateTable.month]))
+        end
+        if hasA then
+            dateFormat = dateFormat:gsub("%%A", addon.WeekdayNames[dateTable.wday])
+        end
+        if hasa then
+            dateFormat = dateFormat:gsub("%%a", Abbreviate(addon.WeekdayNames[dateTable.wday]))
+        end
+    end
+    return dateFormat
+end
+
+-- The date format and the names always describe the same moment
+local function FormatDate(time)
+    return tostring(date(LocalizeDateFormat(time), time))
 end
 
 local function GetSecondsLeftFormattedText(secondsLeft)
@@ -99,10 +112,8 @@ function eventReminderAlertSystem:GetRuntimeText(event, chat)
         return timeLeft
     end
 
-    local dateFormat = LocalizeDateFormat(event)
-
     if addon.Options.db.profile.EventReminders.TimeDisplay.Line1 == 1 then -- End Time
-        runtime = tostring(date(dateFormat, event.EventDetails.EndTime))
+        runtime = FormatDate(event.EventDetails.EndTime)
     elseif addon.Options.db.profile.EventReminders.TimeDisplay.Line1 == 2 then -- Time Left
         runtime = timeLeft
     end
@@ -110,7 +121,7 @@ function eventReminderAlertSystem:GetRuntimeText(event, chat)
     if addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == 1 or addon.Options.db.profile.EventReminders.Compact then -- None
         return runtime
     elseif addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == 2 then -- End Time
-        return runtime .. "\n" .. tostring(date(dateFormat, event.EventDetails.EndTime))
+        return runtime .. "\n" .. FormatDate(event.EventDetails.EndTime)
     elseif addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == 3 then -- Time Left
         return runtime .. "\n" .. timeLeft
     end
@@ -126,10 +137,10 @@ function eventReminderAlertSystem:GetUpcomingText(event)
         timeLeft = GetSecondsLeftFormattedText(secondsLeft)
     end
 
-    local dateFormat = LocalizeDateFormat(event)
-
+    -- Line 1's End Time shows when an upcoming event starts: the frame puts "In" before it, and the time left counts to
+    -- the start (issue #247). Line 2's, with no "In" before it, shows when it ends
     if addon.Options.db.profile.EventReminders.TimeDisplay.Line1 == 1 then -- End Time
-        runtime = tostring(date(dateFormat, event.UpcomingEventDetails.EndTime))
+        runtime = FormatDate(event.UpcomingEventDetails.StartTime)
     elseif addon.Options.db.profile.EventReminders.TimeDisplay.Line1 == 2 then -- Time Left
         runtime = timeLeft
     end
@@ -137,7 +148,7 @@ function eventReminderAlertSystem:GetUpcomingText(event)
     if addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == 1 or addon.Options.db.profile.EventReminders.Compact then -- None
         return runtime
     elseif addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == 2 then -- End Time
-        return runtime .. "\n" .. tostring(date(dateFormat, event.UpcomingEventDetails.EndTime))
+        return runtime .. "\n" .. FormatDate(event.UpcomingEventDetails.EndTime)
     elseif addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == 3 then -- Time Left
         return runtime .. "\n" .. timeLeft
     end

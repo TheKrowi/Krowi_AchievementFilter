@@ -1427,8 +1427,8 @@ suites.memory = function(c)
 end
 
 -- The real data load of client-env.lua, then the event runtime on top (Data/CustomWidgetEventTimers.lua,
--- Data/CustomWorldEventTimers.lua, Data/EventScheduler.lua once it exists, Data/EventData.lua) against a model of what it
--- reads: C_EventScheduler returning the suite's own fixture, C_AreaPoiInfo knowing the Curse Surges' English names and
+-- Data/CustomWorldEventTimers.lua, Data/EventScheduler.lua once it exists, Data/EventData.lua, and
+-- Gui/EventReminder/AlertSystem.lua for the date line scenarios) against a model of what it reads: C_EventScheduler returning the suite's own fixture, C_AreaPoiInfo knowing the Curse Surges' English names and
 -- no POI on a map, no widget anywhere (as outside the Azure Span), the region Europe and every event toggle on. The
 -- scenarios pass their own times, so the clock is not modelled (sources in Tests/Events.lua).
 suites.events = function(c)
@@ -1453,7 +1453,11 @@ suites.events = function(c)
         RequestEvents = function() end,
         GetScheduledEvents = function() return addon.Tests.Events.Fixture() end,
     }
-    env.GetServerTime, env.time = os.time, os.time
+    env.GetServerTime, env.time, env.date = os.time, os.time, os.date
+    env.GetLocale = function() return "enUS" end -- the date line scenarios switch the names on themselves
+    -- Globals.lua's day and month names, with the enUS strings the data load's localization stub does not give
+    addon.MonthNames = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }
+    addon.WeekdayNames = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }
     env.GetCurrentRegion = function() return 3 end
     env.InCombatLockdown = function() return false end
     env.MINUTES_ABBR, env.SECONDS_ABBR = "%d min", "%d sec"
@@ -1463,11 +1467,13 @@ suites.events = function(c)
     local allOn = setmetatable({}, { __index = function() return true end })
     addon.Options = { db = { profile = { EventReminders = { Enabled = true, RefreshInterval = 60, CalendarEvents = allOn,
         WidgetEvents = c.isRetail and allOn or nil, WorldEvents = c.isRetail and allOn or nil,
-        UpcomingCalendarEvents = { Enabled = true, Days = 14 } } } } }
+        UpcomingCalendarEvents = { Enabled = true, Days = 14 },
+        DateTimeFormat = { StartTimeAndEndTime = "%d/%m/%Y %R" }, TimeDisplay = { Line1 = 1, Line2 = 3 }, Compact = false } } } } -- Options/Defaults.lua
     addon.Tests = { Suites = {}, Ready = {}, Async = {} }
     addon.Data.IsLoaded = true -- the game sets it once the data load and the cache build are done (Data/Data.lua)
     addon.Data.EventsLoaded = true -- and this one when every event object exists, before the cache build
-    for _, rel in ipairs({ "Data/CustomWidgetEventTimers.lua", "Data/CustomWorldEventTimers.lua", "Data/EventScheduler.lua", "Data/EventData.lua", "Tests/Events.lua" }) do
+    for _, rel in ipairs({ "Data/CustomWidgetEventTimers.lua", "Data/CustomWorldEventTimers.lua", "Data/EventScheduler.lua", "Data/EventData.lua",
+        "Gui/EventReminder/AlertSystem.lua", "Tests/Events.lua" }) do
         local file = io.open(root .. "/" .. rel, "rb")
         if file then
             file:close()
