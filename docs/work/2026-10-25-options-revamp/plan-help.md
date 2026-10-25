@@ -1,5 +1,5 @@
 # Plan: help content for the options window (Track B)
-Spec: [spec.md](spec.md), plan: [plan.md](plan.md) (Track B, design decision 9). Status: accepted
+Spec: [spec.md](spec.md), plan: [plan.md](plan.md) (Track B, design decision 9). Status: done
 
 Approved by Krowi on 2026-10-25, with the four decisions below (non-routine: a secure button and taint-sensitive Show me scenes).
 
@@ -304,7 +304,7 @@ No Show me for `overview`, `criteria`, `keys`, `plugins`, `profiles`, `advanced`
   - the header colours are five (orange, blue, green, yellow, red), plus faded for not earned (`Temporarily obtainable Header Colors Desc`), so `Colors` is five rows;
   - the row icons are the extra icons the rows draw (`AchievementButtonExtraIconFactory.lua`).
 - **121 keys**, not about 110: the 118 the texts use and 3 for Show me (the map key note, its fallback, reminders off). The tutorial's `Green`, `Red`, `Grey` and `World Map Button` are now also read by the help, so they stay when the tutorial's strings go.
-- **20 pictures,** not 22 (no `UnitCriteria`; the plan's count included it). `CompactList` SKIPs while Compact Achievements is off, because that option needs a `/reload`; the tool takes each picture from the newest run that has it.
+- **19 pictures,** not 22: no `UnitCriteria` (decision 2), and no `MenuGoTo`, since Retail keeps its open menus where addon code cannot read them (the run found `Menu.GetManager().menus` nil); the right-click menu picture shows Go to with its arrow. `CompactList` SKIPs while Compact Achievements is off, because that option needs a `/reload`; the tool takes each picture from the newest run that has it.
 - **The tool** has `-SavedVariables` and `-Screenshots` too, for a copied file or a test; it was tested on a synthetic run (an old RLE tutorial TGA as a screenshot, and a picture in two parts).
 - **The taint review** (`krowi:taint-reviewer`, 2026-10-25) found the secure map route sound on all three clients (the click reaches `ToggleWorldMap` from `SECURE_ACTIONS.click`; letting go in `PLAYER_REGEN_DISABLED` lifts the anchor restriction, as Blizzard's own action bars do), and three things, fixed:
   - the `search` scene took keyboard focus from an open chat line, which ran its focus-lost handler in the addon's call and tainted `ACTIVE_CHAT_EDIT_BOX`: it focuses the search box only when nothing has focus;
@@ -312,4 +312,21 @@ No Show me for `overview`, `criteria`, `keys`, `plugins`, `profiles`, `advanced`
   - a raised window could lie over the secure button: the pane button's `OnEnter` lifts it back.
   Left for the game: whether `Click()` works on a hidden delegate (now avoided), and the overlay on a raised window.
 - **The secure button is placed by coordinates, not anchored.** The first in-game try (Retail, 2026-10-25) failed with `Action[SetPoint] failed because[Cannot anchor protected frames to regions]` at `SetAllPoints(owner)`: a protected frame cannot anchor to an addon frame at all, not only in combat, so the plan's anchoring was wrong. It is now set against `UIParent` from the pane button's position and size; the window calls `ShowMeSecure` again after a move or resize, and the pane button's `OnEnter` puts it back over when it has drifted. In debug mode the map route reports each change in chat (`Show me, map: ...`).
+- **The secure button lies in `DIALOG` strata.** The window is a toplevel `HIGH` frame, so every click in it raised it, and its Show me button, over a secure button laid in the same strata; the mouse never reached the secure one (Track A's diagnosis, confirmed in game: "Show me worked").
 - **`.luarc.json`** lists the frames the new files read that the language server cannot see: `KrowiAF_GuidePanel`, `KrowiAF_SearchPreviewContainer`, `Krowi_ProgressBarTooltip`, `MiniMapWorldMapButton`.
+- **The pictures run grew with Krowi's runs on Retail (2026-10-25, 17:16 to 21:36):**
+  - the black backdrop moves, per screenshot, right under the lowest of the frames the picture shows, and drops back under everything between steps (a backdrop left high covered the map at the last step); the rest of the interface is black around and behind a picture, also behind translucent frames (Krowi: "everything should be black");
+  - each step first closes what the step before left open; debug mode's tooltip lines are off for the run (in memory only); the header colour options the colour rows need are on for the run, with the player's values kept in `KrowiAF_DebugTable.PicturesRestore` until they are back, also after a `/reload` mid-run;
+  - the calendar is shot with the achievement window closed, the guide with the reminder buttons beside the window hidden (they are alert frames in `DIALOG`, over the `HIGH` panel); tall frames are cut to their top; Earned By from its first to its last line; the reminders to three; the summary from its Progress Overview header;
+  - each picture is saved as it is taken, so a `/reload` mid-run keeps the rest; `/kaftest pictures <name or number>` redoes one picture (the shared runner `Tests/Tests.lua` now hands what follows a suite's name to the suite);
+  - the run refuses to start while a menu is open, instead of closing it.
+- **Pictures up to 1024 px** (the plan said 512): Krowi found them too small in the 328-unit pane, and Track A added the mockup's click-to-enlarge lightbox (`a0c76aa0`), which needs the full resolution. The 19 pictures come to about 11 MB; the old tutorial's 15 TGAs (12.9 MB) leave with the tutorial.
+- **The code review** (`/code-review` on the branch, 2026-10-25) and a second taint review found no taint. Fixed: settings left changed by a `/reload` mid-run (above); Collapse Chain swapping the picked achievement in the scenes and colour rows; the reward preview and guide guards on a reused row; placeholders queued beyond the free places; the secure button giving up when the pane's button had no position yet (it keeps its owner and retries) and staying shown when combat refused its release (it lets go once combat ends); a single colour row rebuilding the whole picture from one part. Passed to Track A: its search matches the icon and colour escapes in the terms; its `OnShow` should call `UpdateShowMe` after an Alt+Z re-show.
+- **Deferred, listed in the PR:**
+  - the secure button in `DIALOG` is an invisible click target above any `HIGH` window opened over the pane's bottom-left corner while the maps help shows;
+  - a scene that finds nothing to show (a new character, data still loading) closes the options window and shows nothing;
+  - the pictures run closes the achievement window at the end instead of restoring its tab and selection;
+  - the headless `help` suite loads the whole addon a second time instead of sharing the `options` suite's load;
+  - the step machine is the third copy of the one in `Tests/Tracking.lua`;
+  - the reward scene's search reads every achievement's reward data.
+- **Not done in game:** the Mists pictures run (the Show me scenes on Mists), and the combat check with the maps section open; the map's Show me was confirmed on Retail.
