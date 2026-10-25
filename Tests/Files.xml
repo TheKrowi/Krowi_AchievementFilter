@@ -14,4 +14,5 @@
     <Script file="Schedules.lua" />
     <Script file="Events.lua" />
     <Script file="Tracking.lua" />
+    <Script file="Options.lua" />
 </Ui>
