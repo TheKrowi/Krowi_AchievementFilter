@@ -233,12 +233,18 @@ function model.ChangedCount(sectionId)
     return count
 end
 
+-- The text a player reads: atlas and texture icons and colour codes left out, so a search for "clock" or a colour's
+-- hex digits finds nothing it does not show
+local function Plain(text)
+    return (text:gsub("|A.-|a", ""):gsub("|T.-|t", ""):gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", ""))
+end
+
 -- Options by label, description and group heading; explanations by text. The help track fills window.Help.
 function model.Search(text)
     local results = {}
     local needle = text:lower()
     local function Has(value)
-        return type(value) == "string" and value:lower():find(needle, 1, true) ~= nil
+        return type(value) == "string" and Plain(value):lower():find(needle, 1, true) ~= nil
     end
     for _, section in ipairs(window.Map.Sections) do
         local heading = ""
