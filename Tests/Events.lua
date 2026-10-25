@@ -23,11 +23,11 @@ local events = addon.Tests.Events
 --     model lists the five Curse Surges every 9000 s for three days from its clock, as the game does, so the stories
 --     run the same in game and headlessly.
 --   DateLine: the date line of an upcoming or an active reminder (Reminder) for a calendar event that is never
---     registered, with the date format Format, time display line 1 End Time and line 2 None, and the day and month
---     names replaced by the addon's own when Names is set, as on a non-English client
---     (docs/work/2026-10-25-upcoming-reminder-date). "error" when the line raises; with Names "start names" or "end
---     names" when it is that date in the addon's names, without "start" or "end" when it is date(Format) of that date;
---     otherwise "other". Until 2026-10-25 an upcoming line showed the occurrence's end, and raised with Names because it
+--     registered, with the date format Format, time display line 1 End Time and line 2 Line2 (None unless given), and
+--     with Names the day and month names replaced, as on a non-English client, by test names in place of the addon's
+--     own (docs/work/2026-10-25-upcoming-reminder-date). "error" when the line raises; otherwise one description per
+--     line, joined with " / ": with Names "start names" or "end names" when it is that date in the test names (their
+--     first three characters with Short), without "start" or "end" when it is date(Format) of that date; else "other". Until 2026-10-25 an upcoming line showed the occurrence's end, and raised with Names because it
 --     read the names from the active occurrence an upcoming event does not have ("end" and "error", verified in game on
 --     Retail 12.1.5 on 2026-10-25); it now shows the start, with the start's names.
 -- Until 2026-10-21 no Curse Surge event existed, nothing kept scheduler data, and the soup was only shown while its
@@ -86,7 +86,11 @@ events.Scenarios = {
     {Name = "upcoming-date-names", Kind = "DateLine", Reminder = "upcoming", Format = "%A %d %B %Y", Names = true,
         Recorded = "start names", Target = "start names"},
     {Name = "active-date-names", Kind = "DateLine", Reminder = "active", Format = "%A %d %B %Y", Names = true,
-        Recorded = "end names", Target = "end names"}
+        Recorded = "end names", Target = "end names"},
+    {Name = "active-date-abbreviated", Kind = "DateLine", Reminder = "active", Format = "%a %d %b %Y", Names = true, Short = true,
+        Recorded = "other", Target = "end names"},
+    {Name = "upcoming-date-both-lines", Kind = "DateLine", Reminder = "upcoming", Format = "%d/%m/%Y %R", Names = false, Line2 = 2,
+        Recorded = "start / start", Target = "start / end"}
 }
 -- RetailOnly: the Curse Surges and the soup are DataAddons/Retail events; FeastTimes runs on every client
 local europe = 3 -- GetCurrentRegion
@@ -340,17 +344,41 @@ end
 local dateLineStart = 1800000000 -- 2027-01-15 08:00 UTC, as the Curse Surge fixture
 local dateLineEnd = dateLineStart + 6 * 86400
 
--- The date as "%A %d %B %Y" writes it, in the addon's own day and month names
-local function DateInNames(time)
-    local dateTable = date("*t", time)
-    return ("%s %02d %s %d"):format(addon.WeekdayNames[dateTable.wday], dateTable.day, addon.MonthNames[dateTable.month], dateTable.year)
+-- The day and month names of the scenarios with Names, in place of the addon's own for the call: Cyrillic letters take
+-- two bytes, as on a ruRU client, and none is the C library's English, so a line that holds them came through the
+-- addon's names. Short: the first three characters, as %a and %b write them
+local testMonths, testWeekdays = {}, {}
+local testMonthNames, testWeekdayNames = {}, {}
+for month = 1, 12 do
+    testMonths[month] = {Name = ("М%02dесяц"):format(month), Short = ("М%02d"):format(month)}
+    testMonthNames[month] = testMonths[month].Name
+end
+for weekday = 1, 7 do
+    testWeekdays[weekday] = {Name = ("Д%dень"):format(weekday), Short = ("Д%dе"):format(weekday)}
+    testWeekdayNames[weekday] = testWeekdays[weekday].Name
 end
 
-local function DescribeLine(scenario, line)
+-- The date as "%A %d %B %Y" writes it in the test names, or "%a %d %b %Y" with short
+local function DateInTestNames(time, short)
+    local dateTable = date("*t", time)
+    local key = short and "Short" or "Name"
+    return ("%s %02d %s %d"):format(testWeekdays[dateTable.wday][key], dateTable.day, testMonths[dateTable.month][key], dateTable.year)
+end
+
+local function DescribePart(scenario, part)
     if scenario.Names then
-        return line == DateInNames(dateLineStart) and "start names" or line == DateInNames(dateLineEnd) and "end names" or "other"
+        return part == DateInTestNames(dateLineStart, scenario.Short) and "start names" or part == DateInTestNames(dateLineEnd, scenario.Short) and "end names" or "other"
     end
-    return line == date(scenario.Format, dateLineStart) and "start" or line == date(scenario.Format, dateLineEnd) and "end" or "other"
+    return part == date(scenario.Format, dateLineStart) and "start" or part == date(scenario.Format, dateLineEnd) and "end" or "other"
+end
+
+-- One description per time display line, joined with " / "
+local function DescribeLine(scenario, text)
+    local parts = {}
+    for part in (text .. "\n"):gmatch("(.-)\n") do
+        tinsert(parts, DescribePart(scenario, part))
+    end
+    return table.concat(parts, " / ")
 end
 
 -- "raised at <file> line <n>: <message>": an observation in the "<file>:<n>: " form would read as a failing scenario to
@@ -372,12 +400,17 @@ local function DescribeDateLine(scenario, observations)
         Line1 = eventReminders.TimeDisplay.Line1,
         Line2 = eventReminders.TimeDisplay.Line2,
         Compact = eventReminders.Compact,
-        Names = alertSystem.LocalizeDateNames
+        Names = alertSystem.LocalizeDateNames,
+        MonthNames = addon.MonthNames,
+        WeekdayNames = addon.WeekdayNames
     }
     eventReminders.DateTimeFormat.StartTimeAndEndTime = scenario.Format
-    eventReminders.TimeDisplay.Line1, eventReminders.TimeDisplay.Line2 = 1, 1 -- End Time, None
+    eventReminders.TimeDisplay.Line1, eventReminders.TimeDisplay.Line2 = 1, scenario.Line2 or 1 -- End Time, None unless given
     eventReminders.Compact = false
     alertSystem.LocalizeDateNames = scenario.Names
+    if scenario.Names then
+        addon.MonthNames, addon.WeekdayNames = testMonthNames, testWeekdayNames
+    end
     local occurrence = {StartTime = dateLineStart, EndTime = dateLineEnd, Name = "Test"}
     local event = {Id = 0, Name = "Test"}
     local built, line
@@ -392,6 +425,7 @@ local function DescribeDateLine(scenario, observations)
     eventReminders.TimeDisplay.Line1, eventReminders.TimeDisplay.Line2 = saved.Line1, saved.Line2
     eventReminders.Compact = saved.Compact
     alertSystem.LocalizeDateNames = saved.Names
+    addon.MonthNames, addon.WeekdayNames = saved.MonthNames, saved.WeekdayNames
     if not built then
         tinsert(observations, scenario.Name .. " " .. DescribeError(line))
         return "error"
