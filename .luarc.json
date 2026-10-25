@@ -125,6 +125,7 @@
         "KrowiAF_DataManagerFrame",
         "KrowiAF_FloatingAchievementTooltip",
         "KrowiAF_MapVerifierFrame",
+        "KrowiAF_OptionsWindow",
         "KrowiAF_RewardPreview",
         "KrowiAF_SearchBoxFrame",
         "KrowiAF_SearchResultsFrame",
