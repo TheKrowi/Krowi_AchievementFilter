@@ -33,7 +33,10 @@ Intent: [intent.md](intent.md). Status: accepted
 - All 8840 registered ids were looked up with `.claude/skills/add-zone-data/_lookup_ids.ps1` in Retail 12.1.5.70575 and Classic 5.5.4.70579 (2026-10-25). Two are missing from their client's build:
   - 63685 (BlizzCon 2026, `DataAddons/Retail/12_Midnight/AchievementData.lua:893`) on Retail. It is most likely a hotfix-added achievement, which the client gets through its hotfix cache, so the game probably knows it.
   - 7295 (Listen to the Drunk Fish, `DataAddons/Shared/05_MistsOfPandaria/AchievementData.lua:333`) on Classic, where it is a placeholder.
-  - Neither has zone data, so neither can reach a "go to" entry; their menus only get the empty title. No current data raises the menu error, which is why no player has reported it. The history tooltip breaks with 7295 on Classic once a player with placeholders shown selects it.
+  - 7295 has zone data (`DataAddons/Shared/05_MistsOfPandaria/ZoneData.lua:239`, Valley of the Four Winds); 63685 has none.
+  - So on Mists, a player with placeholders shown who stands in Valley of the Four Winds with the Current Zone category selected and right-clicks 7295 gets the error, through the first-category entry. Any other right-click on 7295 only shows the empty title.
+  - The history tooltip breaks once such a player selects 7295. Both need the placeholder option and filter, which are off by default, which fits that no player has reported it.
+  - Corrected 2026-10-25 after the code review: the first version of this spec said neither id had zone data, from a search whose output was cut short.
 
 **Reproduction.** No logged error exists, so the reproduction is the new scenarios recorded as "error", run in game before the fix (Verification).
 

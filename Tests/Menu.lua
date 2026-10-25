@@ -25,7 +25,8 @@ local menu = addon.Tests.Menu
 -- Menu: build the whole menu of that achievement and record its title, instead of one "go to" entry linking to it
 -- Recorded / Target: "error" when building raises; otherwise an entry's "enabled" or "disabled", followed by
 --   " placeholder" when the game does not know the id and the text starts with the placeholder name
---   addon.GetAchievementInfo gives it; a menu's title "untitled", "placeholder" or "name"
+--   addon.GetAchievementInfo gives it, and " missing" when the text ends with "(Missing)"; a menu's title "untitled",
+--   "placeholder" or "name"
 -- The "(Missing)" entry stayed enabled before the 2026-10-13 fix (verified in game on Retail 12.1.0 and Classic 5.5.4 on
 -- 2026-10-11, linking to 49); it now passes isEnabled = false
 -- Before the 2026-10-25 fix both entries for an id the game does not know raised and the placeholder's menu had no title
@@ -33,11 +34,11 @@ local menu = addon.Tests.Menu
 -- the name from addon.GetAchievementInfo
 menu.Scenarios = {
     {Name = "missing-achievement-entry", Find = "missing",
-        Recorded = "disabled", Target = "disabled"},
+        Recorded = "disabled missing", Target = "disabled missing"},
     {Name = "registered-achievement-entry", Id = 6, -- Level 10, DataAddons/Shared/03_WrathOfTheLichKing/AchievementData.lua
         Recorded = "enabled", Target = "enabled"},
     {Name = "unknown-achievement-entry", Find = "unknown",
-        Recorded = "disabled placeholder", Target = "disabled placeholder"},
+        Recorded = "disabled placeholder missing", Target = "disabled placeholder missing"},
     {Name = "placeholder-entry", Find = "placeholder",
         Recorded = "enabled placeholder", Target = "enabled placeholder"},
     {Name = "placeholder-menu", Find = "placeholder", Menu = true,
@@ -66,6 +67,10 @@ local function DescribeEntry(env, id, root)
     local got = enabled and "enabled" or "disabled"
     if StartsWithPlaceholder(id, text) then
         got = got .. " placeholder"
+    end
+    local missing = " (" .. addon.L["Missing"] .. ")"
+    if type(text) == "string" and text:sub(-#missing) == missing then
+        got = got .. " missing"
     end
     return got
 end
@@ -104,6 +109,9 @@ local function RunScenario(env, scenario, observations)
     local got
     if id then
         local built, root = pcall(scenario.Menu and env.BuildMenu or env.Build, id)
+        if cleanup then -- before anything else can raise, so a stand-in never stays registered
+            cleanup()
+        end
         if not built then
             got = "error"
             tinsert(observations, scenario.Name .. " " .. DescribeError(root))
@@ -112,9 +120,6 @@ local function RunScenario(env, scenario, observations)
         else
             got, reason = DescribeEntry(env, id, root)
         end
-    end
-    if cleanup then
-        cleanup()
     end
 
     local status, targetMet, tail
@@ -264,6 +269,9 @@ function gameEnv.ReadTitle(root)
 end
 
 addon.Tests.Ready.menu = function()
+    if not addon.Data.IsLoaded then -- the cache build registers the achievements the game knows and marks the placeholders
+        return false, "the data load has not finished"
+    end
     for _, scenario in ipairs(menu.Scenarios) do
         if scenario.Id and not addon.Data.Achievements[scenario.Id] then
             return false, "the achievement data is not loaded yet"

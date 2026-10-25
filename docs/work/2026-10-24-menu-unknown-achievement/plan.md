@@ -11,6 +11,19 @@ Results and departures:
   - BugGrabber held no KAF error on either client.
 - **Headless model gaps found on the way:** the first headless history run raised at `BrowsingHistory.lua` lines 48 and 60 instead of 62. The model of the `navigation` suite had neither `GameTooltip_AddBlankLineToTooltip` nor `addon.Util.Colors`, so both were added. The suites now observe the error each scenario raised.
 - **Observations quote errors as "raised at <file> line <n>":** the `unit-tests` lint rule reads any "<file>:<n>: " line in `run-tests.lua -check` output as a failing scenario, observations included.
+- **Review, 2026-10-25, of the fix (7e48eb1b).** The `krowi:taint-reviewer` found no hazard. The code review led to these test changes before the after-run:
+  - the stand-in's cleanup runs right after the build, so nothing that raises later can leave it registered;
+  - the `menu` suite's Ready check waits for the data load (`addon.Data.IsLoaded`), because the placeholders and the registrations of known ids come from the cache build;
+  - entries also record " missing" when their text ends with "(Missing)", so requirement 2 is checked. `missing-achievement-entry` is now "disabled missing" and `unknown-achievement-entry` "disabled placeholder missing";
+  - the history scenario records "placeholder" only when the game does not know the id, and puts its record on achievement 6's category instead of an arbitrary one. A Shared category is named after 14222, which Mists does not know, so it has no name there;
+  - the spec's "Who hits it today" was wrong about 7295, which does have zone data, and is corrected.
+- **Review findings not taken, with the reason:**
+  - **A nil achievement** (a floating tooltip or the objectives' other-achievement link for an id the addon does not register) still reaches `CreateMenu`. It is outside this work item's intent and was there before the change; it goes to the backlog.
+  - **A registered placeholder in no category** would now get an enabled entry whose click errors in `KrowiAF_SelectAchievement` (`Api/API.lua:54`, no nil check). No current placeholder lacks a category, and a known achievement without one errors the same way today; it goes to the backlog.
+  - **A name helper** in place of the three call sites, and its allocation: Krowi chose option 1 at the design gate. The `Flags` object `addon.GetAchievementInfo` builds is garbage only when a player opens a menu or hovers an arrow, not in a background job.
+  - **The shared copy of `DescribeError` and the unknown-id scan:** each suite runs on its own headlessly, and `Tests/Tests.lua` is not loaded there.
+  - **The tab indentation** of `AchievementMenu.lua` matches the rest of that file.
+  - **The spaces around the placeholder name** (" * Placeholder for 1 *  (Missing)") are left for the after-run's screenshots to judge.
 
 ## Context
 The achievement right-click menu and the browsing-history tooltip take an achievement's name from `GetAchievementInfo`, which is nil for an id the client does not know. That raises "attempt to concatenate a nil value" in the "go to" entries (`Gui/RightClickMenu/AchievementMenu/AchievementMenu.lua:14,17,22`) and in the history line (`Gui/BrowsingHistory/BrowsingHistory.lua:62`). A placeholder's menu also gets an empty title (`AchievementMenu.lua:43`). The decision (spec, option 1): use the placeholder name `addon.GetAchievementInfo` already gives (`Globals.lua:100-106`) and keep the enabled rule; the history tooltip is in scope.
@@ -32,9 +45,9 @@ The achievement right-click menu and the browsing-history tooltip take an achiev
 
 | Name | Id | Recorded | Target |
 |---|---|---|---|
-| `missing-achievement-entry` | game knows it, addon does not | disabled | disabled |
+| `missing-achievement-entry` | game knows it, addon does not | disabled (disabled missing since the review) | disabled (disabled missing) |
 | `registered-achievement-entry` | 6 | enabled | enabled |
-| `unknown-achievement-entry` (new) | neither knows it | error | disabled placeholder |
+| `unknown-achievement-entry` (new) | neither knows it | error | disabled placeholder (disabled placeholder missing) |
 | `placeholder-entry` (new) | addon registers it, game does not | error | enabled placeholder |
 | `placeholder-menu` (new) | the whole menu of such an achievement | untitled | placeholder |
 

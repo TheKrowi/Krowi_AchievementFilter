@@ -146,7 +146,8 @@ local function RunHistoryScenario(env, scenario, setupProblem)
             got = "error"
         else
             local _, placeholder = addon.GetAchievementInfo(id)
-            got = (type(line) == "string" and line:sub(-#placeholder) == placeholder) and "placeholder" or "name"
+            local isPlaceholder = not GetAchievementInfo(id) and type(line) == "string" and line:sub(-#placeholder) == placeholder
+            got = isPlaceholder and "placeholder" or "name"
         end
     end
 
@@ -266,7 +267,8 @@ function gameEnv.IsVisible(key)
     return prevButton:IsVisible() or nextButton:IsVisible()
 end
 
--- The first id from 1 up that neither the game nor the addon knows, in a record on any category; the record and the
+-- The first id from 1 up that neither the game nor the addon knows, in a record on the category of achievement 6, which
+-- every client registers (any category would do, but not every one has a name on every client); the record and the
 -- history's index are put back and the tooltip hidden before returning. The history lives for the session only
 -- (BrowsingHistory.lua), so nothing is saved.
 function gameEnv.HistoryTooltipLine()
@@ -277,10 +279,12 @@ function gameEnv.HistoryTooltipLine()
             break
         end
     end
-    local categoryId = next(addon.Data.Categories)
-    if not id or not categoryId then
-        return nil, "no unknown achievement id or no category to put in the history"
+    local registered = addon.Data.Achievements[6]
+    local category = registered and registered.Category
+    if not id or not category then
+        return nil, "no unknown achievement id, or achievement 6 has no category"
     end
+    local categoryId = category.Id
     tinsert(observations, "history-tooltip-unknown-achievement lists " .. id .. ", which neither the game nor the addon knows")
     local history = addon.BrowsingHistory
     local records, index = history:GetAllRecords(), history:GetCurrentIndex()
