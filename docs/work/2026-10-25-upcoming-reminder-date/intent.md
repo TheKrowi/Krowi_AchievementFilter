@@ -1,5 +1,5 @@
 # Intent: Upcoming event reminders break on a non-English client whose date format names the day or month
-Author: Krowi (maintainer), captured by Claude. Source: `docs/backlog.md`, "From the fixed schedules work (2026-10-21)" (found while working on event reminders, not reported by a player); and GitHub issue #247 (in scope, decided at the intent gate). Status: accepted
+Author: Krowi (maintainer), captured by Claude. Source: `docs/backlog.md`, "From the fixed schedules work (2026-10-21)" (found while working on event reminders, not reported by a player); and GitHub issue #247 (in scope, decided at the intent gate). Status: done
 
 ## Problem
 An upcoming event reminder ("Upcoming: Darkmoon Faire", shown as a pop-up and as a side button next to the achievement window) gives a Lua error instead of its date line when all of these hold:

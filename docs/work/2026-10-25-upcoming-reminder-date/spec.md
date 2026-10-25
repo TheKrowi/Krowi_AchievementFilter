@@ -1,5 +1,5 @@
 # Spec: Upcoming event reminders break on a non-English client whose date format names the day or month
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. On a non-English client, an upcoming reminder (pop-up and side button) shows its date line without a Lua error with every date format, including a custom one with `%a`, `%A`, `%b` or `%B`, on Retail and Classic.
@@ -67,3 +67,4 @@ For what the upcoming line shows (#247), on Retail and Classic alike, with the d
 Krowi, 2026-10-25, at the design gate:
 - **Option 1:** where the time display option says "End Time", an upcoming reminder shows the start, with the day and month names of the start. The player's time display settings keep their meaning; with "Time Left" the line stays a countdown, as on the maintainer's Retail client.
 - **Scope:** both the error and #247, decided at the intent gate the same day.
+- **Line 2, after the code review (2026-10-25):** only line 1, which has "In" before it, shows the start; line 2 "End Time" shows the end (plan, Results and departures).

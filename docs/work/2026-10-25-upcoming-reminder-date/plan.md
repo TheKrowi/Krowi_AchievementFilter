@@ -1,5 +1,5 @@
 # Plan: Upcoming event reminders break on a non-English client whose date format names the day or month
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 Approved by Krowi (maintainer) on 2026-10-25 in plan mode. It touches shared GUI code (the event reminder pop-ups and side buttons), so it waited for that gate. The in-game before-run is the second gate.
 
@@ -20,6 +20,7 @@ Results and departures:
     - `KrowiAF_GetUtcOffsetSeconds` drops minutes and the year wrap;
     - an escaped `%%A` in a custom format is replaced.
   - **Not changed:** merging `GetUpcomingText` and `GetRuntimeText` into one builder. That is a refactor beyond this fix.
+- **After-run, 2026-10-25, from ab91fe2b on Retail 12.1.5.** `/kaftest events`: 25 passed with every target met, 0 differences from headless. BugGrabber held no KAF error. Mists runs the same build, deployed, and was not run in game (above).
 
 ## Context
 `Gui/EventReminder/AlertSystem.lua` has two defects:
