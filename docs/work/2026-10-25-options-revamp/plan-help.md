@@ -293,3 +293,22 @@ No Show me for `overview`, `criteria`, `keys`, `plugins`, `profiles`, `advanced`
   - Krowi's clicks on the map's Show me: as in Risks.
 - **Pictures:** the previews, then the real pane.
 - **Review:** `krowi:taint-reviewer` and `/code-review`.
+
+## Where the build departed
+- **The seam with Track A** (agreed with that session on 2026-10-25):
+  - the map is read as `addon.Options.Window.Map.Sections[i].Id`;
+  - the pane calls `ShowMeSecure(button, close)` on every refresh of the maps help, its own `PLAYER_REGEN_DISABLED` and `PLAYER_REGEN_ENABLED` included, and `ShowMeSecure(nil)` on the first draw that is not the maps help (another section, a hover, a collapse, a search, the window hidden). The pane reuses one Show me button for every section, so the OnHide hook alone would not release the secure button.
+  - inside `PLAYER_REGEN_DISABLED` `InCombatLockdown()` is still false, so `ShowMeSecure` also treats `UnitAffectingCombat("player")` as combat, and in combat it returns true (the pane greys its button), not false (the note).
+- **The texts follow the game, not the mockup,** where the mockup had aged:
+  - the filter menu has Past, Current and Future Obtainable and Always Show Completed (`FilterButtonMixin.lua:150-176`);
+  - the header colours are five (orange, blue, green, yellow, red), plus faded for not earned (`Temporarily obtainable Header Colors Desc`), so `Colors` is five rows;
+  - the row icons are the extra icons the rows draw (`AchievementButtonExtraIconFactory.lua`).
+- **121 keys**, not about 110: the 118 the texts use and 3 for Show me (the map key note, its fallback, reminders off). The tutorial's `Green`, `Red`, `Grey` and `World Map Button` are now also read by the help, so they stay when the tutorial's strings go.
+- **20 pictures,** not 22 (no `UnitCriteria`; the plan's count included it). `CompactList` SKIPs while Compact Achievements is off, because that option needs a `/reload`; the tool takes each picture from the newest run that has it.
+- **The tool** has `-SavedVariables` and `-Screenshots` too, for a copied file or a test; it was tested on a synthetic run (an old RLE tutorial TGA as a screenshot, and a picture in two parts).
+- **The taint review** (`krowi:taint-reviewer`, 2026-10-25) found the secure map route sound on all three clients (the click reaches `ToggleWorldMap` from `SECURE_ACTIONS.click`; letting go in `PLAYER_REGEN_DISABLED` lifts the anchor restriction, as Blizzard's own action bars do), and three things, fixed:
+  - the `search` scene took keyboard focus from an open chat line, which ran its focus-lost handler in the addon's call and tainted `ACTIVE_CHAT_EDIT_BOX`: it focuses the search box only when nothing has focus;
+  - a delegate the secure click refuses (`HasAnyForbiddenAspects(ScriptedInput)` on Retail) or that is hidden (Mists hides `MiniMapWorldMapButton` with the group finder off) would close the window and open no map: those now give the note;
+  - a raised window could lie over the secure button: the pane button's `OnEnter` lifts it back.
+  Left for the game: whether `Click()` works on a hidden delegate (now avoided), and the overlay on a raised window.
+- **`.luarc.json`** lists the frames the new files read that the language server cannot see: `KrowiAF_GuidePanel`, `KrowiAF_SearchPreviewContainer`, `Krowi_ProgressBarTooltip`, `MiniMapWorldMapButton`.
