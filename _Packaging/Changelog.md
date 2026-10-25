@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 
 ## 104.1
+### Added
+- An options window with every setting sorted by feature and how each feature works next to it, opened with /kaf, the minimap icon or the filter menu
+
+### Changed
+- The tutorial is replaced by the explanations in the options window, with new pictures and a Show me button
+- Settings > AddOns now has one page for this addon, with a button that opens the options window
+
 ### Fixed
 - The right-click menu no longer gives an error or stops short when it links to an achievement your game does not have yet
 - Hovering the back or forward arrow no longer gives an error when a placeholder is in your browsing history

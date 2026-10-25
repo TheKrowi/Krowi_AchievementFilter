@@ -64,7 +64,7 @@ The data skills query a local game-database server (wow.tools.local at `http://l
 
 The WoW client reads `Krowi_AchievementFilter.toc`, which defines the **exact load order**. Files load sequentially in the order listed in the `.toc` and the nested `Files.xml` manifests, and a file can only use what earlier files defined. Every new `.lua` file must be added to the right `Files.xml` or it silently never loads. The order is:
 
-1. `Libs/Files.xml` — bundled libraries
+1. `Libs/Files.xml` — bundled libraries, then `Krowi_Options/Files.xml` — the options window, a library kept inside the addon until it moves to `Krowi_Libraries`
 2. `Api/Files.xml` — public API (`KrowiAF`), enums, data registration functions and builders
 3. `Plugins/Files.xml` — plugin integrations (BetterWardrobe, ElvUI, GW2_UI, InstanceAchievementTracker, ZygorGuidesViewer, AchievementsTabFixes, EllesmereUI)
 4. `Localization/Files.xml` — enUS first, then the other locales, then `Shared.lua`
@@ -101,7 +101,8 @@ Game-version-conditional loading uses `[AllowLoadGameType mainline]` and `[Allow
 | `Gui/` | All UI code (`FilesModern.xml` Retail, `FilesClassic.xml` Classic), one sub-folder per feature; `BlizzardOverrides.lua` holds every FrameXML override, API polyfill and hook on Blizzard's frame |
 | `Data/` | Runtime data: task runner, registry (`Data.lua`), `LoadDiagnostics`, achievement cache, temporary obtainability, events, tooltips, special categories, migrations (`DataIntegrityManager.lua`), `SavedData/` |
 | `DataAddons/` | All **data definitions** (achievement, category, zone, tooltip, transmog set, pet battle link, guide, build version, event, custom criteria) per expansion (`01_Vanilla/` to `12_Midnight/`): `Shared/` identical on both clients, `Retail/` and `Classic/` client-specific, `Loaders/` the post-processing that wires them into the runtime |
-| `Options/` | AceConfig options panels |
+| `Options/` | The settings as AceConfig tables; `Window/` maps them onto the options window's 22 feature sections and wires the window (`/kaf`, `addon.Options.Open`, the Settings > AddOns stub) |
+| `Krowi_Options/` | The options window: navigation, rows, help pane, search, Defaults; addon-neutral, registered through LibMan as `Krowi_Options_1`. Not under `Libs/`, so it is edited here |
 | `Plugins/` | Third-party addon integrations; the plugin API is `Api/PluginsApi.lua` (`KrowiAF.PluginsApi`) |
 | `Localization/` | One file per locale (`enUS`, `deDE`, `esES`, `esMX`, `frFR`, `itIT`, `koKR`, `ptBR`, `ruRU`, `zhCN`, `zhTW`), `.Plugins.lua` and `.WrathClassic.lua` variants, `Shared.lua` helpers |
 | `Libs/` | Vendored libraries, several of them git submodules of `TheKrowi/*` repos. **Do not edit `Libs/` unless asked**; fixes belong upstream |
