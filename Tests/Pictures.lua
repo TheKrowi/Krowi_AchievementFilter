@@ -42,12 +42,13 @@ local function After(seconds, func)
     end)
 end
 
--- A cut-out is a frame, or a table {Frame = frame, Top = region} that keeps the frame's sides and bottom and starts at
--- region's top: the Earned By part of a tooltip
+-- A cut-out is a frame, or a table {Frame = frame, Top = region, MaxHeight = units}: Top keeps the frame's sides and
+-- bottom and starts at region's top (the Earned By part of a tooltip); MaxHeight keeps only the top of a tall frame,
+-- in UIParent units, so it still reads in the help pane
 local function Edges(item)
-    local frame, topRegion = item, nil
+    local frame, topRegion, maxHeight = item, nil, nil
     if type(item) == "table" and item.Frame then
-        frame, topRegion = item.Frame, item.Top
+        frame, topRegion, maxHeight = item.Frame, item.Top, item.MaxHeight
     end
     if not (frame and frame.IsVisible and frame:IsVisible() and frame:GetLeft()) then
         return
@@ -57,7 +58,42 @@ local function Edges(item)
     if topRegion and topRegion:GetTop() then
         top = topRegion:GetTop() * topRegion:GetEffectiveScale() + 4
     end
+    if maxHeight then
+        bottom = max(bottom, top - maxHeight * UIParent:GetEffectiveScale())
+    end
     return left, right, top, bottom
+end
+
+local strataOrder = {"BACKGROUND", "LOW", "MEDIUM", "HIGH", "DIALOG", "FULLSCREEN", "FULLSCREEN_DIALOG", "TOOLTIP"}
+local strataRank = {}
+for rank, strata in ipairs(strataOrder) do
+    strataRank[strata] = rank
+end
+
+-- The black backdrop goes right under the lowest of the frames a picture shows, so every other part of the interface
+-- (bars, chat, the minimap, the tracker, other addons) is black around and behind them, also behind a translucent
+-- frame. It never touches another frame: only the backdrop moves.
+local function PlaceBackdrop(frames)
+    local lowestRank, lowestLevel
+    for _, item in ipairs(frames) do
+        local frame = type(item) == "table" and item.Frame or item
+        if frame and frame.GetFrameStrata and frame:IsVisible() then
+            local rank, level = strataRank[frame:GetFrameStrata()] or 3, frame:GetFrameLevel()
+            if not lowestRank or rank < lowestRank or (rank == lowestRank and level < lowestLevel) then
+                lowestRank, lowestLevel = rank, level
+            end
+        end
+    end
+    if not lowestRank then
+        lowestRank, lowestLevel = 1, 1
+    end
+    if lowestLevel > 1 then
+        backdrop:SetFrameStrata(strataOrder[lowestRank])
+        backdrop:SetFrameLevel(lowestLevel - 1)
+    else -- nothing fits under level 0 or 1 in that strata, so the top of the strata below
+        backdrop:SetFrameStrata(strataOrder[max(1, lowestRank - 1)])
+        backdrop:SetFrameLevel(9999)
+    end
 end
 
 -- The union of the items in screen pixels from the top left, and its natural size in UIParent units
@@ -220,7 +256,7 @@ steps = {
         return items
     end),
     SceneStep("categories", "CategoryTree", "categories", "the category list at the current expansion", function()
-        return {KrowiAF_CategoriesFrame}
+        return {{Frame = KrowiAF_CategoriesFrame, MaxHeight = 360}}
     end),
     SceneStep("summary", "SummaryBars", "summary", "the summary's progress bars", function()
         return {KrowiAF_SummaryFrame.Categories}
@@ -250,7 +286,7 @@ steps = {
     ColorStep("Yellow"),
     ColorStep("Red"),
     SceneStep("filters", "FilterMenu", "filters", "the filter menu", function()
-        return {OpenMenu(1)}
+        return {{Frame = OpenMenu(1), MaxHeight = 360}}
     end, function()
         return OpenMenu(1) ~= nil, "no menu is open"
     end),
@@ -275,7 +311,7 @@ steps = {
         end
     },
     SceneStep("tooltip", "TipAchievement", "tooltips", "an achievement's tooltip", function()
-        return {Krowi_Tooltip}
+        return {{Frame = Krowi_Tooltip, MaxHeight = 420}}
     end, function()
         return Krowi_Tooltip:IsShown(), "the tooltip is not shown"
     end),
@@ -283,6 +319,7 @@ steps = {
         Name = "tooltip-earned-by",
         Picture = "TipEarnedBy",
         Text = "the Earned By part of the tooltip",
+        Keep = true, -- the tooltip of the step before
         Run = function()
             if not Krowi_Tooltip:IsShown() then
                 return "the tooltip of the step before is not shown"
@@ -328,44 +365,19 @@ steps = {
             button:GetScript("OnEnter")(button)
         end,
         Cut = function()
-            return {Krowi_Tooltip}
+            return {{Frame = Krowi_Tooltip, MaxHeight = 260}}
         end,
         Check = function()
             return Krowi_Tooltip:IsShown(), "the points tooltip is not shown"
         end
     },
+    -- The menu shows Go to with its arrow; its submenu is not taken: Retail's menu manager keeps its open menus where
+    -- addon code cannot read them (the 2026-10-25 run found Menu.GetManager().menus nil)
     SceneStep("menu", "MenuMain", "rightclick", "the right-click menu", function()
-        Krowi_Tooltip:Hide()
         return {OpenMenu(1)}
     end, function()
         return OpenMenu(1) ~= nil, "no menu is open"
     end),
-    {
-        Name = "menu-go-to",
-        Picture = "MenuGoTo",
-        Text = "hover Go to in the right-click menu",
-        Mouse = function()
-            return OpenMenu(2) ~= nil
-        end,
-        Probe = function() -- what the menu manager holds when the submenu was not seen
-            if not addon.Util.IsModern then
-                return "DropDownList2 shown: " .. tostring(DropDownList2 and DropDownList2:IsShown())
-            end
-            local menus = Menu.GetManager().menus
-            local values = {}
-            for level = 1, 3 do
-                local ok, menu = pcall(function() return menus:GetValue(level) end)
-                values[level] = ok and (menu and (menu.GetDebugName and menu:GetDebugName() or type(menu)) or "none") or ("error " .. tostring(menu))
-            end
-            return "open menus: " .. table.concat(values, " | ")
-        end,
-        Cut = function()
-            return {OpenMenu(2)}
-        end,
-        Check = function()
-            return OpenMenu(2) ~= nil, "no submenu is open"
-        end
-    },
     {
         Name = "popout",
         Picture = "PopOut",
@@ -437,6 +449,9 @@ steps = {
         Cut = function()
             return {addon.Gui.WorldMapButton, Krowi_ProgressBarTooltip:IsShown() and Krowi_ProgressBarTooltip or Krowi_Tooltip}
         end,
+        Floor = function() -- the map stays visible under its button; only what lies under the map goes black
+            return {WorldMapFrame}
+        end,
         Check = function()
             return WorldMapFrame:IsShown(), "the map is not open"
         end
@@ -485,6 +500,20 @@ local function Restore()
     end
     if not live.WindowWasShown and AchievementFrame then
         AchievementFrame:Hide()
+    end
+    if live.DebugInfo ~= nil then
+        addon.Options.db.profile.EnableDebugInfo = live.DebugInfo
+    end
+end
+
+-- What an earlier step left open, so it does not show through this step's picture
+local function Cleanup()
+    CloseMenus()
+    Krowi_Tooltip:Hide()
+    Krowi_ProgressBarTooltip:Hide()
+    addon.Gui.RewardPreview:Close()
+    if addon.Util.IsMainline then
+        addon.Gui.Guide.Panel:Close()
     end
 end
 
@@ -541,14 +570,25 @@ local function Capture()
         if not rectangle then
             Add("FAIL", "nothing on screen to cut out" .. (cutOk and "" or (": " .. tostring(items))))
         else
-            local shotTime = date("%Y-%m-%d %H:%M:%S")
-            rectangle.Name, rectangle.Time = step.Picture, shotTime
-            tinsert(live.Run.Shots, rectangle)
-            Add("PASS", ("%s: %dx%d units, cut at %d,%d-%d,%d px"):format(step.Picture, rectangle.Width, rectangle.Height,
-                rectangle.Left, rectangle.Top, rectangle.Right, rectangle.Bottom))
-            live.Results[#live.Results].Screenshot = {Time = shotTime}
-            live.Shot = live.Results[#live.Results].Screenshot
-            Screenshot()
+            -- black under the picture's frames first, then the screenshot a few frames later
+            local floorOk, floorErr = pcall(PlaceBackdrop, step.Floor and step.Floor() or items)
+            if not floorOk then
+                tinsert(live.Observations, ("%s: backdrop not placed: %s"):format(step.Name, tostring(floorErr)))
+            end
+            After(0.2, function()
+                local shotTime = date("%Y-%m-%d %H:%M:%S")
+                rectangle.Name, rectangle.Time = step.Picture, shotTime
+                tinsert(live.Run.Shots, rectangle)
+                Add("PASS", ("%s: %dx%d units, cut at %d,%d-%d,%d px"):format(step.Picture, rectangle.Width, rectangle.Height,
+                    rectangle.Left, rectangle.Top, rectangle.Right, rectangle.Bottom))
+                live.Results[#live.Results].Screenshot = {Time = shotTime}
+                live.Shot = live.Results[#live.Results].Screenshot
+                Screenshot()
+                After(afterShot, function()
+                    RunStep(live.StepIndex + 1)
+                end)
+            end)
+            return
         end
     end
     After(afterShot, function()
@@ -585,6 +625,12 @@ RunStep = function(n)
     end
     live.StepIndex, live.StepName, live.Scene = n, step.Name, nil
     SetBanner(step.Text)
+    if not step.Keep then
+        local cleaned, cleanErr = pcall(Cleanup)
+        if not cleaned then
+            tinsert(live.Observations, ("%s: clean-up failed: %s"):format(step.Name, tostring(cleanErr)))
+        end
+    end
     if step.Run then
         local ok, skip = pcall(step.Run)
         if not ok then
@@ -684,6 +730,9 @@ addon.Tests.Suites.pictures = function(done)
     }
     local format, quality = C_CVar.GetCVar("screenshotFormat"), tonumber(C_CVar.GetCVar("screenshotQuality"))
     tinsert(live.Observations, ("screenshots: %s, quality %s"):format(tostring(format), tostring(quality)))
+    -- debug mode adds its own lines to the tooltips; off while the pictures are taken, back at the end
+    live.DebugInfo = addon.Options.db.profile.EnableDebugInfo
+    addon.Options.db.profile.EnableDebugInfo = false
     if format == "jpg" and quality and quality < 8 then
         tinsert(live.Observations, "jpg quality below 8 blurs small text: type /console screenshotQuality 10 in game and run the pictures again")
     end

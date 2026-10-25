@@ -201,7 +201,6 @@ help.rightclick = {
         Picture("MenuMain"),
         Term(L["Wowhead"], L["Help Right Click Wowhead"]),
         Term(L["Go to"], L["Help Right Click Go To"]),
-        Picture("MenuGoTo"),
         Term(L["Xu-Fu's Pet Guides"], L["Help Right Click Xu Fu"]),
         Term(L["Transmog Sets"], L["Help Right Click Transmog"]),
         RetailOnly(Term(L["Guide"], L["Help Right Click Guide"])),

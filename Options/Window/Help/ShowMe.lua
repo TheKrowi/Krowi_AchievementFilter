@@ -391,15 +391,17 @@ local function ReleaseMapButton()
     mapButton.Owner, mapButton.Close = nil, nil
 end
 
--- Over the owner, in UIParent's coordinates, a level above it
+-- Over the owner, in UIParent's coordinates, one strata above the window: the window is a toplevel frame, so every
+-- click in it raises it and its buttons within their strata, which would lift the pane's button over a secure button
+-- laid in the same strata
 local function PlaceOver(owner)
     local left, bottom = owner:GetLeft(), owner:GetBottom()
     if not left then
         return false
     end
     local scale = owner:GetEffectiveScale() / UIParent:GetEffectiveScale()
-    mapButton:SetFrameStrata(owner:GetFrameStrata())
-    mapButton:SetFrameLevel(owner:GetFrameLevel() + 5)
+    mapButton:SetFrameStrata("DIALOG")
+    mapButton:SetFrameLevel(2)
     mapButton:ClearAllPoints()
     mapButton:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", left * scale, bottom * scale)
     mapButton:SetSize(owner:GetWidth() * scale, owner:GetHeight() * scale)
@@ -467,8 +469,7 @@ if help.maps then
                     ReleaseMapButton()
                 end
             end)
-            -- The mouse reaches the pane's button only when the window was raised over the secure one or moved away
-            -- from it: put it back over
+            -- The mouse reaches the pane's button only when the window moved away from the secure one: put it back over
             owner:HookScript("OnEnter", function(self)
                 if mapButton.Owner == self and not InCombat() then
                     PlaceOver(self)
@@ -490,9 +491,9 @@ if help.maps then
             return ("%d,%d %dx%d"):format(floor(frame:GetLeft() * scale + 0.5), floor(frame:GetBottom() * scale + 0.5),
                 floor(frame:GetWidth() * scale + 0.5), floor(frame:GetHeight() * scale + 0.5))
         end
-        DebugMapState(("laid over the pane's button (%s %d at %s, shown %s), own level %d at %s, clicking %s"):format(
-            owner:GetFrameStrata(), owner:GetFrameLevel(), ScreenRect(owner), tostring(owner:IsShown()), mapButton:GetFrameLevel(),
-            ScreenRect(mapButton), delegate:GetDebugName()))
+        DebugMapState(("laid over the pane's button (%s %d at %s, shown %s), own %s %d at %s, clicking %s"):format(
+            owner:GetFrameStrata(), owner:GetFrameLevel(), ScreenRect(owner), tostring(owner:IsShown()), mapButton:GetFrameStrata(),
+            mapButton:GetFrameLevel(), ScreenRect(mapButton), delegate:GetDebugName()))
         return true
     end
 
