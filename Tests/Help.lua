@@ -112,8 +112,7 @@ help.Scenarios = {
             end
             return ("missing=%d"):format(missing)
         end,
-        Recorded = "missing=19", -- every picture waits for the pictures run; Guide's is Retail only
-        RecordedClassic = "missing=18",
+        Recorded = "missing=0",
         Target = "missing=0"},
     {Name = "show-me",
         Observe = function()
