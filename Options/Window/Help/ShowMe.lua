@@ -70,19 +70,25 @@ local function WhenRowShown(func, tries)
     end
 end
 
--- test(id, achievement): the latest achievements this character earned are tried first, then all the addon knows; only
--- one with a category can be selected (KrowiAF_SelectAchievement errors without one)
+-- One the window shows as itself: with Collapse Chain on it selects a chain's next step instead when that one is
+-- completed (Filters.lua GetHighestAchievementWhenCollapseSeries), and only one with a category can be selected at all
+-- (KrowiAF_SelectAchievement errors without one)
+local function Selectable(achievement)
+    return achievement.Category and not select(2, addon.GetNextAchievement(achievement))
+end
+
+-- test(id, achievement): the latest achievements this character earned are tried first, then all the addon knows
 local function PickAchievement(test)
     if GetLatestCompletedAchievements then
         for _, id in ipairs({GetLatestCompletedAchievements()}) do
             local achievement = addon.Data.Achievements[id]
-            if achievement and achievement.Category and test(id, achievement) then
+            if achievement and Selectable(achievement) and test(id, achievement) then
                 return achievement
             end
         end
     end
     for id, achievement in next, addon.Data.Achievements do
-        if achievement.Category and test(id, achievement) then
+        if Selectable(achievement) and test(id, achievement) then
             return achievement
         end
     end
@@ -246,8 +252,8 @@ end
 function scenes.rewards(ready)
     local achievement = PickAchievement(function(id) return NotEarned(id) and HasMountPreview(id) end) or PickAchievement(HasMountPreview)
     ShowAchievement(achievement, function(row, selected)
-        local frame = KrowiAF_RewardPreview
-        if not (frame:IsShown() and frame.Pinned and frame.OwnerButton == row) then
+        local frame = KrowiAF_RewardPreview -- the list reuses row frames, so the achievement is checked too
+        if not (frame:IsShown() and frame.Pinned and frame.OwnerButton == row and frame.OwnerAchievementId == selected.Id) then
             addon.Gui.RewardPreview:TogglePin(row, selected.Id)
         end
         Ready(ready, {Row = row, Achievement = selected, Preview = frame})
@@ -262,7 +268,7 @@ function scenes.guides(ready)
     end
     ShowAchievement(achievement, function(row, selected)
         local panel = addon.Gui.Guide.Panel
-        if not (panel.Frame and panel.Frame:IsShown() and panel.Frame.Pinned and panel.Frame.OwnerButton == row) then
+        if not (panel.Frame and panel.Frame:IsShown() and panel.Frame.Pinned and panel.Frame.OwnerButton == row and panel.Frame.Achievement == selected) then
             panel:TogglePin(row, selected)
         end
         Ready(ready, {Row = row, Achievement = selected, Panel = panel.Frame})
@@ -292,10 +298,13 @@ local function ShowPlaceholders(ready, worldFirst)
     end
     local options = addon.Options.db.profile.EventReminders
     local order = worldFirst and {eventTypes[3], eventTypes[2], eventTypes[1]} or eventTypes
+    -- only the free places: Blizzard's queue also takes alerts it cannot show yet and shows them later, one batch per click
+    local pool = system.SubSystem.alertFramePool
+    local free = options.PopUps.MaxAlerts - (pool and pool:GetNumActive() or 0)
     local shown, endTime = 0, GetServerTime() + 2 * 60 * 60
     for _, eventType in ipairs(order) do
         for _, event in next, addon.Data.Events[KrowiAF.Enum.EventType[eventType.Type]] or {} do
-            if shown < options.PopUps.MaxAlerts and options[eventType.On][event.Id] and event.Category then
+            if shown < free and options[eventType.On][event.Id] and event.Category then
                 local name = event.Name or event.Category.Name or L["Placeholder"]
                 local placeholder = setmetatable({EventDetails = {Name = name, EndTime = endTime}}, {__index = event})
                 if system:AddAlert(placeholder, options.PopUps.FadeDelay) then
@@ -379,16 +388,21 @@ local function InCombat()
 end
 
 local function ReleaseMapButton()
-    if not mapButton or InCombatLockdown() then
+    if not mapButton then
+        return
+    end
+    if InCombatLockdown() then -- a protected button cannot hide now; once combat ends, unless laid over again by then
+        mapButton.ReleasePending = true
+        mapButton:RegisterEvent("PLAYER_REGEN_ENABLED")
         return
     end
     if mapButton.Owner then
         mapButton.Owner:UnlockHighlight()
     end
-    mapButton:UnregisterEvent("PLAYER_REGEN_DISABLED")
+    mapButton:UnregisterAllEvents()
     mapButton:Hide()
     mapButton:ClearAllPoints()
-    mapButton.Owner, mapButton.Close = nil, nil
+    mapButton.Owner, mapButton.Close, mapButton.ReleasePending = nil, nil, nil
 end
 
 -- Over the owner, in UIParent's coordinates, one strata above the window: the window is a toplevel frame, so every
@@ -405,6 +419,18 @@ local function PlaceOver(owner)
     mapButton:ClearAllPoints()
     mapButton:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", left * scale, bottom * scale)
     mapButton:SetSize(owner:GetWidth() * scale, owner:GetHeight() * scale)
+    return true
+end
+
+-- Lays the button over its owner and shows it; false while the owner has no position yet (its first draw)
+local function LayOver(owner)
+    if not PlaceOver(owner) then
+        return false
+    end
+    mapButton.ReleasePending = nil
+    mapButton:RegisterEvent("PLAYER_REGEN_DISABLED")
+    mapButton.DebugTint:SetShown(addon.Diagnostics.DebugEnabled() and true or false)
+    mapButton:Show()
     return true
 end
 
@@ -434,7 +460,15 @@ local function CreateMapButton()
     button:SetScript("OnMouseDown", function()
         DebugMapState("a mouse button went down on the secure button")
     end)
-    button:SetScript("OnEvent", ReleaseMapButton)
+    button:SetScript("OnEvent", function(self, event)
+        if event == "PLAYER_REGEN_ENABLED" then
+            self:UnregisterEvent(event)
+            if not self.ReleasePending then -- the window laid it over again when combat ended
+                return
+            end
+        end
+        ReleaseMapButton()
+    end)
     -- In debug mode the secure button shows as a red box, to see where it lies and what covers it
     button.DebugTint = button:CreateTexture(nil, "OVERLAY")
     button.DebugTint:SetAllPoints()
@@ -469,31 +503,35 @@ if help.maps then
                     ReleaseMapButton()
                 end
             end)
-            -- The mouse reaches the pane's button only when the window moved away from the secure one: put it back over
+            -- The mouse reaches the pane's button only when the secure one is not over it (the window moved, or the
+            -- button had no position yet when the section was drawn): lay it over again
             owner:HookScript("OnEnter", function(self)
                 if mapButton.Owner == self and not InCombat() then
-                    PlaceOver(self)
+                    LayOver(self)
                 end
             end)
         end
         mapButton:SetAttribute("clickbutton", delegate)
         mapButton.Owner, mapButton.Close = owner, close
-        if not PlaceOver(owner) then
-            DebugMapState("the pane's button has no position yet")
-            ReleaseMapButton()
+        if not LayOver(owner) then
+            DebugMapState("the pane's button has no position yet: tried again next frame")
+            C_Timer.After(0, function()
+                if mapButton.Owner == owner and owner:IsVisible() and not InCombat() then
+                    LayOver(owner)
+                end
+            end)
             return true
         end
-        mapButton:RegisterEvent("PLAYER_REGEN_DISABLED")
-        mapButton.DebugTint:SetShown(addon.Diagnostics.DebugEnabled() and true or false)
-        mapButton:Show()
-        local function ScreenRect(frame)
-            local scale = frame:GetEffectiveScale()
-            return ("%d,%d %dx%d"):format(floor(frame:GetLeft() * scale + 0.5), floor(frame:GetBottom() * scale + 0.5),
-                floor(frame:GetWidth() * scale + 0.5), floor(frame:GetHeight() * scale + 0.5))
+        if addon.Diagnostics.DebugEnabled() then
+            local function ScreenRect(frame)
+                local scale = frame:GetEffectiveScale()
+                return ("%d,%d %dx%d"):format(floor(frame:GetLeft() * scale + 0.5), floor(frame:GetBottom() * scale + 0.5),
+                    floor(frame:GetWidth() * scale + 0.5), floor(frame:GetHeight() * scale + 0.5))
+            end
+            DebugMapState(("laid over the pane's button (%s %d at %s, shown %s), own %s %d at %s, clicking %s"):format(
+                owner:GetFrameStrata(), owner:GetFrameLevel(), ScreenRect(owner), tostring(owner:IsShown()), mapButton:GetFrameStrata(),
+                mapButton:GetFrameLevel(), ScreenRect(mapButton), delegate:GetDebugName()))
         end
-        DebugMapState(("laid over the pane's button (%s %d at %s, shown %s), own %s %d at %s, clicking %s"):format(
-            owner:GetFrameStrata(), owner:GetFrameLevel(), ScreenRect(owner), tostring(owner:IsShown()), mapButton:GetFrameStrata(),
-            mapButton:GetFrameLevel(), ScreenRect(mapButton), delegate:GetDebugName()))
         return true
     end
 

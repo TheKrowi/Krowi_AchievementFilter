@@ -137,18 +137,12 @@ local function TabButtons()
     return buttons
 end
 
-local function OpenMenu(level)
+-- The menu a scene opened: Retail's menu manager's open menu, Mists' first drop-down list
+local function OpenMenu()
     if addon.Util.IsModern then
-        local manager = Menu.GetManager()
-        if level == 1 then
-            return manager:GetOpenMenu()
-        end
-        -- the manager's stack of open menus (Blizzard_Menu/Menu.lua MenuManagerMixin); level 2 is the submenu the mouse opened
-        local ok, menu = pcall(function() return manager.menus:GetValue(level) end)
-        return ok and menu or nil
+        return Menu.GetManager():GetOpenMenu()
     end
-    local list = _G["DropDownList" .. level]
-    return list and list:IsShown() and list or nil
+    return DropDownList1 and DropDownList1:IsShown() and DropDownList1 or nil
 end
 
 local function CloseMenus()
@@ -212,7 +206,9 @@ end
 
 local function FindLook(look)
     for _, achievement in next, addon.Data.Achievements do
-        if achievement.Category and not achievement.IsTracking and HeaderLook(achievement) == look then
+        -- shown as itself: with Collapse Chain on the list shows a chain's next step instead when that one is completed
+        if achievement.Category and not achievement.IsTracking and not select(2, addon.GetNextAchievement(achievement))
+            and HeaderLook(achievement) == look then
             return achievement
         end
     end
@@ -252,10 +248,13 @@ local function ColorStep(look)
         Text = ("a row with the %s header"):format(look:lower()),
         Run = function()
             KrowiAF_SearchBoxFrame:SetText("") -- the list must show the category, not search results
-            -- green, yellow and red headers and the blue warband one are options; on for these rows, back at the end
+            -- green, yellow and red headers and the blue warband one are options; on for these rows, back at the end.
+            -- The player's own values wait in the saved variables, so a /reload mid-run still puts them back at login.
             if not live.HeaderColors then
                 local achievements = addon.Options.db.profile.Achievements
-                live.HeaderColors = {Temporarily = achievements.TemporarilyObtainableHeaderColors, Warband = achievements.WarbandHeaderColor}
+                live.HeaderColors = {TemporarilyObtainableHeaderColors = achievements.TemporarilyObtainableHeaderColors,
+                    WarbandHeaderColor = achievements.WarbandHeaderColor}
+                KrowiAF_DebugTable.PicturesRestore = live.HeaderColors
                 achievements.TemporarilyObtainableHeaderColors, achievements.WarbandHeaderColor = true, true
             end
             live.Look = FindLook(look)
@@ -314,9 +313,9 @@ steps = {
     ColorStep("Yellow"),
     ColorStep("Red"),
     SceneStep("filters", "FilterMenu", "filters", "the filter menu", function()
-        return {{Frame = OpenMenu(1), MaxHeight = 360}}
+        return {{Frame = OpenMenu(), MaxHeight = 360}}
     end, function()
-        return OpenMenu(1) ~= nil, "no menu is open"
+        return OpenMenu() ~= nil, "no menu is open"
     end),
     {
         Name = "search",
@@ -403,9 +402,9 @@ steps = {
     -- The menu shows Go to with its arrow; its submenu is not taken: Retail's menu manager keeps its open menus where
     -- addon code cannot read them (the 2026-10-25 run found Menu.GetManager().menus nil)
     SceneStep("menu", "MenuMain", "rightclick", "the right-click menu", function()
-        return {OpenMenu(1)}
+        return {OpenMenu()}
     end, function()
-        return OpenMenu(1) ~= nil, "no menu is open"
+        return OpenMenu() ~= nil, "no menu is open"
     end),
     {
         Name = "popout",
@@ -543,8 +542,15 @@ local function SelectSteps(what)
             tinsert(chosen, step)
         end
     end
+    -- a picture made of several steps (the colour rows) is redone whole: the tool builds it from its newest run's parts
+    local pictures = {}
     for _, step in ipairs(steps) do
         if step.Number == number or step.Name == wanted or step.Picture:lower() == wanted then
+            pictures[step.Picture] = true
+        end
+    end
+    for _, step in ipairs(steps) do
+        if pictures[step.Picture] then
             AddStep(byName[step.Needs])
             AddStep(step)
         end
@@ -556,6 +562,33 @@ function SetBanner(text)
     local step = live.Steps[live.StepIndex]
     banner.Text:SetText(("Krowi's Achievement Filter pictures %d/%d: %s"):format(step and step.Number or live.StepIndex, #steps, text))
 end
+
+-- The header colour options the colour rows switched on, back to the player's own values: at the end of the run, or at
+-- the next login when a /reload cut the run short
+local function RestoreHeaderColors()
+    local saved = KrowiAF_DebugTable and KrowiAF_DebugTable.PicturesRestore
+    if not saved then
+        return
+    end
+    local achievements = addon.Options.db.profile.Achievements
+    for option, value in next, saved do
+        achievements[option] = value
+    end
+    KrowiAF_DebugTable.PicturesRestore = nil
+    if KrowiAF_SummaryFrame then
+        KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow() -- as the options' own setters do (Options/Layout.lua)
+    end
+    if KrowiAF_AchievementsFrame and KrowiAF_AchievementsFrame:IsShown() then
+        KrowiAF_AchievementsFrame:ForceUpdate()
+    end
+end
+
+local restoreAtLogin = CreateFrame("Frame")
+restoreAtLogin:RegisterEvent("PLAYER_LOGIN")
+restoreAtLogin:SetScript("OnEvent", function(self)
+    self:UnregisterAllEvents()
+    RestoreHeaderColors()
+end)
 
 -- The run goes into the saved variables when it starts and each picture is added to it as it is taken, so a /reload
 -- in the middle of a run keeps what it took
@@ -595,17 +628,10 @@ local function Restore()
     if not live.WindowWasShown and AchievementFrame then
         AchievementFrame:Hide()
     end
-    if live.DebugInfo ~= nil then
-        addon.Options.db.profile.EnableDebugInfo = live.DebugInfo
+    if live.DebugEnabled then
+        addon.Diagnostics.DebugEnabled = live.DebugEnabled
     end
-    if live.HeaderColors then
-        local achievements = addon.Options.db.profile.Achievements
-        achievements.TemporarilyObtainableHeaderColors = live.HeaderColors.Temporarily
-        achievements.WarbandHeaderColor = live.HeaderColors.Warband
-        if KrowiAF_AchievementsFrame and KrowiAF_AchievementsFrame:IsShown() then
-            KrowiAF_AchievementsFrame:ForceUpdate()
-        end
-    end
+    RestoreHeaderColors()
 end
 
 -- What an earlier step left open, so it does not show through this step's picture
@@ -672,7 +698,13 @@ local function Capture()
         Add("FAIL", reason or "the check failed")
     else
         local cutOk, items = pcall(step.Cut)
-        local rectangle = cutOk and items and Rectangle(items)
+        local rectangle
+        if cutOk and items then
+            cutOk, rectangle = pcall(Rectangle, items)
+            if not cutOk then
+                items, rectangle = rectangle, nil -- the error, for the line below
+            end
+        end
         if not rectangle then
             Add("FAIL", "nothing on screen to cut out" .. (cutOk and "" or (": " .. tostring(items))))
         else
@@ -815,6 +847,10 @@ addon.Tests.Ready.pictures = function()
     if not Scenes() then
         return false, "the help scenes are not loaded"
     end
+    -- the run closes only the menus it opens: closing one of Blizzard's from addon code would release its frames tainted
+    if addon.Util.IsModern and Menu.GetManager():IsAnyMenuOpen() or not addon.Util.IsModern and DropDownList1 and DropDownList1:IsShown() then
+        return false, "close the open menu first"
+    end
     return true
 end
 
@@ -851,21 +887,23 @@ addon.Tests.Suites.pictures = function(done, what)
     }
     local format, quality = C_CVar.GetCVar("screenshotFormat"), tonumber(C_CVar.GetCVar("screenshotQuality"))
     tinsert(live.Observations, ("screenshots: %s, quality %s"):format(tostring(format), tostring(quality)))
-    -- debug mode adds its own lines to the tooltips; off while the pictures are taken, back at the end
-    live.DebugInfo = addon.Options.db.profile.EnableDebugInfo
-    addon.Options.db.profile.EnableDebugInfo = false
+    -- debug mode adds its own lines to the tooltips: off while the pictures are taken, in memory only, so a /reload
+    -- mid-run cannot leave the saved option changed
+    live.DebugEnabled = addon.Diagnostics.DebugEnabled
+    addon.Diagnostics.DebugEnabled = function()
+        return false
+    end
     if format == "jpg" and quality and quality < 8 then
         tinsert(live.Observations, "jpg quality below 8 blurs small text: type /console screenshotQuality 10 in game and run the pictures again")
     end
     if not banner then
         CreateFrames()
     end
-    -- The options window and the addon's other windows stay out of the scenes
+    -- The options window stays out of the scenes; an open menu was refused by the Ready check
     local window = addon.Options.Window
     if window and window.Controller and window.Controller:IsShown() then
         window.Controller:GetFrame():Hide()
     end
-    CloseMenus()
     backdrop:Show()
     banner:RegisterEvent("SCREENSHOT_FAILED")
     banner:RegisterEvent("PLAYER_REGEN_DISABLED")

@@ -19,6 +19,7 @@ Gui/Guide/Panel.lua OnUpdate -                                                  
 Gui/Guide/Panel.lua RegisterEvent:PLAYER_REGEN_DISABLED -                              # entering combat, once the guide panel was used
 Gui/Guide/Panel.lua RegisterEvent:PLAYER_REGEN_ENABLED -                               # leaving combat, once the guide panel was used
 Options/Window/Help/ShowMe.lua RegisterEvent:PLAYER_REGEN_DISABLED -                   # only while the map's Show me button lies over the options window's help pane
+Options/Window/Help/ShowMe.lua RegisterEvent:PLAYER_REGEN_ENABLED -                    # only after combat refused to hide the map's Show me button; unregistered on its first run
 Gui/SnapFrame/SnapFrameMixin.lua OnUpdate -                                            # only while a popout is dragged
 Gui/EventReminder/AlertFrame/AlertFrame.xml OnUpdate -                                 # only while an event pop-up or side button is shown
 Gui/AchievementCalendar/Frame/Frame.xml OnUpdate -                                     # only while the achievement calendar is shown
