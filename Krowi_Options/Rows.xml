@@ -53,7 +53,7 @@
                 <FontString parentKey="Text" inherits="GameFontDisable" justifyH="LEFT" justifyV="TOP">
                     <Anchors>
                         <Anchor point="TOPLEFT" x="16" y="-4"/>
-                        <Anchor point="RIGHT" x="-16"/>
+                        <Anchor point="BOTTOMRIGHT" x="-16"/>
                     </Anchors>
                 </FontString>
             </Layer>
@@ -230,7 +230,7 @@
             </Layer>
         </Layers>
         <Frames>
-            <CheckButton parentKey="Show" inherits="Krowi_OptionsCheckButtonTemplate">
+            <CheckButton parentKey="ShowCheck" inherits="Krowi_OptionsCheckButtonTemplate">
                 <Anchors>
                     <Anchor point="LEFT" x="34"/>
                 </Anchors>

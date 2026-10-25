@@ -285,10 +285,11 @@ function Krowi_OptionsGridRowMixin:OnLeave()
 end
 
 -- [[ The tab list: a tab's position, whether it shows, and arrows to move it ]] --
+-- The check box is ShowCheck, not Show: a child key named Show replaces the row's own Show method.
 Krowi_OptionsTabRowMixin = {}
 
 function Krowi_OptionsTabRowMixin:OnLoad()
-    self.Show:SetScript("OnClick", function()
+    self.ShowCheck:SetScript("OnClick", function()
         local option = self.Element.Item.Show
         option:Set(not option:Get())
         self.Window:OnOptionChanged(option)
@@ -301,7 +302,7 @@ function Krowi_OptionsTabRowMixin:OnLoad()
         self.Element.Item.MoveDown()
         self.Window:ReloadSection()
     end)
-    for _, control in ipairs({ self.Show, self.Up, self.Down }) do
+    for _, control in ipairs({ self.ShowCheck, self.Up, self.Down }) do
         control:HookScript("OnEnter", function() self:OnEnter() end)
         control:HookScript("OnLeave", function() self:OnLeave() end)
     end
@@ -321,8 +322,8 @@ end
 function Krowi_OptionsTabRowMixin:Refresh()
     local option = self.Element.Item.Show
     if option then
-        self.Show:SetChecked(option:Get() and true or false)
-        self.Show:SetEnabled(not option:IsDisabled())
+        self.ShowCheck:SetChecked(option:Get() and true or false)
+        self.ShowCheck:SetEnabled(not option:IsDisabled())
     end
 end
 

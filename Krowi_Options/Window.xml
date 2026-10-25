@@ -51,7 +51,7 @@
                 <FontString parentKey="Text" inherits="GameFontHighlight" justifyH="LEFT" justifyV="TOP">
                     <Anchors>
                         <Anchor point="TOPLEFT" x="4" y="-2"/>
-                        <Anchor point="RIGHT" x="-4"/>
+                        <Anchor point="BOTTOMRIGHT" x="-4"/>
                     </Anchors>
                 </FontString>
             </Layer>

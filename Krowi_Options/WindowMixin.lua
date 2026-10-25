@@ -116,6 +116,7 @@ function Krowi_OptionsWindowMixin:OnLoad()
         self:StopMovingOrSizing()
         self.Saved.Size = { self:GetWidth(), self:GetHeight() }
         self:ReloadSection()
+        self:UpdateShowMe() -- a secure Show me button placed over ours follows it
     end)
 end
 
@@ -277,6 +278,7 @@ function Krowi_OptionsWindowMixin:OnDragStop()
     self:StopMovingOrSizing()
     local point, _, relativePoint, x, y = self:GetPoint(1)
     self.Saved.Point = { point, relativePoint, x, y }
+    self:UpdateShowMe() -- a secure Show me button placed over ours follows it
 end
 
 function Krowi_OptionsWindowMixin:Open(sectionId)
