@@ -1,5 +1,5 @@
 # Intent: The right-click menu breaks on an achievement the game does not know
-Author: Krowi (maintainer), captured by Claude. Source: `docs/backlog.md`, "From the latent-bugs review (2026-10-13, PR #339)"; found while reviewing that work item's fix, not reported by a player. Status: accepted
+Author: Krowi (maintainer), captured by Claude. Source: `docs/backlog.md`, "From the latent-bugs review (2026-10-13, PR #339)"; found while reviewing that work item's fix, not reported by a player. Status: done
 
 ## Problem
 The right-click menu of an achievement links to related achievements: other faction, required for, part of a chain and, in the Current Zone and Selected Zone categories, the achievement's own first category. When one of those links points at an achievement the player's game client does not know, building the menu raises a Lua error. The player gets the error and a menu that is cut off or missing entirely, for every achievement that carries such a link, every time it is right-clicked.

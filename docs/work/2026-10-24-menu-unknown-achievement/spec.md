@@ -1,5 +1,5 @@
 # Spec: The right-click menu breaks on an achievement the game does not know
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. Right-clicking any achievement builds its whole menu without a Lua error on Retail and Classic. That holds even when a "go to" entry links to an id the player's client does not know, whether the addon registers that id or not. Every section after "Go to" (Guide, Pop out, reward preview, transmog sets, pet battle links, More) and the plugin entries (IAT) are there.

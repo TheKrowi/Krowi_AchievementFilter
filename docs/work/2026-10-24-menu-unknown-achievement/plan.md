@@ -1,5 +1,5 @@
 # Plan: The right-click menu breaks on an achievement the game does not know
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 Approved by Krowi (maintainer) on 2026-10-25 in plan mode. It touches shared GUI code (the right-click menu, the browsing-history tooltip), so it waited for that gate. The in-game before-run is the second gate.
 
@@ -23,7 +23,12 @@ Results and departures:
   - **A name helper** in place of the three call sites, and its allocation: Krowi chose option 1 at the design gate. The `Flags` object `addon.GetAchievementInfo` builds is garbage only when a player opens a menu or hovers an arrow, not in a background job.
   - **The shared copy of `DescribeError` and the unknown-id scan:** each suite runs on its own headlessly, and `Tests/Tests.lua` is not loaded there.
   - **The tab indentation** of `AchievementMenu.lua` matches the rest of that file.
-  - **The spaces around the placeholder name** (" * Placeholder for 1 *  (Missing)") are left for the after-run's screenshots to judge.
+  - **The spaces around the placeholder name** (" * Placeholder for 1 *  (Missing)") are left as the achievement list shows them. The Mists screenshot of the history tooltip showed the extra space after ">" as barely visible.
+- **After-run, 2026-10-25, from 4a62bf17 (Retail 12.1.5, Mists 5.5.4).**
+  - `/kaftest menu`: 5 passed with every target met, 0 differences from headless, on both clients (the placeholder 7295 on Mists, a stand-in on Retail).
+  - `/kaftest navigation`: the history scenario got "placeholder" on both clients. Mists had 9 passed; Retail had 8 passed and the same skip of Blizzard's hidden Achievements tab.
+  - BugGrabber held no KAF error on either client.
+  - By hand on Mists, with placeholders shown: the back arrow's tooltip listed 7295 as "… > Valley of the Four Winds > Quests >  * Placeholder for 7295 *" without an error (screenshot `WoWScrnShot_102526_093645.jpg`). The menu of 7295 was checked by the suite, not by hand.
 
 ## Context
 The achievement right-click menu and the browsing-history tooltip take an achievement's name from `GetAchievementInfo`, which is nil for an id the client does not know. That raises "attempt to concatenate a nil value" in the "go to" entries (`Gui/RightClickMenu/AchievementMenu/AchievementMenu.lua:14,17,22`) and in the history line (`Gui/BrowsingHistory/BrowsingHistory.lua:62`). A placeholder's menu also gets an empty title (`AchievementMenu.lua:43`). The decision (spec, option 1): use the placeholder name `addon.GetAchievementInfo` already gives (`Globals.lua:100-106`) and keep the enabled rule; the history tooltip is in scope.
