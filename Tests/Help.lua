@@ -68,7 +68,7 @@ help.Scenarios = {
             end
             return ("entries=%d missing=%s extra=%s"):format(count, Join(missing), Join(extra))
         end,
-        Recorded = "no help",
+        Recorded = "entries=23 missing=none extra=none",
         Target = "entries=23 missing=none extra=none"},
     {Name = "blocks",
         Observe = function()
@@ -93,7 +93,7 @@ help.Scenarios = {
             end
             return ("bad=%d unresolved=%d"):format(bad, unresolved)
         end,
-        Recorded = "no help",
+        Recorded = "bad=0 unresolved=0",
         Target = "bad=0 unresolved=0"},
     {Name = "pictures",
         Observe = function()
@@ -112,7 +112,8 @@ help.Scenarios = {
             end
             return ("missing=%d"):format(missing)
         end,
-        Recorded = "no help",
+        Recorded = "missing=20", -- every picture waits for the pictures run; Guide's is Retail only
+        RecordedClassic = "missing=19",
         Target = "missing=0"},
     {Name = "show-me",
         Observe = function()
@@ -126,7 +127,7 @@ help.Scenarios = {
             end
             return Join(ids)
         end,
-        Recorded = "no help",
+        Recorded = "none",
         Target = "achievements,calendar,categories,eventlist,events,filters,guides,maps,popout,rewards,rightclick,search,summary,tabs,tooltips,window",
         TargetClassic = "achievements,calendar,categories,eventlist,events,filters,maps,popout,rewards,rightclick,search,summary,tabs,tooltips,window"},
     {Name = "map-agrees",
