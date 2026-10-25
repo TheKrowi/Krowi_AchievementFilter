@@ -33,7 +33,10 @@
 --         their fixed schedules, and what the watcher learns from the POIs), tracking
 --         (Gui/WindowFrames/AchievementButton/TrackingSlots.lua: what the Track button does at the tracking cap), options
 --         (the options window's model over the real AceConfig tables, on the whole-addon load of options-env.lua), help
---         (Options/Window/Help/: the explanations, pictures and Show me the window's help pane reads, on the same load)
+--         (Options/Window/Help/: the explanations, pictures and Show me the window's help pane reads, on the same load),
+--         earned (Gui/WindowFrames/CategoriesFrame/CategoriesFrameMixin.lua with Api/API.lua and
+--         Data/AchievementCache.lua on the real data load: what the achievement window recounts when an achievement is
+--         earned and then opened in it)
 --
 -- Retail model is 12.1: the Blizzard_GameMenuEsc handler registry, the UI panel manager (its slots stay
 -- empty because the addon shows the achievement window with a plain Show), UISpecialFrames, static
@@ -1618,6 +1621,158 @@ suites.help = function(c)
     setfenv(chunk, env)
     chunk("Krowi_AchievementFilter", addon)
     return addon.Tests.Help.Run(), "Tests/Help.lua", addon.Tests.Help.Observations()
+end
+
+-- The real data load of client-env.lua with Api/API.lua's select path, then the window's counting on top: Globals.lua,
+-- Filters.lua (its defaults through a model of AceDB's New, which fills a profile from its defaults),
+-- Data/SpecialCategories.lua (each tab's special top-level categories), Data/AchievementCache.lua
+-- (addon.MarkEarnedInWindow) and Gui/WindowFrames/CategoriesFrame/CategoriesFrameMixin.lua. Modelled (sources in
+-- Tests/Earned.lua and Gui/Gui.lua): the window's tab switching by its effect on the categories frame, which shows with
+-- the window when one of the addon's tabs is selected and is hidden and shown again by a tab switch
+-- (gui:ToggleAchievementFrame, the tab's ShowSubFrames through the AchievementFrame_ShowSubFrame hook); the scroll box and
+-- data provider; GetAchievementInfo (every registered id exists, every third one and the scenarios' two are completed);
+-- no obtainable states and no current zone, which the counts read but the recount labels do not depend on.
+suites.earned = function(c)
+    local scriptDir = ((arg and arg[0]) or ""):gsub("\\", "/"):match("^(.*)/") or "."
+    local clientEnv = assert(loadfile(scriptDir .. "/client-env.lua"))()
+    local ctx = clientEnv.New(root, c.client)
+    local failures = {}
+    local function fail(label) return function(_, err) failures[#failures + 1] = label .. ": " .. tostring(type(err) == "table" and err.msg or err) end end
+    ctx:LoadFiles{ ParseError = fail("parse"), RuntimeError = fail("load") }
+    ctx:RunPipeline{ StepError = fail("step"), TaskError = fail("task") }
+    assert(#failures == 0, "data load failed (run load-data.lua): " .. tostring(failures[1]))
+    local env, addon = ctx.env, ctx.addon
+    env.bit = { band = function(a, b) -- Objects/Flags.lua; the vendored Lua has no bit library
+        local result, place = 0, 1
+        while a > 0 and b > 0 do
+            if a % 2 == 1 and b % 2 == 1 then result = result + place end
+            a, b, place = math.floor(a / 2), math.floor(b / 2), place * 2
+        end
+        return result
+    end }
+    local completed = { [862] = true, [605] = true }
+    env.GetAchievementInfo = function(id)
+        if not addon.Data.Achievements[id] then return nil end
+        local done = completed[id] or id % 3 == 0
+        return id, "Achievement " .. id, 10, done, nil, nil, nil, "", 0, 0, "", false, done, "", false
+    end
+    env.GetPreviousAchievement = function() return nil end
+    env.C_Map = { GetBestMapForUnit = function() return nil end }
+    env.LibStub = function(name)
+        assert(name == "AceDB-3.0", "LibStub " .. tostring(name) .. " is not modelled")
+        return { New = function(_, _, defaults) return { profile = env.CopyTable(defaults.profile), RegisterCallback = function() end } end }
+    end
+    local util = addon.Util -- the Krowi_Util functions the loaded files call, as Libs/Krowi_Util/Krowi_Util.lua has them
+    function util.DeepCopyTable(src, dest)
+        for k, v in pairs(src) do
+            if type(v) == "table" then dest[k] = {} util.DeepCopyTable(v, dest[k]) else dest[k] = v end
+        end
+    end
+    function util.WriteNestedKeys(tbl, keys, value)
+        local prev, last
+        for _, k in ipairs(keys) do
+            last, prev, tbl = k, tbl, tbl[k]
+            if tbl == nil then tbl = {} prev[k] = tbl end
+        end
+        prev[last] = value
+    end
+    function util.TableFindKeyByValue(t, value) for k, v in next, t do if v == value then return k end end end
+    function util.ConcatTables(t1, t2) if t2 then for _, e in next, t2 do table.insert(t1, e) end end return t1 end
+    function util.DelayFunction(_, _, func, ...) func(...) end -- the earn refresh runs at once instead of a second later
+    addon.Data.TemporaryObtainable = { GetObtainableState = function() return nil end }
+    addon.Options = { db = { profile = { -- Options/Defaults.lua, the keys these files read
+        Achievements = { EnableTabPriority = false },
+        Categories = { WatchList = { IgnoreFilters = true } },
+        Window = { MergeSmallCategoriesThreshold = 10, CategoriesFrameWidthOffset = 0 },
+        ShowPlaceholdersFilter = false,
+        -- Data/SpecialCategories.lua InjectDynamicOptions: on by default for the Summary on every tab and for every special
+        -- category on the Specials tab; the always visible Summary keeps an all filtered tab's list from being empty
+        AdjustableCategories = setmetatable({}, { __index = function(t, categoryType)
+            local byTab = setmetatable({}, { __index = function(_, index) return categoryType == "Summary" or addon.TabsOrder[index] == "Specials" end })
+            rawset(t, categoryType, byTab)
+            return byTab
+        end }),
+    } } }
+    addon.Tests = { Suites = {}, Ready = {} }
+    -- client-env's addon gives a stub for every missing key, which is truthy; the window's earn flags are nil in the game
+    -- until an earn sets them
+    local addonIndex = getmetatable(addon).__index
+    setmetatable(addon, { __index = function(t, k)
+        if type(k) == "string" and k:match("^AchievementEarnedUpdate") then return nil end
+        return addonIndex(t, k)
+    end })
+    for _, rel in ipairs({ "Globals.lua", "Filters.lua", "Data/SpecialCategories.lua", "Data/AchievementCache.lua",
+        "Gui/WindowFrames/CategoriesFrame/CategoriesFrameMixin.lua", "Tests/Earned.lua" }) do
+        local chunk = assert(loadstring(readFile(root .. "/" .. rel), "@" .. rel))
+        setfenv(chunk, env)
+        chunk("Krowi_AchievementFilter", addon)
+    end
+    addon.Filters:InjectDefaults()
+    addon.Filters:Load()
+    addon.SpecialCategories:Load()
+
+    local function AddFrame(name)
+        local frame = NewFrame(name, nil, true)
+        rawset(env, name, frame)
+        return frame
+    end
+    AddFrame("AchievementFrameCategories")
+    AddFrame("AchievementFrameCategoriesBG")
+    AddFrame("AchievementFrameWaterMark")
+    AddFrame("KrowiAF_SummaryFrame")
+    local achievementsFrame = AddFrame("KrowiAF_AchievementsFrame")
+    for _, method in ipairs({ "ClearFullSelection", "Update", "ForceUpdate", "ScrollToNearest" }) do achievementsFrame[method] = function() end end
+    achievementsFrame.ScrollBox = { GetDataProvider = function() return nil end } -- Api/API.lua's SelectAchievement stops there
+    local categoriesFrame = AddFrame("KrowiAF_CategoriesFrame")
+    for k, v in pairs(env.KrowiAF_CategoriesFrameMixin) do categoriesFrame[k] = v end
+    categoriesFrame:SetScript("OnShow", categoriesFrame.OnShow)
+    categoriesFrame:SetScript("OnHide", categoriesFrame.OnHide)
+    local dataProvider
+    categoriesFrame.ScrollBox = {
+        SetDataProvider = function(_, provider) dataProvider = provider end,
+        GetDataProvider = function() return dataProvider end,
+        ScrollToElementData = function() end,
+        SetScrollPercentage = function() end,
+    }
+    env.CreateDataProvider = function()
+        local provider = { elements = {} }
+        function provider:Insert(element) table.insert(self.elements, element) end
+        function provider:FindIndex(element) for index, e in ipairs(self.elements) do if e == element then return index end end end
+        return provider
+    end
+
+    local window = { Shown = false }
+    local buttons = {}
+    for name, tab in pairs(addon.Tabs) do
+        local button = { Index = name, Filters = tab.Filters, SelectedCategory = tab.Categories and tab.Categories[1] }
+        function button:GetCategories() return addon.Tabs[self.Index].Categories end
+        function button:ShowSubFrames() categoriesFrame:Hide() categoriesFrame:Show() end
+        buttons[name] = button
+    end
+    addon.Gui = {}
+    function addon.Gui:ToggleAchievementFrame(_, tabName)
+        if not window.Shown then
+            window.Shown = true
+            if self.SelectedTab then categoriesFrame:Show() end
+        end
+        local button = buttons[tabName]
+        if self.SelectedTab ~= button then
+            self.SelectedTab = button
+            button:ShowSubFrames()
+        end
+    end
+
+    local headless = {}
+    function headless.IsRetail() return c.isRetail end
+    function headless.Setup() return true end
+    function headless.CloseWindow()
+        window.Shown = false
+        categoriesFrame:Hide()
+    end
+    function headless.Select(id) env.KrowiAF_SelectAchievementFromID(id) end -- what the addon's AchievementFrame_SelectAchievement calls for a known achievement
+    function headless.Teardown() end
+    local observations = {}
+    return addon.Tests.Earned.Run(headless, observations), "Tests/Earned.lua", observations
 end
 
 -------------------------------------------------------------------------------------------------

@@ -178,6 +178,17 @@ function addon.ResetCache()
     coFinished = nil
 end
 
+-- What the achievement window redraws after an earn; Tests/Earned.lua calls it to simulate an earn without saving anything
+function addon.MarkEarnedInWindow(achievementId)
+    addon.AchievementEarnedUpdateCategoriesFrameOnNextShow = true
+    addon.AchievementEarnedUpdateSummaryFrameOnNextShow = true
+    addon.AchievementEarnedUpdateAchievementsFrameOnNextShow = true
+    local achievement = addon.Data.Achievements[achievementId]
+    if achievement then
+        achievement.IsTracked = nil
+    end
+end
+
 function addon.OnAchievementEarned(achievementId)
     if criteriaCache == nil then
         return -- Achievement window is not opened yet
@@ -186,12 +197,6 @@ function addon.OnAchievementEarned(achievementId)
     local characterGuid = UnitGUID("player")
     local achievementInfo = addon.GetAchievementInfoTable(achievementId)
     HandleAchievement(characterGuid, achievementInfo)
-    addon.AchievementEarnedUpdateCategoriesFrameOnNextShow = true
-    addon.AchievementEarnedUpdateSummaryFrameOnNextShow = true
-    addon.AchievementEarnedUpdateAchievementsFrameOnNextShow = true
-    local achievement = addon.Data.Achievements[achievementId]
-    if achievement then
-        achievement.IsTracked = nil
-    end
+    addon.MarkEarnedInWindow(achievementId)
     addon.Data.SavedData.AchievementData.RegisterNewAchievementEarned(achievementId)
 end

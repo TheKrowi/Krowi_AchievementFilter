@@ -47,7 +47,11 @@ function KrowiAF_CategoriesFrameMixin:OnEvent(event)
 	if event ~= "ACHIEVEMENT_EARNED" then
 		return
 	end
-	addon.Util.DelayFunction("KrowiAF_CategoriesFrame_OnEvent", 1, self.Update, self, true)
+	addon.Util.DelayFunction("KrowiAF_CategoriesFrame_OnEvent", 1, self.OnAchievementEarned, self)
+end
+
+function KrowiAF_CategoriesFrameMixin:OnAchievementEarned()
+	self:Update(true)
 end
 
 local function RestoreScrollPosition(frame)

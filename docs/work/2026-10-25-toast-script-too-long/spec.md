@@ -62,6 +62,12 @@ Smaller wastes on the same click (the scope question at the gate):
 - **Data snapshots:** none; no data changes.
 - **Player-facing text:** one changelog line under the next version, `### Fixed`.
 
+## Found on the way
+- **A tab whose list comes out empty recurses until the stack overflows.** When no category of the selected tab shows, `Update` sets the selected category to `displayCategories[1]`, which is nil, and calls the tab's `ShowSubFrames` (`CategoriesFrameMixin.lua:133-136`). That hides and shows the categories frame, whose `OnShow` runs `Update` again.
+  - The Summary is always visible by default, so this needs the Summary turned off for the tab and every achievement filtered out.
+  - The headless model overflowed this way before it was given the default.
+  - Not reproduced in game. Proposed for `docs/backlog.md`.
+
 ## Verification
 - **A new scenario suite** (name in the plan), on a real achievement of the Retail Expansions tab and one of Classic's, with the window closed and then open:
   - `earn-recount-on-select`: the number of achievement rows validated from the earn to the end of `AchievementFrame_SelectAchievement`. Recorded: the whole tab (7149 rows on Retail headless). Target: the earned achievement's top-level categories and the flexible ones.
