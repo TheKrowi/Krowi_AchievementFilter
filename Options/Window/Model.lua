@@ -58,7 +58,7 @@ function model.Options()
 end
 
 local function Claim(claims, path)
-    claims[path] = (claims[path] or 0) + 1
+    if path then claims[path] = (claims[path] or 0) + 1 end
 end
 
 function model.Coverage()
@@ -131,9 +131,10 @@ local function OtherValue(option, current)
     if option.Type == "input" then return (current or "") .. "x" end
 end
 
+-- AceConfig options only: the profile rows (no Node) switch, copy or delete the player's profiles
 local function Settable(option)
     local t = option.Type
-    return (t == "toggle" or t == "range" or t == "select" or t == "input") and option:CanSet() and not option.Entry.Locked
+    return option.Node ~= nil and (t == "toggle" or t == "range" or t == "select" or t == "input") and option:CanSet() and not option.Entry.Locked
 end
 
 -- Setting an option through the window and reading it back gives the value set; the player's value goes back after.
@@ -169,8 +170,10 @@ function model.Fingerprint()
     local parts = {}
     for _, item in ipairs(model.Options()) do
         local option = item.Option
-        local hasDefault, default = option:GetDefault()
-        parts[#parts + 1] = table.concat({ item.Section, option.Id, option.Type or "?", hasDefault and tostring(default) or "-" }, "|")
+        if option.Node then -- the profile rows stand apart from AceConfig; stage 2 draws them the same way
+            local hasDefault, default = option:GetDefault()
+            parts[#parts + 1] = table.concat({ item.Section, option.Id, option.Type or "?", hasDefault and tostring(default) or "-" }, "|")
+        end
     end
     table.sort(parts) -- the tab list follows the player's own tab order, which must not change the fingerprint
     return #parts, Hash(table.concat(parts, "\n"))
@@ -201,9 +204,71 @@ function model.CheckDefaults()
     return differences
 end
 
+-- the options of one section, built for that section only
+function model.SectionOptions(sectionId)
+    local list = {}
+    local section = source.Section(sectionId)
+    for _, element in ipairs(section and source.Elements(section) or {}) do
+        if element.Option then
+            list[#list + 1] = element.Option
+        elseif element.Kind == "Grid" then
+            for _, row in ipairs(element.Rows) do
+                for _, cell in ipairs(row.Cells) do list[#list + 1] = cell end
+            end
+        elseif element.Kind == "TabList" then
+            for _, item in ipairs(element.Items) do
+                if item.Show then list[#list + 1] = item.Show end
+            end
+        end
+    end
+    return list
+end
+
+-- The options of one section that differ from their default (the window's footer and its Defaults button)
+function model.ChangedCount(sectionId)
+    local count = 0
+    for _, option in ipairs(model.SectionOptions(sectionId)) do
+        if option.Node and option:IsChanged() then count = count + 1 end
+    end
+    return count
+end
+
+-- Options by label, description and group heading; explanations by text. The help track fills window.Help.
+function model.Search(text)
+    local results = {}
+    local needle = text:lower()
+    local function Has(value)
+        return type(value) == "string" and value:lower():find(needle, 1, true) ~= nil
+    end
+    for _, section in ipairs(window.Map.Sections) do
+        local heading = ""
+        for _, element in ipairs(source.Elements(section)) do
+            if element.Kind == "Header" then heading = element.Text or "" end
+            local option = element.Option
+            if option and not option:IsHidden() then
+                local label = option:GetLabel()
+                if Has(label) or Has(option:GetDescription()) or Has(heading) then
+                    results[#results + 1] = { SectionId = section.Id, Path = section.Name .. " · " .. heading, Label = label, OptionId = option.Id }
+                end
+            end
+        end
+        local help = window.Help and window.Help[section.Id]
+        if help then
+            for _, block in ipairs(help.Blocks or {}) do
+                local blockText = block.Text or block.Heading
+                if Has(blockText) or Has(block.Term) then
+                    results[#results + 1] = { SectionId = section.Id, Path = section.Name, Label = help.Title or section.Name }
+                    break
+                end
+            end
+        end
+    end
+    return results
+end
+
 function model.ResetSection(sectionId)
-    for _, item in ipairs(model.Options()) do
-        if item.Section == sectionId and Settable(item.Option) then pcall(item.Option.Reset, item.Option) end
+    for _, option in ipairs(model.SectionOptions(sectionId)) do
+        if Settable(option) then pcall(option.Reset, option) end
     end
 end
 

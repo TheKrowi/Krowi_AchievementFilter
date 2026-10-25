@@ -118,6 +118,7 @@ function source.NewOption(path, node, chain, keys, entry)
         Entry = entry,
         Indent = entry.Indent,
         Retail = entry.Retail,
+        Placeholder = entry.Placeholder,
     }, Option)
     local info = { options = addon.Options.OptionsTable, option = node, arg = node.arg, type = node.type, uiType = "dialog", uiName = "Krowi_Options" }
     for i, key in ipairs(keys) do info[i] = key end
@@ -148,6 +149,22 @@ end
 
 function Option:GetButtonText()
     return self.Entry.Button or self:GetLabel()
+end
+
+function Option:GetRange()
+    local node = self.Node
+    return node.softMin or node.min or 0, node.softMax or node.max or 100, node.bigStep or node.step or 1
+end
+
+-- a value as the window shows it: a check box as Checked or Unchecked, a choice as its text
+function Option:FormatValue(value)
+    if type(value) == "boolean" then return value and addon.Util.L["Checked"] or addon.Util.L["Unchecked"] end
+    if self.Type == "select" then
+        for _, pair in ipairs(self:GetValues()) do
+            if pair[1] == value then return tostring(pair[2]) end
+        end
+    end
+    return tostring(value)
 end
 
 function Option:Get()
@@ -261,6 +278,53 @@ end
 function source.NewKeyOption(label, slots)
     local option = setmetatable({ Id = slots[1].Id, Type = "key", Entry = { Label = label }, Slots = slots, Chain = slots[1].Chain, Info = slots[1].Info, Node = slots[1].Node }, Option)
     return option
+end
+
+-- --- profiles, drawn on AceDB's own API (AceDBOptions' tables call handler methods the window does not emulate) ----
+local Custom = setmetatable({}, { __index = Option })
+Custom.__index = Custom
+
+function Custom:GetLabel() return self.Label end
+function Custom:GetDescription() return self.Desc or "" end
+function Custom:GetNeedsReload() return false end
+function Custom:GetButtonText() return self.Button or self.Label end
+function Custom:Get() return self.GetFunc and self.GetFunc() end
+function Custom:Set(value) if self.SetFunc then self.SetFunc(value) end end
+function Custom:CanSet() return self.SetFunc ~= nil end
+function Custom:IsHidden() return false end
+function Custom:IsDisabled() return self.DisabledFunc and self.DisabledFunc() or false end
+function Custom:GetValues() return self.ValuesFunc and self.ValuesFunc() or {} end
+function Custom:GetDefault() return false end
+function Custom:IsChanged() return false end
+function Custom:Reset() end
+
+local function ProfileOptions(database)
+    local db = database == "Filters" and addon.Filters.db or addon.Options.db
+    local L = addon.L
+    local function Profiles(excludeCurrent)
+        local list = {}
+        local current = db:GetCurrentProfile()
+        for _, name in ipairs((db:GetProfiles({}))) do
+            if not (excludeCurrent and name == current) then list[#list + 1] = { name, name } end
+        end
+        table.sort(list, function(a, b) return a[1] < b[1] end)
+        return list
+    end
+    local function New(fields)
+        fields.Id = "profiles." .. database .. "." .. fields.Key
+        return setmetatable(fields, Custom)
+    end
+    return {
+        New{ Key = "current", Type = "select", Label = L["Current profile"], GetFunc = function() return db:GetCurrentProfile() end,
+            SetFunc = function(name) db:SetProfile(name) end, ValuesFunc = function() return Profiles(false) end },
+        New{ Key = "new", Type = "input", Label = L["New profile"], GetFunc = function() return "" end,
+            SetFunc = function(name) if name and name ~= "" then db:SetProfile(name) end end },
+        New{ Key = "copy", Type = "select", Label = L["Copy From"], Placeholder = L["Choose a profile"], GetFunc = function() return nil end,
+            SetFunc = function(name) db:CopyProfile(name) end, ValuesFunc = function() return Profiles(true) end },
+        New{ Key = "delete", Type = "select", Label = L["Delete a Profile"], Placeholder = L["Choose a profile"], GetFunc = function() return nil end,
+            SetFunc = function(name) db:DeleteProfile(name) end, ValuesFunc = function() return Profiles(true) end },
+        New{ Key = "reset", Type = "execute", Label = L["Reset Profile"], Button = L["Reset"], SetFunc = function() db:ResetProfile() end },
+    }
 end
 
 -- --- options by path, built once per session -------------------------------------------------------------------
@@ -420,7 +484,9 @@ function source.Elements(section)
             elseif group.Kind == "TabList" then
                 elements[#elements + 1] = TabList(group)
             elseif group.Kind == "Profiles" then
-                elements[#elements + 1] = { Kind = "Profiles", Database = group.Database }
+                for _, option in ipairs(ProfileOptions(group.Database)) do
+                    elements[#elements + 1] = { Kind = "Option", Option = option }
+                end
             else
                 local before = #elements
                 for _, entry in ipairs(group.Entries) do

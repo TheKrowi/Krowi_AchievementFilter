@@ -32,3 +32,8 @@ Gui/BlizzardOverrides.lua SetFocusedAchievement
 Gui/Gui.lua AchievementFrameFilterDropdown                                         # alias: the frame is AchievementFrameFilterDropDown on Classic, Filters.FilterDropdown on Retail
 Gui/WindowFrames/AchievementFrameHeader.lua AchievementFrameHeaderLeftDDLInset     # named texture other GUI files and skins reach by global name
 Gui/WindowFrames/AchievementsObjectives/AchievementsObjectives.lua ACHIEVEMENTBUTTON_METAROWHEIGHT   # Blizzard layout constant, set to 28 on Classic at load
+
+# --- Krowi_Options: the options window's library, inside the addon until it moves to Krowi_Libraries
+#     (docs/work/2026-10-25-options-revamp). XML templates name their mixins as globals, so a library's
+#     mixins are globals too; their names carry the library's prefix.
+Krowi_Options/* Krowi_Options*

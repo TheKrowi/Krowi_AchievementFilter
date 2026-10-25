@@ -27,6 +27,7 @@
 ## X-Wago-ID: XrNkx46a
 
 Libs\Files.xml
+Krowi_Options\Files.xml
 
 Api\Files.xml
 
