@@ -407,11 +407,23 @@ steps = {
     end, function()
         return KrowiAF_GuidePanel ~= nil and KrowiAF_GuidePanel:IsShown(), "the guide panel is not shown"
     end) or nil,
-    SceneStep("calendar", "CalendarDays", "calendar", "the achievement calendar", function()
-        return {KrowiAF_AchievementCalendarFrame, KrowiAF_AchievementCalendarFrame.SideFrame}
-    end, function()
-        return KrowiAF_AchievementCalendarFrame:IsShown(), "the calendar is not shown"
-    end),
+    {
+        Name = "calendar",
+        Picture = "CalendarDays",
+        Text = "the achievement calendar",
+        Run = function()
+            AchievementFrame:Hide() -- the calendar is a window of its own; the achievement window would show at its corners
+            Scenes().calendar(function(opened)
+                live.Scene = opened
+            end)
+        end,
+        Cut = function()
+            return {KrowiAF_AchievementCalendarFrame, KrowiAF_AchievementCalendarFrame.SideFrame}
+        end,
+        Check = function()
+            return KrowiAF_AchievementCalendarFrame:IsShown(), "the calendar is not shown"
+        end
+    },
     {
         Name = "reminders",
         Picture = "Reminders",
@@ -440,7 +452,7 @@ steps = {
     {
         Name = "map-button",
         Picture = "MapButton",
-        Text = "open your world map (M) and hover the achievement button on it",
+        Text = "last step: press M and hover the addon's achievement button on the map (30 s)",
         Mouse = function()
             local button = addon.Gui.WorldMapButton
             return WorldMapFrame:IsShown() and type(button) == "table" and button:IsMouseOver()
@@ -468,6 +480,8 @@ function SetBanner(text)
     banner.Text:SetText(("Krowi's Achievement Filter pictures %d/%d: %s"):format(live.StepIndex, #steps, text))
 end
 
+-- The run goes into the saved variables when it starts and each picture is added to it as it is taken, so a /reload
+-- in the middle of a run keeps what it took
 local function SaveRun()
     KrowiAF_DebugTable = KrowiAF_DebugTable or {}
     KrowiAF_DebugTable.Pictures = KrowiAF_DebugTable.Pictures or {}
@@ -546,7 +560,7 @@ local function Finish()
     if not ok then
         Add("FAIL", "could not put things back: " .. tostring(err), "restore")
     end
-    SaveRun()
+    live.Run.Finished = true
     local checked, checkErr = pcall(CheckErrors)
     if not checked then
         Add("FAIL", "test error: " .. tostring(checkErr), "lua-errors")
@@ -749,6 +763,7 @@ addon.Tests.Suites.pictures = function(done)
     banner:RegisterEvent("SCREENSHOT_FAILED")
     banner:RegisterEvent("PLAYER_REGEN_DISABLED")
     banner:Show()
-    print(("|cFF88CCFFKrowiAF Tests:|r pictures: %d steps, about %d s; two of them wait for your mouse"):format(#steps, #steps * 3))
+    SaveRun()
+    print(("|cFF88CCFFKrowiAF Tests:|r pictures: %d steps, about %d s. The last one waits up to %d s for you: press M and hover the addon's button on the map. /reload after the summary line."):format(#steps, #steps * 3, mouseWait))
     RunStep(1)
 end
