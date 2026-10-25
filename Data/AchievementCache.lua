@@ -178,14 +178,30 @@ function addon.ResetCache()
     coFinished = nil
 end
 
--- What the achievement window redraws after an earn; Tests/Earned.lua calls it to simulate an earn without saving anything
+-- What the achievement window redraws after an earn; Tests/Earned.lua calls it to simulate an earn without saving anything.
+-- Only the categories the earn can change are recounted: recounting a whole tab in one script ran past the game's time
+-- limit in combat (docs/work/2026-10-25-toast-script-too-long)
 function addon.MarkEarnedInWindow(achievementId)
-    addon.AchievementEarnedUpdateCategoriesFrameOnNextShow = true
     addon.AchievementEarnedUpdateSummaryFrameOnNextShow = true
     addon.AchievementEarnedUpdateAchievementsFrameOnNextShow = true
     local achievement = addon.Data.Achievements[achievementId]
     if achievement then
         achievement.IsTracked = nil
+        achievement:MarkCountsDirty()
+        if achievement.NextAchievements then -- Collapse series shows the next one now
+            for _, nextAchievement in next, achievement.NextAchievements do
+                nextAchievement:MarkCountsDirty()
+            end
+        end
+    end
+    for _, tab in next, addon.Tabs do -- Current Zone, Watch List and the other flexible lists do not link back to their achievements
+        if tab.Categories then
+            for _, category in next, tab.Categories do
+                if category.HasFlexibleData then
+                    category.CountsDirty = true
+                end
+            end
+        end
     end
 end
 

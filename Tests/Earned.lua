@@ -5,7 +5,7 @@ local earned = addon.Tests.Earned
 -- What the achievement window recounts when an achievement is earned and the window is then opened on it, the way a
 -- click on the achievement's toast does (docs/work/2026-10-25-toast-script-too-long). Blizzard's toast calls
 -- AchievementFrame_SelectAchievement, the addon's replacement in Gui/BlizzardOverrides.lua, which selects the
--- achievement through KrowiAF_SelectAchievementFromID (Api/API.lua). An earn set one window-wide flag
+-- achievement through KrowiAF_SelectAchievementFromID (Api/API.lua). An earn used to set one window-wide flag
 -- (Data/AchievementCache.lua), and the categories frame's next OnShow recounted every top-level category of the tab it
 -- showed: the 7149 rows of the Retail Expansions tab in one script, which the game stopped in combat with "script ran
 -- too long". The categories frame recounts per top-level category (GetDisplayCategories in CategoriesFrameMixin.lua),
@@ -26,24 +26,27 @@ earned.EventsAchievement = 605 -- a Lunar Festival achievement: Events > Holiday
 -- recounted and showing the earned achievement's top-level category, not the Summary: a shown Summary refreshes on an
 -- earn too (KrowiAF_SummaryFrameMixin:OnShow), which earn-select-summary covers. GameOnly: the headless model has no
 -- Summary frame, so only the game runs it.
+-- Before the fix (verified in game on Retail 12.1.5 and headlessly on both clients, 2026-10-25) the earn scenarios gave
+-- "whole tab", earn-other-tab "not recounted" and select-empty-category "selected, whole tab". Since then an earn marks
+-- only the top-level categories it can change (addon.MarkEarnedInWindow, category:MarkCountsDirty).
 earned.Scenarios = {
     -- Expansions drawn, window closed, 862 earned, then selected as the toast does
-    {Name = "earn-select-closed", Recorded = "whole tab, selected", Target = "earned only, selected"},
-    -- the same with the Expansions Summary selected when the window closed; the first in-game run (Retail 12.1.5,
-    -- 2026-10-25) validated 20686 rows in 276 ms here, out of combat: the Summary's earn refresh recounted the tab a second
-    -- time (Update(true) in SummaryFrameMixin.lua)
-    {Name = "earn-select-summary", GameOnly = true, Recorded = "whole tab, selected", Target = "earned only, selected"},
+    {Name = "earn-select-closed", Recorded = "earned only, selected", Target = "earned only, selected"},
+    -- the same with the Expansions Summary selected when the window closed; the before-run (Retail 12.1.5, 2026-10-25)
+    -- validated 20686 rows in 273 ms here, out of combat: the Summary's earn refresh recounted the tab a second time
+    -- (Update(true) in SummaryFrameMixin.lua)
+    {Name = "earn-select-summary", GameOnly = true, Recorded = "earned only, selected", Target = "earned only, selected"},
     -- the window open on Expansions when 862 is earned: the categories frame's refresh one second later
-    {Name = "earn-window-open", Recorded = "whole tab", Target = "earned only"},
+    {Name = "earn-window-open", Recorded = "earned only", Target = "earned only"},
     -- Events and Expansions drawn, window closed, 605 earned, opened on Expansions, then switched to Events: is the
     -- top-level category that holds 605 recounted?
-    {Name = "earn-other-tab", Recorded = "not recounted", Target = "recounted"},
+    {Name = "earn-other-tab", Recorded = "recounted", Target = "recounted"},
     -- after selecting 862, every Expansions category is shown when its parent is on the selected category's path and
-    -- expanded when it is on the path itself
+    -- expanded when it is on the path itself; a guard, held before and after ExpandToCategory became one walk
     {Name = "expand-path-state", Recorded = "matches path rule", Target = "matches path rule"},
     -- every Expansions achievement filtered out, then 862's category selected: is it listed and selected, and what was
     -- recounted on the way?
-    {Name = "select-empty-category", Recorded = "selected, whole tab", Target = "selected, none"}
+    {Name = "select-empty-category", Recorded = "selected, none", Target = "selected, none"}
 }
 
 -- "raised at <file> line <n>: <message>": an observation in the "<file>:<n>: " form would read as a failing scenario to
@@ -268,7 +271,7 @@ local function RunScenario(env, observations, scenario, isRetail, ready, reason)
         status, tail = "SKIP", reason or "setup failed"
     else
         -- no earn left over from the scenario before
-        addon.AchievementEarnedUpdateCategoriesFrameOnNextShow, addon.AchievementEarnedUpdateSummaryFrameOnNextShow, addon.AchievementEarnedUpdateAchievementsFrameOnNextShow = nil, nil, nil
+        addon.AchievementEarnedUpdateSummaryFrameOnNextShow, addon.AchievementEarnedUpdateAchievementsFrameOnNextShow = nil, nil
         local ok, got = pcall(steps[scenario.Name], env, observations)
         if not ok then
             tinsert(observations, scenario.Name .. " " .. DescribeError(got))
@@ -340,7 +343,7 @@ function gameEnv.Setup()
     end
     snapshot = {
         Shown = AchievementFrame:IsShown(),
-        Flags = {addon.AchievementEarnedUpdateCategoriesFrameOnNextShow, addon.AchievementEarnedUpdateSummaryFrameOnNextShow, addon.AchievementEarnedUpdateAchievementsFrameOnNextShow},
+        Flags = {addon.AchievementEarnedUpdateSummaryFrameOnNextShow, addon.AchievementEarnedUpdateAchievementsFrameOnNextShow},
         Tracked = {},
         Selected = {}
     }
@@ -385,7 +388,7 @@ function gameEnv.Teardown()
         end
         KrowiAF_CategoriesFrame:Update(true)
     end
-    addon.AchievementEarnedUpdateCategoriesFrameOnNextShow, addon.AchievementEarnedUpdateSummaryFrameOnNextShow, addon.AchievementEarnedUpdateAchievementsFrameOnNextShow = unpack(snapshot.Flags, 1, 3)
+    addon.AchievementEarnedUpdateSummaryFrameOnNextShow, addon.AchievementEarnedUpdateAchievementsFrameOnNextShow = unpack(snapshot.Flags, 1, 2)
     for id, tracked in next, snapshot.Tracked do
         addon.Data.Achievements[id].IsTracked = tracked
     end

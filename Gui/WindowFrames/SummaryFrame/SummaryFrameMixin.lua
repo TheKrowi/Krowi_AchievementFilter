@@ -298,7 +298,7 @@ local function UpdateCategories(self, event)
     end
 
     if event == "ACHIEVEMENT_EARNED" then -- Update it here instead of in the categories frame itself to make sure the summary is updated with the correct numbers
-        KrowiAF_CategoriesFrame:Update(true)
+        KrowiAF_CategoriesFrame:Update() -- recounts what addon.MarkEarnedInWindow marked, not the whole tab
     end
 
     categories = selectedTab:GetCategories()

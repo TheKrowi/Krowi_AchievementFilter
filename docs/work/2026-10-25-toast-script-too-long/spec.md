@@ -23,7 +23,7 @@ What one toast click runs, all in Blizzard's `AchievementAlertFrame_OnClick` (`w
 - The Retail Expansions tab has 1255 categories and 7149 achievement rows (`.claude/tools/headless/snapshots/CategoryTree.Retail.txt`). All of them are validated to show one achievement, of which only the earned one changed.
 - After that, on the same click: `ExpandToCategory` walks the whole tab once per level of the target's path (`CategoriesFrameMixin.lua:188-205`, `:161-166`; 4 levels for a zone, so about 5000 visits; the error landed in the first of those walks), `Update()` walks it again (`API.lua:74`), and the achievement list updates.
 - **When the tab shows its Summary, the same click recounts the tab twice.** The Summary's `OnShow` runs `Update("ACHIEVEMENT_EARNED")` while its own earn flag is set (`SummaryFrameMixin.lua:82-86`), and that calls `KrowiAF_CategoriesFrame:Update(true)` (`:300-302`).
-  - Measured in the before-run (Retail 12.1.5, 2026-10-25, out of combat, Summary selected): one select after an earn validated 20,686 achievement rows in 276 ms.
+  - Measured in the before-run (Retail 12.1.5, 2026-10-25, out of combat): one select after an earn validated 10,343 achievement rows in 164 ms with the earned achievement's own category selected, and 20,686 rows in 273 ms with the Summary selected.
   - One full recount of the tab is 8,537 rows (headless, merged categories counted twice).
 - With the window open, the earn takes the same full recount one second later: `CategoriesFrameMixin.lua:46-51` calls `Update(true)`, and the summary does too (`SummaryFrameMixin.lua:78-80`, `:300-302`). That runs from a timer, also in combat.
 

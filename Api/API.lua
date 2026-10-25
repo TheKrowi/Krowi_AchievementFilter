@@ -104,9 +104,8 @@ function KrowiAF_SelectCategory(category, collapsed)
         alwaysVisibleCache = {}
         for i = 1, #categoriesTree do
             alwaysVisibleCache[i] = categoriesTree[i].AlwaysVisible
-            categoriesTree[i].AlwaysVisible = true -- We set this here to show an empty category
+            categoriesTree[i].AlwaysVisible = true -- We set this here to show an empty category; SelectCategory redraws the list
         end
-        KrowiAF_CategoriesFrame:Update(true) -- Force an update to handle the new AlwaysVisible states
     end
 
 	-- Select category

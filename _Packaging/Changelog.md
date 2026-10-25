@@ -17,6 +17,8 @@ All notable changes to this project will be documented in this file.
 - Short day and month names in event reminders no longer show broken letters on non-English clients
 - Keys set in the options for a tab or for opening the current zone's category work again
 - Switching profiles before you open the achievement window no longer gives an error
+- Clicking an achievement's toast right after earning it no longer gives a "script ran too long" error in combat
+- Category counts in a tab you looked at before earning an achievement now include it when you go back
 
 ## 104.0 - 2026-10-24
 ### Added

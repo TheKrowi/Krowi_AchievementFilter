@@ -51,7 +51,7 @@ function KrowiAF_CategoriesFrameMixin:OnEvent(event)
 end
 
 function KrowiAF_CategoriesFrameMixin:OnAchievementEarned()
-	self:Update(true)
+	self:Update() -- addon.MarkEarnedInWindow marked what the earn changed
 end
 
 local function RestoreScrollPosition(frame)
@@ -69,8 +69,7 @@ function KrowiAF_CategoriesFrameMixin:OnShow()
 	self:SetRightPoint()
 	AchievementFrameCategories:Hide()
 	AchievementFrameWaterMark:SetTexture(addon.Gui.SelectedTab and addon.Gui.SelectedTab.WaterMark or "Interface/AchievementFrame/UI-Achievement-AchievementWatermark")
-	self:Update(addon.AchievementEarnedUpdateCategoriesFrameOnNextShow)
-	addon.AchievementEarnedUpdateCategoriesFrameOnNextShow = nil
+	self:Update()
 	RestoreScrollPosition(self)
 end
 
@@ -82,7 +81,7 @@ end
 
 local function GetDisplayCategories(displayCategories, category, getAchNums)
 	if category.NotHidden or category.AlwaysVisible or category.HasFlexibleData then -- If already visible, keep visible
-		local needsCounts = (category.NumOfAch == nil) or getAchNums or (category.HasFlexibleData and category.CountsDirty)
+		local needsCounts = (category.NumOfAch == nil) or getAchNums or category.CountsDirty
 		if needsCounts and category.Parent.TabName ~= nil then
 			-- Huge increase over performance if we cache the achievement numbers and only update them when needed,
 			-- only for the top level categories since it works recursive
@@ -169,6 +168,20 @@ local function ExpandCategory(categories, targetCategory)
 	targetCategory.NotCollapsed = true
 end
 
+-- What ExpandCategory once per level of the path leaves, in one walk: a category is shown when its parent is on the path
+-- and expanded when it is on the path itself
+local function ExpandPath(path, category)
+	category.NotHidden = path[category.Parent]
+	category.NotCollapsed = path[category]
+
+	local children = category.Children
+	if children then
+		for _, child in next, children do
+			ExpandPath(path, child)
+		end
+	end
+end
+
 local function HideCategory(targetCategory, category)
 	if category.Level > targetCategory.Level then
 		category.NotHidden = nil
@@ -202,9 +215,14 @@ function KrowiAF_CategoriesFrameMixin:ExpandToCategory(category)
     if not categories then
         return
     end
-	for i = 1, #categoriesTree do
-		ExpandCategory(categories, categoriesTree[i])
+	local path = {}
+	for _, pathCategory in next, categoriesTree do
+		path[pathCategory] = true
 	end
+	for _, topLevel in next, categories do
+		ExpandPath(path, topLevel)
+	end
+	categoriesTree[1].NotCollapsed = true -- the tab root, which the walk does not visit
 	selectedTab.SelectedCategory = category
 end
 

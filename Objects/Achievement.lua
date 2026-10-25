@@ -110,6 +110,25 @@ function achievement:AddExcludedCategory(category)
     self:AddSpecialCategory(self.ExcludedCategories, category)
 end
 
+local function MarkCountsDirty(categories)
+    if not categories then
+        return
+    end
+    for _, category in next, categories do
+        category:MarkCountsDirty()
+    end
+end
+
+-- Every place this achievement is listed is recounted the next time its tab is drawn
+function achievement:MarkCountsDirty()
+    if self.Category then
+        self.Category:MarkCountsDirty()
+    end
+    MarkCountsDirty(self.MoreCategories)
+    MarkCountsDirty(self.WatchListCategories)
+    MarkCountsDirty(self.ExcludedCategories)
+end
+
 function achievement:Include()
     self.IsExcluded = nil
     if KrowiAF_SavedData.ExcludedAchievements == nil then

@@ -208,6 +208,15 @@ function category:GetAchievementNumbers()
 	return numOfAch, numOfCompAch, numOfNotObtAch -- , numOfIncompAch
 end
 
+-- The categories frame recounts per top-level category (GetDisplayCategories), so a change is marked on the one above self
+function category:MarkCountsDirty()
+	local topLevel = self
+	while topLevel.Parent and not topLevel.Parent.TabName do
+		topLevel = topLevel.Parent
+	end
+	topLevel.CountsDirty = true
+end
+
 function category:GetMergedCategory()
 	local cat = self
 	if addon.Filters.db.profile.MergeSmallCategories then

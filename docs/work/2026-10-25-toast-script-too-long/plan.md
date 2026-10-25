@@ -102,3 +102,9 @@ Krowi clicked the toast of an achievement they had just earned while in combat o
 - `Check-Repo.ps1 -ChangedOnly`: 0 errors (it runs every suite).
 - In game, Retail and Mists: `/kaftest earned`, `/reload`, `Read-GameTests.ps1`: no FAIL, no difference from headless, and the milliseconds of the select after an earn well below the before-run. `Read-GameErrors.ps1`: no new row.
 - `krowi:taint-reviewer`: no finding left open. `/code-review`: findings fixed or listed in the PR.
+
+## Results and departures
+- **The Summary path is a scenario, not an observation.** The first in-game run (Retail, 2026-10-25) recounted the tab twice on one select when the Summary was shown (20,686 rows). `earn-select-summary` records it, game only, since the headless model has no Summary frame. The other scenarios now start on the earned achievement's own top-level category, so game and headless test the same path. Calling the Summary's `Update` from the suite also rebuilds its recent-achievements list from the game's data, as any earn does.
+- **A headless model fix.** client-env's `addon` gives a truthy stub for a missing key, so a cleared earn flag read as set and every `OnShow` recounted in full. The suite's model returns nil for the window's earn flags.
+- **Mists before-run skipped** on Krowi's call (2026-10-25), after the Retail before-run was green (6 PASS, 0 differences). Mists gets the after-run only.
+- **Measured.** One select after an earn validated 10,343 rows in 164 ms on Retail before the fix (20,686 rows in 273 ms with the Summary shown). Headless the select now validates 274 rows on Retail (8,537 before) and 227 on Mists (2,555 before).
