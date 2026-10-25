@@ -77,6 +77,12 @@ local function New(root, client)
             local base = rawget(_G, k)
             if base ~= nil then return base end
             if type(k) ~= "string" or absentGlobals[k] then return nil end
+            -- the frames the GUI load creates stand in as stubs, so an option's setter can refresh them
+            if k:match("^KrowiAF_.+Frame$") then
+                local s = Stub(k)
+                rawset(t, k, s)
+                return s
+            end
             if k:match("^KrowiAF_") or k:match("^BINDING_") then return nil end
             if k == "FONT_COLOR_CODE_CLOSE" then return "|r" end
             if k:match("_FONT_COLOR_CODE$") then return "|cffffffff" end
@@ -174,6 +180,10 @@ local function New(root, client)
         if fmt:find("%%[^aAbBcdHIjmMpSUwWxXyYZ%%]") then return fmt end
         return os.date(fmt, t or fixedNow)
     end
+    -- Achievement lookups some option texts name an achievement or criterion with
+    env.GetAchievementInfo = function(id) return id, "Achievement " .. tostring(id) end
+    env.GetAchievementCriteriaInfo = function(id, index) return "Criterion " .. tostring(id) .. "/" .. tostring(index) end
+    env.GetCategoryInfo = function(id) return "Category " .. tostring(id) end
     env.GetBuildInfo = function()
         if client == "Retail" then return "12.1.5", "65000", "Oct 1 2026", 120105 end
         return "5.5.4", "65000", "Oct 1 2026", 50504
@@ -326,6 +336,28 @@ local function New(root, client)
     Step("Filters:InjectDefaults", function() addon.Filters:InjectDefaults() end)
     Step("PluginsApi:InjectPluginOptions", function() KrowiAF.PluginsApi:InjectPluginOptions() end)
     Step("Options:Load", function() addon.Options:Load(true) end)
+
+    -- What PLAYER_LOGIN builds and some setters refresh: the data load, driven the way client-env.lua's RunPipeline
+    -- drives Data.lua:LoadOnPlayerLogin, and the world map button the GUI load makes (a stub here)
+    local data = addon.Data
+    Step("CreateBuildVersions", function() KrowiAF.CreateBuildVersions() end)
+    for _, fn in ipairs({ "RegisterAchievementDataTasks", "RegisterCustomCriteriaDataTasks", "RegisterCategoryDataTasks", "RegisterEventDataTasks",
+        "RegisterTooltipDataTasks", "RegisterPetBattleLinkDataTasks", "RegisterTransmogSetDataTasks", "RegisterGuideDataTasks", "RegisterZoneDataTasks" }) do
+        if type(data[fn]) == "function" then Step(fn, function() data[fn](data) end) end
+    end
+    local groups = data.TasksGroups or {}
+    while #groups > 0 do
+        local tasks = table.remove(groups)
+        for _, task in ipairs(tasks) do
+            local ok, err = pcall(function()
+                if type(task) == "function" then task() elseif type(task) == "table" then task[1](unpack(task, 2, #task)) end
+            end)
+            if not ok then Fail("data task", err) end
+        end
+    end
+    if addon.Gui and addon.Gui.WorldMapButton and not addon.Gui.WorldMapButton.Refresh then
+        addon.Gui.WorldMapButton = Stub("addon.Gui.WorldMapButton")
+    end
     return ctx
 end
 

@@ -1,0 +1,5 @@
+<Ui>
+    <Script file="Map.lua" />
+    <Script file="Source.lua" />
+    <Script file="Model.lua" />
+</Ui>

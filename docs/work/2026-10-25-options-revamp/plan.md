@@ -107,6 +107,17 @@ Covers stage 1 (the window over today's AceConfig tables, with the tests that be
 - This file updated where the build departed. Already known: `SLASH_*` names are exempt from the globals rule (`Check-Repo.ps1:442`), so the spec's `Check-Repo.globals` line for `/kaf` is not needed.
 - Status `done`, PR.
 
+### Departures during the build
+- **The headless options environment stands on its own** (`.claude/tools/headless/options-env.lua`), not on `client-env.New`. It loads every file of the TOC, the libraries included, so Krowi_Util, AceLocale and AceDB build the namespace as in game; `client-env.lua` builds it by hand and loads only the data files. It also:
+  - runs the data load after the options steps;
+  - stands in stubs for the frames the GUI load creates (`KrowiAF_*Frame`, the world map button), which some setters refresh.
+- **The model before the window.** Steps 3 and 4 (`Source.lua`, `Map.lua`) and a model layer (`Options/Window/Model.lua`) came before step 2, so the suite could test the option objects headlessly before any frame exists. The window draws from the same model.
+- **The tab list reuses the eight order dropdowns' setters**, which already swap two tabs (`Api/TabDataApi.lua` SetOrder). The map names the order and show groups instead of eight entries.
+- **`Option:Set` skips a value the option already holds.** A tab's show toggle flips the tab whatever value it gets (`Api/TabDataApi.lua` InjectTabsShowOptionsTable), and AceConfig never sets an unchanged value.
+- **The scenario `disabled-hidden-agree` became `options-fingerprint`.** In stage 2 there is no AceConfig left to compare against, so a regression check must record facts: every option's id, type and derived default, hashed independently of order. Labels are left out, because headless global strings are stand-ins, and so is the disabled state, which follows the player's settings. Stage 2's definitions keep today's paths as their ids.
+- **The round trip separates values from side effects.** A setter whose refresh errors on something the headless load does not build still stores its value. Those errors are an observation; in game the BugGrabber step covers them.
+- **The help track branches off this branch** (`New-Worktree.ps1 feature/2026-10-25-options-help -Base feature/2026-10-25-options-revamp`) and opens its PR into it, leaving one PR to `main`.
+
 ## Risks
 - **Unused templates.** `WowStyle1DropdownTemplate` and `MinimalSliderWithSteppersTemplate` are new to KAF. They load at startup on `classic` and `classic_titan` (`Blizzard_Menu/Classic/MenuTemplates.xml:3`, `Shared/Slider/MinimalSlider.xml:34`). The smoke test in step 2 proves them in game; the fallbacks are Krowi_Menu and a plain `Slider`.
 - **Defaults derivation.** It can fail for gets that read beyond `addon.Options.db.profile`. The proxy's `touched` flag catches those, and the suite lists them.

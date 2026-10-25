@@ -55,7 +55,7 @@ options.Scenarios = {
             local c = model.Coverage()
             return ("unmapped=%d double=%d missing-paths=%d"):format(#c.Unmapped, #c.Double, #c.MissingPaths)
         end,
-        Recorded = "no window",
+        Recorded = "unmapped=1 double=0 missing-paths=0", -- the tutorial button, until the tutorial goes
         Target = "unmapped=0 double=0 missing-paths=0"},
     {Name = "set-through-window-equals-aceconfig",
         Observe = function()
@@ -63,23 +63,28 @@ options.Scenarios = {
             if not model then return "no window" end
             return ("mismatches=%d"):format(#model.CheckRoundTrip())
         end,
-        Recorded = "no window",
+        Recorded = "mismatches=0",
         Target = "mismatches=0"},
-    {Name = "disabled-hidden-agree",
+    -- every option's id, type and derived default: stage 2's definitions must reproduce it (labels and the disabled
+    -- state are left out: headless labels come from stand-in global strings, and the disabled state follows the
+    -- player's own settings, so neither would match between the game and the headless run)
+    {Name = "options-fingerprint",
         Observe = function()
             local model = Model()
             if not model then return "no window" end
-            return ("mismatches=%d"):format(#model.CheckRules())
+            return ("options=%d hash=%s"):format(model.Fingerprint())
         end,
-        Recorded = "no window",
-        Target = "mismatches=0"},
+        Recorded = "options=406 hash=c7f9546a",
+        Target = "options=406 hash=c7f9546a",
+        RecordedClassic = "options=302 hash=3ffe49dd",
+        TargetClassic = "options=302 hash=3ffe49dd"},
     {Name = "defaults-restore-acedb",
         Observe = function()
             local model = Model()
             if not model then return "no window" end
             return ("differences=%d"):format(#model.CheckDefaults())
         end,
-        Recorded = "no window",
+        Recorded = "differences=0",
         Target = "differences=0"},
     {Name = "derived-default-matches-text",
         Observe = function()
@@ -87,7 +92,7 @@ options.Scenarios = {
             if not model then return "no window" end
             return ("mismatches=%d"):format(#(model.CheckDerivedDefaults()))
         end,
-        Recorded = "no window",
+        Recorded = "mismatches=0",
         Target = "mismatches=0"},
     {Name = "changed-dot",
         Observe = function()
@@ -95,7 +100,7 @@ options.Scenarios = {
             if not model then return "no window" end
             return ("wrong=%d"):format(#model.CheckChangedDots())
         end,
-        Recorded = "no window",
+        Recorded = "wrong=0",
         Target = "wrong=0"},
     {Name = "plugins-present",
         Observe = function()
@@ -103,7 +108,7 @@ options.Scenarios = {
             if not model then return "no window" end
             return "groups=" .. Join(model.PluginGroups())
         end,
-        Recorded = "no window",
+        Recorded = "groups=Achievements Tab Fixes,Better Wardrobe,EllesmereUI,ElvUI,GW 2 UI,Instance Achievement Tracker,Zygor Guides Viewer",
         Target = "groups=Achievements Tab Fixes,Better Wardrobe,EllesmereUI,ElvUI,GW 2 UI,Instance Achievement Tracker,Zygor Guides Viewer"},
     {Name = "retail-only-hidden-on-classic",
         Observe = function()
@@ -111,7 +116,7 @@ options.Scenarios = {
             if not model then return "no window" end
             return ("visible-retail-only=%d"):format(#model.VisibleRetailOnly())
         end,
-        Recorded = "no window",
+        Recorded = "visible-retail-only=0",
         Target = "visible-retail-only=0"},
 }
 
@@ -142,12 +147,17 @@ function options.Run()
     return results
 end
 
--- Not a scenario: the options without a default (no dot, skipped by Defaults), listed for review
+-- Not scenarios: the options without a default (no dot, skipped by Defaults), and the setters whose side effects
+-- errored during the round trip (headless: frames and lists the load does not build; in game BugGrabber names them)
 function options.Observations()
     local model = Model()
     if not model then return {} end
     local _, withoutDefault = model.CheckDerivedDefaults()
-    return { "options without a default: " .. Join(withoutDefault or {}) }
+    local _, sideEffects = model.CheckRoundTrip()
+    local out = { "options without a default: " .. Join(withoutDefault or {}) }
+    -- "file.lua line 90" rather than "file.lua:90:", which the unit-tests lint rule would read as a failing scenario
+    for _, line in ipairs(sideEffects or {}) do out[#out + 1] = "setter side effect: " .. line:gsub("(%.lua):(%d+):", "%1 line %2:") end
+    return out
 end
 
 addon.Tests.Suites.options = function()

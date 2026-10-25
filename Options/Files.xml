@@ -9,4 +9,6 @@
     <Script file="Profiles.lua" />
     <Script file="Plugins.lua" />
     <Script file="Credits.lua" />
+
+    <Include file="Window\Files.xml" />
 </Ui>
