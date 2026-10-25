@@ -3,6 +3,11 @@ Spec: [spec.md](spec.md). Status: accepted
 
 Approved by Krowi (maintainer) on 2026-10-25 in plan mode. It touches shared GUI code (the event reminder pop-ups and side buttons), so it waited for that gate. The in-game before-run is the second gate.
 
+Results and departures:
+- **Before-run, 2026-10-25, from a8ae9414 on Retail 12.1.5.** `/kaftest events`: 23 passed, 0 differences from headless. The new scenarios gave "end", "error" (`AlertSystem.lua` line 50, "attempt to index field 'EventDetails' (a nil value)") and "end names". BugGrabber held no KAF error.
+- **Mists is checked headlessly only** (Krowi, 2026-10-25: "confident mists will get fixed alongside testing retail"). Krowi was in content on Retail that starting Mists would end. The code is shared, and the headless Classic run covers the three scenarios.
+- **The headless model gained** `addon.MonthNames` and `addon.WeekdayNames` as English strings: the data load's localization stub gave tables, which made the active scenario fail on `gsub`. The scenarios also observe the error each one raised, in the "raised at <file> line <n>" form the `unit-tests` lint rule does not read as a failure.
+
 ## Context
 `Gui/EventReminder/AlertSystem.lua` has two defects:
 - **The error.** On a non-English client, `LocalizeDateFormat(event)` reads `event.EventDetails.EndTime` (`:49`) to put the day and month names into a custom date format. An upcoming reminder has no `EventDetails`, so its line raises an error every second.

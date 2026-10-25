@@ -37,7 +37,8 @@ end
 -- on every call, so the events suite (Tests/Events.lua) can run that path on an English client
 eventReminderAlertSystem.LocalizeDateNames = gameLocale ~= "enUS"
 
-local function LocalizeDateFormat(event)
+-- time: the moment the line shows, whose day and month the names are
+local function LocalizeDateFormat(time)
     local dateFormat = addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime
     if not eventReminderAlertSystem.LocalizeDateNames then
         return dateFormat
@@ -47,7 +48,7 @@ local function LocalizeDateFormat(event)
     local hasA = dateFormat:find("%A", 1, true) ~= nil
     local hasa = dateFormat:find("%a", 1, true) ~= nil
     if hasB or hasb or hasA or hasa then
-        local dateTable = date("*t", event.EventDetails.EndTime)
+        local dateTable = date("*t", time)
         if hasB then
             dateFormat = dateFormat:gsub("%%B", addon.MonthNames[dateTable.month])
         end
@@ -99,7 +100,7 @@ function eventReminderAlertSystem:GetRuntimeText(event, chat)
         return timeLeft
     end
 
-    local dateFormat = LocalizeDateFormat(event)
+    local dateFormat = LocalizeDateFormat(event.EventDetails.EndTime)
 
     if addon.Options.db.profile.EventReminders.TimeDisplay.Line1 == 1 then -- End Time
         runtime = tostring(date(dateFormat, event.EventDetails.EndTime))
@@ -126,10 +127,12 @@ function eventReminderAlertSystem:GetUpcomingText(event)
         timeLeft = GetSecondsLeftFormattedText(secondsLeft)
     end
 
-    local dateFormat = LocalizeDateFormat(event)
+    -- Where the option says End Time an upcoming event shows when it starts: the frame puts "In" before it, and the time
+    -- left counts to the start (issue #247)
+    local dateFormat = LocalizeDateFormat(event.UpcomingEventDetails.StartTime)
 
     if addon.Options.db.profile.EventReminders.TimeDisplay.Line1 == 1 then -- End Time
-        runtime = tostring(date(dateFormat, event.UpcomingEventDetails.EndTime))
+        runtime = tostring(date(dateFormat, event.UpcomingEventDetails.StartTime))
     elseif addon.Options.db.profile.EventReminders.TimeDisplay.Line1 == 2 then -- Time Left
         runtime = timeLeft
     end
@@ -137,7 +140,7 @@ function eventReminderAlertSystem:GetUpcomingText(event)
     if addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == 1 or addon.Options.db.profile.EventReminders.Compact then -- None
         return runtime
     elseif addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == 2 then -- End Time
-        return runtime .. "\n" .. tostring(date(dateFormat, event.UpcomingEventDetails.EndTime))
+        return runtime .. "\n" .. tostring(date(dateFormat, event.UpcomingEventDetails.StartTime))
     elseif addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == 3 then -- Time Left
         return runtime .. "\n" .. timeLeft
     end

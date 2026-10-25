@@ -28,7 +28,8 @@ local events = addon.Tests.Events
 --     (docs/work/2026-10-25-upcoming-reminder-date). "error" when the line raises; with Names "start names" or "end
 --     names" when it is that date in the addon's names, without "start" or "end" when it is date(Format) of that date;
 --     otherwise "other". Until 2026-10-25 an upcoming line showed the occurrence's end, and raised with Names because it
---     read the names from the active occurrence an upcoming event does not have.
+--     read the names from the active occurrence an upcoming event does not have ("end" and "error", verified in game on
+--     Retail 12.1.5 on 2026-10-25); it now shows the start, with the start's names.
 -- Until 2026-10-21 no Curse Surge event existed, nothing kept scheduler data, and the soup was only shown while its
 -- widget was there, in its zone (the Recorded values of the before-run, verified in game on Retail 12.1.5). The code
 -- review of 2026-10-21 found what the scheduler stories record, and Krowi chose that the soup's Next shows only in the
@@ -81,9 +82,9 @@ events.Scenarios = {
     {Name = "scheduler-name-arrives", Kind = "Scheduler", Story = "NameArrives", RetailOnly = true,
         Recorded = "before: none; after: game", Target = "before: none; after: game"},
     {Name = "upcoming-date-default-format", Kind = "DateLine", Reminder = "upcoming", Format = "%d/%m/%Y %R", Names = false,
-        Recorded = "end", Target = "start"},
+        Recorded = "start", Target = "start"},
     {Name = "upcoming-date-names", Kind = "DateLine", Reminder = "upcoming", Format = "%A %d %B %Y", Names = true,
-        Recorded = "error", Target = "start names"},
+        Recorded = "start names", Target = "start names"},
     {Name = "active-date-names", Kind = "DateLine", Reminder = "active", Format = "%A %d %B %Y", Names = true,
         Recorded = "end names", Target = "end names"}
 }
