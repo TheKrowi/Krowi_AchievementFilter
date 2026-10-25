@@ -71,7 +71,7 @@ local function OverviewElements()
         elements[#elements + 1] = { Kind = "Header", Text = L["What changed in {version}"]:K_ReplaceVars{ version = changelog.Version } }
         for _, part in ipairs(changelog.Parts) do
             elements[#elements + 1] = { Kind = "SubHeading", Text = part.Heading }
-            for _, line in ipairs(part.Lines) do elements[#elements + 1] = { Kind = "Note", Text = "- " .. line } end
+            for _, line in ipairs(part.Lines) do elements[#elements + 1] = { Kind = "Note", Text = line } end
         end
     end
     for _, group in ipairs(map.Groups) do

@@ -1,8 +1,9 @@
 <#
 .SYNOPSIS
     Krowi_AchievementFilter's own release check. The kit's release preflight (Krowi_ClaudeKit\skills\release\
-    Check-ReleaseReady.ps1) dot-sources it after its TOC checks: the escape suite must have a green in-game run on
-    the newest Retail client the TOC claims.
+    Check-ReleaseReady.ps1) dot-sources it after its TOC checks: Options/Window/Changelog.lua must list the changelog's
+    top entry (run .claude/tools/Build-ChangelogLua.ps1 when it does not), and the escape suite must have a green
+    in-game run on the newest Retail client the TOC claims.
 
 .DESCRIPTION
     The escape suite models Blizzard's Escape chain, which a patch can change. Its last in-game run (/kaftest escape,
@@ -15,6 +16,10 @@
     child scope.
 #>
 & {
+    # The options window's Overview lists the released version's changelog lines, generated from the changelog
+    $changelogCheck = @(& (Join-Path $repo '.claude\tools\Build-ChangelogLua.ps1') -Check)
+    if ($LASTEXITCODE -eq 0) { Pass ($changelogCheck -join ' ') } else { Fail ($changelogCheck -join ' ') }
+
     # Suites that model Blizzard UI code a patch can change
     $suitesOnNewestClient = @('escape')
     $interface = (Select-String -LiteralPath $toc.FullName -Pattern '^## Interface:\s*(.+)$').Matches[0].Groups[1].Value
