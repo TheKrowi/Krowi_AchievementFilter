@@ -1,0 +1,5 @@
+<Ui>
+    <Script file="Pictures.lua" />
+    <Script file="Help.lua" />
+    <Script file="ShowMe.lua" />
+</Ui>

@@ -5,4 +5,5 @@
     <Script file="Model.lua" />
     <Script file="Window.lua" />
     <Script file="Stub.lua" />
+    <Include file="Help\Files.xml" />
 </Ui>
