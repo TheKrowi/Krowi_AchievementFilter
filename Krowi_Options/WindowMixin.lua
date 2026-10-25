@@ -261,6 +261,8 @@ local shownEvents = { "PLAYER_REGEN_DISABLED", "PLAYER_REGEN_ENABLED", "UI_SCALE
 function Krowi_OptionsWindowMixin:OnShow()
     PlaySound(SOUNDKIT.IG_CHARACTER_INFO_OPEN)
     for _, event in ipairs(shownEvents) do self:RegisterEvent(event) end
+    -- Shown again with its parent (the interface back after Alt+Z): OnHide released Show me, so lay it over again
+    if self.SectionId then self:UpdateShowMe() end
 end
 
 -- A key capture ends with the window, at the start of combat and when its row is reused
