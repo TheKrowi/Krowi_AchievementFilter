@@ -13,7 +13,8 @@
 --         Data/SavedData/AchievementData.lua: Watch List, Excluded and Tracking membership and the rebuilds the
 --         layout options trigger; the option setters themselves live in Options/Layout.lua and only run in game),
 --         navigation (Gui/Gui.lua's tab sub frames, the search box and Gui/BrowsingHistory/BrowsingHistory.lua: which
---         navigation buttons each tab of the achievement window shows, issue #325), worldmap (Gui/WorldMapButton/ with
+--         navigation buttons each tab of the achievement window shows, issue #325, and whether the back arrow's
+--         tooltip can list an achievement the game does not know), worldmap (Gui/WorldMapButton/ with
 --         the Krowi_WorldMapButtons library: whether the button stays in front of the Classic map when it resizes),
 --         obtainable (Objects/Achievement.lua's SetTemporaryObtainable and Data/TemporaryObtainable.lua: the record an
 --         Obtainable() call stores and the state it gives, on the real data load of client-env.lua), tooltip
@@ -23,7 +24,8 @@
 --         category button of Blizzard's Achievements and Guild tabs shows, issue #300), guide (Gui/Guide/, the guide's tooltip and
 --         right-click menu sections: achievement guides and their waypoints, once their files exist), menu
 --         (Gui/RightClickMenu/AchievementMenu/AchievementMenu.lua: whether a "go to" entry for an achievement the addon
---         does not register is greyed out), memory (TaintDiagnostics.lua and Data/EventData.lua with the custom event
+--         does not register is greyed out, and whether entries and the title for an id the game does not know can be
+--         built and what they say), memory (TaintDiagnostics.lua and Data/EventData.lua with the custom event
 --         timers: what the addon's background jobs, the taint probe's sweep and the event-reminder refresh, allocate a
 --         minute and keep), events (Data/EventData.lua with Data/EventScheduler.lua and the custom timers, on the real
 --         data load: the Curse Surges from Blizzard's event scheduler and the soup on its fixed schedule), schedules
@@ -503,10 +505,37 @@ suites.special = function(c)
     return special.Run(headless), "Tests/SpecialCategories.lua", {}
 end
 
+-- Krowi_Tooltip as the tooltip sections and the browsing-history arrows use it: lines, owner, and the
+-- Krowi_TooltipTextLeft/Right<n> font strings a section may copy. Returns the tooltip and a function giving its left texts.
+local function ModelKrowiTooltip(env)
+    local lines, owner = {}, nil
+    local function FontString(text, r, g, b)
+        return { GetText = function() return text end, GetTextColor = function() return r or 1, g or 1, b or 1 end }
+    end
+    local function AddRow(left, right, lr, lg, lb, rr, rg, rb)
+        lines[#lines + 1] = left
+        rawset(env, "Krowi_TooltipTextLeft" .. #lines, FontString(left, lr, lg, lb))
+        rawset(env, "Krowi_TooltipTextRight" .. #lines, FontString(right, rr, rg, rb))
+    end
+    local krowiTooltip = {}
+    function krowiTooltip:SetOwner(frame) owner = frame; lines = {} end -- like GameTooltip:SetOwner, it clears the lines
+    function krowiTooltip:GetOwner() return owner end
+    function krowiTooltip:SetText(text, r, g, b) lines = {}; AddRow(text, nil, r, g, b) end -- GameTooltip:SetText replaces every line
+    function krowiTooltip:AddLine(text, r, g, b) AddRow(text, nil, r, g, b) end
+    function krowiTooltip:AddDoubleLine(left, right, lr, lg, lb, rr, rg, rb) AddRow(left, right, lr, lg, lb, rr, rg, rb) end
+    function krowiTooltip:NumLines() return #lines end
+    function krowiTooltip:Show() end
+    function krowiTooltip:Hide() end
+    rawset(env, "Krowi_Tooltip", krowiTooltip)
+    return krowiTooltip, function() return lines end
+end
+
 -- The real Gui.lua load (gui:LoadWithBlizzard_AchievementUI with its sub-frame hook), tab factory and tab mixin, search
 -- box and browsing-history buttons, against a model of Blizzard_AchievementUI's tab switching (sources in
 -- Tests/Navigation.lua). Only the loaders that build frames this suite never looks at are faked; the tabs are
--- selected through the real gui:ToggleAchievementFrame, the path the key bindings and /kaftest use.
+-- selected through the real gui:ToggleAchievementFrame, the path the key bindings and /kaftest use. The history
+-- scenarios build the back arrow's tooltip through the real mixin into the Krowi_Tooltip model, on one category and a
+-- game that knows no achievement.
 suites.navigation = function(c)
     local env, addon, isRetail = c.env, c.addon, c.isRetail
     c.frames.lenient, c.frames.createShown = true, true
@@ -658,7 +687,32 @@ suites.navigation = function(c)
         if key == "Back" then return achievementFrame.HeaderDetails ~= nil and achievementFrame.HeaderDetails.Back:IsVisible() end
         return env.KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton:IsVisible() or env.KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton:IsVisible()
     end
-    return navigation.Run(headless), "Tests/Navigation.lua", {}
+    local _, tooltipLines = ModelKrowiTooltip(env)
+    env.GameTooltip_AddBlankLineToTooltip = function(tooltip) tooltip:AddLine(" ") end
+    env.GetAchievementInfo = function() end -- the model's game knows no achievement
+    addon.Util.Colors = addon.Util.Colors or { LightGreenRGB = { R = 0.5, G = 1, B = 0.5 }, LightGreyRGB = { R = 0.7, G = 0.7, B = 0.7 } }
+    local historyCategoryId, unknownId = 9001, 999998
+    local observations = {}
+    addon.Data.Achievements = addon.Data.Achievements or {}
+    addon.Data.Categories = addon.Data.Categories or {}
+    addon.Data.Categories[historyCategoryId] = { Id = historyCategoryId, Name = "Achievements", GetTree = function(self) return { self } end }
+    function headless.HistoryTooltipLine() -- gameEnv.HistoryTooltipLine on the model, with a fake id and category
+        observations[#observations + 1] = "history-tooltip-unknown-achievement lists " .. unknownId .. ", a fake id the model's game does not know"
+        local history = addon.BrowsingHistory
+        local records, index = history:GetAllRecords(), history:GetCurrentIndex()
+        records[#records + 1] = { CategoryId = historyCategoryId, AchievementId = unknownId }
+        history.Index = #records
+        local built, problem = pcall(env.KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButtonMixin.OnEnter, env.KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton)
+        local lines = tooltipLines()
+        table.remove(records)
+        history.Index = index
+        if not built then
+            observations[#observations + 1] = "history-tooltip-unknown-achievement " .. navigation.DescribeError(problem)
+            return false, problem
+        end
+        return true, lines[#lines], unknownId
+    end
+    return navigation.Run(headless), "Tests/Navigation.lua", observations
 end
 
 -- The real Krowi_WorldMapButtons library, button mixin and Gui/WorldMapButton/WorldMapButton.lua against a model of the
@@ -765,30 +819,6 @@ suites.worldmap = function(c)
     c.loadAddonFile("Gui/WorldMapButton/WorldMapButton.lua")
     addon.Gui.WorldMapButton:Load() -- Gui/Gui.lua's LoadWithAddon, phase 1
     return worldMap.Run(worldMap.GameEnv, observations), "Tests/WorldMap.lua", observations
-end
-
--- Krowi_Tooltip as the tooltip sections use it: lines, owner, and the Krowi_TooltipTextLeft/Right<n> font strings a section
--- may copy. Returns the tooltip and a function giving its left texts.
-local function ModelKrowiTooltip(env)
-    local lines, owner = {}, nil
-    local function FontString(text, r, g, b)
-        return { GetText = function() return text end, GetTextColor = function() return r or 1, g or 1, b or 1 end }
-    end
-    local function AddRow(left, right, lr, lg, lb, rr, rg, rb)
-        lines[#lines + 1] = left
-        rawset(env, "Krowi_TooltipTextLeft" .. #lines, FontString(left, lr, lg, lb))
-        rawset(env, "Krowi_TooltipTextRight" .. #lines, FontString(right, rr, rg, rb))
-    end
-    local krowiTooltip = {}
-    function krowiTooltip:SetOwner(frame) owner = frame; lines = {} end -- like GameTooltip:SetOwner, it clears the lines
-    function krowiTooltip:GetOwner() return owner end
-    function krowiTooltip:AddLine(text, r, g, b) AddRow(text, nil, r, g, b) end
-    function krowiTooltip:AddDoubleLine(left, right, lr, lg, lb, rr, rg, rb) AddRow(left, right, lr, lg, lb, rr, rg, rb) end
-    function krowiTooltip:NumLines() return #lines end
-    function krowiTooltip:Show() end
-    function krowiTooltip:Hide() end
-    rawset(env, "Krowi_Tooltip", krowiTooltip)
-    return krowiTooltip, function() return lines end
 end
 
 -- A copy of AchievementTooltip:ShowTooltip (Gui/AchievementTooltip/AchievementTooltip.lua): every registered section that
@@ -1131,19 +1161,31 @@ suites.guide = function(c)
     return suite.Run(headless, observations), "Tests/Guide.lua", observations
 end
 
--- The real Gui/RightClickMenu/AchievementMenu/AchievementMenu.lua against a model of addon.MenuBuilder that keeps the one
--- rule this suite is about: CreateButtonAndAdd disables an entry only when its fourth argument, isEnabled, is false
--- (Libs/Krowi_Menu/Krowi_MenuBuilder.lua, CreateSubmenuButton on Retail and on Classic). Achievement 6 is registered; the
--- missing id is a fake the model's data does not hold (sources in Tests/Menu.lua).
+-- The real Gui/RightClickMenu/AchievementMenu/AchievementMenu.lua and Globals.lua against a model of addon.MenuBuilder that
+-- keeps the one rule this suite is about: CreateButtonAndAdd disables an entry only when its fourth argument, isEnabled,
+-- is false (Libs/Krowi_Menu/Krowi_MenuBuilder.lua, CreateSubmenuButton on Retail and on Classic). The model's game knows
+-- 6 and the fake missing id; the model's data registers 6 and the fake placeholder; the fake unknown id is in neither
+-- (sources in Tests/Menu.lua). No section file is loaded, so a whole menu is its title and the plugin entries, of which
+-- the model has none.
 suites.menu = function(c)
-    local addon = c.addon
+    local env, addon = c.env, c.addon
     c.loadAddonFile("Tests/Menu.lua")
     local suite = addon.Tests.Menu
     local observations = {}
 
+    local ids = { missing = 999999, unknown = 999998, placeholder = 999997 }
+    local known = { [6] = true, [ids.missing] = true }
+    env.GetAchievementInfo = function(id)
+        if known[id] then return id, "Achievement " .. id end
+    end
+    c.loadAddonFile("Globals.lua")
+
     local builder = {}
     function builder:New() return self end
     function builder:Close() end
+    function builder:CreateTitle(menu, text)
+        menu.Entries[#menu.Entries + 1] = { Text = text, IsTitle = true }
+    end
     function builder:CreateButtonAndAdd(menu, text, func, isEnabled)
         local entry = { Text = text, Func = func, Enabled = isEnabled ~= false }
         menu.Entries[#menu.Entries + 1] = entry
@@ -1151,25 +1193,38 @@ suites.menu = function(c)
     end
     addon.MenuBuilder = builder
     addon.Gui = { RightClickMenu = {} }
-    addon.Data = { Achievements = { [6] = { Id = 6 } } }
-    addon.GetAchievmentName = function(id) return "Achievement " .. id end
+    addon.Data = { Achievements = { [6] = { Id = 6 }, [ids.placeholder] = { Id = ids.placeholder, DoesNotExist = true } } }
+    env.KrowiAF = { PluginsApi = { AddAchievementRightClickMenuItems = function() end } }
     c.loadAddonFile("Gui/RightClickMenu/AchievementMenu/AchievementMenu.lua")
+    local achievementMenu = addon.Gui.RightClickMenu.AchievementMenu
 
-    local missingId = 999999
+    local notes = {
+        missing = "a fake id the model's game knows and its data does not hold",
+        unknown = "a fake id neither the model's game nor its data holds",
+        placeholder = "a fake id the model's data registers as a placeholder and its game does not know"
+    }
     local headless = {}
-    function headless.MissingId(obs)
-        obs[#obs + 1] = ("missing-achievement-entry links to %d, a fake id the model's data does not hold"):format(missingId)
-        return missingId
+    function headless.Find(kind)
+        return ids[kind], ids[kind] .. ", " .. notes[kind]
     end
     function headless.Build(id)
         local rootMenu = { Entries = {} }
-        addon.Gui.RightClickMenu.AchievementMenu:AddGoToAchievementLine(rootMenu, id)
+        achievementMenu:AddGoToAchievementLine(rootMenu, id)
         return rootMenu
     end
-    function headless.IsEntryEnabled(rootMenu)
+    function headless.BuildMenu(id)
+        local rootMenu = { Entries = {} }
+        achievementMenu:CreateMenu(rootMenu, addon.Data.Achievements[id])
+        return rootMenu
+    end
+    function headless.ReadEntry(rootMenu)
         local entry = rootMenu.Entries[1]
         if not entry then return nil, "the root menu got no entry" end
-        return entry.Enabled
+        return entry.Enabled, entry.Text
+    end
+    function headless.ReadTitle(rootMenu)
+        local entry = rootMenu.Entries[1]
+        return entry and entry.Text
     end
     return suite.Run(headless, observations), "Tests/Menu.lua", observations
 end

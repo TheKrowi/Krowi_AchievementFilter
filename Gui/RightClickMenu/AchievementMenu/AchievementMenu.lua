@@ -11,7 +11,7 @@ end
 
 function achievementMenu:AddGoToAchievementLine(menu, id, nameSuffix)
 	nameSuffix = nameSuffix or ""
-	local name = addon.GetAchievmentName(id)
+	local _, name = addon.GetAchievementInfo(id) -- The placeholder name for an id the game does not know, never nil
 	local isEnabled
 	if not addon.Data.Achievements[id] then -- Catch missing achievements from the addon to prevent errors
 		name = name .. " (" .. addon.L["Missing"] .. ")"
@@ -39,8 +39,10 @@ function achievementMenu:AddGoToAchievementWithCategoryLine(menu, achievement, c
 	)
 end
 
-local function CreateMenu(menuObj, achievement, caller)
-	menuBuilder:CreateTitle(menuObj, addon.GetAchievmentName(achievement.Id))
+-- Builds the menu into menuObj without showing it, so the menu suite (Tests/Menu.lua) can build one into a root of its own
+function achievementMenu:CreateMenu(menuObj, achievement, caller)
+	local _, name = addon.GetAchievementInfo(achievement.Id)
+	menuBuilder:CreateTitle(menuObj, name)
 
 	for _, section in next, achievementMenu.Sections do
 		if section:CheckAdd(achievement) then
@@ -54,7 +56,7 @@ end
 function achievementMenu:Open(caller, achievement, anchor, offsetX, offsetY, point, relativePoint, frameStrata, frameLevel)
 	menuBuilder:ShowPopup(function()
 		local menuObj = menuBuilder:GetMenu()
-		CreateMenu(menuObj, achievement, caller)
+		achievementMenu:CreateMenu(menuObj, achievement, caller)
 	end)
 end
 
