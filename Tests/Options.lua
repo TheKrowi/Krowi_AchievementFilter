@@ -1,4 +1,4 @@
-local _, addon = ...
+local addonName, addon = ...
 addon.Tests.Options = {}
 local options = addon.Tests.Options
 
@@ -160,10 +160,442 @@ function options.Observations()
     return out
 end
 
-addon.Tests.Suites.options = function()
-    return options.Run(), options.Observations()
+-- [[ Game only: the window itself ]] --
+
+-- After the scenarios the suite drives the real window, the /kevutest way (Krowi_ExtendedVendorUI): each step sets a state
+-- through the window's own functions, names itself in a banner over the window, checks what the window shows and takes a
+-- screenshot, which Read-GameTests.ps1 pairs with its file.
+--   open: /kaf opens the window where the landing rule says (the first open after a /reload also builds it)
+--   section-<id>: Overview and every section draw their rows, and every drawn check box, slider and text box shows its
+--     option's value
+--   toggle, range, input: one row of each changed through its own control: the value is stored, and the changed dot and
+--     the footer's count follow it
+--   search: a search lists results; pane: the help pane collapses to its strip; close: the close button hides the window
+-- At the end every value the steps changed and the window's saved state (place, pane, last section, the sections seen,
+-- which the walk marks) are put back, and the addon's Lua errors of the session are reported from BugGrabber. Combat
+-- stops the run; the values go back once it ends.
+
+local settle = 1 -- a state change -> its check and screenshot
+local afterShot = 1 -- a screenshot -> the next step
+local toggleId = "Layout.args.Header.args.General.args.CenterHeader"
+local rangeId = "Layout.args.Categories.args.Indentation.args.Indentation"
+local inputId = "Layout.args.Achievements.args.TemporarilyObtainable.args.StartTimeAndEndTime.args.Custom"
+
+local live -- the run in progress
+local runToken = 0 -- bumped by every stop, so a stopped run's timers do nothing
+local banner
+local steps
+
+local function Add(status, text)
+    tinsert(live.Results, {
+        Name = "live-" .. live.StepName,
+        Status = status,
+        GameOnly = true,
+        Line = ("options/live-%s: %s %s"):format(live.StepName, status, text)
+    })
+end
+
+local function After(seconds, func)
+    local token = runToken
+    C_Timer.After(seconds, function()
+        if live and token == runToken then
+            func()
+        end
+    end)
+end
+
+local function Window()
+    return KrowiAF_OptionsWindow
+end
+
+local function DeepCopy(value)
+    if type(value) ~= "table" then
+        return value
+    end
+    local copy = {}
+    for k, v in next, value do
+        copy[k] = DeepCopy(v)
+    end
+    return copy
+end
+
+-- The section that draws an option, and the option
+local function FindOption(optionId)
+    local window = addon.Options.Window
+    for _, section in ipairs(window.Map.Sections) do
+        for _, element in ipairs(window.Source.Elements(section)) do
+            if element.Option and element.Option.Id == optionId then
+                return section.Id, element.Option
+            end
+        end
+    end
+end
+
+-- The drawn row of an option on the current page
+local function RowOf(option)
+    local found
+    Window().PageScrollBox:ForEachFrame(function(row)
+        if row.Option == option then
+            found = row
+        end
+    end)
+    return found
+end
+
+-- The first value change of an option keeps the player's value, which Finish puts back
+local function Remember(option)
+    if not live.Before[option] then
+        live.Before[option] = { Value = option:Get() }
+    end
+end
+
+-- Drawn rows whose control does not show its option's value
+local function CheckDrawnRows()
+    local drawn, differ = 0, {}
+    Window().PageScrollBox:ForEachFrame(function(row)
+        drawn = drawn + 1
+        local option = row.Option
+        if not option or not option.Type then
+            return
+        end
+        local value = option:Get()
+        local shows
+        if option.Type == "toggle" then
+            shows = (row.Toggle:GetChecked() and true or false) == (value and true or false)
+        elseif option.Type == "range" then
+            shows = value == nil or math.abs(row.Range.Slider:GetValue() - value) < 0.001
+        elseif option.Type == "input" then
+            shows = row.Input:HasFocus() or row.Input:GetText() == tostring(value or "")
+        else
+            shows = true
+        end
+        if not shows then
+            tinsert(differ, option.Id)
+        end
+    end)
+    return drawn, differ
+end
+
+local function SectionStep(sectionId, name)
+    return {
+        Name = "section-" .. sectionId,
+        Text = name,
+        Run = function()
+            Window():ShowSection(sectionId)
+        end,
+        Check = function()
+            local rows = #(Window().Elements or {})
+            local drawn, differ = CheckDrawnRows()
+            local ok = (rows == 0 or drawn > 0) and #differ == 0
+            Add(ok and "PASS" or "FAIL", ("%d rows, %d drawn%s"):format(rows, drawn,
+                #differ > 0 and (", controls that do not show their value: [" .. table.concat(differ, ",") .. "]") or ""))
+        end
+    }
+end
+
+-- The footer names the section's changed options
+local function FooterAgrees(sectionId)
+    local window = Window()
+    local count = addon.Options.Window.Model.ChangedCount(sectionId)
+    local expected = count > 0 and window.Strings.ChangedCount:format(count) or ""
+    return (window.ChangedText:GetText() or "") == expected, count
+end
+
+-- Shows the option's section scrolled to it, then changes it through its row's control in Change(row, option)
+local function ChangeSteps(kind, optionId, Change)
+    local sectionId, option
+    return {
+        Name = kind .. "-shown",
+        Text = ("the %s row to change"):format(kind),
+        Run = function()
+            sectionId, option = FindOption(optionId)
+            if not option then
+                return optionId .. " is in no section on this client"
+            end
+            Window():ShowSection(sectionId, optionId)
+        end,
+        Check = function()
+            Add(RowOf(option) and "PASS" or "FAIL", ("%s is drawn in %s"):format(optionId, sectionId))
+        end
+    }, {
+        Name = kind,
+        Text = ("a %s changed through its own control"):format(kind),
+        Run = function()
+            local row = option and RowOf(option)
+            if not row then
+                return "its row is not drawn"
+            end
+            Remember(option)
+            Change(row, option)
+        end,
+        Check = function()
+            local row = RowOf(option)
+            local stored = option:Get() ~= live.Before[option].Value
+            local dot = row and row.Dot:IsShown() == option:IsChanged()
+            local footer, count = FooterAgrees(sectionId)
+            Add(stored and dot and footer and "PASS" or "FAIL", ("%s: %s -> %s, dot %s, footer %s (%d changed)"):format(optionId,
+                tostring(live.Before[option].Value), tostring(option:Get()), dot and "follows" or "wrong", footer and "follows" or "wrong", count))
+        end
+    }
+end
+
+local function BuildSteps()
+    local window = addon.Options.Window
+    local list = {
+        {
+            Name = "open",
+            Required = true,
+            Text = "/kaf opens the window",
+            Run = function()
+                live.FirstOpen = Window() == nil
+                live.Landing = window.Landing()
+                if Window() then
+                    Window():Hide()
+                end
+                SlashCmdList.KAF("")
+            end,
+            Check = function()
+                local frame = Window()
+                local shown = frame and frame:IsShown()
+                Add(shown and frame.SectionId == live.Landing and "PASS" or "FAIL", ("the window opens on %s, the landing section %s (first open after a /reload: %s)"):format(
+                    tostring(frame and frame.SectionId), live.Landing, live.FirstOpen and "yes" or "no"))
+            end
+        },
+        SectionStep("overview", addon.L["Overview"])
+    }
+    for _, section in ipairs(window.Map.Sections) do
+        tinsert(list, SectionStep(section.Id, section.Name))
+    end
+    for _, step in ipairs({ ChangeSteps("toggle", toggleId, function(row) row.Toggle:Click() end) }) do tinsert(list, step) end
+    for _, step in ipairs({ ChangeSteps("range", rangeId, function(row, option)
+        local min, max = option:GetRange()
+        row.Range:SetValue(option:Get() ~= min and min or max)
+    end) }) do tinsert(list, step) end
+    for _, step in ipairs({ ChangeSteps("input", inputId, function(row, option)
+        row.Input:SetText((option:Get() or "") .. " x")
+        row.Input:GetScript("OnEnterPressed")(row.Input)
+    end) }) do tinsert(list, step) end
+    local searchText
+    tinsert(list, {
+        Name = "search",
+        Text = "a search lists results",
+        Run = function()
+            local _, option = FindOption(toggleId)
+            searchText = option and option:GetLabel():match("^(%S+)") or "a"
+            Window().SearchBox:SetText(searchText)
+            Window():OnSearch(searchText)
+        end,
+        Check = function()
+            local links = 0
+            for _, element in ipairs(Window().Elements or {}) do
+                if element.Kind == "Link" then
+                    links = links + 1
+                end
+            end
+            Add(Window().Searching and links > 0 and "PASS" or "FAIL", ("'%s' lists %d results"):format(searchText, links))
+        end
+    })
+    tinsert(list, {
+        Name = "pane",
+        Text = "the help pane collapsed to its strip",
+        Run = function()
+            local frame = Window()
+            frame:ShowSection("window")
+            frame:SetPaneCollapsed(not frame.PaneCollapsed)
+        end,
+        Check = function()
+            local frame = Window()
+            local agrees = frame.ExpandButton:IsShown() == frame.PaneCollapsed and frame.HelpScrollBox:IsShown() == not frame.PaneCollapsed
+            Add(agrees and "PASS" or "FAIL", ("the pane is %s and shows it"):format(frame.PaneCollapsed and "collapsed" or "open"))
+        end
+    })
+    tinsert(list, {
+        Name = "close",
+        Text = "the close button hides the window",
+        Run = function()
+            Window().CloseButton:Click()
+        end,
+        Check = function()
+            Add(not Window():IsShown() and "PASS" or "FAIL", "the window is hidden")
+        end
+    })
+    return list
+end
+
+local function CheckErrors()
+    if not (BugGrabber and type(BugGrabber.GetDB) == "function" and type(BugGrabber.GetSessionId) == "function") then
+        tinsert(live.Observations, "no BugGrabber, so Lua errors are not checked")
+        return
+    end
+    local session = BugGrabber:GetSessionId()
+    local found = 0
+    for _, err in ipairs(BugGrabber:GetDB()) do
+        if err.session == session and ((type(err.message) == "string" and err.message:find(addonName, 1, true))
+            or (type(err.stack) == "string" and err.stack:find(addonName, 1, true))) then
+            found = found + 1
+            Add("FAIL", ("Lua error x%d: %s"):format(err.counter or 1, tostring(err.message):sub(1, 300)))
+        end
+    end
+    if found == 0 then
+        Add("PASS", "no Lua error from this addon this session (BugGrabber)")
+    end
+end
+
+-- Every value the steps changed goes back, then the window's saved state as it was before the run
+local function Restore()
+    local frame = Window()
+    local notBack = {}
+    for option, before in next, live.Before do
+        pcall(option.Set, option, before.Value)
+        if option:Get() ~= before.Value then
+            tinsert(notBack, option.Id)
+        end
+    end
+    if frame then
+        if frame.PaneCollapsed ~= (live.SavedWindow.PaneCollapsed and true or false) then
+            frame:SetPaneCollapsed(live.SavedWindow.PaneCollapsed and true or false)
+        end
+        if live.WasShown then
+            frame:Open(live.WasShown)
+        end
+    end
+    local saved = KrowiAF_SavedData.OptionsWindow -- the window keeps this table, so its fields go back in place
+    wipe(saved)
+    for k, v in next, live.SavedWindow do
+        saved[k] = v
+    end
+    return notBack
+end
+
+local function Finish()
+    banner:UnregisterAllEvents()
+    live.StepName = "restore"
+    local ok, notBack = pcall(Restore)
+    if not ok then
+        Add("FAIL", "could not put the values back: " .. tostring(notBack))
+    else
+        Add(#notBack == 0 and "PASS" or "FAIL", "the changed values and the window's saved state are as before the run"
+            .. (#notBack > 0 and (", except [" .. table.concat(notBack, ",") .. "]") or ""))
+    end
+    live.StepName = "lua-errors"
+    local checked, err = pcall(CheckErrors)
+    if not checked then
+        Add("FAIL", "test error: " .. tostring(err))
+    end
+    local finish, results, observations = live.Finish, live.Results, live.Observations
+    live = nil
+    finish(results, observations)
+end
+
+local function Stop(reason, combatStarted)
+    runToken = runToken + 1
+    banner:Hide()
+    if reason then
+        tinsert(live.Observations, "stopped: " .. reason)
+    end
+    if combatStarted or InCombatLockdown() then
+        banner:UnregisterAllEvents()
+        banner:RegisterEvent("PLAYER_REGEN_ENABLED")
+        print("|cFF88CCFFKrowiAF Tests:|r options: stopped for combat; the changed values go back when it ends")
+        return
+    end
+    Finish()
+end
+
+local RunStep
+
+local function Capture()
+    local ok, err = pcall(steps[live.StepIndex].Check)
+    if not ok then
+        Add("FAIL", "test error: " .. tostring(err))
+    end
+    live.Shot = { Time = date("%Y-%m-%d %H:%M:%S") }
+    live.Results[#live.Results].Screenshot = live.Shot
+    Screenshot()
+    After(afterShot, function()
+        RunStep(live.StepIndex + 1)
+    end)
+end
+
+RunStep = function(n)
+    local step = steps[n]
+    if not step then
+        Stop()
+        return
+    end
+    live.StepIndex, live.StepName = n, step.Name
+    banner.Text:SetText(("Krowi's Achievement Filter test %d/%d: %s"):format(n, #steps, step.Text))
+    local ok, skip = pcall(step.Run)
+    if not ok or (skip and step.Required) then
+        Add("FAIL", ok and skip or ("test error: " .. tostring(skip)))
+        Stop("step " .. step.Name .. " failed")
+        return
+    end
+    if skip then -- the steps after it do not build on it
+        Add("SKIP", skip)
+        RunStep(n + 1)
+        return
+    end
+    if n == 1 then
+        banner:ClearAllPoints()
+        banner:SetPoint("BOTTOM", Window(), "TOP", 0, 6)
+        banner:Show()
+    end
+    After(settle, Capture)
+end
+
+local function CreateBanner()
+    banner = CreateFrame("Frame", nil, UIParent)
+    banner:SetFrameStrata("DIALOG")
+    banner:SetSize(620, 26)
+    local background = banner:CreateTexture(nil, "BACKGROUND")
+    background:SetAllPoints()
+    background:SetColorTexture(0, 0, 0, 0.85)
+    banner.Text = banner:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+    banner.Text:SetPoint("CENTER")
+    banner:SetScript("OnEvent", function(_, event)
+        if not live then
+            return
+        end
+        if event == "SCREENSHOT_FAILED" and live.Shot then
+            live.Shot.Failed = true
+        elseif event == "PLAYER_REGEN_DISABLED" then
+            Stop("combat started", true)
+        elseif event == "PLAYER_REGEN_ENABLED" then
+            Finish()
+        end
+    end)
+    banner:Hide()
 end
 
 addon.Tests.Ready.options = function()
+    if live then
+        return false, "the previous options run is still going"
+    end
+    if not addon.Data.IsLoaded then -- some setters refresh the achievement window's data
+        return false, "the achievement data is not loaded yet"
+    end
     return true
+end
+
+addon.Tests.Async.options = true
+addon.Tests.Suites.options = function(done)
+    local frame = Window()
+    KrowiAF_SavedData.OptionsWindow = KrowiAF_SavedData.OptionsWindow or {}
+    live = {
+        Results = options.Run(),
+        Observations = options.Observations(),
+        Finish = done,
+        Before = {},
+        SavedWindow = DeepCopy(KrowiAF_SavedData.OptionsWindow),
+        WasShown = frame and frame:IsShown() and frame.SectionId or nil
+    }
+    if not banner then
+        CreateBanner()
+    end
+    banner:RegisterEvent("SCREENSHOT_FAILED")
+    banner:RegisterEvent("PLAYER_REGEN_DISABLED")
+    steps = BuildSteps()
+    print(("|cFF88CCFFKrowiAF Tests:|r options: %d steps, about %d s; it changes three options and puts them back"):format(#steps, #steps * (settle + afterShot)))
+    RunStep(1)
 end

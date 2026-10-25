@@ -44,7 +44,7 @@ function window.AnyNew()
 end
 
 -- Overview while a section is New, otherwise the section the player looked at last
-local function Landing()
+function window.Landing()
     if window.AnyNew() then return "overview" end
     local last = Saved().LastSection
     if last and source.Section(last) then return last end
@@ -93,7 +93,7 @@ window.Controller = KROWI_LIBMAN:GetLibrary("Krowi_Options_1").CreateWindow({
         return section and section.Name or id
     end,
     IsNew = window.IsNew,
-    Landing = Landing,
+    Landing = window.Landing,
     OnSectionShown = function(id)
         if id ~= "overview" then Saved().Seen[id] = addon.Metadata.Version end
     end,
