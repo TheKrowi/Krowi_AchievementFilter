@@ -1,5 +1,5 @@
 # Intent: Options window with the explanations built in
-Author: Krowi (maintainer), captured by Claude. Source: idea (2026-10-25), shaped by two rounds of clickable mockups (https://claude.ai/artifact/R1E7YE4Bj7goEFh18PRsBH, private). Status: draft
+Author: Krowi (maintainer), captured by Claude. Source: idea (2026-10-25), shaped by two rounds of clickable mockups (https://claude.ai/artifact/R1E7YE4Bj7goEFh18PRsBH, private). Status: accepted
 
 ## Problem
 How the addon works and how it is set are in two places, and both have aged.
