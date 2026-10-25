@@ -278,8 +278,10 @@ steps = {
     SceneStep("categories", "CategoryTree", "categories", "the category list at the current expansion", function()
         return {{Frame = KrowiAF_CategoriesFrame, MaxHeight = 360}}
     end),
+    -- From the Progress Overview header down, inside the summary: the Categories frame's own rectangle sits lower than
+    -- the bars it draws and reaches under the window into the tab strip (the 2026-10-25 runs)
     SceneStep("summary", "SummaryBars", "summary", "the summary's progress bars", function()
-        return {KrowiAF_SummaryFrame.Categories}
+        return {{Frame = KrowiAF_SummaryFrame, Top = KrowiAF_SummaryFrame.Categories.Header, MaxHeight = 150}}
     end),
     {
         Name = "compact",

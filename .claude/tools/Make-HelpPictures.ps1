@@ -37,7 +37,7 @@
     Makes only these pictures.
 
 .PARAMETER MaxSide
-    Longest side in pixels after scaling. Default 512.
+    Longest side in pixels after scaling. Default 1024, so a picture stays sharp when the pane shows it enlarged.
 
 .PARAMETER Fade
     Width of the soft edge in pixels. Default 18.
@@ -57,7 +57,7 @@ param(
     [string]$SavedVariables,
     [string]$Screenshots,
     [string[]]$Only,
-    [int]$MaxSide = 512,
+    [int]$MaxSide = 1024,
     [int]$Fade = 18,
     [string]$Preview
 )
