@@ -42,13 +42,13 @@ local function After(seconds, func)
     end)
 end
 
--- A cut-out is a frame, or a table {Frame = frame, Top = region, MaxHeight = units}: Top keeps the frame's sides and
--- bottom and starts at region's top (the Earned By part of a tooltip); MaxHeight keeps only the top of a tall frame,
--- in UIParent units, so it still reads in the help pane
+-- A cut-out is a frame, or a table {Frame = frame, Top = region, Bottom = region, MaxHeight = units}: Top and Bottom
+-- keep the frame's sides and cut from one region's top to the other's bottom (the Earned By part of a tooltip);
+-- MaxHeight keeps only the top of a tall frame, in UIParent units, so it still reads in the help pane
 local function Edges(item)
-    local frame, topRegion, maxHeight = item, nil, nil
+    local frame, topRegion, bottomRegion, maxHeight = item, nil, nil, nil
     if type(item) == "table" and item.Frame then
-        frame, topRegion, maxHeight = item.Frame, item.Top, item.MaxHeight
+        frame, topRegion, bottomRegion, maxHeight = item.Frame, item.Top, item.Bottom, item.MaxHeight
     end
     if not (frame and frame.IsVisible and frame:IsVisible() and frame:GetLeft()) then
         return
@@ -56,7 +56,10 @@ local function Edges(item)
     local scale = frame:GetEffectiveScale()
     local left, right, top, bottom = frame:GetLeft() * scale, frame:GetRight() * scale, frame:GetTop() * scale, frame:GetBottom() * scale
     if topRegion and topRegion:GetTop() then
-        top = topRegion:GetTop() * topRegion:GetEffectiveScale() + 4
+        top = topRegion:GetTop() * topRegion:GetEffectiveScale() + 6
+    end
+    if bottomRegion and bottomRegion:GetBottom() then
+        bottom = bottomRegion:GetBottom() * bottomRegion:GetEffectiveScale() - 6
     end
     if maxHeight then
         bottom = max(bottom, top - maxHeight * UIParent:GetEffectiveScale())
@@ -167,11 +170,28 @@ local function EarnedByLine()
         if text then
             for _, start in ipairs(starts) do
                 if start ~= "" and text:find(start, 1, true) == 1 then
-                    return line
+                    return line, i
                 end
             end
         end
     end
+end
+
+-- The last line of the Earned By part: the line before the tooltip's next empty line, or its last line
+local function EarnedByEnd()
+    local _, first = EarnedByLine()
+    if not first then
+        return
+    end
+    local last = first
+    for i = first + 1, Krowi_Tooltip:NumLines() do
+        local text = _G["Krowi_TooltipTextLeft" .. i]:GetText()
+        if not text or text == "" or text == " " then
+            break
+        end
+        last = i
+    end
+    return _G["Krowi_TooltipTextLeft" .. last]
 end
 
 -- The rows of the header colours: an achievement per look, found among the achievements with a category
@@ -326,7 +346,7 @@ steps = {
             end
         end,
         Cut = function()
-            return {{Frame = Krowi_Tooltip, Top = EarnedByLine()}}
+            return {{Frame = Krowi_Tooltip, Top = (EarnedByLine()), Bottom = EarnedByEnd()}}
         end,
         Check = function()
             return EarnedByLine() ~= nil, "the tooltip has no Earned By part"
@@ -402,7 +422,18 @@ steps = {
         return KrowiAF_RewardPreview:IsShown(), "the reward preview is not shown"
     end),
     addon.Util.IsMainline and SceneStep("guide", "GuidePanel", "guides", "the guide of Legendary Research of the Ebon Blade", function()
-        addon.Gui.RewardPreview:Close()
+        -- the event reminder buttons beside the window are alert frames in DIALOG strata, over the HIGH guide panel;
+        -- they are the addon's own and come back with the next step's clean-up
+        live.HiddenSideButtons = {}
+        local i = 1
+        while _G["KrowiAF_AchievementFrameSideButton" .. i] do
+            local sideButton = _G["KrowiAF_AchievementFrameSideButton" .. i]
+            if sideButton:IsShown() then
+                sideButton:Hide()
+                tinsert(live.HiddenSideButtons, sideButton)
+            end
+            i = i + 1
+        end
         return {KrowiAF_GuidePanel}
     end, function()
         return KrowiAF_GuidePanel ~= nil and KrowiAF_GuidePanel:IsShown(), "the guide panel is not shown"
@@ -440,8 +471,15 @@ steps = {
             local subSystem = addon.Gui.EventReminderAlertSystem.SubSystem
             if subSystem and subSystem.alertFramePool then
                 for frame in subSystem.alertFramePool:EnumerateActive() do
-                    tinsert(frames, frame)
+                    if frame:GetTop() then
+                        tinsert(frames, frame)
+                    end
                 end
+            end
+            -- three in a row tell what a reminder looks like; the stack of every active and placeholder one is too tall
+            sort(frames, function(a, b) return a:GetTop() > b:GetTop() end)
+            while #frames > 3 do
+                tremove(frames)
             end
             return frames
         end,
@@ -493,6 +531,9 @@ local function SaveRun()
 end
 
 local function Restore()
+    for _, sideButton in ipairs(live.HiddenSideButtons or {}) do
+        sideButton:Show()
+    end
     CloseMenus()
     Krowi_Tooltip:Hide()
     Krowi_ProgressBarTooltip:Hide()
@@ -522,6 +563,10 @@ end
 
 -- What an earlier step left open, so it does not show through this step's picture
 local function Cleanup()
+    for _, sideButton in ipairs(live.HiddenSideButtons or {}) do
+        sideButton:Show()
+    end
+    live.HiddenSideButtons = nil
     CloseMenus()
     Krowi_Tooltip:Hide()
     Krowi_ProgressBarTooltip:Hide()
@@ -639,6 +684,10 @@ RunStep = function(n)
     end
     live.StepIndex, live.StepName, live.Scene = n, step.Name, nil
     SetBanner(step.Text)
+    -- the backdrop drops back under everything until this step's screenshot, or it would cover what the player opens
+    -- (the map of the last step)
+    backdrop:SetFrameStrata("BACKGROUND")
+    backdrop:SetFrameLevel(0)
     if not step.Keep then
         local cleaned, cleanErr = pcall(Cleanup)
         if not cleaned then
