@@ -310,11 +310,23 @@ end
 
 -- The map: a secure button clicks the minimap's own map button, which calls ToggleWorldMap (Retail's
 -- MinimapCluster.ZoneTextButton, Mists' MiniMapWorldMapButton). It lies over the pane's Show me button while the maps
--- section is drawn, on UIParent and never anchored into the window for combat: on PLAYER_REGEN_DISABLED, which comes
--- before the lockdown, it lets go and hides, so nothing of the window becomes anchor-protected.
+-- section is drawn, on UIParent and placed there by coordinates: a protected frame cannot anchor to the window's
+-- regions ("Cannot anchor protected frames to regions"), and the window calls ShowMeSecure again after it moves or
+-- resizes. On PLAYER_REGEN_DISABLED, which comes before the lockdown, it hides, since in combat it could not follow the
+-- window or hide with it.
 local mapButton
 local hookedOwners = setmetatable({}, {__mode = "k"})
 
+-- In debug mode the map route says in chat what it did, once per change, for an in-game check of a click that does nothing
+local lastMapState
+local function DebugMapState(state)
+    if state ~= lastMapState then
+        lastMapState = state
+        addon.Diagnostics.Debug("Show me, map: " .. state)
+    end
+end
+
+-- The delegate, or nil and why not
 local function MapDelegate()
     local delegate
     if addon.Util.IsModern then
@@ -323,20 +335,23 @@ local function MapDelegate()
         delegate = MiniMapWorldMapButton
     end
     if type(delegate) ~= "table" or not delegate.IsForbidden or delegate:IsForbidden() then
-        return
+        return nil, "no minimap map button"
     end
     -- What SECURE_ACTIONS.click refuses on Retail (Blizzard_FrameXML/SecureTemplates.lua), checked before the script is
     -- read; a refused click would still close the window through PostClick and open no map
     if delegate.HasAccessConstraints and delegate:HasAccessConstraints() then
-        return
+        return nil, "the minimap map button has access constraints"
     end
     if delegate.HasAnyForbiddenAspects and Enum.ForbiddenAspect and delegate:HasAnyForbiddenAspects(Enum.ForbiddenAspect.ScriptedInput) then
-        return
+        return nil, "the minimap map button forbids scripted input"
     end
     -- Mists hides its map button when the group finder is off, and minimap addons hide or move it; a hidden button
     -- may not click, so the note takes over
-    if not delegate:IsVisible() or not delegate:GetScript("OnClick") then
-        return
+    if not delegate:IsVisible() then
+        return nil, "the minimap map button is hidden"
+    end
+    if not delegate:GetScript("OnClick") then
+        return nil, "the minimap map button has no OnClick"
     end
     return delegate
 end
@@ -359,12 +374,28 @@ local function ReleaseMapButton()
     mapButton.Owner, mapButton.Close = nil, nil
 end
 
+-- Over the owner, in UIParent's coordinates, a level above it
+local function PlaceOver(owner)
+    local left, bottom = owner:GetLeft(), owner:GetBottom()
+    if not left then
+        return false
+    end
+    local scale = owner:GetEffectiveScale() / UIParent:GetEffectiveScale()
+    mapButton:SetFrameStrata(owner:GetFrameStrata())
+    mapButton:SetFrameLevel(owner:GetFrameLevel() + 5)
+    mapButton:ClearAllPoints()
+    mapButton:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", left * scale, bottom * scale)
+    mapButton:SetSize(owner:GetWidth() * scale, owner:GetHeight() * scale)
+    return true
+end
+
 local function CreateMapButton()
     local button = CreateFrame("Button", nil, UIParent, "SecureActionButtonTemplate")
     button:RegisterForClicks("LeftButtonUp")
     button:SetAttribute("type", "click")
     button:SetAttribute("useOnKeyDown", false)
     button:SetScript("OnEnter", function(self)
+        DebugMapState("the mouse is over the secure button")
         if self.Owner then
             self.Owner:LockHighlight()
         end
@@ -374,7 +405,9 @@ local function CreateMapButton()
             self.Owner:UnlockHighlight()
         end
     end)
-    button:SetScript("PostClick", function(self)
+    button:SetScript("PostClick", function(self, mouseButton, down)
+        DebugMapState(("clicked (%s, %s): the map is %s"):format(tostring(mouseButton), down and "down" or "up",
+            WorldMapFrame and WorldMapFrame:IsShown() and "open" or "closed"))
         if self.Close then
             self.Close()
         end
@@ -391,12 +424,14 @@ if help.maps then
             ReleaseMapButton()
             return true
         end
-        local delegate = MapDelegate()
+        local delegate, why = MapDelegate()
         if not delegate then
+            DebugMapState(why .. ": the note shows")
             ReleaseMapButton()
             return false
         end
         if InCombat() then
+            DebugMapState("in combat: let go")
             ReleaseMapButton()
             return true
         end
@@ -408,22 +443,26 @@ if help.maps then
                     ReleaseMapButton()
                 end
             end)
-            -- The mouse reaches the pane's button only when the window was raised over the secure one: lift it back
+            -- The mouse reaches the pane's button only when the window was raised over the secure one or moved away
+            -- from it: put it back over
             owner:HookScript("OnEnter", function(self)
-                if mapButton.Owner == self and not InCombatLockdown() then
-                    mapButton:SetFrameStrata(self:GetFrameStrata())
-                    mapButton:SetFrameLevel(self:GetFrameLevel() + 5)
+                if mapButton.Owner == self and not InCombat() then
+                    PlaceOver(self)
                 end
             end)
         end
         mapButton:SetAttribute("clickbutton", delegate)
         mapButton.Owner, mapButton.Close = owner, close
-        mapButton:SetFrameStrata(owner:GetFrameStrata())
-        mapButton:SetFrameLevel(owner:GetFrameLevel() + 5)
-        mapButton:ClearAllPoints()
-        mapButton:SetAllPoints(owner)
+        if not PlaceOver(owner) then
+            DebugMapState("the pane's button has no position yet")
+            ReleaseMapButton()
+            return true
+        end
         mapButton:RegisterEvent("PLAYER_REGEN_DISABLED")
         mapButton:Show()
+        DebugMapState(("laid over the pane's button (%s %d, own level %d, %dx%d), clicking %s"):format(owner:GetFrameStrata(),
+            owner:GetFrameLevel(), mapButton:GetFrameLevel(), floor(owner:GetWidth() + 0.5), floor(owner:GetHeight() + 0.5),
+            delegate:GetDebugName()))
         return true
     end
 
