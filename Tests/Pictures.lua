@@ -252,6 +252,12 @@ local function ColorStep(look)
         Text = ("a row with the %s header"):format(look:lower()),
         Run = function()
             KrowiAF_SearchBoxFrame:SetText("") -- the list must show the category, not search results
+            -- green, yellow and red headers and the blue warband one are options; on for these rows, back at the end
+            if not live.HeaderColors then
+                local achievements = addon.Options.db.profile.Achievements
+                live.HeaderColors = {Temporarily = achievements.TemporarilyObtainableHeaderColors, Warband = achievements.WarbandHeaderColor}
+                achievements.TemporarilyObtainableHeaderColors, achievements.WarbandHeaderColor = true, true
+            end
             live.Look = FindLook(look)
             if not live.Look then
                 return "no achievement with this look in the data"
@@ -281,7 +287,7 @@ steps = {
     -- From the Progress Overview header down, inside the summary: the Categories frame's own rectangle sits lower than
     -- the bars it draws and reaches under the window into the tab strip (the 2026-10-25 runs)
     SceneStep("summary", "SummaryBars", "summary", "the summary's progress bars", function()
-        return {{Frame = KrowiAF_SummaryFrame, Top = KrowiAF_SummaryFrame.Categories.Header, MaxHeight = 150}}
+        return {{Frame = KrowiAF_SummaryFrame, Top = KrowiAF_SummaryFrame.Categories.Header, MaxHeight = 128}}
     end),
     {
         Name = "compact",
@@ -342,6 +348,7 @@ steps = {
         Picture = "TipEarnedBy",
         Text = "the Earned By part of the tooltip",
         Keep = true, -- the tooltip of the step before
+        Needs = "tooltip",
         Run = function()
             if not Krowi_Tooltip:IsShown() then
                 return "the tooltip of the step before is not shown"
@@ -515,9 +522,39 @@ for i = #steps, 1, -1 do
         tremove(steps, i)
     end
 end
+for i, step in ipairs(steps) do
+    step.Number = i
+end
+
+-- /kaftest pictures <what>: only the steps of one picture (its name, any case: colors) or one step (its number or
+-- name), each with the step it builds on; nil for all of them
+local function SelectSteps(what)
+    if not what then
+        return steps
+    end
+    local wanted, number = what:lower(), tonumber(what)
+    local byName, chosen, added = {}, {}, {}
+    for _, step in ipairs(steps) do
+        byName[step.Name] = step
+    end
+    local function AddStep(step)
+        if step and not added[step] then
+            added[step] = true
+            tinsert(chosen, step)
+        end
+    end
+    for _, step in ipairs(steps) do
+        if step.Number == number or step.Name == wanted or step.Picture:lower() == wanted then
+            AddStep(byName[step.Needs])
+            AddStep(step)
+        end
+    end
+    return #chosen > 0 and chosen or nil
+end
 
 function SetBanner(text)
-    banner.Text:SetText(("Krowi's Achievement Filter pictures %d/%d: %s"):format(live.StepIndex, #steps, text))
+    local step = live.Steps[live.StepIndex]
+    banner.Text:SetText(("Krowi's Achievement Filter pictures %d/%d: %s"):format(step and step.Number or live.StepIndex, #steps, text))
 end
 
 -- The run goes into the saved variables when it starts and each picture is added to it as it is taken, so a /reload
@@ -560,6 +597,14 @@ local function Restore()
     end
     if live.DebugInfo ~= nil then
         addon.Options.db.profile.EnableDebugInfo = live.DebugInfo
+    end
+    if live.HeaderColors then
+        local achievements = addon.Options.db.profile.Achievements
+        achievements.TemporarilyObtainableHeaderColors = live.HeaderColors.Temporarily
+        achievements.WarbandHeaderColor = live.HeaderColors.Warband
+        if KrowiAF_AchievementsFrame and KrowiAF_AchievementsFrame:IsShown() then
+            KrowiAF_AchievementsFrame:ForceUpdate()
+        end
     end
 end
 
@@ -619,7 +664,7 @@ local function Finish()
 end
 
 local function Capture()
-    local step = steps[live.StepIndex]
+    local step = live.Steps[live.StepIndex]
     local ok, passed, reason = pcall(step.Check or function() return true end)
     if not ok then
         Add("FAIL", "test error: " .. tostring(passed))
@@ -679,7 +724,7 @@ local function WaitForMouse(step, waited)
 end
 
 RunStep = function(n)
-    local step = steps[n]
+    local step = live.Steps[n]
     if not step then
         Finish()
         return
@@ -774,12 +819,23 @@ addon.Tests.Ready.pictures = function()
 end
 
 addon.Tests.Async.pictures = true
-addon.Tests.Suites.pictures = function(done)
+addon.Tests.Suites.pictures = function(done, what)
+    local chosen = SelectSteps(what)
+    if not chosen then
+        local names = {}
+        for _, step in ipairs(steps) do
+            tinsert(names, ("%d %s"):format(step.Number, step.Picture))
+        end
+        done({{Name = "select", Status = "SKIP", GameOnly = true,
+            Line = ("pictures/select: SKIP no picture or step '%s'; one of: %s"):format(what, table.concat(names, ", "))}}, {})
+        return
+    end
     if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
         C_AddOns.LoadAddOn("Blizzard_AchievementUI")
     end
     local screenWidth, screenHeight = GetPhysicalScreenSize()
     live = {
+        Steps = chosen,
         Results = {},
         Observations = {},
         Finish = done,
@@ -815,6 +871,8 @@ addon.Tests.Suites.pictures = function(done)
     banner:RegisterEvent("PLAYER_REGEN_DISABLED")
     banner:Show()
     SaveRun()
-    print(("|cFF88CCFFKrowiAF Tests:|r pictures: %d steps, about %d s. The last one waits up to %d s for you: press M and hover the addon's button on the map. /reload after the summary line."):format(#steps, #steps * 3, mouseWait))
+    local waits = live.Steps[#live.Steps].Mouse and (" The last one waits up to %d s for you: press M and hover the addon's button on the map."):format(mouseWait) or ""
+    print(("|cFF88CCFFKrowiAF Tests:|r pictures: %d steps, about %d s.%s /reload after the summary line. /kaftest pictures <name or number> redoes one."):format(
+        #live.Steps, #live.Steps * 3, waits))
     RunStep(1)
 end

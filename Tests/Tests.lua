@@ -100,7 +100,8 @@ end
 -- waitSeconds: how long to keep retrying the suite's Ready check (login runs); nil runs once
 -- onDone(ran, reason): called once the suite reported, or could not run and why
 -- requested: a run the maintainer asked for from outside the game (RunRequest below), which needs no debug mode
-function tests.Run(name, waitSeconds, onDone, requested)
+-- argument: what was typed after the suite's name (/kaftest pictures colors), handed to the suite as its last argument
+function tests.Run(name, waitSeconds, onDone, requested, argument)
     local function NotRun(reason)
         print(prefix .. reason)
         if onDone then
@@ -128,7 +129,7 @@ function tests.Run(name, waitSeconds, onDone, requested)
                     print(prefix .. "waiting for '" .. name .. "': " .. tostring(reason))
                 end
                 C_Timer.After(retryDelay, function()
-                    tests.Run(name, waitSeconds - retryDelay, onDone, requested)
+                    tests.Run(name, waitSeconds - retryDelay, onDone, requested, argument)
                 end)
             else
                 NotRun("cannot run '" .. name .. "': " .. tostring(reason))
@@ -143,10 +144,10 @@ function tests.Run(name, waitSeconds, onDone, requested)
             if onDone then
                 onDone(true)
             end
-        end)
+        end, argument)
         return
     end
-    Report(name, suite())
+    Report(name, suite(argument))
     if onDone then
         onDone(true)
     end
@@ -235,9 +236,9 @@ SlashCmdList.KAFTEST = function(msg)
             print(prefix .. "unknown suite '" .. argument .. "'; available: " .. tests.List())
         end
     elseif command and command ~= "" then
-        tests.Run(command)
+        tests.Run(command, nil, nil, nil, argument ~= "" and argument or nil)
     else
-        print(prefix .. "/kaftest <suite> | /kaftest login <suite|off>; suites: " .. tests.List())
+        print(prefix .. "/kaftest <suite> [what] | /kaftest login <suite|off>; suites: " .. tests.List())
     end
 end
 
