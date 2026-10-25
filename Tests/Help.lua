@@ -146,7 +146,7 @@ help.Scenarios = {
             end
             return #without == 0 and "agrees" or ("no help for=" .. Join(without))
         end,
-        Recorded = "no map",
+        Recorded = "agrees",
         Target = "agrees"},
 }
 
