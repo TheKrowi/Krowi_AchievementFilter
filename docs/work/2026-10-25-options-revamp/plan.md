@@ -117,6 +117,15 @@ Covers stage 1 (the window over today's AceConfig tables, with the tests that be
 - **The scenario `disabled-hidden-agree` became `options-fingerprint`.** In stage 2 there is no AceConfig left to compare against, so a regression check must record facts: every option's id, type and derived default, hashed independently of order. Labels are left out, because headless global strings are stand-ins, and so is the disabled state, which follows the player's settings. Stage 2's definitions keep today's paths as their ids.
 - **The round trip separates values from side effects.** A setter whose refresh errors on something the headless load does not build still stores its value. Those errors are an observation; in game the BugGrabber step covers them.
 - **The help track branches off this branch** (`New-Worktree.ps1 feature/2026-10-25-options-help -Base feature/2026-10-25-options-revamp`) and opens its PR into it, leaving one PR to `main`.
+- **The library registers as `Krowi_Options_1`, minor 0,** following the other Krowi libraries' name-with-major form.
+- **Rows refresh in place.** A change rebuilds the page only when it shows or hides rows. Rebuilding on every change re-initialised the slider being dragged, so only clicks moved it (Retail smoke test, 2026-10-25).
+- **Option labels wrap to two lines** instead of being cut off while the help pane is open; scroll bars show only when a list scrolls.
+- **The window has HIGH strata, like `SettingsPanel`.** The stub's button opens it above the panel when the panel cannot close (in combat, or with unapplied settings).
+- **`addon.Options.CloseSettingsPanel`** (moved from `General.lua` to `Options/Options.lua`) also returns while the panel is closed, since the window's Screenshot Mode button now reaches it from outside the panel.
+- **Combat greying counts the `PLAYER_REGEN_DISABLED` handler as combat** (`window:InCombat()`), because `InCombatLockdown()` is still false inside it.
+- **Show me's secure route:** `ShowMeSecure(button, close)` runs only while the maps section's own help is drawn, and `ShowMeSecure(nil)` releases the help track's button as soon as the pane draws anything else or the window hides (agreed with the help track).
+- **The filter menu's Help entry opens Overview now,** not after the help track merges (requirement 1); the tutorial code it called goes with the tutorial.
+- **The Overview's changelog lines leave out the "(dev note: ...)" asides and code marks,** so the list stays short; the changelog keeps them.
 
 ## Risks
 - **Unused templates.** `WowStyle1DropdownTemplate` and `MinimalSliderWithSteppersTemplate` are new to KAF. They load at startup on `classic` and `classic_titan` (`Blizzard_Menu/Classic/MenuTemplates.xml:3`, `Shared/Slider/MinimalSlider.xml:34`). The smoke test in step 2 proves them in game; the fallbacks are Krowi_Menu and a plain `Slider`.
