@@ -22,6 +22,13 @@ local events = addon.Tests.Events
 --     game (UseSourceForTest): the scheduler's answers and the calls made to it, combat, the world map and the clock. The
 --     model lists the five Curse Surges every 9000 s for three days from its clock, as the game does, so the stories
 --     run the same in game and headlessly.
+--   DateLine: the date line of an upcoming or an active reminder (Reminder) for a calendar event that is never
+--     registered, with the date format Format, time display line 1 End Time and line 2 None, and the day and month
+--     names replaced by the addon's own when Names is set, as on a non-English client
+--     (docs/work/2026-10-25-upcoming-reminder-date). "error" when the line raises; with Names "start names" or "end
+--     names" when it is that date in the addon's names, without "start" or "end" when it is date(Format) of that date;
+--     otherwise "other". Until 2026-10-25 an upcoming line showed the occurrence's end, and raised with Names because it
+--     read the names from the active occurrence an upcoming event does not have.
 -- Until 2026-10-21 no Curse Surge event existed, nothing kept scheduler data, and the soup was only shown while its
 -- widget was there, in its zone (the Recorded values of the before-run, verified in game on Retail 12.1.5). The code
 -- review of 2026-10-21 found what the scheduler stories record, and Krowi chose that the soup's Next shows only in the
@@ -72,7 +79,13 @@ events.Scenarios = {
     {Name = "scheduler-reminders-off", Kind = "Scheduler", Story = "RemindersOff", RetailOnly = true,
         Recorded = "calls 0", Target = "calls 0"},
     {Name = "scheduler-name-arrives", Kind = "Scheduler", Story = "NameArrives", RetailOnly = true,
-        Recorded = "before: none; after: game", Target = "before: none; after: game"}
+        Recorded = "before: none; after: game", Target = "before: none; after: game"},
+    {Name = "upcoming-date-default-format", Kind = "DateLine", Reminder = "upcoming", Format = "%d/%m/%Y %R", Names = false,
+        Recorded = "end", Target = "start"},
+    {Name = "upcoming-date-names", Kind = "DateLine", Reminder = "upcoming", Format = "%A %d %B %Y", Names = true,
+        Recorded = "error", Target = "start names"},
+    {Name = "active-date-names", Kind = "DateLine", Reminder = "active", Format = "%A %d %B %Y", Names = true,
+        Recorded = "end names", Target = "end names"}
 }
 -- RetailOnly: the Curse Surges and the soup are DataAddons/Retail events; FeastTimes runs on every client
 local europe = 3 -- GetCurrentRegion
@@ -323,9 +336,71 @@ local function TellStory(scenario)
     return result
 end
 
+local dateLineStart = 1800000000 -- 2027-01-15 08:00 UTC, as the Curse Surge fixture
+local dateLineEnd = dateLineStart + 6 * 86400
+
+-- The date as "%A %d %B %Y" writes it, in the addon's own day and month names
+local function DateInNames(time)
+    local dateTable = date("*t", time)
+    return ("%s %02d %s %d"):format(addon.WeekdayNames[dateTable.wday], dateTable.day, addon.MonthNames[dateTable.month], dateTable.year)
+end
+
+local function DescribeLine(scenario, line)
+    if scenario.Names then
+        return line == DateInNames(dateLineStart) and "start names" or line == DateInNames(dateLineEnd) and "end names" or "other"
+    end
+    return line == date(scenario.Format, dateLineStart) and "start" or line == date(scenario.Format, dateLineEnd) and "end" or "other"
+end
+
+-- "raised at <file> line <n>: <message>": an observation in the "<file>:<n>: " form would read as a failing scenario to
+-- the unit-tests lint rule, which parses run-tests.lua -check output
+local function DescribeError(problem)
+    local file, line, message = tostring(problem):match("^(.-):(%d+): (.*)$")
+    if not file then
+        return "raised: " .. tostring(problem)
+    end
+    return ("raised at %s line %s: %s"):format(file, line, message)
+end
+
+-- The player's settings are put back before the line is judged, also when it raised
+local function DescribeDateLine(scenario, observations)
+    local alertSystem = addon.Gui.EventReminderAlertSystem
+    local eventReminders = addon.Options.db.profile.EventReminders
+    local saved = {
+        Format = eventReminders.DateTimeFormat.StartTimeAndEndTime,
+        Line1 = eventReminders.TimeDisplay.Line1,
+        Line2 = eventReminders.TimeDisplay.Line2,
+        Compact = eventReminders.Compact,
+        Names = alertSystem.LocalizeDateNames
+    }
+    eventReminders.DateTimeFormat.StartTimeAndEndTime = scenario.Format
+    eventReminders.TimeDisplay.Line1, eventReminders.TimeDisplay.Line2 = 1, 1 -- End Time, None
+    eventReminders.Compact = false
+    alertSystem.LocalizeDateNames = scenario.Names
+    local occurrence = {StartTime = dateLineStart, EndTime = dateLineEnd, Name = "Test"}
+    local event = {Id = 0, Name = "Test"}
+    local built, line
+    if scenario.Reminder == "upcoming" then
+        event.UpcomingEventDetails = occurrence
+        built, line = pcall(alertSystem.GetUpcomingText, alertSystem, event)
+    else
+        event.EventDetails = occurrence
+        built, line = pcall(alertSystem.GetRuntimeText, alertSystem, event)
+    end
+    eventReminders.DateTimeFormat.StartTimeAndEndTime = saved.Format
+    eventReminders.TimeDisplay.Line1, eventReminders.TimeDisplay.Line2 = saved.Line1, saved.Line2
+    eventReminders.Compact = saved.Compact
+    alertSystem.LocalizeDateNames = saved.Names
+    if not built then
+        tinsert(observations, scenario.Name .. " " .. DescribeError(line))
+        return "error"
+    end
+    return DescribeLine(scenario, line)
+end
+
 -- env: IsRetail() -> bool; Region() -> GetCurrentRegion(); PoiName(id) -> the game's name for an area POI
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
-local function RunScenario(env, scenario)
+local function RunScenario(env, scenario, observations)
     local got, blocked
     if scenario.Kind == "Surge" then
         got = DescribeSurge(env, scenario)
@@ -343,6 +418,8 @@ local function RunScenario(env, scenario)
         got = DescribeFeastTimes(scenario)
     elseif scenario.Kind == "Scheduler" then
         got = TellStory(scenario)
+    elseif scenario.Kind == "DateLine" then
+        got = DescribeDateLine(scenario, observations)
     else
         blocked = "unknown kind " .. tostring(scenario.Kind)
     end
@@ -416,7 +493,7 @@ function events.Run(env, observations)
     local ok, err = pcall(function()
         for _, scenario in ipairs(events.Scenarios) do
             if isRetail or not scenario.RetailOnly then
-                tinsert(results, RunScenario(env, scenario))
+                tinsert(results, RunScenario(env, scenario, observations))
             end
         end
     end)

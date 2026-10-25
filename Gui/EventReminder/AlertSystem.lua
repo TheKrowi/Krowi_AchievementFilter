@@ -33,35 +33,35 @@ if gameLocale == "enGB" then
 	gameLocale = "enUS"
 end
 
-local LocalizeDateFormat
-if gameLocale == "enUS" then
-    function LocalizeDateFormat()
-        return addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime
-    end
-else
-    function LocalizeDateFormat(event)
-        local dateFormat = addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime
-        local hasB = dateFormat:find("%B", 1, true) ~= nil
-        local hasb = dateFormat:find("%b", 1, true) ~= nil
-        local hasA = dateFormat:find("%A", 1, true) ~= nil
-        local hasa = dateFormat:find("%a", 1, true) ~= nil
-        if hasB or hasb or hasA or hasa then
-            local dateTable = date("*t", event.EventDetails.EndTime)
-            if hasB then
-                dateFormat = dateFormat:gsub("%%B", addon.MonthNames[dateTable.month])
-            end
-            if hasb then
-                dateFormat = dateFormat:gsub("%%b", string.sub(addon.MonthNames[dateTable.month], 1, 3))
-            end
-            if hasA then
-                dateFormat = dateFormat:gsub("%%A", addon.WeekdayNames[dateTable.wday])
-            end
-            if hasa then
-                dateFormat = dateFormat:gsub("%%a", string.sub(addon.WeekdayNames[dateTable.wday], 1, 3))
-            end
-        end
+-- The C library's date names the days and months in English, so other clients get the addon's own names; a field read
+-- on every call, so the events suite (Tests/Events.lua) can run that path on an English client
+eventReminderAlertSystem.LocalizeDateNames = gameLocale ~= "enUS"
+
+local function LocalizeDateFormat(event)
+    local dateFormat = addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime
+    if not eventReminderAlertSystem.LocalizeDateNames then
         return dateFormat
     end
+    local hasB = dateFormat:find("%B", 1, true) ~= nil
+    local hasb = dateFormat:find("%b", 1, true) ~= nil
+    local hasA = dateFormat:find("%A", 1, true) ~= nil
+    local hasa = dateFormat:find("%a", 1, true) ~= nil
+    if hasB or hasb or hasA or hasa then
+        local dateTable = date("*t", event.EventDetails.EndTime)
+        if hasB then
+            dateFormat = dateFormat:gsub("%%B", addon.MonthNames[dateTable.month])
+        end
+        if hasb then
+            dateFormat = dateFormat:gsub("%%b", string.sub(addon.MonthNames[dateTable.month], 1, 3))
+        end
+        if hasA then
+            dateFormat = dateFormat:gsub("%%A", addon.WeekdayNames[dateTable.wday])
+        end
+        if hasa then
+            dateFormat = dateFormat:gsub("%%a", string.sub(addon.WeekdayNames[dateTable.wday], 1, 3))
+        end
+    end
+    return dateFormat
 end
 
 local function GetSecondsLeftFormattedText(secondsLeft)
