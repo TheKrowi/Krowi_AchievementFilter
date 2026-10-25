@@ -43,7 +43,6 @@ TaintDiagnostics.lua
 Options\Files.xml
 Libs\Krowi_Util\Icon.lua
 Icon.lua
-Tutorials.lua
 BrowsingHistory.lua
 
 Objects\Files.xml

@@ -340,20 +340,6 @@ L["Calendar"] = "Calendrier"
 L["Calendar button"] = "Bouton calendrier"
 L["Calendar button horizontal position Desc"] = "Ajuster la position horizontale du {calendarButton}."
 L["Calendar button vertical position Desc"] = "Ajuster la position verticale du {calendarButton}."
-L["Calendar Desc"] = [=[Aspect identique au {calendar} intégré au jeu.
-
-|T:1:8|t- Le nombre de Hauts-faits et de points en haut représente les Hauts-faits et les points gagnés pour le mois actuellement consulté.
-|T:1:8|t- Naviguez vers les mois précédents et suivants en cliquant sur les boutons en haut, à côté du mois, ou en utilisant la molette de défilement.
-|T:1:8|t- Lorsque vous survolez un jour (par ex. Jour 11), il sera mis en évidence. Les Hauts-faits obtenues ce jour-là s'afficheront dans une nouvelle fenêtre sur le côté. Lorsque vous retirez la souris du jour mis en évidence, la fenêtre sur le côté se fermera ou affichera les réalisations obtenues pour le nouveau jour survolé par la souris.
-|T:1:8|t- En cliquant sur un jour, il sera mis en évidence encore plus intensément (par ex. jour 18) et la fenêtre sur le côté restera toujours ouverte. Cela vous permet de cliquer sur un des Hauts-faits accompli précédemment depuis cette nouvelle fenêtre. La sélection d'un jour ne fonctionne que si des Hauts-faits ont été obtenues ce jour-là.
-|T:1:8|t- En cliquant sur un jour déjà sélectionné, il sera désélectionné et la fenêtre sur le côté sera déverrouillée, ce qui permettra au jour de se comporter à nouveau comme un jour mis en évidence. Fermer la fenêtre sur le côté en cliquant sur son bouton de fermeture fera la même chose.
-|T:1:8|t- Une flèche sur le jour indique que plus de 4 Hauts-faits ont été obtenues ce jour-là.
-
-Options (1)
-|T:1:8|t- Lors de l'ouverture ou de la réouverture du calendrier, vous pouvez choisir de toujours sélectionner le dernier mois consulté (actuellement : {lockMonth}) ou seulement lorsque vous cliquez sur une réalisation (actuellement : {lockAchievementMonth}).
-|T:1:8|t- Le premier jour de la semaine peut être modifié et est actuellement réglé sur {firstWeekDay}.
-
-(1) Les options se trouvent sous {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {calendar}.]=]
 L["Calendar Events"] = "Événements du calendrier"
 L["Call of the Crusade"] = "L'Appel de la Croisade"
 L["Cataclysm (pre-patch)"] = "Cataclysme (pré-patch)"
@@ -420,12 +406,6 @@ L["Community Feast: Starting Soon"] = "Festin tribal : Commence bientôt"
 L["Compact"] = "Afficher les pop-ups d'évènements compactes"
 L["Compact Achievements"] = "Hauts faits compact"
 L["Compact Achievements Desc"] = "L'affichage des Hauts faits est réduit aux 2/3 de sa taille d'origine, à l'identique des résumé de Hauts faits."
-L["Compact Achievements T Desc"] = [=[- Les Hauts faits font 2/3 de la taille normal. Ils s'affichent de la même manière que les Hauts faits récapitulatifs.
-- Il est possible d'afficher soit la première ligne de la description, soit la récompense.
-
-Les Hauts faits compacts peuvent être activés à partir des options (actuellement : {compactEnabled}) (1). 
-
-(1) Les options peuvent être trouvées sous {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {achievements}]=]
 L["Compact Desc"] = [=[Utiliser une version plus compacte avec une seule ligne d'affichage de l'heure.
 {reloadRequired}]=]
 L["Completion"] = "Terminé"
@@ -526,20 +506,6 @@ L["Dueler's Guild"] = "Guilde des duelliste"
 L["during"] = "pendant"
 L["Dustwallow Marsh"] = "Marécage d’Âprefange"
 L["Earned By"] = "Obtenu par"
-L["Earned By Desc"] = [=[Nombre de point de Hauts-faits total (En-tête de la fenêtre)
-|T:1:8|t- {achievementPointsEarnedBy} : Affiche les {achievementPointsEarnedBy_wc} votre personnage actuel et/ou les {achievementPointsEarnedBy_wc} de votre compte (actuellement : {achievementPointsEarnedByFormat}) (1).
-|T:1:8|t- {tooltip} : Affiche les points de Haut-faits gagné par vos personnage. Chaque personnage doit être connecté au moins une fois pour être ajouté à cette liste. Il est possible d'afficher le royaume du personnage s'il est différent. Il est possible de forcer pour toujours afficher le royaume (1).
-
-Filtres
-|T:1:8|t- {account} : les Hauts-faits sont en vert s'ils sont obtenus sur n'importe quel personnage de votre compte.
-|T:1:8|t- {character} : Les Hauts-faits sont en vert s'ils sont gagnés par votre personnage actuel et en blanc s'ils sont gagnés sur un autre personnage de votre compte.
-
-Info-bulle
-|T:1:8|t- {earnedBy} : affiche {earnedByNumber} personnages qui ont gagné ce Haut-fait (2). Les Hauts-faits exclusif à la faction avec un Haut-fait similaire pour la Horde sont prises en compte. C'est à dire que si un personnage de l'Alliance avance sur un Haut-fait que la Horde ne peux pas faire mais où il existe un Haut-fait similaire pour la Horde alors celui-ci respectera les même règles de validation. Les personnages de l'alliance peuvent apparaître pour les Hauts-faits de la horde. le royaume du personnage sera affiché s'il est différent. Il est possible de forcer pour toujours afficher le royaume (2).
-|T:1:8|t- {notEarnedBy} : affiche les personnages {notEarnedByNumber} qui n'ont pas encore obtenu ce Haut-fait (2). Les Hauts-faits exclusif à la faction avec un Haut-fait similaire sont prises en compte. C'est à dire que si un personnage de l'Alliance avance sur un Haut-fait que la Horde ne peux pas faire mais où il existe un Haut-fait similaire pour la Horde alors celui-ci respectera les même règles de validation. Les personnages de l'alliance peuvent apparaître pour les Hauts-faits de la horde. le royaume du personnage sera affiché s'il est différent. Il est possible de forcer pour toujours afficher le royaume (2).
-
-(1) Les options peuvent être trouvées sous {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {header}
-(2) Les options se trouvent sous {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {achievements}]=]
 L["Eastern Kingdoms Cup"] = "Courses des royaumes de l'Est"
 L["Echoes of Doom"] = "Échos funèbres"
 L["Emberflow Flight"] = "Vol de Ruisse-Braise"
@@ -562,114 +528,9 @@ L["Enable Upcoming Calendar Events Desc"] = "Lorsqu’il est désactivé, le mod
 L["Enchanting"] = "Enchantement"
 L["End Time"] = "Heure de fin"
 L["Engineering"] = "Ingénierie"
-L["Enhanced filtering and sorting"] = "Filtre et tri avancés"
-L["Enhanced filtering and sorting Desc"] = [=[Les fonctions suivantes ont été ajoutées au filtrage et au tri des Hauts-faits.
-
-Catégories :
-|T:1:8|t- {mergeSmallCategories} : fusionne les catégories si cela est possible avec moins de {mergeSmallCategoriesNumber} Hauts-faits (1).
-
-Filtrage (plusieurs filtres peuvent être sélectionnés en même temps) :
-|T:1:8|t- {completed} : affiche les Hauts-faits terminés.
-|T:1:8|t- {notCompleted} : affiche les Hauts-faits non terminés.
-|T:1:8|t- {obtainable} : affiche les Hauts-faits accessibles. 
-|T:1:8|t- {notObtainable} : Afficher les Hauts-faits impossibles à obtenir.
-|T:1:8|t- {faction} ({resetFactionFilters} {resetFactionFiltersEnabled}) (2)
-|T:1:8|t- {neutral} : Affiche les Hauts-faits qui peuvent être achevé par {alliance_wc} et par la {horde_wc}.
-|T:1:8|t|T:1:8|t- {alliance} : affiche les Hauts-faits qui ne peuvent être achevés qu'auprès de l'{alliance_wc}.
-|T:1:8|t|T:1:8|t- {horde} : affiche les Hauts-faits qui ne peuvent être achevés qu'auprès de la {horde_wc}.
-|T:1:8|t- {excluded} : affiche les succès exclus.
-|T:1:8|t- {collapseChain} : affiche uniquement le dernier succès terminé et le premier succès inachevé d'une série.
-
-Tri :
-|T:1:8|t- {noSorting} : aucun tri appliqué.
-|T:1:8|t- {sortByName} : tri les Hauts-faits en fonction de leur nom.
-|T:1:8|t- {sortByCompletion} : tri les Hauts-faits en fonction de si ils sont terminées ou non.
-|T:1:8|t - {sortByID} : trie les Hauts-faits par leur ID.
-|T:1:8|t- {reverseSort} : Si sélectionné, l'ordre de trie des Hauts-faits sera inversé.
-
-{tabs} :
-|T:1:8|t- Il est possible d'appliquer l'un des système de tries et de filtre indépendamment de chaque onglet et ce de la même manière que défini précédemment.
-|T:1:8|t- La modification de l'un des filtres ou trie généraux annulera les fonctionnalités de filtrage et de tri de chaque onglet. 
-
-{specialCategories} :
-|T:1:8|t- ces catégories ont toutes les fonctionnalités de filtrage et de tri mentionnées ci-dessus et peuvent être modifiées indépendamment des autres.
-
-{earnedBy} (voir {earnedByTutorial} pour plus de détails)
-|T:1:8|t- {account} : la réalisation des Hauts-faits est comptées lorsqu'ils sont réalisées sur n'importe quel personnage de votre compte : les Hauts-faits sont comptées lorsqu'ils sont réalisées sur le personnage actuel et ils sont partiellement comptées lorsqu'ils sont réalisées sur un autre personnage du compte, mais pas avec le personnage actuel.
-
-Autre :
-|T:1:8|t- {help} : lance le didacticiel depuis le début et réinitialise ce qui à déjà été consulté.
-|T:1:8|t|T:1:8|t- affiche la page spéciale du didacticiel, sans ce qui à déjà été consulté 
-|T:1:8|t- {options} : ouvre les options de l'addon (2).
-
-Plus d'options de filtrage et de tri peuvent être réclamé sur {discord} ou {curseForge} (liens dans les options).
-
-(1) Vous pouvez trouver les options sous {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {categories}
-(2) les option peuvent être trouvé sous {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName}]=]
-L["Enhanced tooltip"] = "Infobulle améliorée"
-L["Enhanced tooltip Achievements Desc"] = [=[Chaque infobulle sur les Hauts faits contiennent des informations supplémentaires sur la façon dont les hauts faits sont liés les uns aux autres. Plusieurs nouvelles sections y sont ajoutées.
-
-Fonctionnalités :
-|T:1:8|t- {notObtainable} : Affiche le texte '{noLongerObtainable}' si le haut fait n'est plus disponible.
-|T:1:8|t- {earnedBy} : Voir {earnedBy} pour plus d'informations.
-|T:1:8|t- {partOfAChain} : Affiche la liste des Hauts faits dont le Haut fait survolé fait parti (1) ({partOfAChainEnabled}) (2).
-|T:1:8|t- {requiredFor} : Affiche la liste des Hauts faits qui sont nécessaire pour que le Haut fait survolé soit complété (1) (actuellement : {requiredForEnabled}) (2).
-|T:1:8|t- {otherFaction} : Affiche le Haut fait associé de l'autre faction (actuellement : {otherFactionEnabled}) (2 ).
-|T:1:8|t- {objectivesProgress} : Affiche la liste des objectifs avec progression (actuellement : {objectivesProgressEnabled}) (2).
-|T:1:8|t|T:1:8|t- Objectifs personnalisés : Certains Haut faits ont des objectifs personnalisés, comme les succès de transmogrification indiquant votre progression vers les ensembles de transmogrification associés.
-
-Icônes :
-|T:1:8|t- {ready} : Le Haut fait est terminé.
-|T:1:8|t- {waiting} : Le Haut fait n'est pas terminé.
-|T:1:8|t- {notready} : Le Haut fait n'est plus disponible.
-
-Couleurs :
-|T:1:8|t- {green} : Le Haut fait ou l'objectif est terminé.
-|T:1:8|t- {grey} : Le Haut fait ou l'objectif n'est pas terminé.
-|T:1:8|t- {red} : Le Haut fait n'est plus disponible.
-|T:1:8|t- les couleurs pâles {lightGreen}, {lightGrey} ou {lightRed} : Le Haut fait est ignoré.
-
-D'autres objectifs personnalisés peuvent être demandés sur {discord} ou {curseForge} (liens dans les options).
-
-(1) Il est possible d'afficher deux icônes par ligne. La première icône est celle par défaut, la seconde est pour le personnage actuel (actuellement : {currentCharacterIconEnabled}) (2).
-(2) Les options peuvent être trouvées sous {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {achievements}]=]
-L["Enhanced tooltip Categories Desc"] = [=[Chaque info-bulle sur les catégories contienent des informations supplémentaires sur le nombre de succès réalisable & non réalisable ainsi que les Haut-faits terminés & non-terminés.
-
-Les nombres dans la barre de progression sont au format suivant :
-|T:1:8|tOC (+NONC) / T
-|T:1:8|t|T:1:8|t- {oc} : les Hauts-faits terminées réalisable & non réalisable.
-|T:1:8|t|T:1:8|t- {nonc} : les Hauts-faits non terminées et non réalisable (1).
-|T:1:8|t|T:1:8|t- T : le nombre total de Hauts-faits dans cette catégorie.
-
-Couleurs :
-|T:1:8|t- {green} : les Hauts-faits terminées réalisable & non réalisable.
-|T:1:8|t- {red} : les Hauts-faits non réalisables et non terminées (1).
-|T:1:8|t- Vide : les Hauts-faits réalisables qui n'ont pas été terminées.
-
-La partie {red} de la barre de progression et le nombre entre parenthèses peuvent être désactivés dans les options (actuellement : {showNotObtainable}) (1) ou en décochant le filtre {notObtainable}.
-
-(1) Options peut être trouvé sous {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {categories}]=]
 L["Error Tabs Order"] = "Erreur dans l'ordre des onglets."
 L["Escalation"] = "Embrasement"
 L["Eternity's End"] = "La fin de l'éternité"
-L["Event Reminder"] = "Rappel d'événement"
-L["Event Reminder Desc"] = [=[Les {events} sont ajoutés au nouvel onglet {events} et un rappel apparaît (max. {numPopUps} en même temps) lorsqu'un des événements est actif (actuellement : {popUpEnabled}) (1).
-
-Le rappel d'événement affiche le nom de l'événement ainsi que l'heure (heure de fin de l'événement) (1).
-Le format d'affichage de l'heure peut être sélectionné parmi des préréglages ou peut-être défini par l'utilisateur (1).
- Une version compacte avec une seule ligne pour l'affichage de l'heure {compactEnabled} est disponible (1). 
-
-Cliquer sur l'alerte ouvre la catégorie avec les Haut-faits disponibles pendant que l'événement est actif.
-Il disparaît lors d'un clic droit ou après {eventAlertFadeDelay} secondes s'il est ignoré (1). 
-
-Le rappel peut également être vu sur le côté droit de la fenêtre des Hauts-faits.
-
-Types d'événements :
-|T:1:8|t- Événements du calendrier (par exemple : Les fête saisonnières).
-|T:1:8|t- Événements d'activités ponctuelle (par exemple : La grande chasse).
-|T:1:8|t- Événements mondiaux (par exemple, les Assauts).
-
-(1) Voir {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {eventReminders} pour les options.]=]
 L["Event Reminders"] = "Rappels d'événements"
 L["Event Reminders Enable Desc"] = "Lorsqu’il est désactivé, le module complet {eventReminders} est désactivé."
 L["Events"] = "Évènements"
@@ -678,28 +539,6 @@ L["Exclude Excluded achievements"] = "Exclure les Hauts faits masqué"
 L["Exclude Excluded achievements Desc"] = "Exclue ou Inclue les Hauts faits masqué des résultats de la recherche."
 L["Excluded"] = "Masqué"
 L["Expansions"] = "Extensions"
-L["Expansions tab"] = "Onglet extention"
-L["Expansions tab Desc"] = [=[Les succès sont regroupés par extension avec une hiérarchie plus logique.
-
-La hiérarchie est la suivante : 
-|T:1:8|t- {expansion}
-|T:1:8|t|T:1:8|t- {zones}
-|T:1:8|t|T:1:8|t- {quests} 
-|T:1:8|t|T:1:8|t- {exploration}
-|T:1:8|t|T:1:8|t- {pvp}
-|T:1:8|t|T:1:8|t- {reputation}
-|T:1:8|t|T:1:8|t- {dungeons}
-|T:1:8|t|T:1:8|t- {raids} 
-|T:1:8|t|T:1:8|t- {petBattles}
-|T:1:8|t|T:1:8|t- {expansionFeatures}
-
-Catégories spéciales : 
-|T:1:8|t- {currentZone} : affiche les Hauts-faits associés à la zone actuelle dans laquelle vous vous trouvez 
-|T:1:8|t - {selectedZone} : Affiche les réalisations associées à la zone sélectionnée sur la carte du monde.
-|T:1:8|t- {watchListCategory} : Affiche les réalisations qui sont sur votre liste de surveillance. Les Hauts-faits peuvent être affichées avec ou sans leurs sous-catégories (1).
-|T:1:8|t- {excludedCategory} : affiche les Haut-faits exclues. Les Hauts-faits peuvent être affichées avec ou sans leurs sous-catégories (1). Peut être masqué de manière permanente dans les options (1).
-
-(1) Vous pouvez trouver les options sous {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {categories}]=]
 L["Experimental"] = "Expérimental"
 L["Exploration"] = true
 L["Export"] = "Exporter"
@@ -760,10 +599,7 @@ L["Forget Me Not: Next"] = "Ne m’oublie pas : Suivant"
 L["Format"] = true
 L["Fracture Chambers"] = "hambres aux Fractures"
 L["Fractures in Time"] = "Fractures temporelles"
-L["from"] = "de"
 L["from the start of"] = "depuis le début de"
-L["Full Search"] = "Recherche complète"
-L["Full Search Desc"] = "En sélectionnant \"{showAllResults}\", vous pouvez afficher tous les résultats de la recherche. Voir le tutoriel {quickSearchTutorial} pour plus de détails."
 L["Fury Incarnate"] = "Fureur incarnée"
 L["Fury of Hellfire"] = "Fureur des flammes infernales"
 L["Future Obtainable"] = "Prochainement disponible"
@@ -850,8 +686,6 @@ L["Ignore Filters"] = "Ignorer les filtres"
 L["Ignore Filters Desc"] = "Ignorer tous les filtres et afficher tous les hauts faits dans la catégorie {category}"
 L["Imbu"] = "Tempête élémentaire : Imbou"
 L["Import"] = "Importer"
-L["In"] = "Dans"
-L["in"] = "dans"
 L["In instances"] = "Dans les instances"
 L["Include"] = "Inclure"
 L["Include all"] = "Tout inclure"
@@ -948,25 +782,6 @@ L["Nazmir"] = true
 L["Necrolord Assault"] = "L'assaut des Nécro-seigneurs"
 L["Necrolords Assault"] = "L'assaut des Nécro-seigneurs"
 L["never obtainable"] = "jamais obtenable"
-L["New Achievement Colors"] = "Nouvelles couleurs des Hauts faits"
-L["New Achievement Colors Desc"] = [=[La couleur de bordure d'un Haut fait accompli est à présent doré.
-- La couleur d'un Haut fait obtenu alors qu'il n'est plus obtenable est à présent rouge.
-- La couleur d'un Haut fait non obtenu et non obtenable est à présent grise.
-- La couleur d'un Haut fait obtenu à l'échelle du compte est à présent bleu.]=]
-L["New achievement window tabs"] = "Nouveaux onglets pour la fenêtre des Hauts faits "
-L["New achievement window tabs Desc"] = [=[De nouveaux onglets sont ajoutés à la fenêtre des Hauts-faits.
-Cela offre une nouvelle façon d'afficher les Hauts-faits d'une manière plus familière sans affecter les onglets par défaut.
-
-Onglets :
-|T:1:8|t- {achievements} : Une copie de l'onglet par défaut {achievements} mais avec toutes les nouvelles fonctionnalités ajoutées par {addonName_y}.
-|T:1:8|t- {expansions} : Les Hauts-faits sont regroupés en catégories par extension avec une hiérarchie plus logique. Consultez le tutoriel {expansionsTabTutorial} pour plus de détails.
-|T:1:8|t- {events} : Les Hauts-faits sont regroupés en catégories par événement. Cela va des événements saisonniers aux événements mondiaux comme les assauts.
-|T:1:8|t- {pvp} : Les Hauts-faits sont regroupés en catégories par champ de bataille.
-|T:1:8|t- {specials} : Ces catégories sont des collections de succès qui incluent des montures, des titres, des transmogrifications et d'autres qui ne se placent pas vraiment ailleurs.
-
-Dans les options, les onglets par défaut et les onglets ajoutés par {addonName_y} peuvent être masqués (1).
-{pluginText}
-(1) Vous pouvez trouver l'options sous {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {tabs}]=]
 L["News"] = "Nouveaux"
 L["Next"] = "Suivant"
 L["Next from startDate until endDate"] = "Prochainement du {startDate} au {endDate}"
@@ -982,7 +797,6 @@ L["No data found"] = "Aucune donnée trouvée"
 L["No time data available"] = "Aucune donnée de temps disponible"
 L["Noblegarden"] = "Jardin des nobles"
 L["Nokhudon Hold"] = "Tempête élémentaire : Bastion Nokhudon"
-L["NONC"] = true
 L["None"] = "Aucun"
 L["No-No"] = true
 L["Northrend Cup"] = "Coupe de Norfendre"
@@ -1015,8 +829,6 @@ L["N'Zoth (Vale of Eternal Blossoms)"] = "N'Zoth (Val de l'Éternel Printemps)"
 L["N'Zoth Assaults"] = "Assauts de N'Zoth"
 L["Objectives"] = "Objectifs"
 L["Objectives progress"] = "Progression des objectifs"
-L["Obtainable"] = "Obtenable"
-L["OC"] = true
 L["Offsets"] = "Décalages"
 L["Ohn'ahran Plains"] = "Assaut de Fyrakka : Ohn'ahran"
 L["Ohn'ahran Plains: Next"] = "Plaines d'Ohn'ahran : Prochaine"
@@ -1070,21 +882,6 @@ L["Promotions"] = true
 L["PvE Season"] = "Saison JcE"
 L["PvP"] = "Joueur contre Joueur"
 L["PvP Season"] = "Saison JcJ"
-L["Quick Search"] = "Recherche rapide"
-L["Quick Search Desc"] = [=[Recherche parmi tout les Hauts-faits dans les onglets ajoutés par {addonName}. Les Haut-faits dans les onglets par défaut ne sont pas recherchés.
-
-Fonctionnalités :
-|T:1:8|t- Recherche par titre et description du Haut-fait, triés par ordre alphabétique du titre.
-|T:1:8|t- Recherche par ID du Haut-fait, pour ce faire vous devez commencer votre recherche par un # suivi du numéro de l'ID, la recherche est trié par nombre croissant. 
-
-Options (1) : 
-|T:1:8|t- {clearOnRightClick} ({clearOnRightClickEnabled})
-|T:1:8|t- {excludeExcludedAchievements} ({excludeExcludedAchievementsEnabled} exclut les réalisations {excludeExcludedAchievementsFrom} des résultats de la recherche)
-|T:1:8|t- {searchFilteredAchievements} ({searchFilteredAchievementsEnabled})
-|T:1:8|t- {minCharToSearch} ({minCharToSearchNumber})
-|T:1:8|t- {numSearchPreviews} ({numSearchPreviewsNumber})
-
-(1) Vous pouvez trouver les options sous {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName}]=]
 L["Radiant Echoes"] = "Échos radieux"
 L["Rage of the Firelands"] = "Rage sur les terres de Feu"
 L["Rated"] = "Classé"
@@ -1138,24 +935,6 @@ L["Right"] = "Droite"
 L["Right Alt"] = "Alt droit"
 L["Right click"] = "Clic droit"
 L["Right Click Menu"] = "Menu clic droit"
-L["Right Click Menu Desc"] = [=[Chaque Hauts-faits dans les nouveaux onglets a un {rightClickMenu}.
-
-Caractéristiques :
-|T:1:8|t- Lien vers {wowhead}.
-|T:1:8|t- Le menu {goTo} est un raccourci vers les réalisations qui font {partOfAChain}, qui sont {require} ou qui se retrouvent également dans d'autres catégories. Les Haut-faits de la catégorie {currentZone} ont un raccourci vers leur emplacement approprié dans l'arborescence des catégories.
-|T:1:8|t- Le menu {xuFuPetGuides} est disponible si le Haut-faits est liée aux {petBattles} et si le {xuFuPetGuides} contient des informations pertinentes à ce sujet.
-|T:1:8|t- Lien vers les ensembles de transmogrification si l'objectif du succès est d'en collecter un.
-{pluginText}
-|T:1:8|t- {more} : groupes divers éléments pour ne pas encombrer le menu principal.
-|T:1:8|t|T:1:8|t- {addToWatch} : ajoutez le Haut-fait à la catégorie {watchList}. (Uniquement disponible sur les Haut-fait non suivis).
-|T:1:8|t|T:1:8|t- {removeFromWatch} : Supprimez le Haut-fait de la catégorie {watchList}. (Uniquement disponible sur les Hauts-fait suivies).
-|T:1:8|t|T:1:8|t- {include} : Le Haut-fait n'est plus masqué. (Uniquement disponible sur les Hauts-faits masqué).
-|T:1:8|t|T:1:8|t- {exclude} : Masque le Haut-fait. (Uniquement disponible sur les Hauts-faits non masqué).
-
-Options :
-|T:1:8|t- Un bouton peut être affiché sur chaque réalisation qui ouvre le {rightClickMenu}. (actuellement : {enabled}) (1)
-
-(1) Les options peuvent être trouvées sous {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {rightClickMenu}]=]
 L["Right Ctrl"] = "Ctrl droit"
 L["Right Shift"] = "MAJ droit"
 L["Rise of Azshara"] = "L’avènement d’Azshara"
@@ -1348,13 +1127,6 @@ L["Stormheim"] = "Tornheim"
 L["Stormsong Valley"] = "Vallée Chantorage"
 L["Strand of the Ancients"] = "Rivage des Anciens"
 L["Style"] = "Style de la fenêtre des hauts faits"
-L["Summary Desc"] = [=[{achievementsHeader}:
-|T:1:8|t- Affiche les {numAchievements} derniers Hauts-faits obtenues au niveau du compte et des personnages (1).
-
-{categoriesHeader}:
-|T:1:8|t- Affiche la progression de chaque catégorie dans l'onglet. Il s'agit de la même progression que celle que vous verriez en survolant une catégorie sur le côté.
-
-(1) Les options se trouvent sous {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {categories} {arrow} {summary}.]=]
 L["Sundapple Copse Circuit"] = "Parcours du taillis Soltavel"
 L["Superbloom"] = "Superfloraison"
 L["Superbloom: Active"] = "Superfloraison : En cours"
@@ -1489,7 +1261,6 @@ L["When achievement completed Desc"] = [=[Affiche ou masque {objectivesProgress}
 
 Si cette option est activée, les {objectivesProgress} des hauts faits seront affichés dans l'infobulle, que le haut fait soit terminé ou non.]=]
 L["Whispering Pandaren Spirit"] = "Esprit pandaren murmurant"
-L["Widget Events"] = "Événements du widgets"
 L["Wild Preserve Circuit"] = "Circuit du domaine Sauvage"
 L["Wild Preserve Slalom"] = "Slalom du domaine Sauvage"
 L["will be"] = "sera"
@@ -1501,12 +1272,6 @@ L["Wintergrasp"] = "Joug-d'hiver"
 L["World Events"] = "Événements mondiaux"
 L["World Map"] = "Carte du monde"
 L["World Map Button"] = "Bouton de la carte du monde"
-L["World Map Button Desc"] = [=[Survol :
-|T:1:8|t- Affiche le nombre de Hauts-faits réalisable & non réalisable ainsi que les Hauts-faits terminées & non terminé comme les {enhancedTooltipCategories} en fonction des filtres définis pour la {selectedZone}.
-|T:1:8|t- Voir {enhancedTooltipCategories} et {enhancedFilteringAndSorting} pour plus d'informations.
-
-Clic-gauche :
-|T:1:8|t- Ouvre la fenêtre des réalisations de la catégorie {selectedZone}.]=]
 L["Worldsoul Memory"] = "Souvenir de l’Âme-monde"
 L["WoW Remix: Mists of Pandaria"] = true
 L["Wowhead"] = true

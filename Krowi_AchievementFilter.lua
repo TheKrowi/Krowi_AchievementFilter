@@ -45,7 +45,6 @@ local function LoadKrowi_AchievementFilter()
     addon.Gui:LoadWithAddon()
 
     addon.Icon:Load()
-    addon.Tutorials.Load()
     addon.BrowsingHistory:Load()
 
     -- addon.TooltipData.Load(); -- Temporarily disabled (Issue #300 taint diagnostic build): the 99.4 securecall fix here was confirmed insufficient by a later user report; disabling entirely to confirm/deny this is the taint source before attempting another fix

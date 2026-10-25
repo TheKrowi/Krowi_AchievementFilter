@@ -69,7 +69,7 @@ The WoW client reads `Krowi_AchievementFilter.toc`, which defines the **exact lo
 3. `Plugins/Files.xml` — plugin integrations (BetterWardrobe, ElvUI, GW2_UI, InstanceAchievementTracker, ZygorGuidesViewer, AchievementsTabFixes, EllesmereUI)
 4. `Localization/Files.xml` — enUS first, then the other locales, then `Shared.lua`
 5. `Krowi_AchievementFilter.lua`, `Globals.lua`
-6. `Diagnostics.lua`, `TaintDiagnostics.lua`, `Options/Files.xml`, `Libs/Krowi_Util/Icon.lua`, `Icon.lua`, `Tutorials.lua`, `BrowsingHistory.lua`
+6. `Diagnostics.lua`, `TaintDiagnostics.lua`, `Options/Files.xml`, `Libs/Krowi_Util/Icon.lua`, `Icon.lua`, `BrowsingHistory.lua`
 7. `Objects/Files.xml`
 8. `Filters.lua`, `SearchOptions.lua`
 9. `Gui/FilesModern.xml` (Retail) or `Gui/FilesClassic.xml` (Classic)
@@ -90,7 +90,7 @@ Game-version-conditional loading uses `[AllowLoadGameType mainline]` and `[Allow
 | `Bindings.xml` | Key bindings for tab toggles and browsing history |
 | `Filters.lua`, `SearchOptions.lua` | Filter definitions (completion, faction, reward type, sort, build version); which fields a search covers (IDs, names, descriptions, ...) |
 | `Diagnostics.lua`, `TaintDiagnostics.lua` | Debug/trace logging controlled by options; taint probing helpers |
-| `Icon.lua`, `Tutorials.lua`, `BrowsingHistory.lua` | Minimap / data broker icon; in-game tutorials; achievement navigation history (back/forward) |
+| `Icon.lua`, `BrowsingHistory.lua` | Minimap / data broker icon; achievement navigation history (back/forward) |
 
 ### Key Directories
 

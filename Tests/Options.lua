@@ -55,7 +55,7 @@ options.Scenarios = {
             local c = model.Coverage()
             return ("unmapped=%d double=%d missing-paths=%d"):format(#c.Unmapped, #c.Double, #c.MissingPaths)
         end,
-        Recorded = "unmapped=1 double=0 missing-paths=0", -- the tutorial button, until the tutorial goes
+        Recorded = "unmapped=0 double=0 missing-paths=0", -- unmapped=1 (the tutorial button) until the tutorial went
         Target = "unmapped=0 double=0 missing-paths=0"},
     {Name = "set-through-window-equals-aceconfig",
         Observe = function()
@@ -74,10 +74,12 @@ options.Scenarios = {
             if not model then return "no window" end
             return ("options=%d hash=%s"):format(model.Fingerprint())
         end,
-        Recorded = "options=406 hash=c7f9546a",
-        Target = "options=406 hash=c7f9546a",
-        RecordedClassic = "options=302 hash=3ffe49dd",
-        TargetClassic = "options=302 hash=3ffe49dd"},
+        -- The key binding options' keys carry an auto-numbered order (Binding523Key1): removing the tutorial button
+        -- (2026-10-25) took one number out and moved them all, c7f9546a / 3ffe49dd before. Stage 2 gives them fixed ids.
+        Recorded = "options=406 hash=8bb98662",
+        Target = "options=406 hash=8bb98662",
+        RecordedClassic = "options=302 hash=06ba645e",
+        TargetClassic = "options=302 hash=06ba645e"},
     {Name = "defaults-restore-acedb",
         Observe = function()
             local model = Model()

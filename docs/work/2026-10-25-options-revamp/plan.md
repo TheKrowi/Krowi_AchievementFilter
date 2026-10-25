@@ -128,6 +128,7 @@ Covers stage 1 (the window over today's AceConfig tables, with the tests that be
 - **The Overview's changelog lines leave out the "(dev note: ...)" asides and code marks,** so the list stays short; the changelog keeps them.
 - **Defaults confirms inside the window, not through Krowi_PopupDialog** (taint review, 2026-10-25). Krowi_PopupDialog and a StaticPopup both write the dialog into Blizzard's shared popup frames and list. A Blizzard dialog shown at the same time (deleting an item, a summon, Mists' battleground port) would then run its protected accept tainted. The button turns into Yes, with No and the question beside it.
 - **Every button inherits `UIPanelButtonNoTooltipTemplate`.** On Retail, `UIPanelButtonTemplate`'s OnLeave hides GameTooltip whoever owns it, which runs the widget-set cleanup tainted (the #811 family).
+- **For stage 2: the key binding options' keys are auto-numbered** (`Binding523Key1`, from the injection's running order). Removing the tutorial button took one number out and moved them all, so the fingerprint was re-recorded with that reason (8bb98662 / 06ba645e). Stage 2 gives them fixed ids (the binding command), or every unrelated option added before them moves the fingerprint again.
 - **For the extraction:** `Window.xml` and `Rows.xml` define the `Krowi_Options*Mixin` globals and the templates unconditionally, so a second embedded copy would overwrite them even when `NewLibrary` returns nil; the extraction guards them or loads the XML only for the copy that wins.
 
 ## Risks

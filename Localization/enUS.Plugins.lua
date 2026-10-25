@@ -83,8 +83,6 @@ To change these, go to Game Menu -> GW 2 UI -> General -> Skins and check the de
 L["IAT Tactics"] = true
 L["Instance Achievement Tracker"] = true
 L["Instance Achievement Tracker Desc"] = "This plugin allows for the addition of an extra Right Click Menu item on achievements with {iat} tactics available."
-L["Instance Achievement Tracker PluginText"] = [=[|T:1:8|t- Shortcut to {plugin_iat} if tactics for the achievement are available ({plugin_iat} is {plugin_enabled}).
-]=]
 L["RenameExplorationDragonIslesCategory"] = "Rename Exploration -> Dragon Isles Category to Dragonflight"
 L["RenameExplorationDragonIslesCategory Desc"] = "Renames the Exploration -> Dragon Isles Category to Dragonflight."
 L["Tab Spacing Overwrite Desc"] = "The spacing setting is not active when {addon} is enabled. All tabs are seated 1 pixel apart to match the rest of the {addon} skin."

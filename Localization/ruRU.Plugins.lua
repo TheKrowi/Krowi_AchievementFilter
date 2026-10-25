@@ -52,7 +52,6 @@ L["GW2_UI Skins Desc"] = "Каждая настройки ниже контро�
 L["IAT Tactics"] = "IAT Тактики"
 L["Instance Achievement Tracker"] = true
 L["Instance Achievement Tracker Desc"] = "Этот плагин позволяет добавить экстра меню по Правому Клику предмет для {iat}."
-L["Instance Achievement Tracker PluginText"] = "|T:1:8|t- Ярлычек для {plugin_iat} если тактика для достижения доступна ({plugin_iat}  и  {plugin_enabled})."
 L["RenameExplorationDragonIslesCategory"] = "Переименовать Исследование -> Драконьи острова в Dragonflight"
 L["RenameExplorationDragonIslesCategory Desc"] = "Переименовывать Исследование -> Драконьи острова в Dragonflight"
 L["Unsupported GW2_UI Desc"] = "Текущая версия '{version}' GW 2 UI не поддерживаешь."

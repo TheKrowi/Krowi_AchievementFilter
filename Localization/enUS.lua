@@ -339,20 +339,6 @@ L["Calendar"] = true
 L["Calendar button"] = true
 L["Calendar button horizontal position Desc"] = "Adjust the horizontal position of the {calendarButton}."
 L["Calendar button vertical position Desc"] = "Adjust the vertical position of the {calendarButton}."
-L["Calendar Desc"] = [=[Identical look and feel to the {calendar}.
-
-|T:1:8|t- The number of achievements and points on top are the earned achievements and points for the current visible month, not all visible days.
-|T:1:8|t- Navigate to previous and next months by clicking the buttons on the top next to the month or by using the scroll wheel.
-|T:1:8|t- Mousing over a day will highlight it (day 11) and show the achievements (if any) earned on that day in the window on the side. When removing the mouse from the highlighted day, the window on the side will either close or show the achievements earned for the new day the mouse is over.
-|T:1:8|t- Clicking (selecting) a day will highlight it even brighter (day 18) and keep the window on the side open (lock). This allows for the user to scroll through the achievements, mouse over them to see the tooltip or click them to find them in the achievement window (will close the calendar). Selecting a day only works if achievements are earned on that day.
-|T:1:8|t- Clicking a selected day will deselect it and unlock the window on the side allowing it to act like a highlighted day again. Closing the window on the side by clicking on its close button will do the same.
-|T:1:8|t- An arrow on the day indicates more than 4 achievements were earned on that day.
-
-Options (1)
-|T:1:8|t- When (re)opening the calendar, you can choose to always keep the last viewed month selected ({lockMonth}) or only when clicking an achievement ({lockAchievementMonth}).
-|T:1:8|t- The first day of the week can be changed and is currently set to {firstWeekDay}.
-
-(1) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {calendar}]=]
 L["Calendar Events"] = true
 L["Call of the Crusade"] = true
 L["Cataclysm (pre-patch)"] = true
@@ -420,12 +406,6 @@ L["Community Feast: Starting Soon"] = true
 L["Compact"] = true
 L["Compact Achievements"] = true
 L["Compact Achievements Desc"] = "Achievements are 2/3rd the size, similar to the summary achievements."
-L["Compact Achievements T Desc"] = [=[- Achievements are 2/3rd the size, similar to the summary achievements.
-- Shows either the first line of the description or the reward.
-
-Compact achievements can be enabled from the options ({compactEnabled}) (1).
-
-(1) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {achievements}]=]
 L["Compact Desc"] = [=[Use a more compact version with only a single line of time display.
 
 {reloadRequired}]=]
@@ -527,20 +507,6 @@ L["Dueler's Guild"] = true
 L["during"] = true
 L["Dustwallow Marsh"] = true
 L["Earned By"] = true
-L["Earned By Desc"] = [=[Header
-|T:1:8|t- {achievementPointsEarnedBy}: Display {achievementPointsEarnedBy_wc} your current character and/or {achievementPointsEarnedBy_wc} your account ({achievementPointsEarnedByFormat}) (1).
-|T:1:8|t- {tooltip}: Overview of which character has earned how many achievement points. Each character needs to be logged in at least once to be added to this list. Will show the character's realm if it's different. Can be forced to always show from the options (1).
-
-Filters
-|T:1:8|t- {account}: Achievements are saturated if earned on any character on your account (default).
-|T:1:8|t- {character}: Achievements are saturated if earned by your current character and partially saturated if earned on another character on your account but not by the current one.
-
-Tooltip
-|T:1:8|t- {earnedBy}: Shows {earnedByNumber} characters that have earned this achievement (2). Faction exclusive achievements with a linked counterpart are taken into account. I.e. alliance characters might show up for horde achievements. Will show the character's realm if it's different. Can be forced to always show from the options (2).
-|T:1:8|t- {notEarnedBy}: Shows {notEarnedByNumber} characters that have not yet earned this achievement (2). Faction exclusive achievements with a linked counterpart are taken into account. I.e. alliance characters might show up for horde achievements. Will show the character's realm if it's different. Can be forced to always show from the options (2).
-
-(1) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {header}
-(2) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {achievements}]=]
 L["Eastern Kingdoms Cup"] = true
 L["Echoes of Doom"] = true
 L["Emberflow Flight"] = true
@@ -563,115 +529,9 @@ L["Enable Upcoming Calendar Events Desc"] = "When disabled, the {upcomingCalenda
 L["Enchanting"] = true
 L["End Time"] = true
 L["Engineering"] = true
-L["Enhanced filtering and sorting"] = true
-L["Enhanced filtering and sorting Desc"] = [=[Filtering and sorting of achievements is enhanced with following features.
-
-Categories:
-|T:1:8|t- {mergeSmallCategories}: Merge categories if allowed with less than {mergeSmallCategoriesNumber} achievements (1).
-
-Filtering (multiple filters can be selected at the same time):
-|T:1:8|t- {completed}: Show completed achievements.
-|T:1:8|t- {notCompleted}: Show not completed achievements.
-|T:1:8|t- {obtainable}: Show obtainable achievements.
-|T:1:8|t- {notObtainable}: Show not obtainable achievements.
-|T:1:8|t- {faction} ({resetFactionFilters} {resetFactionFiltersEnabled}) (2)
-|T:1:8|t|T:1:8|t- {neutral}: Show achievements that both {alliance_wc} and {horde_wc} can earn.
-|T:1:8|t|T:1:8|t- {alliance}: Show achievements only {alliance_wc} can earn.
-|T:1:8|t|T:1:8|t- {horde}: Show achievements only {horde_wc} can earn.
-|T:1:8|t- {excluded}: Show excluded achievements.
-|T:1:8|t- {collapseChain}: Show only the last completed and first not completed achievement in a chain.
-
-Sorting:
-|T:1:8|t- {noSorting}: No sorting applied.
-|T:1:8|t- {sortByName}: Sort achievements based on their names.
-|T:1:8|t- {sortByCompletion}: Sort achievements based on if they are completed or not.
-|T:1:8|t- {sortByID}: Sort achievements based on their ID.
-|T:1:8|t- {reverseSort}: When this is selected, invert the order of the sorted achievements.
-
-{tabs}:
-|T:1:8|t- These have all the filtering and sorting features mentioned above but can be changed independent from the others.
-|T:1:8|t- Changing any of the above filters will overwrite the individial tab's filtering and sorting.
-
-{specialCategories}:
-|T:1:8|t- These have all the filtering and sorting features mentioned above but can be changed independent from the others.
-
-{earnedBy} (see {earnedByTutorial} for more details)
-|T:1:8|t- {account}: Achevements are saturated if earned on any character on your account.
-|T:1:8|t- {character}: Achievements are saturated if earned by your current character and partially saturated if earned on another character on your account but not the current one.
-
-Other:
-|T:1:8|t- {help}: Start the tutorial from the start and reset what you've viewed.
-|T:1:8|t|T:1:8|t- Shows the specific tutorial page without resetting what you've viewed.
-|T:1:8|t- {options}: Open the addon's options (2).
-
-More filters and sorting options can be requested on {discord} or {curseForge} (links in the options).
-
-(1) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {categories}
-(2) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName}]=]
-L["Enhanced tooltip"] = true
-L["Enhanced tooltip Achievements Desc"] = [=[Each tooltip has additional information on how achievements relate to each other (if they do). Several new sections are added to it.
-
-Features:
-|T:1:8|t- {notObtainable}: Shows the text '{noLongerObtainable}' if the achievement is no longer obtainable.
-|T:1:8|t- {earnedBy}: See {earnedBy} for more information.
-|T:1:8|t- {partOfAChain}: Shows the list of achievements the hovered achievement is part of (1) ({partOfAChainEnabled}) (2).
-|T:1:8|t- {requiredFor}: Shows a list of achievements that require the hovered achievement to be completed in order to earn it (1) ({requiredForEnabled}) (2).
-|T:1:8|t- {otherFaction}: Shows the related achievement of the other faction ({otherFactionEnabled}) (2).
-|T:1:8|t- {objectivesProgress}: Shows the list of objectives with progress ({objectivesProgressEnabled}) (2).
-|T:1:8|t|T:1:8|t- Custom objectives: Some achievements have custom objectives like the transmog achievements showing your progress towards the related transmog sets.
-
-Icons:
-|T:1:8|t- {ready}: The achievement is completed.
-|T:1:8|t- {waiting}: The achievement is not completed.
-|T:1:8|t- {notready}: The achievement is not possible to obtain anymore.
-
-Colors:
-|T:1:8|t- {green}: The achievement/objective is completed.
-|T:1:8|t- {grey}: The achievement/objective is not completed.
-|T:1:8|t- {red}: The achievement is not possible to obtain anymore.
-|T:1:8|t- Lighter {lightGreen}, {lightGrey} or {lightRed}: The hovered achievement.
-
-More custom objectives can be requested on {discord} or {curseForge} (links in the options).
-
-(1) Optionally, two icons can be displayed per line. The first icon is the default one, the second one is for the current character ({currentCharacterIconEnabled}) (2).
-(2) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {achievements}]=]
-L["Enhanced tooltip Categories Desc"] = [=[Each tooltip has additional information on how many achievements are (not) obtainable and (not) completed.
-
-The numbers in the progress bar are in the following format:
-|T:1:8|tOC (+NONC) / T
-|T:1:8|t|T:1:8|t- {oc}: The (not) obtainable completed achievements.
-|T:1:8|t|T:1:8|t- {nonc}: The not obtainable not completed achievements (1).
-|T:1:8|t|T:1:8|t- T: Total number of achievements.
-
-Colors:
-|T:1:8|t- {green}: The (not) obtainable completed achievements.
-|T:1:8|t- {red}: The not obtainable not completed achievements (1).
-|T:1:8|t- Empty: The obtainable not completed achievements.
-
-The {red} part of the progress bar and number in brackets can either be disbled in options ({showNotObtainable}) (1) or by unchecking the {notObtainable} filter.
-
-(1) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {categories}]=]
 L["Error Tabs Order"] = "{blizzard} tab {statistics} can not be in front of {guild}."
 L["Escalation"] = true
 L["Eternity's End"] = true
-L["Event Reminder"] = true
-L["Event Reminder Desc"] = [=[{events} are added to the new {events} tab and a reminder will pop up (max {numPopUps} at the same time) when one of the events is active ({popUpEnabled}) (1).
-
-The event reminder has the name of the event and up to 2 lines of time display (end time of the event) (1).
-The format of the time display can be chosen from presets or custom made (1).
-A compact version exists with a single line for time display ({compactEnabled}) (1).
-
-Clicking it will open the category with the obtainable achievements while the event is active.
-It will disappear when right clicked or after {eventAlertFadeDelay} seconds when ignored (1).
-
-The reminder is also present on the right side of the achievement window.
-
-Event types:
-|T:1:8|t- {calendarEvents} (e.g.: Holidays).
-|T:1:8|t- {widgetEvents} (e.g.: Torghast).
-|T:1:8|t- {worldEvents} (e.g.: Assaults).
-
-(1) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {eventReminders}]=]
 L["Event Reminders"] = true
 L["Event Reminders Enable Desc"] = "When disabled, the full {eventReminders} Module if turned off."
 L["Events"] = true
@@ -680,28 +540,6 @@ L["Exclude Excluded achievements"] = true
 L["Exclude Excluded achievements Desc"] = "Exclude / include Excluded achievements from / in the search results."
 L["Excluded"] = true
 L["Expansions"] = true
-L["Expansions tab"] = true
-L["Expansions tab Desc"] = [=[Achievements are grouped in categories per expansion with a more logic hierarchy.
-
-The hierarchy is as follow:
-|T:1:8|t- {expansion}
-|T:1:8|t|T:1:8|t- {zones}
-|T:1:8|t|T:1:8|t|T:1:8|t- {quests}
-|T:1:8|t|T:1:8|t|T:1:8|t- {exploration}
-|T:1:8|t|T:1:8|t|T:1:8|t- {pvp}
-|T:1:8|t|T:1:8|t|T:1:8|t- {reputation}
-|T:1:8|t|T:1:8|t- {dungeons}
-|T:1:8|t|T:1:8|t- {raids}
-|T:1:8|t|T:1:8|t- {petBattles}
-|T:1:8|t|T:1:8|t- {expansionFeatures}
-
-Special categories:
-|T:1:8|t- {currentZone}: Shows the achievements linked to the current zone you're in.
-|T:1:8|t- {selectedZone}: Shows the achievements linked to the selected zone from the world map.
-|T:1:8|t- {watchListCategory}: Shows the watched achievements. Achievements can be displayed with or without their subcategories (1).
-|T:1:8|t- {excludedCategory}: Shows the excluded achievements. Achievements can be displayed with or without their subcategories (1). Can be permanently hidden from the options (1).
-
-(1) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {categories}]=]
 L["Experimental"] = true
 L["Exploration"] = true
 L["Export"] = true
@@ -762,10 +600,7 @@ L["Forget Me Not: Next"] = true
 L["Format"] = true
 L["Fracture Chambers"] = true
 L["Fractures in Time"] = true
-L["from"] = true
 L["from the start of"] = true
-L["Full Search"] = true
-L["Full Search Desc"] = "By selecting '{showAllResults}' you're able to view all search results. See the {quickSearchTutorial} tutorial for more details."
 L["Fury Incarnate"] = true
 L["Fury of Hellfire"] = true
 L["Future Obtainable"] = true
@@ -852,8 +687,6 @@ L["Ignore Filters"] = true
 L["Ignore Filters Desc"] = "Ignore any filters and show all the achievements in the {category}."
 L["Imbu"] = true
 L["Import"] = true
-L["In"] = true
-L["in"] = true
 L["In instances"] = true
 L["Include"] = true
 L["Include all"] = true
@@ -951,25 +784,6 @@ L["Nazmir"] = true
 L["Necrolord Assault"] = true
 L["Necrolords Assault"] = true
 L["never obtainable"] = true
-L["New Achievement Colors"] = true
-L["New Achievement Colors Desc"] = [=[- The default gold of an obtained achievement. The border is changed from red to gold.
-- The new red of an obtained not obtainable achievement with default red border.
-- The new red of a not obtained not obtainable achievement with default grey border.
-- The default blue of an obtained account-wide achievement with default blue border.]=]
-L["New achievement window tabs"] = true
-L["New achievement window tabs Desc"] = [=[New tabs are added to the achievement window.
-This offers a new way of displaying achievements in a familiar fashion without interfering with the default tabs.
-
-Tabs:
-|T:1:8|t- {achievements}: A copy from the default {achievements} tab but with all the new features added by {addonName_y}.
-|T:1:8|t- {expansions}: Achievements are grouped in categories per expansion with a more logic hierarchy. See the {expansionsTabTutorial} tutorial for more details.
-|T:1:8|t- {events}: Achievements are grouped in categories per event. This goes from holidays to world events like assaults.
-|T:1:8|t- {pvp}: Achievements are grouped in categories per battleground.
-|T:1:8|t- {specials}: These categories are collections of achievements that award mounts, titles, transmog and others that not realy fit anywhere else.
-
-Both default tabs and tabs added by {addonName_y} can be hidden from the options (1).
-{pluginText}
-(1) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {tabs}]=]
 L["News"] = true
 L["Next"] = true
 L["Next from startDate until endDate"] = "Next from {startDate} until {endDate}"
@@ -985,7 +799,6 @@ L["No data found"] = true
 L["No time data available"] = true
 L["Noblegarden"] = true
 L["Nokhudon Hold"] = true
-L["NONC"] = true
 L["None"] = true
 L["No-No"] = true
 L["Northrend Cup"] = true
@@ -1019,8 +832,6 @@ L["N'Zoth (Vale of Eternal Blossoms)"] = true
 L["N'Zoth Assaults"] = true
 L["Objectives"] = true
 L["Objectives progress"] = true
-L["Obtainable"] = true
-L["OC"] = true
 L["Offsets"] = true
 L["Ohn'ahran Plains"] = true
 L["Ohn'ahran Plains: Next"] = true
@@ -1074,21 +885,6 @@ L["Promotions"] = true
 L["PvE Season"] = true
 L["PvP"] = "Player vs. Player"
 L["PvP Season"] = true
-L["Quick Search"] = true
-L["Quick Search Desc"] = [=[Searches for achievements in the tabs added by {addonName}. This does not search the default tabs.
-
-Features:
-|T:1:8|t- Search by achievement title and description, alphabetically sorted by title.
-|T:1:8|t- Search by achievement ID by starting the search query with '#', ordered by ascending ID.
-
-Options (1):
-|T:1:8|t- {clearOnRightClick} ({clearOnRightClickEnabled})
-|T:1:8|t- {excludeExcludedAchievements} ({excludeExcludedAchievementsEnabled} excluded achievements {excludeExcludedAchievementsFrom} the search results)
-|T:1:8|t- {searchFilteredAchievements} ({searchFilteredAchievementsEnabled})
-|T:1:8|t- {minCharToSearch} ({minCharToSearchNumber})
-|T:1:8|t- {numSearchPreviews} ({numSearchPreviewsNumber})
-
-(1) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName}]=]
 L["Radiant Echoes"] = true
 L["Rage of the Firelands"] = true
 L["Rated"] = true
@@ -1146,24 +942,6 @@ L["Right"] = true
 L["Right Alt"] = true
 L["Right click"] = true
 L["Right Click Menu"] = true
-L["Right Click Menu Desc"] = [=[Each achievement in the new tabs have a {rightClickMenu}.
-
-Features:
-|T:1:8|t- Link to {wowhead}.
-|T:1:8|t- {goTo} shortcut to achievements that are {partOfAChain}, that are {require} this achievment to be completed or are also found under other categories. Achievements in the {currentZone} category have a shortcut to their proper location in the categories tree.
-|T:1:8|t- Link to {xuFuPetGuides} if the achievement is related to {petBattles} and {xuFuPetGuides} has relevant information about it.
-|T:1:8|t- Link to transmog sets if the achievement's objective is to collect one.
-{pluginText}
-|T:1:8|t- {more}: Groups misc. items to not clutter the main menu.
-|T:1:8|t|T:1:8|t- {addToWatch}: Add the achievement to the {watchList} category. (Only available on not watched achievements).
-|T:1:8|t|T:1:8|t- {removeFromWatch}: Remove the achievement from the {watchList} category. (Only available on watched achievements).
-|T:1:8|t|T:1:8|t- {include}: Includes the achievement back into the normal view. (Only available on excluded achievements).
-|T:1:8|t|T:1:8|t- {exclude}: Excludes the achievement from the normal view. (Only available on included achievements).
-
-Options:
-|T:1:8|t- A button can be shown on each achievement that opens the {rightClickMenu}. ({enabled}) (1)
-
-(1) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {rightClickMenu}]=]
 L["Right Ctrl"] = true
 L["Right Shift"] = true
 L["Rise of Azshara"] = true
@@ -1365,13 +1143,6 @@ L["Stormheim"] = true
 L["Stormsong Valley"] = true
 L["Strand of the Ancients"] = true
 L["Style"] = true
-L["Summary Desc"] = [=[{achievementsHeader}:
-|T:1:8|t-Shows the last {numAchievements} earned account wide and character achievements (1).
-
-{categoriesHeader}:
-|T:1:8|t- Shows the progress for each category in the tab. This is the same progress you would see when mousing over a category on the side.
-
-(1) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {categories} {arrow} {summary}]=]
 L["Sundapple Copse Circuit"] = true
 L["Superbloom"] = true
 L["Superbloom: Active"] = true
@@ -1508,7 +1279,6 @@ L["When achievement completed Desc"] = [=[Show / hide {objectivesProgress} when 
 
 When checked, the {objectivesProgress} of the achievements will be visible in the tooltip regardless if the achievement is completed or not.]=]
 L["Whispering Pandaren Spirit"] = true
-L["Widget Events"] = true
 L["Wild Preserve Circuit"] = true
 L["Wild Preserve Slalom"] = true
 L["will be"] = true
@@ -1520,12 +1290,6 @@ L["Wintergrasp"] = true
 L["World Events"] = true
 L["World Map"] = true
 L["World Map Button"] = true
-L["World Map Button Desc"] = [=[Hover:
-|T:1:8|t- Shows how many achievements are (not) obtainable and (not) completed like the {enhancedTooltipCategories} based on the filters set for the {selectedZone}.
-|T:1:8|t- See {enhancedTooltipCategories} and {enhancedFilteringAndSorting} for more information.
-
-Click:
-|T:1:8|t- Opens the achievements window to the {selectedZone} category.]=]
 L["Worldsoul Memory"] = true
 L["WoW Remix: Mists of Pandaria"] = true
 L["Wowhead"] = true

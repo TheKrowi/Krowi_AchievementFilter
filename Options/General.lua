@@ -36,32 +36,6 @@ end
 
 local CloseSettingsPanel = options.CloseSettingsPanel
 
-local function CreateTutorialMenuFunc(builder)
-    local menu = builder:GetMenu()
-    local pages = addon.Tutorials.FeaturesTutorial.Pages
-
-    builder:CreateTitle(menu, addon.L["View Tutorial"])
-    for i, _ in next, pages do
-        builder:CreateButtonAndAdd(
-            menu,
-            (pages[i].IsViewed and "" or "|T132049:0|t") .. string.format(addon.Util.Colors.White, addon.Util.Colors.RemoveColor(pages[i].SubTitle)),
-            function()
-                CloseSettingsPanel()
-                addon.Tutorials.FeaturesTutorial:ShowTutorial(i)
-            end
-        )
-    end
-end
-
-local tutorialMenuBuilder
-local function GeneralTutorialFunc()
-    if not tutorialMenuBuilder then
-        tutorialMenuBuilder = addon.MenuBuilder:New({modern = addon.Util.IsModern})
-    end
-
-    tutorialMenuBuilder:ShowPopup(CreateTutorialMenuFunc)
-end
-
 local function MinimapShowMinimapIconSet(_, value)
     if addon.Options.db.profile.ShowMinimapIcon == value then return; end
     addon.Options.db.profile.ShowMinimapIcon = value
@@ -291,12 +265,6 @@ local infoOptions = {
                 Build = {
                     order = OrderPP(), type = "description", width = AdjustedWidth(), fontSize = "medium",
                     name = (addon.Util.L["Build"] .. ": "):SetColorYellow() .. addon.Metadata.Build,
-                },
-                Tutorial = {
-                    order = OrderPP(), type = "execute", width = AdjustedWidth(),
-                    name = function() return (addon.Tutorials.FeaturesTutorial:HasUnviewedPages() and "|T132049:0|t" or "") .. addon.L["Tutorial"]; end,
-                    desc = addon.L["Tutorial Desc"],
-                    func = GeneralTutorialFunc
                 },
                 Author = {
                     order = OrderPP(), type = "description", width = AdjustedWidth(2), fontSize = "medium",

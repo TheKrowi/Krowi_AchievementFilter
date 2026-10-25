@@ -333,20 +333,6 @@ L["Calendar"] = "行事曆"
 L["Calendar button"] = "行事曆按鈕"
 L["Calendar button horizontal position Desc"] = "調整{calendarButton}垂直位置"
 L["Calendar button vertical position Desc"] = "調整{calendarButton}水平位置。"
-L["Calendar Desc"] = [=[與{calendar}相似
-
-|T:1:8|t- 最上方的成就數量和點數為目前頁面所在月份內獲得，而非顯示的所有日期
-|T:1:8|t- 點擊最上方月份旁的按鈕或使用滾輪切換月份
-|T:1:8|t- 強調顯示滑鼠懸停日期（11日）並在右側顯示當日獲得的成就，滑鼠移開後將關閉右側視窗或顯示移動後懸停日期內的成就
-|T:1:8|t- 更強調顯示滑鼠點擊的日期（18日）並保持右側視窗（鎖定），可以上下捲動查看成就、懸停滑鼠查看提示或點擊跳轉至成就介面（將關閉行事曆視窗），僅可選中獲得過成就的日期
-|T:1:8|t- 點擊選中日期將取消選擇並解鎖右側視窗，也可點擊右側視窗的關閉按鈕取消選擇
-|T:1:8|t- 日期上的箭頭標誌表示當日獲得過4個以上成就
-
-設定(1)
-|T:1:8|t- 打開行事曆時可以選擇總是保留關閉前的月份（{lockMonth}）或僅在因點擊成就而關閉時保留（{lockAchievementMonth}）
-|T:1:8|t- 可以更改每週的第一天，目前設定為{firstWeekDay}
-
-(1) {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {calendar}]=]
 L["Calendar Events"] = "行事曆事件"
 L["Call of the Crusade"] = "十字軍的呼喚"
 L["Cataclysm (pre-patch)"] = "浩劫與重生（前夕）"
@@ -404,12 +390,6 @@ L["Community Feast: Starting Soon"] = "社群盛宴：即將開始"
 L["Compact"] = "緊湊"
 L["Compact Achievements"] = "緊湊成就"
 L["Compact Achievements Desc"] = "成就尺寸減小至2/3，與總覽中的近期成就一致"
-L["Compact Achievements T Desc"] = [=[- 成就尺寸減小至2/3，與總覽中的近期成就一致
-- 僅顯示成就描述的第一行或成就獎勵
-
-可在設定(1)啟用緊湊成就（{compactEnabled}）
-
-(1) {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {achievements}]=]
 L["Compact Desc"] = [=[使用僅顯示單行時間的緊湊版本
 
 {reloadRequired}]=]
@@ -506,20 +486,6 @@ L["Dueler's Guild"] = "決鬥俱樂部"
 L["during"] = "- 限定"
 L["Dustwallow Marsh"] = "塵泥沼澤"
 L["Earned By"] = "已獲得"
-L["Earned By Desc"] = [=[頁首
-|T:1:8|t- {achievementPointsEarnedBy}：顯示目前角色{achievementPointsEarnedBy_wc}和/或帳號{achievementPointsEarnedBy_wc}（{achievementPointsEarnedByFormat}）(1)
-|T:1:8|t- {tooltip}：顯示單個角色已獲得的成就點數，每個角色添加至該清單必須登入至少一次。不同伺服器的角色將顯示伺服器名稱，可在設定(1)啟用總是顯示
-
-過濾器
-|T:1:8|t- {account}：帳號中任意角色獲得成就都會被計入（預設）
-|T:1:8|t- {character}：目前角色獲得的成就才會被計入，非目前角色獲得的成就部分被計入
-
-滑鼠提示
-|T:1:8|t- {earnedBy}：顯示{earnedByNumber}個獲得該成就的角色(2)，包含有對應成就的陣營專屬成就，例如聯盟角色可能會顯示部落成就。不同伺服器的角色將顯示伺服器名稱，可在設定(2)啟用總是顯示
-|T:1:8|t- {notEarnedBy}：顯示{notEarnedByNumber}個未獲得該成就的角色(2)，包含有對應成就的陣營專屬成就，例如聯盟角色可能會顯示部落成就。不同伺服器的角色將顯示伺服器名稱，可在設定(2)啟用總是顯示
-
-(1) {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {header}
-(2) {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {achievements}]=]
 L["Eastern Kingdoms Cup"] = "東部王國盃"
 L["Echoes of Doom"] = "末日回響"
 L["Emberflow Flight"] = "燼琉航線"
@@ -538,115 +504,9 @@ L["Enable Upcoming Calendar Events Desc"] = "停用後關閉{upcomingCalendarEve
 L["Enchanting"] = "附魔"
 L["End Time"] = "結束時間"
 L["Engineering"] = "工程學"
-L["Enhanced filtering and sorting"] = "增強的過濾器和排序"
-L["Enhanced filtering and sorting Desc"] = [=[成就的過濾器和排序新增下列特性
-
-類別：
-|T:1:8|t- {mergeSmallCategories}：合併低於{mergeSmallCategoriesNumber}個成就的類別(1)
-
-過濾（可同時選擇多個過濾器）：
-|T:1:8|t- {completed}：顯示已獲得的成就
-|T:1:8|t- {notCompleted}：顯示未獲得的成就
-|T:1:8|t- {obtainable}：顯示可獲得的成就
-|T:1:8|t- {notObtainable}：顯示絕版的成就
-|T:1:8|t- {faction}（{resetFactionFilters} {resetFactionFiltersEnabled}）(2)
-|T:1:8|t|T:1:8|t- {neutral}：顯示{alliance_wc}和{horde_wc}都可獲得的成就
-|T:1:8|t|T:1:8|t- {alliance}：顯示僅{alliance_wc}可獲得的成就
-|T:1:8|t|T:1:8|t- {horde}：顯示僅{horde_wc}可獲得的成就
-|T:1:8|t- {excluded}：顯示已隱藏的成就
-|T:1:8|t- {collapseChain}：僅顯示系列成就中最後獲得和首個未獲得的成就
-
-排序：
-|T:1:8|t- {noSorting}：預設排序
-|T:1:8|t- {sortByName}：根據成就名稱排序
-|T:1:8|t- {sortByCompletion}：根據成就是否獲得排序
-|T:1:8|t- {sortByID}：根據成就ID排序
-|T:1:8|t- {reverseSort}：勾選後反轉成就排序
-
-{tabs}：
-|T:1:8|t- 具有上述所有過濾器和排序功能，每個標籤可以獨立設定
-|T:1:8|t- 更改上述設定將覆蓋標籤的獨立設定
-
-{specialCategories}：
-|T:1:8|t- 具有上述所有過濾器和排序功能，每個標籤可以獨立設定
-
-{earnedBy}（查看{earnedByTutorial}教學了解更多細節）：
-|T:1:8|t- {account}：帳號上任意角色獲得成就均可點亮
-|T:1:8|t- {character}：僅目前角色獲得成就才能點亮，其他角色獲得時半點亮
-
-其他：
-|T:1:8|t- {help}：從頭開始並重設教學
-|T:1:8|t|T:1:8|t- 顯示指定教學頁面且不重設教學
-|T:1:8|t- {options}：打開插件設定(2)
-
-更多過濾器和排序設定可在{discord}或{curseForge}中提出需求（連結在設定中）
-
-(1) {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {categories}
-(2) {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName}]=]
-L["Enhanced tooltip"] = "增強的滑鼠提示"
-L["Enhanced tooltip Achievements Desc"] = [=[在滑鼠提示中新增幾種新的成就關聯資訊
-
-特性：
-|T:1:8|t- {notObtainable}：絕版成就顯示'{noLongerObtainable}'
-|T:1:8|t- {earnedBy}：查看{earnedBy}教學了解更多細節
-|T:1:8|t- {partOfAChain}：顯示滑鼠懸停成就所在的系列成就清單(1)（{partOfAChainEnabled}）(2)
-|T:1:8|t- {requiredFor}：顯示滑鼠懸停成就作為成就條件的所屬成就清單(1)（{requiredForEnabled}）(2)
-|T:1:8|t- {otherFaction}：顯示其他陣營的關聯成就（{otherFactionEnabled}）(2)
-|T:1:8|t- {objectivesProgress}：顯示目標進度清單（{objectivesProgressEnabled}）(2)
-|T:1:8|t|T:1:8|t- 自訂目標：部分成就包含自訂目標，例如塑形成就將顯示對應塑形的收集進度
-
-圖示：
-|T:1:8|t- {ready}：成就已獲得
-|T:1:8|t- {waiting}：成就未獲得
-|T:1:8|t- {notready}：成就已絕版
-
-顏色：
-|T:1:8|t- {green}：成就/目標已獲得
-|T:1:8|t- {grey}：成就/目標未獲得
-|T:1:8|t- {red}：成就已絕版
-|T:1:8|t- 更淺的{lightGreen}/{lightGrey}/{lightRed}：滑鼠懸停處的成就
-
-更多自訂目標可在{discord}或{curseForge}中提出需求（連結在設定中）
-
-(1)（選用）每行可顯示兩個圖示：第一個為預設圖示，第二個為目前角色圖示（{currentCharacterIconEnabled}）(2)
-(2) {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {achievements}]=]
-L["Enhanced tooltip Categories Desc"] = [=[在滑鼠提示中新增可獲得/絕版和已獲得/未獲得的成就數量資訊
-
-進度條中的數字格式如下：
-|T:1:8|tOC (+NONC) / T
-|T:1:8|t|T:1:8|t- {oc}：已獲得的成就
-|T:1:8|t|T:1:8|t- {nonc}：未獲得的絕版成就(1)
-|T:1:8|t|T:1:8|t- T：成就總數
-
-顏色：
-|T:1:8|t- {green}：已獲得的成就
-|T:1:8|t- {red}：未獲得的絕版成就(1)
-|T:1:8|t- 空白：未獲得的可獲得成就
-
-進度條{red}部分和括號內的數字可由設定（{showNotObtainable}）(1)或取消勾選{notObtainable}過濾器關閉
-
-(1) {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {categories}]=]
 L["Error Tabs Order"] = "{blizzard}的{statistics}標籤不能放在{guild}之前"
 L["Escalation"] = "一觸即發"
 L["Eternity's End"] = "永恆之盡"
-L["Event Reminder"] = "事件提醒"
-L["Event Reminder Desc"] = [=[新增{events}至新的{events}標籤，在事件活躍時彈窗提醒（同時最多{numPopUps}個）（{popUpEnabled}）(1)
-
-事件提醒包含名稱及最多2行結束時間資訊(1)
-時間格式可選擇預設或自訂(1)
-緊湊版本僅顯示單行時間（{compactEnabled}）(1)
-
-點擊彈窗會打開包含可獲得成就的對應類別
-點擊右鍵或忽略{eventAlertFadeDelay}秒將關閉彈窗(1)
-
-提醒也顯示在成就介面右側
-
-事件類型：
-|T:1:8|t- 行事曆事件（節日）
-|T:1:8|t- 小型事件（托迦司）
-|T:1:8|t- 世界事件（突襲）
-
-(1) {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {eventReminders}]=]
 L["Event Reminders"] = "事件提醒"
 L["Event Reminders Enable Desc"] = "停用後將關閉整個{eventReminders}模組"
 L["Events"] = "事件"
@@ -655,28 +515,6 @@ L["Exclude Excluded achievements"] = "排除已隱藏成就"
 L["Exclude Excluded achievements Desc"] = "在搜尋結果中排除/包含已隱藏成就"
 L["Excluded"] = "已隱藏"
 L["Expansions"] = "資料片"
-L["Expansions tab"] = "資料片標籤"
-L["Expansions tab Desc"] = [=[將成就按不同資料片進行分類並最佳化結構
-
-結構如下：
-|T:1:8|t- {expansion}
-|T:1:8|t|T:1:8|t- {zones}
-|T:1:8|t|T:1:8|t|T:1:8|t- {quests}
-|T:1:8|t|T:1:8|t|T:1:8|t- {exploration}
-|T:1:8|t|T:1:8|t|T:1:8|t- {pvp}
-|T:1:8|t|T:1:8|t|T:1:8|t- {reputation}
-|T:1:8|t|T:1:8|t- {dungeons}
-|T:1:8|t|T:1:8|t- {raids}
-|T:1:8|t|T:1:8|t- {petBattles}
-|T:1:8|t|T:1:8|t- {expansionFeatures}
-
-特殊類別：
-|T:1:8|t- {currentZone}：顯示與目前區域關聯的成就
-|T:1:8|t- {selectedZone}：顯示與世界地圖選中區域關聯的成就
-|T:1:8|t- {watchListCategory}：顯示已關注成就，可以設定(1)是否顯示子類
-|T:1:8|t- {excludedCategory}：顯示已關注成就，可以設定(1)是否顯示子類，可以在設定(1)中永久隱藏
-
-(1) {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {categories}]=]
 L["Experimental"] = "實驗性功能"
 L["Exploration"] = "探索"
 L["Export"] = "匯出"
@@ -728,10 +566,7 @@ L["Forget Me Not: Next"] = "勿忘我：下次"
 L["Format"] = "格式"
 L["Fracture Chambers"] = "斷骨密室"
 L["Fractures in Time"] = "時光的裂痕"
-L["from"] = "從"
 L["from the start of"] = "- 從更新"
-L["Full Search"] = "完整搜尋"
-L["Full Search Desc"] = "選擇'{showAllResults}'可以查看所有搜尋結果（查看{quickSearchTutorial}教學了解更多細節）"
 L["Fury Incarnate"] = "狂怒化身"
 L["Fury of Hellfire"] = "血戰地獄火"
 L["Future Obtainable"] = "未來可得"
@@ -818,8 +653,6 @@ L["Ignore Filters"] = "忽略過濾器"
 L["Ignore Filters Desc"] = "忽略所有過濾器，在{category}中顯示所有成就"
 L["Imbu"] = "伊姆布"
 L["Import"] = "匯入"
-L["In"] = "在"
-L["in"] = "在"
 L["In instances"] = "副本中"
 L["Include"] = "顯示"
 L["Include all"] = "全部清除"
@@ -913,25 +746,6 @@ L["Nazmir"] = "納茲米爾"
 L["Necrolord Assault"] = "死靈領主突襲"
 L["Necrolords Assault"] = "死靈領主突襲"
 L["never obtainable"] = "已絕版"
-L["New Achievement Colors"] = "新的成就顏色"
-L["New Achievement Colors Desc"] = [=[- 已獲得的成就為預設金色，邊緣由紅色更改為金色
-- 已獲得的絕版成就為新的紅色，邊緣為預設紅色
-- 未獲得的絕版成就為新的紅色，邊緣為預設灰色
-- 已獲得的戰隊成就為預設藍色，邊緣為預設藍色]=]
-L["New achievement window tabs"] = "新的成就介面標籤"
-L["New achievement window tabs Desc"] = [=[新的標籤已新增至成就介面
-在不影響預設標籤的情況下，提供了一種相似的新途徑來顯示成就
-
-標籤：
-|T:1:8|t- {achievements}：在預設{achievements}標籤的基礎上，新增{addonName_y}的全新特性
-|T:1:8|t- {expansions}：將成就按不同資料片進行分類並最佳化結構，查看{expansionsTabTutorial}教學了解更多細節
-|T:1:8|t- {events}：將成就按不同事件進行分類，包含節日以及突襲等世界事件
-|T:1:8|t- {pvp}：將成就按不同戰場進行分類
-|T:1:8|t- {specials}：該分類包含各類獎勵坐騎、頭銜、塑形的成就以及部分難以分類的成就
-
-所有預設標籤和{addonName_y}新增的標籤都可以在設定(1)中隱藏
-{pluginText}
-(1) {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {tabs}]=]
 L["News"] = "新聞"
 L["Next"] = "下次"
 L["Next from startDate until endDate"] = "下次活動{startDate}至{endDate}"
@@ -947,7 +761,6 @@ L["No data found"] = "未找到資料"
 L["No time data available"] = "無可用時間資料"
 L["Noblegarden"] = "復活節"
 L["Nokhudon Hold"] = "諾庫頓要塞"
-L["NONC"] = true
 L["None"] = "無"
 L["No-No"] = "諾諾"
 L["Northrend Cup"] = "北裂境盃"
@@ -980,8 +793,6 @@ L["N'Zoth (Vale of Eternal Blossoms)"] = "黑暗帝國（恆春谷）"
 L["N'Zoth Assaults"] = "黑暗帝國突襲"
 L["Objectives"] = "目標"
 L["Objectives progress"] = "目標進度"
-L["Obtainable"] = "可獲得"
-L["OC"] = true
 L["Offsets"] = "偏移"
 L["Ohn'ahran Plains"] = "雍亞拉平原"
 L["Ohn'ahran Plains: Next"] = "雍亞拉平原：下次"
@@ -1031,21 +842,6 @@ L["Promotions"] = "促銷活動"
 L["PvE Season"] = "PvE賽季"
 L["PvP"] = true
 L["PvP Season"] = "PvP賽季"
-L["Quick Search"] = "快速搜尋"
-L["Quick Search Desc"] = [=[在{addonName}新增的標籤中搜尋成就，將不搜尋預設標籤
-
-特性：
-|T:1:8|t- 搜尋成就標題和描述，按標題首字母排序
-|T:1:8|t- 輸入'#'後搜尋成就ID，按ID升序排列
-
-設定(1)：
-|T:1:8|t- {clearOnRightClick}（{clearOnRightClickEnabled}）
-|T:1:8|t- {excludeExcludedAchievements}（{excludeExcludedAchievementsFrom}搜尋結果中{excludeExcludedAchievementsEnabled}已隱藏成就）
-|T:1:8|t- {searchFilteredAchievements}（{searchFilteredAchievementsEnabled}）
-|T:1:8|t- {minCharToSearch}（{minCharToSearchNumber}）
-|T:1:8|t- {numSearchPreviews}（{numSearchPreviewsNumber}）
-
-(1) {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName}]=]
 L["Radiant Echoes"] = "光耀迴響"
 L["Rage of the Firelands"] = "火源的怒焰"
 L["Rated"] = "評級"
@@ -1088,24 +884,6 @@ L["Right"] = "右"
 L["Right Alt"] = "右Alt"
 L["Right click"] = "右鍵"
 L["Right Click Menu"] = "右鍵選單"
-L["Right Click Menu Desc"] = [=[新標籤中的所有成就都可使用{rightClickMenu}
-
-特性：
-|T:1:8|t- 提供{wowhead}連結
-|T:1:8|t- 可以快速{goTo}所在的{partOfAChain}和{require}中的其他成就，可以快速前往{currentZone}類別中成就的預設定位
-|T:1:8|t- 如果是{petBattles}相關成就且{xuFuPetGuides}有相關資訊，提供{xuFuPetGuides}連結
-|T:1:8|t- 如果成就目標是收集塑形，連結至對應套裝
-{pluginText}
-|T:1:8|t- {more}：雜項組，保持主選單整潔
-|T:1:8|t|T:1:8|t- {addToWatch}：在{watchList}類別中新增成就（僅可新增未關注成就）
-|T:1:8|t|T:1:8|t- {removeFromWatch}：在{watchList}類別中移除成就（僅可移除已關注成就）
-|T:1:8|t|T:1:8|t- {include}：正常顯示已隱藏成就（僅可顯示已隱藏成就）
-|T:1:8|t|T:1:8|t- {exclude}：隱藏正常顯示的成就（僅可隱藏正常顯示成就）
-
-設定：
-|T:1:8|t- 在每個成就上可顯示一個按鈕用於打開{rightClickMenu}（{enabled}）(1)
-
-(1) {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {rightClickMenu}]=]
 L["Right Ctrl"] = "右Ctrl"
 L["Right Shift"] = "右Shift"
 L["Rise of Azshara"] = "艾薩拉的崛起"
@@ -1294,13 +1072,6 @@ L["Stormheim"] = "斯鐸海姆"
 L["Stormsong Valley"] = "斯托頌谷地"
 L["Strand of the Ancients"] = "遠祖灘頭堡"
 L["Style"] = "樣式"
-L["Summary Desc"] = [=[{achievementsHeader}：
-|T:1:8|t- 顯示近期戰網和角色獲得的最後{numAchievements}個成就(1)
-
-{categoriesHeader}：
-|T:1:8|t- 顯示標籤中所有類別的進度
-
-(1) {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {categories} {arrow} {summary}]=]
 L["Sundapple Copse Circuit"] = "陽斑灌木林巡迴賽"
 L["Superbloom"] = "超然盛放"
 L["Superbloom: Active"] = "超然盛放：啟動"
@@ -1431,7 +1202,6 @@ L["When achievement completed Desc"] = [=[成就已獲得時顯示/隱藏{object
 
 勾選後在滑鼠提示中顯示成就的{objectivesProgress}，無論成就是否獲得]=]
 L["Whispering Pandaren Spirit"] = "熊貓人微風之靈"
-L["Widget Events"] = "小型事件"
 L["Wild Preserve Circuit"] = "狂野禁獵區巡迴賽"
 L["Wild Preserve Slalom"] = "狂野禁獵區障礙賽"
 L["will be"] = "：未來"
@@ -1442,12 +1212,6 @@ L["Wintergrasp"] = "冬握湖"
 L["World Events"] = "地圖事件"
 L["World Map"] = "世界地圖"
 L["World Map Button"] = "世界地圖按鈕"
-L["World Map Button Desc"] = [=[懸停：
-|T:1:8|t- 在{selectedZone}過濾器設定的基礎上顯示可獲得/已絕版和已獲得/未獲得的成就數量資訊（同{enhancedTooltipCategories}）
-|T:1:8|t- 查看{enhancedTooltipCategories}和{enhancedFilteringAndSorting}教學了解更多細節
-
-點擊：
-|T:1:8|t- 打開成就介面並跳轉至{selectedZone}類別]=]
 L["Worldsoul Memory"] = "世界之魂的回憶"
 L["WoW Remix: Mists of Pandaria"] = "幻境新生：潘達利亞之謎"
 L["Wowhead"] = true
