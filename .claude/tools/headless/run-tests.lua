@@ -32,7 +32,8 @@
 --         (Data/EventSchedules.lua and Data/EventObserver.lua on the real data load: the older expansions' events on
 --         their fixed schedules, and what the watcher learns from the POIs), tracking
 --         (Gui/WindowFrames/AchievementButton/TrackingSlots.lua: what the Track button does at the tracking cap), options
---         (the options window's model over the real AceConfig tables, on the whole-addon load of options-env.lua)
+--         (the options window's model over the real AceConfig tables, on the whole-addon load of options-env.lua), help
+--         (Options/Window/Help/: the explanations, pictures and Show me the window's help pane reads, on the same load)
 --
 -- Retail model is 12.1: the Blizzard_GameMenuEsc handler registry, the UI panel manager (its slots stay
 -- empty because the addon shows the achievement window with a plain Show), UISpecialFrames, static
@@ -1597,6 +1598,26 @@ suites.options = function(c)
     chunk("Krowi_AchievementFilter", addon)
     for _, r in ipairs(addon.Tests.Options.Run()) do results[#results + 1] = r end
     return results, "Tests/Options.lua", addon.Tests.Options.Observations()
+end
+
+-- The help pane's content on the same whole-addon load. Here the runner can also look for each picture's file, which
+-- the game cannot; a load error is the options suite's to report.
+suites.help = function(c)
+    local scriptDir = ((arg and arg[0]) or ""):gsub("\\", "/"):match("^(.*)/") or "."
+    local optionsEnv = assert(loadfile(scriptDir .. "/options-env.lua"))()
+    local ctx = optionsEnv.Get(root, c.client)
+    local env, addon = ctx.env, ctx.addon
+    addon.Tests = addon.Tests or { Suites = {}, Ready = {} }
+    addon.Tests.FileExists = function(path)
+        local rel = path:gsub("\\", "/"):gsub("^Interface/AddOns/Krowi_AchievementFilter/", "")
+        local f = io.open(root .. "/" .. rel, "rb")
+        if f then f:close() end
+        return f ~= nil
+    end
+    local chunk = assert(loadstring(readFile(root .. "/Tests/Help.lua"), "@Tests/Help.lua"))
+    setfenv(chunk, env)
+    chunk("Krowi_AchievementFilter", addon)
+    return addon.Tests.Help.Run(), "Tests/Help.lua", addon.Tests.Help.Observations()
 end
 
 -------------------------------------------------------------------------------------------------

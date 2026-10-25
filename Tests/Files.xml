@@ -15,4 +15,5 @@
     <Script file="Events.lua" />
     <Script file="Tracking.lua" />
     <Script file="Options.lua" />
+    <Script file="Help.lua" />
 </Ui>
