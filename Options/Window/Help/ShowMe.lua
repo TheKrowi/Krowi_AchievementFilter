@@ -92,8 +92,25 @@ local function EarnedByMe(id)
     return (select(13, GetAchievementInfo(id))) and true or false
 end
 
-local function InChain(id)
-    return EarnedByMe(id) and (GetPreviousAchievement(id) or GetNextAchievement(id)) and true or false
+-- Earned by this character, not account-wide (so its tooltip lists who earned it), in a chain of 2 to 5 steps (so the
+-- tooltip stays short)
+local function InShortChain(id)
+    if not EarnedByMe(id) then
+        return false
+    end
+    local flags = select(9, GetAchievementInfo(id))
+    if flags and addon.Objects.Flags:New(flags).IsAccountWide then
+        return false
+    end
+    local length, step = 1, id
+    while length <= 5 and GetPreviousAchievement(step) do
+        step, length = GetPreviousAchievement(step), length + 1
+    end
+    step = id
+    while length <= 5 and GetNextAchievement(step) do
+        step, length = GetNextAchievement(step), length + 1
+    end
+    return length >= 2 and length <= 5
 end
 
 local function NotEarned(id)
@@ -198,7 +215,7 @@ function scenes.search(ready)
 end
 
 function scenes.tooltips(ready)
-    ShowAchievement(PickAchievement(InChain) or PickAchievement(EarnedByMe), function(row, achievement)
+    ShowAchievement(PickAchievement(InShortChain) or PickAchievement(EarnedByMe), function(row, achievement)
         row:ShowTooltip()
         Ready(ready, {Row = row, Achievement = achievement})
     end)
@@ -412,7 +429,14 @@ local function CreateMapButton()
             self.Close()
         end
     end)
+    button:SetScript("OnMouseDown", function()
+        DebugMapState("a mouse button went down on the secure button")
+    end)
     button:SetScript("OnEvent", ReleaseMapButton)
+    -- In debug mode the secure button shows as a red box, to see where it lies and what covers it
+    button.DebugTint = button:CreateTexture(nil, "OVERLAY")
+    button.DebugTint:SetAllPoints()
+    button.DebugTint:SetColorTexture(1, 0, 0, 0.35)
     button:Hide()
     return button
 end
@@ -459,10 +483,16 @@ if help.maps then
             return true
         end
         mapButton:RegisterEvent("PLAYER_REGEN_DISABLED")
+        mapButton.DebugTint:SetShown(addon.Diagnostics.DebugEnabled() and true or false)
         mapButton:Show()
-        DebugMapState(("laid over the pane's button (%s %d, own level %d, %dx%d), clicking %s"):format(owner:GetFrameStrata(),
-            owner:GetFrameLevel(), mapButton:GetFrameLevel(), floor(owner:GetWidth() + 0.5), floor(owner:GetHeight() + 0.5),
-            delegate:GetDebugName()))
+        local function ScreenRect(frame)
+            local scale = frame:GetEffectiveScale()
+            return ("%d,%d %dx%d"):format(floor(frame:GetLeft() * scale + 0.5), floor(frame:GetBottom() * scale + 0.5),
+                floor(frame:GetWidth() * scale + 0.5), floor(frame:GetHeight() * scale + 0.5))
+        end
+        DebugMapState(("laid over the pane's button (%s %d at %s, shown %s), own level %d at %s, clicking %s"):format(
+            owner:GetFrameStrata(), owner:GetFrameLevel(), ScreenRect(owner), tostring(owner:IsShown()), mapButton:GetFrameLevel(),
+            ScreenRect(mapButton), delegate:GetDebugName()))
         return true
     end
 

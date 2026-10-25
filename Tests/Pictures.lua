@@ -120,14 +120,20 @@ local function CloseMenus()
     end
 end
 
--- The Earned By header of the achievement tooltip, to cut its part out
+-- The first line of the tooltip's Earned By part (Gui/AchievementTooltip/BlizzardDefault.lua): "Earned by: ...", "Not
+-- earned by: ...", or the account-wide line that replaces both
 local function EarnedByLine()
-    local header = addon.L["Earned By"]
+    local starts = {ACHIEVEMENT_EARNED_BY:match("^(.-)%%s") or ACHIEVEMENT_EARNED_BY, addon.L["Not earned by:"]:match("^(.-)%%s") or addon.L["Not earned by:"],
+        ACCOUNT_WIDE_ACHIEVEMENT_COMPLETED, ACCOUNT_WIDE_ACHIEVEMENT}
     for i = 1, Krowi_Tooltip:NumLines() do
         local line = _G["Krowi_TooltipTextLeft" .. i]
-        local text = line and line:GetText()
-        if text and addon.Util.Colors.RemoveColor(text):find(header, 1, true) == 1 then
-            return line
+        local text = line and line:GetText() and addon.Util.Colors.RemoveColor(line:GetText())
+        if text then
+            for _, start in ipairs(starts) do
+                if start ~= "" and text:find(start, 1, true) == 1 then
+                    return line
+                end
+            end
         end
     end
 end
@@ -341,6 +347,18 @@ steps = {
         Mouse = function()
             return OpenMenu(2) ~= nil
         end,
+        Probe = function() -- what the menu manager holds when the submenu was not seen
+            if not addon.Util.IsModern then
+                return "DropDownList2 shown: " .. tostring(DropDownList2 and DropDownList2:IsShown())
+            end
+            local menus = Menu.GetManager().menus
+            local values = {}
+            for level = 1, 3 do
+                local ok, menu = pcall(function() return menus:GetValue(level) end)
+                values[level] = ok and (menu and (menu.GetDebugName and menu:GetDebugName() or type(menu)) or "none") or ("error " .. tostring(menu))
+            end
+            return "open menus: " .. table.concat(values, " | ")
+        end,
         Cut = function()
             return {OpenMenu(2)}
         end,
@@ -545,6 +563,10 @@ local function WaitForMouse(step, waited)
     end
     if waited >= mouseWait then
         Add("SKIP", ("waited %d s for the mouse: %s"):format(mouseWait, step.Text))
+        if step.Probe then
+            local ok, seen = pcall(step.Probe)
+            tinsert(live.Observations, ("%s: %s"):format(step.Name, ok and tostring(seen) or ("probe error: " .. tostring(seen))))
+        end
         After(afterShot, function()
             RunStep(live.StepIndex + 1)
         end)
@@ -668,6 +690,12 @@ addon.Tests.Suites.pictures = function(done)
     if not banner then
         CreateFrames()
     end
+    -- The options window and the addon's other windows stay out of the scenes
+    local window = addon.Options.Window
+    if window and window.Controller and window.Controller:IsShown() then
+        window.Controller:GetFrame():Hide()
+    end
+    CloseMenus()
     backdrop:Show()
     banner:RegisterEvent("SCREENSHOT_FAILED")
     banner:RegisterEvent("PLAYER_REGEN_DISABLED")
