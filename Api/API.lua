@@ -91,6 +91,14 @@ function KrowiAF_SelectCategory(category, collapsed)
 	KrowiAF_ToggleAchievementFrame(addonName, categoriesTree[1].TabName, nil, true) -- This will call both category and achievement update
 	-- print("end toggle")
 
+    -- An earn the open window has not redrawn yet left its top-level category marked: recount it before reading its counts
+    -- and merges, or the redraw in SelectCategory changes them under us
+    local topLevel = category:GetTopLevel()
+    if topLevel.CountsDirty then
+        topLevel:GetAchievementNumbers()
+        topLevel.CountsDirty = nil
+    end
+
 	-- Get the merged category now we're sure it's loaded
 	category = category:GetMergedCategory()
 	categoriesTree = category:GetTree()
@@ -112,7 +120,7 @@ function KrowiAF_SelectCategory(category, collapsed)
 	SelectCategory(category, collapsed, collapsed) -- Issue #23: Broken
 
 	-- Reset the forced show so when clicking away, the category will be hidden again
-	if category.NumOfAch == 0 then
+    if alwaysVisibleCache then -- not NumOfAch again: the redraw in SelectCategory can have recounted it
         for i = 1, #categoriesTree do
             categoriesTree[i].AlwaysVisible = alwaysVisibleCache[i] -- Reset to the initial state
         end

@@ -187,14 +187,9 @@ function addon.MarkEarnedInWindow(achievementId)
     local achievement = addon.Data.Achievements[achievementId]
     if achievement then
         achievement.IsTracked = nil
-        achievement:MarkCountsDirty()
-        if achievement.NextAchievements then -- Collapse series shows the next one now
-            for _, nextAchievement in next, achievement.NextAchievements do
-                nextAchievement:MarkCountsDirty()
-            end
-        end
+        achievement:MarkCountsDirty() -- the counts ignore collapse series (addon.GetAchievementNumbers), so the next one in a series needs nothing
     end
-    for _, tab in next, addon.Tabs do -- Current Zone, Watch List and the other flexible lists do not link back to their achievements
+    for _, tab in next, addon.Tabs do -- Current Zone, Selected Zone and Search Results hold lists that do not link back to their achievements
         if tab.Categories then
             for _, category in next, tab.Categories do
                 if category.HasFlexibleData then
@@ -206,6 +201,7 @@ function addon.MarkEarnedInWindow(achievementId)
 end
 
 function addon.OnAchievementEarned(achievementId)
+    addon.MarkEarnedInWindow(achievementId) -- also before the cache build starts: the window can be open during the login load
     if criteriaCache == nil then
         return -- Achievement window is not opened yet
     end
@@ -213,6 +209,5 @@ function addon.OnAchievementEarned(achievementId)
     local characterGuid = UnitGUID("player")
     local achievementInfo = addon.GetAchievementInfoTable(achievementId)
     HandleAchievement(characterGuid, achievementInfo)
-    addon.MarkEarnedInWindow(achievementId)
     addon.Data.SavedData.AchievementData.RegisterNewAchievementEarned(achievementId)
 end

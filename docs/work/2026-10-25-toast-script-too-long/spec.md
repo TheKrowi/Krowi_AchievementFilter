@@ -33,7 +33,8 @@ What one toast click runs, all in Blizzard's `AchievementAlertFrame_OnClick` (`w
 
 ## Design
 Per-category dirty marks instead of one window-wide flag:
-- **On an earn** (`addon.OnAchievementEarned`), mark `CountsDirty` on the top-level category (the child of the tab root) above each place the achievement is listed: `Category`, `MoreCategories`, `WatchListCategories`, `ExcludedCategories`; the same for the next achievement in its series, which collapse-series shows next. Mark every flexible top-level category too (Current Zone, Selected Zone, Search Results, Watch List, Tracking, Excluded, Uncategorized), since those hold lists without a link back from the achievement.
+- **On an earn** (`addon.OnAchievementEarned`, also before the login cache build starts), mark `CountsDirty` on the top-level category (the child of the tab root) above each place the achievement is listed: `Category`, `MoreCategories`, `WatchListCategories`, `ExcludedCategories`. Mark every flexible top-level category too (Current Zone, Selected Zone, Search Results, Watch List, Tracking, Excluded, Uncategorized): Current Zone, Selected Zone and Search Results hold lists without a link back from the achievement. The next achievement in a series needs no mark, because the counts ignore collapse series (`Globals.lua:69`).
+- **`KrowiAF_SelectCategory`** recounts the target's top-level category first when it is marked, so the open window cannot change the counts it reads between its two looks at them (`earn-select-open-hidden`, from the code review). It resets the `AlwaysVisible` marks when it set them, not when the count is zero again.
 - **`GetDisplayCategories`** recounts a top-level category when its counts are missing, a full recount was asked for, or it is marked dirty, flexible or not (today only flexible ones honour the mark, `:81`).
 - **The earn paths stop asking for a full recount:** `OnShow` no longer passes the earn flag, and the categories frame's and the summary's `ACHIEVEMENT_EARNED` refresh call `Update()` instead of `Update(true)`. The marks live on the categories, so each tab picks them up when it is next drawn (requirement 3).
 - Filter and option changes keep `Update(true)` and `filters.Refresh` (requirement 4).
@@ -70,6 +71,7 @@ Smaller wastes on the same click (the scope question at the gate):
   - The Summary is always visible by default, so this needs the Summary turned off for the tab and every achievement filtered out.
   - The headless model overflowed this way before it was given the default.
   - Not reproduced in game. Proposed for `docs/backlog.md`.
+- **Other full recounts of a tab remain** (code review, 2026-10-25). `addon.Gui:RefreshView` sets `Filters.Refresh` on every tab (`Gui/Gui.lua:403`), so the next `Update` recounts the whole tab. Watching, unwatching, excluding or including an achievement from the right-click menu goes through it, and in combat that can run past the limit the same way. The per-category marks could serve those paths too. Proposed for `docs/backlog.md`.
 
 ## Verification
 - **A new scenario suite** (name in the plan), on a real achievement of the Retail Expansions tab and one of Classic's, with the window closed and then open:

@@ -13,8 +13,8 @@ local earned = addon.Tests.Earned
 -- addon.MarkEarnedInWindow, which saves nothing.
 -- Recount labels: "whole tab" when every top-level category of the tab that the earn cannot change was recounted,
 -- "earned only" when none of those was and the earned achievement's own one was, "none" when neither, and "partly n/m"
--- otherwise. The earn can change the top-level categories above every place the achievement and the next ones in its
--- series are listed, and the flexible ones (Current Zone, Watch List, ...). Labels, not counts, so the game and
+-- otherwise. The earn can change the top-level categories above every place the achievement is listed, and the flexible
+-- ones (Current Zone, Watch List, ...). Labels, not counts, so the game and
 -- headless lines agree while the special categories the options enable differ; the counts go to the observations.
 -- The same scenarios run in game (/kaftest earned) against the real window and headlessly
 -- (.claude/tools/headless/run-tests.lua) on the real data load, with a model of the window's tab switching.
@@ -55,8 +55,8 @@ earned.Scenarios = {
     -- counts of a category whose last shown achievement it was; 862 then earned and selected within the second before
     -- the window's earn refresh (code review of 2026-10-25). KrowiAF_SelectCategory read the stale count, then the
     -- recount of the marked top-level category in between changed it, and resetting the always visible marks raised
-    -- "attempt to index local 'alwaysVisibleCache'"
-    {Name = "earn-select-open-hidden", Recorded = "error", Target = "selected"}
+    -- "attempt to index local 'alwaysVisibleCache'"; it now recounts a marked top-level category first
+    {Name = "earn-select-open-hidden", Recorded = "selected", Target = "selected"}
 }
 
 -- "raised at <file> line <n>: <message>": an observation in the "<file>:<n>: " form would read as a failing scenario to
@@ -109,13 +109,11 @@ local function AddPlaces(set, achievement)
     end
 end
 
--- The top-level categories an earn of this achievement can change
+-- The top-level categories an earn of this achievement can change; the counts ignore collapse series, so the next
+-- achievement in a series is not among them
 local function EarnSet(achievement)
     local set = {}
     AddPlaces(set, achievement)
-    for _, nextAchievement in next, achievement.NextAchievements or {} do
-        AddPlaces(set, nextAchievement)
-    end
     for _, tab in next, addon.Tabs do
         for _, category in next, tab.Categories or {} do
             if category.HasFlexibleData then

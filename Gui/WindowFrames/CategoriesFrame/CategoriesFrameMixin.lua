@@ -44,14 +44,14 @@ function KrowiAF_CategoriesFrameMixin:OnLoad()
 end
 
 function KrowiAF_CategoriesFrameMixin:OnEvent(event)
-	if event ~= "ACHIEVEMENT_EARNED" then
-		return
-	end
-	addon.Util.DelayFunction("KrowiAF_CategoriesFrame_OnEvent", 1, self.OnAchievementEarned, self)
+    if event ~= "ACHIEVEMENT_EARNED" then
+        return
+    end
+    addon.Util.DelayFunction("KrowiAF_CategoriesFrame_OnEvent", 1, self.OnAchievementEarned, self)
 end
 
 function KrowiAF_CategoriesFrameMixin:OnAchievementEarned()
-	self:Update() -- addon.MarkEarnedInWindow marked what the earn changed
+    self:Update() -- addon.MarkEarnedInWindow marked what the earn changed
 end
 
 local function RestoreScrollPosition(frame)
@@ -65,12 +65,12 @@ local function RestoreScrollPosition(frame)
 end
 
 function KrowiAF_CategoriesFrameMixin:OnShow()
-	self:RegisterEvent("ACHIEVEMENT_EARNED")
-	self:SetRightPoint()
-	AchievementFrameCategories:Hide()
-	AchievementFrameWaterMark:SetTexture(addon.Gui.SelectedTab and addon.Gui.SelectedTab.WaterMark or "Interface/AchievementFrame/UI-Achievement-AchievementWatermark")
-	self:Update()
-	RestoreScrollPosition(self)
+    self:RegisterEvent("ACHIEVEMENT_EARNED")
+    self:SetRightPoint()
+    AchievementFrameCategories:Hide()
+    AchievementFrameWaterMark:SetTexture(addon.Gui.SelectedTab and addon.Gui.SelectedTab.WaterMark or "Interface/AchievementFrame/UI-Achievement-AchievementWatermark")
+    self:Update()
+    RestoreScrollPosition(self)
 end
 
 function KrowiAF_CategoriesFrameMixin:OnHide()
@@ -80,26 +80,26 @@ function KrowiAF_CategoriesFrameMixin:OnHide()
 end
 
 local function GetDisplayCategories(displayCategories, category, getAchNums)
-	if category.NotHidden or category.AlwaysVisible or category.HasFlexibleData then -- If already visible, keep visible
-		local needsCounts = (category.NumOfAch == nil) or getAchNums or category.CountsDirty
-		if needsCounts and category.Parent.TabName ~= nil then
-			-- Huge increase over performance if we cache the achievement numbers and only update them when needed,
-			-- only for the top level categories since it works recursive
-			if category:GetAchievementNumbers() > 0 or category.AlwaysVisible then
-				tinsert(displayCategories, category)
-			end
-			category.CountsDirty = nil -- counts refreshed
-		elseif category.NumOfAch > 0 or category.AlwaysVisible then
-			tinsert(displayCategories, category)
-		end
-	end
+    if category.NotHidden or category.AlwaysVisible or category.HasFlexibleData then -- If already visible, keep visible
+        local needsCounts = (category.NumOfAch == nil) or getAchNums or category.CountsDirty
+        if needsCounts and category.Parent.TabName ~= nil then
+            -- Huge increase over performance if we cache the achievement numbers and only update them when needed,
+            -- only for the top level categories since it works recursive
+            if category:GetAchievementNumbers() > 0 or category.AlwaysVisible then
+                tinsert(displayCategories, category)
+            end
+            category.CountsDirty = nil -- counts refreshed
+        elseif category.NumOfAch > 0 or category.AlwaysVisible then
+            tinsert(displayCategories, category)
+        end
+    end
 
-	local children = category.Children
-	if children then
-		for _, child in next, children do
-			GetDisplayCategories(displayCategories, child, getAchNums)
-		end
-	end
+    local children = category.Children
+    if children then
+        for _, child in next, children do
+            GetDisplayCategories(displayCategories, child, getAchNums)
+        end
+    end
 end
 
 local function UpdateDataProvider(self, categories, retainScrollPosition)
@@ -171,15 +171,15 @@ end
 -- What ExpandCategory once per level of the path leaves, in one walk: a category is shown when its parent is on the path
 -- and expanded when it is on the path itself
 local function ExpandPath(path, category)
-	category.NotHidden = path[category.Parent]
-	category.NotCollapsed = path[category]
+    category.NotHidden = path[category.Parent]
+    category.NotCollapsed = path[category]
 
-	local children = category.Children
-	if children then
-		for _, child in next, children do
-			ExpandPath(path, child)
-		end
-	end
+    local children = category.Children
+    if children then
+        for _, child in next, children do
+            ExpandPath(path, child)
+        end
+    end
 end
 
 local function HideCategory(targetCategory, category)
@@ -203,27 +203,27 @@ local function CollapseCategory(categories, targetCategory)
 end
 
 function KrowiAF_CategoriesFrameMixin:ExpandToCategory(category)
-	local selectedTab = addon.Gui.SelectedTab
-	if selectedTab == nil then
-		return
-	end
+    local selectedTab = addon.Gui.SelectedTab
+    if selectedTab == nil then
+        return
+    end
 
-	category = category:GetMergedCategory()
-	local categoriesTree = category:GetTree()
+    category = category:GetMergedCategory()
+    local categoriesTree = category:GetTree()
 
-	local categories = selectedTab:GetCategories()
+    local categories = selectedTab:GetCategories()
     if not categories then
         return
     end
-	local path = {}
-	for _, pathCategory in next, categoriesTree do
-		path[pathCategory] = true
-	end
-	for _, topLevel in next, categories do
-		ExpandPath(path, topLevel)
-	end
-	categoriesTree[1].NotCollapsed = true -- the tab root, which the walk does not visit
-	selectedTab.SelectedCategory = category
+    local path = {}
+    for _, pathCategory in next, categoriesTree do
+        path[pathCategory] = true
+    end
+    for _, topLevel in next, categories do
+        ExpandPath(path, topLevel)
+    end
+    categoriesTree[1].NotCollapsed = true -- the tab root, which the walk does not visit
+    selectedTab.SelectedCategory = category
 end
 
 function KrowiAF_CategoriesFrameMixin:ShowSubFrame(category)

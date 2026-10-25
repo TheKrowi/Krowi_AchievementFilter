@@ -108,3 +108,13 @@ Krowi clicked the toast of an achievement they had just earned while in combat o
 - **A headless model fix.** client-env's `addon` gives a truthy stub for a missing key, so a cleared earn flag read as set and every `OnShow` recounted in full. The suite's model returns nil for the window's earn flags.
 - **Mists before-run skipped** on Krowi's call (2026-10-25), after the Retail before-run was green (6 PASS, 0 differences). Mists gets the after-run only.
 - **Measured.** One select after an earn validated 10,343 rows in 164 ms on Retail before the fix (20,686 rows in 273 ms with the Summary shown). Headless the select now validates 274 rows on Retail (8,537 before) and 227 on Mists (2,555 before).
+- **After the code review (2026-10-25):**
+  - two scenarios were added test first: `earn-select-open-hidden`, which raised in `KrowiAF_SelectCategory` (recorded "error", now "selected"), and `earn-counts-match`, a guard that a place the earn does not mark shows up (checked by taking the mark out once: "differ in 1");
+  - the next achievement in a series is no longer marked (the counts ignore collapse series);
+  - the earn marks before the login cache guard;
+  - the Summary scenarios SKIP when the Expansions Summary is off;
+  - `category:GetTopLevel` is shared by the marks, the select path and the suite;
+  - the code this branch wrote or rewrote in `CategoriesFrameMixin.lua` and `Category.lua` uses 4-space indents.
+- **Review findings left out:**
+  - The Collections copy of `GetDisplayCategories` (`Gui/Collections/`) is not loaded (`Gui/FilesModern.xml:13` has it commented out).
+  - The other full recounts through `RefreshView` are in the spec's Found on the way.
