@@ -197,11 +197,11 @@ do -- AchievementFilters
     end
 end
 
-function KrowiAF_AchievementFrameFilterButtonMixin:OpenOptions(sectionId)
+function KrowiAF_AchievementFrameFilterButtonMixin:OpenOptions()
     if not isModern then
         self.menuBuilder:Close()
     end
-    addon.Options.Open(nil, sectionId)
+    addon.Options.Open()
 end
 
 function KrowiAF_AchievementFrameFilterButtonMixin:CreateMenu(menu)
@@ -232,14 +232,6 @@ function KrowiAF_AchievementFrameFilterButtonMixin:CreateMenu(menu)
     self:CreateAchievementFilters(mb:CreateSubmenuButton(menu, addon.L["Tracking Achievements"]), addon.Filters.db.profile.TrackingAchievements, menu)
 
     mb:CreateDivider(menu)
-    mb:CreateButtonAndAdd(
-        menu,
-        addon.L["Help"],
-        function()
-            self:OpenOptions("overview")
-        end
-    )
-
     mb:CreateButtonAndAdd(
         menu,
         (addon.Options.Window.AnyNew() and "|T132049:0|t" or "") .. addon.Util.L["Options"],

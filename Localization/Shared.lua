@@ -105,7 +105,6 @@ L["Achievements"] = ACHIEVEMENTS
 L["Guild"] = ACHIEVEMENTS_GUILD_TAB
 L["Statistics"] = STATISTICS
 L["Categories"] = CATEGORIES
-L["Help"] = GAMEMENU_HELP
 L["Missing"] = ADDON_MISSING
 L["Key Binding"] = KEY_BINDING
 L["Achievement Points"] = ACHIEVEMENT_POINTS
