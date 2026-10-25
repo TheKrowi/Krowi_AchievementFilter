@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - Hovering the back or forward arrow no longer gives an error when a placeholder is in your browsing history
 - Upcoming event reminders now show when the event starts, not when it ends
 - Upcoming event reminders no longer give an error on a non-English client with a date format that names the day or month
+- Short day and month names in event reminders no longer show broken letters on non-English clients
 
 ## 104.0 - 2026-10-24
 ### Added

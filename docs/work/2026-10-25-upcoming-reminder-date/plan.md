@@ -7,6 +7,19 @@ Results and departures:
 - **Before-run, 2026-10-25, from a8ae9414 on Retail 12.1.5.** `/kaftest events`: 23 passed, 0 differences from headless. The new scenarios gave "end", "error" (`AlertSystem.lua` line 50, "attempt to index field 'EventDetails' (a nil value)") and "end names". BugGrabber held no KAF error.
 - **Mists is checked headlessly only** (Krowi, 2026-10-25: "confident mists will get fixed alongside testing retail"). Krowi was in content on Retail that starting Mists would end. The code is shared, and the headless Classic run covers the three scenarios.
 - **The headless model gained** `addon.MonthNames` and `addon.WeekdayNames` as English strings: the data load's localization stub gave tables, which made the active scenario fail on `gsub`. The scenarios also observe the error each one raised, in the "raised at <file> line <n>" form the `unit-tests` lint rule does not read as a failure.
+- **Review, 2026-10-25, of the fix (c462d702).** The `krowi:taint-reviewer` found no hazard. The code review led to a second test-first round (a6525aa6, then the fix):
+  - **Line 2.** "End Time" on line 2 of an upcoming reminder showed the start a second time, so with line 1 on Time Left the end showed nowhere. Krowi chose (2026-10-25) that only line 1, which has "In" before it, shows the start; line 2 shows the end. This departs from the approved plan, which put the start in both slots. Scenario `upcoming-date-both-lines`: "start / start" before, "start / end" after.
+  - **Abbreviations.** `%a` and `%b` cut the names with a byte-based `string.sub(name, 1, 3)`, which splits a two-byte letter of a Cyrillic, Spanish or French name. `Abbreviate` now takes three UTF-8 characters, and a shorter name (koKR's months) stays whole. Scenario `active-date-abbreviated`: "other" before, "end names" after. It was recorded headlessly only: the maintainer's clients are English, and the test's names are the point.
+  - **Test names.** The scenarios with Names swap in Cyrillic test names for the call. On an English client the addon's own names equal the C library's, so the earlier version could not show that the localized path ran.
+  - **`FormatDate(time)`.** It formats each line, so the names and the date always come from the same time, and nothing is built for a line that shows no date.
+- **Review findings not taken:**
+  - **To the backlog**, because they were there before this work and are outside its intent:
+    - the obtainability dates (`Data/TemporaryObtainable.lua`) format the same option without the addon's names;
+    - the upcoming chat message's English "(In ";
+    - the upcoming list stays cached after an event ends;
+    - `KrowiAF_GetUtcOffsetSeconds` drops minutes and the year wrap;
+    - an escaped `%%A` in a custom format is replaced.
+  - **Not changed:** merging `GetUpcomingText` and `GetRuntimeText` into one builder. That is a refactor beyond this fix.
 
 ## Context
 `Gui/EventReminder/AlertSystem.lua` has two defects:
@@ -53,8 +66,7 @@ All three run on every client; calendar events exist on both.
 4. **`fix: upcoming event reminders show when the event starts, without an error on day or month names`:** the fix in `AlertSystem.lua`, Recorded set to Target, and the changelog lines.
 5. **Test:**
    - Headless suites, `Check-Repo.ps1 -ChangedOnly -Luals`, `krowi:taint-reviewer` and `/code-review`.
-   - The in-game after-run on both clients, with `Read-GameErrors.ps1`.
-   - By hand on Mists, whose reminders use End Time: the Darkmoon Faire side button reads "In 01/11/2026 …", and the countdown on the second line points at the same moment. A screenshot.
+   - The in-game after-run on Retail, with `Read-GameErrors.ps1`. Mists is checked headlessly only (Results and departures).
 6. **PR** against `main` with the work files set to `done`, saying `Closes #247`; the merge waits for Krowi.
 
 ## Risks
@@ -65,6 +77,5 @@ All three run on every client; calendar events exist on both.
 
 ## Proof
 - **Headless:** before the fix, "end", "error" and "end names" pass with two targets open; after it, every target is met.
-- **In game** on Retail and Mists, before and after, with the `Read-GameTests.ps1` lines matching headless and no KAF error in BugGrabber.
-- A screenshot of the Mists Darkmoon Faire side button showing the start date.
+- **In game** on Retail, before and after, with the `Read-GameTests.ps1` lines matching headless and no KAF error in BugGrabber; Mists headlessly.
 - The taint review and code review findings are fixed, or listed in the PR.

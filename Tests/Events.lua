@@ -29,7 +29,9 @@ local events = addon.Tests.Events
 --     line, joined with " / ": with Names "start names" or "end names" when it is that date in the test names (their
 --     first three characters with Short), without "start" or "end" when it is date(Format) of that date; else "other". Until 2026-10-25 an upcoming line showed the occurrence's end, and raised with Names because it
 --     read the names from the active occurrence an upcoming event does not have ("end" and "error", verified in game on
---     Retail 12.1.5 on 2026-10-25); it now shows the start, with the start's names.
+--     Retail 12.1.5 on 2026-10-25); it now shows the start, with the start's names. The code review of the fix found
+--     that %a and %b cut the names by bytes ("other", headless only) and that line 2's End Time showed the start a
+--     second time ("start / start"); line 2 now shows the end, as Krowi chose on 2026-10-25.
 -- Until 2026-10-21 no Curse Surge event existed, nothing kept scheduler data, and the soup was only shown while its
 -- widget was there, in its zone (the Recorded values of the before-run, verified in game on Retail 12.1.5). The code
 -- review of 2026-10-21 found what the scheduler stories record, and Krowi chose that the soup's Next shows only in the
@@ -88,9 +90,9 @@ events.Scenarios = {
     {Name = "active-date-names", Kind = "DateLine", Reminder = "active", Format = "%A %d %B %Y", Names = true,
         Recorded = "end names", Target = "end names"},
     {Name = "active-date-abbreviated", Kind = "DateLine", Reminder = "active", Format = "%a %d %b %Y", Names = true, Short = true,
-        Recorded = "other", Target = "end names"},
+        Recorded = "end names", Target = "end names"},
     {Name = "upcoming-date-both-lines", Kind = "DateLine", Reminder = "upcoming", Format = "%d/%m/%Y %R", Names = false, Line2 = 2,
-        Recorded = "start / start", Target = "start / end"}
+        Recorded = "start / end", Target = "start / end"}
 }
 -- RetailOnly: the Curse Surges and the soup are DataAddons/Retail events; FeastTimes runs on every client
 local europe = 3 -- GetCurrentRegion

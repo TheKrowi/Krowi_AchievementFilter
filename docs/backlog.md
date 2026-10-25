@@ -93,3 +93,8 @@ Follow-ups that are not a work item yet. When one is taken up, it gets its own w
 ## From the upcoming reminder date fix (2026-10-25, docs/work/2026-10-25-upcoming-reminder-date)
 
 - **The `%c` date format preset prints English day and month names on every client.** `%c` is the C library's own date, and `LocalizeDateFormat` (`Gui/EventReminder/AlertSystem.lua`) only replaces `%a %A %b %B` with the addon's translated names.
+- **Obtainability dates use the reminder's date format without the addon's names** (`Data/TemporaryObtainable.lua:397, 453`, plain `date()`). On a deDE client with "%A %d %B" the tooltip says "Friday 15 January" while the reminder says "Freitag 15 Januar". The fix: move `LocalizeDateFormat` and `FormatDate` next to `addon.MonthNames` in `Globals.lua` and use them there too.
+- **The upcoming chat message says "(In " in English** (`Gui/EventReminder/AlertSystem.lua`, `ShowUpcomingCalendarEventChatMessage`). The pop-up already uses `addon.L["In"]`.
+- **The upcoming calendar list is built once per session while it is not empty** (`Data/EventData.lua`, `GetUpcomingCalendarEvents`). After an event ends in a long session, its side button can fall back to the upcoming line and show a start in the past behind "In", with an empty countdown.
+- **`KrowiAF_GetUtcOffsetSeconds` drops minutes and compares `yday` without the year wrap** (`Data/EventData.lua:11-25`). A player at UTC+5:30 sees calendar times 30 minutes off. A UK player on a CET realm who logs in between 23:00 and 00:00 UTC on 31 December caches an offset of about a year for the session.
+- **An escaped `%%A` in a custom date format is replaced too** (`LocalizeDateFormat`): "%%A %d" becomes "%Samstag %d", which `date` reads as `%S`. An edge case.
