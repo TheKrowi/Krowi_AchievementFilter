@@ -38,12 +38,26 @@ function Krowi_OptionsHelpTextMixin:Init(element)
     self.Text:SetText(element.Text)
 end
 
+-- A picture enlarges on click (the window's lightbox); the magnifier cursor says so
 Krowi_OptionsHelpPictureMixin = {}
 
-function Krowi_OptionsHelpPictureMixin:Init(element)
+function Krowi_OptionsHelpPictureMixin:Init(element, window)
+    self.Element, self.Window = element, window
     self.Picture:SetTexture(element.Picture)
     self.Picture:SetSize(element.DrawWidth, element.DrawHeight)
     if element.TexCoords then self.Picture:SetTexCoord(unpack(element.TexCoords)) else self.Picture:SetTexCoord(0, 1, 0, 1) end
+end
+
+function Krowi_OptionsHelpPictureMixin:OnClick()
+    self.Window:ShowPicture(self.Element)
+end
+
+function Krowi_OptionsHelpPictureMixin:OnEnter()
+    SetCursor("INSPECT_CURSOR")
+end
+
+function Krowi_OptionsHelpPictureMixin:OnLeave()
+    ResetCursor()
 end
 
 -- [[ The window ]] --
@@ -97,6 +111,11 @@ function Krowi_OptionsWindowMixin:OnLoad()
         if element.Kind == "HelpPicture" then return element.DrawHeight + 10 end
         return self:MeasureText(element.Text, element.Font, helpWidth - 52) + (element.Gap or 6)
     end)
+
+    -- The lightbox dims the screen above everything of the window (and a secure Show me button laid over it); a click
+    -- closes it, and the consumer's Escape handling can close it like a window (OnCreated gets frame.Lightbox)
+    self.Lightbox:SetAllPoints(UIParent)
+    self.Lightbox:SetScript("OnClick", function(lightbox) lightbox:Hide() end)
 
     self.SearchBox:HookScript("OnTextChanged", function(box, userInput) if userInput then self:OnSearch(box:GetText()) end end)
     self.SearchBox:HookScript("OnHide", function(box) box:SetText("") end)
@@ -494,6 +513,18 @@ local function TextBlock(text, font, gap)
     return { Kind = "HelpText", Text = text, Font = font, Gap = gap }
 end
 
+-- A help picture at its own size, smaller only where the screen is
+function Krowi_OptionsWindowMixin:ShowPicture(element)
+    local lightbox = self.Lightbox
+    local scale = math.min(1, (UIParent:GetWidth() - 80) / element.Width, (UIParent:GetHeight() - 80) / element.Height)
+    lightbox.Picture:SetTexture(element.Picture)
+    if element.TexCoords then lightbox.Picture:SetTexCoord(unpack(element.TexCoords)) else lightbox.Picture:SetTexCoord(0, 1, 0, 1) end
+    lightbox.Picture:SetSize(element.Width * scale, element.Height * scale)
+    lightbox.Picture:ClearAllPoints()
+    lightbox.Picture:SetPoint("CENTER", UIParent, "CENTER")
+    lightbox:Show()
+end
+
 function Krowi_OptionsWindowMixin:FillHelp(blocks)
     self.HelpScrollBox:SetDataProvider(CreateDataProvider(blocks), ScrollBoxConstants.DiscardScrollPosition)
 end
@@ -511,7 +542,8 @@ function Krowi_OptionsWindowMixin:ShowSectionHelp()
         if block.Picture then
             local width = math.min(block.Width or innerWidth, innerWidth)
             local height = (block.Height or width) * width / (block.Width or width)
-            blocks[#blocks + 1] = { Kind = "HelpPicture", Picture = block.Picture, DrawWidth = width, DrawHeight = height, TexCoords = block.TexCoords }
+            blocks[#blocks + 1] = { Kind = "HelpPicture", Picture = block.Picture, DrawWidth = width, DrawHeight = height, TexCoords = block.TexCoords,
+                Width = block.Width or width, Height = block.Height or height }
         elseif block.Heading then
             blocks[#blocks + 1] = TextBlock(block.Heading, "GameFontHighlight", 4)
         elseif block.Term then

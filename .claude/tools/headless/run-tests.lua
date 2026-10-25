@@ -389,6 +389,8 @@ suites.escape = function(c)
     end
     frames.CalendarSide = env.CreateFrame("Frame", nil, frames.Calendar)
     frames.Calendar.SideFrame = frames.CalendarSide
+    frames.OptionsPicture = env.CreateFrame("Frame", nil, frames.Options) -- the options window's lightbox
+    frames.Options.Lightbox = frames.OptionsPicture
     -- The reward preview closes with the window its row belongs to (Gui/RewardPreview/RewardPreview.lua, OnOwnerWindowHide)
     frames.RewardPreview = env.CreateFrame("Frame", "KrowiAF_RewardPreview", env.UIParent)
     frames.Achievements:HookScript("OnHide", function() frames.RewardPreview:Hide() end)

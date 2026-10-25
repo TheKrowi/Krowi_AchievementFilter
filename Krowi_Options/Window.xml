@@ -68,7 +68,21 @@
                     </Anchors>
                 </Texture>
             </Layer>
+            <Layer level="HIGHLIGHT">
+                <Texture parentKey="Highlight" alphaMode="ADD">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.Picture"/>
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Picture"/>
+                    </Anchors>
+                    <Color r="1" g="1" b="1" a="0.12"/>
+                </Texture>
+            </Layer>
         </Layers>
+        <Scripts>
+            <OnClick method="OnClick"/>
+            <OnEnter method="OnEnter"/>
+            <OnLeave method="OnLeave"/>
+        </Scripts>
     </Button>
 
     <Frame name="Krowi_OptionsWindowTemplate" mixin="Krowi_OptionsWindowMixin" inherits="ButtonFrameTemplate" frameStrata="HIGH" toplevel="true" enableMouse="true" movable="true" resizable="true" clampedToScreen="true" hidden="true" virtual="true">
@@ -129,6 +143,18 @@
             </Button>
             <Button parentKey="ReloadButton" inherits="UIPanelButtonNoTooltipTemplate" hidden="true">
                 <Size x="110" y="22"/>
+            </Button>
+            <Button parentKey="Lightbox" frameStrata="FULLSCREEN" hidden="true">
+                <Layers>
+                    <Layer level="BACKGROUND">
+                        <Texture parentKey="Scrim" setAllPoints="true">
+                            <Color r="0" g="0" b="0" a="0.75"/>
+                        </Texture>
+                    </Layer>
+                    <Layer level="ARTWORK">
+                        <Texture parentKey="Picture"/>
+                    </Layer>
+                </Layers>
             </Button>
             <Button parentKey="ResizeButton">
                 <Size x="16" y="16"/>

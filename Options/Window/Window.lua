@@ -108,6 +108,7 @@ window.Controller = KROWI_LIBMAN:GetLibrary("Krowi_Options_1").CreateWindow({
     ChangedCount = model.ChangedCount,
     OnCreated = function(frame)
         addon.Gui:RegisterFrameForClosing(frame)
+        addon.Gui:RegisterFrameForClosing(frame.Lightbox) -- Escape closes an enlarged picture before the window
     end,
     Strings = {
         Overview = L["Overview"],
