@@ -102,7 +102,8 @@ Covers stage 1 (the window over today's AceConfig tables, with the tests that be
 - **Left alone:** the saved key `KrowiAF_SavedData.FeaturesTutorial` stays as dead data, and ElvUI's "Skin Tutorials" row stays (it is ElvUI's own setting).
 
 ### Close
-- Changelog lines (Added: the options window with the explanations; Changed: the tutorial is part of the options).
+- Changelog lines (Added: the options window with the explanations; Changed: the tutorial is part of the options). The release is 105.0, not 104.1 (Krowi, 2026-10-26).
+- CurseForge: the 30 tutorial strings this branch removes stay there until it is on `main`; then Claude deletes them with their translations (`Sync-Localization.ps1 -Export -Delete`, from the main checkout) without asking again (Krowi, 2026-10-26).
 - `docs/architecture.md`.
 - This file updated where the build departed. Already known: `SLASH_*` names are exempt from the globals rule (`Check-Repo.ps1:442`), so the spec's `Check-Repo.globals` line for `/kaf` is not needed.
 - Status `done`, PR.

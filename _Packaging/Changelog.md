@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 104.1
+## 105.0
 ### Added
 - An options window with every setting sorted by feature and how each feature works next to it, opened with /kaf, the minimap icon or the filter menu
 
