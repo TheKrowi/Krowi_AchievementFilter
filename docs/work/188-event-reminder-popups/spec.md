@@ -110,7 +110,8 @@ A new `popups` suite (`Tests/PopUps.lua`), headlessly on the whole-addon load th
 | `other-addon`: another addon re-pins `AlertFrame` on every alert (headless only); an offset change, then a pop-up | `AlertFrame` moved, pop-up with the other addon | nothing moved, options greyed, pop-up with the other addon |
 | `profile-switch`: the pop-ups after a profile switch to other offsets (headless only) | stay | move |
 | `game-holds-alerts`: a pop-up while Blizzard holds its alerts (headless only) | waits | waits |
-| `placeholders`: one press with Max number of alerts 2 | shown 2, queued 22 (Classic 10) | shown 2, queued 0 |
+| `every-alert-grow-back` (added in the build): a toast after Down and back to Up (headless only) | n/a | 1 point, above `AlertFrame` |
+| `placeholders`: one press with Max number of alerts 2 | shown 2, queued 39 (Classic 9) | shown 2, queued 0 |
 | `placeholder-details`: a real calendar event's details after a press | changed | unchanged |
 | `hide`: placeholders and a real reminder showing and waiting, then Hide | no Hide | 0 showing, 0 waiting |
 
@@ -123,3 +124,15 @@ Krowi, 2026-10-26, in two rounds at the design gate:
 - Without such an addon, a setting chooses whether the position moves every alert, stacking as today, or only the event reminders.
 - Placeholders show the player's events, as Show me does; Hide placeholders removes every KAF pop-up, real reminders included.
 - Defaults chosen by the agent, open to change at the plan gate: Every alert, so nothing changes on screen for players without such an addon; placeholders last 60 seconds.
+
+Krowi, 2026-10-26, after the taint review (stage 5):
+- **The review's finding.** While following, KAF's own system in `AlertFrame`'s list is read by more of Blizzard's loops than the anchoring pass:
+  - `SetEnabledFlag` when the What's New splash closes, which then updates the objective tracker tainted (`SplashFrame.lua:25-26`);
+  - `ReparentAlerts` when the Trading Post or the Shop opens or closes;
+  - the priority sort before the next toast.
+  
+  Before this fix every reminders user had that path. Now only players have it whose alerts ElvUI, EllesmereUI's mover or Dominos Roll place (GW2_UI adds a system of its own already), and only once a pop-up showed while following.
+- **The alternative offered:** hang the holder at the end of that addon's stack, reading the stack's direction, so that KAF writes nothing into Blizzard's alert system for anyone.
+- **Decision:** kept as built. KAF writes no placement code of its own for another addon's alerts. It only greys out its options with a note and lets that addon stack the pop-ups as Blizzard's alert system offers. If an objective-tracker taint report comes from such a player, the alternative is the way out.
+- **Taken from the review without a decision:** `IsAt` no longer compares `AlertFrame`'s anchor when `GetPoint` gives secret values (reads them as another addon's placement).
+- **Left for its own work item:** Krowi_Reminders still adds a system to `AlertFrame` and moves it at load.

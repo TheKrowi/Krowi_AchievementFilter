@@ -143,3 +143,23 @@ hooksecurefunc(AlertFrame, "UpdateAnchors", Restack)
   - Every alert with grow Down and a moved Y: a toast and the pop-ups stacked together;
   - Only event reminders: the pop-ups at the offsets and a toast at Blizzard's spot;
   - on Retail with GW2_UI, or EllesmereUI's Alert Toasts mover, on: the pop-ups with that addon's alerts and the location options greyed with the note.
+
+## As built
+**Where the build departs from this plan:**
+- The setting applies at once, without a reload: approved with the plan.
+- Position applies to is greyed out too while the addon follows another addon, since it does nothing then.
+- The Hide button's text is Krowi_Util's `L["Hide"]`, not the `HIDE` global string, so no global was added.
+- `EnumerateAlerts` returns `ipairs` over a list of both systems' frames; `HideAlerts` builds its list on each click. Neither runs in the background.
+- Found in self-review: under Every alert, a toast showing while the grow direction went from Down back to Up kept the addon's `TOP` point beside the `BOTTOM` point Blizzard's next pass gives it, so it stretched. `Restack` now re-anchors once on the way back to Blizzard's stacking. The `every-alert-grow-back` scenario guards it (5cf6921a).
+- The headless model stubs only the alert template's own regions; any other field reads nil, as in the game. The lenient model had invented `AlertFrame.baseAnchorFrame` on Classic.
+- `Restack` is a `hooksecurefunc` post-hook, which the `background-jobs` lint rule does not list, so `Check-Repo.jobs` is unchanged.
+- The plugins' `DisableOptions` gave a fresh `local appName` to their calendar-button block. GW2_UI keeps its `ALERTFRAME_ENABLED` gate in front of that block, as before.
+
+**Game runs (2026-10-26), all matching headless:**
+- Before the fix: Retail at 17:57 and Mists at 18:04. Retail queued 39 placeholders and Mists 9, as recorded.
+- After the fix: Retail at 18:20 and Mists at 18:21. Every scenario meets its target, the live Show and Hide steps pass, and BugGrabber shows no new errors.
+- Krowi: "looks good in game".
+
+**Noticed, not changed:**
+- Show placeholders can show an event twice when it is listed under two kinds (Retail showed WoW Remix: Mists of Pandaria and Winds of Mysterious Fortune twice). Show me did the same before.
+- An older Retail error from 2026-10-25 (x7), `AlertFrameMixin.lua:59 attempt to index field 'Event'`, predates this work.

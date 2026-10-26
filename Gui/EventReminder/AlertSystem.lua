@@ -88,11 +88,17 @@ local function GiveBack(moveAlertFrame)
     placedX, placedY = nil, nil
 end
 
+-- GetPoint gives secret values when the frame hangs in a chain with secret anchoring (SecretWhenAnchoringSecret in
+-- SimpleScriptRegionResizingAPIDocumentation.lua); only another addon could hang AlertFrame there, so that is not here
 local function IsAt(frame, x, y)
     if frame:GetNumPoints() ~= 1 then
         return false
     end
     local point, relativeTo, relativePoint, frameX, frameY = frame:GetPoint(1)
+    if issecretvalue and (issecretvalue(point) or issecretvalue(relativeTo) or issecretvalue(relativePoint)
+        or issecretvalue(frameX) or issecretvalue(frameY)) then
+        return false
+    end
     return point == "BOTTOM" and relativeTo == UIParent and relativePoint == "BOTTOM"
         and floor(frameX + 0.5) == floor(x + 0.5) and floor(frameY + 0.5) == floor(y + 0.5)
 end
