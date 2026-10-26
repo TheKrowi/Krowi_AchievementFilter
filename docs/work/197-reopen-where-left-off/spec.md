@@ -1,5 +1,5 @@
 # Spec: The achievement window does not reopen where the player left it
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. On a new install, once the game has loaded the player's key bindings, a Y that still runs Blizzard's Toggle Achievements (`TOGGLEACHIEVEMENT`) moves to the binding of the micro button's tab (the addon's Achievements tab unless the player chose another), and is saved in the account's key bindings.

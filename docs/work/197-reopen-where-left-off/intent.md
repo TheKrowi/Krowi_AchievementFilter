@@ -1,5 +1,5 @@
 # Intent: The achievement window does not reopen where the player left it
-Author: rowaasr13 (reporter), with a second report from Smuglerz on CurseForge (2026-10-14). Source: GitHub issue #197. Status: accepted
+Author: rowaasr13 (reporter), with a second report from Smuglerz on CurseForge (2026-10-14). Source: GitHub issue #197. Status: done
 
 ## Problem
 After a fresh install, closing the achievement window and opening it again does not bring the player back to the tab, category and achievement they left. The player has to find the achievement they were working on again every time. The options already show the defaults that should keep the view (Reset view on open off, Toggle window once opened on). The first reporter found that unticking and re-ticking those options made the addon behave, without the settings visibly changing. The second reporter expects the behaviour of Blizzard's own window, which reopens where it was closed.

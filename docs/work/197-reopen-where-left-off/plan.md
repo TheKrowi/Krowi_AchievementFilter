@@ -1,5 +1,5 @@
 # Plan: The achievement window does not reopen where the player left it
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 Context: issue #197. On a new install, Y keeps opening Blizzard's own Achievements tab, so the window never reopens where the player left it. The first run's move of Y to the addon has never worked:
 - it calls `GetBindingByKey`, a global removed in 11.2.7 and 5.5.1;
@@ -89,3 +89,10 @@ After `/code-review` and `krowi:taint-reviewer`:
 
   `spec.md` (Areas of concern) has the corrected account.
 - The in-game counts: eight `y-at-login-*` met, not seven.
+
+## Results (2026-10-26)
+- **Retail 12.1.5:**
+  - `/kaftest options`: 53 passed, 0 failed, 1 skipped (`y-on-new-install`, headless only), every Y case met, 0 addon errors.
+  - A new install on Krowisetwo (WoW4): `bind Y KrowiAF_OPEN_TAB_Achievements` in the account's `bindings-cache.wtf`, `YBindingPending` cleared, 0 addon errors.
+- **Mists 5.5.4:** `/kaftest options`: 53 passed, 0 failed, the same skip, 0 addon errors.
+- Not run: the optional WoW3 check (an existing account keeps Blizzard's Y) and a Mists new install (the spare Mists accounts have no characters). The `y-at-login-existing-account` case and the headless Classic run cover them.
