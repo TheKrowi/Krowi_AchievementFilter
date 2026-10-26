@@ -160,6 +160,14 @@ hooksecurefunc(AlertFrame, "UpdateAnchors", Restack)
 - After the fix: Retail at 18:20 and Mists at 18:21. Every scenario meets its target, the live Show and Hide steps pass, and BugGrabber shows no new errors.
 - Krowi: "looks good in game".
 
+**From the taint review and `/code-review` (2026-10-26), each reproduced first in the `popups` suite (25d5ba28):**
+- **Grow Down loop.** Blizzard's pass anchors toast on toast without clearing, and its pools' `pairs()` order can change between passes. A toast the addon had hung on another could close a loop, which `SetPoint` refuses with an error inside that pass (`every-alert-reorder`). `WalkAlertFrame` now hangs each toast on the chain's last frame that is not a toast, as far from it as the toasts before it take, so no toast hangs on another. The model's `SetPoint` refuses loops as the game does, and its pools keep an order a scenario can flip.
+- **Starting to follow.** Following no longer restacks the other addon's toasts Blizzard's way unless the addon had stacked them itself. The holder goes back to the options' spot instead of staying on a toast whose pool hands it out again (`follow-switch`).
+- **Show placeholders while the game holds its alerts** no longer queues any: it adds only while `CanShowMore` (`placeholders-while-held`).
+- **Trading Post and Shop.** `SetBaseAnchorFrame` and `ResetBaseAnchorFrame` (Retail) now run the restack too, so the holder leaves the Trading Post's or Shop's frame when it closes.
+- **Smaller fixes.** `HideAlerts` walks `EnumerateAlerts`, the holder's edge comes from `GrowPoints`, and `GetPoint` is guarded for secret values.
+- **Not changed:** Show me keeps its own reminders-off guard, since it must return `false` there. "Alert System Overwrite Desc" stays in the Plugins locale files until Krowi deletes it on CurseForge and the next import removes it.
+
 **Noticed, not changed:**
 - Show placeholders can show an event twice when it is listed under two kinds (Retail showed WoW Remix: Mists of Pandaria and Winds of Mysterious Fortune twice). Show me did the same before.
 - An older Retail error from 2026-10-25 (x7), `AlertFrameMixin.lua:59 attempt to index field 'Event'`, predates this work.

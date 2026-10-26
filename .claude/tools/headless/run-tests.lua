@@ -2021,6 +2021,8 @@ local function InstallAlertModel(env, isRetail)
     function ModelFrame:RegisterEvent(event) self._events[event] = true model.EventFrames[self] = true end
     function ModelFrame:UnregisterEvent(event) self._events[event] = nil end
     function ModelFrame:SetSize(width, height) rawset(self, "_width", width) rawset(self, "_height", height) end
+    function ModelFrame:GetHeight() return rawget(self, "_height") or 0 end
+    function ModelFrame:GetWidth() return rawget(self, "_width") or 0 end
     function ModelFrame:SetFrameStrata(strata) rawset(self, "_strata", strata) end
     function ModelFrame:IsMouseOver() return false end
     function ModelFrame:SetAlertContainer(container) rawset(self, "_container", container) end -- the ContainedAlertFrame intrinsic
@@ -2050,6 +2052,7 @@ local function InstallAlertModel(env, isRetail)
             if new then
                 object = NewModelFrame(nil, parent)
                 rawset(object, "_mixin", template and model.Templates[template])
+                object:SetSize(300, template and model.TemplateHeights[template] or 64)
                 resetFunc(self, object, new)
             end
             self.activeObjects[object] = true
@@ -2082,6 +2085,8 @@ local function InstallAlertModel(env, isRetail)
         function pool:GetNumActive() return self.activeObjectCount end
         return pool
     end
+    -- the toast heights of AlertFrameSystems.xml's templates the model uses; the addon's own come from its XML (64 otherwise)
+    model.TemplateHeights = { AchievementAlertFrameTemplate = 88, LootWonAlertFrameTemplate = 96 }
     model.Templates = {} -- template name -> the mixin its frames get; the addon's alert templates use its alert frame mixin
     setmetatable(model.Templates, { __index = function(_, name)
         if type(name) == "string" and name:match("^KrowiAF_EventReminderAlertFrame") then return rawget(env, "KrowiAF_EventReminderAlertFrameMixin") end

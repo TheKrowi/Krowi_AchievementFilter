@@ -337,7 +337,7 @@ popUps.Scenarios = {
             SetOption(location .. "GrowDirection", 1)
             return ok and "no loop" or "loop"
         end,
-        Recorded = "loop",
+        Recorded = "no loop",
         Target = "no loop"},
     -- Another addon that loads before this one hooks AlertFrame:UpdateAnchors first, then on its first pass places the
     -- alerts and stacks the toasts downward (as GW2_UI does): the addon must leave that stack alone when it starts to
@@ -384,7 +384,7 @@ popUps.Scenarios = {
             env.Reload()
             return stack .. ", " .. holder
         end,
-        Recorded = "toasts restacked, holder on a hidden toast",
+        Recorded = "toasts left to the other addon, holder placed",
         Target = "toasts left to the other addon, holder placed"},
     -- Show placeholders while the game holds its alerts back: none may wait to show later
     {Name = "placeholders-while-held",
@@ -403,7 +403,7 @@ popUps.Scenarios = {
             RestoreDetails(saved)
             return ("shown %d, queued %d"):format(shown, queued)
         end,
-        Recorded = "shown 0, queued 2",
+        Recorded = "shown 0, queued 0",
         Target = "shown 0, queued 0"},
     {Name = "every-alert-chain",
         Observe = function(env)

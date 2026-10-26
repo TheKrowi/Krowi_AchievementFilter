@@ -52,17 +52,24 @@ local function AdjustAnchors(self, relativeAlert)
 end
 
 -- Blizzard's alert systems walked as AlertContainerMixin:UpdateAnchors walks them (Mainline/AlertFrames.lua:410-418);
--- returns the frame the next alert hangs on. Given a point, the queued systems' alerts are anchored again by it; the
--- loot rolls and talking head pass their frame on while shown. Reads Blizzard's tables, writes none.
+-- returns the frame the next alert hangs on. Given a point, the queued systems' toasts are anchored again, each on the
+-- chain's last frame that is no toast (AlertFrame, or the loot rolls or talking head while shown), as far from it as the
+-- toasts before it take. No toast hangs on another: Blizzard's next pass anchors toast on toast without clearing the
+-- points it does not set, and its pools enumerate with pairs(), whose order can change, so a toast kept on another could
+-- close a loop, which SetPoint refuses with an error in that pass. Reads Blizzard's tables, writes none.
 local function WalkAlertFrame(point, relativePoint, offset)
     local relativeFrame = AlertFrame.baseAnchorFrame or AlertFrame
+    local base, distance = relativeFrame, 0
+    local direction = point == "TOP" and -1 or 1
     for _, subSystem in ipairs(AlertFrame.alertFrameSubSystems) do
         local resultFrame = relativeFrame
         if subSystem.alertFramePool then
             for alertFrame in subSystem.alertFramePool:EnumerateActive() do
                 if point then
+                    distance = distance + offset
                     alertFrame:ClearAllPoints()
-                    alertFrame:SetPoint(point, resultFrame, relativePoint, 0, offset)
+                    alertFrame:SetPoint(point, base, relativePoint, 0, distance)
+                    distance = distance + direction * alertFrame:GetHeight()
                 end
                 resultFrame = alertFrame
             end
@@ -70,17 +77,23 @@ local function WalkAlertFrame(point, relativePoint, offset)
             resultFrame = subSystem.anchorFrame
         end
         if not resultFrame.IsInDefaultPosition or resultFrame:IsInDefaultPosition() then
+            if resultFrame == subSystem.anchorFrame then
+                base, distance = resultFrame, 0
+            end
             relativeFrame = resultFrame
         end
     end
     return relativeFrame
 end
 
--- The game's alerts back as Blizzard has them: the toasts showing stacked Blizzard's way, so none keeps a point of the
--- addon's beside the one Blizzard's next pass sets, and, when it moves, AlertFrame back on its own spot
+-- The game's alerts back as Blizzard has them: the toasts showing stacked Blizzard's way when the addon had stacked
+-- them otherwise, so none keeps a point of the addon's beside the one Blizzard's next pass sets, and, when it moves,
+-- AlertFrame back on its own spot
 local function GiveBack(moveAlertFrame)
-    WalkAlertFrame("BOTTOM", "TOP", blizzardSpacing)
-    restacked = false
+    if restacked then
+        WalkAlertFrame("BOTTOM", "TOP", blizzardSpacing)
+        restacked = false
+    end
     if moveAlertFrame then
         AlertFrame:ClearAllPoints()
         AlertFrame:SetPoint("BOTTOM", UIParent, "BOTTOM", blizzardX, blizzardY)
@@ -116,6 +129,11 @@ function eventReminderAlertSystem:IsFollowing()
     if placedX then
         GiveBack(false)
     end
+    -- the pop-ups showing stay in the holder until they fade, on the options' spot rather than on a toast whose pool
+    -- hands it out again
+    local options = PopUpOptions()
+    self.Holder:ClearAllPoints()
+    self.Holder:SetPoint("BOTTOM", UIParent, "BOTTOM", options.OffsetX, options.OffsetY)
     return true
 end
 
@@ -135,7 +153,7 @@ local function Restack()
     end
     restacked = not blizzards
     local last = WalkAlertFrame(point, relativePoint, offset)
-    local edge = PopUpOptions().GrowDirection == 1 and "TOP" or "BOTTOM"
+    local edge = relativePoint -- growing up the pop-ups start at the last frame's top, growing down at its bottom
     system.Holder:ClearAllPoints()
     system.Holder:SetPoint(edge, last, edge, 0, 0)
 end
@@ -190,6 +208,10 @@ function eventReminderAlertSystem:Load()
         holder:SetAlertsEnabled(enabled, reason)
     end)
     hooksecurefunc(AlertFrame, "UpdateAnchors", Restack)
+    if AlertFrame.SetBaseAnchorFrame then -- Retail: the Trading Post and the Shop hang the alerts on their own frames
+        hooksecurefunc(AlertFrame, "SetBaseAnchorFrame", Restack)
+        hooksecurefunc(AlertFrame, "ResetBaseAnchorFrame", Restack)
+    end
     self:ApplyLocation()
 end
 
@@ -226,21 +248,17 @@ end
 -- Every pop-up of the addon's, showing and waiting, real reminders included (Hide placeholders, issue #364); the game's
 -- own toasts stay
 function eventReminderAlertSystem:HideAlerts()
-    local frames = {}
     for _, subSystem in next, {self.SubSystem, self.FollowSubSystem} do
         subSystem.queuedAlerts = nil
-        for frame in subSystem.alertFramePool:EnumerateActive() do
-            frames[#frames + 1] = frame
-        end
     end
-    for _, frame in ipairs(frames) do
+    for _, frame in self:EnumerateAlerts() do -- a list taken first, since hiding releases a frame from its pool
         frame:Hide()
     end
 end
 
--- Placeholder reminders on copies of the player's enabled events, so the real ones keep their details, and only as many
--- as fit at once, so none waits (issue #364). worldFirst: the event list's Show me starts with the world events, the
--- reminders' with the calendar ones. Returns how many it showed.
+-- Placeholder reminders on copies of the player's enabled events, so the real ones keep their details, and only while
+-- one more can show, so none waits, also not while the game holds its alerts back (issue #364). worldFirst: the event
+-- list's Show me starts with the world events, the reminders' with the calendar ones. Returns how many it showed.
 local placeholderTypes = {
     {Type = "Calendar", On = "CalendarEvents"},
     {Type = "Widget", On = "WidgetEvents"},
@@ -254,7 +272,6 @@ function eventReminderAlertSystem:ShowPlaceholders(worldFirst, duration)
     end
     local options = addon.Options.db.profile.EventReminders
     local subSystem = self:GetActiveSubSystem()
-    local free = subSystem.maxAlerts - subSystem:GetNumVisibleAlerts()
     local shown, endTime = 0, GetServerTime() + 2 * 60 * 60
     local first, last, step = 1, #placeholderTypes, 1
     if worldFirst then
@@ -264,7 +281,7 @@ function eventReminderAlertSystem:ShowPlaceholders(worldFirst, duration)
         local eventType = placeholderTypes[i]
         local toggles = options[eventType.On]
         for _, event in next, addon.Data.Events[KrowiAF.Enum.EventType[eventType.Type]] or {} do
-            if shown < free and toggles and toggles[event.Id] and event.Category then
+            if toggles and toggles[event.Id] and event.Category and subSystem:CanShowMore() then
                 local name = event.Name or event.Category.Name or addon.L["Placeholder"]
                 local placeholder = setmetatable({EventDetails = {Name = name, EndTime = endTime}}, {__index = event})
                 if self:AddAlert(placeholder, duration) then
