@@ -1965,9 +1965,23 @@ local function InstallAlertModel(env, isRetail)
     function ModelFrame:GetName() return rawget(self, "_name") end
     function ModelFrame:GetParent() return rawget(self, "_parent") end
     function ModelFrame:SetParent(parent) rawset(self, "_parent", parent) end
+    -- whether frame hangs, through any of its points, on target
+    local function DependsOn(frame, target, seen)
+        if frame == target then return true end
+        local points = type(frame) == "table" and rawget(frame, "_points")
+        if not points or seen[frame] then return false end
+        seen[frame] = true
+        for _, p in ipairs(points) do
+            if DependsOn(p[2], target, seen) then return true end
+        end
+        return false
+    end
     function ModelFrame:SetPoint(point, relativeTo, relativePoint, x, y)
         if type(relativeTo) == "number" then relativeTo, relativePoint, x, y = nil, nil, relativeTo, relativePoint end
         relativeTo = relativeTo or rawget(self, "_parent")
+        if relativeTo and DependsOn(relativeTo, self, {}) then
+            error("Cannot anchor to a region dependent on it", 2) -- as the game refuses a loop
+        end
         local entry = { point, relativeTo, relativePoint or point, x or 0, y or 0 }
         local points = rawget(self, "_points")
         for index, existing in ipairs(points) do
@@ -2026,8 +2040,10 @@ local function InstallAlertModel(env, isRetail)
         region:Hide()
         region:ClearAllPoints()
     end
+    -- The game's pools enumerate with pairs, so their order can change from one pass to the next (a rehash when an object
+    -- is added); the model keeps the order the objects came in, and model.Reversed turns it around for a scenario
     function env.CreateFramePool(_, parent, template, resetFunc)
-        local pool = { activeObjects = {}, inactiveObjects = {}, activeObjectCount = 0 }
+        local pool = { activeObjects = {}, inactiveObjects = {}, activeObjectCount = 0, order = {} }
         function pool:Acquire()
             local object = table.remove(self.inactiveObjects)
             local new = object == nil
@@ -2038,6 +2054,7 @@ local function InstallAlertModel(env, isRetail)
             end
             self.activeObjects[object] = true
             self.activeObjectCount = self.activeObjectCount + 1
+            table.insert(self.order, object)
             return object, new
         end
         function pool:Release(object)
@@ -2047,10 +2064,21 @@ local function InstallAlertModel(env, isRetail)
                 table.insert(self.inactiveObjects, object)
                 self.activeObjects[object] = nil
                 self.activeObjectCount = self.activeObjectCount - 1
+                for index, o in ipairs(self.order) do
+                    if o == object then table.remove(self.order, index) break end
+                end
             end
             return active
         end
-        function pool:EnumerateActive() return pairs(self.activeObjects) end
+        function pool:EnumerateActive()
+            local list, n = {}, #self.order
+            for index = 1, n do list[index] = self.order[model.Reversed and n + 1 - index or index] end
+            local index = 0
+            return function()
+                index = index + 1
+                if list[index] then return list[index], true end
+            end
+        end
         function pool:GetNumActive() return self.activeObjectCount end
         return pool
     end
@@ -2366,17 +2394,20 @@ suites.popups = function(c)
         model.FireLogin()
         return true
     end
-    function headless.ShowGameToast() -- an achievement toast, the only one showing; returns its frame
-        model.AchievementSystem:AddAlert()
-        for frame in model.AchievementSystem.alertFramePool:EnumerateActive() do return frame end
+    function headless.ShowGameToast(loot) -- an achievement toast (a loot one with loot); returns the newest frame
+        local system = loot and model.LootSystem or model.AchievementSystem
+        system:AddAlert()
+        return system.alertFramePool.order[#system.alertFramePool.order]
     end
     function headless.HideGameToasts()
+        model.Reversed = false
         for _, system in ipairs({ model.AchievementSystem, model.LootSystem }) do
             local frames = {}
             for frame in system.alertFramePool:EnumerateActive() do frames[#frames + 1] = frame end
             for _, frame in ipairs(frames) do frame:Hide() end
         end
     end
+    function headless.ReorderGameToasts() model.Reversed = not model.Reversed end -- as the game's pairs() order can change
     function headless.HoldGameAlerts(held) env.AlertFrame:SetAlertsEnabled(not held, "splashFrame") end
     headless.Reload()
     local observations = {}

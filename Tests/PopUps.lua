@@ -320,6 +320,91 @@ popUps.Scenarios = {
         end,
         Recorded = "1 point, above the alert frame",
         Target = "1 point, above the alert frame"},
+    -- Growing down, two toasts whose order in their pool changes before the next pass, as the game's pairs() order can:
+    -- Blizzard's pass anchors toast to toast without clearing, so a toast that kept a point on another would close a loop,
+    -- which SetPoint refuses with an error inside Blizzard's pass
+    {Name = "every-alert-reorder",
+        Observe = function(env)
+            if not env.ShowGameToast then
+                return nil, "headless only: shows the game's toasts in an order it picks"
+            end
+            SetOption(location .. "GrowDirection", 2)
+            env.ShowGameToast()
+            env.ShowGameToast()
+            env.ReorderGameToasts()
+            local ok = pcall(env.ShowGameToast, true)
+            env.HideGameToasts()
+            SetOption(location .. "GrowDirection", 1)
+            return ok and "no loop" or "loop"
+        end,
+        Recorded = "loop",
+        Target = "no loop"},
+    -- Another addon that loads before this one hooks AlertFrame:UpdateAnchors first, then on its first pass places the
+    -- alerts and stacks the toasts downward (as GW2_UI does): the addon must leave that stack alone when it starts to
+    -- follow, and a pop-up showing then must not hang on a toast that goes away
+    {Name = "follow-switch",
+        Observe = function(env)
+            if not env.Reload then
+                return nil, "headless only: loads the addon again with another addon"
+            end
+            local function Restack()
+                AlertFrame:ClearAllPoints()
+                AlertFrame:SetPoint("TOP", UIParent, "TOP", 0, -100)
+                local relative = AlertFrame
+                for _, subSystem in ipairs(AlertFrame.alertFrameSubSystems) do
+                    if subSystem.alertFramePool and not IsKaf(subSystem) then
+                        for frame in subSystem.alertFramePool:EnumerateActive() do
+                            frame:ClearAllPoints()
+                            frame:SetPoint("TOP", relative, "BOTTOM", 0, -5)
+                            relative = frame
+                        end
+                    end
+                end
+            end
+            local active = false
+            env.Reload(function(_, model)
+                model.OtherAddon[Restack] = true
+                hooksecurefunc(AlertFrame, "UpdateAnchors", function()
+                    if active then
+                        Restack()
+                    end
+                end)
+            end)
+            local toast = env.ShowGameToast()
+            System():AddAlert(RealEvent(), 60) -- a pop-up hung on the toast
+            active = true
+            env.ShowGameToast(true) -- the other addon's first pass
+            local point = toast:GetPoint(1)
+            local stack = point == "TOP" and "toasts left to the other addon" or "toasts restacked"
+            env.HideGameToasts()
+            -- a released toast keeps the point Blizzard's pass gave it while still active, and its pool hands it out again
+            local _, holderOn = System().Holder:GetPoint(1)
+            local holder = holderOn == UIParent and "holder placed" or "holder on a hidden toast"
+            ClearPopUps()
+            env.Reload()
+            return stack .. ", " .. holder
+        end,
+        Recorded = "toasts restacked, holder on a hidden toast",
+        Target = "toasts left to the other addon, holder placed"},
+    -- Show placeholders while the game holds its alerts back: none may wait to show later
+    {Name = "placeholders-while-held",
+        Observe = function(env)
+            if not env.HoldGameAlerts then
+                return nil, "headless only: holds the game's alerts back"
+            end
+            ClearPopUps()
+            local saved, maxAlerts = SaveDetails(), SetMaxAlerts(2)
+            env.HoldGameAlerts(true)
+            Node(location .. "ShowPlaceholder").func()
+            local shown, queued = Count()
+            ClearPopUps()
+            env.HoldGameAlerts(false)
+            RestoreMaxAlerts(maxAlerts)
+            RestoreDetails(saved)
+            return ("shown %d, queued %d"):format(shown, queued)
+        end,
+        Recorded = "shown 0, queued 2",
+        Target = "shown 0, queued 0"},
     {Name = "every-alert-chain",
         Observe = function(env)
             if not env.ShowGameToast then
