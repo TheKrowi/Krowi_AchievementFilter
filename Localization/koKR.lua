@@ -7,6 +7,13 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-24 16-43-33 ]] --
+L["Position applies to"] = "위치 적용 대상"
+L["Position applies to Desc"] = "모든 알림은 업적과 전리품 같은 게임 알림을 이벤트 알림과 함께 옮깁니다. 이벤트 알림만은 이벤트 알림만 옮기고 게임 알림은 게임이 두는 자리에 그대로 둡니다."
+L["Every alert"] = "모든 알림"
+L["Only event reminders"] = "이벤트 알림만"
+L["Hide placeholders"] = "자리 표시자 숨기기"
+L["Hide placeholders Desc"] = "표시 중이거나 대기 중인 모든 이벤트 알림 팝업을 숨깁니다. 자리 표시자와 실제 알림이 모두 포함됩니다."
+L["Alerts placed by another addon Desc"] = "다른 애드온이 게임 알림의 위치를 정하므로 이벤트 알림 팝업도 그 위치를 따릅니다. 해당 애드온에서 옮기세요."
 L["{count} changed"] = "{count}개 변경됨"
 L["About"] = "정보"
 L["Achievement guides"] = "업적 가이드"

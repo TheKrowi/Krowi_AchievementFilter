@@ -7,6 +7,13 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-24 16-43-33 ]] --
+L["Position applies to"] = "La posición se aplica a"
+L["Position applies to Desc"] = "Todas las alertas mueve las alertas del juego, como logros y botín, junto con los recordatorios de eventos. Solo recordatorios de eventos mueve únicamente los recordatorios de eventos y deja las alertas del juego donde el juego las coloca."
+L["Every alert"] = "Todas las alertas"
+L["Only event reminders"] = "Solo recordatorios de eventos"
+L["Hide placeholders"] = "Ocultar marcadores de posición"
+L["Hide placeholders Desc"] = "Oculta todas las ventanas emergentes de recordatorios de eventos que se muestran o están en espera: los marcadores de posición y cualquier recordatorio real."
+L["Alerts placed by another addon Desc"] = "Otro addon coloca las alertas del juego, así que las ventanas emergentes de recordatorios de eventos van con ellas. Muévelas con ese addon."
 L["{count} changed"] = "{count} cambiado(s)"
 L["About"] = "Acerca de"
 L["Achievement guides"] = "Guías de logros"

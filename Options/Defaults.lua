@@ -195,6 +195,7 @@ addon.Options.Defaults = {
             PopUps = {
                 FadeDelay = 10,
                 MaxAlerts = 5,
+                AppliesTo = 1,
                 OffsetX = 0,
                 OffsetY = 128,
                 GrowDirection = 1,

@@ -1944,12 +1944,16 @@ local function InstallAlertModel(env, isRetail)
     local model = { Blizzard = {}, LoginCallbacks = {}, EventFrames = {} }
 
     local ModelFrame = {}
+    -- the child regions of the addon's alert template (Gui/EventReminder/AlertFrame/AlertFrame.xml) that its mixin
+    -- touches; calls on them do nothing. Any other field the code reads is nil, as on a frame the game has not given it
+    local templateRegions = { Icon = true, Name = true, Unlocked = true, Background = true, glow = true, shine = true }
     local modelFrameMt = { __index = function(self, k)
         local method = ModelFrame[k]
         if method ~= nil then return method end
         local mixin = rawget(self, "_mixin")
-        if mixin and mixin[k] ~= nil then return mixin[k] end
-        -- a template's child regions and methods the model leaves out (Icon.Texture, Name, glow): calls on them do nothing
+        if not mixin then return nil end
+        if mixin[k] ~= nil then return mixin[k] end
+        if not templateRegions[k] then return nil end
         local child = Stub(tostring(rawget(self, "_name")) .. "." .. tostring(k))
         rawset(self, k, child)
         return child

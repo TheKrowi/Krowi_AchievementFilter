@@ -195,7 +195,7 @@ popUps.Scenarios = {
         Observe = function()
             return ToastOwners()
         end,
-        Recorded = "KAF's",
+        Recorded = "Blizzard's",
         Target = "Blizzard's"},
     {Name = "offset-change",
         Observe = function()
@@ -221,7 +221,7 @@ popUps.Scenarios = {
             appliesTo.set(nil, before)
             return moves
         end,
-        Recorded = "no such setting",
+        Recorded = "the holder",
         Target = "the holder"},
     {Name = "placeholders",
         Observe = function()
@@ -237,9 +237,9 @@ popUps.Scenarios = {
             RestoreDetails(saved)
             return ("shown %d, queued %d"):format(shown, queued)
         end,
-        Recorded = "shown 2, queued 39",
+        Recorded = "shown 2, queued 0",
         Target = "shown 2, queued 0",
-        RecordedClassic = "shown 2, queued 9",
+        RecordedClassic = "shown 2, queued 0",
         TargetClassic = "shown 2, queued 0"},
     {Name = "placeholder-details",
         Observe = function()
@@ -259,7 +259,7 @@ popUps.Scenarios = {
             RestoreDetails(saved)
             return changed > 0 and "changed" or "unchanged"
         end,
-        Recorded = "changed",
+        Recorded = "unchanged",
         Target = "unchanged"},
     {Name = "hide",
         Observe = function()
@@ -281,7 +281,7 @@ popUps.Scenarios = {
             RestoreDetails(saved)
             return ("%d showing, %d waiting"):format(shown, queued)
         end,
-        Recorded = "no Hide",
+        Recorded = "0 showing, 0 waiting",
         Target = "0 showing, 0 waiting"},
     {Name = "every-alert-grow-down",
         Observe = function(env)
@@ -355,7 +355,7 @@ popUps.Scenarios = {
             db:DeleteProfile(test, true)
             return after ~= before and "moves" or "stays"
         end,
-        Recorded = "stays",
+        Recorded = "moves",
         Target = "moves"},
     -- A load with another addon placing the game's alerts at load and after every alert, as Dominos Roll's Alerts bar does
     -- (Dominos_Roll/alertsBar.lua): an offset change, then a pop-up
@@ -391,7 +391,7 @@ popUps.Scenarios = {
             env.Reload()
             return moved .. ", " .. greyed .. ", " .. with
         end,
-        Recorded = "alert frame moved, options open, pop-up with the other addon",
+        Recorded = "nothing moved, options greyed, pop-up with the other addon",
         Target = "nothing moved, options greyed, pop-up with the other addon"},
     {Name = "reminders-off",
         Observe = function(env)
@@ -406,7 +406,7 @@ popUps.Scenarios = {
             env.Reload()
             return owners
         end,
-        Recorded = "KAF's",
+        Recorded = "Blizzard's",
         Target = "Blizzard's"},
 }
 

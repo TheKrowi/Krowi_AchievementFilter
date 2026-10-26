@@ -111,10 +111,11 @@ options.Scenarios = {
         end,
         -- The key binding options' keys carry an auto-numbered order (Binding523Key1): removing the tutorial button
         -- (2026-10-25) took one number out and moved them all, c7f9546a / 3ffe49dd before. Stage 2 gives them fixed ids.
-        Recorded = "options=406 hash=8bb98662",
-        Target = "options=406 hash=8bb98662",
-        RecordedClassic = "options=302 hash=06ba645e",
-        TargetClassic = "options=302 hash=06ba645e"},
+        -- #188 added Position applies to and Hide placeholders (406 / 302 before, 8bb98662 / 06ba645e)
+        Recorded = "options=408 hash=13b38c99",
+        Target = "options=408 hash=13b38c99",
+        RecordedClassic = "options=304 hash=122eff6c",
+        TargetClassic = "options=304 hash=122eff6c"},
     {Name = "defaults-restore-acedb",
         Observe = function()
             local model = Model()

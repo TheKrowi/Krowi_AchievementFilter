@@ -286,38 +286,15 @@ function scenes.calendar(ready)
     Ready(ready, {Calendar = KrowiAF_AchievementCalendarFrame})
 end
 
--- Placeholder reminders on copies of the player's events, so the real ones keep their details (the Location button's
--- placeholders, Options/EventReminders.lua, write theirs onto the real events). worldFirst: the event list's Show me
--- starts with the world events, the reminders' with the calendar ones.
-local eventTypes = {
-    {Type = "Calendar", On = "CalendarEvents"},
-    {Type = "Widget", On = "WidgetEvents"},
-    {Type = "World", On = "WorldEvents"}
-}
-
+-- Placeholder reminders, as the Location button shows them (Gui/EventReminder/AlertSystem.lua ShowPlaceholders), for the
+-- fade delay. worldFirst: the event list's Show me starts with the world events, the reminders' with the calendar ones.
 local function ShowPlaceholders(ready, worldFirst)
     local system = addon.Gui.EventReminderAlertSystem
     if not system.SubSystem then -- reminders were off at login, so there is no alert system to show them in
         print(addon.Metadata.Title, "-", L["Help Events Off"])
         return false
     end
-    local options = addon.Options.db.profile.EventReminders
-    local order = worldFirst and {eventTypes[3], eventTypes[2], eventTypes[1]} or eventTypes
-    -- only the free places: Blizzard's queue also takes alerts it cannot show yet and shows them later, one batch per click
-    local pool = system.SubSystem.alertFramePool
-    local free = options.PopUps.MaxAlerts - (pool and pool:GetNumActive() or 0)
-    local shown, endTime = 0, GetServerTime() + 2 * 60 * 60
-    for _, eventType in ipairs(order) do
-        for _, event in next, addon.Data.Events[KrowiAF.Enum.EventType[eventType.Type]] or {} do
-            if shown < free and options[eventType.On][event.Id] and event.Category then
-                local name = event.Name or event.Category.Name or L["Placeholder"]
-                local placeholder = setmetatable({EventDetails = {Name = name, EndTime = endTime}}, {__index = event})
-                if system:AddAlert(placeholder, options.PopUps.FadeDelay) then
-                    shown = shown + 1
-                end
-            end
-        end
-    end
+    local shown = system:ShowPlaceholders(worldFirst, addon.Options.db.profile.EventReminders.PopUps.FadeDelay)
     Ready(ready, {Shown = shown})
 end
 

@@ -73,6 +73,9 @@ function LoadSolutions()
         function(_, _, _, _, firstTime) -- 1: every profile, as AceDB keeps them
             MergeLegionAssaultToggles(addon.Options.db and addon.Options.db.profiles, KrowiAF_SavedData.Fixes, firstTime)
         end,
+        function() -- 2: the copy of the pop-ups' grow direction the game's toasts read; the pop-ups read the profile since #188
+            KrowiAF_SavedData.AlertSystem = nil
+        end,
     }
 
     return solutions

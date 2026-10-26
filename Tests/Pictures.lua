@@ -476,12 +476,9 @@ steps = {
         end,
         Cut = function()
             local frames = {}
-            local subSystem = addon.Gui.EventReminderAlertSystem.SubSystem
-            if subSystem and subSystem.alertFramePool then
-                for frame in subSystem.alertFramePool:EnumerateActive() do
-                    if frame:GetTop() then
-                        tinsert(frames, frame)
-                    end
+            for _, frame in addon.Gui.EventReminderAlertSystem:EnumerateAlerts() do
+                if frame:GetTop() then
+                    tinsert(frames, frame)
                 end
             end
             -- three in a row tell what a reminder looks like; the stack of every active and placeholder one is too tall

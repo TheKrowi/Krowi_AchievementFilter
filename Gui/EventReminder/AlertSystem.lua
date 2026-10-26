@@ -2,9 +2,158 @@ local _, addon = ...
 addon.Gui.EventReminderAlertSystem = {}
 local eventReminderAlertSystem = addon.Gui.EventReminderAlertSystem
 
-local function SetUp(frame, event, duration)
+-- Where the pop-ups live (issue #188, docs/work/188-event-reminder-popups). They are a queued alert system in an alert
+-- container of the addon's own, the holder, so Blizzard's AlertFrame never holds or calls the addon's code. Position
+-- applies to:
+--   Every alert: AlertFrame goes to the offsets, a post-hook on its UpdateAnchors restacks the game's toasts by the grow
+--     direction and spacing, and the holder hangs at the end of that stack, so the pop-ups continue it
+--   Only event reminders: the holder alone goes to the offsets; the game's toasts stay where the game puts them
+-- An addon that places the game's alerts (ElvUI, GW2_UI, EllesmereUI's mover, Dominos Roll's Alerts bar) wins: once
+-- AlertFrame is anywhere else than where Blizzard or the addon put it, the addon stops placing and restacking, and new
+-- pop-ups go to a queued system in AlertFrame, so that addon stacks them with its toasts.
+local everyAlert = 1
+local blizzardX, blizzardY = 0, 128 -- AlertFrame's anchor on UIParent (Mainline and Classic AlertFrames.xml)
+local blizzardSpacing = 10 -- AlertFrameQueueMixin:AdjustAnchors (Mainline/AlertFrames.lua:243-248)
+local placedX, placedY -- where the addon put AlertFrame under Every alert; nil while it is where Blizzard put it
+
+local function PopUpOptions()
+    return addon.Options.db.profile.EventReminders.PopUps
+end
+
+-- Growing up an alert's bottom hangs on the previous one's top, growing down its top on the previous one's bottom
+local function GrowPoints()
+    local options = PopUpOptions()
+    if options.GrowDirection == 1 then
+        return "BOTTOM", "TOP", options.Spacing
+    end
+    return "TOP", "BOTTOM", -options.Spacing
+end
+
+-- The plugins' skins hook this one (Plugins/ElvUI.lua, GW2_UI, EllesmereUI), so it reaches pop-ups in either system
+function eventReminderAlertSystem.SetUpAlert(frame, event, duration)
     frame:SetEvent(event)
     frame.duration = duration
+end
+
+local function SetUp(frame, event, duration)
+    eventReminderAlertSystem.SetUpAlert(frame, event, duration)
+end
+
+-- The holder's own stacking, on the addon's own system
+local function AdjustAnchors(self, relativeAlert)
+    local point, relativePoint, offset = GrowPoints()
+    for alertFrame in self.alertFramePool:EnumerateActive() do
+        alertFrame:ClearAllPoints()
+        alertFrame:SetPoint(point, relativeAlert, relativePoint, 0, offset)
+        relativeAlert = alertFrame
+    end
+    return relativeAlert
+end
+
+-- Blizzard's alert systems walked as AlertContainerMixin:UpdateAnchors walks them (Mainline/AlertFrames.lua:410-418);
+-- returns the frame the next alert hangs on. Given a point, the queued systems' alerts are anchored again by it; the
+-- loot rolls and talking head pass their frame on while shown. Reads Blizzard's tables, writes none.
+local function WalkAlertFrame(point, relativePoint, offset)
+    local relativeFrame = AlertFrame.baseAnchorFrame or AlertFrame
+    for _, subSystem in ipairs(AlertFrame.alertFrameSubSystems) do
+        local resultFrame = relativeFrame
+        if subSystem.alertFramePool then
+            for alertFrame in subSystem.alertFramePool:EnumerateActive() do
+                if point then
+                    alertFrame:ClearAllPoints()
+                    alertFrame:SetPoint(point, resultFrame, relativePoint, 0, offset)
+                end
+                resultFrame = alertFrame
+            end
+        elseif subSystem.anchorFrame and subSystem.anchorFrame:IsShown() then
+            resultFrame = subSystem.anchorFrame
+        end
+        if not resultFrame.IsInDefaultPosition or resultFrame:IsInDefaultPosition() then
+            relativeFrame = resultFrame
+        end
+    end
+    return relativeFrame
+end
+
+-- The game's alerts back as Blizzard has them: the toasts showing stacked Blizzard's way, so none keeps a point of the
+-- addon's beside the one Blizzard's next pass sets, and, when it moves, AlertFrame back on its own spot
+local function GiveBack(moveAlertFrame)
+    WalkAlertFrame("BOTTOM", "TOP", blizzardSpacing)
+    if moveAlertFrame then
+        AlertFrame:ClearAllPoints()
+        AlertFrame:SetPoint("BOTTOM", UIParent, "BOTTOM", blizzardX, blizzardY)
+    end
+    placedX, placedY = nil, nil
+end
+
+local function IsAt(frame, x, y)
+    if frame:GetNumPoints() ~= 1 then
+        return false
+    end
+    local point, relativeTo, relativePoint, frameX, frameY = frame:GetPoint(1)
+    return point == "BOTTOM" and relativeTo == UIParent and relativePoint == "BOTTOM"
+        and floor(frameX + 0.5) == floor(x + 0.5) and floor(frameY + 0.5) == floor(y + 0.5)
+end
+
+-- Another addon places the game's alerts once AlertFrame is anywhere else than where Blizzard or the addon put it; the
+-- addon then follows it for the rest of the session
+function eventReminderAlertSystem:IsFollowing()
+    if self.Following then
+        return true
+    end
+    if not self.Holder or IsAt(AlertFrame, placedX or blizzardX, placedY or blizzardY) then
+        return false
+    end
+    self.Following = true
+    if placedX then
+        GiveBack(false)
+    end
+    return true
+end
+
+-- The post-hook on AlertFrame:UpdateAnchors, once per alert: under Every alert the toasts restacked by the grow
+-- direction and spacing (only when they differ from Blizzard's), then the holder at the end of the stack, its edge on
+-- the last frame's, so the first pop-up sits where the next toast would. Allocates nothing.
+local function Restack()
+    local system = eventReminderAlertSystem
+    if system.AppliesTo ~= everyAlert or system:IsFollowing() then
+        return
+    end
+    local point, relativePoint, offset = GrowPoints()
+    if point == "BOTTOM" and offset == blizzardSpacing then
+        point = nil
+    end
+    local last = WalkAlertFrame(point, relativePoint, offset)
+    local edge = PopUpOptions().GrowDirection == 1 and "TOP" or "BOTTOM"
+    system.Holder:ClearAllPoints()
+    system.Holder:SetPoint(edge, last, edge, 0, 0)
+end
+
+-- Places the pop-ups (and under Every alert the game's alerts) by the options: at load, from the location options'
+-- setters and after a profile switch, reset or copy
+function eventReminderAlertSystem:ApplyLocation()
+    local holder = self.Holder
+    if not holder or self:IsFollowing() then
+        return
+    end
+    local options = PopUpOptions()
+    self.AppliesTo = options.AppliesTo
+    if options.AppliesTo == everyAlert then
+        AlertFrame:ClearAllPoints()
+        AlertFrame:SetPoint("BOTTOM", UIParent, "BOTTOM", options.OffsetX, options.OffsetY)
+        placedX, placedY = options.OffsetX, options.OffsetY
+        if self:IsFollowing() then -- EllesmereUI's mover puts its own spot back inside SetPoint
+            return
+        end
+        Restack()
+    else
+        if placedX then
+            GiveBack(true)
+        end
+        holder:ClearAllPoints()
+        holder:SetPoint("BOTTOM", UIParent, "BOTTOM", options.OffsetX, options.OffsetY)
+    end
+    holder:UpdateAnchors()
 end
 
 function eventReminderAlertSystem:Load()
@@ -12,12 +161,36 @@ function eventReminderAlertSystem:Load()
         return
     end
 
-    local template = "KrowiAF_EventReminderAlertFrame_" .. (addon.Options.db.profile.EventReminders.Compact and "Small" or "Normal") .. "_Template"
-    self.SubSystem = AlertFrame:AddQueuedAlertFrameSubSystem(template, SetUp, addon.Options.db.profile.EventReminders.PopUps.MaxAlerts, 100)
-    AlertFrame:ClearAllPoints()
-    AlertFrame:SetPoint("BOTTOM", UIParent, "BOTTOM", addon.Options.db.profile.EventReminders.PopUps.OffsetX, addon.Options.db.profile.EventReminders.PopUps.OffsetY)
+    -- At ADDON_LOADED, before the login events AlertContainerMixin:OnLoad waits for (Mainline/AlertFrames.lua:259-283)
+    local holder = CreateFrame("Frame", nil, UIParent)
+    holder:SetSize(10, 10) -- AlertFrame's size, so pop-ups at the same offsets sit where they always did
+    Mixin(holder, AlertContainerMixin)
+    holder:OnLoad()
+    if holder.OnEvent then -- Classic's container waits for its login events through OnEvent (Classic/AlertFrames.lua:256-275)
+        holder:SetScript("OnEvent", holder.OnEvent)
+    end
+    self.Holder = holder
+    self.Template = "KrowiAF_EventReminderAlertFrame_" .. (addon.Options.db.profile.EventReminders.Compact and "Small" or "Normal") .. "_Template"
+    self.SubSystem = holder:AddQueuedAlertFrameSubSystem(self.Template, SetUp, PopUpOptions().MaxAlerts, 100)
+    self.SubSystem.AdjustAnchors = AdjustAnchors
 
-    self:UpdateGrowDirection()
+    -- The pop-ups wait while the game holds its own alerts back (the What's New splash, the Runeforge craft)
+    hooksecurefunc(AlertFrame, "SetAlertsEnabled", function(_, enabled, reason)
+        holder:SetAlertsEnabled(enabled, reason)
+    end)
+    hooksecurefunc(AlertFrame, "UpdateAnchors", Restack)
+    self:ApplyLocation()
+end
+
+-- The system new pop-ups go to: the holder's, or while following another addon one in AlertFrame, made once
+function eventReminderAlertSystem:GetActiveSubSystem()
+    if not self:IsFollowing() then
+        return self.SubSystem
+    end
+    if not self.FollowSubSystem then
+        self.FollowSubSystem = AlertFrame:AddQueuedAlertFrameSubSystem(self.Template, SetUp, PopUpOptions().MaxAlerts, 100)
+    end
+    return self.FollowSubSystem
 end
 
 function eventReminderAlertSystem:AddAlert(event, duration)
@@ -25,7 +198,71 @@ function eventReminderAlertSystem:AddAlert(event, duration)
         return false
     end
 
-    return self.SubSystem:AddAlert(event, duration)
+    return self:GetActiveSubSystem():AddAlert(event, duration)
+end
+
+-- The pop-ups showing, in both systems, for Show me and the pictures run
+function eventReminderAlertSystem:EnumerateAlerts()
+    local frames = {}
+    for _, subSystem in next, {self.SubSystem, self.FollowSubSystem} do
+        for frame in subSystem.alertFramePool:EnumerateActive() do
+            frames[#frames + 1] = frame
+        end
+    end
+    return ipairs(frames)
+end
+
+-- Every pop-up of the addon's, showing and waiting, real reminders included (Hide placeholders, issue #364); the game's
+-- own toasts stay
+function eventReminderAlertSystem:HideAlerts()
+    local frames = {}
+    for _, subSystem in next, {self.SubSystem, self.FollowSubSystem} do
+        subSystem.queuedAlerts = nil
+        for frame in subSystem.alertFramePool:EnumerateActive() do
+            frames[#frames + 1] = frame
+        end
+    end
+    for _, frame in ipairs(frames) do
+        frame:Hide()
+    end
+end
+
+-- Placeholder reminders on copies of the player's enabled events, so the real ones keep their details, and only as many
+-- as fit at once, so none waits (issue #364). worldFirst: the event list's Show me starts with the world events, the
+-- reminders' with the calendar ones. Returns how many it showed.
+local placeholderTypes = {
+    {Type = "Calendar", On = "CalendarEvents"},
+    {Type = "Widget", On = "WidgetEvents"},
+    {Type = "World", On = "WorldEvents"}
+}
+
+function eventReminderAlertSystem:ShowPlaceholders(worldFirst, duration)
+    if not self.SubSystem then -- reminders were off at login, so there is no alert system to show them in
+        print(addon.Metadata.Title, "-", addon.L["Help Events Off"])
+        return 0
+    end
+    local options = addon.Options.db.profile.EventReminders
+    local subSystem = self:GetActiveSubSystem()
+    local free = subSystem.maxAlerts - subSystem:GetNumVisibleAlerts()
+    local shown, endTime = 0, GetServerTime() + 2 * 60 * 60
+    local first, last, step = 1, #placeholderTypes, 1
+    if worldFirst then
+        first, last, step = last, first, -1
+    end
+    for i = first, last, step do
+        local eventType = placeholderTypes[i]
+        local toggles = options[eventType.On]
+        for _, event in next, addon.Data.Events[KrowiAF.Enum.EventType[eventType.Type]] or {} do
+            if shown < free and toggles and toggles[event.Id] and event.Category then
+                local name = event.Name or event.Category.Name or addon.L["Placeholder"]
+                local placeholder = setmetatable({EventDetails = {Name = name, EndTime = endTime}}, {__index = event})
+                if self:AddAlert(placeholder, duration) then
+                    shown = shown + 1
+                end
+            end
+        end
+    end
+    return shown
 end
 
 local gameLocale = GetLocale()
@@ -154,15 +391,6 @@ function eventReminderAlertSystem:GetUpcomingText(event)
     end
 
     return runtime
-end
-
-function eventReminderAlertSystem:UpdateGrowDirection()
-    -- Make sure the saved data is correct
-    KrowiAF_SavedData.AlertSystem = KrowiAF_SavedData.AlertSystem or {}
-    KrowiAF_SavedData.AlertSystem.GrowDirection = KrowiAF_SavedData.AlertSystem.GrowDirection or {}
-    KrowiAF_SavedData.AlertSystem.GrowDirection.Point = addon.Options.db.profile.EventReminders.PopUps.GrowDirection == 1 and "BOTTOM" or "TOP"
-    KrowiAF_SavedData.AlertSystem.GrowDirection.RelativePoint = addon.Options.db.profile.EventReminders.PopUps.GrowDirection == 1 and "TOP" or "BOTTOM"
-    KrowiAF_SavedData.AlertSystem.GrowDirection.Offset = addon.Options.db.profile.EventReminders.PopUps.GrowDirection == 1 and addon.Options.db.profile.EventReminders.PopUps.Spacing or -addon.Options.db.profile.EventReminders.PopUps.Spacing
 end
 
 local placeholderEpoch = 9999999999
