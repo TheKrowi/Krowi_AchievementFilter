@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file.
 - Upcoming event reminders now show when the event starts, not when it ends
 - Upcoming event reminders no longer give an error on a non-English client with a date format that names the day or month
 - Short day and month names in event reminders no longer show broken letters on non-English clients
+- Keys set in the options for a tab or for opening the current zone's category work again
 
 ## 104.0 - 2026-10-24
 ### Added

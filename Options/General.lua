@@ -61,15 +61,6 @@ local function MicroButtonSetKeybindFunc()
     end
 end
 
-local function SetBindingKeybind(value, command, index)
-	local key = select(index, GetBindingKey(command))
-	if key then
-		SetBinding(key)
-	end
-	SetBinding(value, command, index)
-	SaveBindings(GetCurrentBindingSet())
-end
-
 local screenshotModeFrame, screenshotModeCloseButton
 local function HandleScreenshotMode()
     CloseSettingsPanel()
@@ -461,13 +452,13 @@ local keyBindingOptions = {
                             order = OrderPP(), type = "keybinding", width = AdjustedWidth(0.93),
                             name = "", desc = "",
                             get = function() return GetBindingKey("KrowiAF_OPEN_CAT_Current_Zone"); end,
-                            set = function(_, value) SetBindingKeybind(value, "KrowiAF_OPEN_CAT_Current_Zone", 1); end
+                            set = function(_, value) options.SetKeyBinding(value, "KrowiAF_OPEN_CAT_Current_Zone", 1) end
                         },
                         OpenCurrentZoneCategoryKey2 = {
                             order = OrderPP(), type = "keybinding", width = AdjustedWidth(0.93),
                             name = "", desc = "",
                             get = function() return select(2, GetBindingKey("KrowiAF_OPEN_CAT_Current_Zone")); end,
-                            set = function(_, value) SetBindingKeybind(value, "KrowiAF_OPEN_CAT_Current_Zone", 2); end
+                            set = function(_, value) options.SetKeyBinding(value, "KrowiAF_OPEN_CAT_Current_Zone", 2) end
                         }
                     }
                 }
