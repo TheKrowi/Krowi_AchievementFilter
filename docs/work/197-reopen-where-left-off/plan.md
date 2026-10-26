@@ -77,3 +77,15 @@ Krowi's decision (2026-10-26): move Y at login, on new installs only.
 - **Write-back (stage 6), noted here:**
   - the kit's `Find-DeprecatedApi.ps1` cannot see a global whose alias Blizzard deleted before the clones existed (into the kit's backlog, as c1 also proposed);
   - a `luarc` rule could refuse a `diagnostics.globals` entry that no client defines.
+
+## Departures from the plan
+After `/code-review` and `krowi:taint-reviewer`:
+- The call moved from `LoadPlayerLogin` to the end of the `PLAYER_LOGIN` branch, so an error in it cannot stop the Blizzard_AchievementUI and calendar loads.
+- A binding the game refuses (`SetBinding` returns false) is neither saved nor marked done. That adds an eighth login case, `y-at-login-bind-refused`, and the headless `SetBinding` now returns true as the game does.
+- A SKIP in the options suite no longer counts as open.
+- The Risks above were wrong on taint and combat:
+  - `UPDATE_BINDINGS` runs Blizzard's binding display tainted for the session of the move;
+  - nothing documents `SetBinding` as blocked at login.
+
+  `spec.md` (Areas of concern) has the corrected account.
+- The in-game counts: eight `y-at-login-*` met, not seven.

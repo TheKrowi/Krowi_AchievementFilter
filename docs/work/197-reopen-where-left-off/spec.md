@@ -40,13 +40,13 @@ Why toggling the options fixed it for the first reporter stays unexplained: the 
 
 ## Design
 - **Split the first run.** `SwitchAchievementTabs` keeps the tab-order swap and the micro button's tab under `AchievementTabsSwitched` at `ADDON_LOADED`. It loses the binding part, and the first run (`Gui/Gui.lua:376-379`) sets `KrowiAF_SavedData.FirstTimeSetUp.YBindingPending = true` instead.
-- **New `addon.Gui:MoveYToMicroButtonTab()`**, called at `PLAYER_LOGIN` right after `addon.ChangeAchievementMicroButtonOnClick()` resolves the micro button's tab (`Krowi_AchievementFilter.lua:71-82`, `Globals.lua:330-343`). It does nothing when:
+- **New `addon.Gui:MoveYToMicroButtonTab()`**, called last in the `PLAYER_LOGIN` branch of `Krowi_AchievementFilter.lua`, after `LoadPlayerLogin` has resolved the micro button's tab (`addon.ChangeAchievementMicroButtonOnClick`, `Globals.lua:330-343`), so an error in it cannot stop the loads before it. It does nothing when:
   - `YBindingPending` is not set (every account whose first run happened before this fix);
   - the active binding set is not the account's (`GetCurrentBindingSet() ~= Enum.BindingSet.Account`), which also covers bindings not loaded yet (0);
   - the player is in combat lockdown.
 
   Otherwise:
-  - if `C_KeyBindings.GetBindingByKey("Y")` is `TOGGLEACHIEVEMENT` and the micro button's tab has a binding other than that, it calls `SetBinding("Y", <that binding>)` and `SaveBindings(Enum.BindingSet.Account)`;
+  - if `C_KeyBindings.GetBindingByKey("Y")` is `TOGGLEACHIEVEMENT` and the micro button's tab has a binding other than that, it calls `SetBinding("Y", <that binding>)` and `SaveBindings(Enum.BindingSet.Account)`. If the game refuses the binding (`SetBinding` returns false), nothing is saved and the move stays pending;
   - either way it clears `YBindingPending`.
 
   `SetBinding` with the key only adds Y to the command, so the player's other keys for it stay.
@@ -72,10 +72,17 @@ Why toggling the options fixed it for the first reporter stays unexplained: the 
    - It would fix the symptom even without the move, but players who rely on toasts opening Blizzard's tab would see a change. A follow-up in `docs/backlog.md` if wanted.
 
 ## Areas of concern
-- **Taint and secret values:**
-  - `SetBinding` and `SaveBindings` are blocked in combat, so the move skips while `InCombatLockdown()` is true (a `/reload` in combat) and tries again at the next login.
-  - `C_KeyBindings.GetBindingByKey` marks its arguments `AllowedWhenUntainted` for secret values; the argument here is the literal "Y" and the result is not secret.
-  - Neither a Blizzard frame nor a Blizzard function changes. The `PLAYER_LOGIN` handler is the addon's own.
+- **Taint and secret values** (the `krowi:taint-reviewer` pass of the build, 2026-10-26):
+  - **Blizzard's binding display runs tainted for one session per install.** `SetBinding` and `SaveBindings` fire `UPDATE_BINDINGS` synchronously (`KeyBindingsDocumentation.lua:175-179`, `SynchronousEvent = true`), so Blizzard's handlers run inside the addon's `PLAYER_LOGIN` handler:
+    - the micro buttons' `tooltipText` (`Blizzard_MicroMenu/Mainline/MainMenuBarMicroButtons.lua`);
+    - the action buttons' `bindingAction` and hotkey text (`Blizzard_ActionBar/Shared/ActionButton.lua:483, 950`);
+    - the minimap zone text's `tooltipText` (`Minimap.lua:123`).
+
+    Hovering those runs the rest of their tooltip tainted until the next `/reload`. None of these handlers calls a protected function or builds a widget tooltip (the #300 path). It happens only in the session where the move runs. The options' Bind to Y button makes the same two calls on a click (`Options/General.lua:56-62`). An addon has no taint-free way to rebind a key, so this is accepted.
+  - **Combat:** `SetBinding` and `SaveBindings` carry no documented restriction, and the lockdown is most likely not on at `PLAYER_LOGIN` even after a `/reload` in combat. The `InCombatLockdown()` guard stays as a precaution; the move then tries again at the next login.
+  - **Secret values:** `C_KeyBindings.GetBindingByKey` marks its arguments `AllowedWhenUntainted`, and has no secret return. The argument here is the literal "Y".
+  - No Blizzard frame field or function is written by the addon itself. The `PLAYER_LOGIN` handler is the addon's own.
+- **Side effect:** once Y moves, Blizzard's Toggle Achievements has no key left. Blizzard's micro button tooltip then shows no "(Y)". This is how the original first run was meant to leave it, and how Bind to Y leaves it.
 - **Clients:**
   - `C_KeyBindings.GetBindingByKey` and `Enum.BindingSet.Account` exist on Retail, Mists and Titan (`live`, `classic`, `classic_titan` clones). The `ACCOUNT_BINDINGS` global is only defined by Classic's load-on-demand `Blizzard_BindingUI`, so it is not used.
   - `TOGGLEACHIEVEMENT` defaults to Y on all three.
@@ -104,6 +111,10 @@ Why toggling the options fixed it for the first reporter stays unexplained: the 
   - The headless runner stubs the binding API (`.claude/tools/headless/options-env.lua:166-172` has `SetBinding`/`SaveBindings`; `C_KeyBindings.GetBindingByKey` and `GetCurrentBindingSet` are added).
   - The suite, and whether the in-game run may change and restore a real binding, are settled in `plan.md`.
 - **Checks:** `Check-Repo.ps1`, the scenario suites, `krowi:taint-reviewer` (binding API at login), `/code-review`.
+- **Known limits of the test:**
+  - `y-on-new-install` calls the move the way `PLAYER_LOGIN` does, not through the handler itself; the in-game new-install login checks that wiring.
+  - It is headless only, so `Read-GameTests.ps1` lists its in-game SKIP as a difference, like the guide suite's headless-only cases. The release gate counts only failures.
+  - `C_KeyBindings.GetBindingByKey` is asked without a binding context. An override binding another addon puts on Y at login might be reported instead of the saved one; the move is then skipped (rare, not handled).
 - **In game, Retail:**
   - Log in on an account that never ran the addon (WoW4 or WoW5 have no saved variables of it). Y then runs `KrowiAF_OPEN_TAB_Achievements`.
   - Press Y, select an achievement, close the window and press Y again: it reopens on that achievement.
