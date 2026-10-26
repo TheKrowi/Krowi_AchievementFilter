@@ -123,11 +123,13 @@ function Krowi_OptionsWindowMixin:OnLoad()
     self.SearchBox:HookScript("OnHide", function(box) box:SetText("") end)
     self.CollapseButton:SetScript("OnClick", function() self:SetPaneCollapsed(true) end)
     self.ExpandButton:SetScript("OnClick", function() self:SetPaneCollapsed(false) end)
-    -- Show me closes the window first, then shows the feature (the help track's decision, plan-help.md); ShowMe returns
-    -- false when it has nothing to show (the data still loading, no tab shown), and the window comes back
+    -- Show me closes the window first, then shows the feature (the help track's decision, plan-help.md). The window stays
+    -- while help.CanShowMe() is false (the data still loading), and comes back when ShowMe returns false (its scene had
+    -- nothing to open, such as no tab shown).
     self.ShowMeButton:SetScript("OnClick", function()
         local help = self.Help
         if InCombatLockdown() or not (help and help.ShowMe) then return end
+        if help.CanShowMe and not help.CanShowMe() then return end
         self:Hide()
         if help.ShowMe() == false then self:Show() end
     end)

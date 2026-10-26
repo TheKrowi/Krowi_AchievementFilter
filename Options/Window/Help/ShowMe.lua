@@ -5,8 +5,8 @@ local help = window.Help
 
 -- Show me (docs/work/2026-10-25-options-revamp/plan-help.md): one scene per feature section, opened through the entry
 -- points the key bindings, the minimap icon and the menus already use; none calls ShowUIPanel or draws on GameTooltip.
--- The window's pane hides the window, then calls ShowMe, and shows the window again when ShowMe returns false: the data
--- is still loading, or the scene had nothing to open. The scenes are shared with /kaftest pictures through
+-- The window's pane checks CanShowMe (the data loaded, out of combat), hides the window, then calls ShowMe, and shows
+-- the window again when ShowMe returns false: the scene had nothing to open. The scenes are shared with /kaftest pictures through
 -- HelpScenes: a scene takes an optional ready(scene) callback that gets the frames it opened once they are drawn.
 -- The map has no ShowMe: a secure button of its own, laid over the pane's Show me button, clicks the minimap's map button
 -- from secure code, so the map is never opened from the addon's code (spec decision 9).
@@ -331,6 +331,7 @@ end
 
 for id, scene in next, scenes do
     if help[id] and (id ~= "guides" or addon.Util.IsMainline) then
+        help[id].CanShowMe = CanShow
         help[id].ShowMe = function()
             if not CanShow() then
                 return false

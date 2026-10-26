@@ -69,7 +69,7 @@ function Krowi_OptionsOptionRowMixin:OnLoad()
     for slot, button in ipairs({ self.Key1, self.Key2 }) do
         button:SetScript("OnClick", function() self:StartKeyCapture(slot) end)
         button:SetScript("OnKeyDown", function(_, key) self:OnKeyCaptured(slot, key) end)
-        button:SetScript("OnMouseDown", function(_, mouseButton)
+        button:HookScript("OnMouseDown", function(_, mouseButton) -- the template's own OnMouseDown draws the pressed look
             if mouseButtons[mouseButton] then self:OnKeyCaptured(slot, mouseButtons[mouseButton]) end
         end)
         button:SetScript("OnMouseWheel", function(_, delta) self:OnKeyCaptured(slot, delta > 0 and "MOUSEWHEELUP" or "MOUSEWHEELDOWN") end)
