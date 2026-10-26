@@ -46,7 +46,13 @@ local function MoveYAtLogin(case)
         BindingSet = function() return Enum.BindingSet[case.BindingSet or "Account"] end,
         InCombat = function() return case.InCombat or false end,
         CommandOnKey = function(key) return keys[key] or "" end,
-        Bind = function(key, command) keys[key] = command end,
+        Bind = function(key, command)
+            if case.BindFails then
+                return false
+            end
+            keys[key] = command
+            return true
+        end,
         Save = function(set) saved = tostring(set) end
     })
     local ok, err = pcall(gui.MoveYToMicroButtonTab, gui)
@@ -186,6 +192,10 @@ options.Scenarios = {
         Observe = function() return MoveYAtLogin({Existing = true}) end, -- first run before this fix: Y is left alone (Krowi, 2026-10-26)
         Recorded = "y=TOGGLEACHIEVEMENT pending=nil saved=none",
         Target = "y=TOGGLEACHIEVEMENT pending=nil saved=none"},
+    {Name = "y-at-login-bind-refused",
+        Observe = function() return MoveYAtLogin({BindFails = true}) end, -- SetBinding returns false: nothing saved, tried again next login
+        Recorded = "y=TOGGLEACHIEVEMENT pending=true saved=none",
+        Target = "y=TOGGLEACHIEVEMENT pending=true saved=none"},
     {Name = "y-at-login-blizzard-tab",
         Observe = function() return MoveYAtLogin({Command = "TOGGLEACHIEVEMENT"}) end, -- the micro button opens Blizzard's own tab
         Recorded = "y=TOGGLEACHIEVEMENT pending=nil saved=none",
@@ -202,7 +212,7 @@ local function RunScenario(scenario)
         return { Name = scenario.Name, Status = "FAIL", TargetMet = false, Line = ("options/%s: FAIL error=[%s]"):format(scenario.Name, tostring(got)) }
     end
     if got == nil then
-        return { Name = scenario.Name, Status = "SKIP", TargetMet = false, Line = ("options/%s: SKIP %s"):format(scenario.Name, reason or "could not run") }
+        return { Name = scenario.Name, Status = "SKIP", Line = ("options/%s: SKIP %s"):format(scenario.Name, reason or "could not run") }
     end
     local status = got == recorded and "PASS" or "FAIL"
     local targetMet = got == target

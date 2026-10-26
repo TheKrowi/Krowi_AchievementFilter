@@ -164,11 +164,12 @@ local function New(root, client)
     env.IsLoggedIn = function() return false end
     -- The key bindings as the game loads them (docs/work/197-reopen-where-left-off, measured in game): none at all while
     -- the files load and ADDON_LOADED runs (binding set 0), the player's own set before PLAYER_LOGIN (see the end of New).
-    -- A key holds one command, so binding it takes it off any other
+    -- A key holds one command, so binding it takes it off any other. SetBinding returns true, as the game does when it
+    -- takes the binding (Blizzard_Keybindings.lua:167)
     ctx.Bindings, ctx.BindingSet = {}, 0
     env.GetBindingKey = function(command) local b = ctx.Bindings[command] if b then return b[1], b[2] end end
     env.SetBinding = function(key, command, index)
-        if not command then return end
+        if not command then return true end
         for other, keys in pairs(ctx.Bindings) do
             if other ~= command then
                 for i = 1, 2 do if keys[i] == key then keys[i] = nil end end
@@ -176,6 +177,7 @@ local function New(root, client)
         end
         ctx.Bindings[command] = ctx.Bindings[command] or {}
         ctx.Bindings[command][index or 1] = key
+        return true
     end
     local C_KeyBindings = Stub("C_KeyBindings")
     rawset(C_KeyBindings, "GetBindingByKey", function(key)
@@ -388,8 +390,7 @@ local function New(root, client)
     end
     local savedData = rawget(env, "KrowiAF_SavedData")
     local setUp = savedData and savedData.FirstTimeSetUp
-    ctx.NewInstall = { Y = C_KeyBindings.GetBindingByKey("Y"), Pending = setUp and setUp.YBindingPending,
-        Switched = setUp and setUp.AchievementTabsSwitched }
+    ctx.NewInstall = { Y = C_KeyBindings.GetBindingByKey("Y"), Pending = setUp and setUp.YBindingPending }
     ctx.Bindings = {}
     return ctx
 end

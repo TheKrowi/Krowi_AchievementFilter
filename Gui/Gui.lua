@@ -389,7 +389,7 @@ local game = {
     BindingSet = function() return GetCurrentBindingSet() end,
     InCombat = function() return InCombatLockdown() end,
     CommandOnKey = function(key) return C_KeyBindings.GetBindingByKey(key) end,
-    Bind = function(key, command) SetBinding(key, command) end,
+    Bind = function(key, command) return SetBinding(key, command) end,
     Save = function(set) SaveBindings(set) end
 }
 local bindings = game
@@ -404,7 +404,9 @@ function gui:MoveYToMicroButtonTab()
     end
     local command = bindings.MicroButtonCommand()
     if command and command ~= "TOGGLEACHIEVEMENT" and bindings.CommandOnKey("Y") == "TOGGLEACHIEVEMENT" then
-        bindings.Bind("Y", command)
+        if not bindings.Bind("Y", command) then
+            return -- the game refused it; tried again at the next login
+        end
         bindings.Save(Enum.BindingSet.Account)
     end
     setUp.YBindingPending = nil
