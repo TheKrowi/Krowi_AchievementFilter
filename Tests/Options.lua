@@ -28,7 +28,42 @@ local function Join(list)
     return #list == 0 and "none" or table.concat(list, ",")
 end
 
--- Observe: a function returning the line's value
+-- The move of Y at login (issue #197, docs/work/197-reopen-where-left-off) on a model of the key bindings, so no scenario
+-- touches the player's own (Gui/Gui.lua UseBindingsForTest). Unless the case says otherwise: Y on Blizzard's Toggle
+-- Achievements, the account's binding set, out of combat, a new install's pending move, and the addon's Achievements tab
+-- as the micro button's. The line is what Y runs afterwards, whether the move is still pending and the set it saved
+local function MoveYAtLogin(case)
+    local gui = addon.Gui
+    if not gui.UseBindingsForTest then
+        return "no move at login"
+    end
+    local keys = { Y = case.Y or "TOGGLEACHIEVEMENT" }
+    local setUp = { YBindingPending = not case.Existing or nil }
+    local saved = "none"
+    gui:UseBindingsForTest({
+        FirstTimeSetUp = function() return setUp end,
+        MicroButtonCommand = function() return case.Command or "KrowiAF_OPEN_TAB_Achievements" end,
+        BindingSet = function() return Enum.BindingSet[case.BindingSet or "Account"] end,
+        InCombat = function() return case.InCombat or false end,
+        CommandOnKey = function(key) return keys[key] or "" end,
+        Bind = function(key, command)
+            if case.BindFails then
+                return false
+            end
+            keys[key] = command
+            return true
+        end,
+        Save = function(set) saved = tostring(set) end
+    })
+    local ok, err = pcall(gui.MoveYToMicroButtonTab, gui)
+    gui:UseBindingsForTest(nil)
+    if not ok then
+        error(err, 0)
+    end
+    return ("y=%s pending=%s saved=%s"):format(keys.Y, tostring(setUp.YBindingPending), saved)
+end
+
+-- Observe: a function returning the line's value, or nil and the reason it could not run
 options.Scenarios = {
     {Name = "settings-entry",
         Observe = function()
@@ -120,16 +155,64 @@ options.Scenarios = {
         end,
         Recorded = "visible-retail-only=0",
         Target = "visible-retail-only=0"},
+    -- Issue #197: a new install moves Y from Blizzard's Toggle Achievements to the micro button's tab once the key bindings
+    -- are loaded. The headless load is a new install, with the bindings loaded as the game loads them (none at
+    -- ADDON_LOADED, the account's set by PLAYER_LOGIN); a game session is not, so the game skips this one
+    {Name = "y-on-new-install",
+        Observe = function()
+            local seen = addon.Tests.NewInstall
+            if not seen then
+                return nil, "needs a new install (headless only)"
+            end
+            return ("y=%s pending=%s"):format(tostring(seen.Y), tostring(seen.Pending))
+        end,
+        Recorded = "y=KrowiAF_OPEN_TAB_Achievements pending=nil", -- y=TOGGLEACHIEVEMENT until the fix: the first run called the removed GetBindingByKey before any binding was loaded
+        Target = "y=KrowiAF_OPEN_TAB_Achievements pending=nil"},
+    {Name = "y-at-login-new",
+        Observe = function() return MoveYAtLogin({}) end,
+        Recorded = "y=KrowiAF_OPEN_TAB_Achievements pending=nil saved=1", -- "no move at login" until the fix, as for every case below
+        Target = "y=KrowiAF_OPEN_TAB_Achievements pending=nil saved=1"},
+    {Name = "y-at-login-bindings-not-loaded",
+        Observe = function() return MoveYAtLogin({BindingSet = "Default"}) end, -- 0, what the game reports before they load
+        Recorded = "y=TOGGLEACHIEVEMENT pending=true saved=none",
+        Target = "y=TOGGLEACHIEVEMENT pending=true saved=none"},
+    {Name = "y-at-login-character-set",
+        Observe = function() return MoveYAtLogin({BindingSet = "Character"}) end,
+        Recorded = "y=TOGGLEACHIEVEMENT pending=true saved=none",
+        Target = "y=TOGGLEACHIEVEMENT pending=true saved=none"},
+    {Name = "y-at-login-combat",
+        Observe = function() return MoveYAtLogin({InCombat = true}) end, -- a /reload in combat
+        Recorded = "y=TOGGLEACHIEVEMENT pending=true saved=none",
+        Target = "y=TOGGLEACHIEVEMENT pending=true saved=none"},
+    {Name = "y-at-login-y-taken",
+        Observe = function() return MoveYAtLogin({Y = "TOGGLEWORLDMAP"}) end,
+        Recorded = "y=TOGGLEWORLDMAP pending=nil saved=none",
+        Target = "y=TOGGLEWORLDMAP pending=nil saved=none"},
+    {Name = "y-at-login-existing-account",
+        Observe = function() return MoveYAtLogin({Existing = true}) end, -- first run before this fix: Y is left alone (Krowi, 2026-10-26)
+        Recorded = "y=TOGGLEACHIEVEMENT pending=nil saved=none",
+        Target = "y=TOGGLEACHIEVEMENT pending=nil saved=none"},
+    {Name = "y-at-login-bind-refused",
+        Observe = function() return MoveYAtLogin({BindFails = true}) end, -- SetBinding returns false: nothing saved, tried again next login
+        Recorded = "y=TOGGLEACHIEVEMENT pending=true saved=none",
+        Target = "y=TOGGLEACHIEVEMENT pending=true saved=none"},
+    {Name = "y-at-login-blizzard-tab",
+        Observe = function() return MoveYAtLogin({Command = "TOGGLEACHIEVEMENT"}) end, -- the micro button opens Blizzard's own tab
+        Recorded = "y=TOGGLEACHIEVEMENT pending=nil saved=none",
+        Target = "y=TOGGLEACHIEVEMENT pending=nil saved=none"},
 }
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
 local function RunScenario(scenario)
-    local ok, got = pcall(scenario.Observe)
+    local ok, got, reason = pcall(scenario.Observe)
     local isRetail = addon.Util.IsMainline
     local recorded = (not isRetail and scenario.RecordedClassic) or scenario.Recorded
     local target = (not isRetail and scenario.TargetClassic) or scenario.Target
     if not ok then
         return { Name = scenario.Name, Status = "FAIL", TargetMet = false, Line = ("options/%s: FAIL error=[%s]"):format(scenario.Name, tostring(got)) }
+    end
+    if got == nil then
+        return { Name = scenario.Name, Status = "SKIP", Line = ("options/%s: SKIP %s"):format(scenario.Name, reason or "could not run") }
     end
     local status = got == recorded and "PASS" or "FAIL"
     local targetMet = got == target

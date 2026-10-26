@@ -103,6 +103,10 @@ function loadHelper:OnEvent(event, arg1, arg2)
         if C_AddOns.IsAddOnLoaded("Blizzard_Calendar") then
             LoadBlizzard_Calendar()
         end
+
+        -- Last, so an error in it cannot stop the loads above; the key bindings are loaded by now and the micro button's
+        -- tab is resolved (LoadPlayerLogin)
+        addon.Gui:MoveYToMicroButtonTab()
     elseif event == "PLAYER_ENTERING_WORLD" then
          -- arg1 = isLogin, arg2 = isReload
         addon.EventData.ClearCalendarEventsCacheDeferral()

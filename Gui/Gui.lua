@@ -349,11 +349,6 @@ local function SwitchAchievementTabs()
     addon.Options.db.profile.Tabs["Blizzard_AchievementUI"]["Achievements"].Order = addonAchId
     addon.Options.db.profile.Tabs[addonName]["Achievements"].Order = blizzAchId
     addon.Options.db.profile.MicroButtonTab = addonAchId
-    local binding = GetBindingByKey("Y")
-    if binding == KrowiAF_SavedData.Tabs[blizzAchId].BindingName then
-        SetBinding("Y", KrowiAF_SavedData.Tabs[addonAchId].BindingName)
-        SaveBindings(GetCurrentBindingSet())
-    end
 end
 
 local function SafeSwitchAchievementTabs()
@@ -376,10 +371,50 @@ function gui:TabsOrderGetActiveKeys()
     if not KrowiAF_SavedData.FirstTimeSetUp.AchievementTabsSwitched then
         SafeSwitchAchievementTabs()
         KrowiAF_SavedData.FirstTimeSetUp.AchievementTabsSwitched = true
+        KrowiAF_SavedData.FirstTimeSetUp.YBindingPending = true -- moved at login, once the key bindings are loaded (gui:MoveYToMicroButtonTab)
     end
 
     needsCleanup = nil
     return KrowiAF_SavedData.TabKeys
+end
+
+-- What the move of Y reads and writes in the game. The options suite swaps in a model (Tests/Options.lua,
+-- UseBindingsForTest), so its scenarios never touch the player's key bindings.
+local game = {
+    FirstTimeSetUp = function() return KrowiAF_SavedData.FirstTimeSetUp end,
+    MicroButtonCommand = function()
+        local tab = KrowiAF_SavedData.Tabs[addon.Options.db.profile.MicroButtonTab]
+        return tab and tab.BindingName
+    end,
+    BindingSet = function() return GetCurrentBindingSet() end,
+    InCombat = function() return InCombatLockdown() end,
+    CommandOnKey = function(key) return C_KeyBindings.GetBindingByKey(key) end,
+    Bind = function(key, command) return SetBinding(key, command) end,
+    Save = function(set) SaveBindings(set) end
+}
+local bindings = game
+
+-- A new install moves Y from Blizzard's Toggle Achievements to the micro button's tab, once, in the account's key bindings
+-- (issue #197). It runs at PLAYER_LOGIN because the game has loaded no key bindings yet at ADDON_LOADED. It waits while a
+-- character's own binding set is active or the player is in combat, and leaves a Y bound to anything else alone.
+function gui:MoveYToMicroButtonTab()
+    local setUp = bindings.FirstTimeSetUp()
+    if not (setUp and setUp.YBindingPending) or bindings.BindingSet() ~= Enum.BindingSet.Account or bindings.InCombat() then
+        return
+    end
+    local command = bindings.MicroButtonCommand()
+    if command and command ~= "TOGGLEACHIEVEMENT" and bindings.CommandOnKey("Y") == "TOGGLEACHIEVEMENT" then
+        if not bindings.Bind("Y", command) then
+            return -- the game refused it; tried again at the next login
+        end
+        bindings.Save(Enum.BindingSet.Account)
+    end
+    setUp.YBindingPending = nil
+end
+
+-- For the options suite: a model of the key bindings in place of the game, nil for the game again
+function gui:UseBindingsForTest(model)
+    bindings = model or game
 end
 
 function gui:SetFrameToLastPosition(frame, rememberLastPositionOption)

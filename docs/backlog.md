@@ -105,3 +105,14 @@ Follow-ups that are not a work item yet. When one is taken up, it gets its own w
 - **A profile switch leaves most layout settings unapplied until a reload** (found 2026-10-26 while fixing the profile switch error). `RefreshOptions` (`Options/Layout.lua`) calls each setter with the new profile's own value, and most setters return early when `profile.X == value`, which is then always true: the new profile's widths, height, indentation, mouse wheel speeds, calendar button offsets and merge threshold are not applied to the window's frames by the switch (a `/reload` applies them). Only the header, the tabs and the special categories follow. Not verified in game yet. The fix: let `RefreshOptions` apply the frames directly instead of through the setters' change checks.
 - **The ElvUI plugin's "Skin Tutorials" row reports on a frame that no longer exists** (`Plugins/ElvUI.lua:754`, `doSkin.Tutorials`). The plan kept it as ElvUI's own setting; it only told whether KAF skinned its tutorial. Removing it also deletes its string from CurseForge's Plugins namespace. Krowi's call.
 - **Krowi_Options' mixins and templates are defined unconditionally** (code review, 2026-10-26): when the library is extracted and embedded twice, the last loaded copy's `Krowi_Options*Mixin` globals and XML templates win whatever the minor. Recorded in the plan's departures for the extraction.
+
+## From the Y binding fix (2026-10-26, issue #197, docs/work/197-reopen-where-left-off)
+
+- **Blizzard's toggle always opens Blizzard's own Achievements tab** (spec option 4, left for later by Krowi, 2026-10-26).
+  - The addon's replacement of `AchievementFrame_ToggleAchievementFrame` (`Gui/BlizzardOverrides.lua:33-49`) calls `AchievementFrameTab_OnClick(1)` on every open.
+  - Toasts, chat links and a Y still on Blizzard's Toggle Achievements go through it, so they never reopen the addon's tab and the achievement the player left.
+  - The fix: open the addon's last tab and view instead while Blizzard's tab is hidden. It changes a replaced Blizzard global for every way into the window, so it needs a taint review.
+- **Existing accounts keep Blizzard's Y** (spec option 1, not taken, 2026-10-26).
+  - The move of Y took on no account: since 11.2.7 and 5.5.1 its API is gone, and before that it ran before the key bindings were loaded.
+  - So every current player whose Y is still Blizzard's keeps seeing #197 until they press Bind to Y.
+  - If reports continue, a `DataIntegrityManager` step can set `FirstTimeSetUp.YBindingPending` once for accounts that already have `AchievementTabsSwitched`.

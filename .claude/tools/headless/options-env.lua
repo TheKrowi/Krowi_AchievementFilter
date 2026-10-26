@@ -58,7 +58,8 @@ end
 -- Other addons the plugins look for stay absent, so each plugin takes its "not loaded" path
 local absentGlobals = { ElvUI = true, GW2_ADDON = true, EllesmereUI = true, ZGV = true, IAT_HasAchievement = true,
     IAT_DisplayAchievement = true, BetterWardrobeCollectionFrame = true, WOW_PROJECT_CAMELOT = true, LIBSTUB_MAJOR = true,
-    KROWI_LIBMAN = true, BINDING_HEADER_KrowiAF = true, GAME_LOCALE = true, LibStub = true }
+    KROWI_LIBMAN = true, BINDING_HEADER_KrowiAF = true, GAME_LOCALE = true, LibStub = true,
+    GetBindingByKey = true } -- C_KeyBindings.GetBindingByKey since 11.2.7 and 5.5.1; the global is gone
 
 local skip = { "^Libs/AceGUI%-3%.0/", "^Libs/AceConfig%-3%.0/", "^Libs/TaintLess/", "^Libs/LibSerialize/", "^Libs/LibDeflate/",
     "^Libs/AceSerializer%-3%.0/", "^Tests/" }
@@ -161,14 +162,35 @@ local function New(root, client)
     env.GetCurrentRegionName = function() return "EU" end
     env.InCombatLockdown = function() return false end
     env.IsLoggedIn = function() return false end
-    ctx.Bindings = {}
+    -- The key bindings as the game loads them (docs/work/197-reopen-where-left-off, measured in game): none at all while
+    -- the files load and ADDON_LOADED runs (binding set 0), the player's own set before PLAYER_LOGIN (see the end of New).
+    -- A key holds one command, so binding it takes it off any other. SetBinding returns true, as the game does when it
+    -- takes the binding (Blizzard_Keybindings.lua:167)
+    ctx.Bindings, ctx.BindingSet = {}, 0
     env.GetBindingKey = function(command) local b = ctx.Bindings[command] if b then return b[1], b[2] end end
     env.SetBinding = function(key, command, index)
-        if not command then return end
+        if not command then return true end
+        for other, keys in pairs(ctx.Bindings) do
+            if other ~= command then
+                for i = 1, 2 do if keys[i] == key then keys[i] = nil end end
+            end
+        end
         ctx.Bindings[command] = ctx.Bindings[command] or {}
         ctx.Bindings[command][index or 1] = key
+        return true
     end
-    env.GetCurrentBindingSet = function() return 1 end
+    local C_KeyBindings = Stub("C_KeyBindings")
+    rawset(C_KeyBindings, "GetBindingByKey", function(key)
+        for command, keys in pairs(ctx.Bindings) do
+            if keys[1] == key or keys[2] == key then return command end
+        end
+        return ""
+    end)
+    env.C_KeyBindings = C_KeyBindings
+    local Enum = Stub("Enum")
+    rawset(Enum, "BindingSet", { Default = 0, Account = 1, Character = 2 })
+    env.Enum = Enum
+    env.GetCurrentBindingSet = function() return ctx.BindingSet end
     env.SaveBindings = function() end
     env.GetTime = function() return 1000 end
     env.GetServerTime = function() return os.time({ year = 2026, month = 10, day = 25, hour = 21, min = 30, sec = 0 }) end
@@ -358,6 +380,18 @@ local function New(root, client)
     if addon.Gui and addon.Gui.WorldMapButton and not addon.Gui.WorldMapButton.Refresh then
         addon.Gui.WorldMapButton = Stub("addon.Gui.WorldMapButton")
     end
+
+    -- PLAYER_LOGIN on a new install: the account's key bindings are loaded by then, with Blizzard's Toggle Achievements on
+    -- Y, and the addon moves Y (Krowi_AchievementFilter.lua LoadPlayerLogin). What that left is the options suite's
+    -- y-on-new-install; then the bindings go back to the empty account set the other scenarios were written against
+    ctx.BindingSet, ctx.Bindings = 1, { TOGGLEACHIEVEMENT = { "Y" } }
+    if addon.Gui and type(addon.Gui.MoveYToMicroButtonTab) == "function" then
+        Step("MoveYToMicroButtonTab", function() addon.Gui:MoveYToMicroButtonTab() end)
+    end
+    local savedData = rawget(env, "KrowiAF_SavedData")
+    local setUp = savedData and savedData.FirstTimeSetUp
+    ctx.NewInstall = { Y = C_KeyBindings.GetBindingByKey("Y"), Pending = setUp and setUp.YBindingPending }
+    ctx.Bindings = {}
     return ctx
 end
 
