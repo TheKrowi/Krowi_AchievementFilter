@@ -1,5 +1,5 @@
 # Plan: Event reminder pop-ups follow addons that place the game's alerts; placeholders preview with Hide (#188, #364)
-Spec: [spec.md](spec.md). Status: accepted. Branch `fix/188-popup-holder`. Approved by Krowi 2026-10-26, with the setting applying without a reload (a departure from spec R1).
+Spec: [spec.md](spec.md). Status: done. Branch `fix/188-popup-holder`. Approved by Krowi 2026-10-26, with the setting applying without a reload (a departure from spec R1).
 
 ## Context
 - **#188:** the pop-up position resets because KAF moves Blizzard's `AlertFrame` and addons that own the alert spot (Dominos Roll's Alerts bar, ElvUI, GW2_UI, EllesmereUI's mover) put it back on every alert. At every login KAF also replaces `AdjustAnchors` on all of Blizzard's toast systems: a taint path, and every toast stacks by KAF's settings, reminders on or off.
@@ -159,6 +159,7 @@ hooksecurefunc(AlertFrame, "UpdateAnchors", Restack)
 - Before the fix: Retail at 17:57 and Mists at 18:04. Retail queued 39 placeholders and Mists 9, as recorded.
 - After the fix: Retail at 18:20 and Mists at 18:21. Every scenario meets its target, the live Show and Hide steps pass, and BugGrabber shows no new errors.
 - Krowi: "looks good in game".
+- **The final build (1c7a15e9, on main c28007d9),** after the review fixes: Retail at 21:58 and Mists at 23:01. Every scenario meets its target on both, the live Show and Hide steps pass, and BugGrabber shows no new errors.
 
 **From the taint review and `/code-review` (2026-10-26), each reproduced first in the `popups` suite (25d5ba28):**
 - **Grow Down loop.** Blizzard's pass anchors toast on toast without clearing, and its pools' `pairs()` order can change between passes. A toast the addon had hung on another could close a loop, which `SetPoint` refuses with an error inside that pass (`every-alert-reorder`). `WalkAlertFrame` now hangs each toast on the chain's last frame that is not a toast, as far from it as the toasts before it take, so no toast hangs on another. The model's `SetPoint` refuses loops as the game does, and its pools keep an order a scenario can flip.

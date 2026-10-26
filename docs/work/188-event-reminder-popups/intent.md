@@ -1,5 +1,5 @@
 # Intent: Event reminder pop-ups keep their position, and placeholders can be hidden
-Author: NoShotz (#188, 2024-01-17), Spekkio (#364, from CurseForge, 2025-10-13); further reports from Profion85 (2024-08-06) and Rhindle (2026-02-05) on CurseForge. Source: GitHub issues #188 and #364. Status: accepted
+Author: NoShotz (#188, 2024-01-17), Spekkio (#364, from CurseForge, 2025-10-13); further reports from Profion85 (2024-08-06) and Rhindle (2026-02-05) on CurseForge. Source: GitHub issues #188 and #364. Status: done
 
 ## Problem
 **#188, the position resets.** A player sets Event Reminders > Pop ups > Location (X and Y offset) and the pop-ups move there, but after the next pop-up, or after a `/reload`, they are back in the middle of the screen. NoShotz's screenshots show Y offset 1045 (near the top) and a placeholder drawn there, then the next placeholder drawn about mid-screen. With only KAF enabled the position held; the culprit on their side was Dominos Roll. Three more players reported the same on CurseForge, without naming addons. Retail; the code is the same on Classic.

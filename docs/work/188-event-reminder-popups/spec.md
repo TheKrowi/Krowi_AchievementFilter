@@ -1,5 +1,5 @@
 # Spec: Event reminder pop-ups follow addons that place the game's alerts, keep their own position otherwise, and get a Hide button
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. A new setting under Pop up position, "Position applies to", with **Every alert** (the default, today's look) and **Only event reminders**; switching needs a reload.
