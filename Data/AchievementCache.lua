@@ -178,7 +178,30 @@ function addon.ResetCache()
     coFinished = nil
 end
 
+-- What the achievement window redraws after an earn; Tests/Earned.lua calls it to simulate an earn without saving anything.
+-- Only the categories the earn can change are recounted: recounting a whole tab in one script ran past the game's time
+-- limit in combat (docs/work/2026-10-25-toast-script-too-long)
+function addon.MarkEarnedInWindow(achievementId)
+    addon.AchievementEarnedUpdateSummaryFrameOnNextShow = true
+    addon.AchievementEarnedUpdateAchievementsFrameOnNextShow = true
+    local achievement = addon.Data.Achievements[achievementId]
+    if achievement then
+        achievement.IsTracked = nil
+        achievement:MarkCountsDirty() -- the counts ignore collapse series (addon.GetAchievementNumbers), so the next one in a series needs nothing
+    end
+    for _, tab in next, addon.Tabs do -- Current Zone, Selected Zone and Search Results hold lists that do not link back to their achievements
+        if tab.Categories then
+            for _, category in next, tab.Categories do
+                if category.HasFlexibleData then
+                    category.CountsDirty = true
+                end
+            end
+        end
+    end
+end
+
 function addon.OnAchievementEarned(achievementId)
+    addon.MarkEarnedInWindow(achievementId) -- also before the cache build starts: the window can be open during the login load
     if criteriaCache == nil then
         return -- Achievement window is not opened yet
     end
@@ -186,12 +209,5 @@ function addon.OnAchievementEarned(achievementId)
     local characterGuid = UnitGUID("player")
     local achievementInfo = addon.GetAchievementInfoTable(achievementId)
     HandleAchievement(characterGuid, achievementInfo)
-    addon.AchievementEarnedUpdateCategoriesFrameOnNextShow = true
-    addon.AchievementEarnedUpdateSummaryFrameOnNextShow = true
-    addon.AchievementEarnedUpdateAchievementsFrameOnNextShow = true
-    local achievement = addon.Data.Achievements[achievementId]
-    if achievement then
-        achievement.IsTracked = nil
-    end
     addon.Data.SavedData.AchievementData.RegisterNewAchievementEarned(achievementId)
 end
