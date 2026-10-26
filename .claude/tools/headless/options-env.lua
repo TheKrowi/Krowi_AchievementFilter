@@ -9,7 +9,7 @@
 -- register the options. Every parse, load and step error is kept with its file and line in ctx.Errors.
 --
 --   local optionsEnv = assert(loadfile(dir .. "/options-env.lua"))()
---   local ctx = optionsEnv.Get(root, "Retail")   -- cached per client
+--   local ctx = optionsEnv.Get(root, "Retail")   -- cached per client; optionsEnv.New(root, "Retail") loads afresh
 --   ctx.addon.Options.OptionsTable, ctx.Registry[appName], ctx.BlizOptions, ctx.Errors
 
 local M = {}
@@ -399,6 +399,12 @@ function M.Get(root, client)
     local key = root .. "|" .. client
     if not cache[key] then cache[key] = New(root, client) end
     return cache[key]
+end
+
+-- A load of its own, not shared through the cache, for a suite that changes what it loads (the popups suite reloads the
+-- alert system against its model of Blizzard's alert frames)
+function M.New(root, client)
+    return New(root, client)
 end
 
 return M
