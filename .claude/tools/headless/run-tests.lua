@@ -36,7 +36,9 @@
 --         (Options/Window/Help/: the explanations, pictures and Show me the window's help pane reads, on the same load),
 --         earned (Gui/WindowFrames/CategoriesFrame/CategoriesFrameMixin.lua with Api/API.lua and
 --         Data/AchievementCache.lua on the real data load: what the achievement window recounts when an achievement is
---         earned and then opened in it)
+--         earned and then opened in it), plugins (Plugins/ZygorGuidesViewer.lua with Api/PluginsApi.lua and the
+--         ADDON_LOADED wiring of Krowi_AchievementFilter.lua: whether Zygor's guide icons are on the addon's rows at the
+--         list's first draw, issue #365)
 --
 -- Retail model is 12.1: the Blizzard_GameMenuEsc handler registry, the UI panel manager (its slots stay
 -- empty because the addon shows the achievement window with a plain Show), UISpecialFrames, static
@@ -1775,6 +1777,151 @@ suites.earned = function(c)
     function headless.Teardown() end
     local observations = {}
     return addon.Tests.Earned.Run(headless, observations), "Tests/Earned.lua", observations
+end
+
+-- The Zygor Guides Viewer plugin (Plugins/ZygorGuidesViewer.lua), the plugin API (Api/PluginsApi.lua) and the addon's
+-- ADDON_LOADED wiring (Krowi_AchievementFilter.lua) real; everything else that wiring calls is the runner's addon stub.
+-- Against a model of:
+--   Zygor 9.6's achievement module (Code-Retail/Achievement.lua): IconSetup fills AvailGuides and makes the icon pool
+--     Zygor shares (CreateFramePool, Blizzard_SharedXMLBase/Pools.lua), ScheduleTimer runs on a later frame, and
+--     Zygor's own post-hook on ToggleAchievementFrame runs IconSetup
+--   Blizzard's ToggleAchievementFrame (Blizzard_AchievementUI_Bootstrap.lua): it loads Blizzard_AchievementUI, whose
+--     ADDON_LOADED reaches the plugin API's event frame first, while the addon has not made its list yet (the order of
+--     two event frames is not defined), then the addon's handler, which makes the list; the window then shows Blizzard's
+--     own tab
+--   the addon's window: a click on one of its tabs, or its toggle, draws the list inside the call, as ShowSubFrames
+--     does: the list shows, its rows get their achievements and its ScrollBox updates (the data provider, the scroll)
+suites.plugins = function(c)
+    local env, addon = c.env, c.addon
+    c.frames.lenient = true -- the plugin reads row fields that can be nil, as the game allows
+    local hookFunction = env.hooksecurefunc -- the shared model only records hooks on a table's method; Zygor's plugin needs them
+    env.hooksecurefunc = function(target, key, hook)
+        if type(target) ~= "table" then
+            return hookFunction(target, key)
+        end
+        local original = target[key]
+        target[key] = function(...)
+            local results = { original(...) }
+            hook(...)
+            return unpack(results)
+        end
+    end
+    local timers = {}
+    local function RunTimers()
+        while #timers > 0 do table.remove(timers, 1)() end
+    end
+
+    env.CreateFramePool = function(_, _, template)
+        local active, free = {}, {}
+        return {
+            Acquire = function()
+                local icon = table.remove(free) or env.CreateFrame("Button", nil, nil, template)
+                icon.SetParent = function(self, parent) rawset(self, "parent", parent) end
+                active[icon] = true
+                return icon
+            end,
+            ReleaseAll = function()
+                for icon in pairs(active) do
+                    icon:Hide()
+                    free[#free + 1] = icon
+                end
+                active = {}
+            end,
+            EnumerateActive = function() return pairs(active) end,
+        }
+    end
+    local guides = { [40622] = true, [40623] = true } -- the achievements with a Zygor guide in the model
+    env.ZGV = {
+        Achievement = {
+            AvailGuides = {},
+            IconSetup = function(self)
+                if self.loaded then return end
+                for id in pairs(guides) do self.AvailGuides[id] = { title = "Guide " .. id } end
+                env.ZGV.SearchIconPool = env.ZGV.SearchIconPool or env.CreateFramePool("BUTTON", nil, "ZygorSearchButton")
+                self.loaded = true
+            end,
+        },
+        ScheduleTimer = function(_, fn) timers[#timers + 1] = fn end,
+        L = { achieveframe_button = "Click to load the guide for the '%s' achievement." },
+    }
+
+    env.KrowiAF = {}
+    local createFrame, pluginEvents = env.CreateFrame, nil
+    env.CreateFrame = function(...) -- the plugin API's event frame is a local of its file
+        local frame = createFrame(...)
+        pluginEvents = pluginEvents or frame
+        return frame
+    end
+    c.loadAddonFile("Api/PluginsApi.lua")
+    env.CreateFrame = createFrame
+    c.loadAddonFile("Plugins/ZygorGuidesViewer.lua")
+    c.loadAddonFile("Krowi_AchievementFilter.lua")
+    c.loadAddonFile("Tests/Plugins.lua")
+
+    local list, rows = nil, {}
+    local function LoadAchievementUI()
+        if env.AchievementFrame then return end
+        pluginEvents:RunScript("OnEvent", "ADDON_LOADED", "Blizzard_AchievementUI")
+        local window = env.CreateFrame("Frame", "AchievementFrame", env.UIParent)
+        list = env.CreateFrame("Frame", "KrowiAF_AchievementsFrame", window) -- what the addon's LoadWithBlizzard_AchievementUI makes
+        list.ScrollBox = { Update = function() end }
+        list.ScrollView = { frames = rows, GetFrames = function(self) return self.frames end }
+        for n = 1, 6 do
+            local row = env.CreateFrame("Button", nil, list)
+            row.Header = row:CreateFontString()
+            row.Shield = env.CreateFrame("Frame", nil, row)
+            row.shown = true
+            rows[n] = row
+        end
+        env.KrowiAF_SpecialFrame:RunScript("OnEvent", "ADDON_LOADED", "Blizzard_AchievementUI")
+    end
+    local function DrawList(picked)
+        list:Show()
+        for n, row in ipairs(rows) do
+            local id = n == 3 and picked.Id or 100 + n
+            row.Achievement = { Id = id }
+            row.Header:SetText("Achievement " .. id)
+        end
+        list.ScrollBox:Update() -- the new data provider
+        list.ScrollBox:Update() -- the scroll to the selected achievement
+    end
+    env.ToggleAchievementFrame = function()
+        LoadAchievementUI()
+        env.AchievementFrame:Show() -- on Blizzard's own Achievements tab; the addon's list stays hidden
+    end
+    local pending
+    env.KrowiAF_ToggleAchievementFrame = function()
+        LoadAchievementUI()
+        env.AchievementFrame:Show()
+        DrawList(pending)
+    end
+
+    -- Zygor loads after the addon (alphabetically), then its startup hooks Blizzard's toggle
+    pluginEvents:RunScript("OnEvent", "ADDON_LOADED", "ZygorGuidesViewer")
+    env.KrowiAF_SpecialFrame:RunScript("OnEvent", "ADDON_LOADED", "ZygorGuidesViewer")
+    env.hooksecurefunc("ToggleAchievementFrame", function() env.ZGV.Achievement:IconSetup() end)
+
+    local picks = { Expansions = 40622, Achievements = 40623 }
+    local headless = {}
+    function headless.Setup() return true end
+    function headless.OpenWithBlizzardBinding() env.ToggleAchievementFrame() end
+    function headless.PickAchievement(tabName) return { Id = picks[tabName] } end
+    function headless.ClickTab(_, picked) DrawList(picked) end
+    function headless.CloseWindow()
+        if env.AchievementFrame then env.AchievementFrame:Hide() end
+    end
+    function headless.ToggleWithAddonBinding(tabName, picked)
+        pending = picked
+        env.KrowiAF_ToggleAchievementFrame("Krowi_AchievementFilter", tabName)
+    end
+    function headless.After(_, fn)
+        RunTimers()
+        fn()
+    end
+    function headless.Teardown() end
+    local results, observations = nil, {}
+    addon.Tests.Plugins.Run(headless, observations, function(r) results = r end)
+    return results, "Tests/Plugins.lua", observations
 end
 
 -------------------------------------------------------------------------------------------------
