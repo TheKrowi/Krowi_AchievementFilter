@@ -1,5 +1,5 @@
 # Spec: Clicking an achievement toast can stop with "script ran too long"
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. After an achievement is earned, opening the window on it (toast, objective tracker, chat link) no longer recounts every category of the tab; only the categories whose counts the earn can change are recounted.

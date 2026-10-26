@@ -1,5 +1,5 @@
 # Plan: Clicking an achievement toast can stop with "script ran too long"
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 ## Context
 Krowi clicked the toast of an achievement they had just earned while in combat on Retail and got "script ran too long" from `CategoriesFrameMixin.lua:141`. Root cause (spec, accepted 2026-10-25): after an earn, opening the window on that achievement recounts all 7149 achievement rows of the Expansions tab in one script, and combat's time limit stops it. Decision: recount only what the earn changed (per-category dirty marks), and in the same PR walk the tree once in `ExpandToCategory` and drop the extra full recount for an empty category. This plan becomes `docs/work/2026-10-25-toast-script-too-long/plan.md`. It is not routine (shared GUI code), so it waits for Krowi.
@@ -118,3 +118,5 @@ Krowi clicked the toast of an achievement they had just earned while in combat o
 - **Review findings left out:**
   - The Collections copy of `GetDisplayCategories` (`Gui/Collections/`) is not loaded (`Gui/FilesModern.xml:13` has it commented out).
   - The other full recounts through `RefreshView` are in the spec's Found on the way.
+- **Rebased onto main (2026-10-26)** after the options window merged (#369), on Krowi's call, so it ships in 105.0: the changelog lines moved under `## 105.0`, and the suite lists in the instruction file, `Tests/README.md`, `Tests/Files.xml` and `run-tests.lua` keep both the options suites and `earned`.
+- **After-run (2026-10-26), both green:** Retail 12.1.5 8 PASS, Mists 5.5.4 8 PASS, no difference from headless, no Lua error from the addon. One select after an earn: Retail 3,170 rows in 46 ms (70.8 ms with the Summary shown), down from 164 ms and 273 ms; Mists 160 rows in 13.7 ms (16.0 ms with the Summary).

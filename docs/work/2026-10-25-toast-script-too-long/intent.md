@@ -1,5 +1,5 @@
 # Intent: Clicking an achievement toast can stop with "script ran too long"
-Author: Krowi (maintainer), from their own BugSack. Source: in-game error. Status: accepted
+Author: Krowi (maintainer), from their own BugSack. Source: in-game error. Status: done
 
 ## Problem
 Krowi clicked the toast of an achievement they had just earned (an Exploration achievement in an Expansions zone category) on Retail, in combat. The click opens the achievement window and selects that achievement in the Expansions tab. Instead, the game stopped the addon's code with "script ran too long" (BugGrabber, 1x), at `Gui/WindowFrames/CategoriesFrame/CategoriesFrameMixin.lua:141`, called through `ExpandToCategory`, `KrowiAF_SelectCategory`, `KrowiAF_SelectAchievementFromID` and the addon's `AchievementFrame_SelectAchievement` from Blizzard's `AchievementAlertFrame_OnClick`.
