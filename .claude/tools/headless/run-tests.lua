@@ -1833,6 +1833,7 @@ suites.plugins = function(c)
             EnumerateActive = function() return pairs(active) end,
         }
     end
+    env.C_AddOns = { IsAddOnLoaded = function(name) return name == "ZygorGuidesViewer" end } -- Retail's Zygor, the one the plugin serves
     local guides = { [40622] = true, [40623] = true } -- the achievements with a Zygor guide in the model
     env.ZGV = {
         Achievement = {

@@ -198,8 +198,8 @@ end
 
 function gameEnv.Setup(observations)
     snapshot = {}
-    if not (ZGV and ZGV.Achievement and ZGV.Achievement.AvailGuides) then
-        return false, "Zygor Guides Viewer with its achievement guides is not loaded"
+    if not (C_AddOns.IsAddOnLoaded("ZygorGuidesViewer") and ZGV and ZGV.Achievement and ZGV.Achievement.AvailGuides) then
+        return false, "Retail's Zygor Guides Viewer with its achievement guides is not loaded" -- the plugin serves only that one
     end
     tinsert(observations, ("Zygor Guides Viewer %s; Y runs %s"):format(tostring(C_AddOns.GetAddOnMetadata("ZygorGuidesViewer", "Version")),
         tostring(GetBindingAction("Y"))))
