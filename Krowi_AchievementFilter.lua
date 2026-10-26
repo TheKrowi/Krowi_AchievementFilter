@@ -79,6 +79,7 @@ local function LoadPlayerLogin()
     end
 
     addon.ChangeAchievementMicroButtonOnClick()
+    addon.Gui:MoveYToMicroButtonTab() -- after the micro button's tab is resolved; the key bindings are loaded by now
 end
 
 local function LoadBlizzard_Calendar()

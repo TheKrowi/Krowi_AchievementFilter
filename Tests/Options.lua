@@ -160,35 +160,35 @@ options.Scenarios = {
             end
             return ("y=%s pending=%s"):format(tostring(seen.Y), tostring(seen.Pending))
         end,
-        Recorded = "y=TOGGLEACHIEVEMENT pending=nil", -- the first run called the removed GetBindingByKey before any binding was loaded
+        Recorded = "y=KrowiAF_OPEN_TAB_Achievements pending=nil", -- y=TOGGLEACHIEVEMENT until the fix: the first run called the removed GetBindingByKey before any binding was loaded
         Target = "y=KrowiAF_OPEN_TAB_Achievements pending=nil"},
     {Name = "y-at-login-new",
         Observe = function() return MoveYAtLogin({}) end,
-        Recorded = "no move at login",
+        Recorded = "y=KrowiAF_OPEN_TAB_Achievements pending=nil saved=1", -- "no move at login" until the fix, as for every case below
         Target = "y=KrowiAF_OPEN_TAB_Achievements pending=nil saved=1"},
     {Name = "y-at-login-bindings-not-loaded",
         Observe = function() return MoveYAtLogin({BindingSet = "Default"}) end, -- 0, what the game reports before they load
-        Recorded = "no move at login",
+        Recorded = "y=TOGGLEACHIEVEMENT pending=true saved=none",
         Target = "y=TOGGLEACHIEVEMENT pending=true saved=none"},
     {Name = "y-at-login-character-set",
         Observe = function() return MoveYAtLogin({BindingSet = "Character"}) end,
-        Recorded = "no move at login",
+        Recorded = "y=TOGGLEACHIEVEMENT pending=true saved=none",
         Target = "y=TOGGLEACHIEVEMENT pending=true saved=none"},
     {Name = "y-at-login-combat",
         Observe = function() return MoveYAtLogin({InCombat = true}) end, -- a /reload in combat
-        Recorded = "no move at login",
+        Recorded = "y=TOGGLEACHIEVEMENT pending=true saved=none",
         Target = "y=TOGGLEACHIEVEMENT pending=true saved=none"},
     {Name = "y-at-login-y-taken",
         Observe = function() return MoveYAtLogin({Y = "TOGGLEWORLDMAP"}) end,
-        Recorded = "no move at login",
+        Recorded = "y=TOGGLEWORLDMAP pending=nil saved=none",
         Target = "y=TOGGLEWORLDMAP pending=nil saved=none"},
     {Name = "y-at-login-existing-account",
         Observe = function() return MoveYAtLogin({Existing = true}) end, -- first run before this fix: Y is left alone (Krowi, 2026-10-26)
-        Recorded = "no move at login",
+        Recorded = "y=TOGGLEACHIEVEMENT pending=nil saved=none",
         Target = "y=TOGGLEACHIEVEMENT pending=nil saved=none"},
     {Name = "y-at-login-blizzard-tab",
         Observe = function() return MoveYAtLogin({Command = "TOGGLEACHIEVEMENT"}) end, -- the micro button opens Blizzard's own tab
-        Recorded = "no move at login",
+        Recorded = "y=TOGGLEACHIEVEMENT pending=nil saved=none",
         Target = "y=TOGGLEACHIEVEMENT pending=nil saved=none"},
 }
 
