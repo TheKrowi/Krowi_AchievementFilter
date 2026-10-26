@@ -7,7 +7,8 @@
 
 -- The rows of the options page. An element (see WindowMixin.lua) picks its row; an option row reads the option's
 -- interface: GetLabel, GetDescription, Type, Get, Set, IsDisabled, GetValues, GetRange, GetButtonText,
--- GetNeedsReload, IsChanged, Reset, Placeholder, and for a key row Slots (two options holding a key each).
+-- GetNeedsReload, IsChanged, Reset, Placeholder, Confirm (a select's question before a choice is made), and for a key
+-- row Slots (two options holding a key each).
 -- Every change goes through window:OnOptionChanged, which redraws the rows, the dots and the reload bar.
 
 local controlColumn = 300 -- the controls start this far from the row's right edge; labels stop short of it
@@ -26,6 +27,9 @@ local function Forward(control, row)
     control:HookScript("OnEnter", function() row:OnEnter() end)
     control:HookScript("OnLeave", function() row:OnLeave() end)
 end
+
+-- The mouse buttons a key can be bound to, as AceGUI's keybinding widget took them; left and right start and stop
+local mouseButtons = { MiddleButton = "BUTTON3", Button4 = "BUTTON4", Button5 = "BUTTON5" }
 
 function Krowi_OptionsOptionRowMixin:OnLoad()
     self.Label:SetPoint("RIGHT", self, "RIGHT", -controlColumn - 12, 0)
@@ -65,7 +69,12 @@ function Krowi_OptionsOptionRowMixin:OnLoad()
     for slot, button in ipairs({ self.Key1, self.Key2 }) do
         button:SetScript("OnClick", function() self:StartKeyCapture(slot) end)
         button:SetScript("OnKeyDown", function(_, key) self:OnKeyCaptured(slot, key) end)
+        button:SetScript("OnMouseDown", function(_, mouseButton)
+            if mouseButtons[mouseButton] then self:OnKeyCaptured(slot, mouseButtons[mouseButton]) end
+        end)
+        button:SetScript("OnMouseWheel", function(_, delta) self:OnKeyCaptured(slot, delta > 0 and "MOUSEWHEELUP" or "MOUSEWHEELDOWN") end)
         button:EnableKeyboard(false)
+        button:EnableMouseWheel(false)
     end
 
     for _, control in ipairs({ self.Dot, self.Toggle, self.Range, self.Select, self.Execute, self.Input, self.Key1, self.Key2 }) do
@@ -101,8 +110,12 @@ function Krowi_OptionsOptionRowMixin:Init(element, window)
         self.Select:SetupMenu(function(_, root)
             for _, pair in ipairs(option:GetValues()) do
                 root:CreateRadio(tostring(pair[2]), function() return option:Get() == pair[1] end, function()
-                    option:Set(pair[1])
-                    window:OnOptionChanged(option)
+                    local function Choose()
+                        option:Set(pair[1])
+                        window:OnOptionChanged(option)
+                    end
+                    -- option.Confirm(value) -> the question the window asks before the choice is made
+                    if option.Confirm then window:AskConfirm(option:Confirm(pair[1]), Choose) else Choose() end
                 end)
             end
         end)
@@ -164,32 +177,40 @@ function Krowi_OptionsOptionRowMixin:Refresh()
     end
 end
 
--- Key capture: the button takes the next key press; Escape cancels. Out of combat only (the game blocks binding
--- changes in combat, and the buttons are greyed out there).
+-- Key capture, as AceGUI's keybinding widget did it: the button takes the next key, mouse button 3 to 5 or wheel turn;
+-- Escape clears the binding, a second click cancels. One button captures at a time in the whole window. Out of combat
+-- only (the game blocks binding changes in combat, and the buttons are greyed out there).
 function Krowi_OptionsOptionRowMixin:StartKeyCapture(slot)
-    if InCombatLockdown() then return end
+    local cancel = self.Capturing == slot
+    self.Window:EndKeyCaptures()
+    if cancel or InCombatLockdown() then
+        self:Refresh()
+        return
+    end
     self.Capturing = slot
     local button = slot == 1 and self.Key1 or self.Key2
     button:EnableKeyboard(true)
+    button:EnableMouseWheel(true)
     self:Refresh()
 end
 
 function Krowi_OptionsOptionRowMixin:EndKeyCapture()
+    if not self.Capturing then return end
     self.Capturing = nil
-    self.Key1:EnableKeyboard(false)
-    self.Key2:EnableKeyboard(false)
+    for _, button in ipairs({ self.Key1, self.Key2 }) do
+        button:EnableKeyboard(false)
+        button:EnableMouseWheel(false)
+    end
+    if self.Option then self:Refresh() end
 end
 
-local modifierKeys = { LSHIFT = true, RSHIFT = true, LCTRL = true, RCTRL = true, LALT = true, RALT = true }
+local ignoredKeys = { LSHIFT = true, RSHIFT = true, LCTRL = true, RCTRL = true, LALT = true, RALT = true, UNKNOWN = true }
 function Krowi_OptionsOptionRowMixin:OnKeyCaptured(slot, key)
-    if self.Capturing ~= slot or modifierKeys[key] then return end
-    local button = slot == 1 and self.Key1 or self.Key2
-    button:EnableKeyboard(false)
-    self.Capturing = nil
-    if key ~= "ESCAPE" and not InCombatLockdown() then
-        local combo = (IsAltKeyDown() and "ALT-" or "") .. (IsControlKeyDown() and "CTRL-" or "") .. (IsShiftKeyDown() and "SHIFT-" or "") .. key
-        self.Option.Slots[slot]:Set(combo)
-    end
+    if self.Capturing ~= slot or ignoredKeys[key] then return end
+    self:EndKeyCapture()
+    if InCombatLockdown() then return end
+    local combo = key == "ESCAPE" and "" or (IsAltKeyDown() and "ALT-" or "") .. (IsControlKeyDown() and "CTRL-" or "") .. (IsShiftKeyDown() and "SHIFT-" or "") .. key
+    self.Option.Slots[slot]:Set(combo)
     self.Window:OnOptionChanged(self.Option)
 end
 
@@ -208,10 +229,14 @@ Krowi_OptionsSubRowMixin = {}
 
 function Krowi_OptionsSubRowMixin:OnLoad()
     local function SetAll(value)
+        local reloadMember -- one that needs a reload, so the window shows the reload bar
         for _, option in ipairs(self.Element.Members) do
-            if not option:IsDisabled() then option:Set(value) end
+            if not option:IsDisabled() then
+                option:Set(value)
+                if option:GetNeedsReload() then reloadMember = option end
+            end
         end
-        self.Window:OnOptionChanged()
+        self.Window:OnOptionChanged(reloadMember)
     end
     self.All:SetScript("OnClick", function() SetAll(true) end)
     self.None:SetScript("OnClick", function() SetAll(false) end)
@@ -258,7 +283,7 @@ function Krowi_OptionsGridRowMixin:OnLoad()
             option:Set(not option:Get())
             self.Window:OnOptionChanged(option)
         end)
-        cell:HookScript("OnEnter", function() self:OnEnter() end)
+        cell:HookScript("OnEnter", function() self:OnEnter(i) end)
         cell:HookScript("OnLeave", function() self:OnLeave() end)
         self.Cells[i] = cell
     end
@@ -281,9 +306,10 @@ function Krowi_OptionsGridRowMixin:Refresh()
     end
 end
 
-function Krowi_OptionsGridRowMixin:OnEnter()
+-- column: the hovered check box's; the row itself (its script passes the motion flag) describes the first one
+function Krowi_OptionsGridRowMixin:OnEnter(column)
     self.Hover:Show()
-    self.Window:OnRowEnter(self.Element.Cells[1], self)
+    self.Window:OnRowEnter(self.Element.Cells[type(column) == "number" and column or 1], self)
 end
 
 function Krowi_OptionsGridRowMixin:OnLeave()

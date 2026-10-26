@@ -117,24 +117,28 @@ function Krowi_OptionsWindowMixin:OnLoad()
     self.Lightbox:SetAllPoints(UIParent)
     self.Lightbox:SetScript("OnClick", function(lightbox) lightbox:Hide() end)
 
-    self.SearchBox:HookScript("OnTextChanged", function(box, userInput) if userInput then self:OnSearch(box:GetText()) end end)
+    -- The search follows what the player types; the box's clear button and the window's OnHide empty it without user
+    -- input, which ends a search too
+    self.SearchBox:HookScript("OnTextChanged", function(box, userInput) if userInput or self.Searching then self:OnSearch(box:GetText()) end end)
     self.SearchBox:HookScript("OnHide", function(box) box:SetText("") end)
     self.CollapseButton:SetScript("OnClick", function() self:SetPaneCollapsed(true) end)
     self.ExpandButton:SetScript("OnClick", function() self:SetPaneCollapsed(false) end)
-    -- Show me closes the window first, then shows the feature (the help track's decision, plan-help.md)
+    -- Show me closes the window first, then shows the feature (the help track's decision, plan-help.md); ShowMe returns
+    -- false when it has nothing to show (the data still loading, no tab shown), and the window comes back
     self.ShowMeButton:SetScript("OnClick", function()
         local help = self.Help
         if InCombatLockdown() or not (help and help.ShowMe) then return end
         self:Hide()
-        help.ShowMe()
+        if help.ShowMe() == false then self:Show() end
     end)
-    self.DefaultsButton:SetScript("OnClick", function() self:AskDefaults() end)
-    self.CancelButton:SetScript("OnClick", function() self:CancelDefaults() end)
+    self.DefaultsButton:SetScript("OnClick", function() self:OnDefaultsClick() end)
+    self.CancelButton:SetScript("OnClick", function() self:CancelConfirm() end)
     self.ReloadButton:SetScript("OnClick", function() if not InCombatLockdown() then ReloadUI() end end)
     self.ResizeButton:SetScript("OnMouseDown", function() self:StartSizing("BOTTOMRIGHT") end)
     self.ResizeButton:SetScript("OnMouseUp", function()
         self:StopMovingOrSizing()
         self.Saved.Size = { self:GetWidth(), self:GetHeight() }
+        self:SavePoint() -- sizing re-anchors the window
         self:ReloadSection()
         self:UpdateShowMe() -- a secure Show me button placed over ours follows it
     end)
@@ -265,9 +269,10 @@ function Krowi_OptionsWindowMixin:OnShow()
     if self.SectionId then self:UpdateShowMe() end
 end
 
--- A key capture ends with the window, at the start of combat and when its row is reused
-local function EndKeyCaptures(window)
-    window.PageScrollBox:ForEachFrame(function(frame)
+-- A key capture ends with the window, at the start of combat, when another key button starts one and when its row is
+-- reused
+function Krowi_OptionsWindowMixin:EndKeyCaptures()
+    self.PageScrollBox:ForEachFrame(function(frame)
         if frame.EndKeyCapture then frame:EndKeyCapture() end
     end)
 end
@@ -275,8 +280,8 @@ end
 function Krowi_OptionsWindowMixin:OnHide()
     PlaySound(SOUNDKIT.IG_CHARACTER_INFO_CLOSE)
     for _, event in ipairs(shownEvents) do self:UnregisterEvent(event) end
-    EndKeyCaptures(self)
-    self.ConfirmingDefaults = nil
+    self:EndKeyCaptures()
+    self.Confirming = nil
     self:HideTooltip()
     self:ReleaseShowMe()
 end
@@ -288,7 +293,7 @@ function Krowi_OptionsWindowMixin:OnEvent(event)
         return
     end
     self.CombatStarting = event == "PLAYER_REGEN_DISABLED"
-    if self.CombatStarting then EndKeyCaptures(self) end
+    if self.CombatStarting then self:EndKeyCaptures() end
     self:Refresh()
     self.CombatStarting = nil
 end
@@ -307,9 +312,13 @@ end
 
 function Krowi_OptionsWindowMixin:OnDragStop()
     self:StopMovingOrSizing()
+    self:SavePoint()
+    self:UpdateShowMe() -- a secure Show me button placed over ours follows it
+end
+
+function Krowi_OptionsWindowMixin:SavePoint()
     local point, _, relativePoint, x, y = self:GetPoint(1)
     self.Saved.Point = { point, relativePoint, x, y }
-    self:UpdateShowMe() -- a secure Show me button placed over ours follows it
 end
 
 function Krowi_OptionsWindowMixin:Open(sectionId)
@@ -352,13 +361,14 @@ local function Flatten(elements)
     return list
 end
 
-function Krowi_OptionsWindowMixin:ShowSection(id, optionId)
+-- keepSearchText: a search ended by emptying the box down to one letter keeps that letter
+function Krowi_OptionsWindowMixin:ShowSection(id, optionId, keepSearchText)
     local config = self.Config
     self.SectionId = id
     self.Searching = nil
-    self.ConfirmingDefaults = nil
+    self.Confirming = nil
     self.Saved.LastSection = id
-    if self.SearchBox:GetText() ~= "" then self.SearchBox:SetText("") end
+    if not keepSearchText and self.SearchBox:GetText() ~= "" then self.SearchBox:SetText("") end
     config.OnSectionShown(id)
     self.PageTitle:SetText(id == "overview" and self.Strings.Overview or config.SectionName(id))
     self.DefaultsButton:SetShown(id ~= "overview")
@@ -404,10 +414,10 @@ function Krowi_OptionsWindowMixin:Refresh()
     self:UpdateShowMe()
 end
 
--- The page's header: the section's changed count and Defaults, or while Defaults asks, the question with Yes and No
+-- The page's header: the section's changed count and Defaults, or while the window asks, the question with Yes and No
 function Krowi_OptionsWindowMixin:RefreshFooter()
-    local confirming = self.ConfirmingDefaults ~= nil and self.ConfirmingDefaults == self.SectionId and not self.Searching
-    if not confirming then self.ConfirmingDefaults = nil end
+    local confirming = self:ConfirmingHere()
+    if not confirming then self.Confirming = nil end
     self.CancelButton:SetShown(confirming)
     self.PageTitle:SetShown(not confirming)
     self.ChangedText:ClearAllPoints()
@@ -415,7 +425,7 @@ function Krowi_OptionsWindowMixin:RefreshFooter()
     if confirming then
         self.ChangedText:SetPoint("LEFT", self.PageTitle, "LEFT")
         self.ChangedText:SetFontObject("GameFontHighlight")
-        self.ChangedText:SetText(self.Strings.ResetSection:format(self.Config.SectionName(self.SectionId)))
+        self.ChangedText:SetText(confirming.Text)
         self.DefaultsButton:SetText(self.Strings.Yes or YES)
         self.DefaultsButton:SetEnabled(true)
     else
@@ -458,28 +468,42 @@ function Krowi_OptionsWindowMixin:ScrollToOption(optionId)
     end
 end
 
--- Defaults asks inside the window: the button turns into Yes, with No and the question beside it. A StaticPopup would
--- write this dialog into Blizzard's shared popup frames and list, where a Blizzard dialog shown at the same time
--- (deleting an item, a summon, a battleground port) reads it and then runs its protected accept tainted.
-function Krowi_OptionsWindowMixin:AskDefaults()
-    local id = self.SectionId
-    if not id or id == "overview" or self.Searching then return end
-    if self.ConfirmingDefaults == id then
-        self.ConfirmingDefaults = nil
-        self:ResetSection(id)
+-- The window asks inside itself (Defaults, and an option with Confirm such as deleting a profile): Defaults turns into
+-- Yes, with No and the question beside it. A StaticPopup would write the dialog into Blizzard's shared popup frames and
+-- list, where a Blizzard dialog shown at the same time (deleting an item, a summon, a battleground port) reads it and
+-- then runs its protected accept tainted.
+function Krowi_OptionsWindowMixin:AskConfirm(text, onYes)
+    if not self.SectionId or self.Searching then return end
+    self.Confirming = { SectionId = self.SectionId, Text = text, OnYes = onYes }
+    self:RefreshFooter()
+end
+
+function Krowi_OptionsWindowMixin:ConfirmingHere()
+    local confirming = self.Confirming
+    return confirming and confirming.SectionId == self.SectionId and not self.Searching and confirming or nil
+end
+
+function Krowi_OptionsWindowMixin:CancelConfirm()
+    self.Confirming = nil
+    self:RefreshFooter()
+end
+
+function Krowi_OptionsWindowMixin:OnDefaultsClick()
+    local confirming = self:ConfirmingHere()
+    if confirming then
+        self.Confirming = nil
+        confirming.OnYes()
+        self:RefreshFooter()
         return
     end
-    self.ConfirmingDefaults = id
-    self:RefreshFooter()
+    local id = self.SectionId
+    if not id or id == "overview" then return end
+    self:AskConfirm(self.Strings.ResetSection:format(self.Config.SectionName(id)), function() self:ResetSection(id) end)
 end
 
-function Krowi_OptionsWindowMixin:CancelDefaults()
-    self.ConfirmingDefaults = nil
-    self:RefreshFooter()
-end
-
+-- Config.ResetSection returns true when an option it set back needs a reload
 function Krowi_OptionsWindowMixin:ResetSection(id)
-    self.Config.ResetSection(id)
+    if self.Config.ResetSection(id) then self.ReloadPending = true end
     self:ReloadSection()
 end
 
@@ -487,11 +511,11 @@ end
 function Krowi_OptionsWindowMixin:OnSearch(text)
     text = text and text:gsub("^%s+", ""):gsub("%s+$", "") or ""
     if #text < 2 then
-        if self.Searching then self:ShowSection(self.SectionId) end
+        if self.Searching then self:ShowSection(self.SectionId, nil, true) end
         return
     end
     self.Searching = true
-    self.ConfirmingDefaults = nil
+    self.Confirming = nil
     self.PageTitle:SetText(self.Strings.SearchResults)
     self.PageTitle:Show()
     self.DefaultsButton:Hide()

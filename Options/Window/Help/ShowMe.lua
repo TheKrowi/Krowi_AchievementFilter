@@ -5,7 +5,8 @@ local help = window.Help
 
 -- Show me (docs/work/2026-10-25-options-revamp/plan-help.md): one scene per feature section, opened through the entry
 -- points the key bindings, the minimap icon and the menus already use; none calls ShowUIPanel or draws on GameTooltip.
--- The window's pane hides the window, then calls ShowMe. The scenes are shared with /kaftest pictures through
+-- The window's pane hides the window, then calls ShowMe, and shows the window again when ShowMe returns false: the data
+-- is still loading, or the scene had nothing to open. The scenes are shared with /kaftest pictures through
 -- HelpScenes: a scene takes an optional ready(scene) callback that gets the frames it opened once they are drawn.
 -- The map has no ShowMe: a secure button of its own, laid over the pane's Show me button, clicks the minimap's map button
 -- from secure code, so the map is never opened from the addon's code (spec decision 9).
@@ -137,10 +138,10 @@ local function HasMountPreview(id)
     return false
 end
 
--- Selects the achievement in the window and hands its row on
+-- Selects the achievement in the window and hands its row on; false without one
 local function ShowAchievement(achievement, func)
     if not achievement then
-        return
+        return false
     end
     LoadAchievementUI()
     KrowiAF_SelectAchievement(achievement)
@@ -158,9 +159,13 @@ local function LastCategory(tab)
     return last
 end
 
+-- A scene returns false when it opened nothing
 function scenes.tabs(ready)
     local tab = OpenTab("Expansions")
-    Ready(ready, tab and {Tab = tab})
+    if not tab then
+        return false
+    end
+    Ready(ready, {Tab = tab})
 end
 
 function scenes.window(ready)
@@ -173,7 +178,7 @@ function scenes.categories(ready)
     local tab = ShownTab("Expansions")
     local category = tab and LastCategory(tab)
     if not category then
-        return
+        return false
     end
     KrowiAF_SelectCategory(category)
     Ready(ready, {Tab = tab, Category = category})
@@ -183,21 +188,21 @@ function scenes.summary(ready)
     local tab = ShownTab("Expansions")
     local category = tab and addon.Tabs[tab].Categories and addon.Tabs[tab].Categories[1]
     if not category then
-        return
+        return false
     end
     KrowiAF_SelectCategory(category)
     Ready(ready, {Tab = tab, Category = category})
 end
 
 function scenes.achievements(ready)
-    ShowAchievement(PickAchievement(EarnedByMe), function(row, achievement)
+    return ShowAchievement(PickAchievement(EarnedByMe), function(row, achievement)
         Ready(ready, {Row = row, Achievement = achievement})
     end)
 end
 
 function scenes.filters(ready)
     if not OpenTab("Expansions") then
-        return
+        return false
     end
     local button = KrowiAF_AchievementFrameFilterButton
     if addon.Util.IsModern then
@@ -210,7 +215,7 @@ end
 
 function scenes.search(ready)
     if not OpenTab("Expansions") then
-        return
+        return false
     end
     -- Only into an empty focus: taking it from another edit box (an open chat line) would run that box's focus-lost
     -- handler in this addon's call, which taints ACTIVE_CHAT_EDIT_BOX until chat is opened again
@@ -221,14 +226,14 @@ function scenes.search(ready)
 end
 
 function scenes.tooltips(ready)
-    ShowAchievement(PickAchievement(InShortChain) or PickAchievement(EarnedByMe), function(row, achievement)
+    return ShowAchievement(PickAchievement(InShortChain) or PickAchievement(EarnedByMe), function(row, achievement)
         row:ShowTooltip()
         Ready(ready, {Row = row, Achievement = achievement})
     end)
 end
 
 function scenes.rightclick(ready)
-    ShowAchievement(PickAchievement(EarnedByMe), function(row, achievement)
+    return ShowAchievement(PickAchievement(EarnedByMe), function(row, achievement)
         addon.Gui.RightClickMenu.AchievementMenu:Open(row, achievement)
         Ready(ready, {Row = row, Achievement = achievement})
     end)
@@ -243,7 +248,7 @@ function scenes.popout(ready)
     end
     achievement = achievement or KrowiAF_AchievementsFrame.SelectionBehavior:GetFirstSelectedElementData() or PickAchievement(NotEarned)
     if not achievement then
-        return
+        return false
     end
     local popout = addon.Gui.AchievementPopout:Open(achievement)
     Ready(ready, {Popout = popout, Achievement = achievement})
@@ -251,7 +256,7 @@ end
 
 function scenes.rewards(ready)
     local achievement = PickAchievement(function(id) return NotEarned(id) and HasMountPreview(id) end) or PickAchievement(HasMountPreview)
-    ShowAchievement(achievement, function(row, selected)
+    return ShowAchievement(achievement, function(row, selected)
         local frame = KrowiAF_RewardPreview -- the list reuses row frames, so the achievement is checked too
         if not (frame:IsShown() and frame.Pinned and frame.OwnerButton == row and frame.OwnerAchievementId == selected.Id) then
             addon.Gui.RewardPreview:TogglePin(row, selected.Id)
@@ -264,9 +269,9 @@ local ebonBladeResearch = 60962 -- Legendary Research of the Ebon Blade, the gui
 function scenes.guides(ready)
     local achievement = addon.Data.Achievements[ebonBladeResearch]
     if not (achievement and achievement.Guide) then
-        return
+        return false
     end
-    ShowAchievement(achievement, function(row, selected)
+    return ShowAchievement(achievement, function(row, selected)
         local panel = addon.Gui.Guide.Panel
         if not (panel.Frame and panel.Frame:IsShown() and panel.Frame.Pinned and panel.Frame.OwnerButton == row and panel.Frame.Achievement == selected) then
             panel:TogglePin(row, selected)
@@ -294,7 +299,7 @@ local function ShowPlaceholders(ready, worldFirst)
     local system = addon.Gui.EventReminderAlertSystem
     if not system.SubSystem then -- reminders were off at login, so there is no alert system to show them in
         print(addon.Metadata.Title, "-", L["Help Events Off"])
-        return
+        return false
     end
     local options = addon.Options.db.profile.EventReminders
     local order = worldFirst and {eventTypes[3], eventTypes[2], eventTypes[1]} or eventTypes
@@ -317,19 +322,20 @@ local function ShowPlaceholders(ready, worldFirst)
 end
 
 function scenes.events(ready)
-    ShowPlaceholders(ready, false)
+    return ShowPlaceholders(ready, false)
 end
 
 function scenes.eventlist(ready)
-    ShowPlaceholders(ready, true)
+    return ShowPlaceholders(ready, true)
 end
 
 for id, scene in next, scenes do
     if help[id] and (id ~= "guides" or addon.Util.IsMainline) then
         help[id].ShowMe = function()
-            if CanShow() then
-                scene()
+            if not CanShow() then
+                return false
             end
+            return scene()
         end
     end
 end

@@ -322,7 +322,8 @@ local function ProfileOptions(database)
         New{ Key = "copy", Type = "select", Label = L["Copy From"], Placeholder = L["Choose a profile"], GetFunc = function() return nil end,
             SetFunc = function(name) db:CopyProfile(name) end, ValuesFunc = function() return Profiles(true) end },
         New{ Key = "delete", Type = "select", Label = L["Delete a Profile"], Placeholder = L["Choose a profile"], GetFunc = function() return nil end,
-            SetFunc = function(name) db:DeleteProfile(name) end, ValuesFunc = function() return Profiles(true) end },
+            SetFunc = function(name) db:DeleteProfile(name) end, ValuesFunc = function() return Profiles(true) end,
+            Confirm = function(_, name) return L["Delete a Profile"] .. ": " .. name .. "?" end }, -- AceDBOptions asked too
         New{ Key = "reset", Type = "execute", Label = L["Reset Profile"], Button = L["Reset"], SetFunc = function() db:ResetProfile() end },
     }
 end
@@ -470,9 +471,26 @@ local function EachChild(elements, path)
     end
 end
 
+-- A plugin that greys out options says why in a description it injects into their group, keyed <Plugin>Comment
+-- (Plugins/ElvUI.lua DisableOptions). A group mapped whole draws it as a note; for an option mapped alone it is drawn
+-- above the first option of that group, once per draw.
+local function AddPluginNotes(elements, path, added)
+    local groupPath = path:match("^(.+)%.args%.[^%.]+$")
+    if not groupPath or added[groupPath] then return end
+    added[groupPath] = true
+    local group = source.Resolve(groupPath)
+    for _, child in ipairs(group and source.Children(group) or {}) do
+        if child.Node.type == "description" and tostring(child.Key):find("Comment$") then
+            local text = Evaluate(child.Node.name)
+            if text and text ~= "" then elements[#elements + 1] = { Kind = "Note", Text = text } end
+        end
+    end
+end
+
 -- section id -> elements, built fresh each draw, so injected and hidden options are current
 function source.Elements(section)
     local elements = {}
+    local notesAdded = {}
     for _, group in ipairs(section.Groups) do
         if group.Kind == "EachChild" then
             EachChild(elements, group.Group)
@@ -496,7 +514,10 @@ function source.Elements(section)
                         AddLeaves(elements, Leaves(entry.Group, entry.Header), entry)
                     else
                         local option = source.OptionAt(entry.Path, entry)
-                        if option then elements[#elements + 1] = { Kind = "Option", Option = option } end
+                        if option then
+                            AddPluginNotes(elements, entry.Path, notesAdded)
+                            elements[#elements + 1] = { Kind = "Option", Option = option }
+                        end
                     end
                 end
                 if group.AllNone then

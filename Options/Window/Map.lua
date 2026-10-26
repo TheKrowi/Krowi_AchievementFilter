@@ -9,12 +9,12 @@ local L = addon.L
 addon.Options.Window = addon.Options.Window or {}
 addon.Options.Window.Map = {
     Groups = {
-        { Name = L["Achievement window"], Tiles = true, Sections = { "tabs", "window", "categories", "summary", "achievements", "filters", "search", "tooltips", "rightclick", "popout", "rewards", "guides", "calendar" } },
-        { Name = L["Around the game"], Tiles = true, Sections = { "maps", "criteria", "events", "eventlist" } },
-        { Name = L["This addon"], Tiles = false, Sections = { "keys", "plugins", "profiles", "advanced", "about" } },
+        { Name = L["Achievement window"], Sections = { "tabs", "window", "categories", "summary", "achievements", "filters", "search", "tooltips", "rightclick", "popout", "rewards", "guides", "calendar" } },
+        { Name = L["Around the game"], Sections = { "maps", "criteria", "events", "eventlist" } },
+        { Name = L["This addon"], Sections = { "keys", "plugins", "profiles", "advanced", "about" } },
     },
     Sections = {
-        { Id = "tabs", Name = L["Tabs"], Tile = "TabButton", Groups = {
+        { Id = "tabs", Name = L["Tabs"], Groups = {
             { Header = L["Tabs and their order"], Note = L["Uncheck a tab to hide it. The arrows move it in the tab strip."], Kind = "TabList", Order = "Layout.args.Tabs.args.Order.args.Order", Show = "Layout.args.Tabs.args.Show.args.Show" },
             { Header = L["Tab strip"], Entries = {
                 { Path = "Layout.args.Tabs.args.General.args.General.args.Spacing" },
@@ -52,7 +52,7 @@ addon.Options.Window.Map = {
                 { Path = "Layout.args.DataManager.args.MouseWheelPanScalar.args.MouseWheelPanScalar" },
             } },
         } },
-        { Id = "categories", Name = L["Categories"], Tile = "Categories", Groups = {
+        { Id = "categories", Name = L["Categories"], Groups = {
             { Header = L["Category list"], Entries = {
                 { Path = "Layout.args.Categories.args.Indentation.args.Indentation" },
                 { Path = "Layout.args.Categories.args.Merge.args.MergeSmallCategoriesThreshold" },
@@ -79,13 +79,13 @@ addon.Options.Window.Map = {
                 { Group = "Layout.args.AdjustableCategories.args.TrackingAchievements", Header = "" },
             } },
         } },
-        { Id = "summary", Name = L["Summary"], Tile = "Summary", Groups = {
+        { Id = "summary", Name = L["Summary"], Groups = {
             { Header = L["Summary"], Entries = {
                 { Group = "Layout.args.Summary.args.Summary" },
                 { Path = "Layout.args.Summary.args.MouseWheelPanScalar.args.MouseWheelPanScalar" },
             } },
         } },
-        { Id = "achievements", Name = L["Achievements"], Tile = "CompactAchievements", Groups = {
+        { Id = "achievements", Name = L["Achievements"], Groups = {
             { Header = L["Style and icons"], Entries = {
                 { Group = "Layout.args.Achievements.args.Style.args.Style", Header = "" },
             } },
@@ -96,12 +96,12 @@ addon.Options.Window.Map = {
                 { Path = "Layout.args.Achievements.args.Style.args.MouseWheelPanScalar.args.MouseWheelPanScalar" },
             } },
         } },
-        { Id = "filters", Name = L["Filtering and sorting"], Tile = "FilteringSorting", Groups = {
+        { Id = "filters", Name = L["Filtering and sorting"], Groups = {
             { Header = L["Filters"], Entries = {
                 { Path = "General.args.Filters.args.ResetFilters.args.ResetFactionFilter" },
             } },
         } },
-        { Id = "search", Name = L["Search"], Tile = "QuickSearch", Groups = {
+        { Id = "search", Name = L["Search"], Groups = {
             { Header = L["Search field"], Entries = {
                 { Group = "Layout.args.Search.args.SearchField" },
             } },
@@ -112,7 +112,7 @@ addon.Options.Window.Map = {
                 { Path = "Layout.args.Search.args.MouseWheelPanScalar.args.MouseWheelPanScalar" },
             } },
         } },
-        { Id = "tooltips", Name = L["Tooltips"], Tile = "TooltipAchievements", Groups = {
+        { Id = "tooltips", Name = L["Tooltips"], Groups = {
             { Header = L["Earned By"], Entries = {
                 { Group = "Layout.args.Achievements.args.Tooltip.args.Tooltip", Header = "EarnedBy" },
             } },
@@ -145,7 +145,7 @@ addon.Options.Window.Map = {
                 { Path = "Layout.args.Header.args.Tooltip.args.SortPriority.args.Reverse5", Label = L["Reverse Sort"], Indent = 1 },
             } },
         } },
-        { Id = "rightclick", Name = L["Right-click menu"], Tile = "RightClickMenu", Groups = {
+        { Id = "rightclick", Name = L["Right-click menu"], Groups = {
             { Header = L["Button"], Entries = {
                 { Group = "Layout.args.RightClickMenu.args.Button" },
             } },
@@ -174,14 +174,14 @@ addon.Options.Window.Map = {
                 { Group = "Layout.args.Achievements.args.Style.args.Style", Header = "Guide" },
             } },
         } },
-        { Id = "calendar", Name = L["Calendar"], Tile = "Calendar", Groups = {
+        { Id = "calendar", Name = L["Calendar"], Groups = {
             { Header = L["Calendar"], Entries = {
                 { Group = "Layout.args.Calendar.args.General" },
                 { Group = "Layout.args.Calendar.args.Weekdays" },
                 { Group = "Layout.args.Calendar.args.SideFrameMouseWheelPanScalar" },
             } },
         } },
-        { Id = "maps", Name = L["World map and minimap"], Tile = "WorldMapButton", Groups = {
+        { Id = "maps", Name = L["World map and minimap"], Groups = {
             { Header = L["World map"], Entries = {
                 { Group = "General.args.Icon.args.WorldMap" },
             } },
@@ -197,19 +197,19 @@ addon.Options.Window.Map = {
                 { Group = "Layout.args.Criteria.args.Tooltip", Header = "ShowCriteriaIf", Parent = "Layout.args.Criteria.args.Tooltip.args.ShowCriteria" },
             } },
         } },
-        { Id = "events", Name = L["Event reminders"], Tile = "EventReminder", Groups = {
+        { Id = "events", Name = L["Event reminders"], Groups = {
             { Header = L["Reminders"], Entries = {
                 { Group = "EventReminders.args.General.args.Style" },
             } },
             { Header = L["Time display"], Entries = {
                 { Group = "EventReminders.args.General.args.TimeDisplay" },
             } },
-            { Header = L["Pop ups for active events"], Kind = "Grid", Chain = true, Columns = { L["Show"], L["In instances"], L["Only with a time"] }, Rows = {
+            { Header = L["Pop ups for active events"], Kind = "Grid", Columns = { L["Show"], L["In instances"], L["Only with a time"] }, Rows = {
                 { Label = L["On login"], Group = "EventReminders.args.PopUps.args.ActiveEvents.args.OnLogin" },
                 { Label = L["On reload"], Group = "EventReminders.args.PopUps.args.ActiveEvents.args.OnReload" },
                 { Label = L["When an event starts"], Group = "EventReminders.args.PopUps.args.ActiveEvents.args.OnEventStart" },
             } },
-            { Header = L["Pop ups for upcoming calendar events"], Kind = "Grid", Chain = true, Columns = { L["Show"], L["In instances"] }, Rows = {
+            { Header = L["Pop ups for upcoming calendar events"], Kind = "Grid", Columns = { L["Show"], L["In instances"] }, Rows = {
                 { Label = L["On login"], Group = "EventReminders.args.PopUps.args.UpcomingCalendarEvents.args.OnLogin" },
                 { Label = L["On reload"], Group = "EventReminders.args.PopUps.args.UpcomingCalendarEvents.args.OnReload" },
                 { Label = L["When an event starts"], Group = "EventReminders.args.PopUps.args.UpcomingCalendarEvents.args.OnEventStart" },
@@ -220,12 +220,12 @@ addon.Options.Window.Map = {
             { Header = L["Pop up behaviour"], Entries = {
                 { Group = "EventReminders.args.PopUps.args.Other" },
             } },
-            { Header = L["Chat messages for active events"], Kind = "Grid", Chain = true, Columns = { L["Show"], L["In instances"], L["Only with a time"] }, Rows = {
+            { Header = L["Chat messages for active events"], Kind = "Grid", Columns = { L["Show"], L["In instances"], L["Only with a time"] }, Rows = {
                 { Label = L["On login"], Group = "EventReminders.args.ChatMessages.args.ActiveEvents.args.OnLogin" },
                 { Label = L["On reload"], Group = "EventReminders.args.ChatMessages.args.ActiveEvents.args.OnReload" },
                 { Label = L["When an event starts"], Group = "EventReminders.args.ChatMessages.args.ActiveEvents.args.OnEventStart" },
             } },
-            { Header = L["Chat messages for upcoming calendar events"], Kind = "Grid", Chain = true, Columns = { L["Show"], L["In instances"] }, Rows = {
+            { Header = L["Chat messages for upcoming calendar events"], Kind = "Grid", Columns = { L["Show"], L["In instances"] }, Rows = {
                 { Label = L["On login"], Group = "EventReminders.args.ChatMessages.args.UpcomingCalendarEvents.args.OnLogin" },
                 { Label = L["On reload"], Group = "EventReminders.args.ChatMessages.args.UpcomingCalendarEvents.args.OnReload" },
                 { Label = L["When an event starts"], Group = "EventReminders.args.ChatMessages.args.UpcomingCalendarEvents.args.OnEventStart" },

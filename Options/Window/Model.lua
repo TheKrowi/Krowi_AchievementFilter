@@ -272,10 +272,18 @@ function model.Search(text)
     return results
 end
 
+-- Returns true when an option it set back needs a reload (the window's reload bar)
 function model.ResetSection(sectionId)
+    local needsReload = false
     for _, option in ipairs(model.SectionOptions(sectionId)) do
-        if Settable(option) then pcall(option.Reset, option) end
+        local ok, changed = false, false
+        if Settable(option) then ok, changed = pcall(option.IsChanged, option) end
+        if ok and changed then
+            pcall(option.Reset, option)
+            if option:GetNeedsReload() then needsReload = true end
+        end
     end
+    return needsReload
 end
 
 -- The derived default against the "Default value:" text of the option's own description
