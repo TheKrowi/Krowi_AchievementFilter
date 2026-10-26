@@ -687,6 +687,7 @@ L["Ignore Filters"] = true
 L["Ignore Filters Desc"] = "Ignore any filters and show all the achievements in the {category}."
 L["Imbu"] = true
 L["Import"] = true
+L["In"] = true
 L["In instances"] = true
 L["Include"] = true
 L["Include all"] = true
