@@ -44,6 +44,15 @@ function pluginsApi:LoadPlugins()
     end
 end
 
+-- After the addon has built its frames in Blizzard's achievement window
+function pluginsApi:LoadPluginsWithBlizzard_AchievementUI()
+    for _, plugin in next, self.Plugins do
+        if type(plugin.LoadWithBlizzard_AchievementUI) == "function" then
+            plugin:LoadWithBlizzard_AchievementUI()
+        end
+    end
+end
+
 function pluginsApi:AddAchievementRightClickMenuItems(rightClickMenu, achievement, menuBuilder)
     for _, plugin in next, self.Plugins do
         if type(plugin.AddAchievementRightClickMenuItems) == "function" then
