@@ -7,7 +7,6 @@ local gui = addon.Gui
 
 local eventReminderSideButtonSystemIsLoaded
 function gui:LoadWithAddon()
-    self:OverwriteAdjustAnchors()
     self.WorldMapButton:Load()
     self.EventReminderAlertSystem:Load()
     eventReminderSideButtonSystemIsLoaded = self.EventReminderSideButtonSystem:Load()
@@ -448,34 +447,4 @@ function gui:RefreshViewAfterPlayerLogin()
     selectedTab.SelectedCategory = nil
     selectedTab:ShowSubFrames()
     KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow()
-end
-
-local function AdjustQueuedAnchors(self, relativeAlert)
-	for alertFrame in self.alertFramePool:EnumerateActive() do
-		alertFrame:ClearAllPoints()
-		alertFrame:SetPoint(KrowiAF_SavedData.AlertSystem.GrowDirection.Point, relativeAlert, KrowiAF_SavedData.AlertSystem.GrowDirection.RelativePoint, 0, KrowiAF_SavedData.AlertSystem.GrowDirection.Offset)
-		relativeAlert = alertFrame
-	end
-	return relativeAlert
-end
-
--- Credits to ElvUI
-local function OverwriteAdjustAnchors(alertFrameSubSystem)
-	if alertFrameSubSystem.alertFramePool then -- Queued alert system
-		alertFrameSubSystem.AdjustAnchors = AdjustQueuedAnchors
-	end
-end
-
-function gui:OverwriteAdjustAnchors()
-     -- Credits to ElvUI for this for loop
-    -- Overwrites AdjustAnchors functions to allow alerts to grow down if needed.
-	for _, alertFrameSubSystem in ipairs(AlertFrame.alertFrameSubSystems) do
-		OverwriteAdjustAnchors(alertFrameSubSystem)
-	end
-
-    -- Credits to ElvUI for this hook
-	-- This should catch any alert systems that are created by other addons.
-	hooksecurefunc(AlertFrame, 'AddAlertFrameSubSystem', function(_, alertFrameSubSystem)
-		OverwriteAdjustAnchors(alertFrameSubSystem)
-	end)
 end

@@ -4,10 +4,13 @@ All notable changes to this project will be documented in this file.
 ## 105.0
 ### Added
 - An options window with every setting sorted by feature and how each feature works next to it, opened with /kaf, the minimap icon or the filter menu
+- A Position applies to setting for event reminder pop ups: every alert, as before, or only the event reminders, leaving the game's own alerts where the game puts them
+- A Hide placeholders button next to Show placeholders
 
 ### Changed
 - The tutorial is replaced by the explanations in the options window, with new pictures and a Show me button
 - Settings > AddOns now has one page for this addon, with a button that opens the options window
+- The pop up position settings are greyed out only while another addon places the game's alerts, not whenever ElvUI, GW2 UI or EllesmereUI is loaded
 
 ### Fixed
 - The right-click menu no longer gives an error or stops short when it links to an achievement your game does not have yet
@@ -22,6 +25,9 @@ All notable changes to this project will be documented in this file.
 - Y now opens the addon's Achievements tab on a new install, so the window reopens where you left off
 - A new install no longer shows an error about switching achievement tabs in chat
 - Zygor Guides Viewer's guide icons now show on this addon's tabs, also when you open the window with the game's own achievements key
+- Event reminder pop ups no longer jump back to another spot when an addon such as Dominos, ElvUI, GW2 UI or EllesmereUI places the game's alerts; they now go with those alerts
+- Event reminder pop ups now move to the right spot after switching profiles
+- Show placeholders now shows a short preview and no longer keeps adding pop ups for minutes
 
 ## 104.0 - 2026-10-24
 ### Added

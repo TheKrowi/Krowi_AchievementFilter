@@ -7,6 +7,13 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-24 16-43-33 ]] --
+L["Position applies to"] = "La posizione si applica a"
+L["Position applies to Desc"] = "Tutti gli avvisi sposta gli avvisi del gioco, come imprese e bottino, insieme ai promemoria degli eventi. Solo promemoria degli eventi sposta soltanto i promemoria degli eventi e lascia gli avvisi del gioco dove li mette il gioco."
+L["Every alert"] = "Tutti gli avvisi"
+L["Only event reminders"] = "Solo promemoria degli eventi"
+L["Hide placeholders"] = "Nascondi segnaposto"
+L["Hide placeholders Desc"] = "Nasconde tutti i popup dei promemoria degli eventi visualizzati o in attesa: i segnaposto e i promemoria reali."
+L["Alerts placed by another addon Desc"] = "Un altro addon posiziona gli avvisi del gioco, quindi i popup dei promemoria degli eventi li seguono. Spostali con quell'addon."
 L["{count} changed"] = "{count} modificate"
 L["About"] = "Informazioni"
 L["Achievement guides"] = "Guide delle imprese"

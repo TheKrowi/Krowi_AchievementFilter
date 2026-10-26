@@ -215,7 +215,7 @@ addon.Options.Window.Map = {
                 { Label = L["When an event starts"], Group = "EventReminders.args.PopUps.args.UpcomingCalendarEvents.args.OnEventStart" },
             } },
             { Header = L["Pop up position"], Entries = {
-                { Group = "EventReminders.args.PopUps.args.Location", Button = L["Show"] },
+                { Group = "EventReminders.args.PopUps.args.Location", Buttons = { ShowPlaceholder = L["Show"], HidePlaceholder = addon.Util.L["Hide"] } },
             } },
             { Header = L["Pop up behaviour"], Entries = {
                 { Group = "EventReminders.args.PopUps.args.Other" },

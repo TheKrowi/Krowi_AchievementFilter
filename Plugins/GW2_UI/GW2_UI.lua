@@ -1036,15 +1036,7 @@ local function SkinSideButtons()
 end
 
 local function SkinAlertFrames()
-    if not addon.Gui.EventReminderAlertSystem.SubSystem then
-        hooksecurefunc(addon.Gui.EventReminderAlertSystem, "Load", function(system)
-            hooksecurefunc(addon.Gui.EventReminderAlertSystem.SubSystem, "setUpFunction", function(frame)
-                SkinAlertFrameTemplate(frame)
-            end)
-        end)
-        return
-    end
-    hooksecurefunc(addon.Gui.EventReminderAlertSystem.SubSystem, "setUpFunction", function(frame)
+    hooksecurefunc(addon.Gui.EventReminderAlertSystem, "SetUpAlert", function(frame)
         SkinAlertFrameTemplate(frame)
     end)
 end
@@ -1135,18 +1127,9 @@ local function DisableOptions()
         return
     end
 
-    local appName = addon.Metadata.Prefix .. "_EventReminders"
-    KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.GrowDirection").disabled = true
-    KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.Spacing").disabled = true
-    KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.OffsetX").disabled = true
-    KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.OffsetY").disabled = true
-    KrowiAF.UtilApi.InjectOptions:AddTable(KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args"), "ElvUIComment", {
-        order = KrowiAF.UtilApi.InjectOptions.AutoOrderPlusPlus(), type = "description", width = "full",
-        name = addon.L["Alert System Overwrite Desc"]:K_ReplaceVars(addon.L["GW2_UI"])
-    })
-
+    -- The pop-up location options grey out by themselves while GW2_UI places the game's alerts (Gui/EventReminder/AlertSystem.lua)
     if doSkin.Achievements then
-        appName = addon.Metadata.Prefix .. "_Layout"
+        local appName = addon.Metadata.Prefix .. "_Layout"
         KrowiAF_GetOptions.GetTable(appName, "args.Header.args.CalendarButton.args.OffsetX").disabled = true
         KrowiAF_GetOptions.GetTable(appName, "args.Header.args.CalendarButton.args.OffsetY").disabled = true
         KrowiAF.UtilApi.InjectOptions:AddTable(KrowiAF_GetOptions.GetTable(appName, "args.Header.args.CalendarButton.args"), "ElvUIComment", {

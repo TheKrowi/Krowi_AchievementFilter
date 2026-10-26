@@ -147,8 +147,10 @@ function Option:GetNeedsReload()
     return self.NeedsReload
 end
 
+-- An entry's Button is the text of every button it maps; Buttons gives a group's buttons their own, by option key
 function Option:GetButtonText()
-    return self.Entry.Button or self:GetLabel()
+    local buttons = self.Entry.Buttons
+    return buttons and buttons[self.Info[#self.Info]] or self.Entry.Button or self:GetLabel()
 end
 
 function Option:GetRange()

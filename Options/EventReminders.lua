@@ -46,6 +46,11 @@ local growDirection = {
     addon.L["Down"]
 }
 
+local appliesTo = {
+    addon.L["Every alert"],
+    addon.L["Only event reminders"]
+}
+
 local startTimeAndEndTimeDateTimeFormats, startTimeAndEndTimeDateTimeValues = {}, {}
 
 local function AddFormat(formats, values, format)
@@ -85,52 +90,53 @@ local function SideButtonsAnchorSet(_, value)
     addon.Gui.EventReminderSideButtonSystem:Reload()
 end
 
+-- The alert system places the pop-ups by the options (Gui/EventReminder/AlertSystem.lua); it never moves anything while
+-- another addon places the game's alerts
+local function ApplyLocation()
+    addon.Gui.EventReminderAlertSystem:ApplyLocation()
+end
+
+local function IsFollowing()
+    return addon.Gui.EventReminderAlertSystem:IsFollowing()
+end
+
+local function PopUpsAppliesToSet(_, value)
+    if addon.Options.db.profile.EventReminders.PopUps.AppliesTo == value then return; end
+    addon.Options.db.profile.EventReminders.PopUps.AppliesTo = value
+    ApplyLocation()
+end
+
 local function PopUpsGrowDirectionSet(_, value)
     if addon.Options.db.profile.EventReminders.PopUps.GrowDirection == value then return; end
     addon.Options.db.profile.EventReminders.PopUps.GrowDirection = value
-    addon.Gui.EventReminderAlertSystem:UpdateGrowDirection()
-    AlertFrame:UpdateAnchors()
+    ApplyLocation()
 end
 
 local function PopUpsSpacingSet(_, value)
     if addon.Options.db.profile.EventReminders.PopUps.Spacing == value then return; end
     addon.Options.db.profile.EventReminders.PopUps.Spacing = value
-    addon.Gui.EventReminderAlertSystem:UpdateGrowDirection()
-    AlertFrame:UpdateAnchors()
+    ApplyLocation()
 end
 
 local function PopUpsOffsetXSet(_, value)
     if addon.Options.db.profile.EventReminders.PopUps.OffsetX == value then return; end
     addon.Options.db.profile.EventReminders.PopUps.OffsetX = value
-    AlertFrame:ClearAllPoints()
-    AlertFrame:SetPoint("BOTTOM", UIParent, "BOTTOM", addon.Options.db.profile.EventReminders.PopUps.OffsetX, addon.Options.db.profile.EventReminders.PopUps.OffsetY)
+    ApplyLocation()
 end
 
 local function PopUpsOffsetYSet(_, value)
     if addon.Options.db.profile.EventReminders.PopUps.OffsetY == value then return; end
     addon.Options.db.profile.EventReminders.PopUps.OffsetY = value
-    AlertFrame:ClearAllPoints()
-    AlertFrame:SetPoint("BOTTOM", UIParent, "BOTTOM", addon.Options.db.profile.EventReminders.PopUps.OffsetX, addon.Options.db.profile.EventReminders.PopUps.OffsetY)
+    ApplyLocation()
 end
 
+-- A preview of the pop-ups where they show: as many as fit at once, for a minute, on copies of the player's events
 local function PopUpsShowPlaceholderFunc()
-    local calendarEvents = addon.Data.Events[KrowiAF.Enum.EventType.Calendar]
-    local showPopUpsWithTimeDataOnly = addon.Options.db.profile.EventReminders.PopUps.OnLogin.ShowOnlyWhenTimeDataIsAvailable or addon.Options.db.profile.EventReminders.PopUps.OnReload.ShowOnlyWhenTimeDataIsAvailable or addon.Options.db.profile.EventReminders.PopUps.OnEventStart.ShowOnlyWhenTimeDataIsAvailable
-    for i, event in next, calendarEvents do
-        if i == 141 then -- Fake not active event
-            if not showPopUpsWithTimeDataOnly or (showPopUpsWithTimeDataOnly and event.EventDetails and event.EventDetails.EndTime) then
-                addon.Gui.EventReminderAlertSystem:AddAlert(event, 60)
-            end
-        elseif i == 181 then -- Fake not active event
-            event.EventDetails = {EndTime = nil, Name = i .. " - " .. addon.L["Placeholder"]}
-            if not showPopUpsWithTimeDataOnly or (showPopUpsWithTimeDataOnly and event.EventDetails and event.EventDetails.EndTime) then
-                addon.Gui.EventReminderAlertSystem:AddAlert(event, 60)
-            end
-        else
-            event.EventDetails = {EndTime = time() + 600010, Name = i .. " - " .. addon.L["Placeholder"]}
-            addon.Gui.EventReminderAlertSystem:AddAlert(event, 60)
-        end
-    end
+    addon.Gui.EventReminderAlertSystem:ShowPlaceholders(false, 60)
+end
+
+local function PopUpsHidePlaceholderFunc()
+    addon.Gui.EventReminderAlertSystem:HideAlerts()
 end
 
 local function StartTimeAndEndTimePresetsGet()
@@ -427,13 +433,23 @@ local popUpsOptions = {
             order = OrderPP(), type = "group", inline = true,
             name = addon.L["Location"],
             args = {
+                AppliesTo = {
+                    order = OrderPP(), type = "select", width = "full",
+                    name = addon.L["Position applies to"],
+                    desc = addon.L["Position applies to Desc"]:KAF_AddDefaultValueText("EventReminders.PopUps.AppliesTo", appliesTo),
+                    values = appliesTo,
+                    get = function() return addon.Options.db.profile.EventReminders.PopUps.AppliesTo; end,
+                    set = PopUpsAppliesToSet,
+                    disabled = IsFollowing
+                },
                 GrowDirection = {
                     order = OrderPP(), type = "select", width = AdjustedWidth(1.45),
                     name = addon.L["Grow direction"],
                     desc = addon.L["Grow direction Desc"]:KAF_AddDefaultValueText("EventReminders.PopUps.GrowDirection", growDirection),
                     values = growDirection,
                     get = function() return addon.Options.db.profile.EventReminders.PopUps.GrowDirection; end,
-                    set = PopUpsGrowDirectionSet
+                    set = PopUpsGrowDirectionSet,
+                    disabled = IsFollowing
                 },
                 Spacing = {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
@@ -441,7 +457,8 @@ local popUpsOptions = {
                     desc = addon.L["Spacing Desc"]:KAF_AddDefaultValueText("EventReminders.PopUps.Spacing"),
                     min = 0, max = 100, step = 1,
                     get = function() return addon.Options.db.profile.EventReminders.PopUps.Spacing; end,
-                    set = PopUpsSpacingSet
+                    set = PopUpsSpacingSet,
+                    disabled = IsFollowing
                 },
                 OffsetX = {
                     order = OrderPP(), type = "range", width = "full",
@@ -449,7 +466,8 @@ local popUpsOptions = {
                     desc = addon.L["X offset Desc"]:KAF_AddDefaultValueText("EventReminders.PopUps.OffsetX"),
                     min = -2000, max = 2000, step = 1,
                     get = function() return addon.Options.db.profile.EventReminders.PopUps.OffsetX; end,
-                    set = PopUpsOffsetXSet
+                    set = PopUpsOffsetXSet,
+                    disabled = IsFollowing
                 },
                 OffsetY = {
                     order = OrderPP(), type = "range", width = "full",
@@ -457,13 +475,25 @@ local popUpsOptions = {
                     desc = addon.L["Y offset Desc"]:KAF_AddDefaultValueText("EventReminders.PopUps.OffsetY"),
                     min = 0, max = 2000, step = 1,
                     get = function() return addon.Options.db.profile.EventReminders.PopUps.OffsetY; end,
-                    set = PopUpsOffsetYSet
+                    set = PopUpsOffsetYSet,
+                    disabled = IsFollowing
+                },
+                -- Shown only while another addon places the game's alerts, so the settings above do nothing
+                FollowNote = {
+                    order = OrderPP(), type = "description", width = "full",
+                    name = function() return IsFollowing() and addon.L["Alerts placed by another addon Desc"] or ""; end
                 },
                 ShowPlaceholder = {
                     order = OrderPP(), type = "execute", width = AdjustedWidth(),
                     name = addon.L["Show placeholders"],
                     desc = addon.L["Show placeholders Desc"],
                     func = PopUpsShowPlaceholderFunc
+                },
+                HidePlaceholder = {
+                    order = OrderPP(), type = "execute", width = AdjustedWidth(),
+                    name = addon.L["Hide placeholders"],
+                    desc = addon.L["Hide placeholders Desc"],
+                    func = PopUpsHidePlaceholderFunc
                 }
             }
         },
@@ -767,10 +797,7 @@ function RefreshOptions()
     TimeDisplayLine1Set(_, profile.EventReminders.TimeDisplay.Line1)
     TimeDisplayLine2Set(_, profile.EventReminders.TimeDisplay.Line2)
     SideButtonsAnchorSet(_, profile.EventReminders.SideButtonsAnchor)
-    PopUpsGrowDirectionSet(_, profile.EventReminders.PopUps.GrowDirection)
-    PopUpsSpacingSet(_, profile.EventReminders.PopUps.Spacing)
-    PopUpsOffsetXSet(_, profile.EventReminders.PopUps.OffsetX)
-    PopUpsOffsetYSet(_, profile.EventReminders.PopUps.OffsetY)
+    ApplyLocation() -- the setters return early: the new profile already holds the values they are given
     addon.Gui.EventReminderSideButtonSystem:Refresh() -- Dynamic stuff is handled by this one
     StartTimeAndEndTimeCustomSet(_, profile.EventReminders.DateTimeFormat.StartTimeAndEndTime)
 end

@@ -955,16 +955,7 @@ local function RefreshScrollBar(self)
 end
 
 local function InstallAlertFrameHooks()
-    local alertSystem = addon.Gui.EventReminderAlertSystem
-    if alertSystem.SubSystem then
-        hooksecurefunc(alertSystem.SubSystem, "setUpFunction", SkinAlertFrameTemplate)
-    else
-        hooksecurefunc(alertSystem, "Load", function()
-            if alertSystem.SubSystem then
-                hooksecurefunc(alertSystem.SubSystem, "setUpFunction", SkinAlertFrameTemplate)
-            end
-        end)
-    end
+    hooksecurefunc(addon.Gui.EventReminderAlertSystem, "SetUpAlert", SkinAlertFrameTemplate)
 
     hooksecurefunc(addon.Gui.EventReminderSideButtonSystem, "Load", SkinSideButtons)
     hooksecurefunc(addon.Gui.EventReminderSideButtonSystem, "Refresh", SkinSideButtons)
@@ -1047,18 +1038,10 @@ function compatibility:InjectOptions()
     KrowiAF.UtilApi.InjectOptions:AddTable(pluginTable, "SkinAchievement", AddInfo("Skin Achievements", function() return skin ~= nil and skin.IsEnabled() end, not addon.Util.IsModern))
 end
 
+-- The pop-up location options grey out by themselves while EllesmereUI's mover places the game's alerts
+-- (Gui/EventReminder/AlertSystem.lua)
 local function DisableOptions()
-    local appName = addon.Metadata.Prefix .. "_EventReminders"
-    KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.GrowDirection").disabled = true
-    KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.Spacing").disabled = true
-    KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.OffsetX").disabled = true
-    KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.OffsetY").disabled = true
-    addon.InjectOptions:AddTable(KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args"), "EllesmereUIComment", {
-        order = KrowiAF.UtilApi.InjectOptions.AutoOrderPlusPlus(), type = "description", width = "full",
-        name = addon.L["Alert System Overwrite Desc"]:K_ReplaceVars(addon.L["EllesmereUI"])
-    })
-
-    appName = addon.Metadata.Prefix .. "_Layout"
+    local appName = addon.Metadata.Prefix .. "_Layout"
     KrowiAF_GetOptions.GetTable(appName, "args.Header.args.CalendarButton.args.OffsetX").disabled = true
     KrowiAF_GetOptions.GetTable(appName, "args.Header.args.CalendarButton.args.OffsetY").disabled = true
     addon.InjectOptions:AddTable(KrowiAF_GetOptions.GetTable(appName, "args.Header.args.CalendarButton.args"), "EllesmereUIComment", {

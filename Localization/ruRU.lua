@@ -7,6 +7,13 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-24 16-43-33 ]] --
+L["Position applies to"] = "Позиция применяется к"
+L["Position applies to Desc"] = "Все оповещения перемещает оповещения игры, например о достижениях и добыче, вместе с напоминаниями о событиях. Только напоминания о событиях перемещает лишь напоминания о событиях и оставляет оповещения игры там, где их размещает игра."
+L["Every alert"] = "Все оповещения"
+L["Only event reminders"] = "Только напоминания о событиях"
+L["Hide placeholders"] = "Скрыть заглушки"
+L["Hide placeholders Desc"] = "Скрывает все всплывающие напоминания о событиях, которые показаны или ждут показа: заглушки и настоящие напоминания."
+L["Alerts placed by another addon Desc"] = "Другая модификация размещает оповещения игры, поэтому всплывающие напоминания о событиях следуют за ними. Перемещайте их в этой модификации."
 L["{count} changed"] = "Изменено: {count}"
 L["About"] = "Об аддоне"
 L["Achievement guides"] = "Гайды по достижениям"

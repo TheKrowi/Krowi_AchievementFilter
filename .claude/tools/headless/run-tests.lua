@@ -38,7 +38,9 @@
 --         Data/AchievementCache.lua on the real data load: what the achievement window recounts when an achievement is
 --         earned and then opened in it), plugins (Plugins/ZygorGuidesViewer.lua with Api/PluginsApi.lua and the
 --         ADDON_LOADED wiring of Krowi_AchievementFilter.lua: whether Zygor's guide icons are on the addon's rows at the
---         list's first draw, issue #365)
+--         list's first draw, issue #365), popups (Gui/EventReminder/AlertSystem.lua and Options/EventReminders.lua on the
+--         whole-addon load, against a model of Blizzard's alert frames: where the location options put the pop-ups,
+--         whether the game's toasts keep Blizzard's stacking, Show and Hide placeholders, issues #188 and #364)
 --
 -- Retail model is 12.1: the Blizzard_GameMenuEsc handler registry, the UI panel manager (its slots stay
 -- empty because the addon shows the achievement window with a plain Show), UISpecialFrames, static
@@ -1927,6 +1929,495 @@ suites.plugins = function(c)
     local results, observations = nil, {}
     addon.Tests.Plugins.Run(headless, observations, function(r) results = r end)
     return results, "Tests/Plugins.lua", observations
+end
+
+-------------------------------------------------------------------------------------------------
+-- Blizzard's alert frames, for the popups suite: AlertContainerMixin, the queued and externally anchored sub-systems,
+-- the frame pool and AlertFrame itself, after Blizzard_FrameXML/Mainline/AlertFrames.lua and Classic/AlertFrames.lua
+-- (wow-ui-source) and Blizzard_SharedXMLBase/Pools.lua. Left out: coalescing, animations (an alert stays shown until
+-- it is hidden), justification, the full-screen frame. Frames keep their points as the game does, one per anchor point,
+-- so a SetPoint on a point already set moves it. Retail's login wait (EventUtil.ContinueAfterAllEvents, the last flag a
+-- frame later through C_Timer.After) and Classic's (VARIABLES_LOADED and PLAYER_ENTERING_WORLD through OnEvent) are both
+-- released by FireLogin, which a suite calls after the addon's load, as the game fires them after ADDON_LOADED.
+-------------------------------------------------------------------------------------------------
+local function InstallAlertModel(env, isRetail)
+    local model = { Blizzard = {}, LoginCallbacks = {}, EventFrames = {} }
+
+    local ModelFrame = {}
+    -- the child regions of the addon's alert template (Gui/EventReminder/AlertFrame/AlertFrame.xml) that its mixin
+    -- touches; calls on them do nothing. Any other field the code reads is nil, as on a frame the game has not given it
+    local templateRegions = { Icon = true, Name = true, Unlocked = true, Background = true, glow = true, shine = true }
+    local modelFrameMt = { __index = function(self, k)
+        local method = ModelFrame[k]
+        if method ~= nil then return method end
+        local mixin = rawget(self, "_mixin")
+        if not mixin then return nil end
+        if mixin[k] ~= nil then return mixin[k] end
+        if not templateRegions[k] then return nil end
+        local child = Stub(tostring(rawget(self, "_name")) .. "." .. tostring(k))
+        rawset(self, k, child)
+        return child
+    end }
+    local function NewModelFrame(name, parent)
+        return setmetatable({ _name = name, _parent = parent, _shown = false, _points = {}, _scripts = {}, _events = {} }, modelFrameMt)
+    end
+    model.NewFrame = NewModelFrame
+    function ModelFrame:GetName() return rawget(self, "_name") end
+    function ModelFrame:GetParent() return rawget(self, "_parent") end
+    function ModelFrame:SetParent(parent) rawset(self, "_parent", parent) end
+    -- whether frame hangs, through any of its points, on target
+    local function DependsOn(frame, target, seen)
+        if frame == target then return true end
+        local points = type(frame) == "table" and rawget(frame, "_points")
+        if not points or seen[frame] then return false end
+        seen[frame] = true
+        for _, p in ipairs(points) do
+            if DependsOn(p[2], target, seen) then return true end
+        end
+        return false
+    end
+    function ModelFrame:SetPoint(point, relativeTo, relativePoint, x, y)
+        if type(relativeTo) == "number" then relativeTo, relativePoint, x, y = nil, nil, relativeTo, relativePoint end
+        relativeTo = relativeTo or rawget(self, "_parent")
+        if relativeTo and DependsOn(relativeTo, self, {}) then
+            error("Cannot anchor to a region dependent on it", 2) -- as the game refuses a loop
+        end
+        local entry = { point, relativeTo, relativePoint or point, x or 0, y or 0 }
+        local points = rawget(self, "_points")
+        for index, existing in ipairs(points) do
+            if existing[1] == point then points[index] = entry return end
+        end
+        points[#points + 1] = entry
+    end
+    function ModelFrame:SetAllPoints(relativeTo)
+        self:ClearAllPoints()
+        self:SetPoint("TOPLEFT", relativeTo, "TOPLEFT", 0, 0)
+        self:SetPoint("BOTTOMRIGHT", relativeTo, "BOTTOMRIGHT", 0, 0)
+    end
+    function ModelFrame:ClearAllPoints() rawset(self, "_points", {}) end
+    function ModelFrame:GetNumPoints() return #rawget(self, "_points") end
+    function ModelFrame:GetPoint(index)
+        local p = rawget(self, "_points")[index or 1]
+        if p then return p[1], p[2], p[3], p[4], p[5] end
+    end
+    function ModelFrame:Show()
+        if rawget(self, "_shown") then return end
+        rawset(self, "_shown", true)
+        if self._scripts.OnShow then self._scripts.OnShow(self) end
+    end
+    function ModelFrame:Hide()
+        if not rawget(self, "_shown") then return end
+        rawset(self, "_shown", false)
+        if self._scripts.OnHide then self._scripts.OnHide(self) end
+    end
+    function ModelFrame:IsShown() return rawget(self, "_shown") end
+    function ModelFrame:SetShown(shown) if shown then self:Show() else self:Hide() end end
+    function ModelFrame:SetScript(kind, fn) self._scripts[kind] = fn end
+    function ModelFrame:GetScript(kind) return self._scripts[kind] end
+    function ModelFrame:HookScript(kind, fn)
+        local before = self._scripts[kind]
+        self._scripts[kind] = function(...) if before then before(...) end fn(...) end
+    end
+    function ModelFrame:RegisterEvent(event) self._events[event] = true model.EventFrames[self] = true end
+    function ModelFrame:UnregisterEvent(event) self._events[event] = nil end
+    function ModelFrame:SetSize(width, height) rawset(self, "_width", width) rawset(self, "_height", height) end
+    function ModelFrame:GetHeight() return rawget(self, "_height") or 0 end
+    function ModelFrame:GetWidth() return rawget(self, "_width") or 0 end
+    function ModelFrame:SetFrameStrata(strata) rawset(self, "_strata", strata) end
+    function ModelFrame:IsMouseOver() return false end
+    function ModelFrame:SetAlertContainer(container) rawset(self, "_container", container) end -- the ContainedAlertFrame intrinsic
+    function ModelFrame:GetAlertContainer() return rawget(self, "_container") end
+
+    local UIParent = NewModelFrame("UIParent")
+    UIParent._shown = true
+    rawset(env, "UIParent", UIParent)
+    rawset(env, "CreateFrame", function(_, name, parent)
+        local frame = NewModelFrame(name, parent)
+        if name then rawset(env, name, frame) end
+        return frame
+    end)
+
+    -- Pools.lua: Acquire, Release (reset, then reclaim), EnumerateActive (pairs over the active objects)
+    function env.Pool_HideAndClearAnchors(_, region)
+        region:Hide()
+        region:ClearAllPoints()
+    end
+    -- The game's pools enumerate with pairs, so their order can change from one pass to the next (a rehash when an object
+    -- is added); the model keeps the order the objects came in, and model.Reversed turns it around for a scenario
+    function env.CreateFramePool(_, parent, template, resetFunc)
+        local pool = { activeObjects = {}, inactiveObjects = {}, activeObjectCount = 0, order = {} }
+        function pool:Acquire()
+            local object = table.remove(self.inactiveObjects)
+            local new = object == nil
+            if new then
+                object = NewModelFrame(nil, parent)
+                rawset(object, "_mixin", template and model.Templates[template])
+                object:SetSize(300, template and model.TemplateHeights[template] or 64)
+                resetFunc(self, object, new)
+            end
+            self.activeObjects[object] = true
+            self.activeObjectCount = self.activeObjectCount + 1
+            table.insert(self.order, object)
+            return object, new
+        end
+        function pool:Release(object)
+            local active = self.activeObjects[object] ~= nil
+            if active then
+                resetFunc(self, object)
+                table.insert(self.inactiveObjects, object)
+                self.activeObjects[object] = nil
+                self.activeObjectCount = self.activeObjectCount - 1
+                for index, o in ipairs(self.order) do
+                    if o == object then table.remove(self.order, index) break end
+                end
+            end
+            return active
+        end
+        function pool:EnumerateActive()
+            local list, n = {}, #self.order
+            for index = 1, n do list[index] = self.order[model.Reversed and n + 1 - index or index] end
+            local index = 0
+            return function()
+                index = index + 1
+                if list[index] then return list[index], true end
+            end
+        end
+        function pool:GetNumActive() return self.activeObjectCount end
+        return pool
+    end
+    -- the toast heights of AlertFrameSystems.xml's templates the model uses; the addon's own come from its XML (64 otherwise)
+    model.TemplateHeights = { AchievementAlertFrameTemplate = 88, LootWonAlertFrameTemplate = 96 }
+    model.Templates = {} -- template name -> the mixin its frames get; the addon's alert templates use its alert frame mixin
+    setmetatable(model.Templates, { __index = function(_, name)
+        if type(name) == "string" and name:match("^KrowiAF_EventReminderAlertFrame") then return rawget(env, "KrowiAF_EventReminderAlertFrameMixin") end
+    end })
+
+    function env.AlertFrame_ShowNewAlert(frame) frame:Show() end
+
+    local Contained = {}
+    function Contained:OnLoad(containedAlertFrame) self:ContainFrame(containedAlertFrame) end
+    function Contained:ContainFrame(containedAlertFrame) containedAlertFrame:SetAlertContainer(self:GetAlertContainer()) end
+    function Contained:SetAlertContainer(alertContainer) self.alertContainer = alertContainer end
+    function Contained:GetAlertContainer() return self.alertContainer end
+
+    local External = env.Mixin({}, Contained)
+    function External:OnLoad(anchorFrame)
+        Contained.OnLoad(self, anchorFrame)
+        self.anchorFrame = anchorFrame
+    end
+    function External:AdjustAnchors(relativeAlert)
+        if self.anchorFrame:IsShown() then return self.anchorFrame end
+        return relativeAlert
+    end
+    function External:CheckQueuedAlerts() end
+
+    local Queue = env.Mixin({}, Contained)
+    function env.OnPooledAlertFrameQueueReset(framePool, frame)
+        env.Pool_HideAndClearAnchors(framePool, frame)
+        if frame.queue and not frame.queue:CheckQueuedAlerts() then
+            frame.queue:GetAlertContainer():UpdateAnchors()
+        end
+    end
+    function env.OnPooledAlertFrameQueueHide(frame) frame.queue:OnFrameHide(frame) end
+    function Queue:OnLoad(alertFrameTemplate, setUpFunction, maxAlerts, maxQueue)
+        self.alertFramePool = env.CreateFramePool("ContainedAlertFrame", UIParent, alertFrameTemplate, env.OnPooledAlertFrameQueueReset)
+        self.setUpFunction = setUpFunction
+        self.maxAlerts = maxAlerts or 2
+        self.maxQueue = maxQueue or 6
+    end
+    function Queue:SetAlwaysReplace(alwaysReplace) self.alwaysReplace = alwaysReplace end
+    function Queue:ShouldAlwaysReplace() return self.alwaysReplace end
+    function Queue:OnFrameHide(frame)
+        self.alertFramePool:Release(frame)
+        if frame.OnRelease then frame:OnRelease() end
+    end
+    function Queue:AddAlert(...)
+        if self:CanShowMore() then
+            self:ShowAlert(...)
+            return true
+        elseif self:CanQueueMore() then
+            self:QueueAlert(...)
+            return true
+        end
+        return false
+    end
+    function Queue:ShowAlert(...)
+        local alertFrame, isNew = self.alertFramePool:Acquire()
+        if isNew then
+            self:ContainFrame(alertFrame)
+            alertFrame.queue = self
+            alertFrame:SetScript("OnHide", env.OnPooledAlertFrameQueueHide)
+        end
+        if self.setUpFunction then
+            local result = self.setUpFunction(alertFrame, ...)
+            if result == false then
+                self.alertFramePool:Release(alertFrame)
+                return false
+            end
+        end
+        self:GetAlertContainer():AddAlertFrame(alertFrame)
+        return true
+    end
+    function Queue:CreateQueuedData(...)
+        local data = { ... }
+        data.numElements = select("#", ...)
+        return data
+    end
+    function Queue:QueueAlert(...)
+        self.queuedAlerts = self.queuedAlerts or {}
+        local index = self:ShouldAlwaysReplace() and 1 or #self.queuedAlerts + 1
+        self.queuedAlerts[index] = self:CreateQueuedData(...)
+    end
+    function Queue:GetNumVisibleAlerts() return self.alertFramePool:GetNumActive() end
+    function Queue:GetNumQueuedAlerts() return self.queuedAlerts and #self.queuedAlerts or 0 end
+    function Queue:CanShowMore()
+        if self:GetAlertContainer():AreAlertsEnabled() then
+            if self:ShouldAlwaysReplace() or self:GetNumVisibleAlerts() < self.maxAlerts then
+                if not self.canShowMoreConditionFunc or self.canShowMoreConditionFunc() then
+                    return true
+                end
+            end
+        end
+        return false
+    end
+    function Queue:CanQueueMore() return self:ShouldAlwaysReplace() or self:GetNumQueuedAlerts() < self.maxQueue end
+    function Queue:CheckQueuedAlerts()
+        if self:CanShowMore() and self:GetNumQueuedAlerts() > 0 then
+            local queuedAlertData = table.remove(self.queuedAlerts, 1)
+            return self:ShowAlert(unpack(queuedAlertData, 1, queuedAlertData.numElements))
+        end
+        return false
+    end
+    function Queue:AdjustAnchors(relativeAlert)
+        for alertFrame in self.alertFramePool:EnumerateActive() do
+            alertFrame:SetPoint("BOTTOM", relativeAlert, "TOP", 0, 10)
+            relativeAlert = alertFrame
+        end
+        return relativeAlert
+    end
+    function Queue:SetCanShowMoreConditionFunc(func) self.canShowMoreConditionFunc = func end
+
+    local Container = {}
+    function Container:OnLoad()
+        self.alertFrameSubSystems = {}
+        if isRetail then
+            self.reasonsToBlockLeftClickingAlerts = {}
+            self.fullscreenFrame = UIParent
+            self.fullscreenStrata = "FULLSCREEN_DIALOG"
+            self.baseAnchorFrame = self
+            self.shouldQueueAlertsFlags = { playerEnteredWorld = false, variablesLoaded = false, firstFrameRendered = false }
+            model.LoginCallbacks[#model.LoginCallbacks + 1] = function()
+                self:SetEnabledFlag("playerEnteredWorld", true)
+                self:SetEnabledFlag("variablesLoaded", true)
+                self:SetEnabledFlag("firstFrameRendered", true) -- the game sets this one a frame later
+            end
+        else
+            self.shouldQueueAlertsFlags = { playerEnteredWorld = false, variablesLoaded = false }
+            self:RegisterEvent("PLAYER_ENTERING_WORLD")
+            self:RegisterEvent("VARIABLES_LOADED")
+        end
+    end
+    if not isRetail then
+        function Container:OnEvent(event)
+            if event == "PLAYER_ENTERING_WORLD" then
+                self:UnregisterEvent("PLAYER_ENTERING_WORLD")
+                self:SetEnabledFlag("playerEnteredWorld", true)
+            elseif event == "VARIABLES_LOADED" then
+                self:UnregisterEvent("VARIABLES_LOADED")
+                self:SetEnabledFlag("variablesLoaded", true)
+            end
+        end
+    end
+    function Container:SetEnabledFlag(flagName, enabled)
+        local wereAlertsEnabled = self:AreAlertsEnabled()
+        self.shouldQueueAlertsFlags[flagName] = enabled
+        local areAlertsEnabled = self:AreAlertsEnabled()
+        if areAlertsEnabled and wereAlertsEnabled ~= areAlertsEnabled then
+            for _, alertFrameSubSystem in ipairs(self.alertFrameSubSystems) do
+                alertFrameSubSystem:CheckQueuedAlerts()
+            end
+        end
+    end
+    function Container:SetAlertsEnabled(enabled, reason) self:SetEnabledFlag(reason, enabled) end
+    function Container:AreAlertsEnabled()
+        for _, flagValue in pairs(self.shouldQueueAlertsFlags) do
+            if not flagValue then return false end
+        end
+        return true
+    end
+    if isRetail then
+        function Container:BlockLeftClickingAlerts(reason) self.reasonsToBlockLeftClickingAlerts[reason] = true end
+        function Container:UnblockLeftClickingAlerts(reason) self.reasonsToBlockLeftClickingAlerts[reason] = nil end
+        function Container:IsLeftClickingAlertsBlocked() return next(self.reasonsToBlockLeftClickingAlerts) ~= nil end
+        function Container:SetBaseAnchorFrame(frame) self.baseAnchorFrame = frame or self end
+        function Container:ResetBaseAnchorFrame() self.baseAnchorFrame = self end
+    end
+    function Container:CreateSubSystem(subSystemMixin, ...)
+        local subSystem = env.CreateFromMixins(subSystemMixin)
+        subSystem:SetAlertContainer(self)
+        subSystem:OnLoad(...)
+        return subSystem
+    end
+    function Container:AddExternallyAnchoredSubSystem(anchorFrame)
+        return self:AddAlertFrameSubSystem(self:CreateSubSystem(External, anchorFrame))
+    end
+    function Container:CreateQueuedSubSystem(alertFrameTemplate, setUpFunction, maxAlerts, maxQueue)
+        return self:CreateSubSystem(Queue, alertFrameTemplate, setUpFunction, maxAlerts, maxQueue)
+    end
+    function Container:AddQueuedAlertFrameSubSystem(alertFrameTemplate, setUpFunction, maxAlerts, maxQueue)
+        return self:AddAlertFrameSubSystem(self:CreateQueuedSubSystem(alertFrameTemplate, setUpFunction, maxAlerts, maxQueue))
+    end
+    function Container:AddAlertFrameSubSystem(alertFrameSubSystem)
+        self.alertFrameSubSystems[#self.alertFrameSubSystems + 1] = alertFrameSubSystem
+        self:SetSubSystemAnchorPriority(alertFrameSubSystem, 1000 + #self.alertFrameSubSystems * 10)
+        return alertFrameSubSystem
+    end
+    function Container:SetSubSystemAnchorPriority(alertFrameSubSystem, priority)
+        alertFrameSubSystem.anchorPriority = priority
+        self.anchorPrioritiesDirty = true
+    end
+    function Container:CleanAnchorPriorities()
+        if self.anchorPrioritiesDirty then
+            self.anchorPrioritiesDirty = nil
+            table.sort(self.alertFrameSubSystems, function(left, right) return left.anchorPriority < right.anchorPriority end)
+        end
+    end
+    function Container:UpdateAnchors()
+        self:CleanAnchorPriorities()
+        local relativeFrame = isRetail and self.baseAnchorFrame or self
+        for _, alertFrameSubSystem in ipairs(self.alertFrameSubSystems) do
+            local resultFrame = alertFrameSubSystem:AdjustAnchors(relativeFrame)
+            if not isRetail or not resultFrame or not resultFrame.IsInDefaultPosition or resultFrame:IsInDefaultPosition() then
+                relativeFrame = resultFrame
+            end
+        end
+    end
+    function Container:AddAlertFrame(frame)
+        self:UpdateAnchors()
+        if isRetail then
+            frame:SetParent(self.fullscreenFrame)
+            frame:SetFrameStrata(self.fullscreenStrata)
+        end
+        env.AlertFrame_ShowNewAlert(frame)
+    end
+
+    rawset(env, "ContainedAlertSubSystemMixin", Contained)
+    rawset(env, "AlertFrameExternallyAnchoredMixin", External)
+    rawset(env, "AlertFrameQueueMixin", Queue)
+    rawset(env, "AlertContainerMixin", Container)
+    for _, mixin in ipairs({ Contained, External, Queue, Container }) do
+        for _, fn in pairs(mixin) do model.Blizzard[fn] = true end
+    end
+
+    -- issecurevariable: Blizzard's own functions are secure, anything else was written by this addon (the model has
+    -- no other addon unless a scenario installs one, whose functions it marks in model.OtherAddon)
+    model.OtherAddon = {}
+    rawset(env, "issecurevariable", function(t, k)
+        local value = rawget(t, k)
+        if value == nil or model.Blizzard[value] then return true end
+        return false, model.OtherAddon[value] and "OtherAddon" or "Krowi_AchievementFilter"
+    end)
+    -- hooksecurefunc as the game runs it: the original first, then the hook with the same arguments
+    rawset(env, "hooksecurefunc", function(a, b, c)
+        local t, key, hook = a, b, c
+        if type(a) == "string" then t, key, hook = env, a, b end
+        local original = t[key]
+        t[key] = function(...)
+            local results = { original(...) }
+            hook(...)
+            return unpack(results)
+        end
+        if t ~= env then model.Blizzard[t[key]] = model.Blizzard[original] end -- the wrapper stays as secure as what it wraps
+    end)
+
+    -- AlertFrame with two of Blizzard's queued systems (achievements, loot) and, on Retail, the loot rolls anchored
+    -- externally (Mainline/GroupLootFrame.lua:9)
+    function model.NewAlertFrame()
+        local alertFrame = NewModelFrame("AlertFrame", UIParent)
+        env.Mixin(alertFrame, Container)
+        alertFrame:SetSize(10, 10)
+        alertFrame:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 128)
+        alertFrame:OnLoad()
+        if not isRetail then alertFrame:SetScript("OnEvent", alertFrame.OnEvent) end
+        model.AchievementSystem = alertFrame:AddQueuedAlertFrameSubSystem("AchievementAlertFrameTemplate", nil, 2, 6)
+        model.LootSystem = alertFrame:AddQueuedAlertFrameSubSystem("LootWonAlertFrameTemplate", nil, 2, 6)
+        if isRetail then
+            model.GroupLootContainer = NewModelFrame("GroupLootContainer", UIParent)
+            alertFrame:AddExternallyAnchoredSubSystem(model.GroupLootContainer)
+        end
+        rawset(env, "AlertFrame", alertFrame)
+        return alertFrame
+    end
+    function model.FireLogin()
+        local callbacks = model.LoginCallbacks
+        model.LoginCallbacks = {}
+        for _, callback in ipairs(callbacks) do callback() end
+        for _, event in ipairs({ "VARIABLES_LOADED", "PLAYER_ENTERING_WORLD" }) do
+            for frame in pairs(model.EventFrames) do
+                local onEvent = frame._scripts.OnEvent
+                if frame._events[event] and onEvent then onEvent(frame, event) end
+            end
+        end
+    end
+    return model
+end
+
+-- The event reminder pop-ups on the whole-addon load of options-env.lua, a load of the suite's own, against the alert
+-- model above (sources in Tests/PopUps.lua). The GUI load itself (Gui/Gui.lua LoadWithAddon) runs for real, with the
+-- parts that draw frames this load does not build (world map button, side buttons, floating tooltip) stubbed.
+suites.popups = function(c)
+    local scriptDir = ((arg and arg[0]) or ""):gsub("\\", "/"):match("^(.*)/") or "."
+    local optionsEnv = assert(loadfile(scriptDir .. "/options-env.lua"))()
+    local ctx = optionsEnv.New(root, c.client)
+    local env, addon = ctx.env, ctx.addon
+    local results = {}
+    for _, err in ipairs(ctx.Errors) do
+        results[#results + 1] = { Name = "load", Status = "FAIL", TargetMet = false, Line = "popups/load: FAIL " .. err }
+    end
+    local model = InstallAlertModel(env, c.isRetail)
+    rawset(env, "KrowiAF_SavedData", rawget(env, "KrowiAF_SavedData") or {})
+    local gui = addon.Gui
+    gui.WorldMapButton = { Load = function() end, Refresh = function() end }
+    gui.EventReminderSideButtonSystem = { Load = function() end, Refresh = function() end, Reload = function() end }
+    gui.FloatingAchievementTooltip = { Load = function() end }
+    addon.Tests = addon.Tests or { Suites = {}, Ready = {}, Async = {} }
+    local chunk = assert(loadstring(readFile(root .. "/Tests/PopUps.lua"), "@Tests/PopUps.lua"))
+    setfenv(chunk, env)
+    chunk("Krowi_AchievementFilter", addon)
+
+    local headless = { Model = model }
+    function headless.IsRetail() return c.isRetail end
+    -- A login with the current profile: a fresh AlertFrame, the alert system's file run again (a fresh module table),
+    -- prepare (another addon, say) before the addon's GUI load, then the login events
+    function headless.Reload(prepare)
+        model.NewAlertFrame()
+        if prepare then prepare(env, model) end
+        local system = assert(loadstring(readFile(root .. "/Gui/EventReminder/AlertSystem.lua"), "@Gui/EventReminder/AlertSystem.lua"))
+        setfenv(system, env)
+        system("Krowi_AchievementFilter", addon)
+        gui:LoadWithAddon()
+        model.FireLogin()
+        return true
+    end
+    function headless.ShowGameToast(loot) -- an achievement toast (a loot one with loot); returns the newest frame
+        local system = loot and model.LootSystem or model.AchievementSystem
+        system:AddAlert()
+        return system.alertFramePool.order[#system.alertFramePool.order]
+    end
+    function headless.HideGameToasts()
+        model.Reversed = false
+        for _, system in ipairs({ model.AchievementSystem, model.LootSystem }) do
+            local frames = {}
+            for frame in system.alertFramePool:EnumerateActive() do frames[#frames + 1] = frame end
+            for _, frame in ipairs(frames) do frame:Hide() end
+        end
+    end
+    function headless.ReorderGameToasts() model.Reversed = not model.Reversed end -- as the game's pairs() order can change
+    function headless.HoldGameAlerts(held) env.AlertFrame:SetAlertsEnabled(not held, "splashFrame") end
+    headless.Reload()
+    local observations = {}
+    for _, r in ipairs(addon.Tests.PopUps.Run(headless, observations)) do results[#results + 1] = r end
+    return results, "Tests/PopUps.lua", observations
 end
 
 -------------------------------------------------------------------------------------------------

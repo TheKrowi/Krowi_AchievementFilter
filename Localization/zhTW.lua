@@ -7,6 +7,13 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-24 16-43-33 ]] --
+L["Position applies to"] = "位置套用於"
+L["Position applies to Desc"] = "所有警報：將遊戲本身的警報（例如成就與拾取）與事件提醒一起移動。僅事件提醒：只移動事件提醒，遊戲的警報留在遊戲放置的位置。"
+L["Every alert"] = "所有警報"
+L["Only event reminders"] = "僅事件提醒"
+L["Hide placeholders"] = "隱藏佔位符"
+L["Hide placeholders Desc"] = "隱藏所有正在顯示或等待顯示的事件提醒彈窗，包括佔位符與真實提醒。"
+L["Alerts placed by another addon Desc"] = "另一個插件正在放置遊戲的警報，因此事件提醒彈窗會跟隨它們。請在該插件中移動它們。"
 L["{count} changed"] = "已變更 {count} 項"
 L["About"] = "關於"
 L["Achievement guides"] = "成就指南"

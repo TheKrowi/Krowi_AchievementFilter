@@ -6,6 +6,13 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-24 16-43-33 ]] --
+L["Position applies to"] = true
+L["Position applies to Desc"] = "Every alert moves the game's own alerts, such as achievements and loot, together with the event reminders. Only event reminders moves the event reminders alone and leaves the game's alerts where the game puts them."
+L["Every alert"] = true
+L["Only event reminders"] = true
+L["Hide placeholders"] = true
+L["Hide placeholders Desc"] = "Hides every event reminder pop up that is showing or waiting to show: the placeholders and any real reminders."
+L["Alerts placed by another addon Desc"] = "Another addon places the game's alerts, so the event reminder pop ups go with them. Move them with that addon."
 L["{count} changed"] = true
 L["About"] = true
 L["Achievement guides"] = true
