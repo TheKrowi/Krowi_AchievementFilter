@@ -84,8 +84,6 @@ L["GW2_UI Skins Desc"] = [=[下列所有选项仅提供信息，均由GW 2 UI进
 L["IAT Tactics"] = "IAT战术"
 L["Instance Achievement Tracker"] = true
 L["Instance Achievement Tracker Desc"] = "有可用的{iat}战术时，在右键菜单中添加一个额外选项。"
-L["Instance Achievement Tracker PluginText"] = [=[|T:1:8|t- 战术可用时跳转到{plugin_iat}（{plugin_iat}：{plugin_enabled}）。
-]=]
 L["RenameExplorationDragonIslesCategory"] = "将“探索 -> 巨龙群岛”类别重命名为“巨龙时代”"
 L["RenameExplorationDragonIslesCategory Desc"] = "将“探索 -> 巨龙群岛”类别重命名为“巨龙时代”。"
 L["Unsupported GW2_UI Desc"] = "不支持当前GW 2 UI版本“{version}”。"

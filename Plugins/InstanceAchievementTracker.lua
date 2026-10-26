@@ -32,17 +32,6 @@ function iat:InjectOptions()
     })
 end
 
-function iat:Load()
-    -- This is a tutorial texts, rework for this will be done later
-    addon.L["Right Click Menu Desc"] = addon.L["Right Click Menu Desc"]:K_ReplaceVars{
-        pluginText = addon.L["Instance Achievement Tracker PluginText"]
-    }
-    addon.L["Right Click Menu Desc"] = addon.L["Right Click Menu Desc"]:K_ReplaceVars{
-        plugin_iat = addon.L["Instance Achievement Tracker"]:SetColorYellow(),
-        plugin_enabled = (IsLoaded() and (addon.L["Enabled"]:lower():SetColorGreen()) or (addon.L["Disabled"]:lower():SetColorRed()))
-    }
-end
-
 function iat:AddAchievementRightClickMenuItems(rightClickMenu, achievement, menuBuilder)
     if IsLoaded()
     and addon.Options.db.profile.Plugins.InstanceAchievementTracker.AddToRightClickMenu

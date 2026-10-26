@@ -10,7 +10,6 @@ local AdjustedWidth = addon.InjectOptions.AdjustedWidth
 
 function general.RegisterOptionsTable()
     LibStub("AceConfig-3.0"):RegisterOptionsTable(addon.Metadata.Title, options.OptionsTable.args.General)
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addon.Metadata.Title, addon.Metadata.Title, nil)
 end
 
 local openCurrentZoneCategoryName
@@ -35,42 +34,7 @@ function general.OnProfileReset(db)
     RefreshOptions()
 end
 
--- Closes the settings panel before the addon shows a page over the game. Close(true) commits and hides it without
--- Blizzard's way back to the game menu, whose ToggleGameMenu calls the protected SpellStopCasting
--- (docs/work/2026-10-11-latent-bugs). With unapplied settings Close asks through a popup whose buttons would then take
--- that way tainted, and in combat HideUIPanel refuses addon code, so the panel then stays open for the player to close.
-local function CloseSettingsPanel()
-    if InCombatLockdown() or SettingsPanel:HasUnappliedSettings() then
-        return
-    end
-    SettingsPanel:Close(true)
-end
-
-local function CreateTutorialMenuFunc(builder)
-    local menu = builder:GetMenu()
-    local pages = addon.Tutorials.FeaturesTutorial.Pages
-
-    builder:CreateTitle(menu, addon.L["View Tutorial"])
-    for i, _ in next, pages do
-        builder:CreateButtonAndAdd(
-            menu,
-            (pages[i].IsViewed and "" or "|T132049:0|t") .. string.format(addon.Util.Colors.White, addon.Util.Colors.RemoveColor(pages[i].SubTitle)),
-            function()
-                CloseSettingsPanel()
-                addon.Tutorials.FeaturesTutorial:ShowTutorial(i)
-            end
-        )
-    end
-end
-
-local tutorialMenuBuilder
-local function GeneralTutorialFunc()
-    if not tutorialMenuBuilder then
-        tutorialMenuBuilder = addon.MenuBuilder:New({modern = addon.Util.IsModern})
-    end
-
-    tutorialMenuBuilder:ShowPopup(CreateTutorialMenuFunc)
-end
+local CloseSettingsPanel = options.CloseSettingsPanel
 
 local function MinimapShowMinimapIconSet(_, value)
     if addon.Options.db.profile.ShowMinimapIcon == value then return; end
@@ -95,15 +59,6 @@ local function MicroButtonSetKeybindFunc()
         SetBinding("Y", tab.BindingName)
         SaveBindings(GetCurrentBindingSet())
     end
-end
-
-local function SetBindingKeybind(value, command, index)
-	local key = select(index, GetBindingKey(command))
-	if key then
-		SetBinding(key)
-	end
-	SetBinding(value, command, index)
-	SaveBindings(GetCurrentBindingSet())
 end
 
 local screenshotModeFrame, screenshotModeCloseButton
@@ -302,12 +257,6 @@ local infoOptions = {
                     order = OrderPP(), type = "description", width = AdjustedWidth(), fontSize = "medium",
                     name = (addon.Util.L["Build"] .. ": "):SetColorYellow() .. addon.Metadata.Build,
                 },
-                Tutorial = {
-                    order = OrderPP(), type = "execute", width = AdjustedWidth(),
-                    name = function() return (addon.Tutorials.FeaturesTutorial:HasUnviewedPages() and "|T132049:0|t" or "") .. addon.L["Tutorial"]; end,
-                    desc = addon.L["Tutorial Desc"],
-                    func = GeneralTutorialFunc
-                },
                 Author = {
                     order = OrderPP(), type = "description", width = AdjustedWidth(2), fontSize = "medium",
                     name = (addon.Util.L["Author"] .. ": "):SetColorYellow() .. addon.Metadata.Author,
@@ -503,13 +452,13 @@ local keyBindingOptions = {
                             order = OrderPP(), type = "keybinding", width = AdjustedWidth(0.93),
                             name = "", desc = "",
                             get = function() return GetBindingKey("KrowiAF_OPEN_CAT_Current_Zone"); end,
-                            set = function(_, value) SetBindingKeybind(value, "KrowiAF_OPEN_CAT_Current_Zone", 1); end
+                            set = function(_, value) options.SetKeyBinding(value, "KrowiAF_OPEN_CAT_Current_Zone", 1) end
                         },
                         OpenCurrentZoneCategoryKey2 = {
                             order = OrderPP(), type = "keybinding", width = AdjustedWidth(0.93),
                             name = "", desc = "",
                             get = function() return select(2, GetBindingKey("KrowiAF_OPEN_CAT_Current_Zone")); end,
-                            set = function(_, value) SetBindingKeybind(value, "KrowiAF_OPEN_CAT_Current_Zone", 2); end
+                            set = function(_, value) options.SetKeyBinding(value, "KrowiAF_OPEN_CAT_Current_Zone", 2) end
                         }
                     }
                 }

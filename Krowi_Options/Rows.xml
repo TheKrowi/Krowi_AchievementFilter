@@ -1,0 +1,288 @@
+<Ui>
+    <Script file="RowMixins.lua"/>
+
+    <!-- The minimal check box of Blizzard's own settings (Blizzard_SettingControls.xml) -->
+    <CheckButton name="Krowi_OptionsCheckButtonTemplate" virtual="true">
+        <Size x="26" y="26"/>
+        <NormalTexture atlas="checkbox-minimal" useAtlasSize="true"/>
+        <PushedTexture atlas="checkbox-minimal" useAtlasSize="true"/>
+        <CheckedTexture atlas="checkmark-minimal" useAtlasSize="true"/>
+        <DisabledCheckedTexture atlas="checkmark-minimal-disabled" useAtlasSize="true"/>
+    </CheckButton>
+
+    <Frame name="Krowi_OptionsHeaderRowTemplate" mixin="Krowi_OptionsTextRowMixin" virtual="true">
+        <Size y="34"/>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString parentKey="Text" inherits="GameFontHighlightLarge" justifyH="LEFT">
+                    <Anchors>
+                        <Anchor point="BOTTOMLEFT" x="6" y="6"/>
+                        <Anchor point="RIGHT" x="-6"/>
+                    </Anchors>
+                </FontString>
+                <Texture parentKey="Line">
+                    <Size y="1"/>
+                    <Anchors>
+                        <Anchor point="BOTTOMLEFT" x="6" y="1"/>
+                        <Anchor point="BOTTOMRIGHT" x="-6" y="1"/>
+                    </Anchors>
+                    <Color r="1" g="0.82" b="0" a="0.25"/>
+                </Texture>
+            </Layer>
+        </Layers>
+    </Frame>
+
+    <Frame name="Krowi_OptionsSubHeadingRowTemplate" mixin="Krowi_OptionsTextRowMixin" virtual="true">
+        <Size y="24"/>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString parentKey="Text" inherits="GameFontHighlight" justifyH="LEFT">
+                    <Anchors>
+                        <Anchor point="LEFT" x="16"/>
+                        <Anchor point="RIGHT" x="-16"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+    </Frame>
+
+    <Frame name="Krowi_OptionsNoteRowTemplate" mixin="Krowi_OptionsTextRowMixin" virtual="true">
+        <Size y="24"/>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString parentKey="Text" inherits="GameFontDisable" justifyH="LEFT" justifyV="TOP">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="16" y="-4"/>
+                        <Anchor point="BOTTOMRIGHT" x="-16"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+    </Frame>
+
+    <Frame name="Krowi_OptionsOptionRowTemplate" mixin="Krowi_OptionsOptionRowMixin" enableMouse="true" virtual="true">
+        <Size y="30"/>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="Hover" setAllPoints="true" hidden="true">
+                    <Color r="1" g="1" b="1" a="0.05"/>
+                </Texture>
+            </Layer>
+            <Layer level="ARTWORK">
+                <FontString parentKey="Label" inherits="GameFontNormal" justifyH="LEFT" wordwrap="true" maxLines="2">
+                    <Anchors>
+                        <Anchor point="LEFT" x="16"/>
+                    </Anchors>
+                </FontString>
+                <Texture parentKey="ReloadIcon" file="Interface\Buttons\UI-RefreshButton" hidden="true">
+                    <Size x="12" y="12"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.Label" relativePoint="RIGHT" x="6"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Button parentKey="Dot" hidden="true">
+                <Size x="8" y="8"/>
+                <Anchors>
+                    <Anchor point="RIGHT" relativeKey="$parent.Label" relativePoint="LEFT" x="-4"/>
+                </Anchors>
+                <NormalTexture>
+                    <Color r="1" g="0.82" b="0" a="1"/>
+                </NormalTexture>
+            </Button>
+            <CheckButton parentKey="Toggle" inherits="Krowi_OptionsCheckButtonTemplate" hidden="true">
+                <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT" x="-300"/>
+                </Anchors>
+            </CheckButton>
+            <Frame parentKey="Range" inherits="MinimalSliderWithSteppersTemplate" hidden="true">
+                <Size x="210" y="20"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT" x="-300"/>
+                </Anchors>
+            </Frame>
+            <DropdownButton parentKey="Select" inherits="WowStyle1DropdownTemplate" hidden="true">
+                <Size x="250" y="26"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT" x="-300"/>
+                </Anchors>
+            </DropdownButton>
+            <Button parentKey="Execute" inherits="UIPanelButtonNoTooltipTemplate" hidden="true">
+                <Size x="160" y="22"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT" x="-300"/>
+                </Anchors>
+            </Button>
+            <EditBox parentKey="Input" inherits="InputBoxTemplate" autoFocus="false" hidden="true">
+                <Size x="240" y="20"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT" x="-294"/>
+                </Anchors>
+            </EditBox>
+            <Button parentKey="Key1" inherits="UIPanelButtonNoTooltipTemplate" hidden="true">
+                <Size x="124" y="22"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT" x="-300"/>
+                </Anchors>
+            </Button>
+            <Button parentKey="Key2" inherits="UIPanelButtonNoTooltipTemplate" hidden="true">
+                <Size x="124" y="22"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeKey="$parent.Key1" relativePoint="RIGHT" x="6"/>
+                </Anchors>
+            </Button>
+        </Frames>
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+            <OnEnter method="OnEnter"/>
+            <OnLeave method="OnLeave"/>
+        </Scripts>
+    </Frame>
+
+    <Frame name="Krowi_OptionsSubRowTemplate" mixin="Krowi_OptionsSubRowMixin" virtual="true">
+        <Size y="28"/>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString parentKey="Text" inherits="GameFontHighlight" justifyH="LEFT">
+                    <Anchors>
+                        <Anchor point="LEFT" x="16"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Button parentKey="All" inherits="UIPanelButtonNoTooltipTemplate">
+                <Size x="70" y="20"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT" x="-300"/>
+                </Anchors>
+            </Button>
+            <Button parentKey="None" inherits="UIPanelButtonNoTooltipTemplate">
+                <Size x="70" y="20"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeKey="$parent.All" relativePoint="RIGHT" x="6"/>
+                </Anchors>
+            </Button>
+        </Frames>
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+        </Scripts>
+    </Frame>
+
+    <Frame name="Krowi_OptionsGridHeaderRowTemplate" mixin="Krowi_OptionsGridHeaderRowMixin" virtual="true">
+        <Size y="34"/>
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+        </Scripts>
+    </Frame>
+
+    <Frame name="Krowi_OptionsGridRowTemplate" mixin="Krowi_OptionsGridRowMixin" enableMouse="true" virtual="true">
+        <Size y="28"/>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="Hover" setAllPoints="true" hidden="true">
+                    <Color r="1" g="1" b="1" a="0.05"/>
+                </Texture>
+            </Layer>
+            <Layer level="ARTWORK">
+                <FontString parentKey="Label" inherits="GameFontNormal" justifyH="LEFT" wordwrap="false">
+                    <Size x="180"/>
+                    <Anchors>
+                        <Anchor point="LEFT" x="16"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+            <OnEnter method="OnEnter"/>
+            <OnLeave method="OnLeave"/>
+        </Scripts>
+    </Frame>
+
+    <Frame name="Krowi_OptionsTabRowTemplate" mixin="Krowi_OptionsTabRowMixin" enableMouse="true" virtual="true">
+        <Size y="28"/>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="Hover" setAllPoints="true" hidden="true">
+                    <Color r="1" g="1" b="1" a="0.05"/>
+                </Texture>
+            </Layer>
+            <Layer level="ARTWORK">
+                <FontString parentKey="Position" inherits="GameFontDisable" justifyH="RIGHT">
+                    <Size x="20"/>
+                    <Anchors>
+                        <Anchor point="LEFT" x="10"/>
+                    </Anchors>
+                </FontString>
+                <FontString parentKey="Label" inherits="GameFontNormal" justifyH="LEFT" wordwrap="false">
+                    <Anchors>
+                        <Anchor point="LEFT" x="66"/>
+                    </Anchors>
+                </FontString>
+                <FontString parentKey="Source" inherits="GameFontDisableSmall" justifyH="LEFT">
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.Label" relativePoint="RIGHT" x="8"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+            <CheckButton parentKey="ShowCheck" inherits="Krowi_OptionsCheckButtonTemplate">
+                <Anchors>
+                    <Anchor point="LEFT" x="34"/>
+                </Anchors>
+            </CheckButton>
+            <Button parentKey="Up">
+                <Size x="22" y="22"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT" x="-300"/>
+                </Anchors>
+                <NormalTexture file="Interface\Buttons\Arrow-Up-Up"/>
+                <PushedTexture file="Interface\Buttons\Arrow-Up-Down"/>
+                <DisabledTexture file="Interface\Buttons\Arrow-Up-Disabled"/>
+            </Button>
+            <Button parentKey="Down">
+                <Size x="22" y="22"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeKey="$parent.Up" relativePoint="RIGHT" x="4"/>
+                </Anchors>
+                <NormalTexture file="Interface\Buttons\Arrow-Down-Up"/>
+                <PushedTexture file="Interface\Buttons\Arrow-Down-Down"/>
+                <DisabledTexture file="Interface\Buttons\Arrow-Down-Disabled"/>
+            </Button>
+        </Frames>
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+            <OnEnter method="OnEnter"/>
+            <OnLeave method="OnLeave"/>
+        </Scripts>
+    </Frame>
+
+    <Button name="Krowi_OptionsLinkRowTemplate" mixin="Krowi_OptionsLinkRowMixin" virtual="true">
+        <Size y="26"/>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString parentKey="Text" inherits="GameFontNormal" justifyH="LEFT" wordwrap="false">
+                    <Anchors>
+                        <Anchor point="LEFT" x="16"/>
+                    </Anchors>
+                </FontString>
+                <FontString parentKey="Detail" inherits="GameFontDisableSmall" justifyH="LEFT" wordwrap="false">
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.Text" relativePoint="RIGHT" x="10"/>
+                        <Anchor point="RIGHT" x="-16"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <HighlightTexture>
+            <Color r="1" g="1" b="1" a="0.08"/>
+        </HighlightTexture>
+        <Scripts>
+            <OnClick method="OnClick"/>
+        </Scripts>
+    </Button>
+</Ui>

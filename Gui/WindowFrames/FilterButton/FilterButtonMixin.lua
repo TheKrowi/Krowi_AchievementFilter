@@ -197,11 +197,11 @@ do -- AchievementFilters
     end
 end
 
-function KrowiAF_AchievementFrameFilterButtonMixin:HelpShowTutorial(index)
+function KrowiAF_AchievementFrameFilterButtonMixin:OpenOptions()
     if not isModern then
         self.menuBuilder:Close()
     end
-    addon.Tutorials.FeaturesTutorial:ShowTutorial(index)
+    addon.Options.Open()
 end
 
 function KrowiAF_AchievementFrameFilterButtonMixin:CreateMenu(menu)
@@ -232,24 +232,12 @@ function KrowiAF_AchievementFrameFilterButtonMixin:CreateMenu(menu)
     self:CreateAchievementFilters(mb:CreateSubmenuButton(menu, addon.L["Tracking Achievements"]), addon.Filters.db.profile.TrackingAchievements, menu)
 
     mb:CreateDivider(menu)
-    local help = mb:CreateSubmenuButton(menu, (addon.Tutorials.FeaturesTutorial:HasUnviewedPages() and "|T132049:0|t" or "") .. addon.L["Help"])
-    local pages = addon.Tutorials.FeaturesTutorial.Pages
-    mb:CreateTitle(help, addon.L["View Tutorial"])
-    for i, _ in next, pages do
-        mb:CreateButtonAndAdd(
-            help,
-            (pages[i].IsViewed and "" or "|T132049:0|t") .. string.format(addon.Util.Colors.White, addon.Util.Colors.RemoveColor(pages[i].SubTitle)),
-            function()
-                self:HelpShowTutorial(i)
-            end
-        )
-    end
-    mb:AddChildMenu(menu, help)
-
     mb:CreateButtonAndAdd(
         menu,
-        addon.Util.L["Options"],
-        addon.Options.Open
+        (addon.Options.Window.AnyNew() and "|T132049:0|t" or "") .. addon.Util.L["Options"],
+        function()
+            self:OpenOptions()
+        end
     )
 
     if addon.Options.db.profile.ShowPlaceholdersFilter then

@@ -10,7 +10,6 @@ local AdjustedWidth = addon.InjectOptions.AdjustedWidth
 
 function layout.RegisterOptionsTable()
     LibStub("AceConfig-3.0"):RegisterOptionsTable(addon.Metadata.Prefix .. "_Layout", options.OptionsTable.args.Layout)
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addon.Metadata.Prefix .. "_Layout", addon.L["Layout"], addon.Metadata.Title)
 end
 
 function layout.PostLoad()
@@ -2028,6 +2027,12 @@ options.OptionsTable.args["Layout"] = {
 }
 
 function RefreshOptions()
+    -- Before Blizzard_AchievementUI loads, the window's frames do not exist yet (switching profiles from the options
+    -- window right after a /reload); each one reads the profile when it is built, so only the options table follows now
+    if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
+        SetMaxNumberOfSearchPreviews()
+        return
+    end
     local profile = addon.Options.db.profile
     MovableSwitchMovableSet(_, profile.Window.Movable)
     MovableAchievementWindowRememberLastPositionSet(_, profile.Window.RememberLastPosition.AchievementWindow)

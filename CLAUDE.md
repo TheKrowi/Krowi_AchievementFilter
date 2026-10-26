@@ -43,4 +43,8 @@ The tooling every Krowi repo shares lives once, in Krowi_ClaudeKit (`E:\World of
 - uploads are `--stability stable`;
 - the addon manager's release commit includes `.vscode/settings.json`, which is accepted here.
 
-Its preflight runs `.claude/release-gate.ps1`. The gate needs a green in-game run of the `escape` suite (`/kaftest escape`, then `/reload`) on the newest Retail client the TOC's `## Interface:` claims. When that run differs from the headless model, update the model in `.claude/tools/headless/run-tests.lua` before releasing.
+Its preflight runs `.claude/release-gate.ps1`. The gate needs:
+- `Options/Window/Changelog.lua` to list the changelog's top entry (`.claude/tools/Build-ChangelogLua.ps1` writes it);
+- green in-game runs (`/kaftest <suite>`, then `/reload`) on the newest build of each client the TOC's `## Interface:` claims, newer than the last change to the suite's file: `escape` and `options` on Retail, `options` on Mists Classic.
+
+When a run differs from the headless model, update the model in `.claude/tools/headless/run-tests.lua` before releasing.

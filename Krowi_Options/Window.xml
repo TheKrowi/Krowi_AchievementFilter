@@ -1,0 +1,179 @@
+<Ui>
+    <Script file="WindowMixin.lua"/>
+
+    <Button name="Krowi_OptionsNavButtonTemplate" mixin="Krowi_OptionsNavButtonMixin" virtual="true">
+        <Size y="22"/>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="Selected" setAllPoints="true" hidden="true">
+                    <Color r="1" g="0.82" b="0" a="0.16"/>
+                </Texture>
+            </Layer>
+            <Layer level="ARTWORK">
+                <FontString parentKey="Label" inherits="GameFontNormal" justifyH="LEFT" wordwrap="false">
+                    <Anchors>
+                        <Anchor point="LEFT" x="14"/>
+                        <Anchor point="RIGHT" x="-40"/>
+                    </Anchors>
+                </FontString>
+                <FontString parentKey="New" inherits="GameFontNormalSmall" justifyH="RIGHT" hidden="true">
+                    <Anchors>
+                        <Anchor point="RIGHT" x="-6"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <HighlightTexture>
+            <Color r="1" g="1" b="1" a="0.08"/>
+        </HighlightTexture>
+        <Scripts>
+            <OnClick method="OnClick"/>
+        </Scripts>
+    </Button>
+
+    <Frame name="Krowi_OptionsNavHeaderTemplate" mixin="Krowi_OptionsTextRowMixin" virtual="true">
+        <Size y="28"/>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString parentKey="Text" inherits="GameFontHighlight" justifyH="LEFT">
+                    <Anchors>
+                        <Anchor point="BOTTOMLEFT" x="8" y="4"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+    </Frame>
+
+    <Frame name="Krowi_OptionsHelpTextTemplate" mixin="Krowi_OptionsHelpTextMixin" virtual="true">
+        <Size y="20"/>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString parentKey="Text" inherits="GameFontHighlight" justifyH="LEFT" justifyV="TOP">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="4" y="-2"/>
+                        <Anchor point="BOTTOMRIGHT" x="-4"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+    </Frame>
+
+    <Button name="Krowi_OptionsHelpPictureTemplate" mixin="Krowi_OptionsHelpPictureMixin" virtual="true">
+        <Size y="100"/>
+        <Layers>
+            <Layer level="ARTWORK">
+                <Texture parentKey="Picture">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="4" y="-4"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="HIGHLIGHT">
+                <Texture parentKey="Highlight" alphaMode="ADD">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.Picture"/>
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Picture"/>
+                    </Anchors>
+                    <Color r="1" g="1" b="1" a="0.12"/>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnClick method="OnClick"/>
+            <OnEnter method="OnEnter"/>
+            <OnLeave method="OnLeave"/>
+        </Scripts>
+    </Button>
+
+    <Frame name="Krowi_OptionsWindowTemplate" mixin="Krowi_OptionsWindowMixin" inherits="ButtonFrameTemplate" frameStrata="HIGH" toplevel="true" enableMouse="true" movable="true" resizable="true" clampedToScreen="true" hidden="true" virtual="true">
+        <Size x="1180" y="720"/>
+        <Anchors>
+            <Anchor point="CENTER"/>
+        </Anchors>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString parentKey="PageTitle" inherits="GameFontHighlightHuge" justifyH="LEFT" wordwrap="false"/>
+                <FontString parentKey="ChangedText" inherits="GameFontDisableSmall" justifyH="RIGHT"/>
+                <FontString parentKey="HelpKicker" inherits="GameFontDisableSmall" justifyH="LEFT"/>
+                <FontString parentKey="ReloadText" inherits="GameFontHighlight" justifyH="LEFT"/>
+                <FontString parentKey="ShowMeNote" inherits="GameFontDisableSmall" justifyH="LEFT" justifyV="TOP"/>
+            </Layer>
+            <Layer level="BACKGROUND" textureSubLevel="2">
+                <Texture parentKey="NavBackground">
+                    <Color r="0" g="0" b="0" a="0.35"/>
+                </Texture>
+                <Texture parentKey="HelpBackground">
+                    <Color r="0" g="0" b="0" a="0.25"/>
+                </Texture>
+                <Texture parentKey="ReloadBackground" hidden="true">
+                    <Color r="1" g="0.82" b="0" a="0.08"/>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Frames>
+            <EditBox parentKey="SearchBox" inherits="SearchBoxTemplate" autoFocus="false" letters="60">
+                <Size y="20"/>
+            </EditBox>
+            <Frame parentKey="NavScrollBox" inherits="WowScrollBoxList"/>
+            <EventFrame parentKey="NavScrollBar" inherits="WowTrimScrollBar"/>
+            <Frame parentKey="PageScrollBox" inherits="WowScrollBoxList"/>
+            <EventFrame parentKey="PageScrollBar" inherits="WowTrimScrollBar"/>
+            <Frame parentKey="HelpScrollBox" inherits="WowScrollBoxList"/>
+            <EventFrame parentKey="HelpScrollBar" inherits="WowTrimScrollBar"/>
+            <Button parentKey="CollapseButton">
+                <Size x="22" y="22"/>
+                <NormalTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Up"/>
+                <PushedTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Down"/>
+                <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+            </Button>
+            <Button parentKey="ExpandButton" hidden="true">
+                <Size x="22" y="22"/>
+                <NormalTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Up"/>
+                <PushedTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Down"/>
+                <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+            </Button>
+            <Button parentKey="ShowMeButton" inherits="UIPanelButtonNoTooltipTemplate" hidden="true">
+                <Size x="120" y="22"/>
+            </Button>
+            <Button parentKey="DefaultsButton" inherits="UIPanelButtonNoTooltipTemplate">
+                <Size x="110" y="22"/>
+            </Button>
+            <Button parentKey="CancelButton" inherits="UIPanelButtonNoTooltipTemplate" hidden="true">
+                <Size x="80" y="22"/>
+            </Button>
+            <Button parentKey="ReloadButton" inherits="UIPanelButtonNoTooltipTemplate" hidden="true">
+                <Size x="110" y="22"/>
+            </Button>
+            <Button parentKey="Lightbox" frameStrata="FULLSCREEN" hidden="true">
+                <Layers>
+                    <Layer level="BACKGROUND">
+                        <Texture parentKey="Scrim" setAllPoints="true">
+                            <Color r="0" g="0" b="0" a="0.75"/>
+                        </Texture>
+                    </Layer>
+                    <Layer level="ARTWORK">
+                        <Texture parentKey="Picture"/>
+                    </Layer>
+                </Layers>
+            </Button>
+            <Button parentKey="ResizeButton">
+                <Size x="16" y="16"/>
+                <Anchors>
+                    <Anchor point="BOTTOMRIGHT" x="-4" y="4"/>
+                </Anchors>
+                <NormalTexture file="Interface\ChatFrame\UI-ChatIM-SizeGrabber-Up"/>
+                <PushedTexture file="Interface\ChatFrame\UI-ChatIM-SizeGrabber-Down"/>
+                <HighlightTexture file="Interface\ChatFrame\UI-ChatIM-SizeGrabber-Highlight"/>
+            </Button>
+        </Frames>
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+            <OnShow method="OnShow"/>
+            <OnHide method="OnHide"/>
+            <OnEvent method="OnEvent"/>
+            <OnSizeChanged method="OnSizeChanged"/>
+            <OnDragStart method="OnDragStart"/>
+            <OnDragStop method="OnDragStop"/>
+        </Scripts>
+    </Frame>
+</Ui>

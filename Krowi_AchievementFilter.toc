@@ -27,6 +27,7 @@
 ## X-Wago-ID: XrNkx46a
 
 Libs\Files.xml
+Krowi_Options\Files.xml
 
 Api\Files.xml
 
@@ -42,7 +43,6 @@ TaintDiagnostics.lua
 Options\Files.xml
 Libs\Krowi_Util\Icon.lua
 Icon.lua
-Tutorials.lua
 BrowsingHistory.lua
 
 Objects\Files.xml

@@ -31,7 +31,9 @@
 --         data load: the Curse Surges from Blizzard's event scheduler and the soup on its fixed schedule), schedules
 --         (Data/EventSchedules.lua and Data/EventObserver.lua on the real data load: the older expansions' events on
 --         their fixed schedules, and what the watcher learns from the POIs), tracking
---         (Gui/WindowFrames/AchievementButton/TrackingSlots.lua: what the Track button does at the tracking cap)
+--         (Gui/WindowFrames/AchievementButton/TrackingSlots.lua: what the Track button does at the tracking cap), options
+--         (the options window's model over the real AceConfig tables, on the whole-addon load of options-env.lua), help
+--         (Options/Window/Help/: the explanations, pictures and Show me the window's help pane reads, on the same load)
 --
 -- Retail model is 12.1: the Blizzard_GameMenuEsc handler registry, the UI panel manager (its slots stay
 -- empty because the addon shows the achievement window with a plain Show), UISpecialFrames, static
@@ -382,12 +384,14 @@ local suites = {}
 suites.escape = function(c)
     local env, addon, state = c.env, c.addon, c.state
     local frames = {}
-    for key, name in pairs({ Tooltip = "KrowiAF_FloatingAchievementTooltip", Text = "KrowiAF_TextFrame", MapVerifier = "KrowiAF_MapVerifierFrame",
+    for key, name in pairs({ Tooltip = "KrowiAF_FloatingAchievementTooltip", Options = "KrowiAF_OptionsWindow", Text = "KrowiAF_TextFrame", MapVerifier = "KrowiAF_MapVerifierFrame",
         DataManager = "KrowiAF_DataManagerFrame", Calendar = "KrowiAF_AchievementCalendarFrame", Achievements = "AchievementFrame", GameMenu = "GameMenuFrame" }) do
         frames[key] = env.CreateFrame("Frame", name, env.UIParent)
     end
     frames.CalendarSide = env.CreateFrame("Frame", nil, frames.Calendar)
     frames.Calendar.SideFrame = frames.CalendarSide
+    frames.OptionsPicture = env.CreateFrame("Frame", nil, frames.Options) -- the options window's lightbox
+    frames.Options.Lightbox = frames.OptionsPicture
     -- The reward preview closes with the window its row belongs to (Gui/RewardPreview/RewardPreview.lua, OnOwnerWindowHide)
     frames.RewardPreview = env.CreateFrame("Frame", "KrowiAF_RewardPreview", env.UIParent)
     frames.Achievements:HookScript("OnHide", function() frames.RewardPreview:Hide() end)
@@ -1574,6 +1578,46 @@ suites.obtainable = function(c)
         chunk("Krowi_AchievementFilter", addon)
     end
     return addon.Tests.Obtainable.Run(), "Tests/Obtainable.lua", {}
+end
+
+-- The whole addon loaded the way the game loads it (options-env.lua), so the options window's model reads the real
+-- AceConfig tables with every injection and plugin. A load or step error of that load is a FAIL line of its own: a
+-- regression suite must not pass while options are missing.
+suites.options = function(c)
+    local scriptDir = ((arg and arg[0]) or ""):gsub("\\", "/"):match("^(.*)/") or "."
+    local optionsEnv = assert(loadfile(scriptDir .. "/options-env.lua"))()
+    local ctx = optionsEnv.Get(root, c.client)
+    local results = {}
+    for _, err in ipairs(ctx.Errors) do
+        results[#results + 1] = { Name = "load", Status = "FAIL", TargetMet = false, Line = "options/load: FAIL " .. err }
+    end
+    local env, addon = ctx.env, ctx.addon
+    addon.Tests = addon.Tests or { Suites = {}, Ready = {}, Async = {} }
+    local chunk = assert(loadstring(readFile(root .. "/Tests/Options.lua"), "@Tests/Options.lua"))
+    setfenv(chunk, env)
+    chunk("Krowi_AchievementFilter", addon)
+    for _, r in ipairs(addon.Tests.Options.Run()) do results[#results + 1] = r end
+    return results, "Tests/Options.lua", addon.Tests.Options.Observations()
+end
+
+-- The help pane's content on the same whole-addon load. Here the runner can also look for each picture's file, which
+-- the game cannot; a load error is the options suite's to report.
+suites.help = function(c)
+    local scriptDir = ((arg and arg[0]) or ""):gsub("\\", "/"):match("^(.*)/") or "."
+    local optionsEnv = assert(loadfile(scriptDir .. "/options-env.lua"))()
+    local ctx = optionsEnv.Get(root, c.client)
+    local env, addon = ctx.env, ctx.addon
+    addon.Tests = addon.Tests or { Suites = {}, Ready = {} }
+    addon.Tests.FileExists = function(path)
+        local rel = path:gsub("\\", "/"):gsub("^Interface/AddOns/Krowi_AchievementFilter/", "")
+        local f = io.open(root .. "/" .. rel, "rb")
+        if f then f:close() end
+        return f ~= nil
+    end
+    local chunk = assert(loadstring(readFile(root .. "/Tests/Help.lua"), "@Tests/Help.lua"))
+    setfenv(chunk, env)
+    chunk("Krowi_AchievementFilter", addon)
+    return addon.Tests.Help.Run(), "Tests/Help.lua", addon.Tests.Help.Observations()
 end
 
 -------------------------------------------------------------------------------------------------

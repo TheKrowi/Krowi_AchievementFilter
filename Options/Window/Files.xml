@@ -1,0 +1,9 @@
+<Ui>
+    <Script file="Map.lua" />
+    <Script file="Changelog.lua" />
+    <Script file="Source.lua" />
+    <Script file="Model.lua" />
+    <Script file="Window.lua" />
+    <Script file="Stub.lua" />
+    <Include file="Help\Files.xml" />
+</Ui>

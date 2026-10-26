@@ -73,7 +73,6 @@ if not addon.Util.IsClassicWithAchievements then -- Wrath Classic does not have 
     L["Not Completed"] = CRITERIA_NOT_COMPLETED
 end
 
-L["Expansion"] = EXPANSION_FILTER_TEXT
 L["Classic"] = EXPANSION_NAME0
 L["The Burning Crusade"] = EXPANSION_NAME1
 L["Wrath of the Lich King"] = EXPANSION_NAME2
@@ -106,13 +105,11 @@ L["Achievements"] = ACHIEVEMENTS
 L["Guild"] = ACHIEVEMENTS_GUILD_TAB
 L["Statistics"] = STATISTICS
 L["Categories"] = CATEGORIES
-L["Help"] = GAMEMENU_HELP
 L["Missing"] = ADDON_MISSING
 L["Key Binding"] = KEY_BINDING
 L["Achievement Points"] = ACHIEVEMENT_POINTS
 L["Enabled"] = PVP_WAR_MODE_ENABLED or VIDEO_OPTIONS_ENABLED
 L["Disabled"] = ADDON_DISABLED
-L["Show All %d Results"] = ENCOUNTER_JOURNAL_SHOW_SEARCH_RESULTS
 L["Miscellaneous"] = AUCTION_CATEGORY_MISCELLANEOUS
 L["Close"] = CLOSE
 L["Summary"] = ACHIEVEMENT_SUMMARY_CATEGORY

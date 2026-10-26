@@ -10,7 +10,6 @@ local AdjustedWidth = addon.InjectOptions.AdjustedWidth
 
 function eventReminders.RegisterOptionsTable()
     LibStub("AceConfig-3.0"):RegisterOptionsTable(addon.Metadata.Prefix .. "_EventReminders", options.OptionsTable.args.EventReminders)
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addon.Metadata.Prefix .. "_EventReminders", addon.L["Event Reminders"], addon.Metadata.Title)
 end
 
 local RefreshOptions -- Assigned at the end of the file

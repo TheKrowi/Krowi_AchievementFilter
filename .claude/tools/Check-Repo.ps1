@@ -470,7 +470,8 @@ if ($emptySubmodules) {
 } else {
     $libraryNames = [hashtable]::new([StringComparer]::Ordinal)
     foreach ($rel in $luaFiles) {
-        if (-not $rel.StartsWith('Libs/')) { continue }
+        # Krowi_Options/ is a library kept inside the addon until it moves to Krowi_Libraries (docs/work/2026-10-25-options-revamp)
+        if (-not ($rel.StartsWith('Libs/') -or $rel.StartsWith('Krowi_Options/'))) { continue }
         $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
         if (-not $text.Contains('NewLibrary(')) { continue }
         foreach ($m in [regex]::Matches($text, '(?m)^(?!\s*(?:local\s+)?function\b).*?NewLibrary\(\s*(?:nil\s*,\s*)?([^,\)\s]+)')) {

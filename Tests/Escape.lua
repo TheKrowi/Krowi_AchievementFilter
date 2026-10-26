@@ -41,13 +41,14 @@ local escape = addon.Tests.Escape
 -- what justifies the emulation.
 
 -- Order of the keys is the order frames are listed in the results
-escape.FrameKeys = {"Tooltip", "Text", "MapVerifier", "DataManager", "CalendarSide", "Calendar", "RewardPreview", "Achievements", "GameMenu"}
+escape.FrameKeys = {"Tooltip", "OptionsPicture", "Options", "Text", "MapVerifier", "DataManager", "CalendarSide", "Calendar", "RewardPreview", "Achievements", "GameMenu"}
 
 -- Frames whose OnLoad calls addon.Gui:RegisterFrameForClosing (Gui/FramesForClosing.lua; Achievements
--- is registered in Gui.lua, LoadWithBlizzard_AchievementUI, and the side panels such as the reward
--- preview in Gui/SidePanels.lua, RegisterSidePanel). The headless runner does not load the mixins, so
--- it registers these itself; keep this in step with the code.
-escape.RegisteredKeys = {"Tooltip", "Text", "MapVerifier", "DataManager", "CalendarSide", "Calendar", "RewardPreview", "Achievements"}
+-- is registered in Gui.lua, LoadWithBlizzard_AchievementUI, the side panels such as the reward
+-- preview in Gui/SidePanels.lua, RegisterSidePanel, and the options window and its enlarged picture in
+-- Options/Window/Window.lua, OnCreated, before its first Show). The headless runner does not load the
+-- mixins, so it registers these itself; keep this in step with the code.
+escape.RegisteredKeys = {"Tooltip", "OptionsPicture", "Options", "Text", "MapVerifier", "DataManager", "CalendarSide", "Calendar", "RewardPreview", "Achievements"}
 
 -- Shown: frames to show, in that order. Branch: popup | menu | dropdown. Presses: Escape presses.
 -- CloseFirst: frames hidden through their own Hide (the close button) before Escape is pressed.
@@ -87,7 +88,16 @@ escape.Scenarios = {
     {Name = "reward-preview-over-achievements-twice", Shown = {"Achievements", "RewardPreview"}, Presses = 2, Recorded = {}, Target = {}},
     {Name = "reward-preview-over-achievements-thrice", Shown = {"Achievements", "RewardPreview"}, Presses = 3, Recorded = {"GameMenu"}, Target = {"GameMenu"}},
     -- The window's close button takes the preview with it, so the press after it finds nothing of the addon's left
-    {Name = "reward-preview-closed-with-window", Shown = {"Achievements", "RewardPreview"}, CloseFirst = {"Achievements"}, Recorded = {"GameMenu"}, Target = {"GameMenu"}}
+    {Name = "reward-preview-closed-with-window", Shown = {"Achievements", "RewardPreview"}, CloseFirst = {"Achievements"}, Recorded = {"GameMenu"}, Target = {"GameMenu"}},
+    -- The options window (docs/work/2026-10-25-options-revamp), from its first open after a /reload on
+    {Name = "options-alone", Shown = {"Options"}, Recorded = {}, Target = {}},
+    {Name = "options-over-achievements", Shown = {"Achievements", "Options"}, Recorded = {"Achievements"}, Target = {"Achievements"}},
+    {Name = "calendar-over-options", Shown = {"Achievements", "Options", "Calendar"}, Recorded = {"Options", "Achievements"}, Target = {"Options", "Achievements"}},
+    {Name = "options-over-calendar", Shown = {"Achievements", "Calendar", "Options"}, Recorded = {"Calendar", "Achievements"}, Target = {"Calendar", "Achievements"}},
+    {Name = "options-closed-with-button", Shown = {"Options"}, CloseFirst = {"Options"}, Recorded = {"GameMenu"}, Target = {"GameMenu"}},
+    -- A help picture enlarged over the window (the window's lightbox) closes first
+    {Name = "picture-over-options", Shown = {"Options", "OptionsPicture"}, Recorded = {"Options"}, Target = {"Options"}},
+    {Name = "picture-over-options-twice", Shown = {"Options", "OptionsPicture"}, Presses = 2, Recorded = {}, Target = {}}
 }
 
 -- The game menu is never shown by the suite; the emulated chain records that a press would have shown
@@ -242,6 +252,8 @@ escape.Observations = observations -- facts about the client noted while arming,
 
 local getters = {
     Tooltip = function() return KrowiAF_FloatingAchievementTooltip end,
+    Options = function() return KrowiAF_OptionsWindow end,
+    OptionsPicture = function() return KrowiAF_OptionsWindow and KrowiAF_OptionsWindow.Lightbox end,
     Text = function() return KrowiAF_TextFrame end,
     MapVerifier = function() return KrowiAF_MapVerifierFrame end,
     DataManager = function() return KrowiAF_DataManagerFrame end,
@@ -318,6 +330,8 @@ function gameEnv.Show(key)
             AchievementFrame_LoadUI()
         end
         KrowiAF_ToggleAchievementFrame("Krowi_AchievementFilter", "Achievements", nil, true) -- the addon's own path: a plain Show, not ShowUIPanel
+    elseif key == "Options" then
+        addon.Options.Open() -- the window is built on its first open, which registers it for Escape
     elseif key == "Text" then
         addon.Gui.DataManager:GetTextFrame("Escape test"):Show()
     elseif key == "MapVerifier" then

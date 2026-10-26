@@ -40,7 +40,7 @@ The kit carries Lua 5.1.5 (`Krowi_ClaudeKit\tools\lua51\`), the exact interprete
 - **Repo lint** `Check-Repo.ps1`: a rule per mechanical convention in this file, plus the zone, Map Verifier, work-item, category-snapshot, data-snapshot, data-load and scenario checks. A deliberate exception goes in `Check-Repo.ignore` with a comment.
 - **Data snapshots** `snapshot-categories.lua` and `snapshot-data.lua`: what each client builds (category tree; achievements, zone placements, registries) recorded under `.claude/tools/headless/snapshots/`. A data change shows there as a reviewable diff; regenerate with `-write` and commit the diff with the change that caused it.
 - **Headless data pipeline** `load-data.lua`: the real data load for both clients with WoW globals stubbed; reports every builder error, duplicate registration and `LoadDiagnostics` drop with file and line. Only `Both` cross-checks Shared references. Extend the stubs in `runClient` when a new WoW global is used at load time.
-- **Scenario suites** in `Tests/` (`escape`, `special`, `navigation`, `worldmap`, `obtainable`, `tooltip`, `guide`, `menu`, `memory`, `events`, `schedules`, `tracking`; `scheduler` and `sources` are game-only probes) run headlessly through `run-tests.lua` and in game through `/kaftest <suite>` (debug mode on, out of combat). A scenario carries `Recorded`, the behaviour of the current code verified in game, and `Target`, the desired behaviour; it passes while the code behaves as recorded, so a behaviour change is a reviewable diff and the open targets stay visible without failing anything. Each suite and the in-game runner: `Tests/README.md`.
+- **Scenario suites** in `Tests/` (`escape`, `special`, `navigation`, `worldmap`, `obtainable`, `tooltip`, `guide`, `menu`, `memory`, `events`, `schedules`, `tracking`, `options`, `help`; `scheduler` and `sources` are game-only probes, `pictures` makes the help pictures) run headlessly through `run-tests.lua` and in game through `/kaftest <suite>` (debug mode on, out of combat). A scenario carries `Recorded`, the behaviour of the current code verified in game, and `Target`, the desired behaviour; it passes while the code behaves as recorded, so a behaviour change is a reviewable diff and the open targets stay visible without failing anything. Each suite and the in-game runner: `Tests/README.md`.
 - **Closing the loop with the game**: the kit's `Deploy.ps1` mirrors the addon into the client's AddOns folder (incremental, `-WhatIf` to preview), you `/reload` in game, then the kit's `Read-GameErrors.ps1` prints the errors BugGrabber recorded for this addon and this repo's `Read-GameTests.ps1` prints the last `/kaftest` run with every line that differs from the headless run marked. Saved variables are written only on `/reload` or logout, so both readers show when the file was last written. For a layout bug, ask for a screenshot (Print Screen in game, written at once): the kit's `Read-GameScreenshot.ps1` prints the newest one's path to open with the Read tool, and warns when the client saves tga, which the Read tool cannot display.
 
 ```powershell
@@ -64,12 +64,12 @@ The data skills query a local game-database server (wow.tools.local at `http://l
 
 The WoW client reads `Krowi_AchievementFilter.toc`, which defines the **exact load order**. Files load sequentially in the order listed in the `.toc` and the nested `Files.xml` manifests, and a file can only use what earlier files defined. Every new `.lua` file must be added to the right `Files.xml` or it silently never loads. The order is:
 
-1. `Libs/Files.xml` — bundled libraries
+1. `Libs/Files.xml` — bundled libraries, then `Krowi_Options/Files.xml` — the options window, a library kept inside the addon until it moves to `Krowi_Libraries`
 2. `Api/Files.xml` — public API (`KrowiAF`), enums, data registration functions and builders
 3. `Plugins/Files.xml` — plugin integrations (BetterWardrobe, ElvUI, GW2_UI, InstanceAchievementTracker, ZygorGuidesViewer, AchievementsTabFixes, EllesmereUI)
 4. `Localization/Files.xml` — enUS first, then the other locales, then `Shared.lua`
 5. `Krowi_AchievementFilter.lua`, `Globals.lua`
-6. `Diagnostics.lua`, `TaintDiagnostics.lua`, `Options/Files.xml`, `Libs/Krowi_Util/Icon.lua`, `Icon.lua`, `Tutorials.lua`, `BrowsingHistory.lua`
+6. `Diagnostics.lua`, `TaintDiagnostics.lua`, `Options/Files.xml`, `Libs/Krowi_Util/Icon.lua`, `Icon.lua`, `BrowsingHistory.lua`
 7. `Objects/Files.xml`
 8. `Filters.lua`, `SearchOptions.lua`
 9. `Gui/FilesModern.xml` (Retail) or `Gui/FilesClassic.xml` (Classic)
@@ -90,7 +90,7 @@ Game-version-conditional loading uses `[AllowLoadGameType mainline]` and `[Allow
 | `Bindings.xml` | Key bindings for tab toggles and browsing history |
 | `Filters.lua`, `SearchOptions.lua` | Filter definitions (completion, faction, reward type, sort, build version); which fields a search covers (IDs, names, descriptions, ...) |
 | `Diagnostics.lua`, `TaintDiagnostics.lua` | Debug/trace logging controlled by options; taint probing helpers |
-| `Icon.lua`, `Tutorials.lua`, `BrowsingHistory.lua` | Minimap / data broker icon; in-game tutorials; achievement navigation history (back/forward) |
+| `Icon.lua`, `BrowsingHistory.lua` | Minimap / data broker icon; achievement navigation history (back/forward) |
 
 ### Key Directories
 
@@ -101,7 +101,8 @@ Game-version-conditional loading uses `[AllowLoadGameType mainline]` and `[Allow
 | `Gui/` | All UI code (`FilesModern.xml` Retail, `FilesClassic.xml` Classic), one sub-folder per feature; `BlizzardOverrides.lua` holds every FrameXML override, API polyfill and hook on Blizzard's frame |
 | `Data/` | Runtime data: task runner, registry (`Data.lua`), `LoadDiagnostics`, achievement cache, temporary obtainability, events, tooltips, special categories, migrations (`DataIntegrityManager.lua`), `SavedData/` |
 | `DataAddons/` | All **data definitions** (achievement, category, zone, tooltip, transmog set, pet battle link, guide, build version, event, custom criteria) per expansion (`01_Vanilla/` to `12_Midnight/`): `Shared/` identical on both clients, `Retail/` and `Classic/` client-specific, `Loaders/` the post-processing that wires them into the runtime |
-| `Options/` | AceConfig options panels |
+| `Options/` | The settings as AceConfig tables; `Window/` maps them onto the options window's 22 feature sections and wires the window (`/kaf`, `addon.Options.Open`, the Settings > AddOns stub) |
+| `Krowi_Options/` | The options window: navigation, rows, help pane, search, Defaults; addon-neutral, registered through LibMan as `Krowi_Options_1`. Not under `Libs/`, so it is edited here |
 | `Plugins/` | Third-party addon integrations; the plugin API is `Api/PluginsApi.lua` (`KrowiAF.PluginsApi`) |
 | `Localization/` | One file per locale (`enUS`, `deDE`, `esES`, `esMX`, `frFR`, `itIT`, `koKR`, `ptBR`, `ruRU`, `zhCN`, `zhTW`), `.Plugins.lua` and `.WrathClassic.lua` variants, `Shared.lua` helpers |
 | `Libs/` | Vendored libraries, several of them git submodules of `TheKrowi/*` repos. **Do not edit `Libs/` unless asked**; fixes belong upstream |

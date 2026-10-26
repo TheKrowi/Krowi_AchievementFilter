@@ -18,7 +18,6 @@ function profiles.RegisterOptionsTable()
     options.OptionsTable.args.Profiles.args.Filters.name = addon.L["Filters"]
 
     LibStub("AceConfig-3.0"):RegisterOptionsTable(addon.Metadata.Prefix .. "_Profiles", options.OptionsTable.args.Profiles)
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addon.Metadata.Prefix .. "_Profiles", addon.Util.L["Profiles"], addon.Metadata.Title)
 end
 
 options.OptionsTable.args["Profiles"] = {

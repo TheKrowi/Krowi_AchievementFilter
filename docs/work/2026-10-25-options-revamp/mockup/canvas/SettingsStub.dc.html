@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KAF in Settings › AddOns</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./kaf-options.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&amp;family=PT+Sans+Narrow:wght@400;700&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div class="stage skin-blizzard client-retail" style="width: 1400px; height: 860px">
+<div class="win" style="left: 110px; top: 54px; width: 1180px; height: 752px">
+<div class="titlebar">
+<span class="title">Options</span>
+<button class="close" aria-label="Close"><svg width="12" height="12" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M2 2l8 8M10 2l-8 8"></path></svg></button>
+</div>
+<div class="settabs">
+<button class="settab">Game</button>
+<button class="settab on">AddOns</button>
+<div class="search topsearch">
+<svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="7" cy="7" r="5"></circle><path d="M11 11l4 4"></path></svg>
+<input type="search" aria-label="Search the game's options" placeholder="Search">
+</div>
+</div>
+<div class="body">
+<nav class="nav" aria-label="AddOns">
+<div class="navscroll">
+<button class="addon"><span class="plus" aria-hidden="true">+</span><span>Auctionator</span></button>
+<button class="addon"><span class="plus" aria-hidden="true">+</span><span>BigWigs</span></button>
+<button class="addon flat"><span>BugSack</span></button>
+<button class="addon"><span class="plus" aria-hidden="true">+</span><span>Details!</span></button>
+<button class="addon flat sel"><span>Krowi's Achievement Filter</span></button>
+<button class="addon"><span class="plus" aria-hidden="true">+</span><span>Plater</span></button>
+<button class="addon flat"><span>Plumber</span></button>
+<button class="addon"><span class="plus" aria-hidden="true">+</span><span>WeakAuras</span></button>
+</div>
+</nav>
+<main class="page">
+<div class="pagehead">
+<div class="pagetitle"><h1>Krowi's Achievement Filter</h1></div>
+<div class="divider"></div>
+</div>
+<div class="scroll">
+<div class="stub">
+<p class="intro">Achievements per expansion, per event and per battleground, with better filters, search and event reminders.</p>
+<p class="note">Version 104.0</p>
+<a class="btn openbtn" href="Main.dc.html">Open options</a>
+<p class="note">The options, and how each feature works, are in their own window. It also opens with /kaf, the minimap icon and the filter menu of the achievement window.</p>
+</div>
+</div>
+</main>
+</div>
+<div class="footer"><button class="btn">Close</button></div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1400,"height":860}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

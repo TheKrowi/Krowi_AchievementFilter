@@ -7,6 +7,221 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-24 16-43-33 ]] --
+L["{count} changed"] = "{count} geändert"
+L["About"] = "Über"
+L["Achievement guides"] = "Erfolgs-Leitfäden"
+L["Achievement points tooltip"] = "Erfolgspunkte-Tooltip"
+L["Achievement window"] = "Erfolgs-Fenster"
+L["Advanced"] = "Erweitert"
+L["All"] = "Alle"
+L["All holidays"] = "Alle Feiertage"
+L["All other calendar events"] = "Alle anderen Kalender-Ereignisse"
+L["Around the game"] = "Rund ums Spiel"
+L["Bind to Y"] = "Auf Y legen"
+L["Blizzard's tabs"] = "Blizzards Tabs"
+L["Buttons"] = "Buttons"
+L["Calendar button: horizontal position"] = "Kalender-Button: horizontale Position"
+L["Calendar button: vertical position"] = "Kalender-Button: vertikale Position"
+L["Category list"] = "Kategorieliste"
+L["Changed. Right-click the dot to set it back."] = "Geändert. Rechts-Klick auf den Punkt setzt es zurück."
+L["Changes need a reload."] = "Änderungen erfordern einen Reload."
+L["Chat messages for active events"] = "Chat-Mitteilungen für aktive Ereignisse"
+L["Chat messages for upcoming calendar events"] = "Chat-Mitteilungen für anstehende Kalender-Ereignisse"
+L["Choose a profile"] = "Profil auswählen"
+L["Click modifiers"] = "Klick-Modifikatoren"
+L["Copy From"] = "Kopieren von..."
+L["Criteria on units"] = "Kriterien bei Einheiten"
+L["Current profile"] = "Aktuelles Profil"
+L["Date and time format"] = "Datum und Zeit (Format)"
+L["Default: {value}"] = "Standard: {value}"
+L["Defaults"] = "Standardwerte"
+L["Delete a Profile"] = "Profil löschen"
+L["Event reminders"] = "Event-Erinnerungen"
+L["Filtering and sorting"] = "Filtern und Sortieren"
+L["Filters profile"] = "Filter-Profil"
+L["How it works"] = "So funktioniert es"
+L["It also opens with /kaf, the minimap icon and the Options entry of the achievement window's filter menu."] = "Es öffnet sich auch mit /kaf, dem Minimap-Icon und dem Eintrag Optionen im Filtermenü des Erfolgs-Fensters."
+L["Keys and clicks"] = "Tasten und Klicks"
+L["Links"] = "Links"
+L["Minimap"] = "Minimap"
+L["New"] = "Neu"
+L["New profile"] = "Neues Profil"
+L["Not bound"] = "Nicht belegt"
+L["Not in combat"] = "Nicht im Kampf"
+L["Nothing found."] = "Nichts gefunden."
+L["On login"] = "Beim Login"
+L["On reload"] = "Nach einem Reload"
+L["Only with a time"] = "Nur mit Zeitangabe"
+L["Open options"] = "Optionen öffnen"
+L["Opening the window"] = "Öffnen des Fensters"
+L["Other addons"] = "Andere Addons"
+L["Other calendar events"] = "Andere Kalender-Ereignisse"
+L["Overview"] = "Übersicht"
+L["Pop Outs"] = "Pop Outs"
+L["Pop up behaviour"] = "Popup-Verhalten"
+L["Pop up position"] = "Popup-Position"
+L["Pop ups for active events"] = "Popup-Fenster für aktive Ereignisse"
+L["Pop ups for upcoming calendar events"] = "Popup-Fenster für anstehende Kalender-Ereignisse"
+L["Position"] = "Position"
+L["Press a key"] = "Taste drücken"
+L["Preview"] = "Vorschau"
+L["Reload now"] = "Jetzt neu laden"
+L["Reminder events"] = "Ereignisse für Erinnerungen"
+L["Reminders"] = "Erinnerungen"
+L["Reset"] = "Zurücksetzen"
+L["Reset calendar position"] = "Kalender-Position zurücksetzen"
+L["Reset Data Manager position"] = "Position der Charakterübersicht zurücksetzen"
+L["Reset Profile"] = "Profil zurücksetzen"
+L["Reset window position"] = "Fensterposition zurücksetzen"
+L["Reward preview"] = "Belohnungsvorschau"
+L["Right-click menu"] = "Rechts-Klick Menü"
+L["Scrolling"] = "Scrollen"
+L["Search results"] = "Suchergebnisse"
+L["Set every option of {section} back to its default?"] = "Alle Optionen von {section} auf den Standard zurücksetzen?"
+L["Settings profile"] = "Einstellungs-Profil"
+L["Show criteria if"] = "Zeige Kriterien wenn"
+L["Show me"] = "Zeig es mir"
+L["Shown in the tooltip"] = "Im Tooltip angezeigt"
+L["Size"] = "Größe"
+L["Some changes take effect after a reload."] = "Einige Änderungen werden erst nach einem Reload wirksam."
+L["Special categories per tab"] = "Spezialkategorien pro Tab"
+L["Style and icons"] = "Stil und Symbole"
+L["Tab strip"] = "Tab-Leiste"
+L["Tabs and their order"] = "Tabs und ihre Reihenfolge"
+L["The options and how each feature works are in the addon's own window."] = "Die Optionen und wie jede Funktion arbeitet, stehen im eigenen Fenster des Addons."
+L["This addon"] = "Dieses Addon"
+L["This addon's tabs"] = "Tabs dieses Addons"
+L["Timing"] = "Zeitsteuerung"
+L["Tooltips"] = "Tooltips"
+L["Uncheck a tab to hide it. The arrows move it in the tab strip."] = "Entferne den Haken bei einem Tab, um ihn auszublenden. Die Pfeile verschieben ihn in der Tab-Leiste."
+L["Unit tooltips"] = "Einheiten-Tooltips"
+L["What changed in {version}"] = "Änderungen in {version}"
+L["When an event starts"] = "Bei Ereignisbeginn"
+L["Where guides show"] = "Wo Leitfäden erscheinen"
+L["World map"] = "Weltkarte"
+L["World map and minimap"] = "Weltkarte und Minimap"
+L["Wowhead link"] = "Wowhead-Link"
+L["Help Overview Title"] = "So nutzt du diese Optionen"
+L["Help Overview Hover"] = "Fahre mit der Maus über eine Option, um zu lesen, was sie bewirkt."
+L["Help Overview Sections"] = "Jeder Abschnitt erklärt zuerst, wie seine Funktion arbeitet. „Zeig es mir“ öffnet die Funktion im Spiel."
+L["Help Overview Dot"] = "Ein Punkt vor einer Option bedeutet, dass du sie geändert hast. Rechtsklicke auf den Punkt, um sie zurückzusetzen."
+L["Help Overview New"] = "Mit „Neu“ markierte Abschnitte haben sich seit deinem letzten Besuch geändert."
+L["Help Tabs Title"] = "Neue Tabs"
+L["Help Tabs Intro"] = "Das Addon fügt unten am Erfolgsfenster fünf Tabs hinzu, neben denen von Blizzard."
+L["Help Tabs Achievements"] = "Die Kategorien von Blizzard, mit den Filtern, der Suche und den Tooltips dieses Addons."
+L["Help Tabs Expansions"] = "Pro Erweiterung: Zonen, Dungeons, Schlachtzüge und Haustierkämpfe."
+L["Help Tabs Events"] = "Pro Feiertag und Weltereignis."
+L["Help Tabs PvP"] = "Pro Schlachtfeld."
+L["Help Tabs Specials"] = "Reittiere, Titel, Transmogrifikation und andere Belohnungen."
+L["Help Tabs Blizzard"] = "Blizzards eigener Erfolge-Tab ist standardmäßig ausgeblendet; der neue ersetzt ihn."
+L["Help Window Intro"] = "Das Erfolgsfenster lässt sich breiter und höher machen und kann sich merken, wo du es hingestellt hast."
+L["Help Window Size"] = "Zusätzliche Breite für die Kategorienliste und die Erfolgsliste, zusätzliche Höhe für das ganze Fenster."
+L["Help Window Header"] = "Deine Erfolgspunkte, pro Charakter beim Mouseover, und Pfeile, um durch die angesehenen Erfolge vor und zurück zu blättern."
+L["Help Window Micro Button"] = "Welchen Tab der Erfolge-Button in deiner Menüleiste öffnet."
+L["Help Categories Intro"] = "Jede Erweiterung enthält ihre Zonen, Dungeons, Schlachtzüge, Haustierkämpfe und Spielsysteme. Jede Zone enthält ihre Quests, Erkundung, PvP und Ruf."
+L["Help Categories Current Zone"] = "Die Zone, in der du dich befindest."
+L["Help Categories Selected Zone"] = "Die auf der Weltkarte ausgewählte Zone."
+L["Help Categories Watch List"] = "Erfolge, die du beobachtest (Alt-Klick)."
+L["Help Categories Excluded"] = "Erfolge, die du ausgeblendet hast."
+L["Help Categories Summary"] = "Die zuletzt errungenen Erfolge des Tabs und sein Fortschritt."
+L["Help Categories Per Tab"] = "Wähle hier, in welchen Tabs jede davon erscheint."
+L["Help Summary Recent Term"] = "Letzte Erfolge"
+L["Help Summary Recent"] = "Die zuletzt errungenen, accountweit und auf diesem Charakter."
+L["Help Summary Progress Term"] = "Fortschrittsbalken"
+L["Help Summary Progress"] = "Pro Kategorie: errungen (+ nicht mehr erreichbar) / gesamt. Grün ist errungen, Rot kann nicht mehr errungen werden."
+L["Help Achievements Compact"] = "Kompakte Erfolge sind zwei Drittel so groß wie normale, wie die in der Übersicht."
+L["Help Achievements Colors"] = "Kopfzeilenfarben"
+L["Help Color Orange"] = "Orange"
+L["Help Achievements Orange"] = "Kann jederzeit errungen werden."
+L["Help Color Blue"] = "Blau"
+L["Help Achievements Blue"] = "Wird mit allen deinen Charakteren geteilt."
+L["Help Achievements Green"] = "Kann nur für begrenzte Zeit errungen werden, und das ist gerade jetzt."
+L["Help Color Yellow"] = "Gelb"
+L["Help Achievements Yellow"] = "Kann später errungen werden."
+L["Help Shared No Longer"] = "Kann nicht mehr errungen werden."
+L["Help Achievements Faded"] = "Eine blasse Kopfzeile bedeutet, dass du den Erfolg noch nicht errungen hast. Grün, Gelb und Rot lassen sich hier ausschalten."
+L["Help Shared Icons"] = "Symbole"
+L["Help Achievements Clock"] = "Kann nur für begrenzte Zeit errungen werden. Fahre mit der Maus darüber, um zu sehen, wann."
+L["Help Achievements Warband"] = "Für deine ganze Kriegsmeute errungen."
+L["Help Achievements Watched"] = "Auf deiner Beobachtungsliste."
+L["Help Achievements Excluded"] = "Du hast diesen Erfolg ausgeblendet."
+L["Help Achievements Preview"] = "Klicke darauf, um die Belohnung in der Vorschau zu sehen."
+L["Help Achievements Guide"] = "Dieser Erfolg hat einen Leitfaden. Fahre mit der Maus darüber, um ihn zu lesen."
+L["Help Filters Title"] = "Filtern und Sortieren"
+L["Help Filters Intro"] = "Der Filter-Button legt fest, was die Tabs zeigen. Mehrere Filter können gleichzeitig aktiv sein."
+L["Help Filters Completed"] = "Errungen oder nicht."
+L["Help Filters Obtainable"] = "Nicht mehr erreichbar, jetzt erreichbar oder später erreichbar."
+L["Help Filters Faction"] = "Neutral, Allianz oder Horde."
+L["Help Filters Collapse Chain"] = "Nur der zuletzt errungene und der erste nicht errungene Schritt einer Serie."
+L["Help Filters Always Show Completed"] = "Errungene Erfolge werden angezeigt, auch wenn ein anderer Filter sie ausblenden würde."
+L["Help Filters Sort By"] = "Standard, Name, Komplettierung, ID oder Punkte, auch umgekehrt."
+L["Help Filters Earned By"] = "Ob ein Erfolg als errungen gilt, wenn irgendeiner deiner Charaktere ihn errungen hat, oder nur dieser."
+L["Help Filters Per Tab"] = "Jeder Tab und jede Spezial Kategorie hat auch eigene Filter; änderst du die oberen, ändern sich alle."
+L["Help Search Intro"] = "Durchsucht die Erfolge in den Tabs dieses Addons nach Name und Beschreibung, sortiert nach Name."
+L["Help Search Id"] = "Beginne mit #, um nach ID zu suchen."
+L["Help Search Show All Term"] = "Alle Ergebnisse anzeigen"
+L["Help Search Show All"] = "Zeigt alle Ergebnisse in einer Kategorie Suchergebnisse an."
+L["Help Shared Right Click"] = "Rechts-Klick"
+L["Help Search Right Click"] = "Leert das Suchfeld."
+L["Help Tooltips Intro"] = "Der Tooltip eines Erfolgs zeigt, wie er mit anderen Erfolgen zusammenhängt und welche deiner Charaktere ihn haben. Jeder Teil lässt sich hier ausschalten."
+L["Help Tooltips Colors"] = "Farben"
+L["Help Tooltips Lighter Term"] = "Heller"
+L["Help Tooltips Lighter"] = "Der Erfolg unter deinem Mauszeiger."
+L["Help Tooltips Custom Term"] = "Eigene Ziele"
+L["Help Tooltips Custom"] = "Manche Erfolge bekommen eigene Ziele, etwa die Sets eines Transmog-Erfolgs."
+L["Help Tooltips Earned By"] = "Welche deiner Charaktere ihn errungen haben und welche nicht. Erfolge mit einem Gegenstück für die andere Fraktion zählen mit."
+L["Help Tooltips Categories"] = "Errungen (+ nicht mehr erreichbar) / gesamt, nach deinen Filtern. Rot ist der Teil, den du nicht mehr erringen kannst."
+L["Help Tooltips Points"] = "Fahre mit der Maus über die Punkte in der Kopfzeile, um sie pro Charakter zu sehen."
+L["Help Right Click Wowhead"] = "Ein Link zum Erfolg."
+L["Help Right Click Go To"] = "Die Erfolge seiner Serie, die Erfolge, die er voraussetzt, und die anderen Kategorien, in denen er vorkommt."
+L["Help Right Click Xu Fu"] = "Für Haustierkampf-Erfolge."
+L["Help Right Click Transmog"] = "Wenn der Erfolg ein Set verlangt."
+L["Help Right Click Guide"] = "Wegpunkte für einen Erfolg mit Leitfaden."
+L["Help Right Click More"] = "Auf die Beobachtungsliste setzen oder davon löschen, ausblenden oder wieder hinzufügen."
+L["Help Popout Intro"] = "Ctrl-Klick auf einen Erfolg öffnet ihn in einem kleinen Fenster, das auf dem Bildschirm bleibt. Ziehe ein Pop Out auf ein anderes, um sie zu stapeln."
+L["Help Popout Close On Earn"] = "Ein Pop Out schließt sich von selbst, sobald du seinen Erfolg erringst."
+L["Help Rewards Intro"] = "Klicke auf das Vorschausymbol eines Erfolgs, um seine Belohnung zu sehen. Ziehe am Modell, um es zu drehen, und an der Ecke, um die Fenstergröße zu ändern."
+L["Help Guides Intro"] = "Manche Erfolge haben einen Leitfaden: nummerierte Schritte, die sagen, wohin du gehst, mit wem du sprichst und was es kostet. Er erscheint im Tooltip, im Rechtsklickmenü und in einem Fenster neben dem Erfolgsfenster."
+L["Help Guides Icon Term"] = "Kartenmarkierungs-Symbol"
+L["Help Guides Icon"] = "Mouseover zeigt den Leitfaden, ein Klick hält das Fenster offen."
+L["Help Guides Waypoints Term"] = "Wegpunkte"
+L["Help Guides Waypoints"] = "Ein Ort im Leitfaden bekommt mit einem Klick eine Kartenmarkierung oder einen TomTom-Wegpunkt."
+L["Help Calendar Intro"] = "Deine errungenen Erfolge, pro Tag. Die Zahlen oben zählen den angezeigten Monat."
+L["Help Calendar Hover Term"] = "Maus über einem Tag"
+L["Help Calendar Hover"] = "Seine Erfolge erscheinen im Fenster an der Seite."
+L["Help Calendar Click Term"] = "Klick auf einen Tag"
+L["Help Calendar Click"] = "Hält das Seitenfenster offen, zum Blättern und Durchklicken."
+L["Help Calendar Arrow Term"] = "Pfeil auf einem Tag"
+L["Help Calendar Arrow"] = "Mehr als 4 Erfolge an diesem Tag."
+L["Help Calendar Wheel Term"] = "Mausrad"
+L["Help Calendar Wheel"] = "Vorheriger oder nächster Monat."
+L["Help Shared Hover"] = "Mouseover"
+L["Help Maps Hover"] = "Zählt die Erfolge der ausgewählten Zone nach deinen Filtern, wie der Tooltip einer Kategorie."
+L["Help Shared Click"] = "Klick"
+L["Help Maps Click"] = "Öffnet das Erfolgsfenster bei dieser Zone."
+L["Help Maps Minimap"] = "Auch das Minikarten-Symbol öffnet das Erfolgsfenster."
+L["Help Maps Press Key"] = "Drücke %s, um deine Karte zu öffnen."
+L["Help Maps No Key"] = "Öffne deine Weltkarte, um den Button zu sehen."
+L["Help Criteria Off"] = "Diese Funktion ist vorerst ausgeschaltet, daher bewirken diese Optionen nichts."
+L["Help Events Intro"] = "Feiertage und Weltereignisse bekommen eine Erinnerung, die erscheint, solange sie laufen, und einen Button an der Seite des Erfolgsfensters."
+L["Help Events Click"] = "Öffnet die Erfolge des Ereignisses, die du jetzt erringen kannst."
+L["Help Events Right Click"] = "Blendet die Erinnerung aus. Sie verschwindet auch von selbst."
+L["Help Events Time Term"] = "Zeit"
+L["Help Events Time"] = "Eine oder zwei Zeilen mit der Endzeit oder der verbleibenden Zeit; „Kompakte Erfolge anzeigen“ zeigt nur eine."
+L["Help Events Off"] = "Die Event Erinnerung ist ausgeschaltet. Schalte sie ein und gib /reload ein, um sie zu sehen."
+L["Help Eventlist Title"] = "Welche Ereignisse"
+L["Help Eventlist Intro"] = "Schalte die Erinnerungen für Ereignisse aus, die dich nicht interessieren. Weltereignisse sind nach Erweiterung aufgelistet."
+L["Help Keys Title"] = "Tasten und Klicks"
+L["Help Keys Intro"] = "Tastaturbelegungen für jeden Tab und für die Kategorie Aktuelle Zone, je zwei Tasten. Die Klick-Modifikatoren legen fest, was ein Klick mit Shift, Ctrl oder Alt auf einen Erfolg bewirkt."
+L["Help Plugins Title"] = "Andere Addons"
+L["Help Plugins Intro"] = "Korrekturen für andere Addons und die Skins von ElvUI, GW2 UI und EllesmereUI. Ein Skin wird im jeweiligen Addon ein- oder ausgeschaltet; er steht hier, damit du siehst, was aktiv ist."
+L["Help Profiles Title"] = "Profile"
+L["Help Profiles Intro"] = "Einstellungen und Filter haben jeweils ein eigenes Profil. Teile eines zwischen Charakteren oder gib einem Charakter ein eigenes Profil."
+L["Help Advanced Title"] = "Erweitert"
+L["Help Advanced Intro"] = "Werkzeuge zum Testen neuer Inhalte und zum Melden von Fehlern. Um das Addon zu nutzen, brauchst du sie nicht."
+L["Help Advanced Debug"] = "Schalte die Debug-Informationen ein, um die Werkzeuge zum Hinzufügen neuer Inhalte zu sehen."
+L["Help About Version"] = "Version %s für Spiel-Build %s, von %s."
+L["Help About Discord"] = "Fragen, Fehler und Ideen sind auf Discord willkommen."
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -125,18 +340,6 @@ L["Calendar"] = "Kalender"
 L["Calendar button"] = "Kalender-Button"
 L["Calendar button horizontal position Desc"] = "Stelle die horizontale Position des {calendarButton} ein."
 L["Calendar button vertical position Desc"] = "Stelle die vertikale Position des {calendarButton} ein."
-L["Calendar Desc"] = [=[Erscheinungsbild des {calendar}.
-
-|T:1:8|t- Die Anzahl der Erfolge und Punkte oben sind die verdienten Erfolge und Punkte für den aktuellen sichtbaren Monat und nicht für alle sichtbaren Tage.
-|T:1:8|t- Navigieren Sie zum vorherigen oder nächsten Monat, indem Sie auf die Schaltflächen oben neben dem Monat klicken oder das Scrollrad der Maus verwenden.
-|T:1:8|t- Wenn Sie mit der Maus über einen Tag fahren, wird dieser hervorgehoben (Tag 11) und die an diesem Tag verdienten Erfolge (falls vorhanden) werden im Fenster an der Seite angezeigt. Wenn Sie die Maus von dem hervorgehobenen Tag entfernen, wird das Fenster an der Seite entweder geschlossen oder zeigt die Erfolge des neuen Tages an, über dem sich die Maus befindet.
-|T:1:8|t- Wenn Sie auf einen Tag klicken (ihn auswählen), wird er noch deutlicher hervorgehoben (Tag 18) und das Fenster an der Seite bleibt offen (gesperrt). So kannst Du durch die Erfolge blättern, mit der Maus über sie fahren, um den Tooltip zu sehen, oder sie anklicken, um sie im Erfolgsfenster zu finden (der Kalender wird geschlossen). Das Auswählen eines Tages funktioniert nur, wenn an diesem Tag Erfolge erzielt wurden. Wenn Du auf einen ausgewählten Tag klickst, wird er abgewählt und das Fenster an der Seite wird entsperrt, sodass er sich wieder wie ein markierter Tag verhält. Ein Pfeil auf dem Tag zeigt an, dass an diesem Tag mehr als 4 Errungenschaften erworben wurden. 
-
-Optionen (1)
-|T:1:8|t- Beim (erneuten) Öffnen des Kalenders kann man wählen, ob immer der zuletzt betrachtete Monat ausgewählt bleiben soll ({lockMonth}) oder nur, wenn man auf eine Errungenschaft klickt ({lockAchievementMonth}).
-|T:1:8|t- Der erste Tag der Woche kann geändert werden und ist derzeit auf {firstWeekDay} eingestellt.
-
-(1) Die Optionen befinden sich unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {calendar}.]=]
 L["Calendar Events"] = "Kalender Ereignisse"
 L["Call of the Crusade"] = "Der Ruf des Kreuzzugs"
 L["Cataclysm (pre-patch)"] = true
@@ -199,12 +402,6 @@ L["Community Feast: Starting Soon"] = "Gemeinschaftliches Festmahl: Startet Bald
 L["Compact"] = "Kompakte Erfolge anzeigen"
 L["Compact Achievements"] = "Kompakte Erfolgs-Fenster anzeigen"
 L["Compact Achievements Desc"] = "Die Anzeige der Erfolge ist auf 2/3 der ursprünglichen Größe verkleinert, ähnlich wie bei der Zusammenfassung der Erfolge."
-L["Compact Achievements T Desc"] = [=[- Erfolge sind 2/3 so groß wie die zusammengefassten Errungenschaften.
-- Zeigt entweder die erste Zeile der Beschreibung oder die Belohnung an.
-
-Kompakte Erfolge können in den Optionen ({compactEnabled}) aktiviert werden (1).
-
-(1) Die Optionen befinden sich unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {achievements}.]=]
 L["Compact Desc"] = [=[Verwende eine kompaktere Version mit nur einer Zeile der Zeitanzeige.
 
 {reloadRequired} ]=]
@@ -306,17 +503,6 @@ L["Dueler's Guild"] = "Duellantengilde"
 L["during"] = "während"
 L["Dustwallow Marsh"] = "Düstermarschen"
 L["Earned By"] = "Erzielt durch"
-L["Earned By Desc"] = [=[Header
-|T:1:8|t- {achievementPointsEarnedBy}: Zeigt {achievementPointsEarnedBy_wc} Ihren aktuellen Charakter und/oder {achievementPointsEarnedBy_wc} Ihren Account an ({achievementPointsEarnedByFormat}) (1).
-|T:1:8|t- {tooltip}: Übersicht darüber, welcher Charakter wie viele Erfolgspunkte verdient hat. Jeder Charakter muss mindestens einmal eingeloggt sein, um in diese Liste aufgenommen zu werden. Zeigt den Realm des Charakters an, wenn er unterschiedlich ist. Kann in den Optionen (1) so eingestellt werden, dass er immer angezeigt wird: Erfolge werden berücksichtigt, wenn sie mit einem beliebigen Charakter Ihres Kontos erzielt wurden (Standard).
-
-|T:1:8|t- {character}: Erfolge werden nur dann als erworben markiert wenn sie mit dem aktuellen Charakter erzielt wurden und als teilweise erworben, wenn nicht mit dem aktuellen Charakter erworben wurden.
-
-Tooltip
-|T:1:8|t- {earnedBy}: Zeigt {earnedByNumber} Charaktere an, die den Erfolg verdient haben (2). Fraktions-exklusive Errungenschaften mit einem verknüpften Gegenstück werden berücksichtigt. D.h. Allianz-Charaktere können für Horden-Erfolge auftauchen. Zeigt den Realm des Charakters an, wenn er unterschiedlich ist. Kann über die Optionen (2) erzwungen werden, immer anzuzeigen: Zeigt {notEarnedByNumber} Charaktere an, die diese Errungenschaft noch nicht verdient haben (2). Fraktions-exklusive Errungenschaften mit einem verknüpften Gegenstück werden berücksichtigt. D.h. Allianz-Charaktere können für Horden-Errungenschaften auftauchen.  Zeigt den Realm des Charakters an, wenn er sich unterscheidet. Die Anzeige kann in den Optionen (2) erzwungen werden.
-
-(1) Die Optionen befinden sich unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {header}
-(2) Optionen finden Sie unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {achievements}]=]
 L["Eastern Kingdoms Cup"] = "Östliche Königreiche Pokal"
 L["Echoes of Doom"] = "Die Vorboten des Unheils"
 L["Emberflow Flight"] = "Glutstrom-Flug"
@@ -339,114 +525,9 @@ L["Enable Upcoming Calendar Events Desc"] = "Wenn deaktiviert, wird das {upcomin
 L["Enchanting"] = "Verzauberkunst"
 L["End Time"] = "Ende (Zeit)"
 L["Engineering"] = "Ingenieurskunst"
-L["Enhanced filtering and sorting"] = "Erweitertes Filtern und Sortieren"
-L["Enhanced filtering and sorting Desc"] = [=[Das Filtern und Sortieren von Erfolgen wurde um folgende Funktionen erweitert.
-
-Kategorien:
-|T:1:8|t- {mergeSmallCategories}: Kategorien zusammenführen, wenn dies bei weniger als {mergeSmallCategoriesNumber} Erfolgen (1) möglich ist.
-
-Filterung (mehrere Filter können gleichzeitig ausgewählt werden):
-|T:1:8|t- {completed}: Erreichte Erfolge anzeigen.
-|T:1:8|t- {notCompleted}: Nicht abgeschlossene Erfolge anzeigen.
-|T:1:8|t- {obtainable}: Erreichbare Erfolge anzeigen.
-|T:1:8|t- {notObtainable}: Nicht erreichbare Erfolge anzeigen.
-|T:1:8|t- {faction} ({resetFactionFilters} {resetFactionFiltersEnabled}) (2)
-|T:1:8|t- {neutral}: Zeigt Erfolge an, die von {alliance_wc} wie auch von {horde_wc} erworben werden können.
-|T:1:8|t|T:1:8|t- {alliance}: Zeigt Erfolge an, die nur von {alliance_wc} erworben werden können.
-|T:1:8|t|T:1:8|t- {horde}: Zeige Erfolge, die nur von {horde_wc} verdient werden können.
-|T:1:8|t- {excluded}: Ausgeschlossene Erfolge anzeigen.
-|T:1:8|t- {collapseChain}: Nur den letzten abgeschlossenen und den ersten nicht abgeschlossenen Erfolg in einer Serie anzeigen.
-
-Sortierung:
-|T:1:8|t- {noSorting}: Keine Sortierung angewandt.
-|T:1:8|t- {sortByName}: Sortieren von Erfolgen basierend auf ihren Namen.
-|T:1:8|t- {sortByCompletion}: Sortiert Erfolge danach, ob sie abgeschlossen sind oder nicht.
-|T:1:8|t- {sortByID}: Sortiert die Erfolge nach ihrer ID.
-|T:1:8|t- {reverseSort}: Wenn dies ausgewählt ist, wird die Reihenfolge der sortierten Erfolge umgekehrt.
-
-{tabs}:
-|T:1:8|t- Diese haben alle oben genannten Filter und Sortierfunktionen, können aber unabhängig von den anderen geändert werden.
-|T:1:8|t- Wenn Sie einen der oben genannten Filter ändern, werden die Filter und Sortierfunktionen der einzelnen Registerkarten überschrieben. 
-
-{specialCategories}:
-|T:1:8|t- Diese haben alle oben erwähnten Filter und Sortierfunktionen, können aber unabhängig von den anderen geändert werden.
-
-{earnedBy} (siehe {earnedByTutorial} für weitere Details)
-|T:1:8|t- {account}: Erfolge werden berücksichtigt, wenn sie mit einem beliebigen Charakter Ihres Kontos erzielt wurden: Erfolge werden gewertet, wenn sie mit dem aktuellen Charakter erzielt wurden, und teilweise gewertet, wenn sie mit einem anderen Charakter auf dem Konto erzielt wurden, aber nicht mit dem aktuellen Charakter.
-
-Sonstiges:
-|T:1:8|t- {help}: Startet das Tutorial von Anfang an.
-|T:1:8|t- Zeigt die spezielle Tutorial-Seite an, ohne das Gesehene zurückzusetzen.
-|T:1:8|t- {options}: Öffnet die Optionen des Addons (2).
-
-Mehr Filter und Sortieroptionen können auf {discord} oder {curseForge} (Links in den Optionen) abgerufen werden.
-
-(1) Die Optionen befinden sich unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {categories}
-(2) Optionen finden Sie unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName}.]=]
-L["Enhanced tooltip"] = "Erweiterter Tooltip"
-L["Enhanced tooltip Achievements Desc"] = [=[Jeder Tooltip enthält zusätzliche Informationen darüber, wie Erfolge miteinander in Beziehung stehen (falls sie es tun). Es wurden mehrere neue Bereiche hinzugefügt.
-
-Features:
-|T:1:8|t- {notObtainable}: Zeigt einen Hinweis '{noLongerObtainable}', wenn der Erfolg nicht mehr erreichbar ist.
-|T:1:8|t- {earnedBy}: Siehe {earnedBy} für weitere Informationen.
-|T:1:8|t- {partOfAChain}: Zeigt die Liste der Erfolge an, zu denen der Serien-Erfolg gehört (1) ({partOfAChainEnabled}) (2).
-|T:1:8|t- {requiredFor}: Zeigt eine Liste der Erfolge an, für die der Serien-Erfolg abgeschlossen werden muss, um ihn zu erhalten (1) ({requiredForEnabled}) (2).
-|T:1:8|t- {otherFaction}: Zeigt den zugehörigen Erfolg der anderen Fraktion ({otherFactionEnabled}) (2).
-|T:1:8|t- {objectivesProgress}: Zeigt eine Liste der Ziele mit Fortschritt an ({objectivesProgressEnabled}) (2).
-|T:1:8|t- Benutzerdefinierte Ziele: Einige Errungenschaften haben benutzerdefinierte Ziele, wie z.B. die Transmog-Errungenschaften, die den Fortschritt bei den entsprechenden Transmog-Sets anzeigen.
-
-Icons:
-|T:1:8|t- {ready}: Der Erfolg ist abgeschlossen.
-|T:1:8|t- {waiting}: Der Erfolg ist noch nicht abgeschlossen.
-|T:1:8|t- {notready}: Der Erfolg kann nicht mehr erreicht werden.
-
-Farben:
-|T:1:8|t- {green}: Der Erfolg/das Ziel ist abgeschlossen.
-|T:1:8|t- {grey}: Der Erfolg/das Ziel ist nicht abgeschlossen.
-|T:1:8|t- {red}: Der Erfolg kann nicht mehr erreicht werden.
-|T:1:8|t- Hell {lightGreen}, {lightGrey} oder {lightRed}: Der Erfolg ist in ein Serien-Erfolg.
-
-Weitere benutzerdefinierte Informationen können auf {discord} oder {curseForge} (Links in den Optionen) angefordert werden.
-
-(1) Optional können zwei Icons pro Zeile angezeigt werden. Das erste Icon ist das Standard-Icon, das zweite ist für den aktuellen Charakter ({currentCharacterIconEnabled}) (2).
-(2) Die Optionen finden sich unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {achievements}.]=]
-L["Enhanced tooltip Categories Desc"] = [=[Jeder Tooltip enthält zusätzliche Informationen darüber, wie viele Erfolge noch erreichbar bzw. nicht mehr erreichbar sowie abgeschlossen bzw. noch nicht abgeschlossen sind.
-
-Die Zahlen im Fortschrittsbalken haben das folgende Format:
-|T:1:8|tOC (+NONC) / T
-|T:1:8|t|T:1:8|t- {oc}: Die nicht erreichten noch nicht abgeschlossenen Erfolge.
-|T:1:8|t|T:1:8|t- {nonc}: Die nicht mehr erhältlichen, nicht abgeschlossenen Erfolge (1).
-|T:1:8|t|T:1:8|t- T: Gesamt-Anzahl der Erfolge.
-
-Die Farben bedeuten folgendes:
-|T:1:8|t- {green}: Die nicht erreichten noch nicht abgeschlossenen Erfolge.
-|T:1:8|t- {red}: Die nicht mehr erhältlichen, nicht abgeschlossenen Erfolge (1).
-|T:1:8|t- Weiss: Alle noch erreichbaren nicht abgeschlossenen Erfolge.
-
-Der rote Teil des Fortschrittsbalkens und die Zahl in Klammern können entweder in den Optionen  ({showNotObtainable}) (1) oder durch Deaktivieren des Filters {notObtainable} deaktiviert werden.
-
-(1) Die Optionen findest Du unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {categories}.]=]
 L["Error Tabs Order"] = "{blizzard} Tab {statistics} kann nicht vor {guild} stehen."
 L["Escalation"] = "Eskalation"
 L["Eternity's End"] = "Ende der Ewigkeit"
-L["Event Reminder"] = "Event Erinnerung"
-L["Event Reminder Desc"] = [=[{events} werden zum neuen Tab {events} hinzugefügt und eine Erinnerung erscheint (max. {numPopUps} zur gleichen Zeit), wenn eines der Ereignisse aktiv ist ({popUpEnabled}) (1).
-
-Die Ereigniserinnerung hat den Namen des Ereignisses und bis zu 2 Zeilen Zeitanzeige (Endzeit des Ereignisses) (1).
-Das Format der Zeitanzeige kann aus vordefinierten Vorgaben oder auch Benutzerdefiniert ausgewählt werden (1).
-Es existiert auch eine kompakte Version mit einer einzigen Zeile für die Zeitanzeige ({compactEnabled}) (1). 
-
-Ein Klick auf die Ereigniserinnerung öffnet die dazugehörige Kategorie mit den noch erreichbaren Erfolgen, solange das Ereignis aktiv ist.
-Die Ereigniserinnerung verschwindet, wenn mit der rechten Maustaste auf die Erinnerung geklickt wird oder nach {eventAlertFadeDelay} Sekunden, wenn die Erinnerung ignoriert wird (1). 
-
-Die Erinnerung wird auch auf der rechten Seite des Erfolg-Fensters angezeigt.
-
-Ereignistypen:
-|T:1:8|t- Kalender-Ereignisse (z.B.: Feiertage).
-|T:1:8|t- Widget-Ereignisse (z.B.: Torghast).
-|T:1:8|t- Welt-Ereignisse (z.B.: Angriffe).
-
-(1) Die Optionen findest Du unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {eventReminders}.]=]
 L["Event Reminders"] = "Event Erinnerung"
 L["Event Reminders Enable Desc"] = "Wenn deaktiviert, wird das gesamte {eventReminders} Modul ausgeschaltet."
 L["Events"] = "Ereignisse"
@@ -455,28 +536,6 @@ L["Exclude Excluded achievements"] = "Ausgeschlossene Erfolge Suchen"
 L["Exclude Excluded achievements Desc"] = "Ausgeschlossene Erfolge von den Suchergebnissen ausschließen bzw. in die Suchergebnisse aufnehmen."
 L["Excluded"] = "Filter: Erfolg Ausgeblendet"
 L["Expansions"] = "Erweiterungen"
-L["Expansions tab"] = "Erweiterungen-Tab"
-L["Expansions tab Desc"] = [=[Erfolge werden in Kategorien pro Erweiterung mit einer logischeren Hierarchie gruppiert.
-
-Die Hierarchie ist wie folgt: 
-|T:1:8|t- {expansion}
-|T:1:8|t|T:1:8|t- {zones}
-|T:1:8|t|T:1:8|t- {quests}
-|T:1:8|t|T:1:8|t- {exploration}
-|T:1:8|t|T:1:8|t- {pvp}
-|T:1:8|t|T:1:8|t- {reputation}
-|T:1:8|t|T:1:8|t- {dungeons}
-|T:1:8|t|T:1:8|t- {raids}
-|T:1:8|t|T:1:8|t- {petBattles}
-|T:1:8|t|T:1:8|t- {expansionFeatures}
-
-Spezielle Kategorien: 
-|T:1:8|t- {currentZone}: Zeigt die Erfolge an, die mit der aktuellen Zone verknüpft sind, in der Sie sich befinden.
-|T:1:8|t- {selectedZone}: Zeigt die Erfolge an, die mit der ausgewählten Zone auf der Weltkarte verknüpft sind.
-|T:1:8|t- {watchListCategory}: Zeigt die Erfolge an die sich auf Ihrer Beobachtungs-Liste befinden. Errungenschaften können mit oder ohne ihre Unterkategorien angezeigt werden (1).
-|T:1:8|t- {excludedCategory}: Zeigt die ausgeschlossenen Erfolge an. Erfolge können mit oder ohne ihre Unterkategorien (1) angezeigt werden. Kann dauerhaft aus den Optionen ausgeblendet werden (1).
-
-(1) Die Optionen findest du unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {categories}.]=]
 L["Experimental"] = "Experimentell"
 L["Exploration"] = "Erkundung"
 L["Export"] = true
@@ -537,10 +596,7 @@ L["Forget Me Not: Next"] = "Theatertruppe: Vergissmeinnicht: Bald"
 L["Format"] = true
 L["Fracture Chambers"] = "Frakturkammern"
 L["Fractures in Time"] = "Risse in der Zeit"
-L["from"] = "von"
 L["from the start of"] = "ab dem Beginn der"
-L["Full Search"] = "Vollständige Suche"
-L["Full Search Desc"] = "Durch die Auswahl von \"{showAllResults}\" kannst Du alle Suchergebnisse anzeigen lassen. Weitere Einzelheiten findest Du im {quickSearchTutorial}-Tutorial."
 L["Fury Incarnate"] = "Inkarnation des Zorns"
 L["Fury of Hellfire"] = "Zorn des Höllenfeuers"
 L["Future Obtainable"] = "Erreichbarkeit in der Zukunft"
@@ -628,7 +684,6 @@ L["Ignore Filters Desc"] = "Ignoriere jegliche Filter und zeige alle Erfolge in 
 L["Imbu"] = true
 L["Import"] = true
 L["In"] = "in"
-L["in"] = true
 L["In instances"] = "In einer Instanz"
 L["Include"] = "Hinzufügen"
 L["Include all"] = "\"Filter: Erfolge ausgeblendet\" einbeziehen"
@@ -725,25 +780,6 @@ L["Nazmir"] = true
 L["Necrolord Assault"] = "Nekrolord Paktangriff"
 L["Necrolords Assault"] = "Nekrolord Paktangriff"
 L["never obtainable"] = "nicht erzielbar"
-L["New Achievement Colors"] = "Neue Erfolgs-Farben"
-L["New Achievement Colors Desc"] = [=[- Das Standard-Gold eines erhaltenen Erfolgs. Der Rahmen wird von Rot auf Gold geändert.
-- Das neue Rot eines erhaltenen, nicht erhältlichen Erfolgs mit rotem Standardrahmen.
-- Das neue Rot eines nicht erhaltenen, nicht erhältlichen Erfolgs mit grauem Standardrahmen.
-- Das Standardblau eines erhaltenen, accountweiten Erfolgs mit blauem Standardrahmen. ]=]
-L["New achievement window tabs"] = "Neue Tabs für das Erfolgs-Fenster"
-L["New achievement window tabs Desc"] = [=[Dem Erfolg-Fenster werden durch {addonName_y} neue Tabs hinzugefügt.
-Dies bietet eine neue Möglichkeit, Erfolge auf vertraute Weise anzuzeigen, ohne die Standard-Tabs zu beeinträchtigen.
-
-Tabs:
-|T:1:8|t- {achievements}: Eine Kopie der Standard-Registerkarte {achievements}, aber mit allen neuen Funktionen, die von {addonName_y} hinzugefügt wurden.
-|T:1:8|t- {expansions}: Erfolge sind in Kategorien pro Erweiterung mit einer logischeren Hierarchie gruppiert. Siehe das {expansionsTabTutorial}-Tutorial für weitere Details.
-|T:1:8|t- {events}: Erfolge sind in Kategorien pro Ereignis gruppiert. Dies reicht von Feiertagen bis hin zu Weltereignissen wie Angriffen.
-|T:1:8|t- {pvp}: Erfolge sind in Kategorien pro Schlachtfeld gruppiert.
-|T:1:8|t- {specials}: Diese Kategorien sind Sammlungen von Erfolgen, die Reittiere, Titel, Transmog und andere Dinge verleihen, die nirgendwo anders richtig hinpassen.
-
-In den Optionen können sowohl die Standardreiter als auch die durch {addonName_y} hinzugefügten Reiter ausgeblendet werden (1).
-
-(1) Die Optionen findest du unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {tabs}.]=]
 L["News"] = "Neuigkeiten"
 L["Next"] = "Weiter"
 L["Next from startDate until endDate"] = "Demächst ab {startDate} bis {endDate}"
@@ -759,7 +795,6 @@ L["No data found"] = "Keine Inhalte gefunden"
 L["No time data available"] = "Keine Zeitdaten verfügbar"
 L["Noblegarden"] = "Nobelgarten"
 L["Nokhudon Hold"] = "Festung Nokhudon"
-L["NONC"] = true
 L["None"] = "Keine"
 L["No-No"] = true
 L["Northrend Cup"] = "Northrend Pokal"
@@ -793,8 +828,6 @@ L["N'Zoth (Vale of Eternal Blossoms)"] = "N'Zoth (Das Tal der ewigen Blüten)"
 L["N'Zoth Assaults"] = "Angriffe von N'Zoth"
 L["Objectives"] = "Ziele"
 L["Objectives progress"] = "Erfolgs-Fortschritt"
-L["Obtainable"] = "Verfügbar"
-L["OC"] = true
 L["Offsets"] = "Fenster Abstände"
 L["Ohn'ahran Plains"] = "Ebenen von Ohn'ahra"
 L["Ohn'ahran Plains: Next"] = "Ebenen von Ohn'ahra: Nächstes Event"
@@ -848,21 +881,6 @@ L["Promotions"] = "Promotionen"
 L["PvE Season"] = "PvE Saison"
 L["PvP"] = true
 L["PvP Season"] = "PvP Saison"
-L["Quick Search"] = "Schnell-Suche"
-L["Quick Search Desc"] = [=[Durchsuche die durch {addonName} hinzugefügten Tabs nach Erfolgen. Die Standard-Tabs werden dabei nicht durchsucht. 
-
-Features:
-|T:1:8|t- Suche nach dem Titel und der Beschreibung eines Erfolgs; Alphabetisch sortiert nach dem Titel.
-|T:1:8|t- Suche nach der ID eines Erfolgs indem die Suchanfrage mit '#' begonnen wird; Sortiert nach aufsteigender ID. 
-
-Optionen (1): 
-|T:1:8|t- {clearOnRightClick} ({clearOnRightClickEnabled})
-|T:1:8|t- {excludeExcludedAchievements} ({excludeExcludedAchievementsEnabled} schließt Erfolge "{excludeExcludedAchievementsFrom}" aus den Suchergebnissen aus)
-|T:1:8|t- {searchFilteredAchievements} ({searchFilteredAchievementsEnabled})
-|T:1:8|t- {minCharToSearch} ({minCharToSearchNumber})
-|T:1:8|t- {numSearchPreviews} ({numSearchPreviewsNumber})
-
-(1) Die Optionen findest du unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName}.]=]
 L["Radiant Echoes"] = "Strahlende Echos"
 L["Rage of the Firelands"] = "Sturm auf die Feuerlande"
 L["Rated"] = "Gewertet"
@@ -916,24 +934,6 @@ L["Right"] = "Rechts"
 L["Right Alt"] = "Rechts Alt"
 L["Right click"] = "Rechts-Klick"
 L["Right Click Menu"] = "Rechts-Klick Menü"
-L["Right Click Menu Desc"] = [=[Jeder Erfolg in den durch {addonName} hinzugefügten neuen Tabs hat ein {rightClickMenu}.
-
-Features:
-|T:1:8|t- Link zu {wowhead}.
-|T:1:8|t- {goTo}-Verknüpfung zu Erfolgen, die {partOfAChain} sind, die {require} diesen Erfolg erfordern, um abgeschlossen zu werden oder die auch in anderen Kategorien zu finden sind. Erfolge in der Kategorie {currentZone} haben eine Verknüpfung zu ihrer richtigen Position im Kategorienbaum.
-|T:1:8|t- Link zu {xuFuPetGuides}, wenn der Erfolg mit {petBattles} zusammenhängt und {xuFuPetGuides} relevante Informationen dazu enthält.
-|T:1:8|t- Link zu Transmog-Sets, wenn es das Ziel des Erfolgs ist, diese zu sammeln.
-{pluginText}
-|T:1:8|t- {more}: Gruppiert weitere "Rechts-Klick" Optionen, um das Hauptmenü nicht zu überladen.
-|T:1:8|t- {addToWatch}: Fügt den Erfolg zur Kategorie {watchList} hinzu. (Nur bei Erfolgen verfügbar die noch nicht auf der Beobachtungsliste sind).
-|T:1:8|t|T:1:8|t- {removeFromWatch}: Entfernt den Erfolg aus der Kategorie {watchList}. (Nur bei Erfolgen verfügbar die derzeit auf der Beobachtungsliste sind).
-|T:1:8|t|T:1:8|t- {include}: Nimmt den Erfolg wieder in die normale Ansicht auf. (Nur bei Erfolgen verfügbar die vorher ausgeschlossen worden sind).
-|T:1:8|t|T:1:8|t- {exclude}: Schließt den Erfolg aus der normalen Ansicht aus. (Nur bei Erfolgen verfügbar die noch nicht ausgeschlossen worden sind).
-
-Optionen:
-|T:1:8|t- Bei jedem Erfolg kann eine Schaltfläche angezeigt werden, die das {rightClickMenu} öffnet. ({enabled}) (1)
-
-(1) Die Optionen befinden sich unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {rightClickMenu}.]=]
 L["Right Ctrl"] = "Rechts Ctrl"
 L["Right Shift"] = "Rechts Shift"
 L["Rise of Azshara"] = "Azsharas Aufstieg"
@@ -1115,13 +1115,6 @@ L["Stormheim"] = "Sturmheim"
 L["Stormsong Valley"] = "Das Sturmsangtal"
 L["Strand of the Ancients"] = "Strand der Uralten"
 L["Style"] = "Style Erfolgs-Fenster"
-L["Summary Desc"] = [=[{achievementsHeader}:
-|T:1:8|t- Zeigt die letzten {numAchievements} für Account- und Charaktererfolge (1).
-
-{categoriesHeader}:
-|T:1:8|t- Zeigt den Fortschritt für jede Kategorie im Tab. Dies ist derselbe Fortschritt, den du sehen würdest, wenn du mit der Maus über eine Kategorie auf der Seite fährst.
-
-(1) Optionen findest du unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {categories} {arrow} {summary}.]=]
 L["Sundapple Copse Circuit"] = "Sonnentüpfelheinstrecke"
 L["Superbloom"] = "Superblüte"
 L["Superbloom: Active"] = "Superblüte: Aktiv"
@@ -1254,7 +1247,6 @@ L["When achievement completed Desc"] = [=[Zeigt / verbirgt {objectivesProgress},
 
 Wenn diese Option aktiviert ist, werden die {objectivesProgress} der Erfolge im Tooltip angezeigt, unabhängig davon, ob der Erfolg abgeschlossen ist oder nicht. ]=]
 L["Whispering Pandaren Spirit"] = "Flüsternder Pandarengeist"
-L["Widget Events"] = "Widget Ereignisse"
 L["Wild Preserve Circuit"] = "Wildreservat-Parcours"
 L["Wild Preserve Slalom"] = "Wildreservat-Slalom"
 L["will be"] = "wird"
@@ -1266,12 +1258,6 @@ L["Wintergrasp"] = "Tausendwinter"
 L["World Events"] = "Welt Ereignisse"
 L["World Map"] = "Welt Karte"
 L["World Map Button"] = true
-L["World Map Button Desc"] = [=[Hover:
-|T:1:8|t- Zeigt an, wie viele Achievements wie die {enhancedTooltipCategories} basierend auf den für die {selectedZone} eingestellten Filtern (nicht) erhältlich und (nicht) abgeschlossen sind.
-|T:1:8|t- Weitere Informationen findest du unter {enhancedTooltipCategories} und {enhancedFilteringAndSorting}.
-
-Click:
-|T:1:8|t- Öffnet das Achievement-Fenster für die Kategorie {selectedZone}. ]=]
 L["Worldsoul Memory"] = "Weltenseelenerinnerung"
 L["WoW Remix: Mists of Pandaria"] = true
 L["Wowhead"] = true

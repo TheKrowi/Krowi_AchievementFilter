@@ -59,15 +59,6 @@ local function SetOptionsOrder(addonName, tabName, index)
     options[addonName][tabName].Order = index
 end
 
-local function SetKeybind(value, command, index)
-    local key = select(index, GetBindingKey(command))
-    if key then
-        SetBinding(key)
-    end
-    SetBinding(value, command, index)
-    SaveBindings(GetCurrentBindingSet())
-end
-
 local OrderPP = addon.InjectOptions.AutoOrderPlusPlus
 local AdjustedWidth = addon.InjectOptions.AdjustedWidth
 local function InjectKeyBindingOptionsTable(addonName, addonDisplayName, tabDisplayName, bindingName)
@@ -90,7 +81,7 @@ local function InjectKeyBindingOptionsTable(addonName, addonDisplayName, tabDisp
         name = "", desc = "",
         get = function() return GetBindingKey(bindingName); end,
         set = function(_, value)
-            SetKeybind(value, bindingName, 1)
+            addon.Options.SetKeyBinding(value, bindingName, 1)
         end
     })
     addon.InjectOptions:AddTable("General.args.KeyBinding.args.Keybindings.args.Tabs.args", "Binding" .. OrderPP() .. "Key2", {
@@ -98,7 +89,7 @@ local function InjectKeyBindingOptionsTable(addonName, addonDisplayName, tabDisp
         name = "", desc = "",
         get = function() return select(2, GetBindingKey(bindingName)); end,
         set = function(_, value)
-            SetKeybind(value, bindingName, 2)
+            addon.Options.SetKeyBinding(value, bindingName, 2)
         end
     })
 end
