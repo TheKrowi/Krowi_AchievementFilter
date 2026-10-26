@@ -64,9 +64,10 @@ local function LoadBlizzard_AchievementUI()
     addon.OverwriteFunctions()
     addon.LoadBlizzardApiChanges()
     addon.HookFunctions()
-    KrowiAF.PluginsApi:LoadPluginsWithBlizzard_AchievementUI()
 
     LoadBlizzard_AchievementUI = function() end
+
+    KrowiAF.PluginsApi:LoadPluginsWithBlizzard_AchievementUI() -- after the line above, so a plugin's error cannot make this run twice
 end
 
 local function LoadPlayerLogin()

@@ -49,6 +49,11 @@ Shares its scenarios between both runners through an environment object, like `T
 3. **Fix.** `Api/PluginsApi.lua`, `Krowi_AchievementFilter.lua`, `Plugins/ZygorGuidesViewer.lua` as above. Headless: both scenarios now give `all`; set `Recorded` to `all` in the same commit as the fix (`fix: Zygor's guide icons show on the achievement rows from the first draw (#365)`).
 4. Changelog line; `plan.md` updated where the build departed from it.
 5. **Feedback loop:** `Check-Repo.ps1 -ChangedOnly` (the Stop hook too), `krowi:taint-reviewer` on the diff, `/code-review`; fix what they find.
+   - **Departures from the build above, from the code review (2026-10-26):**
+     - `Setup` only installs the hook; `UpdateIcons` calls `ZGV.Achievement:IconSetup()` first, so Zygor's guide list is built at the first draw, not at load.
+     - The plugin API call moved below `LoadBlizzard_AchievementUI = function() end`.
+     - In `Tests/Plugins.lua` the count and the screenshot are protected by `pcall`, and the always visible marks are undone after an error. The comments and README say the second scenario is a guard, not a first draw.
+     - Not changed: a retry for `Setup` (`ZGV.Achievement` exists from Zygor's file load, before its `ADDON_LOADED`), and the shared-pool and hidden-list findings (the list's template is hidden, `ForceUpdate` returns while the list is hidden, and the plugin draws only when the list itself redraws; the shared pool is Krowi's decision).
 6. **In-game after-run:** deploy (c1 first), `/kaftest login plugins`, `/reload` twice, `Read-GameTests.ps1` (`all`/`all`, no FAIL, no Lua errors), `Read-GameErrors.ps1`. Then Krowi opens the window by hand with Y on Krowidhone (account #3, Blizzard's Y) and on an account #1 character (the addon's Y), clicks into a category with a Zygor guide and looks at the rows.
 7. **Deploy stage:** work files `Status: done`, commit by explicit path, push, PR against `main` with `Closes #365`, the template filled in.
 

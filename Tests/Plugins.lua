@@ -6,16 +6,18 @@ local plugins = addon.Tests.Plugins
 -- Zygor Guides Viewer (issue #365, docs/work/365-zygor-icons): Zygor puts a magnifying glass on each row of Blizzard's
 -- achievement list that has a Zygor guide, and Plugins/ZygorGuidesViewer.lua does the same on the addon's rows, drawing
 -- the way Zygor draws (UpdateIcons from a hook on the list's ScrollBox Update, Zygor's shared icon pool). A scenario
--- opens the window one way, the list's first draw of the session, on a category holding an achievement with a Zygor
--- guide, and after half a second records whether the visible rows with a guide show the icon:
+-- opens the window one way on a category holding an achievement with a Zygor guide, and after half a second records
+-- whether the visible rows with a guide show the icon:
 --   all, some or none; with no row with a guide in view the scenario SKIPs
 -- The same scenarios run in game (/kaftest plugins) against the real window, Zygor and its guides, and headlessly
 -- (.claude/tools/headless/run-tests.lua) against a model of Zygor's achievement module and of the window, with the
--- plugin, the plugin API and the addon's ADDON_LOADED wiring real. In game the run is only a first draw right after a
--- /reload, before the window was opened: run it as /kaftest login plugins.
+-- plugin, the plugin API and the addon's ADDON_LOADED wiring real. The first scenario loads the window, so it is the
+-- list's first draw of the session only right after a /reload, before the window was opened: in game run it as
+-- /kaftest login plugins.
 
--- Tab: the addon's tab the list is drawn in. The Blizzard-binding scenario runs first and never calls the addon's
--- toggle, which used to start the plugin; the addon-binding one uses another tab, so the toggle really clicks it.
+-- Tab: the addon's tab the list is drawn in. The Blizzard-binding scenario runs first, the first draw, and never calls
+-- the addon's toggle, which used to start the plugin. The addon-binding one runs after it in the same session, on
+-- another tab so the toggle really clicks it: a guard that the toggle keeps its icons, not a first draw.
 -- Before the fix (verified in game on Retail 12.1.5 with Zygor 9.6, Doomhammer, 2026-10-26) the plugin started only from a
 -- post-hook on KrowiAF_ToggleAchievementFrame: Blizzard's binding never started it (0 of 13 rows with a guide had the
 -- icon), and the addon's started it after the list had drawn, yet the rows got the icons a frame later (13 of 13): a
@@ -124,21 +126,22 @@ function plugins.Run(env, observations, done)
             return
         end
         env.After(settle, function()
-            local got, detail = CountIcons()
-            tinsert(observations, ("%s: achievement %s, %s"):format(scenario.Name, tostring(picked.Id), detail))
+            local counted, got, detail = pcall(CountIcons)
             local result
-            if got == nil then
+            if not counted then
+                result = Result(scenario, "FAIL", "test error: " .. tostring(got))
+            elseif got == nil then
+                tinsert(observations, ("%s: achievement %s, %s"):format(scenario.Name, tostring(picked.Id), detail))
                 result = Result(scenario, "SKIP", "no row with a Zygor guide in view")
             else
+                tinsert(observations, ("%s: achievement %s, %s"):format(scenario.Name, tostring(picked.Id), detail))
                 local targetMet = got == scenario.Target
                 result = Result(scenario, got == scenario.Recorded and "PASS" or "FAIL", ("got=[%s] target=[%s] %s"):format(got, scenario.Target,
                     targetMet and "met" or "open"), targetMet)
                 result.Got = got
             end
             tinsert(results, result)
-            if env.Shot then
-                env.Shot(result, Next)
-            else
+            if not (env.Shot and pcall(env.Shot, result, Next)) then -- Shot calls Next once its screenshot is taken
                 Next()
             end
         end)
@@ -235,8 +238,12 @@ end
 
 function gameEnv.ClickTab(tabName, picked)
     local undo = Preset(tabName, picked)
-    TabButton(tabName):Select()
-    undo()
+    local button = TabButton(tabName)
+    local ok, err = pcall(button.Select, button)
+    undo() -- also after an error, so no category stays forced visible
+    if not ok then
+        error(err, 0)
+    end
 end
 
 function gameEnv.CloseWindow()
@@ -250,8 +257,11 @@ function gameEnv.ToggleWithAddonBinding(tabName, picked)
         return "Reset view on open is on, which selects the tab's first category"
     end
     local undo = Preset(tabName, picked)
-    KrowiAF_ToggleAchievementFrame(addonName, tabName)
+    local ok, err = pcall(KrowiAF_ToggleAchievementFrame, addonName, tabName)
     undo()
+    if not ok then
+        error(err, 0)
+    end
 end
 
 gameEnv.After = C_Timer.After

@@ -38,6 +38,7 @@ local function UpdateIcon(button)
 end
 
 local function UpdateIcons()
+    ZGV.Achievement:IconSetup() -- Zygor's guide list and icon pool, built once at the first draw, as Zygor builds them on its first open
 	ZGV.SearchIconPool:ReleaseAll()
 
     for _, button in ipairs(KrowiAF_AchievementsFrame.ScrollView.frames) do
@@ -57,8 +58,6 @@ local function Setup()
         return
     end
 
-    ZGV.Achievement:IconSetup()
-    ZGV.SearchIconPool = ZGV.SearchIconPool or CreateFramePool("BUTTON", nil, "ZygorSearchButton")
     hooksecurefunc(KrowiAF_AchievementsFrame.ScrollBox, "Update", ScheduleUpdate)
     isSetUp = true
 end
