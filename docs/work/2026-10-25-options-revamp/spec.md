@@ -1,5 +1,5 @@
 # Spec: Options window with the explanations built in
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 Opening and the Settings entry

@@ -1,5 +1,5 @@
 # Plan: Options window with the explanations built in
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 Covers stage 1 (the window over today's AceConfig tables, with the tests that become stage 2's regression suite), the seam the help-content track fills, and the tutorial's removal once that track lands. Stage 2's definition format gets its own spec addendum and gate. Approved by Krowi on 2026-10-25 (non-routine: it adds `KrowiAF_SavedData.OptionsWindow`, registers a Settings canvas category and removes an embedded library).
 
