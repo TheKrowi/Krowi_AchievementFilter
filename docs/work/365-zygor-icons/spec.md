@@ -10,7 +10,7 @@ Intent: [intent.md](intent.md). Status: accepted
 6. The fix leaves a scenario behind (Verification).
 
 ## Root cause
-Two defects in when the plugin starts.
+One defect in when the plugin starts; a second one, suspected from the code, does not show in game.
 
 **1. The plugin starts only on the addon's own toggle.** On Zygor's `ADDON_LOADED` the plugin post-hooks `KrowiAF_ToggleAchievementFrame` (`Plugins/ZygorGuidesViewer.lua:64-70`). The hook, `IconSetup` (`:52-62`), builds Zygor's guide list (`ZGV.Achievement:IconSetup()`) and hooks the addon's list `KrowiAF_AchievementsFrame.ScrollBox` `Update` once. Which ways of opening the window call that toggle:
 - The addon's tab bindings (`Bindings.xml`), the micro button (`Globals.lua:330-343`) and the minimap icon (`Icon.lua:11`) do.
@@ -19,7 +19,7 @@ Two defects in when the plugin starts.
 
 So a player whose Y still runs Blizzard's binding sees Zygor's icons on Blizzard's list (Zygor hooks `ToggleAchievementFrame` itself, `Code-Retail/Achievement.lua:10-12`) and none on the addon's tabs, for the whole session, unless they happen to use the micro button or a toast. The first-run switch of Y to the addon's binding (`Gui/Gui.lua:354`, `:376-378`) is often not in effect (issue #197): on two of the maintainer's accounts it is marked done while Y still runs Blizzard's binding. On Doomhammer, where Zygor and the addon are both enabled, account `#3` (Krowidhone) is such an account.
 
-**2. Even when it starts, the first draw has no icons.** The hook is a post-hook: `gui:ToggleAchievementFrame` (`Gui/Gui.lua:200-232`) has already shown the tab and drawn its rows (`ShowSubFrames` → `KrowiAF_AchievementsFrame:Update()` → `ScrollBox:SetDataProvider` → `ScrollBoxListMixin:Update`, `wow-ui-source/live/.../Shared/Scroll/ScrollBox.lua:703-725`, `:762-798`) when `IconSetup` hooks `Update`. The icons appear only at the next `Update`: a scroll, a category or filter change. Doomhammer account `#1` has Y on the addon's Expansions binding, so it shows this case.
+**2. Suspected, not reproduced: the first draw on the addon's toggle.** The hook is a post-hook: `gui:ToggleAchievementFrame` (`Gui/Gui.lua:200-232`) has already shown the tab and drawn its rows (`ShowSubFrames` → `KrowiAF_AchievementsFrame:Update()` → `ScrollBox:SetDataProvider` → `ScrollBoxListMixin:Update`, `wow-ui-source/live/.../Shared/Scroll/ScrollBox.lua:703-725`, `:762-798`) when `IconSetup` hooks `Update`. In game the rows still got their icons a frame later (before-run below). The likely reason: a row that changes size makes the list queue a full update for the next frame (`ScrollUtil.AddResizableChildrenBehavior`, `wow-ui-source/live/.../Shared/Scroll/ScrollUtil.lua:1594-1603`, added at `AchievementsFrameMixin.lua:23`), and the plugin's hook catches that. Besides, the first toggle of a session shows the tab's Summary, so the list's first draw usually comes later anyway.
 
 **Not in scope, by the decision: Zygor's shared icon pool.** The plugin takes its icons from `ZGV.SearchIconPool` (`Plugins/ZygorGuidesViewer.lua:24`, `:41`), the pool Zygor itself shares between Blizzard's achievement list (`Code-Retail/Achievement.lua:33-38`), the Pet Journal (`Code-Retail/PetBattle.lua:1109-1114`) and the Mount Journal (`CreatureDetector.lua:250-255`). Each redraw calls `ReleaseAll` on it first, so each clears the others' icons until they redraw:
 - Blizzard's list refills on an earn even while hidden (`wow-ui-source/live/.../Mainline/Blizzard_AchievementUI.lua:972-978`, `:936-937`), so the addon's rows lose their icons until the addon's own refresh one second later (`AchievementsFrameMixin.lua:95-100`).
@@ -29,7 +29,10 @@ That is Zygor's own design, which the plugin follows; it is temporary on the add
 
 **Ruled out:** Zygor's guide list is complete when `IconSetup` first runs, since each guide file passes `achieveid` in the header it registers at load (`ZygorGuidesViewer.lua:4471-4497`, e.g. `ZygorAchievementsCommonTWW.lua:5-7`). The fields the plugin reads exist: the view's frames (`ScrollBoxView.lua:59`, `:118`), the rows' `Header` and `Shield` (`AchievementButton.xml:102`, `:256`), Zygor's `ZygorSearchButton` template (`Templates.xml:219`). BugGrabber holds no Zygor or plugin error.
 
-**Reproduction:** not yet seen in game; the in-game before-run of the new scenarios (Verification) on Doomhammer is the reproduction, after a `/reload` with the window not yet opened.
+**Reproduction:** the in-game before-run of the `plugins` suite (Retail 12.1.5, Zygor 9.6, a Doomhammer character, right after a `/reload`, 2026-10-26):
+- Opened as Blizzard's binding does, then the Expansions tab (Pet Battles > Collect): 0 of the 13 rows with a Zygor guide showed the icon (`none`). This is the report.
+- Opened through the addon's toggle, then the Achievements tab (the same category): 13 of 13 (`all`).
+- The screenshots show the same, and BugGrabber recorded no error from the addon.
 
 ## Design
 The plugin sets up when the addon's list is loaded, not when the window is first toggled, so its redraw hook is in place before the list's first draw. The drawing itself (`UpdateIcon`, `UpdateIcons`, `ScheduleUpdate`, Zygor's pool) stays as it is.
@@ -62,7 +65,7 @@ For a Retail player with Zygor, per what they see:
 ## Verification
 - **A new `plugins` suite** (`Tests/Plugins.lua`, headless model in `run-tests.lua`); details in the plan. Each scenario opens the window on a category holding an achievement with a Zygor guide and records how many of its visible rows with a guide show the icon (`all`, `some`, `none`):
   - `zygor-blizzard-binding`: the list's first draw of the session, opened the way Blizzard's Toggle Achievements binding does, then a click on the Expansions tab. Recorded `none`, Target `all`.
-  - `zygor-addon-binding`: opened through `KrowiAF_ToggleAchievementFrame` while the plugin has not drawn yet. Recorded `none`, Target `all`.
+  - `zygor-addon-binding`: opened through `KrowiAF_ToggleAchievementFrame` while the plugin has not drawn yet. Recorded `all` (the before-run; the headless model was given the list's queued update), Target `all`: a guard that the toggle keeps its icons.
   - In game the scenarios SKIP when the window was already opened in the session (`Blizzard_AchievementUI` loaded before the run), and the whole suite SKIPs without Zygor's achievement module.
 - Headlessly: the suite and `Check-Repo.ps1 -ChangedOnly`. In game on Retail, on Doomhammer (`#1` and `#3`): the before-run matches Recorded, the after-run Target; then opening with Y on each account and looking at the rows, `Read-GameTests.ps1`, `Read-GameErrors.ps1`.
 - `krowi:taint-reviewer` and `/code-review` on the diff.

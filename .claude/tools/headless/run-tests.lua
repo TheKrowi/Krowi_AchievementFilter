@@ -1790,7 +1790,10 @@ end
 --     two event frames is not defined), then the addon's handler, which makes the list; the window then shows Blizzard's
 --     own tab
 --   the addon's window: a click on one of its tabs, or its toggle, draws the list inside the call, as ShowSubFrames
---     does: the list shows, its rows get their achievements and its ScrollBox updates (the data provider, the scroll)
+--     does: the list shows, its rows get their achievements and its ScrollBox updates (the data provider, the scroll);
+--     the selected row grows, so the list updates once more on a later frame (ScrollUtil.AddResizableChildrenBehavior,
+--     which AchievementsFrameMixin.lua adds, queues a full update when a row changes size; in game, 2026-10-26, a hook
+--     put in after the toggle got the icons drawn that way)
 suites.plugins = function(c)
     local env, addon = c.env, c.addon
     c.frames.lenient = true -- the plugin reads row fields that can be nil, as the game allows
@@ -1884,6 +1887,7 @@ suites.plugins = function(c)
         end
         list.ScrollBox:Update() -- the new data provider
         list.ScrollBox:Update() -- the scroll to the selected achievement
+        timers[#timers + 1] = function() list.ScrollBox:Update() end -- the full update the grown row queued
     end
     env.ToggleAchievementFrame = function()
         LoadAchievementUI()

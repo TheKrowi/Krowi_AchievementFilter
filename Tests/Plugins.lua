@@ -16,13 +16,16 @@ local plugins = addon.Tests.Plugins
 
 -- Tab: the addon's tab the list is drawn in. The Blizzard-binding scenario runs first and never calls the addon's
 -- toggle, which used to start the plugin; the addon-binding one uses another tab, so the toggle really clicks it.
--- Before the fix (headless, 2026-10-26) both gave none: the plugin started only from a post-hook on
--- KrowiAF_ToggleAchievementFrame, so Blizzard's binding never started it and the addon's started it after the draw
+-- Before the fix (verified in game on Retail 12.1.5 with Zygor 9.6, Doomhammer, 2026-10-26) the plugin started only from a
+-- post-hook on KrowiAF_ToggleAchievementFrame: Blizzard's binding never started it (0 of 13 rows with a guide had the
+-- icon), and the addon's started it after the list had drawn, yet the rows got the icons a frame later (13 of 13): a
+-- row that changes size makes the list queue a full update for the next frame (ScrollUtil.AddResizableChildrenBehavior,
+-- AchievementsFrameMixin.lua), which the plugin's hook then catches
 plugins.Scenarios = {
     -- Blizzard's ToggleAchievementFrame, what Y does on Blizzard's Toggle Achievements binding, then a click on the tab
     {Name = "zygor-blizzard-binding", Tab = "Expansions", Recorded = "none", Target = "all"},
     -- the window closed, then KrowiAF_ToggleAchievementFrame, what the addon's tab bindings and the micro button do
-    {Name = "zygor-addon-binding", Tab = "Achievements", Recorded = "none", Target = "all"}
+    {Name = "zygor-addon-binding", Tab = "Achievements", Recorded = "all", Target = "all"}
 }
 
 local settle = 0.5 -- the open -> the count; Zygor draws on a timer
