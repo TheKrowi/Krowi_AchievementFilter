@@ -64,6 +64,7 @@ local function LoadBlizzard_AchievementUI()
     addon.OverwriteFunctions()
     addon.LoadBlizzardApiChanges()
     addon.HookFunctions()
+    KrowiAF.PluginsApi:LoadPluginsWithBlizzard_AchievementUI()
 
     LoadBlizzard_AchievementUI = function() end
 end

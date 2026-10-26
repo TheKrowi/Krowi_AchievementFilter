@@ -20,10 +20,11 @@ local plugins = addon.Tests.Plugins
 -- post-hook on KrowiAF_ToggleAchievementFrame: Blizzard's binding never started it (0 of 13 rows with a guide had the
 -- icon), and the addon's started it after the list had drawn, yet the rows got the icons a frame later (13 of 13): a
 -- row that changes size makes the list queue a full update for the next frame (ScrollUtil.AddResizableChildrenBehavior,
--- AchievementsFrameMixin.lua), which the plugin's hook then catches
+-- AchievementsFrameMixin.lua), which the plugin's hook then catches. Since the fix the plugin sets up as soon as Zygor and
+-- the addon's list both exist (PluginsApi:LoadPluginsWithBlizzard_AchievementUI), before the list's first draw.
 plugins.Scenarios = {
     -- Blizzard's ToggleAchievementFrame, what Y does on Blizzard's Toggle Achievements binding, then a click on the tab
-    {Name = "zygor-blizzard-binding", Tab = "Expansions", Recorded = "none", Target = "all"},
+    {Name = "zygor-blizzard-binding", Tab = "Expansions", Recorded = "all", Target = "all"},
     -- the window closed, then KrowiAF_ToggleAchievementFrame, what the addon's tab bindings and the micro button do
     {Name = "zygor-addon-binding", Tab = "Achievements", Recorded = "all", Target = "all"}
 }

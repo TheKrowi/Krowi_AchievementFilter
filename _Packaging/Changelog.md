@@ -21,6 +21,7 @@ All notable changes to this project will be documented in this file.
 - Category counts in a tab you looked at before earning an achievement now include it when you go back
 - Y now opens the addon's Achievements tab on a new install, so the window reopens where you left off
 - A new install no longer shows an error about switching achievement tabs in chat
+- Zygor Guides Viewer's guide icons now show on this addon's tabs, also when you open the window with the game's own achievements key
 
 ## 104.0 - 2026-10-24
 ### Added

@@ -49,16 +49,18 @@ local function ScheduleUpdate()
 	ZGV:ScheduleTimer(UpdateIcons, 0.0001)
 end
 
-local function IconSetup()
-    ZGV.Achievement:IconSetup()
-
-    if ZGV.Achievement.KrowiAF_Loaded then
+-- Runs once both Zygor and the addon's achievement list exist, so the hook is in before the list's first draw, however
+-- the window is opened (issue #365: Blizzard's own key binding never ran the addon's toggle this used to wait for)
+local isSetUp
+local function Setup()
+    if isSetUp or not KrowiAF_AchievementsFrame or not (ZGV and ZGV.Achievement and ZGV.Achievement.IconSetup and ZGV.Achievement.AvailGuides) then
         return
     end
 
+    ZGV.Achievement:IconSetup()
     ZGV.SearchIconPool = ZGV.SearchIconPool or CreateFramePool("BUTTON", nil, "ZygorSearchButton")
     hooksecurefunc(KrowiAF_AchievementsFrame.ScrollBox, "Update", ScheduleUpdate)
-    ZGV.Achievement.KrowiAF_Loaded = true
+    isSetUp = true
 end
 
 function zgv:OnEvent(event, arg1, arg2)
@@ -66,7 +68,11 @@ function zgv:OnEvent(event, arg1, arg2)
         return
     end
 
-    hooksecurefunc("KrowiAF_ToggleAchievementFrame", IconSetup)
+    Setup() -- the achievement window loaded before Zygor
+end
+
+function zgv:LoadWithBlizzard_AchievementUI()
+    Setup()
 end
 
 function zgv:InjectOptions()
