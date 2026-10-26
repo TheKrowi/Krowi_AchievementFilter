@@ -1,0 +1,6 @@
+## Interface: 120105, 50504, 38002
+## Title: Krowi Binding Probe (issue #197, temporary)
+## Notes: Records what GetBindingByKey("Y") returns at each step of loading
+## SavedVariables: KrowiBindingProbe_Log
+
+Probe.lua
