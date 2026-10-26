@@ -1,5 +1,5 @@
 # Plan: Zygor's guide icons do not show on the addon's achievement rows
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 ## Context
 Issue #365: with Zygor Guides Viewer loaded on Retail, the addon's achievement rows show none of Zygor's guide icons. The spec (accepted 2026-10-26) finds two causes. The plugin `Plugins/ZygorGuidesViewer.lua` starts only from a post-hook on `KrowiAF_ToggleAchievementFrame`: Blizzard's Toggle Achievements key followed by a click on one of the addon's tabs never starts it, and on the addon's own toggle it starts after the list has drawn. Krowi's decision: set the plugin up when the list loads and follow Zygor's drawing, including Zygor's shared icon pool. The drawing code stays as it is. Worktree `.claude/worktrees/fix-365-zygor-icons`, branch `fix/365-zygor-icons`; intent and spec committed as 0c1cb9d6.
@@ -56,6 +56,7 @@ Shares its scenarios between both runners through an environment object, like `T
      - From the taint review (no taint found): `Setup` also requires the addon `ZygorGuidesViewer` by name, as the old `ADDON_LOADED` check did. Mists runs Zygor as `ZygorGuidesViewerClassicTBC` with the same `ZGV.Achievement`, which the new plugin API call would otherwise have started the plugin against. The in-game suite SKIPs without it.
      - Not changed: a retry for `Setup` (`ZGV.Achievement` exists from Zygor's file load, before its `ADDON_LOADED`), and the shared-pool and hidden-list findings (the list's template is hidden, `ForceUpdate` returns while the list is hidden, and the plugin draws only when the list itself redraws; the shared pool is Krowi's decision).
 6. **In-game after-run:** deploy (c1 first), `/kaftest login plugins`, `/reload` twice, `Read-GameTests.ps1` (`all`/`all`, no FAIL, no Lua errors), `Read-GameErrors.ps1`. Then Krowi opens the window by hand with Y on Krowidhone (account #3, Blizzard's Y) and on an account #1 character (the addon's Y), clicks into a category with a Zygor guide and looks at the rows.
+   - **Done 2026-10-26 on Krowi-Frostmane**, with Zygor ticked at character select: the Doomhammer characters are not Krowi's (now a rule in the kit's `WowAddons.md`). 3 passed, both scenarios `all` (13 of 13 rows with a guide show the icon), no difference from headless, no Lua error from the addon this session. The screenshot shows the icons on the same Expansions view that had none in the before-run. Blizzard's binding is covered by the first scenario, so no hand check on another character was needed.
 7. **Deploy stage:** work files `Status: done`, commit by explicit path, push, PR against `main` with `Closes #365`, the template filled in.
 
 ## Risks
@@ -70,5 +71,5 @@ Shares its scenarios between both runners through an environment object, like `T
 ## Proof
 - Headless: `& "$kit\lua51\lua.exe" ".claude\tools\headless\run-tests.lua" "$PWD" plugins`. Before the fix: 2 passed, 2 open. After: 2 passed, 0 open. `Check-Repo.ps1 -ChangedOnly` clean.
 - In game, Retail, Doomhammer: before-run `none`/`none` (or what the game shows, recorded); after-run `all`/`all` with screenshots showing the magnifying glass on the rows. The BugGrabber step passes, and `Read-GameErrors.ps1` shows no new row or bumped count.
-- Krowi's look: icons on the first open with Y on both accounts.
+- Krowi's look: icons on the first open with Y on both accounts. (Replaced by the after-run's screenshots; the Doomhammer accounts are not Krowi's.)
 - `krowi:taint-reviewer`: no new hazard. `/code-review`: findings fixed or listed in the PR.

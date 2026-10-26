@@ -1,5 +1,5 @@
 # Spec: Zygor's guide icons do not show on the addon's achievement rows
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. With Zygor loaded on Retail, every row of the addon's achievement list whose achievement has a Zygor guide shows Zygor's icon from the list's first draw in a session, however the window was opened: Blizzard's Toggle Achievements binding followed by a click on one of the addon's tabs, the addon's tab bindings, the micro button, the minimap or broker icon, a toast, a chat link, the objective tracker.

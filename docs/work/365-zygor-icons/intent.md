@@ -1,5 +1,5 @@
 # Intent: Zygor's guide icons do not show on the addon's achievement rows
-Author: LadyTaayy (player, CurseForge comment 2026-10-18), filed by Krowi (maintainer). Source: GitHub issue #365. Status: accepted
+Author: LadyTaayy (player, CurseForge comment 2026-10-18), filed by Krowi (maintainer). Source: GitHub issue #365. Status: done
 
 ## Problem
 Zygor Guides Viewer puts a small magnifying glass on each row of Blizzard's achievement list that has a Zygor guide; clicking it opens that guide. With the addon enabled, the reporter sees none of these icons on the addon's achievement rows ("don't appear at all"), on Retail.
