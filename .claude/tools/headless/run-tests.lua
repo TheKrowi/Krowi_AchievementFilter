@@ -1596,6 +1596,7 @@ suites.options = function(c)
     end
     local env, addon = ctx.env, ctx.addon
     addon.Tests = addon.Tests or { Suites = {}, Ready = {}, Async = {} }
+    addon.Tests.NewInstall = ctx.NewInstall -- what the load, as a new install, did to Y (y-on-new-install)
     local chunk = assert(loadstring(readFile(root .. "/Tests/Options.lua"), "@Tests/Options.lua"))
     setfenv(chunk, env)
     chunk("Krowi_AchievementFilter", addon)
