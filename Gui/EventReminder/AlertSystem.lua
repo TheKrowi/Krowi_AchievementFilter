@@ -15,6 +15,7 @@ local everyAlert = 1
 local blizzardX, blizzardY = 0, 128 -- AlertFrame's anchor on UIParent (Mainline and Classic AlertFrames.xml)
 local blizzardSpacing = 10 -- AlertFrameQueueMixin:AdjustAnchors (Mainline/AlertFrames.lua:243-248)
 local placedX, placedY -- where the addon put AlertFrame under Every alert; nil while it is where Blizzard put it
+local restacked -- the game's toasts showing carry points of the addon's, not Blizzard's
 
 local function PopUpOptions()
     return addon.Options.db.profile.EventReminders.PopUps
@@ -79,6 +80,7 @@ end
 -- addon's beside the one Blizzard's next pass sets, and, when it moves, AlertFrame back on its own spot
 local function GiveBack(moveAlertFrame)
     WalkAlertFrame("BOTTOM", "TOP", blizzardSpacing)
+    restacked = false
     if moveAlertFrame then
         AlertFrame:ClearAllPoints()
         AlertFrame:SetPoint("BOTTOM", UIParent, "BOTTOM", blizzardX, blizzardY)
@@ -112,17 +114,20 @@ function eventReminderAlertSystem:IsFollowing()
 end
 
 -- The post-hook on AlertFrame:UpdateAnchors, once per alert: under Every alert the toasts restacked by the grow
--- direction and spacing (only when they differ from Blizzard's), then the holder at the end of the stack, its edge on
--- the last frame's, so the first pop-up sits where the next toast would. Allocates nothing.
+-- direction and spacing when they differ from Blizzard's (and once more on the way back to Blizzard's, so no toast keeps
+-- the addon's points), then the holder at the end of the stack, its edge on the last frame's, so the first pop-up sits
+-- where the next toast would. Allocates nothing.
 local function Restack()
     local system = eventReminderAlertSystem
     if system.AppliesTo ~= everyAlert or system:IsFollowing() then
         return
     end
     local point, relativePoint, offset = GrowPoints()
-    if point == "BOTTOM" and offset == blizzardSpacing then
+    local blizzards = point == "BOTTOM" and offset == blizzardSpacing
+    if blizzards and not restacked then
         point = nil
     end
+    restacked = not blizzards
     local last = WalkAlertFrame(point, relativePoint, offset)
     local edge = PopUpOptions().GrowDirection == 1 and "TOP" or "BOTTOM"
     system.Holder:ClearAllPoints()

@@ -301,6 +301,25 @@ popUps.Scenarios = {
         end,
         Recorded = "below the alert frame",
         Target = "below the alert frame"},
+    -- Back to growing up while a toast shows, then another toast: the first must not keep the addon's top point beside
+    -- the bottom point Blizzard's pass gives it, which would stretch it
+    {Name = "every-alert-grow-back",
+        Observe = function(env)
+            if not env.ShowGameToast then
+                return nil, "headless only: shows one of the game's toasts"
+            end
+            SetOption(location .. "GrowDirection", 2)
+            local toast = env.ShowGameToast()
+            SetOption(location .. "GrowDirection", 1)
+            env.ShowGameToast()
+            local point, relativeTo, relativePoint = toast:GetPoint(1)
+            local where = relativeTo == AlertFrame and point == "BOTTOM" and relativePoint == "TOP" and "above the alert frame" or "elsewhere"
+            local points = toast:GetNumPoints()
+            env.HideGameToasts()
+            return ("%d point%s, %s"):format(points, points == 1 and "" or "s", where)
+        end,
+        Recorded = "1 point, above the alert frame",
+        Target = "1 point, above the alert frame"},
     {Name = "every-alert-chain",
         Observe = function(env)
             if not env.ShowGameToast then
