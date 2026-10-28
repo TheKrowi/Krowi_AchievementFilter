@@ -130,7 +130,16 @@ end
 -- an action button behind the black (the 2026-10-25 21:28 run's Window). Read only: hiding GameTooltip from addon code
 -- would run its OnHide tainted
 local function GameTooltipOver(rectangle)
-    if not (GameTooltip:IsVisible() and GameTooltip:GetLeft()) then
+    if not GameTooltip:IsVisible() then
+        return false
+    end
+    -- a unit tooltip with a restricted name can make its position secret (Retail): it counts as covering the picture
+    -- until the mouse moves on
+    local left, scale = GameTooltip:GetLeft(), GameTooltip:GetEffectiveScale()
+    if issecretvalue and (issecretvalue(left) or issecretvalue(scale)) then
+        return true
+    end
+    if not left then
         return false
     end
     local tip = Rectangle({GameTooltip})
@@ -726,6 +735,20 @@ local function Shoot(step, items, rectangle, waited)
     end
     if waited > 0 then
         SetBanner(step.Text)
+        -- the mouse moved during the wait: the scene's check and its cut again, as they are now. Not the step's Cut,
+        -- which can hide frames again (the guide step's side buttons)
+        local checkOk, passed, reason = pcall(step.Check or function() return true end)
+        local cutOk, now = pcall(Rectangle, items)
+        local problem = not checkOk and tostring(passed) or not passed and (reason or "the check failed")
+            or not cutOk and tostring(now) or not now and "nothing on screen to cut out"
+        if problem then
+            Add("FAIL", "after the wait for the tooltip: " .. problem)
+            After(afterShot, function()
+                RunStep(live.StepIndex + 1)
+            end)
+            return
+        end
+        rectangle = now
     end
     -- black under the picture's frames first, then the screenshot a few frames later
     local floorOk, floorErr = pcall(PlaceBackdrop, step.Floor and step.Floor() or items)
