@@ -8,9 +8,12 @@ local function GetOrCreateEventDetails(event)
 end
 
 local utcOffsetSeconds
+-- Read on the realm's clock, so the calendar's and the obtainability dates' times are true UTC seconds even on a PC whose
+-- clock is set wrong, and compare with GetServerTime() (docs/work/2026-10-28-active-events-chat-repeat)
 function KrowiAF_GetUtcOffsetSeconds()
-    local utcNow = date("!*t")
-    local locNow = date("*t")
+    local now = GetServerTime()
+    local utcNow = date("!*t", now)
+    local locNow = date("*t", now)
     local utcServerTimeLocal = date("!*t", C_DateAndTime.GetServerTimeLocal())
     local serverUtcOffsetDays = utcServerTimeLocal.yday - utcNow.yday
     local serverUtcOffsetHours = utcServerTimeLocal.hour - utcNow.hour
@@ -295,7 +298,7 @@ function eventData.GetWorldEventDetails(event, now)
     end
 
     local endTime
-    if secondsLeft ~= nil and secondsLeft ~= 0 then
+    if secondsLeft > 0 then -- 0: active with no time data
         endTime = now + secondsLeft
     end
 

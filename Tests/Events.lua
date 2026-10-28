@@ -32,9 +32,11 @@ local events = addon.Tests.Events
 --     Retail 12.1.5 on 2026-10-25); it now shows the start, with the start's names. The code review of the fix found
 --     that %a and %b cut the names by bytes ("other", headless only) and that line 2's End Time showed the start a
 --     second time ("start / start"); line 2 now shows the end, as Krowi chose on 2026-10-25.
---   ChatPasses: the chat lines of the active events' reminder for a test event that is never registered, whose end is
---     EndIn seconds from the realm's clock, through Passes refresh passes (ShowActiveEvents with chat messages on and
---     pop-ups off, then ForgetEndedReminders, as the refresh runs them): "headers <n>, lines <n>". Until 2026-10-28 an
+--   ChatPasses: the chat lines of the active events' reminder for test events that are never registered, one per entry
+--     of Ends, each ending that many seconds from the realm's clock, in that order, through Passes refresh passes at the
+--     same second (ShowActiveEvents with chat messages on and pop-ups off, then ForgetEndedReminders, as the refresh runs
+--     them, so the pruning drops only records that have already ended): "headers <n>, lines <n>", with ", a line before
+--     its header" when an event line comes before the first header. Until 2026-10-28 an
 --     event the reminders judged ended printed the "Active events:" header with no line under it, and as its record was
 --     dropped in the same pass, the header came back on every pass ("headers 3, lines 0"; in a raid on Retail, 33 times
 --     in a minute; docs/work/2026-10-28-active-events-chat-repeat). The header now comes with the pass's first line.
@@ -103,10 +105,12 @@ events.Scenarios = {
         Recorded = "end names", Target = "end names"},
     {Name = "upcoming-date-both-lines", Kind = "DateLine", Reminder = "upcoming", Format = "%d/%m/%Y %R", Names = false, Line2 = 2,
         Recorded = "start / end", Target = "start / end"},
-    {Name = "chat-ended-event", Kind = "ChatPasses", EndIn = -10, Passes = 3,
+    {Name = "chat-ended-event", Kind = "ChatPasses", Ends = {-10}, Passes = 3,
         Recorded = "headers 0, lines 0", Target = "headers 0, lines 0"},
-    {Name = "chat-active-event", Kind = "ChatPasses", EndIn = 600, Passes = 3,
+    {Name = "chat-active-event", Kind = "ChatPasses", Ends = {600}, Passes = 3,
         Recorded = "headers 1, lines 1", Target = "headers 1, lines 1"},
+    {Name = "chat-ended-then-active", Kind = "ChatPasses", Ends = {-10, 600, 900}, Passes = 3,
+        Recorded = "headers 1, lines 2", Target = "headers 1, lines 2"},
     {Name = "poi-negative-seconds", Kind = "PoiSeconds", SecondsLeft = -20, RetailOnly = true,
         Recorded = "not active", Target = "not active"},
     {Name = "poi-seconds-left", Kind = "PoiSeconds", SecondsLeft = 600, RetailOnly = true,
@@ -456,11 +460,10 @@ end
 
 -- [[ The chat reminders and the POI timers ]] --
 
-local chatTestId = "kaftest-chat"
 local chatMessagesOn = {Show = true, ShowInInstances = true, ShowOnlyWhenTimeDataIsAvailable = true}
 local popUpsOff = {Show = false}
 
--- The chat lines are counted instead of printed; the player's records keep everything but the test event's, and a
+-- The chat lines are counted instead of printed; the player's records keep everything but the test events', and a
 -- records table made for the run is dropped again
 local function DescribeChatPasses(scenario, observations)
     local alertSystem = addon.Gui.EventReminderAlertSystem
@@ -468,27 +471,32 @@ local function DescribeChatPasses(scenario, observations)
     local madePopUps, madeChat = savedData.ActiveEventPopUpsShown == nil, savedData.ActiveEventChatMessagesShown == nil
     savedData.ActiveEventPopUpsShown = savedData.ActiveEventPopUpsShown or {}
     savedData.ActiveEventChatMessagesShown = savedData.ActiveEventChatMessagesShown or {}
-    local headers, lines = 0, 0
+    local headers, lines, lineFirst = 0, 0, false
     local gamePrint = alertSystem.Print
     alertSystem.Print = function(first)
         if first == "    -" then
+            lineFirst = lineFirst or headers == 0
             lines = lines + 1
         else
             headers = headers + 1
         end
     end
     local now = GetServerTime()
-    local activeEvents = {{Id = chatTestId, Name = "Test", EventDetails = {Name = "Test", EndTime = now + scenario.EndIn}}}
+    local activeEvents = {}
+    for i, endIn in ipairs(scenario.Ends) do
+        activeEvents[i] = {Id = "kaftest-chat-" .. i, Name = "Test", EventDetails = {Name = "Test", EndTime = now + endIn}}
+    end
     local ran, problem = pcall(function()
-        for pass = 1, scenario.Passes do
-            local at = now + pass - 1
-            alertSystem:ShowActiveEvents(popUpsOff, chatMessagesOn, at, activeEvents)
-            alertSystem:ForgetEndedReminders(at)
+        for _ = 1, scenario.Passes do
+            alertSystem:ShowActiveEvents(popUpsOff, chatMessagesOn, now, activeEvents)
+            alertSystem:ForgetEndedReminders(now)
         end
     end)
     alertSystem.Print = gamePrint
-    savedData.ActiveEventPopUpsShown[chatTestId] = nil
-    savedData.ActiveEventChatMessagesShown[chatTestId] = nil
+    for _, event in ipairs(activeEvents) do
+        savedData.ActiveEventPopUpsShown[event.Id] = nil
+        savedData.ActiveEventChatMessagesShown[event.Id] = nil
+    end
     if madePopUps then
         savedData.ActiveEventPopUpsShown = nil
     end
@@ -499,7 +507,7 @@ local function DescribeChatPasses(scenario, observations)
         tinsert(observations, scenario.Name .. " " .. DescribeError(problem))
         return "error"
     end
-    return ("headers %d, lines %d"):format(headers, lines)
+    return ("headers %d, lines %d"):format(headers, lines) .. (lineFirst and ", a line before its header" or "")
 end
 
 local poiTestId, poiTestMap = 999999, 1

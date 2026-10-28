@@ -55,3 +55,23 @@ Context: in a raid on Retail (2026-10-28) chat showed "Krowi's Achievement Filte
 - After the fix, headless: `events` 29/29 on Retail and 10/10 on Classic, nothing open; `memory`, `popups`, `options` unchanged (memory's two open targets, `event-refresh-poi-on-map` and `event-refresh-widget-active`, are open on `main` too). `Check-Repo.ps1`: 0 errors, 0 warnings.
 - Departures: the events suite's headless environment also needed `mod` and `DAYS_ABBR`/`HOURS_ABBR` for the chat line's time left. Of the spec's two backlog items only the upcoming header was new; the upcoming list built once per session was already in `docs/backlog.md`. `Options/Window/Changelog.lua` is left to the release, which regenerates it.
 - The optional in-game before-run (step 3) was not done; Krowi was in a raid.
+
+## Code review (2026-10-28, /code-review on main...HEAD, 14 findings)
+- **Fixed, with Krowi's go on the scope:** the calendar's and obtainability's dates carried the PC clock's error through `KrowiAF_GetUtcOffsetSeconds`, which a comparison with `GetServerTime()` no longer cancels. The offset now reads the realm's clock, the 13 `time()` checks in `Data/TemporaryObtainable.lua` became `GetServerTime()`, and `event-clock` covers that file. The `obtainable` suite's headless environment got `GetServerTime`.
+- **Fixed:**
+  - An ended event returns before it is recorded, so nothing is written and dropped again each refresh.
+  - The line's text is built before the header, so an error in `GetRuntimeText` leaves no lone header.
+  - `ShowActiveEvents` clears the header flag at the start of a pass.
+  - `Print` calls the global `print` when called, rather than keeping the one there at load.
+  - One prune helper for both record tables.
+  - `secondsLeft > 0` in place of the dead `~= nil and ~= 0`.
+  - `event-clock` matches case-sensitively.
+  - The chat passes run at one second, so the in-game run drops only player records that have already ended.
+  - A scenario with an ended and two going-on events in one pass checks one header, before the first line.
+  - The events row of `Tests/README.md` describes the new scenarios.
+- **Deferred to `docs/backlog.md`:**
+  - A record keeps the first end it saw, so a coarse widget timer can give a second reminder for one occurrence. Following the end would swallow the next occurrence of an event whose windows touch.
+  - "Name ()" when the end is the very second.
+  - The upcoming header (already listed).
+- **Not changed:** block comments in the lint rule's comment stripping (the other line rules strip the same way, and no reminder file has a block comment holding `time()`).
+- After the review: `events` 30/30 Retail and 11/11 Classic, `obtainable` 8/8 on both, `memory`, `popups`, `options` unchanged; `Check-Repo.ps1` 0 errors.

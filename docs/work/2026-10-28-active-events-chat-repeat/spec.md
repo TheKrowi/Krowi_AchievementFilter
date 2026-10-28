@@ -6,7 +6,7 @@ Intent: [intent.md](intent.md). Status: accepted
 2. An event the reminders judge ended prints nothing to chat, however often the refresh runs.
 3. Chat reminders for events that are going on keep their text: the header once, then one line per event with its time left.
 4. Pop-up reminders behave as before, apart from requirement 5.
-5. The reminders judge an event's start and end by the realm's clock, `GetServerTime()`, the clock the sources use: the refresh, the login and reload passes and the calendar events' checks. No event reminder code reads the PC's clock, `time()`.
+5. The reminders judge an event's start and end by the realm's clock, `GetServerTime()`, the clock the sources use: the refresh, the login and reload passes and the calendar events' checks. No event reminder code reads the PC's clock, `time()`. After the code review (Decision): the calendar's and obtainability's dates are true UTC seconds also on a PC whose clock is wrong, and obtainability's Past/Future checks use the realm's clock too.
 6. A world event whose POI reports negative seconds left counts as not active.
 7. The fixed bug leaves a scenario behind (Verification).
 
@@ -28,11 +28,12 @@ Intent: [intent.md](intent.md). Status: accepted
 **Reproduction.** The new `events` scenario below, recorded before the fix.
 
 ## Design
-- **The header with its first line.** `ShowActiveEventChatMessage` prints the header right before the first event line of the pass, inside the branch that prints the line. An event whose end has passed is still recorded and then dropped as today, but prints nothing.
-- **One clock.** `GetServerTime()` replaces `time()` in `AlertSystem.lua` (the refresh `:615`, the login and reload passes `:682` and `:712`) and in `Data/EventData.lua` (upcoming calendar events `:136`, active calendar events `:160`). The calendar's times are already true UTC seconds (`Data/EventData.lua:49-50`: the realm's wall-clock time through `addon.GetSecondsSince`, corrected by `KrowiAF_GetUtcOffsetSeconds`), so they compare with the realm's clock as they did with an accurate PC clock. The date lines (`GetRuntimeText`, `GetUpcomingText`) already count with `GetServerTime()`. `Data/TemporaryObtainable.lua` also reads `time()`, but it is not an event reminder and stays as it is.
+- **The header with its first line.** `ShowActiveEventChatMessage` prints the header right before the first event line of the pass. After the code review: an event whose end has passed returns before it is recorded (no record that the same refresh drops again), the line's text is built before the header, so an error cannot leave a header without a line, and `ShowActiveEvents` clears the header flag at the start of every pass.
+- **One clock.** `GetServerTime()` replaces `time()` in `AlertSystem.lua` (the refresh `:615`, the login and reload passes `:682` and `:712`) and in `Data/EventData.lua` (upcoming calendar events `:136`, active calendar events `:160`). The date lines (`GetRuntimeText`, `GetUpcomingText`) already count with `GetServerTime()`.
+- **The calendar's and obtainability's dates (after the code review).** They are the realm's wall-clock time through `time{...}` minus `KrowiAF_GetUtcOffsetSeconds` (`Data/EventData.lua:11-25`, `:49-50`; `Data/TemporaryObtainable.lua:36-39`). That offset compared the realm's local time with `date("!*t")`, the PC's clock, so each date carried the PC clock's error in whole hours, which a comparison with `time()` cancelled. The offset now reads both sides at `GetServerTime()`, so the dates are true UTC seconds, and every `time()` in `Data/TemporaryObtainable.lua` (13 checks: seasons, resets, dates, calendar events) becomes `GetServerTime()`.
 - **Negative seconds left.** `GetWorldEventDetails` (`Data/EventData.lua:293-296`) treats seconds left below 0 as not active, as it treats none. 0 keeps its meaning: active with no time data.
 - The pruning of ended records (`AlertSystem.lua:619-628`) moves into a function of the alert system that `Refresh` calls, so the scenario runs the same step the ticker runs instead of a copy of it.
-- **A test seam:** the chat lines go through a field, `eventReminderAlertSystem.Print` (the game's `print`), read on every call, so the `events` suite can count the lines and put the field back, as it already does with `LocalizeDateNames`.
+- **A test seam:** the chat lines go through a field, `eventReminderAlertSystem.Print` (a function that calls the global `print` when called), read on every call, so the `events` suite can count the lines and put the field back, as it already does with `LocalizeDateNames`.
 
 ## Options considered
 What the player sees, on Retail (world, widget and calendar events) and Classic (calendar events only):
@@ -42,26 +43,29 @@ What the player sees, on Retail (world, widget and calendar events) and Classic 
 ## Areas of concern
 - **Taint and secret values:** none. Chat output from the addon's own ticker; no Blizzard frame, hook or protected API is touched. The values compared are the addon's own numbers.
 - **Clients:** `## Interface: 120105, 50504, 38002`. The alert code is shared. On Classic only calendar events exist, whose source and reminder both used `time()`, so the repeat could not happen there in practice; there the change is the clock of the calendar checks, which `GetServerTime()` serves on every client.
-- **The PC's clock:** a player whose PC clock is wrong saw calendar reminders start and end early or late by that error; with the realm's clock they follow the realm. Chat timestamps stay on the PC's clock (Blizzard's).
+- **The PC's clock:** with a correct PC clock nothing moves. A player whose PC clock is wrong by whole hours saw calendar countdowns off by that much (they already counted with `GetServerTime()`); now calendar reminders, their countdowns and obtainability's Past/Future states all follow the realm. Chat timestamps stay on the PC's clock (Blizzard's).
+- **Obtainability (after the code review):** `Data/TemporaryObtainable.lua` decides what the achievement tooltips and the obtainable filter call Past, Current and Future. Its 13 checks change clock together with the offset its dates use, so the two cannot disagree; the `obtainable` suite runs on both clients.
 - **Blizzard API changes:** none.
 - **Other addons, plugins and skins:** none; chat text only.
 - **Saved variables and migrations:** none. `ActiveEventChatMessagesShown` keeps its shape and meaning.
 - **Localization:** no new or changed strings.
 - **Embedded libraries:** none.
 - **Data snapshots:** none.
-- **Player-facing text:** one changelog line under the next version, `### Fixed`.
+- **Player-facing text:** two changelog lines under the next version, `### Fixed`: the chat message, and the realm's clock.
 
 ## Found on the way
-- **The upcoming events' header has the same shape** (`AlertSystem.lua:509-528`): "Upcoming Calendar Events:" prints before the occurrence check and before the window check, so it can print once with no line under it. It does not repeat in practice: the record is set whenever an occurrence exists, and the list is built once with occurrences only. Proposed for `docs/backlog.md`.
+- **The upcoming events' header has the same shape** (`AlertSystem.lua:509-528`): "Upcoming Calendar Events:" prints before the occurrence check and before the window check, so it can print once with no line under it. It does not repeat in practice: the record is set whenever an occurrence exists, and the list is built once with occurrences only. In `docs/backlog.md`.
 - **`GetUpcomingCalendarEvents` never rebuilds its list after the first non-empty one** (`Data/EventData.lua:131-151`). Already in `docs/backlog.md` (from the upcoming reminder date fix).
 
 ## Verification
-- **A scenario in the `events` suite** (`Tests/Events.lua`, its model in `.claude/tools/headless/run-tests.lua`): a test event listed active whose end is 10 seconds behind the reminders' clock, run through three refresh passes (`ShowActiveEvents` with chat on and pop-ups off, then the pruning), counting the chat lines. Recorded "3 headers, 0 lines", Target "0 headers, 0 lines".
-- A guard scenario: the same with the end 600 seconds ahead. Recorded and Target "1 header, 1 line" (requirement 3).
-- The clock (requirement 5) cannot be reproduced in game, where both clocks agree, and the suites cannot swap the game's clocks. Its permanent check is mechanical: the plan proposes how (a lint rule that fails on `time()` in the event reminder files, or the review alone).
-- Negative seconds left (requirement 6): a `Surge`-style scenario needs a POI model the game's own API cannot be swapped for in game; the plan says whether it is headless-only or covered by review.
+- **A scenario in the `events` suite** (`Tests/Events.lua`, its model in `.claude/tools/headless/run-tests.lua`): a test event listed active whose end is 10 seconds behind the reminders' clock, run through three refresh passes (`ShowActiveEvents` with chat on and pop-ups off, then the pruning), counting the chat lines. Recorded "headers 3, lines 0", Target "headers 0, lines 0".
+- Guard scenarios: the same with the end 600 seconds ahead, "headers 1, lines 1" (requirement 3); after the code review, an ended event and two going on in one pass, "headers 1, lines 2" with the header before the first line.
+- The clock (requirement 5) cannot be reproduced in game, where both clocks agree, and the suites cannot swap the game's clocks. Its permanent check is the `event-clock` lint rule: no `time()` in the event reminder and obtainability files.
+- Negative seconds left (requirement 6): `poi-negative-seconds` and `poi-seconds-left`, headless only through a model of `C_AreaPoiInfo` (SKIP in game).
 - Headlessly: the `events` suite and `Check-Repo.ps1 -ChangedOnly`. In game on Retail and Mists: `/kaftest events` before the fix matches Recorded, after it Target; then `/reload`, `Read-GameTests.ps1` and `Read-GameErrors.ps1`.
 - `/code-review` on the diff; `krowi:taint-reviewer` is not needed (no Blizzard frame, hook or protected API), and is run anyway if the diff grows past `AlertSystem.lua`'s chat path.
 
 ## Decision
 Krowi, 2026-10-28, at the design gate (the intent folded into it): **option B**, the header only with a line plus one clock: the reminders judge start and end by the realm's clock, and a POI with negative seconds left counts as not active.
+
+Krowi, 2026-10-28, after the code review found that the calendar's dates still carried the PC clock's error: **finish one clock in this PR**, so `KrowiAF_GetUtcOffsetSeconds` reads the realm's clock and obtainability's checks use `GetServerTime()` too (not "reminders only, the rest later").

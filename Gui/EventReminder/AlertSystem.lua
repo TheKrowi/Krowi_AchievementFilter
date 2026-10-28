@@ -444,7 +444,9 @@ end
 
 -- The chat reminders print through this field, read on every call, so the events suite (Tests/Events.lua) can count
 -- their lines
-eventReminderAlertSystem.Print = print
+eventReminderAlertSystem.Print = function(...)
+    print(...)
+end
 
 local printOnceActiveEvents
 local function ShowActiveEventChatMessage(self, event, canShow, canShowWithTimeDataOnly, currentTime)
@@ -458,16 +460,19 @@ local function ShowActiveEventChatMessage(self, event, canShow, canShowWithTimeD
         return
     end
     if not canShowWithTimeDataOnly or (canShowWithTimeDataOnly and event.EventDetails and event.EventDetails.EndTime) then
-        KrowiAF_SavedData.ActiveEventChatMessagesShown[event.Id] = event.EventDetails and event.EventDetails.EndTime or placeholderEpoch
-        if KrowiAF_SavedData.ActiveEventChatMessagesShown[event.Id] >= currentTime then
-            -- The header with the pass's first line only: an ended event prints nothing, and as its record is dropped in
-            -- the same refresh, a header before it came back on every refresh (docs/work/2026-10-28-active-events-chat-repeat)
-            if not printOnceActiveEvents then
-                self.Print(addon.Metadata.Title, "-", addon.L["Active events"] .. ":")
-                printOnceActiveEvents = true
-            end
-            self.Print("    -", event.EventDetails and event.EventDetails.Name or addon.L["Collecting data"], "(" .. self:GetRuntimeText(event, true) .. ")") --,
+        local endTime = event.EventDetails and event.EventDetails.EndTime or placeholderEpoch
+        if endTime < currentTime then
+            -- Ended, though its source still lists it: no line and no record, which the same refresh would drop again; a
+            -- header printed for it came back on every refresh (docs/work/2026-10-28-active-events-chat-repeat)
+            return
         end
+        KrowiAF_SavedData.ActiveEventChatMessagesShown[event.Id] = endTime
+        local runtime = self:GetRuntimeText(event, true) -- before the header, so an error leaves no header without a line
+        if not printOnceActiveEvents then
+            self.Print(addon.Metadata.Title, "-", addon.L["Active events"] .. ":")
+            printOnceActiveEvents = true
+        end
+        self.Print("    -", event.EventDetails and event.EventDetails.Name or addon.L["Collecting data"], "(" .. runtime .. ")")
     end
 end
 
@@ -483,6 +488,7 @@ function eventReminderAlertSystem:ShowActiveEvents(popUpsOptions, chatMessagesOp
     end
 
     activeEvents = activeEvents or addon.EventData.GetActiveEvents(true)
+    printOnceActiveEvents = nil -- also after a pass an error stopped
     for _, event in next, activeEvents do
         ShowActiveEventPopUp(self, event, canShowPopUps, canShowPopUpsWithTimeDataOnly, currentTime)
         ShowActiveEventChatMessage(self, event, canShowChatMessages, canShowChatMessagesWithTimeDataOnly, currentTime)
@@ -582,19 +588,19 @@ local function CancelRefreshTicker()
     end
 end
 
+local function ForgetEnded(records, currentTime)
+    for id, endTime in next, records do
+        if endTime < currentTime then
+            records[id] = nil
+        end
+    end
+end
+
 -- The records of the active events' reminders whose event has ended, dropped on every refresh; the events suite runs
 -- the same step (Tests/Events.lua)
 function eventReminderAlertSystem:ForgetEndedReminders(currentTime)
-    for i, endTime in next, KrowiAF_SavedData.ActiveEventPopUpsShown do
-        if endTime < currentTime then
-            KrowiAF_SavedData.ActiveEventPopUpsShown[i] = nil
-        end
-    end
-    for i, endTime in next, KrowiAF_SavedData.ActiveEventChatMessagesShown do
-        if endTime < currentTime then
-            KrowiAF_SavedData.ActiveEventChatMessagesShown[i] = nil
-        end
-    end
+    ForgetEnded(KrowiAF_SavedData.ActiveEventPopUpsShown, currentTime)
+    ForgetEnded(KrowiAF_SavedData.ActiveEventChatMessagesShown, currentTime)
 end
 
 local Refresh

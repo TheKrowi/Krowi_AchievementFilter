@@ -29,6 +29,7 @@ All notable changes to this project will be documented in this file.
 - Event reminder pop ups now move to the right spot after switching profiles
 - Show placeholders now shows a short preview and no longer keeps adding pop ups for minutes
 - The "Active events" chat message no longer repeats every refresh without an event under it
+- Event reminders and the obtainable dates in tooltips now follow the realm's clock, also when your computer's clock is off
 
 ## 104.0 - 2026-10-24
 ### Added

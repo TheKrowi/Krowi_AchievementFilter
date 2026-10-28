@@ -1586,7 +1586,7 @@ suites.obtainable = function(c)
     ctx:RunPipeline{ StepError = fail("step"), TaskError = fail("task") }
     assert(#failures == 0, "data load failed (run load-data.lua): " .. tostring(failures[1]))
     local env, addon = ctx.env, ctx.addon
-    env.time = os.time
+    env.time, env.GetServerTime = os.time, os.time
     env.KrowiAF_GetUtcOffsetSeconds = function() return 0 end
     addon.Tests = { Suites = {}, Ready = {} }
     for _, rel in ipairs({ "Data/TemporaryObtainable.lua", "Tests/Obtainable.lua" }) do
