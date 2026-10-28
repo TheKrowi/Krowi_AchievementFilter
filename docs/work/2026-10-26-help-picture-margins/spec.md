@@ -4,7 +4,7 @@ Intent: [intent.md](intent.md). Status: accepted
 ## Requirements
 1. Each side of a help picture where a frame's own edge shows, with the run's black backdrop beyond it, is cut at the frame's visible edge and gets 50 px of black that fades to transparent with the old tutorial pictures' curve (alpha 2 at the edge, 80 at 16 px, 187 at 24 px, 253 at 40 px), so the frame itself stays fully opaque.
 2. Each side where a picture cuts through content keeps today's soft edge (`-Fade`, 18 px).
-3. The Window and NewTabs cuts hold the whole tab art, also the selected tab, which hangs lowest.
+3. The Window and NewTabs pictures hold the whole tab art, also the selected tab, which hangs lowest.
 4. No picture shows the game's tooltip (`GameTooltip`): a step waits while it covers the cut, and fails without recording the picture after 30 s.
 5. A picture's natural size in `Pictures.lua` includes its margin, so the enlarged view shows the frame at its own size with the black around it.
 6. With its margin a picture's longest side stays at most 1024 px; the textures stay power-of-two RLE TGAs.
@@ -17,11 +17,11 @@ Intent: [intent.md](intent.md). Status: accepted
 - **Reproduction:** Krowi's screenshot of the Window picture in the enlarged view (2026-10-26), and `Media/Help/Window.tga` at `c28007d9`.
 
 ## Design
-- **The tool decides per side from the screenshot.** A side is an edge when the line 3 px outside the cut is black, that is, at most 0.5% of its pixels are brighter than black; otherwise, or at the screen's border, it is a cut. A picture taken in parts (Colors) has a left or right edge when every part has one, a top edge from its first part and a bottom edge from its last.
+- **The tool decides per side from the screenshot.** A line is black when at most 0.5% of its pixels are brighter than the backdrop (R+G+B above 40). From the cut outward, a side passes lines with content for up to 24 px: a border drawn just outside the frame's rectangle (the menu's, 1 px), the calendar's close button and bottom border (4 and 6 px), the tab art (19 px). At the first black line the side is an edge, and the cut takes in the lines it passed. Without a black line within 24 px the side is still an edge when at most 15% of the line 3 px out is bright: the guide panel and the reward preview lie over the window's border, which crosses their top and bottom lines. Otherwise, or at the screen's border, the side is a cut. A picture taken in parts (Colors) has a left or right edge when every part has one, a top edge from its first part and a bottom edge from its last.
+- An embedded frame that ends at the window's own border passes over it to the black beyond: the category list takes the window's left border, the compact list its right border and the tabs. That is how the old Categories, CompactAchievements and Summary pictures were cut (20 to 27 px of margin).
 - **An edge side** is trimmed inward over black lines to the first line with content, then gets `-Margin` (50) px of black and the old curve over its outer 40 px. **A cut side** keeps the `-Fade` curve as now. The picture is scaled so that, with its margins, it fits `-MaxSide`. Its natural size is its final size in pixels, back through the scale, times the run's units per screenshot pixel. The tool prints which sides got the margin.
-- **The run:** a cut-out may carry `Art = true`, the frame's rectangle together with its shown regions; the tab buttons of the `tabs` and `window` steps use it. Its black overhang is trimmed by the tool.
 - **The tooltip:** before the screenshot, a step whose cut (grown by 10 px) is covered by a visible `GameTooltip` names this in its banner and waits up to 30 s for the player to move the mouse; then it FAILs without recording the picture, so the tool keeps an earlier run's.
-- At the gate the option said the run would record which sides are a frame's edge. The screenshot gives the same answer for the same pictures, also for the runs already recorded, and it follows the backdrop that is really there: the map stays visible under the map button (`Floor`), and the colour rows have their neighbours above and below.
+- At the gate the option said the run would record which sides are a frame's edge. The screenshot gives the same answer for the same pictures, also for the runs already recorded, and it follows the backdrop that is really there: the map stays visible under the map button (`Floor`), and the colour rows have their neighbours above and below. A first build also took the tab art from the tab buttons' regions in the run (`Art = true`); the tool's reach over the art made that unneeded, so the run changes only for the tooltip, and of the recorded pictures only Window (the tooltip) needs a new shot.
 
 ## Options considered
 1. **Recommended, chosen:** the design above.
@@ -30,8 +30,8 @@ Intent: [intent.md](intent.md). Status: accepted
 4. The Window picture only, or the one-off picture from the 18:26 screenshot. Turned down at the gate.
 
 ## Areas of concern
-- **Taint and secret values:** the run reads `GetRegions`, `IsShown`, `IsVisible`, `GetLeft` and the like on the tab buttons and `GameTooltip`, and writes nothing to them. It never hides `GameTooltip`: from addon code its `OnHide` would run tainted (the tooltip root cause of #300). The run is out of combat; the tooltip check runs in a `pcall`.
-- **Clients:** the pictures come from Retail and show on every client. A Mists run takes the same `Art` and tooltip steps; the Classic tab template has textures 59 high too.
+- **Taint and secret values:** the run reads `IsVisible`, `GetLeft` and the like on `GameTooltip`, and writes nothing to it. It never hides `GameTooltip`: from addon code its `OnHide` would run tainted (the tooltip root cause of #300). The run is out of combat; the tooltip check runs in a `pcall`.
+- **Clients:** the pictures come from Retail and show on every client. A Mists run takes the same tooltip wait.
 - **Blizzard API changes:** none.
 - **Other addons, plugins and skins:** a skin can recolour the frames; the black beyond a frame decides, not the frame's colour.
 - **Saved variables:** `KrowiAF_DebugTable.Pictures` keeps its shape.
@@ -40,8 +40,8 @@ Intent: [intent.md](intent.md). Status: accepted
 
 ## Verification
 - No scenario: `pictures` is a game-only suite that makes the pictures; the headless `help` suite (each picture has its size and file) stays green, with `Check-Repo.ps1`. The reproduction is above.
-- The tool on the runs already recorded, with `-Preview`: Window gets the margin on its left, top and right and keeps a cut at the bottom (the old cut misses the tab art); each picture's sides reviewed.
-- In game on Retail: deploy, `/kaftest pictures` (about 70 s; the last step waits for the mouse on the map button), `/reload`, `Read-GameTests.ps1`: no FAIL, the Window cut reaches the tab art. Then `Make-HelpPictures.ps1`, the previews reviewed, a deploy, and Krowi's look in the pane and the enlarged view.
+- The tool on the runs already recorded, with `-Preview` and `-Verbose` (each side's finding): every picture's sides reviewed against its screenshot.
+- In game on Retail: deploy, Krowi's look at the pictures in the pane and the enlarged view, then `/kaftest pictures window` with the mouse off any unit, `/reload`, `Read-GameTests.ps1`: no FAIL. Then `Make-HelpPictures.ps1` makes Window from the new shot, and a deploy.
 - A Mists `/kaftest pictures` run shows the run's change works there.
 - `krowi:taint-reviewer` on the `Tests/Pictures.lua` change, `/code-review` before the PR.
 
