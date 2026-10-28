@@ -3,7 +3,8 @@ local addonName, addon = ...
 -- The help pane's pictures (docs/work/2026-10-25-options-revamp/plan-help.md), game only: /kaftest pictures builds each
 -- picture's scene through the Show me scene of its section (addon.Options.Window.HelpScenes), so the run also proves
 -- every Show me in game. Each step checks what the scene opened, records the screen rectangle to cut out and takes a
--- screenshot, the /kevutest way (Krowi_ExtendedVendorUI): a banner names the step, steps that need the mouse wait for
+-- screenshot once the game's own tooltip is off it, the /kevutest way (Krowi_ExtendedVendorUI): a banner names the
+-- step, steps that need the mouse wait for
 -- the player, settings are put back, and the addon's Lua errors of the session are reported from BugGrabber at the end.
 -- The rectangles go to KrowiAF_DebugTable.Pictures (the last 5 runs); .claude/tools/Make-HelpPictures.ps1 pairs them
 -- with the screenshots and writes Media/Help/*.tga and Options/Window/Help/Pictures.lua. The routine never sets a CVar.
@@ -123,6 +124,18 @@ local function Rectangle(items)
         Width = floor((right - left) / uiScale + 0.5),
         Height = floor((top - bottom) / uiScale + 0.5)
     }
+end
+
+-- The game's own tooltip over a picture's cut (grown by 10 px): one the game shows while the mouse rests on a unit or
+-- an action button behind the black (the 2026-10-25 21:28 run's Window). Read only: hiding GameTooltip from addon code
+-- would run its OnHide tainted
+local function GameTooltipOver(rectangle)
+    if not (GameTooltip:IsVisible() and GameTooltip:GetLeft()) then
+        return false
+    end
+    local tip = Rectangle({GameTooltip})
+    return tip ~= nil and tip.Left < rectangle.Right + 10 and tip.Right > rectangle.Left - 10 and tip.Top < rectangle.Bottom + 10
+        and tip.Bottom > rectangle.Top - 10
 end
 
 local function TabButtons()
@@ -686,6 +699,54 @@ local function Finish()
     finish(results, observations)
 end
 
+-- The screenshot, once the game's tooltip is off the cut: the banner asks the player to move the mouse, and after
+-- mouseWait the step fails without a picture, so the tool keeps an earlier run's
+local function Shoot(step, items, rectangle, waited)
+    local checked, over = pcall(GameTooltipOver, rectangle)
+    if checked and over then
+        if waited >= mouseWait then
+            SetBanner(step.Text)
+            Add("FAIL", ("the game's tooltip stayed over the picture for %d s; move the mouse off units and buttons and redo it with /kaftest pictures %s"):format(
+                mouseWait, step.Picture:lower()))
+            After(afterShot, function()
+                RunStep(live.StepIndex + 1)
+            end)
+            return
+        end
+        if waited == 0 then
+            SetBanner(step.Text .. ": move the mouse, the game's tooltip covers the picture")
+        end
+        After(pollEvery, function()
+            Shoot(step, items, rectangle, waited + pollEvery)
+        end)
+        return
+    end
+    if not checked then
+        tinsert(live.Observations, ("%s: tooltip check failed: %s"):format(step.Name, tostring(over)))
+    end
+    if waited > 0 then
+        SetBanner(step.Text)
+    end
+    -- black under the picture's frames first, then the screenshot a few frames later
+    local floorOk, floorErr = pcall(PlaceBackdrop, step.Floor and step.Floor() or items)
+    if not floorOk then
+        tinsert(live.Observations, ("%s: backdrop not placed: %s"):format(step.Name, tostring(floorErr)))
+    end
+    After(0.2, function()
+        local shotTime = date("%Y-%m-%d %H:%M:%S")
+        rectangle.Name, rectangle.Time = step.Picture, shotTime
+        tinsert(live.Run.Shots, rectangle)
+        Add("PASS", ("%s: %dx%d units, cut at %d,%d-%d,%d px"):format(step.Picture, rectangle.Width, rectangle.Height,
+            rectangle.Left, rectangle.Top, rectangle.Right, rectangle.Bottom))
+        live.Results[#live.Results].Screenshot = {Time = shotTime}
+        live.Shot = live.Results[#live.Results].Screenshot
+        Screenshot()
+        After(afterShot, function()
+            RunStep(live.StepIndex + 1)
+        end)
+    end)
+end
+
 local function Capture()
     local step = live.Steps[live.StepIndex]
     local ok, passed, reason = pcall(step.Check or function() return true end)
@@ -705,24 +766,7 @@ local function Capture()
         if not rectangle then
             Add("FAIL", "nothing on screen to cut out" .. (cutOk and "" or (": " .. tostring(items))))
         else
-            -- black under the picture's frames first, then the screenshot a few frames later
-            local floorOk, floorErr = pcall(PlaceBackdrop, step.Floor and step.Floor() or items)
-            if not floorOk then
-                tinsert(live.Observations, ("%s: backdrop not placed: %s"):format(step.Name, tostring(floorErr)))
-            end
-            After(0.2, function()
-                local shotTime = date("%Y-%m-%d %H:%M:%S")
-                rectangle.Name, rectangle.Time = step.Picture, shotTime
-                tinsert(live.Run.Shots, rectangle)
-                Add("PASS", ("%s: %dx%d units, cut at %d,%d-%d,%d px"):format(step.Picture, rectangle.Width, rectangle.Height,
-                    rectangle.Left, rectangle.Top, rectangle.Right, rectangle.Bottom))
-                live.Results[#live.Results].Screenshot = {Time = shotTime}
-                live.Shot = live.Results[#live.Results].Screenshot
-                Screenshot()
-                After(afterShot, function()
-                    RunStep(live.StepIndex + 1)
-                end)
-            end)
+            Shoot(step, items, rectangle, 0)
             return
         end
     end
