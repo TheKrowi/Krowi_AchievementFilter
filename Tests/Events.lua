@@ -32,6 +32,15 @@ local events = addon.Tests.Events
 --     Retail 12.1.5 on 2026-10-25); it now shows the start, with the start's names. The code review of the fix found
 --     that %a and %b cut the names by bytes ("other", headless only) and that line 2's End Time showed the start a
 --     second time ("start / start"); line 2 now shows the end, as Krowi chose on 2026-10-25.
+--   ChatPasses: the chat lines of the active events' reminder for a test event that is never registered, whose end is
+--     EndIn seconds from the realm's clock, through Passes refresh passes (ShowActiveEvents with chat messages on and
+--     pop-ups off, then ForgetEndedReminders, as the refresh runs them): "headers <n>, lines <n>". An event the reminders
+--     judge ended prints the "Active events:" header with no line under it, and its record is dropped in the same pass,
+--     so the header comes back on every pass (in a raid on Retail on 2026-10-28, 33 times in a minute;
+--     docs/work/2026-10-28-active-events-chat-repeat).
+--   PoiSeconds: GetWorldEventDetails of a world event that is never registered, whose POI is on its map and reports
+--     SecondsLeft, through a model of C_AreaPoiInfo that only the headless runner has (SKIP in game): "not active",
+--     "no time data", "ends in <seconds>" or "ended <seconds> s ago". Negative seconds left give an end in the past.
 -- Until 2026-10-21 no Curse Surge event existed, nothing kept scheduler data, and the soup was only shown while its
 -- widget was there, in its zone (the Recorded values of the before-run, verified in game on Retail 12.1.5). The code
 -- review of 2026-10-21 found what the scheduler stories record, and Krowi chose that the soup's Next shows only in the
@@ -92,9 +101,18 @@ events.Scenarios = {
     {Name = "active-date-abbreviated", Kind = "DateLine", Reminder = "active", Format = "%a %d %b %Y", Names = true, Short = true,
         Recorded = "end names", Target = "end names"},
     {Name = "upcoming-date-both-lines", Kind = "DateLine", Reminder = "upcoming", Format = "%d/%m/%Y %R", Names = false, Line2 = 2,
-        Recorded = "start / end", Target = "start / end"}
+        Recorded = "start / end", Target = "start / end"},
+    {Name = "chat-ended-event", Kind = "ChatPasses", EndIn = -10, Passes = 3,
+        Recorded = "headers 3, lines 0", Target = "headers 0, lines 0"},
+    {Name = "chat-active-event", Kind = "ChatPasses", EndIn = 600, Passes = 3,
+        Recorded = "headers 1, lines 1", Target = "headers 1, lines 1"},
+    {Name = "poi-negative-seconds", Kind = "PoiSeconds", SecondsLeft = -20, RetailOnly = true,
+        Recorded = "ended 20 s ago", Target = "not active"},
+    {Name = "poi-seconds-left", Kind = "PoiSeconds", SecondsLeft = 600, RetailOnly = true,
+        Recorded = "ends in 600", Target = "ends in 600"}
 }
--- RetailOnly: the Curse Surges and the soup are DataAddons/Retail events; FeastTimes runs on every client
+-- RetailOnly: the Curse Surges and the soup are DataAddons/Retail events, and the POI scenarios read the world event
+-- toggles, which Classic does not have; FeastTimes runs on every client
 local europe = 3 -- GetCurrentRegion
 
 -- The fixture, as C_EventScheduler.GetScheduledEvents returns it: one table per occurrence
@@ -435,7 +453,82 @@ local function DescribeDateLine(scenario, observations)
     return DescribeLine(scenario, line)
 end
 
--- env: IsRetail() -> bool; Region() -> GetCurrentRegion(); PoiName(id) -> the game's name for an area POI
+-- [[ The chat reminders and the POI timers ]] --
+
+local chatTestId = "kaftest-chat"
+local chatMessagesOn = {Show = true, ShowInInstances = true, ShowOnlyWhenTimeDataIsAvailable = true}
+local popUpsOff = {Show = false}
+
+-- The chat lines are counted instead of printed; the player's records keep everything but the test event's, and a
+-- records table made for the run is dropped again
+local function DescribeChatPasses(scenario, observations)
+    local alertSystem = addon.Gui.EventReminderAlertSystem
+    local savedData = KrowiAF_SavedData
+    local madePopUps, madeChat = savedData.ActiveEventPopUpsShown == nil, savedData.ActiveEventChatMessagesShown == nil
+    savedData.ActiveEventPopUpsShown = savedData.ActiveEventPopUpsShown or {}
+    savedData.ActiveEventChatMessagesShown = savedData.ActiveEventChatMessagesShown or {}
+    local headers, lines = 0, 0
+    local gamePrint = alertSystem.Print
+    alertSystem.Print = function(first)
+        if first == "    -" then
+            lines = lines + 1
+        else
+            headers = headers + 1
+        end
+    end
+    local now = GetServerTime()
+    local activeEvents = {{Id = chatTestId, Name = "Test", EventDetails = {Name = "Test", EndTime = now + scenario.EndIn}}}
+    local ran, problem = pcall(function()
+        for pass = 1, scenario.Passes do
+            local at = now + pass - 1
+            alertSystem:ShowActiveEvents(popUpsOff, chatMessagesOn, at, activeEvents)
+            alertSystem:ForgetEndedReminders(at)
+        end
+    end)
+    alertSystem.Print = gamePrint
+    savedData.ActiveEventPopUpsShown[chatTestId] = nil
+    savedData.ActiveEventChatMessagesShown[chatTestId] = nil
+    if madePopUps then
+        savedData.ActiveEventPopUpsShown = nil
+    end
+    if madeChat then
+        savedData.ActiveEventChatMessagesShown = nil
+    end
+    if not ran then
+        tinsert(observations, scenario.Name .. " " .. DescribeError(problem))
+        return "error"
+    end
+    return ("headers %d, lines %d"):format(headers, lines)
+end
+
+local poiTestId, poiTestMap = 999999, 1
+
+-- env.SetPoi(id, mapId, secondsLeft) puts the POI on the map in the model, SetPoi(id) takes it off
+local function DescribePoiSeconds(env, scenario, observations)
+    env.SetPoi(poiTestId, poiTestMap, scenario.SecondsLeft)
+    local now = GetServerTime()
+    local event = {Id = poiTestId, MapId = poiTestMap, Name = "Test"}
+    local ran, details = pcall(addon.EventData.GetWorldEventDetails, event, now)
+    env.SetPoi(poiTestId)
+    if not ran then
+        tinsert(observations, scenario.Name .. " " .. DescribeError(details))
+        return "error"
+    end
+    if not details then
+        return "not active"
+    end
+    if not details.EndTime then
+        return "no time data"
+    end
+    local left = details.EndTime - now
+    if left < 0 then
+        return ("ended %d s ago"):format(-left)
+    end
+    return ("ends in %d"):format(left)
+end
+
+-- env: IsRetail() -> bool; Region() -> GetCurrentRegion(); PoiName(id) -> the game's name for an area POI; SetPoi, the
+-- headless runner's only
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
 local function RunScenario(env, scenario, observations)
     local got, blocked
@@ -457,6 +550,14 @@ local function RunScenario(env, scenario, observations)
         got = TellStory(scenario)
     elseif scenario.Kind == "DateLine" then
         got = DescribeDateLine(scenario, observations)
+    elseif scenario.Kind == "ChatPasses" then
+        got = DescribeChatPasses(scenario, observations)
+    elseif scenario.Kind == "PoiSeconds" then
+        if not env.SetPoi then
+            blocked = "needs a model of C_AreaPoiInfo, which the game's own cannot be swapped for; the headless run has one"
+        else
+            got = DescribePoiSeconds(env, scenario, observations)
+        end
     else
         blocked = "unknown kind " .. tostring(scenario.Kind)
     end
