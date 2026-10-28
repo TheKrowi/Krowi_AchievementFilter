@@ -116,3 +116,7 @@ Follow-ups that are not a work item yet. When one is taken up, it gets its own w
   - The move of Y took on no account: since 11.2.7 and 5.5.1 its API is gone, and before that it ran before the key bindings were loaded.
   - So every current player whose Y is still Blizzard's keeps seeing #197 until they press Bind to Y.
   - If reports continue, a `DataIntegrityManager` step can set `FirstTimeSetUp.YBindingPending` once for accounts that already have `AchievementTabsSwitched`.
+
+## From the Active events chat fix (2026-10-28, docs/work/2026-10-28-active-events-chat-repeat)
+
+- **The "Upcoming Calendar Events:" chat header can print with no line under it** (`Gui/EventReminder/AlertSystem.lua`, `ShowUpcomingCalendarEventChatMessage`). It prints before the occurrence check and before the window check, the shape the active events' header had. It does not repeat in practice, because the record is set whenever an occurrence exists; the fix is the same move: print it with the first line.

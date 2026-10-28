@@ -28,6 +28,7 @@ All notable changes to this project will be documented in this file.
 - Event reminder pop ups no longer jump back to another spot when an addon such as Dominos, ElvUI, GW2 UI or EllesmereUI places the game's alerts; they now go with those alerts
 - Event reminder pop ups now move to the right spot after switching profiles
 - Show placeholders now shows a short preview and no longer keeps adding pop ups for minutes
+- The "Active events" chat message no longer repeats every refresh without an event under it
 
 ## 104.0 - 2026-10-24
 ### Added

@@ -133,7 +133,7 @@ function eventData.GetUpcomingCalendarEvents()
         return upcomingCalendarEvents
     end
 
-    local currentTime = time()
+    local currentTime = GetServerTime() -- the calendar's times are true UTC seconds, which the realm's clock counts
     local nDaysFromNow = currentTime + (addon.Options.db.profile.EventReminders.UpcomingCalendarEvents.Days * 24 * 60 * 60)
     local calendarEvents = addon.Data.Events[KrowiAF.Enum.EventType.Calendar]
     for _, event in next, calendarEvents do
@@ -157,7 +157,7 @@ local function GetActiveCalendarEvents()
         return
     end
 
-    local currentTime = time()
+    local currentTime = GetServerTime()
     local calendarEvents = addon.Data.Events[KrowiAF.Enum.EventType.Calendar]
 
     for _, event in next, calendarEvents do
@@ -288,6 +288,10 @@ function eventData.GetWorldEventDetails(event, now)
         if not IsPoiOnMap(event) then -- The event is not active
             return
         end
+    end
+    if secondsLeft < 0 then -- A POI past its end is not active either (docs/work/2026-10-28-active-events-chat-repeat)
+        event.EventDetails = nil
+        return
     end
 
     local endTime

@@ -53,7 +53,7 @@ What the player sees, on Retail (world, widget and calendar events) and Classic 
 
 ## Found on the way
 - **The upcoming events' header has the same shape** (`AlertSystem.lua:509-528`): "Upcoming Calendar Events:" prints before the occurrence check and before the window check, so it can print once with no line under it. It does not repeat in practice: the record is set whenever an occurrence exists, and the list is built once with occurrences only. Proposed for `docs/backlog.md`.
-- **`GetUpcomingCalendarEvents` never rebuilds its list after the first non-empty one** (`Data/EventData.lua:131-151`). Proposed for `docs/backlog.md`.
+- **`GetUpcomingCalendarEvents` never rebuilds its list after the first non-empty one** (`Data/EventData.lua:131-151`). Already in `docs/backlog.md` (from the upcoming reminder date fix).
 
 ## Verification
 - **A scenario in the `events` suite** (`Tests/Events.lua`, its model in `.claude/tools/headless/run-tests.lua`): a test event listed active whose end is 10 seconds behind the reminders' clock, run through three refresh passes (`ShowActiveEvents` with chat on and pop-ups off, then the pruning), counting the chat lines. Recorded "3 headers, 0 lines", Target "0 headers, 0 lines".

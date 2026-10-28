@@ -34,13 +34,14 @@ local events = addon.Tests.Events
 --     second time ("start / start"); line 2 now shows the end, as Krowi chose on 2026-10-25.
 --   ChatPasses: the chat lines of the active events' reminder for a test event that is never registered, whose end is
 --     EndIn seconds from the realm's clock, through Passes refresh passes (ShowActiveEvents with chat messages on and
---     pop-ups off, then ForgetEndedReminders, as the refresh runs them): "headers <n>, lines <n>". An event the reminders
---     judge ended prints the "Active events:" header with no line under it, and its record is dropped in the same pass,
---     so the header comes back on every pass (in a raid on Retail on 2026-10-28, 33 times in a minute;
---     docs/work/2026-10-28-active-events-chat-repeat).
+--     pop-ups off, then ForgetEndedReminders, as the refresh runs them): "headers <n>, lines <n>". Until 2026-10-28 an
+--     event the reminders judged ended printed the "Active events:" header with no line under it, and as its record was
+--     dropped in the same pass, the header came back on every pass ("headers 3, lines 0"; in a raid on Retail, 33 times
+--     in a minute; docs/work/2026-10-28-active-events-chat-repeat). The header now comes with the pass's first line.
 --   PoiSeconds: GetWorldEventDetails of a world event that is never registered, whose POI is on its map and reports
 --     SecondsLeft, through a model of C_AreaPoiInfo that only the headless runner has (SKIP in game): "not active",
---     "no time data", "ends in <seconds>" or "ended <seconds> s ago". Negative seconds left give an end in the past.
+--     "no time data", "ends in <seconds>" or "ended <seconds> s ago". Until 2026-10-28 negative seconds left gave an end
+--     in the past ("ended 20 s ago"); they now count as not active, as Krowi chose on 2026-10-28.
 -- Until 2026-10-21 no Curse Surge event existed, nothing kept scheduler data, and the soup was only shown while its
 -- widget was there, in its zone (the Recorded values of the before-run, verified in game on Retail 12.1.5). The code
 -- review of 2026-10-21 found what the scheduler stories record, and Krowi chose that the soup's Next shows only in the
@@ -103,11 +104,11 @@ events.Scenarios = {
     {Name = "upcoming-date-both-lines", Kind = "DateLine", Reminder = "upcoming", Format = "%d/%m/%Y %R", Names = false, Line2 = 2,
         Recorded = "start / end", Target = "start / end"},
     {Name = "chat-ended-event", Kind = "ChatPasses", EndIn = -10, Passes = 3,
-        Recorded = "headers 3, lines 0", Target = "headers 0, lines 0"},
+        Recorded = "headers 0, lines 0", Target = "headers 0, lines 0"},
     {Name = "chat-active-event", Kind = "ChatPasses", EndIn = 600, Passes = 3,
         Recorded = "headers 1, lines 1", Target = "headers 1, lines 1"},
     {Name = "poi-negative-seconds", Kind = "PoiSeconds", SecondsLeft = -20, RetailOnly = true,
-        Recorded = "ended 20 s ago", Target = "not active"},
+        Recorded = "not active", Target = "not active"},
     {Name = "poi-seconds-left", Kind = "PoiSeconds", SecondsLeft = 600, RetailOnly = true,
         Recorded = "ends in 600", Target = "ends in 600"}
 }

@@ -48,3 +48,10 @@ Context: in a raid on Retail (2026-10-28) chat showed "Krowi's Achievement Filte
 - In game, Retail and Mists Classic: `Deploy.ps1 -WhatIf`, deploy (naming anything another checkout had put there), `/reload`, `/kaftest events` out of combat, `/reload`, `Read-GameTests.ps1` (chat scenarios as headless, POI scenarios SKIP), `Read-GameErrors.ps1` (no new row).
 - By hand, Retail: with chat reminders "On event start" on and the refresh interval at 1 s, a session through an event's end prints no lone "Active events:" line; `/run print(time() - GetServerTime())` noted once, for the record.
 - `/code-review` on the diff; `krowi:taint-reviewer` is not needed (no Blizzard frame, hook or protected API).
+
+## Results and departures
+- Before the fix, headless (2026-10-28): `chat-ended-event` "headers 3, lines 0" and `poi-negative-seconds` "ended 20 s ago" on Retail, the first also on Classic: the bug reproduced (commit 3ec149c6).
+- `event-clock` on the unfixed code reported exactly the five sites: `Data/EventData.lua:136, 160`, `Gui/EventReminder/AlertSystem.lua:634, 691, 721` (the last three shifted by the test commit); none after the fix.
+- After the fix, headless: `events` 29/29 on Retail and 10/10 on Classic, nothing open; `memory`, `popups`, `options` unchanged (memory's two open targets, `event-refresh-poi-on-map` and `event-refresh-widget-active`, are open on `main` too). `Check-Repo.ps1`: 0 errors, 0 warnings.
+- Departures: the events suite's headless environment also needed `mod` and `DAYS_ABBR`/`HOURS_ABBR` for the chat line's time left. Of the spec's two backlog items only the upcoming header was new; the upcoming list built once per session was already in `docs/backlog.md`. `Options/Window/Changelog.lua` is left to the release, which regenerates it.
+- The optional in-game before-run (step 3) was not done; Krowi was in a raid.
