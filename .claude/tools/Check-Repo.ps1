@@ -29,6 +29,9 @@
       settings-close   [Error]   addon code closes the settings panel with SettingsPanel:Close(true): without the
                                  argument it reopens the game menu through ToggleGameMenu, whose SpellStopCasting
                                  call is forbidden from addon code
+      event-clock      [Error]   the event reminder and obtainability files (Gui/EventReminder/, Data/Event*.lua,
+                                 Data/Custom*EventTimers.lua, Data/TemporaryObtainable.lua) never call time(): they
+                                 judge times by the realm's clock, GetServerTime(), which the sources use
       background-jobs  [Error]   every job addon code starts that can run with every window closed (an OnUpdate script,
                                  a C_Timer.NewTicker, a tooltip post-call or OnTooltipSet* hook, an event registration)
                                  is listed in Check-Repo.jobs with the Tests/Memory.lua scenario that measures what it
@@ -517,6 +520,25 @@ foreach ($rel in $ownLuaFiles) {
     }
 }
 Write-Timing 'settings-close'
+
+# --- event-clock: the event reminders, their sources and obtainability read one clock, the realm's ----------------
+# The sources call an event active by GetServerTime(); a reminder that judged its end by the PC's clock, time(), printed
+# the "Active events:" header with no line under it on every refresh while the two disagreed (a raid on Retail,
+# 2026-10-28, docs/work/2026-10-28-active-events-chat-repeat). The calendar's and obtainability's dates are true UTC
+# seconds through KrowiAF_GetUtcOffsetSeconds, which reads the realm's clock too. time{...} converts a date and stays
+# allowed.
+foreach ($rel in $ownLuaFiles) {
+    if ($rel -notlike 'Gui/EventReminder/*' -and $rel -notlike 'Data/Event*.lua' -and $rel -notlike 'Data/Custom*EventTimers.lua' -and $rel -ne 'Data/TemporaryObtainable.lua') { continue }
+    $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
+    $lineNo = 0
+    foreach ($line in ($text -split "`r?`n")) {
+        $lineNo++
+        if (($line -replace '--.*$', '') -cmatch '(?<![\w.:])time\s*\(\s*\)') {
+            Add-Finding 'event-clock' 'Error' $rel $lineNo "reads the PC's clock, time(); the event reminders, their sources and obtainability judge times by the realm's clock, GetServerTime()"
+        }
+    }
+}
+Write-Timing 'event-clock'
 
 # --- background-jobs: every job that runs on its own is measured, or says why it does not run on its own ---------
 # Code that runs with every addon window closed (an OnUpdate script, a ticker, an event handler) makes the addon's memory

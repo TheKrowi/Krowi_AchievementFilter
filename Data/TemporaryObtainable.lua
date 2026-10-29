@@ -33,6 +33,8 @@ do -- GetData
         return GetCurrentArenaSeason()
     end
 
+    -- True UTC seconds, as KrowiAF_GetUtcOffsetSeconds reads the realm's clock; every check in this file compares them
+    -- with GetServerTime(), never the PC's time() (docs/work/2026-10-28-active-events-chat-repeat)
     local function GetAnchorTime(anchor)
         local year, month, day = unpack(anchor)
         return time{year = year, month = month, day = day, hour = 0, min = 0, sec = 0} - KrowiAF_GetUtcOffsetSeconds()
@@ -46,7 +48,7 @@ do -- GetData
         if not secondsUntilReset or secondsUntilReset <= 0 then
             return anchorTime
         end
-        local nextReset = time() + secondsUntilReset
+        local nextReset = GetServerTime() + secondsUntilReset
         return nextReset + floor((anchorTime - nextReset) / secondsPerWeek + 0.5) * secondsPerWeek
     end
 
@@ -488,7 +490,7 @@ do -- Get Start Sate
     function temporaryObtainable:GetMplusSeasonStartState(record)
         local startTime = self:GetSeasonStartTime(record)
         if startTime then
-            return startTime <= time() and "Past" or "Future"
+            return startTime <= GetServerTime() and "Past" or "Future"
         end
         if record.Start.Inclusion == "From" then
             if self:GetCurrentMplusSeason() == 0 then
@@ -506,7 +508,7 @@ do -- Get Start Sate
     function temporaryObtainable:GetPvpSeasonStartState(record)
         local startTime = self:GetSeasonStartTime(record)
         if startTime then
-            return startTime <= time() and "Past" or "Future"
+            return startTime <= GetServerTime() and "Past" or "Future"
         end
         if record.Start.Inclusion == "From" then
             if self:GetCurrentPvpSeason() == 0 then
@@ -543,7 +545,7 @@ do -- Get Start Sate
             if not event or not event.StartTime then
                 return "Past" -- If an event has no record it's either not available yet or has already happened
             end
-            return time() >= event.StartTime and "Past" or "Future"
+            return GetServerTime() >= event.StartTime and "Past" or "Future"
         elseif record.Start.Inclusion == "After" then -- Should not be used
             return "Past"
         end
@@ -553,17 +555,17 @@ do -- Get Start Sate
         if record.Start.Inclusion == "From" then
             local year, month, day = unpack(record.Start.Value)
             local startTime = time{year = year, month = month, day = day, hour = 0, min = 0, sec = 0} - KrowiAF_GetUtcOffsetSeconds()
-            return startTime <= time() and "Past" or "Future"
+            return startTime <= GetServerTime() and "Past" or "Future"
         elseif record.Start.Inclusion == "After" then
             local year, month, day = unpack(record.Start.Value)
             local startTime = time{year = year, month = month, day = day, hour = 23, min = 59, sec = 59} - KrowiAF_GetUtcOffsetSeconds()
-            return startTime <= time() and "Past" or "Future"
+            return startTime <= GetServerTime() and "Past" or "Future"
         end
     end
 
     -- A reset is an instant rather than a day, so Inclusion has nothing to shift here
     function temporaryObtainable:GetResetStartState(record)
-        return self:GetResetTime(record.Start.Value) <= time() and "Past" or "Future"
+        return self:GetResetTime(record.Start.Value) <= GetServerTime() and "Past" or "Future"
     end
 end
 
@@ -571,7 +573,7 @@ do -- Get End State
     function temporaryObtainable:GetMplusSeasonEndState(record)
         local endTime = self:GetSeasonEndTime(record)
         if endTime then
-            return endTime <= time() and "Past" or "Future"
+            return endTime <= GetServerTime() and "Past" or "Future"
         end
         if record.End.Inclusion == "Until" then
             if self:GetCurrentMplusSeason() == 0 then
@@ -589,7 +591,7 @@ do -- Get End State
     function temporaryObtainable:GetPvpSeasonEndState(record)
         local endTime = self:GetSeasonEndTime(record)
         if endTime then
-            return endTime <= time() and "Past" or "Future"
+            return endTime <= GetServerTime() and "Past" or "Future"
         end
         if record.End.Inclusion == "Until" then
             if self:GetCurrentPvpSeason() == 0 then
@@ -623,7 +625,7 @@ do -- Get End State
             if not event or not event.EndTime then
                 return "Past" -- If an event has no record it's either not available yet or has already happened
             end
-                return time() > event.EndTime and "Past" or "Future"
+                return GetServerTime() > event.EndTime and "Past" or "Future"
         elseif record.End.Inclusion == "Before" then -- Should not be used
             return "Past"
         end
@@ -633,15 +635,15 @@ do -- Get End State
         if record.End.Inclusion == "Until" then
             local year, month, day = unpack(record.End.Value)
             local endTime = time{year = year, month = month, day = day, hour = 23, min = 59, sec = 59} - KrowiAF_GetUtcOffsetSeconds()
-            return endTime <= time() and "Past" or "Future"
+            return endTime <= GetServerTime() and "Past" or "Future"
         elseif record.End.Inclusion == "Before" then
             local year, month, day = unpack(record.End.Value)
             local endTime = time{year = year, month = month, day = day, hour = 0, min = 0, sec = 0} - KrowiAF_GetUtcOffsetSeconds()
-            return endTime <= time() and "Past" or "Future"
+            return endTime <= GetServerTime() and "Past" or "Future"
         end
     end
 
     function temporaryObtainable:GetResetEndState(record)
-        return self:GetResetTime(record.End.Value) <= time() and "Past" or "Future"
+        return self:GetResetTime(record.End.Value) <= GetServerTime() and "Past" or "Future"
     end
 end

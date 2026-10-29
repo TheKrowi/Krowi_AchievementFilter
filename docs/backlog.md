@@ -116,3 +116,9 @@ Follow-ups that are not a work item yet. When one is taken up, it gets its own w
   - The move of Y took on no account: since 11.2.7 and 5.5.1 its API is gone, and before that it ran before the key bindings were loaded.
   - So every current player whose Y is still Blizzard's keeps seeing #197 until they press Bind to Y.
   - If reports continue, a `DataIntegrityManager` step can set `FirstTimeSetUp.YBindingPending` once for accounts that already have `AchievementTabsSwitched`.
+
+## From the Active events chat fix (2026-10-28, docs/work/2026-10-28-active-events-chat-repeat)
+
+- **The "Upcoming Calendar Events:" chat header can print with no line under it** (`Gui/EventReminder/AlertSystem.lua`, `ShowUpcomingCalendarEventChatMessage`). It prints before the occurrence check and before the window check, the shape the active events' header had. It does not repeat in practice, because the record is set whenever an occurrence exists; the fix is the same move: print it with the first line.
+- **An active event's reminder record keeps the first end it saw** (code review, 2026-10-28). `ShowActiveEventChatMessage` and `ShowActiveEventPopUp` update a record only while it holds the placeholder, and `ForgetEndedReminders` drops it once that end passes. A widget-timed world event read as "5 min" while up to 59 s more are left, or a realm clock that steps back on zoning, gets a second reminder (header, line, pop-up) for the same occurrence. Following the end on every pass instead would swallow the next occurrence of an event whose windows touch, so the fix needs the occurrence's start, which not every source gives.
+- **An event whose end is the current second prints "Name ()"** (code review, 2026-10-28): the check is `>=`, and `GetSecondsLeftFormattedText(0)` is empty. Only when the second ticks between the read of the events and the read of the clock in `Refresh`.

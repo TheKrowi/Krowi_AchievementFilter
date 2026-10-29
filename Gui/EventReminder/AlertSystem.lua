@@ -442,6 +442,12 @@ local function ShowActiveEventPopUp(self, event, canShow, canShowWithTimeDataOnl
     end
 end
 
+-- The chat reminders print through this field, read on every call, so the events suite (Tests/Events.lua) can count
+-- their lines
+eventReminderAlertSystem.Print = function(...)
+    print(...)
+end
+
 local printOnceActiveEvents
 local function ShowActiveEventChatMessage(self, event, canShow, canShowWithTimeDataOnly, currentTime)
     if not canShow then
@@ -454,14 +460,19 @@ local function ShowActiveEventChatMessage(self, event, canShow, canShowWithTimeD
         return
     end
     if not canShowWithTimeDataOnly or (canShowWithTimeDataOnly and event.EventDetails and event.EventDetails.EndTime) then
+        local endTime = event.EventDetails and event.EventDetails.EndTime or placeholderEpoch
+        if endTime < currentTime then
+            -- Ended, though its source still lists it: no line and no record, which the same refresh would drop again; a
+            -- header printed for it came back on every refresh (docs/work/2026-10-28-active-events-chat-repeat)
+            return
+        end
+        KrowiAF_SavedData.ActiveEventChatMessagesShown[event.Id] = endTime
+        local runtime = self:GetRuntimeText(event, true) -- before the header, so an error leaves no header without a line
         if not printOnceActiveEvents then
-            print(addon.Metadata.Title, "-", addon.L["Active events"] .. ":")
+            self.Print(addon.Metadata.Title, "-", addon.L["Active events"] .. ":")
             printOnceActiveEvents = true
         end
-        KrowiAF_SavedData.ActiveEventChatMessagesShown[event.Id] = event.EventDetails and event.EventDetails.EndTime or placeholderEpoch
-        if KrowiAF_SavedData.ActiveEventChatMessagesShown[event.Id] >= currentTime then
-            print("    -", event.EventDetails and event.EventDetails.Name or addon.L["Collecting data"], "(" .. self:GetRuntimeText(event, true) .. ")") --,
-        end
+        self.Print("    -", event.EventDetails and event.EventDetails.Name or addon.L["Collecting data"], "(" .. runtime .. ")")
     end
 end
 
@@ -477,6 +488,7 @@ function eventReminderAlertSystem:ShowActiveEvents(popUpsOptions, chatMessagesOp
     end
 
     activeEvents = activeEvents or addon.EventData.GetActiveEvents(true)
+    printOnceActiveEvents = nil -- also after a pass an error stopped
     for _, event in next, activeEvents do
         ShowActiveEventPopUp(self, event, canShowPopUps, canShowPopUpsWithTimeDataOnly, currentTime)
         ShowActiveEventChatMessage(self, event, canShowChatMessages, canShowChatMessagesWithTimeDataOnly, currentTime)
@@ -514,7 +526,7 @@ local function ShowUpcomingCalendarEventChatMessage(self, event, canShow, curren
         return
     end
     if not printOnceUpcomingCalendarEvents then
-        print(addon.Metadata.Title, "-", addon.L["Upcoming Calendar Events"] .. ":")
+        self.Print(addon.Metadata.Title, "-", addon.L["Upcoming Calendar Events"] .. ":")
         printOnceUpcomingCalendarEvents = true
     end
     local occurrence = addon.EventData.GetNextEventOccurance(event.Id)
@@ -523,7 +535,7 @@ local function ShowUpcomingCalendarEventChatMessage(self, event, canShow, curren
     end
     KrowiAF_SavedData.UpcomingCalendarEventChatMessagesShown[event.Id] = occurrence.StartTime
     if KrowiAF_SavedData.UpcomingCalendarEventChatMessagesShown[event.Id] < currentTime + (addon.Options.db.profile.EventReminders.UpcomingCalendarEvents.Days * 24 * 60 * 60) then
-        print("    -", occurrence.Name, "(In " .. GetSecondsLeftFormattedText(occurrence.StartTime - currentTime) .. ")")
+        self.Print("    -", occurrence.Name, "(In " .. GetSecondsLeftFormattedText(occurrence.StartTime - currentTime) .. ")")
     end
 end
 
@@ -576,6 +588,21 @@ local function CancelRefreshTicker()
     end
 end
 
+local function ForgetEnded(records, currentTime)
+    for id, endTime in next, records do
+        if endTime < currentTime then
+            records[id] = nil
+        end
+    end
+end
+
+-- The records of the active events' reminders whose event has ended, dropped on every refresh; the events suite runs
+-- the same step (Tests/Events.lua)
+function eventReminderAlertSystem:ForgetEndedReminders(currentTime)
+    ForgetEnded(KrowiAF_SavedData.ActiveEventPopUpsShown, currentTime)
+    ForgetEnded(KrowiAF_SavedData.ActiveEventChatMessagesShown, currentTime)
+end
+
 local Refresh
 local function EnsureRefreshTicker(self)
     local interval = GetRefreshInterval()
@@ -612,20 +639,10 @@ function Refresh(self)
         end
     end
 
-    local currentTime = time()
+    local currentTime = GetServerTime() -- the realm's clock, which the events' sources use
     self:ShowActiveEvents(addon.Options.db.profile.EventReminders.PopUps.OnEventStart, addon.Options.db.profile.EventReminders.ChatMessages.OnEventStart, currentTime, refreshedActiveEvents)
     self:ShowUpcomingCalendarEvents(addon.Options.db.profile.EventReminders.PopUps.OnEventStartUpcoming, addon.Options.db.profile.EventReminders.ChatMessages.OnEventStartUpcoming, currentTime, refreshedUpcomingCalendarEvents)
-
-    for i, endTime in next, KrowiAF_SavedData.ActiveEventPopUpsShown do
-        if endTime < currentTime then
-            KrowiAF_SavedData.ActiveEventPopUpsShown[i] = nil
-        end
-    end
-    for i, endTime in next, KrowiAF_SavedData.ActiveEventChatMessagesShown do
-        if endTime < currentTime then
-            KrowiAF_SavedData.ActiveEventChatMessagesShown[i] = nil
-        end
-    end
+    self:ForgetEndedReminders(currentTime)
 
     for _, callback in next, refreshCallbacks do
         local ok, err = pcall(callback, currentTime, refreshedActiveEvents, refreshedUpcomingCalendarEvents)
@@ -679,7 +696,7 @@ function eventReminderAlertSystem:ShowActiveEventsOnPlayerEnteringWorld(popUpsOp
     KrowiAF_SavedData.ActiveEventPopUpsShown = {}
     KrowiAF_SavedData.ActiveEventChatMessagesShown = {}
 
-    local currentTime = time()
+    local currentTime = GetServerTime()
 
     if popUpsOptions and not popUpsOptions.Show then
         local activeEvents = addon.EventData.GetActiveEvents(true)
@@ -709,7 +726,7 @@ function eventReminderAlertSystem:ShowUpcomingCalendarEventsOnPlayerEnteringWorl
     KrowiAF_SavedData.UpcomingCalendarEventPopUpsShown = {}
     KrowiAF_SavedData.UpcomingCalendarEventChatMessagesShown = {}
 
-    local currentTime = time()
+    local currentTime = GetServerTime()
 
     if popUpsOptions and not popUpsOptions.Show then
         local upcomingCalendarEvents = addon.EventData.GetUpcomingCalendarEvents()

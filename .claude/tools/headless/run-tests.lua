@@ -1439,9 +1439,10 @@ end
 
 -- The real data load of client-env.lua, then the event runtime on top (Data/CustomWidgetEventTimers.lua,
 -- Data/CustomWorldEventTimers.lua, Data/EventScheduler.lua once it exists, Data/EventData.lua, and
--- Gui/EventReminder/AlertSystem.lua for the date line scenarios) against a model of what it reads: C_EventScheduler returning the suite's own fixture, C_AreaPoiInfo knowing the Curse Surges' English names and
--- no POI on a map, no widget anywhere (as outside the Azure Span), the region Europe and every event toggle on. The
--- scenarios pass their own times, so the clock is not modelled (sources in Tests/Events.lua).
+-- Gui/EventReminder/AlertSystem.lua for the date line and chat scenarios) against a model of what it reads: C_EventScheduler returning the suite's own fixture, C_AreaPoiInfo knowing the Curse Surges' English names and
+-- no POI on a map unless a scenario puts one there (SetPoi), no widget anywhere (as outside the Azure Span), the open
+-- world, the region Europe and every event toggle on. The scenarios pass their own times, so the clock is not modelled
+-- (sources in Tests/Events.lua).
 suites.events = function(c)
     local scriptDir = ((arg and arg[0]) or ""):gsub("\\", "/"):match("^(.*)/") or "."
     local clientEnv = assert(loadfile(scriptDir .. "/client-env.lua"))()
@@ -1454,9 +1455,14 @@ suites.events = function(c)
     local env, addon = ctx.env, ctx.addon
     local poiNames = { [8936] = "Curse Surge: The Looming Mutagenitor", [8937] = "Curse Surge: Siege at the Whispering Marsh",
         [8938] = "Curse Surge: The Broodmother's Nest", [8939] = "Curse Surge: Mlurkkr Massacre", [8940] = "Curse Surge: The Malformed Leviathan" }
+    local pois = {} -- [areaPoiID] = { MapId, SecondsLeft }: the POIs a scenario put on a map (SetPoi)
     env.C_AreaPoiInfo = {
-        GetAreaPOIInfo = function(mapId, id) CheckAreaPoiArgs(mapId, id) if mapId == nil and poiNames[id] then return { areaPoiID = id, name = poiNames[id] } end end,
-        GetAreaPOISecondsLeft = function() return nil end,
+        GetAreaPOIInfo = function(mapId, id)
+            CheckAreaPoiArgs(mapId, id)
+            if mapId == nil and poiNames[id] then return { areaPoiID = id, name = poiNames[id] } end
+            if mapId ~= nil and pois[id] and pois[id].MapId == mapId then return { areaPoiID = id } end
+        end,
+        GetAreaPOISecondsLeft = function(id) return pois[id] and pois[id].SecondsLeft end,
     }
     env.C_UIWidgetManager = { GetTextWithStateWidgetVisualizationInfo = function() return nil end }
     env.C_EventScheduler = {
@@ -1471,7 +1477,10 @@ suites.events = function(c)
     addon.WeekdayNames = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }
     env.GetCurrentRegion = function() return 3 end
     env.InCombatLockdown = function() return false end
-    env.MINUTES_ABBR, env.SECONDS_ABBR = "%d min", "%d sec"
+    env.GetInstanceInfo = function() return "Azeroth", "none", 0 end -- the open world: difficulty 0
+    env.KrowiAF_SavedData = {} -- else the KrowiAF_ stub answers every record with a stub, which reads as shown
+    env.mod = math.fmod
+    env.DAYS_ABBR, env.HOURS_ABBR, env.MINUTES_ABBR, env.SECONDS_ABBR = "%d days", "%d hr", "%d min", "%d sec"
     env.D_MINUTES, env.D_SECONDS = "%d |4minute:minutes;", "%d |4second:seconds;"
     -- a client has a type's toggles only when it has events of that type, as the game's option defaults do: Classic has
     -- neither world nor widget event toggles
@@ -1498,6 +1507,7 @@ suites.events = function(c)
     function headless.IsRetail() return c.isRetail end
     function headless.Region() return env.GetCurrentRegion() end
     function headless.PoiName(id) return poiNames[id] end
+    function headless.SetPoi(id, mapId, secondsLeft) pois[id] = mapId and { MapId = mapId, SecondsLeft = secondsLeft } or nil end
     function headless.Restore()
         addon.Data.EventScheduler.Reset()
         addon.Data.EventScheduler.EnsureData()
@@ -1576,7 +1586,7 @@ suites.obtainable = function(c)
     ctx:RunPipeline{ StepError = fail("step"), TaskError = fail("task") }
     assert(#failures == 0, "data load failed (run load-data.lua): " .. tostring(failures[1]))
     local env, addon = ctx.env, ctx.addon
-    env.time = os.time
+    env.time, env.GetServerTime = os.time, os.time
     env.KrowiAF_GetUtcOffsetSeconds = function() return 0 end
     addon.Tests = { Suites = {}, Ready = {} }
     for _, rel in ipairs({ "Data/TemporaryObtainable.lua", "Tests/Obtainable.lua" }) do
