@@ -135,8 +135,9 @@ local function GameTooltipOver(rectangle)
     end
     -- a unit tooltip with a restricted name can make its position secret (Retail): it counts as covering the picture
     -- until the mouse moves on
-    local left, scale = GameTooltip:GetLeft(), GameTooltip:GetEffectiveScale()
-    if issecretvalue and (issecretvalue(left) or issecretvalue(scale)) then
+    local left, right, top, bottom = GameTooltip:GetLeft(), GameTooltip:GetRight(), GameTooltip:GetTop(), GameTooltip:GetBottom()
+    local scale = GameTooltip:GetEffectiveScale()
+    if issecretvalue and (issecretvalue(left) or issecretvalue(right) or issecretvalue(top) or issecretvalue(bottom) or issecretvalue(scale)) then
         return true
     end
     if not left then
