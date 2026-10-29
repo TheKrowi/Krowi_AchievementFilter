@@ -1,5 +1,5 @@
 # Intent: The "Active events:" chat line repeats with no event under it
-Author: Krowi (maintainer), captured by Claude. Source: Krowi's own Retail client on 2026-10-28, in a raid, a screenshot and the chat log pasted into the session (not a GitHub issue). Status: accepted
+Author: Krowi (maintainer), captured by Claude. Source: Krowi's own Retail client on 2026-10-28, in a raid, a screenshot and the chat log pasted into the session (not a GitHub issue). Status: done
 
 ## Problem
 In a raid on Retail, chat filled with "Krowi's Achievement Filter - Active events:" 33 times within the minute 20:01, each time with no event listed under it, after which it stopped on its own. The lines buried the raid chat.

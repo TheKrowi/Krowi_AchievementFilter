@@ -1,5 +1,5 @@
 # Plan: The "Active events:" chat line repeats with no event under it
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 Context: in a raid on Retail (2026-10-28) chat showed "Krowi's Achievement Filter - Active events:" 33 times in a minute with no event under it. The header prints before the code knows a line follows; the event's line is skipped because its end is behind the PC's clock while its source (realm clock) still lists it; the record is pruned on the same tick, so it repeats every refresh (Krowi's interval: 1 s). Krowi chose option B at the design gate: the header only with a line, plus one clock (`GetServerTime()`) for the reminders, plus negative POI seconds counting as not active.
 
@@ -75,3 +75,12 @@ Context: in a raid on Retail (2026-10-28) chat showed "Krowi's Achievement Filte
   - The upcoming header (already listed).
 - **Not changed:** block comments in the lint rule's comment stripping (the other line rules strip the same way, and no reminder file has a block comment holding `time()`).
 - After the review: `events` 30/30 Retail and 11/11 Classic, `obtainable` 8/8 on both, `memory`, `popups`, `options` unchanged; `Check-Repo.ps1` 0 errors.
+
+## In-game after-run (step 7), on e4f0d953
+- **Retail 12.1.5:**
+  - `/kaftest events` on 2026-10-28 21:37 and again on 2026-10-29 19:00: 28 passed, 0 failed, 2 skipped (`poi-negative-seconds` and `poi-seconds-left`, which only the headless run can model).
+  - The three chat scenarios as headless: `chat-ended-event` "headers 0, lines 0", `chat-active-event` "headers 1, lines 1", `chat-ended-then-active` "headers 1, lines 2".
+  - `/kaftest obtainable` on 2026-10-29 19:01: 8 passed, 0 differences.
+  - 0 addon errors.
+- **Mists 5.5.4:** `/kaftest events` on 2026-10-29 19:05: 11 passed, 0 differences; `/kaftest obtainable` on 2026-10-29 19:05: 8 passed, 0 differences; 0 addon errors.
+- The by-hand check (chat reminders at a 1 s refresh through an event's end) runs on `main` after the merge, with the help pictures fix.

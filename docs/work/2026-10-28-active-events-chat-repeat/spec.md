@@ -1,5 +1,5 @@
 # Spec: The "Active events:" chat line repeats with no event under it
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. The "Active events:" chat line prints only in the same pass as at least one event line under it.
