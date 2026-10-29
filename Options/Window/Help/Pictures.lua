@@ -6,7 +6,7 @@ addon.Options.Window = addon.Options.Window or {}
 addon.Options.Window.HelpPictures = {
     CalendarDays = {Width = 746, Height = 712, TexCoords = {0, 0.8740234375, 0, 0.8349609375}},
     CategoryTree = {Width = 286, Height = 360, TexCoords = {0, 0.669921875, 0, 0.84375}},
-    Colors = {Width = 724, Height = 278, TexCoords = {0, 0.8486328125, 0, 0.65625}},
+    Colors = {Width = 699, Height = 243, TexCoords = {0, 0.8193359375, 0, 0.5625}},
     CompactList = {Width = 709, Height = 735, TexCoords = {0, 0.8310546875, 0, 0.861328125}},
     FilterMenu = {Width = 282, Height = 440, TexCoords = {0, 0.662109375, 0, 0.515625}},
     GuidePanel = {Width = 360, Height = 237, TexCoords = {0, 0.84375, 0, 0.556640625}},
