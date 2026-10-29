@@ -227,14 +227,19 @@ local function HeaderLook(achievement)
     return "Orange"
 end
 
+-- From the category with the most achievements: a list without a scroll bar is wider, so its row would stick out of
+-- the picture (the Sunday's Finest row, 2026-10-29)
 local function FindLook(look)
+    local found, most = nil, 0
     for _, achievement in next, addon.Data.Achievements do
+        local count = achievement.Category and achievement.Category.Achievements and #achievement.Category.Achievements or 0
         -- shown as itself: with Collapse Chain on the list shows a chain's next step instead when that one is completed
-        if achievement.Category and not achievement.IsTracking and not select(2, addon.GetNextAchievement(achievement))
+        if count > most and not achievement.IsTracking and not select(2, addon.GetNextAchievement(achievement))
             and HeaderLook(achievement) == look then
-            return achievement
+            found, most = achievement, count
         end
     end
+    return found
 end
 
 -- Selects the achievement, then clears the selection, so its row shows collapsed and in its own colours
@@ -290,7 +295,10 @@ local function ColorStep(look)
             return {RowOf(live.Look)}
         end,
         Check = function()
-            return RowOf(live.Look) ~= nil, ("the row of %d is not on screen"):format(live.Look.Id)
+            if not RowOf(live.Look) then
+                return false, ("the row of %d is not on screen"):format(live.Look.Id)
+            end
+            return KrowiAF_AchievementsFrame.ScrollBar:IsShown(), ("the list of %d has no scroll bar, so its row is wider"):format(live.Look.Id)
         end
     }
 end
