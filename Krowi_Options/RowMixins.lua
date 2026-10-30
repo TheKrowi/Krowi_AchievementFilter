@@ -34,6 +34,10 @@ end
 -- The mouse buttons a key can be bound to, as AceGUI's keybinding widget took them; left and right start and stop
 local mouseButtons = { MiddleButton = "BUTTON3", Button4 = "BUTTON4", Button5 = "BUTTON5" }
 
+local function NoTooltip()
+    return false
+end
+
 function Krowi_OptionsOptionRowMixin:OnLoad()
     self.Label:SetPoint("RIGHT", self, "RIGHT", -controlColumn - 12, 0)
 
@@ -82,6 +86,13 @@ function Krowi_OptionsOptionRowMixin:OnLoad()
 
     for _, control in ipairs({ self.Dot, self.Toggle, self.Range, self.Select, self.SelectSteppers.Dropdown, self.Execute, self.Input, self.Key1, self.Key2 }) do
         Forward(control, self)
+    end
+
+    -- A dropdown whose text is cut off shows it in GameTooltip and hides it on leave (DropdownSelectionTextMixin): from
+    -- our rows that Hide runs GameTooltip's OnHide tainted, the path of issue #300. The help pane or the row's tooltip
+    -- shows the option instead.
+    for _, dropdown in ipairs({ self.Select, self.SelectSteppers.Dropdown }) do
+        dropdown.ShouldShowTooltip = NoTooltip
     end
 end
 

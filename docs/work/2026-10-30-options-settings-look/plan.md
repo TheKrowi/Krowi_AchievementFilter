@@ -52,6 +52,11 @@ Reused as they are:
    - run the review passes (`/code-review`, `krowi:taint-reviewer`);
    - after-runs on Retail and Mists, then open the PR.
 
+Departures (2026-10-30):
+- **The title is `SETTINGS_TITLE`, not `OPTIONS`.** It is the string Blizzard's own window sets (`Blizzard_SettingsPanel.lua:54`, on all three clients) and reads "Options" as well, which is decision 2a.
+- **The variant switch is `/kaflook <name>`, not `/kaftest look <name>`.** `/kaftest` runs suites, and the switch is gone after the pick.
+- **Taint review of the build:** clean on every new template. One finding, already there before this work: `DropdownSelectionTextMixin` shows `GameTooltip` from our rows when a dropdown's text is cut off, and hides it on leave, the #300 path. Fixed by overriding `ShouldShowTooltip` on our own two dropdowns (`RowMixins.lua`). The `section-*` live steps now check every drawn dropdown for it.
+
 ## Risks
 - **`Options_InnerFrame` has a fixed size** (Blizzard's window is 920 x 724; ours is wider and resizable). Stretched, it may distort. That is the first variant, measured with `C_Texture.GetAtlasInfo` in game.
 - **`MinimalTabTemplate` click behaviour.** Its `SelectableButtonMixin:OnClick` toggles the tab's own selection. Our `SetScript("OnClick")` replaces it, so a click on the open tab never deselects it. `OnLoad` sets the text from `tabText`, which is nil at `CreateFrame`, so text and width are set right after.

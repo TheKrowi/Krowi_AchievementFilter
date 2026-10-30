@@ -415,6 +415,9 @@ local function CheckDrawnRows()
             shows = expected == nil or math.abs(row.Range.Slider:GetValue() - expected) < 0.001
         elseif option.Type == "input" then
             shows = row.Input:HasFocus() or row.Input:GetText() == tostring(value or "")
+        elseif option.Type == "select" then
+            -- the dropdowns never show GameTooltip from our rows (docs/work/2026-10-30-options-settings-look)
+            shows = not row.Select:ShouldShowTooltip() and not row.SelectSteppers.Dropdown:ShouldShowTooltip()
         else
             shows = true
         end
