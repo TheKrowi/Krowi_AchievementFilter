@@ -18,7 +18,7 @@ Intent: [intent.md](intent.md). Status: accepted
 7. A red Close button sits at the bottom right. The same bottom row holds the reload bar ("Some changes take effect after a reload. Reload now") and a "Lines under headings" check box. That check box is off by default, applies to every addon's tab and is kept with the window's shared state.
 12. Blizzard's inner frame art is drawn across the window. Its shaded edges keep their size, and its divider stands at the end of the section list and again at the start of the help pane.
 13. Every dropdown has Blizzard's arrows on each side, and the scroll bars are Blizzard's thin ones, placed as Blizzard places them.
-14. The help pane hides behind a gold » at its top right. Collapsed, its strip shows a gold « with "HOW IT WORKS" written down the strip, as in the mockup, and a click anywhere on it brings the pane back (Krowi, in game, 2026-10-30).
+14. The help pane hides behind a gold » at its top right. Collapsed, its strip shows a gold « with "How it works" written down the strip, as in the mockup but in the open pane's case (Lua's `upper()` leaves non-English letters small), and a click anywhere on it brings the pane back (Krowi, in game, 2026-10-30). Opened again, the help's scroll bar shows only when the help is longer than the pane.
 8. The help pane on the right, its collapse strip, Show me, the in-window Yes/No, the resize grip and every option behave as they do today.
 9. The window keeps one place, size and pane state, whichever addon opens it. Each addon still remembers its last section and the sections the player has seen.
 10. No taint:

@@ -207,7 +207,7 @@ function Krowi_OptionsWindowMixin:OnLoad()
         if element.Kind == "Note" then return self:MeasureText(element.Text, "GameFontDisable", self:PageWidth() - 32) + 8 end
         return rowTemplates[element.Kind][2]
     end)
-    InitList(self, self.HelpScrollBox, self.HelpScrollBar, {
+    self.HelpBar = InitList(self, self.HelpScrollBox, self.HelpScrollBar, {
         HelpText = { "Krowi_OptionsHelpTextTemplate" },
         HelpPicture = { "Krowi_OptionsHelpPictureTemplate" },
     }, function(element)
@@ -354,7 +354,7 @@ function Krowi_OptionsWindowMixin:ApplyStrings()
     -- A turned text turns about its centre, so it hangs below the chevron by half its length; its letters sit off the
     -- line's middle, so it moves right to stand under the chevron (measured in game, 2026-10-30)
     local label = self.ExpandButton.Label
-    label:SetText((strings.HowItWorks or ""):upper())
+    label:SetText(strings.HowItWorks or "") -- as the open pane writes it; upper() would leave non-English letters small
     local length = label:GetStringWidth()
     label:ClearAllPoints()
     label:SetPoint("CENTER", self.ExpandButton, "TOP", 6, -(28 + length / 2))
@@ -459,8 +459,14 @@ function Krowi_OptionsWindowMixin:Layout()
     self.ShowMeNote:SetPoint("LEFT", self.ShowMeButton, "RIGHT", 8, 0)
     self.ShowMeNote:SetPoint("RIGHT", self.HelpBackground, "RIGHT", -10, 0)
 
-    for _, region in ipairs({ self.CollapseButton, self.HelpKicker, self.HelpScrollBox, self.HelpScrollBar }) do
+    for _, region in ipairs({ self.CollapseButton, self.HelpKicker, self.HelpScrollBox }) do
         region:SetShown(not self.PaneCollapsed)
+    end
+    -- The help's scroll bar hides with the pane, and comes back only when the help is longer than the pane
+    if self.PaneCollapsed then
+        self.HelpScrollBar:Hide()
+    elseif self.HelpBar then
+        self.HelpBar:EvaluateVisibility(true)
     end
     self.ExpandButton:SetShown(self.PaneCollapsed)
     self:UpdateShowMe()
