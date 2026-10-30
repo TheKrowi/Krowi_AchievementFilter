@@ -13,7 +13,8 @@
 
 local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
 
-local navWidth, helpWidth, stripWidth = 220, 380, 30
+-- The navigation is as wide as the game's category list, so its header bars (199 px) end at the divider
+local navWidth, helpWidth, stripWidth = 199, 380, 30
 local minWidth, minHeight = 1000, 560
 
 -- [[ Navigation ]] --
@@ -356,11 +357,12 @@ end
 -- The body: under the tabs and above the bottom row, where the game's window has its category list and its settings
 -- (Blizzard_SettingsPanel.xml: the list at 18, -76, the bottom buttons at 16)
 local bodyInsets = { Left = 18, Top = -76, Right = -18, Bottom = 46 }
-local navBarSpace = 12 -- what the navigation's scroll bar takes; the divider and the page move left by it while it hides
+local navBarSpace = 16 -- what the game's list keeps for its scroll bar; the divider and the page move right by it while it shows
 
--- Where the navigation ends and its divider stands: past its scroll bar, or right after its list when all of it fits
+-- Where the navigation ends and its divider stands: right after the list, where the game's window has it, or past the
+-- list's scroll bar while not all of it fits
 function Krowi_OptionsWindowMixin:NavEnd()
-    return self.NavScrollShown and navWidth or navWidth - navBarSpace
+    return self.NavScrollShown and navWidth + navBarSpace or navWidth
 end
 
 function Krowi_OptionsWindowMixin:OnNavScrollBarShown(shown)
@@ -397,7 +399,7 @@ function Krowi_OptionsWindowMixin:Layout()
     self.NavScrollBox:ClearAllPoints()
     self.NavScrollBox:SetPoint("TOPLEFT", body, "TOPLEFT", 0, -4)
     self.NavScrollBox:SetPoint("BOTTOMLEFT", body, "BOTTOMLEFT", 0, 4)
-    self.NavScrollBox:SetWidth(navWidth - 14)
+    self.NavScrollBox:SetWidth(navWidth)
     self.NavScrollBar:ClearAllPoints()
     self.NavScrollBar:SetPoint("TOPLEFT", self.NavScrollBox, "TOPRIGHT", 0, 2)
     self.NavScrollBar:SetPoint("BOTTOMLEFT", self.NavScrollBox, "BOTTOMRIGHT", -1, 7)
