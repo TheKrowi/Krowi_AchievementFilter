@@ -112,7 +112,7 @@ help.categories = {
 help.summary = {
     Title = L["Summary"],
     Blocks = Blocks(
-        Picture("SummaryBars"),
+        Picture("Summary"),
         Term(L["Help Summary Recent Term"], L["Help Summary Recent"]),
         Term(L["Help Summary Progress Term"], L["Help Summary Progress"])
     )
