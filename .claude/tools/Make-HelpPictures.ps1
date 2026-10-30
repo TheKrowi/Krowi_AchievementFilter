@@ -10,9 +10,16 @@
     Read-GameTests.ps1 does, and for every picture:
       - cuts the rectangle out (scaled when the screenshot's size differs from the recorded screen), stacking the parts
         of a picture recorded in several steps (Colors) top to bottom;
-      - scales it down so its longest side is at most -MaxSide pixels;
-      - gives it the old tutorial pictures' soft edge: the alpha curve every old picture has over its outer 40 px,
-        scaled to -Fade pixels (docs/work/2026-10-25-options-revamp/mockup/Crop-Pictures.ps1);
+      - looks at each side, as the old tutorial pictures were made by hand (docs/work/2026-10-26-help-picture-margins):
+        where the frame ends in the run's black backdrop within 24 px of the cut, a frame's own edge shows there, so
+        the cut takes in what the frame draws outside its rectangle (a border, the tabs' art), moves in over black to
+        the frame's visible edge and gets -Margin pixels of black; where content goes on (a long tooltip, the window
+        around the category list) the side is a cut through it. It looks along the frames' own length, so what a
+        step's More took in beside them (the window left of the guide panel) is no content next to the other sides;
+      - scales it down so its longest side, margins included, is at most -MaxSide pixels;
+      - gives it the old tutorial pictures' soft edge: the alpha curve every old picture has over its outer 40 px, in
+        the margin of an edge side, and scaled to -Fade pixels on a cut side
+        (docs/work/2026-10-25-options-revamp/mockup/Crop-Pictures.ps1);
       - pads it with transparency to powers of two, as every texture in Media\ is;
       - writes it as a 32-bit RLE TGA with the old files' header (type 10, top-left origin, TGA 2.0 footer).
     Each picture comes from the newest run that recorded it, so a run that skipped one (Compact Achievements off) does
@@ -40,7 +47,11 @@
     Longest side in pixels after scaling. Default 1024, so a picture stays sharp when the pane shows it enlarged.
 
 .PARAMETER Fade
-    Width of the soft edge in pixels. Default 18.
+    Width of the soft edge on a side that cuts through content, in pixels. Default 18.
+
+.PARAMETER Margin
+    Black around a frame's own edge, in pixels, faded out over its outer 40. Default 50, as the old tutorial pictures
+    had wherever a frame's edge shows.
 
 .PARAMETER Preview
     A folder to write a PNG of every picture made, without its padding.
@@ -59,6 +70,7 @@ param(
     [string[]]$Only,
     [int]$MaxSide = 1024,
     [int]$Fade = 18,
+    [int]$Margin = 50,
     [string]$Preview
 )
 
@@ -94,7 +106,9 @@ foreach ($line in & $KitLua (Join-Path $root '.claude\tools\headless\read-pictur
     } elseif ($f[0] -eq 'SHOT') {
         $shots.Add([pscustomobject]@{ Run = [int]$f[1]; Name = $f[2]; Time = [datetime]::ParseExact($f[3], 'yyyy-MM-dd HH:mm:ss', $invariant)
             Left = [double]::Parse($f[4], $invariant); Top = [double]::Parse($f[5], $invariant); Right = [double]::Parse($f[6], $invariant)
-            Bottom = [double]::Parse($f[7], $invariant); Width = [int]$f[8]; Height = [int]$f[9] })
+            Bottom = [double]::Parse($f[7], $invariant); Width = [int]$f[8]; Height = [int]$f[9]
+            InnerLeft = [double]::Parse($f[10], $invariant); InnerTop = [double]::Parse($f[11], $invariant)
+            InnerRight = [double]::Parse($f[12], $invariant); InnerBottom = [double]::Parse($f[13], $invariant) })
     }
 }
 if ($shots.Count -eq 0) { throw "The saved variables hold no pictures run; run /kaftest pictures in game, then /reload." }
@@ -159,11 +173,77 @@ function Get-Image([string]$path) {
     $images[$path]
 }
 
+# The screenshot's pixels, read once, for the side checks
+$buffers = @{}
+function Get-Buffer([string]$path) {
+    if (-not $buffers.ContainsKey($path)) {
+        $image = Get-Image $path
+        $data = $image.LockBits((New-Object System.Drawing.Rectangle 0, 0, $image.Width, $image.Height), 'ReadOnly', ([System.Drawing.Imaging.PixelFormat]::Format32bppArgb))
+        $bytes = New-Object byte[] ($data.Stride * $image.Height)
+        [Runtime.InteropServices.Marshal]::Copy($data.Scan0, $bytes, 0, $bytes.Length)
+        $image.UnlockBits($data)
+        $buffers[$path] = [pscustomobject]@{ Bytes = $bytes; Stride = $data.Stride; Width = $image.Width; Height = $image.Height }
+    }
+    $buffers[$path]
+}
+
+# A row or column of the screenshot from $from to $to is black when at most $share of it (and at least one pixel) is
+# brighter than the backdrop (R+G+B above 40, over the jpg's noise); outside the screenshot nothing is black
+function Test-Black($buffer, [bool]$row, [int]$at, [int]$from, [int]$to, [double]$share = 0.005) {
+    if ($at -lt 0 -or $at -ge $(if ($row) { $buffer.Height } else { $buffer.Width })) { return $false }
+    $bytes = $buffer.Bytes; $stride = $buffer.Stride; $bright = 0
+    $allowed = [Math]::Max(1, [int][Math]::Floor(($to - $from + 1) * $share))
+    for ($i = $from; $i -le $to; $i++) {
+        $o = if ($row) { $at * $stride + $i * 4 } else { $i * $stride + $at * 4 }
+        if (([int]$bytes[$o] + $bytes[$o + 1] + $bytes[$o + 2]) -gt 40) {
+            $bright++
+            if ($bright -gt $allowed) { return $false }
+        }
+    }
+    $true
+}
+
+# The line $k px outside one side of the cut, along the frames' own length ($inner, the cut before the step's More):
+# the window a More took in beside the guide panel is no content next to the panel's top and bottom
+function Test-Outside($buffer, [System.Drawing.Rectangle]$r, [System.Drawing.Rectangle]$inner, [string]$side, [int]$k, [double]$share) {
+    switch ($side) {
+        'Left' { Test-Black $buffer $false ($r.Left - $k) $inner.Top ($inner.Bottom - 1) $share }
+        'Right' { Test-Black $buffer $false ($r.Right - 1 + $k) $inner.Top ($inner.Bottom - 1) $share }
+        'Top' { Test-Black $buffer $true ($r.Top - $k) $inner.Left ($inner.Right - 1) $share }
+        'Bottom' { Test-Black $buffer $true ($r.Bottom - 1 + $k) $inner.Left ($inner.Right - 1) $share }
+    }
+}
+
+# A side shows a frame's own edge when the frame ends in black within $reach px of the cut: a border drawn just outside
+# the frame's rectangle, the art Blizzard's achievement tabs hang below their buttons (19 px on a 1440 px screen); Grow
+# takes them in. A frame laid over another one's corner (the guide panel and the reward preview over the window's
+# border) still has its edge where at least 85% of the line 3 px out is black. Anything else is a cut through content.
+$reach = 24
+function Get-Side($buffer, [System.Drawing.Rectangle]$r, [System.Drawing.Rectangle]$inner, [string]$side) {
+    for ($k = 1; $k -le $reach; $k++) {
+        if (Test-Outside $buffer $r $inner $side $k 0.005) { Write-Verbose "  $side`: black $k px out"; return [pscustomobject]@{ Edge = $true; Grow = $k - 1 } }
+    }
+    $mostlyBlack = Test-Outside $buffer $r $inner $side 3 0.15
+    Write-Verbose "  $side`: $(if ($mostlyBlack) { 'mostly' } else { 'not' }) black 3 px out"
+    [pscustomobject]@{ Edge = $mostlyBlack; Grow = 0 }
+}
+
+# The cut moved in over black lines on the given sides, to the frame's visible edge
+function Get-Trimmed($buffer, [System.Drawing.Rectangle]$r, [bool]$left, [bool]$top, [bool]$right, [bool]$bottom) {
+    $l = $r.Left; $t = $r.Top; $rr = $r.Right - 1; $b = $r.Bottom - 1
+    if ($top) { while ($t -lt $b -and (Test-Black $buffer $true $t $l $rr)) { $t++ } }
+    if ($bottom) { while ($b -gt $t -and (Test-Black $buffer $true $b $l $rr)) { $b-- } }
+    if ($left) { while ($l -lt $rr -and (Test-Black $buffer $false $l $t $b)) { $l++ } }
+    if ($right) { while ($rr -gt $l -and (Test-Black $buffer $false $rr $t $b)) { $rr-- } }
+    New-Object System.Drawing.Rectangle $l, $t, ($rr - $l + 1), ($b - $t + 1)
+}
+
 # --- the picture --------------------------------------------------------------------------------------------------
-# The old pictures' edge: alpha at 0, 4, 8 ... 40 px in from the edge (measured, identical on every old picture)
+# The old pictures' edge: alpha at 0, 4, 8 ... 40 px in from the edge (measured, identical on every old picture),
+# stretched to $width pixels: 40 in an edge side's margin, -Fade on a cut side
 $curve = @(2, 6, 16, 39, 80, 135, 187, 223, 242, 250, 253, 255)
-function Get-EdgeAlpha([double]$d) {
-    $t = $d / $Fade * 40 / 4
+function Get-EdgeAlpha([double]$d, [double]$width) {
+    $t = $d / $width * 40 / 4
     if ($t -ge $curve.Count - 1) { return 1.0 }
     $i = [Math]::Floor($t); $f = $t - $i
     (($curve[$i] * (1 - $f)) + ($curve[$i + 1] * $f)) / 255.0
@@ -237,56 +317,98 @@ foreach ($picture in $pictures) {
         $left = [Math]::Max(0, [int][Math]::Round($part.Left * $sx)); $top = [Math]::Max(0, [int][Math]::Round($part.Top * $sy))
         $right = [Math]::Min($image.Width, [int][Math]::Round($part.Right * $sx)); $bottom = [Math]::Min($image.Height, [int][Math]::Round($part.Bottom * $sy))
         if ($right -le $left -or $bottom -le $top) { Write-Warning "$($picture.Name): empty cut in $($shot.Path)"; continue }
-        $crops += [pscustomobject]@{ Image = $image; Rect = (New-Object System.Drawing.Rectangle $left, $top, ($right - $left), ($bottom - $top)); Part = $part }
+        $rect = New-Object System.Drawing.Rectangle $left, $top, ($right - $left), ($bottom - $top)
+        $innerLeft = [Math]::Max($left, [int][Math]::Round($part.InnerLeft * $sx)); $innerTop = [Math]::Max($top, [int][Math]::Round($part.InnerTop * $sy))
+        $innerRight = [Math]::Min($right, [int][Math]::Round($part.InnerRight * $sx)); $innerBottom = [Math]::Min($bottom, [int][Math]::Round($part.InnerBottom * $sy))
+        $inner = if ($innerRight -gt $innerLeft -and $innerBottom -gt $innerTop) {
+            New-Object System.Drawing.Rectangle $innerLeft, $innerTop, ($innerRight - $innerLeft), ($innerBottom - $innerTop)
+        } else { $rect }
+        $crops += [pscustomobject]@{ Image = $image; Buffer = (Get-Buffer $shot.Path); Rect = $rect; Inner = $inner; Part = $part
+            UnitsX = $part.Width / [double]$rect.Width; UnitsY = $part.Height / [double]$rect.Height }
     }
     if ($crops.Count -eq 0) { continue }
 
-    # natural size in UI units, and the stacked size in screenshot pixels
-    $uiWidth = ($crops.Part | Measure-Object Width -Maximum).Maximum; $uiHeight = ($crops.Part | Measure-Object Height -Sum).Sum
+    # The picture's sides: left and right when every part has that edge, top from the first part, bottom from the last.
+    # On those sides each part takes in its frame's art outside the cut, then moves in over the black.
+    $sides = @($crops | ForEach-Object {
+        $crop = $_; $found = [ordered]@{}
+        foreach ($side in 'Left', 'Top', 'Right', 'Bottom') { $found[$side] = Get-Side $crop.Buffer $crop.Rect $crop.Inner $side }
+        [pscustomobject]$found
+    })
+    $edge = [pscustomobject]@{ Left = -not ($sides.Left.Edge -contains $false); Right = -not ($sides.Right.Edge -contains $false)
+        Top = $sides[0].Top.Edge; Bottom = $sides[-1].Bottom.Edge }
+    for ($i = 0; $i -lt $crops.Count; $i++) {
+        $top = $edge.Top -and $i -eq 0; $bottom = $edge.Bottom -and $i -eq $crops.Count - 1
+        $growLeft = if ($edge.Left) { $sides[$i].Left.Grow } else { 0 }; $growRight = if ($edge.Right) { $sides[$i].Right.Grow } else { 0 }
+        $growTop = if ($top) { $sides[$i].Top.Grow } else { 0 }; $growBottom = if ($bottom) { $sides[$i].Bottom.Grow } else { 0 }
+        $r = $crops[$i].Rect
+        $r = New-Object System.Drawing.Rectangle ($r.X - $growLeft), ($r.Y - $growTop), ($r.Width + $growLeft + $growRight), ($r.Height + $growTop + $growBottom)
+        $crops[$i].Rect = Get-Trimmed $crops[$i].Buffer $r $edge.Left $top $edge.Right $bottom
+    }
+    $marginLeft = if ($edge.Left) { $Margin } else { 0 }; $marginRight = if ($edge.Right) { $Margin } else { 0 }
+    $marginTop = if ($edge.Top) { $Margin } else { 0 }; $marginBottom = if ($edge.Bottom) { $Margin } else { 0 }
+
+    # scaled to fit with its margins; the natural size in UI units through the run's units per screenshot pixel
     $pxWidth = ($crops.Rect | Measure-Object Width -Maximum).Maximum; $pxHeight = ($crops.Rect | Measure-Object Height -Sum).Sum
-    $scale = [Math]::Min(1.0, $MaxSide / [double][Math]::Max($pxWidth, $pxHeight))
-    $width = [Math]::Max(1, [int][Math]::Round($pxWidth * $scale)); $height = [Math]::Max(1, [int][Math]::Round($pxHeight * $scale))
+    $scale = [Math]::Min(1.0, [Math]::Min(($MaxSide - $marginLeft - $marginRight) / [double]$pxWidth, ($MaxSide - $marginTop - $marginBottom) / [double]$pxHeight))
+    foreach ($crop in $crops) {
+        $crop | Add-Member -Force DrawWidth ([Math]::Max(1, [int][Math]::Round($crop.Rect.Width * $scale)))
+        $crop | Add-Member -Force DrawHeight ([Math]::Max(1, [int][Math]::Round($crop.Rect.Height * $scale)))
+    }
+    $width = [int]($marginLeft + ($crops | Measure-Object DrawWidth -Maximum).Maximum + $marginRight)
+    $height = [int]($marginTop + ($crops | Measure-Object DrawHeight -Sum).Sum + $marginBottom)
+    $uiWidth = [int][Math]::Round($width / $scale * $crops[0].UnitsX); $uiHeight = [int][Math]::Round($height / $scale * $crops[0].UnitsY)
     $texWidth = Get-NextPowerOfTwo $width; $texHeight = Get-NextPowerOfTwo $height
     $target = Join-Path $mediaDir "$($picture.Name).tga"
-    "{0,-16} run {1}, {2} part(s): {3}x{4} px ({5}x{6} units) in a {7}x{8} texture" -f $picture.Name, $run.Time, $crops.Count, $width, $height, $uiWidth, $uiHeight, $texWidth, $texHeight
+    $margins = @('Left', 'Top', 'Right', 'Bottom' | Where-Object { $edge.$_ })
+    "{0,-16} run {1}, {2} part(s): {3}x{4} px ({5}x{6} units) in a {7}x{8} texture, margin {9}" -f $picture.Name, $run.Time, $crops.Count,
+        $width, $height, $uiWidth, $uiHeight, $texWidth, $texHeight, $(if ($margins) { $margins -join ' ' } else { 'none' })
     $made[$picture.Name] = [pscustomobject]@{ Width = $uiWidth; Height = $uiHeight; Right = $width / $texWidth; Bottom = $height / $texHeight }
-    if (-not $PSCmdlet.ShouldProcess($target, 'write the picture')) { continue }
+    $write = $PSCmdlet.ShouldProcess($target, 'write the picture')
+    if (-not $write -and -not $Preview) { continue }
 
+    # black under the parts, so the margins and a narrower part's side are the backdrop's black
     $canvas = New-Object System.Drawing.Bitmap $width, $height, ([System.Drawing.Imaging.PixelFormat]::Format32bppArgb)
     $g = [System.Drawing.Graphics]::FromImage($canvas)
+    $g.Clear([System.Drawing.Color]::Black)
     $g.CompositingMode = 'SourceCopy'
-    $y = 0
+    $y = $marginTop
     foreach ($crop in $crops) {
-        $partWidth = [Math]::Max(1, [int][Math]::Round($crop.Rect.Width * $scale)); $partHeight = [Math]::Max(1, [int][Math]::Round($crop.Rect.Height * $scale))
-        $part = New-ScaledBitmap $crop.Image $crop.Rect $partWidth $partHeight
-        $g.DrawImage($part, 0, $y, $partWidth, $partHeight)
+        $part = New-ScaledBitmap $crop.Image $crop.Rect $crop.DrawWidth $crop.DrawHeight
+        $g.DrawImage($part, $marginLeft, $y, $crop.DrawWidth, $crop.DrawHeight)
         $part.Dispose()
-        $y += $partHeight
+        $y += $crop.DrawHeight
     }
     $g.Dispose()
 
     # soft edge, then into a transparent power-of-two texture
-    $data = $canvas.LockBits((New-Object System.Drawing.Rectangle 0, 0, $width, $height), 'ReadOnly', $canvas.PixelFormat)
+    $fadeLeft = if ($edge.Left) { 40 } else { $Fade }; $fadeRight = if ($edge.Right) { 40 } else { $Fade }
+    $fadeTop = if ($edge.Top) { 40 } else { $Fade }; $fadeBottom = if ($edge.Bottom) { 40 } else { $Fade }
+    $data = $canvas.LockBits((New-Object System.Drawing.Rectangle 0, 0, $width, $height), 'ReadWrite', $canvas.PixelFormat)
     $rowBytes = New-Object byte[] ($width * 4)
     $pixels = New-Object byte[] ($texWidth * $texHeight * 4)
     $alphaX = New-Object double[] $width
-    for ($x = 0; $x -lt $width; $x++) { $alphaX[$x] = Get-EdgeAlpha ([Math]::Min($x, $width - 1 - $x)) }
+    for ($x = 0; $x -lt $width; $x++) { $alphaX[$x] = [Math]::Min((Get-EdgeAlpha $x $fadeLeft), (Get-EdgeAlpha ($width - 1 - $x) $fadeRight)) }
     for ($row = 0; $row -lt $height; $row++) {
-        [Runtime.InteropServices.Marshal]::Copy([IntPtr]($data.Scan0.ToInt64() + $row * $data.Stride), $rowBytes, 0, $width * 4)
-        $alphaY = Get-EdgeAlpha ([Math]::Min($row, $height - 1 - $row))
+        $scan = [IntPtr]($data.Scan0.ToInt64() + $row * $data.Stride)
+        [Runtime.InteropServices.Marshal]::Copy($scan, $rowBytes, 0, $width * 4)
+        $alphaY = [Math]::Min((Get-EdgeAlpha $row $fadeTop), (Get-EdgeAlpha ($height - 1 - $row) $fadeBottom))
         for ($x = 0; $x -lt $width; $x++) {
             $rowBytes[$x * 4 + 3] = [byte][Math]::Round($rowBytes[$x * 4 + 3] * $alphaX[$x] * $alphaY)
         }
+        [Runtime.InteropServices.Marshal]::Copy($rowBytes, 0, $scan, $width * 4)
         [Array]::Copy($rowBytes, 0, $pixels, $row * $texWidth * 4, $width * 4)
     }
     $canvas.UnlockBits($data)
     if ($Preview) {
-        New-Item -ItemType Directory -Force $Preview | Out-Null
+        New-Item -ItemType Directory -Force $Preview -WhatIf:$false | Out-Null   # previews also with -WhatIf
         $canvas.Save((Join-Path $Preview "$($picture.Name).png"), [System.Drawing.Imaging.ImageFormat]::Png)
     }
     $canvas.Dispose()
-    New-Item -ItemType Directory -Force $mediaDir | Out-Null
-    Write-Tga $target $pixels $texWidth $texHeight
+    if ($write) {
+        New-Item -ItemType Directory -Force $mediaDir | Out-Null
+        Write-Tga $target $pixels $texWidth $texHeight
+    }
 }
 foreach ($image in $images.Values) { $image.Dispose() }
 

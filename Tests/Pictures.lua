@@ -3,7 +3,8 @@ local addonName, addon = ...
 -- The help pane's pictures (docs/work/2026-10-25-options-revamp/plan-help.md), game only: /kaftest pictures builds each
 -- picture's scene through the Show me scene of its section (addon.Options.Window.HelpScenes), so the run also proves
 -- every Show me in game. Each step checks what the scene opened, records the screen rectangle to cut out and takes a
--- screenshot, the /kevutest way (Krowi_ExtendedVendorUI): a banner names the step, steps that need the mouse wait for
+-- screenshot once the game's own tooltip is off it, the /kevutest way (Krowi_ExtendedVendorUI): a banner names the
+-- step, steps that need the mouse wait for
 -- the player, settings are put back, and the addon's Lua errors of the session are reported from BugGrabber at the end.
 -- The rectangles go to KrowiAF_DebugTable.Pictures (the last 5 runs); .claude/tools/Make-HelpPictures.ps1 pairs them
 -- with the screenshots and writes Media/Help/*.tga and Options/Window/Help/Pictures.lua. The routine never sets a CVar.
@@ -16,7 +17,7 @@ local keepRuns = 5
 
 local live -- the run in progress
 local runToken = 0 -- bumped by every stop, so a stopped run's timers do nothing
-local banner, backdrop
+local banner, backdrop, centre, pictureMenu
 local steps, SetBanner, RunStep
 
 local function Scenes()
@@ -99,8 +100,11 @@ local function PlaceBackdrop(frames)
     end
 end
 
--- The union of the items in screen pixels from the top left, and its natural size in UIParent units
-local function Rectangle(items)
+-- The union of the items in screen pixels from the top left, and its natural size in UIParent units. more: UIParent
+-- units of what lies around them per side ({Top = 30}), so a side cut through the window fades out over the window
+-- rather than over the frames the picture is about (Krowi, 2026-10-29). Inner is the union before more: the tool looks
+-- along it whether the other sides are the frames' edge, or the window more took in counts as content beside them
+local function Rectangle(items, more)
     local left, right, top, bottom
     for _, item in ipairs(items) do
         local l, r, t, b = Edges(item)
@@ -115,14 +119,49 @@ local function Rectangle(items)
     local _, screenHeight = GetPhysicalScreenSize()
     local pixels = screenHeight / 768 -- one unit at scale 1 is this many pixels: the UI is 768 units high
     local uiScale = UIParent:GetEffectiveScale()
+    local inner = {
+        Left = floor(left * pixels + 0.5),
+        Right = floor(right * pixels + 0.5),
+        Top = floor(screenHeight - top * pixels + 0.5),
+        Bottom = floor(screenHeight - bottom * pixels + 0.5)
+    }
+    if more then
+        left = max(0, left - (more.Left or 0) * uiScale)
+        right = min(UIParent:GetRight() * uiScale, right + (more.Right or 0) * uiScale)
+        top = min(UIParent:GetTop() * uiScale, top + (more.Top or 0) * uiScale)
+        bottom = max(0, bottom - (more.Bottom or 0) * uiScale)
+    end
     return {
         Left = floor(left * pixels + 0.5),
         Right = floor(right * pixels + 0.5),
         Top = floor(screenHeight - top * pixels + 0.5),
         Bottom = floor(screenHeight - bottom * pixels + 0.5),
         Width = floor((right - left) / uiScale + 0.5),
-        Height = floor((top - bottom) / uiScale + 0.5)
+        Height = floor((top - bottom) / uiScale + 0.5),
+        Inner = inner
     }
+end
+
+-- The game's own tooltip over a picture's cut (grown by 10 px): one the game shows while the mouse rests on a unit or
+-- an action button behind the black (the 2026-10-25 21:28 run's Window). Read only: hiding GameTooltip from addon code
+-- would run its OnHide tainted
+local function GameTooltipOver(rectangle)
+    if not GameTooltip:IsVisible() then
+        return false
+    end
+    -- a unit tooltip with a restricted name can make its position secret (Retail): it counts as covering the picture
+    -- until the mouse moves on
+    local left, right, top, bottom = GameTooltip:GetLeft(), GameTooltip:GetRight(), GameTooltip:GetTop(), GameTooltip:GetBottom()
+    local scale = GameTooltip:GetEffectiveScale()
+    if issecretvalue and (issecretvalue(left) or issecretvalue(right) or issecretvalue(top) or issecretvalue(bottom) or issecretvalue(scale)) then
+        return true
+    end
+    if not left then
+        return false
+    end
+    local tip = Rectangle({GameTooltip})
+    return tip ~= nil and tip.Left < rectangle.Right + 10 and tip.Right > rectangle.Left - 10 and tip.Top < rectangle.Bottom + 10
+        and tip.Bottom > rectangle.Top - 10
 end
 
 local function TabButtons()
@@ -151,6 +190,30 @@ local function CloseMenus()
     else
         CloseDropDownMenus()
     end
+end
+
+-- The event reminder buttons beside the window, out of a picture that lies over them (the guide panel, the centred
+-- reward preview: the 2026-10-29 run). Hidden ones come back within a second, since the alert system's refresh shows
+-- every button with an event again while the window is open (Gui/EventReminder/SideButtonSystem.lua), so they go
+-- transparent instead; the next step's clean-up gives them their alpha back
+local function FadeSideButtons()
+    live.FadedSideButtons = live.FadedSideButtons or {}
+    local i = 1
+    while _G["KrowiAF_AchievementFrameSideButton" .. i] do
+        local sideButton = _G["KrowiAF_AchievementFrameSideButton" .. i]
+        if not live.FadedSideButtons[sideButton] then
+            live.FadedSideButtons[sideButton] = sideButton:GetAlpha()
+            sideButton:SetAlpha(0)
+        end
+        i = i + 1
+    end
+end
+
+local function UnfadeSideButtons()
+    for sideButton, alpha in next, live.FadedSideButtons or {} do
+        sideButton:SetAlpha(alpha)
+    end
+    live.FadedSideButtons = nil
 end
 
 -- The first line of the tooltip's Earned By part (Gui/AchievementTooltip/BlizzardDefault.lua): "Earned by: ...", "Not
@@ -204,14 +267,19 @@ local function HeaderLook(achievement)
     return "Orange"
 end
 
+-- From the category with the most achievements: a list without a scroll bar is wider, so its row would stick out of
+-- the picture (the Sunday's Finest row, 2026-10-29)
 local function FindLook(look)
+    local found, most = nil, 0
     for _, achievement in next, addon.Data.Achievements do
+        local count = achievement.Category and achievement.Category.Achievements and #achievement.Category.Achievements or 0
         -- shown as itself: with Collapse Chain on the list shows a chain's next step instead when that one is completed
-        if achievement.Category and not achievement.IsTracking and not select(2, addon.GetNextAchievement(achievement))
+        if count > most and not achievement.IsTracking and not select(2, addon.GetNextAchievement(achievement))
             and HeaderLook(achievement) == look then
-            return achievement
+            found, most = achievement, count
         end
     end
+    return found
 end
 
 -- Selects the achievement, then clears the selection, so its row shows collapsed and in its own colours
@@ -224,7 +292,7 @@ local function RowOf(achievement)
     return KrowiAF_AchievementsFrame.ScrollBox:FindFrame(achievement)
 end
 
-local function SceneStep(name, picture, scene, text, cut, check)
+local function SceneStep(name, picture, scene, text, cut, check, more)
     return {
         Name = name,
         Picture = picture,
@@ -237,15 +305,17 @@ local function SceneStep(name, picture, scene, text, cut, check)
         Cut = cut,
         Check = check or function()
             return live.Scene ~= nil, "the scene did not open"
-        end
+        end,
+        More = more
     }
 end
 
-local function ColorStep(look)
+local function ColorStep(look, more)
     return {
         Name = "colors-" .. look:lower(),
         Picture = "Colors",
         Text = ("a row with the %s header"):format(look:lower()),
+        More = more, -- the first row's top and the last row's bottom: the rows between them are stacked as they are
         Run = function()
             KrowiAF_SearchBoxFrame:SetText("") -- the list must show the category, not search results
             -- green, yellow and red headers and the blue warband one are options; on for these rows, back at the end.
@@ -267,13 +337,16 @@ local function ColorStep(look)
             return {RowOf(live.Look)}
         end,
         Check = function()
-            return RowOf(live.Look) ~= nil, ("the row of %d is not on screen"):format(live.Look.Id)
+            if not RowOf(live.Look) then
+                return false, ("the row of %d is not on screen"):format(live.Look.Id)
+            end
+            return KrowiAF_AchievementsFrame.ScrollBar:IsShown(), ("the list of %d has no scroll bar, so its row is wider"):format(live.Look.Id)
         end
     }
 end
 
 steps = {
-    SceneStep("tabs", "NewTabs", "tabs", "the tabs under the achievement window", TabButtons),
+    SceneStep("tabs", "NewTabs", "tabs", "the tabs under the achievement window", TabButtons, nil, {Top = 40}),
     SceneStep("window", "Window", "window", "the achievement window", function()
         local items = TabButtons()
         tinsert(items, AchievementFrame)
@@ -282,16 +355,15 @@ steps = {
     end),
     SceneStep("categories", "CategoryTree", "categories", "the category list at the current expansion", function()
         return {{Frame = KrowiAF_CategoriesFrame, MaxHeight = 360}}
-    end),
-    -- From the Progress Overview header down, inside the summary: the Categories frame's own rectangle sits lower than
-    -- the bars it draws and reaches under the window into the tab strip (the 2026-10-25 runs)
-    SceneStep("summary", "SummaryBars", "summary", "the summary's progress bars", function()
-        return {{Frame = KrowiAF_SummaryFrame, Top = KrowiAF_SummaryFrame.Categories.Header, MaxHeight = 128}}
+    end, nil, {Top = 30, Right = 20}),
+    SceneStep("summary", "Summary", "summary", "the summary: recent achievements and progress", function()
+        return {KrowiAF_SummaryFrame}
     end),
     {
         Name = "compact",
         Picture = "CompactList",
         Text = "compact achievements",
+        More = {Top = 30, Left = 30},
         Run = function()
             if not addon.Options.db.profile.Achievements.Compact then
                 return "Compact Achievements is off; it needs a /reload, so turn it on and run the pictures again"
@@ -307,11 +379,11 @@ steps = {
             return live.Scene ~= nil, "the scene did not open"
         end
     },
-    ColorStep("Orange"),
+    ColorStep("Orange", {Top = 30}),
     ColorStep("Blue"),
     ColorStep("Green"),
     ColorStep("Yellow"),
-    ColorStep("Red"),
+    ColorStep("Red", {Bottom = 30}),
     SceneStep("filters", "FilterMenu", "filters", "the filter menu", function()
         return {{Frame = OpenMenu(), MaxHeight = 360}}
     end, function()
@@ -321,6 +393,7 @@ steps = {
         Name = "search",
         Picture = "SearchBox",
         Text = "a search with its preview",
+        More = {Left = 20, Top = 20, Right = 20, Bottom = 20},
         Run = function()
             CloseMenus()
             Scenes().search(function(opened)
@@ -401,11 +474,44 @@ steps = {
     },
     -- The menu shows Go to with its arrow; its submenu is not taken: Retail's menu manager keeps its open menus where
     -- addon code cannot read them (the 2026-10-25 run found Menu.GetManager().menus nil)
-    SceneStep("menu", "MenuMain", "rightclick", "the right-click menu", function()
-        return {OpenMenu()}
-    end, function()
-        return OpenMenu() ~= nil, "no menu is open"
-    end),
+    {
+        Name = "menu",
+        Picture = "MenuMain",
+        Text = "the right-click menu",
+        Run = function()
+            Scenes().rightclick(function(opened)
+                live.Scene = opened
+            end)
+        end,
+        -- The scene's menu opens at the cursor, and at the screen's border the picture loses that side's edge (the
+        -- 2026-10-29 runs: top left, right border), so it goes to the screen's centre. Retail moves the open menu, as
+        -- Blizzard's menus let addon code (Blizzard_Menu/Menu.lua: a menu's proxy is a frame to pass to SetPoint);
+        -- closing and opening it again would have the menu manager redraw the list under the cursor tainted twice more.
+        -- Mists opens the same menu again, built by the same code, rather than move Blizzard's drop-down list
+        After = function()
+            local menu = OpenMenu()
+            live.SceneMenu = menu ~= nil
+            if not (menu and live.Scene) then
+                return
+            end
+            if addon.Util.IsModern then
+                menu:ClearAllPoints()
+                menu:SetPoint("TOPLEFT", centre, "BOTTOMLEFT")
+                return
+            end
+            CloseMenus()
+            pictureMenu = pictureMenu or addon.MenuBuilder:New({modern = addon.Util.IsModern})
+            pictureMenu:ShowPopup(function(builder)
+                addon.Gui.RightClickMenu.AchievementMenu:CreateMenu(builder:GetMenu(), live.Scene.Achievement, live.Scene.Row)
+            end, centre)
+        end,
+        Cut = function()
+            return {OpenMenu()}
+        end,
+        Check = function()
+            return live.SceneMenu and OpenMenu() ~= nil, "no menu is open"
+        end
+    },
     {
         Name = "popout",
         Picture = "PopOut",
@@ -424,28 +530,46 @@ steps = {
             return {live.Scene and live.Scene.Popout}
         end
     },
-    SceneStep("reward-preview", "RewardPreview", "rewards", "the reward preview of a mount", function()
-        return {KrowiAF_RewardPreview}
-    end, function()
-        return KrowiAF_RewardPreview:IsShown(), "the reward preview is not shown"
-    end),
-    addon.Util.IsMainline and SceneStep("guide", "GuidePanel", "guides", "the guide of Legendary Research of the Ebon Blade", function()
-        -- the event reminder buttons beside the window are alert frames in DIALOG strata, over the HIGH guide panel;
-        -- they are the addon's own and come back with the next step's clean-up
-        live.HiddenSideButtons = {}
-        local i = 1
-        while _G["KrowiAF_AchievementFrameSideButton" .. i] do
-            local sideButton = _G["KrowiAF_AchievementFrameSideButton" .. i]
-            if sideButton:IsShown() then
-                sideButton:Hide()
-                tinsert(live.HiddenSideButtons, sideButton)
+    {
+        Name = "reward-preview",
+        Picture = "RewardPreview",
+        Text = "the reward preview of a mount",
+        Run = function()
+            Scenes().rewards(function(opened)
+                live.Scene = opened
+            end)
+        end,
+        -- Next to its row the preview ran off the bottom of the screen (the 2026-10-29 run), and at the screen's centre it
+        -- lay over the window on a 2560 px wide screen (2026-10-30): the addon's own frame goes beside the window, left
+        -- of it when the window sits too far right for it to fit, and its next open anchors it to its row again
+        -- (Gui/SidePanels.lua AnchorSidePanel)
+        After = function()
+            local preview, window = KrowiAF_RewardPreview, AchievementFrame
+            if preview:IsShown() then
+                local fitsRight = window:GetRight() * window:GetEffectiveScale() + (40 + preview:GetWidth()) * preview:GetEffectiveScale()
+                    <= UIParent:GetRight() * UIParent:GetEffectiveScale()
+                preview:ClearAllPoints()
+                if fitsRight then
+                    preview:SetPoint("LEFT", window, "RIGHT", 40, 0)
+                else
+                    preview:SetPoint("RIGHT", window, "LEFT", -40, 0)
+                end
             end
-            i = i + 1
+            FadeSideButtons()
+        end,
+        Cut = function()
+            return {KrowiAF_RewardPreview}
+        end,
+        Check = function()
+            return KrowiAF_RewardPreview:IsShown(), "the reward preview is not shown"
         end
+    },
+    addon.Util.IsMainline and SceneStep("guide", "GuidePanel", "guides", "the guide of Legendary Research of the Ebon Blade", function()
+        FadeSideButtons() -- they show through the panel
         return {KrowiAF_GuidePanel}
     end, function()
         return KrowiAF_GuidePanel ~= nil and KrowiAF_GuidePanel:IsShown(), "the guide panel is not shown"
-    end) or nil,
+    end, {Left = 30}) or nil,
     {
         Name = "calendar",
         Picture = "CalendarDays",
@@ -496,6 +620,7 @@ steps = {
         Name = "map-button",
         Picture = "MapButton",
         Text = "last step: press M and hover the addon's achievement button on the map (30 s)",
+        More = {Top = 30, Left = 30},
         Mouse = function()
             local button = addon.Gui.WorldMapButton
             return WorldMapFrame:IsShown() and type(button) == "table" and button:IsMouseOver()
@@ -600,9 +725,7 @@ local function SaveRun()
 end
 
 local function Restore()
-    for _, sideButton in ipairs(live.HiddenSideButtons or {}) do
-        sideButton:Show()
-    end
+    UnfadeSideButtons()
     CloseMenus()
     Krowi_Tooltip:Hide()
     Krowi_ProgressBarTooltip:Hide()
@@ -633,10 +756,7 @@ end
 
 -- What an earlier step left open, so it does not show through this step's picture
 local function Cleanup()
-    for _, sideButton in ipairs(live.HiddenSideButtons or {}) do
-        sideButton:Show()
-    end
-    live.HiddenSideButtons = nil
+    UnfadeSideButtons()
     CloseMenus()
     Krowi_Tooltip:Hide()
     Krowi_ProgressBarTooltip:Hide()
@@ -686,6 +806,78 @@ local function Finish()
     finish(results, observations)
 end
 
+-- The screenshot, once the game's tooltip is off the cut: the banner asks the player to move the mouse, and after
+-- mouseWait the step fails without a picture, so the tool keeps an earlier run's
+local function Shoot(step, items, rectangle, waited)
+    local checked, over = pcall(GameTooltipOver, rectangle)
+    if checked and over then
+        if waited >= mouseWait then
+            SetBanner(step.Text)
+            Add("FAIL", ("the game's tooltip stayed over the picture for %d s; move the mouse off units and buttons and redo it with /kaftest pictures %s"):format(
+                mouseWait, step.Picture:lower()))
+            After(afterShot, function()
+                RunStep(live.StepIndex + 1)
+            end)
+            return
+        end
+        SetBanner(step.Text .. ": move the mouse, the game's tooltip covers the picture")
+        After(pollEvery, function()
+            Shoot(step, items, rectangle, waited + pollEvery)
+        end)
+        return
+    end
+    if not checked then
+        tinsert(live.Observations, ("%s: tooltip check failed: %s"):format(step.Name, tostring(over)))
+    end
+    if waited > 0 then
+        SetBanner(step.Text)
+        -- the mouse moved during the wait: the scene's check, the step's mouse (the map button's hover) and its cut
+        -- again, as they are now. Not the step's Cut, which can change frames again (the guide step fades the side
+        -- buttons)
+        local checkOk, passed, reason = pcall(step.Check or function() return true end)
+        local mouseOk, onIt = pcall(step.Mouse or function() return true end)
+        local cutOk, now = pcall(Rectangle, items, step.More)
+        local problem = not checkOk and tostring(passed) or not passed and (reason or "the check failed")
+            or not mouseOk and tostring(onIt) or not onIt and "the mouse left what the step needs it on"
+            or not cutOk and tostring(now) or not now and "nothing on screen to cut out"
+        if problem then
+            Add("FAIL", "after the wait for the tooltip: " .. problem)
+            After(afterShot, function()
+                RunStep(live.StepIndex + 1)
+            end)
+            return
+        end
+        rectangle = now
+    end
+    -- black under the picture's frames first, then the screenshot a few frames later
+    local floorOk, floorErr = pcall(PlaceBackdrop, step.Floor and step.Floor() or items)
+    if not floorOk then
+        tinsert(live.Observations, ("%s: backdrop not placed: %s"):format(step.Name, tostring(floorErr)))
+    end
+    After(0.2, function()
+        -- a tooltip the game showed in the meantime: the backdrop drops back, so the banner shows over it, and the
+        -- step waits again
+        local stillOk, coveredNow = pcall(GameTooltipOver, rectangle)
+        if stillOk and coveredNow then
+            backdrop:SetFrameStrata("BACKGROUND")
+            backdrop:SetFrameLevel(0)
+            Shoot(step, items, rectangle, waited)
+            return
+        end
+        local shotTime = date("%Y-%m-%d %H:%M:%S")
+        rectangle.Name, rectangle.Time = step.Picture, shotTime
+        tinsert(live.Run.Shots, rectangle)
+        Add("PASS", ("%s: %dx%d units, cut at %d,%d-%d,%d px"):format(step.Picture, rectangle.Width, rectangle.Height,
+            rectangle.Left, rectangle.Top, rectangle.Right, rectangle.Bottom))
+        live.Results[#live.Results].Screenshot = {Time = shotTime}
+        live.Shot = live.Results[#live.Results].Screenshot
+        Screenshot()
+        After(afterShot, function()
+            RunStep(live.StepIndex + 1)
+        end)
+    end)
+end
+
 local function Capture()
     local step = live.Steps[live.StepIndex]
     local ok, passed, reason = pcall(step.Check or function() return true end)
@@ -697,7 +889,7 @@ local function Capture()
         local cutOk, items = pcall(step.Cut)
         local rectangle
         if cutOk and items then
-            cutOk, rectangle = pcall(Rectangle, items)
+            cutOk, rectangle = pcall(Rectangle, items, step.More)
             if not cutOk then
                 items, rectangle = rectangle, nil -- the error, for the line below
             end
@@ -705,24 +897,7 @@ local function Capture()
         if not rectangle then
             Add("FAIL", "nothing on screen to cut out" .. (cutOk and "" or (": " .. tostring(items))))
         else
-            -- black under the picture's frames first, then the screenshot a few frames later
-            local floorOk, floorErr = pcall(PlaceBackdrop, step.Floor and step.Floor() or items)
-            if not floorOk then
-                tinsert(live.Observations, ("%s: backdrop not placed: %s"):format(step.Name, tostring(floorErr)))
-            end
-            After(0.2, function()
-                local shotTime = date("%Y-%m-%d %H:%M:%S")
-                rectangle.Name, rectangle.Time = step.Picture, shotTime
-                tinsert(live.Run.Shots, rectangle)
-                Add("PASS", ("%s: %dx%d units, cut at %d,%d-%d,%d px"):format(step.Picture, rectangle.Width, rectangle.Height,
-                    rectangle.Left, rectangle.Top, rectangle.Right, rectangle.Bottom))
-                live.Results[#live.Results].Screenshot = {Time = shotTime}
-                live.Shot = live.Results[#live.Results].Screenshot
-                Screenshot()
-                After(afterShot, function()
-                    RunStep(live.StepIndex + 1)
-                end)
-            end)
+            Shoot(step, items, rectangle, 0)
             return
         end
     end
@@ -810,6 +985,11 @@ local function CreateFrames()
     black:SetAllPoints()
     black:SetColorTexture(0, 0, 0, 1)
     backdrop:Hide()
+
+    -- where the menu is taken, away from the screen's borders
+    centre = CreateFrame("Frame", nil, UIParent)
+    centre:SetSize(1, 1)
+    centre:SetPoint("CENTER")
 
     banner = CreateFrame("Frame", nil, UIParent)
     banner:SetFrameStrata("DIALOG")
