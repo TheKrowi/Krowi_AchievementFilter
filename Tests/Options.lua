@@ -245,7 +245,7 @@ options.Scenarios = {
             if not lib.Tabs then return "no tab registry" end
             return "tabs=" .. TabNames(lib)
         end,
-        Recorded = "no tab registry",
+        Recorded = "tabs=Achievement Filter", -- "no tab registry" before the tabs
         Target = "tabs=Achievement Filter"},
     {Name = "window-second-tab",
         Observe = function()
@@ -253,7 +253,7 @@ options.Scenarios = {
             if not lib.Tabs then return "no tab registry" end
             return SecondTab(lib)
         end,
-        Recorded = "no tab registry",
+        Recorded = "tabs=Achievement Filter,Zz Test shared=both open=Zz Test all=Achievement Filter,Zz Test after=Achievement Filter", -- "no tab registry" before the tabs
         Target = "tabs=Achievement Filter,Zz Test shared=both open=Zz Test all=Achievement Filter,Zz Test after=Achievement Filter"},
 }
 
@@ -306,6 +306,8 @@ end
 -- through the window's own functions, names itself in a banner over the window, checks what the window shows and takes a
 -- screenshot, which Read-GameTests.ps1 pairs with its file.
 --   open: /kaf opens the window where the landing rule says (the first open after a /reload also builds it)
+--   tabs: a tab per addon that registered with the window, this addon's selected, under the game's Options title
+--     (docs/work/2026-10-30-options-settings-look)
 --   section-<id>: Overview and every section draw their rows, and every drawn check box, slider and text box shows its
 --     option's value
 --   toggle, range, input: one row of each changed through its own control: the value is stored, and the changed dot and
@@ -345,7 +347,7 @@ local function After(seconds, func)
 end
 
 local function Window()
-    return KrowiAF_OptionsWindow
+    return Krowi_OptionsWindow
 end
 
 local function DeepCopy(value)
@@ -506,6 +508,28 @@ local function BuildSteps()
                 local shown = frame and frame:IsShown()
                 Add(shown and frame.SectionId == live.Landing and "PASS" or "FAIL", ("the window opens on %s, the landing section %s (first open after a /reload: %s)"):format(
                     tostring(frame and frame.SectionId), live.Landing, live.FirstOpen and "yes" or "no"))
+            end
+        },
+        {
+            Name = "tabs",
+            Text = "a tab per addon, this addon's selected",
+            Run = function() end,
+            Check = function()
+                local frame = Window()
+                local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
+                local shown, selected = 0, "none"
+                for _, button in ipairs(frame.TabButtons) do
+                    if button:IsShown() then
+                        shown = shown + 1
+                        if button:IsSelected() then selected = button.Tab.Config.TabName end
+                    end
+                end
+                local title = frame.NineSlice.Text:GetText()
+                local everyAddon = frame.SearchAll:IsShown()
+                local ok = shown == #lib.Tabs and frame.Tab == window.Controller and selected == "Achievement Filter"
+                    and title == SETTINGS_TITLE and everyAddon == (#lib.Tabs > 1)
+                Add(ok and "PASS" or "FAIL", ("%d of %d tabs shown, %s selected, title '%s', Every addon %s"):format(shown, #lib.Tabs, selected,
+                    tostring(title), everyAddon and "shown" or "hidden"))
             end
         },
         SectionStep("overview", addon.L["Overview"])

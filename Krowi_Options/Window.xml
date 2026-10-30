@@ -1,47 +1,64 @@
 <Ui>
     <Script file="WindowMixin.lua"/>
 
+    <!-- The navigation draws as the game's own Options window does (Blizzard_CategoryList.xml), from Blizzard's art only:
+         Blizzard's list templates run code that would taint its window (docs/work/2026-10-30-options-settings-look) -->
     <Button name="Krowi_OptionsNavButtonTemplate" mixin="Krowi_OptionsNavButtonMixin" virtual="true">
-        <Size y="22"/>
+        <Size y="20"/>
         <Layers>
             <Layer level="BACKGROUND">
-                <Texture parentKey="Selected" setAllPoints="true" hidden="true">
-                    <Color r="1" g="0.82" b="0" a="0.16"/>
+                <Texture parentKey="Texture" hidden="true">
+                    <Anchors>
+                        <Anchor point="CENTER"/>
+                    </Anchors>
                 </Texture>
             </Layer>
             <Layer level="ARTWORK">
                 <FontString parentKey="Label" inherits="GameFontNormal" justifyH="LEFT" wordwrap="false">
                     <Anchors>
-                        <Anchor point="LEFT" x="14"/>
-                        <Anchor point="RIGHT" x="-40"/>
-                    </Anchors>
-                </FontString>
-                <FontString parentKey="New" inherits="GameFontNormalSmall" justifyH="RIGHT" hidden="true">
-                    <Anchors>
-                        <Anchor point="RIGHT" x="-6"/>
+                        <Anchor point="TOPLEFT" x="36" y="1"/>
+                        <Anchor point="BOTTOMRIGHT" x="-6" y="1"/>
                     </Anchors>
                 </FontString>
             </Layer>
         </Layers>
-        <HighlightTexture>
-            <Color r="1" g="1" b="1" a="0.08"/>
-        </HighlightTexture>
+        <Frames>
+            <Frame parentKey="NewFeature" inherits="NewFeatureLabelTemplate" scale=".8" hidden="true">
+                <Size x="1" y="1"/>
+                <Anchors>
+                    <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Label" relativePoint="LEFT" x="-4" y="-10"/>
+                </Anchors>
+            </Frame>
+        </Frames>
         <Scripts>
             <OnClick method="OnClick"/>
+            <OnEnter method="OnEnter"/>
+            <OnLeave method="OnLeave"/>
         </Scripts>
     </Button>
 
-    <Frame name="Krowi_OptionsNavHeaderTemplate" mixin="Krowi_OptionsTextRowMixin" virtual="true">
-        <Size y="28"/>
+    <Frame name="Krowi_OptionsNavHeaderTemplate" mixin="Krowi_OptionsNavHeaderMixin" virtual="true">
+        <Size y="30"/>
         <Layers>
             <Layer level="ARTWORK">
-                <FontString parentKey="Text" inherits="GameFontHighlight" justifyH="LEFT">
+                <Texture parentKey="Background">
                     <Anchors>
-                        <Anchor point="BOTTOMLEFT" x="8" y="4"/>
+                        <Anchor point="TOPLEFT"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="OVERLAY">
+                <FontString parentKey="Label" inherits="GameFontHighlightMedium" justifyH="LEFT">
+                    <Anchors>
+                        <Anchor point="LEFT" x="20" y="-1"/>
                     </Anchors>
                 </FontString>
             </Layer>
         </Layers>
+    </Frame>
+
+    <Frame name="Krowi_OptionsNavSpacerTemplate" virtual="true">
+        <Size y="18"/>
     </Frame>
 
     <Frame name="Krowi_OptionsHelpTextTemplate" mixin="Krowi_OptionsHelpTextMixin" virtual="true">
@@ -85,7 +102,9 @@
         </Scripts>
     </Button>
 
-    <Frame name="Krowi_OptionsWindowTemplate" mixin="Krowi_OptionsWindowMixin" inherits="ButtonFrameTemplate" frameStrata="HIGH" toplevel="true" enableMouse="true" movable="true" resizable="true" clampedToScreen="true" hidden="true" virtual="true">
+    <!-- The game's own Options frame (SettingsFrameTemplate: each client's border, title strip and background); Blizzard's
+         window is laid out in Blizzard_SettingsPanel.xml, which the anchors in WindowMixin.lua's Layout follow -->
+    <Frame name="Krowi_OptionsWindowTemplate" mixin="Krowi_OptionsWindowMixin" inherits="SettingsFrameTemplate" frameStrata="HIGH" toplevel="true" enableMouse="true" movable="true" resizable="true" clampedToScreen="true" hidden="true" virtual="true">
         <Size x="1180" y="720"/>
         <Anchors>
             <Anchor point="CENTER"/>
@@ -97,6 +116,8 @@
                 <FontString parentKey="HelpKicker" inherits="GameFontDisableSmall" justifyH="LEFT"/>
                 <FontString parentKey="ReloadText" inherits="GameFontHighlight" justifyH="LEFT"/>
                 <FontString parentKey="ShowMeNote" inherits="GameFontDisableSmall" justifyH="LEFT" justifyV="TOP"/>
+                <FontString parentKey="SearchAllLabel" inherits="GameFontNormalSmall" justifyH="RIGHT" hidden="true"/>
+                <Texture parentKey="Divider" atlas="Options_HorizontalDivider"/>
             </Layer>
             <Layer level="BACKGROUND" textureSubLevel="2">
                 <Texture parentKey="NavBackground">
@@ -109,11 +130,16 @@
                     <Color r="1" g="0.82" b="0" a="0.08"/>
                 </Texture>
             </Layer>
+            <Layer level="OVERLAY" textureSubLevel="2">
+                <Texture parentKey="InnerFrame" atlas="Options_InnerFrame" hidden="true"/>
+            </Layer>
         </Layers>
         <Frames>
+            <Frame parentKey="Body"/>
             <EditBox parentKey="SearchBox" inherits="SearchBoxTemplate" autoFocus="false" letters="60">
-                <Size y="20"/>
+                <Size x="300" y="22"/>
             </EditBox>
+            <CheckButton parentKey="SearchAll" inherits="Krowi_OptionsCheckButtonTemplate" hidden="true"/>
             <Frame parentKey="NavScrollBox" inherits="WowScrollBoxList"/>
             <EventFrame parentKey="NavScrollBar" inherits="WowTrimScrollBar"/>
             <Frame parentKey="PageScrollBox" inherits="WowScrollBoxList"/>
@@ -143,6 +169,12 @@
             </Button>
             <Button parentKey="ReloadButton" inherits="UIPanelButtonNoTooltipTemplate" hidden="true">
                 <Size x="110" y="22"/>
+            </Button>
+            <Button parentKey="CloseButton" inherits="UIPanelButtonNoTooltipTemplate">
+                <Size x="96" y="22"/>
+                <Anchors>
+                    <Anchor point="BOTTOMRIGHT" x="-26" y="16"/>
+                </Anchors>
             </Button>
             <Button parentKey="Lightbox" frameStrata="FULLSCREEN" hidden="true">
                 <Layers>

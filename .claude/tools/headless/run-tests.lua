@@ -391,7 +391,7 @@ local suites = {}
 suites.escape = function(c)
     local env, addon, state = c.env, c.addon, c.state
     local frames = {}
-    for key, name in pairs({ Tooltip = "KrowiAF_FloatingAchievementTooltip", Options = "KrowiAF_OptionsWindow", Text = "KrowiAF_TextFrame", MapVerifier = "KrowiAF_MapVerifierFrame",
+    for key, name in pairs({ Tooltip = "KrowiAF_FloatingAchievementTooltip", Options = "Krowi_OptionsWindow", Text = "KrowiAF_TextFrame", MapVerifier = "KrowiAF_MapVerifierFrame",
         DataManager = "KrowiAF_DataManagerFrame", Calendar = "KrowiAF_AchievementCalendarFrame", Achievements = "AchievementFrame", GameMenu = "GameMenuFrame" }) do
         frames[key] = env.CreateFrame("Frame", name, env.UIParent)
     end

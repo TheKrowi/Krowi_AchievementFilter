@@ -7,6 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-24 16-43-33 ]] --
+L["Every addon"] = "所有插件"
 L["Position applies to"] = "位置套用於"
 L["Position applies to Desc"] = "所有警報：將遊戲本身的警報（例如成就與拾取）與事件提醒一起移動。僅事件提醒：只移動事件提醒，遊戲的警報留在遊戲放置的位置。"
 L["Every alert"] = "所有警報"

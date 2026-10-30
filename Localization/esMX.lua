@@ -7,6 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-24 16-43-33 ]] --
+L["Every addon"] = "Todos los addons"
 L["Position applies to"] = "La posición se aplica a"
 L["Position applies to Desc"] = "Todas las alertas mueve las alertas del juego, como logros y botín, junto con los recordatorios de eventos. Solo recordatorios de eventos mueve únicamente los recordatorios de eventos y deja las alertas del juego donde el juego las coloca."
 L["Every alert"] = "Todas las alertas"

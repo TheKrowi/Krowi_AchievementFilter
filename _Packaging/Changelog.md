@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## 105.0
 ### Added
-- An options window with every setting sorted by feature and how each feature works next to it, opened with /kaf, the minimap icon or the filter menu
+- An options window in the look of the game's own Options window, with every setting sorted by feature and how each feature works next to it, opened with /kaf, the minimap icon or the filter menu
 - A Position applies to setting for event reminder pop ups: every alert, as before, or only the event reminders, leaving the game's own alerts where the game puts them
 - A Hide placeholders button next to Show placeholders
 
