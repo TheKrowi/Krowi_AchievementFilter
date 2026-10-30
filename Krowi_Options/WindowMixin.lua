@@ -114,7 +114,7 @@ local function InitList(window, scrollBox, scrollBar, templates, extent)
     end)
     view:SetElementExtentCalculator(function(_, element) return extent(element) end)
     ScrollUtil.InitScrollBoxListWithScrollBar(scrollBox, scrollBar, view)
-    ScrollUtil.AddManagedScrollBarVisibilityBehavior(scrollBox, scrollBar)
+    return ScrollUtil.AddManagedScrollBarVisibilityBehavior(scrollBox, scrollBar)
 end
 
 local navExtents = { NavHeader = 30, NavButton = 20, NavSpacer = 18 }
@@ -153,10 +153,10 @@ end
 -- Each slice spans an edge and offset of the inner frame to another, across and down
 local innerRowAnchors = { Top = { "TOP", 0, "TOP", -90 }, Middle = { "TOP", -90, "BOTTOM", 178 }, Bottom = { "BOTTOM", 178, "BOTTOM", 0 } }
 
-function Krowi_OptionsWindowMixin:LayoutInnerFrame(right)
+function Krowi_OptionsWindowMixin:LayoutInnerFrame(navEnd, right)
     if not self.InnerSlices then return end
     -- The frame starts 1 px left of the body: the divider's 2 px straddle the navigation's end and the help pane's start
-    local divider, help = navWidth, right + 2
+    local divider, help = navEnd, right + 2
     local columns = {
         Left = { "LEFT", 0, "LEFT", 30 },
         Nav = { "LEFT", 30, "LEFT", divider },
@@ -195,11 +195,13 @@ function Krowi_OptionsWindowMixin:OnLoad()
     self.Measure:Hide()
     self.Measure:SetJustifyH("LEFT")
 
-    InitList(self, self.NavScrollBox, self.NavScrollBar, {
+    local navBar = InitList(self, self.NavScrollBox, self.NavScrollBar, {
         NavHeader = { "Krowi_OptionsNavHeaderTemplate" },
         NavButton = { "Krowi_OptionsNavButtonTemplate" },
         NavSpacer = { "Krowi_OptionsNavSpacerTemplate" },
     }, function(element) return navExtents[element.Kind] end)
+    self.NavScrollShown = self.NavScrollBar:IsShown()
+    navBar:RegisterCallback(ManagedScrollBarVisibilityBehaviorMixin.Event.OnVisibilityChanged, function(_, shown) self:OnNavScrollBarShown(shown) end, self)
     InitList(self, self.PageScrollBox, self.PageScrollBar, rowTemplates, function(element)
         if element.Kind == "Note" then return self:MeasureText(element.Text, "GameFontDisable", self:PageWidth() - 32) + 8 end
         return rowTemplates[element.Kind][2]
@@ -354,19 +356,33 @@ end
 -- The body: under the tabs and above the bottom row, where the game's window has its category list and its settings
 -- (Blizzard_SettingsPanel.xml: the list at 18, -76, the bottom buttons at 16)
 local bodyInsets = { Left = 18, Top = -76, Right = -18, Bottom = 46 }
+local navBarSpace = 12 -- what the navigation's scroll bar takes; the divider and the page move left by it while it hides
+
+-- Where the navigation ends and its divider stands: past its scroll bar, or right after its list when all of it fits
+function Krowi_OptionsWindowMixin:NavEnd()
+    return self.NavScrollShown and navWidth or navWidth - navBarSpace
+end
+
+function Krowi_OptionsWindowMixin:OnNavScrollBarShown(shown)
+    if self.NavScrollShown == shown then return end
+    self.NavScrollShown = shown
+    self:Layout()
+    self:ReloadSection() -- the page is wider or narrower, so its notes are measured again
+end
 
 function Krowi_OptionsWindowMixin:PageWidth()
-    return self:GetWidth() - (bodyInsets.Left - bodyInsets.Right) - navWidth - (self.PaneCollapsed and stripWidth or helpWidth) - 30
+    return self:GetWidth() - (bodyInsets.Left - bodyInsets.Right) - self:NavEnd() - (self.PaneCollapsed and stripWidth or helpWidth) - 30
 end
 
 function Krowi_OptionsWindowMixin:Layout()
     local body = self.Body
     local right = self.PaneCollapsed and stripWidth or helpWidth
+    local navEnd = self:NavEnd()
 
     body:ClearAllPoints()
     body:SetPoint("TOPLEFT", self, "TOPLEFT", bodyInsets.Left, bodyInsets.Top)
     body:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", bodyInsets.Right, bodyInsets.Bottom)
-    self:LayoutInnerFrame(right)
+    self:LayoutInnerFrame(navEnd, right)
 
     -- The search box sits in the tab row at the right, as the game's does
     self.SearchBox:ClearAllPoints()
@@ -417,17 +433,17 @@ function Krowi_OptionsWindowMixin:Layout()
     -- The page's header as the game's settings list draws it (Blizzard_SettingsList.xml): the title, Defaults at its
     -- right and the divider under both
     self.PageTitle:ClearAllPoints()
-    self.PageTitle:SetPoint("TOPLEFT", body, "TOPLEFT", navWidth + 20, -22)
+    self.PageTitle:SetPoint("TOPLEFT", body, "TOPLEFT", navEnd + 20, -22)
     self.PageTitle:SetPoint("RIGHT", self.HelpBackground, "LEFT", -130, 0)
     self.DefaultsButton:ClearAllPoints()
     self.DefaultsButton:SetPoint("TOPRIGHT", self.HelpBackground, "TOPLEFT", -14, -16)
     self.CancelButton:ClearAllPoints()
     self.CancelButton:SetPoint("RIGHT", self.DefaultsButton, "LEFT", -6, 0)
     self.Divider:ClearAllPoints()
-    self.Divider:SetPoint("TOPLEFT", body, "TOPLEFT", navWidth + 8, -50)
+    self.Divider:SetPoint("TOPLEFT", body, "TOPLEFT", navEnd + 8, -50)
     self.Divider:SetPoint("TOPRIGHT", self.HelpBackground, "TOPLEFT", -8, -50)
     self.PageScrollBox:ClearAllPoints()
-    self.PageScrollBox:SetPoint("TOPLEFT", body, "TOPLEFT", navWidth + 8, -58)
+    self.PageScrollBox:SetPoint("TOPLEFT", body, "TOPLEFT", navEnd + 8, -58)
     self.PageScrollBox:SetPoint("BOTTOMRIGHT", self.HelpBackground, "BOTTOMLEFT", -16, 0)
     self.PageScrollBar:ClearAllPoints()
     self.PageScrollBar:SetPoint("TOPLEFT", self.PageScrollBox, "TOPRIGHT", 0, -4)
