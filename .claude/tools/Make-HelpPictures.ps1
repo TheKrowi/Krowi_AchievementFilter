@@ -14,7 +14,8 @@
         where the frame ends in the run's black backdrop within 24 px of the cut, a frame's own edge shows there, so
         the cut takes in what the frame draws outside its rectangle (a border, the tabs' art), moves in over black to
         the frame's visible edge and gets -Margin pixels of black; where content goes on (a long tooltip, the window
-        around the category list) the side is a cut through it;
+        around the category list) the side is a cut through it. It looks along the frames' own length, so what a
+        step's More took in beside them (the window left of the guide panel) is no content next to the other sides;
       - scales it down so its longest side, margins included, is at most -MaxSide pixels;
       - gives it the old tutorial pictures' soft edge: the alpha curve every old picture has over its outer 40 px, in
         the margin of an edge side, and scaled to -Fade pixels on a cut side
@@ -105,7 +106,9 @@ foreach ($line in & $KitLua (Join-Path $root '.claude\tools\headless\read-pictur
     } elseif ($f[0] -eq 'SHOT') {
         $shots.Add([pscustomobject]@{ Run = [int]$f[1]; Name = $f[2]; Time = [datetime]::ParseExact($f[3], 'yyyy-MM-dd HH:mm:ss', $invariant)
             Left = [double]::Parse($f[4], $invariant); Top = [double]::Parse($f[5], $invariant); Right = [double]::Parse($f[6], $invariant)
-            Bottom = [double]::Parse($f[7], $invariant); Width = [int]$f[8]; Height = [int]$f[9] })
+            Bottom = [double]::Parse($f[7], $invariant); Width = [int]$f[8]; Height = [int]$f[9]
+            InnerLeft = [double]::Parse($f[10], $invariant); InnerTop = [double]::Parse($f[11], $invariant)
+            InnerRight = [double]::Parse($f[12], $invariant); InnerBottom = [double]::Parse($f[13], $invariant) })
     }
 }
 if ($shots.Count -eq 0) { throw "The saved variables hold no pictures run; run /kaftest pictures in game, then /reload." }
@@ -200,13 +203,14 @@ function Test-Black($buffer, [bool]$row, [int]$at, [int]$from, [int]$to, [double
     $true
 }
 
-# The line $k px outside one side of the cut
-function Test-Outside($buffer, [System.Drawing.Rectangle]$r, [string]$side, [int]$k, [double]$share) {
+# The line $k px outside one side of the cut, along the frames' own length ($inner, the cut before the step's More):
+# the window a More took in beside the guide panel is no content next to the panel's top and bottom
+function Test-Outside($buffer, [System.Drawing.Rectangle]$r, [System.Drawing.Rectangle]$inner, [string]$side, [int]$k, [double]$share) {
     switch ($side) {
-        'Left' { Test-Black $buffer $false ($r.Left - $k) $r.Top ($r.Bottom - 1) $share }
-        'Right' { Test-Black $buffer $false ($r.Right - 1 + $k) $r.Top ($r.Bottom - 1) $share }
-        'Top' { Test-Black $buffer $true ($r.Top - $k) $r.Left ($r.Right - 1) $share }
-        'Bottom' { Test-Black $buffer $true ($r.Bottom - 1 + $k) $r.Left ($r.Right - 1) $share }
+        'Left' { Test-Black $buffer $false ($r.Left - $k) $inner.Top ($inner.Bottom - 1) $share }
+        'Right' { Test-Black $buffer $false ($r.Right - 1 + $k) $inner.Top ($inner.Bottom - 1) $share }
+        'Top' { Test-Black $buffer $true ($r.Top - $k) $inner.Left ($inner.Right - 1) $share }
+        'Bottom' { Test-Black $buffer $true ($r.Bottom - 1 + $k) $inner.Left ($inner.Right - 1) $share }
     }
 }
 
@@ -215,11 +219,11 @@ function Test-Outside($buffer, [System.Drawing.Rectangle]$r, [string]$side, [int
 # takes them in. A frame laid over another one's corner (the guide panel and the reward preview over the window's
 # border) still has its edge where at least 85% of the line 3 px out is black. Anything else is a cut through content.
 $reach = 24
-function Get-Side($buffer, [System.Drawing.Rectangle]$r, [string]$side) {
+function Get-Side($buffer, [System.Drawing.Rectangle]$r, [System.Drawing.Rectangle]$inner, [string]$side) {
     for ($k = 1; $k -le $reach; $k++) {
-        if (Test-Outside $buffer $r $side $k 0.005) { Write-Verbose "  $side`: black $k px out"; return [pscustomobject]@{ Edge = $true; Grow = $k - 1 } }
+        if (Test-Outside $buffer $r $inner $side $k 0.005) { Write-Verbose "  $side`: black $k px out"; return [pscustomobject]@{ Edge = $true; Grow = $k - 1 } }
     }
-    $mostlyBlack = Test-Outside $buffer $r $side 3 0.15
+    $mostlyBlack = Test-Outside $buffer $r $inner $side 3 0.15
     Write-Verbose "  $side`: $(if ($mostlyBlack) { 'mostly' } else { 'not' }) black 3 px out"
     [pscustomobject]@{ Edge = $mostlyBlack; Grow = 0 }
 }
@@ -314,7 +318,12 @@ foreach ($picture in $pictures) {
         $right = [Math]::Min($image.Width, [int][Math]::Round($part.Right * $sx)); $bottom = [Math]::Min($image.Height, [int][Math]::Round($part.Bottom * $sy))
         if ($right -le $left -or $bottom -le $top) { Write-Warning "$($picture.Name): empty cut in $($shot.Path)"; continue }
         $rect = New-Object System.Drawing.Rectangle $left, $top, ($right - $left), ($bottom - $top)
-        $crops += [pscustomobject]@{ Image = $image; Buffer = (Get-Buffer $shot.Path); Rect = $rect; Part = $part
+        $innerLeft = [Math]::Max($left, [int][Math]::Round($part.InnerLeft * $sx)); $innerTop = [Math]::Max($top, [int][Math]::Round($part.InnerTop * $sy))
+        $innerRight = [Math]::Min($right, [int][Math]::Round($part.InnerRight * $sx)); $innerBottom = [Math]::Min($bottom, [int][Math]::Round($part.InnerBottom * $sy))
+        $inner = if ($innerRight -gt $innerLeft -and $innerBottom -gt $innerTop) {
+            New-Object System.Drawing.Rectangle $innerLeft, $innerTop, ($innerRight - $innerLeft), ($innerBottom - $innerTop)
+        } else { $rect }
+        $crops += [pscustomobject]@{ Image = $image; Buffer = (Get-Buffer $shot.Path); Rect = $rect; Inner = $inner; Part = $part
             UnitsX = $part.Width / [double]$rect.Width; UnitsY = $part.Height / [double]$rect.Height }
     }
     if ($crops.Count -eq 0) { continue }
@@ -323,7 +332,7 @@ foreach ($picture in $pictures) {
     # On those sides each part takes in its frame's art outside the cut, then moves in over the black.
     $sides = @($crops | ForEach-Object {
         $crop = $_; $found = [ordered]@{}
-        foreach ($side in 'Left', 'Top', 'Right', 'Bottom') { $found[$side] = Get-Side $crop.Buffer $crop.Rect $side }
+        foreach ($side in 'Left', 'Top', 'Right', 'Bottom') { $found[$side] = Get-Side $crop.Buffer $crop.Rect $crop.Inner $side }
         [pscustomobject]$found
     })
     $edge = [pscustomobject]@{ Left = -not ($sides.Left.Edge -contains $false); Right = -not ($sides.Right.Edge -contains $false)
