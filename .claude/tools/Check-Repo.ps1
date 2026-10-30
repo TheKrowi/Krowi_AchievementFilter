@@ -521,6 +521,31 @@ foreach ($rel in $ownLuaFiles) {
 }
 Write-Timing 'settings-close'
 
+# --- options-templates: the options window draws Blizzard's Settings look without Blizzard's Settings code --------
+# Blizzard's category list keeps its selection in one file-level variable that every SettingsCategoryListTemplate
+# overwrites on load: one copy made by addon code and every category click in Esc > Options runs tainted, then sets
+# CVars and key bindings tainted. The setting controls write SettingsTooltip and SettingsCallbackRegistry, the
+# keybinding buttons drive the global KeybindListener, and on Retail UIPanelButtonTemplate hides GameTooltip on every
+# mouse-leave (docs/work/2026-10-30-options-settings-look, the taint review in its spec). SettingsFrameTemplate is only
+# the frame's art and stays allowed.
+$forbiddenTemplate = '^(Settings(?!FrameTemplate$)\w*Template|KeyBindingFrameBinding\w*|UIPanelButtonTemplate)$'
+foreach ($rel in ($allFiles | Where-Object { $_ -like 'Krowi_Options/*' })) {
+    $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
+    $lineNo = 0
+    foreach ($line in ($text -split "`r?`n")) {
+        $lineNo++
+        $code = if ($rel -like '*.lua') { $line -replace '--.*$', '' } else { $line -replace '<!--.*?-->', '' }
+        foreach ($m in [regex]::Matches($code, '["'']([\w, ]+)["'']')) {
+            foreach ($name in ($m.Groups[1].Value -split ',')) {
+                if ($name.Trim() -cmatch $forbiddenTemplate) {
+                    Add-Finding 'options-templates' 'Error' $rel $lineNo "$($name.Trim()) runs Blizzard's Settings or tooltip code on the options window, which taints Blizzard's own Options window; draw it from SettingsFrameTemplate, MinimalTabTemplate, UIPanelButtonNoTooltipTemplate and the Options_* atlases instead"
+                }
+            }
+        }
+    }
+}
+Write-Timing 'options-templates'
+
 # --- event-clock: the event reminders, their sources and obtainability read one clock, the realm's ----------------
 # The sources call an event active by GetServerTime(); a reminder that judged its end by the PC's clock, time(), printed
 # the "Active events:" header with no line under it on every refresh while the two disagreed (a raid on Retail,
