@@ -84,3 +84,8 @@ Context: in a raid on Retail (2026-10-28) chat showed "Krowi's Achievement Filte
   - 0 addon errors.
 - **Mists 5.5.4:** `/kaftest events` on 2026-10-29 19:05: 11 passed, 0 differences; `/kaftest obtainable` on 2026-10-29 19:05: 8 passed, 0 differences; 0 addon errors.
 - The by-hand check (chat reminders at a 1 s refresh through an event's end) runs on `main` after the merge, with the help pictures fix.
+
+## By-hand check on `main` (2026-10-30, Retail 12.1.5, 2173594a)
+- `/run print(time() - GetServerTime())` printed 1: this PC's clock is 1 s ahead of the realm's.
+- Active-event chat messages on for "When an event starts" (with "In instances" and "Only with a time"), refresh interval 1 s, a session through an event's end: no "Active events:" line without an event under it. Krowi: "nothing so far, consider fixed".
+- 0 addon errors (BugGrabber written at 19:34, after the session).
