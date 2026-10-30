@@ -224,7 +224,7 @@ function Krowi_OptionsWindowMixin:OnLoad()
     -- input, which ends a search too
     self.SearchBox:HookScript("OnTextChanged", function(box, userInput) if userInput or self.Searching then self:OnSearch(box:GetText()) end end)
     self.SearchBox:HookScript("OnHide", function(box) box:SetText("") end)
-    -- Every addon's tab instead of the open one; kept for every addon like the window's place
+    -- Every tab instead of the selected one (unticked by default); kept for every addon like the window's place
     self.SearchAll:SetScript("OnClick", function(button)
         self.SearchEveryTab = button:GetChecked() and true or false
         lib.SetShared("SearchAll", self.SearchEveryTab)
@@ -321,10 +321,6 @@ function Krowi_OptionsWindowMixin:RefreshTabs()
     for i = #tabs + 1, #self.TabButtons do
         self.TabButtons[i]:Hide()
     end
-    -- Searching every addon means something only with a second one
-    local several = #tabs > 1
-    self.SearchAll:SetShown(several)
-    self.SearchAllLabel:SetShown(several)
     -- The open tab went (a test's): the first one takes its place
     if self.Tab and not tContains(tabs, self.Tab) then
         self.Tab = nil
@@ -355,12 +351,13 @@ function Krowi_OptionsWindowMixin:ApplyStrings()
     self.HeadingLinesLabel:SetText(strings.HeadingLines or "")
     self.HeadingLines:SetHitRectInsets(0, -(self.HeadingLinesLabel:GetStringWidth() + 4), 0, 0)
     -- The collapsed pane's strip: the chevron, then the pane's name down the strip; the whole strip brings the pane back.
-    -- A turned text turns about its centre, so it hangs below the chevron by half its length.
+    -- A turned text turns about its centre, so it hangs below the chevron by half its length; its letters sit off the
+    -- line's middle, so it moves right to stand under the chevron (measured in game, 2026-10-30)
     local label = self.ExpandButton.Label
     label:SetText((strings.HowItWorks or ""):upper())
     local length = label:GetStringWidth()
     label:ClearAllPoints()
-    label:SetPoint("CENTER", self.ExpandButton, "TOP", 0, -(28 + length / 2))
+    label:SetPoint("CENTER", self.ExpandButton, "TOP", 6, -(28 + length / 2))
     self.ExpandButton:SetHeight(34 + length)
     self.DefaultsButton:SetText(strings.Defaults)
     self.ReloadButton:SetText(strings.ReloadNow)
@@ -429,10 +426,6 @@ function Krowi_OptionsWindowMixin:Layout()
     -- The search box sits in the tab row at the right, as the game's does
     self.SearchBox:ClearAllPoints()
     self.SearchBox:SetPoint("BOTTOMRIGHT", body, "TOPRIGHT", 0, 20)
-    self.SearchAllLabel:ClearAllPoints()
-    self.SearchAllLabel:SetPoint("RIGHT", self.SearchBox, "LEFT", -14, 0)
-    self.SearchAll:ClearAllPoints()
-    self.SearchAll:SetPoint("RIGHT", self.SearchAllLabel, "LEFT", -2, 0)
 
     -- The scroll bars sit as the game's lists place theirs (Blizzard_CategoryList.xml, Blizzard_SettingsList.xml), each
     -- just inside the divider or edge after its list
@@ -491,14 +484,18 @@ function Krowi_OptionsWindowMixin:Layout()
     self.PageScrollBar:SetPoint("TOPLEFT", self.PageScrollBox, "TOPRIGHT", 0, -4)
     self.PageScrollBar:SetPoint("BOTTOMLEFT", self.PageScrollBox, "BOTTOMRIGHT", -1, 7)
 
-    -- The bottom row: the reload bar, the heading lines check box and Close
+    -- The bottom row: the reload bar, the search scope and heading lines check boxes, and Close
     self.HeadingLinesLabel:ClearAllPoints()
     self.HeadingLinesLabel:SetPoint("RIGHT", self.CloseButton, "LEFT", -16, 0)
     self.HeadingLines:ClearAllPoints()
     self.HeadingLines:SetPoint("RIGHT", self.HeadingLinesLabel, "LEFT", -2, 0)
+    self.SearchAllLabel:ClearAllPoints()
+    self.SearchAllLabel:SetPoint("RIGHT", self.HeadingLines, "LEFT", -16, 0)
+    self.SearchAll:ClearAllPoints()
+    self.SearchAll:SetPoint("RIGHT", self.SearchAllLabel, "LEFT", -2, 0)
     self.ReloadBackground:ClearAllPoints()
     self.ReloadBackground:SetPoint("TOPLEFT", body, "BOTTOMLEFT", 0, -6)
-    self.ReloadBackground:SetPoint("BOTTOMRIGHT", self.HeadingLines, "BOTTOMLEFT", -12, -2)
+    self.ReloadBackground:SetPoint("BOTTOMRIGHT", self.SearchAll, "BOTTOMLEFT", -12, -2)
     self.ReloadText:ClearAllPoints()
     self.ReloadText:SetPoint("LEFT", self.ReloadBackground, "LEFT", 12, 0)
     self.ReloadButton:ClearAllPoints()
@@ -779,7 +776,7 @@ function Krowi_OptionsWindowMixin:OnSearch(text)
     self.DefaultsButton:Hide()
     self.CancelButton:Hide()
     self.ChangedText:SetText("")
-    -- The open tab, or with "Every addon" ticked every tab, each under its addon's name; a result of another addon opens
+    -- The selected tab, or with "Search all tabs" ticked every tab, each under its addon's name; a result of another addon opens
     -- its tab first
     local everyTab = self.SearchEveryTab and #lib.Tabs > 1
     local list = {}

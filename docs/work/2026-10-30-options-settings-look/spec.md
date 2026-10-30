@@ -11,7 +11,7 @@ Intent: [intent.md](intent.md). Status: accepted
    - the selected section in white on `Options_List_Active`, hover on `Options_List_Hover`;
    - a New section marked with Blizzard's glowing NEW label left of its name.
 5. The page has a white title, Defaults at its right and `Options_HorizontalDivider` under it.
-6. The search box sits at the top right, in the tab row, and searches the open tab by default. Once more than one addon has a tab, a check box beside it, "Every addon", searches every tab instead:
+6. The search box sits at the top right, in the tab row, and searches the selected tab by default. A "Search all tabs" check box in the bottom row (Krowi, in game, 2026-10-30; first "Every addon" beside the search box, shown only with a second tab), unticked by default, searches every tab instead:
    - results are grouped by addon;
    - clicking a result switches to its tab;
    - the choice is kept with the window's shared state.
@@ -56,7 +56,7 @@ Intent: [intent.md](intent.md). Status: accepted
   - The shape of `KrowiAF_SavedData.OptionsWindow` does not change.
 - **`OnCreated(frame)`** runs for each registered config when the frame is made, and for a config registered later as it registers. KAF's call registers the window and the lightbox with its Escape handling, as today.
 - **Title strip:** "Options" (Decision), from `SETTINGS_TITLE`, the string Blizzard's own window sets.
-- **Search:** the open tab's `Search(text)` by default. With "Every addon" ticked, the window calls every registered config's `Search` and lists the results under a `SubHeading` row per addon (its `TabName`). A result's link first switches to its tab. The check box (our own `Krowi_OptionsCheckButtonTemplate` with a label) shows only while `#lib.Tabs > 1`. Its state, `SearchAll`, is written with the shared place and size.
+- **Search:** the selected tab's `Search(text)` by default. With "Search all tabs" ticked and more than one tab, the window calls every registered config's `Search` and lists the results under a `SubHeading` row per addon (its `TabName`). A result's link first switches to its tab. The check box (our own `Krowi_OptionsCheckButtonTemplate` with a label) sits in the bottom row, left of "Lines under headings". Its state, `SearchAll`, is written with the shared place and size.
 
 **Section list:**
 - `Krowi_OptionsNavHeaderTemplate` draws `Options_CategoryHeader_%d` at its atlas size, with the label in `GameFontHighlightMedium` at x 20. The index is `((n - 1) % 3) + 1`, as Blizzard's list does (`Blizzard_CategoryList.lua:414`).
@@ -118,7 +118,7 @@ Intent: [intent.md](intent.md). Status: accepted
   - The frame name changes from `KrowiAF_OptionsWindow` to `Krowi_OptionsWindow`. Nothing outside the tests and `.luarc.json` uses it, and the window has not shipped yet: it first ships in 105.0.
 - **Saved variables and migrations:** none. `KrowiAF_SavedData.OptionsWindow` keeps `Point`, `Size`, `PaneCollapsed`, `LastSection` and `Seen`.
 - **Localization:**
-  - Two new strings, "Every addon" (`Strings.SearchAll`) and "Lines under headings" (`Strings.HeadingLines`), go into every locale file, translated, and to CurseForge.
+  - Two new strings, "Search all tabs" (`Strings.SearchAll`) and "Lines under headings" (`Strings.HeadingLines`), go into every locale file, translated, and to CurseForge.
   - `OPTIONS`, `CLOSE` and `NEW_CAPS` are the game's own, and the tab shows the addon's name.
   - `L["New"]` stays in use by the overview's New header.
 - **Embedded libraries:**

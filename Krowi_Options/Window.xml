@@ -116,7 +116,7 @@
                 <FontString parentKey="HelpKicker" inherits="GameFontDisableSmall" justifyH="LEFT"/>
                 <FontString parentKey="ReloadText" inherits="GameFontHighlight" justifyH="LEFT"/>
                 <FontString parentKey="ShowMeNote" inherits="GameFontDisableSmall" justifyH="LEFT" justifyV="TOP"/>
-                <FontString parentKey="SearchAllLabel" inherits="GameFontNormalSmall" justifyH="RIGHT" hidden="true"/>
+                <FontString parentKey="SearchAllLabel" inherits="GameFontNormalSmall" justifyH="LEFT"/>
                 <FontString parentKey="HeadingLinesLabel" inherits="GameFontNormalSmall" justifyH="LEFT"/>
                 <Texture parentKey="Divider" atlas="Options_HorizontalDivider" useAtlasSize="true"/>
             </Layer>
@@ -140,7 +140,7 @@
             <EditBox parentKey="SearchBox" inherits="SearchBoxTemplate" autoFocus="false" letters="60">
                 <Size x="300" y="22"/>
             </EditBox>
-            <CheckButton parentKey="SearchAll" inherits="Krowi_OptionsCheckButtonTemplate" hidden="true"/>
+            <CheckButton parentKey="SearchAll" inherits="Krowi_OptionsCheckButtonTemplate"/>
             <CheckButton parentKey="HeadingLines" inherits="Krowi_OptionsCheckButtonTemplate"/>
             <!-- The game's window scrolls with the thin MinimalScrollBar (Blizzard_CategoryList.xml, Blizzard_SettingsList.xml) -->
             <Frame parentKey="NavScrollBox" inherits="WowScrollBoxList"/>

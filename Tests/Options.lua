@@ -528,11 +528,11 @@ local function BuildSteps()
                     end
                 end
                 local title = frame.NineSlice.Text:GetText()
-                local everyAddon = frame.SearchAll:IsShown()
+                local searchAll = frame.SearchAll:IsShown()
                 local ok = shown == #lib.Tabs and frame.Tab == window.Controller and selected == "Achievement Filter"
-                    and title == SETTINGS_TITLE and everyAddon == (#lib.Tabs > 1)
-                Add(ok and "PASS" or "FAIL", ("%d of %d tabs shown, %s selected, title '%s', Every addon %s"):format(shown, #lib.Tabs, selected,
-                    tostring(title), everyAddon and "shown" or "hidden"))
+                    and title == SETTINGS_TITLE and searchAll
+                Add(ok and "PASS" or "FAIL", ("%d of %d tabs shown, %s selected, title '%s', Search all tabs %s"):format(shown, #lib.Tabs, selected,
+                    tostring(title), searchAll and "shown" or "hidden"))
             end
         },
         SectionStep("overview", addon.L["Overview"])
