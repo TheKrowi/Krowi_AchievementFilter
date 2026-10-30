@@ -105,6 +105,23 @@ Follow-ups that are not a work item yet. When one is taken up, it gets its own w
 - **A profile switch leaves most layout settings unapplied until a reload** (found 2026-10-26 while fixing the profile switch error). `RefreshOptions` (`Options/Layout.lua`) calls each setter with the new profile's own value, and most setters return early when `profile.X == value`, which is then always true: the new profile's widths, height, indentation, mouse wheel speeds, calendar button offsets and merge threshold are not applied to the window's frames by the switch (a `/reload` applies them). Only the header, the tabs and the special categories follow. Not verified in game yet. The fix: let `RefreshOptions` apply the frames directly instead of through the setters' change checks.
 - **The ElvUI plugin's "Skin Tutorials" row reports on a frame that no longer exists** (`Plugins/ElvUI.lua:754`, `doSkin.Tutorials`). The plan kept it as ElvUI's own setting; it only told whether KAF skinned its tutorial. Removing it also deletes its string from CurseForge's Plugins namespace. Krowi's call.
 - **Krowi_Options' mixins and templates are defined unconditionally** (code review, 2026-10-26): when the library is extracted and embedded twice, the last loaded copy's `Krowi_Options*Mixin` globals and XML templates win whatever the minor. Recorded in the plan's departures for the extraction.
+- **Explore: give the options window the look of Blizzard's own Settings window** (Krowi, 2026-10-30, "something to explore later"; screenshots of Blizzard's window on Retail and Mists).
+  - Blizzard's Options window looks the same on Retail and Mists. It has a gold title strip, Game/AddOns tabs and a search box on top. On the left is a category list under dark header bars (Gameplay, Accessibility, System), with the selected entry underlined in gold. The right side shows a white page title with a red Defaults button and a rule under it. Each row has a gold label and its control in one column: gold checkmarks, an arrow stepper, binding buttons, sliders with arrows and the value. The page has white subsection headers, a thin scroll bar and a red Close button at the bottom.
+  - Krowi_Options draws the same on every client from `ButtonFrameTemplate`, `WowScrollBoxList`/`WowTrimScrollBar`, `SearchBoxTemplate` and `UIPanelButtonNoTooltipTemplate` (`Krowi_Options/Window.xml`), with no client branch.
+  - Both clients ship the same `Blizzard_Settings_Shared` (`SettingsCategoryListTemplate`, `SettingsListTemplate`). Only `SettingsFrameTemplate` comes from a per-client folder (`Mainline/` or `Classic/`), so a window built on it would match each client by itself.
+  - Taint review (2026-10-30, design stage, Retail 12.1.5 and Mists 5.5.4.70631):
+    - **Never inherit `SettingsCategoryListTemplate`.** Its `OnLoad` overwrites a file-level `g_selectionBehavior` (`Blizzard_Settings_Shared/Blizzard_CategoryList.lua:4`, set at :243, Mists :210) that Blizzard's own category buttons read on every click. After that, every category click in Esc > Options runs tainted. Blizzard's controls on that page then set CVars and call `SetBinding` tainted. Its list highlight stops following clicks.
+    - **Also never inherit** `SettingsCategoryListButtonTemplate`, `SettingsListTemplate`, `SettingsListSearchCategoryTemplate`, any `Settings*ControlTemplate`, `SettingsCheckboxTemplate` or `SettingsListSectionHeaderTemplate`. They touch `SettingsTooltip`, `SettingsCallbackRegistry` and `SettingsPanel`, and need Blizzard `Setting` objects.
+    - **Also avoid** the `KeyBindingFrameBinding*` templates (Blizzard's global `KeybindListener`) and `UIPanelButtonTemplate`. On Retail its `OnLeave` hides GameTooltip on every mouse-leave, the #300 path.
+    - **Safe:**
+      - `SettingsFrameTemplate`, with its `ClosePanelButton` set to a plain `Hide`;
+      - `NineSlicePanelTemplate` with layout `ButtonFrameTemplateNoPortrait`;
+      - `FlatPanelBackgroundTemplate`;
+      - `MinimalTabTemplate`;
+      - `UIPanelButtonNoTooltipTemplate`, which has the same red art;
+      - the `Options_*` atlases (`Options_CategoryHeader_1..3`, `Options_List_Active`, `Options_List_Hover`, `Options_HorizontalDivider`, `Options_InnerFrame`) in Krowi_Options' own row templates, as `Rows.xml` already does for the checkbox.
+    - **Keep our own code:** `RowMixins.lua`, the key capture, `Krowi_Tooltip` and our own scroll lists.
+    - **When built:** a lint rule against `inherits="Settings…"` other than `SettingsFrameTemplate`. Check in game: open KAF's window, then click several categories in Esc > Options; the highlight must follow each click.
 
 ## From the help picture margins (2026-10-30, docs/work/2026-10-26-help-picture-margins, PR #376)
 
