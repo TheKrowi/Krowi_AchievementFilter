@@ -83,7 +83,8 @@ function Krowi_OptionsOptionRowMixin:OnLoad()
         button:EnableMouseWheel(false)
     end
 
-    for _, control in ipairs({ self.Dot, self.Toggle, self.Range, self.Select.Dropdown, self.Execute, self.Input, self.Key1, self.Key2 }) do
+    for _, control in ipairs({ self.Dot, self.Toggle, self.Range, self.Select.Dropdown, self.Select.DecrementButton, self.Select.IncrementButton,
+        self.Execute, self.Input, self.Key1, self.Key2 }) do
         Forward(control, self)
     end
 

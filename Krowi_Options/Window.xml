@@ -118,7 +118,7 @@
                 <FontString parentKey="ShowMeNote" inherits="GameFontDisableSmall" justifyH="LEFT" justifyV="TOP"/>
                 <FontString parentKey="SearchAllLabel" inherits="GameFontNormalSmall" justifyH="RIGHT" hidden="true"/>
                 <FontString parentKey="HeadingLinesLabel" inherits="GameFontNormalSmall" justifyH="LEFT"/>
-                <Texture parentKey="Divider" atlas="Options_HorizontalDivider"/>
+                <Texture parentKey="Divider" atlas="Options_HorizontalDivider" useAtlasSize="true"/>
             </Layer>
             <Layer level="BACKGROUND" textureSubLevel="2">
                 <!-- Draws nothing: the help pane's place, which the page and the pane's own frames anchor to -->
@@ -149,17 +149,32 @@
             <EventFrame parentKey="PageScrollBar" inherits="MinimalScrollBar"/>
             <Frame parentKey="HelpScrollBox" inherits="WowScrollBoxList"/>
             <EventFrame parentKey="HelpScrollBar" inherits="MinimalScrollBar"/>
+            <!-- The help pane hides behind a gold chevron and comes back from a strip reading "How it works" down its length,
+                 as in the mockup (docs/work/2026-10-25-options-revamp/mockup); WindowMixin.lua sets the chevrons and the text -->
             <Button parentKey="CollapseButton">
                 <Size x="22" y="22"/>
-                <NormalTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Up"/>
-                <PushedTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Down"/>
-                <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString parentKey="Arrow" inherits="GameFontNormalLarge">
+                            <Anchors>
+                                <Anchor point="CENTER" y="1"/>
+                            </Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
             </Button>
             <Button parentKey="ExpandButton" hidden="true">
-                <Size x="22" y="22"/>
-                <NormalTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Up"/>
-                <PushedTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Down"/>
-                <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+                <Size x="26" y="22"/>
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString parentKey="Arrow" inherits="GameFontNormalLarge">
+                            <Anchors>
+                                <Anchor point="TOP" y="-2"/>
+                            </Anchors>
+                        </FontString>
+                        <FontString parentKey="Label" inherits="GameFontDisableSmall"/>
+                    </Layer>
+                </Layers>
             </Button>
             <Button parentKey="ShowMeButton" inherits="UIPanelButtonNoTooltipTemplate" hidden="true">
                 <Size x="120" y="22"/>

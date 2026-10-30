@@ -124,7 +124,6 @@ window.Controller = KROWI_LIBMAN:GetLibrary("Krowi_Options_1").CreateWindow({
         ReloadNow = L["Reload now"],
         ShowMe = L["Show me"],
         HowItWorks = L["How it works"],
-        New = L["New"],
         All = L["All"],
         None = L["None"],
         NotBound = L["Not bound"],

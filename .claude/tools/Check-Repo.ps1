@@ -527,20 +527,26 @@ Write-Timing 'settings-close'
 # CVars and key bindings tainted. The setting controls write SettingsTooltip and SettingsCallbackRegistry, the
 # keybinding buttons drive the global KeybindListener, and on Retail UIPanelButtonTemplate hides GameTooltip on every
 # mouse-leave (docs/work/2026-10-30-options-settings-look, the taint review in its spec). SettingsFrameTemplate is only
-# the frame's art and stays allowed.
+# the frame's art and stays allowed. The same code mixed in by name (Mixin(f, SettingsCheckboxMixin), mixin="...") or the
+# panel's shared objects named directly count too. Comments, also those over several lines, are left out.
 $forbiddenTemplate = '^(Settings(?!FrameTemplate$)\w*Template|KeyBindingFrameBinding\w*|UIPanelButtonTemplate)$'
+$forbiddenCode = '(?<![\w.])(Settings\w*Mixin|KeyBindingFrameBinding\w*Mixin|KeybindListener|SettingsPanel|SettingsTooltip|SettingsInbound|SettingsCallbackRegistry)(?!\w)'
 foreach ($rel in ($allFiles | Where-Object { $_ -like 'Krowi_Options/*' })) {
     $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
+    # Blank the comments out, keeping their line breaks so the line numbers stay
+    $blank = { param($m) [regex]::Replace($m.Value, '[^\r\n]', ' ') }
+    $text = if ($rel -like '*.lua') {
+        [regex]::Replace([regex]::Replace($text, '--\[(=*)\[.*?\]\1\]', $blank, 'Singleline'), '--[^\r\n]*', $blank)
+    } else {
+        [regex]::Replace($text, '<!--.*?-->', $blank, 'Singleline')
+    }
     $lineNo = 0
-    foreach ($line in ($text -split "`r?`n")) {
+    foreach ($code in ($text -split "`r?`n")) {
         $lineNo++
-        $code = if ($rel -like '*.lua') { $line -replace '--.*$', '' } else { $line -replace '<!--.*?-->', '' }
-        foreach ($m in [regex]::Matches($code, '["'']([\w, ]+)["'']')) {
-            foreach ($name in ($m.Groups[1].Value -split ',')) {
-                if ($name.Trim() -cmatch $forbiddenTemplate) {
-                    Add-Finding 'options-templates' 'Error' $rel $lineNo "$($name.Trim()) runs Blizzard's Settings or tooltip code on the options window, which taints Blizzard's own Options window; draw it from SettingsFrameTemplate, MinimalTabTemplate, UIPanelButtonNoTooltipTemplate and the Options_* atlases instead"
-                }
-            }
+        $names = @(foreach ($m in [regex]::Matches($code, '["'']([\w, ]+)["'']')) { $m.Groups[1].Value -split ',' | ForEach-Object { $_.Trim() } | Where-Object { $_ -cmatch $forbiddenTemplate } })
+        $names += @(foreach ($m in [regex]::Matches($code, $forbiddenCode)) { $m.Groups[1].Value })
+        foreach ($name in ($names | Select-Object -Unique)) {
+            Add-Finding 'options-templates' 'Error' $rel $lineNo "$name runs or reaches Blizzard's Settings or tooltip code from the options window, which taints Blizzard's own Options window; draw it from SettingsFrameTemplate, MinimalTabTemplate, UIPanelButtonNoTooltipTemplate and the Options_* atlases instead"
         }
     }
 }

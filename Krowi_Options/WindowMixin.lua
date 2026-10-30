@@ -8,7 +8,7 @@
 -- The window: a tab per registered addon on top, the open addon's navigation on the left, the section's rows in the
 -- middle, the help pane on the right, in the frame and art of the game's own Options window. Strings come from the open
 -- tab's consumer (config.Strings): Search, SearchAll, HeadingLines, Overview, SearchResults, NoResults, Defaults, ResetSection (with
--- %s), ChangedCount (with %d), ReloadText, ReloadNow, ShowMe, HowItWorks, New, All, None, NotBound, PressAKey, Default
+-- %s), ChangedCount (with %d), ReloadText, ReloadNow, ShowMe, HowItWorks, All, None, NotBound, PressAKey, Default
 -- (with %s), NeedsReload, Changed, NotInCombat.
 
 local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
@@ -143,7 +143,8 @@ function Krowi_OptionsWindowMixin:CreateInnerFrame()
     for _, column in ipairs(innerSlices) do
         local x = innerColumns[column.Atlas]
         for row, y in next, innerRows do
-            local slice = self:CreateTexture(nil, "OVERLAY", nil, 2)
+            -- Under the window's own text (the page title, the labels): the game draws its text in child frames above the art
+            local slice = self:CreateTexture(nil, "BACKGROUND", nil, 1)
             slice:SetTexture(info.file or info.filename)
             slice:SetTexCoord(U(x[1]), U(x[2]), V(y[1]), V(y[2]))
             self.InnerSlices[column.Key .. row] = slice
@@ -188,7 +189,6 @@ function Krowi_OptionsWindowMixin:OnLoad()
     self.CloseButton:SetScript("OnClick", function() self:Hide() end)
     self.CloseButton:SetText(CLOSE)
     self.NineSlice.Text:SetText(SETTINGS_TITLE) -- the game's own Options window's title
-    self.Divider:SetAtlas("Options_HorizontalDivider", true)
     self.TabButtons = {}
     self:CreateInnerFrame()
 
@@ -238,6 +238,20 @@ function Krowi_OptionsWindowMixin:OnLoad()
     end)
     self.CollapseButton:SetScript("OnClick", function() self:SetPaneCollapsed(true) end)
     self.ExpandButton:SetScript("OnClick", function() self:SetPaneCollapsed(false) end)
+    -- » hides the pane, « brings it back; gold, white under the mouse, as the window's other links
+    self.CollapseButton.Arrow:SetText("\194\187")
+    self.ExpandButton.Arrow:SetText("\194\171")
+    self.ExpandButton.Label:SetRotation(-math.pi / 2) -- reads downwards
+    for _, button in ipairs({ self.CollapseButton, self.ExpandButton }) do
+        button:SetScript("OnEnter", function()
+            button.Arrow:SetFontObject("GameFontHighlightLarge")
+            if button.Label then button.Label:SetFontObject("GameFontHighlightSmall") end
+        end)
+        button:SetScript("OnLeave", function()
+            button.Arrow:SetFontObject("GameFontNormalLarge")
+            if button.Label then button.Label:SetFontObject("GameFontDisableSmall") end
+        end)
+    end
     -- Show me closes the window first, then shows the feature (the help track's decision, plan-help.md). The window stays
     -- while help.CanShowMe() is false (the data still loading), and comes back when ShowMe returns false (its scene had
     -- nothing to open, such as no tab shown).
@@ -340,6 +354,14 @@ function Krowi_OptionsWindowMixin:ApplyStrings()
     self.SearchAll:SetHitRectInsets(0, -(self.SearchAllLabel:GetStringWidth() + 4), 0, 0) -- the label ticks it too
     self.HeadingLinesLabel:SetText(strings.HeadingLines or "")
     self.HeadingLines:SetHitRectInsets(0, -(self.HeadingLinesLabel:GetStringWidth() + 4), 0, 0)
+    -- The collapsed pane's strip: the chevron, then the pane's name down the strip; the whole strip brings the pane back.
+    -- A turned text turns about its centre, so it hangs below the chevron by half its length.
+    local label = self.ExpandButton.Label
+    label:SetText((strings.HowItWorks or ""):upper())
+    local length = label:GetStringWidth()
+    label:ClearAllPoints()
+    label:SetPoint("CENTER", self.ExpandButton, "TOP", 0, -(28 + length / 2))
+    self.ExpandButton:SetHeight(34 + length)
     self.DefaultsButton:SetText(strings.Defaults)
     self.ReloadButton:SetText(strings.ReloadNow)
     self.ReloadText:SetText(strings.ReloadText)
@@ -368,12 +390,30 @@ end
 function Krowi_OptionsWindowMixin:OnNavScrollBarShown(shown)
     if self.NavScrollShown == shown then return end
     self.NavScrollShown = shown
+    -- Showing a section or a search fills the page after the navigation, already at the new width: it lays out once
+    -- it is done (EndFill), instead of building the page twice
+    if self.Filling then
+        self.LayoutPending = true
+        return
+    end
     self:Layout()
     self:ReloadSection() -- the page is wider or narrower, so its notes are measured again
 end
 
+function Krowi_OptionsWindowMixin:EndFill()
+    self.Filling = nil
+    if self.LayoutPending then
+        self.LayoutPending = nil
+        self:Layout()
+    end
+end
+
+-- The page's scroll box as Layout anchors it: from 8 past the navigation's end to 16 before the help pane
+local pageInsets = { Left = 8, Right = 16 }
+
 function Krowi_OptionsWindowMixin:PageWidth()
-    return self:GetWidth() - (bodyInsets.Left - bodyInsets.Right) - self:NavEnd() - (self.PaneCollapsed and stripWidth or helpWidth) - 30
+    return self:GetWidth() - (bodyInsets.Left - bodyInsets.Right) - self:NavEnd() - (self.PaneCollapsed and stripWidth or helpWidth)
+        - pageInsets.Left - pageInsets.Right
 end
 
 function Krowi_OptionsWindowMixin:Layout()
@@ -411,7 +451,7 @@ function Krowi_OptionsWindowMixin:Layout()
     self.CollapseButton:ClearAllPoints()
     self.CollapseButton:SetPoint("TOPRIGHT", body, "TOPRIGHT", -5, -3)
     self.ExpandButton:ClearAllPoints()
-    self.ExpandButton:SetPoint("TOPRIGHT", body, "TOPRIGHT", -2, -3)
+    self.ExpandButton:SetPoint("TOP", self.HelpBackground, "TOP", 0, -3)
     self.HelpKicker:ClearAllPoints()
     self.HelpKicker:SetPoint("TOPLEFT", self.HelpBackground, "TOPLEFT", 16, -12)
     self.HelpScrollBox:ClearAllPoints()
@@ -445,8 +485,8 @@ function Krowi_OptionsWindowMixin:Layout()
     self.Divider:SetPoint("TOPLEFT", body, "TOPLEFT", navEnd + 8, -50)
     self.Divider:SetPoint("TOPRIGHT", self.HelpBackground, "TOPLEFT", -8, -50)
     self.PageScrollBox:ClearAllPoints()
-    self.PageScrollBox:SetPoint("TOPLEFT", body, "TOPLEFT", navEnd + 8, -58)
-    self.PageScrollBox:SetPoint("BOTTOMRIGHT", self.HelpBackground, "BOTTOMLEFT", -16, 0)
+    self.PageScrollBox:SetPoint("TOPLEFT", body, "TOPLEFT", navEnd + pageInsets.Left, -58)
+    self.PageScrollBox:SetPoint("BOTTOMRIGHT", self.HelpBackground, "BOTTOMLEFT", -pageInsets.Right, 0)
     self.PageScrollBar:ClearAllPoints()
     self.PageScrollBar:SetPoint("TOPLEFT", self.PageScrollBox, "TOPRIGHT", 0, -4)
     self.PageScrollBar:SetPoint("BOTTOMLEFT", self.PageScrollBox, "BOTTOMRIGHT", -1, 7)
@@ -588,9 +628,11 @@ function Krowi_OptionsWindowMixin:ShowSection(id, optionId, keepSearchText)
     config.OnSectionShown(id)
     self.PageTitle:SetText(id == "overview" and self.Strings.Overview or config.SectionName(id))
     self.DefaultsButton:SetShown(id ~= "overview")
+    self.Filling = true
     self:RefreshNav()
     self:FillPage(ScrollBoxConstants.DiscardScrollPosition)
     self:ShowSectionHelp()
+    self:EndFill()
     if optionId then self:ScrollToOption(optionId) end
 end
 
@@ -753,7 +795,9 @@ function Krowi_OptionsWindowMixin:OnSearch(text)
     if #list == 0 then list[1] = { Kind = "Note", Text = self.Strings.NoResults } end
     self.Elements = list
     self.PageScrollBox:SetDataProvider(CreateDataProvider(list), ScrollBoxConstants.DiscardScrollPosition)
+    self.Filling = true
     self:RefreshNav()
+    self:EndFill()
 end
 
 -- [[ The help pane, or the tooltip while the pane is collapsed ]] --

@@ -1076,10 +1076,11 @@ addon.Tests.Suites.pictures = function(done, what)
     if not banner then
         CreateFrames()
     end
-    -- The options window stays out of the scenes; an open menu was refused by the Ready check
-    local window = addon.Options.Window
-    if window and window.Controller and window.Controller:IsShown() then
-        window.Controller:GetFrame():Hide()
+    -- The options window stays out of the scenes, on whichever addon's tab it is open; an open menu was refused by the
+    -- Ready check
+    local optionsWindow = KROWI_LIBMAN:GetLibrary("Krowi_Options_1").Frame
+    if optionsWindow and optionsWindow:IsShown() then
+        optionsWindow:Hide()
     end
     backdrop:Show()
     banner:RegisterEvent("SCREENSHOT_FAILED")

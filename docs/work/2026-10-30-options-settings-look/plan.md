@@ -56,6 +56,17 @@ Departures (2026-10-30):
 - **The title is `SETTINGS_TITLE`, not `OPTIONS`.** It is the string Blizzard's own window sets (`Blizzard_SettingsPanel.lua:54`, on all three clients) and reads "Options" as well, which is decision 2a.
 - **The variant switch is `/kaflook <name>`, not `/kaftest look <name>`.** `/kaftest` runs suites, and the switch is gone after the pick.
 - **Taint review of the build:** clean on every new template. One finding, already there before this work: `DropdownSelectionTextMixin` shows `GameTooltip` from our rows when a dropdown's text is cut off, and hides it on leave, the #300 path. Fixed by overriding `ShouldShowTooltip` on our own two dropdowns (`RowMixins.lua`). The `section-*` live steps now check every drawn dropdown for it.
+- **In-game picks (Krowi, 2026-10-30):** the inner frame drawn in slices, the arrow dropdowns, the thin scroll bars, "Lines under headings", the divider at the game's own place, and the help strip from the mockup (see spec). The `/kaflook` switch is gone.
+- **Second taint review** (after the picks): no finding on any client.
+- **Code review** (high, 2026-10-30). Fixed:
+  - the inner-frame slices drew over the window's own text and dimmed the page title, so they moved to the BACKGROUND layer;
+  - the dropdown arrows now pass their hover on to the row;
+  - a scroll bar change inside `ShowSection` or a search no longer builds the page twice (`Filling`, `EndFill`);
+  - `PageWidth` uses the page's own insets;
+  - the pictures suite hides the shared window on any tab;
+  - the `options-templates` rule also catches `Settings*Mixin`, `KeybindListener` and the panel's globals, and skips comments over several lines;
+  - the unused `Strings.New`, the atlas set twice and the final newline added to `Window.lua` are gone.
+  - Deferred: the unconditional mixin globals and templates, in `docs/backlog.md` for the move into `Krowi_Libraries`.
 
 ## Risks
 - **`Options_InnerFrame` has a fixed size** (Blizzard's window is 920 x 724; ours is wider and resizable). Stretched, it may distort. That is the first variant, measured with `C_Texture.GetAtlasInfo` in game.
