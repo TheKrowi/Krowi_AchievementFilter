@@ -540,12 +540,20 @@ steps = {
             end)
         end,
         -- Next to its row the preview ran off the bottom of the screen (the 2026-10-29 run), and at the screen's centre it
-        -- lay over the window on a 2560 px wide screen (2026-10-30): the addon's own frame goes beside the window, and
-        -- its next open anchors it to its row again (Gui/SidePanels.lua AnchorSidePanel)
+        -- lay over the window on a 2560 px wide screen (2026-10-30): the addon's own frame goes beside the window, left
+        -- of it when the window sits too far right for it to fit, and its next open anchors it to its row again
+        -- (Gui/SidePanels.lua AnchorSidePanel)
         After = function()
-            if KrowiAF_RewardPreview:IsShown() then
-                KrowiAF_RewardPreview:ClearAllPoints()
-                KrowiAF_RewardPreview:SetPoint("LEFT", AchievementFrame, "RIGHT", 40, 0)
+            local preview, window = KrowiAF_RewardPreview, AchievementFrame
+            if preview:IsShown() then
+                local fitsRight = window:GetRight() * window:GetEffectiveScale() + (40 + preview:GetWidth()) * preview:GetEffectiveScale()
+                    <= UIParent:GetRight() * UIParent:GetEffectiveScale()
+                preview:ClearAllPoints()
+                if fitsRight then
+                    preview:SetPoint("LEFT", window, "RIGHT", 40, 0)
+                else
+                    preview:SetPoint("RIGHT", window, "LEFT", -40, 0)
+                end
             end
             FadeSideButtons()
         end,
@@ -812,9 +820,7 @@ local function Shoot(step, items, rectangle, waited)
             end)
             return
         end
-        if waited == 0 then
-            SetBanner(step.Text .. ": move the mouse, the game's tooltip covers the picture")
-        end
+        SetBanner(step.Text .. ": move the mouse, the game's tooltip covers the picture")
         After(pollEvery, function()
             Shoot(step, items, rectangle, waited + pollEvery)
         end)
@@ -825,11 +831,14 @@ local function Shoot(step, items, rectangle, waited)
     end
     if waited > 0 then
         SetBanner(step.Text)
-        -- the mouse moved during the wait: the scene's check and its cut again, as they are now. Not the step's Cut,
-        -- which can change frames again (the guide step fades the side buttons)
+        -- the mouse moved during the wait: the scene's check, the step's mouse (the map button's hover) and its cut
+        -- again, as they are now. Not the step's Cut, which can change frames again (the guide step fades the side
+        -- buttons)
         local checkOk, passed, reason = pcall(step.Check or function() return true end)
+        local mouseOk, onIt = pcall(step.Mouse or function() return true end)
         local cutOk, now = pcall(Rectangle, items, step.More)
         local problem = not checkOk and tostring(passed) or not passed and (reason or "the check failed")
+            or not mouseOk and tostring(onIt) or not onIt and "the mouse left what the step needs it on"
             or not cutOk and tostring(now) or not now and "nothing on screen to cut out"
         if problem then
             Add("FAIL", "after the wait for the tooltip: " .. problem)
@@ -846,6 +855,15 @@ local function Shoot(step, items, rectangle, waited)
         tinsert(live.Observations, ("%s: backdrop not placed: %s"):format(step.Name, tostring(floorErr)))
     end
     After(0.2, function()
+        -- a tooltip the game showed in the meantime: the backdrop drops back, so the banner shows over it, and the
+        -- step waits again
+        local stillOk, coveredNow = pcall(GameTooltipOver, rectangle)
+        if stillOk and coveredNow then
+            backdrop:SetFrameStrata("BACKGROUND")
+            backdrop:SetFrameLevel(0)
+            Shoot(step, items, rectangle, waited)
+            return
+        end
         local shotTime = date("%Y-%m-%d %H:%M:%S")
         rectangle.Name, rectangle.Time = step.Picture, shotTime
         tinsert(live.Run.Shots, rectangle)

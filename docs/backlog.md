@@ -116,3 +116,8 @@ Follow-ups that are not a work item yet. When one is taken up, it gets its own w
   - The move of Y took on no account: since 11.2.7 and 5.5.1 its API is gone, and before that it ran before the key bindings were loaded.
   - So every current player whose Y is still Blizzard's keeps seeing #197 until they press Bind to Y.
   - If reports continue, a `DataIntegrityManager` step can set `FirstTimeSetUp.YBindingPending` once for accounts that already have `AchievementTabsSwitched`.
+
+## From the help picture margins (2026-10-30, docs/work/2026-10-26-help-picture-margins, PR #376)
+
+- **A margin's size in UI units grows as a picture is scaled down** (code review of PR #376). `Make-HelpPictures.ps1` takes a picture's natural size from its whole output, the 50 px margins included, divided by the scale. So Window, scaled to about 0.84, has a margin of about 50 units in the enlarged view, against 42 for a tooltip at full size. Not visible in the pane so far. The fix: add the margins in UI units after the frame part is converted.
+- **Rounding can push a picture taken in parts past `-MaxSide`** (same review). Each part's draw height is rounded on its own, so a picture whose scale was fitted to exactly 1024 px can come out at 1025 and be padded to a 2048 texture. No picture is near it now (Colors is 362 px high). The fix: floor the parts' sizes, or fit the scale after rounding.

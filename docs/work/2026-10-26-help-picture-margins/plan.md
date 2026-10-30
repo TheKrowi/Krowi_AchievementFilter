@@ -73,3 +73,12 @@ Spec: [spec.md](spec.md). Status: done
 - `Make-HelpPictures.ps1`: 19 pictures. RewardPreview, PopOut, MenuMain, the tooltips, Reminders, CalendarDays, FilterMenu and Window have a margin on all four sides; GuidePanel on top, right and bottom; NewTabs left, right and bottom; the others where a frame ends in the black.
 - Krowi on 2026-10-30, after looking at every section of the help pane: "all pictures look good now on retail".
 - **Mists:** step 7 not run, by Krowi's call on 2026-10-30: "mists can use retail pictures, it's fine".
+
+## Code review of PR #376 (2026-10-30)
+- **Fixed in the run** (`Tests/Pictures.lua`):
+  - the game's tooltip is checked again right before the screenshot, and the step waits again when it came up in the last 0.2 s;
+  - after such a wait the step checks again that the mouse is still where it needs to be;
+  - the reward preview goes left of the window when it does not fit on the right.
+- **Not changed:** four findings were wrong on the facts, described the run's intended behaviour, or asked about the menu move that the 08:22 run already proved.
+- **Deferred** to `docs/backlog.md`: two tool nits that no current picture shows.
+- `/kaftest pictures rewardpreview` on 2026-10-30 18:20 (twice): PASS, 0 addon errors, the same cut as the 08:03 run, so `RewardPreview.tga` stays.
