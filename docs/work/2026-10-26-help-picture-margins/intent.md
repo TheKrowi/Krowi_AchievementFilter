@@ -1,5 +1,5 @@
 # Intent: Help pictures cut too tight
-Author: Krowi (maintainer), from the Window picture in the options window's enlarged view, 2026-10-26. Source: idea. Status: accepted
+Author: Krowi (maintainer), from the Window picture in the options window's enlarged view, 2026-10-26. Source: idea. Status: done
 
 ## Problem
 The Window help picture is cut to the achievement window's frame rectangle. The soft edge fades the window's own left and right borders, the close button is half gone, the bottom of the tabs is cut off, and a game tooltip for a unit ("Neighborhood Watch, Level 90") covers the bottom right corner and the Specials tab.

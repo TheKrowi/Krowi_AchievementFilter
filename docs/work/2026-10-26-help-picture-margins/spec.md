@@ -1,5 +1,5 @@
 # Spec: Help pictures cut too tight
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. Each side of a help picture where a frame's own edge shows, with the run's black backdrop beyond it, is cut at the frame's visible edge and gets 50 px of black that fades to transparent with the old tutorial pictures' curve (alpha 2 at the edge, 80 at 16 px, 187 at 24 px, 253 at 40 px), so the frame itself stays fully opaque.
@@ -21,6 +21,7 @@ Intent: [intent.md](intent.md). Status: accepted
 - An embedded frame that ends at the window's own border passes over it to the black beyond: the category list takes the window's left border, the compact list its right border and the tabs. That is how the old Categories, CompactAchievements and Summary pictures were cut (20 to 27 px of margin).
 - **An edge side** is trimmed inward over black lines to the first line with content, then gets `-Margin` (50) px of black and the old curve over its outer 40 px. **A cut side** keeps the `-Fade` curve as now. The picture is scaled so that, with its margins, it fits `-MaxSide`. Its natural size is its final size in pixels, back through the scale, times the run's units per screenshot pixel. The tool prints which sides got the margin.
 - **The tooltip:** before the screenshot, a step whose cut (grown by 10 px) is covered by a visible `GameTooltip` names this in its banner and waits up to 30 s for the player to move the mouse; then it FAILs without recording the picture, so the tool keeps an earlier run's.
+- **More room where Krowi asked for it** (the review of 2026-10-29, plan.md): a step can grow its cut by UI units per side, so a side through the window fades out over the window rather than over the frame. The run records the frames' own rectangle beside the grown cut, and the tool tests each side along that rectangle's length, so the window taken in beside a frame does not make the frame's other sides a cut.
 - At the gate the option said the run would record which sides are a frame's edge. The screenshot gives the same answer for the same pictures, also for the runs already recorded, and it follows the backdrop that is really there: the map stays visible under the map button (`Floor`), and the colour rows have their neighbours above and below. A first build also took the tab art from the tab buttons' regions in the run (`Art = true`); the tool's reach over the art made that unneeded, so the run changes only for the tooltip, and of the recorded pictures only Window (the tooltip) needs a new shot.
 
 ## Options considered
@@ -30,11 +31,11 @@ Intent: [intent.md](intent.md). Status: accepted
 4. The Window picture only, or the one-off picture from the 18:26 screenshot. Turned down at the gate.
 
 ## Areas of concern
-- **Taint and secret values:** the run reads `IsVisible`, `GetLeft` and the like on `GameTooltip`, and writes nothing to it. It never hides `GameTooltip`: from addon code its `OnHide` would run tainted (the tooltip root cause of #300). The run is out of combat; the tooltip check runs in a `pcall`.
+- **Taint and secret values:** the run reads `IsVisible`, `GetLeft` and the like on `GameTooltip`, and writes nothing to it. It never hides `GameTooltip`: from addon code its `OnHide` would run tainted (the tooltip root cause of #300). The run is out of combat; the tooltip check runs in a `pcall`. After the review the run also moves the addon's own reward preview, sets the addon's own event reminder buttons transparent, and moves the right-click menu the scene opened (Retail; Mists opens it again through the addon's own menu builder). Two exposures it shares with the scenes and the addon's own window toggle, found by the taint review of 2026-10-30: opening or closing a menu on Retail has Blizzard's menu manager redraw the list under the cursor, tainted when that list is Blizzard's (the scenes' menus and the clean-up's close; the move adds no open or close), and `AchievementFrame:Hide()` in the calendar and reminders steps and at the end runs the window's close handler from addon code, as `Gui/Gui.lua`'s toggle does.
 - **Clients:** the pictures come from Retail and show on every client. A Mists run takes the same tooltip wait.
 - **Blizzard API changes:** none.
 - **Other addons, plugins and skins:** a skin can recolour the frames; the black beyond a frame decides, not the frame's colour.
-- **Saved variables:** `KrowiAF_DebugTable.Pictures` keeps its shape.
+- **Saved variables:** `KrowiAF_DebugTable.Pictures` keeps its shape; each shot gains `Inner`, and a run without it reads as before.
 - **Localization, libraries, data snapshots:** none.
 - **Player-facing text:** none. 105.0 is not released and its changelog already says the pictures are new, so no changelog line.
 
@@ -47,3 +48,5 @@ Intent: [intent.md](intent.md). Status: accepted
 
 ## Decision
 Krowi, 2026-10-26, at the design gate (intent accepted with it): **whole-frame pictures**, out of whole-frame pictures, the Window picture only, and the one-off picture from the 18:26 screenshot. 50 px of black from the old pictures' measurement. After the gate the side check moved from the run to the tool's reading of the screenshot (Design); the pictures it gives are the ones the option described.
+
+Krowi, 2026-10-29: a review of every picture asked for more room on nine of them and the whole summary in place of its bars (plan.md, the departure). Krowi, 2026-10-30: "all pictures look good now on retail".
