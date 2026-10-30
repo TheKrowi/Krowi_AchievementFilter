@@ -417,7 +417,7 @@ local function CheckDrawnRows()
             shows = row.Input:HasFocus() or row.Input:GetText() == tostring(value or "")
         elseif option.Type == "select" then
             -- the dropdowns never show GameTooltip from our rows (docs/work/2026-10-30-options-settings-look)
-            shows = not row.Select:ShouldShowTooltip() and not row.SelectSteppers.Dropdown:ShouldShowTooltip()
+            shows = not row.Select.Dropdown:ShouldShowTooltip()
         else
             shows = true
         end

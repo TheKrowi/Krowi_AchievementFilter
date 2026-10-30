@@ -8,6 +8,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 
 -- [[ Exported at 2026-10-24 16-43-33 ]] --
 L["Every addon"] = "Tutti gli addon"
+L["Lines under headings"] = "Linee sotto le intestazioni"
 L["Position applies to"] = "La posizione si applica a"
 L["Position applies to Desc"] = "Tutti gli avvisi sposta gli avvisi del gioco, come imprese e bottino, insieme ai promemoria degli eventi. Solo promemoria degli eventi sposta soltanto i promemoria degli eventi e lascia gli avvisi del gioco dove li mette il gioco."
 L["Every alert"] = "Tutti gli avvisi"

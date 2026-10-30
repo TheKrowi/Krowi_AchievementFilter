@@ -7,7 +7,7 @@
 
 -- The window: a tab per registered addon on top, the open addon's navigation on the left, the section's rows in the
 -- middle, the help pane on the right, in the frame and art of the game's own Options window. Strings come from the open
--- tab's consumer (config.Strings): Search, SearchAll, Overview, SearchResults, NoResults, Defaults, ResetSection (with
+-- tab's consumer (config.Strings): Search, SearchAll, HeadingLines, Overview, SearchResults, NoResults, Defaults, ResetSection (with
 -- %s), ChangedCount (with %d), ReloadText, ReloadNow, ShowMe, HowItWorks, New, All, None, NotBound, PressAKey, Default
 -- (with %s), NeedsReload, Changed, NotInCombat.
 
@@ -119,6 +119,65 @@ end
 
 local navExtents = { NavHeader = 30, NavButton = 20, NavSpacer = 18 }
 
+-- [[ The inner frame ]] --
+-- The game's own inner frame (Options_InnerFrame, 886 x 618 and the same on every client), which
+-- Blizzard_SettingsPanel.xml draws at its size in a window of fixed size. Ours is wider for the help pane and resizable,
+-- so it is drawn in slices: the shaded edges and the 2 px divider keep their size and only the flat parts stretch, and
+-- the divider is drawn at the end of the navigation and again at the start of the help pane. The cuts were measured on
+-- the atlas with the kit's Get-Atlas.ps1: x from, x to, and y from, y to, in its pixels.
+local innerColumns = { Left = { 0, 30 }, Nav = { 30, 199 }, Divider = { 199, 201 }, Flat = { 201, 856 }, Right = { 856, 886 } }
+local innerRows = { Top = { 0, 90 }, Middle = { 90, 440 }, Bottom = { 440, 618 } }
+local innerSlices = { -- left to right: a slice's piece of the atlas
+    { Key = "Left", Atlas = "Left" }, { Key = "Nav", Atlas = "Nav" }, { Key = "Divider", Atlas = "Divider" },
+    { Key = "Page", Atlas = "Flat" }, { Key = "HelpDivider", Atlas = "Divider" }, { Key = "Help", Atlas = "Flat" },
+    { Key = "Right", Atlas = "Right" },
+}
+
+function Krowi_OptionsWindowMixin:CreateInnerFrame()
+    local info = C_Texture.GetAtlasInfo("Options_InnerFrame")
+    if not info then return end
+    local function U(x) return info.leftTexCoord + (info.rightTexCoord - info.leftTexCoord) * x / info.width end
+    local function V(y) return info.topTexCoord + (info.bottomTexCoord - info.topTexCoord) * y / info.height end
+    self.InnerSlices = {}
+    for _, column in ipairs(innerSlices) do
+        local x = innerColumns[column.Atlas]
+        for row, y in next, innerRows do
+            local slice = self:CreateTexture(nil, "OVERLAY", nil, 2)
+            slice:SetTexture(info.file or info.filename)
+            slice:SetTexCoord(U(x[1]), U(x[2]), V(y[1]), V(y[2]))
+            self.InnerSlices[column.Key .. row] = slice
+        end
+    end
+end
+
+-- Each slice spans an edge and offset of the inner frame to another, across and down
+local innerRowAnchors = { Top = { "TOP", 0, "TOP", -90 }, Middle = { "TOP", -90, "BOTTOM", 178 }, Bottom = { "BOTTOM", 178, "BOTTOM", 0 } }
+
+function Krowi_OptionsWindowMixin:LayoutInnerFrame(right)
+    if not self.InnerSlices then return end
+    -- The frame starts 1 px left of the body: the divider's 2 px straddle the navigation's end and the help pane's start
+    local divider, help = navWidth, right + 2
+    local columns = {
+        Left = { "LEFT", 0, "LEFT", 30 },
+        Nav = { "LEFT", 30, "LEFT", divider },
+        Divider = { "LEFT", divider, "LEFT", divider + 2 },
+        Page = { "LEFT", divider + 2, "RIGHT", -help },
+        HelpDivider = { "RIGHT", -help, "RIGHT", -help + 2 },
+        Help = { "RIGHT", -help + 2, "RIGHT", -30 },
+        Right = { "RIGHT", -30, "RIGHT", 0 },
+    }
+    local frame = self.InnerFrame
+    for key, x in next, columns do
+        for row, y in next, innerRowAnchors do
+            local slice = self.InnerSlices[key .. row]
+            slice:ClearAllPoints()
+            slice:SetPoint("TOPLEFT", frame, y[1] .. x[1], x[2], y[2])
+            slice:SetPoint("BOTTOMRIGHT", frame, y[3] .. x[3], x[4], y[4])
+            slice:SetShown(key ~= "Help" or -help + 2 < -30) -- a collapsed pane leaves no room between its divider and the edge
+        end
+    end
+end
+
 function Krowi_OptionsWindowMixin:OnLoad()
     self:RegisterForDrag("LeftButton")
     if self.SetResizeBounds then self:SetResizeBounds(minWidth, minHeight) else self:SetMinResize(minWidth, minHeight) end
@@ -130,6 +189,7 @@ function Krowi_OptionsWindowMixin:OnLoad()
     self.NineSlice.Text:SetText(SETTINGS_TITLE) -- the game's own Options window's title
     self.Divider:SetAtlas("Options_HorizontalDivider", true)
     self.TabButtons = {}
+    self:CreateInnerFrame()
 
     self.Measure = self:CreateFontString(nil, "ARTWORK", "GameFontDisable")
     self.Measure:Hide()
@@ -167,6 +227,12 @@ function Krowi_OptionsWindowMixin:OnLoad()
         lib.SetShared("SearchAll", self.SearchEveryTab)
         if self.Searching then self:OnSearch(self.SearchBox:GetText()) end
     end)
+    -- Lines under the page's group headings, the player's choice, kept for every addon like the window's place
+    self.HeadingLines:SetScript("OnClick", function(button)
+        self.ShowHeadingLines = button:GetChecked() and true or false
+        lib.SetShared("HeadingLines", self.ShowHeadingLines)
+        self:ReloadSection()
+    end)
     self.CollapseButton:SetScript("OnClick", function() self:SetPaneCollapsed(true) end)
     self.ExpandButton:SetScript("OnClick", function() self:SetPaneCollapsed(false) end)
     -- Show me closes the window first, then shows the feature (the help track's decision, plan-help.md). The window stays
@@ -202,17 +268,9 @@ function Krowi_OptionsWindowMixin:Init(saved)
     self.PaneCollapsed = saved.PaneCollapsed and true or false
     self.SearchEveryTab = saved.SearchAll and true or false
     self.SearchAll:SetChecked(self.SearchEveryTab)
+    self.ShowHeadingLines = saved.HeadingLines and true or false
+    self.HeadingLines:SetChecked(self.ShowHeadingLines)
     self:Layout()
-    self:ApplyLook()
-end
-
--- TEMPORARY: the look's details Krowi compares in game (lib.Look)
-function Krowi_OptionsWindowMixin:ApplyLook()
-    local innerFrame = lib.Look.InnerFrame
-    self.InnerFrame:SetShown(innerFrame)
-    self.NavBackground:SetShown(not innerFrame)
-    self.HelpBackground:SetShown(not innerFrame)
-    self:ReloadSection()
 end
 
 -- [[ Tabs ]] --
@@ -277,6 +335,8 @@ function Krowi_OptionsWindowMixin:ApplyStrings()
     self.SearchBox.Instructions:SetText(strings.Search or "")
     self.SearchAllLabel:SetText(strings.SearchAll or "")
     self.SearchAll:SetHitRectInsets(0, -(self.SearchAllLabel:GetStringWidth() + 4), 0, 0) -- the label ticks it too
+    self.HeadingLinesLabel:SetText(strings.HeadingLines or "")
+    self.HeadingLines:SetHitRectInsets(0, -(self.HeadingLinesLabel:GetStringWidth() + 4), 0, 0)
     self.DefaultsButton:SetText(strings.Defaults)
     self.ReloadButton:SetText(strings.ReloadNow)
     self.ReloadText:SetText(strings.ReloadText)
@@ -306,9 +366,7 @@ function Krowi_OptionsWindowMixin:Layout()
     body:ClearAllPoints()
     body:SetPoint("TOPLEFT", self, "TOPLEFT", bodyInsets.Left, bodyInsets.Top)
     body:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", bodyInsets.Right, bodyInsets.Bottom)
-    self.InnerFrame:ClearAllPoints()
-    self.InnerFrame:SetPoint("TOPLEFT", self, "TOPLEFT", 17, -64)
-    self.InnerFrame:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", -17, bodyInsets.Bottom - 6)
+    self:LayoutInnerFrame(right)
 
     -- The search box sits in the tab row at the right, as the game's does
     self.SearchBox:ClearAllPoints()
@@ -318,17 +376,15 @@ function Krowi_OptionsWindowMixin:Layout()
     self.SearchAll:ClearAllPoints()
     self.SearchAll:SetPoint("RIGHT", self.SearchAllLabel, "LEFT", -2, 0)
 
-    self.NavBackground:ClearAllPoints()
-    self.NavBackground:SetPoint("TOPLEFT", body, "TOPLEFT")
-    self.NavBackground:SetPoint("BOTTOMLEFT", body, "BOTTOMLEFT")
-    self.NavBackground:SetWidth(navWidth)
+    -- The scroll bars sit as the game's lists place theirs (Blizzard_CategoryList.xml, Blizzard_SettingsList.xml), each
+    -- just inside the divider or edge after its list
     self.NavScrollBox:ClearAllPoints()
     self.NavScrollBox:SetPoint("TOPLEFT", body, "TOPLEFT", 0, -4)
     self.NavScrollBox:SetPoint("BOTTOMLEFT", body, "BOTTOMLEFT", 0, 4)
     self.NavScrollBox:SetWidth(navWidth - 14)
     self.NavScrollBar:ClearAllPoints()
-    self.NavScrollBar:SetPoint("TOPLEFT", self.NavScrollBox, "TOPRIGHT", 0, 0)
-    self.NavScrollBar:SetPoint("BOTTOMLEFT", self.NavScrollBox, "BOTTOMRIGHT", 0, 0)
+    self.NavScrollBar:SetPoint("TOPLEFT", self.NavScrollBox, "TOPRIGHT", 0, 2)
+    self.NavScrollBar:SetPoint("BOTTOMLEFT", self.NavScrollBox, "BOTTOMRIGHT", -1, 7)
 
     self.HelpBackground:ClearAllPoints()
     self.HelpBackground:SetPoint("TOPRIGHT", body, "TOPRIGHT")
@@ -342,10 +398,10 @@ function Krowi_OptionsWindowMixin:Layout()
     self.HelpKicker:SetPoint("TOPLEFT", self.HelpBackground, "TOPLEFT", 16, -12)
     self.HelpScrollBox:ClearAllPoints()
     self.HelpScrollBox:SetPoint("TOPLEFT", self.HelpBackground, "TOPLEFT", 12, -32)
-    self.HelpScrollBox:SetPoint("BOTTOMRIGHT", self.HelpBackground, "BOTTOMRIGHT", -24, 44)
+    self.HelpScrollBox:SetPoint("BOTTOMRIGHT", self.HelpBackground, "BOTTOMRIGHT", -22, 44)
     self.HelpScrollBar:ClearAllPoints()
-    self.HelpScrollBar:SetPoint("TOPLEFT", self.HelpScrollBox, "TOPRIGHT", 4, 0)
-    self.HelpScrollBar:SetPoint("BOTTOMLEFT", self.HelpScrollBox, "BOTTOMRIGHT", 4, 0)
+    self.HelpScrollBar:SetPoint("TOPLEFT", self.HelpScrollBox, "TOPRIGHT", 0, -4)
+    self.HelpScrollBar:SetPoint("BOTTOMLEFT", self.HelpScrollBox, "BOTTOMRIGHT", -1, 7)
     self.ShowMeButton:ClearAllPoints()
     self.ShowMeButton:SetPoint("BOTTOMLEFT", self.HelpBackground, "BOTTOMLEFT", 14, 12)
     self.ShowMeNote:ClearAllPoints()
@@ -372,15 +428,19 @@ function Krowi_OptionsWindowMixin:Layout()
     self.Divider:SetPoint("TOPRIGHT", self.HelpBackground, "TOPLEFT", -8, -50)
     self.PageScrollBox:ClearAllPoints()
     self.PageScrollBox:SetPoint("TOPLEFT", body, "TOPLEFT", navWidth + 8, -58)
-    self.PageScrollBox:SetPoint("BOTTOMRIGHT", self.HelpBackground, "BOTTOMLEFT", -20, 0)
+    self.PageScrollBox:SetPoint("BOTTOMRIGHT", self.HelpBackground, "BOTTOMLEFT", -16, 0)
     self.PageScrollBar:ClearAllPoints()
-    self.PageScrollBar:SetPoint("TOPLEFT", self.PageScrollBox, "TOPRIGHT", 4, 0)
-    self.PageScrollBar:SetPoint("BOTTOMLEFT", self.PageScrollBox, "BOTTOMRIGHT", 4, 0)
+    self.PageScrollBar:SetPoint("TOPLEFT", self.PageScrollBox, "TOPRIGHT", 0, -4)
+    self.PageScrollBar:SetPoint("BOTTOMLEFT", self.PageScrollBox, "BOTTOMRIGHT", -1, 7)
 
-    -- The reload bar shares the bottom row with Close
+    -- The bottom row: the reload bar, the heading lines check box and Close
+    self.HeadingLinesLabel:ClearAllPoints()
+    self.HeadingLinesLabel:SetPoint("RIGHT", self.CloseButton, "LEFT", -16, 0)
+    self.HeadingLines:ClearAllPoints()
+    self.HeadingLines:SetPoint("RIGHT", self.HeadingLinesLabel, "LEFT", -2, 0)
     self.ReloadBackground:ClearAllPoints()
     self.ReloadBackground:SetPoint("TOPLEFT", body, "BOTTOMLEFT", 0, -6)
-    self.ReloadBackground:SetPoint("BOTTOMRIGHT", self.CloseButton, "BOTTOMLEFT", -12, -4)
+    self.ReloadBackground:SetPoint("BOTTOMRIGHT", self.HeadingLines, "BOTTOMLEFT", -12, -2)
     self.ReloadText:ClearAllPoints()
     self.ReloadText:SetPoint("LEFT", self.ReloadBackground, "LEFT", 12, 0)
     self.ReloadButton:ClearAllPoints()

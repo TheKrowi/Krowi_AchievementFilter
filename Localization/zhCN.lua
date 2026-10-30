@@ -8,6 +8,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 
 -- [[ Exported at 2026-10-24 16-43-33 ]] --
 L["Every addon"] = "所有插件"
+L["Lines under headings"] = "标题下的横线"
 L["Position applies to"] = "位置适用于"
 L["Position applies to Desc"] = "所有警报：将游戏自身的警报（如成就和拾取）与事件提醒一起移动。仅事件提醒：只移动事件提醒，游戏的警报保留在游戏放置的位置。"
 L["Every alert"] = "所有警报"

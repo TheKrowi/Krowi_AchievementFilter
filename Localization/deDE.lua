@@ -8,6 +8,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 
 -- [[ Exported at 2026-10-24 16-43-33 ]] --
 L["Every addon"] = "Alle Addons"
+L["Lines under headings"] = "Linien unter Überschriften"
 L["Position applies to"] = "Position gilt für"
 L["Position applies to Desc"] = "Jede Meldung verschiebt die Meldungen des Spiels, etwa Erfolge und Beute, zusammen mit den Event-Erinnerungen. Nur Event-Erinnerungen verschiebt nur die Event-Erinnerungen und lässt die Meldungen des Spiels dort, wo das Spiel sie anzeigt."
 L["Every alert"] = "Jede Meldung"

@@ -11,16 +11,15 @@
 -- row Slots (two options holding a key each).
 -- Every change goes through window:OnOptionChanged, which redraws the rows, the dots and the reload bar.
 
-local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
-
 local controlColumn = 300 -- the controls start this far from the row's right edge; labels stop short of it
 
 -- [[ Header, sub-heading, note ]] --
 Krowi_OptionsTextRowMixin = {}
 
-function Krowi_OptionsTextRowMixin:Init(element)
+-- A header's line follows the player's choice in the window's bottom row
+function Krowi_OptionsTextRowMixin:Init(element, window)
     self.Text:SetText(element.Text or "")
-    if self.Line then self.Line:SetShown(lib.Look.HeaderLine) end -- TEMPORARY: the look Krowi picks in game
+    if self.Line then self.Line:SetShown(window.ShowHeadingLines) end
 end
 
 -- [[ An option ]] --
@@ -84,23 +83,21 @@ function Krowi_OptionsOptionRowMixin:OnLoad()
         button:EnableMouseWheel(false)
     end
 
-    for _, control in ipairs({ self.Dot, self.Toggle, self.Range, self.Select, self.SelectSteppers.Dropdown, self.Execute, self.Input, self.Key1, self.Key2 }) do
+    for _, control in ipairs({ self.Dot, self.Toggle, self.Range, self.Select.Dropdown, self.Execute, self.Input, self.Key1, self.Key2 }) do
         Forward(control, self)
     end
 
     -- A dropdown whose text is cut off shows it in GameTooltip and hides it on leave (DropdownSelectionTextMixin): from
     -- our rows that Hide runs GameTooltip's OnHide tainted, the path of issue #300. The help pane or the row's tooltip
     -- shows the option instead.
-    for _, dropdown in ipairs({ self.Select, self.SelectSteppers.Dropdown }) do
-        dropdown.ShouldShowTooltip = NoTooltip
-    end
+    self.Select.Dropdown.ShouldShowTooltip = NoTooltip
 end
 
 function Krowi_OptionsOptionRowMixin:Init(element, window)
     self:EndKeyCapture() -- a recycled row must not bind the next key to its new option
     self.Element, self.Window, self.Option = element, window, element.Option
     local option = self.Option
-    for _, control in ipairs({ self.Toggle, self.Range, self.Select, self.SelectSteppers, self.Execute, self.Input, self.Key1, self.Key2 }) do
+    for _, control in ipairs({ self.Toggle, self.Range, self.Select, self.Execute, self.Input, self.Key1, self.Key2 }) do
         control:Hide()
     end
     self.Label:SetPoint("LEFT", 16 + (option.Indent or 0) * 20, 0)
@@ -121,10 +118,8 @@ function Krowi_OptionsOptionRowMixin:Init(element, window)
         self.Updating = nil
         self.Range:Show()
     elseif t == "select" then
-        -- TEMPORARY: the plain dropdown or the game's settings one with arrows, the look Krowi picks in game
-        local control = lib.Look.Steppers and self.SelectSteppers or self.Select
-        self.ActiveSelect = control
-        local dropdown = control.Dropdown or control
+        -- The arrows step through the menu's radios, so a choice made with them asks and sets as a click in the list does
+        local dropdown = self.Select.Dropdown
         dropdown:SetupMenu(function(_, root)
             for _, pair in ipairs(option:GetValues()) do
                 root:CreateRadio(tostring(pair[2]), function() return option:Get() == pair[1] end, function()
@@ -138,7 +133,7 @@ function Krowi_OptionsOptionRowMixin:Init(element, window)
             end
         end)
         if dropdown.SetDefaultText then dropdown:SetDefaultText(option.Placeholder or "") end
-        control:Show()
+        self.Select:Show()
     elseif t == "execute" then
         self.Execute:SetText(option:GetButtonText())
         self.Execute:Show()
@@ -175,10 +170,8 @@ function Krowi_OptionsOptionRowMixin:Refresh()
         self.Updating = nil
         self.Range:SetEnabled(not disabled)
     elseif t == "select" then
-        local control = self.ActiveSelect
-        local dropdown = control.Dropdown or control
-        dropdown:GenerateMenu()
-        control:SetEnabled(not disabled) -- the arrows' frame enables its dropdown and its arrows
+        self.Select.Dropdown:GenerateMenu()
+        self.Select:SetEnabled(not disabled) -- the arrows' frame enables its dropdown and its arrows
     elseif t == "execute" then
         self.Execute:SetEnabled(not disabled)
     elseif t == "input" then

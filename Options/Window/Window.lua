@@ -6,7 +6,8 @@ local L = addon.L
 
 -- The options window (docs/work/2026-10-25-options-revamp): Krowi_Options draws it, this file hands it the sections
 -- (Map.lua), their options (Source.lua), the explanations (window.Help, filled by Options/Window/Help) and the place
--- it keeps in KrowiAF_SavedData.OptionsWindow = { Point, Size, PaneCollapsed, SearchAll, LastSection, Seen = { [sectionId] = version } }.
+-- it keeps in KrowiAF_SavedData.OptionsWindow = { Point, Size, PaneCollapsed, SearchAll, HeadingLines, LastSection,
+-- Seen = { [sectionId] = version } }.
 
 window.Help = window.Help or {}
 
@@ -113,6 +114,7 @@ window.Controller = KROWI_LIBMAN:GetLibrary("Krowi_Options_1").CreateWindow({
         Overview = L["Overview"],
         Search = L["Search"],
         SearchAll = L["Every addon"],
+        HeadingLines = L["Lines under headings"],
         SearchResults = L["Search results"],
         NoResults = L["Nothing found."],
         Defaults = L["Defaults"],
@@ -145,22 +147,4 @@ end
 SLASH_KAF1 = "/kaf"
 SlashCmdList.KAF = function(msg)
     options.Open(nil, (msg or ""):lower():match("^%s*(%S+)"))
-end
-
--- TEMPORARY (docs/work/2026-10-30-options-settings-look): /kaflook InnerFrame|HeaderLine|Steppers toggles a detail of
--- the options window's look for Krowi to compare in game, debug mode only; removed with the pick
-SLASH_KAFLOOK1 = "/kaflook"
-SlashCmdList.KAFLOOK = function(msg)
-    local debugEnabled = addon.Diagnostics.DebugEnabled
-    if not (debugEnabled and debugEnabled()) then return end
-    local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
-    local name = (msg or ""):match("^%s*(%S+)")
-    if not (name and lib.SetLook(name)) then
-        print("/kaflook InnerFrame | HeaderLine | Steppers")
-        return
-    end
-    local parts = {}
-    for key, on in next, lib.Look do parts[#parts + 1] = key .. "=" .. (on and "on" or "off") end
-    table.sort(parts)
-    print("KAF look: " .. table.concat(parts, ", "))
 end

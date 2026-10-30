@@ -15,7 +15,9 @@ Intent: [intent.md](intent.md). Status: accepted
    - results are grouped by addon;
    - clicking a result switches to its tab;
    - the choice is kept with the window's shared state.
-7. A red Close button sits at the bottom right. The reload bar ("Some changes take effect after a reload. Reload now") sits in the same bottom row.
+7. A red Close button sits at the bottom right. The same bottom row holds the reload bar ("Some changes take effect after a reload. Reload now") and a "Lines under headings" check box. That check box is off by default, applies to every addon's tab and is kept with the window's shared state.
+12. Blizzard's inner frame art is drawn across the window. Its shaded edges keep their size, and its divider stands at the end of the section list and again at the start of the help pane.
+13. Every dropdown has Blizzard's arrows on each side, and the scroll bars are Blizzard's thin ones, placed as Blizzard places them.
 8. The help pane on the right, its collapse strip, Show me, the in-window Yes/No, the resize grip and every option behave as they do today.
 9. The window keeps one place, size and pane state, whichever addon opens it. Each addon still remembers its last section and the sections the player has seen.
 10. No taint:
@@ -52,7 +54,7 @@ Intent: [intent.md](intent.md). Status: accepted
   - `LastSection` and `Seen` stay per addon.
   - The shape of `KrowiAF_SavedData.OptionsWindow` does not change.
 - **`OnCreated(frame)`** runs for each registered config when the frame is made, and for a config registered later as it registers. KAF's call registers the window and the lightbox with its Escape handling, as today.
-- **Title strip:** the game's `OPTIONS` string (Decision).
+- **Title strip:** "Options" (Decision), from `SETTINGS_TITLE`, the string Blizzard's own window sets.
 - **Search:** the open tab's `Search(text)` by default. With "Every addon" ticked, the window calls every registered config's `Search` and lists the results under a `SubHeading` row per addon (its `TabName`). A result's link first switches to its tab. The check box (our own `Krowi_OptionsCheckButtonTemplate` with a label) shows only while `#lib.Tabs > 1`. Its state, `SearchAll`, is written with the shared place and size.
 
 **Section list:**
@@ -67,10 +69,14 @@ Intent: [intent.md](intent.md). Status: accepted
 
 **Rows:** they already use the gold label, the control column, Blizzard's minimal check box and the slider with steppers (`Krowi_Options/Rows.xml`). They stay, except for the variants below.
 
-**Details judged in game:** a temporary debug switch (`/kaftest look <name>`, debug mode only) toggles each detail live, and is removed once Krowi has picked:
-- **The inner frame art.** `Options_InnerFrame` is drawn at its atlas size in Blizzard's fixed 920 x 724 window (`Blizzard_SettingsPanel.xml:10-14`). Ours is wider, because of the help pane, and resizable. Compare it stretched over the body with today's dark fills.
-- **The page's group headers.** Blizzard's section headers are `GameFontHighlightLarge` without a line (`Blizzard_SettingControls.xml:13-23`). Compare that with today's gold underline.
-- **Dropdowns.** Compare today's `WowStyle1DropdownTemplate` with Blizzard's `DropdownWithSteppersTemplate`, which has an arrow on each side ("◀ SHIFT key ▶").
+**Details judged in game:** a temporary debug switch (`/kaflook <name>`) toggled each detail live. Krowi picked on 2026-10-30 (Decision), and the switch is gone.
+- **The inner frame art.** `Options_InnerFrame` is drawn at its atlas size in Blizzard's fixed 920 x 724 window (`Blizzard_SettingsPanel.xml:10-14`). Ours is wider, because of the help pane, and resizable. Stretched as one piece, its divider moved off the section list's edge, and nothing divided the page from the help pane.
+  - The kit's `Get-Atlas.ps1` measured it on both clients: it is the same 886 x 618 atlas of file 1318750.
+  - Its shading is 30 px left and right, 90 px at the top and 178 px at the bottom. Its divider is 2 px at x 199.
+  - It is now drawn in slices (`WindowMixin.lua`, `CreateInnerFrame` and `LayoutInnerFrame`): the edges and the divider at their size, and the flat parts stretched. The divider stands at the end of the navigation and again at the start of the help pane. The dark fills behind the navigation and the help pane are gone.
+- **The page's group headers.** Blizzard's section headers are `GameFontHighlightLarge` without a line (`Blizzard_SettingControls.xml:13-23`). The gold underline became the player's "Lines under headings" check box, off by default.
+- **Dropdowns.** Blizzard's `DropdownWithSteppersTemplate`, with a `WowStyle2DropdownTemplate` child, replaced `WowStyle1DropdownTemplate`. It has an arrow on each side ("◀ SHIFT key ▶"), and the arrows step through the menu's radios.
+- **Scroll bars** (Krowi, in game): `MinimalScrollBar`, anchored as `Blizzard_CategoryList.xml` and `Blizzard_SettingsList.xml` anchor theirs, replaced `WowTrimScrollBar`.
 
 ## Options considered
 1. **How the look is built.**
@@ -109,7 +115,7 @@ Intent: [intent.md](intent.md). Status: accepted
   - The frame name changes from `KrowiAF_OptionsWindow` to `Krowi_OptionsWindow`. Nothing outside the tests and `.luarc.json` uses it, and the window has not shipped yet: it first ships in 105.0.
 - **Saved variables and migrations:** none. `KrowiAF_SavedData.OptionsWindow` keeps `Point`, `Size`, `PaneCollapsed`, `LastSection` and `Seen`.
 - **Localization:**
-  - One new string, "Every addon" (`Strings.SearchAll`), goes into every locale file, translated, and to CurseForge.
+  - Two new strings, "Every addon" (`Strings.SearchAll`) and "Lines under headings" (`Strings.HeadingLines`), go into every locale file, translated, and to CurseForge.
   - `OPTIONS`, `CLOSE` and `NEW_CAPS` are the game's own, and the tab shows the addon's name.
   - `L["New"]` stays in use by the overview's New header.
 - **Embedded libraries:**
@@ -143,5 +149,11 @@ Krowi, 2026-10-30:
 - 2a: the title strip says "Options".
 - 3a: one shared place, size and pane state.
 - For search: "the open tab by default, option to search every tab", built as the "Every addon" check box in requirement 6.
+
+In game, the same day:
+- Blizzard's inner frame is a must, with a divider at the end of the navigation and another before the help pane.
+- The lines under headings become a player's check box in the window's bottom row, off by default.
+- The dropdowns keep Blizzard's arrows.
+- The scroll bars are Blizzard's new, thin ones.
 
 The scope came from the intent gate the same day: the look and the tab host now, proven with KAF alone; the move into `Krowi_Libraries` is the next work item. A single tab shows while KAF is the only Krowi addon.

@@ -20,25 +20,12 @@ if not lib then return end
 -- lib, which a newer copy of the library keeps.
 lib.Tabs = lib.Tabs or {}
 
--- TEMPORARY (docs/work/2026-10-30-options-settings-look): the details of the look Krowi compares in game, removed with
--- the pick. InnerFrame: Blizzard's inner frame art instead of the dark fills; HeaderLine: a line under the page's group
--- headers; Steppers: the game's settings dropdown with an arrow on each side
-lib.Look = lib.Look or { InnerFrame = false, HeaderLine = true, Steppers = false }
-
-function lib.SetLook(name, on)
-    if lib.Look[name] == nil then return false end
-    if on == nil then on = not lib.Look[name] end
-    lib.Look[name] = on
-    if lib.Frame then lib.Frame:ApplyLook() end
-    return true
-end
-
 --[[ config:
     TabName         the tab's text: the addon's name, not translated
-    Saved           a table the addon keeps the window's place, size, pane state, search scope, its last section and the
-                    sections seen in, or a function returning it (called on the first need, so it can live in saved
-                    variables not loaded yet); the window's place, size, pane state and search scope are written to every
-                    tab's table (lib.SetShared)
+    Saved           a table the addon keeps the window's place, size, pane state, search scope, heading lines, its last
+                    section and the sections seen in, or a function returning it (called on the first need, so it can
+                    live in saved variables not loaded yet); the window's own state is written to every tab's table
+                    (lib.SetShared)
     Groups          { { Name, Sections = { sectionId, ... } } } for the navigation; "overview" is always first
     SectionName(id) the navigation name of a section
     IsNew(id)       whether the navigation marks a section New
@@ -128,8 +115,8 @@ function lib.GetFrame(opening)
     return lib.Frame
 end
 
--- The window's place, size, pane state and search scope are one for every addon: each addon's saved table gets them, so
--- any one addon alone still opens the window as the player left it
+-- The window's place, size, pane state, search scope and heading lines are one for every addon: each addon's saved
+-- table gets them, so any one addon alone still opens the window as the player left it
 function lib.SetShared(key, value)
     for _, registered in ipairs(lib.Tabs) do
         registered:GetSaved()[key] = value

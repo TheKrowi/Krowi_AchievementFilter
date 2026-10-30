@@ -8,6 +8,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 
 -- [[ Exported at 2026-10-24 16-43-33 ]] --
 L["Every addon"] = "모든 애드온"
+L["Lines under headings"] = "제목 아래 줄"
 L["Position applies to"] = "위치 적용 대상"
 L["Position applies to Desc"] = "모든 알림은 업적과 전리품 같은 게임 알림을 이벤트 알림과 함께 옮깁니다. 이벤트 알림만은 이벤트 알림만 옮기고 게임 알림은 게임이 두는 자리에 그대로 둡니다."
 L["Every alert"] = "모든 알림"

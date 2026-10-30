@@ -103,15 +103,9 @@
                     <Anchor point="LEFT" relativePoint="RIGHT" x="-300"/>
                 </Anchors>
             </Frame>
-            <DropdownButton parentKey="Select" inherits="WowStyle1DropdownTemplate" hidden="true">
-                <Size x="250" y="26"/>
-                <Anchors>
-                    <Anchor point="LEFT" relativePoint="RIGHT" x="-300"/>
-                </Anchors>
-            </DropdownButton>
-            <!-- TEMPORARY (docs/work/2026-10-30-options-settings-look): the game's settings dropdown with an arrow on each
-                 side, as Metal2DropdownWithSteppersAndLabelTemplate builds it, to compare in game -->
-            <Frame parentKey="SelectSteppers" inherits="DropdownWithSteppersTemplate" hidden="true">
+            <!-- The game's settings dropdown with an arrow on each side, as Metal2DropdownWithSteppersAndLabelTemplate
+                 builds it (docs/work/2026-10-30-options-settings-look) -->
+            <Frame parentKey="Select" inherits="DropdownWithSteppersTemplate" hidden="true">
                 <Size x="250" y="26"/>
                 <Anchors>
                     <Anchor point="LEFT" relativePoint="RIGHT" x="-290"/>

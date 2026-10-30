@@ -117,35 +117,38 @@
                 <FontString parentKey="ReloadText" inherits="GameFontHighlight" justifyH="LEFT"/>
                 <FontString parentKey="ShowMeNote" inherits="GameFontDisableSmall" justifyH="LEFT" justifyV="TOP"/>
                 <FontString parentKey="SearchAllLabel" inherits="GameFontNormalSmall" justifyH="RIGHT" hidden="true"/>
+                <FontString parentKey="HeadingLinesLabel" inherits="GameFontNormalSmall" justifyH="LEFT"/>
                 <Texture parentKey="Divider" atlas="Options_HorizontalDivider"/>
             </Layer>
             <Layer level="BACKGROUND" textureSubLevel="2">
-                <Texture parentKey="NavBackground">
-                    <Color r="0" g="0" b="0" a="0.35"/>
-                </Texture>
-                <Texture parentKey="HelpBackground">
-                    <Color r="0" g="0" b="0" a="0.25"/>
-                </Texture>
+                <!-- Draws nothing: the help pane's place, which the page and the pane's own frames anchor to -->
+                <Texture parentKey="HelpBackground"/>
                 <Texture parentKey="ReloadBackground" hidden="true">
                     <Color r="1" g="0.82" b="0" a="0.08"/>
                 </Texture>
             </Layer>
-            <Layer level="OVERLAY" textureSubLevel="2">
-                <Texture parentKey="InnerFrame" atlas="Options_InnerFrame" hidden="true"/>
-            </Layer>
         </Layers>
         <Frames>
             <Frame parentKey="Body"/>
+            <!-- Where the game's window draws its inner frame (Blizzard_SettingsPanel.xml); WindowMixin.lua draws it in slices -->
+            <Frame parentKey="InnerFrame">
+                <Anchors>
+                    <Anchor point="TOPLEFT" x="17" y="-64"/>
+                    <Anchor point="BOTTOMRIGHT" x="-17" y="42"/>
+                </Anchors>
+            </Frame>
             <EditBox parentKey="SearchBox" inherits="SearchBoxTemplate" autoFocus="false" letters="60">
                 <Size x="300" y="22"/>
             </EditBox>
             <CheckButton parentKey="SearchAll" inherits="Krowi_OptionsCheckButtonTemplate" hidden="true"/>
+            <CheckButton parentKey="HeadingLines" inherits="Krowi_OptionsCheckButtonTemplate"/>
+            <!-- The game's window scrolls with the thin MinimalScrollBar (Blizzard_CategoryList.xml, Blizzard_SettingsList.xml) -->
             <Frame parentKey="NavScrollBox" inherits="WowScrollBoxList"/>
-            <EventFrame parentKey="NavScrollBar" inherits="WowTrimScrollBar"/>
+            <EventFrame parentKey="NavScrollBar" inherits="MinimalScrollBar"/>
             <Frame parentKey="PageScrollBox" inherits="WowScrollBoxList"/>
-            <EventFrame parentKey="PageScrollBar" inherits="WowTrimScrollBar"/>
+            <EventFrame parentKey="PageScrollBar" inherits="MinimalScrollBar"/>
             <Frame parentKey="HelpScrollBox" inherits="WowScrollBoxList"/>
-            <EventFrame parentKey="HelpScrollBar" inherits="WowTrimScrollBar"/>
+            <EventFrame parentKey="HelpScrollBar" inherits="MinimalScrollBar"/>
             <Button parentKey="CollapseButton">
                 <Size x="22" y="22"/>
                 <NormalTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Up"/>

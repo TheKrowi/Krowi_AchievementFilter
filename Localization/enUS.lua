@@ -7,6 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 
 -- [[ Exported at 2026-10-24 16-43-33 ]] --
 L["Every addon"] = true
+L["Lines under headings"] = true
 L["Position applies to"] = true
 L["Position applies to Desc"] = "Every alert moves the game's own alerts, such as achievements and loot, together with the event reminders. Only event reminders moves the event reminders alone and leaves the game's alerts where the game puts them."
 L["Every alert"] = true
