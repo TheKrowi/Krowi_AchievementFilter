@@ -1,5 +1,5 @@
 # Intent: Options window in the look of Blizzard's Settings, with a tab per Krowi addon
-Author: Krowi (maintainer), captured by Claude. Source: idea (2026-10-30), from screenshots of Blizzard's Options window on Retail and Mists and the backlog entry "Explore: give the options window the look of Blizzard's own Settings window" (`docs/backlog.md`, merged as #378). Status: accepted
+Author: Krowi (maintainer), captured by Claude. Source: idea (2026-10-30), from screenshots of Blizzard's Options window on Retail and Mists and the backlog entry "Explore: give the options window the look of Blizzard's own Settings window" (`docs/backlog.md`, merged as #378). Status: done
 
 ## Problem
 The options window shipped in 105.0 (`Krowi_Options/`, docs/work/2026-10-25-options-revamp) uses a general Retail frame (`ButtonFrameTemplate`, `Krowi_Options/Window.xml:88`) on every client. It has a portrait, plain colour fills behind the navigation and the help pane (`Window.xml:101-111`), and its own navigation rows (`Window.xml:4-45`). Blizzard's own Options window, which every player knows, looks different on both clients:

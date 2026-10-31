@@ -1,5 +1,5 @@
 # Plan: Options window in the look of Blizzard's Settings, with a tab per Krowi addon
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 ## Context
 Krowi wants the options window to look like Blizzard's own Options window on Retail and Mists, with tabs on top: one per Krowi addon, KAF first and KEVU next (Krowi, 2026-10-30). The spec was accepted the same day.
@@ -67,6 +67,19 @@ Departures (2026-10-30):
   - the `options-templates` rule also catches `Settings*Mixin`, `KeybindListener` and the panel's globals, and skips comments over several lines;
   - the unused `Strings.New`, the atlas set twice and the final newline added to `Window.lua` are gone.
   - Deferred: the unconditional mixin globals and templates, in `docs/backlog.md` for the move into `Krowi_Libraries`.
+
+Departures (2026-10-31):
+- **The search scope is a "Search all tabs" check box in the bottom row, unticked by default and shown with one tab too** (Krowi, in game: "add an option near the bottom to search all or search selected tab", "default search selected tab"). The Proof's "hidden while there is one tab" no longer holds: the live `tabs` step checks that it shows. `window-second-tab` reports `open`, `all` and `after` instead of the counts the Proof names.
+- **In-game fixes (Krowi, 2026-10-30 and 31):**
+  - the help strip's text is in sentence case, as the open pane writes it, and centred under its chevron;
+  - the help's scroll bar hides while the pane is collapsed, and shows again only when the help is longer than the pane;
+  - the NEW label is anchored to its right edge and the navigation padded 50 px left, as the game's list does;
+  - the section list's scroll bar stands halfway between the header art and the divider.
+- **Third taint review** (`125b1c9f^..HEAD`): no finding on either client. **The code since the code review** (`f8ce1ccb^..HEAD`, read against `REVIEW.md`): no Important finding.
+- **After-runs (2026-10-31), BugGrabber with no KAF error on either client:**
+  - Retail 12.1.5: `/kaftest options` 56 passed, `escape` 34 passed.
+  - Mists 5.5.4: `options` 56 passed, `escape` 33 passed.
+  - Skipped: `y-on-new-install` (headless only), and on Mists `calendar-side` (no day with achievements this month on that character).
 
 ## Risks
 - **`Options_InnerFrame` has a fixed size** (Blizzard's window is 920 x 724; ours is wider and resizable). Stretched, it may distort. That is the first variant, measured with `C_Texture.GetAtlasInfo` in game.

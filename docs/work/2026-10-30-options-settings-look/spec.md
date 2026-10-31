@@ -1,5 +1,5 @@
 # Spec: Options window in the look of Blizzard's Settings, with a tab per Krowi addon
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. On Retail, Mists and Titan Reforged, the options window is drawn on Blizzard's own `SettingsFrameTemplate`, so each client shows its own frame, border and title strip, as its Options window does. It has no portrait.
