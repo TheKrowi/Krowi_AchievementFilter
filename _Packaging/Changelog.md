@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 - An options window in the look of the game's own Options window, with every setting sorted by feature and how each feature works next to it, opened with /kaf, the minimap icon or the filter menu
 - A Position applies to setting for event reminder pop ups: every alert, as before, or only the event reminders, leaving the game's own alerts where the game puts them
 - A Hide placeholders button next to Show placeholders
+- Additional ruRU and zhCN localization
 
 ### Changed
 - The tutorial is replaced by the explanations in the options window, with new pictures and a Show me button

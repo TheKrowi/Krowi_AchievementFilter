@@ -4,7 +4,7 @@ if not L then return end
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-05-26 20-54-30 ]] --
+-- [[ Exported at 2026-10-31 22-33-16 ]] --
 L["AchievementsTabFixes"] = "成就标签修复"
 L["AchievementsTabFixes Desc"] = "修复成就标签，可在下方切换。"
 L["Add To Right Click Menu"] = "添加到右键菜单"
@@ -86,6 +86,7 @@ L["Instance Achievement Tracker"] = true
 L["Instance Achievement Tracker Desc"] = "有可用的{iat}战术时，在右键菜单中添加一个额外选项。"
 L["RenameExplorationDragonIslesCategory"] = "将“探索 -> 巨龙群岛”类别重命名为“巨龙时代”"
 L["RenameExplorationDragonIslesCategory Desc"] = "将“探索 -> 巨龙群岛”类别重命名为“巨龙时代”。"
+L["Tab Spacing Overwrite Desc"] = "{addon}启用时，间距设置不生效。所有标签页的间距保持1像素，以匹配{addon}皮肤样式。"
 L["Unsupported GW2_UI Desc"] = "不支持当前GW 2 UI版本“{version}”。"
 L["Zygor Guides Viewer"] = "查看Zygor Guides"
 L["Zygor Guides Viewer Desc"] = [=[在新标签页{kaf}和第三方插件中添加放大镜图标到有指南的成就。
