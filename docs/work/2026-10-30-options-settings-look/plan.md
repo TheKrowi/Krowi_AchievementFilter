@@ -69,7 +69,7 @@ Departures (2026-10-30):
   - Deferred: the unconditional mixin globals and templates, in `docs/backlog.md` for the move into `Krowi_Libraries`.
 
 Departures (2026-10-31):
-- **The search scope is a "Search all tabs" check box in the bottom row, unticked by default and shown with one tab too** (Krowi, in game: "add an option near the bottom to search all or search selected tab", "default search selected tab"). The Proof's "hidden while there is one tab" no longer holds: the live `tabs` step checks that it shows. `window-second-tab` reports `open`, `all` and `after` instead of the counts the Proof names.
+- **The search scope is a "Search all tabs" check box in the bottom row, unticked by default** (Krowi, in game: "add an option near the bottom to search all or search selected tab", "default search selected tab"). It is hidden while there is one tab, as the Proof says (Krowi, on the PR, 2026-10-31), and the reload bar then reaches to "Lines under headings". `window-second-tab` reports `open`, `all` and `after` instead of the counts the Proof names.
 - **In-game fixes (Krowi, 2026-10-30 and 31):**
   - the help strip's text is in sentence case, as the open pane writes it, and centred under its chevron;
   - the help's scroll bar hides while the pane is collapsed, and shows again only when the help is longer than the pane;

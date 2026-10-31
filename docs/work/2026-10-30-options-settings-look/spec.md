@@ -56,7 +56,7 @@ Intent: [intent.md](intent.md). Status: done
   - The shape of `KrowiAF_SavedData.OptionsWindow` does not change.
 - **`OnCreated(frame)`** runs for each registered config when the frame is made, and for a config registered later as it registers. KAF's call registers the window and the lightbox with its Escape handling, as today.
 - **Title strip:** "Options" (Decision), from `SETTINGS_TITLE`, the string Blizzard's own window sets.
-- **Search:** the selected tab's `Search(text)` by default. With "Search all tabs" ticked and more than one tab, the window calls every registered config's `Search` and lists the results under a `SubHeading` row per addon (its `TabName`). A result's link first switches to its tab. The check box (our own `Krowi_OptionsCheckButtonTemplate` with a label) sits in the bottom row, left of "Lines under headings". Its state, `SearchAll`, is written with the shared place and size.
+- **Search:** the selected tab's `Search(text)` by default. With "Search all tabs" ticked and more than one tab, the window calls every registered config's `Search` and lists the results under a `SubHeading` row per addon (its `TabName`). A result's link first switches to its tab. The check box (our own `Krowi_OptionsCheckButtonTemplate` with a label) sits in the bottom row, left of "Lines under headings", and shows only once a second addon has a tab (Krowi, 2026-10-31). Its state, `SearchAll`, is written with the shared place and size.
 
 **Section list:**
 - `Krowi_OptionsNavHeaderTemplate` draws `Options_CategoryHeader_%d` at its atlas size, with the label in `GameFontHighlightMedium` at x 20. The index is `((n - 1) % 3) + 1`, as Blizzard's list does (`Blizzard_CategoryList.lua:414`).

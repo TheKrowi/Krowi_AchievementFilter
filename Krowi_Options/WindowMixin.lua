@@ -334,11 +334,21 @@ function Krowi_OptionsWindowMixin:RefreshTabs()
     for i = #tabs + 1, #self.TabButtons do
         self.TabButtons[i]:Hide()
     end
+    self:UpdateSearchAll()
     -- The open tab went (a test's): the first one takes its place
     if self.Tab and not tContains(tabs, self.Tab) then
         self.Tab = nil
         if self:IsShown() and tabs[1] then self:ShowTab(tabs[1]) end
     end
+end
+
+-- Searching every tab means something only with a second tab: the check box shows from then on, and until then the
+-- reload bar reaches to the heading lines check box
+function Krowi_OptionsWindowMixin:UpdateSearchAll()
+    local several = #lib.Tabs > 1
+    self.SearchAll:SetShown(several)
+    self.SearchAllLabel:SetShown(several)
+    self.ReloadBackground:SetPoint("BOTTOMRIGHT", several and self.SearchAll or self.HeadingLines, "BOTTOMLEFT", -12, -2)
 end
 
 -- Shows the window on an addon's tab: its sections, strings and saved table, at sectionId or the addon's landing section
@@ -517,7 +527,7 @@ function Krowi_OptionsWindowMixin:Layout()
     self.SearchAll:SetPoint("RIGHT", self.SearchAllLabel, "LEFT", -2, 0)
     self.ReloadBackground:ClearAllPoints()
     self.ReloadBackground:SetPoint("TOPLEFT", body, "BOTTOMLEFT", 0, -6)
-    self.ReloadBackground:SetPoint("BOTTOMRIGHT", self.SearchAll, "BOTTOMLEFT", -12, -2)
+    self:UpdateSearchAll()
     self.ReloadText:ClearAllPoints()
     self.ReloadText:SetPoint("LEFT", self.ReloadBackground, "LEFT", 12, 0)
     self.ReloadButton:ClearAllPoints()
