@@ -25,6 +25,12 @@ Krowi_OptionsNavButtonMixin = {}
 function Krowi_OptionsNavButtonMixin:Init(element, window)
     self.Element, self.Window = element, window
     self.Label:SetText(element.Text)
+    if element.IsNew then
+        -- Right against the name, as the game's list sets it (Blizzard_CategoryList.lua, RefreshNewFeature): centred, the
+        -- label's glow would push it 20 further left, past the window's edge on Mists
+        self.NewFeature.BGLabel:SetPoint("RIGHT", 0.5, -0.5)
+        self.NewFeature.Label:SetPoint("RIGHT", 0, 0)
+    end
     self.NewFeature:SetShown(element.IsNew)
     self.Selected = window.SectionId == element.Id and not window.Searching
     self.Over = self:IsMouseOver()
