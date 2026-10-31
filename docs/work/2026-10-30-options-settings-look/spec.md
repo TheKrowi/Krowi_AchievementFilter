@@ -61,6 +61,7 @@ Intent: [intent.md](intent.md). Status: accepted
 **Section list:**
 - `Krowi_OptionsNavHeaderTemplate` draws `Options_CategoryHeader_%d` at its atlas size, with the label in `GameFontHighlightMedium` at x 20. The index is `((n - 1) % 3) + 1`, as Blizzard's list does (`Blizzard_CategoryList.lua:414`).
 - `Krowi_OptionsNavButtonTemplate` is 20 high. Its label is `GameFontNormal`, or `GameFontHighlight` when selected. Its background is `Options_List_Active` when selected and `Options_List_Hover` under the mouse (`Blizzard_CategoryList.lua:42-63`).
+- As in the game's list (`Blizzard_CategoryList.lua:209-217`), the navigation's scroll box reaches 50 px left of the list with the rows padded back by as much, so the NEW label hanging left of a section is not clipped, and its rows are 2 px apart (Krowi, in game: Mists cut the label off).
 - Its New mark inherits `NewFeatureLabelTemplate`. That template is self-contained: its mixin only sizes its own text and plays its own glow (`Blizzard_SharedXML/NewFeatureLabel.lua`), and it uses the game's `NEW_CAPS` string. Overview stays the first entry, above the groups.
 
 **Page and bottom row:**

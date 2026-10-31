@@ -107,8 +107,10 @@ local rowTemplates = {
     Link = { "Krowi_OptionsLinkRowTemplate", 26 },
 }
 
-local function InitList(window, scrollBox, scrollBar, templates, extent)
-    local view = CreateScrollBoxListLinearView()
+-- leftPad and spacing as the game's category list uses them (Blizzard_CategoryList.lua): its scroll box reaches 50 px
+-- left of the list, so a NEW label hanging left of a section is not clipped, and the rows move back by as much
+local function InitList(window, scrollBox, scrollBar, templates, extent, leftPad, spacing)
+    local view = CreateScrollBoxListLinearView(0, 0, leftPad or 0, 0, spacing or 0)
     view:SetElementFactory(function(factory, element)
         local template = templates[element.Kind]
         factory(template[1], function(frame, data) if frame.Init then frame:Init(data, window) end end)
@@ -119,6 +121,7 @@ local function InitList(window, scrollBox, scrollBar, templates, extent)
 end
 
 local navExtents = { NavHeader = 30, NavButton = 20, NavSpacer = 18 }
+local navLeftPad = 50
 
 -- [[ The inner frame ]] --
 -- The game's own inner frame (Options_InnerFrame, 886 x 618 and the same on every client), which
@@ -200,7 +203,7 @@ function Krowi_OptionsWindowMixin:OnLoad()
         NavHeader = { "Krowi_OptionsNavHeaderTemplate" },
         NavButton = { "Krowi_OptionsNavButtonTemplate" },
         NavSpacer = { "Krowi_OptionsNavSpacerTemplate" },
-    }, function(element) return navExtents[element.Kind] end)
+    }, function(element) return navExtents[element.Kind] end, navLeftPad, 2)
     self.NavScrollShown = self.NavScrollBar:IsShown()
     navBar:RegisterCallback(ManagedScrollBarVisibilityBehaviorMixin.Event.OnVisibilityChanged, function(_, shown) self:OnNavScrollBarShown(shown) end, self)
     InitList(self, self.PageScrollBox, self.PageScrollBar, rowTemplates, function(element)
@@ -214,6 +217,10 @@ function Krowi_OptionsWindowMixin:OnLoad()
         if element.Kind == "HelpPicture" then return element.DrawHeight + 10 end
         return self:MeasureText(element.Text, element.Font, helpWidth - 52) + (element.Gap or 6)
     end)
+    -- The help is filled while the pane is collapsed too, and its scroll bar would then show on the strip
+    self.HelpBar:RegisterCallback(ManagedScrollBarVisibilityBehaviorMixin.Event.OnVisibilityChanged, function(_, shown)
+        if shown and self.PaneCollapsed then self.HelpScrollBar:Hide() end
+    end, self)
 
     -- The lightbox dims the screen above everything of the window (and a secure Show me button laid over it); a click
     -- closes it, and the consumer's Escape handling can close it like a window (OnCreated gets frame.Lightbox)
@@ -430,9 +437,9 @@ function Krowi_OptionsWindowMixin:Layout()
     -- The scroll bars sit as the game's lists place theirs (Blizzard_CategoryList.xml, Blizzard_SettingsList.xml), each
     -- just inside the divider or edge after its list
     self.NavScrollBox:ClearAllPoints()
-    self.NavScrollBox:SetPoint("TOPLEFT", body, "TOPLEFT", 0, -4)
-    self.NavScrollBox:SetPoint("BOTTOMLEFT", body, "BOTTOMLEFT", 0, 4)
-    self.NavScrollBox:SetWidth(navWidth)
+    self.NavScrollBox:SetPoint("TOPLEFT", body, "TOPLEFT", -navLeftPad, -4)
+    self.NavScrollBox:SetPoint("BOTTOMLEFT", body, "BOTTOMLEFT", -navLeftPad, 4)
+    self.NavScrollBox:SetWidth(navLeftPad + navWidth)
     self.NavScrollBar:ClearAllPoints()
     self.NavScrollBar:SetPoint("TOPLEFT", self.NavScrollBox, "TOPRIGHT", 0, 2)
     self.NavScrollBar:SetPoint("BOTTOMLEFT", self.NavScrollBox, "BOTTOMRIGHT", -1, 7)
