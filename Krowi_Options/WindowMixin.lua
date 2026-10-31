@@ -934,12 +934,16 @@ local function OptionHelpLines(window, option)
     return desc, lines
 end
 
-function Krowi_OptionsWindowMixin:OnRowEnter(option, row)
+-- controlX: where the hovered control starts, from the row's left edge
+function Krowi_OptionsWindowMixin:OnRowEnter(option, row, controlX)
     if not option then return end
     local desc, lines = OptionHelpLines(self, option)
     if self.PaneCollapsed then
         local tooltip = Krowi_Tooltip -- the addon's own tooltip, never GameTooltip (Krowi_Util creates it wherever KROWI_LIBMAN exists)
-        tooltip:SetOwner(row, "ANCHOR_RIGHT")
+        -- Above the row, from 10 before its control, where the game's Options window shows a setting's tooltip
+        -- (Blizzard_SettingControls.xml and .lua: ANCHOR_RIGHT on the part of the row before the control, x -10)
+        tooltip:SetOwner(row, "ANCHOR_NONE")
+        tooltip:SetPoint("BOTTOMLEFT", row, "TOPLEFT", (controlX or 0) - 10, 0)
         tooltip:AddLine(option:GetLabel(), 1, 1, 1)
         if desc ~= "" then tooltip:AddLine(desc, nil, nil, nil, true) end
         for _, line in ipairs(lines) do tooltip:AddLine(line, 0.6, 0.6, 0.6, true) end

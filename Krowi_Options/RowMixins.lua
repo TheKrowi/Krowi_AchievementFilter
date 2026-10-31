@@ -230,7 +230,7 @@ end
 
 function Krowi_OptionsOptionRowMixin:OnEnter()
     self.Hover:Show()
-    self.Window:OnRowEnter(self.Option, self)
+    self.Window:OnRowEnter(self.Option, self, self:GetWidth() - controlColumn)
 end
 
 function Krowi_OptionsOptionRowMixin:OnLeave()
@@ -323,7 +323,8 @@ end
 -- column: the hovered check box's; the row itself (its script passes the motion flag) describes the first one
 function Krowi_OptionsGridRowMixin:OnEnter(column)
     self.Hover:Show()
-    self.Window:OnRowEnter(self.Element.Cells[type(column) == "number" and column or 1], self)
+    column = type(column) == "number" and column or 1
+    self.Window:OnRowEnter(self.Element.Cells[column], self, gridLeft + (column - 0.5) * gridColumn - self.Cells[column]:GetWidth() / 2)
 end
 
 function Krowi_OptionsGridRowMixin:OnLeave()
@@ -376,7 +377,7 @@ end
 
 function Krowi_OptionsTabRowMixin:OnEnter()
     self.Hover:Show()
-    self.Window:OnRowEnter(self.Element.Item.Show, self)
+    self.Window:OnRowEnter(self.Element.Item.Show, self, 34) -- where ShowCheck stands (Rows.xml)
 end
 
 function Krowi_OptionsTabRowMixin:OnLeave()

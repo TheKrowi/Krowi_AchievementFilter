@@ -71,6 +71,7 @@ Intent: [intent.md](intent.md). Status: done
 - A new `CloseButton` (`UIPanelButtonNoTooltipTemplate`, the game's `CLOSE` string) sits at the bottom right, left of the resize grip. The reload bar moves into that bottom row, left of it.
 
 **Rows:** they already use the gold label, the control column, Blizzard's minimal check box and the slider with steppers (`Krowi_Options/Rows.xml`). They stay, except for the variants below.
+- With the help pane collapsed, a row's tooltip (`Krowi_Tooltip`) hangs above the row from 10 before the hovered control, where the game's window shows a setting's (`Blizzard_SettingControls.xml:57-61`, `DefaultTooltipMixin`: `ANCHOR_RIGHT`, x -10, on the part of the row before the control), instead of at the row's far right (Krowi, in game, 2026-10-31).
 
 **Details judged in game:** a temporary debug switch (`/kaflook <name>`) toggled each detail live. Krowi picked on 2026-10-30 (Decision), and the switch is gone.
 - **The inner frame art.** `Options_InnerFrame` is drawn at its atlas size in Blizzard's fixed 920 x 724 window (`Blizzard_SettingsPanel.xml:10-14`). Ours is wider, because of the help pane, and resizable. Stretched as one piece, its divider moved off the section list's edge, and nothing divided the page from the help pane.

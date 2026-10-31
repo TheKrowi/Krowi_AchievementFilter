@@ -74,7 +74,8 @@ Departures (2026-10-31):
   - the help strip's text is in sentence case, as the open pane writes it, and centred under its chevron;
   - the help's scroll bar hides while the pane is collapsed, and shows again only when the help is longer than the pane;
   - the NEW label is anchored to its right edge and the navigation padded 50 px left, as the game's list does;
-  - the section list's scroll bar stands halfway between the header art and the divider.
+  - the section list's scroll bar stands halfway between the header art and the divider;
+  - with the pane collapsed, a row's tooltip hangs above the row from 10 before its control, as the game's does, instead of at the row's far right.
 - **Third taint review** (`125b1c9f^..HEAD`): no finding on either client. **The code since the code review** (`f8ce1ccb^..HEAD`, read against `REVIEW.md`): no Important finding.
 - **After-runs (2026-10-31), BugGrabber with no KAF error on either client:**
   - Retail 12.1.5: `/kaftest options` 56 passed, `escape` 34 passed.
