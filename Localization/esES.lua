@@ -7,6 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-31 22-33-16 ]] --
+L["Help Overview Changed"] = "Una línea dorada delante de una opción indica que la has cambiado. Pasa el ratón por encima y haz clic en la flecha que aparece para restablecerla."
 L["{count} changed"] = "{count} cambiado(s)"
 L["5th Anniversary Celebration"] = "Celebración del 5.º aniversario"
 L["About"] = "Acerca de"
@@ -33,7 +34,6 @@ L["Buttons"] = "Botones"
 L["Calendar button: horizontal position"] = "Botón del calendario: posición horizontal"
 L["Calendar button: vertical position"] = "Botón del calendario: posición vertical"
 L["Category list"] = "Lista de categorías"
-L["Changed. Right-click the dot to set it back."] = "Cambiado. Haz clic derecho en el punto para restablecerlo."
 L["Changes need a reload."] = "Los cambios requieren recargar la interfaz."
 L["Chat messages for active events"] = "Mensajes de chat para eventos activos"
 L["Chat messages for upcoming calendar events"] = "Mensajes de chat para próximos eventos del calendario"
@@ -161,7 +161,6 @@ L["Help Maps Hover"] = "Cuenta los logros de la zona seleccionada según tus fil
 L["Help Maps Minimap"] = "El icono del minimapa también abre la ventana de logros."
 L["Help Maps No Key"] = "Abre el mapa del mundo para ver el botón."
 L["Help Maps Press Key"] = "Pulsa %s para abrir tu mapa."
-L["Help Overview Dot"] = "Un punto delante de una opción indica que la has cambiado. Haz clic derecho en el punto para restablecerla."
 L["Help Overview Hover"] = "Pasa el ratón sobre una opción para leer qué hace."
 L["Help Overview New"] = "Las secciones marcadas como Nuevo han cambiado desde la última vez que las viste."
 L["Help Overview Sections"] = "Cada sección empieza explicando cómo funciona. Muéstrame abre esa función en el juego."

@@ -6,6 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-31 22-33-16 ]] --
+L["Help Overview Changed"] = "A gold line before an option means you changed it. Hover it and click the arrow that appears to put it back."
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -162,7 +163,6 @@ L["Center Header Desc"] = "Center the achievement's name on the achievement butt
 L["Central Circuit"] = true
 L["Chains of Domination"] = true
 L["Challenges"] = true
-L["Changed. Right-click the dot to set it back."] = true
 L["Changes need a reload."] = true
 L["Character / Account wide"] = true
 L["Character only"] = true
@@ -552,7 +552,6 @@ L["Help Maps Hover"] = "Counts the selected zone's achievements by your filters,
 L["Help Maps Minimap"] = "The minimap icon opens the achievement window too."
 L["Help Maps No Key"] = "Open your world map to see the button."
 L["Help Maps Press Key"] = "Press %s to open your map."
-L["Help Overview Dot"] = "A dot before an option means you changed it. Right-click the dot to put it back."
 L["Help Overview Hover"] = "Hover an option to read what it does."
 L["Help Overview New"] = "Sections marked New have changed since you last looked."
 L["Help Overview Sections"] = "Each section starts with how its feature works. Show me opens the feature in the game."

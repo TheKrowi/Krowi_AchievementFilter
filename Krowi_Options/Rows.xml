@@ -80,17 +80,27 @@
                         <Anchor point="LEFT" relativeKey="$parent.Label" relativePoint="RIGHT" x="6"/>
                     </Anchors>
                 </Texture>
+                <!-- A changed option: a gold line along the row's left edge, as VS Code marks a modified setting
+                     (docs/work/2026-10-31-options-markers) -->
+                <Texture parentKey="ChangedBar" hidden="true">
+                    <Size x="2"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" y="-4"/>
+                        <Anchor point="BOTTOMLEFT" y="4"/>
+                    </Anchors>
+                    <Color r="1" g="0.82" b="0" a="1"/>
+                </Texture>
             </Layer>
         </Layers>
         <Frames>
-            <Button parentKey="Dot" hidden="true">
-                <Size x="8" y="8"/>
+            <!-- Sets a changed option back; shown while the mouse is on its row, in the margin before the name -->
+            <Button parentKey="Reset" hidden="true">
+                <Size x="12" y="12"/>
                 <Anchors>
-                    <Anchor point="RIGHT" relativeKey="$parent.Label" relativePoint="LEFT" x="-4"/>
+                    <Anchor point="RIGHT" relativeKey="$parent.Label" relativePoint="LEFT" x="-2"/>
                 </Anchors>
-                <NormalTexture>
-                    <Color r="1" g="0.82" b="0" a="1"/>
-                </NormalTexture>
+                <NormalTexture atlas="common-icon-undo"/>
+                <HighlightTexture atlas="common-icon-undo" alphaMode="ADD"/>
             </Button>
             <CheckButton parentKey="Toggle" inherits="Krowi_OptionsCheckButtonTemplate" hidden="true">
                 <Anchors>

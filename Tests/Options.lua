@@ -169,11 +169,11 @@ options.Scenarios = {
         end,
         Recorded = "mismatches=0",
         Target = "mismatches=0"},
-    {Name = "changed-dot",
+    {Name = "changed-line",
         Observe = function()
             local model = Model()
             if not model then return "no window" end
-            return ("wrong=%d"):format(#model.CheckChangedDots())
+            return ("wrong=%d"):format(#model.CheckChangedLines())
         end,
         Recorded = "wrong=0",
         Target = "wrong=0"},
@@ -287,7 +287,7 @@ function options.Run()
     return results
 end
 
--- Not scenarios: the options without a default (no dot, skipped by Defaults), and the setters whose side effects
+-- Not scenarios: the options without a default (no changed line, skipped by Defaults), and the setters whose side effects
 -- errored during the round trip (headless: frames and lists the load does not build; in game BugGrabber names them)
 function options.Observations()
     local model = Model()
@@ -310,8 +310,9 @@ end
 --     (docs/work/2026-10-30-options-settings-look)
 --   section-<id>: Overview and every section draw their rows, and every drawn check box, slider and text box shows its
 --     option's value
---   toggle, range, input: one row of each changed through its own control: the value is stored, and the changed dot and
---     the footer's count follow it
+--   toggle, range, input: one row of each changed through its own control: the value is stored, and the changed line and
+--     the footer's count follow it; toggle-reset: the toggle's row arrow sets it back to its default, and the arrow shows
+--     only under the mouse (docs/work/2026-10-31-options-markers)
 --   search: a search lists results; pane: the help pane collapses to its strip; close: the close button hides the window
 -- At the end every value the steps changed and the window's saved state (place, pane, last section, the sections seen,
 -- which the walk marks) are put back, and the addon's Lua errors of the session are reported from BugGrabber. Combat
@@ -483,10 +484,42 @@ local function ChangeSteps(kind, optionId, Change)
         Check = function()
             local row = RowOf(option)
             local stored = option:Get() ~= live.Before[option].Value
-            local dot = row and row.Dot:IsShown() == option:IsChanged()
+            local line = row and row.ChangedBar:IsShown() == option:IsChanged()
             local footer, count = FooterAgrees(sectionId)
-            Add(stored and dot and footer and "PASS" or "FAIL", ("%s: %s -> %s, dot %s, footer %s (%d changed)"):format(optionId,
-                tostring(live.Before[option].Value), tostring(option:Get()), dot and "follows" or "wrong", footer and "follows" or "wrong", count))
+            Add(stored and line and footer and "PASS" or "FAIL", ("%s: %s -> %s, changed line %s, footer %s (%d changed)"):format(optionId,
+                tostring(live.Before[option].Value), tostring(option:Get()), line and "follows" or "wrong", footer and "follows" or "wrong", count))
+        end
+    }
+end
+
+-- The arrow on a changed row sets its option back to the default (docs/work/2026-10-31-options-markers). It shows only
+-- under the mouse, which a test does not move, so the step runs its click.
+local function ResetStep(kind, optionId)
+    local sectionId, option, arrowShown
+    return {
+        Name = kind .. "-reset",
+        Text = ("the %s set back by its row's arrow"):format(kind),
+        Run = function()
+            sectionId, option = FindOption(optionId)
+            local row = option and RowOf(option)
+            if not row then
+                return "its row is not drawn"
+            end
+            if not option:IsChanged() then
+                return optionId .. " is at its default, nothing to set back"
+            end
+            arrowShown = row.Reset:IsShown() == row:IsMouseOver()
+            Remember(option)
+            row.Reset:GetScript("OnClick")(row.Reset, "LeftButton")
+        end,
+        Check = function()
+            local row = RowOf(option)
+            local back = not option:IsChanged()
+            local line = row and not row.ChangedBar:IsShown()
+            local footer, count = FooterAgrees(sectionId)
+            Add(back and line and arrowShown and footer and "PASS" or "FAIL", ("%s: %s, changed line %s, arrow %s, footer %s (%d changed)"):format(optionId,
+                back and "back at its default" or "still changed", line and "gone" or "still shown", arrowShown and "only under the mouse" or "shown without it",
+                footer and "follows" or "wrong", count))
         end
     }
 end
@@ -541,6 +574,7 @@ local function BuildSteps()
         tinsert(list, SectionStep(section.Id, section.Name))
     end
     for _, step in ipairs({ ChangeSteps("toggle", toggleId, function(row) row.Toggle:Click() end) }) do tinsert(list, step) end
+    tinsert(list, ResetStep("toggle", toggleId))
     for _, step in ipairs({ ChangeSteps("range", rangeId, function(row, option)
         local min, max = option:GetRange()
         row.Range:SetValue(option:Get() ~= min and min or max)

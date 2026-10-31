@@ -9,7 +9,7 @@
 -- interface: GetLabel, GetDescription, Type, Get, Set, IsDisabled, GetValues, GetRange, GetButtonText,
 -- GetNeedsReload, IsChanged, Reset, Placeholder, Confirm (a select's question before a choice is made), and for a key
 -- row Slots (two options holding a key each).
--- Every change goes through window:OnOptionChanged, which redraws the rows, the dots and the reload bar.
+-- Every change goes through window:OnOptionChanged, which redraws the rows, their changed lines and the reload bar.
 
 local controlColumn = 300 -- the controls start this far from the row's right edge; labels stop short of it
 
@@ -40,8 +40,7 @@ end
 function Krowi_OptionsOptionRowMixin:OnLoad()
     self.Label:SetPoint("RIGHT", self, "RIGHT", -controlColumn - 12, 0)
 
-    self.Dot:RegisterForClicks("RightButtonUp")
-    self.Dot:SetScript("OnClick", function()
+    self.Reset:SetScript("OnClick", function()
         self.Option:Reset()
         self.Window:OnOptionChanged(self.Option)
     end)
@@ -83,7 +82,7 @@ function Krowi_OptionsOptionRowMixin:OnLoad()
         button:EnableMouseWheel(false)
     end
 
-    for _, control in ipairs({ self.Dot, self.Toggle, self.Range, self.Select.Dropdown, self.Select.DecrementButton, self.Select.IncrementButton,
+    for _, control in ipairs({ self.Reset, self.Toggle, self.Range, self.Select.Dropdown, self.Select.DecrementButton, self.Select.IncrementButton,
         self.Execute, self.Input, self.Key1, self.Key2 }) do
         Forward(control, self)
     end
@@ -159,7 +158,9 @@ function Krowi_OptionsOptionRowMixin:Refresh()
     if needsReload then
         self.ReloadIcon:SetPoint("LEFT", self.Label, "LEFT", math.min(self.Label:GetStringWidth(), self.Label:GetWidth()) + 6, 0)
     end
-    self.Dot:SetShown(option:IsChanged())
+    local changed = option:IsChanged()
+    self.ChangedBar:SetShown(changed)
+    self.Reset:SetShown(changed and self:IsMouseOver()) -- a change made under the mouse shows the arrow at once
 
     local t = option.Type
     if t == "toggle" then
@@ -230,11 +231,14 @@ end
 
 function Krowi_OptionsOptionRowMixin:OnEnter()
     self.Hover:Show()
+    self.Reset:SetShown(self.Option and self.Option:IsChanged())
     self.Window:OnRowEnter(self.Option, self, self:GetWidth() - controlColumn)
 end
 
+-- Moving onto one of the row's own controls leaves the row too: the arrow stays while the mouse is on the row
 function Krowi_OptionsOptionRowMixin:OnLeave()
     self.Hover:Hide()
+    if not self:IsMouseOver() then self.Reset:Hide() end
     self.Window:OnRowLeave(self.Option)
 end
 

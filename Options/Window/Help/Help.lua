@@ -59,12 +59,17 @@ end
 
 local completedIcon, notCompletedIcon, noLongerIcon = "|T136814:0|t", "|T136815:0|t", "|T136813:0|t" -- as the tooltip draws them
 
+-- The rows' markers stand before the lines that explain them (Krowi_Options' Markup); the reload line reuses the hover
+-- text's string (docs/work/2026-10-31-options-markers)
+local markup = KROWI_LIBMAN:GetLibrary("Krowi_Options_1").Markup
+
 help.overview = {
     Title = L["Help Overview Title"],
     Blocks = Blocks(
         Text(L["Help Overview Hover"]),
         Text(L["Help Overview Sections"]),
-        Text(L["Help Overview Dot"]),
+        Text(markup.Changed .. " " .. L["Help Overview Changed"]),
+        Text(markup.Reload .. " " .. addon.Util.L["Requires a reload"]),
         Text(L["Help Overview New"])
     )
 }

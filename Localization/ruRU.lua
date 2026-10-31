@@ -7,6 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-31 22-33-16 ]] --
+L["Help Overview Changed"] = "Золотая линия перед настройкой означает, что вы ее изменили. Наведите на нее курсор и нажмите на появившуюся стрелку, чтобы вернуть все как было."
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -154,7 +155,6 @@ L["Center Header Desc"] = "Центр названия достижений на
 L["Central Circuit"] = "Центр контура"
 L["Chains of Domination"] = "Цепи Господства"
 L["Challenges"] = "Испытания"
-L["Changed. Right-click the dot to set it back."] = "Изменено. Правый щелчок по точке возвращает значение."
 L["Changes need a reload."] = "Изменения требуют перезагрузки."
 L["Character / Account wide"] = "На весь Персонаж / Аккаунт "
 L["Character only"] = "Только на Персонаж"
@@ -504,7 +504,6 @@ L["Help Maps Hover"] = "Считает достижения выбранной �
 L["Help Maps Minimap"] = "Значок у мини-карты тоже открывает окно достижений."
 L["Help Maps No Key"] = "Откройте карту мира, чтобы увидеть кнопку."
 L["Help Maps Press Key"] = "Нажмите %s, чтобы открыть карту."
-L["Help Overview Dot"] = "Точка перед настройкой означает, что вы ее изменили. Правый щелчок по точке возвращает все как было."
 L["Help Overview Hover"] = "Наведите курсор на настройку, чтобы узнать, что она делает."
 L["Help Overview New"] = "Разделы с пометкой «Новое» изменились с тех пор, как вы их смотрели."
 L["Help Overview Sections"] = "Каждый раздел начинается с того, как работает его функция. Кнопка «Показать» открывает эту функцию в игре."

@@ -7,6 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-31 22-33-16 ]] --
+L["Help Overview Changed"] = "옵션 앞의 금색 선은 그 옵션을 변경했다는 뜻입니다. 마우스를 올리고 나타나는 화살표를 클릭하면 원래대로 되돌립니다."
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -139,7 +140,6 @@ L["Center header"] = "제목 중앙 정렬"
 L["Center header Desc"] = "업적창의 제목을 중앙으로 정렬합니다."
 L["Center Header Desc"] = "업적칸의 업적이름을 중앙으로 정렬합니다."
 L["Chains of Domination"] = "지배의 사슬"
-L["Changed. Right-click the dot to set it back."] = "변경됨. 점을 오른쪽 클릭하면 되돌립니다."
 L["Changes need a reload."] = "변경 사항을 적용하려면 리로드가 필요합니다."
 L["Character / Account wide"] = "케릭터 / 전역 설정"
 L["Character only"] = "케릭터만"
@@ -324,7 +324,6 @@ L["Help Maps Hover"] = "카테고리 툴팁처럼, 선택한 지역의 업적을
 L["Help Maps Minimap"] = "미니맵 아이콘으로도 업적 창을 열 수 있습니다."
 L["Help Maps No Key"] = "세계 지도를 열면 버튼이 보입니다."
 L["Help Maps Press Key"] = "%s 키를 눌러 지도를 여세요."
-L["Help Overview Dot"] = "옵션 앞의 점은 그 옵션을 변경했다는 뜻입니다. 점을 오른쪽 클릭하면 원래대로 되돌립니다."
 L["Help Overview Hover"] = "옵션에 마우스를 올리면 그 기능에 대한 설명을 볼 수 있습니다."
 L["Help Overview New"] = "'신규' 표시가 붙은 섹션은 마지막으로 확인한 뒤 변경된 섹션입니다."
 L["Help Overview Sections"] = "각 섹션은 해당 기능이 어떻게 작동하는지부터 설명합니다. '직접 보기'를 누르면 게임에서 그 기능을 엽니다."
