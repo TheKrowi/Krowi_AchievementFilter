@@ -63,6 +63,43 @@ local function MoveYAtLogin(case)
     return ("y=%s pending=%s saved=%s"):format(keys.Y, tostring(setUp.YBindingPending), saved)
 end
 
+-- The window's tabs, one per addon that registered with Krowi_Options (docs/work/2026-10-30-options-settings-look)
+local function TabNames(lib)
+    local names = {}
+    for _, tab in ipairs(lib.Tabs) do names[#names + 1] = tab.Config.TabName end
+    return Join(names)
+end
+
+local function GroupNames(groups)
+    local names = {}
+    for _, group in ipairs(groups) do names[#names + 1] = group.Tab.Config.TabName end
+    return Join(names)
+end
+
+-- A second addon's tab, registered for the scenario and taken away again: the tab order, the window's state that every
+-- addon keeps (written to each one's saved table), and a search of the open tab or of every tab
+local function SecondTab(lib)
+    local saved = {}
+    local tab = lib.CreateWindow({
+        TabName = "Zz Test",
+        Saved = saved,
+        Search = function(text) return { { SectionId = "test", Path = "Zz Test", Label = "Zz " .. text } } end,
+    })
+    local ok, line = pcall(function()
+        local tabs = TabNames(lib)
+        lib.SetShared("TestShared", true)
+        local kaf = addon.Options.Window.Controller:GetSaved()
+        local shared = (kaf.TestShared and saved.TestShared) and "both" or ("kaf=" .. tostring(kaf.TestShared) .. ",test=" .. tostring(saved.TestShared))
+        lib.SetShared("TestShared", nil)
+        local open = GroupNames(lib.Search("Tooltip", false, tab))
+        local all = GroupNames(lib.Search("Tooltip", true, tab))
+        return ("tabs=%s shared=%s open=%s all=%s"):format(tabs, shared, open, all)
+    end)
+    tab:Unregister()
+    if not ok then error(line, 0) end
+    return line .. " after=" .. TabNames(lib)
+end
+
 -- Observe: a function returning the line's value, or nil and the reason it could not run
 options.Scenarios = {
     {Name = "settings-entry",
@@ -201,6 +238,23 @@ options.Scenarios = {
         Observe = function() return MoveYAtLogin({Command = "TOGGLEACHIEVEMENT"}) end, -- the micro button opens Blizzard's own tab
         Recorded = "y=TOGGLEACHIEVEMENT pending=nil saved=none",
         Target = "y=TOGGLEACHIEVEMENT pending=nil saved=none"},
+    -- One window for every Krowi addon, a tab each; KAF alone registers today (docs/work/2026-10-30-options-settings-look)
+    {Name = "window-tabs",
+        Observe = function()
+            local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
+            if not lib.Tabs then return "no tab registry" end
+            return "tabs=" .. TabNames(lib)
+        end,
+        Recorded = "tabs=Achievement Filter", -- "no tab registry" before the tabs
+        Target = "tabs=Achievement Filter"},
+    {Name = "window-second-tab",
+        Observe = function()
+            local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
+            if not lib.Tabs then return "no tab registry" end
+            return SecondTab(lib)
+        end,
+        Recorded = "tabs=Achievement Filter,Zz Test shared=both open=Zz Test all=Achievement Filter,Zz Test after=Achievement Filter", -- "no tab registry" before the tabs
+        Target = "tabs=Achievement Filter,Zz Test shared=both open=Zz Test all=Achievement Filter,Zz Test after=Achievement Filter"},
 }
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
@@ -252,6 +306,8 @@ end
 -- through the window's own functions, names itself in a banner over the window, checks what the window shows and takes a
 -- screenshot, which Read-GameTests.ps1 pairs with its file.
 --   open: /kaf opens the window where the landing rule says (the first open after a /reload also builds it)
+--   tabs: a tab per addon that registered with the window, this addon's selected, under the game's Options title
+--     (docs/work/2026-10-30-options-settings-look)
 --   section-<id>: Overview and every section draw their rows, and every drawn check box, slider and text box shows its
 --     option's value
 --   toggle, range, input: one row of each changed through its own control: the value is stored, and the changed dot and
@@ -291,7 +347,7 @@ local function After(seconds, func)
 end
 
 local function Window()
-    return KrowiAF_OptionsWindow
+    return Krowi_OptionsWindow
 end
 
 local function DeepCopy(value)
@@ -359,6 +415,9 @@ local function CheckDrawnRows()
             shows = expected == nil or math.abs(row.Range.Slider:GetValue() - expected) < 0.001
         elseif option.Type == "input" then
             shows = row.Input:HasFocus() or row.Input:GetText() == tostring(value or "")
+        elseif option.Type == "select" then
+            -- the dropdowns never show GameTooltip from our rows (docs/work/2026-10-30-options-settings-look)
+            shows = not row.Select.Dropdown:ShouldShowTooltip()
         else
             shows = true
         end
@@ -452,6 +511,28 @@ local function BuildSteps()
                 local shown = frame and frame:IsShown()
                 Add(shown and frame.SectionId == live.Landing and "PASS" or "FAIL", ("the window opens on %s, the landing section %s (first open after a /reload: %s)"):format(
                     tostring(frame and frame.SectionId), live.Landing, live.FirstOpen and "yes" or "no"))
+            end
+        },
+        {
+            Name = "tabs",
+            Text = "a tab per addon, this addon's selected",
+            Run = function() end,
+            Check = function()
+                local frame = Window()
+                local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
+                local shown, selected = 0, "none"
+                for _, button in ipairs(frame.TabButtons) do
+                    if button:IsShown() then
+                        shown = shown + 1
+                        if button:IsSelected() then selected = button.Tab.Config.TabName end
+                    end
+                end
+                local title = frame.NineSlice.Text:GetText()
+                local searchAll = frame.SearchAll:IsShown()
+                local ok = shown == #lib.Tabs and frame.Tab == window.Controller and selected == "Achievement Filter"
+                    and title == SETTINGS_TITLE and searchAll == (#lib.Tabs > 1)
+                Add(ok and "PASS" or "FAIL", ("%d of %d tabs shown, %s selected, title '%s', Search all tabs %s"):format(shown, #lib.Tabs, selected,
+                    tostring(title), searchAll and "shown" or "hidden"))
             end
         },
         SectionStep("overview", addon.L["Overview"])

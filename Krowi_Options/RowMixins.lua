@@ -16,8 +16,10 @@ local controlColumn = 300 -- the controls start this far from the row's right ed
 -- [[ Header, sub-heading, note ]] --
 Krowi_OptionsTextRowMixin = {}
 
-function Krowi_OptionsTextRowMixin:Init(element)
+-- A header's line follows the player's choice in the window's bottom row
+function Krowi_OptionsTextRowMixin:Init(element, window)
     self.Text:SetText(element.Text or "")
+    if self.Line then self.Line:SetShown(window.ShowHeadingLines) end
 end
 
 -- [[ An option ]] --
@@ -30,6 +32,10 @@ end
 
 -- The mouse buttons a key can be bound to, as AceGUI's keybinding widget took them; left and right start and stop
 local mouseButtons = { MiddleButton = "BUTTON3", Button4 = "BUTTON4", Button5 = "BUTTON5" }
+
+local function NoTooltip()
+    return false
+end
 
 function Krowi_OptionsOptionRowMixin:OnLoad()
     self.Label:SetPoint("RIGHT", self, "RIGHT", -controlColumn - 12, 0)
@@ -77,9 +83,15 @@ function Krowi_OptionsOptionRowMixin:OnLoad()
         button:EnableMouseWheel(false)
     end
 
-    for _, control in ipairs({ self.Dot, self.Toggle, self.Range, self.Select, self.Execute, self.Input, self.Key1, self.Key2 }) do
+    for _, control in ipairs({ self.Dot, self.Toggle, self.Range, self.Select.Dropdown, self.Select.DecrementButton, self.Select.IncrementButton,
+        self.Execute, self.Input, self.Key1, self.Key2 }) do
         Forward(control, self)
     end
+
+    -- A dropdown whose text is cut off shows it in GameTooltip and hides it on leave (DropdownSelectionTextMixin): from
+    -- our rows that Hide runs GameTooltip's OnHide tainted, the path of issue #300. The help pane or the row's tooltip
+    -- shows the option instead.
+    self.Select.Dropdown.ShouldShowTooltip = NoTooltip
 end
 
 function Krowi_OptionsOptionRowMixin:Init(element, window)
@@ -107,7 +119,9 @@ function Krowi_OptionsOptionRowMixin:Init(element, window)
         self.Updating = nil
         self.Range:Show()
     elseif t == "select" then
-        self.Select:SetupMenu(function(_, root)
+        -- The arrows step through the menu's radios, so a choice made with them asks and sets as a click in the list does
+        local dropdown = self.Select.Dropdown
+        dropdown:SetupMenu(function(_, root)
             for _, pair in ipairs(option:GetValues()) do
                 root:CreateRadio(tostring(pair[2]), function() return option:Get() == pair[1] end, function()
                     local function Choose()
@@ -119,7 +133,7 @@ function Krowi_OptionsOptionRowMixin:Init(element, window)
                 end)
             end
         end)
-        if self.Select.SetDefaultText then self.Select:SetDefaultText(option.Placeholder or "") end
+        if dropdown.SetDefaultText then dropdown:SetDefaultText(option.Placeholder or "") end
         self.Select:Show()
     elseif t == "execute" then
         self.Execute:SetText(option:GetButtonText())
@@ -157,8 +171,8 @@ function Krowi_OptionsOptionRowMixin:Refresh()
         self.Updating = nil
         self.Range:SetEnabled(not disabled)
     elseif t == "select" then
-        self.Select:GenerateMenu()
-        self.Select:SetEnabled(not disabled)
+        self.Select.Dropdown:GenerateMenu()
+        self.Select:SetEnabled(not disabled) -- the arrows' frame enables its dropdown and its arrows
     elseif t == "execute" then
         self.Execute:SetEnabled(not disabled)
     elseif t == "input" then
@@ -216,7 +230,7 @@ end
 
 function Krowi_OptionsOptionRowMixin:OnEnter()
     self.Hover:Show()
-    self.Window:OnRowEnter(self.Option, self)
+    self.Window:OnRowEnter(self.Option, self, self:GetWidth() - controlColumn)
 end
 
 function Krowi_OptionsOptionRowMixin:OnLeave()
@@ -309,7 +323,8 @@ end
 -- column: the hovered check box's; the row itself (its script passes the motion flag) describes the first one
 function Krowi_OptionsGridRowMixin:OnEnter(column)
     self.Hover:Show()
-    self.Window:OnRowEnter(self.Element.Cells[type(column) == "number" and column or 1], self)
+    column = type(column) == "number" and column or 1
+    self.Window:OnRowEnter(self.Element.Cells[column], self, gridLeft + (column - 0.5) * gridColumn - self.Cells[column]:GetWidth() / 2)
 end
 
 function Krowi_OptionsGridRowMixin:OnLeave()
@@ -362,7 +377,7 @@ end
 
 function Krowi_OptionsTabRowMixin:OnEnter()
     self.Hover:Show()
-    self.Window:OnRowEnter(self.Element.Item.Show, self)
+    self.Window:OnRowEnter(self.Element.Item.Show, self, 34) -- where ShowCheck stands (Rows.xml)
 end
 
 function Krowi_OptionsTabRowMixin:OnLeave()

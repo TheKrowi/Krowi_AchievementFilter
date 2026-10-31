@@ -5,29 +5,67 @@
 
 ---@diagnostic disable: undefined-global
 
--- The window: navigation on the left, the section's rows in the middle, the help pane on the right. Strings come from
--- the consumer (config.Strings): Overview, SearchResults, NoResults, Defaults, ResetSection (with %s), ChangedCount
--- (with %d), ReloadText, ReloadNow, ShowMe, HowItWorks, New, All, None, NotBound, PressAKey, Default (with %s),
--- NeedsReload, Changed, NotInCombat.
+-- The window: a tab per registered addon on top, the open addon's navigation on the left, the section's rows in the
+-- middle, the help pane on the right, in the frame and art of the game's own Options window. Strings come from the open
+-- tab's consumer (config.Strings): Search, SearchAll, HeadingLines, Overview, SearchResults, NoResults, Defaults, ResetSection (with
+-- %s), ChangedCount (with %d), ReloadText, ReloadNow, ShowMe, HowItWorks, All, None, NotBound, PressAKey, Default
+-- (with %s), NeedsReload, Changed, NotInCombat.
 
-local navWidth, helpWidth, stripWidth = 220, 380, 30
+local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
+
+-- The navigation is as wide as the game's category list, so its header bars (199 px) end at the divider
+local navWidth, helpWidth, stripWidth = 199, 380, 30
 local minWidth, minHeight = 1000, 560
 
--- [[ Navigation buttons ]] --
+-- [[ Navigation ]] --
+-- The game's category list (Blizzard_CategoryList.lua): a group under a header bar, a section gold, the selected one
+-- white on the active bar, the hovered one on the hover bar
 Krowi_OptionsNavButtonMixin = {}
 
 function Krowi_OptionsNavButtonMixin:Init(element, window)
     self.Element, self.Window = element, window
     self.Label:SetText(element.Text)
-    self.New:SetText(window.Strings.New)
-    self.New:SetShown(element.IsNew)
-    local selected = window.SectionId == element.Id and not window.Searching
-    self.Selected:SetShown(selected)
-    self.Label:SetFontObject(selected and "GameFontHighlight" or "GameFontNormal")
+    if element.IsNew then
+        -- Right against the name, as the game's list sets it (Blizzard_CategoryList.lua, RefreshNewFeature): centred, the
+        -- label's glow would push it 20 further left, past the window's edge on Mists
+        self.NewFeature.BGLabel:SetPoint("RIGHT", 0.5, -0.5)
+        self.NewFeature.Label:SetPoint("RIGHT", 0, 0)
+    end
+    self.NewFeature:SetShown(element.IsNew)
+    self.Selected = window.SectionId == element.Id and not window.Searching
+    self.Over = self:IsMouseOver()
+    self:UpdateState()
+end
+
+function Krowi_OptionsNavButtonMixin:UpdateState()
+    self.Label:SetFontObject(self.Selected and "GameFontHighlight" or "GameFontNormal")
+    if self.Selected or self.Over then
+        self.Texture:SetAtlas(self.Selected and "Options_List_Active" or "Options_List_Hover", true)
+        self.Texture:Show()
+    else
+        self.Texture:Hide()
+    end
+end
+
+function Krowi_OptionsNavButtonMixin:OnEnter()
+    self.Over = true
+    self:UpdateState()
+end
+
+function Krowi_OptionsNavButtonMixin:OnLeave()
+    self.Over = nil
+    self:UpdateState()
 end
 
 function Krowi_OptionsNavButtonMixin:OnClick()
     self.Window:ShowSection(self.Element.Id)
+end
+
+Krowi_OptionsNavHeaderMixin = {}
+
+function Krowi_OptionsNavHeaderMixin:Init(element)
+    self.Label:SetText(element.Text)
+    self.Background:SetAtlas("Options_CategoryHeader_" .. element.Index, true)
 end
 
 -- [[ Help pane blocks ]] --
@@ -75,42 +113,120 @@ local rowTemplates = {
     Link = { "Krowi_OptionsLinkRowTemplate", 26 },
 }
 
-local function InitList(window, scrollBox, scrollBar, templates, extent)
-    local view = CreateScrollBoxListLinearView()
+-- leftPad and spacing as the game's category list uses them (Blizzard_CategoryList.lua): its scroll box reaches 50 px
+-- left of the list, so a NEW label hanging left of a section is not clipped, and the rows move back by as much
+local function InitList(window, scrollBox, scrollBar, templates, extent, leftPad, spacing)
+    local view = CreateScrollBoxListLinearView(0, 0, leftPad or 0, 0, spacing or 0)
     view:SetElementFactory(function(factory, element)
         local template = templates[element.Kind]
-        factory(template[1], function(frame, data) frame:Init(data, window) end)
+        factory(template[1], function(frame, data) if frame.Init then frame:Init(data, window) end end)
     end)
     view:SetElementExtentCalculator(function(_, element) return extent(element) end)
     ScrollUtil.InitScrollBoxListWithScrollBar(scrollBox, scrollBar, view)
-    ScrollUtil.AddManagedScrollBarVisibilityBehavior(scrollBox, scrollBar)
+    return ScrollUtil.AddManagedScrollBarVisibilityBehavior(scrollBox, scrollBar)
+end
+
+local navExtents = { NavHeader = 30, NavButton = 20, NavSpacer = 18 }
+local navLeftPad = 50
+
+-- [[ The inner frame ]] --
+-- The game's own inner frame (Options_InnerFrame, 886 x 618 and the same on every client), which
+-- Blizzard_SettingsPanel.xml draws at its size in a window of fixed size. Ours is wider for the help pane and resizable,
+-- so it is drawn in slices: the shaded edges and the 2 px divider keep their size and only the flat parts stretch, and
+-- the divider is drawn at the end of the navigation and again at the start of the help pane. The cuts were measured on
+-- the atlas with the kit's Get-Atlas.ps1: x from, x to, and y from, y to, in its pixels.
+local innerColumns = { Left = { 0, 30 }, Nav = { 30, 199 }, Divider = { 199, 201 }, Flat = { 201, 856 }, Right = { 856, 886 } }
+local innerRows = { Top = { 0, 90 }, Middle = { 90, 440 }, Bottom = { 440, 618 } }
+local innerSlices = { -- left to right: a slice's piece of the atlas
+    { Key = "Left", Atlas = "Left" }, { Key = "Nav", Atlas = "Nav" }, { Key = "Divider", Atlas = "Divider" },
+    { Key = "Page", Atlas = "Flat" }, { Key = "HelpDivider", Atlas = "Divider" }, { Key = "Help", Atlas = "Flat" },
+    { Key = "Right", Atlas = "Right" },
+}
+
+function Krowi_OptionsWindowMixin:CreateInnerFrame()
+    local info = C_Texture.GetAtlasInfo("Options_InnerFrame")
+    if not info then return end
+    local function U(x) return info.leftTexCoord + (info.rightTexCoord - info.leftTexCoord) * x / info.width end
+    local function V(y) return info.topTexCoord + (info.bottomTexCoord - info.topTexCoord) * y / info.height end
+    self.InnerSlices = {}
+    for _, column in ipairs(innerSlices) do
+        local x = innerColumns[column.Atlas]
+        for row, y in next, innerRows do
+            -- Under the window's own text (the page title, the labels): the game draws its text in child frames above the art
+            local slice = self:CreateTexture(nil, "BACKGROUND", nil, 1)
+            slice:SetTexture(info.file or info.filename)
+            slice:SetTexCoord(U(x[1]), U(x[2]), V(y[1]), V(y[2]))
+            self.InnerSlices[column.Key .. row] = slice
+        end
+    end
+end
+
+-- Each slice spans an edge and offset of the inner frame to another, across and down
+local innerRowAnchors = { Top = { "TOP", 0, "TOP", -90 }, Middle = { "TOP", -90, "BOTTOM", 178 }, Bottom = { "BOTTOM", 178, "BOTTOM", 0 } }
+
+function Krowi_OptionsWindowMixin:LayoutInnerFrame(navEnd, right)
+    if not self.InnerSlices then return end
+    -- The frame starts 1 px left of the body: the divider's 2 px straddle the navigation's end and the help pane's start
+    local divider, help = navEnd, right + 2
+    local columns = {
+        Left = { "LEFT", 0, "LEFT", 30 },
+        Nav = { "LEFT", 30, "LEFT", divider },
+        Divider = { "LEFT", divider, "LEFT", divider + 2 },
+        Page = { "LEFT", divider + 2, "RIGHT", -help },
+        HelpDivider = { "RIGHT", -help, "RIGHT", -help + 2 },
+        Help = { "RIGHT", -help + 2, "RIGHT", -30 },
+        Right = { "RIGHT", -30, "RIGHT", 0 },
+    }
+    local frame = self.InnerFrame
+    for key, x in next, columns do
+        for row, y in next, innerRowAnchors do
+            local slice = self.InnerSlices[key .. row]
+            slice:ClearAllPoints()
+            slice:SetPoint("TOPLEFT", frame, y[1] .. x[1], x[2], y[2])
+            slice:SetPoint("BOTTOMRIGHT", frame, y[3] .. x[3], x[4], y[4])
+            slice:SetShown(key ~= "Help" or -help + 2 < -30) -- a collapsed pane leaves no room between its divider and the edge
+        end
+    end
 end
 
 function Krowi_OptionsWindowMixin:OnLoad()
     self:RegisterForDrag("LeftButton")
     if self.SetResizeBounds then self:SetResizeBounds(minWidth, minHeight) else self:SetMinResize(minWidth, minHeight) end
 
-    self.CloseButton:SetScript("OnClick", function() self:Hide() end) -- a plain Hide: HideUIPanel refuses addon code in combat
+    -- A plain Hide on both: HideUIPanel, the template's own, refuses addon code in combat
+    self.ClosePanelButton:SetScript("OnClick", function() self:Hide() end)
+    self.CloseButton:SetScript("OnClick", function() self:Hide() end)
+    self.CloseButton:SetText(CLOSE)
+    self.NineSlice.Text:SetText(SETTINGS_TITLE) -- the game's own Options window's title
+    self.TabButtons = {}
+    self:CreateInnerFrame()
 
     self.Measure = self:CreateFontString(nil, "ARTWORK", "GameFontDisable")
     self.Measure:Hide()
     self.Measure:SetJustifyH("LEFT")
 
-    InitList(self, self.NavScrollBox, self.NavScrollBar, {
+    local navBar = InitList(self, self.NavScrollBox, self.NavScrollBar, {
         NavHeader = { "Krowi_OptionsNavHeaderTemplate" },
         NavButton = { "Krowi_OptionsNavButtonTemplate" },
-    }, function(element) return element.Kind == "NavHeader" and 28 or 22 end)
+        NavSpacer = { "Krowi_OptionsNavSpacerTemplate" },
+    }, function(element) return navExtents[element.Kind] end, navLeftPad, 2)
+    self.NavScrollShown = self.NavScrollBar:IsShown()
+    navBar:RegisterCallback(ManagedScrollBarVisibilityBehaviorMixin.Event.OnVisibilityChanged, function(_, shown) self:OnNavScrollBarShown(shown) end, self)
     InitList(self, self.PageScrollBox, self.PageScrollBar, rowTemplates, function(element)
         if element.Kind == "Note" then return self:MeasureText(element.Text, "GameFontDisable", self:PageWidth() - 32) + 8 end
         return rowTemplates[element.Kind][2]
     end)
-    InitList(self, self.HelpScrollBox, self.HelpScrollBar, {
+    self.HelpBar = InitList(self, self.HelpScrollBox, self.HelpScrollBar, {
         HelpText = { "Krowi_OptionsHelpTextTemplate" },
         HelpPicture = { "Krowi_OptionsHelpPictureTemplate" },
     }, function(element)
         if element.Kind == "HelpPicture" then return element.DrawHeight + 10 end
         return self:MeasureText(element.Text, element.Font, helpWidth - 52) + (element.Gap or 6)
     end)
+    -- The help is filled while the pane is collapsed too, and its scroll bar would then show on the strip
+    self.HelpBar:RegisterCallback(ManagedScrollBarVisibilityBehaviorMixin.Event.OnVisibilityChanged, function(_, shown)
+        if shown and self.PaneCollapsed then self.HelpScrollBar:Hide() end
+    end, self)
 
     -- The lightbox dims the screen above everything of the window (and a secure Show me button laid over it); a click
     -- closes it, and the consumer's Escape handling can close it like a window (OnCreated gets frame.Lightbox)
@@ -121,8 +237,34 @@ function Krowi_OptionsWindowMixin:OnLoad()
     -- input, which ends a search too
     self.SearchBox:HookScript("OnTextChanged", function(box, userInput) if userInput or self.Searching then self:OnSearch(box:GetText()) end end)
     self.SearchBox:HookScript("OnHide", function(box) box:SetText("") end)
+    -- Every tab instead of the selected one (unticked by default); kept for every addon like the window's place
+    self.SearchAll:SetScript("OnClick", function(button)
+        self.SearchEveryTab = button:GetChecked() and true or false
+        lib.SetShared("SearchAll", self.SearchEveryTab)
+        if self.Searching then self:OnSearch(self.SearchBox:GetText()) end
+    end)
+    -- Lines under the page's group headings, the player's choice, kept for every addon like the window's place
+    self.HeadingLines:SetScript("OnClick", function(button)
+        self.ShowHeadingLines = button:GetChecked() and true or false
+        lib.SetShared("HeadingLines", self.ShowHeadingLines)
+        self:ReloadSection()
+    end)
     self.CollapseButton:SetScript("OnClick", function() self:SetPaneCollapsed(true) end)
     self.ExpandButton:SetScript("OnClick", function() self:SetPaneCollapsed(false) end)
+    -- » hides the pane, « brings it back; gold, white under the mouse, as the window's other links
+    self.CollapseButton.Arrow:SetText("\194\187")
+    self.ExpandButton.Arrow:SetText("\194\171")
+    self.ExpandButton.Label:SetRotation(-math.pi / 2) -- reads downwards
+    for _, button in ipairs({ self.CollapseButton, self.ExpandButton }) do
+        button:SetScript("OnEnter", function()
+            button.Arrow:SetFontObject("GameFontHighlightLarge")
+            if button.Label then button.Label:SetFontObject("GameFontHighlightSmall") end
+        end)
+        button:SetScript("OnLeave", function()
+            button.Arrow:SetFontObject("GameFontNormalLarge")
+            if button.Label then button.Label:SetFontObject("GameFontDisableSmall") end
+        end)
+    end
     -- Show me closes the window first, then shows the feature (the help track's decision, plan-help.md). The window stays
     -- while help.CanShowMe() is false (the data still loading), and comes back when ShowMe returns false (its scene had
     -- nothing to open, such as no tab shown).
@@ -139,37 +281,112 @@ function Krowi_OptionsWindowMixin:OnLoad()
     self.ResizeButton:SetScript("OnMouseDown", function() self:StartSizing("BOTTOMRIGHT") end)
     self.ResizeButton:SetScript("OnMouseUp", function()
         self:StopMovingOrSizing()
-        self.Saved.Size = { self:GetWidth(), self:GetHeight() }
+        lib.SetShared("Size", { self:GetWidth(), self:GetHeight() })
         self:SavePoint() -- sizing re-anchors the window
         self:ReloadSection()
         self:UpdateShowMe() -- a secure Show me button placed over ours follows it
     end)
 end
 
-function Krowi_OptionsWindowMixin:Init(config)
-    self.Config, self.Strings = config, config.Strings
-    self.Saved = type(config.Saved) == "function" and config.Saved() or config.Saved
-    if self.TitleContainer and self.SetTitle then self:SetTitle(config.Title) elseif self.TitleText then self.TitleText:SetText(config.Title) end
-    if config.Icon and self.SetPortraitToAsset then
-        self:SetPortraitToAsset(config.Icon)
-    elseif ButtonFrameTemplate_HidePortrait then
-        ButtonFrameTemplate_HidePortrait(self)
-    end
-    self.SearchBox.Instructions:SetText(self.Strings.Search or "")
-    self.DefaultsButton:SetText(self.Strings.Defaults)
-    self.ReloadButton:SetText(self.Strings.ReloadNow)
-    self.ReloadText:SetText(self.Strings.ReloadText)
-    self.ShowMeButton:SetText(self.Strings.ShowMe)
-    self.CancelButton:SetText(self.Strings.No or NO)
-
-    local saved = self.Saved
+-- The window's own state, from the saved table of the addon that opened it first; every addon keeps a copy (lib.SetShared)
+function Krowi_OptionsWindowMixin:Init(saved)
     if saved.Size then self:SetSize(math.max(saved.Size[1], minWidth), math.max(saved.Size[2], minHeight)) end
     if saved.Point then
         self:ClearAllPoints()
         self:SetPoint(saved.Point[1], UIParent, saved.Point[2], saved.Point[3], saved.Point[4])
     end
     self.PaneCollapsed = saved.PaneCollapsed and true or false
+    self.SearchEveryTab = saved.SearchAll and true or false
+    self.SearchAll:SetChecked(self.SearchEveryTab)
+    self.ShowHeadingLines = saved.HeadingLines and true or false
+    self.HeadingLines:SetChecked(self.ShowHeadingLines)
     self:Layout()
+end
+
+-- [[ Tabs ]] --
+-- A tab per registered addon where the game's window has Game and AddOns (Blizzard_SettingsPanel.xml). Our own click
+-- replaces MinimalTabTemplate's, which would let a click on the open tab unselect it.
+function Krowi_OptionsWindowMixin:RefreshTabs()
+    local tabs = lib.Tabs
+    for i, tab in ipairs(tabs) do
+        local button = self.TabButtons[i]
+        if not button then
+            button = CreateFrame("Button", nil, self, "MinimalTabTemplate")
+            button:SetHeight(37)
+            if i == 1 then
+                button:SetPoint("TOPLEFT", self, "TOPLEFT", 32, -27)
+            else
+                button:SetPoint("TOPLEFT", self.TabButtons[i - 1], "TOPRIGHT", 5, 0)
+            end
+            button:SetScript("OnClick", function(clicked)
+                if clicked.Tab == self.Tab then return end
+                PlaySound(SOUNDKIT.IG_CHARACTER_INFO_TAB)
+                self:ShowTab(clicked.Tab)
+            end)
+            self.TabButtons[i] = button
+        end
+        button.Tab = tab
+        button.Text:SetText(tab.Config.TabName)
+        button:SetWidth(button.Text:GetStringWidth() + 40)
+        button:SetSelected(tab == self.Tab)
+        button:Show()
+    end
+    for i = #tabs + 1, #self.TabButtons do
+        self.TabButtons[i]:Hide()
+    end
+    self:UpdateSearchAll()
+    -- The open tab went (a test's): the first one takes its place
+    if self.Tab and not tContains(tabs, self.Tab) then
+        self.Tab = nil
+        if self:IsShown() and tabs[1] then self:ShowTab(tabs[1]) end
+    end
+end
+
+-- Searching every tab means something only with a second tab: the check box shows from then on, and until then the
+-- reload bar reaches to the heading lines check box
+function Krowi_OptionsWindowMixin:UpdateSearchAll()
+    local several = #lib.Tabs > 1
+    self.SearchAll:SetShown(several)
+    self.SearchAllLabel:SetShown(several)
+    self.ReloadBackground:SetPoint("BOTTOMRIGHT", several and self.SearchAll or self.HeadingLines, "BOTTOMLEFT", -12, -2)
+end
+
+-- Shows the window on an addon's tab: its sections, strings and saved table, at sectionId or the addon's landing section
+function Krowi_OptionsWindowMixin:ShowTab(tab, sectionId, optionId)
+    if self.Tab ~= tab then
+        self:EndKeyCaptures()
+        self:ReleaseShowMe()
+        self.Tab = tab
+        self.Config, self.Strings, self.Saved = tab.Config, tab.Config.Strings, tab:GetSaved()
+        self.SectionId, self.Help, self.Searching, self.Confirming = nil, nil, nil, nil
+        self:ApplyStrings()
+        self:RefreshTabs()
+    end
+    self:Show()
+    self:ShowSection(sectionId or self.Config.Landing(), optionId)
+end
+
+function Krowi_OptionsWindowMixin:ApplyStrings()
+    local strings = self.Strings
+    self.SearchBox.Instructions:SetText(strings.Search or "")
+    self.SearchAllLabel:SetText(strings.SearchAll or "")
+    self.SearchAll:SetHitRectInsets(0, -(self.SearchAllLabel:GetStringWidth() + 4), 0, 0) -- the label ticks it too
+    self.HeadingLinesLabel:SetText(strings.HeadingLines or "")
+    self.HeadingLines:SetHitRectInsets(0, -(self.HeadingLinesLabel:GetStringWidth() + 4), 0, 0)
+    -- The collapsed pane's strip: the chevron, then the pane's name down the strip; the whole strip brings the pane back.
+    -- A turned text turns about its centre, so it hangs below the chevron by half its length; its letters sit off the
+    -- line's middle, so it moves right to stand under the chevron (measured in game, 2026-10-30)
+    local label = self.ExpandButton.Label
+    label:SetText(strings.HowItWorks or "") -- as the open pane writes it; upper() would leave non-English letters small
+    local length = label:GetStringWidth()
+    label:ClearAllPoints()
+    label:SetPoint("CENTER", self.ExpandButton, "TOP", 6, -(28 + length / 2))
+    self.ExpandButton:SetHeight(34 + length)
+    self.DefaultsButton:SetText(strings.Defaults)
+    self.ReloadButton:SetText(strings.ReloadNow)
+    self.ReloadText:SetText(strings.ReloadText)
+    self.ShowMeButton:SetText(strings.ShowMe)
+    self.CancelButton:SetText(strings.No or NO)
 end
 
 function Krowi_OptionsWindowMixin:MeasureText(text, font, width)
@@ -179,74 +396,138 @@ function Krowi_OptionsWindowMixin:MeasureText(text, font, width)
     return math.ceil(self.Measure:GetStringHeight())
 end
 
+-- The body: under the tabs and above the bottom row, where the game's window has its category list and its settings
+-- (Blizzard_SettingsPanel.xml: the list at 18, -76, the bottom buttons at 16)
+local bodyInsets = { Left = 18, Top = -76, Right = -18, Bottom = 46 }
+local navBarSpace = 16 -- what the game's list keeps for its scroll bar; the divider and the page move right by it while it shows
+-- The list's scroll bar, 8 wide, from the list's end: halfway between the edge of the header art (197, measured on the
+-- atlas) and the divider (214 while the bar shows)
+local navBarX = 2.5
+
+-- Where the navigation ends and its divider stands: right after the list, where the game's window has it, or past the
+-- list's scroll bar while not all of it fits
+function Krowi_OptionsWindowMixin:NavEnd()
+    return self.NavScrollShown and navWidth + navBarSpace or navWidth
+end
+
+function Krowi_OptionsWindowMixin:OnNavScrollBarShown(shown)
+    if self.NavScrollShown == shown then return end
+    self.NavScrollShown = shown
+    -- Showing a section or a search fills the page after the navigation, already at the new width: it lays out once
+    -- it is done (EndFill), instead of building the page twice
+    if self.Filling then
+        self.LayoutPending = true
+        return
+    end
+    self:Layout()
+    self:ReloadSection() -- the page is wider or narrower, so its notes are measured again
+end
+
+function Krowi_OptionsWindowMixin:EndFill()
+    self.Filling = nil
+    if self.LayoutPending then
+        self.LayoutPending = nil
+        self:Layout()
+    end
+end
+
+-- The page's scroll box as Layout anchors it: from 8 past the navigation's end to 16 before the help pane
+local pageInsets = { Left = 8, Right = 16 }
+
 function Krowi_OptionsWindowMixin:PageWidth()
-    return self:GetWidth() - navWidth - (self.PaneCollapsed and stripWidth or helpWidth) - 40
+    return self:GetWidth() - (bodyInsets.Left - bodyInsets.Right) - self:NavEnd() - (self.PaneCollapsed and stripWidth or helpWidth)
+        - pageInsets.Left - pageInsets.Right
 end
 
 function Krowi_OptionsWindowMixin:Layout()
-    local inset = self.Inset
+    local body = self.Body
     local right = self.PaneCollapsed and stripWidth or helpWidth
+    local navEnd = self:NavEnd()
 
-    self.NavBackground:ClearAllPoints()
-    self.NavBackground:SetPoint("TOPLEFT", inset, "TOPLEFT", 3, -3)
-    self.NavBackground:SetPoint("BOTTOMLEFT", inset, "BOTTOMLEFT", 3, 3)
-    self.NavBackground:SetWidth(navWidth)
+    body:ClearAllPoints()
+    body:SetPoint("TOPLEFT", self, "TOPLEFT", bodyInsets.Left, bodyInsets.Top)
+    body:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", bodyInsets.Right, bodyInsets.Bottom)
+    self:LayoutInnerFrame(navEnd, right)
+
+    -- The search box sits in the tab row at the right, as the game's does
     self.SearchBox:ClearAllPoints()
-    self.SearchBox:SetPoint("TOPLEFT", inset, "TOPLEFT", 16, -8)
-    self.SearchBox:SetWidth(navWidth - 26)
+    self.SearchBox:SetPoint("BOTTOMRIGHT", body, "TOPRIGHT", 0, 20)
+
+    -- The scroll bars sit as the game's lists place theirs (Blizzard_CategoryList.xml, Blizzard_SettingsList.xml), each
+    -- just inside the divider or edge after its list, apart from the navigation's, which stands halfway to its divider
     self.NavScrollBox:ClearAllPoints()
-    self.NavScrollBox:SetPoint("TOPLEFT", inset, "TOPLEFT", 4, -34)
-    self.NavScrollBox:SetPoint("BOTTOMLEFT", inset, "BOTTOMLEFT", 4, 4)
-    self.NavScrollBox:SetWidth(navWidth - 14)
+    self.NavScrollBox:SetPoint("TOPLEFT", body, "TOPLEFT", -navLeftPad, -4)
+    self.NavScrollBox:SetPoint("BOTTOMLEFT", body, "BOTTOMLEFT", -navLeftPad, 4)
+    self.NavScrollBox:SetWidth(navLeftPad + navWidth)
     self.NavScrollBar:ClearAllPoints()
-    self.NavScrollBar:SetPoint("TOPLEFT", self.NavScrollBox, "TOPRIGHT", 0, 0)
-    self.NavScrollBar:SetPoint("BOTTOMLEFT", self.NavScrollBox, "BOTTOMRIGHT", 0, 0)
+    self.NavScrollBar:SetPoint("TOPLEFT", self.NavScrollBox, "TOPRIGHT", navBarX, 2)
+    self.NavScrollBar:SetPoint("BOTTOMLEFT", self.NavScrollBox, "BOTTOMRIGHT", navBarX, 7)
 
     self.HelpBackground:ClearAllPoints()
-    self.HelpBackground:SetPoint("TOPRIGHT", inset, "TOPRIGHT", -3, -3)
-    self.HelpBackground:SetPoint("BOTTOMRIGHT", inset, "BOTTOMRIGHT", -3, 3)
+    self.HelpBackground:SetPoint("TOPRIGHT", body, "TOPRIGHT")
+    self.HelpBackground:SetPoint("BOTTOMRIGHT", body, "BOTTOMRIGHT")
     self.HelpBackground:SetWidth(right)
     self.CollapseButton:ClearAllPoints()
-    self.CollapseButton:SetPoint("TOPRIGHT", inset, "TOPRIGHT", -8, -6)
+    self.CollapseButton:SetPoint("TOPRIGHT", body, "TOPRIGHT", -5, -3)
     self.ExpandButton:ClearAllPoints()
-    self.ExpandButton:SetPoint("TOPRIGHT", inset, "TOPRIGHT", -5, -6)
+    self.ExpandButton:SetPoint("TOP", self.HelpBackground, "TOP", 0, -3)
     self.HelpKicker:ClearAllPoints()
     self.HelpKicker:SetPoint("TOPLEFT", self.HelpBackground, "TOPLEFT", 16, -12)
     self.HelpScrollBox:ClearAllPoints()
     self.HelpScrollBox:SetPoint("TOPLEFT", self.HelpBackground, "TOPLEFT", 12, -32)
-    self.HelpScrollBox:SetPoint("BOTTOMRIGHT", self.HelpBackground, "BOTTOMRIGHT", -24, 44)
+    self.HelpScrollBox:SetPoint("BOTTOMRIGHT", self.HelpBackground, "BOTTOMRIGHT", -22, 44)
     self.HelpScrollBar:ClearAllPoints()
-    self.HelpScrollBar:SetPoint("TOPLEFT", self.HelpScrollBox, "TOPRIGHT", 4, 0)
-    self.HelpScrollBar:SetPoint("BOTTOMLEFT", self.HelpScrollBox, "BOTTOMRIGHT", 4, 0)
+    self.HelpScrollBar:SetPoint("TOPLEFT", self.HelpScrollBox, "TOPRIGHT", 0, -4)
+    self.HelpScrollBar:SetPoint("BOTTOMLEFT", self.HelpScrollBox, "BOTTOMRIGHT", -1, 7)
     self.ShowMeButton:ClearAllPoints()
     self.ShowMeButton:SetPoint("BOTTOMLEFT", self.HelpBackground, "BOTTOMLEFT", 14, 12)
     self.ShowMeNote:ClearAllPoints()
     self.ShowMeNote:SetPoint("LEFT", self.ShowMeButton, "RIGHT", 8, 0)
     self.ShowMeNote:SetPoint("RIGHT", self.HelpBackground, "RIGHT", -10, 0)
 
-    for _, region in ipairs({ self.CollapseButton, self.HelpKicker, self.HelpScrollBox, self.HelpScrollBar }) do
+    for _, region in ipairs({ self.CollapseButton, self.HelpKicker, self.HelpScrollBox }) do
         region:SetShown(not self.PaneCollapsed)
+    end
+    -- The help's scroll bar hides with the pane, and comes back only when the help is longer than the pane
+    if self.PaneCollapsed then
+        self.HelpScrollBar:Hide()
+    elseif self.HelpBar then
+        self.HelpBar:EvaluateVisibility(true)
     end
     self.ExpandButton:SetShown(self.PaneCollapsed)
     self:UpdateShowMe()
 
+    -- The page's header as the game's settings list draws it (Blizzard_SettingsList.xml): the title, Defaults at its
+    -- right and the divider under both
     self.PageTitle:ClearAllPoints()
-    self.PageTitle:SetPoint("TOPLEFT", inset, "TOPLEFT", navWidth + 20, -10)
+    self.PageTitle:SetPoint("TOPLEFT", body, "TOPLEFT", navEnd + 20, -22)
     self.PageTitle:SetPoint("RIGHT", self.HelpBackground, "LEFT", -130, 0)
     self.DefaultsButton:ClearAllPoints()
-    self.DefaultsButton:SetPoint("TOPRIGHT", self.HelpBackground, "TOPLEFT", -14, -8)
+    self.DefaultsButton:SetPoint("TOPRIGHT", self.HelpBackground, "TOPLEFT", -14, -16)
     self.CancelButton:ClearAllPoints()
     self.CancelButton:SetPoint("RIGHT", self.DefaultsButton, "LEFT", -6, 0)
+    self.Divider:ClearAllPoints()
+    self.Divider:SetPoint("TOPLEFT", body, "TOPLEFT", navEnd + 8, -50)
+    self.Divider:SetPoint("TOPRIGHT", self.HelpBackground, "TOPLEFT", -8, -50)
     self.PageScrollBox:ClearAllPoints()
-    self.PageScrollBox:SetPoint("TOPLEFT", inset, "TOPLEFT", navWidth + 8, -40)
-    self.PageScrollBox:SetPoint("BOTTOMRIGHT", self.HelpBackground, "BOTTOMLEFT", -20, 0)
+    self.PageScrollBox:SetPoint("TOPLEFT", body, "TOPLEFT", navEnd + pageInsets.Left, -58)
+    self.PageScrollBox:SetPoint("BOTTOMRIGHT", self.HelpBackground, "BOTTOMLEFT", -pageInsets.Right, 0)
     self.PageScrollBar:ClearAllPoints()
-    self.PageScrollBar:SetPoint("TOPLEFT", self.PageScrollBox, "TOPRIGHT", 4, 0)
-    self.PageScrollBar:SetPoint("BOTTOMLEFT", self.PageScrollBox, "BOTTOMRIGHT", 4, 0)
+    self.PageScrollBar:SetPoint("TOPLEFT", self.PageScrollBox, "TOPRIGHT", 0, -4)
+    self.PageScrollBar:SetPoint("BOTTOMLEFT", self.PageScrollBox, "BOTTOMRIGHT", -1, 7)
 
+    -- The bottom row: the reload bar, the search scope and heading lines check boxes, and Close
+    self.HeadingLinesLabel:ClearAllPoints()
+    self.HeadingLinesLabel:SetPoint("RIGHT", self.CloseButton, "LEFT", -16, 0)
+    self.HeadingLines:ClearAllPoints()
+    self.HeadingLines:SetPoint("RIGHT", self.HeadingLinesLabel, "LEFT", -2, 0)
+    self.SearchAllLabel:ClearAllPoints()
+    self.SearchAllLabel:SetPoint("RIGHT", self.HeadingLines, "LEFT", -16, 0)
+    self.SearchAll:ClearAllPoints()
+    self.SearchAll:SetPoint("RIGHT", self.SearchAllLabel, "LEFT", -2, 0)
     self.ReloadBackground:ClearAllPoints()
-    self.ReloadBackground:SetPoint("TOPLEFT", inset, "BOTTOMLEFT", 0, -2)
-    self.ReloadBackground:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", -24, 4)
+    self.ReloadBackground:SetPoint("TOPLEFT", body, "BOTTOMLEFT", 0, -6)
+    self:UpdateSearchAll()
     self.ReloadText:ClearAllPoints()
     self.ReloadText:SetPoint("LEFT", self.ReloadBackground, "LEFT", 12, 0)
     self.ReloadButton:ClearAllPoints()
@@ -255,7 +536,7 @@ end
 
 function Krowi_OptionsWindowMixin:SetPaneCollapsed(collapsed)
     self.PaneCollapsed = collapsed
-    self.Saved.PaneCollapsed = collapsed
+    lib.SetShared("PaneCollapsed", collapsed)
     self:Layout()
     self:ReloadSection()
 end
@@ -320,20 +601,22 @@ end
 
 function Krowi_OptionsWindowMixin:SavePoint()
     local point, _, relativePoint, x, y = self:GetPoint(1)
-    self.Saved.Point = { point, relativePoint, x, y }
+    lib.SetShared("Point", { point, relativePoint, x, y })
 end
 
+-- On the open tab, or the first one before any is open
 function Krowi_OptionsWindowMixin:Open(sectionId)
-    self:Show()
-    self:ShowSection(sectionId or self.Config.Landing())
+    self:ShowTab(self.Tab or lib.Tabs[1], sectionId)
 end
 
 -- [[ Navigation and the page ]] --
+-- The header bars take turns over Blizzard's three, as the game's list does (Blizzard_CategoryList.lua)
 function Krowi_OptionsWindowMixin:RefreshNav()
     local config = self.Config
     local list = { { Kind = "NavButton", Id = "overview", Text = self.Strings.Overview, IsNew = false } }
-    for _, group in ipairs(config.Groups) do
-        list[#list + 1] = { Kind = "NavHeader", Text = group.Name }
+    for i, group in ipairs(config.Groups) do
+        list[#list + 1] = { Kind = "NavSpacer" }
+        list[#list + 1] = { Kind = "NavHeader", Text = group.Name, Index = ((i - 1) % 3) + 1 }
         for _, id in ipairs(group.Sections) do
             list[#list + 1] = { Kind = "NavButton", Id = id, Text = config.SectionName(id), IsNew = config.IsNew(id) }
         end
@@ -374,9 +657,11 @@ function Krowi_OptionsWindowMixin:ShowSection(id, optionId, keepSearchText)
     config.OnSectionShown(id)
     self.PageTitle:SetText(id == "overview" and self.Strings.Overview or config.SectionName(id))
     self.DefaultsButton:SetShown(id ~= "overview")
+    self.Filling = true
     self:RefreshNav()
     self:FillPage(ScrollBoxConstants.DiscardScrollPosition)
     self:ShowSectionHelp()
+    self:EndFill()
     if optionId then self:ScrollToOption(optionId) end
 end
 
@@ -523,17 +808,25 @@ function Krowi_OptionsWindowMixin:OnSearch(text)
     self.DefaultsButton:Hide()
     self.CancelButton:Hide()
     self.ChangedText:SetText("")
+    -- The selected tab, or with "Search all tabs" ticked every tab, each under its addon's name; a result of another addon opens
+    -- its tab first
+    local everyTab = self.SearchEveryTab and #lib.Tabs > 1
     local list = {}
-    for _, result in ipairs(self.Config.Search(text)) do
-        list[#list + 1] = {
-            Kind = "Link", Text = result.Label, Detail = result.Path,
-            OnClick = function() self:ShowSection(result.SectionId, result.OptionId) end,
-        }
+    for _, group in ipairs(lib.Search(text, everyTab, self.Tab)) do
+        if everyTab then list[#list + 1] = { Kind = "SubHeading", Text = group.Tab.Config.TabName } end
+        for _, result in ipairs(group.Results) do
+            list[#list + 1] = {
+                Kind = "Link", Text = result.Label, Detail = result.Path,
+                OnClick = function() self:ShowTab(group.Tab, result.SectionId, result.OptionId) end,
+            }
+        end
     end
     if #list == 0 then list[1] = { Kind = "Note", Text = self.Strings.NoResults } end
     self.Elements = list
     self.PageScrollBox:SetDataProvider(CreateDataProvider(list), ScrollBoxConstants.DiscardScrollPosition)
+    self.Filling = true
     self:RefreshNav()
+    self:EndFill()
 end
 
 -- [[ The help pane, or the tooltip while the pane is collapsed ]] --
@@ -641,12 +934,16 @@ local function OptionHelpLines(window, option)
     return desc, lines
 end
 
-function Krowi_OptionsWindowMixin:OnRowEnter(option, row)
+-- controlX: where the hovered control starts, from the row's left edge
+function Krowi_OptionsWindowMixin:OnRowEnter(option, row, controlX)
     if not option then return end
     local desc, lines = OptionHelpLines(self, option)
     if self.PaneCollapsed then
         local tooltip = Krowi_Tooltip -- the addon's own tooltip, never GameTooltip (Krowi_Util creates it wherever KROWI_LIBMAN exists)
-        tooltip:SetOwner(row, "ANCHOR_RIGHT")
+        -- Above the row, from 10 before its control, where the game's Options window shows a setting's tooltip
+        -- (Blizzard_SettingControls.xml and .lua: ANCHOR_RIGHT on the part of the row before the control, x -10)
+        tooltip:SetOwner(row, "ANCHOR_NONE")
+        tooltip:SetPoint("BOTTOMLEFT", row, "TOPLEFT", (controlX or 0) - 10, 0)
         tooltip:AddLine(option:GetLabel(), 1, 1, 1)
         if desc ~= "" then tooltip:AddLine(desc, nil, nil, nil, true) end
         for _, line in ipairs(lines) do tooltip:AddLine(line, 0.6, 0.6, 0.6, true) end

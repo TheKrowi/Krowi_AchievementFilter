@@ -6,7 +6,8 @@ local L = addon.L
 
 -- The options window (docs/work/2026-10-25-options-revamp): Krowi_Options draws it, this file hands it the sections
 -- (Map.lua), their options (Source.lua), the explanations (window.Help, filled by Options/Window/Help) and the place
--- it keeps in KrowiAF_SavedData.OptionsWindow = { Point, Size, PaneCollapsed, LastSection, Seen = { [sectionId] = version } }.
+-- it keeps in KrowiAF_SavedData.OptionsWindow = { Point, Size, PaneCollapsed, SearchAll, HeadingLines, LastSection,
+-- Seen = { [sectionId] = version } }.
 
 window.Help = window.Help or {}
 
@@ -81,10 +82,9 @@ local function OverviewElements()
     return elements
 end
 
+-- The addon's tab in the window every Krowi addon shares (docs/work/2026-10-30-options-settings-look)
 window.Controller = KROWI_LIBMAN:GetLibrary("Krowi_Options_1").CreateWindow({
-    Name = "KrowiAF_OptionsWindow",
-    Title = addon.Metadata.Title,
-    Icon = addon.Metadata.Icon,
+    TabName = "Achievement Filter",
     Saved = Saved,
     Groups = map.Groups,
     SectionName = function(id)
@@ -113,6 +113,8 @@ window.Controller = KROWI_LIBMAN:GetLibrary("Krowi_Options_1").CreateWindow({
     Strings = {
         Overview = L["Overview"],
         Search = L["Search"],
+        SearchAll = L["Search all tabs"],
+        HeadingLines = L["Lines under headings"],
         SearchResults = L["Search results"],
         NoResults = L["Nothing found."],
         Defaults = L["Defaults"],
@@ -122,7 +124,6 @@ window.Controller = KROWI_LIBMAN:GetLibrary("Krowi_Options_1").CreateWindow({
         ReloadNow = L["Reload now"],
         ShowMe = L["Show me"],
         HowItWorks = L["How it works"],
-        New = L["New"],
         All = L["All"],
         None = L["None"],
         NotBound = L["Not bound"],

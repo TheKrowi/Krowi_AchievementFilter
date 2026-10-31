@@ -252,8 +252,8 @@ escape.Observations = observations -- facts about the client noted while arming,
 
 local getters = {
     Tooltip = function() return KrowiAF_FloatingAchievementTooltip end,
-    Options = function() return KrowiAF_OptionsWindow end,
-    OptionsPicture = function() return KrowiAF_OptionsWindow and KrowiAF_OptionsWindow.Lightbox end,
+    Options = function() return Krowi_OptionsWindow end,
+    OptionsPicture = function() return Krowi_OptionsWindow and Krowi_OptionsWindow.Lightbox end,
     Text = function() return KrowiAF_TextFrame end,
     MapVerifier = function() return KrowiAF_MapVerifierFrame end,
     DataManager = function() return KrowiAF_DataManagerFrame end,
