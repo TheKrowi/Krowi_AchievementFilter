@@ -80,6 +80,7 @@ Departures (2026-10-31):
 - **After-runs (2026-10-31), BugGrabber with no KAF error on either client:**
   - Retail 12.1.5: `/kaftest options` 56 passed, `escape` 34 passed.
   - Mists 5.5.4: `options` 56 passed, `escape` 33 passed.
+  - `options` again on a9386112, after the search scope and tooltip changes: 56 passed on Retail and on Mists, the `tabs` step with "Search all tabs" hidden.
   - Skipped: `y-on-new-install` (headless only), and on Mists `calendar-side` (no day with achievements this month on that character).
 
 ## Risks
