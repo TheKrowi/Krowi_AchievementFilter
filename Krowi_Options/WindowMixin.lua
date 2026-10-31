@@ -384,6 +384,9 @@ end
 -- (Blizzard_SettingsPanel.xml: the list at 18, -76, the bottom buttons at 16)
 local bodyInsets = { Left = 18, Top = -76, Right = -18, Bottom = 46 }
 local navBarSpace = 16 -- what the game's list keeps for its scroll bar; the divider and the page move right by it while it shows
+-- The list's scroll bar, 8 wide, from the list's end: halfway between the edge of the header art (197, measured on the
+-- atlas) and the divider (214 while the bar shows)
+local navBarX = 2.5
 
 -- Where the navigation ends and its divider stands: right after the list, where the game's window has it, or past the
 -- list's scroll bar while not all of it fits
@@ -435,14 +438,14 @@ function Krowi_OptionsWindowMixin:Layout()
     self.SearchBox:SetPoint("BOTTOMRIGHT", body, "TOPRIGHT", 0, 20)
 
     -- The scroll bars sit as the game's lists place theirs (Blizzard_CategoryList.xml, Blizzard_SettingsList.xml), each
-    -- just inside the divider or edge after its list
+    -- just inside the divider or edge after its list, apart from the navigation's, which stands halfway to its divider
     self.NavScrollBox:ClearAllPoints()
     self.NavScrollBox:SetPoint("TOPLEFT", body, "TOPLEFT", -navLeftPad, -4)
     self.NavScrollBox:SetPoint("BOTTOMLEFT", body, "BOTTOMLEFT", -navLeftPad, 4)
     self.NavScrollBox:SetWidth(navLeftPad + navWidth)
     self.NavScrollBar:ClearAllPoints()
-    self.NavScrollBar:SetPoint("TOPLEFT", self.NavScrollBox, "TOPRIGHT", 0, 2)
-    self.NavScrollBar:SetPoint("BOTTOMLEFT", self.NavScrollBox, "BOTTOMRIGHT", -1, 7)
+    self.NavScrollBar:SetPoint("TOPLEFT", self.NavScrollBox, "TOPRIGHT", navBarX, 2)
+    self.NavScrollBar:SetPoint("BOTTOMLEFT", self.NavScrollBox, "BOTTOMRIGHT", navBarX, 7)
 
     self.HelpBackground:ClearAllPoints()
     self.HelpBackground:SetPoint("TOPRIGHT", body, "TOPRIGHT")
