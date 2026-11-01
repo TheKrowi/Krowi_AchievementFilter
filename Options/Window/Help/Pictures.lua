@@ -13,7 +13,7 @@ addon.Options.Window.HelpPictures = {
     MapButton = {Width = 264, Height = 110, TexCoords = {0, 0.619140625, 0, 0.515625}},
     MenuMain = {Width = 375, Height = 205, TexCoords = {0, 0.87890625, 0, 0.95703125}},
     NewTabs = {Width = 808, Height = 134, TexCoords = {0, 0.947265625, 0, 0.625}},
-    PopOut = {Width = 516, Height = 193, TexCoords = {0, 0.6044921875, 0, 0.8984375}},
+    PopOut = {Width = 517, Height = 193, TexCoords = {0, 0.6064453125, 0, 0.8984375}},
     Reminders = {Width = 337, Height = 271, TexCoords = {0, 0.7890625, 0, 0.634765625}},
     RewardPreview = {Width = 485, Height = 654, TexCoords = {0, 0.568359375, 0, 0.7666015625}},
     SearchBox = {Width = 246, Height = 94, TexCoords = {0, 0.576171875, 0, 0.8828125}},
