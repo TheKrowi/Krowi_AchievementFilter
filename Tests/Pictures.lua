@@ -45,8 +45,7 @@ end
 
 -- A cut-out is a frame, or a table {Frame = frame, Top = region, Bottom = region, MaxHeight = units}: Top and Bottom
 -- keep the frame's sides and cut from one region's top to the other's bottom (the Earned By part of a tooltip);
--- MaxHeight keeps only the top of a tall frame, in UIParent units, so it still reads in the help pane. The last two
--- values are the frame's own top and bottom
+-- MaxHeight keeps only the top of a tall frame, in UIParent units, so it still reads in the help pane
 local function Edges(item)
     local frame, topRegion, bottomRegion, maxHeight = item, nil, nil, nil
     if type(item) == "table" and item.Frame then
@@ -57,7 +56,6 @@ local function Edges(item)
     end
     local scale = frame:GetEffectiveScale()
     local left, right, top, bottom = frame:GetLeft() * scale, frame:GetRight() * scale, frame:GetTop() * scale, frame:GetBottom() * scale
-    local frameTop, frameBottom = top, bottom
     if topRegion and topRegion:GetTop() then
         top = topRegion:GetTop() * topRegion:GetEffectiveScale() + 6
     end
@@ -67,7 +65,7 @@ local function Edges(item)
     if maxHeight then
         bottom = max(bottom, top - maxHeight * UIParent:GetEffectiveScale())
     end
-    return left, right, top, bottom, frameTop, frameBottom
+    return left, right, top, bottom
 end
 
 local strataOrder = {"BACKGROUND", "LOW", "MEDIUM", "HIGH", "DIALOG", "FULLSCREEN", "FULLSCREEN_DIALOG", "TOOLTIP"}
@@ -105,30 +103,21 @@ end
 -- The union of the items in screen pixels from the top left, and its natural size in UIParent units. more: UIParent
 -- units of what lies around them per side ({Top = 30}), so a side cut through the window fades out over the window
 -- rather than over the frames the picture is about (Krowi, 2026-10-29). Inner is the union before more: the tool looks
--- along it whether the other sides are the frames' edge, or the window more took in counts as content beside them.
--- CutTop and CutBottom: the frame that gives that side goes on past the cut (a Top or Bottom region, a MaxHeight)
--- further than the tool looks for a frame's edge (its $reach, 24 px), so the side is a cut through it. The screenshot
--- cannot tell: a menu's or tooltip's background over the black backdrop is black too
+-- along it whether the other sides are the frames' edge, or the window more took in counts as content beside them
 local function Rectangle(items, more)
-    local _, screenHeight = GetPhysicalScreenSize()
-    local pixels = screenHeight / 768 -- one unit at scale 1 is this many pixels: the UI is 768 units high
-    local reach = 24 / pixels
-    local left, right, top, bottom, cutTop, cutBottom
+    local left, right, top, bottom
     for _, item in ipairs(items) do
-        local l, r, t, b, frameTop, frameBottom = Edges(item)
+        local l, r, t, b = Edges(item)
         if l then
             left, right = left and min(left, l) or l, right and max(right, r) or r
-            if not top or t > top then
-                top, cutTop = t, frameTop - t > reach
-            end
-            if not bottom or b < bottom then
-                bottom, cutBottom = b, b - frameBottom > reach
-            end
+            top, bottom = top and max(top, t) or t, bottom and min(bottom, b) or b
         end
     end
     if not left then
         return
     end
+    local _, screenHeight = GetPhysicalScreenSize()
+    local pixels = screenHeight / 768 -- one unit at scale 1 is this many pixels: the UI is 768 units high
     local uiScale = UIParent:GetEffectiveScale()
     local inner = {
         Left = floor(left * pixels + 0.5),
@@ -149,9 +138,7 @@ local function Rectangle(items, more)
         Bottom = floor(screenHeight - bottom * pixels + 0.5),
         Width = floor((right - left) / uiScale + 0.5),
         Height = floor((top - bottom) / uiScale + 0.5),
-        Inner = inner,
-        CutTop = cutTop or nil,
-        CutBottom = cutBottom or nil
+        Inner = inner
     }
 end
 

@@ -13,14 +13,10 @@
       - looks at each side, as the old tutorial pictures were made by hand (docs/work/2026-10-26-help-picture-margins):
         where the frame ends in the run's black backdrop within 24 px of the cut, a frame's own edge shows there, so
         the cut takes in what the frame draws outside its rectangle (a border, the tabs' art), moves in over black to
-        the frame's visible edge and gets -Margin pixels of room; where content goes on (a long tooltip, the window
+        the frame's visible edge and gets -Margin pixels of black; where content goes on (a long tooltip, the window
         around the category list) the side is a cut through it. It looks along the frames' own length, so what a
-        step's More took in beside them (the window left of the guide panel) is no content next to the other sides.
-        A side where the run cut a frame short (a MaxHeight, a Top or Bottom region) is a cut whatever the screenshot
-        shows: a menu's or tooltip's background over the backdrop is as black as the backdrop;
+        step's More took in beside them (the window left of the guide panel) is no content next to the other sides;
       - scales it down so its longest side, margins included, is at most -MaxSide pixels;
-      - makes the run's black backdrop transparent, from the edge sides' margins in, so the help pane shows up to the
-        frame's own border (docs/work/2026-11-01-help-pictures-transparent);
       - gives it the old tutorial pictures' soft edge: the alpha curve every old picture has over its outer 40 px, in
         the margin of an edge side, and scaled to -Fade pixels on a cut side
         (docs/work/2026-10-25-options-revamp/mockup/Crop-Pictures.ps1);
@@ -54,8 +50,8 @@
     Width of the soft edge on a side that cuts through content, in pixels. Default 18.
 
 .PARAMETER Margin
-    Transparent room around a frame's own edge, in pixels. Default 50, as the old tutorial pictures had wherever a
-    frame's edge shows.
+    Black around a frame's own edge, in pixels, faded out over its outer 40. Default 50, as the old tutorial pictures
+    had wherever a frame's edge shows.
 
 .PARAMETER Preview
     A folder to write a PNG of every picture made, without its padding.
@@ -112,8 +108,7 @@ foreach ($line in & $KitLua (Join-Path $root '.claude\tools\headless\read-pictur
             Left = [double]::Parse($f[4], $invariant); Top = [double]::Parse($f[5], $invariant); Right = [double]::Parse($f[6], $invariant)
             Bottom = [double]::Parse($f[7], $invariant); Width = [int]$f[8]; Height = [int]$f[9]
             InnerLeft = [double]::Parse($f[10], $invariant); InnerTop = [double]::Parse($f[11], $invariant)
-            InnerRight = [double]::Parse($f[12], $invariant); InnerBottom = [double]::Parse($f[13], $invariant)
-            CutTop = $f[14] -eq '1'; CutBottom = $f[15] -eq '1' })
+            InnerRight = [double]::Parse($f[12], $invariant); InnerBottom = [double]::Parse($f[13], $invariant) })
     }
 }
 if ($shots.Count -eq 0) { throw "The saved variables hold no pictures run; run /kaftest pictures in game, then /reload." }
@@ -223,7 +218,6 @@ function Test-Outside($buffer, [System.Drawing.Rectangle]$r, [System.Drawing.Rec
 # the frame's rectangle, the art Blizzard's achievement tabs hang below their buttons (19 px on a 1440 px screen); Grow
 # takes them in. A frame laid over another one's corner (the guide panel and the reward preview over the window's
 # border) still has its edge where at least 85% of the line 3 px out is black. Anything else is a cut through content.
-# Tests/Pictures.lua's Rectangle records CutTop/CutBottom with the same reach.
 $reach = 24
 function Get-Side($buffer, [System.Drawing.Rectangle]$r, [System.Drawing.Rectangle]$inner, [string]$side) {
     for ($k = 1; $k -le $reach; $k++) {
@@ -253,42 +247,6 @@ function Get-EdgeAlpha([double]$d, [double]$width) {
     if ($t -ge $curve.Count - 1) { return 1.0 }
     $i = [Math]::Floor($t); $f = $t - $i
     (($curve[$i] * (1 - $f)) + ($curve[$i + 1] * $f)) / 255.0
-}
-
-# The run's black backdrop made transparent (BGRA rows of $stride bytes): a flood from the outer line of every edge
-# side's margin through the black (R+G+B up to 12), then 2 px further through up to 40, the jpg's ringing and the dark
-# outline the scaling leaves around a frame. A dark area that a frame's border closes is never reached, and a frame's
-# dark art beside the backdrop keeps what is brighter than 12 beyond those 2 px: one limit of 40 ate holes into the
-# tabs' art and the window's bottom wood (docs/work/2026-11-01-help-pictures-transparent). Returns the pixels cleared.
-function Clear-Backdrop([byte[]]$bytes, [int]$stride, [int]$width, [int]$height, $edge) {
-    $seen = New-Object bool[] ($width * $height)
-    $queue = New-Object System.Collections.Generic.Queue[int]
-    if ($edge.Left) { for ($y = 0; $y -lt $height; $y++) { $queue.Enqueue($y * $width) } }
-    if ($edge.Right) { for ($y = 0; $y -lt $height; $y++) { $queue.Enqueue($y * $width + $width - 1) } }
-    if ($edge.Top) { for ($x = 0; $x -lt $width; $x++) { $queue.Enqueue($x) } }
-    if ($edge.Bottom) { for ($x = 0; $x -lt $width; $x++) { $queue.Enqueue(($height - 1) * $width + $x) } }
-    $cleared = 0
-    # pass 0 floods the black and keeps the darkish pixels it meets for pass 1; passes 1 and 2 each grow 1 px
-    for ($pass = 0; $pass -le 2; $pass++) {
-        $next = New-Object System.Collections.Generic.Queue[int]
-        if ($pass -eq 0) { $to = $queue } else { $to = $next }
-        while ($queue.Count -gt 0) {
-            $i = $queue.Dequeue()
-            if ($seen[$i]) { continue }
-            $x = $i % $width; $y = ($i - $x) / $width
-            $o = $y * $stride + $x * 4
-            $sum = [int]$bytes[$o] + $bytes[$o + 1] + $bytes[$o + 2]
-            if ($sum -gt 40) { continue }
-            if ($pass -eq 0 -and $sum -gt 12) { $next.Enqueue($i); continue }
-            $seen[$i] = $true; $bytes[$o + 3] = 0; $cleared++
-            if ($x -gt 0) { $to.Enqueue($i - 1) }
-            if ($x -lt $width - 1) { $to.Enqueue($i + 1) }
-            if ($y -gt 0) { $to.Enqueue($i - $width) }
-            if ($y -lt $height - 1) { $to.Enqueue($i + $width) }
-        }
-        $queue = $next
-    }
-    $cleared
 }
 
 function Get-NextPowerOfTwo([int]$n) { $p = 1; while ($p -lt $n) { $p *= 2 }; $p }
@@ -370,16 +328,15 @@ foreach ($picture in $pictures) {
     }
     if ($crops.Count -eq 0) { continue }
 
-    # The picture's sides: left and right when every part has that edge, top from the first part, bottom from the last,
-    # unless the run cut the frame short there. On those sides each part takes in its frame's art outside the cut, then
-    # moves in over the black.
+    # The picture's sides: left and right when every part has that edge, top from the first part, bottom from the last.
+    # On those sides each part takes in its frame's art outside the cut, then moves in over the black.
     $sides = @($crops | ForEach-Object {
         $crop = $_; $found = [ordered]@{}
         foreach ($side in 'Left', 'Top', 'Right', 'Bottom') { $found[$side] = Get-Side $crop.Buffer $crop.Rect $crop.Inner $side }
         [pscustomobject]$found
     })
     $edge = [pscustomobject]@{ Left = -not ($sides.Left.Edge -contains $false); Right = -not ($sides.Right.Edge -contains $false)
-        Top = $sides[0].Top.Edge -and -not $crops[0].Part.CutTop; Bottom = $sides[-1].Bottom.Edge -and -not $crops[-1].Part.CutBottom }
+        Top = $sides[0].Top.Edge; Bottom = $sides[-1].Bottom.Edge }
     for ($i = 0; $i -lt $crops.Count; $i++) {
         $top = $edge.Top -and $i -eq 0; $bottom = $edge.Bottom -and $i -eq $crops.Count - 1
         $growLeft = if ($edge.Left) { $sides[$i].Left.Grow } else { 0 }; $growRight = if ($edge.Right) { $sides[$i].Right.Grow } else { 0 }
@@ -410,7 +367,7 @@ foreach ($picture in $pictures) {
     $write = $PSCmdlet.ShouldProcess($target, 'write the picture')
     if (-not $write -and -not $Preview) { continue }
 
-    # black under the parts, so the margins and a narrower part's side are the backdrop's black, cleared with it
+    # black under the parts, so the margins and a narrower part's side are the backdrop's black
     $canvas = New-Object System.Drawing.Bitmap $width, $height, ([System.Drawing.Imaging.PixelFormat]::Format32bppArgb)
     $g = [System.Drawing.Graphics]::FromImage($canvas)
     $g.Clear([System.Drawing.Color]::Black)
@@ -424,26 +381,24 @@ foreach ($picture in $pictures) {
     }
     $g.Dispose()
 
-    # the backdrop cleared, the soft edge, then into a transparent power-of-two texture
+    # soft edge, then into a transparent power-of-two texture
     $fadeLeft = if ($edge.Left) { 40 } else { $Fade }; $fadeRight = if ($edge.Right) { 40 } else { $Fade }
     $fadeTop = if ($edge.Top) { 40 } else { $Fade }; $fadeBottom = if ($edge.Bottom) { 40 } else { $Fade }
     $data = $canvas.LockBits((New-Object System.Drawing.Rectangle 0, 0, $width, $height), 'ReadWrite', $canvas.PixelFormat)
-    $bytes = New-Object byte[] ($data.Stride * $height)
-    [Runtime.InteropServices.Marshal]::Copy($data.Scan0, $bytes, 0, $bytes.Length)
-    $cleared = Clear-Backdrop $bytes $data.Stride $width $height $edge
-    Write-Verbose ("  backdrop: {0:P0} of the picture made transparent" -f ($cleared / [double]($width * $height)))
+    $rowBytes = New-Object byte[] ($width * 4)
     $pixels = New-Object byte[] ($texWidth * $texHeight * 4)
     $alphaX = New-Object double[] $width
     for ($x = 0; $x -lt $width; $x++) { $alphaX[$x] = [Math]::Min((Get-EdgeAlpha $x $fadeLeft), (Get-EdgeAlpha ($width - 1 - $x) $fadeRight)) }
     for ($row = 0; $row -lt $height; $row++) {
-        $start = $row * $data.Stride
+        $scan = [IntPtr]($data.Scan0.ToInt64() + $row * $data.Stride)
+        [Runtime.InteropServices.Marshal]::Copy($scan, $rowBytes, 0, $width * 4)
         $alphaY = [Math]::Min((Get-EdgeAlpha $row $fadeTop), (Get-EdgeAlpha ($height - 1 - $row) $fadeBottom))
         for ($x = 0; $x -lt $width; $x++) {
-            $bytes[$start + $x * 4 + 3] = [byte][Math]::Round($bytes[$start + $x * 4 + 3] * $alphaX[$x] * $alphaY)
+            $rowBytes[$x * 4 + 3] = [byte][Math]::Round($rowBytes[$x * 4 + 3] * $alphaX[$x] * $alphaY)
         }
-        [Array]::Copy($bytes, $start, $pixels, $row * $texWidth * 4, $width * 4)
+        [Runtime.InteropServices.Marshal]::Copy($rowBytes, 0, $scan, $width * 4)
+        [Array]::Copy($rowBytes, 0, $pixels, $row * $texWidth * 4, $width * 4)
     }
-    [Runtime.InteropServices.Marshal]::Copy($bytes, 0, $data.Scan0, $bytes.Length)
     $canvas.UnlockBits($data)
     if ($Preview) {
         New-Item -ItemType Directory -Force $Preview -WhatIf:$false | Out-Null   # previews also with -WhatIf

@@ -3,10 +3,8 @@
 -- from it. Newest run first, one tab-separated line per run and per shot:
 --   RUN   <n> <time> <client> <build> <screen width> <screen height>
 --   SHOT  <n> <picture> <time> <left> <top> <right> <bottom> <width> <height> <inner left> <inner top> <inner right> <inner bottom>
---         <cut top> <cut bottom>
 -- Pixels are from the screen's top left; width and height are the natural size in UI units. The inner edges are the
 -- frames' own, before the step's More grew the cut; a run from before 2026-10-30 has none, so they repeat the cut's.
--- Cut top and cut bottom are 1 where the run cut a frame short on that side, else 0 (always 0 before 2026-11-01).
 -- Usage: lua.exe read-pictures.lua <SavedVariables\Krowi_AchievementFilter.lua>
 
 local path = ...
@@ -24,6 +22,6 @@ for n = #runs, 1, -1 do
     for _, shot in ipairs(run.Shots or {}) do
         local inner = shot.Inner or shot
         io.write(table.concat({"SHOT", n, shot.Name, shot.Time, shot.Left, shot.Top, shot.Right, shot.Bottom, shot.Width, shot.Height,
-            inner.Left, inner.Top, inner.Right, inner.Bottom, shot.CutTop and 1 or 0, shot.CutBottom and 1 or 0}, "\t"), "\n")
+            inner.Left, inner.Top, inner.Right, inner.Bottom}, "\t"), "\n")
     end
 end
