@@ -6,16 +6,19 @@
 .DESCRIPTION
     Tests\Pictures.lua records, per picture, the screen rectangle to cut out and the moment of its screenshot in
     KrowiAF_DebugTable.Pictures (written on the next /reload). This tool reads that with the kit's Lua 5.1
-    (headless\read-pictures.lua), finds each screenshot in the client's Screenshots folder by its time, as
-    Read-GameTests.ps1 does, and for every picture:
+    (headless\read-pictures.lua), finds each picture's two screenshots, on the run's black backdrop and on its pink
+    one, in the client's Screenshots folder by their time, as Read-GameTests.ps1 does, and for every picture:
+      - works out how see-through each pixel is from the two shots: the pink adds (1 - alpha) times itself to the red
+        and blue of the black shot, so the backdrop goes, a frame's dark border stays and a tooltip's background or a
+        menu's shadow keeps its own transparency (docs/work/2026-11-01-help-pictures-transparent);
       - cuts the rectangle out (scaled when the screenshot's size differs from the recorded screen), stacking the parts
         of a picture recorded in several steps (Colors) top to bottom;
       - looks at each side, as the old tutorial pictures were made by hand (docs/work/2026-10-26-help-picture-margins):
-        where the frame ends in the run's black backdrop within 24 px of the cut, a frame's own edge shows there, so
-        the cut takes in what the frame draws outside its rectangle (a border, the tabs' art), moves in over black to
-        the frame's visible edge and gets -Margin pixels of black; where content goes on (a long tooltip, the window
-        around the category list) the side is a cut through it. It looks along the frames' own length, so what a
-        step's More took in beside them (the window left of the guide panel) is no content next to the other sides;
+        where the frame ends in the backdrop within 24 px of the cut, a frame's own edge shows there, so the cut takes
+        in what the frame draws outside its rectangle (a border, the tabs' art), moves in over the backdrop to the
+        frame's visible edge and gets -Margin pixels of transparent room; where content goes on (a long tooltip, the
+        window around the category list) the side is a cut through it. It looks along the frames' own length, so what
+        a step's More took in beside them (the window left of the guide panel) is no content next to the other sides;
       - scales it down so its longest side, margins included, is at most -MaxSide pixels;
       - gives it the old tutorial pictures' soft edge: the alpha curve every old picture has over its outer 40 px, in
         the margin of an edge side, and scaled to -Fade pixels on a cut side
@@ -23,10 +26,12 @@
       - pads it with transparency to powers of two, as every texture in Media\ is;
       - writes it as a 32-bit RLE TGA with the old files' header (type 10, top-left origin, TGA 2.0 footer).
     Each picture comes from the newest run that recorded it, so a run that skipped one (Compact Achievements off) does
-    not lose the picture of an earlier run. Pictures.lua keeps the entries of pictures this call did not make.
+    not lose the picture of an earlier run. A picture without its pink shot (a run from before 2026-11-01, or the game's
+    tooltip came over it) is not made. Pictures.lua keeps the entries of pictures this call did not make.
 
-    Screenshots may be jpg (the game's default; type /console screenshotQuality 10 in game first, quality 3 blurs text),
-    png or tga. The Read tool cannot open TGA, so -Preview writes a PNG of each picture to look at.
+    Screenshots may be png (type /console screenshotFormat png in game before the run), tga or jpg. jpg is the game's
+    default; it blurs colour, which leaves a fringe where a frame meets the pink, and needs /console screenshotQuality 10
+    (quality 3 blurs text). The Read tool cannot open TGA, so -Preview writes a PNG of each picture to look at.
 
 .PARAMETER Client
     Retail (_retail_, default), Classic (_classic_), Ptr or Xptr.
@@ -50,8 +55,8 @@
     Width of the soft edge on a side that cuts through content, in pixels. Default 18.
 
 .PARAMETER Margin
-    Black around a frame's own edge, in pixels, faded out over its outer 40. Default 50, as the old tutorial pictures
-    had wherever a frame's edge shows.
+    Transparent room around a frame's own edge, in pixels. Default 50, as the old tutorial pictures had wherever a
+    frame's edge shows.
 
 .PARAMETER Preview
     A folder to write a PNG of every picture made, without its padding.
@@ -108,7 +113,8 @@ foreach ($line in & $KitLua (Join-Path $root '.claude\tools\headless\read-pictur
             Left = [double]::Parse($f[4], $invariant); Top = [double]::Parse($f[5], $invariant); Right = [double]::Parse($f[6], $invariant)
             Bottom = [double]::Parse($f[7], $invariant); Width = [int]$f[8]; Height = [int]$f[9]
             InnerLeft = [double]::Parse($f[10], $invariant); InnerTop = [double]::Parse($f[11], $invariant)
-            InnerRight = [double]::Parse($f[12], $invariant); InnerBottom = [double]::Parse($f[13], $invariant) })
+            InnerRight = [double]::Parse($f[12], $invariant); InnerBottom = [double]::Parse($f[13], $invariant)
+            PinkTime = if ($f[14]) { [datetime]::ParseExact($f[14], 'yyyy-MM-dd HH:mm:ss', $invariant) } else { $null } })
     }
 }
 if ($shots.Count -eq 0) { throw "The saved variables hold no pictures run; run /kaftest pictures in game, then /reload." }
@@ -187,17 +193,18 @@ function Get-Buffer([string]$path) {
     $buffers[$path]
 }
 
-# A row or column of the screenshot from $from to $to is black when at most $share of it (and at least one pixel) is
-# brighter than the backdrop (R+G+B above 40, over the jpg's noise); outside the screenshot nothing is black
-function Test-Black($buffer, [bool]$row, [int]$at, [int]$from, [int]$to, [double]$share = 0.005) {
+# A row or column of the screenshot from $from to $to is backdrop when at most $share of it (and at least one pixel) is
+# more than 10% opaque: the pink shot's red plus blue over the black shot's is at most 51 short of the pink's 510.
+# Outside the screenshot nothing is backdrop
+function Test-Clear($buffer, [bool]$row, [int]$at, [int]$from, [int]$to, [double]$share = 0.005) {
     if ($at -lt 0 -or $at -ge $(if ($row) { $buffer.Height } else { $buffer.Width })) { return $false }
-    $bytes = $buffer.Bytes; $stride = $buffer.Stride; $bright = 0
+    $bytes = $buffer.Bytes; $pink = $buffer.Pink; $stride = $buffer.Stride; $opaque = 0
     $allowed = [Math]::Max(1, [int][Math]::Floor(($to - $from + 1) * $share))
     for ($i = $from; $i -le $to; $i++) {
         $o = if ($row) { $at * $stride + $i * 4 } else { $i * $stride + $at * 4 }
-        if (([int]$bytes[$o] + $bytes[$o + 1] + $bytes[$o + 2]) -gt 40) {
-            $bright++
-            if ($bright -gt $allowed) { return $false }
+        if ((([int]$pink[$o] - $bytes[$o]) + ([int]$pink[$o + 2] - $bytes[$o + 2])) -lt 459) {
+            $opaque++
+            if ($opaque -gt $allowed) { return $false }
         }
     }
     $true
@@ -207,34 +214,37 @@ function Test-Black($buffer, [bool]$row, [int]$at, [int]$from, [int]$to, [double
 # the window a More took in beside the guide panel is no content next to the panel's top and bottom
 function Test-Outside($buffer, [System.Drawing.Rectangle]$r, [System.Drawing.Rectangle]$inner, [string]$side, [int]$k, [double]$share) {
     switch ($side) {
-        'Left' { Test-Black $buffer $false ($r.Left - $k) $inner.Top ($inner.Bottom - 1) $share }
-        'Right' { Test-Black $buffer $false ($r.Right - 1 + $k) $inner.Top ($inner.Bottom - 1) $share }
-        'Top' { Test-Black $buffer $true ($r.Top - $k) $inner.Left ($inner.Right - 1) $share }
-        'Bottom' { Test-Black $buffer $true ($r.Bottom - 1 + $k) $inner.Left ($inner.Right - 1) $share }
+        'Left' { Test-Clear $buffer $false ($r.Left - $k) $inner.Top ($inner.Bottom - 1) $share }
+        'Right' { Test-Clear $buffer $false ($r.Right - 1 + $k) $inner.Top ($inner.Bottom - 1) $share }
+        'Top' { Test-Clear $buffer $true ($r.Top - $k) $inner.Left ($inner.Right - 1) $share }
+        'Bottom' { Test-Clear $buffer $true ($r.Bottom - 1 + $k) $inner.Left ($inner.Right - 1) $share }
     }
 }
 
-# A side shows a frame's own edge when the frame ends in black within $reach px of the cut: a border drawn just outside
-# the frame's rectangle, the art Blizzard's achievement tabs hang below their buttons (19 px on a 1440 px screen); Grow
-# takes them in. A frame laid over another one's corner (the guide panel and the reward preview over the window's
-# border) still has its edge where at least 85% of the line 3 px out is black. Anything else is a cut through content.
-$reach = 24
+# A side shows a frame's own edge when the frame ends in the backdrop within $reach px of the cut: a border drawn just
+# outside the frame's rectangle, the art Blizzard's achievement tabs hang below their buttons (24 px on a 1440 px
+# screen with their shadow), the window's border beside the category list (24 px, with a black line inside it that the
+# black shot alone took for the backdrop); Grow takes them in. A frame laid over another one's corner (the guide panel
+# and the reward preview over the window's border) still has its edge where at least 80% of the line 3 px out is
+# backdrop (the window is 15.4% of the guide panel's top). Anything else is a cut through content, also a menu's or
+# tooltip's dark background.
+$reach = 32
 function Get-Side($buffer, [System.Drawing.Rectangle]$r, [System.Drawing.Rectangle]$inner, [string]$side) {
     for ($k = 1; $k -le $reach; $k++) {
-        if (Test-Outside $buffer $r $inner $side $k 0.005) { Write-Verbose "  $side`: black $k px out"; return [pscustomobject]@{ Edge = $true; Grow = $k - 1 } }
+        if (Test-Outside $buffer $r $inner $side $k 0.005) { Write-Verbose "  $side`: backdrop $k px out"; return [pscustomobject]@{ Edge = $true; Grow = $k - 1 } }
     }
-    $mostlyBlack = Test-Outside $buffer $r $inner $side 3 0.15
-    Write-Verbose "  $side`: $(if ($mostlyBlack) { 'mostly' } else { 'not' }) black 3 px out"
-    [pscustomobject]@{ Edge = $mostlyBlack; Grow = 0 }
+    $mostlyClear = Test-Outside $buffer $r $inner $side 3 0.2
+    Write-Verbose "  $side`: $(if ($mostlyClear) { 'mostly' } else { 'not' }) backdrop 3 px out"
+    [pscustomobject]@{ Edge = $mostlyClear; Grow = 0 }
 }
 
-# The cut moved in over black lines on the given sides, to the frame's visible edge
+# The cut moved in over backdrop lines on the given sides, to the frame's visible edge
 function Get-Trimmed($buffer, [System.Drawing.Rectangle]$r, [bool]$left, [bool]$top, [bool]$right, [bool]$bottom) {
     $l = $r.Left; $t = $r.Top; $rr = $r.Right - 1; $b = $r.Bottom - 1
-    if ($top) { while ($t -lt $b -and (Test-Black $buffer $true $t $l $rr)) { $t++ } }
-    if ($bottom) { while ($b -gt $t -and (Test-Black $buffer $true $b $l $rr)) { $b-- } }
-    if ($left) { while ($l -lt $rr -and (Test-Black $buffer $false $l $t $b)) { $l++ } }
-    if ($right) { while ($rr -gt $l -and (Test-Black $buffer $false $rr $t $b)) { $rr-- } }
+    if ($top) { while ($t -lt $b -and (Test-Clear $buffer $true $t $l $rr)) { $t++ } }
+    if ($bottom) { while ($b -gt $t -and (Test-Clear $buffer $true $b $l $rr)) { $b-- } }
+    if ($left) { while ($l -lt $rr -and (Test-Clear $buffer $false $l $t $b)) { $l++ } }
+    if ($right) { while ($rr -gt $l -and (Test-Clear $buffer $false $rr $t $b)) { $rr-- } }
     New-Object System.Drawing.Rectangle $l, $t, ($rr - $l + 1), ($b - $t + 1)
 }
 
@@ -260,6 +270,46 @@ function New-ScaledBitmap($image, [System.Drawing.Rectangle]$from, [int]$width, 
     $g.DrawImage($image, (New-Object System.Drawing.Rectangle 0, 0, $width, $height), $from.X, $from.Y, $from.Width, $from.Height, 'Pixel', $attributes)
     $g.Dispose()
     $bmp
+}
+
+# A bitmap's BGRA rows, packed; the bitmap is disposed
+function Get-Pixels($bmp) {
+    $data = $bmp.LockBits((New-Object System.Drawing.Rectangle 0, 0, $bmp.Width, $bmp.Height), 'ReadOnly', ([System.Drawing.Imaging.PixelFormat]::Format32bppArgb))
+    $bytes = New-Object byte[] ($bmp.Width * $bmp.Height * 4)
+    for ($row = 0; $row -lt $bmp.Height; $row++) {
+        [Runtime.InteropServices.Marshal]::Copy([IntPtr]($data.Scan0.ToInt64() + $row * $data.Stride), $bytes, $row * $bmp.Width * 4, $bmp.Width * 4)
+    }
+    $bmp.UnlockBits($data); $bmp.Dispose()
+    , $bytes
+}
+
+# One part from its black and its pink shot into the canvas at $x0, $y0. The pink backdrop (255, 0, 255) adds
+# (1 - alpha) times itself to the black shot's red and blue, so alpha comes from that difference and the colour is the
+# black shot's over alpha. Green does not change: where it does, or red and blue disagree, the pixel changed between the
+# shots (the reward preview's model, a reminder's timer) and is taken whole from the black shot. Alpha within 10 of 0
+# or 255 is snapped there, over the shots' noise.
+function Set-Matte([byte[]]$black, [byte[]]$pink, [int]$partWidth, [int]$partHeight, [byte[]]$canvas, [int]$canvasWidth, [int]$x0, [int]$y0) {
+    for ($row = 0; $row -lt $partHeight; $row++) {
+        $i = $row * $partWidth * 4
+        $o = (($y0 + $row) * $canvasWidth + $x0) * 4
+        for ($x = 0; $x -lt $partWidth; $x++) {
+            $b = [int]$black[$i]; $g = [int]$black[$i + 1]; $r = [int]$black[$i + 2]
+            $dB = $pink[$i] - $b; $dG = $pink[$i + 1] - $g; $dR = $pink[$i + 2] - $r
+            if ([Math]::Abs($dG) -gt 48 -or [Math]::Abs($dR - $dB) -gt 48) {
+                $a = 255
+            } else {
+                $a = 255 - [int](($dR + $dB) / 2)
+                if ($a -le 10) { $a = 0 } elseif ($a -ge 245) { $a = 255 }
+            }
+            if ($a -eq 255) {
+                $canvas[$o] = $b; $canvas[$o + 1] = $g; $canvas[$o + 2] = $r; $canvas[$o + 3] = 255
+            } elseif ($a -gt 0) {
+                $canvas[$o] = [Math]::Min(255, [int]($b * 255 / $a)); $canvas[$o + 1] = [Math]::Min(255, [int]($g * 255 / $a))
+                $canvas[$o + 2] = [Math]::Min(255, [int]($r * 255 / $a)); $canvas[$o + 3] = $a
+            }
+            $i += 4; $o += 4
+        }
+    }
 }
 
 # BGRA rows top to bottom, run-length encoded per row, in the old files' layout
@@ -305,14 +355,24 @@ function Write-Tga([string]$path, [byte[]]$pixels, [int]$width, [int]$height) {
 }
 
 # --- make them ----------------------------------------------------------------------------------------------------
-$made = @{}
+$made = @{}; $jpg = $false
 foreach ($picture in $pictures) {
     $run = $runs[$picture.Run]
-    $crops = @()
+    $crops = @(); $missing = $false
     foreach ($part in $picture.Parts) {
         $shot = Find-Screenshot $part.Time
         if (-not $shot) { Write-Warning "$($picture.Name): no screenshot near $($part.Time) (run $($run.Time))"; continue }
-        $image = Get-Image $shot.Path
+        $pinkShot = if ($part.PinkTime) { Find-Screenshot $part.PinkTime }
+        if (-not $pinkShot) {
+            Write-Warning "$($picture.Name): no pink shot in run $($run.Time); redo it with /kaftest pictures $($picture.Name.ToLower())"
+            $missing = $true; continue
+        }
+        $image = Get-Image $shot.Path; $pinkImage = Get-Image $pinkShot.Path
+        if ($pinkImage.Width -ne $image.Width -or $pinkImage.Height -ne $image.Height) {
+            Write-Warning "$($picture.Name): its black and pink shots differ in size ($($shot.Path), $($pinkShot.Path))"
+            $missing = $true; continue
+        }
+        if ($shot.Path -like '*.jpg') { $jpg = $true }
         $sx = $image.Width / [Math]::Max(1, $run.Width); $sy = $image.Height / [Math]::Max(1, $run.Height)
         $left = [Math]::Max(0, [int][Math]::Round($part.Left * $sx)); $top = [Math]::Max(0, [int][Math]::Round($part.Top * $sy))
         $right = [Math]::Min($image.Width, [int][Math]::Round($part.Right * $sx)); $bottom = [Math]::Min($image.Height, [int][Math]::Round($part.Bottom * $sy))
@@ -323,13 +383,15 @@ foreach ($picture in $pictures) {
         $inner = if ($innerRight -gt $innerLeft -and $innerBottom -gt $innerTop) {
             New-Object System.Drawing.Rectangle $innerLeft, $innerTop, ($innerRight - $innerLeft), ($innerBottom - $innerTop)
         } else { $rect }
-        $crops += [pscustomobject]@{ Image = $image; Buffer = (Get-Buffer $shot.Path); Rect = $rect; Inner = $inner; Part = $part
+        $black = Get-Buffer $shot.Path
+        $buffer = [pscustomobject]@{ Bytes = $black.Bytes; Pink = (Get-Buffer $pinkShot.Path).Bytes; Stride = $black.Stride; Width = $black.Width; Height = $black.Height }
+        $crops += [pscustomobject]@{ Image = $image; PinkImage = $pinkImage; Buffer = $buffer; Rect = $rect; Inner = $inner; Part = $part
             UnitsX = $part.Width / [double]$rect.Width; UnitsY = $part.Height / [double]$rect.Height }
     }
-    if ($crops.Count -eq 0) { continue }
+    if ($missing -or $crops.Count -eq 0) { continue }
 
     # The picture's sides: left and right when every part has that edge, top from the first part, bottom from the last.
-    # On those sides each part takes in its frame's art outside the cut, then moves in over the black.
+    # On those sides each part takes in its frame's art outside the cut, then moves in over the backdrop.
     $sides = @($crops | ForEach-Object {
         $crop = $_; $found = [ordered]@{}
         foreach ($side in 'Left', 'Top', 'Right', 'Bottom') { $found[$side] = Get-Side $crop.Buffer $crop.Rect $crop.Inner $side }
@@ -367,50 +429,49 @@ foreach ($picture in $pictures) {
     $write = $PSCmdlet.ShouldProcess($target, 'write the picture')
     if (-not $write -and -not $Preview) { continue }
 
-    # black under the parts, so the margins and a narrower part's side are the backdrop's black
-    $canvas = New-Object System.Drawing.Bitmap $width, $height, ([System.Drawing.Imaging.PixelFormat]::Format32bppArgb)
-    $g = [System.Drawing.Graphics]::FromImage($canvas)
-    $g.Clear([System.Drawing.Color]::Black)
-    $g.CompositingMode = 'SourceCopy'
+    # each part from its two shots, scaled alike, into a transparent canvas: the margins and a narrower part's side
+    # stay clear
+    $canvas = New-Object byte[] ($width * $height * 4)
     $y = $marginTop
     foreach ($crop in $crops) {
-        $part = New-ScaledBitmap $crop.Image $crop.Rect $crop.DrawWidth $crop.DrawHeight
-        $g.DrawImage($part, $marginLeft, $y, $crop.DrawWidth, $crop.DrawHeight)
-        $part.Dispose()
+        $blackPart = Get-Pixels (New-ScaledBitmap $crop.Image $crop.Rect $crop.DrawWidth $crop.DrawHeight)
+        $pinkPart = Get-Pixels (New-ScaledBitmap $crop.PinkImage $crop.Rect $crop.DrawWidth $crop.DrawHeight)
+        Set-Matte $blackPart $pinkPart $crop.DrawWidth $crop.DrawHeight $canvas $width $marginLeft $y
         $y += $crop.DrawHeight
     }
-    $g.Dispose()
 
     # soft edge, then into a transparent power-of-two texture
     $fadeLeft = if ($edge.Left) { 40 } else { $Fade }; $fadeRight = if ($edge.Right) { 40 } else { $Fade }
     $fadeTop = if ($edge.Top) { 40 } else { $Fade }; $fadeBottom = if ($edge.Bottom) { 40 } else { $Fade }
-    $data = $canvas.LockBits((New-Object System.Drawing.Rectangle 0, 0, $width, $height), 'ReadWrite', $canvas.PixelFormat)
-    $rowBytes = New-Object byte[] ($width * 4)
     $pixels = New-Object byte[] ($texWidth * $texHeight * 4)
     $alphaX = New-Object double[] $width
     for ($x = 0; $x -lt $width; $x++) { $alphaX[$x] = [Math]::Min((Get-EdgeAlpha $x $fadeLeft), (Get-EdgeAlpha ($width - 1 - $x) $fadeRight)) }
     for ($row = 0; $row -lt $height; $row++) {
-        $scan = [IntPtr]($data.Scan0.ToInt64() + $row * $data.Stride)
-        [Runtime.InteropServices.Marshal]::Copy($scan, $rowBytes, 0, $width * 4)
+        $start = $row * $width * 4
         $alphaY = [Math]::Min((Get-EdgeAlpha $row $fadeTop), (Get-EdgeAlpha ($height - 1 - $row) $fadeBottom))
         for ($x = 0; $x -lt $width; $x++) {
-            $rowBytes[$x * 4 + 3] = [byte][Math]::Round($rowBytes[$x * 4 + 3] * $alphaX[$x] * $alphaY)
+            $canvas[$start + $x * 4 + 3] = [byte][Math]::Round($canvas[$start + $x * 4 + 3] * $alphaX[$x] * $alphaY)
         }
-        [Runtime.InteropServices.Marshal]::Copy($rowBytes, 0, $scan, $width * 4)
-        [Array]::Copy($rowBytes, 0, $pixels, $row * $texWidth * 4, $width * 4)
+        [Array]::Copy($canvas, $start, $pixels, $row * $texWidth * 4, $width * 4)
     }
-    $canvas.UnlockBits($data)
     if ($Preview) {
         New-Item -ItemType Directory -Force $Preview -WhatIf:$false | Out-Null   # previews also with -WhatIf
-        $canvas.Save((Join-Path $Preview "$($picture.Name).png"), [System.Drawing.Imaging.ImageFormat]::Png)
+        $bmp = New-Object System.Drawing.Bitmap $width, $height, ([System.Drawing.Imaging.PixelFormat]::Format32bppArgb)
+        $data = $bmp.LockBits((New-Object System.Drawing.Rectangle 0, 0, $width, $height), 'WriteOnly', $bmp.PixelFormat)
+        for ($row = 0; $row -lt $height; $row++) {
+            [Runtime.InteropServices.Marshal]::Copy($canvas, $row * $width * 4, [IntPtr]($data.Scan0.ToInt64() + $row * $data.Stride), $width * 4)
+        }
+        $bmp.UnlockBits($data)
+        $bmp.Save((Join-Path $Preview "$($picture.Name).png"), [System.Drawing.Imaging.ImageFormat]::Png)
+        $bmp.Dispose()
     }
-    $canvas.Dispose()
     if ($write) {
         New-Item -ItemType Directory -Force $mediaDir | Out-Null
         Write-Tga $target $pixels $texWidth $texHeight
     }
 }
 foreach ($image in $images.Values) { $image.Dispose() }
+if ($jpg) { Write-Warning "jpg screenshots blur colour, which leaves a fringe where a frame meets the pink; type /console screenshotFormat png in game before the next run" }
 
 # --- Pictures.lua: this call's pictures, and the earlier entries of the others ------------------------------------
 $entries = @{}
