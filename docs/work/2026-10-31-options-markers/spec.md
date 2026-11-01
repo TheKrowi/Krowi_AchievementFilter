@@ -9,6 +9,7 @@ Intent: [intent.md](intent.md). Status: accepted
 5. The Overview's "Using these options" shows the gold line before its explanation and the reload arrow before Krowi_Util's "Requires a reload to take full effect.".
 6. The page header's "N changed" stays plain text.
 7. Retail and Mists Classic look the same.
+8. A changed option on a disabled (greyed-out) row keeps its gold line, and its undo arrow shows on hover and sets it back as on any other row.
 
 ## Design
 - **Rows** (`Krowi_Options/Rows.xml`, `RowMixins.lua`): the `Dot` button is replaced by a `ChangedBar` texture (2 px, gold, the row's height less 4 px top and bottom, at the row's left edge) and a `Reset` button (12 px, `common-icon-undo` with an additive highlight of itself) anchored 2 px before the label, so it moves with an indented option while the lines stay in one column. `Refresh` shows the line when the option is changed and the arrow when it is changed and the mouse is on the row; `OnEnter` shows the arrow, `OnLeave` hides it only once the mouse has left the row (moving onto the row's own controls fires the row's `OnLeave` too).
@@ -44,3 +45,5 @@ The two arrows mirror each other, which at 12 px is a weak difference on its own
 
 ## Decision
 2026-10-31, Krowi, in game and on reference screenshots: the reload arrow beside its texts kept from the first prototype; the round dot rejected; option 1, the gold line on the left edge with a counter-clockwise undo arrow shown on hover.
+
+2026-11-01, Krowi, after the runs on both clients (Retail's Tab Priority, greyed while Enable Tab Priority is off): a disabled row keeps the line, because the setting is changed, and its arrow keeps working. The built code already does both (`Refresh` reads only `IsChanged`).

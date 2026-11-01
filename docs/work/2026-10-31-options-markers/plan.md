@@ -18,7 +18,7 @@ The code was built before this plan: Krowi asked to see the looks in game, so th
 1. Prototype for the pick: the round dot and the markers beside their texts behind `/kaflook` (debug mode); deployed to Retail and Mists. Done.
 2. Krowi's pick (spec, Decision): the switch, the dot and its strings removed; the line, the hover arrow and the Overview lines built; the locales updated; the suite updated. Done.
 3. Checks: `Check-Repo.ps1 -ChangedOnly -Luals`, the headless `options` and `help` suites. Done, green.
-4. In game on Retail and Mists Classic: Krowi's look, then `/kaftest options` and a `/reload`, `Read-GameTests.ps1`, `Read-GameErrors.ps1`. Retail done 2026-10-31 23:26: 57 passed, 0 failed, `toggle-reset` passed, no Lua error.
+4. In game on Retail and Mists Classic: Krowi's look, then `/kaftest options` and a `/reload`, `Read-GameTests.ps1`, `Read-GameErrors.ps1`. Retail done 2026-10-31 23:26: 57 passed, 0 failed, `toggle-reset` passed, no Lua error. On `24646d9a` 2026-11-01, Mists 08:41 and Retail 08:43: 57 passed, 0 failed, 1 skipped (`y-on-new-install`, headless only) on each, no Lua error.
 5. `krowi:taint-reviewer` (done: no finding; aside: Krowi_Options' minor stays 1 while no other copy exists) and `/code-review` on the diff; the strings to CurseForge through `krowi:localization` after the merge.
 
 ## Risks
