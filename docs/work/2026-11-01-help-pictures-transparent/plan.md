@@ -1,5 +1,5 @@
 # Plan: Help pictures without a black box
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 ## Files that change
 - `Tests/Pictures.lua`: the backdrop's texture is kept as `backdropColor`; after each picture's black shot it turns pink, a second shot 3 s later records `PinkTime`, and it turns black again before the next step (and at the start of a run).

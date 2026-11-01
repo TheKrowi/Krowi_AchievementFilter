@@ -1,5 +1,5 @@
 # Intent: Help pictures without a black box
-Author: Krowi, maintainer. Source: idea (Krowi, 2026-11-01, with a screenshot of the Categories help). Status: accepted
+Author: Krowi, maintainer. Source: idea (Krowi, 2026-11-01, with a screenshot of the Categories help). Status: done
 
 ## Problem
 Since the options window took the look of the game's own Options window (#379), its help pane is dark grey. Every help picture made in #376 sits in a box of black: the margin the tool adds beside a frame's own edge, faded only at its outer edge, and the run's black backdrop inside the cut (above the window beside the category list, between the tabs, beside the map). On the grey pane the black reads as a frame around the picture.

@@ -1,5 +1,5 @@
 # Spec: Help pictures without a black box
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. Wherever a help picture shows the run's backdrop, it is transparent: the margin beside a frame's own edge, and the backdrop inside the cut that joins it (around a frame's corners, between the tabs, above the window beside the category list, beside the map).
