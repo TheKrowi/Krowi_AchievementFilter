@@ -17,7 +17,7 @@ addon.Options.Window.HelpPictures = {
     Reminders = {Width = 337, Height = 271, TexCoords = {0, 0.7890625, 0, 0.634765625}},
     RewardPreview = {Width = 485, Height = 654, TexCoords = {0, 0.568359375, 0, 0.7666015625}},
     SearchBox = {Width = 246, Height = 94, TexCoords = {0, 0.576171875, 0, 0.8828125}},
-    Summary = {Width = 713, Height = 675, TexCoords = {0, 0.8359375, 0, 0.791015625}},
+    Summary = {Width = 735, Height = 758, TexCoords = {0, 0.8623046875, 0, 0.888671875}},
     TipAchievement = {Width = 325, Height = 336, TexCoords = {0, 0.76171875, 0, 0.7890625}},
     TipCategory = {Width = 243, Height = 131, TexCoords = {0, 0.5703125, 0, 0.6171875}},
     TipEarnedBy = {Width = 325, Height = 75, TexCoords = {0, 0.76171875, 0, 0.7109375}},
