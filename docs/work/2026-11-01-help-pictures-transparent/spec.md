@@ -51,3 +51,5 @@ Intent: [intent.md](intent.md). Status: accepted
 Krowi, 2026-11-01, at the design gate (intent accepted with it): **option 3**, convert all 19 pictures and fix the tool, out of it and converting the files only. The empty room beside each frame's edge stays (keep the room, out of keep and drop).
 
 Krowi, 2026-11-01, after the in-game look at that build: artefacts, the key on the black took frames' dark borders; "use bright pink for the back background when making pictures so it's easier to filter out". Asked whether a pink shot alone or a black and a pink shot, Krowi chose **black and pink** (option 1). The conversion was reverted (`33aedfcc`); the pictures come from a new run.
+
+Krowi, 2026-11-01, after the run: the tooltip scene (`Options/Window/Help/ShowMe.lua` `InShortChain`) had picked an achievement with a "temporarily obtainable" line, which made TipAchievement 745 units wide and TipEarnedBy a strip. Asked whether to keep those pictures or have the scene skip temporarily obtainable achievements, Krowi chose **skip them**: Show me for tooltips shows the newest short-chain achievement without that line, and the two pictures are redone.

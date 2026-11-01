@@ -99,10 +99,10 @@ local function EarnedByMe(id)
     return (select(13, GetAchievementInfo(id))) and true or false
 end
 
--- Earned by this character, not account-wide (so its tooltip lists who earned it), in a chain of 2 to 5 steps (so the
--- tooltip stays short)
-local function InShortChain(id)
-    if not EarnedByMe(id) then
+-- Earned by this character, not account-wide (so its tooltip lists who earned it), in a chain of 2 to 5 steps and not
+-- temporarily obtainable (so the tooltip stays short and narrow: Gui/AchievementTooltip/NotObtainable.lua)
+local function InShortChain(id, achievement)
+    if not EarnedByMe(id) or achievement.TemporaryObtainable then
         return false
     end
     local flags = select(9, GetAchievementInfo(id))
