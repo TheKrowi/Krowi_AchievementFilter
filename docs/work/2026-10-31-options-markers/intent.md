@@ -1,5 +1,5 @@
 # Intent: The options window's markers say what they mean
-Author: Krowi (maintainer), from using the options window. Source: idea. Status: accepted
+Author: Krowi (maintainer), from using the options window. Source: idea. Status: done
 
 ## Problem
 An option row in the options window can carry two markers, and a player cannot tell what either means without hovering the row:

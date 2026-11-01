@@ -1,5 +1,5 @@
 # Spec: The options window's markers say what they mean
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. A changed option is marked by something that cannot be read as a control: a thin gold line along its row's left edge, as VS Code marks a modified setting.
