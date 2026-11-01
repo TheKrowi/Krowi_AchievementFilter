@@ -222,16 +222,18 @@ function Test-Outside($buffer, [System.Drawing.Rectangle]$r, [System.Drawing.Rec
 }
 
 # A side shows a frame's own edge when the frame ends in the backdrop within $reach px of the cut: a border drawn just
-# outside the frame's rectangle, the art Blizzard's achievement tabs hang below their buttons (19 px on a 1440 px
-# screen); Grow takes them in. A frame laid over another one's corner (the guide panel and the reward preview over the
-# window's border) still has its edge where at least 85% of the line 3 px out is backdrop. Anything else is a cut
-# through content, also a menu's or tooltip's dark background, which the black shot alone took for the backdrop.
-$reach = 24
+# outside the frame's rectangle, the art Blizzard's achievement tabs hang below their buttons (24 px on a 1440 px
+# screen with their shadow), the window's border beside the category list (24 px, with a black line inside it that the
+# black shot alone took for the backdrop); Grow takes them in. A frame laid over another one's corner (the guide panel
+# and the reward preview over the window's border) still has its edge where at least 80% of the line 3 px out is
+# backdrop (the window is 15.4% of the guide panel's top). Anything else is a cut through content, also a menu's or
+# tooltip's dark background.
+$reach = 32
 function Get-Side($buffer, [System.Drawing.Rectangle]$r, [System.Drawing.Rectangle]$inner, [string]$side) {
     for ($k = 1; $k -le $reach; $k++) {
         if (Test-Outside $buffer $r $inner $side $k 0.005) { Write-Verbose "  $side`: backdrop $k px out"; return [pscustomobject]@{ Edge = $true; Grow = $k - 1 } }
     }
-    $mostlyClear = Test-Outside $buffer $r $inner $side 3 0.15
+    $mostlyClear = Test-Outside $buffer $r $inner $side 3 0.2
     Write-Verbose "  $side`: $(if ($mostlyClear) { 'mostly' } else { 'not' }) backdrop 3 px out"
     [pscustomobject]@{ Edge = $mostlyClear; Grow = 0 }
 }

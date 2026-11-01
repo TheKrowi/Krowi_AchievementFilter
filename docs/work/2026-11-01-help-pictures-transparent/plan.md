@@ -16,7 +16,7 @@ Spec: [spec.md](spec.md). Status: accepted
 1. The first build (a key on the black, the files converted) was turned down in game and reverted (`33aedfcc`).
 2. The run, the reader and the tool; the tool on a faked pair as a dry run.
 3. Deploy the run to Retail; Krowi's `/kaftest pictures` (other addons off, `/console screenshotFormat png` first), then `/reload`.
-4. `Read-GameTests.ps1`, then `Make-HelpPictures.ps1 -Preview`; look at every picture, then write the files.
+4. `Read-GameTests.ps1`, then `Make-HelpPictures.ps1 -Preview`; look at every picture, then write the files. Departure: the run of 2026-11-01 10:06 (MapButton redone at 10:08, the full map hid the pink) moved the side check's reach to 32 px and its overlap rule to 80%, and showed the pop-out faded; its step now sets it to full opacity, so PopOut is redone with `/kaftest pictures popout`.
 5. Headless `help` suite and `Check-Repo.ps1`; `krowi:taint-reviewer` on the run change.
 6. Deploy to Retail and Mists; Krowi looks at the help pane and the enlarged view.
 7. PR, then `/code-review`.

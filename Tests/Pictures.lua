@@ -526,6 +526,16 @@ steps = {
                 live.Scene = opened
             end)
         end,
+        -- With Fade when not hovered on (the player's profile) the pop-out is see-through while the mouse is off it,
+        -- which the pink shot shows: the picture has it as when hovered. The mouse's next enter or leave fades it again
+        -- (Gui/AchievementPopout/AchievementPopoutMixin.lua UpdateChrome)
+        After = function()
+            local popout = live.Scene and live.Scene.Popout
+            if popout then
+                popout.FadeAnimGroup:Stop()
+                popout:SetAlpha(1)
+            end
+        end,
         Cut = function()
             return {live.Scene and live.Scene.Popout}
         end
