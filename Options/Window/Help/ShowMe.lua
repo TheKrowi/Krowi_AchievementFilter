@@ -225,8 +225,13 @@ function scenes.search(ready)
     Ready(ready, {SearchBox = KrowiAF_SearchBoxFrame})
 end
 
-function scenes.tooltips(ready)
-    return ShowAchievement(PickAchievement(InShortChain) or PickAchievement(EarnedByMe), function(row, achievement)
+-- id: an achievement to show instead of the scene's own pick, when the client has it (the help pictures' run)
+function scenes.tooltips(ready, id)
+    local fixed = id and addon.Data.Achievements[id]
+    if fixed and not Selectable(fixed) then
+        fixed = nil
+    end
+    return ShowAchievement(fixed or PickAchievement(InShortChain) or PickAchievement(EarnedByMe), function(row, achievement)
         row:ShowTooltip()
         Ready(ready, {Row = row, Achievement = achievement})
     end)

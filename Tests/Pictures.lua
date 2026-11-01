@@ -12,6 +12,7 @@ local addonName, addon = ...
 local settle = 1.5 -- a scene -> its check and screenshot
 local afterShot = 1.5 -- a screenshot -> the next step; files are named by the second, so steps stay 3 s apart
 local mouseWait = 30 -- seconds a step that needs the player's mouse waits
+local tooltipAchievement = 42328 -- One Warband Mentor: Midnight, the tooltip pictures' achievement
 local pollEvery = 0.25
 local keepRuns = 5
 
@@ -410,11 +411,29 @@ steps = {
             return KrowiAF_SearchPreviewContainer:IsShown(), "the search preview is not shown"
         end
     },
-    SceneStep("tooltip", "TipAchievement", "tooltips", "an achievement's tooltip", function()
-        return {{Frame = Krowi_Tooltip, MaxHeight = 420}}
-    end, function()
-        return Krowi_Tooltip:IsShown(), "the tooltip is not shown"
-    end),
+    -- The same achievement in every run (Krowi, 2026-11-01), One Warband Mentor: Midnight: earned by the character, no
+    -- "temporarily obtainable" line. Mists has no such achievement and takes the scene's own pick
+    {
+        Name = "tooltip",
+        Picture = "TipAchievement",
+        Text = "an achievement's tooltip",
+        Run = function()
+            Scenes().tooltips(function(opened)
+                live.Scene = opened
+            end, tooltipAchievement)
+        end,
+        Cut = function()
+            return {{Frame = Krowi_Tooltip, MaxHeight = 420}}
+        end,
+        Check = function()
+            if not Krowi_Tooltip:IsShown() then
+                return false, "the tooltip is not shown"
+            end
+            local shown = live.Scene and live.Scene.Achievement
+            return not (addon.Data.Achievements[tooltipAchievement] and shown and shown.Id ~= tooltipAchievement),
+                ("the scene showed %s, not %d"):format(tostring(shown and shown.Id), tooltipAchievement)
+        end
+    },
     {
         Name = "tooltip-earned-by",
         Picture = "TipEarnedBy",
@@ -589,6 +608,12 @@ steps = {
             Scenes().calendar(function(opened)
                 live.Scene = opened
             end)
+            -- last month, a whole month of achievements (Krowi, 2026-11-01); the calendar's next open shows this month
+            -- again (Gui/AchievementCalendar/Frame/FrameMixin.lua OnShow)
+            local calendar = KrowiAF_AchievementCalendarFrame
+            if calendar:IsShown() and calendar.PrevMonthButton:IsEnabled() then
+                calendar.PrevMonthButton:Click()
+            end
         end,
         Cut = function()
             return {KrowiAF_AchievementCalendarFrame, KrowiAF_AchievementCalendarFrame.SideFrame}
