@@ -20,6 +20,15 @@ if not lib then return end
 -- lib, which a newer copy of the library keeps.
 lib.Tabs = lib.Tabs or {}
 
+-- The markers an option row draws (Rows.xml) as text, so the window shows each one beside the text that explains it and
+-- an addon's help can show them too (docs/work/2026-10-31-options-markers): the gold line of a changed option, the
+-- reload arrow, and the undo arrow that sets a changed option back (Blizzard's, on every client)
+lib.Markup = {
+    Changed = "|TInterface\\Buttons\\WHITE8X8:12:3:0:0:8:8:0:8:0:8:255:209:0|t",
+    Reload = "|TInterface\\Buttons\\UI-RefreshButton:12:12|t",
+    Reset = "|A:common-icon-undo:12:12|a",
+}
+
 --[[ config:
     TabName         the tab's text: the addon's name, not translated
     Saved           a table the addon keeps the window's place, size, pane state, search scope, heading lines, its last

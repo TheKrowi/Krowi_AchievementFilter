@@ -320,8 +320,8 @@ function model.CheckDerivedDefaults()
     return mismatches, withoutDefault
 end
 
--- The changed dot: shown after a change, gone after setting the default; the player's value goes back after
-function model.CheckChangedDots()
+-- The changed line: shown after a change, gone after setting the default; the player's value goes back after
+function model.CheckChangedLines()
     local wrong = {}
     for _, item in ipairs(model.Options()) do
         local option = item.Option

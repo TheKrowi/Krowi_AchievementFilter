@@ -7,6 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-31 22-33-16 ]] --
+L["Help Overview Changed"] = "Une ligne dorée devant une option signifie que vous l'avez modifiée. Survolez-la et cliquez sur la flèche qui apparaît pour la rétablir."
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -162,7 +163,6 @@ L["Center Header Desc"] = "Centre le nom du Haut-fait sur le bouton du Haut-fait
 L["Central Circuit"] = "Circuit Central"
 L["Chains of Domination"] = "Chaînes de domination"
 L["Challenges"] = "Défis"
-L["Changed. Right-click the dot to set it back."] = "Modifié. Clic droit sur le point pour le rétablir."
 L["Changes need a reload."] = "Les modifications nécessitent un rechargement de l'interface."
 L["Character / Account wide"] = "Personnage et compte"
 L["Character only"] = "Personnage uniquement"
@@ -551,7 +551,6 @@ L["Help Maps Hover"] = "Compte les hauts faits de la zone sélectionnée selon v
 L["Help Maps Minimap"] = "L'icône de la minicarte ouvre aussi la fenêtre des hauts faits."
 L["Help Maps No Key"] = "Ouvrez votre carte du monde pour voir le bouton."
 L["Help Maps Press Key"] = "Appuyez sur %s pour ouvrir votre carte."
-L["Help Overview Dot"] = "Un point devant une option signifie que vous l'avez modifiée. Faites un clic droit sur le point pour la rétablir."
 L["Help Overview Hover"] = "Survolez une option pour lire ce qu'elle fait."
 L["Help Overview New"] = "Les sections marquées « Nouveau » ont changé depuis votre dernière visite."
 L["Help Overview Sections"] = "Chaque section explique d'abord le fonctionnement de sa fonctionnalité. « Me montrer » l'ouvre en jeu."

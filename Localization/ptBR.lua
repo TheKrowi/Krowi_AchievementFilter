@@ -7,6 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-31 22-33-16 ]] --
+L["Help Overview Changed"] = "Uma linha dourada antes de uma opção indica que você a alterou. Passe o mouse sobre ela e clique na seta que aparece para restaurá-la."
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -115,7 +116,6 @@ L["Categories"] = "Categorias"
 L["Category list"] = "Lista de categorias"
 L["Caverns Criss-Cross"] = "Zigue-zague de Cavernas"
 L["Chains of Domination"] = "Correntes da Dominação"
-L["Changed. Right-click the dot to set it back."] = "Alterado. Clique com o botão direito no ponto para restaurar."
 L["Changes need a reload."] = "As alterações exigem recarregar a interface."
 L["Characters"] = "Personagens"
 L["Chat messages"] = "Mensagens no chat"
@@ -345,7 +345,6 @@ L["Help Maps Hover"] = "Conta as conquistas da zona selecionada conforme seus fi
 L["Help Maps Minimap"] = "O ícone do minimapa também abre a janela de conquistas."
 L["Help Maps No Key"] = "Abra o mapa-múndi para ver o botão."
 L["Help Maps Press Key"] = "Pressione %s para abrir o mapa."
-L["Help Overview Dot"] = "Um ponto antes de uma opção indica que você a alterou. Clique com o botão direito no ponto para restaurá-la."
 L["Help Overview Hover"] = "Passe o mouse sobre uma opção para ler o que ela faz."
 L["Help Overview New"] = "As seções marcadas como Novo mudaram desde a última vez que você as viu."
 L["Help Overview Sections"] = "Cada seção começa explicando como o recurso funciona. Mostre-me abre o recurso no jogo."

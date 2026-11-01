@@ -49,7 +49,7 @@ The settings as AceConfig tables: `Defaults.lua`, `General.lua`, `Layout.lua`, `
 `Window/` is the addon's side of the options window:
 - `Map.lua`: the 22 feature sections in three groups, and where each AceConfig option shows in them.
 - `Source.lua`: turns map entries into the window's rows and option objects: label, description, value, derived default, disabled and hidden, through the options' own get and set.
-- `Model.lua`: what the `options` suite asks without drawing (coverage, round trip, fingerprint, defaults, changed dots, search, section reset).
+- `Model.lua`: what the `options` suite asks without drawing (coverage, round trip, fingerprint, defaults, changed lines, search, section reset).
 - `Window.lua`: hands all of it to `Krowi_Options`; holds the landing rule, the New marks, the Overview, `addon.Options.Open` and `/kaf`.
 - `Stub.lua`: the one Settings > AddOns page, with the button that opens the window.
 - `Changelog.lua`: generated at release by `.claude/tools/Build-ChangelogLua.ps1`, the Overview's copy of the changelog's top entry.

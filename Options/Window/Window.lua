@@ -130,7 +130,6 @@ window.Controller = KROWI_LIBMAN:GetLibrary("Krowi_Options_1").CreateWindow({
         PressAKey = L["Press a key"],
         Default = L["Default: {value}"]:K_ReplaceVars{ value = "%s" },
         NeedsReload = addon.Util.L["Requires a reload"],
-        Changed = L["Changed. Right-click the dot to set it back."],
         NotInCombat = L["Not in combat"],
     },
 })

@@ -9,7 +9,7 @@
 -- middle, the help pane on the right, in the frame and art of the game's own Options window. Strings come from the open
 -- tab's consumer (config.Strings): Search, SearchAll, HeadingLines, Overview, SearchResults, NoResults, Defaults, ResetSection (with
 -- %s), ChangedCount (with %d), ReloadText, ReloadNow, ShowMe, HowItWorks, All, None, NotBound, PressAKey, Default
--- (with %s), NeedsReload, Changed, NotInCombat.
+-- (with %s), NeedsReload, NotInCombat, and optionally ResetToDefault (the game's RESET_TO_DEFAULT otherwise).
 
 local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
 
@@ -384,7 +384,7 @@ function Krowi_OptionsWindowMixin:ApplyStrings()
     self.ExpandButton:SetHeight(34 + length)
     self.DefaultsButton:SetText(strings.Defaults)
     self.ReloadButton:SetText(strings.ReloadNow)
-    self.ReloadText:SetText(strings.ReloadText)
+    self.ReloadText:SetText(lib.Markup.Reload .. " " .. strings.ReloadText) -- the rows' reload arrow, explained
     self.ShowMeButton:SetText(strings.ShowMe)
     self.CancelButton:SetText(strings.No or NO)
 end
@@ -929,8 +929,9 @@ local function OptionHelpLines(window, option)
         local text = option.FormatValue and option:FormatValue(default) or tostring(default)
         lines[#lines + 1] = strings.Default:format(text)
     end
-    if option.GetNeedsReload and option:GetNeedsReload() then lines[#lines + 1] = strings.NeedsReload end
-    if option.IsChanged and option:IsChanged() then lines[#lines + 1] = strings.Changed end
+    -- Each of the row's arrows before what it means
+    if option.GetNeedsReload and option:GetNeedsReload() then lines[#lines + 1] = lib.Markup.Reload .. " " .. strings.NeedsReload end
+    if option.IsChanged and option:IsChanged() then lines[#lines + 1] = lib.Markup.Reset .. " " .. (strings.ResetToDefault or RESET_TO_DEFAULT) end
     return desc, lines
 end
 

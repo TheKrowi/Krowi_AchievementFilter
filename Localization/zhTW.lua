@@ -7,6 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-31 22-33-16 ]] --
+L["Help Overview Changed"] = "選項前的金色直線表示你更改過它。將滑鼠懸停在選項上，點擊出現的箭頭即可將其還原。"
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -155,7 +156,6 @@ L["Center header Desc"] = "成就介面的頁首保持置中"
 L["Center Header Desc"] = "置中成就按鈕的成就名稱"
 L["Central Circuit"] = "中央賽道"
 L["Chains of Domination"] = "統御之鏈"
-L["Changed. Right-click the dot to set it back."] = "已變更。右鍵點擊圓點即可還原。"
 L["Changes need a reload."] = "變更需要重新載入。"
 L["Character / Account wide"] = "角色/帳號"
 L["Character only"] = "僅角色"
@@ -518,7 +518,6 @@ L["Help Maps Hover"] = "依你的過濾器統計選中區域的成就，與類�
 L["Help Maps Minimap"] = "小地圖圖示也能開啟成就介面。"
 L["Help Maps No Key"] = "開啟世界地圖即可看到此按鈕。"
 L["Help Maps Press Key"] = "按%s開啟地圖。"
-L["Help Overview Dot"] = "選項前的圓點表示你更改過它。右鍵點擊圓點可將其還原。"
 L["Help Overview Hover"] = "將滑鼠懸停在選項上，即可查看其作用。"
 L["Help Overview New"] = "標示為「新」的部分在你上次查看後有所變動。"
 L["Help Overview Sections"] = "每個部分開頭會說明該功能如何運作。點擊「查看」會在遊戲中開啟該功能。"

@@ -169,6 +169,7 @@
         "RAID_FRAME_SORT_LABEL",
         "REPUTATION",
         "REPUTATION_SORT_TYPE_ACCOUNT",
+        "RESET_TO_DEFAULT",
         "RegisterGameMenuEscHandler",
         "SCENARIOS",
         "SECONDS_ABBR",
