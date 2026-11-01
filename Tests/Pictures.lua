@@ -3,9 +3,9 @@ local addonName, addon = ...
 -- The help pane's pictures (docs/work/2026-10-25-options-revamp/plan-help.md), game only: /kaftest pictures builds each
 -- picture's scene through the Show me scene of its section (addon.Options.Window.HelpScenes), so the run also proves
 -- every Show me in game. Each step checks what the scene opened, records the screen rectangle to cut out and takes a
--- screenshot once the game's own tooltip is off it, the /kevutest way (Krowi_ExtendedVendorUI): a banner names the
--- step, steps that need the mouse wait for
--- the player, settings are put back, and the addon's Lua errors of the session are reported from BugGrabber at the end.
+-- screenshot on black and one on pink once the game's own tooltip is off it, the /kevutest way
+-- (Krowi_ExtendedVendorUI): a banner names the step, steps that need the mouse wait for the player, settings are put
+-- back, and the addon's Lua errors of the session are reported from BugGrabber at the end.
 -- The rectangles go to KrowiAF_DebugTable.Pictures (the last 5 runs); .claude/tools/Make-HelpPictures.ps1 pairs them
 -- with the screenshots and writes Media/Help/*.tga and Options/Window/Help/Pictures.lua. The routine never sets a CVar.
 
@@ -17,7 +17,7 @@ local keepRuns = 5
 
 local live -- the run in progress
 local runToken = 0 -- bumped by every stop, so a stopped run's timers do nothing
-local banner, backdrop, centre, pictureMenu
+local banner, backdrop, backdropColor, centre, pictureMenu
 local steps, SetBanner, RunStep
 
 local function Scenes()
@@ -76,7 +76,7 @@ end
 
 -- The black backdrop goes right under the lowest of the frames a picture shows, so every other part of the interface
 -- (bars, chat, the minimap, the tracker, other addons) is black around and behind them, also behind a translucent
--- frame. It never touches another frame: only the backdrop moves.
+-- frame. It never touches another frame: only the backdrop moves. Each picture's second shot has it pink.
 local function PlaceBackdrop(frames)
     local lowestRank, lowestLevel
     for _, item in ipairs(frames) do
@@ -872,8 +872,26 @@ local function Shoot(step, items, rectangle, waited)
         live.Results[#live.Results].Screenshot = {Time = shotTime}
         live.Shot = live.Results[#live.Results].Screenshot
         Screenshot()
+        -- the same on pink, 3 s later so its file has a second of its own: from the two the tool works out how
+        -- see-through each pixel is, a tooltip's background and a menu's shadow too
+        -- (docs/work/2026-11-01-help-pictures-transparent)
         After(afterShot, function()
-            RunStep(live.StepIndex + 1)
+            backdropColor:SetColorTexture(1, 0, 1, 1)
+        end)
+        After(afterShot * 2, function()
+            local pinkOk, coveredPink = pcall(GameTooltipOver, rectangle)
+            if pinkOk and not coveredPink then
+                rectangle.PinkTime = date("%Y-%m-%d %H:%M:%S")
+                live.Shot = {Time = rectangle.PinkTime}
+                Screenshot()
+            else
+                tinsert(live.Observations, ("%s: no pink shot, the game's tooltip came over the picture; redo it with /kaftest pictures %s"):format(
+                    step.Name, step.Picture:lower()))
+            end
+            After(afterShot, function()
+                backdropColor:SetColorTexture(0, 0, 0, 1)
+                RunStep(live.StepIndex + 1)
+            end)
         end)
     end)
 end
@@ -981,9 +999,9 @@ local function CreateFrames()
     backdrop = CreateFrame("Frame", nil, UIParent)
     backdrop:SetFrameStrata("BACKGROUND")
     backdrop:SetAllPoints()
-    local black = backdrop:CreateTexture(nil, "BACKGROUND")
-    black:SetAllPoints()
-    black:SetColorTexture(0, 0, 0, 1)
+    backdropColor = backdrop:CreateTexture(nil, "BACKGROUND")
+    backdropColor:SetAllPoints()
+    backdropColor:SetColorTexture(0, 0, 0, 1)
     backdrop:Hide()
 
     -- where the menu is taken, away from the screen's borders
@@ -1082,6 +1100,7 @@ addon.Tests.Suites.pictures = function(done, what)
     if optionsWindow and optionsWindow:IsShown() then
         optionsWindow:Hide()
     end
+    backdropColor:SetColorTexture(0, 0, 0, 1) -- a run stopped during a pink shot left it pink
     backdrop:Show()
     banner:RegisterEvent("SCREENSHOT_FAILED")
     banner:RegisterEvent("PLAYER_REGEN_DISABLED")
