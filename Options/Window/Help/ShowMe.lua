@@ -78,6 +78,12 @@ local function Selectable(achievement)
     return achievement.Category and not select(2, addon.GetNextAchievement(achievement))
 end
 
+-- The achievement of that id, when the client has it and the window can show it (the help pictures' run)
+local function Fixed(id)
+    local achievement = id and addon.Data.Achievements[id]
+    return achievement and Selectable(achievement) and achievement or nil
+end
+
 -- test(id, achievement): the latest achievements this character earned are tried first, then all the addon knows
 local function PickAchievement(test)
     if GetLatestCompletedAchievements then
@@ -159,6 +165,15 @@ local function LastCategory(tab)
     return last
 end
 
+-- The tab's own category of that name, an expansion on Expansions
+local function NamedCategory(tab, name)
+    for _, category in ipairs(addon.Tabs[tab].Categories or {}) do
+        if category.Name == name then
+            return category
+        end
+    end
+end
+
 -- A scene returns false when it opened nothing
 function scenes.tabs(ready)
     local tab = OpenTab("Expansions")
@@ -174,9 +189,11 @@ function scenes.window(ready)
     Ready(ready, {Tab = tab.Name})
 end
 
-function scenes.categories(ready)
+-- name: a category of the tab's own to select instead of the current expansion, when the tab has it (the help pictures'
+-- run)
+function scenes.categories(ready, name)
     local tab = ShownTab("Expansions")
-    local category = tab and LastCategory(tab)
+    local category = tab and (name and NamedCategory(tab, name) or LastCategory(tab))
     if not category then
         return false
     end
@@ -194,8 +211,9 @@ function scenes.summary(ready)
     Ready(ready, {Tab = tab, Category = category})
 end
 
-function scenes.achievements(ready)
-    return ShowAchievement(PickAchievement(EarnedByMe), function(row, achievement)
+-- id: an achievement to show instead of the scene's own pick, when the client has it (the help pictures' run)
+function scenes.achievements(ready, id)
+    return ShowAchievement(Fixed(id) or PickAchievement(EarnedByMe), function(row, achievement)
         Ready(ready, {Row = row, Achievement = achievement})
     end)
 end
@@ -227,11 +245,7 @@ end
 
 -- id: an achievement to show instead of the scene's own pick, when the client has it (the help pictures' run)
 function scenes.tooltips(ready, id)
-    local fixed = id and addon.Data.Achievements[id]
-    if fixed and not Selectable(fixed) then
-        fixed = nil
-    end
-    return ShowAchievement(fixed or PickAchievement(InShortChain) or PickAchievement(EarnedByMe), function(row, achievement)
+    return ShowAchievement(Fixed(id) or PickAchievement(InShortChain) or PickAchievement(EarnedByMe), function(row, achievement)
         row:ShowTooltip()
         Ready(ready, {Row = row, Achievement = achievement})
     end)

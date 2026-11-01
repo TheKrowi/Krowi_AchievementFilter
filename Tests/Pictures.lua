@@ -12,13 +12,14 @@ local addonName, addon = ...
 local settle = 1.5 -- a scene -> its check and screenshot
 local afterShot = 1.5 -- a screenshot -> the next step; files are named by the second, so steps stay 3 s apart
 local mouseWait = 30 -- seconds a step that needs the player's mouse waits
-local tooltipAchievement = 42328 -- One Warband Mentor: Midnight, the tooltip pictures' achievement
+local pictureAchievement = 42328 -- One Warband Mentor: Midnight, the compact list's and the tooltip pictures' achievement
+local pictureExpansion = addon.L["Mists of Pandaria"] -- the category list's: the current expansion is below its cut
 local pollEvery = 0.25
 local keepRuns = 5
 
 local live -- the run in progress
 local runToken = 0 -- bumped by every stop, so a stopped run's timers do nothing
-local banner, backdrop, backdropColor, centre, pictureMenu
+local banner, backdrop, backdropColor, mask, centre, pictureMenu
 local steps, SetBanner, RunStep
 
 local function Scenes()
@@ -69,7 +70,20 @@ local function Edges(item)
     return left, right, top, bottom
 end
 
-local strataOrder = {"BACKGROUND", "LOW", "MEDIUM", "HIGH", "DIALOG", "FULLSCREEN", "FULLSCREEN_DIALOG", "TOOLTIP"}
+-- The union of the items' edges in screen units, nothing when none is on screen
+local function Union(items)
+    local left, right, top, bottom
+    for _, item in ipairs(items) do
+        local l, r, t, b = Edges(item)
+        if l then
+            left, right = left and min(left, l) or l, right and max(right, r) or r
+            top, bottom = top and max(top, t) or t, bottom and min(bottom, b) or b
+        end
+    end
+    return left, right, top, bottom
+end
+
+local strataOrder ={"BACKGROUND", "LOW", "MEDIUM", "HIGH", "DIALOG", "FULLSCREEN", "FULLSCREEN_DIALOG", "TOOLTIP"}
 local strataRank = {}
 for rank, strata in ipairs(strataOrder) do
     strataRank[strata] = rank
@@ -101,19 +115,45 @@ local function PlaceBackdrop(frames)
     end
 end
 
+-- A step with Alone shows only its frames: the mask covers all around them in the backdrop's colour, over the window
+-- too, so the tool finds their own edge on every side (the summary's parchment without the window's border, Krowi,
+-- 2026-11-01)
+local function PlaceMask(items)
+    local left, right, top, bottom = Union(items)
+    if not left then
+        return
+    end
+    local scale = UIParent:GetEffectiveScale()
+    left, right, top, bottom = left / scale, right / scale, top / scale, bottom / scale
+    local above, below, before, after = unpack(mask.Sides)
+    for _, side in ipairs(mask.Sides) do
+        side:ClearAllPoints()
+    end
+    above:SetPoint("BOTTOMLEFT", mask, "BOTTOMLEFT", 0, top)
+    above:SetPoint("TOPRIGHT", mask, "TOPRIGHT")
+    below:SetPoint("BOTTOMLEFT", mask, "BOTTOMLEFT")
+    below:SetPoint("TOPRIGHT", mask, "BOTTOMRIGHT", 0, bottom)
+    before:SetPoint("BOTTOMLEFT", mask, "BOTTOMLEFT", 0, bottom)
+    before:SetPoint("TOPRIGHT", mask, "BOTTOMLEFT", left, top)
+    after:SetPoint("BOTTOMLEFT", mask, "BOTTOMLEFT", right, bottom)
+    after:SetPoint("TOPRIGHT", mask, "BOTTOMRIGHT", 0, top)
+    mask:Show()
+end
+
+-- Black for a picture's first shot, pink for its second, on the mask too
+local function SetBackdropColor(r, g, b)
+    backdropColor:SetColorTexture(r, g, b, 1)
+    for _, side in ipairs(mask.Sides) do
+        side:SetColorTexture(r, g, b, 1)
+    end
+end
+
 -- The union of the items in screen pixels from the top left, and its natural size in UIParent units. more: UIParent
 -- units of what lies around them per side ({Top = 30}), so a side cut through the window fades out over the window
 -- rather than over the frames the picture is about (Krowi, 2026-10-29). Inner is the union before more: the tool looks
 -- along it whether the other sides are the frames' edge, or the window more took in counts as content beside them
 local function Rectangle(items, more)
-    local left, right, top, bottom
-    for _, item in ipairs(items) do
-        local l, r, t, b = Edges(item)
-        if l then
-            left, right = left and min(left, l) or l, right and max(right, r) or r
-            top, bottom = top and max(top, t) or t, bottom and min(bottom, b) or b
-        end
-    end
+    local left, right, top, bottom = Union(items)
     if not left then
         return
     end
@@ -354,12 +394,45 @@ steps = {
         tinsert(items, AchievementFrame.Header)
         return items
     end),
-    SceneStep("categories", "CategoryTree", "categories", "the category list at the current expansion", function()
-        return {{Frame = KrowiAF_CategoriesFrame, MaxHeight = 360}}
-    end, nil, {Top = 30, Right = 20}),
-    SceneStep("summary", "Summary", "summary", "the summary: recent achievements and progress", function()
-        return {KrowiAF_SummaryFrame}
-    end),
+    -- Mists of Pandaria, not the current expansion: that one is at the bottom of the list, below the cut (Krowi,
+    -- 2026-11-01). On Mists Classic it is the current expansion
+    {
+        Name = "categories",
+        Picture = "CategoryTree",
+        Text = "the category list at an expansion",
+        More = {Top = 30, Right = 20},
+        Run = function()
+            Scenes().categories(function(opened)
+                live.Scene = opened
+            end, pictureExpansion)
+        end,
+        Cut = function()
+            return {{Frame = KrowiAF_CategoriesFrame, MaxHeight = 360}}
+        end,
+        Check = function()
+            local shown = live.Scene and live.Scene.Category
+            return shown and shown.Name == pictureExpansion, ("the scene selected %s, not %s"):format(
+                tostring(shown and shown.Name), pictureExpansion)
+        end
+    },
+    -- The parchment alone, without the window's border around it (Krowi, 2026-11-01)
+    {
+        Name = "summary",
+        Picture = "Summary",
+        Text = "the summary: recent achievements and progress",
+        Alone = true,
+        Run = function()
+            Scenes().summary(function(opened)
+                live.Scene = opened
+            end)
+        end,
+        Cut = function()
+            return {KrowiAF_SummaryFrame}
+        end,
+        Check = function()
+            return live.Scene ~= nil, "the scene did not open"
+        end
+    },
     {
         Name = "compact",
         Picture = "CompactList",
@@ -371,13 +444,18 @@ steps = {
             end
             Scenes().achievements(function(opened)
                 live.Scene = opened
-            end)
+            end, pictureAchievement)
         end,
         Cut = function()
             return {KrowiAF_AchievementsFrame}
         end,
         Check = function()
-            return live.Scene ~= nil, "the scene did not open"
+            local shown = live.Scene and live.Scene.Achievement
+            if not shown then
+                return false, "the scene did not open"
+            end
+            return not (addon.Data.Achievements[pictureAchievement] and shown.Id ~= pictureAchievement),
+                ("the scene showed %d, not %d"):format(shown.Id, pictureAchievement)
         end
     },
     ColorStep("Orange", {Top = 30}),
@@ -411,7 +489,7 @@ steps = {
             return KrowiAF_SearchPreviewContainer:IsShown(), "the search preview is not shown"
         end
     },
-    -- The same achievement in every run (Krowi, 2026-11-01), One Warband Mentor: Midnight: earned by the character, no
+    -- The same achievement in every run (Krowi, 2026-11-01), as in the compact list: earned by the character, no
     -- "temporarily obtainable" line. Mists has no such achievement and takes the scene's own pick
     {
         Name = "tooltip",
@@ -420,7 +498,7 @@ steps = {
         Run = function()
             Scenes().tooltips(function(opened)
                 live.Scene = opened
-            end, tooltipAchievement)
+            end, pictureAchievement)
         end,
         Cut = function()
             return {{Frame = Krowi_Tooltip, MaxHeight = 420}}
@@ -430,8 +508,8 @@ steps = {
                 return false, "the tooltip is not shown"
             end
             local shown = live.Scene and live.Scene.Achievement
-            return not (addon.Data.Achievements[tooltipAchievement] and shown and shown.Id ~= tooltipAchievement),
-                ("the scene showed %s, not %d"):format(tostring(shown and shown.Id), tooltipAchievement)
+            return not (addon.Data.Achievements[pictureAchievement] and shown and shown.Id ~= pictureAchievement),
+                ("the scene showed %s, not %d"):format(tostring(shown and shown.Id), pictureAchievement)
         end
     },
     {
@@ -608,10 +686,11 @@ steps = {
             Scenes().calendar(function(opened)
                 live.Scene = opened
             end)
-            -- last month, a whole month of achievements (Krowi, 2026-11-01); the calendar's next open shows this month
-            -- again (Gui/AchievementCalendar/Frame/FrameMixin.lua OnShow)
+            -- last month, a whole month of achievements (Krowi, 2026-11-01); Restore puts back the month it showed
             local calendar = KrowiAF_AchievementCalendarFrame
             if calendar:IsShown() and calendar.PrevMonthButton:IsEnabled() then
+                local shown = addon.Gui.Calendar.MonthCursor.GetMonthInfo()
+                live.CalendarMonth = {shown.month, shown.year}
                 calendar.PrevMonthButton:Click()
             end
         end,
@@ -774,6 +853,12 @@ local function Restore()
     end
     if KrowiAF_AchievementCalendarFrame then
         KrowiAF_AchievementCalendarFrame:Hide()
+        -- the month before the run turned it back: with Lock month on, the calendar's next open keeps the month it had
+        -- (Gui/AchievementCalendar/Frame/FrameMixin.lua OnShow)
+        if live.CalendarMonth then
+            addon.Gui.Calendar.MonthCursor.SetAbsMonth(unpack(live.CalendarMonth))
+            KrowiAF_AchievementCalendarFrame:Update()
+        end
     end
     for id in next, addon.Gui.AchievementPopout.OpenPopouts do
         if live.PopoutsBefore and not live.PopoutsBefore[id] then
@@ -826,6 +911,7 @@ local function Finish()
     banner:UnregisterAllEvents()
     banner:Hide()
     backdrop:Hide()
+    mask:Hide()
     local ok, err = pcall(Restore)
     if not ok then
         Add("FAIL", "could not put things back: " .. tostring(err), "restore")
@@ -889,6 +975,12 @@ local function Shoot(step, items, rectangle, waited)
     if not floorOk then
         tinsert(live.Observations, ("%s: backdrop not placed: %s"):format(step.Name, tostring(floorErr)))
     end
+    if step.Alone then
+        local maskOk, maskErr = pcall(PlaceMask, items)
+        if not maskOk then
+            tinsert(live.Observations, ("%s: mask not placed: %s"):format(step.Name, tostring(maskErr)))
+        end
+    end
     After(0.2, function()
         -- a tooltip the game showed in the meantime: the backdrop drops back, so the banner shows over it, and the
         -- step waits again
@@ -896,6 +988,7 @@ local function Shoot(step, items, rectangle, waited)
         if stillOk and coveredNow then
             backdrop:SetFrameStrata("BACKGROUND")
             backdrop:SetFrameLevel(0)
+            mask:Hide()
             Shoot(step, items, rectangle, waited)
             return
         end
@@ -911,7 +1004,7 @@ local function Shoot(step, items, rectangle, waited)
         -- see-through each pixel is, a tooltip's background and a menu's shadow too
         -- (docs/work/2026-11-01-help-pictures-transparent)
         After(afterShot, function()
-            backdropColor:SetColorTexture(1, 0, 1, 1)
+            SetBackdropColor(1, 0, 1)
         end)
         After(afterShot * 2, function()
             local pinkOk, coveredPink = pcall(GameTooltipOver, rectangle)
@@ -924,7 +1017,7 @@ local function Shoot(step, items, rectangle, waited)
                     step.Name, step.Picture:lower()))
             end
             After(afterShot, function()
-                backdropColor:SetColorTexture(0, 0, 0, 1)
+                SetBackdropColor(0, 0, 0)
                 RunStep(live.StepIndex + 1)
             end)
         end)
@@ -992,6 +1085,7 @@ RunStep = function(n)
     -- (the map of the last step)
     backdrop:SetFrameStrata("BACKGROUND")
     backdrop:SetFrameLevel(0)
+    mask:Hide()
     if not step.Keep then
         local cleaned, cleanErr = pcall(Cleanup)
         if not cleaned then
@@ -1038,6 +1132,17 @@ local function CreateFrames()
     backdropColor:SetAllPoints()
     backdropColor:SetColorTexture(0, 0, 0, 1)
     backdrop:Hide()
+
+    -- above the window and the banner, below the game's tooltip; only around a step's frames (PlaceMask)
+    mask = CreateFrame("Frame", nil, UIParent)
+    mask:SetFrameStrata("FULLSCREEN")
+    mask:SetAllPoints()
+    mask.Sides = {}
+    for i = 1, 4 do
+        mask.Sides[i] = mask:CreateTexture(nil, "BACKGROUND")
+        mask.Sides[i]:SetColorTexture(0, 0, 0, 1)
+    end
+    mask:Hide()
 
     -- where the menu is taken, away from the screen's borders
     centre = CreateFrame("Frame", nil, UIParent)
@@ -1135,7 +1240,7 @@ addon.Tests.Suites.pictures = function(done, what)
     if optionsWindow and optionsWindow:IsShown() then
         optionsWindow:Hide()
     end
-    backdropColor:SetColorTexture(0, 0, 0, 1) -- a run stopped during a pink shot left it pink
+    SetBackdropColor(0, 0, 0) -- a run stopped during a pink shot left it pink
     backdrop:Show()
     banner:RegisterEvent("SCREENSHOT_FAILED")
     banner:RegisterEvent("PLAYER_REGEN_DISABLED")
