@@ -3,7 +3,7 @@
 
     <!-- The minimal check box of Blizzard's own settings (Blizzard_SettingControls.xml) -->
     <CheckButton name="Krowi_OptionsCheckButtonTemplate" virtual="true">
-        <Size x="26" y="26"/>
+        <Size x="30" y="29"/>
         <NormalTexture atlas="checkbox-minimal" useAtlasSize="true"/>
         <PushedTexture atlas="checkbox-minimal" useAtlasSize="true"/>
         <CheckedTexture atlas="checkmark-minimal" useAtlasSize="true"/>
@@ -102,27 +102,19 @@
                 <NormalTexture atlas="common-icon-undo"/>
                 <HighlightTexture atlas="common-icon-undo" alphaMode="ADD"/>
             </Button>
-            <CheckButton parentKey="Toggle" inherits="Krowi_OptionsCheckButtonTemplate" hidden="true">
-                <Anchors>
-                    <Anchor point="LEFT" relativePoint="RIGHT" x="-300"/>
-                </Anchors>
-            </CheckButton>
+            <!-- The controls are placed by the row's geometry (RowMixins.lua) at the sizes of the game's Options window
+                 (docs/work/2026-11-02-options-widths) -->
+            <CheckButton parentKey="Toggle" inherits="Krowi_OptionsCheckButtonTemplate" hidden="true"/>
             <Frame parentKey="Range" inherits="MinimalSliderWithSteppersTemplate" hidden="true">
-                <Size x="210" y="20"/>
-                <Anchors>
-                    <Anchor point="LEFT" relativePoint="RIGHT" x="-300"/>
-                </Anchors>
+                <Size x="250" y="20"/>
             </Frame>
             <!-- The game's settings dropdown with an arrow on each side, as Metal2DropdownWithSteppersAndLabelTemplate
                  builds it (docs/work/2026-10-30-options-settings-look) -->
             <Frame parentKey="Select" inherits="DropdownWithSteppersTemplate" hidden="true">
                 <Size x="250" y="26"/>
-                <Anchors>
-                    <Anchor point="LEFT" relativePoint="RIGHT" x="-290"/>
-                </Anchors>
                 <Frames>
                     <DropdownButton parentKey="Dropdown" inherits="WowStyle2DropdownTemplate">
-                        <Size x="200" y="26"/>
+                        <Size x="220" y="26"/>
                         <Anchors>
                             <Anchor point="CENTER"/>
                         </Anchors>
@@ -130,27 +122,19 @@
                 </Frames>
             </Frame>
             <Button parentKey="Execute" inherits="UIPanelButtonNoTooltipTemplate" hidden="true">
-                <Size x="160" y="22"/>
-                <Anchors>
-                    <Anchor point="LEFT" relativePoint="RIGHT" x="-300"/>
-                </Anchors>
+                <Size x="200" y="22"/>
             </Button>
             <EditBox parentKey="Input" inherits="InputBoxTemplate" autoFocus="false" hidden="true">
                 <Size x="240" y="20"/>
-                <Anchors>
-                    <Anchor point="LEFT" relativePoint="RIGHT" x="-294"/>
-                </Anchors>
             </EditBox>
+            <!-- Side by side, as the game's Keybindings page has them (Blizzard_Keybindings.xml) -->
             <Button parentKey="Key1" inherits="UIPanelButtonNoTooltipTemplate" hidden="true">
-                <Size x="124" y="22"/>
-                <Anchors>
-                    <Anchor point="LEFT" relativePoint="RIGHT" x="-300"/>
-                </Anchors>
+                <Size x="160" y="22"/>
             </Button>
             <Button parentKey="Key2" inherits="UIPanelButtonNoTooltipTemplate" hidden="true">
-                <Size x="124" y="22"/>
+                <Size x="160" y="22"/>
                 <Anchors>
-                    <Anchor point="LEFT" relativeKey="$parent.Key1" relativePoint="RIGHT" x="6"/>
+                    <Anchor point="LEFT" relativeKey="$parent.Key1" relativePoint="RIGHT"/>
                 </Anchors>
             </Button>
         </Frames>
@@ -175,9 +159,6 @@
         <Frames>
             <Button parentKey="All" inherits="UIPanelButtonNoTooltipTemplate">
                 <Size x="70" y="20"/>
-                <Anchors>
-                    <Anchor point="LEFT" relativePoint="RIGHT" x="-300"/>
-                </Anchors>
             </Button>
             <Button parentKey="None" inherits="UIPanelButtonNoTooltipTemplate">
                 <Size x="70" y="20"/>
@@ -239,7 +220,7 @@
                 </FontString>
                 <FontString parentKey="Label" inherits="GameFontNormal" justifyH="LEFT" wordwrap="false">
                     <Anchors>
-                        <Anchor point="LEFT" x="66"/>
+                        <Anchor point="LEFT" x="70"/>
                     </Anchors>
                 </FontString>
                 <FontString parentKey="Source" inherits="GameFontDisableSmall" justifyH="LEFT">
@@ -257,9 +238,6 @@
             </CheckButton>
             <Button parentKey="Up">
                 <Size x="22" y="22"/>
-                <Anchors>
-                    <Anchor point="LEFT" relativePoint="RIGHT" x="-300"/>
-                </Anchors>
                 <NormalTexture file="Interface\Buttons\Arrow-Up-Up"/>
                 <PushedTexture file="Interface\Buttons\Arrow-Up-Down"/>
                 <DisabledTexture file="Interface\Buttons\Arrow-Up-Disabled"/>

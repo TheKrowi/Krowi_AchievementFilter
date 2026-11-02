@@ -11,7 +11,58 @@
 -- row Slots (two options holding a key each).
 -- Every change goes through window:OnOptionChanged, which redraws the rows, their changed lines and the reload bar.
 
-local controlColumn = 300 -- the controls start this far from the row's right edge; labels stop short of it
+local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
+
+-- [[ Where a row's name and controls stand ]] --
+-- In a column 330 from the row's right edge, wide enough for the two key buttons, or as the game's Options window places
+-- them, from the row's centre (Blizzard_SettingControls.lua: the name from 37 to 85 before the centre, a check box or
+-- slider at -80, a button at -40, a dropdown's frame at -48 with its 220 dropdown centred, which puts ours, in a 250
+-- frame, at -61.5); window.CentredControls picks (docs/work/2026-11-02-options-widths). Each is an anchor on the row,
+-- { relativePoint, x }, so a row is placed before it has its width.
+local controlColumn = 330
+local placements = {
+    [false] = {
+        Toggle = { "RIGHT", -controlColumn }, Range = { "RIGHT", -controlColumn }, Select = { "RIGHT", -controlColumn + 10 }, Execute = { "RIGHT", -controlColumn },
+        Input = { "RIGHT", -controlColumn + 6 }, Key = { "RIGHT", -controlColumn }, Sub = { "RIGHT", -controlColumn }, TabArrows = { "RIGHT", -controlColumn },
+        NameRight = { "RIGHT", -controlColumn - 12 }, NameLeft = 16, Indent = 20,
+    },
+    [true] = {
+        Toggle = { "CENTER", -80 }, Range = { "CENTER", -80 }, Select = { "CENTER", -61.5 }, Execute = { "CENTER", -40 },
+        Input = { "CENTER", -80 }, Key = { "CENTER", -80 }, Sub = { "CENTER", -80 }, TabArrows = { "CENTER", -80 },
+        NameRight = { "CENTER", -85 }, NameLeft = 37, Indent = 15,
+    },
+}
+local geometries = { [false] = {}, [true] = {} } -- per placement and indent, made once
+
+function lib.RowGeometry(indent, centred)
+    centred, indent = centred and true or false, indent or 0
+    local geometry = geometries[centred][indent]
+    if not geometry then
+        local placement = placements[centred]
+        geometry = { NameLeft = { "LEFT", placement.NameLeft + indent * placement.Indent } }
+        for key, spec in next, placement do
+            if type(spec) == "table" then geometry[key] = spec end
+        end
+        geometries[centred][indent] = geometry
+    end
+    return geometry
+end
+
+local relativeX = { LEFT = 0, CENTER = 0.5, RIGHT = 1 }
+
+-- A geometry's anchor as x from the left of a row this wide
+function lib.RowX(spec, width)
+    return relativeX[spec[1]] * width + spec[2]
+end
+
+local function Place(region, row, spec)
+    region:ClearAllPoints()
+    region:SetPoint("LEFT", row, spec[1], spec[2], 0)
+end
+
+-- The option row's controls by their place in the geometry, and the one each option type shows
+local placedControls = { Toggle = "Toggle", Range = "Range", Select = "Select", Execute = "Execute", Input = "Input", Key = "Key1" }
+local controlOfType = { toggle = "Toggle", range = "Range", select = "Select", execute = "Execute", input = "Input", key = "Key" }
 
 -- [[ Header, sub-heading, note ]] --
 Krowi_OptionsTextRowMixin = {}
@@ -38,8 +89,6 @@ local function NoTooltip()
 end
 
 function Krowi_OptionsOptionRowMixin:OnLoad()
-    self.Label:SetPoint("RIGHT", self, "RIGHT", -controlColumn - 12, 0)
-
     self.Reset:SetScript("OnClick", function()
         self.Option:Reset()
         self.Window:OnOptionChanged(self.Option)
@@ -100,7 +149,14 @@ function Krowi_OptionsOptionRowMixin:Init(element, window)
     for _, control in ipairs({ self.Toggle, self.Range, self.Select, self.Execute, self.Input, self.Key1, self.Key2 }) do
         control:Hide()
     end
-    self.Label:SetPoint("LEFT", 16 + (option.Indent or 0) * 20, 0)
+    local geometry = lib.RowGeometry(option.Indent, window.CentredControls)
+    self.Geometry = geometry
+    self.Label:ClearAllPoints()
+    self.Label:SetPoint("LEFT", self, geometry.NameLeft[1], geometry.NameLeft[2], 0)
+    self.Label:SetPoint("RIGHT", self, geometry.NameRight[1], geometry.NameRight[2], 0)
+    for place, key in next, placedControls do
+        Place(self[key], self, geometry[place])
+    end
     self.Label:SetText(option:GetLabel())
 
     local t = option.Type
@@ -232,7 +288,8 @@ end
 function Krowi_OptionsOptionRowMixin:OnEnter()
     self.Hover:Show()
     self.Reset:SetShown(self.Option and self.Option:IsChanged())
-    self.Window:OnRowEnter(self.Option, self, self:GetWidth() - controlColumn)
+    local control = self.Geometry and self.Option and controlOfType[self.Option.Type]
+    self.Window:OnRowEnter(self.Option, self, control and lib.RowX(self.Geometry[control], self:GetWidth()))
 end
 
 -- Moving onto one of the row's own controls leaves the row too: the arrow stays while the mouse is on the row
@@ -263,6 +320,7 @@ end
 function Krowi_OptionsSubRowMixin:Init(element, window)
     self.Element, self.Window = element, window
     self.Text:SetText(element.Text or "")
+    Place(self.All, self, lib.RowGeometry(0, window.CentredControls).Sub)
     self.All:SetText(window.Strings.All)
     self.None:SetText(window.Strings.None)
 end
@@ -366,6 +424,7 @@ function Krowi_OptionsTabRowMixin:Init(element, window)
     self.Position:SetText(item.Position)
     self.Label:SetText(item.Show and item.Show:GetLabel() or "?")
     self.Source:SetText(item.Source or "")
+    Place(self.Up, self, lib.RowGeometry(0, window.CentredControls).TabArrows)
     self.Up:SetEnabled(item.MoveUp ~= nil)
     self.Down:SetEnabled(item.MoveDown ~= nil)
     self:Refresh()

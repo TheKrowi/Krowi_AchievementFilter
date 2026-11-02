@@ -288,7 +288,10 @@ options.Scenarios = {
             if not lib.RowGeometry then return "column 300 from the right, names from 16" end
             return RowGeometryLine(lib)
         end,
-        Recorded = "column 300 from the right, names from 16",
+        Recorded = "column 635 [name 16/36-293 Toggle 305 Range 305 Select 315 Execute 305 Input 311 Key 305 Sub 305 TabArrows 305]" -- "column 300 from the right, names from 16" before the game's sizes
+            .. " column 619 [name 16/36-277 Toggle 289 Range 289 Select 299 Execute 289 Input 295 Key 289 Sub 289 TabArrows 289]"
+            .. " centre 635 [name 37/52-232.5 Toggle 237.5 Range 237.5 Select 256 Execute 277.5 Input 237.5 Key 237.5 Sub 237.5 TabArrows 237.5]"
+            .. " centre 619 [name 37/52-224.5 Toggle 229.5 Range 229.5 Select 248 Execute 269.5 Input 229.5 Key 229.5 Sub 229.5 TabArrows 229.5]",
         Target = "column 635 [name 16/36-293 Toggle 305 Range 305 Select 315 Execute 305 Input 311 Key 305 Sub 305 TabArrows 305]"
             .. " column 619 [name 16/36-277 Toggle 289 Range 289 Select 299 Execute 289 Input 295 Key 289 Sub 289 TabArrows 289]"
             .. " centre 635 [name 37/52-232.5 Toggle 237.5 Range 237.5 Select 256 Execute 277.5 Input 237.5 Key 237.5 Sub 237.5 TabArrows 237.5]"
