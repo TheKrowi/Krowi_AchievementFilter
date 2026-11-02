@@ -100,6 +100,38 @@ local function SecondTab(lib)
     return line .. " after=" .. TabNames(lib)
 end
 
+-- Where a row's name and controls stand, as x from the row's left, in the right-hand column
+-- (docs/work/2026-11-02-options-widths), on the game's 635 rows and the 619 left while the section list shows its scroll
+-- bar; the name's left at indent 0 and 1
+local rowControls = { "Toggle", "Range", "Select", "Execute", "Input", "Key", "Sub", "TabArrows" }
+local function RowGeometryLine(lib)
+    local parts = {}
+    for _, width in ipairs({ 635, 619 }) do
+        local flat, indented = lib.RowGeometry(0), lib.RowGeometry(1)
+        local line = { ("name %g/%g-%g"):format(lib.RowX(flat.NameLeft, width), lib.RowX(indented.NameLeft, width), lib.RowX(flat.NameRight, width)) }
+        for _, key in ipairs(rowControls) do line[#line + 1] = ("%s %g"):format(key, lib.RowX(flat[key], width)) end
+        parts[#parts + 1] = ("column %d [%s]"):format(width, table.concat(line, " "))
+    end
+    return table.concat(parts, " ")
+end
+
+-- The rows under one of a section's headings (docs/work/2026-11-02-options-widths): each row's option key, and the
+-- option drawn after its check box with its key, and a button's text, as the game's Tutorials and Mouse Sensitivity rows
+local function RowsUnder(sectionId, header)
+    local source = addon.Options.Window.Source
+    local rows, under = {}, false
+    for _, element in ipairs(source.Elements(source.Section(sectionId))) do
+        if element.Kind == "Header" then under = element.Text == header end
+        if under and element.Option then
+            local key, with = element.Option.Info[#element.Option.Info], element.With
+            local withKey = with and with.Info[#with.Info]
+            rows[#rows + 1] = not with and key or with.Type == "execute" and ("%s+%s[%s]"):format(key, withKey, with:GetButtonText())
+                or ("%s+%s"):format(key, withKey)
+        end
+    end
+    return table.concat(rows, " ")
+end
+
 -- Observe: a function returning the line's value, or nil and the reason it could not run
 options.Scenarios = {
     {Name = "settings-entry",
@@ -255,6 +287,63 @@ options.Scenarios = {
         end,
         Recorded = "tabs=Achievement Filter,Zz Test shared=both open=Zz Test all=Achievement Filter,Zz Test after=Achievement Filter", -- "no tab registry" before the tabs
         Target = "tabs=Achievement Filter,Zz Test shared=both open=Zz Test all=Achievement Filter,Zz Test after=Achievement Filter"},
+    -- The game's Options window's sizes (docs/work/2026-11-02-options-widths): its width with the help pane added, and
+    -- the rows' names and controls in the right-hand column
+    {Name = "window-width",
+        Observe = function()
+            local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
+            if not lib.WindowWidth then return "resizable from 1000x560" end
+            return ("open=%d collapsed=%d"):format(lib.WindowWidth(false), lib.WindowWidth(true))
+        end,
+        Recorded = "open=1300 collapsed=950", -- "resizable from 1000x560" before the game's width
+        Target = "open=1300 collapsed=950"},
+    {Name = "row-geometry",
+        Observe = function()
+            local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
+            if not lib.RowGeometry then return "column 300 from the right, names from 16" end
+            return RowGeometryLine(lib)
+        end,
+        -- "column 300 from the right, names from 16" before the game's sizes; the column's Select 315 before Krowi's look in
+        -- game, and the game's placement from the row's centre beside it until Krowi kept the column (2026-11-02)
+        Recorded = "column 635 [name 16/36-293 Toggle 305 Range 305 Select 323.5 Execute 305 Input 311 Key 305 Sub 305 TabArrows 305]"
+            .. " column 619 [name 16/36-277 Toggle 289 Range 289 Select 307.5 Execute 289 Input 295 Key 289 Sub 289 TabArrows 289]",
+        -- Krowi's look in game (2026-11-02): the dropdown's left arrow on the check boxes' line, 2.5 in as the game has it,
+        -- and the input box 6 in from it, so its border starts on that line
+        Target = "column 635 [name 16/36-293 Toggle 305 Range 305 Select 323.5 Execute 305 Input 311 Key 305 Sub 305 TabArrows 305]"
+            .. " column 619 [name 16/36-277 Toggle 289 Range 289 Select 307.5 Execute 289 Input 295 Key 289 Sub 289 TabArrows 289]"},
+    -- Krowi (2026-11-02): each window's reset button after its Remember check box, named as its own row was
+    {Name = "position-rows",
+        Observe = function() return RowsUnder("window", addon.L["Position"]) end,
+        -- a row per option before: "SwitchMovable AchievementWindowRememberLastPosition AchievementWindowResetPosition ...",
+        -- then each button named as its row had been ("[Reset window position]")
+        Recorded = "SwitchMovable AchievementWindowRememberLastPosition+AchievementWindowResetPosition[Reset position]"
+            .. " CalendarRememberLastPosition+CalendarResetPosition[Reset position]"
+            .. " DataManagerRememberLastPosition+DataManagerResetPosition[Reset position]",
+        -- then (Krowi, the same day) one "Reset position" for all three: the check box's name says which window
+        Target = "SwitchMovable AchievementWindowRememberLastPosition+AchievementWindowResetPosition[Reset position]"
+            .. " CalendarRememberLastPosition+CalendarResetPosition[Reset position]"
+            .. " DataManagerRememberLastPosition+DataManagerResetPosition[Reset position]"},
+    -- A button that belongs to a check box is found as its check box's row
+    {Name = "search-reset-position",
+        Observe = function()
+            local labels = {}
+            for _, result in ipairs(Model().Search(addon.L["Reset position"])) do
+                if result.OptionId then labels[#labels + 1] = result.Label end
+            end
+            return Join(labels)
+        end,
+        Recorded = "Remember Achievement Window position,Remember Achievement Calendar position,Remember Data Manager position",
+        Target = "Remember Achievement Window position,Remember Achievement Calendar position,Remember Data Manager position"},
+    -- Krowi (2026-11-02): the threshold's slider after the Force two columns check box, as the game's Mouse Sensitivity
+    {Name = "objectives-rows",
+        Observe = function() return RowsUnder("achievements", addon.L["Objectives"]) end,
+        Recorded = "ForceTwoColumns+ForceTwoColumnsThreshold CriteriaBehaviour", -- a row each before
+        Target = "ForceTwoColumns+ForceTwoColumnsThreshold CriteriaBehaviour"},
+    -- Krowi (2026-11-02): the pop outs' delay and snap distance after their check boxes
+    {Name = "popout-rows",
+        Observe = function() return RowsUnder("popout", addon.L["Pop Outs"]) end,
+        Recorded = "PersistAcrossSessions RememberSize RememberLastPosition DefaultWidth CloseOnEarn+CloseOnEarnDelay EnableSnapping+SnapDistance", -- a row each before
+        Target = "PersistAcrossSessions RememberSize RememberLastPosition DefaultWidth CloseOnEarn+CloseOnEarnDelay EnableSnapping+SnapDistance"},
 }
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
@@ -374,6 +463,18 @@ local function FindOption(optionId)
     end
 end
 
+-- The first option whose check box carries a slider, and its section
+local function FindSliderPair()
+    local window = addon.Options.Window
+    for _, section in ipairs(window.Map.Sections) do
+        for _, element in ipairs(window.Source.Elements(section)) do
+            if element.With and element.With.Type == "range" and not element.Option:IsHidden() then
+                return section.Id, element.Option
+            end
+        end
+    end
+end
+
 -- The drawn row of an option on the current page
 local function RowOf(option)
     local found
@@ -385,18 +486,98 @@ local function RowOf(option)
     return found
 end
 
--- The first value change of an option keeps the player's value, which Finish puts back
+-- The first value change of an option keeps the player's value, which Restore puts back
 local function Remember(option)
     if not live.Before[option] then
         live.Before[option] = { Value = option:Get() }
     end
 end
 
--- Drawn rows whose control does not show its option's value
+-- The game's control widths (docs/work/2026-11-02-options-widths), by the row's key; the dropdown's is inside Select
+local controlWidths = { Toggle = 30, Range = 250, Execute = 200, Key1 = 160, Key2 = 160 }
+local rowControlKeys = { "Toggle", "Range", "Execute", "Input", "Key1", "Key2", "All", "None", "Up", "Down" }
+
+-- How far a name's text reaches, whatever its anchors: a sub row's text spans the row
+local function NameEnd(name)
+    return name:GetLeft() + math.min(name:GetStringWidth(), name:GetWidth())
+end
+
+-- Where a drawn row breaks the layout: a control of the wrong width, one past the row's right edge, a name's text that
+-- runs into the first control, a dropdown whose left arrow is off the check boxes' line (the game's stands 2.5 in from
+-- it); and whether the name is cut short
+local function RowLayout(row)
+    local right = row:GetRight()
+    if not right then
+        return nil
+    end
+    local wrong, firstLeft = {}, nil
+    if row.Geometry and row.Select and row.Select:IsShown() then
+        local line = row:GetLeft() + KROWI_LIBMAN:GetLibrary("Krowi_Options_1").RowX(row.Geometry.Toggle, row:GetWidth())
+        if math.abs(row.Select.DecrementButton:GetLeft() - line - 2.5) > 0.5 then
+            tinsert(wrong, ("arrow %g from the check boxes' line"):format(row.Select.DecrementButton:GetLeft() - line))
+        end
+    end
+    -- The option after a check box 5 after it, as the game's Tutorials and Mouse Sensitivity rows
+    local withControl = row.With and (row.With.Type == "range" and row.Range or row.Execute)
+    if withControl and withControl:IsShown() and math.abs(withControl:GetLeft() - row.Toggle:GetRight() - 5) > 0.5 then
+        tinsert(wrong, ("%s %g after its check box"):format(row.With.Type, withControl:GetLeft() - row.Toggle:GetRight()))
+    end
+    local function Control(key, control, width)
+        if not control or not control:IsShown() or not control:GetRight() then
+            return
+        end
+        if width and math.abs(control:GetWidth() - width) > 0.5 then
+            tinsert(wrong, ("%s %g wide"):format(key, control:GetWidth()))
+        end
+        if control:GetRight() > right + 0.5 then
+            tinsert(wrong, key .. " past the row's edge")
+        end
+        firstLeft = math.min(firstLeft or control:GetLeft(), control:GetLeft())
+    end
+    for _, key in ipairs(rowControlKeys) do
+        -- the game's slider after a check box is 214 (SettingsCheckboxSliderControlMixin)
+        Control(key, row[key], key == "Range" and withControl == row.Range and 214 or controlWidths[key])
+    end
+    if row.Select and row.Select:IsShown() then
+        Control("Dropdown", row.Select.Dropdown, 220)
+        Control("arrow", row.Select.DecrementButton)
+        Control("arrow", row.Select.IncrementButton)
+    end
+    local name = row.Source and row.Source:GetText() ~= "" and row.Source or row.Label or row.Text
+    local cut = false
+    if name and name:IsShown() and name:GetLeft() and firstLeft and not row.Cells then
+        if NameEnd(name) > firstLeft + 0.5 then
+            tinsert(wrong, "name into the control")
+        end
+        cut = name.IsTruncated and name:IsTruncated() or false
+    end
+    return wrong, cut
+end
+
+-- The slider moves in whole steps: a value saved between them (the reward preview's size after a resize of the preview)
+-- shows on the nearest step
+local function SliderShows(row, option)
+    local value = option:Get()
+    local min, max, step = option:GetRange()
+    if value and step and step > 0 then
+        value = math.min(math.max(min + math.floor((value - min) / step + 0.5) * step, min), max)
+    end
+    return value == nil or math.abs(row.Range.Slider:GetValue() - value) < 0.001
+end
+
+-- Drawn rows whose control does not show its option's value, rows that break the layout, and names cut short
 local function CheckDrawnRows()
-    local drawn, differ = 0, {}
+    local drawn, differ, misfit, cut = 0, {}, {}, {}
     Window().PageScrollBox:ForEachFrame(function(row)
         drawn = drawn + 1
+        local wrong, isCut = RowLayout(row)
+        local id = row.Option and row.Option.Id or (row.Element and (row.Element.Text or row.Element.Label)) or tostring(drawn)
+        if wrong and #wrong > 0 then
+            tinsert(misfit, id .. ": " .. table.concat(wrong, ", "))
+        end
+        if isCut then
+            tinsert(cut, id)
+        end
         local option = row.Option
         if not option or not option.Type then
             return
@@ -405,15 +586,9 @@ local function CheckDrawnRows()
         local shows
         if option.Type == "toggle" then
             shows = (row.Toggle:GetChecked() and true or false) == (value and true or false)
+                and (not row.With or row.With.Type ~= "range" or SliderShows(row, row.With))
         elseif option.Type == "range" then
-            -- the slider moves in whole steps: a value saved between them (the reward preview's size after a resize
-            -- of the preview) shows on the nearest step
-            local min, max, step = option:GetRange()
-            local expected = value
-            if expected and step and step > 0 then
-                expected = math.min(math.max(min + math.floor((expected - min) / step + 0.5) * step, min), max)
-            end
-            shows = expected == nil or math.abs(row.Range.Slider:GetValue() - expected) < 0.001
+            shows = SliderShows(row, option)
         elseif option.Type == "input" then
             shows = row.Input:HasFocus() or row.Input:GetText() == tostring(value or "")
         elseif option.Type == "select" then
@@ -426,7 +601,7 @@ local function CheckDrawnRows()
             tinsert(differ, option.Id)
         end
     end)
-    return drawn, differ
+    return drawn, differ, misfit, cut
 end
 
 local function SectionStep(sectionId, name)
@@ -438,10 +613,12 @@ local function SectionStep(sectionId, name)
         end,
         Check = function()
             local rows = #(Window().Elements or {})
-            local drawn, differ = CheckDrawnRows()
-            local ok = (rows == 0 or drawn > 0) and #differ == 0
-            Add(ok and "PASS" or "FAIL", ("%d rows, %d drawn%s"):format(rows, drawn,
-                #differ > 0 and (", controls that do not show their value: [" .. table.concat(differ, ",") .. "]") or ""))
+            local drawn, differ, misfit, cut = CheckDrawnRows()
+            local ok = (rows == 0 or drawn > 0) and #differ == 0 and #misfit == 0
+            Add(ok and "PASS" or "FAIL", ("%d rows, %d drawn%s%s%s"):format(rows, drawn,
+                #differ > 0 and (", controls that do not show their value: [" .. table.concat(differ, ",") .. "]") or "",
+                #misfit > 0 and (", rows out of the layout: [" .. table.concat(misfit, "; ") .. "]") or "",
+                #cut > 0 and (", names cut short: [" .. table.concat(cut, ",") .. "]") or ""))
         end
     }
 end
@@ -583,6 +760,29 @@ local function BuildSteps()
                     tostring(title), searchAll and "shown" or "hidden"))
             end
         },
+        -- The game's Options window's sizes (docs/work/2026-11-02-options-widths)
+        {
+            Name = "sizes",
+            Text = "the window, its rows and its controls at the sizes of the game's Options window",
+            Run = function() end,
+            Check = function()
+                local frame = Window()
+                local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
+                local function Is(value, expected) return math.abs(value - expected) < 0.5 end
+                local width = lib.WindowWidth(frame.PaneCollapsed)
+                local minWidth, _, maxWidth = width, nil, width
+                if frame.GetResizeBounds then minWidth, _, maxWidth = frame:GetResizeBounds() end
+                local rows = frame.NavScrollShown and 619 or 635
+                local defaults = frame.DefaultsButton
+                local fitsIn96 = defaults:GetFontString():GetStringWidth() + 24 <= 96
+                local ok = Is(frame:GetWidth(), width) and Is(minWidth, width) and Is(maxWidth, width) and Is(frame:PageWidth(), rows)
+                    and Is(frame.SearchBox:GetWidth(), 350) and (fitsIn96 and Is(defaults:GetWidth(), 96) or not fitsIn96 and defaults:GetWidth() > 96)
+                    and Is(frame.SearchAll:GetWidth(), 30) and Is(frame.SearchAll:GetHeight(), 29) and Is(frame.Divider:GetWidth(), 630)
+                Add(ok and "PASS" or "FAIL", ("window %g wide (resizes from %g to %g), rows %g, search box %g, Defaults %g, check box %gx%g, divider %g, scale %.2f"):format(
+                    frame:GetWidth(), minWidth, maxWidth, frame:PageWidth(), frame.SearchBox:GetWidth(), defaults:GetWidth(),
+                    frame.SearchAll:GetWidth(), frame.SearchAll:GetHeight(), frame.Divider:GetWidth(), frame:GetScale()))
+            end
+        },
         SectionStep("overview", addon.L["Overview"])
     }
     for _, section in ipairs(window.Map.Sections) do
@@ -598,6 +798,31 @@ local function BuildSteps()
         row.Input:SetText((option:Get() or "") .. " x")
         row.Input:GetScript("OnEnterPressed")(row.Input)
     end) }) do tinsert(list, step) end
+    -- Over a check box's slider the help pane explains the slider, not the check box (Krowi, 2026-11-02: Force two
+    -- columns threshold); the mouse's arrival on the bar is played through the row's own handler
+    local pairSection, pairOption
+    tinsert(list, {
+        Name = "slider-help",
+        Text = "a check box's slider explains itself",
+        Run = function()
+            local frame = Window()
+            pairSection, pairOption = FindSliderPair()
+            if frame.PaneCollapsed then frame:SetPaneCollapsed(false) end
+            if pairSection then frame:ShowSection(pairSection, pairOption.Id) end
+        end,
+        Check = function()
+            local row = pairOption and RowOf(pairOption)
+            if not row then
+                Add("FAIL", "no drawn row whose check box carries a slider")
+                return
+            end
+            row:OnEnter(row.Range.Slider)
+            local shown = Window().HoverOption
+            row:OnLeave()
+            Add(shown == row.With and "PASS" or "FAIL", ("over %s's slider the help explains %s"):format(pairOption:GetLabel(),
+                shown and shown:GetLabel() or "the section"))
+        end
+    })
     local searchText
     tinsert(list, {
         Name = "search",
@@ -629,7 +854,11 @@ local function BuildSteps()
         Check = function()
             local frame = Window()
             local agrees = frame.ExpandButton:IsShown() == frame.PaneCollapsed and frame.HelpScrollBox:IsShown() == not frame.PaneCollapsed
-            Add(agrees and "PASS" or "FAIL", ("the pane is %s and shows it"):format(frame.PaneCollapsed and "collapsed" or "open"))
+            -- The pane adds its own width to the game's window (docs/work/2026-11-02-options-widths)
+            local width = KROWI_LIBMAN:GetLibrary("Krowi_Options_1").WindowWidth(frame.PaneCollapsed)
+            local wide = math.abs(frame:GetWidth() - width) < 0.5 and math.abs(frame:PageWidth() - (frame.NavScrollShown and 619 or 635)) < 0.5
+            Add(agrees and wide and "PASS" or "FAIL", ("the pane is %s and shows it, the window %g wide (%g expected), rows %g"):format(
+                frame.PaneCollapsed and "collapsed" or "open", frame:GetWidth(), width, frame:PageWidth()))
         end
     })
     tinsert(list, {

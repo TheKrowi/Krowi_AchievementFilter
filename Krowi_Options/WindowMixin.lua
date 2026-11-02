@@ -7,7 +7,7 @@
 
 -- The window: a tab per registered addon on top, the open addon's navigation on the left, the section's rows in the
 -- middle, the help pane on the right, in the frame and art of the game's own Options window. Strings come from the open
--- tab's consumer (config.Strings): Search, SearchAll, HeadingLines, Overview, SearchResults, NoResults, Defaults, ResetSection (with
+-- tab's consumer (config.Strings): Search, SearchAll, Overview, SearchResults, NoResults, Defaults, ResetSection (with
 -- %s), ChangedCount (with %d), ReloadText, ReloadNow, ShowMe, HowItWorks, All, None, NotBound, PressAKey, Default
 -- (with %s), NeedsReload, NotInCombat, and optionally ResetToDefault (the game's RESET_TO_DEFAULT otherwise).
 
@@ -15,7 +15,18 @@ local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
 
 -- The navigation is as wide as the game's category list, so its header bars (199 px) end at the divider
 local navWidth, helpWidth, stripWidth = 199, 380, 30
-local minWidth, minHeight = 1000, 560
+-- The game's Options window is 920 wide (Blizzard_SettingsPanel.xml); ours adds the help pane, or its strip, to the right
+-- of that and resizes in height only (docs/work/2026-11-02-options-widths)
+local gameWidth, minHeight = 920, 560
+local dividerWidth = 630 -- Options_HorizontalDivider at its own size, measured with the kit's Get-Atlas.ps1
+-- The page as the game's settings list lays it out (Blizzard_SettingsPanel.xml, Blizzard_SettingsList.lua): its
+-- container from 16 after the navigation to 22 before the window's edge, here 4 before the help pane, and the list in it
+-- from 15 left of the container to 20 before its right, its rows padded 25 on the left, so a row is 635 wide
+local pageInsets = { Left = 16 - 15, Right = 4 + 20, Pad = 25 }
+
+function lib.WindowWidth(collapsed)
+    return gameWidth + (collapsed and stripWidth or helpWidth)
+end
 
 -- [[ Navigation ]] --
 -- The game's category list (Blizzard_CategoryList.lua): a group under a header bar, a section gold, the selected one
@@ -191,7 +202,6 @@ end
 
 function Krowi_OptionsWindowMixin:OnLoad()
     self:RegisterForDrag("LeftButton")
-    if self.SetResizeBounds then self:SetResizeBounds(minWidth, minHeight) else self:SetMinResize(minWidth, minHeight) end
 
     -- A plain Hide on both: HideUIPanel, the template's own, refuses addon code in combat
     self.ClosePanelButton:SetScript("OnClick", function() self:Hide() end)
@@ -215,7 +225,7 @@ function Krowi_OptionsWindowMixin:OnLoad()
     InitList(self, self.PageScrollBox, self.PageScrollBar, rowTemplates, function(element)
         if element.Kind == "Note" then return self:MeasureText(element.Text, "GameFontDisable", self:PageWidth() - 32) + 8 end
         return rowTemplates[element.Kind][2]
-    end)
+    end, pageInsets.Pad)
     self.HelpBar = InitList(self, self.HelpScrollBox, self.HelpScrollBar, {
         HelpText = { "Krowi_OptionsHelpTextTemplate" },
         HelpPicture = { "Krowi_OptionsHelpPictureTemplate" },
@@ -243,17 +253,12 @@ function Krowi_OptionsWindowMixin:OnLoad()
         lib.SetShared("SearchAll", self.SearchEveryTab)
         if self.Searching then self:OnSearch(self.SearchBox:GetText()) end
     end)
-    -- Lines under the page's group headings, the player's choice, kept for every addon like the window's place
-    self.HeadingLines:SetScript("OnClick", function(button)
-        self.ShowHeadingLines = button:GetChecked() and true or false
-        lib.SetShared("HeadingLines", self.ShowHeadingLines)
-        self:ReloadSection()
-    end)
     self.CollapseButton:SetScript("OnClick", function() self:SetPaneCollapsed(true) end)
     self.ExpandButton:SetScript("OnClick", function() self:SetPaneCollapsed(false) end)
-    -- » hides the pane, « brings it back; gold, white under the mouse, as the window's other links
-    self.CollapseButton.Arrow:SetText("\194\187")
-    self.ExpandButton.Arrow:SetText("\194\171")
+    -- « hides the pane and » brings it back, the way the window's right edge moves; gold, white under the mouse, as the
+    -- window's other links
+    self.CollapseButton.Arrow:SetText("\194\171")
+    self.ExpandButton.Arrow:SetText("\194\187")
     self.ExpandButton.Label:SetRotation(-math.pi / 2) -- reads downwards
     for _, button in ipairs({ self.CollapseButton, self.ExpandButton }) do
         button:SetScript("OnEnter", function()
@@ -278,7 +283,7 @@ function Krowi_OptionsWindowMixin:OnLoad()
     self.DefaultsButton:SetScript("OnClick", function() self:OnDefaultsClick() end)
     self.CancelButton:SetScript("OnClick", function() self:CancelConfirm() end)
     self.ReloadButton:SetScript("OnClick", function() if not InCombatLockdown() then ReloadUI() end end)
-    self.ResizeButton:SetScript("OnMouseDown", function() self:StartSizing("BOTTOMRIGHT") end)
+    self.ResizeButton:SetScript("OnMouseDown", function() self:StartSizing("BOTTOM") end) -- in height only
     self.ResizeButton:SetScript("OnMouseUp", function()
         self:StopMovingOrSizing()
         lib.SetShared("Size", { self:GetWidth(), self:GetHeight() })
@@ -290,17 +295,44 @@ end
 
 -- The window's own state, from the saved table of the addon that opened it first; every addon keeps a copy (lib.SetShared)
 function Krowi_OptionsWindowMixin:Init(saved)
-    if saved.Size then self:SetSize(math.max(saved.Size[1], minWidth), math.max(saved.Size[2], minHeight)) end
+    if saved.Size then self:SetHeight(math.max(saved.Size[2], minHeight)) end -- the width follows the pane alone
+    self.PaneCollapsed = saved.PaneCollapsed and true or false
+    self:ApplyWidth()
     if saved.Point then
         self:ClearAllPoints()
         self:SetPoint(saved.Point[1], UIParent, saved.Point[2], saved.Point[3], saved.Point[4])
     end
-    self.PaneCollapsed = saved.PaneCollapsed and true or false
     self.SearchEveryTab = saved.SearchAll and true or false
     self.SearchAll:SetChecked(self.SearchEveryTab)
-    self.ShowHeadingLines = saved.HeadingLines and true or false
-    self.HeadingLines:SetChecked(self.ShowHeadingLines)
     self:Layout()
+end
+
+-- The game's width plus the help pane or its strip; a window wider than the screen (a large UI scale) is scaled down to
+-- fit, and one taller than it (a height saved on a larger screen) comes back inside it. keepLeft: the window grows and
+-- shrinks to the right, its top left staying where it is, and that place is saved.
+function Krowi_OptionsWindowMixin:ApplyWidth(keepLeft)
+    local width = lib.WindowWidth(self.PaneCollapsed)
+    local screen = UIParent:GetWidth()
+    local scale = screen > 0 and math.min(1, (screen - 40) / width) or 1
+    local left, top = self:GetLeft(), self:GetTop()
+    local moves = keepLeft and left and top and (math.abs(self:GetScale() - scale) > 0.001 or math.abs(self:GetWidth() - width) > 0.5)
+    if moves then
+        -- The edges in the window's own units, which its scale sets
+        local ratio = self:GetScale() / scale
+        self:ClearAllPoints()
+        self:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", left * ratio, top * ratio)
+    end
+    self:SetScale(scale)
+    self:SetWidth(width)
+    local maxHeight = math.max(minHeight, UIParent:GetHeight() / scale)
+    if self:GetHeight() > maxHeight then self:SetHeight(maxHeight) end
+    if self.SetResizeBounds then
+        self:SetResizeBounds(width, minHeight, width, maxHeight)
+    else
+        self:SetMinResize(width, minHeight)
+        self:SetMaxResize(width, maxHeight)
+    end
+    if moves then self:SavePoint() end
 end
 
 -- [[ Tabs ]] --
@@ -343,12 +375,16 @@ function Krowi_OptionsWindowMixin:RefreshTabs()
 end
 
 -- Searching every tab means something only with a second tab: the check box shows from then on, and until then the
--- reload bar reaches to the heading lines check box
+-- reload bar reaches to Close, as low as it reaches beside the 29 high check box
 function Krowi_OptionsWindowMixin:UpdateSearchAll()
     local several = #lib.Tabs > 1
     self.SearchAll:SetShown(several)
     self.SearchAllLabel:SetShown(several)
-    self.ReloadBackground:SetPoint("BOTTOMRIGHT", several and self.SearchAll or self.HeadingLines, "BOTTOMLEFT", -12, -2)
+    if several then
+        self.ReloadBackground:SetPoint("BOTTOMRIGHT", self.SearchAll, "BOTTOMLEFT", -12, -2)
+    else
+        self.ReloadBackground:SetPoint("BOTTOMRIGHT", self.CloseButton, "BOTTOMLEFT", -12, -5.5)
+    end
 end
 
 -- Shows the window on an addon's tab: its sections, strings and saved table, at sectionId or the addon's landing section
@@ -366,13 +402,16 @@ function Krowi_OptionsWindowMixin:ShowTab(tab, sectionId, optionId)
     self:ShowSection(sectionId or self.Config.Landing(), optionId)
 end
 
+-- Defaults is as wide as the game's (96, Blizzard_SettingsList.xml), wider only for a text that does not fit in it
+local function FitButton(button)
+    button:SetWidth(math.max(96, button:GetFontString():GetStringWidth() + 24))
+end
+
 function Krowi_OptionsWindowMixin:ApplyStrings()
     local strings = self.Strings
     self.SearchBox.Instructions:SetText(strings.Search or "")
     self.SearchAllLabel:SetText(strings.SearchAll or "")
     self.SearchAll:SetHitRectInsets(0, -(self.SearchAllLabel:GetStringWidth() + 4), 0, 0) -- the label ticks it too
-    self.HeadingLinesLabel:SetText(strings.HeadingLines or "")
-    self.HeadingLines:SetHitRectInsets(0, -(self.HeadingLinesLabel:GetStringWidth() + 4), 0, 0)
     -- The collapsed pane's strip: the chevron, then the pane's name down the strip; the whole strip brings the pane back.
     -- A turned text turns about its centre, so it hangs below the chevron by half its length; its letters sit off the
     -- line's middle, so it moves right to stand under the chevron (measured in game, 2026-10-30)
@@ -383,6 +422,7 @@ function Krowi_OptionsWindowMixin:ApplyStrings()
     label:SetPoint("CENTER", self.ExpandButton, "TOP", 6, -(28 + length / 2))
     self.ExpandButton:SetHeight(34 + length)
     self.DefaultsButton:SetText(strings.Defaults)
+    FitButton(self.DefaultsButton)
     self.ReloadButton:SetText(strings.ReloadNow)
     self.ReloadText:SetText(lib.Markup.Reload .. " " .. strings.ReloadText) -- the rows' reload arrow, explained
     self.ShowMeButton:SetText(strings.ShowMe)
@@ -431,12 +471,10 @@ function Krowi_OptionsWindowMixin:EndFill()
     end
 end
 
--- The page's scroll box as Layout anchors it: from 8 past the navigation's end to 16 before the help pane
-local pageInsets = { Left = 8, Right = 16 }
-
+-- A row's width: the page's scroll box (pageInsets) without its rows' left padding
 function Krowi_OptionsWindowMixin:PageWidth()
     return self:GetWidth() - (bodyInsets.Left - bodyInsets.Right) - self:NavEnd() - (self.PaneCollapsed and stripWidth or helpWidth)
-        - pageInsets.Left - pageInsets.Right
+        - pageInsets.Left - pageInsets.Right - pageInsets.Pad
 end
 
 function Krowi_OptionsWindowMixin:Layout()
@@ -467,12 +505,12 @@ function Krowi_OptionsWindowMixin:Layout()
     self.HelpBackground:SetPoint("TOPRIGHT", body, "TOPRIGHT")
     self.HelpBackground:SetPoint("BOTTOMRIGHT", body, "BOTTOMRIGHT")
     self.HelpBackground:SetWidth(right)
+    -- « stands at the pane's left, on the spot where the strip's » comes (15 in, as the strip is 30 wide), so a second
+    -- click finds it under the mouse; "How it works" follows it, part of the button
     self.CollapseButton:ClearAllPoints()
-    self.CollapseButton:SetPoint("TOPRIGHT", body, "TOPRIGHT", -5, -3)
+    self.CollapseButton:SetPoint("TOPLEFT", self.HelpBackground, "TOPLEFT", 4, -3)
     self.ExpandButton:ClearAllPoints()
     self.ExpandButton:SetPoint("TOP", self.HelpBackground, "TOP", 0, -3)
-    self.HelpKicker:ClearAllPoints()
-    self.HelpKicker:SetPoint("TOPLEFT", self.HelpBackground, "TOPLEFT", 16, -12)
     self.HelpScrollBox:ClearAllPoints()
     self.HelpScrollBox:SetPoint("TOPLEFT", self.HelpBackground, "TOPLEFT", 12, -32)
     self.HelpScrollBox:SetPoint("BOTTOMRIGHT", self.HelpBackground, "BOTTOMRIGHT", -22, 44)
@@ -485,7 +523,7 @@ function Krowi_OptionsWindowMixin:Layout()
     self.ShowMeNote:SetPoint("LEFT", self.ShowMeButton, "RIGHT", 8, 0)
     self.ShowMeNote:SetPoint("RIGHT", self.HelpBackground, "RIGHT", -10, 0)
 
-    for _, region in ipairs({ self.CollapseButton, self.HelpKicker, self.HelpScrollBox }) do
+    for _, region in ipairs({ self.CollapseButton, self.HelpScrollBox }) do
         region:SetShown(not self.PaneCollapsed)
     end
     -- The help's scroll bar hides with the pane, and comes back only when the help is longer than the pane
@@ -497,18 +535,20 @@ function Krowi_OptionsWindowMixin:Layout()
     self.ExpandButton:SetShown(self.PaneCollapsed)
     self:UpdateShowMe()
 
-    -- The page's header as the game's settings list draws it (Blizzard_SettingsList.xml): the title, Defaults at its
-    -- right and the divider under both
+    -- The page's header as the game's settings list draws it (Blizzard_SettingsList.xml), on its container (pageInsets):
+    -- the title 7 into it, Defaults 36 before its right, and the divider at its own size, centred under both
+    local pageLeft = navEnd + 16
+    local pageRight = self:GetWidth() - (bodyInsets.Left - bodyInsets.Right) - right - 4
     self.PageTitle:ClearAllPoints()
-    self.PageTitle:SetPoint("TOPLEFT", body, "TOPLEFT", navEnd + 20, -22)
-    self.PageTitle:SetPoint("RIGHT", self.HelpBackground, "LEFT", -130, 0)
+    self.PageTitle:SetPoint("TOPLEFT", body, "TOPLEFT", pageLeft + 7, -22)
+    self.PageTitle:SetPoint("RIGHT", self.DefaultsButton, "LEFT", -6, 0)
     self.DefaultsButton:ClearAllPoints()
-    self.DefaultsButton:SetPoint("TOPRIGHT", self.HelpBackground, "TOPLEFT", -14, -16)
+    self.DefaultsButton:SetPoint("TOPRIGHT", self.HelpBackground, "TOPLEFT", -4 - 36, -16)
     self.CancelButton:ClearAllPoints()
     self.CancelButton:SetPoint("RIGHT", self.DefaultsButton, "LEFT", -6, 0)
     self.Divider:ClearAllPoints()
-    self.Divider:SetPoint("TOPLEFT", body, "TOPLEFT", navEnd + 8, -50)
-    self.Divider:SetPoint("TOPRIGHT", self.HelpBackground, "TOPLEFT", -8, -50)
+    self.Divider:SetWidth(math.min(dividerWidth, pageRight - pageLeft))
+    self.Divider:SetPoint("TOP", body, "TOPLEFT", (pageLeft + pageRight) / 2, -50)
     self.PageScrollBox:ClearAllPoints()
     self.PageScrollBox:SetPoint("TOPLEFT", body, "TOPLEFT", navEnd + pageInsets.Left, -58)
     self.PageScrollBox:SetPoint("BOTTOMRIGHT", self.HelpBackground, "BOTTOMLEFT", -pageInsets.Right, 0)
@@ -516,13 +556,9 @@ function Krowi_OptionsWindowMixin:Layout()
     self.PageScrollBar:SetPoint("TOPLEFT", self.PageScrollBox, "TOPRIGHT", 0, -4)
     self.PageScrollBar:SetPoint("BOTTOMLEFT", self.PageScrollBox, "BOTTOMRIGHT", -1, 7)
 
-    -- The bottom row: the reload bar, the search scope and heading lines check boxes, and Close
-    self.HeadingLinesLabel:ClearAllPoints()
-    self.HeadingLinesLabel:SetPoint("RIGHT", self.CloseButton, "LEFT", -16, 0)
-    self.HeadingLines:ClearAllPoints()
-    self.HeadingLines:SetPoint("RIGHT", self.HeadingLinesLabel, "LEFT", -2, 0)
+    -- The bottom row: the reload bar, the search scope check box, and Close
     self.SearchAllLabel:ClearAllPoints()
-    self.SearchAllLabel:SetPoint("RIGHT", self.HeadingLines, "LEFT", -16, 0)
+    self.SearchAllLabel:SetPoint("RIGHT", self.CloseButton, "LEFT", -16, 0)
     self.SearchAll:ClearAllPoints()
     self.SearchAll:SetPoint("RIGHT", self.SearchAllLabel, "LEFT", -2, 0)
     self.ReloadBackground:ClearAllPoints()
@@ -537,6 +573,7 @@ end
 function Krowi_OptionsWindowMixin:SetPaneCollapsed(collapsed)
     self.PaneCollapsed = collapsed
     lib.SetShared("PaneCollapsed", collapsed)
+    self:ApplyWidth(true) -- "How it works" widens the window to the right
     self:Layout()
     self:ReloadSection()
 end
@@ -548,6 +585,7 @@ local shownEvents = { "PLAYER_REGEN_DISABLED", "PLAYER_REGEN_ENABLED", "UI_SCALE
 function Krowi_OptionsWindowMixin:OnShow()
     PlaySound(SOUNDKIT.IG_CHARACTER_INFO_OPEN)
     for _, event in ipairs(shownEvents) do self:RegisterEvent(event) end
+    self:ApplyWidth(true) -- the scale or resolution may have changed while the window was hidden
     -- Shown again with its parent (the interface back after Alt+Z): OnHide released Show me, so lay it over again
     if self.SectionId then self:UpdateShowMe() end
 end
@@ -572,6 +610,7 @@ end
 -- PLAYER_REGEN_DISABLED runs just before the lockdown starts, so InCombatLockdown() is still false inside it
 function Krowi_OptionsWindowMixin:OnEvent(event)
     if event == "UI_SCALE_CHANGED" or event == "DISPLAY_SIZE_CHANGED" then
+        self:ApplyWidth(true) -- the screen may have room for the whole window now, or no longer
         self:UpdateShowMe()
         return
     end
@@ -670,7 +709,8 @@ local function Signature(elements)
     local parts = {}
     for i, element in ipairs(elements) do
         local option = element.Option or (element.Item and element.Item.Show)
-        parts[i] = element.Kind .. ":" .. (option and ((option.Id or "") .. "|" .. option:GetLabel()) or tostring(element.Text or element.Label or ""))
+        local with = element.With and not element.With:IsHidden() and ("+" .. element.With.Id) or "" -- shown with its row
+        parts[i] = element.Kind .. ":" .. (option and ((option.Id or "") .. "|" .. option:GetLabel() .. with) or tostring(element.Text or element.Label or ""))
     end
     return table.concat(parts, "\n")
 end
@@ -714,12 +754,14 @@ function Krowi_OptionsWindowMixin:RefreshFooter()
         self.ChangedText:SetFontObject("GameFontHighlight")
         self.ChangedText:SetText(confirming.Text)
         self.DefaultsButton:SetText(self.Strings.Yes or YES)
+        FitButton(self.DefaultsButton)
         self.DefaultsButton:SetEnabled(true)
     else
         local count = (not self.Searching and self.SectionId ~= "overview") and self.Config.ChangedCount(self.SectionId) or 0
         self.ChangedText:SetFontObject("GameFontDisableSmall")
         self.ChangedText:SetText(count > 0 and self.Strings.ChangedCount:format(count) or "")
         self.DefaultsButton:SetText(self.Strings.Defaults)
+        FitButton(self.DefaultsButton)
         self.DefaultsButton:SetEnabled(count > 0)
     end
     local reload = self.ReloadPending and true or false
@@ -748,7 +790,7 @@ end
 
 function Krowi_OptionsWindowMixin:ScrollToOption(optionId)
     for _, element in ipairs(self.Elements or {}) do
-        if element.Option and element.Option.Id == optionId then
+        if element.Option and element.Option.Id == optionId or element.With and element.With.Id == optionId then
             self.PageScrollBox:ScrollToElementData(element, ScrollBoxConstants.AlignCenter)
             return
         end
@@ -840,6 +882,7 @@ function Krowi_OptionsWindowMixin:ShowPicture(element)
     local scale = math.min(1, (UIParent:GetWidth() - 80) / element.Width, (UIParent:GetHeight() - 80) / element.Height)
     lightbox.Picture:SetTexture(element.Picture)
     if element.TexCoords then lightbox.Picture:SetTexCoord(unpack(element.TexCoords)) else lightbox.Picture:SetTexCoord(0, 1, 0, 1) end
+    scale = scale / self:GetScale() -- the lightbox is the window's: a window scaled down to fit leaves the picture its size
     lightbox.Picture:SetSize(element.Width * scale, element.Height * scale)
     lightbox.Picture:ClearAllPoints()
     lightbox.Picture:SetPoint("CENTER", UIParent, "CENTER")
@@ -850,11 +893,18 @@ function Krowi_OptionsWindowMixin:FillHelp(blocks)
     self.HelpScrollBox:SetDataProvider(CreateDataProvider(blocks), ScrollBoxConstants.DiscardScrollPosition)
 end
 
+-- The open pane's name after «: a click on it closes the pane too, as the strip's name opens it
+function Krowi_OptionsWindowMixin:SetKicker(text)
+    local button = self.CollapseButton
+    button.Label:SetText(text)
+    button:SetHitRectInsets(0, -(button.Label:GetStringWidth() + 2), 0, 0)
+end
+
 function Krowi_OptionsWindowMixin:ShowSectionHelp()
     self.HoverOption = nil
     local help = self.Config.GetHelp(self.SectionId)
     self.Help = help
-    self.HelpKicker:SetText(self.Strings.HowItWorks)
+    self:SetKicker(self.Strings.HowItWorks)
     local blocks = {}
     local title = help and help.Title or (self.SectionId == "overview" and self.Strings.Overview or self.Config.SectionName(self.SectionId))
     blocks[#blocks + 1] = TextBlock(title, "GameFontNormalLarge", 10)
@@ -953,7 +1003,7 @@ function Krowi_OptionsWindowMixin:OnRowEnter(option, row, controlX)
         return
     end
     self.HoverOption = option
-    self.HelpKicker:SetText(self.Config.SectionName(self.SectionId) or "")
+    self:SetKicker(self.Config.SectionName(self.SectionId) or "")
     local blocks = { TextBlock(option:GetLabel(), "GameFontNormalLarge", 10) }
     if desc ~= "" then blocks[#blocks + 1] = TextBlock(desc, "GameFontHighlightSmall", 10) end
     for _, line in ipairs(lines) do blocks[#blocks + 1] = TextBlock(line, "GameFontDisableSmall", 4) end

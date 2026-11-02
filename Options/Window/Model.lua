@@ -43,6 +43,7 @@ function model.Options()
         for _, element in ipairs(source.Elements(section)) do
             if element.Option then
                 list[#list + 1] = { Section = section.Id, Option = element.Option }
+                if element.With then list[#list + 1] = { Section = section.Id, Option = element.With } end
             elseif element.Kind == "Grid" then
                 for _, row in ipairs(element.Rows) do
                     for _, cell in ipairs(row.Cells) do list[#list + 1] = { Section = section.Id, Option = cell } end
@@ -76,6 +77,7 @@ function model.Coverage()
                 Check(entry.Path or entry.Group or entry.Families, entry)
                 Check(entry.Parent, entry)
                 Check(entry.ShowIf, entry)
+                Check(entry.With, entry)
             end
             for _, row in ipairs(group.Rows or {}) do Check(row.Group, row) end
             if group.Kind == "Profiles" then
@@ -95,6 +97,7 @@ function model.Coverage()
                 for _, slot in ipairs(option.Slots) do Claim(claims, slot.Path) end
             elseif option and element.Kind == "Option" then
                 Claim(claims, option.Path)
+                if element.With then Claim(claims, element.With.Path) end
             elseif element.Kind == "Grid" then
                 for _, row in ipairs(element.Rows) do
                     for _, cell in ipairs(row.Cells) do Claim(claims, cell.Path) end
@@ -211,6 +214,7 @@ function model.SectionOptions(sectionId)
     for _, element in ipairs(section and source.Elements(section) or {}) do
         if element.Option then
             list[#list + 1] = element.Option
+            if element.With then list[#list + 1] = element.With end
         elseif element.Kind == "Grid" then
             for _, row in ipairs(element.Rows) do
                 for _, cell in ipairs(row.Cells) do list[#list + 1] = cell end
@@ -248,13 +252,24 @@ function model.Search(text)
     end
     for _, section in ipairs(window.Map.Sections) do
         local heading = ""
-        for _, element in ipairs(source.Elements(section)) do
-            if element.Kind == "Header" then heading = element.Text or "" end
-            local option = element.Option
+        -- button: the text of a button that belongs to the option's check box, found as the option
+        local function Find(option, button)
             if option and not option:IsHidden() then
                 local label = option:GetLabel()
-                if Has(label) or Has(option:GetDescription()) or Has(heading) then
+                if Has(label) or Has(option:GetDescription()) or Has(heading) or Has(button) then
                     results[#results + 1] = { SectionId = section.Id, Path = section.Name .. " · " .. heading, Label = label, OptionId = option.Id }
+                end
+            end
+        end
+        for _, element in ipairs(source.Elements(section)) do
+            if element.Kind == "Header" then heading = element.Text or "" end
+            local with = element.With
+            if with and with.Type == "execute" then
+                Find(element.Option, with:GetButtonText())
+            else
+                Find(element.Option)
+                if element.Option and not element.Option:IsHidden() then
+                    Find(with) -- a slider after a check box is found by its own name, while its row shows
                 end
             end
         end

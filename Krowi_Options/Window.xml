@@ -105,7 +105,8 @@
     <!-- The game's own Options frame (SettingsFrameTemplate: each client's border, title strip and background); Blizzard's
          window is laid out in Blizzard_SettingsPanel.xml, which the anchors in WindowMixin.lua's Layout follow -->
     <Frame name="Krowi_OptionsWindowTemplate" mixin="Krowi_OptionsWindowMixin" inherits="SettingsFrameTemplate" frameStrata="HIGH" toplevel="true" enableMouse="true" movable="true" resizable="true" clampedToScreen="true" hidden="true" virtual="true">
-        <Size x="1180" y="720"/>
+        <!-- The width follows the help pane (WindowMixin.lua, ApplyWidth): the game's 920 plus the pane's 380 -->
+        <Size x="1300" y="720"/>
         <Anchors>
             <Anchor point="CENTER"/>
         </Anchors>
@@ -113,11 +114,9 @@
             <Layer level="ARTWORK">
                 <FontString parentKey="PageTitle" inherits="GameFontHighlightHuge" justifyH="LEFT" wordwrap="false"/>
                 <FontString parentKey="ChangedText" inherits="GameFontDisableSmall" justifyH="RIGHT"/>
-                <FontString parentKey="HelpKicker" inherits="GameFontDisableSmall" justifyH="LEFT"/>
                 <FontString parentKey="ReloadText" inherits="GameFontHighlight" justifyH="LEFT"/>
                 <FontString parentKey="ShowMeNote" inherits="GameFontDisableSmall" justifyH="LEFT" justifyV="TOP"/>
                 <FontString parentKey="SearchAllLabel" inherits="GameFontNormalSmall" justifyH="LEFT" hidden="true"/>
-                <FontString parentKey="HeadingLinesLabel" inherits="GameFontNormalSmall" justifyH="LEFT"/>
                 <Texture parentKey="Divider" atlas="Options_HorizontalDivider" useAtlasSize="true"/>
             </Layer>
             <Layer level="BACKGROUND" textureSubLevel="2">
@@ -138,10 +137,9 @@
                 </Anchors>
             </Frame>
             <EditBox parentKey="SearchBox" inherits="SearchBoxTemplate" autoFocus="false" letters="60">
-                <Size x="300" y="22"/>
+                <Size x="350" y="22"/>
             </EditBox>
             <CheckButton parentKey="SearchAll" inherits="Krowi_OptionsCheckButtonTemplate" hidden="true"/>
-            <CheckButton parentKey="HeadingLines" inherits="Krowi_OptionsCheckButtonTemplate"/>
             <!-- The game's window scrolls with the thin MinimalScrollBar (Blizzard_CategoryList.xml, Blizzard_SettingsList.xml) -->
             <Frame parentKey="NavScrollBox" inherits="WowScrollBoxList"/>
             <EventFrame parentKey="NavScrollBar" inherits="MinimalScrollBar"/>
@@ -158,6 +156,12 @@
                         <FontString parentKey="Arrow" inherits="GameFontNormalLarge">
                             <Anchors>
                                 <Anchor point="CENTER" y="1"/>
+                            </Anchors>
+                        </FontString>
+                        <!-- The pane's name after the chevron; WindowMixin.lua's SetKicker widens the button's hit rect over it -->
+                        <FontString parentKey="Label" inherits="GameFontDisableSmall" justifyH="LEFT">
+                            <Anchors>
+                                <Anchor point="LEFT" relativePoint="RIGHT" x="2"/>
                             </Anchors>
                         </FontString>
                     </Layer>
@@ -180,7 +184,7 @@
                 <Size x="120" y="22"/>
             </Button>
             <Button parentKey="DefaultsButton" inherits="UIPanelButtonNoTooltipTemplate">
-                <Size x="110" y="22"/>
+                <Size x="96" y="22"/>
             </Button>
             <Button parentKey="CancelButton" inherits="UIPanelButtonNoTooltipTemplate" hidden="true">
                 <Size x="80" y="22"/>

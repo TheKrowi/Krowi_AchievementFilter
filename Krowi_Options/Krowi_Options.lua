@@ -13,7 +13,7 @@
 -- (docs/work/2026-10-30-options-settings-look). Lives inside Krowi_AchievementFilter for now
 -- (docs/work/2026-10-25-options-revamp); extracting it is a move into Krowi_Libraries.
 
-local lib = KROWI_LIBMAN:NewLibrary('Krowi_Options_1', 1)
+local lib = KROWI_LIBMAN:NewLibrary('Krowi_Options_1', 2)
 if not lib then return end
 
 -- The registered tabs, sorted by name, and the one window they share (lib.Frame, made on the first open). Both live on
@@ -31,7 +31,7 @@ lib.Markup = {
 
 --[[ config:
     TabName         the tab's text: the addon's name, not translated
-    Saved           a table the addon keeps the window's place, size, pane state, search scope, heading lines, its last
+    Saved           a table the addon keeps the window's place, size, pane state, search scope, its last
                     section and the sections seen in, or a function returning it (called on the first need, so it can
                     live in saved variables not loaded yet); the window's own state is written to every tab's table
                     (lib.SetShared)
@@ -124,7 +124,7 @@ function lib.GetFrame(opening)
     return lib.Frame
 end
 
--- The window's place, size, pane state, search scope and heading lines are one for every addon: each addon's saved
+-- The window's place, size, pane state and search scope are one for every addon: each addon's saved
 -- table gets them, so any one addon alone still opens the window as the player left it
 function lib.SetShared(key, value)
     for _, registered in ipairs(lib.Tabs) do

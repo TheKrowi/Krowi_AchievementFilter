@@ -345,7 +345,7 @@ local function Join(base, key)
 end
 
 -- --- expanding map entries into elements -------------------------------------------------------------------------
--- Elements: { Kind = "Header"|"SubHeading"|"Note", Text } | { Kind = "Option", Option } | { Kind = "Sub", Text, Members }
+-- Elements: { Kind = "Header"|"SubHeading"|"Note", Text } | { Kind = "Option", Option, With } | { Kind = "Sub", Text, Members }
 -- | { Kind = "Grid", Columns, Rows } | { Kind = "TabList", Items } | { Kind = "Profiles", Database }
 local skippedKeys = { SelectAll = true, DeselectAll = true }
 
@@ -366,12 +366,15 @@ local function Leaves(groupPath, header)
 end
 source.Leaves = Leaves
 
+-- entry.Pairs: { [key] = key } of a toggle and the option of its group drawn after its check box
 local function AddLeaves(elements, leaves, entry)
+    local paired = {}
+    for _, key in next, entry.Pairs or {} do paired[key] = true end
     local i = 1
     while i <= #leaves do
         local leaf = leaves[i]
         local n = leaf.Node
-        if skippedKeys[leaf.Key] then
+        if skippedKeys[leaf.Key] or paired[leaf.Key] then
             i = i + 1
         elseif n.type == "header" then
             local text = Evaluate(n.name)
@@ -393,7 +396,9 @@ local function AddLeaves(elements, leaves, entry)
             i = j
         else
             local option = source.OptionAt(leaf.Path, entry)
-            if option then elements[#elements + 1] = { Kind = "Option", Option = option } end
+            local pair = entry.Pairs and entry.Pairs[leaf.Key]
+            local with = pair and source.OptionAt(leaf.Path:match("^(.*%.)") .. pair, entry)
+            if option then elements[#elements + 1] = { Kind = "Option", Option = option, With = with } end
             i = i + 1
         end
     end
@@ -518,7 +523,9 @@ function source.Elements(section)
                         local option = source.OptionAt(entry.Path, entry)
                         if option then
                             AddPluginNotes(elements, entry.Path, notesAdded)
-                            elements[#elements + 1] = { Kind = "Option", Option = option }
+                            -- the option after the check box, shown where its check box is
+                            local with = entry.With and source.OptionAt(entry.With, { Retail = entry.Retail, ShowIf = entry.ShowIf })
+                            elements[#elements + 1] = { Kind = "Option", Option = option, With = with }
                         end
                     end
                 end

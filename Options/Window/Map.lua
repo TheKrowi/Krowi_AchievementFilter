@@ -3,8 +3,10 @@ local L = addon.L
 
 -- Where every AceConfig option of the six option pages shows in the options window, per feature section
 -- (docs/work/2026-10-25-options-revamp). Paths are AceConfig key paths into addon.Options.OptionsTable, the form
--- InjectOptions uses. An entry is a Path (one option), a Group (every option of a group, or with Header the ones
--- under that header; "" = before the first header), or Families (each child group, a heading with All/None).
+-- InjectOptions uses. An entry is a Path (one option), a Group (every option of a group, or with Header the ones under
+-- that header; "" = before the first header), or Families (each child group, a heading with All/None). A toggle can
+-- carry the option drawn after its check box, as the game's Tutorials and Mouse Sensitivity rows: With on a Path entry
+-- (an execute's or a range's path), Pairs = { [toggle key] = key } on a Group entry.
 -- The options suite (Tests/Options.lua) fails when an option is unmapped or mapped twice.
 addon.Options.Window = addon.Options.Window or {}
 addon.Options.Window.Map = {
@@ -26,12 +28,9 @@ addon.Options.Window.Map = {
             } },
             { Header = L["Position"], Entries = {
                 { Path = "Layout.args.Window.args.Movable.args.SwitchMovable" },
-                { Path = "Layout.args.Window.args.Movable.args.AchievementWindowRememberLastPosition" },
-                { Path = "Layout.args.Window.args.Movable.args.AchievementWindowResetPosition", Label = L["Reset window position"], Button = L["Reset"] },
-                { Path = "Layout.args.Window.args.Movable.args.CalendarRememberLastPosition" },
-                { Path = "Layout.args.Window.args.Movable.args.CalendarResetPosition", Label = L["Reset calendar position"], Button = L["Reset"] },
-                { Path = "Layout.args.Window.args.Movable.args.DataManagerRememberLastPosition" },
-                { Path = "Layout.args.Window.args.Movable.args.DataManagerResetPosition", Label = L["Reset Data Manager position"], Button = L["Reset"] },
+                { Path = "Layout.args.Window.args.Movable.args.AchievementWindowRememberLastPosition", With = "Layout.args.Window.args.Movable.args.AchievementWindowResetPosition" },
+                { Path = "Layout.args.Window.args.Movable.args.CalendarRememberLastPosition", With = "Layout.args.Window.args.Movable.args.CalendarResetPosition" },
+                { Path = "Layout.args.Window.args.Movable.args.DataManagerRememberLastPosition", With = "Layout.args.Window.args.Movable.args.DataManagerResetPosition" },
             } },
             { Header = L["Opening the window"], Entries = {
                 { Path = "General.args.KeyBinding.args.General.args.ResetView.args.ResetViewOnOpen" },
@@ -90,7 +89,7 @@ addon.Options.Window.Map = {
                 { Group = "Layout.args.Achievements.args.Style.args.Style", Header = "" },
             } },
             { Header = L["Objectives"], Entries = {
-                { Group = "Layout.args.Achievements.args.Style.args.Style", Header = "Objectives" },
+                { Group = "Layout.args.Achievements.args.Style.args.Style", Header = "Objectives", Pairs = { ForceTwoColumns = "ForceTwoColumnsThreshold" } },
             } },
             { Header = L["Scrolling"], Entries = {
                 { Path = "Layout.args.Achievements.args.Style.args.MouseWheelPanScalar.args.MouseWheelPanScalar" },
@@ -155,7 +154,7 @@ addon.Options.Window.Map = {
         } },
         { Id = "popout", Name = L["Pop Out"], Groups = {
             { Header = L["Pop Outs"], Entries = {
-                { Group = "Layout.args.Popout.args.General" },
+                { Group = "Layout.args.Popout.args.General", Pairs = { CloseOnEarn = "CloseOnEarnDelay", EnableSnapping = "SnapDistance" } },
             } },
             { Header = L["Buttons"], Entries = {
                 { Group = "Layout.args.Popout.args.Buttons" },
