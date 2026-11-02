@@ -3,7 +3,9 @@
 -- records as text every data-derived achievement property, every zone placement and the registries the
 -- achievement data resolves against, so a data change - obtainability, seasons, build versions,
 -- faction, rewards, zone assignment - is a reviewable diff instead of something to reason out. The
--- sibling of snapshot-categories.lua, which records the category tree; nothing here repeats it.
+-- sibling of snapshot-categories.lua, which records the category tree; nothing here repeats it. The
+-- per-achievement lines (ACH, TIP, TRANSMOG, PETBATTLE, GUIDE, EVENT) come from data-format.lua, which
+-- show-achievement.lua prints too, so Show-Achievement.ps1 shows the very line recorded here.
 --
 -- What is recorded is what the pipeline BUILT, not what the files say: a builder that stores the wrong
 -- field or a loader that drops an entry shows, while a refactor that builds the same objects - an
@@ -53,125 +55,20 @@ local scriptDir = ((arg and arg[0]) or ""):gsub("\\", "/"):match("^(.*)/") or ".
 local clientEnv = assert(loadfile(scriptDir .. "/client-env.lua"))()
 root = clientEnv.NormaliseRoot(root)
 
+local dataFormat = assert(loadfile(scriptDir .. "/data-format.lua"))()
+
 local SNAPSHOT_DIR = ".claude/tools/headless/snapshots"
 local KINDS = { "Achievements", "Zones", "Registries" }
--- the three lists Api/ZoneDataApi.lua fills per map; the raid-size forms only exist for old raids
-local ZONE_LISTS = { { Field = "Achievements", Tag = "" }, { Field = "Achievements10", Tag = " (10)" }, { Field = "Achievements25", Tag = " (25)" } }
+local ZONE_LISTS = dataFormat.ZONE_LISTS
 
 local function snapshotPath(kind, client)
     return SNAPSHOT_DIR .. "/" .. kind .. "." .. client .. ".txt"
 end
 
--------------------------------------------------------------------------------------------------
--- Deterministic rendering helpers
--------------------------------------------------------------------------------------------------
--- The separators -check splits on, " | " between fields and " # " before a list entry, can never
--- occur inside a value
-local escapes = { ["\r"] = "\\r", ["\n"] = "\\n", ["\t"] = "\\t", ["|"] = "\\|", ["#"] = "\\#" }
-
-local function escape(s)
-    return (tostring(s):gsub("[\r\n\t|#]", escapes))
-end
-
--- A headless stub renders as the global path it stands for (PLAYER_FACTION_GROUP.Alliance): stable,
--- and exactly what the data file named
-local function stubName(v)
-    local mt = type(v) == "table" and getmetatable(v)
-    if mt and mt.__tostring then return tostring(v):match("^<stub (.*)>$") end
-end
-
-local serialize
-
--- a total order over mixed keys that never compares addresses: a table key is ordered by its rendering
-local function lessThan(a, b)
-    local ta, tb = type(a), type(b)
-    if ta == tb and (ta == "number" or ta == "string") then return a < b end
-    if ta ~= tb then return ta < tb end
-    return serialize(a) < serialize(b)
-end
-
--- the built-in < when every element is a number, or every one a string: much faster than a Lua
--- comparator on the 8000-odd achievement ids, and the same order
-local function sortList(list)
-    local first = type(list[1])
-    for i = 2, #list do
-        if type(list[i]) ~= first then
-            table.sort(list, lessThan)
-            return list
-        end
-    end
-    if first == "number" or first == "string" then table.sort(list) else table.sort(list, lessThan) end
-    return list
-end
-
-local function sortedKeys(t)
-    local keys = {}
-    for k in pairs(t) do keys[#keys + 1] = k end
-    return sortList(keys)
-end
-
--- Deterministic for any value a loader can store: keys sorted, an object shown by its Id, a function
--- by kind only, so it can never leak a hash order or an address into the snapshot
-function serialize(v, depth)
-    local t = type(v)
-    if t == "string" then return escape(v) end
-    if t == "number" or t == "boolean" or t == "nil" then return tostring(v) end
-    if t ~= "table" then return "<" .. t .. ">" end
-    local stub = stubName(v)
-    if stub then return stub end
-    if getmetatable(v) and v.Id ~= nil then return "<object " .. serialize(v.Id) .. ">" end
-    depth = depth or 0
-    if depth >= 3 then return "{...}" end
-    local parts = {}
-    for i, k in ipairs(sortedKeys(v)) do
-        parts[#parts + 1] = (k == i and "" or (escape(k) .. "=")) .. serialize(v[k], depth + 1)
-    end
-    return "{" .. table.concat(parts, ",") .. "}"
-end
-
--- the fields of t no rendering below knows about, so a property a future loader adds shows up
--- instead of being silently left out
-local function unhandledKeys(t, handled)
-    local keys = {}
-    for k in pairs(t) do
-        if not handled[k] then keys[#keys + 1] = k end
-    end
-    return sortList(keys)
-end
-
-local function extras(t, handled)
-    local parts = {}
-    for i, k in ipairs(unhandledKeys(t, handled)) do parts[i] = " " .. escape(k) .. "=" .. serialize(t[k]) end
-    return table.concat(parts)
-end
-
-local function reverse(enum)
-    local r = {}
-    for name, value in pairs(type(enum) == "table" and enum or {}) do r[value] = name end
-    return r
-end
-
-local function nameOf(names, v)
-    return names[v] or serialize(v)
-end
-
--- "050400" -> "5.4.0"
-local dottedCache = {}
-local function dotted(id)
-    local s = tostring(id)
-    if not dottedCache[s] then
-        dottedCache[s] = s:match("^%d%d%d%d%d%d$") and (tonumber(s:sub(1, 2)) .. "." .. tonumber(s:sub(3, 4)) .. "." .. tonumber(s:sub(5, 6))) or escape(s)
-    end
-    return dottedCache[s]
-end
-
--- {2024, 11, 4} -> "2024-11-04"
-local function dateOf(v)
-    local s = serialize(v)
-    local y, m, d = s:match("^{(%d+),(%d+),(%d+)}$")
-    if not y then return s end
-    return string.format("%04d-%02d-%02d", tonumber(y), tonumber(m), tonumber(d))
-end
+-- The rendering helpers and the per-achievement lines live in data-format.lua, shared with
+-- show-achievement.lua, so the line Show-Achievement.ps1 prints is the line recorded here
+local escape, serialize, sortList, sortedKeys = dataFormat.Escape, dataFormat.Serialize, dataFormat.SortList, dataFormat.SortedKeys
+local extras, dotted, dateOf = dataFormat.Extras, dataFormat.Dotted, dataFormat.DateOf
 
 -------------------------------------------------------------------------------------------------
 -- Build one client's three snapshots
@@ -241,178 +138,15 @@ local function buildSnapshot(client)
         return out
     end
 
-    -- --- names for enum values -------------------------------------------------------------------
-    local factionName = reverse(KrowiAF.Enum.Faction)
-    local rewardName = reverse(KrowiAF.Enum.RewardType)
-    local previewName = reverse(KrowiAF.Enum.RewardPreviewType)
-    local eventTypeName = reverse(KrowiAF.Enum.EventType)
-    local tooltipTypeName = reverse(ctx.env.Enum.TooltipDataType)
-    local calendarEvents = type(data.Events) == "table" and KrowiAF.Enum.EventType and data.Events[KrowiAF.Enum.EventType.Calendar] or {}
-
-    -- --- event membership ------------------------------------------------------------------------
-    -- An event binds to a category (Event.Category, the one its reminder opens); the achievements in
-    -- that category's subtree are the event's achievements
-    local eventsOf = {}   -- achievement id -> type name -> { event id = true }
-    local eventRows = {}
-    for eventType, events in pairs(type(data.Events) == "table" and data.Events or {}) do
-        for id, event in pairs(events) do
-            local typeName = nameOf(eventTypeName, eventType)
-            eventRows[#eventRows + 1] = { TypeName = typeName, Id = id, Event = event }
-            local visited = {}
-            local function walk(cat)
-                if type(cat) ~= "table" or visited[cat] then return end
-                visited[cat] = true
-                for _, ach in ipairs(cat.Achievements or {}) do
-                    local byType = eventsOf[ach.Id] or {}
-                    eventsOf[ach.Id] = byType
-                    byType[typeName] = byType[typeName] or {}
-                    byType[typeName][id] = true
-                end
-                for _, child in ipairs(cat.Children or {}) do walk(child) end
-            end
-            if type(event) == "table" then walk(event.Category) end
-        end
-    end
-    table.sort(eventRows, function(a, b)
-        if a.TypeName ~= b.TypeName then return a.TypeName < b.TypeName end
-        return lessThan(a.Id, b.Id)
-    end)
-
-    -- --- temporary-obtainable records, as declared ------------------------------------------------
-    local function versionAnchor(id)
-        local text = dotted(id)
-        local target = KrowiAF.ResolveVersionAnchor(id)
-        if not target then return text .. "=>none" end
-        if target.Id ~= id then return text .. "=>" .. dotted(target.Id) end
-        return text
-    end
-
-    local function anchor(fn, value)
-        if value == nil then return "" end
-        if fn == "Version" then return " " .. versionAnchor(value) end
-        if fn == "Event" then return " " .. serialize(value) .. (calendarEvents[tonumber(value)] and "" or "=>none") end
-        if fn == "Date" or fn == "Reset" then return " " .. dateOf(value) end
-        return " " .. serialize(value)
-    end
-
-    local sideFields = { Inclusion = true, Function = true, Value = true, Implicit = true }
-    local function side(s)
-        local text = (s.Inclusion ~= nil and (serialize(s.Inclusion) .. " ") or "") .. serialize(s.Function) .. anchor(s.Function, s.Value)
-        if s.Implicit then text = text .. " (own patch)" end
-        return text .. extras(s, sideFields)
-    end
-
-    -- [From Version 11.0.0 (own patch) .. Before Version 11.1.0], [Once], [] for a bare Obtainable()
-    local recordFields = { Start = true, End = true, Weeks = true, IsNotObtainable = true }
-    local function record(r)
-        local parts = {}
-        if type(r.Start) == "table" then parts[#parts + 1] = side(r.Start) end
-        if type(r.End) == "table" then parts[#parts + 1] = side(r.End) end
-        local text = table.concat(parts, " .. ")
-        if r.Weeks then text = text .. " weeks " .. serialize(r.Weeks[1]) .. "-" .. (r.Weeks[2] ~= nil and serialize(r.Weeks[2]) or "end") end
-        if r.IsNotObtainable then text = text .. " not obtainable" end
-        return "[" .. text .. extras(r, recordFields) .. "]"
-    end
-
-    -- the table Api/CustomCriteriaApi.lua closed over; its functions are code, so only their names
-    local function customCriteria(fn)
-        for i = 1, 50 do
-            local name, value = debug.getupvalue(fn, i)
-            if not name then break end
-            if name == "customCriteria" and type(value) == "table" then
-                local parts = {}
-                for _, k in ipairs(sortedKeys(value)) do
-                    parts[#parts + 1] = type(value[k]) == "function" and escape(k) or (escape(k) .. " " .. serialize(value[k]))
-                end
-                return table.concat(parts, ", ")
-            end
-        end
-        return "present"
-    end
-
-    -- --- achievements -----------------------------------------------------------------------------
-    -- Category and MoreCategories are snapshot-categories.lua's; TransmogSetIds and Guide have their own sections
-    local achievementFields = { Id = true, BuildVersion = true, Faction = true, OtherFactionAchievementId = true, RewardType = true,
-        IsPvP = true, IsRealmFirst = true, TemporaryObtainable = true, GetCustomCriteria = true, TransmogSetIds = true,
-        Guide = true, Category = true, MoreCategories = true }
-    local previews = type(data.RewardPreviewData) == "table" and data.RewardPreviewData or {}
-
-    local function achievementLine(id, ach)
-        local fields = {}
-        local function add(s) fields[#fields + 1] = s end
-        -- truthiness, not the literal value: every reader tests these with a plain `if`
-        local function flag(name, v) if v then add(v == true and name or (name .. "=" .. serialize(v))) end end
-
-        add("patch=" .. (type(ach.BuildVersion) == "table" and dotted(ach.BuildVersion.Id) or serialize(ach.BuildVersion)))
-        if ach.Faction ~= nil then add("faction=" .. nameOf(factionName, ach.Faction)) end
-        if ach.OtherFactionAchievementId ~= nil then add("otherFaction=" .. serialize(ach.OtherFactionAchievementId)) end
-        if ach.RewardType ~= nil then
-            local names = {}
-            for _, v in ipairs(type(ach.RewardType) == "table" and ach.RewardType or { ach.RewardType }) do names[#names + 1] = nameOf(rewardName, v) end
-            add("reward=" .. table.concat(names, ","))
-        end
-        flag("pvp", ach.IsPvP)
-        flag("realmFirst", ach.IsRealmFirst)
-        if type(ach.TemporaryObtainable) == "table" then
-            local records = {}
-            for _, r in ipairs(ach.TemporaryObtainable) do records[#records + 1] = record(r) end
-            -- an empty list still reads as Past in Data/TemporaryObtainable.lua, so it is recorded
-            add("obtainable=" .. (#records > 0 and table.concat(records, " ") or "(empty)"))
-        end
-        if type(previews[id]) == "table" then
-            local parts = {}
-            for _, p in ipairs(previews[id]) do
-                parts[#parts + 1] = nameOf(previewName, p.RewardPreviewType) .. " " .. serialize(p.RewardId)
-                    .. (p.SpellId ~= nil and (" spell " .. serialize(p.SpellId)) or "") .. (p.Name ~= nil and " named" or "")
-            end
-            add("preview=" .. table.concat(parts, ", "))
-        end
-        if ach.GetCustomCriteria then add("custom=" .. customCriteria(ach.GetCustomCriteria)) end
-        if eventsOf[id] then
-            local parts = {}
-            for _, typeName in ipairs(sortedKeys(eventsOf[id])) do
-                local ids = sortedKeys(eventsOf[id][typeName])
-                for i, eventId in ipairs(ids) do ids[i] = serialize(eventId) end
-                parts[#parts + 1] = typeName .. " " .. table.concat(ids, ",")
-            end
-            add("events=" .. table.concat(parts, "; "))
-        end
-        for _, k in ipairs(unhandledKeys(ach, achievementFields)) do add(escape(k) .. "=" .. serialize(ach[k])) end
-        return "ACH " .. serialize(id) .. " | " .. table.concat(fields, " | ")
-    end
+    -- --- the per-achievement lines, shared with show-achievement.lua --------------------------------
+    local fmt = dataFormat.New(ctx)
+    local eventsOf, eventRows, previews = fmt.EventsOf, fmt.EventRows, fmt.Previews
 
     local achievementIds = {}
     for id, ach in pairs(data.Achievements) do
         if type(ach) == "table" then achievementIds[#achievementIds + 1] = id end
     end
     sortList(achievementIds)
-
-    -- --- the stores keyed by achievement id ---------------------------------------------------------
-    -- TooltipData is keyed by object id; regrouped per achievement and sorted by criteria, because the
-    -- order across TooltipData keys is the pairs() order Data.lua schedules them in
-    local tooltips = {}
-    for objectId, entries in pairs(type(data.TooltipData) == "table" and data.TooltipData or {}) do
-        if type(objectId) == "number" and type(entries) == "table" then
-            for _, e in ipairs(entries) do
-                local list = tooltips[e.AchievementId] or {}
-                tooltips[e.AchievementId] = list
-                local typeName = nameOf(tooltipTypeName, e.ObjectType)
-                list[#list + 1] = {
-                    Criteria = tonumber(e.CriteriaIndex) or 0,
-                    Type = typeName,
-                    Object = objectId,
-                    Text = "criteria " .. serialize(e.CriteriaIndex) .. ": " .. typeName .. " " .. serialize(objectId)
-                        .. (e.Faction ~= nil and (" faction " .. serialize(e.Faction)) or ""),
-                }
-            end
-        end
-    end
-
-    local petBattleLinks = {}
-    for id, link in pairs(type(data.PetBattleLinkData) == "table" and data.PetBattleLinkData or {}) do
-        if type(id) == "number" and type(link) == "table" then petBattleLinks[#petBattleLinks + 1] = id end
-    end
-    sortList(petBattleLinks)
 
     -- --- Achievements file ---------------------------------------------------------------------------
     local texts = {}
@@ -443,7 +177,7 @@ local function buildSnapshot(client)
     emit("== Achievements ==")
     for _, id in ipairs(achievementIds) do
         local ach = data.Achievements[id]
-        emit(achievementLine(id, ach))
+        emit(fmt.AchievementLine(id, ach))
         if ach.Faction ~= nil then counts.Faction = counts.Faction + 1 end
         if type(ach.TemporaryObtainable) == "table" then
             counts.Obtainable = counts.Obtainable + 1
@@ -458,17 +192,11 @@ local function buildSnapshot(client)
 
     emit("== Tooltips ==")
     emit("# per achievement, sorted: criteria <index>: <tooltip data type> <object id> [faction <faction>]")
-    local tooltipIds, tooltipEntries = sortedKeys(tooltips), 0
+    local tooltipIds, tooltipEntries = fmt.TooltipIds, 0
     for _, id in ipairs(tooltipIds) do
-        local list = tooltips[id]
-        table.sort(list, function(a, b)
-            if a.Criteria ~= b.Criteria then return a.Criteria < b.Criteria end
-            if a.Type ~= b.Type then return a.Type < b.Type end
-            if a.Object ~= b.Object then return a.Object < b.Object end
-            return a.Text < b.Text
-        end)
-        for _, e in ipairs(list) do emit("TIP " .. serialize(id) .. " # " .. e.Text) end
-        tooltipEntries = tooltipEntries + #list
+        local tips = fmt.TooltipLines(id)
+        for _, l in ipairs(tips) do emit(l) end
+        tooltipEntries = tooltipEntries + #tips
     end
     emit("")
 
@@ -476,31 +204,22 @@ local function buildSnapshot(client)
     emit("# per achievement, in stored order")
     local transmogAchievements, transmogSets = 0, 0
     for _, id in ipairs(achievementIds) do
-        local sets = data.Achievements[id].TransmogSetIds
-        if sets ~= nil then
+        local sets = fmt.TransmogLines(id)
+        if sets then
             transmogAchievements = transmogAchievements + 1
-            for _, setId in ipairs(type(sets) == "table" and sets or { sets }) do
-                emit("TRANSMOG " .. serialize(id) .. " # " .. serialize(setId))
-                transmogSets = transmogSets + 1
-            end
+            for _, l in ipairs(sets) do emit(l) end
+            transmogSets = transmogSets + #sets
         end
     end
     emit("")
 
     emit("== Pet battle links ==")
     emit("# per achievement: the link, then its criteria links in stored order; link texts are names, left out")
-    local petBattleCriteria = 0
+    local petBattleLinks, petBattleCriteria = fmt.PetBattleLinkIds, 0
     for _, id in ipairs(petBattleLinks) do
-        local link = data.PetBattleLinkData[id]
-        emit("PETBATTLE " .. serialize(id) .. " | link=" .. serialize(link.Link) .. extras(link, { Link = true, Criteria = true }))
-        for _, c in ipairs(type(link.Criteria) == "table" and link.Criteria or {}) do
-            local head = c.CriteriaIndex ~= nil and ("criteria " .. serialize(c.CriteriaIndex)) or "text"
-            emit("PETBATTLE " .. serialize(id) .. " # " .. head .. ": " .. serialize(c.Link))
-            for _, child in ipairs(type(c.Children) == "table" and c.Children or {}) do
-                emit("PETBATTLE " .. serialize(id) .. " # " .. head .. " child: " .. serialize(child.Link))
-            end
-            petBattleCriteria = petBattleCriteria + 1
-        end
+        local links, criteria = fmt.PetBattleLines(id)
+        for _, l in ipairs(links) do emit(l) end
+        petBattleCriteria = petBattleCriteria + criteria
     end
     emit("")
 
@@ -508,15 +227,11 @@ local function buildSnapshot(client)
     emit("# per achievement, the steps in stored order; an NPC's name is the data's English one, a tip a locale string, left out")
     local guideAchievements, guideSteps = 0, 0
     for _, id in ipairs(achievementIds) do
-        local steps = data.Achievements[id].Guide
-        if steps ~= nil then
+        local steps = fmt.GuideLines(id)
+        if steps then
             guideAchievements = guideAchievements + 1
-            for i, step in ipairs(type(steps) == "table" and steps or { steps }) do
-                local stepType = type(step) == "table" and step.Type or step
-                local fields = type(step) == "table" and extras(step, { Type = true, Text = true }) or ""
-                emit("GUIDE " .. serialize(id) .. " # " .. i .. " " .. serialize(stepType) .. fields)
-                guideSteps = guideSteps + 1
-            end
+            for _, l in ipairs(steps) do emit(l) end
+            guideSteps = guideSteps + #steps
         end
     end
     emit("")
@@ -632,16 +347,7 @@ local function buildSnapshot(client)
     emit("# category is the id of the category the event's reminder opens; linked are the event's other ids")
     local eventCounts = {}
     for _, row in ipairs(eventRows) do
-        local event = row.Event
-        local fields = { "category=" .. (type(event.Category) == "table" and serialize(event.Category.Id) or "none"), "icon=" .. serialize(event.Icon) }
-        if type(event.LinkedEventIds) == "table" then
-            local ids = {}
-            for i, linked in ipairs(event.LinkedEventIds) do ids[i] = serialize(linked) end
-            fields[#fields + 1] = "linked=" .. table.concat(ids, ",")
-        end
-        if event.MapId ~= nil then fields[#fields + 1] = "map=" .. serialize(event.MapId) end
-        emit("EVENT " .. row.TypeName .. " " .. serialize(row.Id) .. " | " .. table.concat(fields, " | ")
-            .. extras(event, { Id = true, Type = true, Name = true, Category = true, Icon = true, LinkedEventIds = true, MapId = true }))
+        emit(fmt.EventLine(row))
         eventCounts[row.TypeName] = (eventCounts[row.TypeName] or 0) + 1
     end
     emit("")
