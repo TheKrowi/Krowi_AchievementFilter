@@ -8,7 +8,10 @@
 -- The rows of the options page. An element (see WindowMixin.lua) picks its row; an option row reads the option's
 -- interface: GetLabel, GetDescription, Type, Get, Set, IsDisabled, GetValues, GetRange, GetButtonText,
 -- GetNeedsReload, IsChanged, Reset, Placeholder, Confirm (a select's question before a choice is made), and for a key
--- row Slots (two options holding a key each).
+-- row Slots (two options holding a key each). A toggle's element may carry With, an execute or range option drawn 5
+-- after the check box as a 200 button or a 214 slider, as the game's check box with a button or a slider
+-- (Blizzard_SettingControls.lua, SettingsCheckboxWithButtonControlMixin and SettingsCheckboxSliderControlMixin); the
+-- row's name and changed line are the toggle's and With's together, and With explains itself under the mouse.
 -- Every change goes through window:OnOptionChanged, which redraws the rows, their changed lines and the reload bar.
 
 local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
@@ -102,9 +105,19 @@ local function NoTooltip()
     return false
 end
 
+local function Changed(row)
+    return row.Option:IsChanged() or row.With ~= nil and row.With:IsChanged()
+end
+
+-- The control that draws With, the option after the check box
+local function WithControl(row)
+    return row.With and (row.With.Type == "range" and row.Range or row.Execute)
+end
+
 function Krowi_OptionsOptionRowMixin:OnLoad()
     self.Reset:SetScript("OnClick", function()
         self.Option:Reset()
+        if self.With then self.With:Reset() end
         self.Window:OnOptionChanged(self.Option)
     end)
 
@@ -115,13 +128,15 @@ function Krowi_OptionsOptionRowMixin:OnLoad()
 
     self.Range:RegisterCallback(MinimalSliderWithSteppersMixin.Event.OnValueChanged, function(_, value)
         if self.Updating then return end
-        self.Option:Set(value)
-        self.Window:OnOptionChanged(self.Option)
+        local option = self.With or self.Option
+        option:Set(value)
+        self.Window:OnOptionChanged(option)
     end, self)
 
     self.Execute:SetScript("OnClick", function()
-        self.Option:Set()
-        self.Window:OnOptionChanged(self.Option)
+        local option = self.With or self.Option
+        option:Set()
+        self.Window:OnOptionChanged(option)
     end)
 
     self.Input:SetScript("OnEnterPressed", function(editBox)
@@ -156,10 +171,31 @@ function Krowi_OptionsOptionRowMixin:OnLoad()
     self.Select.Dropdown.ShouldShowTooltip = NoTooltip
 end
 
+local function InitRange(row, option)
+    local min, max, step = option:GetRange()
+    row.Updating = true
+    local steps = step and step > 0 and math.floor((max - min) / step + 0.5) or (max - min)
+    row.Range:Init(option:Get() or min, min, max, steps, {
+        [MinimalSliderWithSteppersMixin.Label.Right] = CreateMinimalSliderFormatter(MinimalSliderWithSteppersMixin.Label.Right, function(value)
+            return option.Format and option:Format(value) or tostring(math.floor(value * 100 + 0.5) / 100)
+        end),
+    })
+    row.Updating = nil
+    row.Range:Show()
+end
+
+local function RefreshRange(row, option, disabled)
+    row.Updating = true
+    row.Range:SetValue(option:Get() or 0)
+    row.Updating = nil
+    row.Range:SetEnabled(not disabled)
+end
+
 function Krowi_OptionsOptionRowMixin:Init(element, window)
     self:EndKeyCapture() -- a recycled row must not bind the next key to its new option
     self.Element, self.Window, self.Option = element, window, element.Option
     local option = self.Option
+    self.With = element.With and not element.With:IsHidden() and element.With or nil
     for _, control in ipairs({ self.Toggle, self.Range, self.Select, self.Execute, self.Input, self.Key1, self.Key2 }) do
         control:Hide()
     end
@@ -171,22 +207,14 @@ function Krowi_OptionsOptionRowMixin:Init(element, window)
     for place, key in next, placedControls do
         Place(self[key], self, geometry[place])
     end
+    self.Range:SetWidth(250) -- the row may have drawn a check box's slider before
     self.Label:SetText(option:GetLabel())
 
     local t = option.Type
     if t == "toggle" then
         self.Toggle:Show()
     elseif t == "range" then
-        local min, max, step = option:GetRange()
-        self.Updating = true
-        local steps = step and step > 0 and math.floor((max - min) / step + 0.5) or (max - min)
-        self.Range:Init(option:Get() or min, min, max, steps, {
-            [MinimalSliderWithSteppersMixin.Label.Right] = CreateMinimalSliderFormatter(MinimalSliderWithSteppersMixin.Label.Right, function(value)
-                return option.Format and option:Format(value) or tostring(math.floor(value * 100 + 0.5) / 100)
-            end),
-        })
-        self.Updating = nil
-        self.Range:Show()
+        InitRange(self, option)
     elseif t == "select" then
         -- The arrows step through the menu's radios, so a choice made with them asks and sets as a click in the list does
         local dropdown = self.Select.Dropdown
@@ -213,6 +241,18 @@ function Krowi_OptionsOptionRowMixin:Init(element, window)
         self.Key1:Show()
         self.Key2:SetShown(option.Slots and option.Slots[2] ~= nil)
     end
+    local with, control = self.With, WithControl(self)
+    if with then
+        control:ClearAllPoints()
+        control:SetPoint("LEFT", self.Toggle, "RIGHT", 5, 0)
+        if with.Type == "range" then
+            self.Range:SetWidth(214)
+            InitRange(self, with)
+        else
+            self.Execute:SetText(with:GetButtonText())
+            self.Execute:Show()
+        end
+    end
     self:Refresh()
 end
 
@@ -223,12 +263,13 @@ function Krowi_OptionsOptionRowMixin:Refresh()
     local strings = self.Window.Strings
     self.Label:SetFontObject(disabled and "GameFontDisable" or "GameFontNormal")
 
-    local needsReload = option:GetNeedsReload()
+    local with = self.With
+    local needsReload = option:GetNeedsReload() or with ~= nil and with:GetNeedsReload()
     self.ReloadIcon:SetShown(needsReload)
     if needsReload then
         self.ReloadIcon:SetPoint("LEFT", self.Label, "LEFT", math.min(self.Label:GetStringWidth(), self.Label:GetWidth()) + 6, 0)
     end
-    local changed = option:IsChanged()
+    local changed = Changed(self)
     self.ChangedBar:SetShown(changed)
     self.Reset:SetShown(changed and self:IsMouseOver()) -- a change made under the mouse shows the arrow at once
 
@@ -237,10 +278,7 @@ function Krowi_OptionsOptionRowMixin:Refresh()
         self.Toggle:SetChecked(option:Get() and true or false)
         self.Toggle:SetEnabled(not disabled)
     elseif t == "range" then
-        self.Updating = true
-        self.Range:SetValue(option:Get() or 0)
-        self.Updating = nil
-        self.Range:SetEnabled(not disabled)
+        RefreshRange(self, option, disabled)
     elseif t == "select" then
         self.Select.Dropdown:GenerateMenu()
         self.Select:SetEnabled(not disabled) -- the arrows' frame enables its dropdown and its arrows
@@ -263,6 +301,15 @@ function Krowi_OptionsOptionRowMixin:Refresh()
                 button.SelectedHighlight:SetShown(self.Capturing == slot)
                 button:SetEnabled(not disabled and not inCombat)
             end
+        end
+    end
+    -- With greys out with the toggle, or by itself (a threshold while its check box is off)
+    if with then
+        local withDisabled = disabled or with:IsDisabled()
+        if with.Type == "range" then
+            RefreshRange(self, with, withDisabled)
+        else
+            self.Execute:SetEnabled(not withDisabled)
         end
     end
 end
@@ -306,7 +353,12 @@ end
 
 function Krowi_OptionsOptionRowMixin:OnEnter()
     self.Hover:Show()
-    self.Reset:SetShown(self.Option and self.Option:IsChanged())
+    self.Reset:SetShown(self.Option and Changed(self))
+    local withControl = WithControl(self)
+    if withControl and withControl:IsMouseOver() then
+        self.Window:OnRowEnter(self.With, self, withControl:GetLeft() - self:GetLeft())
+        return
+    end
     local control = self.Geometry and self.Option and controlOfType[self.Option.Type]
     self.Window:OnRowEnter(self.Option, self, control and lib.RowX(self.Geometry[control], self:GetWidth()))
 end

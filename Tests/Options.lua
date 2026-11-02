@@ -115,6 +115,23 @@ local function RowGeometryLine(lib)
     return table.concat(parts, " ")
 end
 
+-- The rows under one of a section's headings (docs/work/2026-11-02-options-widths): each row's option key, and the
+-- option drawn after its check box with its key, and a button's text, as the game's Tutorials and Mouse Sensitivity rows
+local function RowsUnder(sectionId, header)
+    local source = addon.Options.Window.Source
+    local rows, under = {}, false
+    for _, element in ipairs(source.Elements(source.Section(sectionId))) do
+        if element.Kind == "Header" then under = element.Text == header end
+        if under and element.Option then
+            local key, with = element.Option.Info[#element.Option.Info], element.With
+            local withKey = with and with.Info[#with.Info]
+            rows[#rows + 1] = not with and key or with.Type == "execute" and ("%s+%s[%s]"):format(key, withKey, with:GetButtonText())
+                or ("%s+%s"):format(key, withKey)
+        end
+    end
+    return table.concat(rows, " ")
+end
+
 -- Observe: a function returning the line's value, or nil and the reason it could not run
 options.Scenarios = {
     {Name = "settings-entry",
@@ -294,6 +311,26 @@ options.Scenarios = {
         -- and the input box 6 in from it, so its border starts on that line
         Target = "column 635 [name 16/36-293 Toggle 305 Range 305 Select 323.5 Execute 305 Input 311 Key 305 Sub 305 TabArrows 305]"
             .. " column 619 [name 16/36-277 Toggle 289 Range 289 Select 307.5 Execute 289 Input 295 Key 289 Sub 289 TabArrows 289]"},
+    -- Krowi (2026-11-02): each window's reset button after its Remember check box, named as its own row was
+    {Name = "position-rows",
+        Observe = function() return RowsUnder("window", addon.L["Position"]) end,
+        -- a row per option before: "SwitchMovable AchievementWindowRememberLastPosition AchievementWindowResetPosition ..."
+        Recorded = "SwitchMovable AchievementWindowRememberLastPosition+AchievementWindowResetPosition[Reset window position]"
+            .. " CalendarRememberLastPosition+CalendarResetPosition[Reset calendar position]"
+            .. " DataManagerRememberLastPosition+DataManagerResetPosition[Reset Data Manager position]",
+        Target = "SwitchMovable AchievementWindowRememberLastPosition+AchievementWindowResetPosition[Reset window position]"
+            .. " CalendarRememberLastPosition+CalendarResetPosition[Reset calendar position]"
+            .. " DataManagerRememberLastPosition+DataManagerResetPosition[Reset Data Manager position]"},
+    -- Krowi (2026-11-02): the threshold's slider after the Force two columns check box, as the game's Mouse Sensitivity
+    {Name = "objectives-rows",
+        Observe = function() return RowsUnder("achievements", addon.L["Objectives"]) end,
+        Recorded = "ForceTwoColumns+ForceTwoColumnsThreshold CriteriaBehaviour", -- a row each before
+        Target = "ForceTwoColumns+ForceTwoColumnsThreshold CriteriaBehaviour"},
+    -- Krowi (2026-11-02): the pop outs' delay and snap distance after their check boxes
+    {Name = "popout-rows",
+        Observe = function() return RowsUnder("popout", addon.L["Pop Outs"]) end,
+        Recorded = "PersistAcrossSessions RememberSize RememberLastPosition DefaultWidth CloseOnEarn+CloseOnEarnDelay EnableSnapping+SnapDistance", -- a row each before
+        Target = "PersistAcrossSessions RememberSize RememberLastPosition DefaultWidth CloseOnEarn+CloseOnEarnDelay EnableSnapping+SnapDistance"},
 }
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
@@ -424,7 +461,7 @@ local function RowOf(option)
     return found
 end
 
--- The first value change of an option keeps the player's value, which Finish puts back
+-- The first value change of an option keeps the player's value, which Restore puts back
 local function Remember(option)
     if not live.Before[option] then
         live.Before[option] = { Value = option:Get() }
@@ -455,6 +492,11 @@ local function RowLayout(row)
             tinsert(wrong, ("arrow %g from the check boxes' line"):format(row.Select.DecrementButton:GetLeft() - line))
         end
     end
+    -- The option after a check box 5 after it, as the game's Tutorials and Mouse Sensitivity rows
+    local withControl = row.With and (row.With.Type == "range" and row.Range or row.Execute)
+    if withControl and withControl:IsShown() and math.abs(withControl:GetLeft() - row.Toggle:GetRight() - 5) > 0.5 then
+        tinsert(wrong, ("%s %g after its check box"):format(row.With.Type, withControl:GetLeft() - row.Toggle:GetRight()))
+    end
     local function Control(key, control, width)
         if not control or not control:IsShown() or not control:GetRight() then
             return
@@ -468,7 +510,8 @@ local function RowLayout(row)
         firstLeft = math.min(firstLeft or control:GetLeft(), control:GetLeft())
     end
     for _, key in ipairs(rowControlKeys) do
-        Control(key, row[key], controlWidths[key])
+        -- the game's slider after a check box is 214 (SettingsCheckboxSliderControlMixin)
+        Control(key, row[key], key == "Range" and withControl == row.Range and 214 or controlWidths[key])
     end
     if row.Select and row.Select:IsShown() then
         Control("Dropdown", row.Select.Dropdown, 220)
@@ -484,6 +527,17 @@ local function RowLayout(row)
         cut = name.IsTruncated and name:IsTruncated() or false
     end
     return wrong, cut
+end
+
+-- The slider moves in whole steps: a value saved between them (the reward preview's size after a resize of the preview)
+-- shows on the nearest step
+local function SliderShows(row, option)
+    local value = option:Get()
+    local min, max, step = option:GetRange()
+    if value and step and step > 0 then
+        value = math.min(math.max(min + math.floor((value - min) / step + 0.5) * step, min), max)
+    end
+    return value == nil or math.abs(row.Range.Slider:GetValue() - value) < 0.001
 end
 
 -- Drawn rows whose control does not show its option's value, rows that break the layout, and names cut short
@@ -507,15 +561,9 @@ local function CheckDrawnRows()
         local shows
         if option.Type == "toggle" then
             shows = (row.Toggle:GetChecked() and true or false) == (value and true or false)
+                and (not row.With or row.With.Type ~= "range" or SliderShows(row, row.With))
         elseif option.Type == "range" then
-            -- the slider moves in whole steps: a value saved between them (the reward preview's size after a resize
-            -- of the preview) shows on the nearest step
-            local min, max, step = option:GetRange()
-            local expected = value
-            if expected and step and step > 0 then
-                expected = math.min(math.max(min + math.floor((expected - min) / step + 0.5) * step, min), max)
-            end
-            shows = expected == nil or math.abs(row.Range.Slider:GetValue() - expected) < 0.001
+            shows = SliderShows(row, option)
         elseif option.Type == "input" then
             shows = row.Input:HasFocus() or row.Input:GetText() == tostring(value or "")
         elseif option.Type == "select" then

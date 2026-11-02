@@ -68,3 +68,15 @@ Reused as they are: `InitList`'s `leftPad` (`WindowMixin.lua:118`), `lib.SetShar
   - `Options/Window/Window.lua` and the 11 locale files: `L["Lines under headings"]` goes.
   - `Krowi_Options.lua`: the saved table's comments.
   - `Tests/Options.lua`: the `sizes` step measures "Search all tabs" as the check box.
+- **A check box with its option** (Krowi, the same day, spec requirement 21). Built test first: `position-rows`, `objectives-rows` and `popout-rows` were recorded as a row per option, then the code, then `Recorded`. Coverage and the fingerprint are unchanged.
+  - `Options/Window/Map.lua`: a Path entry's `With` (the reset buttons, named by `Button`) and a Group entry's `Pairs` (`ForceTwoColumns`, `CloseOnEarn`, `EnableSnapping`).
+  - `Options/Window/Source.lua`: an element carries `With`, and `AddLeaves` skips the paired keys.
+  - `Options/Window/Model.lua`: the options list, coverage, section options and search include `With`.
+  - `Krowi_Options/RowMixins.lua`:
+    - the row draws `With` 5 after the check box, as `Execute` (200) or `Range` (214, put back to 250 on the next `Init`);
+    - the slider and button set `With`;
+    - the changed line, reload mark and reset arrow cover both options;
+    - `OnEnter` over the control shows `With`'s help;
+    - `InitRange` and `RefreshRange` are shared with the plain range row.
+  - `Krowi_Options/WindowMixin.lua`: `ScrollToOption` also finds a `With`.
+  - `Tests/Options.lua`: the live row check wants the control 5 after the check box, a 214 slider, and the slider showing `With`'s value.

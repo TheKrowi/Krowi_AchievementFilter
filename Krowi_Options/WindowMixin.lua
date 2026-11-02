@@ -785,7 +785,7 @@ end
 
 function Krowi_OptionsWindowMixin:ScrollToOption(optionId)
     for _, element in ipairs(self.Elements or {}) do
-        if element.Option and element.Option.Id == optionId then
+        if element.Option and element.Option.Id == optionId or element.With and element.With.Id == optionId then
             self.PageScrollBox:ScrollToElementData(element, ScrollBoxConstants.AlignCenter)
             return
         end
