@@ -268,7 +268,9 @@ function model.Search(text)
                 Find(element.Option, with:GetButtonText())
             else
                 Find(element.Option)
-                Find(with) -- a slider after a check box is found by its own name
+                if element.Option and not element.Option:IsHidden() then
+                    Find(with) -- a slider after a check box is found by its own name, while its row shows
+                end
             end
         end
         local help = window.Help and window.Help[section.Id]

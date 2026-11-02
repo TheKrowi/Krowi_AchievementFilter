@@ -523,7 +523,8 @@ function source.Elements(section)
                         local option = source.OptionAt(entry.Path, entry)
                         if option then
                             AddPluginNotes(elements, entry.Path, notesAdded)
-                            local with = entry.With and source.OptionAt(entry.With) -- the option after the check box
+                            -- the option after the check box, shown where its check box is
+                            local with = entry.With and source.OptionAt(entry.With, { Retail = entry.Retail, ShowIf = entry.ShowIf })
                             elements[#elements + 1] = { Kind = "Option", Option = option, With = with }
                         end
                     end

@@ -308,13 +308,15 @@ function Krowi_OptionsWindowMixin:Init(saved)
 end
 
 -- The game's width plus the help pane or its strip; a window wider than the screen (a large UI scale) is scaled down to
--- fit. keepLeft: the window grows and shrinks to the right, its top left staying where it is.
+-- fit, and one taller than it (a height saved on a larger screen) comes back inside it. keepLeft: the window grows and
+-- shrinks to the right, its top left staying where it is, and that place is saved.
 function Krowi_OptionsWindowMixin:ApplyWidth(keepLeft)
     local width = lib.WindowWidth(self.PaneCollapsed)
     local screen = UIParent:GetWidth()
     local scale = screen > 0 and math.min(1, (screen - 40) / width) or 1
     local left, top = self:GetLeft(), self:GetTop()
-    if keepLeft and left and top then
+    local moves = keepLeft and left and top and (math.abs(self:GetScale() - scale) > 0.001 or math.abs(self:GetWidth() - width) > 0.5)
+    if moves then
         -- The edges in the window's own units, which its scale sets
         local ratio = self:GetScale() / scale
         self:ClearAllPoints()
@@ -323,12 +325,14 @@ function Krowi_OptionsWindowMixin:ApplyWidth(keepLeft)
     self:SetScale(scale)
     self:SetWidth(width)
     local maxHeight = math.max(minHeight, UIParent:GetHeight() / scale)
+    if self:GetHeight() > maxHeight then self:SetHeight(maxHeight) end
     if self.SetResizeBounds then
         self:SetResizeBounds(width, minHeight, width, maxHeight)
     else
         self:SetMinResize(width, minHeight)
         self:SetMaxResize(width, maxHeight)
     end
+    if moves then self:SavePoint() end
 end
 
 -- [[ Tabs ]] --
@@ -570,7 +574,6 @@ function Krowi_OptionsWindowMixin:SetPaneCollapsed(collapsed)
     self.PaneCollapsed = collapsed
     lib.SetShared("PaneCollapsed", collapsed)
     self:ApplyWidth(true) -- "How it works" widens the window to the right
-    self:SavePoint()
     self:Layout()
     self:ReloadSection()
 end
@@ -582,6 +585,7 @@ local shownEvents = { "PLAYER_REGEN_DISABLED", "PLAYER_REGEN_ENABLED", "UI_SCALE
 function Krowi_OptionsWindowMixin:OnShow()
     PlaySound(SOUNDKIT.IG_CHARACTER_INFO_OPEN)
     for _, event in ipairs(shownEvents) do self:RegisterEvent(event) end
+    self:ApplyWidth(true) -- the scale or resolution may have changed while the window was hidden
     -- Shown again with its parent (the interface back after Alt+Z): OnHide released Show me, so lay it over again
     if self.SectionId then self:UpdateShowMe() end
 end
@@ -705,7 +709,8 @@ local function Signature(elements)
     local parts = {}
     for i, element in ipairs(elements) do
         local option = element.Option or (element.Item and element.Item.Show)
-        parts[i] = element.Kind .. ":" .. (option and ((option.Id or "") .. "|" .. option:GetLabel()) or tostring(element.Text or element.Label or ""))
+        local with = element.With and not element.With:IsHidden() and ("+" .. element.With.Id) or "" -- shown with its row
+        parts[i] = element.Kind .. ":" .. (option and ((option.Id or "") .. "|" .. option:GetLabel() .. with) or tostring(element.Text or element.Label or ""))
     end
     return table.concat(parts, "\n")
 end
