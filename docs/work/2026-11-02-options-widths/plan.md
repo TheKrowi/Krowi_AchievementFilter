@@ -1,5 +1,5 @@
 # Plan: The options window's controls take the widths of the game's Options window
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 ## Context
 After PR #379 the options window still differs from the game's Options window in its widths (Krowi, 2026-11-02). Accepted in the spec the same day:

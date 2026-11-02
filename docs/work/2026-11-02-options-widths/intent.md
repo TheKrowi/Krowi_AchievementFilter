@@ -1,5 +1,5 @@
 # Intent: The options window's controls take the widths of the game's Options window
-Author: Krowi (maintainer), from using the options window after PR #379. Source: idea. Status: accepted
+Author: Krowi (maintainer), from using the options window after PR #379. Source: idea. Status: done
 
 ## Problem
 Since PR #379 the options window is drawn in the look of the game's own Options window, but several of its parts are a different size than the game's, so the two windows still look different side by side. Krowi noticed it mainly in the widths, on Retail and Mists Classic. Measured against Blizzard's source (`Blizzard_Settings_Shared`, the same on both clients):

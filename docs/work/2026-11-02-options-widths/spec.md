@@ -1,5 +1,5 @@
 # Spec: The options window's controls take the widths of the game's Options window
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 Sizes are the game's own, read from `Blizzard_Settings_Shared` in `wow-ui-source\live` and `\classic` (the same on both) and from the atlases measured with the kit's `Get-Atlas.ps1` on Retail 12.1.5.70688 and Mists 5.5.4.70631.
