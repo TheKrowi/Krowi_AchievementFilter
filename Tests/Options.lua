@@ -132,6 +132,41 @@ local function RowsUnder(sectionId, header)
     return table.concat(rows, " ")
 end
 
+-- What Overview shows under each group's header (docs/work/2026-11-02-overview-cards): the links or cards, the rows the
+-- cards take, and what fills each card's picture area and line
+local function OverviewLine()
+    local window = addon.Options.Window
+    local groups = {}
+    for _, group in ipairs(window.Map.Groups) do groups[group.Name] = true end
+    local n = { links = 0, cards = 0, rows = 0, pictures = 0, icons = 0, lines = 0 }
+    local under = false
+    for _, element in ipairs(window.Controller.Config.GetElements("overview")) do
+        if element.Kind == "Header" then under = groups[element.Text] or false end
+        if under and element.Kind == "Link" then
+            n.links = n.links + 1
+        elseif under and element.Kind == "Cards" then
+            n.cards = n.cards + #element.Cards
+            n.rows = n.rows + math.ceil(#element.Cards / KROWI_LIBMAN:GetLibrary("Krowi_Options_1").CardColumns)
+            for _, card in ipairs(element.Cards) do
+                if card.Picture then n.pictures = n.pictures + 1 elseif card.Icon then n.icons = n.icons + 1 end
+                if card.Text and card.Text ~= "" then n.lines = n.lines + 1 end
+            end
+        end
+    end
+    return ("links=%d cards=%d rows=%d pictures=%d icons=%d lines=%d"):format(n.links, n.cards, n.rows, n.pictures, n.icons, n.lines)
+end
+
+-- A card's width on the game's 635 rows and the 619 left while the section list shows its scroll bar, and the part of a
+-- help picture its picture area shows: a wide one (NewTabs, cut at its right) and a tall one (CategoryTree, at its bottom)
+local function CardGeometryLine(lib)
+    local pictures = addon.Options.Window.HelpPictures
+    local parts = { ("width %g/%g"):format(lib.CardWidth(635), lib.CardWidth(619)) }
+    for _, name in ipairs({ "NewTabs", "CategoryTree" }) do
+        parts[#parts + 1] = ("%s %.5f,%.5f,%.5f,%.5f"):format(name, lib.CardCrop(pictures[name], lib.CardWidth(635)))
+    end
+    return table.concat(parts, " ")
+end
+
 -- Observe: a function returning the line's value, or nil and the reason it could not run
 options.Scenarios = {
     {Name = "settings-entry",
@@ -344,6 +379,23 @@ options.Scenarios = {
         Observe = function() return RowsUnder("popout", addon.L["Pop Outs"]) end,
         Recorded = "PersistAcrossSessions RememberSize RememberLastPosition DefaultWidth CloseOnEarn+CloseOnEarnDelay EnableSnapping+SnapDistance", -- a row each before
         Target = "PersistAcrossSessions RememberSize RememberLastPosition DefaultWidth CloseOnEarn+CloseOnEarnDelay EnableSnapping+SnapDistance"},
+    -- Krowi (2026-11-02): Overview shows each group's sections as cards, three to a row, with the section's first help
+    -- picture or, without one, a game icon, and a line on what it covers; Achievement guides has no picture on Mists
+    {Name = "overview-cards",
+        Observe = OverviewLine,
+        Recorded = "links=22 cards=0 rows=0 pictures=0 icons=0 lines=0",
+        Target = "links=0 cards=22 rows=9 pictures=15 icons=7 lines=22",
+        TargetClassic = "links=0 cards=22 rows=9 pictures=14 icons=8 lines=22"},
+    {Name = "card-geometry",
+        Observe = function()
+            local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
+            if not lib.CardWidth then return "no card helpers" end
+            return CardGeometryLine(lib)
+        end,
+        Recorded = "no card helpers",
+        -- three cards and two 12 gaps fill the row; a picture fills the 86 high area inside the card's 1 px border, cut from
+        -- its top left inside the part of its texture it fills (Pictures.lua)
+        Target = "width 203.667/198.333 NewTabs 0.00000,0.36838,0.00000,0.62500 CategoryTree 0.00000,0.71875,0.00000,0.15353"},
 }
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
