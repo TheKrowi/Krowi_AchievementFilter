@@ -433,11 +433,67 @@ local function Remember(option)
     end
 end
 
--- Drawn rows whose control does not show its option's value
+-- The game's control widths (docs/work/2026-11-02-options-widths), by the row's key; the dropdown's is inside Select
+local controlWidths = { Toggle = 30, Range = 250, Execute = 200, Key1 = 160, Key2 = 160 }
+local rowControlKeys = { "Toggle", "Range", "Execute", "Input", "Key1", "Key2", "All", "None", "Up", "Down" }
+
+-- How far a name's text reaches, whatever its anchors: a sub row's text spans the row
+local function NameEnd(name)
+    return name:GetLeft() + math.min(name:GetStringWidth(), name:GetWidth())
+end
+
+-- Where a drawn row breaks the layout: a control of the wrong width, one past the row's right edge, a name's text that
+-- runs into the first control; and whether the name is cut short
+local function RowLayout(row)
+    local right = row:GetRight()
+    if not right then
+        return nil
+    end
+    local wrong, firstLeft = {}, nil
+    local function Control(key, control, width)
+        if not control or not control:IsShown() or not control:GetRight() then
+            return
+        end
+        if width and math.abs(control:GetWidth() - width) > 0.5 then
+            tinsert(wrong, ("%s %g wide"):format(key, control:GetWidth()))
+        end
+        if control:GetRight() > right + 0.5 then
+            tinsert(wrong, key .. " past the row's edge")
+        end
+        firstLeft = math.min(firstLeft or control:GetLeft(), control:GetLeft())
+    end
+    for _, key in ipairs(rowControlKeys) do
+        Control(key, row[key], controlWidths[key])
+    end
+    if row.Select and row.Select:IsShown() then
+        Control("Dropdown", row.Select.Dropdown, 220)
+        Control("arrow", row.Select.DecrementButton)
+        Control("arrow", row.Select.IncrementButton)
+    end
+    local name = row.Source and row.Source:GetText() ~= "" and row.Source or row.Label or row.Text
+    local cut = false
+    if name and name:IsShown() and name:GetLeft() and firstLeft and not row.Cells then
+        if NameEnd(name) > firstLeft + 0.5 then
+            tinsert(wrong, "name into the control")
+        end
+        cut = name.IsTruncated and name:IsTruncated() or false
+    end
+    return wrong, cut
+end
+
+-- Drawn rows whose control does not show its option's value, rows that break the layout, and names cut short
 local function CheckDrawnRows()
-    local drawn, differ = 0, {}
+    local drawn, differ, misfit, cut = 0, {}, {}, {}
     Window().PageScrollBox:ForEachFrame(function(row)
         drawn = drawn + 1
+        local wrong, isCut = RowLayout(row)
+        local id = row.Option and row.Option.Id or (row.Element and (row.Element.Text or row.Element.Label)) or tostring(drawn)
+        if wrong and #wrong > 0 then
+            tinsert(misfit, id .. ": " .. table.concat(wrong, ", "))
+        end
+        if isCut then
+            tinsert(cut, id)
+        end
         local option = row.Option
         if not option or not option.Type then
             return
@@ -467,24 +523,53 @@ local function CheckDrawnRows()
             tinsert(differ, option.Id)
         end
     end)
-    return drawn, differ
+    return drawn, differ, misfit, cut
 end
 
-local function SectionStep(sectionId, name)
+-- prefix: "section-" by default; the placement steps show a section again under their own name
+local function SectionStep(sectionId, name, prefix)
     return {
-        Name = "section-" .. sectionId,
+        Name = (prefix or "section-") .. sectionId,
         Text = name,
         Run = function()
             Window():ShowSection(sectionId)
         end,
         Check = function()
             local rows = #(Window().Elements or {})
-            local drawn, differ = CheckDrawnRows()
-            local ok = (rows == 0 or drawn > 0) and #differ == 0
-            Add(ok and "PASS" or "FAIL", ("%d rows, %d drawn%s"):format(rows, drawn,
-                #differ > 0 and (", controls that do not show their value: [" .. table.concat(differ, ",") .. "]") or ""))
+            local drawn, differ, misfit, cut = CheckDrawnRows()
+            local ok = (rows == 0 or drawn > 0) and #differ == 0 and #misfit == 0
+            Add(ok and "PASS" or "FAIL", ("%d rows, %d drawn, controls %s%s%s%s"):format(rows, drawn,
+                Window().CentredControls and "from the centre" or "in the column",
+                #differ > 0 and (", controls that do not show their value: [" .. table.concat(differ, ",") .. "]") or "",
+                #misfit > 0 and (", rows out of the layout: [" .. table.concat(misfit, "; ") .. "]") or "",
+                #cut > 0 and (", names cut short: [" .. table.concat(cut, ",") .. "]") or ""))
         end
     }
+end
+
+-- The first section that draws an option of each type, for the placement steps
+local function SectionsWithEachType()
+    local window = addon.Options.Window
+    local found, list = {}, {}
+    for _, optionType in ipairs({ "toggle", "range", "select", "execute", "input", "key" }) do
+        for _, section in ipairs(window.Map.Sections) do
+            local has = false
+            for _, element in ipairs(window.Source.Elements(section)) do
+                if element.Option and element.Option.Type == optionType then
+                    has = true
+                    break
+                end
+            end
+            if has then
+                if not found[section.Id] then
+                    found[section.Id] = true
+                    tinsert(list, section)
+                end
+                break
+            end
+        end
+    end
+    return list
 end
 
 -- The footer names the section's changed options
@@ -624,10 +709,50 @@ local function BuildSteps()
                     tostring(title), searchAll and "shown" or "hidden"))
             end
         },
+        -- The game's Options window's sizes (docs/work/2026-11-02-options-widths)
+        {
+            Name = "sizes",
+            Text = "the window, its rows and its controls at the sizes of the game's Options window",
+            Run = function() end,
+            Check = function()
+                local frame = Window()
+                local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
+                local function Is(value, expected) return math.abs(value - expected) < 0.5 end
+                local width = lib.WindowWidth(frame.PaneCollapsed)
+                local minWidth, _, maxWidth = width, nil, width
+                if frame.GetResizeBounds then minWidth, _, maxWidth = frame:GetResizeBounds() end
+                local rows = frame.NavScrollShown and 619 or 635
+                local defaults = frame.DefaultsButton
+                local fitsIn96 = defaults:GetFontString():GetStringWidth() + 24 <= 96
+                local ok = Is(frame:GetWidth(), width) and Is(minWidth, width) and Is(maxWidth, width) and Is(frame:PageWidth(), rows)
+                    and Is(frame.SearchBox:GetWidth(), 350) and (fitsIn96 and Is(defaults:GetWidth(), 96) or not fitsIn96 and defaults:GetWidth() > 96)
+                    and Is(frame.HeadingLines:GetWidth(), 30) and Is(frame.HeadingLines:GetHeight(), 29) and Is(frame.Divider:GetWidth(), 630)
+                Add(ok and "PASS" or "FAIL", ("window %g wide (resizes from %g to %g), rows %g, search box %g, Defaults %g, check box %gx%g, divider %g, scale %.2f"):format(
+                    frame:GetWidth(), minWidth, maxWidth, frame:PageWidth(), frame.SearchBox:GetWidth(), defaults:GetWidth(),
+                    frame.HeadingLines:GetWidth(), frame.HeadingLines:GetHeight(), frame.Divider:GetWidth(), frame:GetScale()))
+            end
+        },
         SectionStep("overview", addon.L["Overview"])
     }
     for _, section in ipairs(window.Map.Sections) do
         tinsert(list, SectionStep(section.Id, section.Name))
+    end
+    -- The other placement of the controls, through the window's own check box, on a section with each type of control
+    tinsert(list, {
+        Name = "placement",
+        Text = "the controls switched to the other placement",
+        Run = function()
+            live.CentredBefore = Window().CentredControls
+            Window().ControlsFromCentre:Click()
+        end,
+        Check = function()
+            local frame = Window()
+            local switched = frame.CentredControls == not live.CentredBefore and frame.ControlsFromCentre:GetChecked() == frame.CentredControls
+            Add(switched and "PASS" or "FAIL", ("the controls stand %s"):format(frame.CentredControls and "from the row's centre" or "in the right-hand column"))
+        end
+    })
+    for _, section in ipairs(SectionsWithEachType()) do
+        tinsert(list, SectionStep(section.Id, section.Name, "placed-"))
     end
     for _, step in ipairs({ ChangeSteps("toggle", toggleId, function(row) row.Toggle:Click() end) }) do tinsert(list, step) end
     tinsert(list, ResetStep("toggle", toggleId, function(row) row.Toggle:Click() end))
@@ -670,7 +795,11 @@ local function BuildSteps()
         Check = function()
             local frame = Window()
             local agrees = frame.ExpandButton:IsShown() == frame.PaneCollapsed and frame.HelpScrollBox:IsShown() == not frame.PaneCollapsed
-            Add(agrees and "PASS" or "FAIL", ("the pane is %s and shows it"):format(frame.PaneCollapsed and "collapsed" or "open"))
+            -- The pane adds its own width to the game's window (docs/work/2026-11-02-options-widths)
+            local width = KROWI_LIBMAN:GetLibrary("Krowi_Options_1").WindowWidth(frame.PaneCollapsed)
+            local wide = math.abs(frame:GetWidth() - width) < 0.5 and math.abs(frame:PageWidth() - (frame.NavScrollShown and 619 or 635)) < 0.5
+            Add(agrees and wide and "PASS" or "FAIL", ("the pane is %s and shows it, the window %g wide (%g expected), rows %g"):format(
+                frame.PaneCollapsed and "collapsed" or "open", frame:GetWidth(), width, frame:PageWidth()))
         end
     })
     tinsert(list, {
@@ -718,6 +847,9 @@ local function Restore()
     if frame then
         if frame.PaneCollapsed ~= (live.SavedWindow.PaneCollapsed and true or false) then
             frame:SetPaneCollapsed(live.SavedWindow.PaneCollapsed and true or false)
+        end
+        if frame.CentredControls ~= (live.SavedWindow.ControlsFromCentre and true or false) then
+            frame.ControlsFromCentre:Click()
         end
         if live.WasShown then
             frame:Open(live.WasShown)
