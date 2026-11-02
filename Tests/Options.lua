@@ -288,14 +288,18 @@ options.Scenarios = {
             if not lib.RowGeometry then return "column 300 from the right, names from 16" end
             return RowGeometryLine(lib)
         end,
-        Recorded = "column 635 [name 16/36-293 Toggle 305 Range 305 Select 315 Execute 305 Input 311 Key 305 Sub 305 TabArrows 305]" -- "column 300 from the right, names from 16" before the game's sizes
-            .. " column 619 [name 16/36-277 Toggle 289 Range 289 Select 299 Execute 289 Input 295 Key 289 Sub 289 TabArrows 289]"
-            .. " centre 635 [name 37/52-232.5 Toggle 237.5 Range 237.5 Select 256 Execute 277.5 Input 237.5 Key 237.5 Sub 237.5 TabArrows 237.5]"
-            .. " centre 619 [name 37/52-224.5 Toggle 229.5 Range 229.5 Select 248 Execute 269.5 Input 229.5 Key 229.5 Sub 229.5 TabArrows 229.5]",
-        Target = "column 635 [name 16/36-293 Toggle 305 Range 305 Select 315 Execute 305 Input 311 Key 305 Sub 305 TabArrows 305]"
-            .. " column 619 [name 16/36-277 Toggle 289 Range 289 Select 299 Execute 289 Input 295 Key 289 Sub 289 TabArrows 289]"
-            .. " centre 635 [name 37/52-232.5 Toggle 237.5 Range 237.5 Select 256 Execute 277.5 Input 237.5 Key 237.5 Sub 237.5 TabArrows 237.5]"
-            .. " centre 619 [name 37/52-224.5 Toggle 229.5 Range 229.5 Select 248 Execute 269.5 Input 229.5 Key 229.5 Sub 229.5 TabArrows 229.5]"},
+        -- "column 300 from the right, names from 16" before the game's sizes; the column's Select 315 and the centre's Input
+        -- 237.5 before Krowi's look in game
+        Recorded = "column 635 [name 16/36-293 Toggle 305 Range 305 Select 323.5 Execute 305 Input 311 Key 305 Sub 305 TabArrows 305]"
+            .. " column 619 [name 16/36-277 Toggle 289 Range 289 Select 307.5 Execute 289 Input 295 Key 289 Sub 289 TabArrows 289]"
+            .. " centre 635 [name 37/52-232.5 Toggle 237.5 Range 237.5 Select 256 Execute 277.5 Input 243.5 Key 237.5 Sub 237.5 TabArrows 237.5]"
+            .. " centre 619 [name 37/52-224.5 Toggle 229.5 Range 229.5 Select 248 Execute 269.5 Input 235.5 Key 229.5 Sub 229.5 TabArrows 229.5]",
+        -- Krowi's look in game (2026-11-02): in the column too, the dropdown's left arrow on the check boxes' line, 2.5 in
+        -- as the game has it; and the input box 6 in from it in both placements, so its border starts on that line
+        Target = "column 635 [name 16/36-293 Toggle 305 Range 305 Select 323.5 Execute 305 Input 311 Key 305 Sub 305 TabArrows 305]"
+            .. " column 619 [name 16/36-277 Toggle 289 Range 289 Select 307.5 Execute 289 Input 295 Key 289 Sub 289 TabArrows 289]"
+            .. " centre 635 [name 37/52-232.5 Toggle 237.5 Range 237.5 Select 256 Execute 277.5 Input 243.5 Key 237.5 Sub 237.5 TabArrows 237.5]"
+            .. " centre 619 [name 37/52-224.5 Toggle 229.5 Range 229.5 Select 248 Execute 269.5 Input 235.5 Key 229.5 Sub 229.5 TabArrows 229.5]"},
 }
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
@@ -443,13 +447,20 @@ local function NameEnd(name)
 end
 
 -- Where a drawn row breaks the layout: a control of the wrong width, one past the row's right edge, a name's text that
--- runs into the first control; and whether the name is cut short
+-- runs into the first control, a dropdown whose left arrow is off the check boxes' line (the game's stands 2.5 in from
+-- it, in either placement); and whether the name is cut short
 local function RowLayout(row)
     local right = row:GetRight()
     if not right then
         return nil
     end
     local wrong, firstLeft = {}, nil
+    if row.Geometry and row.Select and row.Select:IsShown() then
+        local line = row:GetLeft() + KROWI_LIBMAN:GetLibrary("Krowi_Options_1").RowX(row.Geometry.Toggle, row:GetWidth())
+        if math.abs(row.Select.DecrementButton:GetLeft() - line - 2.5) > 0.5 then
+            tinsert(wrong, ("arrow %g from the check boxes' line"):format(row.Select.DecrementButton:GetLeft() - line))
+        end
+    end
     local function Control(key, control, width)
         if not control or not control:IsShown() or not control:GetRight() then
             return

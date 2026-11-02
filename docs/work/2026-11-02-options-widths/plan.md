@@ -49,3 +49,11 @@ Reused as they are: `InitList`'s `leftPad` (`WindowMixin.lua:118`), `lib.SetShar
   - `Read-GameErrors.ps1` shows no new row;
   - the screenshots of both placements sit next to the game's Options window.
 - **Reviews:** the `/code-review` and `krowi:taint-reviewer` findings are fixed, or listed in the PR.
+
+## Departures
+- **Taint review of the first build** (2026-11-02): no findings. The window writes nothing of Blizzard's, the Show me overlay follows the window's scale through `GetEffectiveScale`, and no secret value is read.
+- **Krowi's first look in game** (2026-11-02, spec requirements 17 to 19):
+  - `RowMixins.lua`: the dropdown's frame stands 18.5 after the controls' line and the input box 6, in both placements (`selectIn`, `inputIn`). Before, in the column the dropdown was 10 after the line, and from the centre the input box was on the line. `row-geometry` was moved test first: `Target`, then the code, then `Recorded`.
+  - `Rows.xml`: the key buttons use `Krowi_OptionsKeyButtonTemplate`, a copy of the game's silver key button art whose pieces carry no names. Inheriting `UIMenuButtonStretchTemplate` would have made a global per piece for every row through its `$parent` names. `Krowi_OptionsKeyButtonMixin` swaps the art when pressed. The row shows "Not bound" in grey at alpha 0.8, and lights the button waiting for a key.
+  - `WindowMixin.lua`: the help pane's arrows are swapped.
+  - `Tests/Options.lua`: each drawn dropdown row checks that its left arrow stands 2.5 from the check boxes' line.

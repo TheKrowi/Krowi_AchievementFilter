@@ -268,9 +268,10 @@ function Krowi_OptionsWindowMixin:OnLoad()
     end)
     self.CollapseButton:SetScript("OnClick", function() self:SetPaneCollapsed(true) end)
     self.ExpandButton:SetScript("OnClick", function() self:SetPaneCollapsed(false) end)
-    -- » hides the pane, « brings it back; gold, white under the mouse, as the window's other links
-    self.CollapseButton.Arrow:SetText("\194\187")
-    self.ExpandButton.Arrow:SetText("\194\171")
+    -- « hides the pane and » brings it back, the way the window's right edge moves; gold, white under the mouse, as the
+    -- window's other links
+    self.CollapseButton.Arrow:SetText("\194\171")
+    self.ExpandButton.Arrow:SetText("\194\187")
     self.ExpandButton.Label:SetRotation(-math.pi / 2) -- reads downwards
     for _, button in ipairs({ self.CollapseButton, self.ExpandButton }) do
         button:SetScript("OnEnter", function()

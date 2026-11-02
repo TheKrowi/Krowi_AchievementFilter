@@ -18,17 +18,20 @@ local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
 -- them, from the row's centre (Blizzard_SettingControls.lua: the name from 37 to 85 before the centre, a check box or
 -- slider at -80, a button at -40, a dropdown's frame at -48 with its 220 dropdown centred, which puts ours, in a 250
 -- frame, at -61.5); window.CentredControls picks (docs/work/2026-11-02-options-widths). Each is an anchor on the row,
--- { relativePoint, x }, so a row is placed before it has its width.
+-- { relativePoint, x }, so a row is placed before it has its width. In both, a check box, a slider's left arrow, the
+-- key buttons and the input box's border start on one line, and the dropdown's left arrow 2.5 in from it, as the game
+-- has them: the dropdown's frame 18.5 after the line, the input box 6 (its border reaches 5 before it).
 local controlColumn = 330
+local selectIn, inputIn = 18.5, 6
 local placements = {
     [false] = {
-        Toggle = { "RIGHT", -controlColumn }, Range = { "RIGHT", -controlColumn }, Select = { "RIGHT", -controlColumn + 10 }, Execute = { "RIGHT", -controlColumn },
-        Input = { "RIGHT", -controlColumn + 6 }, Key = { "RIGHT", -controlColumn }, Sub = { "RIGHT", -controlColumn }, TabArrows = { "RIGHT", -controlColumn },
+        Toggle = { "RIGHT", -controlColumn }, Range = { "RIGHT", -controlColumn }, Select = { "RIGHT", -controlColumn + selectIn }, Execute = { "RIGHT", -controlColumn },
+        Input = { "RIGHT", -controlColumn + inputIn }, Key = { "RIGHT", -controlColumn }, Sub = { "RIGHT", -controlColumn }, TabArrows = { "RIGHT", -controlColumn },
         NameRight = { "RIGHT", -controlColumn - 12 }, NameLeft = 16, Indent = 20,
     },
     [true] = {
-        Toggle = { "CENTER", -80 }, Range = { "CENTER", -80 }, Select = { "CENTER", -61.5 }, Execute = { "CENTER", -40 },
-        Input = { "CENTER", -80 }, Key = { "CENTER", -80 }, Sub = { "CENTER", -80 }, TabArrows = { "CENTER", -80 },
+        Toggle = { "CENTER", -80 }, Range = { "CENTER", -80 }, Select = { "CENTER", -80 + selectIn }, Execute = { "CENTER", -40 },
+        Input = { "CENTER", -80 + inputIn }, Key = { "CENTER", -80 }, Sub = { "CENTER", -80 }, TabArrows = { "CENTER", -80 },
         NameRight = { "CENTER", -85 }, NameLeft = 37, Indent = 15,
     },
 }
@@ -63,6 +66,29 @@ end
 -- The option row's controls by their place in the geometry, and the one each option type shows
 local placedControls = { Toggle = "Toggle", Range = "Range", Select = "Select", Execute = "Execute", Input = "Input", Key = "Key1" }
 local controlOfType = { toggle = "Toggle", range = "Range", select = "Select", execute = "Execute", input = "Input", key = "Key" }
+
+-- [[ A key button ]] --
+-- The game's key binding button (KeyBindingFrameBindingButtonTemplate on UIMenuButtonStretchTemplate, the same on every
+-- client): silver art that presses down under the mouse. Rows.xml copies its art with pieces that carry no names; the
+-- template's $parent names would make a global per piece for every row.
+Krowi_OptionsKeyButtonMixin = {}
+
+local keyButtonPieces = { "TopLeft", "TopRight", "BottomLeft", "BottomRight", "TopMiddle", "MiddleLeft", "MiddleRight", "BottomMiddle", "MiddleMiddle" }
+
+function Krowi_OptionsKeyButtonMixin:SetPieces(file)
+    for _, piece in ipairs(keyButtonPieces) do
+        self[piece]:SetTexture(file)
+    end
+end
+
+function Krowi_OptionsKeyButtonMixin:OnMouseDown()
+    if self:IsEnabled() then self:SetPieces("Interface\\Buttons\\UI-Silver-Button-Down") end
+end
+
+-- On mouse up, and on show and enable in case it was hidden or disabled before the mouse came up
+function Krowi_OptionsKeyButtonMixin:Lift()
+    self:SetPieces("Interface\\Buttons\\UI-Silver-Button-Up")
+end
 
 -- [[ Header, sub-heading, note ]] --
 Krowi_OptionsTextRowMixin = {}
@@ -240,8 +266,13 @@ function Krowi_OptionsOptionRowMixin:Refresh()
         for slot, button in ipairs({ self.Key1, self.Key2 }) do
             local slotOption = option.Slots and option.Slots[slot]
             if slotOption then
+                -- As the game's Keybindings page shows them (BindingUtil.lua): no key in grey and a little faded, the button
+                -- waiting for a key lit
                 local key = slotOption:Get()
-                button:SetText(self.Capturing == slot and strings.PressAKey or (key and key ~= "" and GetBindingText(key)) or strings.NotBound)
+                local text = self.Capturing == slot and strings.PressAKey or key and key ~= "" and GetBindingText(key)
+                button:SetText(text or GRAY_FONT_COLOR:WrapTextInColorCode(strings.NotBound))
+                button:SetAlpha(text and 1 or 0.8)
+                button.SelectedHighlight:SetShown(self.Capturing == slot)
                 button:SetEnabled(not disabled and not inCombat)
             end
         end

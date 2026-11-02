@@ -10,6 +10,105 @@
         <DisabledCheckedTexture atlas="checkmark-minimal-disabled" useAtlasSize="true"/>
     </CheckButton>
 
+    <!-- The key button of the game's Keybindings page (Blizzard_Keybindings.xml): UIMenuButtonStretchTemplate's silver art
+         (SharedUIPanelTemplates.xml), in pieces without names, and its light while it waits for a key -->
+    <Button name="Krowi_OptionsKeyButtonTemplate" mixin="Krowi_OptionsKeyButtonMixin" virtual="true">
+        <Size x="160" y="22"/>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="TopLeft" file="Interface\Buttons\UI-Silver-Button-Up">
+                    <Size x="12" y="6"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT"/>
+                    </Anchors>
+                    <TexCoords left="0" right="0.09375" top="0" bottom="0.1875"/>
+                </Texture>
+                <Texture parentKey="TopRight" file="Interface\Buttons\UI-Silver-Button-Up">
+                    <Size x="12" y="6"/>
+                    <Anchors>
+                        <Anchor point="TOPRIGHT"/>
+                    </Anchors>
+                    <TexCoords left="0.53125" right="0.625" top="0" bottom="0.1875"/>
+                </Texture>
+                <Texture parentKey="BottomLeft" file="Interface\Buttons\UI-Silver-Button-Up">
+                    <Size x="12" y="6"/>
+                    <Anchors>
+                        <Anchor point="BOTTOMLEFT"/>
+                    </Anchors>
+                    <TexCoords left="0" right="0.09375" top="0.625" bottom="0.8125"/>
+                </Texture>
+                <Texture parentKey="BottomRight" file="Interface\Buttons\UI-Silver-Button-Up">
+                    <Size x="12" y="6"/>
+                    <Anchors>
+                        <Anchor point="BOTTOMRIGHT"/>
+                    </Anchors>
+                    <TexCoords left="0.53125" right="0.625" top="0.625" bottom="0.8125"/>
+                </Texture>
+                <Texture parentKey="TopMiddle" file="Interface\Buttons\UI-Silver-Button-Up">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.TopLeft" relativePoint="TOPRIGHT"/>
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.TopRight" relativePoint="BOTTOMLEFT"/>
+                    </Anchors>
+                    <TexCoords left="0.09375" right="0.53125" top="0" bottom="0.1875"/>
+                </Texture>
+                <Texture parentKey="MiddleLeft" file="Interface\Buttons\UI-Silver-Button-Up">
+                    <Anchors>
+                        <Anchor point="TOPRIGHT" relativeKey="$parent.TopLeft" relativePoint="BOTTOMRIGHT"/>
+                        <Anchor point="BOTTOMLEFT" relativeKey="$parent.BottomLeft" relativePoint="TOPLEFT"/>
+                    </Anchors>
+                    <TexCoords left="0" right="0.09375" top="0.1875" bottom="0.625"/>
+                </Texture>
+                <Texture parentKey="MiddleRight" file="Interface\Buttons\UI-Silver-Button-Up">
+                    <Anchors>
+                        <Anchor point="TOPRIGHT" relativeKey="$parent.TopRight" relativePoint="BOTTOMRIGHT"/>
+                        <Anchor point="BOTTOMLEFT" relativeKey="$parent.BottomRight" relativePoint="TOPLEFT"/>
+                    </Anchors>
+                    <TexCoords left="0.53125" right="0.625" top="0.1875" bottom="0.625"/>
+                </Texture>
+                <Texture parentKey="BottomMiddle" file="Interface\Buttons\UI-Silver-Button-Up">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.BottomLeft" relativePoint="TOPRIGHT"/>
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.BottomRight" relativePoint="BOTTOMLEFT"/>
+                    </Anchors>
+                    <TexCoords left="0.09375" right="0.53125" top="0.625" bottom="0.8125"/>
+                </Texture>
+                <Texture parentKey="MiddleMiddle" file="Interface\Buttons\UI-Silver-Button-Up">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.TopLeft" relativePoint="BOTTOMRIGHT"/>
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.BottomRight" relativePoint="TOPLEFT"/>
+                    </Anchors>
+                    <TexCoords left="0.09375" right="0.53125" top="0.1875" bottom="0.625"/>
+                </Texture>
+            </Layer>
+            <Layer level="OVERLAY">
+                <Texture parentKey="SelectedHighlight" file="Interface\Buttons\UI-Silver-Button-Select" alphaMode="ADD" hidden="true">
+                    <Size x="160" y="20"/>
+                    <Anchors>
+                        <Anchor point="CENTER" y="-3"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
+        <ButtonText parentKey="Text" maxLines="1">
+            <Size x="150" y="0"/>
+            <Anchors>
+                <Anchor point="CENTER" y="-1"/>
+            </Anchors>
+        </ButtonText>
+        <NormalFont style="GameFontHighlightSmall"/>
+        <HighlightFont style="GameFontHighlightSmall"/>
+        <DisabledFont style="GameFontDisableSmall"/>
+        <HighlightTexture file="Interface\Buttons\UI-Silver-Button-Highlight" alphaMode="ADD">
+            <TexCoords left="0" right="1.0" top="0.03" bottom="0.7175"/>
+        </HighlightTexture>
+        <Scripts>
+            <OnMouseDown method="OnMouseDown"/>
+            <OnMouseUp method="Lift"/>
+            <OnShow method="Lift"/>
+            <OnEnable method="Lift"/>
+        </Scripts>
+    </Button>
+
     <Frame name="Krowi_OptionsHeaderRowTemplate" mixin="Krowi_OptionsTextRowMixin" virtual="true">
         <Size y="34"/>
         <Layers>
@@ -128,11 +227,8 @@
                 <Size x="240" y="20"/>
             </EditBox>
             <!-- Side by side, as the game's Keybindings page has them (Blizzard_Keybindings.xml) -->
-            <Button parentKey="Key1" inherits="UIPanelButtonNoTooltipTemplate" hidden="true">
-                <Size x="160" y="22"/>
-            </Button>
-            <Button parentKey="Key2" inherits="UIPanelButtonNoTooltipTemplate" hidden="true">
-                <Size x="160" y="22"/>
+            <Button parentKey="Key1" inherits="Krowi_OptionsKeyButtonTemplate" hidden="true"/>
+            <Button parentKey="Key2" inherits="Krowi_OptionsKeyButtonTemplate" hidden="true">
                 <Anchors>
                     <Anchor point="LEFT" relativeKey="$parent.Key1" relativePoint="RIGHT"/>
                 </Anchors>

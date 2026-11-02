@@ -23,6 +23,12 @@ Sizes are the game's own, read from `Blizzard_Settings_Shared` in `wow-ui-source
 15. No control reaches past its row's right edge, and no name reaches into its control, in both placements, with the pane open or collapsed and with or without the section list's scroll bar.
 16. A window wider than the screen (a large UI scale on a narrow screen) is scaled down to fit, so neither the page nor the help pane is cut off.
 
+From Krowi's look in game (2026-11-02, screenshots of both windows side by side):
+
+17. **The controls line up in both placements, as the game's do.** A check box, a slider's left arrow, the key buttons and the input box's border start on one line, and a dropdown's left arrow 2.5 in from it (`Blizzard_SettingControls.lua:576`, `:657`, `:730`; the arrow 26 wide, 5 before the 220 dropdown, `SharedUIPanelTemplates.lua:1257`). In the column the dropdown's frame stood 10 after the line, which put its arrow 6 before it.
+18. **The key buttons look like the game's** (`Blizzard_Keybindings.xml:5-28`): the silver art of `UIMenuButtonStretchTemplate`, white small text, "Not bound" in grey and slightly faded, and the button that waits for a key lit (`BindingUtil.lua:215-232`).
+19. **The help pane's arrows point the way the window's right edge moves:** « on the open pane, since closing it narrows the window, and » on the collapsed strip.
+
 ## Design
 **Width** (`Krowi_Options/WindowMixin.lua`):
 - `WindowWidth()` is 920 plus the pane's width (380 or 30). `Init` and `SetPaneCollapsed` set it; the pane's toggle first re-anchors the window by its top left, so it grows to the right, then saves the place.
@@ -99,3 +105,5 @@ Krowi, 2026-11-02:
 - The divider at its own size, never wider than the page (option 2a).
 - The fixed column 330 (option 3a).
 - The window: "copy the blizzard options widths, make the screen only resizable vertically with a fixed width. how it works makes the window wider" (option 1a, requirements 1 to 4). Read as: the game's 920 layout, the pane's 380 (or its strip's 30) added, growing to the right. Scaling a window wider than the screen down (option 5) is the agent's addition, put to Krowi with the plan.
+
+Krowi, 2026-11-02, after the first look in game: "buttons look different and should align with blizz, also elements do not align properly in ours (right) compared to blizz (left). lastly, the arrow on the how it works section should be reversed as the screen shrinks when we close it", and "turning it on aligns but still, elements should be aligned when it's off too" (requirements 17 to 19). Not raised, and left as it is: the game's list spaces its rows further apart (26 tall with 9 between, a heading 45 with its title 16 down, `Blizzard_SettingsList.lua:44-47`, `Blizzard_SettingControls.xml:14-19`, `:108`) than ours (30 with none, a heading 34), and raises its sliders and dropdowns 3 above the row's middle (`:657`, `:730`).
