@@ -16,6 +16,7 @@ The harness is the toolchain this repo's Claude Code sessions use. Since 2026-10
 | | `Evaluate-ZoneCriteria.ps1` reports a missed zone as `[R2]` instead of hiding it as an undecided sub-map | 50fae1ee (2026-10-11) |
 | | Parallel sessions: `New-Worktree.ps1` and `Remove-Worktree.ps1`, `worktree.baseRef` set to `head`, fsdeploy deploys the window's own folder, the Stop hook lints the session's own checkout | 2026-10-11 |
 | | The shared tooling moves to Krowi_ClaudeKit; this repo enables its `krowi` plugin and keeps only its own (`docs/work/2026-10-16-single-tooling-home/`) | 2026-10-17 |
+| 7 | `Show-Achievement.ps1`: one call per achievement question, per client, over `headless/show-achievement.lua`; the snapshot's per-achievement lines shared through `headless/data-format.lua` (`docs/work/2026-11-02-show-achievement/`); Krowi's: the in-game comparison and the allow rules | PR #387 (2026-11-02) |
 
 ## Open, in priority order
 
@@ -24,7 +25,6 @@ Measured on 2026-10-10 from the Claude Code transcripts of this repo: 49 session
 | Step | Tool | What it saves | Size |
 |---|---|---|---|
 | 6 | Line endings fixed after Write | 132 hand fixes in 24 sessions | small |
-| 7 | `Show-Achievement.ps1` | the most common question: 10 sessions, 232 calls | medium |
 | 8 | `Get-RepoState.ps1` | 2 to 21 calls at the start of 10 sessions | small |
 | 9 | `Apply-Edits.ps1` | 66 hand-written replace helpers | small |
 | 10 | `Find-Symbol.ps1 -Outline` | 54 outline greps | small |
@@ -43,21 +43,6 @@ Steps 6, 10 and 12 change files that now live in Krowi_ClaudeKit (`hooks/Check-L
 The `bom` and `line-endings` lint rules read only `.lua`, `.xml` and `.toc` files, so LF in a `.md` or `.ps1` goes unnoticed (on 2026-10-11 `.claude/skills/add-zone-data/_zonedata_parser.ps1` was found all LF). Extend both rules to the Markdown and PowerShell files outside `Libs/` in the same step; pre-existing findings stay warnings, as for the other rules.
 
 **Done when.** A file created with Write lands as CRLF without a BOM or final newline. An Edit right after it works without a re-read (checked by hand on 2026-10-10 with an outside rewrite). The `line-endings` rule stays clean, and the instruction file and `CLAUDE.md` name the hook.
-
-### Step 7: `Show-Achievement.ps1`
-
-**Problem.** Questions about one achievement are the most common request: a wrong obtainable range (5313), whether something became a Feat of Strength (Skyreach), why an id moved to Shared (8246), dates for a short window (Goal!). Those 10 sessions took 232 calls and 533 KB of tool output. They read `TemporaryObtainable.lua`, the build-version files and `Objects/Achievement.lua` 31 times and made 19 web lookups; the 5313 session alone took 100 calls. The facts are all in the repo, but spread over the data line, its patch key, the anchor resolution per client, the category and zone files and the code that decides the state.
-
-**Design.** `.claude/tools/Show-Achievement.ps1 <ids> [-Client Retail|Classic] [-AsOf <date>] [-Build <version>] [-Db] [-History]` over a new `headless/show-achievement.lua` built on `client-env.lua`. For each id and client it prints:
-
-- the source file and line with the data line itself, and the patch key;
-- the faction and the other faction's id, the reward types and the flags;
-- each `Obtainable()` record as written, where its anchors land on that client, and the state the player sees. The state comes from the real `GetObtainableState`, with `time()` set to `-AsOf` (default today) and `GetBuildInfo()` to the newest patch the `.toc` declares for that client (`-Build` overrides it). A record bound to an event depends on the in-game calendar, so for those it names the event instead of a state;
-- the category paths, zone placements, and the tooltip, transmog set, pet battle link and event entries.
-
-`-Db` adds the name, the description and whether the id exists on each build, through `add-zone-data/_lookup_ids.ps1`. `-History` lists the commits that changed the `Ach(<id>)` line (`git log -S`). The per-achievement line comes from the formatter `snapshot-data.lua` already uses, so the two cannot drift apart.
-
-**Done when.** For 5313, 8246 and 4627 on both clients, the output agrees with the snapshots and with what the game shows. A run without `-Db` takes under a second. The script is allowlisted and listed in `.claude/tools/README.md`, and the `verify-achievement-data` skill and the `data-verifier` agent point to it.
 
 ### Step 8: `Get-RepoState.ps1`
 

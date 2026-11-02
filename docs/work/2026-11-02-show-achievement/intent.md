@@ -1,5 +1,5 @@
 # Intent: Show-Achievement.ps1 answers questions about one achievement
-Author: Krowi (maintainer). Source: idea, step 7 of `docs/harness-roadmap.md` (its full text: the roadmap at aba8378b). Status: accepted
+Author: Krowi (maintainer). Source: idea, step 7 of `docs/harness-roadmap.md` (its full text: the roadmap at aba8378b). Status: done
 
 ## Problem
 Questions about one achievement are the most common request in this repo's sessions: a wrong obtainable range (5313), whether something became a Feat of Strength, why an id moved to Shared (8246), the dates of a short window. Measured on 2026-10-10: 10 sessions, 232 tool calls and 533 KB of tool output, re-reading `Data/TemporaryObtainable.lua`, the build-version files and `Objects/Achievement.lua` 31 times. The facts are all in the repo, but spread over the data line and its patch key, how the `Obtainable()` anchors resolve on each client, the category and zone files, and the code that decides the state.

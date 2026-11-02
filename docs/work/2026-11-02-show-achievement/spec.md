@@ -1,5 +1,5 @@
 # Spec: Show-Achievement.ps1 answers questions about one achievement
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. `.claude/tools/Show-Achievement.ps1 <ids> [-Client Retail|Classic] [-AsOf <date>] [-Build <version>] [-Db] [-History]` prints, for each id and each client (both when `-Client` is left out):

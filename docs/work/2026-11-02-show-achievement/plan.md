@@ -1,5 +1,5 @@
 # Plan: Show-Achievement.ps1 answers questions about one achievement
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 Routine (tooling under `.claude/`, no addon code), so the agent proceeds without a plan gate.
 
@@ -32,6 +32,7 @@ Routine (tooling under `.claude/`, no addon code), so the agent proceeds without
 Where the build departed from this plan:
 - `Show-Achievement.ps1` is a plain script, without `[CmdletBinding()]` or `[Parameter()]`: in an advanced script the roadmap's `-Db` collides with `-Debug`, whose alias is `db`.
 - `-Ids` takes strings and splits them on commas, because `pwsh -File` (the `data-verifier` agent's form) hands `5313,8246` over as one argument.
+- From the code review: the category path renderer moved into `data-format.lua` too, and `snapshot-categories.lua` takes its path segments from it (its baselines unchanged); `-History` also follows an `AutoFactionSplit` mirror to its partner's line.
 
 ## Proof
 - `& ".claude\tools\Show-Achievement.ps1" 5313,8246,4627` against the snapshot lines (`Select-String` on the three snapshot files for each printed line).
