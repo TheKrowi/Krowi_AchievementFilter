@@ -671,7 +671,6 @@ L["Level 85"] = true
 L["Level 90"] = true
 L["Leveling"] = true
 L["Line"] = true
-L["Lines under headings"] = true
 L["Lingering Shadows"] = true
 L["Links"] = true
 L["Load Tracking Achievements"] = true

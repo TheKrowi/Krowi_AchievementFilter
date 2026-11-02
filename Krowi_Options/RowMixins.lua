@@ -14,39 +14,29 @@
 local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
 
 -- [[ Where a row's name and controls stand ]] --
--- In a column 330 from the row's right edge, wide enough for the two key buttons, or as the game's Options window places
--- them, from the row's centre (Blizzard_SettingControls.lua: the name from 37 to 85 before the centre, a check box or
--- slider at -80, a button at -40, a dropdown's frame at -48 with its 220 dropdown centred, which puts ours, in a 250
--- frame, at -61.5); window.CentredControls picks (docs/work/2026-11-02-options-widths). Each is an anchor on the row,
--- { relativePoint, x }, so a row is placed before it has its width. In both, a check box, a slider's left arrow, the
--- key buttons and the input box's border start on one line, and the dropdown's left arrow 2.5 in from it, as the game
--- has them: the dropdown's frame 18.5 after the line, the input box 6 (its border reaches 5 before it).
+-- In a column 330 from the row's right edge, wide enough for the two key buttons (Krowi kept it over the game's placement
+-- from the row's centre, docs/work/2026-11-02-options-widths). Each is an anchor on the row, { relativePoint, x }, so a
+-- row is placed before it has its width. A check box, a slider's left arrow, the key buttons and the input box's border
+-- start on one line, and the dropdown's left arrow 2.5 in from it, as the game has them: the dropdown's frame 18.5 after
+-- the line, the input box 6 (its border reaches 5 before it).
 local controlColumn = 330
 local selectIn, inputIn = 18.5, 6
-local placements = {
-    [false] = {
-        Toggle = { "RIGHT", -controlColumn }, Range = { "RIGHT", -controlColumn }, Select = { "RIGHT", -controlColumn + selectIn }, Execute = { "RIGHT", -controlColumn },
-        Input = { "RIGHT", -controlColumn + inputIn }, Key = { "RIGHT", -controlColumn }, Sub = { "RIGHT", -controlColumn }, TabArrows = { "RIGHT", -controlColumn },
-        NameRight = { "RIGHT", -controlColumn - 12 }, NameLeft = 16, Indent = 20,
-    },
-    [true] = {
-        Toggle = { "CENTER", -80 }, Range = { "CENTER", -80 }, Select = { "CENTER", -80 + selectIn }, Execute = { "CENTER", -40 },
-        Input = { "CENTER", -80 + inputIn }, Key = { "CENTER", -80 }, Sub = { "CENTER", -80 }, TabArrows = { "CENTER", -80 },
-        NameRight = { "CENTER", -85 }, NameLeft = 37, Indent = 15,
-    },
+local placement = {
+    Toggle = { "RIGHT", -controlColumn }, Range = { "RIGHT", -controlColumn }, Select = { "RIGHT", -controlColumn + selectIn }, Execute = { "RIGHT", -controlColumn },
+    Input = { "RIGHT", -controlColumn + inputIn }, Key = { "RIGHT", -controlColumn }, Sub = { "RIGHT", -controlColumn }, TabArrows = { "RIGHT", -controlColumn },
+    NameRight = { "RIGHT", -controlColumn - 12 }, NameLeft = 16, Indent = 20,
 }
-local geometries = { [false] = {}, [true] = {} } -- per placement and indent, made once
+local geometries = {} -- per indent, made once
 
-function lib.RowGeometry(indent, centred)
-    centred, indent = centred and true or false, indent or 0
-    local geometry = geometries[centred][indent]
+function lib.RowGeometry(indent)
+    indent = indent or 0
+    local geometry = geometries[indent]
     if not geometry then
-        local placement = placements[centred]
         geometry = { NameLeft = { "LEFT", placement.NameLeft + indent * placement.Indent } }
         for key, spec in next, placement do
             if type(spec) == "table" then geometry[key] = spec end
         end
-        geometries[centred][indent] = geometry
+        geometries[indent] = geometry
     end
     return geometry
 end
@@ -93,10 +83,8 @@ end
 -- [[ Header, sub-heading, note ]] --
 Krowi_OptionsTextRowMixin = {}
 
--- A header's line follows the player's choice in the window's bottom row
-function Krowi_OptionsTextRowMixin:Init(element, window)
+function Krowi_OptionsTextRowMixin:Init(element)
     self.Text:SetText(element.Text or "")
-    if self.Line then self.Line:SetShown(window.ShowHeadingLines) end
 end
 
 -- [[ An option ]] --
@@ -175,7 +163,7 @@ function Krowi_OptionsOptionRowMixin:Init(element, window)
     for _, control in ipairs({ self.Toggle, self.Range, self.Select, self.Execute, self.Input, self.Key1, self.Key2 }) do
         control:Hide()
     end
-    local geometry = lib.RowGeometry(option.Indent, window.CentredControls)
+    local geometry = lib.RowGeometry(option.Indent)
     self.Geometry = geometry
     self.Label:ClearAllPoints()
     self.Label:SetPoint("LEFT", self, geometry.NameLeft[1], geometry.NameLeft[2], 0)
@@ -351,7 +339,7 @@ end
 function Krowi_OptionsSubRowMixin:Init(element, window)
     self.Element, self.Window = element, window
     self.Text:SetText(element.Text or "")
-    Place(self.All, self, lib.RowGeometry(0, window.CentredControls).Sub)
+    Place(self.All, self, lib.RowGeometry(0).Sub)
     self.All:SetText(window.Strings.All)
     self.None:SetText(window.Strings.None)
 end
@@ -455,7 +443,7 @@ function Krowi_OptionsTabRowMixin:Init(element, window)
     self.Position:SetText(item.Position)
     self.Label:SetText(item.Show and item.Show:GetLabel() or "?")
     self.Source:SetText(item.Source or "")
-    Place(self.Up, self, lib.RowGeometry(0, window.CentredControls).TabArrows)
+    Place(self.Up, self, lib.RowGeometry(0).TabArrows)
     self.Up:SetEnabled(item.MoveUp ~= nil)
     self.Down:SetEnabled(item.MoveDown ~= nil)
     self:Refresh()

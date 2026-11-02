@@ -430,7 +430,6 @@ L["Legion Assaults"] = "Ataques da Legião"
 L["Level 80"] = "Nível 80"
 L["Level 85"] = "Nível 85"
 L["Level 90"] = "Nível 90"
-L["Lines under headings"] = "Linhas sob os títulos"
 L["Links"] = true
 L["Location"] = "Localização"
 L["Lorewalking"] = "Trilha das Lendas"

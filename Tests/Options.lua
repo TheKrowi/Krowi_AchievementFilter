@@ -100,19 +100,17 @@ local function SecondTab(lib)
     return line .. " after=" .. TabNames(lib)
 end
 
--- Where a row's name and controls stand, as x from the row's left: the right-hand column or the game's placement from
--- the row's centre (docs/work/2026-11-02-options-widths), on the game's 635 rows and the 619 left while the section list
--- shows its scroll bar; the name's left at indent 0 and 1
+-- Where a row's name and controls stand, as x from the row's left, in the right-hand column
+-- (docs/work/2026-11-02-options-widths), on the game's 635 rows and the 619 left while the section list shows its scroll
+-- bar; the name's left at indent 0 and 1
 local rowControls = { "Toggle", "Range", "Select", "Execute", "Input", "Key", "Sub", "TabArrows" }
 local function RowGeometryLine(lib)
     local parts = {}
-    for _, centred in ipairs({ false, true }) do
-        for _, width in ipairs({ 635, 619 }) do
-            local flat, indented = lib.RowGeometry(0, centred), lib.RowGeometry(1, centred)
-            local line = { ("name %g/%g-%g"):format(lib.RowX(flat.NameLeft, width), lib.RowX(indented.NameLeft, width), lib.RowX(flat.NameRight, width)) }
-            for _, key in ipairs(rowControls) do line[#line + 1] = ("%s %g"):format(key, lib.RowX(flat[key], width)) end
-            parts[#parts + 1] = ("%s %d [%s]"):format(centred and "centre" or "column", width, table.concat(line, " "))
-        end
+    for _, width in ipairs({ 635, 619 }) do
+        local flat, indented = lib.RowGeometry(0), lib.RowGeometry(1)
+        local line = { ("name %g/%g-%g"):format(lib.RowX(flat.NameLeft, width), lib.RowX(indented.NameLeft, width), lib.RowX(flat.NameRight, width)) }
+        for _, key in ipairs(rowControls) do line[#line + 1] = ("%s %g"):format(key, lib.RowX(flat[key], width)) end
+        parts[#parts + 1] = ("column %d [%s]"):format(width, table.concat(line, " "))
     end
     return table.concat(parts, " ")
 end
@@ -273,7 +271,7 @@ options.Scenarios = {
         Recorded = "tabs=Achievement Filter,Zz Test shared=both open=Zz Test all=Achievement Filter,Zz Test after=Achievement Filter", -- "no tab registry" before the tabs
         Target = "tabs=Achievement Filter,Zz Test shared=both open=Zz Test all=Achievement Filter,Zz Test after=Achievement Filter"},
     -- The game's Options window's sizes (docs/work/2026-11-02-options-widths): its width with the help pane added, and
-    -- the rows' names and controls in the right-hand column or from the row's centre
+    -- the rows' names and controls in the right-hand column
     {Name = "window-width",
         Observe = function()
             local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
@@ -288,18 +286,14 @@ options.Scenarios = {
             if not lib.RowGeometry then return "column 300 from the right, names from 16" end
             return RowGeometryLine(lib)
         end,
-        -- "column 300 from the right, names from 16" before the game's sizes; the column's Select 315 and the centre's Input
-        -- 237.5 before Krowi's look in game
+        -- "column 300 from the right, names from 16" before the game's sizes; the column's Select 315 before Krowi's look in
+        -- game, and the game's placement from the row's centre beside it until Krowi kept the column (2026-11-02)
         Recorded = "column 635 [name 16/36-293 Toggle 305 Range 305 Select 323.5 Execute 305 Input 311 Key 305 Sub 305 TabArrows 305]"
-            .. " column 619 [name 16/36-277 Toggle 289 Range 289 Select 307.5 Execute 289 Input 295 Key 289 Sub 289 TabArrows 289]"
-            .. " centre 635 [name 37/52-232.5 Toggle 237.5 Range 237.5 Select 256 Execute 277.5 Input 243.5 Key 237.5 Sub 237.5 TabArrows 237.5]"
-            .. " centre 619 [name 37/52-224.5 Toggle 229.5 Range 229.5 Select 248 Execute 269.5 Input 235.5 Key 229.5 Sub 229.5 TabArrows 229.5]",
-        -- Krowi's look in game (2026-11-02): in the column too, the dropdown's left arrow on the check boxes' line, 2.5 in
-        -- as the game has it; and the input box 6 in from it in both placements, so its border starts on that line
+            .. " column 619 [name 16/36-277 Toggle 289 Range 289 Select 307.5 Execute 289 Input 295 Key 289 Sub 289 TabArrows 289]",
+        -- Krowi's look in game (2026-11-02): the dropdown's left arrow on the check boxes' line, 2.5 in as the game has it,
+        -- and the input box 6 in from it, so its border starts on that line
         Target = "column 635 [name 16/36-293 Toggle 305 Range 305 Select 323.5 Execute 305 Input 311 Key 305 Sub 305 TabArrows 305]"
-            .. " column 619 [name 16/36-277 Toggle 289 Range 289 Select 307.5 Execute 289 Input 295 Key 289 Sub 289 TabArrows 289]"
-            .. " centre 635 [name 37/52-232.5 Toggle 237.5 Range 237.5 Select 256 Execute 277.5 Input 243.5 Key 237.5 Sub 237.5 TabArrows 237.5]"
-            .. " centre 619 [name 37/52-224.5 Toggle 229.5 Range 229.5 Select 248 Execute 269.5 Input 235.5 Key 229.5 Sub 229.5 TabArrows 229.5]"},
+            .. " column 619 [name 16/36-277 Toggle 289 Range 289 Select 307.5 Execute 289 Input 295 Key 289 Sub 289 TabArrows 289]"},
 }
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
@@ -448,7 +442,7 @@ end
 
 -- Where a drawn row breaks the layout: a control of the wrong width, one past the row's right edge, a name's text that
 -- runs into the first control, a dropdown whose left arrow is off the check boxes' line (the game's stands 2.5 in from
--- it, in either placement); and whether the name is cut short
+-- it); and whether the name is cut short
 local function RowLayout(row)
     local right = row:GetRight()
     if not right then
@@ -537,10 +531,9 @@ local function CheckDrawnRows()
     return drawn, differ, misfit, cut
 end
 
--- prefix: "section-" by default; the placement steps show a section again under their own name
-local function SectionStep(sectionId, name, prefix)
+local function SectionStep(sectionId, name)
     return {
-        Name = (prefix or "section-") .. sectionId,
+        Name = "section-" .. sectionId,
         Text = name,
         Run = function()
             Window():ShowSection(sectionId)
@@ -549,38 +542,12 @@ local function SectionStep(sectionId, name, prefix)
             local rows = #(Window().Elements or {})
             local drawn, differ, misfit, cut = CheckDrawnRows()
             local ok = (rows == 0 or drawn > 0) and #differ == 0 and #misfit == 0
-            Add(ok and "PASS" or "FAIL", ("%d rows, %d drawn, controls %s%s%s%s"):format(rows, drawn,
-                Window().CentredControls and "from the centre" or "in the column",
+            Add(ok and "PASS" or "FAIL", ("%d rows, %d drawn%s%s%s"):format(rows, drawn,
                 #differ > 0 and (", controls that do not show their value: [" .. table.concat(differ, ",") .. "]") or "",
                 #misfit > 0 and (", rows out of the layout: [" .. table.concat(misfit, "; ") .. "]") or "",
                 #cut > 0 and (", names cut short: [" .. table.concat(cut, ",") .. "]") or ""))
         end
     }
-end
-
--- The first section that draws an option of each type, for the placement steps
-local function SectionsWithEachType()
-    local window = addon.Options.Window
-    local found, list = {}, {}
-    for _, optionType in ipairs({ "toggle", "range", "select", "execute", "input", "key" }) do
-        for _, section in ipairs(window.Map.Sections) do
-            local has = false
-            for _, element in ipairs(window.Source.Elements(section)) do
-                if element.Option and element.Option.Type == optionType then
-                    has = true
-                    break
-                end
-            end
-            if has then
-                if not found[section.Id] then
-                    found[section.Id] = true
-                    tinsert(list, section)
-                end
-                break
-            end
-        end
-    end
-    return list
 end
 
 -- The footer names the section's changed options
@@ -737,33 +704,16 @@ local function BuildSteps()
                 local fitsIn96 = defaults:GetFontString():GetStringWidth() + 24 <= 96
                 local ok = Is(frame:GetWidth(), width) and Is(minWidth, width) and Is(maxWidth, width) and Is(frame:PageWidth(), rows)
                     and Is(frame.SearchBox:GetWidth(), 350) and (fitsIn96 and Is(defaults:GetWidth(), 96) or not fitsIn96 and defaults:GetWidth() > 96)
-                    and Is(frame.HeadingLines:GetWidth(), 30) and Is(frame.HeadingLines:GetHeight(), 29) and Is(frame.Divider:GetWidth(), 630)
+                    and Is(frame.SearchAll:GetWidth(), 30) and Is(frame.SearchAll:GetHeight(), 29) and Is(frame.Divider:GetWidth(), 630)
                 Add(ok and "PASS" or "FAIL", ("window %g wide (resizes from %g to %g), rows %g, search box %g, Defaults %g, check box %gx%g, divider %g, scale %.2f"):format(
                     frame:GetWidth(), minWidth, maxWidth, frame:PageWidth(), frame.SearchBox:GetWidth(), defaults:GetWidth(),
-                    frame.HeadingLines:GetWidth(), frame.HeadingLines:GetHeight(), frame.Divider:GetWidth(), frame:GetScale()))
+                    frame.SearchAll:GetWidth(), frame.SearchAll:GetHeight(), frame.Divider:GetWidth(), frame:GetScale()))
             end
         },
         SectionStep("overview", addon.L["Overview"])
     }
     for _, section in ipairs(window.Map.Sections) do
         tinsert(list, SectionStep(section.Id, section.Name))
-    end
-    -- The other placement of the controls, through the window's own check box, on a section with each type of control
-    tinsert(list, {
-        Name = "placement",
-        Text = "the controls switched to the other placement",
-        Run = function()
-            live.CentredBefore = Window().CentredControls
-            Window().ControlsFromCentre:Click()
-        end,
-        Check = function()
-            local frame = Window()
-            local switched = frame.CentredControls == not live.CentredBefore and frame.ControlsFromCentre:GetChecked() == frame.CentredControls
-            Add(switched and "PASS" or "FAIL", ("the controls stand %s"):format(frame.CentredControls and "from the row's centre" or "in the right-hand column"))
-        end
-    })
-    for _, section in ipairs(SectionsWithEachType()) do
-        tinsert(list, SectionStep(section.Id, section.Name, "placed-"))
     end
     for _, step in ipairs({ ChangeSteps("toggle", toggleId, function(row) row.Toggle:Click() end) }) do tinsert(list, step) end
     tinsert(list, ResetStep("toggle", toggleId, function(row) row.Toggle:Click() end))
@@ -858,9 +808,6 @@ local function Restore()
     if frame then
         if frame.PaneCollapsed ~= (live.SavedWindow.PaneCollapsed and true or false) then
             frame:SetPaneCollapsed(live.SavedWindow.PaneCollapsed and true or false)
-        end
-        if frame.CentredControls ~= (live.SavedWindow.ControlsFromCentre and true or false) then
-            frame.ControlsFromCentre:Click()
         end
         if live.WasShown then
             frame:Open(live.WasShown)

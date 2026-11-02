@@ -667,7 +667,6 @@ L["Level 85"] = true
 L["Level 90"] = true
 L["Leveling"] = "Level"
 L["Line"] = "Zeile"
-L["Lines under headings"] = "Linien unter Überschriften"
 L["Lingering Shadows"] = "Verweilende Schatten"
 L["Links"] = true
 L["Load Tracking Achievements"] = "Tracking-Erfolge anzeigen"

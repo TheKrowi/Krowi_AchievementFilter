@@ -114,12 +114,9 @@
             <Layer level="ARTWORK">
                 <FontString parentKey="PageTitle" inherits="GameFontHighlightHuge" justifyH="LEFT" wordwrap="false"/>
                 <FontString parentKey="ChangedText" inherits="GameFontDisableSmall" justifyH="RIGHT"/>
-                <FontString parentKey="HelpKicker" inherits="GameFontDisableSmall" justifyH="LEFT"/>
                 <FontString parentKey="ReloadText" inherits="GameFontHighlight" justifyH="LEFT"/>
                 <FontString parentKey="ShowMeNote" inherits="GameFontDisableSmall" justifyH="LEFT" justifyV="TOP"/>
                 <FontString parentKey="SearchAllLabel" inherits="GameFontNormalSmall" justifyH="LEFT" hidden="true"/>
-                <FontString parentKey="HeadingLinesLabel" inherits="GameFontNormalSmall" justifyH="LEFT"/>
-                <FontString parentKey="ControlsFromCentreLabel" inherits="GameFontNormalSmall" justifyH="LEFT"/>
                 <Texture parentKey="Divider" atlas="Options_HorizontalDivider" useAtlasSize="true"/>
             </Layer>
             <Layer level="BACKGROUND" textureSubLevel="2">
@@ -143,8 +140,6 @@
                 <Size x="350" y="22"/>
             </EditBox>
             <CheckButton parentKey="SearchAll" inherits="Krowi_OptionsCheckButtonTemplate" hidden="true"/>
-            <CheckButton parentKey="HeadingLines" inherits="Krowi_OptionsCheckButtonTemplate"/>
-            <CheckButton parentKey="ControlsFromCentre" inherits="Krowi_OptionsCheckButtonTemplate"/>
             <!-- The game's window scrolls with the thin MinimalScrollBar (Blizzard_CategoryList.xml, Blizzard_SettingsList.xml) -->
             <Frame parentKey="NavScrollBox" inherits="WowScrollBoxList"/>
             <EventFrame parentKey="NavScrollBar" inherits="MinimalScrollBar"/>
@@ -161,6 +156,12 @@
                         <FontString parentKey="Arrow" inherits="GameFontNormalLarge">
                             <Anchors>
                                 <Anchor point="CENTER" y="1"/>
+                            </Anchors>
+                        </FontString>
+                        <!-- The pane's name after the chevron; WindowMixin.lua's SetKicker widens the button's hit rect over it -->
+                        <FontString parentKey="Label" inherits="GameFontDisableSmall" justifyH="LEFT">
+                            <Anchors>
+                                <Anchor point="LEFT" relativePoint="RIGHT" x="2"/>
                             </Anchors>
                         </FontString>
                     </Layer>

@@ -57,4 +57,14 @@ Reused as they are: `InitList`'s `leftPad` (`WindowMixin.lua:118`), `lib.SetShar
   - `Rows.xml`: the key buttons use `Krowi_OptionsKeyButtonTemplate`, a copy of the game's silver key button art whose pieces carry no names. Inheriting `UIMenuButtonStretchTemplate` would have made a global per piece for every row through its `$parent` names. `Krowi_OptionsKeyButtonMixin` swaps the art when pressed. The row shows "Not bound" in grey at alpha 0.8, and lights the button waiting for a key.
   - `WindowMixin.lua`: the help pane's arrows are swapped.
   - `Tests/Options.lua`: each drawn dropdown row checks that its left arrow stands 2.5 from the check boxes' line.
-- **Krowi's second look** (2026-11-02, spec requirement 20): `WindowMixin.lua` moves « from the pane's top right to its top left, 4 in, so its centre is the strip's » centre (15 in), and anchors "How it works" 2 after it, centred on it (it was at 16, −12).
+- **Krowi's second look** (2026-11-02, spec requirement 20): `WindowMixin.lua` moves « from the pane's top right to its top left, 4 in, so its centre is the strip's » centre (15 in), and anchors "How it works" 2 after it, centred on it (it was at 16, −12). Then (Krowi, the same day) the window's `HelpKicker` became the button's `Label` in `Window.xml`, and the new `SetKicker(text)` sets it and widens the button's hit rect over it, so the name closes the pane and lights with the arrow, as on the strip.
+- **Krowi's pick** (2026-11-02, the spec's Decision): the column stays.
+  - `RowMixins.lua`: `placements` becomes the column's `placement`, and `lib.RowGeometry(indent)` loses its `centred` argument.
+  - `WindowMixin.lua` and `Window.xml`: the `ControlsFromCentre` check box, its label, `CentredControls` and the saved `ControlsFromCentre` go.
+  - `Tests/Options.lua`: `row-geometry` keeps the column's two widths; the `placement` step, the `placed-` section steps, `SectionsWithEachType` and the switch in `Restore` go.
+- **Lines under headings removed** (Krowi, the same day):
+  - `Window.xml` and `WindowMixin.lua`: the `HeadingLines` check box, its label, `ShowHeadingLines`, the saved `HeadingLines` and the `HeadingLines` string go. "Search all tabs" now stands next to Close, and with one tab the reload bar reaches to Close, as low as before.
+  - `Rows.xml` and `RowMixins.lua`: the header row's `Line` goes, and so does its `Init`'s `window`.
+  - `Options/Window/Window.lua` and the 11 locale files: `L["Lines under headings"]` goes.
+  - `Krowi_Options.lua`: the saved table's comments.
+  - `Tests/Options.lua`: the `sizes` step measures "Search all tabs" as the check box.

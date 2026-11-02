@@ -7,7 +7,7 @@
 
 -- The window: a tab per registered addon on top, the open addon's navigation on the left, the section's rows in the
 -- middle, the help pane on the right, in the frame and art of the game's own Options window. Strings come from the open
--- tab's consumer (config.Strings): Search, SearchAll, HeadingLines, Overview, SearchResults, NoResults, Defaults, ResetSection (with
+-- tab's consumer (config.Strings): Search, SearchAll, Overview, SearchResults, NoResults, Defaults, ResetSection (with
 -- %s), ChangedCount (with %d), ReloadText, ReloadNow, ShowMe, HowItWorks, All, None, NotBound, PressAKey, Default
 -- (with %s), NeedsReload, NotInCombat, and optionally ResetToDefault (the game's RESET_TO_DEFAULT otherwise).
 
@@ -253,19 +253,6 @@ function Krowi_OptionsWindowMixin:OnLoad()
         lib.SetShared("SearchAll", self.SearchEveryTab)
         if self.Searching then self:OnSearch(self.SearchBox:GetText()) end
     end)
-    -- Lines under the page's group headings, the player's choice, kept for every addon like the window's place
-    self.HeadingLines:SetScript("OnClick", function(button)
-        self.ShowHeadingLines = button:GetChecked() and true or false
-        lib.SetShared("HeadingLines", self.ShowHeadingLines)
-        self:ReloadSection()
-    end)
-    -- The proof's switch (docs/work/2026-11-02-options-widths): the controls in the right-hand column, or from the row's
-    -- centre as the game's window places them; kept for every addon like the window's place
-    self.ControlsFromCentre:SetScript("OnClick", function(button)
-        self.CentredControls = button:GetChecked() and true or false
-        lib.SetShared("ControlsFromCentre", self.CentredControls)
-        self:ReloadSection()
-    end)
     self.CollapseButton:SetScript("OnClick", function() self:SetPaneCollapsed(true) end)
     self.ExpandButton:SetScript("OnClick", function() self:SetPaneCollapsed(false) end)
     -- « hides the pane and » brings it back, the way the window's right edge moves; gold, white under the mouse, as the
@@ -317,10 +304,6 @@ function Krowi_OptionsWindowMixin:Init(saved)
     end
     self.SearchEveryTab = saved.SearchAll and true or false
     self.SearchAll:SetChecked(self.SearchEveryTab)
-    self.ShowHeadingLines = saved.HeadingLines and true or false
-    self.HeadingLines:SetChecked(self.ShowHeadingLines)
-    self.CentredControls = saved.ControlsFromCentre and true or false
-    self.ControlsFromCentre:SetChecked(self.CentredControls)
     self:Layout()
 end
 
@@ -388,12 +371,16 @@ function Krowi_OptionsWindowMixin:RefreshTabs()
 end
 
 -- Searching every tab means something only with a second tab: the check box shows from then on, and until then the
--- reload bar reaches to the heading lines check box
+-- reload bar reaches to Close, as low as it reaches beside the 29 high check box
 function Krowi_OptionsWindowMixin:UpdateSearchAll()
     local several = #lib.Tabs > 1
     self.SearchAll:SetShown(several)
     self.SearchAllLabel:SetShown(several)
-    self.ReloadBackground:SetPoint("BOTTOMRIGHT", several and self.SearchAll or self.ControlsFromCentre, "BOTTOMLEFT", -12, -2)
+    if several then
+        self.ReloadBackground:SetPoint("BOTTOMRIGHT", self.SearchAll, "BOTTOMLEFT", -12, -2)
+    else
+        self.ReloadBackground:SetPoint("BOTTOMRIGHT", self.CloseButton, "BOTTOMLEFT", -12, -5.5)
+    end
 end
 
 -- Shows the window on an addon's tab: its sections, strings and saved table, at sectionId or the addon's landing section
@@ -421,10 +408,6 @@ function Krowi_OptionsWindowMixin:ApplyStrings()
     self.SearchBox.Instructions:SetText(strings.Search or "")
     self.SearchAllLabel:SetText(strings.SearchAll or "")
     self.SearchAll:SetHitRectInsets(0, -(self.SearchAllLabel:GetStringWidth() + 4), 0, 0) -- the label ticks it too
-    self.HeadingLinesLabel:SetText(strings.HeadingLines or "")
-    self.HeadingLines:SetHitRectInsets(0, -(self.HeadingLinesLabel:GetStringWidth() + 4), 0, 0)
-    self.ControlsFromCentreLabel:SetText("Controls from the centre") -- the proof's switch, in English until Krowi's pick
-    self.ControlsFromCentre:SetHitRectInsets(0, -(self.ControlsFromCentreLabel:GetStringWidth() + 4), 0, 0)
     -- The collapsed pane's strip: the chevron, then the pane's name down the strip; the whole strip brings the pane back.
     -- A turned text turns about its centre, so it hangs below the chevron by half its length; its letters sit off the
     -- line's middle, so it moves right to stand under the chevron (measured in game, 2026-10-30)
@@ -519,13 +502,11 @@ function Krowi_OptionsWindowMixin:Layout()
     self.HelpBackground:SetPoint("BOTTOMRIGHT", body, "BOTTOMRIGHT")
     self.HelpBackground:SetWidth(right)
     -- « stands at the pane's left, on the spot where the strip's » comes (15 in, as the strip is 30 wide), so a second
-    -- click finds it under the mouse; "How it works" follows it
+    -- click finds it under the mouse; "How it works" follows it, part of the button
     self.CollapseButton:ClearAllPoints()
     self.CollapseButton:SetPoint("TOPLEFT", self.HelpBackground, "TOPLEFT", 4, -3)
     self.ExpandButton:ClearAllPoints()
     self.ExpandButton:SetPoint("TOP", self.HelpBackground, "TOP", 0, -3)
-    self.HelpKicker:ClearAllPoints()
-    self.HelpKicker:SetPoint("LEFT", self.CollapseButton, "RIGHT", 2, 0)
     self.HelpScrollBox:ClearAllPoints()
     self.HelpScrollBox:SetPoint("TOPLEFT", self.HelpBackground, "TOPLEFT", 12, -32)
     self.HelpScrollBox:SetPoint("BOTTOMRIGHT", self.HelpBackground, "BOTTOMRIGHT", -22, 44)
@@ -538,7 +519,7 @@ function Krowi_OptionsWindowMixin:Layout()
     self.ShowMeNote:SetPoint("LEFT", self.ShowMeButton, "RIGHT", 8, 0)
     self.ShowMeNote:SetPoint("RIGHT", self.HelpBackground, "RIGHT", -10, 0)
 
-    for _, region in ipairs({ self.CollapseButton, self.HelpKicker, self.HelpScrollBox }) do
+    for _, region in ipairs({ self.CollapseButton, self.HelpScrollBox }) do
         region:SetShown(not self.PaneCollapsed)
     end
     -- The help's scroll bar hides with the pane, and comes back only when the help is longer than the pane
@@ -571,17 +552,9 @@ function Krowi_OptionsWindowMixin:Layout()
     self.PageScrollBar:SetPoint("TOPLEFT", self.PageScrollBox, "TOPRIGHT", 0, -4)
     self.PageScrollBar:SetPoint("BOTTOMLEFT", self.PageScrollBox, "BOTTOMRIGHT", -1, 7)
 
-    -- The bottom row: the reload bar, the search scope, controls placement and heading lines check boxes, and Close
-    self.HeadingLinesLabel:ClearAllPoints()
-    self.HeadingLinesLabel:SetPoint("RIGHT", self.CloseButton, "LEFT", -16, 0)
-    self.HeadingLines:ClearAllPoints()
-    self.HeadingLines:SetPoint("RIGHT", self.HeadingLinesLabel, "LEFT", -2, 0)
-    self.ControlsFromCentreLabel:ClearAllPoints()
-    self.ControlsFromCentreLabel:SetPoint("RIGHT", self.HeadingLines, "LEFT", -16, 0)
-    self.ControlsFromCentre:ClearAllPoints()
-    self.ControlsFromCentre:SetPoint("RIGHT", self.ControlsFromCentreLabel, "LEFT", -2, 0)
+    -- The bottom row: the reload bar, the search scope check box, and Close
     self.SearchAllLabel:ClearAllPoints()
-    self.SearchAllLabel:SetPoint("RIGHT", self.ControlsFromCentre, "LEFT", -16, 0)
+    self.SearchAllLabel:SetPoint("RIGHT", self.CloseButton, "LEFT", -16, 0)
     self.SearchAll:ClearAllPoints()
     self.SearchAll:SetPoint("RIGHT", self.SearchAllLabel, "LEFT", -2, 0)
     self.ReloadBackground:ClearAllPoints()
@@ -915,11 +888,18 @@ function Krowi_OptionsWindowMixin:FillHelp(blocks)
     self.HelpScrollBox:SetDataProvider(CreateDataProvider(blocks), ScrollBoxConstants.DiscardScrollPosition)
 end
 
+-- The open pane's name after «: a click on it closes the pane too, as the strip's name opens it
+function Krowi_OptionsWindowMixin:SetKicker(text)
+    local button = self.CollapseButton
+    button.Label:SetText(text)
+    button:SetHitRectInsets(0, -(button.Label:GetStringWidth() + 2), 0, 0)
+end
+
 function Krowi_OptionsWindowMixin:ShowSectionHelp()
     self.HoverOption = nil
     local help = self.Config.GetHelp(self.SectionId)
     self.Help = help
-    self.HelpKicker:SetText(self.Strings.HowItWorks)
+    self:SetKicker(self.Strings.HowItWorks)
     local blocks = {}
     local title = help and help.Title or (self.SectionId == "overview" and self.Strings.Overview or self.Config.SectionName(self.SectionId))
     blocks[#blocks + 1] = TextBlock(title, "GameFontNormalLarge", 10)
@@ -1018,7 +998,7 @@ function Krowi_OptionsWindowMixin:OnRowEnter(option, row, controlX)
         return
     end
     self.HoverOption = option
-    self.HelpKicker:SetText(self.Config.SectionName(self.SectionId) or "")
+    self:SetKicker(self.Config.SectionName(self.SectionId) or "")
     local blocks = { TextBlock(option:GetLabel(), "GameFontNormalLarge", 10) }
     if desc ~= "" then blocks[#blocks + 1] = TextBlock(desc, "GameFontHighlightSmall", 10) end
     for _, line in ipairs(lines) do blocks[#blocks + 1] = TextBlock(line, "GameFontDisableSmall", 4) end

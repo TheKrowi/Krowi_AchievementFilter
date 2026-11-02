@@ -224,7 +224,6 @@ L["It also opens with /kaf, the minimap icon and the Options entry of the achiev
 L["Jewelcrafting"] = "Oreficeria"
 L["Keys and clicks"] = "Tasti e clic"
 L["Leatherworking"] = "Conciatura"
-L["Lines under headings"] = "Linee sotto le intestazioni"
 L["Links"] = "Link"
 L["Map pin"] = "Segnalino mappa"
 L["Map pin and TomTom"] = "Segnalino mappa e TomTom"

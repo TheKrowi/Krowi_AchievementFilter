@@ -389,7 +389,6 @@ L["It also opens with /kaf, the minimap icon and the Options entry of the achiev
 L["Jewelcrafting"] = "보석세공"
 L["Keys and clicks"] = "키와 클릭"
 L["Leatherworking"] = "가죽세공"
-L["Lines under headings"] = "제목 아래 줄"
 L["Links"] = "링크"
 L["Loaded"] = "로드됨"
 L["Loaded Desc"] = "애드온이 로드되었는지 확인합니다."

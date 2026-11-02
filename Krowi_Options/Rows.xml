@@ -119,14 +119,6 @@
                         <Anchor point="RIGHT" x="-6"/>
                     </Anchors>
                 </FontString>
-                <Texture parentKey="Line">
-                    <Size y="1"/>
-                    <Anchors>
-                        <Anchor point="BOTTOMLEFT" x="6" y="1"/>
-                        <Anchor point="BOTTOMRIGHT" x="-6" y="1"/>
-                    </Anchors>
-                    <Color r="1" g="0.82" b="0" a="0.25"/>
-                </Texture>
             </Layer>
         </Layers>
     </Frame>
