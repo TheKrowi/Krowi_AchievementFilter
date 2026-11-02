@@ -28,6 +28,7 @@ From Krowi's look in game (2026-11-02, screenshots of both windows side by side)
 17. **The controls line up in both placements, as the game's do.** A check box, a slider's left arrow, the key buttons and the input box's border start on one line, and a dropdown's left arrow 2.5 in from it (`Blizzard_SettingControls.lua:576`, `:657`, `:730`; the arrow 26 wide, 5 before the 220 dropdown, `SharedUIPanelTemplates.lua:1257`). In the column the dropdown's frame stood 10 after the line, which put its arrow 6 before it.
 18. **The key buttons look like the game's** (`Blizzard_Keybindings.xml:5-28`): the silver art of `UIMenuButtonStretchTemplate`, white small text, "Not bound" in grey and slightly faded, and the button that waits for a key lit (`BindingUtil.lua:215-232`).
 19. **The help pane's arrows point the way the window's right edge moves:** « on the open pane, since closing it narrows the window, and » on the collapsed strip.
+20. **« stands at the open pane's top left, with "How it works" after it** (Krowi, 2026-11-02, second look): on the spot where the strip's » comes, so the arrow stays under the mouse when the pane closes and opens.
 
 ## Design
 **Width** (`Krowi_Options/WindowMixin.lua`):

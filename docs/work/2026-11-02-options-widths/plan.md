@@ -57,3 +57,4 @@ Reused as they are: `InitList`'s `leftPad` (`WindowMixin.lua:118`), `lib.SetShar
   - `Rows.xml`: the key buttons use `Krowi_OptionsKeyButtonTemplate`, a copy of the game's silver key button art whose pieces carry no names. Inheriting `UIMenuButtonStretchTemplate` would have made a global per piece for every row through its `$parent` names. `Krowi_OptionsKeyButtonMixin` swaps the art when pressed. The row shows "Not bound" in grey at alpha 0.8, and lights the button waiting for a key.
   - `WindowMixin.lua`: the help pane's arrows are swapped.
   - `Tests/Options.lua`: each drawn dropdown row checks that its left arrow stands 2.5 from the check boxes' line.
+- **Krowi's second look** (2026-11-02, spec requirement 20): `WindowMixin.lua` moves « from the pane's top right to its top left, 4 in, so its centre is the strip's » centre (15 in), and anchors "How it works" 2 after it, centred on it (it was at 16, −12).
