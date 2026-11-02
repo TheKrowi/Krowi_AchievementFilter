@@ -8,8 +8,9 @@ local L = addon.L
 -- carry the option drawn after its check box, as the game's Tutorials and Mouse Sensitivity rows: With on a Path entry
 -- (an execute's or a range's path), Pairs = { [toggle key] = key } on a Group entry.
 -- The options suite (Tests/Options.lua) fails when an option is unmapped or mapped twice.
--- A section's Card is the line under its name on Overview's card, and CardIcon the game icon that card shows while the
--- section's help has no picture (docs/work/2026-11-02-overview-cards).
+-- A section's Card is the line under its name on Overview's card, CardIcon the game icon that card shows while the
+-- section's help has no picture, and CardPart the part of the picture the card shows when its top left shows nothing
+-- useful ({ X, Y } from 0 to 1, Krowi_Options' CardCrop) (docs/work/2026-11-02-overview-cards).
 addon.Options.Window = addon.Options.Window or {}
 addon.Options.Window.Map = {
     Groups = {
@@ -165,7 +166,7 @@ addon.Options.Window.Map = {
                 { Group = "Layout.args.Popout.args.Appearance" },
             } },
         } },
-        { Id = "rewards", Name = L["Reward preview"], Card = L["Card Rewards"], Groups = {
+        { Id = "rewards", Name = L["Reward preview"], Card = L["Card Rewards"], CardPart = { X = 0, Y = 0.74 }, Groups = {
             { Header = L["Reward preview"], Entries = {
                 { Group = "Layout.args.Achievements.args.Style.args.Style", Header = "RewardPreview" },
             } },

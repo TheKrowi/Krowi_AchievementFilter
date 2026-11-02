@@ -65,3 +65,4 @@ Krowi, 2026-11-02:
 - **A1:** a section without a picture gets a game icon, centred on the dark picture area, so every card has the same shape. The icons are judged in game.
 - **B1:** every card carries its line: 22 new strings, translated in every locale file and sent to CurseForge.
 - The intent was accepted with the design question (an unambiguous request).
+- After the first look in game (requirement 4): Reward preview's picture is remade at the preview's default size, and its card shows the picture's lower part, the mount, instead of its top left.

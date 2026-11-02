@@ -536,8 +536,8 @@ function Krowi_OptionsLinkRowMixin:OnClick()
 end
 
 -- [[ Cards: a section's picture, name and line, three to a row (docs/work/2026-11-02-overview-cards) ]] --
--- A card is { Picture, Width, Height, TexCoords } (a picture as the help pane draws it) or { Icon }, and Name, Text, IsNew
--- and OnClick. The cards and the 12 between them fill the row. A picture fills the 86 high area inside the card's 1 px
+-- A card is { Picture, Width, Height, TexCoords, Part } (a picture as the help pane draws it, Part optional, see
+-- CardCrop) or { Icon }, and Name, Text, IsNew and OnClick. The cards and the 12 between them fill the row. A picture fills the 86 high area inside the card's 1 px
 -- border, cut to it from its top left, as the mockup's thumbnails were (object-fit: cover); the name and the line stand 10
 -- in from the card's sides. The fonts are Rows.xml's.
 lib.CardColumns = 3
@@ -550,14 +550,17 @@ function lib.CardWidth(rowWidth)
 end
 
 -- The texture coordinates that fill the picture area of a card this wide; TexCoords is the part of its power-of-two
--- texture a picture fills (the help pictures' Pictures.lua)
+-- texture a picture fills (the help pictures' Pictures.lua). Part = { X, Y } moves the cut from the top left (0) to the
+-- bottom right (1) of what does not fit, as CSS's object-position does.
 function lib.CardCrop(picture, cardWidth)
     local width = cardWidth - 2 * cardBorder
     local scale = math.max(width / picture.Width, pictureHeight / picture.Height)
-    local coords = picture.TexCoords or { 0, 1, 0, 1 }
-    local right = coords[1] + (coords[2] - coords[1]) * width / scale / picture.Width
-    local bottom = coords[3] + (coords[4] - coords[3]) * pictureHeight / scale / picture.Height
-    return coords[1], right, coords[3], bottom
+    local coords, part = picture.TexCoords or { 0, 1, 0, 1 }, picture.Part or {}
+    local shownWidth, shownHeight = width / scale / picture.Width, pictureHeight / scale / picture.Height -- as parts of the picture
+    local left = (1 - shownWidth) * (part.X or 0)
+    local top = (1 - shownHeight) * (part.Y or 0)
+    local u, v = coords[2] - coords[1], coords[4] - coords[3]
+    return coords[1] + u * left, coords[1] + u * (left + shownWidth), coords[3] + v * top, coords[3] + v * (top + shownHeight)
 end
 
 -- A row as tall as its tallest card, and the gap under it

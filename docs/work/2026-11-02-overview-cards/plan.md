@@ -38,6 +38,11 @@ Reused as they are: `InitList` and its extent calculator, `MeasureText` (`Window
 9. **CurseForge:** `krowi:localization` report. Then, with Krowi's go, `-Export`, so translators see the 22 strings and get my translations.
 10. **Wrap up:** set the work files to `done`, run `/code-review`, open the PR against `main`. No changelog line: the window is new in 105.0, and its line covers it.
 
+## Departures from the plan
+- **Two in-game steps instead of one:** `overview-cards` checks the cards scrolled to the first group, `overview-cards-end` those at the page's end. The page draws only the rows in view.
+- **Reward preview's picture at its default size** (Krowi, 2026-11-02, step 8: "the reward preview picture looks odd with only the top visible"). The 2026-11-01 run had shot Krowi's own preview at 485 x 654. `Tests/Pictures.lua` now sets the preview to the default 280 x 360 for its shot (`SetForRun`, which the colour rows' header colours now use too) and puts the player's size back (`RestoreOptions`). Remade with `/kaftest pictures rewardpreview` and `Make-HelpPictures.ps1 -Only RewardPreview`: 363 x 443.
+- **`CardPart`** (Krowi, the same day: "the lower part, so the card shows the mount itself"). `lib.CardCrop` reads a card's `Part = { X, Y }`, as CSS's `object-position`. Reward preview's `{ X = 0, Y = 0.74 }` shows 48 % to 83 % of the picture's height: the mount, without the zoom buttons. `card-geometry` has a square cut at its bottom for it.
+
 ## Risks
 - **The row has no width yet in `Init`.** The card width comes from `window:PageWidth()`, as the notes' height does. The extent calculator and `Init` both use it, so the height and the placement agree.
 - **Loading the pictures:** Overview loads 15 TGA files, 11.5 MB on disk, where today it loads none. Step 7 looks for a hitch on the first open after a `/reload`. If one shows, the cards get small copies made by `Make-HelpPictures.ps1`, a follow-up.

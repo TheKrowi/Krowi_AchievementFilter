@@ -67,6 +67,7 @@ local function SectionCard(section)
     for _, block in ipairs(help and help.Blocks or {}) do
         if block.Picture then
             card.Picture, card.Width, card.Height, card.TexCoords = block.Picture, block.Width, block.Height, block.TexCoords
+            card.Part = section.CardPart
             return card
         end
     end

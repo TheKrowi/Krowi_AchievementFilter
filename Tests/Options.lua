@@ -164,6 +164,9 @@ local function CardGeometryLine(lib)
     for _, name in ipairs({ "NewTabs", "CategoryTree" }) do
         parts[#parts + 1] = ("%s %.5f,%.5f,%.5f,%.5f"):format(name, lib.CardCrop(pictures[name], lib.CardWidth(635)))
     end
+    -- a section's own part of its picture (Reward preview's mount, Krowi, 2026-11-02): a square cut at its bottom
+    local square = { Width = 400, Height = 400, TexCoords = { 0, 1, 0, 1 }, Part = { X = 0, Y = 1 } }
+    parts[#parts + 1] = ("Bottom %.5f,%.5f,%.5f,%.5f"):format(lib.CardCrop(square, lib.CardWidth(635)))
     return table.concat(parts, " ")
 end
 
@@ -393,10 +396,11 @@ options.Scenarios = {
             if not lib.CardWidth then return "no card helpers" end
             return CardGeometryLine(lib)
         end,
-        Recorded = "width 203.667/198.333 NewTabs 0.00000,0.36838,0.00000,0.62500 CategoryTree 0.00000,0.71875,0.00000,0.15353", -- "no card helpers" before the cards
+        -- "no card helpers" before the cards; the square's Bottom 0.00000,1.00000,0.00000,0.42645 before a section's Part
+        Recorded = "width 203.667/198.333 NewTabs 0.00000,0.36838,0.00000,0.62500 CategoryTree 0.00000,0.71875,0.00000,0.15353 Bottom 0.00000,1.00000,0.57355,1.00000",
         -- three cards and two 12 gaps fill the row; a picture fills the 86 high area inside the card's 1 px border, cut from
-        -- its top left inside the part of its texture it fills (Pictures.lua)
-        Target ="width 203.667/198.333 NewTabs 0.00000,0.36838,0.00000,0.62500 CategoryTree 0.00000,0.71875,0.00000,0.15353"},
+        -- its top left inside the part of its texture it fills (Pictures.lua), or from the part its section names
+        Target = "width 203.667/198.333 NewTabs 0.00000,0.36838,0.00000,0.62500 CategoryTree 0.00000,0.71875,0.00000,0.15353 Bottom 0.00000,1.00000,0.57355,1.00000"},
 }
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
