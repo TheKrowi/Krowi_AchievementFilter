@@ -889,8 +889,6 @@ L["Required for"] = true
 L["Requires"] = true
 L["Researchers Under Fire"] = true
 L["Reset"] = true
-L["Reset calendar position"] = true
-L["Reset Data Manager position"] = true
 L["Reset Faction Filters"] = true
 L["Reset Faction Filters Desc"] = [=[Reset / keep the Faction Filters.
 
@@ -904,7 +902,6 @@ L["Reset Profile"] = true
 L["Reset view"] = true
 L["Reset view on open"] = true
 L["Reset view on open Desc"] = "Collapse all categories and select the summary."
-L["Reset window position"] = true
 L["Return to Karazhan"] = true
 L["Return to the Forbidden Reach"] = true
 L["Revelations"] = true

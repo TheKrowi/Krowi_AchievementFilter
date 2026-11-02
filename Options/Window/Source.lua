@@ -523,8 +523,7 @@ function source.Elements(section)
                         local option = source.OptionAt(entry.Path, entry)
                         if option then
                             AddPluginNotes(elements, entry.Path, notesAdded)
-                            -- With: the option after the check box; a button's text is also its name in the help pane and search
-                            local with = entry.With and source.OptionAt(entry.With, { Label = entry.Button, Button = entry.Button })
+                            local with = entry.With and source.OptionAt(entry.With) -- the option after the check box
                             elements[#elements + 1] = { Kind = "Option", Option = option, With = with }
                         end
                     end

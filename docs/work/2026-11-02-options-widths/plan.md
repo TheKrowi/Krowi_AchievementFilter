@@ -80,3 +80,7 @@ Reused as they are: `InitList`'s `leftPad` (`WindowMixin.lua:118`), `lib.SetShar
     - `InitRange` and `RefreshRange` are shared with the plain range row.
   - `Krowi_Options/WindowMixin.lua`: `ScrollToOption` also finds a `With`.
   - `Tests/Options.lua`: the live row check wants the control 5 after the check box, a 214 slider, and the slider showing `With`'s value.
+- **One "Reset position"** (Krowi, the same day). `position-rows` was moved test first. The map's `Button` texts go, so the buttons read the AceConfig node's own name.
+  - The row's `OnEnter` explains only a slider.
+  - `model.Search` finds a button through its check box's row; the new `search-reset-position` scenario holds that.
+  - The three strings leave the 11 locale files, and esES, esMX and itIT get "Reset position".

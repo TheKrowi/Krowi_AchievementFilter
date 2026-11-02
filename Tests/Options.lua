@@ -314,13 +314,26 @@ options.Scenarios = {
     -- Krowi (2026-11-02): each window's reset button after its Remember check box, named as its own row was
     {Name = "position-rows",
         Observe = function() return RowsUnder("window", addon.L["Position"]) end,
-        -- a row per option before: "SwitchMovable AchievementWindowRememberLastPosition AchievementWindowResetPosition ..."
-        Recorded = "SwitchMovable AchievementWindowRememberLastPosition+AchievementWindowResetPosition[Reset window position]"
-            .. " CalendarRememberLastPosition+CalendarResetPosition[Reset calendar position]"
-            .. " DataManagerRememberLastPosition+DataManagerResetPosition[Reset Data Manager position]",
-        Target = "SwitchMovable AchievementWindowRememberLastPosition+AchievementWindowResetPosition[Reset window position]"
-            .. " CalendarRememberLastPosition+CalendarResetPosition[Reset calendar position]"
-            .. " DataManagerRememberLastPosition+DataManagerResetPosition[Reset Data Manager position]"},
+        -- a row per option before: "SwitchMovable AchievementWindowRememberLastPosition AchievementWindowResetPosition ...",
+        -- then each button named as its row had been ("[Reset window position]")
+        Recorded = "SwitchMovable AchievementWindowRememberLastPosition+AchievementWindowResetPosition[Reset position]"
+            .. " CalendarRememberLastPosition+CalendarResetPosition[Reset position]"
+            .. " DataManagerRememberLastPosition+DataManagerResetPosition[Reset position]",
+        -- then (Krowi, the same day) one "Reset position" for all three: the check box's name says which window
+        Target = "SwitchMovable AchievementWindowRememberLastPosition+AchievementWindowResetPosition[Reset position]"
+            .. " CalendarRememberLastPosition+CalendarResetPosition[Reset position]"
+            .. " DataManagerRememberLastPosition+DataManagerResetPosition[Reset position]"},
+    -- A button that belongs to a check box is found as its check box's row
+    {Name = "search-reset-position",
+        Observe = function()
+            local labels = {}
+            for _, result in ipairs(Model().Search(addon.L["Reset position"])) do
+                if result.OptionId then labels[#labels + 1] = result.Label end
+            end
+            return Join(labels)
+        end,
+        Recorded = "Remember Achievement Window position,Remember Achievement Calendar position,Remember Data Manager position",
+        Target = "Remember Achievement Window position,Remember Achievement Calendar position,Remember Data Manager position"},
     -- Krowi (2026-11-02): the threshold's slider after the Force two columns check box, as the game's Mouse Sensitivity
     {Name = "objectives-rows",
         Observe = function() return RowsUnder("achievements", addon.L["Objectives"]) end,

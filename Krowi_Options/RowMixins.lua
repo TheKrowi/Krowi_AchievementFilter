@@ -11,7 +11,8 @@
 -- row Slots (two options holding a key each). A toggle's element may carry With, an execute or range option drawn 5
 -- after the check box as a 200 button or a 214 slider, as the game's check box with a button or a slider
 -- (Blizzard_SettingControls.lua, SettingsCheckboxWithButtonControlMixin and SettingsCheckboxSliderControlMixin); the
--- row's name and changed line are the toggle's and With's together, and With explains itself under the mouse.
+-- row's name and changed line are the toggle's and With's together. A slider explains itself under the mouse; a button
+-- is the check box's, whose name says what it does (Krowi, docs/work/2026-11-02-options-widths).
 -- Every change goes through window:OnOptionChanged, which redraws the rows, their changed lines and the reload bar.
 
 local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
@@ -354,9 +355,8 @@ end
 function Krowi_OptionsOptionRowMixin:OnEnter()
     self.Hover:Show()
     self.Reset:SetShown(self.Option and Changed(self))
-    local withControl = WithControl(self)
-    if withControl and withControl:IsMouseOver() then
-        self.Window:OnRowEnter(self.With, self, withControl:GetLeft() - self:GetLeft())
+    if self.With and self.With.Type == "range" and self.Range:IsMouseOver() then
+        self.Window:OnRowEnter(self.With, self, self.Range:GetLeft() - self:GetLeft())
         return
     end
     local control = self.Geometry and self.Option and controlOfType[self.Option.Type]

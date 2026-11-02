@@ -30,11 +30,14 @@ From Krowi's look in game (2026-11-02, screenshots of both windows side by side)
 19. **The help pane's arrows point the way the window's right edge moves:** « on the open pane, since closing it narrows the window, and » on the collapsed strip.
 20. **« stands at the open pane's top left, with "How it works" after it** (Krowi, 2026-11-02, second look): on the spot where the strip's » comes, so the arrow stays under the mouse when the pane closes and opens. "How it works" is part of the button, as the strip's is: a click on it closes the pane, and it lights with the arrow under the mouse.
 21. **A check box carries the option that belongs to it, as the game's Tutorials and Mouse Sensitivity rows** (Krowi, 2026-11-02; `Blizzard_SettingControls.lua:1056-1064`, `:1168-1176`). The option is drawn 5 after the check box, a button 200 wide or a slider 214 wide, and greys out with the check box or by itself.
-    - Each window's reset button goes after its Remember check box, named as its own row was ("Reset window position").
+    - Each window's reset button goes after its Remember check box, named "Reset position" (Krowi: one string; the check box's name says which window).
     - The threshold's slider goes after Force two columns.
     - The pop outs' Close On Earn Delay and Snap Distance go after Close On Earn and Enable Snapping.
 
-    The row's name, reload mark and changed line belong to both options together, and its reset arrow resets both. Under the mouse, the button or slider shows its own help ("Force two columns threshold" over the slider), and a search still finds it by its own name.
+    The row's name, reload mark and changed line belong to both options together, and its reset arrow resets both.
+    - A slider shows its own help under the mouse ("Force two columns threshold"), and search finds it by its own name.
+    - A button has no help of its own (Krowi: "it should be obvious to the user"). Under the mouse the row's help stays the check box's, and a search for the button's text finds the check box's row.
+    - "Reset window position", "Reset calendar position" and "Reset Data Manager position" leave every locale, to be deleted on CurseForge. The game's "Reset position" was already translated in 8 locales; esES, esMX and itIT get theirs in those files' own wording.
 
 ## Design
 **Width** (`Krowi_Options/WindowMixin.lua`):

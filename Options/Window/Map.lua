@@ -6,7 +6,7 @@ local L = addon.L
 -- InjectOptions uses. An entry is a Path (one option), a Group (every option of a group, or with Header the ones under
 -- that header; "" = before the first header), or Families (each child group, a heading with All/None). A toggle can
 -- carry the option drawn after its check box, as the game's Tutorials and Mouse Sensitivity rows: With on a Path entry
--- (an execute's path, its button named Button, or a range's), Pairs = { [toggle key] = key } on a Group entry.
+-- (an execute's or a range's path), Pairs = { [toggle key] = key } on a Group entry.
 -- The options suite (Tests/Options.lua) fails when an option is unmapped or mapped twice.
 addon.Options.Window = addon.Options.Window or {}
 addon.Options.Window.Map = {
@@ -28,9 +28,9 @@ addon.Options.Window.Map = {
             } },
             { Header = L["Position"], Entries = {
                 { Path = "Layout.args.Window.args.Movable.args.SwitchMovable" },
-                { Path = "Layout.args.Window.args.Movable.args.AchievementWindowRememberLastPosition", With = "Layout.args.Window.args.Movable.args.AchievementWindowResetPosition", Button = L["Reset window position"] },
-                { Path = "Layout.args.Window.args.Movable.args.CalendarRememberLastPosition", With = "Layout.args.Window.args.Movable.args.CalendarResetPosition", Button = L["Reset calendar position"] },
-                { Path = "Layout.args.Window.args.Movable.args.DataManagerRememberLastPosition", With = "Layout.args.Window.args.Movable.args.DataManagerResetPosition", Button = L["Reset Data Manager position"] },
+                { Path = "Layout.args.Window.args.Movable.args.AchievementWindowRememberLastPosition", With = "Layout.args.Window.args.Movable.args.AchievementWindowResetPosition" },
+                { Path = "Layout.args.Window.args.Movable.args.CalendarRememberLastPosition", With = "Layout.args.Window.args.Movable.args.CalendarResetPosition" },
+                { Path = "Layout.args.Window.args.Movable.args.DataManagerRememberLastPosition", With = "Layout.args.Window.args.Movable.args.DataManagerResetPosition" },
             } },
             { Header = L["Opening the window"], Entries = {
                 { Path = "General.args.KeyBinding.args.General.args.ResetView.args.ResetViewOnOpen" },

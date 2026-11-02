@@ -252,18 +252,24 @@ function model.Search(text)
     end
     for _, section in ipairs(window.Map.Sections) do
         local heading = ""
-        local function Find(option)
+        -- button: the text of a button that belongs to the option's check box, found as the option
+        local function Find(option, button)
             if option and not option:IsHidden() then
                 local label = option:GetLabel()
-                if Has(label) or Has(option:GetDescription()) or Has(heading) then
+                if Has(label) or Has(option:GetDescription()) or Has(heading) or Has(button) then
                     results[#results + 1] = { SectionId = section.Id, Path = section.Name .. " · " .. heading, Label = label, OptionId = option.Id }
                 end
             end
         end
         for _, element in ipairs(source.Elements(section)) do
             if element.Kind == "Header" then heading = element.Text or "" end
-            Find(element.Option)
-            Find(element.With) -- the option after a check box is found by its own name
+            local with = element.With
+            if with and with.Type == "execute" then
+                Find(element.Option, with:GetButtonText())
+            else
+                Find(element.Option)
+                Find(with) -- a slider after a check box is found by its own name
+            end
         end
         local help = window.Help and window.Help[section.Id]
         if help then
