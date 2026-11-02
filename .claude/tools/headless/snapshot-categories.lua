@@ -42,6 +42,8 @@ assert(mode == "-write" or mode == "-check" or mode == "-stdout", "mode must be 
 
 local scriptDir = ((arg and arg[0]) or ""):gsub("\\", "/"):match("^(.*)/") or "."
 local clientEnv = assert(loadfile(scriptDir .. "/client-env.lua"))()
+-- the path segments, shared with show-achievement.lua, so its category lines name the paths recorded here
+local dataFormat = assert(loadfile(scriptDir .. "/data-format.lua"))()
 root = clientEnv.NormaliseRoot(root)
 
 local SNAPSHOT_DIR = ".claude/tools/headless/snapshots"
@@ -160,7 +162,7 @@ local function buildSnapshot(client)
         end
         if cat.Children then
             for _, child in ipairs(cat.Children) do
-                walk(child, path .. " > " .. escape(child.Name or "Unknown"))
+                walk(child, path .. dataFormat.CATEGORY_SEPARATOR .. dataFormat.CategoryName(child))
             end
         end
     end
@@ -184,7 +186,7 @@ local function buildSnapshot(client)
     end
 
     emit("== Tree ==")
-    for _, r in ipairs(roots) do walk(r, escape(r.Name or "Unknown")) end
+    for _, r in ipairs(roots) do walk(r, dataFormat.CategoryName(r)) end
     for _, l in ipairs(out) do emit(l) end
     emit("")
 

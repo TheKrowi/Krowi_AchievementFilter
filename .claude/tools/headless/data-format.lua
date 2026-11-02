@@ -132,6 +132,27 @@ M.Escape, M.Serialize, M.LessThan, M.SortList, M.SortedKeys = escape, serialize,
 M.Extras, M.Reverse, M.NameOf, M.Dotted, M.DateOf = extras, reverse, nameOf, dotted, dateOf
 
 -------------------------------------------------------------------------------------------------
+-- Category paths, as snapshot-categories.lua records them: "Expansions > Cataclysm > Raids > InstanceInfoName 72"
+-------------------------------------------------------------------------------------------------
+local categoryEscapes = { ["\r"] = "\\r", ["\n"] = "\\n", ["\t"] = "\\t" }
+M.CATEGORY_SEPARATOR = " > "
+
+function M.CategoryName(cat)
+    return (tostring(cat.Name or "Unknown"):gsub("[\r\n\t]", categoryEscapes))
+end
+
+-- from the category up through its parents
+function M.CategoryPath(cat)
+    local names, seen = {}, {}
+    while type(cat) == "table" and not seen[cat] do
+        seen[cat] = true
+        table.insert(names, 1, M.CategoryName(cat))
+        cat = cat.Parent
+    end
+    return table.concat(names, M.CATEGORY_SEPARATOR)
+end
+
+-------------------------------------------------------------------------------------------------
 -- The per-achievement lines of one built client
 -------------------------------------------------------------------------------------------------
 function M.New(ctx)

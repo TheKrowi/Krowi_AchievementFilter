@@ -60,7 +60,8 @@ param(
 $ErrorActionPreference = 'Stop'
 $Ids = @($Ids -split '[,\s]+' | Where-Object { $_ })
 if (-not $Ids) { throw "Pass the achievement ids: Show-Achievement.ps1 5313 or 5313,8246." }
-$Ids = foreach ($text in $Ids) {
+# a new variable: assigned back to $Ids, the [int]s would turn into strings again under its [string[]]
+[int[]] $idList = foreach ($text in $Ids) {
     if ($text -notmatch '^\d+$') { throw "Not an achievement id: '$text'." }
     [int]$text
 }
@@ -87,7 +88,7 @@ function Invoke-Utf8([scriptblock] $command) {
 $luaScript = Join-Path $root '.claude\tools\headless\show-achievement.lua'
 $clientArg = if ($Client) { $Client } else { 'Both' }
 $buildArg = if ($Build) { $Build } else { '-' }
-$output = @(Invoke-Utf8 { & $KitLua $luaScript $root $clientArg $clock $buildArg ($Ids -join ',') })
+$output = @(Invoke-Utf8 { & $KitLua $luaScript $root $clientArg $clock $buildArg ($idList -join ',') })
 if ($LASTEXITCODE -ne 0) {
     $output
     exit $LASTEXITCODE
@@ -100,28 +101,34 @@ if ($Db) {
     try {
         & (Join-Path $skill '_start_server.ps1') 6>$null | Out-Null
         if ($LASTEXITCODE -ne 0) { throw "_start_server.ps1 exited with $LASTEXITCODE" }
-        $lookup = @(& (Join-Path $skill '_lookup_ids.ps1') -Ids $Ids 6>&1 | ForEach-Object { "$_" })
+        $lookup = @(& (Join-Path $skill '_lookup_ids.ps1') -Ids $idList 6>&1 | ForEach-Object { "$_" })
         $builds = ($lookup | Where-Object { $_ -match '^builds: ' } | Select-Object -First 1) -replace '^builds: ', ''
         foreach ($line in $lookup) {
-            if ($line -notmatch '^(\d+)\|(.*?)\|(.*)\|builds=([a-z,]*)$') { continue }
+            # (?s): a description can hold a line break, which the lookup prints as it is
+            if ($line -notmatch '(?s)^(\d+)\|(.*?)\|(.*)\|builds=([a-z,]*)\s*$') { continue }
             $found = $Matches[4] -split ',' | Where-Object { $_ }
             $dbLines[[int]$Matches[1]] = @(
                 if ($Matches[2] -eq 'NOT_FOUND') { "  game db   in neither build ($builds)" }
                 else {
-                    "  game db   $($Matches[2]): $($Matches[3])"
+                    "  game db   $($Matches[2]): $($Matches[3] -replace '\s*[\r\n]+\s*', ' ')"
                     "            exists on $(if ($found) { $found -join ' and ' } else { 'neither build' }) ($builds)"
                 }
             )
         }
+        foreach ($id in $idList) {
+            if (-not $dbLines.ContainsKey($id)) { $dbLines[$id] = @("  game db   no line for this id in the lookup's output ($builds)") }
+        }
     } catch {
         $warning = "-Db: the game database is left out, wow.tools.local is not reachable ($($_.Exception.Message))"
-        foreach ($id in $Ids) { $dbLines[$id] = @("  game db   $warning") }
+        foreach ($id in $idList) { $dbLines[$id] = @("  game db   $warning") }
     }
 }
 
 # --- the history of the data line -----------------------------------------------------------------------------
+# An AutoFactionSplit mirror has no Ach() line of its own: its id is changed on its partner's line
 function Get-LineHistory([int] $id) {
-    $log = Invoke-Utf8 { git -C $root log -G "Ach\($id\)" --format='@@@ %h %ad %s' --date=short -U0 -p -- DataAddons }
+    $pattern = "Ach\($id\)|AutoFactionSplit\([^)]*[^0-9]$id\)"
+    $log = Invoke-Utf8 { git -C $root log -G $pattern --format='@@@ %h %ad %s' --date=short -U0 -p -- DataAddons }
     $lines, $file, $shownFile, $inHeader = @(), $null, $null, $false
     foreach ($line in $log) {
         if ($line -match '^@@@ (.*)$') {
@@ -137,7 +144,7 @@ function Get-LineHistory([int] $id) {
             if ($Matches[1]) { $file = $Matches[1] }
         } elseif ($line -match '^@@ ') {
             $inHeader = $false
-        } elseif (-not $inHeader -and $line -match "^([-+])\s*(.*Ach\($id\).*)$") {
+        } elseif (-not $inHeader -and $line -match $pattern -and $line -match '^([-+])\s*(.*)$') {
             if ($file -ne $shownFile) { $lines += "              $file"; $shownFile = $file }
             $lines += "                $($Matches[1]) $($Matches[2])"
         }

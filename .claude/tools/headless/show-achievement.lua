@@ -129,19 +129,6 @@ end
 -------------------------------------------------------------------------------------------------
 -- One client: load, then the lines per id
 -------------------------------------------------------------------------------------------------
-local catEscapes = { ["\r"] = "\\r", ["\n"] = "\\n", ["\t"] = "\\t" }
-
--- the path snapshot-categories.lua records the category under
-local function categoryPath(cat)
-    local names, seen = {}, {}
-    while type(cat) == "table" and not seen[cat] do
-        seen[cat] = true
-        table.insert(names, 1, (tostring(cat.Name or "Unknown"):gsub("[\r\n\t]", catEscapes)))
-        cat = cat.Parent
-    end
-    return table.concat(names, " > ")
-end
-
 local function loadClient(client, build)
     local ctx = clientEnv.New(root, client)
     local failures = {}
@@ -184,6 +171,8 @@ local function loadClient(client, build)
     env.KrowiAF_GetUtcOffsetSeconds = function() return 0 end
     env.C_DateAndTime = { GetSecondsUntilWeeklyReset = function() return nil end }
     env.GetBuildInfo = function() return build, "0", "", interfaceOf(build) end
+    -- Mists Classic has C_MythicPlus too (its API documentation lists GetCurrentSeason), so temporaryObtainable:Load()'s
+    -- season-99 fallback for a client without it applies to neither headless client, and Load() is not run
     env.C_MythicPlus = { GetCurrentSeason = function() asked("PvE Season") end }
     env.GetCVar = function() asked("PvE Season") end   -- newMythicPlusSeason, the previous PvE season
     env.GetCurrentArenaSeason = function() asked("PvP Season") end
@@ -228,9 +217,11 @@ local function loadClient(client, build)
         local src = sources[id]
         if src then
             local want, n, found = "Ach%(%s*" .. tostring(src.Via or id) .. "%s*%)", 0, nil
+            -- the first Ach(<id>) that is code, not one in a comment (a commented-out entry above the live one)
             for line in (ctx:FileText(src.File) .. "\n"):gmatch("([^\n]*)\n") do
                 n = n + 1
-                if line:find(want) then found = (line:gsub("\r$", ""):gsub("^%s+", "")) break end
+                local at = line:find(want)
+                if at and not line:sub(1, at - 1):find("--", 1, true) then found = (line:gsub("\r$", ""):gsub("^%s+", "")) break end
             end
             row("source", src.File .. ":" .. (found and n or "?") .. ", patch key " .. tostring(src.Key)
                 .. (src.Via and (", the AutoFactionSplit mirror of " .. tostring(src.Via)) or ""))
@@ -268,7 +259,7 @@ local function loadClient(client, build)
             if ach.Category then categories[1] = ach.Category end
             for _, cat in ipairs(type(ach.MoreCategories) == "table" and ach.MoreCategories or {}) do categories[#categories + 1] = cat end
             if #categories == 0 then row("category", "none in the addon's own tree") end
-            for _, cat in ipairs(categories) do row("category", categoryPath(cat)) end
+            for _, cat in ipairs(categories) do row("category", dataFormat.CategoryPath(cat)) end
         end
 
         for _, mapId in ipairs(dataFormat.SortedKeys(data.Maps)) do
