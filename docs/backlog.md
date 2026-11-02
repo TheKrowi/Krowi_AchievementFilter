@@ -158,3 +158,12 @@ Code review findings, deferred because none is Important and a fix would need th
 
 - **A field on Blizzard's achievement frame** (taint review, older than this work): `Gui/Gui.lua:117` sets `AchievementFrame.ResetPosition`, which the window's Reset position button calls (`Options/Layout.lua:697`). That breaks the rule against fields on Blizzard's frames. The fix: put `ResetAchievementWindowPosition` on `addon.Gui` and call it from the option, as its own work item.
 - **The saved window width is written and never read** (code review): `lib.SetShared("Size", ...)` still stores the width, which the window now takes from the game's. Harmless; drop it with the next change to the saved shape. The removed `HeadingLines` and `ControlsFromCentre` keys were never released, so only test installs hold them.
+
+## From the Overview cards (2026-11-02, docs/work/2026-11-02-overview-cards)
+
+Open steps of the work item, left for 2026-11-03 (Krowi). The branch `feature/2026-11-02-overview-cards` holds the build (dde89f3d), deployed to Retail and Mists.
+- **Krowi's look at the Reward preview card** after its picture was remade at the preview's default size and the card shows its lower part (`CardPart`, Y = 0.74 in `Options/Window/Map.lua`). Moving the mount up or down is a change to that value.
+- **A hitch when Overview opens:** it now loads 15 help pictures (11.5 MB of TGA) at once. If one shows, the cards get small copies of the pictures (`Make-HelpPictures.ps1`).
+- **CurseForge:** the 22 `Card <Id>` strings and their translations in the 10 other locales go up through `krowi:localization -Export`, on Krowi's go.
+- **In-game runs:** `/kaftest options` on Retail and on Mists, then `Read-GameTests.ps1` (the new `overview-cards` and `overview-cards-end` steps). `Tests/Options.lua` changed, so the 105.0 release gate needs both.
+- **Wrap up:** `/code-review`, the work files set to `done`, the PR against `main`; this section leaves the backlog with it.
