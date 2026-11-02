@@ -10,6 +10,7 @@ Routine (tooling under `.claude/`, no addon code), so the agent proceeds without
 - `.claude/tools/Show-Achievement.ps1` (new): parameters, `-AsOf` and `-Build`, `-Db`, `-History`.
 - `.claude/tools/README.md`: the tool rows and a short section.
 - `.claude/skills/verify-achievement-data/SKILL.md`, `.claude/agents/data-verifier.md`: point to the script.
+- `.github/copilot-instructions.md`: one line in the Offline tooling block (spec, Open point 6).
 - `docs/harness-roadmap.md`: step 7 to Done (with the PR), its open row and section removed.
 - Not changed: `.claude/settings.json` (`permissions`); the allow rules go in the PR for Krowi to add through `/permissions`.
 
@@ -27,6 +28,10 @@ Routine (tooling under `.claude/`, no addon code), so the agent proceeds without
 - **The sandbox calls into code that is not loaded** (`addon.EventData`, the season API): the stubs stop the real code and name what it asked for instead of erroring.
 - **A slow run:** two clients' loads at about 0.25 s each; measured, and `-Client` halves it.
 - **Encoding:** a data line can hold UTF-8 (names in comments); the script reads the Lua output as UTF-8, as `Read-GameTests.ps1` does.
+
+Where the build departed from this plan:
+- `Show-Achievement.ps1` is a plain script, without `[CmdletBinding()]` or `[Parameter()]`: in an advanced script the roadmap's `-Db` collides with `-Debug`, whose alias is `db`.
+- `-Ids` takes strings and splits them on commas, because `pwsh -File` (the `data-verifier` agent's form) hands `5313,8246` over as one argument.
 
 ## Proof
 - `& ".claude\tools\Show-Achievement.ps1" 5313,8246,4627` against the snapshot lines (`Select-String` on the three snapshot files for each printed line).

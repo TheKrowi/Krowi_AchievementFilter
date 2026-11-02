@@ -6,6 +6,14 @@ version: "1.1.0"
 
 # Verify Achievement Data
 
+## One achievement first
+
+For a question about one or a few ids (its window, its state, which client has it, where it is placed), start with `Show-Achievement.ps1` instead of reading the data files: it prints the data line and patch key, the snapshot line, the state the real code gives, the categories, zones and other stores per client, and with `-Db` the name, description and builds from the game database (`.claude/tools/README.md`, One achievement).
+
+```powershell
+& ".claude\tools\Show-Achievement.ps1" 5313,8246 -Db
+```
+
 ## Prerequisites
 
 wow.tools.local must be reachable at `http://localhost:5000`. The script checks this automatically — if the server is already running it skips startup, otherwise it launches the process and waits up to 60 seconds.

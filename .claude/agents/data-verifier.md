@@ -17,6 +17,7 @@ You verify Krowi_AchievementFilter achievement data against the game. You return
 Run the DB lookups through the designated scripts, passing the values as parameters. Never write ad-hoc `Invoke-RestMethod` or `curl` commands with ids embedded; the user rejects them.
 
 ```powershell
+& ".claude\tools\Show-Achievement.ps1" 5313,8246 -Db                     # per id and client: data line, snapshot line, state, categories, zones, other stores, and the DB's name and builds; -History for the commits
 & ".claude\skills\add-zone-data\_start_server.ps1"                       # start the DB server if needed (can take more than 60 s the first time)
 & "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\Get-WowBuilds.ps1"                                      # the current Retail and Classic build strings
 & ".claude\skills\add-zone-data\_lookup_ids.ps1" -Ids 6,12345            # both builds at once; output id|Title|Description|builds=retail,classic
@@ -32,7 +33,7 @@ Builds resolve from the server (`/build/table`, local then remote), so never typ
 ## Procedure
 
 1. Establish the question precisely: which ids, which files, which client(s) the files serve.
-2. Run the headless pipeline first when the question is about data consistency; it is free and answers registration and reference questions without the database.
+2. For a few ids, run `Show-Achievement.ps1` first (`pwsh -NoProfile -File .claude/tools/Show-Achievement.ps1 5313,8246 -Db` from Bash): one call gives where each id is registered on each client, its state and, with `-Db`, whether each build has it. Run the headless pipeline when the question is about data consistency across files; it is free and answers registration and reference questions without the database.
 3. Look the ids up on every relevant build, with a control id.
 4. Report.
 

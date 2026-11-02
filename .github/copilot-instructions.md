@@ -29,6 +29,7 @@ The kit carries Lua 5.1.5 (`Krowi_ClaudeKit\tools\lua51\`), the exact interprete
 ```powershell
 & ".claude\tools\Check-Repo.ps1" -ChangedOnly  # lint the changed files, errors instead of warnings; -Luals adds the language server
 & ".claude\tools\Check-Repo.ps1"               # whole tree, about 12 s plus 30 s for the language server
+& ".claude\tools\Show-Achievement.ps1" 5313    # one call per achievement question: data line, snapshot line, state, categories, zones per client; -Db -History
 & "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\lua.exe" ".claude\tools\headless\load-data.lua" "$PWD" Both     # headless data load
 & "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\lua.exe" ".claude\tools\headless\run-tests.lua" "$PWD" escape   # one scenario suite; -check for the lint form
 & "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\lua.exe" "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\check-syntax.lua" "Globals.lua"   # syntax only

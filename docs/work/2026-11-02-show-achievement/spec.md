@@ -36,6 +36,7 @@ Choices the roadmap does not settle, taken closest to it and flagged for Krowi:
 3. **`-History` uses `git log -G "Ach\(<id>\)" -- DataAddons`, not `-S`.** `-S` counts occurrences, so it misses a line changed in place: for 5313 it misses 5396c704 (Release 101.0), where `Before 5.0.5` became `Until 5.0.4`. `-G` matches added and removed lines; each commit also prints the matching lines per file. Limiting it to `DataAddons/` takes about 0.4 s instead of 4 s; the `Ach(` form exists only there.
 4. **Per record, the tooltip's word** (was, is, will be) from the real `GetWasIsWillBe`, next to the state that only the last record decides.
 5. **`-Client` left out means both clients; `-Build` then needs a single `-Client`,** because one version cannot be both clients' build.
+6. **One line in the instruction file** (`.github/copilot-instructions.md`, Offline tooling) besides the README, the skill and the agent the roadmap names: a session reads the instruction file every time and the README only on demand, so without it the tool would not be found.
 
 ## Verification
 - `snapshot-data.lua -write` leaves `git status` clean; `Check-Repo.ps1 -ChangedOnly` is green.
