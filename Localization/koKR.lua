@@ -7,6 +7,28 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-31 22-33-16 ]] --
+L["Card Tabs"] = "표시할 탭과 그 순서."
+L["Card Window"] = "크기, 위치, 처음 열리는 화면."
+L["Card Categories"] = "확장팩, 지역, 특수 카테고리."
+L["Card Summary"] = "최근 달성한 업적과 카테고리별 진행도."
+L["Card Achievements"] = "간략한 업적, 아이콘, 색상."
+L["Card Filters"] = "각 탭에 표시할 내용과 그 순서."
+L["Card Search"] = "이름, 설명 또는 ID로 업적 찾기."
+L["Card Tooltips"] = "달성한 사람, 보상, 연계 업적, 진행도."
+L["Card Right Click"] = "Wowhead 링크, 이동, 관심 목록."
+L["Card Popout"] = "업적을 작은 별도 창으로 띄우기."
+L["Card Rewards"] = "달성하기 전에 보상 미리 보기."
+L["Card Guides"] = "지도 표시가 있는 단계별 도움말."
+L["Card Calendar"] = "날짜별로 달성한 업적."
+L["Card Maps"] = "세계 지도에서 보는 지역 업적."
+L["Card Criteria"] = "유닛 툴팁에 표시되는 업적 조건."
+L["Card Events"] = "축제와 월드 이벤트 알림 창."
+L["Card Eventlist"] = "알림을 받을 이벤트 선택."
+L["Card Keys"] = "단축키와 클릭 보조키."
+L["Card Plugins"] = "다른 애드온을 위한 수정 사항과 스킨."
+L["Card Profiles"] = "캐릭터 간에 설정 공유."
+L["Card Advanced"] = "테스트와 버그 보고."
+L["Card About"] = "버전, 링크, 감사의 말."
 L["Help Overview Changed"] = "옵션 앞의 금색 선은 그 옵션을 변경했다는 뜻입니다. 마우스를 올리고 나타나는 화살표를 클릭하면 원래대로 되돌립니다."
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true

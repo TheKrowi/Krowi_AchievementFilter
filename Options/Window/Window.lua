@@ -52,11 +52,29 @@ function window.Landing()
     return "overview"
 end
 
-local function SectionLink(section)
-    return { Kind = "Link", Text = section.Name, OnClick = function() window.Controller:Open(section.Id) end }
+local function OpenSection(section)
+    return function() window.Controller:Open(section.Id) end
 end
 
--- New sections, the current version's changelog (Changelog.lua, generated at release) and every section by group
+local function SectionLink(section)
+    return { Kind = "Link", Text = section.Name, OnClick = OpenSection(section) }
+end
+
+-- The section's first help picture, or its game icon while its help has none (docs/work/2026-11-02-overview-cards)
+local function SectionCard(section)
+    local card = { Name = section.Name, Text = section.Card, IsNew = window.IsNew(section.Id), OnClick = OpenSection(section) }
+    local help = window.Help[section.Id]
+    for _, block in ipairs(help and help.Blocks or {}) do
+        if block.Picture then
+            card.Picture, card.Width, card.Height, card.TexCoords = block.Picture, block.Width, block.Height, block.TexCoords
+            return card
+        end
+    end
+    card.Icon = section.CardIcon
+    return card
+end
+
+-- New sections, the current version's changelog (Changelog.lua, generated at release) and every section by group as cards
 local function OverviewElements()
     local elements = {}
     local new = {}
@@ -77,7 +95,9 @@ local function OverviewElements()
     end
     for _, group in ipairs(map.Groups) do
         elements[#elements + 1] = { Kind = "Header", Text = group.Name }
-        for _, id in ipairs(group.Sections) do elements[#elements + 1] = SectionLink(source.Section(id)) end
+        local cards = {}
+        for _, id in ipairs(group.Sections) do cards[#cards + 1] = SectionCard(source.Section(id)) end
+        elements[#elements + 1] = { Kind = "Cards", Cards = cards }
     end
     return elements
 end

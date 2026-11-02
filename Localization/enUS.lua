@@ -6,6 +6,28 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-31 22-33-16 ]] --
+L["Card Tabs"] = "Which tabs show, and in which order."
+L["Card Window"] = "Size, position and what opens first."
+L["Card Categories"] = "Expansions, zones and the special categories."
+L["Card Summary"] = "The last earned achievements and category progress."
+L["Card Achievements"] = "Compact achievements, icons and colors."
+L["Card Filters"] = "What each tab shows, and in which order."
+L["Card Search"] = "Find achievements by name, description or ID."
+L["Card Tooltips"] = "Who earned it, rewards, chains and progress."
+L["Card Right Click"] = "Wowhead links, Go to and the Watch List."
+L["Card Popout"] = "Achievements in a small window of their own."
+L["Card Rewards"] = "See a reward before you earn it."
+L["Card Guides"] = "Step-by-step help with map pins."
+L["Card Calendar"] = "The achievements you earned, per day."
+L["Card Maps"] = "Zone achievements from the world map."
+L["Card Criteria"] = "Criteria on the tooltips of units."
+L["Card Events"] = "Pop ups for holidays and world events."
+L["Card Eventlist"] = "Pick the events you want reminders for."
+L["Card Keys"] = "Key bindings and click modifiers."
+L["Card Plugins"] = "Fixes and skins for other addons."
+L["Card Profiles"] = "Share settings between characters."
+L["Card Advanced"] = "Testing and bug reports."
+L["Card About"] = "Version, links and credits."
 L["Help Overview Changed"] = "A gold line before an option means you changed it. Hover it and click the arrow that appears to put it back."
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true

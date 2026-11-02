@@ -371,4 +371,115 @@
             <OnClick method="OnClick"/>
         </Scripts>
     </Button>
+
+    <!-- A card (docs/work/2026-11-02-overview-cards): a section's picture, or a game icon, on a dark area at the top, its name
+         and NEW, and a line on what it covers, on a dark fill inside a 1 px border that lights under the mouse.
+         RowMixins.lua places the name and the line, and cuts the picture to the area. -->
+    <Button name="Krowi_OptionsCardTemplate" mixin="Krowi_OptionsCardMixin" virtual="true">
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="Fill" setAllPoints="true">
+                    <Color r="0" g="0" b="0" a="0.35"/>
+                </Texture>
+            </Layer>
+            <Layer level="BORDER">
+                <Texture parentKey="PictureArea">
+                    <Size y="86"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="1" y="-1"/>
+                        <Anchor point="TOPRIGHT" x="-1" y="-1"/>
+                    </Anchors>
+                    <Color r="0" g="0" b="0" a="0.5"/>
+                </Texture>
+            </Layer>
+            <Layer level="BORDER" textureSubLevel="1">
+                <Texture parentKey="Hover" setAllPoints="true" hidden="true">
+                    <Color r="1" g="1" b="1" a="0.05"/>
+                </Texture>
+            </Layer>
+            <Layer level="ARTWORK">
+                <Texture parentKey="Picture">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.PictureArea"/>
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.PictureArea"/>
+                    </Anchors>
+                </Texture>
+                <Texture parentKey="Icon" hidden="true">
+                    <Size x="48" y="48"/>
+                    <Anchors>
+                        <Anchor point="CENTER" relativeKey="$parent.PictureArea"/>
+                    </Anchors>
+                </Texture>
+                <FontString parentKey="Name" inherits="GameFontNormal" justifyH="LEFT" wordwrap="false"/>
+                <FontString parentKey="Line" inherits="GameFontDisableSmall" justifyH="LEFT" justifyV="TOP">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.Name" relativePoint="BOTTOMLEFT" y="-3"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+            <Layer level="OVERLAY">
+                <Texture parentKey="PictureLine">
+                    <Size y="1"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.PictureArea" relativePoint="BOTTOMLEFT"/>
+                        <Anchor point="TOPRIGHT" relativeKey="$parent.PictureArea" relativePoint="BOTTOMRIGHT"/>
+                    </Anchors>
+                    <Color r="1" g="1" b="1" a="0.12"/>
+                </Texture>
+                <Texture parentArray="Edges">
+                    <Size y="1"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT"/>
+                        <Anchor point="TOPRIGHT"/>
+                    </Anchors>
+                    <Color r="1" g="1" b="1" a="0.12"/>
+                </Texture>
+                <Texture parentArray="Edges">
+                    <Size y="1"/>
+                    <Anchors>
+                        <Anchor point="BOTTOMLEFT"/>
+                        <Anchor point="BOTTOMRIGHT"/>
+                    </Anchors>
+                    <Color r="1" g="1" b="1" a="0.12"/>
+                </Texture>
+                <Texture parentArray="Edges">
+                    <Size x="1"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" y="-1"/>
+                        <Anchor point="BOTTOMLEFT" y="1"/>
+                    </Anchors>
+                    <Color r="1" g="1" b="1" a="0.12"/>
+                </Texture>
+                <Texture parentArray="Edges">
+                    <Size x="1"/>
+                    <Anchors>
+                        <Anchor point="TOPRIGHT" y="-1"/>
+                        <Anchor point="BOTTOMRIGHT" y="1"/>
+                    </Anchors>
+                    <Color r="1" g="1" b="1" a="0.12"/>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Frames>
+            <!-- The navigation's NEW (Window.xml), at the right end of the name's line; its offsets are in its own .8 scale -->
+            <Frame parentKey="NewFeature" inherits="NewFeatureLabelTemplate" scale=".8" hidden="true">
+                <Size x="1" y="1"/>
+                <Anchors>
+                    <Anchor point="RIGHT" relativeKey="$parent.PictureArea" relativePoint="BOTTOMRIGHT" x="-11.25" y="-17.5"/>
+                </Anchors>
+            </Frame>
+        </Frames>
+        <Scripts>
+            <OnClick method="OnClick"/>
+            <OnEnter method="OnEnter"/>
+            <OnLeave method="OnLeave"/>
+        </Scripts>
+    </Button>
+
+    <!-- A row of cards, made in OnLoad (RowMixins.lua) as the grid row makes its check boxes -->
+    <Frame name="Krowi_OptionsCardRowTemplate" mixin="Krowi_OptionsCardRowMixin" virtual="true">
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+        </Scripts>
+    </Frame>
 </Ui>

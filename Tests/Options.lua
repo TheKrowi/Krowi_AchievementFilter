@@ -383,7 +383,8 @@ options.Scenarios = {
     -- picture or, without one, a game icon, and a line on what it covers; Achievement guides has no picture on Mists
     {Name = "overview-cards",
         Observe = OverviewLine,
-        Recorded = "links=22 cards=0 rows=0 pictures=0 icons=0 lines=0",
+        Recorded = "links=0 cards=22 rows=9 pictures=15 icons=7 lines=22", -- "links=22 cards=0 rows=0 pictures=0 icons=0 lines=0" before the cards
+        RecordedClassic = "links=0 cards=22 rows=9 pictures=14 icons=8 lines=22",
         Target = "links=0 cards=22 rows=9 pictures=15 icons=7 lines=22",
         TargetClassic = "links=0 cards=22 rows=9 pictures=14 icons=8 lines=22"},
     {Name = "card-geometry",
@@ -392,10 +393,10 @@ options.Scenarios = {
             if not lib.CardWidth then return "no card helpers" end
             return CardGeometryLine(lib)
         end,
-        Recorded = "no card helpers",
+        Recorded = "width 203.667/198.333 NewTabs 0.00000,0.36838,0.00000,0.62500 CategoryTree 0.00000,0.71875,0.00000,0.15353", -- "no card helpers" before the cards
         -- three cards and two 12 gaps fill the row; a picture fills the 86 high area inside the card's 1 px border, cut from
         -- its top left inside the part of its texture it fills (Pictures.lua)
-        Target = "width 203.667/198.333 NewTabs 0.00000,0.36838,0.00000,0.62500 CategoryTree 0.00000,0.71875,0.00000,0.15353"},
+        Target ="width 203.667/198.333 NewTabs 0.00000,0.36838,0.00000,0.62500 CategoryTree 0.00000,0.71875,0.00000,0.15353"},
 }
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
@@ -451,6 +452,8 @@ end
 --     (docs/work/2026-10-30-options-settings-look)
 --   section-<id>: Overview and every section draw their rows, and every drawn check box, slider and text box shows its
 --     option's value
+--   overview-cards, overview-cards-end: Overview's cards at its first group and at its end, each inside its row, as wide
+--     as the others, with a picture or icon, and its text not cut short (docs/work/2026-11-02-overview-cards)
 --   toggle, range, input: one row of each changed through its own control: the value is stored, and the changed line and
 --     the footer's count follow it; toggle-reset: the toggle's row shows its arrow on enter, before the name, and the
 --     arrow sets the option back to its default (docs/work/2026-10-31-options-markers)
@@ -675,6 +678,62 @@ local function SectionStep(sectionId, name)
     }
 end
 
+-- Overview's drawn cards (docs/work/2026-11-02-overview-cards): as wide as the others of their row and inside it, each
+-- with its picture or icon, and its name and line not cut short. Scroll(window) shows the part of the page to check.
+local function CardsStep(name, text, Scroll)
+    return {
+        Name = name,
+        Text = text,
+        Run = function()
+            Window():ShowSection("overview")
+            Scroll(Window())
+        end,
+        Check = function()
+            local cards, misfit, empty, cut = 0, {}, {}, {}
+            Window().PageScrollBox:ForEachFrame(function(row)
+                if not row.Cards then
+                    return
+                end
+                local width
+                for _, card in ipairs(row.Cards) do
+                    if card:IsShown() then
+                        cards = cards + 1
+                        local cardName = card.Name:GetText() or "?"
+                        width = width or card:GetWidth()
+                        if math.abs(card:GetWidth() - width) > 0.5 or card:GetLeft() < row:GetLeft() - 0.5 or card:GetRight() > row:GetRight() + 0.5 then
+                            tinsert(misfit, cardName)
+                        end
+                        if not (card.Picture:IsShown() and card.Picture:GetTexture() or card.Icon:IsShown() and card.Icon:GetTexture()) then
+                            tinsert(empty, cardName)
+                        end
+                        if card.Name:IsTruncated() or card.Line:IsTruncated() then
+                            tinsert(cut, cardName)
+                        end
+                    end
+                end
+            end)
+            local ok = cards > 0 and #misfit == 0 and #empty == 0
+            Add(ok and "PASS" or "FAIL", ("%d cards drawn%s%s%s"):format(cards,
+                #misfit > 0 and (", out of their row: [" .. table.concat(misfit, ",") .. "]") or "",
+                #empty > 0 and (", without a picture or icon: [" .. table.concat(empty, ",") .. "]") or "",
+                #cut > 0 and (", text cut short: [" .. table.concat(cut, ",") .. "]") or ""))
+        end
+    }
+end
+
+local function ScrollToFirstCards(frame)
+    for index, element in ipairs(frame.Elements or {}) do
+        if element.Kind == "CardRow" then
+            frame.PageScrollBox:ScrollToElementDataIndex(index, ScrollBoxConstants.AlignBegin, nil, ScrollBoxConstants.NoScrollInterpolation)
+            return
+        end
+    end
+end
+
+local function ScrollToEnd(frame)
+    frame.PageScrollBox:ScrollToEnd(ScrollBoxConstants.NoScrollInterpolation)
+end
+
 -- The footer names the section's changed options
 local function FooterAgrees(sectionId)
     local window = Window()
@@ -835,7 +894,9 @@ local function BuildSteps()
                     frame.SearchAll:GetWidth(), frame.SearchAll:GetHeight(), frame.Divider:GetWidth(), frame:GetScale()))
             end
         },
-        SectionStep("overview", addon.L["Overview"])
+        SectionStep("overview", addon.L["Overview"]),
+        CardsStep("overview-cards", "Overview's first cards", ScrollToFirstCards),
+        CardsStep("overview-cards-end", "Overview's last cards", ScrollToEnd)
     }
     for _, section in ipairs(window.Map.Sections) do
         tinsert(list, SectionStep(section.Id, section.Name))

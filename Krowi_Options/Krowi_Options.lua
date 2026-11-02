@@ -13,7 +13,7 @@
 -- (docs/work/2026-10-30-options-settings-look). Lives inside Krowi_AchievementFilter for now
 -- (docs/work/2026-10-25-options-revamp); extracting it is a move into Krowi_Libraries.
 
-local lib = KROWI_LIBMAN:NewLibrary('Krowi_Options_1', 2)
+local lib = KROWI_LIBMAN:NewLibrary('Krowi_Options_1', 3)
 if not lib then return end
 
 -- The registered tabs, sorted by name, and the one window they share (lib.Frame, made on the first open). Both live on
@@ -40,7 +40,7 @@ lib.Markup = {
     IsNew(id)       whether the navigation marks a section New
     Landing()       the section to open when no section is asked for
     OnSectionShown(id)
-    GetElements(id) the section's elements, see Rows.lua
+    GetElements(id) the section's elements, see RowMixins.lua; { Kind = "Cards", Cards } draws its cards three to a row
     GetHelp(id)     { Title, Blocks = { {Heading} | {Text} | {Term, Text} | {Picture, Width, Height} }, ShowMe, ShowMeNote } or nil
     Search(text)    { { SectionId, Path, Label, OptionId } }
     ResetSection(id), ChangedCount(id)
