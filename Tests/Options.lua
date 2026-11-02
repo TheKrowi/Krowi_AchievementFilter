@@ -280,7 +280,7 @@ options.Scenarios = {
             if not lib.WindowWidth then return "resizable from 1000x560" end
             return ("open=%d collapsed=%d"):format(lib.WindowWidth(false), lib.WindowWidth(true))
         end,
-        Recorded = "resizable from 1000x560",
+        Recorded = "open=1300 collapsed=950", -- "resizable from 1000x560" before the game's width
         Target = "open=1300 collapsed=950"},
     {Name = "row-geometry",
         Observe = function()
