@@ -100,6 +100,23 @@ local function SecondTab(lib)
     return line .. " after=" .. TabNames(lib)
 end
 
+-- Where a row's name and controls stand, as x from the row's left: the right-hand column or the game's placement from
+-- the row's centre (docs/work/2026-11-02-options-widths), on the game's 635 rows and the 619 left while the section list
+-- shows its scroll bar; the name's left at indent 0 and 1
+local rowControls = { "Toggle", "Range", "Select", "Execute", "Input", "Key", "Sub", "TabArrows" }
+local function RowGeometryLine(lib)
+    local parts = {}
+    for _, centred in ipairs({ false, true }) do
+        for _, width in ipairs({ 635, 619 }) do
+            local flat, indented = lib.RowGeometry(0, centred), lib.RowGeometry(1, centred)
+            local line = { ("name %g/%g-%g"):format(lib.RowX(flat.NameLeft, width), lib.RowX(indented.NameLeft, width), lib.RowX(flat.NameRight, width)) }
+            for _, key in ipairs(rowControls) do line[#line + 1] = ("%s %g"):format(key, lib.RowX(flat[key], width)) end
+            parts[#parts + 1] = ("%s %d [%s]"):format(centred and "centre" or "column", width, table.concat(line, " "))
+        end
+    end
+    return table.concat(parts, " ")
+end
+
 -- Observe: a function returning the line's value, or nil and the reason it could not run
 options.Scenarios = {
     {Name = "settings-entry",
@@ -255,6 +272,27 @@ options.Scenarios = {
         end,
         Recorded = "tabs=Achievement Filter,Zz Test shared=both open=Zz Test all=Achievement Filter,Zz Test after=Achievement Filter", -- "no tab registry" before the tabs
         Target = "tabs=Achievement Filter,Zz Test shared=both open=Zz Test all=Achievement Filter,Zz Test after=Achievement Filter"},
+    -- The game's Options window's sizes (docs/work/2026-11-02-options-widths): its width with the help pane added, and
+    -- the rows' names and controls in the right-hand column or from the row's centre
+    {Name = "window-width",
+        Observe = function()
+            local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
+            if not lib.WindowWidth then return "resizable from 1000x560" end
+            return ("open=%d collapsed=%d"):format(lib.WindowWidth(false), lib.WindowWidth(true))
+        end,
+        Recorded = "resizable from 1000x560",
+        Target = "open=1300 collapsed=950"},
+    {Name = "row-geometry",
+        Observe = function()
+            local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
+            if not lib.RowGeometry then return "column 300 from the right, names from 16" end
+            return RowGeometryLine(lib)
+        end,
+        Recorded = "column 300 from the right, names from 16",
+        Target = "column 635 [name 16/36-293 Toggle 305 Range 305 Select 315 Execute 305 Input 311 Key 305 Sub 305 TabArrows 305]"
+            .. " column 619 [name 16/36-277 Toggle 289 Range 289 Select 299 Execute 289 Input 295 Key 289 Sub 289 TabArrows 289]"
+            .. " centre 635 [name 37/52-232.5 Toggle 237.5 Range 237.5 Select 256 Execute 277.5 Input 237.5 Key 237.5 Sub 237.5 TabArrows 237.5]"
+            .. " centre 619 [name 37/52-224.5 Toggle 229.5 Range 229.5 Select 248 Execute 269.5 Input 229.5 Key 229.5 Sub 229.5 TabArrows 229.5]"},
 }
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
