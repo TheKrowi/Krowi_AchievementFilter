@@ -95,7 +95,7 @@ end
 Krowi_OptionsOptionRowMixin = {}
 
 local function Forward(control, row)
-    control:HookScript("OnEnter", function() row:OnEnter() end)
+    control:HookScript("OnEnter", function() row:OnEnter(control) end)
     control:HookScript("OnLeave", function() row:OnLeave() end)
 end
 
@@ -161,8 +161,9 @@ function Krowi_OptionsOptionRowMixin:OnLoad()
         button:EnableMouseWheel(false)
     end
 
-    for _, control in ipairs({ self.Reset, self.Toggle, self.Range, self.Select.Dropdown, self.Select.DecrementButton, self.Select.IncrementButton,
-        self.Execute, self.Input, self.Key1, self.Key2 }) do
+    -- The slider's bar and arrows cover its frame, so the mouse comes onto them, not onto the frame
+    for _, control in ipairs({ self.Reset, self.Toggle, self.Range, self.Range.Slider, self.Range.Back, self.Range.Forward, self.Select.Dropdown,
+        self.Select.DecrementButton, self.Select.IncrementButton, self.Execute, self.Input, self.Key1, self.Key2 }) do
         Forward(control, self)
     end
 
@@ -352,15 +353,17 @@ function Krowi_OptionsOptionRowMixin:OnKeyCaptured(slot, key)
     self.Window:OnOptionChanged(self.Option)
 end
 
-function Krowi_OptionsOptionRowMixin:OnEnter()
+-- control: the row's control the mouse came onto (Forward); the row's own OnEnter passes its motion flag instead
+function Krowi_OptionsOptionRowMixin:OnEnter(control)
     self.Hover:Show()
     self.Reset:SetShown(self.Option and Changed(self))
-    if self.With and self.With.Type == "range" and self.Range:IsMouseOver() then
+    local onSlider = type(control) == "table" and (control == self.Range or control:GetParent() == self.Range)
+    if onSlider and self.With and self.With.Type == "range" then
         self.Window:OnRowEnter(self.With, self, self.Range:GetLeft() - self:GetLeft())
         return
     end
-    local control = self.Geometry and self.Option and controlOfType[self.Option.Type]
-    self.Window:OnRowEnter(self.Option, self, control and lib.RowX(self.Geometry[control], self:GetWidth()))
+    local kind = self.Geometry and self.Option and controlOfType[self.Option.Type]
+    self.Window:OnRowEnter(self.Option, self, kind and lib.RowX(self.Geometry[kind], self:GetWidth()))
 end
 
 -- Moving onto one of the row's own controls leaves the row too: the arrow stays while the mouse is on the row

@@ -463,6 +463,18 @@ local function FindOption(optionId)
     end
 end
 
+-- The first option whose check box carries a slider, and its section
+local function FindSliderPair()
+    local window = addon.Options.Window
+    for _, section in ipairs(window.Map.Sections) do
+        for _, element in ipairs(window.Source.Elements(section)) do
+            if element.With and element.With.Type == "range" and not element.Option:IsHidden() then
+                return section.Id, element.Option
+            end
+        end
+    end
+end
+
 -- The drawn row of an option on the current page
 local function RowOf(option)
     local found
@@ -786,6 +798,31 @@ local function BuildSteps()
         row.Input:SetText((option:Get() or "") .. " x")
         row.Input:GetScript("OnEnterPressed")(row.Input)
     end) }) do tinsert(list, step) end
+    -- Over a check box's slider the help pane explains the slider, not the check box (Krowi, 2026-11-02: Force two
+    -- columns threshold); the mouse's arrival on the bar is played through the row's own handler
+    local pairSection, pairOption
+    tinsert(list, {
+        Name = "slider-help",
+        Text = "a check box's slider explains itself",
+        Run = function()
+            local frame = Window()
+            pairSection, pairOption = FindSliderPair()
+            if frame.PaneCollapsed then frame:SetPaneCollapsed(false) end
+            if pairSection then frame:ShowSection(pairSection, pairOption.Id) end
+        end,
+        Check = function()
+            local row = pairOption and RowOf(pairOption)
+            if not row then
+                Add("FAIL", "no drawn row whose check box carries a slider")
+                return
+            end
+            row:OnEnter(row.Range.Slider)
+            local shown = Window().HoverOption
+            row:OnLeave()
+            Add(shown == row.With and "PASS" or "FAIL", ("over %s's slider the help explains %s"):format(pairOption:GetLabel(),
+                shown and shown:GetLabel() or "the section"))
+        end
+    })
     local searchText
     tinsert(list, {
         Name = "search",

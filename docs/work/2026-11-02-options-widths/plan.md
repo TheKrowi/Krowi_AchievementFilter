@@ -84,3 +84,7 @@ Reused as they are: `InitList`'s `leftPad` (`WindowMixin.lua:118`), `lib.SetShar
   - The row's `OnEnter` explains only a slider.
   - `model.Search` finds a button through its check box's row; the new `search-reset-position` scenario holds that.
   - The three strings leave the 11 locale files, and esES, esMX and itIT get "Reset position".
+- **The slider's own help** (Krowi, the same day: Force two columns showed no threshold help).
+  - Root cause: the row forwarded only the slider's frame, which its bar and arrows cover, and it chose the slider's help by `IsMouseOver` on that frame. The frame never got the mouse, so the help went back to the section's.
+  - Fix: `Forward` now covers `Range.Slider`, `Range.Back` and `Range.Forward` and passes the control to `OnEnter`, which picks `With`'s help from the slider's parts. The same mixin has these parts on Mists, so a plain slider row also keeps its help over the bar now.
+  - The new live step `slider-help` plays the bar's entry through the row's handler and wants the pane on the threshold. It was not run against the build before this one; by its code that build would fail it (the row read `IsMouseOver`, which the played entry does not set).
