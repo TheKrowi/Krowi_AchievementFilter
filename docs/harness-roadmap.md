@@ -34,6 +34,18 @@ Measured on 2026-10-10 from the Claude Code transcripts of this repo: 49 session
 
 Steps 6, 10 and 12 change files that now live in Krowi_ClaudeKit (`hooks/Check-LuaSyntax.ps1`, `tools/Find-Symbol.ps1`, `hooks/Guard-ToolUse.ps1`). They are built there, in a kit worktree, and serve every Krowi repo; this repo only picks them up. Step 8 is mostly generic (git state, PRs, issues, the changelog) apart from its lint run; where it lives is decided when it is built.
 
+Steps 14 to 18 come from a second measurement, on 2026-11-02, of what the sessions spend on context rather than on tool calls: the 39 sessions since the kit move on 2026-10-17 and their 95 subagents (see How the evidence was gathered). They are in priority order among themselves, and follow Anthropic's current guidance for Claude Code (the best-practices, memory, skills and cost pages of the Claude Code docs, and the engineering posts on context engineering and long-running harnesses).
+
+| Step | What | What it saves | Size |
+|---|---|---|---|
+| 14 | `Measure-Sessions.ps1`, the context measurement as a tool | the proof for steps 15 to 18 | small |
+| 15 | Session boundaries and compact instructions | 58% of the main sessions' cache reads happen above 400k tokens of context | small |
+| 16 | One lean instruction file: `CLAUDE.md` replaces `.github/copilot-instructions.md` | the 75k start context is re-read on every call (22% of cache reads); 11k of it is these two files | medium |
+| 17 | Prune the auto memory | 8 KB loaded into every session, mostly finished work | small |
+| 18 | Subagent start cost | subagents are a fifth of all use; a general-purpose one starts at 65k | small |
+
+Step 14 and parts of 15 and 18 change the kit. The kit also has its own share of the start context: the workspace `CLAUDE.md` (`WowAddons.md`, 22 KB) loads into every session under the workspace and gets step 16's treatment there, and `process-issue` gets step 15's session boundaries. The work plugins that come with the maintainer's Claude account load in these sessions too, and four of their servers time out after 30 s at every start; whether they can be switched off for this workspace is checked in `/plugin`, the maintainer's click, and any setting for them goes in the uncommitted `.claude/settings.local.json`, since the repo is public.
+
 ### Step 6: fix line endings after Write
 
 **Problem.** The Write tool writes LF line endings and the repo is CRLF (`.editorconfig`). The Edit tool keeps a file's endings, so only Write is affected (both checked on 2026-10-10). Sessions then fix the file by hand, or route edits through PowerShell to avoid the problem: 132 such commands in 24 of 49 sessions. 23 of the 72 files written into the repo were followed by a hand fix within a few calls.
@@ -117,10 +129,73 @@ The `bom` and `line-endings` lint rules read only `.lua`, `.xml` and `.toc` file
 
 **Done when.** Moving 2137 back into a 25-player list fails the check, and a plan line for a raid block without a list column is refused.
 
+### Step 14: `Measure-Sessions.ps1`
+
+**Problem.** The 2026-11-02 numbers came from a throwaway script. Steps 15 to 18 are judged by the same numbers, so the measurement has to be repeatable.
+
+**Design.** A read-only script in the kit (`tools/Measure-Sessions.ps1`), since it works on any repo's transcripts. For the current checkout's transcript folder and its worktrees' folders, from `-Since` to `-Until`, it prints per main session the start context, the peak context, cache reads and writes, output, compactions, and the subagents and skills used. Then the share of cache reads per context band, and per subagent type the count, median start context and totals. A call's context is `input_tokens + cache_creation_input_tokens + cache_read_input_tokens` of its `usage`; a streamed message spans several transcript lines, so each `message.id` counts once.
+
+**Baseline**, 2026-10-17 to 2026-11-02: 39 main sessions, 6,302 main calls, 95 subagents.
+
+| Measure | Value |
+|---|---|
+| Start context | about 69k tokens on 2026-10-17, about 78k on 2026-11-02 (median 75k) |
+| Peak context | median 320k; four sessions between 810k and 966k |
+| Compactions | in 6 of 39 sessions |
+| Main cache reads by context band | under 250k: 20%; 250k to 400k: 23%; 400k to 600k: 26%; above 600k: 32% |
+| The start context re-read on every call | 22% of the main sessions' cache reads |
+| Weighted use (input price = 1: cache read 0.1, cache write 2 for the main sessions' one-hour cache and 1.25 for the subagents' five-minute cache, output 5) | main sessions 319M, of which cache reads 67%; subagents 82M, 20% of all |
+| Subagent start context (median) | general-purpose 65k (40 runs), `krowi:taint-reviewer` 39k (37), Explore 21k (13), `data-verifier` 36k (1) |
+
+**Done when.** A run over 2026-10-17 to 2026-11-02 reproduces the baseline, and the kit's README lists the tool.
+
+### Step 15: session boundaries and compact instructions
+
+**Problem.** A session runs until its work item is done, gates, reviews and clean-up included, so its context keeps growing: 58% of the main sessions' cache reads came from calls above 400k tokens, and only 6 of 39 sessions compacted at all. Every call re-reads the whole conversation. Anthropic's guidance is that answers get worse as context grows (context rot), that a compaction made late is made when the model is least able to judge what to keep, and that a build goes best from a written spec in a fresh session.
+
+**Design.**
+- `docs/sdlc-playbook.md` names where a session ends: after the plan gate, the build starts in a fresh session that reads the work folder (`intent.md`, `spec.md`, `plan.md`); and between unrelated tasks. At such a point Claude says so; `/rename` and `/clear` are the maintainer's clicks. The kit's `process-issue` skill gets the same boundaries.
+- A `# Compact instructions` section in `CLAUDE.md` names what a compaction keeps: the work folder and its stage, the branch and worktree, the gate answers, the open review findings, and which build is deployed to which client.
+- Not in this step: a smaller `autoCompactWindow` (the maintainer, 2026-11-02: not for now). It comes back if the numbers below do not move.
+
+**Done when.** Over the next 15 sessions the share of cache reads above 400k drops from 58% to under 25% (step 14), and no work item loses a decision across a boundary, checked against its work folder.
+
+### Step 16: one lean instruction file
+
+**Problem.** Every call re-reads the start context, a median of 75k tokens and 22% of the main sessions' cache reads, and it grew by about 9k in 16 days. This repo puts about 11k tokens of it there: `.github/copilot-instructions.md` (39 KB, 368 lines, loaded whole through the `@` import in `CLAUDE.md`; an import does not lower the cost) and `CLAUDE.md` (5 KB). Anthropic's guidance: under 200 lines per file, holding only what Claude cannot find by reading the repo; rules for one area in `.claude/rules/` with `paths:`; procedures in skills; and a line lost in a long file is followed less, on every task. Much of the file fails that test: the layout, load order and directory tables (the `.toc` and the `Files.xml` files say it), the module and OOP samples (the code shows them), the data formats (the data skills hold them), and what the workspace `CLAUDE.md` already says (Lua 5.1, the sed trap, worktrees, Conventional Commits, the changelog style, `AUTOGENTOKEN`). Only Claude reads the file (the maintainer, 2026-11-02), so the Copilot name and the copies for readers without the kit can go. The file also grows by design: stage 6 of the playbook writes each work item's lesson back into it.
+
+**Design.**
+1. `/doctor prompt-audit` first, the maintainer's click: stale paths, contradictions, wording written for older models.
+2. `CLAUDE.md` becomes the one instruction file, at most about 150 lines and 15 KB: the commands that check work; the rules Claude cannot see in the code (taint, background jobs, saved variables, `Files.xml` registration, the boot phases, `IsModern` against `IsMainline`, the maintainer's gates); the gotchas; and pointers. The Claude Code wiring shrinks to what Claude acts on, since a hook explains itself when it fires. It holds step 15's compact instructions.
+3. What one area needs moves to `.claude/rules/` with `paths:`: `DataAddons/**` and the data API (the V2 formats, the data pipeline, `Obtainable()` anchors), `Localization/**` (the locale rules), `Gui/**` and `Plugins/**` (the taint detail), the event data (the event-source policy), `Tests/**` (`Recorded` and `Target`).
+4. The layout, load order and file map go to `docs/architecture.md`, which already holds the file map.
+5. `.github/copilot-instructions.md` is deleted and every reference to it points to `CLAUDE.md`: `Check-Repo.ps1` (3 messages), `Check-RepoOnStop.ps1`, `Check-Repo.jobs`, `.claude/tools/README.md`, `CONTRIBUTING.md`, `REVIEW.md`, `Tests/README.md`, `docs/sdlc-playbook.md`, `docs/architecture.md`, `docs/codebase-analysis.md`, `docs/data-design-review.md`, `docs/how-to/add-event.md` and `docs/how-to/migrate-category-data.md`. The work folders keep theirs as history.
+6. Stage 6 of `docs/sdlc-playbook.md`: a lesson goes to a path rule, a skill, a lint rule or a scenario; `CLAUDE.md` takes only what applies to every task.
+7. An `instruction-size` lint rule warns when `CLAUDE.md` or a rule file passes its byte budget.
+
+**Done when.** `CLAUDE.md` is under 15 KB, from 44 KB with its import; a fresh session's start context falls by about the same (step 14); the lint is green; and in a GUI fix through `process-issue` and a data addition, the path rules load when their files are touched (`/context`, or an `InstructionsLoaded` hook while testing).
+
+### Step 17: prune the auto memory
+
+**Problem.** `MEMORY.md` in this repo's auto memory (`~/.claude/projects/<repo>/memory/`, outside the repo) loads into every session: 43 lines, 8 KB, each line a paragraph. Most entries record finished work (merged, worktree removed) whose facts are in git, the work folders and the changelog.
+
+**Design.** Keep what is open or written down nowhere else, one short line per entry. Delete the memory files of finished work once their lesson is confirmed to be in a doc, a skill or the kit.
+
+**Done when.** `MEMORY.md` is under 3 KB, and no deleted entry held a fact that is nowhere else.
+
+### Step 18: subagent start cost
+
+**Problem.** Subagents were a fifth of all use. Every subagent but Explore and Plan loads the whole `CLAUDE.md` hierarchy, so the 40 general-purpose agents started at a median of 65k tokens against Explore's 21k, and with a five-minute cache each one pays its start context as a cache write.
+
+**Design.** Read the prompts of the 40 general-purpose spawns. If most were read-only searches, which Explore does at a third of the start context, one line in `CLAUDE.md` says so; otherwise nothing changes. `data-verifier` gets `model: sonnet`, and `omitClaudeMd: true` once its prompt is checked to name everything it needs. `krowi:taint-reviewer` (37 runs) stays on Opus; whether it can start without the hierarchy and read only the rules it needs is a kit change.
+
+**Done when.** The general-purpose agents' count or start context falls over the next 15 sessions, or their prompts show they were not searches and the step closes with that finding.
+
 ## Parked
 
 - **Step 3, a `temporary-toggle` lint rule** for `-- Temporarily` comments and commented-out `addon.X()` calls. Only two such lines are left in addon code, and one is deliberate (`addon.TooltipData.Load()` stays disabled), so the rule would have nothing to catch today.
 - **Step 4, CI** (GitHub Actions running `Check-Repo.ps1` on pull requests to `main`). It would help review, not an agent's speed; the Stop hook already runs the lint every turn, and the instruction file says the repo has no CI. This is the maintainer's call.
+- **Step 19, split the data skills** into a `SKILL.md` with the workflow and reference files it links. `add-achievement-data` (533 lines, 30 KB; Anthropic's guideline is under 500 lines) and `add-zone-data` (27 KB) stay in context once invoked and are attached again after a compaction. Neither was invoked in the 39 sessions measured on 2026-11-02, so the split waits for the next data session that uses them.
 
 ## Decided against
 
@@ -131,3 +206,5 @@ The `bom` and `line-endings` lint rules read only `.lua`, `.xml` and `.toc` file
 ## How the evidence was gathered
 
 Claude Code keeps each session as a JSONL transcript under `~/.claude/projects/<repo path>/`, with the subagents' transcripts in a subfolder per session. A throwaway PowerShell script read every tool call and its result (tool, input, error flag, output size) into a table. The calls were then grouped by tool, by command pattern and by session topic. Read the failure counts with care: about 11% of PowerShell calls "fail", but nearly all of those are checks exiting 1 on purpose. To see whether a step paid off, count the same pattern again after a few sessions with the tool.
+
+The context measurement of 2026-11-02 read the same transcripts for token use instead: the `usage` of each assistant message, once per `message.id`, for the main sessions started since 2026-10-17 in this repo's folder and its worktrees' folders, and for their subagents. The weights in step 14's baseline are the price ratios Anthropic gives for Claude Code (cache reads 0.1 of the input price, cache writes up to 2, output about 5). On those weights the cache reads dominate, and they grow with the length of the conversation, which is why step 15 comes before step 16.
