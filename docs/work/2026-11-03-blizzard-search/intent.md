@@ -1,5 +1,5 @@
 # Intent: The options window searches the way the game's Options window does, with a broad search to switch on
-Author: Krowi (maintainer), from comparing both windows side by side on Retail (2026-11-02). Source: idea. Status: accepted
+Author: Krowi (maintainer), from comparing both windows side by side on Retail (2026-11-02). Source: idea. Status: done
 
 ## Problem
 The options window's search (new in 105.0, not released yet) works differently from the game's own Options window, which the window otherwise copies:

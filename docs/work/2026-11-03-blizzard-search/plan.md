@@ -1,5 +1,5 @@
 # Plan: The options window searches the way the game's Options window does, with a broad search to switch on
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 ## Context
 Krowi chose the game's search for the options window (new in 105.0, unreleased): names only, from the first letter, whole text then each word, best match first, the found options as working rows under their section's clickable name. On top of that: each row's own heading above it (option A), and a "Search descriptions" switch that adds descriptions and section explanations. With no row under the mouse, the help pane explains the search. The spec (accepted 2026-11-03, commit 2c8a184d) holds requirements 1-19; this plan is how to build them. Work happens in the worktree `.claude/worktrees/feature-2026-11-03-blizzard-search` on `feature/2026-11-03-blizzard-search`.

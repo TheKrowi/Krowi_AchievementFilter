@@ -1,5 +1,5 @@
 # Spec: The options window searches the way the game's Options window does, with a broad search to switch on
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 The game's search is `SettingsPanelMixin:FindInitializersMatchingSearchText` and `OnSearchTextChanged` (`Blizzard_Settings_Shared/Blizzard_SettingsPanel.lua:575-701` on Retail, `:566-` on Classic, the same code), matching through `SettingsSearchableElementMixin:MatchesSearchTags` (`Blizzard_Settings.lua:52-75`), with `SettingsListSearchCategoryTemplate` as the section's heading (`Blizzard_SettingsList.xml:65-86`, `Blizzard_SettingsList.lua:14-39`).
