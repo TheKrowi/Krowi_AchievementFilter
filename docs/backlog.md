@@ -164,3 +164,26 @@ Code review findings, deferred because none is Important and a fix would need th
 Code review findings, deferred because Krowi found the cards right in game (2026-11-03) and no hitch showed.
 - **Card thumbnails:** Overview loads the 15 sections' full help pictures (11.5 MB of TGA) for crops 200 x 86, and Reward preview's `CardPart` (Y = 0.74, `Options/Window/Map.lua`) fits only today's `RewardPreview.tga`: a remade picture can put the zoom buttons or the title on the card, and no check notices. Small copies made for the cards by `Make-HelpPictures.ps1` fix both, and the `CardPart` with them.
 - **The card's sizes stand twice** (`Krowi_Options/Rows.xml` and `RowMixins.lua`): the picture area's 86, the line's offset and the NEW label's offsets in the XML, `pictureHeight`, `lineGap`, `cardTextInset` and `nameTop` in Lua. A change to one side stretches the pictures or moves NEW off the name line. The fix: `Krowi_OptionsCardMixin:Init` sets those sizes and anchors from the Lua values.
+
+## For the feature split (106)
+
+- **Review every option while the features move: what it does, its name, its description and its help text** (Krowi, 2026-11-03, before the 105.0 release).
+  - **What there is:**
+    - about 200 options in `Options/*.lua` (118 check boxes, 42 sliders, 20 dropdowns, 20 buttons, 2 key bindings, 2 text fields), plus the plugins' own in `Plugins/`;
+    - about 150 descriptions (`L["<name> Desc"]`, the default added by `KAF_AddDefaultValueText`);
+    - the 22 sections, their Overview card lines and where each option sits, in `Options/Window/Map.lua`;
+    - each section's help text and pictures, in `Options/Window/Help/Help.lua`.
+  - **Per option:**
+    - Does it still do something, and does a player need it?
+    - Is its name the word the player sees in game?
+    - Does its description say what changes, instead of repeating the name?
+    - Is it in the section of the feature it serves?
+  - **Known already:**
+    - the ElvUI plugin's "Skin Tutorials" row reports on a frame that no longer exists (above, under the options window work);
+    - `EventReminders.Enabled`, `ShowWorldmapIcon`, `Tooltip.Criteria.Show` and `TrackAchievementBrowserHistory` become their features' switches, so their names and descriptions change anyway;
+    - Criteria on units has been disabled since 99.6 and gets no section until it runs again.
+  - **What it costs:**
+    - A string's key is its English text, so a new name or description is a new key in every locale file. The translation is carried over only when the meaning stays; CurseForge is synced through `krowi:localization`.
+    - Saved keys stay as they are, so a new name needs no migration. Removing or merging an option does, in the feature's own migrations.
+    - A changed help text can need a new picture (`Make-HelpPictures.ps1`).
+  - **When (proposal, Krowi's call):** in each feature's own PR, which already moves its options into `Features/<Name>/` and gives it a section with its switch on top. The core's sections get one PR of their own. Since 106 ships only once everything is in, the translators still get all new strings before the release.
