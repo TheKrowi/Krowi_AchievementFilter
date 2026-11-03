@@ -170,6 +170,28 @@ local function CardGeometryLine(lib)
     return table.concat(parts, " ")
 end
 
+-- A search of this addon's tab (docs/work/2026-11-03-blizzard-search), a result per row in the order shown:
+-- "Section>Heading>Name", a row with no heading "Section>Name", a section found by its explanation "Section>(explanation)".
+-- Before the work the results were links, read the same way from their path ("Section · Heading").
+local function SearchRows(text, broad)
+    local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
+    local tab = addon.Options.Window.Controller
+    local rows = {}
+    for _, group in ipairs(lib.Search(text, false, tab, broad)) do
+        for _, result in ipairs(group.Results or {}) do
+            rows[#rows + 1] = result.OptionId and result.Path:gsub(" · $", ""):gsub(" · ", ">") .. ">" .. result.Label or result.Path .. ">(explanation)"
+        end
+        for _, section in ipairs(group.Sections or {}) do
+            for _, row in ipairs(section.Rows) do
+                local name = row.Option and row.Option:GetLabel() or row.Kind == "GridHeader" and "(columns)" or row.Item and row.Item.Show:GetLabel() or row.Text or row.Label
+                rows[#rows + 1] = section.Name .. ">" .. (row.Heading and row.Heading ~= "" and (row.Heading .. ">") or "") .. tostring(name)
+            end
+            if section.Explained then rows[#rows + 1] = section.Name .. ">(explanation)" end
+        end
+    end
+    return rows
+end
+
 -- Observe: a function returning the line's value, or nil and the reason it could not run
 options.Scenarios = {
     {Name = "settings-entry",
@@ -372,6 +394,48 @@ options.Scenarios = {
         end,
         Recorded = "Remember Achievement Window position,Remember Achievement Calendar position,Remember Data Manager position",
         Target = "Remember Achievement Window position,Remember Achievement Calendar position,Remember Data Manager position"},
+    -- The game's search finds options by their name only; the broad search adds descriptions and the sections'
+    -- explanations (Krowi, 2026-11-03, docs/work/2026-11-03-blizzard-search)
+    {Name = "search-names",
+        Observe = function()
+            return ("names=%d broad=%s"):format(#SearchRows("reminder", false), table.concat(SearchRows("reminder", true), "; "))
+        end,
+        -- before: one search of names, descriptions, headings and explanations, links to the sections
+        Recorded = "names=8 broad=Event reminders>Reminders>Enable; Event reminders>Reminders>Enable Upcoming Calendar Events;"
+            .. " Event reminders>Reminders>Compact; Event reminders>Pop up position>Position applies to; Event reminders>Pop up position>Grow direction;"
+            .. " Event reminders>Pop up position>Hide placeholders; Event reminders>(explanation); Reminder events>(explanation)",
+        Target = "names=0 broad=Event reminders>Reminders>Enable; Event reminders>Pop up position>Position applies to;"
+            .. " Event reminders>Pop up position>Grow direction; Event reminders>Pop up position>Hide placeholders;"
+            .. " Event reminders>(explanation); Reminder events>(explanation)"},
+    -- A name that only means something under its heading shows that heading above it (option A)
+    {Name = "search-headings",
+        Observe = function() return table.concat(SearchRows("loaded"), "; ") end,
+        Recorded = "Other addons>Achievements Tab Fixes>Loaded; Other addons>Better Wardrobe>Loaded; Other addons>EllesmereUI>Loaded;"
+            .. " Other addons>ElvUI>Loaded; Other addons>GW 2 UI>Loaded; Other addons>Instance Achievement Tracker>Loaded; Other addons>Zygor Guides Viewer>Loaded",
+        Target = "Other addons>Achievements Tab Fixes>Loaded; Other addons>Better Wardrobe>Loaded; Other addons>EllesmereUI>Loaded;"
+            .. " Other addons>ElvUI>Loaded; Other addons>GW 2 UI>Loaded; Other addons>Instance Achievement Tracker>Loaded; Other addons>Zygor Guides Viewer>Loaded"},
+    -- A found row that hangs under another brings that one along, above it, as the game's search does
+    {Name = "search-parent",
+        Observe = function() return table.concat(SearchRows("reverse"), "; ") end,
+        Recorded = "Filtering and sorting>(explanation); Tooltips>Achievement points tooltip>Reverse Sort; Tooltips>Achievement points tooltip>Reverse Sort;"
+            .. " Tooltips>Achievement points tooltip>Reverse Sort; Tooltips>Achievement points tooltip>Reverse Sort; Tooltips>Achievement points tooltip>Reverse Sort",
+        Target = "Tooltips>Achievement points tooltip>Sort priority 1; Tooltips>Achievement points tooltip>Reverse Sort;"
+            .. " Tooltips>Achievement points tooltip>Sort priority 2; Tooltips>Achievement points tooltip>Reverse Sort;"
+            .. " Tooltips>Achievement points tooltip>Sort priority 3; Tooltips>Achievement points tooltip>Reverse Sort;"
+            .. " Tooltips>Achievement points tooltip>Sort priority 4; Tooltips>Achievement points tooltip>Reverse Sort;"
+            .. " Tooltips>Achievement points tooltip>Sort priority 5; Tooltips>Achievement points tooltip>Reverse Sort"},
+    -- Each word counts, a row with more of them first: "Show in Tooltip" before "Skin Tooltip" (the game puts it after)
+    {Name = "search-order",
+        Observe = function()
+            local names = {}
+            for _, row in ipairs(SearchRows("show tooltip")) do
+                local name = row:match("([^>]+)$")
+                if name == "Show in Tooltip" or name == "Skin Tooltip" then names[#names + 1] = name end
+            end
+            return Join(names)
+        end,
+        Recorded = "none", -- before: the whole text as one piece
+        Target = "Show in Tooltip,Skin Tooltip,Skin Tooltip"},
     -- Krowi (2026-11-02): the threshold's slider after the Force two columns check box, as the game's Mouse Sensitivity
     {Name = "objectives-rows",
         Observe = function() return RowsUnder("achievements", addon.L["Objectives"]) end,
