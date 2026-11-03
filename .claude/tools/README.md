@@ -14,7 +14,9 @@ The everyday commands and the rules these tools enforce are in `.github/copilot-
 | `headless/run-tests.lua` | the scenario suites in `Tests/`, headless |
 | `headless/snapshot-categories.lua` | the category tree baselines in `headless/snapshots/` |
 | `headless/snapshot-data.lua` | the achievement, zone and registry baselines in `headless/snapshots/` |
-| `headless/client-env.lua` | the sandboxed client environment `load-data.lua` and both snapshots share |
+| `headless/data-format.lua` | the per-achievement lines of the data snapshot (ACH, TIP, TRANSMOG, PETBATTLE, GUIDE, EVENT), shared by `snapshot-data.lua` and `show-achievement.lua` |
+| `Show-Achievement.ps1` | everything about one or more achievement ids per client, in one call, over `headless/show-achievement.lua`; see One achievement below |
+| `headless/client-env.lua` | the sandboxed client environment `load-data.lua`, both snapshots and `show-achievement.lua` share |
 | `headless/read-tests.lua`, `headless/read-runs.lua` | read the `/kaftest` results from the saved variables, for `Read-GameTests.ps1` and the release gate |
 | `Read-GameTests.ps1` | the last `/kaftest` run from the client's saved variables, against the headless run; game-only steps marked `g` with their screenshot paths, `-Run <n>` for an older kept run |
 | `Request-GameTests.ps1` | only when the maintainer asks, with the client closed: writes a one-shot test request into the saved variables and starts the client with the kit's `Start-Game.ps1` (Retail, Classic and their test realms); the suites run at the next login and a summary panel is screenshotted |
@@ -118,6 +120,27 @@ The `data-snapshot` lint rule runs it with `-check` (about 0.3 s). It reports ea
 
 ```powershell
 & "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\lua.exe" ".claude\tools\headless\snapshot-data.lua" "$PWD" Both -check   # -write regenerates, -stdout prints
+```
+
+The per-achievement lines come from `headless/data-format.lua`, which `show-achievement.lua` prints too, so the two cannot drift apart.
+
+## One achievement (`Show-Achievement.ps1`)
+
+The first call for any question about one achievement: a wrong obtainable range, a state, which client has it, why it sits where it does. It loads each client headlessly, as the data snapshot does, then `Data/TemporaryObtainable.lua` on top, and prints per id and client, in about a quarter of a second for both clients:
+
+- `source`: the file and line of the `Ach(<id>)` data line, the line and its patch key (an `AutoFactionSplit` mirror points at its partner's line);
+- `snapshot`: the line `Achievements.<client>.txt` records, from the same formatter: patch, faction and the other faction's id, reward types, flags, each `Obtainable()` record with where its Version anchors land (`A=>B`), previews, custom criteria, events;
+- `state`: what the real `GetObtainableState` returns at `-AsOf` (default now) and `-Build` (default the newest patch the `.toc` declares for the client); and per record (`record n`) the was/is/will be of its tooltip line. Where the game would ask its calendar (an event) or its season API (a season side without an anchor), the line names that event or season instead, since neither is known offline;
+- `category`, `zone` (with the name from `raw/MapVerifier.csv`), `event`, `tooltip`, `transmog`, `petbattle`, `guide`: the other places that name the id, in the snapshots' line forms;
+- `load`: what the data load reported about the id, such as an `UnscheduledVersion` anchor or an `UnregisteredAchievement` reference.
+
+The clock reads a date as a UTC day and does not snap a season or `Reset` anchor to a region's weekly reset, so a boundary can be hours off a given region's. `-Db` adds the name, the description and the builds the id exists on (wow.tools.local through `.claude\skills\add-zone-data\_lookup_ids.ps1`, starting the server when it is down); `-History` the commits that changed the `Ach(<id>)` line under `DataAddons/` (`git log -G`, which also catches a line changed in place), with the changed lines.
+
+```powershell
+& ".claude\tools\Show-Achievement.ps1" 5313                                 # both clients; 5313,8246 for several
+& ".claude\tools\Show-Achievement.ps1" 5313 -Client Classic -Build 5.4.8    # the state on another patch (-Build needs -Client)
+& ".claude\tools\Show-Achievement.ps1" 40661 -AsOf 2024-12-01               # the state on another day
+& ".claude\tools\Show-Achievement.ps1" 5313,8246 -Db -History               # plus the game database and the git history
 ```
 
 ## Headless test suites (`headless/run-tests.lua`)
