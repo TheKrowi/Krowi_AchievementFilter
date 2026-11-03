@@ -539,9 +539,14 @@ end
 --   toggle, range, input: one row of each changed through its own control: the value is stored, and the changed line and
 --     the footer's count follow it; toggle-reset: the toggle's row shows its arrow on enter, before the name, and the
 --     arrow sets the option back to its default (docs/work/2026-10-31-options-markers)
---   search: a search lists results; pane: the help pane collapses to its strip; close: the close button hides the window
--- At the end every value the steps changed and the window's saved state (place, pane, last section, the sections seen,
--- which the walk marks) are put back, and the addon's Lua errors of the session are reported from BugGrabber. Combat
+--   search: the found options drawn as rows under their section's name (docs/work/2026-11-03-blizzard-search);
+--     search-letter: from the first letter; search-pane: the pane explains the search, a hovered row with its section;
+--     search-broad: Search descriptions finds a word only a description holds; search-change: a check box changed in
+--     the results greys its child and the rows stay; search-confirm, -no: a question asked in the results, and No;
+--     search-showif: turning debug info off in the results takes its child rows away, on brings them back
+--   pane: the help pane collapses to its strip; close: the close button hides the window
+-- At the end every value the steps changed and the window's saved state (place, pane, search breadth, last section, the
+-- sections seen, which the walk marks) are put back, and the addon's Lua errors of the session are reported from BugGrabber. Combat
 -- stops the run; the values go back once it ends.
 
 local settle = 1 -- a state change -> its check and screenshot
@@ -910,6 +915,220 @@ local function ResetStep(kind, optionId, Change)
     }
 end
 
+-- The search as the game's Options window searches (docs/work/2026-11-03-blizzard-search), through the window's own
+-- functions: the rows it draws, from the first letter, the help pane beside them, the broad search, a change made in the
+-- results, a question asked there, and a row that a change in them hides
+local tabPriorityId = "Layout.args.Achievements.args.Style.args.TabPriority.args.EnableTabPriority"
+local tabPriorityChildId = "Layout.args.Achievements.args.Style.args.TabPriority.args.TabPriority"
+local debugId = "General.args.Debug.args.Debug.args.EnableDebugInfo"
+local traceId = "General.args.Debug.args.Debug.args.EnableTraceInfo"
+local testQuestion = "Krowi's Achievement Filter test?"
+
+-- As the player types it
+local function Search(text)
+    local frame = Window()
+    frame.SearchBox:SetText(text)
+    frame:OnSearch(text)
+end
+
+-- Through its check box, as the player ticks it
+local function SetBroad(on)
+    local frame = Window()
+    if (frame.BroadSearch and true or false) ~= on then frame.SearchBroad:Click() end
+end
+
+local function Kinds()
+    local kinds = {}
+    for _, element in ipairs(Window().Elements or {}) do kinds[element.Kind] = (kinds[element.Kind] or 0) + 1 end
+    return kinds
+end
+
+local function InResults(option)
+    for _, element in ipairs(Window().Elements or {}) do
+        if element.Option == option then return true end
+    end
+    return false
+end
+
+local function HelpTitle()
+    local provider = Window().HelpScrollBox:GetDataProvider()
+    local first = provider and provider:Find(1)
+    return first and first.Text
+end
+
+-- A word of an option's description that no option's name holds, so only the broad search finds it, in any language
+local function DescriptionOnlyWord()
+    local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
+    local tab = addon.Options.Window.Controller
+    for _, optionId in ipairs({ toggleId, rangeId, tabPriorityId }) do
+        local _, option = FindOption(optionId)
+        for word in (option and option:GetDescription() or ""):gmatch("[^%s%p]+") do
+            if #word >= 5 and #lib.Search(word, false, tab, false) == 0 and #lib.Search(word, false, tab, true) > 0 then return word end
+        end
+    end
+end
+
+local function SearchSteps()
+    local searchText, pane, broad, change, confirm, showIf
+    return {
+        {
+            Name = "search",
+            Text = "a search draws the found options as rows under their section's name",
+            Run = function()
+                SetBroad(false)
+                local _, option = FindOption(toggleId)
+                searchText = option and option:GetLabel():match("^(%S+)") or "a"
+                Search(searchText)
+            end,
+            Check = function()
+                local frame = Window()
+                local kinds = Kinds()
+                local first = frame.Elements and frame.Elements[1]
+                local drawn, differ, misfit = CheckDrawnRows()
+                local ok = frame.Searching and (kinds.Option or 0) > 0 and (kinds.SearchHeading or 0) > 0 and not kinds.Link and first
+                    and (first.Kind == "SearchHeading" or first.Kind == "Header") and not frame.DefaultsButton:IsShown() and #differ == 0 and #misfit == 0
+                Add(ok and "PASS" or "FAIL", ("'%s': %d rows under %d section names, %d links, Defaults %s, %d drawn%s%s"):format(searchText,
+                    kinds.Option or 0, kinds.SearchHeading or 0, kinds.Link or 0, frame.DefaultsButton:IsShown() and "shown" or "hidden", drawn,
+                    #differ > 0 and (", controls that do not show their value: [" .. table.concat(differ, ",") .. "]") or "",
+                    #misfit > 0 and (", rows out of the layout: [" .. table.concat(misfit, "; ") .. "]") or ""))
+            end
+        },
+        {
+            Name = "search-letter",
+            Text = "one letter already searches, as the game's",
+            Run = function()
+                searchText = searchText:match("^[%z\1-\127\194-\244][\128-\191]*") -- one letter, also when it takes several bytes
+                Search(searchText)
+            end,
+            Check = function()
+                local kinds = Kinds()
+                Add(Window().Searching and (kinds.Option or 0) > 0 and "PASS" or "FAIL", ("'%s' finds %d rows in %d sections"):format(searchText,
+                    kinds.Option or 0, kinds.SearchHeading or 0))
+            end
+        },
+        {
+            Name = "search-pane",
+            Text = "the help pane explains the search, and a hovered row with its own section",
+            Run = function()
+                local frame = Window()
+                if frame.PaneCollapsed then frame:SetPaneCollapsed(false) end
+                local _, child = FindOption(tabPriorityChildId)
+                Search(child:GetLabel())
+                pane = { Before = HelpTitle() }
+                local row = RowOf(child)
+                if not row then return "its row is not drawn" end
+                row:OnEnter()
+                pane.Hover, pane.Kicker = frame.HoverOption == child, frame.CollapseButton.Label:GetText()
+                row:OnLeave()
+                pane.After = HelpTitle()
+            end,
+            Check = function()
+                local frame = Window()
+                local search, section = frame.Strings.Search, frame.Config.SectionName((FindOption(tabPriorityChildId)))
+                Add(pane.Before == search and pane.Hover and pane.Kicker == section and pane.After == search and "PASS" or "FAIL",
+                    ("before '%s', on the row %s under '%s' (%s expected), after '%s'"):format(tostring(pane.Before),
+                        pane.Hover and "its description" or "not its description", tostring(pane.Kicker), section, tostring(pane.After)))
+            end
+        },
+        {
+            Name = "search-broad",
+            Text = "Search descriptions also finds options by their description and sections by their explanation",
+            Run = function()
+                local word = DescriptionOnlyWord()
+                if not word then return "no word of a description that no name holds" end
+                SetBroad(false)
+                Search(word)
+                broad = { Word = word, Names = Kinds() }
+                SetBroad(true)
+            end,
+            Check = function()
+                local frame = Window()
+                local kinds = Kinds()
+                local kept = KrowiAF_SavedData.OptionsWindow.SearchBroad == true and frame.SearchBroad:GetChecked()
+                Add(not broad.Names.Option and broad.Names.Note == 1 and (kinds.Option or 0) + (kinds.Link or 0) > 0 and kept and "PASS" or "FAIL",
+                    ("'%s': by name %d rows, ticked %d rows and %d explanations, %s"):format(broad.Word, broad.Names.Option or 0, kinds.Option or 0,
+                        kinds.Link or 0, kept and "kept with the window's state" or "not kept"))
+            end
+        },
+        {
+            Name = "search-change",
+            Text = "a check box changed in the results greys its child row, and the rows stay",
+            Run = function()
+                SetBroad(false)
+                local _, parent = FindOption(tabPriorityId)
+                local _, child = FindOption(tabPriorityChildId)
+                Search(parent:GetLabel())
+                change = { Parent = parent, Child = child, Signature = Window().Signature }
+                local row = RowOf(parent)
+                if not row then return "its row is not drawn" end
+                Remember(parent)
+                row.Toggle:Click()
+            end,
+            Check = function()
+                local frame = Window()
+                local childRow = RowOf(change.Child)
+                local greyed = childRow and (childRow.Label:GetFontObject() == GameFontDisable) == change.Child:IsDisabled()
+                local stored = change.Parent:Get() ~= live.Before[change.Parent].Value
+                local same = frame.Signature == change.Signature
+                Add(stored and greyed and same and "PASS" or "FAIL", ("%s %s, %s %s, the rows %s"):format(change.Parent:GetLabel(),
+                    stored and "changed" or "not changed", change.Child:GetLabel(), greyed and "follows it" or "does not follow it",
+                    same and "stayed" or "were drawn again"))
+            end
+        },
+        {
+            Name = "search-confirm",
+            Text = "a question asked in the results shows in the header",
+            Run = function()
+                local frame = Window()
+                Search(searchText)
+                confirm = {}
+                frame:AskConfirm(testQuestion, function() confirm.Yes = true end)
+            end,
+            Check = function()
+                local frame = Window()
+                local asked = frame.CancelButton:IsShown() and frame.DefaultsButton:IsShown() and frame.ChangedText:GetText() == testQuestion
+                Add(asked and "PASS" or "FAIL", ("the question %s, Yes %s, No %s"):format(frame.ChangedText:GetText() == testQuestion and "shows" or "does not show",
+                    frame.DefaultsButton:IsShown() and "shown" or "hidden", frame.CancelButton:IsShown() and "shown" or "hidden"))
+            end
+        },
+        {
+            Name = "search-confirm-no",
+            Text = "No ends the question and does nothing",
+            Run = function()
+                Window().CancelButton:Click()
+            end,
+            Check = function()
+                local frame = Window()
+                local gone = not frame.CancelButton:IsShown() and not frame.DefaultsButton:IsShown() and frame.PageTitle:IsShown()
+                Add(gone and not confirm.Yes and "PASS" or "FAIL", ("the question %s, its answer %s"):format(gone and "is gone" or "stays",
+                    confirm.Yes and "ran" or "did not run"))
+            end
+        },
+        {
+            Name = "search-showif",
+            Text = "a row that a change in the results hides goes, and comes back",
+            Run = function()
+                SetBroad(false)
+                local _, debug = FindOption(debugId)
+                local _, trace = FindOption(traceId)
+                Search(trace:GetLabel())
+                showIf = { Trace = trace, Before = InResults(trace) }
+                Remember(debug)
+                debug:Set(false)
+                Window():OnOptionChanged(debug)
+                showIf.Off = InResults(trace)
+                debug:Set(true)
+                Window():OnOptionChanged(debug)
+            end,
+            Check = function()
+                local back = InResults(showIf.Trace)
+                Add(showIf.Before and not showIf.Off and back and "PASS" or "FAIL", ("%s: %s, with debug info off %s, on again %s"):format(
+                    showIf.Trace:GetLabel(), showIf.Before and "found" or "not found", showIf.Off and "still there" or "gone", back and "back" or "not back"))
+            end
+        },
+    }
+end
+
 local function BuildSteps()
     local window = addon.Options.Window
     local list = {
@@ -1019,26 +1238,7 @@ local function BuildSteps()
                 shown and shown:GetLabel() or "the section"))
         end
     })
-    local searchText
-    tinsert(list, {
-        Name = "search",
-        Text = "a search lists results",
-        Run = function()
-            local _, option = FindOption(toggleId)
-            searchText = option and option:GetLabel():match("^(%S+)") or "a"
-            Window().SearchBox:SetText(searchText)
-            Window():OnSearch(searchText)
-        end,
-        Check = function()
-            local links = 0
-            for _, element in ipairs(Window().Elements or {}) do
-                if element.Kind == "Link" then
-                    links = links + 1
-                end
-            end
-            Add(Window().Searching and links > 0 and "PASS" or "FAIL", ("'%s' lists %d results"):format(searchText, links))
-        end
-    })
+    for _, step in ipairs(SearchSteps()) do tinsert(list, step) end
     tinsert(list, {
         Name = "pane",
         Text = "the help pane collapsed to its strip",
@@ -1103,6 +1303,9 @@ local function Restore()
         if frame.PaneCollapsed ~= (live.SavedWindow.PaneCollapsed and true or false) then
             frame:SetPaneCollapsed(live.SavedWindow.PaneCollapsed and true or false)
         end
+        -- The broad search the window reads, and its check box; the saved field goes back with the table below
+        frame.BroadSearch = live.SavedWindow.SearchBroad and true or false
+        frame.SearchBroad:SetChecked(frame.BroadSearch)
         if live.WasShown then
             frame:Open(live.WasShown)
         end
