@@ -13,7 +13,7 @@
 -- (docs/work/2026-10-30-options-settings-look). Lives inside Krowi_AchievementFilter for now
 -- (docs/work/2026-10-25-options-revamp); extracting it is a move into Krowi_Libraries.
 
-local lib = KROWI_LIBMAN:NewLibrary('Krowi_Options_1', 3)
+local lib = KROWI_LIBMAN:NewLibrary('Krowi_Options_1', 4)
 if not lib then return end
 
 -- The registered tabs, sorted by name, and the one window they share (lib.Frame, made on the first open). Both live on
@@ -31,18 +31,19 @@ lib.Markup = {
 
 --[[ config:
     TabName         the tab's text: the addon's name, not translated
-    Saved           a table the addon keeps the window's place, size, pane state, search scope, its last
+    Saved           a table the addon keeps the window's place, size, pane state, search scope and breadth, its last
                     section and the sections seen in, or a function returning it (called on the first need, so it can
                     live in saved variables not loaded yet); the window's own state is written to every tab's table
                     (lib.SetShared)
-    Groups          { { Name, Sections = { sectionId, ... } } } for the navigation; "overview" is always first
+    Groups          { { Name, Sections = { sectionId, ... } } } for the navigation and the search; "overview" is always
+                    first and never searched
     SectionName(id) the navigation name of a section
     IsNew(id)       whether the navigation marks a section New
     Landing()       the section to open when no section is asked for
     OnSectionShown(id)
-    GetElements(id) the section's elements, see RowMixins.lua; { Kind = "Cards", Cards } draws its cards three to a row
+    GetElements(id) the section's elements, see RowMixins.lua; { Kind = "Cards", Cards } draws its cards three to a row;
+                    the search reads them too (Search.lua)
     GetHelp(id)     { Title, Blocks = { {Heading} | {Text} | {Term, Text} | {Picture, Width, Height} }, ShowMe, ShowMeNote } or nil
-    Search(text)    { { SectionId, Path, Label, OptionId } }
     ResetSection(id), ChangedCount(id)
     OnCreated(frame) called once per tab: when the window is made, or when the tab registers after that
     Strings         see WindowMixin.lua
@@ -130,16 +131,4 @@ function lib.SetShared(key, value)
     for _, registered in ipairs(lib.Tabs) do
         registered:GetSaved()[key] = value
     end
-end
-
--- A search of the current tab, or of every tab: { { Tab, Results }, ... } in tab order, only the tabs that found something
-function lib.Search(text, all, current)
-    local groups = {}
-    for _, registered in ipairs(lib.Tabs) do
-        if (all or registered == current) and registered.Config.Search then
-            local results = registered.Config.Search(text)
-            if #results > 0 then groups[#groups + 1] = { Tab = registered, Results = results } end
-        end
-    end
-    return groups
 end

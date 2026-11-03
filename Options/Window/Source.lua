@@ -215,6 +215,11 @@ function Option:IsDisabled()
     return AnyTrue(self.Chain, "disabled", self.Info)
 end
 
+-- The check box this option hangs under (Parent in Map.lua), which a search finds it with (Krowi_Options/Search.lua)
+function Option:GetParent()
+    return self.ParentPath and source.OptionAt(self.ParentPath) or nil
+end
+
 -- values as an ordered list of { key, text }: AceConfig's sorting list, else numeric keys ascending, else by text
 function Option:GetValues()
     local values = Evaluate(self.Node.values, self.Info) or {}

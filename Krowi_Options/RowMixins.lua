@@ -7,8 +7,9 @@
 
 -- The rows of the options page. An element (see WindowMixin.lua) picks its row; an option row reads the option's
 -- interface: GetLabel, GetDescription, Type, Get, Set, IsDisabled, GetValues, GetRange, GetButtonText,
--- GetNeedsReload, IsChanged, Reset, Placeholder, Confirm (a select's question before a choice is made), and for a key
--- row Slots (two options holding a key each). A toggle's element may carry With, an execute or range option drawn 5
+-- GetNeedsReload, IsChanged, Reset, Placeholder, Confirm (a select's question before a choice is made), for a key row
+-- Slots (two options holding a key each), and optionally GetParent (the option it hangs under, which the search finds
+-- with it). A toggle's element may carry With, an execute or range option drawn 5
 -- after the check box as a 200 button or a 214 slider, as the game's check box with a button or a slider
 -- (Blizzard_SettingControls.lua, SettingsCheckboxWithButtonControlMixin and SettingsCheckboxSliderControlMixin); the
 -- row's name and changed line are the toggle's and With's together. A slider explains itself under the mouse; a button
@@ -262,7 +263,7 @@ function Krowi_OptionsOptionRowMixin:Refresh()
     local option = self.Option
     if not option then return end
     local disabled = option:IsDisabled()
-    local strings = self.Window.Strings
+    local strings = self.Window:StringsFor(self.Element)
     self.Label:SetFontObject(disabled and "GameFontDisable" or "GameFontNormal")
 
     local with = self.With
@@ -395,8 +396,9 @@ function Krowi_OptionsSubRowMixin:Init(element, window)
     self.Element, self.Window = element, window
     self.Text:SetText(element.Text or "")
     Place(self.All, self, lib.RowGeometry(0).Sub)
-    self.All:SetText(window.Strings.All)
-    self.None:SetText(window.Strings.None)
+    local strings = window:StringsFor(element)
+    self.All:SetText(strings.All)
+    self.None:SetText(strings.None)
 end
 
 -- [[ A grid: column titles, then a row of check boxes per line ]] --
@@ -522,7 +524,27 @@ function Krowi_OptionsTabRowMixin:OnLeave()
     self.Window:OnRowLeave()
 end
 
--- [[ A link: a search result, a New section, an overview entry ]] --
+-- [[ A section's name in the search results, as the game's (SettingsListSearchCategoryMixin): a click opens it ]] --
+Krowi_OptionsSearchHeadingRowMixin = {}
+
+function Krowi_OptionsSearchHeadingRowMixin:Init(element)
+    self.Element = element
+    self.Title:SetText(element.Text or "")
+end
+
+function Krowi_OptionsSearchHeadingRowMixin:OnClick()
+    if self.Element.OnClick then self.Element.OnClick() end
+end
+
+function Krowi_OptionsSearchHeadingRowMixin:OnEnter()
+    self.MouseoverOverlay:Show()
+end
+
+function Krowi_OptionsSearchHeadingRowMixin:OnLeave()
+    self.MouseoverOverlay:Hide()
+end
+
+-- [[ A link: a New section, an overview entry ]] --
 Krowi_OptionsLinkRowMixin = {}
 
 function Krowi_OptionsLinkRowMixin:Init(element)

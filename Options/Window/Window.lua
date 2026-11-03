@@ -6,7 +6,7 @@ local L = addon.L
 
 -- The options window (docs/work/2026-10-25-options-revamp): Krowi_Options draws it, this file hands it the sections
 -- (Map.lua), their options (Source.lua), the explanations (window.Help, filled by Options/Window/Help) and the place
--- it keeps in KrowiAF_SavedData.OptionsWindow = { Point, Size, PaneCollapsed, SearchAll, LastSection,
+-- it keeps in KrowiAF_SavedData.OptionsWindow = { Point, Size, PaneCollapsed, SearchAll, SearchBroad, LastSection,
 -- Seen = { [sectionId] = version } }.
 
 window.Help = window.Help or {}
@@ -125,7 +125,6 @@ window.Controller = KROWI_LIBMAN:GetLibrary("Krowi_Options_1").CreateWindow({
         return section and source.Elements(section) or {}
     end,
     GetHelp = function(id) return window.Help[id] end,
-    Search = model.Search,
     ResetSection = model.ResetSection,
     ChangedCount = model.ChangedCount,
     OnCreated = function(frame)
@@ -136,6 +135,9 @@ window.Controller = KROWI_LIBMAN:GetLibrary("Krowi_Options_1").CreateWindow({
         Overview = L["Overview"],
         Search = L["Search"],
         SearchAll = L["Search all tabs"],
+        SearchBroad = L["Search descriptions"],
+        SearchHelp = L["Help Search Names"],
+        SearchHelpBroad = L["Help Search Broad"],
         SearchResults = L["Search results"],
         NoResults = L["Nothing found."],
         Defaults = L["Defaults"],

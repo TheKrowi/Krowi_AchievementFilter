@@ -80,10 +80,16 @@ end
 -- addon keeps (written to each one's saved table), and a search of the open tab or of every tab
 local function SecondTab(lib)
     local saved = {}
+    local option = {
+        GetLabel = function() return "Zz Tooltip" end,
+        IsHidden = function() return false end,
+    }
     local tab = lib.CreateWindow({
         TabName = "Zz Test",
         Saved = saved,
-        Search = function(text) return { { SectionId = "test", Path = "Zz Test", Label = "Zz " .. text } } end,
+        Groups = { { Name = "Zz", Sections = { "test" } } },
+        SectionName = function() return "Zz Test" end,
+        GetElements = function() return { { Kind = "Option", Option = option } } end,
     })
     local ok, line = pcall(function()
         local tabs = TabNames(lib)
@@ -168,6 +174,23 @@ local function CardGeometryLine(lib)
     local square = { Width = 400, Height = 400, TexCoords = { 0, 1, 0, 1 }, Part = { X = 0, Y = 1 } }
     parts[#parts + 1] = ("Bottom %.5f,%.5f,%.5f,%.5f"):format(lib.CardCrop(square, lib.CardWidth(635)))
     return table.concat(parts, " ")
+end
+
+-- A search of this addon's tab (docs/work/2026-11-03-blizzard-search), a result per row in the order shown:
+-- "Section>Heading>Name", a row with no heading "Section>Name"
+local function SearchRows(text, broad)
+    local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
+    local tab = addon.Options.Window.Controller
+    local rows = {}
+    for _, group in ipairs(lib.Search(text, false, tab, broad)) do
+        for _, section in ipairs(group.Sections) do
+            for _, row in ipairs(section.Rows) do
+                local name = row.Option and row.Option:GetLabel() or row.Kind == "GridHeader" and "(columns)" or row.Item and row.Item.Show:GetLabel() or row.Text or row.Label
+                rows[#rows + 1] = section.Name .. ">" .. (row.Heading and row.Heading ~= "" and (row.Heading .. ">") or "") .. tostring(name)
+            end
+        end
+    end
+    return rows
 end
 
 -- Observe: a function returning the line's value, or nil and the reason it could not run
@@ -365,13 +388,101 @@ options.Scenarios = {
     {Name = "search-reset-position",
         Observe = function()
             local labels = {}
-            for _, result in ipairs(Model().Search(addon.L["Reset position"])) do
-                if result.OptionId then labels[#labels + 1] = result.Label end
+            for _, row in ipairs(SearchRows(addon.L["Reset position"])) do
+                labels[#labels + 1] = row:match("([^>]+)$")
             end
             return Join(labels)
         end,
-        Recorded = "Remember Achievement Window position,Remember Achievement Calendar position,Remember Data Manager position",
-        Target = "Remember Achievement Window position,Remember Achievement Calendar position,Remember Data Manager position"},
+        -- the three check boxes first, by their buttons' whole text; then, since each word counts as the game's search counts
+        -- it, the names holding only "reset" or "position" (docs/work/2026-11-03-blizzard-search); before, the three alone
+        Recorded = "Remember Achievement Window position,Remember Achievement Calendar position,Remember Data Manager position,"
+            .. "Calendar button: horizontal position,Calendar button: vertical position,Reset view on open,Remember Last Position,"
+            .. "Position applies to,Presets,Reset Faction Filters,Presets,Reset Profile,Reset Profile",
+        Target = "Remember Achievement Window position,Remember Achievement Calendar position,Remember Data Manager position,"
+            .. "Calendar button: horizontal position,Calendar button: vertical position,Reset view on open,Remember Last Position,"
+            .. "Position applies to,Presets,Reset Faction Filters,Presets,Reset Profile,Reset Profile"},
+    -- The game's search finds options by their name only; the broad search adds their descriptions (Krowi, 2026-11-03,
+    -- docs/work/2026-11-03-blizzard-search), not the sections' explanations (Krowi's look in game the same day)
+    {Name = "search-names",
+        Observe = function()
+            return ("names=%d broad=%s"):format(#SearchRows("reminder", false), table.concat(SearchRows("reminder", true), "; "))
+        end,
+        -- before: one search of names, descriptions, headings and explanations ("names=8 broad=" the same 8 links, with
+        -- Enable Upcoming Calendar Events and Compact found by their heading "Reminders"); then the broad search also gave
+        -- Event reminders and Reminder events a "How it works" link for their explanation (Krowi in game: it reads as an
+        -- option and says nothing of why it is there)
+        Recorded = "names=0 broad=Event reminders>Reminders>Enable; Event reminders>Pop up position>Position applies to;"
+            .. " Event reminders>Pop up position>Grow direction; Event reminders>Pop up position>Hide placeholders",
+        Target = "names=0 broad=Event reminders>Reminders>Enable; Event reminders>Pop up position>Position applies to;"
+            .. " Event reminders>Pop up position>Grow direction; Event reminders>Pop up position>Hide placeholders"},
+    -- A name that only means something under its heading shows that heading above it (option A)
+    {Name = "search-headings",
+        Observe = function() return table.concat(SearchRows("loaded"), "; ") end,
+        Recorded = "Other addons>Achievements Tab Fixes>Loaded; Other addons>Better Wardrobe>Loaded; Other addons>EllesmereUI>Loaded;"
+            .. " Other addons>ElvUI>Loaded; Other addons>GW 2 UI>Loaded; Other addons>Instance Achievement Tracker>Loaded; Other addons>Zygor Guides Viewer>Loaded",
+        Target = "Other addons>Achievements Tab Fixes>Loaded; Other addons>Better Wardrobe>Loaded; Other addons>EllesmereUI>Loaded;"
+            .. " Other addons>ElvUI>Loaded; Other addons>GW 2 UI>Loaded; Other addons>Instance Achievement Tracker>Loaded; Other addons>Zygor Guides Viewer>Loaded"},
+    -- A found row that hangs under another brings that one along, above it, as the game's search does
+    {Name = "search-parent",
+        Observe = function() return table.concat(SearchRows("reverse"), "; ") end,
+        -- before: the five Reverse Sort rows alone, after Filtering and sorting's explanation
+        Recorded = "Tooltips>Achievement points tooltip>Sort priority 1; Tooltips>Achievement points tooltip>Reverse Sort;"
+            .. " Tooltips>Achievement points tooltip>Sort priority 2; Tooltips>Achievement points tooltip>Reverse Sort;"
+            .. " Tooltips>Achievement points tooltip>Sort priority 3; Tooltips>Achievement points tooltip>Reverse Sort;"
+            .. " Tooltips>Achievement points tooltip>Sort priority 4; Tooltips>Achievement points tooltip>Reverse Sort;"
+            .. " Tooltips>Achievement points tooltip>Sort priority 5; Tooltips>Achievement points tooltip>Reverse Sort",
+        Target = "Tooltips>Achievement points tooltip>Sort priority 1; Tooltips>Achievement points tooltip>Reverse Sort;"
+            .. " Tooltips>Achievement points tooltip>Sort priority 2; Tooltips>Achievement points tooltip>Reverse Sort;"
+            .. " Tooltips>Achievement points tooltip>Sort priority 3; Tooltips>Achievement points tooltip>Reverse Sort;"
+            .. " Tooltips>Achievement points tooltip>Sort priority 4; Tooltips>Achievement points tooltip>Reverse Sort;"
+            .. " Tooltips>Achievement points tooltip>Sort priority 5; Tooltips>Achievement points tooltip>Reverse Sort"},
+    -- A child option comes with its parent also when a heading stands between them on the page (Show criteria if)
+    {Name = "search-parent-heading",
+        Observe = function()
+            local rows = {}
+            for _, row in ipairs(SearchRows(addon.L["Achievement is Completed"])) do
+                if row:find("^" .. addon.L["Criteria on units"] .. ">") then rows[#rows + 1] = row end
+            end
+            return table.concat(rows, "; ")
+        end,
+        -- before the review (indent alone): the three without Show Criteria, whose heading came between
+        Recorded = "Criteria on units>Unit tooltips>Show Criteria; Criteria on units>Show criteria if>Achievement is Completed;"
+            .. " Criteria on units>Show criteria if>Achievement was Not Earned by Me; Criteria on units>Show criteria if>Criteria is Completed",
+        Target = "Criteria on units>Unit tooltips>Show Criteria; Criteria on units>Show criteria if>Achievement is Completed;"
+            .. " Criteria on units>Show criteria if>Achievement was Not Earned by Me; Criteria on units>Show criteria if>Criteria is Completed"},
+    -- A found All / None heading brings every option it switches, so its buttons never switch rows the player cannot see
+    {Name = "search-all-none",
+        Observe = function()
+            local source = addon.Options.Window.Source
+            local members = 0
+            for _, element in ipairs(source.Elements(source.Section("eventlist"))) do
+                if element.Kind == "Sub" and element.Text == addon.L["All holidays"] then members = #element.Members end
+            end
+            local rows = SearchRows(addon.L["All holidays"])
+            local under = 0 -- the rows under its heading; "all" finds other groups too
+            local heading = rows[1] and rows[1]:match("^(.*>)[^>]+$")
+            for _, row in ipairs(rows) do
+                if heading and row:sub(1, #heading) == heading then under = under + 1 end
+            end
+            return ("%s with %d of its %d options"):format(tostring(rows[1]), under - 1, members)
+        end,
+        -- before the review: none of them, their All and None switching rows out of sight
+        Recorded = "Reminder events>Holidays>All holidays with 13 of its 13 options",
+        Target = "Reminder events>Holidays>All holidays with 13 of its 13 options",
+        RecordedClassic = "Reminder events>Holidays>All holidays with 12 of its 12 options",
+        TargetClassic = "Reminder events>Holidays>All holidays with 12 of its 12 options"},
+    -- Each word counts, a row with more of them first: "Show in Tooltip" before "Skin Tooltip" (the game puts it after)
+    {Name = "search-order",
+        Observe = function()
+            local names = {}
+            for _, row in ipairs(SearchRows("show tooltip")) do
+                local name = row:match("([^>]+)$")
+                if name == "Show in Tooltip" or name == "Skin Tooltip" then names[#names + 1] = name end
+            end
+            return Join(names)
+        end,
+        Recorded = "Show in Tooltip,Skin Tooltip,Skin Tooltip", -- before: "none", the whole text as one piece
+        Target = "Show in Tooltip,Skin Tooltip,Skin Tooltip"},
     -- Krowi (2026-11-02): the threshold's slider after the Force two columns check box, as the game's Mouse Sensitivity
     {Name = "objectives-rows",
         Observe = function() return RowsUnder("achievements", addon.L["Objectives"]) end,
@@ -462,9 +573,14 @@ end
 --   toggle, range, input: one row of each changed through its own control: the value is stored, and the changed line and
 --     the footer's count follow it; toggle-reset: the toggle's row shows its arrow on enter, before the name, and the
 --     arrow sets the option back to its default (docs/work/2026-10-31-options-markers)
---   search: a search lists results; pane: the help pane collapses to its strip; close: the close button hides the window
--- At the end every value the steps changed and the window's saved state (place, pane, last section, the sections seen,
--- which the walk marks) are put back, and the addon's Lua errors of the session are reported from BugGrabber. Combat
+--   search: the found options drawn as rows under their section's name (docs/work/2026-11-03-blizzard-search);
+--     search-letter: from the first letter; search-pane: the pane explains the search, a hovered row with its section;
+--     search-broad: Search descriptions finds a word only a description holds; search-change: a check box changed in
+--     the results greys its child and the rows stay; search-confirm, -no: a question asked in the results, and No;
+--     search-showif: turning debug info off in the results takes its child rows away, on brings them back
+--   pane: the help pane collapses to its strip; close: the close button hides the window
+-- At the end every value the steps changed and the window's saved state (place, pane, search breadth, last section, the
+-- sections seen, which the walk marks) are put back, and the addon's Lua errors of the session are reported from BugGrabber. Combat
 -- stops the run; the values go back once it ends.
 
 local settle = 1 -- a state change -> its check and screenshot
@@ -833,6 +949,221 @@ local function ResetStep(kind, optionId, Change)
     }
 end
 
+-- The search as the game's Options window searches (docs/work/2026-11-03-blizzard-search), through the window's own
+-- functions: the rows it draws, from the first letter, the help pane beside them, the broad search, a change made in the
+-- results, a question asked there, and a row that a change in them hides
+local tabPriorityId = "Layout.args.Achievements.args.Style.args.TabPriority.args.EnableTabPriority"
+local tabPriorityChildId = "Layout.args.Achievements.args.Style.args.TabPriority.args.TabPriority"
+local debugId = "General.args.Debug.args.Debug.args.EnableDebugInfo"
+local traceId = "General.args.Debug.args.Debug.args.EnableTraceInfo"
+local testQuestion = "Krowi's Achievement Filter test?"
+
+-- As the player types it
+local function Search(text)
+    local frame = Window()
+    frame.SearchBox:SetText(text)
+    frame:OnSearch(text)
+end
+
+-- Through its check box, as the player ticks it
+local function SetBroad(on)
+    local frame = Window()
+    if (frame.BroadSearch and true or false) ~= on then frame.SearchBroad:Click() end
+end
+
+local function Kinds()
+    local kinds = {}
+    for _, element in ipairs(Window().Elements or {}) do kinds[element.Kind] = (kinds[element.Kind] or 0) + 1 end
+    return kinds
+end
+
+local function InResults(option)
+    for _, element in ipairs(Window().Elements or {}) do
+        if element.Option == option then return true end
+    end
+    return false
+end
+
+local function HelpTitle()
+    local provider = Window().HelpScrollBox:GetDataProvider()
+    local first = provider and provider:Find(1)
+    return first and first.Text
+end
+
+-- A word of an option's description that no option's name holds, so only the broad search finds it, in any language
+local function DescriptionOnlyWord()
+    local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
+    local tab = addon.Options.Window.Controller
+    for _, optionId in ipairs({ toggleId, rangeId, tabPriorityId }) do
+        local _, option = FindOption(optionId)
+        for word in (option and option:GetDescription() or ""):gmatch("[^%s%p]+") do
+            if #word >= 5 and #lib.Search(word, false, tab, false) == 0 and #lib.Search(word, false, tab, true) > 0 then return word end
+        end
+    end
+end
+
+local function SearchSteps()
+    local searchText, pane, broad, change, confirm, showIf
+    return {
+        {
+            Name = "search",
+            Text = "a search draws the found options as rows under their section's name",
+            Run = function()
+                SetBroad(false)
+                local _, option = FindOption(toggleId)
+                searchText = option and option:GetLabel():match("^(%S+)") or "a"
+                Search(searchText)
+            end,
+            Check = function()
+                local frame = Window()
+                local kinds = Kinds()
+                local first = frame.Elements and frame.Elements[1]
+                local drawn, differ, misfit = CheckDrawnRows()
+                local ok = frame.Searching and (kinds.Option or 0) > 0 and (kinds.SearchHeading or 0) > 0 and not kinds.Link and first
+                    and (first.Kind == "SearchHeading" or first.Kind == "Header") and not frame.DefaultsButton:IsShown() and #differ == 0 and #misfit == 0
+                Add(ok and "PASS" or "FAIL", ("'%s': %d rows under %d section names, %d links, Defaults %s, %d drawn%s%s"):format(searchText,
+                    kinds.Option or 0, kinds.SearchHeading or 0, kinds.Link or 0, frame.DefaultsButton:IsShown() and "shown" or "hidden", drawn,
+                    #differ > 0 and (", controls that do not show their value: [" .. table.concat(differ, ",") .. "]") or "",
+                    #misfit > 0 and (", rows out of the layout: [" .. table.concat(misfit, "; ") .. "]") or ""))
+            end
+        },
+        {
+            Name = "search-letter",
+            Text = "one letter already searches, as the game's",
+            Run = function()
+                searchText = searchText:match("^[%z\1-\127\194-\244][\128-\191]*") -- one letter, also when it takes several bytes
+                Search(searchText)
+            end,
+            Check = function()
+                local kinds = Kinds()
+                Add(Window().Searching and (kinds.Option or 0) > 0 and "PASS" or "FAIL", ("'%s' finds %d rows in %d sections"):format(searchText,
+                    kinds.Option or 0, kinds.SearchHeading or 0))
+            end
+        },
+        {
+            Name = "search-pane",
+            Text = "the help pane explains the search, and a hovered row with its own section",
+            Run = function()
+                local frame = Window()
+                if frame.PaneCollapsed then frame:SetPaneCollapsed(false) end
+                local _, child = FindOption(tabPriorityChildId)
+                Search(child:GetLabel())
+                pane = { Before = HelpTitle() }
+                local row = RowOf(child)
+                if not row then return "its row is not drawn" end
+                row:OnEnter()
+                pane.Hover, pane.Kicker = frame.HoverOption == child, frame.CollapseButton.Label:GetText()
+                row:OnLeave()
+                pane.After = HelpTitle()
+            end,
+            Check = function()
+                local frame = Window()
+                local search, section = frame.Strings.Search, frame.Config.SectionName((FindOption(tabPriorityChildId)))
+                Add(pane.Before == search and pane.Hover and pane.Kicker == section and pane.After == search and "PASS" or "FAIL",
+                    ("before '%s', on the row %s under '%s' (%s expected), after '%s'"):format(tostring(pane.Before),
+                        pane.Hover and "its description" or "not its description", tostring(pane.Kicker), section, tostring(pane.After)))
+            end
+        },
+        {
+            Name = "search-broad",
+            Text = "Search descriptions also finds options by their description, and no section by its explanation",
+            Run = function()
+                local word = DescriptionOnlyWord()
+                if not word then return "no word of a description that no name holds" end
+                SetBroad(false)
+                Search(word)
+                broad = { Word = word, Names = Kinds() }
+                SetBroad(true)
+            end,
+            Check = function()
+                local frame = Window()
+                local kinds = Kinds()
+                local kept = KrowiAF_SavedData.OptionsWindow.SearchBroad == true and frame.SearchBroad:GetChecked()
+                Add(not broad.Names.Option and broad.Names.Note == 1 and (kinds.Option or 0) > 0 and not kinds.Link and kept and "PASS" or "FAIL",
+                    ("'%s': by name %d rows, ticked %d rows and %d links, %s"):format(broad.Word, broad.Names.Option or 0, kinds.Option or 0,
+                        kinds.Link or 0, kept and "kept with the window's state" or "not kept"))
+            end
+        },
+        {
+            Name = "search-change",
+            Text = "a check box changed in the results greys its child row, and the rows stay",
+            Run = function()
+                SetBroad(false)
+                local _, parent = FindOption(tabPriorityId)
+                local _, child = FindOption(tabPriorityChildId)
+                Search(parent:GetLabel())
+                change = { Parent = parent, Child = child, Signature = Window().Signature }
+                local row = RowOf(parent)
+                if not row then return "its row is not drawn" end
+                Remember(parent)
+                row.Toggle:Click()
+            end,
+            Check = function()
+                local frame = Window()
+                local childRow = RowOf(change.Child)
+                local greyed = childRow and (childRow.Label:GetFontObject() == GameFontDisable) == change.Child:IsDisabled()
+                local stored = change.Parent:Get() ~= live.Before[change.Parent].Value
+                local same = frame.Signature == change.Signature
+                Add(stored and greyed and same and "PASS" or "FAIL", ("%s %s, %s %s, the rows %s"):format(change.Parent:GetLabel(),
+                    stored and "changed" or "not changed", change.Child:GetLabel(), greyed and "follows it" or "does not follow it",
+                    same and "stayed" or "were drawn again"))
+            end
+        },
+        {
+            Name = "search-confirm",
+            Text = "a question asked in the results shows in the header",
+            Run = function()
+                Search(searchText)
+                confirm = {}
+                -- The box reports its new text a frame later, which searches again and drops a question asked before it;
+                -- a player picks the choice that asks only after typing
+                After(0.2, function() Window():AskConfirm(testQuestion, function() confirm.Yes = true end) end)
+            end,
+            Check = function()
+                local frame = Window()
+                local asked = frame.CancelButton:IsShown() and frame.DefaultsButton:IsShown() and frame.ChangedText:GetText() == testQuestion
+                Add(asked and "PASS" or "FAIL", ("the question %s, Yes %s, No %s"):format(frame.ChangedText:GetText() == testQuestion and "shows" or "does not show",
+                    frame.DefaultsButton:IsShown() and "shown" or "hidden", frame.CancelButton:IsShown() and "shown" or "hidden"))
+            end
+        },
+        {
+            Name = "search-confirm-no",
+            Text = "No ends the question and does nothing",
+            Run = function()
+                Window().CancelButton:Click()
+            end,
+            Check = function()
+                local frame = Window()
+                local gone = not frame.CancelButton:IsShown() and not frame.DefaultsButton:IsShown() and frame.PageTitle:IsShown()
+                Add(gone and not confirm.Yes and "PASS" or "FAIL", ("the question %s, its answer %s"):format(gone and "is gone" or "stays",
+                    confirm.Yes and "ran" or "did not run"))
+            end
+        },
+        {
+            Name = "search-showif",
+            Text = "a row that a change in the results hides goes, and comes back",
+            Run = function()
+                SetBroad(false)
+                local _, debug = FindOption(debugId)
+                local _, trace = FindOption(traceId)
+                Search(trace:GetLabel())
+                showIf = { Trace = trace, Before = InResults(trace) }
+                Remember(debug)
+                debug:Set(false)
+                Window():OnOptionChanged(debug)
+                showIf.Off = InResults(trace)
+                debug:Set(true)
+                Window():OnOptionChanged(debug)
+            end,
+            Check = function()
+                local back = InResults(showIf.Trace)
+                Add(showIf.Before and not showIf.Off and back and "PASS" or "FAIL", ("%s: %s, with debug info off %s, on again %s"):format(
+                    showIf.Trace:GetLabel(), showIf.Before and "found" or "not found", showIf.Off and "still there" or "gone", back and "back" or "not back"))
+            end
+        },
+    }
+end
+
 local function BuildSteps()
     local window = addon.Options.Window
     local list = {
@@ -942,26 +1273,7 @@ local function BuildSteps()
                 shown and shown:GetLabel() or "the section"))
         end
     })
-    local searchText
-    tinsert(list, {
-        Name = "search",
-        Text = "a search lists results",
-        Run = function()
-            local _, option = FindOption(toggleId)
-            searchText = option and option:GetLabel():match("^(%S+)") or "a"
-            Window().SearchBox:SetText(searchText)
-            Window():OnSearch(searchText)
-        end,
-        Check = function()
-            local links = 0
-            for _, element in ipairs(Window().Elements or {}) do
-                if element.Kind == "Link" then
-                    links = links + 1
-                end
-            end
-            Add(Window().Searching and links > 0 and "PASS" or "FAIL", ("'%s' lists %d results"):format(searchText, links))
-        end
-    })
+    for _, step in ipairs(SearchSteps()) do tinsert(list, step) end
     tinsert(list, {
         Name = "pane",
         Text = "the help pane collapsed to its strip",
@@ -1026,6 +1338,9 @@ local function Restore()
         if frame.PaneCollapsed ~= (live.SavedWindow.PaneCollapsed and true or false) then
             frame:SetPaneCollapsed(live.SavedWindow.PaneCollapsed and true or false)
         end
+        -- The broad search the window reads, and its check box; the saved field goes back with the table below
+        frame.BroadSearch = live.SavedWindow.SearchBroad and true or false
+        frame.SearchBroad:SetChecked(frame.BroadSearch)
         if live.WasShown then
             frame:Open(live.WasShown)
         end

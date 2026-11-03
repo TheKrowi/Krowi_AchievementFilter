@@ -7,9 +7,11 @@
 
 -- The window: a tab per registered addon on top, the open addon's navigation on the left, the section's rows in the
 -- middle, the help pane on the right, in the frame and art of the game's own Options window. Strings come from the open
--- tab's consumer (config.Strings): Search, SearchAll, Overview, SearchResults, NoResults, Defaults, ResetSection (with
--- %s), ChangedCount (with %d), ReloadText, ReloadNow, ShowMe, HowItWorks, All, None, NotBound, PressAKey, Default
--- (with %s), NeedsReload, NotInCombat, and optionally ResetToDefault (the game's RESET_TO_DEFAULT otherwise).
+-- tab's consumer (config.Strings): Search, SearchAll, SearchBroad, SearchHelp, SearchHelpBroad, Overview, SearchResults,
+-- NoResults, Defaults, ResetSection (with %s), ChangedCount (with %d), ReloadText, ReloadNow, ShowMe, HowItWorks, All,
+-- None, NotBound, PressAKey, Default (with %s), NeedsReload, NotInCombat, and optionally ResetToDefault (the game's
+-- RESET_TO_DEFAULT otherwise). A row in a search of every tab may be another addon's: it takes that addon's strings
+-- (StringsFor).
 
 local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
 
@@ -123,6 +125,7 @@ local rowTemplates = {
     TabRow = { "Krowi_OptionsTabRowTemplate", 28 },
     Link = { "Krowi_OptionsLinkRowTemplate", 26 },
     CardRow = { "Krowi_OptionsCardRowTemplate" },
+    SearchHeading = { "Krowi_OptionsSearchHeadingRowTemplate", 45 },
 }
 
 -- leftPad and spacing as the game's category list uses them (Blizzard_CategoryList.lua): its scroll box reaches 50 px
@@ -255,6 +258,12 @@ function Krowi_OptionsWindowMixin:OnLoad()
         lib.SetShared("SearchAll", self.SearchEveryTab)
         if self.Searching then self:OnSearch(self.SearchBox:GetText()) end
     end)
+    -- Descriptions too (unticked by default: the game's search finds names only); kept like the scope
+    self.SearchBroad:SetScript("OnClick", function(button)
+        self.BroadSearch = button:GetChecked() and true or false
+        lib.SetShared("SearchBroad", self.BroadSearch)
+        if self.Searching then self:OnSearch(self.SearchBox:GetText()) end
+    end)
     self.CollapseButton:SetScript("OnClick", function() self:SetPaneCollapsed(true) end)
     self.ExpandButton:SetScript("OnClick", function() self:SetPaneCollapsed(false) end)
     -- « hides the pane and » brings it back, the way the window's right edge moves; gold, white under the mouse, as the
@@ -306,6 +315,8 @@ function Krowi_OptionsWindowMixin:Init(saved)
     end
     self.SearchEveryTab = saved.SearchAll and true or false
     self.SearchAll:SetChecked(self.SearchEveryTab)
+    self.BroadSearch = saved.SearchBroad and true or false
+    self.SearchBroad:SetChecked(self.BroadSearch)
     self:Layout()
 end
 
@@ -376,17 +387,15 @@ function Krowi_OptionsWindowMixin:RefreshTabs()
     end
 end
 
--- Searching every tab means something only with a second tab: the check box shows from then on, and until then the
--- reload bar reaches to Close, as low as it reaches beside the 29 high check box
+-- Searching every tab means something only with a second tab: the check box shows from then on. The broad search's
+-- check box stands before it, or before Close until then, and the reload bar reaches to it.
 function Krowi_OptionsWindowMixin:UpdateSearchAll()
     local several = #lib.Tabs > 1
     self.SearchAll:SetShown(several)
     self.SearchAllLabel:SetShown(several)
-    if several then
-        self.ReloadBackground:SetPoint("BOTTOMRIGHT", self.SearchAll, "BOTTOMLEFT", -12, -2)
-    else
-        self.ReloadBackground:SetPoint("BOTTOMRIGHT", self.CloseButton, "BOTTOMLEFT", -12, -5.5)
-    end
+    self.SearchBroadLabel:ClearAllPoints()
+    self.SearchBroadLabel:SetPoint("RIGHT", several and self.SearchAll or self.CloseButton, "LEFT", -16, 0)
+    self.ReloadBackground:SetPoint("BOTTOMRIGHT", self.SearchBroad, "BOTTOMLEFT", -12, -2)
 end
 
 -- Shows the window on an addon's tab: its sections, strings and saved table, at sectionId or the addon's landing section
@@ -414,6 +423,11 @@ function Krowi_OptionsWindowMixin:ApplyStrings()
     self.SearchBox.Instructions:SetText(strings.Search or "")
     self.SearchAllLabel:SetText(strings.SearchAll or "")
     self.SearchAll:SetHitRectInsets(0, -(self.SearchAllLabel:GetStringWidth() + 4), 0, 0) -- the label ticks it too
+    -- An addon that names no broad search does not offer it on its tab
+    self.SearchBroadLabel:SetText(strings.SearchBroad or "")
+    self.SearchBroad:SetHitRectInsets(0, -(self.SearchBroadLabel:GetStringWidth() + 4), 0, 0)
+    self.SearchBroad:SetShown(strings.SearchBroad ~= nil)
+    self.SearchBroadLabel:SetShown(strings.SearchBroad ~= nil)
     -- The collapsed pane's strip: the chevron, then the pane's name down the strip; the whole strip brings the pane back.
     -- A turned text turns about its centre, so it hangs below the chevron by half its length; its letters sit off the
     -- line's middle, so it moves right to stand under the chevron (measured in game, 2026-10-30)
@@ -558,11 +572,13 @@ function Krowi_OptionsWindowMixin:Layout()
     self.PageScrollBar:SetPoint("TOPLEFT", self.PageScrollBox, "TOPRIGHT", 0, -4)
     self.PageScrollBar:SetPoint("BOTTOMLEFT", self.PageScrollBox, "BOTTOMRIGHT", -1, 7)
 
-    -- The bottom row: the reload bar, the search scope check box, and Close
+    -- The bottom row: the reload bar, the search breadth and scope check boxes, and Close
     self.SearchAllLabel:ClearAllPoints()
     self.SearchAllLabel:SetPoint("RIGHT", self.CloseButton, "LEFT", -16, 0)
     self.SearchAll:ClearAllPoints()
     self.SearchAll:SetPoint("RIGHT", self.SearchAllLabel, "LEFT", -2, 0)
+    self.SearchBroad:ClearAllPoints()
+    self.SearchBroad:SetPoint("RIGHT", self.SearchBroadLabel, "LEFT", -2, 0)
     self.ReloadBackground:ClearAllPoints()
     self.ReloadBackground:SetPoint("TOPLEFT", body, "BOTTOMLEFT", 0, -6)
     self:UpdateSearchAll()
@@ -665,40 +681,12 @@ function Krowi_OptionsWindowMixin:RefreshNav()
     self.NavScrollBox:SetDataProvider(CreateDataProvider(list), ScrollBoxConstants.RetainScrollPosition)
 end
 
--- Grids, tab lists and cards draw as several rows; hidden options are left out
+-- A section's rows as drawn (Search.lua): grids, tab lists and cards as several rows, hidden options left out
 local function Flatten(elements)
-    local list = {}
-    for _, element in ipairs(elements) do
-        if element.Kind == "Cards" then
-            local cards, columns = element.Cards, lib.CardColumns
-            for first = 1, #cards, columns do
-                local row, names = { Kind = "CardRow", Cards = {} }, {}
-                for i = first, math.min(first + columns - 1, #cards) do
-                    row.Cards[#row.Cards + 1] = cards[i]
-                    names[#names + 1] = cards[i].Name or ""
-                end
-                row.Key = table.concat(names, ",")
-                list[#list + 1] = row
-            end
-        elseif element.Kind == "Grid" then
-            list[#list + 1] = { Kind = "GridHeader", Columns = element.Columns }
-            for _, row in ipairs(element.Rows) do
-                list[#list + 1] = { Kind = "GridRow", Label = row.Label, Cells = row.Cells }
-            end
-        elseif element.Kind == "TabList" then
-            for _, item in ipairs(element.Items) do
-                list[#list + 1] = { Kind = "TabRow", Item = item }
-            end
-        elseif element.Kind == "Option" then
-            if not element.Option:IsHidden() then list[#list + 1] = element end
-        elseif rowTemplates[element.Kind] then
-            list[#list + 1] = element
-        end
-    end
-    return list
+    return lib.Flatten(elements, rowTemplates)
 end
 
--- keepSearchText: a search ended by emptying the box down to one letter keeps that letter
+-- keepSearchText: a search ended by emptying the box keeps the spaces left in it
 function Krowi_OptionsWindowMixin:ShowSection(id, optionId, keepSearchText)
     local config = self.Config
     self.SectionId = id
@@ -739,7 +727,7 @@ end
 function Krowi_OptionsWindowMixin:ReloadSection()
     if not self:IsShown() or not self.SectionId then return end
     if self.Searching then
-        self:OnSearch(self.SearchBox:GetText())
+        self:OnSearch(self.SearchBox:GetText(), ScrollBoxConstants.RetainScrollPosition)
         return
     end
     self:FillPage(ScrollBoxConstants.RetainScrollPosition)
@@ -777,6 +765,8 @@ function Krowi_OptionsWindowMixin:RefreshFooter()
         FitButton(self.DefaultsButton)
         self.DefaultsButton:SetEnabled(count > 0)
     end
+    -- The results have no Defaults, as the game's; it shows there only as the Yes of a question asked in them
+    if self.Searching then self.DefaultsButton:SetShown(confirming ~= nil) end
     local reload = self.ReloadPending and true or false
     self.ReloadBackground:SetShown(reload)
     self.ReloadText:SetShown(reload)
@@ -785,14 +775,16 @@ function Krowi_OptionsWindowMixin:RefreshFooter()
 end
 
 -- The rows refresh in place while the page keeps the same rows: rebuilding it re-initialises every row, which ends the
--- drag of a slider that changes its option on every step. Only a change that shows or hides rows rebuilds the page.
+-- drag of a slider that changes its option on every step. Only a change that shows or hides rows rebuilds the page; the
+-- search results are found again for that, except after a slider, whose value shows or hides no row, so a drag does not
+-- search every section on each step.
 function Krowi_OptionsWindowMixin:OnOptionChanged(option)
     if option and option.GetNeedsReload and option:GetNeedsReload() then self.ReloadPending = true end
-    if self.Searching or not self.SectionId then
+    if not self.SectionId or self.Searching and option and option.Type == "range" then
         self:Refresh()
         return
     end
-    local elements = Flatten(self.Config.GetElements(self.SectionId))
+    local elements = self.Searching and self:SearchElements(self.SearchBox:GetText()) or Flatten(self.Config.GetElements(self.SectionId))
     if Signature(elements) ~= self.Signature then
         self:FillPage(ScrollBoxConstants.RetainScrollPosition, elements)
         self:UpdateShowMe()
@@ -813,16 +805,23 @@ end
 -- The window asks inside itself (Defaults, and an option with Confirm such as deleting a profile): Defaults turns into
 -- Yes, with No and the question beside it. A StaticPopup would write the dialog into Blizzard's shared popup frames and
 -- list, where a Blizzard dialog shown at the same time (deleting an item, a summon, a battleground port) reads it and
--- then runs its protected accept tainted.
+-- then runs its protected accept tainted. A question asked in the search results belongs to them.
 function Krowi_OptionsWindowMixin:AskConfirm(text, onYes)
-    if not self.SectionId or self.Searching then return end
-    self.Confirming = { SectionId = self.SectionId, Text = text, OnYes = onYes }
+    if self.Searching then
+        self.Confirming = { Search = true, Text = text, OnYes = onYes }
+    elseif self.SectionId then
+        self.Confirming = { SectionId = self.SectionId, Text = text, OnYes = onYes }
+    else
+        return
+    end
     self:RefreshFooter()
 end
 
 function Krowi_OptionsWindowMixin:ConfirmingHere()
     local confirming = self.Confirming
-    return confirming and confirming.SectionId == self.SectionId and not self.Searching and confirming or nil
+    if not confirming then return nil end
+    if self.Searching then return confirming.Search and confirming or nil end
+    return confirming.SectionId == self.SectionId and confirming or nil
 end
 
 function Krowi_OptionsWindowMixin:CancelConfirm()
@@ -850,38 +849,55 @@ function Krowi_OptionsWindowMixin:ResetSection(id)
 end
 
 -- [[ Search ]] --
-function Krowi_OptionsWindowMixin:OnSearch(text)
+-- The results as the game's Options window shows them (docs/work/2026-11-03-blizzard-search): the selected tab, or with
+-- "Search all tabs" ticked every tab under its addon's name; each section's name, which opens it, then its found rows,
+-- working as on its page, under the headings they stand under there
+function Krowi_OptionsWindowMixin:SearchElements(text)
+    local everyTab = self.SearchEveryTab and #lib.Tabs > 1
+    local list = {}
+    local broad = self.BroadSearch and self.Strings.SearchBroad ~= nil
+    for _, group in ipairs(lib.Search(text, everyTab, self.Tab, broad)) do
+        local tab = group.Tab
+        if everyTab then list[#list + 1] = { Kind = "Header", Text = tab.Config.TabName } end
+        for _, section in ipairs(group.Sections) do
+            local id = section.Id
+            list[#list + 1] = { Kind = "SearchHeading", Text = section.Name, OnClick = function() self:ShowTab(tab, id) end }
+            local heading = 0
+            for _, row in ipairs(section.Rows) do
+                if row.HeadingAt ~= heading then
+                    heading = row.HeadingAt
+                    if row.Heading ~= "" then list[#list + 1] = { Kind = "SubHeading", Text = row.Heading } end
+                end
+                list[#list + 1] = row
+            end
+        end
+    end
+    if #list == 0 then list[1] = { Kind = "Note", Text = self.Strings.NoResults } end
+    return list
+end
+
+-- From the first letter, as the game's; an empty box goes back to the section. scrollPosition: the results found again
+-- after a change keep theirs, and a question asked in them stays
+function Krowi_OptionsWindowMixin:OnSearch(text, scrollPosition)
     text = text and text:gsub("^%s+", ""):gsub("%s+$", "") or ""
-    if #text < 2 then
+    if text == "" then
         if self.Searching then self:ShowSection(self.SectionId, nil, true) end
         return
     end
     self.Searching = true
-    self.Confirming = nil
+    if not scrollPosition then self.Confirming = nil end
     self.PageTitle:SetText(self.Strings.SearchResults)
-    self.PageTitle:Show()
-    self.DefaultsButton:Hide()
-    self.CancelButton:Hide()
-    self.ChangedText:SetText("")
-    -- The selected tab, or with "Search all tabs" ticked every tab, each under its addon's name; a result of another addon opens
-    -- its tab first
-    local everyTab = self.SearchEveryTab and #lib.Tabs > 1
-    local list = {}
-    for _, group in ipairs(lib.Search(text, everyTab, self.Tab)) do
-        if everyTab then list[#list + 1] = { Kind = "SubHeading", Text = group.Tab.Config.TabName } end
-        for _, result in ipairs(group.Results) do
-            list[#list + 1] = {
-                Kind = "Link", Text = result.Label, Detail = result.Path,
-                OnClick = function() self:ShowTab(group.Tab, result.SectionId, result.OptionId) end,
-            }
-        end
-    end
-    if #list == 0 then list[1] = { Kind = "Note", Text = self.Strings.NoResults } end
-    self.Elements = list
-    self.PageScrollBox:SetDataProvider(CreateDataProvider(list), ScrollBoxConstants.DiscardScrollPosition)
     self.Filling = true
     self:RefreshNav()
+    self:FillPage(scrollPosition or ScrollBoxConstants.DiscardScrollPosition, self:SearchElements(text))
+    if not scrollPosition then self:ShowSearchHelp() end
     self:EndFill()
+end
+
+-- The strings of the addon a row belongs to: in a search of every tab, another addon's rows are on the page
+function Krowi_OptionsWindowMixin:StringsFor(element)
+    local tab = element and element.Tab
+    return tab and tab.Config.Strings or self.Strings
 end
 
 -- [[ The help pane, or the tooltip while the pane is collapsed ]] --
@@ -940,6 +956,19 @@ function Krowi_OptionsWindowMixin:ShowSectionHelp()
     self:UpdateShowMe()
 end
 
+-- While searching with no row under the mouse: what the search finds, and what the broad search adds
+function Krowi_OptionsWindowMixin:ShowSearchHelp()
+    self.HoverOption = nil
+    self.Help = nil -- no section's help is drawn, so Show me hides
+    local strings = self.Strings
+    self:SetKicker(strings.HowItWorks)
+    local blocks = { TextBlock(strings.Search, "GameFontNormalLarge", 10) }
+    if strings.SearchHelp then blocks[#blocks + 1] = TextBlock(strings.SearchHelp, "GameFontHighlightSmall", 8) end
+    if strings.SearchHelpBroad and strings.SearchBroad then blocks[#blocks + 1] = TextBlock(strings.SearchHelpBroad, "GameFontHighlightSmall", 8) end
+    self:FillHelp(blocks)
+    self:UpdateShowMe()
+end
+
 -- Show me: help.ShowMe (a plain function), or help.ShowMeSecure(button, close) for a feature that needs a secure
 -- button laid over ours (the map's). ShowMeSecure is called only while that section's own help is drawn and
 -- ShowMeSecure(nil) releases its button as soon as it is not (another section, an option's description, the pane
@@ -982,8 +1011,7 @@ function Krowi_OptionsWindowMixin:UpdateShowMe()
     self.ShowMeNote:SetShown(note ~= nil)
 end
 
-local function OptionHelpLines(window, option)
-    local strings = window.Strings
+local function OptionHelpLines(strings, option)
     local lines = {}
     local desc = option.GetDescription and option:GetDescription() or ""
     local hasDefault, default = false, nil
@@ -1001,7 +1029,8 @@ end
 -- controlX: where the hovered control starts, from the row's left edge
 function Krowi_OptionsWindowMixin:OnRowEnter(option, row, controlX)
     if not option then return end
-    local desc, lines = OptionHelpLines(self, option)
+    local element = row and row.Element
+    local desc, lines = OptionHelpLines(self:StringsFor(element), option)
     if self.PaneCollapsed then
         local tooltip = Krowi_Tooltip -- the addon's own tooltip, never GameTooltip (Krowi_Util creates it wherever KROWI_LIBMAN exists)
         -- Above the row, from 10 before its control, where the game's Options window shows a setting's tooltip
@@ -1016,7 +1045,9 @@ function Krowi_OptionsWindowMixin:OnRowEnter(option, row, controlX)
         return
     end
     self.HoverOption = option
-    self:SetKicker(self.Config.SectionName(self.SectionId) or "")
+    -- The row's own section: in the search results it can be any section, or another addon's
+    local config = (element and element.Tab or self.Tab).Config
+    self:SetKicker(config.SectionName(element and element.SectionId or self.SectionId) or "")
     local blocks = { TextBlock(option:GetLabel(), "GameFontNormalLarge", 10) }
     if desc ~= "" then blocks[#blocks + 1] = TextBlock(desc, "GameFontHighlightSmall", 10) end
     for _, line in ipairs(lines) do blocks[#blocks + 1] = TextBlock(line, "GameFontDisableSmall", 4) end
@@ -1029,7 +1060,8 @@ function Krowi_OptionsWindowMixin:OnRowLeave()
         self:HideTooltip()
         return
     end
-    if self.HoverOption then self:ShowSectionHelp() end
+    if not self.HoverOption then return end
+    if self.Searching then self:ShowSearchHelp() else self:ShowSectionHelp() end
 end
 
 function Krowi_OptionsWindowMixin:HideTooltip()
