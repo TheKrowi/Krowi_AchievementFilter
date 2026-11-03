@@ -16,9 +16,10 @@ The harness is the toolchain this repo's Claude Code sessions use. Since 2026-10
 | | `Evaluate-ZoneCriteria.ps1` reports a missed zone as `[R2]` instead of hiding it as an undecided sub-map | 50fae1ee (2026-10-11) |
 | | Parallel sessions: `New-Worktree.ps1` and `Remove-Worktree.ps1`, `worktree.baseRef` set to `head`, fsdeploy deploys the window's own folder, the Stop hook lints the session's own checkout | 2026-10-11 |
 | | The shared tooling moves to Krowi_ClaudeKit; this repo enables its `krowi` plugin and keeps only its own (`docs/work/2026-10-16-single-tooling-home/`) | 2026-10-17 |
-| 7 | `Show-Achievement.ps1`: one call per achievement question, per client, over `headless/show-achievement.lua`; the snapshot's per-achievement lines shared through `headless/data-format.lua` (`docs/work/2026-11-02-show-achievement/`); Krowi's: the in-game comparison and the allow rules | PR #387 (2026-11-02) |
-| 6 | The kit's post-edit hook `After-Edit.ps1` (was `Check-LuaSyntax.ps1`, which stays as a forwarder for sessions started before the rename): after a Write it sets the line endings, BOM and final newline from `.editorconfig`, then checks Lua syntax. It reads `.editorconfig` alone, so a Write to a locale file or the `.toc` leaves CRLF there, which git stores unchanged. The `bom` and `line-endings` rules now also read the `.md` and `.ps1` files outside `Libs/` | kit PR #5 (2026-11-03) |
-| 8 | `Get-RepoState.ps1` lives in the kit and serves every Krowi repo: git state, PRs and issues, the release and its readiness (`Check-ReleaseReady.ps1 -ReportOnly`), work folders, worktrees, how far each client's AddOns folder is behind; this repo's `.claude/repo-state.ps1` adds the lint with `-Lint`. About 4 to 6 s, most of it the release check (11 s with `-Lint`); Krowi's: the allow rules | kit PR #6 (2026-11-03) |
+| 7 | `Show-Achievement.ps1`: one call per achievement question, per client, over `headless/show-achievement.lua`; the snapshot's per-achievement lines shared through `headless/data-format.lua` (`docs/work/2026-11-02-show-achievement/`); the in-game comparison passed on 2026-11-03 | PR #387 (2026-11-02) |
+| 6 | The kit's post-edit hook `After-Edit.ps1` (was `Check-LuaSyntax.ps1`, which stays as a forwarder for sessions started before the rename): after a Write it sets the line endings, BOM and final newline from `.editorconfig`, then checks Lua syntax. Here `.editorconfig` sets everything, so a Write to a locale file or the `.toc` leaves CRLF there, which git stores unchanged; since kit PR #7 a repo without one gets the line endings git checks out and the final newline the file has in git. The `bom` and `line-endings` rules now also read the `.md` and `.ps1` files outside `Libs/` | kit PR #5 (2026-11-03) |
+| 8 | `Get-RepoState.ps1` lives in the kit and serves every Krowi repo: git state, PRs and issues, the release and its readiness (`Check-ReleaseReady.ps1 -ReportOnly`), work folders, worktrees, how far each client's AddOns folder is behind; this repo's `.claude/repo-state.ps1` adds the lint with `-Lint`. About 4 to 6 s, most of it the release check (11 s with `-Lint`) | kit PR #6 (2026-11-03) |
+| 14 | `Measure-Sessions.ps1` in the kit: the context use of a repo's sessions from their transcripts, per session and in total (start and peak context, cache reads by context band, weighted use, subagents by type and model, skills and commands); `-Last 15` is what steps 15 to 18 are judged on. It reproduces the 2026-11-02 baseline (How the evidence was gathered) in about 10 s | kit PR #8 (2026-11-03) |
 
 ## Open, in priority order
 
@@ -34,17 +35,16 @@ Measured on 2026-10-10 from the Claude Code transcripts of this repo: 49 session
 
 Steps 10 and 12 change files that now live in Krowi_ClaudeKit (`tools/Find-Symbol.ps1`, `hooks/Guard-ToolUse.ps1`). They are built there, in a kit worktree, and serve every Krowi repo; this repo only picks them up.
 
-Steps 14 to 18 come from a second measurement, on 2026-11-02, of what the sessions spend on context rather than on tool calls: the 39 sessions since the kit move on 2026-10-17 and their 95 subagents (see How the evidence was gathered). They are in priority order among themselves, and follow Anthropic's current guidance for Claude Code (the best-practices, memory, skills and cost pages of the Claude Code docs, and the engineering posts on context engineering and long-running harnesses).
+Steps 15 to 18 come from a second measurement, on 2026-11-02 (now the kit's `Measure-Sessions.ps1`, step 14), of what the sessions spend on context rather than on tool calls: the 39 sessions since the kit move on 2026-10-17 and their 95 subagents (see How the evidence was gathered). They are in priority order among themselves, and follow Anthropic's current guidance for Claude Code (the best-practices, memory, skills and cost pages of the Claude Code docs, and the engineering posts on context engineering and long-running harnesses).
 
 | Step | What | What it saves | Size |
 |---|---|---|---|
-| 14 | `Measure-Sessions.ps1`, the context measurement as a tool | the proof for steps 15 to 18 | small |
 | 15 | Session boundaries and compact instructions | 58% of the main sessions' cache reads happen above 400k tokens of context | small |
 | 16 | One lean instruction file: `CLAUDE.md` replaces `.github/copilot-instructions.md` | the 75k start context is re-read on every call (22% of cache reads); 11k of it is these two files | medium |
 | 17 | Prune the auto memory | 8 KB loaded into every session, mostly finished work | small |
 | 18 | Subagent start cost | subagents are a fifth of all use; a general-purpose one starts at 65k | small |
 
-Step 14 and parts of 15 and 18 change the kit. The kit also has its own share of the start context: the workspace `CLAUDE.md` (`WowAddons.md`, 22 KB) loads into every session under the workspace and gets step 16's treatment there, and `process-issue` gets step 15's session boundaries. The work plugins that come with the maintainer's Claude account load in these sessions too, and four of their servers time out after 30 s at every start; whether they can be switched off for this workspace is checked in `/plugin`, the maintainer's click, and any setting for them goes in the uncommitted `.claude/settings.local.json`, since the repo is public.
+Parts of 15 and 18 change the kit. The kit also has its own share of the start context: the workspace `CLAUDE.md` (`WowAddons.md`, 22 KB) loads into every session under the workspace and gets step 16's treatment there, and `process-issue` gets step 15's session boundaries. The work plugins that come with the maintainer's Claude account load in these sessions too, and four of their servers time out after 30 s at every start; whether they can be switched off for this workspace is checked in `/plugin`, the maintainer's click, and any setting for them goes in the uncommitted `.claude/settings.local.json`, since the repo is public.
 
 ### Step 9: `Apply-Edits.ps1`
 
@@ -86,26 +86,6 @@ Step 14 and parts of 15 and 18 change the kit. The kit also has its own share of
 
 **Done when.** Moving 2137 back into a 25-player list fails the check, and a plan line for a raid block without a list column is refused.
 
-### Step 14: `Measure-Sessions.ps1`
-
-**Problem.** The 2026-11-02 numbers came from a throwaway script. Steps 15 to 18 are judged by the same numbers, so the measurement has to be repeatable.
-
-**Design.** A read-only script in the kit (`tools/Measure-Sessions.ps1`), since it works on any repo's transcripts. For the current checkout's transcript folder and its worktrees' folders, from `-Since` to `-Until`, it prints per main session the start context, the peak context, cache reads and writes, output, compactions, and the subagents and skills used. Then the share of cache reads per context band, and per subagent type the count, median start context and totals. A call's context is `input_tokens + cache_creation_input_tokens + cache_read_input_tokens` of its `usage`; a streamed message spans several transcript lines, so each `message.id` counts once.
-
-**Baseline**, 2026-10-17 to 2026-11-02: 39 main sessions, 6,302 main calls, 95 subagents.
-
-| Measure | Value |
-|---|---|
-| Start context | about 69k tokens on 2026-10-17, about 78k on 2026-11-02 (median 75k) |
-| Peak context | median 320k; four sessions between 810k and 966k |
-| Compactions | in 6 of 39 sessions |
-| Main cache reads by context band | under 250k: 20%; 250k to 400k: 23%; 400k to 600k: 26%; above 600k: 32% |
-| The start context re-read on every call | 22% of the main sessions' cache reads |
-| Weighted use (input price = 1: cache read 0.1, cache write 2 for the main sessions' one-hour cache and 1.25 for the subagents' five-minute cache, output 5) | main sessions 319M, of which cache reads 67%; subagents 82M, 20% of all |
-| Subagent start context (median) | general-purpose 65k (40 runs), `krowi:taint-reviewer` 39k (37), Explore 21k (13), `data-verifier` 36k (1) |
-
-**Done when.** A run over 2026-10-17 to 2026-11-02 reproduces the baseline, and the kit's README lists the tool.
-
 ### Step 15: session boundaries and compact instructions
 
 **Problem.** A session runs until its work item is done, gates, reviews and clean-up included, so its context keeps growing: 58% of the main sessions' cache reads came from calls above 400k tokens, and only 6 of 39 sessions compacted at all. Every call re-reads the whole conversation. Anthropic's guidance is that answers get worse as context grows (context rot), that a compaction made late is made when the model is least able to judge what to keep, and that a build goes best from a written spec in a fresh session.
@@ -115,7 +95,7 @@ Step 14 and parts of 15 and 18 change the kit. The kit also has its own share of
 - A `# Compact instructions` section in `CLAUDE.md` names what a compaction keeps: the work folder and its stage, the branch and worktree, the gate answers, the open review findings, and which build is deployed to which client.
 - Not in this step: a smaller `autoCompactWindow` (the maintainer, 2026-11-02: not for now). It comes back if the numbers below do not move.
 
-**Done when.** Over the next 15 sessions the share of cache reads above 400k drops from 58% to under 25% (step 14), and no work item loses a decision across a boundary, checked against its work folder.
+**Done when.** Over the next 15 sessions the share of cache reads above 400k drops from 58% to under 25% (`Measure-Sessions.ps1 -Last 15`), and no work item loses a decision across a boundary, checked against its work folder.
 
 ### Step 16: one lean instruction file
 
@@ -130,7 +110,7 @@ Step 14 and parts of 15 and 18 change the kit. The kit also has its own share of
 6. Stage 6 of `docs/sdlc-playbook.md`: a lesson goes to a path rule, a skill, a lint rule or a scenario; `CLAUDE.md` takes only what applies to every task.
 7. An `instruction-size` lint rule warns when `CLAUDE.md` or a rule file passes its byte budget.
 
-**Done when.** `CLAUDE.md` is under 15 KB, from 44 KB with its import; a fresh session's start context falls by about the same (step 14); the lint is green; and in a GUI fix through `process-issue` and a data addition, the path rules load when their files are touched (`/context`, or an `InstructionsLoaded` hook while testing).
+**Done when.** `CLAUDE.md` is under 15 KB, from 44 KB with its import; a fresh session's start context falls by about the same (`Measure-Sessions.ps1`); the lint is green; and in a GUI fix through `process-issue` and a data addition, the path rules load when their files are touched (`/context`, or an `InstructionsLoaded` hook while testing).
 
 ### Step 17: prune the auto memory
 
@@ -164,4 +144,18 @@ Step 14 and parts of 15 and 18 change the kit. The kit also has its own share of
 
 Claude Code keeps each session as a JSONL transcript under `~/.claude/projects/<repo path>/`, with the subagents' transcripts in a subfolder per session. A throwaway PowerShell script read every tool call and its result (tool, input, error flag, output size) into a table. The calls were then grouped by tool, by command pattern and by session topic. Read the failure counts with care: about 11% of PowerShell calls "fail", but nearly all of those are checks exiting 1 on purpose. To see whether a step paid off, count the same pattern again after a few sessions with the tool.
 
-The context measurement of 2026-11-02 read the same transcripts for token use instead: the `usage` of each assistant message, once per `message.id`, for the main sessions started since 2026-10-17 in this repo's folder and its worktrees' folders, and for their subagents. The weights in step 14's baseline are the price ratios Anthropic gives for Claude Code (cache reads 0.1 of the input price, cache writes up to 2, output about 5). On those weights the cache reads dominate, and they grow with the length of the conversation, which is why step 15 comes before step 16.
+The context measurement of 2026-11-02 read the same transcripts for token use instead: the `usage` of each assistant message, once per `message.id`, for the main sessions started since 2026-10-17 in this repo's folder and its worktrees' folders, and for their subagents. The weights are the price ratios Anthropic gives for Claude Code (cache reads 0.1 of the input price, cache writes up to 2, output about 5). On those weights the cache reads dominate, and they grow with the length of the conversation, which is why step 15 comes before step 16.
+
+That measurement is now the kit's `Measure-Sessions.ps1` (step 14). The baseline steps 15 to 18 are judged against is its run with `-Since 2026-10-17 -Until '2026-11-02 22:25'`, the time the throwaway script ran: 39 main sessions, 6,292 calls, 95 subagents.
+
+| Measure | Value |
+|---|---|
+| Start context | 67k tokens on 2026-10-17, 78k on 2026-11-02 (median 74k) |
+| Peak context | median 320k; four sessions between 810k and 966k |
+| Compactions | in 6 of 39 sessions |
+| Main cache reads by context band | under 250k: 20%; 250k to 400k: 23%; 400k to 600k: 26%; above 600k: 32% |
+| The start context re-read on every call | 22% of the main sessions' cache reads |
+| Weighted use (input price = 1: cache read 0.1, cache write 2 for the one-hour cache and 1.25 for the five-minute one, output 5) | main sessions 318M, of which cache reads 67%; subagents 84M, 21% of all |
+| Subagent start context (median) | general-purpose 64k (40 runs), `krowi:taint-reviewer` 39k (37), Explore 21k (13), `data-verifier` 36k (1) |
+
+The throwaway script's figures were within 1k or a point of these: a start median of 75k and a general-purpose start of 65k (the script is gone, so why is not known), and subagents at 82M, 20% of all, because it weighed every subagent cache write as a five-minute one while some are one-hour.
