@@ -117,6 +117,7 @@
                 <FontString parentKey="ReloadText" inherits="GameFontHighlight" justifyH="LEFT"/>
                 <FontString parentKey="ShowMeNote" inherits="GameFontDisableSmall" justifyH="LEFT" justifyV="TOP"/>
                 <FontString parentKey="SearchAllLabel" inherits="GameFontNormalSmall" justifyH="LEFT" hidden="true"/>
+                <FontString parentKey="SearchBroadLabel" inherits="GameFontNormalSmall" justifyH="LEFT"/>
                 <Texture parentKey="Divider" atlas="Options_HorizontalDivider" useAtlasSize="true"/>
             </Layer>
             <Layer level="BACKGROUND" textureSubLevel="2">
@@ -140,6 +141,7 @@
                 <Size x="350" y="22"/>
             </EditBox>
             <CheckButton parentKey="SearchAll" inherits="Krowi_OptionsCheckButtonTemplate" hidden="true"/>
+            <CheckButton parentKey="SearchBroad" inherits="Krowi_OptionsCheckButtonTemplate"/>
             <!-- The game's window scrolls with the thin MinimalScrollBar (Blizzard_CategoryList.xml, Blizzard_SettingsList.xml) -->
             <Frame parentKey="NavScrollBox" inherits="WowScrollBoxList"/>
             <EventFrame parentKey="NavScrollBar" inherits="MinimalScrollBar"/>

@@ -262,7 +262,7 @@ function Krowi_OptionsOptionRowMixin:Refresh()
     local option = self.Option
     if not option then return end
     local disabled = option:IsDisabled()
-    local strings = self.Window.Strings
+    local strings = self.Window:StringsFor(self.Element)
     self.Label:SetFontObject(disabled and "GameFontDisable" or "GameFontNormal")
 
     local with = self.With
@@ -395,8 +395,9 @@ function Krowi_OptionsSubRowMixin:Init(element, window)
     self.Element, self.Window = element, window
     self.Text:SetText(element.Text or "")
     Place(self.All, self, lib.RowGeometry(0).Sub)
-    self.All:SetText(window.Strings.All)
-    self.None:SetText(window.Strings.None)
+    local strings = window:StringsFor(element)
+    self.All:SetText(strings.All)
+    self.None:SetText(strings.None)
 end
 
 -- [[ A grid: column titles, then a row of check boxes per line ]] --
@@ -522,7 +523,27 @@ function Krowi_OptionsTabRowMixin:OnLeave()
     self.Window:OnRowLeave()
 end
 
--- [[ A link: a search result, a New section, an overview entry ]] --
+-- [[ A section's name in the search results, as the game's (SettingsListSearchCategoryMixin): a click opens it ]] --
+Krowi_OptionsSearchHeadingRowMixin = {}
+
+function Krowi_OptionsSearchHeadingRowMixin:Init(element)
+    self.Element = element
+    self.Title:SetText(element.Text or "")
+end
+
+function Krowi_OptionsSearchHeadingRowMixin:OnClick()
+    if self.Element.OnClick then self.Element.OnClick() end
+end
+
+function Krowi_OptionsSearchHeadingRowMixin:OnEnter()
+    self.MouseoverOverlay:Show()
+end
+
+function Krowi_OptionsSearchHeadingRowMixin:OnLeave()
+    self.MouseoverOverlay:Hide()
+end
+
+-- [[ A link: a section's explanation found by the search, a New section, an overview entry ]] --
 Krowi_OptionsLinkRowMixin = {}
 
 function Krowi_OptionsLinkRowMixin:Init(element)

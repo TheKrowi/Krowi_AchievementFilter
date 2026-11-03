@@ -347,6 +347,31 @@
         </Scripts>
     </Frame>
 
+    <!-- A section's name above its rows in the search results, as the game's SettingsListSearchCategoryTemplate
+         (Blizzard_SettingsList.xml, the same on every client) draws it; never inherited, see docs/backlog.md -->
+    <Button name="Krowi_OptionsSearchHeadingRowTemplate" mixin="Krowi_OptionsSearchHeadingRowMixin" virtual="true">
+        <Size y="45"/>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="MouseoverOverlay" hidden="true" alphaMode="ADD" setAllPoints="true">
+                    <Color r="0.1" g="0.1" b="0.1" a="1"/>
+                </Texture>
+            </Layer>
+            <Layer level="ARTWORK">
+                <FontString parentKey="Title" inherits="GameFontNormalLarge" justifyH="LEFT" justifyV="TOP">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="16" y="-16"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnClick method="OnClick"/>
+            <OnEnter method="OnEnter"/>
+            <OnLeave method="OnLeave"/>
+        </Scripts>
+    </Button>
+
     <Button name="Krowi_OptionsLinkRowTemplate" mixin="Krowi_OptionsLinkRowMixin" virtual="true">
         <Size y="26"/>
         <Layers>

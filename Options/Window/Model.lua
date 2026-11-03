@@ -237,56 +237,6 @@ function model.ChangedCount(sectionId)
     return count
 end
 
--- The text a player reads: atlas and texture icons and colour codes left out, so a search for "clock" or a colour's
--- hex digits finds nothing it does not show
-local function Plain(text)
-    return (text:gsub("|A.-|a", ""):gsub("|T.-|t", ""):gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", ""))
-end
-
--- Options by label, description and group heading; explanations by text. The help track fills window.Help.
-function model.Search(text)
-    local results = {}
-    local needle = text:lower()
-    local function Has(value)
-        return type(value) == "string" and Plain(value):lower():find(needle, 1, true) ~= nil
-    end
-    for _, section in ipairs(window.Map.Sections) do
-        local heading = ""
-        -- button: the text of a button that belongs to the option's check box, found as the option
-        local function Find(option, button)
-            if option and not option:IsHidden() then
-                local label = option:GetLabel()
-                if Has(label) or Has(option:GetDescription()) or Has(heading) or Has(button) then
-                    results[#results + 1] = { SectionId = section.Id, Path = section.Name .. " · " .. heading, Label = label, OptionId = option.Id }
-                end
-            end
-        end
-        for _, element in ipairs(source.Elements(section)) do
-            if element.Kind == "Header" then heading = element.Text or "" end
-            local with = element.With
-            if with and with.Type == "execute" then
-                Find(element.Option, with:GetButtonText())
-            else
-                Find(element.Option)
-                if element.Option and not element.Option:IsHidden() then
-                    Find(with) -- a slider after a check box is found by its own name, while its row shows
-                end
-            end
-        end
-        local help = window.Help and window.Help[section.Id]
-        if help then
-            for _, block in ipairs(help.Blocks or {}) do
-                local blockText = block.Text or block.Heading
-                if Has(blockText) or Has(block.Term) then
-                    results[#results + 1] = { SectionId = section.Id, Path = section.Name, Label = help.Title or section.Name }
-                    break
-                end
-            end
-        end
-    end
-    return results
-end
-
 -- Returns true when an option it set back needs a reload (the window's reload bar)
 function model.ResetSection(sectionId)
     local needsReload = false

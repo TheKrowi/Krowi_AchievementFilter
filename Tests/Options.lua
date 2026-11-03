@@ -80,10 +80,16 @@ end
 -- addon keeps (written to each one's saved table), and a search of the open tab or of every tab
 local function SecondTab(lib)
     local saved = {}
+    local option = {
+        GetLabel = function() return "Zz Tooltip" end,
+        IsHidden = function() return false end,
+    }
     local tab = lib.CreateWindow({
         TabName = "Zz Test",
         Saved = saved,
-        Search = function(text) return { { SectionId = "test", Path = "Zz Test", Label = "Zz " .. text } } end,
+        Groups = { { Name = "Zz", Sections = { "test" } } },
+        SectionName = function() return "Zz Test" end,
+        GetElements = function() return { { Kind = "Option", Option = option } } end,
     })
     local ok, line = pcall(function()
         local tabs = TabNames(lib)
@@ -171,17 +177,13 @@ local function CardGeometryLine(lib)
 end
 
 -- A search of this addon's tab (docs/work/2026-11-03-blizzard-search), a result per row in the order shown:
--- "Section>Heading>Name", a row with no heading "Section>Name", a section found by its explanation "Section>(explanation)".
--- Before the work the results were links, read the same way from their path ("Section · Heading").
+-- "Section>Heading>Name", a row with no heading "Section>Name", a section found by its explanation "Section>(explanation)"
 local function SearchRows(text, broad)
     local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
     local tab = addon.Options.Window.Controller
     local rows = {}
     for _, group in ipairs(lib.Search(text, false, tab, broad)) do
-        for _, result in ipairs(group.Results or {}) do
-            rows[#rows + 1] = result.OptionId and result.Path:gsub(" · $", ""):gsub(" · ", ">") .. ">" .. result.Label or result.Path .. ">(explanation)"
-        end
-        for _, section in ipairs(group.Sections or {}) do
+        for _, section in ipairs(group.Sections) do
             for _, row in ipairs(section.Rows) do
                 local name = row.Option and row.Option:GetLabel() or row.Kind == "GridHeader" and "(columns)" or row.Item and row.Item.Show:GetLabel() or row.Text or row.Label
                 rows[#rows + 1] = section.Name .. ">" .. (row.Heading and row.Heading ~= "" and (row.Heading .. ">") or "") .. tostring(name)
@@ -387,23 +389,30 @@ options.Scenarios = {
     {Name = "search-reset-position",
         Observe = function()
             local labels = {}
-            for _, result in ipairs(Model().Search(addon.L["Reset position"])) do
-                if result.OptionId then labels[#labels + 1] = result.Label end
+            for _, row in ipairs(SearchRows(addon.L["Reset position"])) do
+                labels[#labels + 1] = row:match("([^>]+)$")
             end
             return Join(labels)
         end,
-        Recorded = "Remember Achievement Window position,Remember Achievement Calendar position,Remember Data Manager position",
-        Target = "Remember Achievement Window position,Remember Achievement Calendar position,Remember Data Manager position"},
+        -- the three check boxes first, by their buttons' whole text; then, since each word counts as the game's search counts
+        -- it, the names holding only "reset" or "position" (docs/work/2026-11-03-blizzard-search); before, the three alone
+        Recorded = "Remember Achievement Window position,Remember Achievement Calendar position,Remember Data Manager position,"
+            .. "Calendar button: horizontal position,Calendar button: vertical position,Reset view on open,Remember Last Position,"
+            .. "Position applies to,Presets,Reset Faction Filters,Presets,Reset Profile,Reset Profile",
+        Target = "Remember Achievement Window position,Remember Achievement Calendar position,Remember Data Manager position,"
+            .. "Calendar button: horizontal position,Calendar button: vertical position,Reset view on open,Remember Last Position,"
+            .. "Position applies to,Presets,Reset Faction Filters,Presets,Reset Profile,Reset Profile"},
     -- The game's search finds options by their name only; the broad search adds descriptions and the sections'
     -- explanations (Krowi, 2026-11-03, docs/work/2026-11-03-blizzard-search)
     {Name = "search-names",
         Observe = function()
             return ("names=%d broad=%s"):format(#SearchRows("reminder", false), table.concat(SearchRows("reminder", true), "; "))
         end,
-        -- before: one search of names, descriptions, headings and explanations, links to the sections
-        Recorded = "names=8 broad=Event reminders>Reminders>Enable; Event reminders>Reminders>Enable Upcoming Calendar Events;"
-            .. " Event reminders>Reminders>Compact; Event reminders>Pop up position>Position applies to; Event reminders>Pop up position>Grow direction;"
-            .. " Event reminders>Pop up position>Hide placeholders; Event reminders>(explanation); Reminder events>(explanation)",
+        -- before: one search of names, descriptions, headings and explanations ("names=8 broad=" the same 8 links, with
+        -- Enable Upcoming Calendar Events and Compact found by their heading "Reminders")
+        Recorded = "names=0 broad=Event reminders>Reminders>Enable; Event reminders>Pop up position>Position applies to;"
+            .. " Event reminders>Pop up position>Grow direction; Event reminders>Pop up position>Hide placeholders;"
+            .. " Event reminders>(explanation); Reminder events>(explanation)",
         Target = "names=0 broad=Event reminders>Reminders>Enable; Event reminders>Pop up position>Position applies to;"
             .. " Event reminders>Pop up position>Grow direction; Event reminders>Pop up position>Hide placeholders;"
             .. " Event reminders>(explanation); Reminder events>(explanation)"},
@@ -417,8 +426,12 @@ options.Scenarios = {
     -- A found row that hangs under another brings that one along, above it, as the game's search does
     {Name = "search-parent",
         Observe = function() return table.concat(SearchRows("reverse"), "; ") end,
-        Recorded = "Filtering and sorting>(explanation); Tooltips>Achievement points tooltip>Reverse Sort; Tooltips>Achievement points tooltip>Reverse Sort;"
-            .. " Tooltips>Achievement points tooltip>Reverse Sort; Tooltips>Achievement points tooltip>Reverse Sort; Tooltips>Achievement points tooltip>Reverse Sort",
+        -- before: the five Reverse Sort rows alone, after Filtering and sorting's explanation
+        Recorded = "Tooltips>Achievement points tooltip>Sort priority 1; Tooltips>Achievement points tooltip>Reverse Sort;"
+            .. " Tooltips>Achievement points tooltip>Sort priority 2; Tooltips>Achievement points tooltip>Reverse Sort;"
+            .. " Tooltips>Achievement points tooltip>Sort priority 3; Tooltips>Achievement points tooltip>Reverse Sort;"
+            .. " Tooltips>Achievement points tooltip>Sort priority 4; Tooltips>Achievement points tooltip>Reverse Sort;"
+            .. " Tooltips>Achievement points tooltip>Sort priority 5; Tooltips>Achievement points tooltip>Reverse Sort",
         Target = "Tooltips>Achievement points tooltip>Sort priority 1; Tooltips>Achievement points tooltip>Reverse Sort;"
             .. " Tooltips>Achievement points tooltip>Sort priority 2; Tooltips>Achievement points tooltip>Reverse Sort;"
             .. " Tooltips>Achievement points tooltip>Sort priority 3; Tooltips>Achievement points tooltip>Reverse Sort;"
@@ -434,7 +447,7 @@ options.Scenarios = {
             end
             return Join(names)
         end,
-        Recorded = "none", -- before: the whole text as one piece
+        Recorded = "Show in Tooltip,Skin Tooltip,Skin Tooltip", -- before: "none", the whole text as one piece
         Target = "Show in Tooltip,Skin Tooltip,Skin Tooltip"},
     -- Krowi (2026-11-02): the threshold's slider after the Force two columns check box, as the game's Mouse Sensitivity
     {Name = "objectives-rows",
