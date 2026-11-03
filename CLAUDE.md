@@ -10,7 +10,7 @@ The tooling every Krowi repo shares lives once, in Krowi_ClaudeKit (`E:\World of
 
 - **From the plugin**:
   - the guard hook, before every Bash, PowerShell, Edit, Write and MultiEdit call. It denies `sed -i`/`perl -i`/`awk -i inplace` and Bash redirects or `tee` into a repo file (Git Bash writes LF), an inline `Invoke-WebRequest`/`curl` to `localhost:5000` (use the lookup scripts' parameters), and an `L[...]` string added above `AUTOGENTOKEN`. An edit under `Libs/` asks the user instead.
-  - the post-edit Lua syntax hook;
+  - the post-edit hook `After-Edit.ps1`: after a Write it sets the file's line endings, BOM and final newline as `.editorconfig` says (CRLF, no BOM, no final newline), then it checks Lua syntax;
   - `krowi:release`, `krowi:process-issue` and `krowi:taint-reviewer`.
   - Both hooks fail open. A fix to any of them is made in the kit; a guard fix gets a case in the kit's `tests\Test-GuardToolUse.ps1`.
 - **Stop hook** (this repo's): `.claude/hooks/Check-RepoOnStop.ps1` runs `Check-Repo.ps1 -ChangedOnly` when a turn ends and hands errors back. Fix them, or add a deliberate exception to `.claude/tools/Check-Repo.ignore` with a comment.

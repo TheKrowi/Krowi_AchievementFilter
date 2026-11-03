@@ -105,7 +105,7 @@ After each release, `Read-GameErrors.ps1` on both clients and new issues are the
 | Give Claude a feedback loop | `Check-Repo.ps1`, the post-edit and Stop hooks, the headless pipeline and suites, `Deploy.ps1` with the `Read-Game*` readers |
 | Continuous evals in CI | the `Tests/` scenario suites through the `unit-tests` rule on every turn; CI itself is parked (step 4 in `docs/harness-roadmap.md`) |
 | AI in the PR review loop | `REVIEW.md`, `/code-review`, `krowi:taint-reviewer`; the maintainer approves |
-| Hooks as approval gates | the kit's PreToolUse guard denies the edits and commands that have broken the repo before and its post-edit hook checks syntax; this repo's Stop hook (`.claude/hooks/`) lints |
+| Hooks as approval gates | the kit's PreToolUse guard denies the edits and commands that have broken the repo before and its post-edit hook fixes line endings after a Write and checks syntax; this repo's Stop hook (`.claude/hooks/`) lints |
 | CI/CD integration and deployment | `krowi:release` driving the Krowi Addon Manager; production is the maintainer's go-ahead |
 | Closing the loop on metrics | `Read-GameErrors.ps1` after a release, the issue tracker; not automated |
 

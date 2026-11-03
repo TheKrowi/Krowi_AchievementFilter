@@ -71,8 +71,9 @@
                                  name, an intent.md, no plan.md without a spec.md, and in each file the
                                  template's title (Krowi_ClaudeKit's skills/process-issue/templates/), a
                                  Status: draft|accepted|done line and its headings
-      bom              [Warning] no UTF-8 byte order mark (.editorconfig: utf-8)
-      line-endings     [Warning] CRLF only (.editorconfig: crlf)
+      bom              [Warning] no UTF-8 byte order mark (.editorconfig: utf-8), in the addon files and in the
+                                 .md and .ps1 files outside Libs/
+      line-endings     [Warning] CRLF only (.editorconfig: crlf), in the same files
       semicolon        [Error]   no trailing semicolons on added .lua lines (changed files only)
       enus-autogen     [Error]   no L[...] string added above the AUTOGENTOKEN marker in any locale file;
                                  new strings go directly below its "Exported at" line
@@ -219,9 +220,14 @@ foreach ($rel in $allFiles) { $fileBytes[$rel] = [IO.File]::ReadAllBytes((Join-P
 Write-Timing 'read'
 
 # --- bom / line-endings ------------------------------------------------------------------------
-foreach ($rel in $allFiles) {
+# Also the Markdown and PowerShell files, which no other rule reads; listed through git, so the gitignored worktrees
+# under .claude\ (full repo copies) stay out
+$docFiles = @(git ls-files --cached --others --exclude-standard -- '*.md' '*.ps1' 2>$null |
+    Where-Object { $_ -and $_ -notlike 'Libs/*' -and (Test-Path -LiteralPath (Join-Path $root $_)) })
+foreach ($rel in @($allFiles) + $docFiles) {
     if ($rel -like 'Libs/*') { continue }
     $b = $fileBytes[$rel]
+    if ($null -eq $b) { $b = [IO.File]::ReadAllBytes((Join-Path $root $rel)) }
     $sev = if ($changed.ContainsKey($rel)) { 'Error' } else { 'Warning' }
     if ($b.Length -ge 3 -and $b[0] -eq 0xEF -and $b[1] -eq 0xBB -and $b[2] -eq 0xBF) {
         Add-Finding 'bom' $sev $rel 1 'file starts with a UTF-8 byte order mark; .editorconfig says plain utf-8'

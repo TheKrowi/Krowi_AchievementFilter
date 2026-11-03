@@ -17,6 +17,8 @@ The harness is the toolchain this repo's Claude Code sessions use. Since 2026-10
 | | Parallel sessions: `New-Worktree.ps1` and `Remove-Worktree.ps1`, `worktree.baseRef` set to `head`, fsdeploy deploys the window's own folder, the Stop hook lints the session's own checkout | 2026-10-11 |
 | | The shared tooling moves to Krowi_ClaudeKit; this repo enables its `krowi` plugin and keeps only its own (`docs/work/2026-10-16-single-tooling-home/`) | 2026-10-17 |
 | 7 | `Show-Achievement.ps1`: one call per achievement question, per client, over `headless/show-achievement.lua`; the snapshot's per-achievement lines shared through `headless/data-format.lua` (`docs/work/2026-11-02-show-achievement/`); Krowi's: the in-game comparison and the allow rules | PR #387 (2026-11-02) |
+| 6 | The kit's post-edit hook `After-Edit.ps1` (was `Check-LuaSyntax.ps1`, which stays as a forwarder for sessions started before the rename): after a Write it sets the line endings, BOM and final newline from `.editorconfig`, then checks Lua syntax. It reads `.editorconfig` alone, so a Write to a locale file or the `.toc` leaves CRLF there, which git stores unchanged. The `bom` and `line-endings` rules now also read the `.md` and `.ps1` files outside `Libs/` | kit PR #5 (2026-11-03) |
+| 8 | `Get-RepoState.ps1` lives in the kit and serves every Krowi repo: git state, PRs and issues, the release and its readiness (`Check-ReleaseReady.ps1 -ReportOnly`), work folders, worktrees, how far each client's AddOns folder is behind; this repo's `.claude/repo-state.ps1` adds the lint with `-Lint`. About 4 to 6 s, most of it the release check (11 s with `-Lint`); Krowi's: the allow rules | kit PR #6 (2026-11-03) |
 
 ## Open, in priority order
 
@@ -24,15 +26,13 @@ Measured on 2026-10-10 from the Claude Code transcripts of this repo: 49 session
 
 | Step | Tool | What it saves | Size |
 |---|---|---|---|
-| 6 | Line endings fixed after Write | 132 hand fixes in 24 sessions | small |
-| 8 | `Get-RepoState.ps1` | 2 to 21 calls at the start of 10 sessions | small |
 | 9 | `Apply-Edits.ps1` | 66 hand-written replace helpers | small |
 | 10 | `Find-Symbol.ps1 -Outline` | 54 outline greps | small |
 | 11 | A check for a map in two `Zone()` blocks | a zone rule nothing enforces, broken twice | small |
 | 12 | Narrow the guard hook's inline-query check | a read-only grep whose pattern names the server is denied | small |
 | 13 | Raid-size lists: a check, and a list-aware zone plan | 51 placements sat in the wrong list for a month, unflagged | small |
 
-Steps 6, 10 and 12 change files that now live in Krowi_ClaudeKit (`hooks/Check-LuaSyntax.ps1`, `tools/Find-Symbol.ps1`, `hooks/Guard-ToolUse.ps1`). They are built there, in a kit worktree, and serve every Krowi repo; this repo only picks them up. Step 8 is mostly generic (git state, PRs, issues, the changelog) apart from its lint run; where it lives is decided when it is built.
+Steps 10 and 12 change files that now live in Krowi_ClaudeKit (`tools/Find-Symbol.ps1`, `hooks/Guard-ToolUse.ps1`). They are built there, in a kit worktree, and serve every Krowi repo; this repo only picks them up.
 
 Steps 14 to 18 come from a second measurement, on 2026-11-02, of what the sessions spend on context rather than on tool calls: the 39 sessions since the kit move on 2026-10-17 and their 95 subagents (see How the evidence was gathered). They are in priority order among themselves, and follow Anthropic's current guidance for Claude Code (the best-practices, memory, skills and cost pages of the Claude Code docs, and the engineering posts on context engineering and long-running harnesses).
 
@@ -45,34 +45,6 @@ Steps 14 to 18 come from a second measurement, on 2026-11-02, of what the sessio
 | 18 | Subagent start cost | subagents are a fifth of all use; a general-purpose one starts at 65k | small |
 
 Step 14 and parts of 15 and 18 change the kit. The kit also has its own share of the start context: the workspace `CLAUDE.md` (`WowAddons.md`, 22 KB) loads into every session under the workspace and gets step 16's treatment there, and `process-issue` gets step 15's session boundaries. The work plugins that come with the maintainer's Claude account load in these sessions too, and four of their servers time out after 30 s at every start; whether they can be switched off for this workspace is checked in `/plugin`, the maintainer's click, and any setting for them goes in the uncommitted `.claude/settings.local.json`, since the repo is public.
-
-### Step 6: fix line endings after Write
-
-**Problem.** The Write tool writes LF line endings and the repo is CRLF (`.editorconfig`). The Edit tool keeps a file's endings, so only Write is affected (both checked on 2026-10-10). Sessions then fix the file by hand, or route edits through PowerShell to avoid the problem: 132 such commands in 24 of 49 sessions. 23 of the 72 files written into the repo were followed by a hand fix within a few calls.
-
-**Design.** A PostToolUse step after Edit and Write, in the same PowerShell process as the Lua syntax check, so it costs no extra start (about 0.3 s each). `Check-LuaSyntax.ps1` becomes `After-Edit.ps1`, which normalises first and checks syntax second. Normalising means lone LF to CRLF, no BOM and no final newline; the file is rewritten only when one of those changed. It touches only text files inside the repo, never `Libs/`, and skips what `Check-Repo.ignore` exempts from `line-endings` (the locale files and the `.toc`, which CurseForge and the addon manager write with LF).
-
-The `bom` and `line-endings` lint rules read only `.lua`, `.xml` and `.toc` files, so LF in a `.md` or `.ps1` goes unnoticed (on 2026-10-11 `.claude/skills/add-zone-data/_zonedata_parser.ps1` was found all LF). Extend both rules to the Markdown and PowerShell files outside `Libs/` in the same step; pre-existing findings stay warnings, as for the other rules.
-
-**Done when.** A file created with Write lands as CRLF without a BOM or final newline. An Edit right after it works without a re-read (checked by hand on 2026-10-10 with an outside rewrite). The `line-endings` rule stays clean, and the instruction file and `CLAUDE.md` name the hook.
-
-### Step 8: `Get-RepoState.ps1`
-
-**Problem.** 10 sessions opened with "what's the state of the repo" or "what's next". Each one rebuilt the picture from `git status`, `git log`, ahead/behind counts, `gh pr list`, `gh issue list`, the work folders, the tags, the top of the changelog and a lint run: 2 to 21 calls and up to 83 KB of output before the first answer.
-
-**Design.** One read-only script that prints:
-
-- the branch, and the commits ahead of or behind `origin/main`;
-- uncommitted files, grouped as code, data, harness and docs;
-- open PRs and the newest open issues;
-- the last release tag and the changelog section not yet released;
-- work folders whose status is not done;
-- worktrees, and local branches already merged into `main`;
-- how far each client's AddOns folder is behind the repo (`Deploy.ps1 -WhatIf`).
-
-`-Lint` adds the summary line of `Check-Repo.ps1 -ChangedOnly`.
-
-**Done when.** One call answers the state question, in under 5 s without `-Lint`, and the script is allowlisted.
 
 ### Step 9: `Apply-Edits.ps1`
 
