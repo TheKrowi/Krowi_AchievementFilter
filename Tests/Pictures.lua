@@ -352,10 +352,12 @@ local function SceneStep(name, picture, scene, text, cut, check, more)
 end
 
 -- An achievement option set for the pictures, back to the player's own value at the end of the run (RestoreOptions). The
--- player's values wait in the saved variables, so a /reload mid-run still puts them back at login.
+-- player's values wait in the saved variables, so a /reload mid-run still puts them back at login, with the profile
+-- they belong to.
 local function SetForRun(option, value)
     KrowiAF_DebugTable = KrowiAF_DebugTable or {}
     KrowiAF_DebugTable.PicturesRestore = KrowiAF_DebugTable.PicturesRestore or {}
+    KrowiAF_DebugTable.PicturesRestoreProfile = KrowiAF_DebugTable.PicturesRestoreProfile or addon.Options.db:GetCurrentProfile()
     local saved, achievements = KrowiAF_DebugTable.PicturesRestore, addon.Options.db.profile.Achievements
     if saved[option] == nil then
         saved[option] = achievements[option]
@@ -811,17 +813,22 @@ function SetBanner(text)
 end
 
 -- The options the run set (SetForRun: the colour rows' header colours, the reward preview's size), back to the player's
--- own values: at the end of the run, or at the next login when a /reload cut the run short
+-- own values: at the end of the run, or at the next login when a /reload cut the run short. A login on another profile
+-- leaves them waiting, so it does not get the run's player's values.
 local function RestoreOptions()
     local saved = KrowiAF_DebugTable and KrowiAF_DebugTable.PicturesRestore
     if not saved then
+        return
+    end
+    local profile = KrowiAF_DebugTable.PicturesRestoreProfile
+    if profile and profile ~= addon.Options.db:GetCurrentProfile() then
         return
     end
     local achievements = addon.Options.db.profile.Achievements
     for option, value in next, saved do
         achievements[option] = value
     end
-    KrowiAF_DebugTable.PicturesRestore = nil
+    KrowiAF_DebugTable.PicturesRestore, KrowiAF_DebugTable.PicturesRestoreProfile = nil, nil
     if KrowiAF_SummaryFrame then
         KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow() -- as the options' own setters do (Options/Layout.lua)
     end

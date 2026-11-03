@@ -161,9 +161,6 @@ Code review findings, deferred because none is Important and a fix would need th
 
 ## From the Overview cards (2026-11-02, docs/work/2026-11-02-overview-cards)
 
-Open steps of the work item, left for 2026-11-03 (Krowi). The branch `feature/2026-11-02-overview-cards` holds the build (dde89f3d), deployed to Retail and Mists.
-- **Krowi's look at the Reward preview card** after its picture was remade at the preview's default size and the card shows its lower part (`CardPart`, Y = 0.74 in `Options/Window/Map.lua`). Moving the mount up or down is a change to that value.
-- **A hitch when Overview opens:** it now loads 15 help pictures (11.5 MB of TGA) at once. If one shows, the cards get small copies of the pictures (`Make-HelpPictures.ps1`).
-- **CurseForge:** the 22 `Card <Id>` strings and their translations in the 10 other locales go up through `krowi:localization -Export`, on Krowi's go.
-- **In-game runs:** `/kaftest options` on Retail and on Mists, then `Read-GameTests.ps1` (the new `overview-cards` and `overview-cards-end` steps). `Tests/Options.lua` changed, so the 105.0 release gate needs both.
-- **Wrap up:** `/code-review`, the work files set to `done`, the PR against `main`; this section leaves the backlog with it.
+Code review findings, deferred because Krowi found the cards right in game (2026-11-03) and no hitch showed.
+- **Card thumbnails:** Overview loads the 15 sections' full help pictures (11.5 MB of TGA) for crops 200 x 86, and Reward preview's `CardPart` (Y = 0.74, `Options/Window/Map.lua`) fits only today's `RewardPreview.tga`: a remade picture can put the zoom buttons or the title on the card, and no check notices. Small copies made for the cards by `Make-HelpPictures.ps1` fix both, and the `CardPart` with them.
+- **The card's sizes stand twice** (`Krowi_Options/Rows.xml` and `RowMixins.lua`): the picture area's 86, the line's offset and the NEW label's offsets in the XML, `pictureHeight`, `lineGap`, `cardTextInset` and `nameTop` in Lua. A change to one side stretches the pictures or moves NEW off the name line. The fix: `Krowi_OptionsCardMixin:Init` sets those sizes and anchors from the Lua values.

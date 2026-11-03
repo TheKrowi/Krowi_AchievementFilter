@@ -60,7 +60,8 @@ local function SectionLink(section)
     return { Kind = "Link", Text = section.Name, OnClick = OpenSection(section) }
 end
 
--- The section's first help picture, or its game icon while its help has none (docs/work/2026-11-02-overview-cards)
+-- The section's first help picture, or its game icon while its help has none (docs/work/2026-11-02-overview-cards); a
+-- section with neither, such as one whose picture is not made yet, gets the question mark rather than an empty card
 local function SectionCard(section)
     local card = { Name = section.Name, Text = section.Card, IsNew = window.IsNew(section.Id), OnClick = OpenSection(section) }
     local help = window.Help[section.Id]
@@ -71,7 +72,7 @@ local function SectionCard(section)
             return card
         end
     end
-    card.Icon = section.CardIcon
+    card.Icon = section.CardIcon or "Interface\\Icons\\INV_Misc_QuestionMark"
     return card
 end
 

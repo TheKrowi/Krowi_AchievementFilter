@@ -1,5 +1,5 @@
 # Intent: The options window's Overview shows the sections as cards
-Author: Krowi (maintainer), comparing the options window with the revamp's mockup. Source: idea. Status: accepted
+Author: Krowi (maintainer), comparing the options window with the revamp's mockup. Source: idea. Status: done
 
 ## Problem
 The options window's Overview (new in 105.0) lists the sections under their group names as gold links, one per line, below the release's changelog: the same names, in the same order, as the navigation beside it, so the page adds nothing a player cannot already see on the left (Retail screenshot of the `options` run, 2026-11-02 22:29). The revamp's mockup drew them as cards: a picture of the feature, its name and one line on what it covers, three to a row (`docs/work/2026-10-25-options-revamp/mockup/canvas/Main.dc.html:65-75`). The revamp's spec asked for that too (requirement 12, "a tile per feature section"); the build kept the links and its review removed the unused `Tile` fields (`docs/work/2026-10-25-options-revamp/plan.md`, Departures).

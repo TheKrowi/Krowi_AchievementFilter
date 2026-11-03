@@ -1,5 +1,5 @@
 # Plan: The options window's Overview shows the sections as cards
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 ## Context
 Overview (new in 105.0) lists the sections as gold links under their group names, the same list as the navigation beside it. Krowi wants the mockup's boxes instead (2026-11-02). Accepted in the spec the same day:
@@ -42,6 +42,13 @@ Reused as they are: `InitList` and its extent calculator, `MeasureText` (`Window
 - **Two in-game steps instead of one:** `overview-cards` checks the cards scrolled to the first group, `overview-cards-end` those at the page's end. The page draws only the rows in view.
 - **Reward preview's picture at its default size** (Krowi, 2026-11-02, step 8: "the reward preview picture looks odd with only the top visible"). The 2026-11-01 run had shot Krowi's own preview at 485 x 654. `Tests/Pictures.lua` now sets the preview to the default 280 x 360 for its shot (`SetForRun`, which the colour rows' header colours now use too) and puts the player's size back (`RestoreOptions`). Remade with `/kaftest pictures rewardpreview` and `Make-HelpPictures.ps1 -Only RewardPreview`: 363 x 443.
 - **`CardPart`** (Krowi, the same day: "the lower part, so the card shows the mount itself"). `lib.CardCrop` reads a card's `Part = { X, Y }`, as CSS's `object-position`. Reward preview's `{ X = 0, Y = 0.74 }` shows 48 % to 83 % of the picture's height: the mount, without the zoom buttons. `card-geometry` has a square cut at its bottom for it.
+- **Krowi's look, 2026-11-03:** "overview cards are perfect", the Reward preview card included; no hitch on opening, so the card thumbnails stay a follow-up (`docs/backlog.md`).
+- **Code review, 2026-11-03:**
+  - A section with neither a picture nor a `CardIcon` gets the question mark instead of an empty card.
+  - The live cards step lists text cut short without failing, as the sections' step does; its comments said it failed.
+  - The pictures suite keeps the player's options with their profile, so a login on another profile after a cut-short run does not get them.
+  - Deferred to `docs/backlog.md`: the card thumbnails (which also retire Reward preview's `CardPart`) and the card's sizes standing in both XML and Lua.
+  - Not changed: a card row's signature reads only the names, but no option changes while Overview shows, and NEW goes only when a section opens, which draws a new page.
 
 ## Risks
 - **The row has no width yet in `Init`.** The card width comes from `window:PageWidth()`, as the notes' height does. The extent calculator and `Init` both use it, so the height and the placement agree.

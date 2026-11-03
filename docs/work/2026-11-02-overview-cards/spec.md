@@ -1,5 +1,5 @@
 # Spec: The options window's Overview shows the sections as cards
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. Below the New list and the changelog, Overview shows each group's name ("Achievement window", "Around the game", "This addon") as today's header, and under it a card per section of that group, in the navigation's order, three to a row.

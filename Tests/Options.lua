@@ -457,7 +457,8 @@ end
 --   section-<id>: Overview and every section draw their rows, and every drawn check box, slider and text box shows its
 --     option's value
 --   overview-cards, overview-cards-end: Overview's cards at its first group and at its end, each inside its row, as wide
---     as the others, with a picture or icon, and its text not cut short (docs/work/2026-11-02-overview-cards)
+--     as the others, with a picture or icon; text cut short is listed, as the sections' names are, without failing
+--     (docs/work/2026-11-02-overview-cards)
 --   toggle, range, input: one row of each changed through its own control: the value is stored, and the changed line and
 --     the footer's count follow it; toggle-reset: the toggle's row shows its arrow on enter, before the name, and the
 --     arrow sets the option back to its default (docs/work/2026-10-31-options-markers)
@@ -683,7 +684,8 @@ local function SectionStep(sectionId, name)
 end
 
 -- Overview's drawn cards (docs/work/2026-11-02-overview-cards): as wide as the others of their row and inside it, each
--- with its picture or icon, and its name and line not cut short. Scroll(window) shows the part of the page to check.
+-- with its picture or icon; a name or line cut short is listed without failing, as SectionStep lists names. Scroll(window)
+-- shows the part of the page to check.
 local function CardsStep(name, text, Scroll)
     return {
         Name = name,
