@@ -8,8 +8,8 @@
 -- The search, as the game's Options window searches (Blizzard_SettingsPanel.lua, FindInitializersMatchingSearchText and
 -- OnSearchTextChanged; docs/work/2026-11-03-blizzard-search): a row by its names, from the first letter, on the whole
 -- text and on each of its words, the best match first, and a found row brings the row it hangs under. The broad search
--- also finds a row by its description and a section by its explanation. It reads only what every tab hands the window
--- (Groups, SectionName, GetElements, GetHelp) and draws nothing.
+-- also finds a row by its description. It reads only what every tab hands the window (Groups, SectionName, GetElements)
+-- and draws nothing.
 
 local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
 
@@ -104,8 +104,7 @@ local function Match(texts, words)
     if count > 0 then return count, longest end
 end
 
--- A description or an explanation is prose, where a common word stands everywhere: it matches only when it holds every
--- word typed
+-- A description is prose, where a common word stands everywhere: it matches only when it holds every word typed
 local function MatchAll(texts, words)
     local count, longest = Match(texts, words)
     if count and count >= math.max(#words - 1, 1) then return count, longest end
@@ -235,23 +234,14 @@ local function SearchSection(tab, id, words, broad)
             end
         end
     end
-    local explained = false
-    local help = broad and config.GetHelp and config.GetHelp(id)
-    for _, block in ipairs(help and help.Blocks or {}) do
-        if MatchAll(Texts(block.Text, block.Heading, block.Term), words) then
-            explained = true
-            break
-        end
-    end
-    if #rows == 0 and not explained then return nil end
-    -- A section found only by its explanation comes after those with rows
-    return { Id = id, Name = config.SectionName(id), Rows = rows, Explained = explained, Score = best or -1 }
+    if #rows == 0 then return nil end
+    return { Id = id, Name = config.SectionName(id), Rows = rows, Score = best }
 end
 
--- A search of the current tab, or of every tab: { { Tab, Sections = { { Id, Name, Rows, Explained } } } } in tab order,
--- only the tabs that found something; each tab's sections by their best row. A row is a copy of its element with Tab,
--- SectionId, Heading and HeadingAt (which of the section's headings) added, so the window can tell whose it is and what
--- it stands under. broad: descriptions and explanations too.
+-- A search of the current tab, or of every tab: { { Tab, Sections = { { Id, Name, Rows } } } } in tab order, only the
+-- tabs that found something; each tab's sections by their best row. A row is a copy of its element with Tab, SectionId,
+-- Heading and HeadingAt (which of the section's headings) added, so the window can tell whose it is and what it stands
+-- under. broad: descriptions too.
 function lib.Search(text, all, current, broad)
     local whole = Plain(text or ""):gsub("^%s+", ""):gsub("%s+$", "")
     if whole == "" then return {} end

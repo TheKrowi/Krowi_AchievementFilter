@@ -69,6 +69,8 @@ After the review passes (`/code-review` at medium, `krowi:taint-reviewer`: no ta
 - Deferred to Krowi_Options' move into Krowi_Libraries: `Search.lua`, like `WindowMixin.lua` and `RowMixins.lua`, runs even when a newer copy of the library is loaded.
 - New scenarios `search-parent-heading` and `search-all-none`.
 - **Rebased on the Overview cards** (PR #389, merged 2026-11-03, Krowi's order: cards first, then search). The cards had raised Krowi_Options to minor 3 too, so this work takes it to 4. `lib.Flatten` gains the cards' `Cards` case, which the cards had put in the window's own `Flatten`. The search never meets cards: it reads the groups' sections, not Overview. The locale files carry both sets of strings below their `Exported at` line.
+- **Krowi's look in game** (Retail, 2026-11-03): the search works; the broad search's "How it works" lines go, so the switch adds descriptions only (spec requirement 19). `lib.Search` no longer reads `GetHelp`, the results lose their `Link`, and the help pane's second line is shortened in every locale. `search-names` recorded the lines before the change.
+- **The in-game `search-confirm` step** asked its question in the frame it typed the search; the box reports its text a frame later, which searched again and dropped the question. The step now asks 0.2 s later, as a player picks the choice only after typing.
 
 ## Proof
 - Headless `run-tests.lua options` (Retail and Classic): every scenario PASS, the new ones met.

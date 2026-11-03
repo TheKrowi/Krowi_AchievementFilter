@@ -258,7 +258,7 @@ function Krowi_OptionsWindowMixin:OnLoad()
         lib.SetShared("SearchAll", self.SearchEveryTab)
         if self.Searching then self:OnSearch(self.SearchBox:GetText()) end
     end)
-    -- Descriptions and explanations too (unticked by default: the game's search finds names only); kept like the scope
+    -- Descriptions too (unticked by default: the game's search finds names only); kept like the scope
     self.SearchBroad:SetScript("OnClick", function(button)
         self.BroadSearch = button:GetChecked() and true or false
         lib.SetShared("SearchBroad", self.BroadSearch)
@@ -851,8 +851,7 @@ end
 -- [[ Search ]] --
 -- The results as the game's Options window shows them (docs/work/2026-11-03-blizzard-search): the selected tab, or with
 -- "Search all tabs" ticked every tab under its addon's name; each section's name, which opens it, then its found rows,
--- working as on its page, under the headings they stand under there, and a link to the section when the broad search
--- found its explanation
+-- working as on its page, under the headings they stand under there
 function Krowi_OptionsWindowMixin:SearchElements(text)
     local everyTab = self.SearchEveryTab and #lib.Tabs > 1
     local list = {}
@@ -862,8 +861,7 @@ function Krowi_OptionsWindowMixin:SearchElements(text)
         if everyTab then list[#list + 1] = { Kind = "Header", Text = tab.Config.TabName } end
         for _, section in ipairs(group.Sections) do
             local id = section.Id
-            local function Open() self:ShowTab(tab, id) end
-            list[#list + 1] = { Kind = "SearchHeading", Text = section.Name, OnClick = Open }
+            list[#list + 1] = { Kind = "SearchHeading", Text = section.Name, OnClick = function() self:ShowTab(tab, id) end }
             local heading = 0
             for _, row in ipairs(section.Rows) do
                 if row.HeadingAt ~= heading then
@@ -872,7 +870,6 @@ function Krowi_OptionsWindowMixin:SearchElements(text)
                 end
                 list[#list + 1] = row
             end
-            if section.Explained then list[#list + 1] = { Kind = "Link", Text = tab.Config.Strings.HowItWorks, OnClick = Open } end
         end
     end
     if #list == 0 then list[1] = { Kind = "Note", Text = self.Strings.NoResults } end

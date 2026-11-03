@@ -29,15 +29,15 @@ The game's search is `SettingsPanelMixin:FindInitializersMatchingSearchText` and
 16. The help pane, under the mouse, shows the hovered row's description, and its kicker the row's own section (today the section the player came from, `WindowMixin.lua:1006`).
 17. With no row under the mouse, the help pane explains the search (Krowi, 2026-11-03: "search help text"), under the title "Search", in two short paragraphs: what it finds and that a section's name opens the section; what the broad search adds. Today it shows the section the player came from (`WindowMixin.lua:1019`). Draft wording, for Krowi's look in game:
     - "Finds options by their name. Change them right here, or click a section's name to open it."
-    - "Tick Search descriptions to also find options by what they do, and sections by how they work."
+    - "Tick Search descriptions to also find options by what they do." (Krowi's look in game: sections by their explanation went, see 19)
 
 **The broad search** (off by default)
 18. A check box in the window's bottom row turns it on, kept with the window's shared state like "Search all tabs", for every addon in the window.
-19. On, a row is also found by its description, and a section by its explanation (the help pane's text), which shows as one line in the results that opens the section. A description or explanation must hold every word typed (prose holds common words everywhere); names keep the game's any-word rule (from the review, see plan.md).
+19. On, a row is also found by its description. A description must hold every word typed (prose holds common words everywhere); names keep the game's any-word rule (from the review, see plan.md). Sections are not found by their explanation (Krowi's look in game, 2026-11-03): its "How it works" line in the results read as an option and did not say why it was there.
 
 ## Design
 **The search moves into Krowi_Options.** The window already has everything it needs from the consumer contract: `Config.Groups` and `Config.GetElements(id)` give every section's rows, an option answers `GetLabel`, `GetDescription`, `Type`, `GetButtonText` and `IsHidden`, and `Config.GetHelp(id)` gives the explanation. So `lib.Search` builds the results from those for every addon, and `Config.Search` and `model.Search` (`Options/Window/Model.lua:240-288`) go. Krowi_ExtendedVendorUI's tab, once it registers, then searches the same way without code of its own.
-- **Tags per element kind**, in the library: `Option` (label, plus `With`'s button text or label), `Sub` (text), `GridRow` (label), `TabRow` (the show option's label). Broad adds `GetDescription()` per option and the help's text blocks per section.
+- **Tags per element kind**, in the library: `Option` (label, plus `With`'s button text or label), `Sub` (text), `GridRow` (label), `TabRow` (the show option's label). Broad adds `GetDescription()` per option (and, until Krowi's look in game, the help's text blocks per section).
 - **Scoring** as requirement 7: for each row, the longest match over the whole text and each word, plus the number of words matched as the first key.
 - **Rows**: the search returns `{ Tab, SectionId, Elements }` per section, with the elements in score order and the parents of requirement 11 inserted once, above their first child. `OnSearch` draws them through `Flatten`'s row kinds after a new `SearchHeading` row (`Rows.xml`: our own Button, 45 high, `GameFontNormalLarge` at 16, -16, an additive 0.1 grey overlay on hover; never `SettingsListSearchCategoryTemplate` itself).
 - **Each search element carries its tab and section** (`element.Tab`, `element.SectionId`), and the window takes them from the row where today it reads its own: `OnRowEnter`'s kicker and help strings, `AskConfirm` and `OnOptionChanged`. In search, `Confirming` is keyed to the search, not to a section.
@@ -84,5 +84,6 @@ Krowi, 2026-11-03:
 - The game's search by default, with a switch for a broad search ("I want blizzard options search, with an option for the user to enable a broad search").
 - Option A: each row under its section's name and its own heading, after seeing how the game handles repeated names (parent rows and hand-written tags).
 - The broad search adds descriptions and explanations, not every row under a matching heading (option C rejected).
+- After the look in game the same day, the broad search adds descriptions only: "when search description is on i also see the how it works lines which is a mistake i think".
 - With no row under the mouse, the help pane explains the search ("search help text maybe?"); the wording is judged in game.
 - The switch's place in the bottom row is judged in game.

@@ -177,7 +177,7 @@ local function CardGeometryLine(lib)
 end
 
 -- A search of this addon's tab (docs/work/2026-11-03-blizzard-search), a result per row in the order shown:
--- "Section>Heading>Name", a row with no heading "Section>Name", a section found by its explanation "Section>(explanation)"
+-- "Section>Heading>Name", a row with no heading "Section>Name"
 local function SearchRows(text, broad)
     local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
     local tab = addon.Options.Window.Controller
@@ -188,7 +188,6 @@ local function SearchRows(text, broad)
                 local name = row.Option and row.Option:GetLabel() or row.Kind == "GridHeader" and "(columns)" or row.Item and row.Item.Show:GetLabel() or row.Text or row.Label
                 rows[#rows + 1] = section.Name .. ">" .. (row.Heading and row.Heading ~= "" and (row.Heading .. ">") or "") .. tostring(name)
             end
-            if section.Explained then rows[#rows + 1] = section.Name .. ">(explanation)" end
         end
     end
     return rows
@@ -402,20 +401,20 @@ options.Scenarios = {
         Target = "Remember Achievement Window position,Remember Achievement Calendar position,Remember Data Manager position,"
             .. "Calendar button: horizontal position,Calendar button: vertical position,Reset view on open,Remember Last Position,"
             .. "Position applies to,Presets,Reset Faction Filters,Presets,Reset Profile,Reset Profile"},
-    -- The game's search finds options by their name only; the broad search adds descriptions and the sections'
-    -- explanations (Krowi, 2026-11-03, docs/work/2026-11-03-blizzard-search)
+    -- The game's search finds options by their name only; the broad search adds their descriptions (Krowi, 2026-11-03,
+    -- docs/work/2026-11-03-blizzard-search), not the sections' explanations (Krowi's look in game the same day)
     {Name = "search-names",
         Observe = function()
             return ("names=%d broad=%s"):format(#SearchRows("reminder", false), table.concat(SearchRows("reminder", true), "; "))
         end,
         -- before: one search of names, descriptions, headings and explanations ("names=8 broad=" the same 8 links, with
-        -- Enable Upcoming Calendar Events and Compact found by their heading "Reminders")
+        -- Enable Upcoming Calendar Events and Compact found by their heading "Reminders"); then the broad search also gave
+        -- Event reminders and Reminder events a "How it works" link for their explanation (Krowi in game: it reads as an
+        -- option and says nothing of why it is there)
         Recorded = "names=0 broad=Event reminders>Reminders>Enable; Event reminders>Pop up position>Position applies to;"
-            .. " Event reminders>Pop up position>Grow direction; Event reminders>Pop up position>Hide placeholders;"
-            .. " Event reminders>(explanation); Reminder events>(explanation)",
+            .. " Event reminders>Pop up position>Grow direction; Event reminders>Pop up position>Hide placeholders",
         Target = "names=0 broad=Event reminders>Reminders>Enable; Event reminders>Pop up position>Position applies to;"
-            .. " Event reminders>Pop up position>Grow direction; Event reminders>Pop up position>Hide placeholders;"
-            .. " Event reminders>(explanation); Reminder events>(explanation)"},
+            .. " Event reminders>Pop up position>Grow direction; Event reminders>Pop up position>Hide placeholders"},
     -- A name that only means something under its heading shows that heading above it (option A)
     {Name = "search-headings",
         Observe = function() return table.concat(SearchRows("loaded"), "; ") end,
@@ -1067,7 +1066,7 @@ local function SearchSteps()
         },
         {
             Name = "search-broad",
-            Text = "Search descriptions also finds options by their description and sections by their explanation",
+            Text = "Search descriptions also finds options by their description, and no section by its explanation",
             Run = function()
                 local word = DescriptionOnlyWord()
                 if not word then return "no word of a description that no name holds" end
@@ -1080,8 +1079,8 @@ local function SearchSteps()
                 local frame = Window()
                 local kinds = Kinds()
                 local kept = KrowiAF_SavedData.OptionsWindow.SearchBroad == true and frame.SearchBroad:GetChecked()
-                Add(not broad.Names.Option and broad.Names.Note == 1 and (kinds.Option or 0) + (kinds.Link or 0) > 0 and kept and "PASS" or "FAIL",
-                    ("'%s': by name %d rows, ticked %d rows and %d explanations, %s"):format(broad.Word, broad.Names.Option or 0, kinds.Option or 0,
+                Add(not broad.Names.Option and broad.Names.Note == 1 and (kinds.Option or 0) > 0 and not kinds.Link and kept and "PASS" or "FAIL",
+                    ("'%s': by name %d rows, ticked %d rows and %d links, %s"):format(broad.Word, broad.Names.Option or 0, kinds.Option or 0,
                         kinds.Link or 0, kept and "kept with the window's state" or "not kept"))
             end
         },
@@ -1114,10 +1113,11 @@ local function SearchSteps()
             Name = "search-confirm",
             Text = "a question asked in the results shows in the header",
             Run = function()
-                local frame = Window()
                 Search(searchText)
                 confirm = {}
-                frame:AskConfirm(testQuestion, function() confirm.Yes = true end)
+                -- The box reports its new text a frame later, which searches again and drops a question asked before it;
+                -- a player picks the choice that asks only after typing
+                After(0.2, function() Window():AskConfirm(testQuestion, function() confirm.Yes = true end) end)
             end,
             Check = function()
                 local frame = Window()

@@ -544,7 +544,7 @@ function Krowi_OptionsSearchHeadingRowMixin:OnLeave()
     self.MouseoverOverlay:Hide()
 end
 
--- [[ A link: a section's explanation found by the search, a New section, an overview entry ]] --
+-- [[ A link: a New section, an overview entry ]] --
 Krowi_OptionsLinkRowMixin = {}
 
 function Krowi_OptionsLinkRowMixin:Init(element)
