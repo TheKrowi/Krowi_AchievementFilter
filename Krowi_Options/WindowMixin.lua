@@ -423,8 +423,11 @@ function Krowi_OptionsWindowMixin:ApplyStrings()
     self.SearchBox.Instructions:SetText(strings.Search or "")
     self.SearchAllLabel:SetText(strings.SearchAll or "")
     self.SearchAll:SetHitRectInsets(0, -(self.SearchAllLabel:GetStringWidth() + 4), 0, 0) -- the label ticks it too
+    -- An addon that names no broad search does not offer it on its tab
     self.SearchBroadLabel:SetText(strings.SearchBroad or "")
     self.SearchBroad:SetHitRectInsets(0, -(self.SearchBroadLabel:GetStringWidth() + 4), 0, 0)
+    self.SearchBroad:SetShown(strings.SearchBroad ~= nil)
+    self.SearchBroadLabel:SetShown(strings.SearchBroad ~= nil)
     -- The collapsed pane's strip: the chevron, then the pane's name down the strip; the whole strip brings the pane back.
     -- A turned text turns about its centre, so it hangs below the chevron by half its length; its letters sit off the
     -- line's middle, so it moves right to stand under the chevron (measured in game, 2026-10-30)
@@ -773,10 +776,11 @@ end
 
 -- The rows refresh in place while the page keeps the same rows: rebuilding it re-initialises every row, which ends the
 -- drag of a slider that changes its option on every step. Only a change that shows or hides rows rebuilds the page; the
--- search results are found again for that.
+-- search results are found again for that, except after a slider, whose value shows or hides no row, so a drag does not
+-- search every section on each step.
 function Krowi_OptionsWindowMixin:OnOptionChanged(option)
     if option and option.GetNeedsReload and option:GetNeedsReload() then self.ReloadPending = true end
-    if not self.SectionId then
+    if not self.SectionId or self.Searching and option and option.Type == "range" then
         self:Refresh()
         return
     end
@@ -852,18 +856,19 @@ end
 function Krowi_OptionsWindowMixin:SearchElements(text)
     local everyTab = self.SearchEveryTab and #lib.Tabs > 1
     local list = {}
-    for _, group in ipairs(lib.Search(text, everyTab, self.Tab, self.BroadSearch)) do
+    local broad = self.BroadSearch and self.Strings.SearchBroad ~= nil
+    for _, group in ipairs(lib.Search(text, everyTab, self.Tab, broad)) do
         local tab = group.Tab
         if everyTab then list[#list + 1] = { Kind = "Header", Text = tab.Config.TabName } end
         for _, section in ipairs(group.Sections) do
             local id = section.Id
             local function Open() self:ShowTab(tab, id) end
             list[#list + 1] = { Kind = "SearchHeading", Text = section.Name, OnClick = Open }
-            local heading = ""
+            local heading = 0
             for _, row in ipairs(section.Rows) do
-                if row.Heading ~= heading then
-                    heading = row.Heading
-                    if heading ~= "" then list[#list + 1] = { Kind = "SubHeading", Text = heading } end
+                if row.HeadingAt ~= heading then
+                    heading = row.HeadingAt
+                    if row.Heading ~= "" then list[#list + 1] = { Kind = "SubHeading", Text = row.Heading } end
                 end
                 list[#list + 1] = row
             end
@@ -961,9 +966,8 @@ function Krowi_OptionsWindowMixin:ShowSearchHelp()
     local strings = self.Strings
     self:SetKicker(strings.HowItWorks)
     local blocks = { TextBlock(strings.Search, "GameFontNormalLarge", 10) }
-    for _, text in ipairs({ strings.SearchHelp, strings.SearchHelpBroad }) do
-        blocks[#blocks + 1] = TextBlock(text, "GameFontHighlightSmall", 8)
-    end
+    if strings.SearchHelp then blocks[#blocks + 1] = TextBlock(strings.SearchHelp, "GameFontHighlightSmall", 8) end
+    if strings.SearchHelpBroad and strings.SearchBroad then blocks[#blocks + 1] = TextBlock(strings.SearchHelpBroad, "GameFontHighlightSmall", 8) end
     self:FillHelp(blocks)
     self:UpdateShowMe()
 end

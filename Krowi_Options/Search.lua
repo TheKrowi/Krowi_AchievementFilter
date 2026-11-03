@@ -104,6 +104,13 @@ local function Match(texts, words)
     if count > 0 then return count, longest end
 end
 
+-- A description or an explanation is prose, where a common word stands everywhere: it matches only when it holds every
+-- word typed
+local function MatchAll(texts, words)
+    local count, longest = Match(texts, words)
+    if count and count >= math.max(#words - 1, 1) then return count, longest end
+end
+
 -- One number per hit: a name before a description, then more words, then the longest
 local function Score(inName, count, longest)
     return (inName and 1000000 or 0) + count * 1000 + longest
@@ -121,27 +128,40 @@ local function ByScore(a, b)
     return a.Index < b.Index
 end
 
--- A section's found rows. A row hangs under the nearest row above it with a smaller indent (a check box's child, a
--- family's member under its heading) or, in a grid, under the column titles; it is found with that row above it, as the
--- game brings a setting's parent (OnSearchTextChanged), and a found family heading brings its members. Rows sharing a
--- root stay together in the page's order, and the blocks gather under the heading they stand under on the page.
+-- A section's found rows. A found row brings the row it hangs under, above it, as the game brings a setting's parent
+-- (OnSearchTextChanged): an option its parent's (option:GetParent(), also across a heading), a family's indented member
+-- its family heading, any other indented option the nearest row above it with a smaller indent, a grid row the column
+-- titles. A found All / None heading brings every option it switches. Rows sharing a root stay together in the page's
+-- order, and these blocks gather under the heading they stand under on the page.
 local function SearchSection(tab, id, words, broad)
     local config = tab.Config
     local elements = lib.Flatten(config.GetElements(id) or {})
-    local heading = ""
-    local headingAt, parentAt, rootAt = {}, {}, {}
-    local atIndent, gridHeader = {}, nil
-    local blocks, blockOf = {}, {}
+    local heading, headingIndex = "", 0
+    local headingAt, groupAt, parentAt, rootAt = {}, {}, {}, {}
+    local rowOf, subOf, atIndent, gridHeader = {}, {}, {}, nil -- an option's row, a member's All / None heading
     for i, element in ipairs(elements) do
         local kind = element.Kind
-        if kind == "Header" then
-            heading, atIndent, gridHeader = element.Text or "", {}, nil
+        if kind == "Header" or kind == "SubHeading" then
+            heading, headingIndex = element.Text or "", i
+            if kind == "Header" then atIndent, gridHeader = {}, nil end
         end
-        headingAt[i] = heading
+        headingAt[i], groupAt[i] = heading, headingIndex
         local parent
         if kind == "Option" or kind == "Sub" then
-            local indent = kind == "Option" and element.Option.Indent or 0
-            parent = indent > 0 and atIndent[indent - 1] or nil
+            local option = element.Option
+            local indent = option and option.Indent or 0
+            if option then
+                rowOf[option] = i
+                -- A parent that is hidden leaves its child alone rather than under the row above it
+                local parentOption = option.GetParent and option:GetParent()
+                if parentOption then
+                    parent = rowOf[parentOption]
+                elseif indent > 0 then
+                    parent = subOf[option] or atIndent[indent - 1]
+                end
+            else
+                for _, member in ipairs(element.Members or {}) do subOf[member] = i end
+            end
             for level in next, atIndent do
                 if level >= indent then atIndent[level] = nil end
             end
@@ -153,59 +173,64 @@ local function SearchSection(tab, id, words, broad)
         end
         parentAt[i] = parent
         rootAt[i] = parent and rootAt[parent] or i
+    end
+    local blocks, blockOf = {}, {}
+    local function Take(i, score)
+        local root = rootAt[i]
+        local block = blockOf[root]
+        if not block then
+            block = { Index = root, Score = 0, Rows = {} }
+            blockOf[root] = block
+            blocks[#blocks + 1] = block
+        end
+        block.Score = math.max(block.Score, score)
+        while i do
+            block.Rows[i] = true
+            i = parentAt[i]
+        end
+        return block
+    end
+    for i, element in ipairs(elements) do
         local names = Names(element)
         if names then
             local count, longest = Match(names, words)
             local inName = count ~= nil
-            if not count and broad then count, longest = Match(Descriptions(element), words) end
+            if not count and broad then count, longest = MatchAll(Descriptions(element), words) end
             if count then
-                local root = rootAt[i]
-                local block = blockOf[root]
-                if not block then
-                    block = { Index = root, Score = 0, Rows = {} }
-                    blockOf[root] = block
-                    blocks[#blocks + 1] = block
+                local block = Take(i, Score(inName, count, longest))
+                if element.Kind == "Sub" then
+                    for _, member in ipairs(element.Members or {}) do
+                        local row = rowOf[member]
+                        if row then block.Rows[row] = true end
+                    end
                 end
-                block.Score = math.max(block.Score, Score(inName, count, longest))
-                local row = i
-                while row do
-                    block.Rows[row] = true
-                    row = parentAt[row]
-                end
-                if kind == "Sub" then block.Family = true end
-            end
-        end
-    end
-    -- A found family heading brings every member
-    for _, block in ipairs(blocks) do
-        if block.Family then
-            for i in ipairs(elements) do
-                if rootAt[i] == block.Index then block.Rows[i] = true end
             end
         end
     end
     -- Headings by their best block, blocks within a heading by score, rows within a block in the page's order
     local headings, headingOf = {}, {}
     for _, block in ipairs(blocks) do
-        local text = headingAt[block.Index]
-        local group = headingOf[text]
+        local at = groupAt[block.Index]
+        local group = headingOf[at]
         if not group then
             group = { Index = block.Index, Score = 0, Blocks = {} }
-            headingOf[text] = group
+            headingOf[at] = group
             headings[#headings + 1] = group
         end
         group.Score = math.max(group.Score, block.Score)
         group.Blocks[#group.Blocks + 1] = block
     end
     table.sort(headings, ByScore)
-    local rows, best = {}, nil
+    -- A row once, in its best block: an option found itself and brought by its All / None heading too
+    local rows, best, shown = {}, nil, {}
     for _, group in ipairs(headings) do
         best = best or group.Score
         table.sort(group.Blocks, ByScore)
         for _, block in ipairs(group.Blocks) do
             for i, element in ipairs(elements) do
-                if block.Rows[i] then
-                    rows[#rows + 1] = Copy(element, { Tab = tab, SectionId = id, Heading = headingAt[i] })
+                if block.Rows[i] and not shown[i] then
+                    shown[i] = true
+                    rows[#rows + 1] = Copy(element, { Tab = tab, SectionId = id, Heading = headingAt[i], HeadingAt = groupAt[i] })
                 end
             end
         end
@@ -213,7 +238,7 @@ local function SearchSection(tab, id, words, broad)
     local explained = false
     local help = broad and config.GetHelp and config.GetHelp(id)
     for _, block in ipairs(help and help.Blocks or {}) do
-        if Match(Texts(block.Text, block.Heading, block.Term), words) then
+        if MatchAll(Texts(block.Text, block.Heading, block.Term), words) then
             explained = true
             break
         end
@@ -225,7 +250,8 @@ end
 
 -- A search of the current tab, or of every tab: { { Tab, Sections = { { Id, Name, Rows, Explained } } } } in tab order,
 -- only the tabs that found something; each tab's sections by their best row. A row is a copy of its element with Tab,
--- SectionId and Heading added, so the window can tell whose it is. broad: descriptions and explanations too.
+-- SectionId, Heading and HeadingAt (which of the section's headings) added, so the window can tell whose it is and what
+-- it stands under. broad: descriptions and explanations too.
 function lib.Search(text, all, current, broad)
     local whole = Plain(text or ""):gsub("^%s+", ""):gsub("%s+$", "")
     if whole == "" then return {} end

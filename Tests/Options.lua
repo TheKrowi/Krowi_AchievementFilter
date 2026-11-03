@@ -437,6 +437,41 @@ options.Scenarios = {
             .. " Tooltips>Achievement points tooltip>Sort priority 3; Tooltips>Achievement points tooltip>Reverse Sort;"
             .. " Tooltips>Achievement points tooltip>Sort priority 4; Tooltips>Achievement points tooltip>Reverse Sort;"
             .. " Tooltips>Achievement points tooltip>Sort priority 5; Tooltips>Achievement points tooltip>Reverse Sort"},
+    -- A child option comes with its parent also when a heading stands between them on the page (Show criteria if)
+    {Name = "search-parent-heading",
+        Observe = function()
+            local rows = {}
+            for _, row in ipairs(SearchRows(addon.L["Achievement is Completed"])) do
+                if row:find("^" .. addon.L["Criteria on units"] .. ">") then rows[#rows + 1] = row end
+            end
+            return table.concat(rows, "; ")
+        end,
+        -- before the review (indent alone): the three without Show Criteria, whose heading came between
+        Recorded = "Criteria on units>Unit tooltips>Show Criteria; Criteria on units>Show criteria if>Achievement is Completed;"
+            .. " Criteria on units>Show criteria if>Achievement was Not Earned by Me; Criteria on units>Show criteria if>Criteria is Completed",
+        Target = "Criteria on units>Unit tooltips>Show Criteria; Criteria on units>Show criteria if>Achievement is Completed;"
+            .. " Criteria on units>Show criteria if>Achievement was Not Earned by Me; Criteria on units>Show criteria if>Criteria is Completed"},
+    -- A found All / None heading brings every option it switches, so its buttons never switch rows the player cannot see
+    {Name = "search-all-none",
+        Observe = function()
+            local source = addon.Options.Window.Source
+            local members = 0
+            for _, element in ipairs(source.Elements(source.Section("eventlist"))) do
+                if element.Kind == "Sub" and element.Text == addon.L["All holidays"] then members = #element.Members end
+            end
+            local rows = SearchRows(addon.L["All holidays"])
+            local under = 0 -- the rows under its heading; "all" finds other groups too
+            local heading = rows[1] and rows[1]:match("^(.*>)[^>]+$")
+            for _, row in ipairs(rows) do
+                if heading and row:sub(1, #heading) == heading then under = under + 1 end
+            end
+            return ("%s with %d of its %d options"):format(tostring(rows[1]), under - 1, members)
+        end,
+        -- before the review: none of them, their All and None switching rows out of sight
+        Recorded = "Reminder events>Holidays>All holidays with 13 of its 13 options",
+        Target = "Reminder events>Holidays>All holidays with 13 of its 13 options",
+        RecordedClassic = "Reminder events>Holidays>All holidays with 12 of its 12 options",
+        TargetClassic = "Reminder events>Holidays>All holidays with 12 of its 12 options"},
     -- Each word counts, a row with more of them first: "Show in Tooltip" before "Skin Tooltip" (the game puts it after)
     {Name = "search-order",
         Observe = function()

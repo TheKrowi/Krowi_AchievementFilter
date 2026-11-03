@@ -57,6 +57,18 @@ Krowi chose the game's search for the options window (new in 105.0, unreleased):
 - **Show me** while searching: `self.Help = nil` releases a secure overlay (`UpdateShowMe`), as on the overview.
 - **The headless window**: the drawing is checked only in game; the search engine fully headless.
 
+## Where the build departed from the plan
+After the review passes (`/code-review` at medium, `krowi:taint-reviewer`: no taint or secret-value finding):
+- **Parents**: an option names its own (`GetParent`, new and optional in the option interface; KAF's from `Parent` in `Map.lua`), so "Show criteria if" finds Show Criteria across the heading between them. The indent rule stays for rows that name none (Reverse Sort under Sort priority N). A hidden parent leaves its child alone.
+- **All / None headings** (Holidays, Other calendar events): their options are not indented, so a found heading brings them through its `Members`, and each row shows once, in its best place. Before, All and None in the results switched about 20 options out of sight.
+- **Descriptions and explanations need every word typed**; names keep the game's any-word rule. With any word, "show tooltip" put a "How it works" link on nearly every section.
+- **Rows within a block in the page's order**, not by score: a parent and its children read as on the page.
+- **Headings** are grouped by their place, not their text, and a sub-heading counts as one.
+- **A slider's change in the results** refreshes the rows without searching again: its value shows or hides no row, and a drag fired a search of every section on each step.
+- **A tab whose addon names no `SearchBroad`** hides the switch and searches names only.
+- Deferred to Krowi_Options' move into Krowi_Libraries: `Search.lua`, like `WindowMixin.lua` and `RowMixins.lua`, runs even when a newer copy of the library is loaded.
+- New scenarios `search-parent-heading` and `search-all-none`.
+
 ## Proof
 - Headless `run-tests.lua options` (Retail and Classic): every scenario PASS, the new ones met.
 - `Check-Repo.ps1` clean; `krowi:taint-reviewer` and `/code-review` findings fixed or listed in the PR.

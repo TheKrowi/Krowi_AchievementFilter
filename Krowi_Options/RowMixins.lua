@@ -7,8 +7,9 @@
 
 -- The rows of the options page. An element (see WindowMixin.lua) picks its row; an option row reads the option's
 -- interface: GetLabel, GetDescription, Type, Get, Set, IsDisabled, GetValues, GetRange, GetButtonText,
--- GetNeedsReload, IsChanged, Reset, Placeholder, Confirm (a select's question before a choice is made), and for a key
--- row Slots (two options holding a key each). A toggle's element may carry With, an execute or range option drawn 5
+-- GetNeedsReload, IsChanged, Reset, Placeholder, Confirm (a select's question before a choice is made), for a key row
+-- Slots (two options holding a key each), and optionally GetParent (the option it hangs under, which the search finds
+-- with it). A toggle's element may carry With, an execute or range option drawn 5
 -- after the check box as a 200 button or a 214 slider, as the game's check box with a button or a slider
 -- (Blizzard_SettingControls.lua, SettingsCheckboxWithButtonControlMixin and SettingsCheckboxSliderControlMixin); the
 -- row's name and changed line are the toggle's and With's together. A slider explains itself under the mouse; a button

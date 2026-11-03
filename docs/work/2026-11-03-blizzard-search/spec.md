@@ -33,7 +33,7 @@ The game's search is `SettingsPanelMixin:FindInitializersMatchingSearchText` and
 
 **The broad search** (off by default)
 18. A check box in the window's bottom row turns it on, kept with the window's shared state like "Search all tabs", for every addon in the window.
-19. On, a row is also found by its description, and a section by its explanation (the help pane's text), which shows as one line in the results that opens the section.
+19. On, a row is also found by its description, and a section by its explanation (the help pane's text), which shows as one line in the results that opens the section. A description or explanation must hold every word typed (prose holds common words everywhere); names keep the game's any-word rule (from the review, see plan.md).
 
 ## Design
 **The search moves into Krowi_Options.** The window already has everything it needs from the consumer contract: `Config.Groups` and `Config.GetElements(id)` give every section's rows, an option answers `GetLabel`, `GetDescription`, `Type`, `GetButtonText` and `IsHidden`, and `Config.GetHelp(id)` gives the explanation. So `lib.Search` builds the results from those for every addon, and `Config.Search` and `model.Search` (`Options/Window/Model.lua:240-288`) go. Krowi_ExtendedVendorUI's tab, once it registers, then searches the same way without code of its own.
