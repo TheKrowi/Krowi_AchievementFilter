@@ -8,6 +8,9 @@ local L = addon.L
 -- carry the option drawn after its check box, as the game's Tutorials and Mouse Sensitivity rows: With on a Path entry
 -- (an execute's or a range's path), Pairs = { [toggle key] = key } on a Group entry.
 -- The options suite (Tests/Options.lua) fails when an option is unmapped or mapped twice.
+-- A section's Card is the line under its name on Overview's card, CardIcon the game icon that card shows while the
+-- section's help has no picture, and CardPart the part of the picture the card shows when its top left shows nothing
+-- useful ({ X, Y } from 0 to 1, Krowi_Options' CardCrop) (docs/work/2026-11-02-overview-cards).
 addon.Options.Window = addon.Options.Window or {}
 addon.Options.Window.Map = {
     Groups = {
@@ -16,13 +19,13 @@ addon.Options.Window.Map = {
         { Name = L["This addon"], Sections = { "keys", "plugins", "profiles", "advanced", "about" } },
     },
     Sections = {
-        { Id = "tabs", Name = L["Tabs"], Groups = {
+        { Id = "tabs", Name = L["Tabs"], Card = L["Card Tabs"], Groups = {
             { Header = L["Tabs and their order"], Note = L["Uncheck a tab to hide it. The arrows move it in the tab strip."], Kind = "TabList", Order = "Layout.args.Tabs.args.Order.args.Order", Show = "Layout.args.Tabs.args.Show.args.Show" },
             { Header = L["Tab strip"], Entries = {
                 { Path = "Layout.args.Tabs.args.General.args.General.args.Spacing" },
             } },
         } },
-        { Id = "window", Name = L["Window"], Groups = {
+        { Id = "window", Name = L["Window"], Card = L["Card Window"], Groups = {
             { Header = L["Size"], Entries = {
                 { Group = "Layout.args.Window.args.Offsets" },
             } },
@@ -51,7 +54,7 @@ addon.Options.Window.Map = {
                 { Path = "Layout.args.DataManager.args.MouseWheelPanScalar.args.MouseWheelPanScalar" },
             } },
         } },
-        { Id = "categories", Name = L["Categories"], Groups = {
+        { Id = "categories", Name = L["Categories"], Card = L["Card Categories"], Groups = {
             { Header = L["Category list"], Entries = {
                 { Path = "Layout.args.Categories.args.Indentation.args.Indentation" },
                 { Path = "Layout.args.Categories.args.Merge.args.MergeSmallCategoriesThreshold" },
@@ -78,13 +81,13 @@ addon.Options.Window.Map = {
                 { Group = "Layout.args.AdjustableCategories.args.TrackingAchievements", Header = "" },
             } },
         } },
-        { Id = "summary", Name = L["Summary"], Groups = {
+        { Id = "summary", Name = L["Summary"], Card = L["Card Summary"], Groups = {
             { Header = L["Summary"], Entries = {
                 { Group = "Layout.args.Summary.args.Summary" },
                 { Path = "Layout.args.Summary.args.MouseWheelPanScalar.args.MouseWheelPanScalar" },
             } },
         } },
-        { Id = "achievements", Name = L["Achievements"], Groups = {
+        { Id = "achievements", Name = L["Achievements"], Card = L["Card Achievements"], Groups = {
             { Header = L["Style and icons"], Entries = {
                 { Group = "Layout.args.Achievements.args.Style.args.Style", Header = "" },
             } },
@@ -95,12 +98,12 @@ addon.Options.Window.Map = {
                 { Path = "Layout.args.Achievements.args.Style.args.MouseWheelPanScalar.args.MouseWheelPanScalar" },
             } },
         } },
-        { Id = "filters", Name = L["Filtering and sorting"], Groups = {
+        { Id = "filters", Name = L["Filtering and sorting"], Card = L["Card Filters"], Groups = {
             { Header = L["Filters"], Entries = {
                 { Path = "General.args.Filters.args.ResetFilters.args.ResetFactionFilter" },
             } },
         } },
-        { Id = "search", Name = L["Search"], Groups = {
+        { Id = "search", Name = L["Search"], Card = L["Card Search"], Groups = {
             { Header = L["Search field"], Entries = {
                 { Group = "Layout.args.Search.args.SearchField" },
             } },
@@ -111,7 +114,7 @@ addon.Options.Window.Map = {
                 { Path = "Layout.args.Search.args.MouseWheelPanScalar.args.MouseWheelPanScalar" },
             } },
         } },
-        { Id = "tooltips", Name = L["Tooltips"], Groups = {
+        { Id = "tooltips", Name = L["Tooltips"], Card = L["Card Tooltips"], Groups = {
             { Header = L["Earned By"], Entries = {
                 { Group = "Layout.args.Achievements.args.Tooltip.args.Tooltip", Header = "EarnedBy" },
             } },
@@ -144,7 +147,7 @@ addon.Options.Window.Map = {
                 { Path = "Layout.args.Header.args.Tooltip.args.SortPriority.args.Reverse5", Label = L["Reverse Sort"], Indent = 1 },
             } },
         } },
-        { Id = "rightclick", Name = L["Right-click menu"], Groups = {
+        { Id = "rightclick", Name = L["Right-click menu"], Card = L["Card Right Click"], Groups = {
             { Header = L["Button"], Entries = {
                 { Group = "Layout.args.RightClickMenu.args.Button" },
             } },
@@ -152,7 +155,7 @@ addon.Options.Window.Map = {
                 { Group = "Layout.args.RightClickMenu.args.Wowhead" },
             } },
         } },
-        { Id = "popout", Name = L["Pop Out"], Groups = {
+        { Id = "popout", Name = L["Pop Out"], Card = L["Card Popout"], Groups = {
             { Header = L["Pop Outs"], Entries = {
                 { Group = "Layout.args.Popout.args.General", Pairs = { CloseOnEarn = "CloseOnEarnDelay", EnableSnapping = "SnapDistance" } },
             } },
@@ -163,24 +166,24 @@ addon.Options.Window.Map = {
                 { Group = "Layout.args.Popout.args.Appearance" },
             } },
         } },
-        { Id = "rewards", Name = L["Reward preview"], Groups = {
+        { Id = "rewards", Name = L["Reward preview"], Card = L["Card Rewards"], CardPart = { X = 0, Y = 0.74 }, Groups = {
             { Header = L["Reward preview"], Entries = {
                 { Group = "Layout.args.Achievements.args.Style.args.Style", Header = "RewardPreview" },
             } },
         } },
-        { Id = "guides", Name = L["Achievement guides"], ChangedIn = "104.0", Groups = {
+        { Id = "guides", Name = L["Achievement guides"], Card = L["Card Guides"], CardIcon = "Interface\\Icons\\INV_Misc_Map_01", ChangedIn = "104.0", Groups = {
             { Header = L["Where guides show"], Entries = {
                 { Group = "Layout.args.Achievements.args.Style.args.Style", Header = "Guide" },
             } },
         } },
-        { Id = "calendar", Name = L["Calendar"], Groups = {
+        { Id = "calendar", Name = L["Calendar"], Card = L["Card Calendar"], Groups = {
             { Header = L["Calendar"], Entries = {
                 { Group = "Layout.args.Calendar.args.General" },
                 { Group = "Layout.args.Calendar.args.Weekdays" },
                 { Group = "Layout.args.Calendar.args.SideFrameMouseWheelPanScalar" },
             } },
         } },
-        { Id = "maps", Name = L["World map and minimap"], Groups = {
+        { Id = "maps", Name = L["World map and minimap"], Card = L["Card Maps"], Groups = {
             { Header = L["World map"], Entries = {
                 { Group = "General.args.Icon.args.WorldMap" },
             } },
@@ -188,7 +191,7 @@ addon.Options.Window.Map = {
                 { Group = "General.args.Icon.args.Minimap" },
             } },
         } },
-        { Id = "criteria", Name = L["Criteria on units"], Groups = {
+        { Id = "criteria", Name = L["Criteria on units"], Card = L["Card Criteria"], CardIcon = "Interface\\Icons\\INV_Misc_Spyglass_03", Groups = {
             { Header = L["Unit tooltips"], Entries = {
                 { Group = "Layout.args.Criteria.args.Tooltip", Header = "" },
             } },
@@ -196,7 +199,7 @@ addon.Options.Window.Map = {
                 { Group = "Layout.args.Criteria.args.Tooltip", Header = "ShowCriteriaIf", Parent = "Layout.args.Criteria.args.Tooltip.args.ShowCriteria" },
             } },
         } },
-        { Id = "events", Name = L["Event reminders"], Groups = {
+        { Id = "events", Name = L["Event reminders"], Card = L["Card Events"], Groups = {
             { Header = L["Reminders"], Entries = {
                 { Group = "EventReminders.args.General.args.Style" },
             } },
@@ -236,7 +239,7 @@ addon.Options.Window.Map = {
                 { Group = "EventReminders.args.DateTimeFormat.args.StartTimeAndEndTime" },
             } },
         } },
-        { Id = "eventlist", Name = L["Reminder events"], ChangedIn = "104.0", Groups = {
+        { Id = "eventlist", Name = L["Reminder events"], Card = L["Card Eventlist"], CardIcon = "Interface\\Icons\\INV_Misc_Note_01", ChangedIn = "104.0", Groups = {
             { Header = L["Holidays"], AllNone = L["All holidays"], Entries = {
                 { Group = "EventReminders.args.CalendarEvents.args.Holidays" },
             } },
@@ -262,7 +265,7 @@ addon.Options.Window.Map = {
                 { Families = "EventReminders.args.WorldEvents.args.EXPANSION_NAME6", Retail = true },
             } },
         } },
-        { Id = "keys", Name = L["Keys and clicks"], Groups = {
+        { Id = "keys", Name = L["Keys and clicks"], Card = L["Card Keys"], CardIcon = "Interface\\Icons\\INV_Misc_Key_03", Groups = {
             { Header = L["Click modifiers"], Entries = {
                 { Group = "General.args.KeyBinding.args.General.args.Modifiers" },
             } },
@@ -276,14 +279,14 @@ addon.Options.Window.Map = {
                 { Group = "General.args.KeyBinding.args.Keybindings.args.Custom" },
             } },
         } },
-        { Id = "plugins", Name = L["Other addons"], Groups = {
+        { Id = "plugins", Name = L["Other addons"], Card = L["Card Plugins"], CardIcon = "Interface\\Icons\\INV_Misc_Gear_01", Groups = {
             { Kind = "EachChild", Group = "Plugins" },
         } },
-        { Id = "profiles", Name = addon.Util.L["Profiles"], Groups = {
+        { Id = "profiles", Name = addon.Util.L["Profiles"], Card = L["Card Profiles"], CardIcon = "Interface\\Icons\\INV_Misc_Book_09", Groups = {
             { Header = L["Settings profile"], Kind = "Profiles", Database = "Options" },
             { Header = L["Filters profile"], Kind = "Profiles", Database = "Filters" },
         } },
-        { Id = "advanced", Name = L["Advanced"], Groups = {
+        { Id = "advanced", Name = L["Advanced"], Card = L["Card Advanced"], CardIcon = "Interface\\Icons\\INV_Misc_Wrench_01", Groups = {
             { Header = L["Experimental"], Entries = {
                 { Group = "General.args.Experimental.args.Experimental" },
             } },
@@ -303,7 +306,7 @@ addon.Options.Window.Map = {
                 { Path = "General.args.Debug.args.Debug.args.MapVerifier", ShowIf = "General.args.Debug.args.Debug.args.EnableDebugInfo" },
             } },
         } },
-        { Id = "about", Name = L["About"], Groups = {
+        { Id = "about", Name = L["About"], Card = L["Card About"], CardIcon = "Interface\\Icons\\Achievement_Dungeon_Heroic_GloryoftheRaider", Groups = {
             { Header = L["Links"], Entries = {
                 { Path = "General.args.Info.args.General.args.Discord", Button = addon.Util.L["Discord"] },
                 { Path = "General.args.Info.args.Sources.args.CurseForge", Button = addon.Util.L["CurseForge"] },

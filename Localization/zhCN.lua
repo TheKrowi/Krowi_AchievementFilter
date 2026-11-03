@@ -7,6 +7,28 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-31 22-33-16 ]] --
+L["Card Tabs"] = "显示哪些标签，以及它们的顺序。"
+L["Card Window"] = "大小、位置以及首先打开的内容。"
+L["Card Categories"] = "资料片、区域和特殊类别。"
+L["Card Summary"] = "最近获得的成就和各类别进度。"
+L["Card Achievements"] = "紧凑成就、图标和颜色。"
+L["Card Filters"] = "每个标签显示什么，以及排列顺序。"
+L["Card Search"] = "按名称、描述或ID查找成就。"
+L["Card Tooltips"] = "获得者、奖励、成就链和进度。"
+L["Card Right Click"] = "Wowhead链接、前往和已关注。"
+L["Card Popout"] = "在独立小窗口中显示成就。"
+L["Card Rewards"] = "在获得之前预览奖励。"
+L["Card Guides"] = "带地图标记的分步指南。"
+L["Card Calendar"] = "按日期显示你获得的成就。"
+L["Card Maps"] = "从世界地图查看区域成就。"
+L["Card Criteria"] = "单位提示信息中的成就要求。"
+L["Card Events"] = "节日和世界事件的弹出提醒。"
+L["Card Eventlist"] = "选择需要提醒的事件。"
+L["Card Keys"] = "快捷键和点击修饰键。"
+L["Card Plugins"] = "针对其他插件的修复和美化外观。"
+L["Card Profiles"] = "在角色之间共享设置。"
+L["Card Advanced"] = "测试和错误反馈。"
+L["Card About"] = "版本、链接和鸣谢。"
 L["Help Overview Changed"] = "选项前的金色竖线表示你更改过它。将鼠标悬停在选项上，点击出现的箭头即可将其还原。"
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true

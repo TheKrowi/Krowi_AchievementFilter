@@ -158,3 +158,9 @@ Code review findings, deferred because none is Important and a fix would need th
 
 - **A field on Blizzard's achievement frame** (taint review, older than this work): `Gui/Gui.lua:117` sets `AchievementFrame.ResetPosition`, which the window's Reset position button calls (`Options/Layout.lua:697`). That breaks the rule against fields on Blizzard's frames. The fix: put `ResetAchievementWindowPosition` on `addon.Gui` and call it from the option, as its own work item.
 - **The saved window width is written and never read** (code review): `lib.SetShared("Size", ...)` still stores the width, which the window now takes from the game's. Harmless; drop it with the next change to the saved shape. The removed `HeadingLines` and `ControlsFromCentre` keys were never released, so only test installs hold them.
+
+## From the Overview cards (2026-11-02, docs/work/2026-11-02-overview-cards)
+
+Code review findings, deferred because Krowi found the cards right in game (2026-11-03) and no hitch showed.
+- **Card thumbnails:** Overview loads the 15 sections' full help pictures (11.5 MB of TGA) for crops 200 x 86, and Reward preview's `CardPart` (Y = 0.74, `Options/Window/Map.lua`) fits only today's `RewardPreview.tga`: a remade picture can put the zoom buttons or the title on the card, and no check notices. Small copies made for the cards by `Make-HelpPictures.ps1` fix both, and the `CardPart` with them.
+- **The card's sizes stand twice** (`Krowi_Options/Rows.xml` and `RowMixins.lua`): the picture area's 86, the line's offset and the NEW label's offsets in the XML, `pictureHeight`, `lineGap`, `cardTextInset` and `nameTop` in Lua. A change to one side stretches the pictures or moves NEW off the name line. The fix: `Krowi_OptionsCardMixin:Init` sets those sizes and anchors from the Lua values.

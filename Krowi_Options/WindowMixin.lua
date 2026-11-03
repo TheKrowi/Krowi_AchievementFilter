@@ -122,6 +122,7 @@ local rowTemplates = {
     GridRow = { "Krowi_OptionsGridRowTemplate", 28 },
     TabRow = { "Krowi_OptionsTabRowTemplate", 28 },
     Link = { "Krowi_OptionsLinkRowTemplate", 26 },
+    CardRow = { "Krowi_OptionsCardRowTemplate" },
 }
 
 -- leftPad and spacing as the game's category list uses them (Blizzard_CategoryList.lua): its scroll box reaches 50 px
@@ -224,6 +225,7 @@ function Krowi_OptionsWindowMixin:OnLoad()
     navBar:RegisterCallback(ManagedScrollBarVisibilityBehaviorMixin.Event.OnVisibilityChanged, function(_, shown) self:OnNavScrollBarShown(shown) end, self)
     InitList(self, self.PageScrollBox, self.PageScrollBar, rowTemplates, function(element)
         if element.Kind == "Note" then return self:MeasureText(element.Text, "GameFontDisable", self:PageWidth() - 32) + 8 end
+        if element.Kind == "CardRow" then return lib.CardRowHeight(self, element) end
         return rowTemplates[element.Kind][2]
     end, pageInsets.Pad)
     self.HelpBar = InitList(self, self.HelpScrollBox, self.HelpScrollBar, {
@@ -663,11 +665,22 @@ function Krowi_OptionsWindowMixin:RefreshNav()
     self.NavScrollBox:SetDataProvider(CreateDataProvider(list), ScrollBoxConstants.RetainScrollPosition)
 end
 
--- Grids and tab lists draw as several rows; hidden options are left out
+-- Grids, tab lists and cards draw as several rows; hidden options are left out
 local function Flatten(elements)
     local list = {}
     for _, element in ipairs(elements) do
-        if element.Kind == "Grid" then
+        if element.Kind == "Cards" then
+            local cards, columns = element.Cards, lib.CardColumns
+            for first = 1, #cards, columns do
+                local row, names = { Kind = "CardRow", Cards = {} }, {}
+                for i = first, math.min(first + columns - 1, #cards) do
+                    row.Cards[#row.Cards + 1] = cards[i]
+                    names[#names + 1] = cards[i].Name or ""
+                end
+                row.Key = table.concat(names, ",")
+                list[#list + 1] = row
+            end
+        elseif element.Kind == "Grid" then
             list[#list + 1] = { Kind = "GridHeader", Columns = element.Columns }
             for _, row in ipairs(element.Rows) do
                 list[#list + 1] = { Kind = "GridRow", Label = row.Label, Cells = row.Cells }
@@ -710,7 +723,7 @@ local function Signature(elements)
     for i, element in ipairs(elements) do
         local option = element.Option or (element.Item and element.Item.Show)
         local with = element.With and not element.With:IsHidden() and ("+" .. element.With.Id) or "" -- shown with its row
-        parts[i] = element.Kind .. ":" .. (option and ((option.Id or "") .. "|" .. option:GetLabel() .. with) or tostring(element.Text or element.Label or ""))
+        parts[i] = element.Kind .. ":" .. (option and ((option.Id or "") .. "|" .. option:GetLabel() .. with) or tostring(element.Key or element.Text or element.Label or ""))
     end
     return table.concat(parts, "\n")
 end

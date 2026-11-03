@@ -534,3 +534,115 @@ end
 function Krowi_OptionsLinkRowMixin:OnClick()
     if self.Element.OnClick then self.Element.OnClick() end
 end
+
+-- [[ Cards: a section's picture, name and line, three to a row (docs/work/2026-11-02-overview-cards) ]] --
+-- A card is { Picture, Width, Height, TexCoords, Part } (a picture as the help pane draws it, Part optional, see
+-- CardCrop) or { Icon }, and Name, Text, IsNew and OnClick. The cards and the 12 between them fill the row. A picture fills the 86 high area inside the card's 1 px
+-- border, cut to it from its top left, as the mockup's thumbnails were (object-fit: cover); the name and the line stand 10
+-- in from the card's sides. The fonts are Rows.xml's.
+lib.CardColumns = 3
+local cardGap, cardBorder, pictureHeight = 12, 1, 86
+local cardTextInset, nameTop, lineGap, cardBottom, newGap = 10, 8, 3, 10, 6
+local borderColor, borderHoverColor = { 1, 1, 1, 0.12 }, { 1, 0.82, 0, 0.6 }
+
+function lib.CardWidth(rowWidth)
+    return (rowWidth - (lib.CardColumns - 1) * cardGap) / lib.CardColumns
+end
+
+-- The texture coordinates that fill the picture area of a card this wide; TexCoords is the part of its power-of-two
+-- texture a picture fills (the help pictures' Pictures.lua). Part = { X, Y } moves the cut from the top left (0) to the
+-- bottom right (1) of what does not fit, as CSS's object-position does.
+function lib.CardCrop(picture, cardWidth)
+    local width = cardWidth - 2 * cardBorder
+    local scale = math.max(width / picture.Width, pictureHeight / picture.Height)
+    local coords, part = picture.TexCoords or { 0, 1, 0, 1 }, picture.Part or {}
+    local shownWidth, shownHeight = width / scale / picture.Width, pictureHeight / scale / picture.Height -- as parts of the picture
+    local left = (1 - shownWidth) * (part.X or 0)
+    local top = (1 - shownHeight) * (part.Y or 0)
+    local u, v = coords[2] - coords[1], coords[4] - coords[3]
+    return coords[1] + u * left, coords[1] + u * (left + shownWidth), coords[3] + v * top, coords[3] + v * (top + shownHeight)
+end
+
+-- A row as tall as its tallest card, and the gap under it
+function lib.CardRowHeight(window, element)
+    local lineWidth = lib.CardWidth(window:PageWidth()) - 2 * cardTextInset
+    local nameHeight, lineHeight = 0, 0
+    for _, card in ipairs(element.Cards) do
+        nameHeight = math.max(nameHeight, window:MeasureText(card.Name, "GameFontNormal", 1000))
+        if card.Text and card.Text ~= "" then lineHeight = math.max(lineHeight, window:MeasureText(card.Text, "GameFontDisableSmall", lineWidth)) end
+    end
+    return 2 * cardBorder + pictureHeight + nameTop + nameHeight + (lineHeight > 0 and lineGap + lineHeight or 0) + cardBottom + cardGap
+end
+
+Krowi_OptionsCardRowMixin = {}
+
+function Krowi_OptionsCardRowMixin:OnLoad()
+    self.Cards = {}
+    for i = 1, lib.CardColumns do
+        self.Cards[i] = CreateFrame("Button", nil, self, "Krowi_OptionsCardTemplate")
+    end
+end
+
+-- The row's own width is the page's, which the window knows before the view has sized the row
+function Krowi_OptionsCardRowMixin:Init(element, window)
+    self.Element = element
+    local width = lib.CardWidth(window:PageWidth())
+    for i, frame in ipairs(self.Cards) do
+        local card, x = element.Cards[i], (i - 1) * (width + cardGap)
+        frame:ClearAllPoints()
+        frame:SetPoint("TOPLEFT", x, 0)
+        frame:SetPoint("BOTTOMLEFT", x, cardGap)
+        frame:SetWidth(width)
+        frame:SetShown(card ~= nil)
+        if card then frame:Init(card, width) end
+    end
+end
+
+Krowi_OptionsCardMixin = {}
+
+function Krowi_OptionsCardMixin:Init(card, width)
+    self.Card = card
+    self.Picture:SetShown(card.Picture ~= nil)
+    self.Icon:SetShown(card.Picture == nil and card.Icon ~= nil)
+    if card.Picture then
+        self.Picture:SetTexture(card.Picture)
+        self.Picture:SetTexCoord(lib.CardCrop(card, width))
+    elseif card.Icon then
+        self.Icon:SetTexture(card.Icon)
+    end
+    -- NEW at the right end of the name's line, as the game's list sets it (Blizzard_CategoryList.lua, RefreshNewFeature);
+    -- the name stops before it
+    local newWidth = 0
+    local feature = self.NewFeature
+    if card.IsNew then
+        feature.BGLabel:SetPoint("RIGHT", 0.5, -0.5)
+        feature.Label:SetPoint("RIGHT", 0, 0)
+        newWidth = feature.Label:GetStringWidth() * feature:GetScale() + newGap
+    end
+    feature:SetShown(card.IsNew and true or false)
+    self.Name:ClearAllPoints()
+    self.Name:SetPoint("TOPLEFT", self.PictureArea, "BOTTOMLEFT", cardTextInset - cardBorder, -nameTop)
+    self.Name:SetPoint("TOPRIGHT", self.PictureArea, "BOTTOMRIGHT", -(cardTextInset - cardBorder) - newWidth, -nameTop)
+    self.Name:SetText(card.Name or "")
+    self.Line:SetWidth(width - 2 * cardTextInset)
+    self.Line:SetText(card.Text or "")
+    self:SetHovered(self:IsMouseOver())
+end
+
+function Krowi_OptionsCardMixin:SetHovered(hovered)
+    self.Hover:SetShown(hovered)
+    local color = hovered and borderHoverColor or borderColor
+    for _, edge in ipairs(self.Edges) do edge:SetColorTexture(unpack(color)) end
+end
+
+function Krowi_OptionsCardMixin:OnEnter()
+    self:SetHovered(true)
+end
+
+function Krowi_OptionsCardMixin:OnLeave()
+    self:SetHovered(false)
+end
+
+function Krowi_OptionsCardMixin:OnClick()
+    if self.Card.OnClick then self.Card.OnClick() end
+end

@@ -351,6 +351,20 @@ local function SceneStep(name, picture, scene, text, cut, check, more)
     }
 end
 
+-- An achievement option set for the pictures, back to the player's own value at the end of the run (RestoreOptions). The
+-- player's values wait in the saved variables, so a /reload mid-run still puts them back at login, with the profile
+-- they belong to.
+local function SetForRun(option, value)
+    KrowiAF_DebugTable = KrowiAF_DebugTable or {}
+    KrowiAF_DebugTable.PicturesRestore = KrowiAF_DebugTable.PicturesRestore or {}
+    KrowiAF_DebugTable.PicturesRestoreProfile = KrowiAF_DebugTable.PicturesRestoreProfile or addon.Options.db:GetCurrentProfile()
+    local saved, achievements = KrowiAF_DebugTable.PicturesRestore, addon.Options.db.profile.Achievements
+    if saved[option] == nil then
+        saved[option] = achievements[option]
+    end
+    achievements[option] = value
+end
+
 local function ColorStep(look, more)
     return {
         Name = "colors-" .. look:lower(),
@@ -359,15 +373,9 @@ local function ColorStep(look, more)
         More = more, -- the first row's top and the last row's bottom: the rows between them are stacked as they are
         Run = function()
             KrowiAF_SearchBoxFrame:SetText("") -- the list must show the category, not search results
-            -- green, yellow and red headers and the blue warband one are options; on for these rows, back at the end.
-            -- The player's own values wait in the saved variables, so a /reload mid-run still puts them back at login.
-            if not live.HeaderColors then
-                local achievements = addon.Options.db.profile.Achievements
-                live.HeaderColors = {TemporarilyObtainableHeaderColors = achievements.TemporarilyObtainableHeaderColors,
-                    WarbandHeaderColor = achievements.WarbandHeaderColor}
-                KrowiAF_DebugTable.PicturesRestore = live.HeaderColors
-                achievements.TemporarilyObtainableHeaderColors, achievements.WarbandHeaderColor = true, true
-            end
+            -- green, yellow and red headers and the blue warband one are options; on for these rows, back at the end
+            SetForRun("TemporarilyObtainableHeaderColors", true)
+            SetForRun("WarbandHeaderColor", true)
             live.Look = FindLook(look)
             if not live.Look then
                 return "no achievement with this look in the data"
@@ -642,6 +650,11 @@ steps = {
         Picture = "RewardPreview",
         Text = "the reward preview of a mount",
         Run = function()
+            -- at its default size, not the player's: the 2026-11-01 run's was 485 x 654, of which Overview's card showed
+            -- only the title bar (Krowi, 2026-11-02, docs/work/2026-11-02-overview-cards)
+            local defaults = addon.Options.Defaults.profile.Achievements
+            SetForRun("RewardPreviewDefaultWidth", defaults.RewardPreviewDefaultWidth)
+            SetForRun("RewardPreviewDefaultHeight", defaults.RewardPreviewDefaultHeight)
             Scenes().rewards(function(opened)
                 live.Scene = opened
             end)
@@ -799,18 +812,23 @@ function SetBanner(text)
     banner.Text:SetText(("Krowi's Achievement Filter pictures %d/%d: %s"):format(step and step.Number or live.StepIndex, #steps, text))
 end
 
--- The header colour options the colour rows switched on, back to the player's own values: at the end of the run, or at
--- the next login when a /reload cut the run short
-local function RestoreHeaderColors()
+-- The options the run set (SetForRun: the colour rows' header colours, the reward preview's size), back to the player's
+-- own values: at the end of the run, or at the next login when a /reload cut the run short. A login on another profile
+-- leaves them waiting, so it does not get the run's player's values.
+local function RestoreOptions()
     local saved = KrowiAF_DebugTable and KrowiAF_DebugTable.PicturesRestore
     if not saved then
+        return
+    end
+    local profile = KrowiAF_DebugTable.PicturesRestoreProfile
+    if profile and profile ~= addon.Options.db:GetCurrentProfile() then
         return
     end
     local achievements = addon.Options.db.profile.Achievements
     for option, value in next, saved do
         achievements[option] = value
     end
-    KrowiAF_DebugTable.PicturesRestore = nil
+    KrowiAF_DebugTable.PicturesRestore, KrowiAF_DebugTable.PicturesRestoreProfile = nil, nil
     if KrowiAF_SummaryFrame then
         KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow() -- as the options' own setters do (Options/Layout.lua)
     end
@@ -823,7 +841,7 @@ local restoreAtLogin = CreateFrame("Frame")
 restoreAtLogin:RegisterEvent("PLAYER_LOGIN")
 restoreAtLogin:SetScript("OnEvent", function(self)
     self:UnregisterAllEvents()
-    RestoreHeaderColors()
+    RestoreOptions()
 end)
 
 -- The run goes into the saved variables when it starts and each picture is added to it as it is taken, so a /reload
@@ -871,7 +889,7 @@ local function Restore()
     if live.DebugEnabled then
         addon.Diagnostics.DebugEnabled = live.DebugEnabled
     end
-    RestoreHeaderColors()
+    RestoreOptions()
 end
 
 -- What an earlier step left open, so it does not show through this step's picture
