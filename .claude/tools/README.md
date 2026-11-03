@@ -1,6 +1,6 @@
 # Offline tooling
 
-The tooling every Krowi repo shares lives in Krowi_ClaudeKit (`E:\World of Warcraft Addon Development\Krowi_ClaudeKit`, private): the vendored Lua 5.1.5, the guard and syntax hooks, `Deploy`, the game readers, the worktree tools, `Update-UiSource`, `Find-Symbol`, `Strip-Semicolons`, `Get-WowBuilds`, the deprecated-API classifier, and the release and work-item skills. Its `README.md` and `WowAddons.md` ("The kit's tools") describe them, and each script documents its parameters in its comment header. This repo enables the kit's `krowi` plugin and keeps here only what is its own, listed below.
+The tooling every Krowi repo shares lives in Krowi_ClaudeKit (`E:\World of Warcraft Addon Development\Krowi_ClaudeKit`, private): the vendored Lua 5.1.5, the guard and post-edit hooks, `Deploy`, `Get-RepoState`, the game readers, the worktree tools, `Update-UiSource`, `Find-Symbol`, `Strip-Semicolons`, `Get-WowBuilds`, the deprecated-API classifier, and the release and work-item skills. Its `README.md` and `WowAddons.md` ("The kit's tools") describe them, and each script documents its parameters in its comment header. This repo enables the kit's `krowi` plugin and keeps here only what is its own, listed below.
 
 Everything runs offline and installs nothing: PowerShell plus the kit's Lua. A new check that only this repo needs goes here and uses that interpreter; anything another repo could use goes into the kit. `.claude/` is excluded from the release zip (any dot-directory is) and from fsdeploy and `Deploy.ps1`, so nothing in it reaches players or the game folder.
 
@@ -65,7 +65,7 @@ The kit carries Lua 5.1.5 (`$kit\tools\lua51\lua.exe`, `luac.exe`), the exact in
 | `luarc` | the `.luarc.json` globals list against what the code reads and assigns |
 | `util-flags` | every `addon.Util.Is*` flag or check the addon reads is defined in `Libs/Krowi_Util` (`lib.IsX =` or `function lib.IsX(`); a missing one reads as nil and silently takes the other branch; always tree-wide; a warning and no check when the submodule is empty |
 | `luals` | the Lua language server's own diagnostics tree-wide; only on full runs or with `-Luals`, and only when the VS Code extensions `sumneko.lua` and `ketho.wow-api` are installed; pre-existing findings are warnings, findings in changed files errors |
-| `bom`, `line-endings` | no UTF-8 byte order mark, CRLF only (`.editorconfig`) |
+| `bom`, `line-endings` | no UTF-8 byte order mark, CRLF only (`.editorconfig`); in the addon files and in the `.md` and `.ps1` files outside `Libs/`, listed through git so the worktrees under `.claude/` stay out |
 | `semicolon` | no trailing semicolon on an added line (changed files only) |
 | `enus-autogen` | no locale string added above the `AUTOGENTOKEN` marker in any locale file |
 | `lookup-placeholders` | the `_*.ps1` skill scripts are committed with their placeholders empty (`$Ids`/`$Terms`/`$Names` = `@()`, `$Table`/`$Name` = `""`), `param()` defaults included |

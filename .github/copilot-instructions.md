@@ -234,7 +234,7 @@ Step-by-step guides in `docs/how-to/`: `add-patch-achievements.md`, `add-expansi
 
 These rules apply to **all** new and edited code. Follow them without being asked.
 
-- **Files**: UTF-8 without BOM, CRLF line endings, 4-space indent, no final newline (`.editorconfig`). The `bom` and `line-endings` lint rules enforce the first two.
+- **Files**: UTF-8 without BOM, CRLF line endings, 4-space indent, no final newline (`.editorconfig`). The `bom` and `line-endings` lint rules enforce the first two, in the `.md` and `.ps1` files too; in Claude Code the kit's post-edit hook `After-Edit.ps1` sets the endings, BOM and final newline after every Write.
 - **Editing tools**: edit with an editor, the Edit/Write tools, or PowerShell. Git Bash `sed -i` and `awk` on this machine rewrite the whole file with LF endings (and `awk` adds a final newline) even when the pattern does not match, so a "no-op" `sed` silently breaks the `line-endings` rule on every file it touched. Use Bash only for read-only work: grep, diff, git, running the vendored Lua. In Claude Code a pre-tool hook denies in-place `sed`/`awk`/`perl` and Bash redirects into repo files.
 
 ### File header
