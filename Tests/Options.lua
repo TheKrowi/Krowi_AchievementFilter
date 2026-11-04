@@ -582,6 +582,8 @@ end
 --     the results greys its child and the rows stay; search-confirm, -no: a question asked in the results, and No;
 --     search-showif: turning debug info off in the results takes its child rows away, on brings them back
 --   pane: the help pane collapses to its strip; close: the close button hides the window
+-- /kaftest options <what> runs only some steps (SelectSteps, at the end of the file): a step's name, the start of names
+-- (toggle, search, section), or a step's number in the banner, each with the steps it builds on and the open first.
 -- At the end every value the steps changed and the window's saved state (place, pane, search breadth, last section, the
 -- sections seen, which the walk marks) are put back, and the addon's Lua errors of the session are reported from BugGrabber. Combat
 -- stops the run; the values go back once it ends.
@@ -886,6 +888,7 @@ local function ChangeSteps(kind, optionId, Change)
         end
     }, {
         Name = kind,
+        Needs = kind .. "-shown",
         Text = ("a %s changed through its own control"):format(kind),
         Run = function()
             local row = option and RowOf(option)
@@ -914,6 +917,7 @@ local function ResetStep(kind, optionId, Change)
     local sectionId, option, arrow
     return {
         Name = kind .. "-reset",
+        Needs = kind .. "-shown",
         Text = ("the %s set back by its row's arrow"):format(kind),
         Run = function()
             sectionId, option = FindOption(optionId)
@@ -966,12 +970,13 @@ local function HelpHasReset()
 end
 
 -- The help pane follows a change made under the mouse (from the markers review, docs/work/2026-11-04-krowi-options-library):
--- on the row the reset step left at its default, the row's enter is played, the option changed through its check box and
--- set back, and after each change the pane is read for the arrow's line
+-- the row's enter is played, the option changed through its check box and set back, and before and after each change the
+-- pane is read for the arrow's line, which shows exactly while the option is changed
 local function HelpFollowsStep(optionId)
     local seen
     return {
         Name = "toggle-help-follows",
+        Needs = "toggle-shown",
         Text = "the help pane follows a change made under the mouse",
         Run = function()
             local _, option = FindOption(optionId)
@@ -981,7 +986,7 @@ local function HelpFollowsStep(optionId)
             end
             Remember(option)
             row:OnEnter()
-            seen = { Before = HelpHasReset() }
+            seen = { Was = option:IsChanged(), Before = HelpHasReset() }
             row.Toggle:Click()
             seen.Changed, seen.AfterChange = option:IsChanged(), HelpHasReset()
             row.Toggle:Click()
@@ -989,9 +994,9 @@ local function HelpFollowsStep(optionId)
             row:OnLeave()
         end,
         Check = function()
-            local follows = seen.AfterChange == seen.Changed and seen.AfterBack == seen.Back and seen.Before == false
-            Add(follows and "PASS" or "FAIL", ("%s: the Reset to Default line %s before, %s after the change (changed %s), %s after setting it back (changed %s)"):format(
-                optionId, seen.Before and "shows" or "is absent", seen.AfterChange and "shows" or "is absent", tostring(seen.Changed),
+            local follows = seen.Before == seen.Was and seen.AfterChange == seen.Changed and seen.AfterBack == seen.Back
+            Add(follows and "PASS" or "FAIL", ("%s: the Reset to Default line %s before (changed %s), %s after the change (changed %s), %s after setting it back (changed %s)"):format(
+                optionId, seen.Before and "shows" or "is absent", tostring(seen.Was), seen.AfterChange and "shows" or "is absent", tostring(seen.Changed),
                 seen.AfterBack and "shows" or "is absent", tostring(seen.Back)))
         end
     }
@@ -1142,6 +1147,7 @@ local function SearchSteps()
         },
         {
             Name = "search-letter",
+            Needs = "search",
             Text = "one letter already searches, as the game's",
             Run = function()
                 searchText = searchText:match("^[%z\1-\127\194-\244][\128-\191]*") -- one letter, also when it takes several bytes
@@ -1224,6 +1230,7 @@ local function SearchSteps()
         },
         {
             Name = "search-confirm",
+            Needs = "search",
             Text = "a question asked in the results shows in the header",
             Run = function()
                 Search(searchText)
@@ -1241,6 +1248,7 @@ local function SearchSteps()
         },
         {
             Name = "search-confirm-no",
+            Needs = "search-confirm",
             Text = "No ends the question and does nothing",
             Run = function()
                 Window().CancelButton:Click()
@@ -1544,7 +1552,7 @@ RunStep = function(n)
         return
     end
     live.StepIndex, live.StepName = n, step.Name
-    banner.Text:SetText(("Krowi's Achievement Filter test %d/%d: %s"):format(n, #steps, step.Text))
+    banner.Text:SetText(("Krowi's Achievement Filter test %d/%d: %s"):format(step.Number or n, live.AllSteps or #steps, step.Text))
     local ok, skip = pcall(step.Run)
     if not ok or (skip and step.Required) then
         Add("FAIL", ok and skip or ("test error: " .. tostring(skip)))
@@ -1602,8 +1610,59 @@ addon.Tests.Ready.options = function()
     return true
 end
 
+-- /kaftest options <what>: only the steps named what or whose name starts with "what-" (toggle: every toggle step;
+-- section: every section), or the step with that number in the banner, each with the steps it builds on (Needs) and with
+-- the window's open first; nil when nothing matches. The scenarios before the steps run either way: they take no time.
+local function SelectSteps(list, what)
+    if not what or what == "" then
+        return list
+    end
+    local wanted, number = what:lower(), tonumber(what)
+    local byName, chosen, any = {}, {}, false
+    for _, step in ipairs(list) do
+        byName[step.Name] = step
+    end
+    local function Choose(step)
+        while step and not chosen[step] do
+            chosen[step] = true
+            step = byName[step.Needs]
+        end
+    end
+    for i, step in ipairs(list) do
+        if i == number or step.Name == wanted or step.Name:sub(1, #wanted + 1) == wanted .. "-" then
+            Choose(step)
+            any = true
+        end
+    end
+    if not any then
+        return nil
+    end
+    Choose(byName.open)
+    local selected = {}
+    for _, step in ipairs(list) do
+        if chosen[step] then
+            tinsert(selected, step)
+        end
+    end
+    return selected
+end
+
 addon.Tests.Async.options = true
-addon.Tests.Suites.options = function(done)
+addon.Tests.Suites.options = function(done, what)
+    local all = BuildSteps()
+    for i, step in ipairs(all) do
+        step.Number = i
+    end
+    local chosen = SelectSteps(all, what)
+    if not chosen then
+        local names = {}
+        for _, step in ipairs(all) do
+            tinsert(names, ("%d %s"):format(step.Number, step.Name))
+        end
+        done({{Name = "select", Status = "SKIP", GameOnly = true,
+            Line = ("options/select: SKIP no step '%s'; one of: %s"):format(what, table.concat(names, ", "))}}, {})
+        return
+    end
     local frame = Window()
     KrowiAF_SavedData.OptionsWindow = KrowiAF_SavedData.OptionsWindow or {}
     live = {
@@ -1612,14 +1671,16 @@ addon.Tests.Suites.options = function(done)
         Finish = done,
         Before = {},
         SavedWindow = DeepCopy(KrowiAF_SavedData.OptionsWindow),
-        WasShown = frame and frame:IsShown() and frame.SectionId or nil
+        WasShown = frame and frame:IsShown() and frame.SectionId or nil,
+        AllSteps = #all
     }
     if not banner then
         CreateBanner()
     end
     banner:RegisterEvent("SCREENSHOT_FAILED")
     banner:RegisterEvent("PLAYER_REGEN_DISABLED")
-    steps = BuildSteps()
-    print(("|cFF88CCFFKrowiAF Tests:|r options: %d steps, about %d s; it changes three options and puts them back"):format(#steps, #steps * (settle + afterShot)))
+    steps = chosen
+    print(("|cFF88CCFFKrowiAF Tests:|r options: %d of %d steps, about %d s; the options it changes go back at the end.%s"):format(#steps, #all,
+        #steps * (settle + afterShot), what and "" or " /kaftest options <name, start of a name or number> runs only those steps."))
     RunStep(1)
 end

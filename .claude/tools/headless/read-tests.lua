@@ -28,9 +28,15 @@ if type(run) ~= "table" then
 end
 local onLogin = KrowiAF_DebugTable.Tests.RunOnLogin
 
-io.stdout:write(("suite %s, run %s in game, addon %s, build %s: %d passed, %d failed, %d skipped; %d open against the target behaviour%s\n\n"):format(
-    tostring(run.Suite), tostring(run.Time), tostring(run.Version), tostring(run.Build), run.Passed or 0, run.Failed or 0, run.Skipped or 0, run.Open or 0,
-    onLogin and ("; '" .. tostring(onLogin) .. "' runs on every login") or ""))
+-- A run of some steps only (/kaftest options toggle) carries what was typed after the suite's name
+local function SuiteName(r)
+    return tostring(r.Suite) .. (r.Argument and (" " .. tostring(r.Argument)) or "")
+end
+
+io.stdout:write(("suite %s, run %s in game, addon %s, build %s: %d passed, %d failed, %d skipped; %d open against the target behaviour%s%s\n\n"):format(
+    SuiteName(run), tostring(run.Time), tostring(run.Version), tostring(run.Build), run.Passed or 0, run.Failed or 0, run.Skipped or 0, run.Open or 0,
+    onLogin and ("; '" .. tostring(onLogin) .. "' runs on every login") or "",
+    run.Argument and "; some steps only, so no release gate counts it" or ""))
 
 local headless
 local f = headlessPath and io.open(headlessPath, "rb")
@@ -84,7 +90,7 @@ if #history > 1 then
     io.stdout:write("\nkept runs, newest first (Read-GameTests.ps1 -Run <n> shows one):\n")
     for n = 1, #history do
         local kept = history[#history - n + 1]
-        io.stdout:write(("  %d. %s %s, build %s: %d passed, %d failed, %d skipped\n"):format(n, tostring(kept.Time), tostring(kept.Suite),
+        io.stdout:write(("  %d. %s %s, build %s: %d passed, %d failed, %d skipped\n"):format(n, tostring(kept.Time), SuiteName(kept),
             tostring(kept.Build), kept.Passed or 0, kept.Failed or 0, kept.Skipped or 0))
     end
 end

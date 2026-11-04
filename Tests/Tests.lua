@@ -47,7 +47,9 @@ local statusColors = {
     SKIP = "|cFFFFFF00"
 }
 
-local function Report(name, results, observations)
+-- argument: what was typed after the suite's name; a run of some steps only (/kaftest options toggle) is kept in LastRun
+-- and History but not in Runs, so the release preflight never takes it for a full run
+local function Report(name, results, observations, argument)
     local counts = {PASS = 0, FAIL = 0, SKIP = 0}
     local open = 0
     local lines, notes, gameOnly, screenshots = {}, {}, {}, {}
@@ -74,6 +76,7 @@ local function Report(name, results, observations)
 
     GetDb().LastRun = {
         Suite = name,
+        Argument = argument,
         Version = addon.Metadata.Version,
         Build = (GetBuildInfo()),
         Time = date("%Y-%m-%d %H:%M:%S"),
@@ -87,9 +90,11 @@ local function Report(name, results, observations)
         Screenshots = screenshots, -- index = line index; the screenshot taken after that line's check
         Observations = observations and CopyTable(observations) or nil
     }
-    -- the latest run of every suite, for the release preflight (.claude/release-gate.ps1)
+    -- the latest full run of every suite, for the release preflight (.claude/release-gate.ps1)
     GetDb().Runs = GetDb().Runs or {}
-    GetDb().Runs[name] = GetDb().LastRun
+    if not argument then
+        GetDb().Runs[name] = GetDb().LastRun
+    end
     GetDb().History = GetDb().History or {}
     tinsert(GetDb().History, GetDb().LastRun)
     while #GetDb().History > keepRuns do
@@ -140,14 +145,15 @@ function tests.Run(name, waitSeconds, onDone, requested, argument)
 
     if tests.Async[name] then
         suite(function(results, observations)
-            Report(name, results, observations)
+            Report(name, results, observations, argument)
             if onDone then
                 onDone(true)
             end
         end, argument)
         return
     end
-    Report(name, suite(argument))
+    local results, observations = suite(argument)
+    Report(name, results, observations, argument)
     if onDone then
         onDone(true)
     end
