@@ -4,7 +4,8 @@ local popUps = addon.Tests.PopUps
 
 -- The event reminder pop-ups and Blizzard's alert frame (issues #188 and #364, docs/work/188-event-reminder-popups):
 -- where the location options put the pop-ups, whether the addon changes how the game's own toasts stack, whether it
--- follows another addon that places the game's alerts, and what Show placeholders and Hide placeholders do. Every
+-- follows another addon that places the game's alerts, and what Show placeholders and Hide placeholders do. Also the
+-- event reminder side buttons after a Side Button Anchor change (docs/work/2026-11-04-side-button-anchor). Every
 -- scenario goes through the options' own setters (Options/EventReminders.lua) and puts back what it changed; it hides
 -- and dequeues only the addon's own pop-ups, so a run also clears the reminders showing at the time.
 --
@@ -187,6 +188,90 @@ local function ToastOwners()
     end
     table.sort(labels)
     return #labels == 0 and "none" or table.concat(labels, " and ")
+end
+
+-- [[ The side buttons ]] --
+-- The event reminder side buttons and their Side Button Anchor (docs/work/2026-11-04-side-button-anchor): in game on
+-- the real achievement window, which the scenarios open and close the addon's own way (Tests/Escape.lua), never the
+-- world map; headlessly on the runner's models of both
+
+local sideButtonsAnchor = "EventReminders.General.Other.SideButtonsAnchor"
+local achievementWindow, worldMap = 1, 2 -- the option's values (Options/EventReminders.lua)
+
+local function SideButtonSystem()
+    return addon.Gui.EventReminderSideButtonSystem
+end
+
+-- The side buttons made so far, by the names SideButtonSystem.lua gives them
+local function SideButtons()
+    local buttons = {}
+    while _G["KrowiAF_AchievementFrameSideButton" .. (#buttons + 1)] do
+        buttons[#buttons + 1] = _G["KrowiAF_AchievementFrameSideButton" .. (#buttons + 1)]
+    end
+    return buttons
+end
+
+-- An active event that is never registered, so its button reads only its own times
+local function TestEvent()
+    local now = GetServerTime()
+    return {Id = "kaftest-side-button", Icon = 134400, EventDetails = {Name = "Test", StartTime = now - 60, EndTime = now + 600}}
+end
+
+local function OpenWindow(env)
+    if env.OpenAnchor then
+        env.LoadAchievementUI()
+        env.OpenAnchor("AchievementFrame")
+    else
+        KrowiAF_ToggleAchievementFrame(addonName, "Achievements", nil, true) -- the addon's own path: a plain Show
+    end
+end
+
+local function CloseWindow(env)
+    if env.CloseAnchor then
+        env.CloseAnchor("AchievementFrame")
+    elseif AchievementFrame then
+        AchievementFrame:Hide()
+    end
+end
+
+-- How often the side buttons refresh while func runs
+local function CountRefreshes(func)
+    local system = SideButtonSystem()
+    local refresh, count = system.Refresh, 0
+    system.Refresh = function(...)
+        count = count + 1
+        return refresh(...)
+    end
+    local ok, err = pcall(func)
+    system.Refresh = refresh
+    if not ok then
+        error(err, 0)
+    end
+    return count
+end
+
+local function Times(count)
+    return count == 0 and "none" or count == 1 and "one" or "more than one"
+end
+
+-- Runs observe with the achievement window closed, then puts the anchor and the window back as they were
+local function SideButtonScenario(env, observe)
+    if not addon.Options.db.profile.EventReminders.Enabled then
+        return nil, "event reminders are off"
+    end
+    local anchor = GetOption(sideButtonsAnchor)
+    local wasOpen = AchievementFrame and AchievementFrame:IsShown()
+    CloseWindow(env)
+    local ok, got = pcall(observe)
+    CloseWindow(env)
+    SetOption(sideButtonsAnchor, anchor)
+    if wasOpen then
+        OpenWindow(env)
+    end
+    if not ok then
+        error(got, 0)
+    end
+    return got
 end
 
 -- Observe(env) returns the line's value, or nil and why it cannot run here
@@ -512,6 +597,109 @@ popUps.Scenarios = {
         end,
         Recorded = "Blizzard's",
         Target = "Blizzard's"},
+    -- A button that showed an event on the achievement window, then a switch to the world map: the buttons still shown
+    -- with no event. In game each one gives "attempt to index field 'Event'" when the world map opens
+    -- (AlertFrameMixin.lua:59, seen on Retail 12.1.5 on 2026-10-25, x7).
+    {Name = "side-buttons-anchor-switch",
+        Observe = function(env)
+            return SideButtonScenario(env, function()
+                SetOption(sideButtonsAnchor, achievementWindow)
+                OpenWindow(env)
+                SideButtonSystem():Refresh({TestEvent()}, {})
+                CloseWindow(env)
+                SetOption(sideButtonsAnchor, worldMap)
+                local withoutEvent = 0
+                for _, button in ipairs(SideButtons()) do
+                    if button:IsShown() and not button.Event then
+                        withoutEvent = withoutEvent + 1
+                    end
+                end
+                return tostring(withoutEvent)
+            end)
+        end,
+        Recorded = "1",
+        Target = "0"},
+    -- A switch to the world map and back, then the achievement window opens: how often its buttons refresh
+    {Name = "side-buttons-switch-back",
+        Observe = function(env)
+            return SideButtonScenario(env, function()
+                SetOption(sideButtonsAnchor, achievementWindow)
+                SetOption(sideButtonsAnchor, worldMap)
+                SetOption(sideButtonsAnchor, achievementWindow)
+                return Times(CountRefreshes(function()
+                    OpenWindow(env)
+                end))
+            end)
+        end,
+        Recorded = "more than one",
+        Target = "one"},
+    -- The buttons on the world map while the achievement window is open, then a switch to the achievement window:
+    -- whether they come onto it at once
+    {Name = "side-buttons-switch-while-open",
+        Observe = function(env)
+            return SideButtonScenario(env, function()
+                SetOption(sideButtonsAnchor, worldMap)
+                OpenWindow(env)
+                local count = CountRefreshes(function()
+                    SetOption(sideButtonsAnchor, achievementWindow)
+                end)
+                return count > 0 and "yes" or "no"
+            end)
+        end,
+        Recorded = "no",
+        Target = "yes"},
+    -- The achievement window open with the buttons on it, a switch to the world map, then the achievement window closes:
+    -- whether that close takes away the buttons' refresh, which stops their countdown on the world map while it is open
+    {Name = "side-buttons-old-anchor-closes",
+        Observe = function(env)
+            return SideButtonScenario(env, function()
+                SetOption(sideButtonsAnchor, achievementWindow)
+                OpenWindow(env)
+                SetOption(sideButtonsAnchor, worldMap)
+                local alertSystem = addon.Gui.EventReminderAlertSystem
+                local unregister, removed = alertSystem.UnregisterOnRefresh, false
+                alertSystem.UnregisterOnRefresh = function(self, key, ...)
+                    removed = removed or key == "SideButtonSystem"
+                    return unregister(self, key, ...)
+                end
+                local ok, err = pcall(CloseWindow, env)
+                alertSystem.UnregisterOnRefresh = unregister
+                if not ok then
+                    error(err, 0)
+                end
+                return removed and "the close removes it" or "the close leaves it"
+            end)
+        end,
+        Recorded = "the close removes it",
+        Target = "the close leaves it"},
+    -- A login with the buttons on the world map, a switch to the achievement window before it loads, then its load and
+    -- first opening: how often the buttons refresh on it
+    {Name = "side-buttons-before-achievement-ui",
+        Observe = function(env)
+            if not env.Reload then
+                return nil, "headless only: logs in again before the achievement window loads"
+            end
+            local reminders = addon.Options.db.profile.EventReminders
+            local anchor = reminders.SideButtonsAnchor
+            reminders.SideButtonsAnchor = worldMap
+            env.Reload()
+            local ok, got = pcall(function()
+                SetOption(sideButtonsAnchor, achievementWindow)
+                env.LoadAchievementUI()
+                return Times(CountRefreshes(function()
+                    env.OpenAnchor("AchievementFrame")
+                end))
+            end)
+            env.CloseAnchor("AchievementFrame")
+            reminders.SideButtonsAnchor = anchor
+            env.Reload()
+            if not ok then
+                error(got, 0)
+            end
+            return got
+        end,
+        Recorded = "none",
+        Target = "one"},
 }
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line

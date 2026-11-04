@@ -40,7 +40,8 @@
 --         ADDON_LOADED wiring of Krowi_AchievementFilter.lua: whether Zygor's guide icons are on the addon's rows at the
 --         list's first draw, issue #365), popups (Gui/EventReminder/AlertSystem.lua and Options/EventReminders.lua on the
 --         whole-addon load, against a model of Blizzard's alert frames: where the location options put the pop-ups,
---         whether the game's toasts keep Blizzard's stacking, Show and Hide placeholders, issues #188 and #364)
+--         whether the game's toasts keep Blizzard's stacking, Show and Hide placeholders, issues #188 and #364; and
+--         Gui/EventReminder/SideButtonSystem.lua after a Side Button Anchor change, on models of its two anchors)
 --
 -- Retail model is 12.1: the Blizzard_GameMenuEsc handler registry, the UI panel manager (its slots stay
 -- empty because the addon shows the achievement window with a plain Show), UISpecialFrames, static
@@ -2374,7 +2375,8 @@ end
 
 -- The event reminder pop-ups on the whole-addon load of options-env.lua, a load of the suite's own, against the alert
 -- model above (sources in Tests/PopUps.lua). The GUI load itself (Gui/Gui.lua LoadWithAddon) runs for real, with the
--- parts that draw frames this load does not build (world map button, side buttons, floating tooltip) stubbed.
+-- parts that draw frames this load does not build (world map button, floating tooltip) stubbed, and the side buttons on
+-- models of their anchors (below).
 suites.popups = function(c)
     local scriptDir = ((arg and arg[0]) or ""):gsub("\\", "/"):match("^(.*)/") or "."
     local optionsEnv = assert(loadfile(scriptDir .. "/options-env.lua"))()
@@ -2388,26 +2390,81 @@ suites.popups = function(c)
     rawset(env, "KrowiAF_SavedData", rawget(env, "KrowiAF_SavedData") or {})
     local gui = addon.Gui
     gui.WorldMapButton = { Load = function() end, Refresh = function() end }
-    gui.EventReminderSideButtonSystem = { Load = function() end, Refresh = function() end, Reload = function() end }
     gui.FloatingAchievementTooltip = { Load = function() end }
     addon.Tests = addon.Tests or { Suites = {}, Ready = {}, Async = {} }
-    local chunk = assert(loadstring(readFile(root .. "/Tests/PopUps.lua"), "@Tests/PopUps.lua"))
-    setfenv(chunk, env)
-    chunk("Krowi_AchievementFilter", addon)
+    local function RunFile(rel)
+        local chunk = assert(loadstring(readFile(root .. "/" .. rel), "@" .. rel))
+        setfenv(chunk, env)
+        chunk("Krowi_AchievementFilter", addon)
+    end
+    RunFile("Tests/PopUps.lua")
+
+    -- The side buttons (Gui/EventReminder/SideButtonSystem.lua) run for real, on models of their two anchors: the world
+    -- map, there from the login, and the achievement window, there once Blizzard_AchievementUI loads
+    -- (LoadAchievementUI). A side button template gives its frame the side button's mixins and OnShow
+    -- (Gui/EventReminder/SideButton/SideButton.xml). Unlike the game, the model runs a frame's OnShow only on its own
+    -- Show, not when its parent shows, so the scenarios check the state behind the side buttons' error (a button shown
+    -- with no event), not the error itself.
+    RunFile("Gui/EventReminder/AlertFrame/AlertFrameMixin.lua")
+    RunFile("Gui/EventReminder/SideButton/SideButtonMixin.lua")
+    local sideButtonMixin = env.Mixin({}, rawget(env, "KrowiAF_EventReminderAlertFrameMixin"), rawget(env, "KrowiAF_EventReminderSideButtonMixin"))
+    local createFrame = env.CreateFrame
+    rawset(env, "CreateFrame", function(kind, name, parent, template)
+        local frame = createFrame(kind, name, parent, template)
+        if type(template) == "string" and template:match("^KrowiAF_EventReminderSideButton_") then
+            rawset(frame, "_mixin", sideButtonMixin)
+            frame:SetScript("OnShow", sideButtonMixin.OnShow)
+        end
+        return frame
+    end)
+    local loadedAtLogin -- what the side buttons' Load answered at LoadWithAddon: Gui/Gui.lua:12 keeps it, before the fix
+    -- No event going on, for the side buttons' own refresh, which reads the active events (Data/EventData.lua): an
+    -- empty calendar, no POI on any map and no widget, as in the events suite
+    env.C_Calendar.GetNumDayEvents = function() return 0 end
+    env.C_AreaPoiInfo.GetAreaPOIInfo = function() return nil end
+    env.C_AreaPoiInfo.GetAreaPOISecondsLeft = function() return nil end
+    env.C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo = function() return nil end
+    env.C_DateAndTime.GetCurrentCalendarTime = function() return { year = 2026, month = 10, monthDay = 25, weekday = 1, hour = 21, minute = 30 } end
+    env.C_DateAndTime.GetServerTimeLocal = function() return env.GetServerTime() end
 
     local headless = { Model = model }
     function headless.IsRetail() return c.isRetail end
-    -- A login with the current profile: a fresh AlertFrame, the alert system's file run again (a fresh module table),
-    -- prepare (another addon, say) before the addon's GUI load, then the login events
+    -- A login with the current profile: a fresh AlertFrame, the alert system's and the side buttons' files run again
+    -- (fresh module tables), a fresh world map and no achievement window yet, prepare (another addon, say) before the
+    -- addon's GUI load, then the login events. The achievement window is false, not nil, because the env answers an
+    -- unknown global with a stub.
     function headless.Reload(prepare)
         model.NewAlertFrame()
+        env.CreateFrame("Frame", "WorldMapFrame", env.UIParent)
+        rawset(env, "AchievementFrame", false)
         if prepare then prepare(env, model) end
-        local system = assert(loadstring(readFile(root .. "/Gui/EventReminder/AlertSystem.lua"), "@Gui/EventReminder/AlertSystem.lua"))
-        setfenv(system, env)
-        system("Krowi_AchievementFilter", addon)
+        RunFile("Gui/EventReminder/AlertSystem.lua")
+        RunFile("Gui/EventReminder/SideButtonSystem.lua")
+        local sideButtons = gui.EventReminderSideButtonSystem
+        local load = sideButtons.Load
+        sideButtons.Load = function(...)
+            loadedAtLogin = load(...)
+            return loadedAtLogin
+        end
         gui:LoadWithAddon()
+        sideButtons.Load = load
         model.FireLogin()
         return true
+    end
+    -- Blizzard_AchievementUI loading: the window's model, then what Gui/Gui.lua's LoadWithBlizzard_AchievementUI does
+    -- for the side buttons (Load again only when it did not hook its anchor yet)
+    function headless.LoadAchievementUI()
+        if rawget(env, "AchievementFrame") then return end
+        env.CreateFrame("Frame", "AchievementFrame", env.UIParent)
+        local sideButtons = gui.EventReminderSideButtonSystem
+        local loaded = sideButtons.Loaded
+        if loaded == nil then loaded = loadedAtLogin end
+        if not loaded then sideButtons:Load() end
+    end
+    function headless.OpenAnchor(name) env[name]:Show() end
+    function headless.CloseAnchor(name)
+        local frame = rawget(env, name)
+        if frame then frame:Hide() end
     end
     function headless.ShowGameToast(loot) -- an achievement toast (a loot one with loot); returns the newest frame
         local system = loot and model.LootSystem or model.AchievementSystem
