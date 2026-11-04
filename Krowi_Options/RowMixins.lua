@@ -259,6 +259,12 @@ function Krowi_OptionsOptionRowMixin:Init(element, window)
     self:Refresh()
 end
 
+-- The mouse on the row where the list shows it: IsMouseOver tests the whole row, also a part scrolled out of the list,
+-- so leaving through that part would keep the arrow (docs/work/2026-11-04-krowi-options-library)
+local function UnderMouse(row)
+    return row:IsMouseOver() and row.Window.PageScrollBox:IsMouseOver()
+end
+
 function Krowi_OptionsOptionRowMixin:Refresh()
     local option = self.Option
     if not option then return end
@@ -274,7 +280,7 @@ function Krowi_OptionsOptionRowMixin:Refresh()
     end
     local changed = Changed(self)
     self.ChangedBar:SetShown(changed)
-    self.Reset:SetShown(changed and self:IsMouseOver()) -- a change made under the mouse shows the arrow at once
+    self.Reset:SetShown(changed and UnderMouse(self)) -- a change made under the mouse shows the arrow at once
 
     local t = option.Type
     if t == "toggle" then
@@ -370,7 +376,7 @@ end
 -- Moving onto one of the row's own controls leaves the row too: the arrow stays while the mouse is on the row
 function Krowi_OptionsOptionRowMixin:OnLeave()
     self.Hover:Hide()
-    if not self:IsMouseOver() then self.Reset:Hide() end
+    if not UnderMouse(self) then self.Reset:Hide() end
     self.Window:OnRowLeave(self.Option)
 end
 

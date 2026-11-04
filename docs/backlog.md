@@ -148,8 +148,6 @@ Follow-ups that are not a work item yet. When one is taken up, it gets its own w
 ## From the options markers (2026-11-01, docs/work/2026-10-31-options-markers)
 
 Code review findings, deferred because none is Important and a fix would need the in-game runs again.
-- **The undo arrow can stay on a row the mouse has left** (`Krowi_Options/RowMixins.lua`, `OnLeave` and `Refresh`). `IsMouseOver` tests the row's rectangle, so leaving a row that is partly scrolled out through its clipped part keeps the arrow shown until the next refresh or hover. The fix: also require the mouse on `PageScrollBox`.
-- **The hover help does not follow a change made under the mouse** (`Krowi_Options/WindowMixin.lua`, `OptionHelpLines` runs only in `OnRowEnter`). The arrow now shows at once, but "↺ Reset to Default" appears or goes only after leaving and re-entering the row. The old "Changed." line behaved the same. The fix: in `OnOptionChanged`, run `OnRowEnter` again for `HoverOption` (or the shown tooltip's option).
 - **The options suite's `toggle-reset` step keeps the row it found before `Change`** (`Tests/Options.lua`, `ResetStep`). If the option starts at its default and changing it shows or hides rows, the page is rebuilt and the step works on another option's row. Neither happens today. The fix: `RowOf(option)` again after `Change`.
 - **The `toggle-reset` screenshot does not show the arrow**: the step clicks it and leaves the row inside `Run`, before the capture. The fix: a separate step that enters the row and is captured with the arrow shown.
 

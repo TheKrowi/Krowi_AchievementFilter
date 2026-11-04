@@ -782,15 +782,26 @@ function Krowi_OptionsWindowMixin:OnOptionChanged(option)
     if option and option.GetNeedsReload and option:GetNeedsReload() then self.ReloadPending = true end
     if not self.SectionId or self.Searching and option and option.Type == "range" then
         self:Refresh()
-        return
-    end
-    local elements = self.Searching and self:SearchElements(self.SearchBox:GetText()) or Flatten(self.Config.GetElements(self.SectionId))
-    if Signature(elements) ~= self.Signature then
-        self:FillPage(ScrollBoxConstants.RetainScrollPosition, elements)
-        self:UpdateShowMe()
     else
-        self:Refresh()
+        local elements = self.Searching and self:SearchElements(self.SearchBox:GetText()) or Flatten(self.Config.GetElements(self.SectionId))
+        if Signature(elements) ~= self.Signature then
+            self:FillPage(ScrollBoxConstants.RetainScrollPosition, elements)
+            self:UpdateShowMe()
+        else
+            self:Refresh()
+        end
     end
+    self:RefreshHover()
+end
+
+-- A change made under the mouse shows at once in the hovered row's help: its arrow's line comes or goes with it
+-- (docs/work/2026-11-04-krowi-options-library). A rebuilt page may have given the row another option; then it waits for
+-- the next enter.
+function Krowi_OptionsWindowMixin:RefreshHover()
+    local row, option = self.HoverRow, self.HoverRowOption
+    if not row or not row:IsVisible() or (row.Option ~= option and row.With ~= option) then return end
+    self:HideTooltip()
+    self:OnRowEnter(option, row, self.HoverControlX)
 end
 
 function Krowi_OptionsWindowMixin:ScrollToOption(optionId)
@@ -1029,6 +1040,7 @@ end
 -- controlX: where the hovered control starts, from the row's left edge
 function Krowi_OptionsWindowMixin:OnRowEnter(option, row, controlX)
     if not option then return end
+    self.HoverRow, self.HoverRowOption, self.HoverControlX = row, option, controlX
     local element = row and row.Element
     local desc, lines = OptionHelpLines(self:StringsFor(element), option)
     if self.PaneCollapsed then
@@ -1056,6 +1068,7 @@ function Krowi_OptionsWindowMixin:OnRowEnter(option, row, controlX)
 end
 
 function Krowi_OptionsWindowMixin:OnRowLeave()
+    self.HoverRow, self.HoverRowOption, self.HoverControlX = nil, nil, nil
     if self.PaneCollapsed then
         self:HideTooltip()
         return

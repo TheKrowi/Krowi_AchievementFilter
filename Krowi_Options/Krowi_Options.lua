@@ -13,7 +13,7 @@
 -- (docs/work/2026-10-30-options-settings-look). Lives inside Krowi_AchievementFilter for now
 -- (docs/work/2026-10-25-options-revamp); extracting it is a move into Krowi_Libraries.
 
-local lib = KROWI_LIBMAN:NewLibrary('Krowi_Options_1', 4)
+local lib = KROWI_LIBMAN:NewLibrary('Krowi_Options_1', 5)
 if not lib then return end
 
 -- The registered tabs, sorted by name, and the one window they share (lib.Frame, made on the first open). Both live on
