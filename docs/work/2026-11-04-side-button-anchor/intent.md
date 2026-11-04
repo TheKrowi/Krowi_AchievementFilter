@@ -1,5 +1,5 @@
 # Intent: Side buttons error after their anchor changes
-Author: Krowi, maintainer. Source: in-game error, from `docs/backlog.md` (options window work, 2026-10-25). Status: accepted
+Author: Krowi, maintainer. Source: in-game error, from `docs/backlog.md` (options window work, 2026-10-25). Status: done
 
 ## Problem
 When a player changes the event reminders' *Side Button Anchor* (achievement window or world map), the next time the newly chosen window opens, each side button that was showing an event gives a Lua error: `AlertFrameMixin.lua:59: attempt to index field 'Event' (a nil value)`. This was seen on Retail 12.1.5 on 2026-10-25, seven times in one session, after `/kaftest options` changed the setting and `/kaftest escape` opened the achievement window. 105.0 sends every player to the new options window, so more players will change this setting.

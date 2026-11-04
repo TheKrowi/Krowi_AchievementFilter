@@ -1,5 +1,5 @@
 # Plan: Side buttons error after their anchor changes
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 The plan is non-routine, because it changes hooks on Blizzard frames (AchievementFrame and WorldMapFrame). Krowi approved it on 2026-11-04.
 
@@ -53,6 +53,17 @@ The plan is non-routine, because it changes hooks on Blizzard frames (Achievemen
 - `Check-Repo.ps1` clean, `krowi:taint-reviewer` and `/code-review` findings fixed or listed in the PR.
 - In game, Retail: `/kaftest popups`, then `/reload`. `Read-GameTests.ps1` shows the three scenarios at Target, and `Read-GameErrors.ps1` shows no new row.
 - By hand, Retail and Mists: change *Side Button Anchor* both ways with each window open and closed, then open each window. No error, and the buttons show on the chosen window.
+
+## Results (2026-11-04)
+- **Headless:** `popups` (22) and `events` pass on Retail and Classic, and so does `options`. `Check-Repo.ps1 -ChangedOnly` is clean.
+- **Reviews:**
+  - `krowi:taint-reviewer` found no hazard in the fix. Its two older plugin findings are in `docs/backlog.md`.
+  - `/code-review`: the profile switch and the hiding order were fixed, see the departures. The rest was left with its reason in the PR.
+- **In game, Retail 12.1.5:**
+  - `/kaftest popups` at 14:27: the four in-game side button scenarios at Target, and `live-lua-errors` PASS.
+  - BugGrabber has no row after the before-run's (14:13, x14).
+  - Krowi's check by hand passed: both anchors with each window open and closed, and a profile switch.
+- **Owed before 105.0:** the same check by hand on Mists (Krowi, 2026-11-04: "mists before we release"). Mists runs the same build.
 
 ## Departures from the plan
 - **`side-buttons-old-anchor-closes` runs in game too.** It needs only the achievement window: open it, switch to the world map, close it. It watches the close remove the refresh callback rather than reading the callback list, so its values read `the close removes it` and `the close leaves it`. The before-run on Retail (2026-11-04 14:13) showed the four in-game scenarios at Recorded, and 14 times the reported error from `SideButtonMixin.lua:6`.

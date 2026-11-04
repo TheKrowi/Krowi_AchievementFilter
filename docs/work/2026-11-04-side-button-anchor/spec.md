@@ -1,5 +1,5 @@
 # Spec: Side buttons error after their anchor changes
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. Changing *Side Button Anchor* leaves no side button shown without an event, so opening either window afterwards gives no error.
