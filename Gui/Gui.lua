@@ -5,11 +5,10 @@ addon.Gui = {
 }
 local gui = addon.Gui
 
-local eventReminderSideButtonSystemIsLoaded
 function gui:LoadWithAddon()
     self.WorldMapButton:Load()
     self.EventReminderAlertSystem:Load()
-    eventReminderSideButtonSystemIsLoaded = self.EventReminderSideButtonSystem:Load()
+    self.EventReminderSideButtonSystem:Load()
     self.FloatingAchievementTooltip:Load()
 end
 
@@ -105,7 +104,7 @@ function gui:LoadWithBlizzard_AchievementUI()
     self.AchievementsFrame:Load()
     self.SummaryFrame:Load()
     self.FilterButton:Load()
-    if not eventReminderSideButtonSystemIsLoaded then
+    if not self.EventReminderSideButtonSystem.Loaded then
         self.EventReminderSideButtonSystem:Load()
     end
 

@@ -47,6 +47,12 @@ local function HideButtonsWithoutEvent()
 	end
 end
 
+local function HideButtons()
+    for _, button in next, sideButtons do
+        button:Hide()
+    end
+end
+
 local function SetPoints(self)
     local relativeFrame = self:GetAnchor()
     local relativePoint = "TOPRIGHT"
@@ -85,21 +91,52 @@ local function OnAlertSystemRefresh(_, activeEvents, upcomingCalendarEvents)
     eventReminderSideButtonSystem:Refresh(activeEvents, upcomingCalendarEvents)
 end
 
-function eventReminderSideButtonSystem:Load()
-    if not addon.Options.db.profile.EventReminders.Enabled or not self:GetAnchor() then
-        return false -- Anchoring failed because frame does not exist yet, try again later
+-- Each anchor window is hooked once per session; its hooks act only while it is the anchor, so a window the buttons left
+-- neither refreshes them nor stops their countdown
+local hookedAnchors = {}
+local function HookAnchor(self, anchor)
+    if hookedAnchors[anchor] then
+        return
     end
-    hooksecurefunc(self:GetAnchor(), "Show", function()
+    hookedAnchors[anchor] = true
+    hooksecurefunc(anchor, "Show", function()
+        if anchor ~= self:GetAnchor() then
+            return
+        end
         addon.Gui.EventReminderAlertSystem:RegisterOnRefresh("SideButtonSystem", OnAlertSystemRefresh)
         self:Refresh()
     end)
-    hooksecurefunc(self:GetAnchor(), "Hide", function()
+    hooksecurefunc(anchor, "Hide", function()
+        if anchor ~= self:GetAnchor() then
+            return
+        end
         addon.Gui.EventReminderAlertSystem:UnregisterOnRefresh("SideButtonSystem")
     end)
-    return true
 end
 
+-- Hooks the anchor; Loaded is false while event reminders are off or the anchor window does not exist yet, so
+-- LoadWithBlizzard_AchievementUI loads the buttons onto the achievement window once it does
+local function Attach(self)
+    local anchor = addon.Options.db.profile.EventReminders.Enabled and self:GetAnchor()
+    self.Loaded = anchor and true or false
+    if anchor then
+        HookAnchor(self, anchor)
+    end
+    return anchor
+end
+
+function eventReminderSideButtonSystem:Load()
+    return Attach(self) and true or false
+end
+
+-- After an anchor or profile change; it never calls Load, whose hooks the skin plugins add to on every call
 function eventReminderSideButtonSystem:Reload()
-    self:Load()
+    HideButtons() -- Before Reset moves them: a button shown without an event errors in its OnShow
     ResetButtons()
+    addon.Gui.EventReminderAlertSystem:UnregisterOnRefresh("SideButtonSystem")
+    local anchor = Attach(self)
+    if anchor and anchor:IsShown() then
+        addon.Gui.EventReminderAlertSystem:RegisterOnRefresh("SideButtonSystem", OnAlertSystemRefresh)
+        self:Refresh()
+    end
 end

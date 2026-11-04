@@ -796,8 +796,7 @@ function RefreshOptions()
     local profile = addon.Options.db.profile
     TimeDisplayLine1Set(_, profile.EventReminders.TimeDisplay.Line1)
     TimeDisplayLine2Set(_, profile.EventReminders.TimeDisplay.Line2)
-    SideButtonsAnchorSet(_, profile.EventReminders.SideButtonsAnchor)
     ApplyLocation() -- the setters return early: the new profile already holds the values they are given
-    addon.Gui.EventReminderSideButtonSystem:Refresh() -- Dynamic stuff is handled by this one
+    addon.Gui.EventReminderSideButtonSystem:Reload() -- the new profile's anchor, and its refresh when that window is open
     StartTimeAndEndTimeCustomSet(_, profile.EventReminders.DateTimeFormat.StartTimeAndEndTime)
 end
