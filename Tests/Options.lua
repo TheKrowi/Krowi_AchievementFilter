@@ -121,6 +121,44 @@ local function RowGeometryLine(lib)
     return table.concat(parts, " ")
 end
 
+-- The headings of every section that have nothing under them on this client, and the All / None rows whose options are
+-- all hidden, as section/heading. A heading's rows end at the next heading, a sub-heading's also at the next sub-heading;
+-- a note is a row (About's credits are notes), an All / None row is not one of its own.
+local contentKinds = { Note = true, Grid = true, TabList = true, Link = true, Cards = true }
+local function EmptyHeadings()
+    local window = addon.Options.Window
+    local empty = {}
+    for _, section in ipairs(window.Map.Sections) do
+        local header, subHeading
+        local function Close(heading)
+            if heading and not heading.Filled then empty[#empty + 1] = section.Id .. "/" .. heading.Text end
+        end
+        for _, element in ipairs(window.Source.Elements(section)) do
+            local kind = element.Kind
+            if kind == "Header" then
+                Close(subHeading)
+                Close(header)
+                header, subHeading = { Text = element.Text }, nil
+            elseif kind == "SubHeading" then
+                Close(subHeading)
+                subHeading = { Text = element.Text }
+            elseif kind == "Sub" then
+                local shown = false
+                for _, member in ipairs(element.Members or {}) do
+                    if not member:IsHidden() then shown = true end
+                end
+                if not shown then empty[#empty + 1] = section.Id .. "/" .. element.Text end
+            elseif contentKinds[kind] or (kind == "Option" and not element.Option:IsHidden()) then
+                if header then header.Filled = true end
+                if subHeading then subHeading.Filled = true end
+            end
+        end
+        Close(subHeading)
+        Close(header)
+    end
+    return #empty == 0 and "none" or table.concat(empty, ",")
+end
+
 -- The rows under one of a section's headings (docs/work/2026-11-02-options-widths): each row's option key, and the
 -- option drawn after its check box with its key, and a button's text, as the game's Tutorials and Mouse Sensitivity rows
 local function RowsUnder(sectionId, header)
@@ -286,6 +324,20 @@ options.Scenarios = {
         end,
         Recorded = "visible-retail-only=0",
         Target = "visible-retail-only=0"},
+    -- No heading without rows under it, and no All / None row with nothing to switch (Krowi on Mists, 2026-11-04: Reminder
+    -- events' World Events and Other calendar events headings, whose options are all Retail-only)
+    {Name = "no-empty-headings",
+        Observe = function()
+            if not (addon.Options.Window and addon.Options.Window.Map) then return "no window" end
+            return EmptyHeadings()
+        end,
+        Recorded = "none",
+        Target = "none",
+        -- headless names; in game the expansions' own (Midnight, The War Within, ...)
+        RecordedClassic = "eventlist/All other calendar events,eventlist/Other calendar events,eventlist/World Events: EXPANSION_NAME11,"
+            .. "eventlist/World Events: EXPANSION_NAME10,eventlist/World Events: EXPANSION_NAME9,eventlist/World Events: EXPANSION_NAME8,"
+            .. "eventlist/World Events: EXPANSION_NAME7,eventlist/World Events: EXPANSION_NAME6",
+        TargetClassic = "none"},
     -- Issue #197: a new install moves Y from Blizzard's Toggle Achievements to the micro button's tab once the key bindings
     -- are loaded. The headless load is a new install, with the bindings loaded as the game loads them (none at
     -- ADDON_LOADED, the account's set by PLAYER_LOGIN); a game session is not, so the game skips this one
@@ -1040,8 +1092,9 @@ local function HelpFollowsStep(optionId)
 end
 
 -- The undo arrow goes when the mouse leaves a row through its part scrolled out of view (from the markers review): the
--- last plain check box of the longest section is changed and scrolled half below the list's bottom edge, the player
--- hovers it and moves straight down off the list, and the step reads the arrow once the mouse is on the hidden half
+-- last plain check box of the longest section that has one is changed and scrolled half below the list's bottom edge,
+-- the player hovers it and moves straight down off the list, and the step reads the arrow once the mouse is on the
+-- hidden half. On Mists the longest section, the plugins, has no plain check box.
 local function ClippedResetStep()
     local option, hovered
     return {
@@ -1049,26 +1102,26 @@ local function ClippedResetStep()
         Text = ("hover the half-shown row at the list's bottom, then move straight down off the list (%d s)"):format(mouseWait),
         Run = function()
             local frame, window = Window(), addon.Options.Window
-            local longest, most = nil, 0
+            local sections = {}
             for _, section in ipairs(window.Map.Sections) do
-                local count = #window.Source.Elements(section)
-                if count > most then
-                    longest, most = section, count
-                end
+                tinsert(sections, { Section = section, Count = #window.Source.Elements(section) })
             end
-            if not longest then
-                return "no section to scroll"
-            end
-            frame:ShowSection(longest.Id)
+            table.sort(sections, function(a, b) return a.Count > b.Count end)
             local index
-            for i, element in ipairs(frame.Elements or {}) do
-                local o = element.Option
-                if o and o.Type == "toggle" and not element.With and not o:IsDisabled() and not (o.GetNeedsReload and o:GetNeedsReload()) then
-                    option, index = o, i
+            for _, entry in ipairs(sections) do
+                frame:ShowSection(entry.Section.Id)
+                for i, element in ipairs(frame.Elements or {}) do
+                    local o = element.Option
+                    if o and o.Type == "toggle" and not element.With and not o:IsDisabled() and not (o.GetNeedsReload and o:GetNeedsReload()) then
+                        option, index = o, i
+                    end
+                end
+                if option then
+                    break
                 end
             end
             if not option then
-                return "no plain check box in " .. longest.Id
+                return "no section has a plain check box"
             end
             local box = frame.PageScrollBox
             box:ScrollToElementDataIndex(index, ScrollBoxConstants.AlignEnd, nil, ScrollBoxConstants.NoScrollInterpolation)
