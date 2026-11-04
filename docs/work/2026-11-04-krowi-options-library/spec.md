@@ -13,6 +13,7 @@ Intent: [intent.md](intent.md). Status: accepted
 9. **The two glitches from the markers review are fixed** (`docs/backlog.md:152-153`, `docs/work/2026-10-31-options-markers`):
    - The undo arrow no longer stays on a row the mouse left through its part that is scrolled out of view. `IsMouseOver` tests the row's whole rectangle; the row must also be under the mouse within `PageScrollBox` (`RowMixins.lua`, `OnLeave` and `Refresh`).
    - The hover help follows a change made under the mouse: "↺ Reset to Default" appears or goes at once. Today `OptionHelpLines` runs only in `OnRowEnter`; `OnOptionChanged` runs it again for the hovered option (`WindowMixin.lua`).
+10. **No heading without rows** (found on Mists during this work, added by Krowi's decision below). On Mists, Reminder events showed "Other calendar events" with an All / None row and nothing to switch, and six "World Events: <expansion>" headings, all empty: their options are Retail-only, and `Map.lua` marked only the entries, so `Source.lua` still built the heading. The same shows on `main`. Which headings a client shows is the addon's call, not the library's: `Map.lua` marks the seven headings `Retail`, and `Source.lua` leaves such a heading out with everything under it on the other clients. The library does not change.
 
 ## Design
 - **Order.**
@@ -78,3 +79,5 @@ Krowi, 2026-11-04, on the rewritten spec:
 - `Krowi_Options_2`, version 2.0 (recommended option).
 - The two glitches from the markers review: "fix in this session alongside the extraction" (requirement 9), instead of the peer session fixing them first.
 - The two-copy test with a standalone `AddOns\Krowi_Options` folder, once, as a deliberate exception to the kit's rule (recommended option).
+
+Krowi, 2026-11-04, on the empty Reminder events headings found on Mists (requirement 10): the library is a framework and the addon decides what shows where, so KAF must not hand it a heading that has nothing on the client ("am I correct to state that kaf should make sure these options are not shown in mists?"). Then: "Build the heading-level Retail flag in this branch, with the scenario." A library rule that drops empty headings was not taken; nothing in the map can empty a heading at run time today. AceConfig plays no part: the headings come from `Map.lua`, and stage 2 of the options revamp would carry the same flag.

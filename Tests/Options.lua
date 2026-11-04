@@ -333,10 +333,9 @@ options.Scenarios = {
         end,
         Recorded = "none",
         Target = "none",
-        -- headless names; in game the expansions' own (Midnight, The War Within, ...)
-        RecordedClassic = "eventlist/All other calendar events,eventlist/Other calendar events,eventlist/World Events: EXPANSION_NAME11,"
-            .. "eventlist/World Events: EXPANSION_NAME10,eventlist/World Events: EXPANSION_NAME9,eventlist/World Events: EXPANSION_NAME8,"
-            .. "eventlist/World Events: EXPANSION_NAME7,eventlist/World Events: EXPANSION_NAME6",
+        -- before the map marked them Retail as headings: eventlist/All other calendar events, eventlist/Other calendar events
+        -- and the six eventlist/World Events: <expansion> headings
+        RecordedClassic = "none",
         TargetClassic = "none"},
     -- Issue #197: a new install moves Y from Blizzard's Toggle Achievements to the micro button's tab once the key bindings
     -- are loaded. The headless load is a new install, with the bindings loaded as the game loads them (none at

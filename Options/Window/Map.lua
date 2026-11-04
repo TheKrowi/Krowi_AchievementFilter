@@ -7,7 +7,9 @@ local L = addon.L
 -- that header; "" = before the first header), or Families (each child group, a heading with All/None). A toggle can
 -- carry the option drawn after its check box, as the game's Tutorials and Mouse Sensitivity rows: With on a Path entry
 -- (an execute's or a range's path), Pairs = { [toggle key] = key } on a Group entry.
--- The options suite (Tests/Options.lua) fails when an option is unmapped or mapped twice.
+-- Retail on an entry hides its options on the other clients; on a heading it leaves the heading out there with all its
+-- entries, for a heading that would have nothing under it (docs/work/2026-11-04-krowi-options-library).
+-- The options suite (Tests/Options.lua) fails when an option is unmapped or mapped twice, or a heading has no rows.
 -- A section's Card is the line under its name on Overview's card, CardIcon the game icon that card shows while the
 -- section's help has no picture, and CardPart the part of the picture the card shows when its top left shows nothing
 -- useful ({ X, Y } from 0 to 1, Krowi_Options' CardCrop) (docs/work/2026-11-02-overview-cards).
@@ -243,26 +245,26 @@ addon.Options.Window.Map = {
             { Header = L["Holidays"], AllNone = L["All holidays"], Entries = {
                 { Group = "EventReminders.args.CalendarEvents.args.Holidays" },
             } },
-            { Header = L["Other calendar events"], AllNone = L["All other calendar events"], Entries = {
-                { Group = "EventReminders.args.CalendarEvents.args.Other", Retail = true },
+            { Header = L["Other calendar events"], AllNone = L["All other calendar events"], Retail = true, Entries = {
+                { Group = "EventReminders.args.CalendarEvents.args.Other" },
             } },
-            { Header = L["World Events"] .. ": " .. L["Midnight"], Entries = {
-                { Families = "EventReminders.args.WorldEvents.args.EXPANSION_NAME11", Retail = true },
+            { Header = L["World Events"] .. ": " .. L["Midnight"], Retail = true, Entries = {
+                { Families = "EventReminders.args.WorldEvents.args.EXPANSION_NAME11" },
             } },
-            { Header = L["World Events"] .. ": " .. L["The War Within"], Entries = {
-                { Families = "EventReminders.args.WorldEvents.args.EXPANSION_NAME10", Retail = true },
+            { Header = L["World Events"] .. ": " .. L["The War Within"], Retail = true, Entries = {
+                { Families = "EventReminders.args.WorldEvents.args.EXPANSION_NAME10" },
             } },
-            { Header = L["World Events"] .. ": " .. L["Dragonflight"], Entries = {
-                { Families = "EventReminders.args.WorldEvents.args.EXPANSION_NAME9", Retail = true },
+            { Header = L["World Events"] .. ": " .. L["Dragonflight"], Retail = true, Entries = {
+                { Families = "EventReminders.args.WorldEvents.args.EXPANSION_NAME9" },
             } },
-            { Header = L["World Events"] .. ": " .. L["Shadowlands"], Entries = {
-                { Families = "EventReminders.args.WorldEvents.args.EXPANSION_NAME8", Retail = true },
+            { Header = L["World Events"] .. ": " .. L["Shadowlands"], Retail = true, Entries = {
+                { Families = "EventReminders.args.WorldEvents.args.EXPANSION_NAME8" },
             } },
-            { Header = L["World Events"] .. ": " .. L["Battle for Azeroth"], Entries = {
-                { Families = "EventReminders.args.WorldEvents.args.EXPANSION_NAME7", Retail = true },
+            { Header = L["World Events"] .. ": " .. L["Battle for Azeroth"], Retail = true, Entries = {
+                { Families = "EventReminders.args.WorldEvents.args.EXPANSION_NAME7" },
             } },
-            { Header = L["World Events"] .. ": " .. L["Legion"], Entries = {
-                { Families = "EventReminders.args.WorldEvents.args.EXPANSION_NAME6", Retail = true },
+            { Header = L["World Events"] .. ": " .. L["Legion"], Retail = true, Entries = {
+                { Families = "EventReminders.args.WorldEvents.args.EXPANSION_NAME6" },
             } },
         } },
         { Id = "keys", Name = L["Keys and clicks"], Card = L["Card Keys"], CardIcon = "Interface\\Icons\\INV_Misc_Key_03", Groups = {

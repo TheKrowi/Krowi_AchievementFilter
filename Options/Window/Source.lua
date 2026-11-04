@@ -499,51 +499,61 @@ local function AddPluginNotes(elements, path, added)
     end
 end
 
+local function AddGroup(elements, group, notesAdded)
+    if group.Kind == "EachChild" then
+        EachChild(elements, group.Group)
+        return
+    end
+    elements[#elements + 1] = { Kind = "Header", Text = group.Header }
+    if group.Note then elements[#elements + 1] = { Kind = "Note", Text = group.Note } end
+    if group.Kind == "Grid" then
+        elements[#elements + 1] = Grid(group)
+    elseif group.Kind == "TabList" then
+        elements[#elements + 1] = TabList(group)
+    elseif group.Kind == "Profiles" then
+        for _, option in ipairs(ProfileOptions(group.Database)) do
+            elements[#elements + 1] = { Kind = "Option", Option = option }
+        end
+    else
+        local before = #elements
+        for _, entry in ipairs(group.Entries) do
+            if entry.Families then
+                ExpandFamilies(elements, entry.Families, entry)
+            elseif entry.Group then
+                AddLeaves(elements, Leaves(entry.Group, entry.Header), entry)
+            else
+                local option = source.OptionAt(entry.Path, entry)
+                if option then
+                    AddPluginNotes(elements, entry.Path, notesAdded)
+                    -- the option after the check box, shown where its check box is
+                    local with = entry.With and source.OptionAt(entry.With, { Retail = entry.Retail, ShowIf = entry.ShowIf })
+                    elements[#elements + 1] = { Kind = "Option", Option = option, With = with }
+                end
+            end
+        end
+        if group.AllNone then
+            local members = {}
+            for i = before + 1, #elements do
+                local option = elements[i].Option
+                if option and option.Type == "toggle" then members[#members + 1] = option end
+            end
+            table.insert(elements, before + 1, { Kind = "Sub", Text = group.AllNone, Members = members })
+        end
+    end
+end
+
+-- A heading the map marks Retail is Retail's alone: the other clients leave it out with everything under it, so they
+-- show no heading without rows (Reminder events on Mists, docs/work/2026-11-04-krowi-options-library)
+function source.OnThisClient(group)
+    return not group.Retail or addon.Util.IsMainline
+end
+
 -- section id -> elements, built fresh each draw, so injected and hidden options are current
 function source.Elements(section)
     local elements = {}
     local notesAdded = {}
     for _, group in ipairs(section.Groups) do
-        if group.Kind == "EachChild" then
-            EachChild(elements, group.Group)
-        else
-            elements[#elements + 1] = { Kind = "Header", Text = group.Header }
-            if group.Note then elements[#elements + 1] = { Kind = "Note", Text = group.Note } end
-            if group.Kind == "Grid" then
-                elements[#elements + 1] = Grid(group)
-            elseif group.Kind == "TabList" then
-                elements[#elements + 1] = TabList(group)
-            elseif group.Kind == "Profiles" then
-                for _, option in ipairs(ProfileOptions(group.Database)) do
-                    elements[#elements + 1] = { Kind = "Option", Option = option }
-                end
-            else
-                local before = #elements
-                for _, entry in ipairs(group.Entries) do
-                    if entry.Families then
-                        ExpandFamilies(elements, entry.Families, entry)
-                    elseif entry.Group then
-                        AddLeaves(elements, Leaves(entry.Group, entry.Header), entry)
-                    else
-                        local option = source.OptionAt(entry.Path, entry)
-                        if option then
-                            AddPluginNotes(elements, entry.Path, notesAdded)
-                            -- the option after the check box, shown where its check box is
-                            local with = entry.With and source.OptionAt(entry.With, { Retail = entry.Retail, ShowIf = entry.ShowIf })
-                            elements[#elements + 1] = { Kind = "Option", Option = option, With = with }
-                        end
-                    end
-                end
-                if group.AllNone then
-                    local members = {}
-                    for i = before + 1, #elements do
-                        local option = elements[i].Option
-                        if option and option.Type == "toggle" then members[#members + 1] = option end
-                    end
-                    table.insert(elements, before + 1, { Kind = "Sub", Text = group.AllNone, Members = members })
-                end
-            end
-        end
+        if source.OnThisClient(group) then AddGroup(elements, group, notesAdded) end
     end
     return elements
 end
