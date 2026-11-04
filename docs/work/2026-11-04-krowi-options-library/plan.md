@@ -1,112 +1,62 @@
 # Plan: Krowi_Options becomes a normal library (2.0), with its own translations, before KAF 105.0
 Spec: [spec.md](spec.md). Status: accepted (Krowi approved it in plan mode, 2026-11-04)
 
-## Context
-Krowi_Options (the options window) lives inside KAF (`Krowi_Options/`), has no strings of its own (KAF passes 22 through `config.Strings`), and cannot be embedded twice: its 20 XML templates warn "already exists" from a second copy, and only `Krowi_Options.lua` is version-guarded. Krowi wants it handled like the other Krowi libraries before 105.0 (2026-11-04), with no hurry and everything tested. Spec decisions: `Krowi_Options_2`, version 2.0. The two markers-review glitches are fixed here. The two-copy test uses a standalone folder, once. Work folder: `docs/work/2026-11-04-krowi-options-library/` (intent and spec accepted, 827c8d74).
-
-Two repos, two PRs:
+Krowi_Options (the options window) lived inside KAF (`Krowi_Options/`), had no strings of its own (KAF passed 22 through `config.Strings`), and could not be embedded twice: its 20 XML templates warned "already exists" from a second copy, and only `Krowi_Options.lua` was version-guarded. Krowi wants it handled like the other Krowi libraries before 105.0, with no hurry and everything tested. Two repos, two PRs:
 - KAF worktree `.claude/worktrees/feature-2026-11-04-options-strings`, branch `feature/2026-11-04-options-strings`.
-- `Krowi_Libraries\Krowi_Options`, new branch `feature/2026-11-04-normal-library`.
+- `Krowi_Libraries\Krowi_Options`, branch `feature/2026-11-04-normal-library`.
 
-## Steps
+## Files that change
 
-### 1. KAF: bring the branch up to date, fix the two glitches test-first (in `Krowi_Options/`, before it moves)
-1. `git rebase origin/main`. The branch holds one docs commit; main gained #394 (12f38fe1).
-2. **Scenarios in `Tests/Options.lua`**, each with `Recorded` (current, buggy) and `Target`, plus its model in `run-tests.lua` where it runs headless (`Tests/README.md` conventions):
-   - **hover help:** hover an option row (`row:OnEnter()`), change it (`row.Toggle:Click()`), then read the help pane. Recorded: no "Reset to Default" line until re-entered. Target: the line at once.
-   - **undo arrow:** a mouse step that waits for Krowi. Scroll a changed row half out of view, hover it, leave through the clipped part. Recorded: the arrow stays. Target: it goes.
-3. **In-game before-run on Retail** (deploy, `/kaftest options`, `/reload`, `Read-GameTests.ps1`) to confirm both reproduce. Commit `test: reproduce the markers glitches in the options suite`.
-4. **Fixes**, then `Recorded` = `Target`; commit `fix: the undo arrow and the hover help follow the mouse and changes`:
-   - `RowMixins.lua` `OnLeave`/`Refresh`: also require `window.PageScrollBox:IsMouseOver()`.
-   - `WindowMixin.lua` `OnOptionChanged`: re-run `OnRowEnter` for `HoverOption`.
+**The library repo** (`Krowi_Libraries\Krowi_Options`):
+- `Krowi_Options.lua`: `KROWI_LIBMAN:NewLibrary('Krowi_Options_2', 0, { SetCurrent = true, InitLocalization = true })`, `lib.Mixins`, `lib.Build`, `lib.GetStrings()` (the 22 texts from `lib.L`, placeholders turned into `%s`/`%d`), the config without `Strings`.
+- `RowFrames.lua` (new, replaces `Rows.xml`): the 14 row builders, plus the helpers `Text`, `Color`, `Finish` (mixin, scripts by method name, `OnLoad` last) and `Row`.
+- `WindowFrame.lua` (new, replaces `Window.xml`): the 5 list builders and `build.Window()` on `SettingsFrameTemplate`, hidden before its children are made.
+- `RowMixins.lua`, `WindowMixin.lua`, `Search.lua`: a `NewSubmodule` guard each, mixins on `lib.Mixins`, the scroll lists on host frames with a row per kind hung as `host.Row`, the two glitch fixes (`UnderMouse`, `RefreshHover`).
+- `Localization/`: `Files.xml`, `Shared.lua` and 11 locale files with the 22 phrases and every translation KAF and Krowi_Util had.
+- `Krowi_Options.xml` (load order), the TOC (2.0), `_Packaging/Changelog.md` and `Description.md`, `CLAUDE.md` (rewritten as a normal library's).
+- `Rows.xml` and `Window.xml` deleted.
 
-### 2. Library repo: take the code over, then make it a normal library
-1. Copy the branch's `Krowi_Options/` files over the repo's 1.0 copy, and commit them.
-2. **Guards and name:**
-   - `Krowi_Options.lua`: `NewLibrary('Krowi_Options_2', 0, { SetCurrent = true, InitLocalization = true })`.
-   - Every other Lua file: `local sub, lib = KROWI_LIBMAN:NewSubmodule('<File>', 0); if not sub then return end`. LibMan registers each as its own entry (`Krowi_Util/LibMan.lua:61-76`), and the parent is current through `SetCurrent`.
-   - The 16 mixins become `lib.Mixins.<Name>` (for example `lib.Mixins.OptionRow`), and are applied with `Mixin(frame, ...)` by the builders.
-3. **Templates to Lua**, one file per XML file so the two can be compared side by side:
-   - `RowFrames.lua` replaces `Rows.xml` (14 builders), and `WindowFrame.lua` replaces `Window.xml` (5 list builders and the window).
-   - Each builder makes what the template declared: regions with their layers, fonts, atlases and anchors; children through `CreateFrame` with Blizzard's templates (`MinimalSliderWithSteppersTemplate`, `DropdownWithSteppersTemplate` and its `WowStyle2DropdownTemplate` `Dropdown`, `UIPanelButtonNoTooltipTemplate`, `InputBoxTemplate`, `SearchBoxTemplate`, `WowScrollBoxList`, `MinimalScrollBar`, `NewFeatureLabelTemplate`); the same parentKeys.
-   - Each builder then applies the mixin, sets the `method=` scripts, and runs `OnLoad`. KeyButton's `OnMouseDown` is set before OptionRow's `OnLoad` hooks it (`RowMixins.lua:157`).
-   - The window: `CreateFrame("Frame", "Krowi_OptionsWindow", UIParent, "SettingsFrameTemplate")`, with the attributes from `Window.xml:107` (HIGH strata, toplevel, movable, resizable, clamped, hidden), then its 20 children and 7 regions.
-   - `Rows.xml` and `Window.xml` are deleted.
-4. **Rows in the three scroll boxes:** a native frame type pools all kinds together (`FrameFactory.lua:17-32`), so:
-   - The view gets a plain host: `factory("Frame", init)`.
-   - `init` takes content of the element's kind from a pool per kind (`CreateObjectPool`, built by the kind's builder), parents it to the host with `SetAllPoints`, stores it as `host.Row`, and calls `Row:Init(data, window)`.
-   - `view:SetFrameFactoryResetter` hands `host.Row` back to its pool. The resetter exists on `live`, `classic` and `classic_titan`.
-   - The kind tables (`WindowMixin.lua:117-129`, `223-225`, `235-236`) name builders instead of templates, and keep the extents.
-   - The two page walkers (`:614` `EndKeyCapture`, `:738` `Refresh`) read `host.Row`.
-5. **Localization:**
-   - `Localization/Files.xml` and 11 locale files with Krowi_PopupDialog's head (`GetCurrentLibrary(true)`, `NewDefaultLocale`/`NewLocale`, the `AUTOGENTOKEN` line, no "Exported at" stamp). The 22 phrases, sorted ignoring case, with KAF's translations, plus Krowi_Util's 4 of "Requires a reload". The files are generated by a scratchpad Lua script that reads KAF's and Krowi_Util's files with the kit's Lua 5.1, then written with Write.
-   - `lib.GetStrings()` builds `lib.Strings` once from `lib.L`, with the field names the window already uses and the placeholders turned into `%s`/`%d` with `K_ReplaceVars`.
-   - The window uses `lib.GetStrings()`, and `StringsFor` returns it. `config.Strings` is no longer read; the broad search is always offered.
-6. **Load order** (`Krowi_Options.xml`): `Krowi_Options.lua`, `Localization\Files.xml`, `Search.lua`, `RowMixins.lua`, `RowFrames.lua`, `WindowMixin.lua`, `WindowFrame.lua`.
-7. **Repo files:**
-   - TOC 2.0 with the same Notes.
-   - `_Packaging/Changelog.md` 2.0: `Krowi_Options_2`, the window's own strings in 11 languages, safe when embedded twice, the two fixes.
-   - `Description.md`: requirements Krowi_Util with its AceLocale, and the config fields.
-   - `CLAUDE.md` rewritten in Krowi_Menu's shape: clients, loading, a versioning table per file, consumers, taint-sensitive areas, localization, code style, testing through KAF, release `--stability alpha`.
+**KAF:**
+- `Libs/Krowi_Options` (new submodule) and its `Libs/Files.xml` line; `.gitmodules`; the TOC's `Krowi_Options\Files.xml` line and the `Krowi_Options/` folder go.
+- `Options/Window/Window.lua` and `Help/Help.lua`: `Krowi_Options_2`, no `Strings`; the Overview's name from the library.
+- `Options/Window/Map.lua`, `Source.lua`, `Model.lua`: the heading-level `Retail` flag (requirement 10).
+- `Localization/*.lua` (11): the 19 phrases only the window used.
+- `Tests/Options.lua`, `Tests/Tests.lua`, `.claude/tools/headless/read-tests.lua`, `Tests/README.md`: the scenarios, targeted runs, `_2`.
+- `.claude/tools/Check-Repo.ps1`, `Check-Repo.globals`, `Check-Repo.jobs`, `.claude/tools/README.md`: `library-names` and `options-templates` on `Libs/Krowi_Options`.
+- Docs: `.github/copilot-instructions.md`, `docs/architecture.md`, `docs/backlog.md`.
 
-### 3. KAF: embed it
-1. `git submodule add https://github.com/TheKrowi/Krowi_Options Libs/Krowi_Options`. During the work it points at the library branch (fetched from the local checkout, as in Krowi_Menu's `CLAUDE.md`); before the PR merges, at tag 2.0.
-2. Wiring:
-   - `Libs/Files.xml`: `<Include file="Krowi_Options\Krowi_Options.xml" />` after `Krowi_Menu`.
-   - The TOC drops line 30 (`Krowi_Options\Files.xml`).
-   - `git rm -r Krowi_Options`.
-3. Code:
-   - `Options/Window/Window.lua:108`: `Krowi_Options_2`, without `Strings` (134-157).
-   - `Help.lua:64`: `Krowi_Options_2`.
-4. Locale files (11):
-   - They drop the phrases nothing in KAF reads any more, checked by grep at build time. 18 or 19: `Overview` may still be read at `Window.lua:113`.
-   - `Search` and `None` stay. `Util.L["Requires a reload"]` stays in Krowi_Util.
-5. Tests:
-   - `_1` becomes `_2` at the 15 call sites (`Tests/Options.lua`, `Tests/Pictures.lua:1257`).
-   - The three `ForEachFrame` walkers (`Tests/Options.lua:657,747,815`) read `host.Row`.
-   - `:1234` reads `Overview` from the library if KAF no longer has it.
-   - New scenarios: every one of the 22 strings comes from the library and is not empty; after load, no global `Krowi_Options*` exists besides `Krowi_OptionsWindow` (headless, `options-env`).
-6. Lint and config:
-   - `Check-Repo.ps1`: `library-names` stops listing `Krowi_Options/` (482-483). `options-templates` (530-559) scans `Libs/Krowi_Options/*`, so it keeps guarding the library against Blizzard's tainting Settings templates.
-   - `Check-Repo.globals` drops 36-39, and `Check-Repo.jobs` drops line 26 (`Libs/` is not scanned).
-   - `.luarc.json` drops `RESET_TO_DEFAULT`, which only the library reads.
-   - `.claude/tools/README.md` rows 60-61.
-7. Docs:
-   - `copilot-instructions.md` 68 and 106 (the load order item and the directories row: a `Libs/` submodule, edited in `Krowi_Libraries`).
-   - `docs/architecture.md` 53-63, `Tests/README.md:52`.
-   - `docs/backlog.md`: 152-153 removed (fixed); the other `Krowi_Options/` paths point at the library repo.
+**Elsewhere:** `Krowi_AddonManager_Python/resources.py` lists `Krowi_Options` in `LIBRARY_NAMES`; the kit's `WowAddons.md` lists it among the libraries (write-back).
 
-### 4. CurseForge
-1. From the library branch: `Sync-Localization.ps1` report, then `-Export` on Krowi's go, so 1783244 gets the 22 phrases and every translation. Re-read until it says "CurseForge now has every enUS phrase" and "CurseForge has them all".
-2. After the KAF PR merges, from KAF `main`: the report lists the dropped phrases as "On CurseForge only", and `-Export -Delete '<keys>'` runs on Krowi's approval, with the translation counts named.
+## Order of work
+1. **KAF, the glitches test-first, still in `Krowi_Options/`:** rebase on `origin/main`; the two scenarios with `Recorded` (buggy) and `Target`; the in-game before-run on Retail; the fixes; `Recorded` = `Target`.
+2. **The library repo:** copy the branch's `Krowi_Options/` over the 1.0 copy; guards and the new name; templates to Lua, one Lua file per XML file; the rows on host frames; localization; load order; repo files.
+3. **KAF embeds it:** the submodule (on the library branch during the work), wiring, code, locale files, tests, lint and docs.
+4. **CurseForge:** from the library branch, the sync's report, then `-Export` on Krowi's go; after the KAF merge, from KAF `main`, `-Export -Delete` of the 19 phrases on Krowi's approval, with the translation counts named.
+5. **Tests and review:** headless, in game on Retail and Mists, the two-copy test on Retail, `krowi:taint-reviewer` on the library diff, `/code-review` on both PRs.
+6. **PRs, release, write-back:** the library PR first, merged on Krowi's go, then `krowi:release` 2.0 alpha with the dry-run zip shown first; the KAF PR pins `Libs/Krowi_Options` to the tag 2.0, merged on Krowi's go; then the write-back (the kit's `WowAddons.md`, the library's known debt from the spike, memory).
 
-### 5. Tests and review
-- **Headless:** `run-tests.lua` with `options`, `escape`, `help`, `popups`; `Check-Repo.ps1` whole tree; `Find-DeprecatedApi.ps1` on the library; Lua 5.1 syntax (hook).
-- **In game** (deploy the KAF worktree with the library branch in `Libs/`):
-  - Retail: `/kaftest options` and `/kaftest escape`.
-  - Mists: `/kaftest options`.
-  - Krowi looks at the window on both: rows, dropdowns, sliders, key buttons, cards, search, help pane, lightbox, resize.
-- **Two copies, Retail, once:**
-  - Deploy the library as `AddOns\Krowi_Options` next to KAF. It loads after KAF and finds KAF's `KROWI_LIBMAN`.
-  - Its files print a temporary line after their guard.
-  - (a) With equal minors: no line, no warning in BugGrabber.
-  - (b) With every minor +1: a line per file, no warning, and the window works.
-  - Then the folder is removed. The prints never get committed.
-- **Review:** `krowi:taint-reviewer` on the library diff; `/code-review` on both PRs.
-
-### 6. PRs, release, write-back
-1. The library PR goes first; on Krowi's go, merge, then `krowi:release` 2.0 alpha (the dry-run zip shown first).
-2. The KAF PR pins `Libs/Krowi_Options` to the tag 2.0; on Krowi's go, merge, then step 4.2.
-3. Write-back:
-   - The kit's `WowAddons.md` workspace table lists Krowi_Options among the libraries.
-   - The library repo's `CLAUDE.md` gets known debt from the spike that stays open: Escape handled by the consumer, the empty help pane, Defaults on sections without settings.
-   - Memory.
+### Where the build departed from the plan
+- **Targeted runs** (Krowi asked, the suite had grown long): `/kaftest options <name, start of a name or number>` runs those steps with the ones they need, every scenario, the restore and the BugGrabber check. Such a run is kept but not counted by the release gate (`Tests.lua` stores it apart from `Runs`; `read-tests.lua` says so).
+- **The dropdown with steppers is assembled by hand:** `DropdownWithSteppersTemplate`'s `OnLoad` needs its `Dropdown` child before the Lua build can add it, and `WowStyle2IconButtonMixin`'s `OnLoad` needs `normalAtlas`. `build.Select` makes the children, then applies `DropdownWithSteppersMixin` and runs its `OnLoad` (the risk listed below, found real).
+- **The content rows come from a free list per kind**, not `CreateObjectPool`: the frame factory's resetter hands a host's row back to its kind's list.
+- **Every copy adds its phrases:** the locale files call `NewDefaultLocale(true)` / `NewLocale(<lang>, true)`, so a newer copy's code finds its own phrases next to an older copy's.
+- **19 phrases left KAF, not 18:** KAF's Overview reads its name from the library's `GetStrings().Overview`.
+- **`.luarc.json` keeps `RESET_TO_DEFAULT`:** the tests still read it.
+- **Requirement 10, found on Mists during the work:** Reminder events showed empty headings there; `Map.lua` marks seven headings `Retail`, `Source.lua` leaves such a heading out on the other clients, and the `no-empty-headings` scenario guards every section on both clients (Krowi's decision in the spec).
+- **The clipped-row step** takes the longest section that has a plain check box: on Mists the longest, the plugins, has none.
+- **The two-copy test recorded its findings itself:** the standalone copy carried a probe that wrote which files took over, the live minors and the strings into a saved variable, beside the chat line per file.
 
 ## Risks
-- **Look regressions from the XML-to-Lua move:** caught by the suites' geometry checks and Krowi's look in game; builders follow the inventory field by field.
-- **The `Select.Dropdown` child declared inside `DropdownWithSteppersTemplate`:** check `wow-ui-source` for an own `Dropdown` key before building it.
+- **Look regressions from the XML-to-Lua move:** caught by the suites' geometry checks and Krowi's look in game; the builders follow the templates field by field.
+- **The dropdown's `Dropdown` child inside `DropdownWithSteppersTemplate`:** found real; see the departures.
 - **Titan has no local client:** checked against `wow-ui-source\classic_titan` only.
 - **105.0 waits for both PRs and the 2.0 release.**
 
-## Verification (end to end)
-Headless suites green. In-game runs green on Retail and Mists with no BugGrabber rows. The two-copy runs as above. Both CurseForge reports in step. KAF's release preflight finds `Libs/Krowi_Options` at its newest tag.
+## Proof
+- **Headless, both clients:** `options` 38, `escape` 34, `help` 5, `popups` 22, all passing; the option fingerprints unchanged (Retail 408, Mists 304). `Check-Repo.ps1`: 0 errors.
+- **Retail, 2026-11-04:** `/kaftest options` 86 passed, 1 skip (headless only); `/kaftest escape` 34 of 34; BugGrabber clean; Krowi's look at the window.
+- **Mists, 2026-11-04:** `/kaftest options` 85 passed, 2 skips (the headless-only one, and the clipped-row step, fixed since); `/kaftest options toggle-reset-clipped` 41 passed, with `no-empty-headings` and the clipped-row step passing; BugGrabber clean; Reminder events ends after Holidays (Krowi's screenshot).
+- **Two copies, Retail, 2026-11-04**, a standalone `AddOns\Krowi_Options` next to KAF, removed after:
+  - (a) equal minors: no file took over, every minor 0, 22 strings; `/kaftest options open` 40 passed; no XML warning, BugGrabber clean.
+  - (b) every minor + 1: all six files took over, every minor 1, 22 strings; `/kaftest options section` 63 passed, every section drawn by the newer copy; no XML warning, BugGrabber clean.
+- **Still to come:** the taint review and `/code-review`; the CurseForge export (on Krowi's go); after the merges, full `options` and `escape` runs from `main` for the release gate, and KAF's preflight finding `Libs/Krowi_Options` at its newest tag.
