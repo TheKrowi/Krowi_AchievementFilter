@@ -53,3 +53,10 @@ The plan is non-routine, because it changes hooks on Blizzard frames (Achievemen
 - `Check-Repo.ps1` clean, `krowi:taint-reviewer` and `/code-review` findings fixed or listed in the PR.
 - In game, Retail: `/kaftest popups`, then `/reload`. `Read-GameTests.ps1` shows the three scenarios at Target, and `Read-GameErrors.ps1` shows no new row.
 - By hand, Retail and Mists: change *Side Button Anchor* both ways with each window open and closed, then open each window. No error, and the buttons show on the chosen window.
+
+## Departures from the plan
+- **`side-buttons-old-anchor-closes` runs in game too.** It needs only the achievement window: open it, switch to the world map, close it. It watches the close remove the refresh callback rather than reading the callback list, so its values read `the close removes it` and `the close leaves it`. The before-run on Retail (2026-11-04 14:13) showed the four in-game scenarios at Recorded, and 14 times the reported error from `SideButtonMixin.lua:6`.
+- **`Reload` removes the refresh callback**, and registers it again only when the new anchor is shown. Without that, a switch away from an open window would keep the alert system's ticker refreshing buttons that nothing shows, which is the allocation the background-jobs rule forbids.
+- **`Reload` sets `Loaded` both ways:** true when it hooks the new anchor, false when that anchor is missing. A switch to the world map before the achievement window loads then saves `LoadWithBlizzard_AchievementUI` a second `Load`, and with it a second round of the skin plugins' `Load` hooks.
+- `Load` and `Reload` find the anchor through one local, `GetLoadableAnchor`: nil while event reminders are off.
+- `Options/Window/Changelog.lua` is not rebuilt here. It is rebuilt at release (`Build-ChangelogLua.ps1`), as the other 105.0 lines were.

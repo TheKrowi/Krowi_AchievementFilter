@@ -617,7 +617,7 @@ popUps.Scenarios = {
                 return tostring(withoutEvent)
             end)
         end,
-        Recorded = "1",
+        Recorded = "0",
         Target = "0"},
     -- A switch to the world map and back, then the achievement window opens: how often its buttons refresh
     {Name = "side-buttons-switch-back",
@@ -631,7 +631,7 @@ popUps.Scenarios = {
                 end))
             end)
         end,
-        Recorded = "more than one",
+        Recorded = "one",
         Target = "one"},
     -- The buttons on the world map while the achievement window is open, then a switch to the achievement window:
     -- whether they come onto it at once
@@ -646,7 +646,7 @@ popUps.Scenarios = {
                 return count > 0 and "yes" or "no"
             end)
         end,
-        Recorded = "no",
+        Recorded = "yes",
         Target = "yes"},
     -- The achievement window open with the buttons on it, a switch to the world map, then the achievement window closes:
     -- whether that close takes away the buttons' refresh, which stops their countdown on the world map while it is open
@@ -670,7 +670,7 @@ popUps.Scenarios = {
                 return removed and "the close removes it" or "the close leaves it"
             end)
         end,
-        Recorded = "the close removes it",
+        Recorded = "the close leaves it",
         Target = "the close leaves it"},
     -- A login with the buttons on the world map, a switch to the achievement window before it loads, then its load and
     -- first opening: how often the buttons refresh on it
@@ -698,7 +698,7 @@ popUps.Scenarios = {
             end
             return got
         end,
-        Recorded = "none",
+        Recorded = "one",
         Target = "one"},
 }
 
