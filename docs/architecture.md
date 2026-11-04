@@ -50,17 +50,15 @@ The settings as AceConfig tables: `Defaults.lua`, `General.lua`, `Layout.lua`, `
 - `Map.lua`: the 22 feature sections in three groups, and where each AceConfig option shows in them.
 - `Source.lua`: turns map entries into the window's rows and option objects: label, description, value, derived default, disabled and hidden, through the options' own get and set.
 - `Model.lua`: what the `options` suite asks without drawing (coverage, round trip, fingerprint, defaults, changed lines, search, section reset).
-- `Window.lua`: hands all of it to `Krowi_Options`; holds the landing rule, the New marks, the Overview, `addon.Options.Open` and `/kaf`.
+- `Window.lua`: hands all of it to the `Krowi_Options` library (`Libs/`); holds the landing rule, the New marks, the Overview, `addon.Options.Open` and `/kaf`.
 - `Stub.lua`: the one Settings > AddOns page, with the button that opens the window.
 - `Changelog.lua`: generated at release by `.claude/tools/Build-ChangelogLua.ps1`, the Overview's copy of the changelog's top entry.
 
-### `Krowi_Options/`
-
-The options window itself, addon-neutral, registered through LibMan as `Krowi_Options_1` and loaded from the TOC right after `Libs/Files.xml`; it moves to `Krowi_Libraries` when it is extracted. `Window.xml`/`WindowMixin.lua` hold the window: navigation, the page of rows, the help pane or its strip with tooltips, search, Defaults asked inside the window, the reload bar, resizing and the saved place. `Rows.xml`/`RowMixins.lua` hold one row type per element: check box, slider, dropdown, button, text box, key binding, note, heading, grid, tab list, link.
-
 ### `Libs/`
 
-Vendored libraries: the Ace3 suite, LibStub, CallbackHandler, LibDataBroker, LibDBIcon, LibDeflate, LibSerialize, MetaLua, TaintLess, and the `Krowi_*` libraries. `Krowi_Menu`, `Krowi_ProgressBar`, `Krowi_WorldMapButtons`, `Krowi_Util`, `Krowi_PopupDialog` are git submodules pointing at `TheKrowi/*` repos, which is why fixes belong upstream.
+Vendored libraries: the Ace3 suite, LibStub, CallbackHandler, LibDataBroker, LibDBIcon, LibDeflate, LibSerialize, MetaLua, TaintLess, and the `Krowi_*` libraries. `Krowi_Menu`, `Krowi_ProgressBar`, `Krowi_WorldMapButtons`, `Krowi_Util`, `Krowi_PopupDialog` and `Krowi_Options` are git submodules pointing at `TheKrowi/*` repos, which is why fixes belong upstream, in `Krowi_Libraries`.
+
+`Krowi_Options` (`Krowi_Options_2`) is the options window, addon-neutral and translated on its own CurseForge project; it was made here and became a library of its own in 2.0 (docs/work/2026-11-04-krowi-options-library). `WindowMixin.lua`/`WindowFrame.lua` hold the window: navigation, the page of rows, the help pane or its strip with tooltips, search, Defaults asked inside the window, the reload bar, resizing and the saved place. `RowMixins.lua`/`RowFrames.lua` hold one row type per element: check box, slider, dropdown, button, text box, key binding, note, heading, grid, tab list, link. Its frames are built in Lua, each list row hung on its list's frame as `frame.Row`.
 
 ## Data chunk execution
 

@@ -61,7 +61,7 @@ local completedIcon, notCompletedIcon, noLongerIcon = "|T136814:0|t", "|T136815:
 
 -- The rows' markers stand before the lines that explain them (Krowi_Options' Markup); the reload line reuses the hover
 -- text's string (docs/work/2026-10-31-options-markers)
-local markup = KROWI_LIBMAN:GetLibrary("Krowi_Options_1").Markup
+local markup = KROWI_LIBMAN:GetLibrary("Krowi_Options_2").Markup
 
 help.overview = {
     Title = L["Help Overview Title"],

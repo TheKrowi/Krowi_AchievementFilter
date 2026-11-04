@@ -152,7 +152,7 @@ local function OverviewLine()
             n.links = n.links + 1
         elseif under and element.Kind == "Cards" then
             n.cards = n.cards + #element.Cards
-            n.rows = n.rows + math.ceil(#element.Cards / KROWI_LIBMAN:GetLibrary("Krowi_Options_1").CardColumns)
+            n.rows = n.rows + math.ceil(#element.Cards / KROWI_LIBMAN:GetLibrary("Krowi_Options_2").CardColumns)
             for _, card in ipairs(element.Cards) do
                 if card.Picture then n.pictures = n.pictures + 1 elseif card.Icon then n.icons = n.icons + 1 end
                 if card.Text and card.Text ~= "" then n.lines = n.lines + 1 end
@@ -179,7 +179,7 @@ end
 -- A search of this addon's tab (docs/work/2026-11-03-blizzard-search), a result per row in the order shown:
 -- "Section>Heading>Name", a row with no heading "Section>Name"
 local function SearchRows(text, broad)
-    local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
+    local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
     local tab = addon.Options.Window.Controller
     local rows = {}
     for _, group in ipairs(lib.Search(text, false, tab, broad)) do
@@ -334,7 +334,7 @@ options.Scenarios = {
     -- One window for every Krowi addon, a tab each; KAF alone registers today (docs/work/2026-10-30-options-settings-look)
     {Name = "window-tabs",
         Observe = function()
-            local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
+            local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
             if not lib.Tabs then return "no tab registry" end
             return "tabs=" .. TabNames(lib)
         end,
@@ -342,7 +342,7 @@ options.Scenarios = {
         Target = "tabs=Achievement Filter"},
     {Name = "window-second-tab",
         Observe = function()
-            local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
+            local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
             if not lib.Tabs then return "no tab registry" end
             return SecondTab(lib)
         end,
@@ -352,15 +352,44 @@ options.Scenarios = {
     -- the rows' names and controls in the right-hand column
     {Name = "window-width",
         Observe = function()
-            local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
+            local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
             if not lib.WindowWidth then return "resizable from 1000x560" end
             return ("open=%d collapsed=%d"):format(lib.WindowWidth(false), lib.WindowWidth(true))
         end,
         Recorded = "open=1300 collapsed=950", -- "resizable from 1000x560" before the game's width
         Target = "open=1300 collapsed=950"},
+    -- Krowi_Options 2 as a library of its own (docs/work/2026-11-04-krowi-options-library): the window's texts come from its
+    -- own locale files, none from this addon's config, and it leaves no global but the window's name, so a second copy
+    -- embedded by another addon finds nothing to collide with
+    {Name = "library-strings",
+        Observe = function()
+            local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
+            if not lib.GetStrings then return "no strings of its own" end
+            local count, empty = 0, 0
+            for _, text in next, lib.GetStrings() do
+                count = count + 1
+                if type(text) ~= "string" or text == "" then empty = empty + 1 end
+            end
+            return ("strings=%d empty=%d config=%s"):format(count, empty, addon.Options.Window.Controller.Config.Strings and "yes" or "no")
+        end,
+        Recorded = "strings=22 empty=0 config=no", -- "no strings of its own" with Krowi_Options 1, whose 22 texts this addon passed
+        Target = "strings=22 empty=0 config=no"},
+    {Name = "library-globals",
+        Observe = function()
+            local found = {}
+            for name in next, _G do
+                if type(name) == "string" and name:find("^Krowi_Options") and name ~= "Krowi_OptionsWindow" then
+                    found[#found + 1] = name
+                end
+            end
+            table.sort(found)
+            return #found == 0 and "none" or table.concat(found, ",")
+        end,
+        Recorded = "none", -- the 16 Krowi_Options*Mixin tables with Krowi_Options 1
+        Target = "none"},
     {Name = "row-geometry",
         Observe = function()
-            local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
+            local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
             if not lib.RowGeometry then return "column 300 from the right, names from 16" end
             return RowGeometryLine(lib)
         end,
@@ -503,7 +532,7 @@ options.Scenarios = {
         TargetClassic = "links=0 cards=22 rows=9 pictures=14 icons=8 lines=22"},
     {Name = "card-geometry",
         Observe = function()
-            local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
+            local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
             if not lib.CardWidth then return "no card helpers" end
             return CardGeometryLine(lib)
         end,
@@ -622,6 +651,14 @@ local function Window()
     return Krowi_OptionsWindow
 end
 
+-- The page's drawn rows: Krowi_Options 2 hangs each row on a plain frame of its list, as frame.Row
+-- (docs/work/2026-11-04-krowi-options-library)
+local function ForEachRow(func)
+    Window().PageScrollBox:ForEachFrame(function(frame)
+        if frame.Row then func(frame.Row) end
+    end)
+end
+
 local function DeepCopy(value)
     if type(value) ~= "table" then
         return value
@@ -660,7 +697,7 @@ end
 -- The drawn row of an option on the current page
 local function RowOf(option)
     local found
-    Window().PageScrollBox:ForEachFrame(function(row)
+    ForEachRow(function(row)
         if row.Option == option then
             found = row
         end
@@ -694,7 +731,7 @@ local function RowLayout(row)
     end
     local wrong, firstLeft = {}, nil
     if row.Geometry and row.Select and row.Select:IsShown() then
-        local line = row:GetLeft() + KROWI_LIBMAN:GetLibrary("Krowi_Options_1").RowX(row.Geometry.Toggle, row:GetWidth())
+        local line = row:GetLeft() + KROWI_LIBMAN:GetLibrary("Krowi_Options_2").RowX(row.Geometry.Toggle, row:GetWidth())
         if math.abs(row.Select.DecrementButton:GetLeft() - line - 2.5) > 0.5 then
             tinsert(wrong, ("arrow %g from the check boxes' line"):format(row.Select.DecrementButton:GetLeft() - line))
         end
@@ -750,7 +787,7 @@ end
 -- Drawn rows whose control does not show its option's value, rows that break the layout, and names cut short
 local function CheckDrawnRows()
     local drawn, differ, misfit, cut = 0, {}, {}, {}
-    Window().PageScrollBox:ForEachFrame(function(row)
+    ForEachRow(function(row)
         drawn = drawn + 1
         local wrong, isCut = RowLayout(row)
         local id = row.Option and row.Option.Id or (row.Element and (row.Element.Text or row.Element.Label)) or tostring(drawn)
@@ -818,7 +855,7 @@ local function CardsStep(name, text, Scroll)
         end,
         Check = function()
             local cards, misfit, empty, cut = 0, {}, {}, {}
-            Window().PageScrollBox:ForEachFrame(function(row)
+            ForEachRow(function(row)
                 if not row.Cards then
                     return
                 end
@@ -1110,7 +1147,7 @@ end
 
 -- A word of an option's description that no option's name holds, so only the broad search finds it, in any language
 local function DescriptionOnlyWord()
-    local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
+    local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
     local tab = addon.Options.Window.Controller
     for _, optionId in ipairs({ toggleId, rangeId, tabPriorityId }) do
         local _, option = FindOption(optionId)
@@ -1313,7 +1350,7 @@ local function BuildSteps()
             Run = function() end,
             Check = function()
                 local frame = Window()
-                local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
+                local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
                 local shown, selected = 0, "none"
                 for _, button in ipairs(frame.TabButtons) do
                     if button:IsShown() then
@@ -1336,7 +1373,7 @@ local function BuildSteps()
             Run = function() end,
             Check = function()
                 local frame = Window()
-                local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_1")
+                local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
                 local function Is(value, expected) return math.abs(value - expected) < 0.5 end
                 local width = lib.WindowWidth(frame.PaneCollapsed)
                 local minWidth, _, maxWidth = width, nil, width
@@ -1352,7 +1389,7 @@ local function BuildSteps()
                     frame.SearchAll:GetWidth(), frame.SearchAll:GetHeight(), frame.Divider:GetWidth(), frame:GetScale()))
             end
         },
-        SectionStep("overview", addon.L["Overview"]),
+        SectionStep("overview", KROWI_LIBMAN:GetLibrary("Krowi_Options_2").GetStrings().Overview),
         CardsStep("overview-cards", "Overview's first cards", ScrollToFirstCards),
         CardsStep("overview-cards-end", "Overview's last cards", ScrollToEnd)
     }
@@ -1409,7 +1446,7 @@ local function BuildSteps()
             local frame = Window()
             local agrees = frame.ExpandButton:IsShown() == frame.PaneCollapsed and frame.HelpScrollBox:IsShown() == not frame.PaneCollapsed
             -- The pane adds its own width to the game's window (docs/work/2026-11-02-options-widths)
-            local width = KROWI_LIBMAN:GetLibrary("Krowi_Options_1").WindowWidth(frame.PaneCollapsed)
+            local width = KROWI_LIBMAN:GetLibrary("Krowi_Options_2").WindowWidth(frame.PaneCollapsed)
             local wide = math.abs(frame:GetWidth() - width) < 0.5 and math.abs(frame:PageWidth() - (frame.NavScrollShown and 619 or 635)) < 0.5
             Add(agrees and wide and "PASS" or "FAIL", ("the pane is %s and shows it, the window %g wide (%g expected), rows %g"):format(
                 frame.PaneCollapsed and "collapsed" or "open", frame:GetWidth(), width, frame:PageWidth()))

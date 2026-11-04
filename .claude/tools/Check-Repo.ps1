@@ -479,8 +479,7 @@ if ($emptySubmodules) {
 } else {
     $libraryNames = [hashtable]::new([StringComparer]::Ordinal)
     foreach ($rel in $luaFiles) {
-        # Krowi_Options/ is a library kept inside the addon until it moves to Krowi_Libraries (docs/work/2026-10-25-options-revamp)
-        if (-not ($rel.StartsWith('Libs/') -or $rel.StartsWith('Krowi_Options/'))) { continue }
+        if (-not $rel.StartsWith('Libs/')) { continue }
         $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
         if (-not $text.Contains('NewLibrary(')) { continue }
         foreach ($m in [regex]::Matches($text, '(?m)^(?!\s*(?:local\s+)?function\b).*?NewLibrary\(\s*(?:nil\s*,\s*)?([^,\)\s]+)')) {
@@ -534,10 +533,16 @@ Write-Timing 'settings-close'
 # keybinding buttons drive the global KeybindListener, and on Retail UIPanelButtonTemplate hides GameTooltip on every
 # mouse-leave (docs/work/2026-10-30-options-settings-look, the taint review in its spec). SettingsFrameTemplate is only
 # the frame's art and stays allowed. The same code mixed in by name (Mixin(f, SettingsCheckboxMixin), mixin="...") or the
-# panel's shared objects named directly count too. Comments, also those over several lines, are left out.
+# panel's shared objects named directly count too. Comments, also those over several lines, are left out. The window is
+# the Krowi_Options library, embedded under Libs/ since its 2.0 (docs/work/2026-11-04-krowi-options-library); it has no
+# lint of its own, so this rule checks it here.
 $forbiddenTemplate = '^(Settings(?!FrameTemplate$)\w*Template|KeyBindingFrameBinding\w*|UIPanelButtonTemplate)$'
 $forbiddenCode = '(?<![\w.])(Settings\w*Mixin|KeyBindingFrameBinding\w*Mixin|KeybindListener|SettingsPanel|SettingsTooltip|SettingsInbound|SettingsCallbackRegistry)(?!\w)'
-foreach ($rel in ($allFiles | Where-Object { $_ -like 'Krowi_Options/*' })) {
+$optionsLibrary = @($allFiles | Where-Object { $_ -like 'Libs/Krowi_Options/*' })
+if ($optionsLibrary.Count -eq 0) {
+    Add-Finding 'options-templates' 'Warning' '.gitmodules' 1 "skipped: no files in Libs/Krowi_Options, the options window's library; make the checkout with the kit's New-Worktree.ps1"
+}
+foreach ($rel in $optionsLibrary) {
     $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
     # Blank the comments out, keeping their line breaks so the line numbers stay
     $blank = { param($m) [regex]::Replace($m.Value, '[^\r\n]', ' ') }
