@@ -572,7 +572,10 @@ end
 --     (docs/work/2026-11-02-overview-cards)
 --   toggle, range, input: one row of each changed through its own control: the value is stored, and the changed line and
 --     the footer's count follow it; toggle-reset: the toggle's row shows its arrow on enter, before the name, and the
---     arrow sets the option back to its default (docs/work/2026-10-31-options-markers)
+--     arrow sets the option back to its default (docs/work/2026-10-31-options-markers); toggle-help-follows: the help
+--     pane's Reset to Default line comes and goes with a change made under the mouse; toggle-reset-clipped, the one step
+--     that waits for the player's mouse (30 s, then skipped): the arrow goes when the mouse leaves a row through its part
+--     scrolled out of view (both from the markers review, docs/work/2026-11-04-krowi-options-library)
 --   search: the found options drawn as rows under their section's name (docs/work/2026-11-03-blizzard-search);
 --     search-letter: from the first letter; search-pane: the pane explains the search, a hovered row with its section;
 --     search-broad: Search descriptions finds a word only a description holds; search-change: a check box changed in
@@ -585,6 +588,7 @@ end
 
 local settle = 1 -- a state change -> its check and screenshot
 local afterShot = 1 -- a screenshot -> the next step
+local mouseWait, pollEvery = 30, 0.1 -- a step that needs the player's mouse waits this long, looking this often
 local toggleId = "Layout.args.Header.args.General.args.CenterHeader"
 local rangeId = "Layout.args.Categories.args.Indentation.args.Indentation"
 local inputId = "Layout.args.Achievements.args.TemporarilyObtainable.args.StartTimeAndEndTime.args.Custom"
@@ -949,6 +953,115 @@ local function ResetStep(kind, optionId, Change)
     }
 end
 
+-- Whether the help pane holds the arrow's line, "Reset to Default"
+local function HelpHasReset()
+    local provider = Window().HelpScrollBox:GetDataProvider()
+    for i = 1, provider and provider:GetSize() or 0 do
+        local data = provider:Find(i)
+        if type(data) == "table" and type(data.Text) == "string" and data.Text:find(RESET_TO_DEFAULT, 1, true) then
+            return true
+        end
+    end
+    return false
+end
+
+-- The help pane follows a change made under the mouse (from the markers review, docs/work/2026-11-04-krowi-options-library):
+-- on the row the reset step left at its default, the row's enter is played, the option changed through its check box and
+-- set back, and after each change the pane is read for the arrow's line
+local function HelpFollowsStep(optionId)
+    local seen
+    return {
+        Name = "toggle-help-follows",
+        Text = "the help pane follows a change made under the mouse",
+        Run = function()
+            local _, option = FindOption(optionId)
+            local row = option and RowOf(option)
+            if not row then
+                return "its row is not drawn"
+            end
+            Remember(option)
+            row:OnEnter()
+            seen = { Before = HelpHasReset() }
+            row.Toggle:Click()
+            seen.Changed, seen.AfterChange = option:IsChanged(), HelpHasReset()
+            row.Toggle:Click()
+            seen.Back, seen.AfterBack = option:IsChanged(), HelpHasReset()
+            row:OnLeave()
+        end,
+        Check = function()
+            local follows = seen.AfterChange == seen.Changed and seen.AfterBack == seen.Back and seen.Before == false
+            Add(follows and "PASS" or "FAIL", ("%s: the Reset to Default line %s before, %s after the change (changed %s), %s after setting it back (changed %s)"):format(
+                optionId, seen.Before and "shows" or "is absent", seen.AfterChange and "shows" or "is absent", tostring(seen.Changed),
+                seen.AfterBack and "shows" or "is absent", tostring(seen.Back)))
+        end
+    }
+end
+
+-- The undo arrow goes when the mouse leaves a row through its part scrolled out of view (from the markers review): the
+-- last plain check box of the longest section is changed and scrolled half below the list's bottom edge, the player
+-- hovers it and moves straight down off the list, and the step reads the arrow once the mouse is on the hidden half
+local function ClippedResetStep()
+    local option, hovered
+    return {
+        Name = "toggle-reset-clipped",
+        Text = ("hover the half-shown row at the list's bottom, then move straight down off the list (%d s)"):format(mouseWait),
+        Run = function()
+            local frame, window = Window(), addon.Options.Window
+            local longest, most = nil, 0
+            for _, section in ipairs(window.Map.Sections) do
+                local count = #window.Source.Elements(section)
+                if count > most then
+                    longest, most = section, count
+                end
+            end
+            if not longest then
+                return "no section to scroll"
+            end
+            frame:ShowSection(longest.Id)
+            local index
+            for i, element in ipairs(frame.Elements or {}) do
+                local o = element.Option
+                if o and o.Type == "toggle" and not element.With and not o:IsDisabled() and not (o.GetNeedsReload and o:GetNeedsReload()) then
+                    option, index = o, i
+                end
+            end
+            if not option then
+                return "no plain check box in " .. longest.Id
+            end
+            local box = frame.PageScrollBox
+            box:ScrollToElementDataIndex(index, ScrollBoxConstants.AlignEnd, nil, ScrollBoxConstants.NoScrollInterpolation)
+            local row = RowOf(option)
+            if not row then
+                return "its row is not drawn"
+            end
+            box:ScrollToOffset(box:GetDerivedScrollOffset() - row:GetHeight() / 2, ScrollBoxConstants.NoScrollInterpolation)
+            Remember(option)
+            if not option:IsChanged() then
+                row.Toggle:Click()
+            end
+            hovered = false
+        end,
+        -- First the mouse on the row inside the list, then on the row's part below the list
+        Mouse = function()
+            local row = RowOf(option)
+            if not row then
+                return false
+            end
+            local inList = Window().PageScrollBox:IsMouseOver()
+            if row:IsMouseOver() and inList then
+                hovered = true
+            end
+            return hovered and row:IsMouseOver() and not inList
+        end,
+        Check = function()
+            local row = RowOf(option)
+            local shown = row and row.Reset:IsShown()
+            Add(row and not shown and "PASS" or "FAIL", ("%s: with the mouse on the row's hidden half the arrow is %s"):format(option.Id,
+                not row and "not drawn" or shown and "still shown" or "gone"))
+        end
+    }
+end
+
 -- The search as the game's Options window searches (docs/work/2026-11-03-blizzard-search), through the window's own
 -- functions: the rows it draws, from the first letter, the help pane beside them, the broad search, a change made in the
 -- results, a question asked there, and a row that a change in them hides
@@ -1240,6 +1353,7 @@ local function BuildSteps()
     end
     for _, step in ipairs({ ChangeSteps("toggle", toggleId, function(row) row.Toggle:Click() end) }) do tinsert(list, step) end
     tinsert(list, ResetStep("toggle", toggleId, function(row) row.Toggle:Click() end))
+    tinsert(list, HelpFollowsStep(toggleId))
     for _, step in ipairs({ ChangeSteps("range", rangeId, function(row, option)
         local min, max = option:GetRange()
         row.Range:SetValue(option:Get() ~= min and min or max)
@@ -1274,6 +1388,7 @@ local function BuildSteps()
         end
     })
     for _, step in ipairs(SearchSteps()) do tinsert(list, step) end
+    tinsert(list, ClippedResetStep())
     tinsert(list, {
         Name = "pane",
         Text = "the help pane collapsed to its strip",
@@ -1403,6 +1518,25 @@ local function Capture()
     end)
 end
 
+-- A step that needs the player's mouse checks as soon as its Mouse() holds, or is skipped after mouseWait
+local function WaitForMouse(step, waited)
+    local ok, ready = pcall(step.Mouse)
+    if ok and ready then
+        Capture()
+        return
+    end
+    if not ok or waited >= mouseWait then
+        Add(ok and "SKIP" or "FAIL", ok and ("waited %d s for the mouse: %s"):format(mouseWait, step.Text) or ("test error: " .. tostring(ready)))
+        After(afterShot, function()
+            RunStep(live.StepIndex + 1)
+        end)
+        return
+    end
+    After(pollEvery, function()
+        WaitForMouse(step, waited + pollEvery)
+    end)
+end
+
 RunStep = function(n)
     local step = steps[n]
     if not step then
@@ -1427,7 +1561,11 @@ RunStep = function(n)
         banner:SetPoint("BOTTOM", Window(), "TOP", 0, 6)
         banner:Show()
     end
-    After(settle, Capture)
+    if step.Mouse then
+        WaitForMouse(step, 0)
+    else
+        After(settle, Capture)
+    end
 end
 
 local function CreateBanner()
