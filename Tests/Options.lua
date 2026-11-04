@@ -1090,6 +1090,50 @@ local function HelpFollowsStep(optionId)
     }
 end
 
+-- The same on a grid's check box (from the code review of Krowi_Options 2.0): a grid row holds its options in its
+-- element, not as the row's Option, and the help did not follow a change there. The first grid row of Event reminders
+-- with a check box that can be changed.
+local function GridHelpFollowsStep()
+    local seen
+    return {
+        Name = "toggle-help-follows-grid",
+        Text = "the help pane follows a change in a grid made under the mouse",
+        Run = function()
+            Window():ShowSection("events")
+            local row, column
+            ForEachRow(function(candidate)
+                local element = candidate.Element
+                if row or not element or element.Kind ~= "GridRow" then
+                    return
+                end
+                for i, option in ipairs(element.Cells) do
+                    if not row and not option:IsDisabled() then
+                        row, column = candidate, i
+                    end
+                end
+            end)
+            if not row then
+                return "no grid check box to change in events"
+            end
+            local option = row.Element.Cells[column]
+            Remember(option)
+            row:OnEnter(column)
+            seen = { Id = option.Id, Was = option:IsChanged(), Before = HelpHasReset() }
+            row.Cells[column]:Click()
+            seen.Changed, seen.AfterChange = option:IsChanged(), HelpHasReset()
+            row.Cells[column]:Click()
+            seen.Back, seen.AfterBack = option:IsChanged(), HelpHasReset()
+            row:OnLeave()
+        end,
+        Check = function()
+            local follows = seen.Before == seen.Was and seen.AfterChange == seen.Changed and seen.AfterBack == seen.Back
+            Add(follows and "PASS" or "FAIL", ("%s: the Reset to Default line %s before (changed %s), %s after the change (changed %s), %s after setting it back (changed %s)"):format(
+                seen.Id, seen.Before and "shows" or "is absent", tostring(seen.Was), seen.AfterChange and "shows" or "is absent", tostring(seen.Changed),
+                seen.AfterBack and "shows" or "is absent", tostring(seen.Back)))
+        end
+    }
+end
+
 -- The undo arrow goes when the mouse leaves a row through its part scrolled out of view (from the markers review): the
 -- last plain check box of the longest section that has one is changed and scrolled half below the list's bottom edge,
 -- the player hovers it and moves straight down off the list, and the step reads the arrow once the mouse is on the
@@ -1451,6 +1495,7 @@ local function BuildSteps()
     for _, step in ipairs({ ChangeSteps("toggle", toggleId, function(row) row.Toggle:Click() end) }) do tinsert(list, step) end
     tinsert(list, ResetStep("toggle", toggleId, function(row) row.Toggle:Click() end))
     tinsert(list, HelpFollowsStep(toggleId))
+    tinsert(list, GridHelpFollowsStep())
     for _, step in ipairs({ ChangeSteps("range", rangeId, function(row, option)
         local min, max = option:GetRange()
         row.Range:SetValue(option:Get() ~= min and min or max)
