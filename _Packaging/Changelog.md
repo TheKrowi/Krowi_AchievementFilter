@@ -32,6 +32,7 @@ All notable changes to this project will be documented in this file.
 - The "Active events" chat message no longer repeats every refresh without an event under it
 - Event reminders and the obtainable dates in tooltips now follow the realm's clock, also when your computer's clock is off
 - Changing where the event reminder side buttons show no longer gives an error the next time that window opens
+- Switching profiles now moves the event reminder side buttons to the window that profile shows them on
 
 ## 104.0 - 2026-10-24
 ### Added

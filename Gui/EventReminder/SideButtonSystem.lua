@@ -114,38 +114,28 @@ local function HookAnchor(self, anchor)
     end)
 end
 
--- The anchor, or nil when event reminders are off or the anchor window does not exist yet
-local function GetLoadableAnchor(self)
-    if not addon.Options.db.profile.EventReminders.Enabled then
-        return
+-- Hooks the anchor; Loaded is false while event reminders are off or the anchor window does not exist yet, so
+-- LoadWithBlizzard_AchievementUI loads the buttons onto the achievement window once it does
+local function Attach(self)
+    local anchor = addon.Options.db.profile.EventReminders.Enabled and self:GetAnchor()
+    self.Loaded = anchor and true or false
+    if anchor then
+        HookAnchor(self, anchor)
     end
-    return self:GetAnchor()
+    return anchor
 end
 
 function eventReminderSideButtonSystem:Load()
-    local anchor = GetLoadableAnchor(self)
-    if not anchor then
-        self.Loaded = false
-        return false -- Anchoring failed because frame does not exist yet, try again later
-    end
-    HookAnchor(self, anchor)
-    self.Loaded = true
-    return true
+    return Attach(self) and true or false
 end
 
--- After an anchor change; it never calls Load, whose hooks the skin plugins add to on every call
+-- After an anchor or profile change; it never calls Load, whose hooks the skin plugins add to on every call
 function eventReminderSideButtonSystem:Reload()
+    HideButtons() -- Before Reset moves them: a button shown without an event errors in its OnShow
     ResetButtons()
-    HideButtons() -- A button left shown without an event errors in its OnShow when the new anchor shows
     addon.Gui.EventReminderAlertSystem:UnregisterOnRefresh("SideButtonSystem")
-    local anchor = GetLoadableAnchor(self)
-    if not anchor then
-        self.Loaded = false
-        return -- The achievement window is not loaded yet: LoadWithBlizzard_AchievementUI loads the buttons onto it
-    end
-    HookAnchor(self, anchor)
-    self.Loaded = true
-    if anchor:IsShown() then
+    local anchor = Attach(self)
+    if anchor and anchor:IsShown() then
         addon.Gui.EventReminderAlertSystem:RegisterOnRefresh("SideButtonSystem", OnAlertSystemRefresh)
         self:Refresh()
     end

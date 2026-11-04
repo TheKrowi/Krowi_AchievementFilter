@@ -700,6 +700,43 @@ popUps.Scenarios = {
         end,
         Recorded = "one",
         Target = "one"},
+    -- The achievement window open with the buttons on it, a switch to a profile with the buttons on the world map, then
+    -- the achievement window closes: whether the buttons' refresh stops, with no window left to show them
+    {Name = "side-buttons-profile-switch",
+        Observe = function(env)
+            if not env.Reload then
+                return nil, "headless only: switches the profile"
+            end
+            return SideButtonScenario(env, function()
+                local db = addon.Options.db
+                local current = db:GetCurrentProfile()
+                local test = "KrowiAF_Tests_SideButtons"
+                SetOption(sideButtonsAnchor, achievementWindow)
+                db:SetProfile(test)
+                db.profile.EventReminders.SideButtonsAnchor = worldMap -- this profile's own anchor, as a player's saved one
+                db:SetProfile(current)
+                OpenWindow(env)
+                local alertSystem = addon.Gui.EventReminderAlertSystem
+                local unregister, removed = alertSystem.UnregisterOnRefresh, false
+                alertSystem.UnregisterOnRefresh = function(self, key, ...)
+                    removed = removed or key == "SideButtonSystem"
+                    return unregister(self, key, ...)
+                end
+                local ok, err = pcall(function()
+                    db:SetProfile(test)
+                    CloseWindow(env)
+                end)
+                alertSystem.UnregisterOnRefresh = unregister
+                db:SetProfile(current)
+                db:DeleteProfile(test, true)
+                if not ok then
+                    error(err, 0)
+                end
+                return removed and "stops" or "keeps running"
+            end)
+        end,
+        Recorded = "stops",
+        Target = "stops"},
 }
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
