@@ -279,6 +279,10 @@ local function StartRun(text)
         print(prefix .. "debug mode is on for this run")
     end
     print(prefix .. "running " .. table.concat(entries, ", "))
+    -- A "done" left on the kit's marker by an earlier run must not end this one's wait (-WaitForDone)
+    if KrowiGameInput then
+        KrowiGameInput.Clear()
+    end
     RunEntries(entries, switched)
 end
 
