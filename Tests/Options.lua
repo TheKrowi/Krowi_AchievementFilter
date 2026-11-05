@@ -432,6 +432,22 @@ options.Scenarios = {
         end,
         Recorded = "strings=22 empty=0 config=no", -- "no strings of its own" with Krowi_Options 1, whose 22 texts this addon passed
         Target = "strings=22 empty=0 config=no"},
+    -- The Overview's legend explains the reload arrow with the very line the hover text shows (code review of PR #395).
+    -- It used Krowi_Util's phrase, which is orange on every client but English, while the library's hover text is plain:
+    -- the two differed on those clients only, so this English run cannot show it.
+    {Name = "help-reload-line",
+        Observe = function()
+            local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
+            local prefix = lib.Markup.Reload .. " "
+            for _, block in ipairs(addon.Options.Window.Help.overview.Blocks) do
+                if block.Text and block.Text:sub(1, #prefix) == prefix then
+                    return block.Text:sub(#prefix + 1) == lib.GetStrings().NeedsReload and "the hover text" or "another text"
+                end
+            end
+            return "no reload line"
+        end,
+        Recorded = "the hover text",
+        Target = "the hover text"},
     {Name = "library-globals",
         Observe = function()
             local windowName = KROWI_LIBMAN:GetLibrary("Krowi_Options_2").WindowName
