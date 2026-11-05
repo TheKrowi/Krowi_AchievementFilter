@@ -664,6 +664,9 @@ end
 --     pane's Reset to Default line comes and goes with a change made under the mouse; toggle-reset-clipped, the one step
 --     that waits for the player's mouse (30 s, then skipped): the arrow goes when the mouse leaves a row through its part
 --     scrolled out of view (both from the markers review, docs/work/2026-11-04-krowi-options-library)
+--   greyed-help, greyed-help-collapsed: a greyed-out check box, dropdown, dropdown arrow and tab arrow still fire their
+--     hover and explain their option, in the pane and in the collapsed pane's tooltip (the code review of Krowi_Options
+--     2.0, #8)
 --   search: the found options drawn as rows under their section's name (docs/work/2026-11-03-blizzard-search);
 --     search-letter: from the first letter; search-pane: the pane explains the search, a hovered row with its section;
 --     search-broad: Search descriptions finds a word only a description holds; search-change: a check box changed in
@@ -1427,6 +1430,151 @@ local function SearchSteps()
     }
 end
 
+-- A greyed-out setting still explains itself under the mouse (the code review of Krowi_Options 2.0, #8): the game runs a
+-- greyed button's OnEnter only when the button asks for it (SetMotionScriptsWhileDisabled, as the game's own settings
+-- check box does), and that flag is what the fix added. A test does not move the mouse, so the steps read the flag and
+-- play the button's own enter and leave: with the pane open the pane explains the option, collapsed the row's tooltip
+-- does. The cases: a check box and a dropdown under a parent check box that is off (turned off for the run when it is
+-- on), and the first tab's Up arrow, greyed on every client. Each step holds its last hover for its screenshot.
+local greyedCases = {
+    { Name = "check box", OptionId = "Layout.args.Criteria.args.Tooltip.args.ShowCriteriaIfAchievementIsCompleted", Control = function(row) return row.Toggle end },
+    { Name = "dropdown", OptionId = tabPriorityChildId, Control = function(row) return row.Select.Dropdown end },
+    { Name = "dropdown's arrow", OptionId = tabPriorityChildId, Control = function(row) return row.Select.IncrementButton end },
+    { Name = "tab list's Up arrow", TabRow = true, Control = function(row) return row.Up end },
+}
+
+local function RowOfElement(element)
+    local found
+    ForEachRow(function(row)
+        if row.Element == element then found = row end
+    end)
+    return found
+end
+
+-- Shows a case's row in view and greyed: its row, its control and the option the help names; or nil and why not. A
+-- parent it turns off goes into turnedOff.
+local function ShowGreyed(case, turnedOff)
+    local frame, window = Window(), addon.Options.Window
+    if case.TabRow then
+        for _, section in ipairs(window.Map.Sections) do
+            for _, element in ipairs(window.Source.Elements(section)) do
+                if element.Kind == "TabList" then
+                    frame:ShowSection(section.Id)
+                    for index, shown in ipairs(frame.Elements or {}) do
+                        if shown.Kind == "TabRow" and shown.Item.MoveUp == nil then
+                            frame.PageScrollBox:ScrollToElementDataIndex(index, ScrollBoxConstants.AlignCenter, nil, ScrollBoxConstants.NoScrollInterpolation)
+                            local row = RowOfElement(shown)
+                            if not row then return nil, "the first tab's row is not drawn" end
+                            return row, case.Control(row), shown.Item.Show
+                        end
+                    end
+                    return nil, "the tab list has no first tab"
+                end
+            end
+        end
+        return nil, "no section has the tab list"
+    end
+    local sectionId, option = FindOption(case.OptionId)
+    if not option then return nil, case.OptionId .. " is in no section on this client" end
+    frame:ShowSection(sectionId, case.OptionId)
+    local parent = option:GetParent()
+    if parent and parent:Get() then
+        Remember(parent)
+        parent:Set(false)
+        frame:OnOptionChanged(parent)
+        tinsert(turnedOff, parent)
+    end
+    local row = RowOf(option)
+    if not row then return nil, "its row is not drawn" end
+    return row, case.Control(row), option
+end
+
+-- As the game runs it when the mouse comes onto the control or leaves it: the script and the hooks on it (Tooltip.lua)
+local function Play(control, script)
+    local handler = control:GetScript(script)
+    if handler then handler(control, true) end
+end
+
+local function GreyedSteps()
+    local seen, held, turnedOff = {}, nil, {}
+    -- After the screenshot: the held hover ends and the parents the step turned off are on again, so the steps after it
+    -- (search-change clicks Tab priority's parent) start from the player's values
+    local function Release()
+        if held then
+            Play(held, "OnLeave")
+            held = nil
+        end
+        for _, parent in ipairs(turnedOff) do
+            parent:Set(true)
+            Window():OnOptionChanged(parent)
+        end
+        wipe(turnedOff)
+    end
+    local function Measure(collapsed)
+        local frame = Window()
+        Release()
+        if frame.PaneCollapsed ~= collapsed then frame:SetPaneCollapsed(collapsed) end
+        seen = {}
+        for i, case in ipairs(greyedCases) do
+            local row, control, option = ShowGreyed(case, turnedOff)
+            local result = { Case = case, Missing = not row and control or nil }
+            if row then
+                result.Label = option and option:GetLabel() or "?"
+                result.Greyed = not control:IsEnabled()
+                result.Asks = control:GetMotionScriptsWhileDisabled() and true or false
+                Play(control, "OnEnter")
+                local tooltip = frame.TooltipShown
+                if collapsed then
+                    result.Explains = option ~= nil and tooltip ~= nil and tooltip:IsShown() and tooltip:GetOwner() == row
+                else
+                    result.Explains = option ~= nil and frame.HoverOption == option
+                end
+                if i < #greyedCases then
+                    Play(control, "OnLeave")
+                    result.Ends = collapsed and not (tooltip and tooltip:IsShown()) or not collapsed and frame.HoverOption == nil
+                else
+                    held = control -- the last case stays hovered for the screenshot
+                end
+            end
+            seen[i] = result
+        end
+    end
+    local function Report(collapsed)
+        for _, result in ipairs(seen) do
+            if result.Missing then
+                Add("SKIP", ("%s: %s"):format(result.Case.Name, result.Missing))
+            else
+                local ok = result.Greyed and result.Asks and result.Explains and result.Ends ~= false
+                Add(ok and "PASS" or "FAIL", ("%s (%s): %s, %s, on enter %s%s"):format(result.Case.Name, result.Label,
+                    result.Greyed and "greyed" or "not greyed", result.Asks and "hovers while greyed" or "no hover while greyed",
+                    result.Explains and (collapsed and "its tooltip shows" or "the pane explains it") or (collapsed and "no tooltip" or "the pane does not explain it"),
+                    result.Ends == false and ", and the help stays after leaving" or ""))
+            end
+        end
+    end
+    -- The screenshot is taken right after the check with the hover held; the next step starts afterShot after it
+    return {
+        Name = "greyed-help",
+        Text = "a greyed-out check box, dropdown and arrow explain themselves under the mouse",
+        Run = function() Measure(false) end,
+        Check = function()
+            Report(false)
+            After(afterShot / 2, Release)
+        end
+    }, {
+        Name = "greyed-help-collapsed",
+        Text = "the same with the help pane collapsed: the row's tooltip",
+        Run = function() Measure(true) end,
+        Check = function()
+            Report(true)
+            After(afterShot / 2, function()
+                Release()
+                Window():SetPaneCollapsed(false)
+            end)
+        end
+    }
+end
+
 local function BuildSteps()
     local window = addon.Options.Window
     local list = {
@@ -1538,6 +1686,7 @@ local function BuildSteps()
                 shown and shown:GetLabel() or "the section"))
         end
     })
+    for _, step in ipairs({ GreyedSteps() }) do tinsert(list, step) end
     for _, step in ipairs(SearchSteps()) do tinsert(list, step) end
     tinsert(list, ClippedResetStep())
     tinsert(list, {
