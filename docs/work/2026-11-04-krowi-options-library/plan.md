@@ -59,4 +59,12 @@ Krowi_Options (the options window) lived inside KAF (`Krowi_Options/`), had no s
 - **Two copies, Retail, 2026-11-04**, a standalone `AddOns\Krowi_Options` next to KAF, removed after:
   - (a) equal minors: no file took over, every minor 0, 22 strings; `/kaftest options open` 40 passed; no XML warning, BugGrabber clean.
   - (b) every minor + 1: all six files took over, every minor 1, 22 strings; `/kaftest options section` 63 passed, every section drawn by the newer copy; no XML warning, BugGrabber clean.
-- **Still to come:** the taint review and `/code-review`; the CurseForge export (on Krowi's go); after the merges, full `options` and `escape` runs from `main` for the release gate, and KAF's preflight finding `Libs/Krowi_Options` at its newest tag.
+- **Review:** `krowi:taint-reviewer` on the library diff found nothing; the 10 `/code-review` findings were fixed in the library's `de2cb58`. The rest went to the library's review-fix branch (`fix/2026-11-05-options-review-fixes`, `4369f10`).
+- **In game, 2026-11-05.** The build was this branch at `4238364a` with `Libs/Krowi_Options` at the review fixes' `4369f10`. The runs were requested, one client at a time:
+  - **Retail 12.1.5:** `options` 95 passed, 2 skips (the headless-only one, and the clipped-row step waiting for a mouse); `escape` 34 of 34; BugGrabber clean.
+  - **Mists 5.5.4:** `options` 95 passed, with the same 2 skips; BugGrabber clean.
+  - **On both, also passing:** `greyed-help`, `greyed-help-collapsed`, `window-second-tab`, `library-globals` and `lua-errors`.
+- **Still to come:**
+  - the CurseForge export (on Krowi's go);
+  - after the merges, full `options` and `escape` runs from `main` for the release gate;
+  - KAF's preflight finding `Libs/Krowi_Options` at its newest tag.
