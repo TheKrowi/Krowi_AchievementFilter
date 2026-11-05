@@ -1786,6 +1786,19 @@ local function CheckErrors()
     end
 end
 
+-- The window state every addon shares, as it stood before the run: the library's own copy and every registered addon's
+-- saved block (Krowi_Options 2's internals, read knowingly; docs/work/2026-11-05-contract-and-errors there). Restore puts
+-- them back as they were, so neither this addon's table nor another's keeps the run's values or a newer change time.
+local function SnapshotShared()
+    local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
+    local blocks = {}
+    for _, registered in ipairs(lib.Tabs) do
+        local ok, saved = pcall(registered.GetSaved, registered)
+        if ok then blocks[registered] = saved.Window and DeepCopy(saved.Window) or false end
+    end
+    return { Shared = DeepCopy(lib.Shared), Blocks = blocks }
+end
+
 -- Every value the steps changed goes back, then the window's saved state as it was before the run
 local function Restore()
     local frame = Window()
@@ -1796,7 +1809,8 @@ local function Restore()
             tinsert(notBack, option.Id)
         end
     end
-    local before = live.SavedWindow.Window or {} -- the shared block as it was
+    local shared = live.SharedBefore
+    local before = shared.Shared or live.SavedWindow.Window or {} -- the block the window showed before the run
     if frame then
         if frame.PaneCollapsed ~= (before.PaneCollapsed and true or false) then
             frame:SetPaneCollapsed(before.PaneCollapsed and true or false)
@@ -1815,12 +1829,12 @@ local function Restore()
     for k, v in next, live.SavedWindow do
         saved[k] = v
     end
-    -- The library writes its whole block into every addon's table on each change: the block as it was goes back the same
-    -- way, so no addon's table keeps the run's values with a newer change time (lib.SetShared, internal, used knowingly)
-    local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
-    for _, key in ipairs({ "Point", "Size", "PaneCollapsed", "SearchAll", "SearchBroad" }) do
-        lib.SetShared(key, before[key])
+    -- The shared block: every addon's as it was, and the library's own copy, which a nil sends back to the newest of them
+    for registered, block in next, shared.Blocks do
+        local ok, savedTable = pcall(registered.GetSaved, registered)
+        if ok then savedTable.Window = block and DeepCopy(block) or nil end
     end
+    KROWI_LIBMAN:GetLibrary("Krowi_Options_2").Shared = DeepCopy(shared.Shared)
     return notBack
 end
 
@@ -2024,7 +2038,9 @@ addon.Tests.Suites.options = function(done, what)
     end
     local frame = Window()
     KrowiAF_SavedData.OptionsWindow = KrowiAF_SavedData.OptionsWindow or {}
+    local sharedBefore = SnapshotShared() -- before the scenarios, which write the shared block too (window-second-tab)
     live = {
+        SharedBefore = sharedBefore,
         Results = options.Run(),
         Observations = options.Observations(),
         Finish = done,
