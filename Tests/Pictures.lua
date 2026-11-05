@@ -748,6 +748,14 @@ steps = {
         Picture = "MapButton",
         Text = "last step: press M and hover the addon's achievement button on the map (30 s)",
         More = {Top = 30, Left = 30},
+        -- For the kit: M, the player's own key, opens the map (addon code opening it would taint), then the hover
+        Hover = function(kit)
+            if not WorldMapFrame:IsShown() then
+                kit.PressKey("M")
+            elseif type(addon.Gui.WorldMapButton) == "table" then
+                kit.HoverAt(addon.Gui.WorldMapButton, 0, 0)
+            end
+        end,
         Mouse = function()
             local button = addon.Gui.WorldMapButton
             return WorldMapFrame:IsShown() and type(button) == "table" and button:IsMouseOver()
@@ -1070,12 +1078,20 @@ local function Capture()
     end)
 end
 
+-- While the kit's marker addon is loaded (KrowiGameInput, Krowi_ClaudeKit's docs/work/2026-11-05-kit-test-runs), a
+-- step's Hover(kit) asks the kit for its key or hover on every poll, so an unattended run gets them
 local function WaitForMouse(step, waited)
     if step.Mouse() then
+        if KrowiGameInput then
+            KrowiGameInput.Clear()
+        end
         After(settle, Capture)
         return
     end
     if waited >= mouseWait then
+        if KrowiGameInput then
+            KrowiGameInput.Clear()
+        end
         Add("SKIP", ("waited %d s for the mouse: %s"):format(mouseWait, step.Text))
         if step.Probe then
             local ok, seen = pcall(step.Probe)
@@ -1085,6 +1101,9 @@ local function WaitForMouse(step, waited)
             RunStep(live.StepIndex + 1)
         end)
         return
+    end
+    if KrowiGameInput and step.Hover then
+        pcall(step.Hover, KrowiGameInput)
     end
     After(pollEvery, function()
         WaitForMouse(step, waited + pollEvery)

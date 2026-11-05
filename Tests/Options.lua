@@ -1208,6 +1208,13 @@ local function ClippedResetStep()
             end
             hovered = false
         end,
+        -- For the kit: the visible half of the row inside the list, then its hidden half below the list's bottom edge
+        Hover = function(kit)
+            local row = RowOf(option)
+            if row then
+                kit.HoverAt(row, 0, (hovered and -1 or 1) * row:GetHeight() / 4)
+            end
+        end,
         -- First the mouse on the row inside the list, then on the row's part below the list
         Mouse = function()
             local row = RowOf(option)
@@ -1835,19 +1842,30 @@ local function Capture()
     end)
 end
 
--- A step that needs the player's mouse checks as soon as its Mouse() holds, or is skipped after mouseWait
+-- A step that needs the player's mouse checks as soon as its Mouse() holds, or is skipped after mouseWait. While the
+-- kit's marker addon is loaded (KrowiGameInput, Krowi_ClaudeKit's docs/work/2026-11-05-kit-test-runs), its Hover(kit)
+-- asks the kit for the hover on every poll, so an unattended run gets it; the request is cleared once the step is over.
 local function WaitForMouse(step, waited)
     local ok, ready = pcall(step.Mouse)
     if ok and ready then
+        if KrowiGameInput then
+            KrowiGameInput.Clear()
+        end
         Capture()
         return
     end
     if not ok or waited >= mouseWait then
+        if KrowiGameInput then
+            KrowiGameInput.Clear()
+        end
         Add(ok and "SKIP" or "FAIL", ok and ("waited %d s for the mouse: %s"):format(mouseWait, step.Text) or ("test error: " .. tostring(ready)))
         After(afterShot, function()
             RunStep(live.StepIndex + 1)
         end)
         return
+    end
+    if KrowiGameInput and step.Hover then
+        pcall(step.Hover, KrowiGameInput)
     end
     After(pollEvery, function()
         WaitForMouse(step, waited + pollEvery)
