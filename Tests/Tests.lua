@@ -47,7 +47,9 @@ local statusColors = {
     SKIP = "|cFFFFFF00"
 }
 
-local function Report(name, results, observations)
+-- argument: what was typed after the suite's name; a run of some steps only (/kaftest options toggle) is kept in LastRun
+-- and History but not in Runs, so the release preflight never takes it for a full run
+local function Report(name, results, observations, argument)
     local counts = {PASS = 0, FAIL = 0, SKIP = 0}
     local open = 0
     local lines, notes, gameOnly, screenshots = {}, {}, {}, {}
@@ -74,6 +76,7 @@ local function Report(name, results, observations)
 
     GetDb().LastRun = {
         Suite = name,
+        Argument = argument,
         Version = addon.Metadata.Version,
         Build = (GetBuildInfo()),
         Time = date("%Y-%m-%d %H:%M:%S"),
@@ -87,9 +90,11 @@ local function Report(name, results, observations)
         Screenshots = screenshots, -- index = line index; the screenshot taken after that line's check
         Observations = observations and CopyTable(observations) or nil
     }
-    -- the latest run of every suite, for the release preflight (.claude/release-gate.ps1)
+    -- the latest full run of every suite, for the release preflight (.claude/release-gate.ps1)
     GetDb().Runs = GetDb().Runs or {}
-    GetDb().Runs[name] = GetDb().LastRun
+    if not argument then
+        GetDb().Runs[name] = GetDb().LastRun
+    end
     GetDb().History = GetDb().History or {}
     tinsert(GetDb().History, GetDb().LastRun)
     while #GetDb().History > keepRuns do
@@ -140,14 +145,15 @@ function tests.Run(name, waitSeconds, onDone, requested, argument)
 
     if tests.Async[name] then
         suite(function(results, observations)
-            Report(name, results, observations)
+            Report(name, results, observations, argument)
             if onDone then
                 onDone(true)
             end
         end, argument)
         return
     end
-    Report(name, suite(argument))
+    local results, observations = suite(argument)
+    Report(name, results, observations, argument)
     if onDone then
         onDone(true)
     end
@@ -157,6 +163,7 @@ end
 
 -- .claude/tools/Request-GameTests.ps1 writes KrowiAF_DebugTable.TestRequest = {Suites = {...}, NotAfter = <unix time>}
 -- into the saved variables while the client is closed, then starts the client; the maintainer only enters the world.
+-- Each entry is a suite, or a suite and what to run of it after a space, as /kaftest takes them ("options toggle").
 -- The login that reads the request clears it before anything runs, so the next save drops it and it never runs again
 -- while the player plays; one past NotAfter (a crash kept it on disk) is dropped unrun. The saved variables reach disk
 -- only at the next /reload or logout, so when the suites are done a panel shows each one's counts and its failed and skipped lines and
@@ -195,29 +202,30 @@ local function RunRequest(suites)
     local index, ranAny = 0, false
     local function Next()
         index = index + 1
-        local name = suites[index]
-        if not name then
+        local entry = suites[index]
+        if not entry then
             if ranAny then -- the suites drive Blizzard's frames and API from addon code, some of it taints until a reload
                 tinsert(lines, "/reload before entering combat")
             end
             ShowSummary(lines)
             return
         end
+        local name, argument = strsplit(" ", strtrim(tostring(entry)))
         tests.Run(name, loginWait, function(ran, reason)
             local run = GetDb().LastRun
             ranAny = ranAny or ran
             if ran and run and run.Suite == name then
-                tinsert(lines, ("%s: %d passed, %d failed, %d skipped; %d open"):format(name, run.Passed, run.Failed, run.Skipped, run.Open))
+                tinsert(lines, ("%s: %d passed, %d failed, %d skipped; %d open"):format(entry, run.Passed, run.Failed, run.Skipped, run.Open))
                 for _, line in ipairs(run.Lines) do
                     if line:find(": FAIL ", 1, true) or line:find(": SKIP ", 1, true) then
                         tinsert(lines, "    " .. line:sub(1, 180))
                     end
                 end
             else
-                tinsert(lines, ("%s: did not run, %s"):format(tostring(name), tostring(reason)))
+                tinsert(lines, ("%s: did not run, %s"):format(tostring(entry), tostring(reason)))
             end
             Next()
-        end, true)
+        end, true, argument ~= "" and argument or nil)
     end
     Next()
 end

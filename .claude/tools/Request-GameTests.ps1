@@ -19,7 +19,8 @@
     /reload or logout, for Read-GameTests.ps1.
 
 .PARAMETER Suites
-    The /kaftest suites to run, in order.
+    The /kaftest suites to run, in order. An entry can name what to run of a suite after a space, as /kaftest takes it
+    ("options toggle-help-follows"); such a run is not counted by the release gate.
 
 .PARAMETER Client
     Retail (default), Ptr, Xptr, Beta, Classic or ClassicPtr: the clients the addon loads on.
@@ -36,6 +37,7 @@
 .EXAMPLE
     & ".claude\tools\Request-GameTests.ps1" tracking
     & ".claude\tools\Request-GameTests.ps1" tracking, escape -Minutes 30
+    & ".claude\tools\Request-GameTests.ps1" "options toggle-help-follows"
 #>
 [CmdletBinding()]
 param(
@@ -51,7 +53,7 @@ $ErrorActionPreference = 'Stop'
 . (Join-Path $KitTools 'AddonContext.ps1')   # the kit's client map: Get-ClientFolder
 
 foreach ($suite in $Suites) {
-    if ($suite -notmatch '^[a-z]+$') { throw "Not a suite name: '$suite'" }
+    if ($suite -notmatch '^[a-z]+( [A-Za-z0-9-]+)?$') { throw "Not a suite name, or a suite name and a step: '$suite'" }
 }
 
 $folder = (Get-ClientFolder $Client).TrimEnd('\')

@@ -391,8 +391,17 @@ local suites = {}
 
 suites.escape = function(c)
     local env, addon, state = c.env, c.addon, c.state
+    -- The options window's library is not loaded here: the model gives its name as Krowi_Options 2 does (lib.WindowName),
+    -- which Tests/Escape.lua looks the window up by
+    local optionsWindowName = "Krowi_Options_2_Window"
+    local libMan = Stub("KROWI_LIBMAN")
+    rawset(libMan, "GetLibrary", function(_, name)
+        if name == "Krowi_Options_2" then return { WindowName = optionsWindowName } end
+        return Stub("KROWI_LIBMAN:GetLibrary(" .. tostring(name) .. ")")
+    end)
+    rawset(env, "KROWI_LIBMAN", libMan)
     local frames = {}
-    for key, name in pairs({ Tooltip = "KrowiAF_FloatingAchievementTooltip", Options = "Krowi_OptionsWindow", Text = "KrowiAF_TextFrame", MapVerifier = "KrowiAF_MapVerifierFrame",
+    for key, name in pairs({ Tooltip = "KrowiAF_FloatingAchievementTooltip", Options = optionsWindowName, Text = "KrowiAF_TextFrame", MapVerifier = "KrowiAF_MapVerifierFrame",
         DataManager = "KrowiAF_DataManagerFrame", Calendar = "KrowiAF_AchievementCalendarFrame", Achievements = "AchievementFrame", GameMenu = "GameMenuFrame" }) do
         frames[key] = env.CreateFrame("Frame", name, env.UIParent)
     end

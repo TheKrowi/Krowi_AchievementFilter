@@ -1,6 +1,0 @@
-<Ui>
-    <Script file="Krowi_Options.lua" />
-    <Script file="Search.lua" />
-    <Include file="Rows.xml" />
-    <Include file="Window.xml" />
-</Ui>

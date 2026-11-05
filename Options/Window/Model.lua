@@ -70,16 +70,18 @@ function model.Coverage()
     end
     for _, section in ipairs(window.Map.Sections) do
         for _, group in ipairs(section.Groups) do
-            Check(group.Group, group)
-            Check(group.Order, group)
-            Check(group.Show, group)
-            for _, entry in ipairs(group.Entries or {}) do
-                Check(entry.Path or entry.Group or entry.Families, entry)
-                Check(entry.Parent, entry)
-                Check(entry.ShowIf, entry)
-                Check(entry.With, entry)
+            if source.OnThisClient(group) then -- a Retail heading's paths need not exist on the other clients
+                Check(group.Group, group)
+                Check(group.Order, group)
+                Check(group.Show, group)
+                for _, entry in ipairs(group.Entries or {}) do
+                    Check(entry.Path or entry.Group or entry.Families, entry)
+                    Check(entry.Parent, entry)
+                    Check(entry.ShowIf, entry)
+                    Check(entry.With, entry)
+                end
+                for _, row in ipairs(group.Rows or {}) do Check(row.Group, row) end
             end
-            for _, row in ipairs(group.Rows or {}) do Check(row.Group, row) end
             if group.Kind == "Profiles" then
                 local path = "Profiles.args." .. group.Database
                 local node = source.Resolve(path)

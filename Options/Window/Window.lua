@@ -104,13 +104,15 @@ local function OverviewElements()
     return elements
 end
 
--- The addon's tab in the window every Krowi addon shares (docs/work/2026-10-30-options-settings-look)
-window.Controller = KROWI_LIBMAN:GetLibrary("Krowi_Options_1").CreateWindow({
+-- The addon's tab in the window every Krowi addon shares (docs/work/2026-10-30-options-settings-look); the window's own
+-- texts are the library's (docs/work/2026-11-04-krowi-options-library)
+local optionsLib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
+window.Controller = optionsLib.CreateWindow({
     TabName = "Achievement Filter",
     Saved = Saved,
     Groups = map.Groups,
     SectionName = function(id)
-        if id == "overview" then return L["Overview"] end
+        if id == "overview" then return optionsLib.GetStrings().Overview end
         local section = source.Section(id)
         return section and section.Name or id
     end,
@@ -131,30 +133,6 @@ window.Controller = KROWI_LIBMAN:GetLibrary("Krowi_Options_1").CreateWindow({
         addon.Gui:RegisterFrameForClosing(frame)
         addon.Gui:RegisterFrameForClosing(frame.Lightbox) -- Escape closes an enlarged picture before the window
     end,
-    Strings = {
-        Overview = L["Overview"],
-        Search = L["Search"],
-        SearchAll = L["Search all tabs"],
-        SearchBroad = L["Search descriptions"],
-        SearchHelp = L["Help Search Names"],
-        SearchHelpBroad = L["Help Search Broad"],
-        SearchResults = L["Search results"],
-        NoResults = L["Nothing found."],
-        Defaults = L["Defaults"],
-        ResetSection = L["Set every option of {section} back to its default?"]:K_ReplaceVars{ section = "%s" },
-        ChangedCount = L["{count} changed"]:K_ReplaceVars{ count = "%d" },
-        ReloadText = L["Some changes take effect after a reload."],
-        ReloadNow = L["Reload now"],
-        ShowMe = L["Show me"],
-        HowItWorks = L["How it works"],
-        All = L["All"],
-        None = L["None"],
-        NotBound = L["Not bound"],
-        PressAKey = L["Press a key"],
-        Default = L["Default: {value}"]:K_ReplaceVars{ value = "%s" },
-        NeedsReload = addon.Util.L["Requires a reload"],
-        NotInCombat = L["Not in combat"],
-    },
 })
 
 -- Replaces Krowi_Util's Options:Open, which opened the Settings pages. Called with and without self (the minimap

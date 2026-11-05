@@ -19,8 +19,9 @@ local runs = {}
 for suite, run in pairs(type(tests.Runs) == "table" and tests.Runs or {}) do
     runs[suite] = run
 end
+-- A run of some steps only (/kaftest options toggle) carries its Argument and is never a full run
 local last = tests.LastRun
-if type(last) == "table" and last.Suite and not runs[last.Suite] then
+if type(last) == "table" and last.Suite and not last.Argument and not runs[last.Suite] then
     runs[last.Suite] = last
 end
 local suites = {}
