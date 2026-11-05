@@ -661,9 +661,10 @@ end
 --   toggle, range, input: one row of each changed through its own control: the value is stored, and the changed line and
 --     the footer's count follow it; toggle-reset: the toggle's row shows its arrow on enter, before the name, and the
 --     arrow sets the option back to its default (docs/work/2026-10-31-options-markers); toggle-help-follows: the help
---     pane's Reset to Default line comes and goes with a change made under the mouse; toggle-reset-clipped, the one step
---     that waits for the player's mouse (30 s, then skipped): the arrow goes when the mouse leaves a row through its part
---     scrolled out of view (both from the markers review, docs/work/2026-11-04-krowi-options-library)
+--     pane's Reset to Default line comes and goes with a change made under the mouse, toggle-help-follows-grid the same
+--     on a grid's check box (the code review of Krowi_Options 2.0); toggle-reset-clipped, the one step that waits for the
+--     player's mouse (30 s, then skipped): the arrow goes when the mouse leaves a row through its part scrolled out of
+--     view (both from the markers review, docs/work/2026-11-04-krowi-options-library)
 --   greyed-help, greyed-help-collapsed: a greyed-out check box, dropdown, dropdown arrow and tab arrow still fire their
 --     hover and explain their option, in the pane and in the collapsed pane's tooltip (the code review of Krowi_Options
 --     2.0, #8)
