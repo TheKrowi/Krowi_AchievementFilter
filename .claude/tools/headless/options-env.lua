@@ -148,6 +148,7 @@ local function New(root, client)
     env.canaccesstable = function() return true end
     env.canaccessvalue = function() return true end
     env.geterrorhandler = function() return function(e) Fail("errorhandler", e) end end
+    env.CallErrorHandler = function(e) Fail("errorhandler", e) end -- Krowi_Options 2 refreshes each row in xpcall with it
     env.seterrorhandler = function() end
     env.GetLocale = function() return "enUS" end
     env.UnitName = function() return "Player" end

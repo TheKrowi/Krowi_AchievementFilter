@@ -250,10 +250,16 @@ local shownByScenario = {}
 local observations = {}
 escape.Observations = observations -- facts about the client noted while arming, stored with the run
 
+-- The options window by the name the Krowi_Options library gives it (lib.WindowName)
+local function OptionsWindow()
+    local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2", true)
+    return lib and _G[lib.WindowName]
+end
+
 local getters = {
     Tooltip = function() return KrowiAF_FloatingAchievementTooltip end,
-    Options = function() return Krowi_OptionsWindow end,
-    OptionsPicture = function() return Krowi_OptionsWindow and Krowi_OptionsWindow.Lightbox end,
+    Options = function() return OptionsWindow() end,
+    OptionsPicture = function() local window = OptionsWindow() return window and window.Lightbox end,
     Text = function() return KrowiAF_TextFrame end,
     MapVerifier = function() return KrowiAF_MapVerifierFrame end,
     DataManager = function() return KrowiAF_DataManagerFrame end,

@@ -77,7 +77,8 @@ local function GroupNames(groups)
 end
 
 -- A second addon's tab, registered for the scenario and taken away again: the tab order, the window's state that every
--- addon keeps (written to each one's saved table), and a search of the open tab or of every tab
+-- addon keeps (written to each one's saved table), and a search of the open tab or of every tab. It passes every field
+-- Krowi_Options 2 asks for (its configFields), most of them doing nothing.
 local function SecondTab(lib)
     local saved = {}
     local option = {
@@ -89,7 +90,13 @@ local function SecondTab(lib)
         Saved = saved,
         Groups = { { Name = "Zz", Sections = { "test" } } },
         SectionName = function() return "Zz Test" end,
+        IsNew = function() return false end,
+        Landing = function() return "test" end,
+        OnSectionShown = function() end,
         GetElements = function() return { { Kind = "Option", Option = option } } end,
+        GetHelp = function() return nil end,
+        ResetSection = function() return false end,
+        ChangedCount = function() return 0 end,
     })
     local ok, line = pcall(function()
         local tabs = TabNames(lib)
@@ -427,16 +434,17 @@ options.Scenarios = {
         Target = "strings=22 empty=0 config=no"},
     {Name = "library-globals",
         Observe = function()
+            local windowName = KROWI_LIBMAN:GetLibrary("Krowi_Options_2").WindowName
             local found = {}
             for name in next, _G do
-                if type(name) == "string" and name:find("^Krowi_Options") and name ~= "Krowi_OptionsWindow" then
+                if type(name) == "string" and name:find("^Krowi_Options") and name ~= windowName then
                     found[#found + 1] = name
                 end
             end
             table.sort(found)
             return #found == 0 and "none" or table.concat(found, ",")
         end,
-        Recorded = "none", -- the 16 Krowi_Options*Mixin tables with Krowi_Options 1
+        Recorded = "none", -- the 16 Krowi_Options*Mixin tables with Krowi_Options 1; the window's name is lib.WindowName
         Target = "none"},
     {Name = "row-geometry",
         Observe = function()
@@ -698,8 +706,9 @@ local function After(seconds, func)
     end)
 end
 
+-- The options window by the name its library gives it (lib.WindowName)
 local function Window()
-    return Krowi_OptionsWindow
+    return _G[KROWI_LIBMAN:GetLibrary("Krowi_Options_2").WindowName]
 end
 
 -- The page's drawn rows: Krowi_Options 2 hangs each row on a plain frame of its list, as frame.Row
