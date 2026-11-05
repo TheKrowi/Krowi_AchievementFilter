@@ -129,6 +129,7 @@
         "KrowiAF_SpecialFrame",
         "KrowiAF_SummaryFrame",
         "KrowiAF_TextFrame",
+        "KrowiGameInput",
         "Krowi_ProgressBarMixin",
         "Krowi_ProgressBarTooltip",
         "Krowi_Tooltip",

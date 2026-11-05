@@ -10,6 +10,9 @@ local tests = addon.Tests
 -- itself in tests.Suites and shares its scenarios with .claude/tools/headless/run-tests.lua, so the
 -- same lines come out of the game and out of the headless model and can be diffed.
 --   /kaftest <suite>        runs a suite now
+--   /kaftest run <entry>[, <entry> ...]
+--                           runs several in order (an entry is a suite, or a suite and what to run of it),
+--                           then shows a summary; .claude/tools/Run-GameTests.ps1 types it (see RunEntries below)
 --   /kaftest login <suite>  runs it after every login or reload until /kaftest login off, so an
 --                           iteration is Deploy.ps1, /reload, Read-GameTests.ps1 with nothing typed
 -- Results go to chat and to KrowiAF_DebugTable.Tests.LastRun, which the game writes to disk on the
@@ -104,7 +107,8 @@ end
 
 -- waitSeconds: how long to keep retrying the suite's Ready check (login runs); nil runs once
 -- onDone(ran, reason): called once the suite reported, or could not run and why
--- requested: a run the maintainer asked for from outside the game (RunRequest below), which needs no debug mode
+-- requested: part of a /kaftest run (RunEntries below), which settled debug mode before its first suite, so a suite
+-- that switches debug mode itself (options' search-showif) cannot stop the next one
 -- argument: what was typed after the suite's name (/kaftest pictures colors), handed to the suite as its last argument
 function tests.Run(name, waitSeconds, onDone, requested, argument)
     local function NotRun(reason)
@@ -159,19 +163,21 @@ function tests.Run(name, waitSeconds, onDone, requested, argument)
     end
 end
 
--- [[ Runs the maintainer asks for from outside the game ]] --
+-- [[ Several suites in one go: /kaftest run ]] --
 
--- .claude/tools/Request-GameTests.ps1 writes KrowiAF_DebugTable.TestRequest = {Suites = {...}, NotAfter = <unix time>}
--- into the saved variables while the client is closed, then starts the client; the maintainer only enters the world.
--- Each entry is a suite, or a suite and what to run of it after a space, as /kaftest takes them ("options toggle").
--- The login that reads the request clears it before anything runs, so the next save drops it and it never runs again
--- while the player plays; one past NotAfter (a crash kept it on disk) is dropped unrun. The saved variables reach disk
--- only at the next /reload or logout, so when the suites are done a panel shows each one's counts and its failed and skipped lines and
--- a screenshot is taken, which Read-GameScreenshot.ps1 finds while the game still runs.
+-- /kaftest run options, escape runs the entries in order; an entry is a suite, or a suite and what to run of it after
+-- a space ("options toggle"). The saved variables reach disk only at the next /reload or logout, so when the suites
+-- are done a panel shows each one's counts and its failed and skipped lines and a screenshot is taken, which
+-- Read-GameScreenshot.ps1 finds while the game still runs. Then the kit's marker addon (KrowiGameInput, dev only,
+-- Krowi_ClaudeKit's docs/work/2026-11-05-kit-test-runs) is told the run is done, and the kit's Send-GameInput.ps1
+-- -WaitForDone, which .claude/tools/Run-GameTests.ps1 runs, types /reload.
+-- Debug mode: with the marker loaded and debug mode off, the run turns it on for its suites and back off after the
+-- summary (Krowi, 2026-11-05); without the marker it asks for debug mode as /kaftest does, so a player who types it
+-- starts nothing.
 
 local summaryPanel
 
-local function ShowSummary(lines)
+local function ShowSummary(lines, onShown)
     if not summaryPanel then
         summaryPanel = CreateFrame("Frame", nil, UIParent)
         summaryPanel:SetFrameStrata("FULLSCREEN_DIALOG")
@@ -190,24 +196,35 @@ local function ShowSummary(lines)
     C_Timer.After(1, function()
         GetDb().RequestSummary = {Time = date("%Y-%m-%d %H:%M:%S"), Lines = lines}
         Screenshot()
-        print(prefix .. "requested run done; the full results reach the saved variables at the next /reload or logout")
+        print(prefix .. "run done; the full results reach the saved variables at the next /reload or logout")
+        if onShown then
+            onShown()
+        end
+        if KrowiGameInput then
+            KrowiGameInput.Done()
+        end
     end)
     C_Timer.After(20, function()
         summaryPanel:Hide()
     end)
 end
 
-local function RunRequest(suites)
-    local lines = {("Krowi's Achievement Filter test request, %s, build %s"):format(date("%Y-%m-%d %H:%M:%S"), (GetBuildInfo()))}
+-- debugSwitched: the run turned debug mode on, so it turns it off again once the summary is up
+local function RunEntries(entries, debugSwitched)
+    local lines = {("Krowi's Achievement Filter test run, %s, build %s"):format(date("%Y-%m-%d %H:%M:%S"), (GetBuildInfo()))}
     local index, ranAny = 0, false
     local function Next()
         index = index + 1
-        local entry = suites[index]
+        local entry = entries[index]
         if not entry then
             if ranAny then -- the suites drive Blizzard's frames and API from addon code, some of it taints until a reload
                 tinsert(lines, "/reload before entering combat")
             end
-            ShowSummary(lines)
+            ShowSummary(lines, debugSwitched and function()
+                addon.Options.db.profile.EnableDebugInfo = false
+                GetDb().DebugSwitchedByRun = nil
+                print(prefix .. "debug mode is off again, as before the run")
+            end)
             return
         end
         local name, argument = strsplit(" ", strtrim(tostring(entry)))
@@ -230,10 +247,51 @@ local function RunRequest(suites)
     Next()
 end
 
+-- The entries of /kaftest run, split on commas: "options toggle, escape" -> {"options toggle", "escape"}
+function tests.RunEntriesOf(text)
+    local entries = {}
+    for entry in (text or ""):gmatch("[^,]+") do
+        entry = strtrim(entry)
+        if entry ~= "" then
+            tinsert(entries, entry)
+        end
+    end
+    return entries
+end
+
+local function StartRun(text)
+    local entries = tests.RunEntriesOf(text)
+    if #entries == 0 then
+        print(prefix .. "/kaftest run <suite>[, <suite> ...]; suites: " .. tests.List())
+        return
+    end
+    local switched = false
+    if not addon.Diagnostics.DebugEnabled() then
+        if not KrowiGameInput then
+            print(prefix .. "enable debug mode first (Options > General > Debug)")
+            return
+        end
+        addon.Options.db.profile.EnableDebugInfo = true -- what the option's own setter does (Options/General.lua)
+        -- Noted in the saved variables too: a run that never reaches its summary (a suite that errors in a timer) is
+        -- reloaded anyway, and the next login or reload turns debug mode off again (PLAYER_ENTERING_WORLD below)
+        GetDb().DebugSwitchedByRun = true
+        switched = true
+        print(prefix .. "debug mode is on for this run")
+    end
+    print(prefix .. "running " .. table.concat(entries, ", "))
+    -- A "done" left on the kit's marker by an earlier run must not end this one's wait (-WaitForDone)
+    if KrowiGameInput then
+        KrowiGameInput.Clear()
+    end
+    RunEntries(entries, switched)
+end
+
 SLASH_KAFTEST1 = "/kaftest"
 SlashCmdList.KAFTEST = function(msg)
     local command, argument = strsplit(" ", strtrim(msg or ""))
-    if command == "login" then
+    if command == "run" then
+        StartRun((strtrim(msg or "")):match("^run%s+(.+)$"))
+    elseif command == "login" then
         if not argument or argument == "" or argument == "off" then
             GetDb().RunOnLogin = nil
             print(prefix .. "no suite runs on login")
@@ -246,7 +304,7 @@ SlashCmdList.KAFTEST = function(msg)
     elseif command and command ~= "" then
         tests.Run(command, nil, nil, nil, argument ~= "" and argument or nil)
     else
-        print(prefix .. "/kaftest <suite> [what] | /kaftest login <suite|off>; suites: " .. tests.List())
+        print(prefix .. "/kaftest <suite> [what] | /kaftest run <suite>[, <suite> ...] | /kaftest login <suite|off>; suites: " .. tests.List())
     end
 end
 
@@ -254,17 +312,15 @@ addon.Event:RegisterEvent("PLAYER_ENTERING_WORLD", function(_, isLogin, isReload
     if not (isLogin or isReload) then
         return
     end
-    local request = KrowiAF_DebugTable and KrowiAF_DebugTable.TestRequest
-    if request ~= nil then
+    -- A request the retired Request-GameTests.ps1 left in the saved variables is dropped unrun
+    if KrowiAF_DebugTable and KrowiAF_DebugTable.TestRequest ~= nil then
         KrowiAF_DebugTable.TestRequest = nil
-        if type(request) == "table" and type(request.Suites) == "table" and (tonumber(request.NotAfter) or 0) >= time() then
-            print(prefix .. "running the requested suites in " .. loginDelay .. " s: " .. table.concat(request.Suites, ", "))
-            C_Timer.After(loginDelay, function()
-                RunRequest(request.Suites)
-            end)
-            return
-        end
-        print(prefix .. "dropped a test request that had expired")
+    end
+    -- A /kaftest run that turned debug mode on and never reached its summary
+    if KrowiAF_DebugTable and KrowiAF_DebugTable.Tests and KrowiAF_DebugTable.Tests.DebugSwitchedByRun then
+        KrowiAF_DebugTable.Tests.DebugSwitchedByRun = nil
+        addon.Options.db.profile.EnableDebugInfo = false
+        print(prefix .. "debug mode is off again: the last /kaftest run turned it on and did not finish")
     end
     local name = KrowiAF_DebugTable and KrowiAF_DebugTable.Tests and KrowiAF_DebugTable.Tests.RunOnLogin
     if not name then
