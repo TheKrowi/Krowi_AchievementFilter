@@ -36,6 +36,8 @@ The tooling every Krowi repo shares lives once, in Krowi_ClaudeKit (`E:\World of
 
 `krowi:process-issue` (the kit's) runs the work-item lifecycle, with this repo's own steps from `docs/sdlc-playbook.md`. It is invoked before any work on an issue, bug report or feature. Its gates use AskUserQuestion with the recommended option first, and `plan.md` is written in plan mode.
 
+Gate log: enrolled. Every work folder keeps a `gates.md` with a row per gate answer; which gates ask is the kit's `skills/process-issue/gates.md`.
+
 ## Releasing
 
 `krowi:release` is the only way to cut a version. This repo's facts for it:
