@@ -57,27 +57,40 @@ foreach ($entry in $list) {
 if (-not $list) { throw 'Name at least one suite.' }
 $runText = $list -join ', '
 
-# One kit call, its lines shown as they come; a refusal that says when to try again is retried then. Returns only the
-# call's exit code.
-$retryUntil = $null
+# The kit must have -WaitForDone (Krowi_ClaudeKit's docs/work/2026-11-05-kit-test-runs); an older kit would type the
+# run and then fail
+if (-not (Get-Command $send).Parameters.ContainsKey('WaitForDone')) {
+    throw "The kit at $KitRoot has no Send-GameInput.ps1 -WaitForDone yet: merge its test-run work, or point `$env:KROWI_CLAUDEKIT at a kit worktree that has it."
+}
+
+# One kit call, its lines shown as they come; a refusal that says when to try again is retried then, for up to 10
+# minutes per call. Returns only the call's exit code.
 function Invoke-Kit([string]$What, [hashtable]$Arguments) {
+    $retryUntil = (Get-Date).AddMinutes(10)
     while ($true) {
         $out = @(& $send -Client $Client @Arguments 2>&1 | ForEach-Object { "$_" })
         $code = $LASTEXITCODE
         $out | ForEach-Object { Write-Host "  $_" }
         $last = if ($out) { $out[-1] } else { '' }
         if ($code -eq 0 -or $last -notmatch 'try again in (\d+) s') { return $code }
-        if (-not $script:retryUntil) { $script:retryUntil = (Get-Date).AddMinutes(10) }
-        if ((Get-Date) -gt $script:retryUntil) { Write-Host "  $What gave up: still refused after 10 minutes"; return $code }
+        if ((Get-Date) -gt $retryUntil) { Write-Host "  $What gave up: still refused after 10 minutes"; return $code }
         Start-Sleep -Seconds ([int]$Matches[1] + 2)
     }
 }
-function Stop-Run([string]$Reason) { "Run-GameTests: $Reason"; exit 1 }
+$started = $false
+# A client this tool started is closed whatever happens after
+function Close-Started {
+    if ($script:started -and -not $KeepOpen) {
+        "Closing the $Client client this tool started"
+        $null = Invoke-Kit 'closing' @{ Quit = $true }
+        $script:started = $false
+    }
+}
+function Stop-Run([string]$Reason) { Close-Started; "Run-GameTests: $Reason"; exit 1 }
 
 "Run-GameTests: $runText on $Client"
 $null = & $send -Client $Client -Install
 $state = (& $send -Client $Client -State 2>&1 | Out-String)
-$started = $false
 if ($state -match 'client: not running') {
     "Starting the $Client client"
     & (Join-Path $KitTools 'Start-Game.ps1') -Client $Client -Wait
@@ -88,12 +101,17 @@ if ($state -match 'client: not running') {
 if ($state -match 'state: in the world') {
     "/reload, so the deployed files and the marker load"
     if ((Invoke-Kit '/reload' @{ Command = '/reload' }) -ne 0) { Stop-Run 'the first /reload failed' }
-} else {
+} elseif ($state -match 'state: character select') {
     'Entering the world'
     if ((Invoke-Kit 'entering the world' @{ EnterWorld = $true }) -ne 0) { Stop-Run 'could not enter the world' }
+} else {
+    # In the world without the marker: nothing can be typed, and the game only finds a new addon folder when it starts
+    $stateLine = ((($state -split "`r?`n") | Where-Object { $_ -match 'state:' }) -join ' ').Trim()
+    Stop-Run "the $Client client is neither in the world with the marker nor at character select ($stateLine). In the world without the marker, nothing can be typed; if the marker addon was only just installed, the client needs a restart: Krowi closes it, and this tool starts it."
 }
 
 "/kaftest run $runText"
+$runStart = Get-Date
 if ((Invoke-Kit '/kaftest run' @{ Command = "/kaftest run $runText" }) -ne 0) { Stop-Run 'could not type the run' }
 
 'Waiting for the run to be done'
@@ -104,16 +122,22 @@ $waited = Invoke-Kit 'waiting' @{ WaitForDone = $true; Timeout = $Timeout }
 $reloaded = Invoke-Kit '/reload' @{ Command = '/reload' }
 
 if ($reloaded -eq 0) {
-    for ($i = $list.Count; $i -ge 1; $i--) {
-        & (Join-Path $PSScriptRoot 'Read-GameTests.ps1') -Client $Client -Run $i
-    }
+    # Only the kept runs of this run, oldest first, by their time in the reader's list ("  2. 2026-11-05 17:28:23 ...")
+    $reader = Join-Path $PSScriptRoot 'Read-GameTests.ps1'
+    $listing = @(& $reader -Client $Client 2>&1 | ForEach-Object { "$_" })
+    $ours = @($listing | ForEach-Object {
+        if ($_ -match '^\s+(\d+)\. (\d{4}-\d\d-\d\d \d\d:\d\d:\d\d) ') {
+            $time = [datetime]::ParseExact($Matches[2], 'yyyy-MM-dd HH:mm:ss', [Globalization.CultureInfo]::InvariantCulture)
+            if ($time -ge $runStart.AddSeconds(-1)) { [int]$Matches[1] }
+        }
+    } | Sort-Object -Unique -Descending)
+    if ($ours.Count -eq 0) { "No run of this session reached the saved variables (the summary's screenshot shows what ran: Read-GameScreenshot.ps1 -Client $Client)" }
+    if ($ours.Count -lt $list.Count) { "Only $($ours.Count) of $($list.Count) entries left a run; the summary's screenshot says why the others did not run" }
+    foreach ($n in $ours) { & $reader -Client $Client -Run $n }
     & (Join-Path $KitTools 'Read-GameErrors.ps1') -Client $Client
 }
 
-if ($started -and -not $KeepOpen) {
-    "Closing the $Client client this tool started"
-    $null = Invoke-Kit 'closing' @{ Quit = $true }
-}
+Close-Started
 if ($waited -ne 0) { Stop-Run 'the run did not report done in time (see above)' }
 if ($reloaded -ne 0) { Stop-Run 'the last /reload failed, so the results are not on disk' }
 'Run-GameTests: done'

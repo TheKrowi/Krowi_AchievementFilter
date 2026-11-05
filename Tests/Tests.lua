@@ -222,6 +222,7 @@ local function RunEntries(entries, debugSwitched)
             end
             ShowSummary(lines, debugSwitched and function()
                 addon.Options.db.profile.EnableDebugInfo = false
+                GetDb().DebugSwitchedByRun = nil
                 print(prefix .. "debug mode is off again, as before the run")
             end)
             return
@@ -271,6 +272,9 @@ local function StartRun(text)
             return
         end
         addon.Options.db.profile.EnableDebugInfo = true -- what the option's own setter does (Options/General.lua)
+        -- Noted in the saved variables too: a run that never reaches its summary (a suite that errors in a timer) is
+        -- reloaded anyway, and the next login or reload turns debug mode off again (PLAYER_ENTERING_WORLD below)
+        GetDb().DebugSwitchedByRun = true
         switched = true
         print(prefix .. "debug mode is on for this run")
     end
@@ -307,6 +311,12 @@ addon.Event:RegisterEvent("PLAYER_ENTERING_WORLD", function(_, isLogin, isReload
     -- A request the retired Request-GameTests.ps1 left in the saved variables is dropped unrun
     if KrowiAF_DebugTable and KrowiAF_DebugTable.TestRequest ~= nil then
         KrowiAF_DebugTable.TestRequest = nil
+    end
+    -- A /kaftest run that turned debug mode on and never reached its summary
+    if KrowiAF_DebugTable and KrowiAF_DebugTable.Tests and KrowiAF_DebugTable.Tests.DebugSwitchedByRun then
+        KrowiAF_DebugTable.Tests.DebugSwitchedByRun = nil
+        addon.Options.db.profile.EnableDebugInfo = false
+        print(prefix .. "debug mode is off again: the last /kaftest run turned it on and did not finish")
     end
     local name = KrowiAF_DebugTable and KrowiAF_DebugTable.Tests and KrowiAF_DebugTable.Tests.RunOnLogin
     if not name then
