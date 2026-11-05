@@ -62,6 +62,11 @@ Krowi_Options (the options window) lived inside KAF (`Krowi_Options/`), had no s
   - (a) equal minors: no file took over, every minor 0, 22 strings; `/kaftest options open` 40 passed; no XML warning, BugGrabber clean.
   - (b) every minor + 1: all six files took over, every minor 1, 22 strings; `/kaftest options section` 63 passed, every section drawn by the newer copy; no XML warning, BugGrabber clean.
 - **Review:** `krowi:taint-reviewer` on the library diff found nothing; the 10 `/code-review` findings were fixed in the library's `de2cb58`. The rest went to the library's review-fix branch (`fix/2026-11-05-options-review-fixes`, `4369f10`).
+- **`/code-review` of KAF PR #395 (medium), 9 findings:**
+  - Fixed: `read-runs.lua` no longer takes a partial `LastRun` as a full run.
+  - Fixed: the Overview's reload line uses the library's phrase. Krowi_Util's is orange on every client but English, so the legend and the hover text differed there.
+  - Not taken: the `.gitmodules` URL without `.git` (most entries have none), and the hand-marked `Retail` headings (Krowi's decision, requirement 10).
+  - Left as listed in the PR: the test-runner and test-code findings.
 - **In game, 2026-11-05.** The build was this branch at `4238364a` with `Libs/Krowi_Options` at the review fixes' `4369f10`. The runs were requested, one client at a time:
   - **Retail 12.1.5:** `options` 95 passed, 2 skips (the headless-only one, and the clipped-row step waiting for a mouse); `escape` 34 of 34; BugGrabber clean.
   - **Mists 5.5.4:** `options` 95 passed, with the same 2 skips; BugGrabber clean.
