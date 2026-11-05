@@ -1,5 +1,5 @@
 # Plan: Krowi_Options becomes a normal library (2.0), with its own translations, before KAF 105.0
-Spec: [spec.md](spec.md). Status: accepted (Krowi approved it in plan mode, 2026-11-04)
+Spec: [spec.md](spec.md). Status: done (Krowi approved it in plan mode, 2026-11-04)
 
 Krowi_Options (the options window) lived inside KAF (`Krowi_Options/`), had no strings of its own (KAF passed 22 through `config.Strings`), and could not be embedded twice: its 20 XML templates warned "already exists" from a second copy, and only `Krowi_Options.lua` was version-guarded. Krowi wants it handled like the other Krowi libraries before 105.0, with no hurry and everything tested. Two repos, two PRs:
 - KAF worktree `.claude/worktrees/feature-2026-11-04-options-strings`, branch `feature/2026-11-04-options-strings`.
@@ -45,6 +45,8 @@ Krowi_Options (the options window) lived inside KAF (`Krowi_Options/`), had no s
 - **Requirement 10, found on Mists during the work:** Reminder events showed empty headings there; `Map.lua` marks seven headings `Retail`, `Source.lua` leaves such a heading out on the other clients, and the `no-empty-headings` scenario guards every section on both clients (Krowi's decision in the spec).
 - **The clipped-row step** takes the longest section that has a plain check box: on Mists the longest, the plugins, has none.
 - **The two-copy test recorded its findings itself:** the standalone copy carried a probe that wrote which files took over, the live minors and the strings into a saved variable, beside the chat line per file.
+- **The review fixes came from a second session** (`fix/2026-11-05-options-review-fixes` in the library repo), merged into the library branch before its PR (ac799ee).
+- **KAF points at the library's `main`, not the tag 2.0** (Krowi, 2026-11-05: the merge and KAF first, then 2.0 on the hosts). The library PR merged as 48d0803, and `Libs/Krowi_Options` points there. Its code is the build the 2026-11-05 runs tested: from 4369f10 to 48d0803 only the review fixes' work files changed. 2.0 is released after, and KAF's next preflight moves the pointer to the tag. Until then, a KAF release stops at the preflight, since the library is pinned past its newest release (1.0).
 
 ## Risks
 - **Look regressions from the XML-to-Lua move:** caught by the suites' geometry checks and Krowi's look in game; the builders follow the templates field by field.
@@ -64,7 +66,8 @@ Krowi_Options (the options window) lived inside KAF (`Krowi_Options/`), had no s
   - **Retail 12.1.5:** `options` 95 passed, 2 skips (the headless-only one, and the clipped-row step waiting for a mouse); `escape` 34 of 34; BugGrabber clean.
   - **Mists 5.5.4:** `options` 95 passed, with the same 2 skips; BugGrabber clean.
   - **On both, also passing:** `greyed-help`, `greyed-help-collapsed`, `window-second-tab`, `library-globals` and `lua-errors`.
+- **CurseForge, 2026-11-05, on Krowi's go:** the export from the library branch sent 22 phrases and 206 translations to project 1783244. The report then said CurseForge has them all.
 - **Still to come:**
-  - the CurseForge export (on Krowi's go);
-  - after the merges, full `options` and `escape` runs from `main` for the release gate;
-  - KAF's preflight finding `Libs/Krowi_Options` at its newest tag.
+  - after the KAF merge, from `main`: `-Export -Delete` of the 19 phrases on KAF's project 413582, on Krowi's approval with the translation counts named;
+  - the library's 2.0 alpha release, then KAF's preflight finding `Libs/Krowi_Options` at the tag;
+  - full `options` and `escape` runs from `main` for the release gate.

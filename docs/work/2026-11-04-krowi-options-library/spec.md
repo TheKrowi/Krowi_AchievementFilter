@@ -1,5 +1,5 @@
 # Spec: Krowi_Options becomes a normal library, with its own translations, before 105.0
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. **Edited where the other libraries are.** The library's code lives and is edited in `Krowi_Libraries\Krowi_Options` (`TheKrowi/Krowi_Options`), and KAF embeds it as the submodule `Libs/Krowi_Options`, loaded from `Libs/Files.xml` after Krowi_Util. KAF's `Krowi_Options/` folder and its TOC line go.

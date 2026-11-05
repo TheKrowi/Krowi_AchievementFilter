@@ -1,5 +1,5 @@
 # Intent: Krowi_Options becomes a normal library, with its own translations, before 105.0
-Author: Krowi (maintainer). Source: idea, after creating the Krowi_Options projects and releasing 1.0 alpha (2026-11-04). Status: accepted
+Author: Krowi (maintainer). Source: idea, after creating the Krowi_Options projects and releasing 1.0 alpha (2026-11-04). Status: done
 
 ## Problem
 The options window (`Krowi_Options/`) is a library in name only:
