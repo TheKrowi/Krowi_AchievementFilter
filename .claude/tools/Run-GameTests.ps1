@@ -15,6 +15,10 @@
        Read-GameErrors.ps1.
     5. -Quit for a client this tool started, unless -KeepOpen.
 
+    Exits 0 only when every entry left a run and each run passed (Read-GameTests.ps1's exit code: no FAIL, and the
+    lines both runs have match the headless run), 1 otherwise. Krowi_ClaudeKit's two-copy gate reads it as the suites'
+    verdict (its docs/work/2026-11-05-two-copy-gate).
+
     The kit's guard holds throughout: a client the kit started takes input after 15 s without input on the PC, any
     other client after 5 minutes. A refusal that says when to try again is retried then, for up to 10 minutes.
     Debug mode: /kaftest run turns it on for the run when it is off and back off after (Tests/Tests.lua).
@@ -133,11 +137,18 @@ if ($reloaded -eq 0) {
     } | Sort-Object -Unique -Descending)
     if ($ours.Count -eq 0) { "No run of this session reached the saved variables (the summary's screenshot shows what ran: Read-GameScreenshot.ps1 -Client $Client)" }
     if ($ours.Count -lt $list.Count) { "Only $($ours.Count) of $($list.Count) entries left a run; the summary's screenshot says why the others did not run" }
-    foreach ($n in $ours) { & $reader -Client $Client -Run $n }
+    $failedRuns = 0
+    foreach ($n in $ours) {
+        & $reader -Client $Client -Run $n
+        if ($LASTEXITCODE -ne 0) { $failedRuns++ }
+    }
     & (Join-Path $KitTools 'Read-GameErrors.ps1') -Client $Client
 }
 
 Close-Started
 if ($waited -ne 0) { Stop-Run 'the run did not report done in time (see above)' }
 if ($reloaded -ne 0) { Stop-Run 'the last /reload failed, so the results are not on disk' }
+if ($ours.Count -lt $list.Count) { Stop-Run "only $($ours.Count) of $($list.Count) entries left a run" }
+if ($failedRuns -gt 0) { Stop-Run "$failedRuns of $($ours.Count) run(s) failed or differ from the headless run (see above)" }
 'Run-GameTests: done'
+exit 0

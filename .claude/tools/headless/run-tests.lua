@@ -1618,6 +1618,7 @@ suites.options = function(c)
     for _, err in ipairs(ctx.Errors) do
         results[#results + 1] = { Name = "load", Status = "FAIL", TargetMet = false, Line = "options/load: FAIL " .. err }
     end
+    local loaded = #ctx.Errors
     local env, addon = ctx.env, ctx.addon
     addon.Tests = addon.Tests or { Suites = {}, Ready = {}, Async = {} }
     addon.Tests.NewInstall = ctx.NewInstall -- what the load, as a new install, did to Y (y-on-new-install)
@@ -1625,7 +1626,14 @@ suites.options = function(c)
     setfenv(chunk, env)
     chunk("Krowi_AchievementFilter", addon)
     for _, r in ipairs(addon.Tests.Options.Run()) do results[#results + 1] = r end
-    return results, "Tests/Options.lua", addon.Tests.Options.Observations()
+    local observations = addon.Tests.Options.Observations()
+    -- What reached the error handler while the scenarios and the observations ran: Krowi_Options 2 sends an addon's
+    -- errors there and goes on (docs/work/2026-11-05-contract-and-errors in Krowi_Options), so without these lines such
+    -- an error would pass unseen
+    for errorAt = loaded + 1, #ctx.Errors do
+        results[#results + 1] = { Name = "errorhandler", Status = "FAIL", TargetMet = false, Line = "options/errorhandler: FAIL " .. ctx.Errors[errorAt] }
+    end
+    return results, "Tests/Options.lua", observations
 end
 
 -- The help pane's content on the same whole-addon load. Here the runner can also look for each picture's file, which

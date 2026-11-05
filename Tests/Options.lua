@@ -77,8 +77,9 @@ local function GroupNames(groups)
 end
 
 -- A second addon's tab, registered for the scenario and taken away again: the tab order, the window's state that every
--- addon keeps (written to each one's saved table), and a search of the open tab or of every tab. It passes every field
--- Krowi_Options 2 asks for (its configFields), most of them doing nothing.
+-- addon keeps (the whole saved.Window block written to each one's saved table, each its own copy with the same change
+-- time; docs/work/2026-11-05-contract-and-errors in Krowi_Options), and a search of the open tab or of every tab. It
+-- passes every field Krowi_Options 2 asks for (its configFields), most of them doing nothing.
 local function SecondTab(lib)
     local saved = {}
     local option = {
@@ -102,7 +103,9 @@ local function SecondTab(lib)
         local tabs = TabNames(lib)
         lib.SetShared("TestShared", true)
         local kaf = addon.Options.Window.Controller:GetSaved()
-        local shared = (kaf.TestShared and saved.TestShared) and "both" or ("kaf=" .. tostring(kaf.TestShared) .. ",test=" .. tostring(saved.TestShared))
+        local kafBlock, testBlock = kaf.Window or {}, saved.Window or {}
+        local same = kafBlock.TestShared and testBlock.TestShared and kafBlock.Changed == testBlock.Changed and kafBlock ~= testBlock
+        local shared = same and "both" or ("kaf=" .. tostring(kafBlock.TestShared) .. ",test=" .. tostring(testBlock.TestShared))
         lib.SetShared("TestShared", nil)
         local open = GroupNames(lib.Search("Tooltip", false, tab))
         local all = GroupNames(lib.Search("Tooltip", true, tab))
@@ -1366,7 +1369,7 @@ local function SearchSteps()
             Check = function()
                 local frame = Window()
                 local kinds = Kinds()
-                local kept = KrowiAF_SavedData.OptionsWindow.SearchBroad == true and frame.SearchBroad:GetChecked()
+                local kept = (KrowiAF_SavedData.OptionsWindow.Window or {}).SearchBroad == true and frame.SearchBroad:GetChecked()
                 Add(not broad.Names.Option and broad.Names.Note == 1 and (kinds.Option or 0) > 0 and not kinds.Link and kept and "PASS" or "FAIL",
                     ("'%s': by name %d rows, ticked %d rows and %d links, %s"):format(broad.Word, broad.Names.Option or 0, kinds.Option or 0,
                         kinds.Link or 0, kept and "kept with the window's state" or "not kept"))
@@ -1622,6 +1625,26 @@ local function BuildSteps()
             end
         },
         {
+            -- With the window made: the globals Blizzard's templates add under the window's name ($parent), which the
+            -- load-time scenario library-globals cannot see (docs/work/2026-11-05-contract-and-errors in Krowi_Options)
+            Name = "library-globals-window",
+            Text = "the window adds no global but its own name and its children's",
+            Run = function() end,
+            Check = function()
+                local windowName = KROWI_LIBMAN:GetLibrary("Krowi_Options_2").WindowName
+                local children, others = {}, {}
+                for name in next, _G do
+                    if type(name) == "string" and name:find("^Krowi_Options") and name ~= windowName then
+                        tinsert(name:sub(1, #windowName) == windowName and children or others, name)
+                    end
+                end
+                table.sort(children)
+                table.sort(others)
+                Add(#others == 0 and "PASS" or "FAIL", ("under the window's name: %s; others: %s"):format(
+                    #children > 0 and table.concat(children, ", ") or "none", #others > 0 and table.concat(others, ", ") or "none"))
+            end
+        },
+        {
             Name = "tabs",
             Text = "a tab per addon, this addon's selected",
             Run = function() end,
@@ -1773,13 +1796,16 @@ local function Restore()
             tinsert(notBack, option.Id)
         end
     end
+    local before = live.SavedWindow.Window or {} -- the shared block as it was
     if frame then
-        if frame.PaneCollapsed ~= (live.SavedWindow.PaneCollapsed and true or false) then
-            frame:SetPaneCollapsed(live.SavedWindow.PaneCollapsed and true or false)
+        if frame.PaneCollapsed ~= (before.PaneCollapsed and true or false) then
+            frame:SetPaneCollapsed(before.PaneCollapsed and true or false)
         end
-        -- The broad search the window reads, and its check box; the saved field goes back with the table below
-        frame.BroadSearch = live.SavedWindow.SearchBroad and true or false
+        -- The search scope and breadth the window reads, and their check boxes; the saved fields go back below
+        frame.BroadSearch = before.SearchBroad and true or false
         frame.SearchBroad:SetChecked(frame.BroadSearch)
+        frame.SearchEveryTab = before.SearchAll and true or false
+        frame.SearchAll:SetChecked(frame.SearchEveryTab)
         if live.WasShown then
             frame:Open(live.WasShown)
         end
@@ -1788,6 +1814,12 @@ local function Restore()
     wipe(saved)
     for k, v in next, live.SavedWindow do
         saved[k] = v
+    end
+    -- The library writes its whole block into every addon's table on each change: the block as it was goes back the same
+    -- way, so no addon's table keeps the run's values with a newer change time (lib.SetShared, internal, used knowingly)
+    local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
+    for _, key in ipairs({ "Point", "Size", "PaneCollapsed", "SearchAll", "SearchBroad" }) do
+        lib.SetShared(key, before[key])
     end
     return notBack
 end
