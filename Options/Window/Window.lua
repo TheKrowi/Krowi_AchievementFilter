@@ -5,9 +5,10 @@ local map, source, model = window.Map, window.Source, window.Model
 local L = addon.L
 
 -- The options window (docs/work/2026-10-25-options-revamp): Krowi_Options draws it, this file hands it the sections
--- (Map.lua), their options (Source.lua), the explanations (window.Help, filled by Options/Window/Help) and the place
--- it keeps in KrowiAF_SavedData.OptionsWindow = { Point, Size, PaneCollapsed, SearchAll, SearchBroad, LastSection,
--- Seen = { [sectionId] = version } }.
+-- (Map.lua), their options (Source.lua), the explanations (window.Help, filled by Options/Window/Help) and the table
+-- KrowiAF_SavedData.OptionsWindow. The library keeps two keys in it: Window, the place, size, help pane and search ticks
+-- every addon shares, and LastSection (Krowi_Options.lua's config header). This addon keeps Seen = { [sectionId] =
+-- version } there.
 
 window.Help = window.Help or {}
 

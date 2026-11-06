@@ -15,13 +15,20 @@
        Read-GameErrors.ps1.
     5. -Quit for a client this tool started, unless -KeepOpen.
 
+    Exits 0 only when every entry left a run, no run has a FAIL and every run passed something (a run whose every step
+    was skipped proves nothing), 1 otherwise. A line that differs from the headless
+    run is shown but does not fail the run: options' y-on-new-install always differs (it runs headless only), and a
+    difference asks for the headless model to be updated, not for the build to be stopped. Krowi_ClaudeKit's two-copy
+    gate reads the exit code as the suites' verdict (its docs/work/2026-11-05-two-copy-gate).
+
     The kit's guard holds throughout: a client the kit started takes input after 15 s without input on the PC, any
     other client after 5 minutes. A refusal that says when to try again is retried then, for up to 10 minutes.
     Debug mode: /kaftest run turns it on for the run when it is off and back off after (Tests/Tests.lua).
 
 .PARAMETER Entries
-    What to run, as /kaftest run takes it: suites, or a suite and what to run of it after a space ("options toggle").
-    Several as separate arguments or comma-separated: options, escape.
+    What to run, as /kaftest run takes it: suites, or a suite and what to run of it after a space ("options toggle",
+    or one of options' sets, "options smoke" and "options behaviour"). Several as separate arguments or
+    comma-separated: options, escape.
 
 .PARAMETER Client
     Retail (default), Ptr, Xptr, Beta, Classic or ClassicPtr; Start-Game.ps1 starts only Retail and Classic (Mists), a
@@ -37,6 +44,7 @@
     & ".claude\tools\Run-GameTests.ps1" options, escape
     & ".claude\tools\Run-GameTests.ps1" options -Client Classic
     & ".claude\tools\Run-GameTests.ps1" "options toggle-reset-clipped"
+    & ".claude\tools\Run-GameTests.ps1" "options smoke", escape
 #>
 [CmdletBinding()]
 param(
@@ -124,7 +132,10 @@ $reloaded = Invoke-Kit '/reload' @{ Command = '/reload' }
 if ($reloaded -eq 0) {
     # Only the kept runs of this run, oldest first, by their time in the reader's list ("  2. 2026-11-05 17:28:23 ...")
     $reader = Join-Path $PSScriptRoot 'Read-GameTests.ps1'
-    $listing = @(& $reader -Client $Client 2>&1 | ForEach-Object { "$_" })
+    # A reader that throws (no saved variables yet, a client it does not know) ends the run as a failure, with a
+    # client this tool started closed first
+    try { $listing = @(& $reader -Client $Client 2>&1 | ForEach-Object { "$_" }) }
+    catch { Stop-Run "Read-GameTests.ps1 could not read the $Client client's runs: $($_.Exception.Message)" }
     $ours = @($listing | ForEach-Object {
         if ($_ -match '^\s+(\d+)\. (\d{4}-\d\d-\d\d \d\d:\d\d:\d\d) ') {
             $time = [datetime]::ParseExact($Matches[2], 'yyyy-MM-dd HH:mm:ss', [Globalization.CultureInfo]::InvariantCulture)
@@ -133,11 +144,26 @@ if ($reloaded -eq 0) {
     } | Sort-Object -Unique -Descending)
     if ($ours.Count -eq 0) { "No run of this session reached the saved variables (the summary's screenshot shows what ran: Read-GameScreenshot.ps1 -Client $Client)" }
     if ($ours.Count -lt $list.Count) { "Only $($ours.Count) of $($list.Count) entries left a run; the summary's screenshot says why the others did not run" }
-    foreach ($n in $ours) { & $reader -Client $Client -Run $n }
+    # A run fails on a FAIL line, when nothing in it passed (escape skips every step when something outside the game
+    # could take its Escape), or when the reader cannot read it; its "suite ..." line has the counts
+    $failedRuns = 0
+    foreach ($n in $ours) {
+        try { $read = @(& $reader -Client $Client -Run $n 2>&1 | ForEach-Object { "$_" }) }
+        catch { $read = @("Read-GameTests.ps1 -Run $n threw: $($_.Exception.Message)") }
+        $read
+        # The verdict reads the summary line (read-tests.lua: "suite <name>, run ...: N passed, M failed, ..."), not the
+        # reader's exit code, which also counts differences from the headless run
+        $summary = @($read | Where-Object { $_ -match '^suite .+: \d+ passed, \d+ failed' })[0]
+        if (-not $summary) { "Run $n has no 'suite ...: N passed, M failed' line; it counts as failed" }
+        if (-not ($summary -match '^suite .+: (\d+) passed, 0 failed' -and [int]$Matches[1] -gt 0)) { $failedRuns++ }
+    }
     & (Join-Path $KitTools 'Read-GameErrors.ps1') -Client $Client
 }
 
 Close-Started
 if ($waited -ne 0) { Stop-Run 'the run did not report done in time (see above)' }
 if ($reloaded -ne 0) { Stop-Run 'the last /reload failed, so the results are not on disk' }
+if ($ours.Count -lt $list.Count) { Stop-Run "only $($ours.Count) of $($list.Count) entries left a run" }
+if ($failedRuns -gt 0) { Stop-Run "$failedRuns of $($ours.Count) run(s) failed (see above)" }
 'Run-GameTests: done'
+exit 0
