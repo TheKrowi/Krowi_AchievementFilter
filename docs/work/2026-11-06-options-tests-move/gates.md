@@ -7,3 +7,4 @@ Class: harness
 | 2026-11-06 | intent | Does intent.md state what Krowi wants | accept | "Accept the intent (Recommended)" | took |
 | 2026-11-06 | design | Which live steps stay in KAF after the cut: a public smoke (open, close, errors, restore), window-tabs reduced to KAF's own tab, window-second-tab gone | public smoke | "Public smoke: open, close, errors, restore (Recommended)" | took |
 | 2026-11-06 | plan | The plan: delete the library's steps from Tests/Options.lua, keep KAF's own and a public smoke, run Retail and Mists, deploy main back afterwards | approve | approved in plan mode | took |
+| 2026-11-06 | merge | Krowi_AchievementFilter #399, after Krowi_Options #5 | merge both, library first | "Merge both, library #5 first (Recommended)" | took |
