@@ -10,7 +10,7 @@
        load; at character select it enters the world. A closed one is started (Start-Game.ps1 -Wait, which refuses
        while another client runs: they share one Battle.net account) and enters the world.
     3. /kaftest run <entries>, then Send-GameInput.ps1 -WaitForDone: it serves the hovers and keys the suites ask for
-       (the options suite's half-shown row, the pictures suite's world map) and returns when the summary is up.
+       (the pictures suite's world map) and returns when the summary is up.
     4. /reload, so the results reach the saved variables, then Read-GameTests.ps1 per entry and the kit's
        Read-GameErrors.ps1.
     5. -Quit for a client this tool started, unless -KeepOpen.

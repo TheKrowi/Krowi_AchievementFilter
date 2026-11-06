@@ -28,7 +28,7 @@ if type(run) ~= "table" then
 end
 local onLogin = KrowiAF_DebugTable.Tests.RunOnLogin
 
--- A run of some steps only (/kaftest options toggle) carries what was typed after the suite's name
+-- A run of some steps only (/kaftest options open) carries what was typed after the suite's name
 local function SuiteName(r)
     return tostring(r.Suite) .. (r.Argument and (" " .. tostring(r.Argument)) or "")
 end

@@ -2,6 +2,13 @@
 
 Follow-ups that are not a work item yet. When one is taken up, it gets its own work folder under `docs/work/` (`docs/sdlc-playbook.md`) and leaves this list.
 
+## From moving the library's tests out of KAF (2026-11-06, docs/work/2026-11-06-options-tests-move)
+
+- **Krowi_Options' tests on a new game build.** The release gate (`.claude/release-gate.ps1`) still asks for a green `options` run on the newest build of each client, but that suite no longer draws the options window's frames: those steps (the Blizzard templates a patch can change, hover help, search, tabs, sizes) are in the library's test addon, which no KAF gate runs. A new game build that breaks the window's templates would ship with a green KAF gate unless a library release happens to cover it.
+  - **Option:** the gate also requires a green `/kotest` run of Krowi_OptionsTests, newer than the library's last change, on the newest build of each client family (the test addon's `Run-GameTests.ps1` and `Read-GameTests.ps1` already print the verdict; Retail, Mists and, once Krowi_Options lists them, Era, Anniversary and Forever).
+  - **Krowi's call:** whether KAF's gate carries it, or only the library's own release gate (the two-copy gate in the kit) does, and then how a new game build gets the library's tests before KAF ships.
+- **The section-by-section live steps of KAF's own 22 sections went** (Krowi chose the public smoke): nothing draws KAF's sections in game any more, so a label running into its control, or a control not showing its value, goes unseen by the suite. A KAF-content smoke would need the library's public surface to open a section by id (a tab's `Open` takes one) and a way to read what the page drew without the library's frames.
+- **The KAF half of `search-all-none`** (the count of KAF's holiday list through the library's search) is not kept; the count can be checked on KAF's own `Source.Elements` without the library.
 ## From the category tooltip taint fix (2026-10-23, issue #300, docs/work/300-category-tooltip-taint)
 
 - **Blizzard's tab code still runs tainted** (spec option 3, left for later by Krowi). A click on a Blizzard tab reads two values KAF wrote: the global `AchievementFrameTab_OnClick` (`Gui/Gui.lua:206`) and `AchievementFrame.numTabs`, which KAF raised when it added its own tabs (`Gui/WindowFrames/AchievementFrameTabButtonFactory/AchievementFrameTabButtonFactory.lua:47-62`). So everything Blizzard's Achievements and Guild tabs build is tainted.

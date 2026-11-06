@@ -108,7 +108,7 @@ end
 -- waitSeconds: how long to keep retrying the suite's Ready check (login runs); nil runs once
 -- onDone(ran, reason): called once the suite reported, or could not run and why
 -- requested: part of a /kaftest run (RunEntries below), which settled debug mode before its first suite, so a suite
--- that switches debug mode itself (the library's tests did, in a step that now lives in Krowi_OptionsTests) cannot stop the next one
+-- that switches debug mode itself (none does today; the library's tests did, in a step that now lives in Krowi_OptionsTests) cannot stop the next one
 -- argument: what was typed after the suite's name (/kaftest pictures colors), handed to the suite as its last argument
 function tests.Run(name, waitSeconds, onDone, requested, argument)
     local function NotRun(reason)
