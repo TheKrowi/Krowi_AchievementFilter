@@ -19,6 +19,7 @@ This file adapts the playbook to a repository with one maintainer, two game clie
 | `intent.md` | 1 Plan | the issue, idea or error report | the maintainer accepts it (`Status: accepted`) |
 | `spec.md` | 2 Design | `intent.md`, the instruction file, the skills | the maintainer approves the design (`Status: accepted`, decision recorded) |
 | `plan.md` | 3 Build | `intent.md` and `spec.md`, in plan mode | the maintainer approves it, or it is routine and the agent proceeds |
+| `gates.md` | every stage | each gate answer, decision taken without asking and unprompted correction, one row each | the merge row |
 
 Each file starts with its `# Intent:`/`# Spec:`/`# Plan:` title and a `Status: draft | accepted | done` line. The agent sets every file to `done` in the last commit of the PR, so the merge records completion. `docs/` is excluded from the release zip, so the folders never reach players. The `work-items` lint rule checks the folder name, the titles, the status line and the required headings.
 
@@ -108,9 +109,10 @@ After each release, `Read-GameErrors.ps1` on both clients and new issues are the
 | Hooks as approval gates | the kit's PreToolUse guard denies the edits and commands that have broken the repo before and its post-edit hook fixes line endings after a Write and checks syntax; this repo's Stop hook (`.claude/hooks/`) lints |
 | CI/CD integration and deployment | `krowi:release` driving the Krowi Addon Manager; production is the maintainer's go-ahead |
 | Closing the loop on metrics | `Read-GameErrors.ps1` after a release, the issue tracker; not automated |
+| Relaxing gates on evidence | each work folder's `gates.md`; the kit's gate table (`skills/process-issue/gates.md`), which this playbook tightens with the in-game before-run for GUI work; the kit's `Measure-Gates.ps1` says which cells have earned a change |
 
 The playbook's enterprise controls (managed settings, OpenTelemetry, compliance API) do not apply to a single-maintainer repository and are left out.
 
 ## Measuring it
 
-The git history of a work folder and its PR is the measurement. The timestamps of the `intent.md`, `spec.md` and `plan.md` commits and of the merge show where the time goes. Commits that touch `spec.md` after `plan.md` exists are requirements rework, and a scenario or review finding that comes back is a correction for the instruction file.
+The git history of a work folder and its PR is the measurement. The timestamps of the `intent.md`, `spec.md` and `plan.md` commits and of the merge show where the time goes. Commits that touch `spec.md` after `plan.md` exists are requirements rework, and a scenario or review finding that comes back is a correction for the instruction file. How often the maintainer took the recommendation at each gate is in the work folders' `gates.md`, counted per class of change by the kit's `Measure-Gates.ps1` (since 2026-11-05; the earlier folders were not backfilled).
