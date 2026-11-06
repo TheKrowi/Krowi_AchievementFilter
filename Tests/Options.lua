@@ -9,6 +9,12 @@ local options = addon.Tests.Options
 -- .claude/tools/headless/options-env.lua. Recorded is the behaviour of the current code; a scenario passes when the
 -- code still behaves that way. Target is the desired behaviour; a scenario whose Recorded differs from Target is open.
 -- These scenarios are stage 2's regression suite: the definition format that replaces AceConfig must keep them green.
+-- The suite is this addon's own (docs/work/2026-11-06-options-tests-move): its options and their mapping into the
+-- window, defaults, the move of Y at login, its window config and help content, the plugin groups, and a smoke through
+-- Krowi_Options' public surface. The library tests its own internals (search, row and card geometry, the window's
+-- frames, hover help, tabs, sizes, strings, globals) in Krowi_Libraries\Krowi_Options: its test addon
+-- Tests/Krowi_OptionsTests (/kotest, which hosts the library without this addon) and its headless suites in
+-- Tests/headless.
 
 local function Model()
     return addon.Options.Window and addon.Options.Window.Model
@@ -61,74 +67,6 @@ local function MoveYAtLogin(case)
         error(err, 0)
     end
     return ("y=%s pending=%s saved=%s"):format(keys.Y, tostring(setUp.YBindingPending), saved)
-end
-
--- The window's tabs, one per addon that registered with Krowi_Options (docs/work/2026-10-30-options-settings-look)
-local function TabNames(lib)
-    local names = {}
-    for _, tab in ipairs(lib.Tabs) do names[#names + 1] = tab.Config.TabName end
-    return Join(names)
-end
-
-local function GroupNames(groups)
-    local names = {}
-    for _, group in ipairs(groups) do names[#names + 1] = group.Tab.Config.TabName end
-    return Join(names)
-end
-
--- A second addon's tab, registered for the scenario and taken away again: the tab order, the window's state that every
--- addon keeps (the whole saved.Window block written to each one's saved table, each its own copy with the same change
--- time; docs/work/2026-11-05-contract-and-errors in Krowi_Options), and a search of the open tab or of every tab. It
--- passes every field Krowi_Options 2 asks for (its configFields), most of them doing nothing.
-local function SecondTab(lib)
-    local saved = {}
-    local option = {
-        GetLabel = function() return "Zz Tooltip" end,
-        IsHidden = function() return false end,
-    }
-    local tab = lib.CreateWindow({
-        TabName = "Zz Test",
-        Saved = saved,
-        Groups = { { Name = "Zz", Sections = { "test" } } },
-        SectionName = function() return "Zz Test" end,
-        IsNew = function() return false end,
-        Landing = function() return "test" end,
-        OnSectionShown = function() end,
-        GetElements = function() return { { Kind = "Option", Option = option } } end,
-        GetHelp = function() return nil end,
-        ResetSection = function() return false end,
-        ChangedCount = function() return 0 end,
-    })
-    local ok, line = pcall(function()
-        local tabs = TabNames(lib)
-        lib.SetShared("TestShared", true)
-        local kaf = addon.Options.Window.Controller:GetSaved()
-        local kafBlock, testBlock = kaf.Window or {}, saved.Window or {}
-        local same = kafBlock.TestShared and testBlock.TestShared and kafBlock.Changed == testBlock.Changed and kafBlock ~= testBlock
-        local shared = same and "both" or ("kaf=" .. tostring(kafBlock.TestShared) .. ",test=" .. tostring(testBlock.TestShared))
-        lib.SetShared("TestShared", nil)
-        local open = GroupNames(lib.Search("Tooltip", false, tab))
-        local all = GroupNames(lib.Search("Tooltip", true, tab))
-        return ("tabs=%s shared=%s open=%s all=%s"):format(tabs, shared, open, all)
-    end)
-    tab:Unregister()
-    if not ok then error(line, 0) end
-    return line .. " after=" .. TabNames(lib)
-end
-
--- Where a row's name and controls stand, as x from the row's left, in the right-hand column
--- (docs/work/2026-11-02-options-widths), on the game's 635 rows and the 619 left while the section list shows its scroll
--- bar; the name's left at indent 0 and 1
-local rowControls = { "Toggle", "Range", "Select", "Execute", "Input", "Key", "Sub", "TabArrows" }
-local function RowGeometryLine(lib)
-    local parts = {}
-    for _, width in ipairs({ 635, 619 }) do
-        local flat, indented = lib.RowGeometry(0), lib.RowGeometry(1)
-        local line = { ("name %g/%g-%g"):format(lib.RowX(flat.NameLeft, width), lib.RowX(indented.NameLeft, width), lib.RowX(flat.NameRight, width)) }
-        for _, key in ipairs(rowControls) do line[#line + 1] = ("%s %g"):format(key, lib.RowX(flat[key], width)) end
-        parts[#parts + 1] = ("column %d [%s]"):format(width, table.concat(line, " "))
-    end
-    return table.concat(parts, " ")
 end
 
 -- The headings of every section that have nothing under them on this client, and the All / None rows whose options are
@@ -208,37 +146,6 @@ local function OverviewLine()
         end
     end
     return ("links=%d cards=%d rows=%d pictures=%d icons=%d lines=%d"):format(n.links, n.cards, n.rows, n.pictures, n.icons, n.lines)
-end
-
--- A card's width on the game's 635 rows and the 619 left while the section list shows its scroll bar, and the part of a
--- help picture its picture area shows: a wide one (NewTabs, cut at its right) and a tall one (CategoryTree, at its bottom)
-local function CardGeometryLine(lib)
-    local pictures = addon.Options.Window.HelpPictures
-    local parts = { ("width %g/%g"):format(lib.CardWidth(635), lib.CardWidth(619)) }
-    for _, name in ipairs({ "NewTabs", "CategoryTree" }) do
-        parts[#parts + 1] = ("%s %.5f,%.5f,%.5f,%.5f"):format(name, lib.CardCrop(pictures[name], lib.CardWidth(635)))
-    end
-    -- a section's own part of its picture (Reward preview's mount, Krowi, 2026-11-02): a square cut at its bottom
-    local square = { Width = 400, Height = 400, TexCoords = { 0, 1, 0, 1 }, Part = { X = 0, Y = 1 } }
-    parts[#parts + 1] = ("Bottom %.5f,%.5f,%.5f,%.5f"):format(lib.CardCrop(square, lib.CardWidth(635)))
-    return table.concat(parts, " ")
-end
-
--- A search of this addon's tab (docs/work/2026-11-03-blizzard-search), a result per row in the order shown:
--- "Section>Heading>Name", a row with no heading "Section>Name"
-local function SearchRows(text, broad)
-    local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
-    local tab = addon.Options.Window.Controller
-    local rows = {}
-    for _, group in ipairs(lib.Search(text, false, tab, broad)) do
-        for _, section in ipairs(group.Sections) do
-            for _, row in ipairs(section.Rows) do
-                local name = row.Option and row.Option:GetLabel() or row.Kind == "GridHeader" and "(columns)" or row.Item and row.Item.Show:GetLabel() or row.Text or row.Label
-                rows[#rows + 1] = section.Name .. ">" .. (row.Heading and row.Heading ~= "" and (row.Heading .. ">") or "") .. tostring(name)
-            end
-        end
-    end
-    return rows
 end
 
 -- Observe: a function returning the line's value, or nil and the reason it could not run
@@ -392,49 +299,33 @@ options.Scenarios = {
         Observe = function() return MoveYAtLogin({Command = "TOGGLEACHIEVEMENT"}) end, -- the micro button opens Blizzard's own tab
         Recorded = "y=TOGGLEACHIEVEMENT pending=nil saved=none",
         Target = "y=TOGGLEACHIEVEMENT pending=nil saved=none"},
-    -- One window for every Krowi addon, a tab each; KAF alone registers today (docs/work/2026-10-30-options-settings-look)
+    -- One window for every Krowi addon, a tab each (docs/work/2026-10-30-options-settings-look): this addon's tab is in
+    -- the registry under its name, whatever tabs other addons add (the library's test addon adds its own). The registry's
+    -- order and the other tabs are the library's to test (Krowi_Options' window-tabs and window-second-tab).
     {Name = "window-tabs",
         Observe = function()
             local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
             if not lib.Tabs then return "no tab registry" end
-            return "tabs=" .. TabNames(lib)
+            local names = {}
+            for _, tab in ipairs(lib.Tabs) do
+                if tab == addon.Options.Window.Controller then names[#names + 1] = tab.Config.TabName end
+            end
+            return "tabs=" .. Join(names)
         end,
-        Recorded = "tabs=Achievement Filter", -- "no tab registry" before the tabs
+        -- "no tab registry" before the tabs; until 2026-11-06 the whole list, so another addon's tab failed it
+        -- ("tabs=Achievement Filter,Options Test" with the library's test addon in game)
+        Recorded = "tabs=Achievement Filter",
         Target = "tabs=Achievement Filter"},
-    {Name = "window-second-tab",
-        Observe = function()
-            local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
-            if not lib.Tabs then return "no tab registry" end
-            return SecondTab(lib)
-        end,
-        Recorded = "tabs=Achievement Filter,Zz Test shared=both open=Zz Test all=Achievement Filter,Zz Test after=Achievement Filter", -- "no tab registry" before the tabs
-        Target = "tabs=Achievement Filter,Zz Test shared=both open=Zz Test all=Achievement Filter,Zz Test after=Achievement Filter"},
-    -- The game's Options window's sizes (docs/work/2026-11-02-options-widths): its width with the help pane added, and
-    -- the rows' names and controls in the right-hand column
-    {Name = "window-width",
-        Observe = function()
-            local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
-            if not lib.WindowWidth then return "resizable from 1000x560" end
-            return ("open=%d collapsed=%d"):format(lib.WindowWidth(false), lib.WindowWidth(true))
-        end,
-        Recorded = "open=1300 collapsed=950", -- "resizable from 1000x560" before the game's width
-        Target = "open=1300 collapsed=950"},
-    -- Krowi_Options 2 as a library of its own (docs/work/2026-11-04-krowi-options-library): the window's texts come from its
-    -- own locale files, none from this addon's config, and it leaves no global but the window's name, so a second copy
-    -- embedded by another addon finds nothing to collide with
+    -- The window's texts are Krowi_Options' own (docs/work/2026-11-04-krowi-options-library): this addon's config passes
+    -- none. This addon's half only; the library's half, its strings with none empty, is Krowi_Options' library-strings.
     {Name = "library-strings",
         Observe = function()
-            local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
-            if not lib.GetStrings then return "no strings of its own" end
-            local count, empty = 0, 0
-            for _, text in next, lib.GetStrings() do
-                count = count + 1
-                if type(text) ~= "string" or text == "" then empty = empty + 1 end
-            end
-            return ("strings=%d empty=%d config=%s"):format(count, empty, addon.Options.Window.Controller.Config.Strings and "yes" or "no")
+            return "config=" .. (addon.Options.Window.Controller.Config.Strings and "yes" or "no")
         end,
-        Recorded = "strings=22 empty=0 config=no", -- "no strings of its own" with Krowi_Options 1, whose 22 texts this addon passed
-        Target = "strings=22 empty=0 config=no"},
+        -- "strings=22 empty=0 config=no" with the library's half until 2026-11-06; "no strings of its own" with
+        -- Krowi_Options 1, whose 22 texts this addon passed
+        Recorded = "config=no",
+        Target = "config=no"},
     -- The Overview's legend explains the reload arrow with the very line the hover text shows (code review of PR #395).
     -- It used Krowi_Util's phrase, which is orange on every client but English, while the library's hover text is plain:
     -- the two differed on those clients only, so this English run cannot show it.
@@ -451,34 +342,6 @@ options.Scenarios = {
         end,
         Recorded = "the hover text",
         Target = "the hover text"},
-    {Name = "library-globals",
-        Observe = function()
-            local windowName = KROWI_LIBMAN:GetLibrary("Krowi_Options_2").WindowName
-            local found = {}
-            for name in next, _G do
-                if type(name) == "string" and name:find("^Krowi_Options") and name ~= windowName then
-                    found[#found + 1] = name
-                end
-            end
-            table.sort(found)
-            return #found == 0 and "none" or table.concat(found, ",")
-        end,
-        Recorded = "none", -- the 16 Krowi_Options*Mixin tables with Krowi_Options 1; the window's name is lib.WindowName
-        Target = "none"},
-    {Name = "row-geometry",
-        Observe = function()
-            local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
-            if not lib.RowGeometry then return "column 300 from the right, names from 16" end
-            return RowGeometryLine(lib)
-        end,
-        -- "column 300 from the right, names from 16" before the game's sizes; the column's Select 315 before Krowi's look in
-        -- game, and the game's placement from the row's centre beside it until Krowi kept the column (2026-11-02)
-        Recorded = "column 635 [name 16/36-293 Toggle 305 Range 305 Select 323.5 Execute 305 Input 311 Key 305 Sub 305 TabArrows 305]"
-            .. " column 619 [name 16/36-277 Toggle 289 Range 289 Select 307.5 Execute 289 Input 295 Key 289 Sub 289 TabArrows 289]",
-        -- Krowi's look in game (2026-11-02): the dropdown's left arrow on the check boxes' line, 2.5 in as the game has it,
-        -- and the input box 6 in from it, so its border starts on that line
-        Target = "column 635 [name 16/36-293 Toggle 305 Range 305 Select 323.5 Execute 305 Input 311 Key 305 Sub 305 TabArrows 305]"
-            .. " column 619 [name 16/36-277 Toggle 289 Range 289 Select 307.5 Execute 289 Input 295 Key 289 Sub 289 TabArrows 289]"},
     -- Krowi (2026-11-02): each window's reset button after its Remember check box, named as its own row was
     {Name = "position-rows",
         Observe = function() return RowsUnder("window", addon.L["Position"]) end,
@@ -491,105 +354,6 @@ options.Scenarios = {
         Target = "SwitchMovable AchievementWindowRememberLastPosition+AchievementWindowResetPosition[Reset position]"
             .. " CalendarRememberLastPosition+CalendarResetPosition[Reset position]"
             .. " DataManagerRememberLastPosition+DataManagerResetPosition[Reset position]"},
-    -- A button that belongs to a check box is found as its check box's row
-    {Name = "search-reset-position",
-        Observe = function()
-            local labels = {}
-            for _, row in ipairs(SearchRows(addon.L["Reset position"])) do
-                labels[#labels + 1] = row:match("([^>]+)$")
-            end
-            return Join(labels)
-        end,
-        -- the three check boxes first, by their buttons' whole text; then, since each word counts as the game's search counts
-        -- it, the names holding only "reset" or "position" (docs/work/2026-11-03-blizzard-search); before, the three alone
-        Recorded = "Remember Achievement Window position,Remember Achievement Calendar position,Remember Data Manager position,"
-            .. "Calendar button: horizontal position,Calendar button: vertical position,Reset view on open,Remember Last Position,"
-            .. "Position applies to,Presets,Reset Faction Filters,Presets,Reset Profile,Reset Profile",
-        Target = "Remember Achievement Window position,Remember Achievement Calendar position,Remember Data Manager position,"
-            .. "Calendar button: horizontal position,Calendar button: vertical position,Reset view on open,Remember Last Position,"
-            .. "Position applies to,Presets,Reset Faction Filters,Presets,Reset Profile,Reset Profile"},
-    -- The game's search finds options by their name only; the broad search adds their descriptions (Krowi, 2026-11-03,
-    -- docs/work/2026-11-03-blizzard-search), not the sections' explanations (Krowi's look in game the same day)
-    {Name = "search-names",
-        Observe = function()
-            return ("names=%d broad=%s"):format(#SearchRows("reminder", false), table.concat(SearchRows("reminder", true), "; "))
-        end,
-        -- before: one search of names, descriptions, headings and explanations ("names=8 broad=" the same 8 links, with
-        -- Enable Upcoming Calendar Events and Compact found by their heading "Reminders"); then the broad search also gave
-        -- Event reminders and Reminder events a "How it works" link for their explanation (Krowi in game: it reads as an
-        -- option and says nothing of why it is there)
-        Recorded = "names=0 broad=Event reminders>Reminders>Enable; Event reminders>Pop up position>Position applies to;"
-            .. " Event reminders>Pop up position>Grow direction; Event reminders>Pop up position>Hide placeholders",
-        Target = "names=0 broad=Event reminders>Reminders>Enable; Event reminders>Pop up position>Position applies to;"
-            .. " Event reminders>Pop up position>Grow direction; Event reminders>Pop up position>Hide placeholders"},
-    -- A name that only means something under its heading shows that heading above it (option A)
-    {Name = "search-headings",
-        Observe = function() return table.concat(SearchRows("loaded"), "; ") end,
-        Recorded = "Other addons>Achievements Tab Fixes>Loaded; Other addons>Better Wardrobe>Loaded; Other addons>EllesmereUI>Loaded;"
-            .. " Other addons>ElvUI>Loaded; Other addons>GW 2 UI>Loaded; Other addons>Instance Achievement Tracker>Loaded; Other addons>Zygor Guides Viewer>Loaded",
-        Target = "Other addons>Achievements Tab Fixes>Loaded; Other addons>Better Wardrobe>Loaded; Other addons>EllesmereUI>Loaded;"
-            .. " Other addons>ElvUI>Loaded; Other addons>GW 2 UI>Loaded; Other addons>Instance Achievement Tracker>Loaded; Other addons>Zygor Guides Viewer>Loaded"},
-    -- A found row that hangs under another brings that one along, above it, as the game's search does
-    {Name = "search-parent",
-        Observe = function() return table.concat(SearchRows("reverse"), "; ") end,
-        -- before: the five Reverse Sort rows alone, after Filtering and sorting's explanation
-        Recorded = "Tooltips>Achievement points tooltip>Sort priority 1; Tooltips>Achievement points tooltip>Reverse Sort;"
-            .. " Tooltips>Achievement points tooltip>Sort priority 2; Tooltips>Achievement points tooltip>Reverse Sort;"
-            .. " Tooltips>Achievement points tooltip>Sort priority 3; Tooltips>Achievement points tooltip>Reverse Sort;"
-            .. " Tooltips>Achievement points tooltip>Sort priority 4; Tooltips>Achievement points tooltip>Reverse Sort;"
-            .. " Tooltips>Achievement points tooltip>Sort priority 5; Tooltips>Achievement points tooltip>Reverse Sort",
-        Target = "Tooltips>Achievement points tooltip>Sort priority 1; Tooltips>Achievement points tooltip>Reverse Sort;"
-            .. " Tooltips>Achievement points tooltip>Sort priority 2; Tooltips>Achievement points tooltip>Reverse Sort;"
-            .. " Tooltips>Achievement points tooltip>Sort priority 3; Tooltips>Achievement points tooltip>Reverse Sort;"
-            .. " Tooltips>Achievement points tooltip>Sort priority 4; Tooltips>Achievement points tooltip>Reverse Sort;"
-            .. " Tooltips>Achievement points tooltip>Sort priority 5; Tooltips>Achievement points tooltip>Reverse Sort"},
-    -- A child option comes with its parent also when a heading stands between them on the page (Show criteria if)
-    {Name = "search-parent-heading",
-        Observe = function()
-            local rows = {}
-            for _, row in ipairs(SearchRows(addon.L["Achievement is Completed"])) do
-                if row:find("^" .. addon.L["Criteria on units"] .. ">") then rows[#rows + 1] = row end
-            end
-            return table.concat(rows, "; ")
-        end,
-        -- before the review (indent alone): the three without Show Criteria, whose heading came between
-        Recorded = "Criteria on units>Unit tooltips>Show Criteria; Criteria on units>Show criteria if>Achievement is Completed;"
-            .. " Criteria on units>Show criteria if>Achievement was Not Earned by Me; Criteria on units>Show criteria if>Criteria is Completed",
-        Target = "Criteria on units>Unit tooltips>Show Criteria; Criteria on units>Show criteria if>Achievement is Completed;"
-            .. " Criteria on units>Show criteria if>Achievement was Not Earned by Me; Criteria on units>Show criteria if>Criteria is Completed"},
-    -- A found All / None heading brings every option it switches, so its buttons never switch rows the player cannot see
-    {Name = "search-all-none",
-        Observe = function()
-            local source = addon.Options.Window.Source
-            local members = 0
-            for _, element in ipairs(source.Elements(source.Section("eventlist"))) do
-                if element.Kind == "Sub" and element.Text == addon.L["All holidays"] then members = #element.Members end
-            end
-            local rows = SearchRows(addon.L["All holidays"])
-            local under = 0 -- the rows under its heading; "all" finds other groups too
-            local heading = rows[1] and rows[1]:match("^(.*>)[^>]+$")
-            for _, row in ipairs(rows) do
-                if heading and row:sub(1, #heading) == heading then under = under + 1 end
-            end
-            return ("%s with %d of its %d options"):format(tostring(rows[1]), under - 1, members)
-        end,
-        -- before the review: none of them, their All and None switching rows out of sight
-        Recorded = "Reminder events>Holidays>All holidays with 13 of its 13 options",
-        Target = "Reminder events>Holidays>All holidays with 13 of its 13 options",
-        RecordedClassic = "Reminder events>Holidays>All holidays with 12 of its 12 options",
-        TargetClassic = "Reminder events>Holidays>All holidays with 12 of its 12 options"},
-    -- Each word counts, a row with more of them first: "Show in Tooltip" before "Skin Tooltip" (the game puts it after)
-    {Name = "search-order",
-        Observe = function()
-            local names = {}
-            for _, row in ipairs(SearchRows("show tooltip")) do
-                local name = row:match("([^>]+)$")
-                if name == "Show in Tooltip" or name == "Skin Tooltip" then names[#names + 1] = name end
-            end
-            return Join(names)
-        end,
-        Recorded = "Show in Tooltip,Skin Tooltip,Skin Tooltip", -- before: "none", the whole text as one piece
-        Target = "Show in Tooltip,Skin Tooltip,Skin Tooltip"},
     -- Krowi (2026-11-02): the threshold's slider after the Force two columns check box, as the game's Mouse Sensitivity
     {Name = "objectives-rows",
         Observe = function() return RowsUnder("achievements", addon.L["Objectives"]) end,
@@ -608,17 +372,6 @@ options.Scenarios = {
         RecordedClassic = "links=0 cards=22 rows=9 pictures=14 icons=8 lines=22",
         Target = "links=0 cards=22 rows=9 pictures=15 icons=7 lines=22",
         TargetClassic = "links=0 cards=22 rows=9 pictures=14 icons=8 lines=22"},
-    {Name = "card-geometry",
-        Observe = function()
-            local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
-            if not lib.CardWidth then return "no card helpers" end
-            return CardGeometryLine(lib)
-        end,
-        -- "no card helpers" before the cards; the square's Bottom 0.00000,1.00000,0.00000,0.42645 before a section's Part
-        Recorded = "width 203.667/198.333 NewTabs 0.00000,0.36838,0.00000,0.62500 CategoryTree 0.00000,0.71875,0.00000,0.15353 Bottom 0.00000,1.00000,0.57355,1.00000",
-        -- three cards and two 12 gaps fill the row; a picture fills the 86 high area inside the card's 1 px border, cut from
-        -- its top left inside the part of its texture it fills (Pictures.lua), or from the part its section names
-        Target = "width 203.667/198.333 NewTabs 0.00000,0.36838,0.00000,0.62500 CategoryTree 0.00000,0.71875,0.00000,0.15353 Bottom 0.00000,1.00000,0.57355,1.00000"},
 }
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
@@ -666,47 +419,23 @@ end
 
 -- [[ Game only: the window itself ]] --
 
--- After the scenarios the suite drives the real window, the /kevutest way (Krowi_ExtendedVendorUI): each step sets a state
--- through the window's own functions, names itself in a banner over the window, checks what the window shows and takes a
--- screenshot, which Read-GameTests.ps1 pairs with its file.
---   open: /kaf opens the window where the landing rule says (the first open after a /reload also builds it)
---   tabs: a tab per addon that registered with the window, this addon's selected, under the game's Options title
---     (docs/work/2026-10-30-options-settings-look)
---   section-<id>: Overview and every section draw their rows, and every drawn check box, slider and text box shows its
---     option's value
---   overview-cards, overview-cards-end: Overview's cards at its first group and at its end, each inside its row, as wide
---     as the others, with a picture or icon; text cut short is listed, as the sections' names are, without failing
---     (docs/work/2026-11-02-overview-cards)
---   toggle, range, input: one row of each changed through its own control: the value is stored, and the changed line and
---     the footer's count follow it; toggle-reset: the toggle's row shows its arrow on enter, before the name, and the
---     arrow sets the option back to its default (docs/work/2026-10-31-options-markers); toggle-help-follows: the help
---     pane's Reset to Default line comes and goes with a change made under the mouse, toggle-help-follows-grid the same
---     on a grid's check box (the code review of Krowi_Options 2.0); toggle-reset-clipped, the one step that waits for the
---     player's mouse (30 s, then skipped): the arrow goes when the mouse leaves a row through its part scrolled out of
---     view (both from the markers review, docs/work/2026-11-04-krowi-options-library)
---   greyed-help, greyed-help-collapsed: a greyed-out check box, dropdown, dropdown arrow and tab arrow still fire their
---     hover and explain their option, in the pane and in the collapsed pane's tooltip (the code review of Krowi_Options
---     2.0, #8)
---   search: the found options drawn as rows under their section's name (docs/work/2026-11-03-blizzard-search);
---     search-letter: from the first letter; search-pane: the pane explains the search, a hovered row with its section;
---     search-broad: Search descriptions finds a word only a description holds; search-change: a check box changed in
---     the results greys its child and the rows stay; search-confirm, -no: a question asked in the results, and No;
---     search-showif: turning debug info off in the results takes its child rows away, on brings them back
---   pane: the help pane collapses to its strip; close: the close button hides the window
--- /kaftest options <what> runs only some steps (SelectSteps, at the end of the file): a set (smoke: open, tabs, a
--- toggle, a search, the pane and close; behaviour: every step but the sections, keeping tabs and keys), a step's name,
--- the start of names (toggle, search, section), or a step's number in the banner, each with the steps it builds on and
--- the open first.
--- At the end every value the steps changed and the window's saved state (place, pane, search breadth, last section, the
--- sections seen, which the walk marks) are put back, and the addon's Lua errors of the session are reported from BugGrabber. Combat
--- stops the run; the values go back once it ends.
+-- After the scenarios the suite opens the real window, the /kevutest way (Krowi_ExtendedVendorUI): each step sets a
+-- state, names itself in a banner over the window, checks what the window shows and takes a screenshot, which
+-- Read-GameTests.ps1 pairs with its file. The steps reach the window only through Krowi_Options' public surface (a tab's
+-- Open, Toggle, IsShown, GetFrame and GetSaved, and lib.WindowName; Krowi_Options.lua's header), so a change inside the
+-- library cannot break them; the window's own steps are the library's (Tests/Krowi_OptionsTests in Krowi_Options).
+--   open: /kaf opens the window on this addon's tab, on the section its Landing names (the first open after a /reload
+--     also builds it)
+--   close: the tab's Toggle hides it again
+-- /kaftest options <what> runs only some steps (SelectSteps, at the end of the file): the set smoke (what
+-- Krowi_ClaudeKit's two-copy release gate runs), a step's name, the start of names, or a step's number in the banner,
+-- each with the steps it builds on and the open first.
+-- At the end this addon's saved table for the window (the shared Window block, LastSection and Seen) goes back as it was
+-- before the run, through the tab's GetSaved (restore), and the addon's Lua errors of the session are reported from
+-- BugGrabber (lua-errors). Combat stops the run; the saved state goes back once it ends.
 
 local settle = 1 -- a state change -> its check and screenshot
 local afterShot = 1 -- a screenshot -> the next step
-local mouseWait, pollEvery = 30, 0.1 -- a step that needs the player's mouse waits this long, looking this often
-local toggleId = "Layout.args.Header.args.General.args.CenterHeader"
-local rangeId = "Layout.args.Categories.args.Indentation.args.Indentation"
-local inputId = "Layout.args.Achievements.args.TemporarilyObtainable.args.StartTimeAndEndTime.args.Custom"
 
 local live -- the run in progress
 local runToken = 0 -- bumped by every stop, so a stopped run's timers do nothing
@@ -736,14 +465,6 @@ local function Window()
     return _G[KROWI_LIBMAN:GetLibrary("Krowi_Options_2").WindowName]
 end
 
--- The page's drawn rows: Krowi_Options 2 hangs each row on a plain frame of its list, as frame.Row
--- (docs/work/2026-11-04-krowi-options-library)
-local function ForEachRow(func)
-    Window().PageScrollBox:ForEachFrame(function(frame)
-        if frame.Row then func(frame.Row) end
-    end)
-end
-
 local function DeepCopy(value)
     if type(value) ~= "table" then
         return value
@@ -755,1018 +476,46 @@ local function DeepCopy(value)
     return copy
 end
 
--- The section that draws an option, and the option
-local function FindOption(optionId)
-    local window = addon.Options.Window
-    for _, section in ipairs(window.Map.Sections) do
-        for _, element in ipairs(window.Source.Elements(section)) do
-            if element.Option and element.Option.Id == optionId then
-                return section.Id, element.Option
-            end
-        end
-    end
-end
-
--- The first option whose check box carries a slider, and its section
-local function FindSliderPair()
-    local window = addon.Options.Window
-    for _, section in ipairs(window.Map.Sections) do
-        for _, element in ipairs(window.Source.Elements(section)) do
-            if element.With and element.With.Type == "range" and not element.Option:IsHidden() then
-                return section.Id, element.Option
-            end
-        end
-    end
-end
-
--- The drawn row of an option on the current page
-local function RowOf(option)
-    local found
-    ForEachRow(function(row)
-        if row.Option == option then
-            found = row
-        end
-    end)
-    return found
-end
-
--- The first value change of an option keeps the player's value, which Restore puts back
-local function Remember(option)
-    if not live.Before[option] then
-        live.Before[option] = { Value = option:Get() }
-    end
-end
-
--- The game's control widths (docs/work/2026-11-02-options-widths), by the row's key; the dropdown's is inside Select
-local controlWidths = { Toggle = 30, Range = 250, Execute = 200, Key1 = 160, Key2 = 160 }
-local rowControlKeys = { "Toggle", "Range", "Execute", "Input", "Key1", "Key2", "All", "None", "Up", "Down" }
-
--- How far a name's text reaches, whatever its anchors: a sub row's text spans the row
-local function NameEnd(name)
-    return name:GetLeft() + math.min(name:GetStringWidth(), name:GetWidth())
-end
-
--- Where a drawn row breaks the layout: a control of the wrong width, one past the row's right edge, a name's text that
--- runs into the first control, a dropdown whose left arrow is off the check boxes' line (the game's stands 2.5 in from
--- it); and whether the name is cut short
-local function RowLayout(row)
-    local right = row:GetRight()
-    if not right then
-        return nil
-    end
-    local wrong, firstLeft = {}, nil
-    if row.Geometry and row.Select and row.Select:IsShown() then
-        local line = row:GetLeft() + KROWI_LIBMAN:GetLibrary("Krowi_Options_2").RowX(row.Geometry.Toggle, row:GetWidth())
-        if math.abs(row.Select.DecrementButton:GetLeft() - line - 2.5) > 0.5 then
-            tinsert(wrong, ("arrow %g from the check boxes' line"):format(row.Select.DecrementButton:GetLeft() - line))
-        end
-    end
-    -- The option after a check box 5 after it, as the game's Tutorials and Mouse Sensitivity rows
-    local withControl = row.With and (row.With.Type == "range" and row.Range or row.Execute)
-    if withControl and withControl:IsShown() and math.abs(withControl:GetLeft() - row.Toggle:GetRight() - 5) > 0.5 then
-        tinsert(wrong, ("%s %g after its check box"):format(row.With.Type, withControl:GetLeft() - row.Toggle:GetRight()))
-    end
-    local function Control(key, control, width)
-        if not control or not control:IsShown() or not control:GetRight() then
-            return
-        end
-        if width and math.abs(control:GetWidth() - width) > 0.5 then
-            tinsert(wrong, ("%s %g wide"):format(key, control:GetWidth()))
-        end
-        if control:GetRight() > right + 0.5 then
-            tinsert(wrong, key .. " past the row's edge")
-        end
-        firstLeft = math.min(firstLeft or control:GetLeft(), control:GetLeft())
-    end
-    for _, key in ipairs(rowControlKeys) do
-        -- the game's slider after a check box is 214 (SettingsCheckboxSliderControlMixin)
-        Control(key, row[key], key == "Range" and withControl == row.Range and 214 or controlWidths[key])
-    end
-    if row.Select and row.Select:IsShown() then
-        Control("Dropdown", row.Select.Dropdown, 220)
-        Control("arrow", row.Select.DecrementButton)
-        Control("arrow", row.Select.IncrementButton)
-    end
-    local name = row.Source and row.Source:GetText() ~= "" and row.Source or row.Label or row.Text
-    local cut = false
-    if name and name:IsShown() and name:GetLeft() and firstLeft and not row.Cells then
-        if NameEnd(name) > firstLeft + 0.5 then
-            tinsert(wrong, "name into the control")
-        end
-        cut = name.IsTruncated and name:IsTruncated() or false
-    end
-    return wrong, cut
-end
-
--- The slider moves in whole steps: a value saved between them (the reward preview's size after a resize of the preview)
--- shows on the nearest step
-local function SliderShows(row, option)
-    local value = option:Get()
-    local min, max, step = option:GetRange()
-    if value and step and step > 0 then
-        value = math.min(math.max(min + math.floor((value - min) / step + 0.5) * step, min), max)
-    end
-    return value == nil or math.abs(row.Range.Slider:GetValue() - value) < 0.001
-end
-
--- Drawn rows whose control does not show its option's value, rows that break the layout, and names cut short
-local function CheckDrawnRows()
-    local drawn, differ, misfit, cut = 0, {}, {}, {}
-    ForEachRow(function(row)
-        drawn = drawn + 1
-        local wrong, isCut = RowLayout(row)
-        local id = row.Option and row.Option.Id or (row.Element and (row.Element.Text or row.Element.Label)) or tostring(drawn)
-        if wrong and #wrong > 0 then
-            tinsert(misfit, id .. ": " .. table.concat(wrong, ", "))
-        end
-        if isCut then
-            tinsert(cut, id)
-        end
-        local option = row.Option
-        if not option or not option.Type then
-            return
-        end
-        local value = option:Get()
-        local shows
-        if option.Type == "toggle" then
-            shows = (row.Toggle:GetChecked() and true or false) == (value and true or false)
-                and (not row.With or row.With.Type ~= "range" or SliderShows(row, row.With))
-        elseif option.Type == "range" then
-            shows = SliderShows(row, option)
-        elseif option.Type == "input" then
-            shows = row.Input:HasFocus() or row.Input:GetText() == tostring(value or "")
-        elseif option.Type == "select" then
-            -- the dropdowns never show GameTooltip from our rows (docs/work/2026-10-30-options-settings-look)
-            shows = not row.Select.Dropdown:ShouldShowTooltip()
-        else
-            shows = true
-        end
-        if not shows then
-            tinsert(differ, option.Id)
-        end
-    end)
-    return drawn, differ, misfit, cut
-end
-
-local function SectionStep(sectionId, name)
-    return {
-        Name = "section-" .. sectionId,
-        Text = name,
-        Run = function()
-            Window():ShowSection(sectionId)
-        end,
-        Check = function()
-            local rows = #(Window().Elements or {})
-            local drawn, differ, misfit, cut = CheckDrawnRows()
-            local ok = (rows == 0 or drawn > 0) and #differ == 0 and #misfit == 0
-            Add(ok and "PASS" or "FAIL", ("%d rows, %d drawn%s%s%s"):format(rows, drawn,
-                #differ > 0 and (", controls that do not show their value: [" .. table.concat(differ, ",") .. "]") or "",
-                #misfit > 0 and (", rows out of the layout: [" .. table.concat(misfit, "; ") .. "]") or "",
-                #cut > 0 and (", names cut short: [" .. table.concat(cut, ",") .. "]") or ""))
-        end
-    }
-end
-
--- Overview's drawn cards (docs/work/2026-11-02-overview-cards): as wide as the others of their row and inside it, each
--- with its picture or icon; a name or line cut short is listed without failing, as SectionStep lists names. Scroll(window)
--- shows the part of the page to check.
-local function CardsStep(name, text, Scroll)
-    return {
-        Name = name,
-        Text = text,
-        Run = function()
-            Window():ShowSection("overview")
-            Scroll(Window())
-        end,
-        Check = function()
-            local cards, misfit, empty, cut = 0, {}, {}, {}
-            ForEachRow(function(row)
-                if not row.Cards then
-                    return
-                end
-                local width
-                for _, card in ipairs(row.Cards) do
-                    if card:IsShown() then
-                        cards = cards + 1
-                        local cardName = card.Name:GetText() or "?"
-                        width = width or card:GetWidth()
-                        if math.abs(card:GetWidth() - width) > 0.5 or card:GetLeft() < row:GetLeft() - 0.5 or card:GetRight() > row:GetRight() + 0.5 then
-                            tinsert(misfit, cardName)
-                        end
-                        if not (card.Picture:IsShown() and card.Picture:GetTexture() or card.Icon:IsShown() and card.Icon:GetTexture()) then
-                            tinsert(empty, cardName)
-                        end
-                        if card.Name:IsTruncated() or card.Line:IsTruncated() then
-                            tinsert(cut, cardName)
-                        end
-                    end
-                end
-            end)
-            local ok = cards > 0 and #misfit == 0 and #empty == 0
-            Add(ok and "PASS" or "FAIL", ("%d cards drawn%s%s%s"):format(cards,
-                #misfit > 0 and (", out of their row: [" .. table.concat(misfit, ",") .. "]") or "",
-                #empty > 0 and (", without a picture or icon: [" .. table.concat(empty, ",") .. "]") or "",
-                #cut > 0 and (", text cut short: [" .. table.concat(cut, ",") .. "]") or ""))
-        end
-    }
-end
-
-local function ScrollToFirstCards(frame)
-    for index, element in ipairs(frame.Elements or {}) do
-        if element.Kind == "CardRow" then
-            frame.PageScrollBox:ScrollToElementDataIndex(index, ScrollBoxConstants.AlignBegin, nil, ScrollBoxConstants.NoScrollInterpolation)
-            return
-        end
-    end
-end
-
-local function ScrollToEnd(frame)
-    frame.PageScrollBox:ScrollToEnd(ScrollBoxConstants.NoScrollInterpolation)
-end
-
--- The footer names the section's changed options
-local function FooterAgrees(sectionId)
-    local window = Window()
-    local count = addon.Options.Window.Model.ChangedCount(sectionId)
-    local expected = count > 0 and window.Strings.ChangedCount:format(count) or ""
-    return (window.ChangedText:GetText() or "") == expected, count
-end
-
--- Shows the option's section scrolled to it, then changes it through its row's control in Change(row, option)
-local function ChangeSteps(kind, optionId, Change)
-    local sectionId, option
-    return {
-        Name = kind .. "-shown",
-        Text = ("the %s row to change"):format(kind),
-        Run = function()
-            sectionId, option = FindOption(optionId)
-            if not option then
-                return optionId .. " is in no section on this client"
-            end
-            Window():ShowSection(sectionId, optionId)
-        end,
-        Check = function()
-            Add(RowOf(option) and "PASS" or "FAIL", ("%s is drawn in %s"):format(optionId, sectionId))
-        end
-    }, {
-        Name = kind,
-        Needs = kind .. "-shown",
-        Text = ("a %s changed through its own control"):format(kind),
-        Run = function()
-            local row = option and RowOf(option)
-            if not row then
-                return "its row is not drawn"
-            end
-            Remember(option)
-            Change(row, option)
-        end,
-        Check = function()
-            local row = RowOf(option)
-            local stored = option:Get() ~= live.Before[option].Value
-            local line = row and row.ChangedBar:IsShown() == option:IsChanged()
-            local footer, count = FooterAgrees(sectionId)
-            Add(stored and line and footer and "PASS" or "FAIL", ("%s: %s -> %s, changed line %s, footer %s (%d changed)"):format(optionId,
-                tostring(live.Before[option].Value), tostring(option:Get()), line and "follows" or "wrong", footer and "follows" or "wrong", count))
-        end
-    }
-end
-
--- The arrow on a changed row sets its option back to the default (docs/work/2026-10-31-options-markers). A test does not
--- move the mouse, so the step runs the row's own enter and leave and the arrow's click. An option still at its default
--- is changed through its control first. The arrow is hidden away from the mouse, shows on enter with its atlas in the
--- margin before the name, and its click sets the option back and takes the line away.
-local function ResetStep(kind, optionId, Change)
-    local sectionId, option, arrow
-    return {
-        Name = kind .. "-reset",
-        Needs = kind .. "-shown",
-        Text = ("the %s set back by its row's arrow"):format(kind),
-        Run = function()
-            sectionId, option = FindOption(optionId)
-            local row = option and RowOf(option)
-            if not row then
-                return "its row is not drawn"
-            end
-            Remember(option)
-            if not option:IsChanged() then
-                Change(row, option)
-            end
-            local reset = row.Reset
-            local hiddenAway = row:IsMouseOver() or not reset:IsShown()
-            row:OnEnter()
-            local texture = reset:GetNormalTexture()
-            arrow = {
-                Hidden = hiddenAway,
-                Shown = reset:IsShown(),
-                Atlas = texture and texture:GetAtlas() == "common-icon-undo" or false,
-                Margin = (reset:GetLeft() or -1) >= (row:GetLeft() or 0) and (reset:GetRight() or 1e9) <= (row.Label:GetLeft() or 0) + 0.5,
-            }
-            reset:GetScript("OnClick")(reset, "LeftButton")
-            row:OnLeave()
-        end,
-        Check = function()
-            local row = RowOf(option)
-            local back = not option:IsChanged()
-            local line = row and not row.ChangedBar:IsShown()
-            local shows = arrow.Hidden and arrow.Shown and arrow.Atlas and arrow.Margin
-            local footer, count = FooterAgrees(sectionId)
-            Add(back and line and shows and footer and "PASS" or "FAIL", ("%s: %s, changed line %s, arrow %s, footer %s (%d changed)"):format(optionId,
-                back and "back at its default" or "still changed", line and "gone" or "still shown",
-                shows and "hidden away from the mouse and shown on enter before the name" or ("wrong (hidden away %s, shown on enter %s, atlas %s, in the margin %s)"):format(
-                    tostring(arrow.Hidden), tostring(arrow.Shown), tostring(arrow.Atlas), tostring(arrow.Margin)),
-                footer and "follows" or "wrong", count))
-        end
-    }
-end
-
--- Whether the help pane holds the arrow's line, "Reset to Default"
-local function HelpHasReset()
-    local provider = Window().HelpScrollBox:GetDataProvider()
-    for i = 1, provider and provider:GetSize() or 0 do
-        local data = provider:Find(i)
-        if type(data) == "table" and type(data.Text) == "string" and data.Text:find(RESET_TO_DEFAULT, 1, true) then
-            return true
-        end
-    end
-    return false
-end
-
--- The help pane follows a change made under the mouse (from the markers review, docs/work/2026-11-04-krowi-options-library):
--- the row's enter is played, the option changed through its check box and set back, and before and after each change the
--- pane is read for the arrow's line, which shows exactly while the option is changed
-local function HelpFollowsStep(optionId)
-    local seen
-    return {
-        Name = "toggle-help-follows",
-        Needs = "toggle-shown",
-        Text = "the help pane follows a change made under the mouse",
-        Run = function()
-            local _, option = FindOption(optionId)
-            local row = option and RowOf(option)
-            if not row then
-                return "its row is not drawn"
-            end
-            Remember(option)
-            row:OnEnter()
-            seen = { Was = option:IsChanged(), Before = HelpHasReset() }
-            row.Toggle:Click()
-            seen.Changed, seen.AfterChange = option:IsChanged(), HelpHasReset()
-            row.Toggle:Click()
-            seen.Back, seen.AfterBack = option:IsChanged(), HelpHasReset()
-            row:OnLeave()
-        end,
-        Check = function()
-            local follows = seen.Before == seen.Was and seen.AfterChange == seen.Changed and seen.AfterBack == seen.Back
-            Add(follows and "PASS" or "FAIL", ("%s: the Reset to Default line %s before (changed %s), %s after the change (changed %s), %s after setting it back (changed %s)"):format(
-                optionId, seen.Before and "shows" or "is absent", tostring(seen.Was), seen.AfterChange and "shows" or "is absent", tostring(seen.Changed),
-                seen.AfterBack and "shows" or "is absent", tostring(seen.Back)))
-        end
-    }
-end
-
--- The same on a grid's check box (from the code review of Krowi_Options 2.0): a grid row holds its options in its
--- element, not as the row's Option, and the help did not follow a change there. The first grid row of Event reminders
--- with a check box that can be changed.
-local function GridHelpFollowsStep()
-    local seen
-    return {
-        Name = "toggle-help-follows-grid",
-        Text = "the help pane follows a change in a grid made under the mouse",
-        Run = function()
-            Window():ShowSection("events")
-            local row, column
-            ForEachRow(function(candidate)
-                local element = candidate.Element
-                if row or not element or element.Kind ~= "GridRow" then
-                    return
-                end
-                for i, option in ipairs(element.Cells) do
-                    if not row and not option:IsDisabled() then
-                        row, column = candidate, i
-                    end
-                end
-            end)
-            if not row then
-                return "no grid check box to change in events"
-            end
-            local option = row.Element.Cells[column]
-            Remember(option)
-            row:OnEnter(column)
-            seen = { Id = option.Id, Was = option:IsChanged(), Before = HelpHasReset() }
-            row.Cells[column]:Click()
-            seen.Changed, seen.AfterChange = option:IsChanged(), HelpHasReset()
-            row.Cells[column]:Click()
-            seen.Back, seen.AfterBack = option:IsChanged(), HelpHasReset()
-            row:OnLeave()
-        end,
-        Check = function()
-            local follows = seen.Before == seen.Was and seen.AfterChange == seen.Changed and seen.AfterBack == seen.Back
-            Add(follows and "PASS" or "FAIL", ("%s: the Reset to Default line %s before (changed %s), %s after the change (changed %s), %s after setting it back (changed %s)"):format(
-                seen.Id, seen.Before and "shows" or "is absent", tostring(seen.Was), seen.AfterChange and "shows" or "is absent", tostring(seen.Changed),
-                seen.AfterBack and "shows" or "is absent", tostring(seen.Back)))
-        end
-    }
-end
-
--- The undo arrow goes when the mouse leaves a row through its part scrolled out of view (from the markers review): the
--- last plain check box of the longest section that has one is changed and scrolled half below the list's bottom edge,
--- the player hovers it and moves straight down off the list, and the step reads the arrow once the mouse is on the
--- hidden half. On Mists the longest section, the plugins, has no plain check box.
-local function ClippedResetStep()
-    local option, hovered
-    return {
-        Name = "toggle-reset-clipped",
-        Text = ("hover the half-shown row at the list's bottom, then move straight down off the list (%d s)"):format(mouseWait),
-        Run = function()
-            local frame, window = Window(), addon.Options.Window
-            local sections = {}
-            for _, section in ipairs(window.Map.Sections) do
-                tinsert(sections, { Section = section, Count = #window.Source.Elements(section) })
-            end
-            table.sort(sections, function(a, b) return a.Count > b.Count end)
-            local index
-            for _, entry in ipairs(sections) do
-                frame:ShowSection(entry.Section.Id)
-                for i, element in ipairs(frame.Elements or {}) do
-                    local o = element.Option
-                    if o and o.Type == "toggle" and not element.With and not o:IsDisabled() and not (o.GetNeedsReload and o:GetNeedsReload()) then
-                        option, index = o, i
-                    end
-                end
-                if option then
-                    break
-                end
-            end
-            if not option then
-                return "no section has a plain check box"
-            end
-            local box = frame.PageScrollBox
-            box:ScrollToElementDataIndex(index, ScrollBoxConstants.AlignEnd, nil, ScrollBoxConstants.NoScrollInterpolation)
-            local row = RowOf(option)
-            if not row then
-                return "its row is not drawn"
-            end
-            box:ScrollToOffset(box:GetDerivedScrollOffset() - row:GetHeight() / 2, ScrollBoxConstants.NoScrollInterpolation)
-            Remember(option)
-            if not option:IsChanged() then
-                row.Toggle:Click()
-            end
-            hovered = false
-        end,
-        -- For the kit: the visible half of the row inside the list, then its hidden half below the list's bottom edge
-        Hover = function(kit)
-            local row = RowOf(option)
-            if row then
-                kit.HoverAt(row, 0, (hovered and -1 or 1) * row:GetHeight() / 4)
-            end
-        end,
-        -- First the mouse on the row inside the list, then on the row's part below the list
-        Mouse = function()
-            local row = RowOf(option)
-            if not row then
-                return false
-            end
-            local inList = Window().PageScrollBox:IsMouseOver()
-            if row:IsMouseOver() and inList then
-                hovered = true
-            end
-            return hovered and row:IsMouseOver() and not inList
-        end,
-        Check = function()
-            local row = RowOf(option)
-            local shown = row and row.Reset:IsShown()
-            Add(row and not shown and "PASS" or "FAIL", ("%s: with the mouse on the row's hidden half the arrow is %s"):format(option.Id,
-                not row and "not drawn" or shown and "still shown" or "gone"))
-        end
-    }
-end
-
--- The search as the game's Options window searches (docs/work/2026-11-03-blizzard-search), through the window's own
--- functions: the rows it draws, from the first letter, the help pane beside them, the broad search, a change made in the
--- results, a question asked there, and a row that a change in them hides
-local tabPriorityId = "Layout.args.Achievements.args.Style.args.TabPriority.args.EnableTabPriority"
-local tabPriorityChildId = "Layout.args.Achievements.args.Style.args.TabPriority.args.TabPriority"
-local debugId = "General.args.Debug.args.Debug.args.EnableDebugInfo"
-local traceId = "General.args.Debug.args.Debug.args.EnableTraceInfo"
-local testQuestion = "Krowi's Achievement Filter test?"
-
--- As the player types it
-local function Search(text)
-    local frame = Window()
-    frame.SearchBox:SetText(text)
-    frame:OnSearch(text)
-end
-
--- Through its check box, as the player ticks it
-local function SetBroad(on)
-    local frame = Window()
-    if (frame.BroadSearch and true or false) ~= on then frame.SearchBroad:Click() end
-end
-
-local function Kinds()
-    local kinds = {}
-    for _, element in ipairs(Window().Elements or {}) do kinds[element.Kind] = (kinds[element.Kind] or 0) + 1 end
-    return kinds
-end
-
-local function InResults(option)
-    for _, element in ipairs(Window().Elements or {}) do
-        if element.Option == option then return true end
-    end
-    return false
-end
-
-local function HelpTitle()
-    local provider = Window().HelpScrollBox:GetDataProvider()
-    local first = provider and provider:Find(1)
-    return first and first.Text
-end
-
--- A word of an option's description that no option's name holds, so only the broad search finds it, in any language
-local function DescriptionOnlyWord()
-    local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
-    local tab = addon.Options.Window.Controller
-    for _, optionId in ipairs({ toggleId, rangeId, tabPriorityId }) do
-        local _, option = FindOption(optionId)
-        for word in (option and option:GetDescription() or ""):gmatch("[^%s%p]+") do
-            if #word >= 5 and #lib.Search(word, false, tab, false) == 0 and #lib.Search(word, false, tab, true) > 0 then return word end
-        end
-    end
-end
-
-local function SearchSteps()
-    local searchText, pane, broad, change, confirm, showIf
-    return {
-        {
-            Name = "search",
-            Text = "a search draws the found options as rows under their section's name",
-            Run = function()
-                SetBroad(false)
-                local _, option = FindOption(toggleId)
-                searchText = option and option:GetLabel():match("^(%S+)") or "a"
-                Search(searchText)
-            end,
-            Check = function()
-                local frame = Window()
-                local kinds = Kinds()
-                local first = frame.Elements and frame.Elements[1]
-                local drawn, differ, misfit = CheckDrawnRows()
-                local ok = frame.Searching and (kinds.Option or 0) > 0 and (kinds.SearchHeading or 0) > 0 and not kinds.Link and first
-                    and (first.Kind == "SearchHeading" or first.Kind == "Header") and not frame.DefaultsButton:IsShown() and #differ == 0 and #misfit == 0
-                Add(ok and "PASS" or "FAIL", ("'%s': %d rows under %d section names, %d links, Defaults %s, %d drawn%s%s"):format(searchText,
-                    kinds.Option or 0, kinds.SearchHeading or 0, kinds.Link or 0, frame.DefaultsButton:IsShown() and "shown" or "hidden", drawn,
-                    #differ > 0 and (", controls that do not show their value: [" .. table.concat(differ, ",") .. "]") or "",
-                    #misfit > 0 and (", rows out of the layout: [" .. table.concat(misfit, "; ") .. "]") or ""))
-            end
-        },
-        {
-            Name = "search-letter",
-            Needs = "search",
-            Text = "one letter already searches, as the game's",
-            Run = function()
-                searchText = searchText:match("^[%z\1-\127\194-\244][\128-\191]*") -- one letter, also when it takes several bytes
-                Search(searchText)
-            end,
-            Check = function()
-                local kinds = Kinds()
-                Add(Window().Searching and (kinds.Option or 0) > 0 and "PASS" or "FAIL", ("'%s' finds %d rows in %d sections"):format(searchText,
-                    kinds.Option or 0, kinds.SearchHeading or 0))
-            end
-        },
-        {
-            Name = "search-pane",
-            Text = "the help pane explains the search, and a hovered row with its own section",
-            Run = function()
-                local frame = Window()
-                if frame.PaneCollapsed then frame:SetPaneCollapsed(false) end
-                local _, child = FindOption(tabPriorityChildId)
-                Search(child:GetLabel())
-                pane = { Before = HelpTitle() }
-                local row = RowOf(child)
-                if not row then return "its row is not drawn" end
-                row:OnEnter()
-                pane.Hover, pane.Kicker = frame.HoverOption == child, frame.CollapseButton.Label:GetText()
-                row:OnLeave()
-                pane.After = HelpTitle()
-            end,
-            Check = function()
-                local frame = Window()
-                local search, section = frame.Strings.Search, frame.Config.SectionName((FindOption(tabPriorityChildId)))
-                Add(pane.Before == search and pane.Hover and pane.Kicker == section and pane.After == search and "PASS" or "FAIL",
-                    ("before '%s', on the row %s under '%s' (%s expected), after '%s'"):format(tostring(pane.Before),
-                        pane.Hover and "its description" or "not its description", tostring(pane.Kicker), section, tostring(pane.After)))
-            end
-        },
-        {
-            Name = "search-broad",
-            Text = "Search descriptions also finds options by their description, and no section by its explanation",
-            Run = function()
-                local word = DescriptionOnlyWord()
-                if not word then return "no word of a description that no name holds" end
-                SetBroad(false)
-                Search(word)
-                broad = { Word = word, Names = Kinds() }
-                SetBroad(true)
-            end,
-            Check = function()
-                local frame = Window()
-                local kinds = Kinds()
-                local kept = (KrowiAF_SavedData.OptionsWindow.Window or {}).SearchBroad == true and frame.SearchBroad:GetChecked()
-                Add(not broad.Names.Option and broad.Names.Note == 1 and (kinds.Option or 0) > 0 and not kinds.Link and kept and "PASS" or "FAIL",
-                    ("'%s': by name %d rows, ticked %d rows and %d links, %s"):format(broad.Word, broad.Names.Option or 0, kinds.Option or 0,
-                        kinds.Link or 0, kept and "kept with the window's state" or "not kept"))
-            end
-        },
-        {
-            Name = "search-change",
-            Text = "a check box changed in the results greys its child row, and the rows stay",
-            Run = function()
-                SetBroad(false)
-                local _, parent = FindOption(tabPriorityId)
-                local _, child = FindOption(tabPriorityChildId)
-                Search(parent:GetLabel())
-                change = { Parent = parent, Child = child, Signature = Window().Signature }
-                local row = RowOf(parent)
-                if not row then return "its row is not drawn" end
-                Remember(parent)
-                row.Toggle:Click()
-            end,
-            Check = function()
-                local frame = Window()
-                local childRow = RowOf(change.Child)
-                local greyed = childRow and (childRow.Label:GetFontObject() == GameFontDisable) == change.Child:IsDisabled()
-                local stored = change.Parent:Get() ~= live.Before[change.Parent].Value
-                local same = frame.Signature == change.Signature
-                Add(stored and greyed and same and "PASS" or "FAIL", ("%s %s, %s %s, the rows %s"):format(change.Parent:GetLabel(),
-                    stored and "changed" or "not changed", change.Child:GetLabel(), greyed and "follows it" or "does not follow it",
-                    same and "stayed" or "were drawn again"))
-            end
-        },
-        {
-            Name = "search-confirm",
-            Needs = "search",
-            Text = "a question asked in the results shows in the header",
-            Run = function()
-                Search(searchText)
-                confirm = {}
-                -- The box reports its new text a frame later, which searches again and drops a question asked before it;
-                -- a player picks the choice that asks only after typing
-                After(0.2, function() Window():AskConfirm(testQuestion, function() confirm.Yes = true end) end)
-            end,
-            Check = function()
-                local frame = Window()
-                local asked = frame.CancelButton:IsShown() and frame.DefaultsButton:IsShown() and frame.ChangedText:GetText() == testQuestion
-                Add(asked and "PASS" or "FAIL", ("the question %s, Yes %s, No %s"):format(frame.ChangedText:GetText() == testQuestion and "shows" or "does not show",
-                    frame.DefaultsButton:IsShown() and "shown" or "hidden", frame.CancelButton:IsShown() and "shown" or "hidden"))
-            end
-        },
-        {
-            Name = "search-confirm-no",
-            Needs = "search-confirm",
-            Text = "No ends the question and does nothing",
-            Run = function()
-                Window().CancelButton:Click()
-            end,
-            Check = function()
-                local frame = Window()
-                local gone = not frame.CancelButton:IsShown() and not frame.DefaultsButton:IsShown() and frame.PageTitle:IsShown()
-                Add(gone and not confirm.Yes and "PASS" or "FAIL", ("the question %s, its answer %s"):format(gone and "is gone" or "stays",
-                    confirm.Yes and "ran" or "did not run"))
-            end
-        },
-        {
-            Name = "search-showif",
-            Text = "a row that a change in the results hides goes, and comes back",
-            Run = function()
-                SetBroad(false)
-                local _, debug = FindOption(debugId)
-                local _, trace = FindOption(traceId)
-                Search(trace:GetLabel())
-                showIf = { Trace = trace, Before = InResults(trace) }
-                Remember(debug)
-                debug:Set(false)
-                Window():OnOptionChanged(debug)
-                showIf.Off = InResults(trace)
-                debug:Set(true)
-                Window():OnOptionChanged(debug)
-            end,
-            Check = function()
-                local back = InResults(showIf.Trace)
-                Add(showIf.Before and not showIf.Off and back and "PASS" or "FAIL", ("%s: %s, with debug info off %s, on again %s"):format(
-                    showIf.Trace:GetLabel(), showIf.Before and "found" or "not found", showIf.Off and "still there" or "gone", back and "back" or "not back"))
-            end
-        },
-    }
-end
-
--- A greyed-out setting still explains itself under the mouse (the code review of Krowi_Options 2.0, #8): the game runs a
--- greyed button's OnEnter only when the button asks for it (SetMotionScriptsWhileDisabled, as the game's own settings
--- check box does), and that flag is what the fix added. A test does not move the mouse, so the steps read the flag and
--- play the button's own enter and leave: with the pane open the pane explains the option, collapsed the row's tooltip
--- does. The cases: a check box and a dropdown under a parent check box that is off (turned off for the run when it is
--- on), and the first tab's Up arrow, greyed on every client. Each step holds its last hover for its screenshot.
-local greyedCases = {
-    { Name = "check box", OptionId = "Layout.args.Criteria.args.Tooltip.args.ShowCriteriaIfAchievementIsCompleted", Control = function(row) return row.Toggle end },
-    { Name = "dropdown", OptionId = tabPriorityChildId, Control = function(row) return row.Select.Dropdown end },
-    { Name = "dropdown's arrow", OptionId = tabPriorityChildId, Control = function(row) return row.Select.IncrementButton end },
-    { Name = "tab list's Up arrow", TabRow = true, Control = function(row) return row.Up end },
-}
-
-local function RowOfElement(element)
-    local found
-    ForEachRow(function(row)
-        if row.Element == element then found = row end
-    end)
-    return found
-end
-
--- Shows a case's row in view and greyed: its row, its control and the option the help names; or nil and why not. A
--- parent it turns off goes into turnedOff.
-local function ShowGreyed(case, turnedOff)
-    local frame, window = Window(), addon.Options.Window
-    if case.TabRow then
-        for _, section in ipairs(window.Map.Sections) do
-            for _, element in ipairs(window.Source.Elements(section)) do
-                if element.Kind == "TabList" then
-                    frame:ShowSection(section.Id)
-                    for index, shown in ipairs(frame.Elements or {}) do
-                        if shown.Kind == "TabRow" and shown.Item.MoveUp == nil then
-                            frame.PageScrollBox:ScrollToElementDataIndex(index, ScrollBoxConstants.AlignCenter, nil, ScrollBoxConstants.NoScrollInterpolation)
-                            local row = RowOfElement(shown)
-                            if not row then return nil, "the first tab's row is not drawn" end
-                            return row, case.Control(row), shown.Item.Show
-                        end
-                    end
-                    return nil, "the tab list has no first tab"
-                end
-            end
-        end
-        return nil, "no section has the tab list"
-    end
-    local sectionId, option = FindOption(case.OptionId)
-    if not option then return nil, case.OptionId .. " is in no section on this client" end
-    frame:ShowSection(sectionId, case.OptionId)
-    local parent = option:GetParent()
-    if parent and parent:Get() then
-        Remember(parent)
-        parent:Set(false)
-        frame:OnOptionChanged(parent)
-        tinsert(turnedOff, parent)
-    end
-    local row = RowOf(option)
-    if not row then return nil, "its row is not drawn" end
-    return row, case.Control(row), option
-end
-
--- As the game runs it when the mouse comes onto the control or leaves it: the script and the hooks on it (Tooltip.lua)
-local function Play(control, script)
-    local handler = control:GetScript(script)
-    if handler then handler(control, true) end
-end
-
-local function GreyedSteps()
-    local seen, held, turnedOff = {}, nil, {}
-    -- After the screenshot: the held hover ends and the parents the step turned off are on again, so the steps after it
-    -- (search-change clicks Tab priority's parent) start from the player's values
-    local function Release()
-        if held then
-            Play(held, "OnLeave")
-            held = nil
-        end
-        for _, parent in ipairs(turnedOff) do
-            parent:Set(true)
-            Window():OnOptionChanged(parent)
-        end
-        wipe(turnedOff)
-    end
-    local function Measure(collapsed)
-        local frame = Window()
-        Release()
-        if frame.PaneCollapsed ~= collapsed then frame:SetPaneCollapsed(collapsed) end
-        seen = {}
-        for i, case in ipairs(greyedCases) do
-            local row, control, option = ShowGreyed(case, turnedOff)
-            local result = { Case = case, Missing = not row and control or nil }
-            if row then
-                result.Label = option and option:GetLabel() or "?"
-                result.Greyed = not control:IsEnabled()
-                result.Asks = control:GetMotionScriptsWhileDisabled() and true or false
-                Play(control, "OnEnter")
-                local tooltip = frame.TooltipShown
-                if collapsed then
-                    result.Explains = option ~= nil and tooltip ~= nil and tooltip:IsShown() and tooltip:GetOwner() == row
-                else
-                    result.Explains = option ~= nil and frame.HoverOption == option
-                end
-                if i < #greyedCases then
-                    Play(control, "OnLeave")
-                    result.Ends = collapsed and not (tooltip and tooltip:IsShown()) or not collapsed and frame.HoverOption == nil
-                else
-                    held = control -- the last case stays hovered for the screenshot
-                end
-            end
-            seen[i] = result
-        end
-    end
-    local function Report(collapsed)
-        for _, result in ipairs(seen) do
-            if result.Missing then
-                Add("SKIP", ("%s: %s"):format(result.Case.Name, result.Missing))
-            else
-                local ok = result.Greyed and result.Asks and result.Explains and result.Ends ~= false
-                Add(ok and "PASS" or "FAIL", ("%s (%s): %s, %s, on enter %s%s"):format(result.Case.Name, result.Label,
-                    result.Greyed and "greyed" or "not greyed", result.Asks and "hovers while greyed" or "no hover while greyed",
-                    result.Explains and (collapsed and "its tooltip shows" or "the pane explains it") or (collapsed and "no tooltip" or "the pane does not explain it"),
-                    result.Ends == false and ", and the help stays after leaving" or ""))
-            end
-        end
-    end
-    -- The screenshot is taken right after the check with the hover held; the next step starts afterShot after it
-    return {
-        Name = "greyed-help",
-        Text = "a greyed-out check box, dropdown and arrow explain themselves under the mouse",
-        Run = function() Measure(false) end,
-        Check = function()
-            Report(false)
-            After(afterShot / 2, Release)
-        end
-    }, {
-        Name = "greyed-help-collapsed",
-        Text = "the same with the help pane collapsed: the row's tooltip",
-        Run = function() Measure(true) end,
-        Check = function()
-            Report(true)
-            After(afterShot / 2, function()
-                Release()
-                Window():SetPaneCollapsed(false)
-            end)
-        end
-    }
-end
-
+-- The steps, on this addon's tab (window.Controller) through the library's public surface only
 local function BuildSteps()
     local window = addon.Options.Window
-    local list = {
+    local tab = window.Controller
+    return {
         {
             Name = "open",
             Required = true,
-            Text = "/kaf opens the window",
+            Text = "/kaf opens the window on this addon's tab",
             Run = function()
                 live.FirstOpen = Window() == nil
                 live.Landing = window.Landing()
-                if Window() then
-                    Window():Hide()
+                if tab:IsShown() then
+                    tab:Toggle()
                 end
                 SlashCmdList.KAF("")
             end,
+            -- The section shown is the one the library saves as LastSection
             Check = function()
-                local frame = Window()
-                local shown = frame and frame:IsShown()
-                Add(shown and frame.SectionId == live.Landing and "PASS" or "FAIL", ("the window opens on %s, the landing section %s (first open after a /reload: %s)"):format(
-                    tostring(frame and frame.SectionId), live.Landing, live.FirstOpen and "yes" or "no"))
+                local shown = tab:IsShown() and tab:GetFrame():IsShown()
+                local section = tab:GetSaved().LastSection
+                Add(shown and section == live.Landing and "PASS" or "FAIL", ("the window %s on this addon's tab, on %s, the landing section %s (first open after a /reload: %s)"):format(
+                    shown and "opens" or "does not open", tostring(section), live.Landing, live.FirstOpen and "yes" or "no"))
             end
         },
         {
-            -- With the window made: the globals Blizzard's templates add under the window's name ($parent), which the
-            -- load-time scenario library-globals cannot see (docs/work/2026-11-05-contract-and-errors in Krowi_Options)
-            Name = "library-globals-window",
-            Text = "the window adds no global but its own name and its children's",
-            Run = function() end,
-            Check = function()
-                local windowName = KROWI_LIBMAN:GetLibrary("Krowi_Options_2").WindowName
-                local children, others = {}, {}
-                for name in next, _G do
-                    if type(name) == "string" and name:find("^Krowi_Options") and name ~= windowName then
-                        tinsert(name:sub(1, #windowName) == windowName and children or others, name)
-                    end
+            Name = "close",
+            Text = "the tab's Toggle closes the window",
+            Run = function()
+                if not tab:IsShown() then
+                    return "the window is not open on this addon's tab"
                 end
-                table.sort(children)
-                table.sort(others)
-                Add(#others == 0 and "PASS" or "FAIL", ("under the window's name: %s; others: %s"):format(
-                    #children > 0 and table.concat(children, ", ") or "none", #others > 0 and table.concat(others, ", ") or "none"))
-            end
-        },
-        {
-            Name = "tabs",
-            Text = "a tab per addon, this addon's selected",
-            Run = function() end,
+                tab:Toggle()
+            end,
             Check = function()
                 local frame = Window()
-                local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
-                local shown, selected = 0, "none"
-                for _, button in ipairs(frame.TabButtons) do
-                    if button:IsShown() then
-                        shown = shown + 1
-                        if button:IsSelected() then selected = button.Tab.Config.TabName end
-                    end
-                end
-                local title = frame.NineSlice.Text:GetText()
-                local searchAll = frame.SearchAll:IsShown()
-                local ok = shown == #lib.Tabs and frame.Tab == window.Controller and selected == "Achievement Filter"
-                    and title == SETTINGS_TITLE and searchAll == (#lib.Tabs > 1)
-                Add(ok and "PASS" or "FAIL", ("%d of %d tabs shown, %s selected, title '%s', Search all tabs %s"):format(shown, #lib.Tabs, selected,
-                    tostring(title), searchAll and "shown" or "hidden"))
+                Add(not tab:IsShown() and not (frame and frame:IsShown()) and "PASS" or "FAIL", "the window is hidden")
             end
         },
-        -- The game's Options window's sizes (docs/work/2026-11-02-options-widths)
-        {
-            Name = "sizes",
-            Text = "the window, its rows and its controls at the sizes of the game's Options window",
-            Run = function() end,
-            Check = function()
-                local frame = Window()
-                local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
-                local function Is(value, expected) return math.abs(value - expected) < 0.5 end
-                local width = lib.WindowWidth(frame.PaneCollapsed)
-                local minWidth, _, maxWidth = width, nil, width
-                if frame.GetResizeBounds then minWidth, _, maxWidth = frame:GetResizeBounds() end
-                local rows = frame.NavScrollShown and 619 or 635
-                local defaults = frame.DefaultsButton
-                local fitsIn96 = defaults:GetFontString():GetStringWidth() + 24 <= 96
-                local ok = Is(frame:GetWidth(), width) and Is(minWidth, width) and Is(maxWidth, width) and Is(frame:PageWidth(), rows)
-                    and Is(frame.SearchBox:GetWidth(), 350) and (fitsIn96 and Is(defaults:GetWidth(), 96) or not fitsIn96 and defaults:GetWidth() > 96)
-                    and Is(frame.SearchAll:GetWidth(), 30) and Is(frame.SearchAll:GetHeight(), 29) and Is(frame.Divider:GetWidth(), 630)
-                Add(ok and "PASS" or "FAIL", ("window %g wide (resizes from %g to %g), rows %g, search box %g, Defaults %g, check box %gx%g, divider %g, scale %.2f"):format(
-                    frame:GetWidth(), minWidth, maxWidth, frame:PageWidth(), frame.SearchBox:GetWidth(), defaults:GetWidth(),
-                    frame.SearchAll:GetWidth(), frame.SearchAll:GetHeight(), frame.Divider:GetWidth(), frame:GetScale()))
-            end
-        },
-        SectionStep("overview", KROWI_LIBMAN:GetLibrary("Krowi_Options_2").GetStrings().Overview),
-        CardsStep("overview-cards", "Overview's first cards", ScrollToFirstCards),
-        CardsStep("overview-cards-end", "Overview's last cards", ScrollToEnd)
     }
-    for _, section in ipairs(window.Map.Sections) do
-        tinsert(list, SectionStep(section.Id, section.Name))
-    end
-    for _, step in ipairs({ ChangeSteps("toggle", toggleId, function(row) row.Toggle:Click() end) }) do tinsert(list, step) end
-    tinsert(list, ResetStep("toggle", toggleId, function(row) row.Toggle:Click() end))
-    tinsert(list, HelpFollowsStep(toggleId))
-    tinsert(list, GridHelpFollowsStep())
-    for _, step in ipairs({ ChangeSteps("range", rangeId, function(row, option)
-        local min, max = option:GetRange()
-        row.Range:SetValue(option:Get() ~= min and min or max)
-    end) }) do tinsert(list, step) end
-    for _, step in ipairs({ ChangeSteps("input", inputId, function(row, option)
-        row.Input:SetText((option:Get() or "") .. " x")
-        row.Input:GetScript("OnEnterPressed")(row.Input)
-    end) }) do tinsert(list, step) end
-    -- Over a check box's slider the help pane explains the slider, not the check box (Krowi, 2026-11-02: Force two
-    -- columns threshold); the mouse's arrival on the bar is played through the row's own handler
-    local pairSection, pairOption
-    tinsert(list, {
-        Name = "slider-help",
-        Text = "a check box's slider explains itself",
-        Run = function()
-            local frame = Window()
-            pairSection, pairOption = FindSliderPair()
-            if frame.PaneCollapsed then frame:SetPaneCollapsed(false) end
-            if pairSection then frame:ShowSection(pairSection, pairOption.Id) end
-        end,
-        Check = function()
-            local row = pairOption and RowOf(pairOption)
-            if not row then
-                Add("FAIL", "no drawn row whose check box carries a slider")
-                return
-            end
-            row:OnEnter(row.Range.Slider)
-            local shown = Window().HoverOption
-            row:OnLeave()
-            Add(shown == row.With and "PASS" or "FAIL", ("over %s's slider the help explains %s"):format(pairOption:GetLabel(),
-                shown and shown:GetLabel() or "the section"))
-        end
-    })
-    for _, step in ipairs({ GreyedSteps() }) do tinsert(list, step) end
-    for _, step in ipairs(SearchSteps()) do tinsert(list, step) end
-    tinsert(list, ClippedResetStep())
-    tinsert(list, {
-        Name = "pane",
-        Text = "the help pane collapsed to its strip",
-        Run = function()
-            local frame = Window()
-            frame:ShowSection("window")
-            frame:SetPaneCollapsed(not frame.PaneCollapsed)
-        end,
-        Check = function()
-            local frame = Window()
-            local agrees = frame.ExpandButton:IsShown() == frame.PaneCollapsed and frame.HelpScrollBox:IsShown() == not frame.PaneCollapsed
-            -- The pane adds its own width to the game's window (docs/work/2026-11-02-options-widths)
-            local width = KROWI_LIBMAN:GetLibrary("Krowi_Options_2").WindowWidth(frame.PaneCollapsed)
-            local wide = math.abs(frame:GetWidth() - width) < 0.5 and math.abs(frame:PageWidth() - (frame.NavScrollShown and 619 or 635)) < 0.5
-            Add(agrees and wide and "PASS" or "FAIL", ("the pane is %s and shows it, the window %g wide (%g expected), rows %g"):format(
-                frame.PaneCollapsed and "collapsed" or "open", frame:GetWidth(), width, frame:PageWidth()))
-        end
-    })
-    tinsert(list, {
-        Name = "close",
-        Text = "the close button hides the window",
-        Run = function()
-            Window().CloseButton:Click()
-        end,
-        Check = function()
-            Add(not Window():IsShown() and "PASS" or "FAIL", "the window is hidden")
-        end
-    })
-    return list
 end
 
 local function CheckErrors()
@@ -1788,68 +537,28 @@ local function CheckErrors()
     end
 end
 
--- The window state every addon shares, as it stood before the run: the library's own copy and every registered addon's
--- saved block (Krowi_Options 2's internals, read knowingly; docs/work/2026-11-05-contract-and-errors there). Restore puts
--- them back as they were, so neither this addon's table nor another's keeps the run's values or a newer change time.
-local function SnapshotShared()
-    local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
-    local blocks = {}
-    for _, registered in ipairs(lib.Tabs) do
-        local ok, saved = pcall(registered.GetSaved, registered)
-        if ok then blocks[registered] = saved.Window and DeepCopy(saved.Window) or false end
-    end
-    return { Shared = DeepCopy(lib.Shared), Blocks = blocks }
-end
-
--- Every value the steps changed goes back, then the window's saved state as it was before the run
+-- This addon's saved table for the window as it was before the run, read and written through the tab's GetSaved (the
+-- library's public surface): the Window block every addon shares (place, size, pane, search ticks and their change
+-- time), LastSection and Seen, which the open writes. It goes back in place, since the window keeps the table; the
+-- window opens again on the section it showed, when it was open on this addon's tab before the run.
 local function Restore()
-    local frame = Window()
-    local notBack = {}
-    for option, before in next, live.Before do
-        pcall(option.Set, option, before.Value)
-        if option:Get() ~= before.Value then
-            tinsert(notBack, option.Id)
-        end
+    local tab = addon.Options.Window.Controller
+    if live.WasShown and not tab:IsShown() then
+        tab:Open(live.WasShown)
     end
-    local shared = live.SharedBefore
-    local before = shared.Shared or live.SavedWindow.Window or {} -- the block the window showed before the run
-    if frame then
-        if frame.PaneCollapsed ~= (before.PaneCollapsed and true or false) then
-            frame:SetPaneCollapsed(before.PaneCollapsed and true or false)
-        end
-        -- The search scope and breadth the window reads, and their check boxes; the saved fields go back below
-        frame.BroadSearch = before.SearchBroad and true or false
-        frame.SearchBroad:SetChecked(frame.BroadSearch)
-        frame.SearchEveryTab = before.SearchAll and true or false
-        frame.SearchAll:SetChecked(frame.SearchEveryTab)
-        if live.WasShown then
-            frame:Open(live.WasShown)
-        end
-    end
-    local saved = KrowiAF_SavedData.OptionsWindow -- the window keeps this table, so its fields go back in place
+    local saved = tab:GetSaved()
     wipe(saved)
-    for k, v in next, live.SavedWindow do
+    for k, v in next, DeepCopy(live.SavedBefore) do
         saved[k] = v
     end
-    -- The shared block: every addon's as it was, and the library's own copy, which a nil sends back to the newest of them
-    for registered, block in next, shared.Blocks do
-        local ok, savedTable = pcall(registered.GetSaved, registered)
-        if ok then savedTable.Window = block and DeepCopy(block) or nil end
-    end
-    KROWI_LIBMAN:GetLibrary("Krowi_Options_2").Shared = DeepCopy(shared.Shared)
-    return notBack
 end
 
 local function Finish()
     banner:UnregisterAllEvents()
     live.StepName = "restore"
-    local ok, notBack = pcall(Restore)
-    if not ok then
-        Add("FAIL", "could not put the values back: " .. tostring(notBack))
-    else
-        Add(#notBack == 0 and "PASS" or "FAIL", "the changed values and the window's saved state are as before the run"
-            .. (#notBack > 0 and (", except [" .. table.concat(notBack, ",") .. "]") or ""))
-    end
+    local restored, restoreError = pcall(Restore)
+    Add(restored and "PASS" or "FAIL", restored and "this addon's saved state for the window is as before the run"
+        or ("could not put the window's saved state back: " .. tostring(restoreError)))
     live.StepName = "lua-errors"
     local checked, err = pcall(CheckErrors)
     if not checked then
@@ -1869,7 +578,7 @@ local function Stop(reason, combatStarted)
     if combatStarted or InCombatLockdown() then
         banner:UnregisterAllEvents()
         banner:RegisterEvent("PLAYER_REGEN_ENABLED")
-        print("|cFF88CCFFKrowiAF Tests:|r options: stopped for combat; the changed values go back when it ends")
+        print("|cFF88CCFFKrowiAF Tests:|r options: stopped for combat; the window's saved state goes back when it ends")
         return
     end
     Finish()
@@ -1887,36 +596,6 @@ local function Capture()
     Screenshot()
     After(afterShot, function()
         RunStep(live.StepIndex + 1)
-    end)
-end
-
--- A step that needs the player's mouse checks as soon as its Mouse() holds, or is skipped after mouseWait. While the
--- kit's marker addon is loaded (KrowiGameInput, Krowi_ClaudeKit's docs/work/2026-11-05-kit-test-runs), its Hover(kit)
--- asks the kit for the hover on every poll, so an unattended run gets it; the request is cleared once the step is over.
-local function WaitForMouse(step, waited)
-    local ok, ready = pcall(step.Mouse)
-    if ok and ready then
-        if KrowiGameInput then
-            KrowiGameInput.Clear()
-        end
-        Capture()
-        return
-    end
-    if not ok or waited >= mouseWait then
-        if KrowiGameInput then
-            KrowiGameInput.Clear()
-        end
-        Add(ok and "SKIP" or "FAIL", ok and ("waited %d s for the mouse: %s"):format(mouseWait, step.Text) or ("test error: " .. tostring(ready)))
-        After(afterShot, function()
-            RunStep(live.StepIndex + 1)
-        end)
-        return
-    end
-    if KrowiGameInput and step.Hover then
-        pcall(step.Hover, KrowiGameInput)
-    end
-    After(pollEvery, function()
-        WaitForMouse(step, waited + pollEvery)
     end)
 end
 
@@ -1944,11 +623,7 @@ RunStep = function(n)
         banner:SetPoint("BOTTOM", Window(), "TOP", 0, 6)
         banner:Show()
     end
-    if step.Mouse then
-        WaitForMouse(step, 0)
-    else
-        After(settle, Capture)
-    end
+    After(settle, Capture)
 end
 
 local function CreateBanner()
@@ -1985,21 +660,17 @@ addon.Tests.Ready.options = function()
     return true
 end
 
--- The named sets of steps, for Krowi_ClaudeKit's two-copy release gate, whose mixed cases need no full run (Krowi,
--- 2026-11-05: the full run with equal copies, a short one elsewhere): smoke opens the window, shows its tabs, changes a
--- check box, searches, collapses the pane and closes; behaviour is every step but the walk through the sections, keeping
--- the two sections whose rows are of their own kind (the tab list and the keys)
-local smokeSteps = { open = true, ["library-globals-window"] = true, tabs = true, toggle = true, search = true, pane = true, close = true }
-local keptSections = { ["section-tabs"] = true, ["section-keys"] = true }
+-- The named set of steps, for Krowi_ClaudeKit's two-copy release gate, whose mixed cases need no full run (Krowi,
+-- 2026-11-05: the full run with equal copies, a short one elsewhere): smoke opens the window on this addon's tab and
+-- closes it; restore and lua-errors end it, as they end every run
+local smokeSteps = { open = true, close = true }
 local stepSets = {
-    smoke = function(step) return smokeSteps[step.Name] end,
-    behaviour = function(step) return not step.Name:find("^section%-") or keptSections[step.Name] end
+    smoke = function(step) return smokeSteps[step.Name] end
 }
 
--- /kaftest options <what>: a set's steps (smoke, behaviour), only the steps named what or whose name starts with
--- "what-" (toggle: every toggle step; section: every section), or the step with that number in the banner, each with
--- the steps it builds on (Needs) and with the window's open first; nil when nothing matches. The scenarios before the
--- steps run either way: they take no time.
+-- /kaftest options <what>: the smoke set's steps, only the steps named what or whose name starts with "what-", or the
+-- step with that number in the banner, each with the steps it builds on (Needs) and with the window's open first; nil
+-- when nothing matches. The scenarios before the steps run either way: they take no time.
 local function SelectSteps(list, what)
     if not what or what == "" then
         return list
@@ -2051,19 +722,15 @@ addon.Tests.Suites.options = function(done, what)
             Line = ("options/select: SKIP no step '%s'; one of: %s"):format(what, table.concat(names, ", "))}}, {})
         return
     end
-    local frame = Window()
-    KrowiAF_SavedData.OptionsWindow = KrowiAF_SavedData.OptionsWindow or {}
-    -- Both before the scenarios, which write the shared block and this addon's window table too (window-second-tab)
-    local sharedBefore = SnapshotShared()
-    local savedWindow = DeepCopy(KrowiAF_SavedData.OptionsWindow)
+    -- Before the scenarios and the steps, so restore puts back the player's own
+    local tab = addon.Options.Window.Controller
+    local savedBefore = DeepCopy(tab:GetSaved())
     live = {
-        SharedBefore = sharedBefore,
         Results = options.Run(),
         Observations = options.Observations(),
         Finish = done,
-        Before = {},
-        SavedWindow = savedWindow,
-        WasShown = frame and frame:IsShown() and frame.SectionId or nil,
+        SavedBefore = savedBefore,
+        WasShown = tab:IsShown() and savedBefore.LastSection or nil,
         AllSteps = #all
     }
     if not banner then
@@ -2072,7 +739,7 @@ addon.Tests.Suites.options = function(done, what)
     banner:RegisterEvent("SCREENSHOT_FAILED")
     banner:RegisterEvent("PLAYER_REGEN_DISABLED")
     steps = chosen
-    print(("|cFF88CCFFKrowiAF Tests:|r options: %d of %d steps, about %d s; the options it changes go back at the end.%s"):format(#steps, #all,
-        #steps * (settle + afterShot), what and "" or " /kaftest options <smoke, behaviour, a name, start of a name or number> runs only those steps."))
+    print(("|cFF88CCFFKrowiAF Tests:|r options: %d of %d steps, about %d s; the window's saved state goes back at the end.%s"):format(#steps, #all,
+        #steps * (settle + afterShot), what and "" or " /kaftest options <smoke, a name, start of a name or number> runs only those steps."))
     RunStep(1)
 end

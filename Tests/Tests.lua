@@ -50,7 +50,7 @@ local statusColors = {
     SKIP = "|cFFFFFF00"
 }
 
--- argument: what was typed after the suite's name; a run of some steps only (/kaftest options toggle) is kept in LastRun
+-- argument: what was typed after the suite's name; a run of some steps only (/kaftest options open) is kept in LastRun
 -- and History but not in Runs, so the release preflight never takes it for a full run
 local function Report(name, results, observations, argument)
     local counts = {PASS = 0, FAIL = 0, SKIP = 0}
@@ -108,7 +108,7 @@ end
 -- waitSeconds: how long to keep retrying the suite's Ready check (login runs); nil runs once
 -- onDone(ran, reason): called once the suite reported, or could not run and why
 -- requested: part of a /kaftest run (RunEntries below), which settled debug mode before its first suite, so a suite
--- that switches debug mode itself (options' search-showif) cannot stop the next one
+-- that switches debug mode itself (none does today; the library's tests did, in a step that now lives in Krowi_OptionsTests) cannot stop the next one
 -- argument: what was typed after the suite's name (/kaftest pictures colors), handed to the suite as its last argument
 function tests.Run(name, waitSeconds, onDone, requested, argument)
     local function NotRun(reason)
@@ -166,7 +166,7 @@ end
 -- [[ Several suites in one go: /kaftest run ]] --
 
 -- /kaftest run options, escape runs the entries in order; an entry is a suite, or a suite and what to run of it after
--- a space ("options toggle"). The saved variables reach disk only at the next /reload or logout, so when the suites
+-- a space ("options open"). The saved variables reach disk only at the next /reload or logout, so when the suites
 -- are done a panel shows each one's counts and its failed and skipped lines and a screenshot is taken, which
 -- Read-GameScreenshot.ps1 finds while the game still runs. Then the kit's marker addon (KrowiGameInput, dev only,
 -- Krowi_ClaudeKit's docs/work/2026-11-05-kit-test-runs) is told the run is done, and the kit's Send-GameInput.ps1

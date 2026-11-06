@@ -6,8 +6,11 @@
     on the newest build of each client the TOC claims: escape and options on Retail, options on Mists Classic.
 
 .DESCRIPTION
-    The escape suite models Blizzard's Escape chain, which a patch can change; the options suite drives the options
-    window, built on Blizzard templates a patch can change (docs/work/2026-10-25-options-revamp). Their last in-game runs
+    The escape suite models Blizzard's Escape chain, which a patch can change; the options suite is KAF's own (its
+    options and their mapping, the Y binding, and a smoke of KAF's tab through the library's public surface). The
+    window's frames, which are built on Blizzard templates a patch can change, are the library's: their steps live in
+    Krowi_Options' test addon (Krowi_OptionsTests, /kotest) and this gate does not run them yet (docs/backlog.md,
+    "Krowi_Options' tests on a new game build"; docs/work/2026-11-06-options-tests-move). Their last in-game runs
     (/kaftest <suite>, then /reload) must be green on the newest version of each client family the TOC's `## Interface:`
     line claims, read from that family's live and test-realm saved variables, before that version ships. A new interface
     number therefore blocks the release until the suites have run on that client; when a run differs from the headless

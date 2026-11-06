@@ -10,7 +10,7 @@
        load; at character select it enters the world. A closed one is started (Start-Game.ps1 -Wait, which refuses
        while another client runs: they share one Battle.net account) and enters the world.
     3. /kaftest run <entries>, then Send-GameInput.ps1 -WaitForDone: it serves the hovers and keys the suites ask for
-       (the options suite's half-shown row, the pictures suite's world map) and returns when the summary is up.
+       (the pictures suite's world map) and returns when the summary is up.
     4. /reload, so the results reach the saved variables, then Read-GameTests.ps1 per entry and the kit's
        Read-GameErrors.ps1.
     5. -Quit for a client this tool started, unless -KeepOpen.
@@ -26,9 +26,8 @@
     Debug mode: /kaftest run turns it on for the run when it is off and back off after (Tests/Tests.lua).
 
 .PARAMETER Entries
-    What to run, as /kaftest run takes it: suites, or a suite and what to run of it after a space ("options toggle",
-    or one of options' sets, "options smoke" and "options behaviour"). Several as separate arguments or
-    comma-separated: options, escape.
+    What to run, as /kaftest run takes it: suites, or a suite and what to run of it after a space ("options open",
+    or options' set "options smoke"). Several as separate arguments or comma-separated: options, escape.
 
 .PARAMETER Client
     Retail (default), Ptr, Xptr, Beta, Classic or ClassicPtr; Start-Game.ps1 starts only Retail and Classic (Mists), a
@@ -43,7 +42,7 @@
 .EXAMPLE
     & ".claude\tools\Run-GameTests.ps1" options, escape
     & ".claude\tools\Run-GameTests.ps1" options -Client Classic
-    & ".claude\tools\Run-GameTests.ps1" "options toggle-reset-clipped"
+    & ".claude\tools\Run-GameTests.ps1" "options open"
     & ".claude\tools\Run-GameTests.ps1" "options smoke", escape
 #>
 [CmdletBinding()]
