@@ -19,7 +19,8 @@
     the file from the client's Screenshots folder, to open with the Read tool.
 
 .PARAMETER Client
-    Retail (_retail_), Classic (_classic_), Ptr (_ptr_, the wowt test realm) or Xptr (_xptr_, the second test realm, wowxptr). Default Retail.
+    Retail (_retail_), Classic (_classic_), Ptr (_ptr_, the wowt test realm), Xptr (_xptr_, the second test realm, wowxptr),
+    Beta (_beta_) or ClassicPtr (_classic_ptr_): the clients Run-GameTests.ps1 runs. Default Retail.
 
 .PARAMETER Account
     Account folder name (e.g. 133658957#1) instead of the most recently written file.
@@ -33,7 +34,7 @@
 #>
 [CmdletBinding()]
 param(
-    [ValidateSet('Retail', 'Classic', 'Ptr', 'Xptr')][string]$Client = 'Retail',
+    [ValidateSet('Retail', 'Classic', 'Ptr', 'Xptr', 'Beta', 'ClassicPtr')][string]$Client = 'Retail',
     [string]$Account,
     [int]$Run
 )
@@ -65,7 +66,7 @@ $age = (Get-Date) - $file.LastWriteTime
 # the headless lines for every suite, so the game's lines can be marked against the model's
 $headless = Join-Path ([IO.Path]::GetTempPath()) 'KrowiAF-headless-tests.txt'
 $ErrorActionPreference = 'Continue'
-$model = if ($Client -eq 'Classic') { 'Classic' } else { 'Retail' }   # the test realms run the Retail client
+$model = if ($Client -in 'Classic', 'ClassicPtr') { 'Classic' } else { 'Retail' }   # the other test realms and the beta run the Retail client
 & $lua $runner $root -client $model 2>&1 | ForEach-Object { "$_" } | Set-Content -LiteralPath $headless
 $ErrorActionPreference = 'Stop'
 

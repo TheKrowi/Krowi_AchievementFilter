@@ -2053,14 +2053,16 @@ addon.Tests.Suites.options = function(done, what)
     end
     local frame = Window()
     KrowiAF_SavedData.OptionsWindow = KrowiAF_SavedData.OptionsWindow or {}
-    local sharedBefore = SnapshotShared() -- before the scenarios, which write the shared block too (window-second-tab)
+    -- Both before the scenarios, which write the shared block and this addon's window table too (window-second-tab)
+    local sharedBefore = SnapshotShared()
+    local savedWindow = DeepCopy(KrowiAF_SavedData.OptionsWindow)
     live = {
         SharedBefore = sharedBefore,
         Results = options.Run(),
         Observations = options.Observations(),
         Finish = done,
         Before = {},
-        SavedWindow = DeepCopy(KrowiAF_SavedData.OptionsWindow),
+        SavedWindow = savedWindow,
         WasShown = frame and frame:IsShown() and frame.SectionId or nil,
         AllSteps = #all
     }

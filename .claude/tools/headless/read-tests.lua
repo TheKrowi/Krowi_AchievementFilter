@@ -86,7 +86,7 @@ if headless then
     end
     io.stdout:write(("\n%d difference(s) between the game and the headless run (= same, ! differs, g game only)\n"):format(differences))
 end
-if #history > 1 then
+if #history > 0 then -- also one run: Run-GameTests.ps1 finds a session's runs in this list
     io.stdout:write("\nkept runs, newest first (Read-GameTests.ps1 -Run <n> shows one):\n")
     for n = 1, #history do
         local kept = history[#history - n + 1]

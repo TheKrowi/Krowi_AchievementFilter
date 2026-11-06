@@ -1607,6 +1607,16 @@ suites.obtainable = function(c)
     return addon.Tests.Obtainable.Run(), "Tests/Obtainable.lua", {}
 end
 
+-- What reached the error handler of the shared options load (ctx.Errors) after the given count, as FAIL lines of the
+-- suite that ran then: Krowi_Options 2 sends an addon's errors there and goes on (docs/work/2026-11-05-contract-and-errors
+-- in Krowi_Options), so without these lines such an error would pass unseen. options and help share the load
+-- (options-env.Get), so each counts from its own start.
+local function HandlerErrors(ctx, from, suite, results)
+    for errorAt = from + 1, #ctx.Errors do
+        results[#results + 1] = { Name = "errorhandler", Status = "FAIL", TargetMet = false, Line = suite .. "/errorhandler: FAIL " .. ctx.Errors[errorAt] }
+    end
+end
+
 -- The whole addon loaded the way the game loads it (options-env.lua), so the options window's model reads the real
 -- AceConfig tables with every injection and plugin. A load or step error of that load is a FAIL line of its own: a
 -- regression suite must not pass while options are missing.
@@ -1615,8 +1625,8 @@ suites.options = function(c)
     local optionsEnv = assert(loadfile(scriptDir .. "/options-env.lua"))()
     local ctx = optionsEnv.Get(root, c.client)
     local results = {}
-    for _, err in ipairs(ctx.Errors) do
-        results[#results + 1] = { Name = "load", Status = "FAIL", TargetMet = false, Line = "options/load: FAIL " .. err }
+    for errorAt = 1, ctx.LoadErrorCount do
+        results[#results + 1] = { Name = "load", Status = "FAIL", TargetMet = false, Line = "options/load: FAIL " .. ctx.Errors[errorAt] }
     end
     local loaded = #ctx.Errors
     local env, addon = ctx.env, ctx.addon
@@ -1627,12 +1637,7 @@ suites.options = function(c)
     chunk("Krowi_AchievementFilter", addon)
     for _, r in ipairs(addon.Tests.Options.Run()) do results[#results + 1] = r end
     local observations = addon.Tests.Options.Observations()
-    -- What reached the error handler while the scenarios and the observations ran: Krowi_Options 2 sends an addon's
-    -- errors there and goes on (docs/work/2026-11-05-contract-and-errors in Krowi_Options), so without these lines such
-    -- an error would pass unseen
-    for errorAt = loaded + 1, #ctx.Errors do
-        results[#results + 1] = { Name = "errorhandler", Status = "FAIL", TargetMet = false, Line = "options/errorhandler: FAIL " .. ctx.Errors[errorAt] }
-    end
+    HandlerErrors(ctx, loaded, "options", results)
     return results, "Tests/Options.lua", observations
 end
 
@@ -1642,6 +1647,7 @@ suites.help = function(c)
     local scriptDir = ((arg and arg[0]) or ""):gsub("\\", "/"):match("^(.*)/") or "."
     local optionsEnv = assert(loadfile(scriptDir .. "/options-env.lua"))()
     local ctx = optionsEnv.Get(root, c.client)
+    local before = #ctx.Errors
     local env, addon = ctx.env, ctx.addon
     addon.Tests = addon.Tests or { Suites = {}, Ready = {} }
     addon.Tests.FileExists = function(path)
@@ -1653,7 +1659,9 @@ suites.help = function(c)
     local chunk = assert(loadstring(readFile(root .. "/Tests/Help.lua"), "@Tests/Help.lua"))
     setfenv(chunk, env)
     chunk("Krowi_AchievementFilter", addon)
-    return addon.Tests.Help.Run(), "Tests/Help.lua", addon.Tests.Help.Observations()
+    local results, observations = addon.Tests.Help.Run(), addon.Tests.Help.Observations()
+    HandlerErrors(ctx, before, "help", results)
+    return results, "Tests/Help.lua", observations
 end
 
 -- The real data load of client-env.lua with Api/API.lua's select path, then the window's counting on top: Globals.lua,

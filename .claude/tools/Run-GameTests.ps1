@@ -132,7 +132,10 @@ $reloaded = Invoke-Kit '/reload' @{ Command = '/reload' }
 if ($reloaded -eq 0) {
     # Only the kept runs of this run, oldest first, by their time in the reader's list ("  2. 2026-11-05 17:28:23 ...")
     $reader = Join-Path $PSScriptRoot 'Read-GameTests.ps1'
-    $listing = @(& $reader -Client $Client 2>&1 | ForEach-Object { "$_" })
+    # A reader that throws (no saved variables yet, a client it does not know) ends the run as a failure, with a
+    # client this tool started closed first
+    try { $listing = @(& $reader -Client $Client 2>&1 | ForEach-Object { "$_" }) }
+    catch { Stop-Run "Read-GameTests.ps1 could not read the $Client client's runs: $($_.Exception.Message)" }
     $ours = @($listing | ForEach-Object {
         if ($_ -match '^\s+(\d+)\. (\d{4}-\d\d-\d\d \d\d:\d\d:\d\d) ') {
             $time = [datetime]::ParseExact($Matches[2], 'yyyy-MM-dd HH:mm:ss', [Globalization.CultureInfo]::InvariantCulture)
@@ -145,9 +148,13 @@ if ($reloaded -eq 0) {
     # could take its Escape), or when the reader cannot read it; its "suite ..." line has the counts
     $failedRuns = 0
     foreach ($n in $ours) {
-        $read = @(& $reader -Client $Client -Run $n 2>&1 | ForEach-Object { "$_" })
+        try { $read = @(& $reader -Client $Client -Run $n 2>&1 | ForEach-Object { "$_" }) }
+        catch { $read = @("Read-GameTests.ps1 -Run $n threw: $($_.Exception.Message)") }
         $read
+        # The verdict reads the summary line (read-tests.lua: "suite <name>, run ...: N passed, M failed, ..."), not the
+        # reader's exit code, which also counts differences from the headless run
         $summary = @($read | Where-Object { $_ -match '^suite .+: \d+ passed, \d+ failed' })[0]
+        if (-not $summary) { "Run $n has no 'suite ...: N passed, M failed' line; it counts as failed" }
         if (-not ($summary -match '^suite .+: (\d+) passed, 0 failed' -and [int]$Matches[1] -gt 0)) { $failedRuns++ }
     }
     & (Join-Path $KitTools 'Read-GameErrors.ps1') -Client $Client

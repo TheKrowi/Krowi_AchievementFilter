@@ -398,7 +398,10 @@ end
 
 function M.Get(root, client)
     local key = root .. "|" .. client
-    if not cache[key] then cache[key] = New(root, client) end
+    if not cache[key] then
+        cache[key] = New(root, client)
+        cache[key].LoadErrorCount = #cache[key].Errors -- what the load itself sent; a suite's own come after
+    end
     return cache[key]
 end
 
