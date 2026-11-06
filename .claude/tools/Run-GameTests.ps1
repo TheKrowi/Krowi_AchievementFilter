@@ -15,7 +15,8 @@
        Read-GameErrors.ps1.
     5. -Quit for a client this tool started, unless -KeepOpen.
 
-    Exits 0 only when every entry left a run and no run has a FAIL, 1 otherwise. A line that differs from the headless
+    Exits 0 only when every entry left a run, no run has a FAIL and every run passed something (a run whose every step
+    was skipped proves nothing), 1 otherwise. A line that differs from the headless
     run is shown but does not fail the run: options' y-on-new-install always differs (it runs headless only), and a
     difference asks for the headless model to be updated, not for the build to be stopped. Krowi_ClaudeKit's two-copy
     gate reads the exit code as the suites' verdict (its docs/work/2026-11-05-two-copy-gate).
@@ -25,8 +26,9 @@
     Debug mode: /kaftest run turns it on for the run when it is off and back off after (Tests/Tests.lua).
 
 .PARAMETER Entries
-    What to run, as /kaftest run takes it: suites, or a suite and what to run of it after a space ("options toggle").
-    Several as separate arguments or comma-separated: options, escape.
+    What to run, as /kaftest run takes it: suites, or a suite and what to run of it after a space ("options toggle",
+    or one of options' sets, "options smoke" and "options behaviour"). Several as separate arguments or
+    comma-separated: options, escape.
 
 .PARAMETER Client
     Retail (default), Ptr, Xptr, Beta, Classic or ClassicPtr; Start-Game.ps1 starts only Retail and Classic (Mists), a
@@ -42,6 +44,7 @@
     & ".claude\tools\Run-GameTests.ps1" options, escape
     & ".claude\tools\Run-GameTests.ps1" options -Client Classic
     & ".claude\tools\Run-GameTests.ps1" "options toggle-reset-clipped"
+    & ".claude\tools\Run-GameTests.ps1" "options smoke", escape
 #>
 [CmdletBinding()]
 param(
@@ -138,13 +141,14 @@ if ($reloaded -eq 0) {
     } | Sort-Object -Unique -Descending)
     if ($ours.Count -eq 0) { "No run of this session reached the saved variables (the summary's screenshot shows what ran: Read-GameScreenshot.ps1 -Client $Client)" }
     if ($ours.Count -lt $list.Count) { "Only $($ours.Count) of $($list.Count) entries left a run; the summary's screenshot says why the others did not run" }
-    # A run fails on a FAIL line, or when the reader cannot read it; its "suite ..." line says how many failed
+    # A run fails on a FAIL line, when nothing in it passed (escape skips every step when something outside the game
+    # could take its Escape), or when the reader cannot read it; its "suite ..." line has the counts
     $failedRuns = 0
     foreach ($n in $ours) {
         $read = @(& $reader -Client $Client -Run $n 2>&1 | ForEach-Object { "$_" })
         $read
-        $summary = @($read | Where-Object { $_ -match '^suite .+: (\d+) passed, (\d+) failed' })[0]
-        if (-not $summary -or $summary -notmatch '^suite .+: \d+ passed, 0 failed') { $failedRuns++ }
+        $summary = @($read | Where-Object { $_ -match '^suite .+: \d+ passed, \d+ failed' })[0]
+        if (-not ($summary -match '^suite .+: (\d+) passed, 0 failed' -and [int]$Matches[1] -gt 0)) { $failedRuns++ }
     }
     & (Join-Path $KitTools 'Read-GameErrors.ps1') -Client $Client
 }

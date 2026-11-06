@@ -693,8 +693,10 @@ end
 --     the results greys its child and the rows stay; search-confirm, -no: a question asked in the results, and No;
 --     search-showif: turning debug info off in the results takes its child rows away, on brings them back
 --   pane: the help pane collapses to its strip; close: the close button hides the window
--- /kaftest options <what> runs only some steps (SelectSteps, at the end of the file): a step's name, the start of names
--- (toggle, search, section), or a step's number in the banner, each with the steps it builds on and the open first.
+-- /kaftest options <what> runs only some steps (SelectSteps, at the end of the file): a set (smoke: open, tabs, a
+-- toggle, a search, the pane and close; behaviour: every step but the sections, keeping tabs and keys), a step's name,
+-- the start of names (toggle, search, section), or a step's number in the banner, each with the steps it builds on and
+-- the open first.
 -- At the end every value the steps changed and the window's saved state (place, pane, search breadth, last section, the
 -- sections seen, which the walk marks) are put back, and the addon's Lua errors of the session are reported from BugGrabber. Combat
 -- stops the run; the values go back once it ends.
@@ -1983,14 +1985,27 @@ addon.Tests.Ready.options = function()
     return true
 end
 
--- /kaftest options <what>: only the steps named what or whose name starts with "what-" (toggle: every toggle step;
--- section: every section), or the step with that number in the banner, each with the steps it builds on (Needs) and with
--- the window's open first; nil when nothing matches. The scenarios before the steps run either way: they take no time.
+-- The named sets of steps, for Krowi_ClaudeKit's two-copy release gate, whose mixed cases need no full run (Krowi,
+-- 2026-11-05: the full run with equal copies, a short one elsewhere): smoke opens the window, shows its tabs, changes a
+-- check box, searches, collapses the pane and closes; behaviour is every step but the walk through the sections, keeping
+-- the two sections whose rows are of their own kind (the tab list and the keys)
+local smokeSteps = { open = true, ["library-globals-window"] = true, tabs = true, toggle = true, search = true, pane = true, close = true }
+local keptSections = { ["section-tabs"] = true, ["section-keys"] = true }
+local stepSets = {
+    smoke = function(step) return smokeSteps[step.Name] end,
+    behaviour = function(step) return not step.Name:find("^section%-") or keptSections[step.Name] end
+}
+
+-- /kaftest options <what>: a set's steps (smoke, behaviour), only the steps named what or whose name starts with
+-- "what-" (toggle: every toggle step; section: every section), or the step with that number in the banner, each with
+-- the steps it builds on (Needs) and with the window's open first; nil when nothing matches. The scenarios before the
+-- steps run either way: they take no time.
 local function SelectSteps(list, what)
     if not what or what == "" then
         return list
     end
     local wanted, number = what:lower(), tonumber(what)
+    local InSet = stepSets[wanted]
     local byName, chosen, any = {}, {}, false
     for _, step in ipairs(list) do
         byName[step.Name] = step
@@ -2002,7 +2017,7 @@ local function SelectSteps(list, what)
         end
     end
     for i, step in ipairs(list) do
-        if i == number or step.Name == wanted or step.Name:sub(1, #wanted + 1) == wanted .. "-" then
+        if InSet and InSet(step) or not InSet and (i == number or step.Name == wanted or step.Name:sub(1, #wanted + 1) == wanted .. "-") then
             Choose(step)
             any = true
         end
@@ -2056,6 +2071,6 @@ addon.Tests.Suites.options = function(done, what)
     banner:RegisterEvent("PLAYER_REGEN_DISABLED")
     steps = chosen
     print(("|cFF88CCFFKrowiAF Tests:|r options: %d of %d steps, about %d s; the options it changes go back at the end.%s"):format(#steps, #all,
-        #steps * (settle + afterShot), what and "" or " /kaftest options <name, start of a name or number> runs only those steps."))
+        #steps * (settle + afterShot), what and "" or " /kaftest options <smoke, behaviour, a name, start of a name or number> runs only those steps."))
     RunStep(1)
 end
