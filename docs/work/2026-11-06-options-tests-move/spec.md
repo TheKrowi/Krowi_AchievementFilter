@@ -1,5 +1,5 @@
 # Spec: KAF's options suite keeps what KAF can see
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. **Steps that stay** (KAF's own): `settings-entry`, `options-registered`, `every-option-mapped-once`, `set-through-window-equals-aceconfig`, `options-fingerprint`, `defaults-restore-acedb`, `derived-default-matches-text`, `changed-line`, `plugins-present`, `retail-only-hidden-on-classic`, `no-empty-headings`, `y-on-new-install`, the eight `y-at-login-*`, `help-reload-line`, `position-rows`, `objectives-rows`, `popout-rows`, `overview-cards` (KAF's overview content), and the KAF halves of `window-tabs` and `library-strings` (KAF's config passes no `Strings`: `config=no`). `window-tabs` is rewritten to say only that KAF's tab is registered as "Achievement Filter", whatever other tabs other addons add: today it asserts the whole tab list, so it fails while the library's test addon (or any other consumer) is installed (observed in game on Retail and Mists, 2026-11-06: `tabs=Achievement Filter,Options Test`; `window-second-tab` fails the same way, and goes).

@@ -1,5 +1,5 @@
 # Intent: KAF's options suite tests what KAF can see; the library tests its own internals
-Author: Krowi, maintainer. Source: idea, from Krowi_Options' work item `Krowi_Libraries\Krowi_Options\docs\work\2026-11-06-finish-2-0` (phase 1), where Krowi decided: "Kaf should test what it can see. Krowi options should cover the internals." Status: accepted
+Author: Krowi, maintainer. Source: idea, from Krowi_Options' work item `Krowi_Libraries\Krowi_Options\docs\work\2026-11-06-finish-2-0` (phase 1), where Krowi decided: "Kaf should test what it can see. Krowi options should cover the internals." Status: done
 
 ## Problem
 `Tests/Options.lua` (2077 lines, `/kaftest options`) carries about 45 steps that test the Krowi_Options library, not KAF: search, row and card geometry, the window's frames, hover help, confirm, toggles, tabs, sizes, strings, globals, pane, close. They read about 40 of the library's internals (`lib.Shared`, `lib.Tabs`, `frame.HoverOption`, `frame.Elements`, `row.Toggle`, ...) and use KAF's own labels as sample data. The library's coming structure change (Krowi_Options phase 2) moves or renames those internals, and each move would break a KAF test in a repo that does not own the code. The library has had no tests of its own.

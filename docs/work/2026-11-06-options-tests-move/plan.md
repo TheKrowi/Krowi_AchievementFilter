@@ -1,5 +1,5 @@
 # Plan: KAF's options suite keeps what KAF can see
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 Intent and spec accepted (Krowi, 2026-11-06). Class `harness`; every gate asks. KAF worktree `...\Krowi_AchievementFilter\.claude\worktrees\feature-2026-11-06-options-tests-move`, branch `feature/2026-11-06-options-tests-move` from `main` (`c96f4387`).
 
@@ -34,3 +34,17 @@ Intent and spec accepted (Krowi, 2026-11-06). Class `harness`; every gate asks. 
 
 ## Proof
 Headless: `& "...\Krowi_ClaudeKit\tools\lua51\lua.exe" ".claude\tools\headless\run-tests.lua" "$PWD" options` and `escape`; `& ".claude\tools\Check-Repo.ps1" -ChangedOnly`; in game as in step 4; `Get-ChangeClass.ps1`; the side-by-side evidence from 2026-11-06 (KAF 96/2 with the two tab failures explained; test addon 60/0 on both clients).
+
+## Where the build departed from the plan
+- An Opus agent made the cut. What it was not allowed to touch, I fixed: two stale `diagnostics.globals` entries in `.luarc.json` (`RESET_TO_DEFAULT`, `SETTINGS_TITLE`, read only by deleted steps), and stale usage text in `.claude/tools/Run-GameTests.ps1` and `Tests/Tests.lua`.
+- `smokeSteps` is `open` and `close`: `lua-errors` and `restore` run at the end of every run, so they are not entries of the set.
+- `open` runs `/kaf` (KAF's slash command, which calls the tab's `Open`), so the command stays tested; it also checks that `GetSaved().LastSection` is the landing section.
+- `restore` deep-copies the whole `GetSaved()` table, not only `.Window`, since `/kaf` also writes `LastSection` and `Seen`.
+- `RunStep`'s mouse branch, `WaitForMouse`, `mouseWait` and `pollEvery` went with `toggle-reset-clipped`, the only step that used them.
+
+## Results (2026-11-06)
+- Headless: `options` 27 passed (39 before) on Retail and Classic, `escape` 34 on both; lint 0 errors, one changelog warning (tests only, nothing player-facing).
+- In game with the library's test addon installed: Retail `options` 30 passed, 0 failed, 1 skipped (`y-on-new-install`, headless only) and `escape` 34 of 34; Mists `options` 30, 0, 1; BugGrabber clean on both. Before the cut, the same install gave 96 passed and 2 failed on both clients: `window-tabs` and `window-second-tab`, which assumed KAF is the only tab.
+- The library's equals, by name: every deleted step is in `Krowi_Options` `Tests/Krowi_OptionsTests` (60 passed, 0 failed on Retail and on Mists, 2026-11-06).
+- Coverage given up on purpose, said in the pull request: no step draws KAF's own 22 sections in game any more (a KAF label running into its control, or a control not showing its value, goes unseen), and the KAF half of `search-all-none` (KAF's holiday list count) is not kept.
+- Still reading library internals in kept steps: `window-tabs` (`lib.Tabs`, `Config.TabName`), `library-strings` (`Controller.Config.Strings`), `overview-cards` (`Config.GetElements`, `lib.CardColumns`); the library's structure phase changes them in a paired KAF pull request.
