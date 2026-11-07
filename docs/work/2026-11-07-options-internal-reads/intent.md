@@ -1,5 +1,5 @@
 # Intent: KAF reads the options library through its public surface, or through `lib.Internal`
-Author: Krowi, maintainer. Source: idea, from Krowi_Options' work item `Krowi_Libraries\Krowi_Options\docs\work\2026-11-06-finish-2-0` (phase 2, pull request TheKrowi/Krowi_Options#6), where Krowi decided on 2026-11-06 that the library's internals move under `lib.Internal` in 2.0 and KAF's tests follow, and on 2026-11-07 that KAF reads the reload text through the public `GetStrings()`. Status: accepted
+Author: Krowi, maintainer. Source: idea, from Krowi_Options' work item `Krowi_Libraries\Krowi_Options\docs\work\2026-11-06-finish-2-0` (phase 2, pull request TheKrowi/Krowi_Options#6), where Krowi decided on 2026-11-06 that the library's internals move under `lib.Internal` in 2.0 and KAF's tests follow, and on 2026-11-07 that KAF reads the reload text through the public `GetStrings()`. Status: done
 
 ## Problem
 Krowi_Options#6 moves everything that is not its public surface under `lib.Internal`. KAF reads four names that move or are not public:

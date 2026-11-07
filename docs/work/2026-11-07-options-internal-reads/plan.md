@@ -1,5 +1,10 @@
 # Plan: KAF reads the options library through `lib.Internal or lib` and `GetStrings()`
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
+
+## Results
+Headless `options` 27/0 and `escape` 34/0; lint 0 errors. In game, with KAF's embedded library and again with Krowi_Options#6's: Retail `options` 30/0 (1 skipped, headless only) and `escape` 34/0, Mists `options` 30/0, BugGrabber clean, every scenario unchanged.
+
+Departure from the plan: the library's test addon carries its own copy of the library, and at equal minors it mixes with KAF's older one (`lib.Internal` appears, but `CardColumns` and `Tabs` stay on `lib`), so the first Retail run read nil. For the embedded-library runs the test addon was moved out of the AddOns folder; the #6 runs deployed it and KAF's copy together with `Deploy-TestAddon.ps1 -Consumers`. KAF's own copy is back on both clients.
 
 ## Files that change
 - `Tests/Options.lua`: `overview-cards` reads `CardColumns` and `window-tabs` reads `Tabs` through `(lib.Internal or lib)`.

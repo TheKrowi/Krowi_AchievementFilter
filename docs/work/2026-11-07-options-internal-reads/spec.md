@@ -1,5 +1,5 @@
 # Spec: KAF reads the options library through its public surface, or `lib.Internal`
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. `Tests/Options.lua` `overview-cards` reads the card column count through `lib.Internal or lib` (`CardColumns`), and `window-tabs` reads the tab registry through the same (`Tabs`); with the library's `lib.Internal` absent (KAF's embedded copy today) they read `lib` as before.
