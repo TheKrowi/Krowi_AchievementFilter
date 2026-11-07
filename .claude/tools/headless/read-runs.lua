@@ -4,17 +4,21 @@
 --   <suite>|<build>|<passed>|<failed>|<skipped>|<time>
 -- Used by .claude/release-gate.ps1, which the kit's release preflight runs, to require a green run on the newest client.
 --
--- Usage: lua.exe read-runs.lua <path to Krowi_AchievementFilter.lua>
+-- Usage: lua.exe read-runs.lua <path to Krowi_AchievementFilter.lua> [<saved table, default KrowiAF_DebugTable>]
+-- The second argument reads another addon's file the same way: KrowiOptionsTests_Debug for Krowi_Options' test addon
+-- (/kotest keeps its runs under .Tests.Runs too; its full run is the suite "all").
 -- Exit code 0, or 2 when the file cannot be loaded.
 
-local path = ...
+local path, tableName = ...
+tableName = tableName or "KrowiAF_DebugTable"
 local chunk, err = loadfile(path)
 if not chunk then
     io.stderr:write("cannot load ", tostring(path), ": ", tostring(err), "\n")
     os.exit(2)
 end
 chunk()
-local tests = KrowiAF_DebugTable and KrowiAF_DebugTable.Tests or {}
+local saved = _G[tableName]
+local tests = type(saved) == "table" and type(saved.Tests) == "table" and saved.Tests or {}
 local runs = {}
 for suite, run in pairs(type(tests.Runs) == "table" and tests.Runs or {}) do
     runs[suite] = run
