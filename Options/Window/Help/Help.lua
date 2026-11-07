@@ -71,7 +71,7 @@ help.overview = {
         Text(L["Help Overview Hover"]),
         Text(L["Help Overview Sections"]),
         Text(markup.Changed .. " " .. L["Help Overview Changed"]),
-        Text(markup.Reload .. " " .. optionsLib.L["Requires a reload"]),
+        Text(markup.Reload .. " " .. optionsLib.GetStrings().NeedsReload),
         Text(L["Help Overview New"])
     )
 }

@@ -1273,7 +1273,8 @@ addon.Tests.Suites.pictures = function(done, what)
     end
     -- The options window stays out of the scenes, on whichever addon's tab it is open; an open menu was refused by the
     -- Ready check
-    local optionsWindow = KROWI_LIBMAN:GetLibrary("Krowi_Options_2").Frame
+    local optionsLib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
+    local optionsWindow = (optionsLib.Internal or optionsLib).Frame
     if optionsWindow and optionsWindow:IsShown() then
         optionsWindow:Hide()
     end

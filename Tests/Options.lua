@@ -131,6 +131,8 @@ local function OverviewLine()
     local groups = {}
     for _, group in ipairs(window.Map.Groups) do groups[group.Name] = true end
     local n = { links = 0, cards = 0, rows = 0, pictures = 0, icons = 0, lines = 0 }
+    local optionsLib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
+    local columns = (optionsLib.Internal or optionsLib).CardColumns
     local under = false
     for _, element in ipairs(window.Controller.Config.GetElements("overview")) do
         if element.Kind == "Header" then under = groups[element.Text] or false end
@@ -138,7 +140,7 @@ local function OverviewLine()
             n.links = n.links + 1
         elseif under and element.Kind == "Cards" then
             n.cards = n.cards + #element.Cards
-            n.rows = n.rows + math.ceil(#element.Cards / KROWI_LIBMAN:GetLibrary("Krowi_Options_2").CardColumns)
+            n.rows = n.rows + math.ceil(#element.Cards / columns)
             for _, card in ipairs(element.Cards) do
                 if card.Picture then n.pictures = n.pictures + 1 elseif card.Icon then n.icons = n.icons + 1 end
                 if card.Text and card.Text ~= "" then n.lines = n.lines + 1 end
@@ -305,9 +307,10 @@ options.Scenarios = {
     {Name = "window-tabs",
         Observe = function()
             local lib = KROWI_LIBMAN:GetLibrary("Krowi_Options_2")
-            if not lib.Tabs then return "no tab registry" end
+            local tabs = (lib.Internal or lib).Tabs
+            if not tabs then return "no tab registry" end
             local names = {}
-            for _, tab in ipairs(lib.Tabs) do
+            for _, tab in ipairs(tabs) do
                 if tab == addon.Options.Window.Controller then names[#names + 1] = tab.Config.TabName end
             end
             return "tabs=" .. Join(names)
