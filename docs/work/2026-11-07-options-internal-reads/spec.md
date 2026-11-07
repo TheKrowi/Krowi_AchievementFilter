@@ -1,5 +1,5 @@
 # Spec: KAF reads the options library through its public surface, or `lib.Internal`
-Intent: [intent.md](intent.md). Status: draft
+Intent: [intent.md](intent.md). Status: accepted
 
 ## Requirements
 1. `Tests/Options.lua` `overview-cards` reads the card column count through `lib.Internal or lib` (`CardColumns`), and `window-tabs` reads the tab registry through the same (`Tabs`); with the library's `lib.Internal` absent (KAF's embedded copy today) they read `lib` as before.
@@ -24,4 +24,4 @@ A local `Internal(lib)` helper where a file reads more than one internal, otherw
 KAF headless `options` and `escape`; `Check-Repo.ps1`; in game with the embedded library (KAF deployed from this worktree): `Run-GameTests.ps1 options, escape` on Retail and `options` on Mists; then with Krowi_Options#6's library deployed into KAF's folder (the library's `Deploy-TestAddon.ps1 -Consumers`, then KAF's own tool): the same runs. BugGrabber clean on all. A screenshot of the overview's reload line is not needed (`help-reload-line` compares the text).
 
 ## Decision
-<Filled in at the gate.>
+2026-11-07: Option 1, read through `lib.Internal or lib` and the public `GetStrings()`. Krowi accepted the intent on 2026-11-07, decided the scope on 2026-11-06 ("Yes, in 2.0") and the reload text on 2026-11-07 ("KAF reads GetStrings().NeedsReload"); the rows are in gates.md.
