@@ -4,6 +4,10 @@
 
 The rules that lean on these suites (a bug fix is built test first; every fixed bug leaves its scenario behind) are in `.github/copilot-instructions.md` under Work-Item Lifecycle, and the kit's `krowi:process-issue` skill, with `docs/sdlc-playbook.md`, has the steps.
 
+## Which suites to run
+
+During development and in a pull request, run only the suites the change can affect, headlessly and in game; no full run when a change does not touch the feature. Before a release the gate (`.claude/release-gate.ps1`) wants a green in-game run of every suite below except `scheduler`, `sources` and `pictures`, on the newest Retail and Mists build, and, once per client version, a green full `/kotest` run of Krowi_Options' test addon.
+
 ## Recorded and Target
 
 Each scenario carries `Recorded`, the behaviour of the current code verified in game, and `Target`, the desired behaviour. A scenario passes when the code still behaves as recorded, and the scenarios whose target is still open are counted separately, so a behaviour change is a reviewable diff of the scenario file and the open defects stay visible without failing anything. Scenarios can carry `RecordedClassic`/`TargetClassic` where the clients differ.
