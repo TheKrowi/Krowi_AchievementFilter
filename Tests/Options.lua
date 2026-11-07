@@ -430,15 +430,23 @@ end
 --   open: /kaf opens the window on this addon's tab, on the section its Landing names (the first open after a /reload
 --     also builds it)
 --   close: the tab's Toggle hides it again
+--   settings-menu, settings-open, settings-showme, settings-close, settings-return, settings-showme-back: the Maps
+--     help's Show me while Blizzard's Settings window or the game menu is open, through real clicks on Blizzard's own
+--     buttons (docs/work/2026-11-07-settings-panel-taint; Game only: Blizzard's Settings window and the game menu, below).
+--     These also read the window's own frames (Show me, its note, the help pane's state) and the map route's test seam.
+--     A click comes from Krowi_ClaudeKit's marker addon (KrowiGameInput.ClickAt) or the player, within 30 s a step.
 -- /kaftest options <what> runs only some steps (SelectSteps, at the end of the file): the set smoke (what
--- Krowi_ClaudeKit's two-copy release gate runs), a step's name, the start of names, or a step's number in the banner,
--- each with the steps it builds on and the open first.
+-- Krowi_ClaudeKit's two-copy release gate runs), a step's name, the start of names (settings: the six above), or a
+-- step's number in the banner, each with the steps it builds on and the open first.
 -- At the end this addon's saved table for the window (the shared Window block, LastSection and Seen) goes back as it was
--- before the run, through the tab's GetSaved (restore), and the addon's Lua errors of the session are reported from
--- BugGrabber (lua-errors). Combat stops the run; the saved state goes back once it ends.
+-- before the run, through the tab's GetSaved (restore), the window is open or closed as before the run, and the addon's
+-- Lua errors of the session are reported from BugGrabber (lua-errors). Combat stops the run; the saved state goes back
+-- once it ends.
 
 local settle = 1 -- a state change -> its check and screenshot
 local afterShot = 1 -- a screenshot -> the next step
+local mouseWait, pollEvery = 30, 0.25 -- a step that needs a click or the mouse waits this long, looking this often
+local clickHold = 1 -- a click the kit made -> when it counts as one that changed nothing
 
 local live -- the run in progress
 local runToken = 0 -- bumped by every stop, so a stopped run's timers do nothing
@@ -479,11 +487,393 @@ local function DeepCopy(value)
     return copy
 end
 
--- The steps, on this addon's tab (window.Controller) through the library's public surface only
+-- [[ Game only: Blizzard's Settings window and the game menu, by real clicks ]] --
+
+-- docs/work/2026-11-07-settings-panel-taint: the Maps help's Show me while Blizzard's Settings window (SettingsPanel,
+-- HIGH) is open. The map route's see-through secure button lies one strata above this window (DIALOG), so above Settings;
+-- while Settings is shown the route is to answer false and lay nothing (Show me hidden, the Maps help's note shown), and
+-- to lay it again once Settings is gone. The game menu is left alone (it never shows over this window: every way to it
+-- reaches CloseAllWindows first); the steps only pass through it. Test code never opens, closes or hides a
+-- Blizzard window and never calls into one: it only reads them (shown, children, texts, levels). Every change to them
+-- comes from one real click per step, asked of Krowi_ClaudeKit's marker addon (KrowiGameInput.ClickAt, which serves a
+-- request once) or made by the player within mouseWait. A click is asked only on a button found and checked right
+-- before: the micro menu's game menu button, the game menu's Options and Return to Game (found among the menu's
+-- buttons by their text), and Settings' Close button (SettingsPanel.CloseButton, its text checked); never another game
+-- menu button. The steps:
+--   settings-menu: this window closed (test code), a click on the micro menu's game menu button: the game menu shows
+--   settings-open: a click on the game menu's Options: Settings shows
+--   settings-showme: no click: this window opened on Maps over Settings (test code); Show me hidden, its note shown,
+--     nothing laid
+--   settings-close: this window closed (test code: it covers Settings' Close, and Lower() leaves it on top), a click on
+--     Settings' Close: Settings hides and Blizzard's way back shows the game menu
+--   settings-return: a click on the game menu's Return to Game, when the menu came back: the menu hides
+--   settings-showme-back: no click: this window on Maps (opened again by test code when a step closed it), neither of
+--     Blizzard's windows shown; Show me shown and laid
+-- An option's hover help replaces the section's help and its Show me, so the two steps without a click move the mouse
+-- onto the page's title first when it rests on an option row (a hover asked of the marker). A step whose state the step
+-- before should have left is not there SKIPs and says why. A click that did not land can leave a Blizzard window open:
+-- the run says so and leaves it to the player. Whether the button is laid is read through the map route's test seam,
+-- help.maps.SecureLaid() (Options/Window/Help/ShowMe.lua); "unknown" while it has none.
+
+-- What the mouse is on, by the frame's debug name
+local function MouseFocusName()
+    local foci = GetMouseFoci and GetMouseFoci()
+    local focus = foci and foci[1]
+    if not focus then
+        return "no frame"
+    end
+    local ok, name = pcall(function() return focus:GetDebugName() end)
+    return ok and name and name ~= "" and name or "a frame without a name"
+end
+
+-- The map route's see-through button through its seam: "laid", "not laid", or "unknown (why)"
+local function SecureLaid()
+    local maps = addon.Options.Window.Help and addon.Options.Window.Help.maps
+    if not (maps and type(maps.SecureLaid) == "function") then
+        return "unknown (no help.maps.SecureLaid seam)"
+    end
+    local ok, laid = pcall(maps.SecureLaid)
+    if not ok then
+        return "unknown (" .. tostring(laid) .. ")"
+    end
+    return laid and "laid" or "not laid"
+end
+
+-- The help pane where Show me goes, read from the window's own frames (Krowi_Options internals, read knowingly):
+-- nil and why when the pane shows no section help, else whether Show me and the note are shown
+local function ShowMeShown()
+    local frame = Window()
+    if not (frame and frame:IsShown()) then
+        return nil, "this window is closed"
+    end
+    if frame.PaneCollapsed then
+        return nil, "the help pane is collapsed (the player's choice), so it draws neither Show me nor its note"
+    end
+    if frame.HoverOption then
+        return nil, "the mouse rests on an option row, so the help pane shows that option instead of Show me"
+    end
+    return frame.ShowMeButton:IsShown() and true or false, frame.ShowMeNote:IsShown() and true or false
+end
+
+-- One of the game menu's buttons, found among its children by its text; only Options and Return to Game are ever asked
+-- for. The menu builds them from a pool each time it shows (Blizzard_GameMenu/Shared/GameMenuFrame.lua InitButtons,
+-- MainMenuFrameTemplates.lua AddButton and AddCloseButton, live and classic)
+local function MenuButton(text)
+    if text ~= GAMEMENU_OPTIONS and text ~= RETURN_TO_GAME then
+        return nil, "the run clicks no game menu button but Options and Return to Game"
+    end
+    local found
+    for _, child in ipairs({GameMenuFrame:GetChildren()}) do
+        if child:IsObjectType("Button") and child:IsVisible() and child:GetText() == text then
+            if found then
+                return nil, ("two game menu buttons read %q"):format(text)
+            end
+            found = child
+        end
+    end
+    if not found then
+        return nil, ("no game menu button reads %q"):format(text)
+    end
+    if not found:IsEnabled() then
+        return nil, ("the game menu's %q is disabled"):format(text)
+    end
+    return found
+end
+
+-- The step's one click, asked of the marker once, on the button Find returns right then; false and why when there is none
+local function AskClick(kit, Find)
+    local click = live.Click
+    if click.Asked ~= nil or not kit.ClickAt then
+        return
+    end
+    local button, why = Find()
+    if not button then
+        click.Asked, click.Refused = false, why
+        return
+    end
+    click.Asked = kit.ClickAt(button, 0, 0) and true or false
+    if not click.Asked then
+        click.Refused = "the marker cannot click there: the button has no place or lies off the screen"
+    end
+end
+
+-- Whether the click step may go on to its check: its state holds, the marker refused, or a click it made was heard
+-- (GLOBAL_MOUSE_UP) clickHold ago and changed nothing
+local function ClickDone(Holds)
+    local click = live.Click
+    if Holds() or click.Refused then
+        return true
+    end
+    if click.UpAt and GetTime() - click.UpAt >= clickHold then
+        click.Missed = true
+        return true
+    end
+    return false
+end
+
+-- The click's own line when it did not do what the step needs; true when it did
+local function ClickLanded(what)
+    local click = live.Click
+    if click.Refused then
+        Add("SKIP", ("%s: %s"):format(what, click.Refused))
+        return false
+    end
+    if click.Missed then
+        Add("FAIL", ("%s: the kit's click landed on %s and changed nothing"):format(what, tostring(click.UpOn)))
+        return false
+    end
+    return true
+end
+
+local function ClickedBy()
+    return live.Click and live.Click.Asked and "the kit's marker" or "the player"
+end
+
+-- Starts a click step: its click state, and the click heard anywhere (only a click the kit made counts as a miss)
+local function StartClick()
+    live.Click = {}
+    pcall(banner.RegisterEvent, banner, "GLOBAL_MOUSE_UP")
+end
+
+-- A step without a click that needs the mouse off the page's option rows: the hover onto the page's title, once
+local function HoverOffRows(kit)
+    local frame = Window()
+    if live.Hovered ~= nil or not (frame and frame:IsShown() and frame.HoverOption) then
+        return
+    end
+    live.Hovered = kit.HoverAt(frame.PageTitle, 0, 0) and true or false
+end
+
+local function MouseOffRows()
+    local frame = Window()
+    return not (frame and frame:IsShown() and frame.HoverOption)
+end
+
+local function BlizzardWindowsShown()
+    local shown = {}
+    if SettingsPanel and SettingsPanel:IsShown() then
+        shown[#shown + 1] = "Settings"
+    end
+    if GameMenuFrame and GameMenuFrame:IsShown() then
+        shown[#shown + 1] = "the game menu"
+    end
+    return shown
+end
+
+local function SettingsSteps(tab)
+    local function Line(shown, note)
+        return ("Show me %s, the note %s, the see-through button %s"):format(shown and "shown" or "hidden",
+            note and "shown" or "hidden", SecureLaid())
+    end
+    return {
+        {
+            Name = "settings-menu",
+            Text = ("click the game menu button of the micro menu (%d s)"):format(mouseWait),
+            Waits = "the click on the micro menu's game menu button",
+            Clicks = true,
+            Run = function()
+                if InCombatLockdown() then
+                    return "in combat"
+                end
+                local open = BlizzardWindowsShown()
+                if #open > 0 then
+                    return table.concat(open, " and ") .. " already open; the steps start with both closed"
+                end
+                if not (MainMenuMicroButton and MainMenuMicroButton:IsVisible()) then
+                    return "the micro menu's game menu button is hidden (the player's layout or another addon)"
+                end
+                if tab:IsShown() then
+                    tab:Toggle()
+                end
+                StartClick()
+            end,
+            Hover = function(kit)
+                AskClick(kit, function()
+                    if not (MainMenuMicroButton:IsVisible() and MainMenuMicroButton:IsEnabled()) then
+                        return nil, "the micro menu's game menu button is hidden or disabled"
+                    end
+                    return MainMenuMicroButton
+                end)
+            end,
+            Mouse = function()
+                return ClickDone(function() return GameMenuFrame:IsShown() end)
+            end,
+            Check = function()
+                if not ClickLanded("the micro menu's game menu button") then
+                    return
+                end
+                local shown = GameMenuFrame:IsShown()
+                Add(shown and "PASS" or "FAIL", ("a click on the micro menu's game menu button (by %s): the game menu %s"):format(
+                    ClickedBy(), shown and "shows" or "does not show"))
+            end
+        },
+        {
+            Name = "settings-open",
+            Needs = "settings-menu",
+            Text = ("click the game menu's %s (%d s)"):format(tostring(GAMEMENU_OPTIONS), mouseWait),
+            Waits = "the click on the game menu's Options",
+            Clicks = true,
+            Run = function()
+                if not GameMenuFrame:IsShown() then
+                    return "the game menu is not open (settings-menu)"
+                end
+                StartClick()
+            end,
+            Hover = function(kit)
+                AskClick(kit, function() return MenuButton(GAMEMENU_OPTIONS) end)
+            end,
+            Mouse = function()
+                return ClickDone(function() return SettingsPanel:IsShown() end)
+            end,
+            Check = function()
+                if not ClickLanded("the game menu's Options") then
+                    return
+                end
+                local shown = SettingsPanel:IsShown()
+                Add(shown and "PASS" or "FAIL", ("a click on the game menu's Options (by %s): Blizzard's Settings window %s"):format(
+                    ClickedBy(), shown and "shows" or "does not show"))
+            end
+        },
+        {
+            Name = "settings-showme",
+            Needs = "settings-open",
+            Text = "this addon's window on Maps over Blizzard's Settings: Show me off, its note shown (mouse off the option rows)",
+            Waits = "the mouse to leave the page's option rows",
+            Run = function()
+                if not SettingsPanel:IsShown() then
+                    return "Blizzard's Settings window is not open (settings-open)"
+                end
+                tab:Open("maps")
+            end,
+            Hover = HoverOffRows,
+            Mouse = MouseOffRows,
+            Check = function()
+                local section = tab:GetSaved().LastSection
+                local shown, note = ShowMeShown()
+                if shown == nil then
+                    Add("SKIP", note)
+                    return
+                end
+                local laid = SecureLaid()
+                -- The route's own answer (the seam ships with the fix): "not laid" exactly, an unknown is no pass. Show me also
+                -- hides when the minimap's map button is hidden, so settings-showme-back proves the same route lays it again.
+                Add(section == "maps" and not shown and note and laid == "not laid" and "PASS" or "FAIL",
+                    ("on %s over Blizzard's Settings window: %s"):format(tostring(section), Line(shown, note)))
+            end
+        },
+        {
+            Name = "settings-close",
+            Needs = "settings-showme",
+            Text = ("click Close in Blizzard's Settings window (%d s)"):format(mouseWait),
+            Waits = "the click on Settings' Close",
+            Clicks = true,
+            Run = function()
+                if not (SettingsPanel:IsShown() and tab:IsShown()) then
+                    return "Blizzard's Settings window and this addon's window are not both open (settings-showme)"
+                end
+                local shown = ShowMeShown()
+                if shown or SecureLaid() == "laid" then
+                    return "Show me is on over Settings (settings-showme), so the see-through button may lie over Settings' Close; a click there would open the map"
+                end
+                -- This window (wider than Settings, shown over it) covers Settings' Close, and Lower() leaves both at one
+                -- level with this window still on top (2026-11-07, both clients): it is closed first (test code, this
+                -- addon's own window), and settings-showme-back opens it again
+                tab:Toggle()
+                live.Levels = tab:IsShown() and "this window could not be closed first" or "this window closed first"
+                StartClick()
+            end,
+            Hover = function(kit)
+                AskClick(kit, function()
+                    local button = SettingsPanel.CloseButton
+                    if not (button and button:IsVisible()) then
+                        return nil, "Settings' Close button is not shown"
+                    end
+                    if button:GetText() ~= SETTINGS_CLOSE then
+                        return nil, ("Settings' Close button reads %q, not %q"):format(tostring(button:GetText()), tostring(SETTINGS_CLOSE))
+                    end
+                    return button
+                end)
+            end,
+            Mouse = function()
+                return ClickDone(function() return not SettingsPanel:IsShown() end)
+            end,
+            Check = function()
+                if not ClickLanded("Settings' Close (" .. tostring(live.Levels) .. ")") then
+                    return
+                end
+                local settings, menu = SettingsPanel:IsShown(), GameMenuFrame:IsShown()
+                Add(not settings and "PASS" or "FAIL", ("a click on Settings' Close (by %s): Settings %s, the game menu %s; this window was closed by the test before the click"):format(
+                    ClickedBy(), settings and "stays open" or "hides", menu and "shows" or "does not show"))
+            end
+        },
+        {
+            Name = "settings-return",
+            Needs = "settings-close",
+            Text = ("click the game menu's %s (%d s)"):format(tostring(RETURN_TO_GAME), mouseWait),
+            Waits = "the click on the game menu's Return to Game",
+            Clicks = true,
+            Run = function()
+                if SettingsPanel:IsShown() then
+                    return "Blizzard's Settings window is still open (settings-close)"
+                end
+                if not GameMenuFrame:IsShown() then
+                    return "the game menu did not come back when Settings closed (this window was closed by the test before the click)"
+                end
+                StartClick()
+            end,
+            Hover = function(kit)
+                AskClick(kit, function() return MenuButton(RETURN_TO_GAME) end)
+            end,
+            Mouse = function()
+                return ClickDone(function() return not GameMenuFrame:IsShown() end)
+            end,
+            Check = function()
+                if not ClickLanded("the game menu's Return to Game") then
+                    return
+                end
+                local shown = GameMenuFrame:IsShown()
+                Add(not shown and "PASS" or "FAIL", ("a click on the game menu's Return to Game (by %s): the game menu %s"):format(
+                    ClickedBy(), shown and "stays open" or "hides"))
+            end
+        },
+        {
+            Name = "settings-showme-back",
+            Needs = "settings-return",
+            Text = "this addon's window on Maps with Blizzard's windows closed: Show me back (mouse off the option rows)",
+            Waits = "the mouse to leave the page's option rows",
+            Run = function()
+                local open = BlizzardWindowsShown()
+                if #open > 0 then
+                    return table.concat(open, " and ") .. " still open (a click did not land), so Show me stays off; close it by hand"
+                end
+                live.Reopened = not tab:IsShown() or tab:GetSaved().LastSection ~= "maps"
+                if live.Reopened then
+                    tab:Open("maps")
+                end
+            end,
+            Hover = HoverOffRows,
+            Mouse = MouseOffRows,
+            Check = function()
+                local section = tab:GetSaved().LastSection
+                local shown, note = ShowMeShown()
+                if shown == nil then
+                    Add("SKIP", note)
+                    return
+                end
+                local laid = SecureLaid()
+                Add(section == "maps" and shown and laid == "laid" and "PASS" or "FAIL", ("on %s with Settings and the game menu closed%s: %s"):format(
+                    tostring(section), live.Reopened and " (opened again by the test)" or "", Line(shown, note)))
+            end
+        },
+    }
+end
+
+-- The steps, on this addon's tab (window.Controller) through the library's public surface only, then the Settings steps
+-- above, which read the window's own frames too
 local function BuildSteps()
     local window = addon.Options.Window
     local tab = window.Controller
-    return {
+    local list = {
         {
             Name = "open",
             Required = true,
@@ -519,6 +909,10 @@ local function BuildSteps()
             end
         },
     }
+    for _, step in ipairs(SettingsSteps(tab)) do
+        tinsert(list, step)
+    end
+    return list
 end
 
 local function CheckErrors()
@@ -543,11 +937,14 @@ end
 -- This addon's saved table for the window as it was before the run, read and written through the tab's GetSaved (the
 -- library's public surface): the Window block every addon shares (place, size, pane, search ticks and their change
 -- time), LastSection and Seen, which the open writes. It goes back in place, since the window keeps the table; the
--- window opens again on the section it showed, when it was open on this addon's tab before the run.
+-- window opens again on the section it showed, when it was open on this addon's tab before the run, and closes when it
+-- was not (the Settings steps leave it open on Maps).
 local function Restore()
     local tab = addon.Options.Window.Controller
-    if live.WasShown and not tab:IsShown() then
+    if live.WasShown and not (tab:IsShown() and tab:GetSaved().LastSection == live.WasShown) then
         tab:Open(live.WasShown)
+    elseif not live.WasShown and tab:IsShown() then
+        tab:Toggle()
     end
     local saved = tab:GetSaved()
     wipe(saved)
@@ -556,8 +953,24 @@ local function Restore()
     end
 end
 
+-- Nothing more asked of the kit's marker, and no click listened for
+local function EndMouse()
+    if KrowiGameInput then
+        KrowiGameInput.Clear()
+    end
+    pcall(banner.UnregisterEvent, banner, "GLOBAL_MOUSE_UP")
+end
+
 local function Finish()
+    EndMouse()
     banner:UnregisterAllEvents()
+    -- Blizzard's windows are the player's: a click of the Settings steps that did not land can leave one open
+    if live.SettingsSteps then
+        local open = BlizzardWindowsShown()
+        if #open > 0 then
+            tinsert(live.Observations, table.concat(open, " and ") .. " left open for the player: the Settings steps never close a Blizzard window themselves")
+        end
+    end
     live.StepName = "restore"
     local restored, restoreError = pcall(Restore)
     Add(restored and "PASS" or "FAIL", restored and "this addon's saved state for the window is as before the run"
@@ -574,6 +987,7 @@ end
 
 local function Stop(reason, combatStarted)
     runToken = runToken + 1
+    EndMouse()
     banner:Hide()
     if reason then
         tinsert(live.Observations, "stopped: " .. reason)
@@ -602,6 +1016,55 @@ local function Capture()
     end)
 end
 
+-- Why a step that needs the mouse got nothing within mouseWait
+local function WaitedFor(step)
+    local why
+    if not KrowiGameInput then
+        why = "Krowi_ClaudeKit's marker addon (KrowiGameInput) is not loaded, and nobody did it by hand"
+    elseif step.Clicks and not KrowiGameInput.ClickAt then
+        why = "the kit's marker addon cannot click (no KrowiGameInput.ClickAt: an older kit), and nobody clicked by hand"
+    else
+        why = "the kit's marker was asked, and it did not happen"
+    end
+    return ("waited %d s for %s: %s"):format(mouseWait, step.Waits or "the mouse", why)
+end
+
+-- A step that needs a click or the mouse (Mouse): while the kit's marker addon is loaded (KrowiGameInput, Krowi_ClaudeKit's
+-- docs/work/2026-11-05-kit-test-runs) its Hover(kit) asks for the click or hover, once (the marker serves a request
+-- once, Krowi_Options' show-me-secure-click); without it the player has mouseWait to do it. Once Mouse() holds the
+-- request is cleared at once, so a -WaitForDone started again does not click a second time, and the check and the
+-- screenshot follow; after mouseWait the step SKIPs and says why
+local function WaitForMouse(step, waited)
+    local ok, ready = pcall(step.Mouse)
+    if ok and ready then
+        EndMouse()
+        After(settle, Capture)
+        return
+    end
+    if not ok or waited >= mouseWait then
+        EndMouse()
+        Add(ok and "SKIP" or "FAIL", ok and WaitedFor(step) or ("test error: " .. tostring(ready)))
+        After(afterShot, function()
+            RunStep(live.StepIndex + 1)
+        end)
+        return
+    end
+    if KrowiGameInput and step.Hover then
+        local asked, err = pcall(step.Hover, KrowiGameInput)
+        if not asked then
+            EndMouse()
+            Add("FAIL", "test error: " .. tostring(err))
+            After(afterShot, function()
+                RunStep(live.StepIndex + 1)
+            end)
+            return
+        end
+    end
+    After(pollEvery, function()
+        WaitForMouse(step, waited + pollEvery)
+    end)
+end
+
 RunStep = function(n)
     local step = steps[n]
     if not step then
@@ -609,6 +1072,10 @@ RunStep = function(n)
         return
     end
     live.StepIndex, live.StepName = n, step.Name
+    live.Click, live.Hovered = nil, nil
+    if step.Name:sub(1, 9) == "settings-" then
+        live.SettingsSteps = true
+    end
     banner.Text:SetText(("Krowi's Achievement Filter test %d/%d: %s"):format(step.Number or n, live.AllSteps or #steps, step.Text))
     local ok, skip = pcall(step.Run)
     if not ok or (skip and step.Required) then
@@ -626,7 +1093,14 @@ RunStep = function(n)
         banner:SetPoint("BOTTOM", Window(), "TOP", 0, 6)
         banner:Show()
     end
-    After(settle, Capture)
+    if step.Mouse then
+        -- A moment first, so a row the window just opened under the mouse has had its hover (the Settings steps)
+        After(pollEvery, function()
+            WaitForMouse(step, 0)
+        end)
+    else
+        After(settle, Capture)
+    end
 end
 
 local function CreateBanner()
@@ -638,12 +1112,18 @@ local function CreateBanner()
     background:SetColorTexture(0, 0, 0, 0.85)
     banner.Text = banner:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
     banner.Text:SetPoint("CENTER")
-    banner:SetScript("OnEvent", function(_, event)
+    banner:SetScript("OnEvent", function(_, event, mouseButton)
         if not live then
             return
         end
         if event == "SCREENSHOT_FAILED" and live.Shot then
             live.Shot.Failed = true
+        elseif event == "GLOBAL_MOUSE_UP" then
+            -- A Settings step's click: the first left click after the kit was asked for it, and where it landed
+            local click = live.Click
+            if click and click.Asked and not click.UpAt and mouseButton == "LeftButton" then
+                click.UpAt, click.UpOn = GetTime(), MouseFocusName()
+            end
         elseif event == "PLAYER_REGEN_DISABLED" then
             Stop("combat started", true)
         elseif event == "PLAYER_REGEN_ENABLED" then
@@ -742,7 +1222,12 @@ addon.Tests.Suites.options = function(done, what)
     banner:RegisterEvent("SCREENSHOT_FAILED")
     banner:RegisterEvent("PLAYER_REGEN_DISABLED")
     steps = chosen
-    print(("|cFF88CCFFKrowiAF Tests:|r options: %d of %d steps, about %d s; the window's saved state goes back at the end.%s"):format(#steps, #all,
-        #steps * (settle + afterShot), what and "" or " /kaftest options <smoke, a name, start of a name or number> runs only those steps."))
+    local clicks = 0
+    for _, step in ipairs(steps) do
+        if step.Clicks then clicks = clicks + 1 end
+    end
+    local waits = clicks == 0 and "" or (" %d steps click Blizzard's game menu and Settings through Krowi_ClaudeKit's marker addon, or wait up to %d s each for your click on what the banner names."):format(clicks, mouseWait)
+    print(("|cFF88CCFFKrowiAF Tests:|r options: %d of %d steps, about %d s; the window's saved state goes back at the end.%s%s"):format(#steps, #all,
+        #steps * (settle + afterShot), waits, what and "" or " /kaftest options <smoke, a name, start of a name or number> runs only those steps."))
     RunStep(1)
 end

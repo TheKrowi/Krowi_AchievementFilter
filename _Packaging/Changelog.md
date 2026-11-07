@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - The tutorial is replaced by the explanations in the options window, with new pictures and a Show me button
-- Settings > AddOns now has one page for this addon, with a button that opens the options window
+- Settings > AddOns now has one page for this addon, with a button that opens the options window on top of it
 - The pop up position settings are greyed out only while another addon places the game's alerts, not whenever ElvUI, GW2 UI or EllesmereUI is loaded
 
 ### Fixed

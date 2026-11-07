@@ -1,0 +1,17 @@
+# Gates: 2026-11-07-settings-panel-taint
+Class: harness
+
+| Date | Gate | Question | Recommended | Answer | Outcome |
+|---|---|---|---|---|---|
+| 2026-11-07 | intent | Krowi_Options taint review, finding 1 (KAF's Open options closes Blizzard's Settings window and saves the bindings from KAF's code): fix in KAF 105.0 (asked in the library's work item) | fix it in KAF 105.0 | "Fix it in KAF 105.0 (Recommended)" | took |
+| 2026-11-07 | scope | Krowi_Options taint review, finding 3 (KAF's Show me map button stays above Blizzard's Options window): fix in the same KAF item (asked in the library's work item) | fix it in KAF 105.0 | "Fix it in KAF 105.0 (Recommended)" | took |
+| 2026-11-07 | design | Fix 2: how the map button notices Blizzard's Options window or the game menu | vanish when they open | "Vanish when they open (Recommended)" | took |
+| 2026-11-07 | design | Proof: a lint rule, a headless scenario and real keys by Claude, or also an automatic in-game step (the kit's marker learning Escape) | check, offline test, real keys by Claude | "Also an automatic in-game step" | other |
+| 2026-11-07 | design | How the automatic step opens Blizzard's windows: the kit's existing real click on the game menu's micro button and its Options button instead of a new Escape key (no kit change); fix 1 stays on the lint rule | real clicks, no kit change | not asked: chosen while writing the decision | auto |
+| 2026-11-07 | design | Correction (the game menu never opens over KAF's window; the real case is Settings brought to the front over it, where no OnShow fires): what Show me on the Maps page does while Blizzard's Settings window is open (asked after Krowi's two questions: what the see-through button is, why it works where KAF's own button cannot) | off while Settings is open | "Off while Settings is open (Recommended)" | took |
+| 2026-11-07 | design | The game menu treated like Settings (closing Settings goes back to it, over KAF's window) | the same treatment | not asked: in the plan approved next | auto |
+| 2026-11-07 | plan | The plan (fix 1 code, the map route off while Settings or the game menu shows with refresh hooks, the lint rule replacing settings-close, a headless scenario, live steps with real clicks; before-run first) | approve | plan approved at ExitPlanMode with no changes | took |
+| 2026-11-07 | design | The game menu dropped from the fix again: Settings' way back (TransitionBackOpeningPanel) reaches ToggleGameMenu, whose handlers run CloseAllWindows and close KAF's window instead of showing the menu (found by the test build, Blizzard_UIParentPanelManager/Shared/UIParentPanelManager.lua:1162, Mists UIParent.lua:1462), so the game menu never shows over KAF's window | only Settings turns Show me off | not asked: one hook fewer on a Blizzard frame | auto |
+| 2026-11-07 | look | KAF's window opens on top of Blizzard's Settings, both see-through so Settings' rows show through; Show me off with the note while Settings is open (screenshots of Retail and Mists on a published page) | keep it like this | "Keep it like this (Recommended)" | took |
+| 2026-11-07 | look | Krowi's idea: a see-through button over Open options that clicks Settings' X (Blizzard's close always goes back to the game menu, so it would pop up over KAF's window); asked for other ideas, then: A as now, B the secure X-click with the game menu, C no button, D a solid background later | A now, D later | "A only" | other |
+| 2026-11-07 | merge | PR #402 | merge | "Merge, release tomorrow" | amended |

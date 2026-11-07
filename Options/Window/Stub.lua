@@ -5,7 +5,8 @@ local L = addon.L
 
 -- The one page the addon keeps in Settings > AddOns: its name, version and the way into the options window, which
 -- replaced the six AceConfig pages there (docs/work/2026-10-25-options-revamp). The window has HIGH strata like the
--- settings panel, so it shows above the panel when the panel cannot close (in combat, or with unapplied settings).
+-- settings panel and opens after it, so it shows above the panel, which stays open for the player: closing it from the
+-- addon would run Blizzard's commit and key binding save under the addon's taint (docs/work/2026-11-07-settings-panel-taint).
 local function CreateStub()
     local frame = CreateFrame("Frame")
 
@@ -28,7 +29,6 @@ local function CreateStub()
     button:SetPoint("TOPLEFT", text, "BOTTOMLEFT", 0, -16)
     button:SetText(L["Open options"])
     button:SetScript("OnClick", function()
-        options.CloseSettingsPanel()
         options.Open()
     end)
 

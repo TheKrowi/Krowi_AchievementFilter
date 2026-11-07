@@ -487,6 +487,15 @@ if help.maps then
             ReleaseMapButton()
             return true
         end
+        -- Blizzard's Settings window can be brought to the front over the options window (a click on it after Open
+        -- options, Stub.lua), and the button, one strata above the options window, would lie over Settings there: while it
+        -- is open the note shows instead (Krowi, docs/work/2026-11-07-settings-panel-taint). The game menu never shows over
+        -- the options window: every way to it reaches CloseAllWindows first.
+        if SettingsPanel and SettingsPanel:IsShown() then
+            DebugMapState("Blizzard's Settings window is open: the note shows")
+            ReleaseMapButton()
+            return false
+        end
         local delegate, why = MapDelegate()
         if not delegate then
             DebugMapState(why .. ": the note shows")
@@ -541,5 +550,23 @@ if help.maps then
     help.maps.ShowMeNote = function()
         local key = GetBindingKey("TOGGLEWORLDMAP")
         return key and L["Help Maps Press Key"]:format(GetBindingText(key)) or L["Help Maps No Key"]
+    end
+
+    -- Settings shown or hidden while the options window is open: the window draws Show me again, so it goes off and comes
+    -- back at once. Script post-hooks run after Blizzard's own handler and only refresh the addon's window.
+    if SettingsPanel and SettingsPanel.HookScript then
+        local function RefreshShowMe()
+            local controller = window.Controller
+            if controller and controller:IsShown() then
+                controller:Refresh()
+            end
+        end
+        SettingsPanel:HookScript("OnShow", RefreshShowMe)
+        SettingsPanel:HookScript("OnHide", RefreshShowMe)
+    end
+
+    -- For the tests (Tests/Options.lua): whether the secure button lies over Show me now
+    help.maps.SecureLaid = function()
+        return mapButton ~= nil and mapButton:IsShown() and mapButton.Owner ~= nil
     end
 end
