@@ -26,9 +26,10 @@
       library-names    [Error]   every library name addon code (and Libs/Libs.lua) passes to LibStub( or
                                  KROWI_LIBMAN:GetLibrary( is one a NewLibrary( call in Libs/ registers; always
                                  tree-wide, because a library rename breaks call sites nobody touched
-      settings-close   [Error]   addon code closes the settings panel with SettingsPanel:Close(true): without the
-                                 argument it reopens the game menu through ToggleGameMenu, whose SpellStopCasting
-                                 call is forbidden from addon code
+      settings-panel-close [Error] addon code (not Tests/) never closes or hides Blizzard's Settings window
+                                 (SettingsPanel:Close, :ExitWithCommit, :ExitWithoutCommit, :Hide,
+                                 HideUIPanel(SettingsPanel)): each runs Blizzard's commit and key binding save, or
+                                 the panel's OnHide, under the addon's taint; comments are left out
       event-clock      [Error]   the event reminder and obtainability files (Gui/EventReminder/, Data/Event*.lua,
                                  Data/Custom*EventTimers.lua, Data/TemporaryObtainable.lua) never call time(): they
                                  judge times by the realm's clock, GetServerTime(), which the sources use
@@ -508,23 +509,32 @@ if ($emptySubmodules) {
 }
 Write-Timing 'library-names'
 
-# --- settings-close: addon code closes the settings panel without Blizzard's way back to the game menu -----------
-# SettingsPanel:Close() returns to the panel the settings were opened from through ToggleGameMenu(). Called from
-# addon code that runs tainted, and ToggleGameMenu calls the protected SpellStopCasting: ADDON_ACTION_FORBIDDEN on
-# Mists Classic (docs/work/2026-10-11-latent-bugs, verified in game 2026-10-13). It also reopens the game menu
-# behind whatever the addon shows next. Close(true) commits and hides the panel without that step.
+# --- settings-panel-close: addon code leaves Blizzard's Settings window to the player ------------------------------
+# Every way to close it runs Blizzard's code in the addon's call. Close and ExitWithCommit commit the visit's settings
+# and save the key bindings (SaveBindings, which fires UPDATE_BINDINGS), then hide the panel; its OnHide saves again and
+# updates the micro buttons; Close() without true also reopens the game menu through ToggleGameMenu, whose
+# SpellStopCasting is forbidden from addon code (docs/work/2026-10-11-latent-bugs). All of it runs under the addon's
+# taint (docs/work/2026-11-07-settings-panel-taint, Blizzard_SettingsPanel.lua). A plain Hide or HideUIPanel still runs
+# that OnHide. Tests/ is left out: test code never closes it either, but may name it in a check. Comments, also those
+# over several lines, are left out.
+$settingsPanelClose = '(?<![\w.:])SettingsPanel\s*[:.]\s*(Close|ExitWithCommit|ExitWithoutCommit|Hide)\s*\(|(?<![\w.:])HideUIPanel\s*\(\s*SettingsPanel(?!\w)'
 foreach ($rel in $ownLuaFiles) {
+    if ($rel -like 'Tests/*') { continue }
     $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
     if (-not $text.Contains('SettingsPanel')) { continue }
+    # Blank the comments out, keeping their line breaks so the line numbers stay
+    $blank = { param($m) [regex]::Replace($m.Value, '[^\r\n]', ' ') }
+    $text = [regex]::Replace([regex]::Replace($text, '--\[(=*)\[.*?\]\1\]', $blank, 'Singleline'), '--[^\r\n]*', $blank)
     $lineNo = 0
-    foreach ($line in ($text -split "`r?`n")) {
+    foreach ($code in ($text -split "`r?`n")) {
         $lineNo++
-        if (($line -replace '--.*$', '') -match '\bSettingsPanel\s*:\s*Close\s*\(\s*\)') {
-            Add-Finding 'settings-close' 'Error' $rel $lineNo "SettingsPanel:Close() goes back to the game menu through ToggleGameMenu, whose SpellStopCasting call is forbidden from addon code; call SettingsPanel:Close(true)"
+        if ($code -cmatch $settingsPanelClose) {
+            $call = if ($Matches[1]) { "SettingsPanel:$($Matches[1])()" } else { 'HideUIPanel(SettingsPanel)' }
+            Add-Finding 'settings-panel-close' 'Error' $rel $lineNo "${call}: addon code leaves Blizzard's Settings window to the player; closing or hiding it runs Blizzard's commit and key binding save under the addon's taint (docs/work/2026-11-07-settings-panel-taint)"
         }
     }
 }
-Write-Timing 'settings-close'
+Write-Timing 'settings-panel-close'
 
 # --- options-templates: the options window draws Blizzard's Settings look without Blizzard's Settings code --------
 # Blizzard's category list keeps its selection in one file-level variable that every SettingsCategoryListTemplate

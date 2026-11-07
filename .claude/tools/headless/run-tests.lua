@@ -33,7 +33,10 @@
 --         their fixed schedules, and what the watcher learns from the POIs), tracking
 --         (Gui/WindowFrames/AchievementButton/TrackingSlots.lua: what the Track button does at the tracking cap), options
 --         (the options window's model over the real AceConfig tables, on the whole-addon load of options-env.lua), help
---         (Options/Window/Help/: the explanations, pictures and Show me the window's help pane reads, on the same load),
+--         (Options/Window/Help/: the explanations, pictures and Show me the window's help pane reads, on the same load;
+--         and Options/Window/Help/ShowMe.lua's map route on a load of its own, against models of Blizzard's Settings
+--         window, the game menu and the minimap's map button: whether it lays its see-through button while either window
+--         is open, docs/work/2026-11-07-settings-panel-taint),
 --         earned (Gui/WindowFrames/CategoriesFrame/CategoriesFrameMixin.lua with Api/API.lua and
 --         Data/AchievementCache.lua on the real data load: what the achievement window recounts when an achievement is
 --         earned and then opened in it), plugins (Plugins/ZygorGuidesViewer.lua with Api/PluginsApi.lua and the
@@ -1641,8 +1644,112 @@ suites.options = function(c)
     return results, "Tests/Options.lua", observations
 end
 
+-- A frame of the map route's model below: the frame model above with the methods it lacks, and, as in the game, nil for
+-- a field nobody set, so the route's own fields (Owner, Close, ReleasePending) and its probes for a method a client
+-- lacks (HasAnyForbiddenAspects) read as they do there; calling a method neither has errors at the route's line
+local function MapRouteFrame(name, parent, methods)
+    local frame = NewFrame(name, parent)
+    return setmetatable(frame, { __index = function(_, k) return methods[k] or Frame[k] end })
+end
+
+-- The Maps help's map route (Options/Window/Help/ShowMe.lua, docs/work/2026-11-07-settings-panel-taint) on a whole-addon
+-- load of its own (options-env.lua's New), so the shared load stays as the other scenarios read it. Its models are
+-- installed before ShowMe.lua runs again on that load, so whatever the file hooks at load finds them:
+--   SettingsPanel and GameMenuFrame: Blizzard's Settings window and the game menu, shown and hidden only through
+--     SetWindows, which runs their OnShow and OnHide scripts and hooks as the game does (Settings hides before the menu
+--     shows, as closing Settings goes back to the menu); nothing else of them is modelled
+--   the minimap's map button the route clicks through (Retail: MinimapCluster.ZoneTextButton, Mists:
+--     MiniMapWorldMapButton): not forbidden, visible, an OnClick, no access constraints
+--   UnitAffectingCombat false (the load's stub would answer truthy), UIParent at scale 1
+--   CreateFrame from SecureActionButtonTemplate: the see-through secure button, kept so Laid can read it
+--   the owner, the pane's Show me button: placed (left 100, bottom 50, 120 x 22, scale 1) and shown
+-- Laid: the secure button exists, is shown and placed (ReleaseMapButton hides it and clears its points).
+local function MapRouteModel(optionsEnv, client, isRetail)
+    local ctx = optionsEnv.New(root, client)
+    local env, addon = ctx.env, ctx.addon
+    local uiParent = MapRouteFrame("UIParent", nil, { GetEffectiveScale = function() return 1 end })
+    uiParent.shown = true
+    rawset(env, "UIParent", uiParent)
+    rawset(env, "UnitAffectingCombat", function() return false end)
+    local settingsPanel = MapRouteFrame("SettingsPanel", nil, {})
+    local gameMenu = MapRouteFrame("GameMenuFrame", nil, {})
+    rawset(env, "SettingsPanel", settingsPanel)
+    rawset(env, "GameMenuFrame", gameMenu)
+    local delegateName = isRetail and "MinimapCluster.ZoneTextButton" or "MiniMapWorldMapButton"
+    local delegate = MapRouteFrame(isRetail and nil or delegateName, nil, {
+        IsForbidden = function() return false end,
+        HasAccessConstraints = function() return false end,
+        HasAnyForbiddenAspects = function() return false end,
+        GetDebugName = function() return delegateName end,
+    })
+    delegate.shown = true
+    delegate:SetScript("OnClick", function() end)
+    if isRetail then
+        rawset(env, "MinimapCluster", { ZoneTextButton = delegate })
+    else
+        rawset(env, "MiniMapWorldMapButton", delegate)
+    end
+    local secure
+    -- Where SetPoint placed it, for the route's debug line: PlaceOver sets one point on UIParent with x and y
+    local function Placed(frame)
+        local _, _, _, x, y = frame:GetPoint(1)
+        return x, y
+    end
+    local secureMethods = {
+        SetAttribute = function(self, key, value) rawset(self, "_attr_" .. tostring(key), value) end,
+        GetAttribute = function(self, key) return rawget(self, "_attr_" .. tostring(key)) end,
+        RegisterForClicks = function() end,
+        UnregisterAllEvents = function() end,
+        GetLeft = function(self) return (Placed(self)) end,
+        GetBottom = function(self) return select(2, Placed(self)) end,
+        GetEffectiveScale = function() return 1 end,
+        GetDebugName = function() return "the map route's secure button" end,
+        CreateTexture = function(self)
+            local texture = MapRouteFrame(nil, self, { SetColorTexture = function() end })
+            texture.shown = true
+            return texture
+        end,
+    }
+    local createFrame = env.CreateFrame
+    rawset(env, "CreateFrame", function(kind, name, parent, template)
+        if template == "SecureActionButtonTemplate" then
+            secure = MapRouteFrame(name, parent, secureMethods)
+            return secure
+        end
+        return createFrame(kind, name, parent, template)
+    end)
+    local chunk = assert(loadstring(readFile(root .. "/Options/Window/Help/ShowMe.lua"), "@Options/Window/Help/ShowMe.lua"))
+    setfenv(chunk, env)
+    chunk("Krowi_AchievementFilter", addon)
+    local owner = MapRouteFrame(nil, nil, {
+        GetLeft = function() return 100 end,
+        GetBottom = function() return 50 end,
+        GetEffectiveScale = function() return 1 end,
+        LockHighlight = function() end,
+        UnlockHighlight = function() end,
+        GetDebugName = function() return "the pane's Show me button" end,
+    })
+    owner.shown = true
+    owner:SetSize(120, 22)
+    local route = { Ctx = ctx, ErrorsBefore = #ctx.Errors, Owner = owner }
+    route.Maps = addon.Options.Window.Help.maps
+    function route.Close() end
+    function route.SetWindows(settingsShown, menuShown)
+        if not settingsShown then settingsPanel:Hide() end
+        if not menuShown then gameMenu:Hide() end
+        if settingsShown then settingsPanel:Show() end
+        if menuShown then gameMenu:Show() end
+    end
+    function route.Laid()
+        return secure ~= nil and secure:IsShown() and secure:GetPoint(1) ~= nil
+    end
+    return route
+end
+
 -- The help pane's content on the same whole-addon load. Here the runner can also look for each picture's file, which
--- the game cannot; a load error is the options suite's to report.
+-- the game cannot; a load error is the options suite's to report. headless.MapRoute builds the map route's model above
+-- for the scenario that needs Blizzard's windows shown and hidden (map-showme-under-settings, headless only); an error
+-- its load sends to the error handler during the scenarios is a FAIL line too.
 suites.help = function(c)
     local scriptDir = ((arg and arg[0]) or ""):gsub("\\", "/"):match("^(.*)/") or "."
     local optionsEnv = assert(loadfile(scriptDir .. "/options-env.lua"))()
@@ -1656,11 +1763,20 @@ suites.help = function(c)
         if f then f:close() end
         return f ~= nil
     end
+    local route
+    local headless = {}
+    function headless.MapRoute()
+        route = route or MapRouteModel(optionsEnv, c.client, c.isRetail)
+        return route
+    end
     local chunk = assert(loadstring(readFile(root .. "/Tests/Help.lua"), "@Tests/Help.lua"))
     setfenv(chunk, env)
     chunk("Krowi_AchievementFilter", addon)
-    local results, observations = addon.Tests.Help.Run(), addon.Tests.Help.Observations()
+    local results, observations = addon.Tests.Help.Run(headless), addon.Tests.Help.Observations()
     HandlerErrors(ctx, before, "help", results)
+    if route then
+        HandlerErrors(route.Ctx, route.ErrorsBefore, "help", results)
+    end
     return results, "Tests/Help.lua", observations
 end
 

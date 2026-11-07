@@ -8,6 +8,9 @@ local help = addon.Tests.Help
 -- (/kaftest help) and headlessly (.claude/tools/headless/run-tests.lua) against the whole addon loaded by
 -- .claude/tools/headless/options-env.lua. Recorded is the behaviour of the current code; a scenario passes when the
 -- code still behaves that way. Target is the desired behaviour; a scenario whose Recorded differs from Target is open.
+-- One scenario is headless only (map-showme-under-settings): it shows and hides models of Blizzard's Settings window and
+-- the game menu, which test code never does in game, so the game SKIPs it; the options suite's live steps cover it there
+-- with real clicks.
 
 -- The sections of plan.md (Track A, step 4), in the order of the window's navigation
 local sectionIds = {"overview", "tabs", "window", "categories", "summary", "achievements", "filters", "search", "tooltips",
@@ -51,7 +54,24 @@ local function IsBadBlock(block)
     return block.Text == nil
 end
 
--- Observe: a function returning the line's value
+-- The Maps help's map route (Options/Window/Help/ShowMe.lua) once: route.Maps.ShowMeSecure with the pane's Show me
+-- button, answered and looked at. "laid": it answers true with its see-through secure button shown over Show me; "off":
+-- it answers false and lays nothing, so the window hides Show me and shows the Maps help's note; anything else is spelt
+-- out
+local function MapRouteCase(route)
+    local answer = route.Maps.ShowMeSecure(route.Owner, route.Close)
+    local laid = route.Laid()
+    if answer == true and laid then
+        return "laid"
+    end
+    if answer == false and not laid then
+        return "off"
+    end
+    return ("answered %s, %s"):format(tostring(answer), laid and "laid" or "nothing laid")
+end
+
+-- Observe(headless): a function returning the line's value, or nil and the reason it could not run. headless is the
+-- headless runner's model (run-tests.lua suites.help), nil in game
 help.Scenarios = {
     {Name = "sections",
         Observe = function()
@@ -147,16 +167,50 @@ help.Scenarios = {
         end,
         Recorded = "agrees",
         Target = "agrees"},
+    -- The Maps help's Show me while Blizzard's Settings window is open (docs/work/2026-11-07-settings-panel-taint): the map
+    -- route lays its see-through secure button one strata above the options window (DIALOG), so above Settings (HIGH),
+    -- where a click meant for Settings, brought to the front over the options window, opened the map and closed the
+    -- options window. While Settings is shown the route is to answer false and lay nothing (the Maps help's note shows
+    -- instead), and to lay its button again once it is gone. The game menu is left alone: it never shows over the options
+    -- window (Escape, the micro button and Settings' way back all reach CloseAllWindows first), so its case stays laid.
+    -- The route lays it first with neither shown, so the Settings case also checks that a button already laid is let go;
+    -- then Settings is shown, then the game menu instead, then neither. Headless only: in game test code never shows or
+    -- hides Blizzard's windows; the options suite's live steps open and close them by real clicks instead.
+    {Name = "map-showme-under-settings",
+        Observe = function(headless)
+            if not (headless and headless.MapRoute) then
+                return nil, "headless only: shows and hides models of Blizzard's Settings window and the game menu"
+            end
+            local route = headless.MapRoute()
+            if not (route.Maps and route.Maps.ShowMeSecure) then return "no map route" end
+            route.SetWindows(false, false)
+            local first = MapRouteCase(route)
+            if first ~= "laid" then
+                return "with neither shown first: " .. first
+            end
+            route.SetWindows(true, false)
+            local settings = MapRouteCase(route)
+            route.SetWindows(false, true)
+            local menu = MapRouteCase(route)
+            route.SetWindows(false, false)
+            local neither = MapRouteCase(route)
+            return ("settings: %s; menu: %s; neither: %s"):format(settings, menu, neither)
+        end,
+        Recorded = "settings: laid; menu: laid; neither: laid", -- before the fix the button stayed over Settings
+        Target = "settings: off; menu: laid; neither: laid"},
 }
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
-local function RunScenario(scenario)
-    local ok, got = pcall(scenario.Observe)
+local function RunScenario(scenario, headless)
+    local ok, got, reason = pcall(scenario.Observe, headless)
     local isRetail = addon.Util.IsMainline
     local recorded = (not isRetail and scenario.RecordedClassic) or scenario.Recorded
     local target = (not isRetail and scenario.TargetClassic) or scenario.Target
     if not ok then
         return { Name = scenario.Name, Status = "FAIL", TargetMet = false, Line = ("help/%s: FAIL error=[%s]"):format(scenario.Name, tostring(got)) }
+    end
+    if got == nil then
+        return { Name = scenario.Name, Status = "SKIP", Line = ("help/%s: SKIP %s"):format(scenario.Name, reason or "could not run") }
     end
     local status = got == recorded and "PASS" or "FAIL"
     local targetMet = got == target
@@ -168,10 +222,11 @@ local function RunScenario(scenario)
     }
 end
 
-function help.Run()
+-- headless: the headless runner's model, nil in game
+function help.Run(headless)
     local results = {}
     for _, scenario in ipairs(help.Scenarios) do
-        tinsert(results, RunScenario(scenario))
+        tinsert(results, RunScenario(scenario, headless))
     end
     return results
 end

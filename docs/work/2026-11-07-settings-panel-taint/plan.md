@@ -9,14 +9,14 @@ Proof (Krowi): a lint rule, a headless scenario, and an automatic in-game step u
 
 Class: the change replaces an existing lint rule (`settings-close`), so `Get-ChangeClass` will say harness; the gates asked so far cover it.
 
-## Changes
+## Files that change
 Addon code (I write these myself, small):
 1. `Options/Options.lua`: remove `options.CloseSettingsPanel` and its comment.
 2. `Options/Window/Stub.lua`: OnClick calls `options.Open()` only; the comment says the window opens on top of Settings, which stays open.
 3. `Options/General.lua`: screenshot mode drops the call and the local alias (line 37).
 4. `Options/Window/Help/ShowMe.lua`, the map route:
-   - `ShowMeSecure(owner, close)`: when `SettingsPanel` or `GameMenuFrame` is shown, release the button and answer false, so the library hides Show me and shows the Maps page's existing note (no new string).
-   - Once (guarded flag, both frames checked to exist): `SettingsPanel:HookScript("OnShow"/"OnHide", ...)` and the same on `GameMenuFrame`, each calling a refresh: if KAF's window is shown, `window.Controller:Refresh()` (the library's public tab Refresh, which runs UpdateShowMe), so Show me goes off and comes back at once. Placed where the route is set up (file load), or lazily at the first `ShowMeSecure`; the hooks only release or refresh, nothing else.
+   - `ShowMeSecure(owner, close)`: when `SettingsPanel` is shown, release the button and answer false, so the library hides Show me and shows the Maps page's existing note (no new string). (The game menu was planned too and dropped: it never shows over KAF's window, see gates.md.)
+   - Once (guarded flag, the frame checked to exist): `SettingsPanel:HookScript("OnShow"/"OnHide", ...)`, each calling a refresh: if KAF's window is shown, `window.Controller:Refresh()` (the library's public tab Refresh, which runs UpdateShowMe), so Show me goes off and comes back at once. Placed where the route is set up (file load), or lazily at the first `ShowMeSecure`; the hooks only release or refresh, nothing else.
    - A read-only test seam on `help.maps`: whether the see-through button is laid (`help.maps.SecureLaid()` or similar), since `mapButton` is file-local.
 
 Tests and tooling (Opus builds from a brief; a read-only review after; I verify):
@@ -31,13 +31,16 @@ Tests and tooling (Opus builds from a brief; a read-only review after; I verify)
    Each step skips if the previous left things otherwise. Test code never opens, closes or hides a Blizzard window itself; a failed click can leave Settings or the game menu open for the player to close. Buttons are found by reading Blizzard frames (no calls into them), checked on live and classic (Mists) source.
 8. `Tests/README.md` (options row: the new game-only steps), `Tests/Options.lua` header, `run-tests.lua` help row; changelog line under 105.0 `### Fixed` (player words, no dev note).
 
-## Order
+## Order of work
 1. Before-run gate (playbook): `/kaftest options help escape` on Retail and Mists with today's main, green.
 2. Test first: the lint rule and the headless scenario (Recorded = today), commit `test: reproduce ...`.
 3. The fix (changes 1-4), Recorded = Target, the live steps (7), docs (8).
 4. Headless all suites, `Check-Repo.ps1`, `krowi:taint-reviewer`, a code review.
 5. After-run in game, Retail and Mists: `options help escape` with the live steps (kit-started, nobody at the PC), screenshots read; a real-input check of fix 1 by me (game menu > Options > AddOns > Krowi's Achievement Filter > Open options: KAF's window over Settings, Settings still open after closing KAF's window), `Read-GameErrors.ps1` clean.
 6. Look gate (Krowi sees the screenshots on a published page), PR, merge on Krowi's word.
+
+## Proof
+The before-run green first; the lint rule and the headless scenario as the tests written first (Recorded today); after the fix Recorded = Target, all suites headless, then options, help and escape in game on Retail and Mists with the live steps, and the real-input check of fix 1.
 
 ## Risks
 - Real clicks on Blizzard's buttons: found by text/name, clicked only through the kit's guarded `ClickAt`; a wrong find could press another game menu button: the step checks the button's text right before asking and never asks for Logout/Exit.
