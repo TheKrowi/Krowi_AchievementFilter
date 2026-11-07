@@ -515,9 +515,10 @@ Write-Timing 'library-names'
 # updates the micro buttons; Close() without true also reopens the game menu through ToggleGameMenu, whose
 # SpellStopCasting is forbidden from addon code (docs/work/2026-10-11-latent-bugs). All of it runs under the addon's
 # taint (docs/work/2026-11-07-settings-panel-taint, Blizzard_SettingsPanel.lua). A plain Hide or HideUIPanel still runs
-# that OnHide. Tests/ is left out: test code never closes it either, but may name it in a check. Comments, also those
-# over several lines, are left out.
-$settingsPanelClose = '(?<![\w.:])SettingsPanel\s*[:.]\s*(Close|ExitWithCommit|ExitWithoutCommit|Hide)\s*\(|(?<![\w.:])HideUIPanel\s*\(\s*SettingsPanel(?!\w)'
+# that OnHide; SetShown and a click on Settings' own close buttons from code do the same. A `_G.` prefix is no way out.
+# Tests/ is left out: test code never closes it either, but may name it in a check. Comments, also those over several
+# lines, are left out; an alias or a string-indexed call is not caught.
+$settingsPanelClose = '(?<![\w.:])(?:_G\s*\.\s*)?SettingsPanel\s*[:.]\s*(?<call>Close|ExitWithCommit|ExitWithoutCommit|Hide|SetShown)\s*\(|(?<![\w.:])(?:_G\s*\.\s*)?SettingsPanel\s*\.\s*(?<button>CloseButton|ClosePanelButton)\s*[:.]\s*Click\s*\(|(?<![\w.:])(?:_G\s*\.\s*)?HideUIPanel\s*\(\s*(?:_G\s*\.\s*)?SettingsPanel(?!\w)'
 foreach ($rel in $ownLuaFiles) {
     if ($rel -like 'Tests/*') { continue }
     $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
@@ -529,7 +530,7 @@ foreach ($rel in $ownLuaFiles) {
     foreach ($code in ($text -split "`r?`n")) {
         $lineNo++
         if ($code -cmatch $settingsPanelClose) {
-            $call = if ($Matches[1]) { "SettingsPanel:$($Matches[1])()" } else { 'HideUIPanel(SettingsPanel)' }
+            $call = if ($Matches['call']) { "SettingsPanel:$($Matches['call'])()" } elseif ($Matches['button']) { "SettingsPanel.$($Matches['button']):Click()" } else { 'HideUIPanel(SettingsPanel)' }
             Add-Finding 'settings-panel-close' 'Error' $rel $lineNo "${call}: addon code leaves Blizzard's Settings window to the player; closing or hiding it runs Blizzard's commit and key binding save under the addon's taint (docs/work/2026-11-07-settings-panel-taint)"
         }
     }

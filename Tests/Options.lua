@@ -490,9 +490,10 @@ end
 -- [[ Game only: Blizzard's Settings window and the game menu, by real clicks ]] --
 
 -- docs/work/2026-11-07-settings-panel-taint: the Maps help's Show me while Blizzard's Settings window (SettingsPanel,
--- HIGH) or the game menu (GameMenuFrame, DIALOG) is open. The map route's see-through secure button lies one strata above
--- this window (DIALOG), so above both; while either is shown the route is to answer false and lay nothing (Show me
--- hidden, the Maps help's note shown), and to lay it again once both are gone. Test code never opens, closes or hides a
+-- HIGH) is open. The map route's see-through secure button lies one strata above this window (DIALOG), so above Settings;
+-- while Settings is shown the route is to answer false and lay nothing (Show me hidden, the Maps help's note shown), and
+-- to lay it again once Settings is gone. The game menu is left alone (it never shows over this window: every way to it
+-- reaches CloseAllWindows first); the steps only pass through it. Test code never opens, closes or hides a
 -- Blizzard window and never calls into one: it only reads them (shown, children, texts, levels). Every change to them
 -- comes from one real click per step, asked of Krowi_ClaudeKit's marker addon (KrowiGameInput.ClickAt, which serves a
 -- request once) or made by the player within mouseWait. A click is asked only on a button found and checked right
@@ -754,7 +755,9 @@ local function SettingsSteps(tab)
                     return
                 end
                 local laid = SecureLaid()
-                Add(section == "maps" and not shown and note and laid ~= "laid" and "PASS" or "FAIL",
+                -- The route's own answer (the seam ships with the fix): "not laid" exactly, an unknown is no pass. Show me also
+                -- hides when the minimap's map button is hidden, so settings-showme-back proves the same route lays it again.
+                Add(section == "maps" and not shown and note and laid == "not laid" and "PASS" or "FAIL",
                     ("on %s over Blizzard's Settings window: %s"):format(tostring(section), Line(shown, note)))
             end
         },
@@ -798,16 +801,9 @@ local function SettingsSteps(tab)
                 if not ClickLanded("Settings' Close (" .. tostring(live.Levels) .. ")") then
                     return
                 end
-                local settings, menu, window = SettingsPanel:IsShown(), GameMenuFrame:IsShown(), tab:IsShown()
-                local after, wrong = "this window closed with it", false
-                if window then
-                    local shown, note = ShowMeShown()
-                    after = shown == nil and note or Line(shown, note)
-                    -- Show me on is right again once neither is shown; with the game menu back it must stay off
-                    wrong = menu and (shown == true or SecureLaid() == "laid")
-                end
-                Add(not settings and not wrong and "PASS" or "FAIL", ("a click on Settings' Close (by %s): Settings %s, the game menu %s; %s"):format(
-                    ClickedBy(), settings and "stays open" or "hides", menu and "shows" or "does not show", after))
+                local settings, menu = SettingsPanel:IsShown(), GameMenuFrame:IsShown()
+                Add(not settings and "PASS" or "FAIL", ("a click on Settings' Close (by %s): Settings %s, the game menu %s; this window was closed by the test before the click"):format(
+                    ClickedBy(), settings and "stays open" or "hides", menu and "shows" or "does not show"))
             end
         },
         {
@@ -821,8 +817,7 @@ local function SettingsSteps(tab)
                     return "Blizzard's Settings window is still open (settings-close)"
                 end
                 if not GameMenuFrame:IsShown() then
-                    return ("the game menu did not come back when Settings closed%s"):format(tab:IsShown() and ""
-                        or ", and this addon's window closed instead (Blizzard's way back to the menu, ToggleGameMenu, closes open windows first, as Escape does)")
+                    return "the game menu did not come back when Settings closed (this window was closed by the test before the click)"
                 end
                 StartClick()
             end,
@@ -866,7 +861,7 @@ local function SettingsSteps(tab)
                     return
                 end
                 local laid = SecureLaid()
-                Add(section == "maps" and shown and laid ~= "not laid" and "PASS" or "FAIL", ("on %s with Settings and the game menu closed%s: %s"):format(
+                Add(section == "maps" and shown and laid == "laid" and "PASS" or "FAIL", ("on %s with Settings and the game menu closed%s: %s"):format(
                     tostring(section), live.Reopened and " (opened again by the test)" or "", Line(shown, note)))
             end
         },

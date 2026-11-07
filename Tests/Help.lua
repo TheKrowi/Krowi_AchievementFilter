@@ -194,10 +194,22 @@ help.Scenarios = {
             local menu = MapRouteCase(route)
             route.SetWindows(false, false)
             local neither = MapRouteCase(route)
-            return ("settings: %s; menu: %s; neither: %s"):format(settings, menu, neither)
+            -- Settings' OnShow and OnHide hooks with the options window shown: a stand-in controller whose Refresh draws
+            -- Show me again, as the window's Refresh does, so the hooks alone turn it off and back on
+            local window = route.Ctx.addon.Options.Window
+            local controller = window.Controller
+            window.Controller = { IsShown = function() return true end, Refresh = function() route.Maps.ShowMeSecure(route.Owner, route.Close) end }
+            route.SetWindows(true, false)
+            local onShow = route.Laid() and "laid" or "off"
+            route.SetWindows(false, false)
+            local onHide = route.Laid() and "laid" or "off"
+            window.Controller = controller
+            return ("settings: %s; menu: %s; neither: %s; hooks: show %s, hide %s"):format(settings, menu, neither, onShow, onHide)
         end,
-        Recorded = "settings: off; menu: laid; neither: laid", -- before the fix: "settings: laid; ..." (the button stayed over Settings)
-        Target = "settings: off; menu: laid; neither: laid"},
+        -- Before the fix: "settings: laid; menu: laid; neither: laid; hooks: show laid, hide laid" (the button stayed over
+        -- Settings, and no hook refreshed the window)
+        Recorded = "settings: off; menu: laid; neither: laid; hooks: show off, hide laid",
+        Target = "settings: off; menu: laid; neither: laid; hooks: show off, hide laid"},
 }
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
@@ -210,7 +222,11 @@ local function RunScenario(scenario, headless)
         return { Name = scenario.Name, Status = "FAIL", TargetMet = false, Line = ("help/%s: FAIL error=[%s]"):format(scenario.Name, tostring(got)) }
     end
     if got == nil then
-        return { Name = scenario.Name, Status = "SKIP", Line = ("help/%s: SKIP %s"):format(scenario.Name, reason or "could not run") }
+        -- A skip names its reason; nothing at all is a scenario that broke
+        if not reason then
+            return { Name = scenario.Name, Status = "FAIL", TargetMet = false, Line = ("help/%s: FAIL returned nothing and no reason"):format(scenario.Name) }
+        end
+        return { Name = scenario.Name, Status = "SKIP", Line = ("help/%s: SKIP %s"):format(scenario.Name, reason) }
     end
     local status = got == recorded and "PASS" or "FAIL"
     local targetMet = got == target
