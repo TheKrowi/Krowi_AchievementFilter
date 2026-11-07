@@ -1,5 +1,5 @@
 # Spec: the release gate requires every in-game suite and, once per new client version, the library's tests
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. For Retail (families' newest claimed build, today 12.1.5) and Mists Classic (5.5.4), `.claude/release-gate.ps1` requires a green run (0 failed, newer than the last commit that changed the suite's file) of each of: `escape`, `special`, `navigation`, `worldmap`, `obtainable`, `tooltip`, `guide`, `menu`, `memory`, `events`, `schedules`, `tracking`, `options`, `help`, `earned`, `plugins`, `popups`. Each missing one is a Fail line naming the suite, the client and the command to run.

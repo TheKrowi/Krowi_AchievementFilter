@@ -1,5 +1,5 @@
 # Intent: the release gate runs every in-game suite, and the library's tests when a client has a new version
-Author: Krowi, maintainer. Source: idea, from Krowi's answers of 2026-11-07 while closing phase 2 of Krowi_Options 2.0 (`Krowi_Libraries\Krowi_Options\docs\work\2026-11-06-finish-2-0`). Status: accepted
+Author: Krowi, maintainer. Source: idea, from Krowi's answers of 2026-11-07 while closing phase 2 of Krowi_Options 2.0 (`Krowi_Libraries\Krowi_Options\docs\work\2026-11-06-finish-2-0`). Status: done
 
 ## Problem
 KAF's release gate (`.claude/release-gate.ps1`) asks for green in-game runs of two suites only, `escape` and `options` on Retail and `options` on Mists, on the newest build. The other fifteen in-game suites are never required before a release, and the library's own tests (`Krowi_OptionsTests`, `/kotest`, which cover the options window's frames that KAF's `options` suite no longer draws) are not required at all. A patch can break any of them. A `/kotest` run on every release would be wasted work, and a full run of every suite on every pull request too.
