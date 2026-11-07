@@ -503,9 +503,8 @@ end
 --   settings-open: a click on the game menu's Options: Settings shows
 --   settings-showme: no click: this window opened on Maps over Settings (test code); Show me hidden, its note shown,
 --     nothing laid
---   settings-close: this window lowered under Settings (test code; a click into Settings raises it the same way), a click
---     on Settings' Close: Settings hides; whether the game menu comes back over this window, or Blizzard's way back
---     (ToggleGameMenu) closes this window instead, as Escape does, is reported
+--   settings-close: this window closed (test code: it covers Settings' Close, and Lower() leaves it on top), a click on
+--     Settings' Close: Settings hides and Blizzard's way back shows the game menu
 --   settings-return: a click on the game menu's Return to Game, when the menu came back: the menu hides
 --   settings-showme-back: no click: this window on Maps (opened again by test code when a step closed it), neither of
 --     Blizzard's windows shown; Show me shown and laid
@@ -773,9 +772,11 @@ local function SettingsSteps(tab)
                 if shown or SecureLaid() == "laid" then
                     return "Show me is on over Settings (settings-showme), so the see-through button may lie over Settings' Close; a click there would open the map"
                 end
-                -- What a click into Settings does: Settings comes over this window, which covers its Close otherwise
-                Window():Lower()
-                live.Levels = ("this window's level %d, Settings' %d"):format(Window():GetFrameLevel(), SettingsPanel:GetFrameLevel())
+                -- This window (wider than Settings, shown over it) covers Settings' Close, and Lower() leaves both at one
+                -- level with this window still on top (2026-11-07, both clients): it is closed first (test code, this
+                -- addon's own window), and settings-showme-back opens it again
+                tab:Toggle()
+                live.Levels = tab:IsShown() and "this window could not be closed first" or "this window closed first"
                 StartClick()
             end,
             Hover = function(kit)
