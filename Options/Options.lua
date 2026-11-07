@@ -1,18 +1,6 @@
 local _, addon = ...
 local options = addon.Options
 
--- Closes the settings panel before the addon shows a window or page over the game. Close(true) commits and hides it
--- without Blizzard's way back to the game menu, whose ToggleGameMenu calls the protected SpellStopCasting
--- (docs/work/2026-10-11-latent-bugs). With unapplied settings Close asks through a popup whose buttons would then take
--- that way tainted, and in combat HideUIPanel refuses addon code, so the panel then stays open for the player to close.
--- Callers outside the panel (the options window) reach it too, so it does nothing while the panel is closed.
-function options.CloseSettingsPanel()
-    if not SettingsPanel:IsShown() or InCombatLockdown() or SettingsPanel:HasUnappliedSettings() then
-        return
-    end
-    SettingsPanel:Close(true)
-end
-
 -- Binds key to command in slot 1 or 2, the way Blizzard's key bindings page does (Blizzard_Keybindings.lua
 -- ProcessInput): both keys come off and go back in order, the new one in its slot, in the command's binding context.
 -- SetBinding's third argument is that context, not the slot; passing the slot bound the key in a housing editor context

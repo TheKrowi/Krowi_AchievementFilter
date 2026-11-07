@@ -196,7 +196,7 @@ help.Scenarios = {
             local neither = MapRouteCase(route)
             return ("settings: %s; menu: %s; neither: %s"):format(settings, menu, neither)
         end,
-        Recorded = "settings: laid; menu: laid; neither: laid", -- before the fix the button stayed over Settings
+        Recorded = "settings: off; menu: laid; neither: laid", -- before the fix: "settings: laid; ..." (the button stayed over Settings)
         Target = "settings: off; menu: laid; neither: laid"},
 }
 

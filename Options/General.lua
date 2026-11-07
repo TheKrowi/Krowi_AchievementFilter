@@ -34,8 +34,6 @@ function general.OnProfileReset(db)
     RefreshOptions()
 end
 
-local CloseSettingsPanel = options.CloseSettingsPanel
-
 local function MinimapShowMinimapIconSet(_, value)
     if addon.Options.db.profile.ShowMinimapIcon == value then return; end
     addon.Options.db.profile.ShowMinimapIcon = value
@@ -63,7 +61,6 @@ end
 
 local screenshotModeFrame, screenshotModeCloseButton
 local function HandleScreenshotMode()
-    CloseSettingsPanel()
     if screenshotModeFrame == nil then
         screenshotModeFrame = CreateFrame("Frame", nil, UIParent)
         screenshotModeFrame:SetPoint("CENTER")
