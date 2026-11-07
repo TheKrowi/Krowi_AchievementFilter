@@ -1,5 +1,5 @@
 # Spec: KAF's options leave Blizzard's Settings window to Blizzard
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. The Settings stub's "Open options" (`Options/Window/Stub.lua`) opens KAF's window without closing Blizzard's Settings window: the window shows on top of it (both HIGH, the window shown later), and Settings is still open when KAF's window closes.

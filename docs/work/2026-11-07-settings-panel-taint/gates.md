@@ -1,5 +1,5 @@
 # Gates: 2026-11-07-settings-panel-taint
-Class: fix/gui
+Class: harness
 
 | Date | Gate | Question | Recommended | Answer | Outcome |
 |---|---|---|---|---|---|

@@ -1,5 +1,5 @@
 # Plan: KAF's options leave Blizzard's Settings window to Blizzard (KAF 105.0)
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 ## Context
 The Krowi_Options 2.0 taint review found two KAF problems; Krowi chose to fix both in KAF 105.0. Work item `docs/work/2026-11-07-settings-panel-taint` (worktree `Krowi_AchievementFilter\.claude\worktrees\fix-2026-11-07-settings-panel-taint`, intent/spec committed 819f37b8).
@@ -58,3 +58,4 @@ The before-run green first; the lint rule and the headless scenario as the tests
 - Look gate: Krowi, "Keep it like this (Recommended)".
 - Code review (read-only agent): nothing wrong in the fix; fixed from it: the help scenario now proves Settings' OnShow and OnHide hooks with a stand-in controller (a mutation that disables them fails it), the in-game checks read the seam strictly, the settings-close texts say the test closes the window first (so the game-menu-over-window case rests on Blizzard's source only), stale game-menu wording, the lint rule also catches `_G.`, `SetShown` and a click on Settings' close buttons, a scenario that returns nothing without a reason fails instead of skipping.
 - Krowi's idea at the look gate (a see-through button over Open options clicking Settings' X): Blizzard's close always goes back to the game menu; Krowi chose "A only" (as now).
+- Final after-run on the review's fixes (d0f7347e): Retail 23:00 and Mists 23:07, options 36 passed, 0 failed, 1 skipped with all six settings steps PASS by real clicks, help 5 + 1 skip, escape 34 / 33 + 1 skip.
