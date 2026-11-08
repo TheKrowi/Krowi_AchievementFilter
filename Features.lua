@@ -205,12 +205,15 @@ function features.StartAll()
     for _, record in ipairs(order) do
         if IsOn(record) then
             features.Starting = record.Name
-            for field, handler in next, record.DataFields or {} do
-                addon.Slots.AchievementData.AddField(field, handler)
-            end
             local ok = true
             if record.Start then
                 ok = xpcall(record.Start, CallErrorHandler)
+            end
+            -- Only for a feature that started: one whose Start failed takes no data either
+            if ok then
+                for field, handler in next, record.DataFields or {} do
+                    addon.Slots.AchievementData.AddField(field, handler)
+                end
             end
             features.Starting = nil
             started[record.Name] = ok

@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## 106.0
 ### Added
-- An Enable check box at the top of the Reward preview settings: turned off, the reward preview loads nothing at all after a reload
+- An Enable check box at the top of the Reward preview settings: turned off, the reward preview no longer starts after a reload
 
 ## 105.0 - 2026-11-08
 ### Added

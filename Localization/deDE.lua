@@ -7,7 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-31 22-33-16 ]] --
-L["Feature Switch Desc"] = "Schalte {feature} aus, um es ganz anzuhalten: Es lädt dann nichts und belegt keinen Speicher. Deine Einstellungen dafür bleiben erhalten."
+L["Feature Switch Desc"] = "Schalte {feature} aus, wenn du es nicht nutzt: Nach dem Neuladen startet es nicht mehr und behält keine seiner Daten. Deine Einstellungen dafür bleiben erhalten."
 L["Feature Off Help"] = "{feature} ist aus. Schalte es oben in diesem Abschnitt ein und lade dann neu."
 L["Card Tabs"] = "Welche Tabs angezeigt werden und in welcher Reihenfolge."
 L["Card Window"] = "Größe, Position und was zuerst geöffnet wird."

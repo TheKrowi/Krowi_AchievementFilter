@@ -7,7 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-31 22-33-16 ]] --
-L["Feature Switch Desc"] = "{feature}을(를) 끄면 완전히 멈춥니다. 아무것도 불러오지 않고 메모리도 쓰지 않습니다. 설정은 그대로 유지됩니다."
+L["Feature Switch Desc"] = "{feature}을(를) 쓰지 않으면 끄세요. UI를 다시 불러오면 더 이상 시작되지 않고 데이터도 보관하지 않습니다. 설정은 그대로 유지됩니다."
 L["Feature Off Help"] = "{feature}이(가) 꺼져 있습니다. 이 항목 맨 위에서 켠 뒤 UI를 다시 불러오세요."
 L["Card Tabs"] = "표시할 탭과 그 순서."
 L["Card Window"] = "크기, 위치, 처음 열리는 화면."

@@ -49,7 +49,7 @@ function achievementMenu:CreateMenu(menuObj, achievement, caller)
 	local i, j = 1, 1
 	while own[i] or added[j] do
 		local section
-		if added[j] and (not own[i] or added[j].Order < own[i].Order) then
+		if added[j] and (not own[i] or (added[j].Order or 0) < (own[i].Order or 0)) then
 			section, j = added[j], j + 1
 		else
 			section, i = own[i], i + 1

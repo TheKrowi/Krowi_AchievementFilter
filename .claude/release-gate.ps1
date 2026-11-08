@@ -92,9 +92,9 @@
 
         # The features that switch off (docs/work/2026-11-08-feature-split-poc): a whole /kaftest matrix run (every suite
         # with every feature on, every feature off and each feature alone) green on the newest build or later, newer than
-        # the last change under Features/
+        # the last change under Features/ or to the registry and the slots
         $featuresChanged = [datetime]::MinValue
-        $lastFeatures = git -C $repo log -1 --format=%ci -- Features/ 2>$null
+        $lastFeatures = git -C $repo log -1 --format=%ci -- Features/ Features.lua Slots.lua 2>$null
         if ($lastFeatures) { $featuresChanged = ([datetimeoffset]::Parse($lastFeatures)).LocalDateTime }
         $matrixRuns = @(Get-Runs $family $addon 'KrowiAF_DebugTable' 'matrix' | Where-Object { $_.Suite -eq 'matrix' -and $_.Build })
         $matrixGreen = @($matrixRuns | Where-Object { $_.Build -ge $newest -and $_.Complete -and $_.Failed -eq 0 -and $_.Passed -gt 0 -and [datetime]$_.Time -ge $featuresChanged })
@@ -103,7 +103,7 @@
             Pass "In-game matrix run (features on, off, alone) green on $($family.Name) $($g.Build) ($($g.Flavor), $($g.Time))"
         } else {
             $seen = if ($matrixRuns.Count -gt 0) { ($matrixRuns | Sort-Object Build, Time -Descending | ForEach-Object { "$($_.Build) $($_.Flavor) passed=$($_.Passed) failed=$($_.Failed) complete=$($_.Complete) $($_.Time)" }) -join '; ' } else { 'no run found' }
-            Fail "In-game matrix run has no green whole run (every step ran every suite, failed nothing, passed something) on $($family.Name) $newest or later since Features/ changed ($($featuresChanged.ToString('yyyy-MM-dd HH:mm'))): run .claude/tools/Run-GameTests.ps1 -Matrix on that client. Seen: $seen"
+            Fail "In-game matrix run has no green whole run (every step ran every suite, failed nothing, passed something) on $($family.Name) $newest or later since Features/, Features.lua or Slots.lua changed ($($featuresChanged.ToString('yyyy-MM-dd HH:mm'))): run .claude/tools/Run-GameTests.ps1 -Matrix on that client. Seen: $seen"
         }
 
         # The library's tests: one green full run on the newest build or later, whenever it ran, so only the first

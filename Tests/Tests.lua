@@ -401,7 +401,7 @@ local function StartMatrix()
         restore[feature.Name] = addon.Features.GetSwitch(feature.Name)
     end
     local plan = {Steps = MatrixSteps(), Suites = MatrixSuites(), Index = 1, Restore = restore, DebugSwitched = switched,
-        Started = date("%Y-%m-%d %H:%M:%S"), Results = {}}
+        Started = date("%Y-%m-%d %H:%M:%S"), Results = {}, Character = UnitName("player") .. "-" .. GetRealmName()}
     for i, step in ipairs(plan.Steps) do
         plan.Results[i] = {Name = step.Name, Runs = 0, Passed = 0, Failed = 0, Skipped = 0}
     end
@@ -414,26 +414,54 @@ local function StartMatrix()
     AskForReload(("matrix: %d steps of %d suites; step 1 (%s) is set, /reload to run it"):format(#plan.Steps, #plan.Suites, plan.Steps[1].Name))
 end
 
+-- Drops a plan: the switches go back as they were, and debug mode off when the plan turned it on
+local function DropMatrix(plan, reason)
+    ApplySwitches(plan.Restore)
+    if plan.DebugSwitched then
+        addon.Options.db.profile.EnableDebugInfo = false
+    end
+    GetDb().Matrix.Pending = nil
+    print(prefix .. "matrix run dropped (" .. reason .. "); the switches are back as they were from the next /reload")
+end
+
 local function StopMatrix()
     local plan = GetDb().Matrix and GetDb().Matrix.Pending
     if not plan then
         print(prefix .. "no matrix run is waiting")
         return
     end
-    ApplySwitches(plan.Restore)
-    GetDb().Matrix.Pending = nil
-    print(prefix .. "matrix run dropped; the switches are back as they were from the next /reload")
+    DropMatrix(plan, "/kaftest matrix stop")
 end
 
--- After the reload that follows a set step: runs its suites, then sets the next step, or puts the switches back
+-- After the reload that follows a set step: runs its suites, then sets the next step, or puts the switches back.
+-- A step that began and never finished (a /reload or logout during it, a suite that never reported) is not run again on
+-- every login: the plan is dropped. A crash writes no saved variables, so after one the step runs once more. So is one in combat or with debug mode off; on another character the plan
+-- waits for its own (the switches are that character's profile's).
 local function RunMatrixStep()
     local db = GetDb()
     local plan = db.Matrix.Pending
+    if not plan then
+        return
+    end
+    if plan.Character ~= UnitName("player") .. "-" .. GetRealmName() then
+        print(prefix .. "a matrix run waits for " .. tostring(plan.Character) .. "; /kaftest matrix stop drops it")
+        return
+    end
+    if plan.Running == plan.Index then
+        DropMatrix(plan, ("step %d did not finish"):format(plan.Index))
+        return
+    end
+    if InCombatLockdown() or not addon.Diagnostics.DebugEnabled() then
+        DropMatrix(plan, InCombatLockdown() and "in combat" or "debug mode is off")
+        return
+    end
+    plan.Running = plan.Index
     local step = plan.Steps[plan.Index]
     matrixStep = step.Name
     print(prefix .. ("matrix step %d of %d (%s)"):format(plan.Index, #plan.Steps, step.Name))
     RunEntries(plan.Suites, false, function()
         matrixStep = nil
+        plan.Running = nil
         if plan.Index < #plan.Steps then
             plan.Index = plan.Index + 1
             ApplySwitches(plan.Steps[plan.Index].Switches)

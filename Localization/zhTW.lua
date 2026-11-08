@@ -7,7 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-31 22-33-16 ]] --
-L["Feature Switch Desc"] = "關閉{feature}可將其完全停止：不再載入任何內容，也不佔用記憶體。你的設定會保留。"
+L["Feature Switch Desc"] = "不使用{feature}時可將其關閉：重新載入介面後它將不再啟動，也不保留任何資料。你的設定會保留。"
 L["Feature Off Help"] = "{feature}已關閉。請在本節頂部將其開啟，然後重新載入介面。"
 L["Card Tabs"] = "顯示哪些標籤，以及它們的順序。"
 L["Card Window"] = "大小、位置以及首先開啟的內容。"
