@@ -54,7 +54,7 @@
             $wtf = Join-Path $folder 'WTF\Account'
             if (-not (Test-Path -LiteralPath $wtf)) { continue }
             foreach ($sv in Get-ChildItem -LiteralPath $wtf -Directory | ForEach-Object { Join-Path $_.FullName "SavedVariables\$savedFile.lua" } | Where-Object { Test-Path -LiteralPath $_ }) {
-                foreach ($line in @(& $Lua $reader $sv $savedTable 2>$null)) {
+                foreach ($line in @(& $Lua $reader $sv $savedTable @($runVersion | Where-Object { $_ } | ForEach-Object { "version=$_" }) 2>$null)) {
                     $f = "$line" -split '\|'
                     if ($f.Count -lt 6) { continue }
                     $build = $null; [void][version]::TryParse($f[1], [ref]$build)
@@ -69,7 +69,12 @@
         if ($claimed.Count -eq 0) { continue }
         $i = $claimed[0]
         $newest = [version]("{0}.{1}.{2}" -f [math]::Floor($i / 10000), ([math]::Floor($i / 100) % 100), ($i % 100))
+        # Only runs of the version being released count, so a hotfix is tested as itself and never by main's build
+        # (the kit's docs/work/2026-11-08-hotfix-mode): Get-Runs hands $runVersion to the reader; /kotest below keeps
+        # its own rule, so it is cleared again
+        $runVersion = $tocVersion
         $runs = @(Get-Runs $family $addon 'KrowiAF_DebugTable')
+        $runVersion = $null
         foreach ($suite in $suites) {
             # A run counts only when it is newer than the last commit that changed the suite's scenarios
             $name = if ($suiteFiles.ContainsKey($suite)) { $suiteFiles[$suite] } else { (Get-Culture).TextInfo.ToTitleCase($suite) }
