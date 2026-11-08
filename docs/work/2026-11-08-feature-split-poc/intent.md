@@ -1,5 +1,5 @@
 # Intent: Features that switch off, proven on Reward preview (106, step 1)
-Author: Krowi (maintainer). Source: idea; the feature-split grill of 2026-10-28/29 and 2026-11-01 (closed), started on 2026-11-08 after 105.0 shipped. Status: accepted
+Author: Krowi (maintainer). Source: idea; the feature-split grill of 2026-10-28/29 and 2026-11-01 (closed), started on 2026-11-08 after 105.0 shipped. Status: done
 
 ## Problem
 KAF has grown too big to change safely (Krowi). A feature is not one place in the code but a trail through it. Reward preview, for example, lives in eleven places:

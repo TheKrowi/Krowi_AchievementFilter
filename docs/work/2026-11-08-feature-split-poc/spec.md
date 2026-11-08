@@ -1,5 +1,5 @@
 # Spec: Features that switch off, proven on Reward preview (106, step 1)
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 

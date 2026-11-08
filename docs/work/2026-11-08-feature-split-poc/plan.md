@@ -1,8 +1,18 @@
 # Plan: Features that switch off, proven on Reward preview (106, step 1)
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 ## Context
 KAF 106 splits the addon into a core plus 15 switchable features (grill closed 2026-11-01). This is the proof of concept: Reward preview moves into `Features/RewardPreview/` with a per-profile switch, the core gets the registry and the slots it uses, and the four proofs every later feature PR repeats are built (headless start check, `feature-boundary` lint, in-game off/on through `/kaftest matrix`, memory off/on). Intent and spec accepted 2026-11-08 (design option 1; rows grey at once; off help page has one line and no Show me; profile live refresh stays until its owner moves; settings stay AceConfig). Worktree `feature-2026-11-08-feature-split-poc`, branch `feature/2026-11-08-feature-split-poc`.
+
+## Files that change
+As built (`git diff --name-status main...HEAD`, outside this folder); the steps below say what each does.
+- **New core:** `Features.lua`, `Slots.lua`, `Features/Files.xml`; `Krowi_AchievementFilter.toc` and `Krowi_AchievementFilter.lua` load and start them.
+- **The feature, `Features/RewardPreview/`:** `Files.xml`, `RewardPreview.lua`, `Api.lua` (was `Api/RewardPreviewDataApi.lua`), `Data.lua` (was `Data/RewardPreviewData.lua`), `Window.lua`, `WindowMixin.lua` and `Window.xml` (were `Gui/RewardPreview/`), `MenuEntry.lua` (was `Gui/RightClickMenu/AchievementMenu/RewardPreview.lua`), `RowIcon.lua`, `Options.lua`, `Help.lua`.
+- **Core hosts:** `Api/AchievementDataApi.lua`, `Gui/WindowFrames/AchievementButton/AchievementButtonExtraIconFactory.lua`, `Gui/RightClickMenu/AchievementMenu/` (`AchievementMenu.lua` and the order of each section file), `Options/Defaults.lua`, `Options/Layout.lua`, `Options/Window/Map.lua`, `Options/Window/Source.lua`, `Options/Window/Help/Help.lua` and `ShowMe.lua`, `Gui/Guide/Panel.lua` (comment); the `Files.xml` lines in `Api/`, `Data/`, `Gui/FilesModern.xml`, `Gui/FilesClassic.xml`.
+- **Text:** all 11 `Localization/<lang>.lua` files, `_Packaging/Changelog.md`.
+- **Tests:** `Tests/Features.lua` (new), `Tests/Tests.lua` (matrix), `Tests/Options.lua`, `Tests/Help.lua`, `Tests/Escape.lua`, `Tests/Pictures.lua`, `Tests/Files.xml`, `Tests/README.md`.
+- **Tooling:** `.claude/release-gate.ps1`, `.claude/tools/Check-Repo.ps1` (`feature-boundary`), `.claude/tools/Run-GameTests.ps1` (`-Matrix`), `.claude/tools/headless/` (`run-tests.lua`, `options-env.lua`, `client-env.lua`, `read-runs.lua`), `.claude/tools/README.md`.
+- **Docs:** `CLAUDE.md`, `.github/copilot-instructions.md`, `docs/architecture.md`.
 
 ## Order of work
 
