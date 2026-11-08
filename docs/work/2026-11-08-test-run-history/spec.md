@@ -10,7 +10,7 @@ Intent: [intent.md](intent.md). Status: accepted
    1. `worldmap` on Retail checks that Retail's map gets no strata of its own from the game rule it reads on show.
    2. `tooltip` on Mists checks that no achievement has transmog set data and that Blizzard's category tooltip function is not replaced.
    3. `schedules` on Mists checks that the client has no world or widget event rows.
-   4. `plugins` on Mists checks that Zygor's achievement guides are absent, so the plugin draws nothing.
+   4. `plugins` on Mists checks that the plugin does not start: it starts only for Retail's Zygor Guides Viewer (the addon `ZygorGuidesViewer`), whichever Zygor Mists has on.
    5. `plugins` on Retail runs for real: Zygor Guides Viewer is on for the character the kit logs in with, and `/kaftest run` runs suites that need the achievement window's first draw before the others.
 6. No scenario opens, closes or hides a Blizzard window or sets a CVar to make its check; the new checks only read.
 7. `Tests.Runs` keeps its shape; the release gate reads it as before.
@@ -34,7 +34,7 @@ Reproduction, 2026-11-08, release 105.0: `Run-GameTests.ps1` with all 17 suites 
    - `worldmap/retail-map-strata-rule`: `C_GameRules.GetGameRuleAsFrameStrata(Enum.GameRule.WorldMapFrameStrata)`, "none" for nil or UNKNOWN.
    - `tooltip/classic-no-transmog-sets`: achievements with `TransmogSetIds`; `tooltip/classic-category-tooltip`: the global absent or secure ("not replaced").
    - `schedules/classic-no-world-events`: rows of `addon.Data.Events` World and Widget.
-   - `plugins/classic-zygor-not-served`: whether `ZGV.Achievement.AvailGuides` exists.
+   - `plugins/classic-zygor-not-served`: what the plugin itself checks before it starts (`Plugins/ZygorGuidesViewer.lua:6-8, 58`): "not served" expected, with a note of which Zygor is loaded. Not `ZGV.Achievement.AvailGuides`: Mists' own Zygor (`ZygorGuidesViewerClassicTBC`, `Code-MOP/Achievement.lua:3-8`) sets that table too, empty, so that read would fail with Mists' Zygor on while the plugin still draws nothing (found while planning the build, 2026-11-08).
    - Recorded is what the game shows in the in-game run, never guessed; Target the same.
 3. `Plugins.lua` sets `tests.FirstDraw.plugins`. Krowi turns Zygor Guides Viewer on for Krowi-Frostmane on Retail (a click at character select).
 4. `.claude/release-gate.ps1`: a green run needs `Passed > 0` (read-runs' third field).
