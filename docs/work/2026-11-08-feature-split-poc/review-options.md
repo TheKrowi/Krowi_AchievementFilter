@@ -18,3 +18,11 @@ Help page (`Help Rewards Intro`): "Click the preview icon on an achievement to s
 Two kinds of change, which Krowi can take apart:
 1. **Behaviour (small):** three settings stop greying out when the icon is off, since they apply to previews opened from the right-click menu too. No text changes, no translations.
 2. **Text:** the six names, two descriptions and the help line. Each renamed phrase goes into every locale file (translations carried over where the meaning stays, new ones where it changes) and to CurseForge.
+
+## Decision
+Krowi, 2026-11-08, at the look gate: both, as proposed. Built the same day:
+- `Features/RewardPreview/Options.lua`: Invert, Width and Height have no `disabled` of their own (the section's switch still greys them); the names and descriptions use the new phrases.
+- New keys in all 11 locale files (translated in all ten, also where the old name had no translation): `Show icon on achievements` (+ `Desc`), `Show on mouseover`, `Invert up and down when turning`, `Most icons per achievement`, `Width`, `Height`, `Reward Preview Width Desc`, `Reward Preview Height Desc`. The right-click entry is named through `{previewReward}` = `L["Preview Reward"]`, so each language names it as its menu does.
+- `Help Rewards Intro` keeps its key with the new text in every locale.
+- Removed from every locale file: `Show Reward Preview Icon` (+ `Desc`), `Show Reward Preview on Mouseover`, `Invert Reward Preview Vertical Rotation`, `Reward Preview Max Individual Icons`, `Reward Preview Default Width` (+ `Desc`), `Reward Preview Default Height` (+ `Desc`). Their descriptions that stay (`Show Reward Preview on Mouseover Desc`, `Invert Reward Preview Vertical Rotation Desc`, `Reward Preview Max Individual Icons Desc`) keep their keys.
+- CurseForge: the new phrases and translations go out with the next export; the removed keys are deleted there from `main` after the merge (`-Export -Delete`, on Krowi's approval).

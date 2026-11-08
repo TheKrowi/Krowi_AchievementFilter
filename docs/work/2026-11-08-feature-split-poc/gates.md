@@ -19,3 +19,6 @@ Class: harness (Get-ChangeClass.ps1, 2026-11-08: an existing line of `.claude/re
 | 2026-11-08 | plan | Code review: a third dotted-path helper in Features.lua left as it is (no switch path has a numeric segment) | leave | not asked | auto |
 | 2026-11-08 | test | Whether the PC is free for the matrix reruns and the look screenshots (about 30 minutes) | - | "Not now" | - |
 | 2026-11-08 | test | The same, asked again later | - | "run the tests now, pc is free" | took |
+| 2026-11-08 | look | The switch on top, the six rows greyed at once with the reload bar, the off line and no Show me on the help page (screenshots of Retail 12.1.5 and Mists 5.5.4, published page) | looks right | "Looks right (Recommended)" | took |
+| 2026-11-08 | look | Invert, Width and Height stop greying out while the row icon is off (they apply to previews from the right-click menu too) | stop greying them | "Stop greying them (Recommended)" | took |
+| 2026-11-08 | look | The six shorter names, the two new descriptions and the help line naming the right-click menu, in all 11 locale files and to CurseForge | take all of it | "Take all of it (Recommended)" | took |
