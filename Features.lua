@@ -230,11 +230,11 @@ function features.HasStarted()
     return hasStarted
 end
 
--- The registered features in registration order: Name, Title, Switch
+-- The registered features in registration order: Name, Title, Switch, HelpId (the section id of its help page)
 function features.List()
     local list = {}
     for _, record in ipairs(order) do
-        list[#list + 1] = {Name = record.Name, Title = record.Title, Switch = record.Switch}
+        list[#list + 1] = {Name = record.Name, Title = record.Title, Switch = record.Switch, HelpId = record.Help and record.Help.Id}
     end
     return list
 end

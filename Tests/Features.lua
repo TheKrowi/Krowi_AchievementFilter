@@ -17,8 +17,9 @@ local features = addon.Tests.Features
 
 -- Name: the feature's folder under Features/ and its key in the registry
 -- Switch: its saved path in the profile; Frame: a frame it makes; Data: what its data load keeps
+-- Help: the section id of its help page
 features.Known = {
-    {Name = "RewardPreview", Switch = {"Features", "RewardPreview"}, Frame = "KrowiAF_RewardPreview",
+    {Name = "RewardPreview", Switch = {"Features", "RewardPreview"}, Frame = "KrowiAF_RewardPreview", Help = "rewards",
         Data = function() return addon.Data.RewardPreviewData end}
 }
 
@@ -29,6 +30,8 @@ features.Scenarios = {
     {Check = "frame", Recorded = {off = "none", on = "frame"}, Target = {off = "none", on = "frame"}},
     {Check = "data", Recorded = {off = "none", on = "data"}, Target = {off = "none", on = "data"}},
     {Check = "slots", Recorded = {off = "owns none", on = "owns entries"}, Target = {off = "owns none", on = "owns entries"}},
+    -- its help page in the options window: Show me while started; while off no Show me and the off line on top
+    {Check = "help", Recorded = {off = "off line", on = "show me"}, Target = {off = "off line", on = "show me"}},
     {Check = "load", Recorded = {off = "nothing made", on = "nothing made"}, Target = {off = "nothing made", on = "nothing made"}}
 }
 
@@ -79,6 +82,30 @@ function observe.slots(feature)
         return "no slots"
     end
     return #slots.Owned(feature.Name) > 0 and "owns entries" or "owns none"
+end
+
+function observe.help(feature)
+    local window = addon.Options.Window
+    local page = window and window.Help and window.Help[feature.Help]
+    if not page then
+        return "no page"
+    end
+    local title
+    for _, registered in ipairs(addon.Features.List()) do
+        if registered.Name == feature.Name then
+            title = registered.Title
+        end
+    end
+    local offLine = title and addon.L["Feature Off Help"]:K_ReplaceVars({feature = title})
+    local first = page.Blocks and page.Blocks[1]
+    local hasOffLine = offLine ~= nil and first ~= nil and first.Text == offLine
+    local hasShowMe = type(page.ShowMe) == "function"
+    if hasShowMe and not hasOffLine then
+        return "show me"
+    elseif hasOffLine and not hasShowMe then
+        return "off line"
+    end
+    return hasShowMe and "show me and off line" or "neither"
 end
 
 -- env.LoadCalls: { {File, What} } for everything made while a file loaded; only files under Features/<Name>/ count
