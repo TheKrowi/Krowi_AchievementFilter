@@ -30,6 +30,10 @@
                                  (SettingsPanel:Close, :ExitWithCommit, :ExitWithoutCommit, :Hide,
                                  HideUIPanel(SettingsPanel)): each runs Blizzard's commit and key binding save, or
                                  the panel's OnHide, under the addon's taint; comments are left out
+      feature-boundary [Error]   the core (every own file outside Features/ and Tests/) names nothing a feature
+                                 under Features/<Name>/ defines, and a feature names nothing another defines
+                                 (addon.* and KrowiAF.* it assigns, KrowiAF_* globals, CreateFrame and XML names);
+                                 Plugins/<Plugin>/<Name>.lua belongs to feature <Name>; always tree-wide
       event-clock      [Error]   the event reminder and obtainability files (Gui/EventReminder/, Data/Event*.lua,
                                  Data/Custom*EventTimers.lua, Data/TemporaryObtainable.lua) never call time(): they
                                  judge times by the realm's clock, GetServerTime(), which the sources use
@@ -536,6 +540,78 @@ foreach ($rel in $ownLuaFiles) {
     }
 }
 Write-Timing 'settings-panel-close'
+
+# --- feature-boundary: the core names no feature, a feature names no other feature ---------------------------------
+# A feature is a folder Features/<Name>/ (docs/work/2026-11-08-feature-split-poc); a skin file Plugins/<Plugin>/<Name>.lua
+# belongs to feature <Name>. Every other own Lua and XML file outside Tests/ is the core. A feature reaches the core
+# through the slots (Slots.lua) and the registry (Features.lua), so the core never needs a feature's name, and a feature
+# that names another could not run without it. A feature's names are what its files define: addon.* and KrowiAF.*
+# assignments and function definitions, KrowiAF_* globals, frame names passed to CreateFrame, and every name= in its
+# XML. A name counts as a whole word or dotted path; comments are left out. Reached through a local alias of a core table
+# (local gui = addon.Gui; gui.RewardPreview) a name is not caught. Always tree-wide: a move can break a file nobody
+# touched.
+$featureNames = @{}   # feature -> list of names it defines
+$featureFolders = @($allFiles | Where-Object { $_ -match '^Features/([^/]+)/' } | ForEach-Object { $Matches[1] } | Sort-Object -Unique)
+$blankLua = { param($t) $b = { param($m) [regex]::Replace($m.Value, '[^\r\n]', ' ') }; [regex]::Replace([regex]::Replace($t, '--\[(=*)\[.*?\]\1\]', $b, 'Singleline'), '--[^\r\n]*', $b) }
+$blankXml = { param($t) [regex]::Replace($t, '<!--.*?-->', { param($m) [regex]::Replace($m.Value, '[^\r\n]', ' ') }, 'Singleline') }
+function Get-FeatureOwner([string]$Rel) {
+    if ($Rel -match '^Features/([^/]+)/') { return $Matches[1] }
+    if ($Rel -match '^Plugins/[^/]+/([^/]+)\.lua$' -and $featureFolders -contains $Matches[1]) { return $Matches[1] }
+    return $null
+}
+foreach ($rel in $allFiles) {
+    $owner = Get-FeatureOwner $rel
+    if (-not $owner -or $rel -like 'Plugins/*') { continue }
+    $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
+    $names = New-Object System.Collections.Generic.List[string]
+    if ($rel -like '*.lua') {
+        $text = & $blankLua $text
+        foreach ($m in [regex]::Matches($text, '(?m)^\s*(?:function\s+)?((?:addon|KrowiAF)(?:\.[A-Za-z_]\w*)+)\s*(?:=(?!=)|\()')) { $names.Add($m.Groups[1].Value) }
+        foreach ($m in [regex]::Matches($text, '(?m)^\s*(?:function\s+)?(KrowiAF_\w+)\s*(?:=(?!=)|\()')) { $names.Add($m.Groups[1].Value) }
+        foreach ($m in [regex]::Matches($text, 'CreateFrame\s*\(\s*[^,()]+,\s*["''](\w+)["'']')) { $names.Add($m.Groups[1].Value) }
+    } elseif ($rel -like '*.xml') {
+        $text = & $blankXml $text
+        foreach ($m in [regex]::Matches($text, '\sname\s*=\s*["'']([A-Za-z_]\w*)["'']')) { $names.Add($m.Groups[1].Value) }
+    }
+    if (-not $featureNames.ContainsKey($owner)) { $featureNames[$owner] = New-Object System.Collections.Generic.List[string] }
+    foreach ($n in $names) {
+        if (-not $featureNames[$owner].Contains($n)) { $featureNames[$owner].Add($n) }
+    }
+}
+if ($featureNames.Count -gt 0) {
+    # A name a core file defines too is the core's, not the feature's
+    $coreDefined = @{}
+    foreach ($rel in $ownLuaFiles) {
+        if ($rel -like 'Tests/*' -or (Get-FeatureOwner $rel)) { continue }
+        $text = & $blankLua ([Text.Encoding]::UTF8.GetString($fileBytes[$rel]))
+        foreach ($m in [regex]::Matches($text, '(?m)^\s*(?:function\s+)?((?:addon|KrowiAF)(?:\.[A-Za-z_]\w*)+)\s*(?:=(?!=)|\()')) { $coreDefined[$m.Groups[1].Value] = $true }
+    }
+    $patterns = @{}
+    foreach ($owner in @($featureNames.Keys)) {
+        $own = @($featureNames[$owner] | Where-Object { -not $coreDefined.ContainsKey($_) } | Sort-Object { $_.Length } -Descending)
+        if ($own.Count -gt 0) {
+            $patterns[$owner] = New-Object regex ('(?<![\w.])(' + (($own | ForEach-Object { [regex]::Escape($_) }) -join '|') + ')(?!\w)')
+        }
+    }
+    foreach ($rel in $allFiles) {
+        if ($rel -like 'Libs/*' -or $rel -like 'Tests/*' -or $rel -like '*.toc') { continue }
+        $owner = Get-FeatureOwner $rel
+        $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
+        $text = if ($rel -like '*.lua') { & $blankLua $text } else { & $blankXml $text }
+        $lines = $text -split "`r?`n"
+        foreach ($other in @($patterns.Keys)) {
+            if ($other -eq $owner) { continue }
+            for ($i = 0; $i -lt $lines.Count; $i++) {
+                $m = $patterns[$other].Match($lines[$i])
+                if ($m.Success) {
+                    $who = if ($owner) { "feature $owner" } else { 'the core' }
+                    Add-Finding 'feature-boundary' 'Error' $rel ($i + 1) "$who names '$($m.Groups[1].Value)', which feature $other defines; reach it through a slot (Slots.lua) or the registry (Features.lua) instead (docs/work/2026-11-08-feature-split-poc)"
+                }
+            }
+        }
+    }
+}
+Write-Timing 'feature-boundary'
 
 # --- options-templates: the options window draws Blizzard's Settings look without Blizzard's Settings code --------
 # Blizzard's category list keeps its selection in one file-level variable that every SettingsCategoryListTemplate
@@ -1044,7 +1120,7 @@ if (Test-Path $ignoreFile) {
         if ($t -match '^(\S+)\s+(\S+)(?:\s+(\S+))?$') { $ignore += @{ Rule = $Matches[1]; Path = $Matches[2]; Name = $Matches[3] } }
     }
 }
-$alwaysOn = @('section-order', 'dup-id', 'saved-variables', 'lua-syntax', 'globals', 'removed-api', 'deprecated-api', 'library-names', 'util-flags', 'background-jobs', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'data-snapshot', 'zone-decisions', 'mapverifier', 'changelog', 'kit')
+$alwaysOn = @('section-order', 'dup-id', 'saved-variables', 'lua-syntax', 'globals', 'removed-api', 'deprecated-api', 'library-names', 'util-flags', 'background-jobs', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'data-snapshot', 'zone-decisions', 'mapverifier', 'changelog', 'kit', 'feature-boundary')
 $report = $findings | Where-Object {
     $f = $_
     -not ($ignore | Where-Object { ($_.Rule -eq '*' -or $_.Rule -eq $f.Rule) -and $f.Path -like $_.Path -and (-not $_.Name -or $f.Message.Contains("'$($_.Name)'")) })

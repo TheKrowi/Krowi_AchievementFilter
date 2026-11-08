@@ -20,4 +20,5 @@
     <Script file="Earned.lua" />
     <Script file="Plugins.lua" />
     <Script file="PopUps.lua" />
+    <Script file="Features.lua" />
 </Ui>

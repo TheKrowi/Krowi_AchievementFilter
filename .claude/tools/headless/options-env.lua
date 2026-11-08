@@ -11,9 +11,21 @@
 --   local optionsEnv = assert(loadfile(dir .. "/options-env.lua"))()
 --   local ctx = optionsEnv.Get(root, "Retail")   -- cached per client; optionsEnv.New(root, "Retail") loads afresh
 --   ctx.addon.Options.OptionsTable, ctx.Registry[appName], ctx.BlizOptions, ctx.Errors
+--
+-- optionsEnv.New(root, client, opts) takes options for a suite that boots the addon its own way (the features suite):
+--   opts.Profile    the Default profile's saved values before Options:Load, as a player's saved variables would hold them
+--   opts.XmlFrames  every top-level named frame an XML file declares without virtual="true" becomes a stub global where
+--                   the file loads, as the game makes such a frame at file load
+--   opts.Watch      Watch(file, what) for everything a file makes while it loads: a frame (CreateFrame or XML), a hook
+--                   (hooksecurefunc, HookScript), a script, an event, a timer or a slash command
 
 local M = {}
 local cache = {}
+
+-- While a file loads under opts.Watch: what a call on a stub made, by the stub method's name
+local watcher
+local watchedMethods = { HookScript = true, SetScript = true, RegisterEvent = true, RegisterUnitEvent = true,
+    After = true, NewTicker = true, NewTimer = true }
 
 local function readFile(path)
     local f = io.open(path, "rb")
@@ -31,7 +43,17 @@ local function Stub(name)
         rawset(t, k, child)
         return child
     end
-    mt.__call = function() return Stub(name .. "()") end
+    mt.__call = function()
+        if watcher then
+            local method = name:match("%.(%a+)$")
+            if method and watchedMethods[method] then watcher(method) end
+        end
+        return Stub(name .. "()")
+    end
+    mt.__newindex = function(t, k, v)
+        if watcher and name == "SlashCmdList" then watcher("SlashCmdList." .. tostring(k)) end
+        rawset(t, k, v)
+    end
     mt.__tostring = function() return "<stub " .. name .. ">" end
     mt.__concat = function(a, b) return tostring(a) .. tostring(b) end
     local zero = function() return 0 end
@@ -64,16 +86,48 @@ local absentGlobals = { ElvUI = true, GW2_ADDON = true, EllesmereUI = true, ZGV 
 local skip = { "^Libs/AceGUI%-3%.0/", "^Libs/AceConfig%-3%.0/", "^Libs/TaintLess/", "^Libs/LibSerialize/", "^Libs/LibDeflate/",
     "^Libs/AceSerializer%-3%.0/", "^Tests/" }
 
-local function New(root, client)
+-- The frame types an XML file can declare at its top level
+local frameTags = { Frame = true, Button = true, CheckButton = true, ScrollFrame = true, Slider = true, StatusBar = true,
+    EditBox = true, GameTooltip = true, ModelScene = true, PlayerModel = true, DressUpModel = true, Cooldown = true,
+    MessageFrame = true, ScrollingMessageFrame = true, SimpleHTML = true, ColorSelect = true }
+
+-- The names of the frames an XML file (comments removed) declares directly under <Ui> without virtual="true"
+local function TopLevelFrames(xml)
+    local names, depth = {}, 0
+    for close, tag, attrs, selfClose in xml:gmatch("<(/?)([%a_]+)([^>]-)(/?)>") do
+        if close == "/" then
+            depth = depth - 1
+        else
+            if depth == 1 and frameTags[tag] then
+                local name = attrs:match("%sname%s*=%s*[\"']([^\"']+)[\"']")
+                local virtual = attrs:match("%svirtual%s*=%s*[\"']true[\"']")
+                if name and not virtual and not name:find("$parent", 1, true) then names[#names + 1] = name end
+            end
+            if selfClose ~= "/" then depth = depth + 1 end
+        end
+    end
+    return names
+end
+
+local function New(root, client, opts)
+    opts = opts or {}
     root = root:gsub("\\", "/"):gsub("/$", "")
     assert(client == "Retail" or client == "Classic", "client must be Retail or Classic")
-    local ctx = { Root = root, Client = client, Errors = {}, Registry = {}, BlizOptions = {}, FilesLoaded = 0 }
+    local ctx = { Root = root, Client = client, Errors = {}, Registry = {}, BlizOptions = {}, FilesLoaded = 0, XmlFrames = {} }
     local function Fail(where, err) ctx.Errors[#ctx.Errors + 1] = where .. ": " .. tostring(err) end
+    -- What a file makes while it loads, told to opts.Watch with the file that loads
+    local function Watched(what)
+        if ctx.LoadingFile and opts.Watch then opts.Watch(ctx.LoadingFile, what) end
+    end
 
     local env = {}
     ctx.env = env
     env._G = env
     setmetatable(env, {
+        __newindex = function(t, k, v)
+            if type(k) == "string" and k:match("^SLASH_") then Watched(k) end
+            rawset(t, k, v)
+        end,
         __index = function(t, k)
             local base = rawget(_G, k)
             if base ~= nil then return base end
@@ -105,6 +159,7 @@ local function New(root, client)
     -- WoW's Lua extensions and the API the options touch, implemented for real
     env.print = function() end
     env.CreateFrame = function(_, name)
+        Watched("CreateFrame " .. tostring(name))
         local frame = Stub("Frame:" .. tostring(name))
         if type(name) == "string" then rawset(env, name, frame) end
         return frame
@@ -142,7 +197,7 @@ local function New(root, client)
     env.CreateFromMixins = function(...) return env.Mixin({}, ...) end
     env.securecall = function(f, ...) if type(f) == "function" then return f(...) end end
     env.securecallfunction = env.securecall
-    env.hooksecurefunc = function() end
+    env.hooksecurefunc = function() Watched("hooksecurefunc") end
     env.issecurevariable = function() return true end
     env.issecretvalue = function() return false end
     env.canaccesstable = function() return true end
@@ -294,6 +349,10 @@ local function New(root, client)
             local child = normalise((dir ~= "" and dir .. "/" or "") .. file:gsub("\\", "/"))
             if tag == "Include" or child:match("%.xml$") then addFromXml(child) elseif tag == "Script" then files[#files + 1] = child end
         end
+        -- After the file's scripts, which come first in this addon's XML files
+        if opts.XmlFrames then
+            for _, name in ipairs(TopLevelFrames(xml)) do files[#files + 1] = { XmlFrame = name, From = rel } end
+        end
     end
     for line in toc:gmatch("[^\r\n]+") do
         if not line:match("^##") then
@@ -322,8 +381,19 @@ local function New(root, client)
 
     local addon = {}
     ctx.addon = addon
+    if opts.Watch then watcher = Watched end
     for _, rel in ipairs(files) do
-        if not skipped(rel) then
+        if type(rel) == "table" then
+            if skipped(rel.From) then rel = nil end
+        end
+        if type(rel) == "table" then
+            ctx.LoadingFile = rel.From
+            Watched("XML frame " .. rel.XmlFrame)
+            rawset(env, rel.XmlFrame, Stub("XmlFrame:" .. rel.XmlFrame))
+            ctx.XmlFrames[#ctx.XmlFrames + 1] = rel.XmlFrame
+            ctx.LoadingFile = nil
+        elseif not skipped(rel) then
+            ctx.LoadingFile = rel
             local text = readFile(root .. "/" .. rel)
             if not text then
                 Fail(rel, "missing file")
@@ -338,8 +408,10 @@ local function New(root, client)
                 end
                 if rel:match("LibStub%.lua$") then PatchLibStub() end
             end
+            ctx.LoadingFile = nil
         end
     end
+    watcher = nil
 
     -- The ADDON_LOADED steps of Krowi_AchievementFilter.lua that build and register the options, in order
     local KrowiAF = rawget(env, "KrowiAF")
@@ -358,7 +430,14 @@ local function New(root, client)
     Step("AchievementFrameHeader:InjectDynamicOptions", function() addon.Gui.AchievementFrameHeader:InjectDynamicOptions() end)
     Step("Filters:InjectDefaults", function() addon.Filters:InjectDefaults() end)
     Step("PluginsApi:InjectPluginOptions", function() KrowiAF.PluginsApi:InjectPluginOptions() end)
+    if opts.Profile then
+        rawset(env, "KrowiAF_Options", { profileKeys = { ["Player - Realm"] = "Default" }, profiles = { Default = opts.Profile } })
+    end
     Step("Options:Load", function() addon.Options:Load(true) end)
+    -- The feature registry starts the features that are on (Features.lua), right after the options as in the game
+    if addon.Features and type(addon.Features.StartAll) == "function" then
+        Step("Features.StartAll", function() addon.Features.StartAll() end)
+    end
 
     -- What PLAYER_LOGIN builds and some setters refresh: the data load, driven the way client-env.lua's RunPipeline
     -- drives Data.lua:LoadOnPlayerLogin, and the world map button the GUI load makes (a stub here)
@@ -406,9 +485,9 @@ function M.Get(root, client)
 end
 
 -- A load of its own, not shared through the cache, for a suite that changes what it loads (the popups suite reloads the
--- alert system against its model of Blizzard's alert frames)
-function M.New(root, client)
-    return New(root, client)
+-- alert system against its model of Blizzard's alert frames; the features suite boots with its own profile, opts above)
+function M.New(root, client, opts)
+    return New(root, client, opts)
 end
 
 return M

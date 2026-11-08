@@ -50,7 +50,11 @@
 --         Gui/EventReminder/SideButtonSystem.lua after a Side Button Anchor change, on models of its two anchors), runner
 --         (Tests/Tests.lua itself, headless only, docs/work/2026-11-08-test-run-history: how many runs History keeps
 --         after a /kaftest run of many entries, also with a run from outside it reporting in between, and after a single
---         run, and that a run puts the suites that need the achievement window's first draw first)
+--         run, and that a run puts the suites that need the achievement window's first draw first), features
+--         (Features.lua, Slots.lua and every feature under Features/, docs/work/2026-11-08-feature-split-poc: two
+--         whole-addon boots through options-env.lua, one with each feature off and one with it on, and whether a
+--         feature that is off starts, keeps a frame, data or a slot entry, and whether a feature's files make anything
+--         while they load)
 --
 -- Retail model is 12.1: the Blizzard_GameMenuEsc handler registry, the UI panel manager (its slots stay
 -- empty because the addon shows the achievement window with a plain Show), UISpecialFrames, static
@@ -2687,6 +2691,59 @@ suites.popups = function(c)
     local observations = {}
     for _, r in ipairs(addon.Tests.PopUps.Run(headless, observations)) do results[#results + 1] = r end
     return results, "Tests/PopUps.lua", observations
+end
+
+-- The features that switch off (Tests/Features.lua, docs/work/2026-11-08-feature-split-poc): per state a whole-addon boot
+-- of its own through options-env.lua with every known feature's switch set to it in the profile, every top-level XML frame
+-- made where its file loads, and what each file makes while it loads watched. Load errors are FAIL lines, as in options.
+suites.features = function(c)
+    local scriptDir = ((arg and arg[0]) or ""):gsub("\\", "/"):match("^(.*)/") or "."
+    local optionsEnv = assert(loadfile(scriptDir .. "/options-env.lua"))()
+    local results, observations = {}, {}
+    local function HasFeatureFiles(name)
+        local f = io.open(root .. "/Features/" .. name .. "/Files.xml", "rb")
+        if f then f:close() end
+        return f ~= nil
+    end
+    for _, state in ipairs({ "off", "on" }) do
+        -- The known features come from the suite file itself, read once outside the boot for their switch paths
+        local known = {}
+        do
+            local probe = { Tests = { Suites = {}, Ready = {} }, Data = {} }
+            local chunk = assert(loadstring(readFile(root .. "/Tests/Features.lua"), "@Tests/Features.lua"))
+            setfenv(chunk, setmetatable({ tinsert = table.insert }, { __index = _G }))
+            chunk("Krowi_AchievementFilter", probe)
+            known = probe.Tests.Features.Known
+        end
+        local profile = {}
+        for _, feature in ipairs(known) do
+            local tbl = profile
+            for depth = 1, #feature.Switch - 1 do
+                tbl[feature.Switch[depth]] = tbl[feature.Switch[depth]] or {}
+                tbl = tbl[feature.Switch[depth]]
+            end
+            tbl[feature.Switch[#feature.Switch]] = state == "on"
+        end
+        local loadCalls = {}
+        local ctx = optionsEnv.New(root, c.client, { Profile = profile, XmlFrames = true,
+            Watch = function(file, what) loadCalls[#loadCalls + 1] = { File = file, What = what } end })
+        for _, err in ipairs(ctx.Errors) do
+            results[#results + 1] = { Name = state .. "/load-error", Status = "FAIL", TargetMet = false, Line = ("features/%s/load-error: FAIL %s"):format(state, err) }
+        end
+        local env, addon = ctx.env, ctx.addon
+        addon.Tests = addon.Tests or { Suites = {}, Ready = {}, Async = {} }
+        local chunk = assert(loadstring(readFile(root .. "/Tests/Features.lua"), "@Tests/Features.lua"))
+        setfenv(chunk, env)
+        chunk("Krowi_AchievementFilter", addon)
+        local runEnv = {
+            Global = function(name) return rawget(env, name) end,
+            LoadCalls = loadCalls,
+            HasFeatureFiles = HasFeatureFiles,
+            State = function() return state end
+        }
+        for _, r in ipairs(addon.Tests.Features.Run(runEnv, observations)) do results[#results + 1] = r end
+    end
+    return results, "Tests/Features.lua", observations
 end
 
 -- The in-game runner itself, headless only (docs/work/2026-11-08-test-run-history): Tests/Tests.lua in an environment of
