@@ -37,7 +37,7 @@ addon.Features.AddHelp("RewardPreview", {
     Title = L["Reward Preview"],
     Blocks = blocks.Blocks(
         blocks.Picture("RewardPreview"),
-        blocks.Text(L["Help Rewards Intro"])
+        blocks.Text(L["Help Rewards Intro"]:K_ReplaceVars({previewReward = L["Preview Reward"]}))
     ),
     Scene = Scene
 })

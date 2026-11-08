@@ -51,18 +51,20 @@ local function IconOff()
     return not addon.Options.db.profile.Achievements.ShowRewardPreviewIcon
 end
 
+-- Only the settings of the row icon follow it; rotation and size apply to every preview, also one opened from the
+-- right-click menu, which works without the icon (Krowi's pick at the look gate, review-options.md)
 local function Rows()
     return {
         ShowRewardPreviewIcon = {
             order = 1, type = "toggle", width = AdjustedWidth(1.35),
-            name = L["Show Reward Preview Icon"]:K_ReplaceVars(L["Reward Preview"]),
-            desc = L["Show Reward Preview Icon Desc"]:K_ReplaceVars(L["Reward Preview"]):KAF_AddDefaultValueText("Achievements.ShowRewardPreviewIcon"),
+            name = L["Show icon on achievements"],
+            desc = L["Show icon on achievements Desc"]:K_ReplaceVars({previewReward = L["Preview Reward"]}):KAF_AddDefaultValueText("Achievements.ShowRewardPreviewIcon"),
             get = function() return addon.Options.db.profile.Achievements.ShowRewardPreviewIcon end,
             set = ShowRewardPreviewIconSet,
         },
         RewardPreviewMouseoverShow = {
             order = 2, type = "toggle", width = AdjustedWidth(1.35),
-            name = L["Show Reward Preview on Mouseover"]:K_ReplaceVars(L["Reward Preview"]),
+            name = L["Show on mouseover"],
             desc = L["Show Reward Preview on Mouseover Desc"]:K_ReplaceVars(L["Reward Preview"]):KAF_AddDefaultValueText("Achievements.RewardPreviewMouseoverShow"),
             get = function() return addon.Options.db.profile.Achievements.RewardPreviewMouseoverShow end,
             set = RewardPreviewMouseoverShowSet,
@@ -70,15 +72,14 @@ local function Rows()
         },
         RewardPreviewInvertVerticalRotation = {
             order = 3, type = "toggle", width = AdjustedWidth(1.35),
-            name = L["Invert Reward Preview Vertical Rotation"],
+            name = L["Invert up and down when turning"],
             desc = L["Invert Reward Preview Vertical Rotation Desc"]:K_ReplaceVars(L["Reward Preview"]):KAF_AddDefaultValueText("Achievements.RewardPreviewInvertVerticalRotation"),
             get = function() return addon.Options.db.profile.Achievements.RewardPreviewInvertVerticalRotation end,
-            set = RewardPreviewInvertVerticalRotationSet,
-            disabled = IconOff
+            set = RewardPreviewInvertVerticalRotationSet
         },
         RewardPreviewMaxIndividualIcons = {
             order = 4, type = "range", width = AdjustedWidth(1.35),
-            name = L["Reward Preview Max Individual Icons"],
+            name = L["Most icons per achievement"],
             desc = L["Reward Preview Max Individual Icons Desc"]:K_ReplaceVars(L["Reward Preview"]):KAF_AddDefaultValueText("Achievements.RewardPreviewMaxIndividualIcons"),
             min = 1, max = 10, step = 1,
             get = function() return addon.Options.db.profile.Achievements.RewardPreviewMaxIndividualIcons end,
@@ -87,21 +88,19 @@ local function Rows()
         },
         RewardPreviewDefaultWidth = {
             order = 5, type = "range", width = AdjustedWidth(1.35),
-            name = L["Reward Preview Default Width"],
-            desc = L["Reward Preview Default Width Desc"]:K_ReplaceVars(L["Reward Preview"]):KAF_AddDefaultValueText("Achievements.RewardPreviewDefaultWidth"),
+            name = L["Width"],
+            desc = L["Reward Preview Width Desc"]:KAF_AddDefaultValueText("Achievements.RewardPreviewDefaultWidth"),
             min = 200, max = 600, step = 1,
             get = function() return addon.Options.db.profile.Achievements.RewardPreviewDefaultWidth end,
-            set = RewardPreviewDefaultWidthSet,
-            disabled = IconOff
+            set = RewardPreviewDefaultWidthSet
         },
         RewardPreviewDefaultHeight = {
             order = 6, type = "range", width = AdjustedWidth(1.35),
-            name = L["Reward Preview Default Height"],
-            desc = L["Reward Preview Default Height Desc"]:K_ReplaceVars(L["Reward Preview"]):KAF_AddDefaultValueText("Achievements.RewardPreviewDefaultHeight"),
+            name = L["Height"],
+            desc = L["Reward Preview Height Desc"]:KAF_AddDefaultValueText("Achievements.RewardPreviewDefaultHeight"),
             min = 220, max = 700, step = 1,
             get = function() return addon.Options.db.profile.Achievements.RewardPreviewDefaultHeight end,
-            set = RewardPreviewDefaultHeightSet,
-            disabled = IconOff
+            set = RewardPreviewDefaultHeightSet
         }
     }
 end

@@ -8,6 +8,15 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Exported at 2026-10-31 22-33-16 ]] --
 L["Feature Switch Desc"] = "Turn {feature} off when you do not use it: after a reload it no longer starts and keeps none of its data. Your settings for it are kept."
 L["Feature Off Help"] = "{feature} is off. Turn it on at the top of this section, then reload."
+L["Show icon on achievements"] = true
+L["Show icon on achievements Desc"] = "An icon on each achievement whose reward can be previewed. The right-click menu has {previewReward} either way."
+L["Show on mouseover"] = true
+L["Invert up and down when turning"] = true
+L["Most icons per achievement"] = true
+L["Width"] = true
+L["Reward Preview Width Desc"] = "The width the window opens at. Resizing the window changes it."
+L["Height"] = true
+L["Reward Preview Height Desc"] = "The height the window opens at. Resizing the window changes it."
 L["Card Tabs"] = "Which tabs show, and in which order."
 L["Card Window"] = "Size, position and what opens first."
 L["Card Categories"] = "Expansions, zones and the special categories."
@@ -582,7 +591,7 @@ L["Help Popout Close On Earn"] = "A Pop Out closes by itself once you earn its a
 L["Help Popout Intro"] = "Ctrl-click an achievement to pop it out into a small window that stays on screen. Drag one Pop Out onto another to stack them."
 L["Help Profiles Intro"] = "Settings and filters each keep their own profile. Share one between characters, or give a character a profile of its own."
 L["Help Profiles Title"] = "Profiles"
-L["Help Rewards Intro"] = "Click the preview icon on an achievement to see its reward. Drag the model to turn it, and drag the corner to resize the window."
+L["Help Rewards Intro"] = "Click the preview icon on an achievement, or choose {previewReward} in its right-click menu, to see its reward. Drag the model to turn it, and drag the corner to resize the window."
 L["Help Right Click Go To"] = "The achievements in its chain, the ones it needs, and the other categories it is in."
 L["Help Right Click Guide"] = "Waypoints for an achievement with a guide."
 L["Help Right Click More"] = "Watch, unwatch, exclude or include it."
@@ -656,7 +665,6 @@ L["Include all Desc"] = "Include all excluded achievements."
 L["Indentation"] = true
 L["Indentation Desc"] = "The size of the indentation of child categories."
 L["Invasions"] = true
-L["Invert Reward Preview Vertical Rotation"] = true
 L["Invert Reward Preview Vertical Rotation Desc"] = "Invert the vertical drag direction when rotating the {rewardPreview} model."
 L["is"] = true
 L["Iskaara Flyover"] = true
@@ -921,11 +929,6 @@ L["Revelations"] = true
 L["Reverse Sort"] = true
 L["Reward Preview"] = true
 L["Reward preview"] = true
-L["Reward Preview Default Height"] = true
-L["Reward Preview Default Height Desc"] = "The default height of the {rewardPreview} window."
-L["Reward Preview Default Width"] = true
-L["Reward Preview Default Width Desc"] = "The default width of the {rewardPreview} window."
-L["Reward Preview Max Individual Icons"] = true
 L["Reward Preview Max Individual Icons Desc"] = "Achievements with more previewable rewards than this (e.g. an item that lets you choose from many mounts) show a single icon to choose from instead of one icon each."
 L["Rewards"] = true
 L["Right"] = true
@@ -1063,9 +1066,6 @@ L["Show Required for"] = "Show {requiredFor}"
 L["Show Required for Desc"] = [=[Show / hide {requiredFor}.
 
 When checked, the achievement that requires the selected achievement to be completed will be visible in the tooltip.]=]
-L["Show Reward Preview Icon"] = "Show {rewardPreview} Icon"
-L["Show Reward Preview Icon Desc"] = "Show / hide an extra icon on the achievement that lets you preview its {rewardPreview}."
-L["Show Reward Preview on Mouseover"] = "Show {rewardPreview} on Mouseover"
 L["Show Reward Preview on Mouseover Desc"] = [=[When checked, hovering the {rewardPreview} icon shows the preview and moving the mouse away closes it again.
 
 When unchecked, clicking the icon is required to open the preview.
