@@ -7,9 +7,11 @@
 
 .DESCRIPTION
     Before a release the addon gets a full swoop (Krowi, 2026-11-07): each scenario suite that runs in game, on Retail
-    and on Mists Classic. A suite that does not apply to a client SKIPs there and still counts. `scheduler` and
-    `sources` (game-only observations) and `pictures` (makes the help pictures) are not checks and never count. In
-    development and in pull requests only the suites a change can affect are run, never the whole set.
+    and on Mists Classic. A run is green only when it failed nothing and passed something, the rule of
+    .claude/tools/Run-GameTests.ps1 (Krowi, 2026-11-08: a run that only skipped proves nothing), so a suite with little
+    to do on a client checks there, read only, that what it covers is absent (docs/work/2026-11-08-test-run-history).
+    `scheduler` and `sources` (game-only observations) and `pictures` (makes the help pictures) are not checks and never
+    count. In development and in pull requests only the suites a change can affect are run, never the whole set.
 
     The options window's frames are built on Blizzard templates a patch can change; their steps live in Krowi_Options'
     test addon (Krowi_OptionsTests, /kotest). Its full run (`all`) is required once per client version, not on every
@@ -44,7 +46,7 @@
     $numbers = @($interface -split '[,\s]+' | Where-Object { $_ -match '^\d+$' } | ForEach-Object { [int]$_ })
     $reader = Join-Path $repo '.claude\tools\headless\read-runs.lua'
 
-    # The runs an addon's saved variables keep, from every client of the family: Suite, Build, Failed, Time, Flavor
+    # The runs an addon's saved variables keep, from every client of the family: Suite, Build, Passed, Failed, Time, Flavor
     function Get-Runs($family, $savedFile, $savedTable) {
         foreach ($client in $family.Clients) {
             $folder = Get-ClientFolder $client
@@ -56,7 +58,7 @@
                     $f = "$line" -split '\|'
                     if ($f.Count -lt 6) { continue }
                     $build = $null; [void][version]::TryParse($f[1], [ref]$build)
-                    [pscustomobject]@{ Suite = $f[0]; Build = $build; Failed = [int]$f[3]; Time = $f[5]; Flavor = $flavor }
+                    [pscustomobject]@{ Suite = $f[0]; Build = $build; Passed = [int]$f[2]; Failed = [int]$f[3]; Time = $f[5]; Flavor = $flavor }
                 }
             }
         }
@@ -76,26 +78,26 @@
             $lastCommit = git -C $repo log -1 --format=%ci -- $suiteFile 2>$null
             if ($lastCommit) { $changed = ([datetimeoffset]::Parse($lastCommit)).LocalDateTime }
             $mine = @($runs | Where-Object { $_.Suite -eq $suite -and $_.Build })
-            $green = @($mine | Where-Object { $_.Build -ge $newest -and $_.Failed -eq 0 -and [datetime]$_.Time -ge $changed })
+            $green = @($mine | Where-Object { $_.Build -ge $newest -and $_.Failed -eq 0 -and $_.Passed -gt 0 -and [datetime]$_.Time -ge $changed })
             if ($green.Count -gt 0) {
                 $g = $green | Sort-Object Build, Time -Descending | Select-Object -First 1
                 Pass "In-game '$suite' suite green on $($family.Name) $($g.Build) ($($g.Flavor), $($g.Time))"
             } else {
-                $seen = if ($mine.Count -gt 0) { ($mine | Sort-Object Build, Time -Descending | ForEach-Object { "$($_.Build) $($_.Flavor) failed=$($_.Failed) $($_.Time)" }) -join '; ' } else { 'no run found' }
-                Fail "In-game '$suite' suite has no green run on $($family.Name) $newest or later since $suiteFile changed ($($changed.ToString('yyyy-MM-dd HH:mm'))): run /kaftest $suite on that client and /reload. Seen: $seen"
+                $seen = if ($mine.Count -gt 0) { ($mine | Sort-Object Build, Time -Descending | ForEach-Object { "$($_.Build) $($_.Flavor) passed=$($_.Passed) failed=$($_.Failed) $($_.Time)" }) -join '; ' } else { 'no run found' }
+                Fail "In-game '$suite' suite has no green run (failed nothing, passed something) on $($family.Name) $newest or later since $suiteFile changed ($($changed.ToString('yyyy-MM-dd HH:mm'))): run /kaftest $suite on that client and /reload. Seen: $seen"
             }
         }
 
         # The library's tests: one green full run on the newest build or later, whenever it ran, so only the first
         # release after a client's new version number is blocked
         $libraryRuns = @(Get-Runs $family 'Krowi_OptionsTests' 'KrowiOptionsTests_Debug' | Where-Object { $_.Suite -eq 'all' -and $_.Build })
-        $libraryGreen = @($libraryRuns | Where-Object { $_.Build -ge $newest -and $_.Failed -eq 0 })
+        $libraryGreen = @($libraryRuns | Where-Object { $_.Build -ge $newest -and $_.Failed -eq 0 -and $_.Passed -gt 0 })
         if ($libraryGreen.Count -gt 0) {
             $g = $libraryGreen | Sort-Object Build, Time -Descending | Select-Object -First 1
             Pass "Krowi_Options' tests (/kotest all) green on $($family.Name) $($g.Build) ($($g.Flavor), $($g.Time))"
         } else {
-            $seen = if ($libraryRuns.Count -gt 0) { ($libraryRuns | Sort-Object Build, Time -Descending | ForEach-Object { "$($_.Build) $($_.Flavor) failed=$($_.Failed) $($_.Time)" }) -join '; ' } else { 'no run found' }
-            Fail "Krowi_Options' tests (/kotest all) have no green run on $($family.Name) $newest or later: run them with Krowi_Options' .claude/tools/Run-GameTests.ps1 all on that client, the test addon deployed with the library copy KAF embeds. Seen: $seen"
+            $seen = if ($libraryRuns.Count -gt 0) { ($libraryRuns | Sort-Object Build, Time -Descending | ForEach-Object { "$($_.Build) $($_.Flavor) passed=$($_.Passed) failed=$($_.Failed) $($_.Time)" }) -join '; ' } else { 'no run found' }
+            Fail "Krowi_Options' tests (/kotest all) have no green run (failed nothing, passed something) on $($family.Name) $newest or later: run them with Krowi_Options' .claude/tools/Run-GameTests.ps1 all on that client, the test addon deployed with the library copy KAF embeds. Seen: $seen"
         }
     }
 }
