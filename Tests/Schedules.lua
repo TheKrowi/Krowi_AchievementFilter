@@ -18,6 +18,7 @@ local schedules = addon.Tests.Schedules
 --     the one toggle left is on, and how many of the other three ids remain
 --   MergeCase: the solution in the case Case: run again after the player changed the toggle, on a profile holding
 --     AceDB's copied defaults, or on a first install
+--   EventRows: how many world and widget event rows the client has; Classic, which has none, runs only this one
 -- Until 2026-10-21 these families came from their POIs (read live, so a scenario SKIPs in game while its family's POI
 -- is up) or their widgets (only in their zone); the Recorded values are that code's answers with them absent.
 
@@ -143,9 +144,13 @@ schedules.Scenarios = {
     -- The watcher's log on the Data Manager's second tab (Krowi, 2026-10-22): one line per family with what was learned,
     -- then what was seen, newest first
     {Name = "log-text", Kind = "Learn", Story = "LogText", RetailOnly = true,
-        Recorded = "Faction Assaults: learned, cycle start 2027-01-20 17:00, the same as the addon's schedule / Grand Hunts: watched only, 1 seen", Target = "Faction Assaults: learned, cycle start 2027-01-20 17:00, the same as the addon's schedule / Grand Hunts: watched only, 1 seen"}
+        Recorded = "Faction Assaults: learned, cycle start 2027-01-20 17:00, the same as the addon's schedule / Grand Hunts: watched only, 1 seen", Target = "Faction Assaults: learned, cycle start 2027-01-20 17:00, the same as the addon's schedule / Grand Hunts: watched only, 1 seen"},
+    -- Classic's events are calendar events only (DataAddons/Shared/*/EventData.lua), read only
+    {Name = "classic-no-world-events", Kind = "EventRows", ClassicOnly = true,
+        Recorded = "0", Target = "0"}
 }
--- RetailOnly: every family is DataAddons/Retail data; Classic has no world or widget events
+-- RetailOnly: every family is DataAddons/Retail data; Classic has no world or widget events, which its ClassicOnly
+-- scenario checks
 
 local function WorldEvent(id)
     return addon.Data.Events[KrowiAF.Enum.EventType.World][id]
@@ -153,6 +158,17 @@ end
 
 local function WidgetEvent(id)
     return addon.Data.Events[KrowiAF.Enum.EventType.Widget][id]
+end
+
+-- The client's world and widget event rows (Data/Data.lua makes both tables on every client)
+local function CountWorldAndWidgetEvents()
+    local count = 0
+    for _, eventType in ipairs({KrowiAF.Enum.EventType.World, KrowiAF.Enum.EventType.Widget}) do
+        for _ in next, addon.Data.Events[eventType] or {} do
+            count = count + 1
+        end
+    end
+    return count
 end
 
 -- The schedules' view of the game at the scenario's time and region; the weekly reset is the region's from its last
@@ -535,6 +551,8 @@ local function RunScenario(env, scenario)
         got = DescribeMerge()
     elseif scenario.Kind == "MergeCase" then
         got = DescribeMergeCase(scenario)
+    elseif scenario.Kind == "EventRows" then
+        got = tostring(CountWorldAndWidgetEvents())
     else
         blocked = "unknown kind " .. tostring(scenario.Kind)
     end
@@ -589,13 +607,19 @@ end
 function schedules.Run(env, observations)
     local results = {}
     if not env.IsRetail() then
-        tinsert(observations, "Retail only: Classic has no world or widget events")
+        for _, scenario in ipairs(schedules.Scenarios) do
+            if scenario.ClassicOnly then
+                tinsert(results, RunScenario(env, scenario))
+            end
+        end
         return results
     end
     local saved = ForceToggles()
     local ok, err = pcall(function()
         for _, scenario in ipairs(schedules.Scenarios) do
-            tinsert(results, RunScenario(env, scenario))
+            if not scenario.ClassicOnly then
+                tinsert(results, RunScenario(env, scenario))
+            end
         end
     end)
     RestoreToggles(saved)

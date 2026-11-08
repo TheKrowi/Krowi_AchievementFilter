@@ -20,7 +20,9 @@ local tooltip = addon.Tests.Tooltip
 --
 -- The section only finishes at once when the set items are in the item cache; otherwise it waits for
 -- GET_ITEM_INFO_RECEIVED. The suite's Ready check requests the items and waits until the cache has them, so the line can
--- be read right after the tooltip is built. Retail only: no Classic achievement has transmog set data.
+-- be read right after the tooltip is built. These run on Retail only: no Classic achievement has transmog set data, and
+-- Blizzard's category tooltip stays Blizzard's there. On Classic two scenarios check exactly that, and only read
+-- (tooltip.ClassicScenarios); they wait for the data load.
 
 -- Kind: nil for the transmog set progress section above; "most-progress" for whether the Most progress section shows;
 -- "category" and "category-leave" for Blizzard's category tooltip (below)
@@ -61,6 +63,13 @@ tooltip.Scenarios = {
         Recorded = "progress bar", Target = "progress bar"},
     {Name = "blizzard-category-tooltip-leave", Kind = "category-leave",
         Recorded = "hidden", Target = "hidden"}
+}
+
+-- Classic, read only. Kind "transmog-count": how many achievements carry transmog set data; "category-global":
+-- Blizzard's category tooltip function as the addon left it, "not replaced" (absent or secure) or "replaced by <addon>"
+tooltip.ClassicScenarios = {
+    {Name = "classic-no-transmog-sets", Kind = "transmog-count", Recorded = "0", Target = "0"},
+    {Name = "classic-category-tooltip", Kind = "category-global", Recorded = "not replaced", Target = "not replaced"}
 }
 
 local function IsCategoryKind(scenario)
@@ -109,7 +118,8 @@ end
 
 -- env: IsRetail(), Setup(scenario, observations) -> ok[, reason], Show(scenario) -> ok[, reason], Lines() -> list of the
 -- tooltip's left texts, CollectingText(), ProgressText(), MostProgressText(), CategoryButton() -> the stand-in category
--- button, Teardown(); optionally ObserveCategoryTooltip(observations)
+-- button, Teardown(); optionally ObserveCategoryTooltip(observations); on Classic only TransmogSetCount() and
+-- CategoryTooltipGlobal()
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
 local function Inspect(env, scenario)
     local lines = env.Lines()
@@ -177,13 +187,37 @@ local function RunScenario(env, scenario, observations)
     }
 end
 
+-- A Classic scenario: env.TransmogSetCount() or env.CategoryTooltipGlobal(), read only
+local classicReads = {
+    ["transmog-count"] = function(env)
+        return tostring(env.TransmogSetCount())
+    end,
+    ["category-global"] = function(env)
+        return env.CategoryTooltipGlobal()
+    end
+}
+
+local function RunClassicScenario(env, scenario)
+    local got = classicReads[scenario.Kind](env)
+    local status = got == scenario.Recorded and "PASS" or "FAIL"
+    local targetMet = got == scenario.Target
+    return {
+        Name = scenario.Name,
+        Status = status,
+        TargetMet = targetMet,
+        Line = ("tooltip/%s: %s recorded=%s got=%s target=%s %s"):format(scenario.Name, status, scenario.Recorded, got, scenario.Target, targetMet and "met" or "open")
+    }
+end
+
 function tooltip.Run(env, observations)
     local results = {}
     if env.ObserveCategoryTooltip then
         env.ObserveCategoryTooltip(observations)
     end
     if not env.IsRetail() then
-        tinsert(observations, "no scenarios on Classic: no achievement there has transmog set data, and Blizzard's category tooltip stays Blizzard's")
+        for _, scenario in ipairs(tooltip.ClassicScenarios) do
+            tinsert(results, RunClassicScenario(env, scenario))
+        end
         return results
     end
     for _, scenario in ipairs(tooltip.Scenarios) do
@@ -237,6 +271,9 @@ end
 
 addon.Tests.Ready.tooltip = function()
     if not addon.Util.IsMainline then
+        if not addon.Data.IsLoaded then -- the Classic scenarios count the loaded achievements
+            return false, "the data load has not finished"
+        end
         return true
     end
     if not addon.Data.Achievements[tooltip.Scenarios[1].Id] then
@@ -313,12 +350,35 @@ local function RealCategoryButton()
     return found
 end
 
+-- Blizzard's category tooltip function as the addon left it: "absent" (Blizzard_AchievementUI not loaded), "Blizzard's"
+-- while it is secure, or "replaced by <the addon that wrote it>"
+local function CategoryTooltipGlobalState()
+    if AchievementFrameCategory_StatusBarTooltip == nil then
+        return "absent"
+    end
+    local isSecure, taintedBy = issecurevariable("AchievementFrameCategory_StatusBarTooltip")
+    return isSecure and "Blizzard's" or "replaced by " .. tostring(taintedBy)
+end
+
+function gameEnv.CategoryTooltipGlobal()
+    local state = CategoryTooltipGlobalState()
+    return (state == "absent" or state == "Blizzard's") and "not replaced" or state
+end
+
+-- How many achievements carry transmog set data (Api/TransmogSetDataApi.lua)
+function gameEnv.TransmogSetCount()
+    local count = 0
+    for _, achievement in next, addon.Data.Achievements do
+        if achievement.TransmogSetIds then
+            count = count + 1
+        end
+    end
+    return count
+end
+
 function gameEnv.ObserveCategoryTooltip(observations)
     LoadAchievementUI()
-    local state = AchievementFrameCategory_StatusBarTooltip == nil and "absent"
-        or issecurevariable("AchievementFrameCategory_StatusBarTooltip") and "Blizzard's"
-        or "replaced by " .. tostring(select(2, issecurevariable("AchievementFrameCategory_StatusBarTooltip")))
-    tinsert(observations, "global AchievementFrameCategory_StatusBarTooltip: " .. state)
+    tinsert(observations, "global AchievementFrameCategory_StatusBarTooltip: " .. CategoryTooltipGlobalState())
 
     if not (AchievementFrameCategories and AchievementFrameCategories.ScrollBox) then
         tinsert(observations, "Blizzard's category list is not read on this client (no ScrollBox list)")

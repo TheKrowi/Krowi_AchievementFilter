@@ -15,13 +15,16 @@
 --         navigation (Gui/Gui.lua's tab sub frames, the search box and Gui/BrowsingHistory/BrowsingHistory.lua: which
 --         navigation buttons each tab of the achievement window shows, issue #325, and whether the back arrow's
 --         tooltip can list an achievement the game does not know), worldmap (Gui/WorldMapButton/ with
---         the Krowi_WorldMapButtons library: whether the button stays in front of the Classic map when it resizes),
+--         the Krowi_WorldMapButtons library: whether the button stays in front of the Classic map when it resizes; on
+--         Retail the strata game rule the map reads when it shows),
 --         obtainable (Objects/Achievement.lua's SetTemporaryObtainable and Data/TemporaryObtainable.lua: the record an
 --         Obtainable() call stores and the state it gives, on the real data load of client-env.lua), tooltip
 --         (Gui/AchievementTooltip/TransmogObjectives.lua: whether the transmog set progress section of the achievement
 --         tooltip finishes in a 12.1.5 environment without the global GetItemInfo; MostProgress.lua: whether the Most
 --         progress section shows on an achievement with transmog set data; Gui/BlizzardOverrides.lua: which tooltip a
---         category button of Blizzard's Achievements and Guild tabs shows, issue #300), guide (Gui/Guide/, the guide's tooltip and
+--         category button of Blizzard's Achievements and Guild tabs shows, issue #300; on Classic, on the real data load,
+--         that no achievement has transmog set data and Blizzard's category tooltip function stays Blizzard's), guide
+--         (Gui/Guide/, the guide's tooltip and
 --         right-click menu sections: achievement guides and their waypoints, once their files exist), menu
 --         (Gui/RightClickMenu/AchievementMenu/AchievementMenu.lua: whether a "go to" entry for an achievement the addon
 --         does not register is greyed out, and whether entries and the title for an id the game does not know can be
@@ -41,7 +44,7 @@
 --         Data/AchievementCache.lua on the real data load: what the achievement window recounts when an achievement is
 --         earned and then opened in it), plugins (Plugins/ZygorGuidesViewer.lua with Api/PluginsApi.lua and the
 --         ADDON_LOADED wiring of Krowi_AchievementFilter.lua: whether Zygor's guide icons are on the addon's rows at the
---         list's first draw, issue #365), popups (Gui/EventReminder/AlertSystem.lua and Options/EventReminders.lua on the
+--         list's first draw, issue #365; on Classic, with Mists' own Zygor on, that the plugin's gate stays shut), popups (Gui/EventReminder/AlertSystem.lua and Options/EventReminders.lua on the
 --         whole-addon load, against a model of Blizzard's alert frames: where the location options put the pop-ups,
 --         whether the game's toasts keep Blizzard's stacking, Show and Hide placeholders, issues #188 and #364; and
 --         Gui/EventReminder/SideButtonSystem.lua after a Side Button Anchor change, on models of its two anchors), runner
@@ -751,6 +754,14 @@ suites.worldmap = function(c)
     local worldMap = addon.Tests.WorldMap
     local observations = {}
     if c.isRetail then
+        -- The game rule WorldMapMixin:OnShow reads (Blizzard_WorldMap.lua:349-352, live): on this model's realm no rule
+        -- gives the map a strata, which the game answers as UNKNOWN (GameRulesDocumentation.lua: the return is never nil).
+        -- The enum's value is the model's own.
+        rawset(env, "Enum", { GameRule = { WorldMapFrameStrata = 1 } })
+        rawset(env, "C_GameRules", { GetGameRuleAsFrameStrata = function(rule)
+            assert(rule == env.Enum.GameRule.WorldMapFrameStrata, "GetGameRuleAsFrameStrata(): not the world map's rule")
+            return "UNKNOWN"
+        end })
         return worldMap.Run(worldMap.GameEnv, observations), "Tests/WorldMap.lua", observations
     end
     c.frames.lenient = true -- the library reads WorldMapFrame.overlayFrames, which Mists does have but the model leaves nil
@@ -867,16 +878,48 @@ end
 -- without yielding. Like 12.1.5 the environment has no global GetItemInfo, only C_Item.GetItemInfo. And the real
 -- Gui/BlizzardOverrides.lua against a model of GameTooltip, the addon's progress-bar tooltip and Blizzard's category
 -- tooltip (sources in Tests/Tooltip.lua).
+-- Classic runs the suite's own reads (GameEnv.TransmogSetCount and CategoryTooltipGlobal) on the real data load of
+-- client-env.lua, with the real Gui/BlizzardOverrides.lua over a model of Blizzard's category tooltip function
+-- (Blizzard_AchievementUI_Shared.lua:227, classic branch) and of issecurevariable for it: secure while it is that
+-- function, else tainted by the addon, as the game names it on Retail ("replaced by Krowi_AchievementFilter", 2026-11-08).
 suites.tooltip = function(c)
+    local observations = {}
+    if not c.isRetail then
+        local scriptDir = ((arg and arg[0]) or ""):gsub("\\", "/"):match("^(.*)/") or "."
+        local clientEnv = assert(loadfile(scriptDir .. "/client-env.lua"))()
+        local ctx = clientEnv.New(root, c.client)
+        local failures = {}
+        local function fail(label) return function(_, err) failures[#failures + 1] = label .. ": " .. tostring(type(err) == "table" and err.msg or err) end end
+        ctx:LoadFiles{ ParseError = fail("parse"), RuntimeError = fail("load") }
+        ctx:RunPipeline{ StepError = fail("step"), TaskError = fail("task") }
+        assert(#failures == 0, "data load failed (run load-data.lua): " .. tostring(failures[1]))
+        local env, addon = ctx.env, ctx.addon
+        local blizzardTooltip = function() end -- what it draws is not looked at
+        rawset(env, "AchievementFrameCategory_StatusBarTooltip", blizzardTooltip)
+        rawset(env, "issecurevariable", function(name)
+            local value = rawget(env, name)
+            if name == "AchievementFrameCategory_StatusBarTooltip" and value ~= nil and value ~= blizzardTooltip then
+                return false, "Krowi_AchievementFilter"
+            end
+            return true
+        end)
+        addon.Tests = { Suites = {}, Ready = {}, Async = {}, FirstDraw = {} }
+        for _, rel in ipairs({ "Gui/BlizzardOverrides.lua", "Tests/Tooltip.lua" }) do
+            local chunk = assert(loadstring(readFile(root .. "/" .. rel), "@" .. rel))
+            setfenv(chunk, env)
+            chunk("Krowi_AchievementFilter", addon)
+        end
+        addon.OverwriteFunctions() -- in game at Blizzard_AchievementUI's ADDON_LOADED
+        local suite = addon.Tests.Tooltip
+        local headless = { TransmogSetCount = suite.GameEnv.TransmogSetCount, CategoryTooltipGlobal = suite.GameEnv.CategoryTooltipGlobal }
+        function headless.IsRetail() return false end
+        return suite.Run(headless, observations), "Tests/Tooltip.lua", observations
+    end
     local env, addon = c.env, c.addon
     c.loadAddonFile("Tests/Tooltip.lua")
     local suite = addon.Tests.Tooltip
-    local observations = {}
     local headless = {}
     function headless.IsRetail() return c.isRetail end
-    if not c.isRetail then
-        return suite.Run(headless, observations), "Tests/Tooltip.lua", observations
-    end
     local krowiTooltip, getLines = ModelKrowiTooltip(env)
 
     -- --- Transmog and item APIs (C_TransmogSets, C_TransmogCollection, C_Item on 12.1.5) ---------------------------------
@@ -1953,6 +1996,17 @@ end
 --     put in after the toggle got the icons drawn that way)
 suites.plugins = function(c)
     local env, addon = c.env, c.addon
+    if not c.isRetail then
+        -- Mists with its own Zygor on, the case the gate read must tell apart: ZygorGuidesViewerClassicTBC loaded, Retail's
+        -- ZygorGuidesViewer not, and ZGV.Achievement as its Code-MOP/Achievement.lua sets it (an empty AvailGuides and an
+        -- IconSetup, so only the addon's name keeps the gate shut)
+        env.C_AddOns = { IsAddOnLoaded = function(name) return name == "ZygorGuidesViewerClassicTBC" end }
+        env.ZGV = { Achievement = { Icons = {}, AvailGuides = {}, IconSetup = function() end } }
+        c.loadAddonFile("Tests/Plugins.lua")
+        local results, observations = nil, {}
+        addon.Tests.Plugins.Run(addon.Tests.Plugins.GameEnv, observations, function(r) results = r end)
+        return results, "Tests/Plugins.lua", observations
+    end
     c.frames.lenient = true -- the plugin reads row fields that can be nil, as the game allows
     local hookFunction = env.hooksecurefunc -- the shared model only records hooks on a table's method; Zygor's plugin needs them
     env.hooksecurefunc = function(target, key, hook)
@@ -2065,6 +2119,7 @@ suites.plugins = function(c)
 
     local picks = { Expansions = 40622, Achievements = 40623 }
     local headless = {}
+    function headless.IsRetail() return true end
     function headless.Setup() return true end
     function headless.OpenWithBlizzardBinding() env.ToggleAchievementFrame() end
     function headless.PickAchievement(tabName) return { Id = picks[tabName] } end

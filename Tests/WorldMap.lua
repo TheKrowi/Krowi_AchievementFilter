@@ -18,7 +18,11 @@ local worldMap = addon.Tests.WorldMap
 -- map. The game moves every descendant of a frame to its new strata, so the button (a child of WorldMapFrame through
 -- Krowi_WorldMapButtons, HIGH from its template) lands in the map's strata under the canvas. Opening a small map does
 -- not change the size, so the button looks fine until the first resize. ElvUI's smaller world map and GW2_UI set the
--- map to HIGH, Leatrix Maps to MEDIUM. Retail's map never sets its own strata, so the suite has no Retail scenarios.
+-- map to HIGH, Leatrix Maps to MEDIUM.
+--
+-- Retail's map takes the strata a game rule gives it each time it shows (WorldMapMixin:OnShow,
+-- Blizzard_WorldMap/Blizzard_WorldMap.lua:349-352, live branch) and keeps its own when the rule gives none (nil or
+-- UNKNOWN). Retail's one scenario reads that rule and only reads it: no map is opened, no CVar set.
 --
 -- The in-game run drives Blizzard's map and UI panels from addon code (ToggleWorldMap, MaximizeMinimizeFrame,
 -- ShowUIPanel), which taints the map, the UI panel manager and the map's pin pools until the next /reload: opening
@@ -39,6 +43,11 @@ worldMap.Scenarios = {
     {Name = "addon-sets-map-strata", Steps = {"OpenSmall", "AddonStrata"}, Recorded = "above", Target = "above"} -- what ElvUI's smaller world map and GW2_UI do
 }
 
+-- Retail: the strata the game rule gives the map when it shows, or "none" (env.MapStrataRule)
+worldMap.RetailScenarios = {
+    {Name = "retail-map-strata-rule", Recorded = "none", Target = "none"}
+}
+
 local function Rank(strata)
     for i, name in ipairs(worldMap.StrataOrder) do
         if name == strata then
@@ -49,7 +58,7 @@ local function Rank(strata)
 end
 
 -- env: IsRetail(), Setup() -> ok[, reason], Reset(), Step(stepKey) -> ok[, reason], ButtonStrata(), CanvasStrata(),
--- Teardown()
+-- Teardown(); on Retail only MapStrataRule() -> the strata or "none", and what the game answered
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
 local function RunScenario(env, scenario, setupProblem)
     local blocked = setupProblem
@@ -86,10 +95,26 @@ local function RunScenario(env, scenario, setupProblem)
     }
 end
 
+-- A Retail scenario, read only: env.MapStrataRule() -> the strata or "none", and what the game answered
+local function RunRuleScenario(env, scenario, observations)
+    local got, answer = env.MapStrataRule()
+    tinsert(observations, "the world map's strata game rule answered " .. tostring(answer))
+    local status = got == scenario.Recorded and "PASS" or "FAIL"
+    local targetMet = got == scenario.Target
+    return {
+        Name = scenario.Name,
+        Status = status,
+        TargetMet = targetMet,
+        Line = ("worldmap/%s: %s recorded=%s got=%s target=%s %s"):format(scenario.Name, status, scenario.Recorded, got, scenario.Target, targetMet and "met" or "open")
+    }
+end
+
 function worldMap.Run(env, observations)
     local results = {}
     if env.IsRetail() then
-        tinsert(observations, "no scenarios on Retail: its map never sets its own strata")
+        for _, scenario in ipairs(worldMap.RetailScenarios) do
+            tinsert(results, RunRuleScenario(env, scenario, observations))
+        end
         return results
     end
     local ready, reason = env.Setup(observations)
@@ -117,6 +142,20 @@ local mapAddons = {"ElvUI", "GW2_UI", "Leatrix_Maps"} -- they set the map's stra
 
 function gameEnv.IsRetail()
     return addon.Util.IsMainline
+end
+
+-- The strata the game rule gives Retail's map when it shows: the strata, or "none" when the rule gives none (nil or
+-- UNKNOWN) or the client has no such rule; and what the game answered
+function gameEnv.MapStrataRule()
+    local rules = Enum and Enum.GameRule
+    if not (C_GameRules and C_GameRules.GetGameRuleAsFrameStrata and rules and rules.WorldMapFrameStrata) then
+        return "none", "nothing: no such game rule on this client"
+    end
+    local strata = C_GameRules.GetGameRuleAsFrameStrata(rules.WorldMapFrameStrata)
+    if strata == nil or strata == "UNKNOWN" then
+        return "none", strata
+    end
+    return strata, strata
 end
 
 local snapshot
@@ -210,7 +249,7 @@ end
 addon.Tests.Suites.worldmap = function()
     local observations = {}
     local results = worldMap.Run(gameEnv, observations)
-    if #results > 0 then
+    if #results > 0 and not gameEnv.IsRetail() then -- Retail's scenario only reads
         tinsert(observations, "the run tainted the world map until the next /reload: reload before entering combat")
     end
     return results, observations
