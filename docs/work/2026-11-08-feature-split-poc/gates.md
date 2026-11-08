@@ -5,3 +5,7 @@ Class: feature
 |---|---|---|---|---|---|
 | 2026-11-08 | intent | The PoC's intent: Reward preview into Features/RewardPreview/ with its switch, the registry and the slots it uses, the four proofs, the automatic run, the review of its six options | accept as written | "Accept as written (Recommended)" | took |
 | 2026-11-08 | scope | Reward preview's settings move as AceConfig tables, or options stage 2 (own format) starts with the PoC (reversing my proposal of 2026-11-03) | keep AceConfig in 106 | "Keep AceConfig in 106 (Recommended)" | took |
+| 2026-11-08 | design | The design: registry, slots (data fields, row icons, menu entries, side panels, options section, help), window as a template made at start, boundary lint, headless start check, features suite with memory, /kaftest matrix | approve as written | "Approve as written (Recommended)" | took |
+| 2026-11-08 | design | What the six settings do when Enable is unticked before the reload | grey out at once | "Grey out at once (Recommended)" | took |
+| 2026-11-08 | design | What an off feature's help page shows where Show me is | no button, one line | "No button, one line (Recommended)" | took |
+| 2026-11-08 | design | The partial live refresh after a profile action | keep until its owner moves | "Keep until its owner moves (Recommended)" | took |
