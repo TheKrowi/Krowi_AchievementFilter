@@ -126,6 +126,10 @@ Every file starts `local _, addon = ...` (or `local addonName, addon = ...`). `a
 2. `ADDON_LOADED` for `Blizzard_AchievementUI` (load-on-demand): `addon.Gui:LoadWithBlizzard_AchievementUI()` hooks and reshapes `AchievementFrame`. Anything touching Blizzard achievement frames goes here, not in phase 1.
 3. `PLAYER_LOGIN`: `addon.Data:LoadOnPlayerLogin()` builds all achievement/category/zone objects, then `addon.BuildCacheAsync` (in `Data/AchievementCache.lua`) walks every achievement ID. Both run as coroutine-style task groups yielding on a per-frame time budget. **`addon.Data.Achievements` is empty until phase 3 completes**; code that needs populated data must hook into `PostLoadOnPlayerLogin` / `PostBuildCache` in `Data/Data.lua`.
 
+### Features that switch off
+
+Since 106 (docs/work/2026-11-08-feature-split-poc) a feature lives in `Features/<Name>/` and registers with the registry (`Features.lua`) while its files load; loading them makes nothing (no frame, hook, script, event, timer or slash command). The registry starts it at `ADDON_LOADED` only while its switch is on in the profile, and a switch takes effect after a reload. A feature reaches the core through the slots (`Slots.lua`: achievement data fields, row icons, achievement menu entries) and the registry's options and help parts; the core never names a feature and a feature never names another (`feature-boundary` lint rule; Tests exempt). Every feature PR proves the `features` suite headless, the boundary rule, a `/kaftest matrix` run on Retail and Mists and the memory after login with the feature off and on. Detail: `docs/architecture.md`, Features.
+
 ### Data pipeline
 
 Data files declare bare tables and never call processing functions; the loaders and `Data/Data.lua` turn each table into tasks at login (chunk execution model: `docs/architecture.md`). Registering the same ID twice hits an `assert`, so each achievement lives in exactly one place: Shared (`DataAddons/Shared/EE_.../`, identical on both clients) or the Retail/Classic file (client-specific entries only). Classic-only patches are never migrated to Shared.
