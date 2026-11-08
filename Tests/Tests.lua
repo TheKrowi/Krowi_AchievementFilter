@@ -30,7 +30,7 @@ local loginDelay = 5 -- seconds after PLAYER_ENTERING_WORLD before the first att
 local loginWait = 120 -- seconds a login run keeps waiting for a suite's Ready check (the data load can take a while on a cold cache)
 local retryDelay = 2
 local keepRuns = 10 -- runs kept in History outside a /kaftest run
-local keep = keepRuns -- what Report trims History to: keepRuns, or more while a /kaftest run of more entries runs (RunEntries)
+local keep = keepRuns -- what Report trims History to: keepRuns, or keepRuns plus the entries while a /kaftest run runs (RunEntries)
 
 local function GetDb()
     KrowiAF_DebugTable = KrowiAF_DebugTable or {}
@@ -174,10 +174,10 @@ end
 -- Read-GameScreenshot.ps1 finds while the game still runs. Then the kit's marker addon (KrowiGameInput, dev only,
 -- Krowi_ClaudeKit's docs/work/2026-11-05-kit-test-runs) is told the run is done, and the kit's Send-GameInput.ps1
 -- -WaitForDone, which .claude/tools/Run-GameTests.ps1 runs, types /reload.
--- The entries whose suite needs the achievement window's first draw of the session (tests.FirstDraw: plugins) run first,
--- since any suite before them could load the window, the others in the order typed. Until the summary, History keeps at
--- least as many runs as the run has entries, so a run of more than keepRuns entries leaves every one of its runs there
--- for Run-GameTests.ps1 to read (docs/work/2026-11-08-test-run-history).
+-- The entries whose suite needs the achievement window's first draw of the session (tests.FirstDraw: plugins on Retail) run first,
+-- since any suite before them could load the window, the others in the order typed. Until the summary, History keeps
+-- keepRuns runs more than the run has entries, so every one of its runs stays there for Run-GameTests.ps1 to read, also
+-- with more than keepRuns entries or a run from outside it in between (docs/work/2026-11-08-test-run-history).
 -- Debug mode: with the marker loaded and debug mode off, the run turns it on for its suites and back off after the
 -- summary (Krowi, 2026-11-05); without the marker it asks for debug mode as /kaftest does, so a player who types it
 -- starts nothing.
@@ -218,7 +218,9 @@ end
 
 -- debugSwitched: the run turned debug mode on, so it turns it off again once the summary is up
 local function RunEntries(entries, debugSwitched)
-    keep = math.max(keepRuns, #entries) -- every run of this one stays in History until its summary
+    -- Every run of this one stays in History until its summary, also when a run from outside it reports in between (a
+    -- /kaftest login run 5 s after the reload): room for keepRuns more
+    keep = keepRuns + #entries
     local lines = {("Krowi's Achievement Filter test run, %s, build %s"):format(date("%Y-%m-%d %H:%M:%S"), (GetBuildInfo()))}
     local index, ranAny = 0, false
     local function Next()

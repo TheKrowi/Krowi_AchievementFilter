@@ -18,7 +18,8 @@ local schedules = addon.Tests.Schedules
 --     the one toggle left is on, and how many of the other three ids remain
 --   MergeCase: the solution in the case Case: run again after the player changed the toggle, on a profile holding
 --     AceDB's copied defaults, or on a first install
---   EventRows: how many world and widget event rows the client has; Classic, which has none, runs only this one
+--   EventRows: how many world and widget event rows the client has, and whether it has calendar rows (the event data
+--     loaded); Classic, which has no world or widget events, runs only this one
 -- Until 2026-10-21 these families came from their POIs (read live, so a scenario SKIPs in game while its family's POI
 -- is up) or their widgets (only in their zone); the Recorded values are that code's answers with them absent.
 
@@ -147,7 +148,7 @@ schedules.Scenarios = {
         Recorded = "Faction Assaults: learned, cycle start 2027-01-20 17:00, the same as the addon's schedule / Grand Hunts: watched only, 1 seen", Target = "Faction Assaults: learned, cycle start 2027-01-20 17:00, the same as the addon's schedule / Grand Hunts: watched only, 1 seen"},
     -- Classic's events are calendar events only (DataAddons/Shared/*/EventData.lua), read only
     {Name = "classic-no-world-events", Kind = "EventRows", ClassicOnly = true,
-        Recorded = "0", Target = "0"}
+        Recorded = "world 0, widget 0, calendar rows present", Target = "world 0, widget 0, calendar rows present"}
 }
 -- RetailOnly: every family is DataAddons/Retail data; Classic has no world or widget events, which its ClassicOnly
 -- scenario checks
@@ -160,15 +161,17 @@ local function WidgetEvent(id)
     return addon.Data.Events[KrowiAF.Enum.EventType.Widget][id]
 end
 
--- The client's world and widget event rows (Data/Data.lua makes both tables on every client)
-local function CountWorldAndWidgetEvents()
-    local count = 0
-    for _, eventType in ipairs({KrowiAF.Enum.EventType.World, KrowiAF.Enum.EventType.Widget}) do
+-- The client's world and widget event rows, and whether it has calendar rows, which proves the event data loaded
+-- (Data/Data.lua makes the three tables on every client; DataAddons/Shared/*/EventData.lua fills the calendar's)
+local function DescribeEventRows()
+    local counts = {}
+    for name, eventType in next, {World = KrowiAF.Enum.EventType.World, Widget = KrowiAF.Enum.EventType.Widget, Calendar = KrowiAF.Enum.EventType.Calendar} do
+        counts[name] = 0
         for _ in next, addon.Data.Events[eventType] or {} do
-            count = count + 1
+            counts[name] = counts[name] + 1
         end
     end
-    return count
+    return ("world %d, widget %d, calendar rows %s"):format(counts.World, counts.Widget, counts.Calendar > 0 and "present" or "none")
 end
 
 -- The schedules' view of the game at the scenario's time and region; the weekly reset is the region's from its last
@@ -552,7 +555,7 @@ local function RunScenario(env, scenario)
     elseif scenario.Kind == "MergeCase" then
         got = DescribeMergeCase(scenario)
     elseif scenario.Kind == "EventRows" then
-        got = tostring(CountWorldAndWidgetEvents())
+        got = DescribeEventRows()
     else
         blocked = "unknown kind " .. tostring(scenario.Kind)
     end

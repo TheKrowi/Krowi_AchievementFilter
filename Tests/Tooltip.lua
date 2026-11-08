@@ -66,7 +66,8 @@ tooltip.Scenarios = {
 }
 
 -- Classic, read only. Kind "transmog-count": how many achievements carry transmog set data; "category-global":
--- Blizzard's category tooltip function as the addon left it, "not replaced" (absent or secure) or "replaced by <addon>"
+-- Blizzard's category tooltip function as the addon left it, "not replaced" (secure) or "replaced by <addon>"; it SKIPs
+-- while the function does not exist
 tooltip.ClassicScenarios = {
     {Name = "classic-no-transmog-sets", Kind = "transmog-count", Recorded = "0", Target = "0"},
     {Name = "classic-category-tooltip", Kind = "category-global", Recorded = "not replaced", Target = "not replaced"}
@@ -193,19 +194,25 @@ local classicReads = {
         return tostring(env.TransmogSetCount())
     end,
     ["category-global"] = function(env)
-        return env.CategoryTooltipGlobal()
+        return env.CategoryTooltipGlobal() -- nil and the reason while the function does not exist
     end
 }
 
 local function RunClassicScenario(env, scenario)
-    local got = classicReads[scenario.Kind](env)
-    local status = got == scenario.Recorded and "PASS" or "FAIL"
-    local targetMet = got == scenario.Target
+    local got, reason = classicReads[scenario.Kind](env)
+    local status, targetMet, tail
+    if got == nil then
+        status, tail = "SKIP", reason
+    else
+        status = got == scenario.Recorded and "PASS" or "FAIL"
+        targetMet = got == scenario.Target
+        tail = ("got=%s target=%s %s"):format(got, scenario.Target, targetMet and "met" or "open")
+    end
     return {
         Name = scenario.Name,
         Status = status,
         TargetMet = targetMet,
-        Line = ("tooltip/%s: %s recorded=%s got=%s target=%s %s"):format(scenario.Name, status, scenario.Recorded, got, scenario.Target, targetMet and "met" or "open")
+        Line = ("tooltip/%s: %s recorded=%s %s"):format(scenario.Name, status, scenario.Recorded, tail)
     }
 end
 
@@ -360,9 +367,13 @@ local function CategoryTooltipGlobalState()
     return isSecure and "Blizzard's" or "replaced by " .. tostring(taintedBy)
 end
 
+-- "not replaced" or "replaced by <addon>"; nil and the reason while the function does not exist
 function gameEnv.CategoryTooltipGlobal()
     local state = CategoryTooltipGlobalState()
-    return (state == "absent" or state == "Blizzard's") and "not replaced" or state
+    if state == "absent" then
+        return nil, "AchievementFrameCategory_StatusBarTooltip does not exist (Blizzard_AchievementUI not loaded)"
+    end
+    return state == "Blizzard's" and "not replaced" or state
 end
 
 -- How many achievements carry transmog set data (Api/TransmogSetDataApi.lua)

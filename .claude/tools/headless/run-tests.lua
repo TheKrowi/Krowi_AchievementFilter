@@ -49,8 +49,8 @@
 --         whether the game's toasts keep Blizzard's stacking, Show and Hide placeholders, issues #188 and #364; and
 --         Gui/EventReminder/SideButtonSystem.lua after a Side Button Anchor change, on models of its two anchors), runner
 --         (Tests/Tests.lua itself, headless only, docs/work/2026-11-08-test-run-history: how many runs History keeps
---         after a /kaftest run of many entries and after a single run, and that a run puts the suites that need the
---         achievement window's first draw first)
+--         after a /kaftest run of many entries, also with a run from outside it reporting in between, and after a single
+--         run, and that a run puts the suites that need the achievement window's first draw first)
 --
 -- Retail model is 12.1: the Blizzard_GameMenuEsc handler registry, the UI panel manager (its slots stay
 -- empty because the addon shows the achievement window with a plain Show), UISpecialFrames, static
@@ -1997,11 +1997,14 @@ end
 suites.plugins = function(c)
     local env, addon = c.env, c.addon
     if not c.isRetail then
-        -- Mists with its own Zygor on, the case the gate read must tell apart: ZygorGuidesViewerClassicTBC loaded, Retail's
+        -- Mists with its own Zygor on, the case the plugin's gate must tell apart: ZygorGuidesViewerClassicTBC loaded, Retail's
         -- ZygorGuidesViewer not, and ZGV.Achievement as its Code-MOP/Achievement.lua sets it (an empty AvailGuides and an
-        -- IconSetup, so only the addon's name keeps the gate shut)
+        -- IconSetup, so only the addon's name keeps the gate shut). The real plugin API and plugin answer.
         env.C_AddOns = { IsAddOnLoaded = function(name) return name == "ZygorGuidesViewerClassicTBC" end }
         env.ZGV = { Achievement = { Icons = {}, AvailGuides = {}, IconSetup = function() end } }
+        env.KrowiAF = {}
+        c.loadAddonFile("Api/PluginsApi.lua")
+        c.loadAddonFile("Plugins/ZygorGuidesViewer.lua")
         c.loadAddonFile("Tests/Plugins.lua")
         local results, observations = nil, {}
         addon.Tests.Plugins.Run(addon.Tests.Plugins.GameEnv, observations, function(r) results = r end)
@@ -2697,6 +2700,9 @@ local runnerScenarios = {
     {Name = "single-run-trims-to-10", Recorded = "10", Target = "10"},
     -- /kaftest run a, p, b, with p marked as needing the achievement window's first draw: the order the suites ran in
     {Name = "first-draw-first", Recorded = "p,a,b", Target = "p,a,b"},
+    -- a /kaftest run of 12 other entries, History full from the runs above, while a run from outside it reports in
+    -- between (as a /kaftest login run 5 s after the reload can): how many of the 12 runs History holds after the summary
+    {Name = "outside-run-keeps-all", Recorded = "12", Target = "12"},
 }
 
 suites.runner = function(c)
@@ -2736,7 +2742,6 @@ suites.runner = function(c)
     setfenv(chunk, env)
     chunk("Krowi_AchievementFilter", addon)
     local tests = addon.Tests
-    tests.FirstDraw = tests.FirstDraw or {} -- the runner's own table since the fix (before it, a mark nothing read)
     local order = {}
     local function FakeSuite(name)
         tests.Suites[name] = function()
@@ -2748,7 +2753,13 @@ suites.runner = function(c)
     FakeSuite("a")
     FakeSuite("p")
     FakeSuite("b")
-    tests.FirstDraw.p = true
+    for n = 1, 12 do FakeSuite("t" .. n) end
+    FakeSuite("x")
+    local t6 = tests.Suites.t6
+    tests.Suites.t6 = function() -- x, from outside the run, reports first
+        tests.Run("x")
+        return t6()
+    end
     local function Command(text) -- what typing the command does, then the timers it started, the summary's among them
         env.SlashCmdList.KAFTEST(text)
         while #timers > 0 do table.remove(timers, 1)() end
@@ -2768,9 +2779,20 @@ suites.runner = function(c)
             return Kept()
         end,
         ["first-draw-first"] = function()
+            tests.FirstDraw.p = true -- Tests.lua's own table: without it the scenario fails
             order = {}
             Command("run a, p, b")
             return table.concat(order, ",")
+        end,
+        ["outside-run-keeps-all"] = function()
+            local entries = {}
+            for n = 1, 12 do entries[n] = "t" .. n end
+            Command("run " .. table.concat(entries, ", "))
+            local kept = 0
+            for _, run in ipairs(env.KrowiAF_DebugTable.Tests.History) do
+                if run.Suite:match("^t%d+$") then kept = kept + 1 end
+            end
+            return tostring(kept)
         end,
     }
     local results = {}

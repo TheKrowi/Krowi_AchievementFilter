@@ -22,7 +22,8 @@ local worldMap = addon.Tests.WorldMap
 --
 -- Retail's map takes the strata a game rule gives it each time it shows (WorldMapMixin:OnShow,
 -- Blizzard_WorldMap/Blizzard_WorldMap.lua:349-352, live branch) and keeps its own when the rule gives none (nil or
--- UNKNOWN). Retail's one scenario reads that rule and only reads it: no map is opened, no CVar set.
+-- UNKNOWN). Retail's one scenario reads that rule and only reads it: no map is opened, no CVar set. It SKIPs on a client
+-- without the rule or the API to read it.
 --
 -- The in-game run drives Blizzard's map and UI panels from addon code (ToggleWorldMap, MaximizeMinimizeFrame,
 -- ShowUIPanel), which taints the map, the UI panel manager and the map's pin pools until the next /reload: opening
@@ -58,7 +59,7 @@ local function Rank(strata)
 end
 
 -- env: IsRetail(), Setup() -> ok[, reason], Reset(), Step(stepKey) -> ok[, reason], ButtonStrata(), CanvasStrata(),
--- Teardown(); on Retail only MapStrataRule() -> the strata or "none", and what the game answered
+-- Teardown(); on Retail only MapStrataRule() -> the strata or "none" and what the game answered, or nil and why not
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
 local function RunScenario(env, scenario, setupProblem)
     local blocked = setupProblem
@@ -95,17 +96,24 @@ local function RunScenario(env, scenario, setupProblem)
     }
 end
 
--- A Retail scenario, read only: env.MapStrataRule() -> the strata or "none", and what the game answered
+-- A Retail scenario, read only: env.MapStrataRule() -> the strata or "none" and what the game answered, or nil and why
+-- it cannot be read (a SKIP)
 local function RunRuleScenario(env, scenario, observations)
     local got, answer = env.MapStrataRule()
-    tinsert(observations, "the world map's strata game rule answered " .. tostring(answer))
-    local status = got == scenario.Recorded and "PASS" or "FAIL"
-    local targetMet = got == scenario.Target
+    local status, targetMet, tail
+    if got == nil then
+        status, tail = "SKIP", answer
+    else
+        tinsert(observations, "the world map's strata game rule answered " .. tostring(answer))
+        status = got == scenario.Recorded and "PASS" or "FAIL"
+        targetMet = got == scenario.Target
+        tail = ("got=%s target=%s %s"):format(got, scenario.Target, targetMet and "met" or "open")
+    end
     return {
         Name = scenario.Name,
         Status = status,
         TargetMet = targetMet,
-        Line = ("worldmap/%s: %s recorded=%s got=%s target=%s %s"):format(scenario.Name, status, scenario.Recorded, got, scenario.Target, targetMet and "met" or "open")
+        Line = ("worldmap/%s: %s recorded=%s %s"):format(scenario.Name, status, scenario.Recorded, tail)
     }
 end
 
@@ -145,11 +153,14 @@ function gameEnv.IsRetail()
 end
 
 -- The strata the game rule gives Retail's map when it shows: the strata, or "none" when the rule gives none (nil or
--- UNKNOWN) or the client has no such rule; and what the game answered
+-- UNKNOWN), and what the game answered; nil and the reason when the client has no such rule or API to read
 function gameEnv.MapStrataRule()
+    if not (C_GameRules and C_GameRules.GetGameRuleAsFrameStrata) then
+        return nil, "C_GameRules.GetGameRuleAsFrameStrata does not exist on this client"
+    end
     local rules = Enum and Enum.GameRule
-    if not (C_GameRules and C_GameRules.GetGameRuleAsFrameStrata and rules and rules.WorldMapFrameStrata) then
-        return "none", "nothing: no such game rule on this client"
+    if not (rules and rules.WorldMapFrameStrata) then
+        return nil, "Enum.GameRule.WorldMapFrameStrata does not exist on this client"
     end
     local strata = C_GameRules.GetGameRuleAsFrameStrata(rules.WorldMapFrameStrata)
     if strata == nil or strata == "UNKNOWN" then
