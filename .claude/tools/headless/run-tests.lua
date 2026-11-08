@@ -44,7 +44,10 @@
 --         list's first draw, issue #365), popups (Gui/EventReminder/AlertSystem.lua and Options/EventReminders.lua on the
 --         whole-addon load, against a model of Blizzard's alert frames: where the location options put the pop-ups,
 --         whether the game's toasts keep Blizzard's stacking, Show and Hide placeholders, issues #188 and #364; and
---         Gui/EventReminder/SideButtonSystem.lua after a Side Button Anchor change, on models of its two anchors)
+--         Gui/EventReminder/SideButtonSystem.lua after a Side Button Anchor change, on models of its two anchors), runner
+--         (Tests/Tests.lua itself, headless only, docs/work/2026-11-08-test-run-history: how many runs History keeps
+--         after a /kaftest run of many entries and after a single run, and that a run puts the suites that need the
+--         achievement window's first draw first)
 --
 -- Retail model is 12.1: the Blizzard_GameMenuEsc handler registry, the UI panel manager (its slots stay
 -- empty because the addon shows the achievement window with a plain Show), UISpecialFrames, static
@@ -2626,6 +2629,105 @@ suites.popups = function(c)
     local observations = {}
     for _, r in ipairs(addon.Tests.PopUps.Run(headless, observations)) do results[#results + 1] = r end
     return results, "Tests/PopUps.lua", observations
+end
+
+-- The in-game runner itself, headless only (docs/work/2026-11-08-test-run-history): Tests/Tests.lua in an environment of
+-- its own with the few game calls it makes stubbed, driven through /kaftest with fake suites that each pass one check.
+-- Its frames draw nothing, its timers run once the command returns, there is no kit marker (KrowiGameInput) and debug mode
+-- is on. The scenarios run in order on the same History.
+local runnerScenarios = {
+    -- a /kaftest run of 12 entries, from an empty History: how many runs History holds once the run's summary is up
+    {Name = "run-of-12-keeps-12", Recorded = "10", Target = "12"},
+    -- then one /kaftest <suite> on its own: how many runs History holds after it
+    {Name = "single-run-trims-to-10", Recorded = "10", Target = "10"},
+    -- /kaftest run a, p, b, with p marked as needing the achievement window's first draw: the order the suites ran in
+    {Name = "first-draw-first", Recorded = "a,p,b", Target = "p,a,b"},
+}
+
+suites.runner = function(c)
+    local function NoDrawFrame() -- every method does nothing; the summary panel reads only its text's height
+        return setmetatable({}, { __index = function(_, method)
+            if method == "GetStringHeight" then return function() return 12 end end
+            if method == "CreateTexture" or method == "CreateFontString" then return function() return NoDrawFrame() end end
+            return function() end
+        end })
+    end
+    local timers = {}
+    -- Lua's own library falls through; every other global is nil unless stubbed here, so KrowiAF_DebugTable starts empty
+    local env = setmetatable({
+        CreateFrame = function() return NoDrawFrame() end,
+        UIParent = NoDrawFrame(),
+        C_Timer = { After = function(_, fn) timers[#timers + 1] = fn end },
+        date = os.date,
+        GetBuildInfo = c.env.GetBuildInfo,
+        Screenshot = function() end,
+        strsplit = c.env.strsplit,
+        strtrim = c.env.strtrim,
+        tinsert = table.insert,
+        tremove = table.remove,
+        sort = table.sort,
+        InCombatLockdown = function() return false end,
+        CopyTable = c.env.CopyTable,
+        print = function() end,
+        SlashCmdList = {},
+    }, { __index = _G })
+    local addon = {
+        Diagnostics = { DebugEnabled = function() return true end },
+        Options = { db = { profile = {} } },
+        Metadata = { Version = "0.0" },
+        Event = { RegisterEvent = function() end },
+    }
+    local chunk = assert(loadstring(readFile(root .. "/Tests/Tests.lua"), "@Tests/Tests.lua"))
+    setfenv(chunk, env)
+    chunk("Krowi_AchievementFilter", addon)
+    local tests = addon.Tests
+    tests.FirstDraw = tests.FirstDraw or {} -- the runner's own table since the fix; before it a mark nothing reads
+    local order = {}
+    local function FakeSuite(name)
+        tests.Suites[name] = function()
+            order[#order + 1] = name
+            return { { Name = "check", Status = "PASS", Line = name .. "/check: PASS" } }, {}
+        end
+    end
+    for n = 1, 12 do FakeSuite("s" .. n) end
+    FakeSuite("a")
+    FakeSuite("p")
+    FakeSuite("b")
+    tests.FirstDraw.p = true
+    local function Command(text) -- what typing the command does, then the timers it started, the summary's among them
+        env.SlashCmdList.KAFTEST(text)
+        while #timers > 0 do table.remove(timers, 1)() end
+    end
+    local function Kept()
+        return tostring(#env.KrowiAF_DebugTable.Tests.History)
+    end
+    local reads = {
+        ["run-of-12-keeps-12"] = function()
+            local entries = {}
+            for n = 1, 12 do entries[n] = "s" .. n end
+            Command("run " .. table.concat(entries, ", "))
+            return Kept()
+        end,
+        ["single-run-trims-to-10"] = function()
+            Command("s1")
+            return Kept()
+        end,
+        ["first-draw-first"] = function()
+            order = {}
+            Command("run a, p, b")
+            return table.concat(order, ",")
+        end,
+    }
+    local results = {}
+    for _, scenario in ipairs(runnerScenarios) do
+        local ok, got = pcall(reads[scenario.Name])
+        if not ok then got = "error: " .. tostring(got) end
+        local status = got == scenario.Recorded and "PASS" or "FAIL"
+        local targetMet = got == scenario.Target
+        results[#results + 1] = { Name = scenario.Name, Status = status, TargetMet = targetMet,
+            Line = ("runner/%s: %s recorded=[%s] got=[%s] target=[%s] %s"):format(scenario.Name, status, scenario.Recorded, got, scenario.Target, targetMet and "met" or "open") }
+    end
+    return results, ".claude/tools/headless/run-tests.lua", {}
 end
 
 -------------------------------------------------------------------------------------------------
