@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 106.0
+### Added
+- An Enable check box at the top of the Reward preview settings: turned off, the reward preview loads nothing at all after a reload
+
 ## 105.0 - 2026-11-08
 ### Added
 - An options window in the look of the game's own Options window, with every setting sorted by feature and how each feature works next to it, opened with /kaf, the minimap icon or the filter menu

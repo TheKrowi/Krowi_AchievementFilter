@@ -422,7 +422,8 @@ suites.escape = function(c)
     frames.Calendar.SideFrame = frames.CalendarSide
     frames.OptionsPicture = env.CreateFrame("Frame", nil, frames.Options) -- the options window's lightbox
     frames.Options.Lightbox = frames.OptionsPicture
-    -- The reward preview closes with the window its row belongs to (Gui/RewardPreview/RewardPreview.lua, OnOwnerWindowHide)
+    -- The reward preview closes with the window its row belongs to (Features/RewardPreview/Window.lua, OnOwnerWindowHide);
+    -- the feature counts as started here, as with every feature on
     frames.RewardPreview = env.CreateFrame("Frame", "KrowiAF_RewardPreview", env.UIParent)
     frames.Achievements:HookScript("OnHide", function() frames.RewardPreview:Hide() end)
 
@@ -1174,8 +1175,7 @@ suites.guide = function(c)
     addon.L = strings
     c.frames.lenient = true -- the guide frames keep their pools in fields that start out nil, as the game allows
     addon.Gui = { AchievementTooltip = { Sections = {} }, RightClickMenu = { AchievementMenu = { Sections = {} } },
-        RegisterFrameForClosing = function() end, -- Gui/FramesForClosing.lua, which the escape suite covers
-        RewardPreview = { Close = function() end } } -- the guide panel closes it on open (Gui/RewardPreview/RewardPreview.lua)
+        RegisterFrameForClosing = function() end } -- Gui/FramesForClosing.lua, which the escape suite covers
     addon.Options = { db = { profile = { Achievements = { Guide = { Tooltip = true, RightClickMenu = true, Icon = true, ExpandedRow = false,
         ActionStyle = 1, WaypointProvider = 1 } } } } } -- Options/Defaults.lua
     local loaded = {}
@@ -1269,6 +1269,7 @@ suites.menu = function(c)
     addon.Gui = { RightClickMenu = {} }
     addon.Data = { Achievements = { [6] = { Id = 6 }, [ids.placeholder] = { Id = ids.placeholder, DoesNotExist = true } } }
     env.KrowiAF = { PluginsApi = { AddAchievementRightClickMenuItems = function() end } }
+    c.loadAddonFile("Slots.lua") -- the features' menu entries the menu merges with its own sections; none started here
     c.loadAddonFile("Gui/RightClickMenu/AchievementMenu/AchievementMenu.lua")
     local achievementMenu = addon.Gui.RightClickMenu.AchievementMenu
 

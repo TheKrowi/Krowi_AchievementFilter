@@ -57,6 +57,9 @@ local function RetailOnly(block)
     return isMainline and block or nil
 end
 
+-- For the help pages the features add (Features.lua AddHelp)
+window.HelpBlocks = {Picture = Picture, Heading = Heading, Text = Text, Term = Term, Blocks = Blocks, RetailOnly = RetailOnly}
+
 local completedIcon, notCompletedIcon, noLongerIcon = "|T136814:0|t", "|T136815:0|t", "|T136813:0|t" -- as the tooltip draws them
 
 -- The rows' markers stand before the lines that explain them (Krowi_Options' Markup); the reload line is the library's
@@ -221,14 +224,6 @@ help.popout = {
         Picture("PopOut"),
         Text(L["Help Popout Intro"]),
         Term(L["Close On Earn"], L["Help Popout Close On Earn"])
-    )
-}
-
-help.rewards = {
-    Title = L["Reward Preview"],
-    Blocks = Blocks(
-        Picture("RewardPreview"),
-        Text(L["Help Rewards Intro"])
     )
 }
 

@@ -35,7 +35,7 @@
 
     # Every in-game scenario suite, for each client family, and where its saved variables are
     $suites = @('escape', 'special', 'navigation', 'worldmap', 'obtainable', 'tooltip', 'guide', 'menu', 'memory', 'events',
-        'schedules', 'tracking', 'options', 'help', 'earned', 'plugins', 'popups')
+        'schedules', 'tracking', 'options', 'help', 'earned', 'plugins', 'popups', 'features')
     # The suites whose file is not the title-cased suite name
     $suiteFiles = @{ special = 'SpecialCategories'; popups = 'PopUps'; worldmap = 'WorldMap' }
     $families = @(
@@ -47,18 +47,20 @@
     $reader = Join-Path $repo '.claude\tools\headless\read-runs.lua'
 
     # The runs an addon's saved variables keep, from every client of the family: Suite, Build, Passed, Failed, Time, Flavor
-    function Get-Runs($family, $savedFile, $savedTable) {
+    function Get-Runs($family, $savedFile, $savedTable, $mode) {
         foreach ($client in $family.Clients) {
             $folder = Get-ClientFolder $client
             $flavor = Split-Path $folder -Leaf
             $wtf = Join-Path $folder 'WTF\Account'
             if (-not (Test-Path -LiteralPath $wtf)) { continue }
             foreach ($sv in Get-ChildItem -LiteralPath $wtf -Directory | ForEach-Object { Join-Path $_.FullName "SavedVariables\$savedFile.lua" } | Where-Object { Test-Path -LiteralPath $_ }) {
-                foreach ($line in @(& $Lua $reader $sv $savedTable 2>$null)) {
+                $readerArgs = @($reader, $sv, $savedTable) + @($mode | Where-Object { $_ })
+                foreach ($line in @(& $Lua @readerArgs 2>$null)) {
                     $f = "$line" -split '\|'
                     if ($f.Count -lt 6) { continue }
                     $build = $null; [void][version]::TryParse($f[1], [ref]$build)
-                    [pscustomobject]@{ Suite = $f[0]; Build = $build; Passed = [int]$f[2]; Failed = [int]$f[3]; Time = $f[5]; Flavor = $flavor }
+                    $complete = if ($f.Count -ge 7) { $f[6] -eq '1' } else { $true }
+                    [pscustomobject]@{ Suite = $f[0]; Build = $build; Passed = [int]$f[2]; Failed = [int]$f[3]; Time = $f[5]; Flavor = $flavor; Complete = $complete }
                 }
             }
         }
@@ -86,6 +88,22 @@
                 $seen = if ($mine.Count -gt 0) { ($mine | Sort-Object Build, Time -Descending | ForEach-Object { "$($_.Build) $($_.Flavor) passed=$($_.Passed) failed=$($_.Failed) $($_.Time)" }) -join '; ' } else { 'no run found' }
                 Fail "In-game '$suite' suite has no green run (failed nothing, passed something) on $($family.Name) $newest or later since $suiteFile changed ($($changed.ToString('yyyy-MM-dd HH:mm'))): run /kaftest $suite on that client and /reload. Seen: $seen"
             }
+        }
+
+        # The features that switch off (docs/work/2026-11-08-feature-split-poc): a whole /kaftest matrix run (every suite
+        # with every feature on, every feature off and each feature alone) green on the newest build or later, newer than
+        # the last change under Features/
+        $featuresChanged = [datetime]::MinValue
+        $lastFeatures = git -C $repo log -1 --format=%ci -- Features/ 2>$null
+        if ($lastFeatures) { $featuresChanged = ([datetimeoffset]::Parse($lastFeatures)).LocalDateTime }
+        $matrixRuns = @(Get-Runs $family $addon 'KrowiAF_DebugTable' 'matrix' | Where-Object { $_.Suite -eq 'matrix' -and $_.Build })
+        $matrixGreen = @($matrixRuns | Where-Object { $_.Build -ge $newest -and $_.Complete -and $_.Failed -eq 0 -and $_.Passed -gt 0 -and [datetime]$_.Time -ge $featuresChanged })
+        if ($matrixGreen.Count -gt 0) {
+            $g = $matrixGreen | Sort-Object Build, Time -Descending | Select-Object -First 1
+            Pass "In-game matrix run (features on, off, alone) green on $($family.Name) $($g.Build) ($($g.Flavor), $($g.Time))"
+        } else {
+            $seen = if ($matrixRuns.Count -gt 0) { ($matrixRuns | Sort-Object Build, Time -Descending | ForEach-Object { "$($_.Build) $($_.Flavor) passed=$($_.Passed) failed=$($_.Failed) complete=$($_.Complete) $($_.Time)" }) -join '; ' } else { 'no run found' }
+            Fail "In-game matrix run has no green whole run (every step ran every suite, failed nothing, passed something) on $($family.Name) $newest or later since Features/ changed ($($featuresChanged.ToString('yyyy-MM-dd HH:mm'))): run .claude/tools/Run-GameTests.ps1 -Matrix on that client. Seen: $seen"
         }
 
         # The library's tests: one green full run on the newest build or later, whenever it ran, so only the first

@@ -36,10 +36,12 @@ Localization\Files.xml
 
 Krowi_AchievementFilter.lua
 Globals.lua
+Slots.lua
 
 Diagnostics.lua
 TaintDiagnostics.lua
 Options\Files.xml
+Features.lua
 Libs\Krowi_Util\Icon.lua
 Icon.lua
 BrowsingHistory.lua
@@ -50,6 +52,7 @@ Filters.lua
 SearchOptions.lua
 Gui\FilesModern.xml [AllowLoadGameType mainline]
 Gui\FilesClassic.xml [AllowLoadGameType wrath, cata, mists]
+Features\Files.xml
 
 Data\Files.xml
 

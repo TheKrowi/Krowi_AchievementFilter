@@ -1,0 +1,11 @@
+<Ui>
+    <!-- The registration first: the other files add their parts to it (Features.lua) -->
+    <Script file="RewardPreview.lua" />
+    <Script file="Api.lua" />
+    <Script file="Data.lua" />
+    <Include file="Window.xml" />
+    <Script file="RowIcon.lua" />
+    <Script file="MenuEntry.lua" />
+    <Script file="Options.lua" />
+    <Script file="Help.lua" />
+</Ui>

@@ -293,7 +293,9 @@ Custom.__index = Custom
 
 function Custom:GetLabel() return self.Label end
 function Custom:GetDescription() return self.Desc or "" end
-function Custom:GetNeedsReload() return false end
+-- A profile action can turn features on or off, which takes a reload (Features.lua), so each lights the reload bar
+-- (docs/work/2026-11-08-feature-split-poc)
+function Custom:GetNeedsReload() return true end
 function Custom:GetButtonText() return self.Button or self.Label end
 function Custom:Get() return self.GetFunc and self.GetFunc() end
 function Custom:Set(value) if self.SetFunc then self.SetFunc(value) end end

@@ -131,19 +131,6 @@ local function NotEarned(id)
     return knownId and not completed
 end
 
-local function HasMountPreview(id)
-    local entries = addon.RewardPreviewData and addon.RewardPreviewData.GetPreviewableEntries(id)
-    if not entries then
-        return false
-    end
-    for _, entry in ipairs(entries) do
-        if entry.RewardPreviewType == KrowiAF.Enum.RewardPreviewType.MountId then
-            return true
-        end
-    end
-    return false
-end
-
 -- Selects the achievement in the window and hands its row on; false without one
 local function ShowAchievement(achievement, func)
     if not achievement then
@@ -153,6 +140,9 @@ local function ShowAchievement(achievement, func)
     KrowiAF_SelectAchievement(achievement)
     WhenRowShown(func)
 end
+
+-- For the Show me scenes the features add (Features.lua AddHelp), which the registry wires as the loop below wires these
+window.ShowMeKit = {CanShow = CanShow, Ready = Ready, PickAchievement = PickAchievement, NotEarned = NotEarned, ShowAchievement = ShowAchievement}
 
 -- The last category of a tab that is not a summary or a flexible special category: on Expansions the current expansion
 local function LastCategory(tab)
@@ -271,17 +261,6 @@ function scenes.popout(ready)
     end
     local popout = addon.Gui.AchievementPopout:Open(achievement)
     Ready(ready, {Popout = popout, Achievement = achievement})
-end
-
-function scenes.rewards(ready)
-    local achievement = PickAchievement(function(id) return NotEarned(id) and HasMountPreview(id) end) or PickAchievement(HasMountPreview)
-    return ShowAchievement(achievement, function(row, selected)
-        local frame = KrowiAF_RewardPreview -- the list reuses row frames, so the achievement is checked too
-        if not (frame:IsShown() and frame.Pinned and frame.OwnerButton == row and frame.OwnerAchievementId == selected.Id) then
-            addon.Gui.RewardPreview:TogglePin(row, selected.Id)
-        end
-        Ready(ready, {Row = row, Achievement = selected, Preview = frame})
-    end)
 end
 
 local ebonBladeResearch = 60962 -- Legendary Research of the Ebon Blade, the guide the mockup named

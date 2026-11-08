@@ -4,12 +4,15 @@
 --   <suite>|<build>|<passed>|<failed>|<skipped>|<time>
 -- Used by .claude/release-gate.ps1, which the kit's release preflight runs, to require a green run on the newest client.
 --
--- Usage: lua.exe read-runs.lua <path to Krowi_AchievementFilter.lua> [<saved table, default KrowiAF_DebugTable>]
+-- Usage: lua.exe read-runs.lua <path to Krowi_AchievementFilter.lua> [<saved table, default KrowiAF_DebugTable>] [matrix]
 -- The second argument reads another addon's file the same way: KrowiOptionsTests_Debug for Krowi_Options' test addon
 -- (/kotest keeps its runs under .Tests.Runs too; its full run is the suite "all").
+-- With "matrix" it prints the /kaftest matrix state instead (Tests/Tests.lua, docs/work/2026-11-08-feature-split-poc):
+--   pending|<step index>|<steps>                                         while a plan waits for a /reload
+--   matrix|<build>|<passed>|<failed>|<skipped>|<time>|<complete 1 or 0>   the last finished plan
 -- Exit code 0, or 2 when the file cannot be loaded.
 
-local path, tableName = ...
+local path, tableName, mode = ...
 tableName = tableName or "KrowiAF_DebugTable"
 local chunk, err = loadfile(path)
 if not chunk then
@@ -19,6 +22,17 @@ end
 chunk()
 local saved = _G[tableName]
 local tests = type(saved) == "table" and type(saved.Tests) == "table" and saved.Tests or {}
+if mode == "matrix" then
+    local matrix = type(tests.Matrix) == "table" and tests.Matrix or {}
+    local pending, last = matrix.Pending, matrix.Last
+    if type(pending) == "table" then
+        io.stdout:write(("pending|%d|%d\n"):format(pending.Index or 0, type(pending.Steps) == "table" and #pending.Steps or 0))
+    end
+    if type(last) == "table" then
+        io.stdout:write(("matrix|%s|%d|%d|%d|%s|%d\n"):format(tostring(last.Build), last.Passed or 0, last.Failed or 0, last.Skipped or 0, tostring(last.Time), last.Complete and 1 or 0))
+    end
+    os.exit(0)
+end
 local runs = {}
 for suite, run in pairs(type(tests.Runs) == "table" and tests.Runs or {}) do
     runs[suite] = run

@@ -124,6 +124,39 @@ local function RowsUnder(sectionId, header)
     return table.concat(rows, " ")
 end
 
+-- Per feature section (one whose first entry is a feature's switch, Features.lua): whether the first option drawn is the
+-- switch, and whether with the switch off every other option is disabled and the switch is not
+local function FeatureSectionsLine()
+    local window, features = addon.Options.Window, addon.Features
+    local source = window.Source
+    local n = { sections = 0, first = 0, greyed = 0 }
+    for _, section in ipairs(window.Map.Sections) do
+        local entry = section.Groups and section.Groups[1] and section.Groups[1].Entries and section.Groups[1].Entries[1]
+        local name = entry and entry.Path and entry.Path:match("^Features%.args%.([^.]+)%.args%.Enabled$")
+        if name then
+            n.sections = n.sections + 1
+            local rows = {}
+            for _, element in ipairs(source.Elements(section)) do
+                if element.Option then tinsert(rows, element.Option) end
+                if element.With then tinsert(rows, element.With) end
+            end
+            local switch = rows[1]
+            if switch and switch.Info[#switch.Info] == "Enabled" and switch.Info[#switch.Info - 1] == name then
+                n.first = n.first + 1
+            end
+            local was = features.GetSwitch(name)
+            features.SetSwitch(name, false)
+            local greyed = switch ~= nil and not switch:IsDisabled() and #rows > 1
+            for i = 2, #rows do
+                if not rows[i]:IsDisabled() then greyed = false end
+            end
+            features.SetSwitch(name, was)
+            if greyed then n.greyed = n.greyed + 1 end
+        end
+    end
+    return ("sections=%d switch-first=%d greyed-when-off=%d"):format(n.sections, n.first, n.greyed)
+end
+
 -- What Overview shows under each group's header (docs/work/2026-11-02-overview-cards): the links or cards, the rows the
 -- cards take, and what fills each card's picture area and line
 local function OverviewLine()
@@ -163,13 +196,13 @@ options.Scenarios = {
         Observe = function()
             local registry = LibStub("AceConfigRegistry-3.0")
             local n = 0
-            for _, app in ipairs({ addon.Metadata.Title, "KrowiAF_Layout", "KrowiAF_EventReminders", "KrowiAF_Profiles", "KrowiAF_Plugins", "KrowiAF_Credits" }) do
+            for _, app in ipairs({ addon.Metadata.Title, "KrowiAF_Layout", "KrowiAF_EventReminders", "KrowiAF_Profiles", "KrowiAF_Plugins", "KrowiAF_Credits", "KrowiAF_Features" }) do
                 if registry:GetOptionsTable(app, "cmd", "KROWIAF-0.0") then n = n + 1 end
             end
             return ("apps=%d"):format(n)
         end,
-        Recorded = "apps=6",
-        Target = "apps=6"},
+        Recorded = "apps=7", -- apps=6 before the Features page (docs/work/2026-11-08-feature-split-poc)
+        Target = "apps=7"},
     {Name = "every-option-mapped-once",
         Observe = function()
             local model = Model()
@@ -199,10 +232,12 @@ options.Scenarios = {
         -- The key binding options' keys carry an auto-numbered order (Binding523Key1): removing the tutorial button
         -- (2026-10-25) took one number out and moved them all, c7f9546a / 3ffe49dd before. Stage 2 gives them fixed ids.
         -- #188 added Position applies to and Hide placeholders (406 / 302 before, 8bb98662 / 06ba645e)
-        Recorded = "options=408 hash=13b38c99",
-        Target = "options=408 hash=13b38c99",
-        RecordedClassic = "options=304 hash=122eff6c",
-        TargetClassic = "options=304 hash=122eff6c"},
+        -- The feature split added Reward preview's switch and moved its six rows under Features.args.RewardPreview
+        -- (408 / 304 before, 13b38c99 / 122eff6c; docs/work/2026-11-08-feature-split-poc)
+        Recorded = "options=409 hash=8e6ec075",
+        Target = "options=409 hash=8e6ec075",
+        RecordedClassic = "options=305 hash=50b2fed1",
+        TargetClassic = "options=305 hash=50b2fed1"},
     {Name = "defaults-restore-acedb",
         Observe = function()
             local model = Model()
@@ -375,6 +410,13 @@ options.Scenarios = {
         RecordedClassic = "links=0 cards=22 rows=9 pictures=14 icons=8 lines=22",
         Target = "links=0 cards=22 rows=9 pictures=15 icons=7 lines=22",
         TargetClassic = "links=0 cards=22 rows=9 pictures=14 icons=8 lines=22"},
+    -- The features that switch off (docs/work/2026-11-08-feature-split-poc): each feature's section opens with its switch,
+    -- and while the switch is off every other row of the section is greyed out and the switch is not. The switch is set
+    -- in the profile directly, without its setter, and put back
+    {Name = "feature-sections",
+        Observe = FeatureSectionsLine,
+        Recorded = "sections=1 switch-first=1 greyed-when-off=1",
+        Target = "sections=1 switch-first=1 greyed-when-off=1"},
 }
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line

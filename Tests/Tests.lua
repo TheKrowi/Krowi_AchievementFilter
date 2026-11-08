@@ -31,6 +31,7 @@ local loginWait = 120 -- seconds a login run keeps waiting for a suite's Ready c
 local retryDelay = 2
 local keepRuns = 10 -- runs kept in History outside a /kaftest run
 local keep = keepRuns -- what Report trims History to: keepRuns, or keepRuns plus the entries while a /kaftest run runs (RunEntries)
+local matrixStep -- the step of /kaftest matrix whose suites run now (below), or nil
 
 local function GetDb()
     KrowiAF_DebugTable = KrowiAF_DebugTable or {}
@@ -94,12 +95,19 @@ local function Report(name, results, observations, argument)
         Notes = notes, -- index = line index; only lines where Blizzard state outside the scenario could have consumed a press
         GameOnly = gameOnly, -- index = line index; steps the headless runner does not model
         Screenshots = screenshots, -- index = line index; the screenshot taken after that line's check
-        Observations = observations and CopyTable(observations) or nil
+        Observations = observations and CopyTable(observations) or nil,
+        MatrixStep = matrixStep -- the /kaftest matrix step it ran in: the features' switches were set for that step
     }
-    -- the latest full run of every suite, for the release preflight (.claude/release-gate.ps1)
+    -- the latest full run of every suite, for the release preflight (.claude/release-gate.ps1); a matrix step's runs ran
+    -- with features switched off, so they never stand for one
     GetDb().Runs = GetDb().Runs or {}
-    if not argument then
+    if not argument and not matrixStep then
         GetDb().Runs[name] = GetDb().LastRun
+    end
+    local plan = matrixStep and GetDb().Matrix and GetDb().Matrix.Pending
+    if plan then
+        local step = plan.Results[plan.Index]
+        step.Runs, step.Passed, step.Failed, step.Skipped = step.Runs + 1, step.Passed + counts.PASS, step.Failed + counts.FAIL, step.Skipped + counts.SKIP
     end
     GetDb().History = GetDb().History or {}
     tinsert(GetDb().History, GetDb().LastRun)
@@ -217,16 +225,21 @@ local function ShowSummary(lines, onShown)
 end
 
 -- debugSwitched: the run turned debug mode on, so it turns it off again once the summary is up
-local function RunEntries(entries, debugSwitched)
+-- onFinished(lines): instead of the summary (a /kaftest matrix step), which then keeps History's room for the whole plan
+local function RunEntries(entries, debugSwitched, onFinished)
     -- Every run of this one stays in History until its summary, also when a run from outside it reports in between (a
     -- /kaftest login run 5 s after the reload): room for keepRuns more
-    keep = keepRuns + #entries
+    keep = math.max(keep, keepRuns + #entries)
     local lines = {("Krowi's Achievement Filter test run, %s, build %s"):format(date("%Y-%m-%d %H:%M:%S"), (GetBuildInfo()))}
     local index, ranAny = 0, false
     local function Next()
         index = index + 1
         local entry = entries[index]
         if not entry then
+            if onFinished then
+                onFinished(lines)
+                return
+            end
             keep = keepRuns -- the next run outside /kaftest run trims History back
             if ranAny then -- the suites drive Blizzard's frames and API from addon code, some of it taints until a reload
                 tinsert(lines, "/reload before entering combat")
@@ -312,11 +325,153 @@ local function StartRun(text)
     RunEntries(entries, switched)
 end
 
+-- /kaftest matrix (docs/work/2026-11-08-feature-split-poc): every suite but the probes with every feature on, with every
+-- feature off and with each feature alone (with one feature, alone is all on), on the switches of the current profile.
+-- A switch takes effect after a reload, and C_UI.Reload is protected outside a key press or click (blocked from a timer
+-- on Retail 12.1.5 and Mists 5.5.4, 2026-11-08), so each step ends by asking for a /reload: the kit's marker reports done
+-- and Run-GameTests.ps1 -Matrix types it, or a player does. After the last step the switches go back as they were, and
+-- the plan's record (Matrix.Last) waits for that last /reload. The plan lives in the saved variables (Matrix.Pending), so
+-- it carries over each reload; the runs carry their step (MatrixStep) and stay out of Runs.
+tests.Probes = {scheduler = true, sources = true, pictures = true} -- game-only probes, not regression suites
+
+local function MatrixSuites()
+    local names = {}
+    for name in next, tests.Suites do
+        if not tests.Probes[name] then
+            tinsert(names, name)
+        end
+    end
+    sort(names)
+    return FirstDrawFirst(names)
+end
+
+local function MatrixSteps()
+    local list = addon.Features.List()
+    local steps = {}
+    local function Step(name, on)
+        local switches = {}
+        for _, feature in ipairs(list) do
+            switches[feature.Name] = on(feature.Name)
+        end
+        tinsert(steps, {Name = name, Switches = switches})
+    end
+    Step("all-on", function() return true end)
+    Step("all-off", function() return false end)
+    if #list > 1 then
+        for _, feature in ipairs(list) do
+            Step(feature.Name .. "-alone", function(name) return name == feature.Name end)
+        end
+    end
+    return steps
+end
+
+local function ApplySwitches(switches)
+    for name, on in next, switches do
+        addon.Features.SetSwitch(name, on)
+    end
+end
+
+-- A step is set: done on the kit's marker after a second, so it stays up long enough to be read before the reload
+local function AskForReload(text)
+    print(prefix .. text)
+    C_Timer.After(1, function()
+        if KrowiGameInput then
+            KrowiGameInput.Done()
+        end
+    end)
+end
+
+local function StartMatrix()
+    local db = GetDb()
+    if db.Matrix and db.Matrix.Pending then
+        print(prefix .. "a matrix run is waiting for a /reload; /kaftest matrix stop drops it and puts the switches back")
+        return
+    end
+    local switched = false
+    if not addon.Diagnostics.DebugEnabled() then
+        if not KrowiGameInput then
+            print(prefix .. "enable debug mode first (Options > General > Debug)")
+            return
+        end
+        addon.Options.db.profile.EnableDebugInfo = true -- what the option's own setter does (Options/General.lua)
+        switched = true
+    end
+    local restore = {}
+    for _, feature in ipairs(addon.Features.List()) do
+        restore[feature.Name] = addon.Features.GetSwitch(feature.Name)
+    end
+    local plan = {Steps = MatrixSteps(), Suites = MatrixSuites(), Index = 1, Restore = restore, DebugSwitched = switched,
+        Started = date("%Y-%m-%d %H:%M:%S"), Results = {}}
+    for i, step in ipairs(plan.Steps) do
+        plan.Results[i] = {Name = step.Name, Runs = 0, Passed = 0, Failed = 0, Skipped = 0}
+    end
+    db.Matrix = db.Matrix or {}
+    db.Matrix.Pending = plan
+    if KrowiGameInput then
+        KrowiGameInput.Clear()
+    end
+    ApplySwitches(plan.Steps[1].Switches)
+    AskForReload(("matrix: %d steps of %d suites; step 1 (%s) is set, /reload to run it"):format(#plan.Steps, #plan.Suites, plan.Steps[1].Name))
+end
+
+local function StopMatrix()
+    local plan = GetDb().Matrix and GetDb().Matrix.Pending
+    if not plan then
+        print(prefix .. "no matrix run is waiting")
+        return
+    end
+    ApplySwitches(plan.Restore)
+    GetDb().Matrix.Pending = nil
+    print(prefix .. "matrix run dropped; the switches are back as they were from the next /reload")
+end
+
+-- After the reload that follows a set step: runs its suites, then sets the next step, or puts the switches back
+local function RunMatrixStep()
+    local db = GetDb()
+    local plan = db.Matrix.Pending
+    local step = plan.Steps[plan.Index]
+    matrixStep = step.Name
+    print(prefix .. ("matrix step %d of %d (%s)"):format(plan.Index, #plan.Steps, step.Name))
+    RunEntries(plan.Suites, false, function()
+        matrixStep = nil
+        if plan.Index < #plan.Steps then
+            plan.Index = plan.Index + 1
+            ApplySwitches(plan.Steps[plan.Index].Switches)
+            AskForReload(("matrix: step %d (%s) is set, /reload to run it"):format(plan.Index, plan.Steps[plan.Index].Name))
+            return
+        end
+        ApplySwitches(plan.Restore)
+        local last = {Time = date("%Y-%m-%d %H:%M:%S"), Started = plan.Started, Version = addon.Metadata.Version, Build = (GetBuildInfo()),
+            Steps = plan.Results, Suites = #plan.Suites, Passed = 0, Failed = 0, Skipped = 0, Complete = true}
+        local lines = {("Krowi's Achievement Filter matrix run, %s, build %s"):format(last.Time, last.Build)}
+        for _, result in ipairs(plan.Results) do
+            last.Passed, last.Failed, last.Skipped = last.Passed + result.Passed, last.Failed + result.Failed, last.Skipped + result.Skipped
+            if result.Runs < #plan.Suites then
+                last.Complete = false
+            end
+            tinsert(lines, ("%s: %d of %d suites ran; %d passed, %d failed, %d skipped"):format(result.Name, result.Runs, #plan.Suites, result.Passed, result.Failed, result.Skipped))
+        end
+        tinsert(lines, "the switches are back as they were from the next /reload")
+        db.Matrix.Last = last
+        db.Matrix.Pending = nil
+        if plan.DebugSwitched then
+            addon.Options.db.profile.EnableDebugInfo = false
+        end
+        ShowSummary(lines)
+    end)
+end
+
 SLASH_KAFTEST1 = "/kaftest"
 SlashCmdList.KAFTEST = function(msg)
     local command, argument = strsplit(" ", strtrim(msg or ""))
     if command == "run" then
         StartRun((strtrim(msg or "")):match("^run%s+(.+)$"))
+    elseif command == "matrix" then
+        if argument == "stop" then
+            StopMatrix()
+        else
+            StartMatrix()
+        end
     elseif command == "login" then
         if not argument or argument == "" or argument == "off" then
             GetDb().RunOnLogin = nil
@@ -330,7 +485,7 @@ SlashCmdList.KAFTEST = function(msg)
     elseif command and command ~= "" then
         tests.Run(command, nil, nil, nil, argument ~= "" and argument or nil)
     else
-        print(prefix .. "/kaftest <suite> [what] | /kaftest run <suite>[, <suite> ...] | /kaftest login <suite|off>; suites: " .. tests.List())
+        print(prefix .. "/kaftest <suite> [what] | /kaftest run <suite>[, <suite> ...] | /kaftest matrix [stop] | /kaftest login <suite|off>; suites: " .. tests.List())
     end
 end
 
@@ -341,6 +496,13 @@ addon.Event:RegisterEvent("PLAYER_ENTERING_WORLD", function(_, isLogin, isReload
     -- A request the retired Request-GameTests.ps1 left in the saved variables is dropped unrun
     if KrowiAF_DebugTable and KrowiAF_DebugTable.TestRequest ~= nil then
         KrowiAF_DebugTable.TestRequest = nil
+    end
+    -- A /kaftest matrix step is set: it runs now, and History keeps room for the whole plan, as each reload resets keep
+    local plan = KrowiAF_DebugTable and KrowiAF_DebugTable.Tests and KrowiAF_DebugTable.Tests.Matrix and KrowiAF_DebugTable.Tests.Matrix.Pending
+    if plan then
+        keep = keepRuns + #plan.Steps * #plan.Suites
+        C_Timer.After(loginDelay, RunMatrixStep)
+        return
     end
     -- A /kaftest run that turned debug mode on and never reached its summary
     if KrowiAF_DebugTable and KrowiAF_DebugTable.Tests and KrowiAF_DebugTable.Tests.DebugSwitchedByRun then

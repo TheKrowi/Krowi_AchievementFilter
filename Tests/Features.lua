@@ -12,9 +12,8 @@ local features = addon.Tests.Features
 --   a SKIP.
 -- - In game the suite also records the addon's memory after a full collect, with no threshold.
 -- Tests may name features (the feature-boundary lint rule exempts Tests/); a feature's own checks are listed in Known.
--- Recorded is the behaviour before the registry existed (verified headlessly 2026-11-08: no switch default, no
--- registry, the reward preview's frame made at file load and its data kept whatever the profile says); Target is the
--- spec's.
+-- Before the registry (until 2026-11-08, verified headlessly) there was no switch default and no registry, and the reward
+-- preview's frame was made at file load and its data kept whatever the profile said; Recorded is now the spec's Target.
 
 -- Name: the feature's folder under Features/ and its key in the registry
 -- Switch: its saved path in the profile; Frame: a frame it makes; Data: what its data load keeps
@@ -25,13 +24,12 @@ features.Known = {
 
 -- Check: what is observed; Recorded and Target per boot state
 features.Scenarios = {
-    {Check = "default", Recorded = {off = "no default", on = "no default"}, Target = {off = "default on", on = "default on"}},
-    {Check = "started", Recorded = {off = "no registry", on = "no registry"}, Target = {off = "not started", on = "started"}},
-    {Check = "frame", Recorded = {off = "frame", on = "frame"}, Target = {off = "none", on = "frame"}},
-    {Check = "data", Recorded = {off = "data", on = "data"}, Target = {off = "none", on = "data"}},
-    {Check = "slots", Recorded = {off = "no slots", on = "no slots"}, Target = {off = "owns none", on = "owns entries"}},
-    {Check = "load", Recorded = {off = "no feature files", on = "no feature files"},
-        Target = {off = "nothing made", on = "nothing made"}}
+    {Check = "default", Recorded = {off = "default on", on = "default on"}, Target = {off = "default on", on = "default on"}},
+    {Check = "started", Recorded = {off = "not started", on = "started"}, Target = {off = "not started", on = "started"}},
+    {Check = "frame", Recorded = {off = "none", on = "frame"}, Target = {off = "none", on = "frame"}},
+    {Check = "data", Recorded = {off = "none", on = "data"}, Target = {off = "none", on = "data"}},
+    {Check = "slots", Recorded = {off = "owns none", on = "owns entries"}, Target = {off = "owns none", on = "owns entries"}},
+    {Check = "load", Recorded = {off = "nothing made", on = "nothing made"}, Target = {off = "nothing made", on = "nothing made"}}
 }
 
 local function Read(tbl, path)

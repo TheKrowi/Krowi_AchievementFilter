@@ -7,6 +7,8 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-31 22-33-16 ]] --
+L["Feature Switch Desc"] = "Désactivez {feature} pour l'arrêter complètement : il ne charge alors rien et n'utilise pas de mémoire. Vos réglages sont conservés."
+L["Feature Off Help"] = "{feature} est désactivé. Activez-le en haut de cette section, puis rechargez."
 L["Card Tabs"] = "Quels onglets s'affichent, et dans quel ordre."
 L["Card Window"] = "Taille, position et ce qui s'ouvre en premier."
 L["Card Categories"] = "Extensions, zones et les catégories spéciales."

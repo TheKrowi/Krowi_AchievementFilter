@@ -1,9 +1,13 @@
 local _, addon = ...
-local section = {}
-tinsert(addon.Gui.RightClickMenu.AchievementMenu.Sections, section)
+local feature = addon.RewardPreview
+
+-- Preview Reward in the achievement's right-click menu, an entry of the core's menu slot (Slots.lua, AchievementMenu)
+-- added by the feature's Start: after Pop Out, before Transmog sets
+local section = {Order = 50}
+feature.MenuEntry = section
 
 function section:CheckAdd(achievement)
-    return addon.RewardPreviewData ~= nil and addon.RewardPreviewData.HasPreviewableEntries(achievement.Id)
+    return addon.RewardPreviewData.HasPreviewableEntries(achievement.Id)
 end
 
 function section:Add(menu, achievement, menuBuilder, caller)

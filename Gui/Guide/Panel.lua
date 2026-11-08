@@ -2,7 +2,7 @@ local _, addon = ...
 addon.Gui.Guide.Panel = {}
 local panel = addon.Gui.Guide.Panel
 
--- A side panel with an achievement's guide, like the reward preview (Gui/RewardPreview/RewardPreview.lua): hovering the
+-- A side panel with an achievement's guide, like the reward preview (Features/RewardPreview/Window.lua): hovering the
 -- row's guide icon shows it (Achievements.Guide.MouseoverShow), clicking the icon or Open guide in the right-click menu
 -- pins it, and only a pinned panel can be moved. It shares the spot next to the row with the reward preview
 -- (Gui/SidePanels.lua). Escape closes it, and so does hiding the window the row belongs to. It is built in Lua on first

@@ -1,5 +1,6 @@
 local _, addon = ...
-addon.Data.RewardPreviewData = addon.Data.RewardPreviewData or {}
+-- The entries live in addon.Data.RewardPreviewData, kept by Api.lua while the feature is started; Data/Data.lua makes
+-- addon.Data after this file loads
 
 local rewardPreviewType = KrowiAF.Enum.RewardPreviewType
 
@@ -79,7 +80,7 @@ end
 rewardPreviewData.BuildPreviewData = BuildPreviewData
 
 function rewardPreviewData.GetPreviewableEntries(achievementId)
-    local entries = addon.Data.RewardPreviewData[achievementId]
+    local entries = addon.Data.RewardPreviewData and addon.Data.RewardPreviewData[achievementId]
     if not entries then
         return nil
     end

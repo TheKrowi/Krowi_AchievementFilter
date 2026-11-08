@@ -2,7 +2,8 @@
 -- Shared headless client environment.
 --
 -- Builds one sandboxed Lua 5.1 global environment per client family with the WoW globals the addon
--- touches at load time stubbed, loads every Api/, Objects/, Data/Data.lua and DataAddons/ file in
+-- touches at load time stubbed, loads every Api/, Objects/, Data/Data.lua and DataAddons/ file, Slots.lua and each
+-- feature's Features/<Name>/Api.lua (with a stand-in registry that counts every feature as started) in
 -- the order the .toc and the nested Files.xml manifests give, and drives the real task groups the
 -- way Data.lua:LoadOnPlayerLogin does.
 --
@@ -205,6 +206,16 @@ function M.New(root, client)
     end
     setmetatable(addon, { __index = function(t, k) local s = Stub("addon." .. tostring(k)); rawset(t, k, s); return s end })
     self:EnsureDataTables()
+    -- The feature registry (Features.lua) as the data pipeline needs it: every feature counts as started, and the data
+    -- fields a feature's Api.lua takes go into the data slot (Slots.lua) at once, so the data load and the data snapshot
+    -- see what the game sees with every feature on (docs/work/2026-11-08-feature-split-poc)
+    addon.Features = {
+        HasStarted = function() return true end,
+        IsStarted = function() return true end,
+        AddDataFields = function(_, fields)
+            for field, handler in pairs(fields) do addon.Slots.AchievementData.AddField(field, handler) end
+        end
+    }
 
     -- --- file list in game load order, honouring [AllowLoadGameType] gates -------------------
     local files = {}
@@ -236,7 +247,9 @@ function M.New(root, client)
     end
     local selected = {}
     for _, rel in ipairs(files) do
-        if rel:match("^Api/") or rel:match("^Objects/") or rel == "Data/Data.lua" or rel == "Data/LoadDiagnostics.lua" or rel:match("^DataAddons/") then
+        -- Slots.lua and each feature's Api.lua (its public API and the data fields it takes) carry data, as Api/ does
+        if rel:match("^Api/") or rel:match("^Objects/") or rel == "Data/Data.lua" or rel == "Data/LoadDiagnostics.lua" or rel:match("^DataAddons/")
+            or rel == "Slots.lua" or rel:match("^Features/[^/]+/Api%.lua$") then
             selected[#selected + 1] = rel
         end
     end
