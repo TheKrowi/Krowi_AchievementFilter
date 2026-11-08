@@ -15,13 +15,16 @@
 --         navigation (Gui/Gui.lua's tab sub frames, the search box and Gui/BrowsingHistory/BrowsingHistory.lua: which
 --         navigation buttons each tab of the achievement window shows, issue #325, and whether the back arrow's
 --         tooltip can list an achievement the game does not know), worldmap (Gui/WorldMapButton/ with
---         the Krowi_WorldMapButtons library: whether the button stays in front of the Classic map when it resizes),
+--         the Krowi_WorldMapButtons library: whether the button stays in front of the Classic map when it resizes; on
+--         Retail the strata game rule the map reads when it shows),
 --         obtainable (Objects/Achievement.lua's SetTemporaryObtainable and Data/TemporaryObtainable.lua: the record an
 --         Obtainable() call stores and the state it gives, on the real data load of client-env.lua), tooltip
 --         (Gui/AchievementTooltip/TransmogObjectives.lua: whether the transmog set progress section of the achievement
 --         tooltip finishes in a 12.1.5 environment without the global GetItemInfo; MostProgress.lua: whether the Most
 --         progress section shows on an achievement with transmog set data; Gui/BlizzardOverrides.lua: which tooltip a
---         category button of Blizzard's Achievements and Guild tabs shows, issue #300), guide (Gui/Guide/, the guide's tooltip and
+--         category button of Blizzard's Achievements and Guild tabs shows, issue #300; on Classic, on the real data load,
+--         that no achievement has transmog set data and Blizzard's category tooltip function stays Blizzard's), guide
+--         (Gui/Guide/, the guide's tooltip and
 --         right-click menu sections: achievement guides and their waypoints, once their files exist), menu
 --         (Gui/RightClickMenu/AchievementMenu/AchievementMenu.lua: whether a "go to" entry for an achievement the addon
 --         does not register is greyed out, and whether entries and the title for an id the game does not know can be
@@ -41,10 +44,13 @@
 --         Data/AchievementCache.lua on the real data load: what the achievement window recounts when an achievement is
 --         earned and then opened in it), plugins (Plugins/ZygorGuidesViewer.lua with Api/PluginsApi.lua and the
 --         ADDON_LOADED wiring of Krowi_AchievementFilter.lua: whether Zygor's guide icons are on the addon's rows at the
---         list's first draw, issue #365), popups (Gui/EventReminder/AlertSystem.lua and Options/EventReminders.lua on the
+--         list's first draw, issue #365; on Classic, with Mists' own Zygor on, that the plugin's gate stays shut), popups (Gui/EventReminder/AlertSystem.lua and Options/EventReminders.lua on the
 --         whole-addon load, against a model of Blizzard's alert frames: where the location options put the pop-ups,
 --         whether the game's toasts keep Blizzard's stacking, Show and Hide placeholders, issues #188 and #364; and
---         Gui/EventReminder/SideButtonSystem.lua after a Side Button Anchor change, on models of its two anchors)
+--         Gui/EventReminder/SideButtonSystem.lua after a Side Button Anchor change, on models of its two anchors), runner
+--         (Tests/Tests.lua itself, headless only, docs/work/2026-11-08-test-run-history: how many runs History keeps
+--         after a /kaftest run of many entries, also with a run from outside it reporting in between, and after a single
+--         run, and that a run puts the suites that need the achievement window's first draw first)
 --
 -- Retail model is 12.1: the Blizzard_GameMenuEsc handler registry, the UI panel manager (its slots stay
 -- empty because the addon shows the achievement window with a plain Show), UISpecialFrames, static
@@ -289,7 +295,7 @@ local function BuildClient(client)
         L = setmetatable({}, { __index = function(_, k) return k end }),
         Diagnostics = { DebugEnabled = function() return true end, TraceEnabled = function() return false end, Trace = function() end, Debug = function() end },
         Util = { IsMainline = isRetail, IsModern = isRetail, IsForever = false, IsClassicWithAchievements = not isRetail },
-        Tests = { Suites = {}, Ready = {}, Async = {} },
+        Tests = { Suites = {}, Ready = {}, Async = {}, FirstDraw = {} },
     }
     setmetatable(addon, { __index = function(t, k) local s = Stub("addon." .. tostring(k)) rawset(t, k, s) return s end })
 
@@ -748,6 +754,14 @@ suites.worldmap = function(c)
     local worldMap = addon.Tests.WorldMap
     local observations = {}
     if c.isRetail then
+        -- The game rule WorldMapMixin:OnShow reads (Blizzard_WorldMap.lua:349-352, live): on this model's realm no rule
+        -- gives the map a strata, which the game answers as UNKNOWN (GameRulesDocumentation.lua: the return is never nil).
+        -- The enum's value is the model's own.
+        rawset(env, "Enum", { GameRule = { WorldMapFrameStrata = 1 } })
+        rawset(env, "C_GameRules", { GetGameRuleAsFrameStrata = function(rule)
+            assert(rule == env.Enum.GameRule.WorldMapFrameStrata, "GetGameRuleAsFrameStrata(): not the world map's rule")
+            return "UNKNOWN"
+        end })
         return worldMap.Run(worldMap.GameEnv, observations), "Tests/WorldMap.lua", observations
     end
     c.frames.lenient = true -- the library reads WorldMapFrame.overlayFrames, which Mists does have but the model leaves nil
@@ -864,16 +878,48 @@ end
 -- without yielding. Like 12.1.5 the environment has no global GetItemInfo, only C_Item.GetItemInfo. And the real
 -- Gui/BlizzardOverrides.lua against a model of GameTooltip, the addon's progress-bar tooltip and Blizzard's category
 -- tooltip (sources in Tests/Tooltip.lua).
+-- Classic runs the suite's own reads (GameEnv.TransmogSetCount and CategoryTooltipGlobal) on the real data load of
+-- client-env.lua, with the real Gui/BlizzardOverrides.lua over a model of Blizzard's category tooltip function
+-- (Blizzard_AchievementUI_Shared.lua:227, classic branch) and of issecurevariable for it: secure while it is that
+-- function, else tainted by the addon, as the game names it on Retail ("replaced by Krowi_AchievementFilter", 2026-11-08).
 suites.tooltip = function(c)
+    local observations = {}
+    if not c.isRetail then
+        local scriptDir = ((arg and arg[0]) or ""):gsub("\\", "/"):match("^(.*)/") or "."
+        local clientEnv = assert(loadfile(scriptDir .. "/client-env.lua"))()
+        local ctx = clientEnv.New(root, c.client)
+        local failures = {}
+        local function fail(label) return function(_, err) failures[#failures + 1] = label .. ": " .. tostring(type(err) == "table" and err.msg or err) end end
+        ctx:LoadFiles{ ParseError = fail("parse"), RuntimeError = fail("load") }
+        ctx:RunPipeline{ StepError = fail("step"), TaskError = fail("task") }
+        assert(#failures == 0, "data load failed (run load-data.lua): " .. tostring(failures[1]))
+        local env, addon = ctx.env, ctx.addon
+        local blizzardTooltip = function() end -- what it draws is not looked at
+        rawset(env, "AchievementFrameCategory_StatusBarTooltip", blizzardTooltip)
+        rawset(env, "issecurevariable", function(name)
+            local value = rawget(env, name)
+            if name == "AchievementFrameCategory_StatusBarTooltip" and value ~= nil and value ~= blizzardTooltip then
+                return false, "Krowi_AchievementFilter"
+            end
+            return true
+        end)
+        addon.Tests = { Suites = {}, Ready = {}, Async = {}, FirstDraw = {} }
+        for _, rel in ipairs({ "Gui/BlizzardOverrides.lua", "Tests/Tooltip.lua" }) do
+            local chunk = assert(loadstring(readFile(root .. "/" .. rel), "@" .. rel))
+            setfenv(chunk, env)
+            chunk("Krowi_AchievementFilter", addon)
+        end
+        addon.OverwriteFunctions() -- in game at Blizzard_AchievementUI's ADDON_LOADED
+        local suite = addon.Tests.Tooltip
+        local headless = { TransmogSetCount = suite.GameEnv.TransmogSetCount, CategoryTooltipGlobal = suite.GameEnv.CategoryTooltipGlobal }
+        function headless.IsRetail() return false end
+        return suite.Run(headless, observations), "Tests/Tooltip.lua", observations
+    end
     local env, addon = c.env, c.addon
     c.loadAddonFile("Tests/Tooltip.lua")
     local suite = addon.Tests.Tooltip
-    local observations = {}
     local headless = {}
     function headless.IsRetail() return c.isRetail end
-    if not c.isRetail then
-        return suite.Run(headless, observations), "Tests/Tooltip.lua", observations
-    end
     local krowiTooltip, getLines = ModelKrowiTooltip(env)
 
     -- --- Transmog and item APIs (C_TransmogSets, C_TransmogCollection, C_Item on 12.1.5) ---------------------------------
@@ -1950,6 +1996,20 @@ end
 --     put in after the toggle got the icons drawn that way)
 suites.plugins = function(c)
     local env, addon = c.env, c.addon
+    if not c.isRetail then
+        -- Mists with its own Zygor on, the case the plugin's gate must tell apart: ZygorGuidesViewerClassicTBC loaded, Retail's
+        -- ZygorGuidesViewer not, and ZGV.Achievement as its Code-MOP/Achievement.lua sets it (an empty AvailGuides and an
+        -- IconSetup, so only the addon's name keeps the gate shut). The real plugin API and plugin answer.
+        env.C_AddOns = { IsAddOnLoaded = function(name) return name == "ZygorGuidesViewerClassicTBC" end }
+        env.ZGV = { Achievement = { Icons = {}, AvailGuides = {}, IconSetup = function() end } }
+        env.KrowiAF = {}
+        c.loadAddonFile("Api/PluginsApi.lua")
+        c.loadAddonFile("Plugins/ZygorGuidesViewer.lua")
+        c.loadAddonFile("Tests/Plugins.lua")
+        local results, observations = nil, {}
+        addon.Tests.Plugins.Run(addon.Tests.Plugins.GameEnv, observations, function(r) results = r end)
+        return results, "Tests/Plugins.lua", observations
+    end
     c.frames.lenient = true -- the plugin reads row fields that can be nil, as the game allows
     local hookFunction = env.hooksecurefunc -- the shared model only records hooks on a table's method; Zygor's plugin needs them
     env.hooksecurefunc = function(target, key, hook)
@@ -2062,6 +2122,7 @@ suites.plugins = function(c)
 
     local picks = { Expansions = 40622, Achievements = 40623 }
     local headless = {}
+    function headless.IsRetail() return true end
     function headless.Setup() return true end
     function headless.OpenWithBlizzardBinding() env.ToggleAchievementFrame() end
     function headless.PickAchievement(tabName) return { Id = picks[tabName] } end
@@ -2626,6 +2687,124 @@ suites.popups = function(c)
     local observations = {}
     for _, r in ipairs(addon.Tests.PopUps.Run(headless, observations)) do results[#results + 1] = r end
     return results, "Tests/PopUps.lua", observations
+end
+
+-- The in-game runner itself, headless only (docs/work/2026-11-08-test-run-history): Tests/Tests.lua in an environment of
+-- its own with the few game calls it makes stubbed, driven through /kaftest with fake suites that each pass one check.
+-- Its frames draw nothing, its timers run once the command returns, there is no kit marker (KrowiGameInput) and debug mode
+-- is on. The scenarios run in order on the same History.
+local runnerScenarios = {
+    -- a /kaftest run of 12 entries, from an empty History: how many runs History holds once the run's summary is up
+    {Name = "run-of-12-keeps-12", Recorded = "12", Target = "12"},
+    -- then one /kaftest <suite> on its own: how many runs History holds after it
+    {Name = "single-run-trims-to-10", Recorded = "10", Target = "10"},
+    -- /kaftest run a, p, b, with p marked as needing the achievement window's first draw: the order the suites ran in
+    {Name = "first-draw-first", Recorded = "p,a,b", Target = "p,a,b"},
+    -- a /kaftest run of 12 other entries, History full from the runs above, while a run from outside it reports in
+    -- between (as a /kaftest login run 5 s after the reload can): how many of the 12 runs History holds after the summary
+    {Name = "outside-run-keeps-all", Recorded = "12", Target = "12"},
+}
+
+suites.runner = function(c)
+    local function NoDrawFrame() -- every method does nothing; the summary panel reads only its text's height
+        return setmetatable({}, { __index = function(_, method)
+            if method == "GetStringHeight" then return function() return 12 end end
+            if method == "CreateTexture" or method == "CreateFontString" then return function() return NoDrawFrame() end end
+            return function() end
+        end })
+    end
+    local timers = {}
+    -- Lua's own library falls through; every other global is nil unless stubbed here, so KrowiAF_DebugTable starts empty
+    local env = setmetatable({
+        CreateFrame = function() return NoDrawFrame() end,
+        UIParent = NoDrawFrame(),
+        C_Timer = { After = function(_, fn) timers[#timers + 1] = fn end },
+        date = os.date,
+        GetBuildInfo = c.env.GetBuildInfo,
+        Screenshot = function() end,
+        strsplit = c.env.strsplit,
+        strtrim = c.env.strtrim,
+        tinsert = table.insert,
+        tremove = table.remove,
+        sort = table.sort,
+        InCombatLockdown = function() return false end,
+        CopyTable = c.env.CopyTable,
+        print = function() end,
+        SlashCmdList = {},
+    }, { __index = _G })
+    local addon = {
+        Diagnostics = { DebugEnabled = function() return true end },
+        Options = { db = { profile = {} } },
+        Metadata = { Version = "0.0" },
+        Event = { RegisterEvent = function() end },
+    }
+    local chunk = assert(loadstring(readFile(root .. "/Tests/Tests.lua"), "@Tests/Tests.lua"))
+    setfenv(chunk, env)
+    chunk("Krowi_AchievementFilter", addon)
+    local tests = addon.Tests
+    local order = {}
+    local function FakeSuite(name)
+        tests.Suites[name] = function()
+            order[#order + 1] = name
+            return { { Name = "check", Status = "PASS", Line = name .. "/check: PASS" } }, {}
+        end
+    end
+    for n = 1, 12 do FakeSuite("s" .. n) end
+    FakeSuite("a")
+    FakeSuite("p")
+    FakeSuite("b")
+    for n = 1, 12 do FakeSuite("t" .. n) end
+    FakeSuite("x")
+    local t6 = tests.Suites.t6
+    tests.Suites.t6 = function() -- x, from outside the run, reports first
+        tests.Run("x")
+        return t6()
+    end
+    local function Command(text) -- what typing the command does, then the timers it started, the summary's among them
+        env.SlashCmdList.KAFTEST(text)
+        while #timers > 0 do table.remove(timers, 1)() end
+    end
+    local function Kept()
+        return tostring(#env.KrowiAF_DebugTable.Tests.History)
+    end
+    local reads = {
+        ["run-of-12-keeps-12"] = function()
+            local entries = {}
+            for n = 1, 12 do entries[n] = "s" .. n end
+            Command("run " .. table.concat(entries, ", "))
+            return Kept()
+        end,
+        ["single-run-trims-to-10"] = function()
+            Command("s1")
+            return Kept()
+        end,
+        ["first-draw-first"] = function()
+            tests.FirstDraw.p = true -- Tests.lua's own table: without it the scenario fails
+            order = {}
+            Command("run a, p, b")
+            return table.concat(order, ",")
+        end,
+        ["outside-run-keeps-all"] = function()
+            local entries = {}
+            for n = 1, 12 do entries[n] = "t" .. n end
+            Command("run " .. table.concat(entries, ", "))
+            local kept = 0
+            for _, run in ipairs(env.KrowiAF_DebugTable.Tests.History) do
+                if run.Suite:match("^t%d+$") then kept = kept + 1 end
+            end
+            return tostring(kept)
+        end,
+    }
+    local results = {}
+    for _, scenario in ipairs(runnerScenarios) do
+        local ok, got = pcall(reads[scenario.Name])
+        if not ok then got = "error: " .. tostring(got) end
+        local status = got == scenario.Recorded and "PASS" or "FAIL"
+        local targetMet = got == scenario.Target
+        results[#results + 1] = { Name = scenario.Name, Status = status, TargetMet = targetMet,
+            Line = ("runner/%s: %s recorded=[%s] got=[%s] target=[%s] %s"):format(scenario.Name, status, scenario.Recorded, got, scenario.Target, targetMet and "met" or "open") }
+    end
+    return results, ".claude/tools/headless/run-tests.lua", {}
 end
 
 -------------------------------------------------------------------------------------------------

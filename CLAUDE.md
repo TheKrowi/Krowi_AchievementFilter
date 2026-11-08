@@ -47,6 +47,9 @@ Gate log: enrolled. Every work folder keeps a `gates.md` with a row per gate ans
 
 Its preflight runs `.claude/release-gate.ps1`. The gate needs:
 - `Options/Window/Changelog.lua` to list the changelog's top entry (`.claude/tools/Build-ChangelogLua.ps1` writes it);
-- green in-game runs (`/kaftest <suite>`, then `/reload`) on the newest build of each client the TOC's `## Interface:` claims, newer than the last change to the suite's file: `escape` and `options` on Retail, `options` on Mists Classic.
+- a green in-game run of every suite except the three probes (`scheduler`, `sources`, `pictures`) on the newest build of each client the TOC's `## Interface:` claims (Retail and Mists Classic), newer than the last change to the suite's file; green means it failed nothing and passed something;
+- once per client version, a green full `/kotest all` run of Krowi_Options' test addon.
+
+Run them all in one go per client with `.claude/tools/Run-GameTests.ps1` and the 17 suites: the run keeps and reads every result, and runs `plugins` first. On Retail `plugins` needs Zygor Guides Viewer on for the character the kit logs in with (Krowi on Frostmane).
 
 When a run differs from the headless model, update the model in `.claude/tools/headless/run-tests.lua` before releasing.

@@ -13,7 +13,12 @@ local plugins = addon.Tests.Plugins
 -- (.claude/tools/headless/run-tests.lua) against a model of Zygor's achievement module and of the window, with the
 -- plugin, the plugin API and the addon's ADDON_LOADED wiring real. The first scenario loads the window, so it is the
 -- list's first draw of the session only right after a /reload, before the window was opened: in game run it as
--- /kaftest login plugins.
+-- /kaftest login plugins, or in a /kaftest run, which runs it first (addon.Tests.FirstDraw).
+-- Mists runs its own Zygor, ZygorGuidesViewerClassicTBC, whose achievement module draws on Blizzard's list and which the
+-- plugin does not serve, though it sets ZGV.Achievement.AvailGuides too (its Code-MOP/Achievement.lua). There the
+-- scenarios above do not apply, and one scenario reads, and only reads, what the plugin decides through the function its
+-- Setup checks (Plugins/ZygorGuidesViewer.lua IsServed: Retail's Zygor Guides Viewer loaded with its achievement module):
+-- "not served", so the plugin draws nothing. An observation names the Zygor loaded.
 
 -- Tab: the addon's tab the list is drawn in. The Blizzard-binding scenario runs first, the first draw, and never calls
 -- the addon's toggle, which used to start the plugin. The addon-binding one runs after it in the same session, on
@@ -29,6 +34,11 @@ plugins.Scenarios = {
     {Name = "zygor-blizzard-binding", Tab = "Expansions", Recorded = "all", Target = "all"},
     -- the window closed, then KrowiAF_ToggleAchievementFrame, what the addon's tab bindings and the micro button do
     {Name = "zygor-addon-binding", Tab = "Achievements", Recorded = "all", Target = "all"}
+}
+
+-- Classic, read only: env.ZygorServed(observations)
+plugins.ClassicScenarios = {
+    {Name = "classic-zygor-not-served", Recorded = "not served", Target = "not served"}
 }
 
 local settle = 0.5 -- the open -> the count; Zygor draws on a timer
@@ -93,9 +103,24 @@ local function Result(scenario, status, tail, targetMet)
     }
 end
 
--- Runs the scenarios in order, each after the one before has counted; done(results) at the end
+-- Runs the scenarios in order, each after the one before has counted; done(results) at the end. On Classic only the
+-- Classic scenarios run, at once.
 function plugins.Run(env, observations, done)
     local results = {}
+    if not env.IsRetail() then
+        for _, scenario in ipairs(plugins.ClassicScenarios) do
+            local ok, got = pcall(env.ZygorServed, observations)
+            if ok then
+                local targetMet = got == scenario.Target
+                tinsert(results, Result(scenario, got == scenario.Recorded and "PASS" or "FAIL", ("got=[%s] target=[%s] %s"):format(got, scenario.Target,
+                    targetMet and "met" or "open"), targetMet))
+            else
+                tinsert(results, Result(scenario, "FAIL", "test error: " .. tostring(got)))
+            end
+        end
+        done(results)
+        return
+    end
     local ready, reason = env.Setup(observations)
     local index = 0
     local Next
@@ -153,6 +178,20 @@ end
 
 local gameEnv = {InGame = true}
 plugins.GameEnv = gameEnv
+
+function gameEnv.IsRetail()
+    return addon.Util.IsMainline
+end
+
+-- What the plugin itself decides, through the function its Setup checks (Plugins/ZygorGuidesViewer.lua IsServed):
+-- "served" or "not served"
+function gameEnv.ZygorServed(observations)
+    local module = ZGV and ZGV.Achievement
+    tinsert(observations, ("ZygorGuidesViewer %s, ZygorGuidesViewerClassicTBC %s; ZGV.Achievement.AvailGuides %s"):format(
+        C_AddOns.IsAddOnLoaded("ZygorGuidesViewer") and "loaded" or "not loaded", C_AddOns.IsAddOnLoaded("ZygorGuidesViewerClassicTBC") and "loaded" or "not loaded",
+        module and module.AvailGuides and "present" or "absent"))
+    return KrowiAF.PluginsApi.Plugins.ZygorGuidesViewer.IsServed() and "served" or "not served"
+end
 
 local snapshot -- each touched tab's selected category and achievement, put back by the teardown
 local banner
@@ -342,6 +381,9 @@ addon.Tests.Ready.plugins = function()
 end
 
 addon.Tests.Async.plugins = true
+if addon.Util.IsMainline then -- its first scenario needs the achievement window's first draw (gameEnv.Setup), so /kaftest run runs it first; Classic's only reads
+    addon.Tests.FirstDraw.plugins = true
+end
 addon.Tests.Suites.plugins = function(done)
     local observations = {}
     plugins.Run(gameEnv, observations, function(results)

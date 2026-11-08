@@ -50,12 +50,18 @@ local function ScheduleUpdate()
 	ZGV:ScheduleTimer(UpdateIcons, 0.0001)
 end
 
+-- Whether the plugin serves the Zygor that is loaded: Retail's Zygor only, with its achievement module. Mists runs
+-- ZygorGuidesViewerClassicTBC, whose achievement module draws on Blizzard's Classic list. Setup below decides by it, and
+-- Tests/Plugins.lua reads it (read only)
+function zgv.IsServed()
+    return IsLoaded() and ZGV and ZGV.Achievement and ZGV.Achievement.IconSetup and ZGV.Achievement.AvailGuides and true or false
+end
+
 -- Runs once both Zygor and the addon's achievement list exist, so the hook is in before the list's first draw, however
--- the window is opened (issue #365: Blizzard's own key binding never ran the addon's toggle this used to wait for).
--- Retail's Zygor only: Mists runs ZygorGuidesViewerClassicTBC, whose achievement module draws on Blizzard's Classic list
+-- the window is opened (issue #365: Blizzard's own key binding never ran the addon's toggle this used to wait for)
 local isSetUp
 local function Setup()
-    if isSetUp or not KrowiAF_AchievementsFrame or not IsLoaded() or not (ZGV and ZGV.Achievement and ZGV.Achievement.IconSetup and ZGV.Achievement.AvailGuides) then
+    if isSetUp or not KrowiAF_AchievementsFrame or not zgv.IsServed() then
         return
     end
 
