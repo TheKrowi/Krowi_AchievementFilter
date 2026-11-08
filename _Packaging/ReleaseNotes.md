@@ -1,26 +1,32 @@
 ### Added
-- Achievement guides for the other eleven Legendary Research achievements, one per class hall
-- Curse Surge event reminders, wherever you are, with the surge's name and time left; each surge can be turned off under Event Reminders > World Events > Midnight
-- Tracking an achievement while 10 are tracked now first stops tracking the ones you already completed, and names them in chat
+- An options window in the look of the game's own Options window, with every setting sorted by feature and how each feature works next to it, opened with /kaf, the minimap icon or the filter menu
+- A Position applies to setting for event reminder pop ups: every alert, as before, or only the event reminders, leaving the game's own alerts where the game puts them
+- A Hide placeholders button next to Show placeholders
+- Additional ruRU and zhCN localization
 
 ### Changed
-- Achievement guides now name the people to talk to in your game's language
-- The Legendary Research of the Ebon Blade guide now starts with where to go, with Death Gate under it
-- Legion Assaults are now one reminder with one toggle, instead of one per zone
-- Covenant assault reminders now only show for characters who finished chapter 2 of Chains of Domination
-- Krowi_Menu library updated to 2.2
-- Krowi_Util library updated to 2.8
-- Krowi_WorldMapButtons library updated to 1.4.12
+- The tutorial is replaced by the explanations in the options window, with new pictures and a Show me button
+- Settings > AddOns now has one page for this addon, with a button that opens the options window on top of it
+- The pop up position settings are greyed out only while another addon places the game's alerts, not whenever ElvUI, GW2 UI or EllesmereUI is loaded
+- Krowi_Options library updated to 2.0
 
 ### Fixed
-- Let Her Solo Me shows as obtainable again, since it can still be earned
-- The Track check in the achievement window and in popped-out achievements now updates when an achievement is tracked or untracked elsewhere, such as from the objective tracker
-- Pasting an achievement link into chat with the paste-to-chat modifier no longer gives an error when the game's deprecated API fallbacks are turned off
-- The addon's memory no longer keeps climbing in addon memory displays while you play: the taint diagnostics no longer create garbage in the background, and the event reminders create far less
-- Community Feast reminders now show wherever you are, not only in the Azure Span: Next in the 15 minutes before the cooking starts, Active while it cooks
-- Time Rift, Superbloom and Azerothian Archives reminders now show wherever you are, not only in their zones, each with a Next shortly before it starts
-- Superbloom: Active now shows its time left instead of "No time data available"
-- Dreamsurge reminders show in their zones again
-- Tooltips no longer keep giving "secret number value" errors after you hover a category on the Guild tab or on Blizzard's own Achievements tab; on Retail those categories now show the addon's progress tooltip
-- The Event Reminders tutorial page now shows whether the compact reminder is turned on, and names the event types
-- Some tutorial and option texts in German, French, Russian and Korean no longer show a placeholder such as {addon} instead of the text, and the Remix Bronze reward filter no longer reads "RemixBronze" in German
+- The right-click menu no longer gives an error or stops short when it links to an achievement your game does not have yet
+- Hovering the back or forward arrow no longer gives an error when a placeholder is in your browsing history
+- Upcoming event reminders now show when the event starts, not when it ends
+- Upcoming event reminders no longer give an error on a non-English client with a date format that names the day or month
+- Short day and month names in event reminders no longer show broken letters on non-English clients
+- Keys set in the options for a tab or for opening the current zone's category work again
+- Switching profiles before you open the achievement window no longer gives an error
+- Clicking an achievement's toast right after earning it no longer gives a "script ran too long" error in combat
+- Category counts in a tab you looked at before earning an achievement now include it when you go back
+- Y now opens the addon's Achievements tab on a new install, so the window reopens where you left off
+- A new install no longer shows an error about switching achievement tabs in chat
+- Zygor Guides Viewer's guide icons now show on this addon's tabs, also when you open the window with the game's own achievements key
+- Event reminder pop ups no longer jump back to another spot when an addon such as Dominos, ElvUI, GW2 UI or EllesmereUI places the game's alerts; they now go with those alerts
+- Event reminder pop ups now move to the right spot after switching profiles
+- Show placeholders now shows a short preview and no longer keeps adding pop ups for minutes
+- The "Active events" chat message no longer repeats every refresh without an event under it
+- Event reminders and the obtainable dates in tooltips now follow the realm's clock, also when your computer's clock is off
+- Changing where the event reminder side buttons show no longer gives an error the next time that window opens
+- Switching profiles now moves the event reminder side buttons to the window that profile shows them on
