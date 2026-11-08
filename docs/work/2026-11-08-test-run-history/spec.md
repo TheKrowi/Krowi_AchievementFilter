@@ -1,5 +1,5 @@
 # Spec: a test run of many suites keeps every result it ran
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. A `/kaftest run` of N entries leaves all N of its runs in `KrowiAF_DebugTable.Tests.History` when its last suite has reported, also when N is more than 10.

@@ -1,5 +1,5 @@
 # Intent: a test run of many suites keeps every result it ran
-Author: Krowi, maintainer. Source: idea, from the 105.0 release run (2026-11-08). Status: accepted
+Author: Krowi, maintainer. Source: idea, from the 105.0 release run (2026-11-08). Status: done
 
 ## Problem
 Before a release every in-game suite runs in one go: `Run-GameTests.ps1` types `/kaftest run` with all 17 suites, on Retail and on Mists. Every suite ran and passed on 2026-11-08, yet the tool said "only 10 of 17 entries left a run" and failed, three tries per client. The first seven suites' results were there for the release gate, but the tool could not read them, so its verdict was wrong and a reader of its output had to check by hand.
