@@ -151,6 +151,7 @@ Results after the review fixes (2026-11-08, `Run-GameTests.ps1 -Matrix`; with on
 - **Retail 12.1.5:** 582 passed, 0 failed, 56 skipped; no new BugGrabber row. Memory after a full collect: 69,689 KB on, 69,403 KB off (286 KB less).
 - **Mists 5.5.4:** 404 passed, 0 failed, 36 skipped; no new BugGrabber row. Memory: 18,051 KB on, 17,997 KB off (54 KB less; the run before the review fixes measured 8 KB, so on Mists the figure is mostly noise).
 - **Look gate screenshots** on both clients: switch on, unticked (rows greyed at once, reload bar), the help page after the reload (off line, no Show me). Published for Krowi at https://claude.ai/artifact/W88PXMKjL8xNhNNkmQ2bAD.
+- **Final code, after the look-gate changes** (renamed settings, three settings no longer follow the icon): Retail 12.1.5 matrix 582 passed, 0 failed, 56 skipped (22:02); Mists 5.5.4 matrix 404 passed, 0 failed, 36 skipped (22:08); no BugGrabber row on either. The new names and help line show on both clients; on Retail, with "Show icon on achievements" off, only "Show on mouseover" and "Most icons per achievement" grey out.
 
 ## Decision
 Krowi, 2026-11-08: the design as written (option 1), with the rows greying out at once when the switch is unticked (not option 6), the help page of an off feature without Show me and with the one line, and the partial live refresh after a profile action kept until the PR that moves its owner. Earlier at the intent gate: settings move as AceConfig tables; options stage 2 comes after 106.
