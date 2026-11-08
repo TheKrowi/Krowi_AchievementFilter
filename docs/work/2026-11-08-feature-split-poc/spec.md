@@ -147,5 +147,10 @@ Found during the build (2026-11-08):
 - **The data-only headless loader** (`client-env.lua`, behind `load-data.lua` and the data snapshots) now also loads `Slots.lua` and each feature's `Api.lua`, with a stand-in registry that counts every feature as started, so the snapshots still record the reward ids.
 - **In-game runs start only when Krowi says the PC is free** (correction in `gates.md`).
 
+Results after the review fixes (2026-11-08, `Run-GameTests.ps1 -Matrix`; with one feature the plan is all on, all off, then the reload that puts the switch back):
+- **Retail 12.1.5:** 582 passed, 0 failed, 56 skipped; no new BugGrabber row. Memory after a full collect: 69,689 KB on, 69,403 KB off (286 KB less).
+- **Mists 5.5.4:** 404 passed, 0 failed, 36 skipped; no new BugGrabber row. Memory: 18,051 KB on, 17,997 KB off (54 KB less; the run before the review fixes measured 8 KB, so on Mists the figure is mostly noise).
+- **Look gate screenshots** on both clients: switch on, unticked (rows greyed at once, reload bar), the help page after the reload (off line, no Show me). Published for Krowi at https://claude.ai/artifact/W88PXMKjL8xNhNNkmQ2bAD.
+
 ## Decision
 Krowi, 2026-11-08: the design as written (option 1), with the rows greying out at once when the switch is unticked (not option 6), the help page of an off feature without Show me and with the one line, and the partial live refresh after a profile action kept until the PR that moves its owner. Earlier at the intent gate: settings move as AceConfig tables; options stage 2 comes after 106.

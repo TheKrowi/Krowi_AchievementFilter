@@ -18,3 +18,4 @@ Class: harness (Get-ChangeClass.ps1, 2026-11-08: an existing line of `.claude/re
 | 2026-11-08 | plan | Walk-through: the menu entries' close through `menuBuilder:Close()` left to the Right-click menu's PR (naming the menu is a feature reaching the core until then), so the green matrix runs did not go stale for one line | defer | not asked | auto |
 | 2026-11-08 | plan | Code review: a third dotted-path helper in Features.lua left as it is (no switch path has a numeric segment) | leave | not asked | auto |
 | 2026-11-08 | test | Whether the PC is free for the matrix reruns and the look screenshots (about 30 minutes) | - | "Not now" | - |
+| 2026-11-08 | test | The same, asked again later | - | "run the tests now, pc is free" | took |
