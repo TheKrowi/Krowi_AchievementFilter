@@ -61,6 +61,14 @@ KAF 106 splits the addon into a core plus 15 switchable features (grill closed 2
 - `review-options.md`: the six options reviewed (what, name, description, help text), proposals for the look gate.
 - `walkthrough.md`: Event reminders and the Right-click menu against the registry and slots, what fits and what a later PR adds.
 
+## Where the build departed
+- **Steps 2 and 3 are one commit** (245e0baa): with the core's data slot in and no handler yet, the reward ids would have reached nobody between the two.
+- **The data-only headless loader** (`client-env.lua`) also loads `Slots.lua` and each feature's `Api.lua`, with a stand-in registry that starts every feature, so the data snapshots stay unchanged; the menu suite loads `Slots.lua` too (its stubbed namespace made the merge loop endless, 14 GB before it was stopped).
+- **`C_UI.Reload` is protected** (blocked from a timer on both clients): the matrix runs on the fallback of step 5, and a run's step is stored in `MatrixStep`, not in its argument, which the suites read as a step selector.
+- **`help/show-me` lists the core's sections only;** the `features` suite checks each feature's help page in both states (the all-off step on Retail failed `help` before).
+- **Review fixes** (85d88c02): data fields only for a feature whose Start succeeded; the menu merge's missing Order; the filters' profile rows; the matrix's character key, unfinished-step drop and debug mode on stop; the gate's matrix check also counts `Features.lua` and `Slots.lua`; the switch text no longer promises no memory.
+- **Not built here** (`walkthrough.md`): the menu entries' close through `menuBuilder:Close()` goes with the Right-click menu's PR.
+
 ## Risks
 - **Template timing:** `OnLoad` (model scene from Blizzard templates) now runs at `ADDON_LOADED` instead of file load; the before/after escape and pictures runs show any difference.
 - **Matrix and the kit:** a loading screen longer than 30 s fails `-WaitForDone`; debug mode, history and `RunOnLogin` must not undo the plan across reloads (all four clashes handled above).

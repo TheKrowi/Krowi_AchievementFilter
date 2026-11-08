@@ -1,5 +1,5 @@
 # Gates: 2026-11-08-feature-split-poc
-Class: feature
+Class: harness (Get-ChangeClass.ps1, 2026-11-08: an existing line of `.claude/release-gate.ps1`'s suite list changed; predicted `feature`, its look gate is kept)
 
 | Date | Gate | Question | Recommended | Answer | Outcome |
 |---|---|---|---|---|---|
@@ -13,3 +13,8 @@ Class: feature
 | 2026-11-08 | before-run | escape, menu, guide, options, help, tooltip on main before any code change, Retail 12.1.5 and Mists 5.5.4 (kit-driven) | green on both | not asked: Retail and Mists green, no difference from headless except a headless-only escape scenario | auto |
 | 2026-11-08 | test | Correction: the session started WoW three times (two reload probes, then the Retail matrix run) while Krowi was playing another game | - | "do not open wow when the pc is in use!!!!", "I'm playing another game and it's the 3rd time you start" | correction |
 | 2026-11-08 | test | Whether the PC is free for the in-game matrix runs on Retail and Mists (about 15 minutes each) | - | "all ours" | took |
+| 2026-11-08 | plan | The matrix on the spec's fallback (the kit types /reload per step): C_UI.Reload from a timer is blocked on both clients | the spec's fallback | not asked: the spec named this fallback | auto |
+| 2026-11-08 | plan | Code review: deleting an options profile still lights the reload bar (the grill said every options-profile action); only the filters' profile rows stop asking | keep delete | not asked: the grill's wording | auto |
+| 2026-11-08 | plan | Walk-through: the menu entries' close through `menuBuilder:Close()` left to the Right-click menu's PR (naming the menu is a feature reaching the core until then), so the green matrix runs did not go stale for one line | defer | not asked | auto |
+| 2026-11-08 | plan | Code review: a third dotted-path helper in Features.lua left as it is (no switch path has a numeric segment) | leave | not asked | auto |
+| 2026-11-08 | test | Whether the PC is free for the matrix reruns and the look screenshots (about 30 minutes) | - | "Not now" | - |
