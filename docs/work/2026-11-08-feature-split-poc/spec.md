@@ -141,5 +141,11 @@ During the build each of the six options gets its answers (what it does, its nam
 - Look gate: the switch, the greyed section, the help page while off and the options review, on a published page with screenshots of both clients.
 - The PoC's own holds, for Krowi to judge: `Features/RewardPreview/` plus the registry and slots against today's trail, and the written walk-through of Event reminders and the Right-click menu against the same slots (in this folder, before the PR).
 
+Found during the build (2026-11-08):
+- **`C_UI.Reload` is protected.** Called from a timer (`/run C_Timer.After(2, function() C_UI.Reload() end)`) it is blocked on Retail 12.1.5 and Mists 5.5.4 (`[ADDON_ACTION_BLOCKED] ... tried to call the protected function 'Reload()'`, BugGrabber), though the generated API docs flag nothing. The matrix runs on the fallback: each step asks for a `/reload` and `Run-GameTests.ps1 -Matrix` types it.
+- **A matrix run's step is stored in `MatrixStep`, not in the run's argument:** the suites read the argument as a step selector (`options`, `pictures`), so an unknown one would skip the whole suite.
+- **The data-only headless loader** (`client-env.lua`, behind `load-data.lua` and the data snapshots) now also loads `Slots.lua` and each feature's `Api.lua`, with a stand-in registry that counts every feature as started, so the snapshots still record the reward ids.
+- **In-game runs start only when Krowi says the PC is free** (correction in `gates.md`).
+
 ## Decision
 Krowi, 2026-11-08: the design as written (option 1), with the rows greying out at once when the switch is unticked (not option 6), the help page of an off feature without Show me and with the one line, and the partial live refresh after a profile action kept until the PR that moves its owner. Earlier at the intent gate: settings move as AceConfig tables; options stage 2 comes after 106.

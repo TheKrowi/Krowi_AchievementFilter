@@ -70,11 +70,11 @@ The WoW client reads `Krowi_AchievementFilter.toc`, which defines the **exact lo
 2. `Api/Files.xml` — public API (`KrowiAF`), enums, data registration functions and builders
 3. `Plugins/Files.xml` — plugin integrations (BetterWardrobe, ElvUI, GW2_UI, InstanceAchievementTracker, ZygorGuidesViewer, AchievementsTabFixes, EllesmereUI)
 4. `Localization/Files.xml` — enUS first, then the other locales, then `Shared.lua`
-5. `Krowi_AchievementFilter.lua`, `Globals.lua`
-6. `Diagnostics.lua`, `TaintDiagnostics.lua`, `Options/Files.xml`, `Libs/Krowi_Util/Icon.lua`, `Icon.lua`, `BrowsingHistory.lua`
+5. `Krowi_AchievementFilter.lua`, `Globals.lua`, `Slots.lua` — the core's extension points for the features
+6. `Diagnostics.lua`, `TaintDiagnostics.lua`, `Options/Files.xml`, `Features.lua` (the feature registry), `Libs/Krowi_Util/Icon.lua`, `Icon.lua`, `BrowsingHistory.lua`
 7. `Objects/Files.xml`
 8. `Filters.lua`, `SearchOptions.lua`
-9. `Gui/FilesModern.xml` (Retail) or `Gui/FilesClassic.xml` (Classic)
+9. `Gui/FilesModern.xml` (Retail) or `Gui/FilesClassic.xml` (Classic), then `Features/Files.xml` — one folder per switchable feature
 10. `Data/Files.xml`
 11. `DataAddons/Shared/Files.xml`, then `DataAddons/Retail/Files.xml` or `DataAddons/Classic/Files.xml`
 12. `DataAddons/Loaders/Files.xml` — post-processing loaders that wire the data tables to their processors
