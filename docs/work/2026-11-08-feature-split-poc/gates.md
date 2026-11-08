@@ -9,3 +9,4 @@ Class: feature
 | 2026-11-08 | design | What the six settings do when Enable is unticked before the reload | grey out at once | "Grey out at once (Recommended)" | took |
 | 2026-11-08 | design | What an off feature's help page shows where Show me is | no button, one line | "No button, one line (Recommended)" | took |
 | 2026-11-08 | design | The partial live refresh after a profile action | keep until its owner moves | "Keep until its owner moves (Recommended)" | took |
+| 2026-11-08 | plan | The plan (before-run and reload probe, test first, core registry and slots, the move, the other suites, the matrix run, text and docs, options review and walk-through) | approve | plan approved at ExitPlanMode with no changes | took |
