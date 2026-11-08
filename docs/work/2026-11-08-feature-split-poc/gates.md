@@ -1,5 +1,7 @@
 # Gates: 2026-11-08-feature-split-poc
-Class: harness (Get-ChangeClass.ps1, 2026-11-08: an existing line of `.claude/release-gate.ps1`'s suite list changed; predicted `feature`, its look gate is kept)
+Class: harness
+
+Get-ChangeClass.ps1, 2026-11-08: an existing line of `.claude/release-gate.ps1`'s suite list changed; predicted `feature`, its look gate is kept.
 
 | Date | Gate | Question | Recommended | Answer | Outcome |
 |---|---|---|---|---|---|
