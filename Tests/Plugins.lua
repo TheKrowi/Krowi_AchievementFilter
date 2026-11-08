@@ -342,6 +342,7 @@ addon.Tests.Ready.plugins = function()
 end
 
 addon.Tests.Async.plugins = true
+addon.Tests.FirstDraw.plugins = true -- its first scenario needs the achievement window's first draw (gameEnv.Setup), so /kaftest run runs it first
 addon.Tests.Suites.plugins = function(done)
     local observations = {}
     plugins.Run(gameEnv, observations, function(results)

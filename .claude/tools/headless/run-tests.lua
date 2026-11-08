@@ -292,7 +292,7 @@ local function BuildClient(client)
         L = setmetatable({}, { __index = function(_, k) return k end }),
         Diagnostics = { DebugEnabled = function() return true end, TraceEnabled = function() return false end, Trace = function() end, Debug = function() end },
         Util = { IsMainline = isRetail, IsModern = isRetail, IsForever = false, IsClassicWithAchievements = not isRetail },
-        Tests = { Suites = {}, Ready = {}, Async = {} },
+        Tests = { Suites = {}, Ready = {}, Async = {}, FirstDraw = {} },
     }
     setmetatable(addon, { __index = function(t, k) local s = Stub("addon." .. tostring(k)) rawset(t, k, s) return s end })
 
@@ -2637,11 +2637,11 @@ end
 -- is on. The scenarios run in order on the same History.
 local runnerScenarios = {
     -- a /kaftest run of 12 entries, from an empty History: how many runs History holds once the run's summary is up
-    {Name = "run-of-12-keeps-12", Recorded = "10", Target = "12"},
+    {Name = "run-of-12-keeps-12", Recorded = "12", Target = "12"},
     -- then one /kaftest <suite> on its own: how many runs History holds after it
     {Name = "single-run-trims-to-10", Recorded = "10", Target = "10"},
     -- /kaftest run a, p, b, with p marked as needing the achievement window's first draw: the order the suites ran in
-    {Name = "first-draw-first", Recorded = "a,p,b", Target = "p,a,b"},
+    {Name = "first-draw-first", Recorded = "p,a,b", Target = "p,a,b"},
 }
 
 suites.runner = function(c)
@@ -2681,7 +2681,7 @@ suites.runner = function(c)
     setfenv(chunk, env)
     chunk("Krowi_AchievementFilter", addon)
     local tests = addon.Tests
-    tests.FirstDraw = tests.FirstDraw or {} -- the runner's own table since the fix; before it a mark nothing reads
+    tests.FirstDraw = tests.FirstDraw or {} -- the runner's own table since the fix (before it, a mark nothing read)
     local order = {}
     local function FakeSuite(name)
         tests.Suites[name] = function()

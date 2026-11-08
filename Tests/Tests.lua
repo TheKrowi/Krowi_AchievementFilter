@@ -2,7 +2,8 @@ local _, addon = ...
 addon.Tests = {
     Suites = {},
     Ready = {}, -- optional per suite: function() -> ok[, reason]; a login run waits for it, a manual run reports the reason
-    Async = {} -- optional per suite: true when the suite takes done(results, observations) and reports later (a measured wait)
+    Async = {}, -- optional per suite: true when the suite takes done(results, observations) and reports later (a measured wait)
+    FirstDraw = {} -- optional per suite: true when the suite needs the achievement window's first draw of the session; /kaftest run runs it first
 }
 local tests = addon.Tests
 
@@ -20,14 +21,16 @@ local tests = addon.Tests
 -- headless run. Needs debug mode (Options > General > Debug) and refuses to run in combat.
 -- A result with GameOnly set is a step only the game runs (the /kevutest way of Krowi_ExtendedVendorUI):
 -- the reader shows it without diffing it. One with Screenshot = {Time = "YYYY-MM-DD HH:MM:SS", Failed = true|nil}
--- names the screenshot its step took, which the reader pairs with the file. The last runs of every suite are kept
--- in History, oldest first, so several runs in a row can be read after one /reload (Read-GameTests.ps1 -Run).
+-- names the screenshot its step took, which the reader pairs with the file. The last 10 runs are kept in History, oldest
+-- first, so several runs in a row can be read after one /reload (Read-GameTests.ps1 -Run); a /kaftest run keeps every run
+-- it made, however many entries it has, and the next run outside one trims History back to 10.
 
 local prefix = "|cFF88CCFFKrowiAF Tests:|r "
 local loginDelay = 5 -- seconds after PLAYER_ENTERING_WORLD before the first attempt
 local loginWait = 120 -- seconds a login run keeps waiting for a suite's Ready check (the data load can take a while on a cold cache)
 local retryDelay = 2
-local keepRuns = 10 -- runs kept in History
+local keepRuns = 10 -- runs kept in History outside a /kaftest run
+local keep = keepRuns -- what Report trims History to: keepRuns, or more while a /kaftest run of more entries runs (RunEntries)
 
 local function GetDb()
     KrowiAF_DebugTable = KrowiAF_DebugTable or {}
@@ -100,7 +103,7 @@ local function Report(name, results, observations, argument)
     end
     GetDb().History = GetDb().History or {}
     tinsert(GetDb().History, GetDb().LastRun)
-    while #GetDb().History > keepRuns do
+    while #GetDb().History > keep do
         tremove(GetDb().History, 1)
     end
 end
@@ -171,6 +174,10 @@ end
 -- Read-GameScreenshot.ps1 finds while the game still runs. Then the kit's marker addon (KrowiGameInput, dev only,
 -- Krowi_ClaudeKit's docs/work/2026-11-05-kit-test-runs) is told the run is done, and the kit's Send-GameInput.ps1
 -- -WaitForDone, which .claude/tools/Run-GameTests.ps1 runs, types /reload.
+-- The entries whose suite needs the achievement window's first draw of the session (tests.FirstDraw: plugins) run first,
+-- since any suite before them could load the window, the others in the order typed. Until the summary, History keeps at
+-- least as many runs as the run has entries, so a run of more than keepRuns entries leaves every one of its runs there
+-- for Run-GameTests.ps1 to read (docs/work/2026-11-08-test-run-history).
 -- Debug mode: with the marker loaded and debug mode off, the run turns it on for its suites and back off after the
 -- summary (Krowi, 2026-11-05); without the marker it asks for debug mode as /kaftest does, so a player who types it
 -- starts nothing.
@@ -211,12 +218,14 @@ end
 
 -- debugSwitched: the run turned debug mode on, so it turns it off again once the summary is up
 local function RunEntries(entries, debugSwitched)
+    keep = math.max(keepRuns, #entries) -- every run of this one stays in History until its summary
     local lines = {("Krowi's Achievement Filter test run, %s, build %s"):format(date("%Y-%m-%d %H:%M:%S"), (GetBuildInfo()))}
     local index, ranAny = 0, false
     local function Next()
         index = index + 1
         local entry = entries[index]
         if not entry then
+            keep = keepRuns -- the next run outside /kaftest run trims History back
             if ranAny then -- the suites drive Blizzard's frames and API from addon code, some of it taints until a reload
                 tinsert(lines, "/reload before entering combat")
             end
@@ -259,12 +268,27 @@ function tests.RunEntriesOf(text)
     return entries
 end
 
+-- The entries in the order they run: those whose suite needs the achievement window's first draw (tests.FirstDraw) first,
+-- the others in the order typed
+local function FirstDrawFirst(entries)
+    local ordered, rest = {}, {}
+    for _, entry in ipairs(entries) do
+        local name = strsplit(" ", entry)
+        tinsert(tests.FirstDraw[name] and ordered or rest, entry)
+    end
+    for _, entry in ipairs(rest) do
+        tinsert(ordered, entry)
+    end
+    return ordered
+end
+
 local function StartRun(text)
     local entries = tests.RunEntriesOf(text)
     if #entries == 0 then
         print(prefix .. "/kaftest run <suite>[, <suite> ...]; suites: " .. tests.List())
         return
     end
+    entries = FirstDrawFirst(entries)
     local switched = false
     if not addon.Diagnostics.DebugEnabled() then
         if not KrowiGameInput then
