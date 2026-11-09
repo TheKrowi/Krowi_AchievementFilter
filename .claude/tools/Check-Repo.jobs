@@ -20,7 +20,7 @@ Gui/Guide/Panel.lua RegisterEvent:PLAYER_REGEN_DISABLED -                       
 Gui/Guide/Panel.lua RegisterEvent:PLAYER_REGEN_ENABLED -                               # leaving combat, once the guide panel was used
 Options/Window/Help/ShowMe.lua RegisterEvent:PLAYER_REGEN_DISABLED -                   # only while the map's Show me button lies over the options window's help pane
 Options/Window/Help/ShowMe.lua RegisterEvent:PLAYER_REGEN_ENABLED -                    # only after combat refused to hide the map's Show me button; unregistered on its first run
-Gui/SnapFrame/SnapFrameMixin.lua OnUpdate -                                            # only while a popout is dragged
+Features/PopOut/SnapFrameMixin.lua OnUpdate -                                        # only while a popout is dragged
 Gui/EventReminder/AlertFrame/AlertFrame.xml OnUpdate -                                 # only while an event pop-up or side button is shown
 Gui/AchievementCalendar/Frame/Frame.xml OnUpdate -                                     # only while the achievement calendar is shown
 Krowi_AchievementFilter.lua RegisterEvent:ADDON_LOADED -                               # once per addon that loads
@@ -32,7 +32,7 @@ Gui/WindowFrames/AchievementButton/AchievementButtonMixin.lua RegisterEvent:TRAC
 Gui/WindowFrames/AchievementButton/AchievementButtonMixin.lua RegisterEvent:CONTENT_TRACKING_UPDATE - # Retail: tracking or untracking an achievement, appearance, mount or decor, only while a row or popout is shown; one about anything else returns without allocating
 Gui/WindowFrames/AchievementsObjectives/AchievementsObjectivesMixin.lua RegisterEvent:CRITERIA_UPDATE - # frequent, but a hidden objectives frame only marks itself for its next show; a shown one redraws, open popouts included (deferred in docs/work/2026-10-18-memory-growth)
 Gui/AchievementTooltip/TransmogObjectives.lua RegisterEvent:GET_ITEM_INFO_RECEIVED -   # only while an achievement tooltip waits for item data
-Gui/AchievementPopout/AchievementPopout.lua RegisterEvent:PLAYER_LOGOUT -              # once
+Features/PopOut/AchievementPopout.lua RegisterEvent:PLAYER_LOGOUT -              # once
 Gui/Collections/Collections.lua RegisterEvent:ADDON_LOADED -                           # once per addon that loads
 Plugins/*.lua RegisterEvent:ADDON_LOADED -                                             # once per addon that loads
 Plugins/*.lua RegisterEvent:PLAYER_LOGIN -                                             # once

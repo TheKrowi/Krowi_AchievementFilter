@@ -153,10 +153,10 @@ help.Scenarios = {
             end
             return Join(ids)
         end,
-        Recorded = "achievements,calendar,categories,eventlist,events,filters,guides,maps,popout,search,summary,tabs,tooltips,window",
-        RecordedClassic = "achievements,calendar,categories,eventlist,events,filters,maps,popout,search,summary,tabs,tooltips,window",
-        Target = "achievements,calendar,categories,eventlist,events,filters,guides,maps,popout,search,summary,tabs,tooltips,window",
-        TargetClassic = "achievements,calendar,categories,eventlist,events,filters,maps,popout,search,summary,tabs,tooltips,window"},
+        Recorded = "achievements,calendar,categories,eventlist,events,filters,guides,maps,search,summary,tabs,tooltips,window",
+        RecordedClassic = "achievements,calendar,categories,eventlist,events,filters,maps,search,summary,tabs,tooltips,window",
+        Target = "achievements,calendar,categories,eventlist,events,filters,guides,maps,search,summary,tabs,tooltips,window",
+        TargetClassic = "achievements,calendar,categories,eventlist,events,filters,maps,search,summary,tabs,tooltips,window"},
     {Name = "map-agrees",
         Observe = function()
             -- Track A's map: Map.Sections, each {Id, Name, ...}; Overview is the window's own page and has no entry there

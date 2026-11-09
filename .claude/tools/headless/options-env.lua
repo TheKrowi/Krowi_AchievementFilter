@@ -457,6 +457,10 @@ local function New(root, client, opts)
             if not ok then Fail("data task", err) end
         end
     end
+    -- The started features' step after the data load, where LoadOnPlayerLogin runs it (Data/Data.lua)
+    if addon.Features and type(addon.Features.DataLoaded) == "function" then
+        Step("Features.DataLoaded", function() addon.Features.DataLoaded() end)
+    end
     if addon.Gui and addon.Gui.WorldMapButton and not addon.Gui.WorldMapButton.Refresh then
         addon.Gui.WorldMapButton = Stub("addon.Gui.WorldMapButton")
     end

@@ -1,0 +1,12 @@
+<Ui>
+    <!-- The registration first: the other files add their parts to it (Features.lua) -->
+    <Script file="PopOut.lua" />
+    <Include file="SnapFrame.xml" />
+    <Script file="AchievementPopout.lua" />
+    <Script file="AchievementPopoutMixin.lua" />
+    <Include file="AchievementPopout.xml" />
+    <Script file="MenuEntry.lua" />
+    <Script file="Modifier.lua" />
+    <Script file="Options.lua" />
+    <Script file="Help.lua" />
+</Ui>

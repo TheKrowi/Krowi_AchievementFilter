@@ -19,11 +19,14 @@ local features = addon.Tests.Features
 -- Switch: its saved path in the profile; Frame: a frame it makes; Data: what its data load keeps
 -- Help: the section id of its help page
 -- Opener: it hosts the achievement menu (Slots.lua, AchievementMenu.SetOpener); RowPart: it adds a part to the rows
--- (Slots.lua, RowParts)
+-- (Slots.lua, RowParts); MenuEntry: it adds an entry to the achievement menu (Slots.lua, AchievementMenu); Modifier: a
+-- modifier click on a row reaches it (Slots.lua, RowModifiers); AfterDataLoad: it runs after the login data load
+-- (Features.lua, AfterDataLoad)
 features.Known = {
     {Name = "RewardPreview", Switch = {"Features", "RewardPreview"}, Frame = "KrowiAF_RewardPreview", Help = "rewards",
         Data = function() return addon.Data.RewardPreviewData end},
-    {Name = "RightClickMenu", Switch = {"Features", "RightClickMenu"}, Help = "rightclick", Opener = true, RowPart = true}
+    {Name = "RightClickMenu", Switch = {"Features", "RightClickMenu"}, Help = "rightclick", Opener = true, RowPart = true},
+    {Name = "PopOut", Switch = {"Features", "PopOut"}, Help = "popout", MenuEntry = true, Modifier = true, AfterDataLoad = true}
 }
 
 -- Check: what is observed; Recorded and Target per boot state; When: the field of Known a feature needs for the check,
@@ -40,6 +43,10 @@ features.Scenarios = {
     {Check = "opener", When = "Opener", Recorded = {off = "no opener", on = "opener"}, Target = {off = "no opener", on = "opener"}},
     -- the row's parts, such as the menu button, are made only while their feature is started
     {Check = "rowpart", When = "RowPart", Recorded = {off = "no part", on = "part"}, Target = {off = "no part", on = "part"}},
+    -- its entry in the achievement menu, its modifier click on a row and its step after the data load, only while started
+    {Check = "menuentry", When = "MenuEntry", Recorded = {off = "no entry", on = "entry"}, Target = {off = "no entry", on = "entry"}},
+    {Check = "modifier", When = "Modifier", Recorded = {off = "no modifier", on = "modifier"}, Target = {off = "no modifier", on = "modifier"}},
+    {Check = "afterload", When = "AfterDataLoad", Recorded = {off = "not run", on = "ran"}, Target = {off = "not run", on = "ran"}},
     {Check = "load", Recorded = {off = "nothing made", on = "nothing made"}, Target = {off = "nothing made", on = "nothing made"}}
 }
 
@@ -104,6 +111,39 @@ function observe.rowpart(feature)
         end
     end
     return "no part"
+end
+
+local function Owns(entries, feature)
+    for _, entry in ipairs(entries or {}) do
+        if entry.Owner == feature.Name then
+            return true
+        end
+    end
+    return false
+end
+
+function observe.menuentry(feature)
+    return Owns(addon.Slots.AchievementMenu.Entries, feature) and "entry" or "no entry"
+end
+
+function observe.modifier(feature)
+    local slot = addon.Slots.RowModifiers
+    if not slot then
+        return "no slot"
+    end
+    return Owns(slot.Entries, feature) and "modifier" or "no modifier"
+end
+
+-- Whether the registry ran the feature's AfterDataLoad; nil before the data load finished
+function observe.afterload(feature)
+    local registry = addon.Features
+    if type(registry.RanAfterDataLoad) ~= "function" then
+        return "no phase"
+    end
+    if not registry.DataHasLoaded() then
+        return nil, "the data load has not finished"
+    end
+    return registry.RanAfterDataLoad(feature.Name) and "ran" or "not run"
 end
 
 function observe.slots(feature)

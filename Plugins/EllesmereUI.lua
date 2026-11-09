@@ -892,23 +892,18 @@ local function SkinSideButtons()
     end
 end
 
--- [[ AchievementPopout ]]
--- The button clone and its objectives ride the mixin hooks; corner chrome only.
-local function SkinAchievementPopout(popout)
-    if not (skin and popout) then
-        return
-    end
-    skin.CloseButton(popout.CloseButton)
-    if popout.ResizeButton then
-        skin.Button(popout.ResizeButton)
-    end
+-- [[ The features' parts ]]
+-- A feature's skin is a part of its own (Plugins/EllesmereUI/<Feature>.lua, the feature's file for the feature-boundary
+-- lint rule): Install(GetSkin) runs with InstallHooks, Apply(GetSkin) with ApplyVisuals; GetSkin() is EllesmereUI's skin
+-- primitives once registered, nil before (docs/work/2026-11-09-pop-out)
+local parts = {}
+
+local function GetSkin()
+    return skin
 end
 
-local function SkinAchievementPopouts()
-    local popouts = addon.Gui.AchievementPopout and addon.Gui.AchievementPopout.OpenPopouts
-    for _, popout in next, popouts or {} do
-        SkinAchievementPopout(popout)
-    end
+function compatibility.AddPart(part)
+    tinsert(parts, part)
 end
 
 -- [[ FloatingAchievementTooltip ]]
@@ -945,7 +940,9 @@ local function ApplyVisuals()
     SkinCalendarFrame()
     SkinCalendarSideFrame()
     SkinFloatingAchievementTooltip()
-    SkinAchievementPopouts()
+    for _, part in ipairs(parts) do
+        if part.Apply then part.Apply(GetSkin) end
+    end
 end
 
 local function RefreshScrollBar(self)
@@ -1004,11 +1001,8 @@ local function InstallHooks()
 
     hooksecurefunc(addon.Gui.DataManager, "GetTextFrame", SkinTextFrame)
 
-    -- Popouts are pooled and reused.
-    if addon.Gui.AchievementPopout then
-        hooksecurefunc(addon.Gui.AchievementPopout, "Open", function(self, achievement)
-            SkinAchievementPopout(self.OpenPopouts[achievement and achievement.Id])
-        end)
+    for _, part in ipairs(parts) do
+        if part.Install then part.Install(GetSkin) end
     end
 
     InstallAlertFrameHooks()

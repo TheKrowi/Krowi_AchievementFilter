@@ -1,10 +1,9 @@
 local _, addon = ...
 
 -- Pop Out or Close Popout in the achievement's right-click menu, an entry of the core's menu slot (Slots.lua,
--- AchievementMenu), added when this file loads; it moves into Pop Out's Start once that feature is split
--- (docs/work/2026-11-09-right-click-menu)
+-- AchievementMenu), added in the feature's Start (PopOut.lua)
 local section = {Order = 40} -- after Guide, before Preview Reward
-addon.Slots.AchievementMenu.Add(section)
+addon.Gui.AchievementPopout.MenuEntry = section
 
 function section:CheckAdd()
     return true

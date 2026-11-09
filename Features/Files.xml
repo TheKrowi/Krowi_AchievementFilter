@@ -2,4 +2,5 @@
     <!-- One folder per feature (Features.lua, docs/work/2026-11-08-feature-split-poc); loading a feature's files only registers it -->
     <Include file="RewardPreview\Files.xml" />
     <Include file="RightClickMenu\Files.xml" />
+    <Include file="PopOut\Files.xml" />
 </Ui>
