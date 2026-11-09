@@ -6,17 +6,17 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-31 22-33-16 ]] --
-L["Feature Switch Desc"] = "Turn {feature} off when you do not use it: after a reload it no longer starts and keeps none of its data. Your settings for it are kept."
-L["Feature Off Help"] = "{feature} is off. Turn it on at the top of this section, then reload."
-L["Show icon on achievements"] = true
-L["Show icon on achievements Desc"] = "An icon on each achievement whose reward can be previewed. The right-click menu has {previewReward} either way."
-L["Show on mouseover"] = true
-L["Invert up and down when turning"] = true
-L["Most icons per achievement"] = true
+L["Feature Switch Desc"] = "Enable / disable {feature}. When disabled, {feature} is fully turned off. Its settings are kept."
+L["Feature Off Help"] = "{feature} is disabled. Enable it at the top of this section and reload."
+L["Show Icon on Achievements"] = true
+L["Show Icon on Achievements Desc"] = "Show / hide an icon on achievements with a reward that can be previewed. {previewReward} in the right-click menu always works."
+L["Show on Mouseover"] = true
+L["Invert Up and Down When Turning"] = true
+L["Max Number of Icons"] = true
 L["Width"] = true
-L["Reward Preview Width Desc"] = "The width the window opens at. Resizing the window changes it."
+L["Reward Preview Width Desc"] = "The width of the {rewardPreview} window when it opens. This will update when you resize the window."
 L["Height"] = true
-L["Reward Preview Height Desc"] = "The height the window opens at. Resizing the window changes it."
+L["Reward Preview Height Desc"] = "The height of the {rewardPreview} window when it opens. This will update when you resize the window."
 L["Card Tabs"] = "Which tabs show, and in which order."
 L["Card Window"] = "Size, position and what opens first."
 L["Card Categories"] = "Expansions, zones and the special categories."

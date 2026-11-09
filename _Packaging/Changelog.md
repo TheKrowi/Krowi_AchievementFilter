@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## 106.0
 ### Added
-- An Enable check box at the top of the Reward preview settings: turned off, the reward preview no longer starts after a reload
+- An Enable check box at the top of the Reward preview settings, which fully turns off the reward preview after a reload
 
 ### Changed
 - The Reward preview settings have shorter names, and Width and Height say that resizing the window changes them
