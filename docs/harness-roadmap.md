@@ -159,3 +159,5 @@ That measurement is now the kit's `Measure-Sessions.ps1` (step 14). The baseline
 | Subagent start context (median) | general-purpose 64k (40 runs), `krowi:taint-reviewer` 39k (37), Explore 21k (13), `data-verifier` 36k (1) |
 
 The throwaway script's figures were within 1k or a point of these: a start median of 75k and a general-purpose start of 65k (the script is gone, so why is not known), and subagents at 82M, 20% of all, because it weighed every subagent cache write as a five-minute one while some are one-hour.
+
+Since kit PR #26 (2026-11-09) the tool prints dollars at each model's API list price (`tools/ModelPrices.psd1`) instead of weighted use, plus thinking, cold resumes and an all-repo view (`-All`). The weighted row above stays as the 2026-11-02 record; the steps are judged on the context lines, which did not change.
