@@ -12,10 +12,16 @@ Run each pass separately and rank the findings by severity.
 4. **Data.** Achievement ids exist on the client that registers them (`data-verifier`), each id is registered once, the category snapshot is unchanged or its diff is part of the change, and zone decisions still agree with the ZoneData files.
 5. **Plugins and skins.** ElvUI, GW2_UI, EllesmereUI and the other integrations under `Plugins/` address the addon's frames by global name and anchor; a renamed, reparented or re-anchored frame is checked against them.
 6. **Proof.** A bug fix comes with a scenario that reproduced it (`Recorded` before the fix differs from `Target`, and equals it after), the lint is clean, the changelog has a line written for players (a dev note is the maintainer's own aside, never a technical root cause; that lives in `spec.md`), and the in-game checks listed in the PR were run on the clients it touches.
+7. **Texts.** Every name, description, help text and changelog line the change adds or rewords, and nothing it leaves alone. Krowi's own words are the reference: enUS before the tutorial was removed, with his option descriptions and the tutorial pages (`git show 86777e68^:Localization/enUS.lua`).
+   - Setting names are Title Case as Blizzard's Settings window writes them, short words lower case ("Show Pings in Chat", "Max Number of Icons").
+   - A description starts with a verb and says what changes ("Show / hide …", "Enable / disable …", "The width of …"), without the tells of AI-written text: two clauses joined by a colon, "either way", the code's view of a feature ("no longer starts").
+   - Every new or renamed string is translated in all locale files in the same change and goes to CurseForge with its translations (`krowi:localization`).
+   - A Blizzard global string reused as a text means the same in every language, not only in English: the game's "Mount" is the verb in French.
+   - During the feature split (106), a setting of the same kind as one in a feature already split takes its name; a section not split yet keeps its old texts until its own split.
 
 ## Important versus minor
 
-A finding is **Important** when it would cause a Lua error, taint, `ADDON_ACTION_FORBIDDEN`, wrong or missing data for players, lost saved variables, a break on one of the two clients, a broken plugin or skin, or behaviour that differs from the spec. Everything else is minor, and minor findings are reported only when a thorough review was asked for.
+A finding is **Important** when it would cause a Lua error, taint, `ADDON_ACTION_FORBIDDEN`, wrong or missing data for players, lost saved variables, a break on one of the two clients, a broken plugin or skin, behaviour that differs from the spec, or a text or translation that fails the Texts pass. Everything else is minor, and minor findings are reported only when a thorough review was asked for.
 
 ## Leave out
 
