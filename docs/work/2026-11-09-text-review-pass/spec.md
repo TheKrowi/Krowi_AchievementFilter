@@ -1,5 +1,5 @@
 # Spec: A review pass for texts and translations
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. `REVIEW.md` has a seventh pass, Texts, applied to every name, description, help text and changelog line a change adds or rewords, and to nothing else.

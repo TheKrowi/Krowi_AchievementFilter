@@ -1,5 +1,5 @@
 # Intent: A review pass for texts and translations
-Author: Krowi (maintainer). Source: idea, 2026-11-09 ("this should be a step in the review process, translations and which texts and names to use"). Status: accepted
+Author: Krowi (maintainer). Source: idea, 2026-11-09 ("this should be a step in the review process, translations and which texts and names to use"). Status: done
 
 ## Problem
 PR #405's Reward preview texts passed every review and still read as AI-written, used sentence case where Blizzard's Settings and Krowi's older names use Title Case, and needed a second round to fix. No review pass looks at player-facing text: `REVIEW.md`'s six passes cover intent, correctness, taint, data, plugins and proof. Each of the 14 features still to split brings its own names, descriptions and help texts.

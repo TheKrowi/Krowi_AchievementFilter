@@ -1,5 +1,5 @@
 # Plan: A review pass for texts and translations
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 ## Files that change
 - `REVIEW.md`, `## Passes`: a seventh pass, Texts, after Proof, with the five checks of the spec and the reference to Krowi's own words (`git show 86777e68^:Localization/enUS.lua`, enUS before the tutorial was removed). `## Important versus minor`: a text or translation that fails the Texts pass is Important, since minor findings show only in a thorough review.
