@@ -14,6 +14,8 @@ local menu = addon.Tests.Menu
 -- - What a right-click on an achievement the addon does not register opens (docs/work/2026-11-09-right-click-menu): the
 --   chat-link tooltip and the objectives rows pass addon.Data.Achievements[id], which is nil for a guild achievement or a
 --   statistic, and AchievementMenu:CreateMenu indexes it.
+-- - Whether the row's menu button draws its pictures (docs/work/2026-11-09-right-click-menu, requirement 17): with
+--   "Show Menu Button" on, Mists rows got the button, which opened the menu, but nothing was drawn.
 -- An entry scenario builds the entry the way the related-achievement sections do (chain, required for, other faction,
 -- first category); a menu scenario builds the whole menu through AchievementMenu:CreateMenu; an open scenario opens it
 -- the way the core's openers do, through Slots.AchievementMenu.Open, with the slot's opener swapped for one that builds
@@ -29,10 +31,13 @@ local menu = addon.Tests.Menu
 --   otherwise Id is an achievement every client registers
 -- Menu: build the whole menu of that achievement and record its title, instead of one "go to" entry linking to it
 -- Open: open the menu of that achievement as the openers do, and record whether a menu was built
+-- Picture: load each picture of the row's menu button (RowButtonArt, Features/RightClickMenu/RowButton.lua) and record
+--   whether all of them load; no achievement is involved
 -- Recorded / Target: "error" when building raises; otherwise an entry's "enabled" or "disabled", followed by
 --   " placeholder" when the game does not know the id and the text starts with the placeholder name
 --   addon.GetAchievementInfo gives it, and " missing" when the text ends with "(Missing)"; a menu's title "untitled",
---   "placeholder" or "name"; an open's "menu" or "no menu"
+--   "placeholder" or "name"; an open's "menu" or "no menu"; a picture's "picture" or "no picture"
+-- RecordedClassic / TargetClassic: the values on the clients without Retail's interface, where they differ
 -- The "(Missing)" entry stayed enabled before the 2026-10-13 fix (verified in game on Retail 12.1.0 and Classic 5.5.4 on
 -- 2026-10-11, linking to 49); it now passes isEnabled = false
 -- Before the 2026-10-25 fix both entries for an id the game does not know raised and the placeholder's menu had no title
@@ -56,7 +61,11 @@ menu.Scenarios = {
         Recorded = "no menu", Target = "no menu"},
     -- and still opens the menu of one it registers
     {Name = "registered-achievement-open", Id = 6, Open = true,
-        Recorded = "menu", Target = "menu"}
+        Recorded = "menu", Target = "menu"},
+    -- Mists rows drew no menu button: its art is the quest tracker button of Retail's interface (look-gate screenshots,
+    -- Mists 5.5.4, 2026-11-09)
+    {Name = "row-button-picture", Picture = true,
+        Recorded = "picture", Target = "picture", RecordedClassic = "no picture", TargetClassic = "picture"}
 }
 
 -- The name addon.GetAchievementInfo gives an id the game does not know, or nil when the game knows it
@@ -106,10 +115,30 @@ local function DescribeError(problem)
     return ("raised at %s line %s: %s"):format(file, line, message)
 end
 
+-- "picture" when every picture of the row's menu button loads, "no picture" otherwise; what the game said for each
+-- picture is an observation
+local function DescribePicture(env, scenario, observations)
+    local art = addon.Gui.RightClickMenu.RowButtonArt
+    local got = "picture"
+    for _, part in ipairs({"Normal", "Pushed", "Highlight"}) do
+        local loaded, note = env.HasPicture(art[part].File)
+        tinsert(observations, ("%s %s %s: %s"):format(scenario.Name, part, art[part].File, note))
+        if not loaded then
+            got = "no picture"
+        end
+    end
+    return got
+end
+
 -- env: Find(kind) -> id, note[, cleanup] or nil, reason; Build(id) -> root; BuildMenu(id) -> root;
--- Open(id) -> "menu" or "no menu"; ReadEntry(root) -> enabled, text or nil, reason; ReadTitle(root) -> text
+-- Open(id) -> "menu" or "no menu"; ReadEntry(root) -> enabled, text or nil, reason; ReadTitle(root) -> text;
+-- HasPicture(file) -> loaded, note
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
 local function RunScenario(env, scenario, observations)
+    local recorded, target = scenario.Recorded, scenario.Target
+    if not addon.Util.IsModern then
+        recorded, target = scenario.RecordedClassic or recorded, scenario.TargetClassic or target
+    end
     local id, reason, cleanup = scenario.Id, nil, nil
     if scenario.Find then
         local note
@@ -136,21 +165,23 @@ local function RunScenario(env, scenario, observations)
         else
             got, reason = DescribeEntry(env, id, root)
         end
+    elseif scenario.Picture then
+        got = DescribePicture(env, scenario, observations)
     end
 
     local status, targetMet, tail
     if not got then
         status, tail = "SKIP", reason or "no entry was built"
     else
-        status = got == scenario.Recorded and "PASS" or "FAIL"
-        targetMet = got == scenario.Target
-        tail = ("got=%s target=%s %s"):format(got, scenario.Target, targetMet and "met" or "open")
+        status = got == recorded and "PASS" or "FAIL"
+        targetMet = got == target
+        tail = ("got=%s target=%s %s"):format(got, target, targetMet and "met" or "open")
     end
     return {
         Name = scenario.Name,
         Status = status,
         TargetMet = targetMet,
-        Line = ("menu/%s: %s recorded=%s %s"):format(scenario.Name, status, scenario.Recorded, tail)
+        Line = ("menu/%s: %s recorded=%s %s"):format(scenario.Name, status, recorded, tail)
     }
 end
 
@@ -317,6 +348,21 @@ end
 function gameEnv.ReadTitle(root)
     local _, _, text = FirstElement(root)
     return text
+end
+
+-- A picture loads when the game sets it on a texture and gives it a file id; the texture sits on a hidden frame of the
+-- suite's own, made on the first run and reused
+local probe
+function gameEnv.HasPicture(file)
+    if not probe then
+        local holder = CreateFrame("Frame")
+        holder:Hide()
+        probe = holder:CreateTexture()
+    end
+    local set = probe:SetTexture(file)
+    local fileId = probe:GetTextureFileID()
+    probe:SetTexture(nil)
+    return set ~= false and fileId ~= nil and fileId ~= 0, ("SetTexture %s, file id %s"):format(tostring(set), tostring(fileId))
 end
 
 addon.Tests.Ready.menu = function()

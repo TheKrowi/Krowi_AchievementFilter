@@ -1272,8 +1272,16 @@ suites.menu = function(c)
     env.KrowiAF = { PluginsApi = { AddAchievementRightClickMenuItems = function() end } }
     c.loadAddonFile("Slots.lua") -- the features' menu entries the menu merges with its own sections; none started here
     c.loadAddonFile("Features/RightClickMenu/AchievementMenu.lua")
+    c.loadAddonFile("Features/RightClickMenu/RowButton.lua") -- the row button's art the picture scenario reads
     local achievementMenu = addon.Gui.RightClickMenu.AchievementMenu
     achievementMenu.Create() -- the builder, as the feature's Start makes it (Features/RightClickMenu/RightClickMenu.lua)
+
+    -- The game files the model's clients load a picture from: Retail has the quest tracker art of its interface, Mists
+    -- draws nothing from it (look-gate screenshots, Mists 5.5.4, 2026-11-09)
+    local pictures = {
+        Retail = { ["Interface\\Buttons\\QuestTrackerButtons"] = true },
+        Classic = {}
+    }
 
     local notes = {
         missing = "a fake id the model's game knows and its data does not hold",
@@ -1315,6 +1323,10 @@ suites.menu = function(c)
     function headless.ReadTitle(rootMenu)
         local entry = rootMenu.Entries[1]
         return entry and entry.Text
+    end
+    function headless.HasPicture(file)
+        local loaded = pictures[c.client][file] == true
+        return loaded, loaded and "in the model's files" or "not in the model's files"
     end
     return suite.Run(headless, observations), "Tests/Menu.lua", observations
 end
