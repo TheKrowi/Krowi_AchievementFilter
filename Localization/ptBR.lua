@@ -6,13 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-11-09 10-32-23 ]] --
-L["Show Menu Button"] = "Mostrar botão do menu"
-L["Show Menu Button Desc"] = "Mostra / oculta em cada conquista um botão que abre o menu do clique direito."
-L["Use Game Language"] = "Usar idioma do jogo"
-L["Use Game Language Desc"] = "Abre a página do Wowhead no idioma do jogo em vez de inglês."
-L["Open on Tab"] = "Abrir na aba"
-L["Open on Tab Desc"] = "Escolhe a aba em que a página do Wowhead abre, como Comentários ou Capturas de Tela."
+-- [[ Exported at 2026-11-09 15-50-49 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -468,6 +462,7 @@ L["Map pin and TomTom"] = "Marcador no mapa e TomTom"
 L["Maruukai Dash"] = "Arremetida de Maruukai"
 L["Max number of alerts"] = "Número máximo de alertas"
 L["Max number of alerts Desc"] = "O número máximo de alertas mostrados de uma só vez"
+L["Max Number of Icons"] = "Número máximo de ícones"
 L["Maximum number of characters"] = "Número máximo de caracteres"
 L["Midsummer"] = "Solstício"
 L["Midsummer Fire Festival"] = "Festival do Fogo do Solstício"
@@ -478,7 +473,6 @@ L["Mists of Pandaria (pre-patch)"] = "Mists of Pandaria (pré-patch)"
 L["Modifiers"] = "Modificadores"
 L["Mogu"] = true
 L["Mort'regar"] = true
-L["Max Number of Icons"] = "Número máximo de ícones"
 L["Mouse Wheel Scroll Speed"] = "Velocidade da Roda do Mouse"
 L["Mythic+"] = "Mítica+"
 L["Nazmir"] = true
@@ -508,6 +502,8 @@ L["On reload"] = "Ao recarregar"
 L["Only event reminders"] = "Somente lembretes de eventos"
 L["Only with a time"] = "Só com horário"
 L["Open"] = "Abrir"
+L["Open on Tab"] = "Abrir na aba"
+L["Open on Tab Desc"] = "Escolhe a aba em que a página do Wowhead abre, como Comentários ou Capturas de Tela."
 L["Open options"] = "Abrir opções"
 L["Opening the window"] = "Abertura da janela"
 L["Other"] = "Outro"
@@ -593,6 +589,8 @@ L["Show Guide on Mouseover"] = "Mostrar ao passar o mouse"
 L["Show Guide on Mouseover Desc"] = "Mostra o guia enquanto o mouse está sobre o ícone; um clique o fixa."
 L["Show Icon on Achievements"] = "Mostrar ícone nas conquistas"
 L["Show Icon on Achievements Desc"] = "Mostra / oculta um ícone nas conquistas com uma recompensa que pode ser pré-visualizada. {previewReward} no menu do clique direito sempre funciona."
+L["Show Menu Button"] = "Mostrar botão do menu"
+L["Show Menu Button Desc"] = "Mostra / oculta em cada conquista um botão que abre o menu do clique direito."
 L["Show on Mouseover"] = "Mostrar ao passar o mouse"
 L["Show Rewards"] = "Mostrar Recompensas"
 L["Shown in the tooltip"] = "Mostrado na dica"
@@ -685,6 +683,8 @@ L["Uncheck a tab to hide it. The arrows move it in the tab strip."] = "Desmarque
 L["Undermine(d)"] = "Inframinado"
 L["Unit tooltips"] = "Dicas de unidades"
 L["until the end of"] = "até o fim do"
+L["Use Game Language"] = "Usar idioma do jogo"
+L["Use Game Language Desc"] = "Abre a página do Wowhead no idioma do jogo em vez de inglês."
 L["Val and Naigtal"] = "Val e Naigtal"
 L["Val'sharah"] = true
 L["Vendor"] = "Vendedor"

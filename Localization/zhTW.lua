@@ -6,13 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-11-09 10-32-23 ]] --
-L["Show Menu Button"] = "顯示選單按鈕"
-L["Show Menu Button Desc"] = "在每個成就上顯示/隱藏一個按鈕，用於開啟其右鍵選單。"
-L["Use Game Language"] = "使用遊戲語言"
-L["Use Game Language Desc"] = "以遊戲語言而非英文開啟Wowhead頁面。"
-L["Open on Tab"] = "開啟時的標籤"
-L["Open on Tab Desc"] = "選擇Wowhead頁面開啟時顯示的標籤，例如評論或螢幕截圖。"
+-- [[ Exported at 2026-11-09 15-50-49 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -684,6 +678,7 @@ L["Map pin and TomTom"] = "地圖標記和TomTom"
 L["Maruukai Dash"] = "瑪魯凱飛奔"
 L["Max number of alerts"] = "最大提醒數"
 L["Max number of alerts Desc"] = "同一時間顯示的彈窗數量上限"
+L["Max Number of Icons"] = "最大圖示數量"
 L["Maximum number of characters"] = "最大角色數量"
 L["Maximum number of characters Desc"] = "在滑鼠提示中可顯示的最大角色數量"
 L["Merge Small Categories"] = "合併小類"
@@ -709,7 +704,6 @@ L["Modifiers"] = "修飾鍵"
 L["Mogu"] = "魔古"
 L["More"] = "更多"
 L["Mort'regar"] = "莫特雷加"
-L["Max Number of Icons"] = "最大圖示數量"
 L["Most progress"] = "進度最多"
 L["Mouse Wheel Scroll Speed"] = "滑鼠滾輪速度"
 L["Mouse Wheel Scroll Speed Desc"] = "點擊捲動列上下按鈕或捲動滑鼠滾輪時，滑動的{items}數量"
@@ -785,6 +779,8 @@ L["Only search filtered achievements Desc"] = "僅在過濾器設定後可見的
 L["Only when time data is available"] = "僅當時間資料可用時"
 L["Only with a time"] = "僅限有時間資料"
 L["Open"] = "打開"
+L["Open on Tab"] = "開啟時的標籤"
+L["Open on Tab Desc"] = "選擇Wowhead頁面開啟時顯示的標籤，例如評論或螢幕截圖。"
 L["Open options"] = "開啟選項"
 L["Opening the window"] = "開啟視窗"
 L["Order"] = "排序"
@@ -980,6 +976,8 @@ L["Show Guide on Mouseover"] = "滑鼠懸停時顯示"
 L["Show Guide on Mouseover Desc"] = "滑鼠懸停在圖示上時顯示指南；點擊可固定。"
 L["Show Icon on Achievements"] = "在成就上顯示圖示"
 L["Show Icon on Achievements Desc"] = "顯示/隱藏可預覽獎勵的成就上的圖示。右鍵選單中的{previewReward}始終可用。"
+L["Show Menu Button"] = "顯示選單按鈕"
+L["Show Menu Button Desc"] = "在每個成就上顯示/隱藏一個按鈕，用於開啟其右鍵選單。"
 L["Show Not Obtainable"] = "顯示{notObtainable}"
 L["Show Not Obtainable Desc"] = "在進度條中以紅色進度顯示/隱藏{notObtainable}成就"
 L["Show Objectives progress"] = "顯示{objectivesProgress}"
@@ -1187,6 +1185,8 @@ L["Upcoming Calendar Event Days Desc"] = "提前顯示即將到來的行事曆�
 L["Upcoming Calendar Event Login Delay"] = "即將到來的行事曆事件登入延遲"
 L["Upcoming Calendar Events"] = "即將到來的行事曆事件"
 L["Upper Reaches"] = "上層區域"
+L["Use Game Language"] = "使用遊戲語言"
+L["Use Game Language Desc"] = "以遊戲語言而非英文開啟Wowhead頁面。"
 L["Val and Naigtal"] = "衛爾和奈格塔"
 L["Val'sharah"] = "維爾薩拉"
 L["Vendor"] = "商人"

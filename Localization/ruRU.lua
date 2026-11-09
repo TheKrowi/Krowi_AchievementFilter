@@ -6,13 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-11-09 10-32-23 ]] --
-L["Show Menu Button"] = "Показывать кнопку меню"
-L["Show Menu Button Desc"] = "Показать / скрыть на каждом достижении кнопку, открывающую его меню по правому щелчку."
-L["Use Game Language"] = "Использовать язык игры"
-L["Use Game Language Desc"] = "Открывать страницу Wowhead на языке игры, а не на английском."
-L["Open on Tab"] = "Открывать на вкладке"
-L["Open on Tab Desc"] = "Выбрать вкладку, на которой откроется страница Wowhead, например Комментарии или Скриншоты."
+-- [[ Exported at 2026-11-09 15-50-49 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -672,6 +666,7 @@ L["Map pin and TomTom"] = "Метка на карте и TomTom"
 L["Maruukai Dash"] = "Рывок до Марукая"
 L["Max number of alerts"] = "Максимальное количество оповещений"
 L["Max number of alerts Desc"] = "Максимальное количество оповещений единовременно."
+L["Max Number of Icons"] = "Максимальное число значков"
 L["Maximum number of characters"] = "Максимальное количество символов"
 L["Maximum number of characters Desc"] = "Максимальное количество символов показываемых в подсказке."
 L["Merge Small Categories"] = "Объеденить маленькие категории"
@@ -690,7 +685,6 @@ L["Modifiers"] = "Модификаторы"
 L["Mogu"] = "Могу"
 L["More"] = "Больше"
 L["Mort'regar"] = "Морт'регар"
-L["Max Number of Icons"] = "Максимальное число значков"
 L["Most progress"] = "Наибольший прогресс"
 L["Mouse Wheel Scroll Speed"] = "Скорость скролла колесиком мыши"
 L["Mouse Wheel Scroll Speed Desc"] = "Число {items} сколько будет прокручено при щелчке на полоску прокрутки вверх/вниз или крутя колесиком."
@@ -761,6 +755,8 @@ L["Only search filtered achievements Desc"] = "Поиск по достижен�
 L["Only when time data is available"] = "Только когда информация о времени доступна"
 L["Only with a time"] = "Только со временем"
 L["Open"] = "Открыто"
+L["Open on Tab"] = "Открывать на вкладке"
+L["Open on Tab Desc"] = "Выбрать вкладку, на которой откроется страница Wowhead, например Комментарии или Скриншоты."
 L["Open options"] = "Открыть настройки"
 L["Opening the window"] = "Открытие окна"
 L["Order"] = "Заказ"
@@ -957,6 +953,8 @@ L["Show Guide on Mouseover"] = "Показывать при наведении"
 L["Show Guide on Mouseover Desc"] = "Показывает гайд, пока курсор над его значком; щелчок закрепляет его."
 L["Show Icon on Achievements"] = "Показывать значок на достижениях"
 L["Show Icon on Achievements Desc"] = "Показывает / скрывает значок на достижениях с наградой, которую можно посмотреть. Пункт {previewReward} в меню правого клика работает всегда."
+L["Show Menu Button"] = "Показывать кнопку меню"
+L["Show Menu Button Desc"] = "Показать / скрыть на каждом достижении кнопку, открывающую его меню по правому щелчку."
 L["Show Not Obtainable"] = "Показ {notObtainable}"
 L["Show Not Obtainable Desc"] = "Показать / скрыть {notObtainable} достижения в красном на полоске прогресса."
 L["Show Objectives progress"] = "Показ {objectivesProgress}"
@@ -1144,6 +1142,8 @@ L["Upcoming Calendar Event Days Desc"] = "Количество дней допо
 L["Upcoming Calendar Event Login Delay"] = "Будущие календарные события во время входа"
 L["Upcoming Calendar Events"] = "Будущие календарные события"
 L["Upper Reaches"] = "Верхний ярус"
+L["Use Game Language"] = "Использовать язык игры"
+L["Use Game Language Desc"] = "Открывать страницу Wowhead на языке игры, а не на английском."
 L["Val and Naigtal"] = "Вал и Найталь"
 L["Val'sharah"] = "Валь'шара"
 L["Vaults of Atal'Utek"] = "Хранилища Атал'Утека"
