@@ -31,7 +31,7 @@ The migration finished in September 2026 and every first-party category file is 
 | Category ids that are auto-allocated parse positions | ~96% (from the 2026-09-20 audit; re-measure before relying on it) |
 | Classic per-expansion CategoryData files | **none** — Classic gets its expansion tree from `DataAddons/Shared/` |
 
-> `.github/copilot-instructions.md` currently states that all first-party data is V2 and that V1 remains only for plugins. That is true for **achievement** data and false for **category** data. Correct it in Phase 3, not before — it should describe the end state, not the intent.
+> The instruction file of the time (`.github/copilot-instructions.md`, since 2026-11-09 `CLAUDE.md` and `.claude/rules/data.md`) stated that all first-party data is V2 and that V1 remains only for plugins. That is true for **achievement** data and false for **category** data. Correct it in Phase 3, not before — it should describe the end state, not the intent.
 
 ---
 
@@ -240,7 +240,7 @@ Shared files must be snapshotted for **both** clients: they resolve differently 
 & "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\Read-GameErrors.ps1"
 ```
 
-4. **Correct `.github/copilot-instructions.md`** to describe the real state of the category format.
+4. **Correct the instruction file** (then `.github/copilot-instructions.md`, now `.claude/rules/data.md`) to describe the real state of the category format.
 5. **Changelog.** The migration should be user-invisible; if the snapshot revealed and fixed a real tree defect, that part gets its own entry.
 
 ---

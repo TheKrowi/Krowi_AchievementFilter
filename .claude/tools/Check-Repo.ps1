@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Repo lint for Krowi_AchievementFilter: the mechanical rules from .github/copilot-instructions.md that the game
+    Repo lint for Krowi_AchievementFilter: the mechanical rules from CLAUDE.md and .claude/rules/ that the game
     cannot check for you. Runs offline in about a second and installs nothing.
 
 .DESCRIPTION
@@ -76,6 +76,8 @@
                                  name, an intent.md, no plan.md without a spec.md, and in each file the
                                  template's title (Krowi_ClaudeKit's skills/process-issue/templates/), a
                                  Status: draft|accepted|done line and its headings
+      instructions     [Warning] CLAUDE.md stays within 16 KB and 200 lines, each .claude/rules/*.md within 8 KB
+                                 and opens with '---' frontmatter holding a paths: key; always on
       bom              [Warning] no UTF-8 byte order mark (.editorconfig: utf-8), in the addon files and in the
                                  .md and .ps1 files outside Libs/
       line-endings     [Warning] CRLF only (.editorconfig: crlf), in the same files
@@ -961,7 +963,7 @@ foreach ($script in Get-ChildItem -Path (Join-Path $root '.claude\skills') -Recu
             $line -match ($typePrefix + '\$(table|name)\s*=\s*"[^"]')
         if ($filled) {
             $sev = if ($changed.ContainsKey($rel)) { 'Error' } else { 'Warning' }
-            Add-Finding 'lookup-placeholders' $sev $rel $n 'lookup script committed with values in its placeholder; pass them as parameters (-Ids, -Terms, -Names) or reset the default to @() / "" after running (.github/copilot-instructions.md rule)'
+            Add-Finding 'lookup-placeholders' $sev $rel $n 'lookup script committed with values in its placeholder; pass them as parameters (-Ids, -Terms, -Names) or reset the default to @() / "" after running (.claude/rules/data.md, Lookup scripts)'
         }
     }
 }
@@ -1025,6 +1027,37 @@ if (Test-Path $workRoot) {
 }
 Write-Timing 'work-items'
 
+# --- instructions: CLAUDE.md and the path rules stay inside their budgets (docs/work/2026-11-09-lean-instructions) --
+# CLAUDE.md loads into every call and every general-purpose subagent; a path rule loads once a file its paths match is
+# read or edited, and a rule without valid paths: frontmatter loads into every call like CLAUDE.md
+$instructionFiles = @()
+if (Test-Path (Join-Path $root 'CLAUDE.md')) { $instructionFiles += @{ Full = (Join-Path $root 'CLAUDE.md'); MaxBytes = 16384; MaxLines = 200; IsRule = $false } }
+$rulesDir = Join-Path $root '.claude\rules'
+if (Test-Path $rulesDir) {
+    foreach ($f in Get-ChildItem -Path $rulesDir -Recurse -File -Filter '*.md') { $instructionFiles += @{ Full = $f.FullName; MaxBytes = 8192; MaxLines = 0; IsRule = $true } }
+}
+foreach ($i in $instructionFiles) {
+    $rel = ConvertTo-RelativePath $i.Full
+    $sev = if ($changed.ContainsKey($rel)) { 'Error' } else { 'Warning' }
+    $bytes = (Get-Item -LiteralPath $i.Full).Length
+    $lines = @(Get-Content -LiteralPath $i.Full -Encoding UTF8)
+    if ($bytes -gt $i.MaxBytes) {
+        Add-Finding 'instructions' $sev $rel 1 "$bytes bytes, over the budget of $($i.MaxBytes); what one area of code needs goes into a path rule (.claude/rules/), a procedure into a skill, detail into docs (CLAUDE.md, Instructions)"
+    }
+    if ($i.MaxLines -and $lines.Count -gt $i.MaxLines) {
+        Add-Finding 'instructions' $sev $rel $lines.Count "$($lines.Count) lines, over the budget of $($i.MaxLines) (CLAUDE.md, Instructions)"
+    }
+    if ($i.IsRule) {
+        $close = -1
+        if ($lines.Count -and $lines[0] -eq '---') { for ($n = 1; $n -lt $lines.Count; $n++) { if ($lines[$n] -eq '---') { $close = $n; break } } }
+        $hasPaths = $close -ge 2 -and @($lines[1..($close - 1)] | Where-Object { $_ -match '^paths:' }).Count
+        if (-not $hasPaths) {
+            Add-Finding 'instructions' $sev $rel 1 "no '---' frontmatter with a paths: key; without it a rule loads into every call like CLAUDE.md"
+        }
+    }
+}
+Write-Timing 'instructions'
+
 # --- mapverifier: raw/MapVerifier.csv must be valid and in canonical form (Sync-MapVerifier.ps1 -Verify) --
 $mvSync = Join-Path $root '.claude\skills\sync-mapverifier\Sync-MapVerifier.ps1'
 if ((Test-Path $mvSync) -and (-not $ChangedOnly -or $changed.ContainsKey('raw/MapVerifier.csv'))) {
@@ -1064,7 +1097,7 @@ foreach ($rel in @($changed.Keys | Where-Object { $_ -like '*.lua' -and $_ -notl
     $added = Get-AddedLines $rel
     foreach ($a in $added) {
         if ($a.Text -match ';\s*(--.*)?$' -and $a.Text -notmatch '^\s*--') {
-            Add-Finding 'semicolon' 'Error' $rel $a.Line 'trailing semicolon on an added line; new and edited code drops them (.github/copilot-instructions.md)'
+            Add-Finding 'semicolon' 'Error' $rel $a.Line 'trailing semicolon on an added line; new and edited code drops them (CLAUDE.md, Code style)'
         }
     }
     if ($rel -like 'Localization/*.lua' -and $rel -ne 'Localization/Shared.lua') {
@@ -1125,7 +1158,7 @@ if (Test-Path $ignoreFile) {
         if ($t -match '^(\S+)\s+(\S+)(?:\s+(\S+))?$') { $ignore += @{ Rule = $Matches[1]; Path = $Matches[2]; Name = $Matches[3] } }
     }
 }
-$alwaysOn = @('section-order', 'dup-id', 'saved-variables', 'lua-syntax', 'globals', 'removed-api', 'deprecated-api', 'library-names', 'util-flags', 'background-jobs', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'data-snapshot', 'zone-decisions', 'mapverifier', 'changelog', 'kit', 'feature-boundary')
+$alwaysOn = @('section-order', 'dup-id', 'saved-variables', 'lua-syntax', 'globals', 'removed-api', 'deprecated-api', 'library-names', 'util-flags', 'background-jobs', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'data-snapshot', 'zone-decisions', 'mapverifier', 'changelog', 'kit', 'feature-boundary', 'instructions')
 $report = $findings | Where-Object {
     $f = $_
     -not ($ignore | Where-Object { ($_.Rule -eq '*' -or $_.Rule -eq $f.Rule) -and $f.Path -like $_.Path -and (-not $_.Name -or $f.Message.Contains("'$($_.Name)'")) })

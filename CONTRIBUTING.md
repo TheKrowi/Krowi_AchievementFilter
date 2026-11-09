@@ -1,6 +1,6 @@
 # Contributing to Krowi's Achievement Filter
 
-The canonical technical reference for the addon (architecture, load order, offline tooling, data formats and code conventions) is [`.github/copilot-instructions.md`](.github/copilot-instructions.md); it holds the rules and links the detailed references ([`.claude/tools/README.md`](.claude/tools/README.md), [`Tests/README.md`](Tests/README.md), [`docs/architecture.md`](docs/architecture.md), [`docs/obtainability.md`](docs/obtainability.md)). This file covers the contributor workflow only.
+The rules for the addon (architecture, offline tooling and code conventions) are in [`CLAUDE.md`](CLAUDE.md), and the rules for one area of the code (data, events, features, localization, tests, release) in [`.claude/rules/`](.claude/rules/); they link the detailed references ([`.claude/tools/README.md`](.claude/tools/README.md), [`Tests/README.md`](Tests/README.md), [`docs/architecture.md`](docs/architecture.md), [`docs/obtainability.md`](docs/obtainability.md)). This file covers the contributor workflow only.
 
 ---
 
@@ -86,7 +86,7 @@ Every issue, feature and fix follows the work-item lifecycle in [`docs/sdlc-play
 1. Fork the repository.
 2. Create a branch from `main`: `git checkout -b feature/my-change main` (`fix/<issue>-<slug>` or `feature/<issue>-<slug>` for a work item).
 3. Create `docs/work/<issue>-<slug>/` and write the intent, then the spec, then the plan, shaped like the existing work folders (`intent.md`, `spec.md` and `plan.md`, each with its title, a `Status:` line and the same headings).
-4. Make your changes following the patterns in [`.github/copilot-instructions.md`](.github/copilot-instructions.md); for a bug, add the scenario that reproduces it before fixing it.
+4. Make your changes following the patterns in [`CLAUDE.md`](CLAUDE.md) and [`.claude/rules/`](.claude/rules/); for a bug, add the scenario that reproduces it before fixing it.
 5. Add new Lua files to the appropriate `Files.xml` manifest.
 6. Update `_Packaging/Changelog.md` with a brief description of your change.
 7. Open a PR targeting `main` and fill out the PR template.
