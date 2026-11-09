@@ -1,15 +1,5 @@
 local _, addon = ...
 
-local function AddRightClickMenuButton(button)
-	local rightClickMenuButton = CreateFrame("Button", "$parentRightClickMenuButton", button, "KrowiAF_RightClickMenuButton_Template")
-	rightClickMenuButton:SetPoint("TOPRIGHT", -1, -1)
-
-	rightClickMenuButton:SetScript("OnClick", function(self)
-		addon.Gui.RightClickMenu.AchievementMenu:Open(self, button.Achievement, rightClickMenuButton)
-	end)
-	button.RightClickMenuButton = rightClickMenuButton
-end
-
 function KrowiAF_AchievementButton_OnLoad(self)
 	if not addon.Options.db.profile.Achievements.CenterHeader then
 		self.Header:SetPoint("LEFT", self.HeaderLeftAnchor or self.PlusMinus, "RIGHT", 10, 0)
@@ -61,9 +51,7 @@ function KrowiAF_AchievementButton_Small_OnLoad(self)
 	self.CollapsedHeight = 48
 	self.ObjectivesLeftAnchor = self.PlusMinus
 
-	if addon.Options.db.profile.RightClickMenu.ShowButtonOnAchievement then
-		AddRightClickMenuButton(self)
-	end
+	addon.Slots.RowParts.Load(self) -- what the features add to a row (Slots.lua), such as the right-click menu's button
 
 	KrowiAF_AchievementButton_OnLoad(self)
 end
@@ -73,9 +61,7 @@ function KrowiAF_AchievementButton_Normal_OnLoad(self)
 	self.CollapsedHeight = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT
 	self.ObjectivesLeftAnchor = self.Icon.Border
 
-	if addon.Options.db.profile.RightClickMenu.ShowButtonOnAchievement then
-		AddRightClickMenuButton(self)
-	end
+	addon.Slots.RowParts.Load(self) -- what the features add to a row (Slots.lua), such as the right-click menu's button
 
 	KrowiAF_AchievementButton_OnLoad(self)
 end

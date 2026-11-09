@@ -3,4 +3,5 @@
     <Script file="Waypoint.lua" />
     <Script file="Content.lua" />
     <Script file="Panel.lua" />
+    <Script file="MenuEntry.lua" />
 </Ui>

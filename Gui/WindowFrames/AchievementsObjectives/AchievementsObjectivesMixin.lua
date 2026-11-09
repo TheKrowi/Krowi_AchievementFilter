@@ -24,7 +24,7 @@ function KrowiAF_AchievementsObjectivesOtherAchievementMixin:OnClick(button)
 	if button == "LeftButton" then
 		KrowiAF_SelectAchievementFromID(self.Id)
 	elseif button == "RightButton" then
-		addon.Gui.RightClickMenu.AchievementMenu:Open(self, addon.Data.Achievements[self.Id])
+		addon.Slots.AchievementMenu.Open(self, addon.Data.Achievements[self.Id])
 	end
 end
 

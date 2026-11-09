@@ -138,10 +138,18 @@ local function RunScenario(env, scenario, observations)
     }
 end
 
+-- env.IsOff() -> reason while the right-click menu is switched off (Features.lua): every scenario is a SKIP then, and
+-- the features suite checks the menu is absent
 function menu.Run(env, observations)
     local results = {}
+    local off = env.IsOff and env.IsOff()
     for _, scenario in ipairs(menu.Scenarios) do
-        tinsert(results, RunScenario(env, scenario, observations))
+        if off then
+            tinsert(results, {Name = scenario.Name, Status = "SKIP",
+                Line = ("menu/%s: SKIP recorded=%s %s"):format(scenario.Name, scenario.Recorded, off)})
+        else
+            tinsert(results, RunScenario(env, scenario, observations))
+        end
     end
     return results
 end
@@ -212,6 +220,12 @@ end
 
 function gameEnv.Find(kind)
     return finders[kind]()
+end
+
+function gameEnv.IsOff()
+    if not addon.Features.IsStarted("RightClickMenu") then
+        return "the right-click menu is off"
+    end
 end
 
 local function NewRoot()

@@ -1,6 +1,10 @@
 local _, addon = ...
-local section = {Order = 70} -- its place among the menu's entries (Slots.lua, AchievementMenu)
-tinsert(addon.Gui.RightClickMenu.AchievementMenu.Sections, section)
+
+-- Xu-Fu's Pet Guides in the achievement's right-click menu, an entry of the core's menu slot (Slots.lua,
+-- AchievementMenu), added when this file loads; it moves into Pet battle links' Start once that feature is split
+-- (docs/work/2026-11-09-right-click-menu)
+local section = {Order = 70} -- after Transmog Sets, before More
+addon.Slots.AchievementMenu.Add(section)
 
 local popupDialog = LibStub("Krowi_PopupDialog_2")
 

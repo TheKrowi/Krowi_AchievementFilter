@@ -1,8 +1,8 @@
 local _, addon = ...
-addon.Gui.RightClickMenu.EventReminderMenu = {
+addon.Gui.EventReminderMenu = {
 	Sections = {}
 }
-local eventReminderMenu = addon.Gui.RightClickMenu.EventReminderMenu
+local eventReminderMenu = addon.Gui.EventReminderMenu
 local menuBuilder = addon.MenuBuilder:New({modern = addon.Util.IsModern})
 
 local function CreateMenu(menuObj, event)

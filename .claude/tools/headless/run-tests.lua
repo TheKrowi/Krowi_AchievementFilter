@@ -26,7 +26,7 @@
 --         that no achievement has transmog set data and Blizzard's category tooltip function stays Blizzard's), guide
 --         (Gui/Guide/, the guide's tooltip and
 --         right-click menu sections: achievement guides and their waypoints, once their files exist), menu
---         (Gui/RightClickMenu/AchievementMenu/AchievementMenu.lua: whether a "go to" entry for an achievement the addon
+--         (Features/RightClickMenu/AchievementMenu.lua: whether a "go to" entry for an achievement the addon
 --         does not register is greyed out, and whether entries and the title for an id the game does not know can be
 --         built and what they say), memory (TaintDiagnostics.lua and Data/EventData.lua with the custom event
 --         timers: what the addon's background jobs, the taint probe's sweep and the event-reminder refresh, allocate a
@@ -1174,14 +1174,15 @@ suites.guide = function(c)
     c.loadAddonFile("Localization/enUS.lua")
     addon.L = strings
     c.frames.lenient = true -- the guide frames keep their pools in fields that start out nil, as the game allows
-    addon.Gui = { AchievementTooltip = { Sections = {} }, RightClickMenu = { AchievementMenu = { Sections = {} } },
+    addon.Gui = { AchievementTooltip = { Sections = {} },
         RegisterFrameForClosing = function() end } -- Gui/FramesForClosing.lua, which the escape suite covers
     addon.Options = { db = { profile = { Achievements = { Guide = { Tooltip = true, RightClickMenu = true, Icon = true, ExpandedRow = false,
         ActionStyle = 1, WaypointProvider = 1 } } } } } -- Options/Defaults.lua
     local loaded = {}
-    -- Gui/SidePanels.lua first: the side panel chain the panel scenarios read
-    for _, rel in ipairs({ "Gui/SidePanels.lua", "Gui/Guide/Guide.lua", "Gui/Guide/Waypoint.lua", "Gui/Guide/Content.lua", "Gui/Guide/Panel.lua",
-        "Gui/AchievementTooltip/Guide.lua", "Gui/RightClickMenu/AchievementMenu/Guide.lua" }) do
+    -- Gui/SidePanels.lua first: the side panel chain the panel scenarios read; Slots.lua before the menu entry, which adds
+    -- itself to the core's menu slot
+    for _, rel in ipairs({ "Gui/SidePanels.lua", "Slots.lua", "Gui/Guide/Guide.lua", "Gui/Guide/Waypoint.lua", "Gui/Guide/Content.lua", "Gui/Guide/Panel.lua",
+        "Gui/AchievementTooltip/Guide.lua", "Gui/Guide/MenuEntry.lua" }) do
         local f = io.open(root .. "/" .. rel, "rb")
         if f then
             f:close()
@@ -1235,7 +1236,7 @@ suites.guide = function(c)
     return suite.Run(headless, observations), "Tests/Guide.lua", observations
 end
 
--- The real Gui/RightClickMenu/AchievementMenu/AchievementMenu.lua and Globals.lua against a model of addon.MenuBuilder that
+-- The real Features/RightClickMenu/AchievementMenu.lua and Globals.lua against a model of addon.MenuBuilder that
 -- keeps the one rule this suite is about: CreateButtonAndAdd disables an entry only when its fourth argument, isEnabled,
 -- is false (Libs/Krowi_Menu/Krowi_MenuBuilder.lua, CreateSubmenuButton on Retail and on Classic). The model's game knows
 -- 6 and the fake missing id; the model's data registers 6 and the fake placeholder; the fake unknown id is in neither
@@ -1270,8 +1271,9 @@ suites.menu = function(c)
     addon.Data = { Achievements = { [6] = { Id = 6 }, [ids.placeholder] = { Id = ids.placeholder, DoesNotExist = true } } }
     env.KrowiAF = { PluginsApi = { AddAchievementRightClickMenuItems = function() end } }
     c.loadAddonFile("Slots.lua") -- the features' menu entries the menu merges with its own sections; none started here
-    c.loadAddonFile("Gui/RightClickMenu/AchievementMenu/AchievementMenu.lua")
+    c.loadAddonFile("Features/RightClickMenu/AchievementMenu.lua")
     local achievementMenu = addon.Gui.RightClickMenu.AchievementMenu
+    achievementMenu.Create() -- the builder, as the feature's Start makes it (Features/RightClickMenu/RightClickMenu.lua)
 
     local notes = {
         missing = "a fake id the model's game knows and its data does not hold",

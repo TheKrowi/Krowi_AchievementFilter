@@ -18,20 +18,28 @@ local features = addon.Tests.Features
 -- Name: the feature's folder under Features/ and its key in the registry
 -- Switch: its saved path in the profile; Frame: a frame it makes; Data: what its data load keeps
 -- Help: the section id of its help page
+-- Opener: it hosts the achievement menu (Slots.lua, AchievementMenu.SetOpener); RowPart: it adds a part to the rows
+-- (Slots.lua, RowParts)
 features.Known = {
     {Name = "RewardPreview", Switch = {"Features", "RewardPreview"}, Frame = "KrowiAF_RewardPreview", Help = "rewards",
-        Data = function() return addon.Data.RewardPreviewData end}
+        Data = function() return addon.Data.RewardPreviewData end},
+    {Name = "RightClickMenu", Switch = {"Features", "RightClickMenu"}, Help = "rightclick", Opener = true, RowPart = true}
 }
 
--- Check: what is observed; Recorded and Target per boot state
+-- Check: what is observed; Recorded and Target per boot state; When: the field of Known a feature needs for the check,
+-- which makes no line for a feature without it
 features.Scenarios = {
     {Check = "default", Recorded = {off = "default on", on = "default on"}, Target = {off = "default on", on = "default on"}},
     {Check = "started", Recorded = {off = "not started", on = "started"}, Target = {off = "not started", on = "started"}},
-    {Check = "frame", Recorded = {off = "none", on = "frame"}, Target = {off = "none", on = "frame"}},
-    {Check = "data", Recorded = {off = "none", on = "data"}, Target = {off = "none", on = "data"}},
+    {Check = "frame", When = "Frame", Recorded = {off = "none", on = "frame"}, Target = {off = "none", on = "frame"}},
+    {Check = "data", When = "Data", Recorded = {off = "none", on = "data"}, Target = {off = "none", on = "data"}},
     {Check = "slots", Recorded = {off = "owns none", on = "owns entries"}, Target = {off = "owns none", on = "owns entries"}},
     -- its help page in the options window: Show me while started; while off no Show me and the off line on top
     {Check = "help", Recorded = {off = "off line", on = "show me"}, Target = {off = "off line", on = "show me"}},
+    -- the core opens the achievement menu through the slot only while its host is started
+    {Check = "opener", When = "Opener", Recorded = {off = "no opener", on = "opener"}, Target = {off = "no opener", on = "opener"}},
+    -- the row's parts, such as the menu button, are made only while their feature is started
+    {Check = "rowpart", When = "RowPart", Recorded = {off = "no part", on = "part"}, Target = {off = "no part", on = "part"}},
     {Check = "load", Recorded = {off = "nothing made", on = "nothing made"}, Target = {off = "nothing made", on = "nothing made"}}
 }
 
@@ -74,6 +82,28 @@ end
 function observe.data(feature)
     local data = feature.Data()
     return type(data) == "table" and next(data) ~= nil and "data" or "none"
+end
+
+-- An owned entry of the feature's that holds the opener, and the slot's opener itself
+function observe.opener(feature)
+    local owns = false
+    for _, entry in ipairs(addon.Slots.Owned(feature.Name)) do
+        owns = owns or entry.Opener ~= nil
+    end
+    local set = addon.Slots.AchievementMenu.Opener ~= nil
+    if owns ~= set then
+        return "opener of another owner"
+    end
+    return set and "opener" or "no opener"
+end
+
+function observe.rowpart(feature)
+    for _, entry in ipairs(addon.Slots.RowParts.Entries) do
+        if entry.Owner == feature.Name then
+            return "part"
+        end
+    end
+    return "no part"
 end
 
 function observe.slots(feature)
@@ -126,6 +156,30 @@ function observe.load(feature, env)
     return env.HasFeatureFiles and env.HasFeatureFiles(feature.Name) and "nothing made" or "no feature files"
 end
 
+-- One check of one feature in its state, as a result line
+local function RunCheck(env, feature, scenario, state)
+    local name = ("%s/%s-%s"):format(state, feature.Name, scenario.Check)
+    local recorded, target = scenario.Recorded[state], scenario.Target[state]
+    local ok, got, reason = pcall(observe[scenario.Check], feature, env)
+    if not ok then
+        got, reason = nil, "raised: " .. tostring(got)
+    end
+    local status, targetMet, tail
+    if not got then
+        status, tail = "SKIP", reason or "nothing observed"
+    else
+        status = got == recorded and "PASS" or "FAIL"
+        targetMet = got == target
+        tail = ("got=[%s] target=[%s] %s"):format(got, target, targetMet and "met" or "open")
+    end
+    return {
+        Name = name,
+        Status = status,
+        TargetMet = targetMet,
+        Line = ("features/%s: %s recorded=[%s] %s"):format(name, status, recorded, tail)
+    }
+end
+
 -- env: Global(name) -> value; LoadCalls and HasFeatureFiles(name) headlessly; State(feature) overrides the profile's
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line
 function features.Run(env, observations)
@@ -134,26 +188,9 @@ function features.Run(env, observations)
         local state = env.State and env.State(feature) or features.State(feature)
         tinsert(observations, ("%s is %s"):format(feature.Name, state))
         for _, scenario in ipairs(features.Scenarios) do
-            local name = ("%s/%s-%s"):format(state, feature.Name, scenario.Check)
-            local recorded, target = scenario.Recorded[state], scenario.Target[state]
-            local ok, got, reason = pcall(observe[scenario.Check], feature, env)
-            if not ok then
-                got, reason = nil, "raised: " .. tostring(got)
+            if not scenario.When or feature[scenario.When] then
+                tinsert(results, RunCheck(env, feature, scenario, state))
             end
-            local status, targetMet, tail
-            if not got then
-                status, tail = "SKIP", reason or "nothing observed"
-            else
-                status = got == recorded and "PASS" or "FAIL"
-                targetMet = got == target
-                tail = ("got=[%s] target=[%s] %s"):format(got, target, targetMet and "met" or "open")
-            end
-            tinsert(results, {
-                Name = name,
-                Status = status,
-                TargetMet = targetMet,
-                Line = ("features/%s: %s recorded=[%s] %s"):format(name, status, recorded, tail)
-            })
         end
     end
     return results

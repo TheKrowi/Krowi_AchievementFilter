@@ -5,7 +5,9 @@ local slots = addon.Slots
 -- The core's extension points for the features under Features/ (docs/work/2026-11-08-feature-split-poc). A feature adds
 -- its entries from its Start, which the registry (Features.lua) runs only while the feature is on, so a feature that is
 -- off holds no entry; each entry carries the feature that added it (Owner), which the features suite reads. The core
--- reads the slots and never names a feature.
+-- reads the slots and never names a feature. A slot may have a host feature that reads its entries instead (the
+-- right-click menu reads AchievementMenu's); the core then reaches the host only through the slot. A part of the core
+-- not split into a feature yet may add its entry when its file loads; it has no owner.
 
 local owned = {}
 
@@ -53,11 +55,38 @@ function slots.RowIcons.Add(entry)
     return Add(slots.RowIcons.Entries, entry)
 end
 
--- Achievement menu entries: merged by Order with the menu's own sections
--- (Gui/RightClickMenu/AchievementMenu/AchievementMenu.lua); an entry is a section, CheckAdd(achievement) and
--- Add(menu, achievement, menuBuilder, caller)
+-- Row parts: what a feature adds to an achievement row of the list when the row is made, each by Order:
+-- OnLoad(row), from the row's OnLoad (Gui/WindowFrames/AchievementButton/AchievementButton.lua)
+slots.RowParts = {Entries = {}}
+
+function slots.RowParts.Add(entry)
+    return Add(slots.RowParts.Entries, entry)
+end
+
+function slots.RowParts.Load(row)
+    for _, entry in ipairs(slots.RowParts.Entries) do
+        entry.OnLoad(row)
+    end
+end
+
+-- The achievement's right-click menu. Its host, the feature that draws it, sets the opener from its Start and merges
+-- Entries by Order with its own sections when it opens; an entry is a section, CheckAdd(achievement) and
+-- Add(menu, achievement, menuBuilder, caller), and closes the menu through menuBuilder:Close(). The core opens the menu
+-- through Open, which does nothing while no host started.
 slots.AchievementMenu = {Entries = {}}
 
 function slots.AchievementMenu.Add(entry)
     return Add(slots.AchievementMenu.Entries, entry)
+end
+
+function slots.AchievementMenu.SetOpener(open)
+    Add({}, {Opener = open})
+    slots.AchievementMenu.Opener = open
+end
+
+function slots.AchievementMenu.Open(caller, achievement)
+    local open = slots.AchievementMenu.Opener
+    if open then
+        open(caller, achievement)
+    end
 end

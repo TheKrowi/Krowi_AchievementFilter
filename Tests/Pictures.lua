@@ -584,6 +584,9 @@ steps = {
         Picture = "MenuMain",
         Text = "the right-click menu",
         Run = function()
+            if not addon.Features.IsStarted("RightClickMenu") then -- switched off (Features.lua)
+                return "the right-click menu is off"
+            end
             Scenes().rightclick(function(opened)
                 live.Scene = opened
             end)

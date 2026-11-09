@@ -86,7 +86,7 @@ end
 
 local function OnButtonClick(button, mouseButton)
 	if mouseButton == "RightButton" then
-		addon.Gui.RightClickMenu.AchievementMenu:Open(button, button.Achievement)
+		addon.Slots.AchievementMenu.Open(button, button.Achievement)
 		return
 	end
 	-- Left click: reuse the same shift-click-to-track/paste-to-chat/watch/exclude/pop-out

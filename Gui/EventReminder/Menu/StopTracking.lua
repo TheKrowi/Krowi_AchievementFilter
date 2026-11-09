@@ -1,6 +1,6 @@
 local _, addon = ...
 local section = {}
-tinsert(addon.Gui.RightClickMenu.EventReminderMenu.Sections, section)
+tinsert(addon.Gui.EventReminderMenu.Sections, section)
 
 function section:CheckAdd()
     return true

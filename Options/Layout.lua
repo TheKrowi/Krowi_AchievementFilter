@@ -299,15 +299,6 @@ local guideActionStyles = { -- addon.Gui.Guide.Content.ActionStyle
     addon.L["Text links"]
 }
 
-local wowheadRelatedTabs = {
-    addon.L["None"],
-    addon.L["Criteria of"],
-    addon.L["Guides"],
-    addon.L["News"],
-    addon.L["Comments"],
-    addon.L["Screenshots"]
-}
-
 local function MovableSwitchMovableSet(_, value)
     if addon.Options.db.profile.Window.Movable == value then return; end
     addon.Options.db.profile.Window.Movable = value
@@ -1739,48 +1730,6 @@ local popoutOptions = {
     }
 }
 
-local rightClickMenuOptions = {
-    order = OrderPP(), type = "group",
-    name = addon.L["Right Click Menu"],
-    args = {
-        Button = {
-            order = OrderPP(), type = "group", inline = true,
-            name = addon.L["Button"],
-            args = {
-                ShowButtonOnAchievement = {
-                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
-                    name = addon.L["Show Right Click Menu"]:K_ReplaceVars(addon.L["Right Click Menu"]),
-                    desc = addon.L["Show Right Click Menu Desc"]:K_ReplaceVars(addon.L["Right Click Menu"]):KAF_AddDefaultValueText("RightClickMenu.ShowButtonOnAchievement"):K_AddReloadRequired(),
-                    get = function() return addon.Options.db.profile.RightClickMenu.ShowButtonOnAchievement; end,
-                    set = function(_, value) addon.Options.db.profile.RightClickMenu.ShowButtonOnAchievement = value; end
-                }
-            }
-        },
-        Wowhead = {
-            order = OrderPP(), type = "group", inline = true,
-            name = addon.L["Wowhead Link"],
-            args = {
-                AddLocale = {
-                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
-                    name = addon.L["Add Locale"],
-                    desc = addon.L["Add Locale Desc"]:K_ReplaceVars(addon.L["Wowhead Link"]):KAF_AddDefaultValueText("RightClickMenu.WowheadLink.AddLocale"),
-                    get = function() return addon.Options.db.profile.RightClickMenu.WowheadLink.AddLocale; end,
-                    set = function(_, value) addon.Options.db.profile.RightClickMenu.WowheadLink.AddLocale = value; end
-                },
-                Blank12 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.5), name = ""},
-                AddRelatedTab = {
-                    order = OrderPP(), type = "select", width = AdjustedWidth(1.5),
-                    name = addon.L["Related Tab"],
-                    desc = addon.L["Related Tab Desc"]:K_ReplaceVars(addon.L["Wowhead Link"]):KAF_AddDefaultValueText("RightClickMenu.WowheadLink.AddRelatedTab", wowheadRelatedTabs),
-                    values = wowheadRelatedTabs,
-                    get = function() return addon.Options.db.profile.RightClickMenu.WowheadLink.AddRelatedTab; end,
-                    set = function (_, value) addon.Options.db.profile.RightClickMenu.WowheadLink.AddRelatedTab = value; end
-                }
-            }
-        },
-    }
-}
-
 local calendarOptions = {
     order = OrderPP(), type = "group",
     name = addon.L["Calendar"],
@@ -1925,7 +1874,6 @@ options.OptionsTable.args["Layout"] = {
         AdjustableCategories = adjustableCategoriesOptions,
         Achievements = achievementsOptions,
         Popout = popoutOptions,
-        RightClickMenu = rightClickMenuOptions,
         Calendar = calendarOptions,
         Criteria = criteriaOptions,
         DataManager = dataManagerOptions

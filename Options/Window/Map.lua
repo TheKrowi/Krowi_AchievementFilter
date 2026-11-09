@@ -18,8 +18,8 @@ addon.Options.Window.Map = {
     -- A feature's section joins its group (Key) at its Order when the feature registers (Features.lua); Orders gives the
     -- core's sections theirs, so a feature never names the section it follows
     Groups = {
-        { Key = "window", Name = L["Achievement window"], Sections = { "tabs", "window", "categories", "summary", "achievements", "filters", "search", "tooltips", "rightclick", "popout", "guides", "calendar" },
-            Orders = { tabs = 10, window = 20, categories = 30, summary = 40, achievements = 50, filters = 60, search = 70, tooltips = 80, rightclick = 90, popout = 100, guides = 110, calendar = 120 } },
+        { Key = "window", Name = L["Achievement window"], Sections = { "tabs", "window", "categories", "summary", "achievements", "filters", "search", "tooltips", "popout", "guides", "calendar" },
+            Orders = { tabs = 10, window = 20, categories = 30, summary = 40, achievements = 50, filters = 60, search = 70, tooltips = 80, popout = 100, guides = 110, calendar = 120 } },
         { Key = "world", Name = L["Around the game"], Sections = { "maps", "criteria", "events", "eventlist" },
             Orders = { maps = 10, criteria = 20, events = 30, eventlist = 40 } },
         { Key = "addon", Name = L["This addon"], Sections = { "keys", "plugins", "profiles", "advanced", "about" },
@@ -152,14 +152,6 @@ addon.Options.Window.Map = {
                 { Path = "Layout.args.Header.args.Tooltip.args.SortPriority.args.Reverse4", Label = L["Reverse Sort"], Indent = 1 },
                 { Path = "Layout.args.Header.args.Tooltip.args.SortPriority.args.Priority5", Label = L["Sort priority"] .. " 5" },
                 { Path = "Layout.args.Header.args.Tooltip.args.SortPriority.args.Reverse5", Label = L["Reverse Sort"], Indent = 1 },
-            } },
-        } },
-        { Id = "rightclick", Name = L["Right-click menu"], Card = L["Card Right Click"], Groups = {
-            { Header = L["Button"], Entries = {
-                { Group = "Layout.args.RightClickMenu.args.Button" },
-            } },
-            { Header = L["Wowhead link"], Entries = {
-                { Group = "Layout.args.RightClickMenu.args.Wowhead" },
             } },
         } },
         { Id = "popout", Name = L["Pop Out"], Card = L["Card Popout"], Groups = {

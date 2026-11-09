@@ -22,8 +22,6 @@ KrowiAF_Categories = data.Categories
 -- data.ZonesWithAchievements = {};
 -- KrowiAF_ZonesWithAchievements = data.ZonesWithAchievements;
 
-data.RightClickMenuExtras = {}
-
 data.Maps = {}
 
 data.Events = {}
