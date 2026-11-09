@@ -7,6 +7,12 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 10-32-23 ]] --
+L["Show Menu Button"] = "Mostra pulsante del menu"
+L["Show Menu Button Desc"] = "Mostra / nasconde su ogni impresa un pulsante che apre il suo menu del clic destro."
+L["Use Game Language"] = "Usa la lingua del gioco"
+L["Use Game Language Desc"] = "Apre la pagina di Wowhead nella lingua del gioco invece che in inglese."
+L["Open on Tab"] = "Apri sulla scheda"
+L["Open on Tab Desc"] = "Sceglie la scheda su cui si apre la pagina di Wowhead, come Commenti o Screenshot."
 L["5th Anniversary Celebration"] = "Celebrazione del 5° anniversario"
 L["About"] = "Informazioni"
 L["Achievement guides"] = "Guide delle imprese"

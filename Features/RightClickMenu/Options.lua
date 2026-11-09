@@ -22,23 +22,23 @@ local function Rows()
         Button = {order = 1, type = "header", name = L["Button"]},
         ShowButtonOnAchievement = {
             order = 2, type = "toggle", width = AdjustedWidth(1.5),
-            name = L["Show Right Click Menu"]:K_ReplaceVars(L["Right Click Menu"]),
-            desc = L["Show Right Click Menu Desc"]:K_ReplaceVars(L["Right Click Menu"]):KAF_AddDefaultValueText("RightClickMenu.ShowButtonOnAchievement"):K_AddReloadRequired(),
+            name = L["Show Menu Button"],
+            desc = L["Show Menu Button Desc"]:KAF_AddDefaultValueText("RightClickMenu.ShowButtonOnAchievement"):K_AddReloadRequired(),
             get = function() return addon.Options.db.profile.RightClickMenu.ShowButtonOnAchievement end,
             set = function(_, value) addon.Options.db.profile.RightClickMenu.ShowButtonOnAchievement = value end
         },
         Wowhead = {order = 3, type = "header", name = L["Wowhead link"]},
         AddLocale = {
             order = 4, type = "toggle", width = AdjustedWidth(1.5),
-            name = L["Add Locale"],
-            desc = L["Add Locale Desc"]:K_ReplaceVars(L["Wowhead Link"]):KAF_AddDefaultValueText("RightClickMenu.WowheadLink.AddLocale"),
+            name = L["Use Game Language"],
+            desc = L["Use Game Language Desc"]:KAF_AddDefaultValueText("RightClickMenu.WowheadLink.AddLocale"),
             get = function() return addon.Options.db.profile.RightClickMenu.WowheadLink.AddLocale end,
             set = function(_, value) addon.Options.db.profile.RightClickMenu.WowheadLink.AddLocale = value end
         },
         AddRelatedTab = {
             order = 5, type = "select", width = AdjustedWidth(1.5),
-            name = L["Related Tab"],
-            desc = L["Related Tab Desc"]:K_ReplaceVars(L["Wowhead Link"]):KAF_AddDefaultValueText("RightClickMenu.WowheadLink.AddRelatedTab", wowheadRelatedTabs),
+            name = L["Open on Tab"],
+            desc = L["Open on Tab Desc"]:KAF_AddDefaultValueText("RightClickMenu.WowheadLink.AddRelatedTab", wowheadRelatedTabs),
             values = wowheadRelatedTabs,
             get = function() return addon.Options.db.profile.RightClickMenu.WowheadLink.AddRelatedTab end,
             set = function(_, value) addon.Options.db.profile.RightClickMenu.WowheadLink.AddRelatedTab = value end

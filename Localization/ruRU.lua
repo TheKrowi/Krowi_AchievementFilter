@@ -7,6 +7,12 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 10-32-23 ]] --
+L["Show Menu Button"] = "Показывать кнопку меню"
+L["Show Menu Button Desc"] = "Показать / скрыть на каждом достижении кнопку, открывающую его меню по правому щелчку."
+L["Use Game Language"] = "Использовать язык игры"
+L["Use Game Language Desc"] = "Открывать страницу Wowhead на языке игры, а не на английском."
+L["Open on Tab"] = "Открывать на вкладке"
+L["Open on Tab Desc"] = "Выбрать вкладку, на которой откроется страница Wowhead, например Комментарии или Скриншоты."
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -53,8 +59,6 @@ L["Active Events"] = "Активные события"
 L["Active events"] = "Активные события"
 L["Add addon name to world map icon"] = "Добавить название аддона к значку карты мира"
 L["Add addon name to world map icon Desc"] = "Добавить '{addonName}' в конец всплывающей подсказки при наведении курсора мыши."
-L["Add Locale"] = "Добавить перевод"
-L["Add Locale Desc"] = "Добавить текущий перевод в {wowheadLink}"
 L["Add to / Remove from Watch List"] = "Добавить/Убрать в/из списка отслеживания"
 L["Add to Watch List"] = "Добавить в {watchList}"
 L["Added in version"] = "Добавлено в версии"
@@ -824,8 +828,6 @@ L["Red"] = "Красный"
 L["Refresh Events"] = "Обновить События"
 L["Refresh interval"] = "Интервал обновления"
 L["Refresh interval Desc"] = "Время в секундах между обновлениями данных событий. Увеличенное время может создать новые вкплывашки и очистить старые результаты."
-L["Related Tab"] = "Связанная вкладка"
-L["Related Tab Desc"] = "Добавляет дополнительный к {wowheadLink}, так что будет выбрана другая вкладка, отличная от вкладки по умолчанию."
 L["Remember frame position"] = "Запомнить позицию {frame}"
 L["Remember frame position Desc"] = "Запомнить позицию {frame} . Закрепит позицию {frame} в её последнем известном положении при следущем перезаходе."
 L["Remember Last Position"] = "Запомнить последнюю позицию"
@@ -976,8 +978,6 @@ L["Show Required for Desc"] = "Показать / спрятать {requiredFor}
 L["Show Reward Preview on Mouseover Desc"] = "Когда отмечено, наведение на значок {rewardPreview} покажет предпромотр, для скрытия уберите мышь в сторону. Когда не отмечено, требуется клик по значку для просмотра. Нажатие на значок всегда закрепляет предварительный просмотр в открытом виде и делает его перемещаемым, независимо от этой настройки."
 L["Show Rewards"] = "Показ Наград"
 L["Show Rewards Desc"] = "Показать /  скрыть {rewards}, Когда выбраны и они доступны, {rewards} данного достижения будут отображаться в подсказке."
-L["Show Right Click Menu"] = "Показ кнопки {rightClickMenu}"
-L["Show Right Click Menu Desc"] = "Показать / скрыть кнопку {rightClickMenu} на каджом достижении. Это дает альтернативу для правого щелчка по достижению."
 L["Show Start Time & End Time"] = "Отображать {startTime} и  {endTime}"
 L["Show Start Time & End Time Desc"] = "Показать / спрятать {startTime} и {endTime}. Когда выбрано и достижение {temporarilyObtainable}, начало и конец периода для получения достижения будет отображаться в подсказке. Работает только если достижение {temporarilyObtainable}  в событиях календаря."
 L["Show Sub Categories"] = "Показ подкатегорий"
@@ -1191,7 +1191,6 @@ L["World Map Button"] = "Кнопка карты мира"
 L["Worldsoul Memory"] = "Воспоминание души мира"
 L["WoW Remix: Mists of Pandaria"] = true
 L["Wowhead"] = true
-L["Wowhead Link"] = "Wowhead ссылка"
 L["Wowhead link"] = "Wowhead ссылка"
 L["WoW's 10th Anniversary"] = "10я Годовщина WoW"
 L["WoW's 18th Anniversary"] = "18я Годовщина WoW"

@@ -7,6 +7,12 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 10-32-23 ]] --
+L["Show Menu Button"] = "Menü-Button anzeigen"
+L["Show Menu Button Desc"] = "Zeigt / versteckt auf jedem Erfolg einen Button, der sein Rechts-Klick Menü öffnet."
+L["Use Game Language"] = "Spielsprache verwenden"
+L["Use Game Language Desc"] = "Öffnet die Wowhead-Seite in der Sprache des Spiels statt auf Englisch."
+L["Open on Tab"] = "Auf Tab öffnen"
+L["Open on Tab Desc"] = "Wählt den Tab, auf dem sich die Wowhead-Seite öffnet, zum Beispiel Kommentare oder Bildschirmfoto."
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -57,8 +63,6 @@ L["Active Events"] = "Aktive Ereignisse"
 L["Active events"] = "Aktive Ereignisse"
 L["Add addon name to world map icon"] = "Addon-Namen zum Weltkarten-Icon hinzufügen"
 L["Add addon name to world map icon Desc"] = "Fügt '{addonName}' am Ende des Tooltips hinzu, wenn man mit der Maus über das Icon fährt."
-L["Add Locale"] = "Installationspfad hinzufügen"
-L["Add Locale Desc"] = "Fügt den Installationspfad des aktuellen Spiels zum {wowheadLink} hinzu."
 L["Add to / Remove from Watch List"] = "Hinzufügen zur / Entfernen von der Beobachtungsliste"
 L["Add to Watch List"] = "Zu {watchList} hinzufügen"
 L["Added in version"] = "Hinzugefügt mit Version"
@@ -881,8 +885,6 @@ L["Red"] = "Rot"
 L["Refresh Events"] = "Ereignisse aktualisieren"
 L["Refresh interval"] = "Aktualisierungsintervall"
 L["Refresh interval Desc"] = "Die Zeit in Sekunden zwischen den Aktualisierungen der Ereignis-Daten. Eine längere Zeitspanne kann die Erstellung neuer Popup-Fenster bzw. das Bereinigen vorhandener Popup-Fenster verzögern."
-L["Related Tab"] = "Zugehöriger Tab"
-L["Related Tab Desc"] = "Fügt dem {wowheadLink} ein zusätzliches Bit hinzu, damit ein anderer Tab als der Standard-Tab ausgewählt werden kann."
 L["Remember frame position"] = "{frame} Position merken"
 L["Remember frame position Desc"] = "Die Position des {frame} wird gespeichert. Dadurch bleibt der {frame} bei der nächsten Anmeldung an seiner letzten bekannten Position."
 L["Remember Last Position"] = "Letzte Position speichern"
@@ -1051,10 +1053,6 @@ L["Show Rewards"] = "Zeige Belohnungen"
 L["Show Rewards Desc"] = [=[{rewards} anzeigen/ausblenden,
 
 Wenn diese Option aktiviert ist, werden die {rewards}, die diese Erfolge gewähren, im Tooltip angezeigt, sofern verfügbar. ]=]
-L["Show Right Click Menu"] = "{rightClickMenu} Button anzeigen"
-L["Show Right Click Menu Desc"] = [=[Zeigt / Versteckt den {rightClickMenu} Button auf jedem Erfolg.
-
-Dies dient als Alternative für einen Rechtsklick auf den Erfolg. ]=]
 L["Show Start Time & End Time"] = "Zeige {startTime} & {endTime}"
 L["Show Start Time & End Time Desc"] = "{startTime} & {endTime} anzeigen/ausblenden. Wenn diese Option aktiviert ist und die Erfolge {temporarilyObtainable} sind, wird die Start- und Endzeit des Zeitraums, in dem der Erfolg erhältlich ist, im Tooltip angezeigt. Dies gilt nur für Erfolge, die aufgrund von Kalenderereignissen {temporarilyObtainable} sind."
 L["Show Sub Categories"] = "Unterkategorien anzeigen"
@@ -1272,7 +1270,6 @@ L["World Map Button"] = true
 L["Worldsoul Memory"] = "Weltenseelenerinnerung"
 L["WoW Remix: Mists of Pandaria"] = true
 L["Wowhead"] = true
-L["Wowhead Link"] = true
 L["Wowhead link"] = "Wowhead-Link"
 L["WoW's 10th Anniversary"] = "10-jähriges Jubiläum von WoW"
 L["WoW's 18th Anniversary"] = "WoW's 18. Geburtstag"
