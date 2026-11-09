@@ -15,4 +15,4 @@ Help page (`Help Right Click *`): its six terms say what each entry is for in a 
 Translations: the three names and three descriptions become six new keys in all 11 locale files, translated in all ten languages. The old keys (`Show Right Click Menu` with its `Desc`, `Add Locale` with its `Desc`, `Related Tab` with its `Desc`) leave every locale file and are deleted on CurseForge after the merge, on Krowi's approval. `Wowhead link`, `Button` and the help terms stay.
 
 ## Decision
-Pending (look gate).
+Krowi, 2026-11-09, at the look gate: all three, as proposed; the help page stays as it is.
