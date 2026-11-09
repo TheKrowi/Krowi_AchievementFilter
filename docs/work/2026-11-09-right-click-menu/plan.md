@@ -1,5 +1,5 @@
 # Plan: The Right-click menu as a feature that switches off (106, step 2)
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 ## Context
 106 splits KAF into a core plus switchable features; Reward preview was the proof of concept (#405). The Right-click menu comes next because other features plug entries into it and Reward preview's entry still closes the menu by name. Krowi's decisions at the design gate (2026-11-09): opener slot plus row-parts slot with the menu fully in its folder; transmog set data stays in the core; the menu of an unregistered achievement is fixed here, test first. Branch `feature/2026-11-09-right-click-menu`, worktree `feature-2026-11-09-right-click-menu`.

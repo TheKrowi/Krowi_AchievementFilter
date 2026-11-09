@@ -1,5 +1,5 @@
 # Intent: The Right-click menu as a feature that switches off (106, step 2)
-Author: Krowi (maintainer). Source: idea; 106's feature split (docs/work/2026-11-08-feature-split-poc), the feature after the Reward preview proof of concept, chosen 2026-11-09. Status: accepted
+Author: Krowi (maintainer). Source: idea; 106's feature split (docs/work/2026-11-08-feature-split-poc), the feature after the Reward preview proof of concept, chosen 2026-11-09. Status: done
 
 ## Problem
 The achievement right-click menu is the second trail through the code after Reward preview's, and the one other features plug into:

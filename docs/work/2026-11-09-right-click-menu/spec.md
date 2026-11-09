@@ -1,5 +1,5 @@
 # Spec: The Right-click menu as a feature that switches off (106, step 2)
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 
