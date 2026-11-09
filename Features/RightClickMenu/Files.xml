@@ -1,7 +1,9 @@
 <Ui>
-    <!-- The order of these items is important !!! -->
+    <!-- The registration first: the other files add their parts to it (Features.lua) -->
+    <Script file="RightClickMenu.lua" />
     <Script file="AchievementMenu.lua" />
 
+    <!-- The menu's own sections; the other features' entries come through the core's slot (Slots.lua, AchievementMenu) -->
     <Script file="WowheadLink.lua" />
     <Script file="GoTo.lua" />
     <!-- PartOfAChain to FirstCategory are Go to's own sections: each attaches to GetLastSection(), so nothing goes between them and GoTo.lua -->
@@ -10,9 +12,11 @@
     <Script file="OtherFaction.lua" />
     <Script file="OtherLocations.lua" />
     <Script file="FirstCategory.lua" />
-    <Script file="Guide.lua" />
-    <Script file="PopOut.lua" />
     <Script file="TransmogSets.lua" />
-    <Script file="PetBattleLinks.lua" />
     <Script file="More.lua" />
+
+    <Include file="RowButton.xml" />
+    <Script file="RowButton.lua" />
+    <Script file="Options.lua" />
+    <Script file="Help.lua" />
 </Ui>

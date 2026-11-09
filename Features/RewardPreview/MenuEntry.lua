@@ -19,7 +19,7 @@ function section:Add(menu, achievement, menuBuilder, caller)
             addon.L["Preview Reward"],
             function()
                 addon.Gui.RewardPreview:TogglePin(caller, achievement.Id, entries[1])
-                addon.Gui.RightClickMenu.AchievementMenu:CloseMenu()
+                menuBuilder:Close()
             end
         )
         return
@@ -32,7 +32,7 @@ function section:Add(menu, achievement, menuBuilder, caller)
             addon.RewardPreviewData.GetLabel(entry),
             function()
                 addon.Gui.RewardPreview:TogglePin(caller, achievement.Id, entry, entries)
-                addon.Gui.RightClickMenu.AchievementMenu:CloseMenu()
+                menuBuilder:Close()
             end
         )
     end

@@ -7,6 +7,12 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 10-32-23 ]] --
+L["Show Menu Button"] = "显示菜单按钮"
+L["Show Menu Button Desc"] = "在每个成就上显示/隐藏一个按钮，用于打开其右键菜单。"
+L["Use Game Language"] = "使用游戏语言"
+L["Use Game Language Desc"] = "以游戏语言而非英语打开Wowhead页面。"
+L["Open on Tab"] = "打开时的标签"
+L["Open on Tab Desc"] = "选择Wowhead页面打开时显示的标签，例如评论或屏幕截图。"
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -57,8 +63,6 @@ L["Active Events"] = "激活事件"
 L["Active events"] = "激活事件"
 L["Add addon name to world map icon"] = "图标添加插件名称"
 L["Add addon name to world map icon Desc"] = "在世界地图图标的提示信息底部添加“{addonName}”。"
-L["Add Locale"] = "添加本地域名"
-L["Add Locale Desc"] = "添加当前客户端语言对应的域名到{wowheadLink}。"
 L["Add to / Remove from Watch List"] = "添加/移除关注"
 L["Add to Watch List"] = "关注"
 L["Added in version"] = "添加版本"
@@ -887,8 +891,6 @@ L["Red"] = "红色"
 L["Refresh Events"] = "刷新事件"
 L["Refresh interval"] = "刷新间隔"
 L["Refresh interval Desc"] = "设置事件时间数据的刷新间隔（秒）。间隔过长可能导致弹窗延迟。"
-L["Related Tab"] = "关联标签"
-L["Related Tab Desc"] = "为{wowheadLink}添加额外标识符，跳转到网页对应标签而非默认页面。"
 L["Remember frame position"] = "记住{frame}位置"
 L["Remember frame position Desc"] = "记住{frame}位置。保留{frame}的最后位置直到下次登录。"
 L["Remember Last Position"] = "记住最后位置"
@@ -1075,10 +1077,6 @@ L["Show Rewards"] = "显示奖励"
 L["Show Rewards Desc"] = [=[显示/隐藏{rewards}。
 
 勾选后，在提示信息中显示成就的{rewards}。]=]
-L["Show Right Click Menu"] = "显示{rightClickMenu}按钮"
-L["Show Right Click Menu Desc"] = [=[在每个成就上显示/隐藏{rightClickMenu}按钮。
-
-用于替代右键点击。]=]
 L["Show Start Time & End Time"] = "显示{startTime}和{endTime}"
 L["Show Start Time & End Time Desc"] = [=[显示{startTime}和{endTime}。
 
@@ -1306,7 +1304,6 @@ L["World Map Button"] = "世界地图按钮"
 L["Worldsoul Memory"] = "世界之魂的回忆"
 L["WoW Remix: Mists of Pandaria"] = "幻境新生：潘达利亚"
 L["Wowhead"] = true
-L["Wowhead Link"] = "Wowhead链接"
 L["Wowhead link"] = "Wowhead链接"
 L["WoW's 10th Anniversary"] = "魔兽世界十周年"
 L["WoW's 18th Anniversary"] = "魔兽世界十八周年"

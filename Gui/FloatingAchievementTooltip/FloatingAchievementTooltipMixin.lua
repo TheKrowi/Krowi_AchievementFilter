@@ -43,7 +43,7 @@ function KrowiAF_FloatingAchievementTooltipMixin:OnMouseUp(button)
 		return
 	end
 
-	addon.Gui.RightClickMenu.AchievementMenu:Open(self, addon.Data.Achievements[id], nil, nil, nil, nil, nil, "TOOLTIP")
+	addon.Slots.AchievementMenu.Open(self, addon.Data.Achievements[id])
 end
 
 function KrowiAF_FloatingAchievementTooltipMixin:OnDragStart()

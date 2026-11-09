@@ -1,6 +1,7 @@
 <Ui>
     <Script file="AchievementPopout.lua"/>
     <Script file="AchievementPopoutMixin.lua"/>
+    <Script file="MenuEntry.lua"/>
 
     <Frame name="KrowiAF_AchievementPopout_Template" mixin="KrowiAF_AchievementPopoutMixin" parent="UIParent" enableMouse="true" movable="true" resizable="true" toplevel="true" virtual="true">
         <Size x="434" y="142"/>

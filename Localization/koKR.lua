@@ -7,6 +7,12 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 10-32-23 ]] --
+L["Show Menu Button"] = "메뉴 버튼 표시"
+L["Show Menu Button Desc"] = "각 업적에 오른쪽 클릭 메뉴를 여는 버튼을 표시하거나 숨깁니다."
+L["Use Game Language"] = "게임 언어 사용"
+L["Use Game Language Desc"] = "Wowhead 페이지를 영어 대신 게임 언어로 엽니다."
+L["Open on Tab"] = "열릴 탭"
+L["Open on Tab Desc"] = "Wowhead 페이지가 열릴 탭을 선택합니다. 예: 코멘트 또는 스크린샷."
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -47,8 +53,6 @@ L["Active Events"] = "활성화 된 이벤트"
 L["Active events"] = "활성화 된 이벤트"
 L["Add addon name to world map icon"] = "월드맵 아이콘에 애드온 이름 표시"
 L["Add addon name to world map icon Desc"] = "아이콘에 마우스오버 시 툴팁 최하단에 {addonName}을 표시합니다."
-L["Add Locale"] = "지역 추가"
-L["Add Locale Desc"] = "현재 게임의 지역 설정을 {wowheadLink}에 추가한다."
 L["Add to / Remove from Watch List"] = "워치리스트에 추가/삭제"
 L["Add to Watch List"] = "{watchList}에 추가"
 L["Added in version"] = "버전에 추가됨"

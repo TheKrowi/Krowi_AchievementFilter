@@ -142,7 +142,8 @@ local function ShowAchievement(achievement, func)
 end
 
 -- For the Show me scenes the features add (Features.lua AddHelp), which the registry wires as the loop below wires these
-window.ShowMeKit = {CanShow = CanShow, Ready = Ready, PickAchievement = PickAchievement, NotEarned = NotEarned, ShowAchievement = ShowAchievement}
+window.ShowMeKit = {CanShow = CanShow, Ready = Ready, PickAchievement = PickAchievement, NotEarned = NotEarned, EarnedByMe = EarnedByMe,
+    ShowAchievement = ShowAchievement}
 
 -- The last category of a tab that is not a summary or a flexible special category: on Expansions the current expansion
 local function LastCategory(tab)
@@ -237,13 +238,6 @@ end
 function scenes.tooltips(ready, id)
     return ShowAchievement(Fixed(id) or PickAchievement(InShortChain) or PickAchievement(EarnedByMe), function(row, achievement)
         row:ShowTooltip()
-        Ready(ready, {Row = row, Achievement = achievement})
-    end)
-end
-
-function scenes.rightclick(ready)
-    return ShowAchievement(PickAchievement(EarnedByMe), function(row, achievement)
-        addon.Gui.RightClickMenu.AchievementMenu:Open(row, achievement)
         Ready(ready, {Row = row, Achievement = achievement})
     end)
 end

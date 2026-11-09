@@ -3,4 +3,5 @@
     <Script file="AlertSystem.lua"/>
     <Include file="SideButton\SideButton.xml" />
     <Script file="SideButtonSystem.lua"/>
+    <Include file="Menu\Files.xml"/>
 </Ui>

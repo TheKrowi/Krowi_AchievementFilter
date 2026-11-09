@@ -10,7 +10,7 @@
     <Include file="EventReminder\Files.xml"/>
     <Include file="AchievementTooltip\Files.xml"/>
     <Include file="WindowFrames\FilesClassic.xml"/>
-    <Include file="RightClickMenu\Files.xml"/>
+    <Script file="PetBattleLinks\MenuEntry.lua"/>
     <Include file="SnapFrame\SnapFrame.xml"/>
     <Include file="AchievementPopout\AchievementPopout.xml"/>
     <Include file="Guide\Guide.xml"/>

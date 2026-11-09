@@ -330,17 +330,4 @@
 			<OnClick method="OnClick"/>
 		</Scripts>
 	</EventButton>
-
-	<Button name="KrowiAF_RightClickMenuButton_Template" virtual="true">
-		<Size x="15" y="15"/>
-		<NormalTexture file="Interface\Buttons\QuestTrackerButtons">
-			<TexCoords left="0.40625" right="0.53125" top="0.25" bottom="0.5"/>
-		</NormalTexture>
-		<PushedTexture file="Interface\Buttons\QuestTrackerButtons">
-			<TexCoords left="0.40625" right="0.53125" top="0" bottom="0.25"/>
-		</PushedTexture>
-		<HighlightTexture file="Interface\Buttons\QuestTrackerButtons" alphaMode="ADD">
-			<TexCoords left="0" right="0.265625" top="0" bottom="0.53125"/>
-		</HighlightTexture>
-	</Button>
 </Ui>

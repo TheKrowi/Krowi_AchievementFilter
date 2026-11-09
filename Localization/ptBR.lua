@@ -7,6 +7,12 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 10-32-23 ]] --
+L["Show Menu Button"] = "Mostrar botão do menu"
+L["Show Menu Button Desc"] = "Mostra / oculta em cada conquista um botão que abre o menu do clique direito."
+L["Use Game Language"] = "Usar idioma do jogo"
+L["Use Game Language Desc"] = "Abre a página do Wowhead no idioma do jogo em vez de inglês."
+L["Open on Tab"] = "Abrir na aba"
+L["Open on Tab Desc"] = "Escolhe a aba em que a página do Wowhead abre, como Comentários ou Capturas de Tela."
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -540,7 +546,6 @@ L["Realm First!"] = "Primeirão!"
 L["Recruit-a-Friend"] = "Recrute um Amigo"
 L["Red"] = "Vermelho"
 L["Refresh Events"] = "Atualizar Eventos"
-L["Related Tab"] = "Aba Relacionada"
 L["Reminder events"] = "Eventos dos lembretes"
 L["Reminders"] = "Lembretes"
 L["Reset"] = "Resetar"
@@ -710,7 +715,6 @@ L["World map"] = "Mapa Mundi"
 L["World map and minimap"] = "Mapa Mundi e minimapa"
 L["WoW Remix: Mists of Pandaria"] = true
 L["Wowhead"] = true
-L["Wowhead Link"] = "Link do Wowhead"
 L["Wowhead link"] = "Link do Wowhead"
 L["WoW's 10th Anniversary"] = "10º Aniversário do WoW"
 L["WoW's 18th Anniversary"] = "18º Aniversário do WoW"

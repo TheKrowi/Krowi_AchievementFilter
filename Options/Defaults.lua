@@ -105,13 +105,6 @@ addon.Options.Defaults = {
             }
             -- ShowOtherFactionWarbandAsCompleted = true
         },
-        RightClickMenu = {
-            ShowButtonOnAchievement = false,
-            WowheadLink = {
-                AddLocale = true,
-                AddRelatedTab = 1
-            }
-        },
         Popout = {
             PersistAcrossSessions = true,
             RememberSize = true,

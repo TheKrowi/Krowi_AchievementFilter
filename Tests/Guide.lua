@@ -47,7 +47,7 @@ local guide = addon.Tests.Guide
 --     Enabled, Func}, where provider is Achievements.Guide.WaypointProvider and available is {MapPin, Poi, TomTom, Combat}:
 --     MapPin is whether the map allows one, Combat whether the player is in combat
 --   addon.Gui.Guide.Waypoint.GetAvailability(waypoint) -> that available table, read from the game
---   addon.Gui.RightClickMenu.AchievementMenu.GuideSection, the menu section (CheckAdd, Add)
+--   addon.Gui.Guide.MenuEntry, the right-click menu entry (CheckAdd, Add)
 --   addon.Gui.Guide.Panel:TogglePin(row, achievement) and :Close(), with .Frame.Content holding NumGuideLines and
 --     NumGuideButtons
 --   addon.Gui.Guide.Content.DisplayUnderObjectives(objectives, achievement) -> the height the row grows by, the block as
@@ -264,8 +264,7 @@ local function InspectTooltip(env, achievement)
 end
 
 local function InspectMenu(env, achievement)
-    local achievementMenu = addon.Gui.RightClickMenu and addon.Gui.RightClickMenu.AchievementMenu
-    local section = achievementMenu and achievementMenu.GuideSection
+    local section = addon.Gui.Guide and addon.Gui.Guide.MenuEntry
     if not section or not section:CheckAdd(achievement) then
         return "none"
     end

@@ -1,0 +1,6 @@
+<Ui>
+    <!-- The row's menu button (RowButton.lua), made from the feature's row part only while it is on; its art is set there -->
+    <Button name="KrowiAF_RightClickMenuButton_Template" virtual="true">
+        <Size x="15" y="15"/>
+    </Button>
+</Ui>

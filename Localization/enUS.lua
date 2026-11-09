@@ -6,6 +6,12 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 10-32-23 ]] --
+L["Show Menu Button"] = true
+L["Show Menu Button Desc"] = "Show / hide a button on each achievement that opens its right-click menu."
+L["Use Game Language"] = true
+L["Use Game Language Desc"] = "Open the Wowhead page in the game's language instead of English."
+L["Open on Tab"] = true
+L["Open on Tab Desc"] = "Choose the tab the Wowhead page opens on, such as Comments or Screenshots."
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -56,8 +62,6 @@ L["Active Events"] = true
 L["Active events"] = true
 L["Add addon name to world map icon"] = true
 L["Add addon name to world map icon Desc"] = "Add '{addonName}' to the bottom of the tooltip when mousing over the icon."
-L["Add Locale"] = true
-L["Add Locale Desc"] = "Add the current game's locale to the {wowheadLink}."
 L["Add to / Remove from Watch List"] = true
 L["Add to Watch List"] = "Add to {watchList}"
 L["Added in version"] = true
@@ -886,8 +890,6 @@ L["Red"] = true
 L["Refresh Events"] = true
 L["Refresh interval"] = true
 L["Refresh interval Desc"] = "The time in seconds between refreshing the event data. A longer time may delay creation of new pop ups and clean-up of old ones."
-L["Related Tab"] = true
-L["Related Tab Desc"] = "Adds an extra bit to the {wowheadLink} so another tab different than the default one will be selected."
 L["Remember frame position"] = "Remember {frame} position"
 L["Remember frame position Desc"] = "Remember the {frame} position. This will keep the {frame} in it's last known position the next time you log in."
 L["Remember Last Position"] = true
@@ -1074,10 +1076,6 @@ L["Show Rewards"] = true
 L["Show Rewards Desc"] = [=[Show / hide {rewards}.
 
 When checked, the reward types of the achievement will be visible in the tooltip.]=]
-L["Show Right Click Menu"] = "Show {rightClickMenu} button"
-L["Show Right Click Menu Desc"] = [=[Show / hide {rightClickMenu} button on each achievement.
-
-This serves as an alternative for right clicking the achievement.]=]
 L["Show Start Time & End Time"] = "Show {startTime} & {endTime}"
 L["Show Start Time & End Time Desc"] = [=[Show / hide {startTime} & {endTime}.
 
@@ -1305,7 +1303,6 @@ L["World Map Button"] = true
 L["Worldsoul Memory"] = true
 L["WoW Remix: Mists of Pandaria"] = true
 L["Wowhead"] = true
-L["Wowhead Link"] = true
 L["Wowhead link"] = true
 L["WoW's 10th Anniversary"] = true
 L["WoW's 18th Anniversary"] = true

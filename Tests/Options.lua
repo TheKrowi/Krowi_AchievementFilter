@@ -234,10 +234,12 @@ options.Scenarios = {
         -- #188 added Position applies to and Hide placeholders (406 / 302 before, 8bb98662 / 06ba645e)
         -- The feature split added Reward preview's switch and moved its six rows under Features.args.RewardPreview
         -- (408 / 304 before, 13b38c99 / 122eff6c; docs/work/2026-11-08-feature-split-poc)
-        Recorded = "options=409 hash=8e6ec075",
-        Target = "options=409 hash=8e6ec075",
-        RecordedClassic = "options=305 hash=50b2fed1",
-        TargetClassic = "options=305 hash=50b2fed1"},
+        -- The right-click menu's switch added and its three rows moved under Features.args.RightClickMenu (409 / 305
+        -- before, 8e6ec075 / 50b2fed1; docs/work/2026-11-09-right-click-menu)
+        Recorded = "options=410 hash=bfbb66bf",
+        Target = "options=410 hash=bfbb66bf",
+        RecordedClassic = "options=306 hash=86480864",
+        TargetClassic = "options=306 hash=86480864"},
     {Name = "defaults-restore-acedb",
         Observe = function()
             local model = Model()
@@ -413,10 +415,11 @@ options.Scenarios = {
     -- The features that switch off (docs/work/2026-11-08-feature-split-poc): each feature's section opens with its switch,
     -- and while the switch is off every other row of the section is greyed out and the switch is not. The switch is set
     -- in the profile directly, without its setter, and put back
+    -- (one section until the right-click menu became the second feature, docs/work/2026-11-09-right-click-menu)
     {Name = "feature-sections",
         Observe = FeatureSectionsLine,
-        Recorded = "sections=1 switch-first=1 greyed-when-off=1",
-        Target = "sections=1 switch-first=1 greyed-when-off=1"},
+        Recorded = "sections=2 switch-first=2 greyed-when-off=2",
+        Target = "sections=2 switch-first=2 greyed-when-off=2"},
 }
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line

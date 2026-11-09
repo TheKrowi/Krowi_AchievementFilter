@@ -4,10 +4,16 @@ All notable changes to this project will be documented in this file.
 ## 106.0
 ### Added
 - An Enable check box at the top of the Reward preview settings, which fully turns off the reward preview after a reload
+- An Enable check box at the top of the Right-click menu settings, which fully turns off the right-click menu after a reload
 
 ### Changed
 - The Reward preview settings have shorter names, and Width and Height say that resizing the window changes them
 - The rotation, width and height settings of the reward preview stay available when its icon on achievements is turned off, since they also apply to a preview opened from the right-click menu
+- The Right-click menu settings have shorter names and say plainly what they do
+
+### Fixed
+- Right-clicking a guild achievement or a statistic linked in chat no longer opens an empty menu or gives an error
+- The right-click menu button on achievements now shows on Mists Classic
 
 ## 105.0 - 2026-11-08
 ### Added

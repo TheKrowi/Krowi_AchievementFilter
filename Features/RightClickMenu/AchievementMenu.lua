@@ -3,10 +3,11 @@ addon.Gui.RightClickMenu.AchievementMenu = {
 	Sections = {}
 }
 local achievementMenu = addon.Gui.RightClickMenu.AchievementMenu
-local menuBuilder = addon.MenuBuilder:New({modern = addon.Util.IsModern})
+local menuBuilder
 
-function achievementMenu:CloseMenu()
-	menuBuilder:Close()
+-- From the feature's Start (RightClickMenu.lua): loading the file makes nothing
+function achievementMenu.Create()
+	menuBuilder = menuBuilder or addon.MenuBuilder:New({modern = addon.Util.IsModern})
 end
 
 function achievementMenu:AddGoToAchievementLine(menu, id, nameSuffix)
@@ -62,7 +63,7 @@ function achievementMenu:CreateMenu(menuObj, achievement, caller)
 	KrowiAF.PluginsApi:AddAchievementRightClickMenuItems(menuObj, achievement, menuBuilder)
 end
 
-function achievementMenu:Open(caller, achievement, anchor, offsetX, offsetY, point, relativePoint, frameStrata, frameLevel)
+function achievementMenu:Open(caller, achievement)
 	menuBuilder:ShowPopup(function()
 		local menuObj = menuBuilder:GetMenu()
 		achievementMenu:CreateMenu(menuObj, achievement, caller)

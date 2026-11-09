@@ -205,19 +205,6 @@ help.tooltips = {
     )
 }
 
-help.rightclick = {
-    Title = L["Right Click Menu"],
-    Blocks = Blocks(
-        Picture("MenuMain"),
-        Term(L["Wowhead"], L["Help Right Click Wowhead"]),
-        Term(L["Go to"], L["Help Right Click Go To"]),
-        Term(L["Xu-Fu's Pet Guides"], L["Help Right Click Xu Fu"]),
-        Term(L["Transmog Sets"], L["Help Right Click Transmog"]),
-        RetailOnly(Term(L["Guide"], L["Help Right Click Guide"])),
-        Term(L["More"], L["Help Right Click More"])
-    )
-}
-
 help.popout = {
     Title = L["Pop Out"],
     Blocks = Blocks(

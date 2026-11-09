@@ -166,7 +166,7 @@ local function Click(self, button, ignoreModifiers)
 	if button == "LeftButton" then
 		Select(self, ignoreModifiers)
 	elseif button == "RightButton" then
-		addon.Gui.RightClickMenu.AchievementMenu:Open(self, self.Achievement)
+		addon.Slots.AchievementMenu.Open(self, self.Achievement)
 	end
 end
 
