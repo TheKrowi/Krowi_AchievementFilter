@@ -7,6 +7,9 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Go to {section}"] = "{section}(으)로 이동"
+L["Go to {section} Desc"] = "옵션의 {section} 항목을 엽니다."
+L["Feature Controls Desc"] = "{feature}이(가) 활성화되어 있을 때만 작동합니다. 해당 항목 맨 위에서 켜거나 끌 수 있습니다."
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true

@@ -7,6 +7,9 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Go to {section}"] = "Перейти: {section}"
+L["Go to {section} Desc"] = "Открывает раздел «{section}» настроек."
+L["Feature Controls Desc"] = "Работает, только пока {feature} включено. Включить или выключить его можно вверху его собственного раздела."
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
