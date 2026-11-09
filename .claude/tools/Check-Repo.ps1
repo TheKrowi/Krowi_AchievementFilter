@@ -550,6 +550,11 @@ Write-Timing 'settings-panel-close'
 # XML. A name counts as a whole word or dotted path; comments are left out. Reached through a local alias of a core table
 # (local gui = addon.Gui; gui.RewardPreview) a name is not caught. Always tree-wide: a move can break a file nobody
 # touched.
+# A definition is "function <name>(" or "<name> =" at the start of a line; a call there ("addon.Features.Register(",
+# "KrowiAF_SelectAchievementFromID(id)") defines nothing, or two features calling the same core function would each
+# "define" it (docs/work/2026-11-09-boundary-lint-calls)
+$definesPath = '(?m)^\s*(?:function\s+((?:addon|KrowiAF)(?:\.[A-Za-z_]\w*)+)\s*\(|((?:addon|KrowiAF)(?:\.[A-Za-z_]\w*)+)\s*=(?!=))'
+$definesGlobal = '(?m)^\s*(?:function\s+(KrowiAF_\w+)\s*\(|(KrowiAF_\w+)\s*=(?!=))'
 $featureNames = @{}   # feature -> list of names it defines
 $featureFolders = @($allFiles | Where-Object { $_ -match '^Features/([^/]+)/' } | ForEach-Object { $Matches[1] } | Sort-Object -Unique)
 $blankLua = { param($t) $b = { param($m) [regex]::Replace($m.Value, '[^\r\n]', ' ') }; [regex]::Replace([regex]::Replace($t, '--\[(=*)\[.*?\]\1\]', $b, 'Singleline'), '--[^\r\n]*', $b) }
@@ -566,8 +571,8 @@ foreach ($rel in $allFiles) {
     $names = New-Object System.Collections.Generic.List[string]
     if ($rel -like '*.lua') {
         $text = & $blankLua $text
-        foreach ($m in [regex]::Matches($text, '(?m)^\s*(?:function\s+)?((?:addon|KrowiAF)(?:\.[A-Za-z_]\w*)+)\s*(?:=(?!=)|\()')) { $names.Add($m.Groups[1].Value) }
-        foreach ($m in [regex]::Matches($text, '(?m)^\s*(?:function\s+)?(KrowiAF_\w+)\s*(?:=(?!=)|\()')) { $names.Add($m.Groups[1].Value) }
+        foreach ($m in [regex]::Matches($text, $definesPath)) { $names.Add($m.Groups[1].Value + $m.Groups[2].Value) }
+        foreach ($m in [regex]::Matches($text, $definesGlobal)) { $names.Add($m.Groups[1].Value + $m.Groups[2].Value) }
         foreach ($m in [regex]::Matches($text, 'CreateFrame\s*\(\s*[^,()]+,\s*["''](\w+)["'']')) { $names.Add($m.Groups[1].Value) }
     } elseif ($rel -like '*.xml') {
         $text = & $blankXml $text
@@ -584,7 +589,7 @@ if ($featureNames.Count -gt 0) {
     foreach ($rel in $ownLuaFiles) {
         if ($rel -like 'Tests/*' -or (Get-FeatureOwner $rel)) { continue }
         $text = & $blankLua ([Text.Encoding]::UTF8.GetString($fileBytes[$rel]))
-        foreach ($m in [regex]::Matches($text, '(?m)^\s*(?:function\s+)?((?:addon|KrowiAF)(?:\.[A-Za-z_]\w*)+)\s*(?:=(?!=)|\()')) { $coreDefined[$m.Groups[1].Value] = $true }
+        foreach ($m in [regex]::Matches($text, $definesPath)) { $coreDefined[$m.Groups[1].Value + $m.Groups[2].Value] = $true }
     }
     $patterns = @{}
     foreach ($owner in @($featureNames.Keys)) {
