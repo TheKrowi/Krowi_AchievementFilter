@@ -54,7 +54,7 @@
             $wtf = Join-Path $folder 'WTF\Account'
             if (-not (Test-Path -LiteralPath $wtf)) { continue }
             foreach ($sv in Get-ChildItem -LiteralPath $wtf -Directory | ForEach-Object { Join-Path $_.FullName "SavedVariables\$savedFile.lua" } | Where-Object { Test-Path -LiteralPath $_ }) {
-                $readerArgs = @($reader, $sv, $savedTable) + @($mode | Where-Object { $_ })
+                $readerArgs = @($reader, $sv, $savedTable) + @($mode | Where-Object { $_ }) + @($runVersion | Where-Object { $_ } | ForEach-Object { "version=$_" })
                 foreach ($line in @(& $Lua @readerArgs 2>$null)) {
                     $f = "$line" -split '\|'
                     if ($f.Count -lt 6) { continue }
@@ -71,6 +71,10 @@
         if ($claimed.Count -eq 0) { continue }
         $i = $claimed[0]
         $newest = [version]("{0}.{1}.{2}" -f [math]::Floor($i / 10000), ([math]::Floor($i / 100) % 100), ($i % 100))
+        # Only runs of the version being released count, so a hotfix is tested as itself and never by main's build
+        # (the kit's docs/work/2026-11-08-hotfix-mode): Get-Runs hands $runVersion to the reader, for the suites and the
+        # matrix run; /kotest below keeps its own rule, so it is cleared before it
+        $runVersion = $tocVersion
         $runs = @(Get-Runs $family $addon 'KrowiAF_DebugTable')
         foreach ($suite in $suites) {
             # A run counts only when it is newer than the last commit that changed the suite's scenarios
@@ -97,6 +101,7 @@
         $lastFeatures = git -C $repo log -1 --format=%ci -- Features/ Features.lua Slots.lua 2>$null
         if ($lastFeatures) { $featuresChanged = ([datetimeoffset]::Parse($lastFeatures)).LocalDateTime }
         $matrixRuns = @(Get-Runs $family $addon 'KrowiAF_DebugTable' 'matrix' | Where-Object { $_.Suite -eq 'matrix' -and $_.Build })
+        $runVersion = $null
         $matrixGreen = @($matrixRuns | Where-Object { $_.Build -ge $newest -and $_.Complete -and $_.Failed -eq 0 -and $_.Passed -gt 0 -and [datetime]$_.Time -ge $featuresChanged })
         if ($matrixGreen.Count -gt 0) {
             $g = $matrixGreen | Sort-Object Build, Time -Descending | Select-Object -First 1
