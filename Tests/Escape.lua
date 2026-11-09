@@ -81,7 +81,7 @@ escape.Scenarios = {
     {Name = "closed-with-button", Shown = {"DataManager"}, CloseFirst = {"DataManager"}, Recorded = {"GameMenu"}, Target = {"GameMenu"}}, -- before 101.0 the proxy stayed shown after the close button, so the next Escape was eaten
     {Name = "closed-with-button-over-achievements", Shown = {"Achievements", "DataManager"}, CloseFirst = {"DataManager"}, Recorded = {}, Target = {}},
     -- The reward preview pinned next to a row (docs/work/2026-10-13-reward-preview-escape). It closes with its window
-    -- (Gui/RewardPreview/RewardPreview.lua). Before 103.0 it never registered for Escape, so one press closed the window and
+    -- (Features/RewardPreview/Window.lua). Before 103.0 it never registered for Escape, so one press closed the window and
     -- the preview went with it (seen in game on Classic 5.5.4 on 2026-10-13); now it closes on its own first, like the
     -- guide panel next to it
     {Name = "reward-preview-over-achievements", Shown = {"Achievements", "RewardPreview"}, Recorded = {"Achievements"}, Target = {"Achievements"}},
@@ -274,6 +274,9 @@ local getters = {
 -- whichever category the window shows. Hidden again by Reset, and its row takes no mouse input
 local previewOwner, previewAchievementId
 local function PinRewardPreview()
+    if not addon.Features.IsStarted("RewardPreview") then -- switched off (Features.lua): the features suite checks it is absent
+        return false, "the reward preview is off"
+    end
     if not AchievementFrame then
         return false, "the achievement window is not loaded; show Achievements first"
     end

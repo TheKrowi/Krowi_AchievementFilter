@@ -1,5 +1,5 @@
 local _, addon = ...
-local section = {}
+local section = {Order = 10} -- its place among the menu's entries (Slots.lua, AchievementMenu)
 tinsert(addon.Gui.RightClickMenu.AchievementMenu.Sections, section)
 
 local popupDialog = LibStub("Krowi_PopupDialog_2")

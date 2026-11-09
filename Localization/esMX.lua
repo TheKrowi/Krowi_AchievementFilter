@@ -7,6 +7,17 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-31 22-33-16 ]] --
+L["Feature Switch Desc"] = "Desactiva {feature} si no lo usas: tras recargar ya no se inicia y no guarda ninguno de sus datos. Tus ajustes se conservan."
+L["Feature Off Help"] = "{feature} está desactivado. Actívalo arriba en esta sección y luego recarga."
+L["Show icon on achievements"] = "Mostrar icono en los logros"
+L["Show icon on achievements Desc"] = "Un icono en cada logro cuya recompensa se puede previsualizar. El menú del clic derecho tiene {previewReward} de todos modos."
+L["Show on mouseover"] = "Mostrar al pasar el cursor"
+L["Invert up and down when turning"] = "Invertir arriba y abajo al girar"
+L["Most icons per achievement"] = "Máximo de iconos por logro"
+L["Width"] = "Ancho"
+L["Reward Preview Width Desc"] = "El ancho con el que se abre la ventana. Cambiar el tamaño de la ventana lo modifica."
+L["Height"] = "Alto"
+L["Reward Preview Height Desc"] = "El alto con el que se abre la ventana. Cambiar el tamaño de la ventana lo modifica."
 L["Card Tabs"] = "Qué pestañas se muestran y en qué orden."
 L["Card Window"] = "Tamaño, posición y qué se abre primero."
 L["Card Categories"] = "Expansiones, zonas y las categorías especiales."
@@ -189,7 +200,7 @@ L["Help Popout Close On Earn"] = "Una ventana flotante se cierra sola cuando obt
 L["Help Popout Intro"] = "Haz Ctrl + clic en un logro para abrirlo en una ventana pequeña que permanece en pantalla. Arrastra una ventana flotante sobre otra para apilarlas."
 L["Help Profiles Intro"] = "La configuración y los filtros tienen cada uno su propio perfil. Comparte uno entre personajes o dale a un personaje un perfil propio."
 L["Help Profiles Title"] = "Perfiles"
-L["Help Rewards Intro"] = "Haz clic en el icono de vista previa de un logro para ver su recompensa. Arrastra el modelo para girarlo y arrastra la esquina para cambiar el tamaño de la ventana."
+L["Help Rewards Intro"] = "Haz clic en el icono de vista previa de un logro, o elige {previewReward} en su menú del clic derecho, para ver su recompensa. Arrastra el modelo para girarlo y arrastra la esquina para cambiar el tamaño de la ventana."
 L["Help Right Click Go To"] = "Los logros de su cadena, los que requiere y las demás categorías en las que está."
 L["Help Right Click Guide"] = "Puntos de ruta para un logro con guía."
 L["Help Right Click More"] = "Agregarlo a la lista de seguimiento o quitarlo, excluirlo o incluirlo."

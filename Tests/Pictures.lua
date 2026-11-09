@@ -650,6 +650,9 @@ steps = {
         Picture = "RewardPreview",
         Text = "the reward preview of a mount",
         Run = function()
+            if not addon.Features.IsStarted("RewardPreview") then -- switched off (Features.lua)
+                return "the reward preview is off"
+            end
             -- at its default size, not the player's: the 2026-11-01 run's was 485 x 654, of which Overview's card showed
             -- only the title bar (Krowi, 2026-11-02, docs/work/2026-11-02-overview-cards)
             local defaults = addon.Options.Defaults.profile.Achievements
@@ -873,7 +876,9 @@ local function Restore()
         KrowiAF_SearchBoxFrame:SetText("")
         KrowiAF_SearchBoxFrame:ClearFocus()
     end
-    addon.Gui.RewardPreview:Close()
+    if addon.Features.IsStarted("RewardPreview") then -- no preview while it is switched off
+        addon.Gui.RewardPreview:Close()
+    end
     if addon.Util.IsMainline then
         addon.Gui.Guide.Panel:Close()
     end
@@ -906,7 +911,9 @@ local function Cleanup()
     CloseMenus()
     Krowi_Tooltip:Hide()
     Krowi_ProgressBarTooltip:Hide()
-    addon.Gui.RewardPreview:Close()
+    if addon.Features.IsStarted("RewardPreview") then -- no preview while it is switched off
+        addon.Gui.RewardPreview:Close()
+    end
     if addon.Util.IsMainline then
         addon.Gui.Guide.Panel:Close()
     end

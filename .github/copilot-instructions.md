@@ -41,7 +41,7 @@ The kit carries Lua 5.1.5 (`Krowi_ClaudeKit\tools\lua51\`), the exact interprete
 - **Repo lint** `Check-Repo.ps1`: a rule per mechanical convention in this file, plus the zone, Map Verifier, work-item, category-snapshot, data-snapshot, data-load and scenario checks. A deliberate exception goes in `Check-Repo.ignore` with a comment.
 - **Data snapshots** `snapshot-categories.lua` and `snapshot-data.lua`: what each client builds (category tree; achievements, zone placements, registries) recorded under `.claude/tools/headless/snapshots/`. A data change shows there as a reviewable diff; regenerate with `-write` and commit the diff with the change that caused it.
 - **Headless data pipeline** `load-data.lua`: the real data load for both clients with WoW globals stubbed; reports every builder error, duplicate registration and `LoadDiagnostics` drop with file and line. Only `Both` cross-checks Shared references. Extend the stubs in `runClient` when a new WoW global is used at load time.
-- **Scenario suites** in `Tests/` (`escape`, `special`, `navigation`, `worldmap`, `obtainable`, `tooltip`, `guide`, `menu`, `memory`, `events`, `schedules`, `tracking`, `options`, `help`, `earned`, `plugins`, `popups`; `scheduler` and `sources` are game-only probes, `pictures` makes the help pictures) run headlessly through `run-tests.lua` and in game through `/kaftest <suite>` (debug mode on, out of combat). A scenario carries `Recorded`, the behaviour of the current code verified in game, and `Target`, the desired behaviour; it passes while the code behaves as recorded, so a behaviour change is a reviewable diff and the open targets stay visible without failing anything. Each suite and the in-game runner: `Tests/README.md`.
+- **Scenario suites** in `Tests/` (`escape`, `special`, `navigation`, `worldmap`, `obtainable`, `tooltip`, `guide`, `menu`, `memory`, `events`, `schedules`, `tracking`, `options`, `help`, `earned`, `plugins`, `popups`, `features`; `scheduler` and `sources` are game-only probes, `pictures` makes the help pictures) run headlessly through `run-tests.lua` and in game through `/kaftest <suite>` (debug mode on, out of combat). A scenario carries `Recorded`, the behaviour of the current code verified in game, and `Target`, the desired behaviour; it passes while the code behaves as recorded, so a behaviour change is a reviewable diff and the open targets stay visible without failing anything. Each suite and the in-game runner: `Tests/README.md`.
 - **Which suites to run** (Krowi, 2026-11-07): in development and in a pull request only the suites the change can affect, never the whole set; before a release the gate (`.claude/release-gate.ps1`) wants a green in-game run (failed nothing, passed something; Krowi, 2026-11-08) of every suite above except the three probes, on the newest Retail and Mists build, and, once per client version, a green full `/kotest` run of Krowi_Options' test addon.
 - **Closing the loop with the game**: the kit's `Deploy.ps1` mirrors the addon into the client's AddOns folder (incremental, `-WhatIf` to preview), you `/reload` in game, then the kit's `Read-GameErrors.ps1` prints the errors BugGrabber recorded for this addon and this repo's `Read-GameTests.ps1` prints the last `/kaftest` run with every line that differs from the headless run marked. Saved variables are written only on `/reload` or logout, so both readers show when the file was last written. For a layout bug, ask for a screenshot (Print Screen in game, written at once): the kit's `Read-GameScreenshot.ps1` prints the newest one's path to open with the Read tool, and warns when the client saves tga, which the Read tool cannot display.
 
@@ -70,11 +70,11 @@ The WoW client reads `Krowi_AchievementFilter.toc`, which defines the **exact lo
 2. `Api/Files.xml` — public API (`KrowiAF`), enums, data registration functions and builders
 3. `Plugins/Files.xml` — plugin integrations (BetterWardrobe, ElvUI, GW2_UI, InstanceAchievementTracker, ZygorGuidesViewer, AchievementsTabFixes, EllesmereUI)
 4. `Localization/Files.xml` — enUS first, then the other locales, then `Shared.lua`
-5. `Krowi_AchievementFilter.lua`, `Globals.lua`
-6. `Diagnostics.lua`, `TaintDiagnostics.lua`, `Options/Files.xml`, `Libs/Krowi_Util/Icon.lua`, `Icon.lua`, `BrowsingHistory.lua`
+5. `Krowi_AchievementFilter.lua`, `Globals.lua`, `Slots.lua` — the core's extension points for the features
+6. `Diagnostics.lua`, `TaintDiagnostics.lua`, `Options/Files.xml`, `Features.lua` (the feature registry), `Libs/Krowi_Util/Icon.lua`, `Icon.lua`, `BrowsingHistory.lua`
 7. `Objects/Files.xml`
 8. `Filters.lua`, `SearchOptions.lua`
-9. `Gui/FilesModern.xml` (Retail) or `Gui/FilesClassic.xml` (Classic)
+9. `Gui/FilesModern.xml` (Retail) or `Gui/FilesClassic.xml` (Classic), then `Features/Files.xml` — one folder per switchable feature
 10. `Data/Files.xml`
 11. `DataAddons/Shared/Files.xml`, then `DataAddons/Retail/Files.xml` or `DataAddons/Classic/Files.xml`
 12. `DataAddons/Loaders/Files.xml` — post-processing loaders that wire the data tables to their processors
@@ -125,6 +125,10 @@ Every file starts `local _, addon = ...` (or `local addonName, addon = ...`). `a
 1. `ADDON_LOADED` for this addon: options, saved-data migrations (`Data/DataIntegrityManager.lua`), plugins, GUI parts that do not depend on Blizzard's frame.
 2. `ADDON_LOADED` for `Blizzard_AchievementUI` (load-on-demand): `addon.Gui:LoadWithBlizzard_AchievementUI()` hooks and reshapes `AchievementFrame`. Anything touching Blizzard achievement frames goes here, not in phase 1.
 3. `PLAYER_LOGIN`: `addon.Data:LoadOnPlayerLogin()` builds all achievement/category/zone objects, then `addon.BuildCacheAsync` (in `Data/AchievementCache.lua`) walks every achievement ID. Both run as coroutine-style task groups yielding on a per-frame time budget. **`addon.Data.Achievements` is empty until phase 3 completes**; code that needs populated data must hook into `PostLoadOnPlayerLogin` / `PostBuildCache` in `Data/Data.lua`.
+
+### Features that switch off
+
+Since 106 (docs/work/2026-11-08-feature-split-poc) a feature lives in `Features/<Name>/` and registers with the registry (`Features.lua`) while its files load; loading them makes nothing (no frame, hook, script, event, timer or slash command). The registry starts it at `ADDON_LOADED` only while its switch is on in the profile, and a switch takes effect after a reload. A feature reaches the core through the slots (`Slots.lua`: achievement data fields, row icons, achievement menu entries) and the registry's options and help parts; the core never names a feature and a feature never names another (`feature-boundary` lint rule; Tests exempt). Every feature PR proves the `features` suite headless, the boundary rule, a `/kaftest matrix` run on Retail and Mists and the memory after login with the feature off and on. Detail: `docs/architecture.md`, Features.
 
 ### Data pipeline
 

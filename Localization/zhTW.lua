@@ -7,6 +7,17 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-31 22-33-16 ]] --
+L["Feature Switch Desc"] = "不使用{feature}時可將其關閉：重新載入介面後它將不再啟動，也不保留任何資料。你的設定會保留。"
+L["Feature Off Help"] = "{feature}已關閉。請在本節頂部將其開啟，然後重新載入介面。"
+L["Show icon on achievements"] = "在成就上顯示圖示"
+L["Show icon on achievements Desc"] = "在每個可預覽獎勵的成就上顯示圖示。無論如何，右鍵選單中都有{previewReward}。"
+L["Show on mouseover"] = "滑鼠指向時顯示"
+L["Invert up and down when turning"] = "旋轉時反轉上下方向"
+L["Most icons per achievement"] = "每個成就的最大圖示數量"
+L["Width"] = "寬度"
+L["Reward Preview Width Desc"] = "視窗開啟時的寬度。調整視窗大小會改變此值。"
+L["Height"] = "高度"
+L["Reward Preview Height Desc"] = "視窗開啟時的高度。調整視窗大小會改變此值。"
 L["Card Tabs"] = "顯示哪些標籤，以及它們的順序。"
 L["Card Window"] = "大小、位置以及首先開啟的內容。"
 L["Card Categories"] = "資料片、區域和特殊類別。"
@@ -546,7 +557,7 @@ L["Help Popout Close On Earn"] = "獲得對應成就後，浮動視窗會自動�
 L["Help Popout Intro"] = "Ctrl+點擊成就，可將其彈出為一個停留在螢幕上的小視窗。將一個浮動視窗拖曳到另一個上，即可將它們疊在一起。"
 L["Help Profiles Intro"] = "設定和過濾器各自使用獨立的設定檔。可在角色之間共用，也可為某個角色單獨使用一個設定檔。"
 L["Help Profiles Title"] = "設定檔"
-L["Help Rewards Intro"] = "點擊成就上的預覽圖示查看其獎勵。拖曳模型可旋轉，拖曳角落可調整視窗大小。"
+L["Help Rewards Intro"] = "點擊成就上的預覽圖示，或在其右鍵選單中選擇{previewReward}，即可查看其獎勵。拖曳模型可旋轉，拖曳角落可調整視窗大小。"
 L["Help Right Click Go To"] = "其系列中的成就、它所需的成就，以及它所在的其他類別。"
 L["Help Right Click Guide"] = "有指南的成就的路徑點。"
 L["Help Right Click More"] = "關注、取消關注、隱藏或顯示此成就。"

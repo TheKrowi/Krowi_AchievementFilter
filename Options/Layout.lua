@@ -535,15 +535,6 @@ local function WarbandHeaderColorSet(_, value)
     KrowiAF_AchievementsFrame:ForceUpdate()
 end
 
-local function ShowRewardPreviewIconSet(_, value)
-    addon.Options.db.profile.Achievements.ShowRewardPreviewIcon = value
-    if not KrowiAF_AchievementsFrame then
-        return
-    end
-    KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow()
-    KrowiAF_AchievementsFrame:ForceUpdate()
-end
-
 -- A guide option that changes what is drawn: the setter redraws an open guide panel and the achievement list (the row
 -- icon and the block under the selected achievement)
 local function GuideOptionSetter(key)
@@ -558,37 +549,6 @@ local function GuideOptionSetter(key)
         end
         KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow()
         KrowiAF_AchievementsFrame:ForceUpdate()
-    end
-end
-
-local function RewardPreviewMouseoverShowSet(_, value)
-    addon.Options.db.profile.Achievements.RewardPreviewMouseoverShow = value
-end
-
-local function RewardPreviewInvertVerticalRotationSet(_, value)
-    addon.Options.db.profile.Achievements.RewardPreviewInvertVerticalRotation = value
-end
-
-local function RewardPreviewMaxIndividualIconsSet(_, value)
-    addon.Options.db.profile.Achievements.RewardPreviewMaxIndividualIcons = value
-    if not KrowiAF_AchievementsFrame then
-        return
-    end
-    KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow()
-    KrowiAF_AchievementsFrame:ForceUpdate()
-end
-
-local function RewardPreviewDefaultWidthSet(_, value)
-    addon.Options.db.profile.Achievements.RewardPreviewDefaultWidth = value
-    if KrowiAF_RewardPreview and not KrowiAF_RewardPreview:IsShown() then
-        KrowiAF_RewardPreview:SetWidth(value)
-    end
-end
-
-local function RewardPreviewDefaultHeightSet(_, value)
-    addon.Options.db.profile.Achievements.RewardPreviewDefaultHeight = value
-    if KrowiAF_RewardPreview and not KrowiAF_RewardPreview:IsShown() then
-        KrowiAF_RewardPreview:SetHeight(value)
     end
 end
 
@@ -1216,60 +1176,6 @@ local achievementsOptions = {
                             desc = addon.L["Warband Header Color Desc"]:K_ReplaceVars(addon.L["Show Warband Icon"]:K_ReplaceVars(addon.L["Warband"])):KAF_AddDefaultValueText("Achievements.WarbandHeaderColor"),
                             get = function() return addon.Options.db.profile.Achievements.WarbandHeaderColor; end,
                             set = WarbandHeaderColorSet,
-                        },
-                        RewardPreview = {
-                            order = OrderPP(), type = "header",
-                            name = addon.L["Reward Preview"]
-                        },
-                        ShowRewardPreviewIcon = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
-                            name = addon.L["Show Reward Preview Icon"]:K_ReplaceVars(addon.L["Reward Preview"]),
-                            desc = addon.L["Show Reward Preview Icon Desc"]:K_ReplaceVars(addon.L["Reward Preview"]):KAF_AddDefaultValueText("Achievements.ShowRewardPreviewIcon"),
-                            get = function() return addon.Options.db.profile.Achievements.ShowRewardPreviewIcon end,
-                            set = ShowRewardPreviewIconSet,
-                        },
-                        RewardPreviewMouseoverShow = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
-                            name = addon.L["Show Reward Preview on Mouseover"]:K_ReplaceVars(addon.L["Reward Preview"]),
-                            desc = addon.L["Show Reward Preview on Mouseover Desc"]:K_ReplaceVars(addon.L["Reward Preview"]):KAF_AddDefaultValueText("Achievements.RewardPreviewMouseoverShow"),
-                            get = function() return addon.Options.db.profile.Achievements.RewardPreviewMouseoverShow end,
-                            set = RewardPreviewMouseoverShowSet,
-                            disabled = function() return not addon.Options.db.profile.Achievements.ShowRewardPreviewIcon end
-                        },
-                        RewardPreviewInvertVerticalRotation = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
-                            name = addon.L["Invert Reward Preview Vertical Rotation"],
-                            desc = addon.L["Invert Reward Preview Vertical Rotation Desc"]:K_ReplaceVars(addon.L["Reward Preview"]):KAF_AddDefaultValueText("Achievements.RewardPreviewInvertVerticalRotation"),
-                            get = function() return addon.Options.db.profile.Achievements.RewardPreviewInvertVerticalRotation end,
-                            set = RewardPreviewInvertVerticalRotationSet,
-                            disabled = function() return not addon.Options.db.profile.Achievements.ShowRewardPreviewIcon end
-                        },
-                        RewardPreviewMaxIndividualIcons = {
-                            order = OrderPP(), type = "range", width = AdjustedWidth(1.35),
-                            name = addon.L["Reward Preview Max Individual Icons"],
-                            desc = addon.L["Reward Preview Max Individual Icons Desc"]:K_ReplaceVars(addon.L["Reward Preview"]):KAF_AddDefaultValueText("Achievements.RewardPreviewMaxIndividualIcons"),
-                            min = 1, max = 10, step = 1,
-                            get = function() return addon.Options.db.profile.Achievements.RewardPreviewMaxIndividualIcons end,
-                            set = RewardPreviewMaxIndividualIconsSet,
-                            disabled = function() return not addon.Options.db.profile.Achievements.ShowRewardPreviewIcon end
-                        },
-                        RewardPreviewDefaultWidth = {
-                            order = OrderPP(), type = "range", width = AdjustedWidth(1.35),
-                            name = addon.L["Reward Preview Default Width"],
-                            desc = addon.L["Reward Preview Default Width Desc"]:K_ReplaceVars(addon.L["Reward Preview"]):KAF_AddDefaultValueText("Achievements.RewardPreviewDefaultWidth"),
-                            min = 200, max = 600, step = 1,
-                            get = function() return addon.Options.db.profile.Achievements.RewardPreviewDefaultWidth end,
-                            set = RewardPreviewDefaultWidthSet,
-                            disabled = function() return not addon.Options.db.profile.Achievements.ShowRewardPreviewIcon end
-                        },
-                        RewardPreviewDefaultHeight = {
-                            order = OrderPP(), type = "range", width = AdjustedWidth(1.35),
-                            name = addon.L["Reward Preview Default Height"],
-                            desc = addon.L["Reward Preview Default Height Desc"]:K_ReplaceVars(addon.L["Reward Preview"]):KAF_AddDefaultValueText("Achievements.RewardPreviewDefaultHeight"),
-                            min = 220, max = 700, step = 1,
-                            get = function() return addon.Options.db.profile.Achievements.RewardPreviewDefaultHeight end,
-                            set = RewardPreviewDefaultHeightSet,
-                            disabled = function() return not addon.Options.db.profile.Achievements.ShowRewardPreviewIcon end
                         },
                         Guide = {
                             order = OrderPP(), type = "header",

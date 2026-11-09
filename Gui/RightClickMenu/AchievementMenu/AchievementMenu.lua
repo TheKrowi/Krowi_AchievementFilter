@@ -44,7 +44,16 @@ function achievementMenu:CreateMenu(menuObj, achievement, caller)
 	local _, name = addon.GetAchievementInfo(achievement.Id)
 	menuBuilder:CreateTitle(menuObj, name)
 
-	for _, section in next, achievementMenu.Sections do
+	-- The menu's own sections and the features' entries (Slots.lua, AchievementMenu), each list in Order, merged by it
+	local own, added = achievementMenu.Sections, addon.Slots.AchievementMenu.Entries
+	local i, j = 1, 1
+	while own[i] or added[j] do
+		local section
+		if added[j] and (not own[i] or (added[j].Order or 0) < (own[i].Order or 0)) then
+			section, j = added[j], j + 1
+		else
+			section, i = own[i], i + 1
+		end
 		if section:CheckAdd(achievement) then
 			section:Add(menuObj, achievement, menuBuilder, caller)
 		end

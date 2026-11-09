@@ -4,6 +4,16 @@ The rules (the two namespaces, the three-phase boot, where data lives, taint) ar
 
 ## File map
 
+### Features: `Features.lua`, `Slots.lua`, `Features/`
+
+KAF splits into a core and switchable features (docs/work/2026-11-08-feature-split-poc, release 106). Each feature lives in `Features/<Name>/` and registers while its files load; loading them makes nothing.
+
+- **The registry** (`Features.lua`, `addon.Features`): `Register{Name, Title, Switch, Start, OnNotStarted}`, `AddOptions`, `AddHelp`, `AddDataFields`. `StartAll` runs at `ADDON_LOADED` right after `addon.Options:Load` and starts every feature whose switch (a saved path in the profile, on by default) is on; a switch takes effect after a reload. A feature's settings and help page are there whether it is on or off: its section opens with the switch, and its other rows grey out while the switch is off.
+- **The slots** (`Slots.lua`, `addon.Slots`): the core's extension points, filled only from a feature's `Start`, each entry tagged with its owner. `AchievementData.AddField` takes the builder's fields the core does not process itself (the reward ids); `RowIcons.Add` draws icons on the achievement rows after the built-in ones; `AchievementMenu.Add` adds entries to the achievement's right-click menu, merged by `Order`. `Gui/SidePanels.lua` is the side-panel service the reward preview and the guide panel share.
+- **The boundary:** the core names nothing a feature defines and a feature names nothing another defines (the `feature-boundary` lint rule); Tests are exempt.
+- **The proofs:** the `features` suite (headless: two whole-addon boots, off and on, with every file's load watched; in game: the state the switches give, and the memory), the `feature-boundary` rule and `/kaftest matrix`.
+- **Reward preview** (`Features/RewardPreview/`) is the first: the registration and `Start` (`RewardPreview.lua`), its public API and data fields (`Api.lua`), the entries' lookups (`Data.lua`), the window, a template made at start (`Window.xml`, `Window.lua`, `WindowMixin.lua`), the row icons, the menu entry, the settings and the help page.
+
 ### `Api/`
 
 The public API surface: the `KrowiAF` global, created in `Api/API.lua`; the enums; the data registration functions (`AchievementDataApi`, `CategoryDataApi`, ...); the fluent builders (`AchievementDataBuilder`, `CategoryDataBuilder`, `ZoneDataBuilder`, `BuildVersionDataBuilder`); and `PluginsApi`. `ApiDocumentation.lua` holds example data structures.
@@ -34,7 +44,7 @@ Runtime data management.
 | `AchievementCache.lua` | `addon.BuildCacheAsync`, the coroutine that walks every achievement id after the data load, plus `ResetCache` and `OnAchievementEarned` |
 | `TemporaryObtainable.lua` | resolves an achievement's temporary-obtainable records to Past/Current/Future |
 | `EventData.lua`, `CustomWidgetEventTimers.lua`, `CustomWorldEventTimers.lua` | events and their timers |
-| `TooltipData.lua`, `RewardPreviewData.lua` | tooltip and reward-preview data |
+| `TooltipData.lua` | tooltip data |
 | `SpecialCategories.lua` | the special category matrix: Summary, Watch List, Excluded, ... |
 | `SpecialCategoryAchievements.lua` | `addon.WatchAchievement`, `ExcludeAchievement`, `IncludeAchievement`, ...: adding achievements to the special categories and building their mirrored sub-category trees |
 | `DataIntegrityManager.lua` | saved-variable migrations |

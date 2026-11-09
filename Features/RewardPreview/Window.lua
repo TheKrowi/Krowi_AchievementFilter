@@ -2,7 +2,13 @@ local _, addon = ...
 addon.Gui.RewardPreview = {}
 local rewardPreview = addon.Gui.RewardPreview
 
-local menuBuilder = addon.MenuBuilder:New({modern = addon.Util.IsModern})
+local menuBuilder
+
+-- The window from its template (Window.xml) and the chooser's menu builder, made by the feature's Start (RewardPreview.lua)
+function rewardPreview.Create()
+    CreateFrame("Frame", "KrowiAF_RewardPreview", UIParent, "KrowiAF_RewardPreviewTemplate")
+    menuBuilder = addon.MenuBuilder:New({modern = addon.Util.IsModern})
+end
 
 -- The preview closes with the window its button belongs to, and shares the spot next to the row with the guide panel
 -- (Gui/SidePanels.lua)

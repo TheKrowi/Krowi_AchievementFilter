@@ -50,7 +50,11 @@
 --         Gui/EventReminder/SideButtonSystem.lua after a Side Button Anchor change, on models of its two anchors), runner
 --         (Tests/Tests.lua itself, headless only, docs/work/2026-11-08-test-run-history: how many runs History keeps
 --         after a /kaftest run of many entries, also with a run from outside it reporting in between, and after a single
---         run, and that a run puts the suites that need the achievement window's first draw first)
+--         run, and that a run puts the suites that need the achievement window's first draw first), features
+--         (Features.lua, Slots.lua and every feature under Features/, docs/work/2026-11-08-feature-split-poc: two
+--         whole-addon boots through options-env.lua, one with each feature off and one with it on, and whether a
+--         feature that is off starts, keeps a frame, data or a slot entry, and whether a feature's files make anything
+--         while they load)
 --
 -- Retail model is 12.1: the Blizzard_GameMenuEsc handler registry, the UI panel manager (its slots stay
 -- empty because the addon shows the achievement window with a plain Show), UISpecialFrames, static
@@ -418,7 +422,8 @@ suites.escape = function(c)
     frames.Calendar.SideFrame = frames.CalendarSide
     frames.OptionsPicture = env.CreateFrame("Frame", nil, frames.Options) -- the options window's lightbox
     frames.Options.Lightbox = frames.OptionsPicture
-    -- The reward preview closes with the window its row belongs to (Gui/RewardPreview/RewardPreview.lua, OnOwnerWindowHide)
+    -- The reward preview closes with the window its row belongs to (Features/RewardPreview/Window.lua, OnOwnerWindowHide);
+    -- the feature counts as started here, as with every feature on
     frames.RewardPreview = env.CreateFrame("Frame", "KrowiAF_RewardPreview", env.UIParent)
     frames.Achievements:HookScript("OnHide", function() frames.RewardPreview:Hide() end)
 
@@ -1170,8 +1175,7 @@ suites.guide = function(c)
     addon.L = strings
     c.frames.lenient = true -- the guide frames keep their pools in fields that start out nil, as the game allows
     addon.Gui = { AchievementTooltip = { Sections = {} }, RightClickMenu = { AchievementMenu = { Sections = {} } },
-        RegisterFrameForClosing = function() end, -- Gui/FramesForClosing.lua, which the escape suite covers
-        RewardPreview = { Close = function() end } } -- the guide panel closes it on open (Gui/RewardPreview/RewardPreview.lua)
+        RegisterFrameForClosing = function() end } -- Gui/FramesForClosing.lua, which the escape suite covers
     addon.Options = { db = { profile = { Achievements = { Guide = { Tooltip = true, RightClickMenu = true, Icon = true, ExpandedRow = false,
         ActionStyle = 1, WaypointProvider = 1 } } } } } -- Options/Defaults.lua
     local loaded = {}
@@ -1265,6 +1269,7 @@ suites.menu = function(c)
     addon.Gui = { RightClickMenu = {} }
     addon.Data = { Achievements = { [6] = { Id = 6 }, [ids.placeholder] = { Id = ids.placeholder, DoesNotExist = true } } }
     env.KrowiAF = { PluginsApi = { AddAchievementRightClickMenuItems = function() end } }
+    c.loadAddonFile("Slots.lua") -- the features' menu entries the menu merges with its own sections; none started here
     c.loadAddonFile("Gui/RightClickMenu/AchievementMenu/AchievementMenu.lua")
     local achievementMenu = addon.Gui.RightClickMenu.AchievementMenu
 
@@ -2687,6 +2692,59 @@ suites.popups = function(c)
     local observations = {}
     for _, r in ipairs(addon.Tests.PopUps.Run(headless, observations)) do results[#results + 1] = r end
     return results, "Tests/PopUps.lua", observations
+end
+
+-- The features that switch off (Tests/Features.lua, docs/work/2026-11-08-feature-split-poc): per state a whole-addon boot
+-- of its own through options-env.lua with every known feature's switch set to it in the profile, every top-level XML frame
+-- made where its file loads, and what each file makes while it loads watched. Load errors are FAIL lines, as in options.
+suites.features = function(c)
+    local scriptDir = ((arg and arg[0]) or ""):gsub("\\", "/"):match("^(.*)/") or "."
+    local optionsEnv = assert(loadfile(scriptDir .. "/options-env.lua"))()
+    local results, observations = {}, {}
+    local function HasFeatureFiles(name)
+        local f = io.open(root .. "/Features/" .. name .. "/Files.xml", "rb")
+        if f then f:close() end
+        return f ~= nil
+    end
+    for _, state in ipairs({ "off", "on" }) do
+        -- The known features come from the suite file itself, read once outside the boot for their switch paths
+        local known = {}
+        do
+            local probe = { Tests = { Suites = {}, Ready = {} }, Data = {} }
+            local chunk = assert(loadstring(readFile(root .. "/Tests/Features.lua"), "@Tests/Features.lua"))
+            setfenv(chunk, setmetatable({ tinsert = table.insert }, { __index = _G }))
+            chunk("Krowi_AchievementFilter", probe)
+            known = probe.Tests.Features.Known
+        end
+        local profile = {}
+        for _, feature in ipairs(known) do
+            local tbl = profile
+            for depth = 1, #feature.Switch - 1 do
+                tbl[feature.Switch[depth]] = tbl[feature.Switch[depth]] or {}
+                tbl = tbl[feature.Switch[depth]]
+            end
+            tbl[feature.Switch[#feature.Switch]] = state == "on"
+        end
+        local loadCalls = {}
+        local ctx = optionsEnv.New(root, c.client, { Profile = profile, XmlFrames = true,
+            Watch = function(file, what) loadCalls[#loadCalls + 1] = { File = file, What = what } end })
+        for _, err in ipairs(ctx.Errors) do
+            results[#results + 1] = { Name = state .. "/load-error", Status = "FAIL", TargetMet = false, Line = ("features/%s/load-error: FAIL %s"):format(state, err) }
+        end
+        local env, addon = ctx.env, ctx.addon
+        addon.Tests = addon.Tests or { Suites = {}, Ready = {}, Async = {} }
+        local chunk = assert(loadstring(readFile(root .. "/Tests/Features.lua"), "@Tests/Features.lua"))
+        setfenv(chunk, env)
+        chunk("Krowi_AchievementFilter", addon)
+        local runEnv = {
+            Global = function(name) return rawget(env, name) end,
+            LoadCalls = loadCalls,
+            HasFeatureFiles = HasFeatureFiles,
+            State = function() return state end
+        }
+        for _, r in ipairs(addon.Tests.Features.Run(runEnv, observations)) do results[#results + 1] = r end
+    end
+    return results, "Tests/Features.lua", observations
 end
 
 -- The in-game runner itself, headless only (docs/work/2026-11-08-test-run-history): Tests/Tests.lua in an environment of

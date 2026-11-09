@@ -1,8 +1,9 @@
 <Ui>
-    <Script file="RewardPreview.lua"/>
-    <Script file="RewardPreviewMixin.lua"/>
+    <Script file="Window.lua"/>
+    <Script file="WindowMixin.lua"/>
 
-    <Frame name="KrowiAF_RewardPreview" mixin="KrowiAF_RewardPreviewMixin" parent="UIParent" inherits="TooltipBorderBackdropTemplate" enableMouse="true" movable="true" resizable="true" frameStrata="HIGH" hidden="true">
+    <!-- Made by the feature's Start as KrowiAF_RewardPreview (RewardPreview.lua), never while the file loads -->
+    <Frame name="KrowiAF_RewardPreviewTemplate" virtual="true" mixin="KrowiAF_RewardPreviewMixin" inherits="TooltipBorderBackdropTemplate" enableMouse="true" movable="true" resizable="true" frameStrata="HIGH" hidden="true">
         <Size x="280" y="360"/>
         <Layers>
             <Layer level="BACKGROUND">

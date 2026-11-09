@@ -48,6 +48,9 @@ local function AddAchievementData(id, faction, otherFactionAchievementId, reward
     end
 end
 
+-- The reward ids the builder writes (Api/AchievementDataBuilder.lua :HousingDecor, :Mount, :Pet, :CreatureDisplay)
+local handedOnFields = {"HousingDecorId", "MountId", "PetSpeciesId", "CreatureDisplayId"}
+
 function KrowiAF.AddAchievementData(id, extras)
     if not extras then
         AddAchievementData(id)
@@ -61,36 +64,11 @@ function KrowiAF.AddAchievementData(id, extras)
         end
     end
     AddAchievementData(id, extras.Faction, extras.AltId, extras.RewardType, extras.IsPvP, extras.IsRealmFirst, temporaryObtainables)
-    if extras.HousingDecorId then
-        if addon.Util.IsTable(extras.HousingDecorId) then
-            for _, previewId in next, extras.HousingDecorId do
-                KrowiAF.AddRewardPreviewData(id, KrowiAF.Enum.RewardPreviewType.HousingDecorId, previewId)
-            end
-        else
-            KrowiAF.AddRewardPreviewData(id, KrowiAF.Enum.RewardPreviewType.HousingDecorId, extras.HousingDecorId)
-        end
-    end
-    if extras.MountId then
-        if addon.Util.IsTable(extras.MountId) then
-            for _, previewId in next, extras.MountId do
-                KrowiAF.AddRewardPreviewData(id, KrowiAF.Enum.RewardPreviewType.MountId, previewId)
-            end
-        else
-            KrowiAF.AddRewardPreviewData(id, KrowiAF.Enum.RewardPreviewType.MountId, extras.MountId)
-        end
-    end
-    if extras.PetSpeciesId then
-        if addon.Util.IsTable(extras.PetSpeciesId) then
-            for _, previewId in next, extras.PetSpeciesId do
-                KrowiAF.AddRewardPreviewData(id, KrowiAF.Enum.RewardPreviewType.PetSpeciesId, previewId)
-            end
-        else
-            KrowiAF.AddRewardPreviewData(id, KrowiAF.Enum.RewardPreviewType.PetSpeciesId, extras.PetSpeciesId)
-        end
-    end
-    if extras.CreatureDisplayId then
-        for _, preview in next, extras.CreatureDisplayId do
-            KrowiAF.AddRewardPreviewData(id, KrowiAF.Enum.RewardPreviewType.CreatureDisplayId, preview.Id, nil, preview.SpellId)
+    -- The builder's fields the core does not process itself go to the feature that took them, if one started
+    -- (Slots.lua, AchievementData); the value is as the builder wrote it, an id or a list of them
+    for _, field in ipairs(handedOnFields) do
+        if extras[field] ~= nil then
+            addon.Slots.AchievementData.Handle(field, id, extras[field])
         end
     end
     if extras.AutoPair and extras.AltId and extras.Faction then

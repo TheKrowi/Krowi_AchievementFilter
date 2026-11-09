@@ -1,6 +1,6 @@
 local _, addon = ...
 local achievementMenu = addon.Gui.RightClickMenu.AchievementMenu
-local section = {}
+local section = {Order = 30} -- its place among the menu's entries (Slots.lua, AchievementMenu)
 tinsert(achievementMenu.Sections, section)
 achievementMenu.GuideSection = section -- Tests/Guide.lua runs this section on its own
 

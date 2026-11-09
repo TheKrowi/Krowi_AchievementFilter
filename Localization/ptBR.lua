@@ -7,6 +7,17 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-31 22-33-16 ]] --
+L["Feature Switch Desc"] = "Desative {feature} se não o usa: após recarregar ele não inicia mais e não guarda nenhum dos seus dados. Suas configurações são mantidas."
+L["Feature Off Help"] = "{feature} está desativado. Ative-o no topo desta seção e recarregue."
+L["Show icon on achievements"] = "Mostrar ícone nas conquistas"
+L["Show icon on achievements Desc"] = "Um ícone em cada conquista cuja recompensa pode ser pré-visualizada. O menu do clique direito tem {previewReward} de qualquer forma."
+L["Show on mouseover"] = "Mostrar ao passar o mouse"
+L["Invert up and down when turning"] = "Inverter cima e baixo ao girar"
+L["Most icons per achievement"] = "Máximo de ícones por conquista"
+L["Width"] = "Largura"
+L["Reward Preview Width Desc"] = "A largura com que a janela abre. Redimensionar a janela a altera."
+L["Height"] = "Altura"
+L["Reward Preview Height Desc"] = "A altura com que a janela abre. Redimensionar a janela a altera."
 L["Card Tabs"] = "Quais abas aparecem e em que ordem."
 L["Card Window"] = "Tamanho, posição e o que abre primeiro."
 L["Card Categories"] = "Expansões, zonas e as categorias especiais."
@@ -373,7 +384,7 @@ L["Help Popout Close On Earn"] = "Uma janela destacada se fecha sozinha quando v
 L["Help Popout Intro"] = "Clique com Ctrl em uma conquista para destacá-la em uma pequena janela que fica na tela. Arraste uma janela destacada sobre outra para empilhá-las."
 L["Help Profiles Intro"] = "Configurações e filtros têm cada um o seu próprio perfil. Compartilhe um entre personagens ou dê a um personagem um perfil só dele."
 L["Help Profiles Title"] = "Perfis"
-L["Help Rewards Intro"] = "Clique no ícone de prévia de uma conquista para ver a recompensa. Arraste o modelo para girá-lo e arraste o canto para redimensionar a janela."
+L["Help Rewards Intro"] = "Clique no ícone de prévia de uma conquista, ou escolha {previewReward} no menu do clique direito dela, para ver a recompensa. Arraste o modelo para girá-lo e arraste o canto para redimensionar a janela."
 L["Help Right Click Go To"] = "As conquistas da cadeia dela, as que ela exige e as outras categorias em que ela está."
 L["Help Right Click Guide"] = "Pontos de referência para uma conquista com guia."
 L["Help Right Click More"] = "Observar, deixar de observar, excluir ou incluir a conquista."

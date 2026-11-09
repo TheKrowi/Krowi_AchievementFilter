@@ -36,6 +36,7 @@ local function LoadKrowi_AchievementFilter()
     addon.Filters:InjectDefaults()
     KrowiAF.PluginsApi:InjectPluginOptions()
     addon.Options:Load(true)
+    addon.Features.StartAll() -- the features that are on in this profile (Features.lua), before the rows or the data load
 
     KrowiAF.PluginsApi:LoadPlugins()
 

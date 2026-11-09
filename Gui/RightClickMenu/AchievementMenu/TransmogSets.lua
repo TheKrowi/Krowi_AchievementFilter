@@ -1,5 +1,5 @@
 local _, addon = ...
-local section = {}
+local section = {Order = 60} -- its place among the menu's entries (Slots.lua, AchievementMenu)
 tinsert(addon.Gui.RightClickMenu.AchievementMenu.Sections, section)
 
 function section:CheckAdd(achievement)

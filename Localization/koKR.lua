@@ -7,6 +7,17 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-31 22-33-16 ]] --
+L["Feature Switch Desc"] = "{feature}을(를) 쓰지 않으면 끄세요. UI를 다시 불러오면 더 이상 시작되지 않고 데이터도 보관하지 않습니다. 설정은 그대로 유지됩니다."
+L["Feature Off Help"] = "{feature}이(가) 꺼져 있습니다. 이 항목 맨 위에서 켠 뒤 UI를 다시 불러오세요."
+L["Show icon on achievements"] = "업적에 아이콘 표시"
+L["Show icon on achievements Desc"] = "보상을 미리 볼 수 있는 업적마다 표시되는 아이콘입니다. 오른쪽 클릭 메뉴에서는 언제든 {previewReward} 항목을 사용할 수 있습니다."
+L["Show on mouseover"] = "마우스를 올리면 표시"
+L["Invert up and down when turning"] = "회전 시 위아래 반전"
+L["Most icons per achievement"] = "업적당 최대 아이콘 수"
+L["Width"] = "너비"
+L["Reward Preview Width Desc"] = "창이 열릴 때의 너비입니다. 창 크기를 조절하면 이 값이 바뀝니다."
+L["Height"] = "높이"
+L["Reward Preview Height Desc"] = "창이 열릴 때의 높이입니다. 창 크기를 조절하면 이 값이 바뀝니다."
 L["Card Tabs"] = "표시할 탭과 그 순서."
 L["Card Window"] = "크기, 위치, 처음 열리는 화면."
 L["Card Categories"] = "확장팩, 지역, 특수 카테고리."
@@ -352,7 +363,7 @@ L["Help Popout Close On Earn"] = "업적을 달성하면 팝아웃이 저절로 
 L["Help Popout Intro"] = "업적을 컨트롤-클릭하면 화면에 계속 남는 작은 창으로 띄웁니다. 팝아웃 하나를 다른 팝아웃 위로 끌어 놓으면 겹쳐 쌓입니다."
 L["Help Profiles Intro"] = "설정과 필터는 각각 별도의 프로필을 사용합니다. 여러 캐릭터가 하나를 함께 쓰거나, 캐릭터에게 전용 프로필을 줄 수 있습니다."
 L["Help Profiles Title"] = "프로필"
-L["Help Rewards Intro"] = "업적의 미리보기 아이콘을 클릭하면 보상을 볼 수 있습니다. 모델을 끌어 회전하고, 모서리를 끌어 창 크기를 조절합니다."
+L["Help Rewards Intro"] = "업적의 미리보기 아이콘을 클릭하거나 오른쪽 클릭 메뉴에서 {previewReward} 항목을 선택하면 보상을 볼 수 있습니다. 모델을 끌어 회전하고, 모서리를 끌어 창 크기를 조절합니다."
 L["Help Right Click Go To"] = "연계 업적, 이 업적에 필요한 업적, 이 업적이 속한 다른 카테고리."
 L["Help Right Click Guide"] = "가이드가 있는 업적의 경유지."
 L["Help Right Click More"] = "워치리스트 추가 또는 해제, 제외 또는 포함."

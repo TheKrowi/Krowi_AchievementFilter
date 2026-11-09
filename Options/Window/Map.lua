@@ -15,10 +15,15 @@ local L = addon.L
 -- useful ({ X, Y } from 0 to 1, Krowi_Options' CardCrop) (docs/work/2026-11-02-overview-cards).
 addon.Options.Window = addon.Options.Window or {}
 addon.Options.Window.Map = {
+    -- A feature's section joins its group (Key) at its Order when the feature registers (Features.lua); Orders gives the
+    -- core's sections theirs, so a feature never names the section it follows
     Groups = {
-        { Name = L["Achievement window"], Sections = { "tabs", "window", "categories", "summary", "achievements", "filters", "search", "tooltips", "rightclick", "popout", "rewards", "guides", "calendar" } },
-        { Name = L["Around the game"], Sections = { "maps", "criteria", "events", "eventlist" } },
-        { Name = L["This addon"], Sections = { "keys", "plugins", "profiles", "advanced", "about" } },
+        { Key = "window", Name = L["Achievement window"], Sections = { "tabs", "window", "categories", "summary", "achievements", "filters", "search", "tooltips", "rightclick", "popout", "guides", "calendar" },
+            Orders = { tabs = 10, window = 20, categories = 30, summary = 40, achievements = 50, filters = 60, search = 70, tooltips = 80, rightclick = 90, popout = 100, guides = 110, calendar = 120 } },
+        { Key = "world", Name = L["Around the game"], Sections = { "maps", "criteria", "events", "eventlist" },
+            Orders = { maps = 10, criteria = 20, events = 30, eventlist = 40 } },
+        { Key = "addon", Name = L["This addon"], Sections = { "keys", "plugins", "profiles", "advanced", "about" },
+            Orders = { keys = 10, plugins = 20, profiles = 30, advanced = 40, about = 50 } },
     },
     Sections = {
         { Id = "tabs", Name = L["Tabs"], Card = L["Card Tabs"], Groups = {
@@ -166,11 +171,6 @@ addon.Options.Window.Map = {
             } },
             { Header = L["Appearance"], Entries = {
                 { Group = "Layout.args.Popout.args.Appearance" },
-            } },
-        } },
-        { Id = "rewards", Name = L["Reward preview"], Card = L["Card Rewards"], CardPart = { X = 0, Y = 0.74 }, Groups = {
-            { Header = L["Reward preview"], Entries = {
-                { Group = "Layout.args.Achievements.args.Style.args.Style", Header = "RewardPreview" },
             } },
         } },
         { Id = "guides", Name = L["Achievement guides"], Card = L["Card Guides"], CardIcon = "Interface\\Icons\\INV_Misc_Map_01", ChangedIn = "104.0", Groups = {

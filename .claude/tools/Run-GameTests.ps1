@@ -29,6 +29,13 @@
     What to run, as /kaftest run takes it: suites, or a suite and what to run of it after a space ("options open",
     or options' set "options smoke"). Several as separate arguments or comma-separated: options, escape.
 
+.PARAMETER Matrix
+    Instead of entries: /kaftest matrix, every suite but the probes with every feature on, with every feature off and with
+    each feature alone (docs/work/2026-11-08-feature-split-poc). Each step asks for a /reload and this tool types it; the
+    last one puts the switches back. Exits 0 only when the plan's record is newer than the run, every step ran every
+    suite, nothing failed and something passed. -Timeout then counts per step. The release gate wants one such run on the
+    newest Retail and Mists build since Features/ last changed.
+
 .PARAMETER Client
     Retail (default), Ptr, Xptr, Beta, Classic or ClassicPtr; Start-Game.ps1 starts only Retail and Classic (Mists), a
     running test-realm client is used as it is.
@@ -44,10 +51,12 @@
     & ".claude\tools\Run-GameTests.ps1" options -Client Classic
     & ".claude\tools\Run-GameTests.ps1" "options open"
     & ".claude\tools\Run-GameTests.ps1" "options smoke", escape
+    & ".claude\tools\Run-GameTests.ps1" -Matrix -Client Classic
 #>
-[CmdletBinding()]
+[CmdletBinding(DefaultParameterSetName = 'Entries')]
 param(
-    [Parameter(Mandatory, Position = 0)][string[]]$Entries,
+    [Parameter(Mandatory, Position = 0, ParameterSetName = 'Entries')][string[]]$Entries,
+    [Parameter(Mandatory, ParameterSetName = 'Matrix')][switch]$Matrix,
     [ValidateSet('Retail', 'Ptr', 'Xptr', 'Beta', 'Classic', 'ClassicPtr')][string]$Client = 'Retail',
     [int]$Timeout = 900,
     [switch]$KeepOpen
@@ -57,12 +66,17 @@ $ErrorActionPreference = 'Stop'
 . (Join-Path $PSScriptRoot 'KitPath.ps1')
 $send = Join-Path $KitTools 'Send-GameInput.ps1'
 
-$list = @($Entries | ForEach-Object { $_ -split ',' } | ForEach-Object { $_.Trim() } | Where-Object { $_ })
-foreach ($entry in $list) {
-    if ($entry -notmatch '^[a-z]+( [A-Za-z0-9-]+)?$') { throw "Not a suite name, or a suite name and a step: '$entry'" }
+if ($Matrix) {
+    $list = @()
+    $runText = 'matrix'
+} else {
+    $list = @($Entries | ForEach-Object { $_ -split ',' } | ForEach-Object { $_.Trim() } | Where-Object { $_ })
+    foreach ($entry in $list) {
+        if ($entry -notmatch '^[a-z]+( [A-Za-z0-9-]+)?$') { throw "Not a suite name, or a suite name and a step: '$entry'" }
+    }
+    if (-not $list) { throw 'Name at least one suite.' }
+    $runText = $list -join ', '
 }
-if (-not $list) { throw 'Name at least one suite.' }
-$runText = $list -join ', '
 
 # The kit must have -WaitForDone (Krowi_ClaudeKit's docs/work/2026-11-05-kit-test-runs); an older kit would type the
 # run and then fail
@@ -115,6 +129,59 @@ if ($state -match 'state: in the world') {
     # In the world without the marker: nothing can be typed, and the game only finds a new addon folder when it starts
     $stateLine = ((($state -split "`r?`n") | Where-Object { $_ -match 'state:' }) -join ' ').Trim()
     Stop-Run "the $Client client is neither in the world with the marker nor at character select ($stateLine). In the world without the marker, nothing can be typed; if the marker addon was only just installed, the client needs a restart: Krowi closes it, and this tool starts it."
+}
+
+if ($Matrix) {
+    # /kaftest matrix (Tests/Tests.lua, docs/work/2026-11-08-feature-split-poc): each step sets the features' switches
+    # and asks for a /reload, since C_UI.Reload is protected outside a key press or click; this tool types it, waits for
+    # the step's suites, and stops once the saved variables hold no pending plan. That last /reload also brings the
+    # switches back as they were. -Timeout is per step.
+    . (Join-Path $KitTools 'AddonContext.ps1')   # the kit's client map: Get-ClientFolder
+    $wtf = Join-Path (Get-ClientFolder $Client) 'WTF\Account'
+    $runsReader = Join-Path $PSScriptRoot 'headless\read-runs.lua'
+    function Read-MatrixState {
+        $sv = Get-ChildItem -LiteralPath $wtf -Directory | ForEach-Object { Join-Path $_.FullName 'SavedVariables\Krowi_AchievementFilter.lua' } |
+            Where-Object { Test-Path -LiteralPath $_ } | Get-Item | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+        if ($sv) { @(& $KitLua $runsReader $sv.FullName 'KrowiAF_DebugTable' 'matrix' 2>$null) }
+    }
+    '/kaftest matrix'
+    $runStart = Get-Date
+    if ((Invoke-Kit '/kaftest matrix' @{ Command = '/kaftest matrix' }) -ne 0) { Stop-Run 'could not type the matrix run' }
+    $reloads = 0
+    while ($true) {
+        'Waiting for the step to be done'
+        $waited = Invoke-Kit 'waiting' @{ WaitForDone = $true; Timeout = $Timeout }
+        '/reload, for the next step or to put the switches back'
+        $reloaded = Invoke-Kit '/reload' @{ Command = '/reload' }
+        if ($waited -ne 0 -or $reloaded -ne 0) { break }
+        $matrixState = @(Read-MatrixState)
+        $pending = @($matrixState | Where-Object { $_ -like 'pending|*' })
+        if (-not $pending) { break }
+        "  matrix: $($pending[0])"
+        if (++$reloads -gt 64) { $waited = 1; 'Gave up after 64 steps'; break }
+    }
+    $record = @($matrixState | Where-Object { $_ -like 'matrix|*' })[0]
+    if ($reloaded -eq 0) {
+        $reader = Join-Path $PSScriptRoot 'Read-GameTests.ps1'
+        try { $listing = @(& $reader -Client $Client 2>&1 | ForEach-Object { "$_" }) }
+        catch { Stop-Run "Read-GameTests.ps1 could not read the $Client client's runs: $($_.Exception.Message)" }
+        # The kept runs of this matrix run, by their time in the reader's list ("  2. 2026-11-05 17:28:23 ...")
+        $listing | Where-Object { $_ -match '^\s+\d+\. (\d{4}-\d\d-\d\d \d\d:\d\d:\d\d) ' -and
+            [datetime]::ParseExact($Matches[1], 'yyyy-MM-dd HH:mm:ss', [Globalization.CultureInfo]::InvariantCulture) -ge $runStart.AddSeconds(-1) }
+        & (Join-Path $KitTools 'Read-GameErrors.ps1') -Client $Client
+    }
+    Close-Started
+    if ($waited -ne 0) { Stop-Run 'a step did not report done in time (see above)' }
+    if ($reloaded -ne 0) { Stop-Run 'a /reload failed, so the plan stopped on a step' }
+    if (-not $record) { Stop-Run 'no finished matrix run reached the saved variables' }
+    "Run-GameTests: matrix record $record (build|passed|failed|skipped|time|complete)"
+    $f = $record -split '\|'
+    $recordTime = [datetime]::ParseExact($f[5], 'yyyy-MM-dd HH:mm:ss', [Globalization.CultureInfo]::InvariantCulture)
+    if ($recordTime -lt $runStart.AddSeconds(-1)) { Stop-Run 'the matrix record is older than this run' }
+    if ($f[6] -ne '1') { Stop-Run 'a step did not run every suite (see the steps above)' }
+    if ([int]$f[3] -gt 0 -or [int]$f[2] -eq 0) { Stop-Run "the matrix run failed $($f[3]) and passed $($f[2])" }
+    'Run-GameTests: done'
+    exit 0
 }
 
 "/kaftest run $runText"

@@ -7,6 +7,17 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-10-31 22-33-16 ]] --
+L["Feature Switch Desc"] = "Disattiva {feature} se non lo usi: dopo aver ricaricato non si avvia più e non tiene nessuno dei suoi dati. Le tue impostazioni restano salvate."
+L["Feature Off Help"] = "{feature} è disattivato. Attivalo in cima a questa sezione, poi ricarica."
+L["Show icon on achievements"] = "Mostra l'icona sulle imprese"
+L["Show icon on achievements Desc"] = "Un'icona su ogni impresa la cui ricompensa può essere vista in anteprima. Il menu del clic destro ha comunque {previewReward}."
+L["Show on mouseover"] = "Mostra al passaggio del mouse"
+L["Invert up and down when turning"] = "Inverti alto e basso durante la rotazione"
+L["Most icons per achievement"] = "Numero massimo di icone per impresa"
+L["Width"] = "Larghezza"
+L["Reward Preview Width Desc"] = "La larghezza con cui si apre la finestra. Ridimensionare la finestra la cambia."
+L["Height"] = "Altezza"
+L["Reward Preview Height Desc"] = "L'altezza con cui si apre la finestra. Ridimensionare la finestra la cambia."
 L["Card Tabs"] = "Quali schede mostrare, e in che ordine."
 L["Card Window"] = "Dimensioni, posizione e cosa si apre per primo."
 L["Card Categories"] = "Espansioni, zone e le categorie speciali."
@@ -189,7 +200,7 @@ L["Help Popout Close On Earn"] = "Una finestra staccata si chiude da sola quando
 L["Help Popout Intro"] = "Fai Ctrl-clic su un'impresa per staccarla in una piccola finestra che resta sullo schermo. Trascina una finestra staccata su un'altra per impilarle."
 L["Help Profiles Intro"] = "Impostazioni e filtri hanno ciascuno il proprio profilo. Condividine uno tra più personaggi, o dai a un personaggio un profilo tutto suo."
 L["Help Profiles Title"] = "Profili"
-L["Help Rewards Intro"] = "Fai clic sull'icona di anteprima di un'impresa per vederne la ricompensa. Trascina il modello per ruotarlo e trascina l'angolo per ridimensionare la finestra."
+L["Help Rewards Intro"] = "Fai clic sull'icona di anteprima di un'impresa, o scegli {previewReward} nel suo menu del clic destro, per vederne la ricompensa. Trascina il modello per ruotarlo e trascina l'angolo per ridimensionare la finestra."
 L["Help Right Click Go To"] = "Le imprese della sua catena, quelle che richiede e le altre categorie in cui si trova."
 L["Help Right Click Guide"] = "Punti di riferimento per un'impresa con una guida."
 L["Help Right Click More"] = "Osservarla, smettere di osservarla, escluderla o includerla."

@@ -4,21 +4,29 @@
 --   <suite>|<build>|<passed>|<failed>|<skipped>|<time>
 -- Used by .claude/release-gate.ps1, which the kit's release preflight runs, to require a green run on the newest client.
 --
--- Usage: lua.exe read-runs.lua <path to Krowi_AchievementFilter.lua> [<saved table, default KrowiAF_DebugTable>] [version=<v>]
+-- Usage: lua.exe read-runs.lua <path to Krowi_AchievementFilter.lua> [<saved table, default KrowiAF_DebugTable>] [matrix] [version=<v>]
 -- The second argument reads another addon's file the same way: KrowiOptionsTests_Debug for Krowi_Options' test addon
 -- (/kotest keeps its runs under .Tests.Runs too; its full run is the suite "all").
--- With version=<v> only runs of that addon version print (each run keeps addon.Metadata.Version): the release gate
--- counts only runs of the version being released, so a hotfix's runs can never be main's build's (the kit's
--- docs/work/2026-11-08-hotfix-mode). A run without a version never matches.
+-- With "matrix" it prints the /kaftest matrix state instead (Tests/Tests.lua, docs/work/2026-11-08-feature-split-poc):
+--   pending|<step index>|<steps>                                         while a plan waits for a /reload
+--   matrix|<build>|<passed>|<failed>|<skipped>|<time>|<complete 1 or 0>   the last finished plan
+-- With version=<v> only runs of that addon version print (each run and the matrix record keep addon.Metadata.Version):
+-- the release gate counts only runs of the version being released, so a hotfix's runs can never be main's build's (the
+-- kit's docs/work/2026-11-08-hotfix-mode). A run without a version never matches. The pending line is the runner's
+-- state, not a run, and always prints.
 -- Exit code 0, or 2 when the file cannot be loaded.
 
 local path, tableName = ...
 tableName = tableName or "KrowiAF_DebugTable"
-local wanted
+local mode, wanted
 for i = 3, select("#", ...) do
     local arg = select(i, ...)
     local version = type(arg) == "string" and arg:match("^version=(.+)$")
-    if version then wanted = version end
+    if version then
+        wanted = version
+    elseif arg == "matrix" then
+        mode = arg
+    end
 end
 local chunk, err = loadfile(path)
 if not chunk then
@@ -28,6 +36,17 @@ end
 chunk()
 local saved = _G[tableName]
 local tests = type(saved) == "table" and type(saved.Tests) == "table" and saved.Tests or {}
+if mode == "matrix" then
+    local matrix = type(tests.Matrix) == "table" and tests.Matrix or {}
+    local pending, last = matrix.Pending, matrix.Last
+    if type(pending) == "table" then
+        io.stdout:write(("pending|%d|%d\n"):format(pending.Index or 0, type(pending.Steps) == "table" and #pending.Steps or 0))
+    end
+    if type(last) == "table" and (not wanted or tostring(last.Version) == wanted) then
+        io.stdout:write(("matrix|%s|%d|%d|%d|%s|%d\n"):format(tostring(last.Build), last.Passed or 0, last.Failed or 0, last.Skipped or 0, tostring(last.Time), last.Complete and 1 or 0))
+    end
+    os.exit(0)
+end
 local runs = {}
 for suite, run in pairs(type(tests.Runs) == "table" and tests.Runs or {}) do
     runs[suite] = run
