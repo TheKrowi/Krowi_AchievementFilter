@@ -5,13 +5,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-11-09 10-32-23 ]] --
-L["Show Menu Button"] = true
-L["Show Menu Button Desc"] = "Show / hide a button on each achievement that opens its right-click menu."
-L["Use Game Language"] = true
-L["Use Game Language Desc"] = "Open the Wowhead page in the game's language instead of English."
-L["Open on Tab"] = true
-L["Open on Tab Desc"] = "Choose the tab the Wowhead page opens on, such as Comments or Screenshots."
+-- [[ Exported at 2026-11-09 15-50-49 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -721,6 +715,7 @@ L["Map pin and TomTom"] = true
 L["Maruukai Dash"] = true
 L["Max number of alerts"] = true
 L["Max number of alerts Desc"] = "The maximum number of alerts shown at once."
+L["Max Number of Icons"] = true
 L["Maximum number of characters"] = true
 L["Maximum number of characters Desc"] = "The maximum number of characters to show in the tooltip."
 L["Merge Small Categories"] = true
@@ -746,7 +741,6 @@ L["Modifiers"] = true
 L["Mogu"] = true
 L["More"] = true
 L["Mort'regar"] = true
-L["Max Number of Icons"] = true
 L["Most progress"] = true
 L["Mouse Wheel Scroll Speed"] = true
 L["Mouse Wheel Scroll Speed Desc"] = "The number of {items} that will be scrolled when clicking the scroll bar's up/down buttons or spinning the mouse wheel."
@@ -823,6 +817,8 @@ L["Only search filtered achievements Desc"] = "Only search achievements that are
 L["Only when time data is available"] = true
 L["Only with a time"] = true
 L["Open"] = true
+L["Open on Tab"] = true
+L["Open on Tab Desc"] = "Choose the tab the Wowhead page opens on, such as Comments or Screenshots."
 L["Open options"] = true
 L["Opening the window"] = true
 L["Order"] = true
@@ -1035,6 +1031,8 @@ L["Show Guide on Mouseover"] = "Show on Mouseover"
 L["Show Guide on Mouseover Desc"] = "Shows the guide while the mouse is over its icon; a click pins it."
 L["Show Icon on Achievements"] = true
 L["Show Icon on Achievements Desc"] = "Show / hide an icon on achievements with a reward that can be previewed. {previewReward} in the right-click menu always works."
+L["Show Menu Button"] = true
+L["Show Menu Button Desc"] = "Show / hide a button on each achievement that opens its right-click menu."
 L["Show Not Obtainable"] = "Show {notObtainable}"
 L["Show Not Obtainable Desc"] = "Show / hide {notObtainable} achievements in red on the progress bar."
 L["Show Objectives progress"] = "Show {objectivesProgress}"
@@ -1252,6 +1250,8 @@ L["Upcoming Calendar Event Days Desc"] = "The number of days in advance to show 
 L["Upcoming Calendar Event Login Delay"] = true
 L["Upcoming Calendar Events"] = true
 L["Upper Reaches"] = true
+L["Use Game Language"] = true
+L["Use Game Language Desc"] = "Open the Wowhead page in the game's language instead of English."
 L["Val and Naigtal"] = true
 L["Val'sharah"] = true
 L["Vaults of Atal'Utek"] = true

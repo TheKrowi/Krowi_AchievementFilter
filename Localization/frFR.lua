@@ -6,13 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-11-09 10-32-23 ]] --
-L["Show Menu Button"] = "Afficher le bouton du menu"
-L["Show Menu Button Desc"] = "Affiche ou masque sur chaque haut fait un bouton qui ouvre son menu clic droit."
-L["Use Game Language"] = "Utiliser la langue du jeu"
-L["Use Game Language Desc"] = "Ouvre la page Wowhead dans la langue du jeu au lieu de l'anglais."
-L["Open on Tab"] = "Ouvrir sur l'onglet"
-L["Open on Tab Desc"] = "Choisit l'onglet sur lequel la page Wowhead s'ouvre, comme Commentaires ou Captures d'écran."
+-- [[ Exported at 2026-11-09 15-50-49 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -720,6 +714,7 @@ L["Map pin and TomTom"] = "Repère de carte et TomTom"
 L["Maruukai Dash"] = "Marathon de Maruukaï"
 L["Max number of alerts"] = "Nombre maximal de pop-ups d'événement"
 L["Max number of alerts Desc"] = "Nombre maximum de pop-ups d'événements affichés en même temps."
+L["Max Number of Icons"] = "Nombre maximal d'icônes"
 L["Maximum number of characters"] = "Nombre maximum de personnages"
 L["Maximum number of characters Desc"] = "Le nombre maximum de personnages à afficher dans l'infobulle"
 L["Merge Small Categories"] = "Fusionner les catégories mineures"
@@ -744,7 +739,6 @@ L["Modifiers"] = "Modificateurs"
 L["Mogu"] = true
 L["More"] = "Plus"
 L["Mort'regar"] = true
-L["Max Number of Icons"] = "Nombre maximal d'icônes"
 L["Most progress"] = "Personnage avec le plus de progression"
 L["Mouse Wheel Scroll Speed"] = "Vitesse de défilement de la souris avec la molette."
 L["Mouse Wheel Scroll Speed Desc"] = "Définit le nombre d'{items} qui seront défilés lorsque vous cliquez sur les boutons haut et bas de la barre de défilement ou lors de l'utilisation de la molette de la souris"
@@ -820,6 +814,8 @@ L["Only search filtered achievements Desc"] = "Ne recherchez que les Hauts faits
 L["Only when time data is available"] = "Uniquement lorsque les données de temps sont disponibles"
 L["Only with a time"] = "Uniquement avec horaire"
 L["Open"] = "Ouvert"
+L["Open on Tab"] = "Ouvrir sur l'onglet"
+L["Open on Tab Desc"] = "Choisit l'onglet sur lequel la page Wowhead s'ouvre, comme Commentaires ou Captures d'écran."
 L["Open options"] = "Ouvrir les options"
 L["Opening the window"] = "Ouverture de la fenêtre"
 L["Order"] = "Ordre des onglets"
@@ -1026,6 +1022,8 @@ L["Show Guide on Mouseover"] = "Afficher au survol"
 L["Show Guide on Mouseover Desc"] = "Affiche le guide tant que la souris survole son icône ; un clic l'épingle."
 L["Show Icon on Achievements"] = "Afficher l'icône sur les hauts faits"
 L["Show Icon on Achievements Desc"] = "Affiche / masque une icône sur les hauts faits dont la récompense peut être prévisualisée. {previewReward} dans le menu du clic droit fonctionne toujours."
+L["Show Menu Button"] = "Afficher le bouton du menu"
+L["Show Menu Button Desc"] = "Affiche ou masque sur chaque haut fait un bouton qui ouvre son menu clic droit."
 L["Show Not Obtainable"] = "afficher {non disponible}"
 L["Show Not Obtainable Desc"] = "Affiche ou masque les hauts faits {notObtainable} en rouge sur la barre de progression."
 L["Show Objectives progress"] = "Afficher {objectivesProgress}"
@@ -1236,6 +1234,8 @@ L["Upcoming Calendar Event Days Desc"] = "Le nombre de jours d'avance pour les n
 L["Upcoming Calendar Event Login Delay"] = "Délai de connexion pour les événements du calendrier à venir"
 L["Upcoming Calendar Events"] = "Événements à venir du calendrier"
 L["Upper Reaches"] = "Étages supérieurs"
+L["Use Game Language"] = "Utiliser la langue du jeu"
+L["Use Game Language Desc"] = "Ouvre la page Wowhead dans la langue du jeu au lieu de l'anglais."
 L["Val and Naigtal"] = "Val et Naigtal"
 L["Val'sharah"] = true
 L["Vaults of Atal'Utek"] = "Les Caveaux d'Atal'Utek"
