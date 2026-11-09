@@ -1,5 +1,5 @@
 # Spec: one lean instruction file
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. `.github/copilot-instructions.md` is deleted, and `CLAUDE.md` no longer imports it.

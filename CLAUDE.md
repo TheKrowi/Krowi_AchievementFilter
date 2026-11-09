@@ -19,10 +19,11 @@ There is no build step, no external linter or test framework and no CI: never ru
 & ".claude\tools\Read-GameTests.ps1"                  # the last /kaftest run, every line that differs from the headless run marked; -Client, -Run <n>
 ```
 
-- **Stop hook:** `.claude/hooks/Check-RepoOnStop.ps1` runs `Check-Repo.ps1 -ChangedOnly` when a turn ends and hands errors back. Fix them, or add a deliberate exception to `.claude/tools/Check-Repo.ignore` with a comment. After a switch with EnterWorktree it still runs from the checkout the session started in, and lints the checkout the session's cwd is in.
+- **Stop hook:** `.claude/hooks/Check-RepoOnStop.ps1` runs `Check-Repo.ps1 -ChangedOnly` when a turn ends and hands errors back. Fix them, or add a deliberate exception to `.claude/tools/Check-Repo.ignore` with a comment. After a switch with EnterWorktree it still runs from the checkout the session started in, and lints the checkout the session's cwd is in; the guard maps worktree paths onto the checkout's own.
+- **Worktrees:** Claude Code's own (EnterWorktree with a name, `claude --worktree`, subagent `isolation: "worktree"`) branch from the session's HEAD (`worktree.baseRef` is `head` here) but have no `Libs/` submodules, so the headless pipeline fails in them. For real work, use the kit's `New-Worktree.ps1` and switch with EnterWorktree and its path.
 - **Which suites to run** (Krowi, 2026-11-07): in development and in a pull request only the suites the change can affect, never the whole set; before a release the gate wants a green in-game run of all but the probes on the newest Retail and Mists build (`.claude/rules/release.md`). Green means it failed nothing and passed something (Krowi, 2026-11-08). The suites: `Tests/README.md`.
 - **Without the client:** follow existing patterns exactly; register every new `.lua` file in the right `Files.xml` (a file not listed silently never loads, and a file can use only what earlier files define; the load order is in `docs/architecture.md`); declare every new saved variable in the `.toc`; keep XML template names and Lua frame references in sync.
-- **Language server:** `.luarc.json`'s `diagnostics.globals` lists only what no annotation covers; add a name sorted, never one the server already resolves (`luarc` rule; `.claude/tools/README.md`, Language server).
+- **Language server:** it runs on `.luarc.json` plus the WoW API and FrameXML annotations of the VS Code extension `ketho.wow-api`, so `diagnostics.globals` lists only what no annotation covers: global strings, Classic-only frames and API, third-party addon globals, and the frames the addon creates by name in Lua or XML. Do not add a name the language server already resolves; add a new global string or third-party global sorted (`luarc` rule; `.claude/tools/README.md`, Language server).
 
 ## Architecture
 
@@ -35,7 +36,7 @@ There is no build step, no external linter or test framework and no CI: never ru
 - **Client flags** from `Libs/Krowi_Util`: `addon.Util.IsModern`, `IsMainline`, `IsClassicWithAchievements`, `IsWrathClassic`, `IsMistsClassic`; the `util-flags` rule fails on one Krowi_Util does not define. `IsModern` (Retail and WoW Forever) answers "does this client run Retail's interface?": frames, templates, atlases, skins; every `addon.MenuBuilder:New` passes `modern = addon.Util.IsModern`. Older interface code that branches on `not IsClassicWithAchievements` agrees with `IsModern` on every client with achievements, Forever included; new code uses `IsModern`. `IsMainline` (Retail only) answers "is this Retail's content?": achievement data, categories, maps, saved data, world events. KAF does not load on Forever yet (no 16001 in the `.toc`).
 - **Filters:** `Filters.Validate` returns a signed integer (negative = rejected by rule `i`, `1` = show, `2` = always visible), not a boolean.
 - **Event times** follow Krowi's event-source policy: `.claude/rules/events.md`.
-- **`Libs/`** holds vendored libraries, several of them submodules of `TheKrowi/*`: do not edit them unless asked; fixes belong upstream, in `Krowi_Libraries`.
+- **`Libs/`** holds vendored libraries, several of them submodules of `TheKrowi/*`: do not edit them unless asked (the kit's guard asks the user before an edit there); fixes belong upstream, in `Krowi_Libraries`.
 
 ## Taint
 
@@ -58,7 +59,7 @@ Declared on the `.toc`'s `## SavedVariables` line; one not listed there is lost 
 
 ## Code style
 
-For all new and edited code, without being asked. The post-edit hook and the `bom`/`line-endings` rules keep the files UTF-8 without BOM, CRLF, 4-space indent, no final newline.
+For all new and edited code, without being asked. Files are UTF-8 without BOM, CRLF, 4-space indent, no final newline (`.editorconfig`); the `bom` and `line-endings` rules enforce the first two, and the kit's post-edit hook sets the endings, BOM and final newline after every Write. The indent is yours to keep.
 - **Header:** every file starts with the vararg unpack, `_` for an unused position (`local _, addon = ...`); no `-- [[ Namespaces ]] --` or similar banner above it.
 - **No semicolons** at the end of statements. The tree is stripped, so any is new (`semicolon` rule); the kit's `Strip-Semicolons.ps1` re-runs the verified strip if a batch comes back (a CurseForge locale export, an upstream merge).
 - **Naming:** local variables `camelCase`; module tables `camelCase` as a local, `PascalCase` on `addon.*` (`local gui = addon.Gui`); constructors and methods `PascalCase` (`function category:New()`); module-level private helpers `PascalCase` for named functions (`local function VersionLessThan(a, b)`), `camelCase` for locals.

@@ -80,7 +80,7 @@ All UI code, split into `FilesModern.xml` (Retail) and `FilesClassic.xml` (Class
 | `BlizzardOverrides.lua` | `addon.OverwriteFunctions`, `addon.LoadBlizzardApiChanges`, `addon.HookFunctions`: the FrameXML functions the addon replaces, the polyfills for removed API and the hooks on Blizzard's achievement frame, all run in boot phase 2 |
 | `MovableFrames.lua` | `addon.MakeMovable`, `MakeWindowMovable`, `MakeWindowStatic` |
 | `WindowFrames/` | AchievementsFrame, CategoriesFrame, FilterButton, Search, SummaryFrame, AchievementButton, ... |
-| `AchievementTooltip/`, `AchievementCalendar/`, `AchievementPopout/`, `EventReminder/`, `PetBattleLinks/`, `DataManager/`, `WorldMapButton/`, `FloatingAchievementTooltip/`, `BrowsingHistory/`, `Collections/`, `RewardPreview/`, `SnapFrame/` | one folder per feature |
+| `AchievementTooltip/`, `AchievementCalendar/`, `AchievementPopout/`, `EventReminder/`, `PetBattleLinks/`, `DataManager/`, `WorldMapButton/`, `FloatingAchievementTooltip/`, `BrowsingHistory/`, `Collections/`, `SnapFrame/` | one folder per feature |
 | `Guide/` | achievement guides (data in `KrowiAF.GuideData`, `Api/GuideDataBuilder.lua`): `Guide.lua` renders the steps for every surface, `Waypoint.lua` places a map pin, super-tracked POI or TomTom waypoint, `Content.lua` lays out lines and buttons for the side panel (`Panel.lua`) and the block under an expanded row; the tooltip and right-click menu sections live with their own folders |
 
 ### `Data/`
@@ -144,7 +144,7 @@ Shared and client files write into the same `KrowiAF.AchievementData` table, so 
 
 ## External references
 
-Grep the local clones of Blizzard's UI source first (`..\wow-ui-source\live`, `..\wow-ui-source\classic`, kept by the kit's `Update-UiSource.ps1`; the generated API docs are under `Blizzard_APIDocumentationGenerated`); the web rows are the fallback.
+Grep the local clones of Blizzard's UI source first (`..\wow-ui-source\live`, `..\wow-ui-source\classic`, kept by the kit's `Update-UiSource.ps1`, `-Branch ptr2` and others on request) for FrameXML, secure templates and `Blizzard_APIDocumentationGenerated` (signatures and secret-value flags), and never run anything from them. The export can lag a live patch. The web rows are the fallback.
 
 | Resource | URL |
 |----------|-----|

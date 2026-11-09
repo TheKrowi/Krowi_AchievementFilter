@@ -2,6 +2,7 @@
 paths:
   - "Data/Event*.lua"
   - "Data/Custom*EventTimers.lua"
+  - "Data/TemporaryObtainable.lua"
   - "DataAddons/**/Event*.lua"
   - "Gui/EventReminder/**"
   - "Tests/Event*.lua"
@@ -17,4 +18,4 @@ Krowi's policy (2026-10-21):
 - **The watcher** (`Data/EventObserver.lua`) learns each region's starts and rotations from the POIs it sees, every 300 s, for every player. Debug mode prints its findings: new starts, disagreements with the shipped schedules, and the order of the watched families, which is how a family's rotation gets confirmed before it is made fixed.
 - The work items: `docs/work/2026-10-21-event-scheduler` and `docs/work/2026-10-21-fixed-event-schedules`.
 
-These files judge times by the realm's clock, `GetServerTime()`, never `time()` (the `event-clock` rule). Adding an event: `docs/how-to/add-event.md`.
+The event reminder files (`Gui/EventReminder/`, `Data/Event*.lua`, `Data/Custom*EventTimers.lua`) and `Data/TemporaryObtainable.lua` judge times by the realm's clock, `GetServerTime()`, which the sources use, never `time()` (the `event-clock` rule). Adding an event: `docs/how-to/add-event.md`.

@@ -1,5 +1,5 @@
 # Plan: one lean instruction file
-Spec: KAF `docs/work/2026-11-09-lean-instructions/spec.md` (accepted 2026-11-09: CLAUDE.md + 6 path rules; scope "Both now"). Worktree: KAF `.claude\worktrees\docs-2026-11-09-lean-instructions`, branch `docs/2026-11-09-lean-instructions`. Kit: worktree `feature/2026-11-09-rules-ride-along`. Status: accepted
+Spec: KAF `docs/work/2026-11-09-lean-instructions/spec.md` (accepted 2026-11-09: CLAUDE.md + 6 path rules; scope "Both now"). Worktree: KAF `.claude\worktrees\docs-2026-11-09-lean-instructions`, branch `docs/2026-11-09-lean-instructions`. Kit: worktree `feature/2026-11-09-rules-ride-along`. Status: done
 
 ## Context
 `.github/copilot-instructions.md` (41 KB) plus `CLAUDE.md` (6 KB) load into every call and every general-purpose subagent: about 12k tokens. The spec's inventory gives every statement a new home. Krowi: "make sure we do not lose nuances".
@@ -95,3 +95,18 @@ Spec: KAF `docs/work/2026-11-09-lean-instructions/spec.md` (accepted 2026-11-09:
 - **Lint:** `Check-Repo.ps1` is green on the whole tree. The `instructions` rule fires on a temporary 17 KB `CLAUDE.md` copy and on a rule file without frontmatter, and both temporary files are removed.
 - **Kit:** `pwsh -NoProfile -File tests\Test-Gates.ps1` all pass.
 - **Size:** `CLAUDE.md` bytes before and after, in the PR. The start-context drop is measured by `Measure-Sessions.ps1` after the merge and written into the roadmap.
+
+## Build notes
+- **Source drift.** The session worked from a copy of the instructions taken before PR #412 and kit PR #25 merged. The nuance audit caught both: the slot list (row parts, `Slots.AchievementMenu.Open`) and the client-start sentence, which now points to the workspace rule. Both were taken from `main`.
+- **The nuance audit.** A fresh general-purpose subagent compared `main`'s two files with the new set and the named docs, and found 13 items. All were fixed except finding 8: the kit's `README.md` already holds the guard's `Libs/` ask and its test file, and `CLAUDE.md` now names the ask. Fixed:
+  - the language-server list;
+  - the indent no longer claimed as enforced;
+  - the worktree facts;
+  - the UI-source notes, including the lag;
+  - the `event-clock` files;
+  - the stale fsdeploy text and release-gate row in `.claude/tools/README.md`;
+  - a `Gui/RewardPreview/` row that no longer exists.
+- **Rule loading, proven.** A headless `claude -p` session (Sonnet) in the worktree read `Slots.lua`, which loaded `features.md`, then `Localization/enUS.lua`, which loaded `localization.md`. No rule was in context before the reads, and the old file's text was gone. That session started at 63k tokens against KAF's usual 79-82k; part of the drop is `-p` mode's smaller tool set, so the real figure comes from the first sessions after the merge.
+- **Not in the plan.**
+  - `docs/work/2026-11-09-memory-moves/plan.md` got its two template headings, which the lint warned about.
+  - The kit PR (#28) has no work folder of its own; its gates are logged here.

@@ -1,5 +1,5 @@
 # Intent: one lean instruction file
-Author: Krowi, maintainer. Source: idea (harness roadmap step 16; the 2026-11-09 cost review). Status: accepted
+Author: Krowi, maintainer. Source: idea (harness roadmap step 16; the 2026-11-09 cost review). Status: done
 
 ## Problem
 Every Claude call in this repo re-reads about 12k tokens of instructions: `.github/copilot-instructions.md` (41 KB, loaded whole through the `@` import in `CLAUDE.md`) and `CLAUDE.md` (6 KB). The file dates from before the move to Claude Code. Much of it repeats the workspace `CLAUDE.md` (the kit's `WowAddons.md`), the data skills, `docs/architecture.md` and `.claude/tools/README.md`, or says what the `.toc` and the code already show. It also grows by design: stage 6 of the playbook writes every work item's lesson back into it. A long file costs tokens on every call, the subagents' included, and a rule lost in it is followed less.
