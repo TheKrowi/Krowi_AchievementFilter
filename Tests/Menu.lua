@@ -49,10 +49,14 @@ menu.Scenarios = {
         Recorded = "enabled placeholder", Target = "enabled placeholder"},
     {Name = "placeholder-menu", Find = "placeholder", Menu = true,
         Recorded = "placeholder", Target = "placeholder"},
-    -- Before the fix the menu was built for nil and raised: an empty menu on Retail, a Lua error on Mists
-    -- (docs/backlog.md, "From the right-click menu fix"); the target is that nothing opens
+    -- Before the fix the menu was built for nil and raised "attempt to index local 'achievement'" (verified in game on
+    -- Retail 12.1.5 and Mists 5.5.4 on 2026-11-09, linking to 49; the backlog's code review had found it on
+    -- 2026-10-25); Slots.AchievementMenu.Open now opens nothing for an achievement the addon does not register
     {Name = "missing-achievement-open", Find = "missing", Open = true,
-        Recorded = "error", Target = "no menu"}
+        Recorded = "no menu", Target = "no menu"},
+    -- and still opens the menu of one it registers
+    {Name = "registered-achievement-open", Id = 6, Open = true,
+        Recorded = "menu", Target = "menu"}
 }
 
 -- The name addon.GetAchievementInfo gives an id the game does not know, or nil when the game knows it

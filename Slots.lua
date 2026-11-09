@@ -72,7 +72,9 @@ end
 -- The achievement's right-click menu. Its host, the feature that draws it, sets the opener from its Start and merges
 -- Entries by Order with its own sections when it opens; an entry is a section, CheckAdd(achievement) and
 -- Add(menu, achievement, menuBuilder, caller), and closes the menu through menuBuilder:Close(). The core opens the menu
--- through Open, which does nothing while no host started.
+-- through Open, which does nothing while no host started, or for an achievement the addon does not register: the openers
+-- pass addon.Data.Achievements[id], nil for a guild achievement or a statistic linked in chat
+-- (docs/work/2026-11-09-right-click-menu).
 slots.AchievementMenu = {Entries = {}}
 
 function slots.AchievementMenu.Add(entry)
@@ -86,7 +88,7 @@ end
 
 function slots.AchievementMenu.Open(caller, achievement)
     local open = slots.AchievementMenu.Opener
-    if open then
+    if open and achievement then
         open(caller, achievement)
     end
 end
