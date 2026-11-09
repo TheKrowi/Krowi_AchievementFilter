@@ -1276,11 +1276,11 @@ suites.menu = function(c)
     local achievementMenu = addon.Gui.RightClickMenu.AchievementMenu
     achievementMenu.Create() -- the builder, as the feature's Start makes it (Features/RightClickMenu/RightClickMenu.lua)
 
-    -- The game files the model's clients load a picture from: Retail has the quest tracker art of its interface, Mists
-    -- draws nothing from it (look-gate screenshots, Mists 5.5.4, 2026-11-09)
+    -- The game files the model's clients load a picture from: each has its own quest tracker button art, and Mists lacks
+    -- Retail's (file id nil in game, Mists 5.5.4, 2026-11-09)
     local pictures = {
         Retail = { ["Interface\\Buttons\\QuestTrackerButtons"] = true },
-        Classic = {}
+        Classic = { ["Interface\\Buttons\\UI-Panel-QuestHideButton"] = true, ["Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight"] = true }
     }
 
     local notes = {

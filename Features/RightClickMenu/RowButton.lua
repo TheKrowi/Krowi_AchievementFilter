@@ -1,12 +1,18 @@
 local _, addon = ...
 local feature = addon.Gui.RightClickMenu
 
--- The button's art, the quest tracker button of Retail's interface. The menu suite checks that each picture loads
--- (Tests/Menu.lua, row-button-picture).
-feature.RowButtonArt = {
+-- The button's art: the quest tracker button of the client's own interface. Mists has no QuestTrackerButtons, Retail's
+-- (file id nil in game, 2026-11-09), and drew no button, so the clients without Retail's interface take their WatchFrame's
+-- collapse button (wow-ui-source classic, Blizzard_UIPanels_Game/Wrath/WatchFrame.xml, loaded on Wrath, Cata and Mists).
+-- The menu suite checks that each picture loads (Tests/Menu.lua, row-button-picture).
+feature.RowButtonArt = addon.Util.IsModern and {
     Normal = {File = "Interface\\Buttons\\QuestTrackerButtons", Coords = {0.40625, 0.53125, 0.25, 0.5}},
     Pushed = {File = "Interface\\Buttons\\QuestTrackerButtons", Coords = {0.40625, 0.53125, 0, 0.25}},
     Highlight = {File = "Interface\\Buttons\\QuestTrackerButtons", Coords = {0, 0.265625, 0, 0.53125}}
+} or {
+    Normal = {File = "Interface\\Buttons\\UI-Panel-QuestHideButton", Coords = {0, 0.5, 0, 0.5}},
+    Pushed = {File = "Interface\\Buttons\\UI-Panel-QuestHideButton", Coords = {0.5, 1, 0, 0.5}},
+    Highlight = {File = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight"}
 }
 
 local function SetArt(button)

@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Right-clicking a guild achievement or a statistic linked in chat no longer opens an empty menu or gives an error
+- The right-click menu button on achievements now shows on Mists Classic
 
 ## 105.0 - 2026-11-08
 ### Added

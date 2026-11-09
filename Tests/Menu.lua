@@ -62,10 +62,11 @@ menu.Scenarios = {
     -- and still opens the menu of one it registers
     {Name = "registered-achievement-open", Id = 6, Open = true,
         Recorded = "menu", Target = "menu"},
-    -- Mists rows drew no menu button: its art is the quest tracker button of Retail's interface (look-gate screenshots,
-    -- Mists 5.5.4, 2026-11-09)
+    -- Before the fix Mists rows drew no menu button: its art was the quest tracker button of Retail's interface, which
+    -- Mists does not have ("no picture", SetTexture true and file id nil, verified in game on Mists 5.5.4 on 2026-11-09);
+    -- the clients without Retail's interface now take their own quest tracker's button
     {Name = "row-button-picture", Picture = true,
-        Recorded = "picture", Target = "picture", RecordedClassic = "no picture", TargetClassic = "picture"}
+        Recorded = "picture", Target = "picture"}
 }
 
 -- The name addon.GetAchievementInfo gives an id the game does not know, or nil when the game knows it
