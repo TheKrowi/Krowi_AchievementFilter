@@ -13,6 +13,7 @@ Follow-ups that are not a work item yet. When one is taken up, it gets its own w
 
 - **Transmog set data loads while the right-click menu is off.** Only the menu's Transmog Sets entry reads it (`addon.GetUsableSets`, `Globals.lua:313`), so by the split's rule it is the menu's own data. It is a registry of its own (`KrowiAF.TransmogSetData`, `Api/TransmogSetDataApi.lua`, `Data/Data.lua:96-101`, `DataAddons/Loaders/TransmogSetData.lua`), and moving it needs a data-registry slot. Achievement guides needs the same slot for its guide data, so the slot is built in that feature's PR and transmog set data moves into the menu then (Krowi, 2026-11-09).
 - **The chat-link tooltip reads `tooltipData.id` without a secret-value probe** (`Gui/FloatingAchievementTooltip/FloatingAchievementTooltipMixin.lua:40-47`, the taint review of that work item). The generated API docs flag no secret return for the hyperlink tooltip today; probe it only if chat-link tooltips are reported failing under a communication lockdown.
+- **Settings that act only through the menu stay editable while it is off** (the code review of that work item): Achievement guides' "Show Guide in Right Click Menu" (`Achievements.Guide.RightClickMenu`) and the Instance Achievement Tracker plugin's "Add To Right Click Menu" do nothing while the menu is off, yet they are not greyed. Greying them needs the registry to grey a row by another feature's switch; take it up with the Achievement guides split.
 
 ## From moving the library's tests out of KAF (2026-11-06, docs/work/2026-11-06-options-tests-move)
 
