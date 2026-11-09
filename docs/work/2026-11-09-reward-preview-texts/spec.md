@@ -1,5 +1,5 @@
 # Spec: Reward preview texts in Krowi's words
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. `Feature Switch Desc` reads "Enable / disable {feature}. When disabled, {feature} is fully turned off. Its settings are kept." The reload is already said by the orange "Requires a reload to take full effect." that `K_AddReloadRequired` appends (`Features.lua:135`, `Libs/Krowi_Util/Strings.lua:33-37`).

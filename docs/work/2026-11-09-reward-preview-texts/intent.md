@@ -1,5 +1,5 @@
 # Intent: Reward preview texts in Krowi's words
-Author: Krowi (maintainer). Source: idea, 2026-11-09, after PR #405 ("make this a small pr with all of the above"). Status: accepted
+Author: Krowi (maintainer). Source: idea, 2026-11-09, after PR #405 ("make this a small pr with all of the above"). Status: done
 
 ## Problem
 Some of the texts PR #405 added to the Reward preview settings read as written by an AI: the Enable description joins two clauses with a colon and talks from the code's side ("no longer starts"), the icon description has no verb and ends on "either way", "Most icons per achievement" is odd English, the off line on the help page says "turn on" next to a check box called Enable, and the width and height descriptions are clipped. The names are in sentence case, while Blizzard's own Settings window and Krowi's older names use Title Case. Every later feature of the 106 split reuses the Enable texts.

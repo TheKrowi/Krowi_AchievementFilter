@@ -1,5 +1,5 @@
 # Plan: Reward preview texts in Krowi's words
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 ## Files that change
 - `Localization/enUS.lua` and the ten translated files: lines 9-20 (the #405 block below the `Exported at` line): five keys renamed to Title Case, four values rewritten, the changed texts translated.
