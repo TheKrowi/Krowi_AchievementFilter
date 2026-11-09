@@ -16,7 +16,8 @@ local features = addon.Features
 --   Name, Card, NavGroup, Order, the card fields of Options/Window/Map.lua and Pairs, the section group's pairs) to the
 --   options window. Into() returns, like Rows after the defaults went in, { {Path, Key, Order, Row, FollowsSwitch,
 --   With} }: rows the feature puts into a group of the
---   core (Path, the group's path in the options table) at Key and Order; with FollowsSwitch the row greys out while the
+--   core (Path, the group's path in the options table) at Key and Order (after the group's rows when left out); with
+--   FollowsSwitch the row greys out while the
 --   switch is off; With = {Key, Row}, a button drawn after the row, which does not follow the switch
 --   (docs/work/2026-11-09-pop-out).
 -- - AddHelp(name, {Id, Title, Blocks, Scene}): its help page, whether it is on or off; Scene is its Show me, wired only
@@ -153,6 +154,15 @@ function features.AddOptions(name, def)
         local group = Read(options.OptionsTable.args, into.Path) -- the paths of Options/Window/Map.lua
         assert(type(group) == "table" and type(group.args) == "table", "feature " .. name .. " puts a row into " .. tostring(into.Path) .. ", which is no group")
         local row = into.Row
+        -- Without an Order, after the group's last row: the core numbers its rows from one counter it shares with every
+        -- options file, so no fixed number is sure to come after them
+        if not into.Order then
+            local last = 0
+            for _, existing in next, group.args do
+                if type(existing.order) == "number" and existing.order > last then last = existing.order end
+            end
+            into.Order = last + 1
+        end
         row.order = into.Order
         if into.FollowsSwitch then
             row.disabled = function() return not IsOn(record) end

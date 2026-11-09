@@ -105,7 +105,7 @@ end
 -- The modifier with the core's other modifiers in Keys and clicks, after them; its button opens this section
 local function Into()
     return {
-        {Path = "General.args.KeyBinding.args.General.args.Modifiers", Key = "PopOut", Order = 1000, Row = ModifierRow(), FollowsSwitch = true,
+        {Path = "General.args.KeyBinding.args.General.args.Modifiers", Key = "PopOut", Row = ModifierRow(), FollowsSwitch = true,
             With = {Key = "GoToPopOut", Row = GoTo(nil, "popout", L["Pop Out"])}}
     }
 end

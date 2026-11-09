@@ -44,7 +44,7 @@ function achievementPopout.StartLog()
 	LogPopoutLifecycle("Start")
 	local logoutLogFrame = CreateFrame("Frame")
 	logoutLogFrame:RegisterEvent("PLAYER_LOGOUT")
-	logoutLogFrame:SetScript("OnEvent", function() LogPopoutLifecycle("PLAYER_LOGOUT"); end)
+	logoutLogFrame:SetScript("OnEvent", function() LogPopoutLifecycle("PLAYER_LOGOUT") end)
 end
 
 local function PersistenceEnabled()

@@ -17,9 +17,10 @@ end
 
 KrowiAF.PluginsApi.Plugins.EllesmereUI.AddPart({
     -- Pop Outs are pooled and reused: each one opened gets the chrome
+    -- Only for a started Pop Out: a feature that is off gets no hook (InstallHooks runs after the registry's StartAll)
     Install = function(GetSkin)
         local achievementPopout = addon.Gui.AchievementPopout
-        if not achievementPopout then
+        if not (achievementPopout and addon.Features.IsStarted("PopOut")) then
             return
         end
         hooksecurefunc(achievementPopout, "Open", function(self, achievement)
