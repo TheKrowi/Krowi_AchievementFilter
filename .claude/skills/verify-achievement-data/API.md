@@ -110,3 +110,24 @@ $url
 - `RewardItemID` is **not a reliable indicator** for tangible rewards in Classic builds — it is non-zero for virtually all achievements regardless of whether they give a mount, pet, or item. Use `Reward_lang` instead.
 - `Reward_lang` title formats: `"Title Reward: X"` (Cataclysm+ expansions) **and** `"Title: X"` (WotLK-era achievements) both signal a title reward that should have `:Title()` in the Lua. The `"Reward: X"` prefix (without "Title") signals a tangible item/mount/pet reward.
 - Always verify the active build with `/casc/buildname`; the tool only holds one build in memory at a time. Use the build string from `/build/table` for the query URL — it does **not** require switching the active build.
+
+## Hotfixed achievements (in no build)
+
+An achievement Blizzard adds by hotfix mid-patch is in no client build, so wow.tools.local, `_lookup_ids.ps1`, `Find-NewAchievements.ps1` and Wowhead all come up empty. The live client's hotfix cache has it: `H:\World of Warcraft\_retail_\Cache\ADB\enUS\DBCache.bin` and its `DBCache.bin<N>.tmp` siblings (the `.tmp` is often the newer one, so search the whole folder).
+
+Format: a 44-byte file header (`XFTH`, version, buildId), then entries back to back, each a 32-byte header and `dataSize` bytes of record data:
+
+| Offset | Field |
+|---|---|
+| 0 | `XFTH` magic |
+| 4 | regionId |
+| 8 | pushId |
+| 12 | uniqueId |
+| 16 | tableHash |
+| 20 | recordId: the achievement id |
+| 24 | dataSize |
+| 28 | status and 3 pad bytes |
+
+- Find the byte offset of the achievement's title, then walk the chain from offset 44 (`off += 32 + dataSize`) and take the entry whose data range contains that offset. Never scan back for the nearest `XFTH`: those 4 bytes occur inside record data.
+- `Achievement.db2`'s tableHash is `0xD2EE2CA7`, decimal 3538824359. In PowerShell `0xD2EE2CA7` overflows Int32 and silently never matches: use the decimal. The record data starts with the strings in column order: Description_lang, Title_lang, Reward_lang. Check the hash on a few other recordIds of the same table with `_lookup_ids.ps1`.
+- `Verify-AchievementData.ps1` then reports `id-exists ... not found in DB` for that id, which is correct; say so in the commit.

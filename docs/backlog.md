@@ -2,6 +2,13 @@
 
 Follow-ups that are not a work item yet. When one is taken up, it gets its own work folder under `docs/work/` (`docs/sdlc-playbook.md`) and leaves this list.
 
+## Moved from session memory (2026-11-09)
+
+- **Agent-made translations** of "Aqir Invasions" and "The Promise of Tomorrow" (12.1.5): swap for Blizzard's own names (Krowi deferred, 2026-10-14).
+- **About 40 translations write a word where enUS has a `{placeholder}`** (2026-10-24 check): they lose only a colour or value. Before calling one wrong, check what the code passes to `ReplaceVars` (case-sensitive, unknown names stay as text); the fix route is the localization skill's.
+- **"Alert System Overwrite Desc"** is still in the Plugins locale files though no code uses it since #373: delete it on CurseForge (Krowi's click), and the next import removes it.
+- **Krowi_Reminders** still uses the old `AlertFrame` pattern #373 removed here; it needs its own work item in that repo.
+
 ## From moving the library's tests out of KAF (2026-11-06, docs/work/2026-11-06-options-tests-move)
 
 - **Krowi_Options' tests on a new game build:** done in `docs/work/2026-11-07-release-gate-suites`. The release gate now requires one green full `/kotest` run per client family on the newest build or later (once per client version), and a green run of every in-game suite; Era, Anniversary and Forever join when KAF's TOC lists them.
