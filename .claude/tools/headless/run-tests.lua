@@ -1294,6 +1294,19 @@ suites.menu = function(c)
         achievementMenu:CreateMenu(rootMenu, addon.Data.Achievements[id])
         return rootMenu
     end
+    -- Through the real Slots.lua's Open, with the opener swapped for a build as in game (Tests/Menu.lua, gameEnv.Open)
+    function headless.Open(id)
+        local slot = addon.Slots.AchievementMenu
+        local opener, opened = slot.Opener, false
+        slot.Opener = function(_, achievement)
+            opened = true
+            achievementMenu:CreateMenu({ Entries = {} }, achievement)
+        end
+        local ok, problem = pcall(slot.Open, nil, addon.Data.Achievements[id])
+        slot.Opener = opener
+        if not ok then error(problem, 0) end
+        return opened and "menu" or "no menu"
+    end
     function headless.ReadEntry(rootMenu)
         local entry = rootMenu.Entries[1]
         if not entry then return nil, "the root menu got no entry" end
