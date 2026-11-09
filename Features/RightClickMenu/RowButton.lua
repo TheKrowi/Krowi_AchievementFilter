@@ -11,7 +11,7 @@ function feature.AddRowButton(row)
     local button = CreateFrame("Button", "$parentRightClickMenuButton", row, "KrowiAF_RightClickMenuButton_Template")
     button:SetPoint("TOPRIGHT", -1, -1)
     button:SetScript("OnClick", function(self)
-        feature.AchievementMenu:Open(self, row.Achievement)
+        addon.Slots.AchievementMenu.Open(self, row.Achievement) -- the core's opener, with its guard for no achievement
     end)
     row.RightClickMenuButton = button
 end

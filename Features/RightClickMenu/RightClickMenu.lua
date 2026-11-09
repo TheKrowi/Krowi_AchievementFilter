@@ -8,13 +8,14 @@ local feature = addon.Gui.RightClickMenu
 -- this registration, the menu (AchievementMenu.lua) and its own sections, the row's menu button (RowButton.xml and
 -- RowButton.lua), the settings (Options.lua) and the help page (Help.lua).
 
+-- The opener last: a Start that fails before it leaves no menu the core can open (Features.lua runs it in xpcall)
 local function Start()
     local achievementMenu = feature.AchievementMenu
     achievementMenu.Create()
+    addon.Slots.RowParts.Add({Order = 10, OnLoad = feature.AddRowButton})
     addon.Slots.AchievementMenu.SetOpener(function(caller, achievement)
         achievementMenu:Open(caller, achievement)
     end)
-    addon.Slots.RowParts.Add({Order = 10, OnLoad = feature.AddRowButton})
 end
 
 addon.Features.Register({

@@ -10,10 +10,6 @@ function achievementMenu.Create()
 	menuBuilder = menuBuilder or addon.MenuBuilder:New({modern = addon.Util.IsModern})
 end
 
-function achievementMenu:CloseMenu()
-	menuBuilder:Close()
-end
-
 function achievementMenu:AddGoToAchievementLine(menu, id, nameSuffix)
 	nameSuffix = nameSuffix or ""
 	local _, name = addon.GetAchievementInfo(id) -- The placeholder name for an id the game does not know, never nil

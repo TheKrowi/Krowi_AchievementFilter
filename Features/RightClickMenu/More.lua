@@ -15,7 +15,7 @@ local function AddClearWatch(menu, achievement)
 			addon.L["Remove from Watch List"]:K_ReplaceVars(addon.L["Watch List"]),
 			function()
 				addon.ClearWatchAchievement(achievement)
-				addon.Gui.RightClickMenu.AchievementMenu:CloseMenu()
+				menuBuilder:Close()
 			end
 		)
 	else
@@ -24,7 +24,7 @@ local function AddClearWatch(menu, achievement)
 			addon.L["Add to Watch List"]:K_ReplaceVars(addon.L["Watch List"]),
 			function()
 				addon.WatchAchievement(achievement)
-				addon.Gui.RightClickMenu.AchievementMenu:CloseMenu()
+				menuBuilder:Close()
 			end
 		)
 	end
@@ -37,7 +37,7 @@ local function AddIncludeExclude(menu, achievement)
 			addon.L["Include"],
 			function()
 				addon.IncludeAchievement(achievement)
-				addon.Gui.RightClickMenu.AchievementMenu:CloseMenu()
+				menuBuilder:Close()
 			end
 		)
 	else
@@ -46,7 +46,7 @@ local function AddIncludeExclude(menu, achievement)
 			addon.L["Exclude"],
 			function()
 				addon.ExcludeAchievement(achievement)
-				addon.Gui.RightClickMenu.AchievementMenu:CloseMenu()
+				menuBuilder:Close()
 			end
 		)
 	end
