@@ -1,0 +1,10 @@
+# Gates: 2026-11-09-right-click-menu
+Class: feature
+
+| Date | Gate | Question | Recommended | Answer | Outcome |
+|---|---|---|---|---|---|
+| 2026-11-09 | scope | Which feature splits after the Reward preview PoC | Right-click menu (other features plug entries into it; Reward preview's entry waits on it to close the menu properly) | "Let's take the above as the first next step" | took |
+| 2026-11-09 | intent | The intent: the menu into Features/RightClickMenu/ with its switch; off opens nothing and shows no row button; the core opens it through a slot; other features' entries through the slot; the event reminder menu leaves its folder; the four proofs and the matrix; the review of its 3 settings and help text | accept as written | "Accept as written (Recommended)" | took |
+| 2026-11-09 | design | The design: opener slot and row-parts slot, the menu's button, template and setting in its folder; Guide, Pop Out and Xu-Fu entries next to their owners in the core through the slot; event reminder menu to Gui/EventReminder/Menu/; sub-headings under the switch (or the row button stays in the core) | approve as written | "Approve as written (Recommended)" | took |
+| 2026-11-09 | design | Transmog set data: stays in the core until Achievement guides' data-registry slot, or moves with the menu now | stays core for now | "Stays core for now (Recommended)" | took |
+| 2026-11-09 | design | The menu of an unregistered achievement (empty menu on Retail, error on Mists): its own PR right after, or fixed in this PR | own PR right after | "Fix it here" | other |
