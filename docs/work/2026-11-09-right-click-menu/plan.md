@@ -24,6 +24,10 @@ Spec: [spec.md](spec.md). Status: accepted
 7. **In-game session B and the look gate** (Krowi's go first; about 35 min per client): `-WhatIf`, deploy, `Run-GameTests.ps1 -Matrix` (all on, all off, Reward preview alone, Right-click menu alone), `Read-GameErrors.ps1`, memory off and on, screenshots (switch, greyed rows with the reload bar, help page while off, a row with the button, a right-click while off); a published page and the look-gate questions with the options review.
 8. **PR:** `Get-ChangeClass.ps1`, `Class`, every work file `done`, push, PR with "Decisions taken without asking"; the merge gate.
 
+Added at the look gate (Krowi, 2026-11-09), built before session B's matrix:
+- **The renames** (requirement 18): six new phrases below the `Exported at` line of all 11 locale files, translated; the old six and `Wowhead Link`, which only they used, leave every file; `Features/RightClickMenu/Options.lua` reads the new keys. CurseForge after the merge, through `krowi:localization`.
+- **Mists' row button** (requirement 17), test first: the template's art moves into `RowButtonArt` (`RowButton.lua`), unchanged and the same on every client; the `menu` suite's `row-button-picture` loads each picture (`RecordedClassic = "no picture"`), verified in game on Mists at that commit; then the clients without Retail's interface take `Interface\Buttons\UI-Panel-QuestHideButton` (Mists' own WatchFrame button), `Recorded` "picture" on both, a changelog Fixed line, and a screenshot of the Mists button on the look-gate page.
+
 ## Risks
 - **GW2_UI** skins the row button when a row is first acquired, after `OnLoad`; the part runs inside `OnLoad`, so it is unchanged.
 - **Classic:** `menuBuilder:Close()` closes Krowi_Menu's shared root, as `CloseMenu` did; on Retail it is a no-op, as today.
