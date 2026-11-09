@@ -51,7 +51,7 @@ Current content's timed events are listed by Blizzard's event scheduler (`C_Even
 
 ### Older expansions' events on a fixed schedule
 
-An event of an older expansion that repeats on a fixed clock runs on a schedule KAF carries, with no POI or widget read (`.github/copilot-instructions.md`, Event reminders). Its row gets `KrowiAF.Enum.EventSource.FixedSchedule` as the source, and its family a table in the expansion's `EventSchedules.lua` (`DataAddons/Retail/10_Dragonflight/EventSchedules.lua` is the example):
+An event of an older expansion that repeats on a fixed clock runs on a schedule KAF carries, with no POI or widget read (`.claude/rules/events.md`, Krowi's event-source policy). Its row gets `KrowiAF.Enum.EventSource.FixedSchedule` as the source, and its family a table in the expansion's `EventSchedules.lua` (`DataAddons/Retail/10_Dragonflight/EventSchedules.lua` is the example):
 
 ```lua
 KrowiAF.EventSchedules.SiegeOnDragonbaneKeep = {

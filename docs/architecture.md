@@ -1,6 +1,56 @@
 # Architecture reference
 
-The rules (the two namespaces, the three-phase boot, where data lives, taint) are in `.github/copilot-instructions.md` under Architecture. This file is the file map and the mechanics behind them, read when a task touches that part of the code.
+The rules (the two namespaces, the three-phase boot, taint, background jobs) are in `CLAUDE.md`, and the rules for one area of code (data, events, features, localization, tests, release) are in `.claude/rules/`. This file is the load order, the file map and the mechanics behind them, read when a task touches that part of the code.
+
+## Load order
+
+The WoW client reads `Krowi_AchievementFilter.toc`, which defines the **exact load order**. Files load sequentially in the order listed in the `.toc` and the nested `Files.xml` manifests, and a file can only use what earlier files defined. Every new `.lua` file must be added to the right `Files.xml` or it silently never loads (the `files-xml` rule). The order is:
+
+1. `Libs/Files.xml` — bundled libraries, the options window's `Krowi_Options` among them
+2. `Api/Files.xml` — public API (`KrowiAF`), enums, data registration functions and builders
+3. `Plugins/Files.xml` — plugin integrations (BetterWardrobe, ElvUI, GW2_UI, InstanceAchievementTracker, ZygorGuidesViewer, AchievementsTabFixes, EllesmereUI)
+4. `Localization/Files.xml` — enUS first, then the other locales, then `Shared.lua`
+5. `Krowi_AchievementFilter.lua`, `Globals.lua`, `Slots.lua` — the core's extension points for the features
+6. `Diagnostics.lua`, `TaintDiagnostics.lua`, `Options/Files.xml`, `Features.lua` (the feature registry), `Libs/Krowi_Util/Icon.lua`, `Icon.lua`, `BrowsingHistory.lua`
+7. `Objects/Files.xml`
+8. `Filters.lua`, `SearchOptions.lua`
+9. `Gui/FilesModern.xml` (Retail) or `Gui/FilesClassic.xml` (Classic), then `Features/Files.xml` — one folder per switchable feature
+10. `Data/Files.xml`
+11. `DataAddons/Shared/Files.xml`, then `DataAddons/Retail/Files.xml` or `DataAddons/Classic/Files.xml`
+12. `DataAddons/Loaders/Files.xml` — post-processing loaders that wire the data tables to their processors
+13. `Tests/Files.xml`
+
+Game-version-conditional loading uses `[AllowLoadGameType mainline]` and `[AllowLoadGameType wrath, cata, mists]` directives in the `.toc`.
+
+### Root files
+
+| File | Purpose |
+|------|---------|
+| `Krowi_AchievementFilter.toc` | Metadata and load manifest (Interface versions, SavedVariables, OptionalDeps) |
+| `Krowi_AchievementFilter.lua` | Entry point: event handling (`ADDON_LOADED`, `PLAYER_LOGIN`), load orchestration |
+| `Globals.lua` | Shared utilities: achievement chain helpers, `addon.GetAchievementInfo`/`GetAchievementInfoTable`, custom-criteria wrappers, zone lookup, filter counting, transmog set checks, modifier keys, month and weekday names |
+| `Bindings.xml` | Key bindings for tab toggles and browsing history |
+| `Filters.lua`, `SearchOptions.lua` | Filter definitions (completion, faction, reward type, sort, build version); which fields a search covers (IDs, names, descriptions, ...) |
+| `Diagnostics.lua`, `TaintDiagnostics.lua` | Debug/trace logging controlled by options; taint probing helpers |
+| `Icon.lua`, `BrowsingHistory.lua` | Minimap / data broker icon; achievement navigation history (back/forward) |
+
+### Key directories
+
+| Directory | Purpose |
+|-----------|---------|
+| `Api/` | Public API (`KrowiAF`, created in `API.lua`): enums, data registration functions, fluent builders, `PluginsApi`; `ApiDocumentation.lua` holds example data structures |
+| `Objects/` | Metatable classes: `Achievement`, `Category`, `Event`, `Tab`, `BuildVersion`, `Flags`, `CompareFunc`, `SaturationStyle` |
+| `Gui/` | All UI code (`FilesModern.xml` Retail, `FilesClassic.xml` Classic), one sub-folder per feature; `BlizzardOverrides.lua` holds every FrameXML override, API polyfill and hook on Blizzard's frame |
+| `Data/` | Runtime data: task runner, registry (`Data.lua`), `LoadDiagnostics`, achievement cache, temporary obtainability, events, tooltips, special categories, migrations (`DataIntegrityManager.lua`), `SavedData/` |
+| `DataAddons/` | All **data definitions** (achievement, category, zone, tooltip, transmog set, pet battle link, guide, build version, event, custom criteria) per expansion (`01_Vanilla/` to `12_Midnight/`): `Shared/` identical on both clients, `Retail/` and `Classic/` client-specific, `Loaders/` the post-processing that wires them into the runtime |
+| `Options/` | The settings as AceConfig tables; `Window/` maps them onto the options window's 22 feature sections and wires the window (`/kaf`, `addon.Options.Open`, the Settings > AddOns stub) |
+| `Plugins/` | Third-party addon integrations; the plugin API is `Api/PluginsApi.lua` (`KrowiAF.PluginsApi`) |
+| `Localization/` | One file per locale (`enUS`, `deDE`, `esES`, `esMX`, `frFR`, `itIT`, `koKR`, `ptBR`, `ruRU`, `zhCN`, `zhTW`), `.Plugins.lua` and `.WrathClassic.lua` variants, `Shared.lua` helpers |
+| `Libs/` | Vendored libraries, several of them git submodules of `TheKrowi/*` repos, the options window (`Krowi_Options`, registered as `Krowi_Options_2`, with its own translations) among them. **Do not edit `Libs/` unless asked**; fixes belong upstream, in `Krowi_Libraries` |
+| `Media/` | Texture assets (`.blp`) |
+| `Tests/` | The `/kaftest` runner and the scenario suites it shares with the headless runner; loaded last, only active in debug mode |
+| `_Packaging/` | Changelog, release notes, CurseForge description. Not loaded by the game |
+| `docs/`, `raw/`, `.claude/` | Non-code material; offline tooling, skills, subagents, hooks and path rules. Not loaded by the game, not shipped |
 
 ## File map
 
@@ -87,3 +137,23 @@ KrowiAF.AchievementData["11_01_00"] = {   -- key = EE_PP_SS (expansion, major, m
 - The task groups run at `PLAYER_LOGIN` (boot phase 3), yielding on a per-frame time budget.
 
 Shared and client files write into the same `KrowiAF.AchievementData` table, so the same key in both would make the later file overwrite the earlier one's entries; that is why a Shared file adds `_S` to its keys. The suffix has no meaning at runtime: `Data.lua` reads the patch from the first three parts of the key.
+
+## Objects and obtainability
+
+`Achievement` (`Objects/`) carries patch, faction, reward type, PvP/season flags, and a list of temporary-obtainable records; `Data/TemporaryObtainable.lua` resolves those to Past/Current/Future using season anchors registered via `KrowiAF.AddSeasonData`. Every `Obtainable()` form: `docs/obtainability.md`.
+
+## External references
+
+Grep the local clones of Blizzard's UI source first (`..\wow-ui-source\live`, `..\wow-ui-source\classic`, kept by the kit's `Update-UiSource.ps1`; the generated API docs are under `Blizzard_APIDocumentationGenerated`); the web rows are the fallback.
+
+| Resource | URL |
+|----------|-----|
+| Warcraft Wiki (API reference) | https://warcraft.wiki.gg/wiki/Warcraft_Wiki |
+| FrameXML browser — Retail | https://www.townlong-yak.com/framexml/live |
+| FrameXML browser — Classic | https://www.townlong-yak.com/framexml/classic |
+| WoW UI source (GitHub) — Retail | https://github.com/Gethe/wow-ui-source/tree/live/Interface/AddOns |
+| GlobalStrings — Retail (enUS) | https://www.townlong-yak.com/framexml/live/Helix/GlobalStrings.lua |
+| GlobalStrings — Classic (enUS) | https://www.townlong-yak.com/framexml/classic/Helix/GlobalStrings.lua |
+| GlobalStrings — Retail (other locales) | https://www.townlong-yak.com/framexml/live/Helix/GlobalStrings.lua/`<LOCALE>` (e.g. `/FR`, `/DE`, `/ES`, `/PT`, `/RU`, `/CN`, `/TW`, `/KR`) |
+| WoW UI bug tracker | https://github.com/Stanzilla/WoWUIBugs |
+| wow.tools.local (local game DB) | http://localhost:5000 — API query reference: `.claude/skills/verify-achievement-data/API.md` |

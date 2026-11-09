@@ -2,12 +2,12 @@
 
 Every GitHub issue, feature and fix in this repository moves through the six stages of Anthropic's [AI-native SDLC Playbook](https://academy.claude.com/courses/ai-native-sdlc-playbook): Plan, Design, Build, Test, Deploy, Maintain. Each stage ends by committing an artifact, and the next stage starts by reading it, so the work folder and the pull request together record who asked for what, what the agent produced and who approved it.
 
-This file adapts the playbook to a repository with one maintainer, two game clients and no CI. `.github/copilot-instructions.md` holds the rules that the artifacts are checked against; this file describes the process only.
+This file adapts the playbook to a repository with one maintainer, two game clients and no CI. `CLAUDE.md` and the path rules in `.claude/rules/` (together "the instructions") hold the rules that the artifacts are checked against; this file describes the process only.
 
 ## Roles
 
 - **Maintainer** (TheKrowi): holds every human gate. Acts as product owner (accepts the intent, approves the spec), engineer (approves the plan, runs the in-game checks), reviewer (approves the PR and merges it, or tells the agent to) and release manager (`krowi:release` runs only on their go-ahead).
-- **Agent** (Claude Code, Copilot): drafts every artifact and does the work up to each gate, never past it. It stops at a gate, puts the decision to the maintainer with a recommendation, and records the answer in the artifact.
+- **Agent** (Claude Code): drafts every artifact and does the work up to each gate, never past it. It stops at a gate, puts the decision to the maintainer with a recommendation, and records the answer in the artifact.
 - **Reporter**: whoever filed the issue. The issue is their record; the agent comments on it only through the closing routine or when the maintainer asks.
 
 ## The work folder
@@ -17,7 +17,7 @@ This file adapts the playbook to a repository with one maintainer, two game clie
 | File | Stage | Written from | Ends when |
 |------|-------|--------------|-----------|
 | `intent.md` | 1 Plan | the issue, idea or error report | the maintainer accepts it (`Status: accepted`) |
-| `spec.md` | 2 Design | `intent.md`, the instruction file, the skills | the maintainer approves the design (`Status: accepted`, decision recorded) |
+| `spec.md` | 2 Design | `intent.md`, the instructions, the skills | the maintainer approves the design (`Status: accepted`, decision recorded) |
 | `plan.md` | 3 Build | `intent.md` and `spec.md`, in plan mode | the maintainer approves it, or it is routine and the agent proceeds |
 | `gates.md` | every stage | each gate answer, decision taken without asking and unprompted correction, one row each | the merge row |
 
@@ -39,7 +39,7 @@ Gate: the maintainer accepts the intent, or sends it back.
 
 ### 2. Design: requirements and design in one session
 
-From the accepted intent, the agent writes `spec.md`: the requirements, the root cause for a bug (with sources: `file:line` in the addon, and Blizzard's source from the references in the instruction file), the design, and the options considered with a recommendation. It flags areas of concern explicitly:
+From the accepted intent, the agent writes `spec.md`: the requirements, the root cause for a bug (with sources: `file:line` in the addon, and Blizzard's source from the references in `docs/architecture.md`), the design, and the options considered with a recommendation. It flags areas of concern explicitly:
 
 - taint and secret values;
 - Retail and Classic;
@@ -48,7 +48,7 @@ From the accepted intent, the agent writes `spec.md`: the requirements, the root
 - localization in every locale;
 - the data snapshots and the headless pipeline.
 
-The skills and the instruction file are the policies the spec must conform to; any departure from them is an area of concern, not a silent choice.
+The skills and the instructions are the policies the spec must conform to; any departure from them is an area of concern, not a silent choice.
 
 Gate: the maintainer approves the design and picks between the options. The agent records the decision and the date under `## Decision`, then commits `spec.md` together with `intent.md`.
 
@@ -56,7 +56,7 @@ Gate: the maintainer approves the design and picks between the options. The agen
 
 The agent writes `plan.md` in plan mode (read the code, change nothing). It covers the files that change, the order of work, the risks and the proof, and is complete enough that someone who never saw the conversation could carry it out. Then it builds in the order the plan gives:
 
-1. **Test first, for a bug fix.** Add a scenario to the matching suite in `Tests/` and to its model in `.claude/tools/headless/run-tests.lua`. A new suite is a `Tests/<Suite>.lua` registered in `Tests/Files.xml`, a `suites.<name>` in the runner, its name in the instruction file's suite list and a section in `Tests/README.md`. Set `Recorded` to the current, buggy behaviour and `Target` to the desired behaviour, then run the suite headless: the new scenario passes and is open against its target. For GUI behaviour, the in-game run of the suite must be green before the fix starts (maintainer rule): `Deploy.ps1 -WhatIf`, deploy, ask the maintainer for `/kaftest <suite>` and a second `/reload` (the game writes the log only on reload), then `Read-GameTests.ps1`: no FAIL and no unexplained difference from headless. Commit the scenario (`test: reproduce #<n> in the <suite> suite`). A data bug is reproduced by the headless data pipeline or a data-verifier finding instead.
+1. **Test first, for a bug fix.** Add a scenario to the matching suite in `Tests/` and to its model in `.claude/tools/headless/run-tests.lua`. A new suite is a `Tests/<Suite>.lua` registered in `Tests/Files.xml`, a `suites.<name>` in the runner and a row in `Tests/README.md`. Set `Recorded` to the current, buggy behaviour and `Target` to the desired behaviour, then run the suite headless: the new scenario passes and is open against its target. For GUI behaviour, the in-game run of the suite must be green before the fix starts (maintainer rule): `Deploy.ps1 -WhatIf`, deploy, ask the maintainer for `/kaftest <suite>` and a second `/reload` (the game writes the log only on reload), then `Read-GameTests.ps1`: no FAIL and no unexplained difference from headless. Commit the scenario (`test: reproduce #<n> in the <suite> suite`). A data bug is reproduced by the headless data pipeline or a data-verifier finding instead.
 2. **Fix only the code.** Never weaken a scenario, a lint rule or an ignore entry to make a check pass. After the fix, `Recorded` is set to the new behaviour (equal to `Target`), so the diff of the scenario file is the behaviour change under review.
 3. Update `plan.md` when the implementation departs from it.
 
@@ -81,11 +81,11 @@ Gate: the maintainer reviews and approves the merge. The gate is their decision,
 
 ### 6. Maintain: close the loop
 
-After the merge, the agent closes the issue with the closing routine in the instruction file. Whatever the work taught flows back into the harness, so the next work item starts from it:
+After the merge, the agent closes the issue with the closing routine in `CLAUDE.md` (Work items and GitHub). Whatever the work taught flows back into the harness, so the next work item starts from it:
 
 | What the work taught | Where it goes |
 |----------------------|---------------|
-| a correction the agent needed twice | the instruction file |
+| a correction the agent needed twice | `CLAUDE.md` when every task needs it; otherwise the path rule of its area (`.claude/rules/`), whose budget the `instructions` lint rule keeps |
 | a policy that was applied inconsistently | a skill |
 | a mechanical rule | a `Check-Repo` rule |
 | a fixed bug | a permanent scenario |
@@ -100,7 +100,7 @@ After each release, `Read-GameErrors.ps1` on both clients and new issues are the
 | Capture as `intent.md` | `docs/work/<id>-<slug>/intent.md`, templates in the kit's `skills/process-issue/templates/` |
 | Requirements and design | `spec.md` in the same folder |
 | Plan mode | `plan.md`; Claude Code plan mode or an equivalent read-only pass |
-| The CLAUDE.md | `.github/copilot-instructions.md` (canonical) imported by `CLAUDE.md`; a correction needed twice is written there |
+| The CLAUDE.md | `CLAUDE.md` for what every task needs, path rules in `.claude/rules/` for one area of code (`docs/work/2026-11-09-lean-instructions`); a correction needed twice is written in the one that applies |
 | Skills as institutional knowledge | `.claude/skills/*/SKILL.md` and the kit's skills; `krowi:process-issue` drives this lifecycle |
 | Parallel sessions and subagents | `.claude/agents/` (`data-verifier`) and the kit's `krowi:taint-reviewer`; one worktree per session |
 | Give Claude a feedback loop | `Check-Repo.ps1`, the post-edit and Stop hooks, the headless pipeline and suites, `Deploy.ps1` with the `Read-Game*` readers |
@@ -115,4 +115,4 @@ The playbook's enterprise controls (managed settings, OpenTelemetry, compliance 
 
 ## Measuring it
 
-The git history of a work folder and its PR is the measurement. The timestamps of the `intent.md`, `spec.md` and `plan.md` commits and of the merge show where the time goes. Commits that touch `spec.md` after `plan.md` exists are requirements rework, and a scenario or review finding that comes back is a correction for the instruction file. How often the maintainer took the recommendation at each gate is in the work folders' `gates.md`, counted per class of change by the kit's `Measure-Gates.ps1` (since 2026-11-05; the earlier folders were not backfilled).
+The git history of a work folder and its PR is the measurement. The timestamps of the `intent.md`, `spec.md` and `plan.md` commits and of the merge show where the time goes. Commits that touch `spec.md` after `plan.md` exists are requirements rework, and a scenario or review finding that comes back is a correction for the instructions. How often the maintainer took the recommendation at each gate is in the work folders' `gates.md`, counted per class of change by the kit's `Measure-Gates.ps1` (since 2026-11-05; the earlier folders were not backfilled).

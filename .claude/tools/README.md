@@ -2,9 +2,9 @@
 
 The tooling every Krowi repo shares lives in Krowi_ClaudeKit (`E:\World of Warcraft Addon Development\Krowi_ClaudeKit`, private): the vendored Lua 5.1.5, the guard and post-edit hooks, `Deploy`, `Get-RepoState`, the game readers, the worktree tools, `Update-UiSource`, `Find-Symbol`, `Strip-Semicolons`, `Get-WowBuilds`, the deprecated-API classifier, and the release and work-item skills. Its `README.md` and `WowAddons.md` ("The kit's tools") describe them, and each script documents its parameters in its comment header. This repo enables the kit's `krowi` plugin and keeps here only what is its own, listed below.
 
-Everything runs offline and installs nothing: PowerShell plus the kit's Lua. A new check that only this repo needs goes here and uses that interpreter; anything another repo could use goes into the kit. `.claude/` is excluded from the release zip (any dot-directory is) and from fsdeploy and `Deploy.ps1`, so nothing in it reaches players or the game folder.
+Everything runs offline and installs nothing: PowerShell plus the kit's Lua. A new check that only this repo needs goes here and uses that interpreter; anything another repo could use goes into the kit. `.claude/` is excluded from the release zip (any dot-directory is) and from `Deploy.ps1`, so nothing in it reaches players or the game folder.
 
-The everyday commands and the rules these tools enforce are in `.github/copilot-instructions.md` (Build & Validation); this file is the reference behind them. Below, `$kit` stands for `E:\World of Warcraft Addon Development\Krowi_ClaudeKit`; Claude Code's permission rules match the commands only with that path written out.
+The everyday commands and the rules these tools enforce are in `CLAUDE.md` (Build and checks) and `.claude/rules/`; this file is the reference behind them. Below, `$kit` stands for `E:\World of Warcraft Addon Development\Krowi_ClaudeKit`; Claude Code's permission rules match the commands only with that path written out.
 
 | Tool | What it does |
 |---|---|
@@ -71,6 +71,7 @@ The kit carries Lua 5.1.5 (`$kit\tools\lua51\lua.exe`, `luac.exe`), the exact in
 | `enus-autogen` | no locale string added above the `AUTOGENTOKEN` marker in any locale file |
 | `lookup-placeholders` | the `_*.ps1` skill scripts are committed with their placeholders empty (`$Ids`/`$Terms`/`$Names` = `@()`, `$Table`/`$Name` = `""`), `param()` defaults included |
 | `pinned-build` | no skill or `raw/` script types a game build; builds come from the kit's `Get-WowBuilds.ps1` |
+| `instructions` | `CLAUDE.md` stays within 16 KB and 200 lines, each `.claude/rules/*.md` within 8 KB and opens with `---` frontmatter holding a `paths:` key (without it a rule loads into every call); always on |
 | `zone-decisions` | the zone-decisions log `raw/ZoneDataDecisions.md` agrees with the ZoneData files |
 | `mapverifier` | the Map Verifier CSV `raw/MapVerifier.csv` is valid and in canonical form |
 | `work-items` | the work-item folders under `docs/work/`: folder name, titles, status line, required headings (the kit's `skills/process-issue/templates/`) |
@@ -180,7 +181,7 @@ Known limits:
 
 ## Data-verification scripts (online)
 
-Not offline tools, but listed here so the instruction file can stay short. These PowerShell scripts under `.claude/skills/` and `raw/` query the local game-database server (wow.tools.local at `http://localhost:5000`). Each `SKILL.md` documents the workflow; `.claude/skills/verify-achievement-data/API.md` is the query reference, and the rule for the lookup scripts is in the instruction file.
+Not offline tools, but listed here so the instructions can stay short. These PowerShell scripts under `.claude/skills/` and `raw/` query the local game-database server (wow.tools.local at `http://localhost:5000`). Each `SKILL.md` documents the workflow; `.claude/skills/verify-achievement-data/API.md` is the query reference, and the rule for the lookup scripts is in `.claude/rules/data.md` (Lookup scripts).
 
 No script types a build. The kit's `Get-WowBuilds.ps1` picks the newest `wow` and `wow_classic` build from the server's local list, falling back to the remote list, and every lookup script dot-sources it after `.claude\tools\KitPath.ps1`; `-Client Classic` selects the Classic build where a script serves both, and `$env:KAF_RETAIL_PRODUCT = "wowxptr"` (or `"wowt"`) points Retail at a patch still on the PTR. Each lookup script takes its values as parameters (`-Ids`, `-Terms`, `-Names`, `-Table`/`-Name`); the parameter's default in the `param()` block is the placeholder, which can still be edited instead and must be reset afterwards (the `lookup-placeholders` rule).
 
