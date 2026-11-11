@@ -7,6 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Pop Out Modifier Desc"] = "Mantén presionada esta tecla y haz clic en un logro para abrirlo en una ventana pequeña que permanece en pantalla."
 L["Fade Speed Desc"] = "Segundos que tarda una ventana flotante en aparecer o atenuarse. Menos es más rápido."
 L["Faded Opacity Desc"] = "Lo visible que queda una ventana flotante atenuada, de 0 (invisible) a 1 (totalmente visible)."
 L["Fade When Not Hovered Desc"] = "Atenúa una ventana flotante mientras el mouse no está encima."

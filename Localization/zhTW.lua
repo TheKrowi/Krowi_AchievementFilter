@@ -7,6 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Pop Out Modifier Desc"] = "按住此鍵並點擊成就，即可在一個停留在螢幕上的小視窗中開啟。"
 L["Fade Speed Desc"] = "浮動視窗淡入或淡出所需的秒數。越小越快。"
 L["Faded Opacity Desc"] = "淡化後的浮動視窗的可見程度，從 0（不可見）到 1（完全可見）。"
 L["Fade When Not Hovered Desc"] = "滑鼠不在浮動視窗上時將其淡化。"

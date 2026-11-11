@@ -7,6 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Pop Out Modifier Desc"] = "Segure esta tecla e clique em uma conquista para abri-la em uma pequena janela que fica na tela."
 L["Fade Speed Desc"] = "Segundos que uma janela destacada leva para aparecer ou esmaecer. Menos é mais rápido."
 L["Faded Opacity Desc"] = "O quanto uma janela destacada esmaecida continua visível, de 0 (invisível) a 1 (totalmente visível)."
 L["Fade When Not Hovered Desc"] = "Esmaece uma janela destacada enquanto o mouse não está sobre ela."

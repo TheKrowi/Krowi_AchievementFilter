@@ -7,6 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Pop Out Modifier Desc"] = "按住此键并点击成就，即可在一个停留在屏幕上的小窗口中打开。"
 L["Click Modifier Desc"] = "按住此键并点击成就，即可在成就浮窗中打开。"
 L["Click Modifier"] = "点击修饰键"
 L["Help Popout Intro {modifier}"] = "按住{modifier}并点击成就，即可在一个停留在屏幕上的小窗口中打开。将一个成就浮窗拖到另一个上即可将它们叠放在一起。"

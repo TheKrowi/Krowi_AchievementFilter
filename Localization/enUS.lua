@@ -6,6 +6,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Pop Out Modifier Desc"] = "Hold this key and click an achievement to open it in a small window that stays on screen."
 L["Click Modifier Desc"] = "Hold this key and click an achievement to open it in a Pop Out."
 L["Click Modifier"] = true
 L["Help Popout Intro {modifier}"] = "Hold {modifier} and click an achievement to open it in a small window that stays on screen. Drag one Pop Out onto another to stack them."

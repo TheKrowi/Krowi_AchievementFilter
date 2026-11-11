@@ -45,8 +45,9 @@ local function Range(order, key, name, desc, min, max, step, disabledBy, refresh
 end
 
 -- The modifier's dropdown in both places, named and described for the section it is in (Krowi, 2026-11-11): Keys and
--- clicks names actions, as its other modifier rows, and says that Pop Out's switch controls it; Pop Out's own section
--- names the key and says what holding it does, under the switch it follows
+-- clicks names the action, as its other modifier rows, says what it does for a reader who may not know a Pop Out, and
+-- that Pop Out's switch controls it; Pop Out's own section names the key and says what holding it does, under the
+-- switch it follows
 local function ModifierRow(order, name, desc)
     return {
         order = order, type = "select", width = AdjustedWidth(0.93),
@@ -104,7 +105,7 @@ local function Into()
     local name = L["Pop Out"]
     return {
         {Path = "General.args.KeyBinding.args.General.args.Modifiers", Key = "PopOut",
-            Row = ModifierRow(nil, name, name .. "\n\n" .. L["Feature Controls Desc"]:K_ReplaceVars({feature = name})), FollowsSwitch = true,
+            Row = ModifierRow(nil, name, L["Pop Out Modifier Desc"] .. "\n\n" .. L["Feature Controls Desc"]:K_ReplaceVars({feature = name})), FollowsSwitch = true,
             With = {Key = "GoToPopOut", Row = GoTo(nil, "popout", L["Pop Out"])}}
     }
 end

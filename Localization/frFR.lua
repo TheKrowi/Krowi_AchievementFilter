@@ -7,6 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Pop Out Modifier Desc"] = "Maintenez cette touche et cliquez sur un haut fait pour l'ouvrir dans une petite fenêtre qui reste à l'écran."
 L["Click Modifier Desc"] = "Maintenez cette touche et cliquez sur un haut fait pour l'ouvrir dans une fenêtre flottante."
 L["Click Modifier"] = "Modificateur de clic"
 L["Help Popout Intro {modifier}"] = "Maintenez {modifier} et cliquez sur un haut fait pour l'ouvrir dans une petite fenêtre qui reste à l'écran. Faites glisser une fenêtre flottante sur une autre pour les empiler."

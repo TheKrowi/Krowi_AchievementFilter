@@ -7,6 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Pop Out Modifier Desc"] = "이 키를 누른 채 업적을 클릭하면 화면에 계속 남는 작은 창으로 엽니다."
 L["Fade Speed Desc"] = "팝아웃이 나타나거나 흐려지는 데 걸리는 시간(초)입니다. 낮을수록 빠릅니다."
 L["Faded Opacity Desc"] = "흐려진 팝아웃이 얼마나 보이는지입니다. 0(보이지 않음)부터 1(완전히 보임)까지."
 L["Fade When Not Hovered Desc"] = "마우스가 올라가 있지 않은 동안 팝아웃을 흐리게 합니다."

@@ -7,6 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Pop Out Modifier Desc"] = "Удерживайте эту клавишу и щелкните по достижению, чтобы открыть его в маленьком окне, которое остается на экране."
 L["Click Modifier Desc"] = "Удерживайте эту клавишу и щелкните по достижению, чтобы открыть его во «Всплывании»."
 L["Click Modifier"] = "Модификатор щелчка"
 L["Help Popout Intro {modifier}"] = "Удерживайте {modifier} и щелкните по достижению, чтобы вынести его в маленькое окно, которое остается на экране. Перетащите одно «Всплывание» на другое, чтобы сложить их стопкой."

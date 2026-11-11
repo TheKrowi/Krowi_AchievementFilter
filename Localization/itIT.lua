@@ -7,6 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Pop Out Modifier Desc"] = "Tieni premuto questo tasto e fai clic su un'impresa per aprirla in una piccola finestra che resta sullo schermo."
 L["Fade Speed Desc"] = "Secondi che una finestra staccata impiega per apparire o sbiadire. Meno è più veloce."
 L["Faded Opacity Desc"] = "Quanto resta visibile una finestra staccata sbiadita, da 0 (invisibile) a 1 (del tutto visibile)."
 L["Fade When Not Hovered Desc"] = "Sbiadisce una finestra staccata mentre il mouse non è sopra."
