@@ -20,6 +20,7 @@ The harness is the toolchain this repo's Claude Code sessions use. Since 2026-10
 | 6 | The kit's post-edit hook `After-Edit.ps1` (was `Check-LuaSyntax.ps1`, which stays as a forwarder for sessions started before the rename): after a Write it sets the line endings, BOM and final newline from `.editorconfig`, then checks Lua syntax. Here `.editorconfig` sets everything, so a Write to a locale file or the `.toc` leaves CRLF there, which git stores unchanged; since kit PR #7 a repo without one gets the line endings git checks out and the final newline the file has in git. The `bom` and `line-endings` rules now also read the `.md` and `.ps1` files outside `Libs/` | kit PR #5 (2026-11-03) |
 | 8 | `Get-RepoState.ps1` lives in the kit and serves every Krowi repo: git state, PRs and issues, the release and its readiness (`Check-ReleaseReady.ps1 -ReportOnly`), work folders, worktrees, how far each client's AddOns folder is behind; this repo's `.claude/repo-state.ps1` adds the lint with `-Lint`. About 4 to 6 s, most of it the release check (11 s with `-Lint`) | kit PR #6 (2026-11-03) |
 | 14 | `Measure-Sessions.ps1` in the kit: the context use of a repo's sessions from their transcripts, per session and in total (start and peak context, cache reads by context band, weighted use, subagents by type and model, skills and commands); `-Last 15` is what steps 15 to 18 are judged on. It reproduces the 2026-11-02 baseline (How the evidence was gathered) in about 10 s | kit PR #8 (2026-11-03) |
+| 16 | One lean instruction file: `.github/copilot-instructions.md` (40 KB) is gone, `CLAUDE.md` (14 KB, from 46 KB with its import) holds what every task needs, six path rules in `.claude/rules/` (data, events, features, localization, tests, release; 12 KB together) load only with their area, the layout moved to `docs/architecture.md`, and the `instructions` lint rule keeps the budgets (`docs/work/2026-11-09-lean-instructions/`). The kit's `Gates.ps1` lets a lesson in a path rule ride along like one in `CLAUDE.md` | 2026-11-09 |
 
 ## Open, in priority order
 
@@ -40,7 +41,6 @@ Steps 15 to 18 come from a second measurement, on 2026-11-02 (now the kit's `Mea
 | Step | What | What it saves | Size |
 |---|---|---|---|
 | 15 | Session boundaries and compact instructions | 58% of the main sessions' cache reads happen above 400k tokens of context | small |
-| 16 | One lean instruction file: `CLAUDE.md` replaces `.github/copilot-instructions.md` | the 75k start context is re-read on every call (22% of cache reads); 11k of it is these two files | medium |
 | 17 | Prune the auto memory | 8 KB loaded into every session, mostly finished work | small |
 | 18 | Subagent start cost | subagents are a fifth of all use; a general-purpose one starts at 65k | small |
 
@@ -98,6 +98,8 @@ Parts of 15 and 18 change the kit. The kit also has its own share of the start c
 **Done when.** Over the next 15 sessions the share of cache reads above 400k drops from 58% to under 25% (`Measure-Sessions.ps1 -Last 15`), and no work item loses a decision across a boundary, checked against its work folder.
 
 ### Step 16: one lean instruction file
+
+**Done 2026-11-09** (`docs/work/2026-11-09-lean-instructions/`, under Done above). Departures from the design below: no `/doctor prompt-audit` (stale lines were found while mapping each statement to its new home); `CLAUDE.md` keeps its budget at 16 KB and 200 lines; the `instructions` rule also checks each path rule's frontmatter, since a rule with malformed `paths:` loads into every call. The start-context drop is measured with `Measure-Sessions.ps1` on the first sessions after the merge.
 
 **Problem.** Every call re-reads the start context, a median of 75k tokens and 22% of the main sessions' cache reads, and it grew by about 9k in 16 days. This repo puts about 11k tokens of it there: `.github/copilot-instructions.md` (39 KB, 368 lines, loaded whole through the `@` import in `CLAUDE.md`; an import does not lower the cost) and `CLAUDE.md` (5 KB). Anthropic's guidance: under 200 lines per file, holding only what Claude cannot find by reading the repo; rules for one area in `.claude/rules/` with `paths:`; procedures in skills; and a line lost in a long file is followed less, on every task. Much of the file fails that test: the layout, load order and directory tables (the `.toc` and the `Files.xml` files say it), the module and OOP samples (the code shows them), the data formats (the data skills hold them), and what the workspace `CLAUDE.md` already says (Lua 5.1, the sed trap, worktrees, Conventional Commits, the changelog style, `AUTOGENTOKEN`). Only Claude reads the file (the maintainer, 2026-11-02), so the Copilot name and the copies for readers without the kit can go. The file also grows by design: stage 6 of the playbook writes each work item's lesson back into it.
 

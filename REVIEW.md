@@ -1,6 +1,6 @@
 # Review policy
 
-Every review pass on a change to this repository reads this file: Claude Code's `/code-review` and Code Review, the `krowi:taint-reviewer` subagent, and the maintainer. The rules a change is held to live in `.github/copilot-instructions.md`. This file says what a review looks for, how findings are ranked and what is left out. The lifecycle a PR belongs to is `docs/sdlc-playbook.md`.
+Every review pass on a change to this repository reads this file: Claude Code's `/code-review` and Code Review, the `krowi:taint-reviewer` subagent, and the maintainer. The rules a change is held to live in `CLAUDE.md` and, for the area it touches, in `.claude/rules/`. This file says what a review looks for, how findings are ranked and what is left out. The lifecycle a PR belongs to is `docs/sdlc-playbook.md`.
 
 ## Passes
 
@@ -31,4 +31,4 @@ A finding is **Important** when it would cause a Lua error, taint, `ADDON_ACTION
 
 ## Gate
 
-Findings never approve or block a PR by themselves: the maintainer approves the merge, and either merges it or tells the agent to. A finding the author accepts but defers goes into `docs/codebase-analysis.md`. A finding that comes back across PRs is a correction for `.github/copilot-instructions.md`.
+Findings never approve or block a PR by themselves: the maintainer approves the merge, and either merges it or tells the agent to. A finding the author accepts but defers goes into `docs/codebase-analysis.md`. A finding that comes back across PRs is a correction for `CLAUDE.md`, or for the path rule of the area it is about (`.claude/rules/`).

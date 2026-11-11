@@ -4,7 +4,7 @@
 # (docs/work/2026-10-18-memory-growth), so each one is measured by a Tests/Memory.lua scenario, or says why it does not
 # run on its own. One "<path glob> <OnUpdate | NewTicker | TooltipPostCall | RegisterEvent:<EVENT or *>> <memory/<scenario> | ->
 # # reason" per line; RegisterEvent:* is a registration whose event is not a literal. A new line here is a review item: a
-# job that runs on its own allocates nothing on a run where nothing changed (.github/copilot-instructions.md, Architecture).
+# job that runs on its own allocates nothing on a run where nothing changed (CLAUDE.md, Background jobs).
 
 # --- Measured: they run all session
 TaintDiagnostics.lua OnUpdate memory/taint-sweep                                       # twice a second while taint diagnostics are on, the default

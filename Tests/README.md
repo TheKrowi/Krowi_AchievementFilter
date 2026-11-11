@@ -2,7 +2,7 @@
 
 `Tests/` holds the in-game test runner (`Tests.lua`, the `/kaftest` command) and the scenario suites it shares with the headless runner `.claude/tools/headless/run-tests.lua`. `Tests/Files.xml` is the last entry in the `.toc`, so the suites ship with the addon and load after everything else, but the runner is only active in debug mode (Options > General > Debug). This README neither ships nor deploys: the release zip skips every `.md` file, and deploy copies only `.lua`, `.blp`, `.tga` and `.xml` files.
 
-The rules that lean on these suites (a bug fix is built test first; every fixed bug leaves its scenario behind) are in `.github/copilot-instructions.md` under Work-Item Lifecycle, and the kit's `krowi:process-issue` skill, with `docs/sdlc-playbook.md`, has the steps.
+The rules that lean on these suites (a bug fix is built test first; every fixed bug leaves its scenario behind) are in `.claude/rules/tests.md`, which loads when a file here is read, and the kit's `krowi:process-issue` skill, with `docs/sdlc-playbook.md`, has the steps.
 
 ## Which suites to run
 
@@ -82,4 +82,4 @@ On Retail with other addons off: `/console screenshotFormat png`, `/kaftest pict
 
 ## Adding a suite
 
-A new suite is a `Tests/<Suite>.lua` registered in `Tests/Files.xml`, a `suites.<name>` in `run-tests.lua`, its name in the suite list of `.github/copilot-instructions.md` (Offline tooling) and a row in the table above. It checks something on every client it runs on: where what it covers does not exist, a read-only scenario checks that it does not, since a run that passes nothing fails `Run-GameTests.ps1` and the release gate.
+A new suite is a `Tests/<Suite>.lua` registered in `Tests/Files.xml`, a `suites.<name>` in `run-tests.lua` and a row in the table above. It checks something on every client it runs on: where what it covers does not exist, a read-only scenario checks that it does not, since a run that passes nothing fails `Run-GameTests.ps1` and the release gate.

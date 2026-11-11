@@ -2,9 +2,9 @@
 
 The tooling every Krowi repo shares lives in Krowi_ClaudeKit (`E:\World of Warcraft Addon Development\Krowi_ClaudeKit`, private): the vendored Lua 5.1.5, the guard and post-edit hooks, `Deploy`, `Get-RepoState`, the game readers, the worktree tools, `Update-UiSource`, `Find-Symbol`, `Strip-Semicolons`, `Get-WowBuilds`, the deprecated-API classifier, and the release and work-item skills. Its `README.md` and `WowAddons.md` ("The kit's tools") describe them, and each script documents its parameters in its comment header. This repo enables the kit's `krowi` plugin and keeps here only what is its own, listed below.
 
-Everything runs offline and installs nothing: PowerShell plus the kit's Lua. A new check that only this repo needs goes here and uses that interpreter; anything another repo could use goes into the kit. `.claude/` is excluded from the release zip (any dot-directory is) and from fsdeploy and `Deploy.ps1`, so nothing in it reaches players or the game folder.
+Everything runs offline and installs nothing: PowerShell plus the kit's Lua. A new check that only this repo needs goes here and uses that interpreter; anything another repo could use goes into the kit. `.claude/` is excluded from the release zip (any dot-directory is) and from `Deploy.ps1`, so nothing in it reaches players or the game folder.
 
-The everyday commands and the rules these tools enforce are in `.github/copilot-instructions.md` (Build & Validation); this file is the reference behind them. Below, `$kit` stands for `E:\World of Warcraft Addon Development\Krowi_ClaudeKit`; Claude Code's permission rules match the commands only with that path written out.
+The everyday commands and the rules these tools enforce are in `CLAUDE.md` (Build and checks) and `.claude/rules/`; this file is the reference behind them. Below, `$kit` stands for `E:\World of Warcraft Addon Development\Krowi_ClaudeKit`; Claude Code's permission rules match the commands only with that path written out.
 
 | Tool | What it does |
 |---|---|
@@ -24,7 +24,7 @@ The everyday commands and the rules these tools enforce are in `.github/copilot-
 | `headless/read-pictures.lua` | reads the pictures runs from the saved variables, for `Make-HelpPictures.ps1`: each shot's cut and, from 2026-10-30, the frames' own rectangle inside it |
 | `Update-DeprecatedApi.ps1` | rebuilds `Check-Repo.deprecated-api` from the wow-ui-source clones, for the clients the `.toc` lists |
 | `Build-ChangelogLua.ps1` | writes `Options/Window/Changelog.lua`, the options window's Overview copy of the changelog's top entry (English, without dev notes); run at release, `-Check` is the release gate's test that it is current |
-| `../release-gate.ps1` | this repo's release check, which the kit's release preflight runs: the options window's changelog, a green in-game run (failed nothing, passed something) of every scenario suite on the newest Retail and Mists build since the suite's file last changed, and a green full `/kotest` run of Krowi_Options' test addon once per client version |
+| `../release-gate.ps1` | this repo's release check, which the kit's release preflight runs: the options window's changelog, a green in-game run (failed nothing, passed something) of every scenario suite but the probes (`scheduler`, `sources`, `pictures`) on the newest Retail and Mists build since the suite's file last changed, a green full `/kotest` run of Krowi_Options' test addon once per client version, and a green `/kaftest matrix` run since `Features/` last changed (`.claude/rules/release.md`) |
 
 ## Lua 5.1.5
 
@@ -36,7 +36,7 @@ The kit carries Lua 5.1.5 (`$kit\tools\lua51\lua.exe`, `luac.exe`), the exact in
 
 ## Language server (`.luarc.json`)
 
-`.luarc.json` at the repo root configures the Lua language server for any editor: Lua 5.1, the non-addon folders and `Libs/` ignored, the checks that stay off (`undefined-field` and the type-mismatch family; the code has no type annotations), and `diagnostics.globals`. The WoW API, `C_*` namespaces, widget API and the Blizzard FrameXML frames come from the VS Code extension `ketho.wow-api`, with Numy's FrameXML annotations switched on in `.vscode/settings.json`; the extension writes its library path into the user settings, so nothing machine-specific lives in the repo. That leaves `diagnostics.globals` with only what no annotation covers (the rule for adding to it is in the instruction file). The `luarc` lint rule keeps that list exact (every entry read by an addon file, none assigned by one, sorted), and the `luals` rule runs the language server tree-wide in a full lint.
+`.luarc.json` at the repo root configures the Lua language server for any editor: Lua 5.1, the non-addon folders and `Libs/` ignored, the checks that stay off (`undefined-field` and the type-mismatch family; the code has no type annotations), and `diagnostics.globals`. The WoW API, `C_*` namespaces, widget API and the Blizzard FrameXML frames come from the VS Code extension `ketho.wow-api`, with Numy's FrameXML annotations switched on in `.vscode/settings.json`; the extension writes its library path into the user settings, so nothing machine-specific lives in the repo. That leaves `diagnostics.globals` with only what no annotation covers (what belongs there: `CLAUDE.md`, Build and checks). The `luarc` lint rule keeps that list exact (every entry read by an addon file, none assigned by one, sorted), and the `luals` rule runs the language server tree-wide in a full lint.
 
 ## Repo lint (`Check-Repo.ps1`)
 
@@ -71,6 +71,7 @@ The kit carries Lua 5.1.5 (`$kit\tools\lua51\lua.exe`, `luac.exe`), the exact in
 | `enus-autogen` | no locale string added above the `AUTOGENTOKEN` marker in any locale file |
 | `lookup-placeholders` | the `_*.ps1` skill scripts are committed with their placeholders empty (`$Ids`/`$Terms`/`$Names` = `@()`, `$Table`/`$Name` = `""`), `param()` defaults included |
 | `pinned-build` | no skill or `raw/` script types a game build; builds come from the kit's `Get-WowBuilds.ps1` |
+| `instructions` | `CLAUDE.md` stays within 16 KB and 200 lines, each `.claude/rules/*.md` within 8 KB and opens with `---` frontmatter holding a `paths:` key (without it a rule loads into every call); always on |
 | `zone-decisions` | the zone-decisions log `raw/ZoneDataDecisions.md` agrees with the ZoneData files |
 | `mapverifier` | the Map Verifier CSV `raw/MapVerifier.csv` is valid and in canonical form |
 | `work-items` | the work-item folders under `docs/work/`: folder name, titles, status line, required headings (the kit's `skills/process-issue/templates/`) |
@@ -150,9 +151,9 @@ Runs the scenario suites from `Tests/` against modelled WoW frames and FrameXML;
 
 ## Deploy and the game loop
 
-The VS Code `fsdeploy` config in `.vscode/settings.json` mirrors `**/*.{lua,blp,tga,xml}` (excluding `.github`, `.vscode`, `.claude`, `_Packaging`, `raw`, `wiki`, `docs`), plus `LICENSE` and the `.toc`, from the folder the window has open into `H:\World of Warcraft\_retail_\Interface\AddOns\Krowi_AchievementFilter` and into the `_classic_` sibling on every save; the PTR target is commented out there. The kit's `Deploy.ps1` does the same from a terminal and is the way to be sure a client's folder is current: run it with `-WhatIf` before asking for an in-game check, since a reload on a stale install proves nothing.
+The kit's `Deploy.ps1` mirrors the checkout into a client's AddOns folder (`-Client Classic|Ptr|Xptr|...`; Xptr is `_xptr_`, the second test realm) and is the only deploy: the VS Code `fsdeploy` extension was uninstalled on 2026-10-21, and its keys left in `.vscode/settings.json` are dead. Run it with `-WhatIf` before an in-game check, since a reload on a stale install proves nothing.
 
-The kit's `Read-GameErrors.ps1` prints the Lua errors BugGrabber recorded for this addon and this repo's `Read-GameTests.ps1` the last `/kaftest` run, marking every line that differs from the headless run. The game writes saved variables only on `/reload` or logout, so both show when the file was last written. The kit's `Read-GameScreenshot.ps1` lists the newest screenshots to open with the Read tool. The commands are in the instruction file under Closing the loop with the game.
+The kit's `Read-GameErrors.ps1` prints the Lua errors BugGrabber recorded for this addon and this repo's `Read-GameTests.ps1` the last `/kaftest` run, marking every line that differs from the headless run. The game writes saved variables only on `/reload` or logout, so both show when the file was last written. The kit's `Read-GameScreenshot.ps1` lists the newest screenshots to open with the Read tool (`-Count 3 -Minutes 0`) and warns when the client saves tga, which the Read tool cannot display. This repo's commands are in `CLAUDE.md` (Build and checks), the kit's in the workspace `CLAUDE.md` (The kit's tools; `Read-GameErrors.ps1 -Hours 0 -All`).
 
 ## Parallel sessions
 
@@ -180,7 +181,7 @@ Known limits:
 
 ## Data-verification scripts (online)
 
-Not offline tools, but listed here so the instruction file can stay short. These PowerShell scripts under `.claude/skills/` and `raw/` query the local game-database server (wow.tools.local at `http://localhost:5000`). Each `SKILL.md` documents the workflow; `.claude/skills/verify-achievement-data/API.md` is the query reference, and the rule for the lookup scripts is in the instruction file.
+Not offline tools, but listed here so the instructions can stay short. These PowerShell scripts under `.claude/skills/` and `raw/` query the local game-database server (wow.tools.local at `http://localhost:5000`). Each `SKILL.md` documents the workflow; `.claude/skills/verify-achievement-data/API.md` is the query reference, and the rule for the lookup scripts is in `.claude/rules/data.md` (Lookup scripts).
 
 No script types a build. The kit's `Get-WowBuilds.ps1` picks the newest `wow` and `wow_classic` build from the server's local list, falling back to the remote list, and every lookup script dot-sources it after `.claude\tools\KitPath.ps1`; `-Client Classic` selects the Classic build where a script serves both, and `$env:KAF_RETAIL_PRODUCT = "wowxptr"` (or `"wowt"`) points Retail at a patch still on the PTR. Each lookup script takes its values as parameters (`-Ids`, `-Terms`, `-Names`, `-Table`/`-Name`); the parameter's default in the `param()` block is the placeholder, which can still be edited instead and must be reset afterwards (the `lookup-placeholders` rule).
 
