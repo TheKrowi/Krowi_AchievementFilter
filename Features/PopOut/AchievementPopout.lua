@@ -21,23 +21,31 @@ local function DescribePopoutState()
 	return "ids=" .. table.concat(ids, ",")
 end
 
+-- Runs from Start on, when the saved variables are read: a first session has no saved data yet and logs nothing (the
+-- saved data load makes the table later)
 local function LogPopoutLifecycle(event)
-	KrowiAF_SavedData = KrowiAF_SavedData or {}
-	KrowiAF_SavedData.PopoutLifecycleLog = KrowiAF_SavedData.PopoutLifecycleLog or {}
-	local log = KrowiAF_SavedData.PopoutLifecycleLog
+	local savedData = KrowiAF_SavedData
+	if not savedData then
+		return
+	end
+	savedData.PopoutLifecycleLog = savedData.PopoutLifecycleLog or {}
+	local log = savedData.PopoutLifecycleLog
 	tinsert(log, date("%Y-%m-%d %H:%M:%S") .. " " .. event .. " " .. DescribePopoutState())
 	while #log > 40 do
 		tremove(log, 1)
 	end
 end
 
--- Earliest possible read: before any other addon code (DataIntegrityManager included) can touch
--- KrowiAF_SavedData, capturing exactly what came off disk this session
-LogPopoutLifecycle("FileLoad")
-
-local logoutLogFrame = CreateFrame("Frame")
-logoutLogFrame:RegisterEvent("PLAYER_LOGOUT")
-logoutLogFrame:SetScript("OnEvent", function() LogPopoutLifecycle("PLAYER_LOGOUT"); end)
+-- From the feature's Start (PopOut.lua), at ADDON_LOADED: the first point where the saved variables are read, before the
+-- data integrity manager and the saved data load can touch KrowiAF_SavedData, so the first line records what came off
+-- disk this session (a line written while the file loaded went into a table the saved variables then replaced;
+-- docs/work/2026-11-09-pop-out); then the log's line at logout
+function achievementPopout.StartLog()
+	LogPopoutLifecycle("Start")
+	local logoutLogFrame = CreateFrame("Frame")
+	logoutLogFrame:RegisterEvent("PLAYER_LOGOUT")
+	logoutLogFrame:SetScript("OnEvent", function() LogPopoutLifecycle("PLAYER_LOGOUT") end)
+end
 
 local function PersistenceEnabled()
 	return addon.Options.db.profile.Popout.PersistAcrossSessions

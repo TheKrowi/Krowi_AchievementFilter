@@ -1,8 +1,5 @@
 <Ui>
-    <Script file="AchievementPopout.lua"/>
-    <Script file="AchievementPopoutMixin.lua"/>
-    <Script file="MenuEntry.lua"/>
-
+    <!-- A virtual template: a Pop Out's frame is made from it when one opens (AchievementPopout.lua, Open) -->
     <Frame name="KrowiAF_AchievementPopout_Template" mixin="KrowiAF_AchievementPopoutMixin" parent="UIParent" enableMouse="true" movable="true" resizable="true" toplevel="true" virtual="true">
         <Size x="434" y="142"/>
         <Frames>

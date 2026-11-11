@@ -84,8 +84,7 @@ addon.Options.Defaults = {
                 PasteToChat = 4,
                 ToggleTracking = 4,
                 ToggleWatchList = 2,
-                ToggleExcluded = 1,
-                PopOut = 3
+                ToggleExcluded = 1
             },
             MouseWheelPanScalar = 1,
             ShowTemporarilyObtainableIcon = true,
@@ -104,21 +103,6 @@ addon.Options.Defaults = {
                 WaypointProvider = 1 -- 1 Map pin and TomTom, 2 Map pin, 3 TomTom (addon.Gui.Guide.Waypoint.Provider)
             }
             -- ShowOtherFactionWarbandAsCompleted = true
-        },
-        Popout = {
-            PersistAcrossSessions = true,
-            RememberSize = true,
-            RememberLastPosition = true,
-            DefaultWidth = 434,
-            CloseOnEarn = true,
-            CloseOnEarnDelay = 2,
-            EnableSnapping = true,
-            SnapDistance = 20,
-            AutoHideCloseButton = false,
-            AutoHideResizeButton = false,
-            FadeWhenNotHovered = false,
-            FadedOpacity = 0.5,
-            FadeSpeed = 0.2
         },
         Tooltip = {
             Categories = {

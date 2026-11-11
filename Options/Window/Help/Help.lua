@@ -29,7 +29,14 @@ local function Heading(text)
     return {Heading = text}
 end
 
+-- text: a string, or a function returning one, called each time the block's Text is read, so a line that names a setting
+-- follows it (the pane reads a section's blocks every time it draws them, WindowHelp.lua ShowSectionHelp)
 local function Text(text)
+    if type(text) == "function" then
+        return setmetatable({}, {__index = function(_, key)
+            if key == "Text" then return text() end
+        end})
+    end
     return {Text = text}
 end
 
@@ -202,15 +209,6 @@ help.tooltips = {
         Heading(L["Achievement Points"]),
         Picture("TipPoints"),
         Text(L["Help Tooltips Points"])
-    )
-}
-
-help.popout = {
-    Title = L["Pop Out"],
-    Blocks = Blocks(
-        Picture("PopOut"),
-        Text(L["Help Popout Intro"]),
-        Term(L["Close On Earn"], L["Help Popout Close On Earn"])
     )
 }
 

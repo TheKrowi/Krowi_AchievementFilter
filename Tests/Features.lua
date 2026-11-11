@@ -19,11 +19,16 @@ local features = addon.Tests.Features
 -- Switch: its saved path in the profile; Frame: a frame it makes; Data: what its data load keeps
 -- Help: the section id of its help page
 -- Opener: it hosts the achievement menu (Slots.lua, AchievementMenu.SetOpener); RowPart: it adds a part to the rows
--- (Slots.lua, RowParts)
+-- (Slots.lua, RowParts); MenuEntry: it adds an entry to the achievement menu (Slots.lua, AchievementMenu); Modifier: a
+-- modifier click on a row reaches it (Slots.lua, RowModifiers); AfterDataLoad: it runs after the login data load
+-- (Features.lua, AfterDataLoad); Opens: the table whose Open its menu entry and modifier call, so the checks press them
+-- with Open recorded instead of opening a window
 features.Known = {
     {Name = "RewardPreview", Switch = {"Features", "RewardPreview"}, Frame = "KrowiAF_RewardPreview", Help = "rewards",
         Data = function() return addon.Data.RewardPreviewData end},
-    {Name = "RightClickMenu", Switch = {"Features", "RightClickMenu"}, Help = "rightclick", Opener = true, RowPart = true}
+    {Name = "RightClickMenu", Switch = {"Features", "RightClickMenu"}, Help = "rightclick", Opener = true, RowPart = true},
+    {Name = "PopOut", Switch = {"Features", "PopOut"}, Help = "popout", MenuEntry = true, Modifier = true, AfterDataLoad = true,
+        Opens = function() return addon.Gui.AchievementPopout end}
 }
 
 -- Check: what is observed; Recorded and Target per boot state; When: the field of Known a feature needs for the check,
@@ -40,6 +45,11 @@ features.Scenarios = {
     {Check = "opener", When = "Opener", Recorded = {off = "no opener", on = "opener"}, Target = {off = "no opener", on = "opener"}},
     -- the row's parts, such as the menu button, are made only while their feature is started
     {Check = "rowpart", When = "RowPart", Recorded = {off = "no part", on = "part"}, Target = {off = "no part", on = "part"}},
+    -- its entry in the achievement menu, its modifier click on a row and its step after the data load, only while started
+    -- the entry's button and the modifier click are pressed, Open recorded (WithOpenRecorded)
+    {Check = "menuentry", When = "MenuEntry", Recorded = {off = "no entry", on = "entry opens"}, Target = {off = "no entry", on = "entry opens"}},
+    {Check = "modifier", When = "Modifier", Recorded = {off = "no modifier", on = "modifier opens"}, Target = {off = "no modifier", on = "modifier opens"}},
+    {Check = "afterload", When = "AfterDataLoad", Recorded = {off = "not run", on = "ran"}, Target = {off = "not run", on = "ran"}},
     {Check = "load", Recorded = {off = "nothing made", on = "nothing made"}, Target = {off = "nothing made", on = "nothing made"}}
 }
 
@@ -104,6 +114,84 @@ function observe.rowpart(feature)
         end
     end
     return "no part"
+end
+
+local function Owns(entries, feature)
+    for _, entry in ipairs(entries or {}) do
+        if entry.Owner == feature.Name then
+            return true
+        end
+    end
+    return false
+end
+
+-- Runs fn with the feature's Open recorded instead of opening a window, and the modifier the setting names held
+-- (addon.IsCustomModifierKeyDown, the addon's own function; no game global is touched). Returns the achievement Open
+-- got, or nil; and whether fn ran without an error. Only Pop Out names an Open (Known, Opens).
+local function WithOpenRecorded(feature, fn)
+    local target = feature.Opens()
+    local isDown, open = addon.IsCustomModifierKeyDown, target.Open
+    local setting = addon.Options.db.profile.Achievements.Modifiers.PopOut
+    local opened
+    addon.IsCustomModifierKeyDown = function(modifier) return modifier == setting end
+    target.Open = function(_, achievement) opened = achievement end
+    local ok = pcall(fn)
+    addon.IsCustomModifierKeyDown, target.Open = isDown, open
+    return opened, ok
+end
+
+-- Its entry in the slot, and pressing that entry's button opens the achievement (Features/PopOut/MenuEntry.lua): a
+-- stand-in menu builder records the button the entry adds
+function observe.menuentry(feature)
+    local entry
+    for _, candidate in ipairs(addon.Slots.AchievementMenu.Entries) do
+        if candidate.Owner == feature.Name then
+            entry = candidate
+        end
+    end
+    if not entry then
+        return "no entry"
+    end
+    if not feature.Opens then
+        return "entry"
+    end
+    local achievement, button = {Id = -1}, nil
+    local builder = {
+        CreateButtonAndAdd = function(_, _, _, onClick) button = button or onClick end,
+        Close = function() end
+    }
+    local opened, ok = WithOpenRecorded(feature, function()
+        entry:Add({}, achievement, builder, nil)
+        if button then button() end
+    end)
+    return ok and opened == achievement and "entry opens" or "entry does not open"
+end
+
+-- Its entry in the slot, and a modifier click on a row reaching the slot opens the row's achievement
+-- (Slots.RowModifiers.Handle, which AchievementButtonMixin.lua's ProcessModifiers calls last)
+function observe.modifier(feature)
+    local slot = addon.Slots.RowModifiers
+    if not slot then
+        return "no slot"
+    end
+    if not Owns(slot.Entries, feature) then
+        return "no modifier"
+    end
+    local row = {Achievement = {Id = -1}}
+    local opened, ok = WithOpenRecorded(feature, function() slot.Handle(row) end)
+    return ok and opened == row.Achievement and "modifier opens" or "modifier does not open"
+end
+
+-- Whether the registry ran the feature's AfterDataLoad; nil before the data load finished
+function observe.afterload(feature)
+    local registry = addon.Features
+    if type(registry.RanAfterDataLoad) ~= "function" then
+        return "no phase"
+    end
+    if not registry.DataHasLoaded() then
+        return nil, "the data load has not finished"
+    end
+    return registry.RanAfterDataLoad(feature.Name) and "ran" or "not run"
 end
 
 function observe.slots(feature)

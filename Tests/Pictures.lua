@@ -625,6 +625,9 @@ steps = {
         Picture = "PopOut",
         Text = "an achievement popped out",
         Run = function()
+            if not addon.Features.IsStarted("PopOut") then -- switched off (Features.lua)
+                return "Pop Out is off"
+            end
             CloseMenus()
             live.PopoutsBefore = {}
             for id in next, addon.Gui.AchievementPopout.OpenPopouts do
@@ -636,7 +639,7 @@ steps = {
         end,
         -- With Fade when not hovered on (the player's profile) the pop-out is see-through while the mouse is off it,
         -- which the pink shot shows: the picture has it as when hovered. The mouse's next enter or leave fades it again
-        -- (Gui/AchievementPopout/AchievementPopoutMixin.lua UpdateChrome)
+        -- (Features/PopOut/AchievementPopoutMixin.lua UpdateChrome)
         After = function()
             local popout = live.Scene and live.Scene.Popout
             if popout then

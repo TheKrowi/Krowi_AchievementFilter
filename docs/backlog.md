@@ -70,7 +70,7 @@ Follow-ups that are not a work item yet. When one is taken up, it gets its own w
   - `ACHIEVEMENT_EARNED` appends the earned achievement's meta criteria to `criteriaCache` again (`Data/AchievementCache.lua:53, 188`).
   - `newAchievementsEarned` never shrinks (`Data/SavedData/AchievementData.lua:197-199`).
   - `SideButtonSystem:Load` adds two more Show/Hide hooks each time it runs again (`Gui/EventReminder/SideButtonSystem.lua:92-98`).
-  - `KrowiAF_SavedData.PopoutHideDebug` keeps a stack per achievement ever popped out (`Gui/AchievementPopout/AchievementPopout.lua:213-214`).
+  - `KrowiAF_SavedData.PopoutHideDebug` keeps a stack per achievement ever popped out (`Features/PopOut/AchievementPopout.lua`, `OnPopoutHide`).
 - **Saved data no code reads any more** stays in the file and in memory: `KrowiAF_SavedData.CalendarEventsCacheTest`, `VerifyHash` and `DFHashVerify` (about 1 MB on the maintainer's account). A `DataIntegrityManager` solution can drop them.
 
 ## From the 103.0 release (2026-10-14)

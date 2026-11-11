@@ -108,7 +108,7 @@ addon.Gui.AchievementButton = addon.Gui.AchievementButton or {}
 local achievementButton = addon.Gui.AchievementButton
 
 -- Exposed on the module table so other button clones (e.g. the popout) can reuse the same
--- shift-click-to-track/paste-to-chat/watch/exclude/pop-out modifier behavior.
+-- shift-click-to-track/paste-to-chat/watch/exclude modifier behavior, and the features' modifiers after them.
 function achievementButton.ProcessModifiers(self, ignoreModifiers)
 	if not IsModifierKeyDown() or ignoreModifiers then
 		return
@@ -146,10 +146,8 @@ function achievementButton.ProcessModifiers(self, ignoreModifiers)
 		end
 		return true
 	end
-	if addon.IsCustomModifierKeyDown(addon.Options.db.profile.Achievements.Modifiers.PopOut) then
-		addon.Gui.AchievementPopout:Open(self.Achievement)
-		return true
-	end
+	-- The features' modifiers (Slots.lua, RowModifiers)
+	addon.Slots.RowModifiers.Handle(self)
 	return true
 end
 
