@@ -10,6 +10,6 @@ Since 106 (`docs/work/2026-11-08-feature-split-poc`) a feature lives in `Feature
 
 A feature reaches the core through the slots (`Slots.lua`: achievement data fields, row icons, row parts, row modifiers, achievement menu entries; the right-click menu hosts the menu slot, which the core opens through `Slots.AchievementMenu.Open`) and the registry's options (with rows put into a core group, `Into`), help and after-the-data-load (`AfterDataLoad`) parts; the core never names a feature and a feature never names another (`feature-boundary` lint rule; Tests exempt).
 
-Every feature PR proves: the `features` suite headless, the boundary rule, a `/kaftest matrix` run on Retail and Mists (`.claude/tools/Run-GameTests.ps1 -Matrix`), and the memory after login with the feature off and on.
+Every feature PR proves: the `features` suite headless, the boundary rule, every text of the feature in all 11 languages (`feature-texts` rule, `.claude/rules/localization.md`), a `/kaftest matrix` run on Retail and Mists (`.claude/tools/Run-GameTests.ps1 -Matrix`), and the memory after login with the feature off and on.
 
 The registry, the slots and the first feature in detail: `docs/architecture.md`, Features.

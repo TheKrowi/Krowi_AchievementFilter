@@ -7,6 +7,15 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Pop Out"] = "浮動視窗"
+L["Close Popout"] = "關閉浮動視窗"
+L["Remember Size"] = "記住大小"
+L["Snap Distance"] = "吸附距離"
+L["Appearance"] = "外觀"
+L["Faded Opacity"] = "淡化不透明度"
+L["Preview Reward"] = "預覽獎勵"
+L["Reward Preview"] = "獎勵預覽"
+L["Choose one of {count} rewards"] = "從{count}個獎勵中選擇一個"
 L["Preview on Mouseover"] = "滑鼠指向時預覽"
 L["Starting Height"] = "初始高度"
 L["Help Rewards Intro No Icon"] = "在成就的右鍵選單中選擇{previewReward}，即可查看其獎勵。拖曳模型可旋轉，拖曳角落可調整視窗大小。"
