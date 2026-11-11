@@ -7,6 +7,9 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Click Modifier"] = "點擊輔助鍵"
+L["Help Popout Intro {modifier}"] = "按住{modifier}並點擊成就，可將其彈出為一個停留在螢幕上的小視窗。將一個浮動視窗拖曳到另一個上，即可將它們疊在一起。"
+L["Help Popout Intro No Modifier"] = "先為{clickModifier}設定一個按鍵，然後按住該鍵點擊成就，即可將其彈出為一個停留在螢幕上的小視窗。將一個浮動視窗拖曳到另一個上，即可將它們疊在一起。"
 L["Go to {section}"] = "前往{section}"
 L["Go to {section} Desc"] = "開啟選項中的{section}部分。"
 L["Feature Controls Desc"] = "僅在{feature}啟用時生效。可在其所屬部分的頂部啟用或停用。"
@@ -547,7 +550,6 @@ L["Help Overview Title"] = "如何使用這些選項"
 L["Help Plugins Intro"] = "針對其他插件的修正，以及ElvUI、GW 2 UI和EllesmereUI的美化外觀。美化外觀需在對應插件中開啟或關閉；在此列出只是方便你查看已啟用的項目。"
 L["Help Plugins Title"] = "其他插件"
 L["Help Popout Close On Earn"] = "獲得對應成就後，浮動視窗會自動關閉。"
-L["Help Popout Intro"] = "Ctrl+點擊成就，可將其彈出為一個停留在螢幕上的小視窗。將一個浮動視窗拖曳到另一個上，即可將它們疊在一起。"
 L["Help Profiles Intro"] = "設定和過濾器各自使用獨立的設定檔。可在角色之間共用，也可為某個角色單獨使用一個設定檔。"
 L["Help Profiles Title"] = "設定檔"
 L["Help Rewards Intro"] = "點擊成就上的預覽圖示，或在其右鍵選單中選擇{previewReward}，即可查看其獎勵。拖曳模型可旋轉，拖曳角落可調整視窗大小。"

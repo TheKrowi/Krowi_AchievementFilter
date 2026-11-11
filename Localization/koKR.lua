@@ -7,6 +7,9 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Click Modifier"] = "클릭 보조 키"
+L["Help Popout Intro {modifier}"] = "{modifier} 키를 누른 채 업적을 클릭하면 화면에 계속 남는 작은 창으로 띄웁니다. 팝아웃 하나를 다른 팝아웃 위로 끌어 놓으면 겹쳐 쌓입니다."
+L["Help Popout Intro No Modifier"] = "{clickModifier}에 키를 지정한 뒤, 그 키를 누른 채 업적을 클릭하면 화면에 계속 남는 작은 창으로 띄웁니다. 팝아웃 하나를 다른 팝아웃 위로 끌어 놓으면 겹쳐 쌓입니다."
 L["Go to {section}"] = "{section}(으)로 이동"
 L["Go to {section} Desc"] = "옵션의 {section} 항목을 엽니다."
 L["Feature Controls Desc"] = "{feature}이(가) 활성화되어 있을 때만 작동합니다. 해당 항목 맨 위에서 켜거나 끌 수 있습니다."
@@ -353,7 +356,6 @@ L["Help Overview Title"] = "옵션 사용법"
 L["Help Plugins Intro"] = "다른 애드온을 위한 수정 사항과 ElvUI, GW2 UI, EllesmereUI 스킨. 스킨은 해당 애드온에서 켜고 끄며, 무엇이 켜져 있는지 볼 수 있도록 여기에 표시됩니다."
 L["Help Plugins Title"] = "다른 애드온"
 L["Help Popout Close On Earn"] = "업적을 달성하면 팝아웃이 저절로 닫힙니다."
-L["Help Popout Intro"] = "업적을 컨트롤-클릭하면 화면에 계속 남는 작은 창으로 띄웁니다. 팝아웃 하나를 다른 팝아웃 위로 끌어 놓으면 겹쳐 쌓입니다."
 L["Help Profiles Intro"] = "설정과 필터는 각각 별도의 프로필을 사용합니다. 여러 캐릭터가 하나를 함께 쓰거나, 캐릭터에게 전용 프로필을 줄 수 있습니다."
 L["Help Profiles Title"] = "프로필"
 L["Help Rewards Intro"] = "업적의 미리보기 아이콘을 클릭하거나 오른쪽 클릭 메뉴에서 {previewReward} 항목을 선택하면 보상을 볼 수 있습니다. 모델을 끌어 회전하고, 모서리를 끌어 창 크기를 조절합니다."

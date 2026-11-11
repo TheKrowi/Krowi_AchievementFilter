@@ -11,12 +11,13 @@ All notable changes to this project will be documented in this file.
 - The Reward preview settings have shorter names, and Width and Height say that resizing the window changes them
 - The rotation, width and height settings of the reward preview stay available when its icon on achievements is turned off, since they also apply to a preview opened from the right-click menu
 - The Right-click menu settings have shorter names and say plainly what they do
-- The Pop Out modifier also shows in the Pop Out settings, and each place has a button to the other; it is greyed out while pop outs are turned off
+- The Pop Out modifier also shows in the Pop Out settings, as Click Modifier, and each place has a button to the other; it is greyed out while pop outs are turned off
 - Krowi_Options library updated to 2.1
 
 ### Fixed
 - Right-clicking a guild achievement or a statistic linked in chat no longer opens an empty menu or gives an error
 - The right-click menu button on achievements now shows on Mists Classic
+- The Pop Out help now names the key you set as the Pop Out modifier instead of always Ctrl
 
 ## 105.0 - 2026-11-08
 ### Added

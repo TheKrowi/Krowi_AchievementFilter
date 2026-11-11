@@ -7,6 +7,9 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Click Modifier"] = "Modificador de clique"
+L["Help Popout Intro {modifier}"] = "Segure {modifier} e clique em uma conquista para destacá-la em uma pequena janela que fica na tela. Arraste uma janela destacada sobre outra para empilhá-las."
+L["Help Popout Intro No Modifier"] = "Defina uma tecla em {clickModifier} e segure-a ao clicar em uma conquista para destacá-la em uma pequena janela que fica na tela. Arraste uma janela destacada sobre outra para empilhá-las."
 L["Go to {section}"] = "Ir para {section}"
 L["Go to {section} Desc"] = "Abre a seção {section} das opções."
 L["Feature Controls Desc"] = "Só funciona enquanto {feature} estiver ativado. Ative ou desative-o no topo da sua própria seção."
@@ -376,7 +379,6 @@ L["Help Overview Title"] = "Como usar estas opções"
 L["Help Plugins Intro"] = "Correções para outros addons e as skins do ElvUI, GW2 UI e EllesmereUI. Uma skin é ativada ou desativada no próprio addon; ela aparece aqui para você ver o que está ativo."
 L["Help Plugins Title"] = "Outros addons"
 L["Help Popout Close On Earn"] = "Uma janela destacada se fecha sozinha quando você obtém a conquista dela."
-L["Help Popout Intro"] = "Clique com Ctrl em uma conquista para destacá-la em uma pequena janela que fica na tela. Arraste uma janela destacada sobre outra para empilhá-las."
 L["Help Profiles Intro"] = "Configurações e filtros têm cada um o seu próprio perfil. Compartilhe um entre personagens ou dê a um personagem um perfil só dele."
 L["Help Profiles Title"] = "Perfis"
 L["Help Rewards Intro"] = "Clique no ícone de prévia de uma conquista, ou escolha {previewReward} no menu do clique direito dela, para ver a recompensa. Arraste o modelo para girá-lo e arraste o canto para redimensionar a janela."

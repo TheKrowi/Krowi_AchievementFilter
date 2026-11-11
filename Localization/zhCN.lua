@@ -7,6 +7,9 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Click Modifier"] = "点击修饰键"
+L["Help Popout Intro {modifier}"] = "按住{modifier}并点击成就，可将其弹出为一个停留在屏幕上的小窗口。将一个成就浮窗拖到另一个上即可将它们叠放在一起。"
+L["Help Popout Intro No Modifier"] = "先为{clickModifier}设置一个按键，然后按住该键点击成就，即可将其弹出为一个停留在屏幕上的小窗口。将一个成就浮窗拖到另一个上即可将它们叠放在一起。"
 L["Go to {section}"] = "前往{section}"
 L["Go to {section} Desc"] = "打开选项中的{section}部分。"
 L["Feature Controls Desc"] = "仅在{feature}启用时生效。可在其所属部分的顶部启用或禁用。"
@@ -582,7 +585,6 @@ L["Help Overview Title"] = "如何使用这些选项"
 L["Help Plugins Intro"] = "针对其他插件的修复，以及ElvUI、GW 2 UI和EllesmereUI的美化外观。美化外观需在对应插件中开启或关闭；在此列出只是方便你查看启用了哪些。"
 L["Help Plugins Title"] = "其他插件"
 L["Help Popout Close On Earn"] = "获得对应成就后，成就浮窗会自动关闭。"
-L["Help Popout Intro"] = "Ctrl+点击成就，可将其弹出为一个停留在屏幕上的小窗口。将一个成就浮窗拖到另一个上即可将它们叠放在一起。"
 L["Help Profiles Intro"] = "设置和过滤器各自使用独立的配置文件。可在角色之间共享，也可为某个角色单独使用一个配置文件。"
 L["Help Profiles Title"] = "配置文件"
 L["Help Rewards Intro"] = "点击成就上的预览图标，或在其右键菜单中选择{previewReward}，即可查看其奖励。拖动模型可旋转，拖动角落可调整窗口大小。"

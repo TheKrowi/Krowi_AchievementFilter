@@ -6,6 +6,9 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Click Modifier"] = true
+L["Help Popout Intro {modifier}"] = "Hold {modifier} while clicking an achievement to pop it out into a small window that stays on screen. Drag one Pop Out onto another to stack them."
+L["Help Popout Intro No Modifier"] = "Set {clickModifier} to a key, then hold it while clicking an achievement to pop it out into a small window that stays on screen. Drag one Pop Out onto another to stack them."
 L["Go to {section}"] = true
 L["Go to {section} Desc"] = "Opens the {section} section of the options."
 L["Feature Controls Desc"] = "Works only while {feature} is on. Turn it on or off at the top of its own section."
@@ -581,7 +584,6 @@ L["Help Overview Title"] = "Using these options"
 L["Help Plugins Intro"] = "Fixes for other addons, and the skins of ElvUI, GW2 UI and EllesmereUI. A skin is turned on or off in that addon; it is listed here so you can see what is on."
 L["Help Plugins Title"] = "Other addons"
 L["Help Popout Close On Earn"] = "A Pop Out closes by itself once you earn its achievement."
-L["Help Popout Intro"] = "Ctrl-click an achievement to pop it out into a small window that stays on screen. Drag one Pop Out onto another to stack them."
 L["Help Profiles Intro"] = "Settings and filters each keep their own profile. Share one between characters, or give a character a profile of its own."
 L["Help Profiles Title"] = "Profiles"
 L["Help Rewards Intro"] = "Click the preview icon on an achievement, or choose {previewReward} in its right-click menu, to see its reward. Drag the model to turn it, and drag the corner to resize the window."

@@ -26,4 +26,7 @@ Help page (`Help Popout Intro`, `Help Popout Close On Earn`): the intro says "Ct
 Translations: each picked name or description becomes a new key in all 11 locale files, translated in all ten languages; the old keys leave every locale file and are deleted on CurseForge after the merge, on Krowi's approval. The descriptions that took `{popout}` drop it: the section's own heading names the Pop Out.
 
 ## Decision
-<At the look gate.>
+2026-11-11, at the look gate (gates.md):
+- Row 1: the modifier row in Pop Out's section is named **Click Modifier** (Krowi: "name pop out in the popouts section "click modifier""); Keys and clicks keeps **Pop Out**. The description is unchanged.
+- Help page: the intro names the key the player set ("Hold {modifier} while clicking ..."), and with None says to set Click Modifier to a key (Krowi: "help says ctrl-click regardless of the pop out modifier"). New phrases `Click Modifier`, `Help Popout Intro {modifier}` and `Help Popout Intro No Modifier` in every locale; `Help Popout Intro` leaves them all and is deleted on CurseForge after the merge, on Krowi's approval.
+- Rows 2 to 14: not answered yet.

@@ -29,7 +29,14 @@ local function Heading(text)
     return {Heading = text}
 end
 
+-- text: a string, or a function returning one, called each time the block's Text is read, so a line that names a setting
+-- follows it (the pane reads a section's blocks every time it draws them, WindowHelp.lua ShowSectionHelp)
 local function Text(text)
+    if type(text) == "function" then
+        return setmetatable({}, {__index = function(_, key)
+            if key == "Text" then return text() end
+        end})
+    end
     return {Text = text}
 end
 

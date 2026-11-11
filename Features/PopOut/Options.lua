@@ -44,11 +44,12 @@ local function Range(order, key, name, desc, min, max, step, disabledBy, refresh
     }
 end
 
--- The modifier's dropdown, the same in both places
-local function ModifierRow(order)
+-- The modifier's dropdown, the same in both places but for its name: Keys and clicks names actions (Pop Out), Pop Out's
+-- own section names the key (Click Modifier; Krowi, 2026-11-11)
+local function ModifierRow(order, name)
     return {
         order = order, type = "select", width = AdjustedWidth(0.93),
-        name = L["Pop Out"],
+        name = name,
         desc = (L["Pop Out"] .. "\n\n" .. L["Feature Controls Desc"]:K_ReplaceVars({feature = L["Pop Out"]}))
             :KAF_AddDefaultValueText("Achievements.Modifiers.PopOut", addon.Modifiers),
         values = addon.Modifiers,
@@ -70,7 +71,7 @@ end
 local function Rows()
     local popout = L["Pop Out"]
     return {
-        Modifier = ModifierRow(1),
+        Modifier = ModifierRow(1, L["Click Modifier"]),
         GoToKeys = GoTo(2, "keys", L["Keys and clicks"]),
         PersistAcrossSessions = Toggle(3, "PersistAcrossSessions", L["Persist Across Sessions"], L["Persist Across Sessions Desc"]),
         RememberSize = Toggle(4, "RememberSize", L["Remember Size"], L["Remember Size Desc"]:K_ReplaceVars(popout)),
@@ -105,7 +106,7 @@ end
 -- The modifier with the core's other modifiers in Keys and clicks, after them; its button opens this section
 local function Into()
     return {
-        {Path = "General.args.KeyBinding.args.General.args.Modifiers", Key = "PopOut", Row = ModifierRow(), FollowsSwitch = true,
+        {Path = "General.args.KeyBinding.args.General.args.Modifiers", Key = "PopOut", Row = ModifierRow(nil, L["Pop Out"]), FollowsSwitch = true,
             With = {Key = "GoToPopOut", Row = GoTo(nil, "popout", L["Pop Out"])}}
     }
 end

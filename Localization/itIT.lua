@@ -7,6 +7,9 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Click Modifier"] = "Modificatore del clic"
+L["Help Popout Intro {modifier}"] = "Tieni premuto {modifier} e fai clic su un'impresa per staccarla in una piccola finestra che resta sullo schermo. Trascina una finestra staccata su un'altra per impilarle."
+L["Help Popout Intro No Modifier"] = "Assegna un tasto a {clickModifier}, poi tienilo premuto mentre fai clic su un'impresa per staccarla in una piccola finestra che resta sullo schermo. Trascina una finestra staccata su un'altra per impilarle."
 L["Go to {section}"] = "Vai a {section}"
 L["Go to {section} Desc"] = "Apre la sezione {section} delle opzioni."
 L["Feature Controls Desc"] = "Funziona solo mentre {feature} è attivo. Attivalo o disattivalo in cima alla sua sezione."
@@ -192,7 +195,6 @@ L["Help Overview Title"] = "Come usare queste opzioni"
 L["Help Plugins Intro"] = "Correzioni per altri addon e le skin di ElvUI, GW2 UI ed EllesmereUI. Una skin si attiva o disattiva in quell'addon; è elencata qui per farti vedere cosa è attivo."
 L["Help Plugins Title"] = "Altri addon"
 L["Help Popout Close On Earn"] = "Una finestra staccata si chiude da sola quando ottieni la sua impresa."
-L["Help Popout Intro"] = "Fai Ctrl-clic su un'impresa per staccarla in una piccola finestra che resta sullo schermo. Trascina una finestra staccata su un'altra per impilarle."
 L["Help Profiles Intro"] = "Impostazioni e filtri hanno ciascuno il proprio profilo. Condividine uno tra più personaggi, o dai a un personaggio un profilo tutto suo."
 L["Help Profiles Title"] = "Profili"
 L["Help Rewards Intro"] = "Fai clic sull'icona di anteprima di un'impresa, o scegli {previewReward} nel suo menu del clic destro, per vederne la ricompensa. Trascina il modello per ruotarlo e trascina l'angolo per ridimensionare la finestra."

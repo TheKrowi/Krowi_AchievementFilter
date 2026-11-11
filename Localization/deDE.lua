@@ -7,6 +7,9 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Click Modifier"] = "Klick-Modifikator"
+L["Help Popout Intro {modifier}"] = "Halte {modifier} gedrückt und klicke auf einen Erfolg, um ihn in einem kleinen Fenster zu öffnen, das auf dem Bildschirm bleibt. Ziehe ein Pop Out auf ein anderes, um sie zu stapeln."
+L["Help Popout Intro No Modifier"] = "Stelle {clickModifier} auf eine Taste ein und halte sie gedrückt, während du auf einen Erfolg klickst, um ihn in einem kleinen Fenster zu öffnen, das auf dem Bildschirm bleibt. Ziehe ein Pop Out auf ein anderes, um sie zu stapeln."
 L["Go to {section}"] = "Zu {section}"
 L["Go to {section} Desc"] = "Öffnet den Abschnitt {section} der Optionen."
 L["Feature Controls Desc"] = "Wirkt nur, solange {feature} aktiviert ist. Aktiviere oder deaktiviere es oben in seinem eigenen Abschnitt."
@@ -577,7 +580,6 @@ L["Help Overview Title"] = "So nutzt du diese Optionen"
 L["Help Plugins Intro"] = "Korrekturen für andere Addons und die Skins von ElvUI, GW2 UI und EllesmereUI. Ein Skin wird im jeweiligen Addon ein- oder ausgeschaltet; er steht hier, damit du siehst, was aktiv ist."
 L["Help Plugins Title"] = "Andere Addons"
 L["Help Popout Close On Earn"] = "Ein Pop Out schließt sich von selbst, sobald du seinen Erfolg erringst."
-L["Help Popout Intro"] = "Ctrl-Klick auf einen Erfolg öffnet ihn in einem kleinen Fenster, das auf dem Bildschirm bleibt. Ziehe ein Pop Out auf ein anderes, um sie zu stapeln."
 L["Help Profiles Intro"] = "Einstellungen und Filter haben jeweils ein eigenes Profil. Teile eines zwischen Charakteren oder gib einem Charakter ein eigenes Profil."
 L["Help Profiles Title"] = "Profile"
 L["Help Rewards Intro"] = "Klicke auf das Vorschausymbol eines Erfolgs oder wähle {previewReward} in seinem Rechtsklickmenü, um seine Belohnung zu sehen. Ziehe am Modell, um es zu drehen, und an der Ecke, um die Fenstergröße zu ändern."

@@ -23,12 +23,22 @@ local function Scene(ready)
     kit.Ready(ready, {Popout = popout, Achievement = achievement})
 end
 
+-- Names the modifier the player set, read each time the page draws; None (1) opens no Pop Out by clicking
+local function Intro()
+    local db = addon.Options.db
+    local modifier = db and db.profile.Achievements.Modifiers.PopOut or 3
+    if modifier == 1 then
+        return L["Help Popout Intro No Modifier"]:K_ReplaceVars({clickModifier = L["Click Modifier"]})
+    end
+    return L["Help Popout Intro {modifier}"]:K_ReplaceVars({modifier = addon.Modifiers[modifier] or addon.Modifiers[3]})
+end
+
 addon.Features.AddHelp("PopOut", {
     Id = "popout",
     Title = L["Pop Out"],
     Blocks = blocks.Blocks(
         blocks.Picture("PopOut"),
-        blocks.Text(L["Help Popout Intro"]),
+        blocks.Text(Intro),
         blocks.Term(L["Close On Earn"], L["Help Popout Close On Earn"])
     ),
     Scene = Scene

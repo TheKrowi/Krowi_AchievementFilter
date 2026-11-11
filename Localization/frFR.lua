@@ -7,6 +7,9 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Click Modifier"] = "Modificateur de clic"
+L["Help Popout Intro {modifier}"] = "Maintenez {modifier} en cliquant sur un haut fait pour l'ouvrir dans une petite fenêtre qui reste à l'écran. Faites glisser une fenêtre flottante sur une autre pour les empiler."
+L["Help Popout Intro No Modifier"] = "Choisissez une touche pour {clickModifier}, puis maintenez-la en cliquant sur un haut fait pour l'ouvrir dans une petite fenêtre qui reste à l'écran. Faites glisser une fenêtre flottante sur une autre pour les empiler."
 L["Go to {section}"] = "Aller à {section}"
 L["Go to {section} Desc"] = "Ouvre la section {section} des options."
 L["Feature Controls Desc"] = "Ne fonctionne que si {feature} est activé. Activez-le ou désactivez-le en haut de sa propre section."
@@ -580,7 +583,6 @@ L["Help Overview Title"] = "Utiliser ces options"
 L["Help Plugins Intro"] = "Des correctifs pour d'autres addons, et les skins d'ElvUI, de GW2 UI et d'EllesmereUI. Un skin s'active ou se désactive dans cet addon ; il est listé ici pour que vous voyiez ce qui est actif."
 L["Help Plugins Title"] = "Autres addons"
 L["Help Popout Close On Earn"] = "Une fenêtre flottante se ferme d'elle-même dès que vous obtenez son haut fait."
-L["Help Popout Intro"] = "Un Ctrl-clic sur un haut fait l'ouvre dans une petite fenêtre qui reste à l'écran. Faites glisser une fenêtre flottante sur une autre pour les empiler."
 L["Help Profiles Intro"] = "Les paramètres et les filtres ont chacun leur propre profil. Partagez-en un entre plusieurs personnages, ou donnez à un personnage son propre profil."
 L["Help Profiles Title"] = "Profils"
 L["Help Rewards Intro"] = "Cliquez sur l'icône d'aperçu d'un haut fait, ou choisissez {previewReward} dans son menu du clic droit, pour voir sa récompense. Faites glisser le modèle pour le tourner, et le coin pour redimensionner la fenêtre."
