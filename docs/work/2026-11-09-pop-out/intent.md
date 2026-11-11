@@ -1,5 +1,5 @@
 # Intent: Pop Out as a feature that switches off (106, step 3)
-Author: Krowi (maintainer). Source: idea; 106's feature split (docs/work/2026-11-08-feature-split-poc), the feature after Reward preview and the Right-click menu, chosen 2026-11-09. Status: accepted
+Author: Krowi (maintainer). Source: idea; 106's feature split (docs/work/2026-11-08-feature-split-poc), the feature after Reward preview and the Right-click menu, chosen 2026-11-09. Status: done
 
 ## Problem
 Pop Out (an achievement row in a small window of its own, kept across sessions, snapping to other Pop Outs) is a trail through the code like the two features before it:

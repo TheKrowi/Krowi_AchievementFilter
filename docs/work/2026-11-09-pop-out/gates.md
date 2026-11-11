@@ -1,5 +1,5 @@
 # Gates: 2026-11-09-pop-out
-Class: feature
+Class: harness
 
 | Date | Gate | Question | Recommended | Answer | Outcome |
 |---|---|---|---|---|---|
@@ -22,3 +22,5 @@ Class: feature
 | 2026-11-11 | look | The modifier row's description | One description for both places | "description on the click modifier in pop out section is identical to the one in the keys and clicks section, it does not make sense. descriptions and names should make sense for the section they're in" | correction |
 | 2026-11-11 | look | The Keys and clicks row's description (review page row 1b) | "Pop Out", as its sibling rows repeat their names, plus the line that Pop Out's switch controls it | "1b is odd" | correction |
 | 2026-11-11 | look | Names for the section they are in (review page rows 2 to 14, asked for: "also add new setting name suggestions. 5, Default Width, for example is out of place now too") | Reopen After Login, keep Remember Size, Open Where Last Moved, Starting Width, Close When Earned, Close Delay, Snap into Stacks, keep Snap Distance, Close Button on Mouseover, Resize Button on Mouseover, Fade without Mouseover, keep Faded Opacity, Fade Time | "ok on all" | took |
+| 2026-11-11 | look | The Pop Out look, with the names and texts above, before the full suites | Approve and run the matrix on Retail and Mists | "pop out looks good, you can ignore factorio for now during this session only or when i say you can;t anymore. go ahaead" | took |
+| 2026-11-11 | design | Get-ChangeClass.ps1 says harness: existing lines of `.claude/tools/Check-Repo.jobs` changed (the moved files' paths, and its header's pointer to the Background jobs rule, now in .github/copilot-instructions.md) | Raise Class to harness in this PR: the paths follow the files this PR moves and cannot go first in a PR of their own; harness adds no gate the feature class did not already ask | - | auto |

@@ -1,5 +1,5 @@
 # Spec: Pop Out as a feature that switches off (106, step 3)
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 

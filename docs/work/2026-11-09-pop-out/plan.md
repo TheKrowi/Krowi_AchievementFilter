@@ -1,5 +1,5 @@
 # Plan: Pop Out as a feature that switches off (106, step 3)
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 ## Context
 106 splits KAF into a core plus switchable features; Reward preview (#405) and the Right-click menu (#412) are done. Pop Out is next. Krowi's decisions (2026-11-09): the spec's option 1; the modifier setting in General's Modifiers group and in Pop Out's section, both greyed while off, each with an icon link button beside the dropdown ("B1"), which needs Krowi_Options to grow first. An Opus review of intent, spec and the first plan (2026-11-09) shaped this version: the steps that change call sites go in one commit, the before-run and PR steps are written out, the library comes first. Branch `feature/2026-11-09-pop-out`, worktree `feature-2026-11-09-pop-out`.
@@ -35,3 +35,7 @@ Spec: [spec.md](spec.md). Status: accepted
 - **Lint:** clean, the scratch boundary check failing once as expected.
 - **In game, Retail 12.1.5 and Mists 5.5.4:** session A (before-run green), session B (matrix green, no new BugGrabber row, memory off and on, the hand checks).
 - **Look gate:** a published page with both clients' screenshots.
+
+## Where the build departed from the plan
+- **The look gate (2026-11-11)** was run on Retail alone, by Krowi's rule (look first, full suites after), with a review page of the section (https://claude.ai/artifact/Erxm6FLjXJd46kMyJ9NA52). It changed texts, not layout: the help names the modifier set (`HelpBlocks.Text` takes a function, read each time the pane draws), each place's modifier row has its own name and description, every description was swept into plain text, and ten settings were renamed for the section they are in (review-options.md, Decision). New and renamed phrases are in all 11 locale files; the old keys left them.
+- **Proof as run (2026-11-11):** before-run on `main` (f169cfaf) green on Retail and Mists; `/kaftest matrix` green on Retail 12.1.5 (1494 passed, 0 failed, 186 skipped) and Mists 5.5.4 (1064 passed, 0 failed, 126 skipped), the memory suite in each step, no BugGrabber row; hand checks on Retail: a Pop Out opened (Show me), reopened after a /reload, gone with the switch off and a reload, back once the switch was on again, the Keys and clicks row greyed with its button live and opening the section. The kit drove the game beside Krowi's Factorio on Krowi's go for this session (Krowi_ClaudeKit 8b27fd4).
