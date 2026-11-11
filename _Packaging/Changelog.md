@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 - The rotation, width and height settings of the reward preview stay available when its icon on achievements is turned off, since they also apply to a preview opened from the right-click menu
 - The Right-click menu settings have shorter names and say plainly what they do
 - The Pop Out modifier also shows in the Pop Out settings, as Click Modifier, and each place has a button to the other; it is greyed out while pop outs are turned off
+- The Pop Out settings have shorter descriptions that say plainly what they do
 - Krowi_Options library updated to 2.1
 
 ### Fixed
