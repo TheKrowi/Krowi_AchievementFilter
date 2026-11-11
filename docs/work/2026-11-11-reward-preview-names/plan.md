@@ -1,5 +1,5 @@
 # Plan: Reward preview's names and descriptions for their section
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 ## Files that change
 - `Localization/<lang>.lua`, all 11: the new phrases `Preview on Mouseover`, `Starting Width`, `Starting Height` and `Help Rewards Intro No Icon` below the "Exported at" line; the five changed descriptions in place, or below that line where a language had no translation yet (esES, esMX, itIT, koKR, ptBR, zhTW); `Show on Mouseover`, `Width` and `Height` removed.

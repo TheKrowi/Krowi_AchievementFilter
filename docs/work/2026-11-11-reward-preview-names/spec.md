@@ -1,5 +1,5 @@
 # Spec: Reward preview's names and descriptions for their section
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. Each setting name in the section makes sense under the section's title and next to Enable; the proposals and their reasons are in [review-options.md](review-options.md), rows 0 to 6.

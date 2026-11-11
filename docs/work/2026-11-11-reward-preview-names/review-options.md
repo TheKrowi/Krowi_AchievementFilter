@@ -18,4 +18,7 @@ Help page (`Help.lua`):
 - H0, the line shown while the feature is off ("Reward preview is disabled. Enable it at the top of this section and reload."): keep, every feature shares it.
 - H1, the intro: today one fixed text, "Click the preview icon on an achievement, or choose Preview Reward in its right-click menu, to see its reward. Drag the model to turn it, and drag the corner to resize the window." With the icon off there is no icon to click. Proposal: the intro is built when the pane draws (`HelpBlocks.Text` with a function, as Pop Out's branch adds it): with the icon on, the text stays as it is; with the icon off, "Choose Preview Reward in an achievement's right-click menu to see its reward. Drag the model to turn it, and drag the corner to resize the window."
 
+## Decision
+2026-11-11, at the look gate (gates.md), on the review page https://claude.ai/artifact/6ySZGi3dPx9F2HyhaQxDtN: "Ok on all (Recommended)". Every proposal above is built, H1a for the help intro. Krowi then left the in-game look and the full suites out ("only text changes and localization"); the review page counts as the look.
+
 Translations: each picked name is a new key in all 11 locale files below the "Exported at" line, translated in all ten languages; "Starting Width" takes Pop Out's translations word for word, so the second merge drops one copy. A changed description keeps its key and gets a new value in every file, as Pop Out did. The old name keys leave every locale file and are deleted on CurseForge after the merge, on Krowi's approval.
