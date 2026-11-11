@@ -34,8 +34,10 @@
                                  under Features/<Name>/ defines, and a feature names nothing another defines
                                  (addon.* and KrowiAF.* it assigns, KrowiAF_* globals, CreateFrame and XML names);
                                  Plugins/<Plugin>/<Name>.lua belongs to feature <Name>; always tree-wide
-      feature-texts    [Error]   every literal L["..."] that Features/ or Features.lua reads has a line in each
-                                 Localization/<lang>.lua (or in Shared.lua); "= true" counts; always tree-wide
+      feature-texts    [Error]   every text a feature's files (Features/, its Plugins/<Plugin>/<Name>.lua, Features.lua)
+                                 read, as L["..."] or as a quoted enUS key in a file with an L[variable] lookup,
+                                 has a line in every language
+                                 (Localization/<lang>[.<Namespace>].lua or Shared.lua); "= true" counts; always tree-wide
       event-clock      [Error]   the event reminder and obtainability files (Gui/EventReminder/, Data/Event*.lua,
                                  Data/Custom*EventTimers.lua, Data/TemporaryObtainable.lua) never call time(): they
                                  judge times by the realm's clock, GetServerTime(), which the sources use
@@ -624,37 +626,48 @@ Write-Timing 'feature-boundary'
 
 # --- feature-texts: every text a feature shows is in every language ----------------------------------------------
 # Krowi, 2026-11-11 (docs/work/2026-11-11-feature-texts-every-language): a feature ships with all its texts in all 11
-# languages, never English in some. Every literal L["..."] a file under Features/ or the registry (Features.lua) reads
-# needs a line in each base locale file Localization/<lang>.lua, or in Localization/Shared.lua (Blizzard's own strings,
-# every language). "= true" in a translated file counts: an English word on purpose (German "Pop Out", "Wowhead"). A
-# key built at run time (L[key]) is not seen; comments are left out. Always tree-wide: a removed locale line breaks a
-# feature nobody touched.
+# languages, never English in some. A feature's file is one under Features/, its skin files (Plugins/<Plugin>/<Name>.lua,
+# as feature-boundary counts them) and the registry (Features.lua). Each key it reads as a literal L["..."], and each
+# other quoted string that is an enUS key in a file that looks a key up at run time (local key = cond and "A" or "B";
+# L[key]; elsewhere a quoted "Open" is a method name for hooksecurefunc),
+# needs a line in every language: in Localization/<lang>.lua or one of its namespaces (<lang>.Plugins.lua,
+# <lang>.WrathClassic.lua), or in Localization/Shared.lua (Blizzard's own strings, every language). "= true" in a
+# translated file counts: an English word on purpose (German "Pop Out", "Wowhead"). Comments are left out, in the locale
+# files too. A key built from parts is not seen. Each file reports its own uses, so an ignore line for one file hides no
+# other. Keys differ by case ("Reward preview", "Reward Preview"), so the sets are ordinal; a hashtable would merge them.
+# Always tree-wide: a removed locale line breaks a feature nobody touched.
 $localeKey = '(?m)^\s*L\["((?:[^"\\]|\\.)*)"\]\s*='
-$localeFiles = @($allFiles | Where-Object { $_ -match '^Localization/[a-z]{2}[A-Z]{2}\.lua$' } | Sort-Object)
-$localeKeys = @{}
-foreach ($rel in $localeFiles) {
-    $localeKeys[$rel] = New-Object 'System.Collections.Generic.HashSet[string]'
-    foreach ($m in [regex]::Matches([Text.Encoding]::UTF8.GetString($fileBytes[$rel]), $localeKey)) { [void]$localeKeys[$rel].Add($m.Groups[1].Value) }
+$localeKeys = @{}   # language -> keys of its base file and namespaces
+foreach ($rel in @($allFiles | Where-Object { $_ -match '^Localization/([a-z]{2}[A-Z]{2})(\.\w+)?\.lua$' })) {
+    $lang = [regex]::Match($rel, '^Localization/([a-z]{2}[A-Z]{2})').Groups[1].Value
+    if (-not $localeKeys.ContainsKey($lang)) { $localeKeys[$lang] = New-Object 'System.Collections.Generic.HashSet[string]' }
+    foreach ($m in [regex]::Matches((& $blankLua ([Text.Encoding]::UTF8.GetString($fileBytes[$rel]))), $localeKey)) { [void]$localeKeys[$lang].Add($m.Groups[1].Value) }
 }
+$languages = @($localeKeys.Keys | Sort-Object)
 $sharedKeys = New-Object 'System.Collections.Generic.HashSet[string]'
 if ($fileBytes.ContainsKey('Localization/Shared.lua')) {
-    foreach ($m in [regex]::Matches([Text.Encoding]::UTF8.GetString($fileBytes['Localization/Shared.lua']), $localeKey)) { [void]$sharedKeys.Add($m.Groups[1].Value) }
+    foreach ($m in [regex]::Matches((& $blankLua ([Text.Encoding]::UTF8.GetString($fileBytes['Localization/Shared.lua']))), $localeKey)) { [void]$sharedKeys.Add($m.Groups[1].Value) }
 }
-$featureTextsSeen = New-Object 'System.Collections.Generic.HashSet[string]'   # keys differ by case ("Reward preview", "Reward Preview"); a hashtable would merge them
-foreach ($rel in @($ownLuaFiles | Where-Object { $_ -like 'Features/*' -or $_ -eq 'Features.lua' })) {
-    $lines = (& $blankLua ([Text.Encoding]::UTF8.GetString($fileBytes[$rel]))) -split "`r?`n"
-    for ($i = 0; $i -lt $lines.Count; $i++) {
-        foreach ($m in [regex]::Matches($lines[$i], '(?<![\w.])(?:addon\.)?L\["((?:[^"\\]|\\.)*)"\]')) {
-            $key = $m.Groups[1].Value
-            if ($sharedKeys.Contains($key) -or -not $featureTextsSeen.Add($key)) { continue }
-            $missing = @($localeFiles | Where-Object { -not $localeKeys[$_].Contains($key) } | ForEach-Object { [IO.Path]::GetFileNameWithoutExtension($_) })
-            if ($missing.Count -gt 0) {
-                Add-Finding 'feature-texts' 'Error' $rel ($i + 1) "text '$key' has no line in $($missing -join ', '); a feature's texts are in every language (.claude/rules/localization.md): translate it into each of those files below the ""Exported at"" line"
+if ($localeKeys.ContainsKey('enUS')) {
+    foreach ($rel in @($ownLuaFiles | Where-Object { $_ -eq 'Features.lua' -or (Get-FeatureOwner $_) })) {
+        $code = & $blankLua ([Text.Encoding]::UTF8.GetString($fileBytes[$rel]))
+        $lines = $code -split "`r?`n"
+        $picksKeys = $code -match '(?<![\w.])(?:addon\.)?L\[\s*[A-Za-z_]'   # only a file that looks a key up at run time; elsewhere a quoted "Open" is a method name
+        $seen = New-Object 'System.Collections.Generic.HashSet[string]'
+        for ($i = 0; $i -lt $lines.Count; $i++) {
+            foreach ($m in [regex]::Matches($lines[$i], '(?<![\w.])(?:addon\.)?(L\[)?"((?:[^"\\]|\\.)*)"')) {
+                $key = $m.Groups[2].Value
+                $literal = $m.Groups[1].Success -and $lines[$i].Substring($m.Index + $m.Length).StartsWith(']')
+                if (-not $literal -and -not ($picksKeys -and $localeKeys['enUS'].Contains($key))) { continue }   # a quoted string that is no text
+                if ($sharedKeys.Contains($key) -or -not $seen.Add($key)) { continue }
+                $missing = @($languages | Where-Object { -not $localeKeys[$_].Contains($key) })
+                if ($missing.Count -gt 0) {
+                    Add-Finding 'feature-texts' 'Error' $rel ($i + 1) "text '$key' has no line in $($missing -join ', '); a feature's texts are in every language (.claude/rules/localization.md): translate it into each of those files below the ""Exported at"" line"
+                }
             }
         }
     }
 }
-$alwaysOnAdded = @('feature-texts')
 Write-Timing 'feature-texts'
 
 # --- options-templates: the options window draws Blizzard's Settings look without Blizzard's Settings code --------
@@ -1195,12 +1208,11 @@ if (Test-Path $ignoreFile) {
         if ($t -match '^(\S+)\s+(\S+)(?:\s+(\S+))?$') { $ignore += @{ Rule = $Matches[1]; Path = $Matches[2]; Name = $Matches[3] } }
     }
 }
-$alwaysOn = @('section-order', 'dup-id', 'saved-variables', 'lua-syntax', 'globals', 'removed-api', 'deprecated-api', 'library-names', 'util-flags', 'background-jobs', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'data-snapshot', 'zone-decisions', 'mapverifier', 'changelog', 'kit', 'feature-boundary', 'instructions')
+$alwaysOn = @('section-order', 'dup-id', 'saved-variables', 'lua-syntax', 'globals', 'removed-api', 'deprecated-api', 'library-names', 'util-flags', 'background-jobs', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'data-snapshot', 'zone-decisions', 'mapverifier', 'changelog', 'kit', 'feature-boundary', 'feature-texts', 'instructions')
 $report = $findings | Where-Object {
     $f = $_
     -not ($ignore | Where-Object { ($_.Rule -eq '*' -or $_.Rule -eq $f.Rule) -and $f.Path -like $_.Path -and (-not $_.Name -or $f.Message.Contains("'$($_.Name)'")) })
 }
-$alwaysOn += $alwaysOnAdded
 if ($ChangedOnly) {
     $report = $report | Where-Object { $changed.ContainsKey($_.Path) -or ($alwaysOn -contains $_.Rule) -or ($_.Rule -eq 'files-xml' -and $_.Message -like 'registered file does not exist*') }
 }
