@@ -1,5 +1,5 @@
 # Spec: Every feature's texts in every language
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. Every literal `L["..."]` key that a file under `Features/` or the registry (`Features.lua`) reads has a line in each of the 11 base locale files (`Localization/<lang>.lua`), or in `Localization/Shared.lua` (Blizzard's own strings, every language).

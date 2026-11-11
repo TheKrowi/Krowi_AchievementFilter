@@ -1,5 +1,5 @@
 # Intent: Every feature's texts in every language
-Author: Krowi (maintainer). Source: idea, 2026-11-11, after Pop Out's review (docs/work/2026-11-09-pop-out) found the shared feature phrases gendered, and the check of them showed Pop Out and Reward preview texts missing in six languages. Status: accepted
+Author: Krowi (maintainer). Source: idea, 2026-11-11, after Pop Out's review (docs/work/2026-11-09-pop-out) found the shared feature phrases gendered, and the check of them showed Pop Out and Reward preview texts missing in six languages. Status: done
 
 ## Problem
 1. The two phrases every feature shares, `Feature Switch Desc` (the Enable row's description) and `Feature Off Help` (the help page's line while a feature is off), agree with a masculine {feature} in frFR, esES, esMX, itIT and ptBR, and with a neuter one in deDE and ruRU's Off Help. Feature titles have every gender: French players read "Une fois désactivé, Fenêtre flottante est entièrement coupé", Spanish players "Vista previa de recompensas está desactivado. Actívalo ...". `Feature Controls Desc` was fixed for this in Pop Out's change by naming "the feature" before the title.
