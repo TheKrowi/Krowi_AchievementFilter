@@ -7,6 +7,16 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Fade Time"] = "Tempo de esmaecimento"
+L["Fade without Mouseover"] = "Esmaecer sem o mouse em cima"
+L["Resize Button on Mouseover"] = "Botão de redimensionar ao passar o mouse"
+L["Close Button on Mouseover"] = "Botão de fechar ao passar o mouse"
+L["Snap into Stacks"] = "Encaixar em pilhas"
+L["Close Delay"] = "Atraso para fechar"
+L["Close When Earned"] = "Fechar ao obter"
+L["Starting Width"] = "Largura inicial"
+L["Open Where Last Moved"] = "Abrir onde foi movida por último"
+L["Reopen After Login"] = "Reabrir ao entrar"
 L["Pop Out Modifier Desc"] = "Segure esta tecla e clique em uma conquista para abri-la em uma pequena janela que fica na tela."
 L["Fade Speed Desc"] = "Segundos que uma janela destacada leva para aparecer ou esmaecer. Menos é mais rápido."
 L["Faded Opacity Desc"] = "O quanto uma janela destacada esmaecida continua visível, de 0 (invisível) a 1 (totalmente visível)."

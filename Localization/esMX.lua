@@ -7,6 +7,16 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Fade Time"] = "Tiempo de atenuación"
+L["Fade without Mouseover"] = "Atenuar sin el mouse encima"
+L["Resize Button on Mouseover"] = "Botón de redimensionar al pasar el mouse"
+L["Close Button on Mouseover"] = "Botón de cerrar al pasar el mouse"
+L["Snap into Stacks"] = "Encajar en pilas"
+L["Close Delay"] = "Retraso de cierre"
+L["Close When Earned"] = "Cerrar al obtenerlo"
+L["Starting Width"] = "Ancho inicial"
+L["Open Where Last Moved"] = "Abrir donde se movió por última vez"
+L["Reopen After Login"] = "Reabrir al iniciar sesión"
 L["Pop Out Modifier Desc"] = "Mantén presionada esta tecla y haz clic en un logro para abrirlo en una ventana pequeña que permanece en pantalla."
 L["Fade Speed Desc"] = "Segundos que tarda una ventana flotante en aparecer o atenuarse. Menos es más rápido."
 L["Faded Opacity Desc"] = "Lo visible que queda una ventana flotante atenuada, de 0 (invisible) a 1 (totalmente visible)."

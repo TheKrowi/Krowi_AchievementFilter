@@ -7,6 +7,16 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Fade Time"] = "淡化時間"
+L["Fade without Mouseover"] = "無滑鼠停留時淡化"
+L["Resize Button on Mouseover"] = "滑鼠停留時顯示縮放按鈕"
+L["Close Button on Mouseover"] = "滑鼠停留時顯示關閉按鈕"
+L["Snap into Stacks"] = "吸附成疊"
+L["Close Delay"] = "關閉延遲"
+L["Close When Earned"] = "獲得後關閉"
+L["Starting Width"] = "初始寬度"
+L["Open Where Last Moved"] = "在上次移動的位置開啟"
+L["Reopen After Login"] = "登入後重新開啟"
 L["Pop Out Modifier Desc"] = "按住此鍵並點擊成就，即可在一個停留在螢幕上的小視窗中開啟。"
 L["Fade Speed Desc"] = "浮動視窗淡入或淡出所需的秒數。越小越快。"
 L["Faded Opacity Desc"] = "淡化後的浮動視窗的可見程度，從 0（不可見）到 1（完全可見）。"

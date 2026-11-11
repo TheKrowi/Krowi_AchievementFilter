@@ -7,6 +7,16 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Fade Time"] = "흐려지는 시간"
+L["Fade without Mouseover"] = "마우스가 없을 때 흐리게"
+L["Resize Button on Mouseover"] = "마우스를 올릴 때 크기 조절 버튼"
+L["Close Button on Mouseover"] = "마우스를 올릴 때 닫기 버튼"
+L["Snap into Stacks"] = "겹쳐 붙이기"
+L["Close Delay"] = "닫기 지연"
+L["Close When Earned"] = "달성 시 닫기"
+L["Starting Width"] = "시작 너비"
+L["Open Where Last Moved"] = "마지막으로 옮긴 곳에 열기"
+L["Reopen After Login"] = "접속 시 다시 열기"
 L["Pop Out Modifier Desc"] = "이 키를 누른 채 업적을 클릭하면 화면에 계속 남는 작은 창으로 엽니다."
 L["Fade Speed Desc"] = "팝아웃이 나타나거나 흐려지는 데 걸리는 시간(초)입니다. 낮을수록 빠릅니다."
 L["Faded Opacity Desc"] = "흐려진 팝아웃이 얼마나 보이는지입니다. 0(보이지 않음)부터 1(완전히 보임)까지."

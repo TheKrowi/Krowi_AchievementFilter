@@ -39,7 +39,7 @@ addon.Features.AddHelp("PopOut", {
     Blocks = blocks.Blocks(
         blocks.Picture("PopOut"),
         blocks.Text(Intro),
-        blocks.Term(L["Close On Earn"], L["Help Popout Close On Earn"])
+        blocks.Term(L["Close When Earned"], L["Help Popout Close On Earn"])
     ),
     Scene = Scene
 })

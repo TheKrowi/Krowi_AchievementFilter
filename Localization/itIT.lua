@@ -7,6 +7,16 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Fade Time"] = "Tempo di sbiadimento"
+L["Fade without Mouseover"] = "Sbiadisci senza mouse sopra"
+L["Resize Button on Mouseover"] = "Pulsante di ridimensionamento al passaggio del mouse"
+L["Close Button on Mouseover"] = "Pulsante di chiusura al passaggio del mouse"
+L["Snap into Stacks"] = "Aggancia in pile"
+L["Close Delay"] = "Ritardo di chiusura"
+L["Close When Earned"] = "Chiudi quando ottenuta"
+L["Starting Width"] = "Larghezza iniziale"
+L["Open Where Last Moved"] = "Apri dove spostata l'ultima volta"
+L["Reopen After Login"] = "Riapri all'accesso"
 L["Pop Out Modifier Desc"] = "Tieni premuto questo tasto e fai clic su un'impresa per aprirla in una piccola finestra che resta sullo schermo."
 L["Fade Speed Desc"] = "Secondi che una finestra staccata impiega per apparire o sbiadire. Meno è più veloce."
 L["Faded Opacity Desc"] = "Quanto resta visibile una finestra staccata sbiadita, da 0 (invisibile) a 1 (del tutto visibile)."

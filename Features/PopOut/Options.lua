@@ -73,30 +73,30 @@ local function Rows()
     return {
         Modifier = ModifierRow(1, L["Click Modifier"], L["Click Modifier Desc"]),
         GoToKeys = GoTo(2, "keys", L["Keys and clicks"]),
-        PersistAcrossSessions = Toggle(3, "PersistAcrossSessions", L["Persist Across Sessions"], L["Persist Across Sessions Desc"]),
+        PersistAcrossSessions = Toggle(3, "PersistAcrossSessions", L["Reopen After Login"], L["Persist Across Sessions Desc"]),
         RememberSize = Toggle(4, "RememberSize", L["Remember Size"], L["Remember Size Desc"]),
-        RememberLastPosition = Toggle(5, "RememberLastPosition", L["Remember Last Position"], L["Remember Last Position Desc"]),
+        RememberLastPosition = Toggle(5, "RememberLastPosition", L["Open Where Last Moved"], L["Remember Last Position Desc"]),
         DefaultWidth = (function()
             local get, set = Popout("DefaultWidth")
             return {
                 order = 6, type = "range", width = AdjustedWidth(1.5),
-                name = L["Default Width"],
+                name = L["Starting Width"],
                 desc = L["Default Width Desc"]:KAF_AddDefaultValueText("Popout.DefaultWidth"),
                 min = 360, max = 800, step = 1,
                 get = get, set = set
             }
         end)(),
-        CloseOnEarn = Toggle(7, "CloseOnEarn", L["Close On Earn"], L["Close On Earn Desc"]),
-        CloseOnEarnDelay = Range(8, "CloseOnEarnDelay", L["Close On Earn Delay"], L["Close On Earn Delay Desc"], 0, 10, 0.5, "CloseOnEarn"),
-        EnableSnapping = Toggle(9, "EnableSnapping", L["Enable Snapping"], L["Enable Snapping Desc"]),
+        CloseOnEarn = Toggle(7, "CloseOnEarn", L["Close When Earned"], L["Close On Earn Desc"]),
+        CloseOnEarnDelay = Range(8, "CloseOnEarnDelay", L["Close Delay"], L["Close On Earn Delay Desc"], 0, 10, 0.5, "CloseOnEarn"),
+        EnableSnapping = Toggle(9, "EnableSnapping", L["Snap into Stacks"], L["Enable Snapping Desc"]),
         SnapDistance = Range(10, "SnapDistance", L["Snap Distance"], L["Snap Distance Desc"], 5, 50, 1, "EnableSnapping"),
         Buttons = {order = 11, type = "header", name = L["Buttons"]},
-        AutoHideCloseButton = Toggle(12, "AutoHideCloseButton", L["Auto-Hide Close Button"], L["Auto-Hide Close Button Desc"], true),
-        AutoHideResizeButton = Toggle(13, "AutoHideResizeButton", L["Auto-Hide Resize Button"], L["Auto-Hide Resize Button Desc"], true),
+        AutoHideCloseButton = Toggle(12, "AutoHideCloseButton", L["Close Button on Mouseover"], L["Auto-Hide Close Button Desc"], true),
+        AutoHideResizeButton = Toggle(13, "AutoHideResizeButton", L["Resize Button on Mouseover"], L["Auto-Hide Resize Button Desc"], true),
         Appearance = {order = 14, type = "header", name = L["Appearance"]},
-        FadeWhenNotHovered = Toggle(15, "FadeWhenNotHovered", L["Fade When Not Hovered"], L["Fade When Not Hovered Desc"], true),
+        FadeWhenNotHovered = Toggle(15, "FadeWhenNotHovered", L["Fade without Mouseover"], L["Fade When Not Hovered Desc"], true),
         FadedOpacity = Range(16, "FadedOpacity", L["Faded Opacity"], L["Faded Opacity Desc"], 0, 1, 0.01, "FadeWhenNotHovered", true),
-        FadeSpeed = Range(17, "FadeSpeed", L["Fade Speed"], L["Fade Speed Desc"], 0, 1, 0.05, "FadeWhenNotHovered", true)
+        FadeSpeed = Range(17, "FadeSpeed", L["Fade Time"], L["Fade Speed Desc"], 0, 1, 0.05, "FadeWhenNotHovered", true)
     }
 end
 
