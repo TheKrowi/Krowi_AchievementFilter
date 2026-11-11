@@ -11,3 +11,4 @@ Class: fix/gui
 | 2026-11-11 | design | Changed descriptions: new keys or new values on the same `... Desc` keys | new values on the same keys, retranslated in every locale, as Pop Out did (11702bff); only names get new keys | - | auto |
 | 2026-11-11 | plan | The plan, after Get-ChangeClass.ps1 raised the class to fix/gui (Options/Window/Help/Help.lua) | approve the plan | "Approve the plan (Recommended)" | took |
 | 2026-11-11 | look | Whether the review page counts as fix/gui's look, with no in-game check | the review page is the look | "Review page is the look (Recommended)" | took |
+| 2026-11-11 | merge | PR #417 | merge, then the CurseForge export, then the old phrases deleted there | "merge, export to curseforge, delete old phrases in this order" | took |
