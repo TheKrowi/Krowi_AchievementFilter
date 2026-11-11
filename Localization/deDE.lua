@@ -7,6 +7,10 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Preview on Mouseover"] = "Vorschau bei Mouseover"
+L["Starting Width"] = "Anfangsbreite"
+L["Starting Height"] = "Anfangshöhe"
+L["Help Rewards Intro No Icon"] = "Wähle {previewReward} im Rechtsklickmenü eines Erfolgs, um seine Belohnung zu sehen. Ziehe am Modell, um es zu drehen, und an der Ecke, um die Fenstergröße zu ändern."
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -497,7 +501,6 @@ L["Header tooltip"] = "Überschrift Tooltip"
 L["Heart of Azeroth"] = "Herz von Azeroth"
 L["Hearthstone"] = true
 L["Hearthstone's 10th Anniversary"] = "10-jähriges Jubiläum von Hearthstone"
-L["Height"] = "Höhe"
 L["Help About Discord"] = "Fragen, Fehler und Ideen sind auf Discord willkommen."
 L["Help About Version"] = "Version %s für Spiel-Build %s, von %s."
 L["Help Achievements Blue"] = "Wird mit allen deinen Charakteren geteilt."
@@ -651,7 +654,7 @@ L["Include all Desc"] = "Schließen Sie alle ausgeschlossenen Erfolge mit ein."
 L["Indentation"] = "Unterkategorien einrücken"
 L["Indentation Desc"] = "Die Breite der Einrückung von Unterkategorien."
 L["Invasions"] = "Invasionen"
-L["Invert Reward Preview Vertical Rotation Desc"] = "Die vertikale Ziehrichtung beim Drehen des {rewardPreview}-Modells umkehren."
+L["Invert Reward Preview Vertical Rotation Desc"] = "Kippt das Modell in die andere Richtung, wenn du es nach oben oder unten ziehst."
 L["Invert Up and Down When Turning"] = "Beim Drehen oben und unten umkehren"
 L["is"] = "ist"
 L["Iskaara Flyover"] = "Iskaara-Überflug"
@@ -912,9 +915,9 @@ L["Revelations"] = "Enthüllungen"
 L["Reverse Sort"] = "Umgekehrte Sortierung"
 L["Reward Preview"] = "Belohnungsvorschau"
 L["Reward preview"] = "Belohnungsvorschau"
-L["Reward Preview Height Desc"] = "Die Höhe des {rewardPreview}-Fensters beim Öffnen. Der Wert wird aktualisiert, wenn du die Fenstergröße änderst."
-L["Reward Preview Max Individual Icons Desc"] = "Erfolge mit Belohnungen, die sich besser in der Vorschau anzeigen lassen als diese (z. B. ein Gegenstand, mit dem man aus vielen Reittieren wählen kann), zeigen ein einziges Symbol zur Auswahl an, anstatt jeweils ein einzelnes Symbol."
-L["Reward Preview Width Desc"] = "Die Breite des {rewardPreview}-Fensters beim Öffnen. Der Wert wird aktualisiert, wenn du die Fenstergröße änderst."
+L["Reward Preview Height Desc"] = "Die Höhe des Vorschaufensters beim Öffnen. Wenn du die Fenstergröße änderst, ändert sich auch dieser Wert."
+L["Reward Preview Max Individual Icons Desc"] = "Die Anzahl der Symbole, die ein Erfolg zeigt, eines pro Belohnung. Ein Erfolg mit mehr Belohnungen als hier eingestellt, etwa ein Gegenstand mit einer Auswahl an Reittieren, zeigt ein einziges Symbol zum Auswählen."
+L["Reward Preview Width Desc"] = "Die Breite des Vorschaufensters beim Öffnen. Wenn du die Fenstergröße änderst, ändert sich auch dieser Wert."
 L["Rewards"] = "Belohnungen"
 L["Right"] = "Rechts"
 L["Right Alt"] = "Rechts Alt"
@@ -1026,7 +1029,6 @@ L["Show Objectives progress"] = "Zeige {objectivesProgress}"
 L["Show Objectives progress Desc"] = [=[{objectivesProgress} ein-/ausblenden.
 
 Wenn diese Option aktiviert ist, werden die {objectivesProgress} der Erfolge im Tooltip angezeigt. ]=]
-L["Show on Mouseover"] = "Bei Mouseover anzeigen"
 L["Show Other faction"] = "Zeige weitere Fraktionen"
 L["Show Other faction Desc"] = [=[Zeige / verstecke {otherFaction}.
 
@@ -1046,7 +1048,7 @@ L["Show Required for"] = "Zeige {requiredFor}"
 L["Show Required for Desc"] = [=[{requiredFor} ein-/ausblenden.
 
 Wenn diese Option aktiviert ist, wird der Erfolg, für den der ausgewählte Erfolg abgeschlossen werden muss, in der QuickInfo angezeigt. ]=]
-L["Show Reward Preview on Mouseover Desc"] = "Wenn diese Option aktiviert ist, wird beim Bewegen des Mauszeigers über das Symbol {rewardPreview} die Vorschau angezeigt; wird der Mauszeiger wegbewegt, wird sie wieder geschlossen. Ist diese Option deaktiviert, muss auf das Symbol geklickt werden, um die Vorschau zu öffnen. Durch Klicken auf das Symbol wird die Vorschau unabhängig von dieser Einstellung immer offen gehalten und kann verschoben werden."
+L["Show Reward Preview on Mouseover Desc"] = "Öffnet die Vorschau, solange die Maus über dem Symbol ist, und schließt sie, wenn die Maus es verlässt. Klicke auf das Symbol, um die Vorschau offen zu halten und zu verschieben."
 L["Show Rewards"] = "Zeige Belohnungen"
 L["Show Rewards Desc"] = [=[{rewards} anzeigen/ausblenden,
 
@@ -1253,7 +1255,6 @@ Wenn diese Option aktiviert ist, werden die {objectivesProgress} der Erfolge im 
 L["When an event starts"] = "Bei Ereignisbeginn"
 L["Where guides show"] = "Wo Leitfäden erscheinen"
 L["Whispering Pandaren Spirit"] = "Flüsternder Pandarengeist"
-L["Width"] = "Breite"
 L["Wild Preserve Circuit"] = "Wildreservat-Parcours"
 L["Wild Preserve Slalom"] = "Wildreservat-Slalom"
 L["will be"] = "wird"

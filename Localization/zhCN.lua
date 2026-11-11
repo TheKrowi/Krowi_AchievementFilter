@@ -7,6 +7,10 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Preview on Mouseover"] = "鼠标悬停时预览"
+L["Starting Width"] = "初始宽度"
+L["Starting Height"] = "初始高度"
+L["Help Rewards Intro No Icon"] = "在成就的右键菜单中选择{previewReward}，即可查看其奖励。拖动模型可旋转，拖动角落可调整窗口大小。"
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -502,7 +506,6 @@ L["Header tooltip"] = "标题栏提示"
 L["Heart of Azeroth"] = "艾泽拉斯之心"
 L["Hearthstone"] = "炉石传说"
 L["Hearthstone's 10th Anniversary"] = "炉石传说10周年"
-L["Height"] = "高度"
 L["Help About Discord"] = "欢迎在Discord上提出问题、反馈错误和建议。"
 L["Help About Version"] = "版本%s，适用于游戏版本%s，作者：%s。"
 L["Help Achievements Blue"] = "你的所有角色共享。"
@@ -656,7 +659,7 @@ L["Include all Desc"] = "清除所有已隐藏成就。"
 L["Indentation"] = "缩进"
 L["Indentation Desc"] = "设置子类缩进的尺寸。"
 L["Invasions"] = "入侵"
-L["Invert Reward Preview Vertical Rotation Desc"] = "在奖励预览中拖拽旋转模型时，反转上下拖拽的旋转方向。"
+L["Invert Reward Preview Vertical Rotation Desc"] = "上下拖动模型时，朝反方向倾斜。"
 L["Invert Up and Down When Turning"] = "旋转时反转上下方向"
 L["is"] = "：当前"
 L["Iskaara Flyover"] = "伊斯卡拉飞越"
@@ -922,9 +925,9 @@ L["Revelations"] = "真相之幕"
 L["Reverse Sort"] = "反转排序"
 L["Reward Preview"] = "奖励预览"
 L["Reward preview"] = "奖励预览"
-L["Reward Preview Height Desc"] = "{rewardPreview}窗口打开时的高度。调整窗口大小时会随之更新。"
-L["Reward Preview Max Individual Icons Desc"] = "设置成就上奖励预览独立图标的最大数量。可预览的奖励数量超过指定数值时（例如可选择多种坐骑的物品），仅显示一个选择图标，而非每个奖励的独立图标。"
-L["Reward Preview Width Desc"] = "{rewardPreview}窗口打开时的宽度。调整窗口大小时会随之更新。"
+L["Reward Preview Height Desc"] = "预览窗口打开时的高度。调整窗口大小也会改变此值。"
+L["Reward Preview Max Individual Icons Desc"] = "成就显示的图标数量，每个奖励一个。奖励多于此数值的成就，如可选择坐骑的物品，只显示一个供选择的图标。"
+L["Reward Preview Width Desc"] = "预览窗口打开时的宽度。调整窗口大小也会改变此值。"
 L["Rewards"] = "奖励"
 L["Right"] = "右"
 L["Right Alt"] = "右Alt"
@@ -1040,7 +1043,6 @@ L["Show Objectives progress"] = "显示{objectivesProgress}"
 L["Show Objectives progress Desc"] = [=[显示/隐藏{objectivesProgress}。
 
 勾选后，在提示信息中显示成就的{objectivesProgress}。]=]
-L["Show on Mouseover"] = "悬停时显示"
 L["Show Other faction"] = "显示其他阵营"
 L["Show Other faction Desc"] = [=[显示/隐藏其他阵营。
 
@@ -1066,11 +1068,7 @@ L["Show Required for"] = "显示{requiredFor}"
 L["Show Required for Desc"] = [=[显示/隐藏{requiredFor}。
 
 勾选后，在提示信息中显示所属成就。]=]
-L["Show Reward Preview on Mouseover Desc"] = [=[勾选后，悬停在奖励预览图标上时显示预览，移开后关闭。
-
-取消勾选后，需要点击图标才能打开预览。
-
-无论如何设置，点击图标始终固定预览窗口（可移动）。]=]
+L["Show Reward Preview on Mouseover Desc"] = "鼠标移到图标上时打开预览，移开时关闭。点击图标可让预览保持打开并可移动。"
 L["Show Rewards"] = "显示奖励"
 L["Show Rewards Desc"] = [=[显示/隐藏{rewards}。
 
@@ -1287,7 +1285,6 @@ L["When achievement completed Desc"] = [=[成就已获得时显示/隐藏{object
 L["When an event starts"] = "事件开始时"
 L["Where guides show"] = "指南显示位置"
 L["Whispering Pandaren Spirit"] = "熊猫人微风之灵"
-L["Width"] = "宽度"
 L["Wild Preserve Circuit"] = "狂野禁猎区巡回赛"
 L["Wild Preserve Slalom"] = "狂野禁猎区障碍赛"
 L["will be"] = "：未来"

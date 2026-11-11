@@ -1,5 +1,5 @@
 # Spec: Reward preview's names and descriptions for their section
-Intent: [intent.md](intent.md). Status: draft
+Intent: [intent.md](intent.md). Status: accepted
 
 ## Requirements
 1. Each setting name in the section makes sense under the section's title and next to Enable; the proposals and their reasons are in [review-options.md](review-options.md), rows 0 to 6.
@@ -34,4 +34,4 @@ Per row, on the review page: the proposal, keep, or Krowi's own text. For the he
 - In game on Retail: `/kaf rewards`, the names on the rows, hover text, the help intro with the icon on and off; Krowi checks the look before the full suites run.
 
 ## Decision
-<Krowi's answers per row, with the date.>
+Krowi, 2026-11-11, at the look gate on the review page (https://claude.ai/artifact/6ySZGi3dPx9F2HyhaQxDtN): "Ok on all (Recommended)". Names: Show on Mouseover → Preview on Mouseover, Width → Starting Width, Height → Starting Height; Enable, Show Icon on Achievements, Invert Up and Down When Turning and Max Number of Icons stay. The descriptions of rows 2 to 6 as the page's Now boxes. The help intro follows Show Icon on Achievements (H1a).

@@ -6,6 +6,10 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Preview on Mouseover"] = true
+L["Starting Width"] = true
+L["Starting Height"] = true
+L["Help Rewards Intro No Icon"] = "Choose {previewReward} in an achievement's right-click menu to see its reward. Drag the model to turn it, and drag the corner to resize the window."
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -501,7 +505,6 @@ L["Header tooltip"] = true
 L["Heart of Azeroth"] = true
 L["Hearthstone"] = true
 L["Hearthstone's 10th Anniversary"] = true
-L["Height"] = true
 L["Help About Discord"] = "Questions, bugs and ideas are welcome on Discord."
 L["Help About Version"] = "Version %s for game build %s, by %s."
 L["Help Achievements Blue"] = "Shared by all your characters."
@@ -655,7 +658,7 @@ L["Include all Desc"] = "Include all excluded achievements."
 L["Indentation"] = true
 L["Indentation Desc"] = "The size of the indentation of child categories."
 L["Invasions"] = true
-L["Invert Reward Preview Vertical Rotation Desc"] = "Invert the vertical drag direction when rotating the {rewardPreview} model."
+L["Invert Reward Preview Vertical Rotation Desc"] = "Tilt the model the other way when you drag it up or down."
 L["Invert Up and Down When Turning"] = true
 L["is"] = true
 L["Iskaara Flyover"] = true
@@ -921,9 +924,9 @@ L["Revelations"] = true
 L["Reverse Sort"] = true
 L["Reward Preview"] = true
 L["Reward preview"] = true
-L["Reward Preview Height Desc"] = "The height of the {rewardPreview} window when it opens. This will update when you resize the window."
-L["Reward Preview Max Individual Icons Desc"] = "Achievements with more previewable rewards than this (e.g. an item that lets you choose from many mounts) show a single icon to choose from instead of one icon each."
-L["Reward Preview Width Desc"] = "The width of the {rewardPreview} window when it opens. This will update when you resize the window."
+L["Reward Preview Height Desc"] = "The height of the preview window when it opens. Resizing the window changes it."
+L["Reward Preview Max Individual Icons Desc"] = "The number of icons an achievement shows, one per reward. An achievement with more rewards than this, such as an item with a choice of mounts, shows one icon to choose from."
+L["Reward Preview Width Desc"] = "The width of the preview window when it opens. Resizing the window changes it."
 L["Rewards"] = true
 L["Right"] = true
 L["Right Alt"] = true
@@ -1039,7 +1042,6 @@ L["Show Objectives progress"] = "Show {objectivesProgress}"
 L["Show Objectives progress Desc"] = [=[Show / hide {objectivesProgress}.
 
 When checked, the {objectivesProgress} of the achievement will be visible in the tooltip.]=]
-L["Show on Mouseover"] = true
 L["Show Other faction"] = true
 L["Show Other faction Desc"] = [=[Show / hide {otherFaction}.
 
@@ -1065,11 +1067,7 @@ L["Show Required for"] = "Show {requiredFor}"
 L["Show Required for Desc"] = [=[Show / hide {requiredFor}.
 
 When checked, the achievement that requires the selected achievement to be completed will be visible in the tooltip.]=]
-L["Show Reward Preview on Mouseover Desc"] = [=[When checked, hovering the {rewardPreview} icon shows the preview and moving the mouse away closes it again.
-
-When unchecked, clicking the icon is required to open the preview.
-
-Clicking the icon always pins the preview open and makes it movable, regardless of this setting.]=]
+L["Show Reward Preview on Mouseover Desc"] = "Open the preview when the mouse is over the icon, and close it when the mouse leaves. Click the icon to keep the preview open and move it."
 L["Show Rewards"] = true
 L["Show Rewards Desc"] = [=[Show / hide {rewards}.
 
@@ -1286,7 +1284,6 @@ When checked, the {objectivesProgress} of the achievements will be visible in th
 L["When an event starts"] = true
 L["Where guides show"] = true
 L["Whispering Pandaren Spirit"] = true
-L["Width"] = true
 L["Wild Preserve Circuit"] = true
 L["Wild Preserve Slalom"] = true
 L["will be"] = true

@@ -7,6 +7,10 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Preview on Mouseover"] = "Aperçu au survol"
+L["Starting Width"] = "Largeur initiale"
+L["Starting Height"] = "Hauteur initiale"
+L["Help Rewards Intro No Icon"] = "Choisissez {previewReward} dans le menu du clic droit d'un haut fait pour voir sa récompense. Faites glisser le modèle pour le tourner, et le coin pour redimensionner la fenêtre."
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -500,7 +504,6 @@ L["Header tooltip"] = "En-tête de l'infobulle"
 L["Heart of Azeroth"] = "Cœur d’Azeroth"
 L["Hearthstone"] = true
 L["Hearthstone's 10th Anniversary"] = "10e anniversaire de Hearthstone"
-L["Height"] = "Hauteur"
 L["Help About Discord"] = "Questions, bugs et idées sont les bienvenus sur Discord."
 L["Help About Version"] = "Version %s pour le build %s du jeu, par %s."
 L["Help Achievements Blue"] = "Partagé par tous vos personnages."
@@ -654,7 +657,7 @@ L["Include all Desc"] = "Inclure tous les hauts faits exclus."
 L["Indentation"] = true
 L["Indentation Desc"] = "Taille de l'indentation des sous-catégories."
 L["Invasions"] = "Invasion de la Légion"
-L["Invert Reward Preview Vertical Rotation Desc"] = "Inverse l'axe vertical de rotation du modèle de la {rewardPreview}."
+L["Invert Reward Preview Vertical Rotation Desc"] = "Incline le modèle dans l'autre sens quand vous le faites glisser vers le haut ou le bas."
 L["Invert Up and Down When Turning"] = "Inverser haut et bas lors de la rotation"
 L["is"] = "est"
 L["Iskaara Flyover"] = "Tour d’Iskaara, avancé"
@@ -914,9 +917,9 @@ L["Revelations"] = "Révélations"
 L["Reverse Sort"] = "Inverser le tri"
 L["Reward Preview"] = "Aperçu de récompense"
 L["Reward preview"] = "Aperçu de récompense"
-L["Reward Preview Height Desc"] = "La hauteur de la fenêtre {rewardPreview} à son ouverture. Elle se met à jour quand vous redimensionnez la fenêtre."
-L["Reward Preview Max Individual Icons Desc"] = "Les haut-faits avec plus de récompenses prévisualisables que cette valeur (ex: un objet qui permet de choisir parmi plusieurs montures) affiche une unique icône permettant de choisir au lieu d'une icône par récompense."
-L["Reward Preview Width Desc"] = "La largeur de la fenêtre {rewardPreview} à son ouverture. Elle se met à jour quand vous redimensionnez la fenêtre."
+L["Reward Preview Height Desc"] = "La hauteur de la fenêtre d'aperçu à son ouverture. Redimensionner la fenêtre la modifie aussi."
+L["Reward Preview Max Individual Icons Desc"] = "Le nombre d'icônes qu'un haut fait affiche, une par récompense. Un haut fait avec plus de récompenses que cette valeur, comme un objet qui permet de choisir une monture, affiche une seule icône pour choisir."
+L["Reward Preview Width Desc"] = "La largeur de la fenêtre d'aperçu à son ouverture. Redimensionner la fenêtre la modifie aussi."
 L["Rewards"] = "Récompenses"
 L["Right"] = "Droite"
 L["Right Alt"] = "Alt droit"
@@ -1030,7 +1033,6 @@ L["Show Objectives progress"] = "Afficher {objectivesProgress}"
 L["Show Objectives progress Desc"] = [=[Affiche ou masque {objectivesProgress}.
 
 Si cette option est activée, les {objectivesProgress} des hauts faits seront affichés dans l'infobulle.]=]
-L["Show on Mouseover"] = "Afficher au survol"
 L["Show Other faction"] = "Afficher les autres factions"
 L["Show Other faction Desc"] = [=[Affiche ou masque {otherFaction}.
 
@@ -1056,7 +1058,7 @@ L["Show Required for"] = "Afficher {requiredFor}"
 L["Show Required for Desc"] = [=[Affiche ou masque {requiredFor}.
 
 Lorsque cette option est activée, le haut fait qui nécessite l'accomplissement du haut fait sélectionné sera affiché dans l'infobulle.]=]
-L["Show Reward Preview on Mouseover Desc"] = "Quand activé, survoler l'icône de {rewardPreview} avec le curseur affiche l'aperçu et retirer le curseur la ferme. Quand désactivé, cliquer sur l'icône est nécessaire pour ouvrir l'aperçu. Cliquer sur l'icône épingle l'aperçu et le rend déplaçable, indépendamment de cette option."
+L["Show Reward Preview on Mouseover Desc"] = "Ouvre l'aperçu quand la souris est sur l'icône, et le ferme quand la souris s'en va. Cliquez sur l'icône pour garder l'aperçu ouvert et le déplacer."
 L["Show Rewards"] = "Afficher les récompenses"
 L["Show Rewards Desc"] = [=[Afficher ou masquer les {rewards},
 
@@ -1268,7 +1270,6 @@ Si cette option est activée, les {objectivesProgress} des hauts faits seront af
 L["When an event starts"] = "Au démarrage de l'événement"
 L["Where guides show"] = "Où les guides s'affichent"
 L["Whispering Pandaren Spirit"] = "Esprit pandaren murmurant"
-L["Width"] = "Largeur"
 L["Wild Preserve Circuit"] = "Circuit du domaine Sauvage"
 L["Wild Preserve Slalom"] = "Slalom du domaine Sauvage"
 L["will be"] = "sera"

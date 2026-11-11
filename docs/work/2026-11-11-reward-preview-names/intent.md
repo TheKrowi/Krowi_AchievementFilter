@@ -1,5 +1,5 @@
 # Intent: Reward preview's names and descriptions for their section
-Author: Krowi (maintainer). Source: idea, 2026-11-11, the names-and-descriptions review Pop Out had that day (docs/work/2026-11-09-pop-out, review-options.md), applied to Reward preview. Status: draft
+Author: Krowi (maintainer). Source: idea, 2026-11-11, the names-and-descriptions review Pop Out had that day (docs/work/2026-11-09-pop-out, review-options.md), applied to Reward preview. Status: accepted
 
 ## Problem
 Reward preview's section was reworded once after #405 (docs/work/2026-11-09-reward-preview-texts), but three of its descriptions still read as written by an AI or from the code's side ("When checked, hovering ...", "Invert the vertical drag direction", "Achievements with more previewable rewards than this (e.g. ...)"), and the width and height descriptions end on "This will update when you resize the window". Two names do not fit where they stand: "Show on Mouseover" under "Show Icon on Achievements" reads as if the icon shows only under the mouse, and "Width" and "Height" are the same kind of setting as Pop Out's "Default Width", which Krowi renamed "Starting Width" for its section. The help page says "Click the preview icon" also for a player who turned the icon off.
