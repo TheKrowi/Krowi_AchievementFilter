@@ -34,6 +34,8 @@
                                  under Features/<Name>/ defines, and a feature names nothing another defines
                                  (addon.* and KrowiAF.* it assigns, KrowiAF_* globals, CreateFrame and XML names);
                                  Plugins/<Plugin>/<Name>.lua belongs to feature <Name>; always tree-wide
+      feature-texts    [Error]   every literal L["..."] that Features/ or Features.lua reads has a line in each
+                                 Localization/<lang>.lua (or in Shared.lua); "= true" counts; always tree-wide
       event-clock      [Error]   the event reminder and obtainability files (Gui/EventReminder/, Data/Event*.lua,
                                  Data/Custom*EventTimers.lua, Data/TemporaryObtainable.lua) never call time(): they
                                  judge times by the realm's clock, GetServerTime(), which the sources use
@@ -620,6 +622,41 @@ if ($featureNames.Count -gt 0) {
 }
 Write-Timing 'feature-boundary'
 
+# --- feature-texts: every text a feature shows is in every language ----------------------------------------------
+# Krowi, 2026-11-11 (docs/work/2026-11-11-feature-texts-every-language): a feature ships with all its texts in all 11
+# languages, never English in some. Every literal L["..."] a file under Features/ or the registry (Features.lua) reads
+# needs a line in each base locale file Localization/<lang>.lua, or in Localization/Shared.lua (Blizzard's own strings,
+# every language). "= true" in a translated file counts: an English word on purpose (German "Pop Out", "Wowhead"). A
+# key built at run time (L[key]) is not seen; comments are left out. Always tree-wide: a removed locale line breaks a
+# feature nobody touched.
+$localeKey = '(?m)^\s*L\["((?:[^"\\]|\\.)*)"\]\s*='
+$localeFiles = @($allFiles | Where-Object { $_ -match '^Localization/[a-z]{2}[A-Z]{2}\.lua$' } | Sort-Object)
+$localeKeys = @{}
+foreach ($rel in $localeFiles) {
+    $localeKeys[$rel] = New-Object 'System.Collections.Generic.HashSet[string]'
+    foreach ($m in [regex]::Matches([Text.Encoding]::UTF8.GetString($fileBytes[$rel]), $localeKey)) { [void]$localeKeys[$rel].Add($m.Groups[1].Value) }
+}
+$sharedKeys = New-Object 'System.Collections.Generic.HashSet[string]'
+if ($fileBytes.ContainsKey('Localization/Shared.lua')) {
+    foreach ($m in [regex]::Matches([Text.Encoding]::UTF8.GetString($fileBytes['Localization/Shared.lua']), $localeKey)) { [void]$sharedKeys.Add($m.Groups[1].Value) }
+}
+$featureTextsSeen = New-Object 'System.Collections.Generic.HashSet[string]'   # keys differ by case ("Reward preview", "Reward Preview"); a hashtable would merge them
+foreach ($rel in @($ownLuaFiles | Where-Object { $_ -like 'Features/*' -or $_ -eq 'Features.lua' })) {
+    $lines = (& $blankLua ([Text.Encoding]::UTF8.GetString($fileBytes[$rel]))) -split "`r?`n"
+    for ($i = 0; $i -lt $lines.Count; $i++) {
+        foreach ($m in [regex]::Matches($lines[$i], '(?<![\w.])(?:addon\.)?L\["((?:[^"\\]|\\.)*)"\]')) {
+            $key = $m.Groups[1].Value
+            if ($sharedKeys.Contains($key) -or -not $featureTextsSeen.Add($key)) { continue }
+            $missing = @($localeFiles | Where-Object { -not $localeKeys[$_].Contains($key) } | ForEach-Object { [IO.Path]::GetFileNameWithoutExtension($_) })
+            if ($missing.Count -gt 0) {
+                Add-Finding 'feature-texts' 'Error' $rel ($i + 1) "text '$key' has no line in $($missing -join ', '); a feature's texts are in every language (.claude/rules/localization.md): translate it into each of those files below the ""Exported at"" line"
+            }
+        }
+    }
+}
+$alwaysOnAdded = @('feature-texts')
+Write-Timing 'feature-texts'
+
 # --- options-templates: the options window draws Blizzard's Settings look without Blizzard's Settings code --------
 # Blizzard's category list keeps its selection in one file-level variable that every SettingsCategoryListTemplate
 # overwrites on load: one copy made by addon code and every category click in Esc > Options runs tainted, then sets
@@ -1163,6 +1200,7 @@ $report = $findings | Where-Object {
     $f = $_
     -not ($ignore | Where-Object { ($_.Rule -eq '*' -or $_.Rule -eq $f.Rule) -and $f.Path -like $_.Path -and (-not $_.Name -or $f.Message.Contains("'$($_.Name)'")) })
 }
+$alwaysOn += $alwaysOnAdded
 if ($ChangedOnly) {
     $report = $report | Where-Object { $changed.ContainsKey($_.Path) -or ($alwaysOn -contains $_.Rule) -or ($_.Rule -eq 'files-xml' -and $_.Message -like 'registered file does not exist*') }
 }
