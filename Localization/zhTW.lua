@@ -7,6 +7,12 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Preview on Mouseover"] = "滑鼠指向時預覽"
+L["Starting Height"] = "初始高度"
+L["Help Rewards Intro No Icon"] = "在成就的右鍵選單中選擇{previewReward}，即可查看其獎勵。拖曳模型可旋轉，拖曳角落可調整視窗大小。"
+L["Show Reward Preview on Mouseover Desc"] = "滑鼠移到圖示上時開啟預覽，移開時關閉。點擊圖示可讓預覽保持開啟並可移動。"
+L["Invert Reward Preview Vertical Rotation Desc"] = "上下拖曳模型時，朝反方向傾斜。"
+L["Reward Preview Max Individual Icons Desc"] = "成就顯示的圖示數量，每個獎勵一個。獎勵多於此數值的成就，如可選擇坐騎的物品，只顯示一個供選擇的圖示。"
 L["Fade Time"] = "淡化時間"
 L["Fade without Mouseover"] = "無滑鼠停留時淡化"
 L["Resize Button on Mouseover"] = "滑鼠停留時顯示縮放按鈕"
@@ -498,7 +504,6 @@ L["Header tooltip"] = "頁首提示"
 L["Heart of Azeroth"] = "艾澤拉斯之心"
 L["Hearthstone"] = "爐石戰記"
 L["Hearthstone's 10th Anniversary"] = "爐石戰記10週年"
-L["Height"] = "高度"
 L["Help About Discord"] = "歡迎在Discord上提出問題、回報錯誤和建議。"
 L["Help About Version"] = "版本%s，適用於遊戲版本%s，作者：%s。"
 L["Help Achievements Blue"] = "你的所有角色共享。"
@@ -901,8 +906,8 @@ L["Reset view on open Desc"] = "勾選後打開時折疊所有類別並選擇第
 L["Return to the Forbidden Reach"] = "返回禁忌之境"
 L["Reverse Sort"] = "反轉排序"
 L["Reward preview"] = "獎勵預覽"
-L["Reward Preview Height Desc"] = "獎勵預覽視窗開啟時的高度。調整視窗大小時會隨之更新。"
-L["Reward Preview Width Desc"] = "獎勵預覽視窗開啟時的寬度。調整視窗大小時會隨之更新。"
+L["Reward Preview Height Desc"] = "預覽視窗開啟時的高度。調整視窗大小也會改變此值。"
+L["Reward Preview Width Desc"] = "預覽視窗開啟時的寬度。調整視窗大小也會改變此值。"
 L["Right"] = "右"
 L["Right Alt"] = "右Alt"
 L["Right click"] = "右鍵"
@@ -1014,7 +1019,6 @@ L["Show Objectives progress"] = "顯示{objectivesProgress}"
 L["Show Objectives progress Desc"] = [=[顯示/隱藏{objectivesProgress}
 
 勾選後在滑鼠提示中顯示成就的{objectivesProgress}]=]
-L["Show on Mouseover"] = "滑鼠指向時顯示"
 L["Show Other faction"] = "顯示其他陣營"
 L["Show Other faction Desc"] = [=[顯示/隱藏其他陣營
 
@@ -1248,7 +1252,6 @@ L["When achievement completed Desc"] = [=[成就已獲得時顯示/隱藏{object
 L["When an event starts"] = "事件開始時"
 L["Where guides show"] = "指南顯示位置"
 L["Whispering Pandaren Spirit"] = "熊貓人微風之靈"
-L["Width"] = "寬度"
 L["Wild Preserve Circuit"] = "狂野禁獵區巡迴賽"
 L["Wild Preserve Slalom"] = "狂野禁獵區障礙賽"
 L["will be"] = "：未來"
