@@ -143,7 +143,7 @@ end
 
 -- For the Show me scenes the features add (Features.lua AddHelp), which the registry wires as the loop below wires these
 window.ShowMeKit = {CanShow = CanShow, Ready = Ready, PickAchievement = PickAchievement, NotEarned = NotEarned, EarnedByMe = EarnedByMe,
-    ShowAchievement = ShowAchievement}
+    ShowAchievement = ShowAchievement, LoadAchievementUI = LoadAchievementUI}
 
 -- The last category of a tab that is not a summary or a flexible special category: on Expansions the current expansion
 local function LastCategory(tab)
@@ -240,21 +240,6 @@ function scenes.tooltips(ready, id)
         row:ShowTooltip()
         Ready(ready, {Row = row, Achievement = achievement})
     end)
-end
-
--- The achievement the player tracks, else the one selected in the window, else one not earned yet
-function scenes.popout(ready)
-    LoadAchievementUI()
-    local achievement
-    for _, id in ipairs(addon.Gui.TrackingSlots.GetTrackedIds()) do
-        achievement = achievement or addon.Data.Achievements[id]
-    end
-    achievement = achievement or KrowiAF_AchievementsFrame.SelectionBehavior:GetFirstSelectedElementData() or PickAchievement(NotEarned)
-    if not achievement then
-        return false
-    end
-    local popout = addon.Gui.AchievementPopout:Open(achievement)
-    Ready(ready, {Popout = popout, Achievement = achievement})
 end
 
 local ebonBladeResearch = 60962 -- Legendary Research of the Ebon Blade, the guide the mockup named

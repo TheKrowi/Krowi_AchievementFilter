@@ -236,10 +236,13 @@ options.Scenarios = {
         -- (408 / 304 before, 13b38c99 / 122eff6c; docs/work/2026-11-08-feature-split-poc)
         -- The right-click menu's switch added and its three rows moved under Features.args.RightClickMenu (409 / 305
         -- before, 8e6ec075 / 50b2fed1; docs/work/2026-11-09-right-click-menu)
-        Recorded = "options=410 hash=bfbb66bf",
-        Target = "options=410 hash=bfbb66bf",
-        RecordedClassic = "options=306 hash=86480864",
-        TargetClassic = "options=306 hash=86480864"},
+        -- Pop Out's switch added, its rows moved under Features.args.PopOut with a button to Keys and clicks, its modifier
+        -- row and a button to its section put into General's Modifiers group, the empty spacer row gone (410 / 306 before,
+        -- bfbb66bf / 86480864; docs/work/2026-11-09-pop-out)
+        Recorded = "options=414 hash=69ad48db",
+        Target = "options=414 hash=69ad48db",
+        RecordedClassic = "options=310 hash=87a98b80",
+        TargetClassic = "options=310 hash=87a98b80"},
     {Name = "defaults-restore-acedb",
         Observe = function()
             local model = Model()
@@ -399,11 +402,13 @@ options.Scenarios = {
         Observe = function() return RowsUnder("achievements", addon.L["Objectives"]) end,
         Recorded = "ForceTwoColumns+ForceTwoColumnsThreshold CriteriaBehaviour", -- a row each before
         Target = "ForceTwoColumns+ForceTwoColumnsThreshold CriteriaBehaviour"},
-    -- Krowi (2026-11-02): the pop outs' delay and snap distance after their check boxes
+    -- Krowi (2026-11-02): the pop outs' delay and snap distance after their check boxes. Since Pop Out is a feature
+    -- (docs/work/2026-11-09-pop-out) its section is one group under the switch, Buttons and Appearance its sub-headings,
+    -- and the modifier comes first with its button to Keys and clicks
     {Name = "popout-rows",
         Observe = function() return RowsUnder("popout", addon.L["Pop Outs"]) end,
-        Recorded = "PersistAcrossSessions RememberSize RememberLastPosition DefaultWidth CloseOnEarn+CloseOnEarnDelay EnableSnapping+SnapDistance", -- a row each before
-        Target = "PersistAcrossSessions RememberSize RememberLastPosition DefaultWidth CloseOnEarn+CloseOnEarnDelay EnableSnapping+SnapDistance"},
+        Recorded = "Enabled Modifier+GoToKeys[Go to Keys and clicks] PersistAcrossSessions RememberSize RememberLastPosition DefaultWidth CloseOnEarn+CloseOnEarnDelay EnableSnapping+SnapDistance AutoHideCloseButton AutoHideResizeButton FadeWhenNotHovered FadedOpacity FadeSpeed",
+        Target = "Enabled Modifier+GoToKeys[Go to Keys and clicks] PersistAcrossSessions RememberSize RememberLastPosition DefaultWidth CloseOnEarn+CloseOnEarnDelay EnableSnapping+SnapDistance AutoHideCloseButton AutoHideResizeButton FadeWhenNotHovered FadedOpacity FadeSpeed"},
     -- Krowi (2026-11-02): Overview shows each group's sections as cards, three to a row, with the section's first help
     -- picture or, without one, a game icon, and a line on what it covers; Achievement guides has no picture on Mists
     {Name = "overview-cards",
@@ -415,11 +420,12 @@ options.Scenarios = {
     -- The features that switch off (docs/work/2026-11-08-feature-split-poc): each feature's section opens with its switch,
     -- and while the switch is off every other row of the section is greyed out and the switch is not. The switch is set
     -- in the profile directly, without its setter, and put back
-    -- (one section until the right-click menu became the second feature, docs/work/2026-11-09-right-click-menu)
+    -- (one section until the right-click menu became the second feature, docs/work/2026-11-09-right-click-menu; two until
+    -- Pop Out, docs/work/2026-11-09-pop-out)
     {Name = "feature-sections",
         Observe = FeatureSectionsLine,
-        Recorded = "sections=2 switch-first=2 greyed-when-off=2",
-        Target = "sections=2 switch-first=2 greyed-when-off=2"},
+        Recorded = "sections=3 switch-first=3 greyed-when-off=3",
+        Target = "sections=3 switch-first=3 greyed-when-off=3"},
 }
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line

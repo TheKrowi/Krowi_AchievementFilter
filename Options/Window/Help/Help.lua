@@ -212,15 +212,6 @@ help.tooltips = {
     )
 }
 
-help.popout = {
-    Title = L["Pop Out"],
-    Blocks = Blocks(
-        Picture("PopOut"),
-        Text(L["Help Popout Intro"]),
-        Term(L["Close On Earn"], L["Help Popout Close On Earn"])
-    )
-}
-
 help.guides = {
     Title = L["Guides"],
     Blocks = Blocks(

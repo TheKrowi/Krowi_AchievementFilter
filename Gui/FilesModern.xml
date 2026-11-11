@@ -12,8 +12,6 @@
     <Include file="WindowFrames\FilesModern.xml"/>
     <!-- <Include file="Collections\Files.xml"/> -->
     <Script file="PetBattleLinks\MenuEntry.lua"/>
-    <Include file="SnapFrame\SnapFrame.xml"/>
-    <Include file="AchievementPopout\AchievementPopout.xml"/>
     <Include file="Guide\Guide.xml"/>
     <Include file="AchievementCalendar\Files.xml"/>
     <Include file="DataManager\Files.xml"/>

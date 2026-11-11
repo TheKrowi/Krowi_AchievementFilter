@@ -69,6 +69,24 @@ function slots.RowParts.Load(row)
     end
 end
 
+-- Row modifiers: a modifier click on an achievement row of the list, after the core's own modifier actions
+-- (Gui/WindowFrames/AchievementButton/AchievementButtonMixin.lua, ProcessModifiers), each entry by Order:
+-- Handle(row), which returns true when it took the click; the first that does ends the walk
+slots.RowModifiers = {Entries = {}}
+
+function slots.RowModifiers.Add(entry)
+    return Add(slots.RowModifiers.Entries, entry)
+end
+
+function slots.RowModifiers.Handle(row)
+    for _, entry in ipairs(slots.RowModifiers.Entries) do
+        if entry.Handle(row) then
+            return true
+        end
+    end
+    return false
+end
+
 -- The achievement's right-click menu. Its host, the feature that draws it, sets the opener from its Start and merges
 -- Entries by Order with its own sections when it opens; an entry is a section, CheckAdd(achievement) and
 -- Add(menu, achievement, menuBuilder, caller), and closes the menu through menuBuilder:Close(). The core opens the menu
