@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 - An Enable check box at the top of the Reward preview settings, which fully turns off the reward preview after a reload
 - An Enable check box at the top of the Right-click menu settings, which fully turns off the right-click menu after a reload
 - An Enable check box at the top of the Pop Out settings, which fully turns off pop outs after a reload; pop outs kept from the last session come back when it is turned on again
+- Additional esES, esMX, itIT, koKR, ptBR and zhTW localization for Pop Out, Reward preview and the right-click menu
 
 ### Changed
 - The Reward preview settings have clearer names, and shorter descriptions that say plainly what they do
