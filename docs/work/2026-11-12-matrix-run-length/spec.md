@@ -1,5 +1,5 @@
 # Spec: a shorter /kaftest matrix run
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. In a `/kaftest matrix` run, the `memory` suite measures the idle minute only in the all-on and all-off steps. In each single-feature step it runs every check as before and adds the observation "idle minute: not measured in a single-feature step of the matrix (the all-on and all-off steps measure it)".

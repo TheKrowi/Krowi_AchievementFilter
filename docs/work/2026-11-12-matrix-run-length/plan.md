@@ -1,5 +1,5 @@
 # Plan: a shorter /kaftest matrix run
-Spec: [spec.md](spec.md). Status: draft
+Spec: [spec.md](spec.md). Status: done
 
 ## Files that change
 - `Tests/Tests.lua`: `MatrixSteps` marks each single-feature step `SkipIdleMinute = true`; `RunMatrixStep` keeps the running step in a local beside `matrixStep` and clears it with it; `tests.MatrixStep()` returns that step, or nil.
@@ -26,3 +26,8 @@ Spec: [spec.md](spec.md). Status: draft
 - Headless `memory`, `features` green on Retail and Classic; lint clean.
 - Retail 12.1.5 and Mists 5.5.4 matrix green, every step 18 of 18; the not-measured line in the four single-feature steps, the idle minute in all-on and all-off; step times; no addon error.
 - `Run-GameTests.ps1 memory` alone on Retail: the idle minute measured.
+
+## Where the build departed from the plan
+- **The code review (medium)** changed the wait: it returns `$true` or `$false` instead of setting a script flag; it compares with the moment the `/reload` attempt that went through began (`$lastAttempt`, set in `Invoke-Kit`), not the first attempt, which a refusal can delay by minutes; it waits until the file's time and size stay the same for a second, so a file still being written is not read; a missing `WTF\Account` returns nothing instead of throwing past `Close-Started`; a late write stops a matrix run at once, and a plain run that also timed out says both. `Tests.lua` keeps the running step in one local (`matrixStep`, the plan's entry), and `Report` stores its name.
+- **No kit backlog line:** the kit keeps no backlog file, so the kit's reload wait is offered to Krowi as a kit work item in the pull request instead.
+- **The Retail matrix ran twice:** once before the review's fixes (with the plain `memory` run), once on the final code; Mists ran before them.

@@ -1,5 +1,5 @@
 # Intent: a shorter /kaftest matrix run
-Author: Krowi (maintainer). Source: idea; the Event reminders move's in-game runs (docs/work/2026-11-12-event-reminders), "why do they take so long, can we make them more efficient?", then "Yes" to starting this item (2026-11-12). Status: accepted
+Author: Krowi (maintainer). Source: idea; the Event reminders move's in-game runs (docs/work/2026-11-12-event-reminders), "why do they take so long, can we make them more efficient?", then "Yes" to starting this item (2026-11-12). Status: done
 
 ## Problem
 The release gate wants a green `/kaftest matrix` on the newest Retail and Mists build after every change under `Features/`, and every feature PR runs it on both clients. It runs every suite but the probes (18) once with every feature on, once with every feature off and once per feature alone: six steps today, one more with each feature 106 splits off. On Retail 12.1.5 on 2026-11-12 a step took about 2 min 10 s, 13 min for the matrix, plus about 2 min to start the client and log in, while the PC is not Krowi's.
