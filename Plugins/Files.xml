@@ -1,10 +1,13 @@
 <Ui>
     <Script file="BetterWardrobe.lua" />
     <Script file="ElvUI.lua" />
+    <Script file="ElvUI/EventReminders.lua" />
     <Script file="GW2_UI/GW2_UI.lua" />
+    <Script file="GW2_UI/EventReminders.lua" />
     <Script file="InstanceAchievementTracker.lua" />
     <Script file="ZygorGuidesViewer.lua" />
     <Script file="AchievementsTabFixes.lua" />
     <Script file="EllesmereUI.lua" />
     <Script file="EllesmereUI/PopOut.lua" />
+    <Script file="EllesmereUI/EventReminders.lua" />
 </Ui>

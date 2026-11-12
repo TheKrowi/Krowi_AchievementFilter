@@ -7,8 +7,8 @@ local _, addon = ...
 -- Per world event: the seconds left the POI API reports from here, whether the POI is on the event's map, whether a
 -- widget times it, and what the reminders get. Per widget event: what the reminders get. A world event with nothing to
 -- report is counted, not listed. The events from Blizzard's event scheduler (Midnight) are not this probe's subject.
--- Per fixed schedule (Data/EventSchedules.lua): what the schedule and the POIs each say is going on, and what the
--- watcher learned for the player's region (Data/EventObserver.lua).
+-- Per fixed schedule (Features/EventReminders/Data/EventSchedules.lua): what the schedule and the POIs each say is going on, and what the
+-- watcher learned for the player's region (Features/EventReminders/Data/EventObserver.lua).
 
 local function Where()
     local mapId = C_Map.GetBestMapForUnit("player")
@@ -77,11 +77,11 @@ local function ObserveWorldEvents(observations)
         if event.Source ~= KrowiAF.Enum.EventSource.Scheduler then
             local secondsLeft = (C_AreaPoiInfo.GetAreaPOISecondsLeft(id))
             local onMap = C_AreaPoiInfo.GetAreaPOIInfo(event.MapId, id) ~= nil
-            local details = addon.EventData.GetWorldEventDetails(event)
+            local details = addon.EventReminders.EventData.GetWorldEventDetails(event)
             if secondsLeft or onMap or details then
                 tinsert(observations, ("world %d %q, map %s: POI seconds left %s, POI on its map %s%s, timed by %s; reminders get %s"):format(id, tostring(event.Name),
                     tostring(event.MapId), tostring(secondsLeft), tostring(onMap), (secondsLeft and not onMap) and (", " .. FindPoiMap(event)) or "",
-                    TimedBy(event, addon.Data.CustomWorldEventTimers.HasCustomTimer(id)), RemindersGet(details, eventReminders.WorldEvents[id])))
+                    TimedBy(event, addon.EventReminders.CustomWorldEventTimers.HasCustomTimer(id)), RemindersGet(details, eventReminders.WorldEvents[id])))
             else
                 quiet = quiet + 1
             end
@@ -97,17 +97,17 @@ local function ObserveWidgetEvents(observations)
     local events = addon.Data.Events[KrowiAF.Enum.EventType.Widget]
     for _, id in ipairs(SortedIds(events)) do
         local event = events[id]
-        local details = addon.EventData.GetWidgetEventDetails(event)
+        local details = addon.EventReminders.EventData.GetWidgetEventDetails(event)
         local timedBy = event.Source == KrowiAF.Enum.EventSource.FixedSchedule and "a fixed schedule"
-            or addon.Data.CustomWidgetEventTimers.IsComputed(id) and "a schedule" or "its widget"
+            or addon.EventReminders.CustomWidgetEventTimers.IsComputed(id) and "a schedule" or "its widget"
         tinsert(observations, ("widget %d %q: timed by %s; reminders get %s"):format(id, tostring(event.Name), timedBy, RemindersGet(details, eventReminders.WidgetEvents[id])))
     end
 end
 
 -- Per schedule (KrowiAF.EventSchedules): what the schedule says is going on, what the POIs say, and what the watcher
--- learned for this region (Data/EventObserver.lua); where the first two differ, the schedule or the game has moved
+-- learned for this region (Features/EventReminders/Data/EventObserver.lua); where the first two differ, the schedule or the game has moved
 local function ObserveSchedules(observations)
-    local engine, observer = addon.Data.EventSchedules, addon.Data.EventObserver
+    local engine, observer = addon.EventReminders.EventSchedules, addon.EventReminders.EventObserver
     if not engine or not KrowiAF.EventSchedules then
         return
     end

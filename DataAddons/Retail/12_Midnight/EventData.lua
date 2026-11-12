@@ -4,7 +4,7 @@ local type = KrowiAF.Enum.EventType
 local source = KrowiAF.Enum.EventSource
 
 -- The Curse Surges of The Coiled Isle: one area POI per variant, their times and names from Blizzard's event scheduler
--- (Data/EventScheduler.lua; docs/work/2026-10-21-event-scheduler). Each variant comes every 2.5 hours and lasts 30
+-- (Features/EventReminders/Data/EventScheduler.lua; docs/work/2026-10-21-event-scheduler). Each variant comes every 2.5 hours and lasts 30
 -- minutes, so a new surge starts every half hour.
 local function CurseSurge(areaPoiId)
     return {

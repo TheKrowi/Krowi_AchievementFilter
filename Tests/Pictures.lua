@@ -235,7 +235,7 @@ end
 
 -- The event reminder buttons beside the window, out of a picture that lies over them (the guide panel, the centred
 -- reward preview: the 2026-10-29 run). Hidden ones come back within a second, since the alert system's refresh shows
--- every button with an event again while the window is open (Gui/EventReminder/SideButtonSystem.lua), so they go
+-- every button with an event again while the window is open (Features/EventReminders/SideButtonSystem.lua), so they go
 -- transparent instead; the next step's clean-up gives them their alpha back
 local function FadeSideButtons()
     live.FadedSideButtons = live.FadedSideButtons or {}
@@ -728,6 +728,9 @@ steps = {
         Picture = "Reminders",
         Text = "placeholder event reminders",
         Run = function()
+            if not addon.Features.IsStarted("EventReminders") then -- switched off (Features.lua)
+                return "Event reminders is off"
+            end
             KrowiAF_AchievementCalendarFrame:Hide()
             AchievementFrame:Hide()
             Scenes().events(function(opened)

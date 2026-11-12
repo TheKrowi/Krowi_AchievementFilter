@@ -30,9 +30,9 @@
 --         does not register is greyed out, and whether entries and the title for an id the game does not know can be
 --         built and what they say), memory (TaintDiagnostics.lua and Data/EventData.lua with the custom event
 --         timers: what the addon's background jobs, the taint probe's sweep and the event-reminder refresh, allocate a
---         minute and keep), events (Data/EventData.lua with Data/EventScheduler.lua and the custom timers, on the real
+--         minute and keep), events (Data/EventData.lua with Features/EventReminders/Data/EventScheduler.lua and the custom timers, on the real
 --         data load: the Curse Surges from Blizzard's event scheduler and the soup on its fixed schedule), schedules
---         (Data/EventSchedules.lua and Data/EventObserver.lua on the real data load: the older expansions' events on
+--         (Features/EventReminders/Data/EventSchedules.lua and Features/EventReminders/Data/EventObserver.lua on the real data load: the older expansions' events on
 --         their fixed schedules, and what the watcher learns from the POIs), tracking
 --         (Gui/WindowFrames/AchievementButton/TrackingSlots.lua: what the Track button does at the tracking cap), options
 --         (the options window's model over the real AceConfig tables, on the whole-addon load of options-env.lua), help
@@ -44,10 +44,10 @@
 --         Data/AchievementCache.lua on the real data load: what the achievement window recounts when an achievement is
 --         earned and then opened in it), plugins (Plugins/ZygorGuidesViewer.lua with Api/PluginsApi.lua and the
 --         ADDON_LOADED wiring of Krowi_AchievementFilter.lua: whether Zygor's guide icons are on the addon's rows at the
---         list's first draw, issue #365; on Classic, with Mists' own Zygor on, that the plugin's gate stays shut), popups (Gui/EventReminder/AlertSystem.lua and Options/EventReminders.lua on the
+--         list's first draw, issue #365; on Classic, with Mists' own Zygor on, that the plugin's gate stays shut), popups (Features/EventReminders/AlertSystem.lua and Features/EventReminders/Options.lua on the
 --         whole-addon load, against a model of Blizzard's alert frames: where the location options put the pop-ups,
 --         whether the game's toasts keep Blizzard's stacking, Show and Hide placeholders, issues #188 and #364; and
---         Gui/EventReminder/SideButtonSystem.lua after a Side Button Anchor change, on models of its two anchors), runner
+--         Features/EventReminders/SideButtonSystem.lua after a Side Button Anchor change, on models of its two anchors), runner
 --         (Tests/Tests.lua itself, headless only, docs/work/2026-11-08-test-run-history: how many runs History keeps
 --         after a /kaftest run of many entries, also with a run from outside it reporting in between, and after a single
 --         run, and that a run puts the suites that need the achievement window's first draw first), features
@@ -1361,14 +1361,14 @@ end
 -- Blizzard_SharedXMLGame/Tooltip/TooltipDataHandler.lua, the template's fields and children), a widget container with
 -- about as many as UIWidgetContainerMixin's, and issecurevariable reporting three of them insecure: the sweep reports
 -- those once, on the run the scenarios do not count, and skips them on every run after.
--- And the real Data/CustomWidgetEventTimers.lua, Data/CustomWorldEventTimers.lua and Data/EventData.lua, the reads of
+-- And the real Features/EventReminders/Data/CustomWidgetEventTimers.lua, Features/EventReminders/Data/CustomWorldEventTimers.lua and Data/EventData.lua, the reads of
 -- the event-reminder refresh, against a model of the calendar, POI and widget APIs: a POI or widget that is there
 -- returns a new table of the size of the real one (AreaPOIInfo, TextWithStateWidgetVisualizationInfo, 20-odd fields),
 -- one that is not returns nothing; the calendar holds one holiday going on and one starting in three days. The world and
 -- widget events are real ids, so their real custom timers apply. Three states:
 --   "refresh", what the game run of 2026-10-19 found: Theater Troupe's widget 6264 there with the POIs of its five
 --     events (7943, 8076-8079) not on their map; no other POI or widget there; plus a Curse Surge going on, from a model
---     of Blizzard's event scheduler (Data/EventScheduler.lua), and the soup on its fixed schedule
+--     of Blizzard's event scheduler (Features/EventReminders/Data/EventScheduler.lua), and the soup on its fixed schedule
 --   "poi-on-map": a world event on the POI's own timer going on (9001, a fake id), and Dreamsurges: Thaldraszus (7553,
 --     widget 4993) outside its zone, its POI on the map and its widget not there; both POIs asked on every refresh
 --   "widget-active": a widget-timed event going on in its zone, Researchers Under Fire: Titan Lockdown (7459), its POI and
@@ -1412,7 +1412,7 @@ suites.memory = function(c)
     env.MINUTES_ABBR, env.SECONDS_ABBR = "%d min", "%d sec"
     env.D_MINUTES, env.D_SECONDS = "%d |4minute:minutes;", "%d |4second:seconds;"
     env.GetServerTime, env.time = os.time, os.time
-    -- one watched family for Data/EventObserver.lua: the model's POIs 9001 and 7553, on their own state for each job
+    -- one watched family for Features/EventReminders/Data/EventObserver.lua: the model's POIs 9001 and 7553, on their own state for each job
     env.KrowiAF = { Enum = { EventType = { Calendar = 1, Widget = 2, World = 3 }, EventSource = { Scheduler = 1, FixedSchedule = 2 } },
         EventSchedules = { Watched = { Interval = 7200, Window = { 0, 7200 }, Variants = { 9001, 7553 }, Observe = true } } }
     env.KrowiAF_SavedData = {}
@@ -1421,7 +1421,7 @@ suites.memory = function(c)
     local now = os.time()
 
     -- Blizzard's event scheduler: a Curse Surge going on now and one every 2.5 hours for three days, as the game lists
-    -- them (Tests/Scheduler.lua); Data/EventScheduler.lua reads it on the run the scenarios do not count
+    -- them (Tests/Scheduler.lua); Features/EventReminders/Data/EventScheduler.lua reads it on the run the scenarios do not count
     env.C_EventScheduler = {
         HasData = function() return true end,
         RequestEvents = function() end,
@@ -1493,8 +1493,10 @@ suites.memory = function(c)
         end
     end
 
-    for _, rel in ipairs({ "TaintDiagnostics.lua", "Data/CustomWidgetEventTimers.lua", "Data/CustomWorldEventTimers.lua", "Data/EventScheduler.lua",
-        "Data/EventSchedules.lua", "Data/EventObserver.lua", "Data/EventData.lua", "Tests/Memory.lua" }) do
+    addon.EventReminders = addon.EventReminders or {} -- the feature's table, which its registration file makes
+    for _, rel in ipairs({ "TaintDiagnostics.lua", "Data/EventData.lua", "Features/EventReminders/Data/CustomWidgetEventTimers.lua", "Features/EventReminders/Data/CustomWorldEventTimers.lua",
+        "Features/EventReminders/Data/EventScheduler.lua", "Features/EventReminders/Data/EventSchedules.lua", "Features/EventReminders/Data/EventObserver.lua",
+        "Features/EventReminders/Data/EventData.lua", "Tests/Memory.lua" }) do
         c.loadAddonFile(rel)
     end
     local suite = addon.Tests.Memory
@@ -1504,10 +1506,10 @@ suites.memory = function(c)
     function headless.IsRetail() return c.isRetail end
     function headless.Jobs(name)
         if name == "SchedulerUpdate" then
-            return { Call = addon.Data.EventScheduler.OnSchedulerUpdate, PerMinute = 60 }
+            return { Call = addon.EventReminders.EventScheduler.OnSchedulerUpdate, PerMinute = 60 }
         elseif name == "ObserverRun" then
             SetState("poi-on-map") -- a watched POI up, which the uncounted first run takes in
-            return { Call = addon.Data.EventObserver.RunOnce, PerMinute = 60 / 300 }
+            return { Call = addon.EventReminders.EventObserver.RunOnce, PerMinute = 60 / 300 }
         elseif name == "TaintSweep" then
             return { Call = probe.SweepOnce, PerMinute = probe.SweepsPerMinute }
         elseif name == "EventRefresh" or name == "EventRefreshNoPoiOnMap" then
@@ -1519,7 +1521,7 @@ suites.memory = function(c)
         elseif name == "ActiveWidgetTimers" then
             SetState("widget-active")
             local event = worldEvents[7459]
-            return { Call = function() addon.EventData.GetWorldEventDetails(event) end, PerMinute = 60 }
+            return { Call = function() addon.EventReminders.EventData.GetWorldEventDetails(event) end, PerMinute = 60 }
         end
         return nil, "no job " .. tostring(name)
     end
@@ -1528,9 +1530,9 @@ suites.memory = function(c)
     return suite.Run(headless, observations), "Tests/Memory.lua", observations
 end
 
--- The real data load of client-env.lua, then the event runtime on top (Data/CustomWidgetEventTimers.lua,
--- Data/CustomWorldEventTimers.lua, Data/EventScheduler.lua once it exists, Data/EventData.lua, and
--- Gui/EventReminder/AlertSystem.lua for the date line and chat scenarios) against a model of what it reads: C_EventScheduler returning the suite's own fixture, C_AreaPoiInfo knowing the Curse Surges' English names and
+-- The real data load of client-env.lua, then the event runtime on top (Features/EventReminders/Data/CustomWidgetEventTimers.lua,
+-- Features/EventReminders/Data/CustomWorldEventTimers.lua, Features/EventReminders/Data/EventScheduler.lua once it exists, Data/EventData.lua, and
+-- Features/EventReminders/AlertSystem.lua for the date line and chat scenarios) against a model of what it reads: C_EventScheduler returning the suite's own fixture, C_AreaPoiInfo knowing the Curse Surges' English names and
 -- no POI on a map unless a scenario puts one there (SetPoi), no widget anywhere (as outside the Azure Span), the open
 -- world, the region Europe and every event toggle on. The scenarios pass their own times, so the clock is not modelled
 -- (sources in Tests/Events.lua).
@@ -1579,19 +1581,18 @@ suites.events = function(c)
     addon.Options = { db = { profile = { EventReminders = { Enabled = true, RefreshInterval = 60, CalendarEvents = allOn,
         WidgetEvents = c.isRetail and allOn or nil, WorldEvents = c.isRetail and allOn or nil,
         UpcomingCalendarEvents = { Enabled = true, Days = 14 },
-        DateTimeFormat = { StartTimeAndEndTime = "%d/%m/%Y %R" }, TimeDisplay = { Line1 = 1, Line2 = 3 }, Compact = false } } } } -- Options/Defaults.lua
+        DateTimeFormat = { StartTimeAndEndTime = "%d/%m/%Y %R" }, TimeDisplay = { Line1 = 1, Line2 = 3 }, Compact = false } } } } -- Features/EventReminders/Options.lua
     addon.Tests = { Suites = {}, Ready = {}, Async = {} }
     addon.Data.IsLoaded = true -- the game sets it once the data load and the cache build are done (Data/Data.lua)
     addon.Data.EventsLoaded = true -- and this one when every event object exists, before the cache build
-    for _, rel in ipairs({ "Data/CustomWidgetEventTimers.lua", "Data/CustomWorldEventTimers.lua", "Data/EventScheduler.lua", "Data/EventData.lua",
-        "Gui/EventReminder/AlertSystem.lua", "Tests/Events.lua" }) do
-        local file = io.open(root .. "/" .. rel, "rb")
-        if file then
-            file:close()
-            local chunk = assert(loadstring(readFile(root .. "/" .. rel), "@" .. rel))
-            setfenv(chunk, env)
-            chunk("Krowi_AchievementFilter", addon)
-        end
+    addon.EventReminders = addon.EventReminders or {} -- the feature's table, which its registration file makes
+    for _, rel in ipairs({ "Data/EventData.lua", "Features/EventReminders/Data/CustomWidgetEventTimers.lua", "Features/EventReminders/Data/CustomWorldEventTimers.lua",
+        "Features/EventReminders/Data/EventScheduler.lua", "Features/EventReminders/Data/EventData.lua", "Features/EventReminders/AlertSystem.lua", "Tests/Events.lua" }) do
+        -- readFile raises on a missing file: a move must never leave the suite green on nothing
+        -- (docs/work/2026-11-12-event-reminders)
+        local chunk = assert(loadstring(readFile(root .. "/" .. rel), "@" .. rel))
+        setfenv(chunk, env)
+        chunk("Krowi_AchievementFilter", addon)
     end
     local suite = addon.Tests.Events
     local headless = {}
@@ -1600,15 +1601,15 @@ suites.events = function(c)
     function headless.PoiName(id) return poiNames[id] end
     function headless.SetPoi(id, mapId, secondsLeft) pois[id] = mapId and { MapId = mapId, SecondsLeft = secondsLeft } or nil end
     function headless.Restore()
-        addon.Data.EventScheduler.Reset()
-        addon.Data.EventScheduler.EnsureData()
+        addon.EventReminders.EventScheduler.Reset()
+        addon.EventReminders.EventScheduler.EnsureData()
     end
     local observations = {}
     return suite.Run(headless, observations), "Tests/Events.lua", observations
 end
 
 -- The real data load of client-env.lua, then the event runtime with the fixed schedules on top
--- (Data/CustomWidgetEventTimers.lua, Data/CustomWorldEventTimers.lua, Data/EventSchedules.lua and Data/EventObserver.lua
+-- (Features/EventReminders/Data/CustomWidgetEventTimers.lua, Features/EventReminders/Data/CustomWorldEventTimers.lua, Features/EventReminders/Data/EventSchedules.lua and Features/EventReminders/Data/EventObserver.lua
 -- once they exist, Data/EventData.lua) against a model of what it reads: no POI and no widget unless a scenario sets
 -- them (SetPoiState), no POI on any map, the region Europe and every event toggle on. The scenarios swap their own clock,
 -- region and weekly reset into the schedules, and their own POI model into the watcher (sources in Tests/Schedules.lua).
@@ -1643,15 +1644,15 @@ suites.schedules = function(c)
         UpcomingCalendarEvents = { Enabled = true, Days = 14 } } } } }
     addon.Tests = { Suites = {}, Ready = {}, Async = {} }
     addon.Data.IsLoaded, addon.Data.EventsLoaded = true, true
-    for _, rel in ipairs({ "Data/CustomWidgetEventTimers.lua", "Data/CustomWorldEventTimers.lua", "Data/EventScheduler.lua", "Data/EventSchedules.lua",
-        "Data/EventObserver.lua", "Data/EventData.lua", "Data/DataIntegrityManager.lua", "Tests/Schedules.lua" }) do
-        local file = io.open(root .. "/" .. rel, "rb")
-        if file then
-            file:close()
-            local chunk = assert(loadstring(readFile(root .. "/" .. rel), "@" .. rel))
-            setfenv(chunk, env)
-            chunk("Krowi_AchievementFilter", addon)
-        end
+    addon.EventReminders = addon.EventReminders or {} -- the feature's table, which its registration file makes
+    for _, rel in ipairs({ "Data/EventData.lua", "Features/EventReminders/Data/CustomWidgetEventTimers.lua", "Features/EventReminders/Data/CustomWorldEventTimers.lua",
+        "Features/EventReminders/Data/EventScheduler.lua", "Features/EventReminders/Data/EventSchedules.lua", "Features/EventReminders/Data/EventObserver.lua",
+        "Features/EventReminders/Data/EventData.lua", "Data/DataIntegrityManager.lua", "Tests/Schedules.lua" }) do
+        -- readFile raises on a missing file: a move must never leave the suite green on nothing
+        -- (docs/work/2026-11-12-event-reminders)
+        local chunk = assert(loadstring(readFile(root .. "/" .. rel), "@" .. rel))
+        setfenv(chunk, env)
+        chunk("Krowi_AchievementFilter", addon)
     end
     local headless = {}
     function headless.IsRetail() return c.isRetail end
@@ -2189,7 +2190,7 @@ local function InstallAlertModel(env, isRetail)
     local model = { Blizzard = {}, LoginCallbacks = {}, EventFrames = {} }
 
     local ModelFrame = {}
-    -- the child regions of the addon's alert template (Gui/EventReminder/AlertFrame/AlertFrame.xml) that its mixin
+    -- the child regions of the addon's alert template (Features/EventReminders/AlertFrame/AlertFrame.xml) that its mixin
     -- touches; calls on them do nothing. Any other field the code reads is nil, as on a frame the game has not given it
     local templateRegions = { Icon = true, Name = true, Unlocked = true, Background = true, glow = true, shine = true }
     local modelFrameMt = { __index = function(self, k)
@@ -2608,9 +2609,9 @@ local function InstallAlertModel(env, isRetail)
 end
 
 -- The event reminder pop-ups on the whole-addon load of options-env.lua, a load of the suite's own, against the alert
--- model above (sources in Tests/PopUps.lua). The GUI load itself (Gui/Gui.lua LoadWithAddon) runs for real, with the
--- parts that draw frames this load does not build (world map button, floating tooltip) stubbed, and the side buttons on
--- models of their anchors (below).
+-- model above (sources in Tests/PopUps.lua). The pop-ups' and the side buttons' own Load run for real, called in the
+-- order the feature's Start calls them (Features/EventReminders/EventReminders.lua; the rest of Start, its listener and
+-- its Data Manager tab, is the features suite's), with the side buttons on models of their anchors (below).
 suites.popups = function(c)
     local scriptDir = ((arg and arg[0]) or ""):gsub("\\", "/"):match("^(.*)/") or "."
     local optionsEnv = assert(loadfile(scriptDir .. "/options-env.lua"))()
@@ -2633,14 +2634,14 @@ suites.popups = function(c)
     end
     RunFile("Tests/PopUps.lua")
 
-    -- The side buttons (Gui/EventReminder/SideButtonSystem.lua) run for real, on models of their two anchors: the world
+    -- The side buttons (Features/EventReminders/SideButtonSystem.lua) run for real, on models of their two anchors: the world
     -- map, there from the login, and the achievement window, there once Blizzard_AchievementUI loads
     -- (LoadAchievementUI). A side button template gives its frame the side button's mixins and OnShow
-    -- (Gui/EventReminder/SideButton/SideButton.xml). Unlike the game, the model runs a frame's OnShow only on its own
+    -- (Features/EventReminders/SideButton/SideButton.xml). Unlike the game, the model runs a frame's OnShow only on its own
     -- Show, not when its parent shows, so the scenarios check the state behind the side buttons' error (a button shown
     -- with no event), not the error itself.
-    RunFile("Gui/EventReminder/AlertFrame/AlertFrameMixin.lua")
-    RunFile("Gui/EventReminder/SideButton/SideButtonMixin.lua")
+    RunFile("Features/EventReminders/AlertFrame/AlertFrameMixin.lua")
+    RunFile("Features/EventReminders/SideButton/SideButtonMixin.lua")
     local sideButtonMixin = env.Mixin({}, rawget(env, "KrowiAF_EventReminderAlertFrameMixin"), rawget(env, "KrowiAF_EventReminderSideButtonMixin"))
     local createFrame = env.CreateFrame
     rawset(env, "CreateFrame", function(kind, name, parent, template)
@@ -2651,7 +2652,7 @@ suites.popups = function(c)
         end
         return frame
     end)
-    local loadedAtLogin -- what the side buttons' Load answered at LoadWithAddon: Gui/Gui.lua:12 keeps it, before the fix
+    local loadedAtLogin -- what the side buttons' Load answered at the feature's Start, as AfterAchievementUI reads it
     -- No event going on, for the side buttons' own refresh, which reads the active events (Data/EventData.lua): an
     -- empty calendar, no POI on any map and no widget, as in the events suite
     env.C_Calendar.GetNumDayEvents = function() return 0 end
@@ -2672,21 +2673,23 @@ suites.popups = function(c)
         env.CreateFrame("Frame", "WorldMapFrame", env.UIParent)
         rawset(env, "AchievementFrame", false)
         if prepare then prepare(env, model) end
-        RunFile("Gui/EventReminder/AlertSystem.lua")
-        RunFile("Gui/EventReminder/SideButtonSystem.lua")
+        RunFile("Features/EventReminders/AlertSystem.lua")
+        RunFile("Features/EventReminders/SideButtonSystem.lua")
         local sideButtons = gui.EventReminderSideButtonSystem
         local load = sideButtons.Load
         sideButtons.Load = function(...)
             loadedAtLogin = load(...)
             return loadedAtLogin
         end
-        gui:LoadWithAddon()
+        -- what the feature's Start loads of these two (Features/EventReminders/EventReminders.lua)
+        gui.EventReminderAlertSystem:Load()
+        sideButtons:Load()
         sideButtons.Load = load
         model.FireLogin()
         return true
     end
-    -- Blizzard_AchievementUI loading: the window's model, then what Gui/Gui.lua's LoadWithBlizzard_AchievementUI does
-    -- for the side buttons (Load again only when it did not hook its anchor yet)
+    -- Blizzard_AchievementUI loading: the window's model, then what the feature's AfterAchievementUI does for the side
+    -- buttons (Load again only when it did not hook its anchor yet)
     function headless.LoadAchievementUI()
         if rawget(env, "AchievementFrame") then return end
         env.CreateFrame("Frame", "AchievementFrame", env.UIParent)

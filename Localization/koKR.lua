@@ -7,6 +7,123 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Upcoming Holidays"] = "다가오는 축제"
+L["Upcoming Holidays Desc"] = "앞으로 며칠 안에 시작하는 축제도 알려 줍니다."
+L["Compact Reminders"] = "간소화된 알림"
+L["Compact Reminders Desc"] = "시간이 한 줄만 있는 더 작은 알림을 표시합니다."
+L["Side Buttons Beside"] = "측면 버튼 위치"
+L["Side Buttons Beside Desc"] = "측면 버튼이 옆에 붙을 창을 고릅니다."
+L["First Line"] = "첫째 줄"
+L["First Line Desc"] = "이벤트 이름 아래 첫째 줄에 표시할 내용을 고릅니다."
+L["Second Line"] = "둘째 줄"
+L["Second Line Desc"] = "둘째 줄에 표시할 내용을 고릅니다. 간소화된 알림에는 둘째 줄이 없습니다."
+L["Pop-Up Active Login Desc"] = "접속할 때 진행 중인 이벤트마다 팝업을 표시합니다."
+L["Pop-Up Active Reload Desc"] = "UI를 다시 불러올 때 진행 중인 이벤트마다 팝업을 표시합니다."
+L["Pop-Up Active Start Desc"] = "이벤트가 시작되면 팝업을 표시합니다."
+L["Pop-Up Upcoming Login Desc"] = "접속할 때 다가오는 축제마다 팝업을 표시합니다."
+L["Pop-Up Upcoming Reload Desc"] = "UI를 다시 불러올 때 다가오는 축제마다 팝업을 표시합니다."
+L["Pop-Up Upcoming Start Desc"] = "플레이 중에 축제가 다가오기 시작하면 팝업을 표시합니다."
+L["Chat Active Login Desc"] = "접속할 때 진행 중인 이벤트마다 대화창에 한 줄을 남깁니다."
+L["Chat Active Reload Desc"] = "UI를 다시 불러올 때 진행 중인 이벤트마다 대화창에 한 줄을 남깁니다."
+L["Chat Active Start Desc"] = "이벤트가 시작되면 대화창에 한 줄을 남깁니다."
+L["Chat Upcoming Login Desc"] = "접속할 때 다가오는 축제마다 대화창에 한 줄을 남깁니다."
+L["Chat Upcoming Reload Desc"] = "UI를 다시 불러올 때 다가오는 축제마다 대화창에 한 줄을 남깁니다."
+L["Chat Upcoming Start Desc"] = "플레이 중에 축제가 다가오기 시작하면 대화창에 한 줄을 남깁니다."
+L["In Instances Desc"] = "인스턴스 안에 있을 때도 표시합니다."
+L["Only With a Time Desc"] = "종료 시간을 아는 이벤트에만 표시합니다."
+L["Position Applies To"] = "위치 적용 대상"
+L["Grow Direction"] = "쌓이는 방향"
+L["Grow Direction Desc"] = "새 팝업이 위로 쌓일지 아래로 쌓일지 고릅니다."
+L["Pop-Up Spacing Desc"] = "두 팝업 사이의 간격을 정합니다."
+L["Horizontal Position"] = "가로 위치"
+L["Horizontal Position Desc"] = "팝업을 화면 가운데에서 왼쪽이나 오른쪽으로 옮깁니다."
+L["Vertical Position"] = "세로 위치"
+L["Vertical Position Desc"] = "팝업을 화면 아래에서 위로 옮깁니다."
+L["Show Samples"] = "예시 표시"
+L["Show Samples Desc"] = "실제 팝업이 나타나는 자리에 예시 팝업을 표시합니다. 마우스를 올리거나 오른쪽 클릭하면 닫힙니다."
+L["Hide Samples"] = "예시 숨기기"
+L["Hide Samples Desc"] = "표시 중이거나 대기 중인 팝업을 예시든 실제든 모두 숨깁니다."
+L["Pop-Ups at Once"] = "동시 팝업 수"
+L["Pop-Ups at Once Desc"] = "한 번에 표시할 팝업 수를 정합니다. 나머지는 차례를 기다립니다."
+L["Fade After"] = "사라지는 시간"
+L["Fade After Desc"] = "팝업이 사라지기 전까지 남아 있는 시간(초)을 정합니다. 오른쪽 클릭하면 바로 닫힙니다."
+L["Delay for Active Events"] = "진행 중인 이벤트 지연"
+L["Delay for Active Events Desc"] = "접속하거나 UI를 다시 불러온 뒤 이만큼 기다렸다가 진행 중인 이벤트를 알려 줍니다."
+L["Delay for Upcoming Holidays"] = "다가오는 축제 지연"
+L["Delay for Upcoming Holidays Desc"] = "접속하거나 UI를 다시 불러온 뒤 이만큼 기다렸다가 다가오는 축제를 알려 줍니다."
+L["Refresh Every"] = "새로 고침 간격"
+L["Refresh Every Desc"] = "알림이 진행 중인 이벤트를 확인하는 간격(초)을 정합니다. 길수록 새 팝업이 늦게 나타날 수 있습니다."
+L["Days Ahead"] = "미리 볼 일수"
+L["Days Ahead Desc"] = "축제가 며칠 전부터 다가오는 것으로 칠지 정합니다."
+L["Turn On or Off"] = "켜기 또는 끄기"
+L["Help Events Intro Achievement Window"] = "축제와 월드 이벤트가 진행되는 동안 알림이 나타나고, 업적 창 옆에 버튼이 생깁니다."
+L["Help Events Intro World Map"] = "축제와 월드 이벤트가 진행되는 동안 알림이 나타나고, 월드맵 옆에 버튼이 생깁니다."
+L["Help Events Time {compactReminders}"] = "종료 시간이나 남은 시간을 한두 줄로 보여 줍니다. '{compactReminders}'은(는) 한 줄만 보여 줍니다."
+L["Feature Off Help Other Section"] = "{feature}이(가) 비활성화되어 있습니다. {feature} 항목 맨 위에서 활성화한 뒤 UI를 다시 불러오세요."
+L["Upcoming"] = "예정"
+L["In"] = "남은 시간:"
+L["Placeholder"] = "예시"
+L["No time data available"] = "시간 정보 없음"
+L["Upcoming Calendar Events"] = "다가오는 달력 이벤트"
+L["Event Reminders"] = "이벤트 알림"
+L["Select All"] = "모두 선택"
+L["Deselect All"] = "모두 해제"
+L["Unknown"] = "알 수 없음"
+L["Stop tracking"] = "추적 중지"
+L["End Time"] = "종료 시간"
+L["Time Left"] = "남은 시간"
+L["Up"] = "위로"
+L["Down"] = "아래로"
+L["Style"] = "스타일"
+L["Time display"] = "시간 표시"
+L["Other"] = "기타"
+L["Pop ups"] = "팝업"
+L["On Login"] = "접속 시"
+L["Show"] = "표시"
+L["In instances"] = "인스턴스에서"
+L["Only when time data is available"] = "시간 정보가 있을 때만"
+L["On Reload"] = "UI 재시작 시"
+L["On Event Start"] = "이벤트 시작 시"
+L["Location"] = "위치"
+L["Spacing"] = "간격"
+L["Spacing Desc"] = "탭 사이 기본 거리에 더하거나 빼는 거리입니다."
+L["Show placeholders"] = "예시 표시"
+L["World Events"] = "월드 이벤트"
+L["Start Time"] = "시작 시간"
+L["Presets"] = "미리 설정"
+L["Custom"] = "사용자 지정"
+L["Date and Time formatting guide Desc"] = [=[{a} - 요일 약칭 (예: 수)
+{A} - 요일 전체 이름 (예: 수요일)
+{b} - 월 약칭 (예: 9월)
+{B} - 월 전체 이름 (예: 9월)
+{c} - 지역 설정에 맞는 날짜와 시간 (예: 23/04/07 10:20:41)
+{C} - 세기 (연도/100) (예: 20)
+{d} - 일 (01 - 31)
+{D} - %m/%d/%y와 같음 (예: 04/23/07)
+{e} - 일 (1 - 31)
+{H} - 24시간 형식의 시 (00 - 23)
+{I} - 12시간 형식의 시 (01 - 12)
+{j} - 연중 일 (001 - 366)
+{k} - 24시간 형식의 시 (0 - 23)
+{l} - 12시간 형식의 시 (1 - 12)
+{m} - 월 (01 - 12)
+{M} - 분 (00 - 59)
+{p} - 12시간제의 지역 설정 오전/오후 표시 (예: AM/PM)
+{P} - 12시간제의 지역 설정 오전/오후 표시 (예: am/pm)
+{R} - %H:%M과 같음 (예: 10:20)
+{s} - 기준 시각, 즉 1970-01-01 00:00:00 UTC 이후의 초 (1177323641)
+{S} - 초 (00 - 59)
+{u} - 요일 번호 (1 - 7, 월요일이 1)
+{U} - 일요일을 첫째 주의 첫날로 하는 연중 주 (00 - 53)
+{w} - 요일 번호 (0 - 6, 일요일이 0)
+{W} - 월요일을 첫째 주의 첫날로 하는 연중 주 (00 - 53)
+{x} - 지역 설정의 날짜 (표준 날짜)
+{X} - 지역 설정의 시간 (표준 시간)
+{y} - 세기를 뺀 연도 (00 - 99) (예: 07)
+{Y} - 세기를 포함한 연도 (예: 2007)
+{z} - GMT와의 시차 (예: +0200)
+{Z} - 시간대 이름 또는 약칭; 알 수 없으면 비어 있음]=]
+L["Holidays"] = "축제"
 L["Enable"] = "활성화"
 L["Pop Out"] = "팝아웃"
 L["Close Popout"] = "팝아웃 닫기"
@@ -108,7 +225,6 @@ L["Achievements"] = "업적 창 설정"
 L["Achievements width offset"] = "업적 창 넓이"
 L["Achievements width offset Desc"] = "업적 창의 넓이를 조절합니다. 값을 조절하는 동안 느려지거나 랙이 생길 수 있습니다. 다른 애드온은 해당하지 않습니다."
 L["Active"] = "활성화"
-L["Active Event Login Delay"] = "활성화 된 이벤트 접속 시 지연"
 L["Active Events"] = "활성화 된 이벤트"
 L["Active events"] = "활성화 된 이벤트"
 L["Add addon name to world map icon"] = "월드맵 아이콘에 애드온 이름 표시"
@@ -380,10 +496,7 @@ L["Help Criteria Off"] = "이 기능은 지금 꺼져 있어서 이 옵션들은
 L["Help Eventlist Intro"] = "관심 없는 이벤트는 알림을 끄세요. 월드 이벤트는 확장팩별로 나열됩니다."
 L["Help Eventlist Title"] = "알림을 받을 이벤트"
 L["Help Events Click"] = "지금 달성할 수 있는 이벤트 업적을 엽니다."
-L["Help Events Intro"] = "축제와 월드 이벤트가 진행 중이면 알림이 뜨고, 업적 창 옆에 버튼이 표시됩니다."
-L["Help Events Off"] = "이벤트 알림이 꺼져 있습니다. 보려면 켠 다음 /reload 하세요."
 L["Help Events Right Click"] = "알림을 숨깁니다. 알림은 저절로 사라지기도 합니다."
-L["Help Events Time"] = "종료 시각이나 남은 시간을 한두 줄로 표시합니다. '간략히'는 한 줄만 표시합니다."
 L["Help Events Time Term"] = "시간"
 L["Help Filters Always Show Completed"] = "다른 필터가 숨기더라도 달성한 업적을 표시합니다."
 L["Help Filters Collapse Chain"] = "연계 업적 중 마지막으로 달성한 단계와 처음으로 달성하지 않은 단계만 표시합니다."
@@ -460,8 +573,6 @@ L["Help Window Intro"] = "업적 창을 더 넓고 높게 만들 수 있으며, 
 L["Help Window Micro Button"] = "메뉴 바의 업적 버튼으로 열 탭."
 L["Help Window Size"] = "카테고리 목록과 업적 목록의 추가 너비, 창 전체의 추가 높이."
 L["Herbalism"] = "약초채집"
-L["Hide placeholders"] = "자리 표시자 숨기기"
-L["Hide placeholders Desc"] = "표시 중이거나 대기 중인 모든 이벤트 알림 팝업을 숨깁니다. 자리 표시자와 실제 알림이 모두 포함됩니다."
 L["Icons"] = "아이콘"
 L["Indentation"] = "하위 메뉴 간격"
 L["Indentation Desc"] = "하위 메뉴 간격을 조절합니다."
@@ -504,7 +615,6 @@ L["Pop up position"] = "팝업 위치"
 L["Pop ups for active events"] = "활성화 된 이벤트 팝업"
 L["Pop ups for upcoming calendar events"] = "다가오는 달력 이벤트 팝업"
 L["Position"] = "위치"
-L["Position applies to"] = "위치 적용 대상"
 L["Position applies to Desc"] = "모든 알림은 업적과 전리품 같은 게임 알림을 이벤트 알림과 함께 옮깁니다. 이벤트 알림만은 이벤트 알림만 옮기고 게임 알림은 게임이 두는 자리에 그대로 둡니다."
 L["Preview"] = "미리보기"
 L["Prey"] = "사냥감"
@@ -583,4 +693,3 @@ L["Wintergrasp"] = "겨울손아귀"
 L["World map"] = "월드맵"
 L["World map and minimap"] = "월드맵 및 미니맵"
 L["Wowhead link"] = "Wowhead 링크"
-L["XYZ offset"] = "{xyz} 위치"

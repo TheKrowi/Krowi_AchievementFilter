@@ -1,10 +1,10 @@
 local _, addon = ...
-addon.Data.CustomWidgetEventTimers = {}
-local customWidgetEventTimers = addon.Data.CustomWidgetEventTimers
+addon.EventReminders.CustomWidgetEventTimers = {}
+local customWidgetEventTimers = addon.EventReminders.CustomWidgetEventTimers
 local timers = {}
 
 -- The widget events' timers. Only the soup's are left here: Time Rift, Superbloom and the Azerothian Archives run on
--- fixed schedules (Data/EventSchedules.lua, DataAddons/Retail/10_Dragonflight/EventSchedules.lua) and read no widget.
+-- fixed schedules (Features/EventReminders/Data/EventSchedules.lua, DataAddons/Retail/10_Dragonflight/EventSchedules.lua) and read no widget.
 
 -- now: the server time, passed to the timers that compute their times instead of reading a widget
 function customWidgetEventTimers.GetSecondsLeft(id, now)

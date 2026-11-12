@@ -1,12 +1,12 @@
 local _, addon = ...
-addon.Data.EventObserver = {}
-local eventObserver = addon.Data.EventObserver
+addon.EventReminders.EventObserver = {}
+local eventObserver = addon.EventReminders.EventObserver
 
 -- What the addon learns from the POIs it sees (docs/work/2026-10-21-fixed-event-schedules): every 300 s it reads the
 -- seconds left of the POIs of the families marked Observe in KrowiAF.EventSchedules, a number per POI. When one appears,
 -- the start of its cycle (now plus its seconds left minus its window's end) goes into the account's saved data, per
 -- region (KrowiAF_SavedData.EventObservations). Two starts of a family a whole number of cycles apart, to within 120 s,
--- confirm the region's start (and, in a rotation, where it stands), which Data/EventSchedules.lua then uses where the
+-- confirm the region's start (and, in a rotation, where it stands), which Features/EventReminders/Data/EventSchedules.lua then uses where the
 -- addon ships none for the region or the game disagrees with the one it ships. In debug mode every new finding prints in
 -- chat; for families KAF does not run on a schedule yet, the order they came in prints too, for the maintainer. A run in
 -- which no POI appeared or went allocates nothing (Tests/Memory.lua).
@@ -127,10 +127,10 @@ end
 -- the addon ships none for the region
 local function OffsetFromShipped(family, region, entry, interval)
     if family.Rotation then
-        local shipped = family.RotationAnchors and family.RotationAnchors[region] or addon.Data.EventSchedules.GetShippedAnchor(family, region)
+        local shipped = family.RotationAnchors and family.RotationAnchors[region] or addon.EventReminders.EventSchedules.GetShippedAnchor(family, region)
         return shipped and Circular(entry.RotationAnchor - shipped, interval * #family.Rotation)
     end
-    local shipped = addon.Data.EventSchedules.GetShippedAnchor(family, region)
+    local shipped = addon.EventReminders.EventSchedules.GetShippedAnchor(family, region)
     return shipped and Circular(entry.Anchor - shipped, interval)
 end
 
@@ -141,7 +141,7 @@ local function Confirm(family, entry, region, observation, interval)
     if not changed and family.Rotation then
         changed = not entry.RotationAnchor or math.abs(Circular(rotationAnchor - entry.RotationAnchor, interval * #family.Rotation)) > tolerance
     end
-    local definition = addon.Data.EventSchedules.GetDefinition(family)
+    local definition = addon.EventReminders.EventSchedules.GetDefinition(family)
     changed = changed or entry.Definition ~= definition
     entry.Anchor, entry.RotationAnchor, entry.Definition = anchor, rotationAnchor, definition
     if not changed or not source.Debug() then
@@ -190,7 +190,7 @@ local function Observe(item, now, secondsLeft)
     if not secondsLeft then
         return -- a start seen to within one run only; kept for the order, not used for a start
     end
-    local interval = addon.Data.EventSchedules.GetInterval(family)
+    local interval = addon.EventReminders.EventSchedules.GetInterval(family)
     for i = #seen - 1, 1, -1 do
         if Agrees(family, interval, seen[i], observation) then
             Confirm(family, entry, region, observation, interval)
@@ -223,13 +223,13 @@ function eventObserver.RunOnce()
     end
 end
 
--- The confirmed start of a family in a region, for Data/EventSchedules.lua: {Anchor, RotationAnchor}, or nil; only one
+-- The confirmed start of a family in a region, for Features/EventReminders/Data/EventSchedules.lua: {Anchor, RotationAnchor}, or nil; only one
 -- learned under the family's current schedule counts, so a release that corrects a schedule is not overruled
 function eventObserver.GetLearned(key, region)
     local regions = store or (KrowiAF_SavedData and KrowiAF_SavedData.EventObservations)
     local entry = regions and regions[region] and regions[region][key]
     local family = KrowiAF.EventSchedules[key]
-    if entry and entry.Anchor and family and entry.Definition == addon.Data.EventSchedules.GetDefinition(family) then
+    if entry and entry.Anchor and family and entry.Definition == addon.EventReminders.EventSchedules.GetDefinition(family) then
         return entry
     end
 end
@@ -252,10 +252,10 @@ local function LearnedStatus(family, entry, region)
     if not family.Fixed then
         return ("watched only, %d seen"):format(#entry.Seen)
     end
-    if not entry.Anchor or entry.Definition ~= addon.Data.EventSchedules.GetDefinition(family) then
+    if not entry.Anchor or entry.Definition ~= addon.EventReminders.EventSchedules.GetDefinition(family) then
         return ("not learned yet, %d seen"):format(#entry.Seen)
     end
-    local offset = OffsetFromShipped(family, region, entry, addon.Data.EventSchedules.GetInterval(family))
+    local offset = OffsetFromShipped(family, region, entry, addon.EventReminders.EventSchedules.GetInterval(family))
     local shipped = not offset and "the addon ships none for this region"
         or math.abs(offset) <= tolerance and "the same as the addon's schedule"
         or ("%d s off the addon's schedule"):format(offset)
@@ -298,6 +298,10 @@ end
 function eventObserver.GetLog()
     return eventObserver.FormatLog(Store(), source.Region())
 end
+
+-- The log's tab in the Data Manager (Slots.lua, DataManagerTabs), which the feature adds when it starts
+-- (EventReminders.lua)
+eventObserver.DataManagerTab = {Order = 10, Name = addon.L["Event Reminders"], GetText = eventObserver.GetLog}
 
 -- [[ For the suites ]] --
 

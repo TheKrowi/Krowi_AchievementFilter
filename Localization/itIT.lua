@@ -7,6 +7,139 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Upcoming Holidays"] = "Prossime festività"
+L["Upcoming Holidays Desc"] = "Ti ricorda anche le festività che iniziano nei prossimi giorni."
+L["Compact Reminders"] = "Promemoria compatti"
+L["Compact Reminders Desc"] = "Mostra promemoria più piccoli con una sola riga di tempo."
+L["Side Buttons Beside"] = "Pulsanti laterali accanto a"
+L["Side Buttons Beside Desc"] = "Sceglie la finestra accanto a cui stanno i pulsanti laterali."
+L["First Line"] = "Prima riga"
+L["First Line Desc"] = "Sceglie cosa mostra la prima riga sotto il nome di un evento."
+L["Second Line"] = "Seconda riga"
+L["Second Line Desc"] = "Sceglie cosa mostra la seconda riga. I promemoria compatti non hanno una seconda riga."
+L["Pop-Up Active Login Desc"] = "Mostra una finestra a comparsa per ogni evento in corso quando accedi."
+L["Pop-Up Active Reload Desc"] = "Mostra una finestra a comparsa per ogni evento in corso quando ricarichi."
+L["Pop-Up Active Start Desc"] = "Mostra una finestra a comparsa quando inizia un evento."
+L["Pop-Up Upcoming Login Desc"] = "Mostra una finestra a comparsa per ogni festività in arrivo quando accedi."
+L["Pop-Up Upcoming Reload Desc"] = "Mostra una finestra a comparsa per ogni festività in arrivo quando ricarichi."
+L["Pop-Up Upcoming Start Desc"] = "Mostra una finestra a comparsa quando una festività diventa vicina mentre giochi."
+L["Chat Active Login Desc"] = "Scrive una riga in chat per ogni evento in corso quando accedi."
+L["Chat Active Reload Desc"] = "Scrive una riga in chat per ogni evento in corso quando ricarichi."
+L["Chat Active Start Desc"] = "Scrive una riga in chat quando inizia un evento."
+L["Chat Upcoming Login Desc"] = "Scrive una riga in chat per ogni festività in arrivo quando accedi."
+L["Chat Upcoming Reload Desc"] = "Scrive una riga in chat per ogni festività in arrivo quando ricarichi."
+L["Chat Upcoming Start Desc"] = "Scrive una riga in chat quando una festività diventa vicina mentre giochi."
+L["In Instances Desc"] = "Li mostra anche mentre sei in un'istanza."
+L["Only With a Time Desc"] = "Li mostra solo per gli eventi di cui si conosce l'ora di fine."
+L["Position Applies To"] = "La posizione vale per"
+L["Grow Direction"] = "Direzione di crescita"
+L["Grow Direction Desc"] = "Sceglie se le nuove finestre a comparsa si impilano verso l'alto o verso il basso."
+L["Pop-Up Spacing Desc"] = "Imposta lo spazio tra due finestre a comparsa."
+L["Horizontal Position"] = "Posizione orizzontale"
+L["Horizontal Position Desc"] = "Sposta le finestre a comparsa a sinistra o a destra dal centro dello schermo."
+L["Vertical Position"] = "Posizione verticale"
+L["Vertical Position Desc"] = "Sposta le finestre a comparsa verso l'alto dal fondo dello schermo."
+L["Show Samples"] = "Mostra esempi"
+L["Show Samples Desc"] = "Mostra finestre a comparsa di esempio dove compaiono quelle vere. Passaci sopra con il mouse o fai clic destro per chiuderne una."
+L["Hide Samples"] = "Nascondi esempi"
+L["Hide Samples Desc"] = "Nasconde ogni finestra a comparsa visibile o in attesa, di esempio e vera."
+L["Pop-Ups at Once"] = "Finestre a comparsa insieme"
+L["Pop-Ups at Once Desc"] = "Imposta quante finestre a comparsa si mostrano insieme; le altre aspettano il loro turno."
+L["Fade After"] = "Svanisce dopo"
+L["Fade After Desc"] = "Imposta per quanti secondi una finestra a comparsa resta prima di svanire. Un clic destro la chiude subito."
+L["Delay for Active Events"] = "Ritardo per gli eventi in corso"
+L["Delay for Active Events Desc"] = "Aspetta questi secondi dopo l'accesso o un ricaricamento prima di ricordarti gli eventi in corso."
+L["Delay for Upcoming Holidays"] = "Ritardo per le prossime festività"
+L["Delay for Upcoming Holidays Desc"] = "Aspetta questi secondi dopo l'accesso o un ricaricamento prima di ricordarti le prossime festività."
+L["Refresh Every"] = "Aggiorna ogni"
+L["Refresh Every Desc"] = "Imposta ogni quanti secondi i promemoria controllano quali eventi sono in corso. Più lungo significa che le nuove finestre a comparsa possono arrivare più tardi."
+L["Days Ahead"] = "Giorni di anticipo"
+L["Days Ahead Desc"] = "Imposta con quanti giorni di anticipo una festività conta come in arrivo."
+L["Turn On or Off"] = "Attiva o disattiva"
+L["Help Events Intro Achievement Window"] = "Le festività e gli eventi del mondo hanno un promemoria che compare mentre sono in corso, e un pulsante accanto alla finestra delle imprese."
+L["Help Events Intro World Map"] = "Le festività e gli eventi del mondo hanno un promemoria che compare mentre sono in corso, e un pulsante accanto alla mappa del mondo."
+L["Help Events Time {compactReminders}"] = "Una o due righe con l'ora di fine o il tempo rimanente; «{compactReminders}» ne mostra una."
+L["Feature Off Help Other Section"] = "La funzione {feature} è disattivata. Attivala in cima alla sezione {feature} e ricarica."
+L["Active Events"] = "Eventi attivi"
+L["Category shown temporarily"] = "Questa categoria è stata scelta con un clic sul promemoria dell'evento {eventName} ed è mostrata temporaneamente perché non ha imprese che corrispondono ai filtri impostati."
+L["Upcoming"] = "In arrivo"
+L["Collecting data"] = "Raccolta dati"
+L["In"] = "Tra"
+L["Placeholder"] = "Segnaposto"
+L["No time data available"] = "Nessun dato sul tempo disponibile"
+L["Active events"] = "Eventi attivi"
+L["Upcoming Calendar Events"] = "Prossimi eventi del calendario"
+L["Event Reminders"] = "Promemoria degli eventi"
+L["Select All"] = "Seleziona tutto"
+L["Deselect All"] = "Deseleziona tutto"
+L["Unknown"] = "Sconosciuto"
+L["Stop tracking"] = "Smetti di seguire"
+L["End Time"] = "Ora di fine"
+L["Time Left"] = "Tempo rimanente"
+L["Achievement Window"] = "Finestra delle imprese"
+L["Up"] = "Su"
+L["Down"] = "Giù"
+L["%d/%m/%Y %I:%M %p"] = true
+L["%m/%d/%Y %R"] = true
+L["%m/%d/%Y %I:%M %p"] = true
+L["%Y/%m/%d %R"] = true
+L["%Y/%m/%d %I:%M %p"] = true
+L["%c"] = true
+L["Style"] = "Stile"
+L["Time display"] = "Visualizzazione del tempo"
+L["Other"] = "Altro"
+L["Pop ups"] = "Finestre a comparsa"
+L["Active events"] = "Eventi attivi"
+L["On Login"] = "All'accesso"
+L["Show"] = "Mostra"
+L["In instances"] = "Nelle istanze"
+L["Only when time data is available"] = "Solo con dati sul tempo"
+L["On Reload"] = "Al ricaricamento"
+L["On Event Start"] = "All'inizio di un evento"
+L["Location"] = "Posizione"
+L["Spacing"] = "Spaziatura"
+L["Spacing Desc"] = "La distanza aggiunta o sottratta alla distanza predefinita tra le schede."
+L["Show placeholders"] = "Mostra segnaposto"
+L["Chat messages"] = "Messaggi in chat"
+L["Calendar Events"] = "Eventi del calendario"
+L["World Events"] = "Eventi del mondo"
+L["Date and Time format"] = "Formato di data e ora"
+L["Start Time"] = "Ora di inizio"
+L["Presets"] = "Predefiniti"
+L["Custom"] = "Personalizzato"
+L["Date and Time formatting guide"] = "Guida al formato di data e ora"
+L["Date and Time formatting guide Desc"] = [=[{a} - Nome abbreviato del giorno della settimana (es. mer)
+{A} - Nome completo del giorno della settimana (es. mercoledì)
+{b} - Nome abbreviato del mese (es. set)
+{B} - Nome completo del mese (es. settembre)
+{c} - Data e ora secondo le impostazioni locali (es. 23/04/07 10:20:41)
+{C} - Il secolo (anno/100) (es. 20)
+{d} - Giorno del mese come numero decimale (01 - 31)
+{D} - Equivale a %m/%d/%y (es. 04/23/07)
+{e} - Giorno del mese come numero decimale (1 - 31)
+{H} - Ora nel formato 24 ore (00 - 23)
+{I} - Ora nel formato 12 ore (01 - 12)
+{j} - Giorno dell'anno come numero decimale (001 - 366)
+{k} - Ora nel formato 24 ore (0 - 23)
+{l} - Ora nel formato 12 ore (1 - 12)
+{m} - Mese come numero decimale (01 - 12)
+{M} - Minuto come numero decimale (00 - 59)
+{p} - Indicatore AM/PM delle impostazioni locali per l'orologio a 12 ore (es. AM/PM)
+{P} - Indicatore AM/PM delle impostazioni locali per l'orologio a 12 ore (es. am/pm)
+{R} - Equivale a %H:%M (es. 10:20)
+{s} - Numero di secondi dall'epoca, cioè dal 1970-01-01 00:00:00 UTC (1177323641)
+{S} - Secondo come numero decimale (00 - 59)
+{u} - Giorno della settimana come numero decimale (1 - 7; il lunedì è 1)
+{U} - Settimana dell'anno come numero decimale, con la domenica come primo giorno della settimana 1 (00 - 53)
+{w} - Giorno della settimana come numero decimale (0 - 6; la domenica è 0)
+{W} - Settimana dell'anno come numero decimale, con il lunedì come primo giorno della settimana 1 (00 - 53)
+{x} - Data secondo le impostazioni locali (data standard)
+{X} - Ora secondo le impostazioni locali (ora standard)
+{y} - Anno senza secolo, come numero decimale (00 - 99) (es. 07)
+{Y} - Anno con il secolo, come numero decimale (es. 2007)
+{z} - Fuso orario come scostamento da GMT (es. +0200)
+{Z} - Nome o sigla del fuso orario; niente se è sconosciuto]=]
+L["Holidays"] = "Festività"
 L["Enable"] = "Attiva"
 L["Pop Out"] = "Finestra staccata"
 L["Close Popout"] = "Chiudi finestra staccata"
@@ -222,10 +355,7 @@ L["Help Criteria Off"] = "Questa funzione per ora è disattivata, quindi queste 
 L["Help Eventlist Intro"] = "Disattiva i promemoria per gli eventi che non ti interessano. Gli eventi mondiali sono elencati per espansione."
 L["Help Eventlist Title"] = "Quali eventi"
 L["Help Events Click"] = "Apre le imprese dell'evento che puoi ottenere ora."
-L["Help Events Intro"] = "Le festività e gli eventi mondiali hanno un promemoria che compare mentre sono in corso, e un pulsante a lato della finestra delle imprese."
-L["Help Events Off"] = "I promemoria degli eventi sono disattivati. Attivali e usa /reload per vederli."
 L["Help Events Right Click"] = "Nasconde il promemoria, che scompare anche da solo."
-L["Help Events Time"] = "Una o due righe con l'orario di fine o il tempo rimanente; Compatto ne mostra una."
 L["Help Events Time Term"] = "Tempo"
 L["Help Filters Always Show Completed"] = "Le imprese ottenute vengono mostrate anche quando un altro filtro le nasconderebbe."
 L["Help Filters Collapse Chain"] = "Solo l'ultimo passo ottenuto e il primo non ancora ottenuto di una catena."
@@ -302,8 +432,6 @@ L["Help Window Intro"] = "La finestra delle imprese può diventare più larga e 
 L["Help Window Micro Button"] = "Quale scheda apre il pulsante delle imprese nella barra dei menu."
 L["Help Window Size"] = "Larghezza extra per l'elenco delle categorie e quello delle imprese, altezza extra per l'intera finestra."
 L["Herbalism"] = "Erbalismo"
-L["Hide placeholders"] = "Nascondi segnaposto"
-L["Hide placeholders Desc"] = "Nasconde tutti i popup dei promemoria degli eventi visualizzati o in attesa: i segnaposto e i promemoria reali."
 L["Icons"] = "Icone"
 L["Invert Up and Down When Turning"] = "Inverti alto e basso durante la rotazione"
 L["Island Expeditions"] = "Scorrerie sulle Isole"
@@ -339,7 +467,6 @@ L["Pop up position"] = "Posizione dei popup"
 L["Pop ups for active events"] = "Popup per gli eventi attivi"
 L["Pop ups for upcoming calendar events"] = "Popup per i prossimi eventi del calendario"
 L["Position"] = "Posizione"
-L["Position applies to"] = "La posizione si applica a"
 L["Position applies to Desc"] = "Tutti gli avvisi sposta gli avvisi del gioco, come imprese e bottino, insieme ai promemoria degli eventi. Solo promemoria degli eventi sposta soltanto i promemoria degli eventi e lascia gli avvisi del gioco dove li mette il gioco."
 L["Preview"] = "Anteprima"
 L["Prey"] = "Preda"

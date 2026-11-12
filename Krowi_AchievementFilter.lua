@@ -29,7 +29,7 @@ local function LoadKrowi_AchievementFilter()
     KrowiAF.LoadTabs()
 
     addon.SpecialCategories.InjectDynamicOptions()
-    KrowiAF.InjectEventDataDynamicOptions()
+    addon.Features.BuildOptions() -- every feature's settings, now that every file loaded (Features.lua)
 
     KrowiAF.InjectTabDataDynamicOptions()
     addon.Gui.AchievementFrameHeader:InjectDynamicOptions()
@@ -55,6 +55,9 @@ end
 
 local function LoadBlizzard_AchievementUI()
     addon.Gui:LoadWithBlizzard_AchievementUI()
+    -- The started features' step once the window exists, where the side buttons always attached, so an error in a later
+    -- step cannot keep them off; it has its own run-once latch and runs each feature under xpcall (Features.lua)
+    addon.Features.AchievementUILoaded()
 
     if addon.Options.db.profile.Window.Movable then
         addon.MakeWindowMovable()
@@ -84,18 +87,12 @@ local function LoadPlayerLogin()
     addon.ChangeAchievementMicroButtonOnClick()
 end
 
-local function LoadBlizzard_Calendar()
-    addon.EventData.LoadBlizzard_Calendar()
-end
-
-function loadHelper:OnEvent(event, arg1, arg2)
+function loadHelper:OnEvent(event, arg1)
     if event == "ADDON_LOADED" then
         if arg1 == "Krowi_AchievementFilter" then -- This always needs to load
             LoadKrowi_AchievementFilter()
         elseif arg1 == "Blizzard_AchievementUI" then -- This needs the Blizzard_AchievementUI addon available to load
             LoadBlizzard_AchievementUI()
-        elseif arg1 == "Blizzard_Calendar" then
-            LoadBlizzard_Calendar()
         end
     elseif event == "PLAYER_LOGIN" then
         LoadPlayerLogin()
@@ -103,42 +100,14 @@ function loadHelper:OnEvent(event, arg1, arg2)
         if C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
             LoadBlizzard_AchievementUI()
         end
-        if C_AddOns.IsAddOnLoaded("Blizzard_Calendar") then
-            LoadBlizzard_Calendar()
-        end
 
         -- Last, so an error in it cannot stop the loads above; the key bindings are loaded by now and the micro button's
         -- tab is resolved (LoadPlayerLogin)
         addon.Gui:MoveYToMicroButtonTab()
     elseif event == "PLAYER_ENTERING_WORLD" then
-         -- arg1 = isLogin, arg2 = isReload
+        -- The calendar may be readable again on the new map (Data/EventData.lua); the reminders listen for this event
+        -- themselves while their feature is on (docs/work/2026-11-12-event-reminders)
         addon.EventData.ClearCalendarEventsCacheDeferral()
-        local popUpsOptions, chatMessagesOptions, popUpsUpcomingOptions, chatMessagesUpcomingOptions
-        if arg1 then
-            popUpsOptions = addon.Options.db.profile.EventReminders.PopUps.OnLogin
-            chatMessagesOptions = addon.Options.db.profile.EventReminders.ChatMessages.OnLogin
-            popUpsUpcomingOptions = addon.Options.db.profile.EventReminders.PopUps.OnLoginUpcoming
-            chatMessagesUpcomingOptions = addon.Options.db.profile.EventReminders.ChatMessages.OnLoginUpcoming
-        elseif arg2 then
-            popUpsOptions = addon.Options.db.profile.EventReminders.PopUps.OnReload
-            chatMessagesOptions = addon.Options.db.profile.EventReminders.ChatMessages.OnReload
-            popUpsUpcomingOptions = addon.Options.db.profile.EventReminders.PopUps.OnReloadUpcoming
-            chatMessagesUpcomingOptions = addon.Options.db.profile.EventReminders.ChatMessages.OnReloadUpcoming
-        end
-        if arg1 or arg2 then -- Required cause event also is called when zoning in an instance for example
-            C_Timer.After(0, function()
-                C_Timer.After(addon.Options.db.profile.EventReminders.OnLoginDelay, function()
-                    addon.Data.EventScheduler.EnsureData() -- the times of the events from Blizzard's event scheduler, for the reminders below
-                    addon.Gui.EventReminderAlertSystem:ShowActiveEventsOnPlayerEnteringWorld(popUpsOptions, chatMessagesOptions)
-                    addon.Data.EventObserver.Start() -- after the reminders, so nothing it does can stop them; learns the older events' starts, once a session
-                end)
-            end)
-            C_Timer.After(0, function()
-                C_Timer.After(addon.Options.db.profile.EventReminders.OnLoginUpcomingDelay, function()
-                    addon.Gui.EventReminderAlertSystem:ShowUpcomingCalendarEventsOnPlayerEnteringWorld(popUpsUpcomingOptions, chatMessagesUpcomingOptions)
-                end)
-            end)
-        end
     elseif event == "ACHIEVEMENT_EARNED" then
         addon.OnAchievementEarned(arg1)
     end

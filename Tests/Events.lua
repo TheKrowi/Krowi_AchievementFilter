@@ -18,7 +18,7 @@ local events = addon.Tests.Events
 --   Duplicates: how many occurrences the scheduler cache keeps for Poi after the fixture
 --   Soup: GetWidgetEventDetails of Event at At; "not shown", or "ends in <seconds>"
 --   FeastTimes: the soup schedule of Region at At: "next start in <seconds>, active <seconds> left | not active"
---   Scheduler: what Data/EventScheduler.lua does in the story Story, told through a model of the game in place of the
+--   Scheduler: what Features/EventReminders/Data/EventScheduler.lua does in the story Story, told through a model of the game in place of the
 --     game (UseSourceForTest): the scheduler's answers and the calls made to it, combat, the world map and the clock. The
 --     model lists the five Curse Surges every 9000 s for three days from its clock, as the game does, so the stories
 --     run the same in game and headlessly.
@@ -148,7 +148,7 @@ local function DescribeSurge(env, scenario)
     if not event then
         return "no event"
     end
-    local details = addon.EventData.GetWorldEventDetails(event, surgeT0 + scenario.At)
+    local details = addon.EventReminders.EventData.GetWorldEventDetails(event, surgeT0 + scenario.At)
     if not details or not details.EndTime then
         return "not active"
     end
@@ -159,7 +159,7 @@ local function DescribeSurges(scenario)
     local active = {}
     for _, poi in ipairs(surgeOrder) do
         local event = WorldEvent(poi)
-        if event and addon.EventData.GetWorldEventDetails(event, surgeT0 + scenario.At) then
+        if event and addon.EventReminders.EventData.GetWorldEventDetails(event, surgeT0 + scenario.At) then
             tinsert(active, tostring(poi))
         end
     end
@@ -168,7 +168,7 @@ local function DescribeSurges(scenario)
 end
 
 local function DescribeDuplicates(scenario)
-    local scheduler = addon.Data.EventScheduler
+    local scheduler = addon.EventReminders.EventScheduler
     if not scheduler then
         return "no scheduler"
     end
@@ -180,7 +180,7 @@ local function DescribeSoup(scenario)
     if not event then
         return "no event"
     end
-    local details = addon.EventData.GetWidgetEventDetails(event, scenario.At)
+    local details = addon.EventReminders.EventData.GetWidgetEventDetails(event, scenario.At)
     if not details or not details.EndTime then
         return "not shown"
     end
@@ -188,7 +188,7 @@ local function DescribeSoup(scenario)
 end
 
 local function DescribeFeastTimes(scenario)
-    local timers = addon.Data.CustomWidgetEventTimers
+    local timers = addon.EventReminders.CustomWidgetEventTimers
     if not timers.FeastTimes then
         return "no schedule"
     end
@@ -199,12 +199,12 @@ local function DescribeFeastTimes(scenario)
     return ("next start in %d, %s"):format(secondsToNext, secondsLeft and ("active " .. secondsLeft .. " left") or "not active")
 end
 
--- [[ The scheduler stories: Data/EventScheduler.lua driven through a model of the game ]] --
+-- [[ The scheduler stories: Features/EventReminders/Data/EventScheduler.lua driven through a model of the game ]] --
 
 local soonAfterLogin = 26 * surgeLength * 5 + 50 -- 26 rotations on: inside an occurrence, and the kept times short
 
 local function NewModel()
-    local scheduler = addon.Data.EventScheduler
+    local scheduler = addon.EventReminders.EventScheduler
     local model = {Now = surgeT0, Data = true, Combat = false, Map = false, FireInside = false, Names = {}, Reads = 0, Requests = 0}
     model.Listed = {}
     for _, poi in ipairs(surgeOrder) do
@@ -351,7 +351,7 @@ end
 
 -- The story runs on a model; then the game is the source again, and the fixture back in the cache for the next scenario
 local function TellStory(scenario)
-    local scheduler = addon.Data.EventScheduler
+    local scheduler = addon.EventReminders.EventScheduler
     if not scheduler or not scheduler.UseSourceForTest then
         return "no scheduler"
     end
@@ -517,7 +517,7 @@ local function DescribePoiSeconds(env, scenario, observations)
     env.SetPoi(poiTestId, poiTestMap, scenario.SecondsLeft)
     local now = GetServerTime()
     local event = {Id = poiTestId, MapId = poiTestMap, Name = "Test"}
-    local ran, details = pcall(addon.EventData.GetWorldEventDetails, event, now)
+    local ran, details = pcall(addon.EventReminders.EventData.GetWorldEventDetails, event, now)
     env.SetPoi(poiTestId)
     if not ran then
         tinsert(observations, scenario.Name .. " " .. DescribeError(details))
@@ -616,21 +616,34 @@ local function RestoreToggles(saved)
         eventReminders.WorldEvents[poi] = value
         local event = WorldEvent(poi)
         if event then
-            addon.EventData.GetWorldEventDetails(event)
+            addon.EventReminders.EventData.GetWorldEventDetails(event)
         end
     end
     for id, value in next, saved.Widget do
         eventReminders.WidgetEvents[id] = value
         local event = WidgetEvent(id)
         if event then
-            addon.EventData.GetWidgetEventDetails(event)
+            addon.EventReminders.EventData.GetWidgetEventDetails(event)
         end
     end
 end
 
 -- The fixture goes into the scheduler cache for the run; Restore() puts the real data back after it
 function events.Run(env, observations)
-    local scheduler = addon.Data.EventScheduler
+    -- Every scenario reads the feature's own code, which must stay idle while Event reminders did not start this session
+    -- (Features.lua): the matrix's off steps then prove nothing of it runs (docs/work/2026-11-12-event-reminders)
+    if not addon.Features.IsStarted("EventReminders") then
+        local results = {}
+        local isRetail = env.IsRetail()
+        for _, scenario in ipairs(events.Scenarios) do
+            if isRetail or not scenario.RetailOnly then
+                tinsert(results, {Name = scenario.Name, Status = "SKIP",
+                    Line = ("events/%s: SKIP recorded=[%s] event reminders are off this session"):format(scenario.Name, scenario.Recorded)})
+            end
+        end
+        return results
+    end
+    local scheduler = addon.EventReminders.EventScheduler
     local saved = ForceToggles()
     if scheduler then
         scheduler.LoadForTest(events.Fixture())
@@ -652,7 +665,7 @@ function events.Run(env, observations)
         error(err, 0)
     end
     if not scheduler then
-        tinsert(observations, "no scheduler cache (Data/EventScheduler.lua) on this build")
+        tinsert(observations, "no scheduler cache (Features/EventReminders/Data/EventScheduler.lua) on this build")
     end
     return results
 end
@@ -676,25 +689,25 @@ function gameEnv.PoiName(id)
 end
 
 function gameEnv.Restore()
-    local scheduler = addon.Data.EventScheduler
+    local scheduler = addon.EventReminders.EventScheduler
     scheduler.Reset()
     scheduler.EnsureData()
 end
 
 -- What is going on now, from the real data: the Curse Surge and its end, and the soup; standing in the Azure Span, the
--- widget's own reading next to the schedule's, which checks the region offsets (Data/CustomWidgetEventTimers.lua)
+-- widget's own reading next to the schedule's, which checks the region offsets (Features/EventReminders/Data/CustomWidgetEventTimers.lua)
 local function ObserveLive(observations)
     local now = GetServerTime()
     local surge
     for _, poi in ipairs(surgeOrder) do
         local event = WorldEvent(poi)
-        local details = event and addon.EventData.GetWorldEventDetails(event)
+        local details = event and addon.EventReminders.EventData.GetWorldEventDetails(event)
         if details and details.EndTime then
             surge = ("%s (%d) until %s"):format(tostring(details.Name), poi, date("%H:%M:%S", details.EndTime))
         end
     end
     tinsert(observations, "Curse Surge now: " .. (surge or "none known"))
-    local timers = addon.Data.CustomWidgetEventTimers
+    local timers = addon.EventReminders.CustomWidgetEventTimers
     if timers.FeastTimes then
         local secondsToNext, secondsLeft = timers.FeastTimes(now, GetCurrentRegion())
         tinsert(observations, ("soup by the schedule: next start in %s s, %s"):format(tostring(secondsToNext), secondsLeft and ("active, " .. secondsLeft .. " s left") or "not active"))

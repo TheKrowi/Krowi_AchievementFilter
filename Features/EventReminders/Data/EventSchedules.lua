@@ -1,16 +1,16 @@
 local _, addon = ...
-addon.Data.EventSchedules = {}
-local eventSchedules = addon.Data.EventSchedules
+addon.EventReminders.EventSchedules = {}
+local eventSchedules = addon.EventReminders.EventSchedules
 
 -- The older expansions' events on the fixed schedules KAF carries (KrowiAF.EventSchedules, DataAddons/Retail/*/
 -- EventSchedules.lua; docs/work/2026-10-21-fixed-event-schedules). The current expansion's events come from Blizzard's
--- event scheduler instead (Data/EventScheduler.lua), and move here when their expansion ends.
+-- event scheduler instead (Features/EventReminders/Data/EventScheduler.lua), and move here when their expansion ends.
 -- A family is a cycle (Interval, or the weekly reset for Reset = "Weekly" / "HalfWeekly") with a start per region
 -- (Anchors, by GetCurrentRegion(); Anchor for the regions it does not name), and the window each of its events is
 -- shown in, relative to a cycle's start
 -- (Windows, or one Window for every id of a Rotation, whose zone moves one step per cycle). Where the addon ships no
 -- start for the player's region, or the game shows another one, the start the watcher learned from the POIs is used
--- (Data/EventObserver.lua). A lookup is arithmetic: no POI or widget read, no allocation.
+-- (Features/EventReminders/Data/EventObserver.lua). A lookup is arithmetic: no POI or widget read, no allocation.
 
 local week, halfWeek = 604800, 302400
 
@@ -19,7 +19,7 @@ local week, halfWeek = 604800, 302400
 local game = {
     Region = function() return GetCurrentRegion() end,
     SecondsUntilWeeklyReset = function() return C_DateAndTime.GetSecondsUntilWeeklyReset() end,
-    Learned = function(key, region) return addon.Data.EventObserver.GetLearned(key, region) end,
+    Learned = function(key, region) return addon.EventReminders.EventObserver.GetLearned(key, region) end,
     QuestDone = function(questId) return C_QuestLog.IsQuestFlaggedCompleted(questId) end,
 }
 local source = game
@@ -55,7 +55,7 @@ function eventSchedules.GetInterval(family)
 end
 
 -- What a start learned for the family depends on: its cycle, rotation and windows. A start learned under another one
--- (a later release corrected the schedule) is not used (Data/EventObserver.lua GetLearned). Made once per family.
+-- (a later release corrected the schedule) is not used (Features/EventReminders/Data/EventObserver.lua GetLearned). Made once per family.
 function eventSchedules.GetDefinition(family)
     if family.Definition then
         return family.Definition

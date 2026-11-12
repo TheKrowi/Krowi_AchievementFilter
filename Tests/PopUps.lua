@@ -6,7 +6,7 @@ local popUps = addon.Tests.PopUps
 -- where the location options put the pop-ups, whether the addon changes how the game's own toasts stack, whether it
 -- follows another addon that places the game's alerts, and what Show placeholders and Hide placeholders do. Also the
 -- event reminder side buttons after a Side Button Anchor change (docs/work/2026-11-04-side-button-anchor). Every
--- scenario goes through the options' own setters (Options/EventReminders.lua) and puts back what it changed; it hides
+-- scenario goes through the options' own setters (Features/EventReminders/Options.lua) and puts back what it changed; it hides
 -- and dequeues only the addon's own pop-ups, so a run also clears the reminders showing at the time.
 --
 -- In game (/kaftest popups) the scenarios read the real AlertFrame; headlessly (.claude/tools/headless/run-tests.lua)
@@ -16,7 +16,8 @@ local popUps = addon.Tests.PopUps
 -- scenarios SKIP in game. After the scenarios the game run shows the placeholders and hides them, each step with a
 -- banner and a screenshot, then reports the addon's Lua errors of the session from BugGrabber.
 
-local location = "EventReminders.PopUps.Location."
+-- The feature's settings below the pages (Features.lua: Features.<Name>.Settings, docs/work/2026-11-12-event-reminders)
+local location = "Features.EventReminders.Settings.PopUps.Location."
 
 local function System()
     return addon.Gui.EventReminderAlertSystem
@@ -195,8 +196,8 @@ end
 -- the real achievement window, which the scenarios open and close the addon's own way (Tests/Escape.lua), never the
 -- world map; headlessly on the runner's models of both
 
-local sideButtonsAnchor = "EventReminders.General.Other.SideButtonsAnchor"
-local achievementWindow, worldMap = 1, 2 -- the option's values (Options/EventReminders.lua)
+local sideButtonsAnchor = "Features.EventReminders.Settings.General.Style.SideButtonsAnchor"
+local achievementWindow, worldMap = 1, 2 -- the option's values (Features/EventReminders/Options.lua)
 
 local function SideButtonSystem()
     return addon.Gui.EventReminderSideButtonSystem
@@ -256,7 +257,8 @@ end
 
 -- Runs observe with the achievement window closed, then puts the anchor and the window back as they were
 local function SideButtonScenario(env, observe)
-    if not addon.Options.db.profile.EventReminders.Enabled then
+    -- the feature not started this session (Features.lua), or switched off since (the reminders-off scenario)
+    if not (addon.Features.IsStarted("EventReminders") and addon.Options.db.profile.EventReminders.Enabled) then
         return nil, "event reminders are off"
     end
     local anchor = GetOption(sideButtonsAnchor)
@@ -544,8 +546,10 @@ popUps.Scenarios = {
             db:DeleteProfile(test, true)
             return after ~= before and "moves" or "stays"
         end,
-        Recorded = "moves",
-        Target = "moves"},
+        -- moved at once until 106; since then every options-profile action ends with the reload prompt and the pop-ups
+        -- move after the reload (Krowi, 2026-11-12, docs/work/2026-11-12-event-reminders requirement 13)
+        Recorded = "stays",
+        Target = "stays"},
     -- A load with another addon placing the game's alerts at load and after every alert, as Dominos Roll's Alerts bar does
     -- (Dominos_Roll/alertsBar.lua): an offset change, then a pop-up
     {Name = "other-addon",
@@ -936,6 +940,10 @@ addon.Tests.Ready.popups = function()
     if not addon.Data.IsLoaded then -- the placeholders are built from the event data
         return false, "the achievement data is not loaded yet"
     end
+    -- the feature not started this session (Features.lua): the run skips instead of waiting for pop-ups that never come
+    if not addon.Features.IsStarted("EventReminders") then
+        return true
+    end
     if not System().SubSystem then
         return false, "event reminders were off at login; turn them on and /reload"
     end
@@ -951,6 +959,14 @@ addon.Tests.Suites.popups = function(done)
         Finish = done,
         SavedDetails = SaveDetails()
     }
+    if not addon.Features.IsStarted("EventReminders") then
+        live.StepName = "steps"
+        Add("SKIP", "event reminders are off this session")
+        local results = live.Results
+        live = nil
+        done(results, observations)
+        return
+    end
     if not banner then
         CreateBanner()
     end

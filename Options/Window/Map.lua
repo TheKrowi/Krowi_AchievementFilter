@@ -20,8 +20,8 @@ addon.Options.Window.Map = {
     Groups = {
         { Key = "window", Name = L["Achievement window"], Sections = { "tabs", "window", "categories", "summary", "achievements", "filters", "search", "tooltips", "guides", "calendar" },
             Orders = { tabs = 10, window = 20, categories = 30, summary = 40, achievements = 50, filters = 60, search = 70, tooltips = 80, guides = 110, calendar = 120 } },
-        { Key = "world", Name = L["Around the game"], Sections = { "maps", "criteria", "events", "eventlist" },
-            Orders = { maps = 10, criteria = 20, events = 30, eventlist = 40 } },
+        { Key = "world", Name = L["Around the game"], Sections = { "maps", "criteria" },
+            Orders = { maps = 10, criteria = 20 } },
         { Key = "addon", Name = L["This addon"], Sections = { "keys", "plugins", "profiles", "advanced", "about" },
             Orders = { keys = 10, plugins = 20, profiles = 30, advanced = 40, about = 50 } },
     },
@@ -180,72 +180,6 @@ addon.Options.Window.Map = {
             } },
             { Header = L["Show criteria if"], Entries = {
                 { Group = "Layout.args.Criteria.args.Tooltip", Header = "ShowCriteriaIf", Parent = "Layout.args.Criteria.args.Tooltip.args.ShowCriteria" },
-            } },
-        } },
-        { Id = "events", Name = L["Event reminders"], Card = L["Card Events"], Groups = {
-            { Header = L["Reminders"], Entries = {
-                { Group = "EventReminders.args.General.args.Style" },
-            } },
-            { Header = L["Time display"], Entries = {
-                { Group = "EventReminders.args.General.args.TimeDisplay" },
-            } },
-            { Header = L["Pop ups for active events"], Kind = "Grid", Columns = { L["Show"], L["In instances"], L["Only with a time"] }, Rows = {
-                { Label = L["On login"], Group = "EventReminders.args.PopUps.args.ActiveEvents.args.OnLogin" },
-                { Label = L["On reload"], Group = "EventReminders.args.PopUps.args.ActiveEvents.args.OnReload" },
-                { Label = L["When an event starts"], Group = "EventReminders.args.PopUps.args.ActiveEvents.args.OnEventStart" },
-            } },
-            { Header = L["Pop ups for upcoming calendar events"], Kind = "Grid", Columns = { L["Show"], L["In instances"] }, Rows = {
-                { Label = L["On login"], Group = "EventReminders.args.PopUps.args.UpcomingCalendarEvents.args.OnLogin" },
-                { Label = L["On reload"], Group = "EventReminders.args.PopUps.args.UpcomingCalendarEvents.args.OnReload" },
-                { Label = L["When an event starts"], Group = "EventReminders.args.PopUps.args.UpcomingCalendarEvents.args.OnEventStart" },
-            } },
-            { Header = L["Pop up position"], Entries = {
-                { Group = "EventReminders.args.PopUps.args.Location", Buttons = { ShowPlaceholder = L["Show"], HidePlaceholder = addon.Util.L["Hide"] } },
-            } },
-            { Header = L["Pop up behaviour"], Entries = {
-                { Group = "EventReminders.args.PopUps.args.Other" },
-            } },
-            { Header = L["Chat messages for active events"], Kind = "Grid", Columns = { L["Show"], L["In instances"], L["Only with a time"] }, Rows = {
-                { Label = L["On login"], Group = "EventReminders.args.ChatMessages.args.ActiveEvents.args.OnLogin" },
-                { Label = L["On reload"], Group = "EventReminders.args.ChatMessages.args.ActiveEvents.args.OnReload" },
-                { Label = L["When an event starts"], Group = "EventReminders.args.ChatMessages.args.ActiveEvents.args.OnEventStart" },
-            } },
-            { Header = L["Chat messages for upcoming calendar events"], Kind = "Grid", Columns = { L["Show"], L["In instances"] }, Rows = {
-                { Label = L["On login"], Group = "EventReminders.args.ChatMessages.args.UpcomingCalendarEvents.args.OnLogin" },
-                { Label = L["On reload"], Group = "EventReminders.args.ChatMessages.args.UpcomingCalendarEvents.args.OnReload" },
-                { Label = L["When an event starts"], Group = "EventReminders.args.ChatMessages.args.UpcomingCalendarEvents.args.OnEventStart" },
-            } },
-            { Header = L["Timing"], Entries = {
-                { Group = "EventReminders.args.General.args.Other" },
-            } },
-            { Header = L["Date and time format"], Entries = {
-                { Group = "EventReminders.args.DateTimeFormat.args.StartTimeAndEndTime" },
-            } },
-        } },
-        { Id = "eventlist", Name = L["Reminder events"], Card = L["Card Eventlist"], CardIcon = "Interface\\Icons\\INV_Misc_Note_01", ChangedIn = "104.0", Groups = {
-            { Header = L["Holidays"], AllNone = L["All holidays"], Entries = {
-                { Group = "EventReminders.args.CalendarEvents.args.Holidays" },
-            } },
-            { Header = L["Other calendar events"], AllNone = L["All other calendar events"], Retail = true, Entries = {
-                { Group = "EventReminders.args.CalendarEvents.args.Other" },
-            } },
-            { Header = L["World Events"] .. ": " .. L["Midnight"], Retail = true, Entries = {
-                { Families = "EventReminders.args.WorldEvents.args.EXPANSION_NAME11" },
-            } },
-            { Header = L["World Events"] .. ": " .. L["The War Within"], Retail = true, Entries = {
-                { Families = "EventReminders.args.WorldEvents.args.EXPANSION_NAME10" },
-            } },
-            { Header = L["World Events"] .. ": " .. L["Dragonflight"], Retail = true, Entries = {
-                { Families = "EventReminders.args.WorldEvents.args.EXPANSION_NAME9" },
-            } },
-            { Header = L["World Events"] .. ": " .. L["Shadowlands"], Retail = true, Entries = {
-                { Families = "EventReminders.args.WorldEvents.args.EXPANSION_NAME8" },
-            } },
-            { Header = L["World Events"] .. ": " .. L["Battle for Azeroth"], Retail = true, Entries = {
-                { Families = "EventReminders.args.WorldEvents.args.EXPANSION_NAME7" },
-            } },
-            { Header = L["World Events"] .. ": " .. L["Legion"], Retail = true, Entries = {
-                { Families = "EventReminders.args.WorldEvents.args.EXPANSION_NAME6" },
             } },
         } },
         { Id = "keys", Name = L["Keys and clicks"], Card = L["Card Keys"], CardIcon = "Interface\\Icons\\INV_Misc_Key_03", Groups = {

@@ -421,11 +421,15 @@ local function New(root, client, opts)
         if not ok then Fail("step " .. label, err) end
         return ok
     end
-    if addon.Data and addon.Data.EventScheduler then addon.Data.EventScheduler.GetName = function() return nil end end
+    if addon.EventReminders and addon.EventReminders.EventScheduler then addon.EventReminders.EventScheduler.GetName = function() return nil end end
     Step("Diagnostics.Load", function() addon.Diagnostics.Load() end)
     Step("LoadTabs", function() KrowiAF.LoadTabs() end)
     Step("SpecialCategories.InjectDynamicOptions", function() addon.SpecialCategories.InjectDynamicOptions() end)
-    Step("InjectEventDataDynamicOptions", function() KrowiAF.InjectEventDataDynamicOptions() end)
+    -- every feature's settings, built after every file loaded (Features.lua BuildOptions); Event reminders' per-event
+    -- toggles among them
+    if addon.Features and type(addon.Features.BuildOptions) == "function" then
+        Step("Features.BuildOptions", function() addon.Features.BuildOptions() end)
+    end
     Step("InjectTabDataDynamicOptions", function() KrowiAF.InjectTabDataDynamicOptions() end)
     Step("AchievementFrameHeader:InjectDynamicOptions", function() addon.Gui.AchievementFrameHeader:InjectDynamicOptions() end)
     Step("Filters:InjectDefaults", function() addon.Filters:InjectDefaults() end)
@@ -460,6 +464,11 @@ local function New(root, client, opts)
     -- The started features' step after the data load, where LoadOnPlayerLogin runs it (Data/Data.lua)
     if addon.Features and type(addon.Features.DataLoaded) == "function" then
         Step("Features.DataLoaded", function() addon.Features.DataLoaded() end)
+    end
+    -- The started features' step once Blizzard's achievement window loaded (Krowi_AchievementFilter.lua,
+    -- LoadBlizzard_AchievementUI); the window itself is not modelled here
+    if addon.Features and type(addon.Features.AchievementUILoaded) == "function" then
+        Step("Features.AchievementUILoaded", function() addon.Features.AchievementUILoaded() end)
     end
     if addon.Gui and addon.Gui.WorldMapButton and not addon.Gui.WorldMapButton.Refresh then
         addon.Gui.WorldMapButton = Stub("addon.Gui.WorldMapButton")

@@ -7,6 +7,117 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Upcoming Holidays"] = "Próximos feriados"
+L["Upcoming Holidays Desc"] = "Também lembra você dos feriados que começam nos próximos dias."
+L["Compact Reminders"] = "Lembretes compactos"
+L["Compact Reminders Desc"] = "Mostra lembretes menores com uma só linha de tempo."
+L["Side Buttons Beside"] = "Botões laterais ao lado de"
+L["Side Buttons Beside Desc"] = "Escolhe a janela ao lado da qual ficam os botões laterais."
+L["First Line"] = "Primeira linha"
+L["First Line Desc"] = "Escolhe o que a primeira linha sob o nome de um evento mostra."
+L["Second Line"] = "Segunda linha"
+L["Second Line Desc"] = "Escolhe o que a segunda linha mostra. Lembretes compactos não têm segunda linha."
+L["Pop-Up Active Login Desc"] = "Mostra uma janela pop-up para cada evento em andamento ao entrar."
+L["Pop-Up Active Reload Desc"] = "Mostra uma janela pop-up para cada evento em andamento ao recarregar."
+L["Pop-Up Active Start Desc"] = "Mostra uma janela pop-up quando um evento começa."
+L["Pop-Up Upcoming Login Desc"] = "Mostra uma janela pop-up para cada feriado próximo ao entrar."
+L["Pop-Up Upcoming Reload Desc"] = "Mostra uma janela pop-up para cada feriado próximo ao recarregar."
+L["Pop-Up Upcoming Start Desc"] = "Mostra uma janela pop-up quando um feriado passa a estar próximo enquanto você joga."
+L["Chat Active Login Desc"] = "Escreve uma linha no chat para cada evento em andamento ao entrar."
+L["Chat Active Reload Desc"] = "Escreve uma linha no chat para cada evento em andamento ao recarregar."
+L["Chat Active Start Desc"] = "Escreve uma linha no chat quando um evento começa."
+L["Chat Upcoming Login Desc"] = "Escreve uma linha no chat para cada feriado próximo ao entrar."
+L["Chat Upcoming Reload Desc"] = "Escreve uma linha no chat para cada feriado próximo ao recarregar."
+L["Chat Upcoming Start Desc"] = "Escreve uma linha no chat quando um feriado passa a estar próximo enquanto você joga."
+L["In Instances Desc"] = "Também os mostra enquanto você está numa instância."
+L["Only With a Time Desc"] = "Mostra-os só para eventos cuja hora de término é conhecida."
+L["Position Applies To"] = "A posição se aplica a"
+L["Grow Direction"] = "Direção de crescimento"
+L["Grow Direction Desc"] = "Escolhe se as novas janelas pop-up se empilham para cima ou para baixo."
+L["Pop-Up Spacing Desc"] = "Define o espaço entre duas janelas pop-up."
+L["Horizontal Position"] = "Posição horizontal"
+L["Horizontal Position Desc"] = "Move as janelas pop-up para a esquerda ou a direita a partir do meio da tela."
+L["Vertical Position"] = "Posição vertical"
+L["Vertical Position Desc"] = "Move as janelas pop-up para cima a partir da parte de baixo da tela."
+L["Show Samples"] = "Mostrar exemplos"
+L["Show Samples Desc"] = "Mostra janelas pop-up de exemplo onde as reais aparecem. Passe o mouse sobre uma ou clique com o botão direito para fechá-la."
+L["Hide Samples"] = "Ocultar exemplos"
+L["Hide Samples Desc"] = "Oculta todas as janelas pop-up visíveis ou em espera, de exemplo e reais."
+L["Pop-Ups at Once"] = "Janelas pop-up ao mesmo tempo"
+L["Pop-Ups at Once Desc"] = "Define quantas janelas pop-up aparecem ao mesmo tempo; as outras esperam a vez."
+L["Fade After"] = "Sumir após"
+L["Fade After Desc"] = "Define por quantos segundos uma janela pop-up fica antes de sumir. Um clique direito a fecha na hora."
+L["Delay for Active Events"] = "Atraso para eventos em andamento"
+L["Delay for Active Events Desc"] = "Espera esses segundos depois de entrar ou recarregar antes de lembrar você dos eventos em andamento."
+L["Delay for Upcoming Holidays"] = "Atraso para próximos feriados"
+L["Delay for Upcoming Holidays Desc"] = "Espera esses segundos depois de entrar ou recarregar antes de lembrar você dos próximos feriados."
+L["Refresh Every"] = "Atualizar a cada"
+L["Refresh Every Desc"] = "Define a cada quantos segundos os lembretes verificam quais eventos estão em andamento. Mais tempo significa que novas janelas pop-up podem chegar mais tarde."
+L["Days Ahead"] = "Dias de antecedência"
+L["Days Ahead Desc"] = "Define com quantos dias de antecedência um feriado conta como próximo."
+L["Turn On or Off"] = "Ativar ou desativar"
+L["Help Events Intro Achievement Window"] = "Feriados e eventos mundiais ganham um lembrete que aparece enquanto estão em andamento, e um botão ao lado da janela de conquistas."
+L["Help Events Intro World Map"] = "Feriados e eventos mundiais ganham um lembrete que aparece enquanto estão em andamento, e um botão ao lado do mapa-múndi."
+L["Help Events Time {compactReminders}"] = "Uma ou duas linhas com a hora de término ou o tempo restante; \"{compactReminders}\" mostra uma."
+L["Feature Off Help Other Section"] = "A função {feature} está desativada. Ative-a no topo da seção {feature} e recarregue."
+L["Category shown temporarily"] = "Esta categoria foi selecionada ao clicar no lembrete do evento {eventName} e é exibida temporariamente porque não tem conquistas que correspondam aos filtros definidos."
+L["Upcoming"] = "Em breve"
+L["In"] = "Em"
+L["Placeholder"] = "Exemplo"
+L["No time data available"] = "Sem dados de tempo"
+L["Upcoming Calendar Events"] = "Próximos eventos do calendário"
+L["Deselect All"] = "Desmarcar tudo"
+L["Unknown"] = "Desconhecido"
+L["Stop tracking"] = "Parar de acompanhar"
+L["End Time"] = "Hora de término"
+L["Up"] = "Para cima"
+L["Down"] = "Para baixo"
+L["Time display"] = "Exibição do tempo"
+L["Pop ups"] = "Janelas pop-up"
+L["On Login"] = "Ao entrar"
+L["In instances"] = "Em instâncias"
+L["Only when time data is available"] = "Só com dados de tempo"
+L["On Reload"] = "Ao recarregar"
+L["On Event Start"] = "No início de um evento"
+L["Spacing"] = "Espaçamento"
+L["Spacing Desc"] = "A distância somada ou subtraída da distância padrão entre as abas."
+L["Show placeholders"] = "Mostrar exemplos"
+L["Date and Time format"] = "Formato de data e hora"
+L["Start Time"] = "Hora de início"
+L["Presets"] = "Predefinições"
+L["Custom"] = "Personalizado"
+L["Date and Time formatting guide"] = "Guia de formato de data e hora"
+L["Date and Time formatting guide Desc"] = [=[{a} - Nome abreviado do dia da semana (ex. qua)
+{A} - Nome completo do dia da semana (ex. quarta-feira)
+{b} - Nome abreviado do mês (ex. set)
+{B} - Nome completo do mês (ex. setembro)
+{c} - Data e hora conforme a configuração regional (ex. 23/04/07 10:20:41)
+{C} - O século (ano/100) (ex. 20)
+{d} - Dia do mês como número decimal (01 - 31)
+{D} - Equivale a %m/%d/%y (ex. 04/23/07)
+{e} - Dia do mês como número decimal (1 - 31)
+{H} - Hora no formato de 24 horas (00 - 23)
+{I} - Hora no formato de 12 horas (01 - 12)
+{j} - Dia do ano como número decimal (001 - 366)
+{k} - Hora no formato de 24 horas (0 - 23)
+{l} - Hora no formato de 12 horas (1 - 12)
+{m} - Mês como número decimal (01 - 12)
+{M} - Minuto como número decimal (00 - 59)
+{p} - Indicador AM/PM da configuração regional para o relógio de 12 horas (ex. AM/PM)
+{P} - Indicador AM/PM da configuração regional para o relógio de 12 horas (ex. am/pm)
+{R} - Equivale a %H:%M (ex. 10:20)
+{s} - Número de segundos desde a época, ou seja, desde 1970-01-01 00:00:00 UTC (1177323641)
+{S} - Segundo como número decimal (00 - 59)
+{u} - Dia da semana como número decimal (1 - 7; segunda-feira é 1)
+{U} - Semana do ano como número decimal, com o domingo como primeiro dia da semana 1 (00 - 53)
+{w} - Dia da semana como número decimal (0 - 6; domingo é 0)
+{W} - Semana do ano como número decimal, com a segunda-feira como primeiro dia da semana 1 (00 - 53)
+{x} - Data conforme a configuração regional (data padrão)
+{X} - Hora conforme a configuração regional (hora padrão)
+{y} - Ano sem o século, como número decimal (00 - 99) (ex. 07)
+{Y} - Ano com o século, como número decimal (ex. 2007)
+{z} - Fuso horário como diferença em relação a GMT (ex. +0200)
+{Z} - Nome ou sigla do fuso horário; nada se for desconhecido]=]
 L["Enable"] = "Ativar"
 L["Pop Out"] = "Janela destacada"
 L["Close Popout"] = "Fechar janela destacada"
@@ -397,10 +508,7 @@ L["Help Criteria Off"] = "Este recurso está desativado por enquanto, então est
 L["Help Eventlist Intro"] = "Desative os lembretes dos eventos que não te interessam. Os eventos mundiais estão listados por expansão."
 L["Help Eventlist Title"] = "Quais eventos"
 L["Help Events Click"] = "Abre as conquistas do evento que você pode obter agora."
-L["Help Events Intro"] = "Feriados e eventos mundiais ganham um lembrete que aparece enquanto estão ativos, e um botão ao lado da janela de conquistas."
-L["Help Events Off"] = "Os lembretes de eventos estão desativados. Ative-os e use /reload para vê-los."
 L["Help Events Right Click"] = "Oculta o lembrete. Ele também some sozinho."
-L["Help Events Time"] = "Uma ou duas linhas com o horário de término ou o tempo restante; Compacto mostra uma."
 L["Help Events Time Term"] = "Tempo"
 L["Help Filters Always Show Completed"] = "Conquistas obtidas aparecem mesmo quando outro filtro as ocultaria."
 L["Help Filters Collapse Chain"] = "Apenas a última etapa obtida e a primeira ainda não obtida de uma cadeia."
@@ -478,8 +586,6 @@ L["Help Window Micro Button"] = "Qual aba o botão de conquistas da barra de men
 L["Help Window Size"] = "Largura extra para a lista de categorias e a lista de conquistas, altura extra para a janela inteira."
 L["Herbalism"] = "Herborismo"
 L["Heroes of the Storm"] = true
-L["Hide placeholders"] = "Ocultar espaços reservados"
-L["Hide placeholders Desc"] = "Oculta todos os pop-ups de lembretes de eventos exibidos ou aguardando: os espaços reservados e qualquer lembrete real."
 L["Holidays"] = "Feriados"
 L["Horizontal position"] = "Posição horizontal"
 L["Horrific Visions Revisited"] = "Visões Horrendas Revividas"
@@ -518,8 +624,6 @@ L["Mantid"] = "Mantídeo"
 L["Map pin"] = "Marcador no mapa"
 L["Map pin and TomTom"] = "Marcador no mapa e TomTom"
 L["Maruukai Dash"] = "Arremetida de Maruukai"
-L["Max number of alerts"] = "Número máximo de alertas"
-L["Max number of alerts Desc"] = "O número máximo de alertas mostrados de uma só vez"
 L["Max Number of Icons"] = "Número máximo de ícones"
 L["Maximum number of characters"] = "Número máximo de caracteres"
 L["Midsummer"] = "Solstício"
@@ -584,7 +688,6 @@ L["Pop up position"] = "Posição dos pop-ups"
 L["Pop ups for active events"] = "Pop-ups para eventos ativos"
 L["Pop ups for upcoming calendar events"] = "Pop-ups para eventos futuros do calendário"
 L["Position"] = "Posição"
-L["Position applies to"] = "A posição se aplica a"
 L["Position applies to Desc"] = "Todos os alertas move os alertas do jogo, como conquistas e saque, junto com os lembretes de eventos. Somente lembretes de eventos move apenas os lembretes de eventos e deixa os alertas do jogo onde o jogo os coloca."
 L["Pre-Patch Event"] = "Evento de Pré-Patch"
 L["Preview"] = "Prévia"

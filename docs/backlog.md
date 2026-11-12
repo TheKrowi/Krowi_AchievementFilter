@@ -69,7 +69,7 @@ Follow-ups that are not a work item yet. When one is taken up, it gets its own w
 - **Small growth on player actions:**
   - `ACHIEVEMENT_EARNED` appends the earned achievement's meta criteria to `criteriaCache` again (`Data/AchievementCache.lua:53, 188`).
   - `newAchievementsEarned` never shrinks (`Data/SavedData/AchievementData.lua:197-199`).
-  - `SideButtonSystem:Load` adds two more Show/Hide hooks each time it runs again (`Gui/EventReminder/SideButtonSystem.lua:92-98`).
+  - `SideButtonSystem:Load` adds two more Show/Hide hooks each time it runs again (`Features/EventReminders/SideButtonSystem.lua:108-121`).
   - `KrowiAF_SavedData.PopoutHideDebug` keeps a stack per achievement ever popped out (`Features/PopOut/AchievementPopout.lua`, `OnPopoutHide`).
 - **Saved data no code reads any more** stays in the file and in memory: `KrowiAF_SavedData.CalendarEventsCacheTest`, `VerifyHash` and `DFHashVerify` (about 1 MB on the maintainer's account). A `DataIntegrityManager` solution can drop them.
 
@@ -109,10 +109,9 @@ Follow-ups that are not a work item yet. When one is taken up, it gets its own w
 
 ## From the upcoming reminder date fix (2026-10-25, docs/work/2026-10-25-upcoming-reminder-date)
 
-- **The `%c` date format preset prints English day and month names on every client.** `%c` is the C library's own date, and `LocalizeDateFormat` (`Gui/EventReminder/AlertSystem.lua`) only replaces `%a %A %b %B` with the addon's translated names.
-- **Obtainability dates use the reminder's date format without the addon's names** (`Data/TemporaryObtainable.lua:397, 453`, plain `date()`). On a deDE client with "%A %d %B" the tooltip says "Friday 15 January" while the reminder says "Freitag 15 Januar". The fix: move `LocalizeDateFormat` and `FormatDate` next to `addon.MonthNames` in `Globals.lua` and use them there too.
-- **The upcoming chat message says "(In " in English** (`Gui/EventReminder/AlertSystem.lua`, `ShowUpcomingCalendarEventChatMessage`). The pop-up already uses `addon.L["In"]`.
-- **The upcoming calendar list is built once per session while it is not empty** (`Data/EventData.lua`, `GetUpcomingCalendarEvents`). After an event ends in a long session, its side button can fall back to the upcoming line and show a start in the past behind "In", with an empty countdown.
+- **The `%c` date format preset prints English day and month names on every client.** `%c` is the C library's own date, and `LocalizeDateFormat` (`Features/EventReminders/AlertSystem.lua`) only replaces `%a %A %b %B` with the addon's translated names.
+- **The upcoming chat message says "(In " in English** (`Features/EventReminders/AlertSystem.lua`, `ShowUpcomingCalendarEventChatMessage`). The pop-up already uses `addon.L["In"]`.
+- **The upcoming calendar list is built once per session while it is not empty** (`Features/EventReminders/Data/EventData.lua`, `GetUpcomingCalendarEvents`). After an event ends in a long session, its side button can fall back to the upcoming line and show a start in the past behind "In", with an empty countdown.
 - **`KrowiAF_GetUtcOffsetSeconds` drops minutes and compares `yday` without the year wrap** (`Data/EventData.lua:11-25`). A player at UTC+5:30 sees calendar times 30 minutes off. A UK player on a CET realm who logs in between 23:00 and 00:00 UTC on 31 December caches an offset of about a year for the session.
 - **An escaped `%%A` in a custom date format is replaced too** (`LocalizeDateFormat`): "%%A %d" becomes "%Samstag %d", which `date` reads as `%S`. An edge case.
 
@@ -156,10 +155,9 @@ Follow-ups that are not a work item yet. When one is taken up, it gets its own w
 
 ## From the Active events chat fix (2026-10-28, docs/work/2026-10-28-active-events-chat-repeat)
 
-- **The "Upcoming Calendar Events:" chat header can print with no line under it** (`Gui/EventReminder/AlertSystem.lua`, `ShowUpcomingCalendarEventChatMessage`). It prints before the occurrence check and before the window check, the shape the active events' header had. It does not repeat in practice, because the record is set whenever an occurrence exists; the fix is the same move: print it with the first line.
+- **The "Upcoming Calendar Events:" chat header can print with no line under it** (`Features/EventReminders/AlertSystem.lua`, `ShowUpcomingCalendarEventChatMessage`). It prints before the occurrence check and before the window check, the shape the active events' header had. It does not repeat in practice, because the record is set whenever an occurrence exists; the fix is the same move: print it with the first line.
 - **An active event's reminder record keeps the first end it saw** (code review, 2026-10-28). `ShowActiveEventChatMessage` and `ShowActiveEventPopUp` update a record only while it holds the placeholder, and `ForgetEndedReminders` drops it once that end passes. A widget-timed world event read as "5 min" while up to 59 s more are left, or a realm clock that steps back on zoning, gets a second reminder (header, line, pop-up) for the same occurrence. Following the end on every pass instead would swallow the next occurrence of an event whose windows touch, so the fix needs the occurrence's start, which not every source gives.
 - **An event whose end is the current second prints "Name ()"** (code review, 2026-10-28): the check is `>=`, and `GetSecondsLeftFormattedText(0)` is empty. Only when the second ticks between the read of the events and the read of the clock in `Refresh`.
-- **A fixed-date start or end in the achievement tooltip uses the Event reminders' date format** (found while moving these checks to the realm's clock). `Data/TemporaryObtainable.lua:399` and `:455` format a `"Date"` start or end with `EventReminders.DateTimeFormat`, where the tooltip's `FormatTime` and an event's next occurrence use the tooltip's own `Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat`. A player who sets the two formats differently sees both in one tooltip. The fix: format those two dates with `FormatTime`.
 
 ## From the options markers (2026-11-01, docs/work/2026-10-31-options-markers)
 
@@ -175,8 +173,23 @@ Code review findings, deferred because none is Important and a fix would need th
 ## From the side button anchor fix (2026-11-04, docs/work/2026-11-04-side-button-anchor)
 
 Older than the fix, found by its taint review and code review.
-- **With ElvUI or GW2_UI skins, the side buttons stay beside the achievement window when their anchor is the world map** (`Plugins/ElvUI.lua:677`, `Plugins/GW2_UI/GW2_UI.lua:1018`). Each plugin's `SkinSideButton` places the first button at `AchievementFrame`'s top right on every `Refresh`, whatever Side Button Anchor says; EllesmereUI reads `GetAnchor()` and places them right. The fix: anchor to `addon.Gui.EventReminderSideButtonSystem:GetAnchor()`, with offsets checked on the world map in game, since 5 and 6 (13 on Classic) were set for the achievement window.
-- **ElvUI and GW2_UI add another skin hook on `Refresh` on every `Load`** (`Plugins/ElvUI.lua:795-804`, `Plugins/GW2_UI/GW2_UI.lua:1159-1166`). `Load` runs twice in a session when its first call finds no anchor (event reminders off, or the achievement window as anchor before it loads), so the skin pass then runs twice per refresh. Harmless, since the skin is idempotent. The fix: hook `Refresh` once, outside the `Load` hook, as EllesmereUI does.
+- **With ElvUI or GW2_UI skins, the side buttons stay beside the achievement window when their anchor is the world map** (`Plugins/ElvUI/EventReminders.lua`, `Plugins/GW2_UI/EventReminders.lua`, `SkinSideButton`). Each plugin's `SkinSideButton` places the first button at `AchievementFrame`'s top right on every `Refresh`, whatever Side Button Anchor says; EllesmereUI reads `GetAnchor()` and places them right. The fix: anchor to `addon.Gui.EventReminderSideButtonSystem:GetAnchor()`, with offsets checked on the world map in game, since 5 and 6 (13 on Classic) were set for the achievement window.
+
+## From the Event reminders move (2026-11-12, docs/work/2026-11-12-event-reminders)
+
+Older than the move, which changed no behaviour; found by its taint review and code review.
+- **The pop-ups' follow mode registers with Blizzard's `AlertFrame`** (`Features/EventReminders/AlertSystem.lua:224`, `AlertFrame:AddQueuedAlertFrameSubSystem`), which the workspace rules forbid since #188: closing the What's New splash then updates the objective tracker tainted. Rebuilding it changes how the pop-ups sit under ElvUI, GW2_UI, EllesmereUI and Dominos Roll, so it needs those addons in game (spec, option 5).
+- **A feature switched on without a reload runs its setters' code that never started** (the independent evaluation, 2026-11-12; the same for all four features). The registry greys rows by the profile's switch (`Features.lua`), not by whether the feature started, so after ticking Enable the rows are live until the reload. For Event reminders: a per-event toggle, a time line or the date format redraws side buttons on an open window (`EventOptions.lua`, `Options.lua` setters), and Side Buttons Beside hooks the new window, whose next show starts the refresh without an alert container; with no `KrowiAF_SavedData.ActiveEventPopUpsShown` yet, each tick then errors in `ForgetEnded` (`AlertSystem.lua`). The fix: grey the rows by `IsStarted` as well until the reload, in the registry, for every feature.
+- **A switched-off feature's All/None buttons and grid row labels stay bright** (look gate, 2026-11-12, review-options.md row 29). Krowi_Options greys an option row while its option is disabled, but not a family row (`Sub`, `RowMixins.lua` `SubRowMixin`) whose members are all disabled, nor a grid row's label. All/None skip disabled members, so they change nothing. The fix belongs in Krowi_Options: grey a `Sub` row whose members are all disabled, and a grid row's label with its boxes.
+- **A per-event toggle redraws the side buttons from the events cached at the last refresh** (`Features/EventReminders/EventOptions.lua`). Turning an event on shows its button only after the next refresh, up to Refresh interval seconds later.
+
+## The matrix run's length (2026-11-12, docs/work/2026-11-12-event-reminders)
+
+A harness work item of its own (Krowi, 2026-11-12: "option 1 now", the rest after). A matrix step took about 4 min, six per client, a step more with each feature; with `popups` no longer waiting 2 min in the off steps it is about 13 min per client.
+- **Memory's idle minute only in the all-on and all-off steps** (`Tests/Memory.lua`): the single-feature steps add nothing to it, about 4 min per client.
+- **No screenshots in the all-off and single-feature steps** (`Tests/Options.lua`, `PopUps.lua`, `Tracking.lua`, `afterShot`): those steps ask whether anything breaks with a feature off, which the checks answer; the runner knows the step (`matrixStep`, `Tests/Tests.lua`). About 3 to 4 min per client.
+- **Single-feature steps run only the suites the feature can affect,** instead of all 18.
+- **`Run-GameTests.ps1 -Matrix` reads the saved plan once after each `/reload`** (`Read-MatrixState`) and once found none though the game had saved it, so it stopped after step 1 with the client in the middle of a step. Re-read a few times before deciding the plan is done.
 
 ## From the Overview cards (2026-11-02, docs/work/2026-11-02-overview-cards)
 

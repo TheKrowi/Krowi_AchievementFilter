@@ -5,7 +5,6 @@
 
     <Script file="General.lua" />
     <Script file="Layout.lua" />
-    <Script file="EventReminders.lua" />
     <Script file="Profiles.lua" />
     <Script file="Plugins.lua" />
     <Script file="Credits.lua" />

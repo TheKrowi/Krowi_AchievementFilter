@@ -48,10 +48,10 @@ memory.Scenarios = {
         Recorded = "large", Target = "none"},
     {Name = "event-refresh-widget-active", Kind = "PerMinute", Job = "ActiveWidgetTimers", RetailOnly = true,
         Recorded = "large", Target = "none"},
-    -- Blizzard's event scheduler (Data/EventScheduler.lua): an update the addon did not ask for returns at once
+    -- Blizzard's event scheduler (Features/EventReminders/Data/EventScheduler.lua): an update the addon did not ask for returns at once
     {Name = "scheduler-update-ignored", Kind = "PerMinute", Job = "SchedulerUpdate",
         Recorded = "none", Target = "none"},
-    -- The watcher that learns the older events' starts from their POIs (Data/EventObserver.lua): a run in which no POI
+    -- The watcher that learns the older events' starts from their POIs (Features/EventReminders/Data/EventObserver.lua): a run in which no POI
     -- appeared or went
     {Name = "observer-run", Kind = "PerMinute", Job = "ObserverRun", RetailOnly = true,
         Recorded = "none", Target = "none"}
@@ -166,10 +166,10 @@ function memory.Run(env, observations)
     return results
 end
 
--- The reads of one event-reminder refresh, as the ticker makes them (Gui/EventReminder/AlertSystem.lua: Refresh)
+-- The reads of one event-reminder refresh, as the ticker makes them (Features/EventReminders/AlertSystem.lua: Refresh)
 function memory.RefreshEvents()
-    addon.EventData.GetActiveEvents(true)
-    addon.EventData.GetUpcomingCalendarEvents()
+    addon.EventReminders.EventData.GetActiveEvents(true)
+    addon.EventReminders.EventData.GetUpcomingCalendarEvents()
 end
 
 -- [[ Environment: the real jobs; the headless runner provides a model of what they read ]] --
@@ -191,10 +191,10 @@ local function AskedPoisOnMap()
     local count = 0
     local enabled = addon.Options.db.profile.EventReminders.WorldEvents
     for _, event in next, addon.Data.Events[KrowiAF.Enum.EventType.World] or {} do
-        -- an event from Blizzard's event scheduler or on a fixed schedule is never asked (Data/EventScheduler.lua,
-        -- Data/EventSchedules.lua)
+        -- an event from Blizzard's event scheduler or on a fixed schedule is never asked (Features/EventReminders/Data/EventScheduler.lua,
+        -- Features/EventReminders/Data/EventSchedules.lua)
         local asked = event.Source == nil
-            and (addon.Data.CustomWorldEventTimers.HasCustomTimer(event.Id) or C_AreaPoiInfo.GetAreaPOISecondsLeft(event.Id) ~= nil)
+            and (addon.EventReminders.CustomWorldEventTimers.HasCustomTimer(event.Id) or C_AreaPoiInfo.GetAreaPOISecondsLeft(event.Id) ~= nil)
         if enabled[event.Id] and asked and C_AreaPoiInfo.GetAreaPOIInfo(event.MapId, event.Id) then
             count = count + 1
         end
@@ -208,14 +208,14 @@ local function ActiveWidgetTimerReads()
     local eventType = KrowiAF.Enum.EventType
     local reads = {}
     for _, event in next, addon.Data.Events[eventType.World] or {} do
-        if addon.Data.CustomWorldEventTimers.HasCustomTimer(event.Id) and addon.EventData.GetWorldEventDetails(event) then
-            tinsert(reads, function() addon.EventData.GetWorldEventDetails(event) end)
+        if addon.EventReminders.CustomWorldEventTimers.HasCustomTimer(event.Id) and addon.EventReminders.EventData.GetWorldEventDetails(event) then
+            tinsert(reads, function() addon.EventReminders.EventData.GetWorldEventDetails(event) end)
         end
     end
     for _, event in next, addon.Data.Events[eventType.Widget] or {} do
         -- a timer that computes its times reads no widget (the soup's, those on a fixed schedule), so it is not this cost
-        if event.Source == nil and not addon.Data.CustomWidgetEventTimers.IsComputed(event.Id) and addon.EventData.GetWidgetEventDetails(event) then
-            tinsert(reads, function() addon.EventData.GetWidgetEventDetails(event) end)
+        if event.Source == nil and not addon.EventReminders.CustomWidgetEventTimers.IsComputed(event.Id) and addon.EventReminders.EventData.GetWidgetEventDetails(event) then
+            tinsert(reads, function() addon.EventReminders.EventData.GetWidgetEventDetails(event) end)
         end
     end
     if #reads == 0 then
@@ -228,12 +228,21 @@ local function ActiveWidgetTimerReads()
     end
 end
 
+-- Event reminders' jobs run only while the feature started this session (Features.lua) and is still switched on, so a
+-- run with it off measures none of them and runs none of its code
+local function EventRemindersOff()
+    return not (addon.Features.IsStarted("EventReminders") and addon.Options.db.profile.EventReminders.Enabled)
+end
+
 function gameEnv.Jobs(name)
+    if (name == "SchedulerUpdate" or name == "ObserverRun") and EventRemindersOff() then
+        return nil, "event reminders are off"
+    end
     if name == "SchedulerUpdate" then
-        return {Call = addon.Data.EventScheduler.OnSchedulerUpdate, PerMinute = refreshesPerMinute}
+        return {Call = addon.EventReminders.EventScheduler.OnSchedulerUpdate, PerMinute = refreshesPerMinute}
     end
     if name == "ObserverRun" then
-        return {Call = addon.Data.EventObserver.RunOnce, PerMinute = 60 / 300, Note = "every 300 s while event reminders are on"}
+        return {Call = addon.EventReminders.EventObserver.RunOnce, PerMinute = 60 / 300, Note = "every 300 s while event reminders are on"}
     end
     if name == "TaintSweep" then
         local probe = addon.Diagnostics.TaintProbe
@@ -244,7 +253,7 @@ function gameEnv.Jobs(name)
         }
     end
     if name == "EventRefresh" or name == "EventRefreshNoPoiOnMap" or name == "EventRefreshPoiOnMap" or name == "ActiveWidgetTimers" then
-        if not addon.Options.db.profile.EventReminders.Enabled then
+        if EventRemindersOff() then
             return nil, "event reminders are off"
         end
         local call = memory.RefreshEvents
@@ -294,7 +303,7 @@ end
 local function ObserveEventParts(observations)
     local eventType = KrowiAF.Enum.EventType
     local parts = {}
-    for _, kind in ipairs({{"widget", eventType.Widget, addon.EventData.GetWidgetEventDetails}, {"world", eventType.World, addon.EventData.GetWorldEventDetails}}) do
+    for _, kind in ipairs({{"widget", eventType.Widget, addon.EventReminders.EventData.GetWidgetEventDetails}, {"world", eventType.World, addon.EventReminders.EventData.GetWorldEventDetails}}) do
         local label, typeId, read = kind[1], kind[2], kind[3]
         local total, count, allocating = 0, 0, 0
         for _, event in next, addon.Data.Events[typeId] or {} do
@@ -327,7 +336,7 @@ local function ObserveSession(observations)
     tinsert(observations, ("the addon held %.0f KB; a full collection freed %.0f KB of garbage, %.0f KB is live"):format(before, before - live, live))
 
     local eventReminders = addon.Options.db.profile.EventReminders
-    if eventReminders.Enabled then
+    if addon.Features.IsStarted("EventReminders") and eventReminders.Enabled then -- the feature runs this session (Features.lua)
         local perCall, method = AllocatedWarm(memory.RefreshEvents, 3)
         local interval = math.max(1, eventReminders.RefreshInterval or 1)
         tinsert(observations, ("event-reminder refresh: %.0f bytes a run, every %g s, %.1f KB a minute (%s)"):format(perCall, interval, perCall * 60 / interval / kilobyte, method))
@@ -337,7 +346,7 @@ local function ObserveSession(observations)
             tinsert(observations, "event scheduler: not read, the world map is open")
         elseif addon.Util.IsMainline and C_EventScheduler then
             -- through the cache's own read, under its guards; it leaves the real times in the cache
-            local read = addon.Data.EventScheduler.ReadForTest
+            local read = addon.EventReminders.EventScheduler.ReadForTest
             if read() then
                 local rebuild, rebuildMethod = gameEnv.Allocated(read, 3)
                 tinsert(observations, ("event scheduler: %.0f bytes a read, after login and when its times run low (%s)"):format(rebuild, rebuildMethod))
@@ -373,7 +382,7 @@ local function JobsPerMinute()
         total = total + AllocatedWarm(probe.SweepOnce, 10) * probe.SweepsPerMinute
     end
     local eventReminders = addon.Options.db.profile.EventReminders
-    if eventReminders.Enabled then
+    if addon.Features.IsStarted("EventReminders") and eventReminders.Enabled then -- the feature runs this session (Features.lua)
         total = total + AllocatedWarm(memory.RefreshEvents, 10) * 60 / math.max(1, eventReminders.RefreshInterval or 1)
     end
     return total

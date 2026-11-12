@@ -54,11 +54,20 @@ end
 
 KrowiAF_DataManagerFrameMixin = {}
 
--- The second tab, Retail only: the log of what the event schedules' watcher saw and learned (Data/EventObserver.lua;
--- docs/work/2026-10-21-fixed-event-schedules). Read-only and selectable, so it can be copied; shown in debug mode.
+-- The tabs after the first, Retail only: what the features put in the core's slot (Slots.lua, DataManagerTabs), such as
+-- the log of what the event schedules' watcher saw and learned (docs/work/2026-10-21-fixed-event-schedules). Read-only
+-- and selectable, so it can be copied; shown in debug mode. Without an entry there are no tabs, only the characters.
 local function CreateTabs(self)
+	local entries = addon.Slots.DataManagerTabs.Entries
+	if #entries == 0 then
+		return
+	end
 	self.Tabs = {}
-	for id, text in ipairs({addon.L["Characters"], addon.L["Event Reminders"]}) do
+	local names = {addon.L["Characters"]}
+	for _, entry in ipairs(entries) do
+		names[#names + 1] = entry.Name
+	end
+	for id, text in ipairs(names) do
 		local tab = CreateFrame("Button", nil, self, "PanelTabButtonTemplate")
 		-- The template's OnEnter and OnLeave hide GameTooltip whoever owns it, tainted on a tab of ours: the #300 path. The
 		-- tooltip they would show is for a truncated label, which TabResize without a maximum never makes.
@@ -111,7 +120,7 @@ function KrowiAF_DataManagerFrameMixin:OnLoad()
 	end
 end
 
--- 1 the characters, 2 the event schedules' log, read again each time it is shown
+-- 1 the characters, then each slot entry's text, read again each time it is shown
 function KrowiAF_DataManagerFrameMixin:SelectTab(id)
 	PanelTemplates_SetTab(self, id)
 	local characters = id == 1
@@ -121,7 +130,7 @@ function KrowiAF_DataManagerFrameMixin:SelectTab(id)
 		self.Log.frame:Hide()
 		return
 	end
-	self.LogText = addon.Data.EventObserver.GetLog()
+	self.LogText = addon.Slots.DataManagerTabs.Entries[id - 1].GetText()
 	self.Log:SetText(self.LogText)
 	self.Log.frame:Show()
 end

@@ -1,5 +1,0 @@
-<Ui>
-    <!-- The event reminder side button's menu; it moves into Event reminders with that feature (docs/work/2026-11-09-right-click-menu) -->
-    <Script file="EventReminderMenu.lua" />
-    <Script file="StopTracking.lua" />
-</Ui>

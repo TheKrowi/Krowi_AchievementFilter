@@ -1,9 +1,9 @@
--- Battle for Azeroth's events on KAF's fixed schedules (Data/EventSchedules.lua; docs/work/2026-10-21-fixed-event-schedules).
+-- Battle for Azeroth's events on KAF's fixed schedules (Features/EventReminders/Data/EventSchedules.lua; docs/work/2026-10-21-fixed-event-schedules).
 -- Anchors by GetCurrentRegion(): 1 US, 2 Korea and Taiwan, 3 EU, 5 China. Name is for the debug-mode findings only.
 
 -- The zone assaults: 7 hours on, 12 off, one zone further each time. The anchors are Drustvar starts, the same in
 -- Funkydude's BFAInvasionTimer, InvasionTimer, NDui and MasterCollector, and unchanged from 2019 to 2024; Korea and
--- Taiwan are learned (Data/EventObserver.lua).
+-- Taiwan are learned (Features/EventReminders/Data/EventObserver.lua).
 KrowiAF.EventSchedules.FactionAssaults = {
     Name = "Faction Assaults",
     Interval = 68400,

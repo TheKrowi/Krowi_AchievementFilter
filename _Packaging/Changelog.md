@@ -6,7 +6,9 @@ All notable changes to this project will be documented in this file.
 - An Enable check box at the top of the Reward preview settings, which fully turns off the reward preview after a reload
 - An Enable check box at the top of the Right-click menu settings, which fully turns off the right-click menu after a reload
 - An Enable check box at the top of the Pop Out settings, which fully turns off pop outs after a reload; pop outs kept from the last session come back when it is turned on again
+- Event reminders now turn off fully with their Enable setting after a reload: no pop ups, chat messages or side buttons, and nothing of them runs in the background
 - Additional esES, esMX, itIT, koKR, ptBR and zhTW localization for Pop Out, Reward preview and the right-click menu
+- Additional esES, esMX, itIT, koKR and ptBR localization for Event reminders
 
 ### Changed
 - The Reward preview settings have clearer names, and shorter descriptions that say plainly what they do
@@ -14,12 +16,18 @@ All notable changes to this project will be documented in this file.
 - The Right-click menu settings have shorter names and say plainly what they do
 - The Pop Out modifier also shows in the Pop Out settings, as Click Modifier, and each place has a button to the other; it is greyed out while pop outs are turned off
 - The Pop Out settings have clearer names, and shorter descriptions that say plainly what they do
+- The Reminder events settings say that the Event reminders Enable setting controls them, with a button to it
+- The Event reminders settings have clearer names, and shorter descriptions that say plainly what they do; Side Buttons Beside moved up to the other Reminders settings
+- The Event reminders help names the window the side buttons sit beside
+- After switching settings profile, event reminders change after the reload the prompt asks for
 - Krowi_Options library updated to 2.1
 
 ### Fixed
 - Right-clicking a guild achievement or a statistic linked in chat no longer opens an empty menu or gives an error
 - The right-click menu button on achievements now shows on Mists Classic
 - The Reward preview help no longer says to click the preview icon while that icon is turned off
+- The start and end dates in the Not obtainable tooltip now use the tooltip's own date format
+- Opening the menu of an event reminder side button whose event has no name no longer reports an error
 - The Pop Out help now names the key you set as the Pop Out modifier instead of always Ctrl
 
 ## 105.0 - 2026-11-08

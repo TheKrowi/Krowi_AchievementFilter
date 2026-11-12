@@ -266,8 +266,7 @@ local placeholderTypes = {
 }
 
 function eventReminderAlertSystem:ShowPlaceholders(worldFirst, duration)
-    if not self.SubSystem then -- reminders were off at login, so there is no alert system to show them in
-        print(addon.Metadata.Title, "-", addon.L["Help Events Off"])
+    if not self.SubSystem then -- no alert container: the feature did not start (Features.lua), which greys the buttons that call this
         return 0
     end
     local options = addon.Options.db.profile.EventReminders
@@ -359,7 +358,7 @@ function eventReminderAlertSystem:GetRuntimeText(event, chat)
 
     if event.EventDetails == nil or event.EventDetails.EndTime == nil then
         if event.MapId then
-            event.EventDetails = addon.EventData.GetWorldEventDetails(event)
+            event.EventDetails = addon.EventReminders.EventData.GetWorldEventDetails(event)
             if event.EventDetails == nil or event.EventDetails.EndTime == nil then
                 return addon.L["No time data available"], ""
             end
@@ -487,7 +486,7 @@ function eventReminderAlertSystem:ShowActiveEvents(popUpsOptions, chatMessagesOp
         return
     end
 
-    activeEvents = activeEvents or addon.EventData.GetActiveEvents(true)
+    activeEvents = activeEvents or addon.EventReminders.EventData.GetActiveEvents(true)
     printOnceActiveEvents = nil -- also after a pass an error stopped
     for _, event in next, activeEvents do
         ShowActiveEventPopUp(self, event, canShowPopUps, canShowPopUpsWithTimeDataOnly, currentTime)
@@ -552,7 +551,7 @@ function eventReminderAlertSystem:ShowUpcomingCalendarEvents(popUpsOptions, chat
         return
     end
 
-    upcomingCalendarEvents = upcomingCalendarEvents or addon.EventData.GetUpcomingCalendarEvents()
+    upcomingCalendarEvents = upcomingCalendarEvents or addon.EventReminders.EventData.GetUpcomingCalendarEvents()
     for _, event in next, upcomingCalendarEvents do
         ShowUpcomingCalendarEventPopUp(self, event, canShowPopUps, currentTime)
         ShowUpcomingCalendarEventChatMessage(self, event, canShowChatMessages, currentTime)
@@ -633,9 +632,9 @@ function Refresh(self)
     local refreshedActiveEvents
     local refreshedUpcomingCalendarEvents
     if hasCallbacks then
-        refreshedActiveEvents = addon.EventData.GetActiveEvents(true)
+        refreshedActiveEvents = addon.EventReminders.EventData.GetActiveEvents(true)
         if addon.Options.db.profile.EventReminders.UpcomingCalendarEvents.Enabled then
-            refreshedUpcomingCalendarEvents = addon.EventData.GetUpcomingCalendarEvents()
+            refreshedUpcomingCalendarEvents = addon.EventReminders.EventData.GetUpcomingCalendarEvents()
         end
     end
 
@@ -699,13 +698,13 @@ function eventReminderAlertSystem:ShowActiveEventsOnPlayerEnteringWorld(popUpsOp
     local currentTime = GetServerTime()
 
     if popUpsOptions and not popUpsOptions.Show then
-        local activeEvents = addon.EventData.GetActiveEvents(true)
+        local activeEvents = addon.EventReminders.EventData.GetActiveEvents(true)
         for _, event in next, activeEvents do
             KrowiAF_SavedData.ActiveEventPopUpsShown[event.Id] = event.EventDetails and event.EventDetails.EndTime or placeholderEpoch
         end
     end
     if chatMessagesOptions and not chatMessagesOptions.Show then
-        local activeEvents = addon.EventData.GetActiveEvents(true)
+        local activeEvents = addon.EventReminders.EventData.GetActiveEvents(true)
         for _, event in next, activeEvents do
             KrowiAF_SavedData.ActiveEventChatMessagesShown[event.Id] = event.EventDetails and event.EventDetails.EndTime or placeholderEpoch
         end
@@ -729,7 +728,7 @@ function eventReminderAlertSystem:ShowUpcomingCalendarEventsOnPlayerEnteringWorl
     local currentTime = GetServerTime()
 
     if popUpsOptions and not popUpsOptions.Show then
-        local upcomingCalendarEvents = addon.EventData.GetUpcomingCalendarEvents()
+        local upcomingCalendarEvents = addon.EventReminders.EventData.GetUpcomingCalendarEvents()
         for _, event in next, upcomingCalendarEvents do
             local occurrence = addon.EventData.GetNextEventOccurance(event.Id)
             if occurrence and occurrence.StartTime then
@@ -738,7 +737,7 @@ function eventReminderAlertSystem:ShowUpcomingCalendarEventsOnPlayerEnteringWorl
         end
     end
     if chatMessagesOptions and not chatMessagesOptions.Show then
-        local upcomingCalendarEvents = addon.EventData.GetUpcomingCalendarEvents()
+        local upcomingCalendarEvents = addon.EventReminders.EventData.GetUpcomingCalendarEvents()
         for _, event in next, upcomingCalendarEvents do
             local occurrence = addon.EventData.GetNextEventOccurance(event.Id)
             if occurrence and occurrence.StartTime then

@@ -6,22 +6,30 @@ local features = addon.Features
 -- while its files load; loading them makes nothing (no frame, hook, script, event, timer or slash command). At
 -- ADDON_LOADED, right after the options' AceDB is made, StartAll starts every feature whose switch is on in the current
 -- profile; one that is off never starts that session, and turning a switch on or off takes effect after a reload.
--- - Register{Name, Title, Switch, Start, OnNotStarted}: Switch is the saved path in the profile ("Features.<Name>"),
---   on by default; Start makes the feature's frames and adds its entries to the core's slots (Slots.lua);
---   OnNotStarted lets a feature that stays off drop what its public API queued while the files loaded; AfterDataLoad
---   runs once the login data load filled addon.Data.Achievements, only for a started feature (DataLoaded).
--- - AddOptions(name, {Rows, Defaults, Section, Into}): its settings, whether it is on or off. Rows() returns the
---   AceConfig rows, built after Defaults went into the profile defaults. The registry puts the switch on top and the rows
---   in a group greyed out while the switch is off, under the Features page of the options table, and adds Section (Id,
---   Name, Card, NavGroup, Order, the card fields of Options/Window/Map.lua and Pairs, the section group's pairs) to the
---   options window. Into() returns, like Rows after the defaults went in, { {Path, Key, Order, Row, FollowsSwitch,
---   With} }: rows the feature puts into a group of the
---   core (Path, the group's path in the options table) at Key and Order (after the group's rows when left out); with
---   FollowsSwitch the row greys out while the
---   switch is off; With = {Key, Row}, a button drawn after the row, which does not follow the switch
---   (docs/work/2026-11-09-pop-out).
--- - AddHelp(name, {Id, Title, Blocks, Scene}): its help page, whether it is on or off; Scene is its Show me, wired only
---   while it is started. A feature that is off gets a line on top saying so, and no Show me.
+-- - Register{Name, Title, Switch, Start, OnNotStarted}: Switch is the saved path in the profile ("Features.<Name>", or a
+--   setting the feature had before it was one), on by default; Start makes the feature's frames and adds its entries to
+--   the core's slots (Slots.lua); OnNotStarted lets a feature that stays off drop what its public API queued while the
+--   files loaded; AfterDataLoad runs once the login data load filled addon.Data.Achievements, only for a started feature
+--   (DataLoaded); AfterAchievementUI runs once Blizzard's achievement window has loaded, only for a started feature
+--   (AchievementUILoaded, docs/work/2026-11-12-event-reminders).
+-- - AddOptions(name, {Rows, Defaults, Section, Sections, Beside, Into, Late}): its settings, whether it is on or off.
+--   AddOptions only records them; BuildOptions builds every feature's at ADDON_LOADED, after every file loaded (the data
+--   files included) and before the options load, in registration order: Defaults into the profile defaults, Rows() and
+--   Beside() into the feature's group, then Late() (rows made from data that loads after the feature's files, put into
+--   those defaults and that group), then Into() and the sections. The registry puts
+--   the switch on top and the rows in a group greyed out while the switch is off, under the Features page of the options
+--   table (Path(name) .. ".args.Settings"). Beside() returns rows put next to the switch, outside that group, which
+--   never grey: the way to the switch stays open. Section (Id, Name, Card, NavGroup, Order, the card fields of
+--   Options/Window/Map.lua, Header and Pairs, the section group's pairs) is one section of the options window drawing
+--   the switch and the group; Sections() instead returns the window's sections as Options/Window/Map.lua writes them
+--   (Groups with Path, Group, Families, Grid and the rest, full paths built on Path(name)), each with NavGroup and Order,
+--   and the switch goes on top of the first one's first group. Into() returns { {Path, Key, Order, Row, FollowsSwitch,
+--   With} }: rows the feature puts into a group of the core (Path, the group's path in the options table) at Key and
+--   Order (after the group's rows when left out); with FollowsSwitch the row greys out while the switch is off;
+--   With = {Key, Row}, a button drawn after the row, which does not follow the switch (docs/work/2026-11-09-pop-out).
+-- - AddHelp(name, {Id, Title, Blocks, Scene}): a help page, whether it is on or off, one call per page; Scene is its
+--   Show me, wired only while it is started. A feature that is off gets a line on top of each page saying so, and no
+--   Show me.
 -- - AddDataFields(name, {field = handler}): the achievement data fields it takes (Slots.lua, AchievementData), added
 --   when it starts.
 -- The core never names a feature (the feature-boundary lint rule).
@@ -126,30 +134,51 @@ local function AddSection(section)
     error("feature section " .. tostring(section.Id) .. " names no navigation group " .. tostring(section.NavGroup))
 end
 
+-- The path of a feature's group in the options table; its settings are under Path(name) .. ".args.Settings"
+function features.Path(name)
+    return "Features.args." .. name
+end
+
+local optionsOrder, optionsBuilt = {}, false
+
 function features.AddOptions(name, def)
     local record = Get(name)
     assert(record.Registered, "feature " .. name .. " registers before it adds its options")
+    assert(not record.Options, "feature " .. name .. " adds its options once")
+    assert(not optionsBuilt, "feature " .. name .. " adds its options after the options were built")
+    record.Options = def
+    tinsert(optionsOrder, record)
+end
+
+local function BuildFeatureOptions(record)
+    local name, def = record.Name, record.Options
     if def.Defaults then
         Merge(addon.Options.Defaults.profile, def.Defaults)
     end
-    local path = "Features.args." .. name
-    options.OptionsTable.args.Features.args[name] = {
-        type = "group", name = record.Title,
-        args = {
-            Enabled = {
-                order = 1, type = "toggle", width = "full",
-                name = addon.L["Enable"],
-                desc = addon.L["Feature Switch Desc"]:K_ReplaceVars({feature = record.Title}):KAF_AddDefaultValueText(record.Switch):K_AddReloadRequired(),
-                get = function() return IsOn(record) end,
-                set = function(_, value) Write(addon.Options.db.profile, record.Switch, value) end
-            },
-            Settings = {
-                order = 2, type = "group", inline = true, name = "",
-                disabled = function() return not IsOn(record) end,
-                args = def.Rows and def.Rows() or {}
-            }
+    local path = features.Path(name)
+    local args = {
+        Enabled = {
+            order = 1, type = "toggle", width = "full",
+            name = addon.L["Enable"],
+            desc = addon.L["Feature Switch Desc"]:K_ReplaceVars({feature = record.Title}):KAF_AddDefaultValueText(record.Switch):K_AddReloadRequired(),
+            get = function() return IsOn(record) end,
+            set = function(_, value) Write(addon.Options.db.profile, record.Switch, value) end
+        },
+        Settings = {
+            order = 2, type = "group", inline = true, name = "",
+            disabled = function() return not IsOn(record) end,
+            args = def.Rows and def.Rows() or {}
         }
     }
+    for key, row in next, def.Beside and def.Beside() or {} do
+        assert(not args[key], "feature " .. name .. " puts a row beside its switch at " .. key .. ", which is taken")
+        args[key] = row
+    end
+    options.OptionsTable.args.Features.args[name] = {type = "group", name = record.Title, args = args}
+    -- Rows made from data, put into the defaults and the group built above (Event reminders' per-event toggles)
+    if def.Late then
+        def.Late()
+    end
     for _, into in ipairs(def.Into and def.Into() or {}) do
         local group = Read(options.OptionsTable.args, into.Path) -- the paths of Options/Window/Map.lua
         assert(type(group) == "table" and type(group.args) == "table", "feature " .. name .. " puts a row into " .. tostring(into.Path) .. ", which is no group")
@@ -188,6 +217,16 @@ function features.AddOptions(name, def)
             assert(paired, "feature " .. name .. " pairs a button in " .. into.Path .. ", which no section of the window draws")
         end
     end
+    if def.Sections then
+        local sections = def.Sections()
+        local first = sections[1] and sections[1].Groups and sections[1].Groups[1]
+        assert(first and first.Entries, "feature " .. name .. "'s first section starts with a group of entries, where its switch goes")
+        tinsert(first.Entries, 1, {Path = path .. ".args.Enabled"})
+        for _, section in ipairs(sections) do
+            AddSection(section)
+        end
+        return
+    end
     local section = def.Section
     section.Groups = {
         {Header = section.Header or record.Title, Entries = {
@@ -199,9 +238,25 @@ function features.AddOptions(name, def)
     AddSection(section)
 end
 
+-- Once, at ADDON_LOADED before addon.Options:Load (Krowi_AchievementFilter.lua): every feature's settings, built after
+-- every file loaded; one whose build errors does not stop the others
+function features.BuildOptions()
+    if optionsBuilt then
+        return
+    end
+    optionsBuilt = true
+    for _, record in ipairs(optionsOrder) do
+        xpcall(function() BuildFeatureOptions(record) end, CallErrorHandler) -- Lua 5.1's xpcall passes no arguments
+    end
+end
+
 function features.AddHelp(name, def)
     local record = Get(name)
-    record.Help = def
+    record.Help = record.Help or {}
+    for _, page in ipairs(record.Help) do
+        assert(page.Id ~= def.Id, "feature " .. name .. " adds help page " .. def.Id .. " twice")
+    end
+    tinsert(record.Help, def)
     addon.Options.Window.Help[def.Id] = {Title = def.Title, Blocks = def.Blocks}
 end
 
@@ -210,28 +265,28 @@ function features.AddDataFields(name, fields)
 end
 
 -- Show me for a started feature, wired as Options/Window/Help/ShowMe.lua wires the core's; the off line for one that
--- stays off
+-- stays off; on each of its pages
 local function WireHelp(record)
-    local def = record.Help
-    if not def then
-        return
-    end
     local window = addon.Options.Window
-    local help = window.Help[def.Id]
-    if started[record.Name] then
-        if def.Scene then
-            window.HelpScenes[def.Id] = def.Scene
-            local canShow = window.ShowMeKit.CanShow
-            help.CanShowMe = canShow
-            help.ShowMe = function()
-                if not canShow() then
-                    return false
+    for index, def in ipairs(record.Help or {}) do
+        local help = window.Help[def.Id]
+        if started[record.Name] then
+            if def.Scene then
+                window.HelpScenes[def.Id] = def.Scene
+                local canShow = window.ShowMeKit.CanShow
+                help.CanShowMe = canShow
+                help.ShowMe = function()
+                    if not canShow() then
+                        return false
+                    end
+                    return def.Scene()
                 end
-                return def.Scene()
             end
+        else
+            -- The first page is the section with the switch on top; a later one points at that section by its name
+            local off = index == 1 and addon.L["Feature Off Help"] or addon.L["Feature Off Help Other Section"]
+            tinsert(help.Blocks, 1, window.HelpBlocks.Text(off:K_ReplaceVars({feature = record.Title})))
         end
-    else
-        tinsert(help.Blocks, 1, window.HelpBlocks.Text(addon.L["Feature Off Help"]:K_ReplaceVars({feature = record.Title})))
     end
 end
 
@@ -299,16 +354,46 @@ function features.RanAfterDataLoad(name)
     return ranAfterDataLoad[name] == true
 end
 
+-- Once, when Blizzard's achievement window has loaded (Krowi_AchievementFilter.lua, LoadBlizzard_AchievementUI, which runs
+-- once whether the window loads before or after PLAYER_LOGIN): each started feature's AfterAchievementUI, in
+-- registration order; one that errors does not stop the others
+local achievementUILoaded, ranAfterAchievementUI = false, {}
+
+function features.AchievementUILoaded()
+    if achievementUILoaded then
+        return
+    end
+    achievementUILoaded = true
+    for _, record in ipairs(order) do
+        if started[record.Name] and record.AfterAchievementUI then
+            ranAfterAchievementUI[record.Name] = xpcall(record.AfterAchievementUI, CallErrorHandler)
+        end
+    end
+end
+
+function features.AchievementUIHasLoaded()
+    return achievementUILoaded
+end
+
+-- Whether a feature's AfterAchievementUI ran without an error; for the features suite
+function features.RanAfterAchievementUI(name)
+    return ranAfterAchievementUI[name] == true
+end
+
 -- Whether StartAll ran: a feature's public API holds what it gets until then
 function features.HasStarted()
     return hasStarted
 end
 
--- The registered features in registration order: Name, Title, Switch, HelpId (the section id of its help page)
+-- The registered features in registration order: Name, Title, Switch, HelpIds (the section ids of its help pages)
 function features.List()
     local list = {}
     for _, record in ipairs(order) do
-        list[#list + 1] = {Name = record.Name, Title = record.Title, Switch = record.Switch, HelpId = record.Help and record.Help.Id}
+        local helpIds = {}
+        for _, page in ipairs(record.Help or {}) do
+            helpIds[#helpIds + 1] = page.Id
+        end
+        list[#list + 1] = {Name = record.Name, Title = record.Title, Switch = record.Switch, HelpIds = helpIds}
     end
     return list
 end
