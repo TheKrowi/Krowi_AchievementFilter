@@ -32,6 +32,13 @@ local retryDelay = 2
 local keepRuns = 10 -- runs kept in History outside a /kaftest run
 local keep = keepRuns -- what Report trims History to: keepRuns, or keepRuns plus the entries while a /kaftest run runs (RunEntries)
 local matrixStep -- the step of /kaftest matrix whose suites run now (below), or nil
+local matrixStepPlan -- that step's entry in the plan (Name, Switches, SkipIdleMinute), or nil
+
+-- The /kaftest matrix step whose suites run now, as the plan holds it, or nil outside a matrix run: a suite reads what
+-- the step asks of it (memory: SkipIdleMinute)
+function tests.MatrixStep()
+    return matrixStepPlan
+end
 
 local function GetDb()
     KrowiAF_DebugTable = KrowiAF_DebugTable or {}
@@ -348,18 +355,20 @@ end
 local function MatrixSteps()
     local list = addon.Features.List()
     local steps = {}
-    local function Step(name, on)
+    local function Step(name, on, skipIdleMinute)
         local switches = {}
         for _, feature in ipairs(list) do
             switches[feature.Name] = on(feature.Name)
         end
-        tinsert(steps, {Name = name, Switches = switches})
+        tinsert(steps, {Name = name, Switches = switches, SkipIdleMinute = skipIdleMinute})
     end
     Step("all-on", function() return true end)
     Step("all-off", function() return false end)
+    -- memory's idle minute is an observation that fails nothing: all on and all off measure it, a feature alone adds
+    -- a minute a step and a number nobody compares (docs/work/2026-11-12-matrix-run-length)
     if #list > 1 then
         for _, feature in ipairs(list) do
-            Step(feature.Name .. "-alone", function(name) return name == feature.Name end)
+            Step(feature.Name .. "-alone", function(name) return name == feature.Name end, true)
         end
     end
     return steps
@@ -457,10 +466,10 @@ local function RunMatrixStep()
     end
     plan.Running = plan.Index
     local step = plan.Steps[plan.Index]
-    matrixStep = step.Name
+    matrixStep, matrixStepPlan = step.Name, step
     print(prefix .. ("matrix step %d of %d (%s)"):format(plan.Index, #plan.Steps, step.Name))
     RunEntries(plan.Suites, false, function()
-        matrixStep = nil
+        matrixStep, matrixStepPlan = nil, nil
         plan.Running = nil
         if plan.Index < #plan.Steps then
             plan.Index = plan.Index + 1
