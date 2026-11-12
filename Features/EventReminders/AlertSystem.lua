@@ -266,8 +266,7 @@ local placeholderTypes = {
 }
 
 function eventReminderAlertSystem:ShowPlaceholders(worldFirst, duration)
-    if not self.SubSystem then -- reminders were off at login, so there is no alert system to show them in
-        print(addon.Metadata.Title, "-", addon.L["Help Events Off"])
+    if not self.SubSystem then -- no alert container: the feature did not start (Features.lua), which greys the buttons that call this
         return 0
     end
     local options = addon.Options.db.profile.EventReminders

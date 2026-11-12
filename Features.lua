@@ -383,8 +383,7 @@ function features.HasStarted()
     return hasStarted
 end
 
--- The registered features in registration order: Name, Title, Switch, HelpIds (the section ids of its help pages) and
--- HelpId (the first of them)
+-- The registered features in registration order: Name, Title, Switch, HelpIds (the section ids of its help pages)
 function features.List()
     local list = {}
     for _, record in ipairs(order) do
@@ -392,7 +391,7 @@ function features.List()
         for _, page in ipairs(record.Help or {}) do
             helpIds[#helpIds + 1] = page.Id
         end
-        list[#list + 1] = {Name = record.Name, Title = record.Title, Switch = record.Switch, HelpIds = helpIds, HelpId = helpIds[1]}
+        list[#list + 1] = {Name = record.Name, Title = record.Title, Switch = record.Switch, HelpIds = helpIds}
     end
     return list
 end

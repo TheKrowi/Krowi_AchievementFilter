@@ -728,10 +728,11 @@ function elv:Load()
         end)
     end
 
-    DisableOptions()
-
+    -- The features' parts before anything else that can error, so a skin never depends on it
     local context = {DoSkin = doSkin, Engine = engine, Skins = skins}
     for _, part in ipairs(parts) do
         if part.Install then part.Install(context) end
     end
+
+    DisableOptions()
 end

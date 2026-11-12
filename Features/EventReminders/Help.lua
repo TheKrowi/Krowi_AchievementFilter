@@ -11,7 +11,11 @@ local blocks, kit = window.HelpBlocks, window.ShowMeKit
 -- Placeholder reminders, as the Location button shows them (AlertSystem.lua ShowPlaceholders), for the fade delay.
 -- worldFirst: the event list's Show me starts with the world events, the reminders' with the calendar ones.
 local function ShowPlaceholders(ready, worldFirst)
-    local shown = addon.Gui.EventReminderAlertSystem:ShowPlaceholders(worldFirst, addon.Options.db.profile.EventReminders.PopUps.FadeDelay)
+    local system = addon.Gui.EventReminderAlertSystem
+    if not system.SubSystem then -- no alert container to show them in; the registry wires this scene only while started
+        return false
+    end
+    local shown = system:ShowPlaceholders(worldFirst, addon.Options.db.profile.EventReminders.PopUps.FadeDelay)
     kit.Ready(ready, {Shown = shown})
 end
 

@@ -2609,8 +2609,9 @@ local function InstallAlertModel(env, isRetail)
 end
 
 -- The event reminder pop-ups on the whole-addon load of options-env.lua, a load of the suite's own, against the alert
--- model above (sources in Tests/PopUps.lua). The feature's own load of the pop-ups and the side buttons (its Start)
--- runs for real, with the side buttons on models of their anchors (below).
+-- model above (sources in Tests/PopUps.lua). The pop-ups' and the side buttons' own Load run for real, called in the
+-- order the feature's Start calls them (Features/EventReminders/EventReminders.lua; the rest of Start, its listener and
+-- its Data Manager tab, is the features suite's), with the side buttons on models of their anchors (below).
 suites.popups = function(c)
     local scriptDir = ((arg and arg[0]) or ""):gsub("\\", "/"):match("^(.*)/") or "."
     local optionsEnv = assert(loadfile(scriptDir .. "/options-env.lua"))()
@@ -2651,7 +2652,7 @@ suites.popups = function(c)
         end
         return frame
     end)
-    local loadedAtLogin -- what the side buttons' Load answered at LoadWithAddon: Gui/Gui.lua:12 keeps it, before the fix
+    local loadedAtLogin -- what the side buttons' Load answered at the feature's Start, as AfterAchievementUI reads it
     -- No event going on, for the side buttons' own refresh, which reads the active events (Data/EventData.lua): an
     -- empty calendar, no POI on any map and no widget, as in the events suite
     env.C_Calendar.GetNumDayEvents = function() return 0 end
