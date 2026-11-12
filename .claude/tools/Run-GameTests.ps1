@@ -12,7 +12,8 @@
     3. /kaftest run <entries>, then Send-GameInput.ps1 -WaitForDone: it serves the hovers and keys the suites ask for
        (the pictures suite's world map) and returns when the summary is up.
     4. /reload, so the results reach the saved variables, then Read-GameTests.ps1 per entry and the kit's
-       Read-GameErrors.ps1.
+       Read-GameErrors.ps1. After every /reload it reads the saved variables only once the game has written them
+       since (up to 60 s): the kit can report the UI back while the reload has only begun.
     5. -Quit for a client this tool started, unless -KeepOpen.
 
     Exits 0 only when every entry left a run, no run has a FAIL and every run passed something (a run whose every step
@@ -99,6 +100,7 @@ function Invoke-Kit([string]$What, [hashtable]$Arguments) {
     }
 }
 $started = $false
+$savedVariablesLate = $false   # set by Wait-SavedVariables
 # A client this tool started is closed whatever happens after
 function Close-Started {
     if ($script:started -and -not $KeepOpen) {
@@ -108,6 +110,34 @@ function Close-Started {
     }
 }
 function Stop-Run([string]$Reason) { Close-Started; "Run-GameTests: $Reason"; exit 1 }
+
+# The saved variables this tool reads: the newest Krowi_AchievementFilter.lua of the client's accounts, as
+# Read-GameTests.ps1 picks it
+. (Join-Path $KitTools 'AddonContext.ps1')   # the kit's client map: Get-ClientFolder
+$wtf = Join-Path (Get-ClientFolder $Client) 'WTF\Account'
+function Get-SavedVariablesFile {
+    Get-ChildItem -LiteralPath $wtf -Directory | ForEach-Object { Join-Path $_.FullName 'SavedVariables\Krowi_AchievementFilter.lua' } |
+        Where-Object { Test-Path -LiteralPath $_ } | Get-Item | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+}
+# Waits until the game has written the saved variables at or after $Since, the moment before /reload was typed, and
+# says when; $false after $Seconds. The kit's -Command '/reload' can report the UI back while the reload has only
+# begun, and a read then gets the file from before it (docs/work/2026-11-12-matrix-run-length).
+function Wait-SavedVariables([datetime]$Since, [int]$Seconds = 60) {
+    $until = (Get-Date).AddSeconds($Seconds)
+    while ($true) {
+        $file = Get-SavedVariablesFile
+        if ($file -and $file.LastWriteTime -ge $Since) {
+            "  saved variables written $($file.LastWriteTime.ToString('HH:mm:ss'))"
+            return
+        }
+        if ((Get-Date) -gt $until) {
+            "  the saved variables were not written within $Seconds s of the /reload"
+            $script:savedVariablesLate = $true
+            return
+        }
+        Start-Sleep -Seconds 1
+    }
+}
 
 "Run-GameTests: $runText on $Client"
 $null = & $send -Client $Client -Install
@@ -136,12 +166,9 @@ if ($Matrix) {
     # and asks for a /reload, since C_UI.Reload is protected outside a key press or click; this tool types it, waits for
     # the step's suites, and stops once the saved variables hold no pending plan. That last /reload also brings the
     # switches back as they were. -Timeout is per step.
-    . (Join-Path $KitTools 'AddonContext.ps1')   # the kit's client map: Get-ClientFolder
-    $wtf = Join-Path (Get-ClientFolder $Client) 'WTF\Account'
     $runsReader = Join-Path $PSScriptRoot 'headless\read-runs.lua'
     function Read-MatrixState {
-        $sv = Get-ChildItem -LiteralPath $wtf -Directory | ForEach-Object { Join-Path $_.FullName 'SavedVariables\Krowi_AchievementFilter.lua' } |
-            Where-Object { Test-Path -LiteralPath $_ } | Get-Item | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+        $sv = Get-SavedVariablesFile
         if ($sv) { @(& $KitLua $runsReader $sv.FullName 'KrowiAF_DebugTable' 'matrix' 2>$null) }
     }
     '/kaftest matrix'
@@ -152,8 +179,11 @@ if ($Matrix) {
         'Waiting for the step to be done'
         $waited = Invoke-Kit 'waiting' @{ WaitForDone = $true; Timeout = $Timeout }
         '/reload, for the next step or to put the switches back'
+        $typedAt = Get-Date
         $reloaded = Invoke-Kit '/reload' @{ Command = '/reload' }
         if ($waited -ne 0 -or $reloaded -ne 0) { break }
+        Wait-SavedVariables $typedAt
+        if ($savedVariablesLate) { break }
         $matrixState = @(Read-MatrixState)
         $pending = @($matrixState | Where-Object { $_ -like 'pending|*' })
         if (-not $pending) { break }
@@ -173,6 +203,7 @@ if ($Matrix) {
     Close-Started
     if ($waited -ne 0) { Stop-Run 'a step did not report done in time (see above)' }
     if ($reloaded -ne 0) { Stop-Run 'a /reload failed, so the plan stopped on a step' }
+    if ($savedVariablesLate) { Stop-Run 'the saved variables were not written after a /reload, so the plan could not be read (see above)' }
     if (-not $record) { Stop-Run 'no finished matrix run reached the saved variables' }
     "Run-GameTests: matrix record $record (build|passed|failed|skipped|time|complete)"
     $f = $record -split '\|'
@@ -193,7 +224,12 @@ $waited = Invoke-Kit 'waiting' @{ WaitForDone = $true; Timeout = $Timeout }
 
 # Also after a timeout: the suites that finished reach the saved variables
 '/reload, so the results reach the saved variables'
+$typedAt = Get-Date
 $reloaded = Invoke-Kit '/reload' @{ Command = '/reload' }
+if ($reloaded -eq 0) {
+    Wait-SavedVariables $typedAt
+    if ($savedVariablesLate) { Stop-Run 'the saved variables were not written after the /reload, so the runs could not be read (see above)' }
+}
 
 if ($reloaded -eq 0) {
     # Only the kept runs of this run, oldest first, by their time in the reader's list ("  2. 2026-11-05 17:28:23 ...")
