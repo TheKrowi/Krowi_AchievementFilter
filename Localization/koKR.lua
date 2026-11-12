@@ -7,6 +7,103 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Upcoming"] = "예정"
+L["In"] = "남은 시간:"
+L["Placeholder"] = "예시"
+L["No time data available"] = "시간 정보 없음"
+L["Upcoming Calendar Events"] = "다가오는 달력 이벤트"
+L["Event Reminders"] = "이벤트 알림"
+L["Select All"] = "모두 선택"
+L["Deselect All"] = "모두 해제"
+L["Unknown"] = "알 수 없음"
+L["Stop tracking"] = "추적 중지"
+L["End Time"] = "종료 시간"
+L["Time Left"] = "남은 시간"
+L["Up"] = "위로"
+L["Down"] = "아래로"
+L["Style"] = "스타일"
+L["Enable Upcoming Calendar Events"] = "다가오는 달력 이벤트 사용"
+L["Enable Upcoming Calendar Events Desc"] = "끄면 {upcomingCalendarEvents} 모듈이 꺼집니다."
+L["Compact"] = "간소화"
+L["Compact Desc"] = [=[시간을 한 줄로만 보여주는 간소화된 형태를 사용합니다.
+
+{reloadRequired}]=]
+L["Time display"] = "시간 표시"
+L["Line"] = "줄"
+L["Other"] = "기타"
+L["Show pop ups on login delay Desc"] = "접속할 때 처음 나오는 이벤트 팝업을 늦춥니다."
+L["Upcoming Calendar Event Login Delay"] = "다가오는 달력 이벤트 접속 지연"
+L["Refresh interval"] = "새로 고침 간격"
+L["Refresh interval Desc"] = "이벤트 정보를 새로 고치는 간격(초)입니다. 길수록 새 팝업이 늦게 나타나고 지난 팝업이 늦게 정리될 수 있습니다."
+L["Side Button Anchor"] = "측면 버튼 위치"
+L["Side Button Anchor Desc"] = "측면 버튼이 오른쪽에 붙는 창입니다."
+L["Upcoming Calendar Event Days"] = "다가오는 달력 이벤트 일수"
+L["Upcoming Calendar Event Days Desc"] = "다가오는 달력 이벤트를 며칠 전부터 표시할지 정합니다."
+L["Pop ups"] = "팝업"
+L["On Login"] = "접속 시"
+L["Show"] = "표시"
+L["Show alertSystem on login Desc"] = "게임에 접속할 때 이벤트 {alertSystem}을(를) 표시하거나 숨깁니다."
+L["In instances"] = "인스턴스에서"
+L["Show alertSystem on login in instances Desc"] = "인스턴스 안에서 게임에 접속할 때 이벤트 {alertSystem}을(를) 표시하거나 숨깁니다."
+L["Only when time data is available"] = "시간 정보가 있을 때만"
+L["Show alertSystem on login only when time data is available Desc"] = "이벤트의 남은 시간을 알 수 있을 때만 게임 접속 시 이벤트 {alertSystem}을(를) 표시하거나 숨깁니다."
+L["On Reload"] = "UI 재시작 시"
+L["Show alertSystem on reload Desc"] = "UI를 재시작할 때 이벤트 {alertSystem}을(를) 표시하거나 숨깁니다."
+L["Show alertSystem on reload in instances Desc"] = "인스턴스 안에서 UI를 재시작할 때 이벤트 {alertSystem}을(를) 표시하거나 숨깁니다."
+L["Show alertSystem on reload only when time data is available Desc"] = "이벤트의 남은 시간을 알 수 있을 때만 UI 재시작 시 이벤트 {alertSystem}을(를) 표시하거나 숨깁니다."
+L["On Event Start"] = "이벤트 시작 시"
+L["Show alertSystem on event start Desc"] = "이벤트가 시작될 때 {alertSystem}을(를) 표시하거나 숨깁니다."
+L["Show alertSystem on event start in instances Desc"] = "인스턴스 안에 있을 때 이벤트가 시작되면 {alertSystem}을(를) 표시하거나 숨깁니다."
+L["Show alertSystem on event start only when time data is available Desc"] = "이벤트의 남은 시간을 알 수 있을 때만 이벤트 시작 시 {alertSystem}을(를) 표시하거나 숨깁니다."
+L["Location"] = "위치"
+L["Grow direction"] = "추가 방향"
+L["Grow direction Desc"] = "새 알림이 추가되는 방향입니다."
+L["Spacing"] = "간격"
+L["Spacing Desc"] = "탭 사이 기본 거리에 더하거나 빼는 거리입니다."
+L["X offset Desc"] = "시작 위치에서의 가로 위치입니다."
+L["Y offset Desc"] = "시작 위치에서의 세로 위치입니다."
+L["Show placeholders"] = "예시 표시"
+L["Show placeholders Desc"] = "위 설정이 어떻게 보이는지 확인할 수 있도록 예시 이벤트를 표시합니다. 마우스를 올리거나 오른쪽 클릭하면 닫힙니다."
+L["Max number of alerts"] = "최대 알림 수"
+L["Max number of alerts Desc"] = "한 번에 표시되는 알림의 최대 개수입니다."
+L["Fade delay"] = "사라지는 시간"
+L["Fade delay Desc"] = "무시한 알림이 사라지기까지 걸리는 시간(초)입니다. 오른쪽 클릭하면 바로 닫힙니다."
+L["World Events"] = "월드 이벤트"
+L["Start Time"] = "시작 시간"
+L["Presets"] = "미리 설정"
+L["Custom"] = "사용자 지정"
+L["Date and Time formatting guide Desc"] = [=[{a} - 요일 약칭 (예: 수)
+{A} - 요일 전체 이름 (예: 수요일)
+{b} - 월 약칭 (예: 9월)
+{B} - 월 전체 이름 (예: 9월)
+{c} - 지역 설정에 맞는 날짜와 시간 (예: 23/04/07 10:20:41)
+{C} - 세기 (연도/100) (예: 20)
+{d} - 일 (01 - 31)
+{D} - %m/%d/%y와 같음 (예: 04/23/07)
+{e} - 일 (1 - 31)
+{H} - 24시간 형식의 시 (00 - 23)
+{I} - 12시간 형식의 시 (01 - 12)
+{j} - 연중 일 (001 - 366)
+{k} - 24시간 형식의 시 (0 - 23)
+{l} - 12시간 형식의 시 (1 - 12)
+{m} - 월 (01 - 12)
+{M} - 분 (00 - 59)
+{p} - 12시간제의 지역 설정 오전/오후 표시 (예: AM/PM)
+{P} - 12시간제의 지역 설정 오전/오후 표시 (예: am/pm)
+{R} - %H:%M과 같음 (예: 10:20)
+{s} - 기준 시각, 즉 1970-01-01 00:00:00 UTC 이후의 초 (1177323641)
+{S} - 초 (00 - 59)
+{u} - 요일 번호 (1 - 7, 월요일이 1)
+{U} - 일요일을 첫째 주의 첫날로 하는 연중 주 (00 - 53)
+{w} - 요일 번호 (0 - 6, 일요일이 0)
+{W} - 월요일을 첫째 주의 첫날로 하는 연중 주 (00 - 53)
+{x} - 지역 설정의 날짜 (표준 날짜)
+{X} - 지역 설정의 시간 (표준 시간)
+{y} - 세기를 뺀 연도 (00 - 99) (예: 07)
+{Y} - 세기를 포함한 연도 (예: 2007)
+{z} - GMT와의 시차 (예: +0200)
+{Z} - 시간대 이름 또는 약칭; 알 수 없으면 비어 있음]=]
+L["Holidays"] = "축제"
 L["Enable"] = "활성화"
 L["Pop Out"] = "팝아웃"
 L["Close Popout"] = "팝아웃 닫기"

@@ -7,6 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Unknown"] = "未知"
 L["Pop Out"] = "浮動視窗"
 L["Close Popout"] = "關閉浮動視窗"
 L["Remember Size"] = "記住大小"

@@ -7,6 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Unknown"] = "Неизвестно"
 L["Preview on Mouseover"] = "Предпросмотр при наведении"
 L["Starting Height"] = "Начальная высота"
 L["Help Rewards Intro No Icon"] = "Выберите {previewReward} в меню правого клика достижения, чтобы увидеть его награду. Перетаскивайте модель, чтобы вращать ее, а угол – чтобы изменить размер окна."

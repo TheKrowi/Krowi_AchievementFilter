@@ -7,6 +7,121 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Active Events"] = "Eventos activos"
+L["Category shown temporarily"] = "Esta categoría se seleccionó al hacer clic en el recordatorio del evento {eventName} y se muestra temporalmente porque no tiene logros que coincidan con los filtros establecidos."
+L["Upcoming"] = "Próximamente"
+L["Collecting data"] = "Recopilando datos"
+L["In"] = "En"
+L["Placeholder"] = "Marcador"
+L["No time data available"] = "No hay datos de tiempo disponibles"
+L["Active events"] = "Eventos activos"
+L["Upcoming Calendar Events"] = "Próximos eventos del calendario"
+L["Event Reminders"] = "Recordatorios de eventos"
+L["Select All"] = "Seleccionar todo"
+L["Deselect All"] = "Deseleccionar todo"
+L["Unknown"] = "Desconocido"
+L["Stop tracking"] = "Dejar de seguir"
+L["End Time"] = "Hora de fin"
+L["Time Left"] = "Tiempo restante"
+L["Achievement Window"] = "Ventana de logros"
+L["Up"] = "Arriba"
+L["Down"] = "Abajo"
+L["%d/%m/%Y %I:%M %p"] = true
+L["%m/%d/%Y %R"] = true
+L["%m/%d/%Y %I:%M %p"] = true
+L["%Y/%m/%d %R"] = true
+L["%Y/%m/%d %I:%M %p"] = true
+L["%c"] = true
+L["Style"] = "Estilo"
+L["Enable Upcoming Calendar Events"] = "Activar próximos eventos del calendario"
+L["Enable Upcoming Calendar Events Desc"] = "Si se desactiva, el módulo {upcomingCalendarEvents} se apaga."
+L["Compact"] = "Compacto"
+L["Compact Desc"] = [=[Usa una versión más compacta con una sola línea de tiempo.
+
+{reloadRequired}]=]
+L["Time display"] = "Visualización del tiempo"
+L["Line"] = "Línea"
+L["Other"] = "Otros"
+L["Active Event Login Delay"] = "Retraso de eventos activos al conectar"
+L["Show pop ups on login delay Desc"] = "Retrasa las primeras ventanas emergentes de eventos al conectar."
+L["Upcoming Calendar Event Login Delay"] = "Retraso de próximos eventos del calendario al conectar"
+L["Refresh interval"] = "Intervalo de actualización"
+L["Refresh interval Desc"] = "El tiempo en segundos entre actualizaciones de los datos de eventos. Un tiempo mayor puede retrasar la aparición de nuevas ventanas emergentes y la retirada de las antiguas."
+L["Side Button Anchor"] = "Anclaje de los botones laterales"
+L["Side Button Anchor Desc"] = "La ventana a cuyo lado derecho se colocan los botones laterales."
+L["Upcoming Calendar Event Days"] = "Días de próximos eventos del calendario"
+L["Upcoming Calendar Event Days Desc"] = "El número de días de antelación con que se muestran los próximos eventos del calendario."
+L["Pop ups"] = "Ventanas emergentes"
+L["Active events"] = "Eventos activos"
+L["On Login"] = "Al conectar"
+L["Show"] = "Mostrar"
+L["Show alertSystem on login Desc"] = "Muestra u oculta {alertSystem} de eventos al entrar en el juego."
+L["In instances"] = "En instancias"
+L["Show alertSystem on login in instances Desc"] = "Muestra u oculta {alertSystem} de eventos al entrar en el juego mientras estás en una instancia."
+L["Only when time data is available"] = "Solo con datos de tiempo"
+L["Show alertSystem on login only when time data is available Desc"] = "Muestra u oculta {alertSystem} de eventos al entrar en el juego, solo si se conoce el tiempo restante del evento."
+L["On Reload"] = "Al recargar"
+L["Show alertSystem on reload Desc"] = "Muestra u oculta {alertSystem} de eventos al recargar el juego."
+L["Show alertSystem on reload in instances Desc"] = "Muestra u oculta {alertSystem} de eventos al recargar el juego mientras estás en una instancia."
+L["Show alertSystem on reload only when time data is available Desc"] = "Muestra u oculta {alertSystem} de eventos al recargar el juego, solo si se conoce el tiempo restante del evento."
+L["On Event Start"] = "Al empezar un evento"
+L["Show alertSystem on event start Desc"] = "Muestra u oculta {alertSystem} de un evento cuando empieza."
+L["Show alertSystem on event start in instances Desc"] = "Muestra u oculta {alertSystem} de un evento cuando empieza mientras estás en una instancia."
+L["Show alertSystem on event start only when time data is available Desc"] = "Muestra u oculta {alertSystem} de un evento cuando empieza, solo si se conoce el tiempo restante del evento."
+L["Location"] = "Ubicación"
+L["Grow direction"] = "Dirección de crecimiento"
+L["Grow direction Desc"] = "La dirección en la que se añaden los nuevos recordatorios."
+L["Spacing"] = "Espaciado"
+L["Spacing Desc"] = "La distancia que se suma o se resta a la distancia predeterminada entre pestañas."
+L["XYZ offset"] = "Desplazamiento {xyz}"
+L["X offset Desc"] = "El desplazamiento horizontal desde la posición inicial."
+L["Y offset Desc"] = "El desplazamiento vertical desde la posición inicial."
+L["Show placeholders"] = "Mostrar marcadores"
+L["Show placeholders Desc"] = "Muestra unos eventos de ejemplo para ver qué hacen los ajustes de arriba. Se cierran pasando el ratón por encima o con un clic derecho."
+L["Max number of alerts"] = "Número máximo de alertas"
+L["Max number of alerts Desc"] = "El número máximo de alertas que se muestran a la vez."
+L["Fade delay"] = "Retraso de desvanecimiento"
+L["Fade delay Desc"] = "El tiempo en segundos que tarda la alerta en desvanecerse si no se le hace caso. Un clic derecho la cierra al instante."
+L["Chat messages"] = "Mensajes de chat"
+L["Calendar Events"] = "Eventos del calendario"
+L["World Events"] = "Eventos del mundo"
+L["Date and Time format"] = "Formato de fecha y hora"
+L["Start Time"] = "Hora de inicio"
+L["Presets"] = "Predefinidos"
+L["Custom"] = "Personalizado"
+L["Date and Time formatting guide"] = "Guía de formato de fecha y hora"
+L["Date and Time formatting guide Desc"] = [=[{a} - Nombre abreviado del día de la semana (p. ej. mié)
+{A} - Nombre completo del día de la semana (p. ej. miércoles)
+{b} - Nombre abreviado del mes (p. ej. sep)
+{B} - Nombre completo del mes (p. ej. septiembre)
+{c} - Fecha y hora según la configuración regional (p. ej. 23/04/07 10:20:41)
+{C} - El siglo (año/100) (p. ej. 20)
+{d} - Día del mes como número decimal (01 - 31)
+{D} - Equivale a %m/%d/%y (p. ej. 04/23/07)
+{e} - Día del mes como número decimal (1 - 31)
+{H} - Hora en formato de 24 horas (00 - 23)
+{I} - Hora en formato de 12 horas (01 - 12)
+{j} - Día del año como número decimal (001 - 366)
+{k} - Hora en formato de 24 horas (0 - 23)
+{l} - Hora en formato de 12 horas (1 - 12)
+{m} - Mes como número decimal (01 - 12)
+{M} - Minuto como número decimal (00 - 59)
+{p} - Indicador a. m./p. m. de la configuración regional para el reloj de 12 horas (p. ej. AM/PM)
+{P} - Indicador a. m./p. m. de la configuración regional para el reloj de 12 horas (p. ej. am/pm)
+{R} - Equivale a %H:%M (p. ej. 10:20)
+{s} - Número de segundos desde la época, es decir, desde 1970-01-01 00:00:00 UTC (1177323641)
+{S} - Segundo como número decimal (00 - 59)
+{u} - Día de la semana como número decimal (1 - 7; el lunes es 1)
+{U} - Semana del año como número decimal, con el domingo como primer día de la semana 1 (00 - 53)
+{w} - Día de la semana como número decimal (0 - 6; el domingo es 0)
+{W} - Semana del año como número decimal, con el lunes como primer día de la semana 1 (00 - 53)
+{x} - Fecha según la configuración regional (fecha estándar)
+{X} - Hora según la configuración regional (hora estándar)
+{y} - Año sin siglo, como número decimal (00 - 99) (p. ej. 07)
+{Y} - Año con siglo, como número decimal (p. ej. 2007)
+{z} - Zona horaria como desfase respecto a GMT (p. ej. +0200)
+{Z} - Nombre o abreviatura de la zona horaria; nada si se desconoce]=]
+L["Holidays"] = "Festividades"
 L["Enable"] = "Activar"
 L["Pop Out"] = "Ventana flotante"
 L["Close Popout"] = "Cerrar ventana flotante"

@@ -7,6 +7,97 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Category shown temporarily"] = "Esta categoria foi selecionada ao clicar no lembrete do evento {eventName} e é exibida temporariamente porque não tem conquistas que correspondam aos filtros definidos."
+L["Upcoming"] = "Em breve"
+L["In"] = "Em"
+L["Placeholder"] = "Exemplo"
+L["No time data available"] = "Sem dados de tempo"
+L["Upcoming Calendar Events"] = "Próximos eventos do calendário"
+L["Deselect All"] = "Desmarcar tudo"
+L["Unknown"] = "Desconhecido"
+L["Stop tracking"] = "Parar de acompanhar"
+L["End Time"] = "Hora de término"
+L["Up"] = "Para cima"
+L["Down"] = "Para baixo"
+L["Enable Upcoming Calendar Events"] = "Ativar próximos eventos do calendário"
+L["Enable Upcoming Calendar Events Desc"] = "Se desativado, o módulo {upcomingCalendarEvents} é desligado."
+L["Compact"] = "Compacto"
+L["Compact Desc"] = [=[Usa uma versão mais compacta com uma só linha de tempo.
+
+{reloadRequired}]=]
+L["Time display"] = "Exibição do tempo"
+L["Line"] = "Linha"
+L["Active Event Login Delay"] = "Atraso de eventos ativos ao entrar"
+L["Show pop ups on login delay Desc"] = "Atrasa as primeiras janelas pop-up de eventos ao entrar."
+L["Upcoming Calendar Event Login Delay"] = "Atraso dos próximos eventos do calendário ao entrar"
+L["Refresh interval"] = "Intervalo de atualização"
+L["Refresh interval Desc"] = "O tempo em segundos entre as atualizações dos dados de eventos. Um tempo maior pode atrasar o surgimento de novas janelas pop-up e a remoção das antigas."
+L["Side Button Anchor"] = "Âncora dos botões laterais"
+L["Side Button Anchor Desc"] = "A janela em cujo lado direito os botões laterais ficam presos."
+L["Upcoming Calendar Event Days"] = "Dias dos próximos eventos do calendário"
+L["Upcoming Calendar Event Days Desc"] = "O número de dias de antecedência para mostrar os próximos eventos do calendário."
+L["Pop ups"] = "Janelas pop-up"
+L["On Login"] = "Ao entrar"
+L["Show alertSystem on login Desc"] = "Mostra ou oculta {alertSystem} de eventos ao entrar no jogo."
+L["In instances"] = "Em instâncias"
+L["Show alertSystem on login in instances Desc"] = "Mostra ou oculta {alertSystem} de eventos ao entrar no jogo enquanto você está numa instância."
+L["Only when time data is available"] = "Só com dados de tempo"
+L["Show alertSystem on login only when time data is available Desc"] = "Mostra ou oculta {alertSystem} de eventos ao entrar no jogo, só se o tempo restante do evento for conhecido."
+L["On Reload"] = "Ao recarregar"
+L["Show alertSystem on reload Desc"] = "Mostra ou oculta {alertSystem} de eventos ao recarregar o jogo."
+L["Show alertSystem on reload in instances Desc"] = "Mostra ou oculta {alertSystem} de eventos ao recarregar o jogo enquanto você está numa instância."
+L["Show alertSystem on reload only when time data is available Desc"] = "Mostra ou oculta {alertSystem} de eventos ao recarregar o jogo, só se o tempo restante do evento for conhecido."
+L["On Event Start"] = "No início de um evento"
+L["Show alertSystem on event start Desc"] = "Mostra ou oculta {alertSystem} de um evento quando ele começa."
+L["Show alertSystem on event start in instances Desc"] = "Mostra ou oculta {alertSystem} de um evento quando ele começa enquanto você está numa instância."
+L["Show alertSystem on event start only when time data is available Desc"] = "Mostra ou oculta {alertSystem} de um evento quando ele começa, só se o tempo restante do evento for conhecido."
+L["Grow direction"] = "Direção de crescimento"
+L["Grow direction Desc"] = "A direção em que os novos lembretes são adicionados."
+L["Spacing"] = "Espaçamento"
+L["Spacing Desc"] = "A distância somada ou subtraída da distância padrão entre as abas."
+L["XYZ offset"] = "Deslocamento {xyz}"
+L["X offset Desc"] = "O deslocamento horizontal a partir da posição inicial."
+L["Y offset Desc"] = "O deslocamento vertical a partir da posição inicial."
+L["Show placeholders"] = "Mostrar exemplos"
+L["Show placeholders Desc"] = "Mostra alguns eventos de exemplo para ver o que as configurações acima fazem. Eles fecham ao passar o mouse por cima ou com um clique direito."
+L["Fade delay"] = "Atraso para sumir"
+L["Fade delay Desc"] = "O tempo em segundos até o alerta sumir quando é ignorado. Um clique direito o fecha na hora."
+L["Date and Time format"] = "Formato de data e hora"
+L["Start Time"] = "Hora de início"
+L["Presets"] = "Predefinições"
+L["Custom"] = "Personalizado"
+L["Date and Time formatting guide"] = "Guia de formato de data e hora"
+L["Date and Time formatting guide Desc"] = [=[{a} - Nome abreviado do dia da semana (ex. qua)
+{A} - Nome completo do dia da semana (ex. quarta-feira)
+{b} - Nome abreviado do mês (ex. set)
+{B} - Nome completo do mês (ex. setembro)
+{c} - Data e hora conforme a configuração regional (ex. 23/04/07 10:20:41)
+{C} - O século (ano/100) (ex. 20)
+{d} - Dia do mês como número decimal (01 - 31)
+{D} - Equivale a %m/%d/%y (ex. 04/23/07)
+{e} - Dia do mês como número decimal (1 - 31)
+{H} - Hora no formato de 24 horas (00 - 23)
+{I} - Hora no formato de 12 horas (01 - 12)
+{j} - Dia do ano como número decimal (001 - 366)
+{k} - Hora no formato de 24 horas (0 - 23)
+{l} - Hora no formato de 12 horas (1 - 12)
+{m} - Mês como número decimal (01 - 12)
+{M} - Minuto como número decimal (00 - 59)
+{p} - Indicador AM/PM da configuração regional para o relógio de 12 horas (ex. AM/PM)
+{P} - Indicador AM/PM da configuração regional para o relógio de 12 horas (ex. am/pm)
+{R} - Equivale a %H:%M (ex. 10:20)
+{s} - Número de segundos desde a época, ou seja, desde 1970-01-01 00:00:00 UTC (1177323641)
+{S} - Segundo como número decimal (00 - 59)
+{u} - Dia da semana como número decimal (1 - 7; segunda-feira é 1)
+{U} - Semana do ano como número decimal, com o domingo como primeiro dia da semana 1 (00 - 53)
+{w} - Dia da semana como número decimal (0 - 6; domingo é 0)
+{W} - Semana do ano como número decimal, com a segunda-feira como primeiro dia da semana 1 (00 - 53)
+{x} - Data conforme a configuração regional (data padrão)
+{X} - Hora conforme a configuração regional (hora padrão)
+{y} - Ano sem o século, como número decimal (00 - 99) (ex. 07)
+{Y} - Ano com o século, como número decimal (ex. 2007)
+{z} - Fuso horário como diferença em relação a GMT (ex. +0200)
+{Z} - Nome ou sigla do fuso horário; nada se for desconhecido]=]
 L["Enable"] = "Ativar"
 L["Pop Out"] = "Janela destacada"
 L["Close Popout"] = "Fechar janela destacada"
