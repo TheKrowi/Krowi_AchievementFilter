@@ -1,5 +1,5 @@
 # Intent: Event reminders as a feature that switches off (106, step 4)
-Author: Krowi (maintainer). Source: idea; 106's feature split (docs/work/2026-11-08-feature-split-poc), the feature after Pop Out, chosen 2026-11-12 ("start on Event reminders next, learn from what we did with the other 3 features to cover everything"). Status: accepted
+Author: Krowi (maintainer). Source: idea; 106's feature split (docs/work/2026-11-08-feature-split-poc), the feature after Pop Out, chosen 2026-11-12 ("start on Event reminders next, learn from what we did with the other 3 features to cover everything"). Status: done
 
 ## Problem
 Event reminders (pop-ups and chat lines for active world, widget and calendar events and for upcoming holidays, the side buttons beside the achievement window or the world map, and the list of events to be reminded of) is the widest trail of the 15 features, about 3700 lines over some 60 files:

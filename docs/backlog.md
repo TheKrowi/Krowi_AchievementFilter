@@ -183,6 +183,14 @@ Older than the move, which changed no behaviour; found by its taint review and c
 - **A switched-off feature's All/None buttons and grid row labels stay bright** (look gate, 2026-11-12, review-options.md row 29). Krowi_Options greys an option row while its option is disabled, but not a family row (`Sub`, `RowMixins.lua` `SubRowMixin`) whose members are all disabled, nor a grid row's label. All/None skip disabled members, so they change nothing. The fix belongs in Krowi_Options: grey a `Sub` row whose members are all disabled, and a grid row's label with its boxes.
 - **A per-event toggle redraws the side buttons from the events cached at the last refresh** (`Features/EventReminders/EventOptions.lua`). Turning an event on shows its button only after the next refresh, up to Refresh interval seconds later.
 
+## The matrix run's length (2026-11-12, docs/work/2026-11-12-event-reminders)
+
+A harness work item of its own (Krowi, 2026-11-12: "option 1 now", the rest after). A matrix step took about 4 min, six per client, a step more with each feature; with `popups` no longer waiting 2 min in the off steps it is about 13 min per client.
+- **Memory's idle minute only in the all-on and all-off steps** (`Tests/Memory.lua`): the single-feature steps add nothing to it, about 4 min per client.
+- **No screenshots in the all-off and single-feature steps** (`Tests/Options.lua`, `PopUps.lua`, `Tracking.lua`, `afterShot`): those steps ask whether anything breaks with a feature off, which the checks answer; the runner knows the step (`matrixStep`, `Tests/Tests.lua`). About 3 to 4 min per client.
+- **Single-feature steps run only the suites the feature can affect,** instead of all 18.
+- **`Run-GameTests.ps1 -Matrix` reads the saved plan once after each `/reload`** (`Read-MatrixState`) and once found none though the game had saved it, so it stopped after step 1 with the client in the middle of a step. Re-read a few times before deciding the plan is done.
+
 ## From the Overview cards (2026-11-02, docs/work/2026-11-02-overview-cards)
 
 Code review findings, deferred because Krowi found the cards right in game (2026-11-03) and no hitch showed.

@@ -1,5 +1,5 @@
 # Plan: Event reminders as a feature that switches off (106, step 4)
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 ## Context
 106 splits KAF into a core plus switchable features; Reward preview (#405), the Right-click menu (#412) and Pop Out (#416) are done. Event reminders is next (Krowi, 2026-11-12), in one PR (Krowi: "One PR, as Pop Out did"). Design approved 2026-11-12 (spec.md, Decision): `addon.EventReminders` for the moved data modules; registry phase `AfterAchievementUI`; one options build step; several sections and help pages per feature; `Slots.DataManagerTabs`; skin parts for ElvUI, GW2_UI and EllesmereUI; the tooltip's Date lines on the tooltip's own format; the Reminder events section greyed with a line and a link button to the switch; the reload prompt alone after a profile action. Branch `feature/2026-11-12-event-reminders`, worktree `feature-2026-11-12-event-reminders`.
@@ -43,5 +43,6 @@ Lessons carried from the three earlier splits: look first on Retail, full suites
 - **No `DataManagerLog.lua`:** the log tab's entry is `EventObserver.DataManagerTab` (`Data/EventObserver.lua`), next to the log it shows; `Start` adds it to the slot.
 - **ElvUI's and GW2_UI's parts have `Install` only:** no part needed `Apply`, so the plugins call no `Apply`.
 - **`Features.AchievementUILoaded()`** runs right after `addon.Gui:LoadWithBlizzard_AchievementUI()`, where the side buttons always attached, instead of at the end of that step: an error in a later step of it can no longer keep them off for the session (the independent evaluation, 2026-11-12).
-- **The suites skip while the feature did not start:** `events`, `schedules` (Retail) and `memory`'s scheduler and watcher jobs return SKIP, as `popups` already did, so the matrix's off steps run none of the feature's code (the independent evaluation).
+- **The suites skip while the feature did not start:** `events`, `schedules` (Retail) and `memory`'s scheduler and watcher jobs return SKIP, as `popups` already did, so the matrix's off steps run none of the feature's code (the independent evaluation). `popups`' own live part waited instead: its Ready check never passed, so the runner gave up after its 120 s login wait and the four off steps ran 17 of 18 suites. It now runs and skips its live steps too (Retail matrix, 2026-11-12).
+- **Session B ran the matrix alone,** not the six suites after it: the matrix's all-on step runs them (Krowi, 2026-11-12, gates.md).
 - **The look gate's texts** (review-options.md, rows 1 to 28) and the off line for a feature's later help page (`Feature Off Help Other Section`, `Features.lua` `WireHelp`).
