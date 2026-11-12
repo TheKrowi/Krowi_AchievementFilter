@@ -452,6 +452,12 @@ addon.Tests.Suites.memory = function(done)
     local observations = {}
     ObserveSession(observations)
     local results = memory.Run(gameEnv, observations)
+    local step = addon.Tests.MatrixStep()
+    if step and step.SkipIdleMinute then -- a single-feature step of /kaftest matrix (Tests.lua, MatrixSteps)
+        tinsert(observations, "idle minute: not measured in a single-feature step of the matrix (the all-on and all-off steps measure it)")
+        done(results, observations)
+        return
+    end
     measuring = true -- only the idle minute can overlap another run; what comes before it runs in one go
     ObserveIdleMinute(observations, function()
         measuring = nil
