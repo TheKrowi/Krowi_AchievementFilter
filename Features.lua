@@ -268,7 +268,7 @@ end
 -- stays off; on each of its pages
 local function WireHelp(record)
     local window = addon.Options.Window
-    for _, def in ipairs(record.Help or {}) do
+    for index, def in ipairs(record.Help or {}) do
         local help = window.Help[def.Id]
         if started[record.Name] then
             if def.Scene then
@@ -283,7 +283,9 @@ local function WireHelp(record)
                 end
             end
         else
-            tinsert(help.Blocks, 1, window.HelpBlocks.Text(addon.L["Feature Off Help"]:K_ReplaceVars({feature = record.Title})))
+            -- The first page is the section with the switch on top; a later one points at that section by its name
+            local off = index == 1 and addon.L["Feature Off Help"] or addon.L["Feature Off Help Other Section"]
+            tinsert(help.Blocks, 1, window.HelpBlocks.Text(off:K_ReplaceVars({feature = record.Title})))
         end
     end
 end

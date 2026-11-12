@@ -43,4 +43,14 @@ The review of every setting and help text of Event reminders' two sections, as a
 | 25 | Event reminders, Time | "One or two lines with the end time or the time left; Compact shows one." | keep, with the new name: "...Compact reminders show one." |
 | 26 | Reminder events | title "Which events", intro fine | keep |
 
+## Found by the look (Retail, 2026-11-12)
+
+| # | Where | Today | Proposal |
+|---|---|---|---|
+| 27 | Reminder events help while off | "Event reminders is disabled. Enable it at the top of this section and reload." (the switch is in the other section) | a feature's later help pages say "...at the top of the {feature} section..." (`Feature Off Help Other Section`, all 11 languages); the first page keeps its line |
+| 28 | Reminder events, the Go to row | label "Enable" beside a button that enables nothing | **Turn On or Off** |
+| 29 | Both sections while off | All/None and the grid rows' labels stay bright; All/None skip greyed rows, so they change nothing | leave; Krowi_Options item (`docs/backlog.md`) |
+
 ## Decision
+
+2026-11-12, Krowi: "All proposals (Recommended)": rows 1 to 28 built in all 11 languages, row 29 a backlog item. Review page: https://claude.ai/artifact/HFbg9tWn5uj4bvxCBx9cwP.

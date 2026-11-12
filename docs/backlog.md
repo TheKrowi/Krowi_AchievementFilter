@@ -179,6 +179,7 @@ Older than the fix, found by its taint review and code review.
 
 Older than the move, which changed no behaviour; found by its taint review and code review.
 - **The pop-ups' follow mode registers with Blizzard's `AlertFrame`** (`Features/EventReminders/AlertSystem.lua:224`, `AlertFrame:AddQueuedAlertFrameSubSystem`), which the workspace rules forbid since #188: closing the What's New splash then updates the objective tracker tainted. Rebuilding it changes how the pop-ups sit under ElvUI, GW2_UI, EllesmereUI and Dominos Roll, so it needs those addons in game (spec, option 5).
+- **A switched-off feature's All/None buttons and grid row labels stay bright** (look gate, 2026-11-12, review-options.md row 29). Krowi_Options greys an option row while its option is disabled, but not a family row (`Sub`, `RowMixins.lua` `SubRowMixin`) whose members are all disabled, nor a grid row's label. All/None skip disabled members, so they change nothing. The fix belongs in Krowi_Options: grey a `Sub` row whose members are all disabled, and a grid row's label with its boxes.
 - **A per-event toggle redraws the side buttons from the events cached at the last refresh** (`Features/EventReminders/EventOptions.lua`). Turning an event on shows its button only after the next refresh, up to Refresh interval seconds later.
 
 ## From the Overview cards (2026-11-02, docs/work/2026-11-02-overview-cards)

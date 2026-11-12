@@ -19,15 +19,24 @@ local function ShowPlaceholders(ready, worldFirst)
     kit.Ready(ready, {Shown = shown})
 end
 
+-- The intro names the window the side buttons sit beside, read each time the page draws (Side Buttons Beside: 1 the
+-- achievement window, 2 the world map)
+local function Intro()
+    if addon.Options.db.profile.EventReminders.SideButtonsAnchor == 2 then
+        return L["Help Events Intro World Map"]
+    end
+    return L["Help Events Intro Achievement Window"]
+end
+
 addon.Features.AddHelp("EventReminders", {
     Id = "events",
     Title = L["Event Reminders"],
     Blocks = blocks.Blocks(
         blocks.Picture("Reminders"),
-        blocks.Text(L["Help Events Intro"]),
+        blocks.Text(Intro),
         blocks.Term(L["Help Shared Click"], L["Help Events Click"]),
         blocks.Term(L["Help Shared Right Click"], L["Help Events Right Click"]),
-        blocks.Term(L["Help Events Time Term"], L["Help Events Time"])
+        blocks.Term(L["Help Events Time Term"], L["Help Events Time {compactReminders}"]:K_ReplaceVars({compactReminders = L["Compact Reminders"]}))
     ),
     Scene = function(ready)
         return ShowPlaceholders(ready, false)

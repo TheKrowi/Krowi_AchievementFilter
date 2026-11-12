@@ -17,6 +17,8 @@ All notable changes to this project will be documented in this file.
 - The Pop Out modifier also shows in the Pop Out settings, as Click Modifier, and each place has a button to the other; it is greyed out while pop outs are turned off
 - The Pop Out settings have clearer names, and shorter descriptions that say plainly what they do
 - The Reminder events settings say that the Event reminders Enable setting controls them, with a button to it
+- The Event reminders settings have clearer names, and shorter descriptions that say plainly what they do; Side Buttons Beside moved up to the other Reminders settings
+- The Event reminders help names the window the side buttons sit beside
 - After switching settings profile, event reminders change after the reload the prompt asks for
 - Krowi_Options library updated to 2.1
 
@@ -27,6 +29,7 @@ All notable changes to this project will be documented in this file.
 - The start and end dates in the Not obtainable tooltip now use the tooltip's own date format
 - Opening the menu of an event reminder side button whose event has no name no longer reports an error
 - The Pop Out help now names the key you set as the Pop Out modifier instead of always Ctrl
+- The Reminder events help, while Event reminders is turned off, now points at the Event reminders section for the Enable setting
 
 ## 105.0 - 2026-11-08
 ### Added

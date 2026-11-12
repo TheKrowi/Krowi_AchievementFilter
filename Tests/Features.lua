@@ -249,10 +249,11 @@ function observe.help(feature)
             title = registered.Title
         end
     end
-    local offLine = title and addon.L["Feature Off Help"]:K_ReplaceVars({feature = title})
     local ids = type(feature.Help) == "table" and feature.Help or {feature.Help}
     local seen
-    for _, id in ipairs(ids) do
+    for index, id in ipairs(ids) do
+        -- The first page is the section with the switch; a later one names that section (Features.lua WireHelp)
+        local offLine = title and addon.L[index == 1 and "Feature Off Help" or "Feature Off Help Other Section"]:K_ReplaceVars({feature = title})
         local page = window and window.Help and window.Help[id]
         local got
         if not page then

@@ -242,11 +242,12 @@ options.Scenarios = {
         -- row and a button to its section put into General's Modifiers group, the empty spacer row gone (410 / 306 before,
         -- bfbb66bf / 86480864; docs/work/2026-11-09-pop-out). Event reminders' rows moved under Features.args.EventReminders, its
         -- Enable row became the registry's switch and a button to it joined, beside it (414 / 310 before, 69ad48db / 87a98b80;
-        -- docs/work/2026-11-12-event-reminders)
-        Recorded = "options=415 hash=abdb0fd0",
-        Target = "options=415 hash=abdb0fd0",
-        RecordedClassic = "options=311 hash=9fcc188e",
-        TargetClassic = "options=311 hash=9fcc188e"},
+        -- docs/work/2026-11-12-event-reminders). Its look gate renamed its rows and moved Side Buttons Beside under
+        -- Reminders (abdb0fd0 / 9fcc188e before)
+        Recorded = "options=415 hash=34c0493f",
+        Target = "options=415 hash=34c0493f",
+        RecordedClassic = "options=311 hash=28b151fd",
+        TargetClassic = "options=311 hash=28b151fd"},
     {Name = "defaults-restore-acedb",
         Observe = function()
             local model = Model()

@@ -196,7 +196,7 @@ end
 -- the real achievement window, which the scenarios open and close the addon's own way (Tests/Escape.lua), never the
 -- world map; headlessly on the runner's models of both
 
-local sideButtonsAnchor = "Features.EventReminders.Settings.General.Other.SideButtonsAnchor"
+local sideButtonsAnchor = "Features.EventReminders.Settings.General.Style.SideButtonsAnchor"
 local achievementWindow, worldMap = 1, 2 -- the option's values (Features/EventReminders/Options.lua)
 
 local function SideButtonSystem()
