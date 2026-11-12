@@ -1,6 +1,6 @@
--- Dragonflight's events on KAF's fixed schedules (Data/EventSchedules.lua; docs/work/2026-10-21-fixed-event-schedules).
+-- Dragonflight's events on KAF's fixed schedules (Features/EventReminders/Data/EventSchedules.lua; docs/work/2026-10-21-fixed-event-schedules).
 -- Anchors by GetCurrentRegion(): 1 US, 2 Korea and Taiwan, 3 EU, 5 China. Name is for the debug-mode findings only.
--- The soup (Community Feast) stays in Data/CustomWidgetEventTimers.lua for now.
+-- The soup (Community Feast) stays in Features/EventReminders/Data/CustomWidgetEventTimers.lua for now.
 
 -- Siege on Dragonbane Keep: every two hours, an hour of gathering then the siege. EU starts on even UTC hours, the other
 -- regions on odd ones (WindTools, GW2_UI, BtWTodo, MasterCollector); EU checked against the POI on 2026-10-21.

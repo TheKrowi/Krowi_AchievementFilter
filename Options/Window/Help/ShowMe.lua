@@ -263,26 +263,6 @@ function scenes.calendar(ready)
     Ready(ready, {Calendar = KrowiAF_AchievementCalendarFrame})
 end
 
--- Placeholder reminders, as the Location button shows them (Gui/EventReminder/AlertSystem.lua ShowPlaceholders), for the
--- fade delay. worldFirst: the event list's Show me starts with the world events, the reminders' with the calendar ones.
-local function ShowPlaceholders(ready, worldFirst)
-    local system = addon.Gui.EventReminderAlertSystem
-    if not system.SubSystem then -- reminders were off at login, so there is no alert system to show them in
-        print(addon.Metadata.Title, "-", L["Help Events Off"])
-        return false
-    end
-    local shown = system:ShowPlaceholders(worldFirst, addon.Options.db.profile.EventReminders.PopUps.FadeDelay)
-    Ready(ready, {Shown = shown})
-end
-
-function scenes.events(ready)
-    return ShowPlaceholders(ready, false)
-end
-
-function scenes.eventlist(ready)
-    return ShowPlaceholders(ready, true)
-end
-
 for id, scene in next, scenes do
     if help[id] and (id ~= "guides" or addon.Util.IsMainline) then
         help[id].CanShowMe = CanShow

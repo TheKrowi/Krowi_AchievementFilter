@@ -5,8 +5,8 @@ local schedules = addon.Tests.Schedules
 -- The older expansions' events on the fixed schedules KAF carries (docs/work/2026-10-21-fixed-event-schedules), and
 -- what the addon learns from the POIs it sees. The scenarios read the reminders' own details at fixed times and regions;
 -- the clock, the region and the weekly reset reach the schedules through a model in place of the game
--- (Data/EventSchedules.lua UseSourceForTest), so they run the same in game and headlessly. The learning stories tell
--- Data/EventObserver.lua a sequence of POIs through a model of the POI API, with a model of its saved data.
+-- (Features/EventReminders/Data/EventSchedules.lua UseSourceForTest), so they run the same in game and headlessly. The learning stories tell
+-- Features/EventReminders/Data/EventObserver.lua a sequence of POIs through a model of the POI API, with a model of its saved data.
 -- Kind:
 --   Window: GetWorldEventDetails or GetWidgetEventDetails of Event at At in Region: "ends in <seconds>", "no time" or
 --     "not shown"
@@ -191,7 +191,7 @@ local function NewClock(region, now, learned, locked)
             return week - passed
         end,
         Learned = function(key, forRegion)
-            return learned and addon.Data.EventObserver.GetLearned(key, forRegion) or nil
+            return learned and addon.EventReminders.EventObserver.GetLearned(key, forRegion) or nil
         end,
     }
     return clock
@@ -199,9 +199,9 @@ end
 
 local learning -- a learning story is being told: the schedules read what the story's watcher learned
 
--- Runs read at the scenario's time and region; before Data/EventSchedules.lua exists it runs on today's code
+-- Runs read at the scenario's time and region; before Features/EventReminders/Data/EventSchedules.lua exists it runs on today's code
 local function WithClock(region, at, read, locked)
-    local engine = addon.Data.EventSchedules
+    local engine = addon.EventReminders.EventSchedules
     if not engine then
         return read()
     end
@@ -230,9 +230,9 @@ local function ReadEvent(id, widget, at)
         return nil, "no event " .. id
     end
     if widget then
-        return addon.EventData.GetWidgetEventDetails(event, at)
+        return addon.EventReminders.EventData.GetWidgetEventDetails(event, at)
     end
-    return addon.EventData.GetWorldEventDetails(event, at)
+    return addon.EventReminders.EventData.GetWorldEventDetails(event, at)
 end
 
 local function DescribeWindow(scenario)
@@ -319,7 +319,7 @@ local function DescribeMergeCase(scenario)
     return mergeCases[scenario.Case](manager.MergeLegionAssaultToggles)
 end
 
--- [[ The learning stories: Data/EventObserver.lua told a sequence of POIs through a model of the POI API ]] --
+-- [[ The learning stories: Features/EventReminders/Data/EventObserver.lua told a sequence of POIs through a model of the POI API ]] --
 
 local function NewPoiModel(region, now)
     local model = {Region = region, Now = now, Left = {}, Reports = {}, Debug = true}
@@ -468,7 +468,7 @@ function stories.LogText(model, observer)
     end
     model.Store[regions.EU] = {
         FactionAssaults = {Seen = {{Start = factionT0, Id = 5964}, {Start = factionT0 + 68400, Id = 5973}}, Anchor = factionT0 + 68400,
-            RotationAnchor = factionT0, Definition = addon.Data.EventSchedules.GetDefinition(KrowiAF.EventSchedules.FactionAssaults)},
+            RotationAnchor = factionT0, Definition = addon.EventReminders.EventSchedules.GetDefinition(KrowiAF.EventSchedules.FactionAssaults)},
         GrandHunts = {Seen = {{Start = hour, Id = 7343}}},
     }
     local lines = {}
@@ -507,7 +507,7 @@ function stories.NothingChanged(model, observer)
 end
 
 local function TellStory(scenario)
-    local observer = addon.Data.EventObserver
+    local observer = addon.EventReminders.EventObserver
     if not observer or not observer.UseSourceForTest then
         return "no watcher"
     end
@@ -527,7 +527,7 @@ end
 -- the environment cannot set POIs and widgets (the game)
 local function RunScenario(env, scenario)
     local got, blocked
-    local before = not addon.Data.EventSchedules -- today's code reads the live POIs of these families
+    local before = not addon.EventReminders.EventSchedules -- today's code reads the live POIs of these families
     if scenario.Kind == "Window" or scenario.Kind == "Family" then
         if before and not scenario.Widget then
             for _, id in ipairs(scenario.Ids or {scenario.Event}) do
@@ -599,9 +599,9 @@ local function RestoreToggles(saved)
         local event = entry.Widget and WidgetEvent(id) or WorldEvent(id)
         if event then
             if entry.Widget then
-                addon.EventData.GetWidgetEventDetails(event)
+                addon.EventReminders.EventData.GetWidgetEventDetails(event)
             else
-                addon.EventData.GetWorldEventDetails(event)
+                addon.EventReminders.EventData.GetWorldEventDetails(event)
             end
         end
     end

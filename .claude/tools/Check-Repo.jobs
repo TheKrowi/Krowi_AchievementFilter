@@ -8,12 +8,12 @@
 
 # --- Measured: they run all session
 TaintDiagnostics.lua OnUpdate memory/taint-sweep                                       # twice a second while taint diagnostics are on, the default
-Gui/EventReminder/AlertSystem.lua NewTicker memory/event-refresh                       # every Refresh interval while event reminders are on, the default; the scenarios measure the reads each tick makes (calendar, widget and world events), the rest of a tick walks tables and adds nothing
-Data/EventScheduler.lua RegisterEvent:EVENT_SCHEDULER_UPDATE memory/scheduler-update-ignored # Blizzard's event scheduler; read only when the addon asked, a few times a session
-Data/EventObserver.lua NewTicker memory/observer-run                                   # every 300 s while event reminders are on (Retail): a number per watched POI, a table only when one appears, and in debug mode the storms' and Theater Troupe's POI info
+Features/EventReminders/AlertSystem.lua NewTicker memory/event-refresh                       # every Refresh interval while event reminders are on, the default; the scenarios measure the reads each tick makes (calendar, widget and world events), the rest of a tick walks tables and adds nothing
+Features/EventReminders/Data/EventScheduler.lua RegisterEvent:EVENT_SCHEDULER_UPDATE memory/scheduler-update-ignored # Blizzard's event scheduler; read only when the addon asked, a few times a session
+Features/EventReminders/Data/EventObserver.lua NewTicker memory/observer-run                                   # every 300 s while event reminders are on (Retail): a number per watched POI, a table only when one appears, and in debug mode the storms' and Theater Troupe's POI info
 
 # --- Not background jobs: they run once, rarely, or only while something the player opened is shown
-Data/EventScheduler.lua RegisterEvent:PLAYER_REGEN_ENABLED -                           # only while a scheduler read waits for combat to end; unregistered on its first run
+Features/EventReminders/Data/EventScheduler.lua RegisterEvent:PLAYER_REGEN_ENABLED -                           # only while a scheduler read waits for combat to end; unregistered on its first run
 Data/AchievementCache.lua OnUpdate -                                                   # the login data load; removed when it finishes
 Gui/Guide/Panel.lua OnUpdate -                                                         # only while the guide panel is shown
 Gui/Guide/Panel.lua RegisterEvent:PLAYER_REGEN_DISABLED -                              # entering combat, once the guide panel was used
@@ -21,12 +21,14 @@ Gui/Guide/Panel.lua RegisterEvent:PLAYER_REGEN_ENABLED -                        
 Options/Window/Help/ShowMe.lua RegisterEvent:PLAYER_REGEN_DISABLED -                   # only while the map's Show me button lies over the options window's help pane
 Options/Window/Help/ShowMe.lua RegisterEvent:PLAYER_REGEN_ENABLED -                    # only after combat refused to hide the map's Show me button; unregistered on its first run
 Features/PopOut/SnapFrameMixin.lua OnUpdate -                                        # only while a popout is dragged
-Gui/EventReminder/AlertFrame/AlertFrame.xml OnUpdate -                                 # only while an event pop-up or side button is shown
+Features/EventReminders/AlertFrame/AlertFrame.xml OnUpdate -                                 # only while an event pop-up or side button is shown
 Gui/AchievementCalendar/Frame/Frame.xml OnUpdate -                                     # only while the achievement calendar is shown
 Krowi_AchievementFilter.lua RegisterEvent:ADDON_LOADED -                               # once per addon that loads
 Krowi_AchievementFilter.lua RegisterEvent:PLAYER_LOGIN -                               # once
 Krowi_AchievementFilter.lua RegisterEvent:PLAYER_ENTERING_WORLD -                      # loading screens
 Krowi_AchievementFilter.lua RegisterEvent:ACHIEVEMENT_EARNED -                         # an achievement earned
+Features/EventReminders/EventReminders.lua RegisterEvent:PLAYER_ENTERING_WORLD -       # loading screens, while event reminders are on; the reminders' timers only after a login or reload
+Features/EventReminders/EventReminders.lua RegisterEvent:ADDON_LOADED -                # once per addon that loads, until Blizzard_Calendar has; only while event reminders are on
 Gui/*Mixin.lua RegisterEvent:ACHIEVEMENT_EARNED -                                      # an achievement earned; the window frames only refresh while shown
 Gui/WindowFrames/AchievementButton/AchievementButtonMixin.lua RegisterEvent:TRACKED_ACHIEVEMENT_LIST_CHANGED - # tracking or untracking an achievement
 Gui/WindowFrames/AchievementButton/AchievementButtonMixin.lua RegisterEvent:CONTENT_TRACKING_UPDATE - # Retail: tracking or untracking an achievement, appearance, mount or decor, only while a row or popout is shown; one about anything else returns without allocating

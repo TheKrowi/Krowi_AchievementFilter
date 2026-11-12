@@ -1,0 +1,18 @@
+<Ui>
+    <!-- The registration first: it makes addon.EventReminders, and the other files add their parts to it (Features.lua) -->
+    <Script file="EventReminders.lua" />
+    <Script file="Data\CustomWidgetEventTimers.lua" />
+    <Script file="Data\CustomWorldEventTimers.lua" />
+    <Script file="Data\EventScheduler.lua" />
+    <Script file="Data\EventSchedules.lua" />
+    <Script file="Data\EventObserver.lua" />
+    <Script file="Data\EventData.lua" />
+    <Include file="AlertFrame\AlertFrame.xml" />
+    <Script file="AlertSystem.lua" />
+    <Include file="SideButton\SideButton.xml" />
+    <Script file="SideButtonSystem.lua" />
+    <Include file="Menu\Files.xml" />
+    <Script file="EventOptions.lua" />
+    <Script file="Options.lua" />
+    <Script file="Help.lua" />
+</Ui>

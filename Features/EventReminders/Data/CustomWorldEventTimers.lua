@@ -1,6 +1,6 @@
 local _, addon = ...
-addon.Data.CustomWorldEventTimers = {}
-local customWorldEventTimers = addon.Data.CustomWorldEventTimers
+addon.EventReminders.CustomWorldEventTimers = {}
+local customWorldEventTimers = addon.EventReminders.CustomWorldEventTimers
 local timers = {}
 
 local minutesAbbr = MINUTES_ABBR:gsub("%%d", "(%%d+)")

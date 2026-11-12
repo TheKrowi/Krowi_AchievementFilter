@@ -1,4 +1,4 @@
--- Legion's events on KAF's fixed schedules (Data/EventSchedules.lua; docs/work/2026-10-21-fixed-event-schedules).
+-- Legion's events on KAF's fixed schedules (Features/EventReminders/Data/EventSchedules.lua; docs/work/2026-10-21-fixed-event-schedules).
 -- Anchors by GetCurrentRegion(): 1 US, 2 Korea and Taiwan, 3 EU, 5 China. Name is for the debug-mode findings only.
 
 -- Legion Assaults: 6 hours on every 14.5 hours since Legion Remix moved the cycle in November 2025 (Funkydude's

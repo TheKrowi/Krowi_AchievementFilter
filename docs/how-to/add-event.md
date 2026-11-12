@@ -9,7 +9,7 @@ Use this guide when WoW adds a new seasonal or world event that has associated a
 ## Overview of How Events Work
 
 - **Event definitions** (the event object with an ID, name, and type) live in the expansion-specific `EventData.lua` under `DataAddons/Retail/<expansion>/`.
-- **Event timing** (when the event starts and ends each year) lives in `Data/CustomWorldEventTimers.lua` or `Data/EventData.lua`.
+- **Event timing** (when the event starts and ends each year) lives in `Features/EventReminders/Data/CustomWorldEventTimers.lua` or `Data/EventData.lua`.
 - **Achievements** for the event are added to `AchievementData.lua` and `CategoryData.lua` like any other achievements, but with `{"Event", <eventId>}` as a temporary-availability marker.
 - **Event categories** in the Events tab are registered in `DataAddons/Retail/CategoryData_Events.lua`.
 
@@ -47,7 +47,7 @@ KrowiAF.EventData.Midnight = {
 
 ### World events from Blizzard's event scheduler
 
-Current content's timed events are listed by Blizzard's event scheduler (`C_EventScheduler`, the world map's Events tab), with their exact start and end times. Such an event needs no timer and no POI check: give its row the area POI as its id, `type.World`, no map (`false`) and `KrowiAF.Enum.EventSource.Scheduler` as the source. `Data/EventScheduler.lua` keeps its times, and the reminders and the option toggle show the game's own name for the POI. The row's name, the fallback when the game does not know the POI yet, and its options group are still `addon.L` strings: use one every locale file already has, or add it to every locale file (step 6). The Curse Surges in `DataAddons/Retail/12_Midnight/EventData.lua` are the example; `/kaftest scheduler` lists every event the scheduler gives, with its area POI, name, zone and times (`Tests/README.md`).
+Current content's timed events are listed by Blizzard's event scheduler (`C_EventScheduler`, the world map's Events tab), with their exact start and end times. Such an event needs no timer and no POI check: give its row the area POI as its id, `type.World`, no map (`false`) and `KrowiAF.Enum.EventSource.Scheduler` as the source. `Features/EventReminders/Data/EventScheduler.lua` keeps its times, and the reminders and the option toggle show the game's own name for the POI. The row's name, the fallback when the game does not know the POI yet, and its options group are still `addon.L` strings: use one every locale file already has, or add it to every locale file (step 6). The Curse Surges in `DataAddons/Retail/12_Midnight/EventData.lua` are the example; `/kaftest scheduler` lists every event the scheduler gives, with its area POI, name, zone and times (`Tests/README.md`).
 
 ### Older expansions' events on a fixed schedule
 
@@ -82,9 +82,9 @@ If the `EventData.lua` for this expansion exists but is commented out in `Files.
 
 ---
 
-## 3. Add Event Timing to `Data/CustomWorldEventTimers.lua`
+## 3. Add Event Timing to `Features/EventReminders/Data/CustomWorldEventTimers.lua`
 
-Open `Data/CustomWorldEventTimers.lua` and add the event's annual schedule. Follow the existing entries' pattern exactly (start date, end date, recurrence).
+Open `Features/EventReminders/Data/CustomWorldEventTimers.lua` and add the event's annual schedule. Follow the existing entries' pattern exactly (start date, end date, recurrence).
 
 ---
 

@@ -24,7 +24,7 @@ end
 local function CountKafPages()
     local pages = LibStub("AceConfigDialog-3.0").BlizOptions or {}
     local n = 0
-    for _, app in ipairs({ addon.Metadata.Title, "KrowiAF_Layout", "KrowiAF_EventReminders", "KrowiAF_Profiles", "KrowiAF_Plugins", "KrowiAF_Credits" }) do
+    for _, app in ipairs({ addon.Metadata.Title, "KrowiAF_Layout", "KrowiAF_Profiles", "KrowiAF_Plugins", "KrowiAF_Credits" }) do
         if pages[app] then n = n + 1 end
     end
     return n
@@ -196,13 +196,15 @@ options.Scenarios = {
         Observe = function()
             local registry = LibStub("AceConfigRegistry-3.0")
             local n = 0
-            for _, app in ipairs({ addon.Metadata.Title, "KrowiAF_Layout", "KrowiAF_EventReminders", "KrowiAF_Profiles", "KrowiAF_Plugins", "KrowiAF_Credits", "KrowiAF_Features" }) do
+            for _, app in ipairs({ addon.Metadata.Title, "KrowiAF_Layout", "KrowiAF_Profiles", "KrowiAF_Plugins", "KrowiAF_Credits", "KrowiAF_Features" }) do
                 if registry:GetOptionsTable(app, "cmd", "KROWIAF-0.0") then n = n + 1 end
             end
             return ("apps=%d"):format(n)
         end,
-        Recorded = "apps=7", -- apps=6 before the Features page (docs/work/2026-11-08-feature-split-poc)
-        Target = "apps=7"},
+        -- apps=6 before the Features page (docs/work/2026-11-08-feature-split-poc), 7 until Event reminders' own page went into
+        -- it (docs/work/2026-11-12-event-reminders)
+        Recorded = "apps=6",
+        Target = "apps=6"},
     {Name = "every-option-mapped-once",
         Observe = function()
             local model = Model()
@@ -238,11 +240,13 @@ options.Scenarios = {
         -- before, 8e6ec075 / 50b2fed1; docs/work/2026-11-09-right-click-menu)
         -- Pop Out's switch added, its rows moved under Features.args.PopOut with a button to Keys and clicks, its modifier
         -- row and a button to its section put into General's Modifiers group, the empty spacer row gone (410 / 306 before,
-        -- bfbb66bf / 86480864; docs/work/2026-11-09-pop-out)
-        Recorded = "options=414 hash=69ad48db",
-        Target = "options=414 hash=69ad48db",
-        RecordedClassic = "options=310 hash=87a98b80",
-        TargetClassic = "options=310 hash=87a98b80"},
+        -- bfbb66bf / 86480864; docs/work/2026-11-09-pop-out). Event reminders' rows moved under Features.args.EventReminders, its
+        -- Enable row became the registry's switch and a button to it joined, beside it (414 / 310 before, 69ad48db / 87a98b80;
+        -- docs/work/2026-11-12-event-reminders)
+        Recorded = "options=415 hash=abdb0fd0",
+        Target = "options=415 hash=abdb0fd0",
+        RecordedClassic = "options=311 hash=9fcc188e",
+        TargetClassic = "options=311 hash=9fcc188e"},
     {Name = "defaults-restore-acedb",
         Observe = function()
             local model = Model()
@@ -424,8 +428,8 @@ options.Scenarios = {
     -- Pop Out, docs/work/2026-11-09-pop-out)
     {Name = "feature-sections",
         Observe = FeatureSectionsLine,
-        Recorded = "sections=3 switch-first=3 greyed-when-off=3",
-        Target = "sections=3 switch-first=3 greyed-when-off=3"},
+        Recorded = "sections=4 switch-first=4 greyed-when-off=4",
+        Target = "sections=4 switch-first=4 greyed-when-off=4"},
 }
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line

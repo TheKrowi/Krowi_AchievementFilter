@@ -1,4 +1,4 @@
--- The War Within's events on KAF's fixed schedules (Data/EventSchedules.lua; docs/work/2026-10-21-fixed-event-schedules).
+-- The War Within's events on KAF's fixed schedules (Features/EventReminders/Data/EventSchedules.lua; docs/work/2026-10-21-fixed-event-schedules).
 -- Anchors by GetCurrentRegion(): 1 US, 2 Korea and Taiwan, 3 EU, 5 China. Name is for the debug-mode findings only.
 
 -- Theater Troupe: a show every hour from :00, 10 minutes. Which show plays is not known yet (random by one guide, a fixed

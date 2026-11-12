@@ -2,7 +2,13 @@ local _, addon = ...
 addon.Gui.EventReminderSideButtonSystem = {}
 local eventReminderSideButtonSystem = addon.Gui.EventReminderSideButtonSystem
 
+-- The window the buttons are attached to, kept until the anchor setting changes or the game reloads: a profile switch
+-- moves them after the reload its prompt asks for, as every options-profile action (docs/work/2026-11-12-event-reminders);
+-- before they are attached, the window the setting names
 function eventReminderSideButtonSystem:GetAnchor()
+    if self.AttachedAnchor then
+        return self.AttachedAnchor
+    end
     if addon.Options.db.profile.EventReminders.SideButtonsAnchor == 1 then
         return AchievementFrame
     elseif addon.Options.db.profile.EventReminders.SideButtonsAnchor == 2 then
@@ -73,12 +79,12 @@ function eventReminderSideButtonSystem:Refresh(activeEvents, upcomingCalendarEve
     end
 
     ResetButtons()
-    activeEvents = activeEvents or addon.EventData.GetActiveEvents() -- Alert system does the refreshing
+    activeEvents = activeEvents or addon.EventReminders.EventData.GetActiveEvents() -- Alert system does the refreshing
     for index, activeEvent in next, activeEvents do
         AddEvent(index, activeEvent)
     end
     if addon.Options.db.profile.EventReminders.UpcomingCalendarEvents.Enabled then
-        upcomingCalendarEvents = upcomingCalendarEvents or addon.EventData.GetUpcomingCalendarEvents() -- Alert system does the refreshing
+        upcomingCalendarEvents = upcomingCalendarEvents or addon.EventReminders.EventData.GetUpcomingCalendarEvents() -- Alert system does the refreshing
         for index, upcomgingCalendarEvent in next, upcomingCalendarEvents do
             AddEvent(#activeEvents + index, upcomgingCalendarEvent)
         end
@@ -117,7 +123,9 @@ end
 -- Hooks the anchor; Loaded is false while event reminders are off or the anchor window does not exist yet, so
 -- LoadWithBlizzard_AchievementUI loads the buttons onto the achievement window once it does
 local function Attach(self)
-    local anchor = addon.Options.db.profile.EventReminders.Enabled and self:GetAnchor()
+    self.AttachedAnchor = nil -- the setting's window again
+    local anchor = addon.Options.db.profile.EventReminders.Enabled and self:GetAnchor() or nil
+    self.AttachedAnchor = anchor
     self.Loaded = anchor and true or false
     if anchor then
         HookAnchor(self, anchor)

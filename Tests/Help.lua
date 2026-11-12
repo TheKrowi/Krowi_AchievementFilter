@@ -136,7 +136,7 @@ help.Scenarios = {
         Target = "missing=0"},
     -- The core's sections only: a feature's Show me exists while the feature is started, which the features suite checks
     -- for each feature in both states (docs/work/2026-11-08-feature-split-poc; rewards was in this list before, and
-    -- rightclick until docs/work/2026-11-09-right-click-menu)
+    -- rightclick until docs/work/2026-11-09-right-click-menu, events and eventlist until docs/work/2026-11-12-event-reminders)
     {Name = "show-me",
         Observe = function()
             local entries = Entries()
@@ -153,10 +153,10 @@ help.Scenarios = {
             end
             return Join(ids)
         end,
-        Recorded = "achievements,calendar,categories,eventlist,events,filters,guides,maps,search,summary,tabs,tooltips,window",
-        RecordedClassic = "achievements,calendar,categories,eventlist,events,filters,maps,search,summary,tabs,tooltips,window",
-        Target = "achievements,calendar,categories,eventlist,events,filters,guides,maps,search,summary,tabs,tooltips,window",
-        TargetClassic = "achievements,calendar,categories,eventlist,events,filters,maps,search,summary,tabs,tooltips,window"},
+        Recorded = "achievements,calendar,categories,filters,guides,maps,search,summary,tabs,tooltips,window",
+        RecordedClassic = "achievements,calendar,categories,filters,maps,search,summary,tabs,tooltips,window",
+        Target = "achievements,calendar,categories,filters,guides,maps,search,summary,tabs,tooltips,window",
+        TargetClassic = "achievements,calendar,categories,filters,maps,search,summary,tabs,tooltips,window"},
     {Name = "map-agrees",
         Observe = function()
             -- Track A's map: Map.Sections, each {Id, Name, ...}; Overview is the window's own page and has no entry there

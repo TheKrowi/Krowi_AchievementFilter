@@ -38,8 +38,8 @@
                                  read, as L["..."] or as a quoted enUS key in a file with an L[variable] lookup,
                                  has a line in every language
                                  (Localization/<lang>[.<Namespace>].lua or Shared.lua); "= true" counts; always tree-wide
-      event-clock      [Error]   the event reminder and obtainability files (Gui/EventReminder/, Data/Event*.lua,
-                                 Data/Custom*EventTimers.lua, Data/TemporaryObtainable.lua) never call time(): they
+      event-clock      [Error]   the event reminder and obtainability files (Features/EventReminders/, Data/Event*.lua,
+                                 Data/TemporaryObtainable.lua) never call time(): they
                                  judge times by the realm's clock, GetServerTime(), which the sources use
       background-jobs  [Error]   every job addon code starts that can run with every window closed (an OnUpdate script,
                                  a C_Timer.NewTicker, a tooltip post-call or OnTooltipSet* hook, an event registration)
@@ -714,7 +714,7 @@ Write-Timing 'options-templates'
 # seconds through KrowiAF_GetUtcOffsetSeconds, which reads the realm's clock too. time{...} converts a date and stays
 # allowed.
 foreach ($rel in $ownLuaFiles) {
-    if ($rel -notlike 'Gui/EventReminder/*' -and $rel -notlike 'Data/Event*.lua' -and $rel -notlike 'Data/Custom*EventTimers.lua' -and $rel -ne 'Data/TemporaryObtainable.lua') { continue }
+    if ($rel -notlike 'Features/EventReminders/*' -and $rel -notlike 'Data/Event*.lua' -and $rel -ne 'Data/TemporaryObtainable.lua') { continue }
     $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
     $lineNo = 0
     foreach ($line in ($text -split "`r?`n")) {

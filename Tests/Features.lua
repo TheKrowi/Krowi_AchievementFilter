@@ -17,18 +17,27 @@ local features = addon.Tests.Features
 
 -- Name: the feature's folder under Features/ and its key in the registry
 -- Switch: its saved path in the profile; Frame: a frame it makes; Data: what its data load keeps
--- Help: the section id of its help page
+-- Help: the section id of its help page, or a list of them
 -- Opener: it hosts the achievement menu (Slots.lua, AchievementMenu.SetOpener); RowPart: it adds a part to the rows
 -- (Slots.lua, RowParts); MenuEntry: it adds an entry to the achievement menu (Slots.lua, AchievementMenu); Modifier: a
 -- modifier click on a row reaches it (Slots.lua, RowModifiers); AfterDataLoad: it runs after the login data load
 -- (Features.lua, AfterDataLoad); Opens: the table whose Open its menu entry and modifier call, so the checks press them
 -- with Open recorded instead of opening a window
+-- Made: whether any of its unnamed frames exists; AfterAchievementUI: it runs once Blizzard's achievement window has
+-- loaded (Features.lua, AfterAchievementUI); DataManagerTab: it adds a tab to the Data Manager (Slots.lua, DataManagerTabs)
 features.Known = {
     {Name = "RewardPreview", Switch = {"Features", "RewardPreview"}, Frame = "KrowiAF_RewardPreview", Help = "rewards",
         Data = function() return addon.Data.RewardPreviewData end},
     {Name = "RightClickMenu", Switch = {"Features", "RightClickMenu"}, Help = "rightclick", Opener = true, RowPart = true},
     {Name = "PopOut", Switch = {"Features", "PopOut"}, Help = "popout", MenuEntry = true, Modifier = true, AfterDataLoad = true,
-        Opens = function() return addon.Gui.AchievementPopout end}
+        Opens = function() return addon.Gui.AchievementPopout end},
+    -- docs/work/2026-11-12-event-reminders: its switch is the setting reminders always had; the pop-ups' container and the
+    -- feature's listener frame are its frames
+    {Name = "EventReminders", Switch = {"EventReminders", "Enabled"}, Help = {"events", "eventlist"}, AfterAchievementUI = true,
+        DataManagerTab = true, Made = function()
+            local alerts, own = addon.Gui.EventReminderAlertSystem, addon.EventReminders
+            return (alerts and alerts.Holder) ~= nil or (own and own.Listener) ~= nil
+        end}
 }
 
 -- Check: what is observed; Recorded and Target per boot state; When: the field of Known a feature needs for the check,
@@ -50,6 +59,11 @@ features.Scenarios = {
     {Check = "menuentry", When = "MenuEntry", Recorded = {off = "no entry", on = "entry opens"}, Target = {off = "no entry", on = "entry opens"}},
     {Check = "modifier", When = "Modifier", Recorded = {off = "no modifier", on = "modifier opens"}, Target = {off = "no modifier", on = "modifier opens"}},
     {Check = "afterload", When = "AfterDataLoad", Recorded = {off = "not run", on = "ran"}, Target = {off = "not run", on = "ran"}},
+    -- its frames without a global name, its step once the achievement window loaded and its Data Manager tab, only while
+    -- started
+    {Check = "made", When = "Made", Recorded = {off = "none", on = "made"}, Target = {off = "none", on = "made"}},
+    {Check = "afterui", When = "AfterAchievementUI", Recorded = {off = "not run", on = "ran"}, Target = {off = "not run", on = "ran"}},
+    {Check = "tab", When = "DataManagerTab", Recorded = {off = "no tab", on = "tab"}, Target = {off = "no tab", on = "tab"}},
     {Check = "load", Recorded = {off = "nothing made", on = "nothing made"}, Target = {off = "nothing made", on = "nothing made"}}
 }
 
@@ -194,6 +208,30 @@ function observe.afterload(feature)
     return registry.RanAfterDataLoad(feature.Name) and "ran" or "not run"
 end
 
+function observe.made(feature)
+    return feature.Made() and "made" or "none"
+end
+
+-- Whether the registry ran the feature's AfterAchievementUI; nil before Blizzard's achievement window loaded
+function observe.afterui(feature)
+    local registry = addon.Features
+    if type(registry.RanAfterAchievementUI) ~= "function" then
+        return "no phase"
+    end
+    if not registry.AchievementUIHasLoaded() then
+        return nil, "the achievement window has not loaded"
+    end
+    return registry.RanAfterAchievementUI(feature.Name) and "ran" or "not run"
+end
+
+function observe.tab(feature)
+    local slot = addon.Slots.DataManagerTabs
+    if not slot then
+        return "no slot"
+    end
+    return Owns(slot.Entries, feature) and "tab" or "no tab"
+end
+
 function observe.slots(feature)
     local slots = addon.Slots
     if type(slots) ~= "table" or type(slots.Owned) ~= "function" then
@@ -202,12 +240,9 @@ function observe.slots(feature)
     return #slots.Owned(feature.Name) > 0 and "owns entries" or "owns none"
 end
 
+-- Each of its help pages; all must agree, else the first page that differs is named
 function observe.help(feature)
     local window = addon.Options.Window
-    local page = window and window.Help and window.Help[feature.Help]
-    if not page then
-        return "no page"
-    end
     local title
     for _, registered in ipairs(addon.Features.List()) do
         if registered.Name == feature.Name then
@@ -215,15 +250,31 @@ function observe.help(feature)
         end
     end
     local offLine = title and addon.L["Feature Off Help"]:K_ReplaceVars({feature = title})
-    local first = page.Blocks and page.Blocks[1]
-    local hasOffLine = offLine ~= nil and first ~= nil and first.Text == offLine
-    local hasShowMe = type(page.ShowMe) == "function"
-    if hasShowMe and not hasOffLine then
-        return "show me"
-    elseif hasOffLine and not hasShowMe then
-        return "off line"
+    local ids = type(feature.Help) == "table" and feature.Help or {feature.Help}
+    local seen
+    for _, id in ipairs(ids) do
+        local page = window and window.Help and window.Help[id]
+        local got
+        if not page then
+            got = "no page"
+        else
+            local first = page.Blocks and page.Blocks[1]
+            local hasOffLine = offLine ~= nil and first ~= nil and first.Text == offLine
+            local hasShowMe = type(page.ShowMe) == "function"
+            if hasShowMe and not hasOffLine then
+                got = "show me"
+            elseif hasOffLine and not hasShowMe then
+                got = "off line"
+            else
+                got = hasShowMe and "show me and off line" or "neither"
+            end
+        end
+        if seen and got ~= seen then
+            return seen .. ", but " .. got .. " on " .. id
+        end
+        seen = got
     end
-    return hasShowMe and "show me and off line" or "neither"
+    return seen
 end
 
 -- env.LoadCalls: { {File, What} } for everything made while a file loaded; only files under Features/<Name>/ count

@@ -251,24 +251,6 @@ help.criteria = {
     )
 }
 
-help.events = {
-    Title = L["Event Reminders"],
-    Blocks = Blocks(
-        Picture("Reminders"),
-        Text(L["Help Events Intro"]),
-        Term(L["Help Shared Click"], L["Help Events Click"]),
-        Term(L["Help Shared Right Click"], L["Help Events Right Click"]),
-        Term(L["Help Events Time Term"], L["Help Events Time"])
-    )
-}
-
-help.eventlist = {
-    Title = L["Help Eventlist Title"],
-    Blocks = Blocks(
-        Text(L["Help Eventlist Intro"])
-    )
-}
-
 help.keys = {
     Title = L["Help Keys Title"],
     Blocks = Blocks(

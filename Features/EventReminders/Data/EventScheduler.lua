@@ -1,6 +1,6 @@
 local _, addon = ...
-addon.Data.EventScheduler = {}
-local eventScheduler = addon.Data.EventScheduler
+addon.EventReminders.EventScheduler = {}
+local eventScheduler = addon.EventReminders.EventScheduler
 
 -- The times of the World events whose source is Blizzard's event scheduler (KrowiAF.Enum.EventSource.Scheduler), read
 -- from C_EventScheduler (docs/work/2026-10-21-event-scheduler). One GetScheduledEvents read returns about three days of
@@ -40,7 +40,17 @@ local lastAttempt
 local inSchedulerCall -- an addon call into C_EventScheduler is running
 local stopped -- EVENT_SCHEDULER_UPDATE fired inside such a call, so the scheduler is left alone for the session
 local testing -- the events suite has its fixture in the cache; nothing refills it until Reset
-local listener = CreateFrame("Frame")
+
+-- The frame that hears the scheduler's update and the end of combat, made the first time it is needed, so loading the
+-- file makes nothing (docs/work/2026-11-12-event-reminders)
+local listener, OnEvent
+local function Listener()
+    if not listener then
+        listener = CreateFrame("Frame")
+        listener:SetScript("OnEvent", OnEvent)
+    end
+    return listener
+end
 
 local function Watched()
     if watched then
@@ -100,7 +110,7 @@ local function CanAsk()
 end
 
 local function WaitForCombat()
-    listener:RegisterEvent("PLAYER_REGEN_ENABLED")
+    Listener():RegisterEvent("PLAYER_REGEN_ENABLED")
 end
 
 local function IsShort(areaPoiId, now)
@@ -165,7 +175,7 @@ function eventScheduler.EnsureData()
     if not watching or not next(watching) or not source.Available() or stopped or not IsWanted() then
         return
     end
-    listener:RegisterEvent("EVENT_SCHEDULER_UPDATE")
+    Listener():RegisterEvent("EVENT_SCHEDULER_UPDATE")
     if source.InCombat() then
         WaitForCombat()
         return
@@ -190,7 +200,7 @@ function eventScheduler.OnSchedulerUpdate()
     Read(now)
 end
 
-local function OnEvent(_, event)
+OnEvent = function(_, event) -- the local declared with Listener above
     if event == "EVENT_SCHEDULER_UPDATE" then
         if inSchedulerCall then
             -- Fired inside the addon's own call: Blizzard's reminder manager, which handles it too, ran on the addon's
@@ -209,7 +219,6 @@ local function OnEvent(_, event)
         end
     end
 end
-listener:SetScript("OnEvent", OnEvent)
 
 -- The occurrence of the event going on at now: its start and end, or nothing. The cursor moves forward with time and
 -- starts again from the first occurrence when now is before it (a test, the clock set back).
@@ -274,7 +283,9 @@ function eventScheduler.Reset()
     end
     wipe(unlisted)
     pendingSince, lastAttempt, testing = nil, nil, nil
-    listener:UnregisterEvent("PLAYER_REGEN_ENABLED")
+    if listener then
+        listener:UnregisterEvent("PLAYER_REGEN_ENABLED")
+    end
 end
 
 -- The events suite's scheduler stories: a model of the game in place of the game, nil for the game again. Either way the

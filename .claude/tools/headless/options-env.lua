@@ -421,12 +421,12 @@ local function New(root, client, opts)
         if not ok then Fail("step " .. label, err) end
         return ok
     end
-    if addon.Data and addon.Data.EventScheduler then addon.Data.EventScheduler.GetName = function() return nil end end
+    if addon.EventReminders and addon.EventReminders.EventScheduler then addon.EventReminders.EventScheduler.GetName = function() return nil end end
     Step("Diagnostics.Load", function() addon.Diagnostics.Load() end)
     Step("LoadTabs", function() KrowiAF.LoadTabs() end)
     Step("SpecialCategories.InjectDynamicOptions", function() addon.SpecialCategories.InjectDynamicOptions() end)
-    Step("InjectEventDataDynamicOptions", function() KrowiAF.InjectEventDataDynamicOptions() end)
-    -- every feature's settings, built after every file loaded (Features.lua BuildOptions)
+    -- every feature's settings, built after every file loaded (Features.lua BuildOptions); Event reminders' per-event
+    -- toggles among them
     if addon.Features and type(addon.Features.BuildOptions) == "function" then
         Step("Features.BuildOptions", function() addon.Features.BuildOptions() end)
     end
