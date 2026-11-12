@@ -86,10 +86,12 @@ if (-not (Get-Command $send).Parameters.ContainsKey('WaitForDone')) {
 }
 
 # One kit call, its lines shown as they come; a refusal that says when to try again is retried then, for up to 10
-# minutes per call. Returns only the call's exit code.
+# minutes per call. Returns only the call's exit code; $script:lastAttempt holds when its last attempt began.
+$lastAttempt = Get-Date
 function Invoke-Kit([string]$What, [hashtable]$Arguments) {
     $retryUntil = (Get-Date).AddMinutes(10)
     while ($true) {
+        $script:lastAttempt = Get-Date
         $out = @(& $send -Client $Client @Arguments 2>&1 | ForEach-Object { "$_" })
         $code = $LASTEXITCODE
         $out | ForEach-Object { Write-Host "  $_" }
@@ -100,7 +102,6 @@ function Invoke-Kit([string]$What, [hashtable]$Arguments) {
     }
 }
 $started = $false
-$savedVariablesLate = $false   # set by Wait-SavedVariables
 # A client this tool started is closed whatever happens after
 function Close-Started {
     if ($script:started -and -not $KeepOpen) {
@@ -116,24 +117,30 @@ function Stop-Run([string]$Reason) { Close-Started; "Run-GameTests: $Reason"; ex
 . (Join-Path $KitTools 'AddonContext.ps1')   # the kit's client map: Get-ClientFolder
 $wtf = Join-Path (Get-ClientFolder $Client) 'WTF\Account'
 function Get-SavedVariablesFile {
+    if (-not (Test-Path -LiteralPath $wtf)) { return }
     Get-ChildItem -LiteralPath $wtf -Directory | ForEach-Object { Join-Path $_.FullName 'SavedVariables\Krowi_AchievementFilter.lua' } |
         Where-Object { Test-Path -LiteralPath $_ } | Get-Item | Sort-Object LastWriteTime -Descending | Select-Object -First 1
 }
-# Waits until the game has written the saved variables at or after $Since, the moment before /reload was typed, and
-# says when; $false after $Seconds. The kit's -Command '/reload' can report the UI back while the reload has only
-# begun, and a read then gets the file from before it (docs/work/2026-11-12-matrix-run-length).
+# $true once the game has written the saved variables at or after $Since (when the /reload that went through was
+# typed) and the file has stayed the same for a second, so it is whole; $false after $Seconds. Says which on the host.
+# The kit's -Command '/reload' can report the UI back while the reload has only begun, and a read then gets the file
+# from before it (docs/work/2026-11-12-matrix-run-length).
 function Wait-SavedVariables([datetime]$Since, [int]$Seconds = 60) {
     $until = (Get-Date).AddSeconds($Seconds)
+    $seen = $null
     while ($true) {
         $file = Get-SavedVariablesFile
         if ($file -and $file.LastWriteTime -ge $Since) {
-            "  saved variables written $($file.LastWriteTime.ToString('HH:mm:ss'))"
-            return
+            $now = "$($file.LastWriteTime.Ticks)|$($file.Length)"
+            if ($now -eq $seen) {
+                Write-Host "  saved variables written $($file.LastWriteTime.ToString('HH:mm:ss'))"
+                return $true
+            }
+            $seen = $now
         }
         if ((Get-Date) -gt $until) {
-            "  the saved variables were not written within $Seconds s of the /reload"
-            $script:savedVariablesLate = $true
-            return
+            Write-Host "  the saved variables were not written within $Seconds s of the /reload"
+            return $false
         }
         Start-Sleep -Seconds 1
     }
@@ -179,11 +186,9 @@ if ($Matrix) {
         'Waiting for the step to be done'
         $waited = Invoke-Kit 'waiting' @{ WaitForDone = $true; Timeout = $Timeout }
         '/reload, for the next step or to put the switches back'
-        $typedAt = Get-Date
         $reloaded = Invoke-Kit '/reload' @{ Command = '/reload' }
         if ($waited -ne 0 -or $reloaded -ne 0) { break }
-        Wait-SavedVariables $typedAt
-        if ($savedVariablesLate) { break }
+        if (-not (Wait-SavedVariables $lastAttempt)) { Stop-Run 'the saved variables were not written after a /reload, so the plan could not be read (see above)' }
         $matrixState = @(Read-MatrixState)
         $pending = @($matrixState | Where-Object { $_ -like 'pending|*' })
         if (-not $pending) { break }
@@ -203,7 +208,6 @@ if ($Matrix) {
     Close-Started
     if ($waited -ne 0) { Stop-Run 'a step did not report done in time (see above)' }
     if ($reloaded -ne 0) { Stop-Run 'a /reload failed, so the plan stopped on a step' }
-    if ($savedVariablesLate) { Stop-Run 'the saved variables were not written after a /reload, so the plan could not be read (see above)' }
     if (-not $record) { Stop-Run 'no finished matrix run reached the saved variables' }
     "Run-GameTests: matrix record $record (build|passed|failed|skipped|time|complete)"
     $f = $record -split '\|'
@@ -224,11 +228,10 @@ $waited = Invoke-Kit 'waiting' @{ WaitForDone = $true; Timeout = $Timeout }
 
 # Also after a timeout: the suites that finished reach the saved variables
 '/reload, so the results reach the saved variables'
-$typedAt = Get-Date
 $reloaded = Invoke-Kit '/reload' @{ Command = '/reload' }
-if ($reloaded -eq 0) {
-    Wait-SavedVariables $typedAt
-    if ($savedVariablesLate) { Stop-Run 'the saved variables were not written after the /reload, so the runs could not be read (see above)' }
+if ($reloaded -eq 0 -and -not (Wait-SavedVariables $lastAttempt)) {
+    $timedOut = if ($waited -ne 0) { 'the run did not report done in time, and ' } else { '' }
+    Stop-Run "$($timedOut)the saved variables were not written after the /reload, so the runs could not be read (see above)"
 }
 
 if ($reloaded -eq 0) {
