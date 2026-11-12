@@ -940,6 +940,10 @@ addon.Tests.Ready.popups = function()
     if not addon.Data.IsLoaded then -- the placeholders are built from the event data
         return false, "the achievement data is not loaded yet"
     end
+    -- the feature not started this session (Features.lua): the run skips instead of waiting for pop-ups that never come
+    if not addon.Features.IsStarted("EventReminders") then
+        return true
+    end
     if not System().SubSystem then
         return false, "event reminders were off at login; turn them on and /reload"
     end
@@ -955,6 +959,14 @@ addon.Tests.Suites.popups = function(done)
         Finish = done,
         SavedDetails = SaveDetails()
     }
+    if not addon.Features.IsStarted("EventReminders") then
+        live.StepName = "steps"
+        Add("SKIP", "event reminders are off this session")
+        local results = live.Results
+        live = nil
+        done(results, observations)
+        return
+    end
     if not banner then
         CreateBanner()
     end
