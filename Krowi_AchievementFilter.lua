@@ -30,6 +30,7 @@ local function LoadKrowi_AchievementFilter()
 
     addon.SpecialCategories.InjectDynamicOptions()
     KrowiAF.InjectEventDataDynamicOptions()
+    addon.Features.BuildOptions() -- every feature's settings, now that every file loaded (Features.lua)
 
     KrowiAF.InjectTabDataDynamicOptions()
     addon.Gui.AchievementFrameHeader:InjectDynamicOptions()
@@ -68,6 +69,7 @@ local function LoadBlizzard_AchievementUI()
 
     LoadBlizzard_AchievementUI = function() end
 
+    addon.Features.AchievementUILoaded() -- the started features' step once the window exists (Features.lua)
     KrowiAF.PluginsApi:LoadPluginsWithBlizzard_AchievementUI() -- after the line above, so a plugin's error cannot make this run twice
 end
 

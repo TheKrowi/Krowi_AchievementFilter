@@ -143,7 +143,7 @@ help.Scenarios = {
             if not entries then return "no help" end
             local ofFeature = {}
             for _, feature in ipairs(addon.Features.List()) do
-                if feature.HelpId then ofFeature[feature.HelpId] = true end
+                for _, id in ipairs(feature.HelpIds or {feature.HelpId}) do ofFeature[id] = true end
             end
             local ids = {}
             for id, entry in next, entries do

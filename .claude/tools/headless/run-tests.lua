@@ -1585,13 +1585,11 @@ suites.events = function(c)
     addon.Data.EventsLoaded = true -- and this one when every event object exists, before the cache build
     for _, rel in ipairs({ "Data/CustomWidgetEventTimers.lua", "Data/CustomWorldEventTimers.lua", "Data/EventScheduler.lua", "Data/EventData.lua",
         "Gui/EventReminder/AlertSystem.lua", "Tests/Events.lua" }) do
-        local file = io.open(root .. "/" .. rel, "rb")
-        if file then
-            file:close()
-            local chunk = assert(loadstring(readFile(root .. "/" .. rel), "@" .. rel))
-            setfenv(chunk, env)
-            chunk("Krowi_AchievementFilter", addon)
-        end
+        -- readFile raises on a missing file: a move must never leave the suite green on nothing
+        -- (docs/work/2026-11-12-event-reminders)
+        local chunk = assert(loadstring(readFile(root .. "/" .. rel), "@" .. rel))
+        setfenv(chunk, env)
+        chunk("Krowi_AchievementFilter", addon)
     end
     local suite = addon.Tests.Events
     local headless = {}
@@ -1645,13 +1643,11 @@ suites.schedules = function(c)
     addon.Data.IsLoaded, addon.Data.EventsLoaded = true, true
     for _, rel in ipairs({ "Data/CustomWidgetEventTimers.lua", "Data/CustomWorldEventTimers.lua", "Data/EventScheduler.lua", "Data/EventSchedules.lua",
         "Data/EventObserver.lua", "Data/EventData.lua", "Data/DataIntegrityManager.lua", "Tests/Schedules.lua" }) do
-        local file = io.open(root .. "/" .. rel, "rb")
-        if file then
-            file:close()
-            local chunk = assert(loadstring(readFile(root .. "/" .. rel), "@" .. rel))
-            setfenv(chunk, env)
-            chunk("Krowi_AchievementFilter", addon)
-        end
+        -- readFile raises on a missing file: a move must never leave the suite green on nothing
+        -- (docs/work/2026-11-12-event-reminders)
+        local chunk = assert(loadstring(readFile(root .. "/" .. rel), "@" .. rel))
+        setfenv(chunk, env)
+        chunk("Krowi_AchievementFilter", addon)
     end
     local headless = {}
     function headless.IsRetail() return c.isRetail end

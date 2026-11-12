@@ -396,7 +396,7 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
         if record.Start.Function == "Date" then
             local year, month, day = unpack(record.Start.Value)
             local startTime = time{year = year, month = month, day = day, hour = 0, min = 0, sec = 0} - KrowiAF_GetUtcOffsetSeconds()
-            startDetail = date(addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime, startTime)
+            startDetail = FormatTime(startTime)
         end
 
         if record.Start.Function == "Event" then
@@ -452,7 +452,7 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
         if record.End.Function == "Date" then
             local year, month, day = unpack(record.End.Value)
             local endTime = time{year = year, month = month, day = day, hour = 0, min = 0, sec = 0} - KrowiAF_GetUtcOffsetSeconds()
-            endDetail = date(addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime, endTime)
+            endDetail = FormatTime(endTime)
         end
 
         if record.End.Function == "Event" then

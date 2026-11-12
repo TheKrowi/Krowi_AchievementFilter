@@ -1041,6 +1041,16 @@ local function SkinAlertFrames()
     end)
 end
 
+-- [[ The features' parts ]]
+-- A feature's skin is a part of its own (Plugins/GW2_UI/<Feature>.lua, the feature's file for the feature-boundary lint
+-- rule): Install(context) runs at the end of Load, once GW2_UI's skin choices are read, with context = {DoSkin}
+-- (docs/work/2026-11-12-event-reminders)
+local parts = {}
+
+function gw2.AddPart(part)
+    tinsert(parts, part)
+end
+
 -- [[ FloatingAchievementTooltip ]]
 local function SkinFloatingAchievementTooltip()
     local tooltip = KrowiAF_FloatingAchievementTooltip
@@ -1178,4 +1188,9 @@ function gw2.Load()
     end)
 
     DisableOptions()
+
+    local context = {DoSkin = doSkin}
+    for _, part in ipairs(parts) do
+        if part.Install then part.Install(context) end
+    end
 end

@@ -299,6 +299,9 @@ function eventObserver.GetLog()
     return eventObserver.FormatLog(Store(), source.Region())
 end
 
+-- The log's tab in the Data Manager (Slots.lua, DataManagerTabs)
+addon.Slots.DataManagerTabs.Add({Order = 10, Name = addon.L["Event Reminders"], GetText = eventObserver.GetLog})
+
 -- [[ For the suites ]] --
 
 -- A model of the game and of the saved data in place of them (Tests/Schedules.lua), nil for the game again; the game's

@@ -87,6 +87,15 @@ function slots.RowModifiers.Handle(row)
     return false
 end
 
+-- The Data Manager's debug tabs (Gui/DataManager/Frame/FrameMixin.lua): after its Characters tab, each entry by Order:
+-- {Name, GetText}, a read-only text read again each time its tab is selected. Without an entry the Data Manager shows the
+-- characters alone (docs/work/2026-11-12-event-reminders)
+slots.DataManagerTabs = {Entries = {}}
+
+function slots.DataManagerTabs.Add(entry)
+    return Add(slots.DataManagerTabs.Entries, entry)
+end
+
 -- The achievement's right-click menu. Its host, the feature that draws it, sets the opener from its Start and merges
 -- Entries by Order with its own sections when it opens; an entry is a section, CheckAdd(achievement) and
 -- Add(menu, achievement, menuBuilder, caller), and closes the menu through menuBuilder:Close(). The core opens the menu

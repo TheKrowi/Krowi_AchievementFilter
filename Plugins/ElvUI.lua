@@ -700,6 +700,16 @@ local function SkinAlertFrames()
     end)
 end
 
+-- [[ The features' parts ]]
+-- A feature's skin is a part of its own (Plugins/ElvUI/<Feature>.lua, the feature's file for the feature-boundary lint
+-- rule): Install(context) runs at the end of Load, once ElvUI's skin choices are read, with context = {DoSkin, Engine,
+-- Skins} (docs/work/2026-11-12-event-reminders)
+local parts = {}
+
+function elv.AddPart(part)
+    tinsert(parts, part)
+end
+
 -- [[ FloatingAchievementTooltip ]]
 local function SkinFloatingAchievementTooltip()
     tooltip:SetStyle(KrowiAF_FloatingAchievementTooltip)
@@ -811,4 +821,9 @@ function elv:Load()
     end
 
     DisableOptions()
+
+    local context = {DoSkin = doSkin, Engine = engine, Skins = skins}
+    for _, part in ipairs(parts) do
+        if part.Install then part.Install(context) end
+    end
 end
