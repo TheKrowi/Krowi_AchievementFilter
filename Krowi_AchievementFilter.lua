@@ -55,6 +55,9 @@ end
 
 local function LoadBlizzard_AchievementUI()
     addon.Gui:LoadWithBlizzard_AchievementUI()
+    -- The started features' step once the window exists, where the side buttons always attached, so an error in a later
+    -- step cannot keep them off; it has its own run-once latch and runs each feature under xpcall (Features.lua)
+    addon.Features.AchievementUILoaded()
 
     if addon.Options.db.profile.Window.Movable then
         addon.MakeWindowMovable()
@@ -68,7 +71,6 @@ local function LoadBlizzard_AchievementUI()
 
     LoadBlizzard_AchievementUI = function() end
 
-    addon.Features.AchievementUILoaded() -- the started features' step once the window exists (Features.lua)
     KrowiAF.PluginsApi:LoadPluginsWithBlizzard_AchievementUI() -- after the line above, so a plugin's error cannot make this run twice
 end
 

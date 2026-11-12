@@ -37,3 +37,11 @@ Lessons carried from the three earlier splits: look first on Retail, full suites
 - **Lint:** clean, the scratch boundary check failing once as expected.
 - **In game, Retail 12.1.5 and Mists 5.5.4:** session A green on `main`; the look gate on Retail; session B matrix and suites green, no new BugGrabber row, memory off and on, the hand checks.
 - **Review:** taint review, `/code-review`, the fresh agent's evaluation, each finding fixed or listed in the PR.
+
+## Where the build departed from the plan
+- **The scheduler's frame** is made the first time the scheduler needs it (`Data/EventScheduler.lua`, `Listener()`), not in `Start`: it still makes nothing while the files load (requirement 4) and nothing while the feature is off, since only the started feature's code asks for it.
+- **No `DataManagerLog.lua`:** the log tab's entry is `EventObserver.DataManagerTab` (`Data/EventObserver.lua`), next to the log it shows; `Start` adds it to the slot.
+- **ElvUI's and GW2_UI's parts have `Install` only:** no part needed `Apply`, so the plugins call no `Apply`.
+- **`Features.AchievementUILoaded()`** runs right after `addon.Gui:LoadWithBlizzard_AchievementUI()`, where the side buttons always attached, instead of at the end of that step: an error in a later step of it can no longer keep them off for the session (the independent evaluation, 2026-11-12).
+- **The suites skip while the feature did not start:** `events`, `schedules` (Retail) and `memory`'s scheduler and watcher jobs return SKIP, as `popups` already did, so the matrix's off steps run none of the feature's code (the independent evaluation).
+- **The look gate's texts** (review-options.md, rows 1 to 28) and the off line for a feature's later help page (`Feature Off Help Other Section`, `Features.lua` `WireHelp`).

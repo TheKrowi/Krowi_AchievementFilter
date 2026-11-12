@@ -1,5 +1,5 @@
 # Gates: 2026-11-12-event-reminders
-Class: feature
+Class: harness
 
 | Date | Gate | Question | Recommended | Answer | Outcome |
 |---|---|---|---|---|---|
@@ -20,3 +20,4 @@ Class: feature
 | 2026-11-12 | before-run | The before-run of events, schedules, popups, options, help and memory on `main` (5aabcbab) on Retail 12.1.5 and Mists 5.5.4, about 40 min | Run it now | "pc is free, run your tests, ignore any blocker for this session" (all green: Retail events 28, schedules 41, popups 13, options 37, help 5, memory 6; Mists events 11, schedules 1, popups 13, options 37, help 5, memory 5; no addon error in BugGrabber) | took |
 | 2026-11-12 | look | Event reminders' look on Retail (review page https://claude.ai/artifact/HFbg9tWn5uj4bvxCBx9cwP): both sections on and off, the Go to button, the help while off; review-options.md rows 1-26 and the look's rows 27 (Reminder events' off line names the wrong section), 28 (the Go to row's label) and 29 (All/None and grid labels stay bright while off, drawn by Krowi_Options) | All proposals: rows 1-28 in all 11 languages, row 29 a Krowi_Options backlog item, then the full suites | "All proposals (Recommended)" | took |
 | 2026-11-12 | design | /code-review (high), pre-existing behaviour the move carries: the upcoming list cached once a session; a per-event toggle redrawing the side buttons from the cached events; ElvUI's and GW2_UI's side-button skin pinning to the achievement window; the Enabled checks inside Load and Attach; after a profile switch the pop-ups' place half-applied until the reload (requirement 13's trade-off) | leave in this move, which changes no behaviour; backlog items for the first three, the last two listed in the PR | - | auto |
+| 2026-11-12 | design | Get-ChangeClass.ps1 says harness: existing lines of `.claude/tools/Check-Repo.jobs` (and the `event-clock` rule's paths in `Check-Repo.ps1`) changed, the paths of the moved files, beside two added lines for the feature's listener | Raise Class to harness in this PR, as Pop Out did: the paths follow the files this PR moves and cannot go first in a PR of their own; harness adds no gate this item has not asked | - | auto |

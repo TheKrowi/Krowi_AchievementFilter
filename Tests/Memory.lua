@@ -228,7 +228,16 @@ local function ActiveWidgetTimerReads()
     end
 end
 
+-- Event reminders' jobs run only while the feature started this session (Features.lua) and is still switched on, so a
+-- run with it off measures none of them and runs none of its code
+local function EventRemindersOff()
+    return not (addon.Features.IsStarted("EventReminders") and addon.Options.db.profile.EventReminders.Enabled)
+end
+
 function gameEnv.Jobs(name)
+    if (name == "SchedulerUpdate" or name == "ObserverRun") and EventRemindersOff() then
+        return nil, "event reminders are off"
+    end
     if name == "SchedulerUpdate" then
         return {Call = addon.EventReminders.EventScheduler.OnSchedulerUpdate, PerMinute = refreshesPerMinute}
     end
@@ -244,8 +253,7 @@ function gameEnv.Jobs(name)
         }
     end
     if name == "EventRefresh" or name == "EventRefreshNoPoiOnMap" or name == "EventRefreshPoiOnMap" or name == "ActiveWidgetTimers" then
-        -- the feature not started this session (Features.lua), or switched off since
-        if not (addon.Features.IsStarted("EventReminders") and addon.Options.db.profile.EventReminders.Enabled) then
+        if EventRemindersOff() then
             return nil, "event reminders are off"
         end
         local call = memory.RefreshEvents

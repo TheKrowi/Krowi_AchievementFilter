@@ -617,6 +617,17 @@ function schedules.Run(env, observations)
         end
         return results
     end
+    -- The Retail scenarios read the feature's own code, which stays idle while Event reminders did not start this session
+    -- (Features.lua; docs/work/2026-11-12-event-reminders)
+    if not addon.Features.IsStarted("EventReminders") then
+        for _, scenario in ipairs(schedules.Scenarios) do
+            if not scenario.ClassicOnly then
+                tinsert(results, {Name = scenario.Name, Status = "SKIP",
+                    Line = ("schedules/%s: SKIP recorded=[%s] event reminders are off this session"):format(scenario.Name, scenario.Recorded)})
+            end
+        end
+        return results
+    end
     local saved = ForceToggles()
     local ok, err = pcall(function()
         for _, scenario in ipairs(schedules.Scenarios) do

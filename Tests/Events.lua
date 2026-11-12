@@ -630,6 +630,19 @@ end
 
 -- The fixture goes into the scheduler cache for the run; Restore() puts the real data back after it
 function events.Run(env, observations)
+    -- Every scenario reads the feature's own code, which must stay idle while Event reminders did not start this session
+    -- (Features.lua): the matrix's off steps then prove nothing of it runs (docs/work/2026-11-12-event-reminders)
+    if not addon.Features.IsStarted("EventReminders") then
+        local results = {}
+        local isRetail = env.IsRetail()
+        for _, scenario in ipairs(events.Scenarios) do
+            if isRetail or not scenario.RetailOnly then
+                tinsert(results, {Name = scenario.Name, Status = "SKIP",
+                    Line = ("events/%s: SKIP recorded=[%s] event reminders are off this session"):format(scenario.Name, scenario.Recorded)})
+            end
+        end
+        return results
+    end
     local scheduler = addon.EventReminders.EventScheduler
     local saved = ForceToggles()
     if scheduler then

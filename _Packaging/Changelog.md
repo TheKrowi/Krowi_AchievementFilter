@@ -29,7 +29,6 @@ All notable changes to this project will be documented in this file.
 - The start and end dates in the Not obtainable tooltip now use the tooltip's own date format
 - Opening the menu of an event reminder side button whose event has no name no longer reports an error
 - The Pop Out help now names the key you set as the Pop Out modifier instead of always Ctrl
-- The Reminder events help, while Event reminders is turned off, now points at the Event reminders section for the Enable setting
 
 ## 105.0 - 2026-11-08
 ### Added
