@@ -56,7 +56,16 @@ earned.Scenarios = {
     -- the window's earn refresh (code review of 2026-10-25). KrowiAF_SelectCategory read the stale count, then the
     -- recount of the marked top-level category in between changed it, and resetting the always visible marks raised
     -- "attempt to index local 'alwaysVisibleCache'"; it now recounts a marked top-level category first
-    {Name = "earn-select-open-hidden", Recorded = "selected", Target = "selected"}
+    {Name = "earn-select-open-hidden", Recorded = "selected", Target = "selected"},
+    -- the window opened, as Y does, in the first seconds after a login or reload (docs/work/2026-11-13-window-before-data):
+    -- the tabs' categories are loaded (Api/CategoryDataApi.lua) but the special categories are not, since
+    -- addon.SpecialCategories:Load runs at the end of the data load (Data/Data.lua PostLoadOnPlayerLogin). The categories
+    -- frame's OnShow runs its Update; the scenario calls that Update itself, since in game an error in a script the
+    -- frame's Show runs goes to the error handler, not to the caller (seen 2026-11-13: an open through the toggle got
+    -- "opened" and a BugGrabber row)
+    {Name = "open-during-data-load", Recorded = "error", Target = "updated"},
+    -- the Open Current Zone key binding (Bindings.xml) pressed in the same seconds
+    {Name = "current-zone-key-during-data-load", Recorded = "error", Target = "nothing selected"}
 }
 
 -- "raised at <file> line <n>: <message>": an observation in the "<file>:<n>: " form would read as a failing scenario to
@@ -327,6 +336,35 @@ steps["earn-counts-match"] = function(env, notes)
         end
     end
     return differ == 0 and "match" or ("differ in %d"):format(differ)
+end
+
+-- Runs call(...) as in the data load's gap, with no Current Zone list yet, and puts the list back, also when it raises
+local function DuringDataLoad(notes, name, call, ...)
+    local currentZone = addon.SpecialCategories.CurrentZone
+    addon.SpecialCategories.CurrentZone = nil
+    local ok, problem = pcall(call, ...)
+    addon.SpecialCategories.CurrentZone = currentZone
+    if not ok then
+        tinsert(notes, name .. " " .. DescribeError(problem))
+    end
+    return ok
+end
+
+steps["open-during-data-load"] = function(_, notes)
+    Fresh(earned.Achievement)
+    if not DuringDataLoad(notes, "open-during-data-load", KrowiAF_CategoriesFrame.Update, KrowiAF_CategoriesFrame) then
+        return "error"
+    end
+    return "updated"
+end
+
+steps["current-zone-key-during-data-load"] = function(_, notes)
+    Fresh(earned.Achievement)
+    local selectedBefore = addon.Gui.SelectedTab.SelectedCategory
+    if not DuringDataLoad(notes, "current-zone-key-during-data-load", KrowiAF_OpenCurrentZone, true) then
+        return "error"
+    end
+    return addon.Gui.SelectedTab.SelectedCategory == selectedBefore and "nothing selected" or "selected " .. tostring(addon.Gui.SelectedTab.SelectedCategory and addon.Gui.SelectedTab.SelectedCategory.Name)
 end
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line, GameOnly
