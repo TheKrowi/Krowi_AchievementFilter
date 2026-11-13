@@ -627,22 +627,36 @@ suites.navigation = function(c)
             page:SetShown(show)
         end
     end
-    local guildView = false -- achievementFunctions == GUILD_ACHIEVEMENT_FUNCTIONS
-    env.AchievementFrame_RefreshView = function()
-        achievementFrame.Header.Title:SetText(guildView and env.GUILD_ACHIEVEMENTS_TITLE or env.ACHIEVEMENT_TITLE)
-    end
+    local guildView = false -- Retail: achievementFunctions == GUILD_ACHIEVEMENT_FUNCTIONS; Classic: IN_GUILD_VIEW
     env.AchievementFrame_UpdateTabs = noop -- PanelTemplates_Tab_OnClick and the tab text offsets; the addon hooks it
-    env.AchievementFrameBaseTab_OnClick = function(tabIndex)
-        env.AchievementFrame_UpdateTabs(tabIndex)
-        guildView = tabIndex == 2
-        if tabIndex == 3 then
-            env.AchievementFrame_ShowSubFrame(env.AchievementFrameStats)
-        else -- InitAchievementPage, a category selected rather than the summary
-            env.AchievementFrame_ShowSubFrame(env.AchievementFrameAchievements)
-            env.AchievementFrame_RefreshView()
+    if isRetail then
+        env.AchievementFrame_RefreshView = function()
+            achievementFrame.Header.Title:SetText(guildView and env.GUILD_ACHIEVEMENTS_TITLE or env.ACHIEVEMENT_TITLE)
         end
-        if isRetail then -- AchievementFrame_RefreshBackButton(tabIndex ~= StatisticsCategoryIndex)
+        env.AchievementFrameBaseTab_OnClick = function(tabIndex)
+            env.AchievementFrame_UpdateTabs(tabIndex)
+            guildView = tabIndex == 2
+            if tabIndex == 3 then
+                env.AchievementFrame_ShowSubFrame(env.AchievementFrameStats)
+            else -- InitAchievementPage, a category selected rather than the summary
+                env.AchievementFrame_ShowSubFrame(env.AchievementFrameAchievements)
+                env.AchievementFrame_RefreshView()
+            end
+            -- AchievementFrame_RefreshBackButton(tabIndex ~= StatisticsCategoryIndex)
             achievementFrame.HeaderDetails.Back:SetShown(tabIndex ~= 3)
+        end
+    else -- Cata/Blizzard_AchievementUI.lua (Mists): no AchievementFrame_RefreshView; AchievementFrame_ToggleView flips
+        -- IN_GUILD_VIEW and the header (:126), tab 1 and 2 toggle into their own look, Statistics leaves it as it is (:166)
+        env.AchievementFrame_ToggleView = function()
+            guildView = not guildView
+            achievementFrame.Header.Title:SetText(guildView and env.GUILD_ACHIEVEMENTS_TITLE or env.ACHIEVEMENT_TITLE)
+        end
+        env.AchievementFrameBaseTab_OnClick = function(tabIndex)
+            env.AchievementFrame_UpdateTabs(tabIndex)
+            if (tabIndex == 1 and guildView) or (tabIndex == 2 and not guildView) then
+                env.AchievementFrame_ToggleView()
+            end
+            env.AchievementFrame_ShowSubFrame(tabIndex == 3 and env.AchievementFrameStats or env.AchievementFrameAchievements)
         end
     end
     env.AchievementFrameTab_OnClick = env.AchievementFrameBaseTab_OnClick

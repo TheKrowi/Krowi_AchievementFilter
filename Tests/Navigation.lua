@@ -174,9 +174,15 @@ end
 -- (Blizzard_AchievementUI.lua, Mainline :441, Cata :166), and Statistics exists on every client for every character. The
 -- factory guarded the install with #ourTabs == 0 on a table keyed from 4, which stays 0 until a rehash, so with the
 -- addon's five tabs the hooks went in four times (4 in game on Retail 12.1.5 and Mists 5.5.4 on 2026-11-13, as headlessly);
--- the guard is now a flag
+-- the guard is now a flag.
+-- Measure "look" reads instead whether the window shows the guild or the personal look after the click
+-- (addon.InGuildView, the header's title). The factory's hook on AchievementFrameBaseTab_OnClick refreshes the look on
+-- Statistics; Mists has no AchievementFrame_RefreshView, and the hook's fallback there was AchievementFrame_ToggleView,
+-- which flips it (Cata :126). Run four times it changed nothing, so with the hook once the fallback had to go, or every
+-- Statistics click on Mists would flip the look (code review, 2026-11-13)
 navigation.HookScenarios = {
-    {Name = "tab-update-runs-once", Tabs = {"Addon"}, Click = "Statistics", Recorded = 1, Target = 1}
+    {Name = "tab-update-runs-once", Measure = "updates", Tabs = {"Addon"}, Click = "Statistics", Recorded = 1, Target = 1},
+    {Name = "statistics-keeps-personal-look", Measure = "look", Tabs = {"Addon"}, Click = "Statistics", Recorded = "personal", Target = "personal"}
 }
 
 -- The method is replaced on the factory, the addon's own table, and whatever was there (a skin's hook on it included) is
@@ -213,7 +219,11 @@ local function RunHookScenario(env, scenario, setupProblem)
         if not blocked then
             local selected, reason, runs = CountTabUpdates(env, scenario.Click)
             if selected then
-                got = runs
+                if scenario.Measure == "look" then
+                    got = addon.InGuildView() and "guild" or "personal"
+                else
+                    got = runs
+                end
             else
                 blocked = "cannot select " .. scenario.Click .. (reason and (": " .. reason) or "")
             end
@@ -226,13 +236,13 @@ local function RunHookScenario(env, scenario, setupProblem)
     else
         status = got == scenario.Recorded and "PASS" or "FAIL"
         targetMet = got == scenario.Target
-        tail = ("got=%d target=%d %s"):format(got, scenario.Target, targetMet and "met" or "open")
+        tail = ("got=%s target=%s %s"):format(tostring(got), tostring(scenario.Target), targetMet and "met" or "open")
     end
     return {
         Name = scenario.Name,
         Status = status,
         TargetMet = targetMet,
-        Line = ("navigation/%s: %s tabs=[%s] click=%s recorded=%d %s"):format(scenario.Name, status, table.concat(scenario.Tabs, ","), scenario.Click, scenario.Recorded, tail)
+        Line = ("navigation/%s: %s tabs=[%s] click=%s recorded=%s %s"):format(scenario.Name, status, table.concat(scenario.Tabs, ","), scenario.Click, scenario.Recorded, tail)
     }
 end
 
