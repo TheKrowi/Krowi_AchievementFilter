@@ -14,7 +14,8 @@
 --         layout options trigger; the option setters themselves live in Options/Layout.lua and only run in game),
 --         navigation (Gui/Gui.lua's tab sub frames, the search box and Gui/BrowsingHistory/BrowsingHistory.lua: which
 --         navigation buttons each tab of the achievement window shows, issue #325, and whether the back arrow's
---         tooltip can list an achievement the game does not know), worldmap (Gui/WorldMapButton/ with
+--         tooltip can list an achievement the game does not know; Gui/WindowFrames/AchievementFrameTabButtonFactory/:
+--         how often one Blizzard tab click runs the tab factory's update hook), worldmap (Gui/WorldMapButton/ with
 --         the Krowi_WorldMapButtons library: whether the button stays in front of the Classic map when it resizes; on
 --         Retail the strata game rule the map reads when it shows),
 --         obtainable (Objects/Achievement.lua's SetTemporaryObtainable and Data/TemporaryObtainable.lua: the record an
@@ -626,22 +627,36 @@ suites.navigation = function(c)
             page:SetShown(show)
         end
     end
-    local guildView = false -- achievementFunctions == GUILD_ACHIEVEMENT_FUNCTIONS
-    env.AchievementFrame_RefreshView = function()
-        achievementFrame.Header.Title:SetText(guildView and env.GUILD_ACHIEVEMENTS_TITLE or env.ACHIEVEMENT_TITLE)
-    end
+    local guildView = false -- Retail: achievementFunctions == GUILD_ACHIEVEMENT_FUNCTIONS; Classic: IN_GUILD_VIEW
     env.AchievementFrame_UpdateTabs = noop -- PanelTemplates_Tab_OnClick and the tab text offsets; the addon hooks it
-    env.AchievementFrameBaseTab_OnClick = function(tabIndex)
-        env.AchievementFrame_UpdateTabs(tabIndex)
-        guildView = tabIndex == 2
-        if tabIndex == 3 then
-            env.AchievementFrame_ShowSubFrame(env.AchievementFrameStats)
-        else -- InitAchievementPage, a category selected rather than the summary
-            env.AchievementFrame_ShowSubFrame(env.AchievementFrameAchievements)
-            env.AchievementFrame_RefreshView()
+    if isRetail then
+        env.AchievementFrame_RefreshView = function()
+            achievementFrame.Header.Title:SetText(guildView and env.GUILD_ACHIEVEMENTS_TITLE or env.ACHIEVEMENT_TITLE)
         end
-        if isRetail then -- AchievementFrame_RefreshBackButton(tabIndex ~= StatisticsCategoryIndex)
+        env.AchievementFrameBaseTab_OnClick = function(tabIndex)
+            env.AchievementFrame_UpdateTabs(tabIndex)
+            guildView = tabIndex == 2
+            if tabIndex == 3 then
+                env.AchievementFrame_ShowSubFrame(env.AchievementFrameStats)
+            else -- InitAchievementPage, a category selected rather than the summary
+                env.AchievementFrame_ShowSubFrame(env.AchievementFrameAchievements)
+                env.AchievementFrame_RefreshView()
+            end
+            -- AchievementFrame_RefreshBackButton(tabIndex ~= StatisticsCategoryIndex)
             achievementFrame.HeaderDetails.Back:SetShown(tabIndex ~= 3)
+        end
+    else -- Cata/Blizzard_AchievementUI.lua (Mists): no AchievementFrame_RefreshView; AchievementFrame_ToggleView flips
+        -- IN_GUILD_VIEW and the header (:126), tab 1 and 2 toggle into their own look, Statistics leaves it as it is (:166)
+        env.AchievementFrame_ToggleView = function()
+            guildView = not guildView
+            achievementFrame.Header.Title:SetText(guildView and env.GUILD_ACHIEVEMENTS_TITLE or env.ACHIEVEMENT_TITLE)
+        end
+        env.AchievementFrameBaseTab_OnClick = function(tabIndex)
+            env.AchievementFrame_UpdateTabs(tabIndex)
+            if (tabIndex == 1 and guildView) or (tabIndex == 2 and not guildView) then
+                env.AchievementFrame_ToggleView()
+            end
+            env.AchievementFrame_ShowSubFrame(tabIndex == 3 and env.AchievementFrameStats or env.AchievementFrameAchievements)
         end
     end
     env.AchievementFrameTab_OnClick = env.AchievementFrameBaseTab_OnClick
@@ -668,7 +683,12 @@ suites.navigation = function(c)
     local profile = { TrackAchievementBrowserHistory = true, ResetViewOnOpen = false, ToggleWindow = true,
         Window = { AchievementFrameHeightOffset = 0, CategoriesFrameWidthOffset = 0, AchievementsFrameWidthOffset = 0 } }
     addon.Options = { db = { profile = profile } }
-    addon.Tabs, addon.TabsOrder = { Achievements = { Name = "Achievements", Text = "Achievements", Categories = { {} }, Filters = {} } }, { "Achievements" }
+    -- The addon's five tabs, as the game has them: the tab factory's hook guard depended on how many it makes
+    -- (docs/work/2026-11-13-tab-hooks-once)
+    addon.Tabs, addon.TabsOrder = {}, { "Achievements", "Expansions", "Events", "PvP", "Specials" }
+    for _, name in ipairs(addon.TabsOrder) do
+        addon.Tabs[name] = { Name = name, Text = name, Categories = { {} }, Filters = {} }
+    end
     for _, rel in ipairs({ "Globals.lua", "Api/API.lua", "BrowsingHistory.lua", "Gui/Gui.lua",
         "Gui/WindowFrames/AchievementFrameTabButtonFactory/AchievementFrameTabButtonMixin.lua",
         "Gui/WindowFrames/AchievementFrameTabButtonFactory/AchievementFrameTabButtonFactory.lua",

@@ -4,12 +4,13 @@ local achievementFrameTabButtonFactory = addon.Gui.AchievementFrameTabButtonFact
 
 local ourTabs = {}
 local onClick
+local hooksInstalled
 
+-- Classic's AchievementFrame_ToggleView is no refresh: it flips the guild and personal look. It was called here while the
+-- hooks went in four times, so the flips cancelled out; Classic's Statistics tab keeps the look it has
 local function RefreshAchievementView()
     if type(AchievementFrame_RefreshView) == "function" then
         AchievementFrame_RefreshView()
-    elseif type(AchievementFrame_ToggleView) == "function" then
-        AchievementFrame_ToggleView()
     end
 end
 
@@ -61,7 +62,8 @@ function achievementFrameTabButtonFactory:GetNew(index, text, framesToShow, cate
 
     PanelTemplates_SetNumTabs(AchievementFrame, tabId)
 
-    if #ourTabs == 0 then
+    if not hooksInstalled then -- ourTabs is keyed from the first id after Blizzard's tabs, so its length says nothing
+        hooksInstalled = true
         onClick = Base_OnClick
         hooksecurefunc("AchievementFrame_DisplayComparison", function()
             onClick = Comparison_OnClick
