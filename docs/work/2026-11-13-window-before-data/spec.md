@@ -23,7 +23,9 @@ The same read, unguarded, is in `KrowiAF_OpenCurrentZone` (`Api/API.lua:141`), t
 
 **Reproduction:**
 - In game: BugGrabber on Retail 12.1.5, session 643, 2026-11-13 20:17:06, x2: `Data/Data.lua:186: attempt to get length of field 'CurrentZone' (a nil value)`, stack tab `Select` > `ShowSubFrames` > `AchievementFrame_ShowSubFrame` > `Gui/Gui.lua:68` > categories frame `OnShow` > `Update` (`CategoriesFrameMixin.lua:131`) > `Data/Data.lua:186`. Not in the Mists log.
-- Headless, both clients: two scenarios in the `earned` suite (Verification) open the Expansions tab, and press the binding, with no Current Zone list, as in the gap. Both raise: `line 186: attempt to get length of field 'CurrentZone'` and `line 141: ...`.
+- Headless, both clients: two scenarios in the `earned` suite (Verification) update the categories list, and press the binding, with no Current Zone list, as in the gap. Both raise: `line 186: attempt to get length of field 'CurrentZone'` and `line 141: ...`.
+- In game, Retail 12.1.5, 2026-11-13 22:07 (`/kaftest earned`, this branch before the fix): the binding scenario raised `Api/Api.lua line 141` as headless. The first draft of the other scenario opened the window through KAF's toggle; the error went to BugGrabber (`Data/Data.lua:186`, same stack through `Gui/Gui.lua:214` `ToggleAchievementFrame`, the count went to x3) and not to the scenario's `pcall`, since the game hands an error in a script that `Show` runs to the error handler. The scenario now calls the categories frame's `Update` itself.
+- Y right after `/reload` with the kit's input did not hit the gap: the kit reports the UI back only after the load, and the window opened whole with no new error. The two screenshots (22:08:36 and 22:08:46) show the login's event reminder pop-ups over the window, gone ten seconds later; that is most likely what looked like stray event buttons, and not part of this bug.
 
 ## Design
 Two guards, nothing else:
@@ -56,9 +58,9 @@ Requirement 2 needs no new code: the categories frame then finishes its update w
 - **Class:** `fix/logic` (`Data/Data.lua`, `Api/API.lua`; the scenarios ride along), so the plan is routine and does not wait.
 
 ## Verification
-- **Permanent test (test first):** two scenarios in the `earned` suite (`Tests/Earned.lua`, run headless by `suites.earned` on the real data load and in game by `/kaftest earned`): `open-during-data-load` (Recorded `error`, Target `opened`) and `current-zone-key-during-data-load` (Recorded `error`, Target `nothing selected`). Each removes the Current Zone list for the one call, as in the gap, and puts it back. Recorded is set to Target after the fix.
+- **Permanent test (test first):** two scenarios in the `earned` suite (`Tests/Earned.lua`, run headless by `suites.earned` on the real data load and in game by `/kaftest earned`): `open-during-data-load` (the categories frame's `Update`, which its `OnShow` runs when the window opens; Recorded `error`, Target `updated`) and `current-zone-key-during-data-load` (Recorded `error`, Target `nothing selected`). Each removes the Current Zone list for the one call, as in the gap, and puts it back. Recorded is set to Target after the fix.
 - `Check-Repo.ps1 -ChangedOnly`; headless `earned`, `special`, `navigation` on Retail and Classic.
-- In game, Retail: deploy, `/reload`, press Y at once: no error (`Read-GameErrors.ps1`), and screenshots right after and a few seconds later show the window fill itself; `/kaftest earned`. Mists: the same, if the client is free.
+- In game, Retail: deploy, `/kaftest earned` (both scenarios at their Target), `Read-GameErrors.ps1` with no new row and no bumped count. Pressing Y inside the gap cannot be timed with the kit's input (above), so requirement 2's "fills itself" rests on the code reading (`Data/Data.lua:140-142`) and a manual Y by Krowi if wanted. Mists: `/kaftest earned`, if the client is free.
 
 ## Decision
 <Filled in at the gate.>
