@@ -21,6 +21,7 @@ All notable changes to this project will be documented in this file.
 - The Event reminders help names the window the side buttons sit beside
 - After switching settings profile, event reminders change after the reload the prompt asks for
 - Krowi_Options library updated to 2.1
+- The TaintLess library is no longer included
 
 ### Fixed
 - Right-clicking a guild achievement or a statistic linked in chat no longer opens an empty menu or gives an error

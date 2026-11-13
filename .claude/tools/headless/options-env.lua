@@ -83,7 +83,7 @@ local absentGlobals = { ElvUI = true, GW2_ADDON = true, EllesmereUI = true, ZGV 
     KROWI_LIBMAN = true, BINDING_HEADER_KrowiAF = true, GAME_LOCALE = true, LibStub = true,
     GetBindingByKey = true } -- C_KeyBindings.GetBindingByKey since 11.2.7 and 5.5.1; the global is gone
 
-local skip = { "^Libs/AceGUI%-3%.0/", "^Libs/AceConfig%-3%.0/", "^Libs/TaintLess/", "^Libs/LibSerialize/", "^Libs/LibDeflate/",
+local skip = { "^Libs/AceGUI%-3%.0/", "^Libs/AceConfig%-3%.0/", "^Libs/LibSerialize/", "^Libs/LibDeflate/",
     "^Libs/AceSerializer%-3%.0/", "^Tests/" }
 
 -- The frame types an XML file can declare at its top level

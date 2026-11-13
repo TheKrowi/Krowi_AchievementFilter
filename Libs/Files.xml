@@ -1,6 +1,4 @@
 <Ui>
-    <Include file="TaintLess\TaintLess.xml" />
-
     <Include file="Krowi_Util\Krowi_Util.xml" />
 
     <Script file="CallbackHandler-1.0\CallbackHandler-1.0.lua" />
