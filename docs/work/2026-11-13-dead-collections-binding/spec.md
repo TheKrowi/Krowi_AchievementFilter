@@ -27,7 +27,7 @@ The option:
 - The only reader is `Gui/Collections/Collections.lua:51`, which never loads, so the toggle does nothing.
 - Its strings are `true` in `Localization/enUS.lua:290-291`, so the description shows its key, "Collections Achievement Window Desc".
 
-Reproduction: read from source, not seen in game (the client was not available to the design session). The plan's new `options` scenario reproduces the option headlessly; the in-game check below confirms the binding row before and its absence after.
+Reproduction: read from source, not seen in game (the client was not available to the design session). The `options` suite's `options-fingerprint` scenario reproduces the option headlessly (its Target moved to the count without it, open on the unfixed code); the in-game check below confirms the binding row before and its absence after.
 
 ## Design
 1. Delete lines 29-31 of `Bindings.xml`.
@@ -65,7 +65,7 @@ Option (Krowi: "hide option"; the recommendation had been to leave it):
 - **Player-facing text:** the two changelog lines only.
 
 ## Verification
-- Test first: a new `options` scenario that observes whether the Advanced section has the Collections setting and how many headings it has, open against its target before the fix and met after (plan, step 1).
+- Test first: the existing `options-fingerprint` scenario's Target moved to the option count and hash without the setting (Retail 414, Classic 310), open against it before the fix and met after (plan, step 1). No new scenario (Krowi at the plan gate: "why a new options scenario? overkill?").
 - Offline: `Check-Repo.ps1 -ChangedOnly` green; grep for the command name and `ToggleCollectionsJournal` outside `docs/` empty; `options` suite headless green on Retail and Classic, the fingerprint moved by one option per client and the comment there naming this work item.
 - No headless suite reads `Bindings.xml`; the `options` suite's binding scenarios use `KrowiAF_OPEN_TAB_Achievements` only.
 - In game, Retail and Mists:
