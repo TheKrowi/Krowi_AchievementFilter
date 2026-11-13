@@ -72,3 +72,5 @@ Left as they are: the 70.0 changelog entry (released history) and `docs/work/202
 
 ## Decision
 Option 1, remove TaintLess entirely, on every client. Krowi, 2026-11-13: "remove".
+
+At the merge gate, after the results above, Krowi, 2026-11-13: "Merge 423, do not fix it, mists is not worth it". The blocked honor queue on Mists stays as a known defect that is deliberately left unfixed: `docs/codebase-analysis.md`, row 34.
