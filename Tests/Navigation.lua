@@ -173,9 +173,10 @@ end
 -- of those hooks installed. AchievementFrameBaseTab_OnClick calls AchievementFrame_UpdateTabs once
 -- (Blizzard_AchievementUI.lua, Mainline :441, Cata :166), and Statistics exists on every client for every character. The
 -- factory guarded the install with #ourTabs == 0 on a table keyed from 4, which stays 0 until a rehash, so with the
--- addon's five tabs the hooks went in four times (measured headlessly); the guard is now a flag
+-- addon's five tabs the hooks went in four times (4 in game on Retail 12.1.5 and Mists 5.5.4 on 2026-11-13, as headlessly);
+-- the guard is now a flag
 navigation.HookScenarios = {
-    {Name = "tab-update-runs-once", Tabs = {"Addon"}, Click = "Statistics", Recorded = 4, Target = 1}
+    {Name = "tab-update-runs-once", Tabs = {"Addon"}, Click = "Statistics", Recorded = 1, Target = 1}
 }
 
 -- The method is replaced on the factory, the addon's own table, and whatever was there (a skin's hook on it included) is

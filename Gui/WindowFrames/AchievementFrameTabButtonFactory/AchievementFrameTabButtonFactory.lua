@@ -4,6 +4,7 @@ local achievementFrameTabButtonFactory = addon.Gui.AchievementFrameTabButtonFact
 
 local ourTabs = {}
 local onClick
+local hooksInstalled
 
 local function RefreshAchievementView()
     if type(AchievementFrame_RefreshView) == "function" then
@@ -61,7 +62,8 @@ function achievementFrameTabButtonFactory:GetNew(index, text, framesToShow, cate
 
     PanelTemplates_SetNumTabs(AchievementFrame, tabId)
 
-    if #ourTabs == 0 then
+    if not hooksInstalled then -- ourTabs is keyed from 4, so its length says nothing about how many tabs it holds
+        hooksInstalled = true
         onClick = Base_OnClick
         hooksecurefunc("AchievementFrame_DisplayComparison", function()
             onClick = Comparison_OnClick
