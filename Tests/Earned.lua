@@ -63,9 +63,10 @@ earned.Scenarios = {
     -- frame's OnShow runs its Update; the scenario calls that Update itself, since in game an error in a script the
     -- frame's Show runs goes to the error handler, not to the caller (seen 2026-11-13: an open through the toggle got
     -- "opened" and a BugGrabber row)
-    {Name = "open-during-data-load", Recorded = "error", Target = "updated"},
+    -- Before the fix (headless on both clients and in game on Retail 12.1.5, 2026-11-13) both gave "error"
+    {Name = "open-during-data-load", Recorded = "updated", Target = "updated"},
     -- the Open Current Zone key binding (Bindings.xml) pressed in the same seconds
-    {Name = "current-zone-key-during-data-load", Recorded = "error", Target = "nothing selected"}
+    {Name = "current-zone-key-during-data-load", Recorded = "nothing selected", Target = "nothing selected"}
 }
 
 -- "raised at <file> line <n>: <message>": an observation in the "<file>:<n>: " form would read as a failing scenario to

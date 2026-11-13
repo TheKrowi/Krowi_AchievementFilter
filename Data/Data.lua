@@ -183,7 +183,10 @@ local cachedZone
 function data.GetCurrentZoneAchievements()
 	diagnostics.Trace("data.GetCurrentZoneAchievements")
 
-    if #addon.SpecialCategories.CurrentZone == 0 then
+    -- The list exists once SpecialCategories:Load runs at the end of the login data load (PostLoadOnPlayerLogin), and the
+    -- window can open before that; the zone cache stays unset, so the first update after the load fills Current Zone
+    local currentZone = addon.SpecialCategories.CurrentZone
+    if not currentZone or #currentZone == 0 then
         return
     end
     if cachedZone == C_Map.GetBestMapForUnit("player") then
