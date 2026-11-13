@@ -138,6 +138,9 @@ function KrowiAF_OpenCurrentZone(collapsed)
         C_AddOns.LoadAddOn("Blizzard_AchievementUI")
     end
 
+    if not addon.SpecialCategories.CurrentZone then -- the login data load has not made the special categories yet (Data/Data.lua)
+        return
+    end
 	for i = 1, #addon.SpecialCategories.CurrentZone do
 		if addon.Options.db.profile.AdjustableCategories.CurrentZone[i] then
 			KrowiAF_SelectCategory(addon.SpecialCategories.CurrentZone[i], collapsed)

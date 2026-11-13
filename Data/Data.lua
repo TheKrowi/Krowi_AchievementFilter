@@ -118,6 +118,15 @@ function data:RegisterZoneDataTasks()
     end
 end
 
+-- A window opened while the load ran counted its categories before the load was done (the excluded achievements, the
+-- cache), and the categories frame keeps a count until its tab's filters ask for a recount; so every tab recounts at
+-- its next draw
+function data.RecountAfterLoad()
+    for _, tab in next, addon.Tabs do
+        tab.Filters.Refresh = true
+    end
+end
+
 local function PostLoadOnPlayerLogin(self, start)
     self.EventsLoaded = true -- every event object exists; Features/EventReminders/Data/EventScheduler.lua waits for this, not for the cache build
     self.LoadDiagnostics:Print()
@@ -137,6 +146,7 @@ local function PostLoadOnPlayerLogin(self, start)
         addon.SpecialCategories.LoadData()
         self.IsLoaded = true -- every achievement object exists and the special categories are filled; the test runner waits for this
 
+        self.RecountAfterLoad()
         if AchievementFrame and AchievementFrame:IsShown() then
             addon.Gui:RefreshViewAfterPlayerLogin()
         end
@@ -183,7 +193,10 @@ local cachedZone
 function data.GetCurrentZoneAchievements()
 	diagnostics.Trace("data.GetCurrentZoneAchievements")
 
-    if #addon.SpecialCategories.CurrentZone == 0 then
+    -- The list exists once SpecialCategories:Load runs at the end of the login data load (PostLoadOnPlayerLogin), and the
+    -- window can open before that; the zone cache stays unset, so the first update after the load fills Current Zone
+    local currentZone = addon.SpecialCategories.CurrentZone
+    if not currentZone or #currentZone == 0 then
         return
     end
     if cachedZone == C_Map.GetBestMapForUnit("player") then
@@ -191,8 +204,8 @@ function data.GetCurrentZoneAchievements()
     end
     cachedZone = C_Map.GetBestMapForUnit("player")
     local achievements = addon.GetAchievementsInZone(cachedZone)
-    for i = 1, #addon.SpecialCategories.CurrentZone do
-        local category = addon.SpecialCategories.CurrentZone[i]
+    for i = 1, #currentZone do
+        local category = currentZone[i]
         category.Achievements = addon.Options.db.profile.AdjustableCategories.CurrentZone[i] and achievements or nil
         category.CountsDirty = true
     end

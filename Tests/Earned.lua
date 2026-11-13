@@ -56,7 +56,22 @@ earned.Scenarios = {
     -- the window's earn refresh (code review of 2026-10-25). KrowiAF_SelectCategory read the stale count, then the
     -- recount of the marked top-level category in between changed it, and resetting the always visible marks raised
     -- "attempt to index local 'alwaysVisibleCache'"; it now recounts a marked top-level category first
-    {Name = "earn-select-open-hidden", Recorded = "selected", Target = "selected"}
+    {Name = "earn-select-open-hidden", Recorded = "selected", Target = "selected"},
+    -- the window opened, as Y does, in the first seconds after a login or reload (docs/work/2026-11-13-window-before-data):
+    -- the tabs' categories are loaded (Api/CategoryDataApi.lua) but the special categories are not, since
+    -- addon.SpecialCategories:Load runs at the end of the data load (Data/Data.lua PostLoadOnPlayerLogin). The categories
+    -- frame's OnShow runs its Update; the scenario calls that Update itself, since in game an error in a script the
+    -- frame's Show runs goes to the error handler, not to the caller (seen 2026-11-13: an open through the toggle got
+    -- "opened" and a BugGrabber row)
+    -- Before the fix (headless on both clients and in game on Retail 12.1.5, 2026-11-13) both gave "error"
+    {Name = "open-during-data-load", Recorded = "updated", Target = "updated"},
+    -- the Open Current Zone key binding (Bindings.xml) pressed in the same seconds
+    {Name = "current-zone-key-during-data-load", Recorded = "nothing selected", Target = "nothing selected"},
+    -- the window drawn in that gap, then the end of the load (addon.Data.RecountAfterLoad): do Expansions' top-level
+    -- counts match a full recount? Headlessly 862 is completed after the gap's counts, standing for what the load still
+    -- changes (the excluded achievements, the cache); the game cannot, so there the counts only have to stay. Code review
+    -- of the fix: once the gap's update no longer raised, its counts were kept after the load ("differ in 1" headless)
+    {Name = "counts-after-data-load", Recorded = "match", Target = "match"}
 }
 
 -- "raised at <file> line <n>: <message>": an observation in the "<file>:<n>: " form would read as a failing scenario to
@@ -319,6 +334,63 @@ steps["earn-counts-match"] = function(env, notes)
         counts[category] = {category.NumOfAch, category.NumOfCompAch, category.NumOfNotObtAch}
     end
     tinsert(notes, ("earn-counts-match: %s went from %s to %s completed"):format(tostring(topLevel.Name), tostring(completedBefore), tostring(topLevel.NumOfCompAch)))
+    KrowiAF_CategoriesFrame:Update(true)
+    local differ = 0
+    for category, before in next, counts do
+        if before[1] ~= category.NumOfAch or before[2] ~= category.NumOfCompAch or before[3] ~= category.NumOfNotObtAch then
+            differ = differ + 1
+        end
+    end
+    return differ == 0 and "match" or ("differ in %d"):format(differ)
+end
+
+-- Runs call(...) as in the data load's gap, with no Current Zone list yet, and puts the list back, also when it raises
+local function DuringDataLoad(notes, name, call, ...)
+    local currentZone = addon.SpecialCategories.CurrentZone
+    addon.SpecialCategories.CurrentZone = nil
+    local ok, problem = pcall(call, ...)
+    addon.SpecialCategories.CurrentZone = currentZone
+    if not ok then
+        tinsert(notes, name .. " " .. DescribeError(problem))
+    end
+    return ok
+end
+
+steps["open-during-data-load"] = function(_, notes)
+    Fresh(earned.Achievement)
+    if not DuringDataLoad(notes, "open-during-data-load", KrowiAF_CategoriesFrame.Update, KrowiAF_CategoriesFrame) then
+        return "error"
+    end
+    return "updated"
+end
+
+steps["current-zone-key-during-data-load"] = function(_, notes)
+    Fresh(earned.Achievement)
+    local selectedBefore = addon.Gui.SelectedTab.SelectedCategory
+    if not DuringDataLoad(notes, "current-zone-key-during-data-load", KrowiAF_OpenCurrentZone, true) then
+        return "error"
+    end
+    return addon.Gui.SelectedTab.SelectedCategory == selectedBefore and "nothing selected" or "selected " .. tostring(addon.Gui.SelectedTab.SelectedCategory and addon.Gui.SelectedTab.SelectedCategory.Name)
+end
+
+steps["counts-after-data-load"] = function(env, notes)
+    local achievement = addon.Data.Achievements[earned.Achievement]
+    if env.SetCompleted then
+        env.SetCompleted(achievement.Id, false)
+    end
+    Fresh(achievement.Id)
+    if not DuringDataLoad(notes, "counts-after-data-load", KrowiAF_CategoriesFrame.Update, KrowiAF_CategoriesFrame, true) then
+        return "error"
+    end
+    if env.SetCompleted then
+        env.SetCompleted(achievement.Id, true)
+    end
+    addon.Data.RecountAfterLoad()
+    KrowiAF_CategoriesFrame:Update()
+    local counts = {}
+    for _, category in next, addon.Tabs.Expansions.Categories do
+        counts[category] = {category.NumOfAch, category.NumOfCompAch, category.NumOfNotObtAch}
+    end
     KrowiAF_CategoriesFrame:Update(true)
     local differ = 0
     for category, before in next, counts do

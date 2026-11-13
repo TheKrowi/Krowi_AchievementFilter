@@ -24,6 +24,7 @@ All notable changes to this project will be documented in this file.
 - The TaintLess library is no longer included
 
 ### Fixed
+- Opening the achievement window in the first seconds after logging in or reloading no longer gives an error or leaves the window empty
 - Right-clicking a guild achievement or a statistic linked in chat no longer opens an empty menu or gives an error
 - The right-click menu button on achievements now shows on Mists Classic
 - The Reward preview help no longer says to click the preview icon while that icon is turned off
