@@ -1,5 +1,5 @@
 # Intent: Opening the achievement window right after a reload gives no error
-Author: Krowi (maintainer), found by accident during an in-game run on 2026-11-13. Source: in-game error. Status: accepted
+Author: Krowi (maintainer), found by accident during an in-game run on 2026-11-13. Source: in-game error. Status: done
 Caused by fae45838 (2026-01-24, 93.5; committed to `main` without a PR)
 
 ## Problem

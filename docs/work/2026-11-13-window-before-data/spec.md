@@ -1,5 +1,5 @@
 # Spec: Opening the achievement window right after a reload gives no error
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. Opening the achievement window (Y, the micro button, a KAF binding, a toast) at any moment of the data load after a login or reload raises no Lua error, on every client.
@@ -63,6 +63,12 @@ Added after the code review (2026-11-13, requirement 2): once the update in the 
 - **Permanent test (test first):** two scenarios in the `earned` suite (`Tests/Earned.lua`, run headless by `suites.earned` on the real data load and in game by `/kaftest earned`): `open-during-data-load` (the categories frame's `Update`, which its `OnShow` runs when the window opens; Recorded `error`, Target `updated`) and `current-zone-key-during-data-load` (Recorded `error`, Target `nothing selected`). Each removes the Current Zone list for the one call, as in the gap, and puts it back. Recorded is set to Target after the fix. A third, from the code review: `counts-after-data-load` (the window drawn in the gap, then `addon.Data.RecountAfterLoad`: do Expansions' counts match a full recount?), "differ in 1" headless on both clients with the recount empty, "match" with it.
 - `Check-Repo.ps1 -ChangedOnly`; headless `earned`, `special`, `navigation` on Retail and Classic.
 - In game, Retail: deploy, `/kaftest earned` (both scenarios at their Target), `Read-GameErrors.ps1` with no new row and no bumped count. Pressing Y inside the gap cannot be timed with the kit's input (above), so requirement 2's "fills itself" rests on the code reading (`Data/Data.lua:140-142`) and a manual Y by Krowi if wanted. Mists: `/kaftest earned`, if the client is free.
+
+**Results after the fix (2026-11-13):**
+- Headless, Retail and Classic each: `earned` 10 passed, `special` 27, `navigation` 11, `escape` 34, `plugins` 2 (Retail) and 1 (Classic), no failure, nothing open; `load-data.lua` 0 problems.
+- In game, Retail 12.1.5, 23:12:32: `earned` 11 passed, 0 failed, 0 skipped, no line differing from headless; BugGrabber with no new row and no bumped count.
+- Krowi's manual check on Retail, `/reload` then Y at once (no error, the window fills itself): "manual test as expected".
+- Mists: headless only (skipped in game, coordinator's call for this run).
 
 ## Decision
 2026-11-13, Krowi:
