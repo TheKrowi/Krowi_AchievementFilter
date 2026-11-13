@@ -2,6 +2,10 @@
 
 Follow-ups that are not a work item yet. When one is taken up, it gets its own work folder under `docs/work/` (`docs/sdlc-playbook.md`) and leaves this list.
 
+## From the dead Collections binding (2026-11-13, docs/work/2026-11-13-dead-collections-binding)
+
+- **The Collections Achievements tab is a parked experiment** (Krowi, 2026-11-13: an achievement window written from scratch with full control, backlog). `Gui/Collections/` (an Achievements tab in Blizzard's Collections window, from `9de10d44`, 2025-05-03) never loads: its include in `Gui/FilesModern.xml:12` is commented out. Its key binding and its Experimental setting were taken out in this work item and are in `9de10d44` if wanted back; the setting's default (`Experimental.CollectionsAchievementWindow`) and its three locale strings stay, and players who switched it on still have `true` saved. Taking it up again starts with its own work item.
+
 ## Moved from session memory (2026-11-09)
 
 - **Agent-made translations** of "Aqir Invasions" and "The Promise of Tomorrow" (12.1.5): swap for Blizzard's own names (Krowi deferred, 2026-10-14).
