@@ -8,6 +8,7 @@ Routine plan of a `fix/logic` (the kit's gate table): it does not wait for Krowi
 - `Data/Data.lua`: `data.GetCurrentZoneAchievements` returns while `addon.SpecialCategories.CurrentZone` does not exist, before the zone cache is read or set.
 - `Api/API.lua`: `KrowiAF_OpenCurrentZone` returns after loading Blizzard_AchievementUI while the list does not exist.
 - `_Packaging/Changelog.md`: a line under the next version's `### Fixed`.
+- Departure, after the code review: `Data/Data.lua` also gets `data.RecountAfterLoad`, called at the end of the load, and `Tests/Earned.lua` the scenario `counts-after-data-load` for it (spec, Design); `Tests/README.md`'s `earned` row names the three scenarios.
 
 ## Order of work
 1. Commit the scenarios with Recorded `error` (the current behaviour, headless on Retail and Classic and in game on Retail for the key): `test: reproduce 2026-11-13-window-before-data in the earned suite`.

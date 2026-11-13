@@ -66,7 +66,12 @@ earned.Scenarios = {
     -- Before the fix (headless on both clients and in game on Retail 12.1.5, 2026-11-13) both gave "error"
     {Name = "open-during-data-load", Recorded = "updated", Target = "updated"},
     -- the Open Current Zone key binding (Bindings.xml) pressed in the same seconds
-    {Name = "current-zone-key-during-data-load", Recorded = "nothing selected", Target = "nothing selected"}
+    {Name = "current-zone-key-during-data-load", Recorded = "nothing selected", Target = "nothing selected"},
+    -- the window drawn in that gap, then the end of the load (addon.Data.RecountAfterLoad): do Expansions' top-level
+    -- counts match a full recount? Headlessly 862 is completed after the gap's counts, standing for what the load still
+    -- changes (the excluded achievements, the cache); the game cannot, so there the counts only have to stay. Code review
+    -- of the fix: once the gap's update no longer raised, its counts were kept after the load ("differ in 1" headless)
+    {Name = "counts-after-data-load", Recorded = "match", Target = "match"}
 }
 
 -- "raised at <file> line <n>: <message>": an observation in the "<file>:<n>: " form would read as a failing scenario to
@@ -366,6 +371,34 @@ steps["current-zone-key-during-data-load"] = function(_, notes)
         return "error"
     end
     return addon.Gui.SelectedTab.SelectedCategory == selectedBefore and "nothing selected" or "selected " .. tostring(addon.Gui.SelectedTab.SelectedCategory and addon.Gui.SelectedTab.SelectedCategory.Name)
+end
+
+steps["counts-after-data-load"] = function(env, notes)
+    local achievement = addon.Data.Achievements[earned.Achievement]
+    if env.SetCompleted then
+        env.SetCompleted(achievement.Id, false)
+    end
+    Fresh(achievement.Id)
+    if not DuringDataLoad(notes, "counts-after-data-load", KrowiAF_CategoriesFrame.Update, KrowiAF_CategoriesFrame, true) then
+        return "error"
+    end
+    if env.SetCompleted then
+        env.SetCompleted(achievement.Id, true)
+    end
+    addon.Data.RecountAfterLoad()
+    KrowiAF_CategoriesFrame:Update()
+    local counts = {}
+    for _, category in next, addon.Tabs.Expansions.Categories do
+        counts[category] = {category.NumOfAch, category.NumOfCompAch, category.NumOfNotObtAch}
+    end
+    KrowiAF_CategoriesFrame:Update(true)
+    local differ = 0
+    for category, before in next, counts do
+        if before[1] ~= category.NumOfAch or before[2] ~= category.NumOfCompAch or before[3] ~= category.NumOfNotObtAch then
+            differ = differ + 1
+        end
+    end
+    return differ == 0 and "match" or ("differ in %d"):format(differ)
 end
 
 -- Result: Name, Status (PASS = behaves as Recorded, FAIL = differs, SKIP = could not run), TargetMet, Line, GameOnly
