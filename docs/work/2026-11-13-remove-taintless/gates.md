@@ -9,3 +9,4 @@ Class: library
 | 2026-11-13 | design | The 70.0 changelog entry and the options-revamp mockup's skip list name TaintLess | Leave both: released history and a closed work folder's record | - | auto |
 | 2026-11-13 | design | No new scenario for a removal | The existing suites are the regression check; no offline check can show a taint that does not happen | - | auto |
 | 2026-11-13 | design | The unused `UIDropDownMenuTemplate` frame in `Gui/WorldMapButton/WorldMapButton.xml:55` | Out of scope, left as is | - | auto |
+| 2026-11-13 | plan | The plan (the `Libs/Files.xml` line, `Libs/TaintLess`, the skip-list entry, the architecture mention, a changelog line; offline checks, then the in-game suites on Retail and Mists and the manual honor queue check) | Approve | "approve" | took |

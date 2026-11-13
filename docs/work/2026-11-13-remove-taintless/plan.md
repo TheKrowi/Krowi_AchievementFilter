@@ -1,5 +1,5 @@
 # Plan: Remove the TaintLess library
-Spec: [spec.md](spec.md). Status: draft
+Spec: [spec.md](spec.md). Status: accepted
 
 ## Files that change
 - `Libs/Files.xml`: drop line 2 (`<Include file="TaintLess\TaintLess.xml" />`) and the blank line 3 after it, so the file opens with the `Krowi_Util` include.
