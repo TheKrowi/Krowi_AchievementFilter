@@ -1,5 +1,5 @@
 # Spec: remove the dead Collections key binding and option
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. `Bindings.xml` has no `KrowiAF_OPEN_TAB_Collections_Achievements` binding; the other nine bindings are unchanged.

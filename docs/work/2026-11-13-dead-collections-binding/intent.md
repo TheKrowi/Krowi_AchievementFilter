@@ -1,5 +1,5 @@
 # Intent: remove the dead Collections key binding and option
-Author: Krowi (maintainer). Source: idea; the from-scratch analysis (2026-11-13), then Krowi: "plan was to write an achievement window from scratch with full control, it never happened without AI, backlog, keybind should be removed for now." (2026-11-13); at the design gate: "delete keybind, hide option" (2026-11-13). Status: accepted
+Author: Krowi (maintainer). Source: idea; the from-scratch analysis (2026-11-13), then Krowi: "plan was to write an achievement window from scratch with full control, it never happened without AI, backlog, keybind should be removed for now." (2026-11-13); at the design gate: "delete keybind, hide option" (2026-11-13). Status: done
 
 ## Problem
 Since 100.1 two leftovers of an experiment that never shipped reach players:
