@@ -204,9 +204,6 @@ addon.Options.Window.Map = {
             { Header = L["Filters profile"], Kind = "Profiles", Database = "Filters" },
         } },
         { Id = "advanced", Name = L["Advanced"], Card = L["Card Advanced"], CardIcon = "Interface\\Icons\\INV_Misc_Wrench_01", Groups = {
-            { Header = L["Experimental"], Entries = {
-                { Group = "General.args.Experimental.args.Experimental" },
-            } },
             { Header = L["Debug"], Entries = {
                 { Path = "General.args.Debug.args.Debug.args.EnableDebugInfo" },
                 { Path = "General.args.Debug.args.Debug.args.ScreenshotMode" },

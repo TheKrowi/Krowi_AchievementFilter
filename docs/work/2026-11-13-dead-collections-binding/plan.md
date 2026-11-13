@@ -21,6 +21,9 @@ Approved by Krowi on 2026-11-13 without the new `advanced-collections-hidden` sc
 6. **In game, once the game is free** (Retail, then Mists, one client at a time): `Deploy.ps1 -WhatIf`, deploy, `/reload`; the spec's Verification steps (Key Bindings rows, `/kaf` > Advanced, `Run-GameTests.ps1 options`, `Read-GameTests.ps1`, `Read-GameErrors.ps1`). Krowi's look at Advanced on Retail is the `look` gate, before the full runs.
 7. PR: `Get-ChangeClass.ps1` (expected fix/gui), work files to done, push, PR against `main` with the `auto` rows under "Decisions taken without asking".
 
+## Departures in the build
+- Step 3 met the counts (414, 310) but not the hashes the scratch run predicted (`dd9543c9`, `5ece58c7`): the page's three `OrderPP()` calls went too, and the Tabs key binding options carry the order counter in their keys (`Binding492Key1` became `Binding489Key1`, eight keys on Retail). A diff of the sorted fingerprint parts before and after showed only that renumbering and the removed toggle, so Recorded and Target are the real values, `88087335` (Retail) and `83fced41` (Classic), with the comment saying why.
+
 ## Risks
 - **An option table reader breaks on the missing page.** Only the map (`Map.lua:208`) and `General.lua:622` name it (grep); `every-option-mapped-once`'s `missing-paths` would catch a map path left behind.
 - **A Defaults button errors on the missing option.** `defaults-restore-acedb` covers every section's reset; the default stays, so AceDB and the window's section reset have nothing new to miss.
