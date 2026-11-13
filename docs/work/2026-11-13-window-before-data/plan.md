@@ -1,5 +1,5 @@
 # Plan: Opening the achievement window right after a reload gives no error
-Spec: [spec.md](spec.md). Status: draft
+Spec: [spec.md](spec.md). Status: accepted
 
 Routine plan of a `fix/logic` (the kit's gate table): it does not wait for Krowi.
 
