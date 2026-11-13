@@ -1,5 +1,5 @@
 # Intent: The tab factory installs its hooks once, not once per tab
-Author: Krowi (maintainer), from a code reading in the 2026-11-13 from-scratch analysis. Source: idea (code reading). Status: accepted
+Author: Krowi (maintainer), from a code reading in the 2026-11-13 from-scratch analysis. Source: idea (code reading). Status: done
 
 ## Problem
 When Blizzard's achievement window loads, KAF adds its tabs (Achievements, Expansions, Events, PvP, Specials) through `AchievementFrameTabButtonFactory:GetNew`. Each call is meant to hook Blizzard's tab functions only the first time, but the guard is true for most calls, so the hooks go in several times. Every tab change then runs KAF's tab update (window size, tab label offsets, the selected tab) and, on the Statistics tab, the view refresh several times instead of once. Nothing looks different to the player; it is wasted work on every tab click, and a skin that hooks the factory's `AchievementFrame_UpdateTabs` (KAF's GW2_UI plugin) runs as often. On Wrath (38002) the hook sits on the global `PanelTemplates_SetTab`, so the repeat happens on every tab click anywhere in the interface.

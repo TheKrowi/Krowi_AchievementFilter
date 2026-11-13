@@ -1,5 +1,5 @@
 # Plan: The tab factory installs its hooks once, not once per tab
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 ## Context
 `AchievementFrameTabButtonFactory:GetNew` guards its hook installation with `#ourTabs == 0`, but `ourTabs` is keyed from 4 (3 on Wrath), so with KAF's five tabs every hook goes in four times and one tab change runs the factory's `AchievementFrame_UpdateTabs` four times (spec, Root cause). Krowi's decision (2026-11-13): option 1, a file-local flag. Branch `fix/2026-11-13-tab-hooks-once-b` in the agent worktree `.claude/worktrees/agent-a76d5e1157c553018` (the kit worktree `fix-2026-11-13-tab-hooks-once` was not writable for this session); intent and spec committed as 0c93443f.
@@ -28,7 +28,12 @@ Spec: [spec.md](spec.md). Status: accepted
 3. **Fix.** The flag in the factory file, nothing else. Headless with `Recorded` still 4: the scenario must FAIL with `got=1` on both clients, which proves it sees the fix. Then `Recorded` = 1 in the same commit as the fix (`fix(gui): the tab factory installs its hooks once`): PASS, target met.
 4. No changelog line (Krowi); `plan.md` updated where the build departed from it.
 5. **Feedback loop:** `Check-Repo.ps1 -ChangedOnly`; headless `navigation`, `earned`, `escape`, `plugins` on both clients; `krowi:taint-reviewer` on the diff; `/code-review`; fix what they find.
+   - **Departures, from the code review (2026-11-13, `/code-review` medium, 7 findings):**
+     - Fixed: with the hooks once, the Statistics hook's `AchievementFrame_ToggleView` fallback (Mists has no `AchievementFrame_RefreshView`) flips the guild look on every Statistics click; four flips had cancelled out. The Classic model now has Mists' `AchievementFrame_ToggleView` and tab click (it had Retail's `RefreshView`), and a second scenario, `statistics-keeps-personal-look` (Measure `look`, Recorded and Target `personal`), passed on `main`'s factory and failed on Classic with the flag alone (`got=guild`, commit 20ebb559); then the fallback went (66d79c6e) and it passes. The factory comment no longer says the keys start at 4 (3 on Wrath).
+     - Not changed: installing the hooks from `Gui.lua` (option 3, Krowi chose the flag); a skin hooking the factory's method while the counting wrapper is in place (GW2_UI hooks it in `SkinTabs` at load, not during a tab click).
+     - `krowi:taint-reviewer` on the flag and the scenario: no hazard. The fallback's removal only drops a Blizzard call from addon code.
 6. **In-game after-run:** deploy, `Run-GameTests.ps1 navigation` on Retail and Mists, `Read-GameTests.ps1` (`got=1`, no FAIL), `Read-GameErrors.ps1` (no new row, no bumped count).
+   - **Done 2026-11-13** (build 66d79c6e): Retail 12.1.5 `got=1` and `personal`, 10 passed, 0 failed, 1 skipped (the hidden Blizzard Achievements tab, as before); Mists 5.5.4 `got=1` and `personal`, 11 passed, 0 failed, 0 skipped, no difference from headless. No addon error in BugGrabber on either.
 7. **Deploy stage:** `Get-ChangeClass.ps1`, work files `Status: done`, commit by explicit path, push, PR against `main` with the "Decisions taken without asking" section.
 
 ## Risks

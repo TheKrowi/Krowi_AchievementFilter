@@ -1,5 +1,5 @@
 # Spec: The tab factory installs its hooks once, not once per tab
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. However many tabs `AchievementFrameTabButtonFactory:GetNew` creates (KAF's five, plus any a plugin adds), each of its hooks (`AchievementFrame_DisplayComparison`; `AchievementFrame_UpdateTabs` and `AchievementFrameBaseTab_OnClick`, or `PanelTemplates_SetTab` on Wrath) is installed exactly once.
@@ -24,10 +24,12 @@ So with KAF's five tabs every hook is installed four times (the fifth `GetNew` s
 
 Blizzard's functions: `wow-ui-source\live\Interface\AddOns\Blizzard_AchievementUI\Mainline\Blizzard_AchievementUI.lua:364` (`AchievementFrame_UpdateTabs`), `:441` (`AchievementFrameBaseTab_OnClick`, which calls it first), `:245` (`AchievementFrame_DisplayComparison`); for Mists `wow-ui-source\classic\Interface\AddOns\Blizzard_AchievementUI\Cata\Blizzard_AchievementUI.lua:113`, `:166`, `:50`.
 
-Effects today, none visible: the update body only sets sizes, anchors and `gui.SelectedTab`, so four runs end in the same state as one; the Statistics tab's `RefreshAchievementView` runs four times; the GW2_UI plugin's hook on the factory's method (`Plugins/GW2_UI/GW2_UI.lua:111`) runs four times; on Wrath the `PanelTemplates_SetTab` hook runs four times on every tab click in the whole interface.
+Effects today, none visible: the update body only sets sizes, anchors and `gui.SelectedTab`, so four runs end in the same state as one; the Statistics tab's `RefreshAchievementView` runs four times (on Mists, which has no `AchievementFrame_RefreshView`, it falls back to `AchievementFrame_ToggleView`, which flips the guild and personal look, Cata `:126`: four flips cancel out, one would not; found by the code review, see Design); the GW2_UI plugin's hook on the factory's method (`Plugins/GW2_UI/GW2_UI.lua:111`) runs four times; on Wrath the `PanelTemplates_SetTab` hook runs four times on every tab click in the whole interface.
 
 ## Design
 A file-local flag beside `ourTabs`: `local hooksInstalled`, the guard becomes `if not hooksInstalled then hooksInstalled = true ...`. The block's content and position stay as they are. One line changed, one added.
+
+Added after the code review (2026-11-13, requirement 4): `RefreshAchievementView` drops its `AchievementFrame_ToggleView` fallback. Run once, it would flip Mists into the guild look on every Statistics click; dropping it keeps the end state the four flips gave, so Mists' Statistics tab keeps the look it has, as before. Retail still calls `AchievementFrame_RefreshView`.
 
 ## Options considered
 1. **(Recommended) A file-local `hooksInstalled` flag.** Says what it means, does not depend on table length or on the order of lines in `GetNew`, and stays right if `GetNew` ever runs again later (a plugin tab after load). Player sees: nothing different, the tab update runs once per click.
