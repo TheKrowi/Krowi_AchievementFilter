@@ -8,3 +8,4 @@ Class: fix/gui
 | 2026-11-13 | plan | The plan (a `tab-update-runs-once` scenario in the navigation suite, Recorded 4 / Target 1, the model with KAF's five tabs, the flag; in-game navigation on Retail and Mists before and after) | Approve | "approve" | took |
 | 2026-11-13 | plan | A changelog line under Fixed ("Switching tabs in the achievement window no longer repeats its work four times.") or none | The line | "no changelog" | other |
 | 2026-11-13 | design | /code-review (medium), seven findings | Fix the Mists regression the flag alone causes (drop the `AchievementFrame_ToggleView` fallback, which four installs had cancelled out; a Mists model and a `statistics-keeps-personal-look` scenario) and the comment; not the install from `Gui.lua` (option 3, declined at the design gate) or the skin-hook race (GW2_UI hooks at load) | - | auto |
+| 2026-11-13 | merge | PR #421 | Merge | "Merge 421" | took |
