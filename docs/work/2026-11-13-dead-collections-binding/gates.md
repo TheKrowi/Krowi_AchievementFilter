@@ -13,3 +13,4 @@ Class: fix/gui
 | 2026-11-13 | design | No reset of the `petJournalTab` CVar for players the binding left on tab 7: an addon setting a CVar runs every `CVAR_UPDATE` handler tainted; one click on a tab fixes it | No reset | - | auto |
 | 2026-11-13 | plan | Approve plan.md: delete the binding, take the Experimental page and heading out, keep the default and strings, test first through a new `advanced-collections-hidden` scenario in the options suite, then the fingerprint moved by one option | Approve | "why a new options scenario? overkill?", then, offered the plan without the new scenario (the fingerprint scenario records the removal): "approved" | amended |
 | 2026-11-13 | look | Retail: Key Bindings lists the addon's nine named rows and no raw-named one; `/kaf` > Advanced shows only Debug (https://claude.ai/artifact/CpVqD7xWSamy52yudif6u9) | Approve | "collections bindings looks good." | took |
+| 2026-11-13 | merge | PR #424 | Merge | "Merge 424" | took |
