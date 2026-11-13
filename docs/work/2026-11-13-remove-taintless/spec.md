@@ -1,5 +1,5 @@
 # Spec: Remove the TaintLess library
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. `Libs/Files.xml` no longer includes `TaintLess\TaintLess.xml`, and `Libs/TaintLess/` is gone from the repo.
@@ -59,6 +59,16 @@ Left as they are: the 70.0 changelog entry (released history) and `docs/work/202
   - Retail: `Run-GameTests.ps1 escape, menu, options, tracking`; `Read-GameErrors.ps1` shows no new KAF row.
   - Mists: the same suites, then a manual check: open a KAF right-click menu (an achievement's right-click menu), close it, open the PvP window's honor queue, pick a type in its type drop-down and press the queue button. Pass: the queue starts, no "AddOn has been blocked" message, `Read-GameErrors.ps1` shows no new row (BugGrabber logs blocked actions as `ADDON_ACTION_BLOCKED`).
   - If the Mists check fails: fall back to option 2, keep TaintLess loaded on Classic only (Krowi was told of this fallback at the design gate).
+
+### Results, 2026-11-13
+- Offline: `Check-Repo -ChangedOnly` 0 errors; headless options 28, menu 8, escape 34, tracking 9 passed on Retail and Classic, 0 failed; data load 0 problems.
+- Retail 12.1.5, the branch's build: escape 34/0/0, menu 8/0/0, options 37/0/1, tracking 17/0/0 (passed/failed/skipped); no KAF error in BugGrabber.
+- Mists 5.5.4, the branch's build: escape 33/0/1, menu 8/0/0, options 37/0/1, tracking 16/0/0; no KAF error from the suites.
+- Mists, the manual check, on Krowi (Mirage Raceway), with ElvUI, GW2_UI and InstanceAchievementTracker (which carry their own TaintLess) disabled there:
+  1. Branch build: the KAF Filter menu, then the honor queue type drop-down (Bonus Battlegrounds), Random Battlegrounds, Join Battle: **blocked**, `[ADDON_ACTION_FORBIDDEN] AddOn 'Krowi_AchievementFilter' tried to call the protected function 'JoinBattlefield()'` from `Blizzard_PVPUI/Mists/Blizzard_PVPUI.lua:379` (`HonorQueueFrame_Queue`). Screenshot `H:\World of Warcraft\_classic_\Screenshots\WoWScrnShot_111326_194351.jpg`.
+  2. Control, branch build after a `/reload`, no KAF menu opened, same clicks: not blocked; the game answered "You must select at least one role" (the call went through; no role was picked, so nothing was queued). `WoWScrnShot_111326_194453.jpg` and the capture after the second press.
+  3. Control, `main`'s build (TaintLess restored in the working tree only, then deployed; `UIDD_REFRESH_OVERREAD_PATCH_VERSION` 5 and `UIDROPDOWNMENU_OPEN_PATCH_VERSION` 3 confirmed loaded), after a `/reload`, the KAF Filter menu, same clicks: **blocked the same way** (BugGrabber's counter went to x2). `WoWScrnShot_111326_194833.jpg`.
+- So the blocked honor queue after a KAF menu on Mists is an existing bug of `main` that TaintLess does not prevent; the removal neither causes nor worsens it. Requirement 5's Mists clause fails equally with and without TaintLess. The fallback (option 2) would not help, so it was not built. The cause lies elsewhere in the old drop-down's shared state, for a work item of its own (in Krowi_Menu).
 
 ## Decision
 Option 1, remove TaintLess entirely, on every client. Krowi, 2026-11-13: "remove".

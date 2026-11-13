@@ -1,5 +1,5 @@
 # Intent: Remove the TaintLess library
-Author: Krowi, maintainer. Source: idea. Status: accepted
+Author: Krowi, maintainer. Source: idea. Status: done
 
 ## Problem
 KAF ships the third-party library TaintLess (townlong-yak, version 24-02-20), loaded first from `Libs/Files.xml`. It was added in release 70.0 (2024-04-20) to cut down "Interface action failed because of an AddOn" and "AddOn has been blocked" messages. In Krowi's words: it "was added in an attempt to remove taint but felt like it never did something, remove it." It is code KAF carries, loads on every client and cannot maintain (all rights reserved, unmodified copies only), for no benefit anyone has seen.
