@@ -1,5 +1,5 @@
 # Spec: Opening the achievement window right after a reload gives no error
-Intent: [intent.md](intent.md). Status: draft
+Intent: [intent.md](intent.md). Status: accepted
 
 ## Requirements
 1. Opening the achievement window (Y, the micro button, a KAF binding, a toast) at any moment of the data load after a login or reload raises no Lua error, on every client.
@@ -63,4 +63,6 @@ Requirement 2 needs no new code: the categories frame then finishes its update w
 - In game, Retail: deploy, `/kaftest earned` (both scenarios at their Target), `Read-GameErrors.ps1` with no new row and no bumped count. Pressing Y inside the gap cannot be timed with the kit's input (above), so requirement 2's "fills itself" rests on the code reading (`Data/Data.lua:140-142`) and a manual Y by Krowi if wanted. Mists: `/kaftest earned`, if the client is free.
 
 ## Decision
-<Filled in at the gate.>
+2026-11-13, Krowi:
+- Intent: option 1, show what is ready with no error: "reload-then-Y work recommended 1".
+- Scope A (Current Zone only) and design 1 (the guard inside the function and in the key): "Reload-then-Y A with 1, B noted on the backlog". Scope B is an entry in `docs/backlog.md`.

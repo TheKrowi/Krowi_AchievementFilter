@@ -2,6 +2,15 @@
 
 Follow-ups that are not a work item yet. When one is taken up, it gets its own work folder under `docs/work/` (`docs/sdlc-playbook.md`) and leaves this list.
 
+## From the reload-then-Y fix (2026-11-13, docs/work/2026-11-13-window-before-data)
+
+- **Other special categories read before the data load made them** (scope B, noted by Krowi, 2026-11-13). The fix guards only Current Zone. Three more player actions read a special category list that exists only once `addon.SpecialCategories:Load` runs at the end of the login data load (`Data/Data.lua` `PostLoadOnPlayerLogin`), so each would raise "attempt to get length of field ... (a nil value)" when used in the first seconds after a login or reload. None is in a log yet.
+  - the world map button's click: Selected Zone (`Gui/WorldMapButton/WorldMapButtonMixin.lua:25-33`);
+  - the search's "show all results": Search Results (`Gui/WindowFrames/Search/PreviewContainer/PreviewContainerMixin.lua:6-14`);
+  - watch, exclude and track from the right-click menu: Watch List, Excluded, Tracking (`Data/SpecialCategoryAchievements.lua:152-237`).
+
+  Creating every list empty at load would cover all three, but `Options/Layout.lua:67`, `:178` and `Data/SavedData/AchievementData.lua:290` read a missing list as "the window is not loaded yet" (spec, option 3).
+
 ## Moved from session memory (2026-11-09)
 
 - **Agent-made translations** of "Aqir Invasions" and "The Promise of Tomorrow" (12.1.5): swap for Blizzard's own names (Krowi deferred, 2026-10-14).
