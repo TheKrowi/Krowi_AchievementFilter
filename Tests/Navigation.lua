@@ -167,6 +167,74 @@ local function RunHistoryScenario(env, scenario, setupProblem)
     }
 end
 
+-- How often one click on a Blizzard tab runs the tab factory's AchievementFrame_UpdateTabs (docs/work/2026-11-13-tab-hooks-once).
+-- A scenario selects its tabs from a closed window, then counts the runs while it selects Click. The factory hooks
+-- Blizzard's AchievementFrame_UpdateTabs with a function that calls its own method of that name, so the count is the number
+-- of those hooks installed. AchievementFrameBaseTab_OnClick calls AchievementFrame_UpdateTabs once
+-- (Blizzard_AchievementUI.lua, Mainline :441, Cata :166), and Statistics exists on every client for every character. The
+-- factory guarded the install with #ourTabs == 0 on a table keyed from 4, which stays 0 until a rehash, so with the
+-- addon's five tabs the hooks went in four times (measured headlessly); the guard is now a flag
+navigation.HookScenarios = {
+    {Name = "tab-update-runs-once", Tabs = {"Addon"}, Click = "Statistics", Recorded = 4, Target = 1}
+}
+
+-- The method is replaced on the factory, the addon's own table, and whatever was there (a skin's hook on it included) is
+-- put back before the count is read or an error raised
+local function CountTabUpdates(env, tabKey)
+    local factory = addon.Gui.AchievementFrameTabButtonFactory
+    local original = factory.AchievementFrame_UpdateTabs
+    local runs = 0
+    factory.AchievementFrame_UpdateTabs = function(...)
+        runs = runs + 1
+        return original(...)
+    end
+    local ok, selected, reason = pcall(env.SelectTab, tabKey)
+    factory.AchievementFrame_UpdateTabs = original
+    if not ok then
+        error(selected, 0)
+    end
+    return selected, reason, runs
+end
+
+local function RunHookScenario(env, scenario, setupProblem)
+    local blocked = setupProblem
+    local got
+    if not blocked then
+        env.Reset()
+        for _, tabKey in ipairs(scenario.Tabs) do
+            if not blocked then
+                local selected, reason = env.SelectTab(tabKey)
+                if not selected then
+                    blocked = "cannot select " .. tabKey .. (reason and (": " .. reason) or "")
+                end
+            end
+        end
+        if not blocked then
+            local selected, reason, runs = CountTabUpdates(env, scenario.Click)
+            if selected then
+                got = runs
+            else
+                blocked = "cannot select " .. scenario.Click .. (reason and (": " .. reason) or "")
+            end
+        end
+    end
+
+    local status, targetMet, tail
+    if blocked then
+        status, tail = "SKIP", blocked
+    else
+        status = got == scenario.Recorded and "PASS" or "FAIL"
+        targetMet = got == scenario.Target
+        tail = ("got=%d target=%d %s"):format(got, scenario.Target, targetMet and "met" or "open")
+    end
+    return {
+        Name = scenario.Name,
+        Status = status,
+        TargetMet = targetMet,
+        Line = ("navigation/%s: %s tabs=[%s] click=%s recorded=%d %s"):format(scenario.Name, status, table.concat(scenario.Tabs, ","), scenario.Click, scenario.Recorded, tail)
+    }
+end
+
 function navigation.Run(env)
     local results = {}
     local isRetail = env.IsRetail()
@@ -177,6 +245,9 @@ function navigation.Run(env)
     end
     for _, scenario in ipairs(navigation.HistoryScenarios) do
         tinsert(results, RunHistoryScenario(env, scenario, setupProblem))
+    end
+    for _, scenario in ipairs(navigation.HookScenarios) do
+        tinsert(results, RunHookScenario(env, scenario, setupProblem))
     end
     if ready then
         env.Teardown()

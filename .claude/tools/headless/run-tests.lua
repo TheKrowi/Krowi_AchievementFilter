@@ -14,7 +14,8 @@
 --         layout options trigger; the option setters themselves live in Options/Layout.lua and only run in game),
 --         navigation (Gui/Gui.lua's tab sub frames, the search box and Gui/BrowsingHistory/BrowsingHistory.lua: which
 --         navigation buttons each tab of the achievement window shows, issue #325, and whether the back arrow's
---         tooltip can list an achievement the game does not know), worldmap (Gui/WorldMapButton/ with
+--         tooltip can list an achievement the game does not know; Gui/WindowFrames/AchievementFrameTabButtonFactory/:
+--         how often one Blizzard tab click runs the tab factory's update hook), worldmap (Gui/WorldMapButton/ with
 --         the Krowi_WorldMapButtons library: whether the button stays in front of the Classic map when it resizes; on
 --         Retail the strata game rule the map reads when it shows),
 --         obtainable (Objects/Achievement.lua's SetTemporaryObtainable and Data/TemporaryObtainable.lua: the record an
@@ -668,7 +669,12 @@ suites.navigation = function(c)
     local profile = { TrackAchievementBrowserHistory = true, ResetViewOnOpen = false, ToggleWindow = true,
         Window = { AchievementFrameHeightOffset = 0, CategoriesFrameWidthOffset = 0, AchievementsFrameWidthOffset = 0 } }
     addon.Options = { db = { profile = profile } }
-    addon.Tabs, addon.TabsOrder = { Achievements = { Name = "Achievements", Text = "Achievements", Categories = { {} }, Filters = {} } }, { "Achievements" }
+    -- The addon's five tabs, as the game has them: the tab factory's hook guard depended on how many it makes
+    -- (docs/work/2026-11-13-tab-hooks-once)
+    addon.Tabs, addon.TabsOrder = {}, { "Achievements", "Expansions", "Events", "PvP", "Specials" }
+    for _, name in ipairs(addon.TabsOrder) do
+        addon.Tabs[name] = { Name = name, Text = name, Categories = { {} }, Filters = {} }
+    end
     for _, rel in ipairs({ "Globals.lua", "Api/API.lua", "BrowsingHistory.lua", "Gui/Gui.lua",
         "Gui/WindowFrames/AchievementFrameTabButtonFactory/AchievementFrameTabButtonMixin.lua",
         "Gui/WindowFrames/AchievementFrameTabButtonFactory/AchievementFrameTabButtonFactory.lua",
