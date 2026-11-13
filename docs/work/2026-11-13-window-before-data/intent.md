@@ -1,5 +1,6 @@
 # Intent: Opening the achievement window right after a reload gives no error
-Author: Krowi (maintainer), found by accident during an in-game run on 2026-11-13. Source: in-game error. Status: draft
+Author: Krowi (maintainer), found by accident during an in-game run on 2026-11-13. Source: in-game error. Status: accepted
+Caused by fae45838 (2026-01-24, 93.5; committed to `main` without a PR)
 
 ## Problem
 On Retail (12.1.5, `main`), pressing Y (Blizzard's Toggle Achievements binding) within about two seconds of a `/reload` opens the achievement window empty, with the event reminder buttons beside it, and BugGrabber records `Data/Data.lua:186: attempt to get length of field 'CurrentZone' (a nil value)` (x2 in session 643, 20:17:06). Pressing Y a few seconds later works normally. The same happens after a login, since the data loads after every login and reload. The player sees a Lua error and a broken window; whether the window fills itself in once the data is ready is not known yet. Mists (5.5.4) runs the same files; its BugGrabber log has no such error, so whether it happens there is not known yet.
