@@ -245,9 +245,9 @@ options.Scenarios = {
         -- docs/work/2026-11-12-event-reminders). Its look gate renamed its rows and moved Side Buttons Beside under
         -- Reminders (abdb0fd0 / 9fcc188e before)
         Recorded = "options=415 hash=34c0493f",
-        Target = "options=415 hash=34c0493f",
+        Target = "options=414 hash=dd9543c9",
         RecordedClassic = "options=311 hash=28b151fd",
-        TargetClassic = "options=311 hash=28b151fd"},
+        TargetClassic = "options=310 hash=5ece58c7"},
     {Name = "defaults-restore-acedb",
         Observe = function()
             local model = Model()
