@@ -10,7 +10,7 @@ KrowiAF.EventData.WarlordsOfDaenor = {
             467, -- WoW's 7th Anniversary (2011)
             484, -- WoW's 8th Anniversary (2012)
             509, -- WoW's 9th Anniversary (2013)
-            514, -- WoW's 10th Anniversary (2015)
+            514, -- WoW's 10th Anniversary (2014)
             566, -- WoW's 11th Anniversary (2015)
             589, -- WoW's 12th Anniversary (2016)
             590, -- WoW's Anniversary

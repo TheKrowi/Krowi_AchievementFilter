@@ -38,17 +38,20 @@ if (-not (Select-String -LiteralPath $eventFile -Pattern "^\s*\d+,\s*--\s*$escap
     $missing += "its calendar holiday id in the WoW's Anniversary event row (DataAddons/Retail/06_WarlordsOfDaenor/EventData.lua, commented '-- $name ($year)')"
 }
 $achievementFiles = Get-ChildItem -LiteralPath (Join-Path $repo 'DataAddons\Retail') -Recurse -Filter 'AchievementData.lua'
-if (-not @($achievementFiles | Select-String -Pattern "Ach\(\d+\).*--\s*$escaped\s*$" -List).Count) {
+$achievementIds = @($achievementFiles | Select-String -Pattern "Ach\((\d+)\).*--\s*$escaped\s*$" | ForEach-Object { $_.Matches[0].Groups[1].Value })
+if (-not $achievementIds.Count) {
     $missing += "its achievement in a Retail AchievementData.lua (add-achievement-data)"
 }
+# The category must list the same achievement, not only a line with its name
 $categoryFile = Join-Path $repo 'DataAddons\Retail\CategoryData_Events.lua'
-if (-not (Select-String -LiteralPath $categoryFile -Pattern "^\s*\d+,\s*--\s*$escaped\s*$" -Quiet)) {
-    $missing += "its achievement in Events > WoW's Anniversary (DataAddons/Retail/CategoryData_Events.lua)"
+$categoryIds = @(Select-String -LiteralPath $categoryFile -Pattern "^\s*(\d+),\s*--\s*$escaped\s*$" | ForEach-Object { $_.Matches[0].Groups[1].Value })
+if (-not ($categoryIds | Where-Object { $_ -in $achievementIds })) {
+    $missing += "its achievement$(if ($achievementIds.Count) { " ($($achievementIds -join ', '))" }) in Events > WoW's Anniversary (DataAddons/Retail/CategoryData_Events.lua)"
 }
 
 if ($missing.Count -eq 0) {
     "$name ($year) is in the data"
     exit 0
 }
-"$name ($year) is not in the data yet; missing: $($missing -join '; '). Find them on the PTR: `$env:KAF_RETAIL_PRODUCT = 'wowt'` (or 'wowxptr'), then .claude\skills\add-achievement-data\_lookup_holidays.ps1 -Terms '$number$suffix Anniversary' for the holiday id and window, and Find-NewAchievements.ps1 for the achievement"
+"$name ($year) is not in the data yet; missing: $($missing -join '; '). Find them on the PTR: `$env:KAF_RETAIL_PRODUCT = 'wowt'` (or 'wowxptr'), then .claude\skills\add-achievement-data\_lookup_holidays.ps1 -Terms '$number$suffix Anniversary' for the holiday id and window, and .claude\skills\add-achievement-data\Find-NewAchievements.ps1 for the achievement"
 exit 1
