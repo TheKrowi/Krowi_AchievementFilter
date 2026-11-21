@@ -7,6 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["WoW's Anniversary"] = "월드 오브 워크래프트의 생일"
 L["Upcoming Holidays"] = "다가오는 축제"
 L["Upcoming Holidays Desc"] = "앞으로 며칠 안에 시작하는 축제도 알려 줍니다."
 L["Compact Reminders"] = "간소화된 알림"

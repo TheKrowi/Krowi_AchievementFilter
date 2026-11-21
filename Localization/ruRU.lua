@@ -1216,7 +1216,6 @@ L["Worldsoul Memory"] = "Воспоминание души мира"
 L["WoW Remix: Mists of Pandaria"] = true
 L["Wowhead"] = true
 L["Wowhead link"] = "Wowhead ссылка"
-L["WoW's 10th Anniversary"] = "10я Годовщина WoW"
 L["WoW's 18th Anniversary"] = "18я Годовщина WoW"
 L["WoW's 19th Anniversary"] = "19я Годовщина WoW"
 L["WoW's 20th Anniversary"] = "20-я годовщина WoW"

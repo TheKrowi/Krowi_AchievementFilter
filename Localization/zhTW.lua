@@ -1292,7 +1292,6 @@ L["Worldsoul Memory"] = "世界之魂的回憶"
 L["WoW Remix: Mists of Pandaria"] = "幻境新生：潘達利亞之謎"
 L["Wowhead"] = true
 L["Wowhead link"] = "Wowhead連結"
-L["WoW's 10th Anniversary"] = "魔獸世界十週年"
 L["WoW's 18th Anniversary"] = "魔獸世界十八週年"
 L["WoW's 19th Anniversary"] = "魔獸世界十九週年"
 L["WoW's 20th Anniversary"] = "魔獸世界二十週年"

@@ -245,9 +245,11 @@ options.Scenarios = {
         -- docs/work/2026-11-12-event-reminders). Its look gate renamed its rows and moved Side Buttons Beside under
         -- Reminders (abdb0fd0 / 9fcc188e before). The dead Experimental page and its one toggle, Collections Achievement
         -- Window, taken out, which also moved the key binding keys' numbers by three (415 / 311 before, 34c0493f / 28b151fd;
-        -- docs/work/2026-11-13-dead-collections-binding)
-        Recorded = "options=414 hash=88087335",
-        Target = "options=414 hash=88087335",
+        -- docs/work/2026-11-13-dead-collections-binding). The WoW's 10th Anniversary reminder toggle (Other, id 514) became
+        -- WoW's Anniversary under Holidays (id 467, the first of every anniversary's calendar ids; 88087335 before;
+        -- docs/work/2026-11-21-wows-anniversary-event)
+        Recorded = "options=414 hash=723de62c",
+        Target = "options=414 hash=723de62c",
         RecordedClassic = "options=310 hash=83fced41",
         TargetClassic = "options=310 hash=83fced41"},
     {Name = "defaults-restore-acedb",

@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - Event reminders now turn off fully with their Enable setting after a reload: no pop ups, chat messages or side buttons, and nothing of them runs in the background
 - Additional esES, esMX, itIT, koKR, ptBR and zhTW localization for Pop Out, Reward preview and the right-click menu
 - Additional esES, esMX, itIT, koKR and ptBR localization for Event reminders
+- WoW's Anniversary in Event reminders: a reminder and side button every year while the anniversary is on, listed under Holidays in place of the old WoW's 10th Anniversary entry
 
 ### Changed
 - The Reward preview settings have clearer names, and shorter descriptions that say plainly what they do
