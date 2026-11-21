@@ -214,6 +214,6 @@ No script types a build. The kit's `Get-WowBuilds.ps1` picks the newest `wow` an
 & ".claude\skills\add-achievement-data\_lookup_mount_id.ps1" -Names "Kor'kron War Wolf"
 & ".claude\skills\add-achievement-data\_lookup_pet_speciesid.ps1" -Names "Zesty"
 & ".claude\skills\add-achievement-data\_lookup_housingdecor_id.ps1" -Names "Amani Forge"
-& ".claude\skills\add-achievement-data\_lookup_holidays.ps1" -Terms "Brewfest"                # -Locale deDE for the game's own names
+& ".claude\skills\add-achievement-data\_lookup_holidays.ps1" -Terms "Brewfest"
 & ".claude\skills\add-category-data\_lookup_name.ps1" -Table uimap -Name "Stormwind City"
 ```
