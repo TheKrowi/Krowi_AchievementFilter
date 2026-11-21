@@ -8,6 +8,7 @@ paths:
 
 `krowi:release` runs `.claude/release-gate.ps1` in its preflight. The gate needs:
 - `Options/Window/Changelog.lua` to list the changelog's top entry (`.claude/tools/Build-ChangelogLua.ps1` writes it);
+- from 1 October to 31 December, this year's WoW's Nth Anniversary in the data: its holiday id in the WoW's Anniversary event row, its achievement and its place in Events > WoW's Anniversary (`.claude/tools/Check-Anniversary.ps1` says what is missing; Krowi, 2026-11-21);
 - a green in-game run of every suite except the three probes (`scheduler`, `sources`, `pictures`) on the newest build of each client the TOC's `## Interface:` claims (Retail and Mists Classic), newer than the last change to the suite's file; green means it failed nothing and passed something (Krowi, 2026-11-08);
 - once per client version, a green full `/kotest all` run of Krowi_Options' test addon;
 - a green whole `/kaftest matrix` run on the newest Retail and Mists build since `Features/` last changed: every suite but the probes with every feature on, every feature off and each feature alone (`docs/work/2026-11-08-feature-split-poc`).

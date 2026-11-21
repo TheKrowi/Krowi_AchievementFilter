@@ -33,6 +33,11 @@
     $changelogCheck = @(& (Join-Path $repo '.claude\tools\Build-ChangelogLua.ps1') -Check)
     if ($LASTEXITCODE -eq 0) { Pass ($changelogCheck -join ' ') } else { Fail ($changelogCheck -join ' ') }
 
+    # From 1 October, this year's WoW anniversary must be in the data before a release (Krowi, 2026-11-21;
+    # docs/work/2026-11-21-wows-anniversary-event)
+    $anniversaryCheck = @(& (Join-Path $repo '.claude\tools\Check-Anniversary.ps1'))
+    if ($LASTEXITCODE -eq 0) { Pass ($anniversaryCheck -join ' ') } else { Fail ($anniversaryCheck -join ' ') }
+
     # Every in-game scenario suite, for each client family, and where its saved variables are
     $suites = @('escape', 'special', 'navigation', 'worldmap', 'obtainable', 'tooltip', 'guide', 'menu', 'memory', 'events',
         'schedules', 'tracking', 'options', 'help', 'earned', 'plugins', 'popups', 'features')
