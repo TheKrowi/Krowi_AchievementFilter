@@ -1,0 +1,18 @@
+# Gates: 2026-11-21-wows-anniversary-event
+Class: data
+
+| Date | Gate | Question | Recommended | Answer | Outcome |
+|---|---|---|---|---|---|
+| 2026-11-21 | scope | WoW's 22nd Anniversary is already in KAF since 102.0 (63714, its window, Events > WoW's Anniversary); what is missing is an event reminder. What do you want for the anniversary? | Add a reminder: a Calendar row in Midnight's EventData for WoW's Anniversary, from the ids the game returns | "can we add all wow anniversary event id's under a single "WoW's Anniversary" event. that cleans it up and makes it a "recurring" thing even tough we need to keep adding id's each year. this is a good check/reminder to run around october each year to check for mew data" | amended |
+| 2026-11-21 | design | May I start Retail for about 5 minutes to read which anniversary holidays today's calendar lists | Yes, run it now | "gie me the run, i paste the output, quicker" (Krowi ran the /run line: `1808 HOLIDAY WoW's 22nd Anniversary`, no regional copy) | other |
+| 2026-11-21 | design | How the yearly October check reaches Krowi | The script, a Get-RepoState line and a release preflight WARN that does not block | "Release gate blocks" | other |
+| 2026-11-21 | design | WoW's Anniversary's group in Reminder events and its default | Holidays, on | "Holidays, on (Recommended)" | took |
+| 2026-11-21 | build | The regional WoW's Anniversary copies (590, 1587 to 1590), which the calendar does not list: in the row or out | In the row: Krowi asked for every id, and they cost nothing while the calendar hides them | - | auto |
+| 2026-11-21 | build | The esES, esMX, itIT and koKR wording of L["WoW's Anniversary"] | The game's own holiday name per language (holidaynames, 12.1.5.70961): Aniversario de WoW, Anniversario di WoW, 월드 오브 워크래프트의 생일 | - | auto |
+| 2026-11-21 | build | Get-ChangeClass said harness: the holiday lookup's new -Locale changed lines of a skill script | Take it out of this branch (patch kept) for a harness PR of its own, as process-issue says for a skill write-back; Class stays data | - | auto |
+| 2026-11-21 | build | Tests/Options.lua options-fingerprint failed on the moved toggle | A deliberate change: Recorded and Target set to the new Retail hash (414 / 723de62c), with the reason beside the earlier ones; Classic unchanged; to be confirmed by the in-game options run | - | auto |
+| 2026-11-21 | test | The in-game check on Retail (one reminder and side button, its category, options, events and popups) while Factorio holds the screen | Run it when Krowi is done | "Run it now over Factorio" (all green; one WoW's 22nd Anniversary reminder; the side button opens Events > WoW's Anniversary) | other |
+| 2026-11-21 | design | /code-review (medium): two reminders if a year's calendar lists two linked ids at once; the gate blocks an October hotfix; 514's year; the check's script path; the category check matching any id with the name | Fix the last three (514 is 2014, the full path, the category must list the achievement data's id); the duplicate guard in the reminders' code a follow-up offered in the PR (today's calendar lists one id); the hotfix block stays, Krowi chose it knowing that | - | auto |
+| 2026-11-21 | merge | PR #426 (told with it: the pop-up, chat line and side button show the calendar's title for the year, "WoW's Anniversary" is the toggle's name; Mists owes an options run before release) | Merge | "Merge (Recommended)" | took |
+| 2026-11-21 | merge | Export the locale change to CurseForge with krowi:localization | After the merge | "Export after merge (Recommended)" | took |
+| 2026-11-21 | merge | The duplicate guard for linked calendar ids | Backlog for now | "Backlog for now (Recommended)" | took |

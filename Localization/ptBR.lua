@@ -875,7 +875,6 @@ L["World map and minimap"] = "Mapa Mundi e minimapa"
 L["WoW Remix: Mists of Pandaria"] = true
 L["Wowhead"] = true
 L["Wowhead link"] = "Link do Wowhead"
-L["WoW's 10th Anniversary"] = "10º Aniversário do WoW"
 L["WoW's 18th Anniversary"] = "18º Aniversário do WoW"
 L["WoW's 19th Anniversary"] = "19º Aniversário do WoW"
 L["WoW's 20th Anniversary"] = "20º Aniversário do WoW"

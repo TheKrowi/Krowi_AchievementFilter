@@ -1293,7 +1293,6 @@ L["Worldsoul Memory"] = "Weltenseelenerinnerung"
 L["WoW Remix: Mists of Pandaria"] = true
 L["Wowhead"] = true
 L["Wowhead link"] = "Wowhead-Link"
-L["WoW's 10th Anniversary"] = "10-jähriges Jubiläum von WoW"
 L["WoW's 18th Anniversary"] = "WoW's 18. Geburtstag"
 L["WoW's 19th Anniversary"] = "WoW's 19. Geburtstag"
 L["WoW's 20th Anniversary"] = "20-jähriges Jubiläum von WoW"

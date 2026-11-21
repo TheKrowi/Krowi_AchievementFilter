@@ -24,6 +24,7 @@ The everyday commands and the rules these tools enforce are in `CLAUDE.md` (Buil
 | `headless/read-pictures.lua` | reads the pictures runs from the saved variables, for `Make-HelpPictures.ps1`: each shot's cut and, from 2026-10-30, the frames' own rectangle inside it |
 | `Update-DeprecatedApi.ps1` | rebuilds `Check-Repo.deprecated-api` from the wow-ui-source clones, for the clients the `.toc` lists |
 | `Build-ChangelogLua.ps1` | writes `Options/Window/Changelog.lua`, the options window's Overview copy of the changelog's top entry (English, without dev notes); run at release, `-Check` is the release gate's test that it is current |
+| `Check-Anniversary.ps1` | from 1 October to 31 December, whether this year's WoW's Nth Anniversary is in the data (its holiday id in the WoW's Anniversary event row, its achievement, its place in Events > WoW's Anniversary); the release gate fails while it is not; `-Date` judges another day |
 | `../release-gate.ps1` | this repo's release check, which the kit's release preflight runs: the options window's changelog, a green in-game run (failed nothing, passed something) of every scenario suite but the probes (`scheduler`, `sources`, `pictures`) on the newest Retail and Mists build since the suite's file last changed, a green full `/kotest` run of Krowi_Options' test addon once per client version, and a green `/kaftest matrix` run since `Features/` last changed (`.claude/rules/release.md`) |
 
 ## Lua 5.1.5

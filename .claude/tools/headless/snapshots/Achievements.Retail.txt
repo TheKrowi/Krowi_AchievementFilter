@@ -502,7 +502,7 @@ ACH 952 | patch=3.0.2
 ACH 953 | patch=3.0.2 | reward=Title
 ACH 955 | patch=3.0.2
 ACH 956 | patch=3.0.2
-ACH 957 | patch=3.0.2 | obtainable=[From Version 3.0.2 (own patch) .. Before Version 4.0.1] [From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 514
+ACH 957 | patch=3.0.2 | obtainable=[From Version 3.0.2 (own patch) .. Before Version 4.0.1] [From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 958 | patch=3.0.2
 ACH 959 | patch=3.0.2
 ACH 960 | patch=3.0.2
@@ -902,7 +902,7 @@ ACH 2336 | patch=3.0.2 | reward=Title | obtainable=[From Event 374 .. Until Even
 ACH 2357 | patch=3.0.2 | obtainable=[From Version 3.0.2 (own patch) .. Before Version 4.0.3]
 ACH 2358 | patch=3.0.2 | obtainable=[From Version 3.0.2 (own patch) .. Before Version 4.0.3]
 ACH 2359 | patch=3.0.2 | obtainable=[From Version 3.0.2 (own patch) .. Before Version 4.0.3]
-ACH 2398 | patch=3.0.2 | obtainable=[From Date 2008-11-23 .. Until Date 2008-12-07] | events=Calendar 514
+ACH 2398 | patch=3.0.2 | obtainable=[From Date 2008-11-23 .. Until Date 2008-12-07] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 2416 | patch=3.1.0 | obtainable=[From Event 181 .. Until Event 181] | events=Calendar 181
 ACH 2417 | patch=3.1.0 | obtainable=[From Event 181 .. Until Event 181] | events=Calendar 181
 ACH 2418 | patch=3.1.0 | obtainable=[From Event 181 .. Until Event 181] | events=Calendar 181
@@ -1198,7 +1198,7 @@ ACH 4298 | patch=3.2.0 | faction=Alliance | otherFaction=4297
 ACH 4316 | patch=3.2.0 | obtainable=[From Version 3.2.0 (own patch) .. Before Version 4.0.3]
 ACH 4396 | patch=3.2.2
 ACH 4397 | patch=3.2.2
-ACH 4400 | patch=3.2.2 | obtainable=[From Date 2009-11-22 .. Until Date 2009-12-06] | events=Calendar 514
+ACH 4400 | patch=3.2.2 | obtainable=[From Date 2009-11-22 .. Until Date 2009-12-06] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 4402 | patch=3.2.2
 ACH 4403 | patch=3.2.2
 ACH 4404 | patch=3.2.2
@@ -1623,7 +1623,7 @@ ACH 5504 | patch=4.0.3
 ACH 5505 | patch=4.0.3
 ACH 5506 | patch=4.0.3 | reward=Title
 ACH 5511 | patch=4.0.3
-ACH 5512 | patch=4.0.1 | obtainable=[From Date 2010-11-30 .. Until Date 2010-12-14] | events=Calendar 514
+ACH 5512 | patch=4.0.1 | obtainable=[From Date 2010-11-30 .. Until Date 2010-12-14] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 5518 | patch=4.0.3
 ACH 5533 | patch=4.0.3 | obtainable=[Never]
 ACH 5535 | patch=4.0.1 | obtainable=[From Version 4.0.1 (own patch) .. Before Version 6.0.2]
@@ -1702,7 +1702,7 @@ ACH 5859 | patch=4.2.0 | reward=Other
 ACH 5860 | patch=4.2.0 | reward=Pet | preview=PetSpeciesId 259, PetSpeciesId 260
 ACH 5861 | patch=4.2.0
 ACH 5862 | patch=4.2.0
-ACH 5863 | patch=4.2.0 | obtainable=[From Date 2011-11-20 .. Until Date 2011-12-03] | events=Calendar 514
+ACH 5863 | patch=4.2.0 | obtainable=[From Date 2011-11-20 .. Until Date 2011-12-03] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 5864 | patch=4.2.0
 ACH 5865 | patch=4.2.0
 ACH 5866 | patch=4.2.0 | reward=Mount | preview=MountId 413
@@ -1771,7 +1771,7 @@ ACH 6127 | patch=4.3.0
 ACH 6128 | patch=4.3.0
 ACH 6129 | patch=4.3.0
 ACH 6130 | patch=4.3.0
-ACH 6131 | patch=4.3.0 | obtainable=[From Date 2012-11-18 .. Until Date 2012-12-02] | events=Calendar 514
+ACH 6131 | patch=4.3.0 | obtainable=[From Date 2012-11-18 .. Until Date 2012-12-02] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 6132 | patch=4.3.0
 ACH 6133 | patch=4.3.0
 ACH 6169 | patch=4.3.0 | reward=Mount | preview=MountId 443
@@ -2259,7 +2259,7 @@ ACH 7612 | patch=5.0.4 | reward=Title
 ACH 7614 | patch=5.0.4
 ACH 7842 | patch=5.0.4
 ACH 7852 | patch=5.1.0 | events=Calendar 141
-ACH 7853 | patch=5.1.0 | obtainable=[From Date 2013-11-18 .. Until Date 2013-12-01] | events=Calendar 514
+ACH 7853 | patch=5.1.0 | obtainable=[From Date 2013-11-18 .. Until Date 2013-12-01] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 7860 | patch=5.1.0 | faction=Alliance | otherFaction=7862 | reward=Mount | preview=MountId 521
 ACH 7862 | patch=5.1.0 | faction=Horde | otherFaction=7860 | reward=Mount
 ACH 7908 | patch=5.1.0 | reward=Other
@@ -2589,7 +2589,7 @@ ACH 8793 | patch=5.4.1
 ACH 8794 | patch=5.4.1 | obtainable=[From Version 5.4.1 (own patch) .. Before Date 2019-06-11]
 ACH 8795 | patch=5.4.2
 ACH 8812 | patch=6.0.2 | obtainable=[Never]
-ACH 8820 | patch=6.0.2 | reward=Pet | obtainable=[From Date 2014-11-21 .. Until Date 2015-01-05] | preview=PetSpeciesId 1451 | events=Calendar 514
+ACH 8820 | patch=6.0.2 | reward=Pet | obtainable=[From Date 2014-11-21 .. Until Date 2015-01-05] | preview=PetSpeciesId 1451 | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 8843 | patch=6.0.2
 ACH 8844 | patch=6.0.2
 ACH 8845 | patch=6.0.2 | faction=Alliance | otherFaction=8671 | reward=Other
@@ -3177,7 +3177,7 @@ ACH 10052 | patch=6.2.0
 ACH 10053 | patch=6.2.0
 ACH 10054 | patch=6.2.0
 ACH 10057 | patch=6.2.0
-ACH 10058 | patch=6.2.0 | obtainable=[From Date 2015-11-16 .. Until Date 2015-11-30] | events=Calendar 514
+ACH 10058 | patch=6.2.0 | obtainable=[From Date 2015-11-16 .. Until Date 2015-11-30] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 10059 | patch=7.0.3
 ACH 10061 | patch=6.2.0
 ACH 10067 | patch=6.2.0 | faction=Alliance | otherFaction=10074
@@ -3273,7 +3273,7 @@ ACH 10320 | patch=6.2.2
 ACH 10321 | patch=6.2.2
 ACH 10322 | patch=6.2.2
 ACH 10334 | patch=6.2.0 | reward=Title
-ACH 10335 | patch=6.2.2 | events=Calendar 514
+ACH 10335 | patch=6.2.2 | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 10337 | patch=6.2.2 | events=Calendar 141
 ACH 10348 | patch=6.2.0
 ACH 10349 | patch=6.2.0 | faction=Horde | otherFaction=10350
@@ -3371,7 +3371,7 @@ ACH 10709 | patch=7.0.3
 ACH 10710 | patch=7.0.3
 ACH 10711 | patch=7.0.3
 ACH 10722 | patch=7.0.3
-ACH 10741 | patch=7.0.3 | obtainable=[From Date 2016-11-16 .. Until Date 2016-11-30] | events=Calendar 514
+ACH 10741 | patch=7.0.3 | obtainable=[From Date 2016-11-16 .. Until Date 2016-11-30] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 10742 | patch=7.0.3
 ACH 10743 | patch=7.0.3 | faction=Alliance | otherFaction=10745 | pvp | obtainable=[From PvP Season 19 .. Until PvP Season 19]
 ACH 10745 | patch=7.0.3 | faction=Horde | otherFaction=10743 | pvp | obtainable=[From PvP Season 19 .. Until PvP Season 19]
@@ -3781,7 +3781,7 @@ ACH 11796 | patch=7.2.0
 ACH 11802 | patch=7.2.0
 ACH 11841 | patch=7.2.0
 ACH 11846 | patch=7.2.0
-ACH 11848 | patch=7.2.5 | obtainable=[From Date 2017-11-16 .. Until Date 2017-11-30] | events=Calendar 514
+ACH 11848 | patch=7.2.5 | obtainable=[From Date 2017-11-16 .. Until Date 2017-11-30] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 11856 | patch=7.2.5 | reward=Pet | preview=PetSpeciesId 2028
 ACH 11861 | patch=8.0.1 | faction=Horde | otherFaction=12473
 ACH 11868 | patch=8.0.1 | faction=Horde | otherFaction=12497
@@ -4163,7 +4163,7 @@ ACH 12823 | patch=8.0.1
 ACH 12824 | patch=8.0.1
 ACH 12825 | patch=8.0.1
 ACH 12826 | patch=8.0.1
-ACH 12827 | patch=8.0.1 | obtainable=[From Date 2018-11-16 .. Until Date 2018-11-30] | events=Calendar 514
+ACH 12827 | patch=8.0.1 | obtainable=[From Date 2018-11-16 .. Until Date 2018-11-30] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 12828 | patch=8.0.1
 ACH 12830 | patch=8.0.1
 ACH 12831 | patch=8.0.1
@@ -4652,7 +4652,7 @@ ACH 13790 | patch=8.2.0
 ACH 13791 | patch=8.2.0
 ACH 13836 | patch=8.2.0
 ACH 13878 | patch=9.0.1
-ACH 13917 | patch=8.2.5 | obtainable=[From Date 2019-11-05 .. Until Date 2020-01-07] | events=Calendar 514
+ACH 13917 | patch=8.2.5 | obtainable=[From Date 2019-11-05 .. Until Date 2020-01-07] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 13924 | patch=8.2.5 | faction=Horde | otherFaction=13925 | reward=Title
 ACH 13925 | patch=8.2.5 | faction=Alliance | otherFaction=13924 | reward=Title
 ACH 13927 | patch=8.2.5 | events=Calendar 141
@@ -4756,7 +4756,7 @@ ACH 14199 | patch=9.0.1
 ACH 14206 | patch=9.0.1
 ACH 14222 | patch=9.0.1
 ACH 14233 | patch=9.0.1
-ACH 14271 | patch=9.0.1 | obtainable=[From Date 2020-11-01 .. Until Date 2020-11-22] | events=Calendar 514
+ACH 14271 | patch=9.0.1 | obtainable=[From Date 2020-11-01 .. Until Date 2020-11-22] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 14272 | patch=9.0.1
 ACH 14273 | patch=9.0.1
 ACH 14274 | patch=9.0.1
@@ -5064,7 +5064,7 @@ ACH 14895 | patch=9.0.2
 ACH 14904 | patch=9.0.2 | obtainable=[From Date 2021-02-01 .. Until Date 2022-02-20]
 ACH 14931 | patch=9.0.5 | events=Calendar 141
 ACH 14938 | patch=9.0.5 | obtainable=[From PvE Season 5 .. Until PvE Season 5]
-ACH 14942 | patch=9.1.0 | obtainable=[From Date 2021-11-15 .. Until Date 2021-12-06] | events=Calendar 514
+ACH 14942 | patch=9.1.0 | obtainable=[From Date 2021-11-15 .. Until Date 2021-12-06] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 14943 | patch=9.1.0
 ACH 14961 | patch=9.1.0
 ACH 14968 | patch=9.1.0 | reward=Title | pvp | obtainable=[From PvP Season 31 .. Until PvP Season 31]
@@ -5181,7 +5181,7 @@ ACH 15214 | patch=9.2.0 | obtainable=[From Event 374 .. Until Event 374] | event
 ACH 15215 | patch=9.2.0 | obtainable=[From Event 374 .. Until Event 374] | events=Calendar 374,479
 ACH 15216 | patch=9.2.0 | obtainable=[From Event 374 .. Until Event 374] | events=Calendar 374,479
 ACH 15217 | patch=9.2.0 | obtainable=[From Event 374 .. Until Event 374] | events=Calendar 374,479
-ACH 15218 | patch=9.2.0 | obtainable=[From Date 2022-11-06 .. Until Date 2022-11-27] | events=Calendar 514
+ACH 15218 | patch=9.2.0 | obtainable=[From Date 2022-11-06 .. Until Date 2022-11-27] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 15220 | patch=9.2.0
 ACH 15221 | patch=9.2.0 | reward=Toy | obtainable=[From Event 374 .. Until Event 374] | events=Calendar 374,479
 ACH 15222 | patch=9.2.0 | obtainable=[From Event 374 .. Until Event 374] | events=Calendar 374,479
@@ -6030,7 +6030,7 @@ ACH 18643 | patch=10.1.5 | reward=Transmog | events=Calendar 1396,1398,1399
 ACH 18644 | patch=10.1.5 | reward=Pet | preview=PetSpeciesId 4263 | events=Calendar 1396,1398,1399
 ACH 18645 | patch=10.1.5 | reward=Transmog | events=Calendar 1396,1398,1399
 ACH 18646 | patch=10.1.5 | reward=Mount,Title | preview=MountId 1794 | events=Calendar 1396,1398,1399
-ACH 18702 | patch=10.1.7 | obtainable=[From Date 2023-11-11 .. Until Date 2023-12-07] | events=Calendar 514
+ACH 18702 | patch=10.1.7 | obtainable=[From Date 2023-11-11 .. Until Date 2023-12-07] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 18703 | patch=10.1.5
 ACH 18704 | patch=10.1.5
 ACH 18705 | patch=10.1.5 | reward=Title | obtainable=[From Version 10.1.5 (own patch) .. Before Version 10.2.0]
@@ -6260,7 +6260,7 @@ ACH 19159 | patch=10.2.0 | reward=Title | pvp | obtainable=[From PvP Season 36 .
 ACH 19160 | patch=10.2.0 | pvp | obtainable=[From PvP Season 36 .. Until PvP Season 36]
 ACH 19161 | patch=10.2.0 | faction=Horde | otherFaction=19162 | pvp | obtainable=[From PvP Season 36 .. Until PvP Season 36]
 ACH 19162 | patch=10.2.0 | faction=Alliance | otherFaction=19161 | pvp | obtainable=[From PvP Season 36 .. Until PvP Season 36]
-ACH 19192 | patch=10.1.7 | events=Calendar 514
+ACH 19192 | patch=10.1.7 | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 19193 | patch=10.2.0
 ACH 19194 | patch=10.2.0
 ACH 19196 | patch=10.2.0
@@ -6886,7 +6886,7 @@ ACH 40643 | patch=11.0.0
 ACH 40644 | patch=11.0.0
 ACH 40648 | patch=11.0.0
 ACH 40660 | patch=11.0.0 | reward=Transmog
-ACH 40661 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 514
+ACH 40661 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 40662 | patch=11.0.0 | reward=Title
 ACH 40702 | patch=11.0.0 | reward=Mount | preview=MountId 2181
 ACH 40703 | patch=11.0.0
@@ -6947,10 +6947,10 @@ ACH 40862 | patch=11.0.2 | obtainable=[From Event 324 .. Until Event 324] | even
 ACH 40863 | patch=11.0.2
 ACH 40864 | patch=11.0.2
 ACH 40869 | patch=11.0.2 | reward=Pet | preview=PetSpeciesId 4500
-ACH 40870 | patch=11.0.5 | reward=Title | events=Calendar 514
-ACH 40871 | patch=11.0.5 | reward=Transmog | events=Calendar 514
-ACH 40872 | patch=11.0.5 | reward=Transmog | events=Calendar 514
-ACH 40873 | patch=11.0.5 | events=Calendar 514
+ACH 40870 | patch=11.0.5 | reward=Title | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
+ACH 40871 | patch=11.0.5 | reward=Transmog | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
+ACH 40872 | patch=11.0.5 | reward=Transmog | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
+ACH 40873 | patch=11.0.5 | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 40874 | patch=11.0.2 | reward=Title
 ACH 40875 | patch=11.0.2 | reward=Title
 ACH 40876 | patch=11.0.2 | reward=Title
@@ -6985,30 +6985,30 @@ ACH 40962 | patch=11.0.7
 ACH 40963 | patch=11.0.7
 ACH 40965 | patch=11.1.0 | reward=Teleport | obtainable=[From PvE Season 14 .. Until PvE Season 14]
 ACH 40966 | patch=11.1.0 | reward=Teleport | obtainable=[From PvE Season 14 .. Until PvE Season 14]
-ACH 40967 | patch=11.0.5 | events=Calendar 514
-ACH 40976 | patch=11.0.5 | reward=Mount | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | preview=MountId 2261 | events=Calendar 514
-ACH 40977 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 514
-ACH 40979 | patch=11.0.5 | events=Calendar 514
+ACH 40967 | patch=11.0.5 | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
+ACH 40976 | patch=11.0.5 | reward=Mount | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | preview=MountId 2261 | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
+ACH 40977 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
+ACH 40979 | patch=11.0.5 | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 40980 | patch=11.0.5 | reward=Pet | preview=PetSpeciesId 4490
-ACH 40984 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 514
-ACH 40985 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 514
-ACH 40986 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 514
-ACH 40987 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 514
-ACH 40988 | patch=11.0.5 | events=Calendar 514
-ACH 40989 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 514
-ACH 40990 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 514
-ACH 40991 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 514
-ACH 40992 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 514
-ACH 40993 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 514
-ACH 40994 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 514
-ACH 40995 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 514
-ACH 40996 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 514
-ACH 40997 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 514
-ACH 40998 | patch=11.0.5 | events=Calendar 514
-ACH 40999 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 514
-ACH 41000 | patch=11.0.5 | events=Calendar 514
-ACH 41013 | patch=11.0.5 | events=Calendar 514
-ACH 41015 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 514
+ACH 40984 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
+ACH 40985 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
+ACH 40986 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
+ACH 40987 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
+ACH 40988 | patch=11.0.5 | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
+ACH 40989 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
+ACH 40990 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
+ACH 40991 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
+ACH 40992 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
+ACH 40993 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
+ACH 40994 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
+ACH 40995 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
+ACH 40996 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
+ACH 40997 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
+ACH 40998 | patch=11.0.5 | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
+ACH 40999 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
+ACH 41000 | patch=11.0.5 | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
+ACH 41013 | patch=11.0.5 | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
+ACH 41015 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 41016 | patch=11.1.0 | reward=Title | pvp | obtainable=[From PvP Season 39 .. Until PvP Season 39]
 ACH 41017 | patch=11.1.0 | pvp | obtainable=[From PvP Season 39 .. Until PvP Season 39]
 ACH 41018 | patch=11.1.0 | reward=Title | pvp | obtainable=[From PvP Season 39 .. Until PvP Season 39]
@@ -7026,8 +7026,8 @@ ACH 41029 | patch=11.2.0 | pvp | obtainable=[From PvP Season 40 .. Until PvP Sea
 ACH 41030 | patch=11.2.0 | reward=Title | pvp | obtainable=[From PvP Season 40 .. Until PvP Season 40]
 ACH 41031 | patch=11.2.0 | pvp | obtainable=[From PvP Season 40 .. Until PvP Season 40]
 ACH 41032 | patch=11.1.0 | reward=Mount,Title,Transmog | pvp | obtainable=[From PvP Season 39 .. Until PvP Season 39] | preview=MountId 2298
-ACH 41033 | patch=11.0.5 | events=Calendar 514
-ACH 41038 | patch=11.0.5 | reward=Other | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 514
+ACH 41033 | patch=11.0.5 | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
+ACH 41038 | patch=11.0.5 | reward=Other | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 41042 | patch=11.0.7
 ACH 41043 | patch=11.0.7
 ACH 41044 | patch=11.0.5 | reward=Transmog | pvp | obtainable=[From PvP Season 38 .. Until PvP Season 38]
@@ -7129,7 +7129,7 @@ ACH 41214 | patch=11.1.0
 ACH 41215 | patch=11.1.0
 ACH 41216 | patch=11.1.0
 ACH 41217 | patch=11.1.0
-ACH 41220 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 514
+ACH 41220 | patch=11.0.5 | obtainable=[From Date 2024-11-04 .. Until Date 2025-01-07] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 41222 | patch=11.1.0
 ACH 41223 | patch=11.1.0
 ACH 41224 | patch=11.1.0
@@ -7927,7 +7927,7 @@ ACH 61392 | patch=12.0.0
 ACH 61394 | patch=11.2.7 | reward=Mount | obtainable=[From Event 1425 .. Until Event 1425 not obtainable] | preview=MountId 2795, MountId 2796, MountId 2797, MountId 2798 | events=Calendar 1425,1458,1459,1460
 ACH 61401 | patch=11.2.0
 ACH 61402 | patch=11.2.0
-ACH 61406 | patch=11.2.5 | obtainable=[From Date 2025-11-16 .. Until Date 2025-12-07] | events=Calendar 514
+ACH 61406 | patch=11.2.5 | obtainable=[From Date 2025-11-16 .. Until Date 2025-12-07] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 61413 | patch=11.2.7 | faction=Alliance | otherFaction=61414
 ACH 61414 | patch=11.2.7 | faction=Horde | otherFaction=61413
 ACH 61419 | patch=11.2.7
@@ -8654,7 +8654,7 @@ ACH 63696 | patch=12.1.0 | pvp
 ACH 63697 | patch=12.1.0 | pvp
 ACH 63698 | patch=12.1.0 | pvp
 ACH 63699 | patch=12.1.0 | pvp
-ACH 63714 | patch=12.1.5 | obtainable=[From Date 2026-11-17 .. Until Date 2026-12-08] | events=Calendar 514
+ACH 63714 | patch=12.1.5 | obtainable=[From Date 2026-11-17 .. Until Date 2026-12-08] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 63715 | patch=12.1.5 | reward=Mount | obtainable=[From PvE Season 18 .. Until PvE Season 18] | preview=MountId 3144
 ACH 63716 | patch=12.1.5 | reward=Title
 ACH 63717 | patch=12.1.5 | reward=Title
