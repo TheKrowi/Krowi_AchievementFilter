@@ -1,5 +1,5 @@
 # Plan: One WoW's Anniversary event with every anniversary's calendar id
-Spec: [spec.md](spec.md). Status: draft
+Spec: [spec.md](spec.md). Status: done
 
 ## Files that change
 - `DataAddons/Retail/06_WarlordsOfDaenor/EventData.lua`: the 10th's row becomes WoW's Anniversary, the ids of requirement 1 ascending with a comment per id (name, year), `L["WoW's Anniversary"]`, group `L["Holidays"]` order 1, on by default.
@@ -23,3 +23,12 @@ Spec: [spec.md](spec.md). Status: draft
 
 ## Proof
 Requirements 1, 2 and 6 by the snapshot diff; 3 in game; 4 by the locale diff and the `feature-texts`/locale rules of `Check-Repo.ps1`; 5 by the two script runs.
+
+## Where the build departed
+- The holiday lookup's `-Locale` (which found the four translations) left this branch: it changes a skill script, which makes a change `harness`, so it gets a pull request of its own.
+- Requirement 3's name: the reminders and the side button show the calendar's own title for the year, "WoW's 22nd Anniversary" (the reminders read `Name = event.title` from the calendar cache, `Data/EventData.lua`); the row's name, WoW's Anniversary, is the toggle's in Reminder events. One reminder, as required.
+- The options suite's fingerprint recorded the moved toggle (`Tests/Options.lua`, 414 / 723de62c), confirmed in game.
+
+## Results
+- Headless: `load-data.lua Both` 0 problems; the snapshot diff is the merged event (26 linked ids for 514 alone) and its 52 achievements in category 1173; `Check-Repo.ps1` 0 errors; `events` green.
+- In game, Retail 12.1.5 (2026-11-21, a kit-started client while Factorio stayed full screen with Krowi's leave): one WoW's 22nd Anniversary pop-up and chat line at login, one side button beside the achievement window, which opens Events > WoW's Anniversary; `options` 37 passed, `events` 28, `popups` 13, nothing failed; no addon error in BugGrabber.

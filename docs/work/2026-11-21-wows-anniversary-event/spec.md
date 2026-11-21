@@ -1,5 +1,5 @@
 # Spec: One WoW's Anniversary event with every anniversary's calendar id
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. Retail's event data has one Calendar row, WoW's Anniversary, whose ids are every WoW anniversary holiday the game database lists: 467, 484, 509, 514, 566, 589 (7th to 12th), 590 and its regional copies 1587 to 1590 (WoW's Anniversary), 693, 807, 808, 1181, 1225, 1262, 1397 (13th to 19th), 1500, 1509 and 1592 to 1595 (20th), 1501 (21st) and 1808 (22nd), each with a comment naming the anniversary and its year.

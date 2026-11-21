@@ -1,5 +1,5 @@
 # Intent: One WoW's Anniversary event with every anniversary's calendar id
-Author: Krowi, maintainer. Source: idea. Status: accepted
+Author: Krowi, maintainer. Source: idea. Status: done
 
 ## Problem
 WoW's 22nd Anniversary (achievement 63714) is already in the data and has shipped since 102.0: Events > WoW's Anniversary (category 1173), Time Limited from 2026-11-17 to 2026-12-08, which the live calendar (holiday 1808 on 12.1.5.70961) confirms. Players get no event reminder for it, though: no pop-up, chat line or side button when the anniversary starts, as Hallow's End or Winter Veil give. The only anniversary row in the event data is the 10th's (holiday 514, `DataAddons/Retail/06_WarlordsOfDaenor/EventData.lua`), in the Other group, and every later anniversary was left out. Nothing reminds the maintainer either to look for the next anniversary's achievement and calendar id each year.
