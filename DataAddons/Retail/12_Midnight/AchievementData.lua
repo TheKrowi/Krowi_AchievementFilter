@@ -933,3 +933,126 @@ KrowiAF.AchievementData["12_01_05"] = {
 	Ach(64161):Obtainable("Event", 324), -- Felwood Fudge Bite Former
 	Ach(64162):Obtainable("Event", 324), -- Drustvar Choc-O-Drop Designer
 }
+
+-- From the 12.1.7 PTR (12.1.7.71087), provisional until the live build (docs/work/2026-11-21-patch-12-1-7)
+KrowiAF.AchievementData["12_01_07"] = {
+	Ach(63604):HousingDecor(28339), -- Lorewalking: Tyr
+	Ach(63691):HousingDecor(28340), -- Lorewalking: Thrall
+	Ach(63710):HousingDecor(28582), -- Lorewalking: Titans
+	Ach(63712):HousingDecor(28496), -- Lorewalking: Jaina
+	Ach(63713), -- The Coreway Advance
+	Ach(63734):TaleboundSilver(), -- Veteran: The Giant of Greenthistle Wood
+	Ach(63735):TaleboundSilver(), -- Heroic: The Giant of Greenthistle Wood
+	Ach(63737):TaleboundSilver(), -- The Witch of the Woods
+	Ach(63738):TaleboundSilver(), -- Veteran: The Witch of the Woods
+	Ach(63741):TaleboundSilver(), -- Heroic: The Witch of the Woods
+	Ach(63743):TaleboundSilver(), -- The Witch of the Wilds
+	Ach(63744):TaleboundSilver(), -- Veteran: The Witch of the Wilds
+	Ach(63745):TaleboundSilver(), -- Heroic: The Witch of the Wilds
+	Ach(63748):TaleboundSilver(), -- The Lord Marshal
+	Ach(63749):TaleboundSilver(), -- Veteran: The Lord Marshal
+	Ach(63754):TaleboundSilver(), -- The Vampire Bishop
+	Ach(63755):TaleboundSilver(), -- Veteran: The Vampire Bishop
+	Ach(63758):TaleboundSilver(), -- Heroic: The Vampire Bishop
+	Ach(63760):TaleboundSilver(), -- The Fairy Queen
+	Ach(63761):TaleboundSilver(), -- Veteran: The Fairy Queen
+	Ach(63762):TaleboundSilver(), -- Heroic: The Fairy Queen
+	Ach(63764):TaleboundSilver(), -- The Nightmare King
+	Ach(63765):TaleboundSilver(), -- Veteran: The Nightmare King
+	Ach(63766):TaleboundSilver(), -- Heroic: The Nightmare King
+	Ach(63768):TaleboundSilver(), -- The Hadal Tyrant
+	Ach(63769):TaleboundSilver(), -- Veteran: The Hadal Tyrant
+	Ach(63770):TaleboundSilver(), -- Heroic: The Hadal Tyrant
+	Ach(63772):TaleboundSilver(), -- The Herald from Beyond
+	Ach(63773):TaleboundSilver(), -- Veteran: The Herald from Beyond
+	Ach(63774):TaleboundSilver(), -- Heroic: The Herald from Beyond
+	Ach(63776):WarbandCampsite(), -- The Final Confrontation
+	Ach(63777):TaleboundSilver(), -- Veteran: The Final Confrontation
+	Ach(63778):TaleboundSilver(), -- Heroic: The Final Confrontation
+	Ach(63780):TaleboundSilver(), -- Heroic: The Lord Marshal
+	Ach(63782):TaleboundSilver(), -- The Tale of Greenthistle Wood
+	Ach(63783):TaleboundSilver(), -- Veteran: The Tale of Greenthistle Wood
+	Ach(63784):TaleboundSilver(), -- Heroic: The Tale of Greenthistle Wood
+	Ach(63786):TaleboundSilver(), -- The Tale of Darkhaven
+	Ach(63787):TaleboundSilver(), -- Veteran: The Tale of Darkhaven
+	Ach(63788):TaleboundSilver(), -- Heroic: The Tale of Darkhaven
+	Ach(63790):TaleboundSilver(), -- The Tale of the Court of Night
+	Ach(63791):TaleboundSilver(), -- Veteran: The Tale of the Court of Night
+	Ach(63792):TaleboundSilver(), -- Heroic: The Tale of the Court of Night
+	Ach(63794):TaleboundSilver(), -- The Tale of Greywake's Expedition
+	Ach(63795):TaleboundSilver(), -- Veteran: The Tale of Greywake's Expedition
+	Ach(63796):TaleboundSilver(), -- Heroic: The Tale of Greywake's Expedition
+	Ach(63798):TaleboundSilver(), -- The Complete Tale
+	Ach(63799):TaleboundSilver(), -- Veteran: The Complete Tale
+	Ach(63800):TaleboundSilver(), -- Heroic: The Complete Tale
+	Ach(63802):TaleboundSilver(), -- The Slayer's Final Confrontation
+	Ach(63803):TaleboundSilver(), -- Veteran: The Slayer's Final Confrontation
+	Ach(63804):Title(), -- Heroic: The Slayer's Final Confrontation
+	Ach(63806):TaleboundSilver(), -- The Witch's Final Confrontation
+	Ach(63807):TaleboundSilver(), -- Veteran: The Witch's Final Confrontation
+	Ach(63808):Title(), -- Heroic: The Witch's Final Confrontation
+	Ach(63810):TaleboundSilver(), -- The Inquisitor's Final Confrontation
+	Ach(63811):TaleboundSilver(), -- Veteran: The Inquisitor's Final Confrontation
+	Ach(63812):Title(), -- Heroic: The Inquisitor's Final Confrontation
+	Ach(63814):TaleboundSilver(), -- Traveler's Coin
+	Ach(63815):TaleboundSilver(), -- Traveler's Purse
+	Ach(63816):TaleboundSilver(), -- Traveler's Cache
+	Ach(63817):TaleboundSilver(), -- Traveler's Trove
+	Ach(63818):TaleboundSilver(), -- Traveler's Fortune
+	Ach(63819):TaleboundSilver(), -- A Puzzling Tale
+	Ach(63820):TaleboundSilver(), -- The Tale of the Puzzle Master
+	Ach(63821):TaleboundSilver(), -- The Slayer and the Scribe
+	Ach(63822):TaleboundSilver(), -- The Witch and the Scribe
+	Ach(63823):TaleboundSilver(), -- The Inquisitor and the Scribe
+	Ach(63824):TaleboundSilver(), -- The Outfitter's Story
+	Ach(63825):TaleboundSilver(), -- The Arcanist's Account
+	Ach(63826):TaleboundSilver(), -- The Antiquarian's Chapter
+	Ach(64135):TaleboundSilver(), -- The Stories of Greenthistle Wood
+	Ach(64136):TaleboundSilver(), -- The Story of Darkhaven
+	Ach(64137):TaleboundSilver(), -- The Verses of the Court of Night
+	Ach(64138):TaleboundSilver(), -- The Story of Greywake's Expedition
+	Ach(64139):Title(), -- Stories to Share
+	Ach(64174), -- Bow Go
+	Ach(64175), -- Let's Put A Bow On It
+	Ach(64207):Mount(3175):Obtainable("Event", 1425), -- Master of the Turbulent Timeways VI
+	Ach(64227):TaleboundSilver(), -- The Sanguine Puzzlemaster
+	Ach(64228):TaleboundSilver(), -- The Hexed Puzzlemaster
+	Ach(64229):TaleboundSilver(), -- The Eldritch Puzzlemaster
+	Ach(64230):TaleboundSilver(), -- The Fae Puzzlemaster
+	Ach(64367):Obtainable("Event", 141), -- Bells Will Be Ringing
+	Ach(64368):Obtainable("Event", 141), -- That's Not For You
+	Ach(64369):Obtainable("Event", 141), -- Sockin' Around the Winter Veil Tree
+	Ach(64370):Obtainable("Event", 141), -- Season's Beatings
+	Ach(64371):Obtainable("Event", 141), -- Candy Cane Brigade
+	Ach(64372):Obtainable("Event", 141), -- Tree-fense
+	Ach(64416), -- Tapping at the Trader's Door
+	Ach(64417):Other(), -- Delving into a Tale
+	Ach(64418):Other(), -- The Tale of the Puzzle Master Rewarded
+	Ach(64419):Other(), -- The Sanguine Puzzlemaster's Reward
+	Ach(64420):Other(), -- The Hexed Puzzlemaster's Reward
+	Ach(64421):Other(), -- The Eldrich Puzzlemaster's Reward
+	Ach(64422):Other(), -- The Fae Puzzlemaster's Reward
+	Ach(64423):Other(), -- It's Just a Normal Tale
+	Ach(64424):Other(), -- Starting Down a Veteran's Tale
+	Ach(64425):Other(), -- Stepping up to a Heroic Tale
+	Ach(64427):Other(), -- The Final Confrontation's Conclusion
+	Ach(64428):Other(), -- Veteran: The Final Confrontation's Conclusion
+	Ach(64429):Other(), -- Heroic: The Final Confrontation's Conclusion
+	Ach(64431):Other(), -- The Comprehensive Final Confrontation
+	Ach(64432):Other(), -- Veteran: The Comprehensive Final Confrontation
+	Ach(64433):Other(), -- Heroic: The Comprehensive Final Confrontation
+	Ach(64435):Other(), -- Traveler's Coin Exchanged
+	Ach(64436):Other(), -- Traveler's Purse Exchanged
+	Ach(64437):Other(), -- Traveler's Cache Exchanged
+	Ach(64438):Other(), -- Traveler's Trove Exchanged
+	Ach(64439):Other(), -- Traveler's Fortune Exchanged
+	Ach(64440):Other(), -- The Antiquarian's Chapter Complete
+	Ach(64441):Other(), -- The Outfitter's Story Complete
+	Ach(64442):Other(), -- The Arcanist's Account Complete
+	Ach(64443):Other(), -- The Inquisitor and the Scribe Complete
+	Ach(64444):Other(), -- The Slayer and the Scribe Complete
+	Ach(64445):Other(), -- The Witch and the Scribe Complete
+	Ach(64446):Other(), -- A Puzzling Tale Reward
+	Ach(64464):Toy(), -- Stories Shared
+	Ach(64465):Toy(), -- The Tale Complete
+}

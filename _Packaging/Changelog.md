@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 ## 106.0
 ### Added
+- 12.1.7 "Echoes of the Worldcore" patch data
+    - Talebound, a new category in the Specials tab with Bosses, Levels and the Traveling Raven rewards
+    - Lorewalking: Tyr, Thrall, Titans and Jaina
+    - The Coreway Advance campaign achievement
+    - Winter Veil neighborhood achievements, Bow Go and Let's Put A Bow On It
+    - Master of the Turbulent Timeways VI
+- Bound Silver in the Has Reward filter, for the Talebound achievements that reward it
 - An Enable check box at the top of the Reward preview settings, which fully turns off the reward preview after a reload
 - An Enable check box at the top of the Right-click menu settings, which fully turns off the right-click menu after a reload
 - An Enable check box at the top of the Pop Out settings, which fully turns off pop outs after a reload; pop outs kept from the last session come back when it is turned on again

@@ -7,6 +7,12 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-11-09 15-50-49 ]] --
+L["Echoes of the Worldcore"] = "Echos des Weltenkerns"
+L["Talebound"] = "Sagengebunden"
+L["Bosses"] = "Bosse"
+L["Levels"] = "Stufen"
+L["Traveling Raven"] = "Reisender Rabe"
+L["Bound Silver"] = "Gebundenes Silber"
 L["Upcoming Holidays"] = "Kommende Feiertage"
 L["Upcoming Holidays Desc"] = "Erinnert dich auch an Feiertage, die in den nächsten Tagen beginnen."
 L["Compact Reminders"] = "Kompakte Erinnerungen"

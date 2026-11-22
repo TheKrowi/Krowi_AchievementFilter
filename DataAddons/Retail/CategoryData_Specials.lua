@@ -658,3 +658,119 @@ mythic:Insert(shared.GetShadowlandsMythicPlus(CT.Shadowlands))
 mythic:Insert(shared.GetDragonflightMythicPlus(CT.Dragonflight))
 mythic:Insert(shared.GetTheWarWithinMythicPlus(CT.TheWarWithin))
 mythic:Insert(shared.GetMidnightMythicPlus(CT.Midnight))
+-- Talebound (12.1.7) in Blizzard's shape, named as Blizzard's window names its categories (15625, 15627, 15628); the
+-- Traveling Raven trackers, under Expansion Features > Talebound there, mirror the achievements above and mail an item
+-- (docs/work/2026-11-21-patch-12-1-7)
+local talebound = specials:Named(addon.GetCategoryName(15625, addon.L["Talebound"]), {
+    64416, -- Tapping at the Trader's Door
+    64417, -- Delving into a Tale
+    63814, -- Traveler's Coin
+    63815, -- Traveler's Purse
+    63816, -- Traveler's Cache
+    63817, -- Traveler's Trove
+    63818, -- Traveler's Fortune
+    63819, -- A Puzzling Tale
+    64227, -- The Sanguine Puzzlemaster
+    64228, -- The Hexed Puzzlemaster
+    64229, -- The Eldritch Puzzlemaster
+    64230, -- The Fae Puzzlemaster
+    63820, -- The Tale of the Puzzle Master
+    64135, -- The Stories of Greenthistle Wood
+    64136, -- The Story of Darkhaven
+    64137, -- The Verses of the Court of Night
+    64138, -- The Story of Greywake's Expedition
+    64139, -- Stories to Share
+    63824, -- The Outfitter's Story
+    63825, -- The Arcanist's Account
+    63826, -- The Antiquarian's Chapter
+    63821, -- The Slayer and the Scribe
+    63822, -- The Witch and the Scribe
+    63823, -- The Inquisitor and the Scribe
+})
+talebound:Named(addon.GetCategoryName(15627, addon.L["Bosses"]), {
+    63734, -- Veteran: The Giant of Greenthistle Wood
+    63735, -- Heroic: The Giant of Greenthistle Wood
+    63737, -- The Witch of the Woods
+    63738, -- Veteran: The Witch of the Woods
+    63741, -- Heroic: The Witch of the Woods
+    63743, -- The Witch of the Wilds
+    63744, -- Veteran: The Witch of the Wilds
+    63745, -- Heroic: The Witch of the Wilds
+    63748, -- The Lord Marshal
+    63749, -- Veteran: The Lord Marshal
+    63780, -- Heroic: The Lord Marshal
+    63754, -- The Vampire Bishop
+    63755, -- Veteran: The Vampire Bishop
+    63758, -- Heroic: The Vampire Bishop
+    63760, -- The Fairy Queen
+    63761, -- Veteran: The Fairy Queen
+    63762, -- Heroic: The Fairy Queen
+    63764, -- The Nightmare King
+    63765, -- Veteran: The Nightmare King
+    63766, -- Heroic: The Nightmare King
+    63768, -- The Hadal Tyrant
+    63769, -- Veteran: The Hadal Tyrant
+    63770, -- Heroic: The Hadal Tyrant
+    63772, -- The Herald from Beyond
+    63773, -- Veteran: The Herald from Beyond
+    63774, -- Heroic: The Herald from Beyond
+    63776, -- The Final Confrontation
+    63777, -- Veteran: The Final Confrontation
+    63778, -- Heroic: The Final Confrontation
+    63802, -- The Slayer's Final Confrontation
+    63803, -- Veteran: The Slayer's Final Confrontation
+    63804, -- Heroic: The Slayer's Final Confrontation
+    63806, -- The Witch's Final Confrontation
+    63807, -- Veteran: The Witch's Final Confrontation
+    63808, -- Heroic: The Witch's Final Confrontation
+    63810, -- The Inquisitor's Final Confrontation
+    63811, -- Veteran: The Inquisitor's Final Confrontation
+    63812, -- Heroic: The Inquisitor's Final Confrontation
+})
+talebound:Named(addon.GetCategoryName(15628, addon.L["Levels"]), {
+    63782, -- The Tale of Greenthistle Wood
+    63783, -- Veteran: The Tale of Greenthistle Wood
+    63784, -- Heroic: The Tale of Greenthistle Wood
+    63786, -- The Tale of Darkhaven
+    63787, -- Veteran: The Tale of Darkhaven
+    63788, -- Heroic: The Tale of Darkhaven
+    63790, -- The Tale of the Court of Night
+    63791, -- Veteran: The Tale of the Court of Night
+    63792, -- Heroic: The Tale of the Court of Night
+    63794, -- The Tale of Greywake's Expedition
+    63795, -- Veteran: The Tale of Greywake's Expedition
+    63796, -- Heroic: The Tale of Greywake's Expedition
+    63798, -- The Complete Tale
+    63799, -- Veteran: The Complete Tale
+    63800, -- Heroic: The Complete Tale
+})
+talebound:Named(addon.L["Traveling Raven"], {
+    64423, -- It's Just a Normal Tale
+    64424, -- Starting Down a Veteran's Tale
+    64425, -- Stepping up to a Heroic Tale
+    64427, -- The Final Confrontation's Conclusion
+    64428, -- Veteran: The Final Confrontation's Conclusion
+    64429, -- Heroic: The Final Confrontation's Conclusion
+    64431, -- The Comprehensive Final Confrontation
+    64432, -- Veteran: The Comprehensive Final Confrontation
+    64433, -- Heroic: The Comprehensive Final Confrontation
+    64435, -- Traveler's Coin Exchanged
+    64436, -- Traveler's Purse Exchanged
+    64437, -- Traveler's Cache Exchanged
+    64438, -- Traveler's Trove Exchanged
+    64439, -- Traveler's Fortune Exchanged
+    64446, -- A Puzzling Tale Reward
+    64419, -- The Sanguine Puzzlemaster's Reward
+    64420, -- The Hexed Puzzlemaster's Reward
+    64421, -- The Eldrich Puzzlemaster's Reward
+    64422, -- The Fae Puzzlemaster's Reward
+    64418, -- The Tale of the Puzzle Master Rewarded
+    64464, -- Stories Shared
+    64441, -- The Outfitter's Story Complete
+    64442, -- The Arcanist's Account Complete
+    64440, -- The Antiquarian's Chapter Complete
+    64444, -- The Slayer and the Scribe Complete
+    64445, -- The Witch and the Scribe Complete
+    64443, -- The Inquisitor and the Scribe Complete
+    64465, -- The Tale Complete
+})
