@@ -8,9 +8,11 @@
       known_bad.lua         — 10 entries (Classic); verifier must exit 1, exactly 11 [FAIL] lines (10 check failures + 1 autofactionsplit-unique Case 1 from Ach(714)/Ach(907) combination).
       known_good_retail.lua — 2 entries (Retail); verifier must exit 0, no [FAIL] lines.
       known_bad_retail.lua  — 2 entries (Retail); verifier must exit 1, exactly 1 [FAIL] line.
-      known_good_ptr_fallback.lua — 2 entries; first id resolves in the live "wow" build (chosen as
-        primary via auto-detect), second id only exists on "wowt" (PTR) and must be resolved via the
-        fallback-build pass. Run WITHOUT -Build so auto-detection actually runs. Verifier must exit 0.
+      known_good_ptr_fallback.lua — 5 entries; first id resolves in the live "wow" build (chosen as
+        primary via auto-detect), the 12.1.7 ids (63734, 64464, 64418) only exist on "wowt" (PTR) until
+        12.1.7 is live and must be resolved via the fallback-build pass; they also cover the Bound Silver
+        and Traveling Raven reward texts. Run WITHOUT -Build so auto-detection actually runs. Verifier
+        must exit 0.
     Requires wow.tools.local running at http://localhost:5000 with a wow (Retail) build loaded. Tests 1 and 2
     also need a wow_classic build (Mists of Pandaria Classic) and are skipped without one; the fallback
     assertion in test 5 needs a wowt (PTR) build and is skipped without one.
@@ -180,10 +182,10 @@ Assert ($r5.Text -notmatch "\[FAIL\]")                           "No [FAIL] line
 if ($ptrBuild) {
     # The fixture's second id must still be missing from the live build for the fallback pass to trigger.
     # Achievements move from PTR to live every patch, so probe before asserting.
-    $probeBody = "draw=1&start=0&length=1&columns[3][search][value]=^63692`$&columns[3][search][regex]=true"
+    $probeBody = "draw=1&start=0&length=1&columns[3][search][value]=^63734`$&columns[3][search][regex]=true"
     $onLive = (Invoke-RestMethod "$BaseUrl/dbc/data/achievement/?build=$retailBuild" -Method POST -Body $probeBody -ContentType "application/x-www-form-urlencoded").recordsFiltered -gt 0
     if ($onLive) {
-        Write-Warning "Fixture known_good_ptr_fallback.lua no longer exercises the fallback pass: Ach(63692) now exists on the live build $retailBuild. Replace it with an id that only exists on a PTR build (wowt/wowxptr) to re-arm this assertion."
+        Write-Warning "Fixture known_good_ptr_fallback.lua no longer exercises the fallback pass: Ach(63734) now exists on the live build $retailBuild. Replace it with an id that only exists on a PTR build (wowt/wowxptr) to re-arm this assertion."
     } else {
         Assert ($r5.Text -match "Resolved \d+ additional ID\(s\) from fallback build") "Fallback build resolution message printed"
     }

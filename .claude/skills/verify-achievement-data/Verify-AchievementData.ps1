@@ -262,7 +262,8 @@ foreach ($line in $lines) {
         HasTradersTender  = [bool]($eChain -match ':TradersTender\(\)')
         HasRemixBronze    = [bool]($eChain -match ':RemixBronze\(\)')
         HasKeystoneResilience = [bool]($eChain -match ':KeystoneResilience\(\)')
-        HasTeleport   = [bool]($eChain -match ':Teleport\(\)')
+        HasTaleboundSilver = [bool]($eChain -match ':TaleboundSilver\(\)')
+        HasTeleport  = [bool]($eChain -match ':Teleport\(\)')
         HasWarbandCampsite = [bool]($eChain -match ':WarbandCampsite\(\)')
         HasIsPvP      = [bool]($eChain -match ':IsPvP\(\)')
         FactionSide    = $fSide
@@ -438,13 +439,15 @@ foreach ($e in $entries) {
                        $r -match '^D\.R\.I\.V\.E\. Engine:' -or            # :Mount() — Undermine racing
                        $r -match '^Share the (?:Seeker|Angler)thread' -or   # :Other() — warband currency
                        $r -match 'Dastardly Duos' -or                        # :Other() — in-match gameplay bonus
+                       $r -match '^Traveling Raven:' -or                     # :Toy() for a toy, else :Other() — Talebound Raven tracker
+                       $r -match '\bBound Silver$' -or                       # :TaleboundSilver() — "Small/Medium/Large Pile of Bound Silver"
                        $r -match '\bCache$' -or                              # :Transmog()/:RemixBronze() — item/bronze cache
                        $r -match '\bBronze$'                                  # :RemixBronze() — "grants additional Bronze" prose
                       )
         $hasMethod = $e.HasMount -or $e.HasPet -or $e.HasItem -or $e.HasToy -or
                      $e.HasTransmog -or $e.HasOther -or $e.HasTabard -or $e.HasGarrison -or
                      $e.HasAlliedRace -or $e.HasHousingDecor -or $e.HasTradersTender -or
-                     $e.HasRemixBronze -or $e.HasKeystoneResilience -or $e.HasTeleport -or
+                     $e.HasRemixBronze -or $e.HasKeystoneResilience -or $e.HasTaleboundSilver -or $e.HasTeleport -or
                      $e.HasWarbandCampsite -or $e.HasNotCategorized -or
                      $e.HasTitle   # :Title() counts as a reward method for the reward-item check
         # If it's a title reward and entry has :Title(), that's sufficient; don't require other methods
@@ -464,7 +467,7 @@ foreach ($e in $entries) {
             } elseif ($r -eq "" -and $e.HasMount -and -not ($e.HasPet -or $e.HasItem -or $e.HasToy -or
                     $e.HasTransmog -or $e.HasTabard -or $e.HasGarrison -or $e.HasAlliedRace -or
                     $e.HasHousingDecor -or $e.HasOther -or $e.HasNotCategorized -or $e.HasRemixBronze -or
-                    $e.HasKeystoneResilience -or $e.HasTeleport -or $e.HasWarbandCampsite -or $e.HasTitle)) {
+                    $e.HasKeystoneResilience -or $e.HasTaleboundSilver -or $e.HasTeleport -or $e.HasWarbandCampsite -or $e.HasTitle)) {
                 # :Mount()-only entry with empty DB Reward_lang — some account-wide/standalone mount
                 # achievements (e.g. seasonal PvP mount FoS achievements) have no Reward_lang populated
                 # despite the mount being confirmed via Wowhead. Known DB data gap.
@@ -472,13 +475,13 @@ foreach ($e in $entries) {
             } elseif ($r -eq "" -and $e.HasTitle -and -not ($e.HasMount -or $e.HasPet -or $e.HasItem -or
                     $e.HasToy -or $e.HasTransmog -or $e.HasTabard -or $e.HasGarrison -or
                     $e.HasAlliedRace -or $e.HasHousingDecor -or $e.HasRemixBronze -or
-                    $e.HasKeystoneResilience -or $e.HasTeleport -or $e.HasWarbandCampsite)) {
+                    $e.HasKeystoneResilience -or $e.HasTaleboundSilver -or $e.HasTeleport -or $e.HasWarbandCampsite)) {
                 # :Title()-only entry with empty DB Reward_lang — already suppressed as FP by the
                 # title-reward check's empty-DB rule; skip here to avoid double-reporting.
             } elseif ($r -eq "" -and $e.HasHousingDecor -and -not ($e.HasMount -or $e.HasPet -or $e.HasItem -or
                     $e.HasToy -or $e.HasTransmog -or $e.HasTabard -or $e.HasGarrison -or
                     $e.HasAlliedRace -or $e.HasOther -or $e.HasRemixBronze -or
-                    $e.HasKeystoneResilience -or $e.HasTeleport -or $e.HasWarbandCampsite -or
+                    $e.HasKeystoneResilience -or $e.HasTaleboundSilver -or $e.HasTeleport -or $e.HasWarbandCampsite -or
                     $e.HasTradersTender -or $e.HasTitle)) {
                 # :HousingDecor()-only entry with empty DB Reward_lang — housing decor was added
                 # retroactively to pre-housing achievements; DB hasn't been updated. Tag is correct.

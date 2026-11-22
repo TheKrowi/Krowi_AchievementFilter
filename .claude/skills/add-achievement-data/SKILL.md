@@ -134,12 +134,14 @@ Map comment text to `AchBuilder` method names:
 | "Character Unlock:", "Character Title:", "Seasonal Character Title:" | `:Title()` |
 | "Shop Sign" | `:HousingDecor()` |
 | Bronze Cache | `:RemixBronze()` |
+| "Small/Medium/Large Pile of Bound Silver" | `:TaleboundSilver()` |
+| "Traveling Raven: X" | by the item X: `:Toy()` for a toy, else `:Other()` (look it up in `toy`/`itemsparse`) |
 | Allied Race unlock | `:AlliedRace()` |
 | Warband Campsite | `:WarbandCampsite()` |
 | (no clear match) | Ask for clarification |
 
-**Reward type methods (all 17):**
-`:NotCategorized()` `:Other()` `:AlliedRace()` `:Garrison()` `:Mount()` `:Pet()` `:RemixBronze()` `:Tabard()` `:Teleport()` `:Title()` `:Toy()` `:TradersTender()` `:Transmog()` `:WarbandCampsite()` `:RemixInfiniteKnowledge()` `:HousingDecor()` `:KeystoneResilience()`
+**Reward type methods (all 18):**
+`:NotCategorized()` `:Other()` `:AlliedRace()` `:Garrison()` `:Mount()` `:Pet()` `:RemixBronze()` `:Tabard()` `:Teleport()` `:Title()` `:Toy()` `:TradersTender()` `:Transmog()` `:WarbandCampsite()` `:RemixInfiniteKnowledge()` `:HousingDecor()` `:KeystoneResilience()` `:TaleboundSilver()`
 
 **Additional (non-reward) methods:**
 `:IsPvP()` `:PvP(N)` `:PvE(N)` `:Weeks(first[, last])` `:IsRealmFirst()` `:Obtainable(...)` `:Anniv20()` `:FactionSplit(faction, altId)` `:AutoFactionSplit(faction, altId)` `:CreatureDisplay(displayId, spellId)`
