@@ -16,3 +16,5 @@ Class: data
 | 2026-11-21 | merge | PR #426 (told with it: the pop-up, chat line and side button show the calendar's title for the year, "WoW's Anniversary" is the toggle's name; Mists owes an options run before release) | Merge | "Merge (Recommended)" | took |
 | 2026-11-21 | merge | Export the locale change to CurseForge with krowi:localization | After the merge | "Export after merge (Recommended)" | took |
 | 2026-11-21 | merge | The duplicate guard for linked calendar ids | Backlog for now | "Backlog for now (Recommended)" | took |
+| 2026-11-21 | merge | The CurseForge export cannot send only WoW's Anniversary: it also sends the 54 Event reminders phrases of PR #419 and their translations, already on main; it deletes nothing. Run the full export now? | Export everything now | "Export everything now (Recommended)" | took |
+| 2026-11-21 | merge | CurseForge still has 41 phrases main no longer uses (WoW's 10th Anniversary and 40 Event reminders names renamed in PR #419); deleting removes their translations there for good. Which to delete? | All 41 | "All 41 (Recommended)" | took |
