@@ -1,5 +1,5 @@
 # Plan: 12.1.7 "Echoes of the Worldcore" achievements
-Spec: [spec.md](spec.md). Status: draft
+Spec: [spec.md](spec.md). Status: done
 
 ## Files that change
 - `Api/AchievementDataApi.lua`: `"TaleboundSilver"` appended after `"KeystoneResilience"` in `KrowiAF.Enum.RewardType`; the builder gets `:TaleboundSilver()` from the enum.
@@ -31,3 +31,18 @@ Spec: [spec.md](spec.md). Status: draft
 
 ## Proof
 Requirements 1, 3 and 4 by the Achievements snapshot diff and verify; 2 by the headless load (an unregistered patch fails it); 5 and 6 by the coverage check and the CategoryTree diff; 7 by the checks themselves; the filter and the tab by the look gate and the suites.
+
+## Where the build departed
+- The category names go through the existing `addon.GetCategoryInfoTitle`, which now takes a fallback (not cached, so Blizzard's title wins once the client has it), instead of a new `GetCategoryName` (code review).
+- `addon.GetRewardTypeName` and `addon.GetCurrencyName` (`Localization/Shared.lua`) name Bound Silver for both the filter and the achievement tooltip's Rewards lines, which otherwise showed "TaleboundSilver" (code review); the filter reads the name each time its menu is built.
+- The TOC lists 120107 beside 120105 (Krowi's "set toc to 120107"), so the PTR loads it without "Load out of date AddOns" and live Retail still does.
+- The work folder is `2026-11-21-patch-12-1-7`: the `work-items` rule takes no dots in a slug.
+- `Evaluate-FindNewAchievements.ps1` ran after the insert, so it reported the 119 as duplicates and 63685 as missing: its 120 ids are the 119 plus BlizzCon 2026, already in 12.1.5, all in the file.
+- `Verify-AchievementData.ps1` flags 64464 and 64465 (`:Toy()` on "Traveling Raven: <toy>"), which it does not know yet; teaching it that and `:TaleboundSilver()` is the harness pull request after this one. Its ten other findings are older lines ("Season One" comments the game now writes "Season 1", three unlock-for-purchase rewards), out of scope.
+- No zone data, as planned; the normal-difficulty Giant of Greenthistle Wood does not exist on the PTR (63733, 63736 not found), so Bosses has 38.
+
+## Results
+- Headless: `load-data.lua Both` 0 problems; the snapshot diffs are the 119 ids in 12.1.7 with their rewards and records, VERSION 12.1.7, four new categories (Specials > Talebound, Bosses, Levels, Traveling Raven) and the 14 other placements; coverage passes; `Check-Repo.ps1` 0 errors; tooltip, options and special green headless on both clients.
+- Look gate on the 12.1.7 PTR (Krowiwo, 2026-11-22): approved.
+- In game: Retail 12.1.5 options 37, special 27, navigation 10, tooltip 4 passed; Mists 5.5.4 options 37, special 27 passed; nothing failed; no addon error in BugGrabber on either.
+- Taint review: none found.

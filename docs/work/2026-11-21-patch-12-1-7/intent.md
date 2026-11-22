@@ -1,5 +1,5 @@
 # Intent: 12.1.7 "Echoes of the Worldcore" achievements
-Author: Krowi, maintainer. Source: idea. Status: accepted
+Author: Krowi, maintainer. Source: idea. Status: done
 
 ## Problem
 Patch 12.1.7 "Echoes of the Worldcore" goes live on 1 December 2026 (2 December in Europe). Its PTR build 12.1.7.71087 has 119 visible achievements the addon does not know (`Find-NewAchievements.ps1` against live 12.1.5.70961; 63685 BlizzCon 2026 is already in the 12.1.5 block). Without them players see them only under Blizzard's own categories, with no filters, tooltips or obtainability.

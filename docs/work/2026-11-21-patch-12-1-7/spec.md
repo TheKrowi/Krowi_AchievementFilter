@@ -1,5 +1,5 @@
 # Spec: 12.1.7 "Echoes of the Worldcore" achievements
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. A `12_01_07` block in `DataAddons/Retail/12_Midnight/AchievementData.lua` holds the 119 achievements `Find-NewAchievements.ps1` lists for 12.1.7.71087 against 12.1.5.70961, in the V2 format, each with the rewards, factions and `Obtainable()` records the data skills give it; 63685 BlizzCon 2026 stays in 12.1.5.
