@@ -7,8 +7,16 @@ local rewardTypeSpecialCases = {
     [KrowiAF.Enum.RewardType.Other] = true,
     [KrowiAF.Enum.RewardType.RemixBronze] = true,
     [KrowiAF.Enum.RewardType.RemixInfiniteKnowledge] = true,
+    [KrowiAF.Enum.RewardType.TaleboundSilver] = true,
     [KrowiAF.Enum.RewardType.NotCategorized] = true
 }
+
+-- Bound Silver in the player's language: the game's own currency name, the English fallback before 12.1.7 and on Mists
+local boundSilverCurrencyId = 3361
+local function GetBoundSilverLabel()
+    local info = C_CurrencyInfo and C_CurrencyInfo.GetCurrencyInfo and C_CurrencyInfo.GetCurrencyInfo(boundSilverCurrencyId)
+    return info and info.name ~= "" and info.name or addon.L["Bound Silver"]
+end
 
 local cachedRewardItems
 
@@ -50,6 +58,7 @@ function rewardTypes.BuildRewardItems()
         {divider = true},
         {label = addon.L["RemixBronze"], keys = {"RewardType", KrowiAF.Enum.RewardType.RemixBronze}},
         {label = addon.L["RemixInfiniteKnowledge"], keys = {"RewardType", KrowiAF.Enum.RewardType.RemixInfiniteKnowledge}},
+        {label = GetBoundSilverLabel(), keys = {"RewardType", KrowiAF.Enum.RewardType.TaleboundSilver}},
         {divider = true},
         {label = addon.L["NotCategorized"], keys = {"RewardType", KrowiAF.Enum.RewardType.NotCategorized}},
         {divider = true},

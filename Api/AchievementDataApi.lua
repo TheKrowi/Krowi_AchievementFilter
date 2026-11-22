@@ -23,7 +23,8 @@ KrowiAF.Enum.RewardType = EnumUtil.MakeEnum(
     "WarbandCampsite",
     "RemixInfiniteKnowledge",
     "HousingDecor",
-    "KeystoneResilience"
+    "KeystoneResilience",
+    "TaleboundSilver" -- Bound Silver, Talebound's currency (12.1.7); append new types, the saved filters keep each value
 )
 
 KrowiAF.AchievementData = {}

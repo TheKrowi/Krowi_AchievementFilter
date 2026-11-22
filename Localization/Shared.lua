@@ -44,6 +44,16 @@ function addon.GetCategoryInfoTitle(categoryId)
 end
 KrowiAF_GetCategoryInfoTitle = addon.GetCategoryInfoTitle
 
+-- An achievement category's title as Blizzard writes it in the player's language; the fallback while the client does not
+-- have the category yet (a PTR category before its patch, another client)
+function addon.GetCategoryName(categoryId, fallback)
+    local name = GetCategoryInfo and (GetCategoryInfo(categoryId))
+    if name and name ~= "" then
+        return name
+    end
+    return fallback or tostring(categoryId)
+end
+
 function addon.GetLFGDungeonInfo(dungeonId)
     return GetLFGDungeonInfo and GetLFGDungeonInfo(dungeonId) or tostring(dungeonId)
 end
