@@ -26,14 +26,19 @@ function addon.GetInstanceInfoName(journalInstanceId)
 end
 
 local categoryInfoTitles = {}
-function addon.GetCategoryInfoTitle(categoryId)
+-- fallback: the title while the client does not have the category yet (a PTR category before its patch, another
+-- client); not cached, so Blizzard's own title wins once the client has it
+function addon.GetCategoryInfoTitle(categoryId, fallback)
     if categoryInfoTitles[categoryId] then
         return categoryInfoTitles[categoryId]
     end
     local title = (GetCategoryInfo(categoryId))
-    if title then
+    if title and title ~= "" then
         categoryInfoTitles[categoryId] = title
         return title
+    end
+    if fallback then
+        return fallback
     end
     title = addon.L["GetCategoryInfo" .. categoryId]
     if title then
@@ -44,14 +49,21 @@ function addon.GetCategoryInfoTitle(categoryId)
 end
 KrowiAF_GetCategoryInfoTitle = addon.GetCategoryInfoTitle
 
--- An achievement category's title as Blizzard writes it in the player's language; the fallback while the client does not
--- have the category yet (a PTR category before its patch, another client)
-function addon.GetCategoryName(categoryId, fallback)
-    local name = GetCategoryInfo and (GetCategoryInfo(categoryId))
-    if name and name ~= "" then
-        return name
+-- A currency's name as the game writes it in the player's language, or the fallback while the client lacks it
+function addon.GetCurrencyName(currencyId, fallback)
+    local info = C_CurrencyInfo and C_CurrencyInfo.GetCurrencyInfo and C_CurrencyInfo.GetCurrencyInfo(currencyId)
+    if info and info.name and info.name ~= "" then
+        return info.name
     end
-    return fallback or tostring(categoryId)
+    return fallback or tostring(currencyId)
+end
+
+-- A reward type's name for the filter and the tooltip; Bound Silver (12.1.7) is the game's currency 3361
+function addon.GetRewardTypeName(rewardType, typeName)
+    if rewardType == KrowiAF.Enum.RewardType.TaleboundSilver then
+        return addon.GetCurrencyName(3361, addon.L["Bound Silver"])
+    end
+    return addon.L[typeName]
 end
 
 function addon.GetLFGDungeonInfo(dungeonId)

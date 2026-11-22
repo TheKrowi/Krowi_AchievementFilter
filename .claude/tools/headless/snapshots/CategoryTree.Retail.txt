@@ -11427,115 +11427,115 @@ ACH Specials > Mythic+ > Midnight > Season 2 > KeystoneResilience # 62432
 ACH Specials > Mythic+ > Midnight > Season 2 > KeystoneResilience # 62433
 ACH Specials > Mythic+ > Midnight > Season 2 > KeystoneResilience # 62434
 ACH Specials > Mythic+ > Midnight > Season 2 > KeystoneResilience # 62435
-CAT Specials > CategoryName 15625
-ACH Specials > CategoryName 15625 # 64416
-ACH Specials > CategoryName 15625 # 64417
-ACH Specials > CategoryName 15625 # 63814
-ACH Specials > CategoryName 15625 # 63815
-ACH Specials > CategoryName 15625 # 63816
-ACH Specials > CategoryName 15625 # 63817
-ACH Specials > CategoryName 15625 # 63818
-ACH Specials > CategoryName 15625 # 63819
-ACH Specials > CategoryName 15625 # 64227
-ACH Specials > CategoryName 15625 # 64228
-ACH Specials > CategoryName 15625 # 64229
-ACH Specials > CategoryName 15625 # 64230
-ACH Specials > CategoryName 15625 # 63820
-ACH Specials > CategoryName 15625 # 64135
-ACH Specials > CategoryName 15625 # 64136
-ACH Specials > CategoryName 15625 # 64137
-ACH Specials > CategoryName 15625 # 64138
-ACH Specials > CategoryName 15625 # 64139
-ACH Specials > CategoryName 15625 # 63824
-ACH Specials > CategoryName 15625 # 63825
-ACH Specials > CategoryName 15625 # 63826
-ACH Specials > CategoryName 15625 # 63821
-ACH Specials > CategoryName 15625 # 63822
-ACH Specials > CategoryName 15625 # 63823
-CAT Specials > CategoryName 15625 > CategoryName 15627
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63734
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63735
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63737
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63738
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63741
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63743
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63744
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63745
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63748
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63749
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63780
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63754
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63755
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63758
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63760
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63761
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63762
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63764
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63765
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63766
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63768
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63769
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63770
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63772
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63773
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63774
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63776
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63777
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63778
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63802
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63803
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63804
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63806
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63807
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63808
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63810
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63811
-ACH Specials > CategoryName 15625 > CategoryName 15627 # 63812
-CAT Specials > CategoryName 15625 > CategoryName 15628
-ACH Specials > CategoryName 15625 > CategoryName 15628 # 63782
-ACH Specials > CategoryName 15625 > CategoryName 15628 # 63783
-ACH Specials > CategoryName 15625 > CategoryName 15628 # 63784
-ACH Specials > CategoryName 15625 > CategoryName 15628 # 63786
-ACH Specials > CategoryName 15625 > CategoryName 15628 # 63787
-ACH Specials > CategoryName 15625 > CategoryName 15628 # 63788
-ACH Specials > CategoryName 15625 > CategoryName 15628 # 63790
-ACH Specials > CategoryName 15625 > CategoryName 15628 # 63791
-ACH Specials > CategoryName 15625 > CategoryName 15628 # 63792
-ACH Specials > CategoryName 15625 > CategoryName 15628 # 63794
-ACH Specials > CategoryName 15625 > CategoryName 15628 # 63795
-ACH Specials > CategoryName 15625 > CategoryName 15628 # 63796
-ACH Specials > CategoryName 15625 > CategoryName 15628 # 63798
-ACH Specials > CategoryName 15625 > CategoryName 15628 # 63799
-ACH Specials > CategoryName 15625 > CategoryName 15628 # 63800
-CAT Specials > CategoryName 15625 > Traveling Raven
-ACH Specials > CategoryName 15625 > Traveling Raven # 64423
-ACH Specials > CategoryName 15625 > Traveling Raven # 64424
-ACH Specials > CategoryName 15625 > Traveling Raven # 64425
-ACH Specials > CategoryName 15625 > Traveling Raven # 64427
-ACH Specials > CategoryName 15625 > Traveling Raven # 64428
-ACH Specials > CategoryName 15625 > Traveling Raven # 64429
-ACH Specials > CategoryName 15625 > Traveling Raven # 64431
-ACH Specials > CategoryName 15625 > Traveling Raven # 64432
-ACH Specials > CategoryName 15625 > Traveling Raven # 64433
-ACH Specials > CategoryName 15625 > Traveling Raven # 64435
-ACH Specials > CategoryName 15625 > Traveling Raven # 64436
-ACH Specials > CategoryName 15625 > Traveling Raven # 64437
-ACH Specials > CategoryName 15625 > Traveling Raven # 64438
-ACH Specials > CategoryName 15625 > Traveling Raven # 64439
-ACH Specials > CategoryName 15625 > Traveling Raven # 64446
-ACH Specials > CategoryName 15625 > Traveling Raven # 64419
-ACH Specials > CategoryName 15625 > Traveling Raven # 64420
-ACH Specials > CategoryName 15625 > Traveling Raven # 64421
-ACH Specials > CategoryName 15625 > Traveling Raven # 64422
-ACH Specials > CategoryName 15625 > Traveling Raven # 64418
-ACH Specials > CategoryName 15625 > Traveling Raven # 64464
-ACH Specials > CategoryName 15625 > Traveling Raven # 64441
-ACH Specials > CategoryName 15625 > Traveling Raven # 64442
-ACH Specials > CategoryName 15625 > Traveling Raven # 64440
-ACH Specials > CategoryName 15625 > Traveling Raven # 64444
-ACH Specials > CategoryName 15625 > Traveling Raven # 64445
-ACH Specials > CategoryName 15625 > Traveling Raven # 64443
-ACH Specials > CategoryName 15625 > Traveling Raven # 64465
+CAT Specials > CategoryInfoTitle 15625
+ACH Specials > CategoryInfoTitle 15625 # 64416
+ACH Specials > CategoryInfoTitle 15625 # 64417
+ACH Specials > CategoryInfoTitle 15625 # 63814
+ACH Specials > CategoryInfoTitle 15625 # 63815
+ACH Specials > CategoryInfoTitle 15625 # 63816
+ACH Specials > CategoryInfoTitle 15625 # 63817
+ACH Specials > CategoryInfoTitle 15625 # 63818
+ACH Specials > CategoryInfoTitle 15625 # 63819
+ACH Specials > CategoryInfoTitle 15625 # 64227
+ACH Specials > CategoryInfoTitle 15625 # 64228
+ACH Specials > CategoryInfoTitle 15625 # 64229
+ACH Specials > CategoryInfoTitle 15625 # 64230
+ACH Specials > CategoryInfoTitle 15625 # 63820
+ACH Specials > CategoryInfoTitle 15625 # 64135
+ACH Specials > CategoryInfoTitle 15625 # 64136
+ACH Specials > CategoryInfoTitle 15625 # 64137
+ACH Specials > CategoryInfoTitle 15625 # 64138
+ACH Specials > CategoryInfoTitle 15625 # 64139
+ACH Specials > CategoryInfoTitle 15625 # 63824
+ACH Specials > CategoryInfoTitle 15625 # 63825
+ACH Specials > CategoryInfoTitle 15625 # 63826
+ACH Specials > CategoryInfoTitle 15625 # 63821
+ACH Specials > CategoryInfoTitle 15625 # 63822
+ACH Specials > CategoryInfoTitle 15625 # 63823
+CAT Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63734
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63735
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63737
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63738
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63741
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63743
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63744
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63745
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63748
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63749
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63780
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63754
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63755
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63758
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63760
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63761
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63762
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63764
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63765
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63766
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63768
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63769
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63770
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63772
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63773
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63774
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63776
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63777
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63778
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63802
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63803
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63804
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63806
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63807
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63808
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63810
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63811
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15627 # 63812
+CAT Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15628
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15628 # 63782
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15628 # 63783
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15628 # 63784
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15628 # 63786
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15628 # 63787
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15628 # 63788
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15628 # 63790
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15628 # 63791
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15628 # 63792
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15628 # 63794
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15628 # 63795
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15628 # 63796
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15628 # 63798
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15628 # 63799
+ACH Specials > CategoryInfoTitle 15625 > CategoryInfoTitle 15628 # 63800
+CAT Specials > CategoryInfoTitle 15625 > Traveling Raven
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64423
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64424
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64425
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64427
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64428
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64429
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64431
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64432
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64433
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64435
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64436
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64437
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64438
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64439
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64446
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64419
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64420
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64421
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64422
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64418
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64464
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64441
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64442
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64440
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64444
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64445
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64443
+ACH Specials > CategoryInfoTitle 15625 > Traveling Raven # 64465
 
 == Orphans ==
 # achievement ids registered by a data file but held by no category of the addon's own tree.

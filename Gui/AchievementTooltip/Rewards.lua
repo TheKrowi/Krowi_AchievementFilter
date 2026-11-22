@@ -19,7 +19,7 @@ function section:Add(achievement)
         end
 
         for _, rType in next, rewardType do
-            Krowi_Tooltip:AddLine(addon.L[getTypeName(rType)], 1, 1, 1)
+            Krowi_Tooltip:AddLine(addon.GetRewardTypeName(rType, getTypeName(rType)), 1, 1, 1)
         end
     end
 end

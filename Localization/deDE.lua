@@ -10,7 +10,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L)
 L["Echoes of the Worldcore"] = "Echos des Weltenkerns"
 L["Talebound"] = "Sagengebunden"
 L["Bosses"] = "Bosse"
-L["Levels"] = "Stufen"
+L["Levels"] = "Level"
 L["Traveling Raven"] = "Reisender Rabe"
 L["Bound Silver"] = "Gebundenes Silber"
 L["Upcoming Holidays"] = "Kommende Feiertage"

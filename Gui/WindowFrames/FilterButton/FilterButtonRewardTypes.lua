@@ -11,13 +11,6 @@ local rewardTypeSpecialCases = {
     [KrowiAF.Enum.RewardType.NotCategorized] = true
 }
 
--- Bound Silver in the player's language: the game's own currency name, the English fallback before 12.1.7 and on Mists
-local boundSilverCurrencyId = 3361
-local function GetBoundSilverLabel()
-    local info = C_CurrencyInfo and C_CurrencyInfo.GetCurrencyInfo and C_CurrencyInfo.GetCurrencyInfo(boundSilverCurrencyId)
-    return info and info.name ~= "" and info.name or addon.L["Bound Silver"]
-end
-
 local cachedRewardItems
 
 local function BuildRewardTypeMenuItems()
@@ -58,7 +51,8 @@ function rewardTypes.BuildRewardItems()
         {divider = true},
         {label = addon.L["RemixBronze"], keys = {"RewardType", KrowiAF.Enum.RewardType.RemixBronze}},
         {label = addon.L["RemixInfiniteKnowledge"], keys = {"RewardType", KrowiAF.Enum.RewardType.RemixInfiniteKnowledge}},
-        {label = GetBoundSilverLabel(), keys = {"RewardType", KrowiAF.Enum.RewardType.TaleboundSilver}},
+        -- the game's currency name, read each time the menu is built: it may load after the first build
+        {label = function() return addon.GetRewardTypeName(KrowiAF.Enum.RewardType.TaleboundSilver) end, keys = {"RewardType", KrowiAF.Enum.RewardType.TaleboundSilver}},
         {divider = true},
         {label = addon.L["NotCategorized"], keys = {"RewardType", KrowiAF.Enum.RewardType.NotCategorized}},
         {divider = true},
@@ -91,7 +85,8 @@ function rewardTypes.CreateRewardMenu(owner, menu, filters)
                 rewardTypes.SetRewardsFilters(owner, filters, value)
             end)
         else
-            mb:CreateCheckbox(reward, item.label, filters, item.keys, true)
+            local label = type(item.label) == "function" and item.label() or item.label
+            mb:CreateCheckbox(reward, label, filters, item.keys, true)
         end
     end
 

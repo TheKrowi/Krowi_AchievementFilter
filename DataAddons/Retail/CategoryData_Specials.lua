@@ -661,7 +661,7 @@ mythic:Insert(shared.GetMidnightMythicPlus(CT.Midnight))
 -- Talebound (12.1.7) in Blizzard's shape, named as Blizzard's window names its categories (15625, 15627, 15628); the
 -- Traveling Raven trackers, under Expansion Features > Talebound there, mirror the achievements above and mail an item
 -- (docs/work/2026-11-21-patch-12-1-7)
-local talebound = specials:Named(addon.GetCategoryName(15625, addon.L["Talebound"]), {
+local talebound = specials:Named(addon.GetCategoryInfoTitle(15625, addon.L["Talebound"]), {
     64416, -- Tapping at the Trader's Door
     64417, -- Delving into a Tale
     63814, -- Traveler's Coin
@@ -687,7 +687,7 @@ local talebound = specials:Named(addon.GetCategoryName(15625, addon.L["Talebound
     63822, -- The Witch and the Scribe
     63823, -- The Inquisitor and the Scribe
 })
-talebound:Named(addon.GetCategoryName(15627, addon.L["Bosses"]), {
+talebound:Named(addon.GetCategoryInfoTitle(15627, addon.L["Bosses"]), {
     63734, -- Veteran: The Giant of Greenthistle Wood
     63735, -- Heroic: The Giant of Greenthistle Wood
     63737, -- The Witch of the Woods
@@ -727,7 +727,7 @@ talebound:Named(addon.GetCategoryName(15627, addon.L["Bosses"]), {
     63811, -- Veteran: The Inquisitor's Final Confrontation
     63812, -- Heroic: The Inquisitor's Final Confrontation
 })
-talebound:Named(addon.GetCategoryName(15628, addon.L["Levels"]), {
+talebound:Named(addon.GetCategoryInfoTitle(15628, addon.L["Levels"]), {
     63782, -- The Tale of Greenthistle Wood
     63783, -- Veteran: The Tale of Greenthistle Wood
     63784, -- Heroic: The Tale of Greenthistle Wood
