@@ -3,19 +3,22 @@
 # Pass holiday name fragments (matched case-insensitively) as -Terms "Anniversary","Brewfest", or set the $Terms
 # placeholder below, run, and reset it to @(). -Client Classic reads the Classic build. The build is resolved from
 # the server (the kit's tools\Get-WowBuilds.ps1); for a patch still on the PTR set $env:KAF_RETAIL_PRODUCT = "wowxptr" first.
+# -Locale deDE (frFR, esES, esMX, itIT, koKR, ...) prints the game's own holiday names in that language, for a locale
+# line; -Terms still matches the enUS name.
 # Pre-requisite: wow.tools.local must already be running.
 # Output: holiday id|name|region|start (server time)|duration hours|end   one line per filled Date slot
 param(
     [string[]] $Terms = @(),
-    [ValidateSet('Retail', 'Classic')] [string] $Client = 'Retail'
+    [ValidateSet('Retail', 'Classic')] [string] $Client = 'Retail',
+    [string] $Locale = 'enUS'
 )
 . "$PSScriptRoot\..\..\tools\KitPath.ps1"
 . "$KitTools\Get-WowBuilds.ps1"
 $baseUrl = "http://localhost:5000"
 $build = (Get-WowBuilds -BaseUrl $baseUrl)[$Client]
 
-function Get-Rows([string]$table) {
-    $resp = Invoke-WebRequest "$baseUrl/dbc/data/$table/?build=$build" -Method POST -Body "draw=1&start=0&length=5000" `
+function Get-Rows([string]$table, [string]$locale = 'enUS') {
+    $resp = Invoke-WebRequest "$baseUrl/dbc/data/$table/?build=$build&locale=$locale" -Method POST -Body "draw=1&start=0&length=5000" `
         -ContentType "application/x-www-form-urlencoded" -UseBasicParsing
     @(($resp.Content | ConvertFrom-Json).data)
 }
@@ -34,6 +37,11 @@ if ($Terms.Count -eq 0) { Write-Host "Pass -Terms or set the `$Terms placeholder
 Write-Host "build: $Client $build"
 $names = @{}
 foreach ($r in Get-Rows 'holidaynames') { $names[[int]$r[0]] = [System.Net.WebUtility]::HtmlDecode($r[1]) }
+$shownNames = $names
+if ($Locale -ne 'enUS') {
+    $shownNames = @{}
+    foreach ($r in Get-Rows 'holidaynames' $Locale) { $shownNames[[int]$r[0]] = [System.Net.WebUtility]::HtmlDecode($r[1]) }
+}
 $cols = Get-Columns 'holidays'
 $ix = @{}; for ($i = 0; $i -lt $cols.Count; $i++) { $ix[$cols[$i]] = $i }
 foreach ($h in Get-Rows 'holidays') {
@@ -45,6 +53,6 @@ foreach ($h in Get-Rows 'holidays') {
         if (-not $start) { continue }
         $hours = if ($d -lt 10 -and $durations[$d] -gt 0) { $durations[$d] } else { $durations[0] }
         $end = $start.AddHours($hours)
-        Write-Host ("{0}|{1}|region={2}|{3:yyyy-MM-dd HH:mm}|{4}h|{5:yyyy-MM-dd HH:mm}" -f $h[$ix['ID']], $name, $h[$ix['Region']], $start, $hours, $end)
+        Write-Host ("{0}|{1}|region={2}|{3:yyyy-MM-dd HH:mm}|{4}h|{5:yyyy-MM-dd HH:mm}" -f $h[$ix['ID']], $shownNames[[int]$h[$ix['HolidayNameID']]], $h[$ix['Region']], $start, $hours, $end)
     }
 }

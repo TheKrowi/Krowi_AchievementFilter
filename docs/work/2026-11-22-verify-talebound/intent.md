@@ -1,5 +1,5 @@
 # Intent: verify knows the 12.1.7 rewards, and the parked harness leftovers
-Author: Claude, for Krowi (maintainer). Source: follow-ups of PR #426 and PR #427. Status: accepted
+Author: Claude, for Krowi (maintainer). Source: follow-ups of PR #426 and PR #427. Status: done
 
 ## Problem
 - `Verify-AchievementData.ps1` on `DataAddons/Retail/12_Midnight/AchievementData.lua` reports two false failures for 12.1.7: Ach(64464) and Ach(64465) carry `:Toy()` for "Traveling Raven: Hexed Tiny Tome" and "Traveling Raven: Wood-Cursed Hearthstone", which the script does not count as reward text. The other 26 Raven trackers (`:Other()`) pass only as "trusted" false positives.

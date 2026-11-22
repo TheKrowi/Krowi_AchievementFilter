@@ -1,5 +1,5 @@
 # Spec: verify knows the 12.1.7 rewards, and the parked harness leftovers
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. `Verify-AchievementData.ps1` recognises `:TaleboundSilver()` as a reward method.

@@ -149,6 +149,10 @@ Ach(13553):AutoFactionSplit(faction.Alliance, 13700), -- The Mechagonian Threat
 
 - **`:RemixBronze()` for bronze-progression prose rewards** — some achievements grant extra bronze for ongoing activities rather than a discrete cache item. `Reward_lang` is a sentence ending in `"Bronze"` (e.g. `"Infinite Research assignments grant additional Bronze"`). These are recognized by the `'\bBronze$'` pattern in `$isReward`. Observed on Ach(60961) in `Retail/11_TheWarWithin/AchievementData.lua`.
 
+- **`:TaleboundSilver()` (12.1.7 Talebound currency)** — `Reward_lang` reads `"Small Pile of Bound Silver"`, `"Medium Pile of Bound Silver"` or `"Large Pile of Bound Silver"` (currency 3361). Recognized by the `'\bBound Silver$'` pattern in `$isReward`; `:TaleboundSilver()` is in `$hasMethod`. Observed on 70 entries of the `12_01_07` block in `Retail/12_Midnight/AchievementData.lua` (63734–63826, 64135–64138, 64227–64230).
+
+- **"Traveling Raven:" rewards (12.1.7 Talebound Raven trackers)** — `Reward_lang` reads `"Traveling Raven: <item>"`, the item the Raven brings. Recognized by `'^Traveling Raven:'` in `$isReward`; the tag follows the item: `:Toy()` for a toy (Ach(64464) Hexed Tiny Tome, Ach(64465) Wood-Cursed Hearthstone), `:Other()` for the containers and consumables (Ach(64418)–Ach(64446)). Observed in `Retail/12_Midnight/AchievementData.lua`.
+
 - **`"Decord Reward:"` (DB typo) produces a false positive for `:HousingDecor()`** — Ach(40612) "Sprinting in the Ravine" has `Reward_lang="Decord Reward: Deephaul Crystal"` (misspelled "Decord" instead of "Decor"). The `:HousingDecor()` tag is correct; the DB has a typo. Observed in `Retail/11_TheWarWithin/AchievementData.lua`.
 
 - **`"D.R.I.V.E. Engine:"` prefix maps to `:Mount()`** — Undermine racing achievements grant a D.R.I.V.E. engine cosmetic (e.g. `"D.R.I.V.E. Engine: the Pozzik Standard"`) which functions as a mount customization. Observed on Ach(41081) in `Retail/11_TheWarWithin/AchievementData.lua`.

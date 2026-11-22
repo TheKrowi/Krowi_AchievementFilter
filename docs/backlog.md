@@ -5,8 +5,6 @@ Follow-ups that are not a work item yet. When one is taken up, it gets its own w
 ## From the WoW's Anniversary reminder (2026-11-21, docs/work/2026-11-21-wows-anniversary-event)
 
 - **One reminder per linked set.** The reminders keep one event object per calendar id (`Api/EventDataApi.lua` `AddEventData`), and `GetActiveCalendarEvents` and `GetUpcomingCalendarEvents` (`Features/EventReminders/Data/EventData.lua`) add every id the calendar lists, with no look at `LinkedEventIds`. A row whose calendar shows two of its ids at once gives two pop-ups and two side buttons. No row does today: WoW's Anniversary shows only the year's own holiday (1808 on 2026-11-21, its regional copies hidden, EU's 1587 included), but 2024's 20th had six ids. A guard that skips an event once one of its linked ids is in the list would make it impossible (code review of PR #426).
-- **The holiday lookup's `-Locale`** (`_lookup_holidays.ps1`, the game's own holiday names in another language), taken out of PR #426 because it changes a skill script: a harness pull request of its own. The change is in commit b38da09e.
-
 ## From the reload-then-Y fix (2026-11-13, docs/work/2026-11-13-window-before-data)
 
 - **Other special categories read before the data load made them** (scope B, noted by Krowi, 2026-11-13). The fix guards only Current Zone. Three more player actions read a special category list that exists only once `addon.SpecialCategories:Load` runs at the end of the login data load (`Data/Data.lua` `PostLoadOnPlayerLogin`), so each would raise "attempt to get length of field ... (a nil value)" when used in the first seconds after a login or reload. None is in a log yet.

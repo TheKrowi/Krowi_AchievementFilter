@@ -1,5 +1,5 @@
 # Plan: verify knows the 12.1.7 rewards, and the parked harness leftovers
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 ## Files that change
 - `.claude/skills/verify-achievement-data/fixtures/known_good_ptr_fallback.lua`: three 12.1.7 entries.
