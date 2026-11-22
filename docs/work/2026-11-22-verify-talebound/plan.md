@@ -9,7 +9,7 @@ Spec: [spec.md](spec.md). Status: done
 - `.claude/skills/add-achievement-data/SKILL.md`: two table rows, `:TaleboundSilver()` in the method list (18).
 - `.claude/skills/add-achievement-data/_lookup_holidays.ps1`: `-Locale` from commit b38da09e.
 - `docs/backlog.md`: the `-Locale` line goes.
-- `docs/work/2026-11-21-wows-anniversary-event/gates.md`, `docs/work/2026-11-21-patch-12-1-7/gates.md`: the missing rows.
+- `docs/work/2026-11-21-wows-anniversary-event/gates.md`, `docs/work/2026-11-21-patch-12-1-7/gates.md`: the missing rows. Built: moved to a docs pull request of their own, because the kit's guard holds every work folder a branch touches to the branch's class, and these two would read as harness.
 
 ## Order of work
 1. Fixture, then `Test-VerifyScript.ps1`: test 5 fails on Ach(64464).
