@@ -7,3 +7,4 @@ Class: harness
 | 2026-11-22 | scope | What goes in the harness PR | All four: verify, the skill's reward table, the holiday lookup's -Locale, the backlog line and missing gate rows | "All four (Recommended)" | took |
 | 2026-11-22 | design | How verify treats reward text 'Traveling Raven: <item>' | Count it as a reward; text ending in 'Bound Silver' too, with :TaleboundSilver() as its tag | "Count it as a reward (Recommended)" | took |
 | 2026-11-22 | plan | Test first through the PTR-fallback fixture (63734, 64464, 64418), then the script | Approve | "Approve (Recommended)" | took |
+| 2026-11-22 | merge | PR #428 (with #429, the late gate rows) | Merge both | "Merge both (Recommended)" | took |
