@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 106.0
+## 106.0 - 2026-11-23
 ### Added
 - 12.1.7 "Echoes of the Worldcore" patch data
     - Talebound, a new category in the Specials tab with Bosses, Levels and the Traveling Raven rewards

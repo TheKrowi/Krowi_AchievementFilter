@@ -1,32 +1,39 @@
 ### Added
-- An options window in the look of the game's own Options window, with every setting sorted by feature and how each feature works next to it, opened with /kaf, the minimap icon or the filter menu
-- A Position applies to setting for event reminder pop ups: every alert, as before, or only the event reminders, leaving the game's own alerts where the game puts them
-- A Hide placeholders button next to Show placeholders
-- Additional ruRU and zhCN localization
+- 12.1.7 "Echoes of the Worldcore" patch data
+    - Talebound, a new category in the Specials tab with Bosses, Levels and the Traveling Raven rewards
+    - Lorewalking: Tyr, Thrall, Titans and Jaina
+    - The Coreway Advance campaign achievement
+    - Winter Veil neighborhood achievements, Bow Go and Let's Put A Bow On It
+    - Master of the Turbulent Timeways VI
+- Bound Silver in the Has Reward filter, for the Talebound achievements that reward it
+- An Enable check box at the top of the Reward preview settings, which fully turns off the reward preview after a reload
+- An Enable check box at the top of the Right-click menu settings, which fully turns off the right-click menu after a reload
+- An Enable check box at the top of the Pop Out settings, which fully turns off pop outs after a reload; pop outs kept from the last session come back when it is turned on again
+- Event reminders now turn off fully with their Enable setting after a reload: no pop ups, chat messages or side buttons, and nothing of them runs in the background
+- Additional esES, esMX, itIT, koKR, ptBR and zhTW localization for Pop Out, Reward preview and the right-click menu
+- Additional esES, esMX, itIT, koKR and ptBR localization for Event reminders
+- WoW's Anniversary in Event reminders: a reminder and side button every year while the anniversary is on, listed under Holidays in place of the old WoW's 10th Anniversary entry
 
 ### Changed
-- The tutorial is replaced by the explanations in the options window, with new pictures and a Show me button
-- Settings > AddOns now has one page for this addon, with a button that opens the options window on top of it
-- The pop up position settings are greyed out only while another addon places the game's alerts, not whenever ElvUI, GW2 UI or EllesmereUI is loaded
-- Krowi_Options library updated to 2.0
+- The Reward preview settings have clearer names, and shorter descriptions that say plainly what they do
+- The rotation, width and height settings of the reward preview stay available when its icon on achievements is turned off, since they also apply to a preview opened from the right-click menu
+- The Right-click menu settings have shorter names and say plainly what they do
+- The Pop Out modifier also shows in the Pop Out settings, as Click Modifier, and each place has a button to the other; it is greyed out while pop outs are turned off
+- The Pop Out settings have clearer names, and shorter descriptions that say plainly what they do
+- The Reminder events settings say that the Event reminders Enable setting controls them, with a button to it
+- The Event reminders settings have clearer names, and shorter descriptions that say plainly what they do; Side Buttons Beside moved up to the other Reminders settings
+- The Event reminders help names the window the side buttons sit beside
+- After switching settings profile, event reminders change after the reload the prompt asks for
+- Krowi_Options library updated to 2.1
+- The TaintLess library is no longer included
 
 ### Fixed
-- The right-click menu no longer gives an error or stops short when it links to an achievement your game does not have yet
-- Hovering the back or forward arrow no longer gives an error when a placeholder is in your browsing history
-- Upcoming event reminders now show when the event starts, not when it ends
-- Upcoming event reminders no longer give an error on a non-English client with a date format that names the day or month
-- Short day and month names in event reminders no longer show broken letters on non-English clients
-- Keys set in the options for a tab or for opening the current zone's category work again
-- Switching profiles before you open the achievement window no longer gives an error
-- Clicking an achievement's toast right after earning it no longer gives a "script ran too long" error in combat
-- Category counts in a tab you looked at before earning an achievement now include it when you go back
-- Y now opens the addon's Achievements tab on a new install, so the window reopens where you left off
-- A new install no longer shows an error about switching achievement tabs in chat
-- Zygor Guides Viewer's guide icons now show on this addon's tabs, also when you open the window with the game's own achievements key
-- Event reminder pop ups no longer jump back to another spot when an addon such as Dominos, ElvUI, GW2 UI or EllesmereUI places the game's alerts; they now go with those alerts
-- Event reminder pop ups now move to the right spot after switching profiles
-- Show placeholders now shows a short preview and no longer keeps adding pop ups for minutes
-- The "Active events" chat message no longer repeats every refresh without an event under it
-- Event reminders and the obtainable dates in tooltips now follow the realm's clock, also when your computer's clock is off
-- Changing where the event reminder side buttons show no longer gives an error the next time that window opens
-- Switching profiles now moves the event reminder side buttons to the window that profile shows them on
+- Opening the achievement window in the first seconds after logging in or reloading no longer gives an error or leaves the window empty
+- Right-clicking a guild achievement or a statistic linked in chat no longer opens an empty menu or gives an error
+- The right-click menu button on achievements now shows on Mists Classic
+- The Reward preview help no longer says to click the preview icon while that icon is turned off
+- The start and end dates in the Not obtainable tooltip now use the tooltip's own date format
+- Opening the menu of an event reminder side button whose event has no name no longer reports an error
+- The Pop Out help now names the key you set as the Pop Out modifier instead of always Ctrl
+- The Key Bindings window no longer lists an unnamed Collections binding, which opened an empty Collections window
+- The Advanced settings no longer show the Collections Achievement Window setting, which did nothing
