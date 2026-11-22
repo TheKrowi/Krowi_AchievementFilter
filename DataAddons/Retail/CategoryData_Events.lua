@@ -247,6 +247,12 @@ local winterVeil = holidays:Named(CT.WinterVeil, {
     15181, -- Rock n' Roll
     10353, -- Iron Armada
     62502, -- Master of Merry Mayhem
+    64367, -- Bells Will Be Ringing
+    64368, -- That's Not For You
+    64369, -- Sockin' Around the Winter Veil Tree
+    64370, -- Season's Beatings
+    64371, -- Candy Cane Brigade
+    64372, -- Tree-fense
     1691, -- Merrymaker
 }):WithId(917)
 winterVeil:Named(addon.L["Gifts"], {
@@ -272,6 +278,8 @@ winterVeil:Named(addon.L["Gifts"], {
     20510, -- What Could it be?
     20511, -- Gotta Punt em' All
     42192, -- Snowball Fight!
+    64174, -- Bow Go
+    64175, -- Let's Put A Bow On It
 }):Merge()
 holidays:Named(addon.L["Winds of Mysterious Fortune"], {
     64140, -- Winds of Particularly Mysterious Fortune
@@ -1059,6 +1067,7 @@ timewalking:Named(addon.L["Turbulent Timeways"], {
     41779, -- Master of the Turbulent Timeways III
     61394, -- Master of the Turbulent Timeways IV
     61463, -- Master of the Turbulent Timeways V
+    64207, -- Master of the Turbulent Timeways VI
 }):WithId(1538)
 local legion = events:Named(CT.Legion)
 legion:Named(addon.L["Legion Assaults"], {

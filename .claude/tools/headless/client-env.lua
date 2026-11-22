@@ -204,6 +204,7 @@ function M.New(root, client)
     for _, fn in ipairs({ "GetMapName", "GetInstanceInfoName", "GetLFGDungeonInfo", "GetAreaPoiNameName", "GetAchievmentName", "GetCovenantName" }) do
         addon[fn] = function(id) return fn:gsub("^Get", "") .. " " .. tostring(id) end
     end
+    addon.GetCategoryInfoTitle = function(id) return "CategoryInfoTitle " .. tostring(id) end -- Blizzard's title, a fallback beside it
     setmetatable(addon, { __index = function(t, k) local s = Stub("addon." .. tostring(k)); rawset(t, k, s); return s end })
     self:EnsureDataTables()
     -- The feature registry (Features.lua) as the data pipeline needs it: every feature counts as started, and the data

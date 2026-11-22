@@ -7,6 +7,7 @@ local rewardTypeSpecialCases = {
     [KrowiAF.Enum.RewardType.Other] = true,
     [KrowiAF.Enum.RewardType.RemixBronze] = true,
     [KrowiAF.Enum.RewardType.RemixInfiniteKnowledge] = true,
+    [KrowiAF.Enum.RewardType.TaleboundSilver] = true,
     [KrowiAF.Enum.RewardType.NotCategorized] = true
 }
 
@@ -50,6 +51,8 @@ function rewardTypes.BuildRewardItems()
         {divider = true},
         {label = addon.L["RemixBronze"], keys = {"RewardType", KrowiAF.Enum.RewardType.RemixBronze}},
         {label = addon.L["RemixInfiniteKnowledge"], keys = {"RewardType", KrowiAF.Enum.RewardType.RemixInfiniteKnowledge}},
+        -- the game's currency name, read each time the menu is built: it may load after the first build
+        {label = function() return addon.GetRewardTypeName(KrowiAF.Enum.RewardType.TaleboundSilver) end, keys = {"RewardType", KrowiAF.Enum.RewardType.TaleboundSilver}},
         {divider = true},
         {label = addon.L["NotCategorized"], keys = {"RewardType", KrowiAF.Enum.RewardType.NotCategorized}},
         {divider = true},
@@ -82,7 +85,8 @@ function rewardTypes.CreateRewardMenu(owner, menu, filters)
                 rewardTypes.SetRewardsFilters(owner, filters, value)
             end)
         else
-            mb:CreateCheckbox(reward, item.label, filters, item.keys, true)
+            local label = type(item.label) == "function" and item.label() or item.label
+            mb:CreateCheckbox(reward, label, filters, item.keys, true)
         end
     end
 

@@ -8598,6 +8598,7 @@ ACH 63598 | patch=12.1.0
 ACH 63599 | patch=12.1.0
 ACH 63600 | patch=12.1.0
 ACH 63601 | patch=12.1.0
+ACH 63604 | patch=12.1.7 | reward=HousingDecor | preview=HousingDecorId 28339
 ACH 63605 | patch=12.1.0
 ACH 63606 | patch=12.1.0
 ACH 63608 | patch=12.1.0
@@ -8646,6 +8647,7 @@ ACH 63682 | patch=12.1.0
 ACH 63683 | patch=12.1.0
 ACH 63685 | patch=12.1.0 | reward=HousingDecor | obtainable=[From Date 2026-09-12 .. Until Date 2026-09-13]
 ACH 63690 | patch=12.1.5 | reward=Mount,Title | obtainable=[From PvE Season 18 .. Until PvE Season 18]
+ACH 63691 | patch=12.1.7 | reward=HousingDecor | preview=HousingDecorId 28340
 ACH 63692 | patch=12.1.5
 ACH 63693 | patch=12.1.5
 ACH 63694 | patch=12.1.5
@@ -8654,6 +8656,9 @@ ACH 63696 | patch=12.1.0 | pvp
 ACH 63697 | patch=12.1.0 | pvp
 ACH 63698 | patch=12.1.0 | pvp
 ACH 63699 | patch=12.1.0 | pvp
+ACH 63710 | patch=12.1.7 | reward=HousingDecor | preview=HousingDecorId 28582
+ACH 63712 | patch=12.1.7 | reward=HousingDecor | preview=HousingDecorId 28496
+ACH 63713 | patch=12.1.7
 ACH 63714 | patch=12.1.5 | obtainable=[From Date 2026-11-17 .. Until Date 2026-12-08] | events=Calendar 467,484,509,514,566,589,590,693,807,808,1181,1225,1262,1397,1500,1501,1509,1587,1588,1589,1590,1592,1593,1594,1595,1808
 ACH 63715 | patch=12.1.5 | reward=Mount | obtainable=[From PvE Season 18 .. Until PvE Season 18] | preview=MountId 3144
 ACH 63716 | patch=12.1.5 | reward=Title
@@ -8667,14 +8672,128 @@ ACH 63723 | patch=12.1.5
 ACH 63724 | patch=12.1.5
 ACH 63727 | patch=12.1.5
 ACH 63728 | patch=12.1.5
+ACH 63734 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63735 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63737 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63738 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63741 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63743 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63744 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63745 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63748 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63749 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63754 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63755 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63758 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63760 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63761 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63762 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63764 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63765 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63766 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63768 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63769 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63770 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63772 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63773 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63774 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63776 | patch=12.1.7 | reward=WarbandCampsite
+ACH 63777 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63778 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63780 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63782 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63783 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63784 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63786 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63787 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63788 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63790 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63791 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63792 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63794 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63795 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63796 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63798 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63799 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63800 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63802 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63803 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63804 | patch=12.1.7 | reward=Title
+ACH 63806 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63807 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63808 | patch=12.1.7 | reward=Title
+ACH 63810 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63811 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63812 | patch=12.1.7 | reward=Title
+ACH 63814 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63815 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63816 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63817 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63818 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63819 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63820 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63821 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63822 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63823 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63824 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63825 | patch=12.1.7 | reward=TaleboundSilver
+ACH 63826 | patch=12.1.7 | reward=TaleboundSilver
 ACH 63830 | patch=12.1.5
 ACH 63838 | patch=12.1.0
 ACH 64039 | patch=12.1.5 | reward=Title | obtainable=[From PvE Season 18 .. Until PvE Season 18 weeks 9-9]
 ACH 64118 | patch=12.1.5 | reward=Title | obtainable=[From PvE Season 18 .. Until PvE Season 18]
+ACH 64135 | patch=12.1.7 | reward=TaleboundSilver
+ACH 64136 | patch=12.1.7 | reward=TaleboundSilver
+ACH 64137 | patch=12.1.7 | reward=TaleboundSilver
+ACH 64138 | patch=12.1.7 | reward=TaleboundSilver
+ACH 64139 | patch=12.1.7 | reward=Title
 ACH 64140 | patch=12.1.0 | reward=TradersTender | obtainable=[From Event 1636 .. Until Event 1636] | events=Calendar 1636,1670,1671,1672,1683
 ACH 64160 | patch=12.1.5 | obtainable=[From Event 324 .. Until Event 324] | events=Calendar 324
 ACH 64161 | patch=12.1.5 | obtainable=[From Event 324 .. Until Event 324] | events=Calendar 324
 ACH 64162 | patch=12.1.5 | obtainable=[From Event 324 .. Until Event 324] | events=Calendar 324
+ACH 64174 | patch=12.1.7 | events=Calendar 141
+ACH 64175 | patch=12.1.7 | events=Calendar 141
+ACH 64207 | patch=12.1.7 | reward=Mount | obtainable=[From Event 1425 .. Until Event 1425] | preview=MountId 3175 | events=Calendar 1425,1458,1459,1460
+ACH 64227 | patch=12.1.7 | reward=TaleboundSilver
+ACH 64228 | patch=12.1.7 | reward=TaleboundSilver
+ACH 64229 | patch=12.1.7 | reward=TaleboundSilver
+ACH 64230 | patch=12.1.7 | reward=TaleboundSilver
+ACH 64367 | patch=12.1.7 | obtainable=[From Event 141 .. Until Event 141] | events=Calendar 141
+ACH 64368 | patch=12.1.7 | obtainable=[From Event 141 .. Until Event 141] | events=Calendar 141
+ACH 64369 | patch=12.1.7 | obtainable=[From Event 141 .. Until Event 141] | events=Calendar 141
+ACH 64370 | patch=12.1.7 | obtainable=[From Event 141 .. Until Event 141] | events=Calendar 141
+ACH 64371 | patch=12.1.7 | obtainable=[From Event 141 .. Until Event 141] | events=Calendar 141
+ACH 64372 | patch=12.1.7 | obtainable=[From Event 141 .. Until Event 141] | events=Calendar 141
+ACH 64416 | patch=12.1.7
+ACH 64417 | patch=12.1.7 | reward=Other
+ACH 64418 | patch=12.1.7 | reward=Other
+ACH 64419 | patch=12.1.7 | reward=Other
+ACH 64420 | patch=12.1.7 | reward=Other
+ACH 64421 | patch=12.1.7 | reward=Other
+ACH 64422 | patch=12.1.7 | reward=Other
+ACH 64423 | patch=12.1.7 | reward=Other
+ACH 64424 | patch=12.1.7 | reward=Other
+ACH 64425 | patch=12.1.7 | reward=Other
+ACH 64427 | patch=12.1.7 | reward=Other
+ACH 64428 | patch=12.1.7 | reward=Other
+ACH 64429 | patch=12.1.7 | reward=Other
+ACH 64431 | patch=12.1.7 | reward=Other
+ACH 64432 | patch=12.1.7 | reward=Other
+ACH 64433 | patch=12.1.7 | reward=Other
+ACH 64435 | patch=12.1.7 | reward=Other
+ACH 64436 | patch=12.1.7 | reward=Other
+ACH 64437 | patch=12.1.7 | reward=Other
+ACH 64438 | patch=12.1.7 | reward=Other
+ACH 64439 | patch=12.1.7 | reward=Other
+ACH 64440 | patch=12.1.7 | reward=Other
+ACH 64441 | patch=12.1.7 | reward=Other
+ACH 64442 | patch=12.1.7 | reward=Other
+ACH 64443 | patch=12.1.7 | reward=Other
+ACH 64444 | patch=12.1.7 | reward=Other
+ACH 64445 | patch=12.1.7 | reward=Other
+ACH 64446 | patch=12.1.7 | reward=Other
+ACH 64464 | patch=12.1.7 | reward=Toy
+ACH 64465 | patch=12.1.7 | reward=Toy
 
 == Tooltips ==
 # per achievement, sorted: criteria <index>: <tooltip data type> <object id> [faction <faction>]
@@ -15628,13 +15747,13 @@ GUIDE 60973 # 2 Npc MapId=695 Name=Einar the Runecaster NpcId=107994 X=46.5 Y=29
 GUIDE 60973 # 3 Criteria Operator=Any
 
 == Summary ==
-achievements           8669
+achievements           8788
   with a faction       976
-  with a reward type   2135
-  temporarily obtain.  2457   (2494 records)
-  with a preview       510
+  with a reward type   2244
+  temporarily obtain.  2464   (2501 records)
+  with a preview       515
   with custom criteria 19
-  in an event          982
+  in an event          991
 tooltip entries        3515   (220 achievements)
 transmog sets          2107   (71 achievements)
 pet battle links       110   (1166 criteria)

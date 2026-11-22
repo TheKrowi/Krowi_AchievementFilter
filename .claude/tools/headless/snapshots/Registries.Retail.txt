@@ -81,6 +81,7 @@ VERSION 12.0.5 | expansion=Midnight | used
 VERSION 12.0.7 | expansion=Midnight | used
 VERSION 12.1.0 | expansion=Midnight | used
 VERSION 12.1.5 | expansion=Midnight | used
+VERSION 12.1.7 | expansion=Midnight | used
 
 == Content timeline ==
 # none: this client is the reference timeline, so every Version anchor names its own patch
@@ -276,7 +277,7 @@ SCHEDULE TheaterTroupe | cycle=3600 | observed (debug for POIs without time) | w
 SCHEDULE TimeRift | cycle=3600 | fixed | windows=4987:{0,900},4992:{-300,0} | anchor elsewhere=0
 
 == Summary ==
-build versions         75   (72 used)
+build versions         76   (73 used)
 content timeline       0
 season anchors         1
 events Calendar        68

@@ -637,6 +637,10 @@ crossExpansion:Named(addon.L["Lorewalking"], {
     42189, -- Lorewalking: The Lich Kingdoms
     61467, -- Lorewalking: The Elves of Quel'thalas
     61442, -- Lorewalking: The Loa
+    63604, -- Lorewalking: Tyr
+    63691, -- Lorewalking: Thrall
+    63710, -- Lorewalking: Titans
+    63712, -- Lorewalking: Jaina
 })
 crossExpansion:Named(CT.FeatsOfStrength, {
     4496, -- It's Over Nine Thousand!

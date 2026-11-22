@@ -43,6 +43,7 @@ quelThalas:Quests{
     62110, -- Loremaster of Midnight
     42045, -- Midnight
     63519, -- The Promise of Tomorrow
+    63713, -- The Coreway Advance
 }
 quelThalas:Exploration{
     61859, -- Midnight Flight Master
