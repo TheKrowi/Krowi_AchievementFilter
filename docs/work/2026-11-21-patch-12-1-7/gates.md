@@ -11,3 +11,5 @@ Class: fix/gui
 | 2026-11-21 | design | Names in other languages: Blizzard's at runtime or L[] strings | Blizzard's names at runtime, the patch name translated | "Blizzard's names at runtime (Recommended)" | took |
 | 2026-11-21 | design | The Raven items' types | The two toys (288899, 288912) as Toy, the containers and Wisdom consumables as Other (item classes 15 and 0 in itemsparse/item) | - | auto |
 | 2026-11-22 | plan | The plan (code first, the block, the categories, six strings, look first on Retail, three suites, PR, recheck on 1 Dec) | Approve | "Approve (Recommended)" | took |
+| 2026-11-22 | build | Krowi's "set toc to 120107" | 120107 added beside 120105 instead of replacing it, so live Retail does not mark KAF out of date before 1 December | - | auto |
+| 2026-11-22 | look | 12.1.7 on the PTR (https://claude.ai/artifact/8t4xLG9MNnAW2SxZHgpMCX): Specials > Talebound with Bosses, Levels, Traveling Raven; Bound Silver in Has Reward | Approve | "Looks good." (asked about the Raven types: 26 Other, 2 Toy, as Remix typed its non-currency rewards; kept) | took |
