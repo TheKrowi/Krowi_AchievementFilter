@@ -7,3 +7,4 @@ Class: library
 | 2026-11-25 | intent | Accept the intent: stop loading the Ace libraries nothing uses, no visible change | Accept | "Accept" | took |
 | 2026-11-25 | design | AceDBOptions in this item or with the AceConfig item later? | In this item | "With AceConfig later" | other |
 | 2026-11-25 | plan | Approve the plan (one commit, lint and headless suites, in game on Retail then Mists, scan of installed addons, PR) | Approve | "Approve" | took |
+| 2026-11-25 | merge | PR #431 | Merge | "do 1 and 2" | took |
