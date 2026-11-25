@@ -107,7 +107,7 @@ The cache build, the special category trees, the task runner, the Blizzard overr
 
 ### `Options/`
 
-The settings as tables in AceConfig's shape: `Defaults.lua`, `General.lua`, `Layout.lua`, `Profiles.lua`, `Plugins.lua`, `Credits.lua`. The options window draws them (docs/work/2026-10-25-options-revamp). `Options.lua`'s `options.Registry` holds them by name for `KrowiAF_GetOptions` and the plugins; it replaced AceConfig's registry, and AceConfig itself is no longer loaded (docs/work/2026-11-25-leave-aceconfig). The saved-settings proof (the `settings` suite, `defaults-unchanged` and `saved-keys-unchanged` in `options`; `Tests/README.md`) guards their saved keys and defaults.
+The settings as tables in AceConfig's shape: `Defaults.lua`, `General.lua`, `Layout.lua`, `Profiles.lua`, `Plugins.lua`, `Credits.lua`. The options window draws them (docs/work/2026-10-25-options-revamp). `Options.lua`'s `options.Registry` holds them by name for `KrowiAF_GetOptions` and the plugins; it replaced AceConfig's registry, and AceConfig itself is no longer loaded (docs/work/2026-11-25-leave-aceconfig). The saved-settings proof, the headless `settings` suite (`Tests/README.md`, `.claude/tools/headless/settings-proof.lua`), guards their saved keys and defaults.
 
 `Window/` is the addon's side of the options window:
 - `Map.lua`: the 22 feature sections in three groups, and where each AceConfig option shows in them.
@@ -119,7 +119,7 @@ The settings as tables in AceConfig's shape: `Defaults.lua`, `General.lua`, `Lay
 
 ### `Libs/`
 
-Vendored libraries: AceDB, the one library left from the Ace3 suite (AceTimer, AceSerializer and AceEvent went in docs/work/2026-11-25-unused-ace, AceGUI and AceConfigDialog in docs/work/2026-11-25-leave-acegui, AceConfig and AceDBOptions in docs/work/2026-11-25-leave-aceconfig), LibStub, CallbackHandler, LibDataBroker, LibDBIcon, LibDeflate, LibSerialize, MetaLua, and the `Krowi_*` libraries. `Krowi_Menu`, `Krowi_ProgressBar`, `Krowi_WorldMapButtons`, `Krowi_Util`, `Krowi_PopupDialog` and `Krowi_Options` are git submodules pointing at `TheKrowi/*` repos, which is why fixes belong upstream, in `Krowi_Libraries`.
+Vendored libraries: AceDB, the one Ace3 library the addon embeds itself; AceLocale comes with Krowi_Util (AceTimer, AceSerializer and AceEvent went in docs/work/2026-11-25-unused-ace, AceGUI and AceConfigDialog in docs/work/2026-11-25-leave-acegui, AceConfig and AceDBOptions in docs/work/2026-11-25-leave-aceconfig), LibStub, CallbackHandler, LibDataBroker, LibDBIcon, LibDeflate, LibSerialize, MetaLua, and the `Krowi_*` libraries. `Krowi_Menu`, `Krowi_ProgressBar`, `Krowi_WorldMapButtons`, `Krowi_Util`, `Krowi_PopupDialog` and `Krowi_Options` are git submodules pointing at `TheKrowi/*` repos, which is why fixes belong upstream, in `Krowi_Libraries`.
 
 `Krowi_Options` (`Krowi_Options_2`) is the options window, addon-neutral and translated on its own CurseForge project; it was made here and became a library of its own in 2.0 (docs/work/2026-11-04-krowi-options-library). `WindowMixin.lua`/`WindowFrame.lua` hold the window: navigation, the page of rows, the help pane or its strip with tooltips, search, Defaults asked inside the window, the reload bar, resizing and the saved place. `RowMixins.lua`/`RowFrames.lua` hold one row type per element: check box, slider, dropdown, button, text box, key binding, note, heading, grid, tab list, link. Its frames are built in Lua, each list row hung on its list's frame as `frame.Row`.
 

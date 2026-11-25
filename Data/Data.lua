@@ -131,7 +131,7 @@ local function PostLoadOnPlayerLogin(self, start)
     self.EventsLoaded = true -- every event object exists; Features/EventReminders/Data/EventScheduler.lua waits for this, not for the cache build
     self.LoadDiagnostics:Print()
 
-    local custom =addon.Options.Registry.Get(addon.Metadata.Prefix .. "_Layout").args.Summary.args.Summary.args.NumAchievements -- cmd and KROWIAF-0.0 are just to make the function work
+    local custom = addon.Options.Registry.Get(addon.Metadata.Prefix .. "_Layout").args.Summary.args.Summary.args.NumAchievements
     custom.max = #self.AchievementIds
 
     -- self:LoadZoneAchievements();

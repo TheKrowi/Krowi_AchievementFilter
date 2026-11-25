@@ -18,6 +18,12 @@ Drafted with the spec for review together. It assumes (a) on both of the spec's 
   - The damage: `KrowiAF_Options.profiles.Default.Achievements.EnableTabPriority` was left `true` on account `133658957#1`. `Compare-SavedSettings.ps1 -Compare` against the day's earlier snapshot found it as the only difference. It was removed again (`/run ... = nil`, `/reload`), and every account then matched the snapshot.
   - The fix: `defaults-unchanged` and `saved-keys-unchanged` moved from `Tests/Options.lua` to the headless `settings` suite, with the same recorded values. The in-game proof is the real-file comparison (`-Snapshot` and `-Compare` around the first login with the new build, and `-Options` with both builds on Krowi's files), which touches nothing live.
 
+- **The code review (2026-11-25)** found two important problems and five smaller ones, all fixed:
+  - **Unchecked reads:** `Compare-SavedSettings.ps1 -Options` ignored a failed read. Now `saved-settings.lua` exits non-zero on a load error, on a checkout that didn't load the file (`main` before this merges), or on no lines, and the tool compares nothing it couldn't read. The real-file reads were redone this way, and baseline and branch still agree on all six accounts.
+  - **Number formatting:** the dump wrote whole numbers from 2^31 up as `-2147483648` (`%d` on Windows); it now uses `%.0f`. No dump, read or fixture of today held such a number, so the earlier comparisons stand.
+  - **Moved out of the shipped code:** `SavedKeys` (and with it the whole proof's code) went from `Options/Window/Model.lua`, which ships, to `.claude/tools/headless/settings-proof.lua`, so nothing that sets every option is in a player's build.
+  - **The smaller ones:** a Lua keyword as a key is written in brackets; a failed profile switch writes an error line; the docs no longer call AceDB the only Ace3 library left (Krowi_Util brings AceLocale); stale comments are fixed; the registry follows the module pattern.
+
 ## In-game results (2026-11-25)
 - **Krowi's real files**, Retail (five accounts) and Mists (one), each snapshot taken with the client closed:
   - `-Options`: the baseline (test/2026-11-25-aceconfig-baseline at 1bc845f1) and this branch read the same value for every option in every profile, and the same filters and search profiles.

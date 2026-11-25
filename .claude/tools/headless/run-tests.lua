@@ -472,7 +472,7 @@ end
 
 -- The real object, special-category and saved-data code with the frames and options stubbed; two tabs, so
 -- every special category has two roots. The rebuild is what Options/Layout.lua's DrawSubCategories does
--- (reset, reload) without the frame updates, since the option tables need AceConfig and the whole GUI.
+-- (reset, reload) without the frame updates, since the option tables need the whole addon's load and its GUI.
 suites.special = function(c)
     local env, addon = c.env, c.addon
     env.UnitGUID = function() return "Player-Test" end
@@ -2975,6 +2975,7 @@ local settingsScenarios = {
 suites.settings = function(c)
     local scriptDir = ((arg and arg[0]) or ""):gsub("\\", "/"):match("^(.*)/") or "."
     local optionsEnv = assert(loadfile(scriptDir .. "/options-env.lua"))()
+    local proof = assert(loadfile(scriptDir .. "/settings-proof.lua"))()
     local isRetail = c.client == "Retail"
     local function Boot(opts)
         local ctx = optionsEnv.New(root, c.client, opts)
@@ -2991,21 +2992,20 @@ suites.settings = function(c)
     end
     local reads = {
         ["defaults-unchanged"] = function()
-            local _, model = Boot()
-            return "hash=" .. model.DefaultsHash()
+            local ctx = Boot()
+            return "hash=" .. proof.DefaultsHash(ctx.addon)
         end,
         ["saved-keys-unchanged"] = function()
-            local _, model = Boot()
-            local count, hash = model.SavedKeys()
+            local count, hash = proof.SavedKeys(Boot())
             return ("options=%d hash=%s"):format(count, hash)
         end,
         ["first-install-profile"] = function()
-            local ctx, model = Boot()
+            local ctx = Boot()
             local parts = {}
             for _, name in ipairs({ "KrowiAF_Options", "KrowiAF_Filters", "KrowiAF_SearchOptions" }) do
-                parts[#parts + 1] = name .. " = " .. model.Serialize(rawget(ctx.env, name))
+                parts[#parts + 1] = name .. " = " .. proof.Serialize(rawget(ctx.env, name))
             end
-            return "hash=" .. model.Hash(table.concat(parts, "\n"))
+            return "hash=" .. proof.Hash(table.concat(parts, "\n"))
         end,
         ["old-file-same-values"] = function()
             local file = scriptDir .. "/fixtures/settings-baseline-" .. c.client

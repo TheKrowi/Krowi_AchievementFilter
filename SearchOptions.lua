@@ -13,7 +13,7 @@ local defaults = {
     }
 }
 
--- For the saved-settings proof (Options/Window/Model.lua, DefaultsHash): the database is made only once the search box
+-- For the saved-settings proof (.claude/tools/headless/settings-proof.lua, DefaultsHash): the database is made only once the search box
 -- loads with Blizzard's achievement window, its defaults from the start
 searchOptions.Defaults = defaults
 

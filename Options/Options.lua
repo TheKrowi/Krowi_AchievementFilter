@@ -5,14 +5,15 @@ local options = addon.Options
 -- KrowiAF_GetOptions, the plugins and a few options read them back. It replaced AceConfig's registry, which handed back
 -- the very table it was given (docs/work/2026-11-25-leave-aceconfig); the options window reads the tables itself
 -- (Options/Window/Source.lua).
-local registered = {}
 options.Registry = {}
+local registry = options.Registry
+local registered = {}
 
-function options.Registry.Register(appName, optionsTable)
+function registry.Register(appName, optionsTable)
     registered[appName] = optionsTable
 end
 
-function options.Registry.Get(appName)
+function registry.Get(appName)
     return registered[appName]
 end
 

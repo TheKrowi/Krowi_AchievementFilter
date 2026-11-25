@@ -77,9 +77,10 @@ switch ($PSCmdlet.ParameterSetName) {
     'Compare' {
         $allSame = $true
         foreach ($entry in Get-AccountFiles) {
-            $saved = Join-Path (Join-Path $Compare $entry.Account) 'settings.txt'
-            if (-not (Test-Path $saved)) { "  $($entry.Account): no snapshot"; continue }
-            $same = Compare-Text ([IO.File]::ReadAllText($saved)) (Get-Dump $entry.File) "$Client $($entry.Account)"
+            # the snapshot's own copy of the file, dumped now, so both sides go through the same dump code
+            $copy = Join-Path (Join-Path $Compare $entry.Account) $fileName
+            if (-not (Test-Path $copy)) { "  $($entry.Account): no snapshot"; continue }
+            $same = Compare-Text (Get-Dump $copy) (Get-Dump $entry.File) "$Client $($entry.Account)"
             if (-not $same) { $allSame = $false }
         }
         if (-not $allSame) { exit 1 }
@@ -90,7 +91,12 @@ switch ($PSCmdlet.ParameterSetName) {
         foreach ($dir in Get-ChildItem $Options -Directory) {
             $file = Join-Path $dir.FullName $fileName
             if (-not (Test-Path $file)) { continue }
-            $out = & $KitLua $script options $Checkout $Client $file 2>$null
+            $errFile = [IO.Path]::GetTempFileName()
+            $out = & $KitLua $script options $Checkout $Client $file 2> $errFile
+            $failed = $LASTEXITCODE -ne 0
+            $reason = (Get-Content $errFile -Raw); Remove-Item $errFile -ErrorAction SilentlyContinue
+            # a read that did not work is never compared: no file is written for it, and the run fails
+            if ($failed) { "  $($dir.Name): the read failed: $reason"; $allSame = $false; continue }
             $path = Join-Path $dir.FullName "options-$Label.txt"
             [IO.File]::WriteAllText($path, ($out -join "`n"))
             "options: $($dir.Name), $(@($out).Count) lines -> $path"

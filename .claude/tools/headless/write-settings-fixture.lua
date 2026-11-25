@@ -21,6 +21,7 @@ assert(root, "usage: write-settings-fixture.lua <repo root> [Retail|Classic|Both
 root = root:gsub("\\", "/"):gsub("/$", "")
 local dir = root .. "/.claude/tools/headless"
 local optionsEnv = assert(loadfile(dir .. "/options-env.lua"))()
+local proof = assert(loadfile(dir .. "/settings-proof.lua"))()
 
 local function WriteFile(path, text)
     local f = assert(io.open(path, "wb"))
@@ -102,10 +103,10 @@ local function Write(client)
 
     ctx.Logout()
     local saved = {}
-    for _, name in ipairs(model.SavedVariables) do saved[name] = rawget(env, name) end
+    for _, name in ipairs(proof.SavedVariables) do saved[name] = rawget(env, name) end
     local header = "-- Written by .claude/tools/headless/write-settings-fixture.lua (docs/work/2026-11-25-leave-aceconfig); do not edit\n"
-    WriteFile(dir .. "/fixtures/settings-baseline-" .. client .. ".lua", header .. "return " .. model.Serialize(saved) .. "\n")
-    WriteFile(dir .. "/fixtures/settings-baseline-" .. client .. "-values.lua", header .. "return " .. model.Serialize(values) .. "\n")
+    WriteFile(dir .. "/fixtures/settings-baseline-" .. client .. ".lua", header .. "return " .. proof.Serialize(saved) .. "\n")
+    WriteFile(dir .. "/fixtures/settings-baseline-" .. client .. "-values.lua", header .. "return " .. proof.Serialize(values) .. "\n")
     local count = 0
     for _ in next, values.Options.Default do count = count + 1 end
     local filterCount, searchCount = #values.Filters, #values.Search
