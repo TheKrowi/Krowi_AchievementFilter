@@ -9,6 +9,17 @@ Drafted with the spec for review together; it assumes (a) on both of the spec's 
   - It answers `SetText`, `GetText` and `GetEditBox`.
 - **The `datamanager` suite loads Blizzard's achievement window itself** when the Data Manager isn't made yet, as the `escape` suite does. Its first in-game run refused with "the Data Manager has not been made yet".
 - **The look gate ran the three looks behind a temporary switch** and a screenshot helper, both removed before the pull request.
+- **`log-read-only` simulates typing through the box's intrinsic handler.**
+  - On the final box its first run failed (`kept=no`, Retail, 2026-11-25 19:15). `Insert` reports itself as not typed, and the game's box handles `OnTextChanged` in `OnTextChanged_Intrinsic` (`EventEditBox.xml`), which `GetScript` doesn't return, so the test had never simulated typing.
+  - The test now calls that handler. A real check in the client agreed: two keys typed into the focused log left it unchanged ("unchanged 5830 5830").
+
+## Results
+- Retail 12.1.5, 2026-11-25:
+  - `datamanager` passed 3, failed 0 on today's AceGUI box (16:29) and again on the final box (19:17);
+  - `options` passed 37 and `escape` 34, with 0 failed;
+  - no error from the addon;
+  - the export round trip covered 24,800 characters, and the test character left no trace in the saved data.
+- `krowi:taint-reviewer`: no findings. The templates and `ScrollUtil` touch only the addon's own frames, and the files involved are byte-identical on Retail and Mists.
 
 ## Files that change
 - `Libs/Files.xml`: `AceGUI-3.0.xml` goes, and `AceConfig-3.0\AceConfig-3.0.xml` becomes three lines:

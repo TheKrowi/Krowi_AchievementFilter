@@ -133,11 +133,11 @@ function observe.LogReadOnly(observations)
     local editBox = frame.Log:GetEditBox()
     editBox:SetCursorPosition(0)
     editBox:Insert("x")
-    -- Typing reaches the box as OnTextChanged with userInput true; whether Insert says so is not documented, so the
-    -- script is called as typing calls it while the letter is still there
-    local script = editBox:GetScript("OnTextChanged")
-    if script and editBox:GetText() ~= before then
-        script(editBox, true)
+    -- Typing reaches the box as OnTextChanged with userInput true, Insert as not typed (seen in game, 2026-11-25), so the
+    -- handler is called as typing calls it while the letter is still there. The game's box handles it in its intrinsic
+    -- OnTextChanged_Intrinsic (Blizzard_SharedXML/Shared/Frame/EventEditBox.xml), which GetScript does not return.
+    if editBox:GetText() ~= before then
+        editBox:OnTextChanged_Intrinsic(true)
     end
     local after = frame.Log:GetText()
     frame:SelectTab(tab)
