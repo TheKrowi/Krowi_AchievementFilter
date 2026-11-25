@@ -38,8 +38,9 @@ function textBox:GetEditBox()
 	return self.Box:GetEditBox()
 end
 
--- A box on parent over the inset; onUserChange(frame), when given, runs when the player types into it
-function dataManager.NewTextBox(parent, inset, onUserChange)
+-- A box on parent over the inset; onTextChanged(frame), when given, runs on every change of its text. Not only on typing:
+-- the template's Enter adds a line through Insert, which reports itself as not typed (code review, 2026-11-25)
+function dataManager.NewTextBox(parent, inset, onTextChanged)
 	local frame = Mixin(CreateFrame("Frame", nil, parent, "BackdropTemplate"), textBox)
 	frame:SetBackdrop(backdrop)
 	frame:SetBackdropColor(0, 0, 0)
@@ -56,11 +57,9 @@ function dataManager.NewTextBox(parent, inset, onUserChange)
 	ScrollUtil.RegisterScrollBoxWithScrollBar(box.ScrollBox, scrollBar)
 	frame.Box, frame.ScrollBar = box, scrollBar
 
-	if onUserChange then
-		box:RegisterCallback("OnTextChanged", function(_, _, userChanged)
-			if userChanged then
-				onUserChange(frame)
-			end
+	if onTextChanged then
+		box:RegisterCallback("OnTextChanged", function()
+			onTextChanged(frame)
 		end, frame)
 	end
 	return frame

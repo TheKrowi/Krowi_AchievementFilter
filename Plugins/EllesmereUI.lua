@@ -695,6 +695,9 @@ local function SkinDataManager()
     end
 
     skin.Button(frame.Import)
+    if frame.Log then -- the log tab's box (docs/work/2026-11-25-leave-acegui)
+        SkinScrollBar(frame.Log.ScrollBar)
+    end
 end
 
 -- [[ TextFrame (lazily created on first use) ]]
@@ -709,6 +712,7 @@ local function SkinTextFrame()
     skin.Inset(frame.Inset)
     skin.CloseButton(frame.CloseButton)
     frame.CloseButton:SetPoint("TOPRIGHT", 0, 2)
+    SkinScrollBar(frame.Input.ScrollBar) -- the box's scroll bar (docs/work/2026-11-25-leave-acegui)
     skin.Button(frame.Button1)
 end
 

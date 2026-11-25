@@ -15,8 +15,9 @@ dataManager.Scenarios = {
     -- A made-up character with one earned and one unearned achievement, encoded, set into the box, read back and imported:
     -- whether the character list and the achievement data then hold it, then all of it removed again
     {Name = "import-roundtrip", Recorded = "imported=yes list=yes earned=yes progress=yes", Target = "imported=yes list=yes earned=yes progress=yes"},
-    -- Retail with a log tab: a letter put into the log's box is taken out again
-    {Name = "log-read-only", Recorded = "kept=yes", Target = "kept=yes", RetailOnly = true},
+    -- Retail with a log tab: a letter and an Enter put into the log's box are each taken out again (Enter was kept until
+    -- the code review of docs/work/2026-11-25-leave-acegui)
+    {Name = "log-read-only", Recorded = "letter=kept enter=kept", Target = "letter=kept enter=kept", RetailOnly = true},
 }
 
 local function DeepCopy(value)
@@ -30,22 +31,28 @@ local function DeepCopy(value)
     return copy
 end
 
+-- The text window, or nil while the player has it open: the step would replace its title, button and text
+local textWindowOpen = "the text window is open (an export or import); close it first"
 local function TextBox()
-    local frame = addon.Gui.DataManager:GetTextFrame("Data Manager test")
-    return frame, frame.Input
+    if KrowiAF_TextFrame and KrowiAF_TextFrame:IsShown() then
+        return nil
+    end
+    return addon.Gui.DataManager:GetTextFrame("Data Manager test")
 end
 
 local observe = {}
 
 function observe.ExportRoundtrip(observations)
+    local frame = TextBox()
+    if not frame then
+        return nil, textWindowOpen
+    end
     local text = addon.Gui.DataManager.EncodeCharacter(addon.Gui.DataManager.GatherCharacter(UnitGUID("player")))
-    local frame, box = TextBox()
-    local wasShown = frame:IsShown()
     frame:Show()
-    box:SetText(text)
-    local got = box:GetText()
-    box:SetText("")
-    frame:SetShown(wasShown)
+    frame.Input:SetText(text)
+    local got = frame.Input:GetText()
+    frame.Input:SetText("")
+    frame:Hide()
     tinsert(observations, ("export-roundtrip: %d characters set, %d read back"):format(#text, #got))
     return got == text and "equal=yes" or "equal=no"
 end
@@ -71,6 +78,10 @@ local function PickAchievements()
 end
 
 function observe.ImportRoundtrip(observations)
+    local frame = TextBox()
+    if not frame then
+        return nil, textWindowOpen
+    end
     local earnedId, unearnedId = PickAchievements()
     if not (earnedId and unearnedId) then
         return nil, "no earned, non account-wide achievement on this character to import"
@@ -89,13 +100,11 @@ function observe.ImportRoundtrip(observations)
         Completed = { { Id = earnedId, Date = time() } },
         NotCompleted = { { Id = unearnedId, Progress = { 7 } } },
     })
-    local frame, box = TextBox()
-    local wasShown = frame:IsShown()
     frame:Show()
-    box:SetText(text)
-    local ok, imported = pcall(addon.Gui.DataManager.ImportCharacter, box:GetText())
-    box:SetText("")
-    frame:SetShown(wasShown)
+    frame.Input:SetText(text)
+    local ok, imported = pcall(addon.Gui.DataManager.ImportCharacter, frame.Input:GetText())
+    frame.Input:SetText("")
+    frame:Hide()
 
     local list = KrowiAF_SavedData.CharacterList[testGuid]
     local completed = KrowiAF_Achievements.Completed[earnedId]
@@ -131,19 +140,17 @@ function observe.LogReadOnly(observations)
     frame:SelectTab(2)
     local before = frame.LogText or ""
     local editBox = frame.Log:GetEditBox()
+    -- A letter put in at the cursor, then Enter as the box's template handles it (ScrollingEditBoxMixin: Enter inserts a
+    -- new line through Insert); each must leave the log as it was (a real key press agreed, Retail, 2026-11-25)
     editBox:SetCursorPosition(0)
     editBox:Insert("x")
-    -- Typing reaches the box as OnTextChanged with userInput true, Insert as not typed (seen in game, 2026-11-25), so the
-    -- handler is called as typing calls it while the letter is still there. The game's box handles it in its intrinsic
-    -- OnTextChanged_Intrinsic (Blizzard_SharedXML/Shared/Frame/EventEditBox.xml), which GetScript does not return.
-    if editBox:GetText() ~= before then
-        editBox:OnTextChanged_Intrinsic(true)
-    end
-    local after = frame.Log:GetText()
+    local letter = frame.Log:GetText() == before
+    frame.Log.Box:Insert("\n")
+    local enter = frame.Log:GetText() == before
     frame:SelectTab(tab)
     frame:SetShown(wasShown)
     tinsert(observations, ("log-read-only: %d characters in the log"):format(#before))
-    return after == before and "kept=yes" or "kept=no"
+    return ("letter=%s enter=%s"):format(letter and "kept" or "changed", enter and "kept" or "changed")
 end
 
 local steps = {

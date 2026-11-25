@@ -495,6 +495,14 @@ local function SkinDataManager()
     end)
 
     skins:HandleButton(KrowiAF_DataManagerFrame.Import)
+
+    -- The log tab's box (Retail, with a feature that adds a tab): ElvUI's template replaces its border, as ElvUI's Ace3
+    -- skin restyled the AceGUI box it replaced (docs/work/2026-11-25-leave-acegui)
+    local log = KrowiAF_DataManagerFrame.Log
+    if log then
+        log:SetTemplate("Transparent")
+        skins:HandleTrimScrollBar(log.ScrollBar)
+    end
 end
 
 local function SkinTextFrame()
@@ -509,7 +517,10 @@ local function SkinTextFrame()
         frame.CloseButton:Point("TOPRIGHT", 0, 2)
         skins:HandleFrame(frame, true, nil, -5, 0, -1, 0)
         frame.Input:SetPoint("BOTTOMRIGHT", frame.Inset ,"BOTTOMRIGHT", -3, 0)
+        frame.Input:SetTemplate("Transparent") -- the box's border, as ElvUI's Ace3 skin restyled the AceGUI box it replaced
+        skins:HandleTrimScrollBar(frame.Input.ScrollBar)
         skins:HandleButton(frame.Button1)
+        frame.IsSkinned = true -- once: every Export, Import and debug export calls GetTextFrame
     end)
 end
 

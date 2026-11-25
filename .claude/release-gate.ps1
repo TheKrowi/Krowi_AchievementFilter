@@ -40,9 +40,9 @@
 
     # Every in-game scenario suite, for each client family, and where its saved variables are
     $suites = @('escape', 'special', 'navigation', 'worldmap', 'obtainable', 'tooltip', 'guide', 'menu', 'memory', 'events',
-        'schedules', 'tracking', 'options', 'help', 'earned', 'plugins', 'popups', 'features')
+        'schedules', 'tracking', 'options', 'help', 'earned', 'plugins', 'popups', 'features', 'datamanager')
     # The suites whose file is not the title-cased suite name
-    $suiteFiles = @{ special = 'SpecialCategories'; popups = 'PopUps'; worldmap = 'WorldMap' }
+    $suiteFiles = @{ special = 'SpecialCategories'; popups = 'PopUps'; worldmap = 'WorldMap'; datamanager = 'DataManager' }
     $families = @(
         @{ Name = 'Retail'; Min = 100000; Max = 999999; Clients = @('Retail', 'Ptr', 'Xptr') },
         @{ Name = 'Mists Classic'; Min = 50000; Max = 59999; Clients = @('Classic', 'ClassicPtr') }

@@ -53,8 +53,11 @@ local function CreateTabs(self)
 	self.Tabs[1]:SetPoint("TOPLEFT", self, "BOTTOMLEFT", 11, 2)
 	PanelTemplates_SetNumTabs(self, #self.Tabs)
 
-	self.Log = addon.Gui.DataManager.NewTextBox(self, self.Inset, function(log) -- typing undone: the log is read-only
-		log:SetText(self.LogText or "")
+	-- Read-only: any change to the text, typed or an Enter, is undone; putting it back changes it to what it is, which stops
+	self.Log = addon.Gui.DataManager.NewTextBox(self, self.Inset, function(log)
+		if self.LogText and log:GetText() ~= self.LogText then
+			log:SetText(self.LogText)
+		end
 	end)
 	self.Log:Hide()
 	PanelTemplates_SetTab(self, 1)
