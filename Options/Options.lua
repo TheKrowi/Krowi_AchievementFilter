@@ -1,6 +1,21 @@
 local _, addon = ...
 local options = addon.Options
 
+-- The option tables by name: the six pages register here (General, Layout, Profiles, Plugins, Credits, Features) and
+-- KrowiAF_GetOptions, the plugins and a few options read them back. It replaced AceConfig's registry, which handed back
+-- the very table it was given (docs/work/2026-11-25-leave-aceconfig); the options window reads the tables itself
+-- (Options/Window/Source.lua).
+local registered = {}
+options.Registry = {}
+
+function options.Registry.Register(appName, optionsTable)
+    registered[appName] = optionsTable
+end
+
+function options.Registry.Get(appName)
+    return registered[appName]
+end
+
 -- Binds key to command in slot 1 or 2, the way Blizzard's key bindings page does (Blizzard_Keybindings.lua
 -- ProcessInput): both keys come off and go back in order, the new one in its slot, in the command's binding context.
 -- SetBinding's third argument is that context, not the slot; passing the slot bound the key in a housing editor context

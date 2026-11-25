@@ -17,7 +17,7 @@ function profiles.RegisterOptionsTable()
     options.OptionsTable.args.Profiles.args.Filters.order = OrderPP()
     options.OptionsTable.args.Profiles.args.Filters.name = addon.L["Filters"]
 
-    LibStub("AceConfig-3.0"):RegisterOptionsTable(addon.Metadata.Prefix .. "_Profiles", options.OptionsTable.args.Profiles)
+    options.Registry.Register(addon.Metadata.Prefix .. "_Profiles", options.OptionsTable.args.Profiles)
 end
 
 options.OptionsTable.args["Profiles"] = {

@@ -9,7 +9,7 @@ local OrderPP = addon.InjectOptions.AutoOrderPlusPlus
 local AdjustedWidth = addon.InjectOptions.AdjustedWidth
 
 function layout.RegisterOptionsTable()
-    LibStub("AceConfig-3.0"):RegisterOptionsTable(addon.Metadata.Prefix .. "_Layout", options.OptionsTable.args.Layout)
+    options.Registry.Register(addon.Metadata.Prefix .. "_Layout", options.OptionsTable.args.Layout)
 end
 
 function layout.PostLoad()
@@ -1519,7 +1519,7 @@ local achievementsOptions = {
                             values = startTimeAndEndTimeDateTimeValues,
                             get = StartTimeAndEndTimePresetsGet,
                             set = function(_, value)
-                                local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Prefix .. "_Layout", "cmd", "KROWIAF-0.0").args.Achievements.args.TemporarilyObtainable.args.StartTimeAndEndTime.args.Custom
+                                local custom = addon.Options.Registry.Get(addon.Metadata.Prefix .. "_Layout").args.Achievements.args.TemporarilyObtainable.args.StartTimeAndEndTime.args.Custom
                                 custom.set(nil, startTimeAndEndTimeDateTimeFormats[value])
                             end
                         },

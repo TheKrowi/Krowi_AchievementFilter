@@ -197,10 +197,10 @@ options.Scenarios = {
         Target = "pages=0 stub=yes"},
     {Name = "options-registered",
         Observe = function()
-            local registry = LibStub("AceConfigRegistry-3.0")
+            -- the addon's own registry, which replaced AceConfig's (docs/work/2026-11-25-leave-aceconfig)
             local n = 0
             for _, app in ipairs({ addon.Metadata.Title, "KrowiAF_Layout", "KrowiAF_Profiles", "KrowiAF_Plugins", "KrowiAF_Credits", "KrowiAF_Features" }) do
-                if registry:GetOptionsTable(app, "cmd", "KROWIAF-0.0") then n = n + 1 end
+                if addon.Options.Registry.Get(app) then n = n + 1 end
             end
             return ("apps=%d"):format(n)
         end,

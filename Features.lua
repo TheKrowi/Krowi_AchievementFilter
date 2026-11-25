@@ -108,7 +108,7 @@ local options = addon.Options
 options.OptionsTable.args.Features = {type = "group", name = "Features", args = {}}
 tinsert(options.OptionsTables, {
     RegisterOptionsTable = function()
-        LibStub("AceConfig-3.0"):RegisterOptionsTable(addon.Metadata.Prefix .. "_Features", options.OptionsTable.args.Features)
+        options.Registry.Register(addon.Metadata.Prefix .. "_Features", options.OptionsTable.args.Features)
     end
 })
 
