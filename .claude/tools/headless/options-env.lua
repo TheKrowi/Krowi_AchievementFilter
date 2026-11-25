@@ -14,6 +14,9 @@
 --
 -- optionsEnv.New(root, client, opts) takes options for a suite that boots the addon its own way (the features suite):
 --   opts.Profile    the Default profile's saved values before Options:Load, as a player's saved variables would hold them
+--   opts.SavedVariables  { [name] = table }: whole saved variables (KrowiAF_Options, KrowiAF_Filters, ...) as a player's
+--                   files hold them, set after the files ran, where the game sets them (the settings suite's old file)
+-- ctx.Logout() then strips every AceDB database's defaults as the game's logout does, before the files are written
 --   opts.XmlFrames  every top-level named frame an XML file declares without virtual="true" becomes a stub global where
 --                   the file loads, as the game makes such a frame at file load
 --   opts.Watch      Watch(file, what) for everything a file makes while it loads: a frame (CreateFrame or XML), a hook
@@ -157,6 +160,8 @@ local function New(root, client, opts)
 
     -- WoW's Lua extensions and the API the options touch, implemented for real
     env.print = function() end
+    -- silent as print: the debug and trace output a player's saved settings can turn on (Diagnostics.lua)
+    env.DEFAULT_CHAT_FRAME = { AddMessage = function() end }
     env.CreateFrame = function(_, name)
         Watched("CreateFrame " .. tostring(name))
         local frame = Stub("Frame:" .. tostring(name))
@@ -412,6 +417,9 @@ local function New(root, client, opts)
     end
     watcher = nil
 
+    -- A player's saved variables, where the game puts them: after the files ran, before ADDON_LOADED
+    for name, value in next, opts.SavedVariables or {} do rawset(env, name, value) end
+
     -- The ADDON_LOADED steps of Krowi_AchievementFilter.lua that build and register the options, in order
     local KrowiAF = rawget(env, "KrowiAF")
     ctx.KrowiAF = KrowiAF
@@ -484,6 +492,28 @@ local function New(root, client, opts)
     local setUp = savedData and savedData.FirstTimeSetUp
     ctx.NewInstall = { Y = C_KeyBindings.GetBindingByKey("Y"), Pending = setUp and setUp.YBindingPending }
     ctx.Bindings = {}
+
+    -- PLAYER_LOGOUT as AceDB handles it before the game writes the files (AceDB-3.0.lua, logoutHandler): every
+    -- database drops the values equal to its defaults and its empty sections. The load's frames are stubs, so AceDB's
+    -- own handler never registered; this is its first loop (KAF's databases have no namespaces, the second loop's work)
+    function ctx.Logout()
+        local AceDB = rawget(env, "LibStub")("AceDB-3.0")
+        for db in pairs(AceDB.db_registry) do
+            db.callbacks:Fire("OnDatabaseShutdown", db)
+            db:RegisterDefaults(nil)
+            local sv = rawget(db, "sv")
+            for section in pairs(rawget(db, "keys")) do
+                if rawget(sv, section) then
+                    if section ~= "global" and (section ~= "profiles" or rawget(db, "parent")) then
+                        for key in pairs(sv[section]) do
+                            if not next(sv[section][key]) then sv[section][key] = nil end
+                        end
+                    end
+                    if not next(sv[section]) then sv[section] = nil end
+                end
+            end
+        end
+    end
     return ctx
 end
 

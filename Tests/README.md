@@ -23,7 +23,14 @@ Each scenario carries `Recorded`, the behaviour of the current code verified in 
 
 `-check` prints a `<file>:<line>:` finding per failing scenario; it is what the `unit-tests` rule of `Check-Repo.ps1` runs.
 
-One suite is headless only and has no file in `Tests/`: `runner` tests the in-game runner itself (docs/work/2026-11-08-test-run-history). It loads `Tests/Tests.lua` with stubbed game calls and drives `/kaftest` with fake suites: a run of 12 entries keeps all 12 runs in `History`, a single run after it trims `History` back to 10, a suite marked in `addon.Tests.FirstDraw` runs first, and a run from outside a `/kaftest run` that reports in between (a `/kaftest login` run) pushes none of its runs out. Its scenarios live in `run-tests.lua`.
+Two suites are headless only and have no file in `Tests/`; their scenarios live in `run-tests.lua`.
+- **`runner`** tests the in-game runner itself (docs/work/2026-11-08-test-run-history). It loads `Tests/Tests.lua` with stubbed game calls and drives `/kaftest` with fake suites: a run of 12 entries keeps all 12 runs in `History`, a single run after it trims `History` back to 10, a suite marked in `addon.Tests.FirstDraw` runs first, and a run from outside a `/kaftest run` that reports in between (a `/kaftest login` run) pushes none of its runs out. A `/kaftest login` run starts on a reload, not on a zone change.
+- **`settings`** is the saved-settings proof's headless half (docs/work/2026-11-25-leave-aceconfig); `defaults-unchanged` and `saved-keys-unchanged` in the `options` suite are the half that also runs in game. Each scenario boots the whole addon on a load of its own, and each was recorded on the code before AceConfig went:
+  - `first-install-profile`: a new install's raw saved variables;
+  - `old-file-same-values`: the old file (`.claude/tools/headless/fixtures/settings-baseline-<client>.lua`, written by `write-settings-fixture.lua`), whose every option, in two profiles, and whose filter and search values read back as written;
+  - `profile-switch`: the profile callbacks, and whether every tab's filters follow a filters profile switch.
+
+  A change to the options keeps every line, or its work folder says why a line moved. A change that moves saved settings on purpose writes a new fixture with the code before it and checks that every old value is found at its new place.
 
 A model of a secret value keeps the type the real value has: a secret name is a string that only the model's `canaccessvalue` rejects, a secret table is a table that errors when indexed and that only `canaccesstable` rejects. A stand-in of another type (a table for a name) is stopped by the code's type check, so the scenario passes with the secret-value guard removed. After writing such a scenario, remove the guard once and see it fail (2026-10-14-guide-npc-names).
 

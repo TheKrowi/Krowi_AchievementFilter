@@ -255,6 +255,30 @@ options.Scenarios = {
         Target = "options=414 hash=723de62c",
         RecordedClassic = "options=310 hash=83fced41",
         TargetClassic = "options=310 hash=83fced41"},
+    -- The saved-settings proof (docs/work/2026-11-25-leave-aceconfig), recorded on the code before AceConfig went:
+    -- the defaults the three AceDB databases were made with, and which saved keys every option that stores a value
+    -- writes (paths only, a profile's name as *; the player's saved data is put back exactly after each option)
+    {Name = "defaults-unchanged",
+        Observe = function()
+            local model = Model()
+            if not model then return "no window" end
+            return "hash=" .. model.DefaultsHash()
+        end,
+        Recorded = "hash=10ea1a00",
+        Target = "hash=10ea1a00",
+        RecordedClassic = "hash=e5944253",
+        TargetClassic = "hash=e5944253"},
+    {Name = "saved-keys-unchanged",
+        Observe = function()
+            local model = Model()
+            if not model then return "no window" end
+            local count, hash = model.SavedKeys()
+            return ("options=%d hash=%s"):format(count, hash)
+        end,
+        Recorded = "options=359 hash=ffa1ae09",
+        Target = "options=359 hash=ffa1ae09",
+        RecordedClassic = "options=255 hash=a1fc83f7",
+        TargetClassic = "options=255 hash=a1fc83f7"},
     {Name = "defaults-restore-acedb",
         Observe = function()
             local model = Model()
