@@ -1,5 +1,5 @@
 # Intent: Stop loading AceConfig and AceDBOptions, with proof that no setting moves
-Author: Krowi (maintainer). Source: idea, 2026-11-25. Status: accepted
+Author: Krowi (maintainer). Source: idea, 2026-11-25. Status: done
 
 ## Problem
 The third item of leaving Ace (`docs/backlog.md`, "Leaving Ace"). The first two took out AceTimer, AceSerializer and AceEvent (docs/work/2026-11-25-unused-ace), then AceGUI and AceConfigDialog (docs/work/2026-11-25-leave-acegui). What KAF still loads besides AceDB:

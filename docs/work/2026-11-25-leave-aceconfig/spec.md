@@ -1,5 +1,5 @@
 # Spec: Stop loading AceConfig and AceDBOptions, with proof that no setting moves
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 **Saved settings.** Each check is recorded on the code before this item (`main` at 54fe7203, whose options code is 106.0's), committed before anything changes, and kept green through every step.

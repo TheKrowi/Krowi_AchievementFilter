@@ -1,5 +1,5 @@
 # Plan: Stop loading AceConfig and AceDBOptions, with proof that no setting moves
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 Drafted with the spec for review together. It assumes (a) on both of the spec's questions. Krowi chose the whole proof, without the downgrade check, since a later item migrates the settings onto a new layout and store and reuses it.
 
