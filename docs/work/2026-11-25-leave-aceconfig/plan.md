@@ -32,6 +32,8 @@ Drafted with the spec for review together. It assumes (a) on both of the spec's 
   - Retail 12.1.5: `options` 37 passed, `special` 27, `popups` 13, 0 failed. The one BugGrabber row is the diagnosis's "script ran too long" from 22:11.
   - Mists 5.5.4: `options` 37 passed, `special` 27, `popups` 13, 0 failed, no addon error.
 
+- **The final build** (with the code review's fixes, 23:07 and 23:10): `options` 37, `special` 27 and `popups` 13 passed, 0 failed, on Retail and on Mists; no new addon error.
+
 ## Results so far
 - Headless, both clients: every suite green after each step. The `memory` suite's two open targets on Retail are on `main` as well.
 - Installed addons: none relies on KAF's AceConfig or AceDBOptions, except Krowi_Reminders.
