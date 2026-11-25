@@ -3,6 +3,23 @@ Spec: [spec.md](spec.md). Status: accepted
 
 Drafted with the spec for review together. It assumes (a) on both of the spec's questions. Krowi chose the whole proof, without the downgrade check, since a later item migrates the settings onto a new layout and store and reuses it.
 
+## Departures from the plan
+- **`saved-keys-unchanged` covers every option in game too.** The plan covered only shown and enabled options in game. But `ShowIf` and a switch's greying follow the player's settings, so that set, and its hash, would differ by character. `saved-keys-unchanged-all` is merged into it.
+  - To keep the real character safe, each option's four saved variables are copied before the set and put back raw, in place, after it.
+  - The writer's check confirmed it, headless on both clients: the saved data is byte-identical after a full pass that started from 25 changed settings.
+- **The search options' defaults** are read from `SearchOptions.Defaults`, which the file now exposes. Their database is made only when Blizzard's achievement window loads, so it may not exist yet when the suite runs.
+- **The fixture keeps each filter path as a list of keys.** Build-version keys are strings such as `"090205"`, which a dotted path turns into numbers.
+- **The headless environment** now has a silent `DEFAULT_CHAT_FRAME` (the old file turns trace output on), and its `LibStub` answers a silent lookup of a missing library with nil, as the real one does. Without the fake dialog, `settings-entry` read a stub as five pages.
+- **`Compare-SavedSettings.ps1` compares** `KrowiAF_Options`, `KrowiAF_Filters`, `KrowiAF_SearchOptions` and `KrowiAF_SavedData.Tabs`. No option writes any other part of `KrowiAF_SavedData`, per `SavedKeys`' lines.
+- **The proof catches a moved key.** With `Window.Movable` moved for one run, `saved-keys-unchanged`, `old-file-same-values` (one value in each profile) and the fingerprint failed, and `defaults-unchanged` rightly passed.
+
+## Results so far
+- Headless, both clients: every suite green after each step. The `memory` suite's two open targets on Retail are on `main` as well.
+- Installed addons: none relies on KAF's AceConfig or AceDBOptions, except Krowi_Reminders.
+  - Krowi_Reminders ran on KAF's AceConfig, AceConfigRegistry and AceConfigDialog, which it doesn't embed.
+  - It reaches no player: a private repo last pushed in 2023, version 0.1, never released, with an out-of-date interface. It's in the backlog.
+  - The AceGUI work item's plan said otherwise and is corrected.
+
 ## Files that change
 ### The saved-settings proof (step 1), on the baseline code
 - `.claude/tools/headless/options-env.lua`:

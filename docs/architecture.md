@@ -43,7 +43,7 @@ Game-version-conditional loading uses `[AllowLoadGameType mainline]` and `[Allow
 | `Gui/` | All UI code (`FilesModern.xml` Retail, `FilesClassic.xml` Classic), one sub-folder per feature; `BlizzardOverrides.lua` holds every FrameXML override, API polyfill and hook on Blizzard's frame |
 | `Data/` | Runtime data: task runner, registry (`Data.lua`), `LoadDiagnostics`, achievement cache, temporary obtainability, events, tooltips, special categories, migrations (`DataIntegrityManager.lua`), `SavedData/` |
 | `DataAddons/` | All **data definitions** (achievement, category, zone, tooltip, transmog set, pet battle link, guide, build version, event, custom criteria) per expansion (`01_Vanilla/` to `12_Midnight/`): `Shared/` identical on both clients, `Retail/` and `Classic/` client-specific, `Loaders/` the post-processing that wires them into the runtime |
-| `Options/` | The settings as AceConfig tables; `Window/` maps them onto the options window's 22 feature sections and wires the window (`/kaf`, `addon.Options.Open`, the Settings > AddOns stub) |
+| `Options/` | The settings as tables in AceConfig's shape, held by name in `options.Registry`; `Window/` maps them onto the options window's 22 feature sections and wires the window (`/kaf`, `addon.Options.Open`, the Settings > AddOns stub) |
 | `Plugins/` | Third-party addon integrations; the plugin API is `Api/PluginsApi.lua` (`KrowiAF.PluginsApi`) |
 | `Localization/` | One file per locale (`enUS`, `deDE`, `esES`, `esMX`, `frFR`, `itIT`, `koKR`, `ptBR`, `ruRU`, `zhCN`, `zhTW`), `.Plugins.lua` and `.WrathClassic.lua` variants, `Shared.lua` helpers |
 | `Libs/` | Vendored libraries, several of them git submodules of `TheKrowi/*` repos, the options window (`Krowi_Options`, registered as `Krowi_Options_2`, with its own translations) among them. **Do not edit `Libs/` unless asked**; fixes belong upstream, in `Krowi_Libraries` |
@@ -107,7 +107,7 @@ The cache build, the special category trees, the task runner, the Blizzard overr
 
 ### `Options/`
 
-The settings as AceConfig tables: `Defaults.lua`, `General.lua`, `Layout.lua`, `Profiles.lua`, `Plugins.lua`, `Credits.lua`. They stay registered with AceConfigRegistry (plugins and `KrowiAF_GetOptions` read them), but Settings > AddOns no longer shows them: the options window draws them (docs/work/2026-10-25-options-revamp).
+The settings as tables in AceConfig's shape: `Defaults.lua`, `General.lua`, `Layout.lua`, `Profiles.lua`, `Plugins.lua`, `Credits.lua`. The options window draws them (docs/work/2026-10-25-options-revamp). `Options.lua`'s `options.Registry` holds them by name for `KrowiAF_GetOptions` and the plugins; it replaced AceConfig's registry, and AceConfig itself is no longer loaded (docs/work/2026-11-25-leave-aceconfig). The saved-settings proof (the `settings` suite, `defaults-unchanged` and `saved-keys-unchanged` in `options`; `Tests/README.md`) guards their saved keys and defaults.
 
 `Window/` is the addon's side of the options window:
 - `Map.lua`: the 22 feature sections in three groups, and where each AceConfig option shows in them.
@@ -119,7 +119,7 @@ The settings as AceConfig tables: `Defaults.lua`, `General.lua`, `Layout.lua`, `
 
 ### `Libs/`
 
-Vendored libraries: AceDB, AceDBOptions and AceConfig's registry and cmd parts from the Ace3 suite (AceTimer, AceSerializer and AceEvent went in docs/work/2026-11-25-unused-ace, AceGUI and AceConfigDialog in docs/work/2026-11-25-leave-acegui), LibStub, CallbackHandler, LibDataBroker, LibDBIcon, LibDeflate, LibSerialize, MetaLua, and the `Krowi_*` libraries. `Krowi_Menu`, `Krowi_ProgressBar`, `Krowi_WorldMapButtons`, `Krowi_Util`, `Krowi_PopupDialog` and `Krowi_Options` are git submodules pointing at `TheKrowi/*` repos, which is why fixes belong upstream, in `Krowi_Libraries`.
+Vendored libraries: AceDB, the one library left from the Ace3 suite (AceTimer, AceSerializer and AceEvent went in docs/work/2026-11-25-unused-ace, AceGUI and AceConfigDialog in docs/work/2026-11-25-leave-acegui, AceConfig and AceDBOptions in docs/work/2026-11-25-leave-aceconfig), LibStub, CallbackHandler, LibDataBroker, LibDBIcon, LibDeflate, LibSerialize, MetaLua, and the `Krowi_*` libraries. `Krowi_Menu`, `Krowi_ProgressBar`, `Krowi_WorldMapButtons`, `Krowi_Util`, `Krowi_PopupDialog` and `Krowi_Options` are git submodules pointing at `TheKrowi/*` repos, which is why fixes belong upstream, in `Krowi_Libraries`.
 
 `Krowi_Options` (`Krowi_Options_2`) is the options window, addon-neutral and translated on its own CurseForge project; it was made here and became a library of its own in 2.0 (docs/work/2026-11-04-krowi-options-library). `WindowMixin.lua`/`WindowFrame.lua` hold the window: navigation, the page of rows, the help pane or its strip with tooltips, search, Defaults asked inside the window, the reload bar, resizing and the saved place. `RowMixins.lua`/`RowFrames.lua` hold one row type per element: check box, slider, dropdown, button, text box, key binding, note, heading, grid, tab list, link. Its frames are built in Lua, each list row hung on its list's frame as `frame.Row`.
 
