@@ -9,12 +9,12 @@ local OrderPP = addon.InjectOptions.AutoOrderPlusPlus
 local AdjustedWidth = addon.InjectOptions.AdjustedWidth
 
 function general.RegisterOptionsTable()
-    LibStub("AceConfig-3.0"):RegisterOptionsTable(addon.Metadata.Title, options.OptionsTable.args.General)
+    options.Registry.Register(addon.Metadata.Title, options.OptionsTable.args.General)
 end
 
 local openCurrentZoneCategoryName
 function general.PostLoad()
-    local rebindMicroButton = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Title, "cmd", "KROWIAF-0.0").args.KeyBinding.args.General.args.MicroButton.args.Rebind
+    local rebindMicroButton = options.Registry.Get(addon.Metadata.Title).args.KeyBinding.args.General.args.MicroButton.args.Rebind
     rebindMicroButton.desc = rebindMicroButton.desc:KAF_AddDefaultValueText("MicroButtonTab", addon.Gui:TabsOrderGetActiveKeys())
 
     openCurrentZoneCategoryName = addon.L["Open"] .. " " .. addon.L["Current Zone"] .. " "  .. addon.L["Category"]

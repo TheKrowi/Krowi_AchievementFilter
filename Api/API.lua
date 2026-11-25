@@ -161,7 +161,7 @@ do --[[ KrowiAF_GetOptions ]]
 	KrowiAF_GetOptions = {}
 	function KrowiAF_GetOptions.GetTable(appName, tablePath)
 		-- print(appName, tablePath)
-		local tbl = assert(LibStub("AceConfigRegistry-3.0"):GetOptionsTable(appName, "cmd", "KROWIAF-0.0"), "No options table registered for " .. tostring(appName))
+		local tbl = assert(addon.Options.Registry.Get(appName), "No options table registered for " .. tostring(appName))
 		local pathParts = strsplittable(".", tablePath)
 		for _, part in next, pathParts do
 			tbl = tbl[part]

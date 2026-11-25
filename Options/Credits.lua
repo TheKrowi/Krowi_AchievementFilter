@@ -8,7 +8,7 @@ tinsert(options.OptionsTables, credits)
 local OrderPP = addon.InjectOptions.AutoOrderPlusPlus
 
 function credits.RegisterOptionsTable()
-    LibStub("AceConfig-3.0"):RegisterOptionsTable(addon.Metadata.Prefix .. "_Credits", options.OptionsTable.args.Credits)
+    options.Registry.Register(addon.Metadata.Prefix .. "_Credits", options.OptionsTable.args.Credits)
 end
 
 function credits.PostLoad()

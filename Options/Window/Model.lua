@@ -331,3 +331,7 @@ function model.VisibleRetailOnly()
     end
     return visible
 end
+
+-- The rules the checks above pick options by, which the saved-settings proof (.claude/tools/headless/settings-proof.lua,
+-- headless only; docs/work/2026-11-25-leave-aceconfig) reads too
+model.Settable, model.OtherValue = Settable, OtherValue

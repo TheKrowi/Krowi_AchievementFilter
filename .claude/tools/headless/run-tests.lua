@@ -472,7 +472,7 @@ end
 
 -- The real object, special-category and saved-data code with the frames and options stubbed; two tabs, so
 -- every special category has two roots. The rebuild is what Options/Layout.lua's DrawSubCategories does
--- (reset, reload) without the frame updates, since the option tables need AceConfig and the whole GUI.
+-- (reset, reload) without the frame updates, since the option tables need the whole addon's load and its GUI.
 suites.special = function(c)
     local env, addon = c.env, c.addon
     env.UnitGUID = function() return "Player-Test" end
@@ -2941,6 +2941,140 @@ suites.runner = function(c)
         local targetMet = got == scenario.Target
         results[#results + 1] = { Name = scenario.Name, Status = status, TargetMet = targetMet,
             Line = ("runner/%s: %s recorded=[%s] got=[%s] target=[%s] %s"):format(scenario.Name, status, scenario.Recorded, got, scenario.Target, targetMet and "met" or "open") }
+    end
+    return results, ".claude/tools/headless/run-tests.lua", {}
+end
+
+-- The saved-settings proof, headless only (docs/work/2026-11-25-leave-aceconfig), each scenario on a whole-addon load of
+-- its own, recorded on the code before AceConfig went. A change to the options must keep every line, or say why it moves.
+-- None of it runs in game: saved-keys-unchanged sets every option, and a script the game cuts short between a set and its
+-- put-back ("script ran too long", Retail, 2026-11-25, on a 7 MB saved file) leaves a player's setting changed. In game,
+-- Compare-SavedSettings.ps1 checks a player's files instead, touching nothing.
+local settingsScenarios = {
+    -- the defaults the three AceDB databases were made with: AceDB does not save a value equal to its default, so a
+    -- default that changes or moves changes the settings of the players who kept it
+    {Name = "defaults-unchanged", Recorded = "hash=10ea1a00", Target = "hash=10ea1a00", RecordedClassic = "hash=e5944253",
+        TargetClassic = "hash=e5944253"},
+    -- which saved keys every option that stores a value writes, hidden and disabled ones too (paths only, a profile's
+    -- name as *): an option that reads or writes another key moves this
+    {Name = "saved-keys-unchanged", Recorded = "options=359 hash=ffa1ae09", Target = "options=359 hash=ffa1ae09",
+        RecordedClassic = "options=255 hash=a1fc83f7", TargetClassic = "options=255 hash=a1fc83f7"},
+    -- a new install's raw saved variables once the boot is done (empty files in, AceDB fills the profiles from the
+    -- defaults it was made with): a default registered after the database was made would be missing here
+    {Name = "first-install-profile", Recorded = "hash=46a01e8b", Target = "hash=46a01e8b", RecordedClassic = "hash=cd75285e", TargetClassic = "hash=cd75285e"},
+    -- the old file (fixtures/settings-baseline-<client>.lua, write-settings-fixture.lua): the values each option reads in
+    -- the profiles Default and Second, and the filter and search values, against those it was written with
+    {Name = "old-file-same-values", Recorded = "default=0 second=0 filters=0 search=0 missing=0",
+        Target = "default=0 second=0 filters=0 search=0 missing=0"},
+    -- a profile switch on the options and on the filters database: the callbacks registered for each profile event, and
+    -- whether every tab's filters follow the new filters profile
+    {Name = "profile-switch", Recorded = "options=1/1/1 filters=1/1/1 options-switch=yes filters-follow=yes",
+        Target = "options=1/1/1 filters=1/1/1 options-switch=yes filters-follow=yes"},
+}
+
+suites.settings = function(c)
+    local scriptDir = ((arg and arg[0]) or ""):gsub("\\", "/"):match("^(.*)/") or "."
+    local optionsEnv = assert(loadfile(scriptDir .. "/options-env.lua"))()
+    local proof = assert(loadfile(scriptDir .. "/settings-proof.lua"))()
+    local isRetail = c.client == "Retail"
+    local function Boot(opts)
+        local ctx = optionsEnv.New(root, c.client, opts)
+        assert(#ctx.Errors == 0, "load error: " .. tostring(ctx.Errors[1]))
+        ctx.addon.SearchOptions:Load() -- as the search box does once Blizzard's achievement window loads
+        return ctx, ctx.addon.Options.Window.Model
+    end
+    local function Walk(t, keys)
+        for _, key in ipairs(keys) do
+            if type(t) ~= "table" then return nil end
+            t = t[key]
+        end
+        return t
+    end
+    local reads = {
+        ["defaults-unchanged"] = function()
+            local ctx = Boot()
+            return "hash=" .. proof.DefaultsHash(ctx.addon)
+        end,
+        ["saved-keys-unchanged"] = function()
+            local count, hash = proof.SavedKeys(Boot())
+            return ("options=%d hash=%s"):format(count, hash)
+        end,
+        ["first-install-profile"] = function()
+            local ctx = Boot()
+            local parts = {}
+            for _, name in ipairs({ "KrowiAF_Options", "KrowiAF_Filters", "KrowiAF_SearchOptions" }) do
+                parts[#parts + 1] = name .. " = " .. proof.Serialize(rawget(ctx.env, name))
+            end
+            return "hash=" .. proof.Hash(table.concat(parts, "\n"))
+        end,
+        ["old-file-same-values"] = function()
+            local file = scriptDir .. "/fixtures/settings-baseline-" .. c.client
+            local saved = assert(loadfile(file .. ".lua"))()
+            local values = assert(loadfile(file .. "-values.lua"))()
+            local ctx, model = Boot({ SavedVariables = saved })
+            local byId = {}
+            for _, item in ipairs(model.Options()) do byId[item.Option.Id] = item.Option end
+            local missing = 0
+            local function Compare(expected)
+                local wrong = 0
+                for id, value in next, expected do
+                    local option = byId[id]
+                    if not option then
+                        missing = missing + 1
+                    elseif option:Get() ~= value then
+                        wrong = wrong + 1
+                    end
+                end
+                return wrong
+            end
+            local db = ctx.addon.Options.db
+            local default = Compare(values.Options.Default)
+            db:SetProfile("Second")
+            local second = Compare(values.Options.Second)
+            db:SetProfile("Default")
+            local filters, search = 0, 0
+            for _, entry in ipairs(values.Filters) do
+                if Walk(ctx.addon.Filters.db.profile, entry.Keys) ~= entry.Value then filters = filters + 1 end
+            end
+            for _, entry in ipairs(values.Search) do
+                if Walk(ctx.addon.SearchOptions.db.profile, entry.Keys) ~= entry.Value then search = search + 1 end
+            end
+            return ("default=%d second=%d filters=%d search=%d missing=%d"):format(default, second, filters, search, missing)
+        end,
+        ["profile-switch"] = function()
+            local ctx = Boot()
+            local addon = ctx.addon
+            local function Count(db, event)
+                local n = 0
+                for _ in next, rawget(db.callbacks.events, event) or {} do n = n + 1 end
+                return n
+            end
+            local options, filters = addon.Options.db, addon.Filters.db
+            local registered = ("options=%d/%d/%d filters=%d/%d/%d"):format(
+                Count(options, "OnProfileChanged"), Count(options, "OnProfileCopied"), Count(options, "OnProfileReset"),
+                Count(filters, "OnProfileChanged"), Count(filters, "OnProfileCopied"), Count(filters, "OnProfileReset"))
+            local switched = pcall(options.SetProfile, options, "SettingsTest") and pcall(options.SetProfile, options, "Default")
+            pcall(options.DeleteProfile, options, "SettingsTest")
+            filters:SetProfile("SettingsTest")
+            local follow = true
+            for t in next, addon.Tabs do
+                if addon.Tabs[t].Filters ~= filters.profile.Tabs[t] then follow = false end
+            end
+            filters:SetProfile("Default")
+            filters:DeleteProfile("SettingsTest")
+            return ("%s options-switch=%s filters-follow=%s"):format(registered, switched and "yes" or "no", follow and "yes" or "no")
+        end,
+    }
+    local results = {}
+    for _, scenario in ipairs(settingsScenarios) do
+        local ok, got = pcall(reads[scenario.Name])
+        if not ok then got = "error: " .. tostring(got) end
+        local recorded = (not isRetail and scenario.RecordedClassic) or scenario.Recorded
+        local target = (not isRetail and scenario.TargetClassic) or scenario.Target
+        local status = got == recorded and "PASS" or "FAIL"
+        local targetMet = got == target
+        results[#results + 1] = { Name = scenario.Name, Status = status, TargetMet = targetMet,
+            Line = ("settings/%s: %s recorded=[%s] got=[%s] target=[%s] %s"):format(scenario.Name, status, recorded, got, target, targetMet and "met" or "open") }
     end
     return results, ".claude/tools/headless/run-tests.lua", {}
 end
