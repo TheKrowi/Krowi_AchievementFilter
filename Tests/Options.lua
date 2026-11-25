@@ -20,9 +20,12 @@ local function Model()
     return addon.Options.Window and addon.Options.Window.Model
 end
 
--- AceConfigDialog:AddToBlizOptions keeps every page it adds under BlizOptions[appName]
+-- AceConfigDialog:AddToBlizOptions keeps every page it adds under BlizOptions[appName]. The addon no longer loads it
+-- (docs/work/2026-11-25-leave-acegui), so it is asked silently: without it no page can be added, and when another addon
+-- loads it the count still proves the addon added none.
 local function CountKafPages()
-    local pages = LibStub("AceConfigDialog-3.0").BlizOptions or {}
+    local dialog = LibStub("AceConfigDialog-3.0", true)
+    local pages = dialog and dialog.BlizOptions or {}
     local n = 0
     for _, app in ipairs({ addon.Metadata.Title, "KrowiAF_Layout", "KrowiAF_Profiles", "KrowiAF_Plugins", "KrowiAF_Credits" }) do
         if pages[app] then n = n + 1 end

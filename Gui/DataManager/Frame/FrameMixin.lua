@@ -5,41 +5,9 @@ KrowiAF_DataManagerFrameImportMixin = {}
 
 local textFrame
 local function Import(input)
-	local LibSerialize = LibStub("LibSerialize")
-    local LibDeflate = LibStub("LibDeflate")
-
-    local decoded = LibDeflate:DecodeForPrint(input)
-    if not decoded then
+	if not addon.Gui.DataManager.ImportCharacter(input) then
 		return
 	end
-    local decompressed = LibDeflate:DecompressDeflate(decoded)
-    if not decompressed then
-		return
-	end
-    local success, data = LibSerialize:Deserialize(decompressed)
-    if not success then
-		return
-	end
-
-    KrowiAF_SavedData.CharacterList[data.Guid] = data.Character
-    for _, achievement in next, data.Completed do
-        local achievementInfo = addon.GetAchievementInfoTable(achievement.Id)
-        local dateTable = date("*t", achievement.Date)
-        achievementInfo.DateTime = {
-            Year = dateTable.year - 2000,
-            Month = dateTable.month,
-            Day = dateTable.day
-        }
-        addon.Data.SavedData.AchievementData.SetEarnedBy(data.Guid, achievementInfo)
-    end
-    for _, achievement in next, data.NotCompleted do
-        local achievementInfo = addon.GetAchievementInfoTable(achievement.Id)
-        achievementInfo.WasEarnedByMe = false
-        addon.Data.SavedData.AchievementData.SetNotEarnedBy(data.Guid, achievementInfo)
-        for criteriaIndex, criteriaValue in next, achievement.Progress do
-            addon.Data.SavedData.AchievementData.SetCriteriaProgress(data.Guid, achievementInfo, criteriaIndex, criteriaValue)
-        end
-    end
 	textFrame:Hide()
 	if KrowiAF_DataManagerFrame.CharacterList:IsShown() then
 		KrowiAF_DataManagerFrame.CharacterList:Refresh()
@@ -85,17 +53,13 @@ local function CreateTabs(self)
 	self.Tabs[1]:SetPoint("TOPLEFT", self, "BOTTOMLEFT", 11, 2)
 	PanelTemplates_SetNumTabs(self, #self.Tabs)
 
-	local log = LibStub("AceGUI-3.0"):Create("MultiLineEditBox")
-	log.frame:SetParent(self)
-	log:DisableButton(true)
-	log:SetLabel("")
-	log.frame:SetPoint("TOPLEFT", self.Inset, "TOPLEFT", 0, 4)
-	log.frame:SetPoint("BOTTOMRIGHT", self.Inset, "BOTTOMRIGHT", -3, -5)
-	log:SetCallback("OnTextChanged", function(widget) -- typing undone: the log is read-only
-		widget:SetText(self.LogText or "")
+	-- Read-only: any change to the text, typed or an Enter, is undone; putting it back changes it to what it is, which stops
+	self.Log = addon.Gui.DataManager.NewTextBox(self, self.Inset, function(log)
+		if self.LogText and log:GetText() ~= self.LogText then
+			log:SetText(self.LogText)
+		end
 	end)
-	log.frame:Hide()
-	self.Log = log
+	self.Log:Hide()
 	PanelTemplates_SetTab(self, 1)
 end
 
@@ -127,12 +91,12 @@ function KrowiAF_DataManagerFrameMixin:SelectTab(id)
 	self.CharacterList:SetShown(characters)
 	self.Import:SetShown(characters)
 	if characters then
-		self.Log.frame:Hide()
+		self.Log:Hide()
 		return
 	end
 	self.LogText = addon.Slots.DataManagerTabs.Entries[id - 1].GetText()
 	self.Log:SetText(self.LogText)
-	self.Log.frame:Show()
+	self.Log:Show()
 end
 
 function KrowiAF_DataManagerFrameMixin:OnShow()

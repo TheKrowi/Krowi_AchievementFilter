@@ -21,4 +21,5 @@
     <Script file="Plugins.lua" />
     <Script file="PopUps.lua" />
     <Script file="Features.lua" />
+    <Script file="DataManager.lua" />
 </Ui>
