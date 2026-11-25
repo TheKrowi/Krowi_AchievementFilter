@@ -2811,6 +2811,9 @@ local runnerScenarios = {
     -- a /kaftest run of 12 other entries, History full from the runs above, while a run from outside it reports in
     -- between (as a /kaftest login run 5 s after the reload can): how many of the 12 runs History holds after the summary
     {Name = "outside-run-keeps-all", Recorded = "12", Target = "12"},
+    -- a /kaftest login run set, then PLAYER_ENTERING_WORLD as a zone change (neither login nor reload) and as a reload,
+    -- through the frame Tests.lua listens on (docs/work/2026-11-25-unused-ace): the suites each one ran
+    {Name = "login-run-on-reload", Recorded = "zone=[] reload=[a]", Target = "zone=[] reload=[a]"},
 }
 
 suites.runner = function(c)
@@ -2822,9 +2825,23 @@ suites.runner = function(c)
         end })
     end
     local timers = {}
+    -- A frame that keeps the events it registers and its OnEvent script, so Fire can call it as the game would
+    local eventFrames = {}
+    local function EventFrame()
+        local frame, events = NoDrawFrame(), {}
+        rawset(frame, "RegisterEvent", function(_, event) events[event] = true end)
+        rawset(frame, "SetScript", function(_, name, fn) if name == "OnEvent" then events.OnEvent = fn end end)
+        eventFrames[#eventFrames + 1] = { Frame = frame, Events = events }
+        return frame
+    end
+    local function Fire(event, ...)
+        for _, f in ipairs(eventFrames) do
+            if f.Events[event] and f.Events.OnEvent then f.Events.OnEvent(f.Frame, event, ...) end
+        end
+    end
     -- Lua's own library falls through; every other global is nil unless stubbed here, so KrowiAF_DebugTable starts empty
     local env = setmetatable({
-        CreateFrame = function() return NoDrawFrame() end,
+        CreateFrame = function() return EventFrame() end,
         UIParent = NoDrawFrame(),
         C_Timer = { After = function(_, fn) timers[#timers + 1] = fn end },
         date = os.date,
@@ -2844,7 +2861,6 @@ suites.runner = function(c)
         Diagnostics = { DebugEnabled = function() return true end },
         Options = { db = { profile = {} } },
         Metadata = { Version = "0.0" },
-        Event = { RegisterEvent = function() end },
     }
     local chunk = assert(loadstring(readFile(root .. "/Tests/Tests.lua"), "@Tests/Tests.lua"))
     setfenv(chunk, env)
@@ -2901,6 +2917,20 @@ suites.runner = function(c)
                 if run.Suite:match("^t%d+$") then kept = kept + 1 end
             end
             return tostring(kept)
+        end,
+        ["login-run-on-reload"] = function()
+            local saved = env.KrowiAF_DebugTable.Tests
+            saved.RunOnLogin = "a"
+            local function RunTimers() while #timers > 0 do table.remove(timers, 1)() end end
+            order = {}
+            Fire("PLAYER_ENTERING_WORLD", false, false)
+            RunTimers()
+            local zone = table.concat(order, ",")
+            order = {}
+            Fire("PLAYER_ENTERING_WORLD", false, true)
+            RunTimers()
+            saved.RunOnLogin = nil
+            return ("zone=[%s] reload=[%s]"):format(zone, table.concat(order, ","))
         end,
     }
     local results = {}

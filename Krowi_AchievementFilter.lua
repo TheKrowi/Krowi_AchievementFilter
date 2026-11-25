@@ -1,9 +1,4 @@
--- [[ Namespaces ]] --
-local addonName, addon = ...
-
--- [[ Ace ]] --
-addon.Event = {}
-LibStub("AceEvent-3.0"):Embed(addon.Event)
+local _, addon = ...
 
 -- [[ Binding names ]] --
 BINDING_HEADER_KrowiAF = addon.Metadata.Title

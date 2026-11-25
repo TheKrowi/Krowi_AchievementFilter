@@ -524,7 +524,9 @@ SlashCmdList.KAFTEST = function(msg)
     end
 end
 
-addon.Event:RegisterEvent("PLAYER_ENTERING_WORLD", function(_, isLogin, isReload)
+local loginFrame = CreateFrame("Frame")
+loginFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+loginFrame:SetScript("OnEvent", function(_, _, isLogin, isReload)
     if not (isLogin or isReload) then
         return
     end

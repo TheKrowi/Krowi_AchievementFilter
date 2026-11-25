@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 106.1
+### Changed
+- The addon no longer loads three Ace3 libraries it stopped using (AceTimer, AceSerializer and AceEvent)
+
 ## 106.0 - 2026-11-23
 ### Added
 - 12.1.7 "Echoes of the Worldcore" patch data
