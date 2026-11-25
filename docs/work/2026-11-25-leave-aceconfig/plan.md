@@ -18,6 +18,14 @@ Drafted with the spec for review together. It assumes (a) on both of the spec's 
   - The damage: `KrowiAF_Options.profiles.Default.Achievements.EnableTabPriority` was left `true` on account `133658957#1`. `Compare-SavedSettings.ps1 -Compare` against the day's earlier snapshot found it as the only difference. It was removed again (`/run ... = nil`, `/reload`), and every account then matched the snapshot.
   - The fix: `defaults-unchanged` and `saved-keys-unchanged` moved from `Tests/Options.lua` to the headless `settings` suite, with the same recorded values. The in-game proof is the real-file comparison (`-Snapshot` and `-Compare` around the first login with the new build, and `-Options` with both builds on Krowi's files), which touches nothing live.
 
+## In-game results (2026-11-25)
+- **Krowi's real files**, Retail (five accounts) and Mists (one), each snapshot taken with the client closed:
+  - `-Options`: the baseline (test/2026-11-25-aceconfig-baseline at 1bc845f1) and this branch read the same value for every option in every profile, and the same filters and search profiles.
+  - Login with this branch, `/reload`, quit, then `-Compare`: every file unchanged.
+- **Suites with this branch:**
+  - Retail 12.1.5: `options` 37 passed, `special` 27, `popups` 13, 0 failed. The one BugGrabber row is the diagnosis's "script ran too long" from 22:11.
+  - Mists 5.5.4: `options` 37 passed, `special` 27, `popups` 13, 0 failed, no addon error.
+
 ## Results so far
 - Headless, both clients: every suite green after each step. The `memory` suite's two open targets on Retail are on `main` as well.
 - Installed addons: none relies on KAF's AceConfig or AceDBOptions, except Krowi_Reminders.
