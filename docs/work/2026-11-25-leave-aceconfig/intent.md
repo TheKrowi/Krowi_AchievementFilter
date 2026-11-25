@@ -1,5 +1,5 @@
 # Intent: Stop loading AceConfig and AceDBOptions, with proof that no setting moves
-Author: Krowi (maintainer). Source: idea, 2026-11-25. Status: draft
+Author: Krowi (maintainer). Source: idea, 2026-11-25. Status: accepted
 
 ## Problem
 The third item of leaving Ace (`docs/backlog.md`, "Leaving Ace"). The first two took out AceTimer, AceSerializer and AceEvent (docs/work/2026-11-25-unused-ace), then AceGUI and AceConfigDialog (docs/work/2026-11-25-leave-acegui). What KAF still loads besides AceDB:
@@ -13,7 +13,7 @@ Krowi's condition for the whole move: "users CAN'T lose their settings". This it
 
 ## Proposed outcome
 - KAF loads no AceConfig and no AceDBOptions. AceDB is the only Ace library left.
-- Every player's settings, profiles, filters, search options and tabs read and work exactly as before, on every client. That holds after the upgrade, and after a downgrade to 106.0.
+- Every player's settings, profiles, filters, search options and tabs read and work exactly as before, on every client. That holds after the upgrade; a downgrade needs no care (Krowi, 2026-11-25).
 - The options window, `KrowiAF_GetOptions` and the plugin API work as before.
 - A set of saved-settings tests guards this item, and any later change to the option definitions, against moved keys, changed defaults and lost profiles.
 

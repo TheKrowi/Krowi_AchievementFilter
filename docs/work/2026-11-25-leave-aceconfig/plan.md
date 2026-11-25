@@ -1,13 +1,13 @@
 # Plan: Stop loading AceConfig and AceDBOptions, with proof that no setting moves
-Spec: [spec.md](spec.md). Status: draft
+Spec: [spec.md](spec.md). Status: accepted
 
-Drafted with the spec for review together. It assumes (a) on both of the spec's questions. With 1(b), step 1 keeps only `defaults-unchanged`, `first-install-profile`, `saved-keys-unchanged-all` and `profile-switch`, and drops the fixture writer, the logout check and the real-file tool.
+Drafted with the spec for review together. It assumes (a) on both of the spec's questions. Krowi chose the whole proof, without the downgrade check, since a later item migrates the settings onto a new layout and store and reuses it.
 
 ## Files that change
 ### The saved-settings proof (step 1), on the baseline code
 - `.claude/tools/headless/options-env.lua`:
   - `opts.SavedVariables`: the four saved tables, set before the boot as the game loads them. Today's `opts.Profile` (`:436-438`) covers one profile only.
-  - `ctx.Logout()`: runs AceDB's own logout handler (`AceDB.frame`'s `OnEvent` with `PLAYER_LOGOUT`), which strips defaults as the game does before it writes the files.
+  - `ctx.Logout()`: runs AceDB's own logout handler (`AceDB.frame`'s `OnEvent` with `PLAYER_LOGOUT`), which strips defaults as the game does before it writes the files; the fixture writer needs it.
   - `ctx.Serialize(value)`: a dump with sorted keys.
 - `Options/Window/Model.lua`:
   - `DefaultsHash()`: the three databases' `db.defaults`.
@@ -22,7 +22,7 @@ Drafted with the spec for review together. It assumes (a) on both of the spec's 
     - the options callbacks counted, and every `addon.Tabs[t].Filters` checked against the new filters profile;
     - switched back and deleted.
 - `Tests/Options.lua`: `defaults-unchanged` and `saved-keys-unchanged`, in game and headless, with `Recorded`, `Target` and their Classic forms.
-- `.claude/tools/headless/run-tests.lua`: the headless-only `first-install-profile`, `saved-keys-unchanged-all`, `old-file-same-values`, `logout-file-unchanged` and `profile-switch`, and the models of every new line.
+- `.claude/tools/headless/run-tests.lua`: the headless-only `first-install-profile`, `saved-keys-unchanged-all`, `old-file-same-values` and `profile-switch`, and the models of every new line.
 - `.claude/tools/headless/write-settings-fixture.lua` (new, run once on the baseline):
   - boots Retail and Classic;
   - sets every storing option off its value in `Default`, and makes a second profile `Second` with every toggle flipped back;

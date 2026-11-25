@@ -1,5 +1,5 @@
 # Spec: Stop loading AceConfig and AceDBOptions, with proof that no setting moves
-Intent: [intent.md](intent.md). Status: draft
+Intent: [intent.md](intent.md). Status: accepted
 
 ## Requirements
 **Saved settings.** Each check is recorded on the code before this item (`main` at 54fe7203, whose options code is 106.0's), committed before anything changes, and kept green through every step.
@@ -12,7 +12,7 @@ Intent: [intent.md](intent.md). Status: draft
    - Headless, this covers every option, hidden and disabled ones included.
    - In game it covers only what `CheckRoundTrip` already sets (shown, enabled, not locked), since it runs on the player's real character and puts each value back.
 3. **Old file, same values.** A saved file written by the baseline code reads back the same value for every option, hidden and disabled ones included. The file has values off their defaults in every option, in two profiles, and in the filters and search options, which no option writes.
-4. **Downgrade.** The file the new build writes at logout is deep-equal to the one the baseline writes after the same changes. A player who goes back to 106.0 keeps everything.
+4. *(Dropped: a downgrade check. Krowi, 2026-11-25: "no need to foresee downgrades".)*
 5. **Nothing else moves.**
    - No `## SavedVariables` change, no new `DataIntegrityManager` solution, and no saved key added or deleted.
    - `addon.Filters:Load()` runs at the same point of the boot as today.
@@ -51,7 +51,7 @@ The design of the first draft (commit b588b39d, `docs/work/2026-11-25-leave-ace/
 - **The real-file tool:** `.claude/tools/Compare-SavedSettings.ps1`, with `-Snapshot`, `-Compare` and `-Options`.
 - **The scenarios:**
   - in game and headless: `defaults-unchanged` and `saved-keys-unchanged`;
-  - headless only: `first-install-profile`, `saved-keys-unchanged-all`, `old-file-same-values`, `logout-file-unchanged` and `profile-switch`.
+  - headless only: `first-install-profile`, `saved-keys-unchanged-all`, `old-file-same-values` and `profile-switch`.
 
 ## Options considered
 1. **How much of the proof this item builds** (players see nothing either way; the difference is what guards their settings now and later):
@@ -87,4 +87,8 @@ The design of the first draft (commit b588b39d, `docs/work/2026-11-25-leave-ace/
   - a scan of the installed addons.
 
 ## Decision
-Pending: how much of the proof (Options considered 1), and AceDB (Options considered 2).
+2026-11-25, Krowi:
+- Intent accepted without the downgrade requirement: "no need to foresee downgrades". Requirement 4 and its scenario are dropped.
+- The proof: "i also want to explore a data migration at the same time to re-organize setting and move user settings". Asked how to sequence it, Krowi chose one migration, together with replacing AceDB, as a later item: "One migration, with the AceDB swap". So this item stays mechanical and builds the whole proof (requirements 1 to 3, 5 and 6), which that migration reuses: its old-file check becomes every old value found at its new place.
+- AceDB: replaced later, in that migration item (option 2b).
+- Plan approved.
