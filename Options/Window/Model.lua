@@ -436,9 +436,10 @@ end
 
 -- Which saved keys each option writes (saved-keys-unchanged): every option that stores a value, hidden and disabled ones
 -- too, set one at a time to another value. The four saved variables are copied before each set and put back after it,
--- raw and in place, so the run leaves the player's saved data exactly as it found it; the option is also set back, so
--- whatever its setter refreshed shows its value again. A profile's name reads as *, so the paths are the same for every
+-- raw and in place, and the option is set back too. A profile's name reads as *, so the paths are the same for every
 -- player and every character. Returns the count, the hash and the lines (option id => paths).
+-- Headless only (the settings suite): never on a player's live character. The game cuts a long script short ("script
+-- ran too long", Retail, 2026-11-25), and a cut between a set and its put-back leaves that setting changed.
 function model.SavedKeys()
     local lines = {}
     for _, item in ipairs(model.Options()) do

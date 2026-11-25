@@ -2945,10 +2945,20 @@ suites.runner = function(c)
     return results, ".claude/tools/headless/run-tests.lua", {}
 end
 
--- The saved-settings proof, headless only (docs/work/2026-11-25-leave-aceconfig): what needs a whole-addon load of its
--- own, recorded on the code before AceConfig went. A change to the options must keep every line, or say why it moves.
--- The game and headless halves (defaults-unchanged, saved-keys-unchanged) are in Tests/Options.lua.
+-- The saved-settings proof, headless only (docs/work/2026-11-25-leave-aceconfig), each scenario on a whole-addon load of
+-- its own, recorded on the code before AceConfig went. A change to the options must keep every line, or say why it moves.
+-- None of it runs in game: saved-keys-unchanged sets every option, and a script the game cuts short between a set and its
+-- put-back ("script ran too long", Retail, 2026-11-25, on a 7 MB saved file) leaves a player's setting changed. In game,
+-- Compare-SavedSettings.ps1 checks a player's files instead, touching nothing.
 local settingsScenarios = {
+    -- the defaults the three AceDB databases were made with: AceDB does not save a value equal to its default, so a
+    -- default that changes or moves changes the settings of the players who kept it
+    {Name = "defaults-unchanged", Recorded = "hash=10ea1a00", Target = "hash=10ea1a00", RecordedClassic = "hash=e5944253",
+        TargetClassic = "hash=e5944253"},
+    -- which saved keys every option that stores a value writes, hidden and disabled ones too (paths only, a profile's
+    -- name as *): an option that reads or writes another key moves this
+    {Name = "saved-keys-unchanged", Recorded = "options=359 hash=ffa1ae09", Target = "options=359 hash=ffa1ae09",
+        RecordedClassic = "options=255 hash=a1fc83f7", TargetClassic = "options=255 hash=a1fc83f7"},
     -- a new install's raw saved variables once the boot is done (empty files in, AceDB fills the profiles from the
     -- defaults it was made with): a default registered after the database was made would be missing here
     {Name = "first-install-profile", Recorded = "hash=46a01e8b", Target = "hash=46a01e8b", RecordedClassic = "hash=cd75285e", TargetClassic = "hash=cd75285e"},
@@ -2980,6 +2990,15 @@ suites.settings = function(c)
         return t
     end
     local reads = {
+        ["defaults-unchanged"] = function()
+            local _, model = Boot()
+            return "hash=" .. model.DefaultsHash()
+        end,
+        ["saved-keys-unchanged"] = function()
+            local _, model = Boot()
+            local count, hash = model.SavedKeys()
+            return ("options=%d hash=%s"):format(count, hash)
+        end,
         ["first-install-profile"] = function()
             local ctx, model = Boot()
             local parts = {}

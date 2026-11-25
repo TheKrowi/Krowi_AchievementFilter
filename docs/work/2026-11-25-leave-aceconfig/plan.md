@@ -13,6 +13,11 @@ Drafted with the spec for review together. It assumes (a) on both of the spec's 
 - **`Compare-SavedSettings.ps1` compares** `KrowiAF_Options`, `KrowiAF_Filters`, `KrowiAF_SearchOptions` and `KrowiAF_SavedData.Tabs`. No option writes any other part of `KrowiAF_SavedData`, per `SavedKeys`' lines.
 - **The proof catches a moved key.** With `Window.Movable` moved for one run, `saved-keys-unchanged`, `old-file-same-values` (one value in each profile) and the fingerprint failed, and `defaults-unchanged` rightly passed.
 
+- **No proof check runs in game any more** (2026-11-25, safety; for Krowi to confirm at the PR).
+  - What happened: the first in-game run of the baseline (22:09, Retail) gave `defaults-unchanged hash=6a01f3c9` and `saved-keys-unchanged options=359 hash=35349927`, both unlike the headless values. To see why, a diagnosis observation (never committed) ran `SavedKeys` a second time. On Krowi's 7 MB saved file the game cut that script short ("script ran too long", `Model.lua:433` in `Diff`), between an option's set and its put-back.
+  - The damage: `KrowiAF_Options.profiles.Default.Achievements.EnableTabPriority` was left `true` on account `133658957#1`. `Compare-SavedSettings.ps1 -Compare` against the day's earlier snapshot found it as the only difference. It was removed again (`/run ... = nil`, `/reload`), and every account then matched the snapshot.
+  - The fix: `defaults-unchanged` and `saved-keys-unchanged` moved from `Tests/Options.lua` to the headless `settings` suite, with the same recorded values. The in-game proof is the real-file comparison (`-Snapshot` and `-Compare` around the first login with the new build, and `-Options` with both builds on Krowi's files), which touches nothing live.
+
 ## Results so far
 - Headless, both clients: every suite green after each step. The `memory` suite's two open targets on Retail are on `main` as well.
 - Installed addons: none relies on KAF's AceConfig or AceDBOptions, except Krowi_Reminders.
