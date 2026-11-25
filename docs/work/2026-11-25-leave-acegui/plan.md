@@ -1,5 +1,5 @@
 # Plan: Stop loading AceGUI and AceConfigDialog
-Spec: [spec.md](spec.md). Status: draft
+Spec: [spec.md](spec.md). Status: accepted
 
 Drafted with the spec for review together; it assumes (a) on both of the spec's questions.
 

@@ -1,5 +1,5 @@
 # Spec: Stop loading AceGUI and AceConfigDialog
-Intent: [intent.md](intent.md). Status: draft
+Intent: [intent.md](intent.md). Status: accepted
 
 ## Requirements
 1. `Libs/Files.xml` loads no AceGUI and no AceConfigDialog, and `Libs/AceGUI-3.0/` and `Libs/AceConfig-3.0/AceConfigDialog-3.0/` are gone. AceConfigRegistry, AceConfigCmd and `AceConfig-3.0.lua` still load, so `KrowiAF_GetOptions` and every option table work as today.
@@ -80,4 +80,8 @@ The encoding itself doesn't change, so an export made with 106.0 decodes the sam
   - `Read-GameErrors.ps1` on both.
 
 ## Decision
-Pending: the boxes' look and where the check lives (Options considered 1 and 2).
+2026-11-25, Krowi:
+- Intent accepted.
+- The check lives in a new `datamanager` suite (option 2a).
+- The look: "show me current and the 2 suggestions". The build puts today's AceGUI box, (1a) and (1b) behind a temporary debug switch with screenshots of each, and Krowi picks in the client; the choice is recorded here and the switch goes before the PR.
+- Plan approved.

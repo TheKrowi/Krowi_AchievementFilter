@@ -1,5 +1,5 @@
 # Intent: Stop loading AceGUI and AceConfigDialog
-Author: Krowi (maintainer). Source: idea, 2026-11-25. Status: draft
+Author: Krowi (maintainer). Source: idea, 2026-11-25. Status: accepted
 
 ## Problem
 The second item of leaving Ace (`docs/backlog.md`, "Leaving Ace"; the first was docs/work/2026-11-25-unused-ace). KAF loads AceGUI, Ace3's widget library (23 Lua files), for two things:
