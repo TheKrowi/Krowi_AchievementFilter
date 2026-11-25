@@ -508,9 +508,7 @@ local function SkinTextFrame()
         frame.Inset:StripTextures()
         frame.CloseButton:Point("TOPRIGHT", 0, 2)
         skins:HandleFrame(frame, true, nil, -5, 0, -1, 0)
-        for _, container in next, frame.Input.Containers do -- TEMPORARY: one per look until the look gate picks one
-            container:SetPoint("BOTTOMRIGHT", frame.Inset ,"BOTTOMRIGHT", -3, 0)
-        end
+        frame.Input:SetPoint("BOTTOMRIGHT", frame.Inset ,"BOTTOMRIGHT", -3, 0)
         skins:HandleButton(frame.Button1)
     end)
 end

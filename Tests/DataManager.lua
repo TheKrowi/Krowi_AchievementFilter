@@ -35,11 +35,6 @@ local function TextBox()
     return frame, frame.Input
 end
 
--- The box's edit box: AceGUI's widget keeps it as editBox, the game's scrolling box returns it
-local function EditBoxOf(box)
-    return box.GetEditBox and box:GetEditBox() or box.editBox
-end
-
 local observe = {}
 
 function observe.ExportRoundtrip(observations)
@@ -135,7 +130,7 @@ function observe.LogReadOnly(observations)
     frame:Show()
     frame:SelectTab(2)
     local before = frame.LogText or ""
-    local editBox = EditBoxOf(frame.Log)
+    local editBox = frame.Log:GetEditBox()
     editBox:SetCursorPosition(0)
     editBox:Insert("x")
     -- Typing reaches the box as OnTextChanged with userInput true; whether Insert says so is not documented, so the

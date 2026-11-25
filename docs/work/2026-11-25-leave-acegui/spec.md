@@ -83,5 +83,5 @@ The encoding itself doesn't change, so an export made with 106.0 decodes the sam
 2026-11-25, Krowi:
 - Intent accepted.
 - The check lives in a new `datamanager` suite (option 2a).
-- The look: "show me current and the 2 suggestions". The build puts today's AceGUI box, (1a) and (1b) behind a temporary debug switch with screenshots of each, and Krowi picks in the client; the choice is recorded here and the switch goes before the PR.
+- The look: "show me current and the 2 suggestions". The build put today's AceGUI box, (1a) and (1b) behind a temporary switch, with screenshots of each (claude.ai/artifact/Q2HfUs4SCm3i7tx4CakWkN). Krowi chose (1b), the bordered box: "recommended text bleeds outside the box". The switch and the other two looks are gone.
 - Plan approved.

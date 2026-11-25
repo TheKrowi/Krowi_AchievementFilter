@@ -8,3 +8,4 @@ Class: fix/gui
 | 2026-11-25 | design | The boxes' look: the game's plain box, or with a border? | Plain box | "show me current and the 2 suggestions" | other |
 | 2026-11-25 | design | Where the in-game check lives | New datamanager suite | "New datamanager suite" | took |
 | 2026-11-25 | plan | Approve the plan | Approve | "Approve" | took |
+| 2026-11-25 | look | The boxes' look, Retail (screenshots: claude.ai/artifact/Q2HfUs4SCm3i7tx4CakWkN; live switch in the client) | Game's box | "Game's box, bordered because recommended text bleeds outside the box" | other |

@@ -3,6 +3,13 @@ Spec: [spec.md](spec.md). Status: accepted
 
 Drafted with the spec for review together; it assumes (a) on both of the spec's questions.
 
+## Departures from the plan
+- **The box is made in Lua, not declared in `TextFrame.xml`:** `addon.Gui.DataManager.NewTextBox` (`Gui/DataManager/DataManager.lua`) builds both boxes, the text window's and the log's, so they can't drift apart.
+  - It is a `BackdropTemplate` frame with AceGUI's black backdrop and grey border, holding the scrolling box and its minimal scroll bar. That is Krowi's choice at the look gate.
+  - It answers `SetText`, `GetText` and `GetEditBox`.
+- **The `datamanager` suite loads Blizzard's achievement window itself** when the Data Manager isn't made yet, as the `escape` suite does. Its first in-game run refused with "the Data Manager has not been made yet".
+- **The look gate ran the three looks behind a temporary switch** and a screenshot helper, both removed before the pull request.
+
 ## Files that change
 - `Libs/Files.xml`: `AceGUI-3.0.xml` goes, and `AceConfig-3.0\AceConfig-3.0.xml` becomes three lines:
   - `AceConfig-3.0\AceConfigRegistry-3.0\AceConfigRegistry-3.0.xml`;
