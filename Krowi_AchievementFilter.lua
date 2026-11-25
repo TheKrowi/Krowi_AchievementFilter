@@ -1,5 +1,4 @@
--- [[ Namespaces ]] --
-local addonName, addon = ...
+local _, addon = ...
 
 -- [[ Binding names ]] --
 BINDING_HEADER_KrowiAF = addon.Metadata.Title
