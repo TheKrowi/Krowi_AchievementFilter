@@ -40,7 +40,8 @@ Intent: [intent.md](intent.md). Status: accepted
 - Headless, on both clients: the `options` suite with every line unchanged, and the suites that boot the whole addon (`features`, `plugins`, `popups`, `special`, `schedules`, `guide`).
 - In game, Retail then Mists:
   - `Deploy.ps1 -WhatIf` shows the three folders removed;
-  - deploy, then `Run-GameTests.ps1 options`. The run starts from the runner's `PLAYER_ENTERING_WORLD` handler after a `/reload`, so it proves requirement 3;
+  - deploy, then `Run-GameTests.ps1 options`;
+  - for requirement 3, `/kaftest login options` and a `/reload`. The runner's `PLAYER_ENTERING_WORLD` handler starts the run, since no `/kaftest run` is typed. Then `/kaftest login off`;
   - `Read-GameErrors.ps1`: no new row.
 
 ## Decision
