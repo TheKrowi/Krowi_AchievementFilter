@@ -9,3 +9,4 @@ Class: harness
 | 2026-11-25 | design | AceDB: keep it for good, or replace it later? | Keep it for good | "Replace it later" | other |
 | 2026-11-25 | plan | Approve the plan | Approve | "Approve" | took |
 | 2026-11-25 | scope | The settings re-layout and the AceDB swap: one migration together later, reorganize now inside AceDB, or explore first | One migration, with the AceDB swap | "One migration, with the AceDB swap" | took |
+| 2026-11-25 | design | No proof check runs in game: saved-keys-unchanged and defaults-unchanged move to the headless settings suite, the real-file comparison is the in-game proof (after an in-game pass cut short left one setting changed, since put back) | Headless only | (taken while Krowi was away; asked in PR #433) | auto |
