@@ -1,5 +1,5 @@
 # Intent: Stop loading the Ace libraries nothing uses
-Author: Krowi (maintainer). Source: idea, 2026-11-25. Status: accepted
+Author: Krowi (maintainer). Source: idea, 2026-11-25. Status: done
 
 ## Problem
 KAF loads Ace3 libraries that nothing calls:

@@ -1,5 +1,5 @@
 # Plan: Stop loading the Ace libraries nothing uses
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 ## Files that change
 - `Libs/Files.xml`: the `AceTimer-3.0.xml`, `AceEvent-3.0.xml` and `AceSerializer-3.0.xml` includes go.
@@ -22,6 +22,15 @@ Spec: [spec.md](spec.md). Status: accepted
    - the run the login handler started passed 37, failed 0;
    - `Read-GameErrors.ps1` showed no error from the addon.
    The Krowi_ExtendedVendorUI session typed a `/reload` and two right-clicks into the same client during the login run; that run's results were unaffected.
+
+   Mists, 2026-11-25:
+   - the typed run passed 37, failed 0, as did 106.0's run of 2026-11-22;
+   - the run the login handler started passed 37, failed 0;
+   - `Read-GameErrors.ps1` showed no error from the addon.
+
+   On both clients `-WaitForDone` saw no "done" from the run the login handler started, though the run finished and wrote its results. It is the same with and without a peer's input, so the kit's marker evidently doesn't hear from a login-started run.
+
+   The code review (2026-11-25) found three nits, all fixed: the runner suite's dead `addon.Event` stub; no headless check of the moved handler, now `runner/login-run-on-reload`, which fails if the handler's arguments shift; and the main file's banner and unused `addonName`.
 3. Scan the AddOns folders of Retail and Mists for a non-silent `LibStub("AceTimer-3.0"|"AceSerializer-3.0"|"AceEvent-3.0")` in an addon that ships no copy of that library, and report any found.
 
    Done 2026-11-25. A copy counts when it is in the addon itself or in an addon its TOC names as a dependency; AceAddon's own file and comment lines don't count as uses. Result: none, of 182 addons on Retail and 39 on Mists. The plugins of Titan, HandyNotes and SilverDragon use the copy their parent ships.

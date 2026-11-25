@@ -1,5 +1,5 @@
 # Spec: Stop loading the Ace libraries nothing uses
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. `Libs/Files.xml` no longer loads AceTimer, AceSerializer or AceEvent, and their folders are gone from `Libs/`.

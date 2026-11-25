@@ -1,5 +1,5 @@
 # Gates: 2026-11-25-unused-ace
-Class: harness
+Class: library
 
 | Date | Gate | Question | Recommended | Answer | Outcome |
 |---|---|---|---|---|---|
