@@ -138,7 +138,27 @@ function dataManager.NextBoxLook()
 		end
 	end
 end
-KrowiAF.DebugBoxLook = dataManager.SetBoxLook -- TEMPORARY, the look gate's screenshots: /run KrowiAF.DebugBoxLook("plain")
+-- TEMPORARY, the look gate's screenshots: /run KrowiAF.DebugBoxLook("plain", "text") or ("border", "log")
+KrowiAF.DebugBoxLook = function(look, what)
+	dataManager.SetBoxLook(look)
+	if what == "log" then
+		if KrowiAF_TextFrame then
+			KrowiAF_TextFrame:Hide()
+		end
+		if not KrowiAF_DataManagerFrame and not AchievementFrame then
+			AchievementFrame_LoadUI()
+		end
+		KrowiAF_DataManagerFrame:Show()
+		KrowiAF_DataManagerFrame:SelectTab(2)
+	elseif what == "text" then
+		if KrowiAF_DataManagerFrame then
+			KrowiAF_DataManagerFrame:Hide()
+		end
+		local frame = dataManager:GetTextFrame("Export (look test)")
+		frame.Input:SetText(dataManager.EncodeCharacter(dataManager.GatherCharacter(UnitGUID("player"))))
+		frame:Show()
+	end
+end
 
 -- A character's export and import, shared by the Data Manager's buttons and the datamanager suite (Tests/DataManager.lua),
 -- so the suite checks the text a player gets and pastes (docs/work/2026-11-25-leave-acegui)

@@ -121,6 +121,11 @@ function observe.ImportRoundtrip(observations)
 end
 
 function observe.LogReadOnly(observations)
+    -- The Data Manager is made with Blizzard's achievement window (Gui/Gui.lua), which loads on demand: loaded here as
+    -- the escape suite loads it (Tests/Escape.lua, Show)
+    if not KrowiAF_DataManagerFrame and not AchievementFrame then
+        AchievementFrame_LoadUI()
+    end
     local frame = KrowiAF_DataManagerFrame
     if not (frame and frame.Log and frame.Tabs) then
         return nil, "no log tab: Retail with a feature that adds one (Event reminders), in debug mode"
@@ -184,9 +189,6 @@ end
 addon.Tests.Ready.datamanager = function()
     if not addon.Data.IsLoaded then
         return false, "the data load has not finished"
-    end
-    if not KrowiAF_DataManagerFrame then
-        return false, "the Data Manager has not been made yet"
     end
     return true
 end
