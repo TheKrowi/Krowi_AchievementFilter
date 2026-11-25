@@ -4,19 +4,12 @@ options.Profiles = {}
 local profiles = options.Profiles
 tinsert(options.OptionsTables, profiles)
 
-local OrderPP = addon.InjectOptions.AutoOrderPlusPlus
-local AdjustedWidth = addon.InjectOptions.AdjustedWidth
-
+-- The Profiles page holds no options of its own: the options window draws both databases' profiles on AceDB's own API
+-- (Options/Window/Source.lua, ProfileOptions), so the AceDBOptions tables it held went (docs/work/2026-11-25-leave-aceconfig).
+-- The filters database is made here, during the options' load (Libs/Krowi_Util/Options/Options.lua, Load), where it has
+-- always been made.
 function profiles.RegisterOptionsTable()
-    options.OptionsTable.args.Profiles.args.Options = LibStub("AceDBOptions-3.0"):GetOptionsTable(addon.Options.db)
-    options.OptionsTable.args.Profiles.args.Options.order = OrderPP()
-    options.OptionsTable.args.Profiles.args.Options.name = addon.Util.L["Options"]
-
     addon.Filters:Load()
-    options.OptionsTable.args.Profiles.args.Filters = LibStub("AceDBOptions-3.0"):GetOptionsTable(addon.Filters.db)
-    options.OptionsTable.args.Profiles.args.Filters.order = OrderPP()
-    options.OptionsTable.args.Profiles.args.Filters.name = addon.L["Filters"]
-
     options.Registry.Register(addon.Metadata.Prefix .. "_Profiles", options.OptionsTable.args.Profiles)
 end
 

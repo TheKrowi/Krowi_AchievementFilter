@@ -4,23 +4,23 @@
 -- client-env.lua loads only the data files into a namespace it builds by hand. The options need the
 -- libraries too (LibStub, Krowi_Util with LibMan and AceLocale, AceDB), which build the addon's namespace
 -- themselves, so this module loads every file of the client's TOC instead, with WoW's globals stubbed. The
--- AceConfig family is replaced by fakes that record what the addon registers; AceGUI, the serializers and
--- Tests/ are not loaded. It then runs the ADDON_LOADED steps of Krowi_AchievementFilter.lua that build and
+-- serializers and Tests/ are not loaded; LibStub hands back a stub for a library Libs/ doesn't have, so a call to a
+-- removed library errors only in the lint's library-names rule, not here. It then runs the ADDON_LOADED steps of Krowi_AchievementFilter.lua that build and
 -- register the options. Every parse, load and step error is kept with its file and line in ctx.Errors.
 --
 --   local optionsEnv = assert(loadfile(dir .. "/options-env.lua"))()
 --   local ctx = optionsEnv.Get(root, "Retail")   -- cached per client; optionsEnv.New(root, "Retail") loads afresh
---   ctx.addon.Options.OptionsTable, ctx.Registry[appName], ctx.BlizOptions, ctx.Errors
+--   ctx.addon.Options.OptionsTable, ctx.addon.Options.Registry.Get(appName), ctx.Errors
 --
 -- optionsEnv.New(root, client, opts) takes options for a suite that boots the addon its own way (the features suite):
 --   opts.Profile    the Default profile's saved values before Options:Load, as a player's saved variables would hold them
 --   opts.SavedVariables  { [name] = table }: whole saved variables (KrowiAF_Options, KrowiAF_Filters, ...) as a player's
 --                   files hold them, set after the files ran, where the game sets them (the settings suite's old file)
--- ctx.Logout() then strips every AceDB database's defaults as the game's logout does, before the files are written
 --   opts.XmlFrames  every top-level named frame an XML file declares without virtual="true" becomes a stub global where
 --                   the file loads, as the game makes such a frame at file load
 --   opts.Watch      Watch(file, what) for everything a file makes while it loads: a frame (CreateFrame or XML), a hook
 --                   (hooksecurefunc, HookScript), a script, an event, a timer or a slash command
+-- ctx.Logout() strips every AceDB database's defaults as the game's logout does, before the files are written
 
 local M = {}
 local cache = {}
@@ -86,7 +86,7 @@ local absentGlobals = { ElvUI = true, GW2_ADDON = true, EllesmereUI = true, ZGV 
     KROWI_LIBMAN = true, BINDING_HEADER_KrowiAF = true, GAME_LOCALE = true, LibStub = true,
     GetBindingByKey = true } -- C_KeyBindings.GetBindingByKey since 11.2.7 and 5.5.1; the global is gone
 
-local skip = { "^Libs/AceGUI%-3%.0/", "^Libs/AceConfig%-3%.0/", "^Libs/LibSerialize/", "^Libs/LibDeflate/", "^Tests/" }
+local skip = { "^Libs/LibSerialize/", "^Libs/LibDeflate/", "^Tests/" }
 
 -- The frame types an XML file can declare at its top level
 local frameTags = { Frame = true, Button = true, CheckButton = true, ScrollFrame = true, Slider = true, StatusBar = true,
@@ -115,7 +115,7 @@ local function New(root, client, opts)
     opts = opts or {}
     root = root:gsub("\\", "/"):gsub("/$", "")
     assert(client == "Retail" or client == "Classic", "client must be Retail or Classic")
-    local ctx = { Root = root, Client = client, Errors = {}, Registry = {}, BlizOptions = {}, FilesLoaded = 0, XmlFrames = {} }
+    local ctx = { Root = root, Client = client, Errors = {}, FilesLoaded = 0, XmlFrames = {} }
     local function Fail(where, err) ctx.Errors[#ctx.Errors + 1] = where .. ": " .. tostring(err) end
     -- What a file makes while it loads, told to opts.Watch with the file that loads
     local function Watched(what)
@@ -299,46 +299,18 @@ local function New(root, client, opts)
     env.GetAddOnMetadata = C_AddOns.GetAddOnMetadata
     env.IsAddOnLoaded = C_AddOns.IsAddOnLoaded
 
-    -- The AceConfig family, faked: registrations are recorded, nothing is drawn
-    local function InstallFakes(LibStub)
-        local function fallback(lib, name)
-            return setmetatable(lib, { __index = function(t, k) local s = Stub(name .. "." .. tostring(k)) rawset(t, k, s) return s end })
-        end
-        local aceConfig = LibStub:NewLibrary("AceConfig-3.0", 999999)
-        aceConfig.RegisterOptionsTable = function(_, appName, options) ctx.Registry[appName] = options end
-        fallback(aceConfig, "AceConfig-3.0")
-        local aceReg = LibStub:NewLibrary("AceConfigRegistry-3.0", 999999)
-        aceReg.RegisterOptionsTable = aceConfig.RegisterOptionsTable
-        aceReg.GetOptionsTable = function(_, appName, uiType, uiName)
-            local t = ctx.Registry[appName]
-            if type(t) == "function" then t = t(uiType or "dialog", uiName or "x", appName) end
-            return t
-        end
-        aceReg.NotifyChange = function() end
-        fallback(aceReg, "AceConfigRegistry-3.0")
-        local aceDialog = LibStub:NewLibrary("AceConfigDialog-3.0", 999999)
-        aceDialog.BlizOptionsIDMap = {}
-        aceDialog.BlizOptions = {}
-        aceDialog.AddToBlizOptions = function(_, appName, name, parent)
-            ctx.BlizOptions[#ctx.BlizOptions + 1] = { AppName = appName, Name = name, Parent = parent }
-            aceDialog.BlizOptions[appName] = aceDialog.BlizOptions[appName] or {}
-            aceDialog.BlizOptions[appName][appName] = Stub("BlizOptionsGroup." .. appName)
-            return Stub("BlizPanel." .. appName), appName
-        end
-        fallback(aceDialog, "AceConfigDialog-3.0")
-    end
     local stubLibs = {}
     local function PatchLibStub()
         local LS = rawget(env, "LibStub")
         if not LS or LS.__patched then return end
         LS.__patched = true
-        function LS:GetLibrary(major)
+        function LS:GetLibrary(major, silent)
             if self.libs[major] then return self.libs[major], self.minors[major] end
+            if silent then return nil end -- as the real LibStub: a silent lookup of a library nobody loaded is nil
             stubLibs[major] = stubLibs[major] or Stub("Lib:" .. tostring(major))
             return stubLibs[major]
         end
         getmetatable(LS).__call = function(self, major, silent) return self:GetLibrary(major, silent) end
-        InstallFakes(LS)
     end
 
     -- Every file of the client's TOC in load order, honouring [AllowLoadGameType]
