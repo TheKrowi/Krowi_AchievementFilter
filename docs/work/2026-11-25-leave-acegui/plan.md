@@ -1,5 +1,5 @@
 # Plan: Stop loading AceGUI and AceConfigDialog
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done
 
 Drafted with the spec for review together; it assumes (a) on both of the spec's questions.
 
@@ -21,6 +21,15 @@ Drafted with the spec for review together; it assumes (a) on both of the spec's 
   - `options` passed 37 and `escape` 34, with 0 failed;
   - no error from the addon;
   - the export round trip covered 24,800 characters, and the test character left no trace in the saved data.
+- Retail 12.1.5, after the code review's fixes (19:30): `datamanager` passed 3, failed 0, with the Enter check in.
+- Mists 5.5.4, 2026-11-25 (19:43):
+  - `datamanager` passed 2, skipped 1 (the log tab is Retail only);
+  - `options` passed 37 and `escape` passed 33, skipped 1;
+  - no error from the addon;
+  - a screenshot showed the bordered box with Mists' scroll bar. It also showed a BugSack line from a `/run` of the session's own, not from addon code.
+- Installed addons (182 Retail, 39 Mists): none relies on KAF's AceGUI or AceConfigDialog.
+  - Seven hits were looked into. Krowi_Brokers_* and Krowi_OptionsTests embed Krowi_Util's `Options/Options.lua` but never load it. NorthernSkyRaidTools' DetailsFramework names the dialog only in `CreateAddOn` with an options table, which it never calls.
+  - Krowi_Reminders loads that file and calls only `Load`, which uses AceDB (staying), not `Open`. It ships no AceDB of its own, so it relies on another addon's copy. That's its own item.
 - `krowi:taint-reviewer`: no findings. The templates and `ScrollUtil` touch only the addon's own frames, and the files involved are byte-identical on Retail and Mists.
 
 ## Files that change

@@ -1,5 +1,5 @@
 # Spec: Stop loading AceGUI and AceConfigDialog
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done
 
 ## Requirements
 1. `Libs/Files.xml` loads no AceGUI and no AceConfigDialog, and `Libs/AceGUI-3.0/` and `Libs/AceConfig-3.0/AceConfigDialog-3.0/` are gone. AceConfigRegistry, AceConfigCmd and `AceConfig-3.0.lua` still load, so `KrowiAF_GetOptions` and every option table work as today.
