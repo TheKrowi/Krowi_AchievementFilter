@@ -12,6 +12,8 @@ Drafted with the spec for review together; it assumes (a) on both of the spec's 
 - **`log-read-only` simulates typing through the box's intrinsic handler.**
   - On the final box its first run failed (`kept=no`, Retail, 2026-11-25 19:15). `Insert` reports itself as not typed, and the game's box handles `OnTextChanged` in `OnTextChanged_Intrinsic` (`EventEditBox.xml`), which `GetScript` doesn't return, so the test had never simulated typing.
   - The test now calls that handler. A real check in the client agreed: two keys typed into the focused log left it unchanged ("unchanged 5830 5830").
+  - The code review then found that Enter wasn't undone. The template's Enter inserts a new line through `Insert`, which reports itself as not typed.
+  - The log now undoes any change of its text. The suite became async: `OnTextChanged` fires on a later frame, not inside `Insert`, so each check reads the log 0.2 s later. It checks a letter and an Enter, and no longer calls the intrinsic handler. Retail, 19:30: 3 passed, 0 failed.
 
 ## Results
 - Retail 12.1.5, 2026-11-25:

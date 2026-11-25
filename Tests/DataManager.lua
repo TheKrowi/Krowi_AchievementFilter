@@ -124,7 +124,11 @@ function observe.ImportRoundtrip(observations)
     return got
 end
 
-function observe.LogReadOnly(observations)
+-- The box answers a change after the change: OnTextChanged fires on a later frame, not inside Insert (seen in game,
+-- 2026-11-25), so each check reads the log a moment later
+local settle = 0.2
+
+function observe.LogReadOnly(observations, report)
     -- The Data Manager is made with Blizzard's achievement window (Gui/Gui.lua), which loads on demand: loaded here as
     -- the escape suite loads it (Tests/Escape.lua, Show)
     if not KrowiAF_DataManagerFrame and not AchievementFrame then
@@ -132,60 +136,88 @@ function observe.LogReadOnly(observations)
     end
     local frame = KrowiAF_DataManagerFrame
     if not (frame and frame.Log and frame.Tabs) then
-        return nil, "no log tab: Retail with a feature that adds one (Event reminders), in debug mode"
+        report(nil, "no log tab: Retail with a feature that adds one (Event reminders), in debug mode")
+        return
     end
     local wasShown = frame:IsShown()
     local tab = PanelTemplates_GetSelectedTab(frame) or 1
     frame:Show()
     frame:SelectTab(2)
     local before = frame.LogText or ""
-    local editBox = frame.Log:GetEditBox()
+    local function Finish(letter, enter)
+        frame:SelectTab(tab)
+        frame:SetShown(wasShown)
+        tinsert(observations, ("log-read-only: %d characters in the log"):format(#before))
+        report(("letter=%s enter=%s"):format(letter and "kept" or "changed", enter and "kept" or "changed"))
+    end
     -- A letter put in at the cursor, then Enter as the box's template handles it (ScrollingEditBoxMixin: Enter inserts a
     -- new line through Insert); each must leave the log as it was (a real key press agreed, Retail, 2026-11-25)
+    local editBox = frame.Log:GetEditBox()
     editBox:SetCursorPosition(0)
     editBox:Insert("x")
-    local letter = frame.Log:GetText() == before
-    frame.Log.Box:Insert("\n")
-    local enter = frame.Log:GetText() == before
-    frame:SelectTab(tab)
-    frame:SetShown(wasShown)
-    tinsert(observations, ("log-read-only: %d characters in the log"):format(#before))
-    return ("letter=%s enter=%s"):format(letter and "kept" or "changed", enter and "kept" or "changed")
+    C_Timer.After(settle, function()
+        local letter = frame.Log:GetText() == before
+        frame.Log.Box:Insert("\n")
+        C_Timer.After(settle, function()
+            Finish(letter, frame.Log:GetText() == before)
+        end)
+    end)
 end
 
+-- Each step reports got (nil with a reason to skip) through report; only the log's waits before it does
 local steps = {
-    ["export-roundtrip"] = observe.ExportRoundtrip,
-    ["import-roundtrip"] = observe.ImportRoundtrip,
+    ["export-roundtrip"] = function(observations, report) report(observe.ExportRoundtrip(observations)) end,
+    ["import-roundtrip"] = function(observations, report) report(observe.ImportRoundtrip(observations)) end,
     ["log-read-only"] = observe.LogReadOnly,
 }
 
-addon.Tests.Suites.datamanager = function()
+local function Result(scenario, status, tail, targetMet)
+    return {
+        Name = scenario.Name,
+        Status = status,
+        TargetMet = targetMet,
+        GameOnly = true,
+        Line = ("datamanager/%s: %s recorded=[%s] %s"):format(scenario.Name, status, scenario.Recorded, tail),
+    }
+end
+
+-- The scenarios one after another, each once the one before has reported
+addon.Tests.Async.datamanager = true
+addon.Tests.Suites.datamanager = function(done)
     local results, observations = {}, {}
-    for _, scenario in ipairs(dataManager.Scenarios) do
-        local status, tail, targetMet
-        if scenario.RetailOnly and not addon.Util.IsMainline then
-            status, tail = "SKIP", "Retail only"
+    local index = 0
+    local Next
+    local function Record(scenario, got, reason)
+        if got == nil then
+            tinsert(results, Result(scenario, "SKIP", tostring(reason)))
         else
-            local ok, got, reason = pcall(steps[scenario.Name], observations)
-            if not ok then
-                status, tail = "FAIL", "error: " .. tostring(got)
-            elseif got == nil then
-                status, tail = "SKIP", tostring(reason)
-            else
-                status = got == scenario.Recorded and "PASS" or "FAIL"
-                targetMet = got == scenario.Target
-                tail = ("got=[%s] target=[%s] %s"):format(got, scenario.Target, targetMet and "met" or "open")
-            end
+            local targetMet = got == scenario.Target
+            tinsert(results, Result(scenario, got == scenario.Recorded and "PASS" or "FAIL",
+                ("got=[%s] target=[%s] %s"):format(got, scenario.Target, targetMet and "met" or "open"), targetMet))
         end
-        tinsert(results, {
-            Name = scenario.Name,
-            Status = status,
-            TargetMet = targetMet,
-            GameOnly = true,
-            Line = ("datamanager/%s: %s recorded=[%s] %s"):format(scenario.Name, status, scenario.Recorded, tail),
-        })
+        Next()
     end
-    return results, observations
+    function Next()
+        index = index + 1
+        local scenario = dataManager.Scenarios[index]
+        if not scenario then
+            done(results, observations)
+            return
+        end
+        if scenario.RetailOnly and not addon.Util.IsMainline then
+            tinsert(results, Result(scenario, "SKIP", "Retail only"))
+            Next()
+            return
+        end
+        local ok, err = pcall(steps[scenario.Name], observations, function(got, reason)
+            Record(scenario, got, reason)
+        end)
+        if not ok then
+            tinsert(results, Result(scenario, "FAIL", "error: " .. tostring(err)))
+            Next()
+        end
+    end
+    Next()
 end
 
 addon.Tests.Ready.datamanager = function()
