@@ -21,14 +21,23 @@ function KrowiAF_TextFrameMixin:OnLoad()
     ButtonFrameTemplate_HideAttic(self)
     ButtonFrameTemplate_HidePortrait(self)
 
-    local input = LibStub("AceGUI-3.0"):Create("MultiLineEditBox")
-    input.frame:SetParent(self)
-    input:DisableButton(true)
-    input:SetLabel("")
-    input.frame:SetPoint("TOPLEFT", self.Inset ,"TOPLEFT", 0, 4)
-    input.frame:SetPoint("BOTTOMRIGHT", self.Inset ,"BOTTOMRIGHT", -3, -5)
-    input.frame:Show()
-    self.Input = input
+    local dataManager = addon.Gui.DataManager
+    self.Input = dataManager.NewTextBox(self, self.Inset)
+
+    -- TEMPORARY (docs/work/2026-11-25-leave-acegui, look gate): cycles the boxes' look, the log tab's too
+    local look = CreateFrame("Button", nil, self, "UIPanelButtonTemplate")
+    look:SetSize(220, 22)
+    look:SetPoint("BOTTOMLEFT", 4, 4)
+    local function Label()
+        look:SetText("Look: " .. dataManager.BoxLookNames[dataManager.BoxLook])
+    end
+    look:SetScript("OnClick", function()
+        dataManager.NextBoxLook()
+        Label()
+    end)
+    look:SetScript("OnShow", Label)
+    Label()
+    self.LookButton = look
 end
 
 function KrowiAF_TextFrameMixin:OnShow()

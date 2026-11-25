@@ -53,17 +53,10 @@ local function CreateTabs(self)
 	self.Tabs[1]:SetPoint("TOPLEFT", self, "BOTTOMLEFT", 11, 2)
 	PanelTemplates_SetNumTabs(self, #self.Tabs)
 
-	local log = LibStub("AceGUI-3.0"):Create("MultiLineEditBox")
-	log.frame:SetParent(self)
-	log:DisableButton(true)
-	log:SetLabel("")
-	log.frame:SetPoint("TOPLEFT", self.Inset, "TOPLEFT", 0, 4)
-	log.frame:SetPoint("BOTTOMRIGHT", self.Inset, "BOTTOMRIGHT", -3, -5)
-	log:SetCallback("OnTextChanged", function(widget) -- typing undone: the log is read-only
-		widget:SetText(self.LogText or "")
+	self.Log = addon.Gui.DataManager.NewTextBox(self, self.Inset, function(log) -- typing undone: the log is read-only
+		log:SetText(self.LogText or "")
 	end)
-	log.frame:Hide()
-	self.Log = log
+	self.Log:Hide()
 	PanelTemplates_SetTab(self, 1)
 end
 
@@ -95,12 +88,12 @@ function KrowiAF_DataManagerFrameMixin:SelectTab(id)
 	self.CharacterList:SetShown(characters)
 	self.Import:SetShown(characters)
 	if characters then
-		self.Log.frame:Hide()
+		self.Log:Hide()
 		return
 	end
 	self.LogText = addon.Slots.DataManagerTabs.Entries[id - 1].GetText()
 	self.Log:SetText(self.LogText)
-	self.Log.frame:Show()
+	self.Log:Show()
 end
 
 function KrowiAF_DataManagerFrameMixin:OnShow()

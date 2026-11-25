@@ -13,6 +13,133 @@ function dataManager:GetTextFrame(...)
 	return frame
 end
 
+-- [[ The text boxes ]] --
+-- The Data Manager's multi-line boxes (the text window's and the log tab's), with the SetText and GetText their callers
+-- use. TEMPORARY (docs/work/2026-11-25-leave-acegui, look gate): today's AceGUI box and the two candidates are built side
+-- by side and one shows at a time, switched by the text window's Look button; Krowi picks in the client, then the switch
+-- and the looks not taken go before the pull request.
+local lookOrder = { "ace", "plain", "border" }
+dataManager.BoxLookNames = { ace = "AceGUI (today)", plain = "Game's box", border = "Game's box, bordered" }
+dataManager.BoxLook = "ace"
+local textBoxes = {}
+
+local textBox = {}
+textBox.__index = textBox
+
+function textBox:SetText(text)
+	self.Current:SetText(text)
+end
+
+function textBox:GetText()
+	return self.Current:GetText()
+end
+
+function textBox:GetEditBox()
+	local current = self.Current
+	return current.GetEditBox and current:GetEditBox() or current.editBox
+end
+
+function textBox:SetShown(shown)
+	self.Shown = shown
+	for look, container in next, self.Containers do
+		container:SetShown(shown and look == self.Look)
+	end
+end
+
+function textBox:Show()
+	self:SetShown(true)
+end
+
+function textBox:Hide()
+	self:SetShown(false)
+end
+
+function textBox:Apply(look)
+	local text = self.Current and self.Current:GetText() or ""
+	self.Look = look
+	self.Current = self.Boxes[look]
+	self.Current:SetText(text)
+	self:SetShown(self.Shown)
+end
+
+-- AceGUI's own look (AceGUIWidget-MultiLineEditBox.lua): black, a grey tooltip border
+local borderBackdrop = {
+	bgFile = [[Interface\Tooltips\UI-Tooltip-Background]],
+	edgeFile = [[Interface\Tooltips\UI-Tooltip-Border]], edgeSize = 16,
+	insets = { left = 4, right = 3, top = 4, bottom = 3 }
+}
+
+-- The game's scrolling text box with its minimal scroll bar, linked as Blizzard links them (MailFrame.lua's MailEditBox)
+local function GameBox(holder, parent, bordered)
+	local container = CreateFrame("Frame", nil, parent, bordered and "BackdropTemplate" or nil)
+	if bordered then
+		container:SetBackdrop(borderBackdrop)
+		container:SetBackdropColor(0, 0, 0)
+		container:SetBackdropBorderColor(0.4, 0.4, 0.4)
+	end
+	local pad = bordered and 8 or 4
+	local box = CreateFrame("Frame", nil, container, "ScrollingEditBoxTemplate")
+	box:SetPoint("TOPLEFT", pad, -pad)
+	box:SetPoint("BOTTOMRIGHT", -(pad + 14), pad)
+	local scrollBar = CreateFrame("EventFrame", nil, container, "MinimalScrollBar")
+	scrollBar:SetPoint("TOPLEFT", box, "TOPRIGHT", 6, 0)
+	scrollBar:SetPoint("BOTTOMLEFT", box, "BOTTOMRIGHT", 6, 0)
+	ScrollUtil.RegisterScrollBoxWithScrollBar(box.ScrollBox, scrollBar)
+	if holder.OnUserChange then
+		box:RegisterCallback("OnTextChanged", function(_, _, userChanged)
+			if userChanged then
+				holder.OnUserChange(holder)
+			end
+		end, holder)
+	end
+	return container, box
+end
+
+-- A box on parent over the inset, onUserChange(box) called when the player types into it
+function dataManager.NewTextBox(parent, inset, onUserChange)
+	local holder = setmetatable({ Boxes = {}, Containers = {}, Shown = true, OnUserChange = onUserChange }, textBox)
+
+	local ace = LibStub("AceGUI-3.0"):Create("MultiLineEditBox")
+	ace.frame:SetParent(parent)
+	ace:DisableButton(true)
+	ace:SetLabel("")
+	if onUserChange then
+		ace:SetCallback("OnTextChanged", function()
+			onUserChange(holder)
+		end)
+	end
+	holder.Boxes.ace, holder.Containers.ace = ace, ace.frame
+
+	for _, look in ipairs({ "plain", "border" }) do
+		holder.Containers[look], holder.Boxes[look] = GameBox(holder, parent, look == "border")
+	end
+
+	for _, container in next, holder.Containers do
+		container:SetPoint("TOPLEFT", inset, "TOPLEFT", 0, 4)
+		container:SetPoint("BOTTOMRIGHT", inset, "BOTTOMRIGHT", -3, -5)
+	end
+	holder:Apply(dataManager.BoxLook)
+	tinsert(textBoxes, holder)
+	return holder
+end
+
+function dataManager.SetBoxLook(look)
+	dataManager.BoxLook = look
+	for _, holder in ipairs(textBoxes) do
+		holder:Apply(look)
+	end
+end
+
+function dataManager.NextBoxLook()
+	for i, look in ipairs(lookOrder) do
+		if look == dataManager.BoxLook then
+			dataManager.SetBoxLook(lookOrder[i % #lookOrder + 1])
+			return
+		end
+	end
+end
+KrowiAF.DebugBoxLook = dataManager.SetBoxLook -- TEMPORARY, the look gate's screenshots: /run KrowiAF.DebugBoxLook("plain")
+
 -- A character's export and import, shared by the Data Manager's buttons and the datamanager suite (Tests/DataManager.lua),
 -- so the suite checks the text a player gets and pastes (docs/work/2026-11-25-leave-acegui)
 
