@@ -5,41 +5,9 @@ KrowiAF_DataManagerFrameImportMixin = {}
 
 local textFrame
 local function Import(input)
-	local LibSerialize = LibStub("LibSerialize")
-    local LibDeflate = LibStub("LibDeflate")
-
-    local decoded = LibDeflate:DecodeForPrint(input)
-    if not decoded then
+	if not addon.Gui.DataManager.ImportCharacter(input) then
 		return
 	end
-    local decompressed = LibDeflate:DecompressDeflate(decoded)
-    if not decompressed then
-		return
-	end
-    local success, data = LibSerialize:Deserialize(decompressed)
-    if not success then
-		return
-	end
-
-    KrowiAF_SavedData.CharacterList[data.Guid] = data.Character
-    for _, achievement in next, data.Completed do
-        local achievementInfo = addon.GetAchievementInfoTable(achievement.Id)
-        local dateTable = date("*t", achievement.Date)
-        achievementInfo.DateTime = {
-            Year = dateTable.year - 2000,
-            Month = dateTable.month,
-            Day = dateTable.day
-        }
-        addon.Data.SavedData.AchievementData.SetEarnedBy(data.Guid, achievementInfo)
-    end
-    for _, achievement in next, data.NotCompleted do
-        local achievementInfo = addon.GetAchievementInfoTable(achievement.Id)
-        achievementInfo.WasEarnedByMe = false
-        addon.Data.SavedData.AchievementData.SetNotEarnedBy(data.Guid, achievementInfo)
-        for criteriaIndex, criteriaValue in next, achievement.Progress do
-            addon.Data.SavedData.AchievementData.SetCriteriaProgress(data.Guid, achievementInfo, criteriaIndex, criteriaValue)
-        end
-    end
 	textFrame:Hide()
 	if KrowiAF_DataManagerFrame.CharacterList:IsShown() then
 		KrowiAF_DataManagerFrame.CharacterList:Refresh()
