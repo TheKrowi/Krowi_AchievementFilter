@@ -1,10 +1,6 @@
 -- [[ Namespaces ]] --
 local addonName, addon = ...
 
--- [[ Ace ]] --
-addon.Event = {}
-LibStub("AceEvent-3.0"):Embed(addon.Event)
-
 -- [[ Binding names ]] --
 BINDING_HEADER_KrowiAF = addon.Metadata.Title
 BINDING_NAME_KrowiAF_BROWSER_HISTORY_PREV = addon.L["Go back one achievement"]
