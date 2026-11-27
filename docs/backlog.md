@@ -2,6 +2,10 @@
 
 Follow-ups that are not a work item yet. When one is taken up, it gets its own work folder under `docs/work/` (`docs/sdlc-playbook.md`) and leaves this list.
 
+## The two large data skills (found 2026-11-27, docs/work/2026-11-27-setup-review)
+
+`add-achievement-data` (419 lines, 30 KB) and `add-zone-data` (28 KB) load whole each time they trigger. Moving their reference tables into a `REFERENCE.md` next to each, as `add-category-data` already does, keeps the steps in `SKILL.md` and loads the tables only when a step needs them. Measure first: a data run's context before and after (the kit's `Measure-Sessions.ps1`).
+
 ## The options suite changes a player's settings (found 2026-11-27, docs/work/2026-11-25-settings-store)
 
 `Options/Window/Model.lua`'s `CheckDefaults` (the `defaults-restore-acedb` scenario) puts each option back in list order after a section's Defaults. Where two rows share one setting (the Pop Out modifier in Keys and clicks and in Pop Out, the date formats' Presets and Custom rows, the sort priority rows that swap), the later put-back undoes the earlier one, and ten values stay changed: on `main` too, so every in-game `options` run leaves them in the player's real settings (Krowi's Pop Out modifier, date presets and sort order may themselves be leftovers). The rule is that a run puts settings back. A fix: put back by setting (each key once), or snapshot the settings and restore them whole. Test first: a headless scenario that reads every option before and after the run.

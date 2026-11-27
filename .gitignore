@@ -1,3 +1,4 @@
 ~$*xlsx
 .claude/worktrees/
 .claude/cache/
+.claude/settings.local.json

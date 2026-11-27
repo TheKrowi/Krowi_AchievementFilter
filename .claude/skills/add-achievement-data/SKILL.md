@@ -1,6 +1,6 @@
 ---
 name: add-achievement-data
-description: Transform raw achievement lists (IDs + comments) into properly formatted Lua achievement data entries for Krowi's Achievement Filter addon. Handles reward type mapping, season references, faction detection, and maintains consistent code style.
+description: Transform raw achievement lists (IDs + comments) into properly formatted Lua achievement data entries for Krowi's Achievement Filter addon. Handles reward type mapping, season references, faction detection, and maintains consistent code style. Use when the user pastes achievement ids for a new patch, or a patch's achievements need entering in AchievementData.lua.
 ---
 
 Transform raw achievement lists (IDs + comments) into properly formatted Lua achievement data entries for the Krowi's Achievement Filter addon. Uses the V2 fluent builder format (`Ach(id):Method():...`) which is the current standard for all new data across all expansions and clients.

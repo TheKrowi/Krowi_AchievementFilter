@@ -17,7 +17,7 @@
                     {
                         "type": "command",
                         "command": "pwsh -NoProfile -NonInteractive -File \"$CLAUDE_PROJECT_DIR/.claude/hooks/Check-RepoOnStop.ps1\"",
-                        "timeout": 60
+                        "timeout": 180
                     }
                 ]
             }
@@ -82,6 +82,10 @@
             "PowerShell(& \".claude\\skills\\sync-mapverifier\\_new_maps.ps1\")",
             "PowerShell(& \"raw\\Evaluate-ZoneData.ps1\")",
             "PowerShell(& \"raw\\Evaluate-ZoneData.ps1\" *)"
+        ],
+        "deny": [
+            "Edit(//e/World of Warcraft Addon Development/wow-ui-source/**)",
+            "Write(//e/World of Warcraft Addon Development/wow-ui-source/**)"
         ]
     },
     "worktree": {

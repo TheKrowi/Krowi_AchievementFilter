@@ -1,7 +1,6 @@
 ---
 name: verify-achievement-data
 description: Verifies Krowi_AchievementFilter Lua achievement entries against the WoW game database via wow.tools.local (http://localhost:5000). Use when checking if achievement IDs exist in the game DB, faction splits are correct, title rewards or reward items are properly tagged, or inline `-- Name` comments match live game data.
-version: "1.1.0"
 ---
 
 # Verify Achievement Data

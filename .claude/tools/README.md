@@ -49,8 +49,8 @@ The kit carries Lua 5.1.5 (`$kit\tools\lua51\lua.exe`, `luac.exe`), the exact in
 ## Repo lint (`Check-Repo.ps1`)
 
 ```powershell
-& ".claude\tools\Check-Repo.ps1"               # whole tree, about 12 s plus 30 s for luals (zone-decisions and mapverifier are 7 s); -Verbose prints per-rule timings
-& ".claude\tools\Check-Repo.ps1" -ChangedOnly  # only files changed against HEAD, errors instead of warnings; -Luals adds the language-server run
+& ".claude\tools\Check-Repo.ps1"               # whole tree with luals, about 90 s (luals 30 s, unit-tests 10 s, feature-boundary 6 s, zone-decisions 4 s; 2026-11-27); -Verbose prints per-rule timings
+& ".claude\tools\Check-Repo.ps1" -ChangedOnly  # only files changed against HEAD, errors instead of warnings, about 22 s; -Luals adds the language-server run; the Stop hook skips it when nothing changed since its last clean run
 ```
 
 `-ChangedOnly` is what the Claude Code Stop hook runs. Warnings on changed files are promoted to errors, so pre-existing debt does not block work while new debt does. Each finding prints as `<path>:<line>: [<rule>] <severity>: <message>`, and the exit code is 1 when any error was found. Without the kit (a contributor's clone) the rules that need no Lua still run, and the `kit` rule names the ones that did not. The script's comment header gives each rule's severity.
