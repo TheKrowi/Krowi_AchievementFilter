@@ -16,3 +16,7 @@ Class: saved-data
 | 2026-11-27 | scope | Retire the DataIntegrityManager into one migration runner for every saved variable, carrying its four steps over, no loss accepted | Carry them over | "DataIntegrityManager ok" | accept |
 | 2026-11-27 | design | (unprompted correction) How long the old saved variables stay | Untouched until Krowi says so (Krowi's earlier answer) | "can be cleared once the migration is succesful after a check. migrate, check, if ok, clear the tables so the user has no "polluted" files. this should only run once offcourse" | other |
 | 2026-11-27 | intent | Accept the intent so the spec can start? | Accept | "Accept (Recommended)" | accept |
+| 2026-11-27 | design | Approve the spec and the key names (filters and search as objects, inner shape unchanged)? | Approve | "how sure the spec is not forgetting anything, was it checked with an advisor, other explorer agents or will this happen during implementation? either way, go ahead" | accept |
+| 2026-11-27 | design | A failing in-game check | Retry failed values only | "Retry failed values only (Recommended)" | accept |
+| 2026-11-27 | design | Which profile's Advanced switches become the account's | First character's profile | "First character's profile (Recommended)" | accept |
+| 2026-11-27 | scope | Remove the KrowiAF_SavedData keys no code reads | Remove them | "Remove them (Recommended)" | accept |

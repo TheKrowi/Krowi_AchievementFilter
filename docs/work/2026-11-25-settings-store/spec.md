@@ -1,5 +1,5 @@
 # Spec: One settings store of the addon's own, and one migration runner for every saved variable
-Intent: [intent.md](intent.md). Status: draft
+Intent: [intent.md](intent.md). Status: accepted 2026-11-27
 
 Every old path and its new key: [renames.md](renames.md). Today's layout: [inventory.md](inventory.md). The overview page Krowi reviewed: https://claude.ai/artifact/66JkVF9vXn5abLaMoSwobj.
 
@@ -16,6 +16,7 @@ Every old path and its new key: [renames.md](renames.md). Today's layout: [inven
 8. Code reads and writes settings only through the interface: `Get(key)`, `Set(key, value)`, `Reset(key)`, `GetEntry(key, entry)`, `SetEntry(key, entry, value)`, `GetObject(key)` (the live table), `OnChange(key, fn)` and `OnProfileChanged(system, fn)`. A profile switch, copy or reset fires the change events of every key whose value differs, then `OnProfileChanged`. Getting or setting an undeclared key is a Lua error.
 9. Only `Settings/` touches the saved variable `KrowiAF_Settings`.
 10. Option rows name their key: their getter, setter, limits and default text come from the declaration. The rows keep the table shape the options window reads (`Options/Window/Source.lua`), so the window, its search, its help and its suites see no difference.
+    - The window's default per option (its "changed" mark, the reset to default, a section's Defaults button) works as today. Today `Option:ComputeDefault` (`Options/Window/Source.lua:252-267`) swaps `addon.Options.db.profile` for a defaults-only copy and calls the row's get. The store gives the same with `settings.WithDefaults(fn)`: while `fn` runs every `Get` returns its default, and it reports whether any setting was read. Derived rows, whose get computes from several settings, keep working.
 
 **The migration runner**
 11. `KrowiAF_Settings.Version` (absent is 0) counts the migrations run. At `ADDON_LOADED`, before anything reads a setting, each migration above that number runs once, in order, under `xpcall`: a migration that errors counts as a failed check (requirement 15).
@@ -145,3 +146,10 @@ KrowiAF_Settings = {
 - Every suite but the probes, as the release gate runs them (the readers' rewrite reaches nearly every file, so every suite is one the change can affect), and `/kaftest matrix` for the features' switches (`Run-GameTests.ps1 -Matrix`). BugGrabber clean.
 
 ## Decision
+Approved by Krowi, 2026-11-27 ("either way, go ahead"), with the recommended option on every question:
+- Filters and search toggles: two objects per filter profile, inner shape unchanged; the key names as in [renames.md](renames.md).
+- A failing check: run on the new store, keep the old tables, move only the failed values again after the next update, one chat line per session.
+- The Advanced switches: from the profile of the character that logs in first after the update.
+- The `KrowiAF_SavedData` keys no code reads: removed in migration 1.
+
+Krowi asked how sure the spec is that it forgets nothing. It was checked once by the advisor (four gaps, all fixed above) and against Krowi's real saved files. A second pass found the window's default per option (requirement 10). An independent review of the spec against the code runs alongside the plan.
