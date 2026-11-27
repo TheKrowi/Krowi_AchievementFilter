@@ -3014,6 +3014,11 @@ local settingsScenarios = {
         Target = "values=183 map-entries=220 object-fields=11 differ=0 missing=0 new=0 filters=same search=same",
         RecordedClassic = "values=183 map-entries=69 object-fields=11 differ=0 missing=0 new=0 filters=same search=same",
         TargetClassic = "values=183 map-entries=69 object-fields=11 differ=0 missing=0 new=0 filters=same search=same"},
+    -- every option that stores a value, set to another value through its own set, reads that value back through its
+    -- own get, and is put back: a row whose get names another key than its set writes (a swapped key) fails here, where
+    -- saved-keys-unchanged sees only the writes (docs/work/2026-11-25-settings-store, plan step 7)
+    {Name = "rows-round-trip", Recorded = "options=359 back=359 differ=0", Target = "options=359 back=359 differ=0",
+        RecordedClassic = "options=255 back=255 differ=0", TargetClassic = "options=255 back=255 differ=0"},
     -- the store's interface over AceDB (Settings/AceDBMode.lua, plan steps 6-8), on a new install and on the old file:
     -- every value key reads its old path raw, writes it, and writes its default as the value (not nil); every map entry
     -- reads raw and Entries lists the old table; every object is AceDB's own table; the profiles are AceDB's
@@ -3335,6 +3340,27 @@ suites.settings = function(c)
                 counts.value, counts.map, counts.object, List(differ), List(missing), List(new),
                 Same(settings.Declaration("filters").Default, old.Filters.profile) and "same" or "differ",
                 Same(settings.Declaration("search").Default, old.SearchOptions.profile) and "same" or "differ")
+        end,
+        ["rows-round-trip"] = function()
+            local _, model = Boot()
+            local count, back, differ = 0, 0, {}
+            for _, item in ipairs(model.Options()) do
+                local option = item.Option
+                if model.Settable(option) then
+                    local before = option:Get()
+                    local value = model.OtherValue(option, before)
+                    if value ~= nil then
+                        count = count + 1
+                        pcall(option.Set, option, value)
+                        local ok, got = pcall(option.Get, option)
+                        if ok and got == value then back = back + 1 else differ[#differ + 1] = option.Id end
+                        pcall(option.Set, option, before)
+                    end
+                end
+            end
+            table.sort(differ)
+            return ("options=%d back=%d differ=%s"):format(count, back,
+                #differ == 0 and "0" or (#differ .. " (" .. table.concat(differ, ", ", 1, math.min(4, #differ)) .. ")"))
         end,
         ["acedb-mode"] = function()
             local renames = storeHelper.Runner(root).Renames

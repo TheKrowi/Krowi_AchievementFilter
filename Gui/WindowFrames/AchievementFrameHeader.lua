@@ -164,20 +164,22 @@ local headerSortPriorities = {
     addon.L["Class"]
 }
 
+-- Swaps the two places the value is at, in the sort priority and its reverse flags (two live lists, in place)
 local function SetPriority(index, value)
-    local priorities = addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Priority
+    local priorities = addon.Settings.GetObject("tooltips.points.sortPriority")
+    local reverse = addon.Settings.GetObject("tooltips.points.sortReverse")
     local otherIndex
     for i, prio in next, priorities do
         if prio == value then
             otherIndex = i
         end
     end
-    local currentValue = addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Priority[index]
-    addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Priority[index] = value
-    addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Priority[otherIndex] = currentValue
-    local currentReverse = addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[index]
-    addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[index] = addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[otherIndex]
-    addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[otherIndex] = currentReverse
+    local currentValue = priorities[index]
+    priorities[index] = value
+    priorities[otherIndex] = currentValue
+    local currentReverse = reverse[index]
+    reverse[index] = reverse[otherIndex]
+    reverse[otherIndex] = currentReverse
 end
 
 local OrderPP = addon.InjectOptions.AutoOrderPlusPlus
@@ -188,7 +190,7 @@ function header:InjectDynamicOptions()
             order = OrderPP(), type = "select", width = AdjustedWidth(0.95),
             name = "",
             values = headerSortPriorities,
-            get = function() return addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Priority[i]; end,
+            get = function() return addon.Settings.GetObject("tooltips.points.sortPriority")[i] end,
             set = function (_, value) SetPriority(i, value); end
         })
         addon.InjectOptions:AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Blank1" .. i, {
@@ -198,9 +200,9 @@ function header:InjectDynamicOptions()
         addon.InjectOptions:AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Reverse" .. i, {
             order = OrderPP(), type = "toggle", width = AdjustedWidth(0.95),
             name = addon.L["Reverse Sort"],
-            desc = (""):KAF_AddDefaultValueText("AchievementPoints.Tooltip.Sort.Reverse." .. i),
-            get = function() return addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[i]; end,
-            set = function(_, value) addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[i] = value; end
+            desc = (""):KAF_AddDefaultValueText("tooltips.points.sortReverse", nil, i),
+            get = function() return addon.Settings.GetObject("tooltips.points.sortReverse")[i] end,
+            set = function(_, value) addon.Settings.GetObject("tooltips.points.sortReverse")[i] = value end
         })
         addon.InjectOptions:AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Blank2" .. i, {
             order = OrderPP(), type = "description", width = AdjustedWidth(0.80),

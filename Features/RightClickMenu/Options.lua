@@ -20,29 +20,23 @@ local wowheadRelatedTabs = {
 local function Rows()
     return {
         Button = {order = 1, type = "header", name = L["Button"]},
-        ShowButtonOnAchievement = {
+        ShowButtonOnAchievement = addon.Settings.Row("rightClickMenu.showButtonOnAchievement", {
             order = 2, type = "toggle", width = AdjustedWidth(1.5),
             name = L["Show Menu Button"],
-            desc = L["Show Menu Button Desc"]:KAF_AddDefaultValueText("RightClickMenu.ShowButtonOnAchievement"):K_AddReloadRequired(),
-            get = function() return addon.Options.db.profile.RightClickMenu.ShowButtonOnAchievement end,
-            set = function(_, value) addon.Options.db.profile.RightClickMenu.ShowButtonOnAchievement = value end
-        },
+            desc = L["Show Menu Button Desc"]:KAF_AddDefaultValueText("rightClickMenu.showButtonOnAchievement"):K_AddReloadRequired(),
+        }),
         Wowhead = {order = 3, type = "header", name = L["Wowhead link"]},
-        AddLocale = {
+        AddLocale = addon.Settings.Row("rightClickMenu.wowheadLink.addLocale", {
             order = 4, type = "toggle", width = AdjustedWidth(1.5),
             name = L["Use Game Language"],
-            desc = L["Use Game Language Desc"]:KAF_AddDefaultValueText("RightClickMenu.WowheadLink.AddLocale"),
-            get = function() return addon.Options.db.profile.RightClickMenu.WowheadLink.AddLocale end,
-            set = function(_, value) addon.Options.db.profile.RightClickMenu.WowheadLink.AddLocale = value end
-        },
-        AddRelatedTab = {
+            desc = L["Use Game Language Desc"]:KAF_AddDefaultValueText("rightClickMenu.wowheadLink.addLocale"),
+        }),
+        AddRelatedTab = addon.Settings.Row("rightClickMenu.wowheadLink.addRelatedTab", {
             order = 5, type = "select", width = AdjustedWidth(1.5),
             name = L["Open on Tab"],
-            desc = L["Open on Tab Desc"]:KAF_AddDefaultValueText("RightClickMenu.WowheadLink.AddRelatedTab", wowheadRelatedTabs),
+            desc = L["Open on Tab Desc"]:KAF_AddDefaultValueText("rightClickMenu.wowheadLink.addRelatedTab", wowheadRelatedTabs),
             values = wowheadRelatedTabs,
-            get = function() return addon.Options.db.profile.RightClickMenu.WowheadLink.AddRelatedTab end,
-            set = function(_, value) addon.Options.db.profile.RightClickMenu.WowheadLink.AddRelatedTab = value end
-        }
+        })
     }
 end
 

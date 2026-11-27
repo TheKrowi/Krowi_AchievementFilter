@@ -160,8 +160,8 @@ local function InjectTabsShowOptionsTable(addonName, addonDisplayName, tabName, 
     addon.InjectOptions:AddTable("Layout.args.Tabs.args.Show.args.Show.args", addonName .. tabName, {
         order = OrderPP(), type = "toggle", width = AdjustedWidth(0.95),
         name = tabDisplayName,
-        desc = (""):KAF_AddDefaultValueText("Tabs." .. addonName .. "." .. tabName .. ".Show"),
-        get = function() return addon.Options.db.profile.Tabs[addonName][tabName].Show; end,
+        desc = (""):KAF_AddDefaultValueText("tabs.show", nil, addonName, tabName),
+        get = function() return addon.Settings.GetEntry("tabs.show", addonName, tabName) end,
         set = function() addon.Gui:ShowHideTabs(addonName, tabName); end
     })
 end

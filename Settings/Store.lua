@@ -133,6 +133,15 @@ function settings.Declaration(key)
     return declarations[key]
 end
 
+-- An option row that reads and writes one setting (requirement 10): it gets and sets through the store. A row that does
+-- more on a write keeps its own set; the row keeps the table shape the options window reads.
+function settings.Row(key, row)
+    if not declarations[key] then error("addon.Settings: a row for the undeclared key " .. tostring(key), 2) end
+    row.get = row.get or function() return settings.Get(key) end
+    row.set = row.set or function(_, value) settings.Set(key, value) end
+    return row
+end
+
 -- for key, declaration in Declared(): every declaration (read only)
 function settings.Declared()
     return next, declarations, nil

@@ -17,6 +17,22 @@ function registry.Get(appName)
     return registered[appName]
 end
 
+-- A description's "Default value" line, from a setting's declared default (docs/work/2026-11-25-settings-store,
+-- requirement 10): key, the select's values, and for a map entry its keys a and b (for an object, a is the field).
+-- Replaces Krowi_Util's version, which read a path in the AceDB defaults; Krowi_Util still writes the line, so the
+-- text is the same.
+string[addon.Metadata.Acronym .. "_AddDefaultValueText"] = function(str, key, values, a, b)
+    local declaration = addon.Settings.Declaration(key)
+    if not declaration then error("no setting " .. tostring(key) .. " for a default value line", 2) end
+    local default = declaration.Default
+    if declaration.Kind == "map" then
+        default = addon.Settings.EntryDefault(key, a, b)
+    elseif declaration.Kind == "object" then
+        default = default[a] -- an element of the object (a sort list's place)
+    end
+    return str:K_AddDefaultValueText({ value = default }, "value", values)
+end
+
 -- Binds key to command in slot 1 or 2, the way Blizzard's key bindings page does (Blizzard_Keybindings.lua
 -- ProcessInput): both keys come off and go back in order, the new one in its slot, in the command's binding context.
 -- SetBinding's third argument is that context, not the slot; passing the slot bound the key in a housing editor context

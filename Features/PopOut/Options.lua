@@ -17,9 +17,15 @@ local function RefreshChrome()
 end
 
 -- A Popout.* setting: its getter and setter; refresh redraws the open Pop Outs' chrome
+-- The setting a Pop Out row names, from its field name: "CloseOnEarn" is popOut.closeOnEarn
+local function Key(field)
+    return "popOut." .. field:sub(1, 1):lower() .. field:sub(2)
+end
+
 local function Popout(key, refresh)
-    return function() return addon.Options.db.profile.Popout[key] end, function(_, value)
-        addon.Options.db.profile.Popout[key] = value
+    local settingKey = Key(key)
+    return function() return addon.Settings.Get(settingKey) end, function(_, value)
+        addon.Settings.Set(settingKey, value)
         if refresh then RefreshChrome() end
     end
 end
@@ -28,7 +34,7 @@ local function Toggle(order, key, name, desc, refresh)
     local get, set = Popout(key, refresh)
     return {
         order = order, type = "toggle", width = AdjustedWidth(1.5),
-        name = name, desc = desc:KAF_AddDefaultValueText("Popout." .. key),
+        name = name, desc = desc:KAF_AddDefaultValueText(Key(key)),
         get = get, set = set
     }
 end
@@ -37,10 +43,10 @@ local function Range(order, key, name, desc, min, max, step, disabledBy, refresh
     local get, set = Popout(key, refresh)
     return {
         order = order, type = "range", width = AdjustedWidth(1.5),
-        name = name, desc = desc:KAF_AddDefaultValueText("Popout." .. key),
+        name = name, desc = desc:KAF_AddDefaultValueText(Key(key)),
         min = min, max = max, step = step,
         get = get, set = set,
-        disabled = function() return not addon.Options.db.profile.Popout[disabledBy] end
+        disabled = function() return not addon.Settings.Get(Key(disabledBy)) end
     }
 end
 
@@ -49,14 +55,12 @@ end
 -- that Pop Out's switch controls it; Pop Out's own section names the key and says what holding it does, under the
 -- switch it follows
 local function ModifierRow(order, name, desc)
-    return {
+    return addon.Settings.Row("popOut.modifier", {
         order = order, type = "select", width = AdjustedWidth(0.93),
         name = name,
-        desc = desc:KAF_AddDefaultValueText("Achievements.Modifiers.PopOut", addon.Modifiers),
+        desc = desc:KAF_AddDefaultValueText("popOut.modifier", addon.Modifiers),
         values = addon.Modifiers,
-        get = function() return addon.Options.db.profile.Achievements.Modifiers.PopOut end,
-        set = function(_, value) addon.Options.db.profile.Achievements.Modifiers.PopOut = value end
-    }
+    })
 end
 
 -- A button that opens another section of the options window
@@ -81,7 +85,7 @@ local function Rows()
             return {
                 order = 6, type = "range", width = AdjustedWidth(1.5),
                 name = L["Starting Width"],
-                desc = L["Default Width Desc"]:KAF_AddDefaultValueText("Popout.DefaultWidth"),
+                desc = L["Default Width Desc"]:KAF_AddDefaultValueText("popOut.defaultWidth"),
                 min = 360, max = 800, step = 1,
                 get = get, set = set
             }

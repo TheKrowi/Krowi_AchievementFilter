@@ -94,6 +94,7 @@ function features.Register(def)
     -- the switches name their keys (plan step 8)
     local _, key = addon.Settings.Check.Home(Split(record.Switch))
     addon.Settings.Declare(key, {Type = "boolean", Default = true})
+    record.SwitchKey = key
     return record
 end
 
@@ -177,7 +178,7 @@ local function BuildFeatureOptions(record)
         Enabled = {
             order = 1, type = "toggle", width = "full",
             name = addon.L["Enable"],
-            desc = addon.L["Feature Switch Desc"]:K_ReplaceVars({feature = record.Title}):KAF_AddDefaultValueText(record.Switch):K_AddReloadRequired(),
+            desc = addon.L["Feature Switch Desc"]:K_ReplaceVars({feature = record.Title}):KAF_AddDefaultValueText(record.SwitchKey):K_AddReloadRequired(),
             get = function() return IsOn(record) end,
             set = function(_, value) Write(addon.Options.db.profile, record.Switch, value) end
         },
