@@ -1,5 +1,5 @@
 # Spec: Act on the Claude Code setup review of 2026-11-27
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done 2026-11-27
 
 ## Requirements
 1. `data-verifier` cannot edit files, and its documented lookups match the repo's existing `PowerShell(...)` allow rules, with no new allow rule.

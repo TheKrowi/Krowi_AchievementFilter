@@ -1,5 +1,5 @@
 # Plan: Act on the Claude Code setup review of 2026-11-27
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done 2026-11-27
 
 ## Files that change
 - `.claude/hooks/Check-RepoOnStop.ps1`: the fingerprint, the skip, the write after a clean run and the delete after a failed one (requirement 2).

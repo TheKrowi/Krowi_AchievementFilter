@@ -1,5 +1,5 @@
 # Intent: Act on the Claude Code setup review of 2026-11-27
-Author: Krowi (maintainer). Source: idea; a read-only review of the repo's Claude Code setup against the docs of 2.1.332, in the session of 2026-11-27, which Krowi handed over with "You maintain the repo, you process these findings". Status: accepted
+Author: Krowi (maintainer). Source: idea; a read-only review of the repo's Claude Code setup against the docs of 2.1.332, in the session of 2026-11-27, which Krowi handed over with "You maintain the repo, you process these findings". Status: done 2026-11-27
 
 ## Problem
 The review found the setup sound, with a few defects that cost time or could mislead a session:
