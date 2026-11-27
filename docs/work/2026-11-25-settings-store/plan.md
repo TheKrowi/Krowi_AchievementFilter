@@ -118,6 +118,11 @@ Each step ends with the headless suites it reaches green and a commit. Nothing r
     - the first login migrates and clears: the file holds `KrowiAF_Settings` and not the three old variables; the options still match the snapshot;
     - a second login changes nothing;
     - the full suites.
+   - Retail done 2026-11-27 (12.1.5), clearing on (Krowi's go). The first login migrated and cleared the played account: its file holds `KrowiAF_Settings` with `Version = 1` and the three old variables as nil (they stay on the `.toc`).
+     - All 19 suites but the probes: no failure (plugins skipped, Zygor is not on for the kit's character).
+     - The matrix (`-Matrix`): 1534 passed, 0 failed, complete. BugGrabber shows no addon error.
+     - By option, the cleared file equals the branch's headless migration of the snapshot, except the ten values the options suite's `CheckDefaults` leaves changed (the older test bug, `docs/backlog.md`) and three filter `Refresh` flags (runtime redraw marks, not settings).
+     - After the matrix's logins and reloads, no option moved, only those runtime flags: a cleared file stays as it is.
 13. **Reviews:** `krowi:taint-reviewer` on the diff; the code review (`REVIEW.md`); `Find-DeprecatedApi.ps1`. Then the PR, with the class checked by `Get-ChangeClass.ps1`.
 
 ## Risks
