@@ -2946,6 +2946,26 @@ suites.runner = function(c)
     return results, ".claude/tools/headless/run-tests.lua", {}
 end
 
+-- A table on one line, keys sorted (numbers before strings), for the settings and store suites' lines
+local function KeyOrder(a, b)
+    local ta, tb = type(a), type(b)
+    if ta ~= tb then return ta < tb end
+    return a < b
+end
+local function Compact(v)
+    if type(v) == "string" then return ("%q"):format(v) end
+    if type(v) ~= "table" then return tostring(v) end
+    local keys = {}
+    for k in next, v do keys[#keys + 1] = k end
+    table.sort(keys, KeyOrder)
+    local parts = {}
+    for _, k in ipairs(keys) do
+        local name = (type(k) == "string" and k:match("^[%a_][%w_]*$")) and k or ("[" .. Compact(k) .. "]")
+        parts[#parts + 1] = name .. "=" .. Compact(v[k])
+    end
+    return "{" .. table.concat(parts, ",") .. "}"
+end
+
 -- The saved-settings proof, headless only (docs/work/2026-11-25-leave-aceconfig), each scenario on a whole-addon load of
 -- its own, recorded on the code before AceConfig went. A change to the options must keep every line, or say why it moves.
 -- None of it runs in game: saved-keys-unchanged sets every option, and a script the game cuts short between a set and its
@@ -2986,6 +3006,42 @@ local settingsScenarios = {
         Target = "options=359 match=359 differ=0 none=0 missing=0",
         RecordedClassic = "options=255 match=0 differ=0 none=255 missing=0",
         TargetClassic = "options=255 match=255 differ=0 none=0 missing=0"},
+    -- Migration 1 (Settings/Migrations.lua and Check.lua, run alone on plain tables; requirements 11-15). Clearing is on
+    -- in these scenarios unless one says otherwise; the build itself keeps it off until plan step 11.
+    -- the old file migrates: the check passes again against a fresh copy, every profile is kept, the old variables go
+    {Name = "migrate-fixture", Recorded = "result=migrated version=1 records=946 failures=0 not-carried=5 profiles=Default,Second filter-profiles=Default profile-of={} cleared=3",
+        Target = "result=migrated version=1 records=946 failures=0 not-carried=5 profiles=Default,Second filter-profiles=Default profile-of={} cleared=3",
+        RecordedClassic = "result=migrated version=1 records=567 failures=0 not-carried=5 profiles=Default,Second filter-profiles=Default profile-of={} cleared=3",
+        TargetClassic = "result=migrated version=1 records=567 failures=0 not-carried=5 profiles=Default,Second filter-profiles=Default profile-of={} cleared=3"},
+    -- a second load changes nothing; with clearing off every load builds the same store again and keeps the old tables
+    {Name = "migrate-twice", Recorded = "first=migrated second=current unchanged=yes dry=migrated/migrated rebuilt-same=yes version=none old=kept",
+        Target = "first=migrated second=current unchanged=yes dry=migrated/migrated rebuilt-same=yes version=none old=kept"},
+    -- two planted dropped values: nothing cleared, Version 0, the failing records kept, the new store in use; the same
+    -- version waits; a new one moves the failed values again, keeps the one the player set since, and clears on a pass
+    {Name = "migrate-fails", Recorded = "first=failed version=0 failing=3 old=kept in-use=yes second=waiting third=migrated moved=yes kept=yes version=1 cleared=yes failed-record=gone",
+        Target = "first=failed version=0 failing=3 old=kept in-use=yes second=waiting third=migrated moved=yes kept=yes version=1 cleared=yes failed-record=gone"},
+    -- an error midway through the build: no new store in place, the old tables kept, the failure recorded; an error in
+    -- the check: the store as built is used, every value is retried after the next update
+    {Name = "migrate-errors", Recorded = "result=error store=none old=kept recorded=yes check-error=failed/all/kept/in-use",
+        Target = "result=error store=none old=kept recorded=yes check-error=failed/all/kept/in-use"},
+    -- an old value with no row (an option removed in the past) is not carried, is logged, and does not fail the check
+    {Name = "dead-key", Recorded = "result=migrated logged=yes carried=no", Target = "result=migrated logged=yes carried=no"},
+    -- the Legion Assaults merge (Tests/Schedules.lua's merge scenarios, now migration 1's step 1) on a pre-104 file, and
+    -- nothing for a file that ran it: per profile 5175 on or off and the zone toggles left; the check passes on both
+    {Name = "legion-assaults",
+        Recorded = "pre-104: Active on; AllOff off; Azsuna on; Others on; Untouched on (migrated) / ran-before: Active on, 3 left; AllOff off, 3 left; Azsuna off; Others on, 1 left; Untouched on (migrated)",
+        Target = "pre-104: Active on; AllOff off; Azsuna on; Others on; Untouched on (migrated) / ran-before: Active on, 3 left; AllOff off, 3 left; Azsuna off; Others on, 1 left; Untouched on (migrated)"},
+    -- a new install: no old variables, no KrowiAF_Settings: an empty store, Version 1
+    {Name = "first-install", Recorded = "result=migrated settings={Account={},Filters={ProfileOf={},Profiles={}},Options={ProfileOf={},Profiles={}},Version=1}",
+        Target = "result=migrated settings={Account={},Filters={ProfileOf={},Profiles={}},Options={ProfileOf={},Profiles={}},Version=1}"},
+    -- the DataIntegrityManager's other steps, in place: a character's missing name and realm from its GUID, the dead
+    -- keys and the old alert copy out, on Retail the account-wide achievements out of the character records, and its
+    -- marks (Build, Version, Fixes, Verifications) only with the clear
+    {Name = "saved-data-steps",
+        Recorded = "migrated names=Krowi/1234 0FEDCBA/5678 earned-by=nil/y not-completed=3 saved-data=CharacterList,Tabs / clearing off: migrated names=Krowi/1234 0FEDCBA/5678 earned-by=nil/y not-completed=3 saved-data=Build,CharacterList,Fixes,Tabs,Verifications,Version",
+        Target = "migrated names=Krowi/1234 0FEDCBA/5678 earned-by=nil/y not-completed=3 saved-data=CharacterList,Tabs / clearing off: migrated names=Krowi/1234 0FEDCBA/5678 earned-by=nil/y not-completed=3 saved-data=Build,CharacterList,Fixes,Tabs,Verifications,Version",
+        RecordedClassic = "migrated names=Krowi/1234 0FEDCBA/5678 earned-by=x/y not-completed=1,3 saved-data=CharacterList,Tabs / clearing off: migrated names=Krowi/1234 0FEDCBA/5678 earned-by=x/y not-completed=1,3 saved-data=Build,CharacterList,Fixes,Tabs,Version",
+        TargetClassic = "migrated names=Krowi/1234 0FEDCBA/5678 earned-by=x/y not-completed=1,3 saved-data=CharacterList,Tabs / clearing off: migrated names=Krowi/1234 0FEDCBA/5678 earned-by=x/y not-completed=1,3 saved-data=Build,CharacterList,Fixes,Tabs,Version"},
 }
 
 suites.settings = function(c)
@@ -3005,6 +3061,29 @@ suites.settings = function(c)
             t = t[key]
         end
         return t
+    end
+    -- The migration runner alone (settings-store.lua), the old file as plain tables, and the runner's context
+    local storeHelper = assert(loadfile(scriptDir .. "/settings-store.lua"))()
+    local function Runner(clear)
+        local s = storeHelper.Runner(root)
+        s.Migrations.ClearOld = clear
+        return s
+    end
+    local function OldFile()
+        local saved = assert(loadfile(scriptDir .. "/fixtures/settings-baseline-" .. c.client .. ".lua"))()
+        return { Options = saved.KrowiAF_Options, Filters = saved.KrowiAF_Filters, SearchOptions = saved.KrowiAF_SearchOptions,
+            SavedData = saved.KrowiAF_SavedData }
+    end
+    local function Context(version)
+        return { Character = "Player - Realm", AddonVersion = version or "107.0", IsMainline = isRetail,
+            IsAccountWide = function() return false end }
+    end
+    local function Keys(t)
+        local keys = {}
+        for k in next, t or {} do keys[#keys + 1] = k end
+        table.sort(keys, KeyOrder)
+        for n, k in ipairs(keys) do keys[n] = tostring(k) end
+        return table.concat(keys, ",")
     end
     -- The rename table on its own, and an old options path's home in it: "value", "map" or "object", its key, and the
     -- segments after the map's or object's path
@@ -3201,6 +3280,168 @@ suites.settings = function(c)
             end
             return ("options=%d match=%d differ=%d none=%d missing=%d"):format(count, match, differ, none, missing)
         end,
+        ["migrate-fixture"] = function()
+            local s = Runner(true)
+            local sv = OldFile()
+            local result = s.Migrations.Run(sv, Context())
+            -- the check again, against a fresh copy of the old file with the Legion Assaults merge applied
+            local fresh = OldFile()
+            local profiles = fresh.Options.profiles
+            s.Migrations.MergeLegionAssaultToggles(profiles, {}, false)
+            local old = s.Check.Old(fresh, profiles, Context())
+            local records = 0
+            s.Check.Records(old, function() records = records + 1 end)
+            local failures, notCarried = s.Check.Run(old, sv.Settings)
+            local cleared = (sv.Options == nil and 1 or 0) + (sv.Filters == nil and 1 or 0) + (sv.SearchOptions == nil and 1 or 0)
+            return ("result=%s version=%s records=%d failures=%d not-carried=%d profiles=%s filter-profiles=%s profile-of=%s cleared=%d"):format(
+                result, tostring(sv.Settings.Version), records, #failures, #notCarried, Keys(sv.Settings.Options.Profiles),
+                Keys(sv.Settings.Filters.Profiles), Compact(sv.Settings.Options.ProfileOf), cleared)
+        end,
+        ["migrate-twice"] = function()
+            local s = Runner(true)
+            local sv = OldFile()
+            local first = s.Migrations.Run(sv, Context())
+            local before = Compact(sv.Settings)
+            local second = s.Migrations.Run(sv, Context())
+            local dry = Runner(false)
+            local svDry = OldFile()
+            local a = dry.Migrations.Run(svDry, Context())
+            local built = Compact(svDry.Settings)
+            local b = dry.Migrations.Run(svDry, Context())
+            return ("first=%s second=%s unchanged=%s dry=%s/%s rebuilt-same=%s version=%s old=%s"):format(first, second,
+                Compact(sv.Settings) == before and "yes" or "no", a, b, Compact(svDry.Settings) == built and "yes" or "no",
+                svDry.Settings.Version == nil and "none" or tostring(svDry.Settings.Version),
+                (svDry.Options and svDry.Filters and svDry.SearchOptions) and "kept" or "cleared")
+        end,
+        ["migrate-fails"] = function()
+            local s = Runner(true)
+            local check = s.Check
+            -- the first two value rows of the old Default profile, sorted, are dropped by a broken move
+            local paths = {}
+            local profiles = OldFile().Options.profiles
+            check.Records(check.Old({}, { Default = profiles.Default }, Context()), function(record)
+                if check.Home(record.Path) == "value" then paths[#paths + 1] = check.Join(record.Path) end
+            end)
+            table.sort(paths)
+            local kept, moved = paths[1], paths[2]
+            local realMove = check.Move
+            check.Move = function(new, record, value, old)
+                local path = record.Section == "options" and check.Join(record.Path)
+                if path == kept or path == moved then return end
+                return realMove(new, record, value, old)
+            end
+            local sv = OldFile()
+            local first = s.Migrations.Run(sv, Context())
+            local failed = sv.Settings.MigrationFailed
+            local failing = failed and failed.Paths and #failed.Paths or -1
+            local version = sv.Settings.Version or 0
+            local oldKept = (sv.Options and sv.Filters and sv.SearchOptions) and "kept" or "cleared"
+            local inUse = sv.Settings.Options and sv.Settings.Options.Profiles.Default and "yes" or "no"
+            local second = s.Migrations.Run(sv, Context())
+            -- the fix release; meanwhile the player set the first value (the store records it in Touched)
+            check.Move = realMove
+            local _, keptKey = check.Home(Split(kept))
+            local _, movedKey = check.Home(Split(moved))
+            sv.Settings.Options.Profiles.Default[keptKey] = "player"
+            failed.Touched[keptKey] = true
+            local third = s.Migrations.Run(sv, Context("107.1"))
+            local default = sv.Settings.Options.Profiles.Default
+            return ("first=%s version=%d failing=%d old=%s in-use=%s second=%s third=%s moved=%s kept=%s version=%s cleared=%s failed-record=%s"):format(
+                first, version, failing, oldKept, inUse, second, third,
+                default[movedKey] == Walk(OldFile().Options.profiles.Default, Split(moved)) and "yes" or "no",
+                default[keptKey] == "player" and "yes" or "no", tostring(sv.Settings.Version),
+                (sv.Options == nil and sv.Filters == nil and sv.SearchOptions == nil) and "yes" or "no",
+                sv.Settings.MigrationFailed == nil and "gone" or "kept")
+        end,
+        ["migrate-errors"] = function()
+            local s = Runner(true)
+            local calls, realMove = 0, s.Check.Move
+            s.Check.Move = function(...)
+                calls = calls + 1
+                if calls == 100 then error("planted") end
+                return realMove(...)
+            end
+            local sv = OldFile()
+            local result = s.Migrations.Run(sv, Context())
+            local failed = sv.Settings and sv.Settings.MigrationFailed
+            local s2 = Runner(true)
+            s2.Check.Run = function() error("planted") end
+            local sv2 = OldFile()
+            local result2 = s2.Migrations.Run(sv2, Context())
+            local failed2 = sv2.Settings.MigrationFailed
+            return ("result=%s store=%s old=%s recorded=%s check-error=%s/%s/%s/%s"):format(result,
+                (sv.Settings and sv.Settings.Options) and "placed" or "none",
+                (sv.Options and sv.Filters and sv.SearchOptions) and "kept" or "cleared",
+                (failed and failed.Error) and "yes" or "no", result2, (failed2 and failed2.Paths == nil) and "all" or "some",
+                (sv2.Options and sv2.Filters and sv2.SearchOptions) and "kept" or "cleared",
+                sv2.Settings.Options and sv2.Settings.Options.Profiles.Default and "in-use" or "none")
+        end,
+        ["dead-key"] = function()
+            local s = Runner(true)
+            local sv = OldFile()
+            local default = sv.Options.profiles.Default
+            default.Achievements = default.Achievements or {}
+            default.Achievements.ShowDateCompletedTime = true
+            local result = s.Migrations.Run(sv, Context())
+            local logged = false
+            for _, line in ipairs(s.Migrations.Log) do
+                if line:find("no-row: Default.Achievements.ShowDateCompletedTime", 1, true) then logged = true end
+            end
+            local carried = Compact(sv.Settings):find("ShowDateCompletedTime") ~= nil
+            return ("result=%s logged=%s carried=%s"):format(result, logged and "yes" or "no", carried and "yes" or "no")
+        end,
+        ["legion-assaults"] = function()
+            local function Case(fixes)
+                local s = Runner(true)
+                local sv = { Options = { profiles = {
+                    AllOff = { EventReminders = { WorldEvents = { [5175] = false, [5177] = false, [5178] = false, [5210] = false } } },
+                    Azsuna = { EventReminders = { WorldEvents = { [5175] = false } } }, -- only Azsuna off: the others were on
+                    Others = { EventReminders = { WorldEvents = { [5177] = false } } }, -- Azsuna on, Highmountain off
+                    Active = { EventReminders = { WorldEvents = { [5175] = true, [5177] = true, [5178] = true, [5210] = false } } },
+                    Untouched = {},
+                }, profileKeys = {} }, SavedData = { Fixes = fixes } }
+                local result = s.Migrations.Run(sv, Context())
+                local parts = {}
+                for _, name in ipairs({ "Active", "AllOff", "Azsuna", "Others", "Untouched" }) do
+                    local world = sv.Settings.Options.Profiles[name]["eventReminders.worldEvents"] or {}
+                    local left = 0
+                    for _, id in ipairs({ 5177, 5178, 5210 }) do
+                        if world[id] ~= nil then left = left + 1 end
+                    end
+                    parts[#parts + 1] = ("%s %s%s"):format(name, world[5175] == false and "off" or "on", left > 0 and (", " .. left .. " left") or "")
+                end
+                return table.concat(parts, "; ") .. " (" .. result .. ")"
+            end
+            return ("pre-104: %s / ran-before: %s"):format(Case(nil), Case({ MergeLegionAssaultToggles = true }))
+        end,
+        ["first-install"] = function()
+            local s = Runner(true)
+            local sv = {}
+            local result = s.Migrations.Run(sv, Context())
+            return ("result=%s settings=%s"):format(result, Compact(sv.Settings))
+        end,
+        ["saved-data-steps"] = function()
+            local function Case(clear)
+                local s = Runner(clear)
+                local sv = {
+                    SavedData = { AlertSystem = {}, CalendarEventsCache = {}, DebugTable = {}, Build = "11.0", Version = "100.0",
+                        Fixes = { MergeLegionAssaultToggles = true }, Tabs = {},
+                        CharacterList = { ["Player-1234-0ABCDEF"] = { Name = "Krowi" }, ["Player-5678-0FEDCBA"] = {} } },
+                    Achievements = { Completed = { [1] = { EarnedBy = "x" }, [2] = { EarnedBy = "y" } }, NotCompleted = { [1] = {}, [3] = {} } },
+                }
+                local context = Context()
+                context.IsAccountWide = function(id) return id == 1 end
+                local result = s.Migrations.Run(sv, context)
+                local list = sv.SavedData.CharacterList
+                local names = ("%s/%s %s/%s"):format(tostring(list["Player-1234-0ABCDEF"].Name), tostring(list["Player-1234-0ABCDEF"].Realm),
+                    tostring(list["Player-5678-0FEDCBA"].Name), tostring(list["Player-5678-0FEDCBA"].Realm))
+                local a = sv.Achievements
+                local achievements = ("earned-by=%s/%s not-completed=%s"):format(tostring(a.Completed[1].EarnedBy),
+                    tostring(a.Completed[2].EarnedBy), Keys(a.NotCompleted))
+                return ("%s names=%s %s saved-data=%s"):format(result, names, achievements, Keys(sv.SavedData))
+            end
+            return Case(true) .. " / clearing off: " .. Case(false)
+        end,
     }
     local results = {}
     for _, scenario in ipairs(settingsScenarios) do
@@ -3253,24 +3494,6 @@ local storeScenarios = {
 suites.store = function(c)
     local scriptDir = ((arg and arg[0]) or ""):gsub("\\", "/"):match("^(.*)/") or "."
     local store = assert(loadfile(scriptDir .. "/settings-store.lua"))()
-    local function KeyOrder(a, b)
-        local ta, tb = type(a), type(b)
-        if ta ~= tb then return ta < tb end
-        return a < b
-    end
-    local function Compact(v)
-        if type(v) == "string" then return ("%q"):format(v) end
-        if type(v) ~= "table" then return tostring(v) end
-        local keys = {}
-        for k in next, v do keys[#keys + 1] = k end
-        table.sort(keys, KeyOrder)
-        local parts = {}
-        for _, k in ipairs(keys) do
-            local name = (type(k) == "string" and k:match("^[%a_][%w_]*$")) and k or ("[" .. Compact(k) .. "]")
-            parts[#parts + 1] = name .. "=" .. Compact(v[k])
-        end
-        return "{" .. table.concat(parts, ",") .. "}"
-    end
     local function List(iterator, state, init)
         local keys, values = {}, {}
         for k, v in iterator, state, init do

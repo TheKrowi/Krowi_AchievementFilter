@@ -31,7 +31,8 @@ Three suites are headless only and have no file in `Tests/`; their scenarios liv
   - `saved-keys-unchanged`: which saved keys every option that stores a value writes, hidden and disabled ones too;
   - `first-install-profile`: a new install's raw saved variables;
   - `old-file-same-values`: the old file (`.claude/tools/headless/fixtures/settings-baseline-<client>.lua`, written by `write-settings-fixture.lua`), whose every option, in two profiles, and whose filter and search values read back as written;
-  - `profile-switch`: the profile callbacks, and whether every tab's filters follow a filters profile switch.
+  - `profile-switch`: the profile callbacks, and whether every tab's filters follow a filters profile switch;
+  - the settings store's move (docs/work/2026-11-25-settings-store), read from frozen fixtures and the runner loaded alone: `renames-cover` (every old path has a row, no two share a key), `renames-by-option` (each option's new keys are the ones the rename table gives its old paths; open until the rows name keys), and migration 1's `migrate-fixture`, `migrate-twice`, `migrate-fails`, `migrate-errors`, `dead-key`, `legion-assaults` (the Legion Assaults merge, formerly the DataIntegrityManager's), `first-install` and `saved-data-steps`.
 
   A change to the options keeps every line, or its work folder says why a line moved. A change that moves saved settings on purpose writes a new fixture with the code before it and checks that every old value is found at its new place.
 

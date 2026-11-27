@@ -1,4 +1,6 @@
 <Ui>
     <Script file="Store.lua" />
     <Script file="Renames.lua" />
+    <Script file="Check.lua" />
+    <Script file="Migrations.lua" />
 </Ui>

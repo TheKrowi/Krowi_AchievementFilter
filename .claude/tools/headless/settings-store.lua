@@ -45,4 +45,15 @@ function M.New(repoRoot, opts)
     return s
 end
 
+-- The migration runner on its own: Settings/Renames.lua, Check.lua and Migrations.lua in a fresh namespace. Returns
+-- addon.Settings (Renames, Check, Migrations); migrations.Run(sv, context) works on plain tables, no game needed.
+function M.Runner(repoRoot)
+    repoRoot = repoRoot:gsub("\\", "/"):gsub("/$", "")
+    local addon = { Settings = {} }
+    for _, file in ipairs({ "Renames", "Check", "Migrations" }) do
+        assert(loadfile(repoRoot .. "/Settings/" .. file .. ".lua"))("Krowi_AchievementFilter", addon)
+    end
+    return addon.Settings
+end
+
 return M
