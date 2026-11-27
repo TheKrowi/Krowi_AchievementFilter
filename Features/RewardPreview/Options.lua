@@ -78,7 +78,6 @@ local function Rows()
             order = 4, type = "range", width = AdjustedWidth(1.35),
             name = L["Max Number of Icons"],
             desc = L["Reward Preview Max Individual Icons Desc"]:KAF_AddDefaultValueText("rewardPreview.maxIndividualIcons"),
-            min = 1, max = 10, step = 1,
             set = RewardPreviewMaxIndividualIconsSet,
             disabled = IconOff
         }),
@@ -86,14 +85,12 @@ local function Rows()
             order = 5, type = "range", width = AdjustedWidth(1.35),
             name = L["Starting Width"],
             desc = L["Reward Preview Width Desc"]:KAF_AddDefaultValueText("rewardPreview.defaultWidth"),
-            min = 200, max = 600, step = 1,
             set = RewardPreviewDefaultWidthSet
         }),
         RewardPreviewDefaultHeight = addon.Settings.Row("rewardPreview.defaultHeight", {
             order = 6, type = "range", width = AdjustedWidth(1.35),
             name = L["Starting Height"],
             desc = L["Reward Preview Height Desc"]:KAF_AddDefaultValueText("rewardPreview.defaultHeight"),
-            min = 220, max = 700, step = 1,
             set = RewardPreviewDefaultHeightSet
         })
     }
@@ -101,10 +98,10 @@ end
 
 addon.Features.AddOptions("RewardPreview", {
     Defaults = {
-        ["rewardPreview.defaultHeight"] = 360,
-        ["rewardPreview.defaultWidth"] = 280,
+        ["rewardPreview.defaultHeight"] = {Type = "number", Default = 360, Min = 220, Max = 700, Step = 1},
+        ["rewardPreview.defaultWidth"] = {Type = "number", Default = 280, Min = 200, Max = 600, Step = 1},
         ["rewardPreview.invertVerticalRotation"] = false,
-        ["rewardPreview.maxIndividualIcons"] = 3,
+        ["rewardPreview.maxIndividualIcons"] = {Type = "number", Default = 3, Min = 1, Max = 10, Step = 1},
         ["rewardPreview.mouseoverShow"] = false,
         ["rewardPreview.showIcon"] = true,
     },

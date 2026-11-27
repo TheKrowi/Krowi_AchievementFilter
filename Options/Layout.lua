@@ -672,21 +672,18 @@ local windowOptions = {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                     name = addon.L["Categories width offset"],
                     desc = addon.L["Categories width offset Desc"]:KAF_InjectAddonName():K_ReplaceVars(string.format(addon.Util.Colors.Yellow, addon.L["Expansions"])):KAF_AddDefaultValueText("window.categoriesFrameWidthOffset"),
-                    min = -125, max = 250, step = 1,
                     set = OffsetsCategoriesFrameWidthSet
                 }),
                 AchievementsFrameWidth = addon.Settings.Row("window.achievementsFrameWidthOffset", {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                     name = addon.L["Achievements width offset"],
                     desc = addon.L["Achievements width offset Desc"]:KAF_InjectAddonName():K_ReplaceVars(string.format(addon.Util.Colors.Yellow, addon.L["Expansions"])):KAF_AddDefaultValueText("window.achievementsFrameWidthOffset"),
-                    min = 0, max = 500, step = 1,
                     set = OffsetsAchievementsFrameWidthSet
                 }),
                 AchievementFrameHeight = addon.Settings.Row("window.achievementFrameHeightOffset", {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                     name = addon.L["Achievement window height offset"],
                     desc = addon.L["Achievement window height offset Desc"]:KAF_InjectAddonName():K_ReplaceVars(string.format(addon.Util.Colors.Yellow, addon.L["Expansions"])):KAF_AddDefaultValueText("window.achievementFrameHeightOffset"):K_AddReloadRequired(),
-                    min = -50, max = 750, step = 1,
                     set = OffsetsAchievementFrameHeightSet
                 })
             }
@@ -710,7 +707,6 @@ local tabsOptions = {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                             name = addon.L["Spacing"],
                             desc = addon.L["Spacing Desc"]:KAF_AddDefaultValueText("tabs.spacing"),
-                            min = -50, max = 50, step = 1,
                             set = function (_, value)
                                 addon.Settings.Set("tabs.spacing", value)
                                 addon.Gui:ShowHideTabs()
@@ -788,14 +784,12 @@ local headerOptions = {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
                     name = addon.L["Horizontal position"],
                     desc = addon.L["Calendar button horizontal position Desc"]:K_ReplaceVars(addon.L["Calendar button"]):KAF_AddDefaultValueText("window.calendarButton.offsetX"),
-                    min = -50, max = 50, step = 1,
                     set = CalendarButtonOffsetXSet
                 }),
                 OffsetY = addon.Settings.Row("window.calendarButton.offsetY", {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
                     name = addon.L["Vertical position"],
                     desc = addon.L["Calendar button vertical position Desc"]:K_ReplaceVars(addon.L["Calendar button"]):KAF_AddDefaultValueText("window.calendarButton.offsetY"),
-                    min = -50, max = 50, step = 1,
                     set = CalendarButtonOffsetYSet
                 })
             }
@@ -818,7 +812,6 @@ local headerOptions = {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
                     name = addon.L["Maximum number of characters"],
                     desc = addon.L["Maximum number of characters Desc"]:KAF_AddDefaultValueText("tooltips.points.maxNumCharacters"),
-                    min = 0, max = 100, step = 1,
                 }),
                 KeepCurrentCharacter = addon.Settings.Row("tooltips.points.keepCurrentCharacter", {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
@@ -863,7 +856,6 @@ local searchOptions = {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                     name = addon.L["Minimum characters to search"],
                     desc = addon.L["Minimum characters to search Desc"]:KAF_AddDefaultValueText("searchBox.minimumCharactersToSearch"),
-                    min = 1, max = 10, step = 1,
                 })
             }
         },
@@ -893,7 +885,6 @@ local searchOptions = {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                     name = addon.L["Mouse Wheel Scroll Speed"],
                     desc = addon.L["Mouse Wheel Scroll Speed Desc"]:K_ReplaceVars(addon.L["Achievements"]):KAF_AddDefaultValueText("searchBox.mouseWheelPanScalar"),
-                    min = 1, max = 50, step = 1,
                     set = SetSearchBoxMouseWheelPanScalar
                 })
             }
@@ -918,7 +909,6 @@ local summaryOptions = {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                     name = addon.L["Number of summary achievements"],
                     desc = addon.L["Number of summary achievements Desc"]:KAF_AddDefaultValueText("summary.numAchievements"),
-                    min = 1, max = 25, step = 1,
                     set = function(_, value)
                         addon.Settings.Set("summary.numAchievements", value)
                         KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow()
@@ -935,7 +925,6 @@ local summaryOptions = {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                     name = addon.L["Mouse Wheel Scroll Speed"],
                     desc = addon.L["Mouse Wheel Scroll Speed Desc"]:K_ReplaceVars(addon.L["Achievements"]):KAF_AddDefaultValueText("summary.mouseWheelPanScalar"),
-                    min = 1, max = 50, step = 1,
                     set = SetSummaryMouseWheelPanScalar
                 })
             }
@@ -955,7 +944,6 @@ local categoriesOptions = {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                     name = addon.L["Indentation"],
                     desc = addon.L["Indentation Desc"]:KAF_AddDefaultValueText("categories.indentation"),
-                    min = 1, max = 50, step = 1,
                     set = SetCategoryIndentation
                 })
             }
@@ -968,7 +956,6 @@ local categoriesOptions = {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                     name = addon.L["Mouse Wheel Scroll Speed"],
                     desc = addon.L["Mouse Wheel Scroll Speed Desc"]:K_ReplaceVars(addon.L["Categories"]):KAF_AddDefaultValueText("categories.mouseWheelPanScalar"),
-                    min = 1, max = 50, step = 1,
                     set = SetCategoriesMouseWheelPanScalar
                 })
             }
@@ -994,7 +981,6 @@ local categoriesOptions = {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                     name = addon.L["Merge small categories threshold"],
                     desc = addon.L["Merge small categories threshold Desc"]:KAF_AddDefaultValueText("categories.mergeSmallThreshold"),
-                    min = 1, max = 50, step = 1,
                     set = MergeMergeSmallCategoriesThresholdSet
                 })
             }
@@ -1064,7 +1050,6 @@ local achievementsOptions = {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.35),
                             name = addon.L["Faction Icon Transparency"],
                             desc = addon.L["Faction Icon Transparency Desc"]:KAF_AddDefaultValueText("achievements.factionIconAlpha"),
-                            min = 0, max = 1, step = 0.01,
                             set = FactionIconAlphaSet,
                             disabled = function() return not addon.Settings.Get("achievements.showAllianceFactionIcon") and not addon.Settings.Get("achievements.showHordeFactionIcon"); end
                         }),
@@ -1152,7 +1137,6 @@ local achievementsOptions = {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.35),
                             name = addon.L["Force two columns threshold"],
                             desc = addon.L["Force two columns threshold Desc"]:KAF_AddDefaultValueText("achievements.objectives.forceTwoColumnsThreshold"),
-                            min = 0, max = 50, step = 1,
                             disabled = function() return not addon.Settings.Get("achievements.objectives.forceTwoColumns"); end
                         }),
                         CriteriaBehaviour = addon.Settings.Row("achievements.objectives.criteriaBehaviour", {
@@ -1176,7 +1160,6 @@ local achievementsOptions = {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                             name = addon.L["Mouse Wheel Scroll Speed"],
                             desc = addon.L["Mouse Wheel Scroll Speed Desc"]:K_ReplaceVars(addon.L["Achievements"]):KAF_AddDefaultValueText("achievements.mouseWheelPanScalar"),
-                            min = 1, max = 50, step = 1,
                             set = SetAchievementsMouseWheelPanScalar
                         })
                     }
@@ -1217,13 +1200,11 @@ local achievementsOptions = {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.35),
                             name = addon.L["Number of Earned By characters"]:K_ReplaceVars(addon.L["Earned By"]),
                             desc = addon.L["Number of Earned By characters Desc"]:KAF_AddDefaultValueText("tooltips.earnedBy.characters"),
-                            min = 0, max = 100, step = 1,
                         }),
                         EarnedByNotCharacters = addon.Settings.Row("tooltips.earnedBy.notCharacters", {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.35),
                             name = addon.L["Number of Not Earned By characters"]:K_ReplaceVars(addon.L["Not Earned By"]),
                             desc = addon.L["Number of Not Earned By characters Desc"]:KAF_AddDefaultValueText("tooltips.earnedBy.notCharacters"),
-                            min = 0, max = 100, step = 1,
                             set = function(_, value)addon.Settings.Set("tooltips.earnedBy.notCharacters", value);end
                         }),
                         EarnedByAlwaysShowRealm = addon.Settings.Row("tooltips.earnedBy.alwaysShowRealm", {
@@ -1322,7 +1303,6 @@ local achievementsOptions = {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.35),
                             name = addon.L["Second column threshold"],
                             desc = addon.L["Second column threshold Desc"]:KAF_AddDefaultValueText("tooltips.objectivesProgress.secondColumnThreshold"),
-                            min = 0, max = 100, step = 1,
                             disabled = function() return not addon.Settings.Get("tooltips.objectivesProgress.show"); end
                         }),
                         MostProgress = {
@@ -1338,7 +1318,6 @@ local achievementsOptions = {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.35),
                             name = addon.L["Number of Most progress characters"]:K_ReplaceVars(addon.L["Most progress"]),
                             desc = addon.L["Number of Most progress characters Desc"]:KAF_AddDefaultValueText("tooltips.mostProgress.characters"),
-                            min = 0, max = 100, step = 1,
                         })
                     }
                 }
@@ -1374,7 +1353,6 @@ local achievementsOptions = {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.35),
                             name = addon.L["Number of lines"],
                             desc = addon.L["Number of Temporarily obtainable lines Desc"]:K_ReplaceVars(addon.L["Temporarily obtainable"]):KAF_AddDefaultValueText("tooltips.temporarilyObtainable.numberOfLines"),
-                            min = 1, max = 10, step = 1,
                         }),
                     }
                 },
@@ -1493,7 +1471,6 @@ local calendarOptions = {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                     name = addon.L["Mouse Wheel Scroll Speed"],
                     desc = addon.L["Mouse Wheel Scroll Speed Desc"]:K_ReplaceVars(addon.L["Achievements"]):KAF_AddDefaultValueText("calendar.mouseWheelPanScalar"),
-                    min = 1, max = 50, step = 1,
                     set = SetCalendarMouseWheelPanScalar
                 })
             }
@@ -1555,7 +1532,6 @@ local dataManagerOptions = {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                     name = addon.L["Mouse Wheel Scroll Speed"],
                     desc = addon.L["Mouse Wheel Scroll Speed Desc"]:K_ReplaceVars(addon.L["Characters"]):KAF_AddDefaultValueText("dataManager.mouseWheelPanScalar"),
-                    min = 1, max = 50, step = 1,
                     set = SetDataManagerMouseWheelPanScalar
                 })
             }

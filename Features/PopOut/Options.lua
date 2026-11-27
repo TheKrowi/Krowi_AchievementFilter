@@ -39,12 +39,14 @@ local function Toggle(order, key, name, desc, refresh)
     }
 end
 
-local function Range(order, key, name, desc, min, max, step, disabledBy, refresh)
+-- A slider, its limits from the setting's declaration (the Defaults below)
+local function Range(order, key, name, desc, disabledBy, refresh)
     local get, set = Popout(key, refresh)
+    local declaration = addon.Settings.Declaration(Key(key))
     return {
         order = order, type = "range", width = AdjustedWidth(1.5),
         name = name, desc = desc:KAF_AddDefaultValueText(Key(key)),
-        min = min, max = max, step = step,
+        min = declaration.Min, max = declaration.Max, step = declaration.Step,
         get = get, set = set,
         disabled = function() return not addon.Settings.Get(Key(disabledBy)) end
     }
@@ -80,27 +82,22 @@ local function Rows()
         PersistAcrossSessions = Toggle(3, "PersistAcrossSessions", L["Reopen After Login"], L["Persist Across Sessions Desc"]),
         RememberSize = Toggle(4, "RememberSize", L["Remember Size"], L["Remember Size Desc"]),
         RememberLastPosition = Toggle(5, "RememberLastPosition", L["Open Where Last Moved"], L["Remember Last Position Desc"]),
-        DefaultWidth = (function()
-            local get, set = Popout("DefaultWidth")
-            return {
-                order = 6, type = "range", width = AdjustedWidth(1.5),
-                name = L["Starting Width"],
-                desc = L["Default Width Desc"]:KAF_AddDefaultValueText("popOut.defaultWidth"),
-                min = 360, max = 800, step = 1,
-                get = get, set = set
-            }
-        end)(),
+        DefaultWidth = addon.Settings.Row("popOut.defaultWidth", {
+            order = 6, type = "range", width = AdjustedWidth(1.5),
+            name = L["Starting Width"],
+            desc = L["Default Width Desc"]:KAF_AddDefaultValueText("popOut.defaultWidth"),
+        }),
         CloseOnEarn = Toggle(7, "CloseOnEarn", L["Close When Earned"], L["Close On Earn Desc"]),
-        CloseOnEarnDelay = Range(8, "CloseOnEarnDelay", L["Close Delay"], L["Close On Earn Delay Desc"], 0, 10, 0.5, "CloseOnEarn"),
+        CloseOnEarnDelay = Range(8, "CloseOnEarnDelay", L["Close Delay"], L["Close On Earn Delay Desc"], "CloseOnEarn"),
         EnableSnapping = Toggle(9, "EnableSnapping", L["Snap into Stacks"], L["Enable Snapping Desc"]),
-        SnapDistance = Range(10, "SnapDistance", L["Snap Distance"], L["Snap Distance Desc"], 5, 50, 1, "EnableSnapping"),
+        SnapDistance = Range(10, "SnapDistance", L["Snap Distance"], L["Snap Distance Desc"], "EnableSnapping"),
         Buttons = {order = 11, type = "header", name = L["Buttons"]},
         AutoHideCloseButton = Toggle(12, "AutoHideCloseButton", L["Close Button on Mouseover"], L["Auto-Hide Close Button Desc"], true),
         AutoHideResizeButton = Toggle(13, "AutoHideResizeButton", L["Resize Button on Mouseover"], L["Auto-Hide Resize Button Desc"], true),
         Appearance = {order = 14, type = "header", name = L["Appearance"]},
         FadeWhenNotHovered = Toggle(15, "FadeWhenNotHovered", L["Fade without Mouseover"], L["Fade When Not Hovered Desc"], true),
-        FadedOpacity = Range(16, "FadedOpacity", L["Faded Opacity"], L["Faded Opacity Desc"], 0, 1, 0.01, "FadeWhenNotHovered", true),
-        FadeSpeed = Range(17, "FadeSpeed", L["Fade Time"], L["Fade Speed Desc"], 0, 1, 0.05, "FadeWhenNotHovered", true)
+        FadedOpacity = Range(16, "FadedOpacity", L["Faded Opacity"], L["Faded Opacity Desc"], "FadeWhenNotHovered", true),
+        FadeSpeed = Range(17, "FadeSpeed", L["Fade Time"], L["Fade Speed Desc"], "FadeWhenNotHovered", true)
     }
 end
 
@@ -119,17 +116,17 @@ addon.Features.AddOptions("PopOut", {
         ["popOut.autoHideCloseButton"] = false,
         ["popOut.autoHideResizeButton"] = false,
         ["popOut.closeOnEarn"] = true,
-        ["popOut.closeOnEarnDelay"] = 2,
-        ["popOut.defaultWidth"] = 434,
+        ["popOut.closeOnEarnDelay"] = {Type = "number", Default = 2, Min = 0, Max = 10, Step = 0.5},
+        ["popOut.defaultWidth"] = {Type = "number", Default = 434, Min = 360, Max = 800, Step = 1},
         ["popOut.enableSnapping"] = true,
-        ["popOut.fadeSpeed"] = 0.2,
+        ["popOut.fadeSpeed"] = {Type = "number", Default = 0.2, Min = 0, Max = 1, Step = 0.05},
         ["popOut.fadeWhenNotHovered"] = false,
-        ["popOut.fadedOpacity"] = 0.5,
+        ["popOut.fadedOpacity"] = {Type = "number", Default = 0.5, Min = 0, Max = 1, Step = 0.01},
         ["popOut.modifier"] = 3,
         ["popOut.persistAcrossSessions"] = true,
         ["popOut.rememberLastPosition"] = true,
         ["popOut.rememberSize"] = true,
-        ["popOut.snapDistance"] = 20,
+        ["popOut.snapDistance"] = {Type = "number", Default = 20, Min = 5, Max = 50, Step = 1},
     },
     Rows = Rows,
     Into = Into,

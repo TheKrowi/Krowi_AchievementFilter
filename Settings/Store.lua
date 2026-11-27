@@ -151,6 +151,11 @@ function settings.Row(key, row)
     if not declarations[key] then error("addon.Settings: a row for the undeclared key " .. tostring(key), 2) end
     row.get = row.get or function() return settings.Get(key) end
     row.set = row.set or function(_, value) settings.Set(key, value) end
+    -- a slider's limits from the declaration (Min, Max, Step); a row with limits of its own keeps them
+    local declaration = declarations[key]
+    if row.min == nil then row.min = declaration.Min end
+    if row.max == nil then row.max = declaration.Max end
+    if row.step == nil then row.step = declaration.Step end
     return row
 end
 
