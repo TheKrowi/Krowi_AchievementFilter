@@ -1,5 +1,5 @@
 # Plan: One settings store of the addon's own, and one migration runner for every saved variable
-Spec: [spec.md](spec.md). Status: accepted 2026-11-27
+Spec: [spec.md](spec.md). Status: done 2026-11-27
 
 ## Files that change
 

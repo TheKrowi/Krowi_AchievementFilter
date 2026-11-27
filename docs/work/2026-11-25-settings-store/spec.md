@@ -1,5 +1,5 @@
 # Spec: One settings store of the addon's own, and one migration runner for every saved variable
-Intent: [intent.md](intent.md). Status: accepted 2026-11-27
+Intent: [intent.md](intent.md). Status: done 2026-11-27
 
 Every old path and its new key: [renames.md](renames.md). Today's layout: [inventory.md](inventory.md). The overview page Krowi reviewed: https://claude.ai/artifact/66JkVF9vXn5abLaMoSwobj.
 
