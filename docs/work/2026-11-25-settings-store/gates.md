@@ -1,5 +1,5 @@
 # Gates: 2026-11-25-settings-store
-Class: saved-data
+Class: harness
 
 | Date | Gate | Question | Recommended | Answer | Outcome |
 |---|---|---|---|---|---|
@@ -31,3 +31,5 @@ Class: saved-data
 | 2026-11-27 | scope | Settle the dropdown question in this branch before the PR, or open the PR now with the dropdowns as a follow-up? | (both offered) | "dropdown question settled" (read as: settle it in this branch; said so in chat) | other |
 | 2026-11-27 | design | The dropdowns: leave them (A) or declare each one's allowed numbers (B)? Asked through "how would B look like", "how do we link text translations to numbers then?", "how does blizz solve this?"; Blizzard's rules shown (1 the number written next to its text, 2 a new choice takes the next unused number, 3 global strings as texts, 4 named numbers) | Explicit keys in the lists (rule 1) in this branch, named numbers (rule 4) to the backlog | "1, 2 and 4 will become our standard" | other |
 | 2026-11-27 | design | (decision taken without asking, with the advisor) Rules 1, 2 and 4 applied in this branch: the core's names in `Settings/Enum.lua` (`addon.Enum`), a feature's on its own table; every list, default and reader by name; the `settings-choices` lint rule and `.claude/rules/settings.md`. No saved number, default or shown order changes (every dropdown compared before and after, both clients, identical). | Apply here | (not asked; told to Krowi in the next message) | other |
+| 2026-11-27 | plan | The class is harness (Get-ChangeClass: existing lines of the lint and test tooling changed). Approve the tooling changes: `defaults-unchanged` per leaf instead of one hash, `saved-keys-unchanged` replaced by `renames-by-option` and `rows-round-trip`, `first-install-profile` by `first-install-boot`, `profile-switch` rewritten for the store, two `Check-Repo.ps1` lines extended; no other expected result changed? | Approve | "approve tool changes" | took |
+| 2026-11-27 | scope | The dropdown standard (rules 1, 2 and 4): in this repo only, or in the kit's workspace rules for every Krowi addon? | (both offered) | "dropdown is kit" | other |
