@@ -191,6 +191,12 @@ local function EntryDefault(key, depth, a, b)
     return EntryOf(entryDefaults[key], depth, a, b)
 end
 
+-- The entry's registered default, or nil: EntryDefault(key, a) or EntryDefault(key, a, b)
+function settings.EntryDefault(key, a, b)
+    local declaration = Declared(key, "map")
+    return EntryDefault(key, declaration.Depth, a, b)
+end
+
 -- GetEntry(key, a) or, for a map two levels deep, GetEntry(key, a, b): the saved entry, else its registered default,
 -- else nil
 function settings.GetEntry(key, a, b)

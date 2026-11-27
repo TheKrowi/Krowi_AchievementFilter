@@ -3014,6 +3014,14 @@ local settingsScenarios = {
         Target = "values=183 map-entries=220 object-fields=11 differ=0 missing=0 new=0 filters=same search=same",
         RecordedClassic = "values=183 map-entries=69 object-fields=11 differ=0 missing=0 new=0 filters=same search=same",
         TargetClassic = "values=183 map-entries=69 object-fields=11 differ=0 missing=0 new=0 filters=same search=same"},
+    -- the store's interface over AceDB (Settings/AceDBMode.lua, plan steps 6-8), on a new install and on the old file:
+    -- every value key reads its old path raw, writes it, and writes its default as the value (not nil); every map entry
+    -- reads raw and Entries lists the old table; every object is AceDB's own table; the profiles are AceDB's
+    {Name = "acedb-mode",
+        Recorded = "new: values=183 read=183 write=183 default-written=183 entries=220/220 listed=12/12 objects=5/5 profiles=Default/Default / old file: values=183 read=183 write=183 default-written=183 entries=220/220 listed=12/12 objects=5/5 profiles=Default,Second/Default",
+        Target = "new: values=183 read=183 write=183 default-written=183 entries=220/220 listed=12/12 objects=5/5 profiles=Default/Default / old file: values=183 read=183 write=183 default-written=183 entries=220/220 listed=12/12 objects=5/5 profiles=Default,Second/Default",
+        RecordedClassic = "new: values=183 read=183 write=183 default-written=183 entries=69/69 listed=12/12 objects=5/5 profiles=Default/Default / old file: values=183 read=183 write=183 default-written=183 entries=69/69 listed=12/12 objects=5/5 profiles=Default,Second/Default",
+        TargetClassic = "new: values=183 read=183 write=183 default-written=183 entries=69/69 listed=12/12 objects=5/5 profiles=Default/Default / old file: values=183 read=183 write=183 default-written=183 entries=69/69 listed=12/12 objects=5/5 profiles=Default,Second/Default"},
     -- Migration 1 (Settings/Migrations.lua and Check.lua, run alone on plain tables; requirements 11-15). Clearing is on
     -- in these scenarios unless one says otherwise; the build itself keeps it off until plan step 11.
     -- the old file migrates: the check passes again against a fresh copy, every profile is kept, the old variables go
@@ -3296,10 +3304,10 @@ suites.settings = function(c)
                             local got
                             if kind == "value" then
                                 seenValue[key] = true
-                                got = settings.Get(key)
+                                got = declaration.Default
                                 if declaration.Type ~= type(v) then got = "type " .. tostring(declaration.Type) end
                             elseif kind == "map" then
-                                got = settings.GetEntry(key, unpack(rest))
+                                got = settings.EntryDefault(key, unpack(rest))
                             else
                                 got = Walk(declaration.Default, rest)
                             end
@@ -3327,6 +3335,70 @@ suites.settings = function(c)
                 counts.value, counts.map, counts.object, List(differ), List(missing), List(new),
                 Same(settings.Declaration("filters").Default, old.Filters.profile) and "same" or "differ",
                 Same(settings.Declaration("search").Default, old.SearchOptions.profile) and "same" or "differ")
+        end,
+        ["acedb-mode"] = function()
+            local renames = storeHelper.Runner(root).Renames
+            local function Case(opts)
+                local ctx = Boot(opts)
+                local settings, addon = ctx.addon.Settings, ctx.addon
+                local profile = addon.Options.db.profile
+                local read, write, default, values = 0, 0, 0, 0
+                for path, key in next, renames.Values do
+                    values = values + 1
+                    local segments = Split(path)
+                    local raw = Walk(profile, segments)
+                    if settings.Get(key) == (raw == nil and settings.Declaration(key).Default or raw) then read = read + 1 end
+                    local other
+                    if type(raw) == "boolean" then other = not raw elseif type(raw) == "number" then other = raw + 1 else other = tostring(raw) .. "x" end
+                    settings.Set(key, other)
+                    if Walk(profile, segments) == other then write = write + 1 end
+                    settings.Set(key, settings.Declaration(key).Default)
+                    local written = Walk(profile, segments)
+                    if written ~= nil and written == settings.Declaration(key).Default then default = default + 1 end
+                    local parent = Walk(profile, { unpack(segments, 1, #segments - 1) })
+                    parent[segments[#segments]] = raw
+                end
+                local entries, entriesSame, listed, listedSame = 0, 0, 0, 0
+                for _, map in ipairs(renames.Maps) do
+                    local t = Walk(profile, map.Path) or {}
+                    local declaration = settings.Declaration(map.Key)
+                    local function Leaf(v)
+                        if not map.Leaf then return v end
+                        if type(v) ~= "table" then return nil end
+                        return v[map.Leaf]
+                    end
+                    local function One(a, b, raw)
+                        entries = entries + 1
+                        if settings.GetEntry(map.Key, a, b) == raw then entriesSame = entriesSame + 1 end
+                    end
+                    for a, v in next, t do
+                        if declaration.Depth == 1 then
+                            One(a, nil, Leaf(v))
+                        else
+                            for b, w in next, v do One(a, b, Leaf(w)) end
+                            listed = listed + 1
+                            local n, raw = 0, 0
+                            for _ in settings.Entries(map.Key, a) do n = n + 1 end
+                            for _, w in next, v do
+                                if Leaf(w) ~= nil then raw = raw + 1 end
+                            end
+                            if n == raw then listedSame = listedSame + 1 end
+                        end
+                    end
+                end
+                addon.SearchOptions:Load()
+                local objects = 0
+                for _, object in ipairs(renames.Objects) do
+                    if rawequal(settings.GetObject(object.Key), Walk(profile, object.Path)) then objects = objects + 1 end
+                end
+                if rawequal(settings.GetObject("filters"), addon.Filters.db.profile) then objects = objects + 1 end
+                if rawequal(settings.GetObject("search"), addon.SearchOptions.db.profile) then objects = objects + 1 end
+                return ("values=%d read=%d write=%d default-written=%d entries=%d/%d listed=%d/%d objects=%d/5 profiles=%s/%s"):format(
+                    values, read, write, default, entriesSame, entries, listedSame, listed, objects,
+                    table.concat(settings.Profiles("options"), ","), settings.CurrentProfile("filters"))
+            end
+            local saved = assert(loadfile(scriptDir .. "/fixtures/settings-baseline-" .. c.client .. ".lua"))()
+            return "new: " .. Case() .. " / old file: " .. Case({ SavedVariables = saved })
         end,
         ["migrate-fixture"] = function()
             local s = Runner(true)
