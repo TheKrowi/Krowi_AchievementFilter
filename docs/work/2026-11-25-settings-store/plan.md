@@ -123,6 +123,7 @@ Each step ends with the headless suites it reaches green and a commit. Nothing r
      - The matrix (`-Matrix`): 1534 passed, 0 failed, complete. BugGrabber shows no addon error.
      - By option, the cleared file equals the branch's headless migration of the snapshot, except the ten values the options suite's `CheckDefaults` leaves changed (the older test bug, `docs/backlog.md`) and three filter `Refresh` flags (runtime redraw marks, not settings).
      - After the matrix's logins and reloads, no option moved, only those runtime flags: a cleared file stays as it is.
+   - Mists done 2026-11-27 (5.5.4): the first login migrated and cleared (the old variables nil, on the `.toc`); all 19 suites with no failure; the matrix 1252 passed, 0 failed, complete; no addon error. By option the cleared file equals the branch's migration except the same ten `CheckDefaults` leftovers (headless on `main` too, from this snapshot) and three `Refresh` flags. The leftovers flip between two states from one options run to the next, which is why step 11 on Mists happened to compare equal.
 13. **Reviews:** `krowi:taint-reviewer` on the diff; the code review (`REVIEW.md`); `Find-DeprecatedApi.ps1`. Then the PR, with the class checked by `Get-ChangeClass.ps1`.
 
 ## Risks
