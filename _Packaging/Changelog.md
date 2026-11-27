@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 106.1
+## 107.0 - 2026-11-27
 ### Changed
 - The addon no longer loads three Ace3 libraries it stopped using (AceTimer, AceSerializer and AceEvent)
 - The Data Manager's export, import and log boxes use the game's own text box, and the addon no longer loads AceGUI
