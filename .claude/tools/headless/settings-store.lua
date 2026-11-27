@@ -80,6 +80,7 @@ function M.FromFakeProfile(repoRoot, addon)
         if type(t) == "table" and getmetatable(t) and not map.Leaf then saved.Options.Profiles.Default[map.Key] = t end
     end
     settings.Load(saved, context.Character)
+    if type(db) == "table" then options.db = nil end -- copied once: a later edit of the fake would be lost, so it fails loudly
     return settings
 end
 -- The migration runner on its own: Settings/Renames.lua, Check.lua and Migrations.lua in a fresh namespace. Returns

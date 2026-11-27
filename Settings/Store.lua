@@ -404,10 +404,10 @@ local function Section(system)
     return root[section]
 end
 
--- The profile names of a system, sorted; Default and the current one always among them
+-- The profile names of a system, sorted: every profile that exists, and the current one (as AceDB listed them)
 function settings.Profiles(system)
     local data = Section(system)
-    local seen, names = { Default = true, [currentName[system]] = true }, {}
+    local seen, names = { [currentName[system]] = true }, {}
     for name in next, data.Profiles do seen[name] = true end
     for name in next, seen do names[#names + 1] = name end
     table.sort(names)

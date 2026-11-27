@@ -90,6 +90,13 @@ Each step ends with the headless suites it reaches green and a commit. Nothing r
      - **Two findings.**
        - `SavedKeys` reported a map new as a whole as one path; it now walks its leaves.
        - The old fixture lacks the Legion mark every file since 104 holds (its writer never ran the DataIntegrityManager). Without it the migration merges the Legion toggles, so `old-file-same-values` gives the file that mark.
+     - **After the advisor's review of the switch:**
+       - The new `second-login` scenario boots again on what the logout save wrote, with `Version` 1, and every option, filter, search toggle and sort list still reads as the old build read it.
+       - The Map Verifier's and the text frame's drag no longer raise: they have no remembered-position setting and read as off, as before.
+       - The profile list holds the profiles that exist and the current one, as AceDB's did (`store-profile-list`).
+       - A suite's fake profile is copied once and then removed, so a later write into it fails loudly. That found the navigation suite's write, now through the store.
+       - In `Libs/`, only `Icon.lua` reads `addon.Options.db`, served by the hand-over.
+     - **Open for Krowi before step 11:** with clearing off, the build migrates from the old tables at every login, so a setting changed in game does not survive a `/reload` (`migrate-twice` records it). Every in-game run that sets something and reloads (`-Matrix` sets the feature switches and reloads per step) cannot pass at step 11. Either those runs move to step 12, with clearing on; or clearing off marks the migration done and only skips the clear, a change to the spec's requirement on clearing.
      - **Owed before step 11:** `Compare-SavedSettings.ps1` and `saved-settings.lua` learn the new layout. `write-settings-fixture.lua` and `write-option-paths.lua` no longer run (no AceDB); their fixtures are frozen, as intended.
 10. **The DataIntegrityManager's retirement**, the import fix, the dead `KrowiAF_SavedData` keys, the failure line in 11 languages, the jobs list. The real-file dry run again.
 11. **In game, clearing still off.**

@@ -740,7 +740,7 @@ suites.navigation = function(c)
     function headless.ToggleOption() -- what Options/Layout.lua's BrowserHistoryTrackSet does for off, then on
         local prevButton, nextButton = env.KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton, env.KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton
         for _, on in ipairs({ false, true }) do
-            profile.TrackAchievementBrowserHistory = on
+            addon.Settings.Set("window.trackBrowsingHistory", on)
             prevButton:Hide()
             nextButton:Hide()
             if on then
@@ -2991,6 +2991,9 @@ local settingsScenarios = {
     -- the profiles Default and Second, and the filter and search values, against those it was written with
     {Name = "old-file-same-values", Recorded = "default=0 second=0 filters=0 search=0 missing=0",
         Target = "default=0 second=0 filters=0 search=0 missing=0"},
+    -- the next login on what the logout save wrote, with the migration done (Version 1): every option, filter, search
+    -- toggle and sort list still reads as the old build read it, and nothing migrates again
+    {Name = "second-login", Recorded = "default=0 second=0 filters=0 search=0 missing=0 sort=3,2,4,5,1 migrated-again=no", Target = "default=0 second=0 filters=0 search=0 missing=0 sort=3,2,4,5,1 migrated-again=no"},
     -- the two profile systems on the settings store (docs/work/2026-11-25-settings-store, requirements 6-8): an options
     -- profile switch moves the options and fires the change events of the values that differ, keeps the filter profile and
     -- the account values; a filter profile switch re-points every tab's filters, makes the search results stale (the
@@ -3093,7 +3096,48 @@ suites.settings = function(c)
         end
         return t
     end
-    -- The migration runner alone (settings-store.lua), the old file as plain tables, and the runner's context
+    -- The old file (fixtures/settings-baseline-<client>.lua) as a boot reads it, with the mark every file the old code
+    -- wrote since 104 holds (the DataIntegrityManager set it at the first load): the fixture writer never ran it, and
+    -- without it the migration would merge the Legion Assault toggles
+    local function OldFileForBoot()
+        local file = scriptDir .. "/fixtures/settings-baseline-" .. c.client
+        local saved = assert(loadfile(file .. ".lua"))()
+        local values = assert(loadfile(file .. "-values.lua"))()
+        saved.KrowiAF_SavedData.Fixes = { MergeLegionAssaultToggles = true }
+        return saved, values
+    end
+    -- On a booted ctx: every option in both options profiles, every filter and search value, against what the old
+    -- build read (the -values fixture), by option Id
+    local function SameByOption(values, ctx)
+        local byId = {}
+        for _, item in ipairs(ctx.addon.Options.Window.Model.Options()) do byId[item.Option.Id] = item.Option end
+        local missing = 0
+        local function Compare(expected)
+            local wrong = 0
+            for id, value in next, expected do
+                local option = byId[id]
+                if not option then
+                    missing = missing + 1
+                elseif option:Get() ~= value then
+                    wrong = wrong + 1
+                end
+            end
+            return wrong
+        end
+        local settings = ctx.addon.Settings
+        local default = Compare(values.Options.Default)
+        settings.SetProfile("options", "Second")
+        local second = Compare(values.Options.Second)
+        settings.SetProfile("options", "Default")
+        local filters, search = 0, 0
+        for _, entry in ipairs(values.Filters) do
+            if Walk(settings.GetObject("filters"), entry.Keys) ~= entry.Value then filters = filters + 1 end
+        end
+        for _, entry in ipairs(values.Search) do
+            if Walk(settings.GetObject("search"), entry.Keys) ~= entry.Value then search = search + 1 end
+        end
+        return ("default=%d second=%d filters=%d search=%d missing=%d"):format(default, second, filters, search, missing)
+    end    -- The migration runner alone (settings-store.lua), the old file as plain tables, and the runner's context
     local storeHelper = assert(loadfile(scriptDir .. "/settings-store.lua"))()
     local function Runner(clear)
         local s = storeHelper.Runner(root)
@@ -3137,41 +3181,21 @@ suites.settings = function(c)
     end
     local reads = {
         ["old-file-same-values"] = function()
-            local file = scriptDir .. "/fixtures/settings-baseline-" .. c.client
-            local saved = assert(loadfile(file .. ".lua"))()
-            local values = assert(loadfile(file .. "-values.lua"))()
-            -- the mark every file the old code wrote since 104 holds (the DataIntegrityManager set it at the first load);
-            -- the fixture writer never ran it, and without it the migration would merge the Legion Assault toggles
-            saved.KrowiAF_SavedData.Fixes = { MergeLegionAssaultToggles = true }
-            local ctx, model = Boot({ SavedVariables = saved })
-            local byId = {}
-            for _, item in ipairs(model.Options()) do byId[item.Option.Id] = item.Option end
-            local missing = 0
-            local function Compare(expected)
-                local wrong = 0
-                for id, value in next, expected do
-                    local option = byId[id]
-                    if not option then
-                        missing = missing + 1
-                    elseif option:Get() ~= value then
-                        wrong = wrong + 1
-                    end
-                end
-                return wrong
-            end
-            local settings = ctx.addon.Settings
-            local default = Compare(values.Options.Default)
-            settings.SetProfile("options", "Second")
-            local second = Compare(values.Options.Second)
-            settings.SetProfile("options", "Default")
-            local filters, search = 0, 0
-            for _, entry in ipairs(values.Filters) do
-                if Walk(settings.GetObject("filters"), entry.Keys) ~= entry.Value then filters = filters + 1 end
-            end
-            for _, entry in ipairs(values.Search) do
-                if Walk(settings.GetObject("search"), entry.Keys) ~= entry.Value then search = search + 1 end
-            end
-            return ("default=%d second=%d filters=%d search=%d missing=%d"):format(default, second, filters, search, missing)
+            local saved, values = OldFileForBoot()
+            return SameByOption(values, Boot({ SavedVariables = saved }))
+        end,
+        ["second-login"] = function()
+            local saved, values = OldFileForBoot()
+            local first = Boot({ SavedVariables = saved })
+            first.Logout()
+            local store = rawget(first.env, "KrowiAF_Settings")
+            store.Version = 1 -- as the final build leaves it: the next login does not migrate again
+            local again = Boot({ SavedVariables = { KrowiAF_Settings = store, KrowiAF_SavedData = saved.KrowiAF_SavedData } })
+            local priority = again.addon.Settings.GetObject("tooltips.points.sortPriority")
+            local parts = {}
+            for i = 1, 5 do parts[i] = tostring(priority[i]) end
+            return SameByOption(values, again) .. " sort=" .. table.concat(parts, ",") .. " migrated-again=" ..
+                (#again.addon.Settings.Migrations.Log == 0 and "no" or "yes")
         end,
         ["profile-switch"] = function()
             local ctx = Boot()
@@ -3626,6 +3650,9 @@ local storeScenarios = {
     {Name = "store-profiles",
         Recorded = 'x=3,2,3,1 events=4 changed=4 filter-events=0 filters=Default account=true copy-obj=9 reset-obj=1 profiles=Default,Second/Default other=Default delete-active=error delete-missing=error delete-silent=ok options={Default={}}',
         Target = 'x=3,2,3,1 events=4 changed=4 filter-events=0 filters=Default account=true copy-obj=9 reset-obj=1 profiles=Default,Second/Default other=Default delete-active=error delete-missing=error delete-silent=ok options={Default={}}'},
+    -- the profiles listed are those that exist and the current one: with Default deleted it is not offered (copy or
+    -- delete would raise on it)
+    {Name = "store-profile-list", Recorded = "Second", Target = "Second"},
     -- WithDefaults: reads give defaults and fn's own writes, objects are copies of the default, no event, the real
     -- settings untouched after, also when fn errors; whether a setting was read
     {Name = "store-with-defaults", Recorded = "read=true inner=1/9/true/7 after=5/2/false events=0 default=1 error=boom/5 noread=false",
@@ -3751,6 +3778,11 @@ suites.store = function(c)
                 tostring(settings.Get("acc.debug")), copyObj, resetObj, profiles,
                 saved.Options.ProfileOf["Other - Realm"] or "Default", deleteActive, deleteMissing, deleteSilent,
                 Compact(saved.Options.Profiles))
+        end,
+        ["store-profile-list"] = function()
+            local saved = { Options = { Profiles = { Second = {} }, ProfileOf = { ["Tester - Realm"] = "Second" } } }
+            local s = store.New(root, { Saved = saved, Declarations = { ["o.x"] = { Default = 1 } } })
+            return table.concat(s.Settings.Profiles("options"), ",")
         end,
         ["store-with-defaults"] = function()
             local saved = { Options = { Profiles = { Default = { ["o.x"] = 5, ["m.e"] = { [1] = false }, ["o.obj"] = { A = { B = 2 } } } } } }
