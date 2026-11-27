@@ -11,7 +11,7 @@ This file loads into every session and every general-purpose subagent, so it hol
 There is no build step, no external linter or test framework and no CI: never run or invent `luacheck`, `busted`, a Makefile or GitHub Actions. The game loads the addon from the `.toc` and is the only full validator; the offline checks install nothing. This repo's tools are in `.claude/tools/` (each tool and lint rule: `.claude/tools/README.md`) and reach the kit through `.claude/tools/KitPath.ps1`.
 
 ```powershell
-& ".claude\tools\Check-Repo.ps1" -ChangedOnly  # lint the changed files, errors instead of warnings; no switch: whole tree; -Luals adds the language server
+& ".claude\tools\Check-Repo.ps1" -ChangedOnly  # lint the changed files, errors instead of warnings; no switch: whole tree, language server included; -Luals adds it to -ChangedOnly
 & ".claude\tools\Show-Achievement.ps1" 5313    # one call per achievement question: data line, snapshot line, state, categories, zones per client; -Db -History
 & "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\lua.exe" ".claude\tools\headless\load-data.lua" "$PWD" Both     # headless data load
 & "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\lua.exe" ".claude\tools\headless\run-tests.lua" "$PWD" escape   # one scenario suite; -check for the lint form
@@ -19,7 +19,7 @@ There is no build step, no external linter or test framework and no CI: never ru
 & ".claude\tools\Read-GameTests.ps1"                  # the last /kaftest run, every line that differs from the headless run marked; -Client, -Run <n>
 ```
 
-- **Stop hook:** `.claude/hooks/Check-RepoOnStop.ps1` runs `Check-Repo.ps1 -ChangedOnly` when a turn ends and hands errors back. Fix them, or add a deliberate exception to `.claude/tools/Check-Repo.ignore` with a comment. After a switch with EnterWorktree it still runs from the checkout the session started in, and lints the checkout the session's cwd is in; the guard maps worktree paths onto the checkout's own.
+- **Stop hook:** `.claude/hooks/Check-RepoOnStop.ps1` runs `Check-Repo.ps1 -ChangedOnly` when a turn ends, unless nothing changed since its last clean run, and hands errors back. Fix them, or add a deliberate exception to `.claude/tools/Check-Repo.ignore` with a comment. After a switch with EnterWorktree it still runs from the checkout the session started in, and lints the checkout the session's cwd is in; the guard maps worktree paths onto the checkout's own.
 - **Worktrees:** Claude Code's own (EnterWorktree with a name, `claude --worktree`, subagent `isolation: "worktree"`) branch from the session's HEAD (`worktree.baseRef` is `head` here) but have no `Libs/` submodules, so the headless pipeline fails in them. For real work, use the kit's `New-Worktree.ps1` and switch with EnterWorktree and its path.
 - **Which suites to run** (Krowi, 2026-11-07): in development and in a pull request only the suites the change can affect, never the whole set; before a release the gate wants a green in-game run of all but the probes on the newest Retail and Mists build (`.claude/rules/release.md`). Green means it failed nothing and passed something (Krowi, 2026-11-08). The suites: `Tests/README.md`.
 - **Without the client:** follow existing patterns exactly; register every new `.lua` file in the right `Files.xml` (a file not listed silently never loads, and a file can use only what earlier files define; the load order is in `docs/architecture.md`); declare every new saved variable in the `.toc`; keep XML template names and Lua frame references in sync.

@@ -2,7 +2,7 @@
 <!-- Short summary of the change. One sentence is enough. -->
 
 ## Why
-<!-- Why is this needed? Link the issue (Closes #NNN; it does not auto-close, dev is not the default branch) and the work folder docs/work/<issue>-<slug>/ (intent.md, spec.md, plan.md). -->
+<!-- Why is this needed? Link the issue (Closes #NNN) and the work folder docs/work/<issue>-<slug>/ (intent.md, spec.md, plan.md). -->
 
 ## Game Client Affected
 <!-- Mark all that apply -->

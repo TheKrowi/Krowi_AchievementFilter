@@ -27,3 +27,11 @@ Spec: [spec.md](spec.md). Status: accepted
 - `PowerShell` not available to a subagent on another machine: this repo is Krowi's machine only, where the tool is on.
 
 ## Proof
+Stop hook, fed `{"cwd": "<worktree>"}` on stdin (2026-11-27):
+- before the change, a tree with nothing changed: lints, exit 0, 24.4 s;
+- after: first run lints, exit 0, 25.4 s, stamp written; second run with nothing changed: exit 0, 0.7 s;
+- a trailing semicolon added to `Slots.lua`: lints, exit 2 with the `semicolon` finding, no stamp; the same again: lints again (27.4 s), exit 2; with `stop_hook_active` true: exit 0 at once;
+- the semicolon reverted: lints, exit 0, 24.5 s, stamp written; unchanged: 0.6 s; a new untracked file: lints, 24.4 s.
+- `Check-Repo.ps1 -ChangedOnly` with every change in place: 0 errors, 0 warnings.
+
+After the merge, from the main checkout's settings: `/permissions` lists the two deny rules; an Edit of a file under `wow-ui-source` with an `old_string` that does not exist is refused by permission; `data-verifier` runs `& ".claude\tools\Show-Achievement.ps1" 6 -Db`.
