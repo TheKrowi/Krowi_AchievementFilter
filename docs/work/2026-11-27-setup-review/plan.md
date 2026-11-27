@@ -34,4 +34,6 @@ Stop hook, fed `{"cwd": "<worktree>"}` on stdin (2026-11-27):
 - the semicolon reverted: lints, exit 0, 24.5 s, stamp written; unchanged: 0.6 s; a new untracked file: lints, 24.4 s.
 - `Check-Repo.ps1 -ChangedOnly` with every change in place: 0 errors, 0 warnings.
 
+Departure after `/code-review` (medium, 7 findings): the fingerprint now also covers the submodules' own changes (`--submodule=diff`) and untracked files, the kit's diff and untracked files (not only its `HEAD`), and names outside ASCII (`core.quotePath=false`, UTF-8); the stamp is written only when the fingerprint after the clean run equals the one before. `data-verifier` names the two scripts without a rule and gives the PTR variable in the same call. Not changed: gitignored files and the game database's builds stay outside the fingerprint (the comment and the spec say so). Rerun: first run 27.6 s, unchanged 2.0 s; an untracked file in `Libs/CallbackHandler-1.0` lints, unchanged 1.9 s, the same file with new content lints; an untracked `prüfung.txt` lints, unchanged 1.9 s.
+
 After the merge, from the main checkout's settings: `/permissions` lists the two deny rules; an Edit of a file under `wow-ui-source` with an `old_string` that does not exist is refused by permission; `data-verifier` runs `& ".claude\tools\Show-Achievement.ps1" 6 -Db`.

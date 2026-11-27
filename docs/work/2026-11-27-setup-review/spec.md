@@ -40,7 +40,7 @@ Intent: [intent.md](intent.md). Status: accepted
 ## Areas of concern
 - Taint and secret values; clients; Blizzard API changes; other addons; saved variables; localization; embedded libraries; player-facing text: none, nothing that ships or deploys changes (`.claude/`, `.github/`, `docs/`, `.gitignore`, `CLAUDE.md`).
 - Data snapshots: none; the lint, including the snapshot rules, still runs on any change.
-- Harness: the Stop hook's change and an existing line of `settings.json` make this class `harness`. A stale cache is the risk: the fingerprint covers everything the lint reads in the repo and the kit's commit; uncommitted edits in the kit are not covered (the kit is edited in its own sessions, which commit).
+- Harness: the Stop hook's change and an existing line of `settings.json` make this class `harness`. A stale cache is the risk: the fingerprint covers what git sees of the checkout, its submodules and the kit (commits, diffs, untracked files); not gitignored files, nor the game database's builds, which only the zone rules read (when a zone file changed, which changes the fingerprint).
 - Project settings load from the main checkout, so items 3 and 6 take effect after the merge.
 
 ## Verification

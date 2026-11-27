@@ -26,9 +26,9 @@ Run the DB lookups through the designated scripts, passing the values as paramet
 & "E:\World of Warcraft Addon Development\Krowi_ClaudeKit\tools\lua51\lua.exe" ".claude\tools\headless\load-data.lua" "$PWD" Both          # offline pipeline: duplicates, bad keys, dangling references, in 0.5 s
 ```
 
-Your shell is PowerShell: run each command exactly in the `& "<script>" <parameters>` form above, from the repo root, which is the form the permission rules allow.
+Your shell is PowerShell: run each command in the `& "<script>" <parameters>` form above, from the repo root. That form matches the permission rules for the lookups, the pipeline and `Get-WowBuilds.ps1`; `_start_server.ps1` and `Verify-AchievementData.ps1` have no rule and may be refused, so report that instead of retrying another way.
 
-Builds resolve from the server (`/build/table`, local then remote), so never type one; for content still on the PTR, set `$env:KAF_RETAIL_PRODUCT = "wowxptr"` first. Include one control id you know exists (for example 6, "Level 10", exists on both builds) so a run of NOTFOUND results is proven to be real and not a failed query.
+Builds resolve from the server (`/build/table`, local then remote), so never type one; for content still on the PTR, set `$env:KAF_RETAIL_PRODUCT = "wowxptr"` in the same call as the lookup (`$env:KAF_RETAIL_PRODUCT = "wowxptr"; & "<script>" ...`), since a variable does not survive to the next call. Include one control id you know exists (for example 6, "Level 10", exists on both builds) so a run of NOTFOUND results is proven to be real and not a failed query.
 
 ## Procedure
 
