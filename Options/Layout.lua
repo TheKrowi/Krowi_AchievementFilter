@@ -523,7 +523,7 @@ end
 -- icon and the block under the selected achievement)
 local function GuideOptionSetter(key)
     return function(_, value)
-        addon.Options.db.profile.Achievements.Guide[key] = value
+        addon.Settings.Set("guides." .. key:sub(1, 1):lower() .. key:sub(2), value) -- "ExpandedRow" is guides.expandedRow
         local panel = addon.Gui.Guide.Panel
         if panel.Frame and panel.Frame:IsShown() then
             panel:Render()
@@ -1600,28 +1600,27 @@ function RefreshOptions()
         SetMaxNumberOfSearchPreviews()
         return
     end
-    local profile = addon.Options.db.profile
-    MovableSwitchMovableSet(_, profile.Window.Movable)
-    MovableAchievementWindowRememberLastPositionSet(_, profile.Window.RememberLastPosition.AchievementWindow)
-    MovableCalendarRememberLastPositionSet(_, profile.Window.RememberLastPosition.Calendar)
-    MovableDataManagerRememberLastPositionSet(_, profile.Window.RememberLastPosition.DataManager)
-    OffsetsCategoriesFrameWidthSet(_, profile.Window.CategoriesFrameWidthOffset)
-    OffsetsAchievementsFrameWidthSet(_, profile.Window.AchievementsFrameWidthOffset)
-    OffsetsAchievementFrameHeightSet(_, profile.Window.AchievementFrameHeightOffset)
+    MovableSwitchMovableSet(_, addon.Settings.Get("window.movable"))
+    MovableAchievementWindowRememberLastPositionSet(_, addon.Settings.Get("window.rememberPosition.achievementWindow"))
+    MovableCalendarRememberLastPositionSet(_, addon.Settings.Get("window.rememberPosition.calendar"))
+    MovableDataManagerRememberLastPositionSet(_, addon.Settings.Get("window.rememberPosition.dataManager"))
+    OffsetsCategoriesFrameWidthSet(_, addon.Settings.Get("window.categoriesFrameWidthOffset"))
+    OffsetsAchievementsFrameWidthSet(_, addon.Settings.Get("window.achievementsFrameWidthOffset"))
+    OffsetsAchievementFrameHeightSet(_, addon.Settings.Get("window.achievementFrameHeightOffset"))
     addon.Gui:ShowHideTabs() -- Dynamic Tab Order and Visibility is handled by this one
-    CenterHeaderSet(_, profile.CenterHeader)
-    CalendarButtonOffsetXSet(_, profile.Calendar.ButtonOffsetX)
-    CalendarButtonOffsetYSet(_, profile.Calendar.ButtonOffsetY)
-    SetSearchBoxMouseWheelPanScalar(_, profile.SearchBox.MouseWheelPanScalar)
-    SetSummaryMouseWheelPanScalar(_, profile.Summary.MouseWheelPanScalar)
-    SetCategoryIndentation(_, profile.Categories.Indentation)
-    SetCategoriesMouseWheelPanScalar(_, profile.Categories.MouseWheelPanScalar)
-    MergeMergeSmallCategoriesThresholdSet(_, profile.Window.MergeSmallCategoriesThreshold)
+    CenterHeaderSet(_, addon.Settings.Get("window.centerHeader"))
+    CalendarButtonOffsetXSet(_, addon.Settings.Get("window.calendarButton.offsetX"))
+    CalendarButtonOffsetYSet(_, addon.Settings.Get("window.calendarButton.offsetY"))
+    SetSearchBoxMouseWheelPanScalar(_, addon.Settings.Get("searchBox.mouseWheelPanScalar"))
+    SetSummaryMouseWheelPanScalar(_, addon.Settings.Get("summary.mouseWheelPanScalar"))
+    SetCategoryIndentation(_, addon.Settings.Get("categories.indentation"))
+    SetCategoriesMouseWheelPanScalar(_, addon.Settings.Get("categories.mouseWheelPanScalar"))
+    MergeMergeSmallCategoriesThresholdSet(_, addon.Settings.Get("categories.mergeSmallThreshold"))
     DrawWatchListSubCategories()
     DrawTrackingAchievementsSubCategories()
     ShowExcludedCategory() -- Resets or reloads the Excluded tree for the new profile, so no separate redraw is needed
-    SetAchievementsMouseWheelPanScalar(_, profile.Achievements.MouseWheelPanScalar)
-    StartTimeAndEndTimeCustomSet(_, profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime)
-    SetCalendarMouseWheelPanScalar(_, profile.Calendar.MouseWheelPanScalar)
-    SetDataManagerMouseWheelPanScalar(_, profile.DataManager.MouseWheelPanScalar)
+    SetAchievementsMouseWheelPanScalar(_, addon.Settings.Get("achievements.mouseWheelPanScalar"))
+    StartTimeAndEndTimeCustomSet(_, addon.Settings.Get("tooltips.temporarilyObtainable.dateTimeFormat.startTimeAndEndTime"))
+    SetCalendarMouseWheelPanScalar(_, addon.Settings.Get("calendar.mouseWheelPanScalar"))
+    SetDataManagerMouseWheelPanScalar(_, addon.Settings.Get("dataManager.mouseWheelPanScalar"))
 end

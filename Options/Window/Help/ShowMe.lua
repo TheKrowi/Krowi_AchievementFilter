@@ -29,12 +29,11 @@ end
 
 -- The preferred tab of this addon if the player shows it, else the first one shown
 local function ShownTab(preferred)
-    local tabs = addon.Options.db.profile.Tabs[addonName]
-    if tabs[preferred] and tabs[preferred].Show then
+    if addon.Settings.GetEntry("tabs.show", addonName, preferred) then
         return preferred
     end
     for _, name in ipairs(tabPreference) do
-        if tabs[name] and tabs[name].Show then
+        if addon.Settings.GetEntry("tabs.show", addonName, name) then
             return name
         end
     end

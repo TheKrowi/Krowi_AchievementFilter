@@ -33,7 +33,7 @@ function KrowiAF_SelectAchievement(achievement)
 
 	-- Get category
 	local category
-	if filters and filters.db.profile.MergeSmallCategories then
+	if filters and addon.Settings.GetObject("filters").MergeSmallCategories then
 		category = achievement:GetMergedCategory() -- This way we get the parent category
 	else
 		category = achievement.Category

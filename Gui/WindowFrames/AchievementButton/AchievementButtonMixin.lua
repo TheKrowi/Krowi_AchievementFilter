@@ -460,7 +460,7 @@ local function SetCompletionState(self, achievement, completed, month, day, year
 	-- 	end
 	-- end
 
-	local earnedByFilter = addon.Filters.db.profile.EarnedBy
+	local earnedByFilter = addon.Settings.GetObject("filters").EarnedBy
 	if (earnedByFilter == 'Account' and completed or wasEarnedByMe) or (earnedByFilter == 'CharacterAccount' and completed and wasEarnedByMe) then
 		self.Completed = true
 		achievement.IsCompleted = true

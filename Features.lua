@@ -74,10 +74,9 @@ local function Write(tbl, path, value)
     tbl[parts[#parts]] = value
 end
 
--- The switch as saved in the current profile; on before the options load
+-- The switch as saved in the current profile; on before the settings load
 local function IsOn(record)
-    local db = addon.Options.db
-    return not db or Read(db.profile, record.Switch) ~= false
+    return not addon.Settings.IsLoaded() or addon.Settings.Get(record.SwitchKey) ~= false
 end
 
 function features.Register(def)
@@ -180,7 +179,7 @@ local function BuildFeatureOptions(record)
             name = addon.L["Enable"],
             desc = addon.L["Feature Switch Desc"]:K_ReplaceVars({feature = record.Title}):KAF_AddDefaultValueText(record.SwitchKey):K_AddReloadRequired(),
             get = function() return IsOn(record) end,
-            set = function(_, value) Write(addon.Options.db.profile, record.Switch, value) end
+            set = function(_, value) addon.Settings.Set(record.SwitchKey, value) end
         },
         Settings = {
             order = 2, type = "group", inline = true, name = "",
@@ -422,5 +421,5 @@ function features.GetSwitch(name)
 end
 
 function features.SetSwitch(name, value)
-    Write(addon.Options.db.profile, Get(name).Switch, value and true or false)
+    addon.Settings.Set(Get(name).SwitchKey, value and true or false)
 end

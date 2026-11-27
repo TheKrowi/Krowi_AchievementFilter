@@ -44,16 +44,17 @@ local function GetSortedCharacters()
         })
     end
 
-    local sortOptions = addon.Options.db.profile.AchievementPoints.Tooltip.Sort
-    for index, sortFunc in next, sortOptions.Priority do
-        sortFuncs[sortFunc].Reverse = sortOptions.Reverse[index]
+    local priority = addon.Settings.GetObject("tooltips.points.sortPriority")
+    local reverse = addon.Settings.GetObject("tooltips.points.sortReverse")
+    for index, sortFunc in next, priority do
+        sortFuncs[sortFunc].Reverse = reverse[index]
     end
 
-    local sortFunc = sortFuncs[sortOptions.Priority[1]]
-    for i = 1, #sortOptions.Priority - 1 do
-        sortFuncs[sortOptions.Priority[i]].Fallback = sortFuncs[sortOptions.Priority[i + 1]]
+    local sortFunc = sortFuncs[priority[1]]
+    for i = 1, #priority - 1 do
+        sortFuncs[priority[i]].Fallback = sortFuncs[priority[i + 1]]
     end
-    sortFuncs[sortOptions.Priority[#sortOptions.Priority]]:SetDefaultFallback()
+    sortFuncs[priority[#priority]]:SetDefaultFallback()
 
     table.sort(characters, function(a, b)
         return sortFunc:Compare(a, b)

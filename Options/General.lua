@@ -575,8 +575,7 @@ options.OptionsTable.args["General"] = {
 }
 
 function RefreshOptions()
-    local profile = addon.Options.db.profile
-    MinimapShowMinimapIconSet(nil, profile.ShowMinimapIcon)
-    WorldMapShowWorldMapIconSet(nil, profile.ShowWorldmapIcon)
+    MinimapShowMinimapIconSet(nil, addon.Settings.Get("minimap.showIcon"))
+    WorldMapShowWorldMapIconSet(nil, addon.Settings.Get("worldMap.showIcon"))
     addon.ChangeAchievementMicroButtonOnClick()
 end

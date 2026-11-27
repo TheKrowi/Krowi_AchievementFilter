@@ -108,15 +108,15 @@ local function SearchAchievement(text, achievement, results, excludeExcluded, ex
 	if not id then
 		return
 	end
-	if (addon.SearchOptions.db.profile.SearchIds and string.find(tostring(id), text, 1, true))
-			or (addon.SearchOptions.db.profile.SearchNames and string.find(name:lower(), text, 1, true))
-			or (addon.SearchOptions.db.profile.SearchDescriptions and string.find(description:lower(), text, 1, true))
-			or (addon.SearchOptions.db.profile.SearchRewards and string.find(rewardText:lower(), text, 1, true)) then
+	if (addon.Settings.GetObject("search").SearchIds and string.find(tostring(id), text, 1, true))
+			or (addon.Settings.GetObject("search").SearchNames and string.find(name:lower(), text, 1, true))
+			or (addon.Settings.GetObject("search").SearchDescriptions and string.find(description:lower(), text, 1, true))
+			or (addon.Settings.GetObject("search").SearchRewards and string.find(rewardText:lower(), text, 1, true)) then
 		if not (excludeExcluded and achievement.Excluded) and not (excludeTracking and achievement.IsTracking) then
 			local value = 1
 			if addon.Settings.Get("searchBox.onlySearchFiltered") then
 				local category
-				if addon.Filters.db.profile.MergeSmallCategories then
+				if addon.Settings.GetObject("filters").MergeSmallCategories then
 					category = achievement:GetMergedCategory() -- This way we get the parent category
 				else
 					category = achievement.Category
@@ -206,7 +206,7 @@ local function GetSearchResults(text)
 	local numAchievementIds = #addon.Data.AchievementIds
 	local excludeExcluded = addon.Settings.Get("searchBox.excludeExcluded")
 	local excludeTracking = not addon.Settings.Get("categories.trackingAchievements.doLoad")
-	local showPlaceholders = addon.Settings.Get("advanced.placeholdersFilter") and addon.Filters.db.profile.ShowPlaceholders
+	local showPlaceholders = addon.Settings.Get("advanced.placeholdersFilter") and addon.Settings.GetObject("filters").ShowPlaceholders
 
 	if string.match(text, "^#") then
 		results = SearchAchievementIds(text, numAchievementIds, results, excludeExcluded, excludeTracking, showPlaceholders)
@@ -214,7 +214,7 @@ local function GetSearchResults(text)
 		results = SearchCriteria(text, numAchievementIds, results, excludeExcluded, excludeTracking)
 	else
 		results = SearchAchievements(text, numAchievementIds, results, excludeExcluded, excludeTracking)
-		if addon.SearchOptions.db.profile.SearchCriteria then
+		if addon.Settings.GetObject("search").SearchCriteria then
 			results = SearchCriteria(text, numAchievementIds, results, excludeExcluded, excludeTracking)
 		else
 			table.sort(results, function(a, b)

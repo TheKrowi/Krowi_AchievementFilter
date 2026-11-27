@@ -241,7 +241,7 @@ local validations = {
             if not addon.Settings.Get("advanced.placeholdersFilter") and achievement.DoesNotExist then
                 return true
             end
-            return not filters.db.profile.ShowPlaceholders and achievement.DoesNotExist
+            return not addon.Settings.GetObject("filters").ShowPlaceholders and achievement.DoesNotExist
         end
     },
     {   -- 14
@@ -274,7 +274,7 @@ function filters.Validate(_filters, achievement, ignoreFilters, ignoreCollapseSe
         return 2
     end
     achievementInfoCache = addon.GetAchievementInfoTable(achievement.Id)
-    if addon.Filters.db.profile.EarnedBy == 'CharacterOnly' then
+    if addon.Settings.GetObject("filters").EarnedBy == 'CharacterOnly' then
         achievementInfoCache.IsCompleted = achievementInfoCache.WasEarnedByMe
     end
     ignoreFilters = ignoreFilters or {}

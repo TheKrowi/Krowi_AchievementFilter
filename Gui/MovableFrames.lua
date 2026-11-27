@@ -45,7 +45,8 @@ function addon.MakeMovable(frame, rememberLastPositionOption, target, point)
     end)
     frame:SetScript("OnMouseUp", function()
         target:StopMovingOrSizing()
-        if addon.Options.db.profile.Window.RememberLastPosition[rememberLastPositionOption] then
+        -- "Calendar" is window.rememberPosition.calendar
+        if addon.Settings.Get("window.rememberPosition." .. rememberLastPositionOption:sub(1, 1):lower() .. rememberLastPositionOption:sub(2)) then
             KrowiAF_SavedData.RememberLastPosition = KrowiAF_SavedData.RememberLastPosition or {}
             KrowiAF_SavedData.RememberLastPosition[rememberLastPositionOption] = {
                 X = target:GetLeft(),

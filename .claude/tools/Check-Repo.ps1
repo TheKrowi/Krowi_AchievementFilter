@@ -51,6 +51,12 @@
                                  GETGLOBAL), none is assigned by one, no duplicates, sorted ordinally
       util-flags       [Error]   every addon.Util.Is* flag or check the addon reads is defined in Libs/Krowi_Util;
                                  always tree-wide, because a removal there breaks files nobody touched
+      settings-direct  [Error]   only Settings/ touches the settings' saved variables: no db.profile and no
+                                 KrowiAF_Settings, KrowiAF_Options, KrowiAF_Filters or KrowiAF_SearchOptions elsewhere
+                                 (whole words; comments left out); always tree-wide
+      settings-keys    [Error]   every setting key a call to addon.Settings or KAF_AddDefaultValueText names is
+                                 declared, and every declared key is used (literally, or through a prefix the rule
+                                 lists); always tree-wide
       luals            [Warning] the Lua language server reports nothing on a tree-wide check, using the
                                  VS Code extensions sumneko.lua and ketho.wow-api when installed
                                  (about 30 s; full runs only, or -Luals; skipped when they are absent)
@@ -846,6 +852,92 @@ if ($utilFlags.Count -eq 0) {
 }
 Write-Timing 'util-flags'
 
+# --- settings-direct: only Settings/ touches the settings' saved variables ---------------------------------------
+# docs/work/2026-11-25-settings-store, requirement 9: code reads and writes settings through addon.Settings, so no
+# AceDB profile (db.profile) and no KrowiAF_Settings, KrowiAF_Options, KrowiAF_Filters or KrowiAF_SearchOptions outside
+# Settings/. Whole words, since frame names such as KrowiAF_SearchOptionsMenuButton contain one; comments are left out.
+# Always tree-wide.
+foreach ($rel in $ownLuaFiles) {
+    if ($rel.StartsWith('Settings/')) { continue }
+    $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
+    if (-not ($text.Contains('db.profile') -or $text.Contains('KrowiAF_'))) { continue }
+    $lineNo = 0
+    foreach ($line in ($text -split "`r?`n")) {
+        $lineNo++
+        foreach ($m in [regex]::Matches(($line -replace '--.*$', ''), '\bdb\.profile\b|\bKrowiAF_(?:Settings|Options|Filters|SearchOptions)\b')) {
+            Add-Finding 'settings-direct' 'Error' $rel $lineNo "reads '$($m.Value)': settings go through addon.Settings (Settings/Store.lua), only Settings/ touches their saved variables (docs/work/2026-11-25-settings-store)"
+        }
+    }
+}
+Write-Timing 'settings-direct'
+
+# --- settings-keys: every key code names is declared, every declaration is used ----------------------------------
+# docs/work/2026-11-25-settings-store: a typo in a key is a Lua error only when that line runs; this finds it at once.
+# Declared: Declare("<key>" anywhere, a feature's Defaults ("[`"<key>`"] =" in Features/*/Options.lua), and each feature
+# switch (Switch = "<old path>", through Settings/Renames.lua, until the switches name their keys). Used: the literal
+# first argument of addon.Settings' calls and of KAF_AddDefaultValueText, an On = "<key>" field, and the keys code
+# builds from a prefix below. A swapped key is not found here: the settings suite's renames-by-option and
+# rows-round-trip catch that. Always tree-wide.
+$settingsRenameOf = @{}
+if ($fileBytes.ContainsKey('Settings/Renames.lua')) {
+    foreach ($m in [regex]::Matches([Text.Encoding]::UTF8.GetString($fileBytes['Settings/Renames.lua']), '(?m)^\s*\["([^"]+)"\]\s*=\s*"([^"]+)",')) {
+        $settingsRenameOf[$m.Groups[1].Value] = $m.Groups[2].Value
+    }
+}
+# Keys code builds from a prefix: the pop-ups' fields and triggers (Features/EventReminders/AlertSystem.lua), the Pop
+# Out's rows (Features/PopOut/Options.lua, Key), the remembered positions (Gui/MovableFrames.lua), the guide options'
+# setter (Options/Layout.lua) and the event toggles' maps (EventOptions.lua, EventsKey; Menu/StopTracking.lua)
+$settingsDynamic = @('eventReminders.popUps.', 'eventReminders.chatMessages.', 'popOut.', 'window.rememberPosition.', 'guides.',
+    'eventReminders.calendarEvents', 'eventReminders.widgetEvents', 'eventReminders.worldEvents')
+$settingsDeclared = [hashtable]::new([StringComparer]::Ordinal)
+$settingsUsed = [hashtable]::new([StringComparer]::Ordinal)
+$settingsUses = @()
+foreach ($rel in $ownLuaFiles) {
+    $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
+    if (-not ($text.Contains('Settings') -or $text.Contains('Switch') -or $text.Contains('KAF_AddDefaultValueText'))) { continue }
+    $lineNo = 0
+    foreach ($line in ($text -split "`r?`n")) {
+        $lineNo++
+        $code = $line -replace '--.*$', ''
+        foreach ($m in [regex]::Matches($code, '\bDeclare\(\s*"([^"]+)"')) { $settingsDeclared[$m.Groups[1].Value] = "${rel}:$lineNo" }
+        if ($rel -like 'Features/*/Options.lua') {
+            foreach ($m in [regex]::Matches($code, '^\s*\["([a-z]\w*(?:\.\w+)+)"\]\s*=')) { $settingsDeclared[$m.Groups[1].Value] = "${rel}:$lineNo" }
+        }
+        foreach ($m in [regex]::Matches($code, '\bSwitch\s*=\s*"([^"]+)"')) {
+            if ($settingsRenameOf.ContainsKey($m.Groups[1].Value)) {
+                $settingsDeclared[$settingsRenameOf[$m.Groups[1].Value]] = "${rel}:$lineNo"
+                $settingsUsed[$settingsRenameOf[$m.Groups[1].Value]] = $true # the registry reads it (Features.lua, IsOn)
+            }
+        }
+        if ($rel.StartsWith('Settings/')) { continue }
+        foreach ($m in [regex]::Matches($code, '\b[Ss]ettings\.(?:Get|Set|Reset|GetEntry|SetEntry|HasEntry|RemoveEntries|Entries|EntryDefault|RegisterEntryDefault|GetObject|OnChange|Row|Declaration)\(\s*"([^"]+)"|KAF_AddDefaultValueText\(\s*"([^"]+)"|\bOn\s*=\s*"([a-z]\w*(?:\.\w+)+)"')) {
+            $key = $m.Groups[1].Value + $m.Groups[2].Value + $m.Groups[3].Value
+            $settingsUsed[$key] = $true
+            $settingsUses += @{ Key = $key; Rel = $rel; Line = $lineNo }
+        }
+    }
+}
+foreach ($use in $settingsUses) {
+    if ($use.Key.EndsWith('.')) { # a prefix code adds to: one of $settingsDynamic
+        if ($settingsDynamic -notcontains $use.Key) {
+            Add-Finding 'settings-keys' 'Error' $use.Rel $use.Line "builds setting keys from '$($use.Key)', which `$settingsDynamic does not list, so their declarations look unused"
+        }
+        continue
+    }
+    if (-not $settingsDeclared.ContainsKey($use.Key)) {
+        Add-Finding 'settings-keys' 'Error' $use.Rel $use.Line "names the setting '$($use.Key)', which nothing declares (Settings/Declarations.lua, a feature's Defaults, a plugin's InjectOptions)"
+    }
+}
+foreach ($key in $settingsDeclared.Keys) {
+    if ($settingsUsed.ContainsKey($key)) { continue }
+    $dynamic = $false
+    foreach ($prefix in $settingsDynamic) { if ($key.StartsWith($prefix)) { $dynamic = $true; break } }
+    if ($dynamic) { continue }
+    $at = $settingsDeclared[$key] -split ':'
+    Add-Finding 'settings-keys' 'Error' $at[0] ([int]$at[1]) "declares the setting '$key', which no code reads or writes by name; remove it, or add the prefix code builds it from to `$settingsDynamic"
+}
+Write-Timing 'settings-keys'
+
 # --- luarc: .luarc.json diagnostics.globals stays exact ------------------------------------------
 # The language server resolves the WoW API and FrameXML (ketho.wow-api annotations) and every global
 # an addon file assigns by itself, so the list holds only what it cannot see: global strings,
@@ -1208,7 +1300,7 @@ if (Test-Path $ignoreFile) {
         if ($t -match '^(\S+)\s+(\S+)(?:\s+(\S+))?$') { $ignore += @{ Rule = $Matches[1]; Path = $Matches[2]; Name = $Matches[3] } }
     }
 }
-$alwaysOn = @('section-order', 'dup-id', 'saved-variables', 'lua-syntax', 'globals', 'removed-api', 'deprecated-api', 'library-names', 'util-flags', 'background-jobs', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'data-snapshot', 'zone-decisions', 'mapverifier', 'changelog', 'kit', 'feature-boundary', 'feature-texts', 'instructions')
+$alwaysOn = @('section-order', 'dup-id', 'saved-variables', 'lua-syntax', 'globals', 'removed-api', 'deprecated-api', 'library-names', 'util-flags', 'background-jobs', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'data-snapshot', 'zone-decisions', 'mapverifier', 'changelog', 'kit', 'feature-boundary', 'feature-texts', 'instructions', 'settings-direct', 'settings-keys')
 $report = $findings | Where-Object {
     $f = $_
     -not ($ignore | Where-Object { ($_.Rule -eq '*' -or $_.Rule -eq $f.Rule) -and $f.Path -like $_.Path -and (-not $_.Name -or $f.Message.Contains("'$($_.Name)'")) })

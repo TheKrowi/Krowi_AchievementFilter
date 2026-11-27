@@ -241,10 +241,10 @@ end
 
 function gui:ShowHideTabs(_addonName, tabName)
     if _addonName and tabName then
-        if not addon.Options.db.profile.Tabs[_addonName] or not addon.Options.db.profile.Tabs[_addonName][tabName] then
+        if not addon.Settings.HasEntry("tabs.show", _addonName, tabName) then
             return
         end
-        addon.Options.db.profile.Tabs[_addonName][tabName].Show = not addon.Options.db.profile.Tabs[_addonName][tabName].Show
+        addon.Settings.SetEntry("tabs.show", _addonName, tabName, not addon.Settings.GetEntry("tabs.show", _addonName, tabName))
         if not C_AddOns.IsAddOnLoaded(_addonName) or not addon.Gui.Tabs[_addonName] or not addon.Gui.Tabs[_addonName][tabName] then
             return
         end
@@ -254,13 +254,13 @@ function gui:ShowHideTabs(_addonName, tabName)
 
     local tabsOrder = {}
     local button
-    for addonName2, tabs in next, addon.Options.db.profile.Tabs do
-        for tabName2, tab in next, tabs do
+    for addonName2 in addon.Settings.Entries("tabs.show") do
+        for tabName2, show in addon.Settings.Entries("tabs.show", addonName2) do
             if addon.Gui.Tabs[addonName2] then
                 button = addon.Gui.Tabs[addonName2][tabName2]
                 if button then
-                    tabsOrder[tab.Order] = button
-                    if tab.Show then
+                    tabsOrder[addon.Settings.GetEntry("tabs.order", addonName2, tabName2)] = button
+                    if show then
                         button:Show()
                     else
                         button:Hide()
@@ -296,17 +296,18 @@ end
 
 local function AssignProperTabsOrder()
     local tabsOrder = {}
-    for tabsAddonName, tabs in next, addon.Options.db.profile.Tabs do
+    for tabsAddonName in addon.Settings.Entries("tabs.order") do -- a list of its own: removing below is safe
         if tabsAddonName == "Blizzard_AchievementUI" or C_AddOns.IsAddOnLoaded(tabsAddonName) then
-            for tabName, tab in next, tabs do
+            for tabName, order in addon.Settings.Entries("tabs.order", tabsAddonName) do
                 tinsert(tabsOrder, {
                     AddonName = tabsAddonName,
                     TabName = tabName,
-                    Order = tab.Order
+                    Order = order
                 })
             end
         else
-            addon.Options.db.profile.Tabs[tabsAddonName] = nil
+            addon.Settings.RemoveEntries("tabs.order", tabsAddonName)
+            addon.Settings.RemoveEntries("tabs.show", tabsAddonName)
             for i = #KrowiAF_SavedData.Tabs, 1, -1 do
                 if KrowiAF_SavedData.Tabs[i].AddonName == tabsAddonName then
                     tremove(KrowiAF_SavedData.Tabs, i)
@@ -322,7 +323,7 @@ local function AssignProperTabsOrder()
 
     local properIndex = 1
     for _, order in next, tabsOrder do
-        addon.Options.db.profile.Tabs[order.AddonName][order.TabName].Order = properIndex
+        addon.Settings.SetEntry("tabs.order", order.AddonName, order.TabName, properIndex)
         properIndex = properIndex + 1
     end
 
@@ -339,8 +340,8 @@ local function SwitchAchievementTabs()
             addonAchId = i
         end
     end
-    addon.Options.db.profile.Tabs["Blizzard_AchievementUI"]["Achievements"].Order = addonAchId
-    addon.Options.db.profile.Tabs[addonName]["Achievements"].Order = blizzAchId
+    addon.Settings.SetEntry("tabs.order", "Blizzard_AchievementUI", "Achievements", addonAchId)
+    addon.Settings.SetEntry("tabs.order", addonName, "Achievements", blizzAchId)
     addon.Settings.Set("window.microButtonTab", addonAchId)
 end
 

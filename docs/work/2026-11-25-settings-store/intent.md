@@ -48,7 +48,8 @@ Settings are built the way most applications build them (overview page: https://
 - Players see no difference except the debug and diagnostics switches no longer following the profile, and the search toggles following the filter profile.
 - Krowi_Reminders is out of scope and may break (Krowi, 2026-11-27).
 
-## Open questions (for the spec)
+## Open questions
+For the spec, which answers each (spec.md, Decision).
 - The full rename table, old path to new key, generated from [inventory.md](inventory.md) and reviewed.
 - Which lists become map settings and how their entries are keyed (one map for calendar, world and widget events, or three).
 - The exact account-scope list (the minimap icon?).

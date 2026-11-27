@@ -68,12 +68,12 @@ local function FadeTo(popout, targetAlpha)
 end
 
 local function UpdateChrome(popout, hovered)
-	local popoutOptions = addon.Options.db.profile.Popout
-	popout.CloseButton:SetShown(hovered or not popoutOptions.AutoHideCloseButton)
+	local settings = addon.Settings
+	popout.CloseButton:SetShown(hovered or not settings.Get("popOut.autoHideCloseButton"))
 	-- Never hide mid-drag: the button's own OnMouseUp is what stops the resize, so hiding it
 	-- (e.g. when the cursor drifts off its small hit-rect while dragging) would strand it in sizing mode
-	popout.ResizeButton:SetShown(popout.Resizing or hovered or not popoutOptions.AutoHideResizeButton)
-	FadeTo(popout, (popoutOptions.FadeWhenNotHovered and not hovered and popoutOptions.FadedOpacity) or 1)
+	popout.ResizeButton:SetShown(popout.Resizing or hovered or not settings.Get("popOut.autoHideResizeButton"))
+	FadeTo(popout, (settings.Get("popOut.fadeWhenNotHovered") and not hovered and settings.Get("popOut.fadedOpacity")) or 1)
 end
 
 -- Recomputes the objectives display and re-expands the button to fit; used instead of
