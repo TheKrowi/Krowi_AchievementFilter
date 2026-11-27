@@ -10,7 +10,7 @@ Spec: [spec.md](spec.md). Status: accepted 2026-11-27
 - `.claude/tools/headless/generate-renames.lua`: the generator behind `renames.md` and `Settings/Renames.lua` (explicit rows), and the reader rewrite script.
 
 **Changed**
-- `Krowi_AchievementFilter.toc`: `KrowiAF_Settings` on the `SavedVariables` line (the old three stay); `Settings\Files.xml` before `Options\Files.xml`.
+- `Krowi_AchievementFilter.toc`: `KrowiAF_Settings` on the `SavedVariables` line (the old three stay); `Settings\Files.xml` right after `Libs\Files.xml` (step 2).
 - `Krowi_AchievementFilter.lua`: the runner and the store load first in `LoadKrowi_AchievementFilter`; `DataIntegrityManager.Load` goes.
 - `Options/Files.xml`, `Options/Options.lua`: KAF's own `addon.Options` shell replaces Krowi_Util's `Options/Options.lua`. `Options/Defaults.lua` is deleted (its content becomes declarations). `Options/Profiles.lua`: no `Filters:Load`.
 - `Options/General.lua`, `Options/Layout.lua`, `Options/Credits.lua`, `Options/Plugins.lua`, `Features.lua`, `Features/*/Options.lua`, `Features/EventReminders/EventOptions.lua`, `Plugins/*.lua`: rows name keys through the row helpers; injected defaults become declarations and map entry defaults.
@@ -34,6 +34,9 @@ Each step ends with the headless suites it reaches green and a commit. Nothing r
 
 1. **Freeze the truth.** From the unchanged code: write the option Id → old paths fixtures per client; keep the existing baseline and `-values` fixtures. Commit before any code change.
 2. **The store, alone.** `Settings/Store.lua` with declarations, kinds, scopes, the two profile systems, change events, `WithDefaults`, the logout save. Headless scenarios: `sparse-save`, `profile-switch`, a `WithDefaults` case. Not loaded by the addon yet.
+   - Done 2026-11-27, with two changes. The store's own scenarios are a headless suite of their own, `store` (`store-sparse-save`, `store-profiles`, `store-with-defaults`, `store-maps`, ...), on the store loaded alone by `settings-store.lua` (the shared helper the other suites will use). The `settings` suite keeps its AceDB scenarios until step 6, and then gets the spec's whole-addon ones.
+   - `Settings\Files.xml` is on the `.toc` from this step, right after `Libs\Files.xml`, so `Api/` and `Plugins/` can reach `addon.Settings` at file scope. It is inert until step 6: the file only defines functions, and nothing calls `Load`.
+   - `Set` and `SetEntry` record the keys a player sets while `KrowiAF_Settings.MigrationFailed.Touched` exists, for requirement 15's "not set since". A key set back to its default leaves the file, so without this record it would look never set.
 3. **The rename table.** `generate-renames.lua` writes `Settings/Renames.lua` with explicit rows only; `renames-cover` and `renames-by-option` (against step 1's fixtures).
 4. **Migration and check, clearing off.** `Settings/Migrations.lua` and `Check.lua`, the clearing switch off. Scenarios: `migrate-fixture`, `migrate-twice`, `migrate-fails`, `migrate-errors`, `dead-key`, `legion-assaults`, `first-install`. `settings-dryrun.lua` on Krowi's six real files: check passes, three dead paths, and the time it takes on the 7 MB account.
 5. **Declarations.** Every setting declared: the core's from `Options/Defaults.lua`, the features' from their `Defaults`, the maps' entry defaults from the tab, event and adjustable-category injections. `defaults-unchanged` (by key, against the old defaults through the rename table).

@@ -55,7 +55,8 @@
 --         (Features.lua, Slots.lua and every feature under Features/, docs/work/2026-11-08-feature-split-poc: two
 --         whole-addon boots through options-env.lua, one with each feature off and one with it on, and whether a
 --         feature that is off starts, keeps a frame, data or a slot entry, and whether a feature's files make anything
---         while they load)
+--         while they load), store (Settings/Store.lua on its own through settings-store.lua,
+--         docs/work/2026-11-25-settings-store: declarations, kinds, the two profile systems, WithDefaults, the logout save)
 --
 -- Retail model is 12.1: the Blizzard_GameMenuEsc handler registry, the UI panel manager (its slots stay
 -- empty because the addon shows the achievement window with a plain Show), UISpecialFrames, static
@@ -3075,6 +3076,236 @@ suites.settings = function(c)
         local targetMet = got == target
         results[#results + 1] = { Name = scenario.Name, Status = status, TargetMet = targetMet,
             Line = ("settings/%s: %s recorded=[%s] got=[%s] target=[%s] %s"):format(scenario.Name, status, recorded, got, target, targetMet and "met" or "open") }
+    end
+    return results, ".claude/tools/headless/run-tests.lua", {}
+end
+
+-- The settings store on its own (Settings/Store.lua through settings-store.lua; docs/work/2026-11-25-settings-store,
+-- requirements 4, 6-8 and 10), headless only: declarations, the three kinds, the two profile systems, the account
+-- scope, change events, WithDefaults and the logout save, each scenario on a fresh store. The same for both clients.
+local storeScenarios = {
+    -- before Load: Get gives the default and a write is an error; an undeclared key or the wrong kind is an error
+    {Name = "store-before-load", Recorded = "get=true loaded=false set=error undeclared=error kind=error",
+        Target = "get=true loaded=false set=error undeclared=error kind=error"},
+    -- only what differs from a default is saved, false included; the holed sort list comes back whole and is saved
+    -- holed again; an object's fields its default lacks (a disabled plugin's tab) survive the logout save
+    {Name = "store-sparse-save",
+        Recorded = 'saved-false=false bool=false/removed num=absent/7 list=3,2,4,5,1 options={["o.sort"]={Priority={[1]=3,[3]=4,[4]=5,[5]=1}},["v.num"]=7} filters={["f.filters"]={Tabs={A={X=false},Plugin={Z=true}}}}',
+        Target = 'saved-false=false bool=false/removed num=absent/7 list=3,2,4,5,1 options={["o.sort"]={Priority={[1]=3,[3]=4,[4]=5,[5]=1}},["v.num"]=7} filters={["f.filters"]={Tabs={A={X=false},Plugin={Z=true}}}}'},
+    -- maps: an entry with no default and nothing saved reads nil; a saved entry nobody registered reads and survives;
+    -- an entry set to its default leaves the file; Entries lists registered and saved; RemoveEntries drops an addon
+    {Name = "store-maps",
+        Recorded = "none=nil unregistered=false has=false/true set=false/removed entries=374=true,500=false tabs=KAF=true,Other=true/KAF=true tab=Ach=true removed={[\"m.events\"]={[500]=false}}",
+        Target = "none=nil unregistered=false has=false/true set=false/removed entries=374=true,500=false tabs=KAF=true,Other=true/KAF=true tab=Ach=true removed={[\"m.events\"]={[500]=false}}"},
+    -- the options profiles: switch, copy, delete, reset; change events for the values that differ, the profile event
+    -- each time; the filter profile and the account values do not move; a deleted or reset profile's objects are not
+    -- written back by the logout save
+    {Name = "store-profiles",
+        Recorded = 'x=3,2,3,1 events=4 changed=4 filter-events=0 filters=Default account=true copy-obj=9 reset-obj=1 profiles=Default,Second/Default other=Default delete-active=error delete-missing=error delete-silent=ok options={Default={}}',
+        Target = 'x=3,2,3,1 events=4 changed=4 filter-events=0 filters=Default account=true copy-obj=9 reset-obj=1 profiles=Default,Second/Default other=Default delete-active=error delete-missing=error delete-silent=ok options={Default={}}'},
+    -- WithDefaults: reads give defaults and fn's own writes, objects are copies of the default, no event, the real
+    -- settings untouched after, also when fn errors; whether a setting was read
+    {Name = "store-with-defaults", Recorded = "read=true inner=1/9/true/7 after=5/2/false events=0 default=1 error=boom/5 noread=false",
+        Target = "read=true inner=1/9/true/7 after=5/2/false events=0 default=1 error=boom/5 noread=false"},
+    -- the logout save is a PLAYER_LOGOUT handler on a frame of its own, made at Load
+    {Name = "store-logout", Recorded = "frames=0/1 registered=yes saved={[\"o.obj\"]={N=4}}", Target = "frames=0/1 registered=yes saved={[\"o.obj\"]={N=4}}"},
+    -- while a failed migration waits for its retry, every key the player sets is recorded (requirement 15), never
+    -- inside WithDefaults
+    {Name = "store-touched", Recorded = "touched=m.events=true,o.x=true", Target = "touched=m.events=true,o.x=true"},
+}
+
+suites.store = function(c)
+    local scriptDir = ((arg and arg[0]) or ""):gsub("\\", "/"):match("^(.*)/") or "."
+    local store = assert(loadfile(scriptDir .. "/settings-store.lua"))()
+    local function KeyOrder(a, b)
+        local ta, tb = type(a), type(b)
+        if ta ~= tb then return ta < tb end
+        return a < b
+    end
+    local function Compact(v)
+        if type(v) == "string" then return ("%q"):format(v) end
+        if type(v) ~= "table" then return tostring(v) end
+        local keys = {}
+        for k in next, v do keys[#keys + 1] = k end
+        table.sort(keys, KeyOrder)
+        local parts = {}
+        for _, k in ipairs(keys) do
+            local name = (type(k) == "string" and k:match("^[%a_][%w_]*$")) and k or ("[" .. Compact(k) .. "]")
+            parts[#parts + 1] = name .. "=" .. Compact(v[k])
+        end
+        return "{" .. table.concat(parts, ",") .. "}"
+    end
+    local function List(iterator, state, init)
+        local keys, values = {}, {}
+        for k, v in iterator, state, init do
+            keys[#keys + 1] = k
+            values[k] = v
+        end
+        table.sort(keys, KeyOrder)
+        for n, k in ipairs(keys) do keys[n] = tostring(k) .. "=" .. tostring(values[k]) end
+        return table.concat(keys, ",")
+    end
+    local function Fails(fn, ...) return pcall(fn, ...) and "ok" or "error" end
+    local reads = {
+        ["store-before-load"] = function()
+            local s = store.New(root, { Declarations = { ["a.flag"] = { Default = true }, ["a.map"] = { Kind = "map" } } })
+            local settings = s.Settings
+            return ("get=%s loaded=%s set=%s undeclared=%s kind=%s"):format(tostring(settings.Get("a.flag")),
+                tostring(settings.IsLoaded()), Fails(settings.Set, "a.flag", false), Fails(settings.Get, "a.nope"),
+                Fails(settings.Get, "a.map"))
+        end,
+        ["store-sparse-save"] = function()
+            local saved = {
+                Options = { Profiles = { Default = { ["v.flag"] = false, ["o.sort"] = { Priority = { [1] = 3, [3] = 4, [4] = 5, [5] = 1 } } } } },
+                Filters = { Profiles = { Default = { ["f.filters"] = { Tabs = { Plugin = { Z = true } } } } } },
+            }
+            local s = store.New(root, { Saved = saved, Declarations = {
+                ["v.flag"] = { Default = true }, ["v.bool"] = { Default = true }, ["v.num"] = { Default = 5 },
+                ["o.sort"] = { Kind = "object", Default = { Priority = { 1, 2, 3, 4, 5 }, Reverse = { true, false, false, false, false } } },
+                ["f.filters"] = { Kind = "object", System = "filters", Default = { Tabs = { A = { X = true, Y = false } } } },
+            } })
+            local settings, profile = s.Settings, saved.Options.Profiles.Default
+            local savedFalse = tostring(settings.Get("v.flag"))
+            settings.Set("v.flag", true) -- back to its default: removed
+            settings.Set("v.bool", false)
+            local bool = tostring(profile["v.bool"])
+            settings.Set("v.bool", true)
+            bool = bool .. "/" .. (profile["v.bool"] == nil and "removed" or tostring(profile["v.bool"]))
+            settings.Set("v.num", 5)
+            local num = profile["v.num"] == nil and "absent" or tostring(profile["v.num"])
+            settings.Set("v.num", 7)
+            num = num .. "/" .. tostring(profile["v.num"])
+            local list = table.concat(settings.GetObject("o.sort").Priority, ",")
+            settings.GetObject("f.filters").Tabs.A.X = false
+            s.Logout()
+            return ("saved-false=%s bool=%s num=%s list=%s options=%s filters=%s"):format(savedFalse, bool, num, list,
+                Compact(profile), Compact(saved.Filters.Profiles.Default))
+        end,
+        ["store-maps"] = function()
+            local saved = { Options = { Profiles = { Default = { ["m.events"] = { [500] = false }, ["m.tabs"] = { Other = { T = false } } } } } }
+            local s = store.New(root, { Saved = saved, Declarations = {
+                ["m.events"] = { Kind = "map" }, ["m.tabs"] = { Kind = "map", Depth = 2 },
+            } })
+            local settings, profile = s.Settings, saved.Options.Profiles.Default
+            settings.RegisterEntryDefault("m.events", 374, true)
+            settings.RegisterEntryDefault("m.tabs", "KAF", "Ach", true)
+            local none = tostring(settings.GetEntry("m.events", 999))
+            local unregistered = tostring(settings.GetEntry("m.events", 500))
+            local has = tostring(settings.HasEntry("m.events", 999)) .. "/" .. tostring(settings.HasEntry("m.events", 500))
+            settings.SetEntry("m.events", 374, false)
+            local set = tostring(profile["m.events"][374])
+            settings.SetEntry("m.events", 374, true)
+            set = set .. "/" .. (profile["m.events"][374] == nil and "removed" or "kept")
+            local entries = List(settings.Entries("m.events"))
+            local tabs = List(settings.Entries("m.tabs"))
+            local tab = List(settings.Entries("m.tabs", "KAF"))
+            settings.RemoveEntries("m.tabs", "Other")
+            tabs = tabs .. "/" .. List(settings.Entries("m.tabs"))
+            s.Logout()
+            return ("none=%s unregistered=%s has=%s set=%s entries=%s tabs=%s tab=%s removed=%s"):format(none,
+                unregistered, has, set, entries, tabs, tab, Compact(profile))
+        end,
+        ["store-profiles"] = function()
+            local saved = {
+                Options = { Profiles = { Default = { ["o.x"] = 2 }, Second = { ["o.x"] = 3 } },
+                    ProfileOf = { ["Other - Realm"] = "Second" } },
+            }
+            local s = store.New(root, { Saved = saved, Declarations = {
+                ["o.x"] = { Default = 1 }, ["f.y"] = { Default = "a", System = "filters" },
+                ["acc.debug"] = { Default = false, Scope = "account" }, ["o.obj"] = { Kind = "object", Default = { N = 1 } },
+            } })
+            local settings = s.Settings
+            local events, changed, filterEvents = 0, 0, 0
+            settings.OnChange("o.x", function() events = events + 1 end)
+            settings.OnChange("f.y", function() filterEvents = filterEvents + 1 end)
+            settings.OnProfileChanged("options", function() changed = changed + 1 end)
+            settings.Set("acc.debug", true)
+            local x = {}
+            settings.SetProfile("options", "Second")
+            x[#x + 1] = settings.Get("o.x")
+            settings.GetObject("o.obj").N = 9
+            settings.SetProfile("options", "Default")
+            x[#x + 1] = settings.Get("o.x")
+            local profiles = table.concat(settings.Profiles("options"), ",")
+            settings.CopyProfile("options", "Second")
+            x[#x + 1] = settings.Get("o.x")
+            local copyObj = settings.GetObject("o.obj").N
+            settings.DeleteProfile("options", "Second")
+            profiles = profiles .. "/" .. table.concat(settings.Profiles("options"), ",")
+            settings.ResetProfile("options")
+            x[#x + 1] = settings.Get("o.x")
+            local resetObj = settings.GetObject("o.obj").N
+            settings.Set("o.x", 1) -- no change: no event
+            local deleteActive = Fails(settings.DeleteProfile, "options", "Default")
+            local deleteMissing = Fails(settings.DeleteProfile, "options", "Nope")
+            local deleteSilent = Fails(settings.DeleteProfile, "options", "Nope", true)
+            s.Logout()
+            return ("x=%s events=%d changed=%d filter-events=%d filters=%s account=%s copy-obj=%d reset-obj=%d profiles=%s other=%s delete-active=%s delete-missing=%s delete-silent=%s options=%s"):format(
+                table.concat(x, ","), events, changed, filterEvents, settings.CurrentProfile("filters"),
+                tostring(settings.Get("acc.debug")), copyObj, resetObj, profiles,
+                saved.Options.ProfileOf["Other - Realm"] or "Default", deleteActive, deleteMissing, deleteSilent,
+                Compact(saved.Options.Profiles))
+        end,
+        ["store-with-defaults"] = function()
+            local saved = { Options = { Profiles = { Default = { ["o.x"] = 5, ["m.e"] = { [1] = false }, ["o.obj"] = { A = { B = 2 } } } } } }
+            local s = store.New(root, { Saved = saved, Declarations = {
+                ["o.x"] = { Default = 1 }, ["m.e"] = { Kind = "map" }, ["o.obj"] = { Kind = "object", Default = { A = { B = 1 } } },
+            } })
+            local settings = s.Settings
+            settings.RegisterEntryDefault("m.e", 1, true)
+            local events = 0
+            settings.OnChange("o.x", function() events = events + 1 end)
+            local read, inner = settings.WithDefaults(function()
+                local v = settings.Get("o.x")
+                settings.Set("o.x", 9)
+                local v2 = settings.Get("o.x")
+                local obj = settings.GetObject("o.obj")
+                local e = settings.GetEntry("m.e", 1)
+                settings.SetEntry("m.e", 1, false)
+                obj.A.B = 7
+                return v .. "/" .. v2 .. "/" .. tostring(e) .. "/" .. settings.GetObject("o.obj").A.B
+            end)
+            local after = settings.Get("o.x") .. "/" .. settings.GetObject("o.obj").A.B .. "/" .. tostring(settings.GetEntry("m.e", 1))
+            local ok, err = pcall(settings.WithDefaults, function()
+                settings.Set("o.x", 8)
+                error("boom", 0)
+            end)
+            local errorText = (ok and "none" or tostring(err)) .. "/" .. settings.Get("o.x")
+            local noRead = settings.WithDefaults(function() return 1 end)
+            return ("read=%s inner=%s after=%s events=%d default=%d error=%s noread=%s"):format(tostring(read), inner,
+                after, events, settings.Declaration("o.obj").Default.A.B, errorText, tostring(noRead))
+        end,
+        ["store-logout"] = function()
+            local s = store.New(root, { Declarations = { ["o.obj"] = { Kind = "object", Default = { N = 1 } } } })
+            local before = #s.Frames
+            local saved = {}
+            s.Settings.Load(saved, "Tester - Realm")
+            s.Settings.GetObject("o.obj").N = 4
+            s.Logout()
+            local frame = s.Frames[1]
+            return ("frames=%d/%d registered=%s saved=%s"):format(before, #s.Frames,
+                (frame and frame.Events.PLAYER_LOGOUT) and "yes" or "no", Compact(saved.Options.Profiles.Default))
+        end,
+        ["store-touched"] = function()
+            local saved = { MigrationFailed = { Touched = {} } }
+            local s = store.New(root, { Saved = saved, Declarations = {
+                ["o.x"] = { Default = 1 }, ["o.y"] = { Default = 1 }, ["m.events"] = { Kind = "map" },
+            } })
+            local settings = s.Settings
+            settings.Set("o.x", 2)
+            settings.SetEntry("m.events", 3, true)
+            settings.WithDefaults(function() settings.Set("o.y", 2) end)
+            return "touched=" .. List(next, saved.MigrationFailed.Touched)
+        end,
+    }
+    local results = {}
+    for _, scenario in ipairs(storeScenarios) do
+        local ok, got = pcall(reads[scenario.Name])
+        if not ok then got = "error: " .. tostring(got) end
+        local status = got == scenario.Recorded and "PASS" or "FAIL"
+        local targetMet = got == scenario.Target
+        results[#results + 1] = { Name = scenario.Name, Status = status, TargetMet = targetMet,
+            Line = ("store/%s: %s recorded=[%s] got=[%s] target=[%s] %s"):format(scenario.Name, status, scenario.Recorded, got, scenario.Target, targetMet and "met" or "open") }
     end
     return results, ".claude/tools/headless/run-tests.lua", {}
 end

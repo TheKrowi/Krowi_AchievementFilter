@@ -35,6 +35,7 @@ Gui/WindowFrames/AchievementButton/AchievementButtonMixin.lua RegisterEvent:CONT
 Gui/WindowFrames/AchievementsObjectives/AchievementsObjectivesMixin.lua RegisterEvent:CRITERIA_UPDATE - # frequent, but a hidden objectives frame only marks itself for its next show; a shown one redraws, open popouts included (deferred in docs/work/2026-10-18-memory-growth)
 Gui/AchievementTooltip/TransmogObjectives.lua RegisterEvent:GET_ITEM_INFO_RECEIVED -   # only while an achievement tooltip waits for item data
 Features/PopOut/AchievementPopout.lua RegisterEvent:PLAYER_LOGOUT -              # once
+Settings/Store.lua RegisterEvent:PLAYER_LOGOUT -                                       # once: the settings store's logout save
 Gui/Collections/Collections.lua RegisterEvent:ADDON_LOADED -                           # once per addon that loads
 Plugins/*.lua RegisterEvent:ADDON_LOADED -                                             # once per addon that loads
 Plugins/*.lua RegisterEvent:PLAYER_LOGIN -                                             # once

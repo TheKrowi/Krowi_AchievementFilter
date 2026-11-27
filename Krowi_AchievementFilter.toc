@@ -28,6 +28,8 @@
 
 Libs\Files.xml
 
+Settings\Files.xml
+
 Api\Files.xml
 
 Plugins\Files.xml
