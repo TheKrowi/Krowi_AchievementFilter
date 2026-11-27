@@ -22,12 +22,13 @@ local function LoadIfIsClassicWithAchievements()
     AchievementFrame.Header.LeftDDLInset = AchievementFrameHeaderLeftDDLInset
 end
 
+local sortBy = addon.Enum.PointsSortBy
 local sortFuncs = {
-    addon.Objects.CompareFunc:New("number", "Points"),
-    addon.Objects.CompareFunc:New("string", "Name"),
-    addon.Objects.CompareFunc:New("string", "Realm"),
-    addon.Objects.CompareFunc:New("number", "Faction"),
-    addon.Objects.CompareFunc:New("string", "Class"),
+    [sortBy.Points] = addon.Objects.CompareFunc:New("number", "Points"),
+    [sortBy.Name] = addon.Objects.CompareFunc:New("string", "Name"),
+    [sortBy.Realm] = addon.Objects.CompareFunc:New("string", "Realm"),
+    [sortBy.Faction] = addon.Objects.CompareFunc:New("number", "Faction"),
+    [sortBy.Class] = addon.Objects.CompareFunc:New("string", "Class"),
 }
 
 local function GetSortedCharacters()
@@ -158,11 +159,11 @@ function header:Load()
 end
 
 local headerSortPriorities = {
-    addon.L["Points"],
-    addon.L["Name"],
-    addon.L["Realm"],
-    addon.L["Faction"],
-    addon.L["Class"]
+    [sortBy.Points] = addon.L["Points"],
+    [sortBy.Name] = addon.L["Name"],
+    [sortBy.Realm] = addon.L["Realm"],
+    [sortBy.Faction] = addon.L["Faction"],
+    [sortBy.Class] = addon.L["Class"]
 }
 
 -- Swaps the two places the value is at, in the sort priority and its reverse flags (two live lists, in place)
@@ -186,7 +187,9 @@ end
 local OrderPP = addon.InjectOptions.AutoOrderPlusPlus
 local AdjustedWidth = addon.InjectOptions.AdjustedWidth
 function header:InjectDynamicOptions()
-    for i = 1, #headerSortPriorities do
+    local numSlots = 0 -- one priority slot per choice; counted, as the choices' numbers need not run 1 to n
+    for _ in next, headerSortPriorities do numSlots = numSlots + 1 end
+    for i = 1, numSlots do
         addon.InjectOptions:AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Priority" .. i, {
             order = OrderPP(), type = "select", width = AdjustedWidth(0.95),
             name = "",
@@ -231,10 +234,11 @@ function header:HookSetPointsText()
 
         processHook = false
         local points = KrowiAF_SavedData.CharacterList[UnitGUID("player")].Points
-        if addon.Settings.Get("window.pointsFormat") == 1 then
-        elseif addon.Settings.Get("window.pointsFormat") == 2 then
+        local pointsFormat = addon.Enum.PointsFormat
+        if addon.Settings.Get("window.pointsFormat") == pointsFormat.Account then
+        elseif addon.Settings.Get("window.pointsFormat") == pointsFormat.CharacterAndAccount then
             AchievementFrame.Header.Points:SetText(BreakUpLargeNumbers(points or -1) .. " / " .. BreakUpLargeNumbers(GetTotalAchievementPoints() or -1))
-        elseif addon.Settings.Get("window.pointsFormat") == 3 then
+        elseif addon.Settings.Get("window.pointsFormat") == pointsFormat.Character then
             AchievementFrame.Header.Points:SetText(BreakUpLargeNumbers(points or -1))
         end
         processHook = true

@@ -57,7 +57,10 @@
       settings-keys    [Error]   every setting key a call to addon.Settings or KAF_AddDefaultValueText names is
                                  declared, and every declared key is used (literally, or through a prefix the rule
                                  lists); always tree-wide
-      luals            [Warning] the Lua language server reports nothing on a tree-wide check, using the
+      settings-choices [Error]   a dropdown's numbers go by name: no setting compared with a bare number, no bare
+                                 number default that is no slider's (Min) unless its key is in $settingsIndexes;
+                                 always tree-wide
+      luals           [Warning] the Lua language server reports nothing on a tree-wide check, using the
                                  VS Code extensions sumneko.lua and ketho.wow-api when installed
                                  (about 30 s; full runs only, or -Luals; skipped when they are absent)
       data-load        [Error]   the data pipeline runs headlessly for Retail and Classic
@@ -930,6 +933,38 @@ foreach ($key in $settingsDeclared.Keys) {
 }
 Write-Timing 'settings-keys'
 
+# --- settings-choices: a dropdown's numbers go by name ----------------------------------------------------------------
+# Krowi 2026-11-27, Blizzard's way: each number a dropdown saves is written once, in a names table (addon.Enum in
+# Settings/Enum.lua, a feature's own Enum), and its default, its choices and the code that reads it use the
+# names. Found here: a setting compared with a literal number (Get("<key>") == 2), and a literal number default that is
+# no slider's (no Min) in a declaration or a feature's Defaults. A setting whose number is no choice of a fixed list is
+# listed below. Always tree-wide.
+# Numbers that are no fixed list's: the weekday (Blizzard's CALENDAR_WEEKDAY_NAMES, -1 the client's), the micro button's
+# and tab priority's tab (an index into the tab list, built at run time), the search previews (a slider whose limits its
+# row works out)
+$settingsIndexes = @('calendar.firstWeekDay', 'window.microButtonTab', 'window.tabPriority.tab', 'searchBox.numberOfSearchPreviews')
+foreach ($rel in $ownLuaFiles) {
+    $text = [Text.Encoding]::UTF8.GetString($fileBytes[$rel])
+    if (-not ($text.Contains('ettings.Get(') -or $text.Contains('Declare(') -or $rel -like 'Features/*/Options.lua')) { continue }
+    $lineNo = 0
+    foreach ($line in ($text -split "`r?`n")) {
+        $lineNo++
+        $code = $line -replace '--.*$', ''
+        foreach ($m in [regex]::Matches($code, '\b[Ss]ettings\.Get\(\s*"([^"]+)"\s*\)\s*[~=]=\s*-?\d')) {
+            if ($settingsIndexes -contains $m.Groups[1].Value) { continue }
+            Add-Finding 'settings-choices' 'Error' $rel $lineNo "compares '$($m.Groups[1].Value)' with a bare number: name its choices (addon.Enum, Settings/Enum.lua, or the feature's Enum) and compare with the name"
+        }
+        $default = [regex]::Match($code, '\bDeclare\(\s*"([^"]+)"[^)]*\bDefault\s*=\s*-?\d')
+        if (-not $default.Success -and $rel -like 'Features/*/Options.lua') {
+            $default = [regex]::Match($code, '^\s*\["([a-z]\w*(?:\.\w+)+)"\]\s*=\s*(?:\{[^}]*\bDefault\s*=\s*)?-?\d')
+        }
+        if ($default.Success -and $code -notmatch '\bMin\s*=' -and $settingsIndexes -notcontains $default.Groups[1].Value) {
+            Add-Finding 'settings-choices' 'Error' $rel $lineNo "gives '$($default.Groups[1].Value)' a bare number default that is no slider's: name its choices and default to the name, or list it in `$settingsIndexes if its number is no choice of a fixed list"
+        }
+    }
+}
+Write-Timing 'settings-choices'
+
 # --- luarc: .luarc.json diagnostics.globals stays exact ------------------------------------------
 # The language server resolves the WoW API and FrameXML (ketho.wow-api annotations) and every global
 # an addon file assigns by itself, so the list holds only what it cannot see: global strings,
@@ -1292,7 +1327,7 @@ if (Test-Path $ignoreFile) {
         if ($t -match '^(\S+)\s+(\S+)(?:\s+(\S+))?$') { $ignore += @{ Rule = $Matches[1]; Path = $Matches[2]; Name = $Matches[3] } }
     }
 }
-$alwaysOn = @('section-order', 'dup-id', 'saved-variables', 'lua-syntax', 'globals', 'removed-api', 'deprecated-api', 'library-names', 'util-flags', 'background-jobs', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'data-snapshot', 'zone-decisions', 'mapverifier', 'changelog', 'kit', 'feature-boundary', 'feature-texts', 'instructions', 'settings-direct', 'settings-keys')
+$alwaysOn = @('section-order', 'dup-id', 'saved-variables', 'lua-syntax', 'globals', 'removed-api', 'deprecated-api', 'library-names', 'util-flags', 'background-jobs', 'luarc', 'data-load', 'unit-tests', 'category-snapshot', 'data-snapshot', 'zone-decisions', 'mapverifier', 'changelog', 'kit', 'feature-boundary', 'feature-texts', 'instructions', 'settings-direct', 'settings-keys', 'settings-choices')
 $report = $findings | Where-Object {
     $f = $_
     -not ($ignore | Where-Object { ($_.Rule -eq '*' -or $_.Rule -eq $f.Rule) -and $f.Path -like $_.Path -and (-not $_.Name -or $f.Message.Contains("'$($_.Name)'")) })

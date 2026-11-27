@@ -312,6 +312,13 @@ local function BuildClient(client)
         if k == "Settings" and type(options) == "table" and type(rawget(options, "db")) == "table" then
             return assert(loadfile(headlessDir .. "/settings-store.lua"))().FromFakeProfile(root, t)
         end
+        -- the dropdowns' numbers by name are the real ones (Settings/Enum.lua), never a stub: a stub compares only
+        -- with itself, so code and scenarios would agree on values no saved file holds
+        if k == "Enum" then
+            local chunk = assert(loadstring(readFile(root .. "/Settings/Enum.lua"), "@Settings/Enum.lua"))
+            chunk("Krowi_AchievementFilter", t)
+            return rawget(t, "Enum")
+        end
         local s = Stub("addon." .. tostring(k)) rawset(t, k, s) return s
     end })
 

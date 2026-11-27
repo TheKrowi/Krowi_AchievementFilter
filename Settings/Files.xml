@@ -3,5 +3,6 @@
     <Script file="Renames.lua" />
     <Script file="Check.lua" />
     <Script file="Migrations.lua" />
+    <Script file="Enum.lua" />
     <Script file="Declarations.lua" />
 </Ui>

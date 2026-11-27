@@ -256,28 +256,31 @@ function layout.InjectDynamicAdjustableCategoryOptions(category, categoryDisplay
     })
 end
 
+-- The dropdowns' choices, each text under the number it saves (addon.Enum, Settings/Enum.lua); shown in number
+-- order unless a row gives its own sorting
+local enum = addon.Enum
+
 local achievementPointsDisplays = {
-    addon.L["Account wide (default)"],
-    addon.L["Character / Account wide"],
-    addon.L["Character only"]
+    [enum.PointsFormat.Account] = addon.L["Account wide (default)"],
+    [enum.PointsFormat.CharacterAndAccount] = addon.L["Character / Account wide"],
+    [enum.PointsFormat.Character] = addon.L["Character only"]
 }
 
 local criteriaBehaviour = {
-    addon.L["Overflow"],
-    addon.L["Truncate"],
-    addon.L["Flexible"],
-    -- addon.L["Wrap"]
+    [enum.CriteriaBehaviour.Overflow] = addon.L["Overflow"],
+    [enum.CriteriaBehaviour.Truncate] = addon.L["Truncate"],
+    [enum.CriteriaBehaviour.Flexible] = addon.L["Flexible"]
 }
 
-local guideWaypointProviders = { -- addon.Gui.Guide.Waypoint.Provider
-    addon.L["Map pin and TomTom"],
-    addon.L["Map pin"],
-    "TomTom"
+local guideWaypointProviders = {
+    [enum.GuideWaypointProvider.Both] = addon.L["Map pin and TomTom"],
+    [enum.GuideWaypointProvider.MapPin] = addon.L["Map pin"],
+    [enum.GuideWaypointProvider.TomTom] = "TomTom"
 }
 
-local guideActionStyles = { -- addon.Gui.Guide.Content.ActionStyle
-    addon.L["Icons"],
-    addon.L["Text links"]
+local guideActionStyles = {
+    [enum.GuideActionStyle.Icons] = addon.L["Icons"],
+    [enum.GuideActionStyle.Links] = addon.L["Text links"]
 }
 
 local function MovableSwitchMovableSet(_, value)

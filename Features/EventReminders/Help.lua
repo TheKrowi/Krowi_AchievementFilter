@@ -19,10 +19,9 @@ local function ShowPlaceholders(ready, worldFirst)
     kit.Ready(ready, {Shown = shown})
 end
 
--- The intro names the window the side buttons sit beside, read each time the page draws (Side Buttons Beside: 1 the
--- achievement window, 2 the world map)
+-- The intro names the window the side buttons sit beside, read each time the page draws (Side Buttons Beside)
 local function Intro()
-    if addon.Settings.Get("eventReminders.sideButtonsAnchor") == 2 then
+    if addon.Settings.Get("eventReminders.sideButtonsAnchor") == addon.EventReminders.Enum.SideButtonsAnchor.WorldMap then
         return L["Help Events Intro World Map"]
     end
     return L["Help Events Intro Achievement Window"]

@@ -12,6 +12,15 @@ local eventReminders = addon.EventReminders
 -- the event objects and the calendar cache are the core's (Api/EventDataApi.lua, Data/EventData.lua): the obtainable
 -- state reads them whether reminders are on or off. The GUI tables keep their names under addon.Gui, which the tests reach.
 
+-- The numbers its dropdowns save, by name, each written here once (the rule of addon.Enum, Settings/Enum.lua)
+eventReminders.Enum = {
+    SideButtonsAnchor = { AchievementWindow = 1, WorldMap = 2 },
+    TimeDisplayLine1 = { EndTime = 1, TimeLeft = 2 },
+    TimeDisplayLine2 = { None = 1, EndTime = 2, TimeLeft = 3 },
+    PopUpsAppliesTo = { EveryAlert = 1, EventReminders = 2 },
+    PopUpsGrowDirection = { Up = 1, Down = 2 },
+}
+
 -- The reminders on login and on reload, each after its delay; zoning into an instance fires the event too, without
 -- either flag (isLogin, isReload)
 local function OnEnteringWorld(isLogin, isReload)

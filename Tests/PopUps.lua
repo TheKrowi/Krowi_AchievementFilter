@@ -197,7 +197,8 @@ end
 -- world map; headlessly on the runner's models of both
 
 local sideButtonsAnchor = "Features.EventReminders.Settings.General.Style.SideButtonsAnchor"
-local achievementWindow, worldMap = 1, 2 -- the option's values (Features/EventReminders/Options.lua)
+local achievementWindow = addon.EventReminders.Enum.SideButtonsAnchor.AchievementWindow -- the option's values
+local worldMap = addon.EventReminders.Enum.SideButtonsAnchor.WorldMap
 
 local function SideButtonSystem()
     return addon.Gui.EventReminderSideButtonSystem
@@ -303,7 +304,7 @@ popUps.Scenarios = {
                 return "no such setting"
             end
             local before = appliesTo.get()
-            appliesTo.set(nil, 2)
+            appliesTo.set(nil, addon.EventReminders.Enum.PopUpsAppliesTo.EventReminders)
             local moves = NudgeOffset()
             appliesTo.set(nil, before)
             return moves
@@ -375,7 +376,7 @@ popUps.Scenarios = {
             if not env.ShowGameToast then
                 return nil, "headless only: shows one of the game's toasts"
             end
-            SetOption(location .. "GrowDirection", 2)
+            SetOption(location .. "GrowDirection", addon.EventReminders.Enum.PopUpsGrowDirection.Down)
             local toast = env.ShowGameToast()
             local point, relativeTo, relativePoint = toast:GetPoint(1)
             local where = relativeTo ~= AlertFrame and "elsewhere"
@@ -383,7 +384,7 @@ popUps.Scenarios = {
                 or point == "BOTTOM" and relativePoint == "TOP" and "above the alert frame"
                 or "elsewhere"
             env.HideGameToasts()
-            SetOption(location .. "GrowDirection", 1)
+            SetOption(location .. "GrowDirection", addon.EventReminders.Enum.PopUpsGrowDirection.Up)
             return where
         end,
         Recorded = "below the alert frame",
@@ -395,9 +396,9 @@ popUps.Scenarios = {
             if not env.ShowGameToast then
                 return nil, "headless only: shows one of the game's toasts"
             end
-            SetOption(location .. "GrowDirection", 2)
+            SetOption(location .. "GrowDirection", addon.EventReminders.Enum.PopUpsGrowDirection.Down)
             local toast = env.ShowGameToast()
-            SetOption(location .. "GrowDirection", 1)
+            SetOption(location .. "GrowDirection", addon.EventReminders.Enum.PopUpsGrowDirection.Up)
             env.ShowGameToast()
             local point, relativeTo, relativePoint = toast:GetPoint(1)
             local where = relativeTo == AlertFrame and point == "BOTTOM" and relativePoint == "TOP" and "above the alert frame" or "elsewhere"
@@ -415,13 +416,13 @@ popUps.Scenarios = {
             if not env.ShowGameToast then
                 return nil, "headless only: shows the game's toasts in an order it picks"
             end
-            SetOption(location .. "GrowDirection", 2)
+            SetOption(location .. "GrowDirection", addon.EventReminders.Enum.PopUpsGrowDirection.Down)
             env.ShowGameToast()
             env.ShowGameToast()
             env.ReorderGameToasts()
             local ok = pcall(env.ShowGameToast, true)
             env.HideGameToasts()
-            SetOption(location .. "GrowDirection", 1)
+            SetOption(location .. "GrowDirection", addon.EventReminders.Enum.PopUpsGrowDirection.Up)
             return ok and "no loop" or "loop"
         end,
         Recorded = "no loop",

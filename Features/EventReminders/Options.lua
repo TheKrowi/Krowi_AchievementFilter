@@ -11,6 +11,7 @@ local OrderPP = addon.InjectOptions.AutoOrderPlusPlus
 local AdjustedWidth = addon.InjectOptions.AdjustedWidth
 local path = addon.Features.Path("EventReminders")
 local settings = path .. ".args.Settings.args."
+local enum = addon.EventReminders.Enum -- the numbers its dropdowns save, by name (EventReminders.lua)
 
 -- Its defaults, merged into the profile defaults by the registry (Features.lua BuildOptions); the switch's own default
 -- is the registry's
@@ -36,9 +37,9 @@ local defaults = {
     ["eventReminders.dateTimeFormat.startTimeAndEndTime"] = "%d/%m/%Y %R",
     ["eventReminders.onLoginDelay"] = {Type = "number", Default = 5, Min = 1, Max = 600, Step = 1},
     ["eventReminders.onLoginUpcomingDelay"] = {Type = "number", Default = 6, Min = 1, Max = 600, Step = 1},
-    ["eventReminders.popUps.appliesTo"] = 1,
+    ["eventReminders.popUps.appliesTo"] = enum.PopUpsAppliesTo.EveryAlert,
     ["eventReminders.popUps.fadeDelay"] = {Type = "number", Default = 10, Min = 1, Max = 120, Step = 1},
-    ["eventReminders.popUps.growDirection"] = 1,
+    ["eventReminders.popUps.growDirection"] = enum.PopUpsGrowDirection.Up,
     ["eventReminders.popUps.maxAlerts"] = {Type = "number", Default = 5, Min = 1, Max = 100, Step = 1},
     ["eventReminders.popUps.offsetX"] = {Type = "number", Default = 0, Min = -2000, Max = 2000, Step = 1},
     ["eventReminders.popUps.offsetY"] = {Type = "number", Default = 128, Min = 0, Max = 2000, Step = 1},
@@ -59,9 +60,9 @@ local defaults = {
     ["eventReminders.popUps.onReloadUpcoming.showInInstances"] = false,
     ["eventReminders.popUps.spacing"] = {Type = "number", Default = 10, Min = 0, Max = 100, Step = 1},
     ["eventReminders.refreshInterval"] = {Type = "number", Default = 60, Min = 1, Max = 3600, Step = 1},
-    ["eventReminders.sideButtonsAnchor"] = 1,
-    ["eventReminders.timeDisplay.line1"] = 1,
-    ["eventReminders.timeDisplay.line2"] = 3,
+    ["eventReminders.sideButtonsAnchor"] = enum.SideButtonsAnchor.AchievementWindow,
+    ["eventReminders.timeDisplay.line1"] = enum.TimeDisplayLine1.EndTime,
+    ["eventReminders.timeDisplay.line2"] = enum.TimeDisplayLine2.TimeLeft,
     ["eventReminders.upcomingCalendarEvents.days"] = {Type = "number", Default = 14, Min = 1, Max = 60, Step = 1},
     ["eventReminders.upcomingCalendarEvents.enabled"] = true,
     ["eventReminders.calendarEvents"] = { Kind = "map" },
@@ -69,30 +70,31 @@ local defaults = {
     ["eventReminders.widgetEvents"] = { Kind = "map" },
 }
 
+-- The dropdowns' choices, each text under the number it saves
 local timeDisplaysLine1 = {
-    addon.L["End Time"],
-    addon.L["Time Left"]
+    [enum.TimeDisplayLine1.EndTime] = addon.L["End Time"],
+    [enum.TimeDisplayLine1.TimeLeft] = addon.L["Time Left"]
 }
 
 local timeDisplaysLine2 = {
-    addon.L["None"],
-    addon.L["End Time"],
-    addon.L["Time Left"]
+    [enum.TimeDisplayLine2.None] = addon.L["None"],
+    [enum.TimeDisplayLine2.EndTime] = addon.L["End Time"],
+    [enum.TimeDisplayLine2.TimeLeft] = addon.L["Time Left"]
 }
 
 local sideButtonsAnchor = {
-    addon.L["Achievement Window"],
-    addon.L["World Map"]
+    [enum.SideButtonsAnchor.AchievementWindow] = addon.L["Achievement Window"],
+    [enum.SideButtonsAnchor.WorldMap] = addon.L["World Map"]
 }
 
 local growDirection = {
-    addon.L["Up"],
-    addon.L["Down"]
+    [enum.PopUpsGrowDirection.Up] = addon.L["Up"],
+    [enum.PopUpsGrowDirection.Down] = addon.L["Down"]
 }
 
 local appliesTo = {
-    addon.L["Every alert"],
-    addon.L["Only event reminders"]
+    [enum.PopUpsAppliesTo.EveryAlert] = addon.L["Every alert"],
+    [enum.PopUpsAppliesTo.EventReminders] = addon.L["Only event reminders"]
 }
 
 local startTimeAndEndTimeDateTimeFormats, startTimeAndEndTimeDateTimeValues = {}, {}

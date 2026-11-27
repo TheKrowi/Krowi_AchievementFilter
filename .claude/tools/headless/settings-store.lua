@@ -46,7 +46,7 @@ function M.New(repoRoot, opts)
 end
 
 -- A real settings store made from a suite's fake old-shaped options profile (addon.Options.db.profile, as the suites
--- built one for AceDB; docs/work/2026-11-25-settings-store): Store.lua, Renames.lua, Check.lua and Declarations.lua load
+-- built one for AceDB; docs/work/2026-11-25-settings-store): Store.lua, Renames.lua, Check.lua, Enum.lua and Declarations.lua load
 -- into addon, the fake moves into the store through the migration's own Check.Move, and the store loads on it for the
 -- character "Player - Realm". Every old option path the core does not declare (the features' and the plugins' settings,
 -- declared at ADDON_LOADED in the game) is declared with no default, so a key the fake does not hold reads nil, as the
@@ -54,7 +54,7 @@ end
 function M.FromFakeProfile(repoRoot, addon)
     repoRoot = repoRoot:gsub("\\", "/"):gsub("/$", "")
     addon.Settings = nil
-    for _, file in ipairs({ "Store", "Renames", "Check", "Declarations" }) do
+    for _, file in ipairs({ "Store", "Renames", "Check", "Enum", "Declarations" }) do
         assert(loadfile(repoRoot .. "/Settings/" .. file .. ".lua"))("Krowi_AchievementFilter", addon)
     end
     local settings, check = addon.Settings, addon.Settings.Check

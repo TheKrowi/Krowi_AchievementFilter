@@ -1,6 +1,7 @@
 local _, addon = ...
 addon.Tests.Events = {}
 local events = addon.Tests.Events
+local line1, line2 = addon.EventReminders.Enum.TimeDisplayLine1, addon.EventReminders.Enum.TimeDisplayLine2
 
 -- Event reminders from Blizzard's event scheduler and from fixed schedules (docs/work/2026-10-21-event-scheduler). The
 -- scenarios run at fixed times on a fixture shaped like what C_EventScheduler returned in game on 2026-10-21
@@ -103,7 +104,7 @@ events.Scenarios = {
         Recorded = "end names", Target = "end names"},
     {Name = "active-date-abbreviated", Kind = "DateLine", Reminder = "active", Format = "%a %d %b %Y", Names = true, Short = true,
         Recorded = "end names", Target = "end names"},
-    {Name = "upcoming-date-both-lines", Kind = "DateLine", Reminder = "upcoming", Format = "%d/%m/%Y %R", Names = false, Line2 = 2,
+    {Name = "upcoming-date-both-lines", Kind = "DateLine", Reminder = "upcoming", Format = "%d/%m/%Y %R", Names = false, Line2 = line2.EndTime,
         Recorded = "start / end", Target = "start / end"},
     {Name = "chat-ended-event", Kind = "ChatPasses", Ends = {-10}, Passes = 3,
         Recorded = "headers 0, lines 0", Target = "headers 0, lines 0"},
@@ -430,8 +431,8 @@ local function DescribeDateLine(scenario, observations)
         WeekdayNames = addon.WeekdayNames
     }
     settings.Set("eventReminders.dateTimeFormat.startTimeAndEndTime", scenario.Format)
-    settings.Set("eventReminders.timeDisplay.line1", 1) -- End Time
-    settings.Set("eventReminders.timeDisplay.line2", scenario.Line2 or 1) -- None unless given
+    settings.Set("eventReminders.timeDisplay.line1", line1.EndTime)
+    settings.Set("eventReminders.timeDisplay.line2", scenario.Line2 or line2.None)
     settings.Set("eventReminders.compact", false)
     alertSystem.LocalizeDateNames = scenario.Names
     if scenario.Names then

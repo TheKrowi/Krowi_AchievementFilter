@@ -125,7 +125,7 @@ end
 
 --[[ Declarations ]]
 
--- declaration: Kind ("value", "map" or "object"; default "value"), Type, Default, Min, Max, Step, Values, Scope
+-- declaration: Kind ("value", "map" or "object"; default "value"), Type, Default, Min, Max, Step, Scope
 -- ("profile" or "account"; default "profile"), System ("options" or "filters"; default "options"), Depth (a map's
 -- levels, 1 or 2; default 1). Declaring a key again replaces its declaration; saved values are never touched by it.
 function settings.Declare(key, declaration)

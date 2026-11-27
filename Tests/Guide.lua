@@ -55,8 +55,8 @@ local guide = addon.Tests.Guide
 --   addon.Gui.Guide.RequestNpcNames(achievements) -> the sorted NPC ids of their guides, each asked of the client once
 --   the guide settings (guides.tooltip, rightClickMenu, icon, expandedRow, waypointProvider), by their field names
 
-local provider = {Both = 1, MapPin = 2, TomTom = 3} -- Achievements.Guide.WaypointProvider
-local actionStyle = {Icons = 1, Links = 2} -- Achievements.Guide.ActionStyle
+local provider = addon.Enum.GuideWaypointProvider
+local actionStyle = addon.Enum.GuideActionStyle
 local zubashi = {MapId = 648, X = 47.7, Y = 53.8} -- Archivist Zubashi, Acherus: the map pin is allowed there
 local dalaran = {MapId = 627, X = 32.7, Y = 69.8} -- a spot in Dalaran, which refuses the map pin
 local paladinPortal = {PoiId = 5057, MapId = 627, X = 32.7, Y = 69.8} -- the Alliance Paladin portal, Dalaran

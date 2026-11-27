@@ -3,13 +3,14 @@ local section = {Order = 10} -- its place among the menu's entries (Slots.lua, A
 tinsert(addon.Gui.RightClickMenu.AchievementMenu.Sections, section)
 
 local popupDialog = LibStub("Krowi_PopupDialog_2")
+local wowheadTab = addon.Gui.RightClickMenu.Enum.WowheadTab
 local relatedTabs = {
-    "",
-	"#criteria-of",
-	"#guides",
-	"#news",
-	"#comments",
-	"#screenshots"
+    [wowheadTab.None] = "",
+	[wowheadTab.CriteriaOf] = "#criteria-of",
+	[wowheadTab.Guides] = "#guides",
+	[wowheadTab.News] = "#news",
+	[wowheadTab.Comments] = "#comments",
+	[wowheadTab.Screenshots] = "#screenshots"
 }
 
 function section:CheckAdd(achievement)

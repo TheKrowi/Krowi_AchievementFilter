@@ -8,6 +8,11 @@ local feature = addon.Gui.RightClickMenu
 -- this registration, the menu (AchievementMenu.lua) and its own sections, the row's menu button (RowButton.xml and
 -- RowButton.lua), the settings (Options.lua) and the help page (Help.lua).
 
+-- The numbers its dropdowns save, by name, each written here once (the rule of addon.Enum, Settings/Enum.lua)
+feature.Enum = {
+    WowheadTab = { None = 1, CriteriaOf = 2, Guides = 3, News = 4, Comments = 5, Screenshots = 6 },
+}
+
 -- The opener last: a Start that fails before it leaves no menu the core can open (Features.lua runs it in xpcall)
 local function Start()
     local achievementMenu = feature.AchievementMenu

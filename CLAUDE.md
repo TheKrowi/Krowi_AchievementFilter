@@ -55,7 +55,7 @@ A background job is code that can run with every addon window closed: an OnUpdat
 
 ## Saved variables
 
-Declared on the `.toc`'s `## SavedVariables` line; one not listed there is lost on logout. Settings live in the settings store (`Settings/`, `KrowiAF_Settings`): code declares each setting once and reads and writes it only through `addon.Settings` by its key (`Get`, `Set`, `GetEntry`, `GetObject`; the `settings-keys` and `settings-direct` lint rules). A change to a saved variable's shape is a numbered migration in `Settings/Migrations.lua`, which runs once, in order, under the runner (`KrowiAF_Settings.Version`).
+Declared on the `.toc`'s `## SavedVariables` line; one not listed there is lost on logout. Settings live in the settings store (`Settings/`, `KrowiAF_Settings`): code declares each setting once and reads and writes it only through `addon.Settings` by its key (`Get`, `Set`, `GetEntry`, `GetObject`; the `settings-keys` and `settings-direct` lint rules). A dropdown's numbers go by name, each written once (`.claude/rules/settings.md`). A change to a saved variable's shape is a numbered migration in `Settings/Migrations.lua`, which runs once, in order, under the runner (`KrowiAF_Settings.Version`).
 
 ## Code style
 

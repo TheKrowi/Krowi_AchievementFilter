@@ -5,6 +5,7 @@ local Declare = addon.Settings.Declare
 -- kind, type, default and scope. Converted from the old Options/Defaults.lua; every default equals the old one
 -- (the settings suite's defaults-by-key). The features declare theirs through the registry (Features.lua, AddOptions
 -- Defaults), the plugins in their InjectOptions, Filters.lua and SearchOptions.lua their objects.
+local enum = addon.Enum -- the dropdowns' numbers by name (Enum.lua)
 
 -- Values
 Declare("achievements.centerHeader", { Type = "boolean", Default = true })
@@ -12,7 +13,7 @@ Declare("achievements.compact", { Type = "boolean", Default = false })
 Declare("achievements.factionIconAlpha", { Type = "number", Default = 0.2, Min = 0, Max = 1, Step = 0.01 })
 Declare("achievements.hideDateCompleted", { Type = "boolean", Default = false })
 Declare("achievements.mouseWheelPanScalar", { Type = "number", Default = 1, Min = 1, Max = 50, Step = 1 })
-Declare("achievements.objectives.criteriaBehaviour", { Type = "number", Default = 2 })
+Declare("achievements.objectives.criteriaBehaviour", { Type = "number", Default = enum.CriteriaBehaviour.Truncate })
 Declare("achievements.objectives.forceTwoColumns", { Type = "boolean", Default = true })
 Declare("achievements.objectives.forceTwoColumnsThreshold", { Type = "number", Default = 20, Min = 0, Max = 50, Step = 1 })
 Declare("achievements.showAllianceFactionIcon", { Type = "boolean", Default = false })
@@ -44,17 +45,17 @@ Declare("categories.watchList.ignoreFilters", { Type = "boolean", Default = true
 Declare("categories.watchList.showSubCategories", { Type = "boolean", Default = false })
 Declare("dataManager.mouseWheelPanScalar", { Type = "number", Default = 1, Min = 1, Max = 50, Step = 1 })
 Declare("filtering.resetFactionFilters", { Type = "boolean", Default = true })
-Declare("guides.actionStyle", { Type = "number", Default = 1 }) -- 1 Icons, 2 Text links (addon.Gui.Guide.Content.ActionStyle)
+Declare("guides.actionStyle", { Type = "number", Default = enum.GuideActionStyle.Icons })
 Declare("guides.expandedRow", { Type = "boolean", Default = false }) -- off: it makes the selected row taller
 Declare("guides.icon", { Type = "boolean", Default = true }) -- the row icon and the side panel it opens
 Declare("guides.mouseoverShow", { Type = "boolean", Default = true }) -- hovering the row icon shows the panel; a click pins it
 Declare("guides.rightClickMenu", { Type = "boolean", Default = true })
 Declare("guides.tooltip", { Type = "boolean", Default = true })
-Declare("guides.waypointProvider", { Type = "number", Default = 1 }) -- 1 Map pin and TomTom, 2 Map pin, 3 TomTom (addon.Gui.Guide.Waypoint.Provider)
-Declare("keys.modifiers.pasteToChat", { Type = "number", Default = 4 })
-Declare("keys.modifiers.toggleExcluded", { Type = "number", Default = 1 })
-Declare("keys.modifiers.toggleTracking", { Type = "number", Default = 4 })
-Declare("keys.modifiers.toggleWatchList", { Type = "number", Default = 2 })
+Declare("guides.waypointProvider", { Type = "number", Default = enum.GuideWaypointProvider.Both })
+Declare("keys.modifiers.pasteToChat", { Type = "number", Default = enum.Modifier.Shift })
+Declare("keys.modifiers.toggleExcluded", { Type = "number", Default = enum.Modifier.None })
+Declare("keys.modifiers.toggleTracking", { Type = "number", Default = enum.Modifier.Shift })
+Declare("keys.modifiers.toggleWatchList", { Type = "number", Default = enum.Modifier.Alt })
 Declare("minimap.showIcon", { Type = "boolean", Default = false })
 Declare("searchBox.clearOnRightClick", { Type = "boolean", Default = true })
 Declare("searchBox.excludeExcluded", { Type = "boolean", Default = true })
@@ -103,7 +104,7 @@ Declare("window.categoriesFrameWidthOffset", { Type = "number", Default = 50, Mi
 Declare("window.centerHeader", { Type = "boolean", Default = true })
 Declare("window.microButtonTab", { Type = "number", Default = 1 })
 Declare("window.movable", { Type = "boolean", Default = true })
-Declare("window.pointsFormat", { Type = "number", Default = 2 })
+Declare("window.pointsFormat", { Type = "number", Default = enum.PointsFormat.CharacterAndAccount })
 Declare("window.rememberPosition.achievementWindow", { Type = "boolean", Default = false })
 Declare("window.rememberPosition.calendar", { Type = "boolean", Default = false })
 Declare("window.rememberPosition.dataManager", { Type = "boolean", Default = false })
@@ -121,6 +122,7 @@ Declare("tabs.order", { Kind = "map", Depth = 2 }) -- [addon][tab]: Api/TabDataA
 Declare("categories.shownOnTab", { Kind = "map", Depth = 2 }) -- [category][tab index]: Options/Layout.lua
 
 -- Objects: live tables, saved as their difference from the default
-Declare("tooltips.points.sortPriority", { Kind = "object", Default = { 1, 2, 3, 4, 5 } })
+Declare("tooltips.points.sortPriority", { Kind = "object", Default = { enum.PointsSortBy.Points, enum.PointsSortBy.Name,
+    enum.PointsSortBy.Realm, enum.PointsSortBy.Faction, enum.PointsSortBy.Class } })
 Declare("tooltips.points.sortReverse", { Kind = "object", Default = { true, false, false, false, false } })
 Declare("minimap.icon", { Kind = "object", Default = { hide = true } }) -- LibDBIcon's own table; hide is not minimap.showIcon

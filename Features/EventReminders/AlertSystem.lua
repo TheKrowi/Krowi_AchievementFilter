@@ -11,7 +11,9 @@ local eventReminderAlertSystem = addon.Gui.EventReminderAlertSystem
 -- An addon that places the game's alerts (ElvUI, GW2_UI, EllesmereUI's mover, Dominos Roll's Alerts bar) wins: once
 -- AlertFrame is anywhere else than where Blizzard or the addon put it, the addon stops placing and restacking, and new
 -- pop-ups go to a queued system in AlertFrame, so that addon stacks them with its toasts.
-local everyAlert = 1
+local enum = addon.EventReminders.Enum
+local everyAlert = enum.PopUpsAppliesTo.EveryAlert
+local line1, line2 = enum.TimeDisplayLine1, enum.TimeDisplayLine2
 local blizzardX, blizzardY = 0, 128 -- AlertFrame's anchor on UIParent (Mainline and Classic AlertFrames.xml)
 local blizzardSpacing = 10 -- AlertFrameQueueMixin:AdjustAnchors (Mainline/AlertFrames.lua:243-248)
 local placedX, placedY -- where the addon put AlertFrame under Every alert; nil while it is where Blizzard put it
@@ -46,7 +48,7 @@ eventReminderAlertSystem.Triggers = triggers
 
 -- Growing up an alert's bottom hangs on the previous one's top, growing down its top on the previous one's bottom
 local function GrowPoints()
-    if PopUp("growDirection") == 1 then
+    if PopUp("growDirection") == enum.PopUpsGrowDirection.Up then
         return "BOTTOM", "TOP", PopUp("spacing")
     end
     return "TOP", "BOTTOM", -PopUp("spacing")
@@ -386,7 +388,7 @@ function eventReminderAlertSystem:GetRuntimeText(event, chat)
         end
     end
 
-    if addon.Settings.Get("eventReminders.timeDisplay.line1") == 2 or addon.Settings.Get("eventReminders.timeDisplay.line2") == 3 or chat then -- Time Left
+    if addon.Settings.Get("eventReminders.timeDisplay.line1") == line1.TimeLeft or addon.Settings.Get("eventReminders.timeDisplay.line2") == line2.TimeLeft or chat then
         local secondsLeft = event.EventDetails.EndTime - GetServerTime()
         timeLeft = GetSecondsLeftFormattedText(secondsLeft)
     end
@@ -395,17 +397,17 @@ function eventReminderAlertSystem:GetRuntimeText(event, chat)
         return timeLeft
     end
 
-    if addon.Settings.Get("eventReminders.timeDisplay.line1") == 1 then -- End Time
+    if addon.Settings.Get("eventReminders.timeDisplay.line1") == line1.EndTime then
         runtime = FormatDate(event.EventDetails.EndTime)
-    elseif addon.Settings.Get("eventReminders.timeDisplay.line1") == 2 then -- Time Left
+    elseif addon.Settings.Get("eventReminders.timeDisplay.line1") == line1.TimeLeft then
         runtime = timeLeft
     end
 
-    if addon.Settings.Get("eventReminders.timeDisplay.line2") == 1 or addon.Settings.Get("eventReminders.compact") then -- None
+    if addon.Settings.Get("eventReminders.timeDisplay.line2") == line2.None or addon.Settings.Get("eventReminders.compact") then
         return runtime
-    elseif addon.Settings.Get("eventReminders.timeDisplay.line2") == 2 then -- End Time
+    elseif addon.Settings.Get("eventReminders.timeDisplay.line2") == line2.EndTime then
         return runtime .. "\n" .. FormatDate(event.EventDetails.EndTime)
-    elseif addon.Settings.Get("eventReminders.timeDisplay.line2") == 3 then -- Time Left
+    elseif addon.Settings.Get("eventReminders.timeDisplay.line2") == line2.TimeLeft then
         return runtime .. "\n" .. timeLeft
     end
 
@@ -415,24 +417,24 @@ end
 function eventReminderAlertSystem:GetUpcomingText(event)
     local runtime, timeLeft
 
-    if addon.Settings.Get("eventReminders.timeDisplay.line1") == 2 or addon.Settings.Get("eventReminders.timeDisplay.line2") == 3 then -- Time Left
+    if addon.Settings.Get("eventReminders.timeDisplay.line1") == line1.TimeLeft or addon.Settings.Get("eventReminders.timeDisplay.line2") == line2.TimeLeft then
         local secondsLeft = event.UpcomingEventDetails.StartTime - GetServerTime()
         timeLeft = GetSecondsLeftFormattedText(secondsLeft)
     end
 
     -- Line 1's End Time shows when an upcoming event starts: the frame puts "In" before it, and the time left counts to
     -- the start (issue #247). Line 2's, with no "In" before it, shows when it ends
-    if addon.Settings.Get("eventReminders.timeDisplay.line1") == 1 then -- End Time
+    if addon.Settings.Get("eventReminders.timeDisplay.line1") == line1.EndTime then
         runtime = FormatDate(event.UpcomingEventDetails.StartTime)
-    elseif addon.Settings.Get("eventReminders.timeDisplay.line1") == 2 then -- Time Left
+    elseif addon.Settings.Get("eventReminders.timeDisplay.line1") == line1.TimeLeft then
         runtime = timeLeft
     end
 
-    if addon.Settings.Get("eventReminders.timeDisplay.line2") == 1 or addon.Settings.Get("eventReminders.compact") then -- None
+    if addon.Settings.Get("eventReminders.timeDisplay.line2") == line2.None or addon.Settings.Get("eventReminders.compact") then
         return runtime
-    elseif addon.Settings.Get("eventReminders.timeDisplay.line2") == 2 then -- End Time
+    elseif addon.Settings.Get("eventReminders.timeDisplay.line2") == line2.EndTime then
         return runtime .. "\n" .. FormatDate(event.UpcomingEventDetails.EndTime)
-    elseif addon.Settings.Get("eventReminders.timeDisplay.line2") == 3 then -- Time Left
+    elseif addon.Settings.Get("eventReminders.timeDisplay.line2") == line2.TimeLeft then
         return runtime .. "\n" .. timeLeft
     end
 

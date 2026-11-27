@@ -8,13 +8,15 @@ local L = addon.L
 
 local AdjustedWidth = addon.InjectOptions.AdjustedWidth
 
+-- The choices, each text under the number it saves (addon.Gui.RightClickMenu.Enum, RightClickMenu.lua)
+local wowheadTab = addon.Gui.RightClickMenu.Enum.WowheadTab
 local wowheadRelatedTabs = {
-    L["None"],
-    L["Criteria of"],
-    L["Guides"],
-    L["News"],
-    L["Comments"],
-    L["Screenshots"]
+    [wowheadTab.None] = L["None"],
+    [wowheadTab.CriteriaOf] = L["Criteria of"],
+    [wowheadTab.Guides] = L["Guides"],
+    [wowheadTab.News] = L["News"],
+    [wowheadTab.Comments] = L["Comments"],
+    [wowheadTab.Screenshots] = L["Screenshots"]
 }
 
 local function Rows()
@@ -44,7 +46,7 @@ addon.Features.AddOptions("RightClickMenu", {
     Defaults = {
         ["rightClickMenu.showButtonOnAchievement"] = false,
         ["rightClickMenu.wowheadLink.addLocale"] = true,
-        ["rightClickMenu.wowheadLink.addRelatedTab"] = 1,
+        ["rightClickMenu.wowheadLink.addRelatedTab"] = wowheadTab.None,
     },
     Rows = Rows,
     -- Between Tooltips and Pop Out in the Achievement window group (Options/Window/Map.lua)

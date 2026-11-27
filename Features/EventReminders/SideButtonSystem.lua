@@ -9,9 +9,10 @@ function eventReminderSideButtonSystem:GetAnchor()
     if self.AttachedAnchor then
         return self.AttachedAnchor
     end
-    if addon.Settings.Get("eventReminders.sideButtonsAnchor") == 1 then
+    local anchor = addon.EventReminders.Enum.SideButtonsAnchor
+    if addon.Settings.Get("eventReminders.sideButtonsAnchor") == anchor.AchievementWindow then
         return AchievementFrame
-    elseif addon.Settings.Get("eventReminders.sideButtonsAnchor") == 2 then
+    elseif addon.Settings.Get("eventReminders.sideButtonsAnchor") == anchor.WorldMap then
         return WorldMapFrame
     end
 end

@@ -9,7 +9,6 @@ local guide = addon.Gui.Guide
 -- The actions follow Achievements.Guide.ActionStyle: small icons at the right of the headline (the default), or gold text
 -- links on a line under the details. Krowi compared both in game on 2026-10-11 and kept both as an option.
 
-content.ActionStyle = {Icons = 1, Links = 2} -- Achievements.Guide.ActionStyle
 
 local numberWidth = 18
 local textIndent = numberWidth + 6
@@ -159,7 +158,7 @@ function content.Render(frame, achievement, width)
             frame[key].Used = 0
         end
     end
-    local useLinks = addon.Settings.Get("guides.actionStyle") == content.ActionStyle.Links
+    local useLinks = addon.Settings.Get("guides.actionStyle") == addon.Enum.GuideActionStyle.Links
     local y, numControls = 0, 0
     local lines = guide.GetLines(achievement)
     for index, line in ipairs(lines) do

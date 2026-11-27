@@ -122,7 +122,7 @@ addon.Features.AddOptions("PopOut", {
         ["popOut.fadeSpeed"] = {Type = "number", Default = 0.2, Min = 0, Max = 1, Step = 0.05},
         ["popOut.fadeWhenNotHovered"] = false,
         ["popOut.fadedOpacity"] = {Type = "number", Default = 0.5, Min = 0, Max = 1, Step = 0.01},
-        ["popOut.modifier"] = 3,
+        ["popOut.modifier"] = addon.Enum.Modifier.Ctrl,
         ["popOut.persistAcrossSessions"] = true,
         ["popOut.rememberLastPosition"] = true,
         ["popOut.rememberSize"] = true,

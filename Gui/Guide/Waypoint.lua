@@ -7,7 +7,7 @@ local waypoint = addon.Gui.Guide.Waypoint
 -- pin (Dalaran and most class halls). Coordinates are percent (0-100), as the data and /way use them. Every call that
 -- places a waypoint runs from the player's click.
 
-waypoint.Provider = {Both = 1, MapPin = 2, TomTom = 3}
+local provider = addon.Enum.GuideWaypointProvider
 
 local function IsTomTomLoaded()
     return TomTom ~= nil and TomTom.AddWaypoint ~= nil
@@ -85,11 +85,11 @@ end
 -- The waypoint actions for a point: {Kind = "MapPin"|"Poi"|"TomTom", Text, Enabled, Func}. The chosen provider is
 -- offered even when it cannot place the point, disabled with the reason in its text (Classic menus have no tooltips).
 -- Both offers every provider that can place it, and the map pin with its reason when none can.
-function waypoint.GetActions(point, provider, available)
-    if provider == waypoint.Provider.MapPin then
+function waypoint.GetActions(point, chosen, available)
+    if chosen == provider.MapPin then
         return {BlizzardAction(point, available)}
     end
-    if provider == waypoint.Provider.TomTom then
+    if chosen == provider.TomTom then
         return {TomTomAction(point, available)}
     end
     local actions = {}
