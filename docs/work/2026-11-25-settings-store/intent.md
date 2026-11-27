@@ -32,7 +32,7 @@ Settings are built the way most applications build them (overview page: https://
 
 ## Affected users and systems
 - Every player, on Retail, Mists and Titan.
-- The saved variables `KrowiAF_Options`, `KrowiAF_Filters`, `KrowiAF_SearchOptions` (read once, then left untouched) and their replacements; `KrowiAF_SavedData` and `KrowiAF_Achievements` (now under the runner).
+- The saved variables `KrowiAF_Options`, `KrowiAF_Filters`, `KrowiAF_SearchOptions` (migrated, checked, then cleared) and their replacements; `KrowiAF_SavedData` and `KrowiAF_Achievements` (now under the runner).
 - Every option definition (`Options/*.lua`, `Features/*/Options.lua`, `Plugins/`), the feature registry's switches and defaults (`Features.lua`), `Filters.lua`, `SearchOptions.lua`, and the readers across the addon.
 - The options window's Profiles section (options and filter profiles).
 - `Data/DataIntegrityManager.lua` and `Tests/Schedules.lua`, which tests its Legion Assaults step.
@@ -43,7 +43,7 @@ Settings are built the way most applications build them (overview page: https://
 - **No player loses a setting, a filter or a search toggle**, in any profile, and each character keeps its choice of options profile and filter profile.
 - Nothing the DataIntegrityManager does today is lost: its four steps carry over.
 - The migration is safe to run again: an interrupted one leaves the old data as it was, and the next login tries again.
-- **The old saved variables stay declared in the `.toc` and untouched until Krowi says so**, probably until the expansion 13.0 (Krowi, 2026-11-27).
+- **Migrate, check, then clear, once** (Krowi, 2026-11-27: "migrate, check, if ok, clear the tables so the user has no "polluted" files. this should only run once offcourse"). `KrowiAF_Options`, `KrowiAF_Filters` and `KrowiAF_SearchOptions` are cleared only after an in-game check finds every old value at its new key and every character's two profile choices kept. A failed check clears nothing and leaves the migration to run again at the next login.
 - No downgrade path (Krowi, 2026-11-25).
 - Players see no difference except the debug and diagnostics switches no longer following the profile, and the search toggles following the filter profile.
 - Krowi_Reminders is out of scope and may break (Krowi, 2026-11-27).
@@ -54,3 +54,4 @@ Settings are built the way most applications build them (overview page: https://
 - The exact account-scope list (the minimap icon?).
 - Whether a character list entry without a name errors today (the GUID step), and whether `KrowiAF_DebugTable` and `KrowiAF_MapVerifier` (debug and developer tools) join the runner.
 - What `KrowiAF_GetOptions` and the plugins' settings look like once option rows name keys.
+- What the addon reads while a failed check waits for the next login, and how the player or Krowi hears of it.
