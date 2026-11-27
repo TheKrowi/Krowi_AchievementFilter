@@ -128,13 +128,15 @@ local function LogNotCarried(notCarried)
     for _, line in ipairs(notCarried) do Log("migration 1: not carried, " .. line) end
 end
 
--- Whether the player set what a failed record names since the failure, in its scope (Settings/Store.lua, Touch). A
--- filter or search value is only known as set when its whole profile was copied, reset or deleted: the store does
--- not see writes into its live objects, so a failed filter value the player changed since is moved again.
+-- Whether the player set what a failed record names since the failure, in its scope (Settings/Store.lua, Touch and
+-- the logout save's marks for a live table changed in place). A filter or search value counts as set when its table
+-- changed at all since (the store does not see which field), or its whole profile was copied, reset or deleted.
 local function Touched(record, touched)
     local section, profile = record.Section, tostring(record.Profile)
     if section == "profileOf" then return touched["profileOf:" .. record.System .. ":" .. tostring(record.Character)] == true end
-    if section == "filters" or section == "search" then return touched["filters:" .. profile .. ":*"] == true end
+    if section == "filters" or section == "search" then
+        return touched["filters:" .. profile .. ":*"] == true or touched["filters:" .. profile .. ":" .. section] == true
+    end
     if section ~= "options" then return false end
     local kind, key, _, account = check.Home(record.Path)
     if not kind then return false end
@@ -154,7 +156,9 @@ end
 -- After a failure, with a new addon version: the failed records (all, when the first run errored) moved again from the
 -- old tables where the player has not set the key since, checked again, cleared on a pass
 local function Retry(sv, context, settings, failed, dataError)
-    local old = ReadOld(sv, context, failed.LegionMerged)
+    -- the character of the first run: its options profile gave the account values, also when another one logs in now
+    local first = setmetatable({ Character = failed.Character or context.Character }, { __index = context })
+    local old = ReadOld(sv, first, failed.LegionMerged)
     settings.Account = type(settings.Account) == "table" and settings.Account or {}
     for _, section in ipairs({ "Options", "Filters" }) do
         local data = type(settings[section]) == "table" and settings[section] or {}
@@ -224,7 +228,7 @@ function migrations.Run(sv, context)
     if not ok then
         -- nothing in place: the old tables stay, the failure is recorded, the addon runs on what the store had
         settings = settings or {}
-        settings.MigrationFailed = { AddonVersion = context.AddonVersion, Error = err, Touched = {}, LegionMerged = legionMerged }
+        settings.MigrationFailed = { AddonVersion = context.AddonVersion, Error = err, Touched = {}, LegionMerged = legionMerged, Character = context.Character }
         sv.Settings = settings
         migrations.Failed = settings.MigrationFailed
         Log("migration 1: error: " .. tostring(err))
@@ -242,7 +246,7 @@ function migrations.Run(sv, context)
         return "migrated"
     end
     new.MigrationFailed = { AddonVersion = context.AddonVersion, Paths = ok and failures or nil, Error = (not ok and err) or dataError,
-        Touched = {}, LegionMerged = legionMerged }
+        Touched = {}, LegionMerged = legionMerged, Character = context.Character }
     sv.Settings = new
     migrations.Failed = new.MigrationFailed
     Log(("migration 1: check failed, %s"):format(ok and (#failures .. " records") or ("error: " .. tostring(err))))

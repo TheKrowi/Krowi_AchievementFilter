@@ -124,7 +124,16 @@ Each step ends with the headless suites it reaches green and a commit. Nothing r
      - By option, the cleared file equals the branch's headless migration of the snapshot, except the ten values the options suite's `CheckDefaults` leaves changed (the older test bug, `docs/backlog.md`) and three filter `Refresh` flags (runtime redraw marks, not settings).
      - After the matrix's logins and reloads, no option moved, only those runtime flags: a cleared file stays as it is.
    - Mists done 2026-11-27 (5.5.4): the first login migrated and cleared (the old variables nil, on the `.toc`); all 19 suites with no failure; the matrix 1252 passed, 0 failed, complete; no addon error. By option the cleared file equals the branch's migration except the same ten `CheckDefaults` leftovers (headless on `main` too, from this snapshot) and three `Refresh` flags. The leftovers flip between two states from one options run to the next, which is why step 11 on Mists happened to compare equal.
-13. **Reviews:** `krowi:taint-reviewer` on the diff; the code review (`REVIEW.md`); `Find-DeprecatedApi.ps1`. Then the PR, with the class checked by `Get-ChangeClass.ps1`.
+13. **Reviews:** (done 2026-11-27, as below)
+   - `krowi:taint-reviewer`: no taint or secret-value problem. It names four older spots the diff only re-keys (the micro button's OnClick, `AlertFrame:AddQueuedAlertFrameSubSystem`, `AlertFrame:SetPoint`, `LoadAddOn("Blizzard_Calendar")`), none made worse here.
+   - **The code review found one Important bug, fixed.** The retry after a failed check overwrote what the player changed since inside a live table: the minimap icon's position, the sort lists, the filters and the search toggles, which no `Set` marks.
+     - The fix: while a retry waits, the store keeps a copy of each live table as built, and the logout save marks one that changed (`<system>:<profile>:<key>`). The retry leaves its failed values alone.
+     - `retry-keeps-live-changes` reproduces the review's probe; with the mark switched off it gives the review's result (the position back to 100, the filter back, the sort list `3,1,4,5,1`).
+     - This also takes away the limit Krowi accepted for filters (gates.md): a changed filter table is now seen.
+   - A minor finding, fixed: a retry on another character used that character's profile for the account values. It now uses the first run's character (`MigrationFailed.Character`).
+   - A minor finding, kept: the retry writes into the store in use, not aside. It only moves old values for keys the player did not touch.
+   - `Find-DeprecatedApi.ps1`: nothing on Retail or Mists.
+   - Plan text before the reviews: `krowi:taint-reviewer` on the diff; the code review (`REVIEW.md`); `Find-DeprecatedApi.ps1`. Then the PR, with the class checked by `Get-ChangeClass.ps1`.
 
 ## Risks
 - **Krowi's real accounts get migrated by the first in-game run.** Guarded by the copies and snapshot before step 11, and clearing off until step 12. Only Krowi's own characters log in.

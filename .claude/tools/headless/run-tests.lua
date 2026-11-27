@@ -3052,6 +3052,10 @@ local settingsScenarios = {
     -- version waits; a new one moves the failed values again, keeps the one the player set since, and clears on a pass
     {Name = "migrate-fails", Recorded = "first=failed version=0 failing=3 old=kept in-use=yes second=waiting third=migrated moved=yes kept=yes second-profile=moved/- version=1 cleared=yes failed-record=gone",
         Target = "first=failed version=0 failing=3 old=kept in-use=yes second=waiting third=migrated moved=yes kept=yes second-profile=moved/- version=1 cleared=yes failed-record=gone"},
+    -- the retry after a failed check keeps what the player changed since inside a live table (the code review's probe,
+    -- 2026-11-27): the move drops the minimap position, a sort place and a filter; the player then drags the icon,
+    -- swaps the sort and changes the filter, and logs out; the fix release's retry leaves all three as the player set them
+    {Name = "retry-keeps-live-changes", Recorded = "first=failed third=migrated minimap=222 earned-by=CharacterAccount priority=2,1,4,5,1", Target = "first=failed third=migrated minimap=222 earned-by=CharacterAccount priority=2,1,4,5,1"},
     -- an error midway through the build: no new store in place, the old tables kept, the failure recorded; an error in
     -- the check: the store as built is used, every value is retried after the next update
     {Name = "migrate-errors", Recorded = "result=error store=none old=kept recorded=yes check-error=failed/all/kept/in-use",
@@ -3508,6 +3512,38 @@ suites.settings = function(c)
                 default[keptKey] == "player" and "yes" or "no", table.concat(inSecond, "/"), tostring(sv.Settings.Version),
                 (sv.Options == nil and sv.Filters == nil and sv.SearchOptions == nil) and "yes" or "no",
                 sv.Settings.MigrationFailed == nil and "gone" or "kept")
+        end,
+        ["retry-keeps-live-changes"] = function()
+            local s = Runner(true)
+            local check = s.Check
+            local dropped = { ["options:Minimap.minimapPos"] = true, ["options:AchievementPoints.Tooltip.Sort.Priority.1"] = true, ["filters:EarnedBy"] = true }
+            local realMove = check.Move
+            check.Move = function(new, record, value, old)
+                if record.Path and dropped[record.Section .. ":" .. check.Join(record.Path)] then return end
+                return realMove(new, record, value, old)
+            end
+            local sv = OldFile()
+            sv.Options.profiles.Default.Minimap = { minimapPos = 100 }
+            sv.Filters.profiles.Default.EarnedBy = "CharacterOnly"
+            local first = s.Migrations.Run(sv, Context())
+            -- a session on the store as placed: the player's changes inside the live tables, then the logout save
+            local session = storeHelper.New(root, { Saved = sv.Settings, Declarations = {
+                ["minimap.icon"] = { Kind = "object", Default = { hide = true } },
+                ["tooltips.points.sortPriority"] = { Kind = "object", Default = { 1, 2, 3, 4, 5 } },
+                ["filters"] = { Kind = "object", System = "filters", Default = {} },
+            } })
+            session.Settings.GetObject("minimap.icon").minimapPos = 222
+            local priority = session.Settings.GetObject("tooltips.points.sortPriority")
+            priority[1], priority[2] = 2, 1
+            session.Settings.GetObject("filters").EarnedBy = "CharacterAccount"
+            session.Logout()
+            check.Move = realMove
+            local third = s.Migrations.Run(sv, Context("107.1"))
+            local options, filters = sv.Settings.Options.Profiles.Default, sv.Settings.Filters.Profiles.Default
+            local list = { 1, 2, 3, 4, 5 }
+            for i, v in next, options["tooltips.points.sortPriority"] or {} do list[i] = v end
+            return ("first=%s third=%s minimap=%s earned-by=%s priority=%s"):format(first, third,
+                tostring((options["minimap.icon"] or {}).minimapPos), tostring((filters.filters or {}).EarnedBy), table.concat(list, ","))
         end,
         ["migrate-errors"] = function()
             local s = Runner(true)

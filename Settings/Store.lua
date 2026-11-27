@@ -22,6 +22,7 @@ local current = {}        -- system -> the current profile's saved table
 local currentName = {}    -- system -> the current profile's name
 local built = {}          -- saved table -> { [key] = live object }
 local touched             -- while a failed migration waits for a retry: what the player set since (see Touch)
+local snapshots = {}      -- while touched exists: saved table -> key -> { Mark, Copy } of each live object as built
 local inDefaults, readCount = false, 0
 local logoutFrame
 
@@ -66,6 +67,17 @@ end
 
 local function Wipe(t)
     for k in next, t do t[k] = nil end
+end
+
+local function Same(a, b)
+    if type(a) ~= "table" or type(b) ~= "table" then return a == b end
+    for k, v in next, a do
+        if not Same(v, b[k]) then return false end
+    end
+    for k in next, b do
+        if a[k] == nil then return false end
+    end
+    return true
 end
 
 local function Declared(key, kind)
@@ -328,6 +340,14 @@ function settings.GetObject(key)
         object = Copy(declaration.Default or {})
         if type(store[key]) == "table" then Merge(object, store[key]) end
         objects[key] = object
+        -- while a failed migration waits for its retry: a copy as built, so the logout save sees what the player
+        -- changed inside the live table (the filter menu, the minimap icon's drag, the sort lists), which no Set sees
+        if touched and not inDefaults then
+            local mark = declaration.Scope == "account" and ("account:" .. key)
+                or (declaration.System .. ":" .. tostring(currentName[declaration.System]) .. ":" .. key)
+            snapshots[store] = snapshots[store] or {}
+            snapshots[store][key] = { Mark = mark, Copy = Copy(object) }
+        end
     end
     return object
 end
@@ -339,6 +359,11 @@ local function Flush(store)
     for key, object in next, objects do
         local declaration = declarations[key]
         store[key] = Diff(object, declaration and declaration.Default)
+        local snapshot = snapshots[store] and snapshots[store][key]
+        if snapshot and not Same(snapshot.Copy, object) then
+            Touch(snapshot.Mark)
+            snapshot.Copy = Copy(object)
+        end
     end
 end
 
@@ -521,7 +546,7 @@ function settings.Load(saved, character)
         data.Profiles[name] = data.Profiles[name] or {}
         current[system], currentName[system] = data.Profiles[name], name
     end
-    built = {}
+    built, snapshots = {}, {}
     touched = type(root.MigrationFailed) == "table" and root.MigrationFailed.Touched or nil
     if not logoutFrame and CreateFrame then
         logoutFrame = CreateFrame("Frame")
