@@ -2971,6 +2971,21 @@ local settingsScenarios = {
     -- whether every tab's filters follow the new filters profile
     {Name = "profile-switch", Recorded = "options=1/1/1 filters=1/1/1 options-switch=yes filters-follow=yes",
         Target = "options=1/1/1 filters=1/1/1 options-switch=yes filters-follow=yes"},
+    -- the rename table (Settings/Renames.lua, generate-renames.lua; docs/work/2026-11-25-settings-store): every path an
+    -- option of the old code writes (fixtures/settings-option-paths-<client>.lua), every leaf of the old defaults
+    -- (settings-old-defaults-<client>.lua) and every options value of the old file (settings-baseline-<client>.lua)
+    -- has a row, and no two old paths share a key. Read from frozen fixtures only, so it holds once the old code is gone.
+    {Name = "renames-cover", Recorded = "option-paths=422 defaults=414 fixture=737 no-row=0 shared=0",
+        Target = "option-paths=422 defaults=414 fixture=737 no-row=0 shared=0",
+        RecordedClassic = "option-paths=271 defaults=263 fixture=435 no-row=0 shared=0",
+        TargetClassic = "option-paths=271 defaults=263 fixture=435 no-row=0 shared=0"},
+    -- for every option of the old code, the keys this build's row writes in KrowiAF_Settings when set are the keys the
+    -- rename table gives its old paths: a row and a rename that disagree (two swapped keys) fail here, before the game.
+    -- Until the rows name keys (plan step 7) no option writes KrowiAF_Settings.
+    {Name = "renames-by-option", Recorded = "options=359 match=0 differ=0 none=359 missing=0",
+        Target = "options=359 match=359 differ=0 none=0 missing=0",
+        RecordedClassic = "options=255 match=0 differ=0 none=255 missing=0",
+        TargetClassic = "options=255 match=255 differ=0 none=0 missing=0"},
 }
 
 suites.settings = function(c)
@@ -2991,13 +3006,54 @@ suites.settings = function(c)
         end
         return t
     end
+    -- The rename table on its own, and an old options path's home in it: "value", "map" or "object", its key, and the
+    -- segments after the map's or object's path
+    local function Renames()
+        local addon = { Settings = {} }
+        assert(loadfile(root .. "/Settings/Renames.lua"))("Krowi_AchievementFilter", addon)
+        return addon.Settings.Renames
+    end
+    local function Split(path)
+        local segments = {}
+        for segment in path:gmatch("[^%.]+") do segments[#segments + 1] = segment end
+        return segments
+    end
+    local function Under(segments, prefix)
+        for n, name in ipairs(prefix) do
+            if segments[n] ~= name then return false end
+        end
+        return true
+    end
+    local function Home(renames, segments)
+        local key = renames.Values[table.concat(segments, ".")]
+        if key then return "value", key end
+        for _, object in ipairs(renames.Objects) do
+            if #segments > #object.Path and Under(segments, object.Path) then
+                return "object", object.Key, { unpack(segments, #object.Path + 1) }
+            end
+        end
+        for _, map in ipairs(renames.Maps) do
+            local want = #map.Path + map.Depth + (map.Leaf and 1 or 0)
+            if #segments == want and Under(segments, map.Path) and (not map.Leaf or segments[want] == map.Leaf) then
+                return "map", map.Key, { unpack(segments, #map.Path + 1, #map.Path + map.Depth) }
+            end
+        end
+    end
+    -- Where in KrowiAF_Settings the old path's value goes, as SavedKeys writes a path (a profile as *)
+    local function NewPath(renames, segments)
+        local kind, key, rest = Home(renames, segments)
+        if not kind then return nil end
+        local base = (kind == "value" and renames.Account[key]) and "KrowiAF_Settings.Account." or "KrowiAF_Settings.Options.Profiles.*."
+        if kind == "value" then return base .. key end
+        return base .. key .. "." .. table.concat(rest, ".")
+    end
     local reads = {
         ["defaults-unchanged"] = function()
             local ctx = Boot()
             return "hash=" .. proof.DefaultsHash(ctx.addon)
         end,
         ["saved-keys-unchanged"] = function()
-            local count, hash = proof.SavedKeys(Boot())
+            local count, hash = proof.SavedKeys((Boot())) -- the ctx only: Boot also returns the model
             return ("options=%d hash=%s"):format(count, hash)
         end,
         ["first-install-profile"] = function()
@@ -3064,6 +3120,86 @@ suites.settings = function(c)
             filters:SetProfile("Default")
             filters:DeleteProfile("SettingsTest")
             return ("%s options-switch=%s filters-follow=%s"):format(registered, switched and "yes" or "no", follow and "yes" or "no")
+        end,
+        ["renames-cover"] = function()
+            local renames = Renames()
+            local counts, noRow, seen = {}, {}, {}
+            local function Check(source, segments)
+                local path = table.concat(segments, ".")
+                if path == "Categories.Excluded.CharacterSpecific" then return end -- an unused default (renames.md, Not carried over)
+                counts[source] = (counts[source] or 0) + 1
+                if not Home(renames, segments) and not seen[path] then
+                    seen[path] = true
+                    noRow[#noRow + 1] = path
+                end
+            end
+            local function Leaves(t, prefix, source)
+                for k, v in next, t do
+                    if k ~= "*" and k ~= "**" then
+                        local segments = { unpack(prefix) }
+                        segments[#segments + 1] = tostring(k)
+                        if type(v) == "table" then Leaves(v, segments, source) else Check(source, segments) end
+                    end
+                end
+            end
+            for _, paths in next, assert(loadfile(scriptDir .. "/fixtures/settings-option-paths-" .. c.client .. ".lua"))() do
+                for _, path in ipairs(paths) do Check("option-paths", Split(path:gsub("^KrowiAF_Options%.profiles%.%*%.", ""))) end
+            end
+            Leaves(assert(loadfile(scriptDir .. "/fixtures/settings-old-defaults-" .. c.client .. ".lua"))().Options.profile, {}, "defaults")
+            for _, profile in next, assert(loadfile(scriptDir .. "/fixtures/settings-baseline-" .. c.client .. ".lua"))().KrowiAF_Options.profiles do
+                Leaves(profile, {}, "fixture")
+            end
+            local byKey, shared = {}, 0
+            for _, key in next, renames.Values do
+                if byKey[key] then shared = shared + 1 end
+                byKey[key] = true
+            end
+            table.sort(noRow)
+            return ("option-paths=%d defaults=%d fixture=%d no-row=%d shared=%d%s"):format(counts["option-paths"] or 0,
+                counts.defaults or 0, counts.fixture or 0, #noRow, shared, #noRow > 0 and (" (" .. table.concat(noRow, ", ", 1, math.min(3, #noRow)) .. ")") or "")
+        end,
+        ["renames-by-option"] = function()
+            local renames = Renames()
+            local frozen = assert(loadfile(scriptDir .. "/fixtures/settings-option-paths-" .. c.client .. ".lua"))()
+            local ctx, model = Boot()
+            local present = {}
+            for _, item in ipairs(model.Options()) do present[item.Option.Id] = true end
+            local function Save()
+                local settings = ctx.addon.Settings
+                if settings and settings.IsLoaded() then settings.Save() end
+            end
+            local _, _, lines = proof.SavedKeys(ctx, { "KrowiAF_Settings" }, Save)
+            local written = {}
+            for _, line in ipairs(lines) do
+                local id, list = line:match("^(.-) => (.*)$")
+                written[id] = list
+            end
+            local count, match, differ, none, missing = 0, 0, 0, 0, 0
+            for id, paths in next, frozen do
+                count = count + 1
+                if not present[id] then
+                    missing = missing + 1
+                else
+                    local expected, unique = {}, {}
+                    for _, path in ipairs(paths) do
+                        local new = NewPath(renames, Split(path:gsub("^KrowiAF_Options%.profiles%.%*%.", "")))
+                        if new and not unique[new] then
+                            unique[new] = true
+                            expected[#expected + 1] = new
+                        end
+                    end
+                    table.sort(expected)
+                    local got = written[id] or ""
+                    if got == "" then
+                        none = none + 1
+                    elseif got == table.concat(expected, ",") then
+                        match = match + 1
+                    else
+                        differ = differ + 1
+                    end
+                end
+            end
+            return ("options=%d match=%d differ=%d none=%d missing=%d"):format(count, match, differ, none, missing)
         end,
     }
     local results = {}

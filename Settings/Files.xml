@@ -1,3 +1,4 @@
 <Ui>
     <Script file="Store.lua" />
+    <Script file="Renames.lua" />
 </Ui>
