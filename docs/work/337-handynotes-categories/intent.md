@@ -1,5 +1,5 @@
 # Intent: Categories never load on Retail with HandyNotes: Dragonflight enabled
-Author: Brirdy (player, Retail, deDE client), reported on Discord; written up by Krowi (maintainer) as the issue. Source: GitHub issue #337. Status: draft
+Author: Brirdy (player, Retail, deDE client), reported on Discord; written up by Krowi (maintainer) as the issue. Source: GitHub issue #337. Status: accepted
 
 ## Problem
 On Retail, with HandyNotes: Dragonflight enabled, the achievement window never gets past "Categories not loaded":
@@ -8,25 +8,27 @@ On Retail, with HandyNotes: Dragonflight enabled, the achievement window never g
 - Closing and reopening the window does not help, and changing the filters does not help either.
 - No Lua errors are reported.
 
-The player narrowed it down to HandyNotes: Dragonflight: with that addon disabled, everything works. HandyNotes and its Dragonflight plugin are widely used, so any player with both is likely to hit this.
+The player narrowed it down to HandyNotes: Dragonflight: with that addon disabled, everything works.
+
+The trigger was never reproduced (enUS, 2026-10-13), and the reporter's details, asked for on Discord on 2026-10-17, have not come. What the code does show is that one failing step anywhere early in the login data load leaves every tab without categories for the whole session, with nothing the player can see. On 2026-11-27 Krowi chose to fix that weakness now, without waiting for the trigger.
 
 ## Proposed outcome
-- The categories load and the window works with HandyNotes: Dragonflight enabled, as it does without it.
-- If the addon's data load ever fails, the player sees an error that names the cause, not a message that asks them to reopen the window. The message currently implies the load is only slow.
+- A failure in one piece of the addon's data no longer makes the whole addon unusable. The rest loads, and the window works with what loaded.
+- The failure is reported with its cause, so the next report like this one names what broke, instead of the player seeing a message that asks them to reopen the window.
 
 ## Affected users and systems
-- Retail; reported on a deDE client. Whether Classic is affected is unknown: HandyNotes: Dragonflight is Retail only.
-- The achievement window: every tab's category list.
-- The login data load (`PLAYER_LOGIN`), which builds the categories every tab and special category depends on.
-- Other addons: HandyNotes and HandyNotes: Dragonflight (v156, the latest release, 2026-09-15). That plugin embeds `Krowi_WorldMapButtons-1.4` (minor 9), a library this addon also ships (minor 11).
-- No saved variables, options or data files are known to be involved.
+- Every client the addon loads on (Retail, Mists Classic, Wrath Titan): the login data load is shared code.
+- The achievement window: every tab's category list, the special categories (Summary, Watch List, Current Zone, ...), and the steps that run at login after the load starts (the micro button, the Y binding move, the setup of Blizzard's achievement window when it is already loaded).
+- Players with an error display (BugSack, or the game's Lua error setting) and players without one.
+- Other addons: HandyNotes and HandyNotes: Dragonflight (v156 at the report; 173 now), which embeds `Krowi_WorldMapButtons-1.4` (minor 9), a library this addon also ships (minor 11).
+- No saved variables or data files change.
 
 ## Constraints
-- HandyNotes: Dragonflight is not ours to change. The fix lives in this addon, or in the shared `Krowi_WorldMapButtons` library upstream if that turns out to be the cause.
+- HandyNotes: Dragonflight is not ours to change.
 - No new taint. The login load runs outside any Blizzard frame and must stay that way.
+- A normal login stays as fast as today and allocates nothing more per data entry.
 - Classic and the plugin integrations keep working unchanged.
 
 ## Open questions
-- What stops the load? It has not been reproduced yet. The maintainer's install has the same HandyNotes: Dragonflight version, but on an enUS client.
-- Is it tied to the deDE client or to a particular combination of HandyNotes plugins?
-- Should a failed load surface its error to the player, and should the loading message say what to do when the load does not finish?
+- What makes the load fail with HandyNotes: Dragonflight on a deDE client stays unknown. This work does not answer it; it makes the answer visible.
+- Whether the player should get a message of their own when part of the data failed, on top of the game's error display.
