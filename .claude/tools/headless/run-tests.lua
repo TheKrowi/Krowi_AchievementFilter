@@ -3006,6 +3006,14 @@ local settingsScenarios = {
         Target = "options=359 match=359 differ=0 none=0 missing=0",
         RecordedClassic = "options=255 match=0 differ=0 none=255 missing=0",
         TargetClassic = "options=255 match=255 differ=0 none=0 missing=0"},
+    -- every declaration's default equals the old default at its old path (requirement 5), by the rename table, on a
+    -- whole-addon boot (the store not loaded yet, so a read gives the declared default): every leaf of the old defaults
+    -- (settings-old-defaults-<client>.lua: values, map entries, objects), the filters and search objects; no old
+    -- default undeclared and no declared value without an old default
+    {Name = "defaults-by-key", Recorded = "values=183 map-entries=220 object-fields=11 differ=0 missing=0 new=0 filters=same search=same",
+        Target = "values=183 map-entries=220 object-fields=11 differ=0 missing=0 new=0 filters=same search=same",
+        RecordedClassic = "values=183 map-entries=69 object-fields=11 differ=0 missing=0 new=0 filters=same search=same",
+        TargetClassic = "values=183 map-entries=69 object-fields=11 differ=0 missing=0 new=0 filters=same search=same"},
     -- Migration 1 (Settings/Migrations.lua and Check.lua, run alone on plain tables; requirements 11-15). Clearing is on
     -- in these scenarios unless one says otherwise; the build itself keeps it off until plan step 11.
     -- the old file migrates: the check passes again against a fresh copy, every profile is kept, the old variables go
@@ -3261,6 +3269,64 @@ suites.settings = function(c)
                 end
             end
             return ("options=%d match=%d differ=%d none=%d missing=%d"):format(count, match, differ, none, missing)
+        end,
+        ["defaults-by-key"] = function()
+            local ctx = Boot()
+            local settings = ctx.addon.Settings
+            local check = storeHelper.Runner(root).Check
+            local old = assert(loadfile(scriptDir .. "/fixtures/settings-old-defaults-" .. c.client .. ".lua"))()
+            local counts = { value = 0, map = 0, object = 0 }
+            local differ, missing, seenValue = {}, {}, {}
+            local function Leaves(t, prefix)
+                for k, v in next, t do
+                    local segments = { unpack(prefix) }
+                    segments[#segments + 1] = k
+                    if type(v) == "table" then
+                        Leaves(v, segments)
+                    else
+                        local path = check.Join(segments)
+                        local kind, key, rest = check.Home(segments)
+                        local declaration = key and settings.Declaration(key)
+                        if path == "Categories.Excluded.CharacterSpecific" then
+                            -- an unused default (renames.md, Not carried over)
+                        elseif not declaration then
+                            missing[#missing + 1] = path
+                        else
+                            counts[kind] = counts[kind] + 1
+                            local got
+                            if kind == "value" then
+                                seenValue[key] = true
+                                got = settings.Get(key)
+                                if declaration.Type ~= type(v) then got = "type " .. tostring(declaration.Type) end
+                            elseif kind == "map" then
+                                got = settings.GetEntry(key, unpack(rest))
+                            else
+                                got = Walk(declaration.Default, rest)
+                            end
+                            if got ~= v then differ[#differ + 1] = path end
+                        end
+                    end
+                end
+            end
+            Leaves(old.Options.profile, {})
+            local function Same(a, b)
+                if type(a) ~= "table" or type(b) ~= "table" then return a == b end
+                for k, v in next, a do if not Same(v, b[k]) then return false end end
+                for k in next, b do if a[k] == nil then return false end end
+                return true
+            end
+            local new = {}
+            for key, declaration in settings.Declared() do
+                if declaration.Kind == "value" and not seenValue[key] then new[#new + 1] = key end
+            end
+            table.sort(differ)
+            table.sort(missing)
+            table.sort(new)
+            local function List(t) return #t == 0 and "0" or (#t .. " (" .. table.concat(t, ", ", 1, math.min(3, #t)) .. ")") end
+            return ("values=%d map-entries=%d object-fields=%d differ=%s missing=%s new=%s filters=%s search=%s"):format(
+                counts.value, counts.map, counts.object, List(differ), List(missing), List(new),
+                Same(settings.Declaration("filters").Default, old.Filters.profile) and "same" or "differ",
+                Same(settings.Declaration("search").Default, old.SearchOptions.profile) and "same" or "differ")
         end,
         ["migrate-fixture"] = function()
             local s = Runner(true)

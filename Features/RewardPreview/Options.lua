@@ -107,14 +107,12 @@ end
 
 addon.Features.AddOptions("RewardPreview", {
     Defaults = {
-        Achievements = {
-            ShowRewardPreviewIcon = true,
-            RewardPreviewMouseoverShow = false,
-            RewardPreviewInvertVerticalRotation = false,
-            RewardPreviewMaxIndividualIcons = 3,
-            RewardPreviewDefaultWidth = 280,
-            RewardPreviewDefaultHeight = 360
-        }
+        ["rewardPreview.defaultHeight"] = 360,
+        ["rewardPreview.defaultWidth"] = 280,
+        ["rewardPreview.invertVerticalRotation"] = false,
+        ["rewardPreview.maxIndividualIcons"] = 3,
+        ["rewardPreview.mouseoverShow"] = false,
+        ["rewardPreview.showIcon"] = true,
     },
     Rows = Rows,
     -- Between Pop Out and Achievement guides in the Achievement window group (Options/Window/Map.lua)

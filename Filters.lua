@@ -46,6 +46,9 @@ local defaults = {
         ShowPlaceholders = false
     }
 }
+-- The filters of a filter profile, one live table (docs/work/2026-11-25-settings-store): its default is filled by
+-- InjectDefaults, before anything asks for it
+addon.Settings.Declare("filters", {Kind = "object", System = "filters", Default = defaults.profile})
 
 -- [[ Inject Defaults ]] --
 local function InjectDynamicRewardTypeFilters()

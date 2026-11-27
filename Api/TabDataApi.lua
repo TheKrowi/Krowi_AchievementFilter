@@ -45,12 +45,14 @@ local function InjectOptionsDefaults(addonName, tabName, showByDefault)
     addon.InjectOptions:AddDefaults("Tabs." .. addonName, tabName, {
         Show = showByDefault
     })
+    addon.Settings.RegisterEntryDefault("tabs.show", addonName, tabName, showByDefault)
 end
 
 local function SetOptionsOrder(addonName, tabName, index)
     local options
     if addon.Options.Defaults then -- Pre options loaded
         options = addon.Options.Defaults.profile.Tabs
+        addon.Settings.RegisterEntryDefault("tabs.order", addonName, tabName, index)
     else -- Post options loaderdata
         options = addon.Options.db.profile.Tabs
     end

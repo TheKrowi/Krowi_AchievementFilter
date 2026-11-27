@@ -13,6 +13,7 @@ function iat:InjectOptions()
     KrowiAF.UtilApi.InjectOptions:AddDefaults("Plugins", "InstanceAchievementTracker", {
         AddToRightClickMenu = true,
     })
+    addon.Settings.Declare("plugins.instanceAchievementTracker.addToRightClickMenu", {Type = "boolean", Default = true})
 
     local pluginTable = KrowiAF.UtilApi.InjectOptions:AddPluginTable(
         "InstanceAchievementTracker",

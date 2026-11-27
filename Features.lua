@@ -74,16 +74,6 @@ local function Write(tbl, path, value)
     tbl[parts[#parts]] = value
 end
 
-local function Merge(into, from)
-    for key, value in next, from do
-        if type(value) == "table" and type(into[key]) == "table" then
-            Merge(into[key], value)
-        else
-            into[key] = value
-        end
-    end
-end
-
 -- The switch as saved in the current profile; on before the options load
 local function IsOn(record)
     local db = addon.Options.db
@@ -100,6 +90,10 @@ function features.Register(def)
     record.Registered = true
     tinsert(order, record)
     Write(addon.Options.Defaults.profile, record.Switch, true)
+    -- the switch's key in the settings store (docs/work/2026-11-25-settings-store); found through the rename table until
+    -- the switches name their keys (plan step 8)
+    local _, key = addon.Settings.Check.Home(Split(record.Switch))
+    addon.Settings.Declare(key, {Type = "boolean", Default = true})
     return record
 end
 
@@ -150,10 +144,33 @@ function features.AddOptions(name, def)
     tinsert(optionsOrder, record)
 end
 
+-- Until AceDB leaves (docs/work/2026-11-25-settings-store, plan step 6): a feature's value also goes into AceDB's
+-- defaults, at its old path
+local oldPathOf
+local function WriteOldDefault(key, value)
+    if not oldPathOf then
+        oldPathOf = {}
+        for path, newKey in next, addon.Settings.Renames.Values do oldPathOf[newKey] = path end
+    end
+    Write(addon.Options.Defaults.profile, assert(oldPathOf[key], "no old path for " .. key), value)
+end
+
+-- A feature's Defaults: a key's default value, or a table that declares the key (a map: {Kind = "map"})
+local function Declare(defaults)
+    for key, value in next, defaults do
+        if type(value) == "table" then
+            addon.Settings.Declare(key, value)
+        else
+            addon.Settings.Declare(key, {Type = type(value), Default = value})
+            WriteOldDefault(key, value)
+        end
+    end
+end
+
 local function BuildFeatureOptions(record)
     local name, def = record.Name, record.Options
     if def.Defaults then
-        Merge(addon.Options.Defaults.profile, def.Defaults)
+        Declare(def.Defaults)
     end
     local path = features.Path(name)
     local args = {

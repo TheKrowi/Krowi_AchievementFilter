@@ -48,13 +48,9 @@ end
 
 addon.Features.AddOptions("RightClickMenu", {
     Defaults = {
-        RightClickMenu = {
-            ShowButtonOnAchievement = false,
-            WowheadLink = {
-                AddLocale = true,
-                AddRelatedTab = 1
-            }
-        }
+        ["rightClickMenu.showButtonOnAchievement"] = false,
+        ["rightClickMenu.wowheadLink.addLocale"] = true,
+        ["rightClickMenu.wowheadLink.addRelatedTab"] = 1,
     },
     Rows = Rows,
     -- Between Tooltips and Pop Out in the Achievement window group (Options/Window/Map.lua)

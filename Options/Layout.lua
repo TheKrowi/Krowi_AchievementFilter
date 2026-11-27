@@ -248,6 +248,7 @@ function layout.InjectDynamicAdjustableCategoryOptions(category, categoryDisplay
     end
 
     addon.InjectOptions:AddDefaults("AdjustableCategories." .. category, tabIndex, defaultValue)
+    addon.Settings.RegisterEntryDefault("categories.shownOnTab", category, tabIndex, defaultValue)
 
     if not addon.InjectOptions:TableExists("Layout.args.AdjustableCategories.args." .. category) then
         addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args", category, {

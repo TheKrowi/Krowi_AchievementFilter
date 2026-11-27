@@ -133,6 +133,11 @@ function settings.Declaration(key)
     return declarations[key]
 end
 
+-- for key, declaration in Declared(): every declaration (read only)
+function settings.Declared()
+    return next, declarations, nil
+end
+
 function settings.IsLoaded()
     return root ~= nil
 end

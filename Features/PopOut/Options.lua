@@ -112,26 +112,20 @@ end
 
 addon.Features.AddOptions("PopOut", {
     Defaults = {
-        Achievements = {
-            Modifiers = {
-                PopOut = 3
-            }
-        },
-        Popout = {
-            PersistAcrossSessions = true,
-            RememberSize = true,
-            RememberLastPosition = true,
-            DefaultWidth = 434,
-            CloseOnEarn = true,
-            CloseOnEarnDelay = 2,
-            EnableSnapping = true,
-            SnapDistance = 20,
-            AutoHideCloseButton = false,
-            AutoHideResizeButton = false,
-            FadeWhenNotHovered = false,
-            FadedOpacity = 0.5,
-            FadeSpeed = 0.2
-        }
+        ["popOut.autoHideCloseButton"] = false,
+        ["popOut.autoHideResizeButton"] = false,
+        ["popOut.closeOnEarn"] = true,
+        ["popOut.closeOnEarnDelay"] = 2,
+        ["popOut.defaultWidth"] = 434,
+        ["popOut.enableSnapping"] = true,
+        ["popOut.fadeSpeed"] = 0.2,
+        ["popOut.fadeWhenNotHovered"] = false,
+        ["popOut.fadedOpacity"] = 0.5,
+        ["popOut.modifier"] = 3,
+        ["popOut.persistAcrossSessions"] = true,
+        ["popOut.rememberLastPosition"] = true,
+        ["popOut.rememberSize"] = true,
+        ["popOut.snapDistance"] = 20,
     },
     Rows = Rows,
     Into = Into,

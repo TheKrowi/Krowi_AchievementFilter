@@ -29,6 +29,7 @@ function atf:InjectOptions()
     KrowiAF.UtilApi.InjectOptions:AddDefaults("Plugins", "AchievementsTabFixes", {
         RenameExplorationDragonIslesCategory = true,
     })
+    addon.Settings.Declare("plugins.achievementsTabFixes.renameExplorationDragonIslesCategory", {Type = "boolean", Default = true})
 
     local pluginTable = KrowiAF.UtilApi.InjectOptions:AddPluginTable(
         "AchievementsTabFixes",

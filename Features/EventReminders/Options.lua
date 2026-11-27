@@ -14,90 +14,59 @@ local settings = path .. ".args.Settings.args."
 
 -- Its defaults, merged into the profile defaults by the registry (Features.lua BuildOptions); the switch's own default
 -- is the registry's
+-- The settings this feature declares (docs/work/2026-11-25-settings-store): a value's default, or a table that declares a
+-- map; the per-event maps' entries come from the event data (EventOptions.lua)
 local defaults = {
-    EventReminders = {
-        PopUps = {
-            FadeDelay = 10,
-            MaxAlerts = 5,
-            AppliesTo = 1,
-            OffsetX = 0,
-            OffsetY = 128,
-            GrowDirection = 1,
-            Spacing = 10,
-            OnLogin = {
-                Show = true,
-                ShowInInstances = false,
-                ShowOnlyWhenTimeDataIsAvailable = true
-            },
-            OnReload = {
-                Show = true,
-                ShowInInstances = false,
-                ShowOnlyWhenTimeDataIsAvailable = true
-            },
-            OnEventStart = {
-                Show = true,
-                ShowInInstances = false,
-                ShowOnlyWhenTimeDataIsAvailable = true
-            },
-            OnLoginUpcoming = {
-                Show = true,
-                ShowInInstances = false
-            },
-            OnReloadUpcoming = {
-                Show = true,
-                ShowInInstances = false
-            },
-            OnEventStartUpcoming = {
-                Show = true,
-                ShowInInstances = false
-            },
-        },
-        ChatMessages = {
-            OnLogin = {
-                Show = false,
-                ShowInInstances = false,
-                ShowOnlyWhenTimeDataIsAvailable = true
-            },
-            OnReload = {
-                Show = false,
-                ShowInInstances = false,
-                ShowOnlyWhenTimeDataIsAvailable = true
-            },
-            OnEventStart = {
-                Show = false,
-                ShowInInstances = false,
-                ShowOnlyWhenTimeDataIsAvailable = true
-            },
-            OnLoginUpcoming = {
-                Show = true,
-                ShowInInstances = false
-            },
-            OnReloadUpcoming = {
-                Show = true,
-                ShowInInstances = false
-            },
-            OnEventStartUpcoming = {
-                Show = true,
-                ShowInInstances = false
-            },
-        },
-        DateTimeFormat = {
-            StartTimeAndEndTime = "%d/%m/%Y %R"
-        },
-        TimeDisplay = {
-            Line1 = 1,
-            Line2 = 3
-        },
-        Compact = false,
-        RefreshInterval = 60,
-        OnLoginDelay = 5,
-        OnLoginUpcomingDelay = 6,
-        SideButtonsAnchor = 1,
-        UpcomingCalendarEvents = {
-            Enabled = true,
-            Days = 14
-        }
-    }
+    ["eventReminders.chatMessages.onEventStart.show"] = false,
+    ["eventReminders.chatMessages.onEventStart.showInInstances"] = false,
+    ["eventReminders.chatMessages.onEventStart.showOnlyWhenTimeDataIsAvailable"] = true,
+    ["eventReminders.chatMessages.onEventStartUpcoming.show"] = true,
+    ["eventReminders.chatMessages.onEventStartUpcoming.showInInstances"] = false,
+    ["eventReminders.chatMessages.onLogin.show"] = false,
+    ["eventReminders.chatMessages.onLogin.showInInstances"] = false,
+    ["eventReminders.chatMessages.onLogin.showOnlyWhenTimeDataIsAvailable"] = true,
+    ["eventReminders.chatMessages.onLoginUpcoming.show"] = true,
+    ["eventReminders.chatMessages.onLoginUpcoming.showInInstances"] = false,
+    ["eventReminders.chatMessages.onReload.show"] = false,
+    ["eventReminders.chatMessages.onReload.showInInstances"] = false,
+    ["eventReminders.chatMessages.onReload.showOnlyWhenTimeDataIsAvailable"] = true,
+    ["eventReminders.chatMessages.onReloadUpcoming.show"] = true,
+    ["eventReminders.chatMessages.onReloadUpcoming.showInInstances"] = false,
+    ["eventReminders.compact"] = false,
+    ["eventReminders.dateTimeFormat.startTimeAndEndTime"] = "%d/%m/%Y %R",
+    ["eventReminders.onLoginDelay"] = 5,
+    ["eventReminders.onLoginUpcomingDelay"] = 6,
+    ["eventReminders.popUps.appliesTo"] = 1,
+    ["eventReminders.popUps.fadeDelay"] = 10,
+    ["eventReminders.popUps.growDirection"] = 1,
+    ["eventReminders.popUps.maxAlerts"] = 5,
+    ["eventReminders.popUps.offsetX"] = 0,
+    ["eventReminders.popUps.offsetY"] = 128,
+    ["eventReminders.popUps.onEventStart.show"] = true,
+    ["eventReminders.popUps.onEventStart.showInInstances"] = false,
+    ["eventReminders.popUps.onEventStart.showOnlyWhenTimeDataIsAvailable"] = true,
+    ["eventReminders.popUps.onEventStartUpcoming.show"] = true,
+    ["eventReminders.popUps.onEventStartUpcoming.showInInstances"] = false,
+    ["eventReminders.popUps.onLogin.show"] = true,
+    ["eventReminders.popUps.onLogin.showInInstances"] = false,
+    ["eventReminders.popUps.onLogin.showOnlyWhenTimeDataIsAvailable"] = true,
+    ["eventReminders.popUps.onLoginUpcoming.show"] = true,
+    ["eventReminders.popUps.onLoginUpcoming.showInInstances"] = false,
+    ["eventReminders.popUps.onReload.show"] = true,
+    ["eventReminders.popUps.onReload.showInInstances"] = false,
+    ["eventReminders.popUps.onReload.showOnlyWhenTimeDataIsAvailable"] = true,
+    ["eventReminders.popUps.onReloadUpcoming.show"] = true,
+    ["eventReminders.popUps.onReloadUpcoming.showInInstances"] = false,
+    ["eventReminders.popUps.spacing"] = 10,
+    ["eventReminders.refreshInterval"] = 60,
+    ["eventReminders.sideButtonsAnchor"] = 1,
+    ["eventReminders.timeDisplay.line1"] = 1,
+    ["eventReminders.timeDisplay.line2"] = 3,
+    ["eventReminders.upcomingCalendarEvents.days"] = 14,
+    ["eventReminders.upcomingCalendarEvents.enabled"] = true,
+    ["eventReminders.calendarEvents"] = { Kind = "map" },
+    ["eventReminders.worldEvents"] = { Kind = "map" },
+    ["eventReminders.widgetEvents"] = { Kind = "map" },
 }
 
 local timeDisplaysLine1 = {
@@ -137,7 +106,7 @@ local function AddStartTimeAndEndTimeFormat(format)
     AddFormat(startTimeAndEndTimeDateTimeFormats, startTimeAndEndTimeDateTimeValues, format)
 end
 
-AddStartTimeAndEndTimeFormat(defaults.EventReminders.DateTimeFormat.StartTimeAndEndTime)
+AddStartTimeAndEndTimeFormat(defaults["eventReminders.dateTimeFormat.startTimeAndEndTime"])
 AddStartTimeAndEndTimeFormat(addon.L["%d/%m/%Y %I:%M %p"])
 AddStartTimeAndEndTimeFormat(addon.L["%m/%d/%Y %R"])
 AddStartTimeAndEndTimeFormat(addon.L["%m/%d/%Y %I:%M %p"])
