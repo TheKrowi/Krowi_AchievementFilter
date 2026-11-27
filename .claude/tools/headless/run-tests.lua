@@ -3005,7 +3005,8 @@ local settingsScenarios = {
     {Name = "runner-quiet", Recorded = "errors=0 log=yes debug=on", Target = "errors=0 log=yes debug=on"},
     -- the logout save: a value set back to its default is not saved, a filter changed is saved as its difference only
     {Name = "sparse-save", Recorded = "compact=absent filters={MergeSmallCategories=false}", Target = "compact=absent filters={MergeSmallCategories=false}"},
-    -- a new install's saved settings after the boot and the logout save: what the boot itself sets
+    -- a new install's saved settings after the boot and the logout save: what the boot itself sets, and Version 1 (with
+    -- clearing on since plan step 12: a new install has nothing to migrate, so it is current at once)
     {Name = "first-install-boot",
         Recorded = 'saved={Account={},Filters={ProfileOf={},Profiles={Default={}}},Options={ProfileOf={},Profiles={Default={["calendar.firstWeekDay"]=1,["tabs.order"]={Blizzard_AchievementUI={Achievements=4},Krowi_AchievementFilter={Achievements=1}},["window.microButtonTab"]=4}}},Version=1}',
         Target = 'saved={Account={},Filters={ProfileOf={},Profiles={Default={}}},Options={ProfileOf={},Profiles={Default={["calendar.firstWeekDay"]=1,["tabs.order"]={Blizzard_AchievementUI={Achievements=4},Krowi_AchievementFilter={Achievements=1}},["window.microButtonTab"]=4}}},Version=1}'},
