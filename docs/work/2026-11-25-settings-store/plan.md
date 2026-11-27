@@ -1,11 +1,11 @@
 # Plan: One settings store of the addon's own, and one migration runner for every saved variable
-Spec: [spec.md](spec.md). Status: draft
+Spec: [spec.md](spec.md). Status: accepted 2026-11-27
 
 ## Files that change
 
 **New**
 - `Settings/Files.xml`, `Settings/Store.lua`, `Settings/Renames.lua`, `Settings/Migrations.lua`, `Settings/Check.lua` (spec, Design). `Settings/Declarations.lua` holds the core's declarations (from today's `Options/Defaults.lua`); features and plugins declare their own in their `Options.lua`.
-- `.claude/tools/headless/fixtures/settings-option-paths-Retail.lua` and `-Classic.lua`: the old build's option Id → saved paths, frozen from `main` 72c80618.
+- `.claude/tools/headless/fixtures/settings-option-paths-Retail.lua` and `-Classic.lua`: the old build's option Id → saved paths, frozen from `main` 72c80618 by `.claude/tools/headless/write-option-paths.lua`.
 - `.claude/tools/headless/settings-dryrun.lua`: migrates a real saved-variables file in memory and runs the check; reads only, writes nothing.
 - `.claude/tools/headless/generate-renames.lua`: the generator behind `renames.md` and `Settings/Renames.lua` (explicit rows), and the reader rewrite script.
 
@@ -30,7 +30,7 @@ Spec: [spec.md](spec.md). Status: draft
 
 ## Order of work
 
-Each step ends with the headless suites it reaches green and a commit. Nothing reaches the game before step 9.
+Each step ends with the headless suites it reaches green and a commit. Nothing reaches the game before step 10.
 
 1. **Freeze the truth.** From the unchanged code: write the option Id → old paths fixtures per client; keep the existing baseline and `-values` fixtures. Commit before any code change.
 2. **The store, alone.** `Settings/Store.lua` with declarations, kinds, scopes, the two profile systems, change events, `WithDefaults`, the logout save. Headless scenarios: `sparse-save`, `profile-switch`, a `WithDefaults` case. Not loaded by the addon yet.

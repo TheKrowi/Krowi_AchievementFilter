@@ -20,3 +20,4 @@ Class: saved-data
 | 2026-11-27 | design | A failing in-game check | Retry failed values only | "Retry failed values only (Recommended)" | accept |
 | 2026-11-27 | design | Which profile's Advanced switches become the account's | First character's profile | "First character's profile (Recommended)" | accept |
 | 2026-11-27 | scope | Remove the KrowiAF_SavedData keys no code reads | Remove them | "Remove them (Recommended)" | accept |
+| 2026-11-27 | plan | Approve the plan so step 1 starts? | Approve | "compact before approval", then after the compact: "start implementing" | accept |
