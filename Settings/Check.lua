@@ -2,7 +2,8 @@ local _, addon = ...
 
 -- Migration 1's check, and the walk it shares with the migration (docs/work/2026-11-25-settings-store, requirements
 -- 12 and 13). Every old value is a record: an options profile's value, a filter profile's value, a search toggle (once
--- per filter profile) or a character's profile choice. Target says where a record lives in the new store, Move puts
+-- per filter profile), a character's profile choice, or an unread value (in the old variables, outside all of those:
+-- it always fails). Target says where a record lives in the new store, Move puts
 -- it there and Matches reads it back, all on raw tables by key, never through Get or Set.
 addon.Settings.Check = {}
 local check = addon.Settings.Check
@@ -98,6 +99,34 @@ function check.Old(sv, options, context)
     if #names == 0 and next(old.Search) ~= nil then names[1] = "Default" end
     table.sort(names, function(a, b) return tostring(a) < tostring(b) end)
     old.FilterProfileNames = names
+    -- Every leaf of the three old variables the records above do not read (an AceDB global or char section, a search
+    -- profile other than Default, a profile that is not a table): each is a failing record, so the old tables are
+    -- never cleared with something in them that nobody looked at
+    old.Unread = {}
+    local function Unread(variable, t, prefix, isRead)
+        for key, value in next, t do
+            local segments = { unpack(prefix) }
+            segments[#segments + 1] = key
+            if not isRead(segments, value) then
+                if type(value) == "table" then
+                    Unread(variable, value, segments, isRead)
+                else
+                    old.Unread[#old.Unread + 1] = { Variable = variable, Path = segments }
+                end
+            end
+        end
+    end
+    local function ProfilesAndKeys(segments, value)
+        return (#segments == 2 and segments[1] == "profiles" and type(value) == "table") or segments[1] == "profileKeys"
+    end
+    if type(sv.Options) == "table" then Unread("KrowiAF_Options", sv.Options, {}, ProfilesAndKeys) end
+    if type(sv.Filters) == "table" then Unread("KrowiAF_Filters", sv.Filters, {}, ProfilesAndKeys) end
+    if type(sv.SearchOptions) == "table" then
+        Unread("KrowiAF_SearchOptions", sv.SearchOptions, {}, function(segments, value)
+            return (#segments == 2 and segments[1] == "profiles" and segments[2] == "Default" and type(value) == "table")
+                or (#segments == 2 and segments[1] == "profileKeys" and value == "Default")
+        end)
+    end
     return old
 end
 
@@ -122,6 +151,9 @@ function check.Records(old, fn)
     for character, name in next, old.FiltersProfileKeys do
         fn({ Section = "profileOf", System = "filters", Character = character }, name)
     end
+    for _, unread in ipairs(old.Unread) do
+        fn({ Section = "unread", Variable = unread.Variable, Path = unread.Path }, nil)
+    end
 end
 
 -- The old value a record names
@@ -139,6 +171,7 @@ end
 -- value in a profile other than the logging-in character's). create: make the profile's table when missing.
 function check.Target(new, record, old, create)
     local section = record.Section
+    if section == "unread" then return nil, nil, "unread" end
     if section == "profileOf" then
         return (record.System == "options" and new.Options or new.Filters).ProfileOf, { record.Character }
     end
@@ -172,8 +205,10 @@ function check.Move(new, record, value, old)
     check.Write(t, keys, value)
 end
 
--- Whether the new store holds the old value where its record lives (true for a value that is not carried)
+-- Whether the new store holds the old value where its record lives (true for a value that is not carried; never for
+-- an unread one)
 function check.Matches(new, record, value, old)
+    if record.Section == "unread" then return false end
     local t, keys = check.Target(new, record, old, false)
     if keys == nil then return true end
     local got = check.Read(t, keys)

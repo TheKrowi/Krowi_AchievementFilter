@@ -127,11 +127,27 @@ local function LogNotCarried(notCarried)
     for _, line in ipairs(notCarried) do Log("migration 1: not carried, " .. line) end
 end
 
--- Whether the player set a failed record's key since the failure (the store records them in Touched)
+-- Whether the player set what a failed record names since the failure, in its scope (Settings/Store.lua, Touch). A
+-- filter or search value is only known as set when its whole profile was copied, reset or deleted: the store does
+-- not see writes into its live objects, so a failed filter value the player changed since is moved again.
 local function Touched(record, touched)
-    if record.Section ~= "options" then return false end
-    local _, key = check.Home(record.Path)
-    return key ~= nil and touched[key] == true
+    local section, profile = record.Section, tostring(record.Profile)
+    if section == "profileOf" then return touched["profileOf:" .. record.System .. ":" .. tostring(record.Character)] == true end
+    if section == "filters" or section == "search" then return touched["filters:" .. profile .. ":*"] == true end
+    if section ~= "options" then return false end
+    local kind, key, _, account = check.Home(record.Path)
+    if not kind then return false end
+    if account then return touched["account:" .. key] == true end
+    return touched["options:" .. profile .. ":" .. key] == true or touched["options:" .. profile .. ":*"] == true
+end
+
+local function LogFailures(failures)
+    for n = 1, math.min(#failures, 20) do
+        local record = failures[n]
+        Log(("migration 1: failing, %s %s %s"):format(record.Section, tostring(record.Profile or record.System or record.Variable),
+            check.Join(record.Path or { record.Character })))
+    end
+    if #failures > 20 then Log(("migration 1: failing, and %d more"):format(#failures - 20)) end
 end
 
 -- After a failure, with a new addon version: the failed records (all, when the first run errored) moved again from the
@@ -159,6 +175,7 @@ local function Retry(sv, context, settings, failed, dataError)
     end
     local failures = check.Run(old, settings, again)
     Log(("migration 1 again: %d records moved again, %d still failing"):format(#again, #failures))
+    LogFailures(failures)
     if #failures == 0 and not dataError then
         settings.MigrationFailed = nil
         settings.Version = 1
@@ -228,6 +245,7 @@ function migrations.Run(sv, context)
     sv.Settings = new
     migrations.Failed = new.MigrationFailed
     Log(("migration 1: check failed, %s"):format(ok and (#failures .. " records") or ("error: " .. tostring(err))))
+    if ok then LogFailures(failures) end
     return "failed"
 end
 

@@ -21,7 +21,7 @@ local account             -- root.Account, or a throwaway table inside WithDefau
 local current = {}        -- system -> the current profile's saved table
 local currentName = {}    -- system -> the current profile's name
 local built = {}          -- saved table -> { [key] = live object }
-local touched             -- while a failed migration waits for a retry: key -> true once the player set it
+local touched             -- while a failed migration waits for a retry: what the player set since (see Touch)
 local inDefaults, readCount = false, 0
 local logoutFrame
 
@@ -88,6 +88,22 @@ local function Writable(declaration, key)
     return store
 end
 
+-- While a failed migration waits for its retry (requirement 15): marks what the player sets, by scope, so the retry
+-- moves no old value over it. "account:<key>", "<system>:<profile>:<key>", "<system>:<profile>:*" for a whole
+-- profile (copied, reset, deleted), "profileOf:<system>:<character>" for a profile choice.
+local function Touch(mark)
+    if touched and not inDefaults then touched[mark] = true end
+end
+
+local function TouchKey(declaration, key)
+    if not touched or inDefaults then return end
+    if declaration.Scope == "account" then
+        Touch("account:" .. key)
+    else
+        Touch(declaration.System .. ":" .. tostring(currentName[declaration.System]) .. ":" .. key)
+    end
+end
+
 local function Fire(key)
     if inDefaults then return end
     local list = listeners[key]
@@ -146,7 +162,7 @@ function settings.Set(key, value)
     else
         store[key] = value
     end
-    if touched and not inDefaults then touched[key] = true end
+    TouchKey(declaration, key)
     if old ~= value then Fire(key) end
 end
 
@@ -216,7 +232,7 @@ function settings.SetEntry(key, a, b, value)
             saved[a][b] = value
         end
     end
-    if touched and not inDefaults then touched[key] = true end
+    TouchKey(declaration, key)
     if old ~= settings.GetEntry(key, a, b) then Fire(key) end
 end
 
@@ -242,7 +258,8 @@ function settings.RemoveEntries(key, a)
         saved[a] = nil
         if next(saved) == nil then store[key] = nil end
     end
-    entryDefaults[key][a] = nil
+    if not inDefaults then entryDefaults[key][a] = nil end -- inside WithDefaults the registered defaults stay
+    TouchKey(declaration, key)
     if had then Fire(key) end
 end
 
@@ -390,6 +407,7 @@ function settings.SetProfile(system, name)
     local before = Before(system, current[system], to)
     data.Profiles[name] = to
     data.ProfileOf[characterKey] = name ~= "Default" and name or nil
+    Touch("profileOf:" .. system .. ":" .. characterKey)
     current[system], currentName[system] = to, name
     After(system, before)
 end
@@ -406,6 +424,7 @@ function settings.CopyProfile(system, name)
     built[store] = nil
     Wipe(store)
     Merge(store, from)
+    Touch(system .. ":" .. tostring(currentName[system]) .. ":*")
     After(system, before)
 end
 
@@ -420,8 +439,12 @@ function settings.DeleteProfile(system, name, silent)
     end
     built[store] = nil
     data.Profiles[name] = nil
+    Touch(system .. ":" .. tostring(name) .. ":*")
     for character, profile in next, data.ProfileOf do
-        if profile == name then data.ProfileOf[character] = nil end
+        if profile == name then
+            data.ProfileOf[character] = nil
+            Touch("profileOf:" .. system .. ":" .. character)
+        end
     end
 end
 
@@ -432,6 +455,7 @@ function settings.ResetProfile(system)
     local before = Before(system, store)
     built[store] = nil
     Wipe(store)
+    Touch(system .. ":" .. tostring(currentName[system]) .. ":*")
     After(system, before)
 end
 

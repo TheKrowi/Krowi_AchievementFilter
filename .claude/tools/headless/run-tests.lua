@@ -3018,13 +3018,17 @@ local settingsScenarios = {
         Target = "first=migrated second=current unchanged=yes dry=migrated/migrated rebuilt-same=yes version=none old=kept"},
     -- two planted dropped values: nothing cleared, Version 0, the failing records kept, the new store in use; the same
     -- version waits; a new one moves the failed values again, keeps the one the player set since, and clears on a pass
-    {Name = "migrate-fails", Recorded = "first=failed version=0 failing=3 old=kept in-use=yes second=waiting third=migrated moved=yes kept=yes version=1 cleared=yes failed-record=gone",
-        Target = "first=failed version=0 failing=3 old=kept in-use=yes second=waiting third=migrated moved=yes kept=yes version=1 cleared=yes failed-record=gone"},
+    {Name = "migrate-fails", Recorded = "first=failed version=0 failing=3 old=kept in-use=yes second=waiting third=migrated moved=yes kept=yes second-profile=moved/- version=1 cleared=yes failed-record=gone",
+        Target = "first=failed version=0 failing=3 old=kept in-use=yes second=waiting third=migrated moved=yes kept=yes second-profile=moved/- version=1 cleared=yes failed-record=gone"},
     -- an error midway through the build: no new store in place, the old tables kept, the failure recorded; an error in
     -- the check: the store as built is used, every value is retried after the next update
     {Name = "migrate-errors", Recorded = "result=error store=none old=kept recorded=yes check-error=failed/all/kept/in-use",
         Target = "result=error store=none old=kept recorded=yes check-error=failed/all/kept/in-use"},
     -- an old value with no row (an option removed in the past) is not carried, is logged, and does not fail the check
+    -- a value in the old variables that the migration does not read (an AceDB global section, a search profile other
+    -- than Default) fails the check, so the old tables are not cleared with it in them
+    {Name = "unread-blocks-clear", Recorded = "result=failed unread=KrowiAF_Options.global.Something,KrowiAF_SearchOptions.profiles.Other.SearchIds old=kept version=nil",
+        Target = "result=failed unread=KrowiAF_Options.global.Something,KrowiAF_SearchOptions.profiles.Other.SearchIds old=kept version=nil"},
     {Name = "dead-key", Recorded = "result=migrated logged=yes carried=no", Target = "result=migrated logged=yes carried=no"},
     -- the Legion Assaults merge (Tests/Schedules.lua's merge scenarios, now migration 1's step 1) on a pre-104 file, and
     -- nothing for a file that ran it: per profile 5175 on or off and the zone toggles left; the check passes on both
@@ -3085,46 +3089,24 @@ suites.settings = function(c)
         for n, k in ipairs(keys) do keys[n] = tostring(k) end
         return table.concat(keys, ",")
     end
-    -- The rename table on its own, and an old options path's home in it: "value", "map" or "object", its key, and the
-    -- segments after the map's or object's path
+    -- The rename table and the migration's own classifier (Settings/Check.lua's Home: an old options path's home, "value",
+    -- "map" or "object", its key, the keys under the map's or object's path, and whether it is of account scope)
     local function Renames()
-        local addon = { Settings = {} }
-        assert(loadfile(root .. "/Settings/Renames.lua"))("Krowi_AchievementFilter", addon)
-        return addon.Settings.Renames
+        local s = storeHelper.Runner(root)
+        return s.Renames, s.Check
     end
     local function Split(path)
         local segments = {}
         for segment in path:gmatch("[^%.]+") do segments[#segments + 1] = segment end
         return segments
     end
-    local function Under(segments, prefix)
-        for n, name in ipairs(prefix) do
-            if segments[n] ~= name then return false end
-        end
-        return true
-    end
-    local function Home(renames, segments)
-        local key = renames.Values[table.concat(segments, ".")]
-        if key then return "value", key end
-        for _, object in ipairs(renames.Objects) do
-            if #segments > #object.Path and Under(segments, object.Path) then
-                return "object", object.Key, { unpack(segments, #object.Path + 1) }
-            end
-        end
-        for _, map in ipairs(renames.Maps) do
-            local want = #map.Path + map.Depth + (map.Leaf and 1 or 0)
-            if #segments == want and Under(segments, map.Path) and (not map.Leaf or segments[want] == map.Leaf) then
-                return "map", map.Key, { unpack(segments, #map.Path + 1, #map.Path + map.Depth) }
-            end
-        end
-    end
     -- Where in KrowiAF_Settings the old path's value goes, as SavedKeys writes a path (a profile as *)
-    local function NewPath(renames, segments)
-        local kind, key, rest = Home(renames, segments)
+    local function NewPath(check, segments)
+        local kind, key, rest, account = check.Home(segments)
         if not kind then return nil end
-        local base = (kind == "value" and renames.Account[key]) and "KrowiAF_Settings.Account." or "KrowiAF_Settings.Options.Profiles.*."
+        local base = account and "KrowiAF_Settings.Account." or "KrowiAF_Settings.Options.Profiles.*."
         if kind == "value" then return base .. key end
-        return base .. key .. "." .. table.concat(rest, ".")
+        return base .. key .. "." .. check.Join(rest)
     end
     local reads = {
         ["defaults-unchanged"] = function()
@@ -3201,13 +3183,13 @@ suites.settings = function(c)
             return ("%s options-switch=%s filters-follow=%s"):format(registered, switched and "yes" or "no", follow and "yes" or "no")
         end,
         ["renames-cover"] = function()
-            local renames = Renames()
+            local renames, check = Renames()
             local counts, noRow, seen = {}, {}, {}
             local function Check(source, segments)
                 local path = table.concat(segments, ".")
                 if path == "Categories.Excluded.CharacterSpecific" then return end -- an unused default (renames.md, Not carried over)
                 counts[source] = (counts[source] or 0) + 1
-                if not Home(renames, segments) and not seen[path] then
+                if not check.Home(segments) and not seen[path] then
                     seen[path] = true
                     noRow[#noRow + 1] = path
                 end
@@ -3238,7 +3220,7 @@ suites.settings = function(c)
                 counts.defaults or 0, counts.fixture or 0, #noRow, shared, #noRow > 0 and (" (" .. table.concat(noRow, ", ", 1, math.min(3, #noRow)) .. ")") or "")
         end,
         ["renames-by-option"] = function()
-            local renames = Renames()
+            local _, check = Renames()
             local frozen = assert(loadfile(scriptDir .. "/fixtures/settings-option-paths-" .. c.client .. ".lua"))()
             local ctx, model = Boot()
             local present = {}
@@ -3261,7 +3243,7 @@ suites.settings = function(c)
                 else
                     local expected, unique = {}, {}
                     for _, path in ipairs(paths) do
-                        local new = NewPath(renames, Split(path:gsub("^KrowiAF_Options%.profiles%.%*%.", "")))
+                        local new = NewPath(check, Split(path:gsub("^KrowiAF_Options%.profiles%.%*%.", "")))
                         if new and not unique[new] then
                             unique[new] = true
                             expected[#expected + 1] = new
@@ -3316,14 +3298,19 @@ suites.settings = function(c)
         ["migrate-fails"] = function()
             local s = Runner(true)
             local check = s.Check
-            -- the first two value rows of the old Default profile, sorted, are dropped by a broken move
-            local paths = {}
+            -- two value rows of the old Default profile are dropped by a broken move: the first (sorted) that the
+            -- second profile holds too, which the player then sets in Default only, and the first that it does not
+            local both, defaultOnly = {}, {}
             local profiles = OldFile().Options.profiles
             check.Records(check.Old({}, { Default = profiles.Default }, Context()), function(record)
-                if check.Home(record.Path) == "value" then paths[#paths + 1] = check.Join(record.Path) end
+                if check.Home(record.Path) == "value" then
+                    local list = Walk(profiles.Second, record.Path) ~= nil and both or defaultOnly
+                    list[#list + 1] = check.Join(record.Path)
+                end
             end)
-            table.sort(paths)
-            local kept, moved = paths[1], paths[2]
+            table.sort(both)
+            table.sort(defaultOnly)
+            local kept, moved = both[1], defaultOnly[1]
             local realMove = check.Move
             check.Move = function(new, record, value, old)
                 local path = record.Section == "options" and check.Join(record.Path)
@@ -3343,13 +3330,20 @@ suites.settings = function(c)
             local _, keptKey = check.Home(Split(kept))
             local _, movedKey = check.Home(Split(moved))
             sv.Settings.Options.Profiles.Default[keptKey] = "player"
-            failed.Touched[keptKey] = true
+            failed.Touched["options:Default:" .. keptKey] = true -- set in Default only: the other profiles are moved again
             local third = s.Migrations.Run(sv, Context("107.1"))
-            local default = sv.Settings.Options.Profiles.Default
-            return ("first=%s version=%d failing=%d old=%s in-use=%s second=%s third=%s moved=%s kept=%s version=%s cleared=%s failed-record=%s"):format(
+            local default, oldProfiles = sv.Settings.Options.Profiles.Default, OldFile().Options.profiles
+            -- the two values in the second profile, which failed there too where it holds them
+            local inSecond = {}
+            for _, path in ipairs({ kept, moved }) do
+                local oldValue = Walk(oldProfiles.Second, Split(path))
+                local _, key = check.Home(Split(path))
+                inSecond[#inSecond + 1] = oldValue == nil and "-" or (sv.Settings.Options.Profiles.Second[key] == oldValue and "moved" or "lost")
+            end
+            return ("first=%s version=%d failing=%d old=%s in-use=%s second=%s third=%s moved=%s kept=%s second-profile=%s version=%s cleared=%s failed-record=%s"):format(
                 first, version, failing, oldKept, inUse, second, third,
-                default[movedKey] == Walk(OldFile().Options.profiles.Default, Split(moved)) and "yes" or "no",
-                default[keptKey] == "player" and "yes" or "no", tostring(sv.Settings.Version),
+                default[movedKey] == Walk(oldProfiles.Default, Split(moved)) and "yes" or "no",
+                default[keptKey] == "player" and "yes" or "no", table.concat(inSecond, "/"), tostring(sv.Settings.Version),
                 (sv.Options == nil and sv.Filters == nil and sv.SearchOptions == nil) and "yes" or "no",
                 sv.Settings.MigrationFailed == nil and "gone" or "kept")
         end,
@@ -3375,6 +3369,21 @@ suites.settings = function(c)
                 (failed and failed.Error) and "yes" or "no", result2, (failed2 and failed2.Paths == nil) and "all" or "some",
                 (sv2.Options and sv2.Filters and sv2.SearchOptions) and "kept" or "cleared",
                 sv2.Settings.Options and sv2.Settings.Options.Profiles.Default and "in-use" or "none")
+        end,
+        ["unread-blocks-clear"] = function()
+            local s = Runner(true)
+            local sv = OldFile()
+            sv.Options.global = { Something = true } -- an AceDB section the migration does not read
+            sv.SearchOptions.profiles.Other = { SearchIds = false } -- a search profile other than Default
+            local result = s.Migrations.Run(sv, Context())
+            local failed = sv.Settings.MigrationFailed
+            local unread = {}
+            for _, record in ipairs(failed and failed.Paths or {}) do
+                if record.Section == "unread" then unread[#unread + 1] = record.Variable .. "." .. s.Check.Join(record.Path) end
+            end
+            table.sort(unread)
+            return ("result=%s unread=%s old=%s version=%s"):format(result, table.concat(unread, ","),
+                (sv.Options and sv.Filters and sv.SearchOptions) and "kept" or "cleared", tostring(sv.Settings.Version))
         end,
         ["dead-key"] = function()
             local s = Runner(true)
@@ -3488,7 +3497,8 @@ local storeScenarios = {
     {Name = "store-logout", Recorded = "frames=0/1 registered=yes saved={[\"o.obj\"]={N=4}}", Target = "frames=0/1 registered=yes saved={[\"o.obj\"]={N=4}}"},
     -- while a failed migration waits for its retry, every key the player sets is recorded (requirement 15), never
     -- inside WithDefaults
-    {Name = "store-touched", Recorded = "touched=m.events=true,o.x=true", Target = "touched=m.events=true,o.x=true"},
+    {Name = "store-touched", Recorded = "touched=account:a.debug=true,options:Default:m.events=true,options:Default:o.x=true,options:Second:*=true,profileOf:options:Tester - Realm=true",
+        Target = "touched=account:a.debug=true,options:Default:m.events=true,options:Default:o.x=true,options:Second:*=true,profileOf:options:Tester - Realm=true"},
 }
 
 suites.store = function(c)
@@ -3649,11 +3659,15 @@ suites.store = function(c)
             local saved = { MigrationFailed = { Touched = {} } }
             local s = store.New(root, { Saved = saved, Declarations = {
                 ["o.x"] = { Default = 1 }, ["o.y"] = { Default = 1 }, ["m.events"] = { Kind = "map" },
+                ["a.debug"] = { Default = false, Scope = "account" },
             } })
             local settings = s.Settings
             settings.Set("o.x", 2)
             settings.SetEntry("m.events", 3, true)
+            settings.Set("a.debug", true)
             settings.WithDefaults(function() settings.Set("o.y", 2) end)
+            settings.SetProfile("options", "Second")
+            settings.ResetProfile("options")
             return "touched=" .. List(next, saved.MigrationFailed.Touched)
         end,
     }

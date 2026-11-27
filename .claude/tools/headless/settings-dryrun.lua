@@ -70,6 +70,6 @@ for _, line in ipairs(lines) do print("  " .. line) end
 if failed then
     if failed.Error then print("  error: " .. tostring(failed.Error)) end
     for _, record in ipairs(failed.Paths or {}) do
-        print(("  failing: %s %s %s"):format(record.Section, tostring(record.Profile or record.System), s.Check.Join(record.Path or { record.Character })))
+        print(("  failing: %s %s %s"):format(record.Section, tostring(record.Profile or record.System or record.Variable), s.Check.Join(record.Path or { record.Character })))
     end
 end
